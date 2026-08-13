@@ -89,4 +89,8 @@ docs/sources/
 *.bak_p1p2
 scripts/video/.env
 scripts/video/out/
+
+# 2026-08-13: squid v5 · whelk v2 빌더 부산물 (L-08)
 __pycache__/
+*.pyc
+scripts/squid_build/.cache/

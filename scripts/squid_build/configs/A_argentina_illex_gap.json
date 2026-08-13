@@ -1,0 +1,11 @@
+{
+  "widget_id": "A_argentina_illex_gap",
+  "patterns": [
+    "(?:temporada|semana|captura|pesquer[ií]a).{0,120}2026",
+    "2026.{0,120}(?:temporada|semana|captura|pesquer[ií]a)"
+  ],
+  "require_numeric": true,
+  "min_sources": 1,
+  "max_items": 12,
+  "empty_reason": "INIDEP 지정 PDF를 pdftotext -layout으로 재추출했으나 2024 어기 자료뿐이며, 프로그램 HTML에도 2026 주간공보가 없어 2026 어획 실적을 확정하지 못함. 어기 상태는 신호판에서 별도 법령 근거로 파생"
+}

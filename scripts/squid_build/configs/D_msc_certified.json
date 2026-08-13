@@ -1,0 +1,6 @@
+{
+  "widget_id": "D_msc_certified",
+  "patterns": ["squid.*(?:certified|fishery|MSC)", "certified.*squid"],
+  "chart_type": "card",
+  "max_items": 12
+}

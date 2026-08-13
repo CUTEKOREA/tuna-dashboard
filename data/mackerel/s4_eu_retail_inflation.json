@@ -1,0 +1,51 @@
+{
+  "bars": [
+    {
+      "color": "#94a3b8",
+      "key": "2025-01"
+    },
+    {
+      "color": "#10b981",
+      "key": "2026-01"
+    }
+  ],
+  "chartType": "Bar",
+  "data": [
+    {
+      "2025-01": 2.12,
+      "2026-01": 4.0,
+      "국가": "아일랜드",
+      "증감": 89
+    },
+    {
+      "2025-01": 2.15,
+      "2026-01": 1.84,
+      "국가": "덴마크",
+      "증감": -14
+    }
+  ],
+  "id": "s4_eu_retail_inflation",
+  "provenance": {
+    "extract_date": "2026-08-12",
+    "grade": "B",
+    "input_files": [
+      "05_시장·소매·소비/eumofa/2026-08-12_full/EUMOFA_Monthly_Highlights_4_2026.md"
+    ],
+    "input_sha256": [
+      "53ee443e64ca88804337230effb4fcfb5b1e66d57dd80699d001b396e6885fee"
+    ],
+    "method": "manual_extract",
+    "note": "EUMOFA 표14 원문 2개국만 고등어 항목이 있다. 표본이 작아 EU 전체를 대표하지 않는다.",
+    "period": "2025-01 / 2026-01",
+    "publisher": "European Commission",
+    "rebuild": "python scripts/mackerel/build.py s4_eu_retail_inflation",
+    "series": "EUMOFA market analysis",
+    "source_id": "EUMOFA_MARKET"
+  },
+  "sit": "같은 달 같은 어종인데 국가별로 정반대로 움직였다. 아일랜드는 +89%, 덴마크는 −14%다. EU 역내에서도 산지 가격이 하나의 시세로 수렴하지 않는다.",
+  "strat": "'유럽 시세'라는 단일 기준값은 존재하지 않는다. 소싱 국가를 특정하지 않은 유럽 가격 인용은 협상에서 근거로 쓸 수 없다.",
+  "subtitle": "EUMOFA Monthly Highlights 4/2026 표14 — 2026년 1월 vs 2025년 1월 1차 판매가. 아일랜드 2.12→4.00 EUR/kg(+89%), 덴마크 2.15→1.84 EUR/kg(−14%).",
+  "title": "EU 산지 1차 판매가 (고등어)",
+  "unit": "EUR/kg",
+  "xKey": "국가"
+}

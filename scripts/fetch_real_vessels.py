@@ -1,3 +1,4 @@
+import os
 import urllib.request
 import json
 import ssl
@@ -7,7 +8,7 @@ ctx = ssl.create_default_context()
 ctx.check_hostname = False
 ctx.verify_mode = ssl.CERT_NONE
 
-url = "https://api.odcloud.kr/api/15115888/v1/uddi:f1f70029-fcde-426c-a9fa-cfa0b7fe0b96?page=1&perPage=15000&serviceKey=6438ce04ca4a3ec4bcc72f295ab386baa74e52cacce9f725803e18cd8c6d1030"
+url = f"https://api.odcloud.kr/api/15115888/v1/uddi:f1f70029-fcde-426c-a9fa-cfa0b7fe0b96?page=1&perPage=15000&serviceKey={os.environ['FISHERY_API_KEY']}"
 try:
     req = urllib.request.Request(url)
     response = urllib.request.urlopen(req, context=ctx)

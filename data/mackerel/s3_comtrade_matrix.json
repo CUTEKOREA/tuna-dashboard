@@ -1,0 +1,83 @@
+{
+  "bars": [
+    {
+      "color": "#0ea5e9",
+      "key": "물량"
+    }
+  ],
+  "chartType": "Bar",
+  "data": [
+    {
+      "경로": "Portugal → France",
+      "물량": 53471
+    },
+    {
+      "경로": "Latvia → Sweden",
+      "물량": 32138
+    },
+    {
+      "경로": "Spain → France",
+      "물량": 15937
+    },
+    {
+      "경로": "Latvia → Denmark",
+      "물량": 14120
+    },
+    {
+      "경로": "Portugal → Italy",
+      "물량": 12484
+    },
+    {
+      "경로": "Latvia → Germany",
+      "물량": 10500
+    },
+    {
+      "경로": "Slovenia → Austria",
+      "물량": 7959
+    },
+    {
+      "경로": "Sweden → Norway",
+      "물량": 7348
+    },
+    {
+      "경로": "Morocco → Italy",
+      "물량": 6168
+    },
+    {
+      "경로": "Spain → Italy",
+      "물량": 5301
+    },
+    {
+      "경로": "Latvia → United Kingdom",
+      "물량": 5156
+    },
+    {
+      "경로": "Morocco → Spain",
+      "물량": 4470
+    }
+  ],
+  "id": "s3_comtrade_matrix",
+  "provenance": {
+    "extract_date": "2026-08-12",
+    "grade": "A",
+    "input_files": [
+      "10_원본데이터셋/collections/2026-08-12/api_extracts/un_comtrade/mackerel_trade_comtrade.csv"
+    ],
+    "input_sha256": [
+      "0954a0398c5d9ebba0623dcaf9c39d88c5511487ec208276126a75fe0126ecb8"
+    ],
+    "method": "script",
+    "note": "World 집계행(partnerCode=0) 제외. 수출(X) 신고 기준.",
+    "period": "2025",
+    "publisher": "United Nations",
+    "rebuild": "python scripts/mackerel/build.py s3_comtrade_matrix",
+    "series": "UN Comtrade HS trade",
+    "source_id": "UN_COMTRADE_HS"
+  },
+  "sit": "2025년 신고 기준 교역 경로 상위 12개가 전체 물량의 큰 몫을 차지한다. 신고국 기준이라 재수출이 중복 계상될 수 있다.",
+  "strat": "경쟁사가 어디서 사서 어디로 파는지가 이 표에 그대로 나온다. 우리가 노리는 목적지에 이미 누가 얼마나 넣고 있는지 확인하고 들어간다.",
+  "subtitle": "UN Comtrade 2025년 수출 신고 실측 상위 12개 경로. 전체 262,200톤. HS 030244·030245·030354·030355·160415.",
+  "title": "글로벌 교역 매트릭스 (HS6 5종)",
+  "unit": "톤",
+  "xKey": "경로"
+}

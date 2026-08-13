@@ -4,7 +4,11 @@ import { readdir, readFile } from 'node:fs/promises';
 import path from 'node:path';
 
 const DEFAULT_API_DIR = 'app/api';
-const DEFAULT_MIN_EXPLICIT_POLICY = 145;
+// 라쳇. 캐시 정책이 명시된 라우트 수가 이 아래로 떨어지면 실패한다.
+// 2026-08-13: squid-v5 병합이 라우트 8개를 삭제하면서 145 → 143이 되어 main이 red가 됐다.
+// 커버리지는 143/143 = 100%로 온전하므로 라쳇의 취지(정책 누락 방지)는 그대로 두고
+// 실제 라우트 수에 맞춘다. 라우트를 지울 때는 이 값도 함께 내려야 한다.
+const DEFAULT_MIN_EXPLICIT_POLICY = 143;
 
 function parsePositiveInteger(value, label) {
   const parsed = Number(value);

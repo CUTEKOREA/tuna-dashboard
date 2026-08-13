@@ -10,12 +10,16 @@ import TermTooltip from './TermTooltip';
 import { getMiscData } from '@/lib/data/misc';
 import { ChartPatternDefs } from './ChartPatterns';
 
-const BANGKOK_PORT_DATA = getMiscData('reeferWeek30');
+const BANGKOK_PORT_DATA = getMiscData('reeferWeek32');
 
 // ── helpers ──
 function parseNum(s: any): number {
   if (typeof s !== 'string') return typeof s === 'number' ? s : 0;
   return parseFloat(s.replace(/,/g, '')) || 0;
+}
+
+function formatMt(value: number): string {
+  return value.toLocaleString('en-US', { maximumFractionDigits: 3 });
 }
 
 // Color palette for bars
@@ -28,9 +32,9 @@ const BAR_COLORS = [
 
 // Legacy table columns
 const COLUMNS = [
-  "ASIAN", "AEC", "AYA", "CMC", "DIMCN", "GB", "GPZ", "ISA", "I-TAIL", "KF",
+  "ASIAN", "AEC", "AYA", "CMC", "DIA", "GB", "GPZ", "ISA", "I-TAIL", "KF",
   "MMP", "PCI", "FOOD", "POP", "PTY", "RMK", "RS", "SK", "SIF", "SPA",
-  "SCC", "SE", "TCC", "TOV", "TUG", "TUM", "UC", "SHIP", "OTHER"
+  "SCC", "SE", "SEAP", "TCC", "TOV", "TUG", "TUM", "UC", "SHIP", "OTHER"
 ];
 
 // ── Custom tooltip for bar chart ──
@@ -120,17 +124,17 @@ export default function ReeferMovement() {
           border: '1px solid rgba(148, 163, 184, 0.2)'
         }}>
           <div style={{ width: 6, height: 6, borderRadius: '50%', background: 'var(--text-muted)' }}></div>
-          WEEK 30 주간 보고 (2026-07-24 ~ 07-30 기준)
+          32주차 주간 보고 (2026-08-07 ~ 08-13 기준)
         </div>
       </div>
 
       {/* ── REEFER MOVEMENT SCHEDULE Header ── */}
       <div style={{ fontSize: '14px', fontWeight: 'bold', color: 'var(--text-main)', marginBottom: '16px', display: 'flex', alignItems: 'center', gap: '8px' }}>
         <AlertTriangle size={16} color="var(--color-warning)" />
-        <TermTooltip term="운반선 이동 스케줄" description="[표 설명] WEEK 30 주간 보고에 기록된 방콕 항구 운반선(Reefer)별 접안 일정과 각 캔 공장(Cannery)별 배분 물량입니다. 이를 통해 보고 시점의 캔 공장별 원재료 수급 상황을 파악할 수 있습니다." /> (2026-07-24 ~ 07-30) : WEEK 30 주간 보고
+        <TermTooltip term="운반선 이동 스케줄" description="[표 설명] 32주차 주간 보고에 기록된 방콕 항구 냉동 운반선별 접안 일정과 각 캔 공장별 배분 물량입니다. 이를 통해 보고 시점의 캔 공장별 원재료 수급 상황을 파악할 수 있습니다." /> (2026-08-07 ~ 08-13) : 32주차 주간 보고
         <div style={{ marginLeft: 'auto', display: 'flex', gap: 8, alignItems: 'center' }}>
           <span style={{ fontSize: '0.75rem', color: 'var(--color-success)', background: '#10b98118', padding: '3px 10px', borderRadius: 99, fontWeight: 600 }}>
-            {BANGKOK_PORT_DATA.length}척 · 공장 배분 {Math.round(grandTotal).toLocaleString()} MT
+            {BANGKOK_PORT_DATA.length}척 · 공장 배분 {formatMt(grandTotal)} MT
           </span>
         </div>
       </div>
@@ -144,7 +148,7 @@ export default function ReeferMovement() {
       }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 16 }}>
           <Factory size={16} color="var(--color-info)" />
-          <span style={{ fontSize: '0.9rem', fontWeight: 700, color: 'var(--text-primary)' }}>캔 공장별 원료 배분 총량 (WEEK 30 보고 기준)</span>
+          <span style={{ fontSize: '0.9rem', fontWeight: 700, color: 'var(--text-primary)' }}>캔 공장별 원료 배분 총량 (32주차 보고 기준)</span>
           <span style={{ fontSize: '0.72rem', color: '#64748b', marginLeft: 4 }}>(단위: MT)</span>
         </div>
         <div style={{ height: Math.max(canneryAgg.length * 36 + 30, 200), width: '100%' }}>
@@ -204,13 +208,13 @@ export default function ReeferMovement() {
                     {card.carrier}
                   </div>
                   <div style={{ fontSize: '0.72rem', color: '#64748b', marginTop: 2 }}>
-                    접안일: {card.date}
+                    보고서 기재 접안일: {card.date}
                     {card.other && <span style={{ marginLeft: 8, color: '#475569' }}>부두: {card.other}</span>}
                   </div>
                 </div>
                 <div style={{ textAlign: 'right', marginRight: 8 }}>
                   <div style={{ fontSize: '1rem', fontWeight: 800, color: 'var(--color-success)' }}>
-                    {Math.round(card.totalMT).toLocaleString()}
+                    {formatMt(card.totalMT)}
                   </div>
                   <div style={{ fontSize: '0.65rem', color: '#64748b' }}>MT · 공장 {card.deliveries.length}곳</div>
                 </div>
@@ -231,7 +235,7 @@ export default function ReeferMovement() {
                     }}>
                       <span style={{ color: BAR_COLORS[canneryAgg.findIndex(c => c.name === d.cannery) % BAR_COLORS.length] || '#64748b' }}>●</span>
                       {d.cannery}
-                      <span style={{ color: '#94a3b8', fontWeight: 400 }}>{Math.round(d.amount).toLocaleString()}</span>
+                      <span style={{ color: '#94a3b8', fontWeight: 400 }}>{formatMt(d.amount)}</span>
                     </span>
                   ))}
                 </div>
@@ -257,7 +261,7 @@ export default function ReeferMovement() {
                           }} />
                         </div>
                         <div style={{ width: 65, fontSize: '0.78rem', fontWeight: 600, color: '#e2e8f0', textAlign: 'right' }}>
-                          {Math.round(d.amount).toLocaleString()}
+                          {formatMt(d.amount)}
                         </div>
                       </div>
                     );
@@ -302,12 +306,14 @@ export default function ReeferMovement() {
             <thead>
               <tr>
                 <th rowSpan={2} className={styles.stickyHeader} style={{ minWidth: '180px' }}>운반선</th>
-                <th rowSpan={2} style={{ minWidth: '100px' }}>접안일</th>
+                <th rowSpan={2} style={{ minWidth: '100px' }}>보고서 기재 접안일</th>
                 <th colSpan={COLUMNS.length} className={styles.portHeader}>방콕항 (캔 공장·배분처)</th>
               </tr>
               <tr>
                 {COLUMNS.map(col => (
-                  <th key={col} style={{ minWidth: col === 'OTHER' ? '180px' : '70px' }}>{col}</th>
+                  <th key={col} style={{ minWidth: col === 'OTHER' ? '100px' : '70px' }}>
+                    {col === 'OTHER' ? '부두' : col}
+                  </th>
                 ))}
               </tr>
             </thead>
@@ -318,7 +324,7 @@ export default function ReeferMovement() {
                   <td className={styles.valueCell} style={{ textAlign: 'center' }}>{row.date}</td>
                   {COLUMNS.map(col => {
                     const val = row.deliveries[col as keyof typeof row.deliveries];
-                    const displayVal = val ? val.replace(/\.\d+/g, '') : "-";
+                    const displayVal = val || "-";
                     return (
                       <td key={col} className={val ? styles.valueCell : styles.emptyCell}>
                         {displayVal}

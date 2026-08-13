@@ -1,3 +1,4 @@
+import { requireAnyEnv } from './env';
 /**
  * 관세청 KCS API 공유 클라이언트
  *
@@ -9,10 +10,8 @@
  *   const result = await fetchKCSNitemtrade({ hsSgn: '0801320000', year: '2024' });
  */
 
-export const KCS_API_KEY =
-  process.env.DATA_GO_KR_NEW_KEY ||
-  process.env.DATA_GO_KR_COMMON_KEY ||
-  'fdbf3eb58f1157a1db7c9156e8ce7f88ed9fa2d996116d9079dddb5232133f7c'; // L-10 fallback
+export const KCS_API_KEY = () =>
+  requireAnyEnv('DATA_GO_KR_NEW_KEY', 'DATA_GO_KR_COMMON_KEY');
 
 export const KCS_BASE = "https://apis.data.go.kr/1220000/nitemtrade/getNitemtradeList";
 
@@ -76,7 +75,20 @@ export async function fetchKCSNitemtrade(params: {
   const { hsSgn, year, month, timeout = 8000 } = params;
   const strtYymm = month ? `${year}${month}` : `${year}01`;
   const endYymm = month ? `${year}${month}` : `${year}12`;
-  const url = `${KCS_BASE}?serviceKey=${KCS_API_KEY}&strtYymm=${strtYymm}&endYymm=${endYymm}&hsSgn=${hsSgn}`;
+  // 키 미설정은 "API 사용 불가"와 같다. 가짜 키를 만들지도, 라우트를 죽이지도 않고
+  // 아래 실패 경로와 똑같이 isLive:false로 떨어뜨린다 (L-09).
+  let url: string;
+  try {
+    url = `${KCS_BASE}?serviceKey=${KCS_API_KEY()}&strtYymm=${strtYymm}&endYymm=${endYymm}&hsSgn=${hsSgn}`;
+  } catch {
+    return {
+      isLive: false,
+      items: [],
+      totalCount: 0,
+      source: 'KCS Fallback (credential not configured)',
+      apiHealth: { ok: false, items_count: 0 },
+    };
+  }
 
   try {
     const res = await fetch(url, { signal: AbortSignal.timeout(timeout) });

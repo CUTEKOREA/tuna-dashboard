@@ -1,0 +1,7 @@
+{
+  "widget_id": "A_climate_stock_brief",
+  "patterns": ["살오징어.*(?:수온|기후|어획|분포)", "longfin squid.*(?:temperature|migration|distribution|climate)", "Doryteuthis pealeii"],
+  "chart_type": "card",
+  "min_sources": 2,
+  "max_items": 14
+}

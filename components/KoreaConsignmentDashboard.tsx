@@ -11,6 +11,7 @@ import {
 import styles from './MackerelStrategy.module.css';
 import WidgetCard from './WidgetCard';
 import { ChartPatternDefs } from './ChartPatterns';
+import { getConsignmentNetworkPresentation } from '../lib/consignment-data';
 
 // 9대 데이터망 한글 표기 (L-01) — 약어(KAMIS·NOAA·FAO 등)는 화이트리스트 허용
 const NETWORK_LABELS: Record<string, string> = {
@@ -186,7 +187,7 @@ export default function KoreaConsignmentDashboard() {
                 </h1>
                 <span style={{ display:'inline-flex', alignItems:'center', gap:'4px', background:'rgba(16, 185, 129, 0.1)', border:'1px solid #10b981', color:'var(--color-success)', fontSize:'0.7rem', fontWeight:600, padding:'2px 8px', borderRadius:'12px' }}>
                   <span style={{ width: '6px', height: '6px', borderRadius: '50%', background: 'var(--color-success)', display: 'inline-block' }}></span>
-                  실측 데이터 검증 완료
+                  일자별 전체 거래 동기화
                 </span>
               </div>
               <p style={{ margin: '4px 0 0 0', fontSize: '0.8rem', color: '#64748b' }}>2024-2026 어종별 월간 국내 위탁판매 현황</p>
@@ -224,9 +225,18 @@ export default function KoreaConsignmentDashboard() {
             borderRadius: '8px', padding: '8px 14px', marginTop: '0.75rem', fontSize: '0.75rem', color: '#94a3b8'
           }}>
             <span>📅 집계 기간: <strong style={{color:'var(--color-success)'}}>{coverageLabel || '집계 월 미상'}</strong></span>
-            <span>📊 총 레코드: <strong style={{color:'var(--color-success)'}}>{Number(meta.totalRecords).toLocaleString()}건</strong></span>
+            <span>📊 월·어종 집계행: <strong style={{color:'var(--color-success)'}}>{Number(meta.totalRecords).toLocaleString()}건</strong></span>
             <span>🐟 전체 어종: <strong style={{color:'var(--color-success)'}}>{meta.totalSpecies}종</strong></span>
             <span>🕐 데이터 갱신: <strong style={{color:'var(--color-success)'}}>{new Date(meta.generatedAt).toLocaleString('ko-KR')}</strong></span>
+            {meta.latestAuctionDate && (
+              <span>⚓ 최신 위판일: <strong style={{color:'var(--color-success)'}}>{meta.latestAuctionDate.replaceAll('-', '.')}</strong></span>
+            )}
+            {meta.officialThrough && (
+              <span>✅ 공식 월집계: <strong style={{color:'var(--color-success)'}}>{meta.officialThrough.replace('-', '.')}까지</strong></span>
+            )}
+            {meta.liveFrom && meta.liveThrough && (
+              <span>⏱️ 일별 잠정집계: <strong style={{color:'var(--color-warning)'}}>{meta.liveFrom.replaceAll('-', '.')} - {meta.liveThrough.replaceAll('-', '.')}</strong></span>
+            )}
             {meta.partialYears?.['2026'] && (
               <span>⚠️ 2026: <strong style={{color:'var(--color-warning)'}}>{meta.partialYears['2026'].label} (진행 중)</strong></span>
             )}
@@ -251,8 +261,9 @@ export default function KoreaConsignmentDashboard() {
             </h2>
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(130px, 1fr))', gap: '10px' }}>
               {Object.entries(data._liveIntelligence.networksStatus).map(([key, status]: any) => {
-                const statusColor = status === 'online' ? 'var(--color-success)' : status === 'standby' ? 'var(--color-warning)' : 'var(--color-danger)';
-                const statusLabel = status === 'online' ? 'LIVE' : status === 'standby' ? 'STANDBY' : 'OFFLINE';
+                const presentation = getConsignmentNetworkPresentation(status);
+                const statusColor = presentation.tone === 'success' ? 'var(--color-success)' : presentation.tone === 'warning' ? 'var(--color-warning)' : 'var(--color-danger)';
+                const statusLabel = presentation.label;
                 return (
                   <div key={key} style={{ 
                     background: 'rgba(0, 0, 0, 0.2)', border: `1px solid ${statusColor}33`, 

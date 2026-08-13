@@ -5,6 +5,7 @@ on:
     paths:
       - 'app/**'
       - 'components/**'
+      - 'e2e/**'
       - 'lib/**'
       - '__tests__/**'
       - 'package.json'
@@ -14,12 +15,14 @@ on:
       - 'eslint.config.mjs'
       - 'tsconfig.json'
       - 'next.config.mjs'
+      - '.github/workflows/app-quality-gate.yml'
   push:
     branches:
       - main
     paths:
       - 'app/**'
       - 'components/**'
+      - 'e2e/**'
       - 'lib/**'
       - '__tests__/**'
       - 'package.json'
@@ -29,6 +32,7 @@ on:
       - 'eslint.config.mjs'
       - 'tsconfig.json'
       - 'next.config.mjs'
+      - '.github/workflows/app-quality-gate.yml'
   workflow_dispatch:
 
 jobs:
@@ -51,3 +55,6 @@ jobs:
 
       - name: Run quality gate
         run: npm run verify
+
+      - name: Run unloading history browser acceptance
+        run: npm run test:e2e:unloading-history

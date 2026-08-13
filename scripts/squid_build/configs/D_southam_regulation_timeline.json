@@ -1,0 +1,8 @@
+{
+  "widget_id": "D_southam_regulation_timeline",
+  "patterns": ["Resoluci[oó]n.*2026", "calamar.*(?:2026|veda|captura|cuota)", "Illex argentinus", "jibia.*200[.]000"],
+  "require_numeric": true,
+  "min_sources": 3,
+  "max_items": 18,
+  "max_items_per_source": 6
+}

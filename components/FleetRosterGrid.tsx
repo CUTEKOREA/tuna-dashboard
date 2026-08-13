@@ -2,44 +2,59 @@
 import React, { useState } from 'react';
 import { Ship, Anchor, Navigation, Package, ArrowUp, ArrowDown, MapPin } from 'lucide-react';
 import s from './FleetCommandCenter.module.css';
+import { atlanticDailyReport, carrierLoads, longlineDailyReport, pacificDailyReport, purseSeineCatch } from '@/lib/fleet-operations-2026-08-09';
 
 /* ── Data ── */
-const pacificFleet = [
-  { name: 'S/EXP', zone: 'S0331 W16728 (KI)', catch: 30, load: 672, capa: 1200, trend: [534, 591, 591, 612, 612, 672], status: 'fishing', note: '' },
-  { name: 'S/PIO', zone: 'S0258 W16825 (KI)', catch: 0, load: 169, capa: 1200, trend: [1000, 39, 139, 139, 139, 169], status: 'fishing', note: '' },
-  { name: 'S/CHA', zone: 'N0151 W15735 (KI)', catch: 0, load: 0, capa: 1200, trend: [450, 640, 800, 900, 900, 0], status: 'fishing', note: '7/28 07:40 X-MAS 입항, MING RUN 17편 약 900톤 전재 후 7/31 12:15 출항 완료' },
-  { name: 'S/HAR', zone: 'S0700 W15206 (KI)', catch: 65, load: 526, capa: 1200, trend: [0, 300, 300, 310, 361, 526], status: 'fishing', note: '' },
-  { name: 'S/JUP', zone: 'MAJURO', catch: 0, load: 0, capa: 1200, trend: [0, 0, 0, 0, 0, 0], status: 'port', note: '6/22 08:15 MAJURO 입항, M/E 수리 중 (출항 일정 M/E 기술자 확인)' },
-  { name: 'S/SPR', zone: 'S0325 W16842 (KI)', catch: 40, load: 397, capa: 1200, trend: [75, 307, 357, 357, 357, 397], status: 'fishing', note: '' },
-  { name: 'MOAMARI', zone: 'S0608 W15254 (KI)', catch: 0, load: 300, capa: 1200, trend: [0, 0, 0, 140, 210, 300], status: 'fishing', note: '' },
-  { name: 'MOAKONA', zone: 'S0617 W15232 (KI)', catch: 23, load: 162, capa: 1200, trend: [284, 22, 22, 59, 80, 162], status: 'fishing', note: '' },
-  { name: 'N/SUN', zone: 'S0618 W16434 (H)', catch: 0, load: 220, capa: 1200, trend: [40, 180, 190, 190, 190, 220], status: 'fishing', note: '' },
-  { name: 'N/STAR', zone: 'S0642 W15142 (H)', catch: 110, load: 360, capa: 1200, trend: [650, 0, 0, 40, 90, 360], status: 'fishing', note: '' },
-];
+const pacificDisplayNames: Record<string, string> = {
+  MOAMARI: 'MARI',
+  MOAKONA: 'KONA',
+  'NAOERO SUN': 'N/SUN',
+  'NAOERO STAR': 'N/STAR',
+};
 
-const atlanticFleet = [
-  { name: 'P/MAS', zone: 'N0357 W00250 (G)', catch: 0, load: 750, capa: 1200, trend: [0, 430, 490, 535, 750, 750], status: 'fishing', note: '7/31 09:00 TEMA 입항, 하역 후 8/3 출항 예정' },
-  { name: 'P/DIS', zone: 'TEMA', catch: 0, load: 900, capa: 1200, trend: [0, 350, 420, 690, 900, 900], status: 'port', note: '7/29 12:30 TEMA 입항, 하역 후 8/1 출항 예정' },
-  { name: 'P/FORE', zone: 'S0147 W01951 (H)', catch: 35, load: 690, capa: 1200, trend: [0, 380, 395, 475, 520, 690], status: 'fishing', note: '' },
-  { name: 'P/PATH', zone: 'N0150 W00541 (C)', catch: 0, load: 900, capa: 1200, trend: [0, 465, 465, 660, 820, 900], status: 'fishing', note: '8/1 07:00 TEMA 입항, 하역 후 8/3 출항 예정' },
-  { name: 'P/COM', zone: 'N0055 W01953 (H)', catch: 50, load: 900, capa: 1200, trend: [0, 150, 220, 450, 655, 900], status: 'fishing', note: '8/5 06:00 TEMA 입항, 하역 후 8/7 출항 예정' },
-  { name: 'P/QUEEN', zone: 'N0024 W01335 (H)', catch: 40, load: 665, capa: 1200, trend: [0, 275, 305, 480, 580, 665], status: 'fishing', note: '' },
-  { name: 'P/GRACE', zone: 'S0245 W02138 (H)', catch: 40, load: 370, capa: 1200, trend: [900, 50, 80, 130, 220, 370], status: 'fishing', note: '' },
-];
+export const pacificFleet = pacificDailyReport.vessels.map((vessel) => {
+  const displayName = pacificDisplayNames[vessel.name] ?? vessel.name;
+  const trend = purseSeineCatch.monthlyByVessel.find((item) => item.vessel === displayName)?.monthlyMt ?? [];
+  return {
+    name: displayName,
+    zone: vessel.position,
+    catch: vessel.catchMt,
+    load: vessel.loadedMt,
+    capa: 1200,
+    trend,
+    status: vessel.position === 'X-MAS' ? 'port' : 'fishing',
+    note: vessel.note,
+  };
+});
 
-const longlineFleet = [
-  { name: 'SY-55', status: '7/19 부산 입항, 하역 및 상가수리(7/22~8/4) 후 8/8 출항 예정', badge: '입항 하역 중', badgeColor: '#38bdf8' },
-  { name: 'TAIHO MARU', status: '338.699톤 (P-501, P-505) | 8/11경 부산 입항 예정', badge: '귀항 중', badgeColor: '#f59e0b' },
-];
+export const atlanticFleet = atlanticDailyReport.vessels.map((vessel) => ({
+  name: vessel.name,
+  zone: vessel.position,
+  catch: vessel.catchMt,
+  load: vessel.loadedMt,
+  capa: 1200,
+  trend: [vessel.loadedMt],
+  status: vessel.position === 'TEMA' ? 'port' : 'fishing',
+  note: vessel.note,
+}));
 
-const carrierFleet = [
-  { name: 'SEIN VENUS', capa: 5200, load: 3275, pct: Math.round(3275/5200*100), status: 'transit', note: 'NT-1,060, NS-1,030, S-260, P-925 | 8/5 BKK 도착 예정', color: '#38bdf8' },
-  { name: 'HIKARI 1', capa: 3700, load: 3214, pct: Math.round(3214/3700*100), status: 'transit', note: 'S-766(96), P-75(75), MK-428(114), MI-940, NT-1,005 | 8/5 GENSAN 도착 예정', color: '#38bdf8' },
-  { name: 'SEIN KASAMA', capa: 7100, load: 0, pct: 0, status: 'waiting', note: 'X-MAS 대기 중 | 예상잔량: 7,100t', color: '#f59e0b' },
-  { name: 'MING RUN 17', capa: 6500, load: 900, pct: Math.round(900/6500*100), status: 'waiting', note: 'X-MAS 대기 중 | C-900 전재 완료', color: '#f59e0b' },
-  { name: 'SHIN IZU', capa: 2400, load: 0, pct: 0, status: 'waiting', note: 'NO2 W165 대기 중 | 예상잔량: 2,400t', color: '#f59e0b' },
-  { name: 'SEIN GALAXY', capa: 3500, load: 1846, pct: Math.round(1846/3500*100), status: 'waiting', note: 'MK-956, MI-890 | RABAUL 대기 중 (타사 출항 전재 예정)', color: '#f59e0b' },
-];
+const longlineFleet = longlineDailyReport.vessels.map((vessel) => ({
+  name: vessel.name,
+  status: `${vessel.loadedMt.toLocaleString('ko-KR', { minimumFractionDigits: 3 })}톤 (${vessel.loadPlan}) | ${vessel.note}`,
+  badge: '하역 예정',
+  badgeColor: '#38bdf8',
+}));
+
+export const carrierFleet = carrierLoads.vessels.map((vessel) => ({
+  name: vessel.name,
+  zone: vessel.note.includes('방콕') ? 'BKK' : vessel.note.includes('GENSAN') ? 'GENSAN' : vessel.note.includes('RABAUL') ? 'RABAUL' : 'X-MAS',
+  capa: vessel.capacityMt,
+  load: vessel.loadedMt,
+  pct: Math.round(vessel.loadedMt / vessel.capacityMt * 100),
+  status: vessel.note.includes('하역') ? 'port' : vessel.note.includes('전재 중') ? 'transit' : 'waiting',
+  note: `${vessel.note}${vessel.expectedRemainingMt ? ` · 예상잔량 ${vessel.expectedRemainingMt.toLocaleString()}t` : ''}`,
+  color: vessel.note.includes('대기') ? '#f59e0b' : '#38bdf8',
+}));
 
 /* ── Status helpers ── */
 const statusConfig: Record<string, { label: string; color: string; pulse: boolean }> = {
@@ -220,7 +235,7 @@ function CarrierCard({ name, capa, load, pct, status, note, color }: {
   const [hovered, setHovered] = useState(false);
   const isDone = status === 'done';
   const statusLabels: Record<string, string> = {
-    done: '✅ 완료', unloading: '📦 하역 중', waiting: '⏳ 대기', transit: '🚢 이동 중',
+    done: '✅ 완료', unloading: '📦 하역 중', waiting: '⏳ 대기', transit: '🚢 이동 중', port: '⚓ 하역·정박',
   };
 
   return (
@@ -244,7 +259,7 @@ function CarrierCard({ name, capa, load, pct, status, note, color }: {
             fontSize: '0.62rem', fontWeight: 600, padding: '2px 8px', borderRadius: 20,
             background: `${color}18`, color, border: `1px solid ${color}30`,
           }}>
-            {statusLabels[status] || status}
+            {statusLabels[status] ?? '상태 확인 필요'}
           </span>
         </div>
         <span style={{ fontSize: '0.75rem', color: 'var(--text-muted)' }}>
@@ -304,8 +319,8 @@ function LonglineCard({ name, status, badge, badgeColor }: { name: string; statu
 }
 
 /* ── Section Header ── */
-function SectionHeader({ icon: Icon, color, title, count, summary }: {
-  icon: any; color: string; title: string; count: number; summary: string;
+function SectionHeader({ icon: Icon, color, title, count, countLabel, summary }: {
+  icon: any; color: string; title: string; count?: number; countLabel?: string; summary: string;
 }) {
   return (
     <div style={{
@@ -321,7 +336,7 @@ function SectionHeader({ icon: Icon, color, title, count, summary }: {
         </div>
         <div>
           <div style={{ fontSize: '0.95rem', fontWeight: 700, color: 'var(--text-main)' }}>{title}</div>
-          <div style={{ fontSize: '0.7rem', color: 'var(--text-muted)' }}>{count}척 운항</div>
+          <div style={{ fontSize: '0.7rem', color: 'var(--text-muted)' }}>{countLabel ?? `${count}척 운항`}</div>
         </div>
       </div>
       <div style={{
@@ -352,7 +367,7 @@ export default function FleetRosterGrid() {
           <SectionHeader
             icon={Navigation} color="#38bdf8"
             title="태평양 선망" count={pacificFleet.length}
-            summary="일간 268t · 월간 5,129.3t · 연간 44,657.8t"
+             summary={`일간 ${pacificDailyReport.dailyCatchMt.toLocaleString()}t · 월간 ${pacificDailyReport.monthlyCatchMt.toLocaleString()}t · 연간 ${pacificDailyReport.annualCatchMt.toLocaleString()}t · 8/11`}
           />
           <div data-mobile-stack style={{ padding: 16, display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: 12 }}>
             {pacificFleet.map(v => (
@@ -370,7 +385,7 @@ export default function FleetRosterGrid() {
           <SectionHeader
             icon={Ship} color="#a78bfa"
             title="대서양 선망" count={atlanticFleet.length}
-            summary="일간 165t · 월간 6,025t · 연간 26,585t"
+             summary={`일간 ${atlanticDailyReport.dailyCatchMt.toLocaleString()}t · 월간 ${atlanticDailyReport.monthlyCatchMt.toLocaleString()}t · 연간 ${atlanticDailyReport.annualCatchMt.toLocaleString()}t · 8/11`}
           />
           <div data-mobile-stack style={{ padding: 16, display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: 12 }}>
             {atlanticFleet.map(v => (
@@ -385,7 +400,7 @@ export default function FleetRosterGrid() {
 
         {/* Longline */}
         <div className={s.rosterSection}>
-          <SectionHeader icon={Anchor} color="#f59e0b" title="연승선" count={longlineFleet.length} summary="입항·수리·하역 · 7/31 보고 기준" />
+           <SectionHeader icon={Anchor} color="#f59e0b" title="연승선" count={longlineFleet.length} summary="TAIHO MARU 338.699t · 8/12 보고" />
           <div style={{ padding: 16, display: 'flex', flexDirection: 'column', gap: 10 }}>
             {longlineFleet.map(v => <LonglineCard key={v.name} {...v} />)}
           </div>
@@ -393,7 +408,7 @@ export default function FleetRosterGrid() {
 
         {/* Carriers */}
         <div className={s.rosterSection}>
-          <SectionHeader icon={Package} color="#34d399" title="운반선" count={carrierFleet.length} summary="선적 9,235t · 예상잔량 9,500t" />
+           <SectionHeader icon={Package} color="#34d399" title="운반선·컨테이너" countLabel={`${carrierFleet.length}건`} summary="선적 9,922.3t · 예상잔량 7,887.7t · 8/12" />
           <div style={{ padding: 16, display: 'flex', flexDirection: 'column', gap: 10 }}>
             {carrierFleet.map(v => <CarrierCard key={v.name} {...v} />)}
           </div>

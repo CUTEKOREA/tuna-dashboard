@@ -1,6 +1,8 @@
 import { NextResponse } from 'next/server';
 import fs from 'fs';
 import path from 'path';
+import { getConsignmentFreshness } from '../../../lib/consignment-data';
+import { requireEnv } from '../_shared/env';
 
 export const dynamic = 'force-dynamic';
 export const revalidate = 0;
@@ -12,7 +14,7 @@ async function fetchKamisPrice(productCode: string, productName: string): Promis
   try {
     const today = new Date();
     const dateStr = `${today.getFullYear()}-${String(today.getMonth() + 1).padStart(2, '0')}-${String(today.getDate()).padStart(2, '0')}`;
-    const apiKey = process.env.KAMIS_API_KEY || '2d41cf53-ea88-42e2-b958-f21638f3528c';
+    const apiKey = requireEnv('KAMIS_API_KEY');
     const url = `https://www.kamis.or.kr/service/price/xml.do?action=dailySalesList&p_cert_key=${apiKey}&p_cert_id=${process.env.KAMIS_CERT_ID || "7849"}&p_returntype=json&p_product_cls_code=02&p_regday=${dateStr}&p_convert_kg_yn=Y&p_item_category_code=600`;
     const res = await fetch(url, { next: { revalidate: 3600 } });
     if (res.ok) {
@@ -56,6 +58,12 @@ export async function GET() {
     const filePath = path.join(process.cwd(), 'public', 'data', 'consignment_3year.json');
     const fileContents = fs.readFileSync(filePath, 'utf8');
     const baseData = JSON.parse(fileContents);
+    const consignmentFreshness = getConsignmentFreshness(baseData._meta ?? {});
+    baseData._meta = {
+      ...(baseData._meta ?? {}),
+      dataStatus: consignmentFreshness.status,
+      dataAgeDays: consignmentFreshness.ageDays,
+    };
 
     // ==========================================
     // [D7 FIX] Float precision cleanup
@@ -209,7 +217,7 @@ export async function GET() {
     // [D1 FIX] Real network health check (limited)
     // ==========================================
     const networksStatus: Record<string, string> = {
-      mof_consignment: 'online', // verified: data loaded from local JSON (해양수산부 공공데이터)
+      mof_consignment: consignmentFreshness.status,
       kcs_customs: 'standby',    // not actively queried in this endpoint
       kamis_retail: mackerelLocalPrice || squidLocalPrice ? 'online' : 'standby',
       nifs_ocean: 'standby',     // not actively queried

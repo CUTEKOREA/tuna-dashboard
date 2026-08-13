@@ -1,0 +1,7 @@
+{
+  "widget_id": "C_usda_korea_market",
+  "patterns": ["Squid\\s+[0-9,]+", "squid.*(?:TAC|imports|production|consumption).*[0-9]"],
+  "chart_type": "card",
+  "require_numeric": true,
+  "max_items": 12
+}

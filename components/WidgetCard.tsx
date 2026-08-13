@@ -44,6 +44,7 @@ export interface TelemetryProps {
   status: TelemetryStatus;
   syncDate?: string;
   source?: string;
+  label?: string;
 }
 
 export interface KpiItem {
@@ -201,7 +202,7 @@ export default function WidgetCard(props: WidgetCardProps) {
           )}
         </div>
         <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-end', gap: '4px', flexShrink: 0 }}>
-          {telemetry && <TelemetryBadge status={telemetry.status} syncDate={telemetry.syncDate} />}
+          {telemetry && <TelemetryBadge status={telemetry.status} syncDate={telemetry.syncDate} label={telemetry.label} />}
           {unit && (
             <span style={{ fontSize: '0.72rem', color: '#94a3b8', fontWeight: 500, whiteSpace: 'nowrap' }}>
               {unit}

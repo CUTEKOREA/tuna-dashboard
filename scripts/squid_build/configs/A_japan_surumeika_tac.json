@@ -1,0 +1,8 @@
+{
+  "widget_id": "A_japan_surumeika_tac",
+  "patterns": ["(?:するめいか|スルメイカ).*(?:トン|TAC|ＴＡＣ|資源量)", "68,400\\s*トン", "(?:目標|限界|禁漁).*千トン"],
+  "require_numeric": true,
+  "min_sources": 3,
+  "max_items": 18,
+  "max_items_per_source": 6
+}

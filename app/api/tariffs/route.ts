@@ -1,4 +1,5 @@
 import { NextResponse } from 'next/server';
+import { hasEnv } from '../_shared/env';
 
 export const dynamic = 'force-dynamic';
 
@@ -51,7 +52,7 @@ const FALLBACK_DATA: Record<string, any> = {
 };
 
 export async function GET() {
-  const hasKey = !!(process.env.DATA_GO_KR_NEW_KEY || 'fdbf3eb58f1157a1db7c9156e8ce7f88ed9fa2d996116d9079dddb5232133f7c');
+  const hasKey = hasEnv('DATA_GO_KR_NEW_KEY');
   return NextResponse.json({
     service: 'Tariffs.io Pipeline',
     status: hasKey ? 'operational' : 'fallback_only',
@@ -71,7 +72,7 @@ export async function POST(req: Request) {
     let source: 'TARIFFS_LIVE' | 'TARIFFS_FALLBACK' = 'TARIFFS_FALLBACK';
     
     // 1) Try Live API
-    if ((process.env.DATA_GO_KR_NEW_KEY || 'fdbf3eb58f1157a1db7c9156e8ce7f88ed9fa2d996116d9079dddb5232133f7c')) {
+    if (hasEnv('DATA_GO_KR_NEW_KEY')) {
       try {
         const ctrl = new AbortController();
         const tid = setTimeout(() => ctrl.abort(), TARIFFS_TIMEOUT);

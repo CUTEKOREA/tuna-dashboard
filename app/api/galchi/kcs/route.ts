@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { HS_CODES } from "../../_shared/hs-codes";
+import { requireAnyEnv } from '../../_shared/env';
 
 export const runtime = 'nodejs';
 export const revalidate = 300;
@@ -21,7 +22,7 @@ export const revalidate = 300;
  * mackerel-kcs와 동일 패턴 (자체 regex parsing, L-11).
  */
 
-const KCS_API_KEY = process.env.DATA_GO_KR_NEW_KEY || process.env.DATA_GO_KR_COMMON_KEY || 'fdbf3eb58f1157a1db7c9156e8ce7f88ed9fa2d996116d9079dddb5232133f7c';
+const KCS_API_KEY = () => requireAnyEnv('DATA_GO_KR_NEW_KEY', 'DATA_GO_KR_COMMON_KEY');
 const KCS_BASE = "https://apis.data.go.kr/1220000/nitemtrade/getNitemtradeList";
 const HSK = HS_CODES.galchi_frozen.hsSgn;
 
@@ -73,7 +74,7 @@ export async function GET(request: Request) {
   try {
     const strtYymm = month ? `${year}${month}` : `${year}01`;
     const endYymm = month ? `${year}${month}` : `${year}12`;
-    const url = `${KCS_BASE}?serviceKey=${KCS_API_KEY}&strtYymm=${strtYymm}&endYymm=${endYymm}&hsSgn=${HSK}`;
+    const url = `${KCS_BASE}?serviceKey=${KCS_API_KEY()}&strtYymm=${strtYymm}&endYymm=${endYymm}&hsSgn=${HSK}`;
 
     const res = await fetch(url, { signal: AbortSignal.timeout(8000) });
     if (!res.ok) return NextResponse.json(FALLBACK_DATA);

@@ -67,7 +67,7 @@ function isoDaysAgo(days: number): string {
 
 async function fetchDartJson(endpoint: string, corpCode: string): Promise<any[] | null> {
   try {
-    const url = `${DART_BASE}/${endpoint}.json?crtfc_key=${DART_API_KEY}&corp_code=${corpCode}`;
+    const url = `${DART_BASE}/${endpoint}.json?crtfc_key=${DART_API_KEY()}&corp_code=${corpCode}`;
     const res = await fetch(url, { signal: AbortSignal.timeout(8000) });
     if (!res.ok) return null;
     const data = await res.json();

@@ -1,0 +1,53 @@
+{
+  "_kpi": {
+    "desc": "실제 어획은 2010년 이후 평균 39% 권고 초과",
+    "title": "2026 대서양 권고 어획량",
+    "trend": "-69.8% (전년 권고 대비)",
+    "value": "174,357톤"
+  },
+  "bars": [
+    {
+      "color": "#ef4444",
+      "key": "톤"
+    }
+  ],
+  "chartType": "Bar",
+  "data": [
+    {
+      "구분": "2025 권고",
+      "톤": 576958
+    },
+    {
+      "구분": "2025 실제 어획(추정)",
+      "톤": 755143
+    },
+    {
+      "구분": "2026 권고",
+      "톤": 174357
+    }
+  ],
+  "id": "s1_tac_quota",
+  "provenance": {
+    "extract_date": "2026-08-12",
+    "grade": "B",
+    "input_files": [
+      "01_자연산_어획·자원/ices/2026-08-12_full/ICES_Atlantic_mackerel_advice_2026.md"
+    ],
+    "input_sha256": [
+      "fd4f70b88c0c3918470b4f1b0c449553314183b27c09df6336de3c8abb7f1cbc"
+    ],
+    "method": "manual_extract",
+    "note": "ICES advice 2026 원문 수동 추출. 권고 174,357톤(본문), 2025 권고 576,958톤(표2 각주), 2025 추정 어획 755,143톤(표1), 2010년 이후 평균 초과 39%(Issues relevant for the advice). 국제 합의 TAC는 존재하지 않는다.",
+    "period": "2025-2026",
+    "publisher": "ICES",
+    "rebuild": "python scripts/mackerel/build.py s1_tac_quota",
+    "series": "Atlantic mackerel advice",
+    "source_id": "ICES_ATLANTIC_MACKEREL"
+  },
+  "sit": "2026년 대서양고등어 권고 어획량이 174,357톤으로 전년 권고 대비 -69.8% 잘렸다. 연안국 일방 쿼터 합계 때문에 실제 어획은 2010년 이후 평균 39% 권고를 초과해 왔고, 2025년에도 30.9% 초과했다.",
+  "strat": "권고가 70% 잘려도 실제 어획은 그만큼 안 줄어든다는 것이 지난 15년의 기록이다. 다만 방향은 분명하다 — 대서양 원물은 계속 조인다. 노르웨이·영국 계약은 물량 확보를 단가보다 앞세워 잡아야 한다.",
+  "subtitle": "ICES 2025-09-30 권고(대서양고등어, 아해역 1–8·14). 2026년 권고 174,357톤 — 2025년 권고 576,958톤 대비 -69.8%. 2025년 실제 어획은 권고를 30.9% 초과했다.",
+  "title": "TAC·쿼터 변동과 물량 전망",
+  "unit": "톤",
+  "xKey": "구분"
+}

@@ -251,6 +251,10 @@ function getMenuConfig(menu: ActiveMenu): DashboardMenuConfig {
 
 function sidebarItemFor(menu: ActiveMenu): SidebarMenuItem {
   const config = getMenuConfig(menu);
+  const labelOverrides: Partial<Record<ActiveMenu, string>> = {
+    'seasia-oem': '글로벌 위탁생산',
+    msc: '지속가능성 인증',
+  };
 
   if (!config.sidebar) {
     throw new Error(`Dashboard menu has no sidebar metadata: ${menu}`);
@@ -258,8 +262,7 @@ function sidebarItemFor(menu: ActiveMenu): SidebarMenuItem {
 
   return {
     key: menu,
-    label: config.sidebar.label ?? config.title,
-    suffix: config.sidebar.suffix,
+    label: labelOverrides[menu] ?? config.sidebar.label ?? config.title,
     icon: config.sidebar.icon,
   };
 }

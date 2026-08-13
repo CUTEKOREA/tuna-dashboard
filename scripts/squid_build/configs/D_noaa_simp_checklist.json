@@ -1,0 +1,10 @@
+{
+  "widget_id": "D_noaa_simp_checklist",
+  "patterns": ["Seafood Import Monitoring Program", "harvest.*(?:record|information|data)", "chain of custody", "importer of record", "^(?:Abalone|Atlantic cod|Blue crab.*|Dolphinfish.*|Grouper|King crab.*|Pacific cod|Red snapper|Sea cucumber|Sharks|Shrimp|Swordfish|Tuna.*)$"],
+  "chart_type": "checklist",
+  "basis": {
+    "restrictions": ["2026-08-12 NOAA SIMP 13개 품목군 목록에 squid 명칭 없음"],
+    "blocked_use": ["오징어가 SIMP 대상이라고 단정"]
+  },
+  "max_items": 25
+}

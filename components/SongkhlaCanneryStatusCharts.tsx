@@ -13,13 +13,17 @@ import {
 import SafeResponsiveContainer from './SafeResponsiveContainer';
 import TermTooltip from './TermTooltip';
 import { ChartPatternDefs } from './ChartPatterns';
+import { logisticsWeeklyReport } from '@/lib/logistics-weekly-report';
 
-const songkhlaCanneryData = [
-  { location: 'SONGKHLA', name: 'CMC', prodMax: 300, prodCurrent: 150, storeMax: 10000, storeCurrent: 3400, procDays: 22 },
-  { location: 'SONGKHLA', name: 'SCC', prodMax: 250, prodCurrent: 50, storeMax: 7000, storeCurrent: 800, procDays: 16 },
-  { location: 'SONGKHLA', name: 'SIAM', prodMax: 200, prodCurrent: 60, storeMax: 5000, storeCurrent: 1400, procDays: 23 },
-  { location: 'SONGKHLA', name: 'TRP', prodMax: 150, prodCurrent: 70, storeMax: 5000, storeCurrent: 2300, procDays: 32 }
-];
+const songkhlaCanneryData = logisticsWeeklyReport.canneries.songkhla.map((cannery) => ({
+  location: cannery.location,
+  name: cannery.name,
+  prodMax: cannery.maxProduction,
+  prodCurrent: cannery.currentProduction,
+  storeMax: cannery.storageCapacity,
+  storeCurrent: cannery.currentStock,
+  procDays: cannery.processingDays,
+}));
 
 export default function SongkhlaCanneryStatusCharts() {
   const totalProd = songkhlaCanneryData.reduce((acc, curr) => acc + curr.prodCurrent, 0);
@@ -42,10 +46,10 @@ export default function SongkhlaCanneryStatusCharts() {
           <div style={{ marginBottom: '16px', display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
             <div>
               <h2 style={{ fontSize: '18px', fontWeight: 'bold', margin: '0 0 4px 0', color: 'var(--text-main)' }}>
-                <TermTooltip term="송클라 공장 일 생산량" description="각 가공 공장(Cannery)이 하루에 생산할 수 있는 최대 가능 생산량(CAPA) 대비 보고 시점에 가동된 일 생산량 실적(MT)을 보여줍니다." />
+                <TermTooltip term="송클라 공장 일 생산량" description="각 가공 공장이 하루에 생산할 수 있는 최대 가능 생산량 대비 보고 시점에 가동된 일 생산량 실적(미터톤)을 보여줍니다." />
               </h2>
               <p style={{ fontSize: '13px', color: 'var(--text-muted)', margin: 0 }}>
-                태국 송클라(Songkhla) 가공 공장 CAPA 대비 실적 (Metric Tons)
+                태국 송클라 가공 공장 최대 생산능력 대비 실적 (미터톤)
               </p>
             </div>
             <div style={{ textAlign: 'right', display: 'flex', flexDirection: 'column', alignItems: 'flex-end', justifyContent: 'center' }}>
@@ -95,10 +99,10 @@ export default function SongkhlaCanneryStatusCharts() {
           <div style={{ marginBottom: '16px', display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
             <div>
               <h2 style={{ fontSize: '18px', fontWeight: 'bold', margin: '0 0 4px 0', color: 'var(--text-main)' }}>
-                <TermTooltip term="송클라 공장 원어 보관량" description="각 가공 공장의 냉동창고 보유 최대 CAPA 대비 현재 냉동 참치(원어) 재고량을 보여줍니다." />
+                <TermTooltip term="송클라 공장 원어 보관량" description="각 가공 공장의 냉동창고 최대 보관능력 대비 현재 냉동 참치(원어) 재고량을 보여줍니다." />
               </h2>
               <p style={{ fontSize: '13px', color: 'var(--text-muted)', margin: 0 }}>
-                태국 송클라(Songkhla) 가공 공장 보관창고 CAPACITY 대비 확보 현황
+                태국 송클라 가공 공장 최대 보관능력 대비 확보 현황
               </p>
             </div>
             <div style={{ textAlign: 'right', display: 'flex', flexDirection: 'column', alignItems: 'flex-end', justifyContent: 'center' }}>

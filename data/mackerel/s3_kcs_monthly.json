@@ -1,0 +1,67 @@
+{
+  "bars": [
+    {
+      "color": "#0ea5e9",
+      "key": "수입량"
+    }
+  ],
+  "chartType": "Composed",
+  "data": [
+    {
+      "수입단가": 2.24,
+      "수입량": 1628,
+      "월": "2026.01"
+    },
+    {
+      "수입단가": 3.73,
+      "수입량": 1833,
+      "월": "2026.02"
+    },
+    {
+      "수입단가": 4.65,
+      "수입량": 5059,
+      "월": "2026.03"
+    },
+    {
+      "수입단가": 4.51,
+      "수입량": 3513,
+      "월": "2026.04"
+    },
+    {
+      "수입단가": 5.02,
+      "수입량": 3447,
+      "월": "2026.05"
+    }
+  ],
+  "id": "s3_kcs_monthly",
+  "lines": [
+    {
+      "color": "#ef4444",
+      "key": "수입단가",
+      "yAxisId": "right"
+    }
+  ],
+  "provenance": {
+    "extract_date": "2026-08-12",
+    "grade": "A",
+    "input_files": [
+      "10_원본데이터셋/legacy_updates/update_2026-07-06/kcs/KCS_2026YTD_HS_mackerel.csv"
+    ],
+    "input_sha256": [
+      "bc167212fd33f3d22f6e3ad72cafe2b50d2b98a324bd1a854b9406c6db899b82"
+    ],
+    "method": "script",
+    "note": "2026-07-06 수집본. 관세청 API가 현재 서비스키 없이 401이라 자동 갱신 불가 — 키 확보 전까지 이 스냅샷이 최신이다. 범용 HS 030489는 고등어 전용이 아니라 제외.",
+    "period": "2026.01~2026.05",
+    "publisher": "Korea Customs Service",
+    "rebuild": "python scripts/mackerel/build.py s3_kcs_monthly",
+    "series": "Item trade statistics API",
+    "source_id": "KCS_NITEMTRADE"
+  },
+  "sit": "2026년 통관 실적은 FAO 연간 통계(2024)보다 1~2년 앞선 유일한 국내 실측이다. 누계 15,480톤이며 노르웨이이 63.5%를 차지한다.",
+  "strat": "월별 단가 추이가 곧 계약 타이밍 지표다. FAO·NSC가 보여주는 국제 가격 방향과 국내 통관 단가가 벌어지는 구간이 재고 확보 기회다.",
+  "subtitle": "관세청 품목별 수출입실적 2026.01~2026.05 누계 15,480톤. 원산지 노르웨이 63.5% · 중국 14.5% · 영국 12.2%. HS 030244·030354·160415.",
+  "title": "관세청 HS10별 월별 수입 실적 (2026)",
+  "unit": "톤 / USD/kg",
+  "xKey": "월"
+}

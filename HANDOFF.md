@@ -1,4 +1,235 @@
-# HANDOFF — 현재 작업 상태
+# HANDOFF
+
+> ✅ **2026-08-13 17:13 KST — 오징어 v5 교차검증 정정 (P4·P5)** [Claude Code 검수 + Codex 구현]:
+> - **P4 관측기간 4건**: `C_fta_import_trend` 가 발간연도(2026)를 관측연도로 쓰고 있었다. 원문 KMI 보고서는 2025년 자료(`’25년` 221회)라 화면 신선도가 `D+-140` 로 표시됐다 — 8개월 지난 자료가 방금 나온 것처럼 보였다. `B_landed_cost_calc`·`C_india_mpeda_exports`·`D_sprfmo_compliance` 도 함께 정정. **G-012 신설**: 관측종료는 `meta.built_at` 을 넘을 수 없다(부분 날짜는 기간 끝으로 해석). 기존 G-011 은 관측·발간·수집 셋의 상호 정합만 봐서 이 부류를 전혀 못 잡았다.
+> - **P5 아르헨티나 신호**: `데이터공백` → **`어기외`**(기준일 2026-05-28). 같은 아카이브의 CTMFM 결의 2/2026이 2026 어기 개시를, CFP 결의 6/2026의 `la última temporada` 과거형이 기준일 당시 종료를 뒷받침한다. `state_evidence`는 `legal_text_derived`·`subsequent_law_past_tense`로 기록했다. 주간공보 부재는 사유에 보존해 어획 실적 공백과 어기 상태를 분리했다. `A_argentina_illex_gap` 링크카드는 빈 상태를 유지한다.
+> - **P5 수입 집중도 분모**: KCS 추출물 전체를 쓰고 있었는데 HS 에 개조개·바지락·백합(030771/2/9), 문어 조제품(160555), 기타 연체동물 조제품(160559) 이 섞여 **2024 총액의 23.1% 가 오징어가 아니었다.** `{030742,030743,030749,160554}` 로 좁힘. 중국 의존 추세는 유지되며 값만 바뀐다: 2020~2024 상위1국 38.8→49.0% 가 아니라 **36.2→46.1%**, 2위는 여전히 페루. G-002 는 갑오징어 혼재만 봐서 조개·문어를 통과시켰다 — HS 기반 위젯은 사용 HS 를 `basis` 에 남기고 화이트리스트로 검사한다.
+> - `B_kcs_import_unit_price`·`C_korea_import_monthly`는 실제로 별도 `KCS_2026YTD_HS_squid.csv`만 사용하며 네 승인 HS6 계열뿐이다. 두 위젯의 데이터는 정정 전후 동일하고, 명세의 근거 경로도 실제 입력 파일 하나로 좁혔다. 집중도만 `KCS_squid_HS_2020-2024.csv`를 사용한다.
+> - 위 두 결함은 **Grok(교차벤더)이 제기**했고 Claude Code 가 1차 출처·아카이브로 재검증했다. 다만 **Grok 이 제시한 수치는 전부 틀렸다** — 오징어 집합에 문어(160555)를 넣고 조미오징어(160554)를 빼서 오염률 42%·중국 43.7%·2위 베트남으로 계산했다. 실제는 23.1%·46.15%·페루다. 결함 발견은 교차벤더가, 수치 확정은 원본 품목명 대조가 했다. 한쪽만 있었으면 결함을 놓치거나 틀린 값을 배포했다.
+> - 2026-04-22 폐쇄일은 2차 출처에만 있고 아카이브에 없어 채택하지 않았다. 회귀 방지 단언을 빌더 테스트에 둔다.
+> - 검증: 검증기 self-test **20/20**, 빌더 자체검사 **20/20**, 프론트 **192/192**, `tsc` 0오류, 게이트 39위젯 위반 0, 빌더 재실행 산출물 동일(재현성).
+> - **G-013 신설**: KCS/HS 근거 위젯의 `basis.hs_codes` 누락, 승인 밖 HS, `taxon_note` 코드 누락을 차단한다. 자체시험에 승인 밖 코드·목록 누락·정상 목록을 넣었다. 발췌 본문 126건은 전후 동일하고 `translations/ko.json`은 변경하지 않았다.
+> - **검증**: 빌드 성공(39위젯), 검증기 self-test **20건**, 산출물 게이트 위반 0건, 빌더 **20/20**, Vitest **192/192**, TypeScript 통과. 다음 단계는 Claude Code의 게이트 판정이며 이 세션은 push·배포하지 않는다.
+
+> 마지막 업데이트: 2026-08-13 17:13 KST
+
+> 🦑 **2026-08-13 16:48 KST — `/squid` P4 관측기간·빌드일 상한 수정** [Codex]:
+> - **완료된 것**: `C_fta_import_trend`의 관측기간을 KMI 원문 실적기간 **2025년**으로 분리하고 발간월 `2026-01`·수집일 `2026-08-12`를 별도 기록했다. `B_landed_cost_calc`의 `2026-08 기준`은 월말까지 관측했다는 뜻이 되지 않도록 효력월 첫날 `2026-08-01`로 점 표기했다.
+> - 같은 발간일→관측일 추론 경로를 전수 점검해 `C_india_mpeda_exports`를 FY 2025-26(`2025-04~2026-03`), `D_sprfmo_compliance`를 원문 명시기간 `2024-10-01~2025-09-30`으로 함께 정정했다. 원문 발췌 SHA-256은 전후 동일하고 `translations/ko.json`은 변경하지 않았다.
+> - `validate_squid_v5.py`에 **G-012**를 추가했다. `coverage_end`의 `YYYY`·`YYYY-MM`을 각각 연말·월말로 펼쳐 `meta.built_at`의 날짜를 넘으면 차단한다. 기존 산출물에서 정확히 P4 두 건을 검출한 뒤 재빌드 산출물은 위반 0건을 확인했다.
+> - **검증**: 빌드 성공(39위젯), validator self-test 17건, 산출물 validator 위반 0건, squid builder 20/20, Vitest 191/191, TypeScript 통과.
+> - **다음 단계**: Claude Code가 커밋을 게이트 판정하고 필요 시 배포한다. 이 세션은 push·배포하지 않는다.
+
+> 🚢 **2026-08-13 14:49 KST — `/logistics` TTA 냉동운반선 32주차 반영** [Hermes]:
+> - 원문 `Reefer ship movement for week 32nd.xlsx`의 내부 시트 `WEEK 32`와 기간 헤더를 직접 대조해 실제 보고기간을 **2026-08-07~08-13**으로 확정했다. 원문 SHA-256은 `d4ffd1306f66df858163376fad39f20bcb0c72dd6ea1bc4a85f17eafd430481b`다.
+> - 방콕항 보고는 기존 4척에 **SEA STAR V 3,951.273MT(부두 23)**, **PACIFIC JOURNEY 2,240MT(부두 21A)**가 추가된 **6척·24,834.299MT**다. 각 행의 공장 배분 합과 총량을 독립 재계산해 모두 일치함을 확인했다.
+> - `data/reefer_week32.json`을 별도 이력으로 추가해 31주차를 보존하고, 운반선 위젯·기준일·Telemetry·takeaway를 32주차로 전환했다. 접안일은 원문 기재값이며 현재 운항 상태나 현재 하역 KPI로 합산하지 않는다.
+> - 회귀 테스트는 6척 순서·접안일·신규 2척 배분·선박별 합계·총합·이력 경계를 고정한다. 대상 테스트 5/5, TypeScript, 대상 ESLint, diff check를 통과했다.
+
+> 🔐 **2026-08-13 14:45 KST — 공개 저장소 하드코딩 자격증명 제거 + `/api/shrimp/customs` 수리** [Claude]:
+> - **이 저장소는 공개다.** `process.env.X || '<실제 키>'` 형태로 5개 서비스의 발급키가 소스에 박혀 있었고, `git log -S` 기준 **2026-07-06부터 노출**돼 있었다(data.go.kr 키만 건드린 커밋 11개).
+> - 노출 자체보다 나쁜 부작용이 둘 있었다. (1) env가 없어도 호출이 성공해 "설정됐다"고 착각하게 만들었다. (2) `!!(process.env.X || '<키>')`는 항상 true라 "API Key configured" 표시가 실제 설정 여부와 무관했다.
+> - `app/api/_shared/env.ts` 신설(`requireEnv`/`requireAnyEnv`/`hasEnv`/`optionalEnv`). 모든 자격증명 조회를 여기로 통과시켰다. 모듈 최상위 조회는 **지연 평가**로 바꿔, env 누락 시 빌드가 아니라 해당 요청만 실패하게 했다.
+> - 대상: data.go.kr(`DATA_GO_KR_NEW_KEY`·`DATA_GO_KR_COMMON_KEY`·`KCS_API_KEY`·`FISHERY_API_KEY`·`KAMIS_API_KEY`), DART, USDA FAS, US Census, UN Comtrade, tuna proxy secret. 총 39개 파일.
+> - ⚠️ **Vercel production에 env가 없는 2건은 동작이 멈춘다**: `/api/tuna/us-gateway`(`USCENSUS_API_KEY`), `/api/tuna/ticker`(`PROXY_SECRET`). 변수를 넣으면 복구된다.
+> - ⚠️ **HEAD에서 지워도 git 히스토리에는 남는다. 위 키는 전부 발급기관에서 재발급(rotate)해야 한다.** 이건 코드 작업으로 해결되지 않는다.
+> - 의도적으로 남긴 것: `app/layout.tsx`의 Google·Naver 사이트 소유확인 토큰(공개 서빙 목적), `lib/logistics-weekly-report.ts`의 문서 SHA-256.
+> - **`/api/shrimp/customs` 수리**(같은 키 줄을 물고 있어 함께 처리). 결함 4건 — (1) 6자리 코드로 KCS 호출해 L-04 위반이자 조제(1605) 누락으로 베트남 수입액 45% 소실, (2) `{timeout:5000}`을 fetch에 넘겼으나 그런 옵션이 없어 타입 단언이 no-op을 가렸음, (3) 정규식이 `<item>` 경계를 넘어 다른 item 값을 물어올 수 있었음, (4) 총계행만 파싱해 원산지 분해가 불가능했고 `metrics`(수입량·단가·상위 원산지)는 라이브/폴백 양쪽 다 하드코딩 상수였음.
+> - 공유 `kcs-client`를 재사용하고, 2026-07-06 관세청 스냅샷으로 확인한 **HSK 10자리 9개 세번**을 조회하도록 바꿨다. 모든 metric은 응답에서 산출하며, 응답이 없으면 지어내지 않고 `metrics: null`을 반환한다. 집계는 `customs/rollup.ts`로 분리해 테스트 6건을 붙였다(총계행 이중집계·세번 화이트리스트·원산지 합산·분모 0 단가 거부).
+> - `npm run verify` 통과: Vitest **168/168**, 타입검사, Next.js 빌드, bundle budget. `architecture-guards`의 HS 리터럴 가드도 통과.
+> - 후속: Next.js 빌드 로그가 UN Comtrade 요청 URL을 통째로 출력하면서 `subscription-key`가 Vercel 빌드 로그에 남는다. 별도 처리 필요.
+
+> 🚀 **2026-08-13 16:35 KST — `/mackerel` 아카이브 기반 개편 라이브 배포 완료** [Claude + Codex + OpenCode]:
+> - PR [#303](https://github.com/CUTEKOREA/tuna-dashboard/pull/303) squash 병합, production merge commit `a255d3f327d348befeca4208d1c7aabfd13f88e4`. PR 게이트와 main App Quality Gate 모두 success, Vercel production 배포 완료.
+> - **배포 범위 분리**: 작업 브랜치 `mackerel/claude-etl`에 다른 세션의 오징어 커밋 2건이 섞여 있었고 해당 작업이 진행 중이었다. 사용자 판단으로 `origin/main`에서 새 브랜치를 파고 고등어 커밋 8건만 cherry-pick해 발행했다(`git diff --name-only origin/main..mackerel/deploy | grep squid` = 0건). HANDOFF 충돌 2회는 양쪽 엔트리를 모두 보존하는 방향으로 해소했다.
+> - **라이브 검증**(`https://leedonggun.co.kr/mackerel`, HTTP 200): KPI 실측값 노르웨이 의존도 **88.1%** · 자급률 **76.1%** · ICES 2026 권고 **174,357톤** · 아프리카 YoY **−16.9%** · NSC 누계단가 **48.49 NOK/kg** 표시 확인. provenance 줄(`[A] FAO · FISHSTAT CAPTURE · 2010-2024 · 2026-08-12 수집`)과 `수동추출` 라벨 렌더 확인. 5개 파트 전환 전부 정상, **'데이터 없음' 플레이스홀더 0건**, 가로 overflow 0.
+> - Vercel 프리뷰는 배포 보호(403)라 검증에 못 썼고 브라우저 확장도 미연결이어서, 병합 전에는 배포 브랜치 빌드로 `next start` 로컬 프로덕션 서버를 띄워 puppeteer로 검증했다.
+> - **React #418 하이드레이션 경고는 기존 문제**다. `/mackerel`뿐 아니라 `/cocoa`·`/salmon`·`/pollock` 등 `[category]` 라우트 전체에서 동일하게 발생한다. 이번 변경과 무관하며 별도 티켓 대상이다.
+> - **커밋 누락 1건 자수·수정**: 결선 중 `git add`가 gitignore 경고로 중단돼 빌더가 내보내는 `_kpi` 블록이 위젯 JSON·번들에 반영되지 않은 채 커밋됐다. 배포 직전 발견해 `4065813`으로 보완했고, 재빌드 후 산출물과 커밋 일치를 확인했다.
+> - 최종: 위젯 **104 → 42**(아카이브 28 + 런타임 라이브 14), O-04 4축 **78.0 → 89.5(A)**, 죽은 코드 약 2,500줄 제거, Vitest **191/191**, 정적 페이지 **98/98**.
+
+
+> 🐟 **2026-08-13 15:56 KST — `/mackerel` 개편 Phase 3~5 완료 (결선·검증)** [Claude + Codex + OpenCode]:
+> - Codex(죽은 컴포넌트 삭제)·OpenCode(provenance 렌더 계층)를 별도 워크트리에 병렬 발주하고 머지했다. 파일 소유권 배타 규약으로 **머지 충돌 0건**. Codex는 sandbox가 git index 쓰기를 막아 커밋을 못 해 검증 후 내가 커밋했다.
+> - **결선 직전 내 Phase 0 인벤토리 오류를 발견했다.** 대시보드는 v13.json 위젯 외에 런타임에 API로 가져와 `json.widgets.push()` 하는 위젯 **14개**를 더 렌더한다. JSON 파일과 TSX만 스캔한 원장이 이걸 못 봤다. 실제 렌더는 90이 아니라 **104**였고, 2026-05 감사서의 "103 위젯"이 맞고 내 원장이 틀렸다. 계획대로 진행했으면 관세청·ECOS·KAMIS 라이브 위젯 14개가 조용히 사라질 뻔했다. 사용자 판단으로 **라이브 14건 존치** 확정.
+> - **최종 구성 42위젯** = 아카이브 28(연간·구조, FAO·ICES·NPFC·MSC·GLOBEFISH·EUMOFA·KMI·USDA·MFDS·관세청·UN Comtrade) + 런타임 14(월간·실시간 운영, 관세청·환율·시세). 서로 대체재가 아니라 보완재라 함께 둔다.
+> - **KPI 6개를 위젯 파생으로 전환**했다. 기존 KPI는 v13.json에서 따로 계산돼 새 위젯과 모순됐다 — 수입의존도 **33.9% → 23.9%**(자급률 76.1%의 역), 어분 증가율 **+394% → 전환율 2.0%**. 이제 빌더가 `_kpis.json`을 위젯과 같은 값에서 만들어 헤더·본문이 갈라질 수 없다.
+> - **삭제**: 흡수된 TSX 7개 + `lib/data/mackerel.ts`(20개 데이터셋 전부 미참조가 되어 모듈째). `components/Mackerel*.tsx` **25 → 2**(Dashboard, WidgetV2). 누적 약 2,500줄 제거.
+> - **아키텍처 가드 위반 자수·수정**: 결선 때 `_kpis.json`을 컴포넌트에서 직접 import해 `architecture-guards.test.ts` 2건이 깨졌다. `lib/data/mackerel-v2.ts`에 `getKpis()`를 두고 intake 계층을 거치도록 고쳤다.
+> - **O-04 4축 재채점: 78.0 → 89.5 (A)**. A 26 / B 2 / C 0 / D 0 (기존 A 12 / B 37 / C 37 / D 4). 축 평균 출처 92.3 · 신선도 76.8 · 검증가능성 88.8 · 완성도 100.0. 채점 방식도 바꿨다 — 기존은 cardDesc 문자열에서 출처 키워드를 grep해 추정했으나, 이제 `source_id`의 소스 원장 실재 여부와 **입력 파일 SHA-256 재대조**로 판정한다. 해시가 어긋나면 검증가능성이 40점으로 떨어진다. B 2건(`s3_fta_quarterly`·`s5_msc_cert`)은 PDF 수동추출이라 감점이 정확한 결과다. 신선도 76.8은 개선 여지가 아니라 데이터 한계다(FAO 최신 2024, Comtrade 2025).
+> - `npm run verify` 구성요소 전량 통과(격리 워크트리, 클린 트리 기준): ESLint 0 errors(기존 warnings 13), TypeScript, Vitest **181/181**, Next.js 정적 페이지 **98/98**.
+> - 상태: 브랜치 `mackerel/claude-etl` 커밋 `a7751db`. **프로덕션 미배포.**
+> - **남은 정리 1건**: `w_comtrade_flow`(라이브, 실패 시 하드코딩 8행)와 `s3_comtrade_matrix`(아카이브 164k행, 2025)가 같은 질문에 답한다. 라이브 존치 결정을 따라 이번엔 건드리지 않았다.
+
+> 🐟 **2026-08-13 15:04 KST — `/mackerel` 아카이브 기반 데이터 진실성 재구축 (Phase 0~2 완료)** [Claude]:
+> - 페이지가 위젯 **90개**(JSON 83 + TSX 7)를 렌더하는데 수치의 출처를 추적할 수 없었고 26개는 데이터가 2023년 이하에서 멈춰 있었다. 2026-08-12 고등어 아카이브(821파일)를 단일 진실원천으로 삼는 결정적 ETL을 깔고 위젯을 **90 → 28**로 통합했다.
+> - **종 범위 오염 정정**: 아카이브 필터본이 `mackerel` 문자열 기반이라 전갱이(jack/horse)·삼치(Spanish)·임연수어(Atka)·인도고등어, 심지어 **Mako shark·Pinecone soldierfish**까지 섞여 있었다. `scripts/mackerel/scope.py`에 Scomber 속 한정 필터를 만들어 모든 ETL이 이걸 거치게 했다. 안 걸렀으면 전 집계가 부풀려진다. 2차로 `Jack mackerel meal`이 어분 집계에 새는 것도 잡았다.
+> - **모순 수치 3건 실측 확정**(사용자 승인 2026-08-13): ① 노르웨이 의존도 — 위젯이 52%/67%/73.9%로 제각각. FAO 양자교역 실측은 **2024년 물량 88.1% · 금액 88.9%**. 기존 67%는 상위 3국만 분모로 잡은 오류. ② 아프리카 수출 `+167%`는 어느 계산으로도 재현 불가. 실측 **2019→2024 누적 +137.1%(CAGR +18.8%)**, 단 **2024 YoY −16.9% 역성장** — 위젯은 여전히 "급증"이라 서술 중이었다. ③ 자급률 — 정의에 따라 70% vs 195%. 한국은 **수입량의 2배를 수출**해 수출차감 정의는 100%를 넘는다. `어획/(어획+수입)` = **2024년 76.1%**로 확정, "자급률 위기" 프레임 폐기.
+> - **핵심 미보도 사건**: 독립 3개 출처가 같은 방향을 가리킨다. ICES 2026 권고 **174,357톤**(2025년 576,958톤 대비 **−69.8%**) / NSC 2026 W32 누계 단가 **+64.5%**·물량 **−46.0%** / FAO GLOBEFISH "쿼터 감축으로 최근 없던 수준까지 상승". 현재 대시보드는 이 사건을 한 위젯도 다루지 않는다. ICES 원문상 실제 어획은 2010년 이후 **평균 39%** 권고 초과.
+> - **서사가 데이터에 반박당한 위젯들**: 양식 비중 **0.01%**(207톤/214만톤) — "양식 블루오션" 근거 없음. 어분 전환율 **2.0%** — "어분 제국 +394%"와 불일치. 미국은 조제품 시장(평균 CIF **$4.19/kg**)이라 냉동 원물 진입 전제가 성립 안 함. 대서양·태평양이 **동시에** 조여(NPFC 어획 2018년 516,000톤→2024년 128,586톤) "대서양 막히면 태평양으로" 전략이 무너진다.
+> - **파이프라인**: `scripts/mackerel/` 신설. `provenance.py`는 `source_id`가 아카이브 소스 원장에 없으면 빌드를 죽이고 입력 파일 SHA-256을 기록한다. `validate_provenance.py`가 매 실행마다 재해싱해 아카이브 무단 변경을 탐지한다. `test_build.py`는 두 번 빌드해 산출물 해시를 비교(결정성)하고 승인된 정의 3건을 assert로 고정한다. `npm run mackerel` / `mackerel:test` / `mackerel:ledger`.
+> - **근거 없는 위젯은 만들지 않았다**: 통합안 37건 중 9건(SST 예측·운임 기반 채산성·D2C 프라이싱·IUU 등)을 grade C로 살리는 대신 폐기했다. 아카이브에 1차출처가 없고 실측 위젯이 이미 같은 질문에 답하기 때문이다. 최종 28건은 전부 **grade A 17(기계추출) / B 11(1차 PDF 수동추출)**, grade C 0건. TRQ 시나리오는 아카이브 legacy에 묻혀 있던 관세청 2026 YTD 통관 실측(`KCS_2026YTD_HS_mackerel.csv`)으로 대체했다 — FAO(2024)보다 1~2년 앞선 유일한 국내 실측이다.
+> - 산출물은 pillar별 번들 5개(`data/mackerel/_bundle_S*.json`, S1 8 · S2 7 · S3 8 · S4 4 · S5 1)로 나눠 209KB 단일 페이로드 문제도 함께 해소했다.
+> - 상태: 브랜치 `mackerel/claude-etl` 커밋 `9298cfe`. **프로덕션 미배포.** Phase 3은 Codex(죽은 컴포넌트 17개·약 1,554줄 삭제)·OpenCode(provenance 렌더 계층 신규 3파일)에 지시서로 분리 발주 — `docs/CODEX_TASK_MACKEREL.md`, `docs/OPENCODE_TASK_MACKEREL.md`. 파일 소유권 배타 규약으로 충돌 0.
+> - **별도 티켓**: 관세청 API 서비스키 미확보로 401(자동 갱신 불가, 현재 스냅샷이 최신). EUMOFA·NSC는 자동 접근 403이라 브라우저 수집 필요. 아카이브 HANDOFF가 지적한 수집 저장소 GitHub Actions 평문 API 키 회전은 미해결.
+
+> 🦐 **2026-08-13 14:20 KST — `/shrimp` 산업 이해 중심 전면 개편** [Claude]:
+> - 페이지와 새우 아카이브가 서로를 모르는 상태였다. 페이지는 FishStat **2024.1.0**(데이터 ~2022) 위에 있었고 아카이브는 7월부터 **2026.1.0**(~2024) 스냅샷을 갖고 있었다. 위젯을 **80 → 21**로 줄이고 전부 아카이브 1차 실측으로 갈아끼웠다.
+> - **필터 정정**: FishStat CSV에 담수갑각류가 섞여 2024 총량이 821,552 t(6.4%) 부풀려져 있었다. `ISSCAAP='Shrimps, prawns'` 적용 후 정본은 양식 **8,810,922 t** · 자연산 **3,135,769 t** · 총 **11,946,690 t** · 양식 비중 **73.8%** · 흰다리 **64.1%**이며, FAO SOFIA 2026의 8,811천 t와 교차검증된다.
+> - **날조 계열 폐기**: `w01`이 출처를 "FAOSTAT 실측"이라 적고 양식 계열을 상수 델타로 보간했다(1991~2000 매년 +40,000, 2011~2020 매년 +260,000). 2024 값이 같은 파일의 7개국 합보다 작아 물리적으로 불가능했다. KPI 4개의 기준연도 오라벨도 정정하고 6개 전부 위젯 산출에서 파생하도록 바꿨다.
+> - **정직화**: `SHRIMP_API_SOURCES`와 헤더 API 카운터를 제거했다(fetch 9개 중 5개가 응답을 버리고 카운터만 올렸다). 관세/환율 시뮬레이터도 제거했다 — 마진 산식 `15 - (환율-1385)/100 - 관세`가 출처 없는 발명 상수였다. 21개 전부 SYNCED/STATIC, LIVE 경로 없음. `syncDate`는 스냅샷 일자가 아니라 데이터 빈티지를 담는다.
+> - **자체 추정 10건 삭제**, 중복 클러스터 통합(에콰도르 10 · 한국수입 14 · 관세 9 · ESG 12). Seafood Watch 베트남 보고서 1건을 3위젯으로 쪼개 같은 값을 70/70/72로 표기하던 것도 1개로 합쳤다.
+> - **파이프라인**: `scripts/shrimp_archive_to_widgets.py` 신설. Drive 아카이브를 읽기 전용으로 읽어 `public/data/shrimp_real_data_v4.json`을 생성하며 assert 6건이 게이트다. 실측 확인한 데이터 함정 15건을 코드에 박았다 — Pink Sheet가 2023M10 이후 29개월 `1079` 상수로 손상된 것, SAGyP 8월이 나흘치인 것, KCS를 `030617`만 집계하면 베트남이 45% 사라지는 것 등.
+> - **O-04 4축**: `scripts/score_shrimp_4axis.py` 신설(룰 기반·자체검증 포함). 평균 **90.7 (A 21 / B 1)**. 남은 B는 2021년 조사라 신선도 감점이 정확한 결과다.
+> - **컴포넌트**: `SECTIONS`+`EXTRA_BY_PILLAR`를 Pollock식 `PILLARS` 단일 배열로 통합하고 `renderChart`의 이중 분기를 정규화했다. 이 정리로 `chartType: 'line'`이 "Unsupported"로 떨어지던 것이 실제 렌더된다. `WidgetCard`에 `id`를 넘겨 `data-widget-id`가 나오게 해 페이지 자동 검증이 가능해졌다. KPI 아이콘·색은 인덱스가 아니라 kpi 키에 고정했다(양식 비중에 경고 삼각형, 교역액에 위험 빨강이 붙어 있었다).
+> - 아무도 import하지 않던 죽은 파일 9개(약 1,100줄) 삭제. `ShrimpWidgetCommon.tsx`는 `SquidDashboard`가 쓰므로 존치.
+> - 로컬 브랜치가 `origin/main`보다 20커밋 뒤처져 있어 그대로 배포하면 unloading·market 작업이 라이브에서 사라지는 상태였다. 전용 워크트리를 `origin/main`에서 새로 파고 새우 개편만 얹었다. `npm run verify` 통과: Vitest **162/162**, 타입검사, Next.js 빌드, bundle budget.
+> - 상태: 브랜치 `feat/shrimp-industry-redesign` 커밋 `027dd50`. PR·production 배포 진행 중.
+> - **별도 티켓**: `customs` 라우트 L-04 위반(`hsSgn` 6자리 → HSK 10자리), `emerging-markets`·`forecast`·`compliance` L-09 위반, `~/agri_pipeline` registry·data 복구(squid·garlic 포함 전 품목 영향).
+
+> 🛠️ **2026-08-13 10:10 KST — `/unloading` 열린 탭의 역사 데이터 갱신 회귀 수정** [Codex]:
+> - 라이브 API와 새 브라우저는 최신 SEIN QUEEN 값을 반환했지만, 이미 열려 있던 탭은 역사 API를 최초 마운트 때 한 번만 조회하고 `ready` 상태의 후속 성공 응답도 무시해 기존 **88,246.110 MT·미확인 SEIN QUEEN** 화면을 계속 표시했다.
+> - 역사 조회를 브라우저 HTTP 캐시에 의존하지 않는 `no-store`로 전환하고, 창 포커스 복귀·문서 재표시 시 재조회하도록 수정했다. 새 요청 전에는 이전 요청을 중단해 응답 역전을 막고, 백그라운드 갱신 실패 시에는 기존 정상 화면을 유지한다.
+> - 실제 브라우저에서 최초 구 스냅샷을 표시한 채 서버 응답만 최신 스냅샷으로 바꾸고 포커스를 복귀시키는 회귀 시나리오를 추가했다. 수정 전 최신 KPI 대기 15초 타임아웃(RED), 수정 후 두 번째 API 요청·**94,075.080 MT·2023-01-11~01-31·5,828.970 MT** 교체를 확인했다(GREEN).
+> - `npm run verify` 통과: ESLint 0 errors(기존 warnings 10), TypeScript, Vitest **162/162**, API cache **151/151**, Next.js 정적 페이지 **104개**, bundle budget. 역사 전용 E2E도 데스크톱·390px 모바일·키보드·열린 탭 갱신·API/청크 장애 격리를 통과했다.
+> - 상태: 전용 브랜치 `codex/unloading-history-live-refresh`에 로컬 반영. 사용자의 재배포 요청에 따라 PR·production 배포·라이브 열린 탭 검증을 진행한다.
+
+> 🚀 **2026-08-13 09:46 KST — `/unloading` 2023년 SEIN QUEEN 미확인 항차 라이브 배포 완료** [Codex]:
+> - 기능 커밋 `af49673`을 PR [#290](https://github.com/CUTEKOREA/tuna-dashboard/pull/290)으로 병합했다. production merge commit은 `63b61eec8ea2b7e8de5749840f48a620eed732a0`이다.
+> - PR App Quality Gate run `31654806776`과 main App Quality Gate run `31654985799`이 모두 성공했다. 두 게이트 모두 `npm run verify`와 하역 역사 브라우저 수용 테스트를 통과했다.
+> - Vercel production `dpl_C9XaroPyw8CiSkwWSVaGa82M4ezS`(`tuna-dashboard-h6bbzdwb4-cutekorea-3280s-projects.vercel.app`)가 READY이며 `https://leedonggun.co.kr` alias에 연결됐다. 배포 후 30분 오류 로그 조회 결과는 0건이다.
+> - 라이브 `/api/unloading-history`는 HTTP 200으로 검증 **88 / 부분 4 / 미확인 6**, 2023년 **29/29항차·94,075.080 MT**, SEIN QUEEN **2023-01-11~01-31·방콕·5,828.970 MT**를 반환하며 기존 미확인 ID는 없다.
+> - 운영 `/unloading` 잠금 해제 후 데스크톱·390px 모바일에서 2023년 탭, 신규 SEIN QUEEN 행·카드, `검증 완료`, 미확인 날짜 제거를 확인했다. 두 화면 모두 HTTP 200, 가로 overflow 0, error overlay·console/page/자체 request error 0이다.
+
+> ✅ **2026-08-13 09:27 KST — `/unloading` 2023년 SEIN QUEEN 미확인 1항차 원자료 대조·로컬 반영** [Codex]:
+> - Google Drive `완료 202301 SEIN QUEEN`의 `일일 하역결과보고(2023-01-SEIN QUEEN- BKK).xls`를 직접 변환·검산했다. 원본 SHA-256은 `411c9f1b689465b25e70fc2b73dbf9968747dbfd4f2a08ab328223a6f237cfaf`다.
+> - 01-11~01-31 시트의 날짜·항만·최종 누계를 대조해 기간 **2023-01-11~01-31**, 항만 **방콕**, 본선보고량 **5,916 MT**, 실제 하역량 **5,828.970 MT**로 확정했다. 최종 시트의 7개 선박 소계 합산도 5,828.970 MT다.
+> - 기존 `sein-queen-2023-unknown-01` 후보를 검증 항차로 승격해 전체 후보는 98개로 유지했다. 메타는 검증 **88 / 부분 4 / 미확인 6**, 2023 작업연도 집계는 검증 **29/29항차·94,075.080 MT**, 완료연도 기준은 검증 **27/28항차·89,338.330 MT**, 5개년 검증 합계는 **339,119.2358 MT**로 갱신했다.
+> - 회귀 테스트는 데이터 부재 상태에서 실패한 뒤 수정 후 통과했다. `npm run verify`는 ESLint 0 errors(기존 warnings 10), TypeScript, Vitest **161/161**, API cache **151/151**, Next.js 정적 페이지 **104개**, bundle budget을 통과했다. 역사 전용 E2E도 데스크톱·390px 모바일·키보드·API/청크 실패 격리를 통과했다.
+> - 상태: 전용 worktree `codex/unloading-sein-queen-2023`에 로컬 반영. **프로덕션 미배포**(이번 사용자 메시지에 배포 요청 없음).
+
+> 🚀 **2026-08-13 07:17 KST — `/market` 2026년 8월 Atuna 회귀 복구 라이브 배포 완료** [Codex]:
+> - 8월 복구 PR [#285](https://github.com/CUTEKOREA/tuna-dashboard/pull/285)을 최신 `main`과 충돌 없이 병합했다. production merge commit은 `6d6203dda957e6687852f04b2a4d3ab49a3ce411`이다.
+> - PR App Quality Gate run `31641107865`, main App Quality Gate run `31645914987`, Data Freshness Audit run `31645915053`이 모두 성공했다. 전체 검증은 Vitest **137/137**, 타입검사, API cache **150/150**, Next.js **103페이지**, bundle budget을 통과했다.
+> - Vercel production `dpl_HWPozBQujVr2qUzL9P8ghBCr3jxh`(`tuna-dashboard-3sq2nd6ch-cutekorea-3280s-projects.vercel.app`)가 READY이며 `https://leedonggun.co.kr` alias에 연결됐다.
+> - 라이브 API는 SKJ 방콕 **2026-08-06 $1,900**, SKJ 만타 **2026-07-28 $2,150**을 반환한다. 데스크톱·390px 모바일에서 8월 폴더·가격·기준일 렌더, 구 7월 다이제스트 제목 제거, HTTP 200, 가로 overflow 0, console/page/자체 request error 0을 확인했고 배포 후 Vercel error log는 없다.
+
+> 🚢 **2026-08-13 06:32 KST — `/unloading` 2021~2025 역사 실적 공개 배포본 준비** [Codex]:
+> - Google Drive 하역 원자료 5,945건에서 정제·검토한 98항차를 별도 정적 API와 지연 로딩 패널로 구성했다. 검증 상태는 **검증 87 / 부분확인 4 / 미확인 7**이며 5개년 검증 합계는 **333,290.2658 MT**다.
+> - 작업연도와 완료연도 기준을 분리하고 TAI JI·SEIN PHOENIX·SEIN FRONTIER의 연도 경계 물량을 해당 연도에 배분했다. 부분확인 물량은 보존하되 연간 KPI에서 제외했다.
+> - 공개 저장소에는 선박·연도·항만·기간·수량·검증상태만 포함한다. 원본 증거 경로·문서명·해시·시트 좌표·검토 메모와 원본 폴더에서 파생된 식별자는 배포 커밋에서 제거했다.
+> - 2026 운영 데이터와 별도 API·컴포넌트로 격리해 기존 누적 **34,132 MT / 완료 11척**은 변하지 않는다. 역사 API·청크 장애도 2026 화면을 유지하고 한글 재시도로 복구한다.
+> - 로컬 검증: ESLint 0 errors(기존 warnings 10), TypeScript, Vitest **160/160**, API cache **151/151**, Next.js 정적 페이지 **104개**, bundle budget, 역사 전용 데스크톱·390px·키보드·API·청크 실패 E2E 통과. 사용자의 명시적 배포 승인에 따라 공개 전용 브랜치에서 PR·Preview·production 검증을 진행한다.
+
+> ✅ **2026-08-13 00:18 KST — `/market` 2026년 8월 Atuna 동기화 회귀 복원·라이브 배포 준비** [Codex]:
+> - 라이브 `/market`이 다시 `2026-07-16` SKJ 방콕 **$1,790**과 7월 다이제스트를 표시하는 회귀를 재현했다. 8월 Atuna 반영 커밋 `0ff6fcf`가 별도 브랜치에만 있고 `main`에 병합되지 않아, 이후 `main` 배포가 운영 화면을 이전 상태로 되돌린 것이 원인이다.
+> - 최신 `origin/main`의 `/logistics` 31주차 변경을 보존한 전용 배포 worktree에서 `components/MarketDashboard.tsx`와 `data/atuna_prices.json`만 해당 승인 버전으로 복원했다. API 최신값은 **SKJ 방콕 2026-08-06 $1,900**, **SKJ 만타 2026-07-28 $2,150**이며, 화면에 `Atuna 2026.08 폴더`와 `가격은 8/6 SKJ $1,900 반영`을 다시 노출한다.
+> - 재발 방지를 위해 가격 최신행과 8월 폴더·가격 문구를 고정하는 회귀 테스트를 추가했다. 전체 Vitest **133/133**, 타입검사, API cache **150/150**, ESLint 0 errors(기존 warnings 10), Next.js Turbopack·webpack production 빌드 **103/103**, bundle budget, S-Grade 0건을 통과했다.
+> - 로컬 production 데스크톱·390px 모바일에서 `/market`의 8월 폴더·$1,900·2026.08.06과 `/logistics`의 31주차·4척·18,643.026MT·SEIN VENUS를 확인했다. 두 경로 모두 HTTP 200, 가로 overflow 0, page error 0이다.
+> - 사용자 명시적 라이브 배포 요청에 따라 GitHub 품질 게이트와 Vercel production 배포를 진행한다.
+
+> 🚀 **2026-08-13 00:31 KST — `/fleet` 8월 선단 운영자료 라이브 배포 완료** [Codex]:
+> - 로컬 기능 커밋 `9c3cf85`를 PR [#284](https://github.com/CUTEKOREA/tuna-dashboard/pull/284)로 `main`에 병합했고, production merge commit은 `8d6818736caf0f9a017845be2b97d9171ee66db0`이다.
+> - PR App Quality Gate run `31612026727`, main App Quality Gate run `31612342879`, Data Freshness Audit run `31612342908`이 모두 성공했다. 기존 ESLint warning 이외 오류는 없다.
+> - Vercel production `dpl_3zsLf9UWBmoPTtKzcvcg5DUAjP9K`(`tuna-dashboard-bw9hznm3c-cutekorea-3280s-projects.vercel.app`)가 READY이며 `https://leedonggun.co.kr`·`https://tuna-dashboard-kappa.vercel.app` alias에 연결됐다.
+> - 라이브 `/fleet`는 `x-matched-path: /[category]`로 응답한다. 잠금 해제 후 데스크톱·390px 모바일에서 HTTP 200, 4개 탭, 611/1,320/46,153 M/T, 태평양 176 M/T, 대서양 220 M/T, TAIHO MARU, HIKARI 1 컨테이너, VDS 1,417/750일과 소계 차이 주석을 확인했다. 가로 overflow 0, console/page/자체 request error 0이며 배포 후 Vercel error log는 없다.
+
+> 🛠️ **2026-08-13 00:18 KST — `/fleet` 8월 9~12일 선단 운영자료 로컬 반영** [Codex]:
+> - 사용자 제공 원문 7건을 `lib/fleet-operations-2026-08-09.ts`의 중앙 데이터 계약으로 구조화했다. 주간 어획 **611 M/T**, 8월 누계 **1,320 M/T**, 연간 누계 **46,153 M/T**, 태평양 8/11 일간 **176 M/T**, 대서양 8/11 일간 **220 M/T**, 운반선·컨테이너 8/12 선적 **9,922.3 M/T**를 기준일별로 분리했다.
+> - VDS는 국적선 6척(**1,417/965/452일**)과 키리바시 선박 4척(**750/521.8/228.2일**)을 별도 모집단으로 표시했다. 키리바시 국적선 소계는 원문 인쇄 소계와 선박 행 합계가 최대 0.20일 다르므로 인쇄 소계를 유지하고 행 합계를 주석으로 공개했다. 동부 공해·키리바시 공해의 소진일수 제외 조건도 보존했다.
+> - `오늘의 운영 / 선박·수역 / 실적 분석 / VDS·입어료` 탭에 최신 수치를 배선했고, 선박 카드는 8/11 일간 어획으로 정정했다. TAIHO MARU, HIKARI 1 일반 선적·PSS YF 컨테이너를 포함했고, 국적선 음수 잔여는 원천 행 계산값 **10건**으로 자동 산출한다.
+> - `/fleet`을 레거시 루트 rewrite에서 제외해 `app/[category]` client-only 경로로 전환했다. 수정 전 라우팅·일간/주간 혼용 회귀 검사가 실패하고 수정 후 통과함을 확인했다.
+> - `npm run verify` 통과: ESLint **0 errors(기존 warnings 10)**, TypeScript, Vitest **137/137**, API cache **150/150**, Next.js production build **103페이지**, bundle budget. S-Grade 0건, `git diff --check` 통과. 로컬 브라우저 잠금 해제 후 데스크톱·390px 모바일 모두 HTTP 200, 4개 탭 핵심 수치, 가로 overflow 0, console/page error 0을 확인했다.
+> - 상태: 전용 worktree `codex/fleet-ops-20260812`에 로컬 반영. **프로덕션 미배포**(이번 사용자 메시지에 배포 요청 없음).
+
+> 🚀 **2026-08-12 22:31 KST — `/fleet-strategy` 2025년 선사별 업종별 원양어업 생산실적 라이브 배포 완료** [Codex]:
+> - 사용자 제공 `25년도 선사별 업종별 원양어업 생산량 자료 (1).pdf` 112~115쪽 화면을 기준으로 36개 선사의 회사 합계와 10개 업종별 생산량을 `lib/fleet-production-2025.ts`에 구조화했다. 원문 총계는 **383,130 M/T**, 신라교역은 **58,349 M/T(전체 15.2%, 2위)**이며 참치선망 **54,803 M/T**, 참치연승 **3,546 M/T**다.
+> - `/fleet-strategy` 상단에 원문 총계·신라교역 생산량·신라교역 선망 생산량·상위 5개사 집중도, 업종별 구성, 상위 5개사 순위, 회사명 검색 가능한 36개사 전수표를 추가했다. 첨부 원문 기반 정적 자료이므로 `STATIC` 의미의 `첨부 원문` 배지를 사용했다.
+> - 원문 표 자체의 검산 차이를 임의 수정하지 않았다. 회사 합계열의 합은 **383,127 M/T**, 업종별 행 합산은 **383,128 M/T**, 표 하단 총계는 **383,130 M/T**다. 씨맥스피셔리·정일산업·홍진실업은 행 합계가 각 1 M/T 차이이고, 해외트롤 하단 합계는 원문 미표기라 행 합산 **62,675 M/T**를 화면에 명시했다.
+> - 1차 production 배포 후 라이브 브라우저에서 React hydration #418을 재현했다. `/fleet-strategy`가 레거시 `/` rewrite에 남아 서버의 `/` 상태와 브라우저 경로 상태가 달라지는 것이 원인이었으며, 정상 동작 중인 `/unloading`·`/korea-market`과 동일하게 `app/[category]` client-only 경로를 사용하도록 rewrite에서 제외하고 회귀 테스트를 추가했다.
+> - 깨끗한 배포 worktree 기준 데이터 import 무결성 147건, 전체 Vitest **124/124**, 타입검사, Next.js 103페이지 production 빌드, S-Grade 0건 통과. 동시 진행 중인 냉동 운반선 31주차 로컬 파일은 수정·커밋하지 않았다.
+> - 기능 커밋 `3b54e4c`와 hydration 수정 `6e1a350`을 `main`에 반영. GitHub App Quality Gate run `31601330521`이 성공했고, Vercel production `dpl_4SRD6aRTyAi4AL3rN45cF98f2XCF`가 READY로 `https://leedonggun.co.kr` alias에 연결됐다.
+> - 라이브 `/fleet-strategy`는 `x-matched-path: /[category]`로 응답한다. 데스크톱·390px 모바일에서 HTTP 200, 원문 총계 383,130 M/T, 신라교역 58,349 M/T·선망 54,803 M/T, 36행, 가로 overflow 0, hydration·콘솔·페이지·자체 요청 오류 0을 확인했다. Vercel 오류 로그의 2건은 별도 `/fleet` RSC 요청으로 본 경로 오류는 없었다.
+
+> ✅ **2026-08-12 21:04 KST — `/logistics` 8월 5일 방콕 주간보고 데이터 갱신** [Hermes]:
+> - Google Drive `2026 주간보고` 폴더에서 수정시각과 문서 기준일이 가장 최신인 `20260805 Bangkok Office Weekly Report.docx`를 확인하고 SHA-256 `2ddb233def797ab6b0cd04dd3180b33e55ef88223a658039e0413acd47e249b1`에 결속했다. 보조 `데이터 정리.xlsx` SHA-256은 `5ccb8a8e6cdac29924653e36d50dbdaaa8568ea6bf8454035ba5fc53d82a018b`이다.
+> - 트레이더 1~8월 누계 **317,175MT**, 8월 **8,891MT**, 현재 하역 3척 **13,764MT**, 8월 누계 2척 **8,891MT**, 방콕 생산·재고 **2,650/122,300MT**, 송클라 **330/4,500MT**, 원어 협의가 **$1,930/MT**, 고반려·고염도 품질 신호를 반영했다.
+> - 원문의 TRI MARINE 누계 `46,463MT`는 월별 합산 `56,463MT`와 10,000MT 상충해 월별 검산값을 사용하고 데이터 모듈에 상충 메모를 보존했다. LAKE PEARL 4,873MT는 현재 하역 합계에는 포함하되 8월 누계에서는 7월 반입분으로 분리했다.
+> - 최신 보고서에 공장별 배분 상세가 없는 냉동 운반선 이동 스케줄은 기존 WEEK 30 역사자료를 유지하고 실제 표시 기간인 2026-07-24~07-30을 명시했다.
+> - 독립 리뷰에서 UC 고반려 잔량 218.277MT 누락, 원문에 없는 시장가 기간 추정, WEEK 30 현재형 표현을 발견해 수정했다. 고반려는 TUG 923.092MT·CMC 109.767MT·UC 218.277MT, 고염도는 TUM 217.103MT/$6,493.44로 원문 표에 맞췄고 WEEK 30 기준일은 2026-07-30으로 바로잡았다.
+> - 로컬 production QA에서 `/logistics`가 레거시 `/` rewrite에 남아 React hydration #418을 일으키는 것을 재현했다. 회귀 테스트를 RED→GREEN으로 추가하고 rewrite에서 제외해 `app/[category]` client-only 경로로 전환했다. 수정 후 데스크톱·390px에서 page error 0, 가로 overflow 0을 확인했다.
+> - 후속 독립 리뷰에서 TRI MARINE 상충의 화면 미공개와 원문에 없는 보고기간 메타데이터를 발견해 수정했다. 트레이더 위젯에 원문 `46,463MT`와 월별 검산 `56,463MT` 및 적용 근거를 직접 표시하고, `source.period`는 제거해 보고일만 보존했다. 물류 화면의 일반 영문 상태·용어(`STATIC`, `Cannery`, `CAPA/CAPACITY`, `Metric Tons`, `WEEK 30`)도 정적·가공 공장·최대 생산/보관능력·미터톤·30주차로 한글화했다.
+> - 신규 데이터 계약 회귀 5/5, 전체 Vitest **120/120**, 타입검사, ESLint 0 errors(기존 warnings 10), Next.js 103페이지 빌드, bundle budget, S-Grade 0건 통과. 로컬 데스크톱·390px 모바일에서 최신 수치 렌더와 가로 overflow 0을 확인했다.
+> - 현재 독립 코드 리뷰 및 프로덕션 배포 전 최종 단계다.
+
+> 🚀 **2026-08-12 20:50 KST — `/unloading` 2026년 누락 하역 4항차 라이브 배포 완료** [Codex]:
+> - 최신 `main`의 HIKARI·위판·선단 변경을 보존해 PR [#278](https://github.com/CUTEKOREA/tuna-dashboard/pull/278)로 병합. production merge commit은 `be30baa`이며, Vercel deployment `dpl_7Ra4FTK93g5oPaAKkarBJ1pz4kjG`가 READY로 `https://leedonggun.co.kr` alias에 연결됨.
+> - 라이브 `/api/unloading-db`에서 DB 항차 9개, 신규 4항차의 일보 42건, 구 SEIN PHOENIX 2026년 합산 1,687.730 MT, VOLTA VICTORY 2,652.970 MT, ANGARA 2,683.080 MT, SALT LAKE 204.300 MT를 확인. 응답 SHA-256은 `6cac186618b70ddc9790ba03b866b9858b43fa8028562831d128653df6756d14`.
+> - Preview 통합 QA에서 방콕 대기 HIKARI 1이 젠산 완료 HIKARI 항차를 덮는 ID 충돌을 발견해 `hikari-bangkok-2026-07`로 분리. 라이브에서 두 HIKARI 항차와 방콕 `하역대기`를 동시에 확인.
+> - 라이브 브라우저 기준 누적 **34,132 MT**, 완료 **11척(방콕 10·젠산 1)**, 누락 4항차 노출, 가로 overflow 0, 앱 콘솔·페이지·자체 요청 오류 0 통과. 외부 Google Ads 403은 대시보드 기능과 무관.
+> - GitHub App Quality Gate run `31593263714`: Vitest **115/115**, 타입검사, ESLint 0 errors(기존 warnings 10), API cache 150/150, 정적 페이지 103/103, bundle budget 통과.
+
+## 완료된 것 — `/fleet` 운영 판단 중심 개편 (로컬, 미배포)
+
+- `FleetCommandCenter`를 `오늘의 운영`, `선박·수역`, `실적 분석`, `VDS·입어료` 4개 업무 탭으로 재구성했다.
+- 기본 화면에 `오늘의 운영 판단` 4건과 접힌 업무보고 원문을 추가하고, VDS·PNA 콘텐츠를 전용 탭으로 이동했다.
+- 주간 KPI를 분석 패널과 같은 `1,009MT` 기준으로 통일했다.
+- 미니맵의 `Math.random()` 위치를 좌표 기반 결정론적 위치로 바꾸고 선박 마커를 키보드·터치 가능한 버튼으로 변경했다.
+- 지도와 선박 목록은 `FleetRosterGrid`의 동일 데이터 배열을 사용한다.
+- 탭에 `tablist/tab/tabpanel`, ARIA 연결, roving `tabIndex`, 방향키·Home·End 포커스 이동을 구현했다.
+- 모바일 KPI 재배치, 포커스 링, `prefers-reduced-motion`을 추가했다.
+- 검증: Fleet 회귀 8/8, 타입검사, ESLint(오류 0·기존 경고 10), 103페이지 빌드, 번들 예산, S-grade 0건 통과.
+- 전체 테스트는 Fleet와 무관한 기존 시장 데이터 기대값 2건(`atuna-prices`, `market-dashboard-composition`)이 최신 데이터와 불일치해 92/94 통과 상태다. 해당 외부 변경은 수정하지 않았다.
+
+## 다음 단계
+
+- 로컬 `/fleet` 잠금 해제 후 4개 탭·지도 마커·모바일 시각 QA를 완료한다.
+- 독립 코드 리뷰 결과를 반영한 뒤 사용자의 명시적 배포 요청 전까지 프로덕션 배포하지 않는다.
+
+> ✅ **2026-08-12 20:45 KST — `/korea-market` 위판 데이터 일별 전체 거래 동기화 및 라이브 배포 완료** [Codex]:
+> - 8월 데이터 부족 원인을 재현했다. 기존 수집기는 해양수산부 일별 API에 각 월의 1일(`baseDt=YYYYMM01`)만 요청해 나머지 거래일을 누락했고, 화면의 해수부 상태도 정적 JSON을 읽으면서 `LIVE`로 고정 표시했다.
+> - 완결월은 공공데이터포털의 해양수산부 월별 위탁판매 스냅샷, 미완결월은 해양수산부 일별 API의 모든 거래일·전체 페이지를 누적하는 상태 기반 동기화로 교체했다. 2024-01~2026-06 공식 스냅샷 30개월과 2026-07-01~08-12 일별 거래를 합쳐 **442어종·10,310개 월-어종 집계행**을 생성했다. 월별 공식 파일과 일별 API의 행 단위가 달라 소스행 합계는 내부 완결성 검증에만 사용하고, 화면에는 6월까지 공식 확정·7월 이후 일별 잠정집계를 분리 표기한다.
+> - GitHub Actions가 6시간마다 최근 3일을 재조회하고 신규 공식 월 스냅샷을 자동 승격하도록 추가했다. API는 데이터 조회 완료일과 나이를 기준으로 `SYNCED/STALE/OFFLINE`을 산출하며, 화면에는 최신 위판일·8월 부분집계·실제 동기화 상태를 표시한다. 거래 0건 날짜와 API 무자료 코드도 정상 동기화로 처리한다.
+> - `/korea-market`을 레거시 `/` rewrite에서 제거해 `app/[category]`의 client-only 경로로 전환하고 React hydration #418 재발 방지 테스트를 추가했다.
+> - 검증: 최신 `main` 통합 상태에서 전체 Vitest **109/109**, 타입검사, ESLint 0 errors(기존 warnings 10), API cache 150/150, S-Grade 위반 0, Next.js 16 Turbopack·webpack 전체 빌드 103페이지 및 번들 예산 통과. 로컬 production 데스크톱·모바일에서 HTTP 200, 최신 위판일 `2026.08.12`, `2024.01 - 2026.08`, `8월 부분집계`, `SYNCED`, 가로 overflow 0, hydration/page 오류 0을 확인했다. 로컬 차단 환경의 광고·분석 요청 실패는 기능 검증에서 제외했다.
+> - 코드 커밋 `8dd4e47`과 직후 자동 동기화 커밋 `899ce46`을 `origin/main`에 반영. GitHub App Quality Gate·Data Freshness Audit·Korea Consignment Data Sync가 모두 성공했고, 최종 Vercel production `dpl_G3CDUSwrGYJ5yLL6ZvZmdLCTXKnK` READY 및 `https://leedonggun.co.kr` alias 연결을 확인했다.
+> - 라이브 API는 최신 위판일 `2026-08-12`, 최신월 `2026-08`, 442어종·10,310 월-어종 집계행, 공식 월집계 `2026-06`, 일별 잠정집계 `2026-07-01~08-12`, 해수부 `SYNCED`를 반환한다. 라이브 데스크톱·모바일은 핵심 표기 전부 렌더, `x-matched-path: /[category]`, 가로 overflow 0, hydration/page 오류 0으로 최종 통과했다.
+> - 사용자에게 도착한 `Failed CLI deployment` 메일은 운영 alias가 없는 별도 CLI 시도 `dpl_7daAPp3on126TEY217iGQcC4pQp3`가 커밋 이메일 팀 연결 문제로 차단된 건이다. Git 연동 production과 운영 도메인에는 영향이 없으며 별도 조치는 필요 없다.
+> - 다음 단계: 6시간 주기 자동 갱신을 유지하고, 공공데이터포털에 2026-07 공식 월 스냅샷이 게시되면 워크플로가 7월 일별 잠정집계를 공식 월집계로 자동 승격하는지 확인한다.
+
+> ✅ **2026-08-12 17:47 KST — `/unloading` 2026년 누락 하역 4항차 원자료 대조·로컬 반영** [Codex]:
+> - Google Drive `2026 하역업무`의 완료 항차 폴더 9개를 라이브 `/unloading` 및 API와 항차 단위로 대조. 기존 반영 5항차 외 누락된 **SEIN PHOENIX(2025.12~2026.01), VOLTA VICTORY, ANGARA, SALT LAKE** 4항차를 확인.
+> - 일일 XLS 42건과 최종 보고를 대조해 실제 하역량을 각각 **3,668.710 / 2,652.970 / 2,683.080 / 204.300 MT**로 반영하고, 일별 누계·어종별 계획/실적을 함께 등록. 구 SEIN PHOENIX 최종 메일의 1/13 물량 `63.310`은 XLS 누계 산술과 맞지 않아 XLS 확정값 `63.010`을 사용하고 품질 메모에 충돌을 보존.
+> - 2025년에 시작한 SEIN PHOENIX는 2026년 작업분 **1,687.730 MT**만 연간 KPI에 합산. 완료 선박은 11척, 2026 누계는 **34,131.510 MT(화면 34,132 MT)**, 기간은 1/5~8/11로 갱신.
+> - 화물창별 전 기간 원자료가 없는 과거 4항차는 임의 추정하지 않고 `화물창별 원자료 없음`으로 표시하며 처리속도·온도 판정에서도 제외. API가 연도 경계 합산값·원자료 가용성을 전달하도록 확장.
+> - 최신 `main` 통합 QA에서 방콕 대기 HIKARI 1이 젠산 완료 HIKARI와 같은 `hikari` ID를 사용해 완료 800.110 MT 항차를 덮는 회귀를 발견. 방콕 항차를 `hikari-bangkok-2026-07`로 분리하고 회귀 테스트를 추가해 두 항차와 연간 KPI를 모두 보존.
+> - 최신 `main` 통합 검증: 전체 Vitest **106/106**, 타입검사, ESLint 0 errors(기존 warnings 10), API cache 150/150, Next.js 103페이지 빌드, bundle budget 통과. 로컬 production Playwright에서 34,132 MT·완료 11척·대기 HIKARI·누락 4항차·가로 overflow 0 확인. 미배포(로컬).
+
+> ✅ **2026-08-13 14:10 KST — 오징어 대시보드 v5 전면 개편 완료 (P0~P3)** [Claude Code + Codex + OpenCode]:
+> - `/squid` 를 156위젯 가치사슬 서사에서 **39위젯 조달 결정 흐름**(A 조달가능성·B 가격마진·C 무역흐름·D 규제리스크·E 근거거버넌스)으로 교체. `SquidDashboard.tsx` 927→115줄, 구 Squid 컴포넌트 32개·`squid_real_data_v4.json`·mock API 8종 삭제(추적 파일 42건).
+> - 데이터는 `public/data/squid_v5.json` 하나. `scripts/squid_build/`(10 모듈)가 2026-08-12 아카이브 원문에서 생성하고, `scripts/validate_squid_v5.py` 의 측정 게이트(G-001~011 + L-09 + 형태 일치)를 통과해야만 발행된다. 모든 위젯에 `basis`(어종·중량기준·거래단계·통화·기준일·출처ID·제한) 필수.
+> - 위젯 실태: **구조화 데이터 20 · 원문 발췌 15 · 빈 링크카드 4**(`A_argentina_illex_gap` 2026 미공개, `B_landed_cost_calc` 관세율 원천 부재, `D_korea_origin_labeling` 경로가 디렉터리, `E_corrections_log` 미추출). 수치를 만들어 채우지 않았다.
+> - 검토에서 정정한 것: 물량 축이 1000배 어긋나 막대 미렌더 · 오늘 값에 맞춘 하드코딩 축 3개 · 집중도가 KCS 2020~2024 중 2024만 발행(확장하니 중국 의존도 38.8%→49.0%, HHI 2,114→2,741 추이가 드러남) · 발췌 근사중복 35건 · 하이드레이션 불일치 · 차트 없는데 차트형 선언 6건.
+> - 검증: 빌더 자체검사 **17/17**, 검증기 self-test **15/15**, 프론트 **13/13**, `tsc` 0오류, `npm run build` 통과(정적 97/97). 프로덕션 `/squid` 차트 19·카드 39·콘솔 오류 0.
+> - 알려진 잔여: 프로덕션 React #418 하이드레이션 경고는 `/mackerel`·`/pollock`·`/value-chain` 에도 동일한 **기존 이슈**로, 이번 개편의 회귀가 아니다. D 섹션 발췌는 영문·스페인어 원문 인용 상태.
+> - 문서: [기획서](docs/SQUID_REDESIGN_2026-08_PLAN.md) · [작업지시서](docs/SQUID_V5_HANDOFF.md) · [39위젯 명세](docs/squid_v5_widget_spec.csv) · [폐기 77 ID](docs/squid_v5_prune_list.txt)
+
+> ✅ **2026-08-13 12:25 KST — 오징어 대시보드 v5 P1b 추출기 정정 완료** [Codex]:
+> - 변경된 39행 명세를 다시 읽어 `B_eu_first_sale_price`→`B_eu_market_prices`, `B_eu_spread`→`B_species_price_ladder` ID를 전파했다. FAO European Fish Price Report의 표 머리글을 확인해 Squid/Loligo/Illex 거래가격 49행(EUR/kg·USD/kg, 제품형태·규격·추세·인코텀즈·원산지)을 구조화했고, 규격이 명시된 44행만 단일 `import_unit` 단계의 EUR/kg 내림차순 가격 계단으로 만들었다.
+> - `A_korea_tac`은 살오징어 톤수 대신 해수부 표의 민어/대형트롤/2단계, 살오징어/서남해구외끌이중형저인망/2단계, 전 어종/정치망/1단계 3행을 적재했다. `A_sprfmo_cmm18_effort`는 China 570/548,097 GT, Korea 43/38,907 GT, Chinese Taipei 38/38,674 GT, Total 651/625,678 GT를 정수 행으로 만들고 원문 표를 `source_excerpt`에 보존했다.
+> - 조달 신호판은 칠레를 2026-08-06 누적 포획·잔여 78,131.2449톤 근거의 `조업중`, 포클랜드를 2026-08-13이 공개된 2기 일정 안이라는 파생 근거의 `어기중`으로 정정했다. 모든 산지에 문서 경로·도출법·근거유형을 넣었고, 포클랜드는 2026 실제 개장 공지가 아니라 일정 파생임을 이유 문자열에 명시했다. 아르헨티나·한국은 `데이터공백`을 유지했다.
+> - Markdown 쌍이 없거나 표 근거가 유실된 PDF에 한해 메모리상 `pdftotext -layout <pdf> -` 재추출을 허용하고 PDF 원본 인용과 methodology 표기를 강제했다. Drive에는 쓰지 않았고 디스크 캐시도 만들지 않았다. 아르헨티나 PDF는 재추출해도 2024 어기뿐이어서 승격하지 않았다.
+> - 실제 데이터 위젯은 **35개**, 빈 카드 **4개**(`A_argentina_illex_gap`, `B_landed_cost_calc`, `D_korea_origin_labeling`, `E_corrections_log`). 검증: 빌더 자기검사 **16/16**, `validate_squid_v5.py` **39위젯·위반 0**, 검증기 self-test **13/13**. `meta.telemetry=SYNCED`, 미배포(로컬).
+> - 커밋 `fix(squid): correct v5 archive extraction [Codex]`을 시도했으나 샌드박스의 `.git/index.lock: Operation not permitted`로 실패했다. 관련 파일은 작업트리에 보존됐고 다른 미추적 작업은 스테이징하지 않았다.
+> - 다음 단계: P3 UI는 새 위젯 ID와 `어기중` 상태를 소비하고, `state_evidence.evidence_type=schedule_derived`를 관측 상태와 구분해 표시한다.
+
+> ✅ **2026-08-13 11:55 KST — 오징어 대시보드 v5 P1 아카이브 추출기 완료** [Codex]:
+> - `scripts/squid_build/`에 39행 위젯 명세 기반 빌더를 구현. 거버넌스 레지스트리, KMI·FishStat·KCS·Comtrade·HS·페루·칠레 결정론적 추출기, 21개 문서별 설정 추출기, 4개 파생 위젯을 연결하고 `public/data/squid_v5.json`을 생성했다. Google Drive 오징어 아카이브는 읽기 전용으로 사용했으며 PDF는 직접 파싱하지 않았다.
+> - 실제 원문 데이터를 담은 위젯은 32개. 원문 근거가 부족한 7개(`A_argentina_illex_gap`, `A_korea_tac`, `B_eu_first_sale_price`, `B_landed_cost_calc`, `B_eu_spread`, `D_korea_origin_labeling`, `E_corrections_log`)는 수치를 만들지 않고 빈 링크 카드로 유지했다.
+> - FishStat은 종 코드 230행에서 허용 4종으로 먼저 축소한 뒤 생산 레코드 26,905행을 2,297행으로 필터링했다. KCS 2026 범위는 5월까지만, Comtrade는 가용성만 출력하며 점유율·CAGR·세계합계를 생성하지 않는다.
+> - 검증: `python3 scripts/squid_build/tests/test_squid_build.py` **10/10 PASS**, `python3 scripts/validate_squid_v5.py public/data/squid_v5.json` → **위젯 39개, 게이트 위반 0**. 텔레메트리는 `SYNCED`; sources 37, gates 11, monitoring 15. 미배포(로컬).
+> - 커밋 시도는 샌드박스의 `.git` 쓰기 제한(`index.lock: Operation not permitted`)으로 실패. P1 파일과 HANDOFF는 작업트리에 보존되어 있으며 P0/P2/P3 및 기존 미추적 파일은 건드리지 않았다.
+> - 다음 단계: P2/P3에서 이 JSON 계약을 소비하는 UI를 구현하되, 빈 링크 카드 7개는 새 공식 자료가 확보되기 전까지 수치화하지 않는다. 명세/아카이브 불일치 사항은 P1 최종 보고 참조.
 
 > ✅ **2026-08-13 23:39 KST — 골뱅이 v2 종 해상도 고지 구현 (PHASE 4b)** [Codex]:
 > - `S1_global_capture_top_countries` 국가 행마다 FishStat 2024 상세행 기반 `species_composition`·지배 학명·종 해상도 여부를 산출했다. `Gastropods NEI` 종 코드를 지배 종군으로 쓰는 멕시코·한국·러시아는 미상으로 표시하고, Buccinum 속만 재집계한 상위 5개국(영국·프랑스·캐나다·아일랜드·노르웨이)을 `buccinum_only_ranking`에 추가했다. 한국은 Buccinum 0톤으로 순위에 없다.
@@ -2489,3 +2720,16 @@ python3 scripts/check_s_grade.py components/TunaDashboard.tsx components/TunaExt
 - 검증: 4 라우트 dev 실호출 전부 isLive:true(LA 24.9%·고등어 5,359원·이벤트 16건·태국 $2.0B) · npm run build 통과(L-03) · check_s_grade 위반 0.
 - 주의: Comtrade fallback 키 수시간 내 429 가능(검증 중 쿼터 소모, revalidate 86400이라 운영 무해) · Census 공표 랙 ~3개월(당월 빈 응답 시 4개월 소급 설계) · Vercel hobby maxDuration 주의(comtrade-race 60s 설정).
 - 다음: 2단계 M 본체(B-1 참가격 플래그십 — 활용신청 선행, A-6 재무 스코어보드, A-7 ECOS 패스스루). 배포는 사용자 지시 대기.
+
+## 2026-08-12 22:12 KST (Hermes) — 물류 의사결정 화면 개편
+- **완료된 것**: `/logistics`를 `오늘의 운영`·`반입·가격`·`공장 운영`·`선박·보고자료` 4개 접근성 탭으로 분리했다. 기본 탭에는 THAI UNION 창고 포화, TRI MARINE 누계 상충, 송클라 저가동, 입항 상태 재확인 등 예외 4건과 필요한 조치를 우선 표시한다.
+- **완료된 것**: 현재 하역 3척·13,764MT, 검산 누계 317,175MT, 원어 협의 시장가 US$1,930/MT, 방콕/송클라 생산 2,650/330MT를 첫 화면 KPI로 유지했다. 선박 이동 보고자료는 현재 상태와 혼동되지 않도록 별도 경고와 기본 접힘으로 변경했다.
+- **검증**: 신규 TDD RED→GREEN 4건, 전체 Vitest 132/132, TypeScript, ESLint 오류 0건, S-grade 위반 0건, 격리 production build 103페이지, 번들 예산 통과. Puppeteer 1280/390px에서 네 탭·방향키·접힘·시장가를 확인했고 runtime 오류·가로 overflow는 0건이다.
+- **동시 작업 경계**: 같은 작업트리의 `ReeferMovement.tsx`, `lib/data/misc.ts`, `reefer-week31-*`는 다른 작업자의 31주차 갱신이며 본 개편 커밋에서 제외한다. 물류 개편 커밋은 기존 30주차 보고자료 계약을 유지하고, 작업트리의 31주차 변경은 후속 작업자가 그대로 이어갈 수 있게 보존한다.
+- **다음 단계**: 독립 리뷰 후 물류 개편 파일만 소유권을 분리해 커밋·라이브 배포하고, 주간보고 자동 추출·전주 대비 변화량은 후속 단계로 진행한다.
+
+## 2026-08-12 23:20 KST (Hermes) — 냉동운반선 31주차 반영
+- **완료된 것**: `/logistics`의 보고 시점 냉동운반선 자료를 30주차에서 TTA 31주차(2026-07-31~08-06)로 교체했다. LAKE PEARL 4,873.026MT, SEIN PRINCESS 4,940MT, SEIN VENUS 3,275MT, HENG HONG 9 5,555MT로 총 18,643.026MT다.
+- **완료된 것**: 공장 배분 열에 DIA·SEAP를 반영하고 OTHER를 사용자 노출 `부두`로 한글화했다. 접안일은 현재 예정으로 단정하지 않고 `보고서 기재 접안일`로 표시한다. 선박 보고자료는 현재 운항 상태가 아니라는 경고와 기본 접힘을 유지한다.
+- **데이터 무결성**: `data/reefer_week31.json` SHA-256 `c97b21bc910625dd14a6bd2cab664ab5508fc6b3090edb549048a1d0214ef030`. `/data/` ignore 규칙을 명시적으로 우회해 Git 추적하고 원격 빌드 누락을 방지했다.
+- **다음 단계**: 전체 테스트·타입·린트·빌드·번들·독립 리뷰 후 main fast-forward 배포 및 라이브 390px QA.

@@ -3,7 +3,7 @@ import requests
 import json
 from datetime import datetime
 
-API_KEY = os.environ.get("USCENSUS_API_KEY", "57ed5d9332b5b042e538a9dd3abc83c00a5a66eb")
+API_KEY = os.environ["USCENSUS_API_KEY"]  # 없으면 KeyError로 즉시 실패
 BASE_URL = "https://api.census.gov/data/timeseries/intltrade/imports/hs"
 
 # HS Codes to fetch

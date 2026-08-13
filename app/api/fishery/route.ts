@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { HS_CODES } from "../_shared/hs-codes";
+import { requireEnv } from '../_shared/env';
 
 /**
  * 9대 데이터망 통합 API Proxy (BFF)
@@ -11,10 +12,10 @@ import { HS_CODES } from "../_shared/hs-codes";
  */
 
 const MOF_API_BASE = "https://apis.data.go.kr/1192000/select0040List/getselect0040List";
-const MOF_API_KEY = process.env.FISHERY_API_KEY || "6438ce04ca4a3ec4bcc72f295ab386baa74e52cacce9f725803e18cd8c6d1030";
+const MOF_API_KEY = () => requireEnv('FISHERY_API_KEY');
 
 // KCS 관세청 — 고등어 (HS 030354) mackerel-kcs 패턴 동일
-const KCS_API_KEY = process.env.DATA_GO_KR_NEW_KEY || "fdbf3eb58f1157a1db7c9156e8ce7f88ed9fa2d996116d9079dddb5232133f7c";
+const KCS_API_KEY = () => requireEnv('DATA_GO_KR_NEW_KEY');
 const MACKEREL_HS = HS_CODES.mackerel_frozen.hsSgn;
 
 // Fallback 1: EUMOFA 2026 (EU-27 어획량 및 가치)
@@ -75,7 +76,7 @@ export async function GET(request: Request) {
       const startYymm = `${past.getFullYear()}${String(past.getMonth() + 1).padStart(2, "0")}`;
       const kcsUrl =
         `https://apis.data.go.kr/1220000/nitemtrade/getNitemtradeList` +
-        `?serviceKey=${KCS_API_KEY}&strtYymm=${startYymm}&endYymm=${yyyyMM}&hsSgn=${MACKEREL_HS}`;
+        `?serviceKey=${KCS_API_KEY()}&strtYymm=${startYymm}&endYymm=${yyyyMM}&hsSgn=${MACKEREL_HS}`;
 
       const kcsRes = await fetch(kcsUrl, { signal: AbortSignal.timeout(6000) });
       if (kcsRes.ok) {
@@ -165,7 +166,7 @@ export async function GET(request: Request) {
 
     if (source === "mof") {
       // 1차: 해양수산부 공공데이터포털 실시간 API 호출
-      const apiUrl = `${MOF_API_BASE}?serviceKey=${encodeURIComponent(MOF_API_KEY)}&pageNo=1&numOfRows=100&type=json${date ? `&yyyyMMdd=${date}` : ""}`;
+      const apiUrl = `${MOF_API_BASE}?serviceKey=${encodeURIComponent(MOF_API_KEY())}&pageNo=1&numOfRows=100&type=json${date ? `&yyyyMMdd=${date}` : ""}`;
       
       const res = await fetch(apiUrl, {
         signal: AbortSignal.timeout(8000), // 8초 타임아웃
@@ -189,7 +190,7 @@ export async function GET(request: Request) {
       let domesticAuctionKg = FALLBACK_MOF_CONSIGNMENT.arbitrage.domestic_auction_krw_kg;
 
       // 1. 해양수산부 실시간 위판장 API 연동
-      const apiUrl = `${MOF_API_BASE}?serviceKey=${encodeURIComponent(MOF_API_KEY)}&pageNo=1&numOfRows=10&type=json`;
+      const apiUrl = `${MOF_API_BASE}?serviceKey=${encodeURIComponent(MOF_API_KEY())}&pageNo=1&numOfRows=10&type=json`;
       try {
         const res = await fetch(apiUrl, { signal: AbortSignal.timeout(5000) });
         if (res.ok) {
@@ -216,8 +217,8 @@ export async function GET(request: Request) {
       }
 
       // 2. 해양수산부_수산물품목별수출입현황 OpenAPI 연동 (관세청 무역통계 기반)
-      const KCS_API_KEY = "fdbf3eb58f1157a1db7c9156e8ce7f88ed9fa2d996116d9079dddb5232133f7c";
-      const KCS_API_URL = `https://api.odcloud.kr/api/15102783/v1/uddi:013e1b91-dcea-430c-aadf-f34b622492ec?page=1&perPage=1000&serviceKey=${KCS_API_KEY}`;
+      const odcloudKey = requireEnv('DATA_GO_KR_NEW_KEY');
+      const KCS_API_URL = `https://api.odcloud.kr/api/15102783/v1/uddi:013e1b91-dcea-430c-aadf-f34b622492ec?page=1&perPage=1000&serviceKey=${odcloudKey}`;
       
       let currentNorwayCifKg = 3300; // 기본 Fallback
       try {

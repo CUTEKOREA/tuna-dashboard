@@ -16,7 +16,8 @@ import urllib.request
 from collections import defaultdict
 from pathlib import Path
 
-SERVICE_KEY = "6438ce04ca4a3ec4bcc72f295ab386baa74e52cacce9f725803e18cd8c6d1030"
+import os
+SERVICE_KEY = os.environ["FISHERY_API_KEY"]  # 없으면 KeyError로 즉시 실패
 BASE_URL = "https://apis.data.go.kr/1192000/select0040List/getselect0040List"
 OUTPUT_DIR = Path(__file__).parent.parent / "data"
 PUBLIC_OUTPUT_DIR = Path(__file__).parent.parent / "public" / "data"

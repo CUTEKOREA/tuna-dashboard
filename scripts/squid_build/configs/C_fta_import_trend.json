@@ -1,0 +1,14 @@
+{
+  "widget_id": "C_fta_import_trend",
+  "patterns": ["오징어\\s+131,759\\s+435,062", "對FTA.*오징어", "오징어 수입량.*(?:페루|칠레|중국)"],
+  "require_numeric": true,
+  "basis": {
+    "currency": "USD",
+    "coverage_start": "2025",
+    "coverage_end": "2025",
+    "published_at": "2026-01",
+    "retrieved_at": "2026-08-12"
+  },
+  "max_chars": 1800,
+  "max_items": 12
+}
