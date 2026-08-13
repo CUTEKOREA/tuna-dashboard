@@ -71,7 +71,15 @@ export function freshnessColor(days: number | null): string {
 
 const GRADE_MARK: Record<string, string> = { A: '🅰', B: '🅱', C: '🅲' };
 
-/** 하이드레이션 불일치 없이 클라이언트 시각을 한 번만 얻는다. */
+/**
+ * 하이드레이션 불일치 없이 클라이언트 시각을 한 번만 얻는다.
+ *
+ * 단순해 보여서 손대기 쉬운 자리다. 두 가지는 하지 마라:
+ * - `getSnapshot`을 `() => date ? new Date(date) : null`처럼 호출마다 새 객체를 만들게 바꾸면
+ *   `useSyncExternalStore`가 스냅샷 변화로 오인해 무한 재렌더에 빠진다. 참조를 그대로 반환해야 한다.
+ * - 스토어를 모듈 스코프로 끌어올리면 칩끼리 시각을 공유하고 첫 구독자의 시각에 고정된다.
+ *   컴포넌트별 `useMemo` 안의 지역 객체인 것이 의도다.
+ */
 function createClientDateStore() {
   let date: Date | null = null;
   const listeners = new Set<() => void>();
