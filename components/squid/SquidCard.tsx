@@ -9,6 +9,7 @@ import React from 'react';
 import BasisChips from './BasisChips';
 import TakeawayBox from '../TakeawayBox';
 import { TelemetryBadge } from '../TelemetryBadge';
+import { koreanUiText, squidWidgetTitle } from './localization';
 import type { SquidSource, SquidWidget } from './types';
 
 export interface SquidCardProps {
@@ -50,15 +51,15 @@ export const SquidCard: React.FC<SquidCardProps> = ({ widget, sources, builtAt, 
               lineHeight: 1.4,
             }}
           >
-            {widget.title}
+            {squidWidgetTitle(widget.title)}
           </h3>
           {widget.subtitle && (
             <p style={{ margin: '4px 0 0', fontSize: '0.75rem', color: '#94a3b8', wordBreak: 'keep-all' }}>
-              {widget.subtitle}
+              {koreanUiText(widget.subtitle)}
             </p>
           )}
         </div>
-        <TelemetryBadge status="SYNCED" syncDate={builtAt?.slice(0, 10)} />
+        <TelemetryBadge status="SYNCED" syncDate={builtAt?.slice(0, 10)} label="동기화" />
       </header>
 
       <div style={{ minWidth: 0 }}>
@@ -82,7 +83,10 @@ export const SquidCard: React.FC<SquidCardProps> = ({ widget, sources, builtAt, 
       </div>
 
       {(widget.situation || widget.takeaway) && (
-        <TakeawayBox situation={widget.situation ?? ''} takeaway={widget.takeaway} />
+        <TakeawayBox
+          situation={koreanUiText(widget.situation ?? '')}
+          takeaway={widget.takeaway ? koreanUiText(widget.takeaway) : undefined}
+        />
       )}
 
       <BasisChips basis={widget.basis} sources={sources} />

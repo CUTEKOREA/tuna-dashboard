@@ -27,6 +27,7 @@ import {
 import SquidSection from './SquidSection';
 import SafeResponsiveContainer from '../SafeResponsiveContainer';
 import type { SquidSource, SquidV5, SquidWidget } from './types';
+import { koreanUiText, squidUnitLabel } from './localization';
 
 const AXIS = '#64748b';
 const BODY = '#cbd5e1';
@@ -80,7 +81,7 @@ const SourcingSignalBoard: React.FC<{ data: any[] }> = ({ data }) => {
           >
             <div style={{ display: 'flex', alignItems: 'center', gap: 7 }}>
               <span style={{ width: 9, height: 9, borderRadius: '50%', background: color, boxShadow: `0 0 8px ${color}88`, flexShrink: 0 }} />
-              <strong style={{ color: '#e2e8f0', fontSize: '0.85rem' }}>{o.origin}</strong>
+              <strong style={{ color: '#e2e8f0', fontSize: '0.85rem' }}>{koreanUiText(o.origin)}</strong>
             </div>
             <div style={{ color, fontWeight: 800, fontSize: '1.15rem', marginTop: 6, display: 'flex', alignItems: 'center', flexWrap: 'wrap', gap: 6 }}>
               {o.status}
@@ -91,7 +92,7 @@ const SourcingSignalBoard: React.FC<{ data: any[] }> = ({ data }) => {
               )}
             </div>
             <div style={{ fontSize: '0.68rem', color: '#94a3b8', marginTop: 5, lineHeight: 1.55, wordBreak: 'keep-all' }}>
-              {o.as_of ?? '기준일 없음'} · {o.reason}
+              {o.as_of ?? '기준일 없음'} · {koreanUiText(o.reason)}
             </div>
           </div>
         );
@@ -116,11 +117,11 @@ const SegTooltip: React.FC<any> = ({ active, payload }) => {
   return (
     <div style={TOOLTIP_STYLE}>
       <div style={{ fontWeight: 700, color: '#e2e8f0', marginBottom: 4 }}>
-        {d.name} <span style={{ color: AXIS, fontWeight: 400 }}>({d.segment})</span>
+        {d.name}
       </div>
-      <div>배분 {fmtT(d.allocation)} t</div>
-      <div>포획 {fmtT(d.capture)} t</div>
-      <div>잔여 {fmtT(d.balance)} t</div>
+      <div>배분 {fmtT(d.allocation)}톤</div>
+      <div>포획 {fmtT(d.capture)}톤</div>
+      <div>잔여 {fmtT(d.balance)}톤</div>
       <div>소진율 {fmtPct(d.pct)}%</div>
     </div>
   );
@@ -164,10 +165,10 @@ const QuotaGauge: React.FC<{ data: Record<string, any> }> = ({ data }) => {
         <div style={{ flex: '1 1 160px', minWidth: 0, display: 'flex', flexDirection: 'column', justifyContent: 'center', gap: 6, padding: '6px 10px', borderRadius: 10, background: 'rgba(16,185,129,0.06)', border: '1px solid rgba(16,185,129,0.25)' }}>
           <div style={{ fontSize: '0.66rem', color: '#94a3b8' }}>잔여 쿼터 — 조달 가능량</div>
           <div style={{ fontSize: '1.7rem', fontWeight: 800, color: '#10b981', lineHeight: 1.1 }}>
-            {fmtT(data.quota_minus_recorded_capture_tonnes)} <span style={{ fontSize: '0.8rem', fontWeight: 600 }}>t</span>
+            {fmtT(data.quota_minus_recorded_capture_tonnes)} <span style={{ fontSize: '0.8rem', fontWeight: 600 }}>톤</span>
           </div>
           <div style={{ fontSize: '0.66rem', color: '#94a3b8', lineHeight: 1.5, wordBreak: 'keep-all' }}>
-            법정 쿼터 {fmtT(data.legal_quota_tonnes)}t · 누적 포획 {fmtT(data.recorded_capture_tonnes)}t ({data.as_of} 기준)
+            법정 쿼터 {fmtT(data.legal_quota_tonnes)}톤 · 누적 포획 {fmtT(data.recorded_capture_tonnes)}톤 ({data.as_of} 기준)
           </div>
         </div>
       </div>
@@ -190,11 +191,11 @@ const QuotaGauge: React.FC<{ data: Record<string, any> }> = ({ data }) => {
             {breakdown.map((b) => (
               <div key={b.segment} style={{ display: 'flex', flexWrap: 'wrap', gap: '4px 10px', fontSize: '0.66rem', color: '#94a3b8', lineHeight: 1.5 }}>
                 <span style={{ color: BODY, fontWeight: 600 }}>
-                  {SEG_KO[b.segment] ?? b.segment} <span style={{ color: AXIS, fontWeight: 400, fontFamily: 'monospace' }}>{b.segment}</span>
+                  <span title={b.segment}>{SEG_KO[b.segment] ?? koreanUiText(b.segment)}</span>
                 </span>
-                <span>배분 {fmtT(b.allocation_tonnes)}t</span>
-                <span>포획 {fmtT(b.capture_tonnes)}t</span>
-                <span>잔여 {fmtT(b.balance_tonnes)}t</span>
+                <span>배분 {fmtT(b.allocation_tonnes)}톤</span>
+                <span>포획 {fmtT(b.capture_tonnes)}톤</span>
+                <span>잔여 {fmtT(b.balance_tonnes)}톤</span>
                 <span style={{ color: quotaColor(b.consumption_pct), fontWeight: 700 }}>소진 {fmtPct(b.consumption_pct)}%</span>
               </div>
             ))}
@@ -226,7 +227,7 @@ const ProdTooltip: React.FC<any> = ({ active, payload, label }) => {
             <span style={{ width: 8, height: 8, borderRadius: 2, background: p.stroke, flexShrink: 0 }} />
             <span style={{ whiteSpace: 'nowrap' }}>{m?.ko ?? p.dataKey}</span>
             <span style={{ marginLeft: 'auto', fontWeight: 600, whiteSpace: 'nowrap' }}>
-              {p.value == null ? '—' : `${fmtT(p.value)} t`}
+                  {p.value == null ? '—' : `${fmtT(p.value)}톤`}
             </span>
           </div>
         );
@@ -280,11 +281,11 @@ const ProductionSplitChart: React.FC<{ data: any[]; unit?: string }> = ({ data, 
         {keys.map((k) => (
           <span key={k} style={{ display: 'inline-flex', alignItems: 'center', gap: 5, fontSize: '0.68rem', color: BODY, minWidth: 0 }}>
             <span style={{ width: 12, height: 3, background: SPECIES_META[k].color, borderRadius: 2, flexShrink: 0 }} />
-            {SPECIES_META[k].ko} <i style={{ color: AXIS, fontStyle: 'italic', whiteSpace: 'nowrap' }}>({k})</i>
+            <span title={k}>{SPECIES_META[k].ko}</span>
           </span>
         ))}
       </div>
-      <div style={{ marginTop: 6, fontSize: '0.62rem', color: AXIS }}>단위: {unit ?? '톤(활중량)'} · 결측 연도는 선을 잇지 않음</div>
+      <div style={{ marginTop: 6, fontSize: '0.62rem', color: AXIS }}>단위: {squidUnitLabel(unit ?? '톤(활중량)')} · 결측 연도는 선을 잇지 않음</div>
     </div>
   );
 };
@@ -300,7 +301,7 @@ const EffortTooltip: React.FC<any> = ({ active, payload }) => {
     <div style={TOOLTIP_STYLE}>
       <div style={{ fontWeight: 700, color: '#e2e8f0', marginBottom: 4 }}>{d.ko}</div>
       <div>척수 상한 {d.vessel_limit.toLocaleString('ko-KR')} 척</div>
-      <div>총 톤수 {d.gross_tonnage_gt.toLocaleString('ko-KR')} GT</div>
+      <div>총 톤수 {d.gross_tonnage_gt.toLocaleString('ko-KR')} 총톤</div>
     </div>
   );
 };
@@ -328,16 +329,16 @@ const EffortLimitChart: React.FC<{ data: any[] }> = ({ data }) => {
         {members.map((m) => (
           <div key={m.member} style={{ display: 'flex', flexWrap: 'wrap', gap: '2px 8px', fontSize: '0.66rem', color: '#94a3b8' }}>
             <span style={{ color: BODY, fontWeight: 600 }}>{m.ko}</span>
-            <span>총 톤수 {m.gross_tonnage_gt.toLocaleString('ko-KR')} GT</span>
+            <span>총 톤수 {m.gross_tonnage_gt.toLocaleString('ko-KR')} 총톤</span>
           </div>
         ))}
         {total && (
           <div style={{ marginTop: 2, padding: '7px 10px', borderRadius: 8, background: 'rgba(56,189,248,0.07)', border: '1px solid rgba(56,189,248,0.25)', fontSize: '0.72rem', color: '#e2e8f0', fontWeight: 700 }}>
-            전체 합계 {total.vessel_limit.toLocaleString('ko-KR')}척 · {total.gross_tonnage_gt.toLocaleString('ko-KR')} GT
+            전체 합계 {total.vessel_limit.toLocaleString('ko-KR')}척 · {total.gross_tonnage_gt.toLocaleString('ko-KR')} 총톤
           </div>
         )}
         <div style={{ fontSize: '0.62rem', color: AXIS, lineHeight: 1.5, wordBreak: 'keep-all' }}>
-          어획량(톤) 쿼터가 아닌 회원별 선박 척수·총톤수 상한입니다 (SPRFMO CMM18, effort 기반 규제).
+          어획량 쿼터가 아닌 회원별 선박 척수·총톤수 상한입니다. 남태평양지역수산관리기구의 조업노력량 규제입니다.
         </div>
       </div>
     </div>
@@ -371,7 +372,7 @@ const PeruTimeline: React.FC<{ data: any[] }> = ({ data }) => {
             />
             <div style={{ display: 'flex', alignItems: 'center', flexWrap: 'wrap', gap: '4px 8px' }}>
               <span style={{ fontFamily: 'monospace', fontSize: '0.68rem', color: AXIS }}>{e.date}</span>
-              <strong style={{ fontSize: '0.82rem', color: '#e2e8f0' }}>{e.event}</strong>
+              <strong style={{ fontSize: '0.82rem', color: '#e2e8f0' }}>{koreanUiText(e.event)}</strong>
               <span style={{ fontSize: '0.62rem', fontWeight: 700, color: sem.color, border: `1px solid ${sem.color}66`, borderRadius: 4, padding: '1px 6px', background: `${sem.color}12` }}>
                 {sem.label}
               </span>
@@ -379,9 +380,9 @@ const PeruTimeline: React.FC<{ data: any[] }> = ({ data }) => {
 
             {typeof e.tonnes === 'number' && (
               <div style={{ marginTop: 5, fontSize: '1.15rem', fontWeight: 800, color: sem.color, lineHeight: 1.2 }}>
-                {fmtT(e.tonnes)} <span style={{ fontSize: '0.72rem', fontWeight: 600 }}>t</span>
+                {fmtT(e.tonnes)} <span style={{ fontSize: '0.72rem', fontWeight: 600 }}>톤</span>
                 {typeof e.progress_pct === 'number' && (
-                  <span style={{ marginLeft: 8, fontSize: '0.72rem', fontWeight: 700 }}>LMCTP 대비 {e.progress_pct}%</span>
+                  <span style={{ marginLeft: 8, fontSize: '0.72rem', fontWeight: 700 }}>총허용어획한도 대비 {e.progress_pct}%</span>
                 )}
               </div>
             )}
@@ -448,7 +449,7 @@ const KoreaTacTable: React.FC<{ data: any[] }> = ({ data }) => {
         </tbody>
       </table>
       <p style={{ margin: '8px 0 0', fontSize: '0.64rem', color: AXIS, lineHeight: 1.5, wordBreak: 'keep-all' }}>
-        배정 톤수가 아닌 TAC 적용 대상 업종·단계입니다. 살오징어는 서남해구외끌이중형저인망에 2단계 적용.
+        배정 톤수가 아닌 총허용어획량 적용 대상 업종·단계입니다. 살오징어는 서남해구외끌이중형저인망에 2단계 적용.
       </p>
     </div>
   );

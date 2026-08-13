@@ -13,12 +13,12 @@ import SquidCard from './SquidCard';
 import GenericWidgetBody from './GenericWidget';
 import type { SquidSource, SquidV5, SquidWidget } from './types';
 
-export const SECTION_META: Record<string, { label: string; desc: string; color: string }> = {
-  A: { label: '조달 가능성', desc: '산지별 조업 상태 · 쿼터 · 어기 · 자원', color: '#8b5cf6' },
-  B: { label: '가격·마진', desc: '거래단계별 가격 · 랜딩코스트 · 신선도', color: '#a855f7' },
-  C: { label: '무역 흐름', desc: 'HS 분류 · 수입 월별 · 커버리지 한계', color: '#d946ef' },
-  D: { label: '규제·리스크', desc: 'IUU · 준수 · 수입요건 · 노동', color: '#ec4899' },
-  E: { label: '근거·거버넌스', desc: '출처 원장 · 측정 게이트 · 갱신 일정', color: '#f43f5e' },
+export const SECTION_META: Record<string, { orderLabel: string; label: string; desc: string; color: string }> = {
+  A: { orderLabel: '1부', label: '조달 가능성', desc: '산지별 조업 상태 · 쿼터 · 어기 · 자원', color: '#8b5cf6' },
+  B: { orderLabel: '2부', label: '가격·마진', desc: '거래단계별 가격 · 도착원가 · 신선도', color: '#a855f7' },
+  C: { orderLabel: '3부', label: '무역 흐름', desc: '품목분류 · 수입 월별 · 자료 범위 한계', color: '#d946ef' },
+  D: { orderLabel: '4부', label: '규제·위험', desc: '불법어업 · 준수 · 수입요건 · 노동', color: '#ec4899' },
+  E: { orderLabel: '5부', label: '근거·관리', desc: '출처 원장 · 측정 기준 · 갱신 일정', color: '#f43f5e' },
 };
 
 export interface SquidSectionProps {
@@ -50,7 +50,7 @@ export const SquidSection: React.FC<SquidSectionProps> = ({
         }}
       >
         <h2 style={{ fontSize: '1.05rem', fontWeight: 800, color: '#e2e8f0', margin: 0 }}>
-          {section}. {meta.label}
+          {meta.orderLabel}. {meta.label}
         </h2>
         <span style={{ fontSize: '0.72rem', color: '#94a3b8', wordBreak: 'keep-all' }}>{meta.desc}</span>
         <span style={{ marginLeft: 'auto', fontSize: '0.72rem', color: '#64748b' }}>

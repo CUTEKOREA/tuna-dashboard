@@ -11,6 +11,13 @@
 
 import React, { useEffect, useState } from 'react';
 import type { SquidSource, WidgetBasis } from './types';
+import {
+  koreanUiText,
+  squidCurrencyLabel,
+  squidFrequencyLabel,
+  squidPublisherLabel,
+  squidSpeciesLabel,
+} from './localization';
 
 // L-01 예외: 학명은 한글 대응이 없으므로 툴팁에서만 병기한다.
 const SPECIES_KO: Record<string, string> = {
@@ -136,13 +143,13 @@ export const BasisChips: React.FC<BasisChipsProps> = ({ basis, sources = [], now
   const species = basis.species.filter((s) => s !== 'n/a');
   const speciesLabel =
     species.length === 0 ? null
-      : species.length <= 2 ? species.map((s) => SPECIES_KO[s] ?? s).join('·')
-        : `${SPECIES_KO[species[0]] ?? species[0]} 외 ${species.length - 1}종`;
+      : species.length <= 2 ? species.map((s) => squidSpeciesLabel(s)).join('·')
+        : `${squidSpeciesLabel(species[0])} 외 ${species.length - 1}종`;
 
   const days = asOf ? daysSince(basis.coverage_end, asOf) : null;
   const srcById = new Map(sources.map((s) => [s.source_id, s]));
   const publishers = basis.source_ids
-    .map((id) => srcById.get(id)?.publisher ?? id)
+    .map((id) => squidPublisherLabel(srcById.get(id)?.publisher ?? id))
     .filter((v, i, a) => a.indexOf(v) === i);
 
   const weight = WEIGHT_KO[basis.weight_basis];
@@ -154,7 +161,7 @@ export const BasisChips: React.FC<BasisChipsProps> = ({ basis, sources = [], now
       <div style={{ display: 'flex', flexWrap: 'wrap', gap: '5px', alignItems: 'center' }}>
         {/* 제한은 항상 선두 — 못 보고 지나치면 안 되는 정보 */}
         {basis.restrictions.map((r) => (
-          <Chip key={r} icon="⚠" label={r} color="#f59e0b" title="이 지표에는 사용 제한이 걸려 있다" />
+          <Chip key={r} icon="⚠" label={koreanUiText(r)} color="#f59e0b" title="이 지표에는 사용 제한이 걸려 있다" />
         ))}
 
         {speciesLabel && (
@@ -166,7 +173,7 @@ export const BasisChips: React.FC<BasisChipsProps> = ({ basis, sources = [], now
             icon="🔀"
             label={SCOPE_KO[basis.taxon_scope]}
             color="#f59e0b"
-            title={basis.taxon_note ?? '오징어 이외 분류군이 섞여 있다'}
+            title={koreanUiText(basis.taxon_note ?? '오징어 이외 분류군이 섞여 있다')}
           />
         )}
 
@@ -177,14 +184,14 @@ export const BasisChips: React.FC<BasisChipsProps> = ({ basis, sources = [], now
         {basis.currency && basis.currency !== 'n/a' && (
           <Chip
             icon="💱"
-            label={basis.currency}
+            label={squidCurrencyLabel(basis.currency)}
             title={basis.currency_converted ? `환산 기준일 ${basis.fx_date ?? '미상'}` : '원통화 표시'}
           />
         )}
 
         <Chip
           icon="📅"
-          label={days === null ? basis.coverage_end : `${basis.coverage_end} (D+${days})`}
+          label={days === null ? basis.coverage_end : `${basis.coverage_end} (기준일+${days}일)`}
           color={freshnessColor(days)}
           title={`관측 ${basis.coverage_start}~${basis.coverage_end} · 발간 ${basis.published_at} · 수집 ${basis.retrieved_at}`}
         />
@@ -215,9 +222,9 @@ export const BasisChips: React.FC<BasisChipsProps> = ({ basis, sources = [], now
           {basis.archive_path.split(';').map((p) => (
             <div key={p} style={{ color: '#94a3b8', wordBreak: 'break-all' }}>· {p}</div>
           ))}
-          {basis.source_ids.map((id) => {
+          {basis.source_ids.map((id, index) => {
             const s = srcById.get(id);
-            if (!s) return <div key={id} style={{ color: '#94a3b8' }}>· {id}</div>;
+            if (!s) return <div key={id} style={{ color: '#94a3b8' }}>· 출처 {index + 1}</div>;
             return (
               <div key={id} style={{ marginTop: '4px' }}>
                 <a
@@ -226,9 +233,11 @@ export const BasisChips: React.FC<BasisChipsProps> = ({ basis, sources = [], now
                   rel="noopener noreferrer"
                   style={{ color: '#38bdf8' }}
                 >
-                  {s.publisher} — {s.series ?? id}
+                  {squidPublisherLabel(s.publisher)} — {koreanUiText(s.series ?? `출처 ${index + 1}`)}
                 </a>
-                <span style={{ color: '#64748b' }}> ({s.priority}·{s.grade}·{s.frequency})</span>
+                <span style={{ color: '#64748b' }}>
+                  {' '}(우선순위 {s.priority.replace('P', '')}·{s.grade === 'A' ? '1' : s.grade === 'B' ? '2' : '3'}등급·{squidFrequencyLabel(s.frequency)})
+                </span>
               </div>
             );
           })}

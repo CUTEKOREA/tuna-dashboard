@@ -136,7 +136,7 @@ const ImportMonthlyChart: React.FC<{ data: MonthlyRow[] }> = ({ data }) => {
         }}
       >
         <span style={{ fontSize: '0.66rem', color: AXIS }}>
-          단위: {isUsd ? '백만 USD' : '천t'} · 상위 6개국(수입액 합계 기준) + 기타
+          단위: {isUsd ? '백만 달러' : '천 톤'} · 상위 6개국(수입액 합계 기준) + 기타
         </span>
         <div style={{ display: 'flex', gap: 4 }}>
           {(
@@ -174,7 +174,7 @@ const ImportMonthlyChart: React.FC<{ data: MonthlyRow[] }> = ({ data }) => {
             labelStyle={{ color: '#e2e8f0' }}
             labelFormatter={(m: any) => `${m} · 관측`}
             formatter={(v: any, name: any) => [
-              `${fmtInt(Number(v))} ${isUsd ? 'USD' : 'kg'}`,
+              `${fmtInt(Number(v))} ${isUsd ? '달러' : '킬로그램'}`,
               name as string,
             ]}
             cursor={{ fill: 'rgba(148, 163, 184, 0.08)' }}
@@ -187,7 +187,7 @@ const ImportMonthlyChart: React.FC<{ data: MonthlyRow[] }> = ({ data }) => {
       </SafeResponsiveContainer>
 
       <p style={CAPTION_STYLE}>
-        관측 구간 {first} ~ {last} (KCS) · 2025년 이전은 관측되지 않아 축에 없음 ·
+        관측 구간 {first} ~ {last} (관세청) · 2025년 이전은 관측되지 않아 축에 없음 ·
         기록이 없는 국가×월 조합은 표시하지 않는다 (0 보간 없음)
       </p>
     </div>
@@ -291,9 +291,9 @@ const CoverageHeatmap: React.FC<{ data: CoverageRow[] }> = ({ data }) => {
       </div>
 
       <p style={CAPTION_STYLE}>
-        셀 숫자·색은 reporter가 해당 연도에 보고한 원본 행수(row_count) ·
-        density_pct는 최대값 대비 비율이라 한 나라만 100%로 보이고 나머지가 눌려 사용하지 않는다 ·
-        이 행수 불균등 때문에 G-005가 총액·점유율·CAGR 산출을 차단한다
+        셀 숫자·색은 보고국이 해당 연도에 제출한 원본 행 수 ·
+        자료 밀도 비율은 최대값 대비 비율이라 한 나라만 100%로 보이고 나머지가 눌려 사용하지 않는다 ·
+        이 행 수 불균등 때문에 측정 기준 005번이 총액·점유율·연평균성장률 산출을 차단한다
       </p>
     </div>
   );
@@ -351,9 +351,9 @@ const ConcentrationChart: React.FC<{ data: ConcentrationData[] }> = ({ data }) =
   return (
     <div style={{ minWidth: 0 }}>
       <div style={{ display: 'flex', flexWrap: 'wrap', gap: 6, marginBottom: 8 }}>
-        <span style={chipStyle}>{latest.year} 총수입액 {(latest.total_import_usd / 1e8).toFixed(1)}억 USD</span>
+        <span style={chipStyle}>{latest.year} 총수입액 {(latest.total_import_usd / 1e8).toFixed(1)}억 달러</span>
         <span style={{ ...chipStyle, color: C_WARN, borderColor: 'rgba(245, 158, 11, 0.4)' }}>
-          HHI {fmtInt(latest.hhi)} · {hhiLabel(latest.hhi)}
+          시장집중도지수 {fmtInt(latest.hhi)} · {hhiLabel(latest.hhi)}
         </span>
       </div>
 
@@ -410,7 +410,7 @@ const ConcentrationChart: React.FC<{ data: ConcentrationData[] }> = ({ data }) =
               fontSize={10}
             />
           </Bar>
-          <Bar yAxisId="hhi" dataKey="hhi" name="HHI (우측 축)" fill={C_WARN} barSize={38} radius={[4, 4, 0, 0]}>
+          <Bar yAxisId="hhi" dataKey="hhi" name="시장집중도지수 (우측 축)" fill={C_WARN} barSize={38} radius={[4, 4, 0, 0]}>
             <LabelList
               dataKey="hhi"
               position="top"
@@ -428,8 +428,8 @@ const ConcentrationChart: React.FC<{ data: ConcentrationData[] }> = ({ data }) =
         </p>
       )}
       <p style={CAPTION_STYLE}>
-        관측 {first.year}~{latest.year} (KCS) · 상위 1개국 비중 {first.top1_share_pct.toFixed(1)}% →{' '}
-        {latest.top1_share_pct.toFixed(1)}%, HHI {fmtInt(first.hhi)} → {fmtInt(latest.hhi)} ·
+        관측 {first.year}~{latest.year} (관세청) · 상위 1개국 비중 {first.top1_share_pct.toFixed(1)}% →{' '}
+        {latest.top1_share_pct.toFixed(1)}%, 시장집중도지수 {fmtInt(first.hhi)} → {fmtInt(latest.hhi)} ·
         비중은 한국 수입 안에서의 비중이며 글로벌 점유율이 아니다
       </p>
     </div>
@@ -524,8 +524,8 @@ const HsClassificationMap: React.FC<{ data: HsRow[] }> = ({ data }) => {
         );
       })}
       <p style={CAPTION_STYLE}>
-        {cuttleCount}/{data.length}개 HS 코드가 갑오징어를 포함 — 페이지 전체 어종 범위 판단의 근거 ·
-        갑오징어를 빼고 &lsquo;오징어만&rsquo;으로 재명명하는 합산은 금지 (G-002)
+        {cuttleCount}/{data.length}개 품목분류 코드가 갑오징어를 포함 — 페이지 전체 어종 범위 판단의 근거 ·
+        갑오징어를 빼고 &lsquo;오징어만&rsquo;으로 재명명하는 합산은 금지 (측정 기준 002번)
       </p>
     </div>
   );

@@ -31,6 +31,7 @@ import {
 import SafeResponsiveContainer from '../SafeResponsiveContainer';
 import SquidSection from './SquidSection';
 import type { SquidSource, SquidV5, SquidWidget } from './types';
+import { squidCurrencyLabel, squidSpeciesLabel, squidUnitLabel, squidValueLabel } from './localization';
 
 const C = {
   violation: '#f43f5e',
@@ -52,18 +53,18 @@ const SPECIES_KO: Record<string, string> = {
   'Loligo gahi': '포클랜드 로리고',
   'Illex argentinus': '아르헨티나 일렉스',
 };
-const spKo = (s: string | null | undefined) => (s ? SPECIES_KO[s] ?? s : '—');
+const spKo = (s: string | null | undefined) => (s ? SPECIES_KO[s] ?? squidSpeciesLabel(s) : '—');
 
 const FORM_KO: Record<string, string> = {
   Whole: '원물',
   'Fresh - whole': '생물 원물',
-  'Grade A': 'A등급 원물',
-  'IQF, glazed': 'IQF(글레이즈)',
+  'Grade A': '1등급 원물',
+  'IQF, glazed': '개별급속냉동·글레이즈',
   'cut, no wings, tentacles': '절단(날개·다리 제거)',
   'Tubes, skin-on': '튜브(껍질)',
   'Tubes, skinless': '튜브(무껍질)',
 };
-const formKo = (s: string | null | undefined) => (s ? FORM_KO[s] ?? s : '—');
+const formKo = (s: string | null | undefined) => (s ? FORM_KO[s] ?? squidValueLabel(s) : '—');
 
 const ORIGIN_KO: Record<string, string> = {
   Croatia: '크로아티아',
@@ -80,7 +81,7 @@ const ORIGIN_KO: Record<string, string> = {
   'United States': '미국',
   India: '인도',
 };
-const originKo = (s: string | null | undefined) => (s ? ORIGIN_KO[s] ?? s : '—');
+const originKo = (s: string | null | undefined) => (s ? ORIGIN_KO[s] ?? squidValueLabel(s) : '—');
 
 const REF_KO: Record<string, string> = {
   wholesale: '도매',
@@ -201,7 +202,7 @@ const PriceLadder: React.FC<{ rows: LadderRow[] }> = ({ rows }) => {
         .slice(0, LADDER_LIMIT)
         .map((r, i) => ({
           ...r,
-          label: `${i + 1}위 ${spKo(r.scientific_name)} ${r.size_grade ?? '(규격 없음)'}`,
+          label: `${i + 1}위 ${spKo(r.scientific_name)} ${r.size_grade ? squidValueLabel(r.size_grade) : '(규격 없음)'}`,
         })),
     [rows],
   );
@@ -235,7 +236,7 @@ const PriceLadder: React.FC<{ rows: LadderRow[] }> = ({ rows }) => {
         </BarChart>
       </SafeResponsiveContainer>
       <div style={captionStyle}>
-        {rows.length}건 중 상위 {top.length}건 표시 (EUR/kg 내림차순)
+        {rows.length}건 중 상위 {top.length}건 표시 (킬로그램당 유로 가격 내림차순)
         {hidden > 0 && ` · 나머지 ${hidden}건 미표시`}
         {' · '}▲ 상승 ▼ 하락 ◆ 보합, 화살표 없으면 미표기
       </div>
@@ -265,8 +266,8 @@ const EU_COLS: { key: EuSortKey; label: string }[] = [
   { key: 'size', label: '규격' },
   { key: 'incoterm', label: '인코텀즈' },
   { key: 'origin', label: '원산지' },
-  { key: 'eur', label: 'EUR/kg' },
-  { key: 'usd', label: 'USD/kg' },
+  { key: 'eur', label: '유로/킬로그램' },
+  { key: 'usd', label: '달러/킬로그램' },
 ];
 
 const EuPriceTable: React.FC<{ rows: EuRow[] }> = ({ rows }) => {
@@ -353,8 +354,8 @@ const EuPriceTable: React.FC<{ rows: EuRow[] }> = ({ rows }) => {
                 <tr key={i}>
                   <td style={td} title={r.scientific_name}>{spKo(r.scientific_name)}</td>
                   <td style={td}>{formKo(r.product_form)}</td>
-                  <td style={td}>{r.size_grade ?? '—'}</td>
-                  <td style={td}>{r.incoterm ?? '—'}</td>
+                  <td style={td}>{r.size_grade ? squidValueLabel(r.size_grade) : '—'}</td>
+                  <td style={td}>{r.incoterm ? squidValueLabel(r.incoterm) : '—'}</td>
                   <td style={td}>{originKo(r.origin)}</td>
                   <td style={{ ...td, textAlign: 'right' }}>
                     {r.price_eur_per_kg != null ? fmt(r.price_eur_per_kg) : '—'}
@@ -370,8 +371,8 @@ const EuPriceTable: React.FC<{ rows: EuRow[] }> = ({ rows }) => {
         </table>
       </div>
       <div style={captionStyle}>
-        전체 {rows.length}행 · 열 제목을 누르면 정렬 · EUR·USD는 같은 가격의 통화별 표시라
-        합산·평균하지 않는다 (G-008)
+        전체 {rows.length}행 · 열 제목을 누르면 정렬 · 유로·달러는 같은 가격의 통화별 표시라
+        합산·평균하지 않는다 (측정 기준 008번)
       </div>
     </div>
   );
@@ -486,7 +487,7 @@ const KmiConsumerPrice: React.FC<{ data: KmiData }> = ({ data }) => {
             {down.map((c) => `${c.basis} 대비 ${c.difference_pct}%`).join(' · ')}
           </span>
         )}
-        {' · '}소비자가 단계 지표라 수입단가(EUR·USD/kg)와 같은 축에 섞지 않는다
+        {' · '}소비자가 단계 지표라 수입단가(유로·달러/킬로그램)와 같은 축에 섞지 않는다
       </div>
     </div>
   );
@@ -503,9 +504,9 @@ const KcsTooltip: React.FC<{ active?: boolean; payload?: any[] }> = ({ active, p
   return (
     <div style={tooltipStyle}>
       <div style={{ fontWeight: 700, color: '#e2e8f0' }}>{r.month}</div>
-      <div>수입금액 {fmt(r.import_usd)} USD</div>
-      <div>수입중량 {fmt(r.import_kg)} kg</div>
-      <div>가중 단가 {fmt(r.unit_price_usd_mt)} USD/톤</div>
+      <div>수입금액 {fmt(r.import_usd)}달러</div>
+      <div>수입중량 {fmt(r.import_kg)}킬로그램</div>
+      <div>가중 단가 {fmt(r.unit_price_usd_mt)}달러/톤</div>
     </div>
   );
 };
@@ -592,7 +593,7 @@ const KcsImportPrice: React.FC<{ rows: KcsRow[] }> = ({ rows }) => {
         </div>
       </div>
       <div style={captionStyle}>
-        ▉ 물량(톤, 오른쪽 축) · ─ 가중 수입단가(USD/톤, 왼쪽 축) · 관측이 없는 구간은
+        ▉ 물량(톤, 오른쪽 축) · ─ 가중 수입단가(달러/톤, 왼쪽 축) · 관측이 없는 구간은
         선을 잇거나 추세를 그리지 않는다
       </div>
     </div>
@@ -642,14 +643,14 @@ const StageBoard: React.FC<{ rows: StageRow[] }> = ({ rows }) => (
               {STAGE_KO[r.market_stage] ?? r.market_stage}
             </div>
             <div style={{ fontSize: '0.72rem', color: '#e2e8f0', fontWeight: 700, marginTop: 2 }}>
-              {r.label}
+              {squidValueLabel(r.label)}
             </div>
             {r.available && r.value != null ? (
               <div style={{ marginTop: 8 }}>
                 <span style={{ fontSize: '1.05rem', fontWeight: 800, color: '#f8fafc' }}>
                   {fmt(r.value)}
                 </span>
-                <span style={{ fontSize: '0.62rem', color: C.faint, marginLeft: 4 }}>{r.unit}</span>
+                <span style={{ fontSize: '0.62rem', color: C.faint, marginLeft: 4 }}>{squidUnitLabel(r.unit)}</span>
               </div>
             ) : (
               <div
@@ -661,18 +662,18 @@ const StageBoard: React.FC<{ rows: StageRow[] }> = ({ rows }) => (
                   wordBreak: 'keep-all',
                 }}
               >
-                {r.available ? `단일 대표값 없음 — ${r.unit} 혼재` : '관측값 없음'}
+                {r.available ? `단일 대표값 없음 — ${squidUnitLabel(r.unit)} 혼재` : '관측값 없음'}
               </div>
             )}
             <div style={{ marginTop: 8, fontSize: '0.6rem', color: C.axis, lineHeight: 1.5 }}>
-              기준 {r.coverage_end} · {WEIGHT_KO[r.weight_basis] ?? r.weight_basis} · {r.currency}
+              기준 {r.coverage_end} · {WEIGHT_KO[r.weight_basis] ?? squidValueLabel(r.weight_basis)} · {squidCurrencyLabel(r.currency)}
             </div>
           </div>
         );
       })}
     </div>
     <div style={captionStyle}>
-      단계별 통화·중량 기준이 달라 환산·평균·스프레드를 계산하지 않는다 (G-008) · EU
+      단계별 통화·중량 기준이 달라 환산·평균·가격차를 계산하지 않는다 (측정 기준 008번) · 유럽연합
       거래가격은 종·규격별 다중 행이라 대표값을 싣지 않음
     </div>
   </div>
@@ -714,9 +715,9 @@ const FreshnessBoard: React.FC<{ rows: FreshRow[] }> = ({ rows }) => (
               minWidth: 0,
             }}
           >
-            <div style={{ fontSize: '0.72rem', fontWeight: 700, color: '#e2e8f0' }}>{r.indicator}</div>
+            <div style={{ fontSize: '0.72rem', fontWeight: 700, color: '#e2e8f0' }}>{squidValueLabel(r.indicator)}</div>
             <div style={{ fontSize: '0.95rem', fontWeight: 800, color, marginTop: 4 }}>
-              {r.age_days != null ? `D+${r.age_days}` : 'D+ —'}
+              {r.age_days != null ? `기준일+${r.age_days}일` : '기준일 미상'}
             </div>
             <div
               style={{

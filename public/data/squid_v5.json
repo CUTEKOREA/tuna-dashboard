@@ -1,6 +1,6 @@
 {
   "meta": {
-    "built_at": "2026-08-13T14:02:06+09:00",
+    "built_at": "2026-08-13T15:35:39+09:00",
     "builder_version": "squid_build/1.1.0",
     "archive_snapshot": "squid archive @ 2026-08-12",
     "gate_version": "measurement_gate 2026-08-12",
@@ -932,82 +932,104 @@
         {
           "kind": "source_excerpt",
           "source_path": "00_오징어_관련자료/01_오징어_시장·가격/01_생산·자원/20251021-FIFD-Loligo_Preseason_Survey_2025.md",
-          "text": "The biomass estimate was the lowest for a 1st pre-season since 2020. Of the total,"
+          "text": "The biomass estimate was the lowest for a 1st pre-season since 2020.",
+          "text_ko": "생물량 추정치는 2020년 이후 제1기 어기 전 조사 중 가장 낮았다."
         },
         {
           "kind": "source_excerpt",
           "source_path": "00_오징어_관련자료/01_오징어_시장·가격/01_생산·자원/20251021-FIFD-Loligo_Preseason_Survey_2025.md",
-          "text": "Table 1. D. gahi pre-season survey scientific catches and biomass estimates (in metric tonnes). Before"
+          "text": "A stock assessment survey for Doryteuthis gahi (Falkland calamari – Patagonian longfin squid – colloquially Loligo) was carried out by the FIFD on-board the fishing vessel Golden Chicha from the 5th to 20th February 2025; experimental license FK0044E25. This survey continues the series of surveys that have, since February 2006, been conducted immediately prior to season openings to estimate D. gahi stock available to commercial fishing at the start of the season, and to initiate the in-season management model based on depletion time series of the stock. Objectives of the survey were to:",
+          "text_ko": "포클랜드 로리고(Doryteuthis gahi; 포클랜드 칼라마리·파타고니아 긴지느러미오징어, 통칭 Loligo)의 자원평가 조사는 포클랜드 수산국(FIFD)이 시험면허 FK0044E25에 따라 2025년 이월 5일부터 20일까지 어선 골든 치차(Golden Chicha)호에서 수행했다. 이 조사는 2006년 이월부터 어기 개시 직전에 수행해 온 조사 계열을 이어간다. 그 목적은 어기 시작 시 상업어업에 이용 가능한 포클랜드 로리고(D. gahi) 자원을 추정하고, 자원의 감소 시계열을 토대로 어기 중 관리모형을 가동하는 것이다. 조사 목적은 다음과 같았다:"
         },
         {
           "kind": "source_excerpt",
           "source_path": "00_오징어_관련자료/01_오징어_시장·가격/01_생산·자원/20251021-FIFD-Loligo_Preseason_Survey_2025.md",
-          "text": "2006, surveys were not conducted immediately prior to season opening."
+          "text": "gahi biomass estimates in high-density or high-variability locations, one day of fishing was missed due to bad weather resulting in fewer than the 21 trawls planned.",
+          "text_ko": "고밀도 또는 변동성이 큰 지점의 포클랜드 로리고(Doryteuthis gahi) 생물량 추정치, 악천후로 조업 하루를 놓쳤고 그 결과 계획한 21회보다 트롤 횟수가 적었다."
         },
         {
           "kind": "source_excerpt",
           "source_path": "00_오징어_관련자료/01_오징어_시장·가격/01_생산·자원/20251021-FIFD-Loligo_Preseason_Survey_2025.md",
-          "text": "confidence interval of [27, 431.33 to 42, 174.42 tonnes]. The total biomass estimate was the"
+          "text": "gahi pre-season survey scientific catches and biomass estimates (in metric tonnes). Before 2006, surveys were not conducted immediately prior to season opening.",
+          "text_ko": "포클랜드 로리고(D. gahi) 어기 전 조사의 과학조사 어획량과 생물량 추정치(미터톤). 2006년 이전에는 어기 개시 직전에 조사를 수행하지 않았다."
         },
         {
           "kind": "source_excerpt",
           "source_path": "00_오징어_관련자료/01_오징어_시장·가격/01_생산·자원/20251021-FIFD-Loligo_Preseason_Survey_2025.md",
-          "text": "A stock assessment survey for Doryteuthis gahi (Falkland calamari – Patagonian longfin squid – colloquially Loligo) was carried out by the FIFD on-board the fishing vessel Golden Chicha from the 5th to 20th February 2025; experimental license FK0044E25. This survey continues the series of surveys that have, since February 2006, been conducted immediately prior to season openings to estimate D. gahi stock available to commercial fishing at the start of the season, and to initiate the in-season management model based on depletion time series of the stock. Objectives of the survey were to:"
+          "text": "Total D. gahi biomass in the fish stock area was estimated at 31, 048.62e tonnes, with a 95% confidence interval of [27, 431.33 to 42, 174.42 tonnes]. The total biomass estimate was the lowest for a 1st pre-season since 2020 (Table 1). Partition of the estimated biomass was 2, 679.17 tonnes north [1, 331.30 to 4, 850.16 tonnes] vs. 28, 369.45 tonnes south [24, 658.05 to 38, 952.79 tonnes]. The biomass proportion north (8.62%) was the lowest for a 1st pre-season since 2017. Within the north sub-area 50% of D. gahi density was aggregated in 34 of 368 5×5 km area units, and 95% of density was aggregated in 158 of the 368 5×5 km area units (Figure 3). Within the south sub-area 50% of D. gahi density was aggregated in 73 of 392 5×5 km area units, and 95% of density was aggregated in 228 of the 392 5×5 km area units (Figure 3).",
+          "text_ko": "어족자원 구역의 포클랜드 로리고(D. gahi) 총 생물량은 31, 048.62e톤으로 추정됐고, 95% 신뢰구간은 [27, 431.33~42, 174.42톤]이었다. 총 생물량 추정치는 2020년 이후 제1기 어기 전 조사 중 가장 낮았다(표 1). 추정 생물량은 북부 2, 679.17톤[1, 331.30~4, 850.16톤], 남부 28, 369.45톤[24, 658.05~38, 952.79톤]으로 나뉘었다. 북부 생물량 비중(8.62%)은 2017년 이후 제1기 어기 전 조사 중 가장 낮았다. 북부 하위구역에서는 포클랜드 로리고(D. gahi) 밀도의 50%가 368개 5×5 km 구획 중 34개에 모여 있었고, 밀도의 95%는 368개 5×5 km 구획 중 158개에 모여 있었다(그림 3). 남부 하위구역에서는 밀도의 50%가 392개 5×5 km 구획 중 73개에, 밀도의 95%가 392개 5×5 km 구획 중 228개에 모여 있었다(그림 3)."
         },
         {
           "kind": "source_excerpt",
           "source_path": "00_오징어_관련자료/01_오징어_시장·가격/01_생산·자원/20250829-FIFD-Loligo_Second_Season_Survey_2025.md",
-          "text": "confidence interval of [17,568 to 31,591 t]. The total biomass estimate was the highest for 2nd"
+          "text": "The biomass estimate was highest for 2nd pre-seasons since 2022, but below long-term median.",
+          "text_ko": "생물량 추정치는 2022년 이후 제2기 어기 전 조사 중 가장 높았지만 장기 중앙값보다는 낮았다."
         },
         {
           "kind": "source_excerpt",
           "source_path": "00_오징어_관련자료/01_오징어_시장·가격/01_생산·자원/20250829-FIFD-Loligo_Second_Season_Survey_2025.md",
-          "text": "A stock assessment survey for Doryteuthis gahi (Falkland calamari – Patagonian longfin squid – colloquially Loligo) was carried out by the FIFD on-board the fishing vessel Prion (ZDLS4) from the 10th to 24th July 2025; experimental license FK049E25. This survey continues the series of surveys that have, since February 2006, been conducted immediately prior to season openings to estimate D. gahi stock available to commercial fishing at the start of the season, and to initiate the in-season management model based on depletion time series of the stock. Objectives of the survey were to: 1) Estimate the biomass and spatial distribution of D. gahi on the fishing grounds at the onset of the 2nd fishing season, 2025. 2) Estimate the biomass and distribution of common rock cod (Patagonotothen ramsayi) and other commercial species in the ‘Loligo Box’, for continued monitoring of these stocks in parallel to the finfish research survey. 3) Estimate the bycatch of toothfish (Dissostichus eleginoides) in D. gahi trawls. 4) Collect biological information on D. gahi, rock cod, toothfish and opportunistically other fish and invertebrates taken in the trawls."
+          "text": "A stock assessment survey for Doryteuthis gahi (Falkland calamari – Patagonian longfin squid – colloquially Loligo) was carried out by the FIFD on-board the fishing vessel Prion (ZDLS4) from the 10th to 24th July 2025; experimental license FK049E25. This survey continues the series of surveys that have, since February 2006, been conducted immediately prior to season openings to estimate D. gahi stock available to commercial fishing at the start of the season, and to initiate the in-season management model based on depletion time series of the stock. Objectives of the survey were to: 1) Estimate the biomass and spatial distribution of D. gahi on the fishing grounds at the onset of the 2nd fishing season, 2025. 2) Estimate the biomass and distribution of common rock cod (Patagonotothen ramsayi) and other commercial species in the ‘Loligo Box’, for continued monitoring of these stocks in parallel to the finfish research survey. 3) Estimate the bycatch of toothfish (Dissostichus eleginoides) in D. gahi trawls. 4) Collect biological information on D. gahi, rock cod, toothfish and opportunistically other fish and invertebrates taken in the trawls.",
+          "text_ko": "포클랜드 로리고(Doryteuthis gahi; 포클랜드 칼라마리·파타고니아 긴지느러미오징어, 통칭 Loligo)의 자원평가 조사는 포클랜드 수산국(FIFD)이 시험면허 FK049E25에 따라 2025년 칠월 10일부터 24일까지 어선 프리온(Prion, ZDLS4)호에서 수행했다. 이 조사는 2006년 이월부터 어기 개시 직전에 수행해 온 조사 계열을 이어간다. 그 목적은 어기 시작 시 상업어업에 이용 가능한 포클랜드 로리고(D. gahi) 자원을 추정하고, 자원의 감소 시계열을 토대로 어기 중 관리모형을 가동하는 것이다. 조사 목적은 다음과 같았다. 1) 2025년 제2기 어업 개시 시점의 어장에서 포클랜드 로리고(D. gahi)의 생물량과 공간분포를 추정한다. 2) 어류 연구조사와 병행해 이 자원들을 계속 모니터링하기 위해 ‘로리고 박스(Loligo Box)’에서 파타고니아 록코드(Patagonotothen ramsayi)와 그 밖의 상업종의 생물량 및 분포를 추정한다. 3) 포클랜드 로리고(D. gahi) 트롤에서 파타고니아 이빨고기(Dissostichus eleginoides)의 혼획량을 추정한다. 4) 포클랜드 로리고(D. gahi), 파타고니아 록코드, 파타고니아 이빨고기와 트롤에서 기회적으로 잡힌 그 밖의 어류 및 무척추동물에 관한 생물학적 정보를 수집한다."
         },
         {
           "kind": "source_excerpt",
           "source_path": "00_오징어_관련자료/01_오징어_시장·가격/01_생산·자원/20250829-FIFD-Loligo_Second_Season_Survey_2025.md",
-          "text": "Chemshirova, I., Hoyer, P., Amukwaya, A., Shcherbich, Z. 2024. Falkland calamari (Doryteuthis gahi) 2024 2nd pre-season assessment survey. Technical Document, FIG Fisheries Department. 19 p."
+          "text": "Table 1. D. gahi pre-season survey scientific catches and biomass estimates (in metric tonnes). Before 2006, surveys were not conducted immediately prior to season opening.",
+          "text_ko": "표 1. 포클랜드 로리고(D. gahi) 어기 전 조사의 과학조사 어획량과 생물량 추정치(미터톤). 2006년 이전에는 어기 개시 직전에 조사를 수행하지 않았다."
+        },
+        {
+          "kind": "source_excerpt",
+          "source_path": "00_오징어_관련자료/01_오징어_시장·가격/01_생산·자원/20250829-FIFD-Loligo_Second_Season_Survey_2025.md",
+          "text": "Total D. gahi biomass in the fish stock area was estimated at 21,695 tonnes, with a 95% confidence interval of [17,568 to 31,591 t]. The total biomass estimate was the highest for 2nd pre-seasons since 2022, but lower than the long-term median (5th-lowest over the twenty-year period 2006 to 2025) (Table 1). Partition of the estimated biomass was 7,464 tonnes north [4,281 to 15,818 t] vs. 14,231 tonnes south [11,351 to 18,874 t]. The biomass proportion north (34.4%) was the highest for a 2nd pre-season since 2022. Within the north sub-area 50% of D. gahi density was aggregated in 67 of 368 5×5 km area units, and 95% of density was aggregated in 269 of the 368 5×5 km area units (Figure 3). Within the south sub-area 50% of D. gahi density was aggregated in 84 of 392 5×5 km area units, and 95% of density was aggregated in 308 of the 392 5×5 km area units (Figure 3).",
+          "text_ko": "어족자원 구역의 포클랜드 로리고(D. gahi) 총 생물량은 21,695톤으로 추정됐고, 95% 신뢰구간은 [17,568~31,591 t]였다. 총 생물량 추정치는 2022년 이후 제2기 어기 전 조사 중 가장 높았지만 장기 중앙값보다는 낮았다(2006~2025년 스무 해 동안 5번째로 낮음)(표 1). 추정 생물량은 북부 7,464톤[4,281~15,818 t], 남부 14,231톤[11,351~18,874 t]으로 나뉘었다. 북부 생물량 비중(34.4%)은 2022년 이후 제2기 어기 전 조사 중 가장 높았다. 북부 하위구역에서는 포클랜드 로리고(D. gahi) 밀도의 50%가 368개 5×5 km 구획 중 67개에 모여 있었고, 밀도의 95%는 368개 5×5 km 구획 중 269개에 모여 있었다(그림 3). 남부 하위구역에서는 밀도의 50%가 392개 5×5 km 구획 중 84개에, 밀도의 95%가 392개 5×5 km 구획 중 308개에 모여 있었다(그림 3)."
         },
         {
           "kind": "source_excerpt",
           "source_path": "00_오징어_관련자료/01_오징어_시장·가격/02_쿼터·어장/20251212-FIFD-Licensing_Advice_2026.md",
-          "text": "FIFD. 2025. Vessel Units, Allowable Effort, and Allowable Catch 2026. Summary and"
+          "text": "FIFD. 2025. Vessel Units, Allowable Effort, and Allowable Catch 2026. Summary and Recommendations. Fisheries Department, Directorate of Natural Resources, Falkland Islands Government.",
+          "text_ko": "포클랜드 수산국(FIFD). 2025. 2026년 선박 단위, 허용 노력량 및 허용 어획량(Vessel Units, Allowable Effort, and Allowable Catch 2026). 요약 및 권고. 포클랜드 제도 정부(Falkland Islands Government) 천연자원국(Directorate of Natural Resources) 수산부(Fisheries Department)."
         },
         {
           "kind": "source_excerpt",
           "source_path": "00_오징어_관련자료/01_오징어_시장·가격/02_쿼터·어장/20251212-FIFD-Licensing_Advice_2026.md",
-          "text": "5.2. ALLOWABLE EFFORT AND CATCH ............................................................................................................ 17"
+          "text": "2 1. Foreword and summary The 2025 Licensing Advice document (Vessel Units, Allowable Effort, and Allowable Catch) summarizes licensing advice for all regulated fisheries in Falkland Islands Conservation Zones for 2025 apart from the B-licenced Illex fishery. Current licencing advices are based on data through the end of 2024 for finfish, toothfish and skates, and through the end of first season 2025 for calamari. Summary tables of the licencing advice are presented at the end of the report. Stock assessments, committee papers, and survey data that inform the licencing advice standards are published as separate reports and are available on the Falkland Islands Fisheries Department website: https://www.falklands.gov.fk/fisheries/ (publications).",
+          "text_ko": "2 1. 머리말 및 요약. 2025년 면허 자문서(Licensing Advice document: Vessel Units, Allowable Effort, and Allowable Catch)는 B면허 일렉스(Illex) 어업을 제외한 2025년 포클랜드 제도 보존수역 내 모든 규제어업에 대한 면허 자문을 요약한다. 현행 면허 자문은 어류·이빨고기·가오리류에 대해서는 2024년 말까지의 자료, 칼라마리에 대해서는 2025년 제1기 어기 말까지의 자료를 토대로 한다. 면허 자문 요약표는 보고서 끝에 제시한다. 면허 자문 기준의 근거가 되는 자원평가, 위원회 문서 및 조사자료는 별도 보고서로 발행되며 포클랜드 제도 수산국(Falkland Islands Fisheries Department) 웹사이트 https://www.falklands.gov.fk/fisheries/ 의 간행물(publications)에서 이용할 수 있다."
         },
         {
           "kind": "source_excerpt",
           "source_path": "00_오징어_관련자료/01_오징어_시장·가격/02_쿼터·어장/20251212-FIFD-Licensing_Advice_2026.md",
-          "text": "The 2025 Licensing Advice document (Vessel Units, Allowable Effort, and Allowable Catch)"
+          "text": "Falkland calamari Doryteuthis (Loligo) gahi 1st season 2025 was stopped about six days early for concerns about small squid sizes. The season thereby obtained the lowest catch and CPUE for 1st seasons since 2020, but above the median for 1st seasons since 2004. Accordingly, allowable effort is set with the premise of full seasons in 2026, and Vessel Units were calculated as the average of the past three years: 27.01. However, with the three most recent 2nd seasons closed respectively early (2023), not even opened for stock conservation (2024), and currently mediocre (2025), continued precautionary monitoring of the D. gahi population status is indicated.",
+          "text_ko": "2025년 제1기 어기 포클랜드 칼라마리(Doryteuthis (Loligo) gahi) 어업은 소형 오징어 크기에 대한 우려로 약 엿새 일찍 중단됐다. 이에 따라 이 어기의 어획량과 단위노력당어획량(CPUE)은 2020년 이후 제1기 어기 중 가장 낮았지만, 2004년 이후 제1기 어기 중앙값보다는 높았다. 따라서 허용 노력량은 2026년에 어기를 온전히 운영한다는 전제로 설정했고, 선박 단위(Vessel Units)는 지난 세 해 평균인 27.01로 산정했다. 그러나 가장 최근의 제2기 어기 세 차례가 각각 조기 종료됐고(2023), 자원보전을 위해 아예 개시하지 않았으며(2024), 현재도 보통 수준에 그치고 있으므로(2025), 포클랜드 로리고(D. gahi) 개체군 상태를 계속 예방적으로 모니터링할 필요가 있다."
         },
         {
           "kind": "source_excerpt",
           "source_path": "00_오징어_관련자료/01_오징어_시장·가격/02_쿼터·어장/20251212-FIFD-Licensing_Advice_2026.md",
-          "text": "allowable effort is set with the premise of full seasons in 2026, and Vessel Units were"
+          "text": "Finfish licence (A, G, W) allocations have, since 2022, been based on a protocol adjusting TAE by target proportion, TAC proportion, and stock abundance factors. These adjustment factors were developed largely in response to the high rates of non-allocated hake (Merluccius spp.) bycatch taken under G and W licences. With hake bycatches having decreased (effectively in response to these measures), that protocol has become increasingly restrictive on A licence despite A licence not evidently fishing worse than before, either in terms of taking allocated catch or avoiding non-allocated bycatch. For 2025, the proposal was therefore adopted to ‘freeze’ A, G and W licence allocations at the same level as the year before, pending re-evaluation of the TAE protocol. As re-evaluation of the TAE protocol continues to be in progress, the licence allocation freeze remains in place. A, G and W licence Total Allowable Effort in 2026 will be therefore be the same as in 2024 and 2025.",
+          "text_ko": "어류 면허(A, G, W) 배분은 2022년부터 목표종 비중, 총허용어획량(TAC) 비중 및 자원 풍도 계수로 총허용노력량(TAE)을 조정하는 절차에 근거해 왔다. 이 조정계수들은 주로 G·W 면허에서 배분 대상이 아닌 헤이크류(Merluccius spp.)의 혼획률이 높았던 데 대응해 개발됐다. 이러한 조치에 사실상 대응해 헤이크 혼획이 감소하면서, A면허가 배분 어획량 확보나 비배분 혼획 회피 측면에서 종전보다 더 나쁘게 조업한다는 뚜렷한 증거가 없는데도 해당 절차는 A면허를 갈수록 더 제한하게 됐다. 이에 2025년에는 TAE 절차를 재평가할 때까지 A·G·W 면허 배분을 전년도와 같은 수준으로 ‘동결’하는 제안을 채택했다. TAE 절차의 재평가가 계속 진행 중이므로 면허 배분 동결도 유지된다. 따라서 2026년 A·G·W 면허의 총허용노력량은 2024년 및 2025년과 동일하다."
         },
         {
           "kind": "source_excerpt",
           "source_path": "00_오징어_관련자료/01_오징어_시장·가격/02_쿼터·어장/20251212-FIFD-Licensing_Advice_2026.md",
-          "text": "Total Allowable Effort in 2026 will be therefore be the same as in 2024 and 2025."
+          "text": "The targeted fishery for Falkland calamari (Doryteuthis gahi – colloquially Loligo) is managed through two levels of control: 1) season schedule and 2) total biomass to a minimum escapement threshold per season. Season schedules are currently set as: 1st season (C licence), 64/65 days opening from late February; 2nd season (X licence), 64 days from late July.",
+          "text_ko": "포클랜드 로리고(Doryteuthis gahi; 포클랜드 칼라마리, 통칭 Loligo) 대상어업은 두 수준의 통제로 관리한다. 1) 어기 일정, 2) 어기별 최소 탈출 잔존량 임계치에 따른 총생물량 통제이다. 현재 어기 일정은 다음과 같이 정한다. 제1기 어기(C 면허)는 이월 하순부터 64/65일간 개장하고, 제2기 어기(X 면허)는 칠월 하순부터 64일간 개장한다."
         },
         {
           "kind": "source_excerpt",
           "source_path": "00_오징어_관련자료/01_오징어_시장·가격/02_쿼터·어장/20251212-FIFD-Licensing_Advice_2026.md",
-          "text": "escapement threshold per season. Season schedules are currently set as: 1st season (C licence),"
+          "text": "1st season calamari 1st season calamari Risk of <10,000 t Total VU Year catch (t) biomass (t)a escapement allocation 2021 59,499 165,172 0.000 2022 56,080 274,651 0.000 2023 52,704 190,210 0.000 27.01 2024 47,588 177,576 0.000 2025 37,492 083,179 0.001 a: Biomass estimate at the start of the season, plus in-season immigration. (Calculation differs from last year, when the pre-season survey biomass estimate plus in-season immigration was used).",
+          "text_ko": "제1기 어기 칼라마리 제1기 어기 칼라마리. 연도 / 어획량(t) / 생물량(t)a / 탈출 잔존량이 <10,000 t일 위험 / 총 선박 단위(VU) 배분. 2021 59,499 165,172 0.000. 2022 56,080 274,651 0.000. 2023 52,704 190,210 0.000 27.01. 2024 47,588 177,576 0.000. 2025 37,492 083,179 0.001. a: 어기 시작 시점의 생물량 추정치에 어기 중 유입량을 더한 값이다. (어기 전 조사 생물량 추정치에 어기 중 유입량을 더했던 작년 계산과 다르다.)"
         },
         {
           "kind": "source_excerpt",
           "source_path": "00_오징어_관련자료/01_오징어_시장·가격/02_쿼터·어장/20251212-FIFD-Licensing_Advice_2026.md",
-          "text": "64/65 days opening from late February; 2nd season (X licence), 64 days from late July. Since"
+          "text": "FIFD. 2019. Vessel Units, Allowable Effort, and Allowable Catch 2020. Part I. Summary and recommendations. Fisheries Dept., Directorate of Natural Resources, Falkland Islands Government, 21 p.",
+          "text_ko": "포클랜드 수산국(FIFD). 2019. 2020년 선박 단위, 허용 노력량 및 허용 어획량(Vessel Units, Allowable Effort, and Allowable Catch 2020). 제I부. 요약 및 권고. 포클랜드 제도 정부(Falkland Islands Government) 천연자원국(Directorate of Natural Resources) 수산부(Fisheries Dept.), 21 p."
         },
         {
           "kind": "source_excerpt",
           "source_path": "00_오징어_관련자료/01_오징어_시장·가격/02_쿼터·어장/20251212-FIFD-Licensing_Advice_2026.md",
-          "text": "FIFD. 2019. Vessel Units, Allowable Effort, and Allowable Catch 2020. Part I. Summary and"
+          "text": "FIFD. 2024. Vessel Units, Allowable Effort, and Allowable Catch 2025. Summary and Recommendations. Fisheries Dept., Directorate of Natural Resources, Falkland Islands Government, 20 p.",
+          "text_ko": "포클랜드 수산국(FIFD). 2024. 2025년 선박 단위, 허용 노력량 및 허용 어획량(Vessel Units, Allowable Effort, and Allowable Catch 2025). 요약 및 권고. 포클랜드 제도 정부(Falkland Islands Government) 천연자원국(Directorate of Natural Resources) 수산부(Fisheries Dept.), 20 p."
         }
       ],
       "methodology": "위젯별 config 정규식으로 보관 Markdown/HTML의 원문 블록만 선택; 수치 보간·번역·요약 없음",
@@ -1143,67 +1165,50 @@
         {
           "kind": "source_excerpt",
           "source_path": "00_오징어_관련자료/01_오징어_시장·가격/02_쿼터·어장/20260204-JFA-Surumeika_TAC_2026.md",
-          "text": "⑵ 限界管理基準値：123 千トン（ＭＳＹの 80％を達成するために必要な親魚量）"
-        },
-        {
-          "kind": "source_excerpt",
-          "source_path": "00_오징어_관련자료/01_오징어_시장·가격/02_쿼터·어장/20260204-JFA-Surumeika_TAC_2026.md",
-          "text": "⑵ 限界管理基準値：145 千トン（ＭＳＹの 85％を達成するために必要な親魚量）"
-        },
-        {
-          "kind": "source_excerpt",
-          "source_path": "00_오징어_관련자료/01_오징어_시장·가격/02_쿼터·어장/20260204-JFA-Surumeika_TAC_2026.md",
-          "text": "（２）令和８管理年度（令和８年４月１日～令和９年３月 31 日）のＴＡＣ（案） 特定水産資源 ＴＡＣ するめいか 68,400 トン"
-        },
-        {
-          "kind": "source_excerpt",
-          "source_path": "00_오징어_관련자료/01_오징어_시장·가격/02_쿼터·어장/20260204-JFA-Surumeika_TAC_2026.md",
-          "text": "（参考２） するめいかＴＡＣの推移 単位：トン R8（2026） R7(2025) R6(2024) R5(2023) R4(2022) 特定水産資源 管理年度 管理年度 管理年度 管理年度 管理年度 68,400 19,200 79,200 79,200 79,200 するめいか （25,800） （27,600）"
-        },
-        {
-          "kind": "source_excerpt",
-          "source_path": "00_오징어_관련자료/01_오징어_시장·가격/02_쿼터·어장/20260204-JFA-Surumeika_TAC_2026.md",
-          "text": "（参考３）するめいかの漁獲実績 単位：トン R6(2024) R5(2023) R4(2022) R3(2021) R2(2020) 特定水産資源 管理年度 管理年度 管理年度 管理年度 管理年度"
+          "text": "令和８管理年度（令和８年４月～令和９年３月）するめいか ＴＡＣ（漁獲可能量）の設定及び配分について（案）",
+          "text_ko": "레이와 ８(서기 이천이십육) 관리연도(레이와 ８년 ４월~레이와 ９년 ３월) 살오징어(Todarodes pacificus) 어획가능량(TAC)의 설정 및 배분에 관하여(안)"
         },
         {
           "kind": "source_excerpt",
           "source_path": "00_오징어_관련자료/01_오징어_시장·가격/01_생산·자원/20260114-JFA-Surumeika_Autumn_Stock_Assessment.md",
-          "text": "スルメイカ秋季発生系群 令和7年度資源評価結果について 第7回資源管理方針に関する検討会（スルメイカ全系群） 2026年1月14日（東京） 令和７年度資源評価結果の概要 秋季発生系群（主に日本海を北上） • 2025年の親魚量（※１）は3.9万トン。 • 目標管理基準値（※２）25.5万トンおよび限界管理基準値（※４）12.3万トン を下回る。"
+          "text": "スルメイカ秋季発生系群 令和7年度資源評価結果について 第7回資源管理方針に関する検討会（スルメイカ全系群） 2026年1月14日（東京） 令和７年度資源評価結果の概要 秋季発生系群（主に日本海を北上） • 2025年の親魚量（※１）は3.9万トン。 • 目標管理基準値（※２）25.5万トンおよび限界管理基準値（※４）12.3万トン を下回る。",
+          "text_ko": "살오징어(Todarodes pacificus) 추계 발생계군 레이와 7년도 자원평가 결과에 관하여. 제7회 자원관리방침 검토회(살오징어 전체 계군), 2026년 1월 14일(도쿄). 레이와 ７년도 자원평가 결과 개요. 추계 발생계군(주로 동해를 북상). • 2025년 친어량(※１)은 3.9만 톤이다. • 목표관리기준값(※２) 25.5만 톤 및 한계관리기준값(※４) 12.3만 톤을 밑돈다."
         },
         {
           "kind": "source_excerpt",
           "source_path": "00_오징어_관련자료/01_오징어_시장·가격/01_생산·자원/20260114-JFA-Surumeika_Autumn_Stock_Assessment.md",
-          "text": "※１ 親魚量:漁期終了後まで生き残り、翌年の資源を生む親魚資源の量。 ※２ 目標管理基準値:最大持続生産量（※３）を実現することを目指して設定される、資源管理上の目標 となる基準値。 ※３ 最大持続生産量（MSY）:現在および合理的に予測される将来の自然的条件の下で、持続的に漁獲す ることが可能な水産資源の数量の最大値。 ※４ 限界管理基準値:資源水準の低下により最大持続生産量の実現が著しく困難になることを未然に防止 するための閾値。スルメイカについては、暫定管理基準値となっている。 ※５ 資源量:単年性のスルメイカについては、ある年に漁獲対象となった（加入した）資源の量。 1 昨年度の資源評価からの変更点"
+          "text": "※１ 親魚量:漁期終了後まで生き残り、翌年の資源を生む親魚資源の量。 ※２ 目標管理基準値:最大持続生産量（※３）を実現することを目指して設定される、資源管理上の目標 となる基準値。 ※３ 最大持続生産量（MSY）:現在および合理的に予測される将来の自然的条件の下で、持続的に漁獲す ることが可能な水産資源の数量の最大値。 ※４ 限界管理基準値:資源水準の低下により最大持続生産量の実現が著しく困難になることを未然に防止 するための閾値。スルメイカについては、暫定管理基準値となっている。 ※５ 資源量:単年性のスルメイカについては、ある年に漁獲対象となった（加入した）資源の量。 1 昨年度の資源評価からの変更点",
+          "text_ko": "※１ 친어량: 어기가 끝날 때까지 살아남아 다음 해 자원을 낳는 친어자원의 양. ※２ 목표관리기준값: 최대지속생산량(※３)을 실현하는 것을 목표로 설정하는 자원관리상의 목표 기준값. ※３ 최대지속생산량(MSY): 현재 및 합리적으로 예측되는 장래의 자연조건 아래에서 지속적으로 어획할 수 있는 수산자원의 최대 수량. ※４ 한계관리기준값: 자원 수준 저하로 최대지속생산량의 실현이 현저히 어려워지는 것을 미연에 방지하기 위한 임계값. 살오징어(Todarodes pacificus)에 대해서는 잠정관리기준값이다. ※５ 자원량: 단년생인 살오징어의 경우 특정 해에 어획대상이 된, 즉 가입한 자원의 양. 1 전년도 자원평가에서 달라진 점"
         },
         {
           "kind": "source_excerpt",
           "source_path": "00_오징어_관련자료/01_오징어_시장·가격/01_생산·자원/20260114-JFA-Surumeika_Autumn_Stock_Assessment.md",
-          "text": "2 スルメイカ（秋季発生系群）① スルメイカは日本周辺に広く生息しており、本系群はこのうち秋季に日本海西部～東シナ海北部で発生し、主 に日本海を春～夏季に北上、秋季に南下する群である。本系群の漁獲量や資源量は漁期年（4月～翌年3月）の 数値を示す。 250"
-        },
-        {
-          "kind": "source_excerpt",
-          "source_path": "00_오징어_관련자료/01_오징어_시장·가격/01_생산·자원/20260114-JFA-Surumeika_Autumn_Stock_Assessment.md",
-          "text": "スルメイカ（秋季発生系群）⑤ 2044年漁期に親魚量が目標管理基準値（25.5万トン）を上回る確率 表1．将来の平均親魚量（万トン） 2034年漁期に親魚量が限界管理基準値（12.3万トン）を上回る確率 β 2025 2026 2027 2028 2029 2030 2031 2032 2033 2034 2044 0.70 4.0 3.9 3.8 3.7 3.5 5.7 9.1 12.9 16.1 24.9 40% 40% 0.65 4.0 4.0 4.0 3.8 3.7 6.0 9.6 13.7 17.1 26.9 41% 43% 0.60 3.9 4.1 4.1 4.1 4.0 3.9 6.3 10.1 14.5 18.1 29.0 43% 46% 0.50 4.1 4.3 4.3 4.3 4.2 7.0 11.3 16.2 20.2 34.2 46% 53% 現状の漁獲圧 3.5 3.2 2.9 2.7 2.5 3.8 6.2 9.6 13.5 37.2 41% 65%"
+          "text": "2 スルメイカ（秋季発生系群）① スルメイカは日本周辺に広く生息しており、本系群はこのうち秋季に日本海西部～東シナ海北部で発生し、主 に日本海を春～夏季に北上、秋季に南下する群である。本系群の漁獲量や資源量は漁期年（4月～翌年3月）の 数値を示す。 250",
+          "text_ko": "2 살오징어(Todarodes pacificus, 추계 발생계군)① 살오징어는 일본 주변에 널리 서식한다. 이 계군은 그중 가을철에 동해 서부~동중국해 북부에서 발생해 주로 봄철~여름철에 동해를 북상하고 가을철에 남하하는 무리이다. 이 계군의 어획량과 자원량은 어기연도(4월~다음 해 3월)의 수치를 나타낸다. 250"
         },
         {
           "kind": "source_excerpt",
           "source_path": "00_오징어_관련자료/01_오징어_시장·가격/01_생산·자원/20260114-JFA-Surumeika_Winter_Stock_Assessment.md",
-          "text": "用いた漁獲管理規則で漁獲を行う（赤枠）。2025年漁期の漁獲量は、日本および韓国ではスルメイカをTAC上"
+          "text": "スルメイカ冬季発生系群 令和7年度資源評価結果について 第7回資源管理方針に関する検討会（スルメイカ全系群） 2026年1月14日（東京） 令和７年度資源評価結果の概要 冬季発生系群（主に太平洋を北上） • 2025年の親魚量（※１）は15.0万トン。 • 目標管理基準値（※２）25.5万トンを下回るが、限界管理基準値（※４）14.5 万トンを上回る。",
+          "text_ko": "살오징어(Todarodes pacificus) 동계 발생계군 레이와 7년도 자원평가 결과에 관하여. 제7회 자원관리방침 검토회(살오징어 전체 계군), 2026년 1월 14일(도쿄). 레이와 ７년도 자원평가 결과 개요. 동계 발생계군(주로 태평양을 북상). • 2025년 친어량(※１)은 15.0만 톤이다. • 목표관리기준값(※２) 25.5만 톤을 밑돌지만 한계관리기준값(※４) 14.5만 톤은 웃돈다."
         },
         {
           "kind": "source_excerpt",
           "source_path": "00_오징어_관련자료/01_오징어_시장·가격/01_생산·자원/20260114-JFA-Surumeika_Winter_Stock_Assessment.md",
-          "text": "スルメイカ冬季発生系群 令和7年度資源評価結果について 第7回資源管理方針に関する検討会（スルメイカ全系群） 2026年1月14日（東京） 令和７年度資源評価結果の概要 冬季発生系群（主に太平洋を北上） • 2025年の親魚量（※１）は15.0万トン。 • 目標管理基準値（※２）25.5万トンを下回るが、限界管理基準値（※４）14.5 万トンを上回る。"
+          "text": "※１ 親魚量:漁期終了後まで生き残り、翌年の資源を生む親魚資源の量。 ※２ 目標管理基準値:最大持続生産量（※３）を実現することを目指して設定される、資源管理上の目標 となる基準値。 ※３ 最大持続生産量（MSY）:現在および合理的に予測される将来の自然的条件の下で、持続的に漁獲す ることが可能な水産資源の数量の最大値。 ※４ 限界管理基準値:資源水準の低下により最大持続生産量の実現が著しく困難になることを未然に防止 するための閾値。スルメイカについては、暫定管理基準値となっている。 ※５ 資源量:単年性のスルメイカについては、ある年に漁獲対象となった（加入した）資源の量。 1 今年度におけるスルメイカ資源量の増加の要因 ポイント ・今年の資源を生んだ親魚量（5.7万トン、推定値）は前年（4.0万トン）よりわずかに増加 ・産卵海域である東シナ海のうち、太平洋へ流れ出やすい南側において幼生が前年より多く分布しており、産卵量が多かったと推測 ・黒潮大蛇行解消に伴い、東シナ海から生育海域である黒潮続流域（東経140度以東）へ円滑に輸送（※１）される幼生が多かったと推測",
+          "text_ko": "※１ 친어량: 어기가 끝날 때까지 살아남아 다음 해 자원을 낳는 친어자원의 양. ※２ 목표관리기준값: 최대지속생산량(※３)을 실현하는 것을 목표로 설정하는 자원관리상의 목표 기준값. ※３ 최대지속생산량(MSY): 현재 및 합리적으로 예측되는 장래의 자연조건 아래에서 지속적으로 어획할 수 있는 수산자원의 최대 수량. ※４ 한계관리기준값: 자원 수준 저하로 최대지속생산량의 실현이 현저히 어려워지는 것을 미연에 방지하기 위한 임계값. 살오징어(Todarodes pacificus)에 대해서는 잠정관리기준값이다. ※５ 자원량: 단년생인 살오징어의 경우 특정 해에 어획대상이 된, 즉 가입한 자원의 양. 1 금년도 살오징어 자원량 증가 요인. 요점 • 금년 자원을 낳은 친어량(5.7만 톤, 추정치)은 전년(4.0만 톤)보다 소폭 증가했다. • 산란해역인 동중국해 가운데 태평양으로 흘러나가기 쉬운 남쪽에서 유생이 전년보다 많이 분포해 산란량이 많았던 것으로 추정된다. • 쿠로시오 대사행 해소에 따라 동중국해에서 성장해역인 쿠로시오 속류역(동경 140도보다 동쪽)으로 원활하게 수송(※１)되는 유생이 많았던 것으로 추정된다."
         },
         {
           "kind": "source_excerpt",
           "source_path": "00_오징어_관련자료/01_오징어_시장·가격/01_생산·자원/20260114-JFA-Surumeika_Winter_Stock_Assessment.md",
-          "text": "スルメイカ（冬季発生系群）① スルメイカは日本周辺に広く生息しており、本系群はこのうち主に冬季に東シナ海で発生し、太平洋を北上、 秋・冬季に日本海を南下する群である。本系群の漁獲量や資源量は漁期年（4月～翌年3月）の数値を示す。 図1 分布域 資源量 親魚量 120"
+          "text": "スルメイカ（冬季発生系群）① スルメイカは日本周辺に広く生息しており、本系群はこのうち主に冬季に東シナ海で発生し、太平洋を北上、 秋・冬季に日本海を南下する群である。本系群の漁獲量や資源量は漁期年（4月～翌年3月）の数値を示す。 図1 分布域 資源量 親魚量 120",
+          "text_ko": "살오징어(Todarodes pacificus, 동계 발생계군)① 살오징어는 일본 주변에 널리 서식한다. 이 계군은 그중 주로 겨울철에 동중국해에서 발생해 태평양을 북상하고 가을·겨울철에 동해를 남하하는 무리이다. 이 계군의 어획량과 자원량은 어기연도(4월~다음 해 3월)의 수치를 나타낸다. 그림 1 분포역 자원량 친어량 120"
         },
         {
           "kind": "source_excerpt",
           "source_path": "00_오징어_관련자료/01_오징어_시장·가격/01_생산·자원/20260114-JFA-Surumeika_Winter_Stock_Assessment.md",
-          "text": "スルメイカ（冬季発生系群）⑤ 2044年漁期に親魚量が目標管理基準値（25.5万トン）を上回る確率 表1．将来の平均親魚量（万トン） 2034年漁期に親魚量が限界管理基準値（14.5万トン）を上回る確率 β 2024 2025 2026 2027 2028 2029 2030 2031 2032 2033 2034 2044 0.7 17.0 17.8 18.0 17.6 17.3 16.4 16.2 16.1 16.3 27.0 44% 45% 0.6 17.6 18.9 19.4 19.3 19.1 18.3 18.1 18.1 18.3 29.9 50% 51% 0.5 5.7 15.0 18.2 20.1 21.0 21.1 21.1 20.3 20.2 20.2 20.4 33.0 58% 58% 0.4 18.8 21.3 22.7 23.1 23.3 22.6 22.6 22.6 22.8 36.4 66% 64% 現状の漁獲圧 17.0 18.1 18.6 18.5 18.4 17.5 17.2 16.9 16.8 27.8 49% 50%"
+          "text": "漁獲シナリオに基づき漁獲した場合の平均親魚量と平均漁獲量の将来予測を示す。漁獲シナリオでは、β=0.5を 用いた漁獲管理規則で漁獲を行う（赤枠）。2025年漁期の漁獲量は、日本および韓国ではスルメイカをTAC上 限まで漁獲すると仮定して算出した3.9万トンと仮定した。 この漁獲シナリオに従うと2026年漁期の平均漁獲量は4.4万トン、2034年漁期に親魚量が限界管理基準値（暫 定管理基準値）を上回る確率は58％、2044年漁期に目標管理基準値を上回る確率は58％と予測される。併せて、 βを0.4～0.7の範囲で変更した場合と現状の漁獲圧（2022～2024年漁期の平均:β=0.66相当、親魚量および 加入変動の予測に関する不確実性は考慮しない）の場合の将来予測結果も示した。 表3．ABC要約表 2026年漁期のABC 2026年漁期の親魚量 現状の漁獲圧に対する比 2026年漁期の漁獲割合 （万トン） 予測平均値（万トン） （F/F2022-2024） （%） 4.4 18.2 1.00 14 8 ※表の値は今後の資源評価により更新される。 試算依頼（※１）への対応 ※１ 令和7年11月20日付の水産庁依頼",
+          "text_ko": "어획 시나리오에 따라 어획했을 때의 평균 친어량과 평균 어획량에 대한 장래 예측을 제시한다. 어획 시나리오에서는 β=0.5를 적용한 어획관리규칙에 따라 어획한다(붉은 테두리). 2025년 어기의 어획량은 일본과 한국이 살오징어(Todarodes pacificus)를 어획가능량(TAC) 상한까지 어획한다고 보고 산출한 3.9만 톤으로 가정했다. 이 어획 시나리오를 따르면 2026년 어기의 평균 어획량은 4.4만 톤이며, 2034년 어기에 친어량이 한계관리기준값(잠정관리기준값)을 웃돌 확률은 58%, 2044년 어기에 목표관리기준값을 웃돌 확률은 58%로 예측된다. 아울러 β를 0.4~0.7 범위에서 바꾼 경우와 현행 어획압(2022~2024년 어기 평균: β=0.66 상당, 친어량 및 가입 변동 예측의 불확실성은 고려하지 않음)의 장래 예측 결과도 제시했다. 표 3. ABC 요약표. 2026년 어기의 ABC / 2026년 어기의 친어량 예측 평균값(만 톤) / 현행 어획압 대비 비율(F/F2022-2024) / 2026년 어기의 어획비율(%). 4.4 18.2 1.00 14 8. ※표의 값은 향후 자원평가에 따라 갱신된다. 시산 요청(※１)에 대한 대응. ※１ 레이와 7년 11월 20일자 일본 수산청(Fisheries Agency) 요청."
         }
       ],
       "methodology": "위젯별 config 정규식으로 보관 Markdown/HTML의 원문 블록만 선택; 수치 보간·번역·요약 없음",
@@ -2288,17 +2293,13 @@
         {
           "kind": "source_excerpt",
           "source_path": "00_오징어_관련자료/01_오징어_시장·가격/01_생산·자원/20260600-NIFS-Climate_Change_Briefing_2026.md",
-          "text": "살오징어, 갈치 등이며, 이들 어종의 어획량 변화는 연근해어업 전반의 변동 양상을"
-        },
-        {
-          "kind": "source_excerpt",
-          "source_path": "00_오징어_관련자료/01_오징어_시장·가격/01_생산·자원/20260600-NIFS-Climate_Change_Briefing_2026.md",
-          "text": "소폭 증가하는 경향이 관찰되고 있음. 살오징어는 1990~2000년대에 높은 그림 2-3 연근해 어업생산량이 감소한 대표 3종의 어획량 변화"
+          "text": "우리나라 연근해 어업생산량에서 큰 비중을 차지하는 어종은 멸치, 고등어류, 살오징어, 갈치 등이며, 이들 어종의 어획량 변화는 연근해어업 전반의 변동 양상을 보여주는 주요 지표로 활용될 수 있음. 멸치는 1980년대부터 2000년대까지 어획량이 크게 감소한 대표 어종으로는 쥐치류, 명태, 꽁치 등이 있으며, 이들 어종은 어획량이 지속적으로 증가하여 대표적인 대량 생산 어종으로 자리 잡았으나, 장기적인 자원 감소, 해양환경 변화, 조업 해역 제약 등 복합적인 요인의 영향을 받은 2010년대 이후 감소세로 전환되어 2020년대에는 연평균 약 15만 톤 수준으로 것으로 판단됨. 특히 명태는 자원량 급감으로 인해 2019년부터 전면 조업 금지 줄어든 것으로 나타났음. 고등어류는 1980년대 이후 어획량이 꾸준히 증가하여 상태임(그림 2-3). 멸치와 함께 어업 생산을 견인해 왔으며, 2000년대 이후에는 다소 정체되거나 소폭 증가하는 경향이 관찰되고 있음. 살오징어는 1990~2000년대에 높은 그림 2-3 연근해 어업생산량이 감소한 대표 3종의 어획량 변화 [출처: 연근해 어업생산량(KOSIS)] 어획량을 기록하였으나, 2010년대 이후 어획량이 급감하였고 이후에도 낮은 수준이 지속되고 있음. 갈치는 1980년대 이후 어획량이 꾸준히 감소하는 경향을 보였으나, 2020년대 들어 다소 반등하여 연평균 약 5.5만 톤 수준을 기록하고 있음(그림 2-2). 해양수산분야 기후변화 영향 브리핑 북 2026 11"
         },
         {
           "kind": "source_excerpt",
           "source_path": "00_오징어_관련자료/01_오징어_시장·가격/01_생산·자원/20260812-NOAA-Longfin_Squid_Science.html",
-          "text": "Fisheries for longfin squid reflect the species’ seasonal migrations."
+          "text": "Fisheries for longfin squid reflect the species’ seasonal migrations.",
+          "text_ko": "긴지느러미오징어류(longfin squid)의 어업은 해당 종의 계절 이동을 반영한다."
         }
       ],
       "methodology": "위젯별 config 정규식으로 보관 Markdown/HTML의 원문 블록만 선택; 수치 보간·번역·요약 없음",
@@ -3931,72 +3932,86 @@
         {
           "kind": "source_excerpt",
           "source_path": "00_오징어_관련자료/01_오징어_시장·가격/05_시장·소비/20260703-FAO-GLOBEFISH_Highlights_2_2026.md",
-          "text": "Global cephalopod markets entered 2026 with contrasting"
+          "text": "Cephalopods Supply dynamics raise prices in octopus markets in contrast to squid and cuttlefish",
+          "text_ko": "두족류: 오징어류 및 갑오징어류와 달리 문어 시장에서는 공급 동향이 가격을 끌어올린다."
         },
         {
           "kind": "source_excerpt",
           "source_path": "00_오징어_관련자료/01_오징어_시장·가격/05_시장·소비/20260703-FAO-GLOBEFISH_Highlights_2_2026.md",
-          "text": "in key producing regions. In contrast, squid and cuttlefish"
+          "text": "Global cephalopod markets entered 2026 with contrasting trends across species. Octopus prices reached historic highs in major markets amid persistent supply constraints in key producing regions. In contrast, squid and cuttlefish markets have been characterized by abundant supply, driven by strong catches from leading producers, which exerted downward pressure on prices. While frozen products continue to dominate international trade, value‑added cephalopod preparations are gaining importance, reflecting evolving consumption patterns, steady foodservice demand, and improved processing and cold‑chain capabilities.",
+          "text_ko": "세계 두족류 시장은 2026년에 어종별로 엇갈린 흐름을 보이며 출발했다. 주요 생산지역의 지속적인 공급 제약 속에서 주요 시장의 문어 가격은 사상 최고치에 이르렀다. 반면 오징어류 및 갑오징어류 시장은 주요 생산자의 강한 어획에 힘입은 풍부한 공급이 특징이었고, 이는 가격에 하방 압력을 가했다. 냉동제품이 국제무역을 계속 지배하는 가운데 부가가치 두족류 조제품의 중요성도 커지고 있다. 이는 변화하는 소비 양상, 꾸준한 외식 수요, 개선된 가공 및 콜드체인 역량을 반영한다."
         },
         {
           "kind": "source_excerpt",
           "source_path": "00_오징어_관련자료/01_오징어_시장·가격/05_시장·소비/20260703-FAO-GLOBEFISH_Highlights_2_2026.md",
-          "text": "In Argentina, squid (Illex argentinus) catches for January–March 2026"
+          "text": "In Argentina, squid (Illex argentinus) catches for January–March 2026 stood at 169 592.7 tonnes; this marked a sharp increase of 73.35 percent compared to the first quarter of 2025, indicating strong catches for the season. In 2025, Argentina’s squid landings totaled 208 743.5 tonnes, recording a 34.7 percent increase from 2024.",
+          "text_ko": "아르헨티나의 아르헨티나오징어(Illex argentinus) 어획량은 2026년 일월~삼월 169 592.7톤이었다. 이는 2025년 첫 분기보다 73.35% 급증한 수치로, 해당 어기의 강한 어획을 나타낸다. 2025년 아르헨티나의 오징어 양륙량은 총 208 743.5톤으로, 2024년보다 34.7% 증가했다."
         },
         {
           "kind": "source_excerpt",
           "source_path": "00_오징어_관련자료/01_오징어_시장·가격/05_시장·소비/20260703-FAO-GLOBEFISH_Highlights_2_2026.md",
-          "text": "season. In 2025, Argentina’s squid landings totaled 208 743.5 tonnes,"
+          "text": "In Peru, the giant squid fishing quota for January–June 2026 has been set at 305 417 tonnes. The first quarter of 2026 saw squid landings of 200 211 tonnes, which comprised nearly two-thirds of the quota. In 2025, Peru had set its jumbo squid fishing quota for the whole year at 609 935 tonnes. Reported catches, however, reached 712 200 tonnes, representing an increase of around 278 percent compared with 2024, when landings had totalled 188 300 tonnes. The increased catches were a result of favourable ocean conditions and abundance of biological resources.",
+          "text_ko": "페루의 페루대왕오징어(Dosidicus gigas) 어획쿼터는 2026년 일월~유월 305 417톤으로 설정됐다. 2026년 첫 분기 오징어 양륙량은 200 211톤으로 쿼터의 거의 삼분의 이에 달했다. 2025년 페루는 연간 페루대왕오징어 어획쿼터를 609 935톤으로 설정했다. 그러나 보고된 어획량은 712 200톤에 이르러, 양륙량이 188 300톤이었던 2024년보다 약 278% 증가했다. 어획 증가는 우호적인 해양조건과 풍부한 생물자원에서 비롯됐다."
         },
         {
           "kind": "source_excerpt",
           "source_path": "00_오징어_관련자료/01_오징어_시장·가격/05_시장·소비/20260703-FAO-GLOBEFISH_Highlights_2_2026.md",
-          "text": "at 305 417 tonnes. The first quarter of 2026 saw squid landings of 200 211"
+          "text": "In 2025, China’s imports of squid and cuttlefish were 551 614 tonnes, Squid and cuttlefish imports significantly up by 40.7 percent compared to 2024. Meanwhile, Chinese exports of squid and cuttlefish witnessed a decrease of 9.6 percent, standing at United States -1.77% 498 721 tonnes in 2025. Republic of Korea +15.15% Imports of squid and cuttlefish into Spain reached 303 477 tonnes in 2025, up by 9.1 percent as compared to 2024. Strong domestic sales for consumption and for processors of squid and cuttlefish led to the increased imports.",
+          "text_ko": "2025년 중국의 오징어류 및 갑오징어류 수입량은 551 614톤으로, 2024년보다 40.7% 크게 증가했다. 한편 중국의 오징어류 및 갑오징어류 수출량은 9.6% 감소해 2025년 498 721톤이었다. 미국 -1.77%. 대한민국 +15.15%. 스페인의 오징어류 및 갑오징어류 수입량은 2025년 303 477톤으로, 2024년보다 9.1% 증가했다. 소비용 및 가공업체용 오징어류와 갑오징어류의 국내 판매가 호조를 보여 수입이 증가했다."
         },
         {
           "kind": "source_excerpt",
           "source_path": "00_오징어_관련자료/01_오징어_시장·가격/05_시장·소비/20260703-FAO-GLOBEFISH_Highlights_2_2026.md",
-          "text": "In 2025, China’s imports of squid and cuttlefish were 551 614 tonnes, Squid and cuttlefish imports"
+          "text": "The Republic of Korea’s imports of squid and cuttlefish in 2025 stood at 177 244 tonnes, 15.15 percent up compared to 2024. Imports from China decreased by 17.81 percent to 60 330 tonnes; in contrast, supplies from Peru and Chile stood at 42 517 tonnes and 17 583 tonnes, up by 68.1 percent and 6.58 percent, respectively.",
+          "text_ko": "대한민국의 2025년 오징어류 및 갑오징어류 수입량은 177 244톤으로 2024년보다 15.15% 증가했다. 중국산 수입은 17.81% 감소한 60 330톤이었다. 반면 페루산과 칠레산 공급은 각각 42 517톤과 17 583톤으로 68.1% 및 6.58% 증가했다."
         },
         {
           "kind": "source_excerpt",
           "source_path": "00_오징어_관련자료/01_오징어_시장·가격/05_시장·소비/20260703-FAO-GLOBEFISH_Highlights_2_2026.md",
-          "text": "of squid and cuttlefish witnessed a decrease of 9.6 percent, standing at United States -1.77%"
+          "text": "Japan imported 131 508 tonnes of squid and cuttlefish in 2025, down by 15.36 percent compared to 2024. Shipments from China stood at 70 602 tonnes, down by 22.77 percent. Imports from Peru increased by 40.02 percent to 22 134 tonnes while those from Chile decreased by 25.02 percent to 9 328 tonnes.",
+          "text_ko": "일본은 2025년에 오징어류 및 갑오징어류 131 508톤을 수입해 2024년보다 15.36% 감소했다. 중국발 물량은 70 602톤으로 22.77% 줄었다. 페루산 수입은 40.02% 증가한 22 134톤이었고, 칠레산은 25.02% 감소한 9 328톤이었다."
         },
         {
           "kind": "source_excerpt",
           "source_path": "00_오징어_관련자료/01_오징어_시장·가격/05_시장·소비/20260525-FAO_GLOBEFISH-Cephalopods_May_2026.md",
-          "text": "Imports of squid and cuttlefish into Spain reached 303 477 tonnes in 2025, up"
+          "text": "QUARTERLY CEPHALOPODS ANALYSIS - MAY 2026 Cephalopods Supply dynamics raise prices in octopus markets in contrast to squid and cuttlefish",
+          "text_ko": "2026년 오월 분기별 두족류 분석. 두족류: 오징어류 및 갑오징어류와 달리 문어 시장에서는 공급 동향이 가격을 끌어올린다."
         },
         {
           "kind": "source_excerpt",
           "source_path": "00_오징어_관련자료/01_오징어_시장·가격/05_시장·소비/20260525-FAO_GLOBEFISH-Cephalopods_May_2026.md",
-          "text": "and for processors of squid and cuttlefish led to the increased imports."
+          "text": "Global cephalopod markets entered 2026 with contrasting trends across species. Octopus prices reached historic highs in major markets amid persistent supply constraints in key producing regions. In contrast, squid and cuttlefish markets have been characterized by abundant supply, driven by strong catches from leading producers, which exerted downward pressure on prices. While frozen products continue to dominate international trade, value‑added cephalopod preparations are gaining importance, reflecting evolving consumption patterns, steady foodservice demand, and improved processing and cold‑chain capabilities.",
+          "text_ko": "세계 두족류 시장은 2026년에 어종별로 엇갈린 흐름을 보이며 출발했다. 주요 생산지역의 지속적인 공급 제약 속에서 주요 시장의 문어 가격은 사상 최고치에 이르렀다. 반면 오징어류 및 갑오징어류 시장은 주요 생산자의 강한 어획에 힘입은 풍부한 공급이 특징이었고, 이는 가격에 하방 압력을 가했다. 냉동제품이 국제무역을 계속 지배하는 가운데 부가가치 두족류 조제품의 중요성도 커지고 있다. 이는 변화하는 소비 양상, 꾸준한 외식 수요, 개선된 가공 및 콜드체인 역량을 반영한다."
         },
         {
           "kind": "source_excerpt",
           "source_path": "00_오징어_관련자료/01_오징어_시장·가격/05_시장·소비/20260525-FAO_GLOBEFISH-Cephalopods_May_2026.md",
-          "text": "The Republic of Korea’s imports of squid and cuttlefish in 2025 stood at"
+          "text": "In Argentina, squid (Illex argentinus) catches for January–March 2026 stood at 169 592.7 tonnes; this marked a sharp increase of 73.35 percent compared to the first quarter of 2025, indicating strong catches for the season. In 2025, Argentina’s squid landings totaled 208 743.5 tonnes, recording a 34.7 percent increase from 2024.",
+          "text_ko": "아르헨티나의 아르헨티나오징어(Illex argentinus) 어획량은 2026년 일월~삼월 169 592.7톤이었다. 이는 2025년 첫 분기보다 73.35% 급증한 수치로, 해당 어기의 강한 어획을 나타낸다. 2025년 아르헨티나의 오징어 양륙량은 총 208 743.5톤으로, 2024년보다 34.7% 증가했다."
         },
         {
           "kind": "source_excerpt",
           "source_path": "00_오징어_관련자료/01_오징어_시장·가격/05_시장·소비/20260525-FAO_GLOBEFISH-Cephalopods_May_2026.md",
-          "text": "Japan imported 131 508 tonnes of squid and cuttlefish in 2025, down by 15.36"
+          "text": "In Peru, the giant squid fishing quota for January–June 2026 has been set at 305 417 tonnes. The first quarter of 2026 saw squid landings of 200 211 tonnes, which comprised nearly two-thirds of the quota. In 2025, Peru had set its jumbo squid fishing quota for the whole year at 609 935 tonnes. Reported catches, however, reached 712 200 tonnes, representing an increase of around 278 percent compared with 2024, when landings had totalled 188 300 tonnes. The increased catches were a result of favourable ocean conditions and abundance of biological resources.",
+          "text_ko": "페루의 페루대왕오징어(Dosidicus gigas) 어획쿼터는 2026년 일월~유월 305 417톤으로 설정됐다. 2026년 첫 분기 오징어 양륙량은 200 211톤으로 쿼터의 거의 삼분의 이에 달했다. 2025년 페루는 연간 페루대왕오징어 어획쿼터를 609 935톤으로 설정했다. 그러나 보고된 어획량은 712 200톤에 이르러, 양륙량이 188 300톤이었던 2024년보다 약 278% 증가했다. 어획 증가는 우호적인 해양조건과 풍부한 생물자원에서 비롯됐다."
         },
         {
           "kind": "source_excerpt",
           "source_path": "00_오징어_관련자료/01_오징어_시장·가격/05_시장·소비/20260525-FAO_GLOBEFISH-Cephalopods_May_2026.md",
-          "text": "The United States imported 65 007 tonnes of squid and cuttlefish in 2025,"
+          "text": "In 2025, China’s imports of squid and cuttlefish were 551 614 tonnes, Squid and cuttlefish imports significantly up by 40.7 percent compared to 2024. Meanwhile, Chinese exports of squid and cuttlefish witnessed a decrease of 9.6 percent, standing at United States -1.77% 498 721 tonnes in 2025. Republic of Korea +15.15% Imports of squid and cuttlefish into Spain reached 303 477 tonnes in 2025, up by 9.1 percent as compared to 2024. Strong domestic sales for consumption and for processors of squid and cuttlefish led to the increased imports.",
+          "text_ko": "2025년 중국의 오징어류 및 갑오징어류 수입량은 551 614톤으로, 2024년보다 40.7% 크게 증가했다. 한편 중국의 오징어류 및 갑오징어류 수출량은 9.6% 감소해 2025년 498 721톤이었다. 미국 -1.77%. 대한민국 +15.15%. 스페인의 오징어류 및 갑오징어류 수입량은 2025년 303 477톤으로, 2024년보다 9.1% 증가했다. 소비용 및 가공업체용 오징어류와 갑오징어류의 국내 판매가 호조를 보여 수입이 증가했다."
         },
         {
           "kind": "source_excerpt",
           "source_path": "00_오징어_관련자료/01_오징어_시장·가격/05_시장·소비/20260525-FAO_GLOBEFISH-Cephalopods_May_2026.md",
-          "text": "Global squid prices in the first quarter of 2026 faced downward pressure,"
+          "text": "The Republic of Korea’s imports of squid and cuttlefish in 2025 stood at 177 244 tonnes, 15.15 percent up compared to 2024. Imports from China decreased by 17.81 percent to 60 330 tonnes; in contrast, supplies from Peru and Chile stood at 42 517 tonnes and 17 583 tonnes, up by 68.1 percent and 6.58 percent, respectively.",
+          "text_ko": "대한민국의 2025년 오징어류 및 갑오징어류 수입량은 177 244톤으로 2024년보다 15.15% 증가했다. 중국산 수입은 17.81% 감소한 60 330톤이었다. 반면 페루산과 칠레산 공급은 각각 42 517톤과 17 583톤으로 68.1% 및 6.58% 증가했다."
         },
         {
           "kind": "source_excerpt",
           "source_path": "00_오징어_관련자료/01_오징어_시장·가격/05_시장·소비/20260525-FAO_GLOBEFISH-Cephalopods_May_2026.md",
-          "text": "Oceanic Squid Index that the March 2026 monthly price index for distant-"
+          "text": "Japan imported 131 508 tonnes of squid and cuttlefish in 2025, down by 15.36 percent compared to 2024. Shipments from China stood at 70 602 tonnes, down by 22.77 percent. Imports from Peru increased by 40.02 percent to 22 134 tonnes while those from Chile decreased by 25.02 percent to 9 328 tonnes.",
+          "text_ko": "일본은 2025년에 오징어류 및 갑오징어류 131 508톤을 수입해 2024년보다 15.36% 감소했다. 중국발 물량은 70 602톤으로 22.77% 줄었다. 페루산 수입은 40.02% 증가한 22 134톤이었고, 칠레산은 25.02% 감소한 9 328톤이었다."
         }
       ],
       "methodology": "위젯별 config 정규식으로 보관 Markdown/HTML의 원문 블록만 선택; 수치 보간·번역·요약 없음",
@@ -6910,12 +6925,8 @@
         {
           "kind": "source_excerpt",
           "source_path": "00_오징어_관련자료/01_오징어_시장·가격/03_무역·HS/20260600-MPEDA-Marine_Products_Export_Figures_2025-26.md",
-          "text": "The export of frozen squid reached 1,02,060 MT, earning ₹4,493.80 crore ($ 513.84 million)."
-        },
-        {
-          "kind": "source_excerpt",
-          "source_path": "00_오징어_관련자료/01_오징어_시장·가격/03_무역·HS/20260600-MPEDA-Marine_Products_Export_Figures_2025-26.md",
-          "text": "Meanwhile, frozen cuttlefish experienced growth in both volume and value, by 13.32% in"
+          "text": "The export of frozen squid reached 1,02,060 MT, earning ₹4,493.80 crore ($ 513.84 million). Meanwhile, frozen cuttlefish experienced growth in both volume and value, by 13.32% in quantity and 16.25% in $ value, with exports totalling to 67,157 MT worth $ 331.96 million, respectively.",
+          "text_ko": "냉동 오징어 수출은 1,02,060 MT에 이르러 ₹4,493.80크로어($ 513.84백만)의 수익을 올렸다. 한편 냉동 갑오징어는 물량과 금액이 모두 증가해 수량 기준 13.32%, $ 금액 기준 16.25% 성장했으며, 수출량은 67,157 MT, 수출액은 $ 331.96백만이었다."
         }
       ],
       "methodology": "위젯별 config 정규식으로 보관 Markdown/HTML의 원문 블록만 선택; 수치 보간·번역·요약 없음",
@@ -6966,22 +6977,22 @@
         {
           "kind": "source_excerpt",
           "source_path": "00_오징어_관련자료/01_오징어_시장·가격/03_무역·HS/20260000-KMI-FTA_Seafood_Import_Trends_2025.md",
-          "text": "’25년 對FTA 체결국 무역수지 적자는 전년 대비 9.2% 증가한 17.5억 달러 ’25년 對FTA 체결국 주요 수입 품목 중 새우, 오징어, 낙지 등의 수입액은 전년 대비 증가한 반면, 연어, 조기, 바닷 |"
-        },
-        {
-          "kind": "source_excerpt",
-          "source_path": "00_오징어_관련자료/01_오징어_시장·가격/03_무역·HS/20260000-KMI-FTA_Seafood_Import_Trends_2025.md",
-          "text": "오징어 131,759 435,062 122,792 448,672 127,099 577,723 △3.5 32.8 3.5 28.8"
-        },
-        {
-          "kind": "source_excerpt",
-          "source_path": "00_오징어_관련자료/01_오징어_시장·가격/03_무역·HS/20260000-KMI-FTA_Seafood_Import_Trends_2025.md",
-          "text": "• \u0007’25년 오징어 수입량 중 對중국은 전년 대비 18.2% 감소한 59.4천 톤, 페루는 68.1% 증가한 4.0천 톤, 중국은 6.6% 증가한 2.5천 톤"
-        },
-        {
-          "kind": "source_excerpt",
-          "source_path": "00_오징어_관련자료/01_오징어_시장·가격/03_무역·HS/20260000-KMI-FTA_Seafood_Import_Trends_2025.md",
           "text": "|주요 품목별 수입동향 ’25년 페루산 오징어, 노르웨이산 고등어·연어 등을 중심으로 수입량 증가 ’25년 對FTA 체결국 수산물 수입 현황 (단위 : 톤, 천$, %) • \u0007(명태) 러시아의 자원관리 강화와 자국 내 가공 확대에 따른 보수적 공급으로 가격 상승 및 수입 감소 증감률 • \u0007(오징어) 대왕오징어 어획 회복에 따른 공급 확대로 페루산 및 칠레산 수입 증가 평년 전년 금년 FTA 구분 평년 대비 전년 대비 발효일 • \u0007(새우) 국내 생산량 감소 및 중국산 수입 증가 등의 영향으로 수입 증가 물량 금액 물량 금액 물량 금액 물량 금액 물량 금액 • \u0007(고등어) 국내 시장 물량 부족 등의 영향으로 노르웨이산 수입 증가 전체 1,514,242 6,181,147 1,402,186 5,716,438 1,454,776 6,160,700 △3.9 △0.3 3.8 7.8 - Ⅲ • \u0007(연어) 노르웨이산 고등어 쿼터 축소 전망에 따른 단가 상승 예상으로 선제적 물량 확보 수요가 늘며 수입 증가 FTA체결국 970,240 4,392,886 957,413 4,223,789 1,004,635 4,569,461 3.5 4.0 4.9 8.2 - (비중) (64.1) (71.1) (68.3) (73.9) (69.1) (74.2)"
+        },
+        {
+          "kind": "source_excerpt",
+          "source_path": "00_오징어_관련자료/01_오징어_시장·가격/03_무역·HS/20260000-KMI-FTA_Seafood_Import_Trends_2025.md",
+          "text": "Ⅰ ’25년 對FTA 체결국 무역수지 적자는 전년 대비 9.2% 증가한 17.5억 달러 ’25년 對FTA 체결국 주요 수입 품목 중 새우, 오징어, 낙지 등의 수입액은 전년 대비 증가한 반면, 연어, 조기, 바닷 | • \u0007수입액은 45.7억 달러로 전년 대비 8.2% 증가하였고, 수출액은 28.2억 달러로 전년 대비 7.6% 증가 가재 등의 수입액은 전년 대비 감소 F T A"
+        },
+        {
+          "kind": "source_excerpt",
+          "source_path": "00_오징어_관련자료/01_오징어_시장·가격/03_무역·HS/20260000-KMI-FTA_Seafood_Import_Trends_2025.md",
+          "text": "(백만 $) [對FTA 체결국] ● 수입액 ● 수출액 ● 무역수지 증감률 평년 전년 금년 5,000 4,569 4,393 4,224 구분 품목 평년 대비 전년 대비 4,000 물량 금액 물량 금액 물량 금액 물량 금액 물량 금액 2,819 Ⅱ 3,000 2,688 2,621 새우 82,161 670,124 84,838 635,934 87,877 697,330 7.0 4.1 3.6 9.7 오징어 131,759 435,062 122,792 448,672 127,099 577,723 △3.5 32.8 3.5 28.8"
+        },
+        {
+          "kind": "source_excerpt",
+          "source_path": "00_오징어_관련자료/01_오징어_시장·가격/03_무역·HS/20260000-KMI-FTA_Seafood_Import_Trends_2025.md",
+          "text": "오징어 - ’\u000725년 4분기 수입량은 41.4천 톤, 전년 동기 대비 14.3% 증가하면서 1~3분기의 증가세 지속 • ’25년 주꾸미 수입량 중 對베트남은 전년 대비 0.8% 증가한 23.6천 톤, 태국은 4.3% • \u0007’25년 오징어 수입량 중 對중국은 전년 대비 18.2% 감소한 59.4천 톤, 페루는 68.1% 증가한 4.0천 톤, 중국은 6.6% 증가한 2.5천 톤 증가한 42.5천 톤, 칠레는 6.6% 증가한 17.6천 톤 - \u0007주 꾸미는 국내 생산 감소, 베트남산 냉동 주꾸미(절단 형태) 수요 증가21, 중국산 냉동 및 Ⅱ 태국산 활 수입단가 하락 등의 영향으로 전체 수입 증가 - \u0007대왕오징어 어획 회복으로 공급 확대, 페루산 및 칠레산 수입 증가하고 중국산 수입 감소"
         },
         {
           "kind": "source_excerpt",
@@ -7036,37 +7047,44 @@
         {
           "kind": "source_excerpt",
           "source_path": "00_오징어_관련자료/01_오징어_시장·가격/05_시장·소비/20260812-EUMOFA-Squid_Profile.html",
-          "text": "Squid (all species) catches reached over 3.200.000 tonnes in 2023, i.e. 3,5% of the global catches. Jumbo squid catches amounted to 1.225.798 tonnes and this species was mainly caught by the Peruvian and Chinese fleets. The main squid producers were China and Peru, representing 53% of the global catches in 2023, followed by Indonesia, India, and Argentina (8%, 6%, and 5%, respectively). The EU catches represented 1% of the global captures in 2023. During the last decade (2014-2023), global squid catches decreased in 2016 (-32% in comparison to the previous year) and have progressively increased since (+22%)."
+          "text": "Squid (all species) catches reached over 3.200.000 tonnes in 2023, i.e. 3,5% of the global catches. Jumbo squid catches amounted to 1.225.798 tonnes and this species was mainly caught by the Peruvian and Chinese fleets. The main squid producers were China and Peru, representing 53% of the global catches in 2023, followed by Indonesia, India, and Argentina (8%, 6%, and 5%, respectively). The EU catches represented 1% of the global captures in 2023. During the last decade (2014-2023), global squid catches decreased in 2016 (-32% in comparison to the previous year) and have progressively increased since (+22%).",
+          "text_ko": "오징어류 전체 어종의 어획량은 2023년 3.200.000톤을 넘어 세계 어획량의 3,5%를 차지했다. 페루대왕오징어(Dosidicus gigas) 어획량은 1.225.798톤이었고, 주로 페루와 중국 선단이 어획했다. 주요 오징어 생산국은 중국과 페루로 2023년 세계 어획량의 53%를 차지했으며, 인도네시아·인도·아르헨티나가 각각 8%, 6%, 5%로 뒤를 이었다. 유럽연합(EU) 어획량은 2023년 세계 어획량의 1%였다. 지난 십 년(2014-2023) 동안 세계 오징어 어획량은 2016년에 전년보다 -32% 감소했고, 이후 점진적으로 증가했다(+22%)."
         },
         {
           "kind": "source_excerpt",
           "source_path": "00_오징어_관련자료/01_오징어_시장·가격/05_시장·소비/20260812-EUMOFA-Squid_Profile.html",
-          "text": "Squid catches in the EU reached 40.861 tonnes in 2023. Catches of the Argentine shortfin squid represented 35% of the EU catches. Spain was by far the main producer, representing 62% of the EU catches, followed by France and Portugal (respectively 13% and 8% of the catches). During the last decade (2014-2023), EU squid catches have fluctuated, decreasing overall by 45% in relation to the decrease of the Spanish catches (-53%)."
+          "text": "Squid catches in the EU reached 40.861 tonnes in 2023. Catches of the Argentine shortfin squid represented 35% of the EU catches. Spain was by far the main producer, representing 62% of the EU catches, followed by France and Portugal (respectively 13% and 8% of the catches). During the last decade (2014-2023), EU squid catches have fluctuated, decreasing overall by 45% in relation to the decrease of the Spanish catches (-53%).",
+          "text_ko": "유럽연합(EU)의 오징어 어획량은 2023년 40.861톤에 이르렀다. 아르헨티나오징어(Illex argentinus) 어획량은 EU 어획량의 35%를 차지했다. 스페인은 단연 최대 생산국으로 EU 어획량의 62%를 차지했고, 프랑스와 포르투갈이 각각 13%와 8%로 뒤를 이었다. 지난 십 년(2014-2023) 동안 EU 오징어 어획량은 등락했으며, 스페인 어획량 감소(-53%)와 관련해 전체적으로 45% 감소했다."
         },
         {
           "kind": "source_excerpt",
           "source_path": "00_오징어_관련자료/01_오징어_시장·가격/05_시장·소비/20260812-EUMOFA-Squid_Profile.html",
-          "text": "EU trade of squid products (tonnes – 2024)"
+          "text": "EU trade of squid products (tonnes – 2024)",
+          "text_ko": "유럽연합(EU)의 오징어 제품 교역(톤 – 2024)"
         },
         {
           "kind": "source_excerpt",
           "source_path": "00_오징어_관련자료/01_오징어_시장·가격/05_시장·소비/20260812-EUMOFA-Squid_Profile.html",
-          "text": "Extra-EU exports: In 2024, export volumes of squid totaled 17.063 tonnes. Exports were made almost exclusively of frozen squids (98%). Spain was by far the first EU exporter, representing 83% of the exported volume. Other EU exporters included Portugal, Italy, and Greece, representing together 12% of the EU exported volume in 2024. China, South Korea, Albania and Morocco were the main destination markets, representing 69% of EU exports."
+          "text": "Extra-EU exports: In 2024, export volumes of squid totaled 17.063 tonnes. Exports were made almost exclusively of frozen squids (98%). Spain was by far the first EU exporter, representing 83% of the exported volume. Other EU exporters included Portugal, Italy, and Greece, representing together 12% of the EU exported volume in 2024. China, South Korea, Albania and Morocco were the main destination markets, representing 69% of EU exports.",
+          "text_ko": "유럽연합(EU) 역외 수출: 2024년 오징어 수출량은 총 17.063톤이었다. 수출품은 거의 전부 냉동 오징어였다(98%). 스페인은 단연 EU 최대 수출국으로 수출량의 83%를 차지했다. 그 밖의 EU 수출국인 포르투갈·이탈리아·그리스는 합계로 2024년 EU 수출량의 12%를 차지했다. 중국·한국·알바니아·모로코는 주요 목적지 시장으로 EU 수출의 69%를 차지했다."
         },
         {
           "kind": "source_excerpt",
           "source_path": "00_오징어_관련자료/01_오징어_시장·가격/05_시장·소비/20251202-EUMOFA-The_EU_Fish_Market_2025.md",
-          "text": "2.2 ANALYSIS BY MAIN SPECIES TABLE 8 Per capita consumption Products42 and share of total Self-sufficiency SELF-SUFFICIENCY (kg, live weight apparent consumption rate equivalent) RATES OF TOP-15 MOST Tuna (12%) 2,68 34% CONSUMED PRODUCTS Salmon (10%) 2,39 1% IN THE EU (2023) Alaska pollock (8%) 1,78 0% Source: EUMOFA, based on 11% EUROSTAT (online data codes: Shrimps (7%) 1,59 fish_ca_main, fish_aq2a Cod (7%) 1,53 5% and DS-045409) and FAO data. Details on the sources Mussel (5%) 1,14 74% used can be found in the 40% Methodological background. Hake (4%) 1,01 Herring (4%) 0,98 67% Squid (3%) 0,61 15% Surimi (2%) 43 0,54 n.a. Mackerel (2%) 0,50 87% Sardine (2%) 0,49 67% Trout (2%) 0,46 84% Saithe (=Coalfish) (2%) 0,36 11% Gilthead seabream (1%) 0,33 74%"
+          "text": "2.2 ANALYSIS BY MAIN SPECIES TABLE 8 Per capita consumption Products42 and share of total Self-sufficiency SELF-SUFFICIENCY (kg, live weight apparent consumption rate equivalent) RATES OF TOP-15 MOST Tuna (12%) 2,68 34% CONSUMED PRODUCTS Salmon (10%) 2,39 1% IN THE EU (2023) Alaska pollock (8%) 1,78 0% Source: EUMOFA, based on 11% EUROSTAT (online data codes: Shrimps (7%) 1,59 fish_ca_main, fish_aq2a Cod (7%) 1,53 5% and DS-045409) and FAO data. Details on the sources Mussel (5%) 1,14 74% used can be found in the 40% Methodological background. Hake (4%) 1,01 Herring (4%) 0,98 67% Squid (3%) 0,61 15% Surimi (2%) 43 0,54 n.a. Mackerel (2%) 0,50 87% Sardine (2%) 0,49 67% Trout (2%) 0,46 84% Saithe (=Coalfish) (2%) 0,36 11% Gilthead seabream (1%) 0,33 74%",
+          "text_ko": "2.2 주요 어종별 분석. 표 8. 1인당 소비량. 제품42 및 전체에서의 비중. 자급률. 자급률(kg, 생체중 환산 겉보기 소비량). 유럽연합(EU)에서 가장 많이 소비되는 상위-15개 제품의 비율(2023). 참치류(Tuna, 12%) 2,68 34%. 연어류(Salmon, 10%) 2,39 1%. 알래스카명태(Gadus chalcogrammus, 8%) 1,78 0%. 새우류(Shrimps, 7%) 1,59 11%. 대구류(Cod, 7%) 1,53 5%. 홍합류(Mussel, 5%) 1,14 74%. 헤이크류(Hake, 4%) 1,01 40%. 청어류(Herring, 4%) 0,98 67%. 오징어류(Squid, 3%) 0,61 15%. 수리미(Surimi, 2%) 43 0,54 해당 없음. 고등어류(Mackerel, 2%) 0,50 87%. 정어리류(Sardine, 2%) 0,49 67%. 송어류(Trout, 2%) 0,46 84%. 세이스 또는 콜피시(Pollachius virens; Saithe = Coalfish, 2%) 0,36 11%. 유럽참돔(Sparus aurata; Gilthead seabream, 1%) 0,33 74%. 출처: 유럽 수산물 시장 관측소(EUMOFA), 유럽연합 통계청(EUROSTAT)의 온라인 데이터 코드 fish_ca_main, fish_aq2a 및 DS-045409와 유엔식량농업기구(FAO) 자료를 토대로 함. 사용한 출처의 세부사항은 방법론 배경(Methodological background)에서 확인할 수 있다."
         },
         {
           "kind": "source_excerpt",
           "source_path": "00_오징어_관련자료/01_오징어_시장·가격/05_시장·소비/20251202-EUMOFA-The_EU_Fish_Market_2025.md",
-          "text": "TABLE 9 Per capita Consumption APPARENT Products consumption evolution % wild % farmed CONSUMPTION (kg, LWE) 2023/2022 OF TOP 15 MOST Tuna 2,68 -9% 98,2% 1,8% CONSUMED PRODUCTS Salmon 2,39 -5% 5,7% 94,3% Alaska pollock 1,78 +7% 100% 0% (2023) Source: EUMOFA, based on Shrimps 1,59 -6% 42,0% 58,0% EUROSTAT (online data codes: Cod 1,53 -6% 99,9% 0,1% fish_ca_main, fish_aq2a Mussel 1,14 -6% 7,1% 92,9% and DS-045409) and FAO Hake 1,01 -2% 100% 0% data. Details on the sources Herring 0,98 +12% 100% 0% and on the methodological Squid 0,61 -16% 100% 0% approach used for assessing Surimi 0,54 -10% 100% 0% the production method of imports and exports and the Mackerel 0,50 -9% 100% 0% destination use of catches can Sardine 0,49 -10% 100% 0% be found in the Methodological Trout 0,46 -1% 0,9% 99,1% background. Saithe (=Coalfish) 0,36 -3% 100% 0% Gilthead seabream 0,33 +2% 2,4% 97,6% Other products 6,48 +2% 77,4% 22,6% Total 22,89 -3% 71,5% 28,5%"
+          "text": "TABLE 9 Per capita Consumption APPARENT Products consumption evolution % wild % farmed CONSUMPTION (kg, LWE) 2023/2022 OF TOP 15 MOST Tuna 2,68 -9% 98,2% 1,8% CONSUMED PRODUCTS Salmon 2,39 -5% 5,7% 94,3% Alaska pollock 1,78 +7% 100% 0% (2023) Source: EUMOFA, based on Shrimps 1,59 -6% 42,0% 58,0% EUROSTAT (online data codes: Cod 1,53 -6% 99,9% 0,1% fish_ca_main, fish_aq2a Mussel 1,14 -6% 7,1% 92,9% and DS-045409) and FAO Hake 1,01 -2% 100% 0% data. Details on the sources Herring 0,98 +12% 100% 0% and on the methodological Squid 0,61 -16% 100% 0% approach used for assessing Surimi 0,54 -10% 100% 0% the production method of imports and exports and the Mackerel 0,50 -9% 100% 0% destination use of catches can Sardine 0,49 -10% 100% 0% be found in the Methodological Trout 0,46 -1% 0,9% 99,1% background. Saithe (=Coalfish) 0,36 -3% 100% 0% Gilthead seabream 0,33 +2% 2,4% 97,6% Other products 6,48 +2% 77,4% 22,6% Total 22,89 -3% 71,5% 28,5%",
+          "text_ko": "표 9. 1인당 소비량. 겉보기 소비량 상위 15개 제품: 제품 / 소비량(kg, 생체중 환산) / 2023/2022 증감 / 자연산 비중 / 양식산 비중(2023). 참치류(Tuna) 2,68 -9% 98,2% 1,8%. 연어류(Salmon) 2,39 -5% 5,7% 94,3%. 알래스카명태(Gadus chalcogrammus) 1,78 +7% 100% 0%. 새우류(Shrimps) 1,59 -6% 42,0% 58,0%. 대구류(Cod) 1,53 -6% 99,9% 0,1%. 홍합류(Mussel) 1,14 -6% 7,1% 92,9%. 헤이크류(Hake) 1,01 -2% 100% 0%. 청어류(Herring) 0,98 +12% 100% 0%. 오징어류(Squid) 0,61 -16% 100% 0%. 수리미(Surimi) 0,54 -10% 100% 0%. 고등어류(Mackerel) 0,50 -9% 100% 0%. 정어리류(Sardine) 0,49 -10% 100% 0%. 송어류(Trout) 0,46 -1% 0,9% 99,1%. 세이스 또는 콜피시(Pollachius virens; Saithe = Coalfish) 0,36 -3% 100% 0%. 유럽참돔(Sparus aurata; Gilthead seabream) 0,33 +2% 2,4% 97,6%. 기타 제품 6,48 +2% 77,4% 22,6%. 합계 22,89 -3% 71,5% 28,5%. 출처: 유럽 수산물 시장 관측소(EUMOFA), 유럽연합 통계청(EUROSTAT)의 온라인 데이터 코드 fish_ca_main, fish_aq2a 및 DS-045409와 유엔식량농업기구(FAO) 자료를 토대로 함. 수출입 생산방식과 어획물의 목적 용도를 평가하는 데 사용한 출처 및 방법론적 접근의 세부사항은 방법론 배경(Methodological background)에서 확인할 수 있다."
         },
         {
           "kind": "source_excerpt",
           "source_path": "00_오징어_관련자료/01_오징어_시장·가격/05_시장·소비/20251202-EUMOFA-The_EU_Fish_Market_2025.md",
-          "text": "imported in the EU. In 2022, most of the top species considered had reached their highest prices of the last five years, with salmon, cod and skipjack tuna increasing once again in 2023. However, by 2024, most import prices declined. Salmon saw its first price drop in five years, falling by 4% to 8,07 EUR/kg, its lowest since 2021. This decline came as import volumes increased, while the total value remained unchanged. Prices for octopus, squid and skipjack tuna also declined – by 4%, 5% and 7%, respectively. Shrimps remained stable and sold at 6,88 EUR/kg. Cod stood out as the only species to register a price increase, rising by 3% to 6,90 EUR/kg. This caused a sharper drop in import volume than in value, which had decreases of 10% and 7%, respectively. CHART 43 10,50 NOMINAL UNIT 10,00 9,20 EUR/kg -4% VALUE OF SOME 9,50 9,00 OF THE TOP 8,50 8,07 EUR/kg"
+          "text": "imported in the EU. In 2022, most of the top species considered had reached their highest prices of the last five years, with salmon, cod and skipjack tuna increasing once again in 2023. However, by 2024, most import prices declined. Salmon saw its first price drop in five years, falling by 4% to 8,07 EUR/kg, its lowest since 2021. This decline came as import volumes increased, while the total value remained unchanged. Prices for octopus, squid and skipjack tuna also declined – by 4%, 5% and 7%, respectively. Shrimps remained stable and sold at 6,88 EUR/kg. Cod stood out as the only species to register a price increase, rising by 3% to 6,90 EUR/kg. This caused a sharper drop in import volume than in value, which had decreases of 10% and 7%, respectively. CHART 43 10,50 NOMINAL UNIT 10,00 9,20 EUR/kg -4% VALUE OF SOME 9,50 9,00 OF THE TOP 8,50 8,07 EUR/kg",
+          "text_ko": "유럽연합(EU)으로 수입됐다. 2022년에는 검토 대상 주요 어종 대부분의 가격이 지난 다섯 해 중 최고 수준에 이르렀고, 연어·대구·가다랑어(Katsuwonus pelamis)는 2023년에 다시 상승했다. 그러나 2024년에는 대부분의 수입가격이 하락했다. 연어는 다섯 해 만에 처음으로 가격이 하락해 4% 내린 8,07 EUR/kg이 됐으며, 이는 2021년 이후 최저치였다. 수입량은 늘었지만 총금액은 변하지 않은 가운데 나타난 하락이다. 문어·오징어·가다랑어 가격도 각각 4%, 5%, 7% 하락했다. 새우류는 보합세를 유지하며 6,88 EUR/kg에 판매됐다. 대구만 가격이 오른 유일한 어종으로, 3% 상승한 6,90 EUR/kg을 기록했다. 이 때문에 수입량 감소폭이 금액 감소폭보다 커졌으며 각각 10%와 7% 감소했다. 차트 43 10,50 명목 단가 10,00 9,20 EUR/kg -4% 일부 주요 품목의 금액 9,50 9,00 상위 8,50 8,07 EUR/kg."
         }
       ],
       "methodology": "위젯별 config 정규식으로 보관 Markdown/HTML의 원문 블록만 선택; 수치 보간·번역·요약 없음",
@@ -7116,7 +7134,8 @@
         {
           "kind": "source_excerpt",
           "source_path": "00_오징어_관련자료/01_오징어_시장·가격/08_국가별_조달/20251200-USDA_GAIN-Korea_Seafood_Market_Update_2025.md",
-          "text": "Squid 85,590 79,000 60,482 55,747 Sailfin sandfish 2,787 2,301 1,277 1,416 Mottled Skate 802 3,668 3,668 2,161 Hairtail 48,908 48,296 52,379 40,683 Manila clam 882 4,034 2,735 1,011 Yellow corvina 55,303 49,897 36,424 30,361 Spanish Mackerel 31,020 31,426 31,769 27,388 Total 450,659 431,285 396,804 379,121 Source: Ministry of Oceans and Fisheries (MOF), Resource Management Division"
+          "text": "Squid 85,590 79,000 60,482 55,747 Sailfin sandfish 2,787 2,301 1,277 1,416 Mottled Skate 802 3,668 3,668 2,161 Hairtail 48,908 48,296 52,379 40,683 Manila clam 882 4,034 2,735 1,011 Yellow corvina 55,303 49,897 36,424 30,361 Spanish Mackerel 31,020 31,426 31,769 27,388 Total 450,659 431,285 396,804 379,121 Source: Ministry of Oceans and Fisheries (MOF), Resource Management Division",
+          "text_ko": "오징어류(Squid) 85,590 79,000 60,482 55,747. 도루묵(Arctoscopus japonicus; Sailfin sandfish) 2,787 2,301 1,277 1,416. 참홍어(Beringraja pulchra; Mottled Skate) 802 3,668 3,668 2,161. 갈치류(Trichiurus spp.; Hairtail) 48,908 48,296 52,379 40,683. 바지락(Ruditapes philippinarum; Manila clam) 882 4,034 2,735 1,011. 참조기(Larimichthys polyactis; Yellow corvina) 55,303 49,897 36,424 30,361. 삼치(Scomberomorus niphonius; Spanish Mackerel) 31,020 31,426 31,769 27,388. 합계 450,659 431,285 396,804 379,121. 출처: 해양수산부(Ministry of Oceans and Fisheries, MOF) 자원관리과(Resource Management Division)."
         }
       ],
       "methodology": "위젯별 config 정규식으로 보관 Markdown/HTML의 원문 블록만 선택; 수치 보간·번역·요약 없음",
@@ -7168,22 +7187,26 @@
         {
           "kind": "source_excerpt",
           "source_path": "00_오징어_관련자료/01_오징어_시장·가격/07_지속가능성·IUU·노동/20260220-SPRFMO-IUU_Vessel_List_2026.md",
-          "text": "Outcome Placed on the Final IUU Vessel List"
+          "text": "Vessel Name XING FA (effective 2025-12) Previous FENG HAI (effective 2025-03); XIANG HAI (effective 2023-07); J SHORE (effective 2022-09); Name(s) XING TONG YOU 59 (effective 2018-01); DONG CHENG YOU 10 (effective 2003-07) Flag SAO TOME AND PRINCIPE (effective 2025-10-21) Previous Unknown (effective 2025-09); Sierra Leone (effective 2025-03); Unknown (effective 2024-10); Belize (effective Flag(s) 2023-07); Sierra Leone (effective 2022-09); China (effective 2018-01); China (effective 2003-07) Owner GOLD CHARM INTERNATIONAL ENTERPRISE LTD (IMO Company Number: 0357330) Name & Room 5201-03, 52nd Floor, The Centre, 99, Queen's Road Central, Hong Kong, China. Address (effective 2025-10-24 – Source: IMO GISIS) HONGKONG QUN XUN SHIPPING LTD (IMO Company Number: 8550740) Unit 3504, 35th Floor, West Tower, 200, Connaught Road West, Sheung Wan, Hong Kong, China, 999077 (effective 2025-03-13 – Source: IMO GISIS)",
+          "text_ko": "선박명 싱파(XING FA, 2025-12 발효). 이전 명칭: 펑하이(FENG HAI, 2025-03 발효), 샹하이(XIANG HAI, 2023-07 발효), 제이 쇼어(J SHORE, 2022-09 발효), 싱퉁유 59(XING TONG YOU 59, 2018-01 발효), 둥청유 10(DONG CHENG YOU 10, 2003-07 발효). 기국: 상투메 프린시페(SAO TOME AND PRINCIPE, 2025-10-21 발효). 이전 기국: 미상(Unknown, 2025-09 발효), 시에라리온(Sierra Leone, 2025-03 발효), 미상(Unknown, 2024-10 발효), 벨리즈(Belize, 2023-07 발효), 시에라리온(Sierra Leone, 2022-09 발효), 중국(China, 2018-01 발효), 중국(China, 2003-07 발효). 소유자 명칭 및 주소: 골드 참 인터내셔널 엔터프라이즈(GOLD CHARM INTERNATIONAL ENTERPRISE LTD, IMO 회사번호 0357330), 룸 5201-03, 더 센터(The Centre) 52층, 퀸스로드 센트럴(Queen's Road Central) 99, 홍콩, 중국(2025-10-24 발효 – 출처: IMO GISIS). 홍콩 췬쉰 시핑(HONGKONG QUN XUN SHIPPING LTD, IMO 회사번호 8550740), 유닛 3504, 웨스트 타워(West Tower) 35층, 코노트로드 웨스트(Connaught Road West) 200, 셩완(Sheung Wan), 홍콩, 중국, 999077(2025-03-13 발효 – 출처: IMO GISIS)."
         },
         {
           "kind": "source_excerpt",
           "source_path": "00_오징어_관련자료/01_오징어_시장·가격/07_지속가능성·IUU·노동/20260220-SPRFMO-IUU_Vessel_List_2026.md",
-          "text": "Vessel Name XING FA (effective 2025-12) Previous FENG HAI (effective 2025-03); XIANG HAI (effective 2023-07); J SHORE (effective 2022-09); Name(s) XING TONG YOU 59 (effective 2018-01); DONG CHENG YOU 10 (effective 2003-07) Flag SAO TOME AND PRINCIPE (effective 2025-10-21) Previous Unknown (effective 2025-09); Sierra Leone (effective 2025-03); Unknown (effective 2024-10); Belize (effective Flag(s) 2023-07); Sierra Leone (effective 2022-09); China (effective 2018-01); China (effective 2003-07) Owner GOLD CHARM INTERNATIONAL ENTERPRISE LTD (IMO Company Number: 0357330) Name & Room 5201-03, 52nd Floor, The Centre, 99, Queen's Road Central, Hong Kong, China. Address (effective 2025-10-24 – Source: IMO GISIS) HONGKONG QUN XUN SHIPPING LTD (IMO Company Number: 8550740) Unit 3504, 35th Floor, West Tower, 200, Connaught Road West, Sheung Wan, Hong Kong, China, 999077 (effective 2025-03-13 – Source: IMO GISIS)"
+          "text": "Date included in the IUU Vessel List: IUU Vsl List 02 March 2026 Position Eastern quadrant of the SPRFMO Convention Area (various positions) SPRFMO CMM 12 requires that the at-sea transfer of fuel, crew, gear or any other supplies between two vessels in the Convention Area shall only be undertaken between authorised vessels included in Activities the Commission Record of Vessels. The bunkering vessel, FENG HAI, was flagged to Sierra Leone (SL) in March 2025. SL does not have Member or CNCP status in SPRFMO and its vessels are not found on the SPRFMO Record of Vessels. The vessel FENG HAI (SL) was previously authorised on the",
+          "text_ko": "불법·비보고·비규제(IUU) 선박목록 등재일: IUU 선박목록 2026년 삼월 02일. 위치: 남태평양지역수산관리기구(SPRFMO) 협약수역 동부 사분면의 여러 위치. SPRFMO CMM 12는 협약수역에서 두 선박 사이의 연료·선원·어구 또는 그 밖의 보급품 해상 이전은 위원회 선박등록부(Commission Record of Vessels)에 포함된 허가 선박끼리만 수행해야 한다고 규정한다. 급유선 펑하이(FENG HAI)호는 2025년 삼월 시에라리온(SL) 기국이었다. SL은 SPRFMO 회원국 또는 CNCP 지위가 없고, 그 선박들은 SPRFMO 선박등록부에 등재돼 있지 않다. 펑하이(FENG HAI, SL)호는 종전에"
         },
         {
           "kind": "source_excerpt",
           "source_path": "00_오징어_관련자료/01_오징어_시장·가격/07_지속가능성·IUU·노동/20260220-SPRFMO-IUU_Vessel_List_2026.md",
-          "text": "Date included in the IUU Vessel List: IUU Vsl List 02 March 2026 Position Eastern quadrant of the SPRFMO Convention Area (various positions) SPRFMO CMM 12 requires that the at-sea transfer of fuel, crew, gear or any other supplies between two vessels in the Convention Area shall only be undertaken between authorised vessels included in Activities the Commission Record of Vessels. The bunkering vessel, FENG HAI, was flagged to Sierra Leone (SL) in March 2025. SL does not have Member or CNCP status in SPRFMO and its vessels are not found on the SPRFMO Record of Vessels. The vessel FENG HAI (SL) was previously authorised on the"
+          "text": "Vessel Name XING FA (effective 2025-12) SPRFMO Record of Vessels, and operated in SPRFMO, as the Belize flagged vessel XIANG HAI (but was removed from the Belize Registry in October 2024). Following the end of its SPRFMO authorisation the bunkering vessel serviced SPRFMO fishing vessels during November 2024. In 2025, the vessel returned to the SPRFMO Convention area as the renamed/reflagged vessel FENG HAI (SL) and provided bunkering services to SPRFMO fishing vessels in the Convention Area during May - July 2025 without being authorised on the SPRFMO Record of Vessels.",
+          "text_ko": "선박명 싱파(XING FA, 2025-12 발효). 남태평양지역수산관리기구(SPRFMO) 선박등록부에 등재돼 허가를 받고, 벨리즈 기국 선박 샹하이(XIANG HAI)호로 SPRFMO에서 조업했다. 다만 2024년 시월 벨리즈 선적부에서 말소됐다. SPRFMO 허가가 끝난 뒤 이 급유선은 2024년 십일월 SPRFMO 어선에 서비스를 제공했다. 2025년에는 선명을 바꾸고 기국을 변경한 펑하이(FENG HAI, SL)호로 SPRFMO 협약수역에 돌아와, SPRFMO 선박등록부의 허가 없이 2025년 오월~칠월 협약수역 내 SPRFMO 어선에 급유 서비스를 제공했다."
         },
         {
           "kind": "source_excerpt",
           "source_path": "00_오징어_관련자료/01_오징어_시장·가격/07_지속가능성·IUU·노동/20260220-SPRFMO-IUU_Vessel_List_2026.md",
-          "text": "Vessel Name XING FA (effective 2025-12) SPRFMO Record of Vessels, and operated in SPRFMO, as the Belize flagged vessel XIANG HAI (but was removed from the Belize Registry in October 2024). Following the end of its SPRFMO authorisation the bunkering vessel serviced SPRFMO fishing vessels during November 2024. In 2025, the vessel returned to the SPRFMO Convention area as the renamed/reflagged vessel FENG HAI (SL) and provided bunkering services to SPRFMO fishing vessels in the Convention Area during May - July 2025 without being authorised on the SPRFMO Record of Vessels."
+          "text": "Outcome Placed on the Final IUU Vessel List",
+          "text_ko": "결과: 최종 불법·비보고·비규제(IUU) 선박목록에 등재됨"
         }
       ],
       "methodology": "위젯별 config 정규식으로 보관 Markdown/HTML의 원문 블록만 선택; 수치 보간·번역·요약 없음",
@@ -7225,42 +7248,62 @@
         {
           "kind": "source_excerpt",
           "source_path": "00_오징어_관련자료/01_오징어_시장·가격/07_지속가능성·IUU·노동/20260220-SPRFMO-Final_Compliance_Report_2024-2025.md",
-          "text": "13 non-VMS issues of potential non-compliance with provisions of 7 CMMs identified in the following table."
+          "text": "Reporting period to which this report refers: 2024/25 (01 October 2024 – 30 September 2025) Report Date: 02 March 2026 Summary: This report summarises the results of the compliance assessment pertaining to 28 VMS events and 13 non-VMS issues of potential non-compliance with provisions of 7 CMMs identified in the following table. No compliance issues were identified in relation to the other CMMs.",
+          "text_ko": "이 보고서의 보고기간: 2024/25(2024년 시월 01일~2025년 구월 30일). 보고일: 2026년 삼월 02일. 요약: 이 보고서는 다음 표에서 확인된 7개 보존관리조치(CMM) 조항과 관련해 잠재적 비준수 사안인 선박감시시스템(VMS) 사건 28건 및 비VMS 사안 13건에 대한 준수평가 결과를 요약한다. 다른 CMM과 관련해서는 준수 문제가 확인되지 않았다."
         },
         {
           "kind": "source_excerpt",
           "source_path": "00_오징어_관련자료/01_오징어_시장·가격/07_지속가능성·IUU·노동/20260220-SPRFMO-Final_Compliance_Report_2024-2025.md",
-          "text": "Table 7: CMM 18-2025 (Jumbo Flying Squid)"
+          "text": "CMMs with Potential Compliance Issues Identified CMM Short Title # of Issues Table # CMM 01-2025 Trachurus murphyi 1 1 CMM 02-2025 Data Standards 4 2 CMM 05-2023 Record of Vessels 1 3 CMM 06-2023 Commission VMS 28 4 CMM 07-2025 Port Inspection 2 5 CMM 12-2023 Transhipment and Transfers 4 6 CMM 18-2025 Jumbo Flying Squid 1 7",
+          "text_ko": "잠재적 준수 문제가 확인된 보존관리조치(CMM). CMM / 약칭 / 사안 수 / 표 번호. CMM 01-2025 칠레전갱이(Trachurus murphyi) 1 1. CMM 02-2025 자료표준(Data Standards) 4 2. CMM 05-2023 선박등록부(Record of Vessels) 1 3. CMM 06-2023 위원회 선박감시시스템(Commission VMS) 28 4. CMM 07-2025 항만검사(Port Inspection) 2 5. CMM 12-2023 전재 및 이전(Transhipment and Transfers) 4 6. CMM 18-2025 페루대왕오징어(Dosidicus gigas; Jumbo Flying Squid) 1 7."
         },
         {
           "kind": "source_excerpt",
           "source_path": "00_오징어_관련자료/01_오징어_시장·가격/07_지속가능성·IUU·노동/20260220-SPRFMO-Final_Compliance_Report_2024-2025.md",
-          "text": "Compliance 2024/25 Assessments - Potential Compliance Issues for CMM 18-2025 (Jumbo Flying Squid) Compliance"
+          "text": "In accordance with CMM10-2020 Paragraph 16 the Final Compliance Report shall include: a) a compliance status for each Member and CNCP with respect to the implementation of their obligations under the Convention and CMMs, and recommendations for any corrective action needed, based on compliance issues identified with respect to that Member or CNCP; b) suggestions for possible amendments or improvements to existing CMMs to address implementation or compliance difficulties experienced by Members and CNCPs; c) obstacles to implementation identified by Members and CNCPs including capacity building requirements; d) additional obligations that should be reviewed under the CMS; e) any other action the Commission shall deem appropriate to address non-compliance noted in the Final Compliance Report or to promote compliance with the Convention, CMMs and other obligations reviewed in the CMS.",
+          "text_ko": "보존관리조치(CMM) 10-2020 제16항에 따라 최종 준수보고서(Final Compliance Report)는 다음을 포함해야 한다. a) 협약 및 CMM에 따른 의무 이행과 관련한 각 회원국 및 협력 비체약 당사자(CNCP)의 준수 상태와, 해당 회원국 또는 CNCP에서 확인된 준수 문제를 바탕으로 필요한 시정조치에 관한 권고. b) 회원국 및 CNCP가 겪는 이행 또는 준수상의 어려움을 해소하기 위해 기존 CMM을 개정하거나 개선할 수 있는 방안. c) 역량강화 요건을 포함해 회원국 및 CNCP가 확인한 이행 장애요인. d) 준수모니터링제도(CMS)에서 검토해야 할 추가 의무. e) 최종 준수보고서에 기재된 비준수에 대응하거나 협약, CMM 및 CMS에서 검토한 기타 의무의 준수를 촉진하기 위해 위원회(Commission)가 적절하다고 판단하는 그 밖의 조치."
         },
         {
           "kind": "source_excerpt",
           "source_path": "00_오징어_관련자료/01_오징어_시장·가격/07_지속가능성·IUU·노동/20260220-SPRFMO-Final_Compliance_Report_2024-2025.md",
-          "text": "CMMs with Potential Compliance Issues Identified CMM Short Title # of Issues Table # CMM 01-2025 Trachurus murphyi 1 1 CMM 02-2025 Data Standards 4 2 CMM 05-2023 Record of Vessels 1 3 CMM 06-2023 Commission VMS 28 4 CMM 07-2025 Port Inspection 2 5 CMM 12-2023 Transhipment and Transfers 4 6 CMM 18-2025 Jumbo Flying Squid 1 7"
+          "text": "SPRFMO Record of Vessel information indicates the 25 fishing vessels involved were owned by 3 companies as follows: Fujian Pingtan County Ocean Fishery Group Co Ltd (15 vessels): - FU YUAN YU 7601/7604/7606/7611/7612/7613/7614/7615/7616/7617/7618/7619/7882/7883/7887 Fujian Juchangtai Fishery Group Co Ltd (8 vessels): - FU YUAN YU 7641/7642/7643/7646/7703/7704/7711/7713 Fuzhou Hong Long Ocean Fishing Co Ltd (2 vessels): - FU YUAN YU 7888/7889 Non-Compliant, China Compliant Comment by Member/CNCP: No Further The People’s Republic of China maintains a consistent and firm commitment to compliance with all SPRFMO Conservation Action and Management Measures.",
+          "text_ko": "남태평양지역수산관리기구(SPRFMO) 선박등록부 정보에 따르면 관련 어선 25척은 다음 3개 회사가 소유했다. 푸젠 핑탄현 해양어업그룹 유한회사(Fujian Pingtan County Ocean Fishery Group Co Ltd, 선박 15척): 푸위안위(FU YUAN YU) 7601/7604/7606/7611/7612/7613/7614/7615/7616/7617/7618/7619/7882/7883/7887. 푸젠 쥐창타이 수산그룹 유한회사(Fujian Juchangtai Fishery Group Co Ltd, 선박 8척): 푸위안위(FU YUAN YU) 7641/7642/7643/7646/7703/7704/7711/7713. 푸저우 훙룽 원양어업 유한회사(Fuzhou Hong Long Ocean Fishing Co Ltd, 선박 2척): 푸위안위(FU YUAN YU) 7888/7889. 회원국/협력 비체약 당사자(CNCP): 중국. 이전 준수 상태: 준수(Compliant). 현재 준수 상태: 비준수(Non-Compliant), 추가 조치 없음(No Further Action). 회원국/CNCP 의견: 중화인민공화국(People’s Republic of China)은 모든 남태평양지역수산관리기구(SPRFMO) 보존관리조치(Conservation and Management Measures)를 준수하겠다는 일관되고 확고한 의지를 유지한다."
         },
         {
           "kind": "source_excerpt",
           "source_path": "00_오징어_관련자료/01_오징어_시장·가격/07_지속가능성·IUU·노동/20260220-SPRFMO-Final_Compliance_Report_2024-2025.md",
-          "text": "Secretariat Assessment: (Paragraph 9 – Late Submission of Transhipment Data) Non-Compliant, There is a potential compliance issue identified in respect to the late submission of the Transhipment Operational Details Korea Compliant No Further related to the 22 January 2025 squid transhipment from the Korean flagged vessel No.5 DONG IL. The established deadline Action for submitting 1st quarter Transhipment operational details pertaining to Jumbo Flying Squid was 20 April 2025 and the information was submitted on 08 May 2025."
+          "text": "Secretariat Assessment: (Paragraph 9 – Late Submission of Transhipment Data) Non-Compliant, There is a potential compliance issue identified in respect to the late submission of the Transhipment Operational Details Korea Compliant No Further related to the 22 January 2025 squid transhipment from the Korean flagged vessel No.5 DONG IL. The established deadline Action for submitting 1st quarter Transhipment operational details pertaining to Jumbo Flying Squid was 20 April 2025 and the information was submitted on 08 May 2025.",
+          "text_ko": "사무국 평가: (제9항 – 전재자료 지연 제출) 비준수(Non-Compliant). 대한민국 기국 선박 제5 동일보(No.5 DONG IL)가 2025년 1월 22일 수행한 오징어 전재와 관련해 전재작업 세부자료를 늦게 제출한 잠재적 준수 문제가 확인됐다. 상태 표기는 대한민국 준수, 추가 조치 없음(Korea Compliant No Further Action)이다. 페루대왕오징어(Dosidicus gigas; Jumbo Flying Squid) 관련 1분기 전재작업 세부자료의 정해진 제출기한은 2025년 사월 20일이었고, 정보는 2025년 오월 08일 제출됐다."
         },
         {
           "kind": "source_excerpt",
           "source_path": "00_오징어_관련자료/01_오징어_시장·가격/07_지속가능성·IUU·노동/20260220-SPRFMO-Final_Compliance_Report_2024-2025.md",
-          "text": "Comment by Member/CNCP: As soon as we became aware of the incident during an inspection conducted at Busan port, we informed the flag State (Panama) of the carrier vessel concerned (KANO REEFER) and the Secretariat of the case. As for the fishing vessel (No.5 Non-Compliant, Korea Compliant DONG IL), we first kept the catch under custody upon unloading and released it afterwards as we concluded that the fishing Further Action vessel/operator did not have any intention to misreport or hide certain information on purpose, based on the fact that the vessel operator did report to Korean FMC in accordance with Korea’s relevant national regulation."
+          "text": "Comment by Member/CNCP: As soon as we became aware of the incident during an inspection conducted at Busan port, we informed the flag State (Panama) of the carrier vessel concerned (KANO REEFER) and the Secretariat of the case. As for the fishing vessel (No.5 Non-Compliant, Korea Compliant DONG IL), we first kept the catch under custody upon unloading and released it afterwards as we concluded that the fishing Further Action vessel/operator did not have any intention to misreport or hide certain information on purpose, based on the fact that the vessel operator did report to Korean FMC in accordance with Korea’s relevant national regulation.",
+          "text_ko": "회원국/CNCP 의견: 부산항에서 수행한 검사 중 이 사건을 인지하자마자 관련 운반선 카노 리퍼(KANO REEFER)호의 기국인 파나마와 사무국에 사건을 알렸다. 어선 제5 동일보(No.5 DONG IL)의 경우 양륙 시 어획물을 우선 보관했다가 나중에 풀어줬다. 선박 운영자가 대한민국의 관련 국내규정에 따라 한국 어업감시센터(FMC)에 보고했다는 사실에 근거해 어선 또는 운영자에게 특정 정보를 고의로 오보고하거나 숨길 의도가 없었다고 결론 내렸기 때문이다. 상태 표기는 비준수, 대한민국 준수, 추가 조치(Non-Compliant, Korea Compliant, Further Action)이다."
         },
         {
           "kind": "source_excerpt",
           "source_path": "00_오징어_관련자료/01_오징어_시장·가격/07_지속가능성·IUU·노동/20260220-SPRFMO-Final_Compliance_Report_2024-2025.md",
-          "text": "Comment by Member/CNCP: Further to the Secretariat’s assessment regarding the at-sea transshipment conducted on 22 January 2025 by the carrier vessel KANO REEFER, Panama informs that, upon receipt of the information arising from the landing inspection carried out by the competent authorities of the Republic of Korea, the Aquatic Resources Authority of Panama (ARAP) proceeded to initiate the corresponding administrative sanctioning proceedings. Following the verification that the transshipment of Non-Compliant, Panama Compliant SPRFMO-regulated resources was conducted after the expiration of the vessel’s authorization on the SPRFMO Record of No Further Vessels on 08 December 2024, the case was processed in accordance with the applicable national legal framework. All Action procedural stages of the administrative process have now been duly completed."
+          "text": "Comment by Member/CNCP: Further to the Secretariat’s assessment regarding the at-sea transshipment conducted on 22 January 2025 by the carrier vessel KANO REEFER, Panama informs that, upon receipt of the information arising from the landing inspection carried out by the competent authorities of the Republic of Korea, the Aquatic Resources Authority of Panama (ARAP) proceeded to initiate the corresponding administrative sanctioning proceedings. Following the verification that the transshipment of Non-Compliant, Panama Compliant SPRFMO-regulated resources was conducted after the expiration of the vessel’s authorization on the SPRFMO Record of No Further Vessels on 08 December 2024, the case was processed in accordance with the applicable national legal framework. All Action procedural stages of the administrative process have now been duly completed.",
+          "text_ko": "회원국/CNCP 의견: 운반선 카노 리퍼(KANO REEFER)호가 2025년 일월 22일 수행한 해상 전재에 대한 사무국 평가와 관련해 파나마는 대한민국 관할기관이 수행한 양륙검사에서 나온 정보를 받은 뒤 파나마 수산자원청(Aquatic Resources Authority of Panama, ARAP)이 해당 행정제재 절차를 개시했다고 알린다. 남태평양지역수산관리기구(SPRFMO) 선박등록부(Record of Vessels)에 기재된 선박의 허가가 2024년 십이월 08일 만료된 뒤 SPRFMO 관리자원의 전재가 수행됐음을 확인한 후, 해당 사건은 적용 가능한 국내 법체계에 따라 처리됐다. 상태 표기는 비준수, 파나마 준수, 추가 조치 없음(Non-Compliant, Panama Compliant, No Further Action)이다. 행정절차의 모든 단계는 이제 적법하게 완료됐다."
         },
         {
           "kind": "source_excerpt",
           "source_path": "00_오징어_관련자료/01_오징어_시장·가격/07_지속가능성·IUU·노동/20260220-SPRFMO-Final_Compliance_Report_2024-2025.md",
-          "text": "Table 9: Prior Year - Summary of “Non-Compliance” (Final Compliance Reports) PRIOR YEARS – NON_COMPLIANT SUMMARY FROM FINAL CMS Assessed 01- 02- 03- 03a- 04- 05- 06- 07- 08- 09- 10- 11- 12- 13- 14a- 14b- 14c- 14d- 14e- 15- 16- 17- 18- 19- CMM 2022 2022 2022 2021 2020 2022 2020 2022 2019 2017 2020 2015 2020 2021 2022 2022 2019 2020 2021 2016 2022 2022 2020 2021 2025 3 3 0 0 0 4 9 0 0 0 1 3 0 0 0 0 0 0 0 0 0 0 0 0 2024 2 3 1 0 0 3 11 0 0 0 2 0 2 n/c 0 1 - n/a 0 0 0 0 0 n/a 2023 1 8 0 1 0 2 10/8 1 0 0 2 0 1 0 0 0 - n/a 0 0 0 0 0 n/a 2022 0 1 0 0 0 5 0 1 0 0 4 0 1 1 0 n/a - n/a n/a 0 0 0 1 n/a 2021 0 8 0 0 0 3 1 0 0 1 7 0 0 0 0 0 0 n/a - 0 0 0 n/a n/a 2020 1 1 0 0 0 4 1 3 0 1 5 2 2 0 0 0 0 n/a - 0 0 2 n/a n/a 2019 3 2 0 n/a 3 6 4 0 0 0 7 0 4 0 n/a 0 n/a n/a - 0 n/a n/a n/a n/a 2018 5 4 2 n/a 0 4 0 3 0 1 4 0 2 1 n/a n/a n/a n/a - 0 n/a n/a n/a n/a 2017 4 4 0 n/a 0 8 n/a 4 0 2 5 0 6 n/a n/a n/a n/a n/a - 0 n/a n/a n/a n/a 2016 9 9 2 n/a 1 8 n/a 6 0 6 8 n/a n/a n/a n/a n/a n/a n/a - n/a n/a n/a n/a n/a"
+          "text": "Table 7: CMM 18-2025 (Jumbo Flying Squid) 2023/24 2024/25 Member/ Compliance 2024/25 Assessments - Potential Compliance Issues for CMM 18-2025 (Jumbo Flying Squid) Compliance CNCP Status Status",
+          "text_ko": "표 7: CMM 18-2025(페루대왕오징어(Dosidicus gigas; Jumbo Flying Squid)). 2023/24 2024/25 회원국/준수 2024/25 평가 - CMM 18-2025(페루대왕오징어)의 잠재적 준수 문제. 준수 CNCP 상태 상태."
+        },
+        {
+          "kind": "source_excerpt",
+          "source_path": "00_오징어_관련자료/01_오징어_시장·가격/07_지속가능성·IUU·노동/20260220-SPRFMO-Final_Compliance_Report_2024-2025.md",
+          "text": "The main reasons for failing to meet the 2% standard are as follows:  Firstly, the round-trip travel time between the port and fishing grounds for observers takes about 90 days, which reduces the time they actually working on fishing vessels;  Secondly, certain unforeseen incidents have resulted in lower observed fishing days—for instance, an observer developed a sudden illness and had to terminate the observation mission early, thus he only working on the Priority fishing vessel for one month; Non-Compliant China Compliant  Thirdly, uncertainties in estimating the next year’s total fishing days and the observer deployment process, such as the departure time of observers from the port and the transit time from carrier vessels to target fishing vessels after arriving at the fishing grounds, have led to deviations in the estimated number of deployed observers and their observation days.",
+          "text_ko": "2% 기준을 충족하지 못한 주된 이유는 다음과 같다.  첫째, 옵서버가 항만과 어장 사이를 왕복하는 데 약 90일이 걸려 실제 어선에서 근무하는 시간이 줄어든다.  둘째, 일부 예기치 못한 사건으로 관찰 대상 조업일수가 감소했다. 예를 들어 한 옵서버가 갑자기 병에 걸려 관찰 임무를 조기에 종료해야 했고, 그 결과 어선에서 한 달만 근무했다.  셋째, 다음 해 총 조업일수 추정과 옵서버 배치 과정의 불확실성, 예컨대 옵서버의 출항 시점과 어장 도착 후 운반선에서 대상 어선으로 이동하는 데 걸리는 시간 때문에 배치 옵서버 수와 관찰일수의 추정치에 편차가 발생했다. 회원국/협력 비체약 당사자(CNCP): 중국. 이전 준수 상태: 준수(Compliant). 현재 준수 상태: 우선순위 비준수(Priority Non-Compliant)."
+        },
+        {
+          "kind": "source_excerpt",
+          "source_path": "00_오징어_관련자료/01_오징어_시장·가격/07_지속가능성·IUU·노동/20260220-SPRFMO-Final_Compliance_Report_2024-2025.md",
+          "text": "Table 9: Prior Year - Summary of “Non-Compliance” (Final Compliance Reports) PRIOR YEARS – NON_COMPLIANT SUMMARY FROM FINAL CMS Assessed 01- 02- 03- 03a- 04- 05- 06- 07- 08- 09- 10- 11- 12- 13- 14a- 14b- 14c- 14d- 14e- 15- 16- 17- 18- 19- CMM 2022 2022 2022 2021 2020 2022 2020 2022 2019 2017 2020 2015 2020 2021 2022 2022 2019 2020 2021 2016 2022 2022 2020 2021 2025 3 3 0 0 0 4 9 0 0 0 1 3 0 0 0 0 0 0 0 0 0 0 0 0 2024 2 3 1 0 0 3 11 0 0 0 2 0 2 n/c 0 1 - n/a 0 0 0 0 0 n/a 2023 1 8 0 1 0 2 10/8 1 0 0 2 0 1 0 0 0 - n/a 0 0 0 0 0 n/a 2022 0 1 0 0 0 5 0 1 0 0 4 0 1 1 0 n/a - n/a n/a 0 0 0 1 n/a 2021 0 8 0 0 0 3 1 0 0 1 7 0 0 0 0 0 0 n/a - 0 0 0 n/a n/a 2020 1 1 0 0 0 4 1 3 0 1 5 2 2 0 0 0 0 n/a - 0 0 2 n/a n/a 2019 3 2 0 n/a 3 6 4 0 0 0 7 0 4 0 n/a 0 n/a n/a - 0 n/a n/a n/a n/a 2018 5 4 2 n/a 0 4 0 3 0 1 4 0 2 1 n/a n/a n/a n/a - 0 n/a n/a n/a n/a 2017 4 4 0 n/a 0 8 n/a 4 0 2 5 0 6 n/a n/a n/a n/a n/a - 0 n/a n/a n/a n/a 2016 9 9 2 n/a 1 8 n/a 6 0 6 8 n/a n/a n/a n/a n/a n/a n/a - n/a n/a n/a n/a n/a",
+          "text_ko": "표 9: 전년도 - ‘비준수’ 요약(최종 준수보고서). 전년도 – 최종 CMS의 비준수 요약. 평가대상 01- 02- 03- 03a- 04- 05- 06- 07- 08- 09- 10- 11- 12- 13- 14a- 14b- 14c- 14d- 14e- 15- 16- 17- 18- 19- CMM 2022 2022 2022 2021 2020 2022 2020 2022 2019 2017 2020 2015 2020 2021 2022 2022 2019 2020 2021 2016 2022 2022 2020 2021. 2025 3 3 0 0 0 4 9 0 0 0 1 3 0 0 0 0 0 0 0 0 0 0 0 0. 2024 2 3 1 0 0 3 11 0 0 0 2 0 2 n/c 0 1 - n/a 0 0 0 0 0 n/a. 2023 1 8 0 1 0 2 10/8 1 0 0 2 0 1 0 0 0 - n/a 0 0 0 0 0 n/a. 2022 0 1 0 0 0 5 0 1 0 0 4 0 1 1 0 n/a - n/a n/a 0 0 0 1 n/a. 2021 0 8 0 0 0 3 1 0 0 1 7 0 0 0 0 0 0 n/a - 0 0 0 n/a n/a. 2020 1 1 0 0 0 4 1 3 0 1 5 2 2 0 0 0 0 n/a - 0 0 2 n/a n/a. 2019 3 2 0 n/a 3 6 4 0 0 0 7 0 4 0 n/a 0 n/a n/a - 0 n/a n/a n/a n/a. 2018 5 4 2 n/a 0 4 0 3 0 1 4 0 2 1 n/a n/a n/a n/a - 0 n/a n/a n/a n/a. 2017 4 4 0 n/a 0 8 n/a 4 0 2 5 0 6 n/a n/a n/a n/a n/a - 0 n/a n/a n/a n/a. 2016 9 9 2 n/a 1 8 n/a 6 0 6 8 n/a n/a n/a n/a n/a n/a n/a - n/a n/a n/a n/a n/a."
         }
       ],
       "methodology": "위젯별 config 정규식으로 보관 Markdown/HTML의 원문 블록만 선택; 수치 보간·번역·요약 없음",
@@ -7302,72 +7345,86 @@
         {
           "kind": "source_excerpt",
           "source_path": "00_오징어_관련자료/01_오징어_시장·가격/07_지속가능성·IUU·노동/20260812-NOAA-Seafood_Import_Monitoring_Program.html",
-          "text": "Seafood Import Monitoring Program | NOAA Fisheries"
+          "text": "Seafood Import Monitoring Program | NOAA Fisheries",
+          "text_ko": "수산물 수입 모니터링 프로그램(Seafood Import Monitoring Program) | 미국 해양대기청 수산국(NOAA Fisheries)"
         },
         {
           "kind": "source_excerpt",
           "source_path": "00_오징어_관련자료/01_오징어_시장·가격/07_지속가능성·IUU·노동/20260812-NOAA-Seafood_Import_Monitoring_Program.html",
-          "text": "The Seafood Import Monitoring Program, a risk-based traceability program, requires importers to provide and report key data from the point of harvest to entry into U.S. commerce on 1,100+ unique species. SIMP covers nearly half of all U.S seafood imports."
+          "text": "The Seafood Import Monitoring Program, a risk-based traceability program, requires importers to provide and report key data from the point of harvest to entry into U.S. commerce on 1,100+ unique species. SIMP covers nearly half of all U.S seafood imports.",
+          "text_ko": "위험 기반 추적성 제도인 수산물 수입 모니터링 프로그램(Seafood Import Monitoring Program, SIMP)은 1,100+개의 고유 어종에 대해 어획 시점부터 미국 상거래 진입 시점까지의 핵심 자료를 수입자가 제공하고 보고하도록 요구한다. SIMP는 미국 전체 수산물 수입의 거의 절반을 포괄한다."
         },
         {
           "kind": "source_excerpt",
           "source_path": "00_오징어_관련자료/01_오징어_시장·가격/07_지속가능성·IUU·노동/20260812-NOAA-Seafood_Import_Monitoring_Program.html",
-          "text": "The Seafood Import Monitoring Program establishes reporting and recordkeeping requirements for imports of thirteen seafood species groups, to combat illegal, unreported, and unregulated-caught and/or misrepresented seafood from entering U.S. commerce. SIMP provides additional protections for our national economy, global food security, and the sustainability of our shared ocean resources."
+          "text": "The Seafood Import Monitoring Program establishes reporting and recordkeeping requirements for imports of thirteen seafood species groups, to combat illegal, unreported, and unregulated-caught and/or misrepresented seafood from entering U.S. commerce. SIMP provides additional protections for our national economy, global food security, and the sustainability of our shared ocean resources.",
+          "text_ko": "수산물 수입 모니터링 프로그램(Seafood Import Monitoring Program, SIMP)은 불법·비보고·비규제 어획 수산물 및 부정표시 수산물이 미국 상거래에 진입하는 것을 막기 위해 열세 개 수산물 어종군 수입에 관한 보고 및 기록보관 요건을 정한다. SIMP는 미국 국가경제, 세계 식량안보, 공동 해양자원의 지속가능성을 추가로 보호한다."
         },
         {
           "kind": "source_excerpt",
           "source_path": "00_오징어_관련자료/01_오징어_시장·가격/07_지속가능성·IUU·노동/20260812-NOAA-Seafood_Import_Monitoring_Program.html",
-          "text": "Tuna (Albacore, Bigeye, Skipjack, Yellowfin, Bluefin)"
+          "text": "Tuna (Albacore, Bigeye, Skipjack, Yellowfin, Bluefin)",
+          "text_ko": "참치류(Tuna): 날개다랑어(Thunnus alalunga; Albacore), 눈다랑어(Thunnus obesus; Bigeye), 가다랑어(Katsuwonus pelamis; Skipjack), 황다랑어(Thunnus albacares; Yellowfin), 참다랑어류(Thunnus spp.; Bluefin)"
         },
         {
           "kind": "source_excerpt",
           "source_path": "00_오징어_관련자료/01_오징어_시장·가격/07_지속가능성·IUU·노동/20260812-NOAA-Seafood_Import_Monitoring_Program.html",
-          "text": "Updates on the Seafood Import Monitoring Program Comprehensive Review"
+          "text": "Updates on the Seafood Import Monitoring Program Comprehensive Review",
+          "text_ko": "수산물 수입 모니터링 프로그램(Seafood Import Monitoring Program) 종합검토 업데이트"
         },
         {
           "kind": "source_excerpt",
           "source_path": "00_오징어_관련자료/01_오징어_시장·가격/07_지속가능성·IUU·노동/20260812-NOAA-Seafood_Import_Monitoring_Program.html",
-          "text": "One of five videos in a 5-part series about the Seafood Import Monitoring Program. This video covers the aquaculture supply chains that include species that have been owned from spawning to harvest."
+          "text": "One of five videos in a 5-part series about the Seafood Import Monitoring Program. This video covers the aquaculture supply chains that include species that have been owned from spawning to harvest.",
+          "text_ko": "수산물 수입 모니터링 프로그램(Seafood Import Monitoring Program)에 관한 5부작 시리즈의 다섯 영상 중 한 편이다. 이 영상은 산란부터 어획까지 소유권 아래 있었던 어종을 포함하는 양식 공급망을 다룬다."
         },
         {
           "kind": "source_excerpt",
           "source_path": "00_오징어_관련자료/01_오징어_시장·가격/07_지속가능성·IUU·노동/20260812-NOAA-Seafood_Import_Monitoring_Program.html",
-          "text": "One of five videos in a 5-part series about the Seafood Import Monitoring Program that covers wild-capture supply chains, including species that are harvested in their natural environments."
+          "text": "One of five videos in a 5-part series about the Seafood Import Monitoring Program that covers wild-capture supply chains, including species that are harvested in their natural environments.",
+          "text_ko": "수산물 수입 모니터링 프로그램(Seafood Import Monitoring Program)에 관한 5부작 시리즈의 다섯 영상 중 한 편으로, 자연환경에서 어획되는 어종을 포함한 자연산 어획 공급망을 다룬다."
         },
         {
           "kind": "source_excerpt",
           "source_path": "00_오징어_관련자료/01_오징어_시장·가격/07_지속가능성·IUU·노동/20260812-NOAA-Seafood_Import_Monitoring_Program.html",
-          "text": "One of five videos in a 5-part Seafood Import Monitoring Program series covering wild capture, pen-matured harvest—or “ranching”—involves capturing live wild fish and transferring them to aquaculture for feeding and growth until re-harvest."
+          "text": "One of five videos in a 5-part Seafood Import Monitoring Program series covering wild capture, pen-matured harvest—or “ranching”—involves capturing live wild fish and transferring them to aquaculture for feeding and growth until re-harvest.",
+          "text_ko": "수산물 수입 모니터링 프로그램(Seafood Import Monitoring Program) 5부작 시리즈의 다섯 영상 중 한 편으로 자연산 어획을 다룬다. 축양 뒤 어획, 즉 ‘랜칭(ranching)’은 살아 있는 자연산 어류를 포획해 양식시설로 옮긴 뒤 다시 어획할 때까지 먹이를 주고 성장시키는 방식이다."
         },
         {
           "kind": "source_excerpt",
           "source_path": "00_오징어_관련자료/01_오징어_시장·가격/07_지속가능성·IUU·노동/20260812-NOAA-Seafood_Import_Monitoring_Program.html",
-          "text": "Model Catch Certificate for Seafood Import Monitoring Program"
+          "text": "Model Catch Certificate for Seafood Import Monitoring Program",
+          "text_ko": "수산물 수입 모니터링 프로그램(Seafood Import Monitoring Program) 표준 어획증명서(Model Catch Certificate)"
         },
         {
           "kind": "source_excerpt",
           "source_path": "00_오징어_관련자료/01_오징어_시장·가격/07_지속가능성·IUU·노동/20260812-NOAA-Seafood_Import_Monitoring_Program.html",
-          "text": "Model Aggregated Catch Certificate for Seafood Import Monitoring Program"
+          "text": "Model Aggregated Catch Certificate for Seafood Import Monitoring Program",
+          "text_ko": "수산물 수입 모니터링 프로그램(Seafood Import Monitoring Program) 표준 통합 어획증명서(Model Aggregated Catch Certificate)"
         },
         {
           "kind": "source_excerpt",
           "source_path": "00_오징어_관련자료/01_오징어_시장·가격/07_지속가능성·IUU·노동/20260812-NOAA-Seafood_Import_Monitoring_Program.html",
-          "text": "Compliance Guide for the Seafood Import Monitoring Program"
+          "text": "Compliance Guide for the Seafood Import Monitoring Program",
+          "text_ko": "수산물 수입 모니터링 프로그램(Seafood Import Monitoring Program) 준수 안내서(Compliance Guide)"
         },
         {
           "kind": "source_excerpt",
           "source_path": "00_오징어_관련자료/01_오징어_시장·가격/07_지속가능성·IUU·노동/20260812-NOAA-Seafood_Import_Monitoring_Program.html",
-          "text": "The Seafood Import Monitoring Program, or SIMP establishes the reporting and recordkeeping requirements needed to prevent illegal, unreported, and…"
+          "text": "The Seafood Import Monitoring Program, or SIMP establishes the reporting and recordkeeping requirements needed to prevent illegal, unreported, and…",
+          "text_ko": "수산물 수입 모니터링 프로그램(Seafood Import Monitoring Program), 즉 SIMP는 불법·비보고·비규제 어획 수산물이 진입하는 것을 막는 데 필요한 보고 및 기록보관 요건을 설정하며…"
         },
         {
           "kind": "source_excerpt",
           "source_path": "00_오징어_관련자료/01_오징어_시장·가격/07_지속가능성·IUU·노동/20260812-NOAA-Seafood_Import_Monitoring_Program.html",
-          "text": "Guide to Audit Requirements for the Seafood Import Monitoring Program"
+          "text": "Guide to Audit Requirements for the Seafood Import Monitoring Program",
+          "text_ko": "수산물 수입 모니터링 프로그램(Seafood Import Monitoring Program) 감사요건 안내서(Guide to Audit Requirements)"
         },
         {
           "kind": "source_excerpt",
           "source_path": "00_오징어_관련자료/01_오징어_시장·가격/07_지속가능성·IUU·노동/20260812-NOAA-Seafood_Import_Monitoring_Program.html",
-          "text": "The purpose of a SIMP audit is to verify the harvest and landing information provided in an entry filing as well as the sufficiency of chain of…"
+          "text": "The purpose of a SIMP audit is to verify the harvest and landing information provided in an entry filing as well as the sufficiency of chain of…",
+          "text_ko": "수산물 수입 모니터링 프로그램(SIMP) 감사의 목적은 수입신고에 제공된 어획 및 양륙 정보와 관리 연속성의 충분성을 검증하는 것이며…"
         }
       ],
       "methodology": "위젯별 config 정규식으로 보관 Markdown/HTML의 원문 블록만 선택; 수치 보간·번역·요약 없음",
@@ -7416,72 +7473,86 @@
         {
           "kind": "source_excerpt",
           "source_path": "00_오징어_관련자료/01_오징어_시장·가격/07_지속가능성·IUU·노동/20260604-EJF-Global_Squid_Report_2026.md",
-          "text": "Flying Squid FL - Forced Labour SEP - Southeast Pacific Ocean"
+          "text": "2 Contents Executive summary 4 Key findings 6 Introduction 7 The rising popularity of squid 9 China’s role in the global squid market 12 Boom and bust cycles 15 Governance vacuums in global squid fisheries 16 Cause for concern across three of the world’s most important squid fisheries 18 The current DWF regulatory landscape 20 Flag state regulations 20 RFMO governance gaps in the SEP and NWIO 25 Key incoming global treaties and their potential impacts 29 Findings 31 Size, dynamics and operating model of the three fisheries 31 Prevalence of destructive fishing practices across the three squid fisheries 37 Prevalence of human rights abuses across the three squid fisheries - An industry built on exploitation 48 Prevalence of fisheries and labour abuses across the three flag states 52 An opportunity for multilateral coordination 58 Market analysis, where does this squid all go? 59 How squid enters the global seafood supply chain 59 How high-risk products reach major consumer markets 63 Import controls are hindered by structural weaknesses 65 Conclusion 66 Recommendations 68",
+          "text_ko": "2 목차. 요약 4. 핵심 조사 결과 6. 서론 7. 오징어 인기 상승 9. 세계 오징어 시장에서 중국의 역할 12. 호황과 불황의 순환 15. 세계 오징어 어업의 거버넌스 공백 16. 세계에서 가장 중요한 오징어 어업 세 곳 전반의 우려 사유 18. 현행 원양어업(DWF) 규제 지형 20. 기국 규정 20. 남동태평양(SEP)과 북서인도양(NWIO)의 지역수산관리기구(RFMO) 거버넌스 공백 25. 곧 발효될 주요 국제조약과 잠재적 영향 29. 조사 결과 31. 세 어업의 규모·동향·운영모형 31. 세 오징어 어업 전반에 파괴적 어업관행이 만연한 정도 37. 세 오징어 어업 전반에 인권침해가 만연한 정도 - 착취 위에 세워진 산업 48. 세 기국 전반에 수산·노동 침해가 만연한 정도 52. 다자간 공조의 기회 58. 시장 분석, 이 오징어는 모두 어디로 가는가? 59. 오징어가 세계 수산물 공급망에 들어오는 방식 59. 고위험 제품이 주요 소비시장에 도달하는 방식 63. 구조적 취약성에 가로막힌 수입통제 65. 결론 66. 권고 68."
         },
         {
           "kind": "source_excerpt",
           "source_path": "00_오징어_관련자료/01_오징어_시장·가격/07_지속가능성·IUU·노동/20260604-EJF-Global_Squid_Report_2026.md",
-          "text": "make up approximately 60% of the global supply. were flagged to China."
+          "text": "were flagged to China. 70% of these vessels whether a vessel was at sea for less than six months were flagged to China, 16% to Taiwan, and 14% to or if it was at sea for 13-24 months. ● \u0007Fishers working on China’s fleet described abuses that were consistently worse than on South ● \u0007Fishing trip length had the strongest relationship Korean or Taiwanese-flagged vessels.",
+          "text_ko": "중국 기국이었다. 이 선박 가운데 70%는 중국, 16%는 대만, 14%는 대한민국 기국이었다.\n선박의 해상 체류 기간이 육 개월 미만인지 또는 13~24개월인지에 따라.\n● 중국 선단에서 일한 어업인들은 대한민국 또는 대만 기국 선박에서보다 일관되게 더 심각한 학대를 설명했다.\n● 조업 항차 기간은 가장 강한 관련성을 보였으며"
         },
         {
           "kind": "source_excerpt",
           "source_path": "00_오징어_관련자료/01_오징어_시장·가격/07_지속가능성·IUU·노동/20260604-EJF-Global_Squid_Report_2026.md",
-          "text": "were flagged to China, 16% to Taiwan, and 14% to or if it was at sea for 13-24 months. The capture of"
+          "text": "● \u0007The presence of forced labour forms a baseline for employment on DWF squid vessels, with 152 Chinese vessels (87% of our sample) having between 8 and 12 indicators of forced labour onboard.",
+          "text_ko": "● 강제노동의 존재는 원양 오징어선 고용의 기본 조건을 이룬다. 조사 표본의 87%인 중국 선박 152척에서 선내 강제노동 지표가 8개에서 12개 사이로 나타났다."
         },
         {
           "kind": "source_excerpt",
           "source_path": "00_오징어_관련자료/01_오징어_시장·가격/07_지속가능성·IUU·노동/20260604-EJF-Global_Squid_Report_2026.md",
-          "text": "Korean or Taiwanese-flagged vessels. 60% of with the prevalence of labour abuses. Fishers who"
+          "text": "The proportion of reported squid landings to the FAO classified as “not elsewhere included” has increased from 25% in 2002 to 33% in 2023.18",
+          "text_ko": "유엔식량농업기구(FAO)에 ‘달리 포함되지 않음’으로 분류돼 보고된 오징어 양륙량 비중은 2002년 25%에서 이천이십삼 년 33%로 증가했다(원문의 연도·각주 결합 표기: 2023.18)."
         },
         {
           "kind": "source_excerpt",
           "source_path": "00_오징어_관련자료/01_오징어_시장·가격/07_지속가능성·IUU·노동/20260604-EJF-Global_Squid_Report_2026.md",
-          "text": "The proportion of reported squid landings to the FAO classified as “not elsewhere included”"
+          "text": "10 Table 1: Ten species categories made up 98.6% of all reported squid landings in 2023. Highlighted in green are the three species, DWF fleets and fisheries that EJF's investigation focuses on: jumbo squid (SEP), Argentine shortfin squid (SWA) and various squids NEI in the Western Indian Ocean (NWIO). The DWF fleets EJF investigates operate across these three fisheries alongside coastal-state fleets, which account for a substantial share of the remainder. Aggregating the catches of all flag states operating in each, the SEP, SWA and NWIO together account for approximately 60% of all reported global squid landings.",
+          "text_ko": "10 표 1: 2023년에 보고된 전체 오징어 양륙량의 98.6%를 10개 어종 범주가 차지했다. 환경정의재단(EJF)의 조사가 초점을 맞춘 세 어종·원양어업(DWF) 선단·어업은 녹색으로 표시했다. 페루대왕오징어(Dosidicus gigas, 남동태평양(SEP)), 아르헨티나오징어(Illex argentinus, 남서대서양(SWA)), 북서인도양(NWIO)의 기타 오징어류(NEI)이다. EJF가 조사한 DWF 선단은 이 세 어업에서 연안국 선단과 함께 조업하며, 연안국 선단이 나머지의 상당 부분을 차지한다. 각 어업에서 조업하는 모든 기국의 어획량을 합치면 SEP·SWA·NWIO는 세계에서 보고된 오징어 양륙량의 약 60%를 차지한다."
         },
         {
           "kind": "source_excerpt",
           "source_path": "00_오징어_관련자료/01_오징어_시장·가격/07_지속가능성·IUU·노동/20260604-EJF-Global_Squid_Report_2026.md",
-          "text": "Table 1: Ten species categories made up 98.6% of all reported squid landings in 2023. Highlighted in green are"
+          "text": "Top 10 most signiﬁcant ﬂag States for reported squid landings by tonnage (2023) Falkland Islands (Malvinas) Thailand 3% 3% Russian Federation 4%",
+          "text_ko": "보고된 오징어 양륙량을 톤수로 집계한 상위 10개 주요 기국(2023). 포클랜드 제도(말비나스)(Falkland Islands (Malvinas)) 3%. 태국 3%. 러시아연방 4%."
         },
         {
           "kind": "source_excerpt",
           "source_path": "00_오징어_관련자료/01_오징어_시장·가격/07_지속가능성·IUU·노동/20260604-EJF-Global_Squid_Report_2026.md",
-          "text": "Top 10 most signiﬁcant ﬂag States for reported squid landings by tonnage (2023)"
+          "text": "Figure 2: Top 10 most significant flag States for reported squid landings by tonnage (2023)",
+          "text_ko": "그림 2: 보고된 오징어 양륙량을 톤수로 집계한 상위 10개 주요 기국(2023)"
         },
         {
           "kind": "source_excerpt",
           "source_path": "00_오징어_관련자료/01_오징어_시장·가격/07_지속가능성·IUU·노동/20260604-EJF-Global_Squid_Report_2026.md",
-          "text": "Figure 2: Top 10 most significant flag States for reported squid landings by tonnage (2023)"
+          "text": "17 Cause for concern across three of The world's three most commercially significant squid fisheries — the NWIO, SWA and SEP — are the world’s most important squid each grappling with a distinct set of challenges as fisheries industrial fishing operations have expanded rapidly while regulation has failed to keep pace. EJF's recent investigations have additionally documented persistent forced labour, destructive fishing practices and deliberate opacity across all three. Argentine shortfin squid made up approximately 77% of all seafood species Southwest Atlantic: A FAO paper published in the run-up to a FAO Committee on Fisheries (COFI) (by tonnage) caught through unregulated Subcommittee meeting in Reykjavik, Iceland in fishing between 2014 and 2023.76 February 2026 found the Argentine shortfin squid (contributing 16% of the world’s squid catches) to be by far the most fished seafood species “outside the competence of an RFMO or arrangement” - otherwise known as unregulated fishing.77 The main FAO fishing area for the species - FAO 41 - is also highly significant, contributing 94.6% of estimated unregulated global",
+          "text_ko": "17 세계에서 가장 중요한 오징어 어업 세 곳 전반의 우려 사유. 세계에서 상업적으로 가장 중요한 오징어 어업 세 곳인 북서인도양(NWIO), 남서대서양(SWA), 남동태평양(SEP)은 산업적 어업 활동이 빠르게 확대되는 동안 규제가 그 속도를 따라가지 못해 각각 서로 다른 과제에 직면해 있다. 환경정의재단(EJF)의 최근 조사에서는 세 곳 모두에서 지속적인 강제노동, 파괴적 어업관행, 의도적인 불투명성도 기록했다. 아르헨티나오징어(Illex argentinus)는 2014년부터 2023.76까지 비규제 어업으로 잡힌 모든 수산물 종 가운데 중량 기준 약 77%를 차지했다. 남서대서양: 2026년 이월 아이슬란드 레이캬비크에서 열린 유엔식량농업기구(FAO) 수산위원회(COFI) 소위원회 회의를 앞두고 발행된 FAO 논문은 세계 오징어 어획량의 16%를 차지하는 아르헨티나오징어가 ‘지역수산관리기구 또는 협정의 권한 밖’, 즉 비규제 어업에서 단연 가장 많이 어획된 수산물 종이라고 밝혔다.77 이 종의 주요 FAO 어업구역인 FAO 41도 매우 중요하며, 추정된 세계 비규제(estimated unregulated global)의 94.6%"
         },
         {
           "kind": "source_excerpt",
           "source_path": "00_오징어_관련자료/01_오징어_시장·가격/07_지속가능성·IUU·노동/20260604-EJF-Global_Squid_Report_2026.md",
-          "text": "most commercially significant DWF squid fisheries were flagged to China, 16% to Taiwan and 14% to"
+          "text": "\"developing deep-sea aquaculture and modern distant- water fisheries\" within a dedicated marine economy In July 2024, Taiwan's Ministry of Agriculture released chapter.115 However, neither the publicly released a four-year plan to eliminate IUU fishing, centred on Plan outline nor MARA's February 2026 fisheries increasing monitoring capacity and strengthening work deployment meeting names squid specifically, traceability for key species including squid.121 In July and neither contains numerical effort caps, subsidy 2025, the Taiwanese government also endorsed the phase-outs, or quantified IUU-fishing reduction Global Charter for Fisheries Transparency, signalling a targets for the DWF fleet.116 The 15th Plan is, on current willingness to engage with civil society on sustainable evidence, an enabling and continuity document rather fisheries reform.122 These are welcome steps, and than a reform document — leaving the substantive Taiwan's trajectory stands in contrast to China's pattern regulation of China's DWF squid fleet to the same of regulatory non-engagement.",
+          "text_ko": "전용 해양경제 장에서 ‘심해 양식과 현대적 원양어업 개발’.115 그러나 공개된 계획 개요와 중국 농업농촌부(MARA)의 2026년 이월 어업 업무 배치 회의 어느 쪽도 오징어를 구체적으로 언급하지 않으며, 어느 쪽에도 원양어업(DWF) 선단의 수치화된 어획노력 상한, 보조금 단계적 폐지 또는 정량화된 불법·비보고·비규제(IUU) 어업 감축 목표가 없다.116 현재 증거에 따르면 제15차 계획은 개혁 문서가 아니라 기반 조성 및 연속성 문서이며, 중국 원양 오징어선단의 실질적 규제를 동일한\n2024년 칠월 대만 농업부(Taiwan's Ministry of Agriculture)는 모니터링 역량 확대와 오징어를 포함한 주요 어종의 추적성 강화를 중심으로 하는 IUU 어업 근절 사 개년 계획을 발표했다.121 2025년 칠월 대만 정부는 세계 수산투명성 헌장(Global Charter for Fisheries Transparency)도 지지해 지속가능한 수산개혁에서 시민사회와 협력할 의지를 나타냈다.122 이는 환영할 조치이며, 대만의 행보는 중국의 규제 비관여 양상과 대조된다."
         },
         {
           "kind": "source_excerpt",
           "source_path": "00_오징어_관련자료/01_오징어_시장·가격/07_지속가능성·IUU·노동/20260604-EJF-Global_Squid_Report_2026.md",
-          "text": "China 25 deaths were identified across 20 vessels, all flagged to China"
+          "text": "“\u0007Fisher: There was another crew who was hit. EJF: Why did it happen? Fisher: Because of a big mistake. For example, when there were South Korea operates the world's fourth-largest DWF many fish that should be hauled, he made squid fleet by number of vessels, with 32 vessels a mistake by letting the fish go. EJF: He authorised across the Pacific and Atlantic high seas.125 intentionally released it? Fisher: Yes. So, he The nation’s Distant Water Fisheries Development Act could [get more] sleep.” mandates VMS installation on all vessels, oversees at-sea trans-shipments, and holds Korean nationals Interview with an Indonesian fisher working criminally liable for IUU fishing.126 Labour protections onboard a Taiwanese-flagged squid vessel fall under the Seafarers Act, which prohibits forced operating in the SWA, January 2023. labour and passport seizure.127",
+          "text_ko": "“어업인: 맞은 다른 선원이 있었다. 환경정의재단(EJF): 왜 그런 일이 일어났는가? 어업인: 큰 실수 때문이었다. 예를 들어 끌어올려야 할 어획물이 많았을 때 그가 어획물을 놓치는 실수를 했다. EJF: 그가 일부러 풀어주도록 승인했는가? 어업인: 그렇다. 그래서 그는 [더] 잘 수 있었다.” 대한민국은 선박 수 기준으로 세계에서 네 번째로 큰 원양 오징어선단을 운영하며, 태평양과 대서양 공해에 걸쳐 선박 32척을 보유한다.125 대한민국의 원양산업발전법(Distant Water Fisheries Development Act)은 모든 선박에 선박감시시스템(VMS) 설치를 의무화하고, 해상 전재를 감독하며, 대한민국 국민에게 불법·비보고·비규제(IUU) 어업의 형사책임을 묻는다.126 노동 보호는 강제노동과 여권 압수를 금지하는 선원법(Seafarers Act)의 적용을 받는다.127 남서대서양(SWA)에서 조업하는 대만 기국 오징어선에서 일한 인도네시아 어업인 면담, 2023년 일월."
         },
         {
           "kind": "source_excerpt",
           "source_path": "00_오징어_관련자료/01_오징어_시장·가격/07_지속가능성·IUU·노동/20260604-EJF-Global_Squid_Report_2026.md",
-          "text": "squid vessel operating in the NWIO, June 2025. IUU fishing practices may be actively switching off their AIS to prevent"
+          "text": "Given the detailed evidence and In the SEP, the SPRFMO has had a mandate over extensive datasets documenting both destructive the jumbo squid fishery since its entry into force fishing and human rights abuses in South Korea's in 2012, but as of May 2026, no fishing-effort DWF squid fleet, South Korea is obligated to take limits and no total allowable catches have been substantial further action.",
+          "text_ko": "상세한 증거와 대한민국 원양 오징어선단의 파괴적 어업 및 인권침해를 기록한 방대한 데이터세트를 고려할 때, 대한민국은 실질적인 추가 조치를 취할 의무가 있다.\n남동태평양(SEP)에서 남태평양지역수산관리기구(SPRFMO)는 2012년 발효 이후 페루대왕오징어(Dosidicus gigas) 어업에 대한 권한을 보유해 왔지만, 2026년 오월 현재 어획노력 제한도 총허용어획량도 설정된 바가"
         },
         {
           "kind": "source_excerpt",
           "source_path": "00_오징어_관련자료/01_오징어_시장·가격/07_지속가능성·IUU·노동/20260604-EJF-Global_Squid_Report_2026.md",
-          "text": "Table 9: Comparison of the three squid fisheries for prevalence of forced labour."
+          "text": "This report presents the first comparative, interview- All three fisheries are dominated by Chinese-flagged based analysis of conditions across three of the world's DWF vessels. 70% of the 249 vessels in our study most commercially significant DWF squid fisheries were flagged to China, 16% to Taiwan and 14% to — the SWA, SEP and NWIO. Earlier EJF investigations South Korea. Korean and Taiwanese operations were have examined the SWA and SEP fleets separately;176/177 concentrated almost entirely in the SWA.",
+          "text_ko": "이 보고서는 세계에서 상업적으로 가장 중요한 원양 오징어 어업 세 곳, 즉 남서대서양(SWA)·남동태평양(SEP)·북서인도양(NWIO)의 노동조건을 면담에 근거해 비교한 최초의 분석을 제시한다. 세 어업 모두 중국 기국 원양어선이 지배한다. 연구대상 선박 249척 가운데 70%는 중국, 16%는 대만, 14%는 대한민국 기국이었다. 환경정의재단(EJF)의 앞선 조사들은 SWA와 SEP 선단을 각각 검토했으며,176/177 대한민국과 대만의 조업은 거의 전부 SWA에 집중돼 있었다."
         },
         {
           "kind": "source_excerpt",
           "source_path": "00_오징어_관련자료/01_오징어_시장·가격/07_지속가능성·IUU·노동/20260604-EJF-Global_Squid_Report_2026.md",
-          "text": "Every vessel was flagged to China at the time that the Chinese, Taiwanese and Korean vessels"
+          "text": "Infringements by flag state China 25 deaths were identified across 20 vessels, all flagged to China",
+          "text_ko": "기국별 위반: 중국. 모두 중국 기국인 선박 20척에서 사망자 25명이 확인됐다."
         },
         {
           "kind": "source_excerpt",
           "source_path": "00_오징어_관련자료/01_오징어_시장·가격/07_지속가능성·IUU·노동/20260604-EJF-Global_Squid_Report_2026.md",
-          "text": "of DWF squid fleets. Operators with thin margins have to the prevalence of forced labour through exploitative"
+          "text": "47 Prevalence of human rights abuses across the three squid fisheries - An industry built on exploitation Interviewees reported an alarming consistency in labour are the operating baseline for employment on labour abuses onboard squid vessels across our DWF squid vessels rather than the exception. Forced study. Out of 431 interviewees the median number labour indicators have been analysed per individual of FL indicators was 9 out of 12 possible indicators. interviewee. This is because each fisher may experience This evidence indicates that conditions of forced different indicators of forced labour.",
+          "text_ko": "47 세 오징어 어업 전반에 인권침해가 만연한 정도 - 착취 위에 세워진 산업. 면담자들은 본 연구의 오징어선 전반에서 노동권 침해가 놀랄 만큼 일관되게 나타난다고 보고했다. 면담자 431명 가운데 강제노동 지표의 중앙값은 가능한 12개 지표 중 9개였다. 이 증거는 강제노동 조건이 예외가 아니라 원양 오징어선 고용의 기본 운영조건임을 나타낸다. 강제노동 지표는 면담자 개인별로 분석했다. 어업인마다 서로 다른 강제노동 지표를 경험할 수 있기 때문이다."
         }
       ],
       "methodology": "위젯별 config 정규식으로 보관 Markdown/HTML의 원문 블록만 선택; 수치 보간·번역·요약 없음",
@@ -7530,72 +7601,86 @@
         {
           "kind": "source_excerpt",
           "source_path": "00_오징어_관련자료/01_오징어_시장·가격/07_지속가능성·IUU·노동/20260500-US_DOL-Distant_Water_Fishing_Labor_Risk.md",
-          "text": "Assessing Forced Labor in the Distant Water Fishing Supply Chain"
+          "text": "Assessing Forced Labor in the Distant Water Fishing Supply Chain",
+          "text_ko": "원양어업(Distant Water Fishing) 공급망의 강제노동 평가"
         },
         {
           "kind": "source_excerpt",
           "source_path": "00_오징어_관련자료/01_오징어_시장·가격/07_지속가능성·IUU·노동/20260500-US_DOL-Distant_Water_Fishing_Labor_Risk.md",
-          "text": "Chain of custody: Documentation that tracks seafood products through each stage of the supply chain"
+          "text": "• Once seafood is landed, it is frequently consolidated, co-mingled, packaged, and sold for domestic consumption or exported, making it practically impossible to distinguish forced labor- linked catch from other product lots. • Traceability frequently degrades during processing through large industrial plants or hub ports, to the point that forced labor-linked catch cannot be distinguished from other product lots without robust vessel-level traceability and auditable chain-of-custody controls. • Current voluntary systems used to identify forced labor, such as the Seafood Slavery Risk Tool or the Conservation Alliance for Seafood Solutions Human Rights and Social Responsibility Policy, are insufficient to mitigate the risk of co-mingling of seafood catch in ports, cold storage, and processing facilities, and by traders, thereby increasing the risk of catch from a vessel with forced labor conditions tainting downstream supply chains.",
+          "text_ko": "• 수산물은 양륙된 뒤 자주 합쳐지고 혼합되며 포장된 다음 국내 소비용으로 판매되거나 수출되므로, 강제노동과 연계된 어획물을 다른 제품 로트와 구분하는 것이 사실상 불가능해진다. • 대형 산업공장이나 허브항을 거치는 가공 과정에서 추적성이 자주 약화되며, 견고한 선박 단위 추적성과 감사 가능한 관리 연속성 통제가 없으면 강제노동 연계 어획물을 다른 제품 로트와 구분할 수 없는 지경에 이른다. • 강제노동을 식별하는 데 현재 사용하는 자발적 체계인 수산물 노예노동 위험도구(Seafood Slavery Risk Tool)나 수산물 해법 보전연합(Conservation Alliance for Seafood Solutions)의 인권 및 사회적 책임 정책(Human Rights and Social Responsibility Policy)은 항만, 냉동창고, 가공시설 및 거래업자가 수산 어획물을 혼합하는 위험을 완화하기에 충분하지 않다. 이로 인해 강제노동 조건이 있는 선박의 어획물이 하류 공급망을 오염시킬 위험이 커진다."
         },
         {
           "kind": "source_excerpt",
           "source_path": "00_오징어_관련자료/01_오징어_시장·가격/07_지속가능성·IUU·노동/20260500-US_DOL-Distant_Water_Fishing_Labor_Risk.md",
-          "text": "custody is necessary to identify and exclude forced labor-linked products."
+          "text": "Legal Framework Versus Enforcement Reality The weakness in enforcement arises from insufficient institutional capacity and political commitment, rather than absence of legal authority: • Despite comprehensive statutory frameworks in China, Indonesia, and Taiwan prohibiting forced labor practices, systematic enforcement gaps persist across all examined jurisdictions. • Flag states decline at-sea inspections, despite clear legal authority under the United Nations Convention Law of the Sea Article 94. • Port states allocate inspection resources toward fisheries compliance rather than labor conditions. • Sending states put insufficient resources toward compliance mechanisms for fishing sector recruitment violations.",
+          "text_ko": "법적 체계와 집행 현실. 집행의 취약성은 법적 권한의 부재가 아니라 불충분한 제도 역량과 정치적 의지에서 비롯된다. • 중국·인도네시아·대만에는 강제노동 관행을 금지하는 포괄적 법률 체계가 있지만, 조사한 모든 관할권에서 체계적인 집행 공백이 지속된다. • 기국은 유엔해양법협약(United Nations Convention on the Law of the Sea) 제94조에 명확한 법적 권한이 있는데도 해상 검사를 거부한다. • 항만국은 검사 자원을 노동조건보다 수산규정 준수에 배정한다. • 송출국은 어업 부문 모집 위반에 대한 준수 장치에 충분한 자원을 투입하지 않는다."
         },
         {
           "kind": "source_excerpt",
           "source_path": "00_오징어_관련자료/01_오징어_시장·가격/07_지속가능성·IUU·노동/20260500-US_DOL-Distant_Water_Fishing_Labor_Risk.md",
-          "text": "makes it practically impossible to distinguish forced labor-linked catch from other products without"
+          "text": "1 In February 2026, the United States and Taiwan signed the U.S.–Taiwan Agreement on Reciprocal Trade, which includes labor-related commitments relevant to Taiwan’s commercial fishing sector, including improving protection of labor rights on commercial fishing vessels, addressing the charging of recruitment fees in certain sectors, prohibiting retention of workers’ identity documents, strengthening enforcement of labor laws, and prohibiting the importation of goods produced with forced labor. See Office of the U.S. Trade Representative, “Fact Sheet on U.S.-Taiwan Agreement on Reciprocal Trade” (Feb. 12, 2026). These labor provisions are expected to be implemented on a phased timeline and to go into effect over the next three to five years, illustrating one way a market state can exert leverage through trade negotiations to advance fishing labor standards.",
+          "text_ko": "1 2026년 이월, 미국과 대만은 미국-대만 상호무역협정(U.S.–Taiwan Agreement on Reciprocal Trade)에 서명했다. 이 협정에는 상업 어선의 노동권 보호 개선, 일부 부문의 모집수수료 부과 문제 해결, 노동자 신분증명서 보관 금지, 노동법 집행 강화, 강제노동으로 생산된 상품의 수입 금지 등 대만 상업어업 부문과 관련된 노동 약속이 포함된다. 미국 무역대표부(Office of the U.S. Trade Representative)의 ‘미국-대만 상호무역협정 팩트시트(Fact Sheet on U.S.-Taiwan Agreement on Reciprocal Trade)’(2026년 이월 12일)를 참조한다. 이 노동 조항들은 단계적 일정에 따라 시행돼 향후 세~다섯 해에 걸쳐 발효될 것으로 예상된다. 이는 시장국이 어업 노동기준을 발전시키기 위해 무역협상을 통해 영향력을 행사할 수 있는 한 방식을 보여준다."
         },
         {
           "kind": "source_excerpt",
           "source_path": "00_오징어_관련자료/01_오징어_시장·가격/07_지속가능성·IUU·노동/20260500-US_DOL-Distant_Water_Fishing_Labor_Risk.md",
-          "text": "forced labor, this includes risk assessment, supplier verification, and remediation measures."
+          "text": "This study employed a mixed-methods approach, integrating secondary data analysis, worker interviews, and key informant interviews (KIIs) to examine forced labor in the DWF sector and to conduct direct tracing to identify the vessel, captain, vessel owner, type of catch, national destination of sold catches, any downstream processing, and domestic consumption or export trends.",
+          "text_ko": "본 연구는 이차자료 분석, 노동자 면담, 핵심 정보제공자 면담(KIIs)을 통합한 혼합방법론을 사용해 원양어업(DWF) 부문의 강제노동을 조사했다. 또한 선박, 선장, 선박 소유자, 어획물 유형, 판매된 어획물의 도착 국가, 후속 가공 여부, 국내 소비 또는 수출 동향을 식별하기 위한 직접 추적을 수행했다."
         },
         {
           "kind": "source_excerpt",
           "source_path": "00_오징어_관련자료/01_오징어_시장·가격/07_지속가능성·IUU·노동/20260500-US_DOL-Distant_Water_Fishing_Labor_Risk.md",
-          "text": "Squid jigging vessels: Specialized fishing vessels that use automated jigging machines and bright lights"
+          "text": "These findings reveal that forced labor remains widespread among Indonesian crews. Payment delays, restrictions on movement and communication, hazardous work, and very long hours are common features of the work environment. Critically, 60% of workers said that they could not raise concerns about their conditions without fear of retaliation, underscoring the lack of safe reporting mechanisms. Yet, despite these risks, 85% reported that they plan to work on a foreign fishing vessel again, reflecting strong economic pressures and limited alternatives on shore. This combination of persistent coercion and continued willingness to return highlights the urgent need for reforms that reduce forced labor indicators and expand practical access to grievance mechanisms and onboard connectivity, so that future employment offers real improvements in safety and fairness.",
+          "text_ko": "이 조사 결과는 인도네시아 선원들 사이에 강제노동이 여전히 만연함을 보여준다. 임금 지급 지연, 이동과 통신의 제한, 위험한 노동, 매우 긴 노동시간이 작업환경의 일반적 특징이다. 특히 노동자의 60%는 보복을 두려워하지 않고는 자신의 노동조건에 대한 문제를 제기할 수 없다고 답해, 안전한 신고 장치가 부족함을 드러냈다. 그런데도 이러한 위험 속에서 85%는 외국 어선에서 다시 일할 계획이라고 답했으며, 이는 강한 경제적 압박과 육상에서의 제한된 대안을 반영한다. 지속되는 강압과 다시 일하려는 의사가 결합된 이 상황은 강제노동 지표를 줄이고 고충처리 장치 및 선상 통신연결에 대한 실질적 접근을 넓히는 개혁이 시급함을 보여준다. 그래야 향후 고용이 안전성과 공정성에서 실질적으로 개선될 수 있다."
         },
         {
           "kind": "source_excerpt",
           "source_path": "00_오징어_관련자료/01_오징어_시장·가격/07_지속가능성·IUU·노동/20260500-US_DOL-Distant_Water_Fishing_Labor_Risk.md",
-          "text": "This report investigates forced labor in the distant water fishing (DWF) supply chain, with a focus on"
+          "text": "Taken together, these discrepancies reinforce a central due diligence implication: flag state alone is a poor proxy for operational control or accountability, and tracing forced labor risk requires attention to the wider fleet “ecosystem” of captains, service ports, and commercial networks that enable distant water operations and connect catch to processing and export pathways. For supply chains, the key consequence is that chain of custody can be obscured before any landing occurs: catch may be moved off the catching vessel, consolidated with catch from other vessels, and then delivered onward under a different vessel identity and documentation.",
+          "text_ko": "이러한 불일치를 종합하면 실사의 핵심 함의가 더욱 분명해진다. 기국만으로는 운영 통제나 책임 소재를 제대로 가늠할 수 없으며, 강제노동 위험을 추적하려면 원양 조업을 가능하게 하고 어획물을 가공 및 수출 경로와 연결하는 선장, 서비스 항만, 상업 네트워크로 이뤄진 더 넓은 선단 ‘생태계’에 주의를 기울여야 한다. 공급망의 핵심 결과는 양륙이 이뤄지기 전부터 관리 연속성이 가려질 수 있다는 점이다. 어획물이 어획선에서 다른 곳으로 옮겨지고 다른 선박의 어획물과 합쳐진 뒤, 다른 선박의 신원과 서류를 내세워 다시 전달될 수 있다."
         },
         {
           "kind": "source_excerpt",
           "source_path": "00_오징어_관련자료/01_오징어_시장·가격/07_지속가능성·IUU·노동/20260500-US_DOL-Distant_Water_Fishing_Labor_Risk.md",
-          "text": "to the point that forced labor-linked catch cannot be distinguished from other product lots"
+          "text": "This section synthesizes these traced nodes with species-specific processing characteristics (Table 22) to identify where chain of custody most commonly degrades once product moves from vessels into cold storage, plants, and re-export networks.",
+          "text_ko": "이 절은 이렇게 추적한 거점과 어종별 가공 특성(표 22)을 종합해, 제품이 선박에서 냉동창고·공장·재수출 네트워크로 이동한 뒤 관리 연속성이 가장 흔히 약화되는 지점을 식별한다."
         },
         {
           "kind": "source_excerpt",
           "source_path": "00_오징어_관련자료/01_오징어_시장·가격/07_지속가능성·IUU·노동/20260500-US_DOL-Distant_Water_Fishing_Labor_Risk.md",
-          "text": "forced labor conditions tainting downstream supply chains."
+          "text": "Source: ICF Once seafood products are transferred from the vessel to land in cold storage, particularly when processed through large industrial plants or hub ports, traceability often deteriorates. Key informants emphasized that additional risk of co-mingling can occur inside processing plants and, in some contexts, within cold storage and consolidation nodes, particularly when buyers accept mass balance or aggregated traceability approaches. At this point, catch linked to forced labor cannot be distinguished from other product lots without robust vessel-level documentation and auditable chain-of-custody controls. This creates a central challenge: after landing, trade data alone cannot differentiate product origin. As a result, risk management must focus not only on vessels but also on suppliers, processors, and verified traceability systems. Current regulations do not fully address this issue. EU rules require catch certificates and related documentation to support legality verification throughout trade, including when processing occurs",
+          "text_ko": "출처: ICF. 수산물이 선박에서 육상 냉동창고로 옮겨진 뒤, 특히 대형 산업시설이나 허브항을 거쳐 가공될 때 추적성은 흔히 약화된다. 핵심 정보제공자들은 가공공장 내부에서, 일부 상황에서는 냉동창고와 화물 통합 거점에서도 추가적인 혼합 위험이 생길 수 있다고 강조했다. 특히 구매자가 질량수지 방식이나 집계형 추적성 방식을 받아들일 때 그렇다. 이 단계에서는 견고한 선박 단위 문서와 감사 가능한 관리 연속성 통제가 없으면 강제노동과 연계된 어획물을 다른 제품 로트와 구별할 수 없다. 이는 핵심 과제를 만든다. 양륙 뒤에는 무역자료만으로 제품 원산지를 구별할 수 없다. 따라서 위험관리는 선박뿐 아니라 공급업체, 가공업체 및 검증된 추적성 체계에도 초점을 맞춰야 한다. 현행 규정은 이 문제를 완전히 다루지 못한다. 유럽연합(EU) 규정은 가공이 이루어지는 경우를 포함해 교역 전반에서 합법성 검증을 뒷받침하도록 어획증명서와 관련 문서를 요구하며"
         },
         {
           "kind": "source_excerpt",
           "source_path": "00_오징어_관련자료/01_오징어_시장·가격/07_지속가능성·IUU·노동/20260500-US_DOL-Distant_Water_Fishing_Labor_Risk.md",
-          "text": "between seafood caught under forced labor conditions and other products without robust vessel-level"
+          "text": "CBP has issued numerous forced labor trade enforcement actions against fishing vessels and fleets in the past decade. Five forced labor trade enforcement actions remain active against fishing vessels and fleets (U.S.",
+          "text_ko": "미국 관세국경보호청(CBP)은 지난 십 년 동안 어선과 선단을 대상으로 다수의 강제노동 무역집행 조치를 내렸다. 어선과 선단을 대상으로 한 강제노동 무역집행 조치 다섯 건은 여전히 유효하다(미국"
         },
         {
           "kind": "source_excerpt",
           "source_path": "00_오징어_관련자료/01_오징어_시장·가격/07_지속가능성·IUU·노동/20260500-US_DOL-Distant_Water_Fishing_Labor_Risk.md",
-          "text": "forced labor are likely to permeate global seafood supply chains and enter major consumer markets."
+          "text": "The persistence of forced labor in DWF reflects broader structural and governance challenges in global seafood supply chains and fisheries.",
+          "text_ko": "원양어업(DWF)에서 강제노동이 지속되는 것은 세계 수산물 공급망과 어업이 안고 있는 더 광범위한 구조적·거버넌스 과제를 반영한다."
         },
         {
           "kind": "source_excerpt",
           "source_path": "00_오징어_관련자료/01_오징어_시장·가격/07_지속가능성·IUU·노동/20260500-US_DOL-Distant_Water_Fishing_Labor_Risk.md",
-          "text": "across market state jurisdictions about forced labor cases in the seafood supply chain."
+          "text": "DOMESTIC LEGAL PROTECTIONS RELEVANT TO DWF China, Taiwan, and Indonesia maintain domestic labor laws that nominally prohibit most practices associated with forced labor in fishing operations, including the following practices discussed in this report: security deposits, debt bondage, hazardous conditions, wage manipulation, restriction of movement, document retention, coercion, and contractual abuse. Chinese law under the Labor Contract Law Articles 9 and 84 explicitly prohibits security deposits and document retention. Indonesian law under Law No. 21 of 2007 on Trafficking criminalizes debt bondage with penalties of up to 15 years imprisonment. Taiwan’s Human Trafficking Prevention and Control Act prohibits document confiscation with criminal penalties up to one year. However, a fundamental enforcement gap exists across all jurisdictions: none have ratified ILO Convention 188 (Work in Fishing), the principal international instrument governing fishing labor, and documented investigations consistently find high rates of forced labor indicators despite comprehensive legal prohibitions on paper.",
+          "text_ko": "원양어업(DWF) 관련 국내법상 보호. 중국·대만·인도네시아에는 이 보고서에서 다룬 보증금, 채무노예, 위험한 노동조건, 임금 조작, 이동 제한, 문서 보관, 강압, 계약상 학대를 포함해 어업의 강제노동과 관련된 관행 대부분을 명목상 금지하는 국내 노동법이 있다. 중국 노동계약법(Labor Contract Law) 제9조와 제84조는 보증금과 문서 보관을 명시적으로 금지한다. 인도네시아의 인신매매에 관한 2007년 법률 제21호(Law No. 21 of 2007 on Trafficking)는 채무노예를 범죄로 규정하고 최대 15년의 징역형을 둔다. 대만 인신매매 방지법(Human Trafficking Prevention and Control Act)은 문서 압수를 금지하고 최대 한 해의 형사처벌을 둔다. 그러나 모든 관할권에는 근본적인 집행 공백이 있다. 어느 곳도 어업 노동을 규율하는 주된 국제문서인 국제노동기구(ILO) 어선원노동협약(Convention 188, Work in Fishing)을 비준하지 않았고, 문서화된 조사에서는 서류상 포괄적인 법적 금지에도 강제노동 지표가 높은 비율로 일관되게 확인된다."
         },
         {
           "kind": "source_excerpt",
           "source_path": "00_오징어_관련자료/01_오징어_시장·가격/07_지속가능성·IUU·노동/20260500-US_DOL-Distant_Water_Fishing_Labor_Risk.md",
-          "text": "forced labor from these high-risk supply chains."
+          "text": "SUPPLY CHAIN CASE STUDY 1: HONOLULU Two Hawaiʻi-based longline vessels, Star 92 and Victorious were identified in fisher interviews conducted for this study as having forced labor. The respondent on one of these vessels reported insufficient food due to provisioning issues, payment delays due to vessel mechanical issues, excessive working hours leading to insufficient sleep, and working with no breaks. The worker could not refuse the excessive work hours because of the risk of being sent home (dismissed). The respondent on the other vessel also reported insufficient food, payment delays due to low catch, rarely being able to access communications (Wi-Fi), and working very long hours under threat of being sent home at his own expense. This worker also worked several months beyond the contract end date because the vessel was out to sea. Jointly, the AIS and interview data provide a consistent picture of how tuna caught by these Hawaiʻi- based longliners moves from the high seas to a highly centralized landing and first-sale node in Honolulu, and then into local food culture and U.S. mainland markets.",
+          "text_ko": "공급망 사례연구 1: 호놀룰루(HONOLULU). 이 연구를 위해 수행한 어업인 면담에서 하와이 기반 연승어선 두 척인 스타 92호(Star 92)와 빅토리어스(Victorious)호에 강제노동이 있었던 것으로 지목됐다. 이들 선박 중 한 척의 응답자는 보급 문제로 인한 식량 부족, 선박 기계 문제로 인한 임금 지급 지연, 수면 부족으로 이어지는 과도한 노동시간, 휴식 없는 노동을 보고했다. 이 노동자는 본국으로 송환돼 해고될 위험 때문에 과도한 노동시간을 거부할 수 없었다. 다른 선박의 응답자도 식량 부족, 낮은 어획량으로 인한 임금 지급 지연, 통신(Wi-Fi)에 거의 접근할 수 없는 상태, 자비로 본국에 보내질 수 있다는 위협 아래 매우 긴 시간 일한 사실을 보고했다. 이 노동자는 선박이 해상에 있었기 때문에 계약 종료일이 지난 뒤에도 여러 달 일했다. 선박자동식별시스템(AIS) 자료와 면담 자료를 함께 보면, 하와이 기반 연승선이 잡은 참치가 공해에서 호놀룰루의 고도로 집중된 양륙·최초판매 거점으로 이동한 뒤 현지 음식문화와 미국 본토 시장으로 들어가는 과정이 일관되게 드러난다."
         },
         {
           "kind": "source_excerpt",
           "source_path": "00_오징어_관련자료/01_오징어_시장·가격/07_지속가능성·IUU·노동/20260500-US_DOL-Distant_Water_Fishing_Labor_Risk.md",
-          "text": "rate of forced labor (88%), followed by those catching large pelagics (85%) and squid (80%)."
+          "text": "However, given the widespread occurrence of forced labor in the DWF tuna supply chain, their operations illustrate how tuna produced wholly or in part with forced labor may enter U.S.",
+          "text_ko": "그러나 원양어업(DWF) 참치 공급망에서 강제노동이 광범위하게 발생한다는 점을 고려하면, 이들의 조업은 강제노동으로 전부 또는 일부 생산된 참치가 미국에 진입할 수 있는"
         }
       ],
       "methodology": "위젯별 config 정규식으로 보관 Markdown/HTML의 원문 블록만 선택; 수치 보간·번역·요약 없음",
@@ -7637,22 +7722,26 @@
         {
           "kind": "source_excerpt",
           "source_path": "00_오징어_관련자료/01_오징어_시장·가격/07_지속가능성·IUU·노동/20260812-MSC-Squid.html",
-          "text": "At the MSC, we believe that there is no such thing as a sustainable species, only sustainable stocks (‘stock’ is another word for group or population of fish). There are many stocks of squid and four certified squid fisheries. This means that squid with the MSC blue fish label can be found in stores and restaurants throughout North America."
+          "text": "At the MSC, we believe that there is no such thing as a sustainable species, only sustainable stocks (‘stock’ is another word for group or population of fish). There are many stocks of squid and four certified squid fisheries. This means that squid with the MSC blue fish label can be found in stores and restaurants throughout North America.",
+          "text_ko": "해양관리협의회(MSC)는 지속가능한 어종이 따로 있는 것이 아니라 지속가능한 자원만 있다고 본다. ‘자원(stock)’은 어류의 집단 또는 개체군을 뜻하는 다른 말이다. 오징어 자원은 다수이며, 인증된 오징어 어업은 네 곳이다. 이는 MSC의 파란 물고기 라벨이 붙은 오징어를 북미 전역의 상점과 음식점에서 찾을 수 있다는 뜻이다."
         },
         {
           "kind": "source_excerpt",
           "source_path": "00_오징어_관련자료/01_오징어_시장·가격/07_지속가능성·IUU·노동/20260812-MSC-Squid.html",
-          "text": "Long story short: if your squid has the MSC blue fish label on it, it’s sustainable!"
+          "text": "Long story short: if your squid has the MSC blue fish label on it, it’s sustainable!",
+          "text_ko": "간단히 말하면, 오징어에 해양관리협의회(MSC) 파란 물고기 라벨이 붙어 있다면 지속가능하다!"
         },
         {
           "kind": "source_excerpt",
           "source_path": "00_오징어_관련자료/01_오징어_시장·가격/07_지속가능성·IUU·노동/20260812-MSC-Squid.html",
-          "text": "That means enough squid are being left to continue reproducing, it was caught in a way that minimizes environmental impact, and there is responsible management in place so any changes to the population or the environment are monitored and can be responded to as needed. Squid with the MSC blue fish label is certified sustainable and can be traced back to a well-managed fishery."
+          "text": "That means enough squid are being left to continue reproducing, it was caught in a way that minimizes environmental impact, and there is responsible management in place so any changes to the population or the environment are monitored and can be responded to as needed. Squid with the MSC blue fish label is certified sustainable and can be traced back to a well-managed fishery.",
+          "text_ko": "이는 번식을 계속할 만큼 충분한 오징어가 남아 있고, 환경 영향을 최소화하는 방식으로 어획했으며, 개체군이나 환경의 모든 변화를 모니터링하고 필요에 따라 대응할 수 있도록 책임 있는 관리체계가 마련돼 있다는 뜻이다. 해양관리협의회(MSC) 파란 물고기 라벨이 붙은 오징어는 지속가능성 인증을 받았고, 관리가 잘 되는 어업까지 추적할 수 있다."
         },
         {
           "kind": "source_excerpt",
           "source_path": "00_오징어_관련자료/01_오징어_시장·가격/07_지속가능성·IUU·노동/20260812-MSC-Squid.html",
-          "text": "MSC certified squid is most often found in the freezer section of your local grocery store (or online retailer!). Take a look at our Where to Buy MSC Certified Seafood page or download our Blue Fish Guide to become an expert at finding all types of products with the MSC blue fish label in your area."
+          "text": "MSC certified squid is most often found in the freezer section of your local grocery store (or online retailer!). Take a look at our Where to Buy MSC Certified Seafood page or download our Blue Fish Guide to become an expert at finding all types of products with the MSC blue fish label in your area.",
+          "text_ko": "해양관리협의회(MSC) 인증 오징어는 대개 가까운 식료품점의 냉동식품 코너 또는 온라인 소매점에서 찾을 수 있다. ‘MSC 인증 수산물 구매처(Where to Buy MSC Certified Seafood)’ 페이지를 살펴보거나 ‘파란 물고기 안내서(Blue Fish Guide)’를 내려받아 거주 지역에서 MSC 파란 물고기 라벨이 붙은 모든 유형의 제품을 찾는 데 능숙해질 수 있다."
         }
       ],
       "methodology": "위젯별 config 정규식으로 보관 Markdown/HTML의 원문 블록만 선택; 수치 보간·번역·요약 없음",
@@ -7701,57 +7790,68 @@
         {
           "kind": "source_excerpt",
           "source_path": "00_오징어_관련자료/01_오징어_시장·가격/02_쿼터·어장/20260812-ARG-Resolution_6_2026.html",
-          "text": "TEXTO ORIGINAL - Resolución 6 / 2026 - CONSEJO FEDERAL PESQUERO | Argentina.gob.ar"
+          "text": "TEXTO ORIGINAL - Resolución 6 / 2026 - CONSEJO FEDERAL PESQUERO | Argentina.gob.ar",
+          "text_ko": "원문 - 결의 6/2026(Resolución 6/2026) - 연방수산위원회(CONSEJO FEDERAL PESQUERO) | Argentina.gob.ar"
         },
         {
           "kind": "source_excerpt",
           "source_path": "00_오징어_관련자료/01_오징어_시장·가격/02_쿼터·어장/20260812-ARG-Resolution_6_2026.html",
-          "text": "Que mediante la Nota NO-2026-47486068-APN-DNI#INIDEP (DNI N° 41), de fecha 12 de mayo de 2026, la Dirección Nacional de Investigación del Instituto Nacional de Investigación y Desarrollo Pesquero (INIDEP) remitió a la Autoridad de Aplicación un informe técnico en respuesta a la solicitud de evaluación sobre la sustentabilidad de la pesquería de calamar argentino (Illex argentinus) frente a la eventual apertura de un registro para la presentación de proyectos de pesca mediante buques poteros."
+          "text": "Que mediante la Nota NO-2026-47486068-APN-DNI#INIDEP (DNI N° 41), de fecha 12 de mayo de 2026, la Dirección Nacional de Investigación del Instituto Nacional de Investigación y Desarrollo Pesquero (INIDEP) remitió a la Autoridad de Aplicación un informe técnico en respuesta a la solicitud de evaluación sobre la sustentabilidad de la pesquería de calamar argentino (Illex argentinus) frente a la eventual apertura de un registro para la presentación de proyectos de pesca mediante buques poteros.",
+          "text_ko": "국립수산연구개발원(Instituto Nacional de Investigación y Desarrollo Pesquero, INIDEP) 연구국(Dirección Nacional de Investigación)은 2026년 오월 12일자 공문 Nota NO-2026-47486068-APN-DNI#INIDEP(DNI N° 41)을 통해, 오징어 채낚기선(buques poteros)을 이용한 어업사업계획 등록부를 개설할 가능성과 관련해 아르헨티나오징어(Illex argentinus) 어업의 지속가능성을 평가해 달라는 요청에 답하는 기술보고서를 집행기관(Autoridad de Aplicación)에 보냈다."
         },
         {
           "kind": "source_excerpt",
           "source_path": "00_오징어_관련자료/01_오징어_시장·가격/02_쿼터·어장/20260812-ARG-Resolution_6_2026.html",
-          "text": "ARTÍCULO 1°. Presentación de proyectos. Autorízase la presentación de proyectos pesqueros para la explotación de la especie calamar (Illex argentinus) mediante buques poteros, por parte de quienes cumplan con los requisitos de la presente resolución."
+          "text": "ARTÍCULO 1°. Presentación de proyectos. Autorízase la presentación de proyectos pesqueros para la explotación de la especie calamar (Illex argentinus) mediante buques poteros, por parte de quienes cumplan con los requisitos de la presente resolución.",
+          "text_ko": "제1조. 사업계획서 제출. 이 결의의 요건을 충족하는 자가 오징어 채낚기선(buques poteros)을 이용해 아르헨티나오징어(Illex argentinus)를 어획하기 위한 어업사업계획서를 제출하는 것을 허가한다."
         },
         {
           "kind": "source_excerpt",
           "source_path": "00_오징어_관련자료/01_오징어_시장·가격/02_쿼터·어장/20260812-ARG-Resolution_6_2026.html",
-          "text": "ARTICULO 7°. Exigencias de los proyectos. Los proyectos de explotación que se presenten sólo podrán referirse a la especie calamar (Illex argentinus), mediante el uso exclusivo de poteras. Los buques propuestos deberán poseer una capacidad de bodega de hasta (UN MIL TRESCIENTOS) 1.300 metros cúbicos y una antigüedad menor a VEINTE (20) años desde su construcción hasta la fecha de la presente resolución. Estas características deben ser avaladas por informe de profesional del Consejo Profesional de Ingeniería Naval."
+          "text": "ARTICULO 7°. Exigencias de los proyectos. Los proyectos de explotación que se presenten sólo podrán referirse a la especie calamar (Illex argentinus), mediante el uso exclusivo de poteras. Los buques propuestos deberán poseer una capacidad de bodega de hasta (UN MIL TRESCIENTOS) 1.300 metros cúbicos y una antigüedad menor a VEINTE (20) años desde su construcción hasta la fecha de la presente resolución. Estas características deben ser avaladas por informe de profesional del Consejo Profesional de Ingeniería Naval.",
+          "text_ko": "제7조. 사업계획의 요건. 제출하는 어획사업계획은 오로지 채낚기(poteras)만을 사용해 아르헨티나오징어(Illex argentinus)를 어획하는 내용이어야 한다. 제안 선박은 선창용적이 천삼백(UN MIL TRESCIENTOS) 1.300세제곱미터 이하여야 하며, 건조 시점부터 이 결의일 현재까지의 선령이 스무(VEINTE, 20)년 미만이어야 한다. 이러한 특성은 조선공학전문위원회(Consejo Profesional de Ingeniería Naval) 전문가의 보고서로 입증해야 한다."
         },
         {
           "kind": "source_excerpt",
           "source_path": "00_오징어_관련자료/01_오징어_시장·가격/02_쿼터·어장/20260812-ARG-Resolution_6_2026.html",
-          "text": "ARTICULO 12. Trámite. La DIRECCIÓN NACIONAL DE COORDINACIÓN Y FISCALIZACIÓN PESQUERA verificará y evaluará el cumplimiento de los requisitos establecidos y exigidos en la presente resolución por cada proyecto. La DIRECCIÓN NACIONAL DE COORDINACIÓN Y FISCALIZACIÓN PESQUERA calificará individualmente a cada buque nominado en los proyectos que cumplen con dichos requisitos, de conformidad con los parámetros establecidos en el ANEXO V (IF-2026-00000203-CFP-CFP) de la presente resolución. La DIRECCIÓN NACIONAL DE COORDINACIÓN Y FISCALIZACIÓN PESQUERA podrá declarar inadmisible una presentación cuando, por las circunstancias del caso y mediante decisión debidamente fundada, considere que el proyecto no reúne las condiciones mínimas para ser evaluado y comparado en el marco de la convocatoria, o cuando su tramitación pudiera afectar la igualdad de trato, la transparencia o la integridad del procedimiento. Una vez calificados los proyectos, serán remitidos por parte de la Autoridad de Aplicación de dicha Ley a consideración del CONSEJO FEDERAL PESQUERO para su eventual aprobación en los términos de lo dispuesto por el artículo 9º, inciso d), de la misma ley."
+          "text": "ARTICULO 12. Trámite. La DIRECCIÓN NACIONAL DE COORDINACIÓN Y FISCALIZACIÓN PESQUERA verificará y evaluará el cumplimiento de los requisitos establecidos y exigidos en la presente resolución por cada proyecto. La DIRECCIÓN NACIONAL DE COORDINACIÓN Y FISCALIZACIÓN PESQUERA calificará individualmente a cada buque nominado en los proyectos que cumplen con dichos requisitos, de conformidad con los parámetros establecidos en el ANEXO V (IF-2026-00000203-CFP-CFP) de la presente resolución. La DIRECCIÓN NACIONAL DE COORDINACIÓN Y FISCALIZACIÓN PESQUERA podrá declarar inadmisible una presentación cuando, por las circunstancias del caso y mediante decisión debidamente fundada, considere que el proyecto no reúne las condiciones mínimas para ser evaluado y comparado en el marco de la convocatoria, o cuando su tramitación pudiera afectar la igualdad de trato, la transparencia o la integridad del procedimiento. Una vez calificados los proyectos, serán remitidos por parte de la Autoridad de Aplicación de dicha Ley a consideración del CONSEJO FEDERAL PESQUERO para su eventual aprobación en los términos de lo dispuesto por el artículo 9º, inciso d), de la misma ley.",
+          "text_ko": "제12조. 절차. 국가수산조정감독국(DIRECCIÓN NACIONAL DE COORDINACIÓN Y FISCALIZACIÓN PESQUERA)은 각 사업계획이 이 결의에서 정하고 요구한 요건을 충족하는지 확인하고 평가한다. 국가수산조정감독국은 해당 요건을 충족한 사업계획에 지명된 각 선박을 이 결의의 부속서 V(ANEXO V, IF-2026-00000203-CFP-CFP)에 정한 기준에 따라 개별 평가한다. 국가수산조정감독국은 사안의 정황에 비추어 정당한 근거가 있는 결정으로 해당 사업계획이 공모의 틀 안에서 평가·비교되기 위한 최소조건을 갖추지 못했다고 판단하거나, 그 처리가 동등대우·투명성 또는 절차의 완전성에 영향을 줄 수 있다고 판단하면 제출을 부적격으로 선언할 수 있다. 사업계획 평가가 끝나면 해당 법률의 집행기관은 같은 법 제9조 d)호의 규정에 따른 승인 여부를 검토하도록 이를 연방수산위원회(CONSEJO FEDERAL PESQUERO)에 송부한다."
         },
         {
           "kind": "source_excerpt",
           "source_path": "00_오징어_관련자료/01_오징어_시장·가격/02_쿼터·어장/20260812-ARG-CTMFM_Resolution_2_2026.html",
-          "text": "TEXTO ORIGINAL - Resolución 2 / 2026 - COMISION TECNICA MIXTA DEL FRENTE MARITIMO | Argentina.gob.ar"
+          "text": "TEXTO ORIGINAL - Resolución 2 / 2026 - COMISION TECNICA MIXTA DEL FRENTE MARITIMO | Argentina.gob.ar",
+          "text_ko": "원문 - 결의 2/2026(Resolución 2/2026) - 해양전선 공동기술위원회(COMISION TECNICA MIXTA DEL FRENTE MARITIMO) | Argentina.gob.ar"
         },
         {
           "kind": "source_excerpt",
           "source_path": "00_오징어_관련자료/01_오징어_시장·가격/02_쿼터·어장/20260812-ARG-CTMFM_Resolution_2_2026.html",
-          "text": "La conveniencia de dar inicio al período de pesca dirigida a la especie calamar (Illex argentinus) durante la temporada extractiva 2026 en la Zona Común de Pesca."
+          "text": "La conveniencia de dar inicio al período de pesca dirigida a la especie calamar (Illex argentinus) durante la temporada extractiva 2026 en la Zona Común de Pesca.",
+          "text_ko": "2026년 어획기에 공동어업수역(Zona Común de Pesca)에서 아르헨티나오징어(Illex argentinus) 대상어업 기간을 개시하는 것이 타당함."
         },
         {
           "kind": "source_excerpt",
           "source_path": "00_오징어_관련자료/01_오징어_시장·가격/02_쿼터·어장/20260812-ARG-CTMFM_Resolution_2_2026.html",
-          "text": "Artículo 1º) Habilítese a partir del 1 de abril de 2026 la pesca dirigida a la especie calamar (Illex argentinus) en la Zona Común de Pesca."
+          "text": "Artículo 1º) Habilítese a partir del 1 de abril de 2026 la pesca dirigida a la especie calamar (Illex argentinus) en la Zona Común de Pesca.",
+          "text_ko": "제1조. 2026년 사월 1일부터 공동어업수역(Zona Común de Pesca)에서 아르헨티나오징어(Illex argentinus) 대상어업을 허용한다."
         },
         {
           "kind": "source_excerpt",
           "source_path": "00_오징어_관련자료/01_오징어_시장·가격/02_쿼터·어장/20251218-SUBPESCA-Jibia_Quota_2026.md",
-          "text": "[JIBIA O CALAMAR ROJO ÁREA DE ARICA Y PARINACOTA HASTA MAGALLANES, AÑO 2026"
+          "text": "Artículo 1.- Fíjase para el año 2026, una cuota global de captura para el recurso jibia o calamar rojo (Dosidicus gigas), en el área marítima a nivel nacional, ascendente a 200.000 toneladas, fraccionadas de la siguiente manera:",
+          "text_ko": "제1조. 2026년 전국 해역에서 페루대왕오징어 또는 붉은오징어(Dosidicus gigas)의 총어획쿼터를 200.000톤으로 정하고 다음과 같이 나눈다:"
         },
         {
           "kind": "source_excerpt",
           "source_path": "00_오징어_관련자료/01_오징어_시장·가격/02_쿼터·어장/20251218-SUBPESCA-Jibia_Quota_2026.md",
-          "text": "Artículo 1.- Fíjase para el año 2026, una cuota global de captura para el recurso jibia o calamar rojo (Dosidicus gigas), en el área marítima a nivel nacional, ascendente a 200.000 toneladas, fraccionadas de la siguiente manera:"
+          "text": "[JIBIA O CALAMAR ROJO ÁREA DE ARICA Y PARINACOTA HASTA MAGALLANES, AÑO 2026",
+          "text_ko": "[아리카 이 파리나코타(ARICA Y PARINACOTA)에서 마가야네스(MAGALLANES)까지의 페루대왕오징어 또는 붉은오징어(JIBIA O CALAMAR ROJO) 수역, 2026년"
         },
         {
           "kind": "source_excerpt",
           "source_path": "00_오징어_관련자료/01_오징어_시장·가격/02_쿼터·어장/20251218-SUBPESCA-Jibia_Quota_2026.md",
-          "text": "(EXTRACTO) Por Decreto Exento N° 2O2oI 2C de este Ministerio, fíjase para e! afio 2026, una cuota global de captura para el recurso jibia o calamar rojo, en el área marítima a nivel nacional, ascendente a 200.000 toneladas, fraccionadas de la siguiente manera:"
+          "text": "(EXTRACTO) Por Decreto Exento N° 2O2oI 2C de este Ministerio, fíjase para e! afio 2026, una cuota global de captura para el recurso jibia o calamar rojo, en el área marítima a nivel nacional, ascendente a 200.000 toneladas, fraccionadas de la siguiente manera:",
+          "text_ko": "(발췌) 본 부처의 면제령 제2O2oI 2C호(Decreto Exento N° 2O2oI 2C)에 따라, e! afio 2026(원문 표기)에 전국 해역의 페루대왕오징어 또는 붉은오징어(Dosidicus gigas) 총어획쿼터를 200.000톤으로 정하고 다음과 같이 나눈다:"
         }
       ],
       "methodology": "위젯별 config 정규식으로 보관 Markdown/HTML의 원문 블록만 선택; 수치 보간·번역·요약 없음",

@@ -18,6 +18,7 @@ import SectionC from './squid/SectionC';
 import SectionD from './squid/SectionD';
 import SectionE from './squid/SectionE';
 import { SECTION_META } from './squid/SquidSection';
+import { koreanUiText } from './squid/localization';
 import { getSquidV5 } from '../lib/data/squid-v5';
 
 const doc = getSquidV5();
@@ -45,7 +46,7 @@ function SectionNav() {
               color: '#cbd5e1', fontSize: '0.76rem', fontWeight: 700,
             }}
           >
-            <span style={{ color: meta.color }}>{s}</span>
+            <span style={{ color: meta.color }}>{meta.orderLabel}</span>
             {meta.label}
             <span style={{ color: '#64748b', fontWeight: 500 }}>{count}</span>
           </a>
@@ -80,12 +81,12 @@ export default function SquidDashboard() {
             >
               🦑 오징어 조달 인텔리전스
             </h1>
-            <TelemetryBadge status="SYNCED" syncDate={doc.meta.built_at.slice(0, 10)} />
+            <TelemetryBadge status="SYNCED" syncDate={doc.meta.built_at.slice(0, 10)} label="동기화" />
           </div>
 
           <p style={{ color: '#94a3b8', fontSize: '0.78rem', marginTop: 8, lineHeight: 1.7 }}>
             위젯 {total}개 · 출처 {doc.sources.length} · 측정 게이트 {doc.gates.length} ·
-            모니터링 {doc.monitoring.length}계열 · 아카이브 {doc.meta.archive_snapshot}
+            모니터링 {doc.monitoring.length}계열 · 아카이브 {koreanUiText(doc.meta.archive_snapshot)}
             {empty > 0 && (
               <>
                 {' · '}

@@ -10,6 +10,12 @@
 
 import React, { useState } from 'react';
 import type { SquidWidget } from './types';
+import {
+  koreanExcerptText,
+  koreanUiText,
+  squidFieldLabel,
+  squidValueLabel,
+} from './localization';
 
 const SIGNAL_COLOR: Record<string, string> = {
   조업중: '#10b981',
@@ -42,7 +48,7 @@ export const SignalBoard: React.FC<{ data: any[] }> = ({ data }) => (
           <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
             <span style={{ width: 8, height: 8, borderRadius: '50%', background: color,
                            boxShadow: `0 0 8px ${color}88` }} />
-            <strong style={{ color: '#e2e8f0', fontSize: '0.8rem' }}>{o.origin}</strong>
+            <strong style={{ color: '#e2e8f0', fontSize: '0.8rem' }}>{koreanUiText(o.origin)}</strong>
           </div>
           <div style={{ color, fontWeight: 800, fontSize: '0.95rem', marginTop: '4px' }}>
             {o.status}
@@ -55,7 +61,7 @@ export const SignalBoard: React.FC<{ data: any[] }> = ({ data }) => (
           </div>
           <div style={{ fontSize: '0.66rem', color: '#94a3b8', marginTop: '4px', lineHeight: 1.5,
                         wordBreak: 'keep-all' }}>
-            {o.as_of ?? '기준일 없음'} · {o.reason}
+            {o.as_of ?? '기준일 없음'} · {koreanUiText(o.reason)}
           </div>
         </div>
       );
@@ -86,7 +92,7 @@ export const DataTable: React.FC<{ data: any; previewRows?: number }> = ({ data,
               {cols.map((c) => (
                 <th key={c} style={{ textAlign: 'left', padding: '4px 8px', color: '#64748b',
                                      borderBottom: '1px solid rgba(255,255,255,0.08)', whiteSpace: 'nowrap' }}>
-                  {c}
+                  {squidFieldLabel(c)}
                 </th>
               ))}
             </tr>
@@ -96,9 +102,7 @@ export const DataTable: React.FC<{ data: any; previewRows?: number }> = ({ data,
               <tr key={i}>
                 {cols.map((c) => {
                   const v = r?.[c];
-                  const text = v === null || v === undefined ? '—'
-                    : typeof v === 'object' ? JSON.stringify(v)
-                      : String(v);
+                  const text = squidValueLabel(v);
                   return (
                     <td key={c} style={{ padding: '4px 8px', color: '#cbd5e1',
                                          borderBottom: '1px solid rgba(255,255,255,0.04)',
@@ -142,6 +146,60 @@ export function isExcerptOnly(data: any): boolean {
  * 규제·리스크(D 섹션) 8개는 전부 이 모양이라 읽히지 않으면 위젯 자체가 무의미하다.
  * 그래서 본문을 그대로 흘리고 출처 파일명만 각주로 단다.
  */
+const Excerpt: React.FC<{ row: any }> = ({ row }) => {
+  const [showSource, setShowSource] = useState(false);
+  // 번역이 있으면 한국어를 본문으로 세우고 원문은 접어 둔다. 번역은 발행처의 말이
+  // 아니라 우리 번역이므로 그 사실을 감추지 않는다. 번역이 없으면 원문을 그대로 보이고
+  // 미번역임을 밝힌다 — 조용히 비워 두면 근거가 사라진 것처럼 보인다.
+  const ko = typeof row.text_ko === 'string' ? row.text_ko : null;
+  const raw = String(row.text ?? '');
+  const rawIsMostlyKorean = (raw.match(/[가-힣]/g)?.length ?? 0) >= 10;
+  // 번역이 없으면 원문을 그대로 보인다. 안내 문구로 갈음하면 화면에서 근거가
+  // 사라진 것처럼 보이고, 읽을 수 있는 사람조차 한 번 더 눌러야 한다.
+  const displayText = ko ? koreanExcerptText(ko) : koreanExcerptText(raw);
+  const file = String(row.source_path ?? '').split('/').pop();
+
+  return (
+    <blockquote style={{ margin: 0, padding: '8px 0 8px 12px',
+                         borderLeft: '2px solid rgba(139, 92, 246, 0.35)' }}>
+      <p style={{ margin: 0, fontSize: '0.78rem', lineHeight: 1.65, color: '#cbd5e1',
+                  wordBreak: 'keep-all', whiteSpace: 'pre-wrap' }}>
+        {displayText}
+      </p>
+
+      <div style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', gap: 8, marginTop: 5 }}>
+        <button
+          onClick={() => setShowSource((v) => !v)}
+          style={{ background: 'none', border: '1px solid rgba(148,163,184,0.3)',
+                   borderRadius: 4, padding: '1px 6px', color: '#94a3b8',
+                   fontSize: '0.6rem', cursor: 'pointer' }}
+        >
+          {showSource ? '원문 근거 접기' : '원문 근거 보기'}
+        </button>
+        {!ko && !rawIsMostlyKorean && (
+          <span style={{ fontSize: '0.6rem', color: '#f59e0b',
+                         border: '1px solid rgba(245,158,11,0.35)', borderRadius: 4,
+                         padding: '1px 6px' }}>
+            번역 준비 중
+          </span>
+        )}
+      </div>
+
+      {showSource && (
+        <div style={{ margin: '6px 0 0', padding: '6px 8px', borderRadius: 6,
+                      background: 'rgba(20,28,52,0.6)', fontSize: '0.7rem', lineHeight: 1.6,
+                      color: '#94a3b8', whiteSpace: 'pre-wrap' }}>
+          <cite style={{ display: 'block', marginBottom: 4, fontSize: '0.62rem',
+                         color: '#64748b', fontStyle: 'normal', wordBreak: 'break-all' }}>
+            원문 파일: {file}
+          </cite>
+          <p style={{ margin: 0 }}>{raw}</p>
+        </div>
+      )}
+    </blockquote>
+  );
+};
+
 export const ExcerptList: React.FC<{ data: any[]; previewItems?: number }> = ({
   data, previewItems = 4,
 }) => {
@@ -150,24 +208,7 @@ export const ExcerptList: React.FC<{ data: any[]; previewItems?: number }> = ({
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
-      {shown.map((r, i) => (
-        <blockquote
-          key={i}
-          style={{
-            margin: 0, padding: '8px 0 8px 12px',
-            borderLeft: '2px solid rgba(139, 92, 246, 0.35)',
-          }}
-        >
-          <p style={{ margin: 0, fontSize: '0.78rem', lineHeight: 1.65, color: '#cbd5e1',
-                      wordBreak: 'keep-all', whiteSpace: 'pre-wrap' }}>
-            {r.text}
-          </p>
-          <cite style={{ display: 'block', marginTop: 4, fontSize: '0.62rem',
-                         color: '#64748b', fontStyle: 'normal', wordBreak: 'break-all' }}>
-            {String(r.source_path ?? '').split('/').pop()}
-          </cite>
-        </blockquote>
-      ))}
+      {shown.map((r, i) => <Excerpt key={i} row={r} />)}
       {data.length > previewItems && (
         <button
           onClick={() => setAll((v) => !v)}

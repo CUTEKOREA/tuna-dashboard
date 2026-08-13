@@ -342,7 +342,7 @@ export default function Home() {
       <button 
         className={styles.mobileMenuBtn} 
         onClick={() => setIsMobileSidebarOpen(!isMobileSidebarOpen)}
-        aria-label="Toggle menu"
+        aria-label={isMobileSidebarOpen ? '메뉴 닫기' : '메뉴 열기'}
       >
         {isMobileSidebarOpen ? <X size={22} /> : <Menu size={22} />}
       </button>
@@ -372,8 +372,8 @@ export default function Home() {
           onMouseEnter={(e) => { e.currentTarget.style.opacity = '0.8'; }}
           onMouseLeave={(e) => { e.currentTarget.style.opacity = '1'; }}
         >
-          <Image src="/logo1.png" alt="Company Logo" width={184} height={48} style={{ height: '48px', width: 'auto', objectFit: 'contain', marginBottom: '8px' }} />
-          <p className={styles.subtitle} style={{ fontSize: '0.75rem', marginBottom: '8px' }}>Tuna Market Intelligence</p>
+          <Image src="/logo1.png" alt="신라 로고" width={184} height={48} style={{ height: '48px', width: 'auto', objectFit: 'contain', marginBottom: '8px' }} />
+          <p className={styles.subtitle} style={{ fontSize: '0.75rem', marginBottom: '8px' }}>수산물 시장 인텔리전스</p>
           <div style={{
             fontSize: '0.65rem',
             color: 'var(--text-muted)',
@@ -382,7 +382,7 @@ export default function Home() {
             paddingTop: '8px',
             display: 'inline-block'
           }}>
-            Architected by <span style={{
+            설계 <span style={{
               fontWeight: 'bold',
               fontSize: '0.85rem',
               letterSpacing: '1px',
@@ -414,8 +414,8 @@ export default function Home() {
           cursor: 'pointer',
         }} onClick={() => {
           window.dispatchEvent(new KeyboardEvent('keydown', { key: 'k', metaKey: true }));
-        }} title="⌘K 로 검색">
-          <Command size={12} /> ⌘K 빠른 검색
+        }} title="빠른 검색 열기">
+          <Command size={12} /> ⌘ 빠른 검색
         </div>
         
         

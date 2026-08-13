@@ -143,6 +143,39 @@ def test_concentration_covers_every_observed_year() -> None:
     assert rows[-1]["top1_share_pct"] > rows[0]["top1_share_pct"]
 
 
+def test_translation_number_fidelity() -> None:
+    """번역이 원문에 없는 숫자를 만들어내면 실패한다.
+
+    번역은 발행처의 말을 옮기는 것이지 새로 쓰는 것이 아니다. 규제·쿼터 문서에서
+    숫자가 바뀌면 그대로 오독으로 이어지므로, 원문 숫자 집합을 벗어나는 값을 막는다.
+    """
+    import re as _re
+    from scripts.squid_build.extract.md_extract import _excerpt_hash, _translations
+
+    document = build_document(
+        archive_root=DEFAULT_ARCHIVE_ROOT,
+        built_at=datetime(2026, 8, 13, 9, 0, tzinfo=ZoneInfo("Asia/Seoul")),
+    )
+    table = _translations()
+    checked = 0
+    for widget_id, widget in document["widgets"].items():
+        rows = widget["data"]
+        if not isinstance(rows, list):
+            continue
+        for row in rows:
+            if not isinstance(row, dict) or "text_ko" not in row:
+                continue
+            checked += 1
+            assert _excerpt_hash(row["text"]) in table, widget_id
+            digits = lambda t: {n.replace(",", "").rstrip(".") for n in _re.findall(r"\d[\d,]*\.?\d*", t)}
+            extra = digits(row["text_ko"]) - digits(row["text"])
+            assert not extra, (widget_id, sorted(extra)[:5], row["text"][:80])
+            # 500자 원문이 30자로 줄면 번역이 아니라 요약이다 — 내용이 사라진다.
+            assert len(row["text_ko"]) >= len(row["text"]) * 0.25, (
+                widget_id, len(row["text"]), len(row["text_ko"]))
+    print(f"    (번역 {checked}건 수치 대조)")
+
+
 def test_hs_map_preserves_archive_rows() -> None:
     """Dropping a product form or hiding cuttlefish scope must fail."""
     from scripts.squid_build.extract.hs_map import extract_hs_map
@@ -417,6 +450,7 @@ def main() -> None:
         test_kcs_2026_coverage_stops_at_may,
         test_comtrade_is_coverage_only,
         test_concentration_covers_every_observed_year,
+        test_translation_number_fidelity,
         test_hs_map_preserves_archive_rows,
         test_md_configs_cover_work_list_and_isolate_failures,
         test_eu_market_prices_and_ladder_are_structured_import_quotes,
