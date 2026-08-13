@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import { requireEnv } from '../../_shared/env';
 
 export const runtime = "nodejs";
 export const revalidate = 1800; // 30분 캐시 — KAMIS 일 1회 갱신 데이터에 충분
@@ -18,7 +19,7 @@ export const revalidate = 1800; // 30분 캐시 — KAMIS 일 1회 갱신 데이
 
 // L-10: env 우선, 없으면 하드코딩 fallback 키로 라이브 시도
 const KAMIS_KEY =
-  process.env.KAMIS_API_KEY || "f3557f2e-fe2e-4609-9fc7-b01492beb192";
+  requireEnv('KAMIS_API_KEY');
 const KAMIS_CERT_ID = process.env.KAMIS_CERT_ID || "7849";
 const KAMIS_BASE = "https://www.kamis.or.kr/service/price/xml.do";
 

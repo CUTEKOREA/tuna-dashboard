@@ -1,4 +1,5 @@
 import { NextResponse } from 'next/server';
+import { requireEnv } from '../../_shared/env';
 
 export const runtime = 'nodejs';
 export const revalidate = 86400; // 연간 확정치 — 일 1회 재검증이면 충분
@@ -20,7 +21,7 @@ export const maxDuration = 60; // Comtrade 실측 지연: 5개년 호출 16~23�
  */
 
 const COMTRADE_KEY =
-  process.env.UN_COMTRADE_PRIMARY_KEY || '61063fe9f1d2483ea97a9e526daf20a6'; // L-10 fallback 키
+  requireEnv('UN_COMTRADE_PRIMARY_KEY'); // L-10 fallback 키
 
 const REPORTERS = [764, 218, 724, 608, 156, 410] as const;
 const REPORTER_KEY: Record<number, CountryKey> = {

@@ -1,4 +1,5 @@
 import { NextResponse } from 'next/server';
+import { requireEnv } from '../../_shared/env';
 
 export const runtime = 'nodejs';
 export const revalidate = 300; // 5분 캐시
@@ -22,7 +23,7 @@ interface TickerItem {
 // --- 헬퍼 함수: 프록시 우회 요청 ---
 async function fetchWithProxy(targetUrl: string, revalidateTime: number) {
   const proxyUrl = process.env.KOREA_API_PROXY_URL;
-  const proxySecret = process.env.PROXY_SECRET || 'silla-tuna-secret-2026';
+  const proxySecret = requireEnv('PROXY_SECRET');
   
   // 프록시 URL이 설정되어 있으면 프록시를 경유 (Vercel 배포 시 공공기관 IP 차단 우회용)
   if (proxyUrl) {
@@ -36,7 +37,7 @@ async function fetchWithProxy(targetUrl: string, revalidateTime: number) {
 
 // --- KCS: 참치 수입단가 (HS 160414) ---
 async function fetchKCSTunaPrice(): Promise<TickerItem | null> {
-  const key = (process.env.DATA_GO_KR_NEW_KEY || 'fdbf3eb58f1157a1db7c9156e8ce7f88ed9fa2d996116d9079dddb5232133f7c');
+  const key = requireEnv('DATA_GO_KR_NEW_KEY');
   if (!key) return null;
   try {
     const now = new Date();
@@ -152,7 +153,7 @@ async function fetchECOSExchangeRate(): Promise<TickerItem | null> {
 // --- KCS: 참치캔 수출단가 (HS 160414) ---
 // Replaces KAMIS as KAMIS does not track Canned Tuna.
 async function fetchKCSTunaExport(): Promise<TickerItem | null> {
-  const key = (process.env.DATA_GO_KR_NEW_KEY || 'fdbf3eb58f1157a1db7c9156e8ce7f88ed9fa2d996116d9079dddb5232133f7c');
+  const key = requireEnv('DATA_GO_KR_NEW_KEY');
   if (!key) return null;
   try {
     const now = new Date();

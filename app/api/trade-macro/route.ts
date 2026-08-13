@@ -1,4 +1,5 @@
 import { NextResponse } from 'next/server';
+import { requireEnv } from '../_shared/env';
 
 export const dynamic = 'force-dynamic';
 
@@ -79,7 +80,7 @@ Return ONLY valid JSON:
 
 // --- 2. KCS API: Real trade volume (관세청 수출입무역통계) ---
 async function fetchKCSVolume(hsCode: string, country: string, year: string) {
-  const apiKey = (process.env.DATA_GO_KR_NEW_KEY || 'fdbf3eb58f1157a1db7c9156e8ce7f88ed9fa2d996116d9079dddb5232133f7c');
+  const apiKey = requireEnv('DATA_GO_KR_NEW_KEY');
   if (!apiKey) return null;
 
   const countryCode = countryCodeMap[country] || '';
@@ -180,7 +181,7 @@ async function fetchWholesalePrice(itemName: string) {
 
   const seafoodMatch = Object.keys(seafoodItems).find(k => itemName.includes(k));
   if (seafoodMatch) {
-    const seafoodKey = (process.env.DATA_GO_KR_NEW_KEY || 'fdbf3eb58f1157a1db7c9156e8ce7f88ed9fa2d996116d9079dddb5232133f7c');
+    const seafoodKey = requireEnv('DATA_GO_KR_NEW_KEY');
     if (!seafoodKey) return `${seafoodItems[seafoodMatch]} (수산물 도매 API 연동 대기, 내부 DB)`;
     
     // Simulate Public Data Portal Fetch for Seafood (e.g. MOF Consignment Sales)

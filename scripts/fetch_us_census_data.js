@@ -1,7 +1,8 @@
 const fs = require('fs');
 const path = require('path');
 
-const API_KEY = "57ed5d9332b5b042e538a9dd3abc83c00a5a66eb";
+const API_KEY = process.env.USCENSUS_API_KEY;
+if (!API_KEY) throw new Error("Missing required environment variable: USCENSUS_API_KEY");
 const BASE_URL = "https://api.census.gov/data/timeseries/intltrade/imports/hs";
 
 // 비통조림(사시미급) 참치 수입 HS6 — 신선(0302)·냉동(0303)·필렛(0304) + 기존 코드 보존

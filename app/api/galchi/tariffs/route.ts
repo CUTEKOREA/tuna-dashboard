@@ -1,8 +1,9 @@
 import { NextResponse } from 'next/server';
+import { requireEnv } from '../../_shared/env';
 
 export const dynamic = 'force-dynamic';
 
-const TARIFFS_KEY = process.env.DATA_GO_KR_NEW_KEY || "fdbf3eb58f1157a1db7c9156e8ce7f88ed9fa2d996116d9079dddb5232133f7c";
+const TARIFFS_KEY = () => requireEnv('DATA_GO_KR_NEW_KEY');
 const TARIFFS_BASE = "https://api.tariffs.io/v1/calculate";
 
 // 갈치(HS 0303.89-2000)는 FTA TRQ 미적용 — 전 공급국 MFN 10% 동일.
@@ -31,10 +32,10 @@ const FALLBACK = {
 
 export async function GET() {
   try {
-    if (!TARIFFS_KEY) return NextResponse.json(FALLBACK);
+    if (!TARIFFS_KEY()) return NextResponse.json(FALLBACK);
 
     const res = await fetch(`${TARIFFS_BASE}?hs_code=030389`, {
-      headers: { 'Authorization': `Bearer ${TARIFFS_KEY}` },
+      headers: { 'Authorization': `Bearer ${TARIFFS_KEY()}` },
       signal: AbortSignal.timeout(5000),
     });
 

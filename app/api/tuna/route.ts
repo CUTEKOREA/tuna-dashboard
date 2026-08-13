@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server';
 import fs from 'fs';
 import path from 'path';
+import { requireEnv } from '../_shared/env';
 
 export const runtime = 'nodejs';
 export const revalidate = 300; // 5분 캐시
@@ -20,7 +21,7 @@ type TunaTradeStats = {
 
 async function fetchKCSTunaTrade(): Promise<TunaTradeStats | null> {
   // L-10: env 우선, 없으면 하드코딩 fallback으로 라이브 유지
-  const key = (process.env.DATA_GO_KR_NEW_KEY || 'fdbf3eb58f1157a1db7c9156e8ce7f88ed9fa2d996116d9079dddb5232133f7c');
+  const key = requireEnv('DATA_GO_KR_NEW_KEY');
   try {
     const now = new Date();
     const yyyy = now.getFullYear();

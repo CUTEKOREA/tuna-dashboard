@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server';
 import { HS_CODES } from '../_shared/hs-codes';
+import { requireEnv } from '../_shared/env';
 
 /**
  * 고등어 실시간 Intelligence Ticker — 통합 BFF
@@ -11,7 +12,7 @@ import { HS_CODES } from '../_shared/hs-codes';
 
 const ECOS_API_KEY = process.env.ECOS_API_KEY || '';
 const KAMIS_API_KEY = process.env.KAMIS_API_KEY || '';
-const KCS_API_KEY = process.env.DATA_GO_KR_NEW_KEY || 'fdbf3eb58f1157a1db7c9156e8ce7f88ed9fa2d996116d9079dddb5232133f7c';
+const KCS_API_KEY = () => requireEnv('DATA_GO_KR_NEW_KEY');
 const MACKEREL_HS = HS_CODES.mackerel_frozen.hsSgn;
 
 export const runtime = 'nodejs';
@@ -81,7 +82,7 @@ async function fetchKAMIS_Mackerel(): Promise<{ wholesale: number; retail: numbe
 // ─── KCS: 고등어 수입 CIF 단가 ───
 async function fetchKCS_CIF(): Promise<{ cifUsdTon: number; change: number; isLive: boolean }> {
   const FALLBACK = { cifUsdTon: 2240, change: -1.2, isLive: false };
-  if (!KCS_API_KEY) return FALLBACK;
+  if (!KCS_API_KEY()) return FALLBACK;
 
   try {
     const now = new Date();
@@ -89,7 +90,7 @@ async function fetchKCS_CIF(): Promise<{ cifUsdTon: number; change: number; isLi
     const yyyyMM = `${now.getFullYear()}${String(now.getMonth() + 1).padStart(2, '0')}`;
     const startYymm = `${past.getFullYear()}${String(past.getMonth() + 1).padStart(2, '0')}`;
     const url = `https://apis.data.go.kr/1220000/nitemtrade/getNitemtradeList` +
-      `?serviceKey=${KCS_API_KEY}&strtYymm=${startYymm}&endYymm=${yyyyMM}&hsSgn=${MACKEREL_HS}`;
+      `?serviceKey=${KCS_API_KEY()}&strtYymm=${startYymm}&endYymm=${yyyyMM}&hsSgn=${MACKEREL_HS}`;
 
     const res = await fetch(url, { signal: AbortSignal.timeout(5000) });
     if (res.ok) {

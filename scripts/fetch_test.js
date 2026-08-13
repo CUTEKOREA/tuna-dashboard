@@ -1,4 +1,5 @@
-const apiKey = "57ed5d9332b5b042e538a9dd3abc83c00a5a66eb";
+const apiKey = process.env.USCENSUS_API_KEY;
+if (!apiKey) throw new Error("Missing required environment variable: USCENSUS_API_KEY");
 const hsCodes = ["160414", "030343", "030475"]; // Canned tuna, Skipjack, Pollock
 
 async function test() {

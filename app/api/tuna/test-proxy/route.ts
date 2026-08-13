@@ -1,4 +1,5 @@
 import { NextResponse } from 'next/server';
+import { requireEnv } from '../../_shared/env';
 
 export const runtime = 'nodejs';
 export const dynamic = 'force-dynamic';
@@ -25,7 +26,7 @@ export async function GET(req: Request) {
     const today = new Date().toISOString().split('T')[0];
     targetUrl = `https://www.kamis.or.kr/service/price/xml.do?action=dailyPriceByCategoryList&p_product_cls_code=02&p_regday=${today}&p_convert_kg_yn=Y&p_item_category_code=600&p_cert_key=${kamisKey}&p_cert_id=${kamisId}&p_returntype=json`;
   } else if (type === 'kcs') {
-    const kcsKey = (process.env.DATA_GO_KR_NEW_KEY || 'fdbf3eb58f1157a1db7c9156e8ce7f88ed9fa2d996116d9079dddb5232133f7c');
+    const kcsKey = requireEnv('DATA_GO_KR_NEW_KEY');
     const today = new Date();
     const lastMonth = new Date(today.getFullYear(), today.getMonth() - 1, 1);
     const searchBgnDe = `${lastMonth.getFullYear()}${String(lastMonth.getMonth() + 1).padStart(2, '0')}`;
@@ -33,7 +34,7 @@ export async function GET(req: Request) {
     targetUrl = `https://unipass.customs.go.kr/ext/rest/trtImpExpStas/retrieveTrtImpExpStas?crkyCn=${kcsKey}&strtYymm=${searchBgnDe}&endYymm=${searchEndDe}&hsSgn=160414&lclsNm=&dtyTp=&natCd=&netSlTp=00&imexTp=1&pageIndex=1&pageSize=10&imexCd=E`;
   }
 
-  const finalUrl = proxyUrl ? `${proxyUrl}/proxy?secret=silla-tuna-secret-2026&url=${encodeURIComponent(targetUrl)}` : targetUrl;
+  const finalUrl = proxyUrl ? `${proxyUrl}/proxy?secret=${requireEnv('PROXY_SECRET')}&url=${encodeURIComponent(targetUrl)}` : targetUrl;
 
   try {
     const res = await fetch(finalUrl);

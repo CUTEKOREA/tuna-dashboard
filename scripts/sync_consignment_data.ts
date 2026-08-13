@@ -15,10 +15,11 @@ import {
   type ConsignmentSyncState,
 } from '../lib/consignment-data.ts';
 import { createRoundRobinThrottle } from '../lib/request-throttle.ts';
+import { requireEnv } from '../app/api/_shared/env';
 
-const PRIMARY_SERVICE_KEY = process.env.FISHERY_API_KEY || '6438ce04ca4a3ec4bcc72f295ab386baa74e52cacce9f725803e18cd8c6d1030';
-const SECONDARY_SERVICE_KEY = process.env.DATA_GO_KR_NEW_KEY || 'fdbf3eb58f1157a1db7c9156e8ce7f88ed9fa2d996116d9079dddb5232133f7c';
-const LIVE_SERVICE_KEYS = [...new Set([PRIMARY_SERVICE_KEY, SECONDARY_SERVICE_KEY])];
+const PRIMARY_SERVICE_KEY = () => requireEnv('FISHERY_API_KEY');
+const SECONDARY_SERVICE_KEY = () => requireEnv('DATA_GO_KR_NEW_KEY');
+const LIVE_SERVICE_KEYS = [...new Set([PRIMARY_SERVICE_KEY(), SECONDARY_SERVICE_KEY()])];
 const MONTHLY_OAS_URL = 'https://infuser.odcloud.kr/oas/docs?namespace=15102794/v1';
 const ODCLOUD_BASE_URL = 'https://api.odcloud.kr/api';
 const LIVE_API_URL = 'https://apis.data.go.kr/1192000/select0040List/getselect0040List';
@@ -144,7 +145,7 @@ const odcloudUrl = (path: string, page: number): URL => {
   const url = new URL(`${ODCLOUD_BASE_URL}${path}`);
   url.searchParams.set('page', String(page));
   url.searchParams.set('perPage', String(ODCLOUD_PAGE_SIZE));
-  url.searchParams.set('serviceKey', PRIMARY_SERVICE_KEY);
+  url.searchParams.set('serviceKey', PRIMARY_SERVICE_KEY());
   return url;
 };
 

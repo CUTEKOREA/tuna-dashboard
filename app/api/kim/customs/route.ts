@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server';
 import { HS_CODES } from '../../_shared/hs-codes';
+import { requireAnyEnv } from '../../_shared/env';
 
 export const runtime = 'nodejs';
 export const revalidate = 300;
@@ -25,7 +26,7 @@ export const revalidate = 300;
  *   가공상태(건조/염장/냉동/기타) 10자리를 한 번에 수집하기 위함이며, prefix 필터로 정밀도를 확보.
  */
 
-const KCS_API_KEY = process.env.DATA_GO_KR_NEW_KEY || process.env.DATA_GO_KR_COMMON_KEY || 'fdbf3eb58f1157a1db7c9156e8ce7f88ed9fa2d996116d9079dddb5232133f7c';
+const KCS_API_KEY = () => requireAnyEnv('DATA_GO_KR_NEW_KEY', 'DATA_GO_KR_COMMON_KEY');
 const KIM_DRY_HS = HS_CODES.kim_dried.hsSgn;
 const KIM_DRY_PREFIX = HS_CODES.kim_dried.prefix;
 
@@ -65,7 +66,7 @@ export async function GET() {
     const yyyyMM = `${now.getFullYear()}${String(now.getMonth() + 1).padStart(2, '0')}`;
     const startYymm = `${past.getFullYear()}${String(past.getMonth() + 1).padStart(2, '0')}`;
     const url = `https://apis.data.go.kr/1220000/nitemtrade/getNitemtradeList` +
-      `?serviceKey=${KCS_API_KEY}&strtYymm=${startYymm}&endYymm=${yyyyMM}&hsSgn=${KIM_DRY_HS}`;
+      `?serviceKey=${KCS_API_KEY()}&strtYymm=${startYymm}&endYymm=${yyyyMM}&hsSgn=${KIM_DRY_HS}`;
 
     const res = await fetch(url, { signal: AbortSignal.timeout(6000) });
 

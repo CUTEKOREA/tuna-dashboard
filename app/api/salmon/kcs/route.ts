@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server';
 import { HS_CODES } from '../../_shared/hs-codes';
+import { hasEnv, requireEnv } from '../../_shared/env';
 
 export const revalidate = 3600; // 1시간 캐시
 
@@ -51,7 +52,7 @@ export async function POST(request: Request) {
     const body = await request.json();
     const { type, hsCode, startYear, endYear } = body;
     
-    const apiKey = (process.env.DATA_GO_KR_NEW_KEY || 'fdbf3eb58f1157a1db7c9156e8ce7f88ed9fa2d996116d9079dddb5232133f7c');
+    const apiKey = requireEnv('DATA_GO_KR_NEW_KEY');
     
     // Live KCS API 호출 시도
     if (apiKey && type === 'live') {
@@ -130,6 +131,6 @@ export async function GET() {
       originBreakdown: '4 country groups',
       productBreakdown: '4 HS categories',
     },
-    status: (process.env.DATA_GO_KR_NEW_KEY || 'fdbf3eb58f1157a1db7c9156e8ce7f88ed9fa2d996116d9079dddb5232133f7c') ? 'API Key configured' : 'Fallback mode',
+    status: hasEnv('DATA_GO_KR_NEW_KEY') ? 'API Key configured' : 'Fallback mode',
   });
 }
