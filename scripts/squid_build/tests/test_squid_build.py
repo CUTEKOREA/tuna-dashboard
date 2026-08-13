@@ -91,6 +91,9 @@ def test_kcs_2026_coverage_stops_at_may() -> None:
     from scripts.squid_build.extract.kcs import extract_kcs
 
     specs = _specs_by_id()
+    ytd_path = "update_2026-07-06/kcs/KCS_2026YTD_HS_squid.csv"
+    assert specs["B_kcs_import_unit_price"].archive_paths == (ytd_path,)
+    assert specs["C_korea_import_monthly"].archive_paths == (ytd_path,)
     widgets = extract_kcs(DEFAULT_ARCHIVE_ROOT, specs)
     checked = 0
     for widget in widgets.values():
@@ -396,6 +399,13 @@ def test_sourcing_signal_records_observed_and_schedule_derivations() -> None:
     assert argentina["status"] == "어기외"
     assert argentina["as_of"] == "2026-05-28"
     assert argentina["state_evidence"]["evidence_type"] == "legal_text_derived"
+    # 2026-04-22 폐쇄일은 2차 출처에만 있고 우리 아카이브에는 없다. 아카이브가
+    # 뒷받침하는 것은 "CFP 결의일(2026-05-28) 시점에 이미 종료" 까지다.
+    # 이 단언을 지우면 검증 안 된 날짜가 화면으로 되돌아온다.
+    import json as _json
+    assert "2026-04-22" not in _json.dumps(argentina, ensure_ascii=False)
+    # 어기 상태를 알아낸 것과 어획 실적을 아는 것은 다르다 — 그 구분을 사유에 남긴다.
+    assert "공보" in argentina["reason"]
     assert argentina["state_evidence"]["derivation"] == "subsequent_law_past_tense"
     assert argentina["state_evidence"]["archive_path"].split(";") == [
         "00_오징어_관련자료/01_오징어_시장·가격/02_쿼터·어장/20260812-ARG-CTMFM_Resolution_2_2026.html",
@@ -403,7 +413,6 @@ def test_sourcing_signal_records_observed_and_schedule_derivations() -> None:
     ]
     assert "후속 법령의 과거형" in argentina["reason"]
     assert "2026 주간공보" in argentina["reason"]
-    assert "2026-04-22" not in argentina["reason"]
     assert rows["한국 살오징어"]["status"] == "데이터공백"
     assert all("state_evidence" in row for row in rows.values())
 

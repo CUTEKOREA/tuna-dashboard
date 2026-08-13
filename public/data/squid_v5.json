@@ -1,6 +1,6 @@
 {
   "meta": {
-    "built_at": "2026-08-13T17:07:19+09:00",
+    "built_at": "2026-08-13T17:18:28+09:00",
     "builder_version": "squid_build/1.2.0",
     "archive_snapshot": "squid archive @ 2026-08-12",
     "gate_version": "measurement_gate 2026-08-12 + local G-012/G-013",
@@ -761,6 +761,7 @@
           "SQ-MGT-PRODUCE",
           "SQ-MGT-SERNAPESCA",
           "SQ-PROD-INIDEP",
+          "SQ-MGT-ARGENTINA",
           "SQ-MGT-FIFD",
           "SQ-MGT-MOF-TAC"
         ],
@@ -3118,7 +3119,7 @@
           "SQ-TRD-KCS"
         ],
         "source_grade": "A",
-        "archive_path": "update_2026-07-06/kcs/KCS_2026YTD_HS_squid.csv;extras/kcs/KCS_squid_HS_2020-2024.csv",
+        "archive_path": "update_2026-07-06/kcs/KCS_2026YTD_HS_squid.csv",
         "restrictions": [
           "G-002",
           "G-004"
@@ -4982,7 +4983,7 @@
           "SQ-TRD-KCS"
         ],
         "source_grade": "A",
-        "archive_path": "update_2026-07-06/kcs/KCS_2026YTD_HS_squid.csv;extras/kcs/KCS_squid_HS_2020-2024.csv",
+        "archive_path": "update_2026-07-06/kcs/KCS_2026YTD_HS_squid.csv",
         "restrictions": [
           "G-002",
           "G-004"
