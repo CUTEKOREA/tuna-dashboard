@@ -1,112 +1,122 @@
 'use client';
-import React, { useState } from 'react';
+
+import React, { useRef, useState } from 'react';
+import { AlertTriangle, CalendarClock, Ship, TrendingUp } from 'lucide-react';
 import FleetHeroKPI from './FleetHeroKPI';
 import FleetRosterGrid from './FleetRosterGrid';
 import { FleetChartSection, FleetDetailPanel } from './FleetAnalysisPanels';
 import FleetPixelMap from './FleetPixelMap';
 import VdsStrategyMatrix from './VdsStrategyMatrix';
 import PnaAccessFeeWidgets from './PnaAccessFeeWidgets';
-import TakeawayBox from './TakeawayBox';
+import VesselVdsStatus from './VesselVdsStatus';
+import { carrierLoads, nationalVds, purseSeineCatch } from '@/lib/fleet-operations-2026-08-09';
 import s from './FleetCommandCenter.module.css';
 
-const climateRisk = {
-  sstAnomaly: '+1.2℃',
-  impact: 'S/CHA 7/28 X-MAS 입항, MING RUN 17편 약 900t 전재 후 7/31 12:15 출항 완료. S/JUP MAJURO M/E 수리 중(출항 일정 기술자 확인). SY-55 상가수리(7/22~8/4) 진행 중. SEIN KASAMA·SHIN IZU·SEIN GALAXY 대기 중.',
-  riskLevel: 'MODERATE',
-};
+type FleetTaskTab = 'operations' | 'vessels' | 'performance' | 'access';
+
+const taskTabs = [
+  { id: 'operations', label: '오늘의 운영' },
+  { id: 'vessels', label: '선박·수역' },
+  { id: 'performance', label: '실적 분석' },
+  { id: 'access', label: 'VDS·입어료' },
+] as const;
+
+const nationalOverrunCount = nationalVds.areas.flatMap((area) => area.rows).filter((row) => row.remaining < 0).length;
+const jointWeeklyShare = Math.round(purseSeineCatch.summary.jointWeekly / purseSeineCatch.summary.weeklyTotal * 100);
+
+const decisions = [
+  { icon: TrendingUp, level: '생산', title: `합작선 주간 비중 ${jointWeeklyShare}%`, detail: `${purseSeineCatch.summary.jointWeekly} M/T · KONA 183, MARI 140 M/T 견인`, tone: 'primary' },
+  { icon: AlertTriangle, level: 'VDS', title: `국적선 음수 잔여 ${nationalOverrunCount}건`, detail: '키리바시·투발루·나우루 등 수역별 추가권리 확인', tone: 'danger' },
+  { icon: Ship, level: '전재', title: `운반선 선적 ${carrierLoads.loadedTotalMt.toLocaleString()} M/T`, detail: `예상잔량 ${carrierLoads.expectedRemainingMt.toLocaleString()} M/T · 방콕/X-MAS/RABAUL 관리`, tone: 'warning' },
+  { icon: CalendarClock, level: '대서양', title: '8월 11일 일간 220 M/T', detail: 'P/MAS 120 · P/PATH 60 · P/DIS 40 M/T', tone: 'primary' },
+] as const;
 
 export default function FleetCommandCenter() {
-  const [activeTab, setActiveTab] = useState<'daily' | 'weekly'>('daily');
+  const [activeTab, setActiveTab] = useState<FleetTaskTab>('operations');
+  const tabRefs = useRef<Record<FleetTaskTab, HTMLButtonElement | null>>({ operations: null, vessels: null, performance: null, access: null });
+
+  const selectTab = (tab: FleetTaskTab) => {
+    setActiveTab(tab);
+    requestAnimationFrame(() => tabRefs.current[tab]?.focus());
+  };
+
+  const handleTabKeyDown = (event: React.KeyboardEvent<HTMLButtonElement>, index: number) => {
+    let nextIndex = index;
+    if (event.key === 'ArrowRight') nextIndex = (index + 1) % taskTabs.length;
+    else if (event.key === 'ArrowLeft') nextIndex = (index - 1 + taskTabs.length) % taskTabs.length;
+    else if (event.key === 'Home') nextIndex = 0;
+    else if (event.key === 'End') nextIndex = taskTabs.length - 1;
+    else return;
+    event.preventDefault();
+    selectTab(taskTabs[nextIndex].id);
+  };
 
   return (
     <div className={s.wrapper}>
-      {/* Top Tabs */}
-      <div style={{ display: 'flex', gap: '12px', marginBottom: '24px', borderBottom: '1px solid var(--panel-border)', paddingBottom: '12px' }}>
-        <button
-          onClick={() => setActiveTab('daily')}
-          style={{
-            padding: '8px 16px',
-            fontSize: '1.05rem',
-            fontWeight: 700,
-            color: activeTab === 'daily' ? 'var(--accent-primary)' : 'var(--text-muted)',
-            borderBottom: activeTab === 'daily' ? '2px solid var(--accent-primary)' : '2px solid transparent',
-            background: 'none',
-            border: 'none',
-            borderBottomWidth: '2px',
-            borderBottomStyle: 'solid',
-            cursor: 'pointer',
-            transition: 'all 0.2s',
-          }}
-        >
-          일일 현황
-        </button>
-        <button
-          onClick={() => setActiveTab('weekly')}
-          style={{
-            padding: '8px 16px',
-            fontSize: '1.05rem',
-            fontWeight: 700,
-            color: activeTab === 'weekly' ? 'var(--accent-primary)' : 'var(--text-muted)',
-            borderBottom: activeTab === 'weekly' ? '2px solid var(--accent-primary)' : '2px solid transparent',
-            background: 'none',
-            border: 'none',
-            borderBottomWidth: '2px',
-            borderBottomStyle: 'solid',
-            cursor: 'pointer',
-            transition: 'all 0.2s',
-          }}
-        >
-          주간/월간 실적
-        </button>
+      <div className={s.commandIntro}>
+        <div><span className={s.eyebrow}>선단 운영 · 2026년 8월</span><h2>2026년 8월 선단 운영현황</h2><p>어획 8월 9일 · VDS 8월 9일 · 대서양 8월 11일 · 운반선 8월 12일 기준</p></div>
+        <span className={s.staticBadge}>첨부 원문 7건</span>
+      </div>
+      <div className={s.taskTabs} role="tablist" aria-label="선단 업무 보기">
+        {taskTabs.map((tab, index) => (
+          <button
+            key={tab.id}
+            id={`fleet-tab-${tab.id}`}
+            ref={(node) => { tabRefs.current[tab.id] = node; }}
+            type="button"
+            role="tab"
+            aria-selected={activeTab === tab.id}
+            aria-controls={`fleet-panel-${tab.id}`}
+            tabIndex={activeTab === tab.id ? 0 : -1}
+            className={`${s.taskTab} ${activeTab === tab.id ? s.taskTabActive : ''}`}
+            onClick={() => selectTab(tab.id)}
+            onKeyDown={(event) => handleTabKeyDown(event, index)}
+          >
+            {tab.label}
+          </button>
+        ))}
       </div>
 
-      {activeTab === 'daily' && (
-        <>
-          {/* Daily Hero KPIs */}
-          <FleetHeroKPI mode="daily" climateRisk={climateRisk} />
-
-          {/* Daily Takeaway (Moved to top) */}
-          <div style={{ background: 'var(--panel-bg)', border: '1px solid var(--panel-border)', borderRadius: 'var(--card-radius)', padding: 24, marginBottom: 24 }}>
-            <TakeawayBox
-              situation={<>7/30 기준 S/CHA 7/28 X-MAS 입항, MING RUN 17편 약 900t 전재 후 7/31 12:15 출항 완료. SEIN VENUS 8/5 BKK 도착 예정(3,275t). HIKARI 1 8/5 GENSAN 도착 예정(3,214t). SEIN KASAMA X-MAS 대기, SHIN IZU NO2 W165 대기, SEIN GALAXY RABAUL 대기 중(타사 출항 전재 예정). S/JUP 6/22 MAJURO 입항(M/E 수리 중, 출항 일정 기술자 확인). SY-55 7/19 부산 입항, 하역 및 상가수리(7/22~8/4) 후 8/8 출항 예정. TAIHO MARU 8/11경 부산 입항 예정(338.699t).</>}
-              actionPlan={<>① 운반선 관리: MING RUN 17 X-MAS C-900 전재 완료 확인, SEIN VENUS(8/5 BKK) 및 HIKARI 1(8/5 GENSAN) 도착 일정 모니터링, 대기선박(SEIN KASAMA, SHIN IZU, SEIN GALAXY) 스케줄 관리. ② 태평양 선망: 일간 268t — S/EXP(30t)·S/HAR(65t)·N/STAR(110t) 조업세 호조, S/JUP M/E 수리 진행 상황 및 출항 일정 점검. ③ 연승선 운영: SY-55 상가수리(7/22~8/4) 진행 확인, TAIHO MARU(8/11경 입항) 입항 준비. ④ 대서양 선망: 일간 165t — P/COM(50t)·P/QUEEN(40t)·P/GRACE(40t)·P/FORE(35t) 고른 조업, TEMA 입항 예정(P/MAS 7/31, P/DIS 7/29~8/1, P/PATH 8/1, P/COM 8/5) 하역 일정 관리.</>}
-              source="해양수산본부 일일 업무보고 260731"
-            />
+      <section id="fleet-panel-operations" role="tabpanel" aria-labelledby="fleet-tab-operations" className={s.tabPanel} hidden={activeTab !== 'operations'}>
+          <FleetHeroKPI mode="daily" />
+          <div className={s.decisionPanel}>
+            <div className={s.decisionHeader}>
+              <div><span className={s.eyebrow}>기준일 분리 운영 판단</span><h3>이번 주 의사결정 4건</h3></div>
+              <span className={s.staticBadge}>8월 9~12일 원문 기준</span>
+            </div>
+            <div className={s.decisionGrid}>
+              {decisions.map(({ icon: Icon, level, title, detail, tone }) => (
+                <article key={title} className={`${s.decisionItem} ${s[`decision_${tone}`]}`}>
+                  <Icon size={18} aria-hidden="true" />
+                  <div><span className={s.decisionLevel}>{level}</span><strong>{title}</strong><p>{detail}</p></div>
+                </article>
+              ))}
+            </div>
+            <details className={s.reportDetails}>
+              <summary>업무보고 원문 펼치기</summary>
+              <p>주간 어획과 VDS는 8월 9일, 대서양 위치·어획은 8월 11일, 운반선은 8월 12일 기준입니다. 모집단과 기준일이 달라 단일 합계로 합산하지 않습니다.</p>
+            </details>
           </div>
+      </section>
 
-          {/* Zone 2: Fleet Mini-map */}
-          <div style={{ marginBottom: '16px' }}>
-            <h3 style={{ fontSize: '1.2rem', fontWeight: 600, color: '#f8fafc', marginBottom: '16px', display: 'flex', alignItems: 'center', gap: '8px' }}>
-              <span style={{ fontSize: '1.2em' }}>🗺️</span> 선대 운영 미니맵 (Fleet Mini-map)
-            </h3>
-            <FleetPixelMap />
-          </div>
-
-          {/* Zone 4: Fleet Roster Grid */}
+      <section id="fleet-panel-vessels" role="tabpanel" aria-labelledby="fleet-tab-vessels" className={s.tabPanel} hidden={activeTab !== 'vessels'}>
+          <div className={s.sectionHeading}><div><span className={s.eyebrow}>선박·수역</span><h3>예외 선박과 수역별 배치</h3></div><span>지도는 보고 좌표의 개략 위치입니다</span></div>
+          <FleetPixelMap />
           <FleetRosterGrid />
-        </>
-      )}
+      </section>
 
-      {activeTab === 'weekly' && (
-        <>
-          {/* Zone 1: Hero KPIs */}
+      <section id="fleet-panel-performance" role="tabpanel" aria-labelledby="fleet-tab-performance" className={s.tabPanel} hidden={activeTab !== 'performance'}>
           <FleetHeroKPI mode="weekly" />
-
-          {/* Zone 3: Charts + Rankings */}
           <FleetChartSection />
-
-          {/* Zone 5: Expandable Detail */}
           <FleetDetailPanel />
-        </>
-      )}
+      </section>
 
-      {/* Global Bottom Sections */}
-      {/* VDS Strategy Matrix */}
-      <VdsStrategyMatrix />
-
-      {/* PNA 수역별 입어료 배정 */}
-      <PnaAccessFeeWidgets />
-
+      <section id="fleet-panel-access" role="tabpanel" aria-labelledby="fleet-tab-access" className={s.tabPanel} hidden={activeTab !== 'access'}>
+          <div className={s.accessAlert}><AlertTriangle size={18} aria-hidden="true" /><div><strong>국적선과 키리바시 선박을 분리 집계</strong><p>국적선 6척과 키리바시 선박 4척은 별도 모집단입니다. 음수 잔여는 원문을 그대로 표시했습니다.</p></div></div>
+          <VesselVdsStatus />
+          <VdsStrategyMatrix />
+          <PnaAccessFeeWidgets />
+      </section>
     </div>
   );
 }

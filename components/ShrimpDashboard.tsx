@@ -7,10 +7,10 @@ import {
   PieChart, Pie, Cell, XAxis, YAxis, CartesianGrid, Tooltip as RechartsTooltip, Legend, Scatter
 } from 'recharts';
 import { 
-  TrendingUp, TrendingDown, Fish, Anchor, Globe, DollarSign, 
+  TrendingUp, Fish, Anchor, Globe, DollarSign, 
   Activity, AlertTriangle, ShieldCheck, AlertCircle,
-  RefreshCcw, Crosshair, MapPin, Factory, Scale, BarChart2,
-  Database, Ship, Zap, Leaf, Layers
+  RefreshCcw, MapPin, Factory, Scale, BarChart2,
+  Database, Ship, Layers
 } from 'lucide-react';
 import TermTooltip from './TermTooltip';
 import WidgetCard from './WidgetCard';
@@ -18,27 +18,6 @@ import { TelemetryBadge } from './TelemetryBadge';
 import { ChartPatternDefs, getA11yBarProps } from './ChartPatterns';
 import ShrimpFTAQuarterly from './ShrimpFTAQuarterly';
 import { truncateXAxis } from '../lib/chart-standards';
-
-const EXTRA_BY_PILLAR: Record<string, React.FC[]> = {
-  S1: [],
-  S2: [],
-  S3: [ShrimpFTAQuarterly],
-  S4: [],
-  S5: [],
-};
-
-// 패턴 I: 페이지가 실제 호출하는 새우 API 라우트 목록 — 헤더 카운트의 단일 출처 (하드코딩 숫자 금지)
-const SHRIMP_API_SOURCES: Array<{ key: string; url: string }> = [
-  { key: 'customs', url: '/api/shrimp/customs' },
-  { key: 'kamis', url: '/api/shrimp/kamis' },
-  { key: 'macro', url: '/api/shrimp/macro' },
-  { key: 'krungsri', url: '/api/shrimp/krungsri' },
-  { key: 'forecast', url: '/api/shrimp/forecast' },
-  { key: 'sourcing', url: '/api/shrimp/sourcing-sim' },
-  { key: 'compliance', url: '/api/shrimp/compliance' },
-  { key: 'esg', url: '/api/shrimp/esg-radar' },
-  { key: 'emerging', url: '/api/shrimp/emerging-markets' },
-];
 
 /* ─── Custom Tooltip ─── */
 const CustomTooltip = ({ active, payload, label }: any) => {
@@ -69,44 +48,67 @@ const CustomTooltip = ({ active, payload, label }: any) => {
 const PIE_COLORS = ["#38bdf8", "var(--color-success)", "var(--color-warning)", "var(--color-danger)", "#8b5cf6", "#ec4899", "#06b6d4", "#f97316"];
 
 /* ─── KPI Themes ─── */
-const KPI_THEMES = [
-  { border: 'none', glow: 'none', text: 'var(--color-success)', icon: Database },
-  { border: 'none', glow: 'none', text: 'var(--text-primary)', icon: AlertTriangle },
-  { border: 'none', glow: 'none', text: 'var(--color-success)', icon: TrendingUp },
-  { border: 'none', glow: 'none', text: 'var(--color-danger)', icon: ShieldCheck },
-  { border: 'none', glow: 'none', text: 'var(--color-warning)', icon: Factory },
-  { border: 'none', glow: 'none', text: 'var(--text-primary)', icon: Scale },
-];
+/* KPI 테마는 인덱스가 아니라 kpi 키에 고정한다.
+   인덱스 배정이면 '양식 비중'에 경고 삼각형이, '교역액'에 위험 빨강이 붙어
+   없는 의미가 생긴다. 색은 값의 성격에만 쓴다 — 집중도(kpi3)만 경고색. */
+const KPI_THEMES: Record<string, { text: string; icon: any }> = {
+  kpi1: { text: 'var(--text-primary)', icon: Database },      // 총생산 — 중립 규모
+  kpi2: { text: 'var(--color-success)', icon: TrendingUp },   // 양식 비중 — 구조 전환
+  kpi3: { text: 'var(--color-warning)', icon: AlertTriangle },// 단일종 64% — 취약성
+  kpi4: { text: 'var(--text-primary)', icon: Globe },         // 교역액 — 중립 규모
+  kpi5: { text: 'var(--text-primary)', icon: Ship },          // 최대 수출국 — 중립
+  kpi6: { text: 'var(--text-primary)', icon: Scale },         // 한국 수입 — 중립
+};
+const KPI_THEME_FALLBACK = { text: 'var(--text-primary)', icon: Database };
 
-/* ─── Widget Icons ─── */
+/* ─── Widget Icons (v4 위젯 21개 기준) ─── */
 const WIDGET_ICONS: Record<string, any> = {
-  w01_paradigm_shift: Activity, w02_aqua_value: TrendingUp, w03_processing: Factory,
-  w04_top10_aqua: BarChart2, w05_top10_catch: Anchor, w06_top10_revenue: DollarSign,
-  w07_trade_scaleup: Globe, w08_top_exporter: Ship, w09_top_importer: MapPin,
-  w10_kr_import: AlertCircle, w11_kr_deficit: TrendingDown, w12_unit_price: Scale,
-  w13: TrendingUp, w14: Factory, w15: Anchor, w16: DollarSign, w17: AlertTriangle, w18: Globe,
-  w19_hyperspectral: Crosshair, w20_fcr_80: Zap, w21_peeling_esg: AlertTriangle, w22_microalgae: RefreshCcw,
-  w_raw1_production_trend: Globe, w_raw2_unit_price: DollarSign,
-  w_proc1_type_production: Factory, w_proc2_kr_import_type: BarChart2,
-  w_log1_spot_price: TrendingUp, w_log2_kr_sourcing: MapPin, w_log3_kr_import_value: DollarSign,
-  w_sales1_commodity_unit_price: Scale, w_sales2_exporter_trend: Ship,
-  w_esg1_compliance: ShieldCheck, w_esg2_supply_risk: AlertTriangle,
-  w42_format_shift: Activity, w43_feed_inflation: TrendingUp,
-  w44_ems_margin: AlertTriangle, w45_export_vuln: Globe,
-  w46_ecuador_dominance: Globe, w47_tariff_paradox: Scale,
-  w48_vaccine_priming: ShieldCheck, w49_black_tiger_revival: Factory,
-  // V2.0 신규 위젯 아이콘
-  w_shrimp_price_forecast: TrendingUp, w_shrimp_macro_dashboard: Activity,
-  w_shrimp_sourcing_sim: Layers, w_shrimp_concentration_risk: AlertTriangle,
-  w_shrimp_substitute_elasticity: Scale,
-  w_shrimp_ntb_radar: ShieldCheck, w_shrimp_antibiotic_tracker: AlertCircle,
-  w_shrimp_sps_alert: Globe,
-  w_shrimp_forced_labor_map: AlertTriangle, w_shrimp_mangrove_index: Leaf,
-  w_shrimp_cert_tracker: ShieldCheck,
-  w_shrimp_chitosan_opportunity: Leaf, w_shrimp_halal_export: Globe,
-  w_shrimp_rte_format: Factory,
+  w01_paradigm_shift: Activity, w02_top10_by_source: BarChart2, w03_species_concentration: Layers,
+  w04_argentina_landings: Anchor, w50_kfas_bft_pathogen: AlertCircle,
+  w03_processing: Factory, w_proc1_type_production: Factory,
+  w08_processing_reversal: RefreshCcw, w09_feed_vs_processing_margin: Scale,
+  w10_world_exporters: Globe, w11_ecuador_monthly: Ship, w12_reprocessing_hubs: MapPin, w13_kr_import_by_stage: BarChart2,
+  w14_top_import_markets: DollarSign, w15_pinksheet_nominal: TrendingUp, w16_spain_exw_ladder: Scale,
+  w_kr_shrimp_origin_price: DollarSign, w_proc2_kr_import_type: BarChart2,
+  w_india_shaphari: ShieldCheck, w_vn_traceability_risk: AlertTriangle, w21_cert_landscape: ShieldCheck,
 };
 
+/* ─── 5-Pillar 단일 배열 (Pollock 패턴 — 위젯 배치 + 주입 컴포넌트 일원화) ───
+   위젯 id 출처: docs/2026-08-13_shrimp_redesign_p2_component.md 1장 표
+   (public/data/shrimp_real_data_v4.json 생성 후에는 JSON의 pillar 필드가 정본) */
+type PillarId = 'S1' | 'S2' | 'S3' | 'S4' | 'S5';
+type PillarDef = {
+  id: PillarId;
+  num: string; label: string; title: string; desc: string; color: string;
+  icon: React.FC<any>;
+  // readonly string[]로 넓혀둔다. `as const` 튜플이면 PILLARS.find()의 결과가 5개 리터럴
+  // 튜플의 유니온이 되어 .includes() 파라미터가 never로 좁혀진다.
+  widgets: readonly string[];
+  customInject: readonly React.FC[];
+};
+
+const PILLARS: readonly PillarDef[] = [
+  { id: 'S1', num: '❶', label: '원료 수급', title: '🦐 제1기둥 — 원료 수급',
+    desc: '글로벌 양식·어획 동향, 산지 단가, 질병 리스크', color: '#10b981', icon: Anchor,
+    widgets: ['w01_paradigm_shift', 'w02_top10_by_source', 'w03_species_concentration', 'w04_argentina_landings', 'w50_kfas_bft_pathogen'],
+    customInject: [] },
+  { id: 'S2', num: '❷', label: '가공·생산', title: '🏭 제2기둥 — 가공·생산',
+    desc: '가공 유형별 생산, 가공 전환·마진, 한국 수입 가공품 구조', color: '#14b8a6', icon: Factory,
+    widgets: ['w03_processing', 'w_proc1_type_production', 'w08_processing_reversal', 'w09_feed_vs_processing_margin'],
+    customInject: [] },
+  { id: 'S3', num: '❸', label: '물류·통관', title: '🚢 제3기둥 — 물류·통관',
+    desc: '글로벌 수출 경쟁, 에콰도르 동향, 재가공 허브, 한국 수입 단계', color: '#0d9488', icon: Ship,
+    widgets: ['w10_world_exporters', 'w11_ecuador_monthly', 'w12_reprocessing_hubs', 'w13_kr_import_by_stage'],
+    customInject: [ShrimpFTAQuarterly] },
+  { id: 'S4', num: '❹', label: '판매·수요', title: '📈 제4기둥 — 판매·수요',
+    desc: '수입 시장 단가 트렌드, 원산지별 가격 구조', color: '#5eead4', icon: DollarSign,
+    widgets: ['w14_top_import_markets', 'w15_pinksheet_nominal', 'w16_spain_exw_ladder', 'w_kr_shrimp_origin_price', 'w_proc2_kr_import_type'],
+    customInject: [] },
+  { id: 'S5', num: '❺', label: 'ESG·지속가능성', title: '🌱 제5기둥 — ESG·지속가능성',
+    desc: '양식 인증·추적성, 지속가능성 컴플라이언스', color: '#99f6e4', icon: ShieldCheck,
+    widgets: ['w_india_shaphari', 'w_vn_traceability_risk', 'w21_cert_landscape'],
+    customInject: [] },
+];
 
 /* ─── Term Tooltip Parser ─── */
 const TERM_DICTIONARY: Record<string, string> = {
@@ -141,49 +143,31 @@ const formatYAxis = (v: number, unit?: string) => {
   return formatted + (unit ? ` ${unit}` : '');
 };
 
-// 5-Pillar 네비게이터 메타 (새우 시그니처 그라디언트 emerald → teal — 룰북 D-04 갈치/새우 공통)
-const SECTIONS = [
-  { id: 'S1', num: '❶', label: '원료 수급', title: '🦐 제1기둥 — 원물 생산', desc: '글로벌 양식·어획 동향, 산지 가격, 질병/사료 리스크', color: '#10b981', icon: Anchor,
-    widgets: ['w01_paradigm_shift', 'w04_top10_aqua', 'w05_top10_catch', 'w15', 'w44_ems_margin', 'w46_ecuador_dominance', 'w_raw1_production_trend', 'w_raw2_unit_price', 'w_shrimp_price_forecast', 'w_shrimp_macro_dashboard', 'w48_vaccine_priming', 'w20_fcr_80', 'w22_microalgae', 'w50_kfas_bft_pathogen', 'w51_kfas_silymarin_feed', 'w52_kfas_duplex_pcr', 'w54_commodity_trap_index', 'w55_india_species_shift', 'w59_feed_substitute_economics', 'w60_disease_dx_evolution', 'w63_coldwater_shrimp_stock', 'w65_india_seafood_export_trajectory', 'w69_andhra_pradesh_risk'] },
-  { id: 'S2', num: '❷', label: '가공·생산', title: '🏭 제2기둥 — 가공 산업', desc: '가공 유형별 생산, 한국 수입 가공품 구조, 신소재 및 대체 단백질', color: '#14b8a6', icon: Factory,
-    widgets: ['w03_processing', 'w18', 'w19_hyperspectral', 'w_proc1_type_production', 'w_proc2_kr_import_type', 'w49_black_tiger_revival', 'w42_format_shift', 'w_shrimp_chitosan_opportunity', 'w_shrimp_rte_format', 'w53_kfas_3d_printed_shrimp', 'w62_alt_seafood_disruption'] },
-  { id: 'S3', num: '❸', label: '물류·통관', title: '🚢 제3기둥 — 물류 및 무역', desc: '글로벌 무역 흐름, 한국 수입 다변화, 관세·CVD·FTA 시뮬레이션', color: '#0d9488', icon: Ship,
-    widgets: ['w07_trade_scaleup', 'w08_top_exporter', 'w09_top_importer', 'w10_kr_import', 'w11_kr_deficit', 'w17', 'w_log1_spot_price', 'w_log2_kr_sourcing', 'w_log3_kr_import_value', 'w_shrimp_sourcing_sim', 'w_shrimp_concentration_risk', 'w45_export_vuln', 'w47_tariff_paradox', 'w56_trade_diversion_flow', 'w61_hhi_timeseries', 'w64_us_cvd_tariff_matrix', 'w66_vn_shrimp_export_peak', 'w67_indo_eu_fta_impact', 'w70_tariff_chaos_timeline', 'w_kr_shrimp_import_quarterly'] },
-  { id: 'S4', num: '❹', label: '판매·수요', title: '📈 제4기둥 — 판매 및 수요', desc: '단가 트렌드, 수출국 매출, 대체재 탄력성, 할랄·인플레이션 노출', color: '#5eead4', icon: DollarSign,
-    widgets: ['w02_aqua_value', 'w06_top10_revenue', 'w12_unit_price', 'w13', 'w14', 'w16', 'w_sales1_commodity_unit_price', 'w_sales2_exporter_trend', 'w_shrimp_substitute_elasticity', 'w_shrimp_halal_export', 'w43_feed_inflation', 'w_kr_shrimp_origin_price'] },
-  { id: 'S5', num: '❺', label: 'ESG·지속가능성', title: '🌱 제5기둥 — ESG 및 지속가능성', desc: '비관세 장벽(NTB), 항생제·강제노동·맹그로브·인증 컴플라이언스', color: '#99f6e4', icon: ShieldCheck,
-    widgets: ['w21_peeling_esg', 'w_esg1_compliance', 'w_esg2_supply_risk', 'w_shrimp_ntb_radar', 'w_shrimp_antibiotic_tracker', 'w_shrimp_sps_alert', 'w_shrimp_forced_labor_map', 'w_shrimp_mangrove_index', 'w_shrimp_cert_tracker', 'w57_csddd_readiness', 'w58_vn_labor_audit', 'w68_indonesia_shrimp_associations', 'w_india_shaphari', 'w_vn_traceability_risk'] },
-];
-
 export default function ShrimpDashboard() {
   const [data, setData] = useState<any>(null);
   const [activePart, setActivePart] = useState<'S1' | 'S2' | 'S3' | 'S4' | 'S5'>('S1');
   const [activeModal, setActiveModal] = useState<string | null>(null);
   const modalRef = useRef<HTMLDivElement>(null);
 
-  // API Live Data & Simulator State
-  const [apiData, setApiData] = useState<any>({});
-  const [simExchangeRate, setSimExchangeRate] = useState<number>(1385);
-  const [simTariff, setSimTariff] = useState<number>(2.0);
-  const [simBaseMargin] = useState<number>(15.0); // Base profit margin assumption
-
-
   useEffect(() => {
-    fetch('/data/shrimp_real_data_v3.json')
+    fetch('/data/shrimp_real_data_v4.json')
       .then(res => res.json())
       .then(json => setData(json))
       .catch(err => console.error("Failed to load shrimp data", err));
-
-    // Fetch API Data — SHRIMP_API_SOURCES가 단일 출처 (패턴 I)
-    Promise.all(
-      SHRIMP_API_SOURCES.map(s => fetch(s.url).then(r => r.ok ? r.json() : null).catch(() => null))
-    ).then(results => {
-      const next: Record<string, any> = {};
-      SHRIMP_API_SOURCES.forEach((s, i) => { next[s.key] = results[i]; });
-      setApiData(next);
-      if (next.macro?.metrics?.rate) setSimExchangeRate(next.macro.metrics.rate);
-    }).catch(console.error);
   }, []);
+
+  // 회귀 감지: v4 위젯은 전부 pillar 필드를 갖고 PILLARS와 1:1 대응해야 함.
+  // 미매핑 위젯이 나타나면 조용히 버리지 않고 개발 콘솔에 경고.
+  useEffect(() => {
+    if (!data?.widgets) return;
+    const mapped = new Set<string>(PILLARS.flatMap(p => p.widgets as readonly string[]));
+    const unmapped = (data.widgets as any[]).filter(w => !mapped.has(w.id));
+    if (unmapped.length > 0) {
+      console.warn(
+        `[ShrimpDashboard] PILLARS 미매핑 위젯 ${unmapped.length}건: ${unmapped.map(w => w.id).join(', ')} — PILLARS 배열에 추가 필요`
+      );
+    }
+  }, [data]);
 
   useEffect(() => {
     const handler = (e: MouseEvent) => {
@@ -205,191 +189,185 @@ export default function ShrimpDashboard() {
   const { kpis, widgets } = data;
   const kpiKeys = Object.keys(kpis);
 
-  // 패턴 I: 카운트는 실측으로만 산출 (하드코딩 금지)
-  const connectedApiCount = SHRIMP_API_SOURCES.filter(s => apiData[s.key] && !apiData[s.key].error).length;
-  // L-09/L-12: 라우트가 isLive === true를 명시한 경우에만 LIVE로 취급
-  const liveApiActive = SHRIMP_API_SOURCES.some(s => apiData[s.key]?.isLive === true);
-
+  // v4는 정적 스냅샷이 정본 — API 바인딩 없음. 제목의 영문 괄호만 정리.
   const displayWidgets = widgets?.map((w: any) => {
     const newW = { ...w };
     if (newW.title) {
        newW.title = newW.title.replace(/\s*\([A-Za-z\s]+\)/g, '');
     }
-    if (newW.id === 'w_log3_kr_import_value') {
-      if (apiData.customs?.liveImportData?.length > 0) {
-        const historicalData = newW.data.filter((d: any) => parseInt(d.year) < 2024);
-        newW.data = [...historicalData, ...apiData.customs.liveImportData];
-        newW.telemetry = apiData.customs.isLive ? 'live' : 'synced';
-        // 패턴 E: 일괄 fallback 문자열 금지 — 라이브가 아니면 JSON의 syncDate(데이터 빈티지)를 그대로 둠
-        if (apiData.customs.isLive) newW.syncDate = '실시간 연동중 (관세청)';
-      } else if (apiData.customs !== undefined) {
-        // customs fetch 완료됐지만 liveImportData 없음 → 정적 JSON 데이터
-        newW.telemetry = 'synced';
-      }
-      // customs가 null(fetch 실패)이면 JSON 원본 telemetry 유지
-    }
-    // sourcing-sim: UN Comtrade 실측 CIF를 차트에 바인딩. isLive(Comtrade 성공) 시에만 LIVE 표기(정직).
-    if (newW.id === 'w_shrimp_sourcing_sim' && apiData.sourcing?.sourcingMatrix?.length > 0) {
-      newW.data = apiData.sourcing.sourcingMatrix.map((s: any) => ({
-        country: `${s.flag || ''} ${s.country}`.trim(),
-        cif: s.cifPrice_USD_MT,
-        tariff: Math.round((s.cifPrice_USD_MT * (s.tariffRate_Percent || 0)) / 100),
-        shipping: s.shippingCost_USD_MT,
-      }));
-      if (apiData.sourcing.isLive) {
-        newW.telemetry = 'live';
-        newW.badges = ['Live API'];
-        newW.syncDate = '실시간 연동중 (UN Comtrade)';
-      }
-    }
     return newW;
   });
 
-  /* ─── Unified Chart Renderer ─── */
+  /* ─── Unified Chart Renderer ───
+     NEW FORMAT(xKey/bars/lines/areas)과 OLD FORMAT(xAxis/series)을 공통 중간 표현
+     { xKey, series: [{ key, name, color, type, yAxisId }] }로 정규화한 뒤 단일 switch로 렌더.
+     포맷 고유의 스타일 차이(축 색·마진·dual-axis 판정·gradient id 규칙)는 isNew 플래그로 보존. */
   const renderChart = (widget: any) => {
     const d = widget.data;
     if (!d || d.length === 0) return <div style={{height:'100%',display:'flex',alignItems:'center',justifyContent:'center',color:'#64748b'}}>데이터 없음</div>;
     const chartType = (widget.chartType || '').toLowerCase();
 
-    // NEW FORMAT (Claude widgets)
-    if (widget.xKey || widget.bars || widget.lines || widget.areas) {
-      switch(chartType) {
-        case "pie":
-          return (
-            <PieChart>
-              <Pie data={d} dataKey="value" nameKey="name" cx="50%" cy="50%" outerRadius={85} innerRadius={35}
-                label={({name, value, percent}: any) => percent > 0.03 ? `${name} ${typeof value === 'number' ? value.toLocaleString() : value}` : ''} labelLine={false} fontSize={10}>
-                {d.map((_: any, idx: number) => <Cell key={idx} fill={PIE_COLORS[idx % PIE_COLORS.length]} />)}
-              </Pie>
-              <RechartsTooltip content={<CustomTooltip />} />
-              <Legend wrapperStyle={{ fontSize: '11px', color: '#cbd5e1' }} verticalAlign="top" height={36} />
-            </PieChart>
-          );
-        case "area":
-          return (
-            <AreaChart data={d}>
+    const isNew = !!(widget.xKey || widget.bars || widget.lines || widget.areas);
+
+    type NormSeries = { key: string; name: string; color?: string; type: 'bar' | 'line' | 'area' | 'scatter'; yAxisId: 'left' | 'right' };
+    let xKey: string;
+    let series: NormSeries[];
+    if (isNew) {
+      // dual-axis: bars·lines 공존 시 lines가 우축 (기존 hasDualAxis 규칙 그대로)
+      const dualAxis = (widget.bars?.length || 0) > 0 && (widget.lines?.length || 0) > 0;
+      xKey = widget.xKey;
+      if (chartType === 'area') {
+        series = (widget.areas || []).map((a: any): NormSeries => ({ key: a.key, name: a.name || a.key, color: a.color, type: 'area', yAxisId: 'left' }));
+      } else if (chartType === 'bar' || chartType === 'composed') {
+        series = [
+          ...(widget.bars || []).map((b: any): NormSeries => ({ key: b.key, name: b.name || b.key, color: b.color, type: 'bar', yAxisId: 'left' })),
+          ...(widget.lines || []).map((l: any): NormSeries => ({ key: l.key, name: l.name || l.key, color: l.color, type: 'line', yAxisId: dualAxis ? 'right' : 'left' })),
+        ];
+      } else {
+        series = []; // pie: data의 name/value 직접 사용
+      }
+    } else {
+      xKey = widget.xAxis || '연도';
+      series = (widget.series || []).map((s: any): NormSeries => ({
+        key: s.dataKey,
+        name: s.name || s.dataKey,
+        color: s.color,
+        type: s.type || (chartType === 'composed' ? 'bar' : chartType),
+        yAxisId: s.yAxisId || 'left',
+      }));
+    }
+
+    const hasRightAxis = series.some(s => s.yAxisId === 'right');
+    const axisStroke = isNew ? '#64748b' : '#94a3b8';
+    const axisTick = isNew ? { fontSize: 10 } : { fill: '#94a3b8', fontSize: 11 };
+    const gridStroke = isNew ? 'rgba(140,170,255,0.12)' : 'rgba(140,170,255,0.10)';
+    const oldMargin = { top: 20, right: 10, left: -10, bottom: 0 };
+    const pieLabel = ({ name, value, percent }: any) => percent > 0.03 ? `${name} ${typeof value === 'number' ? value.toLocaleString() : value}` : '';
+    // 부분월(partial) 포인트: 회색 Cell로 구분 — 완월 막대 옆 -93% 붕괴 착시 방지 (spec 3장)
+    const hasPartial = (chartType === 'bar' || chartType === 'composed') && d.some((row: any) => row?.partial === true);
+    const partialCells = (barFill: string) => hasPartial
+      ? d.map((row: any, idx: number) => <Cell key={idx} fill={row?.partial === true ? 'var(--text-secondary)' : barFill} />)
+      : null;
+
+    switch (chartType) {
+      case "pie":
+        return (
+          <PieChart>
+            <Pie data={d} dataKey="value" nameKey="name" cx="50%" cy="50%"
+              outerRadius={isNew ? 85 : 80} innerRadius={isNew ? 35 : 50} paddingAngle={isNew ? 0 : 5}
+              label={pieLabel} labelLine={false} fontSize={10}>
+              {d.map((_: any, idx: number) => <Cell key={idx} fill={PIE_COLORS[idx % PIE_COLORS.length]} />)}
+            </Pie>
+            <RechartsTooltip content={<CustomTooltip />} />
+            <Legend wrapperStyle={{ fontSize: '11px', ...(isNew ? { color: '#cbd5e1' } : {}) }} iconType={isNew ? undefined : 'circle'} verticalAlign="top" height={36} />
+          </PieChart>
+        );
+      case "area":
+        return (
+          <AreaChart data={d} margin={isNew ? undefined : oldMargin}>
+            {isNew && (
               <defs>
-                {widget.areas?.map((a: any, i: number) => (
+                {series.map((a, i) => (
                   <linearGradient key={i} id={`sArea${widget.id}_${i}`} x1="0" y1="0" x2="0" y2="1">
                     <stop offset="5%" stopColor={a.color} stopOpacity={0.6}/>
                     <stop offset="95%" stopColor={a.color} stopOpacity={0.05}/>
                   </linearGradient>
                 ))}
               </defs>
-              <CartesianGrid strokeDasharray="3 3" stroke="rgba(140,170,255,0.12)" vertical={false} />
-              <XAxis dataKey={widget.xKey} stroke="#64748b" tick={{fontSize:10}} tickFormatter={truncateXAxis} angle={0} textAnchor="middle" height={60} minTickGap={20} />
-              <YAxis stroke="#64748b" tick={{fontSize:10}} tickFormatter={(v) => formatYAxis(v, widget.yUnit)} />
-              <RechartsTooltip content={<CustomTooltip />} />
-              <Legend wrapperStyle={{fontSize:'11px'}} verticalAlign="top" height={36} />
-              {widget.areas?.map((a: any, i: number) => (
-                <Area key={i} type="monotone" dataKey={a.key} name={a.name || a.key} stroke={a.color} fill={`url(#sArea${widget.id}_${i})`} strokeWidth={2.5} />
-              ))}
-            </AreaChart>
-          );
-        case "bar":
-        case "composed": {
-          const hasDualAxis = widget.bars?.length > 0 && widget.lines?.length > 0;
-          return (
-            <ComposedChart data={d}>
-              <ChartPatternDefs />
-              <CartesianGrid strokeDasharray="3 3" stroke="rgba(140,170,255,0.12)" vertical={false} />
-              <XAxis dataKey={widget.xKey} stroke="#64748b" tick={{fontSize:10}} tickFormatter={truncateXAxis} angle={0} textAnchor="middle" height={60} minTickGap={20} />
-              <YAxis yAxisId="left" stroke="#64748b" tick={{fontSize:10}} tickFormatter={(v) => formatYAxis(v, widget.yUnit)} />
-              {hasDualAxis && <YAxis yAxisId="right" orientation="right" stroke="#64748b" tick={{fontSize:10}} tickFormatter={(v) => formatYAxis(v, widget.yUnit)} />}
-              <RechartsTooltip content={<CustomTooltip />} />
-              <Legend wrapperStyle={{fontSize:'11px'}} verticalAlign="top" height={36} />
-              {widget.bars?.map((b: any, i: number) => {
-                const p = getA11yBarProps(i);
-                return <Bar key={`b${i}`} yAxisId="left" dataKey={b.key} name={b.name || b.key} fill={p.fill} color={b.color || p.color} radius={[6,6,0,0]} fillOpacity={0.85} />;
-              })}
-              {widget.lines?.map((l: any, i: number) => (
-                <Line key={`l${i}`} yAxisId={hasDualAxis ? "right" : "left"} type="monotone" dataKey={l.key} name={l.name || l.key} stroke={l.color} strokeWidth={2.5} dot={false} activeDot={{r:5}} />
-              ))}
-            </ComposedChart>
-          );
-        }
-        default:
-          return <div style={{color:'#64748b',textAlign:'center',marginTop:'40px'}}>Unsupported</div>;
-      }
-    }
-
-    // OLD FORMAT (Gemini widgets)
-    const xAxis = widget.xAxis || '연도';
-    const series = widget.series || [];
-    const hasRightAxis = series.some((s: any) => s.yAxisId === 'right');
-
-    switch(chartType) {
-      case "pie":
-        return (
-          <PieChart>
-            <Pie data={d} cx="50%" cy="50%" innerRadius={50} outerRadius={80} paddingAngle={5} dataKey="value"
-              label={({name, value, percent}: any) => percent > 0.03 ? `${name} ${typeof value === 'number' ? value.toLocaleString() : value}` : ''} labelLine={false} fontSize={10}>
-              {d.map((_: any, idx: number) => <Cell key={idx} fill={PIE_COLORS[idx % PIE_COLORS.length]} />)}
-            </Pie>
+            )}
+            <CartesianGrid strokeDasharray="3 3" stroke={gridStroke} vertical={isNew ? false : undefined} />
+            <XAxis dataKey={xKey} stroke={axisStroke} tick={axisTick} tickFormatter={truncateXAxis} angle={0} textAnchor="middle" height={60} minTickGap={20} />
+            <YAxis stroke={axisStroke} tick={axisTick} tickFormatter={(v) => formatYAxis(v, widget.yUnit)} />
             <RechartsTooltip content={<CustomTooltip />} />
-            <Legend wrapperStyle={{ fontSize: '11px' }} iconType="circle" verticalAlign="top" height={36} />
-          </PieChart>
-        );
-      case "line":
-        return (
-          <LineChart data={d} margin={{ top: 20, right: 10, left: -10, bottom: 0 }}>
-            <CartesianGrid strokeDasharray="3 3" stroke="rgba(140,170,255,0.10)" />
-            <XAxis dataKey={xAxis} stroke="#94a3b8" tick={{ fill: '#94a3b8', fontSize: 11 }} tickFormatter={truncateXAxis} angle={0} textAnchor="middle" height={60} minTickGap={20} />
-            <YAxis yAxisId="left" stroke="#94a3b8" tick={{ fill: '#94a3b8', fontSize: 11 }} tickFormatter={(v) => formatYAxis(v, widget.yUnit)} />
-            {hasRightAxis && <YAxis yAxisId="right" orientation="right" stroke="#94a3b8" tick={{ fill: '#94a3b8', fontSize: 11 }} tickFormatter={(v) => formatYAxis(v, widget.yUnit)} />}
-            <RechartsTooltip content={<CustomTooltip />} />
-            <Legend wrapperStyle={{ fontSize: '11px' }} iconType="circle" verticalAlign="top" height={36} />
-            {series.map((s: any, i: number) => (
-              <Line key={i} yAxisId={s.yAxisId || "left"} type="monotone" dataKey={s.dataKey} name={s.name || s.dataKey} stroke={s.color} strokeWidth={2.5} dot={false} activeDot={{ r: 5 }} />
-            ))}
-          </LineChart>
-        );
-      case "area":
-        return (
-          <AreaChart data={d} margin={{ top: 20, right: 10, left: -10, bottom: 0 }}>
-            <CartesianGrid strokeDasharray="3 3" stroke="rgba(140,170,255,0.10)" />
-            <XAxis dataKey={xAxis} stroke="#94a3b8" tick={{ fill: '#94a3b8', fontSize: 11 }} tickFormatter={truncateXAxis} angle={0} textAnchor="middle" height={60} minTickGap={20} />
-            <YAxis stroke="#94a3b8" tick={{ fill: '#94a3b8', fontSize: 11 }} tickFormatter={(v) => formatYAxis(v, widget.yUnit)} />
-            <RechartsTooltip content={<CustomTooltip />} />
-            <Legend wrapperStyle={{ fontSize: '11px' }} iconType="circle" verticalAlign="top" height={36} />
-            {series.map((s: any, i: number) => (
-              <Area key={i} type="monotone" dataKey={s.dataKey} name={s.name || s.dataKey} stroke={s.color} fill={s.color} fillOpacity={0.5} strokeWidth={2} />
+            <Legend wrapperStyle={{ fontSize: '11px' }} iconType={isNew ? undefined : 'circle'} verticalAlign="top" height={36} />
+            {series.map((a, i) => (
+              <Area key={i} type="monotone" dataKey={a.key} name={a.name} stroke={a.color}
+                fill={isNew ? `url(#sArea${widget.id}_${i})` : a.color}
+                fillOpacity={isNew ? undefined : 0.5}
+                strokeWidth={isNew ? 2.5 : 2} />
             ))}
           </AreaChart>
         );
-      case "bar":
+      case "line":
         return (
-          <BarChart data={d} margin={{ top: 20, right: 10, left: -10, bottom: 0 }}>
-            <ChartPatternDefs />
-            <CartesianGrid strokeDasharray="3 3" stroke="rgba(140,170,255,0.10)" />
-            <XAxis dataKey={xAxis} stroke="#94a3b8" tick={{ fill: '#94a3b8', fontSize: 11 }} tickFormatter={truncateXAxis} angle={0} textAnchor="middle" height={60} minTickGap={20} />
-            <YAxis stroke="#94a3b8" tick={{ fill: '#94a3b8', fontSize: 11 }} tickFormatter={(v) => formatYAxis(v, widget.yUnit)} />
-            <RechartsTooltip content={<CustomTooltip />} cursor={{fill: 'rgba(140,170,255,0.10)'}} />
-            <Legend wrapperStyle={{ fontSize: '11px' }} iconType="circle" verticalAlign="top" height={36} />
-            {series.map((s: any, i: number) => {
-              const p = getA11yBarProps(i);
-              return <Bar key={i} dataKey={s.dataKey} name={s.name || s.dataKey} fill={p.fill} color={s.color || p.color} radius={[6, 6, 0, 0]} />;
-            })}
-          </BarChart>
-        );
-      case "composed":
-        return (
-          <ComposedChart data={d} margin={{ top: 20, right: 10, left: -10, bottom: 0 }}>
-            <ChartPatternDefs />
-            <CartesianGrid strokeDasharray="3 3" stroke="rgba(140,170,255,0.10)" />
-            <XAxis dataKey={xAxis} stroke="#94a3b8" tick={{ fill: '#94a3b8', fontSize: 11 }} tickFormatter={truncateXAxis} angle={0} textAnchor="middle" height={60} minTickGap={20} />
-            <YAxis yAxisId="left" stroke="#94a3b8" tick={{ fill: '#94a3b8', fontSize: 11 }} tickFormatter={(v) => formatYAxis(v, widget.yUnit)} />
-            {hasRightAxis && <YAxis yAxisId="right" orientation="right" stroke="#94a3b8" tick={{ fill: '#94a3b8', fontSize: 11 }} tickFormatter={(v) => formatYAxis(v, widget.yUnit)} />}
+          <LineChart data={d} margin={isNew ? undefined : oldMargin}>
+            <CartesianGrid strokeDasharray="3 3" stroke={gridStroke} vertical={isNew ? false : undefined} />
+            <XAxis dataKey={xKey} stroke={axisStroke} tick={axisTick} tickFormatter={truncateXAxis} angle={0} textAnchor="middle" height={60} minTickGap={20} />
+            <YAxis yAxisId="left" stroke={axisStroke} tick={axisTick} tickFormatter={(v) => formatYAxis(v, widget.yUnit)} />
+            {hasRightAxis && <YAxis yAxisId="right" orientation="right" stroke={axisStroke} tick={axisTick} tickFormatter={(v) => formatYAxis(v, widget.yUnit)} />}
             <RechartsTooltip content={<CustomTooltip />} />
-            <Legend wrapperStyle={{ fontSize: '11px' }} iconType="circle" verticalAlign="top" height={36} />
-            {series.map((s: any, i: number) => {
-              if (s.type === 'line') return <Line key={i} yAxisId={s.yAxisId || "left"} type="monotone" dataKey={s.dataKey} name={s.name || s.dataKey} stroke={s.color} strokeWidth={2.5} dot={{r: 3}} />;
-              if (s.type === 'scatter') return <Scatter key={i} yAxisId={s.yAxisId || "left"} dataKey={s.dataKey} name={s.name || s.dataKey} fill={s.color} />;
+            <Legend wrapperStyle={{ fontSize: '11px' }} iconType={isNew ? undefined : 'circle'} verticalAlign="top" height={36} />
+            {series.map((s, i) => (
+              <Line key={i} yAxisId={s.yAxisId} type="monotone" dataKey={s.key} name={s.name} stroke={s.color} strokeWidth={2.5} dot={false} activeDot={{ r: 5 }} />
+            ))}
+          </LineChart>
+        );
+      case "bar":
+      case "composed": {
+        if (!isNew && chartType === 'bar') {
+          return (
+            <BarChart data={d} margin={oldMargin}>
+              <ChartPatternDefs />
+              <CartesianGrid strokeDasharray="3 3" stroke={gridStroke} />
+              <XAxis dataKey={xKey} stroke={axisStroke} tick={axisTick} tickFormatter={truncateXAxis} angle={0} textAnchor="middle" height={60} minTickGap={20} />
+              <YAxis stroke={axisStroke} tick={axisTick} tickFormatter={(v) => formatYAxis(v, widget.yUnit)} />
+              <RechartsTooltip content={<CustomTooltip />} cursor={{fill: 'rgba(140,170,255,0.10)'}} />
+              <Legend wrapperStyle={{ fontSize: '11px' }} iconType="circle" verticalAlign="top" height={36} />
+              {series.map((s, i) => {
+                const p = getA11yBarProps(i);
+                return (
+                  <Bar key={i} dataKey={s.key} name={s.name} fill={p.fill} color={s.color || p.color} radius={[6, 6, 0, 0]}>
+                    {partialCells(p.fill)}
+                  </Bar>
+                );
+              })}
+            </BarChart>
+          );
+        }
+        if (!isNew) {
+          return (
+            <ComposedChart data={d} margin={oldMargin}>
+              <ChartPatternDefs />
+              <CartesianGrid strokeDasharray="3 3" stroke={gridStroke} />
+              <XAxis dataKey={xKey} stroke={axisStroke} tick={axisTick} tickFormatter={truncateXAxis} angle={0} textAnchor="middle" height={60} minTickGap={20} />
+              <YAxis yAxisId="left" stroke={axisStroke} tick={axisTick} tickFormatter={(v) => formatYAxis(v, widget.yUnit)} />
+              {hasRightAxis && <YAxis yAxisId="right" orientation="right" stroke={axisStroke} tick={axisTick} tickFormatter={(v) => formatYAxis(v, widget.yUnit)} />}
+              <RechartsTooltip content={<CustomTooltip />} />
+              <Legend wrapperStyle={{ fontSize: '11px' }} iconType="circle" verticalAlign="top" height={36} />
+              {series.map((s, i) => {
+                if (s.type === 'line') return <Line key={i} yAxisId={s.yAxisId} type="monotone" dataKey={s.key} name={s.name} stroke={s.color} strokeWidth={2.5} dot={{r: 3}} />;
+                if (s.type === 'scatter') return <Scatter key={i} yAxisId={s.yAxisId} dataKey={s.key} name={s.name} fill={s.color} />;
+                const p = getA11yBarProps(i);
+                return (
+                  <Bar key={i} yAxisId={s.yAxisId} dataKey={s.key} name={s.name} fill={p.fill} color={s.color || p.color} radius={[6, 6, 0, 0]}>
+                    {partialCells(p.fill)}
+                  </Bar>
+                );
+              })}
+            </ComposedChart>
+          );
+        }
+        return (
+          <ComposedChart data={d}>
+            <ChartPatternDefs />
+            <CartesianGrid strokeDasharray="3 3" stroke={gridStroke} vertical={false} />
+            <XAxis dataKey={xKey} stroke={axisStroke} tick={axisTick} tickFormatter={truncateXAxis} angle={0} textAnchor="middle" height={60} minTickGap={20} />
+            <YAxis yAxisId="left" stroke={axisStroke} tick={axisTick} tickFormatter={(v) => formatYAxis(v, widget.yUnit)} />
+            {hasRightAxis && <YAxis yAxisId="right" orientation="right" stroke={axisStroke} tick={axisTick} tickFormatter={(v) => formatYAxis(v, widget.yUnit)} />}
+            <RechartsTooltip content={<CustomTooltip />} />
+            <Legend wrapperStyle={{ fontSize: '11px' }} verticalAlign="top" height={36} />
+            {series.map((s, i) => {
+              if (s.type === 'line') return <Line key={i} yAxisId={s.yAxisId} type="monotone" dataKey={s.key} name={s.name} stroke={s.color} strokeWidth={2.5} dot={false} activeDot={{r:5}} />;
               const p = getA11yBarProps(i);
-              return <Bar key={i} yAxisId={s.yAxisId || "left"} dataKey={s.dataKey} name={s.name || s.dataKey} fill={p.fill} color={s.color || p.color} radius={[6, 6, 0, 0]} />;
+              return (
+                <Bar key={i} yAxisId="left" dataKey={s.key} name={s.name} fill={p.fill} color={s.color || p.color} radius={[6,6,0,0]} fillOpacity={0.85}>
+                  {partialCells(p.fill)}
+                </Bar>
+              );
             })}
           </ComposedChart>
         );
+      }
       default:
         return <div style={{color:'#64748b',textAlign:'center',marginTop:'40px'}}>Unsupported</div>;
     }
@@ -414,17 +392,16 @@ export default function ShrimpDashboard() {
               <h1 style={{ margin: 0, fontSize: '1.5rem', fontWeight: 700, letterSpacing: '-0.5px', color: 'var(--text-primary)' }}>
                 새우 전략 인텔리전스
               </h1>
-              <p style={{ margin: 0, fontSize: '0.88rem', color: 'var(--text-secondary)' }}>새우 전략 종합 커맨드 센터 — {displayWidgets?.length ?? 0}개 위젯 · {kpiKeys.length}개 핵심지표 · {SHRIMP_API_SOURCES.length}개 API 연동</p>
+              <p style={{ margin: 0, fontSize: '0.88rem', color: 'var(--text-secondary)' }}>새우 전략 종합 커맨드 센터 — {displayWidgets?.length ?? 0}개 위젯 · {kpiKeys.length}개 핵심지표</p>
             </div>
           </div>
+          {/* 데이터 빈티지 배지 — 정적 스냅샷 기준 연도만 정직 표기 (L-09) */}
           <div className="ds-card" style={{fontSize: '0.88rem', padding: '8px 16px', 
             background: '#11182f', border: 'none', 
             borderRadius: '500px', color: 'var(--text-secondary)', fontWeight: 600, display: 'flex', alignItems: 'center', gap: '8px',
             boxShadow: 'rgba(0,0,0,0.3) 0px 8px 8px'}}>
-            <div style={{ width: '8px', height: '8px', borderRadius: '50%', background: connectedApiCount > 0 ? 'var(--color-success)' : 'var(--color-warning)', boxShadow: connectedApiCount > 0 ? '0 0 8px #1ed760' : 'none', animation: 'pulse 2s infinite' }} />
-            <span>{connectedApiCount}/{SHRIMP_API_SOURCES.length}개 API <span style={{ color: connectedApiCount > 0 ? 'var(--color-success)' : 'var(--color-warning)' }}>응답</span></span>
-            <span style={{ margin: '0 8px', color: '#4d4d4d' }}>|</span>
-            <span style={{ color: 'var(--text-primary)' }}>FishStatJ 1950-2024</span>
+            <Database size={14} style={{ color: '#10b981', flexShrink: 0 }} />
+            <span style={{ color: 'var(--text-primary)' }}>FishStat 2026.1.0 · 2024년 기준</span>
           </div>
         </div>
       </header>
@@ -433,7 +410,7 @@ export default function ShrimpDashboard() {
       <div data-mobile-stack style={{ display: 'grid', gridTemplateColumns: 'repeat(6, 1fr)', gap: '1rem', marginBottom: '2rem' }}>
         {kpiKeys.map((key, idx) => {
           const kpi = kpis[key];
-          const theme = KPI_THEMES[idx % KPI_THEMES.length];
+          const theme = KPI_THEMES[key] ?? KPI_THEME_FALLBACK;
           const IconComp = theme.icon;
           const parsed = parseAnimatedValue(kpi.value);
           return (
@@ -477,54 +454,6 @@ export default function ShrimpDashboard() {
         })}
       </div>
 
-      {/* ═══ API Live & What-If Simulator ═══ */}
-      <div className="ds-card" style={{marginBottom: '2rem', padding: '1.5rem', background: 'rgba(24, 24, 24, 0.85)', backdropFilter: 'blur(12px)', border: '1px solid rgba(140, 170, 255, 0.10)', borderRadius: '8px', boxShadow: 'rgba(0,0,0,0.3) 0px 8px 8px', position: 'relative', overflow: 'hidden'}}>
-        <div style={{ position: 'absolute', top: 0, left: 0, width: '4px', height: '100%', background: 'var(--color-success)' }} />
-        <h2 style={{ margin: '0 0 1rem 0', fontSize: '1.13rem', color: 'var(--text-primary)', display: 'flex', alignItems: 'center', gap: '8px' }}>
-          <Activity color="var(--color-success)" size={20} /> 관세/환율 충격 시뮬레이터
-          <span style={{ display:'inline-flex', alignItems:'center', gap:'3px', background:'var(--surface-2)', color: liveApiActive ? 'var(--color-success)' : 'var(--color-warning)', fontSize:'0.66rem', fontWeight:600, padding:'2px 8px', borderRadius:'500px', letterSpacing:'0.2px', marginLeft:'6px', textTransform: 'uppercase' }}>{liveApiActive ? 'LIVE API 연동' : 'API 폴백·정적 기준'}</span>
-        </h2>
-        <div data-mobile-stack style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '2rem' }}>
-          
-          <div style={{ background: 'var(--surface-2)', padding: '1.2rem', borderRadius: '6px' }}>
-            <h3 style={{ fontSize: '0.88rem', color: 'var(--text-secondary)', margin: '0 0 0.8rem 0' }}>API 데이터 연동 현황</h3>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem', fontSize: '0.88rem' }}>
-              {/* L-09: isLive !== true면 폴백/정적 값임을 명시 (mock을 라이브처럼 보이게 금지)
-                  관세청 avgUnitPrice_USD는 라우트 양쪽 분기 모두 고정 상수이므로 isLive와 무관하게 항상 고정 기준값으로 표기 */}
-              <div style={{ display: 'flex', justifyContent: 'space-between', color: 'var(--text-primary)' }}><span>관세청 (한국 수입가):</span> <strong style={{ color: 'var(--color-warning)' }}>{apiData.customs ? `$${apiData.customs.metrics.avgUnitPrice_USD.toLocaleString()}/톤 (고정 기준값)` : '로딩중...'}</strong></div>
-              <div style={{ display: 'flex', justifyContent: 'space-between', color: 'var(--text-primary)' }}><span>KAMIS (국내 도매가):</span> <strong style={{ color: apiData.kamis?.isLive ? 'var(--color-success)' : 'var(--color-warning)' }}>{apiData.kamis ? `₩${apiData.kamis.metrics.wholesalePrice_KRW_per_KG.toLocaleString()}/kg${apiData.kamis.isLive ? '' : ' (정적)'}` : '로딩중...'}</strong></div>
-              <div style={{ display: 'flex', justifyContent: 'space-between', color: 'var(--text-primary)' }}><span>환율 (USD/KRW):</span> <strong style={{ color: apiData.macro?.isLive ? 'var(--color-success)' : 'var(--color-warning)' }}>{apiData.macro ? `₩${apiData.macro.metrics.rate.toLocaleString()}${apiData.macro.isLive ? '' : ' (폴백)'}` : '로딩중...'}</strong></div>
-            </div>
-          </div>
-
-          <div style={{ background: 'var(--surface-2)', padding: '1.2rem', borderRadius: '6px' }}>
-            <h3 style={{ fontSize: '0.88rem', color: 'var(--text-secondary)', margin: '0 0 0.8rem 0' }}>What-If 컨트롤 (변수 조정)</h3>
-            <div style={{ marginBottom: '1rem' }}>
-              <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.88rem', color: 'var(--text-primary)', marginBottom: '4px' }}>
-                <span>원/달러 환율</span> <strong>₩{simExchangeRate}</strong>
-              </div>
-              <input type="range" min="1200" max="1500" step="5" value={simExchangeRate} onChange={(e) => setSimExchangeRate(Number(e.target.value))} style={{ width: '100%', accentColor: 'var(--color-success)' }} />
-            </div>
-            <div>
-              <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.88rem', color: 'var(--text-primary)', marginBottom: '4px' }}>
-                <span>미국 상무부 반덤핑 관세율</span> <strong>{simTariff.toFixed(1)}%</strong>
-              </div>
-              <input type="range" min="0" max="10" step="0.1" value={simTariff} onChange={(e) => setSimTariff(Number(e.target.value))} style={{ width: '100%', accentColor: 'var(--color-success)' }} />
-            </div>
-          </div>
-
-          <div style={{ background: '#11182f', padding: '1.2rem', borderRadius: '6px', border: '1px solid #1f1f1f', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
-            <h3 style={{ fontSize: '0.88rem', color: 'var(--color-success)', margin: '0 0 0.8rem 0', display: 'flex', alignItems: 'center', gap: '6px' }}><TrendingUp size={16} /> What-If 추정 이익률</h3>
-            <div style={{ fontSize: '2.5rem', fontWeight: 700, color: 'var(--text-primary)' }}>
-              {(simBaseMargin - ((simExchangeRate - 1385)/100) - simTariff).toFixed(1)}%
-            </div>
-            <div style={{ fontSize: '0.75rem', color: 'var(--text-secondary)', marginTop: '4px' }}>* 기준 마진(15%)에서 환율 변동 및 관세 차감</div>
-          </div>
-
-        </div>
-      </div>
-
-      
       {/* ═══ 5-Pillar 밸류체인 네비게이터 ═══ */}
       <div style={{
         background: 'linear-gradient(180deg, rgba(20, 28, 52, 0.5), rgba(20, 28, 52, 0.2))',
@@ -545,12 +474,12 @@ export default function ShrimpDashboard() {
           </span>
         </div>
         <div data-mobile-stack style={{ display: 'grid', gridTemplateColumns: 'repeat(5, 1fr)', gap: '4px' }}>
-          {SECTIONS.map((s, idx) => {
+          {PILLARS.map((s, idx) => {
             const isActive = activePart === s.id;
             return (
               <button
                 key={s.id}
-                onClick={() => setActivePart(s.id as any)}
+                onClick={() => setActivePart(s.id)}
                 onMouseEnter={(e) => {
                   if (!isActive) {
                     e.currentTarget.style.background = 'rgba(140,170,255,0.12)';
@@ -615,70 +544,76 @@ export default function ShrimpDashboard() {
 
       {/* ═══ 활성 Pillar 위젯 그리드 ═══ */}
       {(() => {
-        const sec = SECTIONS.find(s => s.id === activePart)!;
-        const SecIcon = sec.icon;
-        const pillarWidgets = displayWidgets?.filter((w: any) => sec.widgets.includes(w.id)) || [];
-
-        // S4 활성 시 uncategorized fallback 같이 표시 (5-Pillar에 미매핑된 위젯 안 잃도록)
-        const allZoneIds = SECTIONS.flatMap(s => s.widgets);
-        const uncategorized = activePart === 'S4'
-          ? displayWidgets?.filter((w: any) => !allZoneIds.includes(w.id)) || []
-          : [];
+        const pillar = PILLARS.find(p => p.id === activePart)!;
+        const PillarIcon = pillar.icon;
+        const pillarWidgets = displayWidgets?.filter((w: any) => pillar.widgets.includes(w.id)) || [];
 
         return (
-          <>
-            <section>
-              <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '1.5rem' }}>
-                <SecIcon size={24} color={sec.color} />
-                <h2 style={{ margin: 0, fontSize: '1.5rem', fontWeight: 700, color: 'var(--text-primary)' }}>{sec.title}</h2>
-                <span style={{ marginLeft: 'auto', fontSize: '0.7rem', color: sec.color, background: `${sec.color}15`, padding: '3px 10px', borderRadius: '500px', fontWeight: 600 }}>
-                  {pillarWidgets.length} 위젯
-                </span>
-              </div>
-              <p style={{ margin: '0 0 1.5rem 34px', fontSize: '0.85rem', color: 'var(--text-secondary)' }}>{sec.desc}</p>
-              <div data-mobile-stack style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '1.5rem' }}>
-                {pillarWidgets.length === 0 && (EXTRA_BY_PILLAR[sec.id] || []).length === 0
-                  ? <div style={{ gridColumn: '1 / -1', padding: '2rem', textAlign: 'center', color: 'var(--text-secondary)', background: 'rgba(255,255,255,0.02)', borderRadius: '12px' }}>이 단계에 위젯이 없습니다</div>
-                  : <>
-                      {pillarWidgets.map((w: any) => renderWidgetCard(w, sec.id as any))}
-                      {(EXTRA_BY_PILLAR[sec.id] || []).map((Comp, i) => <Comp key={`extra-${sec.id}-${i}`} />)}
-                    </>}
-              </div>
-            </section>
-            {uncategorized.length > 0 && (
-              <section style={{ marginTop: '3rem' }}>
-                <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '1.5rem' }}>
-                  <Database size={20} color="var(--text-secondary)" />
-                  <h3 style={{ margin: 0, fontSize: '1.1rem', fontWeight: 600, color: 'var(--text-secondary)' }}>기타 분석 ({uncategorized.length})</h3>
-                </div>
-                <div data-mobile-stack style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '1.5rem' }}>
-                  {uncategorized.map((w: any) => renderWidgetCard(w, 'S4'))}
-                </div>
-              </section>
-            )}
-          </>
+          <section>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '1.5rem' }}>
+              <PillarIcon size={24} color={pillar.color} />
+              <h2 style={{ margin: 0, fontSize: '1.5rem', fontWeight: 700, color: 'var(--text-primary)' }}>{pillar.title}</h2>
+              <span style={{ marginLeft: 'auto', fontSize: '0.7rem', color: pillar.color, background: `${pillar.color}15`, padding: '3px 10px', borderRadius: '500px', fontWeight: 600 }}>
+                {pillarWidgets.length + pillar.customInject.length} 위젯
+              </span>
+            </div>
+            <p style={{ margin: '0 0 1.5rem 34px', fontSize: '0.85rem', color: 'var(--text-secondary)' }}>{pillar.desc}</p>
+            <div data-mobile-stack style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '1.5rem' }}>
+              {pillarWidgets.length === 0 && pillar.customInject.length === 0
+                ? <div style={{ gridColumn: '1 / -1', padding: '2rem', textAlign: 'center', color: 'var(--text-secondary)', background: 'rgba(255,255,255,0.02)', borderRadius: '12px' }}>이 단계에 위젯이 없습니다</div>
+                : <>
+                    {pillarWidgets.map((w: any) => renderWidgetCard(w))}
+                    {pillar.customInject.map((Comp, i) => <Comp key={`inject-${pillar.id}-${i}`} />)}
+                  </>}
+            </div>
+          </section>
         );
       })()}
     </div>
   );
 
-  function renderWidgetCard(w: any, pillar: 'S1'|'S2'|'S3'|'S4'|'S5' = 'S4') {
+  function renderWidgetCard(w: any) {
     const IconComp = WIDGET_ICONS[w.id] || Fish;
     const accentColor = 'var(--color-success)';
+    // v4 위젯은 pillar 필드를 직접 보유 — 섹션 id 주입 방식 폐기
+    const pillar: 'S1' | 'S2' | 'S3' | 'S4' | 'S5' = ['S1', 'S2', 'S3', 'S4', 'S5'].includes(w.pillar) ? w.pillar : 'S4';
 
     const situation = w.sit || w.situation || '';
     const takeaway = w.strat || w.tak || w.takeaway || '';
-    // L-09 정직 telemetry: reliability를 LIVE 판정에서 제거. 진짜 라이브(badges 'Live API'·동적 isLive 분기)만 LIVE.
-    // w.apiSource·w.isLiveApi는 JSON 하드코딩 가능성 있으므로 단독 LIVE 근거로 사용 금지.
-    const isGenuineLive = (w.badges && w.badges?.includes('Live API')) || (typeof w.telemetry === 'string' && w.telemetry.toLowerCase() === 'live');
-    const isExplicitStatic = typeof w.telemetry === 'string' && w.telemetry.toLowerCase() === 'static';
-    const honestStatus = isGenuineLive ? 'LIVE' : isExplicitStatic ? 'STATIC' : (w.telemetry || w.syncDate) ? 'SYNCED' : 'STATIC';
-    // 패턴 E: 일괄 fallback 문자열('2024년 기준'·'실시간 연동중') 제거 — syncDate 부재 시 배지가 날짜를 생략(정직)
+    // v4는 telemetry를 SYNCED/STATIC으로 직접 제공 — 그대로 신뢰. LIVE 승격 경로 없음 (L-09)
+    const rawTelemetry = typeof w.telemetry === 'string' ? w.telemetry.toUpperCase() : '';
+    const honestStatus: 'LIVE' | 'SYNCED' | 'STATIC' = rawTelemetry === 'SYNCED' ? 'SYNCED' : 'STATIC';
+    // 패턴 E: 일괄 fallback 문자열 금지 — syncDate 부재 시 배지가 날짜를 생략(정직)
     const honestSyncDate = w.syncDate;
     const cardDesc = [w.unit ? `단위: ${w.unit}` : '', w.subtitle || ''].filter(Boolean).join(' — ');
 
+    // chartType 'none': 차트 없이 customBody 배열만 목록으로 렌더 (ShrimpFTAQuarterly와 같은 패턴)
+    const isChartless = (w.chartType || '').toLowerCase() === 'none';
+    // customBody 항목은 {name, issuer, version, date, scope} 객체다.
+    // text/label만 찾으면 전부 빈 불릿으로 렌더된다.
+    const customBody = isChartless && Array.isArray(w.customBody) ? (
+      <div style={{ display: 'flex', flexDirection: 'column', gap: '12px', fontSize: '0.88rem', lineHeight: 1.5 }}>
+        {w.customBody.map((item: any, i: number) => {
+          if (typeof item === 'string') {
+            return <div key={i} style={{ color: 'var(--text-secondary)' }}>{item}</div>;
+          }
+          const meta = [item?.issuer, item?.version, item?.date].filter(Boolean).join(' · ');
+          return (
+            <div key={i} style={{ borderLeft: '2px solid var(--color-success)', paddingLeft: '10px' }}>
+              <div style={{ color: 'var(--text-primary)', fontWeight: 600 }}>
+                {item?.name || item?.text || item?.label || ''}
+              </div>
+              {meta && <div style={{ color: 'var(--text-secondary)', fontSize: '0.78rem', marginTop: '2px' }}>{meta}</div>}
+              {item?.scope && <div style={{ color: 'var(--text-secondary)', marginTop: '4px' }}>{item.scope}</div>}
+            </div>
+          );
+        })}
+      </div>
+    ) : undefined;
+
     return (
       <WidgetCard key={w.id}
+        id={w.id}
         title={w.title}
         icon={IconComp}
         iconColor={accentColor}
@@ -686,11 +621,15 @@ export default function ShrimpDashboard() {
         cardDesc={cardDesc}
         telemetry={{ status: honestStatus, syncDate: honestSyncDate }}
         chartHeight={375}
-        chart={renderChart(w)}
+        {...(isChartless ? {} : { chart: renderChart(w) })}
+        customBody={customBody}
         takeaway={{
           situation: parseTextWithTooltips(typeof situation === 'string' ? situation.replace(/^현황:\s*/, '') : situation),
           actionPlan: parseTextWithTooltips(typeof takeaway === 'string' ? takeaway.replace(/^전략:\s*/, '') : takeaway),
-          source: w.source || (w.apiSource ? `${w.apiSource}` : '') || 'FAO FishStatJ + data/새우/ CSV 원본 교차 검증 완료',
+          // v4는 모든 위젯에 source를 채운다. 폴백 문자열을 두지 않는다 —
+          // 예전 폴백('FAO FishStatJ + data/새우/ …')은 존재하지 않는 경로와
+          // 구버전 빈티지를 가리켜, 출처가 비면 거짓을 출력하는 장치였다.
+          source: w.source || '',
         }}
       />
     );

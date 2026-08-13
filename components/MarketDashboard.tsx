@@ -387,7 +387,7 @@ export default function MarketDashboard() {
       <section>
         <h3 style={{ display: 'flex', alignItems: 'center', gap: '8px', fontSize: '1.1rem', marginBottom: '16px', color: 'var(--text-main)' }}>
           <Newspaper size={20} color="#f59e0b" />
-          Atuna 최근 5일 다이제스트: 7/23~27 (확인 기사 7/23~24)
+          Atuna 2026.08 폴더 (05_ATUNA_뉴스·가격) — gdoc 포인터만 존재 · 최신 상세기사 7/27 PDF 기반 · 가격은 8/6 SKJ $1,900 반영
         </h3>
         <div data-mobile-stack className="mkt-news-grid" style={{
           display: 'grid',
@@ -400,7 +400,7 @@ export default function MarketDashboard() {
               <div style={{ display: 'inline-block', padding: '4px 10px', background: 'linear-gradient(135deg, rgba(16, 185, 129, 0.22), rgba(52, 211, 153, 0.08))', border: '1px solid rgba(16, 185, 129, 0.30)', color: '#10b981', borderRadius: '6px', fontSize: '0.7rem', fontWeight: 600, letterSpacing: '0.02em', width: 'fit-content' }}>
                 수요 / 가격
               </div>
-              <span style={{ fontSize: '0.78rem', color: 'var(--text-tertiary)', fontWeight: 500 }}>Atuna 2026.07.23~24</span>
+              <span style={{ fontSize: '0.78rem', color: 'var(--text-tertiary)', fontWeight: 500 }}>Atuna 2026.08 (드라이브 폴더)</span>
             </div>
             <h4 style={{ fontSize: '0.95rem', fontWeight: 600, lineHeight: 1.4, color: 'var(--text-main)' }}>
               수산물 소비 둔화 속 참치만 역주행 — 유럽 성장·미국 가성비 방어
@@ -423,7 +423,7 @@ export default function MarketDashboard() {
               <div style={{ display: 'inline-block', padding: '4px 10px', background: 'linear-gradient(135deg, rgba(245, 158, 11, 0.22), rgba(251, 191, 36, 0.08))', border: '1px solid rgba(245, 158, 11, 0.30)', color: '#f59e0b', borderRadius: '6px', fontSize: '0.7rem', fontWeight: 600, letterSpacing: '0.02em', width: 'fit-content' }}>
                 무역 / 관세
               </div>
-              <span style={{ fontSize: '0.78rem', color: 'var(--text-tertiary)', fontWeight: 500 }}>Atuna 2026.07.24</span>
+              <span style={{ fontSize: '0.78rem', color: 'var(--text-tertiary)', fontWeight: 500 }}>Atuna 2026.08 (드라이브 폴더)</span>
             </div>
             <h4 style={{ fontSize: '0.95rem', fontWeight: 600, lineHeight: 1.4, color: 'var(--text-main)' }}>
               미국 추가 관세 재편 — 태국산 염수 캔 25%, 에콰도르산은 예외
@@ -446,7 +446,7 @@ export default function MarketDashboard() {
               <div style={{ display: 'inline-block', padding: '4px 10px', background: 'linear-gradient(135deg, rgba(239, 68, 68, 0.22), rgba(248, 113, 113, 0.08))', border: '1px solid rgba(239, 68, 68, 0.30)', color: '#ef4444', borderRadius: '6px', fontSize: '0.7rem', fontWeight: 600, letterSpacing: '0.02em', width: 'fit-content' }}>
                 공급 / 조업
               </div>
-              <span style={{ fontSize: '0.78rem', color: 'var(--text-tertiary)', fontWeight: 500 }}>Atuna 2026.07.23</span>
+              <span style={{ fontSize: '0.78rem', color: 'var(--text-tertiary)', fontWeight: 500 }}>Atuna 2026.08 (드라이브 폴더)</span>
             </div>
             <h4 style={{ fontSize: '0.95rem', fontWeight: 600, lineHeight: 1.4, color: 'var(--text-main)' }}>
               태국의 아시아산 원어 수입 10% 감소 — 한국 공급은 26% 급감
@@ -469,7 +469,7 @@ export default function MarketDashboard() {
               <div style={{ display: 'inline-block', padding: '4px 10px', background: 'linear-gradient(135deg, rgba(56, 189, 248, 0.22), rgba(125, 211, 252, 0.08))', border: '1px solid rgba(56, 189, 248, 0.30)', color: '#38bdf8', borderRadius: '6px', fontSize: '0.7rem', fontWeight: 600, letterSpacing: '0.02em', width: 'fit-content' }}>
                 선단 / 투명성
               </div>
-              <span style={{ fontSize: '0.78rem', color: 'var(--text-tertiary)', fontWeight: 500 }}>Atuna 2026.07.23~24</span>
+              <span style={{ fontSize: '0.78rem', color: 'var(--text-tertiary)', fontWeight: 500 }}>Atuna 2026.08 (드라이브 폴더)</span>
             </div>
             <h4 style={{ fontSize: '0.95rem', fontWeight: 600, lineHeight: 1.4, color: 'var(--text-main)' }}>
               대형 연승선 31%가 어창 용량 86% 장악 — 중국·대만 집중
@@ -506,7 +506,7 @@ export default function MarketDashboard() {
             takeaway={{
               situation: "[확인] EU 전체 수산물 소비는 2014~2023년 21% 감소했지만 가다랑어 소비는 500%, 황다랑어는 49% 증가했습니다. 미국에서는 상온 수산물 물가가 전년 동월 대비 6.6% 올랐어도 5온스 캔참치가 $0.96로 저가 단백질 지위를 유지합니다. 동시에 태국산 염수 캔참치는 미국 총 관세율 25%를 적용받고 에콰도르산 일부 제품은 예외입니다.",
               actionPlan: "[해석] 최종 수요는 방어되지만 가공·유통 단계의 관세 비용을 소매가에 모두 전가하기는 쉽지 않을 수 있습니다. 미국향 계약은 국가별 실효관세와 제품 규격별 손익을 다시 계산하고, 에콰도르 예외 물량의 확대 여부와 아시아 가공업체의 원어 매입가 조정 신호를 월별로 추적합니다.",
-              source: 'Atuna 2026.07.23~24 (NotebookLM 원문 10건 분석)',
+              source: 'Atuna 05_ATUNA_뉴스·가격 (2026.08 폴더 전체)',
             }}
           />
 
@@ -520,7 +520,7 @@ export default function MarketDashboard() {
             takeaway={{
               situation: "[확인] 태국의 1분기 아시아산 통냉원어 수입은 95,198톤으로 10% 감소했고, 한국산은 19,642톤으로 26% 줄었습니다. ISSF 집계에서는 대형 연승선 31%가 어창 용량의 86%를 차지하지만 등록 선박 약 40%에 IMO 번호가 없습니다.",
               actionPlan: "[해석] 태국 단일 가공시장 의존도가 높을수록 물량·가격 협상 변동성이 커질 수 있으며, 대형 연승선에는 식별·추적성 증빙 요구가 강화될 가능성이 있습니다. 한국산 원어의 고객·양륙지별 채산성을 비교하고, 자사 선단의 IMO·RFMO 등록 정보와 전자 모니터링 자료를 선제적으로 점검합니다.",
-              source: 'Atuna 2026.07.23~24 (NotebookLM 원문 10건 분석)',
+              source: 'Atuna 05_ATUNA_뉴스·가격 (2026.08 폴더 전체)',
             }}
           />
 

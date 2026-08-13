@@ -56,6 +56,12 @@ const routes = [
     source: 'public/data/jukkumi_real_data_v1.json',
   },
   {
+    label: '/api/unloading-history',
+    importRoute: () => import('../app/api/unloading-history/route') as Promise<RouteModule>,
+    url: 'http://localhost/api/unloading-history',
+    source: 'lib/unloading-history/history_2021_2025.json',
+  },
+  {
     label: '/api/petfood',
     importRoute: () => import('../app/api/petfood/route') as Promise<RouteModule>,
     url: 'http://localhost/api/petfood',

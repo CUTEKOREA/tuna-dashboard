@@ -60,11 +60,12 @@ export async function GET() {
     // ordering breaks at two-digit days ('6/10' < '6/9') and would also corrupt
     // actualTotal below (taken from the last report's cumulative amount).
     // Applies to both local-DB and Supabase paths (DB .order() is lexicographic too).
-    const reportDateKey = (s: any): number => {
-      const m = String(s || '').match(/(\d{1,2})\s*\/\s*(\d{1,2})/);
-      return m ? parseInt(m[1], 10) * 100 + parseInt(m[2], 10) : 0;
+    const reportDateKey = (report: any): number => {
+      const m = String(report?.report_date || '').match(/(\d{1,2})\s*\/\s*(\d{1,2})/);
+      const year = Number(report?.report_year) || 2026;
+      return m ? year * 10000 + parseInt(m[1], 10) * 100 + parseInt(m[2], 10) : 0;
     };
-    reports.sort((a: any, b: any) => reportDateKey(a.report_date) - reportDateKey(b.report_date));
+    reports.sort((a: any, b: any) => reportDateKey(a) - reportDateKey(b));
 
     const mergedData: any = {};
 
@@ -77,7 +78,10 @@ export async function GET() {
         motherVessel: v.mother_vessel || '-',
         status: v.status,
         reportedTotal: Number(v.reported_total),
-        actualTotal: 0, 
+        actualTotal: 0,
+        annualActualTotal: v.annual_actual_total == null ? null : Number(v.annual_actual_total),
+        annualStartDate: v.annual_start_date || null,
+        holdDataAvailable: v.hold_data_available !== false,
         surplus: 0,
         species: [],
         timeline: []
@@ -113,6 +117,9 @@ export async function GET() {
     // Calculate surplus
     Object.keys(mergedData).forEach(key => {
       mergedData[key].surplus = mergedData[key].actualTotal - mergedData[key].reportedTotal;
+      if (mergedData[key].annualActualTotal == null) {
+        mergedData[key].annualActualTotal = mergedData[key].actualTotal;
+      }
     });
 
     return NextResponse.json({ success: true, data: mergedData });

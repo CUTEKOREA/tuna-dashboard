@@ -18,16 +18,62 @@ import {
 } from '../lib/dashboard-registry';
 
 describe('dashboard registry', () => {
-  it('routes unloading through the client-only category page to keep hydration stable', () => {
+  it('routes hydration-sensitive dashboards through the client-only category page', () => {
     const configSource = readFileSync(join(process.cwd(), 'next.config.mjs'), 'utf8');
     const categorySource = readFileSync(join(process.cwd(), 'app/[category]/page.tsx'), 'utf8');
     const rewriteSource = configSource.match(/source:\s*'([^']+)'/)?.[1];
 
     expect(rewriteSource).toBeDefined();
     expect(rewriteSource).not.toContain('unloading');
+    expect(rewriteSource).not.toContain('korea-market');
+    expect(rewriteSource).not.toContain('logistics');
+    expect(rewriteSource).not.toContain('fleet-strategy');
+    expect(rewriteSource?.match(/\(([^)]+)\)/)?.[1].split('|')).not.toContain('fleet');
     expect(categorySource).toContain('ssr: false');
   });
 
+  it('keeps the fleet command center task-focused and deterministic', () => {
+    const commandSource = readFileSync(join(process.cwd(), 'components/FleetCommandCenter.tsx'), 'utf8');
+    const mapSource = readFileSync(join(process.cwd(), 'components/FleetPixelMap.tsx'), 'utf8');
+    const heroSource = readFileSync(join(process.cwd(), 'components/FleetHeroKPI.tsx'), 'utf8');
+    const rosterSource = readFileSync(join(process.cwd(), 'components/FleetRosterGrid.tsx'), 'utf8');
+    const vdsStrategySource = readFileSync(join(process.cwd(), 'components/VdsStrategyMatrix.tsx'), 'utf8');
+
+    for (const label of ['오늘의 운영', '선박·수역', '실적 분석', 'VDS·입어료']) {
+      expect(commandSource).toContain(label);
+    }
+    expect(commandSource).toContain('role="tablist"');
+    expect(commandSource).toContain('role="tabpanel"');
+    expect(commandSource).toContain('기준일 분리 운영 판단');
+    expect(commandSource).toContain('nationalOverrunCount');
+    expect(commandSource).not.toContain('음수 잔여 11건');
+    expect(commandSource).toContain("hidden={activeTab !== 'operations'}");
+    expect(commandSource).toContain("hidden={activeTab !== 'vessels'}");
+    expect(commandSource).toContain("hidden={activeTab !== 'performance'}");
+    expect(commandSource).toContain("hidden={activeTab !== 'access'}");
+    expect(commandSource).toContain('onKeyDown');
+    expect(mapSource).not.toContain('Math.random');
+    expect(mapSource).toContain('aria-expanded');
+    expect(mapSource).toContain('aria-controls');
+    expect(mapSource).toContain('hidden={!selected}');
+    expect(mapSource).toContain("event.key === 'Escape'");
+    expect(mapSource).toContain('aria-label={`${ship.name} 상세 보기`');
+    const mapStyles = readFileSync(join(process.cwd(), 'components/FleetPixelMap.module.css'), 'utf8');
+    expect(mapStyles).toContain('width: 44px');
+    expect(mapStyles).toContain('height: 44px');
+    expect(rosterSource).toContain("port: '⚓ 하역·정박'");
+    expect(rosterSource).not.toContain('statusLabels[status] || status');
+    expect(rosterSource).not.toContain('weeklyRanking.find');
+    expect(rosterSource).toContain('summary={`일간 ${pacificDailyReport.dailyCatchMt.toLocaleString()');
+    expect(rosterSource).toContain('longlineDailyReport.vessels.map');
+    expect(rosterSource).not.toContain("filter((vessel) => !vessel.name.includes('컨테이너'))");
+    expect(rosterSource).toContain('countLabel={`${carrierFleet.length}건`}');
+    expect(vdsStrategySource).toContain('nationalVds');
+    expect(vdsStrategySource).not.toContain('remaining: 315.03');
+    expect(commandSource).toContain('2026년 8월 선단 운영현황');
+    expect(heroSource).toContain('val1: summary.weeklyTotal');
+    expect(heroSource).not.toContain('val1: 917');
+  });
   it('keeps menu keys unique and title-addressable', () => {
     expect(DASHBOARD_MENU_CONFIGS.length).toBeGreaterThanOrEqual(30);
     expect(new Set(VALID_MENUS).size).toBe(VALID_MENUS.length);

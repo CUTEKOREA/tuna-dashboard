@@ -54,9 +54,21 @@
   transform: translate(-50%, -50%);
   cursor: pointer;
   z-index: 10;
+  width: 44px;
+  height: 44px;
+  padding: 13px;
+  border: 0;
+  background: transparent;
+  color: inherit;
 }
 .shipMarker:hover {
   z-index: 20;
+}
+.shipMarker:focus-visible {
+  z-index: 20;
+  outline: 3px solid rgba(56, 189, 248, 0.75);
+  outline-offset: 5px;
+  border-radius: 4px;
 }
 
 /* Ship Body */
@@ -150,9 +162,25 @@
   width: max-content;
   max-width: 200px;
 }
-.shipMarker:hover .tooltip {
+.tooltip[hidden] {
+  display: none;
+}
+.shipMarker:hover .tooltip,
+.shipMarker:focus-visible .tooltip,
+.shipMarker[aria-expanded='true'] .tooltip {
   opacity: 1;
   transform: translateX(-50%) translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .shipMarker,
+  .shipBody,
+  .tooltip,
+  .state-fishing .shipBody::before,
+  .state-transit .shipBody::after {
+    animation: none !important;
+    transition: none !important;
+  }
 }
 
 .tooltipTitle {

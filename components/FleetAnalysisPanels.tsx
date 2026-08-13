@@ -4,19 +4,12 @@ import { ChevronDown, Trophy, BarChart3 } from 'lucide-react';
 import { WeeklyCatchChart, MonthlyCatchChart, CumulativeChart, CumulativeTableData } from './FleetCharts';
 import TakeawayBox from './TakeawayBox';
 import s from './FleetCommandCenter.module.css';
+import { purseSeineCatch } from '@/lib/fleet-operations-2026-08-09';
 
-const rankData = [
-  { r: 1, cap: '김정훈', name: 'MARI', weekly: 195.00, daily: 27.86, badge: 'gold' },
-  { r: 2, cap: '최용석', name: 'S/CHA', weekly: 190.00, daily: 27.14, badge: 'silver' },
-  { r: 3, cap: '김효원', name: 'S/SPR', weekly: 182.00, daily: 26.00, badge: 'bronze' },
-  { r: 4, cap: '조태연', name: 'N/STAR', weekly: 105.00, daily: 15.00, badge: '' },
-  { r: 5, cap: '김형주', name: 'N/SUN', weekly: 100.00, daily: 14.29, badge: '' },
-  { r: 6, cap: '오복근', name: 'S/HAR', weekly: 95.00, daily: 13.57, badge: '' },
-  { r: 7, cap: '공준식', name: 'S/EXP', weekly: 81.30, daily: 11.61, badge: '' },
-  { r: 8, cap: '김승현', name: 'S/PIO', weekly: 39.00, daily: 5.57, badge: '' },
-  { r: 9, cap: '이평규', name: 'KONA', weekly: 22.00, daily: 3.14, badge: '' },
-  { r: 10, cap: '강창훈', name: 'S/JUP', weekly: 0, daily: 0, badge: '' },
-];
+const rankData = purseSeineCatch.weeklyRanking.map((item) => ({
+  r: item.rank, cap: item.captain, name: item.vessel, weekly: item.catchMt, daily: item.dailyAverageMt,
+  badge: item.rank === 1 ? 'gold' : item.rank === 2 ? 'silver' : item.rank === 3 ? 'bronze' : '',
+}));
 
 const tabs = [
   { id: 'weekly', label: '주간 어획' },
@@ -40,15 +33,16 @@ export function FleetChartSection() {
           {tabs.map(t => (
             <button key={t.id} className={`${s.chartTab} ${activeTab === t.id ? s.chartTabActive : ''}`} onClick={() => setActiveTab(t.id)}>{t.label}</button>
           ))}
-          <span style={{ fontSize: '0.68rem', color: 'var(--text-muted)', marginLeft: 'auto', alignSelf: 'center' }}>26.07.27 (7/20~26) 보고 기준</span>
+          <span style={{ fontSize: '0.68rem', color: 'var(--text-muted)', marginLeft: 'auto', alignSelf: 'center' }}>26.08.03~08.09 보고 기준</span>
         </div>
         {activeTab === 'weekly' && (
           <>
             <WeeklyCatchChart />
             <div style={{ marginTop: 16 }}>
               <TakeawayBox
-                situation={<>MARI(김정훈) 195t 주간 1위. S/CHA(최용석) 190t 2위. 주간 총 어획량 1,009t(국적 587t, 합작 422t) 기록.</>}
-                actionPlan={<>S/JUP(강창훈) 주간 실적 없음 — 수리 및 대기 중.</>}
+                situation={<>KONA(이평규) 183t 주간 1위, MARI(김정훈) 140t 2위. 주간 총 어획량은 611t(국적 218t, 합작 393t)입니다.</>}
+                actionPlan={<>S/PIO·S/JUP은 주간 어획이 없습니다. VDS 잔여와 선박 상태를 함께 확인해 다음 주 배치를 조정하십시오.</>}
+                source="주간 실적 현황 (26.08.03~08.09)"
               />
             </div>
           </>
@@ -58,8 +52,9 @@ export function FleetChartSection() {
             <MonthlyCatchChart />
             <div style={{ marginTop: 16 }}>
               <TakeawayBox
-                situation={<>MARI 7월 655t, N/STAR 800t 등 합작선 호조. 7월 월간 총 어획량 3,445t(국적 1,531t, 합작 1,914t).</>}
-                actionPlan={<>연간 누계 42,974t(국적 25,592t, 합작 17,382t). MARI 연간 10,725t으로 선단 최다.</>}
+                situation={<>8월 누계 1,320t(국적 338t, 합작 982t)입니다. 합작선 비중은 74.4%로 KONA·MARI가 월간 물량을 견인합니다.</>}
+                actionPlan={<>연간 누계 46,153t 중 MARI가 11,385t으로 최대입니다. 합작선 의존과 국적선 생산 회복을 함께 관리하십시오.</>}
+                source="주간 실적 현황 (26.08.03~08.09)"
               />
             </div>
           </>
@@ -69,8 +64,9 @@ export function FleetChartSection() {
             <CumulativeChart />
             <div style={{ marginTop: 16 }}>
               <TakeawayBox
-                situation={<>조태연(N/STAR) 일어획 40.2t으로 현어기 누계 1위. 김효원(S/SPR) 29.4t 2위, 김정훈(MARI) 23.4t 3위.</>}
-                actionPlan={<>전체 일어획 평균 20.9t. 오복근(S/HAR) 13.6t으로 10위 기록.</>}
+                situation={<>조태연(N/STAR) 일어획 36.4t으로 현어기 1위, 김효원(S/SPR) 28.0t 2위, 김정훈(MARI) 23.7t 3위입니다.</>}
+                actionPlan={<>선단 평균 20.4t 대비 하위 5척은 원인별로 수역·조업일수·선박 상태를 대조하십시오.</>}
+                source="선장 실적 누계 (현어기) · 2026-08-09"
               />
             </div>
           </>
@@ -81,7 +77,7 @@ export function FleetChartSection() {
       <div className={s.rankPanel}>
         <h3 style={{ fontSize: '0.95rem', fontWeight: 700, color: 'var(--text-main)', marginTop: 0, marginBottom: 16, display: 'flex', alignItems: 'center', gap: 8 }}>
           <Trophy size={16} color="#fbbf24" /> 주간 선장실적 (Top 10)
-          <span style={{ fontSize: '0.68rem', color: 'var(--text-muted)', fontWeight: 500, marginLeft: 'auto' }}>주간 실적 (7/20~26) 기준</span>
+          <span style={{ fontSize: '0.68rem', color: 'var(--text-muted)', fontWeight: 500, marginLeft: 'auto' }}>8월 첫째주 기준</span>
         </h3>
         <table className={s.rankTable}>
           <thead>
@@ -117,7 +113,7 @@ export function FleetDetailPanel() {
         <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
           <BarChart3 size={18} color="var(--accent-primary)" />
           <span style={{ fontWeight: 700, color: 'var(--text-main)' }}>선장 현어기 누적 실적 상세</span>
-          <span style={{ fontSize: '0.75rem', color: 'var(--text-muted)' }}>({data.length}명) · 26.07.27 (7/20~26) 보고 기준</span>
+          <span style={{ fontSize: '0.75rem', color: 'var(--text-muted)' }}>({data.length}명) · 26.08.09 보고 기준</span>
         </div>
         <ChevronDown size={18} className={`${s.expandChevron} ${isOpen ? s.expandChevronOpen : ''}`} color="var(--text-muted)" />
       </div>
@@ -149,8 +145,9 @@ export function FleetDetailPanel() {
           </div>
           <div style={{ marginTop: 16 }}>
             <TakeawayBox
-              situation={<>조태연(N/STAR) 어기일수 25일, 일어획 40.2t 달성 전체 일어획 1위. 김효원(S/SPR) 29.4t으로 2위. 전체 일어획 평균 20.9t.</>}
-              actionPlan={<>MARI(김정훈) 1만톤 누적 달성. KONA(이평규) 일어획 19.1t 기록 중.</>}
+              situation={<>조태연(N/STAR) 어기 46일·일어획 36.4t으로 1위, 김효원(S/SPR) 28.0t으로 2위입니다. 선단 평균은 20.4t입니다.</>}
+              actionPlan={<>MARI(김정훈)는 11,385t 누적, KONA(이평규)는 일어획 19.7t입니다. 순위와 누계 물량을 분리해 평가하십시오.</>}
+              source="선장 실적 누계 (현어기) · 2026-08-09"
             />
           </div>
         </div>

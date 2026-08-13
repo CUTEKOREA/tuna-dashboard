@@ -6,9 +6,10 @@ import styles from './TelemetryBadge.module.css';
 export interface TelemetryBadgeProps {
   status: 'LIVE' | 'SYNCED' | 'STATIC' | 'live' | 'synced' | 'static' | undefined;
   syncDate?: string;
+  label?: string;
 }
 
-export const TelemetryBadge: React.FC<TelemetryBadgeProps> = ({ status, syncDate }) => {
+export const TelemetryBadge: React.FC<TelemetryBadgeProps> = ({ status, syncDate, label }) => {
   if (!status) return null;
   
   // Normalize to uppercase for strict standard compliance
@@ -34,7 +35,7 @@ export const TelemetryBadge: React.FC<TelemetryBadgeProps> = ({ status, syncDate
         </div>
       )}
       <span style={{ fontSize: '0.62rem', fontWeight: 700, color: accent, letterSpacing: '0.5px' }}>
-        {normalizedStatus}
+        {label ?? normalizedStatus}
       </span>
       {!isLive && syncDate && (
         <span style={{ fontSize: '0.56rem', fontWeight: 500, color: '#64748B', marginLeft: '2px', whiteSpace: 'nowrap' }}>

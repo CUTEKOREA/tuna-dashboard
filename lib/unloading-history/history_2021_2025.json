@@ -1,0 +1,3521 @@
+{
+  "success": true,
+  "meta": {
+    "sourceLabel": "Google Drive 하역업무 정제본",
+    "sourceFolderCount": 98,
+    "sourceFileCount": 5945,
+    "processedFileCount": 101,
+    "failedFileCount": 0,
+    "candidateVoyageCount": 98,
+    "verifiedVoyageCount": 88,
+    "partialVoyageCount": 4,
+    "unverifiedVoyageCount": 6,
+    "snapshotStatus": "SYNCED",
+    "generatedAt": "2026-08-13T09:20:00+09:00",
+    "dataAsOf": "2026-08-13",
+    "extractorVersion": "unloading-history-1.0.0"
+  },
+  "completionYearBaseline": [
+    {
+      "year": 2021,
+      "verifiedActualMt": 29247.939,
+      "verifiedVoyageCount": 9,
+      "candidateVoyageCount": 16
+    },
+    {
+      "year": 2022,
+      "verifiedActualMt": 25985.162,
+      "verifiedVoyageCount": 8,
+      "candidateVoyageCount": 11
+    },
+    {
+      "year": 2023,
+      "verifiedActualMt": 89338.33,
+      "verifiedVoyageCount": 27,
+      "candidateVoyageCount": 28
+    },
+    {
+      "year": 2024,
+      "verifiedActualMt": 118497.566,
+      "verifiedVoyageCount": 27,
+      "candidateVoyageCount": 27
+    },
+    {
+      "year": 2025,
+      "verifiedActualMt": 76050.2388,
+      "verifiedVoyageCount": 17,
+      "candidateVoyageCount": 17
+    }
+  ],
+  "annual": [
+    {
+      "year": 2021,
+      "verifiedActualMt": 29247.939,
+      "verifiedVoyageCount": 9,
+      "candidateVoyageCount": 16,
+      "partialCount": 2,
+      "unverifiedCount": 5,
+      "averageVerifiedMt": 3249.771,
+      "portCount": 3,
+      "ports": [
+        {
+          "code": "BKK",
+          "nameKo": "방콕"
+        },
+        {
+          "code": "GES",
+          "nameKo": "제너럴산토스"
+        },
+        {
+          "code": "SKL",
+          "nameKo": "송클라"
+        }
+      ],
+      "allocationMethodCounts": {
+        "dailyReport": 0,
+        "completionYear": 9,
+        "finalReportAdjustment": 0
+      },
+      "isMinimumVerifiedTotal": true
+    },
+    {
+      "year": 2022,
+      "verifiedActualMt": 28086.502,
+      "verifiedVoyageCount": 9,
+      "candidateVoyageCount": 12,
+      "partialCount": 2,
+      "unverifiedCount": 1,
+      "averageVerifiedMt": 3120.7224,
+      "portCount": 3,
+      "ports": [
+        {
+          "code": "BKK",
+          "nameKo": "방콕"
+        },
+        {
+          "code": "HCM",
+          "nameKo": "호찌민"
+        },
+        {
+          "code": "SKL",
+          "nameKo": "송클라"
+        }
+      ],
+      "allocationMethodCounts": {
+        "dailyReport": 1,
+        "completionYear": 8,
+        "finalReportAdjustment": 0
+      },
+      "isMinimumVerifiedTotal": true
+    },
+    {
+      "year": 2023,
+      "verifiedActualMt": 94075.08,
+      "verifiedVoyageCount": 29,
+      "candidateVoyageCount": 29,
+      "partialCount": 0,
+      "unverifiedCount": 0,
+      "averageVerifiedMt": 3243.9683,
+      "portCount": 4,
+      "ports": [
+        {
+          "code": "BKK",
+          "nameKo": "방콕"
+        },
+        {
+          "code": "CLO",
+          "nameKo": "꾸아로"
+        },
+        {
+          "code": "HCM",
+          "nameKo": "호찌민"
+        },
+        {
+          "code": "SKL",
+          "nameKo": "송클라"
+        }
+      ],
+      "allocationMethodCounts": {
+        "dailyReport": 3,
+        "completionYear": 26,
+        "finalReportAdjustment": 0
+      },
+      "isMinimumVerifiedTotal": false
+    },
+    {
+      "year": 2024,
+      "verifiedActualMt": 111659.476,
+      "verifiedVoyageCount": 27,
+      "candidateVoyageCount": 27,
+      "partialCount": 0,
+      "unverifiedCount": 0,
+      "averageVerifiedMt": 4135.5361,
+      "portCount": 4,
+      "ports": [
+        {
+          "code": "BKK",
+          "nameKo": "방콕"
+        },
+        {
+          "code": "CRH",
+          "nameKo": "깜란"
+        },
+        {
+          "code": "HCM",
+          "nameKo": "호찌민"
+        },
+        {
+          "code": "SKL",
+          "nameKo": "송클라"
+        }
+      ],
+      "allocationMethodCounts": {
+        "dailyReport": 2,
+        "completionYear": 25,
+        "finalReportAdjustment": 1
+      },
+      "isMinimumVerifiedTotal": false
+    },
+    {
+      "year": 2025,
+      "verifiedActualMt": 76050.2388,
+      "verifiedVoyageCount": 17,
+      "candidateVoyageCount": 17,
+      "partialCount": 0,
+      "unverifiedCount": 0,
+      "averageVerifiedMt": 4473.5435,
+      "portCount": 2,
+      "ports": [
+        {
+          "code": "BKK",
+          "nameKo": "방콕"
+        },
+        {
+          "code": "SKL",
+          "nameKo": "송클라"
+        }
+      ],
+      "allocationMethodCounts": {
+        "dailyReport": 0,
+        "completionYear": 17,
+        "finalReportAdjustment": 0
+      },
+      "isMinimumVerifiedTotal": false
+    }
+  ],
+  "voyages": [
+    {
+      "voyageId": "liaoyu-reefer-1-2021-03-17-bkk",
+      "sourceYear": 2021,
+      "completionYear": 2021,
+      "displayYearBasis": "completion_year",
+      "vessel": {
+        "canonicalName": "LIAOYU REEFER 1"
+      },
+      "period": {
+        "startDate": "2021-03-17",
+        "endDate": "2021-03-18"
+      },
+      "ports": [
+        {
+          "code": "BKK",
+          "nameKo": "방콕"
+        }
+      ],
+      "reportedMt": null,
+      "actualMt": 1061.14,
+      "verification": "partial",
+      "kpiIncluded": false,
+      "yearAllocations": [],
+      "evidenceDocumentCount": 1
+    },
+    {
+      "voyageId": "sein-star-2021-unknown-01",
+      "sourceYear": 2021,
+      "completionYear": null,
+      "displayYearBasis": "source_year",
+      "vessel": {
+        "canonicalName": "SEIN STAR"
+      },
+      "period": {
+        "startDate": null,
+        "endDate": null
+      },
+      "ports": [],
+      "reportedMt": null,
+      "actualMt": null,
+      "verification": "unverified",
+      "kpiIncluded": false,
+      "yearAllocations": [],
+      "evidenceDocumentCount": 1
+    },
+    {
+      "voyageId": "hikari-1-2021-04-06-bkk",
+      "sourceYear": 2021,
+      "completionYear": 2021,
+      "displayYearBasis": "completion_year",
+      "vessel": {
+        "canonicalName": "HIKARI 1"
+      },
+      "period": {
+        "startDate": "2021-04-06",
+        "endDate": "2021-04-10"
+      },
+      "ports": [
+        {
+          "code": "BKK",
+          "nameKo": "방콕"
+        }
+      ],
+      "reportedMt": null,
+      "actualMt": 1004.05,
+      "verification": "verified",
+      "kpiIncluded": true,
+      "yearAllocations": [
+        {
+          "year": 2021,
+          "actualMt": 1004.05,
+          "method": "completion_year",
+          "portCodes": [
+            "BKK"
+          ]
+        }
+      ],
+      "evidenceDocumentCount": 1
+    },
+    {
+      "voyageId": "hua-fu-207-2021-04-02-bkk",
+      "sourceYear": 2021,
+      "completionYear": 2021,
+      "displayYearBasis": "completion_year",
+      "vessel": {
+        "canonicalName": "HUA FU 207"
+      },
+      "period": {
+        "startDate": "2021-04-02",
+        "endDate": "2021-04-07"
+      },
+      "ports": [
+        {
+          "code": "BKK",
+          "nameKo": "방콕"
+        }
+      ],
+      "reportedMt": null,
+      "actualMt": 1231.75,
+      "verification": "verified",
+      "kpiIncluded": true,
+      "yearAllocations": [
+        {
+          "year": 2021,
+          "actualMt": 1231.75,
+          "method": "completion_year",
+          "portCodes": [
+            "BKK"
+          ]
+        }
+      ],
+      "evidenceDocumentCount": 1
+    },
+    {
+      "voyageId": "sein-venus-2021-04-02-skl",
+      "sourceYear": 2021,
+      "completionYear": 2021,
+      "displayYearBasis": "completion_year",
+      "vessel": {
+        "canonicalName": "SEIN VENUS"
+      },
+      "period": {
+        "startDate": "2021-04-02",
+        "endDate": "2021-04-29"
+      },
+      "ports": [
+        {
+          "code": "SKL",
+          "nameKo": "송클라"
+        }
+      ],
+      "reportedMt": null,
+      "actualMt": 3637.57,
+      "verification": "verified",
+      "kpiIncluded": true,
+      "yearAllocations": [
+        {
+          "year": 2021,
+          "actualMt": 3637.57,
+          "method": "completion_year",
+          "portCodes": [
+            "SKL"
+          ]
+        }
+      ],
+      "evidenceDocumentCount": 1
+    },
+    {
+      "voyageId": "sein-princess-2021-04-24-bkk",
+      "sourceYear": 2021,
+      "completionYear": 2021,
+      "displayYearBasis": "completion_year",
+      "vessel": {
+        "canonicalName": "SEIN PRINCESS"
+      },
+      "period": {
+        "startDate": "2021-04-24",
+        "endDate": "2021-05-11"
+      },
+      "ports": [
+        {
+          "code": "BKK",
+          "nameKo": "방콕"
+        }
+      ],
+      "reportedMt": null,
+      "actualMt": 3071.4,
+      "verification": "verified",
+      "kpiIncluded": true,
+      "yearAllocations": [
+        {
+          "year": 2021,
+          "actualMt": 3071.4,
+          "method": "completion_year",
+          "portCodes": [
+            "BKK"
+          ]
+        }
+      ],
+      "evidenceDocumentCount": 1
+    },
+    {
+      "voyageId": "shin-fuji-2021-05-07-skl",
+      "sourceYear": 2021,
+      "completionYear": 2021,
+      "displayYearBasis": "completion_year",
+      "vessel": {
+        "canonicalName": "SHIN FUJI"
+      },
+      "period": {
+        "startDate": "2021-05-07",
+        "endDate": "2021-05-22"
+      },
+      "ports": [
+        {
+          "code": "SKL",
+          "nameKo": "송클라"
+        }
+      ],
+      "reportedMt": null,
+      "actualMt": 3121.18,
+      "verification": "verified",
+      "kpiIncluded": true,
+      "yearAllocations": [
+        {
+          "year": 2021,
+          "actualMt": 3121.18,
+          "method": "completion_year",
+          "portCodes": [
+            "SKL"
+          ]
+        }
+      ],
+      "evidenceDocumentCount": 1
+    },
+    {
+      "voyageId": "sein-queen-2021-06-16-bkk",
+      "sourceYear": 2021,
+      "completionYear": 2021,
+      "displayYearBasis": "completion_year",
+      "vessel": {
+        "canonicalName": "SEIN QUEEN"
+      },
+      "period": {
+        "startDate": "2021-06-16",
+        "endDate": "2021-06-28"
+      },
+      "ports": [
+        {
+          "code": "BKK",
+          "nameKo": "방콕"
+        }
+      ],
+      "reportedMt": null,
+      "actualMt": 5064.508,
+      "verification": "verified",
+      "kpiIncluded": true,
+      "yearAllocations": [
+        {
+          "year": 2021,
+          "actualMt": 5064.508,
+          "method": "completion_year",
+          "portCodes": [
+            "BKK"
+          ]
+        }
+      ],
+      "evidenceDocumentCount": 1
+    },
+    {
+      "voyageId": "shin-izu-2021-unknown-01",
+      "sourceYear": 2021,
+      "completionYear": null,
+      "displayYearBasis": "source_year",
+      "vessel": {
+        "canonicalName": "SHIN IZU"
+      },
+      "period": {
+        "startDate": null,
+        "endDate": null
+      },
+      "ports": [],
+      "reportedMt": null,
+      "actualMt": null,
+      "verification": "unverified",
+      "kpiIncluded": false,
+      "yearAllocations": [],
+      "evidenceDocumentCount": 1
+    },
+    {
+      "voyageId": "sein-sky-2021-07-26-skl",
+      "sourceYear": 2021,
+      "completionYear": 2021,
+      "displayYearBasis": "completion_year",
+      "vessel": {
+        "canonicalName": "SEIN SKY"
+      },
+      "period": {
+        "startDate": "2021-07-26",
+        "endDate": "2021-08-31"
+      },
+      "ports": [
+        {
+          "code": "SKL",
+          "nameKo": "송클라"
+        },
+        {
+          "code": "BKK",
+          "nameKo": "방콕"
+        }
+      ],
+      "reportedMt": null,
+      "actualMt": 5533.225,
+      "verification": "verified",
+      "kpiIncluded": true,
+      "yearAllocations": [
+        {
+          "year": 2021,
+          "actualMt": 5533.225,
+          "method": "completion_year",
+          "portCodes": [
+            "SKL",
+            "BKK"
+          ]
+        }
+      ],
+      "evidenceDocumentCount": 1
+    },
+    {
+      "voyageId": "fong-kuo-819-2021-07-30-bkk",
+      "sourceYear": 2021,
+      "completionYear": 2021,
+      "displayYearBasis": "completion_year",
+      "vessel": {
+        "canonicalName": "FONG KUO 819"
+      },
+      "period": {
+        "startDate": "2021-07-30",
+        "endDate": "2021-08-06"
+      },
+      "ports": [
+        {
+          "code": "BKK",
+          "nameKo": "방콕"
+        }
+      ],
+      "reportedMt": null,
+      "actualMt": 746.46,
+      "verification": "verified",
+      "kpiIncluded": true,
+      "yearAllocations": [
+        {
+          "year": 2021,
+          "actualMt": 746.46,
+          "method": "completion_year",
+          "portCodes": [
+            "BKK"
+          ]
+        }
+      ],
+      "evidenceDocumentCount": 1
+    },
+    {
+      "voyageId": "liaoyu-reefer-1-2021-07-31-ges",
+      "sourceYear": 2021,
+      "completionYear": 2021,
+      "displayYearBasis": "completion_year",
+      "vessel": {
+        "canonicalName": "LIAOYU REEFER 1"
+      },
+      "period": {
+        "startDate": "2021-07-31",
+        "endDate": "2021-09-03"
+      },
+      "ports": [
+        {
+          "code": "GES",
+          "nameKo": "제너럴산토스"
+        },
+        {
+          "code": "BKK",
+          "nameKo": "방콕"
+        }
+      ],
+      "reportedMt": null,
+      "actualMt": 1730.07,
+      "verification": "partial",
+      "kpiIncluded": false,
+      "yearAllocations": [],
+      "evidenceDocumentCount": 1
+    },
+    {
+      "voyageId": "sein-princess-2021-unknown-01",
+      "sourceYear": 2021,
+      "completionYear": null,
+      "displayYearBasis": "source_year",
+      "vessel": {
+        "canonicalName": "SEIN PRINCESS"
+      },
+      "period": {
+        "startDate": null,
+        "endDate": null
+      },
+      "ports": [],
+      "reportedMt": null,
+      "actualMt": null,
+      "verification": "unverified",
+      "kpiIncluded": false,
+      "yearAllocations": [],
+      "evidenceDocumentCount": 1
+    },
+    {
+      "voyageId": "sein-star-2021-unknown-02",
+      "sourceYear": 2021,
+      "completionYear": null,
+      "displayYearBasis": "source_year",
+      "vessel": {
+        "canonicalName": "SEIN STAR"
+      },
+      "period": {
+        "startDate": null,
+        "endDate": null
+      },
+      "ports": [],
+      "reportedMt": null,
+      "actualMt": null,
+      "verification": "unverified",
+      "kpiIncluded": false,
+      "yearAllocations": [],
+      "evidenceDocumentCount": 1
+    },
+    {
+      "voyageId": "sein-sun-2021-unknown-01",
+      "sourceYear": 2021,
+      "completionYear": null,
+      "displayYearBasis": "source_year",
+      "vessel": {
+        "canonicalName": "SEIN SUN"
+      },
+      "period": {
+        "startDate": null,
+        "endDate": null
+      },
+      "ports": [],
+      "reportedMt": null,
+      "actualMt": null,
+      "verification": "unverified",
+      "kpiIncluded": false,
+      "yearAllocations": [],
+      "evidenceDocumentCount": 1
+    },
+    {
+      "voyageId": "sein-queen-2021-11-12-bkk",
+      "sourceYear": 2021,
+      "completionYear": 2021,
+      "displayYearBasis": "completion_year",
+      "vessel": {
+        "canonicalName": "SEIN QUEEN"
+      },
+      "period": {
+        "startDate": "2021-11-12",
+        "endDate": "2021-11-30"
+      },
+      "ports": [
+        {
+          "code": "BKK",
+          "nameKo": "방콕"
+        }
+      ],
+      "reportedMt": null,
+      "actualMt": 5837.796,
+      "verification": "verified",
+      "kpiIncluded": true,
+      "yearAllocations": [
+        {
+          "year": 2021,
+          "actualMt": 5837.796,
+          "method": "completion_year",
+          "portCodes": [
+            "BKK"
+          ]
+        }
+      ],
+      "evidenceDocumentCount": 1
+    },
+    {
+      "voyageId": "sein-sky-2022-01-12-skl",
+      "sourceYear": 2022,
+      "completionYear": 2022,
+      "displayYearBasis": "completion_year",
+      "vessel": {
+        "canonicalName": "SEIN SKY"
+      },
+      "period": {
+        "startDate": "2022-01-12",
+        "endDate": "2022-02-11"
+      },
+      "ports": [
+        {
+          "code": "SKL",
+          "nameKo": "송클라"
+        },
+        {
+          "code": "BKK",
+          "nameKo": "방콕"
+        }
+      ],
+      "reportedMt": null,
+      "actualMt": 5928.8,
+      "verification": "verified",
+      "kpiIncluded": true,
+      "yearAllocations": [
+        {
+          "year": 2022,
+          "actualMt": 5928.8,
+          "method": "completion_year",
+          "portCodes": [
+            "SKL",
+            "BKK"
+          ]
+        }
+      ],
+      "evidenceDocumentCount": 1
+    },
+    {
+      "voyageId": "sein-venus-2022-01-10-bkk",
+      "sourceYear": 2022,
+      "completionYear": 2022,
+      "displayYearBasis": "completion_year",
+      "vessel": {
+        "canonicalName": "SEIN VENUS"
+      },
+      "period": {
+        "startDate": "2022-01-10",
+        "endDate": "2022-01-18"
+      },
+      "ports": [
+        {
+          "code": "BKK",
+          "nameKo": "방콕"
+        }
+      ],
+      "reportedMt": null,
+      "actualMt": 2170.64,
+      "verification": "partial",
+      "kpiIncluded": false,
+      "yearAllocations": [],
+      "evidenceDocumentCount": 1
+    },
+    {
+      "voyageId": "kai-de-2022-unknown-01",
+      "sourceYear": 2022,
+      "completionYear": null,
+      "displayYearBasis": "source_year",
+      "vessel": {
+        "canonicalName": "KAI DE"
+      },
+      "period": {
+        "startDate": null,
+        "endDate": null
+      },
+      "ports": [],
+      "reportedMt": null,
+      "actualMt": null,
+      "verification": "unverified",
+      "kpiIncluded": false,
+      "yearAllocations": [],
+      "evidenceDocumentCount": 1
+    },
+    {
+      "voyageId": "sein-venus-2022-04-12-bkk",
+      "sourceYear": 2022,
+      "completionYear": 2022,
+      "displayYearBasis": "completion_year",
+      "vessel": {
+        "canonicalName": "SEIN VENUS"
+      },
+      "period": {
+        "startDate": "2022-04-12",
+        "endDate": "2022-04-12"
+      },
+      "ports": [
+        {
+          "code": "BKK",
+          "nameKo": "방콕"
+        }
+      ],
+      "reportedMt": null,
+      "actualMt": 191.29,
+      "verification": "partial",
+      "kpiIncluded": false,
+      "yearAllocations": [],
+      "evidenceDocumentCount": 1
+    },
+    {
+      "voyageId": "shin-fuji-2022-04-25-hcm",
+      "sourceYear": 2022,
+      "completionYear": 2022,
+      "displayYearBasis": "completion_year",
+      "vessel": {
+        "canonicalName": "SHIN FUJI"
+      },
+      "period": {
+        "startDate": "2022-04-25",
+        "endDate": "2022-05-19"
+      },
+      "ports": [
+        {
+          "code": "HCM",
+          "nameKo": "호찌민"
+        },
+        {
+          "code": "BKK",
+          "nameKo": "방콕"
+        }
+      ],
+      "reportedMt": null,
+      "actualMt": 3228.52,
+      "verification": "verified",
+      "kpiIncluded": true,
+      "yearAllocations": [
+        {
+          "year": 2022,
+          "actualMt": 3228.52,
+          "method": "completion_year",
+          "portCodes": [
+            "HCM",
+            "BKK"
+          ]
+        }
+      ],
+      "evidenceDocumentCount": 1
+    },
+    {
+      "voyageId": "sein-princess-2022-05-23-bkk",
+      "sourceYear": 2022,
+      "completionYear": 2022,
+      "displayYearBasis": "completion_year",
+      "vessel": {
+        "canonicalName": "SEIN PRINCESS"
+      },
+      "period": {
+        "startDate": "2022-05-23",
+        "endDate": "2022-06-07"
+      },
+      "ports": [
+        {
+          "code": "BKK",
+          "nameKo": "방콕"
+        }
+      ],
+      "reportedMt": null,
+      "actualMt": 5227.722,
+      "verification": "verified",
+      "kpiIncluded": true,
+      "yearAllocations": [
+        {
+          "year": 2022,
+          "actualMt": 5227.722,
+          "method": "completion_year",
+          "portCodes": [
+            "BKK"
+          ]
+        }
+      ],
+      "evidenceDocumentCount": 1
+    },
+    {
+      "voyageId": "lake-nova-2022-10-05-bkk",
+      "sourceYear": 2022,
+      "completionYear": 2022,
+      "displayYearBasis": "completion_year",
+      "vessel": {
+        "canonicalName": "LAKE NOVA"
+      },
+      "period": {
+        "startDate": "2022-10-05",
+        "endDate": "2022-10-12"
+      },
+      "ports": [
+        {
+          "code": "BKK",
+          "nameKo": "방콕"
+        }
+      ],
+      "reportedMt": null,
+      "actualMt": 1496.3,
+      "verification": "verified",
+      "kpiIncluded": true,
+      "yearAllocations": [
+        {
+          "year": 2022,
+          "actualMt": 1496.3,
+          "method": "completion_year",
+          "portCodes": [
+            "BKK"
+          ]
+        }
+      ],
+      "evidenceDocumentCount": 1
+    },
+    {
+      "voyageId": "sein-star-2022-10-20-hcm",
+      "sourceYear": 2022,
+      "completionYear": 2022,
+      "displayYearBasis": "completion_year",
+      "vessel": {
+        "canonicalName": "SEIN STAR"
+      },
+      "period": {
+        "startDate": "2022-10-20",
+        "endDate": "2022-11-02"
+      },
+      "ports": [
+        {
+          "code": "HCM",
+          "nameKo": "호찌민"
+        }
+      ],
+      "reportedMt": null,
+      "actualMt": 3428.84,
+      "verification": "verified",
+      "kpiIncluded": true,
+      "yearAllocations": [
+        {
+          "year": 2022,
+          "actualMt": 3428.84,
+          "method": "completion_year",
+          "portCodes": [
+            "HCM"
+          ]
+        }
+      ],
+      "evidenceDocumentCount": 1
+    },
+    {
+      "voyageId": "sein-princess-2022-11-28-skl",
+      "sourceYear": 2022,
+      "completionYear": 2022,
+      "displayYearBasis": "completion_year",
+      "vessel": {
+        "canonicalName": "SEIN PRINCESS"
+      },
+      "period": {
+        "startDate": "2022-11-28",
+        "endDate": "2022-12-28"
+      },
+      "ports": [
+        {
+          "code": "SKL",
+          "nameKo": "송클라"
+        },
+        {
+          "code": "BKK",
+          "nameKo": "방콕"
+        }
+      ],
+      "reportedMt": null,
+      "actualMt": 4436.96,
+      "verification": "verified",
+      "kpiIncluded": true,
+      "yearAllocations": [
+        {
+          "year": 2022,
+          "actualMt": 4436.96,
+          "method": "completion_year",
+          "portCodes": [
+            "SKL",
+            "BKK"
+          ]
+        }
+      ],
+      "evidenceDocumentCount": 1
+    },
+    {
+      "voyageId": "granada-carrier-2022-12-16-bkk",
+      "sourceYear": 2022,
+      "completionYear": 2022,
+      "displayYearBasis": "completion_year",
+      "vessel": {
+        "canonicalName": "GRANADA CARRIER"
+      },
+      "period": {
+        "startDate": "2022-12-16",
+        "endDate": "2022-12-28"
+      },
+      "ports": [
+        {
+          "code": "BKK",
+          "nameKo": "방콕"
+        }
+      ],
+      "reportedMt": null,
+      "actualMt": 1629.94,
+      "verification": "verified",
+      "kpiIncluded": true,
+      "yearAllocations": [
+        {
+          "year": 2022,
+          "actualMt": 1629.94,
+          "method": "completion_year",
+          "portCodes": [
+            "BKK"
+          ]
+        }
+      ],
+      "evidenceDocumentCount": 1
+    },
+    {
+      "voyageId": "sea-reefer-2022-12-17-bkk",
+      "sourceYear": 2022,
+      "completionYear": 2022,
+      "displayYearBasis": "completion_year",
+      "vessel": {
+        "canonicalName": "SEA REEFER"
+      },
+      "period": {
+        "startDate": "2022-12-17",
+        "endDate": "2022-12-19"
+      },
+      "ports": [
+        {
+          "code": "BKK",
+          "nameKo": "방콕"
+        }
+      ],
+      "reportedMt": null,
+      "actualMt": 608.08,
+      "verification": "verified",
+      "kpiIncluded": true,
+      "yearAllocations": [
+        {
+          "year": 2022,
+          "actualMt": 608.08,
+          "method": "completion_year",
+          "portCodes": [
+            "BKK"
+          ]
+        }
+      ],
+      "evidenceDocumentCount": 1
+    },
+    {
+      "voyageId": "tai-ji-2022-12-24-hcm",
+      "sourceYear": 2023,
+      "completionYear": 2023,
+      "displayYearBasis": "daily_report",
+      "vessel": {
+        "canonicalName": "TAI JI"
+      },
+      "period": {
+        "startDate": "2022-12-24",
+        "endDate": "2023-01-19"
+      },
+      "ports": [
+        {
+          "code": "HCM",
+          "nameKo": "호찌민"
+        },
+        {
+          "code": "BKK",
+          "nameKo": "방콕"
+        }
+      ],
+      "reportedMt": null,
+      "actualMt": 5271.4,
+      "verification": "verified",
+      "kpiIncluded": true,
+      "yearAllocations": [
+        {
+          "year": 2022,
+          "actualMt": 2101.34,
+          "method": "daily_report",
+          "portCodes": [
+            "HCM"
+          ]
+        },
+        {
+          "year": 2023,
+          "actualMt": 3170.06,
+          "method": "daily_report",
+          "portCodes": [
+            "HCM"
+          ]
+        }
+      ],
+      "evidenceDocumentCount": 2
+    },
+    {
+      "voyageId": "hikari-1-2023-01-12-skl",
+      "sourceYear": 2023,
+      "completionYear": 2023,
+      "displayYearBasis": "completion_year",
+      "vessel": {
+        "canonicalName": "HIKARI 1"
+      },
+      "period": {
+        "startDate": "2023-01-12",
+        "endDate": "2023-01-16"
+      },
+      "ports": [
+        {
+          "code": "SKL",
+          "nameKo": "송클라"
+        }
+      ],
+      "reportedMt": null,
+      "actualMt": 457.46,
+      "verification": "verified",
+      "kpiIncluded": true,
+      "yearAllocations": [
+        {
+          "year": 2023,
+          "actualMt": 457.46,
+          "method": "completion_year",
+          "portCodes": [
+            "SKL"
+          ]
+        }
+      ],
+      "evidenceDocumentCount": 1
+    },
+    {
+      "voyageId": "liaoyu-reefer-1-2023-01-19-hcm",
+      "sourceYear": 2023,
+      "completionYear": 2023,
+      "displayYearBasis": "completion_year",
+      "vessel": {
+        "canonicalName": "LIAOYU REEFER 1"
+      },
+      "period": {
+        "startDate": "2023-01-19",
+        "endDate": "2023-02-21"
+      },
+      "ports": [
+        {
+          "code": "HCM",
+          "nameKo": "호찌민"
+        },
+        {
+          "code": "CLO",
+          "nameKo": "꾸아로"
+        }
+      ],
+      "reportedMt": null,
+      "actualMt": 5033.44,
+      "verification": "verified",
+      "kpiIncluded": true,
+      "yearAllocations": [
+        {
+          "year": 2023,
+          "actualMt": 5033.44,
+          "method": "completion_year",
+          "portCodes": [
+            "HCM",
+            "CLO"
+          ]
+        }
+      ],
+      "evidenceDocumentCount": 1
+    },
+    {
+      "voyageId": "sein-queen-2023-01-11-bkk",
+      "sourceYear": 2023,
+      "completionYear": 2023,
+      "displayYearBasis": "completion_year",
+      "vessel": {
+        "canonicalName": "SEIN QUEEN"
+      },
+      "period": {
+        "startDate": "2023-01-11",
+        "endDate": "2023-01-31"
+      },
+      "ports": [
+        {
+          "code": "BKK",
+          "nameKo": "방콕"
+        }
+      ],
+      "reportedMt": 5916,
+      "actualMt": 5828.97,
+      "verification": "verified",
+      "kpiIncluded": true,
+      "yearAllocations": [
+        {
+          "year": 2023,
+          "actualMt": 5828.97,
+          "method": "completion_year",
+          "portCodes": [
+            "BKK"
+          ]
+        }
+      ],
+      "evidenceDocumentCount": 1
+    },
+    {
+      "voyageId": "kai-de-2023-02-28-bkk",
+      "sourceYear": 2023,
+      "completionYear": 2023,
+      "displayYearBasis": "completion_year",
+      "vessel": {
+        "canonicalName": "KAI DE"
+      },
+      "period": {
+        "startDate": "2023-02-28",
+        "endDate": "2023-03-10"
+      },
+      "ports": [
+        {
+          "code": "BKK",
+          "nameKo": "방콕"
+        }
+      ],
+      "reportedMt": null,
+      "actualMt": 3371.08,
+      "verification": "verified",
+      "kpiIncluded": true,
+      "yearAllocations": [
+        {
+          "year": 2023,
+          "actualMt": 3371.08,
+          "method": "completion_year",
+          "portCodes": [
+            "BKK"
+          ]
+        }
+      ],
+      "evidenceDocumentCount": 1
+    },
+    {
+      "voyageId": "sea-trader-i-2023-03-04-clo",
+      "sourceYear": 2023,
+      "completionYear": 2023,
+      "displayYearBasis": "completion_year",
+      "vessel": {
+        "canonicalName": "SEA TRADER I"
+      },
+      "period": {
+        "startDate": "2023-03-04",
+        "endDate": "2023-03-25"
+      },
+      "ports": [
+        {
+          "code": "CLO",
+          "nameKo": "꾸아로"
+        },
+        {
+          "code": "BKK",
+          "nameKo": "방콕"
+        }
+      ],
+      "reportedMt": null,
+      "actualMt": 1693.51,
+      "verification": "verified",
+      "kpiIncluded": true,
+      "yearAllocations": [
+        {
+          "year": 2023,
+          "actualMt": 1693.51,
+          "method": "completion_year",
+          "portCodes": [
+            "CLO",
+            "BKK"
+          ]
+        }
+      ],
+      "evidenceDocumentCount": 1
+    },
+    {
+      "voyageId": "sein-princess-2023-03-28-bkk",
+      "sourceYear": 2023,
+      "completionYear": 2023,
+      "displayYearBasis": "completion_year",
+      "vessel": {
+        "canonicalName": "SEIN PRINCESS"
+      },
+      "period": {
+        "startDate": "2023-03-28",
+        "endDate": "2023-04-09"
+      },
+      "ports": [
+        {
+          "code": "BKK",
+          "nameKo": "방콕"
+        }
+      ],
+      "reportedMt": null,
+      "actualMt": 5478.432,
+      "verification": "verified",
+      "kpiIncluded": true,
+      "yearAllocations": [
+        {
+          "year": 2023,
+          "actualMt": 5478.432,
+          "method": "completion_year",
+          "portCodes": [
+            "BKK"
+          ]
+        }
+      ],
+      "evidenceDocumentCount": 1
+    },
+    {
+      "voyageId": "sein-queen-2023-04-26-bkk",
+      "sourceYear": 2023,
+      "completionYear": 2023,
+      "displayYearBasis": "completion_year",
+      "vessel": {
+        "canonicalName": "SEIN QUEEN"
+      },
+      "period": {
+        "startDate": "2023-04-26",
+        "endDate": "2023-05-15"
+      },
+      "ports": [
+        {
+          "code": "BKK",
+          "nameKo": "방콕"
+        }
+      ],
+      "reportedMt": null,
+      "actualMt": 5862.797,
+      "verification": "verified",
+      "kpiIncluded": true,
+      "yearAllocations": [
+        {
+          "year": 2023,
+          "actualMt": 5862.797,
+          "method": "completion_year",
+          "portCodes": [
+            "BKK"
+          ]
+        }
+      ],
+      "evidenceDocumentCount": 1
+    },
+    {
+      "voyageId": "lake-pearl-2023-06-07-bkk",
+      "sourceYear": 2023,
+      "completionYear": 2023,
+      "displayYearBasis": "completion_year",
+      "vessel": {
+        "canonicalName": "LAKE PEARL"
+      },
+      "period": {
+        "startDate": "2023-06-07",
+        "endDate": "2023-06-13"
+      },
+      "ports": [
+        {
+          "code": "BKK",
+          "nameKo": "방콕"
+        }
+      ],
+      "reportedMt": null,
+      "actualMt": 941.28,
+      "verification": "verified",
+      "kpiIncluded": true,
+      "yearAllocations": [
+        {
+          "year": 2023,
+          "actualMt": 941.28,
+          "method": "completion_year",
+          "portCodes": [
+            "BKK"
+          ]
+        }
+      ],
+      "evidenceDocumentCount": 1
+    },
+    {
+      "voyageId": "sein-grace-2023-06-09-bkk",
+      "sourceYear": 2023,
+      "completionYear": 2023,
+      "displayYearBasis": "completion_year",
+      "vessel": {
+        "canonicalName": "SEIN GRACE"
+      },
+      "period": {
+        "startDate": "2023-06-09",
+        "endDate": "2023-06-17"
+      },
+      "ports": [
+        {
+          "code": "BKK",
+          "nameKo": "방콕"
+        },
+        {
+          "code": "CLO",
+          "nameKo": "꾸아로"
+        }
+      ],
+      "reportedMt": null,
+      "actualMt": 5317.75,
+      "verification": "verified",
+      "kpiIncluded": true,
+      "yearAllocations": [
+        {
+          "year": 2023,
+          "actualMt": 5317.75,
+          "method": "completion_year",
+          "portCodes": [
+            "BKK",
+            "CLO"
+          ]
+        }
+      ],
+      "evidenceDocumentCount": 1
+    },
+    {
+      "voyageId": "kai-de-2023-06-15-hcm",
+      "sourceYear": 2023,
+      "completionYear": 2023,
+      "displayYearBasis": "completion_year",
+      "vessel": {
+        "canonicalName": "KAI DE"
+      },
+      "period": {
+        "startDate": "2023-06-15",
+        "endDate": "2023-06-28"
+      },
+      "ports": [
+        {
+          "code": "HCM",
+          "nameKo": "호찌민"
+        }
+      ],
+      "reportedMt": null,
+      "actualMt": 3521.53,
+      "verification": "verified",
+      "kpiIncluded": true,
+      "yearAllocations": [
+        {
+          "year": 2023,
+          "actualMt": 3521.53,
+          "method": "completion_year",
+          "portCodes": [
+            "HCM"
+          ]
+        }
+      ],
+      "evidenceDocumentCount": 1
+    },
+    {
+      "voyageId": "pharo-star-2023-06-29-bkk",
+      "sourceYear": 2023,
+      "completionYear": 2023,
+      "displayYearBasis": "completion_year",
+      "vessel": {
+        "canonicalName": "PHARO STAR"
+      },
+      "period": {
+        "startDate": "2023-06-29",
+        "endDate": "2023-07-06"
+      },
+      "ports": [
+        {
+          "code": "BKK",
+          "nameKo": "방콕"
+        }
+      ],
+      "reportedMt": null,
+      "actualMt": 2100.09,
+      "verification": "verified",
+      "kpiIncluded": true,
+      "yearAllocations": [
+        {
+          "year": 2023,
+          "actualMt": 2100.09,
+          "method": "completion_year",
+          "portCodes": [
+            "BKK"
+          ]
+        }
+      ],
+      "evidenceDocumentCount": 1
+    },
+    {
+      "voyageId": "sein-princess-2023-07-05-bkk",
+      "sourceYear": 2023,
+      "completionYear": 2023,
+      "displayYearBasis": "completion_year",
+      "vessel": {
+        "canonicalName": "SEIN PRINCESS"
+      },
+      "period": {
+        "startDate": "2023-07-05",
+        "endDate": "2023-07-06"
+      },
+      "ports": [
+        {
+          "code": "BKK",
+          "nameKo": "방콕"
+        }
+      ],
+      "reportedMt": null,
+      "actualMt": 548.56,
+      "verification": "verified",
+      "kpiIncluded": true,
+      "yearAllocations": [
+        {
+          "year": 2023,
+          "actualMt": 548.56,
+          "method": "completion_year",
+          "portCodes": [
+            "BKK"
+          ]
+        }
+      ],
+      "evidenceDocumentCount": 1
+    },
+    {
+      "voyageId": "liaoyu-reefer-1-2023-07-21-bkk",
+      "sourceYear": 2023,
+      "completionYear": 2023,
+      "displayYearBasis": "completion_year",
+      "vessel": {
+        "canonicalName": "LIAOYU REEFER 1"
+      },
+      "period": {
+        "startDate": "2023-07-21",
+        "endDate": "2023-08-10"
+      },
+      "ports": [
+        {
+          "code": "BKK",
+          "nameKo": "방콕"
+        }
+      ],
+      "reportedMt": null,
+      "actualMt": 5029.08,
+      "verification": "verified",
+      "kpiIncluded": true,
+      "yearAllocations": [
+        {
+          "year": 2023,
+          "actualMt": 5029.08,
+          "method": "completion_year",
+          "portCodes": [
+            "BKK"
+          ]
+        }
+      ],
+      "evidenceDocumentCount": 1
+    },
+    {
+      "voyageId": "sein-queen-2023-08-09-bkk",
+      "sourceYear": 2023,
+      "completionYear": 2023,
+      "displayYearBasis": "completion_year",
+      "vessel": {
+        "canonicalName": "SEIN QUEEN"
+      },
+      "period": {
+        "startDate": "2023-08-09",
+        "endDate": "2023-08-21"
+      },
+      "ports": [
+        {
+          "code": "BKK",
+          "nameKo": "방콕"
+        }
+      ],
+      "reportedMt": null,
+      "actualMt": 2849.027,
+      "verification": "verified",
+      "kpiIncluded": true,
+      "yearAllocations": [
+        {
+          "year": 2023,
+          "actualMt": 2849.027,
+          "method": "completion_year",
+          "portCodes": [
+            "BKK"
+          ]
+        }
+      ],
+      "evidenceDocumentCount": 1
+    },
+    {
+      "voyageId": "sohoh-2023-08-22-bkk",
+      "sourceYear": 2023,
+      "completionYear": 2023,
+      "displayYearBasis": "completion_year",
+      "vessel": {
+        "canonicalName": "SOHOH"
+      },
+      "period": {
+        "startDate": "2023-08-22",
+        "endDate": "2023-09-11"
+      },
+      "ports": [
+        {
+          "code": "BKK",
+          "nameKo": "방콕"
+        }
+      ],
+      "reportedMt": null,
+      "actualMt": 2202.32,
+      "verification": "verified",
+      "kpiIncluded": true,
+      "yearAllocations": [
+        {
+          "year": 2023,
+          "actualMt": 2202.32,
+          "method": "completion_year",
+          "portCodes": [
+            "BKK"
+          ]
+        }
+      ],
+      "evidenceDocumentCount": 1
+    },
+    {
+      "voyageId": "sein-grace-2023-09-02-bkk",
+      "sourceYear": 2023,
+      "completionYear": 2023,
+      "displayYearBasis": "completion_year",
+      "vessel": {
+        "canonicalName": "SEIN GRACE"
+      },
+      "period": {
+        "startDate": "2023-09-02",
+        "endDate": "2023-09-18"
+      },
+      "ports": [
+        {
+          "code": "BKK",
+          "nameKo": "방콕"
+        }
+      ],
+      "reportedMt": null,
+      "actualMt": 4488.999,
+      "verification": "verified",
+      "kpiIncluded": true,
+      "yearAllocations": [
+        {
+          "year": 2023,
+          "actualMt": 4488.999,
+          "method": "completion_year",
+          "portCodes": [
+            "BKK"
+          ]
+        }
+      ],
+      "evidenceDocumentCount": 1
+    },
+    {
+      "voyageId": "kai-de-2023-09-20-bkk",
+      "sourceYear": 2023,
+      "completionYear": 2023,
+      "displayYearBasis": "completion_year",
+      "vessel": {
+        "canonicalName": "KAI DE"
+      },
+      "period": {
+        "startDate": "2023-09-20",
+        "endDate": "2023-10-02"
+      },
+      "ports": [
+        {
+          "code": "BKK",
+          "nameKo": "방콕"
+        }
+      ],
+      "reportedMt": null,
+      "actualMt": 3112.411,
+      "verification": "verified",
+      "kpiIncluded": true,
+      "yearAllocations": [
+        {
+          "year": 2023,
+          "actualMt": 3112.411,
+          "method": "completion_year",
+          "portCodes": [
+            "BKK"
+          ]
+        }
+      ],
+      "evidenceDocumentCount": 1
+    },
+    {
+      "voyageId": "sein-princess-2023-09-28-bkk",
+      "sourceYear": 2023,
+      "completionYear": 2023,
+      "displayYearBasis": "completion_year",
+      "vessel": {
+        "canonicalName": "SEIN PRINCESS"
+      },
+      "period": {
+        "startDate": "2023-09-28",
+        "endDate": "2023-10-04"
+      },
+      "ports": [
+        {
+          "code": "BKK",
+          "nameKo": "방콕"
+        }
+      ],
+      "reportedMt": null,
+      "actualMt": 840.24,
+      "verification": "verified",
+      "kpiIncluded": true,
+      "yearAllocations": [
+        {
+          "year": 2023,
+          "actualMt": 840.24,
+          "method": "completion_year",
+          "portCodes": [
+            "BKK"
+          ]
+        }
+      ],
+      "evidenceDocumentCount": 1
+    },
+    {
+      "voyageId": "lake-castle-2023-11-01-bkk",
+      "sourceYear": 2023,
+      "completionYear": 2023,
+      "displayYearBasis": "completion_year",
+      "vessel": {
+        "canonicalName": "LAKE CASTLE"
+      },
+      "period": {
+        "startDate": "2023-11-01",
+        "endDate": "2023-11-07"
+      },
+      "ports": [
+        {
+          "code": "BKK",
+          "nameKo": "방콕"
+        }
+      ],
+      "reportedMt": null,
+      "actualMt": 883.57,
+      "verification": "verified",
+      "kpiIncluded": true,
+      "yearAllocations": [
+        {
+          "year": 2023,
+          "actualMt": 883.57,
+          "method": "completion_year",
+          "portCodes": [
+            "BKK"
+          ]
+        }
+      ],
+      "evidenceDocumentCount": 1
+    },
+    {
+      "voyageId": "sein-venus-2023-10-27-bkk",
+      "sourceYear": 2023,
+      "completionYear": 2023,
+      "displayYearBasis": "completion_year",
+      "vessel": {
+        "canonicalName": "SEIN VENUS"
+      },
+      "period": {
+        "startDate": "2023-10-27",
+        "endDate": "2023-11-11"
+      },
+      "ports": [
+        {
+          "code": "BKK",
+          "nameKo": "방콕"
+        }
+      ],
+      "reportedMt": null,
+      "actualMt": 2457.03,
+      "verification": "verified",
+      "kpiIncluded": true,
+      "yearAllocations": [
+        {
+          "year": 2023,
+          "actualMt": 2457.03,
+          "method": "completion_year",
+          "portCodes": [
+            "BKK"
+          ]
+        }
+      ],
+      "evidenceDocumentCount": 1
+    },
+    {
+      "voyageId": "sein-sky-2023-10-27-bkk",
+      "sourceYear": 2023,
+      "completionYear": 2023,
+      "displayYearBasis": "completion_year",
+      "vessel": {
+        "canonicalName": "SEIN SKY"
+      },
+      "period": {
+        "startDate": "2023-10-27",
+        "endDate": "2023-11-15"
+      },
+      "ports": [
+        {
+          "code": "BKK",
+          "nameKo": "방콕"
+        }
+      ],
+      "reportedMt": null,
+      "actualMt": 5541.924,
+      "verification": "verified",
+      "kpiIncluded": true,
+      "yearAllocations": [
+        {
+          "year": 2023,
+          "actualMt": 5541.924,
+          "method": "completion_year",
+          "portCodes": [
+            "BKK"
+          ]
+        }
+      ],
+      "evidenceDocumentCount": 1
+    },
+    {
+      "voyageId": "sein-frontier-2023-10-06-bkk",
+      "sourceYear": 2023,
+      "completionYear": 2023,
+      "displayYearBasis": "completion_year",
+      "vessel": {
+        "canonicalName": "SEIN FRONTIER"
+      },
+      "period": {
+        "startDate": "2023-10-06",
+        "endDate": "2023-10-25"
+      },
+      "ports": [
+        {
+          "code": "BKK",
+          "nameKo": "방콕"
+        }
+      ],
+      "reportedMt": null,
+      "actualMt": 5218.5,
+      "verification": "verified",
+      "kpiIncluded": true,
+      "yearAllocations": [
+        {
+          "year": 2023,
+          "actualMt": 5218.5,
+          "method": "completion_year",
+          "portCodes": [
+            "BKK"
+          ]
+        }
+      ],
+      "evidenceDocumentCount": 1
+    },
+    {
+      "voyageId": "liaoyu-reefer-1-2023-10-12-bkk",
+      "sourceYear": 2023,
+      "completionYear": 2023,
+      "displayYearBasis": "completion_year",
+      "vessel": {
+        "canonicalName": "LIAOYU REEFER 1"
+      },
+      "period": {
+        "startDate": "2023-10-12",
+        "endDate": "2023-10-30"
+      },
+      "ports": [
+        {
+          "code": "BKK",
+          "nameKo": "방콕"
+        }
+      ],
+      "reportedMt": null,
+      "actualMt": 4792.45,
+      "verification": "verified",
+      "kpiIncluded": true,
+      "yearAllocations": [
+        {
+          "year": 2023,
+          "actualMt": 4792.45,
+          "method": "completion_year",
+          "portCodes": [
+            "BKK"
+          ]
+        }
+      ],
+      "evidenceDocumentCount": 1
+    },
+    {
+      "voyageId": "sein-princess-2023-12-19-bkk",
+      "sourceYear": 2023,
+      "completionYear": 2023,
+      "displayYearBasis": "completion_year",
+      "vessel": {
+        "canonicalName": "SEIN PRINCESS"
+      },
+      "period": {
+        "startDate": "2023-12-19",
+        "endDate": "2023-12-21"
+      },
+      "ports": [
+        {
+          "code": "BKK",
+          "nameKo": "방콕"
+        }
+      ],
+      "reportedMt": null,
+      "actualMt": 342.81,
+      "verification": "verified",
+      "kpiIncluded": true,
+      "yearAllocations": [
+        {
+          "year": 2023,
+          "actualMt": 342.81,
+          "method": "completion_year",
+          "portCodes": [
+            "BKK"
+          ]
+        }
+      ],
+      "evidenceDocumentCount": 1
+    },
+    {
+      "voyageId": "lake-nova-2023-12-19-bkk",
+      "sourceYear": 2023,
+      "completionYear": 2023,
+      "displayYearBasis": "completion_year",
+      "vessel": {
+        "canonicalName": "LAKE NOVA"
+      },
+      "period": {
+        "startDate": "2023-12-19",
+        "endDate": "2023-12-23"
+      },
+      "ports": [
+        {
+          "code": "BKK",
+          "nameKo": "방콕"
+        }
+      ],
+      "reportedMt": null,
+      "actualMt": 598.22,
+      "verification": "verified",
+      "kpiIncluded": true,
+      "yearAllocations": [
+        {
+          "year": 2023,
+          "actualMt": 598.22,
+          "method": "completion_year",
+          "portCodes": [
+            "BKK"
+          ]
+        }
+      ],
+      "evidenceDocumentCount": 1
+    },
+    {
+      "voyageId": "sein-queen-2023-12-02-bkk",
+      "sourceYear": 2024,
+      "completionYear": 2023,
+      "displayYearBasis": "completion_year",
+      "vessel": {
+        "canonicalName": "SEIN QUEEN"
+      },
+      "period": {
+        "startDate": "2023-12-02",
+        "endDate": "2023-12-26"
+      },
+      "ports": [
+        {
+          "code": "BKK",
+          "nameKo": "방콕"
+        }
+      ],
+      "reportedMt": null,
+      "actualMt": 5555.45,
+      "verification": "verified",
+      "kpiIncluded": true,
+      "yearAllocations": [
+        {
+          "year": 2023,
+          "actualMt": 5555.45,
+          "method": "completion_year",
+          "portCodes": [
+            "BKK"
+          ]
+        }
+      ],
+      "evidenceDocumentCount": 1
+    },
+    {
+      "voyageId": "sein-phoenix-2023-11-21-hcm",
+      "sourceYear": 2024,
+      "completionYear": 2024,
+      "displayYearBasis": "daily_report",
+      "vessel": {
+        "canonicalName": "SEIN PHOENIX"
+      },
+      "period": {
+        "startDate": "2023-11-21",
+        "endDate": "2024-01-04"
+      },
+      "ports": [
+        {
+          "code": "HCM",
+          "nameKo": "호찌민"
+        },
+        {
+          "code": "BKK",
+          "nameKo": "방콕"
+        }
+      ],
+      "reportedMt": null,
+      "actualMt": 7408.549,
+      "verification": "verified",
+      "kpiIncluded": true,
+      "yearAllocations": [
+        {
+          "year": 2023,
+          "actualMt": 6611.53,
+          "method": "daily_report",
+          "portCodes": [
+            "HCM"
+          ]
+        },
+        {
+          "year": 2024,
+          "actualMt": 795.5,
+          "method": "daily_report",
+          "portCodes": [
+            "HCM"
+          ]
+        },
+        {
+          "year": 2024,
+          "actualMt": 1.519,
+          "method": "final_report_adjustment",
+          "portCodes": []
+        }
+      ],
+      "evidenceDocumentCount": 2
+    },
+    {
+      "voyageId": "bao-lucky-2024-01-08-bkk",
+      "sourceYear": 2024,
+      "completionYear": 2024,
+      "displayYearBasis": "completion_year",
+      "vessel": {
+        "canonicalName": "BAO LUCKY"
+      },
+      "period": {
+        "startDate": "2024-01-08",
+        "endDate": "2024-01-24"
+      },
+      "ports": [
+        {
+          "code": "BKK",
+          "nameKo": "방콕"
+        }
+      ],
+      "reportedMt": null,
+      "actualMt": 2213.54,
+      "verification": "verified",
+      "kpiIncluded": true,
+      "yearAllocations": [
+        {
+          "year": 2024,
+          "actualMt": 2213.54,
+          "method": "completion_year",
+          "portCodes": [
+            "BKK"
+          ]
+        }
+      ],
+      "evidenceDocumentCount": 1
+    },
+    {
+      "voyageId": "sein-frontier-2023-12-25-bkk",
+      "sourceYear": 2024,
+      "completionYear": 2024,
+      "displayYearBasis": "daily_report",
+      "vessel": {
+        "canonicalName": "SEIN FRONTIER"
+      },
+      "period": {
+        "startDate": "2023-12-25",
+        "endDate": "2024-01-27"
+      },
+      "ports": [
+        {
+          "code": "BKK",
+          "nameKo": "방콕"
+        }
+      ],
+      "reportedMt": null,
+      "actualMt": 5451.56,
+      "verification": "verified",
+      "kpiIncluded": true,
+      "yearAllocations": [
+        {
+          "year": 2023,
+          "actualMt": 226.56,
+          "method": "daily_report",
+          "portCodes": [
+            "BKK"
+          ]
+        },
+        {
+          "year": 2024,
+          "actualMt": 5225,
+          "method": "daily_report",
+          "portCodes": [
+            "BKK"
+          ]
+        }
+      ],
+      "evidenceDocumentCount": 2
+    },
+    {
+      "voyageId": "sein-venus-2024-01-16-bkk",
+      "sourceYear": 2024,
+      "completionYear": 2024,
+      "displayYearBasis": "completion_year",
+      "vessel": {
+        "canonicalName": "SEIN VENUS"
+      },
+      "period": {
+        "startDate": "2024-01-16",
+        "endDate": "2024-02-03"
+      },
+      "ports": [
+        {
+          "code": "BKK",
+          "nameKo": "방콕"
+        }
+      ],
+      "reportedMt": null,
+      "actualMt": 5381.16,
+      "verification": "verified",
+      "kpiIncluded": true,
+      "yearAllocations": [
+        {
+          "year": 2024,
+          "actualMt": 5381.16,
+          "method": "completion_year",
+          "portCodes": [
+            "BKK"
+          ]
+        }
+      ],
+      "evidenceDocumentCount": 1
+    },
+    {
+      "voyageId": "tai-ji-2024-01-31-bkk",
+      "sourceYear": 2024,
+      "completionYear": 2024,
+      "displayYearBasis": "completion_year",
+      "vessel": {
+        "canonicalName": "TAI JI"
+      },
+      "period": {
+        "startDate": "2024-01-31",
+        "endDate": "2024-02-12"
+      },
+      "ports": [
+        {
+          "code": "BKK",
+          "nameKo": "방콕"
+        }
+      ],
+      "reportedMt": null,
+      "actualMt": 5235.268,
+      "verification": "verified",
+      "kpiIncluded": true,
+      "yearAllocations": [
+        {
+          "year": 2024,
+          "actualMt": 5235.268,
+          "method": "completion_year",
+          "portCodes": [
+            "BKK"
+          ]
+        }
+      ],
+      "evidenceDocumentCount": 1
+    },
+    {
+      "voyageId": "lake-pearl-2024-02-07-bkk",
+      "sourceYear": 2024,
+      "completionYear": 2024,
+      "displayYearBasis": "completion_year",
+      "vessel": {
+        "canonicalName": "LAKE PEARL"
+      },
+      "period": {
+        "startDate": "2024-02-07",
+        "endDate": "2024-02-13"
+      },
+      "ports": [
+        {
+          "code": "BKK",
+          "nameKo": "방콕"
+        }
+      ],
+      "reportedMt": null,
+      "actualMt": 1055.66,
+      "verification": "verified",
+      "kpiIncluded": true,
+      "yearAllocations": [
+        {
+          "year": 2024,
+          "actualMt": 1055.66,
+          "method": "completion_year",
+          "portCodes": [
+            "BKK"
+          ]
+        }
+      ],
+      "evidenceDocumentCount": 1
+    },
+    {
+      "voyageId": "lake-nova-2024-02-23-bkk",
+      "sourceYear": 2024,
+      "completionYear": 2024,
+      "displayYearBasis": "completion_year",
+      "vessel": {
+        "canonicalName": "LAKE NOVA"
+      },
+      "period": {
+        "startDate": "2024-02-23",
+        "endDate": "2024-02-23"
+      },
+      "ports": [
+        {
+          "code": "BKK",
+          "nameKo": "방콕"
+        }
+      ],
+      "reportedMt": null,
+      "actualMt": 183.62,
+      "verification": "verified",
+      "kpiIncluded": true,
+      "yearAllocations": [
+        {
+          "year": 2024,
+          "actualMt": 183.62,
+          "method": "completion_year",
+          "portCodes": [
+            "BKK"
+          ]
+        }
+      ],
+      "evidenceDocumentCount": 1
+    },
+    {
+      "voyageId": "shin-fuji-2024-02-08-bkk",
+      "sourceYear": 2024,
+      "completionYear": 2024,
+      "displayYearBasis": "completion_year",
+      "vessel": {
+        "canonicalName": "SHIN FUJI"
+      },
+      "period": {
+        "startDate": "2024-02-08",
+        "endDate": "2024-02-28"
+      },
+      "ports": [
+        {
+          "code": "BKK",
+          "nameKo": "방콕"
+        }
+      ],
+      "reportedMt": null,
+      "actualMt": 3251.706,
+      "verification": "verified",
+      "kpiIncluded": true,
+      "yearAllocations": [
+        {
+          "year": 2024,
+          "actualMt": 3251.706,
+          "method": "completion_year",
+          "portCodes": [
+            "BKK"
+          ]
+        }
+      ],
+      "evidenceDocumentCount": 1
+    },
+    {
+      "voyageId": "sein-kasama-2024-02-20-bkk",
+      "sourceYear": 2024,
+      "completionYear": 2024,
+      "displayYearBasis": "completion_year",
+      "vessel": {
+        "canonicalName": "SEIN KASAMA"
+      },
+      "period": {
+        "startDate": "2024-02-20",
+        "endDate": "2024-03-27"
+      },
+      "ports": [
+        {
+          "code": "BKK",
+          "nameKo": "방콕"
+        }
+      ],
+      "reportedMt": null,
+      "actualMt": 7491.03,
+      "verification": "verified",
+      "kpiIncluded": true,
+      "yearAllocations": [
+        {
+          "year": 2024,
+          "actualMt": 7491.03,
+          "method": "completion_year",
+          "portCodes": [
+            "BKK"
+          ]
+        }
+      ],
+      "evidenceDocumentCount": 1
+    },
+    {
+      "voyageId": "liaoyu-reefer-1-2024-03-21-bkk",
+      "sourceYear": 2024,
+      "completionYear": 2024,
+      "displayYearBasis": "completion_year",
+      "vessel": {
+        "canonicalName": "LIAOYU REEFER 1"
+      },
+      "period": {
+        "startDate": "2024-03-21",
+        "endDate": "2024-04-12"
+      },
+      "ports": [
+        {
+          "code": "BKK",
+          "nameKo": "방콕"
+        }
+      ],
+      "reportedMt": null,
+      "actualMt": 5049.17,
+      "verification": "verified",
+      "kpiIncluded": true,
+      "yearAllocations": [
+        {
+          "year": 2024,
+          "actualMt": 5049.17,
+          "method": "completion_year",
+          "portCodes": [
+            "BKK"
+          ]
+        }
+      ],
+      "evidenceDocumentCount": 1
+    },
+    {
+      "voyageId": "sein-queen-2024-03-29-bkk",
+      "sourceYear": 2024,
+      "completionYear": 2024,
+      "displayYearBasis": "completion_year",
+      "vessel": {
+        "canonicalName": "SEIN QUEEN"
+      },
+      "period": {
+        "startDate": "2024-03-29",
+        "endDate": "2024-04-22"
+      },
+      "ports": [
+        {
+          "code": "BKK",
+          "nameKo": "방콕"
+        }
+      ],
+      "reportedMt": null,
+      "actualMt": 4886.375,
+      "verification": "verified",
+      "kpiIncluded": true,
+      "yearAllocations": [
+        {
+          "year": 2024,
+          "actualMt": 4886.375,
+          "method": "completion_year",
+          "portCodes": [
+            "BKK"
+          ]
+        }
+      ],
+      "evidenceDocumentCount": 1
+    },
+    {
+      "voyageId": "sein-frontier-2024-04-27-bkk",
+      "sourceYear": 2024,
+      "completionYear": 2024,
+      "displayYearBasis": "completion_year",
+      "vessel": {
+        "canonicalName": "SEIN FRONTIER"
+      },
+      "period": {
+        "startDate": "2024-04-27",
+        "endDate": "2024-05-10"
+      },
+      "ports": [
+        {
+          "code": "BKK",
+          "nameKo": "방콕"
+        }
+      ],
+      "reportedMt": null,
+      "actualMt": 6819.278,
+      "verification": "verified",
+      "kpiIncluded": true,
+      "yearAllocations": [
+        {
+          "year": 2024,
+          "actualMt": 6819.278,
+          "method": "completion_year",
+          "portCodes": [
+            "BKK"
+          ]
+        }
+      ],
+      "evidenceDocumentCount": 1
+    },
+    {
+      "voyageId": "amagi-2024-05-02-bkk",
+      "sourceYear": 2024,
+      "completionYear": 2024,
+      "displayYearBasis": "completion_year",
+      "vessel": {
+        "canonicalName": "AMAGI"
+      },
+      "period": {
+        "startDate": "2024-05-02",
+        "endDate": "2024-05-16"
+      },
+      "ports": [
+        {
+          "code": "BKK",
+          "nameKo": "방콕"
+        }
+      ],
+      "reportedMt": null,
+      "actualMt": 2442.19,
+      "verification": "verified",
+      "kpiIncluded": true,
+      "yearAllocations": [
+        {
+          "year": 2024,
+          "actualMt": 2442.19,
+          "method": "completion_year",
+          "portCodes": [
+            "BKK"
+          ]
+        }
+      ],
+      "evidenceDocumentCount": 1
+    },
+    {
+      "voyageId": "sein-sky-2024-04-25-bkk",
+      "sourceYear": 2024,
+      "completionYear": 2024,
+      "displayYearBasis": "completion_year",
+      "vessel": {
+        "canonicalName": "SEIN SKY"
+      },
+      "period": {
+        "startDate": "2024-04-25",
+        "endDate": "2024-05-18"
+      },
+      "ports": [
+        {
+          "code": "BKK",
+          "nameKo": "방콕"
+        }
+      ],
+      "reportedMt": null,
+      "actualMt": 3425.596,
+      "verification": "verified",
+      "kpiIncluded": true,
+      "yearAllocations": [
+        {
+          "year": 2024,
+          "actualMt": 3425.596,
+          "method": "completion_year",
+          "portCodes": [
+            "BKK"
+          ]
+        }
+      ],
+      "evidenceDocumentCount": 1
+    },
+    {
+      "voyageId": "sein-phoenix-2024-05-31-crh",
+      "sourceYear": 2024,
+      "completionYear": 2024,
+      "displayYearBasis": "completion_year",
+      "vessel": {
+        "canonicalName": "SEIN PHOENIX"
+      },
+      "period": {
+        "startDate": "2024-05-31",
+        "endDate": "2024-07-05"
+      },
+      "ports": [
+        {
+          "code": "CRH",
+          "nameKo": "깜란"
+        },
+        {
+          "code": "BKK",
+          "nameKo": "방콕"
+        }
+      ],
+      "reportedMt": null,
+      "actualMt": 5542.972,
+      "verification": "verified",
+      "kpiIncluded": true,
+      "yearAllocations": [
+        {
+          "year": 2024,
+          "actualMt": 5542.972,
+          "method": "completion_year",
+          "portCodes": [
+            "CRH",
+            "BKK"
+          ]
+        }
+      ],
+      "evidenceDocumentCount": 1
+    },
+    {
+      "voyageId": "liaoyu-reefer-1-2024-06-14-bkk",
+      "sourceYear": 2024,
+      "completionYear": 2024,
+      "displayYearBasis": "completion_year",
+      "vessel": {
+        "canonicalName": "LIAOYU REEFER 1"
+      },
+      "period": {
+        "startDate": "2024-06-14",
+        "endDate": "2024-07-08"
+      },
+      "ports": [
+        {
+          "code": "BKK",
+          "nameKo": "방콕"
+        }
+      ],
+      "reportedMt": null,
+      "actualMt": 4380.72,
+      "verification": "verified",
+      "kpiIncluded": true,
+      "yearAllocations": [
+        {
+          "year": 2024,
+          "actualMt": 4380.72,
+          "method": "completion_year",
+          "portCodes": [
+            "BKK"
+          ]
+        }
+      ],
+      "evidenceDocumentCount": 1
+    },
+    {
+      "voyageId": "sein-queen-2024-07-09-bkk",
+      "sourceYear": 2024,
+      "completionYear": 2024,
+      "displayYearBasis": "completion_year",
+      "vessel": {
+        "canonicalName": "SEIN QUEEN"
+      },
+      "period": {
+        "startDate": "2024-07-09",
+        "endDate": "2024-08-01"
+      },
+      "ports": [
+        {
+          "code": "BKK",
+          "nameKo": "방콕"
+        }
+      ],
+      "reportedMt": null,
+      "actualMt": 5818.61,
+      "verification": "verified",
+      "kpiIncluded": true,
+      "yearAllocations": [
+        {
+          "year": 2024,
+          "actualMt": 5818.61,
+          "method": "completion_year",
+          "portCodes": [
+            "BKK"
+          ]
+        }
+      ],
+      "evidenceDocumentCount": 1
+    },
+    {
+      "voyageId": "tai-ji-2024-07-22-bkk",
+      "sourceYear": 2024,
+      "completionYear": 2024,
+      "displayYearBasis": "completion_year",
+      "vessel": {
+        "canonicalName": "TAI JI"
+      },
+      "period": {
+        "startDate": "2024-07-22",
+        "endDate": "2024-08-06"
+      },
+      "ports": [
+        {
+          "code": "BKK",
+          "nameKo": "방콕"
+        }
+      ],
+      "reportedMt": null,
+      "actualMt": 4662.17,
+      "verification": "verified",
+      "kpiIncluded": true,
+      "yearAllocations": [
+        {
+          "year": 2024,
+          "actualMt": 4662.17,
+          "method": "completion_year",
+          "portCodes": [
+            "BKK"
+          ]
+        }
+      ],
+      "evidenceDocumentCount": 1
+    },
+    {
+      "voyageId": "boyang-capella-2024-08-05-bkk",
+      "sourceYear": 2024,
+      "completionYear": 2024,
+      "displayYearBasis": "completion_year",
+      "vessel": {
+        "canonicalName": "BOYANG CAPELLA"
+      },
+      "period": {
+        "startDate": "2024-08-05",
+        "endDate": "2024-08-26"
+      },
+      "ports": [
+        {
+          "code": "BKK",
+          "nameKo": "방콕"
+        }
+      ],
+      "reportedMt": null,
+      "actualMt": 5803.775,
+      "verification": "verified",
+      "kpiIncluded": true,
+      "yearAllocations": [
+        {
+          "year": 2024,
+          "actualMt": 5803.775,
+          "method": "completion_year",
+          "portCodes": [
+            "BKK"
+          ]
+        }
+      ],
+      "evidenceDocumentCount": 1
+    },
+    {
+      "voyageId": "sein-sky-2024-08-17-bkk",
+      "sourceYear": 2024,
+      "completionYear": 2024,
+      "displayYearBasis": "completion_year",
+      "vessel": {
+        "canonicalName": "SEIN SKY"
+      },
+      "period": {
+        "startDate": "2024-08-17",
+        "endDate": "2024-09-02"
+      },
+      "ports": [
+        {
+          "code": "BKK",
+          "nameKo": "방콕"
+        }
+      ],
+      "reportedMt": null,
+      "actualMt": 5786.852,
+      "verification": "verified",
+      "kpiIncluded": true,
+      "yearAllocations": [
+        {
+          "year": 2024,
+          "actualMt": 5786.852,
+          "method": "completion_year",
+          "portCodes": [
+            "BKK"
+          ]
+        }
+      ],
+      "evidenceDocumentCount": 1
+    },
+    {
+      "voyageId": "liaoyu-reefer-1-2024-10-04-skl",
+      "sourceYear": 2024,
+      "completionYear": 2024,
+      "displayYearBasis": "completion_year",
+      "vessel": {
+        "canonicalName": "LIAOYU REEFER 1"
+      },
+      "period": {
+        "startDate": "2024-10-04",
+        "endDate": "2024-10-12"
+      },
+      "ports": [
+        {
+          "code": "SKL",
+          "nameKo": "송클라"
+        }
+      ],
+      "reportedMt": null,
+      "actualMt": 3609.425,
+      "verification": "verified",
+      "kpiIncluded": true,
+      "yearAllocations": [
+        {
+          "year": 2024,
+          "actualMt": 3609.425,
+          "method": "completion_year",
+          "portCodes": [
+            "SKL"
+          ]
+        }
+      ],
+      "evidenceDocumentCount": 1
+    },
+    {
+      "voyageId": "amagi-2024-10-15-bkk",
+      "sourceYear": 2024,
+      "completionYear": 2024,
+      "displayYearBasis": "completion_year",
+      "vessel": {
+        "canonicalName": "AMAGI"
+      },
+      "period": {
+        "startDate": "2024-10-15",
+        "endDate": "2024-10-24"
+      },
+      "ports": [
+        {
+          "code": "BKK",
+          "nameKo": "방콕"
+        }
+      ],
+      "reportedMt": null,
+      "actualMt": 2415.798,
+      "verification": "verified",
+      "kpiIncluded": true,
+      "yearAllocations": [
+        {
+          "year": 2024,
+          "actualMt": 2415.798,
+          "method": "completion_year",
+          "portCodes": [
+            "BKK"
+          ]
+        }
+      ],
+      "evidenceDocumentCount": 1
+    },
+    {
+      "voyageId": "sein-sky-2024-11-28-bkk",
+      "sourceYear": 2024,
+      "completionYear": 2024,
+      "displayYearBasis": "completion_year",
+      "vessel": {
+        "canonicalName": "SEIN SKY"
+      },
+      "period": {
+        "startDate": "2024-11-28",
+        "endDate": "2024-12-14"
+      },
+      "ports": [
+        {
+          "code": "BKK",
+          "nameKo": "방콕"
+        }
+      ],
+      "reportedMt": null,
+      "actualMt": 5743.819,
+      "verification": "verified",
+      "kpiIncluded": true,
+      "yearAllocations": [
+        {
+          "year": 2024,
+          "actualMt": 5743.819,
+          "method": "completion_year",
+          "portCodes": [
+            "BKK"
+          ]
+        }
+      ],
+      "evidenceDocumentCount": 1
+    },
+    {
+      "voyageId": "sein-spring-2024-11-05-bkk",
+      "sourceYear": 2024,
+      "completionYear": 2024,
+      "displayYearBasis": "completion_year",
+      "vessel": {
+        "canonicalName": "SEIN SPRING"
+      },
+      "period": {
+        "startDate": "2024-11-05",
+        "endDate": "2024-11-19"
+      },
+      "ports": [
+        {
+          "code": "BKK",
+          "nameKo": "방콕"
+        }
+      ],
+      "reportedMt": null,
+      "actualMt": 4447.927,
+      "verification": "verified",
+      "kpiIncluded": true,
+      "yearAllocations": [
+        {
+          "year": 2024,
+          "actualMt": 4447.927,
+          "method": "completion_year",
+          "portCodes": [
+            "BKK"
+          ]
+        }
+      ],
+      "evidenceDocumentCount": 1
+    },
+    {
+      "voyageId": "tai-ji-2024-10-15-bkk",
+      "sourceYear": 2024,
+      "completionYear": 2024,
+      "displayYearBasis": "completion_year",
+      "vessel": {
+        "canonicalName": "TAI JI"
+      },
+      "period": {
+        "startDate": "2024-10-15",
+        "endDate": "2024-11-01"
+      },
+      "ports": [
+        {
+          "code": "BKK",
+          "nameKo": "방콕"
+        }
+      ],
+      "reportedMt": null,
+      "actualMt": 5121.11,
+      "verification": "verified",
+      "kpiIncluded": true,
+      "yearAllocations": [
+        {
+          "year": 2024,
+          "actualMt": 5121.11,
+          "method": "completion_year",
+          "portCodes": [
+            "BKK"
+          ]
+        }
+      ],
+      "evidenceDocumentCount": 1
+    },
+    {
+      "voyageId": "amagi-2024-12-16-bkk",
+      "sourceYear": 2024,
+      "completionYear": 2024,
+      "displayYearBasis": "completion_year",
+      "vessel": {
+        "canonicalName": "AMAGI"
+      },
+      "period": {
+        "startDate": "2024-12-16",
+        "endDate": "2024-12-24"
+      },
+      "ports": [
+        {
+          "code": "BKK",
+          "nameKo": "방콕"
+        }
+      ],
+      "reportedMt": null,
+      "actualMt": 2450.05,
+      "verification": "verified",
+      "kpiIncluded": true,
+      "yearAllocations": [
+        {
+          "year": 2024,
+          "actualMt": 2450.05,
+          "method": "completion_year",
+          "portCodes": [
+            "BKK"
+          ]
+        }
+      ],
+      "evidenceDocumentCount": 1
+    },
+    {
+      "voyageId": "sein-kasama-2024-12-07-bkk",
+      "sourceYear": 2025,
+      "completionYear": 2024,
+      "displayYearBasis": "completion_year",
+      "vessel": {
+        "canonicalName": "SEIN KASAMA"
+      },
+      "period": {
+        "startDate": "2024-12-07",
+        "endDate": "2024-12-17"
+      },
+      "ports": [
+        {
+          "code": "BKK",
+          "nameKo": "방콕"
+        }
+      ],
+      "reportedMt": null,
+      "actualMt": 2419.636,
+      "verification": "verified",
+      "kpiIncluded": true,
+      "yearAllocations": [
+        {
+          "year": 2024,
+          "actualMt": 2419.636,
+          "method": "completion_year",
+          "portCodes": [
+            "BKK"
+          ]
+        }
+      ],
+      "evidenceDocumentCount": 1
+    },
+    {
+      "voyageId": "sein-phoenix-2025-01-08-bkk",
+      "sourceYear": 2025,
+      "completionYear": 2025,
+      "displayYearBasis": "completion_year",
+      "vessel": {
+        "canonicalName": "SEIN PHOENIX"
+      },
+      "period": {
+        "startDate": "2025-01-08",
+        "endDate": "2025-01-31"
+      },
+      "ports": [
+        {
+          "code": "BKK",
+          "nameKo": "방콕"
+        },
+        {
+          "code": "SKL",
+          "nameKo": "송클라"
+        }
+      ],
+      "reportedMt": null,
+      "actualMt": 6898.606,
+      "verification": "verified",
+      "kpiIncluded": true,
+      "yearAllocations": [
+        {
+          "year": 2025,
+          "actualMt": 6898.606,
+          "method": "completion_year",
+          "portCodes": [
+            "BKK",
+            "SKL"
+          ]
+        }
+      ],
+      "evidenceDocumentCount": 1
+    },
+    {
+      "voyageId": "sein-sky-2025-02-24-bkk",
+      "sourceYear": 2025,
+      "completionYear": 2025,
+      "displayYearBasis": "completion_year",
+      "vessel": {
+        "canonicalName": "SEIN SKY"
+      },
+      "period": {
+        "startDate": "2025-02-24",
+        "endDate": "2025-03-14"
+      },
+      "ports": [
+        {
+          "code": "BKK",
+          "nameKo": "방콕"
+        }
+      ],
+      "reportedMt": null,
+      "actualMt": 5410.198,
+      "verification": "verified",
+      "kpiIncluded": true,
+      "yearAllocations": [
+        {
+          "year": 2025,
+          "actualMt": 5410.198,
+          "method": "completion_year",
+          "portCodes": [
+            "BKK"
+          ]
+        }
+      ],
+      "evidenceDocumentCount": 1
+    },
+    {
+      "voyageId": "sein-spring-2025-02-25-bkk",
+      "sourceYear": 2025,
+      "completionYear": 2025,
+      "displayYearBasis": "completion_year",
+      "vessel": {
+        "canonicalName": "SEIN SPRING"
+      },
+      "period": {
+        "startDate": "2025-02-25",
+        "endDate": "2025-03-11"
+      },
+      "ports": [
+        {
+          "code": "BKK",
+          "nameKo": "방콕"
+        }
+      ],
+      "reportedMt": null,
+      "actualMt": 4518.099,
+      "verification": "verified",
+      "kpiIncluded": true,
+      "yearAllocations": [
+        {
+          "year": 2025,
+          "actualMt": 4518.099,
+          "method": "completion_year",
+          "portCodes": [
+            "BKK"
+          ]
+        }
+      ],
+      "evidenceDocumentCount": 1
+    },
+    {
+      "voyageId": "lake-nova-2025-03-17-bkk",
+      "sourceYear": 2025,
+      "completionYear": 2025,
+      "displayYearBasis": "completion_year",
+      "vessel": {
+        "canonicalName": "LAKE NOVA"
+      },
+      "period": {
+        "startDate": "2025-03-17",
+        "endDate": "2025-03-24"
+      },
+      "ports": [
+        {
+          "code": "BKK",
+          "nameKo": "방콕"
+        }
+      ],
+      "reportedMt": null,
+      "actualMt": 998.45,
+      "verification": "verified",
+      "kpiIncluded": true,
+      "yearAllocations": [
+        {
+          "year": 2025,
+          "actualMt": 998.45,
+          "method": "completion_year",
+          "portCodes": [
+            "BKK"
+          ]
+        }
+      ],
+      "evidenceDocumentCount": 1
+    },
+    {
+      "voyageId": "sein-galaxy-2025-04-02-bkk",
+      "sourceYear": 2025,
+      "completionYear": 2025,
+      "displayYearBasis": "completion_year",
+      "vessel": {
+        "canonicalName": "SEIN GALAXY"
+      },
+      "period": {
+        "startDate": "2025-04-02",
+        "endDate": "2025-04-12"
+      },
+      "ports": [
+        {
+          "code": "BKK",
+          "nameKo": "방콕"
+        }
+      ],
+      "reportedMt": null,
+      "actualMt": 2751.81,
+      "verification": "verified",
+      "kpiIncluded": true,
+      "yearAllocations": [
+        {
+          "year": 2025,
+          "actualMt": 2751.81,
+          "method": "completion_year",
+          "portCodes": [
+            "BKK"
+          ]
+        }
+      ],
+      "evidenceDocumentCount": 1
+    },
+    {
+      "voyageId": "sein-grace-2025-03-26-skl",
+      "sourceYear": 2025,
+      "completionYear": 2025,
+      "displayYearBasis": "completion_year",
+      "vessel": {
+        "canonicalName": "SEIN GRACE"
+      },
+      "period": {
+        "startDate": "2025-03-26",
+        "endDate": "2025-04-07"
+      },
+      "ports": [
+        {
+          "code": "SKL",
+          "nameKo": "송클라"
+        }
+      ],
+      "reportedMt": null,
+      "actualMt": 4031.484,
+      "verification": "verified",
+      "kpiIncluded": true,
+      "yearAllocations": [
+        {
+          "year": 2025,
+          "actualMt": 4031.484,
+          "method": "completion_year",
+          "portCodes": [
+            "SKL"
+          ]
+        }
+      ],
+      "evidenceDocumentCount": 1
+    },
+    {
+      "voyageId": "sein-phoenix-2025-05-17-bkk",
+      "sourceYear": 2025,
+      "completionYear": 2025,
+      "displayYearBasis": "completion_year",
+      "vessel": {
+        "canonicalName": "SEIN PHOENIX"
+      },
+      "period": {
+        "startDate": "2025-05-17",
+        "endDate": "2025-06-09"
+      },
+      "ports": [
+        {
+          "code": "BKK",
+          "nameKo": "방콕"
+        }
+      ],
+      "reportedMt": null,
+      "actualMt": 7146.28,
+      "verification": "verified",
+      "kpiIncluded": true,
+      "yearAllocations": [
+        {
+          "year": 2025,
+          "actualMt": 7146.28,
+          "method": "completion_year",
+          "portCodes": [
+            "BKK"
+          ]
+        }
+      ],
+      "evidenceDocumentCount": 1
+    },
+    {
+      "voyageId": "liaoyu-reefer-1-2025-06-10-skl",
+      "sourceYear": 2025,
+      "completionYear": 2025,
+      "displayYearBasis": "completion_year",
+      "vessel": {
+        "canonicalName": "LIAOYU REEFER 1"
+      },
+      "period": {
+        "startDate": "2025-06-10",
+        "endDate": "2025-06-27"
+      },
+      "ports": [
+        {
+          "code": "SKL",
+          "nameKo": "송클라"
+        }
+      ],
+      "reportedMt": null,
+      "actualMt": 5307.908,
+      "verification": "verified",
+      "kpiIncluded": true,
+      "yearAllocations": [
+        {
+          "year": 2025,
+          "actualMt": 5307.908,
+          "method": "completion_year",
+          "portCodes": [
+            "SKL"
+          ]
+        }
+      ],
+      "evidenceDocumentCount": 1
+    },
+    {
+      "voyageId": "sein-spring-2025-06-26-bkk",
+      "sourceYear": 2025,
+      "completionYear": 2025,
+      "displayYearBasis": "completion_year",
+      "vessel": {
+        "canonicalName": "SEIN SPRING"
+      },
+      "period": {
+        "startDate": "2025-06-26",
+        "endDate": "2025-07-09"
+      },
+      "ports": [
+        {
+          "code": "BKK",
+          "nameKo": "방콕"
+        }
+      ],
+      "reportedMt": null,
+      "actualMt": 4586.014,
+      "verification": "verified",
+      "kpiIncluded": true,
+      "yearAllocations": [
+        {
+          "year": 2025,
+          "actualMt": 4586.014,
+          "method": "completion_year",
+          "portCodes": [
+            "BKK"
+          ]
+        }
+      ],
+      "evidenceDocumentCount": 1
+    },
+    {
+      "voyageId": "sein-sapphire-2025-08-16-bkk",
+      "sourceYear": 2025,
+      "completionYear": 2025,
+      "displayYearBasis": "completion_year",
+      "vessel": {
+        "canonicalName": "SEIN SAPPHIRE"
+      },
+      "period": {
+        "startDate": "2025-08-16",
+        "endDate": "2025-08-30"
+      },
+      "ports": [
+        {
+          "code": "BKK",
+          "nameKo": "방콕"
+        }
+      ],
+      "reportedMt": null,
+      "actualMt": 5588.709,
+      "verification": "verified",
+      "kpiIncluded": true,
+      "yearAllocations": [
+        {
+          "year": 2025,
+          "actualMt": 5588.709,
+          "method": "completion_year",
+          "portCodes": [
+            "BKK"
+          ]
+        }
+      ],
+      "evidenceDocumentCount": 1
+    },
+    {
+      "voyageId": "shin-fuji-2025-08-14-bkk",
+      "sourceYear": 2025,
+      "completionYear": 2025,
+      "displayYearBasis": "completion_year",
+      "vessel": {
+        "canonicalName": "SHIN FUJI"
+      },
+      "period": {
+        "startDate": "2025-08-14",
+        "endDate": "2025-08-25"
+      },
+      "ports": [
+        {
+          "code": "BKK",
+          "nameKo": "방콕"
+        }
+      ],
+      "reportedMt": null,
+      "actualMt": 3200.235,
+      "verification": "verified",
+      "kpiIncluded": true,
+      "yearAllocations": [
+        {
+          "year": 2025,
+          "actualMt": 3200.235,
+          "method": "completion_year",
+          "portCodes": [
+            "BKK"
+          ]
+        }
+      ],
+      "evidenceDocumentCount": 1
+    },
+    {
+      "voyageId": "new-takatsuki-2025-09-05-bkk",
+      "sourceYear": 2025,
+      "completionYear": 2025,
+      "displayYearBasis": "completion_year",
+      "vessel": {
+        "canonicalName": "NEW TAKATSUKI"
+      },
+      "period": {
+        "startDate": "2025-09-05",
+        "endDate": "2025-09-10"
+      },
+      "ports": [
+        {
+          "code": "BKK",
+          "nameKo": "방콕"
+        }
+      ],
+      "reportedMt": null,
+      "actualMt": 999.76,
+      "verification": "verified",
+      "kpiIncluded": true,
+      "yearAllocations": [
+        {
+          "year": 2025,
+          "actualMt": 999.76,
+          "method": "completion_year",
+          "portCodes": [
+            "BKK"
+          ]
+        }
+      ],
+      "evidenceDocumentCount": 1
+    },
+    {
+      "voyageId": "sein-topaz-2025-09-20-bkk",
+      "sourceYear": 2025,
+      "completionYear": 2025,
+      "displayYearBasis": "completion_year",
+      "vessel": {
+        "canonicalName": "SEIN TOPAZ"
+      },
+      "period": {
+        "startDate": "2025-09-20",
+        "endDate": "2025-10-08"
+      },
+      "ports": [
+        {
+          "code": "BKK",
+          "nameKo": "방콕"
+        }
+      ],
+      "reportedMt": null,
+      "actualMt": 6079.7808,
+      "verification": "verified",
+      "kpiIncluded": true,
+      "yearAllocations": [
+        {
+          "year": 2025,
+          "actualMt": 6079.7808,
+          "method": "completion_year",
+          "portCodes": [
+            "BKK"
+          ]
+        }
+      ],
+      "evidenceDocumentCount": 1
+    },
+    {
+      "voyageId": "sein-spring-2025-10-23-bkk",
+      "sourceYear": 2025,
+      "completionYear": 2025,
+      "displayYearBasis": "completion_year",
+      "vessel": {
+        "canonicalName": "SEIN SPRING"
+      },
+      "period": {
+        "startDate": "2025-10-23",
+        "endDate": "2025-11-07"
+      },
+      "ports": [
+        {
+          "code": "BKK",
+          "nameKo": "방콕"
+        }
+      ],
+      "reportedMt": null,
+      "actualMt": 4614.007,
+      "verification": "verified",
+      "kpiIncluded": true,
+      "yearAllocations": [
+        {
+          "year": 2025,
+          "actualMt": 4614.007,
+          "method": "completion_year",
+          "portCodes": [
+            "BKK"
+          ]
+        }
+      ],
+      "evidenceDocumentCount": 1
+    },
+    {
+      "voyageId": "liaoyu-reefer-1-2025-11-11-bkk",
+      "sourceYear": 2025,
+      "completionYear": 2025,
+      "displayYearBasis": "completion_year",
+      "vessel": {
+        "canonicalName": "LIAOYU REEFER 1"
+      },
+      "period": {
+        "startDate": "2025-11-11",
+        "endDate": "2025-11-22"
+      },
+      "ports": [
+        {
+          "code": "BKK",
+          "nameKo": "방콕"
+        }
+      ],
+      "reportedMt": null,
+      "actualMt": 5232.044,
+      "verification": "verified",
+      "kpiIncluded": true,
+      "yearAllocations": [
+        {
+          "year": 2025,
+          "actualMt": 5232.044,
+          "method": "completion_year",
+          "portCodes": [
+            "BKK"
+          ]
+        }
+      ],
+      "evidenceDocumentCount": 1
+    },
+    {
+      "voyageId": "sein-frontier-2025-11-15-bkk",
+      "sourceYear": 2025,
+      "completionYear": 2025,
+      "displayYearBasis": "completion_year",
+      "vessel": {
+        "canonicalName": "SEIN FRONTIER"
+      },
+      "period": {
+        "startDate": "2025-11-15",
+        "endDate": "2025-12-04"
+      },
+      "ports": [
+        {
+          "code": "BKK",
+          "nameKo": "방콕"
+        }
+      ],
+      "reportedMt": null,
+      "actualMt": 6477.814,
+      "verification": "verified",
+      "kpiIncluded": true,
+      "yearAllocations": [
+        {
+          "year": 2025,
+          "actualMt": 6477.814,
+          "method": "completion_year",
+          "portCodes": [
+            "BKK"
+          ]
+        }
+      ],
+      "evidenceDocumentCount": 1
+    },
+    {
+      "voyageId": "shin-izu-2025-11-20-bkk",
+      "sourceYear": 2025,
+      "completionYear": 2025,
+      "displayYearBasis": "completion_year",
+      "vessel": {
+        "canonicalName": "SHIN IZU"
+      },
+      "period": {
+        "startDate": "2025-11-20",
+        "endDate": "2025-11-29"
+      },
+      "ports": [
+        {
+          "code": "BKK",
+          "nameKo": "방콕"
+        }
+      ],
+      "reportedMt": null,
+      "actualMt": 2209.04,
+      "verification": "verified",
+      "kpiIncluded": true,
+      "yearAllocations": [
+        {
+          "year": 2025,
+          "actualMt": 2209.04,
+          "method": "completion_year",
+          "portCodes": [
+            "BKK"
+          ]
+        }
+      ],
+      "evidenceDocumentCount": 1
+    }
+  ],
+  "isLive": false,
+  "snapshotStatus": "SYNCED",
+  "_metadata": {
+    "isLive": false,
+    "status": "STATIC",
+    "source": "lib/unloading-history/history_2021_2025.json",
+    "syncDate": "2026-08-13",
+    "dataAsOf": "2026-08-13",
+    "schemaVersion": "1.0.0",
+    "method": "결정론적 Excel 추출·최종보고 우선·일보 교차검증",
+    "apiHealth": {
+      "ok": true
+    }
+  }
+}

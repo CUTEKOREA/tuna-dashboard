@@ -2,29 +2,30 @@
 import React from 'react';
 import { Anchor, Navigation } from 'lucide-react';
 import CountUp from 'react-countup';
+import { purseSeineCatch } from '@/lib/fleet-operations-2026-08-09';
+import TelemetryBadge from './TelemetryBadge';
 import s from './FleetCommandCenter.module.css';
 
 export default function FleetHeroKPI({ climateRisk, mode = 'daily' }: { climateRisk?: any; mode?: 'daily' | 'weekly' }) {
   const isWeekly = mode === 'weekly';
+  const summary = purseSeineCatch.summary;
 
   const kpiData = isWeekly
     ? {
         title: '주간 총 어획량',
-        val1: 917, label1: '국적 549t + 합작 368t',
-        val2: 4362, label2: '국적 2,080t + 합작 2,282t',
-        val3: 43891, label3: '국적 26,141t + 합작 17,750t',
-        ratioLeftLabel: '국적 60%', ratioRightLabel: '합작 40%', ratioPercent: 60,
-        syncDate: '26.07.27 (월) 주간 실적 기준',
-        syncLabel: 'STATIC · 주간 실적보고 26.07.27 동기화'
+        val1: summary.weeklyTotal, label1: `국적 ${summary.nationalWeekly}t + 합작 ${summary.jointWeekly}t`,
+        val2: summary.monthlyTotal, label2: `국적 ${summary.nationalMonthly.toLocaleString()}t + 합작 ${summary.jointMonthly.toLocaleString()}t`,
+        val3: summary.annualTotal, label3: `국적 ${summary.nationalAnnual.toLocaleString()}t + 합작 ${summary.jointAnnual.toLocaleString()}t`,
+        ratioLeftLabel: '국적 36%', ratioRightLabel: '합작 64%', ratioPercent: summary.nationalWeekly / summary.weeklyTotal * 100,
+        syncDate: '26.08.03~08.09 · 8월 첫째주',
       }
     : {
-        title: '일일 총 어획량',
-        val1: 433, label1: '태평양 268t + 대서양 165t',
-        val2: 11154, label2: '태평양 5,129.3t + 대서양 6,025t',
-        val3: 71243, label3: '태평양 44,657.8t + 대서양 26,585t',
-        ratioLeftLabel: '태평양 63%', ratioRightLabel: '대서양 37%', ratioPercent: 63,
-        syncDate: '26.07.31 (금) 기준',
-        syncLabel: 'STATIC · 일일 업무보고 26.07.31 동기화'
+        title: '주간 총 어획량',
+        val1: summary.weeklyTotal, label1: `국적 ${summary.nationalWeekly}t + 합작 ${summary.jointWeekly}t`,
+        val2: summary.monthlyTotal, label2: `국적 ${summary.nationalMonthly.toLocaleString()}t + 합작 ${summary.jointMonthly.toLocaleString()}t`,
+        val3: summary.annualTotal, label3: `국적 ${summary.nationalAnnual.toLocaleString()}t + 합작 ${summary.jointAnnual.toLocaleString()}t`,
+        ratioLeftLabel: '국적 36%', ratioRightLabel: '합작 64%', ratioPercent: summary.nationalWeekly / summary.weeklyTotal * 100,
+        syncDate: '26.08.03~08.09 · 8월 첫째주',
       };
 
   return (
@@ -34,10 +35,7 @@ export default function FleetHeroKPI({ climateRisk, mode = 'daily' }: { climateR
           <Anchor size={20} /> 선단 운영 커맨드 센터
           <span style={{ fontSize: '0.75rem', color: 'var(--text-muted)', fontWeight: 500 }}>{kpiData.syncDate}</span>
         </h2>
-        {/* L-09: 정적 일일보고 데이터 — 라이브 위장 배지 금지, STATIC 정직 표기 */}
-        <div style={{ display: 'flex', alignItems: 'center', gap: '8px', padding: '5px 12px', background: 'rgba(148,163,184,0.08)', border: '1px solid rgba(148,163,184,0.25)', borderRadius: '20px' }}>
-          <span style={{ color: '#94a3b8', fontSize: '0.78rem', fontWeight: 700 }}>{kpiData.syncLabel}</span>
-        </div>
+        <TelemetryBadge status="STATIC" syncDate="2026-08-09" label="첨부 원문" />
       </div>
 
       <div className={s.kpiRow}>

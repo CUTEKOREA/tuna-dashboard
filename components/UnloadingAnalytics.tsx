@@ -593,7 +593,7 @@ export default function UnloadingAnalytics({
                         <td>{row.comparable ? `${row.totalDays}일` : '—'}</td>
                         <td>{row.comparable ? `${row.workDays}일` : '—'}</td>
                         <td>{row.comparable ? fmt(row.dailyAvg) : '—'}</td>
-                        <td>{row.comparable ? fmt(row.mtPerHr) : '—'}</td>
+                        <td>{row.comparable ? (row.mtPerHr > 0 ? fmt(row.mtPerHr) : '-') : '—'}</td>
                         <td>
                           <span className={`${styles.statusBadge} ${
                             row.statusKind === 'progress'
@@ -718,10 +718,20 @@ export default function UnloadingAnalytics({
               </div>
               <div className={styles.qualitySummary}>
                 {qualitySummary.avgTemp === null ? (
-                  <div className={styles.qualityRow}>
-                    <span className={styles.qualityIcon}>⚪</span>
-                    {getTemperatureEvidenceLabel(0, true)}
-                  </div>
+                  getVesselStatusKind(selectedVessel.status) === 'waiting' ? (
+                    <div className={styles.qualityRow}>
+                      <span className={styles.qualityIcon}>⚪</span>
+                      {getTemperatureEvidenceLabel(0, true)}
+                    </div>
+                  ) : (
+                    <div className={styles.qualityGood}>
+                      <Info size={18} />
+                      <div>
+                        <strong>온도 데이터 없음</strong>
+                        <span>화물창별 하역 온도 원자료가 없어 전체 기간 안전 여부를 판정하지 않습니다.</span>
+                      </div>
+                    </div>
+                  )
                 ) : qualitySummary.allBelowThreshold ? (
                   <div className={styles.qualityRow}>
                     <span className={styles.qualityIcon}>🟢</span>

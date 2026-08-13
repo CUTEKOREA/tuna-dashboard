@@ -2,17 +2,19 @@
 
 import React from 'react';
 import { Ship, Anchor } from 'lucide-react';
+import { logisticsWeeklyReport } from '@/lib/logistics-weekly-report';
 
 /* 데이터·수치 무수정 — 시각 폴리시 + 한글화(영문 라벨·날짜). 운반선명·MT·고유명 유지 */
-const currentUnloading = [
-  { sort: 'TRI', no: 1, carriers: 'LAKE PEARL (4,873 MT)' },
-];
+const currentUnloading = logisticsWeeklyReport.unloading.vessels.map((vessel) => ({
+  sort: vessel.trader,
+  no: 1,
+  carriers: `${vessel.name} (${vessel.amount.toLocaleString()} MT)`,
+}));
 
-const incomingVessels = [
-  { name: 'SEIN PRINCESS', date: '7월 28일' },
-  { name: 'SEIN VENUS', date: '8월 5일' },
-  { name: 'HENG HONG 9', date: '8월 7일' },
-];
+const incomingVessels = logisticsWeeklyReport.unloading.incoming.map((vessel) => ({
+  name: vessel.name,
+  date: vessel.estimatedArrival.replace('2026-08-', '8월 ').replace(/^8월 0/, '8월 ') + '일',
+}));
 
 export default function CarrierUnloadingStatus() {
   const [rowHover, setRowHover] = React.useState<number | null>(null);
@@ -29,7 +31,7 @@ export default function CarrierUnloadingStatus() {
           운반선 하역 현황
         </h2>
         <p style={{ fontSize: '13px', color: 'var(--text-muted)', margin: 0 }}>
-          태국 방콕(BANGKOK) 양륙 운반선 현황 — 2026-07-31 주간 보고 기준 (정적 데이터)
+          태국 방콕(BANGKOK) 양륙 운반선 현황 — 2026-08-05 주간 보고 기준 (정적 데이터)
         </p>
       </div>
 
@@ -54,20 +56,20 @@ export default function CarrierUnloadingStatus() {
             ))}
             <tr style={{ background: 'rgba(16, 185, 129, 0.1)' }}>
               <td style={{ padding: '12px', textAlign: 'center', fontWeight: 'bold', color: 'var(--color-success)' }}>합계</td>
-              <td style={{ padding: '12px', textAlign: 'center', fontWeight: 'bold', color: 'var(--color-success)' }}>1</td>
-              <td style={{ padding: '12px', fontWeight: 'bold', color: 'var(--color-success)' }}>4,873 MT</td>
+              <td style={{ padding: '12px', textAlign: 'center', fontWeight: 'bold', color: 'var(--color-success)' }}>{logisticsWeeklyReport.unloading.currentTotal.vessels}</td>
+              <td style={{ padding: '12px', fontWeight: 'bold', color: 'var(--color-success)' }}>{logisticsWeeklyReport.unloading.currentTotal.amount.toLocaleString()} MT</td>
             </tr>
           </tbody>
         </table>
         <div style={{ padding: '12px', fontSize: '11px', color: 'var(--text-muted)', background: 'rgba(0,0,0,0.2)' }}>
-          * 7월 누계 운반선 5척·누적 하역량 19,153 MT. The cumulative number of carriers was 5, and the cumulative unloading volume was 19,153 MT in JULY.
+          * 8월 누계는 운반선 {logisticsWeeklyReport.unloading.monthToDate.vessels}척·{logisticsWeeklyReport.unloading.monthToDate.amount.toLocaleString()} MT입니다. LAKE PEARL 4,873 MT는 7월 반입분입니다.
         </div>
       </div>
 
       <div>
         <h3 style={{ fontSize: '15px', fontWeight: 'bold', margin: '0 0 12px 0', color: 'var(--text-main)', display: 'flex', alignItems: 'center', gap: '6px' }}>
           <Ship size={16} color="var(--color-info)" />
-          입항 예정이었던 운반선 (방콕 · 2026년 7월 보고 당시)
+          보고 당시 입항 예정 운반선 (방콕 · 2026년 8월 5일 기준)
         </h3>
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '12px' }}>
           {incomingVessels.map((v, idx) => (
@@ -86,7 +88,7 @@ export default function CarrierUnloadingStatus() {
           ))}
         </div>
         <p style={{ fontSize: '11px', color: 'var(--text-muted)', margin: '10px 0 0', lineHeight: 1.5 }}>
-          * 2026년 7월 주간 보고 시점의 입항 예정 정보로, 예정일이 경과하면 운반선 이동 스케줄에 반영됩니다.
+          * 2026년 8월 5일 주간 보고 시점의 예정 정보이며, 현재 입항 여부는 별도 확인이 필요합니다.
         </p>
       </div>
     </div>
