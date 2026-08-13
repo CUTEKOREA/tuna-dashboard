@@ -127,9 +127,10 @@ export function reduceHistoryLoadState(
   state: HistoryLoadState,
   event: HistoryLoadEvent,
 ): HistoryLoadState {
-  if (event.type === 'failure') return { kind: 'error' };
+  if (event.type === 'failure') {
+    return state.kind === 'ready' ? state : { kind: 'error' };
+  }
   if (event.type === 'retry') return { kind: 'loading' };
-  if (state.kind !== 'loading') return state;
   return { kind: 'ready', dataset: event.dataset };
 }
 
@@ -580,20 +581,43 @@ export default function UnloadingHistory() {
   const [state, setState] = useState<HistoryLoadState>({ kind: 'loading' });
 
   useEffect(() => {
-    const controller = new AbortController();
-    fetch('/api/unloading-history', { cache: 'force-cache', signal: controller.signal })
-      .then(async (response) => {
-        if (!response.ok) throw new Error(`history API ${response.status}`);
-        const payload: unknown = await response.json();
-        const decoded = decodeUnloadingHistoryResponse(payload);
-        if (decoded === null) throw new Error('invalid history response');
-        setState((current) => reduceHistoryLoadState(current, { type: 'success', dataset: decoded }));
-      })
-      .catch((error: unknown) => {
-        if (error instanceof DOMException && error.name === 'AbortError') return;
-        setState({ kind: 'error' });
-      });
-    return () => controller.abort();
+    let requestController: AbortController | null = null;
+
+    const loadHistory = () => {
+      requestController?.abort();
+      const controller = new AbortController();
+      requestController = controller;
+
+      fetch('/api/unloading-history', { cache: 'no-store', signal: controller.signal })
+        .then(async (response) => {
+          if (!response.ok) throw new Error(`history API ${response.status}`);
+          const payload: unknown = await response.json();
+          const decoded = decodeUnloadingHistoryResponse(payload);
+          if (decoded === null) throw new Error('invalid history response');
+          setState((current) => reduceHistoryLoadState(current, {
+            type: 'success',
+            dataset: decoded,
+          }));
+        })
+        .catch((error: unknown) => {
+          if (error instanceof DOMException && error.name === 'AbortError') return;
+          setState((current) => reduceHistoryLoadState(current, { type: 'failure' }));
+        });
+    };
+
+    const refreshWhenVisible = () => {
+      if (document.visibilityState === 'visible') loadHistory();
+    };
+
+    loadHistory();
+    window.addEventListener('focus', loadHistory);
+    document.addEventListener('visibilitychange', refreshWhenVisible);
+
+    return () => {
+      requestController?.abort();
+      window.removeEventListener('focus', loadHistory);
+      document.removeEventListener('visibilitychange', refreshWhenVisible);
+    };
   }, [retryKey]);
 
   if (state.kind === 'loading') {
