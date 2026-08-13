@@ -47,6 +47,9 @@ def s1_tac_quota():
         "strat": "권고가 70% 잘려도 실제 어획은 그만큼 안 줄어든다는 것이 지난 15년의 기록이다. "
                  "다만 방향은 분명하다 — 대서양 원물은 계속 조인다. 노르웨이·영국 계약은 "
                  "물량 확보를 단가보다 앞세워 잡아야 한다.",
+        "_kpi": {"title": "2026 대서양 권고 어획량", "value": f"{advice_2026:,}톤",
+                 "trend": f"{r1(cut)}% (전년 권고 대비)",
+                 "desc": f"실제 어획은 2010년 이후 평균 {avg_excess}% 권고 초과"},
         "_prov": dict(source_id="ICES_ATLANTIC_MACKEREL", period="2025-2026",
                       inputs=[ICES_MD], method="manual_extract", grade="B",
                       note="ICES advice 2026 원문 수동 추출. 권고 174,357톤(본문), 2025 권고 576,958톤(표2 각주), "
@@ -112,6 +115,9 @@ def s1_nsc_weekly():
                f"물량이 반으로 줄면서 가격이 뛰는 전형적인 공급 축소 국면이다.",
         "strat": "이 시트는 600g 미만 소형 규격만 담는다. 대형어 계약 단가와 직접 비교하면 안 된다. "
                  "다만 방향성은 전 규격에 공통이므로 주간 단가 추세를 협상 타이밍 지표로 쓴다.",
+        "_kpi": {"title": "노르웨이 수출단가 (2026 누계)", "value": f"{ytd_p} NOK/kg",
+                 "trend": f"{r1(dp):+}% · 물량 {r1(dq):+}%",
+                 "desc": "600g 미만 규격 FOB. 주간 해상도 유일 소스"},
         "_prov": dict(source_id="NORWEGIAN_SEAFOOD_EXPORTS", period="2026-W32",
                       inputs=[NSC_XLSX], grade="A",
                       note="시트 'Fryst makrell < 600g' TOTALT 행. HS 03035401·03035403. "
