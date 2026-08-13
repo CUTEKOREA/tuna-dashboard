@@ -35,8 +35,8 @@ export default function MackerelClimatePredictor() {
       icon={CloudLightning}
       iconColor="#fbbf24"
       pillar="S1"
-      cardDesc="전년도 한반도 남해안 표층수온 상승 이상편차(SST Anomaly) 값을 X축으로 두고 당해 연도 고수익"
-      telemetry={{ status: 'STATIC', syncDate: '2024 (NOAA)' }}
+      cardDesc="전년도 한반도 남해안 표층수온 상승 이상편차(SST Anomaly) 값을 X축으로 두고 당해 연도 고수익 (추정치 — 가정 기반 시뮬레이션)"
+      telemetry={{ status: 'STATIC', syncDate: '2024', source: 'NOAA SST' }}
       customBody={ChartObj}
       takeaway={{
         situation: `<div>

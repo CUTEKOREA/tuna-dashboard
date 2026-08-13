@@ -192,7 +192,7 @@ export default function MackerelAquaculture() {
       iconColor="#34d399"
       pillar="S2"
       cardDesc="FAO SOFIA 2024 + OECD Review of Fisheries 2024 — 자연산 vs 양식 생산 비중 추이 및 양식 프리미엄 단가 비교"
-      telemetry={{ status: 'STATIC', syncDate: '2024-01-01' }}
+      telemetry={{ status: 'STATIC', syncDate: '2023', source: 'FAO SOFIA 2024' }}
       customBody={customBody}
       takeaway={{
         situation: `<div>

@@ -114,7 +114,7 @@ export default function MackerelKoreaSupply() {
       iconColor="#f87171"
       pillar="S4"
       cardDesc="해양수산부 수산물 자급률 통계 + KMI 수산업 전망보고서 + 통계청 어업생산동향 — 국내 생산 정체·수입 의존도 상승 추세 진단(2023년 자급률 70.2%, 자체추정 포함)"
-      telemetry={{ status: 'STATIC', syncDate: '해수부 + KMI 2026 + 통계청 2024' }}
+      telemetry={{ status: 'STATIC', syncDate: '2023', source: '해양수산부 수산물 자급률 통계' }}
       customBody={customBody}
       takeaway={{
         situation: `<div>

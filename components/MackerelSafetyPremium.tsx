@@ -40,7 +40,7 @@ export default function MackerelSafetyPremium() {
       iconColor="#38bdf8"
       pillar="S4"
       cardDesc="KCS 관세청·KATI 아프리카 시장 보고서 참고, 자체 추정(illustrative) — 후쿠시마 등 대외 안전 악재 이전/이후 아프리카 훈제 시장 내 산지별 판가 인덱스 비교"
-      telemetry={{ status: 'STATIC', syncDate: 'KCS 2023-Q4 + KATI 2024' }}
+      telemetry={{ status: 'STATIC', syncDate: '2023', source: '관세청 KCS' }}
       customBody={ChartObj}
       takeaway={{
         situation: `<div>

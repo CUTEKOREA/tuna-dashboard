@@ -36,8 +36,8 @@ export default function MackerelAfricanExportROI() {
       icon={Target}
       iconColor="#ef4444"
       pillar="S3"
-      cardDesc="상해컨테이너운임지수(SCFI) 변동 기반 서아프리카(가나) 냉동고등어 20ft 컨테이너당 수출 마진율 시뮬레이션. 자체추정(illustrative) — SCFI 연동 마진 elasticity 추정치이며 실거래 데이터가 아닙니다."
-      telemetry={{ status: 'STATIC', syncDate: '2024-03' }}
+      cardDesc="상해컨테이너운임지수(SCFI) 변동 기반 서아프리카(가나) 냉동고등어 20ft 컨테이너당 수출 마진율 시뮬레이션. 자체추정(illustrative) — SCFI 연동 마진 elasticity 추정치이며 실거래 데이터가 아닙니다. (추정치 — 가정 기반 시뮬레이션)"
+      telemetry={{ status: 'STATIC', syncDate: '2024', source: '상하이해운거래소 SCFI' }}
       customBody={ChartObj}
       takeaway={{
         situation: `<div>

@@ -78,7 +78,7 @@ export default function MackerelNorwayAlt() {
       iconColor="#60a5fa"
       pillar="S1"
       cardDesc="글로벌 Top 12 수출국의 점유율 변화 — 신흥 소싱처 조기 감지"
-      telemetry={{ status: 'STATIC', syncDate: '2024-12' }}
+      telemetry={{ status: 'STATIC', syncDate: '2023', source: '출처 미확인' }}
       customBody={customBody}
       takeaway={{
         situation: `<div>
