@@ -1,6 +1,13 @@
 # HANDOFF
 
-> 마지막 업데이트: 2026-08-13 09:27 KST
+> 마지막 업데이트: 2026-08-13 09:46 KST
+
+> 🚀 **2026-08-13 09:46 KST — `/unloading` 2023년 SEIN QUEEN 미확인 항차 라이브 배포 완료** [Codex]:
+> - 기능 커밋 `af49673`을 PR [#290](https://github.com/CUTEKOREA/tuna-dashboard/pull/290)으로 병합했다. production merge commit은 `63b61eec8ea2b7e8de5749840f48a620eed732a0`이다.
+> - PR App Quality Gate run `31654806776`과 main App Quality Gate run `31654985799`이 모두 성공했다. 두 게이트 모두 `npm run verify`와 하역 역사 브라우저 수용 테스트를 통과했다.
+> - Vercel production `dpl_C9XaroPyw8CiSkwWSVaGa82M4ezS`(`tuna-dashboard-h6bbzdwb4-cutekorea-3280s-projects.vercel.app`)가 READY이며 `https://leedonggun.co.kr` alias에 연결됐다. 배포 후 30분 오류 로그 조회 결과는 0건이다.
+> - 라이브 `/api/unloading-history`는 HTTP 200으로 검증 **88 / 부분 4 / 미확인 6**, 2023년 **29/29항차·94,075.080 MT**, SEIN QUEEN **2023-01-11~01-31·방콕·5,828.970 MT**를 반환하며 기존 미확인 ID는 없다.
+> - 운영 `/unloading` 잠금 해제 후 데스크톱·390px 모바일에서 2023년 탭, 신규 SEIN QUEEN 행·카드, `검증 완료`, 미확인 날짜 제거를 확인했다. 두 화면 모두 HTTP 200, 가로 overflow 0, error overlay·console/page/자체 request error 0이다.
 
 > ✅ **2026-08-13 09:27 KST — `/unloading` 2023년 SEIN QUEEN 미확인 1항차 원자료 대조·로컬 반영** [Codex]:
 > - Google Drive `완료 202301 SEIN QUEEN`의 `일일 하역결과보고(2023-01-SEIN QUEEN- BKK).xls`를 직접 변환·검산했다. 원본 SHA-256은 `411c9f1b689465b25e70fc2b73dbf9968747dbfd4f2a08ab328223a6f237cfaf`다.
