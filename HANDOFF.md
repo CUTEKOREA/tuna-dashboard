@@ -21,6 +21,15 @@
 > - `npm run verify` 통과: Vitest **168/168**, 타입검사, Next.js 빌드, bundle budget. `architecture-guards`의 HS 리터럴 가드도 통과.
 > - 후속: Next.js 빌드 로그가 UN Comtrade 요청 URL을 통째로 출력하면서 `subscription-key`가 Vercel 빌드 로그에 남는다. 별도 처리 필요.
 
+> 🚀 **2026-08-13 16:35 KST — `/mackerel` 아카이브 기반 개편 라이브 배포 완료** [Claude + Codex + OpenCode]:
+> - PR [#303](https://github.com/CUTEKOREA/tuna-dashboard/pull/303) squash 병합, production merge commit `a255d3f327d348befeca4208d1c7aabfd13f88e4`. PR 게이트와 main App Quality Gate 모두 success, Vercel production 배포 완료.
+> - **배포 범위 분리**: 작업 브랜치 `mackerel/claude-etl`에 다른 세션의 오징어 커밋 2건이 섞여 있었고 해당 작업이 진행 중이었다. 사용자 판단으로 `origin/main`에서 새 브랜치를 파고 고등어 커밋 8건만 cherry-pick해 발행했다(`git diff --name-only origin/main..mackerel/deploy | grep squid` = 0건). HANDOFF 충돌 2회는 양쪽 엔트리를 모두 보존하는 방향으로 해소했다.
+> - **라이브 검증**(`https://leedonggun.co.kr/mackerel`, HTTP 200): KPI 실측값 노르웨이 의존도 **88.1%** · 자급률 **76.1%** · ICES 2026 권고 **174,357톤** · 아프리카 YoY **−16.9%** · NSC 누계단가 **48.49 NOK/kg** 표시 확인. provenance 줄(`[A] FAO · FISHSTAT CAPTURE · 2010-2024 · 2026-08-12 수집`)과 `수동추출` 라벨 렌더 확인. 5개 파트 전환 전부 정상, **'데이터 없음' 플레이스홀더 0건**, 가로 overflow 0.
+> - Vercel 프리뷰는 배포 보호(403)라 검증에 못 썼고 브라우저 확장도 미연결이어서, 병합 전에는 배포 브랜치 빌드로 `next start` 로컬 프로덕션 서버를 띄워 puppeteer로 검증했다.
+> - **React #418 하이드레이션 경고는 기존 문제**다. `/mackerel`뿐 아니라 `/cocoa`·`/salmon`·`/pollock` 등 `[category]` 라우트 전체에서 동일하게 발생한다. 이번 변경과 무관하며 별도 티켓 대상이다.
+> - **커밋 누락 1건 자수·수정**: 결선 중 `git add`가 gitignore 경고로 중단돼 빌더가 내보내는 `_kpi` 블록이 위젯 JSON·번들에 반영되지 않은 채 커밋됐다. 배포 직전 발견해 `4065813`으로 보완했고, 재빌드 후 산출물과 커밋 일치를 확인했다.
+> - 최종: 위젯 **104 → 42**(아카이브 28 + 런타임 라이브 14), O-04 4축 **78.0 → 89.5(A)**, 죽은 코드 약 2,500줄 제거, Vitest **191/191**, 정적 페이지 **98/98**.
+
 
 > 🐟 **2026-08-13 15:56 KST — `/mackerel` 개편 Phase 3~5 완료 (결선·검증)** [Claude + Codex + OpenCode]:
 > - Codex(죽은 컴포넌트 삭제)·OpenCode(provenance 렌더 계층)를 별도 워크트리에 병렬 발주하고 머지했다. 파일 소유권 배타 규약으로 **머지 충돌 0건**. Codex는 sandbox가 git index 쓰기를 막아 커밋을 못 해 검증 후 내가 커밋했다.
