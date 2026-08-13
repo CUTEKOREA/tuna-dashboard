@@ -37,7 +37,8 @@ def s1_tac_quota():
     return {
         "title": "TAC·쿼터 변동과 물량 전망",
         "subtitle": f"ICES 2025-09-30 권고(대서양고등어, 아해역 1–8·14). 2026년 권고 {advice_2026:,}톤 — "
-                    f"2025년 권고 {advice_2025:,}톤 대비 {r1(cut)}%. 2025년 실제 어획은 권고를 {r1(over)}% 초과했다.",
+                    f"2025년 권고 {advice_2025:,}톤 대비 {r1(cut)}%. 2025년 실제 어획은 권고를 {r1(over)}% 초과했다. "
+                    f"국제 합의 TAC는 존재하지 않으며, 연안국이 각자 쿼터를 정한다.",
         "chartType": "Bar", "xKey": "구분",
         "bars": [{"key": "톤", "color": C["rose"]}],
         "data": data, "unit": "톤",

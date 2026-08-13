@@ -45,7 +45,8 @@ def test_confirmed_definitions():
     prod = json.loads((DATA / "s1_korea_production.json").read_text(encoding="utf-8"))
     last = prod["data"][-1]
     assert last["year"] == "2024", last
-    assert last["자급률"] == 76.1, f"자급률 정의 A 이탈: {last['자급률']}"
+    assert last["국내조달비율"] == 76.1, f"국내 조달 비율 정의 이탈: {last['국내조달비율']}"
+    assert last["공식자급률"] > 100, f"공식 자급률(수출 차감) 100% 초과 예상: {last['공식자급률']}"
     assert last["수출"] > last["수입"], "수출>수입 구조가 깨지면 서사를 다시 써야 한다"
 
     mix = json.loads((DATA / "s1_import_origin_mix.json").read_text(encoding="utf-8"))

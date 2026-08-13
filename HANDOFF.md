@@ -1,6 +1,11 @@
 # HANDOFF
 
-> 마지막 업데이트: 2026-08-13 14:49 KST
+> 마지막 업데이트: 2026-08-14 00:55 KST
+
+> 🐟 **2026-08-14 00:55 KST — `/mackerel` 자급률 표현·교차검증 수치 정정** [Codex]:
+> - `s1_korea_production`의 100% 초과 공식 사례를 해수부 조사 2022년 김 223.2%·굴 171.5%로 교체하고, provenance에 FAO 125,448톤과 KOSIS 고등어류 134,606톤의 9,158톤(7.3%) 차이 및 종 합산 사유를 명시했다.
+> - 1차 교차검증 정정분과 `data/mackerel` 재생성분을 함께 점검했다. `npm run mackerel` 28/28, `mackerel:test` 4/4, `mackerel:score` 평균 89.5(A)를 통과했고 금지 문자열 3종은 모두 0건이다.
+> - 사용자 지시 전에는 push하지 않는다.
 
 > 🚢 **2026-08-13 14:49 KST — `/logistics` TTA 냉동운반선 32주차 반영** [Hermes]:
 > - 원문 `Reefer ship movement for week 32nd.xlsx`의 내부 시트 `WEEK 32`와 기간 헤더를 직접 대조해 실제 보고기간을 **2026-08-07~08-13**으로 확정했다. 원문 SHA-256은 `d4ffd1306f66df858163376fad39f20bcb0c72dd6ea1bc4a85f17eafd430481b`다.
