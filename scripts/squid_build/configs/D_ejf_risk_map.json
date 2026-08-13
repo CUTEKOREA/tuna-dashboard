@@ -1,0 +1,5 @@
+{
+  "widget_id": "D_ejf_risk_map",
+  "patterns": ["squid.*(?:IUU|forced labour|labor abuses|human rights)", "flagged to China", "Korean or Taiwanese-flagged", "reported squid landings"],
+  "max_items": 14
+}

@@ -1,0 +1,7 @@
+{
+  "widget_id": "D_korea_origin_labeling",
+  "patterns": ["원산지", "표시", "오징어"],
+  "chart_type": "card",
+  "max_items": 10,
+  "empty_reason": "SQ-SAFE-NFQS 원장 상태가 not collected이고 archive_path가 특정 공식 문서가 아닌 intelligence_reports 디렉터리라 공식 원산지 표시 클레임을 지원하지 못함"
+}

@@ -109,29 +109,12 @@ def _patch_widget(doc: dict, wid: str, patch: dict):
     return False
 
 
-def regen_squid_inplace():
-    """squid_real_data_v4.json — w5(글로벌 수입국, Comtrade 자동완료연도)·w14(한국 원산지, 관세청)."""
-    p = DASH_DATA / "squid_real_data_v4.json"
-    doc = json.loads(p.read_text(encoding="utf-8"))
-    yr = a.latest_complete_year("squid")  # 2025 완성 시 자동 전환
-    # w5: 글로벌 5대 수입국 (천USD)
-    imp = a.top_reporters("squid", "Import", 5, yr, SQUID_CORE_HS)
-    KN = {"ESP": "스페인", "CHN": "중국", "ITA": "이탈리아", "JPN": "일본", "KOR": "한국",
-          "PRT": "포르투갈", "FRA": "프랑스", "USA": "미국"}
-    _patch_widget(doc, "w5_top_importers", {
-        "data": [{"국가": KN.get(r["iso"], r["country"]),
-                  "수입액 (USD k)": round(r["value_usd"] / 1000)} for r in imp],
-        "telemetry": {"status": "SYNCED", "syncDate": TODAY}, "isLive": False,
-        "source": f"UN Comtrade {yr} via agri_data (총계행 dedup)"})
-    # w14: 한국 수입 원산지 (관세청, 월간 누적)
-    ci = a.customs_korea_by_country("squid", "imp")[:7]
-    months = a.customs_months("squid")
-    _patch_widget(doc, "w14", {
-        "data": [{"name": r["country"], "value": round(r["value_usd"] / 1000)} for r in ci],
-        "telemetry": {"status": "SYNCED", "syncDate": TODAY}, "isLive": False,
-        "source": f"관세청 nitemtrade via agri_data, {months[0]}~{months[-1]} (월간 누적)" if months else "관세청"})
-    p.write_text(json.dumps(doc, ensure_ascii=False, indent=2), encoding="utf-8")
-    return f"squid w5(Comtrade {yr})·w14(관세청 {len(months)}개월)"
+# regen_squid_inplace 는 v5 개편(2026-08-13)으로 폐기했다.
+# 오징어 데이터는 이제 scripts/squid_build 가 아카이브 원문에서 통째로 생성하고
+# scripts/validate_squid_v5.py 의 측정 게이트를 통과해야 발행된다. 위젯 단위 in-place
+# 패치(w5_top_importers·w14)는 게이트를 우회하므로 되살리지 말 것.
+#     python3 -m scripts.squid_build --out public/data/squid_v5.json
+#     python3 scripts/validate_squid_v5.py public/data/squid_v5.json
 
 
 def regen_garlic_inplace():
@@ -179,7 +162,7 @@ def regen_garlic_inplace():
     return "garlic " + "·".join(msgs)
 
 
-INPLACE = [regen_squid_inplace, regen_garlic_inplace]
+INPLACE = [regen_garlic_inplace]  # squid 는 scripts/squid_build 로 이관
 
 
 def main():

@@ -1,0 +1,170 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "squid_v5.schema.json",
+  "title": "Squid Dashboard v5 data contract",
+  "type": "object",
+  "required": ["meta", "sources", "gates", "monitoring", "widgets"],
+  "additionalProperties": false,
+
+  "properties": {
+    "meta": {
+      "type": "object",
+      "required": ["built_at", "builder_version", "archive_snapshot", "gate_version", "telemetry"],
+      "additionalProperties": false,
+      "properties": {
+        "built_at": { "type": "string", "format": "date-time" },
+        "builder_version": { "type": "string" },
+        "archive_snapshot": { "type": "string" },
+        "gate_version": { "type": "string" },
+        "telemetry": { "enum": ["SYNCED", "STATIC"] }
+      }
+    },
+
+    "sources": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["source_id", "publisher", "priority", "grade", "frequency", "landing_url"],
+        "properties": {
+          "source_id": { "type": "string", "pattern": "^(SQ|LEG|MAN)-[A-Z0-9-]+$" },
+          "publisher": { "type": "string" },
+          "series": { "type": "string" },
+          "priority": { "enum": ["P0", "P1", "P2"] },
+          "grade": { "enum": ["A", "B", "C"] },
+          "frequency": { "type": "string" },
+          "landing_url": { "type": "string" },
+          "archive_subdir": { "type": "string" },
+          "latest_verified": { "type": "string" },
+          "note": { "type": "string" }
+        }
+      }
+    },
+
+    "gates": {
+      "type": "array",
+      "minItems": 11,
+      "items": {
+        "type": "object",
+        "required": ["gate_id", "subject", "allowed_use", "blocked_use"],
+        "properties": {
+          "gate_id": { "type": "string", "pattern": "^G-0[0-9]{2}$" },
+          "subject": { "type": "string" },
+          "allowed_use": { "type": "string" },
+          "blocked_use": { "type": "string" },
+          "evidence_path": { "type": "string" }
+        }
+      }
+    },
+
+    "monitoring": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["source_id", "series", "frequency", "latest_verified", "next_check", "status"],
+        "properties": {
+          "source_id": { "type": "string" },
+          "series": { "type": "string" },
+          "frequency": { "type": "string" },
+          "latest_verified": { "type": "string" },
+          "next_check": { "type": "string" },
+          "status": {
+            "enum": ["active", "active_gap", "pipeline_gap", "coverage_gap", "manual_export_gap", "scheduled"]
+          }
+        }
+      }
+    },
+
+    "widgets": {
+      "type": "object",
+      "minProperties": 1,
+      "propertyNames": { "pattern": "^[A-E]_[a-z0-9_]+$" },
+      "additionalProperties": { "$ref": "#/$defs/widget" }
+    }
+  },
+
+  "$defs": {
+    "widget": {
+      "type": "object",
+      "required": ["section", "title", "chartType", "data", "basis"],
+      "properties": {
+        "section": { "enum": ["A", "B", "C", "D", "E"] },
+        "title": { "type": "string", "minLength": 2 },
+        "subtitle": { "type": "string" },
+        "chartType": {
+          "enum": ["line", "bar", "stackedBar", "area", "pie", "scatter", "composed",
+                   "gauge", "timeline", "table", "heatmap", "matrix", "signal", "card", "checklist"]
+        },
+        "data": { "type": ["array", "object"] },
+        "xAxis": { "type": "string" },
+        "series": { "type": "array" },
+        "unit": { "type": "string" },
+        "situation": { "type": "string" },
+        "takeaway": { "type": "string" },
+        "methodology": { "type": "string" },
+        "basis": { "$ref": "#/$defs/basis" }
+      }
+    },
+
+    "basis": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "species", "taxon_scope", "weight_basis", "market_stage", "claim_type",
+        "coverage_start", "coverage_end", "published_at", "retrieved_at",
+        "source_ids", "source_grade", "archive_path", "restrictions", "blocked_use"
+      ],
+      "properties": {
+        "species": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "enum": [
+              "Todarodes pacificus",
+              "Illex argentinus",
+              "Dosidicus gigas",
+              "Doryteuthis gahi",
+              "Doryteuthis pealeii",
+              "Loligo spp",
+              "Cephalopoda NEI",
+              "Sepia spp",
+              "n/a"
+            ]
+          }
+        },
+        "taxon_scope": { "enum": ["squid_only", "incl_cuttlefish", "cephalopods_nei"] },
+        "taxon_note": { "type": "string" },
+        "weight_basis": { "enum": ["live_weight", "product_weight", "net_weight", "n/a"] },
+        "product_form": { "type": "string" },
+        "market_stage": {
+          "enum": ["consumer", "wholesale", "import_unit", "export_unit", "first_sale", "n/a"]
+        },
+        "aggregation": { "enum": ["none", "sum_within_stage", "mean_within_stage"] },
+        "quota_semantics": {
+          "enum": ["legal_limit", "allocation", "consumption", "catch", "closure_notice", "effort_limit", "n/a"]
+        },
+        "metrics": {
+          "type": "array",
+          "items": {
+            "enum": ["level", "share", "cagr", "global_total", "index", "spread", "effort",
+                     "production", "inventory", "forecast", "coverage"]
+          }
+        },
+        "claim_type": { "enum": ["descriptive", "market_size", "legal", "risk_screening", "operational"] },
+        "currency": { "enum": ["KRW", "USD", "EUR", "JPY", "PEN", "CLP", "ARS", "INR", "GBP", "n/a"] },
+        "currency_converted": { "type": "boolean" },
+        "fx_date": { "type": ["string", "null"] },
+        "nominal_real": { "enum": ["nominal", "real", "n/a"] },
+        "coverage_start": { "type": "string" },
+        "coverage_end": { "type": "string" },
+        "published_at": { "type": "string" },
+        "retrieved_at": { "type": "string" },
+        "source_ids": { "type": "array", "minItems": 1, "items": { "type": "string" } },
+        "source_grade": { "enum": ["A", "B", "C"] },
+        "archive_path": { "type": "string" },
+        "restrictions": { "type": "array", "items": { "type": "string" } },
+        "blocked_use": { "type": "array", "items": { "type": "string" } }
+      }
+    }
+  }
+}
