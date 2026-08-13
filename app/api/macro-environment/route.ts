@@ -1,4 +1,5 @@
 import { NextResponse } from 'next/server';
+import { requireEnv, optionalEnv } from '../_shared/env';
 
 export const dynamic = 'force-dynamic';
 
@@ -84,7 +85,7 @@ async function fetchFREDSeries(seriesId: string, limit: number = 12) {
 
 // --- KOTRA: 해외시장 뉴스 ---
 async function fetchKOTRAMarketNews(countryCode: string) {
-  const apiKey = (process.env.DATA_GO_KR_NEW_KEY || 'fdbf3eb58f1157a1db7c9156e8ce7f88ed9fa2d996116d9079dddb5232133f7c');
+  const apiKey = optionalEnv('DATA_GO_KR_NEW_KEY');
   if (!apiKey) return [];
 
   const kotraCountryMap: Record<string, string> = {
@@ -116,7 +117,7 @@ async function fetchKOTRAMarketNews(countryCode: string) {
 
 // --- KOTRA: 국가별 물가정보 ---
 async function fetchKOTRAPriceInfo(countryCode: string) {
-  const apiKey = (process.env.DATA_GO_KR_NEW_KEY || 'fdbf3eb58f1157a1db7c9156e8ce7f88ed9fa2d996116d9079dddb5232133f7c');
+  const apiKey = optionalEnv('DATA_GO_KR_NEW_KEY');
   if (!apiKey) return null;
 
   const kotraCountryMap: Record<string, string> = {

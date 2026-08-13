@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
+import { requireEnv } from '../_shared/env';
 
 export const dynamic = 'force-dynamic';
 
@@ -15,8 +16,8 @@ export const dynamic = 'force-dynamic';
  *  - (일반 2025-01) 해양수산 공공데이터 플랫폼 활용 제고 방안 연구
  */
 
-const SERVICE_KEY = process.env.DATA_GO_KR_NEW_KEY || 'fdbf3eb58f1157a1db7c9156e8ce7f88ed9fa2d996116d9079dddb5232133f7c';
-const KCS_KEY = process.env.DATA_GO_KR_NEW_KEY || 'fdbf3eb58f1157a1db7c9156e8ce7f88ed9fa2d996116d9079dddb5232133f7c';
+const SERVICE_KEY = () => requireEnv('DATA_GO_KR_NEW_KEY');
+const KCS_KEY = () => requireEnv('DATA_GO_KR_NEW_KEY');
 
 interface ApiEndpoint {
   url: string;
@@ -164,7 +165,7 @@ async function fetchEndpoint(key: string): Promise<any> {
   try {
     const params = new URLSearchParams({
       ...endpoint.params,
-      ServiceKey: key === 'shipping_cost' ? KCS_KEY : SERVICE_KEY,
+      ServiceKey: key === 'shipping_cost' ? KCS_KEY() : SERVICE_KEY(),
     });
 
     const url = `${endpoint.url}?${params.toString()}`;

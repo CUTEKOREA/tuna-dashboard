@@ -1,4 +1,5 @@
 import { NextResponse } from 'next/server';
+import { requireEnv } from '../../_shared/env';
 
 export const runtime = 'nodejs';
 export const revalidate = 3600;
@@ -20,7 +21,7 @@ export const revalidate = 3600;
  */
 
 // L-10: env 우선, 없으면 하드코딩 fallback 키로 라이브 시도 (⚠️ 57ed 키만 유효)
-const CENSUS_API_KEY = process.env.USCENSUS_API_KEY || '57ed5d9332b5b042e538a9dd3abc83c00a5a66eb';
+const CENSUS_API_KEY = () => requireEnv('USCENSUS_API_KEY');
 const BASE_URL = 'https://api.census.gov/data/timeseries/intltrade/imports/hs';
 const HS6 = '160414';
 
@@ -96,7 +97,7 @@ function isRealCountry(ctyCode: string): boolean {
 
 async function fetchMonth(timeKey: string): Promise<string[][] | null> {
   const url = `${BASE_URL}?get=GEN_VAL_MO,GEN_QY1_MO,UNIT_QY1,CTY_CODE,CTY_NAME,DISTRICT,DIST_NAME` +
-    `&I_COMMODITY=${HS6}*&time=${timeKey}&key=${CENSUS_API_KEY}`;
+    `&I_COMMODITY=${HS6}*&time=${timeKey}&key=${CENSUS_API_KEY()}`;
   const res = await fetch(url, { signal: AbortSignal.timeout(8000) });
   if (!res.ok) return null;
   const text = await res.text();

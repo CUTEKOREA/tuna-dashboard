@@ -1,3 +1,4 @@
+import { requireEnv } from './env';
 /**
  * USDA FAS (Foreign Agricultural Service) 공유 클라이언트
  *
@@ -12,9 +13,7 @@
  * → 수산물은 PSD (글로벌 Production·Supply·Distribution) 활용 권장.
  */
 
-export const USDA_FAS_API_KEY =
-  process.env.USDA_FAS_API_KEY ||
-  'tFCu11Yya0NXD0oWQGUVwnggwlfidBy86vW2ffzA'; // L-10 fallback (2026-05-29 발급)
+export const USDA_FAS_API_KEY = () => requireEnv('USDA_FAS_API_KEY');
 
 const FAS_BASE = "https://api.fas.usda.gov/api";
 
@@ -66,7 +65,7 @@ export async function fetchESRExports(params: {
 
   try {
     const res = await fetch(url, {
-      headers: { "X-Api-Key": USDA_FAS_API_KEY },
+      headers: { "X-Api-Key": USDA_FAS_API_KEY() },
       signal: AbortSignal.timeout(timeout),
     });
     if (!res.ok) {
@@ -116,7 +115,7 @@ export async function fetchPSDCommodity(params: {
 
   try {
     const res = await fetch(url, {
-      headers: { "X-Api-Key": USDA_FAS_API_KEY },
+      headers: { "X-Api-Key": USDA_FAS_API_KEY() },
       signal: AbortSignal.timeout(timeout),
     });
     if (!res.ok) {

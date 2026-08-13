@@ -1,3 +1,4 @@
+import { requireEnv } from './env';
 /**
  * DART (전자공시시스템) 공유 클라이언트
  *
@@ -9,9 +10,7 @@
  *   const list = await fetchDartList({ corp_code: '00128524', bgn_de: '20260101' });
  */
 
-export const DART_API_KEY =
-  process.env.DART_API_KEY ||
-  '9fd86fa82efaa23b6bb558e14159331cbdaf2f53'; // L-10 fallback
+export const DART_API_KEY = () => requireEnv('DART_API_KEY');
 
 const DART_BASE = "https://opendart.fss.or.kr/api";
 
@@ -63,7 +62,7 @@ export async function fetchDartList(params: {
   page_count?: number;
 }): Promise<{ ok: boolean; total_count: number; list: DartListItem[]; raw?: any }> {
   const qs = new URLSearchParams({
-    crtfc_key: DART_API_KEY,
+    crtfc_key: DART_API_KEY(),
     page_count: String(params.page_count || 10),
     page_no: String(params.page_no || 1),
   });
@@ -104,7 +103,7 @@ export async function fetchSinglAcnt(params: {
   fs_div?: "CFS" | "OFS";
 }): Promise<{ ok: boolean; list: any[] }> {
   const qs = new URLSearchParams({
-    crtfc_key: DART_API_KEY,
+    crtfc_key: DART_API_KEY(),
     corp_code: params.corp_code,
     bsns_year: params.bsns_year,
     reprt_code: params.reprt_code || "11011",

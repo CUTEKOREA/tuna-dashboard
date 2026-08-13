@@ -8,6 +8,20 @@
 > - `data/reefer_week32.json`을 별도 이력으로 추가해 31주차를 보존하고, 운반선 위젯·기준일·Telemetry·takeaway를 32주차로 전환했다. 접안일은 원문 기재값이며 현재 운항 상태나 현재 하역 KPI로 합산하지 않는다.
 > - 회귀 테스트는 6척 순서·접안일·신규 2척 배분·선박별 합계·총합·이력 경계를 고정한다. 대상 테스트 5/5, TypeScript, 대상 ESLint, diff check를 통과했다.
 
+> 🔐 **2026-08-13 14:45 KST — 공개 저장소 하드코딩 자격증명 제거 + `/api/shrimp/customs` 수리** [Claude]:
+> - **이 저장소는 공개다.** `process.env.X || '<실제 키>'` 형태로 5개 서비스의 발급키가 소스에 박혀 있었고, `git log -S` 기준 **2026-07-06부터 노출**돼 있었다(data.go.kr 키만 건드린 커밋 11개).
+> - 노출 자체보다 나쁜 부작용이 둘 있었다. (1) env가 없어도 호출이 성공해 "설정됐다"고 착각하게 만들었다. (2) `!!(process.env.X || '<키>')`는 항상 true라 "API Key configured" 표시가 실제 설정 여부와 무관했다.
+> - `app/api/_shared/env.ts` 신설(`requireEnv`/`requireAnyEnv`/`hasEnv`/`optionalEnv`). 모든 자격증명 조회를 여기로 통과시켰다. 모듈 최상위 조회는 **지연 평가**로 바꿔, env 누락 시 빌드가 아니라 해당 요청만 실패하게 했다.
+> - 대상: data.go.kr(`DATA_GO_KR_NEW_KEY`·`DATA_GO_KR_COMMON_KEY`·`KCS_API_KEY`·`FISHERY_API_KEY`·`KAMIS_API_KEY`), DART, USDA FAS, US Census, UN Comtrade, tuna proxy secret. 총 39개 파일.
+> - ⚠️ **Vercel production에 env가 없는 2건은 동작이 멈춘다**: `/api/tuna/us-gateway`(`USCENSUS_API_KEY`), `/api/tuna/ticker`(`PROXY_SECRET`). 변수를 넣으면 복구된다.
+> - ⚠️ **HEAD에서 지워도 git 히스토리에는 남는다. 위 키는 전부 발급기관에서 재발급(rotate)해야 한다.** 이건 코드 작업으로 해결되지 않는다.
+> - 의도적으로 남긴 것: `app/layout.tsx`의 Google·Naver 사이트 소유확인 토큰(공개 서빙 목적), `lib/logistics-weekly-report.ts`의 문서 SHA-256.
+> - **`/api/shrimp/customs` 수리**(같은 키 줄을 물고 있어 함께 처리). 결함 4건 — (1) 6자리 코드로 KCS 호출해 L-04 위반이자 조제(1605) 누락으로 베트남 수입액 45% 소실, (2) `{timeout:5000}`을 fetch에 넘겼으나 그런 옵션이 없어 타입 단언이 no-op을 가렸음, (3) 정규식이 `<item>` 경계를 넘어 다른 item 값을 물어올 수 있었음, (4) 총계행만 파싱해 원산지 분해가 불가능했고 `metrics`(수입량·단가·상위 원산지)는 라이브/폴백 양쪽 다 하드코딩 상수였음.
+> - 공유 `kcs-client`를 재사용하고, 2026-07-06 관세청 스냅샷으로 확인한 **HSK 10자리 9개 세번**을 조회하도록 바꿨다. 모든 metric은 응답에서 산출하며, 응답이 없으면 지어내지 않고 `metrics: null`을 반환한다. 집계는 `customs/rollup.ts`로 분리해 테스트 6건을 붙였다(총계행 이중집계·세번 화이트리스트·원산지 합산·분모 0 단가 거부).
+> - `npm run verify` 통과: Vitest **168/168**, 타입검사, Next.js 빌드, bundle budget. `architecture-guards`의 HS 리터럴 가드도 통과.
+> - 후속: Next.js 빌드 로그가 UN Comtrade 요청 URL을 통째로 출력하면서 `subscription-key`가 Vercel 빌드 로그에 남는다. 별도 처리 필요.
+
+
 > 🦐 **2026-08-13 14:20 KST — `/shrimp` 산업 이해 중심 전면 개편** [Claude]:
 > - 페이지와 새우 아카이브가 서로를 모르는 상태였다. 페이지는 FishStat **2024.1.0**(데이터 ~2022) 위에 있었고 아카이브는 7월부터 **2026.1.0**(~2024) 스냅샷을 갖고 있었다. 위젯을 **80 → 21**로 줄이고 전부 아카이브 1차 실측으로 갈아끼웠다.
 > - **필터 정정**: FishStat CSV에 담수갑각류가 섞여 2024 총량이 821,552 t(6.4%) 부풀려져 있었다. `ISSCAAP='Shrimps, prawns'` 적용 후 정본은 양식 **8,810,922 t** · 자연산 **3,135,769 t** · 총 **11,946,690 t** · 양식 비중 **73.8%** · 흰다리 **64.1%**이며, FAO SOFIA 2026의 8,811천 t와 교차검증된다.
