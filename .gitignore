@@ -94,3 +94,8 @@ scripts/video/out/
 __pycache__/
 *.pyc
 scripts/squid_build/.cache/
+
+# 2026-08-14: 이 저장소는 npm 전용 (package-lock.json). pnpm 산출물 커밋 차단.
+# pnpm의 strict node_modules는 hoisting 의존 패키지에서 빌드가 헛failure를 낸다.
+pnpm-lock.yaml
+pnpm-workspace.yaml
