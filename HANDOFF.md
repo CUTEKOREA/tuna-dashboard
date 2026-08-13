@@ -22,6 +22,18 @@
 > - 후속: Next.js 빌드 로그가 UN Comtrade 요청 URL을 통째로 출력하면서 `subscription-key`가 Vercel 빌드 로그에 남는다. 별도 처리 필요.
 
 
+> 🐟 **2026-08-13 15:56 KST — `/mackerel` 개편 Phase 3~5 완료 (결선·검증)** [Claude + Codex + OpenCode]:
+> - Codex(죽은 컴포넌트 삭제)·OpenCode(provenance 렌더 계층)를 별도 워크트리에 병렬 발주하고 머지했다. 파일 소유권 배타 규약으로 **머지 충돌 0건**. Codex는 sandbox가 git index 쓰기를 막아 커밋을 못 해 검증 후 내가 커밋했다.
+> - **결선 직전 내 Phase 0 인벤토리 오류를 발견했다.** 대시보드는 v13.json 위젯 외에 런타임에 API로 가져와 `json.widgets.push()` 하는 위젯 **14개**를 더 렌더한다. JSON 파일과 TSX만 스캔한 원장이 이걸 못 봤다. 실제 렌더는 90이 아니라 **104**였고, 2026-05 감사서의 "103 위젯"이 맞고 내 원장이 틀렸다. 계획대로 진행했으면 관세청·ECOS·KAMIS 라이브 위젯 14개가 조용히 사라질 뻔했다. 사용자 판단으로 **라이브 14건 존치** 확정.
+> - **최종 구성 42위젯** = 아카이브 28(연간·구조, FAO·ICES·NPFC·MSC·GLOBEFISH·EUMOFA·KMI·USDA·MFDS·관세청·UN Comtrade) + 런타임 14(월간·실시간 운영, 관세청·환율·시세). 서로 대체재가 아니라 보완재라 함께 둔다.
+> - **KPI 6개를 위젯 파생으로 전환**했다. 기존 KPI는 v13.json에서 따로 계산돼 새 위젯과 모순됐다 — 수입의존도 **33.9% → 23.9%**(자급률 76.1%의 역), 어분 증가율 **+394% → 전환율 2.0%**. 이제 빌더가 `_kpis.json`을 위젯과 같은 값에서 만들어 헤더·본문이 갈라질 수 없다.
+> - **삭제**: 흡수된 TSX 7개 + `lib/data/mackerel.ts`(20개 데이터셋 전부 미참조가 되어 모듈째). `components/Mackerel*.tsx` **25 → 2**(Dashboard, WidgetV2). 누적 약 2,500줄 제거.
+> - **아키텍처 가드 위반 자수·수정**: 결선 때 `_kpis.json`을 컴포넌트에서 직접 import해 `architecture-guards.test.ts` 2건이 깨졌다. `lib/data/mackerel-v2.ts`에 `getKpis()`를 두고 intake 계층을 거치도록 고쳤다.
+> - **O-04 4축 재채점: 78.0 → 89.5 (A)**. A 26 / B 2 / C 0 / D 0 (기존 A 12 / B 37 / C 37 / D 4). 축 평균 출처 92.3 · 신선도 76.8 · 검증가능성 88.8 · 완성도 100.0. 채점 방식도 바꿨다 — 기존은 cardDesc 문자열에서 출처 키워드를 grep해 추정했으나, 이제 `source_id`의 소스 원장 실재 여부와 **입력 파일 SHA-256 재대조**로 판정한다. 해시가 어긋나면 검증가능성이 40점으로 떨어진다. B 2건(`s3_fta_quarterly`·`s5_msc_cert`)은 PDF 수동추출이라 감점이 정확한 결과다. 신선도 76.8은 개선 여지가 아니라 데이터 한계다(FAO 최신 2024, Comtrade 2025).
+> - `npm run verify` 구성요소 전량 통과(격리 워크트리, 클린 트리 기준): ESLint 0 errors(기존 warnings 13), TypeScript, Vitest **181/181**, Next.js 정적 페이지 **98/98**.
+> - 상태: 브랜치 `mackerel/claude-etl` 커밋 `a7751db`. **프로덕션 미배포.**
+> - **남은 정리 1건**: `w_comtrade_flow`(라이브, 실패 시 하드코딩 8행)와 `s3_comtrade_matrix`(아카이브 164k행, 2025)가 같은 질문에 답한다. 라이브 존치 결정을 따라 이번엔 건드리지 않았다.
+
 > 🐟 **2026-08-13 15:04 KST — `/mackerel` 아카이브 기반 데이터 진실성 재구축 (Phase 0~2 완료)** [Claude]:
 > - 페이지가 위젯 **90개**(JSON 83 + TSX 7)를 렌더하는데 수치의 출처를 추적할 수 없었고 26개는 데이터가 2023년 이하에서 멈춰 있었다. 2026-08-12 고등어 아카이브(821파일)를 단일 진실원천으로 삼는 결정적 ETL을 깔고 위젯을 **90 → 28**로 통합했다.
 > - **종 범위 오염 정정**: 아카이브 필터본이 `mackerel` 문자열 기반이라 전갱이(jack/horse)·삼치(Spanish)·임연수어(Atka)·인도고등어, 심지어 **Mako shark·Pinecone soldierfish**까지 섞여 있었다. `scripts/mackerel/scope.py`에 Scomber 속 한정 필터를 만들어 모든 ETL이 이걸 거치게 했다. 안 걸렀으면 전 집계가 부풀려진다. 2차로 `Jack mackerel meal`이 어분 집계에 새는 것도 잡았다.
