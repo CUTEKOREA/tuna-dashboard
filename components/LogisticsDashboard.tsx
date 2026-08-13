@@ -77,7 +77,7 @@ export default function LogisticsDashboard() {
             </div>
           </div>
           <div className={styles.reportBadge}>
-            <span>정적 보고 기반 <strong>최신 2026-08-06 · 위젯별 기준일 표기</strong></span>
+            <span>정적 보고 기반 <strong>최신 2026-08-13 · 위젯별 기준일 표기</strong></span>
           </div>
         </div>
       </header>
@@ -226,13 +226,13 @@ export default function LogisticsDashboard() {
                   icon={Navigation}
                   iconColor="var(--color-info)"
                   pillar="S3"
-                  cardDesc="방콕항 운반선 이동 스케줄 — 31주차 주간 보고 (2026-07-31~08-06 기준)"
-                  telemetry={{ status: 'STATIC', syncDate: '2026-08-06', label: '정적' }}
+                  cardDesc="방콕항 운반선 이동 스케줄 — 32주차 주간 보고 (2026-08-07~08-13 기준)"
+                  telemetry={{ status: 'STATIC', syncDate: '2026-08-13', label: '정적' }}
                   customBody={<ReeferMovement />}
                   takeaway={{
-                    situation: '31주차(2026-07-31~08-06) TTA 보고에는 방콕항 4척의 캔 공장별 배분 18,643.026MT가 기록됐으며, SEIN VENUS 3,275MT가 포함됩니다.',
-                    actionPlan: 'SEIN VENUS 3,275MT와 HENG HONG 9 5,555MT의 실제 하역 진행 상태를 이후 주간보고와 교차 확인합니다.',
-                    source: 'TTA 운반선 이동표 31주차 (2026-08-06 기준)',
+                    situation: '32주차(2026-08-07~08-13) TTA 보고에는 방콕항 6척의 캔 공장별 배분 24,834.299MT가 기록됐으며, SEA STAR V와 PACIFIC JOURNEY가 추가됐습니다.',
+                    actionPlan: '신규 보고된 SEA STAR V 3,951.273MT와 PACIFIC JOURNEY 2,240MT의 실제 하역 진행 상태를 이후 주간보고와 교차 확인합니다.',
+                    source: 'TTA 운반선 이동표 32주차 (2026-08-13 기준)',
                   }}
                 />
               </div>
