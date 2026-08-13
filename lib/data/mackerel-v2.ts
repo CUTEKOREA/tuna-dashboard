@@ -6,6 +6,7 @@
  * 데이터는 빌드 시점에 Python 검증기를 통과한 것이므로 런타임 검증은 하지 않는다.
  */
 
+import kpis from '../../data/mackerel/_kpis.json';
 import s1 from '../../data/mackerel/_bundle_S1.json';
 import s2 from '../../data/mackerel/_bundle_S2.json';
 import s3 from '../../data/mackerel/_bundle_S3.json';
@@ -83,4 +84,19 @@ export function getWidget(id: string): MackerelWidget | undefined {
 /** 전체 위젯 수. 대시보드 헤더 카운터용. */
 export function widgetCount(): number {
   return allWidgets.length;
+}
+
+export interface MackerelKpi {
+  title: string;
+  value: string;
+  trend: string;
+  desc: string;
+  widgetId: string;
+  source_id: string;
+  grade: 'A' | 'B' | 'C';
+}
+
+/** 헤더 KPI. 빌더가 위젯과 같은 소스에서 산출한 값이다. */
+export function getKpis(): Record<string, MackerelKpi> {
+  return kpis as unknown as Record<string, MackerelKpi>;
 }

@@ -18,8 +18,7 @@ import { ChartPatternDefs, getA11yBarProps } from './ChartPatterns';
 
 // 아카이브 기반 위젯 계층 (scripts/mackerel/build.py 산출)
 import MackerelWidgetV2 from './MackerelWidgetV2';
-import { getPillarWidgets, widgetCount, type Pillar } from '@/lib/data/mackerel-v2';
-import archiveKpis from '../data/mackerel/_kpis.json';
+import { getPillarWidgets, getKpis, widgetCount, type Pillar } from '@/lib/data/mackerel-v2';
 
 // 5-Pillar 네비게이터 메타 (Tuna 패턴 + 고등어 시그니처 그라디언트 cyan-700→sky-500)
 const SECTIONS = [
@@ -488,7 +487,7 @@ export default function MackerelDashboard() {
   );
 
   // KPI는 아카이브 빌더가 위젯과 같은 소스에서 산출한다 — 헤더와 본문이 다른 말을 하면 안 된다.
-  const kpis: Record<string, any> = archiveKpis;
+  const kpis: Record<string, any> = getKpis();
   const { widgets } = data;
 
   const kpiKeys = Object.keys(kpis);
