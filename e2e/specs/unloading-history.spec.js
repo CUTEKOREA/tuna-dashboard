@@ -180,6 +180,18 @@ async function runHappyPath(browser) {
   const year2021 = await page.$eval('[data-testid="unloading-history-panel"]', (node) => node.innerText);
   assert.match(year2021, /자료 미확인|부분 자료/);
 
+  await page.click('[data-testid="history-year-2023"]');
+  await waitForText(page, '[data-testid="history-kpi-actual"]', /94,075\.080 MT/);
+  const januaryQueen = await page.$$eval(
+    '[data-testid="unloading-history-panel"] tbody tr',
+    (rows) => rows.map((row) => row.innerText).find((text) => text.includes('2023.01.11')),
+  );
+  assert.match(januaryQueen || '', /SEIN QUEEN/);
+  assert.match(januaryQueen || '', /2023\.01\.11 ~ 2023\.01\.31/);
+  assert.match(januaryQueen || '', /방콕/);
+  assert.match(januaryQueen || '', /5,828\.970 MT/);
+  assert.match(januaryQueen || '', /검증 완료/);
+
   await page.click('[data-testid="history-year-2025"]');
   await page.click('[data-testid="history-port-SKL"]');
   const songkhla = await page.$eval('[data-testid="unloading-history-panel"]', (node) => node.innerText);
@@ -196,6 +208,14 @@ async function runHappyPath(browser) {
   await page.setViewport({ width: 390, height: 844 });
   await page.reload({ waitUntil: 'networkidle0' });
   await page.waitForSelector('[data-testid="unloading-history-panel"]');
+  await page.click('[data-testid="history-year-2023"]');
+  await waitForText(page, '[data-testid="history-kpi-actual"]', /94,075\.080 MT/);
+  const mobilePanel = await page.$eval(
+    '[data-testid="unloading-history-panel"]',
+    (node) => node.innerText,
+  );
+  assert.match(mobilePanel, /2023\.01\.11 ~ 2023\.01\.31/);
+  assert.match(mobilePanel, /5,828\.970 MT/);
   const overflow = await page.evaluate(
     () => document.documentElement.scrollWidth - document.documentElement.clientWidth,
   );

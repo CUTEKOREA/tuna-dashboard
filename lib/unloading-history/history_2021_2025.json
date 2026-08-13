@@ -7,12 +7,12 @@
     "processedFileCount": 101,
     "failedFileCount": 0,
     "candidateVoyageCount": 98,
-    "verifiedVoyageCount": 87,
+    "verifiedVoyageCount": 88,
     "partialVoyageCount": 4,
-    "unverifiedVoyageCount": 7,
+    "unverifiedVoyageCount": 6,
     "snapshotStatus": "SYNCED",
-    "generatedAt": "2026-08-12T23:40:00+09:00",
-    "dataAsOf": "2026-08-12",
+    "generatedAt": "2026-08-13T09:20:00+09:00",
+    "dataAsOf": "2026-08-13",
     "extractorVersion": "unloading-history-1.0.0"
   },
   "completionYearBaseline": [
@@ -30,9 +30,9 @@
     },
     {
       "year": 2023,
-      "verifiedActualMt": 83509.36,
-      "verifiedVoyageCount": 26,
-      "candidateVoyageCount": 27
+      "verifiedActualMt": 89338.33,
+      "verifiedVoyageCount": 27,
+      "candidateVoyageCount": 28
     },
     {
       "year": 2024,
@@ -110,12 +110,12 @@
     },
     {
       "year": 2023,
-      "verifiedActualMt": 88246.11,
-      "verifiedVoyageCount": 28,
+      "verifiedActualMt": 94075.08,
+      "verifiedVoyageCount": 29,
       "candidateVoyageCount": 29,
       "partialCount": 0,
-      "unverifiedCount": 1,
-      "averageVerifiedMt": 3151.6468,
+      "unverifiedCount": 0,
+      "averageVerifiedMt": 3243.9683,
       "portCount": 4,
       "ports": [
         {
@@ -137,7 +137,7 @@
       ],
       "allocationMethodCounts": {
         "dailyReport": 3,
-        "completionYear": 25,
+        "completionYear": 26,
         "finalReportAdjustment": 0
       },
       "isMinimumVerifiedTotal": false
@@ -1146,23 +1146,37 @@
       "evidenceDocumentCount": 1
     },
     {
-      "voyageId": "sein-queen-2023-unknown-01",
+      "voyageId": "sein-queen-2023-01-11-bkk",
       "sourceYear": 2023,
-      "completionYear": null,
-      "displayYearBasis": "source_year",
+      "completionYear": 2023,
+      "displayYearBasis": "completion_year",
       "vessel": {
         "canonicalName": "SEIN QUEEN"
       },
       "period": {
-        "startDate": null,
-        "endDate": null
+        "startDate": "2023-01-11",
+        "endDate": "2023-01-31"
       },
-      "ports": [],
-      "reportedMt": null,
-      "actualMt": null,
-      "verification": "unverified",
-      "kpiIncluded": false,
-      "yearAllocations": [],
+      "ports": [
+        {
+          "code": "BKK",
+          "nameKo": "방콕"
+        }
+      ],
+      "reportedMt": 5916,
+      "actualMt": 5828.97,
+      "verification": "verified",
+      "kpiIncluded": true,
+      "yearAllocations": [
+        {
+          "year": 2023,
+          "actualMt": 5828.97,
+          "method": "completion_year",
+          "portCodes": [
+            "BKK"
+          ]
+        }
+      ],
       "evidenceDocumentCount": 1
     },
     {
@@ -3496,8 +3510,8 @@
     "isLive": false,
     "status": "STATIC",
     "source": "lib/unloading-history/history_2021_2025.json",
-    "syncDate": "2026-08-12",
-    "dataAsOf": "2026-08-12",
+    "syncDate": "2026-08-13",
+    "dataAsOf": "2026-08-13",
     "schemaVersion": "1.0.0",
     "method": "결정론적 Excel 추출·최종보고 우선·일보 교차검증",
     "apiHealth": {
