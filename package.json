@@ -15,7 +15,11 @@
     "test:e2e:unloading-history": "node e2e/run-unloading-history.js",
     "check:api-cache": "node scripts/audit_api_cache_policy.mjs",
     "check:bundle": "node scripts/check_route_bundle_budget.mjs",
-    "verify": "npm run lint && npm run typecheck && npm test && npm run check:api-cache && npm run build && npm run check:bundle"
+    "verify": "npm run lint && npm run typecheck && npm test && npm run check:api-cache && npm run build && npm run check:bundle",
+    "mackerel": "python3 scripts/mackerel/build.py && python3 scripts/mackerel/validate_provenance.py",
+    "mackerel:test": "python3 scripts/mackerel/test_build.py",
+    "mackerel:ledger": "python3 scripts/mackerel/build_ledger.py && python3 scripts/mackerel/validate_consolidation.py",
+    "mackerel:score": "python3 scripts/mackerel/score_4axis.py"
   },
   "dependencies": {
     "@chenglou/pretext": "^0.0.5",

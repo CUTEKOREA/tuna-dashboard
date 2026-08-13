@@ -1,0 +1,65 @@
+{
+  "bars": [
+    {
+      "color": "#10b981",
+      "key": "수출단가"
+    }
+  ],
+  "chartType": "Bar",
+  "data": [
+    {
+      "가공단계": "냉장 원물",
+      "물량": 210316,
+      "수출단가": 1.83
+    },
+    {
+      "가공단계": "냉동 원물",
+      "물량": 1489893,
+      "수출단가": 1.69
+    },
+    {
+      "가공단계": "냉동 필렛",
+      "물량": 15788,
+      "수출단가": 3.45
+    },
+    {
+      "가공단계": "염장·건조",
+      "물량": 132,
+      "수출단가": 7.99
+    },
+    {
+      "가공단계": "훈제",
+      "물량": 8698,
+      "수출단가": 5.73
+    },
+    {
+      "가공단계": "조제·통조림",
+      "물량": 243637,
+      "수출단가": 3.52
+    }
+  ],
+  "id": "s2_form_price_ladder",
+  "provenance": {
+    "extract_date": "2026-08-12",
+    "grade": "A",
+    "input_files": [
+      "11_분석·가공데이터/collections/2026-08-12/fao_filtered/mackerel_trade.csv"
+    ],
+    "input_sha256": [
+      "4bb124c9dfa93dea892277f0866a72ff118c1eeb3affb695c77bda832300fd15"
+    ],
+    "method": "script",
+    "note": "단가는 세계 수출 신고 금액÷물량. 국가별 규격 차이가 섞여 있다.",
+    "period": "2024",
+    "publisher": "FAO",
+    "rebuild": "python scripts/mackerel/build.py s2_form_price_ladder",
+    "series": "FishStat Trade",
+    "source_id": "FAO_FISHSTAT_TRADE"
+  },
+  "sit": "원물에서 멀어질수록 단가가 오른다. 염장·건조는 냉동 원물의 4.7배다. 다만 물량은 냉동 원물이 압도적이라 부가가치 전환이 실제로는 거의 일어나지 않고 있다.",
+  "strat": "단가 배수만 보고 가공에 투자하면 틀린다. 배수 × 실현 가능 물량이 판단 기준이다. 국내 설비로 접근 가능한 구간은 필렛·염장까지다.",
+  "subtitle": "FAO FishStat Trade 2024년 세계 수출 기준 단가(USD/kg). 냉동 원물 $1.69/kg → 최상단 염장·건조 $7.99/kg, 4.7배.",
+  "title": "가공단계별 단가 사다리",
+  "unit": "USD/kg",
+  "xKey": "가공단계"
+}

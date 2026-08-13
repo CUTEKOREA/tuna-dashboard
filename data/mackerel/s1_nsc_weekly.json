@@ -1,0 +1,55 @@
+{
+  "_kpi": {
+    "desc": "600g 미만 규격 FOB. 주간 해상도 유일 소스",
+    "title": "노르웨이 수출단가 (2026 누계)",
+    "trend": "+64.5% · 물량 -46.0%",
+    "value": "48.49 NOK/kg"
+  },
+  "bars": [
+    {
+      "color": "#0ea5e9",
+      "key": "2026"
+    },
+    {
+      "color": "#94a3b8",
+      "key": "2025"
+    }
+  ],
+  "chartType": "Bar",
+  "data": [
+    {
+      "2025": 984,
+      "2026": 888,
+      "구분": "주간 물량"
+    },
+    {
+      "2025": 71751,
+      "2026": 38710,
+      "구분": "누계 물량"
+    }
+  ],
+  "id": "s1_nsc_weekly",
+  "provenance": {
+    "extract_date": "2026-08-12",
+    "grade": "A",
+    "input_files": [
+      "03_무역·가격/norwegian_seafood_council/2026-08-12_full/NSC_herring_mackerel_week_32_2026.xlsx"
+    ],
+    "input_sha256": [
+      "9d639b8f2c31fce6ce74373fdf90ae09be257f62e21ceb106f67967e110c07fd"
+    ],
+    "method": "script",
+    "note": "시트 'Fryst makrell < 600g' TOTALT 행. HS 03035401·03035403. NOK 표시이며 원화 환산은 하지 않았다. 600g 미만 규격 한정.",
+    "period": "2026-W32",
+    "publisher": "Norwegian Seafood Council",
+    "rebuild": "python scripts/mackerel/build.py s1_nsc_weekly",
+    "series": "Fishery statistics",
+    "source_id": "NORWEGIAN_SEAFOOD_EXPORTS"
+  },
+  "sit": "32주 누계 기준 노르웨이 수출 물량이 전년 대비 -46.0% 줄고 단가는 +64.5% 올랐다. 주간 단가는 47.99 NOK/kg으로 전년 동주 28.79 NOK/kg 대비 +66.7%다. 물량이 반으로 줄면서 가격이 뛰는 전형적인 공급 축소 국면이다.",
+  "strat": "이 시트는 600g 미만 소형 규격만 담는다. 대형어 계약 단가와 직접 비교하면 안 된다. 다만 방향성은 전 규격에 공통이므로 주간 단가 추세를 협상 타이밍 지표로 쓴다.",
+  "subtitle": "노르웨이수산물위원회 2026년 32주 — 냉동고등어 600g 미만 FOB. 누계 단가 48.49 NOK/kg(+64.5%), 누계 물량 38,710톤(-46.0%).",
+  "title": "노르웨이 주간 수출 물량·단가",
+  "unit": "톤",
+  "xKey": "구분"
+}

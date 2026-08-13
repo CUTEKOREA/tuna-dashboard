@@ -1,0 +1,51 @@
+{
+  "bars": [
+    {
+      "color": "#ef4444",
+      "key": "현재"
+    },
+    {
+      "color": "#94a3b8",
+      "key": "기준선"
+    }
+  ],
+  "chartType": "Bar",
+  "data": [
+    {
+      "기준선": 100,
+      "지표": "대서양 SSB",
+      "현재": 67
+    },
+    {
+      "기준선": 100,
+      "지표": "태평양 어획(2024)",
+      "현재": 25
+    }
+  ],
+  "id": "s1_stock_status",
+  "provenance": {
+    "extract_date": "2026-08-12",
+    "grade": "B",
+    "input_files": [
+      "01_자연산_어획·자원/ices/2026-08-12_full/ICES_Atlantic_mackerel_advice_2026.md",
+      "01_자연산_어획·자원/npfc/2026-08-12_full/NPFC_TWG_CMSA11_report_2025.md"
+    ],
+    "input_sha256": [
+      "fd4f70b88c0c3918470b4f1b0c449553314183b27c09df6336de3c8abb7f1cbc",
+      "3b4aca0f148725b1b478c0b0de881dc8aedb9b1af37c6d8b3ad7cc9ca601ec90"
+    ],
+    "method": "manual_extract",
+    "note": "ICES: SSB 2,740,823톤(표1 2025 전망), MSY Btrigger 4,119,337톤(표4), Fages4-8=0.29(표1). NPFC: 516,000mt(2018)→128,586mt(2024), CMM 2025-07 어획한도 66,740mt. 두 자원은 종·해역이 달라 직접 비교가 아니라 각자의 기준선 대비 위치로만 읽어야 한다.",
+    "period": "2024-2026",
+    "publisher": "ICES",
+    "rebuild": "python scripts/mackerel/build.py s1_stock_status",
+    "series": "Atlantic mackerel advice",
+    "source_id": "ICES_ATLANTIC_MACKEREL"
+  },
+  "sit": "대서양고등어는 산란자원량이 Blim 아래이고 어획강도(F=0.29)는 FMSY 위다 — 자원평가상 최악 조합이다. 태평양참고등어도 2018년 대비 어획이 -75.1% 줄었다. 두 대양이 동시에 조인 상태다.",
+  "strat": "대체 원산지 전략의 전제가 흔들린다. 대서양이 막히면 태평양으로라는 계획은 태평양도 같이 줄고 있어 성립하지 않는다. 원산지가 아니라 어종·가공형태 대체를 봐야 한다.",
+  "subtitle": "대서양: SSB 2,740,823톤 = MSY Btrigger(4,119,337톤)의 67%, Blim 미만. 태평양: 어획 516,000톤(2018)→128,586톤(2024), NPFC 2025 어획한도 66,740톤.",
+  "title": "자원평가 상태 스코어카드 (ICES·NPFC)",
+  "unit": "% (기준=100)",
+  "xKey": "지표"
+}

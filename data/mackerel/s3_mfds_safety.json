@@ -1,0 +1,67 @@
+{
+  "bars": [
+    {
+      "color": "#8b5cf6",
+      "key": "신고건수"
+    }
+  ],
+  "chartType": "Bar",
+  "data": [
+    {
+      "국가": "중국",
+      "신고건수": 11
+    },
+    {
+      "국가": "대한민국",
+      "신고건수": 10
+    },
+    {
+      "국가": "노르웨이",
+      "신고건수": 9
+    },
+    {
+      "국가": "미국",
+      "신고건수": 6
+    },
+    {
+      "국가": "대만",
+      "신고건수": 6
+    },
+    {
+      "국가": "러시아 연방",
+      "신고건수": 3
+    },
+    {
+      "국가": "일본",
+      "신고건수": 2
+    },
+    {
+      "국가": "프랑스",
+      "신고건수": 1
+    }
+  ],
+  "id": "s3_mfds_safety",
+  "provenance": {
+    "extract_date": "2026-08-12",
+    "grade": "A",
+    "input_files": [
+      "06_식품안전·검역·통관/mfds/2026-08-12_full/MFDS_mackerel_imported_food_products_2025.csv"
+    ],
+    "input_sha256": [
+      "2601eb91cd49f812796b628402d3b72ddf7fd2ff0f6943d6c296edaf27f562eb"
+    ],
+    "method": "script",
+    "note": "신고 건수 집계. 부적합 판정 건수가 아니다.",
+    "period": "2025",
+    "publisher": "Ministry of Food and Drug Safety",
+    "rebuild": "python scripts/mackerel/build.py s3_mfds_safety",
+    "series": "Imported food information",
+    "source_id": "MFDS_IMPORTED_FOOD"
+  },
+  "sit": "2025년 고등어 수입식품 신고는 53건이며 중국(11건)이 가장 많다. 물량이 아니라 신고 건수 기준이므로 교역 규모와는 다르다.",
+  "strat": "신규 공급사를 검토할 때 이 목록에 해외제조업소가 있는지부터 본다. 이력이 없는 업소는 등록 절차부터 시작해야 해 리드타임이 길어진다.",
+  "subtitle": "식약처 수입식품정보 2025년 고등어 품목 신고 53건. 신규 거래처 스크리닝용 — 실제 통관 실적이 있는 해외제조업소가 어디인지 확인한다.",
+  "title": "수입식품 신고 이력 (국가별)",
+  "unit": "건",
+  "xKey": "국가"
+}

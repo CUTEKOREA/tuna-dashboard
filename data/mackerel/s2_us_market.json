@@ -1,0 +1,120 @@
+{
+  "bars": [
+    {
+      "color": "#0ea5e9",
+      "key": "냉동"
+    },
+    {
+      "color": "#10b981",
+      "key": "조제품"
+    },
+    {
+      "color": "#f59e0b",
+      "key": "필렛"
+    },
+    {
+      "color": "#94a3b8",
+      "key": "신선·냉장"
+    }
+  ],
+  "chartType": "Bar",
+  "data": [
+    {
+      "month": "2025-01",
+      "조제품": 504
+    },
+    {
+      "month": "2025-02",
+      "조제품": 504
+    },
+    {
+      "month": "2025-03",
+      "조제품": 306
+    },
+    {
+      "month": "2025-04",
+      "조제품": 433
+    },
+    {
+      "month": "2025-05",
+      "조제품": 224
+    },
+    {
+      "month": "2025-06",
+      "조제품": 264
+    },
+    {
+      "month": "2025-07",
+      "조제품": 404
+    },
+    {
+      "month": "2025-08",
+      "조제품": 141
+    },
+    {
+      "month": "2025-09",
+      "조제품": 144
+    },
+    {
+      "month": "2025-10",
+      "조제품": 252
+    },
+    {
+      "month": "2025-11",
+      "조제품": 296
+    },
+    {
+      "month": "2025-12",
+      "조제품": 248
+    },
+    {
+      "month": "2026-01",
+      "조제품": 150
+    },
+    {
+      "month": "2026-02",
+      "조제품": 98
+    },
+    {
+      "month": "2026-03",
+      "조제품": 234
+    },
+    {
+      "month": "2026-04",
+      "조제품": 64
+    },
+    {
+      "month": "2026-05",
+      "조제품": 287
+    },
+    {
+      "month": "2026-06",
+      "조제품": 278
+    }
+  ],
+  "id": "s2_us_market",
+  "provenance": {
+    "extract_date": "2026-08-12",
+    "grade": "A",
+    "input_files": [
+      "10_원본데이터셋/collections/2026-08-12/api_extracts/usda_gats/mackerel_trade_usda.csv"
+    ],
+    "input_sha256": [
+      "a2417c0d1b8e1e7e708d406a357cf0c56e2511370689110549272d8e6deafa00"
+    ],
+    "method": "script",
+    "note": "GATS Census 수입 실적. 직접 HS6 5종 범위.",
+    "period": "202501-202606",
+    "publisher": "USDA FAS",
+    "rebuild": "python scripts/mackerel/build.py s2_us_market",
+    "series": "GATS Census Imports",
+    "source_id": "USDA_GATS_US_IMPORTS"
+  },
+  "sit": "미국 수입은 조제품(통조림) 비중이 크다. 평균 CIF $4.19/kg로 아프리카 벌크 수출단가와는 다른 가격대의 시장이다.",
+  "stacked": true,
+  "strat": "미국은 원물 시장이 아니라 가공품 시장이다. 냉동 원물로 접근하면 경쟁 상대가 없는 게 아니라 시장 자체가 없다. 진입한다면 조제품 규격부터 맞춰야 한다.",
+  "subtitle": "USDA FAS GATS 월별 실측 — 2025-01~2026-06 누적 22,460톤, 평균 CIF $4.19/kg.",
+  "title": "미국 시장 수입 동향",
+  "unit": "톤",
+  "xKey": "month"
+}

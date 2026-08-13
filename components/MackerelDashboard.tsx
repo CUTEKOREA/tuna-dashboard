@@ -16,14 +16,9 @@ import styles from './MackerelStrategy.module.css';
 import WidgetCard from './WidgetCard';
 import { ChartPatternDefs, getA11yBarProps } from './ChartPatterns';
 
-// Phase 4: dangling 외부 위젯 통합 import (가치 高 6개)
-import MackerelKoreaSupply from './MackerelKoreaSupply';
-import MackerelNorwayAlt from './MackerelNorwayAlt';
-import MackerelClimatePredictor from './MackerelClimatePredictor';
-import MackerelAquaculture from './MackerelAquaculture';
-import MackerelAfricanExportROI from './MackerelAfricanExportROI';
-import MackerelSafetyPremium from './MackerelSafetyPremium';
-import MackerelFTAQuarterly from './MackerelFTAQuarterly';
+// 아카이브 기반 위젯 계층 (scripts/mackerel/build.py 산출)
+import MackerelWidgetV2 from './MackerelWidgetV2';
+import { getPillarWidgets, getKpis, widgetCount, type Pillar } from '@/lib/data/mackerel-v2';
 
 // 5-Pillar 네비게이터 메타 (Tuna 패턴 + 고등어 시그니처 그라디언트 cyan-700→sky-500)
 const SECTIONS = [
@@ -39,22 +34,15 @@ const SECTIONS = [
     desc: '제재·컴플라이언스, MSC 인증, 탄소 발자국, 선원 인권, IUU 감시 및 정책 대응', color: '#7dd3fc', icon: ShieldCheck },
 ] as const;
 
-const PILLAR_WIDGET_IDS: Record<string, string[]> = {
-  S1: ['w_busan_procurement', 'w01', 'w02', 'w03', 'w04', 'w05', 'w09', 'w14', 'w23', 'w42', 'w43', 'w44', 'w65', 'w68', 'w69', 'w70', 'w73', 'w_kosis_prod_value'],
-  S2: ['w_andong_salted', 'w_us_boneless', 'w08', 'w16', 'w21', 'w24', 'w25', 'w33', 'w35', 'w40', 'w45', 'w60', 'w67', 'w71', 'w72', 'w74'],
-  S3: ['w_africa_coldchain', 'w_arbitrage_live', 'w_kcs_monthly', 'w_kcs_origin', 'w_comtrade_flow', 'w_oec_benchmark', 'w_landing', 'w_multi_cost', 'w_tariff', 'w_hs_class', 'w_eu_import', 'w_import_yeti_suppliers', 'w06', 'w07', 'w10', 'w11', 'w15', 'w17', 'w18', 'w19', 'w28', 'w34', 'w36', 'w38', 'w39', 'w48', 'w49', 'w57', 'w58', 'w62', 'w64', 'w66', 'w75', 'w_fta_import_trend', 'w_origin_diversification', 'w_trq_scenario'],
-  S4: ['w_domestic_retail', 'w_global_b2c_channel', 'w_dist_margin', 'w12', 'w13', 'w22', 'w27', 'w29', 'w30', 'w31', 'w32', 'w37', 'w41', 'w46', 'w51', 'w52', 'w53', 'w59', 'w63'],
-  S5: ['w_sanctions_radar', 'w_osh_facilities', 'w26', 'w50', 'w54', 'w55', 'w56', 'w61'],
+// 런타임 API 주입 위젯만 유지. v13.json 정적 위젯은 data/mackerel 아카이브 번들이 대체한다.
+const RUNTIME_WIDGET_IDS: Record<string, string[]> = {
+  S1: [],
+  S2: [],
+  S3: ['w_arbitrage_live', 'w_kcs_monthly', 'w_kcs_origin', 'w_comtrade_flow', 'w_oec_benchmark', 'w_landing', 'w_multi_cost', 'w_tariff', 'w_hs_class', 'w_eu_import', 'w_import_yeti_suppliers'],
+  S4: ['w_dist_margin'],
+  S5: ['w_sanctions_radar', 'w_osh_facilities'],
 };
 
-// Phase 4: dangling 외부 위젯 → pillar 매핑
-const EXTRA_BY_PILLAR: Record<string, React.FC[]> = {
-  S1: [MackerelKoreaSupply, MackerelNorwayAlt, MackerelClimatePredictor],
-  S2: [MackerelAquaculture],
-  S3: [MackerelFTAQuarterly, MackerelAfricanExportROI],
-  S4: [],
-  S5: [MackerelSafetyPremium],
-};
 
 /* ─── Custom Tooltip ─── */
 // 시뮬레이션(추정) 위젯 ID 목록
@@ -498,76 +486,18 @@ export default function MackerelDashboard() {
     </div>
   );
 
-  let { kpis } = data;
+  // KPI는 아카이브 빌더가 위젯과 같은 소스에서 산출한다 — 헤더와 본문이 다른 말을 하면 안 된다.
+  const kpis: Record<string, any> = getKpis();
   const { widgets } = data;
 
-  // 동적 KPI 계산 로직 — 6개 전수 연동 (Dynamic Calculation)
-  // 연간 확정 행만 사용: '2025Q1'(분기)·'2025E'(추정) 등 비연간 행은 KPI 산출에서 제외하고,
-  // 타이틀의 기준연도를 실제 사용한 행의 연도로 동적 생성한다 (타이틀·기준연도·값 일치).
-  if (widgets && widgets.length > 0) {
-    const isAnnualYear = (y: any) => /^\d{4}$/.test(String(y));
-    const getLastVal = (wid: string, key: string) => {
-      const wd = widgets.find((w:any)=>w.id===wid)?.data;
-      return wd ? wd[wd.length-1]?.[key] : null;
-    };
-    const getLastAnnualRow = (wid: string) => {
-      const wd = widgets.find((w:any)=>w.id===wid)?.data;
-      if (!wd) return null;
-      const annual = wd.filter((r: any) => isAnnualYear(r.year));
-      return annual.length > 0 ? annual[annual.length - 1] : null;
-    };
-
-    // kpi1: 글로벌 총 어획량 (w01) — Scomber 4종 합산, 연간 확정 행 기준
-    const w01Last = getLastAnnualRow('w01');
-    const latestCatch = w01Last ? (w01Last['태평양참고등어']||0)+(w01Last['대서양고등어']||0)+(w01Last['대서양참고등어']||0)+(w01Last['블루고등어']||0) : null;
-    // kpi2: 글로벌 무역 규모 (w06 최신 연간 행) — 수출액 기준(수출량 × 평균단가 $1,573/t, 수출+수입 합산은 이중계상이라 미사용)
-    const w06Last = getLastAnnualRow('w06');
-    const latestExport = w06Last ? w06Last['글로벌수출'] : null;
-    // kpi3: 노르웨이 수출 단가 (w17 최신 시점 — 월별 시계열)
-    const w17d = widgets.find((w:any)=>w.id==='w17')?.data;
-    const w17Last = w17d ? w17d[w17d.length-1] : null;
-    const latestNorwayPrice = w17Last?.['노르웨이_수출단가'] ?? null;
-    // kpi4: 수입 의존도 (w13)
-    const latestDep = getLastVal('w13', '수입의존도');
-    // kpi5: 피쉬밀 증가율 (w16 첫해→마지막해)
-    const w16d = widgets.find((w:any)=>w.id==='w16')?.data;
-    const fmFirst = w16d ? w16d[0]?.['피쉬밀_오일'] : null;
-    const fmLast = w16d ? w16d[w16d.length-1]?.['피쉬밀_오일'] : null;
-    // kpi6: 네덜란드 중계 마진 (w18)
-    const latestMargin = getLastVal('w18', '마진율');
-
-    kpis = {
-      ...kpis,
-      ...(latestCatch != null && latestCatch > 0 && {
-        kpi1: { ...kpis.kpi1, title: `${w01Last.year} Scomber속 순수 고등어 총어획량`, value: `${(latestCatch / 10000).toLocaleString()}만 톤` }
-      }),
-      ...(latestExport != null && latestExport > 0 && {
-        kpi2: { ...kpis.kpi2, title: `${w06Last.year} 글로벌 무역 시장 규모 (연간)`, value: `$${(latestExport * 1573 / 1e9).toFixed(2)} Billion` }
-      }),
-      ...(latestNorwayPrice != null && {
-        kpi3: { ...kpis.kpi3, title: `노르웨이 수출 단가 (${w17Last.year})`, value: `$${latestNorwayPrice.toLocaleString()} / 톤` }
-      }),
-      ...(latestDep != null && {
-        kpi4: { ...kpis.kpi4, value: `${latestDep}%` }
-      }),
-      ...(fmFirst != null && fmLast != null && fmFirst > 0 && {
-        kpi5: { ...kpis.kpi5, value: `+${Math.round((fmLast / fmFirst - 1) * 100)}%` }
-      }),
-      ...(latestMargin != null && {
-        kpi6: { ...kpis.kpi6, value: `${latestMargin}%` }
-      })
-    };
-  }
   const kpiKeys = Object.keys(kpis);
 
   // 헤더 카운트 동적 산출: 실제 렌더되는 위젯(5-Pillar 매핑 위젯 + 외부 통합 위젯)만 집계 (패턴 I)
-  const renderedWidgetCount = (Object.keys(PILLAR_WIDGET_IDS) as string[]).reduce(
-    (sum, pid) =>
-      sum +
-      (widgets?.filter((w: any) => PILLAR_WIDGET_IDS[pid].includes(w.id)).length || 0) +
-      (EXTRA_BY_PILLAR[pid]?.length || 0),
+  const runtimeWidgetCount = (Object.keys(RUNTIME_WIDGET_IDS) as string[]).reduce(
+    (sum, pid) => sum + (widgets?.filter((w: any) => RUNTIME_WIDGET_IDS[pid].includes(w.id)).length || 0),
     0
   );
+  const renderedWidgetCount = widgetCount() + runtimeWidgetCount;
   // 티커 라이브 여부: 라우트가 보고한 라이브 소스 수 > 0일 때만 (L-12)
   const tickerHasLive = (tickerData?.liveSourceCount ?? 0) > 0;
 
@@ -911,8 +841,8 @@ export default function MackerelDashboard() {
       {(() => {
         const sec = SECTIONS.find(s => s.id === activePart)!;
         const SecIcon = sec.icon;
-        const pillarWidgets = widgets?.filter((w: any) => PILLAR_WIDGET_IDS[activePart].includes(w.id)) || [];
-        const extras = EXTRA_BY_PILLAR[activePart] || [];
+        const archiveWidgets = getPillarWidgets(activePart as Pillar);
+        const pillarWidgets = widgets?.filter((w: any) => RUNTIME_WIDGET_IDS[activePart].includes(w.id)) || [];
         return (
           <section>
             <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '0.5rem' }}>
@@ -921,8 +851,10 @@ export default function MackerelDashboard() {
             </div>
             <p style={{ margin: '0 0 1.5rem 34px', fontSize: '0.88rem', color: 'var(--text-secondary)' }}>{sec.desc}</p>
             <div data-mobile-stack style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '1.5rem' }}>
+              {archiveWidgets.map((w) => (
+                <MackerelWidgetV2 key={w.id} widget={w} pillar={activePart as Pillar} />
+              ))}
               {pillarWidgets.map((w: any) => renderWidgetCard(w, activePart))}
-              {extras.map((Comp, i) => <Comp key={`extra-${activePart}-${i}`} />)}
             </div>
           </section>
         );
