@@ -29,6 +29,7 @@ type UnloadingTimelineEntry = {
   date: string;
   time: string;
   targetHol: string;
+  consignee?: string | null;
   dailyAmount: number;
   cumAmount: number;
   quality: string;
@@ -1982,6 +1983,14 @@ export default function UnloadingStatus() {
                           <PackageCheck size={13} color="#38bdf8" />
                           <span>어창: <strong>{t.targetHol}</strong></span>
                         </div>
+                        {t.consignee && (
+                          <div style={{ marginBottom: '4px', color: '#e2e8f0', display: 'flex', alignItems: 'center', gap: '6px' }}>
+                            <MapPin size={13} color="#38bdf8" />
+                            <span>
+                              수하처: <strong><TermTooltip term={t.consignee} description="원본 하역 보고서에 기재된 태국 현지 수하처 코드입니다." /></strong>
+                            </span>
+                          </div>
+                        )}
                         <div style={{ display: 'flex', alignItems: 'flex-start', gap: '6px' }}>
                           <Thermometer size={13} color="#f59e0b" style={{ flexShrink: 0, marginTop: '2px' }} />
                           <span>{t.quality}</span>
