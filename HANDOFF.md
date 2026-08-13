@@ -1,6 +1,13 @@
 # HANDOFF
 
-> 마지막 업데이트: 2026-08-13 07:17 KST
+> 마지막 업데이트: 2026-08-13 09:27 KST
+
+> ✅ **2026-08-13 09:27 KST — `/unloading` 2023년 SEIN QUEEN 미확인 1항차 원자료 대조·로컬 반영** [Codex]:
+> - Google Drive `완료 202301 SEIN QUEEN`의 `일일 하역결과보고(2023-01-SEIN QUEEN- BKK).xls`를 직접 변환·검산했다. 원본 SHA-256은 `411c9f1b689465b25e70fc2b73dbf9968747dbfd4f2a08ab328223a6f237cfaf`다.
+> - 01-11~01-31 시트의 날짜·항만·최종 누계를 대조해 기간 **2023-01-11~01-31**, 항만 **방콕**, 본선보고량 **5,916 MT**, 실제 하역량 **5,828.970 MT**로 확정했다. 최종 시트의 7개 선박 소계 합산도 5,828.970 MT다.
+> - 기존 `sein-queen-2023-unknown-01` 후보를 검증 항차로 승격해 전체 후보는 98개로 유지했다. 메타는 검증 **88 / 부분 4 / 미확인 6**, 2023 작업연도 집계는 검증 **29/29항차·94,075.080 MT**, 완료연도 기준은 검증 **27/28항차·89,338.330 MT**, 5개년 검증 합계는 **339,119.2358 MT**로 갱신했다.
+> - 회귀 테스트는 데이터 부재 상태에서 실패한 뒤 수정 후 통과했다. `npm run verify`는 ESLint 0 errors(기존 warnings 10), TypeScript, Vitest **161/161**, API cache **151/151**, Next.js 정적 페이지 **104개**, bundle budget을 통과했다. 역사 전용 E2E도 데스크톱·390px 모바일·키보드·API/청크 실패 격리를 통과했다.
+> - 상태: 전용 worktree `codex/unloading-sein-queen-2023`에 로컬 반영. **프로덕션 미배포**(이번 사용자 메시지에 배포 요청 없음).
 
 > 🚀 **2026-08-13 07:17 KST — `/market` 2026년 8월 Atuna 회귀 복구 라이브 배포 완료** [Codex]:
 > - 8월 복구 PR [#285](https://github.com/CUTEKOREA/tuna-dashboard/pull/285)을 최신 `main`과 충돌 없이 병합했다. production merge commit은 `6d6203dda957e6687852f04b2a4d3ab49a3ce411`이다.

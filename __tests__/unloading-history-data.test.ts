@@ -8,14 +8,49 @@ import {
 const data = UnloadingHistoryPublicResponseSchema.parse(snapshot);
 
 describe('2021-2025 public unloading history snapshot', () => {
+  it('promotes the January 2023 SEIN QUEEN workbook into the verified baseline', () => {
+    expect(data.voyages.find(({ voyageId }) => voyageId === 'sein-queen-2023-01-11-bkk'))
+      .toMatchObject({
+        sourceYear: 2023,
+        completionYear: 2023,
+        displayYearBasis: 'completion_year',
+        vessel: { canonicalName: 'SEIN QUEEN' },
+        period: { startDate: '2023-01-11', endDate: '2023-01-31' },
+        ports: [{ code: 'BKK', nameKo: '방콕' }],
+        reportedMt: 5916,
+        actualMt: 5828.97,
+        verification: 'verified',
+        kpiIncluded: true,
+        yearAllocations: [{
+          year: 2023,
+          actualMt: 5828.97,
+          method: 'completion_year',
+          portCodes: ['BKK'],
+        }],
+        evidenceDocumentCount: 1,
+      });
+
+    expect(data.annual.find(({ year }) => year === 2023)).toMatchObject({
+      verifiedActualMt: 94075.08,
+      verifiedVoyageCount: 29,
+      candidateVoyageCount: 29,
+      unverifiedCount: 0,
+    });
+    expect(data.completionYearBaseline.find(({ year }) => year === 2023)).toMatchObject({
+      verifiedActualMt: 89338.33,
+      verifiedVoyageCount: 27,
+      candidateVoyageCount: 28,
+    });
+  });
+
   it('contains 98 unique candidates with reviewed verification counts', () => {
     expect(data.voyages).toHaveLength(98);
     expect(new Set(data.voyages.map(({ voyageId }) => voyageId)).size).toBe(98);
     expect(data.meta).toMatchObject({
       candidateVoyageCount: 98,
-      verifiedVoyageCount: 87,
+      verifiedVoyageCount: 88,
       partialVoyageCount: 4,
-      unverifiedVoyageCount: 7,
+      unverifiedVoyageCount: 6,
       failedFileCount: 0,
     });
     expect(data.voyages.map(({ voyageId }) => voyageId).join('\n'))
@@ -24,18 +59,18 @@ describe('2021-2025 public unloading history snapshot', () => {
 
   it('matches both annual bases without changing the five-year total', () => {
     expect(data.annual.map(({ verifiedActualMt }) => verifiedActualMt)).toEqual([
-      29247.939, 28086.502, 88246.11, 111659.476, 76050.2388,
+      29247.939, 28086.502, 94075.08, 111659.476, 76050.2388,
     ]);
     expect(data.completionYearBaseline.map(({ verifiedActualMt }) => verifiedActualMt)).toEqual([
-      29247.939, 25985.162, 83509.36, 118497.566, 76050.2388,
+      29247.939, 25985.162, 89338.33, 118497.566, 76050.2388,
     ]);
     expect(data.annual.reduce((sum, row) => sum + row.verifiedActualMt, 0)).toBeCloseTo(
-      333290.2658,
+      339119.2358,
       4,
     );
     expect(
       data.completionYearBaseline.reduce((sum, row) => sum + row.verifiedActualMt, 0),
-    ).toBeCloseTo(333290.2658, 4);
+    ).toBeCloseTo(339119.2358, 4);
   });
 
   it('preserves the three reviewed cross-year allocations', () => {
