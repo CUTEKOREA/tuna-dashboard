@@ -143,7 +143,7 @@ export async function GET() {
         timestamp: new Date().toISOString(),
         isLive,
         source: isLive
-          ? `UN Comtrade HS${SHRIMP_HS} 2024 (LIVE) — CIF·점유율 실측, 관세·운임 정책/추정`
+          ? `UN Comtrade HS${SHRIMP_HS} 2024 — CIF·점유율 실측, 관세·운임 정책/추정`
           : "Sourcing Model (Fallback/Estimated)",
         methodology: "UN Comtrade 한국 수입(reporter 410, partner 4개국) CIF=수입액/순중량 실측 + KMI 전략품목 HHI 편중도. 관세율은 FTA/MFN 정책값, 운임은 추정.",
         sourcingMatrix,

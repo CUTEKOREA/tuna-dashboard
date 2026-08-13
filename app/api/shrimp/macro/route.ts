@@ -21,7 +21,7 @@ export async function GET() {
             isLive: true,
             dataAsOf: new Date().toISOString().slice(0, 10),
             staleDays: 0,
-            source: "ExchangeRate API (LIVE)",
+            source: "ExchangeRate API",
             metrics: {
               currency: "USD/KRW",
               rate: json.rates.KRW,
