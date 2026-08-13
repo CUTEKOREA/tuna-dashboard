@@ -4,7 +4,7 @@ import { getCachedData } from '../../../../lib/cache';
 export const revalidate = 86400;
 
 // Shrimp ESG & Labor Compliance Radar API (V2.0)
-// Uses: Open Supply Hub, OFAC SDN, ImportYeti
+// Static policy snapshot aligned with the KMI labor-compliance framework.
 // Aligned with: (일반 2025-04) 수산업 강제노동 규범화 대응체계 구축연구
 
 export async function GET() {

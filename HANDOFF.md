@@ -20,6 +20,16 @@
 > - **추가 수정(완료 조건 충족용)**: `app/api/galchi/tariffs/route.ts`, `app/api/landed-cost/route.ts`, `app/api/mackerel-ticker/route.ts`, `app/api/macro-environment/route.ts`, `app/api/risk-radar/route.ts`에서 사용되지 않는 `requireEnv` import 제거. `components/squid/BasisChips.tsx`에서 사용되지 않는 `SPECIES_KO` 매핑 제거 및 `mountedNow` effect 내 setState를 `useSyncExternalStore` 기반 클라이언트 전용 시각 훅으로 교체(서버 스냅샷 null로 하이드레이션 안전 유지).
 > - **검증 초점**: 모든 deps 추가는 logical expression을 `useMemo`로 감싸는 방식이라 객체 참조가 매 렌더 바뀌지 않음. fetch 로딩 상태는 state 파생으로 변경 없이 동일한 3상태(loading/error/success) 전이 유지. SIT·TAK·TelemetryBadge·cardDesc 텍스트와 차트 데이터는 건드리지 않음.
 
+> 🦐 **2026-08-13 23:44 KST — `/api/shrimp` 라우트 3종 LIVE·수치 정직화** [Codex]:
+> - **`emerging-markets`**: 버리던 Comtrade 응답을 HS 391390 국가·연도별 수출액으로 실제 반환한다. `partnerCode=0`·`partner2ISO=W00`·`motCode=0`·`customsCode=C00` 총계행만 남기고, 중복 reporter·period는 최대 총계 1건으로 제한했다. HS 391390이 키토산 전용 세번이 아니며 시장 규모로 읽을 수 없다는 한계를 응답에 명시했다. 출처 없는 시장규모·CAGR·점유율·잠재매출 블록은 제거했고, 키가 없거나 유효행이 없으면 `chitosanTrade:null`, `isLive:false`다.
+> - **`forecast`**: 존재하지 않던 전망 산식·계수·과거 월 예측·벤치마크를 전부 제거했다. FRED `DCOILWTICO`·`DEXKOUS`의 최신 유효 관측값과 같은 행의 관측일만 반환하며, 결측 `.`·비숫자는 건너뛴다. 한 계열만 성공해도 그 값만 채우고, 둘 다 실패하거나 키가 없으면 네 macro 값이 모두 `null`, `isLive:false`다.
+> - **`compliance`**: WTO·MFDS를 `optionalEnv`로 독립 호출하고 실제 반환 배열에 연결했다. 성공한 출처만 `source`에 나열하고 `sources.{wto,mfds}` 상태를 분리했다. MFDS 추정 적발률과 WTO 가상 알림 폴백은 제거해 무자료 시 `null`을 반환한다. 규제 레이더의 기존 보고서 기반 항목은 모두 `origin:'static'`과 `asOf`를 부여했다.
+> - 세 라우트의 모든 성공·무자료·500 응답에 최상위 `isLive`를 두고, 예외 로그는 오류 이름만 남긴다. 회귀 계약 `__tests__/shrimp-route-honesty.test.ts` 7건을 RED 7/7 → GREEN 7/7로 확인했다.
+> - 지정 금칙어의 기존 잔여 3건 때문에 전체 디렉터리 grep이 실패해 `sourcing-sim`·`macro`의 source 접미사와 `esg-radar`의 미호출 출처 주석만 동작 변화 없이 정리했다.
+> - **검증**: `npx tsc --noEmit` 통과, 전체 Vitest **201/201**, API 캐시 정책 **143/143**, Next 빌드 **98/98**, 번들 예산 통과, 지정 금칙어 grep 출력 0건. 프로덕션 배포는 하지 않았다.
+
+> 마지막 업데이트: 2026-08-14 00:40 KST
+
 > ✅ **2026-08-13 17:13 KST — 오징어 v5 교차검증 정정 (P4·P5)** [Claude Code 검수 + Codex 구현]:
 > - **P4 관측기간 4건**: `C_fta_import_trend` 가 발간연도(2026)를 관측연도로 쓰고 있었다. 원문 KMI 보고서는 2025년 자료(`’25년` 221회)라 화면 신선도가 `D+-140` 로 표시됐다 — 8개월 지난 자료가 방금 나온 것처럼 보였다. `B_landed_cost_calc`·`C_india_mpeda_exports`·`D_sprfmo_compliance` 도 함께 정정. **G-012 신설**: 관측종료는 `meta.built_at` 을 넘을 수 없다(부분 날짜는 기간 끝으로 해석). 기존 G-011 은 관측·발간·수집 셋의 상호 정합만 봐서 이 부류를 전혀 못 잡았다.
 > - **P5 아르헨티나 신호**: `데이터공백` → **`어기외`**(기준일 2026-05-28). 같은 아카이브의 CTMFM 결의 2/2026이 2026 어기 개시를, CFP 결의 6/2026의 `la última temporada` 과거형이 기준일 당시 종료를 뒷받침한다. `state_evidence`는 `legal_text_derived`·`subsequent_law_past_tense`로 기록했다. 주간공보 부재는 사유에 보존해 어획 실적 공백과 어기 상태를 분리했다. `A_argentina_illex_gap` 링크카드는 빈 상태를 유지한다.
@@ -30,8 +40,6 @@
 > - 검증: 검증기 self-test **20/20**, 빌더 자체검사 **20/20**, 프론트 **192/192**, `tsc` 0오류, 게이트 39위젯 위반 0, 빌더 재실행 산출물 동일(재현성).
 > - **G-013 신설**: KCS/HS 근거 위젯의 `basis.hs_codes` 누락, 승인 밖 HS, `taxon_note` 코드 누락을 차단한다. 자체시험에 승인 밖 코드·목록 누락·정상 목록을 넣었다. 발췌 본문 126건은 전후 동일하고 `translations/ko.json`은 변경하지 않았다.
 > - **검증**: 빌드 성공(39위젯), 검증기 self-test **20건**, 산출물 게이트 위반 0건, 빌더 **20/20**, Vitest **192/192**, TypeScript 통과. 다음 단계는 Claude Code의 게이트 판정이며 이 세션은 push·배포하지 않는다.
-
-> 마지막 업데이트: 2026-08-13 17:13 KST
 
 > 🦑 **2026-08-13 16:48 KST — `/squid` P4 관측기간·빌드일 상한 수정** [Codex]:
 > - **완료된 것**: `C_fta_import_trend`의 관측기간을 KMI 원문 실적기간 **2025년**으로 분리하고 발간월 `2026-01`·수집일 `2026-08-12`를 별도 기록했다. `B_landed_cost_calc`의 `2026-08 기준`은 월말까지 관측했다는 뜻이 되지 않도록 효력월 첫날 `2026-08-01`로 점 표기했다.
