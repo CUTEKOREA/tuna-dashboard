@@ -97,7 +97,7 @@ const TunaProteinBasketWidget = () => {
     };
   }, []);
 
-  const items = data?.items ?? [];
+  const items = useMemo(() => data?.items ?? [], [data?.items]);
   const isEmpty = !loading && !error && items.length === 0;
   const isLive = Boolean(data?.isLive) && items.length > 0;
 

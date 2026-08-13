@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server';
-import { requireEnv , optionalEnv } from '../../_shared/env';
+import { optionalEnv } from '../../_shared/env';
 
 export const dynamic = 'force-dynamic';
 

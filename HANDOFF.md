@@ -1,5 +1,17 @@
 # HANDOFF
 
+> 🧹 **2026-08-14 00:04 KST — ESLint 경고 소거** [OpenCode go / OC]:
+> - `npm run lint` → 0 errors, 1 warning(`components/ShrimpDashboard.tsx`) 달성. `npm run verify` 전체 통과(lint → typecheck → test **194/194** → api-cache **143/143** → build **98페이지** → bundle budget).
+> - 작업 지시서 기준 대상 10건 외에도, 완료 조건(0 errors, 1 warning)을 만족하기 위해 추가로 발견된 7건을 함께 처리. 총 17건 수정, `ShrimpDashboard.tsx` 1건은 제외 그대로 둠(다른 세션 재설계 중).
+> - **components/TunaInsiderSignalWidget.tsx**: effect 시작의 `setLoading(true)`/`setError(false)`를 제거하고, 비동기 콜백 내 `setError` + `setFetchedKey`로 로딩/에러 상태를 파생. `events`/`summary`를 `useMemo`로 감싸 `useMemo` deps가 매 렌더마다 바뀌지 않도록 안정화. 렌더 동작: retry 시 loading=true, fetch 완료 시 loading=false/error=false, 실패 시 error=true로 기존과 동일.
+> - **components/TunaExportRaceWidget.tsx**: 동일한 fetchedKey 상태 기반 로딩/에러 패턴 적용. `series`를 `useMemo`로 감싸 deps 안정화. 렌더 동작 동일.
+> - **components/AnimatedNumber.tsx**: `parsed`/`reduce`를 `useMemo`로 안정화. effect 내 동기 `setDisplay` 제거하고, rAF 콜백에서만 상태 업데이트. `!parsed || reduce`일 때는 prop `value`를 즉시 반환. `eslint-disable-line` 주석 제거. 렌더 동작: 카운트업 경로는 이전과 동일, 감소 모션/비파싱 fallback도 동일한 최종값 표시.
+> - **components/TunaProteinBasketWidget.tsx**: `items`를 `useMemo`로 감싸 하위 `useMemo` deps가 매 렌더마다 새 배열을 받지 않도록 함. 데이터·차트·SIT 텍스트 변경 없음.
+> - **components/TunaCorpusStudyInsights.tsx**: 사용되지 않는 map 인덱스 `i`를 제거하고 `d.name`을 React key로 사용. 두 map은 서로 다른 Bar 난 아래 sibling이므로 key 중복 위험 없음.
+> - **app/layout.tsx**: GA4 인라인 `<script>`를 `next/script`의 `<Script>` 컴포넌트로 교체. 동일한 gtag 초기화 코드 유지.
+> - **추가 수정(완료 조건 충족용)**: `app/api/galchi/tariffs/route.ts`, `app/api/landed-cost/route.ts`, `app/api/mackerel-ticker/route.ts`, `app/api/macro-environment/route.ts`, `app/api/risk-radar/route.ts`에서 사용되지 않는 `requireEnv` import 제거. `components/squid/BasisChips.tsx`에서 사용되지 않는 `SPECIES_KO` 매핑 제거 및 `mountedNow` effect 내 setState를 `useSyncExternalStore` 기반 클라이언트 전용 시각 훅으로 교체(서버 스냅샷 null로 하이드레이션 안전 유지).
+> - **검증 초점**: 모든 deps 추가는 logical expression을 `useMemo`로 감싸는 방식이라 객체 참조가 매 렌더 바뀌지 않음. fetch 로딩 상태는 state 파생으로 변경 없이 동일한 3상태(loading/error/success) 전이 유지. SIT·TAK·TelemetryBadge·cardDesc 텍스트와 차트 데이터는 건드리지 않음.
+
 > ✅ **2026-08-13 17:13 KST — 오징어 v5 교차검증 정정 (P4·P5)** [Claude Code 검수 + Codex 구현]:
 > - **P4 관측기간 4건**: `C_fta_import_trend` 가 발간연도(2026)를 관측연도로 쓰고 있었다. 원문 KMI 보고서는 2025년 자료(`’25년` 221회)라 화면 신선도가 `D+-140` 로 표시됐다 — 8개월 지난 자료가 방금 나온 것처럼 보였다. `B_landed_cost_calc`·`C_india_mpeda_exports`·`D_sprfmo_compliance` 도 함께 정정. **G-012 신설**: 관측종료는 `meta.built_at` 을 넘을 수 없다(부분 날짜는 기간 끝으로 해석). 기존 G-011 은 관측·발간·수집 셋의 상호 정합만 봐서 이 부류를 전혀 못 잡았다.
 > - **P5 아르헨티나 신호**: `데이터공백` → **`어기외`**(기준일 2026-05-28). 같은 아카이브의 CTMFM 결의 2/2026이 2026 어기 개시를, CFP 결의 6/2026의 `la última temporada` 과거형이 기준일 당시 종료를 뒷받침한다. `state_evidence`는 `legal_text_derived`·`subsequent_law_past_tense`로 기록했다. 주간공보 부재는 사유에 보존해 어획 실적 공백과 어기 상태를 분리했다. `A_argentina_illex_gap` 링크카드는 빈 상태를 유지한다.

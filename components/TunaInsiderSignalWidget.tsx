@@ -76,14 +76,13 @@ const cellStyle: React.CSSProperties = {
 
 const TunaInsiderSignalWidget = () => {
   const [data, setData] = useState<ApiData | null>(null);
-  const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
   const [retryKey, setRetryKey] = useState(0);
+  const [fetchedKey, setFetchedKey] = useState<number | null>(null);
+  const loading = retryKey !== fetchedKey;
 
   useEffect(() => {
     let cancelled = false;
-    setLoading(true);
-    setError(false);
     fetch('/api/tuna/insider-signal')
       .then((res) => {
         if (!res.ok) throw new Error(`HTTP ${res.status}`);
@@ -91,13 +90,14 @@ const TunaInsiderSignalWidget = () => {
       })
       .then((json: ApiData) => {
         if (cancelled) return;
+        setError(false);
         setData(json);
-        setLoading(false);
+        setFetchedKey(retryKey);
       })
       .catch(() => {
         if (cancelled) return;
         setError(true);
-        setLoading(false);
+        setFetchedKey(retryKey);
       });
     return () => {
       cancelled = true;
@@ -105,8 +105,8 @@ const TunaInsiderSignalWidget = () => {
   }, [retryKey]);
 
   const isLive = data?.isLive === true;
-  const events = data?.events ?? [];
-  const summary = data?.summary ?? [];
+  const events = useMemo(() => data?.events ?? [], [data?.events]);
+  const summary = useMemo(() => data?.summary ?? [], [data?.summary]);
   const isEmpty = !loading && !error && isLive && events.length === 0;
   const syncDate = new Date().toISOString().slice(0, 10);
 

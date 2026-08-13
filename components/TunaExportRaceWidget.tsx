@@ -64,14 +64,13 @@ const RaceTooltip = ({ active, payload, label }: any) => {
 
 const TunaExportRaceWidget = () => {
   const [data, setData] = useState<RaceApiData | null>(null);
-  const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
   const [retryKey, setRetryKey] = useState(0);
+  const [fetchedKey, setFetchedKey] = useState<number | null>(null);
+  const loading = retryKey !== fetchedKey;
 
   useEffect(() => {
     let cancelled = false;
-    setLoading(true);
-    setError(false);
     fetch('/api/tuna/comtrade-race')
       .then((res) => {
         if (!res.ok) throw new Error(`HTTP ${res.status}`);
@@ -79,20 +78,21 @@ const TunaExportRaceWidget = () => {
       })
       .then((json: RaceApiData) => {
         if (cancelled) return;
+        setError(false);
         setData(json);
-        setLoading(false);
+        setFetchedKey(retryKey);
       })
       .catch(() => {
         if (cancelled) return;
         setError(true);
-        setLoading(false);
+        setFetchedKey(retryKey);
       });
     return () => {
       cancelled = true;
     };
   }, [retryKey]);
 
-  const series = data?.series ?? [];
+  const series = useMemo(() => data?.series ?? [], [data?.series]);
   const isEmpty = !loading && !error && series.length === 0;
 
   // 차트용 평탄화: { year, thailand: 40.3, ..., __row } (share %)

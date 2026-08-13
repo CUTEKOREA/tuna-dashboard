@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server';
 import { HS_CODES } from '../_shared/hs-codes';
-import { requireEnv , optionalEnv } from '../_shared/env';
+import { optionalEnv } from '../_shared/env';
 
 /**
  * 고등어 실시간 Intelligence Ticker — 통합 BFF

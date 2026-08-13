@@ -6,7 +6,7 @@
  * 숫자 부분만 0→목표로 rAF 카운트업. 접두·접미·소수자리·콤마 보존.
  * prefers-reduced-motion 시 애니메이션 생략(즉시 최종값) — 모션 a11y 준수.
  */
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useMemo, useRef, useState } from 'react';
 
 type Parsed = { prefix: string; num: number; decimals: number; hasComma: boolean; suffix: string } | null;
 
@@ -39,16 +39,16 @@ export default function AnimatedNumber({
   value: string;
   durationMs?: number;
 }) {
-  const parsed = parse(value);
+  const parsed = useMemo(() => parse(value), [value]);
+  const reduce = useMemo(
+    () => typeof window !== 'undefined' && window.matchMedia?.('(prefers-reduced-motion: reduce)').matches,
+    []
+  );
   const [display, setDisplay] = useState<string>(value);
   const rafRef = useRef<number | null>(null);
 
   useEffect(() => {
-    if (!parsed) { setDisplay(value); return; }
-
-    const reduce = typeof window !== 'undefined'
-      && window.matchMedia?.('(prefers-reduced-motion: reduce)').matches;
-    if (reduce) { setDisplay(value); return; }
+    if (!parsed || reduce) return;
 
     let startTs: number | null = null;
     const target = parsed.num;
@@ -61,8 +61,8 @@ export default function AnimatedNumber({
     };
     rafRef.current = requestAnimationFrame(step);
     return () => { if (rafRef.current) cancelAnimationFrame(rafRef.current); };
-    // value 문자열 바뀔 때만 재실행
-  }, [value, durationMs]); // eslint-disable-line react-hooks/exhaustive-deps
+  }, [value, durationMs, parsed, reduce]);
 
+  if (!parsed || reduce) return <span>{value}</span>;
   return <span>{display}</span>;
 }

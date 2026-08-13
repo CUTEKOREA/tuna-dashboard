@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
+import Script from "next/script";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -163,18 +164,17 @@ export default function RootLayout({
         {/* Naver Search Advisor */}
         <meta name="naver-site-verification" content="6f739241c5a353219ffd1b90d90ffbcbc478e89f" />
         {/* GA4 */}
-        <script
+        <Script
           async
           src="https://www.googletagmanager.com/gtag/js?id=G-YYK3VGG39D"
+          strategy="afterInteractive"
         />
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `window.dataLayer = window.dataLayer || [];
-              function gtag(){dataLayer.push(arguments);}
-              gtag('js', new Date());
-              gtag('config', 'G-YYK3VGG39D');`,
-          }}
-        />
+        <Script id="ga4-init" strategy="afterInteractive">
+          {`window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-YYK3VGG39D');`}
+        </Script>
         {/* Microsoft Clarity */}
         <script
           dangerouslySetInnerHTML={{
