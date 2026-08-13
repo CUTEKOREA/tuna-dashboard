@@ -239,6 +239,8 @@ def _stage_board(document: dict, spec: WidgetSpec) -> dict:
 
 
 def _landed_cost(spec: WidgetSpec) -> dict:
+    # "2026-08 기준"은 월 전체 관측이 아니라 수기 정책 상수의 효력월이다.
+    # 월말(08-31)까지 관측했다고 확장하지 않도록 효력월 첫날로 점 표기한다.
     return {
         "chartType": "card",
         "data": [],
@@ -250,9 +252,9 @@ def _landed_cost(spec: WidgetSpec) -> dict:
             "metrics": ["coverage"],
             "claim_type": "operational",
             "coverage_start": "2026-01",
-            "coverage_end": "2026-08",
-            "published_at": "2026-08",
-            "retrieved_at": "2026-08",
+            "coverage_end": "2026-08-01",
+            "published_at": "2026-08-12",
+            "retrieved_at": "2026-08-12",
         },
     }
 

@@ -2,5 +2,11 @@
   "widget_id": "C_india_mpeda_exports",
   "patterns": ["frozen squid.*(?:MT|million|crore)", "frozen cuttlefish.*(?:volume|value|percent|%)"],
   "require_numeric": true,
+  "basis": {
+    "coverage_start": "2025-04",
+    "coverage_end": "2026-03",
+    "published_at": "2026-06-01",
+    "retrieved_at": "2026-08-12"
+  },
   "max_items": 8
 }

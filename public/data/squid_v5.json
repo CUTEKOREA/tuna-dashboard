@@ -1,6 +1,6 @@
 {
   "meta": {
-    "built_at": "2026-08-13T15:35:39+09:00",
+    "built_at": "2026-08-13T16:46:53+09:00",
     "builder_version": "squid_build/1.1.0",
     "archive_snapshot": "squid archive @ 2026-08-12",
     "gate_version": "measurement_gate 2026-08-12",
@@ -3243,9 +3243,9 @@
         "fx_date": null,
         "nominal_real": "nominal",
         "coverage_start": "2026-01",
-        "coverage_end": "2026-08",
-        "published_at": "2026-08",
-        "retrieved_at": "2026-08",
+        "coverage_end": "2026-08-01",
+        "published_at": "2026-08-12",
+        "retrieved_at": "2026-08-12",
         "source_ids": [
           "SQ-TRD-KCS",
           "SQ-CLS-FAO-HS",
@@ -6948,9 +6948,9 @@
         "currency_converted": false,
         "fx_date": null,
         "nominal_real": "nominal",
-        "coverage_start": "2026-06",
-        "coverage_end": "2026-06",
-        "published_at": "2026-06",
+        "coverage_start": "2025-04",
+        "coverage_end": "2026-03",
+        "published_at": "2026-06-01",
         "retrieved_at": "2026-08-12",
         "source_ids": [
           "SQ-TRD-MPEDA",
@@ -7021,10 +7021,10 @@
         "currency_converted": false,
         "fx_date": null,
         "nominal_real": "nominal",
-        "coverage_start": "2026",
-        "coverage_end": "2026",
-        "published_at": "2026",
-        "retrieved_at": "2026",
+        "coverage_start": "2025",
+        "coverage_end": "2025",
+        "published_at": "2026-01",
+        "retrieved_at": "2026-08-12",
         "source_ids": [
           "SQ-TRD-KMI-FTA"
         ],
@@ -7324,9 +7324,9 @@
         "currency_converted": false,
         "fx_date": null,
         "nominal_real": "n/a",
-        "coverage_start": "2024",
-        "coverage_end": "2026-02-20",
-        "published_at": "2026-02-20",
+        "coverage_start": "2024-10-01",
+        "coverage_end": "2025-09-30",
+        "published_at": "2026-03-02",
         "retrieved_at": "2026-08-12",
         "source_ids": [
           "SQ-ESG-SPRFMO"

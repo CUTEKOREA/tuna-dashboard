@@ -1,6 +1,13 @@
 # HANDOFF
 
-> 마지막 업데이트: 2026-08-13 14:49 KST
+> 마지막 업데이트: 2026-08-13 16:48 KST
+
+> 🦑 **2026-08-13 16:48 KST — `/squid` P4 관측기간·빌드일 상한 수정** [Codex]:
+> - **완료된 것**: `C_fta_import_trend`의 관측기간을 KMI 원문 실적기간 **2025년**으로 분리하고 발간월 `2026-01`·수집일 `2026-08-12`를 별도 기록했다. `B_landed_cost_calc`의 `2026-08 기준`은 월말까지 관측했다는 뜻이 되지 않도록 효력월 첫날 `2026-08-01`로 점 표기했다.
+> - 같은 발간일→관측일 추론 경로를 전수 점검해 `C_india_mpeda_exports`를 FY 2025-26(`2025-04~2026-03`), `D_sprfmo_compliance`를 원문 명시기간 `2024-10-01~2025-09-30`으로 함께 정정했다. 원문 발췌 SHA-256은 전후 동일하고 `translations/ko.json`은 변경하지 않았다.
+> - `validate_squid_v5.py`에 **G-012**를 추가했다. `coverage_end`의 `YYYY`·`YYYY-MM`을 각각 연말·월말로 펼쳐 `meta.built_at`의 날짜를 넘으면 차단한다. 기존 산출물에서 정확히 P4 두 건을 검출한 뒤 재빌드 산출물은 위반 0건을 확인했다.
+> - **검증**: 빌드 성공(39위젯), validator self-test 17건, 산출물 validator 위반 0건, squid builder 20/20, Vitest 191/191, TypeScript 통과.
+> - **다음 단계**: Claude Code가 커밋을 게이트 판정하고 필요 시 배포한다. 이 세션은 push·배포하지 않는다.
 
 > 🚢 **2026-08-13 14:49 KST — `/logistics` TTA 냉동운반선 32주차 반영** [Hermes]:
 > - 원문 `Reefer ship movement for week 32nd.xlsx`의 내부 시트 `WEEK 32`와 기간 헤더를 직접 대조해 실제 보고기간을 **2026-08-07~08-13**으로 확정했다. 원문 SHA-256은 `d4ffd1306f66df858163376fad39f20bcb0c72dd6ea1bc4a85f17eafd430481b`다.

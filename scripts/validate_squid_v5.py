@@ -3,7 +3,7 @@
 
 Two layers:
   1. structural — JSON Schema (scripts/squid_v5.schema.json)
-  2. measurement gates G-001..G-011 from the squid archive
+  2. measurement gates G-001..G-011 from the squid archive, plus local G-012
      (00_오징어_관련자료/01_오징어_시장·가격/00_운영/measurement_gate.csv)
 
 Exit 0 = publishable. Non-zero = build must stop.
@@ -17,7 +17,7 @@ from __future__ import annotations
 import json
 import re
 import sys
-from datetime import date
+from datetime import date, datetime
 from pathlib import Path
 
 SCHEMA_PATH = Path(__file__).with_name("squid_v5.schema.json")
@@ -104,6 +104,16 @@ def check_gates(doc: dict) -> list[str]:
     errors: list[str] = []
     known_sources = {s["source_id"]: s for s in doc["sources"]}
     gate_ids = {g["gate_id"] for g in doc["gates"]}
+
+    built_at_value = doc["meta"]["built_at"]
+    try:
+        built_at = datetime.fromisoformat(built_at_value.replace("Z", "+00:00"))
+        if built_at.tzinfo is None or built_at.utcoffset() is None:
+            raise ValueError("시간대 누락")
+        built_on = built_at.date()
+    except (AttributeError, TypeError, ValueError) as exc:
+        errors.append(f"[G-012] meta.built_at 날짜 형식 불가: {built_at_value!r} ({exc})")
+        built_on = None
 
     for gid in (f"G-{n:03d}" for n in range(1, 12)):
         if gid not in gate_ids:
@@ -239,6 +249,12 @@ def check_gates(doc: dict) -> list[str]:
                   f"published_at({b['published_at']}) 보다 미래")
             if pub > got:
                 e(f"G-011 위반: published_at 이 retrieved_at 보다 미래")
+
+            # G-012 빌드시각 상한. YYYY와 YYYY-MM은 parse_edge(..., upper=True)가
+            # 각각 연말·월말로 펼치므로 아직 끝나지 않은 기간을 관측 완료로 못 낸다.
+            if built_on is not None and cov_e > built_on:
+                e(f"G-012 위반: coverage_end({b['coverage_end']}; 기간종료 {cov_e}) 가 "
+                  f"meta.built_at({built_at_value}) 보다 미래")
 
         if not b.get("archive_path"):
             e("archive_path 누락 — 원문 추적 불가")
@@ -382,6 +398,18 @@ def self_test() -> None:
     # G-011 관측종료가 발간일보다 미래
     fails(_mutate(base, B + ["coverage_end"], "2026-09-30"), "G-011")
 
+    # G-012 월 단위 관측종료를 월말로 펼치면 빌드일보다 미래
+    d = _mutate(base, B + ["coverage_end"], "2026-08")
+    d = _mutate(d, B + ["published_at"], "2026-08")
+    d = _mutate(d, B + ["retrieved_at"], "2026-08")
+    fails(d, "G-012")
+
+    # G-012 정확한 일자가 빌드일과 같으면 정상
+    d = _mutate(base, B + ["coverage_end"], "2026-08-13")
+    d = _mutate(d, B + ["published_at"], "2026-08-13")
+    d = _mutate(d, B + ["retrieved_at"], "2026-08-13")
+    assert validate(d) == [], validate(d)
+
     # L-09 LIVE 라벨
     fails(_mutate(base, ["meta", "telemetry"], "LIVE"), "SCHEMA")
 
@@ -396,7 +424,7 @@ def self_test() -> None:
     # 같은 데이터라도 card/table/checklist 는 정직한 표현이므로 통과해야 한다
     assert validate(_mutate(d, W + ["chartType"], "card")) == []
 
-    print("self-test OK — 15 케이스 통과")
+    print("self-test OK — 17 케이스 통과")
 
 
 def main(argv: list[str]) -> int:

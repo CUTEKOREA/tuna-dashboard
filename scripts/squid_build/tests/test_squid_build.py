@@ -23,7 +23,7 @@ from scripts.squid_build.spec import (  # noqa: E402
     DEFAULT_SPEC_PATH,
     load_spec,
 )
-from scripts.validate_squid_v5 import validate  # noqa: E402
+from scripts.validate_squid_v5 import parse_edge, validate  # noqa: E402
 
 
 def _read_csv(path: Path) -> list[dict[str, str]]:
@@ -141,6 +141,53 @@ def test_concentration_covers_every_observed_year() -> None:
 
     # 중국 편중이 실제로 심화된 구간이다 — 이 신호가 사라지면 집계가 깨진 것이다.
     assert rows[-1]["top1_share_pct"] > rows[0]["top1_share_pct"]
+
+
+def test_report_coverage_uses_observation_period_not_publication_date() -> None:
+    """Using a report's release date as its observation end must fail."""
+    document = build_document(
+        archive_root=DEFAULT_ARCHIVE_ROOT,
+        built_at=datetime(2026, 8, 13, 9, 0, tzinfo=ZoneInfo("Asia/Seoul")),
+    )
+
+    fta = document["widgets"]["C_fta_import_trend"]["basis"]
+    assert (fta["coverage_start"], fta["coverage_end"]) == ("2025", "2025")
+    assert fta["published_at"] == "2026-01"
+    assert fta["retrieved_at"] == "2026-08-12"
+
+    landed = document["widgets"]["B_landed_cost_calc"]["basis"]
+    assert landed["coverage_end"] == "2026-08-01"
+    assert landed["published_at"] == "2026-08-12"
+    assert landed["retrieved_at"] == "2026-08-12"
+
+    mpeda = document["widgets"]["C_india_mpeda_exports"]["basis"]
+    assert (mpeda["coverage_start"], mpeda["coverage_end"]) == (
+        "2025-04",
+        "2026-03",
+    )
+    assert mpeda["published_at"] == "2026-06-01"
+    assert mpeda["retrieved_at"] == "2026-08-12"
+
+    compliance = document["widgets"]["D_sprfmo_compliance"]["basis"]
+    assert (compliance["coverage_start"], compliance["coverage_end"]) == (
+        "2024-10-01",
+        "2025-09-30",
+    )
+    assert compliance["published_at"] == "2026-03-02"
+    assert compliance["retrieved_at"] == "2026-08-12"
+
+
+def test_every_coverage_end_is_on_or_before_build_day() -> None:
+    """A partial month or year that extends past built_at must fail."""
+    built_at = datetime(2026, 8, 13, 9, 0, tzinfo=ZoneInfo("Asia/Seoul"))
+    document = build_document(archive_root=DEFAULT_ARCHIVE_ROOT, built_at=built_at)
+    future = {
+        widget_id: basis["coverage_end"]
+        for widget_id, widget in document["widgets"].items()
+        if parse_edge((basis := widget["basis"])["coverage_end"], upper=True)
+        > built_at.date()
+    }
+    assert future == {}, future
 
 
 def test_translation_number_fidelity() -> None:
@@ -450,6 +497,8 @@ def main() -> None:
         test_kcs_2026_coverage_stops_at_may,
         test_comtrade_is_coverage_only,
         test_concentration_covers_every_observed_year,
+        test_report_coverage_uses_observation_period_not_publication_date,
+        test_every_coverage_end_is_on_or_before_build_day,
         test_translation_number_fidelity,
         test_hs_map_preserves_archive_rows,
         test_md_configs_cover_work_list_and_isolate_failures,
