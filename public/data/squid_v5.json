@@ -1,9 +1,9 @@
 {
   "meta": {
-    "built_at": "2026-08-13T16:46:53+09:00",
-    "builder_version": "squid_build/1.1.0",
+    "built_at": "2026-08-13T17:07:19+09:00",
+    "builder_version": "squid_build/1.2.0",
     "archive_snapshot": "squid archive @ 2026-08-12",
-    "gate_version": "measurement_gate 2026-08-12",
+    "gate_version": "measurement_gate 2026-08-12 + local G-012/G-013",
     "telemetry": "SYNCED"
   },
   "sources": [
@@ -709,14 +709,14 @@
         },
         {
           "origin": "아르헨티나 Illex",
-          "status": "데이터공백",
-          "as_of": null,
+          "status": "어기외",
+          "as_of": "2026-05-28",
           "evidence_widget": "A_argentina_illex_gap",
-          "reason": "2026 주간공보와 지정 PDF의 Markdown 쌍이 없음",
+          "reason": "후속 법령의 과거형 언급으로 어기 종료를 확인했으나 2026 주간공보 부재로 어획 실적은 미확인",
           "state_evidence": {
-            "archive_path": "00_오징어_관련자료/01_오징어_시장·가격/01_생산·자원/20260812-INIDEP-Cephalopod_Program.html;오징어자료/01_Argentina/INIDEP_Calamar_T2024_Informe_final.pdf",
-            "derivation": "unsupported_2026_gap",
-            "evidence_type": "data_gap"
+            "archive_path": "00_오징어_관련자료/01_오징어_시장·가격/02_쿼터·어장/20260812-ARG-CTMFM_Resolution_2_2026.html;00_오징어_관련자료/01_오징어_시장·가격/02_쿼터·어장/20260812-ARG-Resolution_6_2026.html",
+            "derivation": "subsequent_law_past_tense",
+            "evidence_type": "legal_text_derived"
           }
         },
         {
@@ -732,7 +732,7 @@
           }
         }
       ],
-      "methodology": "공식 중단공지는 관측 상태, SERNAPESCA 누적 포획은 관측보고 기반 활동, FIFD 어기중은 공개 일정 기반 파생으로 분리하고 근거 유형을 행마다 표시",
+      "methodology": "공식 중단공지는 관측 상태, SERNAPESCA 누적 포획은 관측보고 기반 활동, FIFD 어기중은 공개 일정 기반 파생, 아르헨티나 어기외는 후속 법령의 과거형 언급 기반 파생으로 분리하고 근거 유형을 행마다 표시",
       "basis": {
         "species": [
           "Todarodes pacificus",
@@ -753,7 +753,7 @@
         "currency_converted": false,
         "fx_date": null,
         "nominal_real": "n/a",
-        "coverage_start": "2026-07-24",
+        "coverage_start": "2026-05-28",
         "coverage_end": "2026-08-12",
         "published_at": "2026-08-12",
         "retrieved_at": "2026-08-12",
@@ -765,7 +765,7 @@
           "SQ-MGT-MOF-TAC"
         ],
         "source_grade": "A",
-        "archive_path": "00_오징어_관련자료/01_오징어_시장·가격/00_운영/monitoring_calendar.csv",
+        "archive_path": "00_오징어_관련자료/01_오징어_시장·가격/00_운영/monitoring_calendar.csv;00_오징어_관련자료/01_오징어_시장·가격/02_쿼터·어장/20260812-ARG-CTMFM_Resolution_2_2026.html;00_오징어_관련자료/01_오징어_시장·가격/02_쿼터·어장/20260812-ARG-Resolution_6_2026.html",
         "restrictions": [],
         "blocked_use": []
       }
@@ -1069,7 +1069,7 @@
       "title": "아르헨티나 Illex — 어기 타임라인 및 2026 데이터 공백",
       "chartType": "card",
       "data": [],
-      "methodology": "INIDEP 지정 PDF를 pdftotext -layout으로 재추출했으나 2024 어기 자료뿐이며, 프로그램 HTML에도 2026 주간공보가 없어 현재 어기 상태를 지원하지 못함",
+      "methodology": "INIDEP 지정 PDF를 pdftotext -layout으로 재추출했으나 2024 어기 자료뿐이며, 프로그램 HTML에도 2026 주간공보가 없어 2026 어획 실적을 확정하지 못함. 어기 상태는 신호판에서 별도 법령 근거로 파생",
       "basis": {
         "species": [
           "Illex argentinus"
@@ -3089,7 +3089,7 @@
           "unit_price_usd_mt": 3288.74
         }
       ],
-      "methodology": "KCS 상세행의 수입금액 합계를 수입중량 합계로 나눈 월별 가중 수입단가",
+      "methodology": "KCS HS 030742·030743·030749·160554 상세행의 수입금액 합계를 수입중량 합계로 나눈 월별 가중 수입단가",
       "basis": {
         "species": [
           "Todarodes pacificus",
@@ -3127,7 +3127,13 @@
           "squid-only 시장규모로 재명명",
           "2026-01~06 완결치 또는 squid-only로 표현"
         ],
-        "taxon_note": "HS 분류에 갑오징어가 포함될 수 있어 4종 오징어 단독 총계로 사용할 수 없다."
+        "taxon_note": "포함 HS: 030742·030743·030749·160554. 각 분류는 오징어와 갑오징어를 함께 포함한다.",
+        "hs_codes": [
+          "030742",
+          "030743",
+          "030749",
+          "160554"
+        ]
       },
       "xAxis": "month",
       "series": [
@@ -3213,6 +3219,12 @@
         "blocked_use": [
           "2026-01~06 완결치 또는 squid-only로 표현",
           "서로 다른 거래단계 가격 평균"
+        ],
+        "hs_codes": [
+          "030742",
+          "030743",
+          "030749",
+          "160554"
         ]
       }
     },
@@ -3261,7 +3273,14 @@
           "2026-01~06 완결치 또는 squid-only로 표현",
           "수기 관세율을 검증된 법정 세율로 재사용"
         ],
-        "taxon_note": "HS 분류에 갑오징어가 포함될 수 있어 4종 오징어 단독 총계로 사용할 수 없다."
+        "taxon_note": "포함 HS: 030741·030742·030743·030749·160554. 각 분류는 오징어와 갑오징어를 함께 포함한다.",
+        "hs_codes": [
+          "030741",
+          "030742",
+          "030743",
+          "030749",
+          "160554"
+        ]
       }
     },
     "B_species_price_ladder": {
@@ -4117,6 +4136,12 @@
         ],
         "blocked_use": [
           "2026-01~06 완결치 또는 squid-only로 표현"
+        ],
+        "hs_codes": [
+          "030742",
+          "030743",
+          "030749",
+          "160554"
         ]
       }
     },
@@ -4187,7 +4212,14 @@
         "blocked_use": [
           "squid-only 시장규모로 재명명"
         ],
-        "taxon_note": "HS 분류에 갑오징어가 포함될 수 있어 4종 오징어 단독 총계로 사용할 수 없다."
+        "taxon_note": "포함 HS: 030741·030742·030743·030749·160554. 각 분류는 오징어와 갑오징어를 함께 포함한다.",
+        "hs_codes": [
+          "030741",
+          "030742",
+          "030743",
+          "030749",
+          "160554"
+        ]
       },
       "xAxis": "stage",
       "series": [
@@ -4921,7 +4953,7 @@
           "import_kg": 4
         }
       ],
-      "methodology": "KCS HS10 상세행을 월·상대국별로 합산하며 총계행은 제외",
+      "methodology": "KCS HS 030742·030743·030749·160554의 HS10 상세행을 월·상대국별로 합산하며 총계행은 제외",
       "basis": {
         "species": [
           "Todarodes pacificus",
@@ -4959,7 +4991,13 @@
           "squid-only 시장규모로 재명명",
           "2026-01~06 완결치 또는 squid-only로 표현"
         ],
-        "taxon_note": "HS 분류에 갑오징어가 포함될 수 있어 4종 오징어 단독 총계로 사용할 수 없다."
+        "taxon_note": "포함 HS: 030742·030743·030749·160554. 각 분류는 오징어와 갑오징어를 함께 포함한다.",
+        "hs_codes": [
+          "030742",
+          "030743",
+          "030749",
+          "160554"
+        ]
       },
       "xAxis": "month",
       "series": [
@@ -4975,289 +5013,226 @@
       "data": [
         {
           "year": 2020,
-          "total_import_usd": 724384189,
-          "top1_share_pct": 38.8227,
-          "top3_share_pct": 67.4851,
-          "hhi": 2113.75,
+          "total_import_usd": 524666603,
+          "top1_share_pct": 36.1915,
+          "top3_share_pct": 74.5496,
+          "hhi": 2330.55,
           "origins": [
             {
               "country_code": "CN",
               "country": "중국",
-              "import_usd": 281225731,
-              "import_kg": 112831143,
-              "share_pct": 38.8227
+              "import_usd": 189884925,
+              "import_kg": 60852272,
+              "share_pct": 36.1915
             },
             {
               "country_code": "PE",
               "country": "페루",
               "import_usd": 147005771,
               "import_kg": 54225672,
-              "share_pct": 20.2939
+              "share_pct": 28.0189
             },
             {
               "country_code": "VN",
               "country": "베트남",
-              "import_usd": 60619982,
-              "import_kg": 6714380,
-              "share_pct": 8.3685
-            },
-            {
-              "country_code": "GB",
-              "country": "영국",
-              "import_usd": 49504163,
-              "import_kg": 4255209,
-              "share_pct": 6.834
+              "import_usd": 54246090,
+              "import_kg": 5207201,
+              "share_pct": 10.3392
             },
             {
               "country_code": "AR",
               "country": "아르헨티나",
-              "import_usd": 48440991,
-              "import_kg": 14055399,
-              "share_pct": 6.6872
+              "import_usd": 48426289,
+              "import_kg": 14050771,
+              "share_pct": 9.2299
             },
             {
               "country_code": "CL",
               "country": "칠레",
-              "import_usd": 29091627,
-              "import_kg": 13977722,
-              "share_pct": 4.016
-            },
-            {
-              "country_code": "IE",
-              "country": "아일랜드",
-              "import_usd": 16945938,
-              "import_kg": 1459493,
-              "share_pct": 2.3394
-            },
-            {
-              "country_code": "TR",
-              "country": "튀르키예",
-              "import_usd": 12996970,
-              "import_kg": 1795348,
-              "share_pct": 1.7942
+              "import_usd": 29091603,
+              "import_kg": 13977719,
+              "share_pct": 5.5448
             },
             {
               "country_code": "TH",
               "country": "태국",
-              "import_usd": 10218640,
-              "import_kg": 1412967,
-              "share_pct": 1.4107
+              "import_usd": 9509755,
+              "import_kg": 999577,
+              "share_pct": 1.8125
             },
             {
               "country_code": "NZ",
               "country": "뉴질랜드",
               "import_usd": 7653462,
               "import_kg": 1869507,
-              "share_pct": 1.0565
+              "share_pct": 1.4587
             },
             {
               "country_code": "TW",
               "country": "대만",
               "import_usd": 7111018,
               "import_kg": 1996153,
-              "share_pct": 0.9817
+              "share_pct": 1.3553
             },
             {
               "country_code": "ID",
               "country": "인도네시아",
-              "import_usd": 6933939,
-              "import_kg": 1429334,
-              "share_pct": 0.9572
+              "import_usd": 6683845,
+              "import_kg": 1301171,
+              "share_pct": 1.2739
             },
             {
               "country_code": "US",
               "country": "미국",
-              "import_usd": 6652933,
-              "import_kg": 2349794,
-              "share_pct": 0.9184
+              "import_usd": 6633496,
+              "import_kg": 2349267,
+              "share_pct": 1.2643
             },
             {
               "country_code": "UY",
               "country": "우루과이",
               "import_usd": 5792062,
               "import_kg": 2000635,
-              "share_pct": 0.7996
-            },
-            {
-              "country_code": "BG",
-              "country": "불가리아",
-              "import_usd": 5060695,
-              "import_kg": 601957,
-              "share_pct": 0.6986
+              "share_pct": 1.104
             },
             {
               "country_code": "ES",
               "country": "스페인",
-              "import_usd": 4614425,
-              "import_kg": 1311234,
-              "share_pct": 0.637
-            },
-            {
-              "country_code": "SN",
-              "country": "세네갈",
-              "import_usd": 3325616,
-              "import_kg": 1074852,
-              "share_pct": 0.4591
+              "import_usd": 4544022,
+              "import_kg": 1308870,
+              "share_pct": 0.8661
             },
             {
               "country_code": "RU",
               "country": "러시아 연방",
-              "import_usd": 3246659,
-              "import_kg": 1005823,
-              "share_pct": 0.4482
-            },
-            {
-              "country_code": "JP",
-              "country": "일본",
-              "import_usd": 2812742,
-              "import_kg": 507860,
-              "share_pct": 0.3883
-            },
-            {
-              "country_code": "CA",
-              "country": "캐나다",
-              "import_usd": 2677445,
-              "import_kg": 592609,
-              "share_pct": 0.3696
-            },
-            {
-              "country_code": "PH",
-              "country": "필리핀",
-              "import_usd": 2266799,
-              "import_kg": 253389,
-              "share_pct": 0.3129
-            },
-            {
-              "country_code": "MR",
-              "country": "모리타니",
-              "import_usd": 2179936,
-              "import_kg": 639384,
-              "share_pct": 0.3009
-            },
-            {
-              "country_code": "MX",
-              "country": "멕시코",
-              "import_usd": 1606207,
-              "import_kg": 333751,
-              "share_pct": 0.2217
+              "import_usd": 2097620,
+              "import_kg": 587713,
+              "share_pct": 0.3998
             },
             {
               "country_code": "MY",
               "country": "말레이시아",
-              "import_usd": 1437758,
-              "import_kg": 285672,
-              "share_pct": 0.1985
+              "import_usd": 1421174,
+              "import_kg": 279092,
+              "share_pct": 0.2709
             },
             {
-              "country_code": "UA",
-              "country": "우크라이나",
-              "import_usd": 1261147,
-              "import_kg": 286306,
-              "share_pct": 0.1741
+              "country_code": "CA",
+              "country": "캐나다",
+              "import_usd": 1419764,
+              "import_kg": 482731,
+              "share_pct": 0.2706
             },
             {
               "country_code": "SO",
               "country": "소말리아",
               "import_usd": 1247192,
               "import_kg": 350242,
-              "share_pct": 0.1722
+              "share_pct": 0.2377
             },
             {
-              "country_code": "RO",
-              "country": "루마니아",
-              "import_usd": 982110,
-              "import_kg": 132460,
-              "share_pct": 0.1356
-            },
-            {
-              "country_code": "NO",
-              "country": "노르웨이",
-              "import_usd": 554137,
-              "import_kg": 47724,
-              "share_pct": 0.0765
+              "country_code": "PH",
+              "country": "필리핀",
+              "import_usd": 618730,
+              "import_kg": 72708,
+              "share_pct": 0.1179
             },
             {
               "country_code": "IN",
               "country": "인도",
               "import_usd": 388844,
               "import_kg": 78316,
-              "share_pct": 0.0537
+              "share_pct": 0.0741
+            },
+            {
+              "country_code": "JP",
+              "country": "일본",
+              "import_usd": 352965,
+              "import_kg": 51319,
+              "share_pct": 0.0673
             },
             {
               "country_code": "MM",
               "country": "미얀마",
-              "import_usd": 197863,
-              "import_kg": 54665,
-              "share_pct": 0.0273
+              "import_usd": 168373,
+              "import_kg": 40654,
+              "share_pct": 0.0321
+            },
+            {
+              "country_code": "SN",
+              "country": "세네갈",
+              "import_usd": 81231,
+              "import_kg": 19168,
+              "share_pct": 0.0155
             },
             {
               "country_code": "PK",
               "country": "파키스탄",
               "import_usd": 65830,
               "import_kg": 25300,
-              "share_pct": 0.0091
+              "share_pct": 0.0125
             },
             {
               "country_code": "GN",
               "country": "기니",
               "import_usd": 53500,
               "import_kg": 27327,
-              "share_pct": 0.0074
+              "share_pct": 0.0102
             },
             {
               "country_code": "PG",
               "country": "파푸아 뉴기니",
               "import_usd": 53144,
               "import_kg": 17872,
-              "share_pct": 0.0073
+              "share_pct": 0.0101
             },
             {
               "country_code": "AE",
               "country": "아랍에미리트 연합",
               "import_usd": 38241,
               "import_kg": 14708,
-              "share_pct": 0.0053
-            },
-            {
-              "country_code": "VE",
-              "country": "베네주엘라",
-              "import_usd": 33324,
-              "import_kg": 6874,
-              "share_pct": 0.0046
+              "share_pct": 0.0073
             },
             {
               "country_code": "HK",
               "country": "홍콩",
               "import_usd": 30553,
               "import_kg": 18760,
-              "share_pct": 0.0042
-            },
-            {
-              "country_code": "GM",
-              "country": "감비아",
-              "import_usd": 23627,
-              "import_kg": 9680,
-              "share_pct": 0.0033
+              "share_pct": 0.0058
             },
             {
               "country_code": "KH",
               "country": "캄보디아",
               "import_usd": 18716,
               "import_kg": 1149,
-              "share_pct": 0.0026
+              "share_pct": 0.0036
             },
             {
-              "country_code": "AU",
-              "country": "호주",
-              "import_usd": 7503,
-              "import_kg": 204,
-              "share_pct": 0.001
+              "country_code": "MR",
+              "country": "모리타니",
+              "import_usd": 17472,
+              "import_kg": 5400,
+              "share_pct": 0.0033
+            },
+            {
+              "country_code": "VE",
+              "country": "베네주엘라",
+              "import_usd": 3386,
+              "import_kg": 545,
+              "share_pct": 0.0006
             },
             {
               "country_code": "MG",
               "country": "마다카스카르",
-              "import_usd": 3220,
-              "import_kg": 755,
+              "import_usd": 2220,
+              "import_kg": 555,
+              "share_pct": 0.0004
+            },
+            {
+              "country_code": "IE",
+              "country": "아일랜드",
+              "import_usd": 2065,
+              "import_kg": 195,
               "share_pct": 0.0004
             },
             {
@@ -5268,17 +5243,10 @@
               "share_pct": 0.0002
             },
             {
-              "country_code": "IT",
-              "country": "이탈리아",
-              "import_usd": 895,
-              "import_kg": 17,
-              "share_pct": 0.0001
-            },
-            {
               "country_code": "SG",
               "country": "싱가포르",
-              "import_usd": 718,
-              "import_kg": 59,
+              "import_usd": 626,
+              "import_kg": 46,
               "share_pct": 0.0001
             },
             {
@@ -5286,6 +5254,13 @@
               "country": "탄자니아",
               "import_usd": 580,
               "import_kg": 18,
+              "share_pct": 0.0001
+            },
+            {
+              "country_code": "NO",
+              "country": "노르웨이",
+              "import_usd": 485,
+              "import_kg": 35,
               "share_pct": 0.0001
             },
             {
@@ -5301,660 +5276,527 @@
               "import_usd": 34,
               "import_kg": 5,
               "share_pct": 0
+            },
+            {
+              "country_code": "AU",
+              "country": "호주",
+              "import_usd": 18,
+              "import_kg": 4,
+              "share_pct": 0
             }
           ]
         },
         {
           "year": 2021,
-          "total_import_usd": 609776853,
-          "top1_share_pct": 40.2077,
-          "top3_share_pct": 68.2582,
-          "hhi": 2159.61,
+          "total_import_usd": 408596870,
+          "top1_share_pct": 36.0844,
+          "top3_share_pct": 75.9975,
+          "hhi": 2304.72,
           "origins": [
             {
               "country_code": "CN",
               "country": "중국",
-              "import_usd": 245177000,
-              "import_kg": 99188805,
-              "share_pct": 40.2077
+              "import_usd": 147439838,
+              "import_kg": 50167848,
+              "share_pct": 36.0844
             },
             {
               "country_code": "PE",
               "country": "페루",
               "import_usd": 114383331,
               "import_kg": 50963034,
-              "share_pct": 18.7582
+              "share_pct": 27.9942
             },
             {
               "country_code": "VN",
               "country": "베트남",
-              "import_usd": 56662595,
-              "import_kg": 6610038,
-              "share_pct": 9.2923
-            },
-            {
-              "country_code": "GB",
-              "country": "영국",
-              "import_usd": 46414509,
-              "import_kg": 3887501,
-              "share_pct": 7.6117
+              "import_usd": 48700140,
+              "import_kg": 4887183,
+              "share_pct": 11.9189
             },
             {
               "country_code": "AR",
               "country": "아르헨티나",
               "import_usd": 25069825,
               "import_kg": 8720797,
-              "share_pct": 4.1113
+              "share_pct": 6.1356
             },
             {
               "country_code": "CL",
               "country": "칠레",
-              "import_usd": 15365012,
-              "import_kg": 11097436,
-              "share_pct": 2.5198
-            },
-            {
-              "country_code": "IE",
-              "country": "아일랜드",
-              "import_usd": 13364191,
-              "import_kg": 1175828,
-              "share_pct": 2.1917
-            },
-            {
-              "country_code": "RU",
-              "country": "러시아 연방",
-              "import_usd": 11686815,
-              "import_kg": 4463000,
-              "share_pct": 1.9166
-            },
-            {
-              "country_code": "TR",
-              "country": "튀르키예",
-              "import_usd": 11383020,
-              "import_kg": 1683463,
-              "share_pct": 1.8668
+              "import_usd": 15364777,
+              "import_kg": 11097421,
+              "share_pct": 3.7604
             },
             {
               "country_code": "TH",
               "country": "태국",
-              "import_usd": 10686565,
-              "import_kg": 1416866,
-              "share_pct": 1.7525
+              "import_usd": 9609667,
+              "import_kg": 1022011,
+              "share_pct": 2.3519
+            },
+            {
+              "country_code": "RU",
+              "country": "러시아 연방",
+              "import_usd": 9440218,
+              "import_kg": 3728395,
+              "share_pct": 2.3104
             },
             {
               "country_code": "NZ",
               "country": "뉴질랜드",
               "import_usd": 8890240,
               "import_kg": 2398289,
-              "share_pct": 1.4579
+              "share_pct": 2.1758
             },
             {
               "country_code": "US",
               "country": "미국",
-              "import_usd": 8421288,
-              "import_kg": 2727459,
-              "share_pct": 1.381
+              "import_usd": 8387539,
+              "import_kg": 2726540,
+              "share_pct": 2.0528
             },
             {
               "country_code": "ID",
               "country": "인도네시아",
-              "import_usd": 7215129,
-              "import_kg": 1260597,
-              "share_pct": 1.1832
-            },
-            {
-              "country_code": "BG",
-              "country": "불가리아",
-              "import_usd": 4786528,
-              "import_kg": 600586,
-              "share_pct": 0.785
+              "import_usd": 6979851,
+              "import_kg": 1138709,
+              "share_pct": 1.7082
             },
             {
               "country_code": "TW",
               "country": "대만",
-              "import_usd": 4382189,
-              "import_kg": 1565224,
-              "share_pct": 0.7187
-            },
-            {
-              "country_code": "CA",
-              "country": "캐나다",
-              "import_usd": 4274251,
-              "import_kg": 986830,
-              "share_pct": 0.701
+              "import_usd": 4376957,
+              "import_kg": 1564592,
+              "share_pct": 1.0712
             },
             {
               "country_code": "MY",
               "country": "말레이시아",
               "import_usd": 3927938,
               "import_kg": 720587,
-              "share_pct": 0.6442
+              "share_pct": 0.9613
             },
             {
-              "country_code": "SN",
-              "country": "세네갈",
-              "import_usd": 3597363,
-              "import_kg": 1192752,
-              "share_pct": 0.5899
-            },
-            {
-              "country_code": "UA",
-              "country": "우크라이나",
-              "import_usd": 3036196,
-              "import_kg": 689459,
-              "share_pct": 0.4979
+              "country_code": "CA",
+              "country": "캐나다",
+              "import_usd": 1663227,
+              "import_kg": 733956,
+              "share_pct": 0.4071
             },
             {
               "country_code": "MX",
               "country": "멕시코",
-              "import_usd": 2386951,
-              "import_kg": 720794,
-              "share_pct": 0.3914
-            },
-            {
-              "country_code": "JP",
-              "country": "일본",
-              "import_usd": 2020059,
-              "import_kg": 303843,
-              "share_pct": 0.3313
-            },
-            {
-              "country_code": "PH",
-              "country": "필리핀",
-              "import_usd": 1876188,
-              "import_kg": 194627,
-              "share_pct": 0.3077
-            },
-            {
-              "country_code": "MR",
-              "country": "모리타니",
-              "import_usd": 1273591,
-              "import_kg": 388234,
-              "share_pct": 0.2089
+              "import_usd": 956028,
+              "import_kg": 374711,
+              "share_pct": 0.234
             },
             {
               "country_code": "SO",
               "country": "소말리아",
               "import_usd": 702281,
               "import_kg": 206440,
-              "share_pct": 0.1152
+              "share_pct": 0.1719
             },
             {
               "country_code": "UY",
               "country": "우루과이",
               "import_usd": 515380,
               "import_kg": 173641,
-              "share_pct": 0.0845
+              "share_pct": 0.1261
             },
             {
               "country_code": "IN",
               "country": "인도",
               "import_usd": 492697,
               "import_kg": 87380,
-              "share_pct": 0.0808
+              "share_pct": 0.1206
             },
             {
-              "country_code": "RO",
-              "country": "루마니아",
-              "import_usd": 468150,
-              "import_kg": 68100,
-              "share_pct": 0.0768
+              "country_code": "PH",
+              "country": "필리핀",
+              "import_usd": 419825,
+              "import_kg": 45474,
+              "share_pct": 0.1027
             },
             {
-              "country_code": "ES",
-              "country": "스페인",
-              "import_usd": 442716,
-              "import_kg": 92035,
-              "share_pct": 0.0726
+              "country_code": "JP",
+              "country": "일본",
+              "import_usd": 337034,
+              "import_kg": 12640,
+              "share_pct": 0.0825
             },
             {
               "country_code": "GN",
               "country": "기니",
               "import_usd": 331058,
               "import_kg": 137054,
-              "share_pct": 0.0543
+              "share_pct": 0.081
+            },
+            {
+              "country_code": "ES",
+              "country": "스페인",
+              "import_usd": 234444,
+              "import_kg": 86110,
+              "share_pct": 0.0574
             },
             {
               "country_code": "MA",
               "country": "모로코",
               "import_usd": 182289,
               "import_kg": 48510,
-              "share_pct": 0.0299
+              "share_pct": 0.0446
             },
             {
               "country_code": "PK",
               "country": "파키스탄",
-              "import_usd": 171825,
-              "import_kg": 109668,
-              "share_pct": 0.0282
-            },
-            {
-              "country_code": "VE",
-              "country": "베네주엘라",
-              "import_usd": 84061,
-              "import_kg": 13985,
-              "share_pct": 0.0138
+              "import_usd": 108096,
+              "import_kg": 52858,
+              "share_pct": 0.0265
             },
             {
               "country_code": "MM",
               "country": "미얀마",
-              "import_usd": 39437,
-              "import_kg": 7480,
-              "share_pct": 0.0065
-            },
-            {
-              "country_code": "GM",
-              "country": "감비아",
-              "import_usd": 14108,
-              "import_kg": 3780,
-              "share_pct": 0.0023
+              "import_usd": 38317,
+              "import_kg": 6765,
+              "share_pct": 0.0094
             },
             {
               "country_code": "MG",
               "country": "마다카스카르",
               "import_usd": 11044,
               "import_kg": 3625,
-              "share_pct": 0.0018
+              "share_pct": 0.0027
             },
             {
               "country_code": "OM",
               "country": "오만",
               "import_usd": 8349,
               "import_kg": 1776,
-              "share_pct": 0.0014
+              "share_pct": 0.002
             },
             {
               "country_code": "AE",
               "country": "아랍에미리트 연합",
               "import_usd": 7581,
               "import_kg": 1995,
-              "share_pct": 0.0012
+              "share_pct": 0.0019
             },
             {
               "country_code": "PG",
               "country": "파푸아 뉴기니",
               "import_usd": 6176,
               "import_kg": 3931,
-              "share_pct": 0.001
-            },
-            {
-              "country_code": "AU",
-              "country": "호주",
-              "import_usd": 5966,
-              "import_kg": 151,
-              "share_pct": 0.001
+              "share_pct": 0.0015
             },
             {
               "country_code": "ZA",
               "country": "남아프리카공화국",
               "import_usd": 5121,
               "import_kg": 599,
-              "share_pct": 0.0008
+              "share_pct": 0.0013
             },
             {
               "country_code": "PT",
               "country": "포루투갈",
               "import_usd": 4943,
               "import_kg": 311,
-              "share_pct": 0.0008
+              "share_pct": 0.0012
             },
             {
               "country_code": "SG",
               "country": "싱가포르",
-              "import_usd": 1145,
-              "import_kg": 100,
-              "share_pct": 0.0002
+              "import_usd": 1132,
+              "import_kg": 98,
+              "share_pct": 0.0003
             },
             {
               "country_code": "GW",
               "country": "기네비소",
               "import_usd": 1110,
               "import_kg": 325,
-              "share_pct": 0.0002
+              "share_pct": 0.0003
+            },
+            {
+              "country_code": "MR",
+              "country": "모리타니",
+              "import_usd": 218,
+              "import_kg": 50,
+              "share_pct": 0.0001
+            },
+            {
+              "country_code": "SN",
+              "country": "세네갈",
+              "import_usd": 90,
+              "import_kg": 90,
+              "share_pct": 0
             },
             {
               "country_code": "FR",
               "country": "프랑스",
-              "import_usd": 244,
-              "import_kg": 10,
+              "import_usd": 62,
+              "import_kg": 1,
               "share_pct": 0
             },
             {
-              "country_code": "HK",
-              "country": "홍콩",
-              "import_usd": 186,
-              "import_kg": 2,
+              "country_code": "AU",
+              "country": "호주",
+              "import_usd": 34,
+              "import_kg": 1,
               "share_pct": 0
             },
             {
               "country_code": "IT",
               "country": "이탈리아",
-              "import_usd": 93,
-              "import_kg": 24,
-              "share_pct": 0
-            },
-            {
-              "country_code": "NO",
-              "country": "노르웨이",
-              "import_usd": 80,
-              "import_kg": 12,
-              "share_pct": 0
-            },
-            {
-              "country_code": "NL",
-              "country": "네덜란드",
-              "import_usd": 39,
+              "import_usd": 12,
               "import_kg": 1,
+              "share_pct": 0
+            },
+            {
+              "country_code": "HK",
+              "country": "홍콩",
+              "import_usd": 1,
+              "import_kg": 0,
               "share_pct": 0
             }
           ]
         },
         {
           "year": 2022,
-          "total_import_usd": 658771106,
-          "top1_share_pct": 41.1336,
-          "top3_share_pct": 72.29,
-          "hhi": 2278.92,
+          "total_import_usd": 462680864,
+          "top1_share_pct": 36.704,
+          "top3_share_pct": 79.1519,
+          "hhi": 2393.73,
           "origins": [
             {
               "country_code": "CN",
               "country": "중국",
-              "import_usd": 270976125,
-              "import_kg": 106049060,
-              "share_pct": 41.1336
+              "import_usd": 169822222,
+              "import_kg": 60120433,
+              "share_pct": 36.704
             },
             {
               "country_code": "PE",
               "country": "페루",
               "import_usd": 126959163,
               "import_kg": 42640942,
-              "share_pct": 19.2721
+              "share_pct": 27.4399
             },
             {
               "country_code": "VN",
               "country": "베트남",
-              "import_usd": 78290571,
-              "import_kg": 7638388,
-              "share_pct": 11.8843
-            },
-            {
-              "country_code": "GB",
-              "country": "영국",
-              "import_usd": 37291084,
-              "import_kg": 3581652,
-              "share_pct": 5.6607
+              "import_usd": 69439200,
+              "import_kg": 6021475,
+              "share_pct": 15.008
             },
             {
               "country_code": "CL",
               "country": "칠레",
               "import_usd": 27976015,
               "import_kg": 14921479,
-              "share_pct": 4.2467
+              "share_pct": 6.0465
             },
             {
               "country_code": "AR",
               "country": "아르헨티나",
               "import_usd": 18002477,
               "import_kg": 5703363,
-              "share_pct": 2.7327
+              "share_pct": 3.8909
             },
             {
               "country_code": "ES",
               "country": "스페인",
-              "import_usd": 14263594,
-              "import_kg": 4149993,
-              "share_pct": 2.1652
-            },
-            {
-              "country_code": "RU",
-              "country": "러시아 연방",
-              "import_usd": 9507291,
-              "import_kg": 4045053,
-              "share_pct": 1.4432
-            },
-            {
-              "country_code": "IE",
-              "country": "아일랜드",
-              "import_usd": 9408203,
-              "import_kg": 987779,
-              "share_pct": 1.4281
-            },
-            {
-              "country_code": "TR",
-              "country": "튀르키예",
-              "import_usd": 8761265,
-              "import_kg": 1057430,
-              "share_pct": 1.3299
+              "import_usd": 13796003,
+              "import_kg": 4135725,
+              "share_pct": 2.9818
             },
             {
               "country_code": "TH",
               "country": "태국",
-              "import_usd": 8568253,
-              "import_kg": 1439331,
-              "share_pct": 1.3006
+              "import_usd": 7273289,
+              "import_kg": 769991,
+              "share_pct": 1.572
             },
             {
               "country_code": "ID",
               "country": "인도네시아",
-              "import_usd": 7161106,
-              "import_kg": 1160087,
-              "share_pct": 1.087
+              "import_usd": 6949647,
+              "import_kg": 1065590,
+              "share_pct": 1.502
             },
             {
-              "country_code": "SN",
-              "country": "세네갈",
-              "import_usd": 6132951,
-              "import_kg": 1557492,
-              "share_pct": 0.931
-            },
-            {
-              "country_code": "BG",
-              "country": "불가리아",
-              "import_usd": 4348407,
-              "import_kg": 467957,
-              "share_pct": 0.6601
-            },
-            {
-              "country_code": "MX",
-              "country": "멕시코",
-              "import_usd": 4189012,
-              "import_kg": 902328,
-              "share_pct": 0.6359
-            },
-            {
-              "country_code": "CA",
-              "country": "캐나다",
-              "import_usd": 3819460,
-              "import_kg": 1076401,
-              "share_pct": 0.5798
+              "country_code": "RU",
+              "country": "러시아 연방",
+              "import_usd": 5072199,
+              "import_kg": 3305221,
+              "share_pct": 1.0963
             },
             {
               "country_code": "US",
               "country": "미국",
-              "import_usd": 3601222,
-              "import_kg": 1336461,
-              "share_pct": 0.5467
-            },
-            {
-              "country_code": "JP",
-              "country": "일본",
-              "import_usd": 3496341,
-              "import_kg": 605231,
-              "share_pct": 0.5307
+              "import_usd": 3583906,
+              "import_kg": 1336158,
+              "share_pct": 0.7746
             },
             {
               "country_code": "TW",
               "country": "대만",
               "import_usd": 2991016,
               "import_kg": 816427,
-              "share_pct": 0.454
+              "share_pct": 0.6465
             },
             {
               "country_code": "NZ",
               "country": "뉴질랜드",
               "import_usd": 2430107,
               "import_kg": 540912,
-              "share_pct": 0.3689
+              "share_pct": 0.5252
             },
             {
               "country_code": "MY",
               "country": "말레이시아",
               "import_usd": 1983176,
               "import_kg": 277850,
-              "share_pct": 0.301
+              "share_pct": 0.4286
             },
             {
-              "country_code": "PH",
-              "country": "필리핀",
-              "import_usd": 1743916,
-              "import_kg": 143974,
-              "share_pct": 0.2647
+              "country_code": "CA",
+              "country": "캐나다",
+              "import_usd": 1879562,
+              "import_kg": 916971,
+              "share_pct": 0.4062
             },
             {
               "country_code": "VU",
               "country": "바누아투",
               "import_usd": 1458196,
               "import_kg": 502945,
-              "share_pct": 0.2214
-            },
-            {
-              "country_code": "MR",
-              "country": "모리타니",
-              "import_usd": 1414993,
-              "import_kg": 508064,
-              "share_pct": 0.2148
-            },
-            {
-              "country_code": "UA",
-              "country": "우크라이나",
-              "import_usd": 1337890,
-              "import_kg": 313630,
-              "share_pct": 0.2031
+              "share_pct": 0.3152
             },
             {
               "country_code": "SO",
               "country": "소말리아",
               "import_usd": 1116986,
               "import_kg": 317194,
-              "share_pct": 0.1696
+              "share_pct": 0.2414
             },
             {
-              "country_code": "RO",
-              "country": "루마니아",
-              "import_usd": 551012,
-              "import_kg": 65860,
-              "share_pct": 0.0836
+              "country_code": "PH",
+              "country": "필리핀",
+              "import_usd": 777336,
+              "import_kg": 65130,
+              "share_pct": 0.168
             },
             {
               "country_code": "IN",
               "country": "인도",
               "import_usd": 278277,
               "import_kg": 47203,
-              "share_pct": 0.0422
+              "share_pct": 0.0601
             },
             {
-              "country_code": "MM",
-              "country": "미얀마",
-              "import_usd": 137008,
-              "import_kg": 38180,
-              "share_pct": 0.0208
+              "country_code": "MR",
+              "country": "모리타니",
+              "import_usd": 262206,
+              "import_kg": 227447,
+              "share_pct": 0.0567
             },
             {
-              "country_code": "GM",
-              "country": "감비아",
-              "import_usd": 112633,
-              "import_kg": 28530,
-              "share_pct": 0.0171
-            },
-            {
-              "country_code": "PK",
-              "country": "파키스탄",
-              "import_usd": 102096,
-              "import_kg": 54416,
-              "share_pct": 0.0155
-            },
-            {
-              "country_code": "NO",
-              "country": "노르웨이",
-              "import_usd": 83184,
-              "import_kg": 10398,
-              "share_pct": 0.0126
+              "country_code": "JP",
+              "country": "일본",
+              "import_usd": 228859,
+              "import_kg": 8914,
+              "share_pct": 0.0495
             },
             {
               "country_code": "GN",
               "country": "기니",
               "import_usd": 77612,
               "import_kg": 20240,
-              "share_pct": 0.0118
+              "share_pct": 0.0168
+            },
+            {
+              "country_code": "MM",
+              "country": "미얀마",
+              "import_usd": 73961,
+              "import_kg": 11447,
+              "share_pct": 0.016
             },
             {
               "country_code": "UY",
               "country": "우루과이",
               "import_usd": 67054,
               "import_kg": 23050,
-              "share_pct": 0.0102
+              "share_pct": 0.0145
             },
             {
               "country_code": "AO",
               "country": "앙골라",
               "import_usd": 35578,
               "import_kg": 27005,
-              "share_pct": 0.0054
+              "share_pct": 0.0077
             },
             {
               "country_code": "PG",
               "country": "파푸아 뉴기니",
               "import_usd": 35078,
               "import_kg": 23095,
-              "share_pct": 0.0053
+              "share_pct": 0.0076
+            },
+            {
+              "country_code": "SN",
+              "country": "세네갈",
+              "import_usd": 31168,
+              "import_kg": 38960,
+              "share_pct": 0.0067
             },
             {
               "country_code": "EC",
               "country": "에쿠아도르",
               "import_usd": 30256,
               "import_kg": 13262,
-              "share_pct": 0.0046
+              "share_pct": 0.0065
             },
             {
               "country_code": "PT",
               "country": "포루투갈",
               "import_usd": 24898,
               "import_kg": 1670,
-              "share_pct": 0.0038
+              "share_pct": 0.0054
+            },
+            {
+              "country_code": "MX",
+              "country": "멕시코",
+              "import_usd": 17990,
+              "import_kg": 7000,
+              "share_pct": 0.0039
             },
             {
               "country_code": "FR",
               "country": "프랑스",
               "import_usd": 5399,
               "import_kg": 703,
-              "share_pct": 0.0008
+              "share_pct": 0.0012
             },
             {
               "country_code": "GW",
               "country": "기네비소",
               "import_usd": 1455,
               "import_kg": 377,
-              "share_pct": 0.0002
+              "share_pct": 0.0003
             },
             {
               "country_code": "MA",
               "country": "모로코",
               "import_usd": 247,
               "import_kg": 21,
-              "share_pct": 0
+              "share_pct": 0.0001
             },
             {
               "country_code": "MG",
               "country": "마다카스카르",
               "import_usd": 200,
               "import_kg": 50,
-              "share_pct": 0
-            },
-            {
-              "country_code": "IT",
-              "country": "이탈리아",
-              "import_usd": 173,
-              "import_kg": 11,
               "share_pct": 0
             },
             {
@@ -5989,318 +5831,262 @@
         },
         {
           "year": 2023,
-          "total_import_usd": 726069472,
-          "top1_share_pct": 41.6975,
-          "top3_share_pct": 74.786,
-          "hhi": 2408.1,
+          "total_import_usd": 546599008,
+          "top1_share_pct": 37.8534,
+          "top3_share_pct": 79.7848,
+          "hhi": 2524.39,
           "origins": [
             {
               "country_code": "CN",
               "country": "중국",
-              "import_usd": 302753046,
-              "import_kg": 105504980,
-              "share_pct": 41.6975
+              "import_usd": 206906252,
+              "import_kg": 60255243,
+              "share_pct": 37.8534
             },
             {
               "country_code": "PE",
               "country": "페루",
               "import_usd": 162374133,
               "import_kg": 58803597,
-              "share_pct": 22.3634
+              "share_pct": 29.7063
             },
             {
               "country_code": "VN",
               "country": "베트남",
-              "import_usd": 77871665,
-              "import_kg": 7722566,
-              "share_pct": 10.7251
+              "import_usd": 66822528,
+              "import_kg": 5783584,
+              "share_pct": 12.2251
             },
             {
               "country_code": "CL",
               "country": "칠레",
               "import_usd": 32057875,
               "import_kg": 18837171,
-              "share_pct": 4.4153
-            },
-            {
-              "country_code": "GB",
-              "country": "영국",
-              "import_usd": 26785510,
-              "import_kg": 2422863,
-              "share_pct": 3.6891
+              "share_pct": 5.865
             },
             {
               "country_code": "AR",
               "country": "아르헨티나",
               "import_usd": 17552202,
               "import_kg": 5148764,
-              "share_pct": 2.4174
-            },
-            {
-              "country_code": "TR",
-              "country": "튀르키예",
-              "import_usd": 12392722,
-              "import_kg": 1045490,
-              "share_pct": 1.7068
+              "share_pct": 3.2112
             },
             {
               "country_code": "TW",
               "country": "대만",
               "import_usd": 12169529,
               "import_kg": 2757581,
-              "share_pct": 1.6761
+              "share_pct": 2.2264
             },
             {
               "country_code": "TH",
               "country": "태국",
-              "import_usd": 11793943,
-              "import_kg": 1546998,
-              "share_pct": 1.6244
-            },
-            {
-              "country_code": "IE",
-              "country": "아일랜드",
-              "import_usd": 9305640,
-              "import_kg": 947469,
-              "share_pct": 1.2816
+              "import_usd": 10955540,
+              "import_kg": 1073996,
+              "share_pct": 2.0043
             },
             {
               "country_code": "ID",
               "country": "인도네시아",
-              "import_usd": 8648483,
-              "import_kg": 1311010,
-              "share_pct": 1.1911
+              "import_usd": 8138033,
+              "import_kg": 1182450,
+              "share_pct": 1.4888
             },
             {
               "country_code": "VU",
               "country": "바누아투",
               "import_usd": 7036188,
               "import_kg": 1692156,
-              "share_pct": 0.9691
+              "share_pct": 1.2873
             },
             {
               "country_code": "ES",
               "country": "스페인",
-              "import_usd": 6088263,
-              "import_kg": 1915292,
-              "share_pct": 0.8385
-            },
-            {
-              "country_code": "SN",
-              "country": "세네갈",
-              "import_usd": 4627062,
-              "import_kg": 1070178,
-              "share_pct": 0.6373
-            },
-            {
-              "country_code": "MX",
-              "country": "멕시코",
-              "import_usd": 4616820,
-              "import_kg": 1229945,
-              "share_pct": 0.6359
-            },
-            {
-              "country_code": "BG",
-              "country": "불가리아",
-              "import_usd": 3995892,
-              "import_kg": 329936,
-              "share_pct": 0.5503
-            },
-            {
-              "country_code": "JP",
-              "country": "일본",
-              "import_usd": 3609392,
-              "import_kg": 578240,
-              "share_pct": 0.4971
+              "import_usd": 5336852,
+              "import_kg": 1855831,
+              "share_pct": 0.9764
             },
             {
               "country_code": "MY",
               "country": "말레이시아",
               "import_usd": 3012735,
               "import_kg": 423448,
-              "share_pct": 0.4149
+              "share_pct": 0.5512
             },
             {
               "country_code": "US",
               "country": "미국",
-              "import_usd": 2959093,
-              "import_kg": 925096,
-              "share_pct": 0.4075
-            },
-            {
-              "country_code": "PH",
-              "country": "필리핀",
-              "import_usd": 2488385,
-              "import_kg": 185803,
-              "share_pct": 0.3427
-            },
-            {
-              "country_code": "MR",
-              "country": "모리타니",
-              "import_usd": 2455431,
-              "import_kg": 650590,
-              "share_pct": 0.3382
-            },
-            {
-              "country_code": "RU",
-              "country": "러시아 연방",
-              "import_usd": 2436376,
-              "import_kg": 704946,
-              "share_pct": 0.3356
+              "import_usd": 2956865,
+              "import_kg": 925022,
+              "share_pct": 0.541
             },
             {
               "country_code": "NZ",
               "country": "뉴질랜드",
               "import_usd": 2046670,
               "import_kg": 408499,
-              "share_pct": 0.2819
+              "share_pct": 0.3744
             },
             {
-              "country_code": "CA",
-              "country": "캐나다",
-              "import_usd": 1713133,
-              "import_kg": 180061,
-              "share_pct": 0.2359
+              "country_code": "PH",
+              "country": "필리핀",
+              "import_usd": 1809383,
+              "import_kg": 132172,
+              "share_pct": 0.331
+            },
+            {
+              "country_code": "MX",
+              "country": "멕시코",
+              "import_usd": 1680674,
+              "import_kg": 670530,
+              "share_pct": 0.3075
             },
             {
               "country_code": "UY",
               "country": "우루과이",
               "import_usd": 1632168,
               "import_kg": 489307,
-              "share_pct": 0.2248
+              "share_pct": 0.2986
             },
             {
               "country_code": "SO",
               "country": "소말리아",
               "import_usd": 700325,
               "import_kg": 191585,
-              "share_pct": 0.0965
+              "share_pct": 0.1281
+            },
+            {
+              "country_code": "RU",
+              "country": "러시아 연방",
+              "import_usd": 576268,
+              "import_kg": 154226,
+              "share_pct": 0.1054
             },
             {
               "country_code": "MA",
               "country": "모로코",
               "import_usd": 499964,
               "import_kg": 85473,
-              "share_pct": 0.0689
+              "share_pct": 0.0915
             },
             {
-              "country_code": "GM",
-              "country": "감비아",
-              "import_usd": 368605,
-              "import_kg": 81941,
-              "share_pct": 0.0508
+              "country_code": "JP",
+              "country": "일본",
+              "import_usd": 486103,
+              "import_kg": 26145,
+              "share_pct": 0.0889
             },
             {
               "country_code": "OM",
               "country": "오만",
               "import_usd": 343172,
               "import_kg": 60804,
-              "share_pct": 0.0473
-            },
-            {
-              "country_code": "PK",
-              "country": "파키스탄",
-              "import_usd": 304864,
-              "import_kg": 112564,
-              "share_pct": 0.042
-            },
-            {
-              "country_code": "RO",
-              "country": "루마니아",
-              "import_usd": 298241,
-              "import_kg": 32060,
-              "share_pct": 0.0411
-            },
-            {
-              "country_code": "MM",
-              "country": "미얀마",
-              "import_usd": 265882,
-              "import_kg": 112643,
-              "share_pct": 0.0366
+              "share_pct": 0.0628
             },
             {
               "country_code": "IN",
               "country": "인도",
-              "import_usd": 230457,
-              "import_kg": 61757,
-              "share_pct": 0.0317
+              "import_usd": 230406,
+              "import_kg": 61745,
+              "share_pct": 0.0422
+            },
+            {
+              "country_code": "MR",
+              "country": "모리타니",
+              "import_usd": 198471,
+              "import_kg": 161840,
+              "share_pct": 0.0363
+            },
+            {
+              "country_code": "MM",
+              "country": "미얀마",
+              "import_usd": 183732,
+              "import_kg": 35867,
+              "share_pct": 0.0336
             },
             {
               "country_code": "FK",
               "country": "포클랜드 군도",
               "import_usd": 161822,
               "import_kg": 53941,
-              "share_pct": 0.0223
+              "share_pct": 0.0296
+            },
+            {
+              "country_code": "SN",
+              "country": "세네갈",
+              "import_usd": 143504,
+              "import_kg": 123042,
+              "share_pct": 0.0263
             },
             {
               "country_code": "LT",
               "country": "리투아니아",
               "import_usd": 138928,
               "import_kg": 46928,
-              "share_pct": 0.0191
+              "share_pct": 0.0254
+            },
+            {
+              "country_code": "PK",
+              "country": "파키스탄",
+              "import_usd": 120191,
+              "import_kg": 38980,
+              "share_pct": 0.022
             },
             {
               "country_code": "YE",
               "country": "예맨",
               "import_usd": 117327,
               "import_kg": 21057,
-              "share_pct": 0.0162
+              "share_pct": 0.0215
             },
             {
               "country_code": "EC",
               "country": "에쿠아도르",
               "import_usd": 111700,
               "import_kg": 69000,
-              "share_pct": 0.0154
+              "share_pct": 0.0204
             },
             {
               "country_code": "GW",
               "country": "기네비소",
               "import_usd": 48065,
               "import_kg": 7616,
-              "share_pct": 0.0066
+              "share_pct": 0.0088
             },
             {
               "country_code": "GN",
               "country": "기니",
               "import_usd": 21849,
               "import_kg": 9702,
-              "share_pct": 0.003
+              "share_pct": 0.004
             },
             {
               "country_code": "BD",
               "country": "방글라데시",
               "import_usd": 16045,
               "import_kg": 3842,
-              "share_pct": 0.0022
+              "share_pct": 0.0029
             },
             {
               "country_code": "SG",
               "country": "싱가포르",
               "import_usd": 7913,
               "import_kg": 504,
-              "share_pct": 0.0011
+              "share_pct": 0.0014
             },
             {
               "country_code": "FR",
               "country": "프랑스",
-              "import_usd": 7567,
-              "import_kg": 237,
-              "share_pct": 0.001
-            },
-            {
-              "country_code": "NO",
-              "country": "노르웨이",
-              "import_usd": 2346,
-              "import_kg": 151,
-              "share_pct": 0.0003
+              "import_usd": 3619,
+              "import_kg": 117,
+              "share_pct": 0.0007
             },
             {
               "country_code": "AO",
               "country": "앙골라",
               "import_usd": 1506,
               "import_kg": 129,
-              "share_pct": 0.0002
+              "share_pct": 0.0003
             },
             {
               "country_code": "SL",
@@ -6310,10 +6096,10 @@
               "share_pct": 0.0001
             },
             {
-              "country_code": "PT",
-              "country": "포루투갈",
-              "import_usd": 91,
-              "import_kg": 2,
+              "country_code": "CA",
+              "country": "캐나다",
+              "import_usd": 24,
+              "import_kg": 6,
               "share_pct": 0
             },
             {
@@ -6334,297 +6120,227 @@
         },
         {
           "year": 2024,
-          "total_import_usd": 728427559,
-          "top1_share_pct": 49.0056,
-          "top3_share_pct": 71.909,
-          "hhi": 2740.88,
+          "total_import_usd": 560139683,
+          "top1_share_pct": 46.1483,
+          "top3_share_pct": 74.2491,
+          "hhi": 2622.62,
           "origins": [
             {
               "country_code": "CN",
               "country": "중국",
-              "import_usd": 356970350,
-              "import_kg": 123835839,
-              "share_pct": 49.0056
+              "import_usd": 258495009,
+              "import_kg": 72633423,
+              "share_pct": 46.1483
             },
             {
               "country_code": "PE",
               "country": "페루",
               "import_usd": 85155273,
               "import_kg": 25292637,
-              "share_pct": 11.6903
+              "share_pct": 15.2025
             },
             {
               "country_code": "VN",
               "country": "베트남",
-              "import_usd": 81679418,
-              "import_kg": 8684049,
-              "share_pct": 11.2131
+              "import_usd": 72248544,
+              "import_kg": 6989399,
+              "share_pct": 12.8983
             },
             {
               "country_code": "CL",
               "country": "칠레",
               "import_usd": 35114957,
               "import_kg": 16497050,
-              "share_pct": 4.8207
-            },
-            {
-              "country_code": "GB",
-              "country": "영국",
-              "import_usd": 30455427,
-              "import_kg": 2388239,
-              "share_pct": 4.181
+              "share_pct": 6.269
             },
             {
               "country_code": "AR",
               "country": "아르헨티나",
               "import_usd": 26184656,
               "import_kg": 6766858,
-              "share_pct": 3.5947
+              "share_pct": 4.6747
             },
             {
               "country_code": "TW",
               "country": "대만",
               "import_usd": 24133154,
               "import_kg": 6480501,
-              "share_pct": 3.313
+              "share_pct": 4.3084
             },
             {
               "country_code": "ES",
               "country": "스페인",
-              "import_usd": 13221995,
-              "import_kg": 3072318,
-              "share_pct": 1.8151
+              "import_usd": 12523366,
+              "import_kg": 3049283,
+              "share_pct": 2.2358
             },
             {
               "country_code": "CM",
               "country": "카메룬",
               "import_usd": 11748303,
               "import_kg": 3670214,
-              "share_pct": 1.6128
+              "share_pct": 2.0974
             },
             {
               "country_code": "ID",
               "country": "인도네시아",
-              "import_usd": 9912390,
-              "import_kg": 1829561,
-              "share_pct": 1.3608
+              "import_usd": 9757600,
+              "import_kg": 1768123,
+              "share_pct": 1.742
             },
             {
               "country_code": "TH",
               "country": "태국",
-              "import_usd": 9591548,
-              "import_kg": 1398247,
-              "share_pct": 1.3167
-            },
-            {
-              "country_code": "IE",
-              "country": "아일랜드",
-              "import_usd": 7597855,
-              "import_kg": 618142,
-              "share_pct": 1.043
-            },
-            {
-              "country_code": "TR",
-              "country": "튀르키예",
-              "import_usd": 4169468,
-              "import_kg": 311300,
-              "share_pct": 0.5724
-            },
-            {
-              "country_code": "JP",
-              "country": "일본",
-              "import_usd": 3798561,
-              "import_kg": 655853,
-              "share_pct": 0.5215
-            },
-            {
-              "country_code": "SN",
-              "country": "세네갈",
-              "import_usd": 3634897,
-              "import_kg": 768588,
-              "share_pct": 0.499
+              "import_usd": 8659539,
+              "import_kg": 912911,
+              "share_pct": 1.546
             },
             {
               "country_code": "MY",
               "country": "말레이시아",
               "import_usd": 3591036,
               "import_kg": 578651,
-              "share_pct": 0.493
-            },
-            {
-              "country_code": "BG",
-              "country": "불가리아",
-              "import_usd": 2691460,
-              "import_kg": 186786,
-              "share_pct": 0.3695
-            },
-            {
-              "country_code": "PH",
-              "country": "필리핀",
-              "import_usd": 2381163,
-              "import_kg": 217487,
-              "share_pct": 0.3269
+              "share_pct": 0.6411
             },
             {
               "country_code": "VU",
               "country": "바누아투",
               "import_usd": 2215457,
               "import_kg": 808319,
-              "share_pct": 0.3041
+              "share_pct": 0.3955
             },
             {
-              "country_code": "CA",
-              "country": "캐나다",
-              "import_usd": 2023225,
-              "import_kg": 179253,
-              "share_pct": 0.2778
-            },
-            {
-              "country_code": "MR",
-              "country": "모리타니",
-              "import_usd": 1717610,
-              "import_kg": 438638,
-              "share_pct": 0.2358
+              "country_code": "PH",
+              "country": "필리핀",
+              "import_usd": 1894306,
+              "import_kg": 160115,
+              "share_pct": 0.3382
             },
             {
               "country_code": "UY",
               "country": "우루과이",
               "import_usd": 1490111,
               "import_kg": 388706,
-              "share_pct": 0.2046
+              "share_pct": 0.266
             },
             {
               "country_code": "OM",
               "country": "오만",
               "import_usd": 1355093,
               "import_kg": 254909,
-              "share_pct": 0.186
+              "share_pct": 0.2419
             },
             {
               "country_code": "PT",
               "country": "포루투갈",
               "import_usd": 1190072,
               "import_kg": 316941,
-              "share_pct": 0.1634
-            },
-            {
-              "country_code": "NO",
-              "country": "노르웨이",
-              "import_usd": 1004329,
-              "import_kg": 85595,
-              "share_pct": 0.1379
+              "share_pct": 0.2125
             },
             {
               "country_code": "NZ",
               "country": "뉴질랜드",
               "import_usd": 989867,
               "import_kg": 154292,
-              "share_pct": 0.1359
-            },
-            {
-              "country_code": "RU",
-              "country": "러시아 연방",
-              "import_usd": 920836,
-              "import_kg": 445757,
-              "share_pct": 0.1264
+              "share_pct": 0.1767
             },
             {
               "country_code": "IN",
               "country": "인도",
               "import_usd": 644304,
               "import_kg": 238175,
-              "share_pct": 0.0885
+              "share_pct": 0.115
             },
             {
               "country_code": "US",
               "country": "미국",
-              "import_usd": 586105,
-              "import_kg": 146315,
-              "share_pct": 0.0805
-            },
-            {
-              "country_code": "GM",
-              "country": "감비아",
-              "import_usd": 450628,
-              "import_kg": 92606,
-              "share_pct": 0.0619
+              "import_usd": 582684,
+              "import_kg": 145827,
+              "share_pct": 0.104
             },
             {
               "country_code": "YE",
               "country": "예맨",
               "import_usd": 399911,
               "import_kg": 77580,
-              "share_pct": 0.0549
+              "share_pct": 0.0714
+            },
+            {
+              "country_code": "JP",
+              "country": "일본",
+              "import_usd": 374385,
+              "import_kg": 16322,
+              "share_pct": 0.0668
+            },
+            {
+              "country_code": "RU",
+              "country": "러시아 연방",
+              "import_usd": 347388,
+              "import_kg": 195957,
+              "share_pct": 0.062
             },
             {
               "country_code": "MA",
               "country": "모로코",
               "import_usd": 307970,
               "import_kg": 53445,
-              "share_pct": 0.0423
+              "share_pct": 0.055
             },
             {
               "country_code": "MX",
               "country": "멕시코",
-              "import_usd": 290794,
-              "import_kg": 117550,
-              "share_pct": 0.0399
-            },
-            {
-              "country_code": "RO",
-              "country": "루마니아",
-              "import_usd": 270222,
-              "import_kg": 27210,
-              "share_pct": 0.0371
+              "import_usd": 286711,
+              "import_kg": 117040,
+              "share_pct": 0.0512
             },
             {
               "country_code": "MM",
               "country": "미얀마",
-              "import_usd": 168888,
-              "import_kg": 60078,
-              "share_pct": 0.0232
+              "import_usd": 142925,
+              "import_kg": 27031,
+              "share_pct": 0.0255
             },
             {
               "country_code": "NL",
               "country": "네덜란드",
               "import_usd": 126330,
               "import_kg": 41000,
-              "share_pct": 0.0173
-            },
-            {
-              "country_code": "PK",
-              "country": "파키스탄",
-              "import_usd": 111896,
-              "import_kg": 40800,
-              "share_pct": 0.0154
+              "share_pct": 0.0226
             },
             {
               "country_code": "EC",
               "country": "에쿠아도르",
               "import_usd": 95070,
               "import_kg": 48000,
-              "share_pct": 0.0131
+              "share_pct": 0.017
+            },
+            {
+              "country_code": "PK",
+              "country": "파키스탄",
+              "import_usd": 49317,
+              "import_kg": 24040,
+              "share_pct": 0.0088
             },
             {
               "country_code": "GW",
               "country": "기네비소",
               "import_usd": 27257,
               "import_kg": 5293,
-              "share_pct": 0.0037
+              "share_pct": 0.0049
             },
             {
               "country_code": "BD",
               "country": "방글라데시",
               "import_usd": 4348,
               "import_kg": 950,
-              "share_pct": 0.0006
+              "share_pct": 0.0008
             },
             {
               "country_code": "IT",
               "country": "이탈리아",
               "import_usd": 3170,
               "import_kg": 134,
-              "share_pct": 0.0004
+              "share_pct": 0.0006
             },
             {
               "country_code": "SG",
@@ -6634,17 +6350,17 @@
               "share_pct": 0.0002
             },
             {
-              "country_code": "LA",
-              "country": "라오스",
-              "import_usd": 630,
-              "import_kg": 120,
-              "share_pct": 0.0001
-            },
-            {
               "country_code": "FR",
               "country": "프랑스",
               "import_usd": 144,
               "import_kg": 5,
+              "share_pct": 0
+            },
+            {
+              "country_code": "IE",
+              "country": "아일랜드",
+              "import_usd": 42,
+              "import_kg": 2,
               "share_pct": 0
             },
             {
@@ -6669,16 +6385,16 @@
               "share_pct": 0
             },
             {
-              "country_code": "AE",
-              "country": "아랍에미리트 연합",
-              "import_usd": 6,
-              "import_kg": 1,
+              "country_code": "SN",
+              "country": "세네갈",
+              "import_usd": 9,
+              "import_kg": 90,
               "share_pct": 0
             }
           ]
         }
       ],
-      "methodology": "KCS 2020~2024 연도별 상대국 비중과 HHI. 비중은 한국 수입 안에서의 값이며 글로벌 점유율로 확장하지 않음",
+      "methodology": "KCS 2020~2024 연도별 HS 030742·030743·030749·160554 상대국 비중과 HHI. 비중은 한국 수입 안에서의 비중이며 글로벌 점유율이 아님",
       "basis": {
         "species": [
           "Todarodes pacificus",
@@ -6714,7 +6430,13 @@
         "blocked_use": [
           "squid-only 시장규모로 재명명"
         ],
-        "taxon_note": "HS 분류에 갑오징어가 포함될 수 있어 4종 오징어 단독 총계로 사용할 수 없다."
+        "taxon_note": "포함 HS: 030742·030743·030749·160554. 각 분류는 오징어와 갑오징어를 함께 포함한다.",
+        "hs_codes": [
+          "030742",
+          "030743",
+          "030749",
+          "160554"
+        ]
       },
       "series": [
         "share_pct"

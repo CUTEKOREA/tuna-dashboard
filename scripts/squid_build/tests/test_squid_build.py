@@ -87,7 +87,7 @@ def test_chile_uses_separate_quota_and_capture_sources() -> None:
 
 
 def test_kcs_2026_coverage_stops_at_may() -> None:
-    """Treating a Jan-Jun query label as observed June data must fail."""
+    """Treating a Jan-Jun query label or a non-squid HS family as observed data must fail."""
     from scripts.squid_build.extract.kcs import extract_kcs
 
     specs = _specs_by_id()
@@ -99,6 +99,9 @@ def test_kcs_2026_coverage_stops_at_may() -> None:
             checked += 1
             assert coverage_end <= "2026-05", coverage_end
     assert checked >= 2, checked
+    expected_hs6 = ["030742", "030743", "030749", "160554"]
+    assert widgets["B_kcs_import_unit_price"]["basis"]["hs_codes"] == expected_hs6
+    assert widgets["C_korea_import_monthly"]["basis"]["hs_codes"] == expected_hs6
 
 
 def test_comtrade_is_coverage_only() -> None:
@@ -121,7 +124,7 @@ def test_comtrade_is_coverage_only() -> None:
 
 
 def test_concentration_covers_every_observed_year() -> None:
-    """한 해만 뽑아 4년치를 버리면 실패한다. 추이가 이 위젯의 존재 이유다."""
+    """한 해를 버리거나 오징어·갑오징어 밖의 HS를 분모에 넣으면 실패한다."""
     from scripts.squid_build.extract.kcs import extract_kcs
 
     specs = _specs_by_id()
@@ -131,6 +134,20 @@ def test_concentration_covers_every_observed_year() -> None:
     assert years == [2020, 2021, 2022, 2023, 2024], years
     assert widget["basis"]["coverage_start"] == "2020"
     assert widget["basis"]["coverage_end"] == "2024"
+    assert widget["basis"]["hs_codes"] == ["030742", "030743", "030749", "160554"]
+    assert all(code in widget["basis"]["taxon_note"] for code in widget["basis"]["hs_codes"])
+
+    expected = [
+        (2020, 524_666_603, 36.1915, 2330.55),
+        (2021, 408_596_870, 36.0844, 2304.72),
+        (2022, 462_680_864, 36.7040, 2393.73),
+        (2023, 546_599_008, 37.8534, 2524.39),
+        (2024, 560_139_683, 46.1483, 2622.62),
+    ]
+    assert [
+        (r["year"], r["total_import_usd"], r["top1_share_pct"], r["hhi"])
+        for r in rows
+    ] == expected
 
     for r in rows:
         # 비중 합은 100%, HHI 는 0~10000 안에 있어야 한다.
@@ -141,6 +158,15 @@ def test_concentration_covers_every_observed_year() -> None:
 
     # 중국 편중이 실제로 심화된 구간이다 — 이 신호가 사라지면 집계가 깨진 것이다.
     assert rows[-1]["top1_share_pct"] > rows[0]["top1_share_pct"]
+    assert [
+        (origin["country"], origin["share_pct"])
+        for origin in rows[-1]["origins"][:4]
+    ] == [
+        ("중국", 46.1483),
+        ("페루", 15.2025),
+        ("베트남", 12.8983),
+        ("칠레", 6.2690),
+    ]
 
 
 def test_report_coverage_uses_observation_period_not_publication_date() -> None:
@@ -335,9 +361,11 @@ def test_sourcing_signal_records_observed_and_schedule_derivations() -> None:
         archive_root=DEFAULT_ARCHIVE_ROOT,
         built_at=datetime(2026, 8, 13, 9, 0, tzinfo=ZoneInfo("Asia/Seoul")),
     )
+    signal_widget = document["widgets"]["A_sourcing_signal_board"]
+    assert "SQ-MGT-ARGENTINA" in signal_widget["basis"]["source_ids"]
     rows = {
         row["origin"]: row
-        for row in document["widgets"]["A_sourcing_signal_board"]["data"]
+        for row in signal_widget["data"]
     }
 
     chile = rows["칠레 jibia"]
@@ -364,7 +392,18 @@ def test_sourcing_signal_records_observed_and_schedule_derivations() -> None:
     assert "공개 어기 일정" in falkland["reason"]
     assert "개장 공지 확인은 아님" in falkland["reason"]
 
-    assert rows["아르헨티나 Illex"]["status"] == "데이터공백"
+    argentina = rows["아르헨티나 Illex"]
+    assert argentina["status"] == "어기외"
+    assert argentina["as_of"] == "2026-05-28"
+    assert argentina["state_evidence"]["evidence_type"] == "legal_text_derived"
+    assert argentina["state_evidence"]["derivation"] == "subsequent_law_past_tense"
+    assert argentina["state_evidence"]["archive_path"].split(";") == [
+        "00_오징어_관련자료/01_오징어_시장·가격/02_쿼터·어장/20260812-ARG-CTMFM_Resolution_2_2026.html",
+        "00_오징어_관련자료/01_오징어_시장·가격/02_쿼터·어장/20260812-ARG-Resolution_6_2026.html",
+    ]
+    assert "후속 법령의 과거형" in argentina["reason"]
+    assert "2026 주간공보" in argentina["reason"]
+    assert "2026-04-22" not in argentina["reason"]
     assert rows["한국 살오징어"]["status"] == "데이터공백"
     assert all("state_evidence" in row for row in rows.values())
 

@@ -11,6 +11,9 @@ from typing import Mapping
 from ..spec import WidgetSpec
 
 
+APPROVED_KCS_HS6 = ("030742", "030743", "030749", "160554")
+
+
 def _read_csv(path: Path) -> list[dict[str, str]]:
     with path.open(encoding="utf-8-sig", newline="") as handle:
         return list(csv.DictReader(handle))
@@ -41,6 +44,25 @@ def _detail_rows(rows: list[dict[str, str]]) -> list[dict[str, str]]:
     ]
 
 
+def _hs6(row: dict[str, str]) -> str:
+    code = row.get("hsCd", "").strip()
+    if len(code) < 6 or not code.isdigit():
+        raise ValueError(f"invalid KCS hsCd: {code!r}")
+    return code[:6]
+
+
+def _approved_squid_rows(rows: list[dict[str, str]]) -> list[dict[str, str]]:
+    allowed = set(APPROVED_KCS_HS6)
+    return [row for row in _detail_rows(rows) if _hs6(row) in allowed]
+
+
+def _taxon_note(hs_codes: list[str]) -> str:
+    return (
+        f"포함 HS: {'·'.join(hs_codes)}. "
+        "각 분류는 오징어와 갑오징어를 함께 포함한다."
+    )
+
+
 def extract_kcs(
     archive_root: Path,
     specs: Mapping[str, WidgetSpec],
@@ -51,7 +73,8 @@ def extract_kcs(
     ytd_path = Path(archive_root) / price_spec.archive_paths[0]
     legacy_path = Path(archive_root) / concentration_spec.archive_paths[0]
 
-    ytd_rows = _detail_rows(_read_csv(ytd_path))
+    ytd_rows = _approved_squid_rows(_read_csv(ytd_path))
+    ytd_hs_codes = sorted({_hs6(row) for row in ytd_rows})
     months = sorted({row["year"].replace(".", "-") for row in ytd_rows})
     if not months or months[-1] > "2026-05":
         raise ValueError(f"KCS observed 2026 coverage must end by 2026-05; got {months}")
@@ -105,7 +128,8 @@ def extract_kcs(
 
     # 원천 CSV 는 2020~2024 를 모두 담고 있다. 한 해만 뽑으면 "중국 의존도가
     # 오르는 중인가"라는 조달 질문에 답할 수 없으므로 연도별로 전부 산출한다.
-    legacy_detail = _detail_rows(_read_csv(legacy_path))
+    legacy_detail = _approved_squid_rows(_read_csv(legacy_path))
+    legacy_hs_codes = sorted({_hs6(row) for row in legacy_detail})
     years = sorted({row["year"] for row in legacy_detail if row["year"].isdigit()})
     if not years:
         raise ValueError("KCS legacy CSV 에 연도가 없다")
@@ -160,13 +184,18 @@ def extract_kcs(
             "xAxis": "month",
             "series": ["unit_price_usd_mt"],
             "unit": "USD/톤",
-            "methodology": "KCS 상세행의 수입금액 합계를 수입중량 합계로 나눈 월별 가중 수입단가",
+            "methodology": (
+                f"KCS HS {'·'.join(ytd_hs_codes)} 상세행의 수입금액 합계를 "
+                "수입중량 합계로 나눈 월별 가중 수입단가"
+            ),
             "basis": {
                 "coverage_start": months[0],
                 "coverage_end": months[-1],
                 "published_at": "2026-07-06",
                 "retrieved_at": "2026-08-12",
                 "metrics": list(price_spec.metrics),
+                "hs_codes": ytd_hs_codes,
+                "taxon_note": _taxon_note(ytd_hs_codes),
             },
         },
         "C_korea_import_monthly": {
@@ -175,13 +204,18 @@ def extract_kcs(
             "xAxis": "month",
             "series": ["import_usd", "import_kg"],
             "unit": "USD·kg",
-            "methodology": "KCS HS10 상세행을 월·상대국별로 합산하며 총계행은 제외",
+            "methodology": (
+                f"KCS HS {'·'.join(ytd_hs_codes)}의 HS10 상세행을 "
+                "월·상대국별로 합산하며 총계행은 제외"
+            ),
             "basis": {
                 "coverage_start": months[0],
                 "coverage_end": months[-1],
                 "published_at": "2026-07-06",
                 "retrieved_at": "2026-08-12",
                 "metrics": list(monthly_spec.metrics),
+                "hs_codes": ytd_hs_codes,
+                "taxon_note": _taxon_note(ytd_hs_codes),
             },
         },
         "C_import_concentration": {
@@ -191,7 +225,8 @@ def extract_kcs(
             "unit": "%·USD",
             "methodology": (
                 f"KCS {concentration_data[0]['year']}~{concentration_data[-1]['year']} 연도별 "
-                "상대국 비중과 HHI. 비중은 한국 수입 안에서의 값이며 글로벌 점유율로 확장하지 않음"
+                f"HS {'·'.join(legacy_hs_codes)} 상대국 비중과 HHI. "
+                "비중은 한국 수입 안에서의 비중이며 글로벌 점유율이 아님"
             ),
             "basis": {
                 "coverage_start": str(concentration_data[0]["year"]),
@@ -199,7 +234,8 @@ def extract_kcs(
                 "published_at": "2026",
                 "retrieved_at": "2026",
                 "metrics": list(concentration_spec.metrics),
+                "hs_codes": legacy_hs_codes,
+                "taxon_note": _taxon_note(legacy_hs_codes),
             },
         },
     }
-

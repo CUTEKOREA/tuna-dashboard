@@ -99,4 +99,15 @@ describe('오징어 화면 한글 표기', () => {
     expect(markup).toContain('오징어 조달 인텔리전스');
     expect(markup).not.toContain('LIVE');
   });
+
+  it('아르헨티나 어기외 근거와 관세청 품목 범위를 화면에 밝힌다', () => {
+    const markup = renderToStaticMarkup(React.createElement(SquidDashboard));
+    expect(markup).toContain('2026-05-28');
+    expect(markup).toContain('후속 법령의 과거형');
+    expect(markup).toContain('2026 주간공보');
+    expect(markup).toContain('비중은 한국 수입 안에서의 비중이며 글로벌 점유율이 아니다');
+    expect(markup).toContain('HS 030742·030743·030749·160554');
+    expect(markup).toContain('중국 46.15%');
+    expect(markup).toContain('칠레 6.27%');
+  });
 });

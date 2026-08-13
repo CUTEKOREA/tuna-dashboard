@@ -25,6 +25,7 @@ def extract_hs_map(archive_root: Path, spec: WidgetSpec) -> dict:
     ]
     if len(data) != 5 or len({row["hs6"] for row in data}) != 5:
         raise ValueError(f"HS matrix must contain five unique rows; got {len(data)}")
+    hs_codes = [row["hs6"] for row in data]
     return {
         "chartType": spec.chart_type,
         "data": data,
@@ -37,6 +38,10 @@ def extract_hs_map(archive_root: Path, spec: WidgetSpec) -> dict:
             "published_at": "2026-07-06",
             "retrieved_at": "2026-08-12",
             "metrics": ["coverage"],
+            "hs_codes": hs_codes,
+            "taxon_note": (
+                f"포함 HS: {'·'.join(hs_codes)}. "
+                "각 분류는 오징어와 갑오징어를 함께 포함한다."
+            ),
         },
     }
-
