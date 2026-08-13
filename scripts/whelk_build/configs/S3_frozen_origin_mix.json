@@ -1,0 +1,11 @@
+{
+  "widget_id": "S3_frozen_origin_mix",
+  "structured_parser": "frozen_origin_mix",
+  "hs_query": "030792",
+  "live_fresh_hs_query": "030791",
+  "period_start": "2026-01",
+  "period_end": "2026-05",
+  "top_origin_count": 12,
+  "hypothesis_origin": "튀르키예",
+  "excluded_from_whelk_scope_hsk10": ["0307921000"]
+}

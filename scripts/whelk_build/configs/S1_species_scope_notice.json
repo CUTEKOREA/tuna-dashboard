@@ -1,0 +1,5 @@
+{
+  "widget_id": "S1_species_scope_notice",
+  "structured_parser": "fishstat_species_scope",
+  "expected_species_count": 28
+}

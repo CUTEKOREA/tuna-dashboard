@@ -1,0 +1,15 @@
+{
+  "widget_id": "S3_origin_portfolio_shift",
+  "structured_parser": "origin_portfolio_shift_by_hsk8",
+  "periods": ["2024JanMay", "2026YTD"],
+  "baskets": ["16055910", "16055990", "16055920"],
+  "charted_baskets": ["16055910", "16055990"],
+  "basket_volume_floor_pct": 1.0,
+  "origins_by_basket": {
+    "16055910": ["영국", "아일랜드", "캐나다", "중국", "노르웨이"],
+    "16055990": ["중국", "베트남", "튀르키예", "불가리아", "세네갈", "모리타니", "태국"]
+  },
+  "combined_origins": { "16055910": ["영국", "아일랜드"] },
+  "qualification_origin": "캐나다",
+  "thin_evidence_shipment_max": 2
+}

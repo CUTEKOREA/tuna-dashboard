@@ -1,0 +1,6 @@
+{
+  "widget_id": "S3_hs_classification_guide",
+  "structured_parser": "hs_classification_guide",
+  "required_hs6": ["030781", "030791", "030792", "160559"],
+  "broad_proxy_hs6": "160559"
+}

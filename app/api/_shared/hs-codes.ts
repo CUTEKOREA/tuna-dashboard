@@ -85,15 +85,27 @@ export const HS_CODES = {
     hsSgn: '0307521000',
     note: '기존 /api/octopus/kcs frozen 운영값 이관.',
   },
-  whelk_frozen: {
-    label: '산·신선·냉장 골뱅이/패류',
-    hsSgn: '0307600000',
-    note: '기존 /api/whelk/kcs frozen 운영값 이관.',
+  // ⚠️ L-04(HSK 10자리 의무) 예외 — 골뱅이 한정.
+  // L-04는 품목이 단일 HSK 10자리로 규정되는 경우(예: 캐슈 0801320000)를 전제한다.
+  // 골뱅이는 HSK 10자리가 코드당 4~6개로 분산되어 단일 10자리로는 품목 전체를 잡지 못한다.
+  // 2026-08-13 nitemtrade 실호출 검증:
+  //   hsSgn=160559     → items 465, 2024 총계 impDlr 58,504,760 (아카이브 XML과 일치)
+  //   hsSgn=1605591090 → items  47, 2024 총계 impDlr 40,061,797 (전체의 68.5%만 포착)
+  // 따라서 골뱅이는 6자리 조회 후 hsCd 10자리를 세부 분해하는 방식이 정확하다.
+  whelk_live_fresh: {
+    label: '활·신선·냉장 바다고둥',
+    hsSgn: '030791',
+    note: 'HS 0307.91 광의 바다고둥 코드. 실호출 시 HSK 0307911000(소라)·0307912090·0307913000·0307914000·0307919000 5종 분해.',
   },
-  whelk_canned: {
-    label: '조제·보존 골뱅이 통조림',
-    hsSgn: '1605550000',
-    note: '기존 /api/whelk/kcs canned 운영값 이관.',
+  whelk_frozen: {
+    label: '냉동 바다고둥',
+    hsSgn: '030792',
+    note: 'HS 0307.92 광의 바다고둥 코드. D4 HSK 0307922000(소라)·0307929000(기타) 실측.',
+  },
+  whelk_prepared: {
+    label: '조제·보존 골뱅이(통조림 포함)',
+    hsSgn: '160559',
+    note: 'HS 1605.59 광의 조제·보존 연체동물 코드. D4 HSK 10자리 6종 실측.',
   },
   flatfish_fresh: {
     label: '가자미 신선',

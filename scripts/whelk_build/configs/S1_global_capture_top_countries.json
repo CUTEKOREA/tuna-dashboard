@@ -1,0 +1,7 @@
+{
+  "widget_id": "S1_global_capture_top_countries",
+  "structured_parser": "fishstat_capture_country_rank",
+  "period": 2024,
+  "measure": "Q_tlw",
+  "top_n": 10
+}

@@ -1,0 +1,8 @@
+{
+  "widget_id": "S1_korea_capture_timeline",
+  "structured_parser": "fishstat_capture_country_timeline",
+  "country_code": "410",
+  "requested_period_start": 1950,
+  "period_end": 2024,
+  "measure": "Q_tlw"
+}

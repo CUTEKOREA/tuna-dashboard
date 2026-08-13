@@ -1,0 +1,9 @@
+{
+  "widget_id": "S3_origin_cif_ladder",
+  "structured_parser": "origin_unit_price_ladder_by_hsk8",
+  "periods": ["2024JanMay", "2026YTD"],
+  "sort_period": "2026YTD",
+  "baskets": ["16055910", "16055990"],
+  "excluded_baskets": ["16055920"],
+  "volume_floor_pct": 1.0
+}

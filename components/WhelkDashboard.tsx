@@ -13,9 +13,10 @@ import {
   Fish, Thermometer, ShoppingBag, Recycle, Package, FlaskConical, ChartPie
 } from 'lucide-react';
 import TermTooltip from './TermTooltip';
-import WidgetCard from './WidgetCard';
+import WidgetCard, { type Pillar } from './WidgetCard';
 import { TelemetryBadge } from './TelemetryBadge';
 import { ChartPatternDefs } from './ChartPatterns';
+import SafeResponsiveContainer from './SafeResponsiveContainer';
 import WhelkFTAQuarterly from './WhelkFTAQuarterly';
 
 const CustomTooltip = ({ active, payload, label }: any) => {
@@ -48,9 +49,1056 @@ const SECTIONS = [
   { id: 'S5', num: '❺', label: 'ESG·지속가능성', title: '❺ ESG 및 지속가능성', desc: '양식 불가 자원 + 영국 IFCA/MCRS 규제 + EU PPWR 포장 컴플라이언스', color: '#92400e' },
 ];
 
-// 패턴 I: 본문 JSX WidgetCard 30개 + WhelkFTAQuarterly 1개 — JSX 위젯 추가/삭제 시 이 상수를 갱신할 것.
-// (KFAS 학술 위젯은 데이터 기반 동적 렌더이므로 kfasWidgets.length로 합산)
-const INLINE_WIDGET_COUNT = 31;
+// 패턴 I: 이 파일에 보존된 WidgetCard 37개 + WhelkFTAQuarterly 1개 = 38.
+// 폐기 위젯은 롤백을 위해 소스에 남기되 런타임 카운트에서 제외한다.
+const INLINE_WIDGET_COUNT = 38;
+const RETIRED_HS6_WIDGET_COUNT = 2;
+const RETIRED_HS6_WIDGETS_ENABLED = false;
+const HYPOTHESIS_WIDGET_COUNT = 10;
+
+export function WhelkRetiredHs6WidgetGate({ children }: { children?: React.ReactNode }) {
+  return RETIRED_HS6_WIDGETS_ENABLED ? <>{children}</> : null;
+}
+
+export function WhelkHypothesisSection({ count, children }: { count: number; children: React.ReactNode }) {
+  return (
+    <details
+      data-whelk-hypothesis-section="true"
+      data-whelk-hypothesis-count={count}
+      style={{
+        gridColumn: '1 / -1',
+        order: 99,
+        border: '1px solid rgba(245, 158, 11, 0.28)',
+        borderRadius: '12px',
+        background: 'rgba(120, 53, 15, 0.12)',
+        overflow: 'hidden',
+      }}
+    >
+      <summary
+        style={{
+          cursor: 'pointer',
+          padding: '14px 16px',
+          color: '#fbbf24',
+          fontWeight: 700,
+          lineHeight: 1.5,
+        }}
+      >
+        가설·시나리오 (실측 데이터 없음) · {count}개
+      </summary>
+      <div
+        data-mobile-stack
+        style={{
+          display: 'grid',
+          gridTemplateColumns: 'repeat(2, minmax(0, 1fr))',
+          gap: '1rem',
+          padding: '0 16px 16px',
+        }}
+      >
+        {children}
+      </div>
+    </details>
+  );
+}
+
+export function WhelkHypothesisCard({ reason, children }: { reason: string; children: React.ReactNode }) {
+  return (
+    <div data-whelk-hypothesis-card="true" style={{ minWidth: 0 }}>
+      <div style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', gap: '8px', marginBottom: '8px' }}>
+        <span style={{ borderRadius: '999px', background: 'rgba(245, 158, 11, 0.18)', border: '1px solid rgba(245, 158, 11, 0.42)', color: '#fbbf24', padding: '4px 9px', fontSize: '0.72rem', fontWeight: 800 }}>
+          실측 데이터 없음 — 가설
+        </span>
+        <span style={{ color: '#cbd5e1', fontSize: '0.75rem', lineHeight: 1.45 }}>
+          공백 사유: {reason}
+        </span>
+      </div>
+      {children}
+    </div>
+  );
+}
+
+type WhelkV2Basis = {
+  coverage_start: string;
+  coverage_end: string;
+  published_at?: string;
+  source_ids: string[];
+};
+
+export type WhelkV2Basket = {
+  hsk8: string;
+  label: string;
+  label_source?: string;
+  observed_hsk10?: string[];
+  import_usd_2024_jan_may?: number;
+  import_usd_2026_jan_may?: number;
+  change_pct?: number;
+  share_of_hs6_2024_jan_may_pct?: number;
+  share_of_hs6_2026_jan_may_pct?: number;
+  charted?: boolean;
+  top_origins_2026?: string[];
+  excluded_reason?: string;
+  import_kg_2024_jan_may?: number;
+  import_kg_2026_jan_may?: number;
+  floor_kg_2024_jan_may?: number;
+  floor_kg_2026_jan_may?: number;
+  below_floor_count_2026?: number;
+};
+
+export type WhelkV2Hypothesis = {
+  id: string;
+  statement: string;
+  supporting_observations: string[];
+  why_unproven: string[];
+  falsification_test: string;
+  claim_grade: string;
+};
+
+export type WhelkV2Hsk10Breakdown = {
+  hsk10: string;
+  item_name: string;
+  import_usd: number;
+  import_kg: number;
+  share_pct: number;
+  excluded_from_whelk_scope: boolean;
+};
+
+export type WhelkV2SpeciesComposition = {
+  alpha3: string;
+  scientific_name: string;
+  tonnes: number;
+  share_pct: number;
+};
+
+export type WhelkV2CaptureCountryRow = {
+  rank: number;
+  country_code: string;
+  country: string;
+  tonnes_live_weight: number;
+  species_composition: WhelkV2SpeciesComposition[];
+  dominant_species_scientific_name: string;
+  is_species_resolved: boolean;
+};
+
+export type WhelkV2CountryRankingRow = {
+  rank: number;
+  country_code: string;
+  country: string;
+  tonnes_live_weight: number;
+};
+
+export type WhelkV2Widget = {
+  section: Pillar;
+  title: string;
+  chartType: string;
+  data: any[];
+  methodology: string;
+  basis: WhelkV2Basis;
+  unit?: string;
+  world_total_tonnes?: number;
+  buccinum_only_ranking?: WhelkV2CountryRankingRow[];
+  total_aquaculture_tonnes?: number;
+  baskets?: WhelkV2Basket[];
+  layout?: string;
+  period_totals?: Record<string, number>;
+  interpretation_context?: Record<string, any>;
+  window_sensitivity?: Record<string, any>;
+  hsk8_monthly?: Record<string, any[]>;
+  uk_monthly_2024?: Array<{
+    month: string;
+    import_usd: number;
+    import_kg: number;
+    unit_price_usd_per_kg: number;
+  }>;
+  hsk8_breakdown?: Array<{ hsk8: string; label: string; import_usd: number; import_kg: number }>;
+  hsk10_breakdown?: WhelkV2Hsk10Breakdown[];
+  scale_context?: Record<string, any>;
+  hypothesis?: WhelkV2Hypothesis;
+  series_basis?: Record<string, string>;
+};
+
+export type WhelkV2CoverageGap = {
+  series: string;
+  missing: string[];
+  available: string[];
+  impact: string;
+};
+
+export type WhelkV2Dataset = {
+  meta: {
+    built_at: string;
+    telemetry: string;
+    coverage_gaps?: WhelkV2CoverageGap[];
+  };
+  widgets: Record<string, WhelkV2Widget>;
+};
+
+const V2_TOOLTIP_STYLE = {
+  background: 'rgba(20, 28, 52, 0.96)',
+  border: '1px solid rgba(251, 191, 36, 0.24)',
+  borderRadius: '8px',
+  color: '#f8fafc',
+  fontSize: '12px',
+};
+
+const V2_INFO_PANEL: React.CSSProperties = {
+  background: 'rgba(251, 191, 36, 0.06)',
+  border: '1px solid rgba(251, 191, 36, 0.18)',
+  borderRadius: '10px',
+  padding: '12px 14px',
+};
+
+function formatNumber(value: unknown, maximumFractionDigits = 0) {
+  const number = Number(value);
+  if (!Number.isFinite(number)) return '자료 없음';
+  return number.toLocaleString('ko-KR', { maximumFractionDigits });
+}
+
+function formatPercent(value: unknown, maximumFractionDigits = 1) {
+  return `${formatNumber(value, maximumFractionDigits)}%`;
+}
+
+function formatUsdPerKg(value: unknown) {
+  return `$${formatNumber(value, 2)}/kg`;
+}
+
+function formatWidgetUnit(unit?: string) {
+  if (!unit) return undefined;
+  return `(${unit.replaceAll('USD', '미국 달러').replaceAll('kg', '킬로그램')})`;
+}
+
+function formatMonth(month: unknown) {
+  return String(month).replace('-', '.');
+}
+
+function formatPeriodTick(period: unknown) {
+  const value = String(period);
+  const partialYear = value.match(/^(\d{4})-(\d{2})~(\d{2})$/);
+  if (!partialYear) return value;
+  return `${partialYear[1].slice(2)}년${Number(partialYear[2])}~${Number(partialYear[3])}월`;
+}
+
+function formatKoreanMonthRange(start: string, end: string) {
+  const [startYear, startMonth] = start.split('-');
+  const [endYear, endMonth] = end.split('-');
+  if (startYear === endYear && startMonth && endMonth) {
+    return `${startYear}년 ${Number(startMonth)}~${Number(endMonth)}월`;
+  }
+  return `${formatMonth(start)}~${formatMonth(end)}`;
+}
+
+function formatKcsCoverage(start: string, end: string) {
+  const [endYear, endMonth] = end.split('-');
+  if (!endMonth) return end;
+  if (/^\d{4}$/.test(start)) return `${start} / ${endYear}.${endMonth === '12' ? '01~12' : `01~${endMonth}`}`;
+  const [startYear, startMonth] = start.split('-');
+  if (startYear === endYear && startMonth) return `${startYear}.${startMonth}~${endMonth}`;
+  return `${formatMonth(start)}~${formatMonth(end)}`;
+}
+
+function hasSource(widget: WhelkV2Widget, token: string) {
+  return widget.basis.source_ids.some((sourceId) => sourceId.includes(token));
+}
+
+export function getWhelkWidgetSyncDate(widget: WhelkV2Widget) {
+  const { coverage_start: coverageStart, coverage_end: coverageEnd, published_at: publishedAt } = widget.basis;
+  const isFao = hasSource(widget, 'FAO');
+  const isKcs = hasSource(widget, 'KCS');
+  const isKmi = hasSource(widget, 'KMI');
+
+  if (isKmi) {
+    const [year, month] = coverageEnd.split('-').map(Number);
+    if (Number.isFinite(year) && Number.isFinite(month)) return `KMI ${year} Q${Math.ceil(month / 3)}`;
+    return `KMI ${coverageEnd}`;
+  }
+
+  if (isFao && isKcs) {
+    const latestCaptureYear = widget.data.reduce((latest, row) => {
+      if (row.uk_capture_tonnes_live_weight == null) return latest;
+      const year = Number(row.period);
+      return Number.isFinite(year) ? Math.max(latest, year) : latest;
+    }, 0);
+    const kcsCoverage = formatKcsCoverage(coverageEnd.slice(0, 4) + '-01', coverageEnd);
+    return `FAO FishStat ${latestCaptureYear || coverageEnd.slice(0, 4)} / 관세청 ${kcsCoverage}`;
+  }
+
+  if (isFao) return `FAO FishStat ${coverageEnd.slice(0, 4)}`;
+  if (isKcs) return `관세청 ${formatKcsCoverage(coverageStart, coverageEnd)}`;
+  if (publishedAt) return `공표 ${formatMonth(publishedAt.slice(0, 7))}`;
+  return `자료 ${formatMonth(coverageEnd)}`;
+}
+
+function widgetTelemetry(widget: WhelkV2Widget) {
+  return { status: 'SYNCED' as const, syncDate: getWhelkWidgetSyncDate(widget) };
+}
+
+function sourceLabel(widget: WhelkV2Widget) {
+  const labels: string[] = [];
+  if (hasSource(widget, 'FAO')) labels.push('유엔 식량농업기구 어업 통계');
+  if (hasSource(widget, 'KCS')) labels.push('관세청 수출입무역통계');
+  if (hasSource(widget, 'KMI')) labels.push('한국해양수산개발원 수입동향');
+  if (hasSource(widget, 'DFO')) labels.push('캐나다 수산해양부');
+  return labels.join(' · ') || '골뱅이 데이터 빌더 원천자료';
+}
+
+function getMaximumRow(rows: any[], key: string) {
+  return rows.reduce<any | undefined>((maximum, row) => {
+    const value = Number(row[key]);
+    if (!Number.isFinite(value)) return maximum;
+    return !maximum || value > Number(maximum[key]) ? row : maximum;
+  }, undefined);
+}
+
+// 대시보드 빌더 아카이브의 관측 공백을 시점 비교 위젯 본문에 고정 노출한다.
+// 두 시점만 보고 "전환"을 말하려면 그 사이를 보지 못했다는 사실이 같은 화면에 있어야 한다.
+export function WhelkCoverageGapNote({ dataset }: { dataset: WhelkV2Dataset }) {
+  const gap = dataset.meta.coverage_gaps?.[0];
+  if (!gap) return null;
+  return (
+    <div data-whelk-coverage-gap="true" style={{ ...V2_INFO_PANEL, marginTop: '12px', borderColor: 'rgba(148, 163, 184, 0.3)', background: 'rgba(148, 163, 184, 0.08)' }}>
+      <strong style={{ color: '#e2e8f0', fontSize: '0.8rem' }}>대시보드 아카이브 공백 — {gap.missing.join('·')}년 원자료 미반영</strong>
+      <p style={{ margin: '6px 0 0', color: '#cbd5e1', fontSize: '0.72rem', lineHeight: 1.5 }}>
+        현재 빌더 아카이브 보유 구간은 {gap.available.join(' · ')}이며 대상은 {gap.series}입니다. {gap.impact}
+      </p>
+    </div>
+  );
+}
+
+// HSK8 바구니 하나를 감싸는 소차트 틀. 두 바구니를 나란히 놓아야 합산 분모 착시가 재발하지 않는다.
+function WhelkBasketPanel({ basket, subtitle, children }: { basket: WhelkV2Basket; subtitle?: string; children: React.ReactNode }) {
+  return (
+    <div data-whelk-basket={basket.hsk8} style={{ border: '1px solid rgba(251, 191, 36, 0.2)', borderRadius: '10px', background: 'rgba(15, 23, 42, 0.5)', padding: '10px 12px 6px', minWidth: 0 }}>
+      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', gap: '8px', flexWrap: 'wrap', marginBottom: '6px' }}>
+        <strong style={{ color: '#fbbf24', fontSize: '0.82rem' }}>{basket.label}</strong>
+        {basket.top_origins_2026?.length ? (
+          <span style={{ color: '#94a3b8', fontSize: '0.7rem' }}>주요 원산지 {basket.top_origins_2026.join('·')}</span>
+        ) : null}
+      </div>
+      {subtitle ? (
+        <div style={{ color: '#cbd5e1', fontSize: '0.72rem', lineHeight: 1.45, marginBottom: '8px' }}>{subtitle}</div>
+      ) : null}
+      {children}
+    </div>
+  );
+}
+
+function shipmentNote(row: any) {
+  const months = (row.shipment_months_2026 || []).map(formatMonth).join('·');
+  if (!Number(row.shipment_count_2026)) return '2026년 1~5월 해당 관측 창 통관 실적 없음';
+  return `선적 ${formatNumber(row.shipment_count_2026)}건(${months}) — 안정 파이프라인 아님`;
+}
+
+// 표본이 희박한 원산지(선적 몇 건 / 통관 0건)를 점유율 숫자와 같은 카드에서 못 박는다.
+function WhelkThinEvidenceNotes({ rows }: { rows: any[] }) {
+  if (!rows.length) return null;
+  return (
+    <div data-whelk-thin-evidence="true" style={{ ...V2_INFO_PANEL, marginTop: '12px', borderColor: 'rgba(239, 68, 68, 0.26)', background: 'rgba(239, 68, 68, 0.06)' }}>
+      <strong style={{ color: '#fca5a5', fontSize: '0.8rem' }}>표본 희박 원산지 주석</strong>
+      <div style={{ display: 'flex', flexDirection: 'column', gap: '5px', marginTop: '7px' }}>
+        {rows.map((row) => (
+          <div key={`${row.hsk8}-${row.origin}`} style={{ color: '#cbd5e1', fontSize: '0.72rem', lineHeight: 1.45 }}>
+            <strong style={{ color: '#f8fafc' }}>{row.origin}</strong> · {shipmentNote(row)}
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+function speciesLabel(scientificName: string) {
+  if (scientificName === 'Rapana spp') return '라파나류';
+  if (scientificName === 'Gastropoda') return '복족류';
+  if (scientificName === 'Buccinum spp') return '부키눔류';
+  return '기타 복족류';
+}
+
+function hasSpeciesResolution(row: unknown): row is WhelkV2CaptureCountryRow {
+  if (!row || typeof row !== 'object') return false;
+  const candidate = row as Partial<WhelkV2CaptureCountryRow>;
+  return (
+    Array.isArray(candidate.species_composition) &&
+    candidate.species_composition.length > 0 &&
+    typeof candidate.dominant_species_scientific_name === 'string' &&
+    typeof candidate.is_species_resolved === 'boolean'
+  );
+}
+
+function dominantSpecies(row?: WhelkV2CaptureCountryRow) {
+  return row?.species_composition?.find(
+    (species) => species.scientific_name === row.dominant_species_scientific_name,
+  );
+}
+
+function speciesScientificLabel(
+  species: WhelkV2SpeciesComposition,
+  country: WhelkV2CaptureCountryRow,
+) {
+  const isUnresolvedDominant =
+    !country.is_species_resolved &&
+    species.scientific_name === country.dominant_species_scientific_name;
+  return `${species.scientific_name}${isUnresolvedDominant ? ' NEI' : ''}`;
+}
+
+function buccinumTonnes(row?: WhelkV2CaptureCountryRow) {
+  return (row?.species_composition ?? [])
+    .filter((species) => species.scientific_name.split(maxSplitWhitespace)[0] === 'Buccinum')
+    .reduce((total, species) => total + Number(species.tonnes || 0), 0);
+}
+
+const maxSplitWhitespace = /\s+/;
+
+export function WhelkV2Widgets({ dataset, activePart }: { dataset: WhelkV2Dataset; activePart: Pillar }) {
+  const widgets = dataset.widgets;
+  const portfolio = widgets.S3_origin_portfolio_shift;
+  const monthly = widgets.S3_prepared_import_monthly;
+  const cifLadder = widgets.S3_origin_cif_ladder;
+  const globalCapture = widgets.S1_global_capture_top_countries;
+  const koreaTimeline = widgets.S1_korea_capture_timeline;
+  const ukLink = widgets.S1_uk_capture_import_link;
+  const aquaculture = widgets.S1_aquaculture_species_split;
+  const hsGuide = widgets.S3_hs_classification_guide;
+  const speciesNotice = widgets.S1_species_scope_notice;
+  const frozenMix = widgets.S3_frozen_origin_mix;
+
+  if (!portfolio || !monthly || !cifLadder || !globalCapture || !koreaTimeline || !ukLink || !aquaculture || !hsGuide || !speciesNotice || !frozenMix) {
+    return (
+      <div className="ds-card" style={{ gridColumn: '1 / -1', padding: '1rem', color: '#fbbf24' }}>
+        신규 골뱅이 데이터 계약을 불러오지 못했습니다.
+      </div>
+    );
+  }
+
+  if (activePart === 'S1') {
+    const globalCaptureRows = globalCapture.data as WhelkV2CaptureCountryRow[];
+    const buccinumRanking = globalCapture.buccinum_only_ranking ?? [];
+    const korea = globalCaptureRows.find((row) => row.country_code === '410');
+    const uk = globalCaptureRows.find((row) => row.country_code === '826');
+    const turkiye = globalCaptureRows.find((row) => row.country_code === '792');
+    const leader = globalCaptureRows[0];
+    const speciesResolutionReady =
+      Boolean(korea && uk && turkiye) &&
+      globalCaptureRows.length > 0 &&
+      globalCaptureRows.every(hasSpeciesResolution) &&
+      buccinumRanking.length > 0;
+    const koreaDominant = dominantSpecies(korea);
+    const ukDominant = dominantSpecies(uk);
+    const turkiyeDominant = dominantSpecies(turkiye);
+    const koreaEntirelyUnresolved =
+      korea?.is_species_resolved === false && Number(koreaDominant?.share_pct) === 100;
+    const koreaBuccinumTonnes = buccinumTonnes(korea);
+    const koreaBuccinumRank = buccinumRanking.find((row) => row.country_code === '410');
+    const record = koreaTimeline.data.find((row) => row.is_record) || getMaximumRow(koreaTimeline.data, 'tonnes_live_weight');
+    const latestKorea = koreaTimeline.data[koreaTimeline.data.length - 1];
+    const captureRows = ukLink.data.filter((row) => row.uk_capture_tonnes_live_weight != null);
+    const importRows = ukLink.data.filter((row) => row.korea_import_usd != null);
+    const ukPeak = getMaximumRow(captureRows, 'uk_capture_tonnes_live_weight');
+    const latestUk = captureRows[captureRows.length - 1];
+    const latestUkImport = importRows[importRows.length - 1];
+    const aquacultureData = aquaculture.data.map((row) => ({ ...row, species_label: speciesLabel(row.scientific_name) }));
+    const aquacultureBySpecies = new Map(aquaculture.data.map((row) => [row.scientific_name, row]));
+    const rapana = aquacultureBySpecies.get('Rapana spp');
+    const buccinum = aquacultureBySpecies.get('Buccinum spp');
+
+    return (
+      <>
+        <WidgetCard
+          id="S1_global_capture_top_countries"
+          title={globalCapture.title}
+          icon={Globe}
+          iconColor="#fbbf24"
+          pillar={globalCapture.section}
+          cardDesc={speciesResolutionReady
+            ? `유엔 식량농업기구 ${globalCapture.basis.coverage_end}년 ${globalCaptureRows.length}개 상위국 집계 — 한국 ${formatNumber(korea?.rank)}위(지배 종군 ${speciesScientificLabel(koreaDominant!, korea!)}, ${formatPercent(koreaDominant?.share_pct, 3)}), 세계 합계 ${formatNumber(globalCapture.world_total_tonnes)}톤`
+            : `유엔 식량농업기구 ${globalCapture.basis.coverage_end}년 국가별 어획 집계 — 종 구성 자료를 불러오지 못했습니다`}
+          unit={formatWidgetUnit(globalCapture.unit)}
+          telemetry={widgetTelemetry(globalCapture)}
+          chartHeight={360}
+          chart={speciesResolutionReady ? (
+            <BarChart data={globalCaptureRows} layout="vertical" margin={{ left: 20, right: 24 }}>
+              <ChartPatternDefs />
+              <defs>
+                <pattern id="whelkSpeciesUnresolved" patternUnits="userSpaceOnUse" width="8" height="8">
+                  <rect width="8" height="8" fill="#ef4444" fillOpacity="0.72" />
+                  <path d="M-2 2L2-2M0 8L8 0M6 10L10 6" stroke="#fecaca" strokeWidth="1.5" />
+                </pattern>
+              </defs>
+              <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" horizontal={false} />
+              <XAxis type="number" tick={{ fill: '#94a3b8', fontSize: 11 }} tickFormatter={(value) => formatNumber(value)} />
+              <YAxis dataKey="country" type="category" tick={{ fill: '#f8fafc', fontSize: 11 }} width={70} />
+              <RechartsTooltip contentStyle={V2_TOOLTIP_STYLE} formatter={(value: any) => [`${formatNumber(value)}톤`, '어획량']} />
+              <Bar dataKey="tonnes_live_weight" name="어획량" radius={[0, 4, 4, 0]}>
+                {globalCaptureRows.map((row) => (
+                  <Cell
+                    key={row.country_code}
+                    fill={!row.is_species_resolved ? 'url(#whelkSpeciesUnresolved)' : row.country_code === '410' ? '#ef4444' : '#fbbf24'}
+                  />
+                ))}
+              </Bar>
+            </BarChart>
+          ) : undefined}
+          customBody={speciesResolutionReady ? (
+            <div data-whelk-species-resolution-notice="true" style={{ ...V2_INFO_PANEL, marginTop: '12px', borderColor: 'rgba(239, 68, 68, 0.34)', background: 'rgba(127, 29, 29, 0.1)' }}>
+              <strong style={{ color: '#fca5a5', fontSize: '0.84rem' }}>종 해상도 고지 — 이 순위표의 국가는 같은 종 기준이 아닙니다</strong>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '5px', marginTop: '8px', color: '#e2e8f0', fontSize: '0.76rem', lineHeight: 1.55 }}>
+                <div>
+                  {koreaEntirelyUnresolved ? '한국 수치는 전량 종 미상' : '한국 수치의 지배 종군은 종 미상'}(<i>{speciesScientificLabel(koreaDominant!, korea!)}</i>)이며 {formatNumber(koreaDominant?.tonnes, 3)}톤·{formatPercent(koreaDominant?.share_pct, 3)}입니다. 영국은 <i>{speciesScientificLabel(ukDominant!, uk!)}</i> {formatPercent(ukDominant?.share_pct, 3)}로 종이 확정됐습니다.
+                </div>
+                <div>
+                  튀르키예는 <i>{speciesScientificLabel(turkiyeDominant!, turkiye!)}</i> {formatPercent(turkiyeDominant?.share_pct, 3)}로 영국·한국과 다른 종입니다.
+                </div>
+                <div style={{ color: '#fbbf24', fontWeight: 700 }}>
+                  Buccinum 속만 보면 한국은 {koreaBuccinumRank ? `${formatNumber(koreaBuccinumRank.rank)}위` : '순위 밖'}({formatNumber(koreaBuccinumTonnes, 3)}톤)입니다.
+                </div>
+              </div>
+
+              <div data-mobile-stack style={{ display: 'grid', gridTemplateColumns: 'repeat(2, minmax(0, 1fr))', gap: '7px', marginTop: '12px' }}>
+                {globalCaptureRows.map((row) => (
+                  <div
+                    key={row.country_code}
+                    data-species-resolved={String(row.is_species_resolved)}
+                    style={{ borderLeft: `3px solid ${row.is_species_resolved ? '#10b981' : '#ef4444'}`, borderRadius: '6px', background: 'rgba(15, 23, 42, 0.58)', padding: '8px 10px', minWidth: 0 }}
+                  >
+                    <div style={{ display: 'flex', justifyContent: 'space-between', gap: '8px', alignItems: 'baseline' }}>
+                      <strong style={{ color: '#f8fafc', fontSize: '0.76rem' }}>{formatNumber(row.rank)}위 {row.country}</strong>
+                      <span style={{ color: row.is_species_resolved ? '#6ee7b7' : '#fca5a5', fontSize: '0.68rem', fontWeight: 700 }}>
+                        {row.is_species_resolved ? '✓ 종 확인' : '⚠ 종 미상'}
+                      </span>
+                    </div>
+                    {row.species_composition.map((species) => (
+                      <div key={`${species.alpha3}-${species.scientific_name}`} style={{ color: '#cbd5e1', fontSize: '0.68rem', lineHeight: 1.45, marginTop: '3px' }}>
+                        <i>{speciesScientificLabel(species, row)}</i> · {formatNumber(species.tonnes, 3)}톤 · {formatPercent(species.share_pct, 3)}
+                      </div>
+                    ))}
+                  </div>
+                ))}
+              </div>
+
+              <div style={{ marginTop: '12px', borderTop: '1px solid rgba(251, 191, 36, 0.18)', paddingTop: '9px' }}>
+                <strong style={{ color: '#fbbf24', fontSize: '0.76rem' }}>Buccinum 속 단독 상위 {formatNumber(buccinumRanking.length)}개국</strong>
+                <div style={{ display: 'flex', flexWrap: 'wrap', gap: '6px', marginTop: '7px' }}>
+                  {buccinumRanking.map((row) => (
+                    <span key={row.country_code} style={{ border: '1px solid rgba(251, 191, 36, 0.22)', borderRadius: '999px', padding: '4px 7px', color: '#e2e8f0', fontSize: '0.68rem' }}>
+                      {formatNumber(row.rank)}위 {row.country} {formatNumber(row.tonnes_live_weight, 3)}톤
+                    </span>
+                  ))}
+                </div>
+              </div>
+            </div>
+          ) : (
+            <div data-whelk-species-resolution-notice="missing" style={{ ...V2_INFO_PANEL, marginTop: '12px', borderColor: 'rgba(239, 68, 68, 0.34)', background: 'rgba(127, 29, 29, 0.1)', color: '#fca5a5', fontSize: '0.8rem', fontWeight: 700 }}>
+              종 구성 자료를 불러오지 못했습니다. 종 해상도 확인 전에는 국가 순위를 표시하지 않습니다.
+            </div>
+          )}
+          takeaway={{
+            situation: speciesResolutionReady
+              ? <span>{globalCapture.basis.coverage_end}년 {leader.country}이 {formatNumber(leader.tonnes_live_weight, 3)}톤으로 {formatNumber(leader.rank)}위이며, 한국은 {formatNumber(korea?.tonnes_live_weight, 3)}톤으로 세계 {formatNumber(korea?.rank)}위입니다. 다만 한국은 <i>{speciesScientificLabel(koreaDominant!, korea!)}</i>, 영국은 <i>{speciesScientificLabel(ukDominant!, uk!)}</i>가 지배해 같은 종 기준 순위가 아닙니다. 전체 집계는 {formatNumber(globalCapture.world_total_tonnes, 3)}톤입니다.</span>
+              : <span>국가별 종 구성 자료가 누락돼 종 해상도 확인 전에는 어획 순위를 표시하지 않습니다.</span>,
+            actionPlan: <span>한국의 어획 순위를 조달 근거로 쓸 때는 종 미상 집계와 Buccinum 속 단독 순위를 분리하고, 산지별 학명·품질·수출 계약을 확인한 뒤 평가해야 합니다.</span>,
+            source: sourceLabel(globalCapture),
+          }}
+        />
+
+        <WidgetCard
+          id="S1_korea_capture_timeline"
+          title={koreaTimeline.title}
+          icon={TrendingUp}
+          iconColor="#f59e0b"
+          pillar={koreaTimeline.section}
+          cardDesc={`유엔 식량농업기구 한국 관측 ${koreaTimeline.data[0]?.year}~${latestKorea?.year}년 합산 — 최고점 ${record?.year}년 ${formatNumber(record?.tonnes_live_weight)}톤`}
+          unit={formatWidgetUnit(koreaTimeline.unit)}
+          telemetry={widgetTelemetry(koreaTimeline)}
+          chartHeight={320}
+          chart={
+            <AreaChart data={koreaTimeline.data} margin={{ top: 12, right: 20, left: 4, bottom: 8 }}>
+              <defs>
+                <linearGradient id="whelkV2KoreaCapture" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="5%" stopColor="#fbbf24" stopOpacity={0.72} />
+                  <stop offset="95%" stopColor="#fbbf24" stopOpacity={0.04} />
+                </linearGradient>
+              </defs>
+              <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" vertical={false} />
+              <XAxis dataKey="year" tick={{ fill: '#94a3b8', fontSize: 10 }} minTickGap={28} />
+              <YAxis tick={{ fill: '#94a3b8', fontSize: 11 }} tickFormatter={(value) => formatNumber(value)} />
+              <RechartsTooltip contentStyle={V2_TOOLTIP_STYLE} formatter={(value: any) => [`${formatNumber(value)}톤`, '한국 어획량']} labelFormatter={(year) => `${year}년`} />
+              <Area type="monotone" dataKey="tonnes_live_weight" name="한국 어획량" stroke="#fbbf24" strokeWidth={2.5} fill="url(#whelkV2KoreaCapture)" />
+            </AreaChart>
+          }
+          kpiPanel={[
+            { label: '역대 최고', value: `${record?.year}년`, sub: `${formatNumber(record?.tonnes_live_weight)}톤`, trendColor: '#fbbf24' },
+            { label: '최신 확정', value: `${latestKorea?.year}년`, sub: `${formatNumber(latestKorea?.tonnes_live_weight)}톤` },
+          ]}
+          takeaway={{
+            situation: <span>한국 어획은 {record?.year}년 {formatNumber(record?.tonnes_live_weight)}톤으로 관측기간 최고점을 기록한 뒤 {latestKorea?.year}년 {formatNumber(latestKorea?.tonnes_live_weight)}톤을 나타냈습니다. 종전 최고점 표기는 이 확정계열과 맞지 않습니다.</span>,
+            actionPlan: <span>국내 어획의 가공 전환 가능성을 검토할 때 최근 한 해만 보지 말고 최고점 이후 변동폭과 산지별 계약 물량을 함께 반영해야 합니다.</span>,
+            source: sourceLabel(koreaTimeline),
+          }}
+        />
+
+        <WidgetCard
+          id="S1_uk_capture_import_link"
+          title={ukLink.title}
+          icon={Ship}
+          iconColor="#d97706"
+          pillar={ukLink.section}
+          cardDesc={`영국 어획 확정계열과 한국의 영국산 조제 연체동물 수입액을 별도 축으로 병기 — 어획 최고 ${ukPeak?.period}년 ${formatNumber(ukPeak?.uk_capture_tonnes_live_weight)}톤`}
+          unit={formatWidgetUnit(ukLink.unit)}
+          telemetry={widgetTelemetry(ukLink)}
+          chartHeight={320}
+          chart={
+            <ComposedChart data={ukLink.data} margin={{ top: 12, right: 18, left: 4, bottom: 8 }}>
+              <ChartPatternDefs />
+              <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" vertical={false} />
+              <XAxis dataKey="period" tickFormatter={formatPeriodTick} tick={{ fill: '#94a3b8', fontSize: 10 }} />
+              <YAxis yAxisId="capture" tick={{ fill: '#94a3b8', fontSize: 10 }} tickFormatter={(value) => formatNumber(value)} />
+              <YAxis yAxisId="imports" orientation="right" tick={{ fill: '#94a3b8', fontSize: 10 }} tickFormatter={(value) => `$${formatNumber(Number(value) / 1_000_000, 1)}백만`} />
+              <RechartsTooltip contentStyle={V2_TOOLTIP_STYLE} formatter={(value: any, name: any) => name === '영국 어획량' ? [`${formatNumber(value)}톤`, name] : [`$${formatNumber(value)}`, name]} />
+              <Legend wrapperStyle={{ fontSize: '11px' }} />
+              <Bar yAxisId="capture" dataKey="uk_capture_tonnes_live_weight" name="영국 어획량" fill="#fbbf24" radius={[4, 4, 0, 0]} />
+              <Line yAxisId="imports" type="monotone" dataKey="korea_import_usd" name="한국 수입액" stroke="#ef4444" strokeWidth={2.5} connectNulls={false} />
+            </ComposedChart>
+          }
+          takeaway={{
+            situation: <span>영국 어획은 {ukPeak?.period}년 {formatNumber(ukPeak?.uk_capture_tonnes_live_weight)}톤으로 정점을 기록했고 최신 확정치인 {latestUk?.period}년에는 {formatNumber(latestUk?.uk_capture_tonnes_live_weight)}톤입니다. 한국의 최신 영국산 수입액은 {latestUkImport?.period_basis} 기준 ${formatNumber(latestUkImport?.korea_import_usd)}입니다.</span>,
+            actionPlan: <span>어획과 수입액은 단위와 관측기간이 다르므로 상관관계로 단정하지 말고, 영국 공급 여력과 한국의 구매 집중도를 나란히 감시하는 조기경보 지표로 사용해야 합니다.</span>,
+            source: sourceLabel(ukLink),
+          }}
+        />
+
+        <WidgetCard
+          id="S1_aquaculture_species_split"
+          title={aquaculture.title}
+          icon={ShieldAlert}
+          iconColor="#ef4444"
+          pillar={aquaculture.section}
+          cardDesc={`유엔 식량농업기구 ${aquaculture.basis.coverage_end}년 종별 양식 집계 — 라파나류 ${formatNumber(rapana?.tonnes_live_weight)}톤, 부키눔류 관측 ${formatNumber(buccinum?.tonnes_live_weight)}톤`}
+          unit={formatWidgetUnit(aquaculture.unit)}
+          telemetry={widgetTelemetry(aquaculture)}
+          chartHeight={300}
+          chart={
+            <BarChart data={aquacultureData} margin={{ top: 16, right: 20, left: 8, bottom: 8 }}>
+              <ChartPatternDefs />
+              <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" vertical={false} />
+              <XAxis dataKey="species_label" tick={{ fill: '#f8fafc', fontSize: 11 }} />
+              <YAxis tick={{ fill: '#94a3b8', fontSize: 10 }} tickFormatter={(value) => formatNumber(value)} />
+              <RechartsTooltip contentStyle={V2_TOOLTIP_STYLE} formatter={(value: any) => [`${formatNumber(value, 3)}톤`, '양식 생산량']} />
+              <Bar dataKey="tonnes_live_weight" name="양식 생산량" radius={[4, 4, 0, 0]}>
+                {aquacultureData.map((row) => <Cell key={row.scientific_name} fill={row.scientific_name === 'Rapana spp' ? '#fbbf24' : '#64748b'} />)}
+              </Bar>
+            </BarChart>
+          }
+          takeaway={{
+            situation: <span><TermTooltip term="라파나류" description="피뿔고둥 계열을 포함하는 종군으로 중국 양식 생산의 대부분을 차지합니다." /> 양식은 {formatNumber(rapana?.tonnes_live_weight)}톤으로 전체 {formatPercent(rapana?.share_pct, 3)}를 차지하지만, <TermTooltip term="부키눔류" description="북해산 물레고둥 계열을 포함하는 종군입니다." />는 보관된 양식 자료에서 관측량이 {formatNumber(buccinum?.tonnes_live_weight)}톤입니다.</span>,
+            actionPlan: <span>“골뱅이 양식 불가”를 전체 복족류에 적용하지 말고, 북해산 종과 중국산 라파나류를 분리해 원가·품질·조달 안정성을 평가해야 합니다.</span>,
+            source: sourceLabel(aquaculture),
+          }}
+        />
+
+        <WidgetCard
+          id="S1_species_scope_notice"
+          title={speciesNotice.title}
+          icon={Dna}
+          iconColor="#b45309"
+          pillar={speciesNotice.section}
+          cardDesc={`유엔 식량농업기구 종 코드 ${formatNumber(speciesNotice.data.length)}종의 ${speciesNotice.basis.coverage_start}~${speciesNotice.basis.coverage_end}년 어획 합산 범위를 공개`}
+          unit={formatWidgetUnit(speciesNotice.unit)}
+          telemetry={widgetTelemetry(speciesNotice)}
+          customBody={
+            <div style={V2_INFO_PANEL}>
+              <div style={{ marginBottom: '10px', color: '#f8fafc', fontWeight: 700 }}>합산 대상 종 코드 {formatNumber(speciesNotice.data.length)}개</div>
+              <div style={{ display: 'flex', flexWrap: 'wrap', gap: '7px' }}>
+                {speciesNotice.data.map((row) => (
+                  <span key={row.alpha3_code} style={{ background: 'rgba(255,255,255,0.05)', border: '1px solid rgba(255,255,255,0.09)', borderRadius: '6px', padding: '5px 7px' }}>
+                    <TermTooltip term={row.alpha3_code} description={<>유엔 식량농업기구 종 코드입니다. 학명은 <i>{row.scientific_name}</i>입니다.</>} />
+                  </span>
+                ))}
+              </div>
+            </div>
+          }
+          takeaway={{
+            situation: <span>이 대시보드의 어획량은 종 코드 {formatNumber(speciesNotice.data.length)}개를 합산한 복족류 범위이며, 북해산 물레고둥 단일 종 통계가 아닙니다. 관측 범위는 {speciesNotice.basis.coverage_start}~{speciesNotice.basis.coverage_end}년입니다.</span>,
+            actionPlan: <span>국가별 어획량을 특정 상품 규격의 공급 가능량으로 곧바로 해석하지 말고, 구매 검토 단계에서 학명·가공형태·원산지 일치 여부를 다시 확인해야 합니다.</span>,
+            source: sourceLabel(speciesNotice),
+          }}
+        />
+      </>
+    );
+  }
+
+  if (activePart === 'S3') {
+    // G-006: HS6 하나가 원산지 구성이 겹치지 않는 두 바구니의 합이라, 분모를 합치면
+    // 한 바구니의 붕괴가 다른 바구니 원산지의 '점유율 상승'으로 나타난다. 그래서 화면에서도
+    // 바구니를 합치지 않는다 — 바구니 소속은 데이터의 hsk8 필드로만 판정한다.
+    const portfolioBaskets = portfolio.baskets ?? [];
+    const chartedBaskets = portfolioBaskets.filter((basket) => basket.charted);
+    const excludedBaskets = portfolioBaskets.filter((basket) => !basket.charted);
+    const portfolioRow = (origin: string, hsk8?: string) =>
+      portfolio.data.find((row) => row.origin === origin && !row.combined && (!hsk8 || row.hsk8 === hsk8));
+    const combinedRow = portfolio.data.find((row) => row.combined);
+    const northBasketId: string | undefined = combinedRow?.hsk8 ?? portfolioRow('영국')?.hsk8;
+    const northBasket = chartedBaskets.find((basket) => basket.hsk8 === northBasketId);
+    const otherBasket = chartedBaskets.find((basket) => basket.hsk8 !== northBasketId);
+    const basketRows = (hsk8?: string) =>
+      portfolio.data.filter(
+        (row) =>
+          row.hsk8 === hsk8 &&
+          !row.combined &&
+          (Number(row.share_within_basket_2024_pct) > 0 || Number(row.share_within_basket_2026_pct) > 0),
+      );
+    const basketLeader2026 = (hsk8?: string) =>
+      basketRows(hsk8).reduce<any | undefined>(
+        (top, row) => (!top || Number(row.share_within_basket_2026_pct) > Number(top.share_within_basket_2026_pct) ? row : top),
+        undefined,
+      );
+    const canada = portfolioRow('캐나다', northBasketId);
+    const portfolioInterpretation = portfolio.interpretation_context;
+    const northShareExcludingCanada = portfolioInterpretation?.combined_share_excluding_qualification_origin_2026_pct;
+    const canadaObservedMonthCount = portfolioInterpretation?.qualification_observed_month_count;
+    const otherLeader = basketLeader2026(otherBasket?.hsk8);
+    const thinEvidenceRows = portfolio.data.filter((row) => row.thin_evidence && !row.combined);
+    const windowSensitivity = portfolio.window_sensitivity;
+
+    const cifBaskets = cifLadder.baskets ?? [];
+    const cifRanked = (hsk8: string) =>
+      cifLadder.data
+        .filter((row) => row.hsk8 === hsk8 && row.rank != null)
+        .sort((left, right) => Number(left.rank) - Number(right.rank));
+    const belowFloorOrigins = cifLadder.data.filter((row) => row.below_volume_floor);
+    const rankedOrigins = cifLadder.data.filter((row) => row.rank != null);
+    const cifRow = (origin: string, hsk8?: string) =>
+      cifLadder.data.find((row) => row.origin === origin && (!hsk8 || row.hsk8 === hsk8));
+    const ukCif = cifRow('영국', northBasketId);
+    const canadaCif = cifRow('캐나다', northBasketId);
+    const chinaNorthCif = cifRow('중국', northBasketId);
+    const chinaOtherCif = cifRow('중국', otherBasket?.hsk8);
+    const monthlyPeak = getMaximumRow(monthly.data, 'import_usd');
+    const latestMonth = monthly.data[monthly.data.length - 1];
+    const monthlyTotal = monthly.data.reduce((sum, row) => sum + Number(row.import_usd || 0), 0);
+    const preparedCode = hsGuide.data.find((row) => row.is_prepared_proxy);
+    const comparisonPeriod = formatKoreanMonthRange('2024-01', '2024-05');
+    const currentPeriod = formatKoreanMonthRange(monthly.basis.coverage_start, monthly.basis.coverage_end);
+    const frozenPeriod = formatKoreanMonthRange(frozenMix.basis.coverage_start, frozenMix.basis.coverage_end);
+    const scallopLine = frozenMix.hsk10_breakdown?.find((row) => row.excluded_from_whelk_scope);
+    const hsCodeLength = String(hsGuide.data[0]?.hs6 || '').length;
+    const hskCodeLength = String(preparedCode?.hsk10_observed?.[0] || '').length;
+
+    return (
+      <>
+        <WidgetCard
+          id="S3_origin_portfolio_shift"
+          title={portfolio.title}
+          icon={ChartPie}
+          iconColor="#fbbf24"
+          pillar={portfolio.section}
+          termTooltip={{ term: 'HSK8', description: '국제 공통 6자리 분류 아래에 관세청이 두는 한국 고유 세분류 8자리 코드입니다.' }}
+          cardDesc={`같은 1~5월 창을 바구니별로 분해 — ${northBasket?.label} 안의 영국·아일랜드 합산 ${formatPercent(combinedRow?.share_within_basket_2024_pct)}→${formatPercent(combinedRow?.share_within_basket_2026_pct)} 하락은 캐나다 ${formatNumber(canadaObservedMonthCount)}개월 관측을 포함할 때만 성립합니다. 캐나다를 제외하면 ${formatPercent(northShareExcludingCanada)}이며, 두 바구니를 합친 분모로는 원산지 점유율을 서술하지 않습니다(G-006)`}
+          unit={formatWidgetUnit(portfolio.unit)}
+          telemetry={widgetTelemetry(portfolio)}
+          customBody={
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
+              <div data-mobile-stack style={{ display: 'grid', gridTemplateColumns: 'repeat(2, minmax(0, 1fr))', gap: '12px' }}>
+                {chartedBaskets.map((basket) => (
+                  <WhelkBasketPanel
+                    key={basket.hsk8}
+                    basket={basket}
+                    subtitle={`기간 총액 $${formatNumber(basket.import_usd_2024_jan_may)} → $${formatNumber(basket.import_usd_2026_jan_may)} (${formatPercent(basket.change_pct)}) · 점유율 분모는 이 바구니 총액`}
+                  >
+                    <SafeResponsiveContainer width="100%" height={230}>
+                      <BarChart data={basketRows(basket.hsk8)} margin={{ top: 8, right: 10, left: 0, bottom: 8 }}>
+                        <ChartPatternDefs />
+                        <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" vertical={false} />
+                        <XAxis dataKey="origin" interval={0} tick={{ fill: '#f8fafc', fontSize: 10 }} />
+                        <YAxis tick={{ fill: '#94a3b8', fontSize: 10 }} tickFormatter={(value) => `${value}%`} />
+                        <RechartsTooltip contentStyle={V2_TOOLTIP_STYLE} formatter={(value: any, name: any) => [`${formatNumber(value, 1)}%`, name]} />
+                        <Legend wrapperStyle={{ fontSize: '10px' }} />
+                        <Bar dataKey="share_within_basket_2024_pct" name={`${comparisonPeriod} 바구니 내 점유율`} fill="#92400e" radius={[4, 4, 0, 0]} />
+                        <Bar dataKey="share_within_basket_2026_pct" name={`${currentPeriod} 바구니 내 점유율`} fill="#fbbf24" radius={[4, 4, 0, 0]} />
+                      </BarChart>
+                    </SafeResponsiveContainer>
+                  </WhelkBasketPanel>
+                ))}
+              </div>
+
+              {excludedBaskets.length ? (
+                <div style={{ color: '#94a3b8', fontSize: '0.72rem', lineHeight: 1.45 }}>
+                  차트 제외 바구니: {excludedBaskets.map((basket) => `${basket.label} — ${basket.excluded_reason}`).join(' · ')}
+                </div>
+              ) : null}
+
+              <WhelkThinEvidenceNotes rows={thinEvidenceRows} />
+
+              {windowSensitivity ? (
+                <div data-whelk-window-bias="true" style={{ ...V2_INFO_PANEL, borderColor: 'rgba(56, 189, 248, 0.26)', background: 'rgba(56, 189, 248, 0.06)' }}>
+                  <strong style={{ color: '#7dd3fc', fontSize: '0.8rem' }}>관측 창 편향 — 같은 2024년도 창에 따라 결론이 갈립니다</strong>
+                  <div data-mobile-stack style={{ display: 'grid', gridTemplateColumns: 'repeat(2, minmax(0, 1fr))', gap: '8px', marginTop: '8px' }}>
+                    {chartedBaskets.map((basket) => (
+                      <div key={basket.hsk8} style={{ background: 'rgba(15, 23, 42, 0.5)', borderRadius: '6px', padding: '8px 10px', minWidth: 0 }}>
+                        <div style={{ color: '#f8fafc', fontSize: '0.76rem', fontWeight: 700 }}>{basket.label}</div>
+                        <div style={{ color: '#cbd5e1', fontSize: '0.7rem', marginTop: '4px', lineHeight: 1.5 }}>
+                          1~5월 창 {formatPercent(windowSensitivity.jan_may?.[`${basket.hsk8}_share_of_hs6_2024_pct`])} · 연간 창 {formatPercent(windowSensitivity.full_year?.[`${basket.hsk8}_share_of_hs6_2024_pct`])}
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                  <p style={{ margin: '8px 0 0', color: '#cbd5e1', fontSize: '0.72rem', lineHeight: 1.5 }}>{windowSensitivity.note}</p>
+                </div>
+              ) : null}
+
+              <WhelkCoverageGapNote dataset={dataset} />
+            </div>
+          }
+          takeaway={{
+            situation: <span>같은 1~5월 창에서 {northBasket?.label} 바구니 안의 영국·아일랜드 합산은 {formatPercent(combinedRow?.share_within_basket_2024_pct)}에서 {formatPercent(combinedRow?.share_within_basket_2026_pct)}로 {formatNumber(Math.abs(Number(combinedRow?.share_delta_pp)), 1)}%포인트 <strong>낮게 관측</strong>됐고, 같은 창에서 캐나다 비중은 {formatPercent(canada?.share_within_basket_2024_pct)}→{formatPercent(canada?.share_within_basket_2026_pct)}로 관측됐습니다. 다른 바구니 {otherBasket?.label}은 {formatPercent(otherBasket?.change_pct)} 줄어 {otherLeader?.origin} 비중이 {formatPercent(otherLeader?.share_within_basket_2026_pct)}까지 올라간 별개의 구성 차이입니다. 두 바구니를 합친 분모를 쓰면 이 축소가 북해산 원산지의 점유율 상승으로 나타나므로 합산 서술을 쓰지 않았습니다.</span>,
+            actionPlan: <span>{northBasket?.label}의 두 관측 시점에서 영국·아일랜드 합산 비중은 낮아졌지만, 캐나다 실적이 {formatNumber(canada?.shipment_count_2026)}건 선적에 그쳐 공급선 정착이나 지속 추세로 판단하기 이릅니다. 캐나다 물량의 반복 여부를 다음 분기 통관으로 먼저 확인하고, 흑해산 축소는 같은 바구니 문제가 아니므로 냉동 축(0307.92) 잔존 여부와 함께 판단해야 합니다.</span>,
+            source: sourceLabel(portfolio),
+          }}
+        />
+
+        <WidgetCard
+          id="S3_prepared_import_monthly"
+          title={monthly.title}
+          icon={Activity}
+          iconColor="#d97706"
+          pillar={monthly.section}
+          cardDesc={`관세청 ${formatMonth(monthly.data[0]?.month)}~${formatMonth(latestMonth?.month)} 월별 원계열 — 누적 수입액 $${formatNumber(monthlyTotal)}. 바구니 ${formatNumber(Object.keys(monthly.hsk8_monthly ?? {}).length)}개를 합친 규모 계열이며 원산지 점유율 분모로 쓰지 않습니다(G-006)`}
+          unit={formatWidgetUnit(monthly.unit)}
+          telemetry={widgetTelemetry(monthly)}
+          chartHeight={320}
+          chart={
+            <ComposedChart data={monthly.data} margin={{ top: 12, right: 18, left: 4, bottom: 8 }}>
+              <ChartPatternDefs />
+              <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" vertical={false} />
+              <XAxis dataKey="month" tickFormatter={formatMonth} tick={{ fill: '#f8fafc', fontSize: 10 }} />
+              <YAxis yAxisId="value" tick={{ fill: '#94a3b8', fontSize: 10 }} tickFormatter={(value) => `$${formatNumber(Number(value) / 1_000_000, 1)}백만`} />
+              <YAxis yAxisId="price" orientation="right" tick={{ fill: '#94a3b8', fontSize: 10 }} tickFormatter={(value) => `$${formatNumber(value, 1)}`} />
+              <RechartsTooltip contentStyle={V2_TOOLTIP_STYLE} labelFormatter={formatMonth} formatter={(value: any, name: any) => name === '수입액' ? [`$${formatNumber(value)}`, name] : [formatUsdPerKg(value), name]} />
+              <Legend wrapperStyle={{ fontSize: '11px' }} />
+              <Bar yAxisId="value" dataKey="import_usd" name="수입액" fill="#fbbf24" radius={[4, 4, 0, 0]} />
+              <Line yAxisId="price" type="monotone" dataKey="unit_price_usd_per_kg" name="시사단가" stroke="#ef4444" strokeWidth={2.5} dot={{ r: 4 }} />
+            </ComposedChart>
+          }
+          takeaway={{
+            situation: <span>{formatMonth(monthlyPeak?.month)} 수입액이 ${formatNumber(monthlyPeak?.import_usd)}로 기간 중 가장 컸고, 최신 {formatMonth(latestMonth?.month)} 시사단가는 {formatUsdPerKg(latestMonth?.unit_price_usd_per_kg)}입니다. 연환산 없이 월별 원계열만 표시합니다.</span>,
+            actionPlan: <span>수입액 급증 월과 단가 상승 월을 분리해 발주·재고 계획에 반영하고, 짧은 누적기간을 연간 수요 증가로 확대 해석하지 않아야 합니다.</span>,
+            source: sourceLabel(monthly),
+          }}
+        />
+
+        <WidgetCard
+          id="S3_origin_cif_ladder"
+          title={cifLadder.title}
+          icon={Scale}
+          iconColor="#f59e0b"
+          pillar={cifLadder.section}
+          termTooltip={{ term: 'CIF', description: '운임과 보험료를 포함한 수입 도착가 기준 단가입니다.' }}
+          cardDesc={`바구니별 수입액÷중량 가중 단가 — 같은 중국도 ${northBasket?.label} ${formatUsdPerKg(chinaNorthCif?.unit_price_2026_jan_may_usd_per_kg)}, ${otherBasket?.label} ${formatUsdPerKg(chinaOtherCif?.unit_price_2026_jan_may_usd_per_kg)}로 갈려 바구니를 섞은 단일 단가를 만들지 않습니다(G-006). 순위는 바구니 내부 물량 하한 통과분만`}
+          unit={formatWidgetUnit(cifLadder.unit)}
+          telemetry={widgetTelemetry(cifLadder)}
+          customBody={
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
+              <div data-mobile-stack style={{ display: 'grid', gridTemplateColumns: 'repeat(2, minmax(0, 1fr))', gap: '12px' }}>
+                {cifBaskets.map((basket) => (
+                  <WhelkBasketPanel
+                    key={basket.hsk8}
+                    basket={basket}
+                    subtitle={`순위 하한 ${formatNumber(basket.floor_kg_2026_jan_may ?? 0)}킬로그램(기간 물량 ${formatNumber(basket.import_kg_2026_jan_may)}킬로그램의 1%) · 하한 미달 ${formatNumber(basket.below_floor_count_2026)}개 제외`}
+                  >
+                    <SafeResponsiveContainer width="100%" height={230}>
+                      <BarChart data={cifRanked(basket.hsk8)} layout="vertical" margin={{ top: 8, right: 12, left: 16, bottom: 8 }}>
+                        <ChartPatternDefs />
+                        <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" horizontal={false} />
+                        <XAxis type="number" tick={{ fill: '#94a3b8', fontSize: 10 }} tickFormatter={(value) => `$${value}`} />
+                        <YAxis type="category" dataKey="origin" tick={{ fill: '#f8fafc', fontSize: 11 }} width={64} />
+                        <RechartsTooltip contentStyle={V2_TOOLTIP_STYLE} formatter={(value: any, name: any) => [formatUsdPerKg(value), name]} />
+                        <Legend wrapperStyle={{ fontSize: '10px' }} />
+                        <Bar dataKey="unit_price_2024_jan_may_usd_per_kg" name={`${comparisonPeriod} 단가`} fill="#92400e" radius={[0, 4, 4, 0]} />
+                        <Bar dataKey="unit_price_2026_jan_may_usd_per_kg" name={`${currentPeriod} 단가`} fill="#fbbf24" radius={[0, 4, 4, 0]} />
+                      </BarChart>
+                    </SafeResponsiveContainer>
+                  </WhelkBasketPanel>
+                ))}
+              </div>
+
+              <div style={{ ...V2_INFO_PANEL, borderColor: 'rgba(239, 68, 68, 0.24)', background: 'rgba(239, 68, 68, 0.05)' }}>
+                <div style={{ display: 'flex', justifyContent: 'space-between', gap: '12px', alignItems: 'baseline', marginBottom: '10px' }}>
+                  <strong style={{ color: '#fca5a5', fontSize: '0.84rem' }}>순위 제외 표본 미달 원산지</strong>
+                  <span style={{ color: '#94a3b8', fontSize: '0.72rem' }}>{formatNumber(belowFloorOrigins.length)}개 행 보존</span>
+                </div>
+                <div data-mobile-stack style={{ display: 'grid', gridTemplateColumns: 'repeat(3, minmax(0, 1fr))', gap: '8px' }}>
+                  {belowFloorOrigins.map((row) => (
+                    <div key={`${row.hsk8}-${row.origin}`} data-volume-floor-entry="true" style={{ borderLeft: '3px solid rgba(239, 68, 68, 0.65)', background: 'rgba(15, 23, 42, 0.52)', borderRadius: '6px', padding: '8px 10px', minWidth: 0 }}>
+                      <div style={{ color: '#f8fafc', fontSize: '0.78rem', fontWeight: 700 }}>{row.origin}</div>
+                      <div style={{ color: '#fca5a5', fontSize: '0.68rem', marginTop: '3px' }}>{row.hsk8} · 표본 미달 · 순위 제외</div>
+                      <div style={{ color: '#94a3b8', fontSize: '0.68rem', marginTop: '3px', lineHeight: 1.4 }}>{formatNumber(row.import_kg_2026_jan_may)}킬로그램 · 바구니 내 비중 {formatPercent(row.volume_share_pct, 3)} · {formatUsdPerKg(row.unit_price_2026_jan_may_usd_per_kg)}</div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              <WhelkCoverageGapNote dataset={dataset} />
+            </div>
+          }
+          takeaway={{
+            situation: <span>{northBasket?.label} 바구니에서 캐나다는 {formatUsdPerKg(canadaCif?.unit_price_2026_jan_may_usd_per_kg)}, 영국은 {formatUsdPerKg(ukCif?.unit_price_2026_jan_may_usd_per_kg)}이며 영국 단가는 {comparisonPeriod} 대비 {formatPercent(ukCif?.unit_price_gap_vs_2024_jan_may_pct)} 높아졌습니다. 같은 중국이라도 {northBasket?.label}은 {formatUsdPerKg(chinaNorthCif?.unit_price_2026_jan_may_usd_per_kg)}, {otherBasket?.label}은 {formatUsdPerKg(chinaOtherCif?.unit_price_2026_jan_may_usd_per_kg)}로 갈립니다. 순위 대상은 {formatNumber(rankedOrigins.length)}개, 표본 미달 {formatNumber(belowFloorOrigins.length)}개는 순위에서 분리했습니다.</span>,
+            actionPlan: <span>대체재 단가를 비교할 때는 같은 바구니 안에서만 맞대야 하며, 바구니가 다른 저단가 물량을 북해산 대체재로 환산하면 원가 판단이 어긋납니다. 표본 미달 단가는 탐색 신호로만 보존해 공급선 평가를 왜곡하지 않아야 합니다.</span>,
+            source: sourceLabel(cifLadder),
+          }}
+        />
+
+        {frozenMix ? (
+          <WidgetCard
+            id="S3_frozen_origin_mix"
+            title={frozenMix.title}
+            icon={Snowflake}
+            iconColor="#7dd3fc"
+            pillar={frozenMix.section}
+            termTooltip={{ term: 'HS 0307.92', description: '냉동 상태의 기타 연체동물을 담는 국제 공통 6자리 분류입니다. 바다고둥의 광의 대리지표로 씁니다.' }}
+            cardDesc={`관세청 ${frozenPeriod} 냉동 HS 0307.92 전체 $${formatNumber(frozenMix.scale_context?.frozen_030792_import_usd)}는 조제·보존의 ${formatNumber(frozenMix.scale_context?.frozen_to_prepared_ratio, 2)}배지만, 조개관자 ${formatPercent(frozenMix.scale_context?.scallop_share_pct)}를 제외하면 ${formatNumber(frozenMix.scale_context?.frozen_excluding_scallop_to_prepared_ratio, 2)}배입니다. 2024·2025 냉동 원자료 미반영으로 횡단면만 표시`}
+            unit={formatWidgetUnit(frozenMix.unit)}
+            telemetry={widgetTelemetry(frozenMix)}
+            chartHeight={320}
+            chart={
+              <ComposedChart data={frozenMix.data} margin={{ top: 12, right: 18, left: 4, bottom: 40 }}>
+                <ChartPatternDefs />
+                <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" vertical={false} />
+                <XAxis dataKey="origin" interval={0} angle={-30} textAnchor="end" height={56} tick={{ fill: '#f8fafc', fontSize: 10 }} />
+                <YAxis yAxisId="value" tick={{ fill: '#94a3b8', fontSize: 10 }} tickFormatter={(value) => `$${formatNumber(Number(value) / 1_000_000, 1)}백만`} />
+                <YAxis yAxisId="price" orientation="right" tick={{ fill: '#94a3b8', fontSize: 10 }} tickFormatter={(value) => `$${formatNumber(value, 0)}`} />
+                <RechartsTooltip contentStyle={V2_TOOLTIP_STYLE} formatter={(value: any, name: any) => name === '수입액' ? [`$${formatNumber(value)}`, name] : [formatUsdPerKg(value), name]} />
+                <Legend wrapperStyle={{ fontSize: '11px' }} />
+                <Bar yAxisId="value" dataKey="import_usd_2026_jan_may" name="수입액" fill="#38bdf8" radius={[4, 4, 0, 0]} />
+                <Line yAxisId="price" type="monotone" dataKey="unit_price_usd_per_kg" name="수입단가" stroke="#fbbf24" strokeWidth={2.5} dot={{ r: 3 }} connectNulls={false} />
+              </ComposedChart>
+            }
+            customBody={
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '12px', marginTop: '14px' }}>
+                <div data-mobile-stack style={{ display: 'grid', gridTemplateColumns: 'repeat(3, minmax(0, 1fr))', gap: '8px' }}>
+                  <div style={{ ...V2_INFO_PANEL, borderColor: 'rgba(56, 189, 248, 0.24)' }}>
+                    <div style={{ color: '#94a3b8', fontSize: '0.68rem' }}>냉동 (0307.92)</div>
+                    <div style={{ color: '#f8fafc', fontSize: '0.92rem', fontWeight: 800, marginTop: '3px' }}>${formatNumber(frozenMix.scale_context?.frozen_030792_import_usd)}</div>
+                    <div style={{ color: '#94a3b8', fontSize: '0.68rem', marginTop: '3px' }}>{formatNumber(frozenMix.scale_context?.frozen_030792_import_kg)}킬로그램</div>
+                  </div>
+                  <div style={{ ...V2_INFO_PANEL }}>
+                    <div style={{ color: '#94a3b8', fontSize: '0.68rem' }}>조제·보존 (1605.59)</div>
+                    <div style={{ color: '#f8fafc', fontSize: '0.92rem', fontWeight: 800, marginTop: '3px' }}>${formatNumber(frozenMix.scale_context?.prepared_160559_import_usd)}</div>
+                    <div style={{ color: '#94a3b8', fontSize: '0.68rem', marginTop: '3px' }}>광의 코드 전체는 조제의 {formatNumber(frozenMix.scale_context?.frozen_to_prepared_ratio, 2)}배</div>
+                    <div style={{ color: '#fbbf24', fontSize: '0.68rem', marginTop: '3px' }}>조개관자 제외 시 조제의 {formatNumber(frozenMix.scale_context?.frozen_excluding_scallop_to_prepared_ratio, 2)}배</div>
+                  </div>
+                  <div style={{ ...V2_INFO_PANEL }}>
+                    <div style={{ color: '#94a3b8', fontSize: '0.68rem' }}>활·신선·냉장 (0307.91)</div>
+                    <div style={{ color: '#f8fafc', fontSize: '0.92rem', fontWeight: 800, marginTop: '3px' }}>${formatNumber(frozenMix.scale_context?.live_fresh_030791_import_usd)}</div>
+                    <div style={{ color: '#94a3b8', fontSize: '0.68rem', marginTop: '3px' }}>세 형태 중 최소</div>
+                  </div>
+                </div>
+
+                <div data-whelk-hsk10-breakdown="true" style={{ ...V2_INFO_PANEL }}>
+                  <strong style={{ color: '#7dd3fc', fontSize: '0.8rem' }}>HSK10 세번 분해 — 0307.92 안에도 골뱅이가 아닌 품목이 섞여 있습니다</strong>
+                  <div style={{ display: 'flex', flexDirection: 'column', gap: '4px', marginTop: '7px' }}>
+                    {(frozenMix.hsk10_breakdown ?? []).map((row) => (
+                      <div key={row.hsk10} style={{ display: 'flex', justifyContent: 'space-between', gap: '10px', color: '#cbd5e1', fontSize: '0.72rem' }}>
+                        <span>{row.hsk10} · {row.item_name}{row.excluded_from_whelk_scope ? ' · 골뱅이 범위 제외' : ''}</span>
+                        <strong style={{ color: row.excluded_from_whelk_scope ? '#fca5a5' : '#f8fafc' }}>${formatNumber(row.import_usd)} · {formatPercent(row.share_pct)}</strong>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                {frozenMix.hypothesis ? (
+                  <div data-whelk-hypothesis-block="true" style={{ ...V2_INFO_PANEL, borderColor: 'rgba(148, 163, 184, 0.32)', background: 'rgba(30, 41, 59, 0.55)' }}>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '8px', flexWrap: 'wrap' }}>
+                      <span style={{ borderRadius: '999px', background: 'rgba(148, 163, 184, 0.18)', border: '1px solid rgba(148, 163, 184, 0.42)', color: '#e2e8f0', padding: '3px 9px', fontSize: '0.7rem', fontWeight: 800 }}>
+                        🔬 미검증 가설
+                      </span>
+                      <span style={{ color: '#94a3b8', fontSize: '0.7rem' }}>근거 등급 {frozenMix.hypothesis.claim_grade}</span>
+                    </div>
+                    <p style={{ margin: '8px 0 0', color: '#f8fafc', fontSize: '0.78rem', lineHeight: 1.5 }}>{frozenMix.hypothesis.statement}</p>
+                    <div style={{ color: '#cbd5e1', fontSize: '0.72rem', marginTop: '8px', lineHeight: 1.5 }}>
+                      <div style={{ color: '#94a3b8', fontWeight: 700, marginBottom: '3px' }}>관측된 정황</div>
+                      {frozenMix.hypothesis.supporting_observations.map((line) => (<div key={line}>· {line}</div>))}
+                    </div>
+                    <div style={{ color: '#cbd5e1', fontSize: '0.72rem', marginTop: '8px', lineHeight: 1.5 }}>
+                      <div style={{ color: '#fca5a5', fontWeight: 700, marginBottom: '3px' }}>확정할 수 없는 이유</div>
+                      {frozenMix.hypothesis.why_unproven.map((line) => (<div key={line}>· {line}</div>))}
+                    </div>
+                    <div style={{ color: '#94a3b8', fontSize: '0.7rem', marginTop: '8px', lineHeight: 1.5 }}>
+                      아카이브 반영 후 검증 방법: {frozenMix.hypothesis.falsification_test}
+                    </div>
+                  </div>
+                ) : null}
+
+                <div style={{ ...V2_INFO_PANEL, borderColor: 'rgba(148, 163, 184, 0.3)', background: 'rgba(148, 163, 184, 0.08)' }}>
+                  <strong style={{ color: '#e2e8f0', fontSize: '0.8rem' }}>기준선 공백 고지</strong>
+                  <p style={{ margin: '6px 0 0', color: '#cbd5e1', fontSize: '0.72rem', lineHeight: 1.5 }}>현재 대시보드 아카이브 기준: {frozenMix.scale_context?.baseline_gap_note}</p>
+                </div>
+
+                <WhelkCoverageGapNote dataset={dataset} />
+              </div>
+            }
+            takeaway={{
+              situation: <span>{frozenPeriod} 냉동 HS 0307.92 전체는 ${formatNumber(frozenMix.scale_context?.frozen_030792_import_usd)}로 조제·보존의 {formatNumber(frozenMix.scale_context?.frozen_to_prepared_ratio, 2)}배지만, 이 중 {scallopLine?.hsk10} {scallopLine?.item_name} ${formatNumber(scallopLine?.import_usd)}({formatPercent(scallopLine?.share_pct)})는 골뱅이가 아닙니다. 이를 제외한 ${formatNumber(frozenMix.scale_context?.frozen_excluding_scallop_import_usd)}는 조제·보존의 {formatNumber(frozenMix.scale_context?.frozen_excluding_scallop_to_prepared_ratio, 2)}배입니다. 튀르키예의 조제·냉동 병존은 형태 전환 가능성을 시사할 뿐 확정된 사실이 아닙니다.</span>,
+              actionPlan: <span>조달 규모를 비교할 때는 HS 0307.92 전체 배수 대신 HSK10 품명 분해와 조개관자 제외 배수를 함께 사용해야 합니다. 튀르키예 형태 전환은 냉동 과거 실적을 대시보드 아카이브에 반영하기 전까지 가설로 두고, 벤더 실사에서 조제·냉동 어느 형태로 계약 가능한지 먼저 확인해야 합니다.</span>,
+              source: sourceLabel(frozenMix),
+            }}
+          />
+        ) : null}
+
+        <WidgetCard
+          id="S3_hs_classification_guide"
+          title={hsGuide.title}
+          icon={Package}
+          iconColor="#b45309"
+          pillar={hsGuide.section}
+          termTooltip={{ term: 'HS', description: '국제 거래 품목을 공통 기준으로 분류하는 통일상품명 및 부호체계입니다.' }}
+          cardDesc={`관세청 분류표와 실제 관측 ${formatNumber(hsGuide.data.length)}개 ${formatNumber(hsCodeLength)}자리 코드 연결 — 조제·보존 대리지표 ${preparedCode?.hs6}의 ${formatNumber(hskCodeLength)}자리 세부코드 ${formatNumber(preparedCode?.hsk10_observed?.length)}개`}
+          telemetry={widgetTelemetry(hsGuide)}
+          customBody={
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
+              {hsGuide.data.map((row) => (
+                <div key={row.hs6} style={{ ...V2_INFO_PANEL, display: 'grid', gridTemplateColumns: '84px minmax(0, 1fr)', gap: '10px', alignItems: 'start', borderColor: row.is_prepared_proxy ? 'rgba(251, 191, 36, 0.35)' : 'rgba(255,255,255,0.08)' }}>
+                  <div>
+                    <div style={{ color: '#fbbf24', fontSize: '0.9rem', fontWeight: 800 }}>{row.hs6}</div>
+                    <div style={{ color: '#94a3b8', fontSize: '0.64rem', marginTop: '3px' }}>{row.scope}</div>
+                  </div>
+                  <div>
+                    <div style={{ color: '#f8fafc', fontSize: '0.78rem', lineHeight: 1.45 }}>{row.stage}</div>
+                    <div style={{ color: '#94a3b8', fontSize: '0.68rem', marginTop: '5px', lineHeight: 1.45 }}>관측 {formatNumber(String(row.hsk10_observed[0] || '').length)}자리: {row.hsk10_observed.join(' · ')}</div>
+                  </div>
+                </div>
+              ))}
+              <div data-whelk-hsk8-guide="true" style={{ ...V2_INFO_PANEL, marginTop: '4px', borderColor: 'rgba(56, 189, 248, 0.28)', background: 'rgba(56, 189, 248, 0.06)' }}>
+                <strong style={{ color: '#7dd3fc', fontSize: '0.82rem' }}>관측 HSK8 바구니</strong>
+                <p style={{ margin: '5px 0 9px', color: '#cbd5e1', fontSize: '0.7rem', lineHeight: 1.45 }}>
+                  HS 1605.59 합계는 규모 확인에만 쓰고, 원산지 점유율·단가는 아래 바구니 안에서만 비교합니다(G-006).
+                </p>
+                <div data-mobile-stack style={{ display: 'grid', gridTemplateColumns: 'repeat(3, minmax(0, 1fr))', gap: '8px' }}>
+                  {(portfolio.baskets ?? []).map((basket) => (
+                    <div key={basket.hsk8} style={{ borderLeft: `3px solid ${basket.charted ? '#38bdf8' : '#64748b'}`, background: 'rgba(15, 23, 42, 0.52)', borderRadius: '6px', padding: '8px 10px', minWidth: 0 }}>
+                      <div style={{ color: '#f8fafc', fontSize: '0.78rem', fontWeight: 800 }}>{basket.hsk8}</div>
+                      <div style={{ color: '#94a3b8', fontSize: '0.66rem', marginTop: '3px' }}>{basket.charted ? '바구니별 비교 대상' : '표본 미달 · 차트 제외'}</div>
+                      <div style={{ color: '#cbd5e1', fontSize: '0.66rem', marginTop: '5px', lineHeight: 1.4 }}>
+                        관측 10자리: {basket.observed_hsk10?.join(' · ') || '자료 없음'}
+                      </div>
+                      <div style={{ color: '#94a3b8', fontSize: '0.66rem', marginTop: '5px', lineHeight: 1.4 }}>
+                        2026년 1~5월 ${formatNumber(basket.import_usd_2026_jan_may)} · 주요 원산지 {basket.top_origins_2026?.join('·') || '자료 없음'}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+                <p style={{ margin: '9px 0 0', color: '#94a3b8', fontSize: '0.68rem', lineHeight: 1.45 }}>
+                  밀폐용기 말단코드(…10) 수입액은 2024년 1~5월 0달러, 2026년 1~5월 113달러로 사실상 미사용입니다.
+                </p>
+              </div>
+            </div>
+          }
+          takeaway={{
+            situation: <span>관측된 {formatNumber(hsCodeLength)}자리 분류는 {formatNumber(hsGuide.data.length)}개이며, 조제·보존 대리지표 {preparedCode?.hs6} 아래에 {formatNumber(hskCodeLength)}자리 세부코드 {formatNumber(preparedCode?.hsk10_observed?.length)}개가 확인됩니다. 이 분류는 기타 조제·보존 연체동물을 포괄합니다.</span>,
+            actionPlan: <span>{preparedCode?.hs6} 통계를 골뱅이 단독 실적으로 단정하지 말고, 세부코드·품명·원산지를 함께 확인한 뒤 조달 판단에 사용해야 합니다.</span>,
+            source: sourceLabel(hsGuide),
+          }}
+        />
+      </>
+    );
+  }
+
+  return null;
+}
 
 export default function WhelkDashboard() {
   const [data, setData] = useState<any>(null);
@@ -73,18 +1121,14 @@ export default function WhelkDashboard() {
   }
 
   const {
-    globalCaptureData = [],
     canadaCaptureData = [],
-    koreaCaptureData = [],
     importMarketShare = [],
-    seasonalityData = [],
     yieldArbitrageData = [],
     waterfallData = [],
     brandPositioningData = [],
     channelDemandData = [],
     fxCorrelationData = [],
     ukRegulatoryRadar = [],
-    aquacultureData = [],
     cadmiumData = [],
     importSurgeData = [],
     byproductData = [],
@@ -101,10 +1145,20 @@ export default function WhelkDashboard() {
     blackSeaSupplyData = [],
     fxAlertThresholds = [],
     halalCollagenData = [],
-    koreaGlobalShareData = [],
     feedstockYoyData = [],
     originCifGapData = []
   } = data;
+  const v2Data = data.v2 as WhelkV2Dataset | undefined;
+  const ukMonthly2024Rows = v2Data?.widgets.S3_origin_portfolio_shift?.uk_monthly_2024 ?? [];
+  const ukMonthly2024Data = ukMonthly2024Rows.map((row) => ({
+    ...row,
+    monthLabel: `${Number(row.month.split('-')[1])}월`,
+    importUsdMillion: row.import_usd / 1_000_000,
+    volumeTonnes: row.import_kg / 1_000,
+  }));
+  const ukMonthly2024Peak = getMaximumRow(ukMonthly2024Rows, 'import_usd');
+  const ukMonthly2024TotalUsd = ukMonthly2024Rows.reduce((sum, row) => sum + row.import_usd, 0);
+  const ukMonthly2024TotalKg = ukMonthly2024Rows.reduce((sum, row) => sum + row.import_kg, 0);
 
   // KFAS 연구 위젯 필터링
   const kfasWidgets = widgets.filter((w: any) => w.id?.startsWith('w5'));
@@ -135,7 +1189,7 @@ export default function WhelkDashboard() {
               <h1 style={{ margin: 0, fontSize: '1.5rem', fontWeight: 700, letterSpacing: '-0.5px', color: 'var(--text-primary)' }}>
                 골뱅이 전략 인텔리전스
               </h1>
-              <p style={{ margin: 0, fontSize: '0.88rem', color: 'var(--text-secondary)' }}>골뱅이 전략 커맨드 센터 — {INLINE_WIDGET_COUNT + kfasWidgets.length}개 위젯 · 5-Pillar 프레임워크</p>
+              <p style={{ margin: 0, fontSize: '0.88rem', color: 'var(--text-secondary)' }}>골뱅이 전략 커맨드 센터 — {INLINE_WIDGET_COUNT - RETIRED_HS6_WIDGET_COUNT + kfasWidgets.length - HYPOTHESIS_WIDGET_COUNT}개 위젯 · 가설 {HYPOTHESIS_WIDGET_COUNT}개 별도 · 5-Pillar 프레임워크</p>
             </div>
           </div>
           <div className="ds-card" style={{fontSize: '0.88rem', padding: '8px 16px', 
@@ -311,30 +1365,8 @@ export default function WhelkDashboard() {
     <Fish size={20} color="var(--color-info)" />
     <h2 style={{ margin: 0, fontSize: '1.3rem', color: '#f8fafc' }}>❶ 원료 수급</h2>
   </div>
+  {v2Data && <WhelkV2Widgets dataset={v2Data} activePart="S1" />}
   <>
-            <WidgetCard title="글로벌 어획 생산량 상위 5개국" icon={Globe} iconColor="var(--color-info)" pillar="S1"
-              cardDesc="전 세계 골뱅이 원물 주요 생산국 비중·생산량 — 글로벌 수급 헤게모니"
-              telemetry={{ status: 'STATIC', syncDate: '2022년 기준' }} chartHeight={300}
-              chart={
-                <BarChart data={globalCaptureData} layout="vertical" margin={{ left: 20 }}>
-                  <ChartPatternDefs />
-                  <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" horizontal={false} />
-                  <XAxis type="number" tick={{ fill: '#94a3b8', fontSize: 11 }} />
-                  <YAxis dataKey="name" type="category" tick={{ fill: '#f8fafc', fontSize: 11 }} width={60} />
-                  <RechartsTooltip content={<CustomTooltip />} cursor={{ fill: 'rgba(140,170,255,0.10)' }} />
-                  <Bar dataKey="value" name="어획량(톤)" fill="var(--color-info)" radius={[0, 4, 4, 0]}>
-                    {globalCaptureData.map((entry: any, index: number) => (
-                      <Cell key={`cell-${index}`} fill={index === 1 ? 'var(--color-danger)' : index === 3 ? 'var(--color-success)' : 'var(--color-info)'} />
-                    ))}
-                  </Bar>
-                </BarChart>
-              }
-              takeaway={{
-                situation: <span>[FAOSTAT] 전 세계 골뱅이 생산량이 북대서양(영국·아일랜드) 등 특정 해역에 편중되어 있어, 한 국가의 어획량이 줄어들면 전체 수급이 크게 흔들릴 수 있는 상황입니다.</span>,
-                actionPlan: <span>상위 5개국 중 영국과 아일랜드가 글로벌 고품질 골뱅이 물량의 핵심 공급망을 장악하고 있습니다. 한국 프리미엄 B2C 통조림 시장은 육질이 뛰어난 <TermTooltip term="B. undatum" description="북해에서 조업되는 물레고둥(백골뱅이). 수율이 높고 육질이 부드러워 한국 B2C 통조림 1위 원물." /> 에 절대적으로 의존합니다. 이러한 단일 해역 의존 리스크(Single Point of Failure) 방어를 위해 조달 파트는 영국 내 핵심 벤더와 선제적 쿼터 매입 및 다년 선도 계약을 추진하여 원가 변동성으로부터 전사 이익을 수성해야 합니다.</span>,
-                source: 'FAOSTAT (2022)',
-              }} />
-
             <WidgetCard title="캐나다 vs 영국 어획량 장기 시계열" icon={TrendingUp} iconColor="var(--color-info)" pillar="S1"
               cardDesc="해수온 상승의 캐나다 어획 영향 + 영국산 수요 이동 예측"
               telemetry={{ status: 'STATIC', syncDate: '2024년 1H 기준' }} chartHeight={300}
@@ -355,30 +1387,6 @@ export default function WhelkDashboard() {
                 source: 'DFO Canada / UK MMO (2024 1H)',
               }} />
             
-            <WidgetCard title="한국 연안 골뱅이 어획 생산량" icon={Activity} iconColor="var(--color-info)" pillar="S1"
-              cardDesc="국내 어획량 장기 추이 — 신선 활어 전량 일본 직수출, 국내 가공용은 100% 수입"
-              telemetry={{ status: 'STATIC', syncDate: '2024년 기준' }} chartHeight={300}
-              chart={
-                <AreaChart data={koreaCaptureData}>
-                  <defs>
-                    <linearGradient id="colorCapture" x1="0" y1="0" x2="0" y2="1">
-                      <stop offset="5%" stopColor="var(--color-success)" stopOpacity={0.8} />
-                      <stop offset="95%" stopColor="var(--color-success)" stopOpacity={0} />
-                    </linearGradient>
-                  </defs>
-                  <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" vertical={false} />
-                  <XAxis dataKey="year" tick={{ fill: '#94a3b8', fontSize: 11 }} angle={0} textAnchor="middle" height={60} />
-                  <YAxis tick={{ fill: '#94a3b8', fontSize: 11 }} domain={[6000, 11000]} />
-                  <RechartsTooltip content={<CustomTooltip />} />
-                  <Area type="monotone" dataKey="capture" name="한국 어획(톤)" stroke="var(--color-success)" fillOpacity={1} fill="url(#colorCapture)" />
-                </AreaChart>
-              }
-              takeaway={{
-                situation: <span>[FAO FishStat] 한국 바다에서도 골뱅이가 많이 잡히지만, 값비싼 신선(활어) 상태로 전량 일본에 직수출되고 있어 정작 국내 가공용은 수입에 100% 의존하고 있습니다.</span>,
-                actionPlan: <span>한국은 연안에서 연간 9,000톤 수준을 어획하는 글로벌 상위 생산국이나, 해당 원물은 프리미엄 단가를 쫓아 전량 <TermTooltip term="신선/냉장 활어" description="가공되지 않은 살아있는 상태로 주로 일본의 이자카야 및 고급 해산물 시장으로 직수출됨." /> 형태로 일본 시장에 직수출되고 있습니다. 반면, 국내 B2C 통조림 제조를 위한 대량의 가공 원물은 100% 수입산에 의존하는 기형적 '이중 가공무역' 구조에 갇혀 있습니다. 이러한 태생적 한계로 당사의 수익성은 글로벌 환율 및 해운 운임 변동성에 무방비로 노출되므로, 체질 개선을 위한 환헤지 및 통관 물류 효율화 투자가 필수불가결합니다.</span>,
-                source: 'FAO FishStat Capture (한국 골뱅이 어획 실측, ~2022)',
-              }} />
-
             <WidgetCard title="영국 MCRS 상향 시나리오별 공급쇼크 시뮬레이션" icon={AlertTriangle} iconColor="var(--color-danger)" pillar="S1"
               cardDesc="영국 IFCA 최소보존규격 50/55/60mm 시나리오별 어획량 영향"
               telemetry={{ status: 'STATIC', syncDate: '2026 시뮬레이션' }} chartHeight={300}
@@ -429,26 +1437,6 @@ export default function WhelkDashboard() {
                 source: 'FAOSTAT + ICES (2026 분석)',
               }} />
 
-            <WidgetCard title="한국 골뱅이 어획 글로벌 순위 (FAO 2022)" icon={Navigation} iconColor="var(--color-info)" pillar="S1"
-              cardDesc="FAO FishStat Capture 2022 — 한국 세계 5위(종코드 7종 합산)"
-              telemetry={{ status: 'STATIC', syncDate: 'FAO FishStat Capture 2022' }} chartHeight={300}
-              chart={
-                <BarChart data={koreaGlobalShareData} layout="vertical" margin={{ left: 20 }}>
-                  <ChartPatternDefs />
-                  <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" horizontal={false} />
-                  <XAxis type="number" tick={{ fill: '#94a3b8', fontSize: 11 }} />
-                  <YAxis dataKey="name" type="category" tick={{ fill: '#f8fafc', fontSize: 11 }} width={60} />
-                  <RechartsTooltip content={<CustomTooltip />} cursor={{ fill: 'rgba(140,170,255,0.10)' }} />
-                  <Bar dataKey="value" name="어획량(톤)" radius={[0, 4, 4, 0]}>
-                    {koreaGlobalShareData.map((entry: any, index: number) => (<Cell key={`kg-${index}`} fill={entry.name === '한국' ? 'var(--color-danger)' : 'var(--color-info)'} />))}
-                  </Bar>
-                </BarChart>
-              }
-              takeaway={{
-                situation: <span>[FAO] 2022년 한국 골뱅이 어획은 9,062톤으로 세계 5위입니다(멕시코 17,782·영국 14,091·프랑스 10,117·러시아 9,229·한국 9,062 順).</span>,
-                actionPlan: <span>한국이 세계 5위 생산국이면서도 어획 물량 대부분이 신선 활어로 일본에 직수출돼 국내 가공용 원물은 수입에 의존하는 모순 구조입니다. 전략기획실은 국내 어획 일부를 가공용으로 전환하는 산지 직계약과, 활어 수출가 대비 수입 가공가의 차익 모델을 재검토해야 합니다. 종코드는 단일 GAS가 아닌 7종(GAS/RPW/WHE/WHX/WJT/WKO/WKQ) 합산 기준입니다.</span>,
-                source: 'FAO FishStat Capture 2022',
-              }} />
           </>
       </>)}
       {activePart === 'S2' && (<>
@@ -457,6 +1445,7 @@ export default function WhelkDashboard() {
     <h2 style={{ margin: 0, fontSize: '1.3rem', color: '#f8fafc' }}>❷ 가공 및 생산</h2>
   </div>
   <>
+            <WhelkRetiredHs6WidgetGate>
             <WidgetCard title="국내 수입산 골뱅이 국가별 점유율" icon={ChartPie} iconColor="var(--color-info)" pillar="S3"
               cardDesc="KCS HS160559 2024년 연간 수입금액($M) 기준 국가별 점유율(총 $58.5M, 기타 포함) — 영국·아일랜드 합산 65% 단일 해역 리스크"
               telemetry={{ status: metaStatus, syncDate: metaSyncDate || 'KCS 2026-05-15' }} chartHeight={300}
@@ -474,30 +1463,35 @@ export default function WhelkDashboard() {
                 actionPlan: <span>영국산 원물 수입액이 $30.4M(2024년 연간 수입액 $58.5M의 52.1%)으로 1위를 수성 중이며, 지리적으로 연접한 아일랜드 물량($7.6M)까지 합산 시 북해 해역에 대한 <TermTooltip term="HS160559" description="조제하거나 보존처리한 연체동물(골뱅이 포함)의 무역 품목 분류 코드." /> 의존도가 65%에 육박하는 등 단일 해역 리스크가 한계치를 초과했습니다. 저단가인 튀르키예 및 중국산(R. venosa)은 B2B 시장의 원가 방어를 위한 블렌딩 용도로만 제한적으로 활용 가능합니다. 거시적 공급 충격에 대비하여 노르웨이, 아이슬란드 등 신규 북대서양 어장 개척 및 프리미엄 라인업 다변화 검증 테스트가 시급합니다.</span>,
                 source: 'KCS 관세청 (2026-05-15)',
               }} />
+            </WhelkRetiredHs6WidgetGate>
 
-            <WidgetCard title="영국산 원물 월별 수입 계절성" icon={Snowflake} iconColor="var(--color-info)" pillar="S3"
-              cardDesc="월별 수입액·물량 추이 — 5~8월 성수기 집중, Reefer 운임 급등"
-              telemetry={{ status: metaStatus, syncDate: metaSyncDate || 'KCS 2026-05-15' }} chartHeight={300}
+            <WidgetCard title="영국산 HSK8 월별 수입 실측 (2024)" icon={Snowflake} iconColor="var(--color-info)" pillar="S3"
+              cardDesc="관세청 HSK8 16055910 안의 영국산 2024년 월별 상세행 — 수입액·중량 관측값만 표시하며 소비·운임 원인을 추정하지 않음"
+              telemetry={{ status: ukMonthly2024Rows.length ? 'SYNCED' : 'STATIC', syncDate: ukMonthly2024Rows.length ? '관세청 2024.01~12' : '아카이브 미반영' }} chartHeight={300}
               chart={
-                <ComposedChart data={seasonalityData}>
+                <ComposedChart data={ukMonthly2024Data}>
                   <ChartPatternDefs />
                   <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" vertical={false} />
-                  <XAxis dataKey="month" tick={{ fill: '#94a3b8', fontSize: 11 }} angle={0} textAnchor="middle" height={60} />
-                  <YAxis yAxisId="left" tick={{ fill: '#94a3b8', fontSize: 11 }} />
-                  <RechartsTooltip content={<CustomTooltip />} />
-                  <Bar yAxisId="left" dataKey="importUSD" name="수입액($M)" fill="var(--color-info)" radius={[4, 4, 0, 0]} />
-                  <Line yAxisId="left" type="monotone" dataKey="volume" name="물량(톤)" stroke="var(--color-danger)" strokeWidth={2} />
+                  <XAxis dataKey="monthLabel" tick={{ fill: '#94a3b8', fontSize: 11 }} angle={0} textAnchor="middle" height={48} />
+                  <YAxis yAxisId="value" tick={{ fill: '#94a3b8', fontSize: 11 }} tickFormatter={(value) => `$${formatNumber(value, 1)}백만`} />
+                  <YAxis yAxisId="weight" orientation="right" tick={{ fill: '#94a3b8', fontSize: 11 }} tickFormatter={(value) => `${formatNumber(value)}톤`} />
+                  <RechartsTooltip contentStyle={V2_TOOLTIP_STYLE} formatter={(value: any, name: any) => name === '수입액' ? [`$${formatNumber(Number(value) * 1_000_000)}`, name] : [`${formatNumber(value, 1)}톤`, name]} />
+                  <Legend wrapperStyle={{ fontSize: '11px', paddingTop: '10px' }} />
+                  <Bar yAxisId="value" dataKey="importUsdMillion" name="수입액" fill="var(--color-info)" radius={[4, 4, 0, 0]} />
+                  <Line yAxisId="weight" type="monotone" dataKey="volumeTonnes" name="중량" stroke="var(--color-danger)" strokeWidth={2} dot={{ r: 3 }} />
                 </ComposedChart>
               }
               takeaway={{
-                situation: <span>[KCS] 국내 골뱅이 소비는 여름철 비빔면과 야식 수요로 인해 5월~8월에 집중되며, 이때 수입 물량이 연간 물량의 절반을 넘습니다.</span>,
-                actionPlan: <span>여름철 성수기 집중 현상으로 인해 단월 최고치($5.7M)를 기록하는 8월 전후로는 글로벌 <TermTooltip term="Reefer" description="냉장/냉동 컨테이너(Refrigerated Container). 여름철 해상운송 단가 급등을 유발하는 주요 물류 변수." /> 해상운임 급등과 국내 항만 적체 현상이 빈번히 발생합니다. 이러한 '성수기 할증(Peak Season Penalty)' 비용 구조를 우회하기 위해 조달팀은 비수기인 3~4월에 전략적 조기 발주를 단행하고, 선제적인 부산항 배후 냉동창고 슬롯을 대규모로 저가 확보하여 공급망 병목 및 물류비 인상을 억제해야 합니다.</span>,
-                source: 'KCS 관세청 월별 통관 시계열',
+                situation: <span>[KCS] HSK8 16055910 영국산 2024년 월별 실적 합계는 ${formatNumber(ukMonthly2024TotalUsd)}·{formatNumber(ukMonthly2024TotalKg / 1_000, 1)}톤이며, 수입액 최고 월은 {formatMonth(ukMonthly2024Peak?.month)} ${formatNumber(ukMonthly2024Peak?.import_usd)}입니다. 이는 통관 분포이며 국내 소비나 운임의 원인을 입증하지 않습니다.</span>,
+                actionPlan: <span>월별 집중도는 발주 검토의 관측 근거로만 사용하고, 조기 발주·냉동창고 확보 여부는 같은 기간 실제 판매·재고·냉동 운임 자료를 별도로 대조한 뒤 결정해야 합니다.</span>,
+                source: 'KCS 관세청 HSK8 16055910 영국산 상세행 (2024)',
               }} />
           </>
 
+            <WhelkHypothesisSection count={1}>
+              <WhelkHypothesisCard reason="내부 기획안, 외부 검증 자료 없음">
             <WidgetCard title="SG 2026 밸류업 × 골뱅이 HMR 신제품 로드맵" icon={Package} iconColor="var(--color-success)" pillar="S2"
-              cardDesc="HMR 6종 개발 진행률 — 혼술 에디션·에어프라이어 키트 26Q3 출시"
+              cardDesc="실측 데이터 없음 — 내부 기획안이며 외부 검증 자료를 보유하지 않음"
               telemetry={{ status: 'STATIC', syncDate: 'SG 내부기획 2026 Q2' }} chartHeight={300}
               chart={
                 <BarChart data={sgValueUpData} layout="vertical" margin={{ left: 50 }}>
@@ -516,9 +1510,11 @@ export default function WhelkDashboard() {
                 actionPlan: <span>SG 2026 밸류업 전략의 핵심은 '혼술 에디션 150g'(85% 완성)과 '에어프라이어 키트 200g'(70% 완성)의 26Q3 성수기 적시 출시입니다. 두 제품 합산 연간 매출 목표 37억 원이며, 이를 위해 편의점(CU/GS25) 입점 MOU를 6월까지 확정해야 합니다. 후속 제품인 '프리미엄 고형량65%+'는 경쟁사 대비 투명성 마케팅 차별화를 위해 포장 전면에 고형량 비율을 대형 표기하는 전략이 핵심입니다. 마케팅팀은 인플루언서 홈술 콘텐츠 마케팅을 Q3 출시 4주 전부터 선제 집행해야 합니다.</span>,
                 source: 'SG 2026 밸류업 운영방안',
               }} />
+              </WhelkHypothesisCard>
+            </WhelkHypothesisSection>
 
-            <WidgetCard title="골뱅이 가공원물 투입량 YoY (HS160559)" icon={Factory} iconColor="var(--color-info)" pillar="S2"
-              cardDesc="KCS HS160559 통관 — 가공원물 물량·금액·시사단가 YoY"
+            <WidgetCard title="조제·보존 골뱅이 수입 규모 (HS 1605.59 합계)" icon={Factory} iconColor="var(--color-info)" pillar="S2"
+              cardDesc="KCS HS 1605.59 두 HSK8 바구니 합산 규모 — 물량·금액·시사단가만 표시하며 원산지 점유율 분모로 사용 금지"
               telemetry={{ status: metaStatus, syncDate: metaSyncDate || 'KCS 2024 연간' }} chartHeight={300}
               chart={
                 <ComposedChart data={feedstockYoyData}>
@@ -534,11 +1530,12 @@ export default function WhelkDashboard() {
                 </ComposedChart>
               }
               takeaway={{
-                situation: <span>[KCS] 가공원물(HS160559) 투입량이 2024년 6,215톤/$58.50M으로 전년(8,251톤/$68.98M) 대비 물량 -24.7%·금액 -15.2% 감소했고, 시사단가는 $8.36→$9.41/kg로 +12.6% 올랐습니다.</span>,
-                actionPlan: <span>원물 투입 감소가 공장 가동률 하락으로 직결되므로, 조달팀은 비수기 선매입으로 연간 6,000톤 이상 피드스톡을 락인하고 단가 상승분을 B2B 납품가에 분기 단위로 전가하는 가격 연동제를 도입해야 합니다.</span>,
+                situation: <span>[KCS] 기타 조제·보존 연체동물의 광의 대리지표인 HS 1605.59 합계는 2024년 6,215톤/$58.50M으로 전년(8,251톤/$68.98M) 대비 물량 -24.7%·금액 -15.2%였고, 시사단가는 $8.36→$9.41/kg였습니다. 이 합계는 서로 다른 HSK8 바구니를 포함합니다.</span>,
+                actionPlan: <span>이 수치는 조제·보존 수입의 전체 규모 맥락에만 사용합니다. 공장 가동률이나 발주량을 판단하려면 HSK8 바구니별 품목·원산지와 실제 생산 투입 자료를 먼저 대조해야 합니다.</span>,
                 source: 'KCS 관세청 HS160559 통관 (2023·2024)',
               }} />
 
+            <WhelkRetiredHs6WidgetGate>
             <WidgetCard title="원산지별 CIF 단가 격차 — 대체재 탄력성" icon={Package} iconColor="var(--color-warning)" pillar="S4"
               cardDesc="KCS HS160559 원산지별 CIF($/kg) — 북해 vs 저단가 대체재"
               telemetry={{ status: metaStatus, syncDate: metaSyncDate || 'KCS 2024 연간' }} chartHeight={300}
@@ -559,15 +1556,19 @@ export default function WhelkDashboard() {
                 actionPlan: <span>조달팀은 B2B 원가 방어 라인에 한해 세네갈·중국산을 20~30% 블렌딩해 CIF를 낮추되, 수율을 반영한 총사용원가(TCU) 검증을 통과한 물량만 채택하는 'Yield-Adjusted 구매' 기준을 적용해야 합니다.</span>,
                 source: 'KCS 관세청 HS160559 통관 (2024)',
               }} />
+            </WhelkRetiredHs6WidgetGate>
       </>)}
       {activePart === 'S3' && (<>
         <div style={{ gridColumn: '1 / -1', marginTop: '1rem', paddingBottom: '0.5rem', borderBottom: '1px solid rgba(255,255,255,0.1)', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
     <Ship size={20} color="var(--color-info)" />
     <h2 style={{ margin: 0, fontSize: '1.3rem', color: '#f8fafc' }}>❸ 물류 및 통관</h2>
   </div>
+  {v2Data && <WhelkV2Widgets dataset={v2Data} activePart="S3" />}
   <>
+            <WhelkHypothesisSection count={2}>
+              <WhelkHypothesisCard reason="원산지별 살수율 수치 출처 미보유">
             <WidgetCard title="국가별 원물 수율 기반 총사용원가 비교" icon={Scale} iconColor="var(--color-info)" pillar="S3"
-              cardDesc="단가 vs 살수율 — 저수율 함정 회피 총사용원가(TCU) 분석"
+              cardDesc="실측 데이터 없음 — 원산지별 살수율 수치 출처를 보유하지 않음"
               telemetry={{ status: 'STATIC', syncDate: '2024년 기준' }} chartHeight={300}
               chart={
                 <ComposedChart data={yieldArbitrageData} layout="vertical" margin={{ left: 40 }}>
@@ -585,6 +1586,33 @@ export default function WhelkDashboard() {
                 actionPlan: <span>단순 통관 단가 기준으로는 중국/튀르키예산(R. venosa)이 영국산(B. undatum)의 절반 수준으로 저렴해 보입니다. 그러나 가공 공정 데이터를 연동하여 <TermTooltip term="TCU" description="Total Cost of Usage. 껍질, 내장, 수분 감량 등을 제한 후 실제로 제품에 쓰이는 순 살코기(Meat Yield)를 얻기 위한 환산 단위 원가." />(총사용원가)를 산출하면, 튀르키예산은 극심한 부산물 감량 탓에 실질 원가가 $91.0/kg까지 치솟아 오히려 영국산($54.2/kg)보다 68%나 비싼 'Low-Yield Trap(저수율 함정)'에 빠지게 됩니다. 조달팀은 벤더와의 단가 협상 시 맹목적인 단가 인하 방어가 아닌 'Yield-Adjusted(수율 조정)' 재무 모델을 전면 도입해 구매 타당성을 평가해야 합니다.</span>,
                 source: 'KCS + Seafish UK',
               }} />
+              </WhelkHypothesisCard>
+
+              <WhelkHypothesisCard reason="부위별 카드뮴 수치 원자료 미보유">
+            <WidgetCard title="카드뮴 생체축적 및 식품안전 규제 진단" icon={FlaskConical} iconColor="var(--color-danger)" pillar="S3"
+              cardDesc="실측 데이터 없음 — 부위별 카드뮴 수치 원자료를 보유하지 않음"
+              telemetry={{ status: 'STATIC', syncDate: '2024년 기준' }} chartHeight={300}
+              chart={
+                <ComposedChart data={cadmiumData} margin={{ top: 20 }}>
+                  <ChartPatternDefs />
+                  <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" vertical={false} />
+                  <XAxis dataKey="part" tick={{ fill: '#f8fafc', fontSize: 11 }} angle={0} textAnchor="middle" height={60} />
+                  <YAxis domain={[0, 7]} tick={{ fill: '#94a3b8', fontSize: 11 }} label={{ value: 'mg/kg', angle: -90, position: 'insideLeft', fill: '#94a3b8' }} />
+                  <RechartsTooltip content={<CustomTooltip />} />
+                  <Legend wrapperStyle={{ fontSize: '11px', paddingTop: '10px' }} />
+                  <Bar dataKey="cd" name="카드뮴 농도(mg/kg)" fill="var(--color-danger)" radius={[4, 4, 0, 0]} label={{ position: 'top', fill: '#f8fafc', fontSize: 11 }}>
+                    {cadmiumData.map((entry: any, index: number) => (<Cell key={`cd-${index}`} fill={index === 1 ? 'var(--color-danger)' : index === 2 ? 'var(--color-warning)' : 'var(--color-success)'} />))}
+                  </Bar>
+                  <Line type="monotone" dataKey="limit" name="식약처 기준선(2.0)" stroke="#f8fafc" strokeWidth={2} strokeDasharray="8 4" dot={false} />
+                </ComposedChart>
+              }
+              takeaway={{
+                situation: <span>[식약처/EFSA] 골뱅이 내장에는 카드뮴이 식약처 기준치를 초과하여 쌓이므로, 가공 시 내장을 완벽하게 제거하지 않으면 통관에 실패할 수 있습니다.</span>,
+                actionPlan: <span>골뱅이의 간췌장(내장) 부위에는 카드뮴이 근육 대비 20~100배 농축(5.5mg/kg)되어 식약처 기준(2.0mg/kg)을 크게 초과합니다. 해외 가공 공장에서 <TermTooltip term="내장 제거 완전성" description="Evisceration Rate. 가공 과정에서 간췌장(내장)이 완전히 제거된 비율. 미달 시 중금속 기준 초과로 수입 통관 부적합 판정의 직접적 원인." /> 이 미달될 경우, 한 번의 식약처 부적합 판정으로 수억 원대 물량이 전량 폐기·반송됩니다. QC팀은 분기별 원산지 공장 방문 검수와 제3자 검사기관(SGS, Intertek) 인증을 의무화하고, 내장 제거율을 핵심 KPI로 관리해야 합니다.</span>,
+                source: '식약처 / EFSA',
+              }} />
+              </WhelkHypothesisCard>
+            </WhelkHypothesisSection>
 
             <WidgetCard title="영국산 수입 통관 원가 폭포수 구조" icon={DollarSign} iconColor="var(--color-info)" pillar="S3"
               cardDesc="FOB → CIF → 관세 → 내륙 통관 단계별 — 한-영 FTA 무관세 방어"
@@ -607,7 +1635,9 @@ export default function WhelkDashboard() {
                 source: 'KCS 관세청 수입 통관 통계',
               }} />
 
-            <WhelkFTAQuarterly />
+            {v2Data?.widgets.S3_fta_import_quarterly && (
+              <WhelkFTAQuarterly widget={v2Data.widgets.S3_fta_import_quarterly} />
+            )}
           </>
       </>)}
       {activePart === 'S4' && (<>
@@ -615,9 +1645,10 @@ export default function WhelkDashboard() {
     <TrendingUp size={20} color="var(--color-info)" />
     <h2 style={{ margin: 0, fontSize: '1.3rem', color: '#f8fafc' }}>❹ 판매 및 수요</h2>
   </div>
-  <>
+            <WhelkHypothesisSection count={4}>
+              <WhelkHypothesisCard reason="브랜드 점유율 1차 출처 미보유">
             <WidgetCard title="B2C 통조림 브랜드 경쟁력 & 가성비 매핑" icon={Target} iconColor="var(--color-info)" pillar="S4"
-              cardDesc="고형량 vs 100g당 단가 vs 점유율 — 브랜드 가성비 매트릭스"
+              cardDesc="실측 데이터 없음 — 브랜드 점유율 1차 출처를 보유하지 않음"
               telemetry={{ status: 'STATIC', syncDate: '2024년 기준' }} chartHeight={300}
               chart={
                 <ScatterChart margin={{ top: 20, right: 30, bottom: 30, left: 30 }}>
@@ -636,9 +1667,11 @@ export default function WhelkDashboard() {
                 actionPlan: <span>경쟁사 '동표골뱅이'는 <TermTooltip term="고형량" description="Solid weight. 통조림 내 액상액(조미액)을 제외한 순수 고기 무게." />(147g)과 저렴한 100g당 단가(₩3,600)를 무기로 매니아층 및 B2B 시장의 바닥을 무섭게 잠식하고 있습니다. 1위 브랜드인 유동(130g, ₩4,200)은 강력한 브랜드 헤리티지로 프리미엄 B2C 시장을 철통 수성 중이나, 합리적 소비 트렌드 확산에 따라 가성비 이탈 현상이 관측됩니다. 장기적 성장을 위해서는 프리미엄 라인의 고형량 투명성 강화 캠페인과 더불어, 중저가 원물 믹스를 통한 실속형 '세컨드 브랜드' 출시로 하방 압력을 분산해야 합니다.</span>,
                 source: 'aT FIS 식품산업통계 (2024)',
               }} />
+              </WhelkHypothesisCard>
 
+              <WhelkHypothesisCard reason="채널 매출 통계 미보유">
             <WidgetCard title="B2C 및 B2B 채널별 매출 분포" icon={Building2} iconColor="var(--color-info)" pillar="S4"
-              cardDesc="대형마트·e커머스·편의점·B2B 식자재 채널별 점유율 변화"
+              cardDesc="실측 데이터 없음 — 채널별 매출 통계를 보유하지 않음"
               telemetry={{ status: 'STATIC', syncDate: '2024년 기준' }} chartHeight={300}
               chart={
                 <PieChart>
@@ -653,10 +1686,10 @@ export default function WhelkDashboard() {
                 actionPlan: <span>과거 시장을 지배하던 대형마트 및 SSM의 점유율(62.3%) 독과점 체제가 빠르게 허물어지며 유통 구조의 파편화가 진행 중입니다. 쿠팡을 위시한 e커머스(11.8%)의 묶음 배송과 1인 가구 홈술족을 겨냥한 편의점(6.4%) 매출이 폭발적으로 성장하고 있습니다. 무엇보다 외식 물가 상승으로 인한 호프/주점용 프랜차이즈 납품 시장, 즉 B2B 식자재(19.5%) 채널이 강력한 '현금창출원(Cash Cow)'로 부상했습니다. 기존 300~400g 캔 규격의 틀을 깨고 <TermTooltip term="SKU 다변화" description="Stock Keeping Unit. 150g 소포장(CVS용), 1kg 대용량 벌크 파우치(B2B용) 등 포장 규격의 세분화 전략." />(150g 파우치, 1kg 벌크 등)를 통한 전방위 채널 침투 전략을 수립해야 합니다.</span>,
                 source: 'aT FIS 식품산업통계',
               }} />
-          </>
-
+              </WhelkHypothesisCard>
+              <WhelkHypothesisCard reason="트렌드 서술, 수치 근거 없음">
             <WidgetCard title="미국 캔 르네상스 — 골뱅이 수출 신시장 기회" icon={ShoppingBag} iconColor="var(--color-success)" pillar="S4"
-              cardDesc="Z세대 '틴 캔 르네상스' 트렌드 + K-Food 골뱅이 침투 잠재력"
+              cardDesc="실측 데이터 없음 — 트렌드 서술을 뒷받침할 수치 근거가 없음"
               telemetry={{ status: 'STATIC', syncDate: 'KMI 2026.05' }} chartHeight={300}
               chart={
                 <ComposedChart data={usCannedMarketData}>
@@ -677,9 +1710,11 @@ export default function WhelkDashboard() {
                 actionPlan: <span>미국 프리미엄 캔 시장이 $15.5B(2026E)에 달하며, 특히 K-Food 한류 영향권 내 아시안 마켓과 H-Mart 채널이 연간 15%씩 성장 중입니다. 골뱅이 캔은 '한국식 해산물 안주'라는 포지셔닝이 가능하며, 미국 내 소주 열풍과 시너지가 큽니다. 해외사업부는 H-Mart, 쿠팡 글로벌 입점을 26Q4까지 완료하고, 영문 패키지 리디자인(프리미엄 크래프트 캔 콘셉트)을 즉시 착수해야 합니다. 초기 목표 매출 $1.2M(2026E).</span>,
                 source: 'KMI 카드뉴스 (2026.05)',
               }} />
+              </WhelkHypothesisCard>
 
+              <WhelkHypothesisCard reason="KFDA 원자료 아카이브 미보유">
             <WidgetCard title="헬시플레저 시대 — 골뱅이 영양 경쟁력 벤치마크" icon={Activity} iconColor="var(--color-success)" pillar="S4"
-              cardDesc="단백질·지방·철분 벤치마크 — 닭가슴살·참치캔·새우 대비"
+              cardDesc="실측 데이터 없음 — 식품의약품안전처 원자료 아카이브를 보유하지 않음"
               telemetry={{ status: 'STATIC', syncDate: 'KFDA 2024 기준' }} chartHeight={300}
               chart={
                 <BarChart data={nutritionBenchmarkData} margin={{ top: 20 }}>
@@ -699,6 +1734,8 @@ export default function WhelkDashboard() {
                 actionPlan: <span>골뱅이(자숙)의 영양 프로필은 헬시플레저 트렌드의 핵심 지표에서 경쟁 식품을 압도합니다. 칼로리 82kcal(닭가슴살 109kcal 대비 -25%), 지방 0.8g(소등심 15.0g 대비 -95%), 철분 3.2mg(닭가슴살 0.7mg 대비 4.5배)을 보유합니다. 마케팅팀은 '다이어트 안주의 혁명'이라는 포지셔닝으로 피트니스 인플루언서 협업 캠페인을 전개하고, 제품 패키지에 '82kcal 슈퍼프로틴' 배지를 전면 부착해야 합니다. 특히 여성 1인 가구 타겟의 '단백질 간식' 카테고리 진입이 가장 높은 ROI를 보일 것입니다.</span>,
                 source: 'KFDA 2024 식품성분표',
               }} />
+              </WhelkHypothesisCard>
+            </WhelkHypothesisSection>
       </>)}
       {activePart === 'S5' && (<>
         {/* Pillar 5: ESG & 지속가능성 */}
@@ -796,51 +1833,6 @@ export default function WhelkDashboard() {
 
         {/* Pillar 5 continued: 구조적 위협 & 기회 — 동일 Pillar 내 하위 블록 */}
   <>
-            <WidgetCard title="패류 자원별 양식 가능성 및 공급 탄력성" icon={ShieldAlert} iconColor="var(--color-danger)" pillar="S1"
-              cardDesc="골뱅이 vs 바지락·동죽·연어 — 해적생물 분류로 양식 영구 불가"
-              telemetry={{ status: 'STATIC', syncDate: '2024년 기준' }} chartHeight={300}
-              chart={
-                <BarChart data={aquacultureData} margin={{ top: 10 }}>
-                  <ChartPatternDefs />
-                  <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" vertical={false} />
-                  <XAxis dataKey="species" tick={{ fill: '#f8fafc', fontSize: 11 }} angle={0} textAnchor="middle" height={60} />
-                  <YAxis domain={[0, 100]} tick={{ fill: '#94a3b8', fontSize: 11 }} />
-                  <RechartsTooltip content={<CustomTooltip />} />
-                  <Legend wrapperStyle={{ fontSize: '11px', paddingTop: '10px' }} />
-                  <Bar dataKey="aquaculture" name="양식 가능성" fill="var(--color-success)" radius={[4, 4, 0, 0]} />
-                  <Bar dataKey="supplyElasticity" name="공급 탄력성" fill="var(--color-info)" radius={[4, 4, 0, 0]} />
-                  <Bar dataKey="priceStability" name="가격 안정성" fill="var(--color-warning)" radius={[4, 4, 0, 0]} />
-                </BarChart>
-              }
-              takeaway={{
-                situation: <span>[국립수산과학원] 충격적 사실: 골뱅이는 '해적생물(Pest)'로 분류되어 양식이 영구히 불가능한 유일한 국민 안주</span>,
-                actionPlan: <span>골뱅이(큰구슬우렁이)는 바지락·동죽 등 패류를 잡아먹는 <TermTooltip term="해적생물" description="해양 양식장에서 양식 대상 생물을 포식하거나 피해를 주는 유해 생물. 골뱅이는 육식성 포식자로 분류됨." /> 로서, 양식 시도 자체가 기존 패류 산업을 파괴합니다. 연어·새우와 달리 수요 폭증 시에도 공급을 인위적으로 늘릴 방법이 전무한 '공급 탄력성 제로(Zero Elasticity)' 품목입니다. 이는 장기적으로 <TermTooltip term="희소성 프리미엄" description="Scarcity Premium. 공급이 구조적으로 제한된 자원에 붙는 가격 프리미엄. 양식 불가 품목에서 특히 강하게 작용." /> 을 보장하지만, 동시에 기후·규제 충격 시 가격 방어 메커니즘이 전무함을 의미합니다. 12~18개월 선물(Forward) 계약과 R. venosa 블렌딩 20~30% 유지로 원가 완충 장치를 내재화해야 합니다.</span>,
-                source: '국립수산과학원',
-              }} />
-
-            <WidgetCard title="카드뮴 생체축적 및 식품안전 규제 진단" icon={FlaskConical} iconColor="var(--color-danger)" pillar="S3"
-              cardDesc="부위별 카드뮴 농도 — 내장 제거율 불량 시 통관 반려 리스크"
-              telemetry={{ status: 'STATIC', syncDate: '2024년 기준' }} chartHeight={300}
-              chart={
-                <ComposedChart data={cadmiumData} margin={{ top: 20 }}>
-                  <ChartPatternDefs />
-                  <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" vertical={false} />
-                  <XAxis dataKey="part" tick={{ fill: '#f8fafc', fontSize: 11 }} angle={0} textAnchor="middle" height={60} />
-                  <YAxis domain={[0, 7]} tick={{ fill: '#94a3b8', fontSize: 11 }} label={{ value: 'mg/kg', angle: -90, position: 'insideLeft', fill: '#94a3b8' }} />
-                  <RechartsTooltip content={<CustomTooltip />} />
-                  <Legend wrapperStyle={{ fontSize: '11px', paddingTop: '10px' }} />
-                  <Bar dataKey="cd" name="카드뮴 농도(mg/kg)" fill="var(--color-danger)" radius={[4, 4, 0, 0]} label={{ position: 'top', fill: '#f8fafc', fontSize: 11 }}>
-                    {cadmiumData.map((entry: any, index: number) => (<Cell key={`cd-${index}`} fill={index === 1 ? 'var(--color-danger)' : index === 2 ? 'var(--color-warning)' : 'var(--color-success)'} />))}
-                  </Bar>
-                  <Line type="monotone" dataKey="limit" name="식약처 기준선(2.0)" stroke="#f8fafc" strokeWidth={2} strokeDasharray="8 4" dot={false} />
-                </ComposedChart>
-              }
-              takeaway={{
-                situation: <span>[식약처/EFSA] 골뱅이 내장에는 카드뮴이 식약처 기준치를 초과하여 쌓이므로, 가공 시 내장을 완벽하게 제거하지 않으면 통관에 실패할 수 있습니다.</span>,
-                actionPlan: <span>골뱅이의 간췌장(내장) 부위에는 카드뮴이 근육 대비 20~100배 농축(5.5mg/kg)되어 식약처 기준(2.0mg/kg)을 크게 초과합니다. 해외 가공 공장에서 <TermTooltip term="내장 제거 완전성" description="Evisceration Rate. 가공 과정에서 간췌장(내장)이 완전히 제거된 비율. 미달 시 중금속 기준 초과로 수입 통관 부적합 판정의 직접적 원인." /> 이 미달될 경우, 한 번의 식약처 부적합 판정으로 수억 원대 물량이 전량 폐기·반송됩니다. QC팀은 분기별 원산지 공장 방문 검수와 제3자 검사기관(SGS, Intertek) 인증을 의무화하고, 내장 제거율을 핵심 KPI로 관리해야 합니다.</span>,
-                source: '식약처 / EFSA',
-              }} />
-
             <WidgetCard title="1인 가구 혼술 트렌드 및 채널 수입량 변동" icon={ShoppingBag} iconColor="var(--color-success)" pillar="S4"
               cardDesc="냉동 자숙 골뱅이육 수입 +105% — 혼술 이코노미 구조적 전환"
               telemetry={{ status: metaStatus, syncDate: metaSyncDate || 'KCS 월별 통관 2026-05-15' }} chartHeight={300}
@@ -945,9 +1937,11 @@ export default function WhelkDashboard() {
               }} />
           </>
 
+            <WhelkHypothesisSection count={3}>
+              <WhelkHypothesisCard reason="EU 포장 규제 수치 원자료 미보유">
             {/* W23: EU 포장규제 리스크 */}
             <WidgetCard title="EU PPWR 포장규제 컴플라이언스 리스크" icon={Recycle} iconColor="var(--color-warning)" pillar="S5"
-              cardDesc="EU 포장폐기물규정(PPWR)이 골뱅이 캔 패키징 비용·수출 경쟁력에 미치는 리스크 6축 평가"
+              cardDesc="실측 데이터 없음 — EU 포장 규제 수치 원자료를 보유하지 않음"
               telemetry={{ status: 'STATIC', syncDate: 'KMI 2026.03' }}
               customBody={
                 <div data-mobile-stack style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '0.5rem' }}>
@@ -969,10 +1963,12 @@ export default function WhelkDashboard() {
                 actionPlan: <span>EU PPWR의 핵심 리스크는 2030년까지 식품 포장재 재활용 비율 70% 의무화입니다. 현재 골뱅이 캔(주석도강판)의 재활용률은 이미 85%로 양호하나, 내부 코팅재(BPA 프리 전환)와 라벨 접착제의 재활용 적합성 인증이 추가로 필요합니다. 또한 EPR(생산자 책임 확대) 비용이 캔당 €0.02~0.05 증가 예상됩니다. 품질관리팀은 EU 수출용 포장재의 PPWR 적합성 사전 인증을 26Q4까지 완료하고, 의도하지 않은 비스페놀 A(BPA-NI) 코팅으로의 전환 계획을 수립해야 합니다.</span>,
                 source: 'KMI / EU PPWR',
               }} />
+              </WhelkHypothesisCard>
 
+              <WhelkHypothesisCard reason="골뱅이 PFAS 수치 원자료 미보유">
             {/* W24: PFAS 식품안전 매트릭스 */}
-            <WidgetCard title="PFAS(과불화화합물) 차세대 식품안전 리스크" icon={FlaskConical} iconColor="var(--color-warning)" pillar="S3"
-              cardDesc="EU/미국 PFAS(영원한 화학물질) 규제가 수산물 수입에 미치는 영향 — 어종별 비교"
+            <WidgetCard title="PFAS(과불화화합물) 차세대 식품안전 리스크" icon={FlaskConical} iconColor="var(--color-warning)" pillar="S5"
+              cardDesc="실측 데이터 없음 — 골뱅이 PFAS 수치 원자료를 보유하지 않음"
               telemetry={{ status: 'STATIC', syncDate: 'KFAS 2024' }} chartHeight={280}
               chart={
                 <BarChart data={pfasRiskData} layout="vertical" margin={{ left: 40 }}>
@@ -991,10 +1987,12 @@ export default function WhelkDashboard() {
                 actionPlan: <span>PFAS는 '영원한 화학물질(Forever Chemicals)'로 불리며, EU가 2025년부터 수산물 PFOS/PFOA 모니터링을 의무화했습니다. 골뱅이는 현재 안전 범위이나, PFAS는 해양 환경에서 생물농축되므로 향후 규제 기준 강화(0.5 ng/g으로 하향) 시 '주의→초과'로 격상될 위험이 있습니다. 품질관리팀은 분기별 PFAS 모니터링 프로토콜을 신설하고, 원산지별(영국/튀르키예/아일랜드) PFAS 농도 프로파일을 확보하여 선제적 리스크 맵을 구축해야 합니다.</span>,
                 source: 'KFAS 군산연안 연구',
               }} />
+              </WhelkHypothesisCard>
 
+              <WhelkHypothesisCard reason="시장 규모·성장률 원자료 미보유">
             {/* W28: 할랄 해양콜라겐 시장 */}
-            <WidgetCard title="할랄 인증 해양콜라겐 — 글로벌 시장 기회" icon={Globe} iconColor="var(--color-success)" pillar="S4"
-              cardDesc="골뱅이 부산물 해양 콜라겐의 할랄/코셔 인증 기반 수출 시장 규모·지역별 성장 잠재력"
+            <WidgetCard title="할랄 인증 해양콜라겐 — 글로벌 시장 기회" icon={Globe} iconColor="var(--color-success)" pillar="S5"
+              cardDesc="실측 데이터 없음 — 시장 규모와 성장률 원자료를 보유하지 않음"
               telemetry={{ status: 'STATIC', syncDate: 'KMI 2026.04' }} chartHeight={280}
               chart={
                 <BarChart data={halalCollagenData} margin={{ top: 20 }}>
@@ -1013,6 +2011,8 @@ export default function WhelkDashboard() {
                 actionPlan: <span>골뱅이 부산물에서 추출하는 해양 콜라겐 펩타이드는 소·돼지 원료 대비 '할랄/코셔 프리미엄'을 갖습니다. 중동·북아프리카($420M, 할랄 95%), 동남아($310M, 할랄 72%) 시장은 연 10~12% 성장 중이며, 인도네시아의 BPJPH 할랄 의무화는 한국산 수산물 부산물 콜라겐의 진입 기회입니다. R&D 부서는 할랄 인증(JAKIM/BPJPH) 취득을 위한 가공 공정 분리를 검토하고, 코스메슈티컬(기능성 화장품) 및 건강기능식품 채널을 타겟으로 2027년 출시를 목표로 해야 합니다.</span>,
                 source: 'KMI 할랄인증',
               }} />
+              </WhelkHypothesisCard>
+            </WhelkHypothesisSection>
       </>)}
 
         {/* KFAS 학술 연구 인텔리전스 위젯 (동적 렌더링, 모든 pillar 공통 표시) */}

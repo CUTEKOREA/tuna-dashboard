@@ -1,0 +1,10 @@
+{
+  "widget_id": "S1_uk_capture_import_link",
+  "structured_parser": "capture_import_link",
+  "country_code": "826",
+  "import_country": "영국",
+  "import_basket_hsk8": "16055910",
+  "period_start": 2018,
+  "period_end": 2024,
+  "measure": "Q_tlw"
+}

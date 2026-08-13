@@ -89,3 +89,4 @@ docs/sources/
 *.bak_p1p2
 scripts/video/.env
 scripts/video/out/
+__pycache__/

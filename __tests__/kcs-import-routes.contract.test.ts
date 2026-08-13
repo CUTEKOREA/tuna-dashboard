@@ -37,12 +37,14 @@ const routes = [
     mainKey: 'vnPct',
   },
   {
+    // 2026-08-13 정정: 이전 값(hs '0307600000' = 육상 에스카르고, mainShare 60 = 근거 없는 조작치)은
+    // 골뱅이가 아닌 품목을 고정하고 있었다. 관세청 HS 1605.59 2024 연간 실측으로 교체.
     label: '/api/whelk/kcs',
     importRoute: () => import('../app/api/whelk/kcs/route') as Promise<RouteModule>,
-    url: 'http://localhost/api/whelk/kcs?year=2024&hs=frozen',
-    hs: '0307600000',
+    url: 'http://localhost/api/whelk/kcs?year=2024&hs=prepared',
+    hs: '160559',
     mainOrigin: '영국',
-    mainShare: 60,
+    mainShare: 38.4,
     mainKey: 'gbPct',
   },
   {
@@ -89,5 +91,25 @@ describe('KCS import route fallback contracts', () => {
 
     const { ok, sum } = assertOriginSharesSaneish(parsed.byOrigin);
     expect(ok, `${route.label} byOrigin 합 ${sum}%`).toBe(true);
+  });
+});
+
+describe('/api/whelk/kcs honest fallback boundaries', () => {
+  it('does not substitute prepared-whelk data when frozen-whelk live data is unavailable', async () => {
+    vi.stubGlobal('fetch', vi.fn(async () => new Response(
+      '<response><header><resultCode>03</resultCode></header><body><items /></body></response>',
+      { status: 200 },
+    )));
+
+    const mod = await import('../app/api/whelk/kcs/route') as RouteModule;
+    const response = await mod.GET(new Request('http://localhost/api/whelk/kcs?year=2024&hs=frozen'));
+    const body = await response.json();
+
+    expect(response.status).toBe(503);
+    expect(body.isLive).toBe(false);
+    expect(body.hs).toBe('030792');
+    expect(body.source).toContain('fallback 실측을 보유하지 않는다');
+    expect(body).not.toHaveProperty('summary');
+    expect(body).not.toHaveProperty('byOrigin');
   });
 });

@@ -1,0 +1,5 @@
+{
+  "widget_id": "S3_fta_import_quarterly",
+  "structured_parser": "kmi_fta_quarterly",
+  "required_fields": ["yearly", "originShareVolume", "unitPriceQuarterly", "yoy2025H1", "facts"]
+}

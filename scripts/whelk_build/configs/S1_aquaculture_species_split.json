@@ -1,0 +1,9 @@
+{
+  "widget_id": "S1_aquaculture_species_split",
+  "structured_parser": "fishstat_aquaculture_species_split",
+  "period": 2024,
+  "measure": "Q_tlw",
+  "rapana_scientific_name": "Rapana spp",
+  "china_country_code": "156",
+  "buccinum_prefix": "Buccinum"
+}

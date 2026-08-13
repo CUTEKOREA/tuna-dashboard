@@ -1,0 +1,7 @@
+{
+  "widget_id": "S3_prepared_import_monthly",
+  "structured_parser": "kcs_monthly_trade",
+  "hs_query": "160559",
+  "period_start": "2026-01",
+  "period_end": "2026-05"
+}

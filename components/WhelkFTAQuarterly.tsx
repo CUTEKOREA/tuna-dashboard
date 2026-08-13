@@ -16,7 +16,23 @@ const tooltipStyle = {
   fontSize: '12px',
 };
 
-export default function WhelkFTAQuarterly() {
+interface WhelkFTAQuarterlyProps {
+  widget: {
+    basis: {
+      coverage_end: string;
+    };
+  };
+}
+
+function getKmiSyncDate(coverageEnd: string) {
+  const [year, month] = coverageEnd.split('-').map(Number);
+  if (Number.isFinite(year) && Number.isFinite(month)) {
+    return `KMI ${year} Q${Math.ceil(month / 3)}`;
+  }
+  return `KMI ${coverageEnd}`;
+}
+
+export default function WhelkFTAQuarterly({ widget }: WhelkFTAQuarterlyProps) {
   const raw = getFtaQuarterlyData('whelk');
   const yearly = raw.yearly as Array<{ year: string; volume: number; value: number }>;
   const shareSeries = raw.originShareVolume as Array<{ year: string; uk: number; ireland: number; other: number }>;
@@ -185,12 +201,13 @@ export default function WhelkFTAQuarterly() {
 
   return (
     <WidgetCard
+      id="S3_fta_import_quarterly"
       title="FTA 골뱅이 분기별 수입 동향 (KMI 21개 분기)"
       icon={Ship}
       iconColor="#fbbf24"
       pillar="S3"
-      cardDesc="KMI(한국해양수산개발원) FTA 체결국 수산물 수입동향 보고서 2021 Q4~2026 Q1 원문 PDF 21건에서 추출한 골뱅이 시계열. 2020~2024 4년간 −44.3% 반토막 사이클 + 2025 H1 영국 조업 시즌 개시로 +17.6% 회복 점화 — 영국 단일 의존 심화 구간."
-      telemetry={{ status: 'STATIC', syncDate: '2026-05' }}
+      cardDesc="KMI(한국해양수산개발원) FTA 체결국 수산물 수입동향 보고서 2021 Q4~2026 Q1 원문 PDF 21건에서 추출한 골뱅이 시계열. KMI 분류 기준이며 HSK8 분해와 상이하므로 관세청 바구니별 점유율과 직접 합산·비교하지 않습니다. 2020~2024 4년간 −44.3% 감소 후 2025 H1 +17.6%가 관측됐습니다."
+      telemetry={{ status: 'SYNCED', syncDate: getKmiSyncDate(widget.basis.coverage_end) }}
       customBody={Body}
       takeaway={{
         situation: `<div>
