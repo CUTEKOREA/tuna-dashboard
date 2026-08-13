@@ -22,7 +22,8 @@ def main():
     )
 
     # JSON 위젯 데이터 (v4 우선)
-    for fname in ["shrimp_real_data_v3.json", "shrimp_real_data_v2.json"]:
+    # v4가 현행. v3는 회귀 비교용으로 남겨둔다(v2는 2026-08-13 삭제).
+    for fname in ["shrimp_real_data_v4.json", "shrimp_real_data_v3.json"]:
         js_path = ROOT / "public/data" / fname
         if js_path.exists():
             d = json.loads(js_path.read_text())

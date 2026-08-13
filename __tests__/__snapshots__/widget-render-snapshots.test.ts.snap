@@ -1,6 +1,6 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`widget render snapshots > keeps 20 representative WidgetCard shells stable 1`] = `
+exports[`widget render snapshots > keeps 25 representative WidgetCard shells stable 1`] = `
 {
   "cardIds": [
     "tuna-supply",
@@ -22,9 +22,14 @@ exports[`widget render snapshots > keeps 20 representative WidgetCard shells sta
     "squid-processing",
     "squid-logistics",
     "squid-demand",
+    "shrimp-supply",
+    "shrimp-processing",
+    "shrimp-logistics",
+    "shrimp-demand",
+    "shrimp-esg",
     "agri-supply",
   ],
-  "hash": "a86270af722786de103e11455db02e01523062824b834203c646d6540f57fb59",
+  "hash": "2d8029904b78026f271a944573e45c1a848a6f0dc16b6ca009bd05f874dfac70",
   "pillars": [
     "S1",
     "S2",
@@ -46,6 +51,11 @@ exports[`widget render snapshots > keeps 20 representative WidgetCard shells sta
     "S3",
     "S4",
     "S1",
+    "S2",
+    "S3",
+    "S4",
+    "S5",
+    "S1",
   ],
   "sampleText": {
     "firstTitle": true,
@@ -54,16 +64,16 @@ exports[`widget render snapshots > keeps 20 representative WidgetCard shells sta
   },
   "statusCounts": {
     "LIVE": 4,
-    "STATIC": 9,
-    "SYNCED": 7,
+    "STATIC": 11,
+    "SYNCED": 10,
   },
   "structureCounts": {
-    "actionBlocks": 20,
-    "bodySlots": 20,
-    "cards": 20,
-    "kpiBoxes": 40,
-    "situationBlocks": 20,
-    "sourceBlocks": 20,
+    "actionBlocks": 25,
+    "bodySlots": 25,
+    "cards": 25,
+    "kpiBoxes": 50,
+    "situationBlocks": 25,
+    "sourceBlocks": 25,
   },
 }
 `;

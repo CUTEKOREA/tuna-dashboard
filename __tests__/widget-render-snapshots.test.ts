@@ -53,6 +53,11 @@ const SCENARIOS = [
   ['squid-processing', '임가공 이동', Factory, 'S2', 'STATIC', '#34d399'],
   ['squid-logistics', '블랙홀 항로', Ship, 'S3', 'LIVE', '#0ea5e9'],
   ['squid-demand', '대체재 탄력성', Zap, 'S4', 'STATIC', '#eab308'],
+  ['shrimp-supply', '양식-자연산 교차', Anchor, 'S1', 'SYNCED', '#10b981'],
+  ['shrimp-processing', '가공생산 역전', Factory, 'S2', 'SYNCED', '#14b8a6'],
+  ['shrimp-logistics', '재가공 허브', Ship, 'S3', 'SYNCED', '#0d9488'],
+  ['shrimp-demand', '규격별 호가', TrendingUp, 'S4', 'STATIC', '#5eead4'],
+  ['shrimp-esg', '인증 지형', Leaf, 'S5', 'STATIC', '#99f6e4'],
   ['agri-supply', '농산물 TRQ', Wheat, 'S1', 'SYNCED', '#4ade80'],
 ] as const;
 
@@ -117,7 +122,7 @@ describe('widget render snapshots', () => {
     expect(summarizeTelemetryMarkup(markup)).toMatchSnapshot();
   });
 
-  it('keeps 20 representative WidgetCard shells stable', () => {
+  it('keeps 25 representative WidgetCard shells stable', () => {
     const cards = SCENARIOS.map(([id, title, icon, pillar, status, color], index) => (
       React.createElement(WidgetCard, {
         key: id,
