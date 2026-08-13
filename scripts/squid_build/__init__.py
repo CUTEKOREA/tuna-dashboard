@@ -17,7 +17,7 @@ from .spec import (
 )
 
 
-BUILDER_VERSION = "squid_build/1.1.0"
+BUILDER_VERSION = "squid_build/1.2.0"
 
 
 def build_document(
@@ -119,7 +119,7 @@ def build_document(
             "built_at": timestamp.isoformat(timespec="seconds"),
             "builder_version": BUILDER_VERSION,
             "archive_snapshot": "squid archive @ 2026-08-12",
-            "gate_version": "measurement_gate 2026-08-12",
+            "gate_version": "measurement_gate 2026-08-12 + local G-012/G-013",
             "telemetry": "SYNCED",
         },
         "sources": governance.sources,

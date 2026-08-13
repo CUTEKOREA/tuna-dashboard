@@ -54,6 +54,10 @@ const CAPTION_STYLE: React.CSSProperties = {
 };
 
 const fmtInt = (v: number) => Math.round(v).toLocaleString('ko-KR');
+const fmtHhi = (v: number) => v.toLocaleString('ko-KR', {
+  minimumFractionDigits: 1,
+  maximumFractionDigits: 1,
+});
 
 /* ------------------------------------------------------------------ */
 /* C_korea_import_monthly — 월×국가 누적막대                            */
@@ -300,7 +304,7 @@ const CoverageHeatmap: React.FC<{ data: CoverageRow[] }> = ({ data }) => {
 };
 
 /* ------------------------------------------------------------------ */
-/* C_import_concentration — 집중도 (관측 연도 2024 단일)                */
+/* C_import_concentration — 집중도 (관측 연도 2020~2024)                */
 /* ------------------------------------------------------------------ */
 
 interface OriginShare {
@@ -346,14 +350,14 @@ const ConcentrationChart: React.FC<{ data: ConcentrationData[] }> = ({ data }) =
   }));
   const latest = years[years.length - 1];
   const first = years[0];
-  const topOrigins = [...(latest.origins ?? [])].sort((a, b) => b.share_pct - a.share_pct).slice(0, 3);
+  const topOrigins = [...(latest.origins ?? [])].sort((a, b) => b.share_pct - a.share_pct).slice(0, 4);
 
   return (
     <div style={{ minWidth: 0 }}>
       <div style={{ display: 'flex', flexWrap: 'wrap', gap: 6, marginBottom: 8 }}>
-        <span style={chipStyle}>{latest.year} 총수입액 {(latest.total_import_usd / 1e8).toFixed(1)}억 달러</span>
+        <span style={chipStyle}>{latest.year} 총수입액 {(latest.total_import_usd / 1e8).toFixed(2)}억 달러</span>
         <span style={{ ...chipStyle, color: C_WARN, borderColor: 'rgba(245, 158, 11, 0.4)' }}>
-          시장집중도지수 {fmtInt(latest.hhi)} · {hhiLabel(latest.hhi)}
+          시장집중도지수 {fmtHhi(latest.hhi)} · {hhiLabel(latest.hhi)}
         </span>
       </div>
 
@@ -386,7 +390,7 @@ const ConcentrationChart: React.FC<{ data: ConcentrationData[] }> = ({ data }) =
             labelFormatter={(y: any) => `${y}년 · 관측`}
             formatter={(v: any, name: any) =>
               String(name).includes('HHI')
-                ? [fmtInt(Number(v)), name as string]
+                ? [fmtHhi(Number(v)), name as string]
                 : [`${Number(v).toFixed(1)}% · 한국 수입 내 비중`, name as string]
             }
             cursor={{ fill: 'rgba(148, 163, 184, 0.08)' }}
@@ -414,7 +418,7 @@ const ConcentrationChart: React.FC<{ data: ConcentrationData[] }> = ({ data }) =
             <LabelList
               dataKey="hhi"
               position="top"
-              formatter={(v: any) => fmtInt(Number(v))}
+              formatter={(v: any) => fmtHhi(Number(v))}
               fill={C_WARN}
               fontSize={10}
             />
@@ -424,13 +428,13 @@ const ConcentrationChart: React.FC<{ data: ConcentrationData[] }> = ({ data }) =
 
       {topOrigins.length > 0 && (
         <p style={{ ...CAPTION_STYLE, color: BODY }}>
-          {latest.year} 상위 원산지: {topOrigins.map((o) => `${o.country} ${o.share_pct.toFixed(1)}%`).join(' · ')}
+          {latest.year} 상위 원산지: {topOrigins.map((o) => `${o.country} ${o.share_pct.toFixed(2)}%`).join(' · ')}
         </p>
       )}
       <p style={CAPTION_STYLE}>
         관측 {first.year}~{latest.year} (관세청) · 상위 1개국 비중 {first.top1_share_pct.toFixed(1)}% →{' '}
-        {latest.top1_share_pct.toFixed(1)}%, 시장집중도지수 {fmtInt(first.hhi)} → {fmtInt(latest.hhi)} ·
-        비중은 한국 수입 안에서의 비중이며 글로벌 점유율이 아니다
+        {latest.top1_share_pct.toFixed(1)}%, 시장집중도지수 {fmtHhi(first.hhi)} → {fmtHhi(latest.hhi)} ·
+        비중은 한국 수입 안에서의 비중이며 글로벌 점유율이 아니다 · 대상 품목 HS 030742·030743·030749·160554
       </p>
     </div>
   );

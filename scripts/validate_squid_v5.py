@@ -3,7 +3,7 @@
 
 Two layers:
   1. structural — JSON Schema (scripts/squid_v5.schema.json)
-  2. measurement gates G-001..G-011 from the squid archive
+  2. measurement gates G-001..G-011 from the squid archive, plus local G-012/G-013
      (00_오징어_관련자료/01_오징어_시장·가격/00_운영/measurement_gate.csv)
 
 Exit 0 = publishable. Non-zero = build must stop.
@@ -17,7 +17,7 @@ from __future__ import annotations
 import json
 import re
 import sys
-from datetime import date
+from datetime import date, datetime
 from pathlib import Path
 
 SCHEMA_PATH = Path(__file__).with_name("squid_v5.schema.json")
@@ -33,6 +33,12 @@ TARGET_SPECIES = {
     "Loligo spp",
 }
 NON_SQUID_TAXA = {"Cephalopoda NEI", "Sepia spp"}
+
+# G-013: HS-derived widgets must expose their actual HS6 scope. Only the
+# squid/cuttlefish families are approved; octopus, shellfish, and other
+# molluscs must never enter a squid denominator.
+HS_BASED_SOURCE_IDS = {"SQ-TRD-KCS", "SQ-CLS-FAO-HS"}
+APPROVED_SQUID_HS6 = {"030741", "030742", "030743", "030749", "160554"}
 
 # G-002: phrases that assert a squid-only universe. Banned unless taxon_scope
 # is squid_only.
@@ -105,6 +111,16 @@ def check_gates(doc: dict) -> list[str]:
     known_sources = {s["source_id"]: s for s in doc["sources"]}
     gate_ids = {g["gate_id"] for g in doc["gates"]}
 
+    built_at_value = doc["meta"]["built_at"]
+    try:
+        built_at = datetime.fromisoformat(built_at_value.replace("Z", "+00:00"))
+        if built_at.tzinfo is None or built_at.utcoffset() is None:
+            raise ValueError("시간대 누락")
+        built_on = built_at.date()
+    except (AttributeError, TypeError, ValueError) as exc:
+        errors.append(f"[G-012] meta.built_at 날짜 형식 불가: {built_at_value!r} ({exc})")
+        built_on = None
+
     for gid in (f"G-{n:03d}" for n in range(1, 12)):
         if gid not in gate_ids:
             errors.append(f"[GATE] gates[] 에 {gid} 누락 — measurement_gate.csv 전량 적재 필요")
@@ -154,6 +170,24 @@ def check_gates(doc: dict) -> list[str]:
                 e(f"G-002 위반: taxon_scope={scope} 는 taxon_note 로 포함 범위 명시 필수")
         elif any(s in NON_SQUID_TAXA for s in species):
             e("G-002 위반: squid_only 인데 갑오징어/Cephalopods NEI 포함")
+
+        # G-013 HS 품목 범위 — 직접 HS/KCS 근거를 쓰는 모든 위젯은 실제 사용한
+        # HS6 목록을 남긴다. 목록을 넓히는 것만으로는 승인 범위를 우회할 수 없다.
+        hs_codes = b.get("hs_codes", [])
+        if set(src_ids) & HS_BASED_SOURCE_IDS and not hs_codes:
+            e("G-013 위반: HS 기반 위젯은 basis.hs_codes 에 사용 HS6 목록 필수")
+        if hs_codes:
+            unapproved = sorted(set(hs_codes) - APPROVED_SQUID_HS6)
+            if unapproved:
+                e(f"G-013 위반: 승인 목록 밖 HS 코드 {unapproved}")
+            if scope == "incl_cuttlefish":
+                note = b.get("taxon_note", "")
+                missing_from_note = [code for code in hs_codes if code not in note]
+                if missing_from_note:
+                    e(
+                        "G-013 위반: taxon_note 에 포함 HS 코드 누락 "
+                        f"{missing_from_note}"
+                    )
 
         # G-003 중량 기준 — 위젯 1개당 기준 1개. 두 기준이 필요하면 위젯을 쪼갠다.
         if b.get("weight_basis") == "n/a" and metrics & {"level", "production"}:
@@ -240,6 +274,12 @@ def check_gates(doc: dict) -> list[str]:
             if pub > got:
                 e(f"G-011 위반: published_at 이 retrieved_at 보다 미래")
 
+            # G-012 빌드시각 상한. YYYY와 YYYY-MM은 parse_edge(..., upper=True)가
+            # 각각 연말·월말로 펼치므로 아직 끝나지 않은 기간을 관측 완료로 못 낸다.
+            if built_on is not None and cov_e > built_on:
+                e(f"G-012 위반: coverage_end({b['coverage_end']}; 기간종료 {cov_e}) 가 "
+                  f"meta.built_at({built_at_value}) 보다 미래")
+
         if not b.get("archive_path"):
             e("archive_path 누락 — 원문 추적 불가")
 
@@ -260,7 +300,7 @@ def _minimal_doc() -> dict:
             "built_at": "2026-08-13T09:00:00+09:00",
             "builder_version": "squid_build/1.0.0",
             "archive_snapshot": "00_오징어_관련자료 @ 2026-08-12",
-            "gate_version": "measurement_gate 2026-08-12",
+            "gate_version": "measurement_gate 2026-08-12 + local G-012/G-013",
             "telemetry": "SYNCED",
         },
         "sources": [
@@ -382,6 +422,40 @@ def self_test() -> None:
     # G-011 관측종료가 발간일보다 미래
     fails(_mutate(base, B + ["coverage_end"], "2026-09-30"), "G-011")
 
+    # G-012 월 단위 관측종료를 월말로 펼치면 빌드일보다 미래
+    d = _mutate(base, B + ["coverage_end"], "2026-08")
+    d = _mutate(d, B + ["published_at"], "2026-08")
+    d = _mutate(d, B + ["retrieved_at"], "2026-08")
+    fails(d, "G-012")
+
+    # G-012 정확한 일자가 빌드일과 같으면 정상
+    d = _mutate(base, B + ["coverage_end"], "2026-08-13")
+    d = _mutate(d, B + ["published_at"], "2026-08-13")
+    d = _mutate(d, B + ["retrieved_at"], "2026-08-13")
+    assert validate(d) == [], validate(d)
+
+    # G-013 HS 기반 위젯에 승인 밖의 문어 코드가 섞이면 차단
+    d = _mutate(base, B + ["source_ids"], ["SQ-TRD-KCS"])
+    d["sources"].append({"source_id": "SQ-TRD-KCS", "publisher": "KCS", "priority": "P0",
+                         "grade": "A", "frequency": "monthly", "landing_url": "https://unipass.customs.go.kr/"})
+    d = _mutate(d, B + ["source_grade"], "A")
+    d = _mutate(d, B + ["taxon_scope"], "incl_cuttlefish")
+    d = _mutate(d, B + ["taxon_note"], "포함 HS: 030742·030743·030749·160554")
+    d = _mutate(d, B + ["coverage_start"], "2024")
+    d = _mutate(d, B + ["coverage_end"], "2024")
+    d = _mutate(d, B + ["published_at"], "2024")
+    d = _mutate(d, B + ["hs_codes"], ["030742", "030743", "030749", "160554", "160555"])
+    fails(d, "G-013")
+
+    # G-013 HS 근거를 쓰면서 목록 자체를 누락해도 차단
+    d_missing = _mutate(d, B + ["hs_codes"], ["030742", "030743", "030749", "160554"])
+    del d_missing["widgets"]["B_kmi_consumer_price"]["basis"]["hs_codes"]
+    fails(d_missing, "G-013")
+
+    # G-013 승인 HS만 명시한 같은 위젯은 정상
+    d = _mutate(d, B + ["hs_codes"], ["030742", "030743", "030749", "160554"])
+    assert validate(d) == [], validate(d)
+
     # L-09 LIVE 라벨
     fails(_mutate(base, ["meta", "telemetry"], "LIVE"), "SCHEMA")
 
@@ -396,7 +470,7 @@ def self_test() -> None:
     # 같은 데이터라도 card/table/checklist 는 정직한 표현이므로 통과해야 한다
     assert validate(_mutate(d, W + ["chartType"], "card")) == []
 
-    print("self-test OK — 15 케이스 통과")
+    print("self-test OK — 20 케이스 통과")
 
 
 def main(argv: list[str]) -> int:

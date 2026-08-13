@@ -30,7 +30,6 @@ def _sourcing_signal(document: dict, spec: WidgetSpec, built_on: date) -> dict:
     peru = widgets["A_peru_pota_timeline"]
     chile = widgets["A_chile_jibia_quota"]
     falkland = widgets["A_falkland_loligo_season"]
-    argentina = widgets["A_argentina_illex_gap"]
     korea = widgets["A_korea_tac"]
 
     peru_closure = next(
@@ -83,6 +82,20 @@ def _sourcing_signal(document: dict, spec: WidgetSpec, built_on: date) -> dict:
             falkland["basis"]["archive_path"],
         )
     )
+    argentina_evidence_names = (
+        "20260812-ARG-CTMFM_Resolution_2_2026.html",
+        "20260812-ARG-Resolution_6_2026.html",
+    )
+    argentina_evidence_paths = [
+        path
+        for expected_name in argentina_evidence_names
+        for path in spec.archive_paths
+        if path.endswith(expected_name)
+    ]
+    if len(argentina_evidence_paths) != len(argentina_evidence_names):
+        raise ValueError(
+            "A_sourcing_signal_board must cite both Argentina 2026 legal texts"
+        )
     data = [
         {
             "origin": "페루 pota",
@@ -135,14 +148,17 @@ def _sourcing_signal(document: dict, spec: WidgetSpec, built_on: date) -> dict:
         },
         {
             "origin": "아르헨티나 Illex",
-            "status": "데이터공백",
-            "as_of": argentina["basis"]["coverage_end"] if _has_data(argentina) else None,
+            "status": "어기외",
+            "as_of": "2026-05-28",
             "evidence_widget": "A_argentina_illex_gap",
-            "reason": "2026 주간공보와 지정 PDF의 Markdown 쌍이 없음",
+            "reason": (
+                "후속 법령의 과거형 언급으로 어기 종료를 확인했으나 "
+                "2026 주간공보 부재로 어획 실적은 미확인"
+            ),
             "state_evidence": _state_evidence(
-                argentina["basis"]["archive_path"],
-                "unsupported_2026_gap",
-                "data_gap",
+                ";".join(argentina_evidence_paths),
+                "subsequent_law_past_tense",
+                "legal_text_derived",
             ),
         },
         {
@@ -163,13 +179,14 @@ def _sourcing_signal(document: dict, spec: WidgetSpec, built_on: date) -> dict:
         "data": data,
         "methodology": (
             "공식 중단공지는 관측 상태, SERNAPESCA 누적 포획은 관측보고 기반 활동, "
-            "FIFD 어기중은 공개 일정 기반 파생으로 분리하고 근거 유형을 행마다 표시"
+            "FIFD 어기중은 공개 일정 기반 파생, 아르헨티나 어기외는 후속 법령의 "
+            "과거형 언급 기반 파생으로 분리하고 근거 유형을 행마다 표시"
         ),
         "basis": {
             "weight_basis": "n/a",
             "metrics": ["coverage"],
             "quota_semantics": "closure_notice",
-            "coverage_start": "2026-07-24",
+            "coverage_start": "2026-05-28",
             "coverage_end": "2026-08-12",
             "published_at": "2026-08-12",
             "retrieved_at": "2026-08-12",
@@ -234,11 +251,15 @@ def _stage_board(document: dict, spec: WidgetSpec) -> dict:
             "coverage_end": "2026-08-11",
             "published_at": "2026-08-12",
             "retrieved_at": "2026-08-12",
+            "hs_codes": list(kcs["basis"]["hs_codes"]),
         },
     }
 
 
-def _landed_cost(spec: WidgetSpec) -> dict:
+def _landed_cost(document: dict, spec: WidgetSpec) -> dict:
+    # "2026-08 기준"은 월 전체 관측이 아니라 수기 정책 상수의 효력월이다.
+    # 월말(08-31)까지 관측했다고 확장하지 않도록 효력월 첫날로 점 표기한다.
+    hs_map_basis = document["widgets"]["C_hs_classification_map"]["basis"]
     return {
         "chartType": "card",
         "data": [],
@@ -250,9 +271,11 @@ def _landed_cost(spec: WidgetSpec) -> dict:
             "metrics": ["coverage"],
             "claim_type": "operational",
             "coverage_start": "2026-01",
-            "coverage_end": "2026-08",
-            "published_at": "2026-08",
-            "retrieved_at": "2026-08",
+            "coverage_end": "2026-08-01",
+            "published_at": "2026-08-12",
+            "retrieved_at": "2026-08-12",
+            "hs_codes": list(hs_map_basis["hs_codes"]),
+            "taxon_note": hs_map_basis["taxon_note"],
         },
     }
 
@@ -304,6 +327,9 @@ def _freshness_board(document: dict, spec: WidgetSpec, built_on: date) -> dict:
             "coverage_end": "2026-08-11",
             "published_at": "2026-08-12",
             "retrieved_at": "2026-08-12",
+            "hs_codes": list(
+                document["widgets"]["B_kcs_import_unit_price"]["basis"]["hs_codes"]
+            ),
         },
     }
 
@@ -323,7 +349,9 @@ def derive_widgets(
         "B_stage_separated_prices": _stage_board(
             document, by_id["B_stage_separated_prices"]
         ),
-        "B_landed_cost_calc": _landed_cost(by_id["B_landed_cost_calc"]),
+        "B_landed_cost_calc": _landed_cost(
+            document, by_id["B_landed_cost_calc"]
+        ),
         "B_price_freshness_board": _freshness_board(
             document, by_id["B_price_freshness_board"], built_on
         ),

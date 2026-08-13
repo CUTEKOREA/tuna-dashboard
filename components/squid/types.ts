@@ -17,6 +17,7 @@ export interface WidgetBasis {
   species: string[];
   taxon_scope: TaxonScope;
   taxon_note?: string;
+  hs_codes?: string[];
   weight_basis: WeightBasis;
   product_form?: string;
   market_stage: MarketStage;

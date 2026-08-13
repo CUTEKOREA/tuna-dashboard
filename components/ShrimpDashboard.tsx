@@ -238,6 +238,28 @@ export default function ShrimpDashboard() {
     }
 
     const hasRightAxis = series.some(s => s.yAxisId === 'right');
+    // 축 라벨 솎기 정책.
+    // 범주형 축(국가·사업부·허브)에서 라벨을 솎으면 막대가 어느 항목인지 못 읽는다.
+    // 실제로 상위 10개국 차트에서 4위 에콰도르와 9위 방글라데시 이름이 사라졌다.
+    // 시계열(연도 75개)은 반대로 전부 그리면 겹치므로 솎는 게 맞다.
+    // 데이터 포인트가 적으면 범주형으로 보고 전부 그린다.
+    const CATEGORICAL_MAX = 14;
+    const isCategorical = d.length <= CATEGORICAL_MAX;
+    // 라벨을 다 그리면 좁은 카드에서 겹친다. 항목이 많거나 라벨이 길면 기울인다.
+    // 룰북 D-05의 Korean smart rotation(-45° + textAnchor="end" + 하단 여유).
+    const longestLabel = isCategorical
+      ? Math.max(0, ...d.map((row: any) => String(row?.[xKey] ?? '').length))
+      : 0;
+    const needsRotation = isCategorical && (d.length >= 7 || longestLabel >= 6);
+    const axisTickProps = isCategorical
+      ? {
+          interval: 0 as const,
+          ...(needsRotation
+            ? { angle: -45, textAnchor: 'end' as const, height: 90 }
+            : {}),
+        }
+      : { minTickGap: 20 };
+
     const axisStroke = isNew ? '#64748b' : '#94a3b8';
     const axisTick = isNew ? { fontSize: 10 } : { fill: '#94a3b8', fontSize: 11 };
     const gridStroke = isNew ? 'rgba(140,170,255,0.12)' : 'rgba(140,170,255,0.10)';
@@ -276,7 +298,7 @@ export default function ShrimpDashboard() {
               </defs>
             )}
             <CartesianGrid strokeDasharray="3 3" stroke={gridStroke} vertical={isNew ? false : undefined} />
-            <XAxis dataKey={xKey} stroke={axisStroke} tick={axisTick} tickFormatter={truncateXAxis} angle={0} textAnchor="middle" height={60} minTickGap={20} />
+            <XAxis dataKey={xKey} stroke={axisStroke} tick={axisTick} tickFormatter={truncateXAxis} angle={0} textAnchor="middle" height={60} {...axisTickProps} />
             <YAxis stroke={axisStroke} tick={axisTick} tickFormatter={(v) => formatYAxis(v, widget.yUnit)} />
             <RechartsTooltip content={<CustomTooltip />} />
             <Legend wrapperStyle={{ fontSize: '11px' }} iconType={isNew ? undefined : 'circle'} verticalAlign="top" height={36} />
@@ -292,7 +314,7 @@ export default function ShrimpDashboard() {
         return (
           <LineChart data={d} margin={isNew ? undefined : oldMargin}>
             <CartesianGrid strokeDasharray="3 3" stroke={gridStroke} vertical={isNew ? false : undefined} />
-            <XAxis dataKey={xKey} stroke={axisStroke} tick={axisTick} tickFormatter={truncateXAxis} angle={0} textAnchor="middle" height={60} minTickGap={20} />
+            <XAxis dataKey={xKey} stroke={axisStroke} tick={axisTick} tickFormatter={truncateXAxis} angle={0} textAnchor="middle" height={60} {...axisTickProps} />
             <YAxis yAxisId="left" stroke={axisStroke} tick={axisTick} tickFormatter={(v) => formatYAxis(v, widget.yUnit)} />
             {hasRightAxis && <YAxis yAxisId="right" orientation="right" stroke={axisStroke} tick={axisTick} tickFormatter={(v) => formatYAxis(v, widget.yUnit)} />}
             <RechartsTooltip content={<CustomTooltip />} />
@@ -309,7 +331,7 @@ export default function ShrimpDashboard() {
             <BarChart data={d} margin={oldMargin}>
               <ChartPatternDefs />
               <CartesianGrid strokeDasharray="3 3" stroke={gridStroke} />
-              <XAxis dataKey={xKey} stroke={axisStroke} tick={axisTick} tickFormatter={truncateXAxis} angle={0} textAnchor="middle" height={60} minTickGap={20} />
+              <XAxis dataKey={xKey} stroke={axisStroke} tick={axisTick} tickFormatter={truncateXAxis} angle={0} textAnchor="middle" height={60} {...axisTickProps} />
               <YAxis stroke={axisStroke} tick={axisTick} tickFormatter={(v) => formatYAxis(v, widget.yUnit)} />
               <RechartsTooltip content={<CustomTooltip />} cursor={{fill: 'rgba(140,170,255,0.10)'}} />
               <Legend wrapperStyle={{ fontSize: '11px' }} iconType="circle" verticalAlign="top" height={36} />
@@ -329,7 +351,7 @@ export default function ShrimpDashboard() {
             <ComposedChart data={d} margin={oldMargin}>
               <ChartPatternDefs />
               <CartesianGrid strokeDasharray="3 3" stroke={gridStroke} />
-              <XAxis dataKey={xKey} stroke={axisStroke} tick={axisTick} tickFormatter={truncateXAxis} angle={0} textAnchor="middle" height={60} minTickGap={20} />
+              <XAxis dataKey={xKey} stroke={axisStroke} tick={axisTick} tickFormatter={truncateXAxis} angle={0} textAnchor="middle" height={60} {...axisTickProps} />
               <YAxis yAxisId="left" stroke={axisStroke} tick={axisTick} tickFormatter={(v) => formatYAxis(v, widget.yUnit)} />
               {hasRightAxis && <YAxis yAxisId="right" orientation="right" stroke={axisStroke} tick={axisTick} tickFormatter={(v) => formatYAxis(v, widget.yUnit)} />}
               <RechartsTooltip content={<CustomTooltip />} />
@@ -351,7 +373,7 @@ export default function ShrimpDashboard() {
           <ComposedChart data={d}>
             <ChartPatternDefs />
             <CartesianGrid strokeDasharray="3 3" stroke={gridStroke} vertical={false} />
-            <XAxis dataKey={xKey} stroke={axisStroke} tick={axisTick} tickFormatter={truncateXAxis} angle={0} textAnchor="middle" height={60} minTickGap={20} />
+            <XAxis dataKey={xKey} stroke={axisStroke} tick={axisTick} tickFormatter={truncateXAxis} angle={0} textAnchor="middle" height={60} {...axisTickProps} />
             <YAxis yAxisId="left" stroke={axisStroke} tick={axisTick} tickFormatter={(v) => formatYAxis(v, widget.yUnit)} />
             {hasRightAxis && <YAxis yAxisId="right" orientation="right" stroke={axisStroke} tick={axisTick} tickFormatter={(v) => formatYAxis(v, widget.yUnit)} />}
             <RechartsTooltip content={<CustomTooltip />} />
