@@ -1,5 +1,6 @@
 # HANDOFF
 
+> 마지막 업데이트: 2026-08-13 23:44 KST
 > 🦐 **2026-08-13 23:44 KST — `/api/shrimp` 라우트 3종 LIVE·수치 정직화** [Codex]:
 > - **`emerging-markets`**: 버리던 Comtrade 응답을 HS 391390 국가·연도별 수출액으로 실제 반환한다. `partnerCode=0`·`partner2ISO=W00`·`motCode=0`·`customsCode=C00` 총계행만 남기고, 중복 reporter·period는 최대 총계 1건으로 제한했다. HS 391390이 키토산 전용 세번이 아니며 시장 규모로 읽을 수 없다는 한계를 응답에 명시했다. 출처 없는 시장규모·CAGR·점유율·잠재매출 블록은 제거했고, 키가 없거나 유효행이 없으면 `chitosanTrade:null`, `isLive:false`다.
 > - **`forecast`**: 존재하지 않던 전망 산식·계수·과거 월 예측·벤치마크를 전부 제거했다. FRED `DCOILWTICO`·`DEXKOUS`의 최신 유효 관측값과 같은 행의 관측일만 반환하며, 결측 `.`·비숫자는 건너뛴다. 한 계열만 성공해도 그 값만 채우고, 둘 다 실패하거나 키가 없으면 네 macro 값이 모두 `null`, `isLive:false`다.
@@ -8,7 +9,6 @@
 > - 지정 금칙어의 기존 잔여 3건 때문에 전체 디렉터리 grep이 실패해 `sourcing-sim`·`macro`의 source 접미사와 `esg-radar`의 미호출 출처 주석만 동작 변화 없이 정리했다.
 > - **검증**: `npx tsc --noEmit` 통과, 전체 Vitest **201/201**, API 캐시 정책 **143/143**, Next 빌드 **98/98**, 번들 예산 통과, 지정 금칙어 grep 출력 0건. 프로덕션 배포는 하지 않았다.
 
-> 마지막 업데이트: 2026-08-13 23:44 KST
 
 > ✅ **2026-08-13 17:13 KST — 오징어 v5 교차검증 정정 (P4·P5)** [Claude Code 검수 + Codex 구현]:
 > - **P4 관측기간 4건**: `C_fta_import_trend` 가 발간연도(2026)를 관측연도로 쓰고 있었다. 원문 KMI 보고서는 2025년 자료(`’25년` 221회)라 화면 신선도가 `D+-140` 로 표시됐다 — 8개월 지난 자료가 방금 나온 것처럼 보였다. `B_landed_cost_calc`·`C_india_mpeda_exports`·`D_sprfmo_compliance` 도 함께 정정. **G-012 신설**: 관측종료는 `meta.built_at` 을 넘을 수 없다(부분 날짜는 기간 끝으로 해석). 기존 G-011 은 관측·발간·수집 셋의 상호 정합만 봐서 이 부류를 전혀 못 잡았다.
@@ -27,6 +27,11 @@
 > - `validate_squid_v5.py`에 **G-012**를 추가했다. `coverage_end`의 `YYYY`·`YYYY-MM`을 각각 연말·월말로 펼쳐 `meta.built_at`의 날짜를 넘으면 차단한다. 기존 산출물에서 정확히 P4 두 건을 검출한 뒤 재빌드 산출물은 위반 0건을 확인했다.
 > - **검증**: 빌드 성공(39위젯), validator self-test 17건, 산출물 validator 위반 0건, squid builder 20/20, Vitest 191/191, TypeScript 통과.
 > - **다음 단계**: Claude Code가 커밋을 게이트 판정하고 필요 시 배포한다. 이 세션은 push·배포하지 않는다.
+
+> 🐟 **2026-08-14 00:55 KST — `/mackerel` 자급률 표현·교차검증 수치 정정** [Codex]:
+> - `s1_korea_production`의 100% 초과 공식 사례를 해수부 조사 2022년 김 223.2%·굴 171.5%로 교체하고, provenance에 FAO 125,448톤과 KOSIS 고등어류 134,606톤의 9,158톤(7.3%) 차이 및 종 합산 사유를 명시했다.
+> - 1차 교차검증 정정분과 `data/mackerel` 재생성분을 함께 점검했다. `npm run mackerel` 28/28, `mackerel:test` 4/4, `mackerel:score` 평균 89.5(A)를 통과했고 금지 문자열 3종은 모두 0건이다.
+> - 사용자 지시 전에는 push하지 않는다.
 
 > 🚢 **2026-08-13 14:49 KST — `/logistics` TTA 냉동운반선 32주차 반영** [Hermes]:
 > - 원문 `Reefer ship movement for week 32nd.xlsx`의 내부 시트 `WEEK 32`와 기간 헤더를 직접 대조해 실제 보고기간을 **2026-08-07~08-13**으로 확정했다. 원문 SHA-256은 `d4ffd1306f66df858163376fad39f20bcb0c72dd6ea1bc4a85f17eafd430481b`다.
