@@ -1,5 +1,12 @@
 # HANDOFF
 
+> ✅ **2026-08-14 00:20 KST — `/whelk` 아카이브 기반 HSK8 개편 최종 로컬 검증** [Codex]:
+> - **구현 보존**: 골뱅이 구현 커밋 `94c005b`(HSK8 바구니 분리, 냉동 0307.92·HSK10 분해, 종 해상도 고지, 가설 10개 격리)가 최신 `origin/main` 병합 커밋 `eb5e840`에 포함됐다. 작업 브랜치는 `codex/whelk-v2`이며 호스트 관리 worktree를 그대로 보존한다.
+> - **최종 HEAD 게이트**: Vitest **232/232**, TypeScript 통과, ESLint 오류 0(병합된 타 영역 기존 경고 18), API 캐시 정책 **143/143**, Whelk 빌더 단언 **22/22**, `whelk_v2.json` **11위젯·빈 카드 0·게이트 위반 0**, S-Grade 위반 0, Next.js production build **98/98**, 번들 예산 11개 라우트 통과.
+> - **브라우저 QA**: 개발 모드 데스크톱 1440px·모바일 390px에서 가설 분포 `0/1/2/4/3`, 기본 접힘 10개, 종 해상도 고지, HSK8 바구니, HSK10 조개관자 제외, 형태전환 미검증 표기, 폐기 HS6 위젯 비노출, 가로 overflow 0, console/page/response 오류 0을 확인했다. production에서도 기능·수치·overflow 단언은 모두 통과했다.
+> - **기존 공통 잔여**: production의 React #418은 `/whelk`와 변경하지 않은 `/mackerel`에서 동일하고 `/`에서는 재현되지 않아 기존 `[category]` 셸 이슈로 분리했다. 이번 범위에서 공통 라우팅 구조는 수정하지 않았다.
+> - **다음 단계**: Claude Code가 수치 교차검증·게이트 판정을 수행한다. 이번 세션은 추가 push·PR·main 병합·라이브 배포를 하지 않는다.
+
 > ✅ **2026-08-13 17:13 KST — 오징어 v5 교차검증 정정 (P4·P5)** [Claude Code 검수 + Codex 구현]:
 > - **P4 관측기간 4건**: `C_fta_import_trend` 가 발간연도(2026)를 관측연도로 쓰고 있었다. 원문 KMI 보고서는 2025년 자료(`’25년` 221회)라 화면 신선도가 `D+-140` 로 표시됐다 — 8개월 지난 자료가 방금 나온 것처럼 보였다. `B_landed_cost_calc`·`C_india_mpeda_exports`·`D_sprfmo_compliance` 도 함께 정정. **G-012 신설**: 관측종료는 `meta.built_at` 을 넘을 수 없다(부분 날짜는 기간 끝으로 해석). 기존 G-011 은 관측·발간·수집 셋의 상호 정합만 봐서 이 부류를 전혀 못 잡았다.
 > - **P5 아르헨티나 신호**: `데이터공백` → **`어기외`**(기준일 2026-05-28). 같은 아카이브의 CTMFM 결의 2/2026이 2026 어기 개시를, CFP 결의 6/2026의 `la última temporada` 과거형이 기준일 당시 종료를 뒷받침한다. `state_evidence`는 `legal_text_derived`·`subsequent_law_past_tense`로 기록했다. 주간공보 부재는 사유에 보존해 어획 실적 공백과 어기 상태를 분리했다. `A_argentina_illex_gap` 링크카드는 빈 상태를 유지한다.
