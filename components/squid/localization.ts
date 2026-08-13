@@ -294,7 +294,8 @@ const PHRASE_REPLACEMENTS: readonly [RegExp, string][] = [
   [/\bGT\b/g, '총톤'],
   [/\bkg\b/gi, '킬로그램'],
   [/\bcm\b/gi, '센티미터'],
-  [/\bg\b/gi, '그램'],
+  // 숫자 뒤에 올 때만 단위로 본다. `\bg\b` 로 두면 게이트 번호 G-006 의 G 까지 잡는다.
+  [/(?<=\d\s?)g\b/g, '그램'],
   [/\bpc\b/gi, '마리'],
   [/\bMT\b/g, '톤'],
   [/\bIQF\b/g, '개별급속냉동'],
@@ -330,6 +331,13 @@ export function squidFieldLabel(field: string): string {
   return FIELD_KO[field] ?? koreanUiText(field.replaceAll('_', ' '));
 }
 
+/**
+ * 원문 대조용 식별자. 게이트 번호와 출처 코드는 사용자가 출처 원장과 맞춰 보는 코드라
+ * 번역하면 대조가 끊긴다. `SQ-PROD-FAO-FISHSTAT` 가 `SQ-PROD-유엔식량농업기구-FISHSTAT`
+ * 가 되면 원장에서 찾을 수 없다.
+ */
+const IDENTIFIER = /^(G-\d{3}|SQ-[A-Z0-9]+(?:-[A-Z0-9]+)*|LEG-[A-Z0-9-]+|\d{6})$/;
+
 export function squidValueLabel(value: unknown): string {
   if (value === null || value === undefined) return '—';
   if (typeof value === 'boolean') return value ? '예' : '아니요';
@@ -343,6 +351,7 @@ export function squidValueLabel(value: unknown): string {
   }
 
   const text = String(value);
+  if (IDENTIFIER.test(text)) return text;
   if (EXACT_VALUE_KO[text]) return EXACT_VALUE_KO[text];
 
   return koreanUiText(text)
