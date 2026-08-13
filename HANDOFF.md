@@ -1,6 +1,20 @@
 # HANDOFF
 
-> 마지막 업데이트: 2026-08-13 10:10 KST
+> 마지막 업데이트: 2026-08-13 14:20 KST
+
+> 🦐 **2026-08-13 14:20 KST — `/shrimp` 산업 이해 중심 전면 개편** [Claude]:
+> - 페이지와 새우 아카이브가 서로를 모르는 상태였다. 페이지는 FishStat **2024.1.0**(데이터 ~2022) 위에 있었고 아카이브는 7월부터 **2026.1.0**(~2024) 스냅샷을 갖고 있었다. 위젯을 **80 → 21**로 줄이고 전부 아카이브 1차 실측으로 갈아끼웠다.
+> - **필터 정정**: FishStat CSV에 담수갑각류가 섞여 2024 총량이 821,552 t(6.4%) 부풀려져 있었다. `ISSCAAP='Shrimps, prawns'` 적용 후 정본은 양식 **8,810,922 t** · 자연산 **3,135,769 t** · 총 **11,946,690 t** · 양식 비중 **73.8%** · 흰다리 **64.1%**이며, FAO SOFIA 2026의 8,811천 t와 교차검증된다.
+> - **날조 계열 폐기**: `w01`이 출처를 "FAOSTAT 실측"이라 적고 양식 계열을 상수 델타로 보간했다(1991~2000 매년 +40,000, 2011~2020 매년 +260,000). 2024 값이 같은 파일의 7개국 합보다 작아 물리적으로 불가능했다. KPI 4개의 기준연도 오라벨도 정정하고 6개 전부 위젯 산출에서 파생하도록 바꿨다.
+> - **정직화**: `SHRIMP_API_SOURCES`와 헤더 API 카운터를 제거했다(fetch 9개 중 5개가 응답을 버리고 카운터만 올렸다). 관세/환율 시뮬레이터도 제거했다 — 마진 산식 `15 - (환율-1385)/100 - 관세`가 출처 없는 발명 상수였다. 21개 전부 SYNCED/STATIC, LIVE 경로 없음. `syncDate`는 스냅샷 일자가 아니라 데이터 빈티지를 담는다.
+> - **자체 추정 10건 삭제**, 중복 클러스터 통합(에콰도르 10 · 한국수입 14 · 관세 9 · ESG 12). Seafood Watch 베트남 보고서 1건을 3위젯으로 쪼개 같은 값을 70/70/72로 표기하던 것도 1개로 합쳤다.
+> - **파이프라인**: `scripts/shrimp_archive_to_widgets.py` 신설. Drive 아카이브를 읽기 전용으로 읽어 `public/data/shrimp_real_data_v4.json`을 생성하며 assert 6건이 게이트다. 실측 확인한 데이터 함정 15건을 코드에 박았다 — Pink Sheet가 2023M10 이후 29개월 `1079` 상수로 손상된 것, SAGyP 8월이 나흘치인 것, KCS를 `030617`만 집계하면 베트남이 45% 사라지는 것 등.
+> - **O-04 4축**: `scripts/score_shrimp_4axis.py` 신설(룰 기반·자체검증 포함). 평균 **90.7 (A 21 / B 1)**. 남은 B는 2021년 조사라 신선도 감점이 정확한 결과다.
+> - **컴포넌트**: `SECTIONS`+`EXTRA_BY_PILLAR`를 Pollock식 `PILLARS` 단일 배열로 통합하고 `renderChart`의 이중 분기를 정규화했다. 이 정리로 `chartType: 'line'`이 "Unsupported"로 떨어지던 것이 실제 렌더된다. `WidgetCard`에 `id`를 넘겨 `data-widget-id`가 나오게 해 페이지 자동 검증이 가능해졌다. KPI 아이콘·색은 인덱스가 아니라 kpi 키에 고정했다(양식 비중에 경고 삼각형, 교역액에 위험 빨강이 붙어 있었다).
+> - 아무도 import하지 않던 죽은 파일 9개(약 1,100줄) 삭제. `ShrimpWidgetCommon.tsx`는 `SquidDashboard`가 쓰므로 존치.
+> - 로컬 브랜치가 `origin/main`보다 20커밋 뒤처져 있어 그대로 배포하면 unloading·market 작업이 라이브에서 사라지는 상태였다. 전용 워크트리를 `origin/main`에서 새로 파고 새우 개편만 얹었다. `npm run verify` 통과: Vitest **162/162**, 타입검사, Next.js 빌드, bundle budget.
+> - 상태: 브랜치 `feat/shrimp-industry-redesign` 커밋 `027dd50`. PR·production 배포 진행 중.
+> - **별도 티켓**: `customs` 라우트 L-04 위반(`hsSgn` 6자리 → HSK 10자리), `emerging-markets`·`forecast`·`compliance` L-09 위반, `~/agri_pipeline` registry·data 복구(squid·garlic 포함 전 품목 영향).
 
 > 🛠️ **2026-08-13 10:10 KST — `/unloading` 열린 탭의 역사 데이터 갱신 회귀 수정** [Codex]:
 > - 라이브 API와 새 브라우저는 최신 SEIN QUEEN 값을 반환했지만, 이미 열려 있던 탭은 역사 API를 최초 마운트 때 한 번만 조회하고 `ready` 상태의 후속 성공 응답도 무시해 기존 **88,246.110 MT·미확인 SEIN QUEEN** 화면을 계속 표시했다.
