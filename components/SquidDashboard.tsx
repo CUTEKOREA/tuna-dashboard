@@ -18,10 +18,9 @@ import SectionC from './squid/SectionC';
 import SectionD from './squid/SectionD';
 import SectionE from './squid/SectionE';
 import { SECTION_META } from './squid/SquidSection';
-import type { SquidV5 } from './squid/types';
-import raw from '../public/data/squid_v5.json';
+import { getSquidV5 } from '../lib/data/squid-v5';
 
-const doc = raw as unknown as SquidV5;
+const doc = getSquidV5();
 
 const SECTION_ORDER = ['A', 'B', 'C', 'D', 'E'] as const;
 

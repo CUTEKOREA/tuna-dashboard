@@ -8,10 +8,9 @@
 
 import React, { useState } from 'react';
 import SquidCard from '@/components/squid/SquidCard';
-import type { SquidV5 } from '@/components/squid/types';
-import raw from '@/public/data/squid_v5.json';
+import { getSquidV5 } from '@/lib/data/squid-v5';
 
-const doc = raw as unknown as SquidV5;
+const doc = getSquidV5();
 
 const SECTIONS: Record<string, string> = {
   A: '조달 가능성',
