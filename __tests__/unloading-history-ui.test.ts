@@ -126,6 +126,21 @@ describe('UnloadingHistoryView', () => {
     expect(ready).toEqual({ kind: 'ready', dataset });
   });
 
+  it('replaces a ready snapshot after background refresh and keeps it on refresh failure', () => {
+    const current = { kind: 'ready', dataset } as const;
+    const refreshedDataset = structuredClone(dataset);
+    refreshedDataset.meta.verifiedVoyageCount += 1;
+
+    const refreshed = reduceHistoryLoadState(current, {
+      type: 'success',
+      dataset: refreshedDataset,
+    });
+    const retained = reduceHistoryLoadState(refreshed, { type: 'failure' });
+
+    expect(refreshed).toEqual({ kind: 'ready', dataset: refreshedDataset });
+    expect(retained).toEqual(refreshed);
+  });
+
   it('renders accessible filters, exact chart summaries, and excluded rows', () => {
     const markup = renderToStaticMarkup(
       React.createElement(UnloadingHistoryView, { dataset, initialYear: 2022 }),

@@ -1,6 +1,13 @@
 # HANDOFF
 
-> 마지막 업데이트: 2026-08-13 09:46 KST
+> 마지막 업데이트: 2026-08-13 10:10 KST
+
+> 🛠️ **2026-08-13 10:10 KST — `/unloading` 열린 탭의 역사 데이터 갱신 회귀 수정** [Codex]:
+> - 라이브 API와 새 브라우저는 최신 SEIN QUEEN 값을 반환했지만, 이미 열려 있던 탭은 역사 API를 최초 마운트 때 한 번만 조회하고 `ready` 상태의 후속 성공 응답도 무시해 기존 **88,246.110 MT·미확인 SEIN QUEEN** 화면을 계속 표시했다.
+> - 역사 조회를 브라우저 HTTP 캐시에 의존하지 않는 `no-store`로 전환하고, 창 포커스 복귀·문서 재표시 시 재조회하도록 수정했다. 새 요청 전에는 이전 요청을 중단해 응답 역전을 막고, 백그라운드 갱신 실패 시에는 기존 정상 화면을 유지한다.
+> - 실제 브라우저에서 최초 구 스냅샷을 표시한 채 서버 응답만 최신 스냅샷으로 바꾸고 포커스를 복귀시키는 회귀 시나리오를 추가했다. 수정 전 최신 KPI 대기 15초 타임아웃(RED), 수정 후 두 번째 API 요청·**94,075.080 MT·2023-01-11~01-31·5,828.970 MT** 교체를 확인했다(GREEN).
+> - `npm run verify` 통과: ESLint 0 errors(기존 warnings 10), TypeScript, Vitest **162/162**, API cache **151/151**, Next.js 정적 페이지 **104개**, bundle budget. 역사 전용 E2E도 데스크톱·390px 모바일·키보드·열린 탭 갱신·API/청크 장애 격리를 통과했다.
+> - 상태: 전용 브랜치 `codex/unloading-history-live-refresh`에 로컬 반영. 사용자의 재배포 요청에 따라 PR·production 배포·라이브 열린 탭 검증을 진행한다.
 
 > 🚀 **2026-08-13 09:46 KST — `/unloading` 2023년 SEIN QUEEN 미확인 항차 라이브 배포 완료** [Codex]:
 > - 기능 커밋 `af49673`을 PR [#290](https://github.com/CUTEKOREA/tuna-dashboard/pull/290)으로 병합했다. production merge commit은 `63b61eec8ea2b7e8de5749840f48a620eed732a0`이다.

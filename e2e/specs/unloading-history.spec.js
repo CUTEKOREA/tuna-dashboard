@@ -49,11 +49,15 @@ function shouldCaptureNetworkFailure(value, origin, expectedPath) {
   }
 }
 
-async function preparePage(page, { failHistoryApi = false, blockedAppPath } = {}) {
+async function preparePage(
+  page,
+  { failHistoryApi = false, blockedAppPath, historyResponse } = {},
+) {
   const pageErrors = [];
   const consoleErrors = [];
   const networkErrors = [];
   let blockedAppRequestCount = 0;
+  let historyApiRequestCount = 0;
   const expectedPath = failHistoryApi ? '/api/unloading-history' : blockedAppPath;
   const allowedConsolePatterns = failHistoryApi
     ? [/500 \(Internal Server Error\)/]
@@ -82,6 +86,15 @@ async function preparePage(page, { failHistoryApi = false, blockedAppPath } = {}
         status: 500,
         contentType: 'application/json',
         body: JSON.stringify({ success: false }),
+      });
+      return;
+    }
+    if (historyResponse && new URL(request.url()).pathname === '/api/unloading-history') {
+      historyApiRequestCount += 1;
+      void request.respond({
+        status: 200,
+        contentType: 'application/json',
+        body: JSON.stringify(historyResponse()),
       });
       return;
     }
@@ -119,7 +132,64 @@ async function preparePage(page, { failHistoryApi = false, blockedAppPath } = {}
     consoleErrors,
     networkErrors,
     getBlockedAppRequestCount: () => blockedAppRequestCount,
+    getHistoryApiRequestCount: () => historyApiRequestCount,
   };
+}
+
+function readHistorySnapshot() {
+  return JSON.parse(fs.readFileSync(
+    path.resolve(__dirname, '..', '..', 'lib', 'unloading-history', 'history_2021_2025.json'),
+    'utf8',
+  ));
+}
+
+function buildPreVerificationSnapshot() {
+  const snapshot = structuredClone(readHistorySnapshot());
+  Object.assign(snapshot.meta, {
+    verifiedVoyageCount: 87,
+    unverifiedVoyageCount: 7,
+    generatedAt: '2026-08-12T23:40:00+09:00',
+    dataAsOf: '2026-08-12',
+  });
+  Object.assign(snapshot._metadata, {
+    syncDate: '2026-08-12',
+    dataAsOf: '2026-08-12',
+  });
+
+  const annual2023 = snapshot.annual.find((row) => row.year === 2023);
+  Object.assign(annual2023, {
+    verifiedActualMt: 88246.11,
+    verifiedVoyageCount: 28,
+    candidateVoyageCount: 29,
+    partialCount: 0,
+    unverifiedCount: 1,
+    averageVerifiedMt: 3151.6468,
+    allocationMethodCounts: {
+      dailyReport: 3,
+      completionYear: 25,
+      finalReportAdjustment: 0,
+    },
+  });
+
+  const voyageIndex = snapshot.voyages.findIndex(
+    (voyage) => voyage.voyageId === 'sein-queen-2023-01-11-bkk',
+  );
+  snapshot.voyages[voyageIndex] = {
+    voyageId: 'sein-queen-2023-unknown-01',
+    sourceYear: 2023,
+    completionYear: null,
+    displayYearBasis: 'source_year',
+    vessel: { canonicalName: 'SEIN QUEEN' },
+    period: { startDate: null, endDate: null },
+    ports: [],
+    reportedMt: null,
+    actualMt: null,
+    verification: 'unverified',
+    kpiIncluded: false,
+    yearAllocations: [],
+    evidenceDocumentCount: 1,
+  };
+  return snapshot;
 }
 
 function findHistoryChunkPath() {
@@ -245,6 +315,40 @@ async function runFailureIsolation(browser) {
   await page.close();
 }
 
+async function runOpenTabRefresh(browser) {
+  const page = await browser.newPage();
+  let historySnapshot = buildPreVerificationSnapshot();
+  const {
+    pageErrors,
+    consoleErrors,
+    networkErrors,
+    getHistoryApiRequestCount,
+  } = await preparePage(page, {
+    historyResponse: () => historySnapshot,
+  });
+  await unlock(page);
+  await page.goto(url, { waitUntil: 'networkidle0' });
+  await page.click('[data-testid="history-year-2023"]');
+  await waitForText(page, '[data-testid="history-kpi-actual"]', /88,246\.110 MT/);
+  assert.equal(getHistoryApiRequestCount(), 1);
+
+  historySnapshot = readHistorySnapshot();
+  await page.evaluate(() => window.dispatchEvent(new Event('focus')));
+
+  await waitForText(page, '[data-testid="history-kpi-actual"]', /94,075\.080 MT/);
+  assert.equal(getHistoryApiRequestCount(), 2);
+  const januaryQueen = await page.$$eval(
+    '[data-testid="unloading-history-panel"] tbody tr',
+    (rows) => rows.map((row) => row.innerText).find((text) => text.includes('2023.01.11')),
+  );
+  assert.match(januaryQueen || '', /SEIN QUEEN/);
+  assert.match(januaryQueen || '', /5,828\.970 MT/);
+  assert.equal(pageErrors.length, 0, pageErrors.join('\n'));
+  assert.equal(consoleErrors.length, 0, consoleErrors.join('\n'));
+  assert.equal(networkErrors.length, 0, networkErrors.join('\n'));
+  await page.close();
+}
+
 async function runChunkFailureIsolation(browser) {
   const historyChunkPath = findHistoryChunkPath();
   const page = await browser.newPage();
@@ -289,9 +393,10 @@ async function run() {
   const browser = await puppeteer.launch({ headless: true, args: ['--no-sandbox'] });
   try {
     await runHappyPath(browser);
+    await runOpenTabRefresh(browser);
     await runFailureIsolation(browser);
     await runChunkFailureIsolation(browser);
-    console.log('PASS unloading history desktop, mobile, keyboard, API and chunk failure isolation');
+    console.log('PASS unloading history desktop, mobile, keyboard, open-tab refresh, API and chunk failure isolation');
   } finally {
     await browser.close();
   }
