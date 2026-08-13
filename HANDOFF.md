@@ -1,5 +1,13 @@
 # HANDOFF
 
+> ✅ **2026-08-14 00:26 KST — OC 작업 교차 검증 완료 (3-관점 합치)** [CC]:
+> - **판정: 통과.** `npm run lint`(0 errors, 1 warning — `ShrimpDashboard.tsx` 의도적 제외)와 `npm run verify` 6단계 전부를 CC가 독립 재현했다(exit 0). `eslint-disable` 추가 0건이며 `AnimatedNumber.tsx`의 기존 1건은 제거됐다. `ShrimpDashboard.tsx` 미접촉, push·배포 없음.
+> - **검증 초점 «deps 추가가 렌더 동작을 바꾸는가» → 바꾸지 않는다.** `AnimatedNumber`는 `!parsed || reduce`를 렌더에서 직접 반환해 stale state 경로가 사라졌고, deps에 추가된 `parsed`·`reduce`가 모두 `useMemo` 안정화라 effect 재실행 조건이 이전과 같다. `TunaInsiderSignalWidget`·`TunaExportRaceWidget`은 `loading`을 `retryKey !== fetchedKey` 파생으로 바꿨는데, 두 파일 모두 `if (loading)`이 `else if (error)`보다 앞이라 재시도 중 error UI가 가려져 화면이 동일하다. 기존에는 effect가 paint 후 실행돼 재시도 직후 한 프레임 stale 데이터가 보였으므로 오히려 개선이다.
+> - **`app/layout.tsx` GA4 변경은 정당.** 원 경고가 `@next/next/next-script-for-ga`로 Next가 `next/script`를 명시 요구한 건이었고, `gtag`/`dataLayer` 호출부가 `layout.tsx` 외 0건이라 `afterInteractive` 지연으로 깨질 코드가 없다.
+> - **Grok 세컨드 오피니언(반증 지시)도 3건 모두 «동의».** 작성(OC)·리뷰(CC)·반증(Grok) 세 관점이 독립적으로 일치했다. Grok이 CC 리뷰에 없던 향후 함정을 추가로 짚어 `BasisChips.tsx` 스토어에 주석으로 못 박았다(커밋 `f48515e`) — `getSnapshot`을 호출마다 새 객체로 바꾸면 무한 재렌더, 스토어를 모듈 스코프로 올리면 칩 간 시각 공유·첫 구독자 시각 고정.
+> - **CC 실수 기록**: 대상 파일 목록을 `codex/fleet-production-2025`(Shrimp 미커밋 작업이 얹힌 상태)에서 뽑아 `origin/main` 기반 worktree에 넘겼다. 그래서 지시서는 10건인데 실제 base에는 17건이 있었다. OC가 파일 목록이 아니라 완료 조건(0 errors, 1 warning)을 기준으로 판단해 나머지를 처리한 것이 옳은 대응이다.
+> - **다음 단계**: 병합 방식은 사용자 결정 대기. 이 브랜치는 `origin/main` 기반이라 병합이 곧 main push다. 저장소 관행상 PR + App Quality Gate 경유가 맞다.
+
 > 🧹 **2026-08-14 00:04 KST — ESLint 경고 소거** [OpenCode go / OC]:
 > - `npm run lint` → 0 errors, 1 warning(`components/ShrimpDashboard.tsx`) 달성. `npm run verify` 전체 통과(lint → typecheck → test **194/194** → api-cache **143/143** → build **98페이지** → bundle budget).
 > - 작업 지시서 기준 대상 10건 외에도, 완료 조건(0 errors, 1 warning)을 만족하기 위해 추가로 발견된 7건을 함께 처리. 총 17건 수정, `ShrimpDashboard.tsx` 1건은 제외 그대로 둠(다른 세션 재설계 중).
