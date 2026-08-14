@@ -25,13 +25,34 @@ const UnloadingAnalytics = lazy(() => import('./UnloadingAnalytics'));
 const UnloadingTimelineReplay = lazy(() => import('./UnloadingTimelineReplay'));
 const UnloadingFieldMode = lazy(() => import('./UnloadingFieldMode'));
 
+type UnloadingLoad = {
+  sourceVessel: string;
+  hatch: string;
+  amount: number;
+};
+
+type UnloadingAllocation = {
+  consignee: string;
+  amount: number;
+  loads: UnloadingLoad[];
+};
+
+type UnloadingObservation = {
+  sourceVessel: string;
+  hatch: string;
+  temperaturesC: number[];
+};
+
 type UnloadingTimelineEntry = {
   date: string;
   time: string;
   targetHol: string;
   consignee?: string | null;
+  allocations?: UnloadingAllocation[];
+  observations?: UnloadingObservation[];
   dailyAmount: number;
   cumAmount: number;
+  remainingAmount?: number | null;
   quality: string;
 };
 
@@ -55,6 +76,9 @@ type UnloadingVesselData = {
   annualActualTotal?: number;
   annualStartDate?: string;
   holdDataAvailable?: boolean;
+  unclassifiedActual?: number;
+  speciesBreakdownAsOf?: string | null;
+  speciesBreakdownNote?: string | null;
   surplus: number;
   species: UnloadingSpeciesEntry[];
   timeline: UnloadingTimelineEntry[];
@@ -1031,7 +1055,8 @@ export default function UnloadingStatus() {
   const activeSelectedHold = selectedHold && holdIds.includes(selectedHold) ? selectedHold : defaultHoldId;
   const selectedHoldInfo = holdsData[activeSelectedHold] || { dischargedVolume: 0, nominalCapacity: 1, lastTemperature: null, shippers: [], qualityDescription: '' };
 
-  const holdSpeciesBreakdown = (selectedData.species || []).map(sp => {
+  const hasUnclassifiedSpecies = (selectedData.unclassifiedActual ?? 0) > 0;
+  const holdSpeciesBreakdown = hasUnclassifiedSpecies ? [] : (selectedData.species || []).map(sp => {
     const vesselReported = selectedData.reportedTotal;
     const proportion = sp.reported / (vesselReported || 1);
     const holdNominal = selectedHoldInfo.nominalCapacity * proportion;
@@ -1357,6 +1382,35 @@ export default function UnloadingStatus() {
           </section>
         )}
 
+        {(selectedData.unclassifiedActual ?? 0) > 0 && (
+          <section
+            data-testid="species-breakdown-gap"
+            aria-label="어종 분해 미확인"
+            style={{
+              display: 'flex',
+              alignItems: 'flex-start',
+              gap: '10px',
+              marginBottom: '16px',
+              padding: '12px 14px',
+              border: '1px solid rgba(251, 191, 36, 0.35)',
+              borderRadius: '10px',
+              background: 'rgba(251, 191, 36, 0.08)',
+              color: '#fde68a',
+            }}
+          >
+            <AlertCircle size={18} style={{ flexShrink: 0, marginTop: '1px' }} />
+            <div style={{ minWidth: 0 }}>
+              <strong style={{ display: 'block', marginBottom: '3px' }}>
+                어종 분해 미확인: {(selectedData.unclassifiedActual ?? 0).toFixed(3)}톤
+              </strong>
+              <span style={{ color: '#e2e8f0', fontSize: '0.82rem', lineHeight: 1.5 }}>
+                {selectedData.speciesBreakdownNote || '최신 일보에 어종별 물량 분해가 없어 기존 어종 누계를 유지했습니다.'}
+                {selectedData.speciesBreakdownAsOf ? ` 기존 어종 누계 기준일은 ${selectedData.speciesBreakdownAsOf}입니다.` : ''}
+              </span>
+            </div>
+          </section>
+        )}
+
         <div className={styles.detailTabs} role="tablist" aria-label="하역 상세 업무 보기">
           {DETAIL_TABS.map(tab => (
             <button
@@ -1658,26 +1712,36 @@ export default function UnloadingStatus() {
                 {/* Species Breakdown */}
                 <div style={{ borderTop: '1px solid rgba(255, 255, 255, 0.08)', paddingTop: '10px', marginTop: '4px' }}>
                   <div style={{ fontWeight: 'bold', color: '#fff', marginBottom: '8px', fontSize: '0.8rem' }}>품종별 세부 현황 (Species Breakdown)</div>
-                  <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
-                    {holdSpeciesBreakdown.map(sp => (
-                      <div key={sp.id}>
-                        <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.75rem', marginBottom: '2px' }}>
-                          <span>{sp.name}</span>
-                          <span style={{ color: 'var(--text-muted)' }}>{sp.holdActual.toFixed(1)} / {sp.holdNominal.toFixed(0)} MT</span>
+                  {hasUnclassifiedSpecies ? (
+                    <div
+                      data-testid="hold-species-unclassified"
+                      style={{ padding: '10px', borderRadius: '8px', background: 'rgba(245, 158, 11, 0.10)', border: '1px solid rgba(245, 158, 11, 0.28)', fontSize: '0.75rem', lineHeight: 1.5 }}
+                    >
+                      <strong style={{ display: 'block', color: '#fbbf24', marginBottom: '3px' }}>어종별 실적 분해 없음</strong>
+                      최신 일보 {(selectedData.unclassifiedActual ?? 0).toFixed(3)}톤은 어종별 근거가 없어 화물창별 품종 물량을 추정하지 않습니다.
+                    </div>
+                  ) : (
+                    <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
+                      {holdSpeciesBreakdown.map(sp => (
+                        <div key={sp.id}>
+                          <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.75rem', marginBottom: '2px' }}>
+                            <span>{sp.name}</span>
+                            <span style={{ color: 'var(--text-muted)' }}>{sp.holdActual.toFixed(1)} / {sp.holdNominal.toFixed(0)} MT</span>
+                          </div>
+                          <div style={{ width: '100%', background: 'rgba(140, 170, 255, 0.10)', height: '4px', borderRadius: '2px', overflow: 'hidden' }}>
+                            <div
+                              style={{
+                                width: `${sp.percent}%`,
+                                background: sp.id === 'SJ' ? '#38bdf8' : '#fbbf24',
+                                height: '100%',
+                                transition: 'width 0.4s ease'
+                              }}
+                            ></div>
+                          </div>
                         </div>
-                        <div style={{ width: '100%', background: 'rgba(140, 170, 255, 0.10)', height: '4px', borderRadius: '2px', overflow: 'hidden' }}>
-                          <div 
-                            style={{ 
-                              width: `${sp.percent}%`, 
-                              background: sp.id === 'SJ' ? '#38bdf8' : '#fbbf24', 
-                              height: '100%',
-                              transition: 'width 0.4s ease'
-                            }}
-                          ></div>
-                        </div>
-                      </div>
-                    ))}
-                  </div>
+                      ))}
+                    </div>
+                  )}
                 </div>
               </div>
             </div>
@@ -1983,14 +2047,29 @@ export default function UnloadingStatus() {
                           <PackageCheck size={13} color="#38bdf8" />
                           <span>어창: <strong>{t.targetHol}</strong></span>
                         </div>
-                        {t.consignee && (
+                        {t.allocations && t.allocations.length > 0 ? (
+                          <div style={{ marginBottom: '4px', color: '#e2e8f0', display: 'flex', alignItems: 'flex-start', gap: '6px' }}>
+                            <MapPin size={13} color="#38bdf8" style={{ flexShrink: 0, marginTop: '3px' }} />
+                            <div style={{ minWidth: 0 }}>
+                              <span style={{ display: 'block', marginBottom: '2px' }}>수하처별 하역량</span>
+                              <span style={{ display: 'flex', flexWrap: 'wrap', gap: '4px 10px' }}>
+                                {t.allocations.map(allocation => (
+                                  <span key={allocation.consignee}>
+                                    <strong><TermTooltip term={allocation.consignee} description="원본 하역 보고서에 기재된 태국 현지 수하처 코드입니다." /></strong>
+                                    {' '}{allocation.amount.toFixed(3)} MT
+                                  </span>
+                                ))}
+                              </span>
+                            </div>
+                          </div>
+                        ) : t.consignee ? (
                           <div style={{ marginBottom: '4px', color: '#e2e8f0', display: 'flex', alignItems: 'center', gap: '6px' }}>
                             <MapPin size={13} color="#38bdf8" />
                             <span>
                               수하처: <strong><TermTooltip term={t.consignee} description="원본 하역 보고서에 기재된 태국 현지 수하처 코드입니다." /></strong>
                             </span>
                           </div>
-                        )}
+                        ) : null}
                         <div style={{ display: 'flex', alignItems: 'flex-start', gap: '6px' }}>
                           <Thermometer size={13} color="#f59e0b" style={{ flexShrink: 0, marginTop: '2px' }} />
                           <span>{t.quality}</span>
