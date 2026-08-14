@@ -1,6 +1,13 @@
 # HANDOFF
 
-> 마지막 업데이트: 2026-08-15 04:05 KST
+> 마지막 업데이트: 2026-08-15 07:14 KST
+
+> 🔓 **2026-08-15 07:14 KST — 잠금 상태 히어로 KPI 티저 공개 완료** [Codex]:
+> - 히어로가 있는 7개 진입점(`market`·`fleet`·`unloading`·`logistics`·`pork`·`cross-intelligence`·`purse-seiner-db`)에 `heroOnly?: boolean`을 추가했다. 잠금 상태에서는 선택 메뉴의 기존 히어로만 먼저 렌더하고 그 아래 기존 `전체 메뉴 접근 확인` 폼과 공개 범위 안내 문구를 표시한다. 히어로가 없는 코스모·방콕사무소는 기존 잠금 카드만 유지한다.
+> - `SESSION_ACCESS_MENUS`·비밀번호·`sessionStorage` 로직과 market `LiveTicker` 조건은 변경하지 않았다. 전체 패널은 잠금 중 언마운트해 인증 후 재잠금에서도 본문 DOM이 남지 않는다. market의 본문 전용 MGO·환율 effect와 차트 관찰자, unloading의 `tuna-live`, logistics의 본문 로딩 타이머는 `heroOnly`에서 실행하지 않으며 히어로 필수 데이터 호출은 유지한다.
+> - TDD: 최초 요구사항 RED **8/8**을 확인한 뒤 GREEN **8/8**, 재잠금 DOM 가드 RED **1건** 후 다시 **8/8** 통과했다. 관련 렌더·레지스트리 테스트는 **47/47**, 최종 전체 `npm run verify`는 ESLint 오류 0(기존 경고 18), TypeScript, Vitest **252/252**, API cache **144/144**, Next 정적 페이지 **117/117**, bundle **30 routes**로 통과했다.
+> - Puppeteer QA: `/market`·`/fleet`의 잠금·인증·재잠금을 1440×1000과 390×844에서 검사해 **12/12** 통과했다. 잠금·재잠금 시 히어로/폼 표시, 본문 표시·DOM 잔존 0, 모바일 가로 overflow 0px, page error·로컬 HTTP 오류 0이며 스크린샷과 결과는 `/private/tmp/hero-teaser-qa-20260815.FRiuh7/`에 있다.
+> - npm 전용 복구 전에 pnpm 흔적은 삭제하지 않고 `/private/tmp/hero-teaser-pnpm-backup.6f65zM/`에 보존한 뒤 `npm ci`로 재구성했다. push·프로덕션 배포는 하지 않는다. 다음 단계는 CC의 잠금 의미·본문 DOM 누출·verify 독립 재현 검수다.
 
 > ✅ **2026-08-15 04:05 KST — 리디자인 "Deep Sea Command" 전 Phase 완료 (병합 대기)** [CC]:
 > - **Phase 3 검수 통과**: pork·cross-intelligence·purse-seiner-db Type C 히어로 + 전 메뉴 세션 잠금 확장(`SESSION_ACCESS_MENUS` = 전체 활성 메뉴). CC가 verify 독립 재현(exit 0), 잠금 우회 점검 — 6개 메뉴 직접 URL 접근 전부 잠김·콘텐츠 누출 0·해제 흐름 정상. 신규 메뉴는 registry 등재 즉시 자동 잠금 대상.
