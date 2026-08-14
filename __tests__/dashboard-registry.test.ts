@@ -152,7 +152,7 @@ describe('dashboard registry', () => {
     expect(heroSource).not.toContain('val1: 917');
   });
   it('keeps menu keys unique and title-addressable', () => {
-    expect(DASHBOARD_MENU_CONFIGS.length).toBeGreaterThanOrEqual(15);
+    expect(DASHBOARD_MENU_CONFIGS.length).toBeGreaterThanOrEqual(12);
     expect(new Set(VALID_MENUS).size).toBe(VALID_MENUS.length);
 
     for (const menu of DASHBOARD_MENU_CONFIGS) {
@@ -182,6 +182,7 @@ describe('dashboard registry', () => {
     expect(isActiveMenu('research-lab')).toBe(false);
     expect(isActiveMenu('cashew')).toBe(false);
     expect(isActiveMenu('shrimp')).toBe(false);
+    expect(isActiveMenu('jukkumi')).toBe(false);
     expect(isActiveMenu('retail')).toBe(false);
   });
 
@@ -196,7 +197,6 @@ describe('dashboard registry', () => {
       'mackerel',
       'galchi',
       'squid',
-      'jukkumi',
       'octopus',
       'pollock',
       'flatfish',
@@ -259,6 +259,7 @@ describe('dashboard registry', () => {
     expect(PUBLIC_DASHBOARD_ROUTES).not.toContain('research-lab');
     expect(PUBLIC_DASHBOARD_ROUTES).not.toContain('cashew');
     expect(PUBLIC_DASHBOARD_ROUTES).not.toContain('shrimp');
+    expect(PUBLIC_DASHBOARD_ROUTES).not.toContain('jukkumi');
     expect(PUBLIC_DASHBOARD_ROUTES).not.toContain('market');
     expect(PUBLIC_DASHBOARD_ROUTES).not.toContain('fleet');
   });
@@ -287,7 +288,7 @@ describe('dashboard registry', () => {
 
     expect(SIDEBAR_SECTIONS.map((section) => section.items.map((item) => item.key))).toEqual([
       ['market', 'fleet', 'unloading', 'logistics'],
-      ['value-chain', 'mackerel', 'galchi', 'squid', 'jukkumi', 'octopus', 'pollock', 'flatfish'],
+      ['value-chain', 'mackerel', 'galchi', 'squid', 'octopus', 'pollock', 'flatfish'],
     ]);
 
     const sidebarKeys = SIDEBAR_SECTIONS.flatMap((section) => section.items.map((item) => item.key));
@@ -297,12 +298,9 @@ describe('dashboard registry', () => {
     expect(sidebarKeys).not.toContain('cross-intelligence');
 
     const fisheryItems = SIDEBAR_SECTIONS.find((section) => section.section === 'fishery')?.items ?? [];
-    const jukkumi = fisheryItems.find((item) => item.key === 'jukkumi');
     const octopus = fisheryItems.find((item) => item.key === 'octopus');
 
-    expect(jukkumi?.icon).toBe('WebfootOctopus');
     expect(octopus?.icon).toBe('LongArmOctopus');
-    expect(jukkumi?.icon).not.toBe(octopus?.icon);
 
     for (const item of SIDEBAR_SECTIONS.flatMap((section) => section.items)) {
       expect(VALID_MENUS).toContain(item.key);
@@ -319,7 +317,6 @@ describe('dashboard registry', () => {
       'mackerel',
       'galchi',
       'squid',
-      'jukkumi',
       'octopus',
       'pollock',
       'flatfish',
