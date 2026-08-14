@@ -52,6 +52,7 @@ type UnloadingTimelineEntry = {
   observations?: UnloadingObservation[];
   dailyAmount: number;
   cumAmount: number;
+  speciesAmounts?: { SJ: number; YF: number } | null;
   remainingAmount?: number | null;
   quality: string;
 };
@@ -76,6 +77,7 @@ type UnloadingVesselData = {
   annualActualTotal?: number;
   annualStartDate?: string;
   holdDataAvailable?: boolean;
+  holdSpeciesBreakdownAvailable?: boolean;
   unclassifiedActual?: number;
   speciesBreakdownAsOf?: string | null;
   speciesBreakdownNote?: string | null;
@@ -1056,7 +1058,9 @@ export default function UnloadingStatus() {
   const selectedHoldInfo = holdsData[activeSelectedHold] || { dischargedVolume: 0, nominalCapacity: 1, lastTemperature: null, shippers: [], qualityDescription: '' };
 
   const hasUnclassifiedSpecies = (selectedData.unclassifiedActual ?? 0) > 0;
-  const holdSpeciesBreakdown = hasUnclassifiedSpecies ? [] : (selectedData.species || []).map(sp => {
+  const lacksHoldSpeciesEvidence = hasUnclassifiedSpecies
+    || selectedData.holdSpeciesBreakdownAvailable === false;
+  const holdSpeciesBreakdown = lacksHoldSpeciesEvidence ? [] : (selectedData.species || []).map(sp => {
     const vesselReported = selectedData.reportedTotal;
     const proportion = sp.reported / (vesselReported || 1);
     const holdNominal = selectedHoldInfo.nominalCapacity * proportion;
@@ -1712,13 +1716,15 @@ export default function UnloadingStatus() {
                 {/* Species Breakdown */}
                 <div style={{ borderTop: '1px solid rgba(255, 255, 255, 0.08)', paddingTop: '10px', marginTop: '4px' }}>
                   <div style={{ fontWeight: 'bold', color: '#fff', marginBottom: '8px', fontSize: '0.8rem' }}>품종별 세부 현황 (Species Breakdown)</div>
-                  {hasUnclassifiedSpecies ? (
+                  {lacksHoldSpeciesEvidence ? (
                     <div
-                      data-testid="hold-species-unclassified"
+                      data-testid="hold-species-unavailable"
                       style={{ padding: '10px', borderRadius: '8px', background: 'rgba(245, 158, 11, 0.10)', border: '1px solid rgba(245, 158, 11, 0.28)', fontSize: '0.75rem', lineHeight: 1.5 }}
                     >
-                      <strong style={{ display: 'block', color: '#fbbf24', marginBottom: '3px' }}>어종별 실적 분해 없음</strong>
-                      최신 일보 {(selectedData.unclassifiedActual ?? 0).toFixed(3)}톤은 어종별 근거가 없어 화물창별 품종 물량을 추정하지 않습니다.
+                      <strong style={{ display: 'block', color: '#fbbf24', marginBottom: '3px' }}>어창별 어종 분해 없음</strong>
+                      {hasUnclassifiedSpecies
+                        ? `최신 일보 ${(selectedData.unclassifiedActual ?? 0).toFixed(3)}톤은 어종별 근거가 없어 화물창별 품종 물량을 추정하지 않습니다.`
+                        : '일일 결과보고는 어종별 합계를 제공하지만 개별 어창별 분해는 제공하지 않아 추정하지 않습니다.'}
                     </div>
                   ) : (
                     <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>

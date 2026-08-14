@@ -10,6 +10,7 @@ interface TimelineEntry {
   targetHol: string;
   dailyAmount: number;
   cumAmount: number;
+  speciesAmounts?: { SJ: number; YF: number } | null;
   quality: string;
 }
 
@@ -138,11 +139,43 @@ function computeHoldCumulativeAtIndex(
 }
 
 // Build stacked area chart data: cumulative SJ and YF over time
-function buildStackedAreaData(
+export function buildStackedAreaData(
   timeline: TimelineEntry[],
   species: SpeciesEntry[],
   totalActual: number
 ): { date: string; SJ: number; YF: number }[] {
+  const workEntries = timeline.filter(entry => entry.dailyAmount > 0);
+  const hasAnyExactAmounts = workEntries.some(entry => entry.speciesAmounts != null);
+  const hasCompleteExactAmounts = workEntries.length > 0 && workEntries.every(entry => {
+    const amounts = entry.speciesAmounts;
+    return amounts != null
+      && Number.isFinite(amounts.SJ)
+      && Number.isFinite(amounts.YF)
+      && Math.abs(amounts.SJ + amounts.YF - entry.dailyAmount) < 0.000001;
+  });
+
+  if (hasCompleteExactAmounts) {
+    let cumulativeSj = 0;
+    let cumulativeYf = 0;
+    const roundMt = (amount: number) => Math.round((amount + Number.EPSILON) * 1000) / 1000;
+
+    return timeline.map(entry => {
+      if (entry.speciesAmounts) {
+        cumulativeSj += entry.speciesAmounts.SJ;
+        cumulativeYf += entry.speciesAmounts.YF;
+      }
+      return {
+        date: entry.date,
+        SJ: roundMt(cumulativeSj),
+        YF: roundMt(cumulativeYf),
+      };
+    });
+  }
+
+  // 일부 날짜만 실측 어종값이 있으면 계획 비율로 빈 구간을 메우지 않습니다.
+  if (hasAnyExactAmounts) return [];
+
+  // 과거 선박은 일별 어종 원표가 없어 기존 누적 비율 표시를 유지합니다.
   const sjSpec = species.find(s => s.id === 'SJ');
   const yfSpec = species.find(s => s.id === 'YF');
   const sjRatio = sjSpec ? sjSpec.actual / (totalActual || 1) : 0.85;
@@ -237,7 +270,7 @@ export default function UnloadingTimelineReplay({
     [timeline, species, actualTotal, hasUnclassifiedSpecies]
   );
 
-  const formatNum = (n: number) => n.toLocaleString('en-US', { minimumFractionDigits: 0, maximumFractionDigits: 1 });
+  const formatNum = (n: number) => n.toLocaleString('en-US', { minimumFractionDigits: 0, maximumFractionDigits: 3 });
 
   return (
     <div className={styles.overlay} onClick={onClose}>
@@ -419,15 +452,20 @@ export default function UnloadingTimelineReplay({
           <div className={styles.chartTitle}>
             <BarChart3 size={16} /> 어종별 누적 하역량 추이
           </div>
-          {hasUnclassifiedSpecies ? (
+          {hasUnclassifiedSpecies || areaData.length === 0 ? (
             <div
               data-testid="replay-species-unclassified"
               style={{ minHeight: 220, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', textAlign: 'center', padding: 24, color: '#cbd5e1' }}
             >
               <strong style={{ color: '#fbbf24', marginBottom: 8 }}>어종별 실적 추이 미제공</strong>
-              <span>최신 일보 {unclassifiedActual.toFixed(3)}톤은 어종별 근거가 없어 계획 비율로 추정하지 않습니다.</span>
+              <span>
+                {hasUnclassifiedSpecies
+                  ? `최신 일보 ${unclassifiedActual.toFixed(3)}톤은 어종별 근거가 없어 계획 비율로 추정하지 않습니다.`
+                  : '일별 어종 실적이 완전하지 않아 계획 비율로 추정하지 않습니다.'}
+              </span>
             </div>
           ) : (
+            <div data-testid="replay-species-chart" style={{ width: '100%', height: 220 }}>
             <ResponsiveContainer width="100%" height={220}>
             <AreaChart data={areaData} margin={{ top: 5, right: 20, bottom: 5, left: 10 }}>
               <defs>
@@ -498,6 +536,7 @@ export default function UnloadingTimelineReplay({
               />
             </AreaChart>
             </ResponsiveContainer>
+            </div>
           )}
         </div>
       </div>
