@@ -1,11 +1,15 @@
 # HANDOFF
 
-> 마지막 업데이트: 2026-08-15 00:25 KST
+> 마지막 업데이트: 2026-08-15 00:18 KST
 
-> 🚀 **2026-08-15 00:25 KST — `/galchi` HTML 보존 후 메뉴 배포** [Grok]:
-> - HTML: `agri_data/01_수산물(Seafood)/galchi/intelligence_reports/Galchi_Dashboard_Archive_2026-08-14.html`.
-> - `origin/main` `4c984b5` 위에 레지스트리·사이드바·패널·단축키·rewrite·랜딩에서 `galchi`를 빼고 `/galchi`는 명시적 404. `GalchiDashboard`·`/api/galchi/*`·JSON은 존치.
-> - 브랜치 `chore/deploy-galchi-20260815`. 사용자 배포 요청에 따라 PR→게이트→라이브 재검증.
+> 🚀 **2026-08-15 00:18 KST — `/galchi` 메뉴 제거 배포 완료** [Grok]:
+> - HTML은 agri_data `01_수산물(Seafood)/galchi/intelligence_reports/Galchi_Dashboard_Archive_2026-08-14.html`.
+> - PR **#329** squash `7b2a92c`. App Quality Gate `31813098806` SUCCESS.
+> - Vercel Production `dpl_HBKHVKttg2wrvxE7uLXgYc7WNhfW` READY, alias `leedonggun.co.kr`.
+> - 라이브 `/galchi` 404(`x-matched-path: /galchi`, 홈 rewrite 없음). 사이트맵에 경로 없음. 랜딩에 갈치 없음. 남은 어종 메뉴: 참치·고등어·오징어·낙지·명태·가자미. `/flatfish` 200.
+> - `/api/galchi/kcs` 200 isLive. `GalchiDashboard`·`/api/galchi/*`·JSON 존치.
+> - SEIN VENUS 8/14 유지: daily 424.78, cum 1662.36, SJ 1397.36, YF 265, unclassified 0.
+> - 이 배포 error/fatal 로그 0. `mackerel/claude-etl`은 포함하지 않았다. flatfish 로컬 제거는 이번 배포에 넣지 않았다.
 
 > 🚀 **2026-08-15 00:06 KST — `/jukkumi` 메뉴 제거 배포 완료** [Grok]:
 > - HTML은 agri_data `01_수산물(Seafood)/jukkumi/intelligence_reports/Jukkumi_Dashboard_Archive_2026-08-14.html`(5기둥·34위젯).
