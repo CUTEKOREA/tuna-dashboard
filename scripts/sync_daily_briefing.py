@@ -212,6 +212,21 @@ def parse_briefing_html(source: Path) -> dict[str, Any]:
         if not article["paragraphs"]:
             raise BriefingSyncError(f"상세 기사 {index}의 본문 문단이 비어 있습니다.")
 
+    # TAK 사전 검증 — lib/data/daily-briefing.ts 의 DIRECTIVE_PATTERN 과 동일 기준.
+    # 렌더 시점 throw(첫화면 파손)를 막기 위해 나쁜 JSON 은 여기서 생성 자체를 거부한다.
+    directive_pattern = re.compile(r"(촉구했다|권고했다|요구했다)[.!?]?\s*$")
+    has_directive = any(
+        directive_pattern.search(sentence.strip())
+        for article in articles
+        for paragraph in article["paragraphs"]
+        for sentence in re.split(r"(?<=[.!?])\s+", paragraph)
+    )
+    if not has_directive:
+        raise BriefingSyncError(
+            "기사 본문에서 실행 지침 문장(촉구했다/권고했다/요구했다)을 찾지 못했습니다. "
+            "TakeawayBox TAK 을 만들 수 없어 JSON 생성을 중단합니다."
+        )
+
     return {
         "date": briefing_date,
         "digest": digest,
