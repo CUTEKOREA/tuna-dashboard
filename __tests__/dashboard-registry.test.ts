@@ -81,6 +81,13 @@ describe('dashboard registry', () => {
     expect(isActiveMenu('research-lab')).toBe(false);
   });
 
+  it('retires the shrimp dashboard route with an explicit 404 boundary', () => {
+    const routeSource = readFileSync(join(process.cwd(), 'app/shrimp/page.tsx'), 'utf8');
+
+    expect(routeSource).toContain('notFound()');
+    expect(isActiveMenu('shrimp')).toBe(false);
+  });
+
   it('routes hydration-sensitive dashboards through the client-only category page', () => {
     const configSource = readFileSync(join(process.cwd(), 'next.config.mjs'), 'utf8');
     const categorySource = readFileSync(join(process.cwd(), 'app/[category]/page.tsx'), 'utf8');
@@ -94,6 +101,7 @@ describe('dashboard registry', () => {
     expect(rewriteSource).not.toContain('whelk');
     expect(rewriteSource).not.toContain('salmon');
     expect(rewriteSource).not.toContain('research-lab');
+    expect(rewriteSource).not.toContain('shrimp');
     expect(rewriteSource).not.toContain('fleet-strategy');
     expect(rewriteSource).not.toContain('logistics');
     expect(rewriteSource).not.toContain('fleet-strategy');
@@ -144,7 +152,7 @@ describe('dashboard registry', () => {
     expect(heroSource).not.toContain('val1: 917');
   });
   it('keeps menu keys unique and title-addressable', () => {
-    expect(DASHBOARD_MENU_CONFIGS.length).toBeGreaterThanOrEqual(16);
+    expect(DASHBOARD_MENU_CONFIGS.length).toBeGreaterThanOrEqual(15);
     expect(new Set(VALID_MENUS).size).toBe(VALID_MENUS.length);
 
     for (const menu of DASHBOARD_MENU_CONFIGS) {
@@ -173,6 +181,7 @@ describe('dashboard registry', () => {
     expect(isActiveMenu('fleet-strategy')).toBe(false);
     expect(isActiveMenu('research-lab')).toBe(false);
     expect(isActiveMenu('cashew')).toBe(false);
+    expect(isActiveMenu('shrimp')).toBe(false);
     expect(isActiveMenu('retail')).toBe(false);
   });
 
@@ -191,7 +200,6 @@ describe('dashboard registry', () => {
       'octopus',
       'pollock',
       'flatfish',
-      'shrimp',
     ]);
 
     for (const key of [...PROTECTED_OPERATION_MENU_KEYS, ...KEYBOARD_SHORTCUT_MENUS]) {
@@ -250,6 +258,7 @@ describe('dashboard registry', () => {
     expect(PUBLIC_DASHBOARD_ROUTES).not.toContain('fleet-strategy');
     expect(PUBLIC_DASHBOARD_ROUTES).not.toContain('research-lab');
     expect(PUBLIC_DASHBOARD_ROUTES).not.toContain('cashew');
+    expect(PUBLIC_DASHBOARD_ROUTES).not.toContain('shrimp');
     expect(PUBLIC_DASHBOARD_ROUTES).not.toContain('market');
     expect(PUBLIC_DASHBOARD_ROUTES).not.toContain('fleet');
   });
@@ -278,7 +287,7 @@ describe('dashboard registry', () => {
 
     expect(SIDEBAR_SECTIONS.map((section) => section.items.map((item) => item.key))).toEqual([
       ['market', 'fleet', 'unloading', 'logistics'],
-      ['value-chain', 'mackerel', 'galchi', 'squid', 'jukkumi', 'octopus', 'pollock', 'flatfish', 'shrimp'],
+      ['value-chain', 'mackerel', 'galchi', 'squid', 'jukkumi', 'octopus', 'pollock', 'flatfish'],
     ]);
 
     const sidebarKeys = SIDEBAR_SECTIONS.flatMap((section) => section.items.map((item) => item.key));
@@ -314,7 +323,6 @@ describe('dashboard registry', () => {
       'octopus',
       'pollock',
       'flatfish',
-      'shrimp',
       'pork',
       'unloading',
       'value-chain',

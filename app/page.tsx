@@ -42,7 +42,6 @@ const JukkumiDashboard = dynamic(() => import('../components/JukkumiDashboard'))
 const OctopusDashboard = dynamic(() => import('../components/OctopusDashboard'));
 const PollockDashboard = dynamic(() => import('../components/PollockDashboard'));
 const FlatfishDashboard = dynamic(() => import('../components/FlatfishDashboard'));
-const ShrimpDashboard = dynamic(() => import('../components/ShrimpDashboard'));
 
 const PorkDashboard = dynamic(() => import('../components/PorkDashboard'));
 const TunaDashboard = dynamic(() => import('../components/TunaDashboard'));
@@ -271,7 +270,6 @@ export default function Home() {
     octopus: <OctopusDashboard />,
     pollock: <PollockDashboard />,
     flatfish: <FlatfishDashboard />,
-    shrimp: <ShrimpDashboard />,
     pork: <PorkDashboard />,
     unloading: <UnloadingStatus />,
     'value-chain': <TunaDashboard />,
@@ -545,7 +543,7 @@ export default function Home() {
                       }}>
                         <div style={{ fontWeight: 700, color: 'var(--text-main)', marginBottom: '6px' }}>제공 메뉴 미리보기</div>
                         <div>📡 실시간 운영 — 시장 동향 · 선단 운영 · 하역 현황 · 물류·가공</div>
-                        <div>🐟 어종별 인텔리전스 — 참치 · 고등어 · 갈치 · 오징어 · 주꾸미 · 낙지 · 명태 · 가자미 · 새우</div>
+                        <div>🐟 어종별 인텔리전스 — 참치 · 고등어 · 갈치 · 오징어 · 주꾸미 · 낙지 · 명태 · 가자미</div>
                         <div>🌾 농산물 — (현재 공개 메뉴 없음)</div>
                       </div>
                     </motion.div>

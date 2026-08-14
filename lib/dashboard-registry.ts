@@ -49,7 +49,6 @@ export const DASHBOARD_MENU_CONFIGS = [
   { key: 'cross-intelligence', title: '통합 인텔리전스', section: 'strategy', accent: 'gold', sidebar: { icon: 'BarChart2', suffix: 'Cross' } },
   { key: 'pollock', title: '명태', section: 'fishery', accent: 'cyan', shortcutOrder: 11, sidebar: { icon: 'Snowflake', suffix: 'Pollock' } },
   { key: 'flatfish', title: '가자미', section: 'fishery', accent: 'cyan', shortcutOrder: 12, sidebar: { icon: 'FishSymbol', suffix: 'Flatfish' } },
-  { key: 'shrimp', title: '새우', section: 'fishery', accent: 'cyan', shortcutOrder: 13, sidebar: { icon: 'Shrimp', suffix: 'Shrimp' } },
   { key: 'purse-seiner-db', title: '선망선 DB', section: 'strategy', accent: 'cyan' },
 ] as const satisfies readonly DashboardMenuConfigShape[];
 
@@ -160,7 +159,6 @@ export const DASHBOARD_PANEL_ORDER = [
   'octopus',
   'pollock',
   'flatfish',
-  'shrimp',
   'pork',
   'unloading',
   'value-chain',
@@ -178,7 +176,6 @@ const SIDEBAR_SECTION_KEYS: Record<DashboardSection, readonly ActiveMenu[]> = {
     'octopus',
     'pollock',
     'flatfish',
-    'shrimp',
   ],
   strategy: [
   ],

@@ -1,5 +1,12 @@
 # HANDOFF
 
+> 마지막 업데이트: 2026-08-15 00:05 KST
+
+> 🦐 **2026-08-15 00:05 KST — 새우 메뉴 제거 배포** [Grok]:
+> - HTML은 agri_data `01_수산물(Seafood)/shrimp/intelligence_reports/Shrimp_Dashboard_Archive_2026-08-14.html`. 라이브에 남은 아카이브 메뉴는 새우였다.
+> - `origin/main` 전용 브랜치 `chore/remove-shrimp-20260814`에서 메뉴·리라이트 제거. `/shrimp`는 `app/shrimp/page.tsx` `notFound()`. `/api/shrimp/*`와 컴포넌트는 존치.
+> - `mackerel/claude-etl`은 포함하지 않는다.
+
 > 마지막 업데이트: 2026-08-14 23:50 KST
 
 > 🥜 **2026-08-14 23:50 KST — 캐슈넛 메뉴 제거 배포 준비** [Grok]:
