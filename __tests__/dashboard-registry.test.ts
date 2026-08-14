@@ -2,6 +2,7 @@ import { readFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { describe, expect, it } from 'vitest';
 import sitemap from '../app/sitemap';
+import * as dashboardRegistry from '../lib/dashboard-registry';
 import {
   DASHBOARD_COMMANDS,
   DASHBOARD_MENU_CONFIGS,
@@ -109,6 +110,7 @@ describe('dashboard registry', () => {
     const rewriteSource = configSource.match(/source:\s*'([^']+)'/)?.[1];
 
     expect(rewriteSource).toBeDefined();
+    expect(rewriteSource).not.toContain('market');
     expect(rewriteSource).not.toContain('unloading');
     expect(rewriteSource).not.toContain('korea-market');
     expect(rewriteSource).not.toContain('used-car');
@@ -135,22 +137,29 @@ describe('dashboard registry', () => {
     const commandSource = readFileSync(join(process.cwd(), 'components/FleetCommandCenter.tsx'), 'utf8');
     const mapSource = readFileSync(join(process.cwd(), 'components/FleetPixelMap.tsx'), 'utf8');
     const heroSource = readFileSync(join(process.cwd(), 'components/FleetHeroKPI.tsx'), 'utf8');
+    const pillTabsSource = readFileSync(join(process.cwd(), 'components/v2/PillTabs.tsx'), 'utf8');
     const rosterSource = readFileSync(join(process.cwd(), 'components/FleetRosterGrid.tsx'), 'utf8');
     const vdsStrategySource = readFileSync(join(process.cwd(), 'components/VdsStrategyMatrix.tsx'), 'utf8');
 
     for (const label of ['오늘의 운영', '선박·수역', '실적 분석', 'VDS·입어료']) {
       expect(commandSource).toContain(label);
     }
-    expect(commandSource).toContain('role="tablist"');
+    expect(commandSource).toContain('<HeroZone');
+    expect(commandSource).toContain('variant="vessel"');
+    expect(commandSource).toContain('background={heroBackground}');
+    expect(commandSource).toContain('<PillTabs');
     expect(commandSource).toContain('role="tabpanel"');
-    expect(commandSource).toContain('기준일 분리 운영 판단');
+    expect(commandSource).toContain('업무보고 원문 펼치기');
     expect(commandSource).toContain('nationalOverrunCount');
     expect(commandSource).not.toContain('음수 잔여 11건');
     expect(commandSource).toContain("hidden={activeTab !== 'operations'}");
     expect(commandSource).toContain("hidden={activeTab !== 'vessels'}");
     expect(commandSource).toContain("hidden={activeTab !== 'performance'}");
     expect(commandSource).toContain("hidden={activeTab !== 'access'}");
-    expect(commandSource).toContain('onKeyDown');
+    expect(pillTabsSource).toContain('role="tablist"');
+    expect(pillTabsSource).toContain('onKeyDown');
+    expect(pillTabsSource).toContain('tabIndex={active ? 0 : -1}');
+    expect(pillTabsSource).toContain('aria-controls={panelId}');
     expect(mapSource).not.toContain('Math.random');
     expect(mapSource).toContain('aria-expanded');
     expect(mapSource).toContain('aria-controls');
@@ -169,10 +178,31 @@ describe('dashboard registry', () => {
     expect(rosterSource).toContain('countLabel={`${carrierFleet.length}건`}');
     expect(vdsStrategySource).toContain('nationalVds');
     expect(vdsStrategySource).not.toContain('remaining: 315.03');
-    expect(commandSource).toContain('2026년 8월 선단 운영현황');
+    expect(commandSource).toContain('title="선단 운영"');
     expect(heroSource).toContain('val1: summary.weeklyTotal');
     expect(heroSource).not.toContain('val1: 917');
   });
+
+  it('keeps the Phase 2 operation dashboards on their assigned V2 hero shells', () => {
+    const unloadingSource = readFileSync(join(process.cwd(), 'components/UnloadingStatus.tsx'), 'utf8');
+    const logisticsSource = readFileSync(join(process.cwd(), 'components/LogisticsDashboard.tsx'), 'utf8');
+    const marketSource = readFileSync(join(process.cwd(), 'components/MarketDashboard.tsx'), 'utf8');
+
+    expect(unloadingSource).toContain('<HeroZone');
+    expect(unloadingSource).toContain('variant="vessel"');
+    expect(unloadingSource).toContain('kind="carrier"');
+    expect(unloadingSource).toContain('<PillTabs');
+
+    expect(logisticsSource).toContain('<HeroZone');
+    expect(logisticsSource).toContain('variant="map"');
+    expect(logisticsSource).toContain("getMiscData('reeferWeek31')");
+    expect(logisticsSource).toContain('<PillTabs');
+
+    expect(marketSource).toContain('<HeroZone');
+    expect(marketSource).toContain('variant="kpi"');
+    expect(marketSource).toContain('<MarketHero rows={priceData} />');
+  });
+
   it('keeps menu keys unique and title-addressable', () => {
     expect(DASHBOARD_MENU_CONFIGS.length).toBeGreaterThanOrEqual(7);
     expect(new Set(VALID_MENUS).size).toBe(VALID_MENUS.length);
@@ -243,7 +273,8 @@ describe('dashboard registry', () => {
     ]);
     expect(PROTECTED_OPERATION_MENU_KEYS).toContain('bangkok-office');
     expect(PROTECTED_OPERATION_MENU_KEYS).not.toContain('cosmo');
-    expect(PUBLIC_DASHBOARD_ROUTES).toContain('cosmo');
+    // 전 메뉴 세션 잠금(V2 §5-6) 이후 공개 사이트맵 라우트는 없다 — cosmo 포함 전부 잠금 뒤.
+    expect(PUBLIC_DASHBOARD_ROUTES).not.toContain('cosmo');
     expect(PUBLIC_DASHBOARD_ROUTES).not.toContain('bangkok-office');
   });
 
@@ -259,6 +290,13 @@ describe('dashboard registry', () => {
     for (const key of [...PROTECTED_OPERATION_MENU_KEYS, ...KEYBOARD_SHORTCUT_MENUS]) {
       expect(VALID_MENUS).toContain(key);
     }
+  });
+
+  it('requires the existing session access check for every active menu without changing operation metadata', () => {
+    const sessionAccessKeys = (dashboardRegistry as Record<string, unknown>).SESSION_ACCESS_MENU_KEYS;
+
+    expect(sessionAccessKeys).toEqual(VALID_MENUS);
+    expect(PROTECTED_OPERATION_MENU_KEYS).toEqual(['fleet', 'unloading', 'logistics', 'bangkok-office']);
   });
 
   it('drives command search from the same valid menu registry', () => {
@@ -288,17 +326,15 @@ describe('dashboard registry', () => {
     expect(DASHBOARD_PANEL_ORDER).toContain('pork');
   });
 
-  it('derives public sitemap dashboard routes from non-protected menus', () => {
-    expect(PUBLIC_DASHBOARD_ROUTES).toEqual(
-      VALID_MENUS.filter((menu) => !['market', 'fleet', 'unloading', 'logistics', 'bangkok-office', 'pork'].includes(menu)),
-    );
+  it('omits session-locked dashboards from public sitemap routes', () => {
+    expect(PUBLIC_DASHBOARD_ROUTES).toEqual([]);
     expect(PUBLIC_DASHBOARD_ROUTES).not.toContain('value-chain');
     expect(PUBLIC_DASHBOARD_ROUTES).not.toContain('octopus');
     expect(PUBLIC_DASHBOARD_ROUTES).not.toContain('squid');
     expect(PUBLIC_DASHBOARD_ROUTES).not.toContain('pollock');
     expect(PUBLIC_DASHBOARD_ROUTES).not.toContain('mackerel');
     expect(PUBLIC_DASHBOARD_ROUTES).not.toContain('flatfish');
-    expect(PUBLIC_DASHBOARD_ROUTES).toContain('cross-intelligence');
+    expect(PUBLIC_DASHBOARD_ROUTES).not.toContain('cross-intelligence');
     expect(PUBLIC_DASHBOARD_ROUTES).not.toContain('sashimi-steak');
     expect(PUBLIC_DASHBOARD_ROUTES).not.toContain('bni-global');
     expect(PUBLIC_DASHBOARD_ROUTES).not.toContain('beef');
@@ -324,13 +360,12 @@ describe('dashboard registry', () => {
     expect(PUBLIC_DASHBOARD_ROUTES).not.toContain('fleet');
   });
 
-  it('publishes public dashboard routes to sitemap in registry order', () => {
-    const publicRouteSet = new Set<string>(PUBLIC_DASHBOARD_ROUTES);
+  it('keeps every session-locked dashboard path out of the sitemap', () => {
     const routes = sitemap().map((entry) => new URL(entry.url).pathname.replace(/^\//, ''));
-    const dashboardRoutes = routes.filter((route) => publicRouteSet.has(route));
+    const dashboardRoutes = routes.filter((route) => VALID_MENUS.includes(route as (typeof VALID_MENUS)[number]));
 
     expect(routes[0]).toBe('');
-    expect(dashboardRoutes).toEqual(PUBLIC_DASHBOARD_ROUTES);
+    expect(dashboardRoutes).toEqual([]);
   });
 
   it('omits sidebar sections after every item in the section is retired', () => {
@@ -368,6 +403,7 @@ describe('dashboard registry', () => {
       'market',
       'fleet',
       'logistics',
+      'cross-intelligence',
       'pork',
       'unloading',
       'cosmo',
@@ -375,9 +411,8 @@ describe('dashboard registry', () => {
       'purse-seiner-db',
     ]);
     expect(new Set(DASHBOARD_PANEL_ORDER)).toEqual(
-      new Set(VALID_MENUS.filter((menu) => menu !== 'cross-intelligence')),
+      new Set(VALID_MENUS),
     );
     expect(DASHBOARD_PANEL_ORDER).not.toContain('bni-global');
-    expect(DASHBOARD_PANEL_ORDER).not.toContain('cross-intelligence');
   });
 });

@@ -9,6 +9,7 @@
     "lint": "eslint .",
     "simulate": "node scripts/simulate_webhooks.js",
     "sync:consignment": "node --disable-warning=MODULE_TYPELESS_PACKAGE_JSON scripts/sync_consignment_data.ts",
+    "sync:briefing": "python3 scripts/sync_daily_briefing.py",
     "sync:bangkok": "bash scripts/sync_bangkok_report.sh",
     "typecheck": "tsc --noEmit",
     "test": "vitest run",

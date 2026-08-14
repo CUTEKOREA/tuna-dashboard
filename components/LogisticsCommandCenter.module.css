@@ -5,6 +5,17 @@
   font-family: 'CircularSp', sans-serif;
 }
 
+.logisticsHero { width: 100%; min-width: 0; margin-bottom: 1.5rem; }
+.taskTabs { margin-bottom: 1.5rem; }
+
+.routeMap {
+  width: 100%;
+  height: 100%;
+  opacity: 0.86;
+}
+
+.routeMap svg { display: block; width: 100%; height: 100%; }
+
 .header {
   padding-top: 0.5rem;
   margin-bottom: 1.5rem;
@@ -328,6 +339,7 @@
 
 @media (max-width: 700px) {
   .dashboard { padding: 0 1rem 2rem; }
+  .routeMap { opacity: 0.58; }
   .headerRow { align-items: flex-start; flex-direction: column; }
   .reportBadge { width: 100%; box-sizing: border-box; }
   .tabList { top: 0; grid-template-columns: repeat(2, minmax(0, 1fr)); }

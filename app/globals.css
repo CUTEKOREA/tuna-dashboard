@@ -165,6 +165,39 @@
   /* slim scrollbar tint */
   --scrollbar-thumb-tint: linear-gradient(180deg, rgba(34, 211, 238, 0.32), rgba(59, 130, 246, 0.22));
   --scrollbar-thumb-tint-hover: linear-gradient(180deg, rgba(34, 211, 238, 0.5), rgba(59, 130, 246, 0.4));
+
+  /* ==========================================================
+   * Deep Sea Command (V2) — 2026-08-15 리디자인 토큰 [CC]
+   * 스펙: docs/superpowers/specs/2026-08-15-dashboard-redesign-design.md
+   * 기존 토큰 무손상 — V2 컴포넌트(HeroZone·PillTabs)만 참조.
+   * ========================================================== */
+  /* 팔레트 — 심해 틸-차콜 (Raktor) */
+  --dsc-bg: #0a141d;
+  --dsc-bg-deep: #060d14;
+  --dsc-surface: rgba(16, 28, 39, 0.62);
+  --dsc-surface-border: rgba(148, 196, 220, 0.10);
+  --dsc-surface-blur: blur(14px) saturate(1.1);
+
+  /* 타이포 계층 (Twisty) — 웨이트 대비 200 vs 700 */
+  --dsc-title-size: clamp(2.5rem, 5vw, 4rem);        /* 페이지 타이틀 48-64px */
+  --dsc-title-weight: 250;
+  --dsc-kpi-size: clamp(2.4rem, 4.6vw + 0.9rem, 4.5rem); /* KPI 숫자 — 390px에서 소수점 포함 9자리도 한 줄 유지 */
+  --dsc-kpi-weight: 700;
+  --dsc-kpi-unit-size: 1.125rem;                     /* 단위 병기 18px */
+
+  /* 발광 액센트 (Raktor 화물칸 하이라이트 문법) */
+  --dsc-glow-cyan: 0 0 24px rgba(34, 211, 238, 0.45), 0 0 64px rgba(34, 211, 238, 0.18);
+  --dsc-glow-amber: 0 0 24px rgba(245, 158, 11, 0.45), 0 0 64px rgba(245, 158, 11, 0.18);
+  --dsc-glow-rose: 0 0 24px rgba(244, 63, 94, 0.45), 0 0 64px rgba(244, 63, 94, 0.18);
+
+  /* 경고→권고 패널 (Vexto) */
+  --dsc-warn-bg: rgba(69, 26, 33, 0.72);
+  --dsc-warn-border: rgba(244, 63, 94, 0.28);
+
+  /* 모션 */
+  --dsc-stagger: 60ms;
+  --dsc-breathe: 3600ms;
+  --dsc-lift: -2px;
 }
 
 /* ==========================================================

@@ -1,8 +1,7 @@
 'use client';
 
-import React, { useRef, useState } from 'react';
+import React, { useState } from 'react';
 import { AlertTriangle, CalendarClock, Ship, TrendingUp } from 'lucide-react';
-import FleetHeroKPI from './FleetHeroKPI';
 import FleetRosterGrid from './FleetRosterGrid';
 import { FleetChartSection, FleetDetailPanel } from './FleetAnalysisPanels';
 import FleetPixelMap from './FleetPixelMap';
@@ -10,6 +9,9 @@ import VdsStrategyMatrix from './VdsStrategyMatrix';
 import PnaAccessFeeWidgets from './PnaAccessFeeWidgets';
 import VesselVdsStatus from './VesselVdsStatus';
 import { carrierLoads, nationalVds, purseSeineCatch } from '@/lib/fleet-operations-2026-08-09';
+import HeroZone from './v2/HeroZone';
+import PillTabs from './v2/PillTabs';
+import VesselTopSVG from './v2/VesselTopSVG';
 import s from './FleetCommandCenter.module.css';
 
 type FleetTaskTab = 'operations' | 'vessels' | 'performance' | 'access';
@@ -23,6 +25,22 @@ const taskTabs = [
 
 const nationalOverrunCount = nationalVds.areas.flatMap((area) => area.rows).filter((row) => row.remaining < 0).length;
 const jointWeeklyShare = Math.round(purseSeineCatch.summary.jointWeekly / purseSeineCatch.summary.weeklyTotal * 100);
+const clamp = (value: number, min: number, max: number) => Math.min(Math.max(value, min), max);
+const carrierFillRatio = clamp(
+  carrierLoads.loadedTotalMt / (carrierLoads.loadedTotalMt + carrierLoads.expectedRemainingMt),
+  0,
+  1,
+);
+const seinerHatches = Array.from({ length: 6 }, (_, hatchIndex) => ({
+  id: `seiner-hatch-${hatchIndex + 1}`,
+  intensity: clamp(carrierFillRatio * 6 - hatchIndex, 0, 1),
+}));
+// 선체는 우측 상단에 치우쳐 배치 — KPI 행(좌하단)과 겹치지 않게 (Raktor 구도)
+const heroBackground = (
+  <div className={s.heroVessel} aria-hidden>
+    <VesselTopSVG kind="seiner" hatches={seinerHatches} />
+  </div>
+);
 
 const decisions = [
   { icon: TrendingUp, level: '생산', title: `합작선 주간 비중 ${jointWeeklyShare}%`, detail: `${purseSeineCatch.summary.jointWeekly} M/T · KONA 183, MARI 140 M/T 견인`, tone: 'primary' },
@@ -33,70 +51,47 @@ const decisions = [
 
 export default function FleetCommandCenter() {
   const [activeTab, setActiveTab] = useState<FleetTaskTab>('operations');
-  const tabRefs = useRef<Record<FleetTaskTab, HTMLButtonElement | null>>({ operations: null, vessels: null, performance: null, access: null });
-
-  const selectTab = (tab: FleetTaskTab) => {
-    setActiveTab(tab);
-    requestAnimationFrame(() => tabRefs.current[tab]?.focus());
-  };
-
-  const handleTabKeyDown = (event: React.KeyboardEvent<HTMLButtonElement>, index: number) => {
-    let nextIndex = index;
-    if (event.key === 'ArrowRight') nextIndex = (index + 1) % taskTabs.length;
-    else if (event.key === 'ArrowLeft') nextIndex = (index - 1 + taskTabs.length) % taskTabs.length;
-    else if (event.key === 'Home') nextIndex = 0;
-    else if (event.key === 'End') nextIndex = taskTabs.length - 1;
-    else return;
-    event.preventDefault();
-    selectTab(taskTabs[nextIndex].id);
-  };
 
   return (
     <div className={s.wrapper}>
-      <div className={s.commandIntro}>
-        <div><span className={s.eyebrow}>선단 운영 · 2026년 8월</span><h2>2026년 8월 선단 운영현황</h2><p>어획 8월 9일 · VDS 8월 9일 · 대서양 8월 11일 · 운반선 8월 12일 기준</p></div>
-        <span className={s.staticBadge}>첨부 원문 7건</span>
-      </div>
-      <div className={s.taskTabs} role="tablist" aria-label="선단 업무 보기">
-        {taskTabs.map((tab, index) => (
-          <button
-            key={tab.id}
-            id={`fleet-tab-${tab.id}`}
-            ref={(node) => { tabRefs.current[tab.id] = node; }}
-            type="button"
-            role="tab"
-            aria-selected={activeTab === tab.id}
-            aria-controls={`fleet-panel-${tab.id}`}
-            tabIndex={activeTab === tab.id ? 0 : -1}
-            className={`${s.taskTab} ${activeTab === tab.id ? s.taskTabActive : ''}`}
-            onClick={() => selectTab(tab.id)}
-            onKeyDown={(event) => handleTabKeyDown(event, index)}
-          >
-            {tab.label}
-          </button>
-        ))}
-      </div>
+      <HeroZone
+        className={s.fleetHero}
+        variant="vessel"
+        title="선단 운영"
+        subtitle="주간 어획·VDS는 8월 9일, 대서양은 8월 11일, 운반선은 8월 12일 기준"
+        background={heroBackground}
+        primaryKpi={{ label: '주간 어획량', value: purseSeineCatch.summary.weeklyTotal, unit: '(M/T)' }}
+        secondaryKpis={[
+          { label: '8월 누적 어획량', value: purseSeineCatch.summary.monthlyTotal, unit: '(M/T)' },
+          { label: '연간 누적 어획량', value: purseSeineCatch.summary.annualTotal, unit: '(M/T)' },
+          { label: '운반선 선적량', value: carrierLoads.loadedTotalMt, unit: '(M/T)', decimals: 1, accent: '#f59e0b' },
+        ]}
+        strip={(
+          <div className={s.missionStrip}>
+            {decisions.map(({ icon: Icon, level, title, detail, tone }) => (
+              <article key={title} className={`${s.missionCard} ${s[`decision_${tone}`]}`}>
+                <Icon size={18} aria-hidden="true" />
+                <div><span className={s.decisionLevel}>{level}</span><strong>{title}</strong><p>{detail}</p></div>
+              </article>
+            ))}
+          </div>
+        )}
+      />
+      <PillTabs
+        className={s.taskTabs}
+        tabs={taskTabs.map((tab) => ({ key: tab.id, label: tab.label }))}
+        activeKey={activeTab}
+        onChange={(key) => setActiveTab(key as FleetTaskTab)}
+        ariaLabel="선단 업무 보기"
+        tabIdPrefix="fleet-tab"
+        panelIdPrefix="fleet-panel"
+      />
 
       <section id="fleet-panel-operations" role="tabpanel" aria-labelledby="fleet-tab-operations" className={s.tabPanel} hidden={activeTab !== 'operations'}>
-          <FleetHeroKPI mode="daily" />
-          <div className={s.decisionPanel}>
-            <div className={s.decisionHeader}>
-              <div><span className={s.eyebrow}>기준일 분리 운영 판단</span><h3>이번 주 의사결정 4건</h3></div>
-              <span className={s.staticBadge}>8월 9~12일 원문 기준</span>
-            </div>
-            <div className={s.decisionGrid}>
-              {decisions.map(({ icon: Icon, level, title, detail, tone }) => (
-                <article key={title} className={`${s.decisionItem} ${s[`decision_${tone}`]}`}>
-                  <Icon size={18} aria-hidden="true" />
-                  <div><span className={s.decisionLevel}>{level}</span><strong>{title}</strong><p>{detail}</p></div>
-                </article>
-              ))}
-            </div>
-            <details className={s.reportDetails}>
-              <summary>업무보고 원문 펼치기</summary>
-              <p>주간 어획과 VDS는 8월 9일, 대서양 위치·어획은 8월 11일, 운반선은 8월 12일 기준입니다. 모집단과 기준일이 달라 단일 합계로 합산하지 않습니다.</p>
-            </details>
-          </div>
+          <details className={s.reportDetails}>
+            <summary>업무보고 원문 펼치기</summary>
+            <p>주간 어획과 VDS는 8월 9일, 대서양 위치·어획은 8월 11일, 운반선은 8월 12일 기준입니다. 모집단과 기준일이 달라 단일 합계로 합산하지 않습니다.</p>
+          </details>
       </section>
 
       <section id="fleet-panel-vessels" role="tabpanel" aria-labelledby="fleet-tab-vessels" className={s.tabPanel} hidden={activeTab !== 'vessels'}>
@@ -106,7 +101,6 @@ export default function FleetCommandCenter() {
       </section>
 
       <section id="fleet-panel-performance" role="tabpanel" aria-labelledby="fleet-tab-performance" className={s.tabPanel} hidden={activeTab !== 'performance'}>
-          <FleetHeroKPI mode="weekly" />
           <FleetChartSection />
           <FleetDetailPanel />
       </section>

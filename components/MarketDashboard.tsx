@@ -3,18 +3,22 @@
 import React, { useState, useEffect, useRef, useSyncExternalStore } from 'react';
 import { 
   TrendingUp, TrendingDown, Ship, Anchor, BarChart2,
-  Newspaper, Globe, Activity, Search
+  Newspaper, Globe, Activity
 } from 'lucide-react';
 import {
   LineChart, Line, XAxis, YAxis, CartesianGrid, 
   Tooltip as RechartsTooltip, Legend
 } from 'recharts';
-import WidgetCard from './WidgetCard';
 import SeafoodStockWidget from './SeafoodStockWidget';
+import TunaDailyBriefingWidget from './TunaDailyBriefingWidget';
+import HeroZone, { type HeroKpi } from './v2/HeroZone';
 import {
+  SKJ_ATUNA_HUBS,
   type AtunaPriceRow,
   type AtunaSpreadSummary,
   buildAtunaMarketSummaries,
+  calcAtunaDeltaPct,
+  latestTwoForAtunaHub,
 } from '../lib/data/atuna-price-summary';
 
 const fmtPct = (p: number) => `${p >= 0 ? '+' : ''}${p.toFixed(1)}%`;
@@ -24,6 +28,58 @@ const getTodayIsoSnapshot = (): string | null => {
   return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
 };
 const getServerTodaySnapshot = (): string | null => null;
+
+export function MarketHero({ rows }: { rows: AtunaPriceRow[] }) {
+  const bangkok = latestTwoForAtunaHub(rows, SKJ_ATUNA_HUBS[0]);
+  const manta = latestTwoForAtunaHub(rows, SKJ_ATUNA_HUBS[1]);
+  const yellowfin = buildAtunaMarketSummaries(rows).yf;
+  const bangkokDeltaPct = calcAtunaDeltaPct(bangkok);
+  const bangkokDelta = bangkok.latest && bangkok.prev
+    ? bangkok.latest.price - bangkok.prev.price
+    : null;
+  const secondaryKpis: HeroKpi[] = [];
+
+  if (manta.latest) {
+    secondaryKpis.push({
+      label: '만타 SKJ 현물가',
+      value: manta.latest.price,
+      unit: '($/MT)',
+      accent: '#2dd4bf',
+    });
+  }
+  if (bangkokDelta !== null) {
+    secondaryKpis.push({
+      label: '방콕 주간 변동',
+      value: bangkokDelta,
+      unit: '($/MT)',
+      accent: bangkokDelta >= 0 ? '#f59e0b' : '#10b981',
+    });
+  }
+  if (yellowfin.latest) {
+    secondaryKpis.push({
+      label: '황다랑어 현물가',
+      value: yellowfin.latest.price,
+      unit: '($/MT)',
+      accent: '#a78bfa',
+    });
+  }
+
+  return (
+    <HeroZone
+      variant="kpi"
+      title="시장 동향"
+      subtitle={bangkok.latest
+        ? `방콕 현물가 기준일 ${bangkok.latest.date.replace(/-/g, '.')}${bangkokDeltaPct === null ? '' : ` · 직전 고시 대비 ${fmtPct(bangkokDeltaPct)}`}`
+        : '참치 가격 데이터 수신 대기'}
+      primaryKpi={bangkok.latest ? {
+        label: '방콕 SKJ 현물가',
+        value: bangkok.latest.price,
+        unit: '($/MT)',
+      } : undefined}
+      secondaryKpis={secondaryKpis}
+    />
+  );
+}
 
 export default function MarketDashboard() {
   const [priceData, setPriceData] = useState<any[]>([]);
@@ -160,6 +216,8 @@ export default function MarketDashboard() {
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem' }}>
+      <MarketHero rows={priceData} />
+
       {/* Seafood Stock Widget at the top of the market page */}
       <SeafoodStockWidget />
 
@@ -186,18 +244,9 @@ export default function MarketDashboard() {
           border-color: var(--news-glow-border, rgba(56, 189, 248, 0.35));
           box-shadow: 0 16px 44px -16px var(--news-glow, rgba(56, 189, 248, 0.30)), 0 4px 18px rgba(0, 0, 0, 0.35);
         }
-        .mkt-insights > div {
-          transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
-        }
-        .mkt-insights > div:hover {
-          transform: translateY(-3px);
-          border-color: rgba(129, 140, 248, 0.35);
-          box-shadow: 0 16px 44px -16px rgba(129, 140, 248, 0.38), 0 4px 18px rgba(0, 0, 0, 0.35);
-        }
         [data-theme='light'] .mkt-kpi::after { opacity: 0.07; }
         [data-theme='light'] .mkt-kpi.ds-card:hover,
-        [data-theme='light'] .mkt-news-grid > .ds-card:hover,
-        [data-theme='light'] .mkt-insights > div:hover {
+        [data-theme='light'] .mkt-news-grid > .ds-card:hover {
           box-shadow: 0 12px 32px -12px rgba(20, 28, 52, 0.18);
         }
       `}</style>
@@ -488,43 +537,9 @@ export default function MarketDashboard() {
         </div>
       </section>
 
-      {/* ROW 4: CORE EXECUTIVE INSIGHTS */}
+      {/* ROW 4: DAILY TUNA BRIEFING */}
       <section>
-        <h3 style={{ display: 'flex', alignItems: 'center', gap: '8px', fontSize: '1.1rem', marginBottom: '16px', color: 'var(--text-main)' }}>
-          <Search size={20} color="#818cf8" />
-          전략 인사이트: 저가 수요 방어 · 미국 관세 재편 · 선단 투명성
-        </h3>
-        <div data-mobile-stack className="mkt-insights" style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '1.5rem' }}>
-
-          <WidgetCard
-            title="저가 수요는 견고하지만 관세 부담은 공급망 안에서 재배분"
-            icon={Search}
-            iconColor="#818cf8"
-            pillar="S4"
-            cardDesc="EU 참치 소비 증가·미국 캔참치 가성비 유지와 주요 아시아 가공국 추가 관세를 함께 반영한 수익성 점검"
-            customBody={<></>}
-            takeaway={{
-              situation: "[확인] EU 전체 수산물 소비는 2014~2023년 21% 감소했지만 가다랑어 소비는 500%, 황다랑어는 49% 증가했습니다. 미국에서는 상온 수산물 물가가 전년 동월 대비 6.6% 올랐어도 5온스 캔참치가 $0.96로 저가 단백질 지위를 유지합니다. 동시에 태국산 염수 캔참치는 미국 총 관세율 25%를 적용받고 에콰도르산 일부 제품은 예외입니다.",
-              actionPlan: "[해석] 최종 수요는 방어되지만 가공·유통 단계의 관세 비용을 소매가에 모두 전가하기는 쉽지 않을 수 있습니다. 미국향 계약은 국가별 실효관세와 제품 규격별 손익을 다시 계산하고, 에콰도르 예외 물량의 확대 여부와 아시아 가공업체의 원어 매입가 조정 신호를 월별로 추적합니다.",
-              source: 'Atuna 05_ATUNA_뉴스·가격 (2026.08 폴더 전체)',
-            }}
-          />
-
-          <WidgetCard
-            title="태국 원어 수요 둔화와 연승선 투명성 요구를 동시에 관리"
-            icon={Activity}
-            iconColor="#818cf8"
-            pillar="S3"
-            cardDesc="한국산 태국 원어 공급 -26%와 대형 연승선 어창 집중·IMO 식별 공백을 결합한 판매·규제 대응"
-            customBody={<></>}
-            takeaway={{
-              situation: "[확인] 태국의 1분기 아시아산 통냉원어 수입은 95,198톤으로 10% 감소했고, 한국산은 19,642톤으로 26% 줄었습니다. ISSF 집계에서는 대형 연승선 31%가 어창 용량의 86%를 차지하지만 등록 선박 약 40%에 IMO 번호가 없습니다.",
-              actionPlan: "[해석] 태국 단일 가공시장 의존도가 높을수록 물량·가격 협상 변동성이 커질 수 있으며, 대형 연승선에는 식별·추적성 증빙 요구가 강화될 가능성이 있습니다. 한국산 원어의 고객·양륙지별 채산성을 비교하고, 자사 선단의 IMO·RFMO 등록 정보와 전자 모니터링 자료를 선제적으로 점검합니다.",
-              source: 'Atuna 05_ATUNA_뉴스·가격 (2026.08 폴더 전체)',
-            }}
-          />
-
-        </div>
+        <TunaDailyBriefingWidget />
       </section>
 
     </div>

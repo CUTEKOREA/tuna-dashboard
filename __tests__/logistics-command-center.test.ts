@@ -5,18 +5,22 @@ import { describe, expect, it } from 'vitest';
 const root = process.cwd();
 const dashboardSource = readFileSync(join(root, 'components/LogisticsDashboard.tsx'), 'utf8');
 const operationsSource = readFileSync(join(root, 'components/LogisticsOperationsPanel.tsx'), 'utf8');
+const pillTabsSource = readFileSync(join(root, 'components/v2/PillTabs.tsx'), 'utf8');
 
 describe('logistics decision workspace', () => {
-  it('provides four keyboard-accessible work tabs', () => {
+  it('provides four keyboard-accessible work tabs through the shared pill shell', () => {
     for (const label of ['오늘의 운영', '반입·가격', '공장 운영', '선박·보고자료']) {
       expect(dashboardSource).toContain(label);
     }
 
-    expect(dashboardSource).toContain('role="tablist"');
-    expect(dashboardSource).toContain('role="tab"');
+    expect(dashboardSource).toContain('<PillTabs');
     expect(dashboardSource).toContain('role="tabpanel"');
-    expect(dashboardSource).toContain("event.key === 'ArrowRight'");
-    expect(dashboardSource).toContain("event.key === 'Home'");
+    expect(dashboardSource).toContain('tabIdPrefix="logistics-tab"');
+    expect(dashboardSource).toContain('panelIdPrefix="logistics-panel"');
+    expect(pillTabsSource).toContain('role="tablist"');
+    expect(pillTabsSource).toContain('role="tab"');
+    expect(pillTabsSource).toContain("event.key === 'ArrowRight'");
+    expect(pillTabsSource).toContain("event.key === 'Home'");
   });
 
   it('puts exception-led decisions on the default operations tab', () => {

@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   Factory, RefreshCcw, TrendingUp, Ship, Navigation
 } from 'lucide-react';
@@ -11,8 +11,11 @@ import TraderStatus from './TraderStatus';
 import CarrierUnloadingStatus from './CarrierUnloadingStatus';
 import WidgetCard from './WidgetCard';
 import LogisticsOperationsPanel from './LogisticsOperationsPanel';
+import HeroZone from './v2/HeroZone';
+import PillTabs from './v2/PillTabs';
 import styles from './LogisticsCommandCenter.module.css';
 import { logisticsWeeklyReport } from '@/lib/logistics-weekly-report';
+import { getMiscData } from '@/lib/data/misc';
 
 type LogisticsTab = 'operations' | 'receipts' | 'canneries' | 'vessels';
 
@@ -23,10 +26,100 @@ const tabs: Array<{ id: LogisticsTab; label: string; description: string }> = [
   { id: 'vessels', label: '선박·보고자료', description: '하역 현황과 보고 시점 이동표' },
 ];
 
+const reeferWeek31 = getMiscData('reeferWeek31');
+const carrierSituation = '2026-08-05 주간 보고에는 방콕 하역선 3척 13,764MT가 기록됐으며, 이 중 8월 누계는 2척 8,891MT입니다.';
+const carrierAction = 'SEIN VENUS와 HENG HONG 9의 예정일이 도래했으므로 실제 입항·접안 여부를 확인합니다.';
+
+const week31DeliveryTotal = (row: (typeof reeferWeek31)[number]) => Object.entries(row.deliveries)
+  .filter(([destination]) => destination !== 'OTHER' && destination !== 'SHIP')
+  .reduce((total, [, amount]) => total + Number(String(amount).replace(/,/g, '')), 0);
+
+const week31Total = reeferWeek31.reduce((total, row) => total + week31DeliveryTotal(row), 0);
+const bangkokMarkerPositions = [
+  { x: 178, y: 304 },
+  { x: 204, y: 292 },
+  { x: 232, y: 310 },
+  { x: 202, y: 334 },
+] as const;
+
+function BangkokBusanRouteMap() {
+  return (
+    <div className={styles.routeMap}>
+      <svg viewBox="0 0 960 420" preserveAspectRatio="xMidYMid slice">
+        <defs>
+          <linearGradient id="route-sea" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0%" stopColor="#07131d" />
+            <stop offset="100%" stopColor="#0d2230" />
+          </linearGradient>
+          <linearGradient id="route-line" x1="0" y1="0" x2="1" y2="0">
+            <stop offset="0%" stopColor="#22d3ee" />
+            <stop offset="100%" stopColor="#3b82f6" />
+          </linearGradient>
+          <filter id="route-marker-glow" x="-100%" y="-100%" width="300%" height="300%">
+            <feGaussianBlur stdDeviation="5" result="blur" />
+            <feMerge><feMergeNode in="blur" /><feMergeNode in="SourceGraphic" /></feMerge>
+          </filter>
+        </defs>
+        <rect width="960" height="420" fill="url(#route-sea)" />
+        {[80, 160, 240, 320].map(y => (
+          <line key={y} x1="0" y1={y} x2="960" y2={y} stroke="rgba(148,196,220,0.08)" strokeDasharray="4 12" />
+        ))}
+        {[120, 280, 440, 600, 760, 920].map(x => (
+          <line key={x} x1={x} y1="0" x2={x} y2="420" stroke="rgba(148,196,220,0.06)" strokeDasharray="4 12" />
+        ))}
+        <path d="M 86 366 C 128 318, 160 274, 198 252 C 230 235, 254 254, 278 286 L 245 392 L 112 404 Z" fill="rgba(45,83,96,0.42)" stroke="rgba(148,196,220,0.14)" />
+        <path d="M 714 62 C 760 68, 806 98, 822 136 C 834 165, 808 197, 770 203 C 742 185, 728 151, 724 114 Z" fill="rgba(45,83,96,0.42)" stroke="rgba(148,196,220,0.14)" />
+        <path d="M 206 312 C 350 116, 576 82, 770 144" fill="none" stroke="rgba(34,211,238,0.18)" strokeWidth="12" />
+        <path d="M 206 312 C 350 116, 576 82, 770 144" fill="none" stroke="url(#route-line)" strokeWidth="3" strokeDasharray="10 9" />
+        <circle cx="206" cy="312" r="8" fill="#22d3ee" filter="url(#route-marker-glow)" />
+        <circle cx="770" cy="144" r="8" fill="#60a5fa" filter="url(#route-marker-glow)" />
+        <text x="158" y="368" fill="#bae6fd" fontSize="20" fontWeight="700">방콕</text>
+        <text x="786" y="132" fill="#bfdbfe" fontSize="20" fontWeight="700">부산</text>
+        {reeferWeek31.map((row, index) => {
+          const position = bangkokMarkerPositions[index];
+          return (
+            <g
+              key={row.carrier}
+              data-week31-carrier-marker="true"
+              transform={`translate(${position.x} ${position.y})`}
+            >
+              <circle r="12" fill="rgba(245,158,11,0.16)" stroke="#f59e0b" strokeWidth="2" filter="url(#route-marker-glow)" />
+              <path d="M -5 2 L 7 2 L 3 -4 L -3 -4 Z" fill="#fde68a" />
+              <title>{row.carrier}</title>
+            </g>
+          );
+        })}
+      </svg>
+    </div>
+  );
+}
+
+export function LogisticsHero() {
+  return (
+    <HeroZone
+      className={styles.logisticsHero}
+      variant="map"
+      title="물류·가공"
+      subtitle="방콕↔부산 정적 항로도 · 31주차 운반선 보고 기준"
+      background={<BangkokBusanRouteMap />}
+      primaryKpi={{ label: '주간 하역 합계', value: week31Total, unit: '(MT)', decimals: 3 }}
+      secondaryKpis={[
+        { label: '방콕 보고 선박', value: reeferWeek31.length, unit: '(척)' },
+        { label: '현재 하역 보고', value: logisticsWeeklyReport.unloading.currentTotal.amount, unit: '(MT)' },
+        { label: '원어 협의 시장가', value: logisticsWeeklyReport.market.rawMaterialPriceUsdPerMt, unit: '($/MT)' },
+      ]}
+      warning={{
+        title: '입항 상태 재확인',
+        lines: [carrierSituation],
+        recommend: carrierAction,
+      }}
+    />
+  );
+}
+
 export default function LogisticsDashboard() {
   const [loading, setLoading] = useState(true);
   const [activeTab, setActiveTab] = useState<LogisticsTab>('operations');
-  const tabRefs = useRef<Array<HTMLButtonElement | null>>([]);
 
   useEffect(() => {
     // Simulate loading for the dashboard skeleton
@@ -35,26 +128,6 @@ export default function LogisticsDashboard() {
     }, 500);
     return () => clearTimeout(timer);
   }, []);
-
-  const selectTab = (tab: LogisticsTab, focus = false) => {
-    setActiveTab(tab);
-    if (focus) {
-      const index = tabs.findIndex((item) => item.id === tab);
-      tabRefs.current[index]?.focus();
-    }
-  };
-
-  const handleTabKeyDown = (event: React.KeyboardEvent<HTMLButtonElement>, index: number) => {
-    let nextIndex = index;
-    if (event.key === 'ArrowRight' || event.key === 'ArrowDown') nextIndex = (index + 1) % tabs.length;
-    else if (event.key === 'ArrowLeft' || event.key === 'ArrowUp') nextIndex = (index - 1 + tabs.length) % tabs.length;
-    else if (event.key === 'Home') nextIndex = 0;
-    else if (event.key === 'End') nextIndex = tabs.length - 1;
-    else return;
-
-    event.preventDefault();
-    selectTab(tabs[nextIndex].id, true);
-  };
 
   if (loading) return (
     <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh', flexDirection: 'column', gap: '1rem' }}>
@@ -65,43 +138,17 @@ export default function LogisticsDashboard() {
 
   return (
     <div className={styles.dashboard}>
-      <header className={styles.header}>
-        <div className={styles.headerRow}>
-          <div className={styles.brand}>
-            <div className={styles.brandIcon}>
-              <Factory size={24} aria-hidden="true" />
-            </div>
-            <div>
-              <h1>물류·가공 인텔리전스</h1>
-              <p>글로벌 밸류체인 운영 상황실</p>
-            </div>
-          </div>
-          <div className={styles.reportBadge}>
-            <span>정적 보고 기반 <strong>최신 2026-08-13 · 위젯별 기준일 표기</strong></span>
-          </div>
-        </div>
-      </header>
+      <LogisticsHero />
 
-      <div className={styles.tabList} role="tablist" aria-label="물류·가공 업무 화면">
-        {tabs.map((tab, index) => (
-          <button
-            key={tab.id}
-            ref={(element) => { tabRefs.current[index] = element; }}
-            id={`logistics-tab-${tab.id}`}
-            className={`${styles.tab} ${activeTab === tab.id ? styles.tabActive : ''}`}
-            role="tab"
-            type="button"
-            aria-selected={activeTab === tab.id}
-            aria-controls={`logistics-panel-${tab.id}`}
-            tabIndex={activeTab === tab.id ? 0 : -1}
-            onClick={() => selectTab(tab.id)}
-            onKeyDown={(event) => handleTabKeyDown(event, index)}
-            title={tab.description}
-          >
-            {tab.label}
-          </button>
-        ))}
-      </div>
+      <PillTabs
+        className={styles.taskTabs}
+        tabs={tabs.map(tab => ({ key: tab.id, label: tab.label }))}
+        activeKey={activeTab}
+        onChange={key => setActiveTab(key as LogisticsTab)}
+        ariaLabel="물류·가공 업무 화면"
+        tabIdPrefix="logistics-tab"
+        panelIdPrefix="logistics-panel"
+      />
 
       <section
         id="logistics-panel-operations"
@@ -210,8 +257,8 @@ export default function LogisticsDashboard() {
             telemetry={{ status: 'STATIC', syncDate: '2026-08-05', label: '정적' }}
             customBody={<CarrierUnloadingStatus />}
             takeaway={{
-              situation: '2026-08-05 주간 보고에는 방콕 하역선 3척 13,764MT가 기록됐으며, 이 중 8월 누계는 2척 8,891MT입니다.',
-              actionPlan: 'SEIN VENUS와 HENG HONG 9의 예정일이 도래했으므로 실제 입항·접안 여부를 확인합니다.',
+              situation: carrierSituation,
+              actionPlan: carrierAction,
               source: '방콕 사무소 주간보고 (2026-08-05)',
             }}
           />

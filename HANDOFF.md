@@ -1,6 +1,60 @@
 # HANDOFF
 
-> 마지막 업데이트: 2026-08-15 01:48 KST
+> 마지막 업데이트: 2026-08-15 04:05 KST
+
+> ✅ **2026-08-15 04:05 KST — 리디자인 "Deep Sea Command" 전 Phase 완료 (병합 대기)** [CC]:
+> - **Phase 3 검수 통과**: pork·cross-intelligence·purse-seiner-db Type C 히어로 + 전 메뉴 세션 잠금 확장(`SESSION_ACCESS_MENUS` = 전체 활성 메뉴). CC가 verify 독립 재현(exit 0), 잠금 우회 점검 — 6개 메뉴 직접 URL 접근 전부 잠김·콘텐츠 누출 0·해제 흐름 정상. 신규 메뉴는 registry 등재 즉시 자동 잠금 대상.
+> - **비밀번호 교체 완료** (`9bab2dc`): 사용자 지정값으로 회전. 실브라우저에서 구 비번 거부·신 비번 통과 확인. 클라이언트측 게이트임(진짜 인증 아님)은 스펙 §6에 명시.
+> - **UI_RULES 5장 신설**: Phase 0-3이 실제로 출하한 표준(히어로 3유형·배경 슬롯 규칙·250/700 타이포·nowrap KPI·모션 토큰·데이터 전용 발광·전 메뉴 잠금)을 본문에 병합하고 V2 초안 문서는 삭제.
+> - **브랜치 체인**: `redesign-p0` → `p1-fleet` → `p2` → `p25-news` → `p3`(최종). 전부 verify 통과 상태. 병합은 PR #340(코스모·방콕 메뉴, origin/main 기준) 먼저, 그다음 p3 체인 PR — registry 충돌 1회를 두 번째 병합에서 해결하면 코스모·방콕도 자동 잠금 대상이 된다.
+> - **미포함**: p1 브랜치의 후속 커밋 `8886f7d`(해치 회귀 강화, Codex)는 p2 분기 후에 얹혀 체인에 없다. superpowers 부산물이 커밋에 섞여 있어 그대로 병합 불가 — 코드 가치(테스트 강화)만 추후 선별 포팅 후보.
+> - **Grok Imagine 선박 이미지 3장(선망선·연승선·운반선)은 여전히 사용자 생성 대기.** 현재는 VesselTopSVG 폴백이 데이터 발광까지 수행 중이라 기능 공백 없음. 이미지 도착 시 `heroBackground` 1줄 교체.
+
+> 🎛️ **2026-08-15 03:37 KST — Phase 3 잔여 Type C 히어로·전 메뉴 세션 잠금 선행 완료** [Codex]:
+> - `/pork`·`/cross-intelligence`·`/purse-seiner-db`의 기존 상단 헤더를 `HeroZone variant="kpi"`로 교체했다. 새 fetch 없이 기존 모듈만 사용해 돼지고기 **중국 생산 57,948천 MT·한국 생산 1,455천 MT·자급률 66%**(기준일 표기 2024년), 통합 인텔리전스 **대체 압력 93점·평균 리스크 충격 69점·배분 79점·경보 5건**(2026.07.03), 선망선 DB **검증 선박 155척·선적국 28개국·운영사 47개사·다중 관리기구 8척**(2026.05.27)을 연결했다. 위젯 내부와 데이터 계약은 변경하지 않았다.
+> - 돼지고기의 기존 5-Pillar 탐색 UI는 공용 `PillTabs`로 바꾸고 roving focus 기반 탭 5개와 `aria-controls`/`aria-labelledby` 패널 관계를 연결했다. 탭이 없던 나머지 두 화면에는 새 탭을 만들지 않았다.
+> - registry의 운영 의미는 보존했다. `PROTECTED_OPERATION_MENU_KEYS`는 기존 3개(`fleet`·`unloading`·`logistics`) 그대로 두고, 별도 `SESSION_ACCESS_MENU_KEYS = VALID_MENUS`를 `app/page.tsx` 잠금 판정에 사용했다. 비밀번호 상수와 Supabase 층은 건드리지 않았다. 전체 메뉴 잠금에 맞춰 공개 dashboard sitemap 경로는 0개가 됐고, 기존에 패널 순서에서 빠져 빈 화면이던 `cross-intelligence`도 실제 렌더 순서에 복구했다.
+> - TDD: 최초 요구사항 RED **8건**, subtitle 표현 정정 RED **1건**을 확인한 뒤 focused **38/38** 통과. 전체 `npm run verify`는 ESLint 오류 0(기존 경고 18), TypeScript, Vitest **238/238**, API cache **143/143**, Next 정적 페이지 **117/117**, bundle **30 routes**로 통과했다.
+> - S-Grade 실제 closure는 15개 파일이다. 세 진입 컴포넌트의 영문·GS 톤·가짜 LIVE 후보는 0건이며, 수정 금지한 기존 `PorkWidgets.tsx`의 `CO2e (kg/kg)` 후보 1건은 보존했다.
+> - Puppeteer QA: 루트와 활성 메뉴 7개 직접 URL 모두 미승인 세션에서 `전체 메뉴 접근 확인`만 렌더해 우회 0건, 비밀번호 입력→`sessionStorage['silla-operation-access']='granted'`→해제 흐름 정상. 3페이지를 1440×1000·390×844에서 최종 KPI 값까지 확인했고 6/6 가로 overflow 0px, page error·로컬 HTTP/요청 실패 0건이다. 스크린샷과 `qa-results.json`은 `/private/tmp/redesign-p3-qa-20260815.tHv2ss/`에 있다. 기존 `RootLayout` 광고/분석 스크립트 hydration 경고와 기존 돼지고기 위젯 P-03 콘솔 경고는 앱 오류와 분리했다.
+> - pnpm 환경은 삭제하지 않고 `/private/tmp/redesign-p3-npm-backup.cSVHYb/`에 보존한 뒤 `npm ci`로 재구성했다. push·프로덕션 배포는 하지 않았다. 다음 단계는 CC의 직접 URL 잠금·KPI 원자료·verify 재현 검수와 비밀번호 값 별도 교체다.
+
+> 마지막 업데이트: 2026-08-15 03:09 KST
+
+> 📰 **2026-08-15 03:09 KST — P2.5 `/market` 데일리 참치 브리핑 전환 완료** [Codex]:
+> - `scripts/sync_daily_briefing.py`를 추가해 `~/Desktop/참치뉴스_게시판용_YYYY-MM-DD.html` 중 파일명 날짜가 가장 최신인 원본을 표준 라이브러리 `html.parser`로 읽는다. 구형 `<td>`·중첩 `<b>`·HTML 엔티티를 복원하며, 필수 헤드라인/기사 블록이 없으면 명확히 실패하고 JSON은 원자적으로만 교체한다. `npm run sync:briefing`으로 실행한다.
+> - 실제 최신 원본 `2026-08-13`(SHA-256 `19868c2f4a4bcfdf72bfdaa31905d15c4240fd74e2b9b4ff9ebe3baa85739afc`)에서 `public/data/tuna_daily_briefing.json`을 생성했다. 결과는 **13,823바이트**, 헤드라인 **5건**·상세 기사 **5건**, SHA-256 `aa61be6075f7827d6d2206d1d337fb413c66feadbc47414d0a5831f3edd6b702`이며 재실행 후 해시가 동일하다.
+> - ADR-0005 경계에 맞춰 `lib/data/daily-briefing.ts`가 JSON을 런타임 검증한 뒤 타입 안전하게 노출한다. `TunaDailyBriefingWidget`은 `WidgetCard`의 S4 위젯으로 `SYNCED`·기준일·`(기사 5건)`·cardDesc·TakeawayBox를 제공하고, 헤드라인 5건과 기본 접힘 `<details>` 기사 5건을 렌더한다. 영문 원제는 JSON에 보존하지만 한글 화면에는 표시하지 않는다.
+> - 기존 7/27 PDF 기반 전략 인사이트 `WidgetCard` 2개를 이 위젯 1개로 교체했다. SIT는 상위 헤드라인 2건을 숫자 포함 두 문장으로 그대로 연결하고, TAK는 기사 본문의 `시장자문위원회(MAC)...개선을 촉구했다.` 한 문장을 그대로 선택해 새 판단을 창작하지 않는다. 원문 독립 대조에서 JSON의 추출 문자열 **50/50**이 일치했다.
+> - 검증: TDD RED 3건 확인 후 데일리 브리핑 **5/5**, 관련 focused **32/32**, 전체 `npm run verify` 통과(ESLint 오류 0·기존 경고 18, TypeScript, Vitest **233/233**, API cache **143/143**, Next 정적 페이지 **117/117**, bundle **30 routes**). S-Grade 실제 closure 9개에서 영문 잔존·GS 톤·가짜 LIVE 위반 0건이다.
+> - 브라우저 QA: `/market`을 1440×1000·390×844에서 확인해 양쪽 모두 HTTP 200, 헤드라인/기사 5/5, 기본 접힘과 열기/닫기 정상, 가로 overflow 0px, 앱 console/page/request/HTTP 오류 0건이다. Google Analytics·광고 요청은 앱 신호와 분리해 격리했으며 스크린샷은 `/private/tmp/redesign-p25-news-qa-20260815/`에 있다.
+> - npm 전용 복구 전 pnpm 파일과 기존 `node_modules`는 삭제하지 않고 `/private/tmp/redesign-p25-npm-backup.HHZfxL/`에 보존했다. push·프로덕션 배포는 하지 않았다. 다음 단계는 CC의 원문 파싱·무-창작 독립 검수다.
+
+> 마지막 업데이트: 2026-08-15 02:37 KST
+
+> 🚢 **2026-08-15 02:37 KST — 운영 3화면 Deep Sea Command V2 Phase 2 완료** [Codex]:
+> - `/unloading`은 `HeroZone variant="vessel"`로 전환했다. 실제 활성 하역량/보고량 비율을 0..1로 제한한 뒤 운반선 SVG 8개 해치에 순차 분배하며, 2026 누적 하역량·완료 선박·현재 하역 누계·잔여 목표량과 하역 중/대기 선박 스트립을 기존 데이터 계약에서 계산한다. 선박 배경은 데스크톱 KPI 행을 침범하지 않고 모바일 상단 밴드로 제한했다.
+> - `/logistics`는 `HeroZone variant="map"` 정적 방콕↔부산 항로와 `reeferWeek31` 기반 방콕 선박 마커 4개를 붙였다. 주간 하역 합계 **18,643.026 MT**와 기존 SIT/TAK의 `입항 상태 재확인` 문구를 그대로 사용하며 새 fetch·JSON은 추가하지 않았다.
+> - `/market`은 `HeroZone variant="kpi"`로 전환하고 기존 atuna 가격 계약에서 방콕 SKJ **1,900 $/MT**, 만타 SKJ·방콕 주간 변동·황다랑어 현물가를 동적으로 유도한다. 세 화면 모두 기존 위젯 내부는 건드리지 않았고 업무 탭은 공용 `PillTabs`의 roving focus/ARIA 연결을 사용한다.
+> - 검증: TDD RED 후 focused **51/51**, 전체 `npm run verify` 통과(ESLint 오류 0·기존 경고 18, TypeScript, Vitest **228/228**, API cache **143/143**, Next build, bundle **30 routes**). S-Grade는 3개 진입점·21개 closure를 검사해 GS 톤·가짜 LIVE 위반 0건을 확인했다. 기존 위젯 closure의 영문/구조 후보는 Phase 2 shell-only 범위 밖이라 수정하지 않았다.
+> - 브라우저 QA: 보호 경로는 `sessionStorage['silla-operation-access']='granted'`로 열고 `/unloading`·`/logistics`·`/market`을 각각 1440×1000·390×844에서 확인했다. 6/6 모두 HTTP 200, page/console/HTTP 오류 0, 가로 overflow 0이며 하역 선박/KPI 겹침 0과 물류 마커 4개를 확인했다. 스크린샷은 `/private/tmp/redesign-p2-phase2-qa-20260815/`에 있다.
+> - npm 전용 환경 전환 전 pnpm 흔적은 삭제 대신 `/private/tmp/redesign-p2-pnpm-backup.pz40eg/`로 이동해 복구 가능하게 보존했다. 프로덕션 push·배포는 하지 않았다. 다음 단계는 CC 검수 후 Phase 3 범위를 확정하는 것이다.
+
+> 마지막 업데이트: 2026-08-15 01:59 KST
+
+> 🚢 **2026-08-15 01:59 KST — `/fleet` Deep Sea Command V2 Phase 1 파일럿 완료** [Codex]:
+> - `FleetCommandCenter`의 기존 상단 `FleetHeroKPI` 2개와 자체 탭을 페이지 레벨 `HeroZone variant="vessel"` 1개와 `PillTabs`로 교체했다. `VesselTopSVG kind="seiner"`는 `carrierLoads.loadedTotalMt / (loadedTotalMt + expectedRemainingMt)`를 0..1로 clamp한 뒤 6개 해치에 순차 분배해 실데이터 발광만 렌더한다. 데이터 계약과 `FleetHeroKPI.tsx`는 변경하지 않았다.
+> - 주간·8월 누적·연간 누적·운반선 선적 KPI는 기존 계약의 값과 `(M/T)` 단위를 사용한다. 생산/VDS/전재/대서양 판단 카드 4개는 히어로 임무 스트립으로 이동했고, 기준일 분리 `<details>`는 기본 운영 탭에 남겼다.
+> - `PillTabs`는 API 호환을 유지하며 roving `tabIndex`, ArrowLeft/ArrowRight/Home/End 선택+포커스, 선택적 id/aria-label/tab-panel 연결을 지원한다. 실제 `/fleet` 렌더 회귀와 ARIA 정적 검사를 추가했다.
+> - 검증: TDD RED 후 focused 29/29, 전체 `npm run verify` 통과(ESLint 오류 0·기존 경고 18, TypeScript, Vitest 224/224, API cache 143/143, Next build, bundle 30 routes). 보호 세션 `sessionStorage['silla-operation-access']='granted'`로 1440×1000·390×844 QA에서 HTTP/렌더 정상, page overflow 0, 히어로/KPI/스트립 표시, 네 키의 선택·포커스 일치 확인. 앱 셸의 기존 hydration/script console 신호는 `/fleet` 변경과 무관하며 로컬 `/fleet` 요청 오류는 0.
+> - 다음 단계: CC 검수 후 사용자 명시 배포 요청 전까지 로컬 브랜치 유지. 보고서: `.superpowers/sdd/CODEX_P1_FLEET/task-1-report.md`.
+
+> 🎨 **2026-08-15 01:40 KST — 리디자인 "Deep Sea Command" Phase 0 완료** [CC]:
+> - **스펙 확정**: `docs/superpowers/specs/2026-08-15-dashboard-redesign-design.md` — Dribbble 3종(Twisty 24190386·Vexto 27220417·Raktor 26864675) 기반. 사용자와 브레인스토밍으로 5개 쟁점 확정(다크 유지+Twisty 골격 / IA 재편 히어로 존 / 파일럿 /fleet / 선박 비주얼 Grok Imagine / 최종 전 메뉴 잠금). 위젯 룰(SIT/TAK·TelemetryBadge·5-Pillar·W-04)은 전부 생존.
+> - **Phase 0 산출**: `app/globals.css`에 `--dsc-*` 토큰 네임스페이스(기존 토큰 무손상), `components/v2/HeroZone.tsx`(vessel/map/kpi 3유형, 배경 슬롯화로 이미지↔SVG 폴백 가능), `components/v2/PillTabs.tsx`(framer-motion layoutId 필 탭), `docs/2026-08-15_ui_rules_v2_draft.md`(UI_RULES V2 초안 — Phase 3 후 본 파일 병합 예정).
+> - **검증**: 신규 렌더 테스트 4/4 (`__tests__/v2-components-render.test.ts` — vitest include가 `*.test.ts`뿐이라 tsx 아닌 ts로 작성, React.createElement 사용). `npm run verify` 전체 통과(exit 0).
+> - **병행 트랙**: Codex가 별도 worktree(`codex-menu-cosmo-bkk`)에서 메뉴 2종(코스모 iframe·방콕사무소 정적 리포트+운영 잠금) 구현 중. /fleet 히어로용 Grok Imagine 이미지 3장(선망선·연승선·운반선)은 사용자 생성 대기.
+> - **다음 단계**: 이미지 회신 → Phase 1(/fleet, Codex 구현·CC 검수) → Phase 2(운영 페이지) → Phase 3(commodity 일괄, opencode go) → Phase 4(전 메뉴 비밀번호 잠금 — 값은 사용자 지정, git에 기록 안 함).
 
 > 🧭 **2026-08-15 01:48 KST — `/cosmo`·`/bangkok-office` 운영 메뉴 신설(로컬)** [Codex]:
 > - `lib/dashboard-registry.ts` 운영 섹션에 `코스모`(Hexagon, 공개)와 `방콕사무소`(Factory, `requiresOperationAccess: true`)를 등록하고 기존 `[category]` 셸·`KeepAlivePanel` 패널 흐름에 연결했다. 단축키 1~4는 그대로 유지했다.
@@ -10,7 +64,6 @@
 > - 로컬 dev QA는 1440×1000·390×844에서 두 경로 HTTP 200·가로 overflow 0·콘솔/page/request/HTTP 오류 0이다. 방콕은 잠금 전 보고서 요청 0, 해제 후 iframe 1114×950/372×758과 본문 28,367자를 확인했고, 코스모는 두 뷰포트 모두 401 Fallback을 확인했다.
 > - 브랜치 `CUTEKOREA/codex-menu-cosmo-bkk`. **push·PR·프로덕션 배포 없음.** 다음 단계는 Claude Code의 잠금·Fallback·390px 독립 검수와 사용자의 코스모 배포 보호 해제 후 성공 iframe 재확인이다.
 
-> 마지막 업데이트: 2026-08-15 01:02 KST
 
 > 🚀 **2026-08-15 01:02 KST — `/flatfish` 메뉴 제거 배포 완료** [Grok]:
 > - HTML은 agri_data `01_수산물(Seafood)/flatfish/intelligence_reports/Flatfish_Dashboard_Archive_2026-08-15.html`(5기둥·22위젯·KPI 6).
