@@ -1,6 +1,6 @@
 # HANDOFF
 
-> 마지막 업데이트: 2026-08-14 22:21 KST
+> 마지막 업데이트: 2026-08-14 22:33 KST
 
 > 🚢 **2026-08-14 22:21 KST — `/unloading` SEIN VENUS 8/14 엑셀 원본 기준 어종 정정** [Codex]:
 > - 사용자 제공 Google Drive 원본 2건을 읽기 전용으로 대조했다. `20260814 일일 하역결과보고` XLS SHA-256은 `0ad30e784ec9c643dfe1bb42ffa597005c5dffa2ea74523acff7c639637a6d70`, `20260814 일일하역량 현황` XLSX는 `9814a954e5c7984a3be51cb1071cc60bbb9fc6734c20a51e14759a234775f7cf`다.
@@ -8,7 +8,8 @@
 > - XLS는 원적재선 단위 어종 합계를 제공하지만 같은 선박이 여러 어창에 걸친 경우의 개별 어창별 어종 배분은 제공하지 않는다. 따라서 선박 전체 어종 추이에는 실측 일별값을 사용하고, 화물창 상세는 `어창별 어종 분해 없음`으로 닫아 계획 비율 추정을 차단했다.
 > - **8/15 예정 350톤**은 사용자 지시대로 일일보고 텍스트에만 두고 JSON·API·대시보드에는 넣지 않았다. XLSX의 별도 `Scheduled loading 400`도 다음 날 실적으로 해석하지 않았다.
 > - TDD RED 5건 → GREEN 8/8. 최신 `origin/main` 통합 게이트는 린트 오류 0(기존 경고 18), 타입검사, Vitest **209/209**, API 캐시 **143/143**, Next.js build **101/101**, 번들 예산 14개 경로 통과. 하역 E2E와 로컬 production 데스크톱 1440×1000·모바일 390×844도 HTTP 200, overflow·console/page/request/HTTP 오류 0이며 API의 일일·누계 어종값과 미분류 0을 확인했다. 독립 검증은 **GATE: PASS**다.
-> - 브랜치 `codex/unloading-sein-venus-0814-species`. 사용자 배포 요청에 따라 정정 PR→`main`→Vercel READY→라이브 API/UI를 재검증한다.
+> - 정정 PR **#320**을 모든 게이트 통과 후 squash 병합했다. `main` 커밋은 `5471718c9022c400a1c8da51cc288ceb30b2785f`, App Quality Gate `31804682780`과 Data Freshness Audit `31804682741` 모두 SUCCESS다. Vercel Production 배포 `5906978071`도 SUCCESS이며 대상 URL은 `https://tuna-dashboard-6jibroou5-cutekorea-3280s-projects.vercel.app`이다.
+> - 라이브 `https://leedonggun.co.kr/unloading`과 `/api/unloading-db`를 다시 검증했다. 8/14 당일 **424.780 MT**, 누계 **1,662.360 MT**, 잔량 **1,612.640 MT**, SJ **1,397.360 MT**, YF **265.000 MT**, 미분류 0이며 350톤 문자열은 없다. 1440×1000·390×844 모두 HTTP 200, overflow·console/page/request/HTTP 오류 0이다.
 
 > 🚀 **2026-08-14 22:20 KST — 밀린 아카이브 메뉴 일괄 배포 준비** [Grok]:
 > - 프로덕션은 이미 `origin/main` `f7265e3` (`dpl_nzJ62UsH8c8DaSxMz7AT1Psk24Qs`)이다. 닭·망고스틴·돼지(숨김)·소고기·SEIN VENUS 8/14는 라이브에 있다.
