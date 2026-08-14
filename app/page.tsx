@@ -4,7 +4,6 @@ import React, { useState, useEffect } from 'react';
 import dynamic from 'next/dynamic';
 import Image from 'next/image';
 import Link from 'next/link';
-import ErrorBoundary from '../components/ErrorBoundary';
 import styles from './page.module.css';
 import { Activity, Anchor, Ship, Lock, Radio, BarChart2, Navigation, Factory, Waves, Fish, Hexagon, Command, Leaf, Menu, X, Snowflake, CarFront, Shrimp, Droplets, FishSymbol, Shell, Nut, Sprout, LeafyGreen, Carrot, Coffee, Box, TestTube, ShieldCheck } from 'lucide-react';
 import { supabase } from '../lib/supabase';

@@ -266,13 +266,15 @@ function sidebarItemFor(menu: ActiveMenu): SidebarMenuItem {
   };
 }
 
-export const SIDEBAR_SECTIONS = SIDEBAR_SECTION_ORDER.map((section) => ({
-  section,
-  title: SIDEBAR_SECTION_TITLES[section],
-  items: SIDEBAR_SECTION_KEYS[section]
-    .filter((menu) => !HIDDEN_DASHBOARD_MENU_KEYS.has(menu))
-    .map(sidebarItemFor),
-})) as readonly SidebarSection[];
+export const SIDEBAR_SECTIONS = SIDEBAR_SECTION_ORDER
+  .map((section) => ({
+    section,
+    title: SIDEBAR_SECTION_TITLES[section],
+    items: SIDEBAR_SECTION_KEYS[section]
+      .filter((menu) => !HIDDEN_DASHBOARD_MENU_KEYS.has(menu))
+      .map(sidebarItemFor),
+  }))
+  .filter((section) => section.items.length > 0) as readonly SidebarSection[];
 
 const VALID_MENU_SET = new Set<string>(VALID_MENUS);
 

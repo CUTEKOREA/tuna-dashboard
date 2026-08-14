@@ -171,13 +171,17 @@ describe('dashboard registry', () => {
     expect(dashboardRoutes).toEqual(PUBLIC_DASHBOARD_ROUTES);
   });
 
+  it('omits sidebar sections after every item in the section is retired', () => {
+    expect(SIDEBAR_SECTIONS.map((section) => section.section)).not.toContain('livestock');
+    expect(SIDEBAR_SECTIONS.every((section) => section.items.length > 0)).toBe(true);
+  });
+
   it('defines sidebar sections from visible registry items in render order', () => {
     expect(SIDEBAR_SECTIONS.map((section) => section.title)).toEqual([
       '📡 실시간 운영',
       '🐟 어종별 인텔리전스',
       '🔬 전략 분석',
       '🌾 농산물 인텔리전스',
-      '🥩 축산물 인텔리전스',
     ]);
 
     expect(SIDEBAR_SECTIONS.map((section) => section.items.map((item) => item.key))).toEqual([
@@ -185,7 +189,6 @@ describe('dashboard registry', () => {
       ['value-chain', 'mackerel', 'galchi', 'squid', 'jukkumi', 'octopus', 'pollock', 'flatfish', 'shrimp', 'whelk', 'kim', 'salmon'],
       ['cold-storage', 'fleet-strategy', 'korea-market', 'seasia-oem', 'used-car', 'msc', 'sashimi-steak', 'research-lab'],
       ['cashew', 'cassava', 'garlic', 'carrot', 'cocoa'],
-      [],
     ]);
 
     const sidebarKeys = SIDEBAR_SECTIONS.flatMap((section) => section.items.map((item) => item.key));
