@@ -40,7 +40,6 @@ export const DASHBOARD_MENU_CONFIGS = [
   { key: 'unloading', title: '하역 현황', section: 'operation', accent: 'cyan', requiresOperationAccess: true, shortcutOrder: 3, sidebar: { icon: 'Anchor', suffix: 'Unloading' } },
   { key: 'pork', title: '돼지고기', section: 'livestock', accent: 'cyan', sidebar: { icon: 'Hexagon', suffix: 'Pork' } },
   { key: 'cross-intelligence', title: '통합 인텔리전스', section: 'strategy', accent: 'gold', sidebar: { icon: 'BarChart2', suffix: 'Cross' } },
-  { key: 'flatfish', title: '가자미', section: 'fishery', accent: 'cyan', shortcutOrder: 12, sidebar: { icon: 'FishSymbol', suffix: 'Flatfish' } },
   { key: 'purse-seiner-db', title: '선망선 DB', section: 'strategy', accent: 'cyan' },
 ] as const satisfies readonly DashboardMenuConfigShape[];
 
@@ -144,7 +143,7 @@ export const DASHBOARD_PANEL_ORDER = [
   'market',
   'fleet',
   'logistics',
-  'flatfish',
+
   'pork',
   'unloading',
   'purse-seiner-db',
@@ -152,9 +151,7 @@ export const DASHBOARD_PANEL_ORDER = [
 
 const SIDEBAR_SECTION_KEYS: Record<DashboardSection, readonly ActiveMenu[]> = {
   operation: ['market', 'fleet', 'unloading', 'logistics'],
-  fishery: [
-    'flatfish',
-  ],
+  fishery: [],
   strategy: [
   ],
   agriculture: [],
