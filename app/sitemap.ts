@@ -5,7 +5,7 @@ const SITE_URL = 'https://leedonggun.co.kr';
 
 /* 카테고리별 우선순위 매핑 */
 const HIGH_PRIORITY_ROUTES = ['market', 'fleet', 'logistics', 'unloading'];
-const MEDIUM_PRIORITY_ROUTES = ['mackerel', 'shrimp', 'salmon', 'pollock', 'squid', 'galchi', 'chicken'];
+const MEDIUM_PRIORITY_ROUTES = ['mackerel', 'shrimp', 'salmon', 'pollock', 'squid', 'galchi'];
 
 function getRoutePriority(route: string): number {
   if (!route) return 1.0;

@@ -1,5 +1,14 @@
 # HANDOFF
 
+> 마지막 업데이트: 2026-08-14 20:50 KST
+
+> 🚀 **2026-08-14 20:50 KST — 닭 메뉴·사이드바 외부링크 제거 배포** [Grok]:
+> - `/chicken` 대시보드를 agri_data HTML 아카이브로 옮긴 뒤 라이브 메뉴에서 닭을 뺐다. 사이드바 하단 **청과제국 동화청과**·**신라교역 50년사** 외부 링크도 제거.
+> - 배포 범위: `origin/main`에서 전용 브랜치 `chore/remove-chicken-sidebar-20260814`. `mackerel/claude-etl`은 올리지 않음.
+> - 변경: `lib/dashboard-registry.ts`, `app/page.tsx`, `app/sitemap.ts`, `next.config.mjs`(chicken만 제거, squid rewrite는 main 유지), `__tests__/dashboard-registry.test.ts`.
+> - `/api/chicken/*`와 Chicken 컴포넌트는 교차 인텔리전스·연어 비교용으로 존치.
+> - 검증: Vitest dashboard-registry 9/9, `tsc --noEmit` 통과.
+
 > 마지막 업데이트: 2026-08-14 08:52 KST
 > 🚢 **2026-08-14 08:52 KST — `/unloading` SEIN VENUS 8/13 하역 보고 반영** [Codex 구현]:
 > - Google Drive 원본 2건을 직접 대조했다. 일일 결과보고 XLS SHA-256 `13039293d1036268098aae9179c9566de0dbfcbc17b538ed01d7d699fd657d5d`, 일일 하역량 현황 XLSX SHA-256 `8b4f77a42f6a7d03387f90b7276a32d77316b75a71efa62f2449f05907552b7d`다.

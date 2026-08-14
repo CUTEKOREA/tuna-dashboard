@@ -6,7 +6,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import ErrorBoundary from '../components/ErrorBoundary';
 import styles from './page.module.css';
-import { Activity, Anchor, Ship, Lock, Radio, BarChart2, Navigation, Factory, BookOpen, Waves, Fish, Hexagon, Command, Leaf, Menu, X, Snowflake, CarFront, Shrimp, Droplets, FishSymbol, Shell, Nut, Sprout, LeafyGreen, Carrot, Coffee, Cherry, Drumstick, Beef, Box, TestTube, ShieldCheck } from 'lucide-react';
+import { Activity, Anchor, Ship, Lock, Radio, BarChart2, Navigation, Factory, Waves, Fish, Hexagon, Command, Leaf, Menu, X, Snowflake, CarFront, Shrimp, Droplets, FishSymbol, Shell, Nut, Sprout, LeafyGreen, Carrot, Coffee, Cherry, Beef, Box, TestTube, ShieldCheck } from 'lucide-react';
 import { supabase } from '../lib/supabase';
 import { usePathname, useRouter } from 'next/navigation';
 import { motion } from 'framer-motion';
@@ -50,7 +50,6 @@ const CassavaDashboard = dynamic(() => import('../components/CassavaDashboard'))
 const GarlicDashboard = dynamic(() => import('../components/GarlicDashboard'));
 const CarrotDashboard = dynamic(() => import('../components/CarrotDashboard'));
 const CocoaDashboard = dynamic(() => import('../components/CocoaDashboard'));
-const ChickenDashboard = dynamic(() => import('../components/ChickenDashboard'));
 const PorkDashboard = dynamic(() => import('../components/PorkDashboard'));
 const BeefDashboard = dynamic(() => import('../components/BeefDashboard'));
 const WhelkDashboard = dynamic(() => import('../components/WhelkDashboard'));
@@ -84,7 +83,6 @@ const SIDEBAR_ICONS: Record<SidebarIconKey, React.ElementType> = {
   Cherry,
   Coffee,
   Droplets,
-  Drumstick,
   Factory,
   Fish,
   FishSymbol,
@@ -317,7 +315,6 @@ export default function Home() {
         <MangosteenDashboard />
       </ErrorBoundary>
     ),
-    chicken: <ChickenDashboard />,
     pork: <PorkDashboard />,
     beef: <BeefDashboard />,
     'used-car': <UsedCarExport />,
@@ -417,25 +414,6 @@ export default function Home() {
         }} title="빠른 검색 열기">
           <Command size={12} /> ⌘ 빠른 검색
         </div>
-        
-        
-        <button 
-          className={styles.menuItem}
-          onClick={() => window.open('https://wholesale-dashboard-navy.vercel.app/', '_blank')}
-          style={{ marginBottom: '8px', color: '#10b981' }}
-        >
-          <Leaf size={18} />
-          <span>청과제국 동화청과</span>
-        </button>
-
-        <button 
-          className={styles.menuItem}
-          onClick={() => window.open('https://silla-history.vercel.app/', '_blank')}
-          style={{ marginBottom: '8px', color: '#eab308' }}
-        >
-          <BookOpen size={18} />
-          <span>신라교역 50년사</span>
-        </button>
         
         {/* Operational access state */}
         {operationAccessGranted ? (
@@ -620,7 +598,7 @@ export default function Home() {
                         <div>📡 실시간 운영 — 시장 동향 · 선단 운영 · 하역 현황 · 물류·가공</div>
                         <div>🐟 어종별 인텔리전스 — 참치 · 고등어 · 갈치 · 오징어 · 명태 · 새우 · 연어 외</div>
                         <div>🔬 전략 분석 — 냉동창고 · 선대 분석 · 글로벌 OEM · MSC · 사시미/스테이크</div>
-                        <div>🌾 농·축산물 — 캐슈넛 · 카사바 · 코코아 · 망고스틴 · 닭 · 돼지고기 · 소고기</div>
+                        <div>🌾 농·축산물 — 캐슈넛 · 카사바 · 코코아 · 망고스틴 · 돼지고기 · 소고기</div>
                       </div>
                     </motion.div>
                   </motion.div>
