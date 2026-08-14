@@ -53,6 +53,34 @@ describe('dashboard registry', () => {
     expect(isActiveMenu('used-car')).toBe(false);
   });
 
+  it('retires the whelk dashboard route with an explicit 404 boundary', () => {
+    const routeSource = readFileSync(join(process.cwd(), 'app/whelk/page.tsx'), 'utf8');
+
+    expect(routeSource).toContain('notFound()');
+    expect(isActiveMenu('whelk')).toBe(false);
+  });
+
+  it('retires the salmon dashboard route with an explicit 404 boundary', () => {
+    const routeSource = readFileSync(join(process.cwd(), 'app/salmon/page.tsx'), 'utf8');
+
+    expect(routeSource).toContain('notFound()');
+    expect(isActiveMenu('salmon')).toBe(false);
+  });
+
+  it('retires the fleet-strategy dashboard route with an explicit 404 boundary', () => {
+    const routeSource = readFileSync(join(process.cwd(), 'app/fleet-strategy/page.tsx'), 'utf8');
+
+    expect(routeSource).toContain('notFound()');
+    expect(isActiveMenu('fleet-strategy')).toBe(false);
+  });
+
+  it('retires the research-lab dashboard route with an explicit 404 boundary', () => {
+    const routeSource = readFileSync(join(process.cwd(), 'app/research-lab/page.tsx'), 'utf8');
+
+    expect(routeSource).toContain('notFound()');
+    expect(isActiveMenu('research-lab')).toBe(false);
+  });
+
   it('routes hydration-sensitive dashboards through the client-only category page', () => {
     const configSource = readFileSync(join(process.cwd(), 'next.config.mjs'), 'utf8');
     const categorySource = readFileSync(join(process.cwd(), 'app/[category]/page.tsx'), 'utf8');
@@ -63,6 +91,10 @@ describe('dashboard registry', () => {
     expect(rewriteSource).not.toContain('korea-market');
     expect(rewriteSource).not.toContain('used-car');
     expect(rewriteSource).not.toContain('kim');
+    expect(rewriteSource).not.toContain('whelk');
+    expect(rewriteSource).not.toContain('salmon');
+    expect(rewriteSource).not.toContain('research-lab');
+    expect(rewriteSource).not.toContain('fleet-strategy');
     expect(rewriteSource).not.toContain('logistics');
     expect(rewriteSource).not.toContain('fleet-strategy');
     expect(rewriteSource?.match(/\(([^)]+)\)/)?.[1].split('|')).not.toContain('fleet');
@@ -112,7 +144,7 @@ describe('dashboard registry', () => {
     expect(heroSource).not.toContain('val1: 917');
   });
   it('keeps menu keys unique and title-addressable', () => {
-    expect(DASHBOARD_MENU_CONFIGS.length).toBeGreaterThanOrEqual(20);
+    expect(DASHBOARD_MENU_CONFIGS.length).toBeGreaterThanOrEqual(16);
     expect(new Set(VALID_MENUS).size).toBe(VALID_MENUS.length);
 
     for (const menu of DASHBOARD_MENU_CONFIGS) {
@@ -136,6 +168,10 @@ describe('dashboard registry', () => {
     expect(isActiveMenu('sashimi-steak')).toBe(false);
     expect(isActiveMenu('kim')).toBe(false);
     expect(isActiveMenu('used-car')).toBe(false);
+    expect(isActiveMenu('whelk')).toBe(false);
+    expect(isActiveMenu('salmon')).toBe(false);
+    expect(isActiveMenu('fleet-strategy')).toBe(false);
+    expect(isActiveMenu('research-lab')).toBe(false);
     expect(isActiveMenu('retail')).toBe(false);
   });
 
@@ -155,7 +191,6 @@ describe('dashboard registry', () => {
       'pollock',
       'flatfish',
       'shrimp',
-      'salmon',
     ]);
 
     for (const key of [...PROTECTED_OPERATION_MENU_KEYS, ...KEYBOARD_SHORTCUT_MENUS]) {
@@ -209,6 +244,10 @@ describe('dashboard registry', () => {
     expect(PUBLIC_DASHBOARD_ROUTES).not.toContain('msc');
     expect(PUBLIC_DASHBOARD_ROUTES).not.toContain('kim');
     expect(PUBLIC_DASHBOARD_ROUTES).not.toContain('used-car');
+    expect(PUBLIC_DASHBOARD_ROUTES).not.toContain('whelk');
+    expect(PUBLIC_DASHBOARD_ROUTES).not.toContain('salmon');
+    expect(PUBLIC_DASHBOARD_ROUTES).not.toContain('fleet-strategy');
+    expect(PUBLIC_DASHBOARD_ROUTES).not.toContain('research-lab');
     expect(PUBLIC_DASHBOARD_ROUTES).not.toContain('market');
     expect(PUBLIC_DASHBOARD_ROUTES).not.toContain('fleet');
   });
@@ -224,6 +263,7 @@ describe('dashboard registry', () => {
 
   it('omits sidebar sections after every item in the section is retired', () => {
     expect(SIDEBAR_SECTIONS.map((section) => section.section)).not.toContain('livestock');
+    expect(SIDEBAR_SECTIONS.map((section) => section.section)).not.toContain('strategy');
     expect(SIDEBAR_SECTIONS.every((section) => section.items.length > 0)).toBe(true);
   });
 
@@ -231,14 +271,12 @@ describe('dashboard registry', () => {
     expect(SIDEBAR_SECTIONS.map((section) => section.title)).toEqual([
       '📡 실시간 운영',
       '🐟 어종별 인텔리전스',
-      '🔬 전략 분석',
       '🌾 농산물 인텔리전스',
     ]);
 
     expect(SIDEBAR_SECTIONS.map((section) => section.items.map((item) => item.key))).toEqual([
       ['market', 'fleet', 'unloading', 'logistics'],
-      ['value-chain', 'mackerel', 'galchi', 'squid', 'jukkumi', 'octopus', 'pollock', 'flatfish', 'shrimp', 'whelk', 'salmon'],
-      ['fleet-strategy', 'research-lab'],
+      ['value-chain', 'mackerel', 'galchi', 'squid', 'jukkumi', 'octopus', 'pollock', 'flatfish', 'shrimp'],
       ['cashew'],
     ]);
 
@@ -276,14 +314,10 @@ describe('dashboard registry', () => {
       'pollock',
       'flatfish',
       'shrimp',
-      'whelk',
-      'salmon',
       'cashew',
       'pork',
       'unloading',
       'value-chain',
-      'fleet-strategy',
-      'research-lab',
       'purse-seiner-db',
     ]);
     expect(new Set(DASHBOARD_PANEL_ORDER)).toEqual(
