@@ -1,6 +1,14 @@
 # HANDOFF
 
-> 마지막 업데이트: 2026-08-15 08:06 KST
+> 마지막 업데이트: 2026-08-15 07:45 KST
+
+> 🔍 **2026-08-15 07:45 KST — V2.5 무채색+1액센트 반증 리포트** [Grok]:
+> - 스펙 `docs/superpowers/specs/2026-08-15-v25-institutional-grade-design.md`는 이 worktree에 없어 `origin/docs/v25-institutional-spec`(PR #350) 원문으로 대조했다. 코드는 수정하지 않았다. 산출: `docs/2026-08-15_v25_refutation.md`.
+> - **다품목 식별성 = 무해.** `/cross-intelligence`는 품목을 D-04 색이 아니라 한글 열 라벨+점수색(`scoreColor` 4단)으로 구분한다. 1액센트로 접어도 품목 ID는 남는다.
+> - **경보 위계 = 위험.** `/logistics` 히어로 `WarningPanel`이 상시 rose이고, 운반선 마커 4척이 예외가 아닌데 amber다. 무채색 전환 후 비예외 채색이 진짜 예외와 같은 무게로 붙는다. SYNCED 배지·티커 접두도 amber/rose 장식.
+> - **모노 한글 혼용 = 위험.** `KpiNumber`가 숫자와 `(점)(건)(척)(개국)`을 같은 nowrap 런에 둔다. IBM Plex Mono 라틴+숫자 서브셋은 Hangul이 없어 baseline이 갈라진다. `LiveTicker` 항목 전체 모노 스택, `VesselStatusTables`의 `30톤` 혼합 노드도 동일.
+> - **다시리즈 차트 = 위험(가장 위험).** 스펙 "보조=무채색 명도"는 시리즈 ≤3에서만 성립. `/market` SKJ 5허브, `FleetCharts` 8개월 스택, `PorkWidgets` 7개국, `TunaUsLoinImports` 6스택은 L-07 전에 스펙 예외가 필요하다.
+> - 다음 단계: CC가 스펙 §2.1에 (1) rose/amber는 상태 전이 예외만 (2) 모노는 숫자 런만 (3) 시리즈 ≥4는 범주 팔레트 예외를 반영한 뒤 V2.5-a 검수에서 대조. push·배포 없음.
 
 > 🎛️ **2026-08-15 08:06 KST — Institutional Grade V2.5-a 토큰·공용 컴포넌트 완료** [Codex]:
 > - 정본 스펙(`691bf82`)의 중립 팔레트를 `--dsc-bg #0a0a0b`·`--dsc-bg-deep #050506`·반투명 surface/border로 반영하고 일반 모드 Aurora 방사형 배경을 제거했다. `HeroZone`·`PillTabs`는 1px 저대비 경계·12px 계열 반경·단일 액센트로 절제했으며, 4열 공용 `StatRow`를 추가했다. 기존 `WidgetCard`와 약 400개 위젯의 하드코딩 색은 범위대로 건드리지 않았다.
@@ -11,7 +19,6 @@
 > - 로컬 Puppeteer QA(`/private/tmp/v25a-qa-20260815.qqMpbT/`): `/market`·`/fleet`의 1440×1000·390×844 모두 HTTP 200, 가로 overflow·page error·로컬 HTTP/요청 오류 0. Aurora 없음, Pill 12px, 숫자 모노 로드, 단위·등락률 산세리프 분리를 계산 스타일로 확인했다. `qa-results.json` SHA-256은 `75e43c8f4fd6391ef300e73d7f5e87111045382c4c4432c5a810ecd897ef6fea`; PNG는 fleet desktop/mobile `20b4ebbff03bffd0a94820c650ef995537f6f15411b5c59b311ac155240d1198`/`c790cd234f3051bda972ae613ce9c5a1edf30d7c01e206dc1f911a964b9a69b4`, market desktop/mobile `ecccc2aed375c74b674a88e0eaa6f606ee218c603999b55c6cdc92feefa9c6b1`/`b79506577db7b6aa081cec26478724602279966d84108c5bc8e678fea85cf846`다. 외부 글꼴·광고·분석 요청만 의도적으로 차단했다.
 > - npm 전용 전환 전 pnpm 파일과 기존 `node_modules`는 삭제하지 않고 `/private/tmp/v25a-pnpm-backup.W57Q6T/`에 보존했다. push·프로덕션 배포는 하지 않았다. 다음 단계는 CC가 숫자/단위 폰트 경계, LIVE 전이, 중립 상태 톤을 독립 검수한 뒤 V2.5-b 범위를 확정하는 것이다.
 
-> 마지막 업데이트: 2026-08-15 07:15 KST
 
 > 🧭 **2026-08-15 07:15 KST — `/cosmo` iframe 폐기·10탭 네이티브 이전 완료** [Codex]:
 > - registry의 `cosmo` 진입점은 외부 iframe 대신 `components/cosmo/CosmoDashboard.tsx`를 동적 로드한다. 원본 10화면을 `경영요약·자금·장기 추이·시장·바이어·생산·손익·원가·데이터 품질·판매·수주·대시보드 소개·구매·재고` PillTabs로 옮겼고, 상단 `HeroZone variant="kpi"`는 원본 최신값에서 주간 판매·누적 순손익·통조림 누적 수율·현금 잔액을 계산한다. 각 탭은 개별 dynamic import이며 기존 참치왕국 전 메뉴 세션 잠금을 그대로 사용한다.
