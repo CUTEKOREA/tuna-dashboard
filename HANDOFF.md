@@ -1,5 +1,16 @@
 # HANDOFF
 
+> 마지막 업데이트: 2026-08-15 03:37 KST
+
+> 🎛️ **2026-08-15 03:37 KST — Phase 3 잔여 Type C 히어로·전 메뉴 세션 잠금 선행 완료** [Codex]:
+> - `/pork`·`/cross-intelligence`·`/purse-seiner-db`의 기존 상단 헤더를 `HeroZone variant="kpi"`로 교체했다. 새 fetch 없이 기존 모듈만 사용해 돼지고기 **중국 생산 57,948천 MT·한국 생산 1,455천 MT·자급률 66%**(기준일 표기 2024년), 통합 인텔리전스 **대체 압력 93점·평균 리스크 충격 69점·배분 79점·경보 5건**(2026.07.03), 선망선 DB **검증 선박 155척·선적국 28개국·운영사 47개사·다중 관리기구 8척**(2026.05.27)을 연결했다. 위젯 내부와 데이터 계약은 변경하지 않았다.
+> - 돼지고기의 기존 5-Pillar 탐색 UI는 공용 `PillTabs`로 바꾸고 roving focus 기반 탭 5개와 `aria-controls`/`aria-labelledby` 패널 관계를 연결했다. 탭이 없던 나머지 두 화면에는 새 탭을 만들지 않았다.
+> - registry의 운영 의미는 보존했다. `PROTECTED_OPERATION_MENU_KEYS`는 기존 3개(`fleet`·`unloading`·`logistics`) 그대로 두고, 별도 `SESSION_ACCESS_MENU_KEYS = VALID_MENUS`를 `app/page.tsx` 잠금 판정에 사용했다. 비밀번호 상수와 Supabase 층은 건드리지 않았다. 전체 메뉴 잠금에 맞춰 공개 dashboard sitemap 경로는 0개가 됐고, 기존에 패널 순서에서 빠져 빈 화면이던 `cross-intelligence`도 실제 렌더 순서에 복구했다.
+> - TDD: 최초 요구사항 RED **8건**, subtitle 표현 정정 RED **1건**을 확인한 뒤 focused **38/38** 통과. 전체 `npm run verify`는 ESLint 오류 0(기존 경고 18), TypeScript, Vitest **238/238**, API cache **143/143**, Next 정적 페이지 **117/117**, bundle **30 routes**로 통과했다.
+> - S-Grade 실제 closure는 15개 파일이다. 세 진입 컴포넌트의 영문·GS 톤·가짜 LIVE 후보는 0건이며, 수정 금지한 기존 `PorkWidgets.tsx`의 `CO2e (kg/kg)` 후보 1건은 보존했다.
+> - Puppeteer QA: 루트와 활성 메뉴 7개 직접 URL 모두 미승인 세션에서 `전체 메뉴 접근 확인`만 렌더해 우회 0건, 비밀번호 입력→`sessionStorage['silla-operation-access']='granted'`→해제 흐름 정상. 3페이지를 1440×1000·390×844에서 최종 KPI 값까지 확인했고 6/6 가로 overflow 0px, page error·로컬 HTTP/요청 실패 0건이다. 스크린샷과 `qa-results.json`은 `/private/tmp/redesign-p3-qa-20260815.tHv2ss/`에 있다. 기존 `RootLayout` 광고/분석 스크립트 hydration 경고와 기존 돼지고기 위젯 P-03 콘솔 경고는 앱 오류와 분리했다.
+> - pnpm 환경은 삭제하지 않고 `/private/tmp/redesign-p3-npm-backup.cSVHYb/`에 보존한 뒤 `npm ci`로 재구성했다. push·프로덕션 배포는 하지 않았다. 다음 단계는 CC의 직접 URL 잠금·KPI 원자료·verify 재현 검수와 비밀번호 값 별도 교체다.
+
 > 마지막 업데이트: 2026-08-15 03:09 KST
 
 > 📰 **2026-08-15 03:09 KST — P2.5 `/market` 데일리 참치 브리핑 전환 완료** [Codex]:

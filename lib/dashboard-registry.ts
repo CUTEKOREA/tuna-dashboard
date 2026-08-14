@@ -93,6 +93,8 @@ const SIDEBAR_SECTION_ORDER: readonly DashboardSection[] = [
 ];
 
 export const VALID_MENUS = DASHBOARD_MENU_CONFIGS.map((menu) => menu.key) as readonly ActiveMenu[];
+export const SESSION_ACCESS_MENU_KEYS = VALID_MENUS;
+export const SESSION_ACCESS_MENUS = new Set<ActiveMenu>(SESSION_ACCESS_MENU_KEYS);
 
 export const DASHBOARD_TITLES = Object.freeze(
   Object.fromEntries(DASHBOARD_MENU_CONFIGS.map((menu) => [menu.key, menu.title])),
@@ -133,8 +135,7 @@ export const DASHBOARD_COMMANDS = DASHBOARD_MENU_CONFIGS
 
 export const PUBLIC_DASHBOARD_ROUTES = DASHBOARD_MENU_CONFIGS
   .filter((menu) => (
-    menu.key !== 'market'
-    && !requiresOperationAccess(menu)
+    !SESSION_ACCESS_MENUS.has(menu.key)
     && !HIDDEN_DASHBOARD_MENU_KEYS.has(menu.key)
   ))
   .map((menu) => menu.key) as readonly ActiveMenu[];
@@ -143,6 +144,7 @@ export const DASHBOARD_PANEL_ORDER = [
   'market',
   'fleet',
   'logistics',
+  'cross-intelligence',
 
   'pork',
   'unloading',

@@ -8,7 +8,7 @@ import {
   PieChart, Pie, Cell, BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer,
   Treemap
 } from 'recharts';
-import { Ship, Globe, Flag, Building2, Link2, Search, Download, ChevronUp, ChevronDown, X, Filter, Database, AlertTriangle, CheckCircle2 } from 'lucide-react';
+import { Ship, Globe, Flag, Building2, Link2, Search, Download, ChevronUp, ChevronDown, X, Filter, Database, AlertTriangle } from 'lucide-react';
 import {
   vessels, RFMO_COLORS, TOTAL_VESSELS, MULTI_RFMO_COUNT,
   TOTAL_FLAGS, TOTAL_OPERATORS, TOTAL_RFMOS,
@@ -16,11 +16,33 @@ import {
   FLAG_EMOJI, type PurseSeinerVessel
 } from '../data/purseSeinerData';
 import TelemetryBadge from './TelemetryBadge';
+import HeroZone from './v2/HeroZone';
 
 /* ───────── 데이터 기준일 (data/purseSeinerData.ts 최종 검증일) ───────── */
 const DATA_DATE = '2026-05-27';
 const CONTINENT_TREEMAP_COLORS = ['#3b82f6', '#10b981', '#f59e0b', '#ef4444', '#8b5cf6', '#ec4899', '#06b6d4'];
 const RFMO_MATRIX_COLUMNS = ['WCPFC', 'IOTC', 'IATTC', 'ICCAT'];
+
+export function PurseSeinerHero() {
+  return (
+    <HeroZone
+      variant="kpi"
+      title="선망선 DB"
+      subtitle={`데이터 기준일 ${DATA_DATE.replace(/-/g, '.')} · 국제해사기구 번호 검증 완료`}
+      primaryKpi={{
+        label: '검증 선박',
+        value: TOTAL_VESSELS,
+        unit: '(척)',
+        accent: '#3b82f6',
+      }}
+      secondaryKpis={[
+        { label: '선적국', value: TOTAL_FLAGS, unit: '(개국)', accent: '#f59e0b' },
+        { label: '운영사', value: TOTAL_OPERATORS, unit: '(개사)', accent: '#ec4899' },
+        { label: '다중 관리기구 등록', value: MULTI_RFMO_COUNT, unit: '(척)', accent: '#8b5cf6' },
+      ]}
+    />
+  );
+}
 
 /* ───────── L-01 한글 매핑 (데이터 키는 영문 유지, 렌더링만 한글) ───────── */
 const RFMO_NAMES_KO: Record<string, string> = {
@@ -667,27 +689,9 @@ export default function PurseSeinerDashboard() {
 
   return (
     <div style={{ padding: '24px 28px', maxWidth: 1400, margin: '0 auto' }}>
-      {/* Header */}
-      <motion.div initial={{ opacity: 0, y: -20 }} animate={{ opacity: 1, y: 0 }}
-        style={{ marginBottom: 28 }}>
-        <h1 style={{ fontSize: 24, fontWeight: 800, color: '#f1f5f9', marginBottom: 4, display: 'flex', alignItems: 'center', gap: 10 }}>
-          <Ship size={28} style={{ color: '#3b82f6' }} />
-          글로벌 참치 선망선 DB
-        </h1>
-        <div style={{ display: 'flex', alignItems: 'center', gap: 12, flexWrap: 'wrap' }}>
-          <span style={{ fontSize: 13, color: '#64748b' }}>
-            IMO 체크디짓 검증 완료 · {TOTAL_VESSELS}척 · 최종 검증: {DATA_DATE}
-          </span>
-          <span style={{
-            display: 'inline-flex', alignItems: 'center', gap: 4,
-            padding: '2px 10px', borderRadius: 12, fontSize: 11, fontWeight: 600,
-            background: 'rgba(16, 185, 129, 0.15)', color: '#34d399',
-            border: '1px solid rgba(16, 185, 129, 0.3)',
-          }}>
-            <CheckCircle2 size={12} /> IMO 검증 통과
-          </span>
-        </div>
-      </motion.div>
+      <div style={{ marginBottom: 28 }}>
+        <PurseSeinerHero />
+      </div>
 
       {/* Section 1: KPI Cards */}
       <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap', marginBottom: 24 }}>

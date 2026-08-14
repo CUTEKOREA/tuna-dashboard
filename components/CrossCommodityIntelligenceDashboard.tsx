@@ -2,6 +2,7 @@
 
 import React from 'react';
 import { AlertTriangle, ArrowRight, BarChart3, Gauge, ShieldAlert, TrendingUp } from 'lucide-react';
+import HeroZone, { type HeroKpi } from './v2/HeroZone';
 import {
   CrossCommodityIntelligence,
   getCrossCommodityIntelligence,
@@ -21,13 +22,6 @@ const pageStyle: React.CSSProperties = {
   flexDirection: 'column',
   gap: 18,
   paddingBottom: 40,
-};
-
-const headerStyle: React.CSSProperties = {
-  border: '1px solid rgba(148, 163, 184, 0.22)',
-  background: 'rgba(15, 23, 42, 0.76)',
-  borderRadius: 8,
-  padding: '22px',
 };
 
 const gridStyle: React.CSSProperties = {
@@ -84,6 +78,57 @@ function MetricTile({ label, value, sub }: { label: string; value: string; sub: 
   );
 }
 
+export function CrossCommodityHero({
+  data,
+  syncDate,
+}: {
+  data: CrossCommodityIntelligence;
+  syncDate: string;
+}) {
+  const primarySignal = data.substitutionSignals[0];
+  const topRisk = data.riskFactors[0];
+  const topAllocation = data.portfolioCandidates[0];
+  const secondaryKpis: HeroKpi[] = [];
+
+  if (topRisk) {
+    secondaryKpis.push({
+      label: '평균 리스크 충격',
+      value: topRisk.averageImpact,
+      unit: '(점)',
+      accent: '#f59e0b',
+    });
+  }
+  if (topAllocation) {
+    secondaryKpis.push({
+      label: '최상위 배분 점수',
+      value: topAllocation.portfolioScore,
+      unit: '(점)',
+      accent: '#10b981',
+    });
+  }
+  secondaryKpis.push({
+    label: '활성 이상 경보',
+    value: data.anomalyAlerts.length,
+    unit: '(건)',
+    accent: '#ef4444',
+  });
+
+  return (
+    <HeroZone
+      variant="kpi"
+      title="통합 인텔리전스"
+      subtitle={`데이터 기준일 ${syncDate} · ${data.meta.method}`}
+      primaryKpi={primarySignal ? {
+        label: '최대 대체 압력',
+        value: primarySignal.pressureScore,
+        unit: '(점)',
+        accent: '#38bdf8',
+      } : undefined}
+      secondaryKpis={secondaryKpis}
+    />
+  );
+}
+
 export default function CrossCommodityIntelligenceDashboard() {
   const [data, setData] = React.useState<CrossCommodityIntelligence>(INITIAL_DATA);
   const [syncDate, setSyncDate] = React.useState(INITIAL_DATA.meta.syncDate);
@@ -109,23 +154,7 @@ export default function CrossCommodityIntelligenceDashboard() {
 
   return (
     <div style={pageStyle}>
-      <section style={headerStyle}>
-        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 16, flexWrap: 'wrap' }}>
-          <div>
-            <div style={{ ...labelStyle, color: '#38bdf8' }}>CROSS-COMMODITY</div>
-            <h1 style={{ margin: '6px 0 0', fontSize: 26, lineHeight: 1.2, color: 'var(--text-main)' }}>
-              통합 인텔리전스
-            </h1>
-            <p style={{ ...mutedStyle, maxWidth: 760, marginTop: 8 }}>
-              {data.meta.method}
-            </p>
-          </div>
-          <div style={{ ...mutedStyle, textAlign: 'right' }}>
-            <div>{data.meta.status}</div>
-            <div>{syncDate}</div>
-          </div>
-        </div>
-      </section>
+      <CrossCommodityHero data={data} syncDate={syncDate} />
 
       <section style={gridStyle}>
         <MetricTile label="대체 회전" value={data.headline.primaryRotation} sub="가장 높은 대체 압력" />

@@ -2,6 +2,7 @@ import { readFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { describe, expect, it } from 'vitest';
 import sitemap from '../app/sitemap';
+import * as dashboardRegistry from '../lib/dashboard-registry';
 import {
   DASHBOARD_COMMANDS,
   DASHBOARD_MENU_CONFIGS,
@@ -258,6 +259,13 @@ describe('dashboard registry', () => {
     }
   });
 
+  it('requires the existing session access check for every active menu without changing operation metadata', () => {
+    const sessionAccessKeys = (dashboardRegistry as Record<string, unknown>).SESSION_ACCESS_MENU_KEYS;
+
+    expect(sessionAccessKeys).toEqual(VALID_MENUS);
+    expect(PROTECTED_OPERATION_MENU_KEYS).toEqual(['fleet', 'unloading', 'logistics']);
+  });
+
   it('drives command search from the same valid menu registry', () => {
     expect(DASHBOARD_COMMANDS.map((command) => command.key)).toEqual(
       VALID_MENUS.filter((menu) => menu !== 'pork'),
@@ -285,17 +293,15 @@ describe('dashboard registry', () => {
     expect(DASHBOARD_PANEL_ORDER).toContain('pork');
   });
 
-  it('derives public sitemap dashboard routes from non-protected menus', () => {
-    expect(PUBLIC_DASHBOARD_ROUTES).toEqual(
-      VALID_MENUS.filter((menu) => !['market', 'fleet', 'unloading', 'logistics', 'pork'].includes(menu)),
-    );
+  it('omits session-locked dashboards from public sitemap routes', () => {
+    expect(PUBLIC_DASHBOARD_ROUTES).toEqual([]);
     expect(PUBLIC_DASHBOARD_ROUTES).not.toContain('value-chain');
     expect(PUBLIC_DASHBOARD_ROUTES).not.toContain('octopus');
     expect(PUBLIC_DASHBOARD_ROUTES).not.toContain('squid');
     expect(PUBLIC_DASHBOARD_ROUTES).not.toContain('pollock');
     expect(PUBLIC_DASHBOARD_ROUTES).not.toContain('mackerel');
     expect(PUBLIC_DASHBOARD_ROUTES).not.toContain('flatfish');
-    expect(PUBLIC_DASHBOARD_ROUTES).toContain('cross-intelligence');
+    expect(PUBLIC_DASHBOARD_ROUTES).not.toContain('cross-intelligence');
     expect(PUBLIC_DASHBOARD_ROUTES).not.toContain('sashimi-steak');
     expect(PUBLIC_DASHBOARD_ROUTES).not.toContain('bni-global');
     expect(PUBLIC_DASHBOARD_ROUTES).not.toContain('beef');
@@ -321,13 +327,12 @@ describe('dashboard registry', () => {
     expect(PUBLIC_DASHBOARD_ROUTES).not.toContain('fleet');
   });
 
-  it('publishes public dashboard routes to sitemap in registry order', () => {
-    const publicRouteSet = new Set<string>(PUBLIC_DASHBOARD_ROUTES);
+  it('keeps every session-locked dashboard path out of the sitemap', () => {
     const routes = sitemap().map((entry) => new URL(entry.url).pathname.replace(/^\//, ''));
-    const dashboardRoutes = routes.filter((route) => publicRouteSet.has(route));
+    const dashboardRoutes = routes.filter((route) => VALID_MENUS.includes(route as (typeof VALID_MENUS)[number]));
 
     expect(routes[0]).toBe('');
-    expect(dashboardRoutes).toEqual(PUBLIC_DASHBOARD_ROUTES);
+    expect(dashboardRoutes).toEqual([]);
   });
 
   it('omits sidebar sections after every item in the section is retired', () => {
@@ -365,14 +370,14 @@ describe('dashboard registry', () => {
       'market',
       'fleet',
       'logistics',
+      'cross-intelligence',
       'pork',
       'unloading',
       'purse-seiner-db',
     ]);
     expect(new Set(DASHBOARD_PANEL_ORDER)).toEqual(
-      new Set(VALID_MENUS.filter((menu) => menu !== 'cross-intelligence')),
+      new Set(VALID_MENUS),
     );
     expect(DASHBOARD_PANEL_ORDER).not.toContain('bni-global');
-    expect(DASHBOARD_PANEL_ORDER).not.toContain('cross-intelligence');
   });
 });

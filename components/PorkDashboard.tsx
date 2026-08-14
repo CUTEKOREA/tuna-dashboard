@@ -1,13 +1,12 @@
 'use client';
 import React, { useState } from 'react';
-import { Factory } from 'lucide-react';
 import { W1_ASFCycle, W2_FeedMargin, W3_TradeSpread, W4_ESG, W5_Top10, W6_Trend, W7_KoreaSupply, W8_ImportPartners, W9_ASFSeafood, W10_Portfolio, W11_SelfSufficiency } from './PorkWidgets';
 import PorkUsdaWidgets from './PorkUsdaWidgets';
 import { InsightPorkSupplyChain, InsightAsfChinaFactor, InsightHogCornRatio } from './PorkEmpiricalInsights';
 import { TelemetryBadge } from './TelemetryBadge';
-import { getUsdaWidgetData } from '@/lib/data/usda-widgets';
-
-const porkUsdaRaw = getUsdaWidgetData('pork');
+import { asfCycleData, productionTrendData, selfSufficiencyData } from './porkData';
+import HeroZone, { type HeroKpi } from './v2/HeroZone';
+import PillTabs from './v2/PillTabs';
 
 const KPIS = [
   { title: '중국 돈육 생산량 (2024)', value: '57,948천톤', trend: '📊', desc: '전년비 -1.5% 감소 · 글로벌 1위', telemetry: 'synced', syncDate: 'FAOSTAT', color: '#f43f5e' },
@@ -25,7 +24,50 @@ const PILLARS = [
   { id: 'P3', num: '❸', label: '물류·통관', title: '🚢 Pillar III — 물류 및 통관', desc: '대륙간 무역 단가 스프레드 및 수입 파트너 다변화', color: '#8b5cf6', widgets: ['W3', 'W8'] },
   { id: 'P4', num: '❹', label: '판매·수요', title: '📈 Pillar IV — 판매 및 수요', desc: '한국 수급 구조 분석 및 자급률 갭 공략', color: '#f97316', widgets: ['W7', 'W11'] },
   { id: 'P5', num: '❺', label: 'ESG·지속가능성', title: '🌱 Pillar V — ESG 및 지속가능성', desc: '탄소 배출 비교 및 그린 프리미엄 전략', color: '#10b981', widgets: ['W4'] },
+] as const;
+
+type PorkPillarId = (typeof PILLARS)[number]['id'];
+
+const PORK_PILL_TABS = PILLARS.map((pillar) => ({
+  key: pillar.id,
+  label: pillar.label,
+}));
+
+const latestChinaProduction = asfCycleData[asfCycleData.length - 1];
+const latestProductionTrend = productionTrendData[productionTrendData.length - 1];
+const porkSelfSufficiency = selfSufficiencyData.find((item) => item.protein === '돼지고기');
+
+const PORK_SECONDARY_KPIS: HeroKpi[] = [
+  {
+    label: '한국 돈육 생산량',
+    value: latestProductionTrend.한국,
+    unit: '(천 MT)',
+    accent: '#fb7185',
+  },
+  ...(porkSelfSufficiency ? [{
+    label: '한국 돈육 자급률',
+    value: porkSelfSufficiency.selfRate,
+    unit: '(%)',
+    accent: '#f59e0b',
+  }] : []),
 ];
+
+export function PorkHero() {
+  return (
+    <HeroZone
+      variant="kpi"
+      title="돼지고기"
+      subtitle={`데이터 기준일 ${latestChinaProduction.year}년`}
+      primaryKpi={{
+        label: '중국 돈육 생산량',
+        value: latestChinaProduction.production,
+        unit: '(천 MT)',
+        accent: '#f43f5e',
+      }}
+      secondaryKpis={PORK_SECONDARY_KPIS}
+    />
+  );
+}
 
 const WIDGET_MAP: Record<string, React.FC<any>> = {
   W1: W1_ASFCycle, W2: W2_FeedMargin, W3: W3_TradeSpread, W4: W4_ESG,
@@ -33,39 +75,15 @@ const WIDGET_MAP: Record<string, React.FC<any>> = {
   W9: W9_ASFSeafood, W10: W10_Portfolio, W11: W11_SelfSufficiency,
 };
 
-// 헤더 위젯 카운트 — 하드코딩 금지(패턴 I), 실렌더 구성에서 동적 산출
-const INSIGHT_COMPONENTS = [InsightPorkSupplyChain, InsightAsfChinaFactor, InsightHogCornRatio];
-const TOTAL_WIDGET_COUNT = Object.keys(WIDGET_MAP).length
-  + ((porkUsdaRaw as any).widgets?.length || 0)
-  + INSIGHT_COMPONENTS.length;
-
 export default function PorkDashboard() {
-  const [activePart, setActivePart] = useState<'P1' | 'P2' | 'P3' | 'P4' | 'P5'>('P1');
+  const [activePart, setActivePart] = useState<PorkPillarId>('P1');
 
   return (
     <div style={{ padding: '0 1.5rem 3rem', color: '#f8fafc', minHeight: '100vh', fontFamily: "'Inter',sans-serif" }}>
 
-      {/* ═══ Header ═══ */}
-      <header style={{ marginBottom: '2rem' }}>
-        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
-            <div style={{ width: '44px', height: '44px', borderRadius: '8px', background: 'var(--surface-3)', display: 'flex', alignItems: 'center', justifyContent: 'center', border: '1px solid rgba(255,255,255,0.1)' }}>
-              <Factory size={24} color="#f43f5e" />
-            </div>
-            <div>
-              <h1 style={{ margin: 0, fontSize: '1.6rem', fontWeight: 800, letterSpacing: '-0.5px', color: '#f8fafc' }}>
-                🐷 돼지고기(Pork) 글로벌 밸류체인 대시보드
-              </h1>
-              <p style={{ margin: 0, fontSize: '0.8rem', color: '#94a3b8' }}>
-                [V4.2 S-Grade] FAOSTAT 실데이터 기반 글로벌 돈육 공급망 · 수산물 대체 탄력성 분석 ({TOTAL_WIDGET_COUNT}개 위젯)
-              </p>
-            </div>
-          </div>
-          <div style={{ fontSize: '0.8rem', padding: '0.5rem 1rem', background: '#11182f', border: '1px solid rgba(140,170,255,0.10)', borderRadius: '8px', color: '#94a3b8' }}>
-            <span style={{ color: '#f43f5e' }}>PEF Command Center:</span> FAOSTAT Synced
-          </div>
-        </div>
-      </header>
+      <div style={{ marginBottom: '2rem' }}>
+        <PorkHero />
+      </div>
 
       {/* ═══ KPIs ═══ */}
       <div data-mobile-stack style={{ display: 'grid', gridTemplateColumns: 'repeat(6, 1fr)', gap: '1rem', marginBottom: '2rem' }}>
@@ -85,30 +103,28 @@ export default function PorkDashboard() {
       </div>
 
       {/* ═══ 5-Pillar 밸류체인 네비게이터 ═══ */}
-      <div style={{ background: 'linear-gradient(180deg, rgba(20, 28, 52, 0.5), rgba(20, 28, 52, 0.2))', border: '1px solid rgba(255,255,255,0.04)', borderRadius: '16px', padding: '6px', marginBottom: '2rem', boxShadow: '0 4px 30px rgba(0,0,0,0.3), inset 0 1px 0 rgba(140,170,255,0.10)' }}>
-        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '6px', padding: '4px 0 8px', borderBottom: '1px solid rgba(140,170,255,0.10)', marginBottom: '6px' }}>
-          <span style={{ fontSize: '0.7rem', color: 'rgba(148,163,184,0.7)', fontWeight: 600, letterSpacing: '0.08em', textTransform: 'uppercase' }}>밸류체인 네비게이터 — 아래 단계를 클릭하여 탐색하세요</span>
-        </div>
-        <div data-mobile-stack style={{ display: 'grid', gridTemplateColumns: 'repeat(5, 1fr)', gap: '4px' }}>
-          {PILLARS.map((s, idx) => {
-            const isActive = activePart === s.id;
-            return (
-              <button key={s.id} onClick={() => setActivePart(s.id as any)}
-                onMouseEnter={(e) => { if (!isActive) { e.currentTarget.style.background = 'rgba(140,170,255,0.12)'; e.currentTarget.style.transform = 'translateY(-2px)'; e.currentTarget.style.borderColor = `${s.color}40`; } }}
-                onMouseLeave={(e) => { if (!isActive) { e.currentTarget.style.background = 'transparent'; e.currentTarget.style.transform = 'translateY(0)'; e.currentTarget.style.borderColor = 'transparent'; } }}
-                style={{ position: 'relative', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '4px', padding: '12px 8px 14px', background: isActive ? `${s.color}12` : 'transparent', border: `1.5px solid ${isActive ? s.color : 'transparent'}`, borderRadius: '12px', cursor: 'pointer', transition: 'all 0.25s cubic-bezier(0.4, 0, 0.2, 1)', boxShadow: isActive ? `0 0 20px ${s.color}25, inset 0 1px 0 rgba(255,255,255,0.1)` : 'none', overflow: 'hidden' }}>
-                {isActive && (<div style={{ position: 'absolute', bottom: 0, left: '20%', right: '20%', height: '3px', background: `linear-gradient(90deg, transparent, ${s.color}, transparent)`, borderRadius: '3px 3px 0 0' }} />)}
-                <div style={{ width: '28px', height: '28px', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', background: isActive ? s.color : 'rgba(140,170,255,0.12)', color: isActive ? '#0a0f1f' : 'rgba(148,163,184,0.6)', fontSize: '0.75rem', fontWeight: 800, boxShadow: isActive ? `0 0 12px ${s.color}50` : 'none' }}>{idx + 1}</div>
-                <span style={{ fontSize: '0.78rem', fontWeight: isActive ? 700 : 500, color: isActive ? s.color : 'var(--text-secondary)', whiteSpace: 'nowrap' }}>{s.label}</span>
-              </button>
-            );
-          })}
-        </div>
+      <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '2rem' }}>
+        <PillTabs
+          tabs={PORK_PILL_TABS}
+          activeKey={activePart}
+          onChange={(key) => setActivePart(key as PorkPillarId)}
+          accentFrom="#f43f5e"
+          accentTo="#ec4899"
+          ariaLabel="돼지고기 밸류체인 보기"
+          tabIdPrefix="pork-tab"
+          panelIdPrefix="pork-panel"
+        />
       </div>
 
       {/* ═══ 5-PILLAR ARCHITECTURE (activePart 필터링) ═══ */}
       {PILLARS.filter(s => s.id === activePart).map((sec) => (
-        <div key={sec.id} style={{ marginBottom: '4rem' }}>
+        <div
+          key={sec.id}
+          id={`pork-panel-${sec.id}`}
+          role="tabpanel"
+          aria-labelledby={`pork-tab-${sec.id}`}
+          style={{ marginBottom: '4rem' }}
+        >
           <div style={{ marginBottom: '1.5rem', display: 'flex', alignItems: 'center', gap: '0.8rem' }}>
             <div style={{ width: '4px', height: '28px', background: `linear-gradient(180deg,${sec.color},${sec.color}99)`, borderRadius: '2px' }} />
             <div>

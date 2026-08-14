@@ -189,6 +189,84 @@ describe('Deep Sea Command V2 — Phase 2 운영 페이지', () => {
   });
 });
 
+describe('Deep Sea Command V2 — Phase 3 잔여 페이지', () => {
+  it('돼지고기 히어로가 기존 생산 데이터의 기준일·핵심 KPI·단위를 렌더한다', async () => {
+    const porkModule = await import('../components/PorkDashboard');
+    const PorkHero = (porkModule as Record<string, unknown>).PorkHero;
+
+    expect(PorkHero).toBeTypeOf('function');
+    if (typeof PorkHero !== 'function') return;
+
+    const markup = renderToStaticMarkup(
+      React.createElement(PorkHero as React.ComponentType),
+    );
+
+    expect(markup).toContain('돼지고기');
+    expect(markup).toContain('데이터 기준일 2024년');
+    expect(markup).toContain('중국 돈육 생산량');
+    expect(markup).toContain('(천 MT)');
+    expect(markup).toContain('한국 돈육 생산량');
+    expect(markup).toContain('한국 돈육 자급률');
+  });
+
+  it('돼지고기 기존 5-Pillar 탐색을 공용 PillTabs의 탭·패널 관계로 렌더한다', async () => {
+    const { default: PorkDashboard } = await import('../components/PorkDashboard');
+    const markup = renderToStaticMarkup(React.createElement(PorkDashboard));
+
+    expect(markup).toContain('role="tablist"');
+    expect(markup).toContain('aria-label="돼지고기 밸류체인 보기"');
+    expect(markup).toContain('id="pork-tab-P1"');
+    expect(markup).toContain('aria-controls="pork-panel-P1"');
+    expect(markup).toContain('id="pork-panel-P1"');
+    expect(markup).toContain('aria-labelledby="pork-tab-P1"');
+  });
+
+  it('통합 인텔리전스 히어로가 합성 데이터의 기준일·압력·리스크 KPI를 렌더한다', async () => {
+    const dashboardModule = await import('../components/CrossCommodityIntelligenceDashboard');
+    const dataModule = await import('../lib/data/cross-commodity-intelligence');
+    const CrossCommodityHero = (dashboardModule as Record<string, unknown>).CrossCommodityHero;
+
+    expect(CrossCommodityHero).toBeTypeOf('function');
+    if (typeof CrossCommodityHero !== 'function') return;
+
+    const data = dataModule.getCrossCommodityIntelligence();
+    const markup = renderToStaticMarkup(
+      React.createElement(CrossCommodityHero as React.ComponentType<any>, {
+        data,
+        syncDate: '2026.07.03',
+      }),
+    );
+
+    expect(markup).toContain('통합 인텔리전스');
+    expect(markup).toContain('데이터 기준일 2026.07.03');
+    expect(markup).toContain('최대 대체 압력');
+    expect(markup).toContain('평균 리스크 충격');
+    expect(markup).toContain('(점)');
+    expect(markup).toContain('(건)');
+  });
+
+  it('선망선 DB 히어로가 검증일·총 선박·등록 분포 KPI를 렌더한다', async () => {
+    const purseSeinerModule = await import('../components/PurseSeinerDashboard');
+    const PurseSeinerHero = (purseSeinerModule as Record<string, unknown>).PurseSeinerHero;
+
+    expect(PurseSeinerHero).toBeTypeOf('function');
+    if (typeof PurseSeinerHero !== 'function') return;
+
+    const markup = renderToStaticMarkup(
+      React.createElement(PurseSeinerHero as React.ComponentType),
+    );
+
+    expect(markup).toContain('선망선 DB');
+    expect(markup).toContain('데이터 기준일 2026.05.27');
+    expect(markup).toContain('검증 선박');
+    expect(markup).toContain('(척)');
+    expect(markup).toContain('선적국');
+    expect(markup).toContain('(개국)');
+    expect(markup).toContain('운영사');
+    expect(markup).toContain('(개사)');
+  });
+});
+
 describe('Deep Sea Command V2 — PillTabs', () => {
   it('탭 라벨과 활성 상태, 선택적 패널 ARIA 연결을 렌더한다', () => {
     const markup = renderToStaticMarkup(

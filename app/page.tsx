@@ -16,7 +16,7 @@ import {
   getDashboardTitle,
   isActiveMenu,
   KEYBOARD_SHORTCUT_MENUS,
-  PROTECTED_OPERATION_MENUS,
+  SESSION_ACCESS_MENUS,
   SIDEBAR_SECTIONS,
 } from '../lib/dashboard-registry';
 import type { SidebarIconKey, SidebarMenuItem } from '../lib/dashboard-registry';
@@ -71,7 +71,7 @@ const SIDEBAR_SUFFIX_STYLE = { fontSize: '0.75em', opacity: 0.8 };
 export default function Home() {
   const [mgoData, setMgoData] = useState({ price: 0, change: 0, date: '', loading: true });
   
-  // 전체 Supabase 로그인 대신 실시간 운영 4개 메뉴만 세션 비밀번호로 잠근다.
+  // Supabase 로그인과 별개로 모든 활성 메뉴를 기존 세션 비밀번호로 잠근다.
   const session = { user: { email: 'public@silla.local' } };
   const authChecked = true;
   const pathname = usePathname();
@@ -224,10 +224,9 @@ export default function Home() {
 
   // Ambient color based on active page
   const ambientAccent = getDashboardAccent(activeMenu);
-  const isOperationMenuLocked = PROTECTED_OPERATION_MENUS.has(activeMenu) && !operationAccessGranted;
-  const activeMenuTitle = getDashboardTitle(activeMenu);
+  const isOperationMenuLocked = SESSION_ACCESS_MENUS.has(activeMenu) && !operationAccessGranted;
   const isPanelActive = (menu: ActiveMenu) => (
-    activeMenu === menu && (!PROTECTED_OPERATION_MENUS.has(menu) || operationAccessGranted)
+    activeMenu === menu && (!SESSION_ACCESS_MENUS.has(menu) || operationAccessGranted)
   );
   const renderSidebarItem = (item: SidebarMenuItem) => {
     const Icon = SIDEBAR_ICONS[item.icon];
@@ -367,11 +366,11 @@ export default function Home() {
               marginTop: '1rem'
             }}
           >
-            <Lock size={14} /> 실시간 운영 잠금
+            <Lock size={14} /> 전체 메뉴 잠금
           </button>
         ) : (
           <div style={{ fontSize: '12px', color: 'var(--text-muted)', textAlign: 'center', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '6px', marginTop: '1rem' }}>
-            <Lock size={14} /> 실시간 운영 잠김
+            <Lock size={14} /> 전체 메뉴 잠김
           </div>
         )}
       </aside>
@@ -399,17 +398,17 @@ export default function Home() {
               <div className={styles.loginPanel} style={{ width: 'min(420px, 100%)' }}>
                 <Lock size={34} strokeWidth={1.5} style={{ margin: '0 auto 16px auto', color: 'var(--text-main)' }} />
                 <h2 style={{ fontSize: '20px', fontWeight: 'bold', marginBottom: '8px', color: 'var(--text-main)' }}>
-                  {activeMenuTitle} 접근 확인
+                  전체 메뉴 접근 확인
                 </h2>
                 <p style={{ fontSize: '13px', color: 'var(--text-muted)', marginBottom: '22px', lineHeight: 1.6 }}>
-                  실시간 운영 메뉴는 내부 확인 후 열람할 수 있습니다.
+                  전체 대시보드 메뉴는 내부 확인 후 열람할 수 있습니다.
                 </p>
 
                 <form onSubmit={handleOperationPasswordSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '14px' }}>
                   <input
                     type="password"
                     inputMode="numeric"
-                    placeholder="운영 비밀번호"
+                    placeholder="메뉴 비밀번호"
                     value={operationPassword}
                     onChange={(e) => setOperationPassword(e.target.value)}
                     autoFocus
@@ -453,7 +452,7 @@ export default function Home() {
                 </form>
 
                 <div style={{ marginTop: '18px', fontSize: '12px', color: 'var(--text-muted)', lineHeight: 1.6 }}>
-                  보호 대상: 시장 동향 · 선단 운영 · 하역 현황 · 물류·가공
+                  보호 대상: 전체 대시보드 메뉴
                 </div>
               </div>
             </div>
