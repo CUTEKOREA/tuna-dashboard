@@ -43,6 +43,8 @@ const CrossCommodityIntelligenceDashboard = dynamic(() => import('../components/
 
 const MarketDashboard = dynamic(() => import('../components/MarketDashboard'));
 const PurseSeinerDashboard = dynamic(() => import('../components/PurseSeinerDashboard'));
+const CosmoDashboard = dynamic(() => import('../components/EmbeddedDashboardFrame').then((module) => module.CosmoDashboard));
+const BangkokOfficeDashboard = dynamic(() => import('../components/EmbeddedDashboardFrame').then((module) => module.BangkokOfficeDashboard));
 
 const OPERATION_ACCESS_STORAGE_KEY = 'silla-operation-access';
 const OPERATION_PASSWORD = 'a34349900';
@@ -257,6 +259,8 @@ export default function Home() {
 
     pork: <PorkDashboard />,
     unloading: <UnloadingStatus />,
+    cosmo: <CosmoDashboard />,
+    'bangkok-office': <BangkokOfficeDashboard />,
     'purse-seiner-db': <PurseSeinerDashboard />,
   };
 
@@ -526,7 +530,7 @@ export default function Home() {
                         color: 'var(--text-muted)'
                       }}>
                         <div style={{ fontWeight: 700, color: 'var(--text-main)', marginBottom: '6px' }}>제공 메뉴 미리보기</div>
-                        <div>📡 실시간 운영 — 시장 동향 · 선단 운영 · 하역 현황 · 물류·가공</div>
+                        <div>📡 실시간 운영 — 시장 동향 · 선단 운영 · 하역 현황 · 물류·가공 · 코스모 · 방콕사무소</div>
                         <div>🐟 어종별 인텔리전스 — (현재 공개 메뉴 없음)</div>
                         <div>🌾 농산물 — (현재 공개 메뉴 없음)</div>
                       </div>
