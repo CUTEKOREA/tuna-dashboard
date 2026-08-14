@@ -1,11 +1,14 @@
 # HANDOFF
 
-> 마지막 업데이트: 2026-08-15 00:50 KST
+> 마지막 업데이트: 2026-08-15 00:54 KST
 
-> 🐟 **2026-08-15 00:50 KST — 고등어 페이지 HTML 아카이브 + 메뉴 제거(배포 진행)** [Grok]:
-> - `/mackerel` 내용을 agri_data `01_수산물(Seafood)/mackerel/intelligence_reports/Mackerel_Dashboard_Archive_2026-08-15.html`에 옮겼다(KPI 6·정적 28·런타임 14).
-> - `origin/main` 전용 브랜치 `chore/remove-mackerel-20260815`에서 메뉴·리라이트 제거. `/mackerel`는 `app/mackerel/page.tsx` `notFound()`. `/api/mackerel*`와 `MackerelDashboard`는 존치.
-> - 명태 제거(#334/#337) 위에 다시 얹었다. `mackerel/claude-etl`은 포함하지 않는다.
+> 🚀 **2026-08-15 00:54 KST — `/mackerel` 메뉴 제거 배포 완료** [Grok]:
+> - HTML은 agri_data `01_수산물(Seafood)/mackerel/intelligence_reports/Mackerel_Dashboard_Archive_2026-08-15.html`(KPI 6·정적 28·런타임 14).
+> - PR **#335** squash `69f1de4`. App Quality Gate `31816496850` SUCCESS.
+> - Vercel Production `dpl_WhhioWN2U8H1Fso1isQK5nK8dXH4` READY, alias `leedonggun.co.kr`.
+> - 라이브 `/mackerel` 404. 사이트맵에 경로 없음. 사이드바 1440·390에 고등어 없음. 남은 어종 메뉴: 가자미. `/flatfish` 200.
+> - `/api/mackerel-kcs` 200 isLive. `MackerelDashboard`·`/api/mackerel*` 존치.
+> - 이 배포 error/fatal 로그 0. 명태 #334 위에 다시 얹었고 `mackerel/claude-etl`은 포함하지 않았다.
 
 > 마지막 업데이트: 2026-08-15 00:48 KST
 
