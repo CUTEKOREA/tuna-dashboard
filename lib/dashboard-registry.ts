@@ -38,7 +38,6 @@ export const DASHBOARD_MENU_CONFIGS = [
   { key: 'fleet', title: '선단 운영', section: 'operation', accent: 'cyan', requiresOperationAccess: true, shortcutOrder: 2, sidebar: { icon: 'Navigation', suffix: 'Fleet' } },
   { key: 'logistics', title: '물류·가공', section: 'operation', accent: 'cyan', requiresOperationAccess: true, shortcutOrder: 4, sidebar: { icon: 'Factory', suffix: 'Logistics' } },
   { key: 'unloading', title: '하역 현황', section: 'operation', accent: 'cyan', requiresOperationAccess: true, shortcutOrder: 3, sidebar: { icon: 'Anchor', suffix: 'Unloading' } },
-  { key: 'mackerel', title: '고등어', section: 'fishery', accent: 'cyan', shortcutOrder: 6, sidebar: { icon: 'FishSymbol', suffix: 'Mackerel' } },
   { key: 'pork', title: '돼지고기', section: 'livestock', accent: 'cyan', sidebar: { icon: 'Hexagon', suffix: 'Pork' } },
   { key: 'cross-intelligence', title: '통합 인텔리전스', section: 'strategy', accent: 'gold', sidebar: { icon: 'BarChart2', suffix: 'Cross' } },
   { key: 'flatfish', title: '가자미', section: 'fishery', accent: 'cyan', shortcutOrder: 12, sidebar: { icon: 'FishSymbol', suffix: 'Flatfish' } },
@@ -145,7 +144,6 @@ export const DASHBOARD_PANEL_ORDER = [
   'market',
   'fleet',
   'logistics',
-  'mackerel',
   'flatfish',
   'pork',
   'unloading',
@@ -155,7 +153,6 @@ export const DASHBOARD_PANEL_ORDER = [
 const SIDEBAR_SECTION_KEYS: Record<DashboardSection, readonly ActiveMenu[]> = {
   operation: ['market', 'fleet', 'unloading', 'logistics'],
   fishery: [
-    'mackerel',
     'flatfish',
   ],
   strategy: [
