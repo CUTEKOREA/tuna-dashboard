@@ -181,7 +181,7 @@
   /* 타이포 계층 (Twisty) — 웨이트 대비 200 vs 700 */
   --dsc-title-size: clamp(2.5rem, 5vw, 4rem);        /* 페이지 타이틀 48-64px */
   --dsc-title-weight: 250;
-  --dsc-kpi-size: clamp(3rem, 6vw, 4.5rem);          /* KPI 숫자 56-72px */
+  --dsc-kpi-size: clamp(2.4rem, 4.6vw + 0.9rem, 4.5rem); /* KPI 숫자 — 390px에서 소수점 포함 9자리도 한 줄 유지 */
   --dsc-kpi-weight: 700;
   --dsc-kpi-unit-size: 1.125rem;                     /* 단위 병기 18px */
 

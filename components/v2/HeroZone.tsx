@@ -68,6 +68,7 @@ function KpiNumber({ kpi, primary }: { kpi: HeroKpi; primary?: boolean }) {
           fontWeight: 'var(--dsc-kpi-weight)' as React.CSSProperties['fontWeight'],
           color: '#f8fafc',
           lineHeight: 1.05,
+          whiteSpace: 'nowrap', // 숫자·단위 한 줄 유지 — 긴 소수 KPI가 (MT)만 떨어뜨리는 줄바꿈 방지
           fontVariantNumeric: 'tabular-nums',
           textShadow: primary ? `0 0 32px ${kpi.accent ?? '#22d3ee'}40` : undefined,
         }}
