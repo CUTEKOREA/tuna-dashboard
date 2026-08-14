@@ -25,6 +25,20 @@ describe('dashboard registry', () => {
     expect(isActiveMenu('beef')).toBe(false);
   });
 
+  it('retires the korea-market dashboard route with an explicit 404 boundary', () => {
+    const routeSource = readFileSync(join(process.cwd(), 'app/korea-market/page.tsx'), 'utf8');
+
+    expect(routeSource).toContain('notFound()');
+    expect(isActiveMenu('korea-market')).toBe(false);
+  });
+
+  it('retires the cassava dashboard route with an explicit 404 boundary', () => {
+    const routeSource = readFileSync(join(process.cwd(), 'app/cassava/page.tsx'), 'utf8');
+
+    expect(routeSource).toContain('notFound()');
+    expect(isActiveMenu('cassava')).toBe(false);
+  });
+
   it('routes hydration-sensitive dashboards through the client-only category page', () => {
     const configSource = readFileSync(join(process.cwd(), 'next.config.mjs'), 'utf8');
     const categorySource = readFileSync(join(process.cwd(), 'app/[category]/page.tsx'), 'utf8');
@@ -82,7 +96,7 @@ describe('dashboard registry', () => {
     expect(heroSource).not.toContain('val1: 917');
   });
   it('keeps menu keys unique and title-addressable', () => {
-    expect(DASHBOARD_MENU_CONFIGS.length).toBeGreaterThanOrEqual(30);
+    expect(DASHBOARD_MENU_CONFIGS.length).toBeGreaterThanOrEqual(20);
     expect(new Set(VALID_MENUS).size).toBe(VALID_MENUS.length);
 
     for (const menu of DASHBOARD_MENU_CONFIGS) {
@@ -95,6 +109,15 @@ describe('dashboard registry', () => {
 
     expect(isActiveMenu('ai-forecast')).toBe(false);
     expect(isActiveMenu('beef')).toBe(false);
+    expect(isActiveMenu('korea-market')).toBe(false);
+    expect(isActiveMenu('cassava')).toBe(false);
+    expect(isActiveMenu('garlic')).toBe(false);
+    expect(isActiveMenu('carrot')).toBe(false);
+    expect(isActiveMenu('cocoa')).toBe(false);
+    expect(isActiveMenu('seasia-oem')).toBe(false);
+    expect(isActiveMenu('cold-storage')).toBe(false);
+    expect(isActiveMenu('msc')).toBe(false);
+    expect(isActiveMenu('sashimi-steak')).toBe(false);
     expect(isActiveMenu('retail')).toBe(false);
   });
 
@@ -155,9 +178,17 @@ describe('dashboard registry', () => {
     );
     expect(PUBLIC_DASHBOARD_ROUTES).toContain('value-chain');
     expect(PUBLIC_DASHBOARD_ROUTES).toContain('cross-intelligence');
-    expect(PUBLIC_DASHBOARD_ROUTES).toContain('sashimi-steak');
+    expect(PUBLIC_DASHBOARD_ROUTES).not.toContain('sashimi-steak');
     expect(PUBLIC_DASHBOARD_ROUTES).not.toContain('bni-global');
     expect(PUBLIC_DASHBOARD_ROUTES).not.toContain('beef');
+    expect(PUBLIC_DASHBOARD_ROUTES).not.toContain('korea-market');
+    expect(PUBLIC_DASHBOARD_ROUTES).not.toContain('cassava');
+    expect(PUBLIC_DASHBOARD_ROUTES).not.toContain('garlic');
+    expect(PUBLIC_DASHBOARD_ROUTES).not.toContain('carrot');
+    expect(PUBLIC_DASHBOARD_ROUTES).not.toContain('cocoa');
+    expect(PUBLIC_DASHBOARD_ROUTES).not.toContain('seasia-oem');
+    expect(PUBLIC_DASHBOARD_ROUTES).not.toContain('cold-storage');
+    expect(PUBLIC_DASHBOARD_ROUTES).not.toContain('msc');
     expect(PUBLIC_DASHBOARD_ROUTES).not.toContain('market');
     expect(PUBLIC_DASHBOARD_ROUTES).not.toContain('fleet');
   });
@@ -187,8 +218,8 @@ describe('dashboard registry', () => {
     expect(SIDEBAR_SECTIONS.map((section) => section.items.map((item) => item.key))).toEqual([
       ['market', 'fleet', 'unloading', 'logistics'],
       ['value-chain', 'mackerel', 'galchi', 'squid', 'jukkumi', 'octopus', 'pollock', 'flatfish', 'shrimp', 'whelk', 'kim', 'salmon'],
-      ['cold-storage', 'fleet-strategy', 'korea-market', 'seasia-oem', 'used-car', 'msc', 'sashimi-steak', 'research-lab'],
-      ['cashew', 'cassava', 'garlic', 'carrot', 'cocoa'],
+      ['fleet-strategy', 'used-car', 'research-lab'],
+      ['cashew'],
     ]);
 
     const sidebarKeys = SIDEBAR_SECTIONS.flatMap((section) => section.items.map((item) => item.key));
@@ -217,7 +248,6 @@ describe('dashboard registry', () => {
       'market',
       'fleet',
       'logistics',
-      'cold-storage',
       'mackerel',
       'galchi',
       'squid',
@@ -230,21 +260,13 @@ describe('dashboard registry', () => {
       'kim',
       'salmon',
       'cashew',
-      'cassava',
-      'garlic',
-      'carrot',
-      'cocoa',
       'pork',
       'used-car',
       'unloading',
       'value-chain',
-      'seasia-oem',
       'fleet-strategy',
-      'korea-market',
       'research-lab',
       'purse-seiner-db',
-      'msc',
-      'sashimi-steak',
     ]);
     expect(new Set(DASHBOARD_PANEL_ORDER)).toEqual(
       new Set(VALID_MENUS.filter((menu) => menu !== 'cross-intelligence')),

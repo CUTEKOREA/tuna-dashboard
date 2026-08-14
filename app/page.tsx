@@ -5,7 +5,7 @@ import dynamic from 'next/dynamic';
 import Image from 'next/image';
 import Link from 'next/link';
 import styles from './page.module.css';
-import { Activity, Anchor, Ship, Lock, Radio, BarChart2, Navigation, Factory, Waves, Fish, Hexagon, Command, Leaf, Menu, X, Snowflake, CarFront, Shrimp, Droplets, FishSymbol, Shell, Nut, Sprout, LeafyGreen, Carrot, Coffee, Box, TestTube, ShieldCheck } from 'lucide-react';
+import { Activity, Anchor, Ship, Lock, Radio, BarChart2, Navigation, Factory, Waves, Fish, Hexagon, Command, Leaf, Menu, X, Snowflake, CarFront, Shrimp, Droplets, FishSymbol, Shell, Nut, TestTube } from 'lucide-react';
 import { supabase } from '../lib/supabase';
 import { usePathname, useRouter } from 'next/navigation';
 import { motion } from 'framer-motion';
@@ -45,10 +45,6 @@ const FlatfishDashboard = dynamic(() => import('../components/FlatfishDashboard'
 const ShrimpDashboard = dynamic(() => import('../components/ShrimpDashboard'));
 const SalmonDashboard = dynamic(() => import('../components/SalmonDashboard'));
 const CashewStrategy = dynamic(() => import('../components/CashewStrategy'));
-const CassavaDashboard = dynamic(() => import('../components/CassavaDashboard'));
-const GarlicDashboard = dynamic(() => import('../components/GarlicDashboard'));
-const CarrotDashboard = dynamic(() => import('../components/CarrotDashboard'));
-const CocoaDashboard = dynamic(() => import('../components/CocoaDashboard'));
 const PorkDashboard = dynamic(() => import('../components/PorkDashboard'));
 const WhelkDashboard = dynamic(() => import('../components/WhelkDashboard'));
 const KimDashboard = dynamic(() => import('../components/KimDashboard'));
@@ -56,16 +52,11 @@ const TunaDashboard = dynamic(() => import('../components/TunaDashboard'));
 const LogisticsDashboard = dynamic(() => import('../components/LogisticsDashboard'));
 const CrossCommodityIntelligenceDashboard = dynamic(() => import('../components/CrossCommodityIntelligenceDashboard'));
 
-const SEAsiaOEMDashboard = dynamic(() => import('../components/SEAsiaOEMDashboard'));
 const UsedCarExport = dynamic(() => import('../components/UsedCarExport'));
 const FleetStrategyMatrix = dynamic(() => import('../components/FleetStrategyMatrix'));
-const KoreaConsignmentDashboard = dynamic(() => import('../components/KoreaConsignmentDashboard'));
-const ColdStorageDashboard = dynamic(() => import('../components/ColdStorageDashboard'));
 const MarketDashboard = dynamic(() => import('../components/MarketDashboard'));
 const ResearchLabDashboard = dynamic(() => import('../components/ResearchLabDashboard'));
 const PurseSeinerDashboard = dynamic(() => import('../components/PurseSeinerDashboard'));
-const MscStrategyDashboard = dynamic(() => import('../components/MscStrategyDashboard'));
-const SashimiSteakDashboard = dynamic(() => import('../components/SashimiSteakDashboard'));
 
 const OPERATION_ACCESS_STORAGE_KEY = 'silla-operation-access';
 const OPERATION_PASSWORD = '349900';
@@ -73,26 +64,20 @@ const OPERATION_PASSWORD = '349900';
 const SIDEBAR_ICONS: Record<SidebarIconKey, React.ElementType> = {
   Anchor,
   BarChart2,
-  Box,
   CarFront,
-  Carrot,
-  Coffee,
   Droplets,
   Factory,
   Fish,
   FishSymbol,
   Hexagon,
   Leaf,
-  LeafyGreen,
   LongArmOctopus: LongArmOctopusIcon,
   Navigation,
   Nut,
-  ShieldCheck,
   Shell,
   Ship,
   Shrimp,
   Snowflake,
-  Sprout,
   TestTube,
   Waves,
   WebfootOctopus: WebfootOctopusIcon,
@@ -288,7 +273,6 @@ export default function Home() {
     'cross-intelligence': <CrossCommodityIntelligenceDashboard />,
     fleet: <FleetCommandCenter />,
     logistics: <LogisticsDashboard />,
-    'cold-storage': <ColdStorageDashboard />,
     mackerel: <MackerelDashboard />,
     galchi: <GalchiDashboard />,
     squid: <SquidDashboard />,
@@ -301,21 +285,13 @@ export default function Home() {
     kim: <KimDashboard />,
     salmon: <SalmonDashboard />,
     cashew: <CashewStrategy />,
-    cassava: <CassavaDashboard />,
-    garlic: <GarlicDashboard />,
-    carrot: <CarrotDashboard />,
-    cocoa: <CocoaDashboard />,
     pork: <PorkDashboard />,
     'used-car': <UsedCarExport />,
     unloading: <UnloadingStatus />,
     'value-chain': <TunaDashboard />,
-    'seasia-oem': <SEAsiaOEMDashboard />,
     'fleet-strategy': <FleetStrategyMatrix />,
-    'korea-market': <KoreaConsignmentDashboard />,
     'research-lab': <ResearchLabDashboard />,
     'purse-seiner-db': <PurseSeinerDashboard />,
-    msc: <MscStrategyDashboard />,
-    'sashimi-steak': <SashimiSteakDashboard />,
   };
 
   return (
@@ -586,8 +562,8 @@ export default function Home() {
                         <div style={{ fontWeight: 700, color: 'var(--text-main)', marginBottom: '6px' }}>제공 메뉴 미리보기</div>
                         <div>📡 실시간 운영 — 시장 동향 · 선단 운영 · 하역 현황 · 물류·가공</div>
                         <div>🐟 어종별 인텔리전스 — 참치 · 고등어 · 갈치 · 오징어 · 명태 · 새우 · 연어 외</div>
-                        <div>🔬 전략 분석 — 냉동창고 · 선대 분석 · 글로벌 OEM · MSC · 사시미/스테이크</div>
-                        <div>🌾 농·축산물 — 캐슈넛 · 카사바 · 코코아</div>
+                        <div>🔬 전략 분석 — 선대 분석 · 중고차 · 연구 재료</div>
+                        <div>🌾 농산물 — 캐슈넛</div>
                       </div>
                     </motion.div>
                   </motion.div>

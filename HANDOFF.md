@@ -1,6 +1,18 @@
 # HANDOFF
 
-> 마지막 업데이트: 2026-08-14 21:34 KST
+> 마지막 업데이트: 2026-08-14 22:20 KST
+
+> 🚀 **2026-08-14 22:20 KST — 밀린 아카이브 메뉴 일괄 배포 준비** [Grok]:
+> - 프로덕션은 이미 `origin/main` `f7265e3` (`dpl_nzJ62UsH8c8DaSxMz7AT1Psk24Qs`)이다. 닭·망고스틴·돼지(숨김)·소고기·SEIN VENUS 8/14는 라이브에 있다.
+> - 오늘 HTML로 옮기고 로컬에만 남아 있던 메뉴를 `origin/main` 위에 다시 얹었다. 대상: `korea-market`·`cassava`(404), `garlic`·`carrot`·`cocoa`·`seasia-oem`·`cold-storage`·`msc`·`sashimi-steak`(메뉴 제거, 컴포넌트·API 존치).
+> - 오래된 `chore/remove-mangosteen-20260814`·`codex/remove-beef-dashboard-20260814`는 하역 8/14를 되돌리므로 병합하지 않았다.
+> - 브랜치 `chore/remove-korea-market-20260814`. 사용자 배포 요청에 따라 PR·main 병합·라이브 재검증을 진행한다.
+
+> 📦 **2026-08-14 22:00 KST — `/korea-market` HTML 보존·메뉴 제거(로컬)** [Grok]:
+> - 공개 `/korea-market`의 8개 화면 블록(9대 망 관제·아비트리지·출어 리스크·마진·금액·물량·단가·월별 표)을 제거 전 단일 HTML로 옮겼다. 경로: Google Drive `agri_data/01_수산물(Seafood)/korea-market/intelligence_reports/Korea_Market_Dashboard_Archive_2026-08-14.html`.
+> - 위판 본문은 `consignment_3year.json`(origin/main `f7265e3`)과 2026-08-14 `/api/consignment` 스냅샷을 재합산했다. 전체 어종 2025년 5.24조 원과 화면 상위 30종 4.40조 원을 분리해 적었다. CIF 고정·KAMIS 폴백·소매 ×2.0·출어 자체 산식은 추정으로 표시했다.
+> - 메뉴 레지스트리·사이드바·패널·동적 import에서 `korea-market`을 제외하고, 직접 `/korea-market`은 `app/korea-market/page.tsx`의 명시적 404로 닫았다. `KoreaConsignmentDashboard`·`/api/consignment`·위판 JSON은 복구용으로 삭제하지 않았다.
+> - 브랜치 `chore/remove-korea-market-20260814` (`origin/main` 기준 worktree). **프로덕션 미배포.**
 
 > 🚢 **2026-08-14 21:34 KST — `/unloading` SEIN VENUS 8/14 일보 로컬 반영** [Codex]:
 > - 사용자 제공 TTA 일일보고 이미지를 원본 해상도로 대조했다. SHA-256은 `2c1a9f4b28f5a6a555b8329d3926fcb9eec0c1cf465deeed778919c7be3af76a`다. 8/14 작업시간 **08:00~18:00**, 당일 **424.780 MT**, 누계 **1,662.360 MT**, 총 적재량 **3,275 MT**, 잔량 **1,612.640 MT**를 반영했다.

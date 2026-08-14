@@ -9,7 +9,7 @@ const nextConfig = {
   async rewrites() {
     return [
       {
-        source: '/:path(market|ranching|value-chain|mackerel|galchi|squid|jukkumi|cashew|cassava|garlic|carrot|cocoa|whelk|used-car|pollock|shrimp|salmon|field-ops|petfood|seasia-oem|tuna-extract|cold-storage|research-lab)',
+        source: '/:path(market|ranching|value-chain|mackerel|galchi|squid|jukkumi|cashew|whelk|used-car|pollock|shrimp|salmon|field-ops|petfood|tuna-extract|research-lab)',
         destination: '/',
       },
     ]
