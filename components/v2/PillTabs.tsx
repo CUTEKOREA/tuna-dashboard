@@ -1,8 +1,8 @@
 /**
  * PillTabs — Deep Sea Command V2 필 탭 내비 (Vexto·Raktor 상단 탭 문법)
  *
- * 5-Pillar 계층화의 표준 진입점. 활성 탭은 시그니처 그라디언트 발광,
- * 비활성은 글래스 표면. framer-motion layoutId로 활성 배경이 미끄러진다.
+ * 5-Pillar 계층화의 표준 진입점. 활성 탭은 commodity 단일 액센트,
+ * 비활성은 저대비 무채색 표면. framer-motion layoutId로 활성 배경이 미끄러진다.
  *
  * 사용 예:
  * ```tsx
@@ -16,7 +16,7 @@
 'use client';
 
 import React, { useRef } from 'react';
-import { motion } from 'framer-motion';
+import { motion, useReducedMotion } from 'framer-motion';
 
 export interface PillTab {
   key: string;
@@ -29,8 +29,9 @@ export interface PillTabsProps {
   tabs: PillTab[];
   activeKey: string;
   onChange: (key: string) => void;
-  /** 활성 탭 발광 그라디언트 — commodity 시그니처 (D-04). 기본 참치 cyan→blue */
+  /** 활성 탭 단일 액센트 — commodity 시그니처 대표색 (D-04). */
   accentFrom?: string;
+  /** @deprecated V2.5는 한 화면 1액센트만 사용한다. 호출부 호환을 위해 유지. */
   accentTo?: string;
   className?: string;
   /** tablist의 선택적 식별자 */
@@ -48,7 +49,6 @@ export default function PillTabs({
   activeKey,
   onChange,
   accentFrom = '#22d3ee',
-  accentTo = '#3b82f6',
   className,
   id,
   ariaLabel = '필 탭',
@@ -56,6 +56,7 @@ export default function PillTabs({
   panelIdPrefix,
 }: PillTabsProps) {
   const tabRefs = useRef<Record<string, HTMLButtonElement | null>>({});
+  const reduce = useReducedMotion();
 
   const selectAndFocus = (key: string) => {
     tabRefs.current[key]?.focus();
@@ -84,7 +85,7 @@ export default function PillTabs({
         display: 'flex',
         gap: 6,
         padding: 5,
-        borderRadius: 999,
+        borderRadius: 12,
         background: 'var(--dsc-surface)',
         border: '1px solid var(--dsc-surface-border)',
         backdropFilter: 'var(--dsc-surface-blur)',
@@ -116,10 +117,10 @@ export default function PillTabs({
               alignItems: 'center',
               gap: 6,
               padding: '8px 16px',
-              borderRadius: 999,
+              borderRadius: 8,
               border: 'none',
               background: 'transparent',
-              color: active ? '#f8fafc' : 'var(--text-muted)',
+              color: active ? 'var(--dsc-ink)' : 'var(--dsc-ink-muted)',
               fontSize: '0.85rem',
               fontWeight: active ? 600 : 500,
               cursor: 'pointer',
@@ -133,12 +134,12 @@ export default function PillTabs({
                 style={{
                   position: 'absolute',
                   inset: 0,
-                  borderRadius: 999,
-                  background: `linear-gradient(135deg, ${accentFrom}33, ${accentTo}33)`,
-                  border: `1px solid ${accentFrom}55`,
-                  boxShadow: `0 0 16px ${accentFrom}2e`,
+                  borderRadius: 8,
+                  background: `${accentFrom}22`,
+                  border: `1px solid ${accentFrom}4d`,
+                  boxShadow: `0 0 10px ${accentFrom}1f`,
                 }}
-                transition={{ type: 'spring', stiffness: 400, damping: 32 }}
+                transition={reduce ? { duration: 0 } : { type: 'spring', stiffness: 400, damping: 32 }}
               />
             )}
             <span style={{ position: 'relative', display: 'flex', alignItems: 'center', gap: 6 }}>

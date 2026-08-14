@@ -11,7 +11,6 @@ export type CosmoTabKey =
   | 'profit'
   | 'quality'
   | 'sales'
-  | 'share'
   | 'supply';
 
 export type CosmoNavigate = (tab: CosmoTabKey, anchor?: string) => void;
@@ -45,7 +44,6 @@ const TAB_BY_PATH: Record<string, CosmoTabKey> = {
   '/profit': 'profit',
   '/quality': 'quality',
   '/sales': 'sales',
-  '/share': 'share',
   '/supply': 'supply',
 };
 
