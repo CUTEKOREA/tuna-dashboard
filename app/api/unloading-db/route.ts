@@ -82,6 +82,9 @@ export async function GET() {
         annualActualTotal: v.annual_actual_total == null ? null : Number(v.annual_actual_total),
         annualStartDate: v.annual_start_date || null,
         holdDataAvailable: v.hold_data_available !== false,
+        unclassifiedActual: v.unclassified_actual_amount == null ? 0 : Number(v.unclassified_actual_amount),
+        speciesBreakdownAsOf: v.species_breakdown_as_of || null,
+        speciesBreakdownNote: v.species_breakdown_note || null,
         surplus: 0,
         species: [],
         timeline: []
@@ -107,8 +110,31 @@ export async function GET() {
           time: r.work_time,
           targetHol: r.target_holds,
           consignee: r.consignee || null,
+          allocations: Array.isArray(r.allocations)
+            ? r.allocations.map((allocation: any) => ({
+                consignee: allocation.consignee,
+                amount: Number(allocation.amount),
+                loads: Array.isArray(allocation.loads)
+                  ? allocation.loads.map((load: any) => ({
+                      sourceVessel: load.source_vessel,
+                      hatch: load.hatch,
+                      amount: Number(load.amount),
+                    }))
+                  : [],
+              }))
+            : [],
+          observations: Array.isArray(r.observations)
+            ? r.observations.map((observation: any) => ({
+                sourceVessel: observation.source_vessel,
+                hatch: observation.hatch,
+                temperaturesC: Array.isArray(observation.temperatures_c)
+                  ? observation.temperatures_c.map(Number)
+                  : [],
+              }))
+            : [],
           dailyAmount: Number(r.daily_amount),
           cumAmount: Number(r.cumulative_amount),
+          remainingAmount: r.remaining_amount == null ? null : Number(r.remaining_amount),
           quality: r.quality_notes
         });
         mergedData[r.vessel_id].actualTotal = Number(r.cumulative_amount);

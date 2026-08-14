@@ -5,12 +5,33 @@ import { FileText, Copy, Download, X, Check } from 'lucide-react';
 
 // ─── Types ───────────────────────────────────────────────────────────────────
 
+interface AllocationLoad {
+  sourceVessel: string;
+  hatch: string;
+  amount: number;
+}
+
+interface AllocationEntry {
+  consignee: string;
+  amount: number;
+  loads: AllocationLoad[];
+}
+
+interface ObservationEntry {
+  sourceVessel: string;
+  hatch: string;
+  temperaturesC: number[];
+}
+
 interface TimelineEntry {
   date: string;
   time: string;
   targetHol: string;
+  allocations?: AllocationEntry[];
+  observations?: ObservationEntry[];
   dailyAmount: number;
   cumAmount: number;
+  remainingAmount?: number | null;
   quality: string;
 }
 
@@ -170,7 +191,7 @@ export default function UnloadingReportGenerator({ vesselData, onClose }: Report
     const isCompleted = vesselData.status.includes('하역완료') || vesselData.status.includes('Completed');
     const dailyTotal = entry.dailyAmount;
     const cumulative = entry.cumAmount;
-    const remaining = vesselData.reportedTotal - cumulative;
+    const remaining = entry.remainingAmount ?? vesselData.reportedTotal - cumulative;
     const surplus = vesselData.surplus;
 
     // Parse times from entry.time "08:10 ~ 20:30"
@@ -192,6 +213,8 @@ export default function UnloadingReportGenerator({ vesselData, onClose }: Report
 
     // Per-shipper temperatures
     const shipperTemps = parseShipperTemperatures(entry.quality);
+    const allocations = entry.allocations || [];
+    const observations = overrides.tempMin || overrides.tempMax ? [] : entry.observations || [];
 
     return {
       isCompleted,
@@ -207,6 +230,8 @@ export default function UnloadingReportGenerator({ vesselData, onClose }: Report
       nextDayDate,
       shipperHolds,
       shipperTemps,
+      allocations,
+      observations,
     };
   }, [entry, vesselData, overrides]);
 
@@ -215,7 +240,21 @@ export default function UnloadingReportGenerator({ vesselData, onClose }: Report
   const reportText = useMemo(() => {
     if (!entry || !derived) return '보고서를 생성할 데이터가 없습니다.';
 
-    const { isCompleted, dailyTotal, cumulative, remaining, surplus, startTime, endTime, nextDayPlan, nextDayDate, shipperHolds, shipperTemps } = derived;
+    const {
+      isCompleted,
+      dailyTotal,
+      cumulative,
+      remaining,
+      surplus,
+      startTime,
+      endTime,
+      nextDayPlan,
+      nextDayDate,
+      shipperHolds,
+      shipperTemps,
+      allocations,
+      observations,
+    } = derived;
     const vName = vesselData.name;
     const shortName = shortVesselName(vName);
     const date = entry.date;
@@ -235,8 +274,16 @@ export default function UnloadingReportGenerator({ vesselData, onClose }: Report
     lines.push(`2. 금일(${date}) ${vName} 하역결과를 아래와 같이 보고 드립니다.`);
     lines.push('');
 
-    // Species-by-shipper lines
-    if (shipperHolds.length > 0) {
+    // 원본 수하처별 물량이 있으면 해당 계약을 우선 사용합니다.
+    if (allocations.length > 0) {
+      allocations.forEach((allocation, index) => {
+        const marker = index === 0 ? '*' : ' ';
+        const loadLabel = allocation.loads
+          .map(load => `${load.sourceVessel}:${load.hatch}`)
+          .join(', ');
+        lines.push(`${marker} ${allocation.consignee}:               ${fmt(allocation.amount)} MT (${loadLabel})`);
+      });
+    } else if (shipperHolds.length > 0) {
       for (const sh of shipperHolds) {
         const species = classifySpecies(sh.shipper);
         const code = species === 'Skipjack' ? 'SJ' : species === 'Yellowfin' ? 'YF' : '??';
@@ -277,7 +324,17 @@ export default function UnloadingReportGenerator({ vesselData, onClose }: Report
     lines.push(`4. 금일(${date}) 하역 시 관찰된 제품상태 관하여 다음과 같이 보고 드립니다.`);
     lines.push('');
 
-    if (shipperTemps.length > 0) {
+    if (observations.length > 0) {
+      for (const observation of observations) {
+        lines.push(`* ${observation.sourceVessel}(${observation.hatch})`);
+        if (observation.temperaturesC.length >= 2) {
+          lines.push(`- 어창 개방 측정온도는 ${observation.temperaturesC[0].toFixed(1)}℃ ~ ${observation.temperaturesC[1].toFixed(1)}℃ 입니다.`);
+        } else if (observation.temperaturesC.length === 1) {
+          lines.push(`- 어창 개방 측정온도는 ${observation.temperaturesC[0].toFixed(1)}℃ 입니다.`);
+        }
+        lines.push('');
+      }
+    } else if (shipperTemps.length > 0) {
       for (const st of shipperTemps) {
         const label = st.shipper || (shipperHolds[0]?.shipper ?? '');
         // Find matching hold info

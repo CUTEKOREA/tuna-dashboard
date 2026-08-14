@@ -34,6 +34,7 @@ interface TimelineReplayProps {
     name: string;
     reportedTotal: number;
     actualTotal: number;
+    unclassifiedActual?: number;
     timeline: TimelineEntry[];
     species: SpeciesEntry[];
   };
@@ -160,7 +161,7 @@ export default function UnloadingTimelineReplay({
   holdsData,
   onClose,
 }: TimelineReplayProps) {
-  const { timeline, species, name, reportedTotal, actualTotal } = vesselData;
+  const { timeline, species, name, reportedTotal, actualTotal, unclassifiedActual = 0 } = vesselData;
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isPlaying, setIsPlaying] = useState(false);
   const playIntervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
@@ -230,9 +231,10 @@ export default function UnloadingTimelineReplay({
   );
 
   // Stacked area chart data
+  const hasUnclassifiedSpecies = unclassifiedActual > 0;
   const areaData = useMemo(
-    () => buildStackedAreaData(timeline, species, actualTotal),
-    [timeline, species, actualTotal]
+    () => hasUnclassifiedSpecies ? [] : buildStackedAreaData(timeline, species, actualTotal),
+    [timeline, species, actualTotal, hasUnclassifiedSpecies]
   );
 
   const formatNum = (n: number) => n.toLocaleString('en-US', { minimumFractionDigits: 0, maximumFractionDigits: 1 });
@@ -417,7 +419,16 @@ export default function UnloadingTimelineReplay({
           <div className={styles.chartTitle}>
             <BarChart3 size={16} /> 어종별 누적 하역량 추이
           </div>
-          <ResponsiveContainer width="100%" height={220}>
+          {hasUnclassifiedSpecies ? (
+            <div
+              data-testid="replay-species-unclassified"
+              style={{ minHeight: 220, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', textAlign: 'center', padding: 24, color: '#cbd5e1' }}
+            >
+              <strong style={{ color: '#fbbf24', marginBottom: 8 }}>어종별 실적 추이 미제공</strong>
+              <span>최신 일보 {unclassifiedActual.toFixed(3)}톤은 어종별 근거가 없어 계획 비율로 추정하지 않습니다.</span>
+            </div>
+          ) : (
+            <ResponsiveContainer width="100%" height={220}>
             <AreaChart data={areaData} margin={{ top: 5, right: 20, bottom: 5, left: 10 }}>
               <defs>
                 <linearGradient id="gradSJ" x1="0" y1="0" x2="0" y2="1">
@@ -486,7 +497,8 @@ export default function UnloadingTimelineReplay({
                 }}
               />
             </AreaChart>
-          </ResponsiveContainer>
+            </ResponsiveContainer>
+          )}
         </div>
       </div>
     </div>

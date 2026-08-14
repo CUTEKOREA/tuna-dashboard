@@ -232,6 +232,20 @@ async function waitForText(page, selector, pattern) {
   );
 }
 
+async function clickButtonByText(page, label) {
+  const clicked = await page.$$eval(
+    'button',
+    (buttons, target) => {
+      const button = buttons.find((candidate) => candidate.textContent?.trim() === target);
+      if (!button) return false;
+      button.click();
+      return true;
+    },
+    label,
+  );
+  assert.equal(clicked, true, `버튼을 찾지 못했습니다: ${label}`);
+}
+
 async function runHappyPath(browser) {
   const page = await browser.newPage();
   const { pageErrors, consoleErrors, networkErrors } = await preparePage(page);
@@ -242,8 +256,59 @@ async function runHappyPath(browser) {
   await waitForText(page, '[data-testid="history-kpi-actual"]', /76,050\.239 MT/);
 
   const body = await page.evaluate(() => document.body.innerText);
-  assert.match(body, /34,291\s+MT/);
+  assert.match(body, /34,716\s+MT/);
   assert.match(body, /완료 선박:\s*11\s*척/);
+  assert.match(body, /어종 분해 미확인:\s*424\.780톤/);
+  assert.match(body, /기존 어종 누계 기준일은 2026-08-13/);
+
+  await page.click('#unloading-tab-timeline');
+  await page.waitForSelector('[data-testid="timeline-node-8-14"]');
+  const latestReport = await page.$eval(
+    '[data-testid="timeline-node-8-14"]',
+    (node) => node.innerText,
+  );
+  for (const pattern of [
+    /8\/14/,
+    /08:00 ~ 18:00/,
+    /\+424\.780 MT/,
+    /MMP\s+78\.650 MT/,
+    /ISA\s+142\.930 MT/,
+    /TUM\s+203\.200 MT/,
+  ]) {
+    assert.match(latestReport, pattern);
+  }
+  assert.doesNotMatch(latestReport, /350톤/);
+
+  await page.click('#unloading-tab-holds');
+  await page.waitForSelector('[data-testid="hold-species-unclassified"]');
+  const unclassifiedHold = await page.$eval(
+    '[data-testid="hold-species-unclassified"]',
+    (node) => node.innerText,
+  );
+  assert.match(unclassifiedHold, /어종별 실적 분해 없음/);
+  assert.match(unclassifiedHold, /424\.780톤/);
+  assert.match(unclassifiedHold, /추정하지 않습니다/);
+
+  await clickButtonByText(page, '보고서');
+  await page.waitForSelector('[role="dialog"][aria-label="일일 보고서 자동 생성"]');
+  const generatedReport = await page.$eval(
+    '[role="dialog"][aria-label="일일 보고서 자동 생성"]',
+    (node) => node.innerText,
+  );
+  for (const pattern of [
+    /금일\(8\/14\)/,
+    /MMP:\s+78\.650 MT/,
+    /ISA:\s+142\.930 MT/,
+    /TUM:\s+203\.200 MT/,
+    /일일\s+하역량:\s+424\.780 MT/,
+    /하 역 누 계:\s+1662\.360 MT/,
+    /명일 하역 작업 예정입니다/,
+  ]) {
+    assert.match(generatedReport, pattern);
+  }
+  assert.doesNotMatch(generatedReport, /\* SJ:\s+424\.780 MT/);
+  assert.doesNotMatch(generatedReport, /350톤/);
+  await page.click('[role="dialog"][aria-label="일일 보고서 자동 생성"] button[aria-label="닫기"]');
 
   await page.click('[data-testid="history-year-2021"]');
   await waitForText(page, '[data-testid="history-kpi-actual"]', /29,247\.939 MT/);
@@ -307,7 +372,7 @@ async function runFailureIsolation(browser) {
   await waitForText(page, '[data-testid="unloading-history-section"]', /과거 이력을 불러오지 못했습니다/);
   const body = await page.evaluate(() => document.body.innerText);
   assert.match(body, /다시 시도/);
-  assert.match(body, /34,291\s+MT/);
+  assert.match(body, /34,716\s+MT/);
   assert.match(body, /완료 선박:\s*11\s*척/);
   assert.equal(pageErrors.length, 0, pageErrors.join('\n'));
   assert.equal(consoleErrors.length, 0, consoleErrors.join('\n'));
@@ -370,7 +435,7 @@ async function runChunkFailureIsolation(browser) {
   );
   const body = await page.evaluate(() => document.body.innerText);
   assert.match(body, /다시 시도/);
-  assert.match(body, /34,291\s+MT/);
+  assert.match(body, /34,716\s+MT/);
   assert.match(body, /완료 선박:\s*11\s*척/);
   assert.equal(getBlockedAppRequestCount(), 1);
   await Promise.all([
@@ -380,7 +445,7 @@ async function runChunkFailureIsolation(browser) {
   await page.waitForSelector('[data-testid="unloading-history-panel"]');
   await waitForText(page, '[data-testid="history-kpi-actual"]', /76,050\.239 MT/);
   const recoveredBody = await page.evaluate(() => document.body.innerText);
-  assert.match(recoveredBody, /34,291\s+MT/);
+  assert.match(recoveredBody, /34,716\s+MT/);
   assert.match(recoveredBody, /완료 선박:\s*11\s*척/);
   assert.equal(getBlockedAppRequestCount(), 1);
   assert.equal(pageErrors.length, 0, pageErrors.join('\n'));
