@@ -129,7 +129,7 @@ export function CrossCommodityHero({
   );
 }
 
-export default function CrossCommodityIntelligenceDashboard() {
+export default function CrossCommodityIntelligenceDashboard({ heroOnly = false }: { heroOnly?: boolean }) {
   const [data, setData] = React.useState<CrossCommodityIntelligence>(INITIAL_DATA);
   const [syncDate, setSyncDate] = React.useState(INITIAL_DATA.meta.syncDate);
 
@@ -150,11 +150,17 @@ export default function CrossCommodityIntelligenceDashboard() {
     };
   }, []);
 
+  const crossCommodityHero = <CrossCommodityHero data={data} syncDate={syncDate} />;
+
+  if (heroOnly) {
+    return <div style={pageStyle}>{crossCommodityHero}</div>;
+  }
+
   const heatmapCommodities = Array.from(new Set(data.riskFactors.flatMap((factor) => Object.keys(factor.impacts))));
 
   return (
     <div style={pageStyle}>
-      <CrossCommodityHero data={data} syncDate={syncDate} />
+      {crossCommodityHero}
 
       <section style={gridStyle}>
         <MetricTile label="대체 회전" value={data.headline.primaryRotation} sub="가장 높은 대체 압력" />

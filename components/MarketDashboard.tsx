@@ -81,13 +81,15 @@ export function MarketHero({ rows }: { rows: AtunaPriceRow[] }) {
   );
 }
 
-export default function MarketDashboard() {
+export default function MarketDashboard({ heroOnly = false }: { heroOnly?: boolean }) {
   const [priceData, setPriceData] = useState<any[]>([]);
   const chartContainerRef = useRef<HTMLDivElement>(null);
   const [chartWidth, setChartWidth] = useState(0);
 
   // Measure container width with ResizeObserver (works even after display:none -> block toggle)
   useEffect(() => {
+    if (heroOnly) return;
+
     const el = chartContainerRef.current;
     if (!el) return;
     
@@ -104,7 +106,7 @@ export default function MarketDashboard() {
     ro.observe(el);
     
     return () => ro.disconnect();
-  }, []);
+  }, [heroOnly]);
 
   // A-2: no hardcoded price/date — skeleton until fetch resolves
   const [mgoData, setMgoData] = useState<{
@@ -143,6 +145,8 @@ export default function MarketDashboard() {
       })
       .catch(() => { /* 스켈레톤 유지 */ });
 
+    if (heroOnly) return;
+
     // Fetch MGO live data — isLive:false(fallback 캐시)는 미표시 (정직 표기)
     fetch('/api/mgo')
       .then(res => res.json())
@@ -177,7 +181,17 @@ export default function MarketDashboard() {
         }
       })
       .catch(() => setFxData(prev => ({ ...prev, loading: false })));
-  }, []);
+  }, [heroOnly]);
+
+  const marketHero = <MarketHero rows={priceData} />;
+
+  if (heroOnly) {
+    return (
+      <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem' }}>
+        {marketHero}
+      </div>
+    );
+  }
 
   const formatHubDate = (d?: string | null) => (d ? d.replace(/-/g, '.') : '');
   const formatSpreadRange = (summary?: AtunaSpreadSummary | null) => {
@@ -216,7 +230,7 @@ export default function MarketDashboard() {
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem' }}>
-      <MarketHero rows={priceData} />
+      {marketHero}
 
       {/* Seafood Stock Widget at the top of the market page */}
       <SeafoodStockWidget />

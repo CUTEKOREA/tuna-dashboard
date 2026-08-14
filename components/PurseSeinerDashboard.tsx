@@ -663,7 +663,7 @@ function VesselTable({ initialRfmo, initialFlag, initialOperator }: {
 }
 
 /* ═══════════════════════ MAIN DASHBOARD ═══════════════════════ */
-export default function PurseSeinerDashboard() {
+export default function PurseSeinerDashboard({ heroOnly = false }: { heroOnly?: boolean }) {
   const [tableRfmo, setTableRfmo] = useState('');
   const [tableFlag, setTableFlag] = useState('');
   const [tableOp, setTableOp] = useState('');
@@ -686,12 +686,23 @@ export default function PurseSeinerDashboard() {
     setTableOp(op); setTableRfmo(''); setTableFlag('');
     setTimeout(scrollToTable, 100);
   }, []);
+  const purseSeinerHero = (
+    <div style={{ marginBottom: 28 }}>
+      <PurseSeinerHero />
+    </div>
+  );
+
+  if (heroOnly) {
+    return (
+      <div style={{ padding: '24px 28px', maxWidth: 1400, margin: '0 auto' }}>
+        {purseSeinerHero}
+      </div>
+    );
+  }
 
   return (
     <div style={{ padding: '24px 28px', maxWidth: 1400, margin: '0 auto' }}>
-      <div style={{ marginBottom: 28 }}>
-        <PurseSeinerHero />
-      </div>
+      {purseSeinerHero}
 
       {/* Section 1: KPI Cards */}
       <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap', marginBottom: 24 }}>
