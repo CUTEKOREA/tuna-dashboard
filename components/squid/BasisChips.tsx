@@ -9,7 +9,7 @@
  * 숫자가 어디서 왔고 어떻게 쓰면 안 되는지를 화면에서 감추지 않는 것이 이 컴포넌트의 목적이다.
  */
 
-import React, { useEffect, useState } from 'react';
+import React, { useMemo, useState, useSyncExternalStore } from 'react';
 import type { SquidSource, WidgetBasis } from './types';
 import {
   koreanUiText,
@@ -18,19 +18,6 @@ import {
   squidPublisherLabel,
   squidSpeciesLabel,
 } from './localization';
-
-// L-01 예외: 학명은 한글 대응이 없으므로 툴팁에서만 병기한다.
-const SPECIES_KO: Record<string, string> = {
-  'Todarodes pacificus': '살오징어',
-  'Illex argentinus': '아르헨티나 일렉스',
-  'Dosidicus gigas': '대왕오징어',
-  'Doryteuthis gahi': '포클랜드 로리고',
-  'Doryteuthis pealeii': '롱핀 오징어',
-  'Loligo spp': '로리고류',
-  'Cephalopoda NEI': '두족류 기타',
-  'Sepia spp': '갑오징어',
-  'n/a': '해당없음',
-};
 
 const SCOPE_KO: Record<string, string> = {
   squid_only: '오징어만',
@@ -84,6 +71,10 @@ export function freshnessColor(days: number | null): string {
 
 const GRADE_MARK: Record<string, string> = { A: '🅰', B: '🅱', C: '🅲' };
 
+const subscribeToHydration = () => () => undefined;
+const getClientHydrationSnapshot = () => true;
+const getServerHydrationSnapshot = () => false;
+
 interface ChipProps {
   icon: string;
   label: string;
@@ -134,11 +125,13 @@ export const BasisChips: React.FC<BasisChipsProps> = ({ basis, sources = [], now
   // 달라 그대로 쓰면 하이드레이션이 어긋난다. 서버에서는 기준일만 찍고
   // 마운트 후에 D+n 을 채운다. 빌드 시각으로 대신하면 월간 배치 특성상
   // 최대 한 달치 낡음이 감춰지므로 그 절충은 쓰지 않는다.
-  const [mountedNow, setMountedNow] = useState<Date | null>(now ?? null);
-  useEffect(() => {
-    if (!now) setMountedNow(new Date());
-  }, [now]);
-  const asOf = mountedNow;
+  const hydrated = useSyncExternalStore(
+    subscribeToHydration,
+    getClientHydrationSnapshot,
+    getServerHydrationSnapshot,
+  );
+  const mountedNow = useMemo(() => new Date(), []);
+  const asOf = now ?? (hydrated ? mountedNow : null);
 
   const species = basis.species.filter((s) => s !== 'n/a');
   const speciesLabel =

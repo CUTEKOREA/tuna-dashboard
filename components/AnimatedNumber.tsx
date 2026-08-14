@@ -6,9 +6,14 @@
  * 숫자 부분만 0→목표로 rAF 카운트업. 접두·접미·소수자리·콤마 보존.
  * prefers-reduced-motion 시 애니메이션 생략(즉시 최종값) — 모션 a11y 준수.
  */
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useMemo, useRef, useState } from 'react';
 
 type Parsed = { prefix: string; num: number; decimals: number; hasComma: boolean; suffix: string } | null;
+
+type AnimationState = {
+  sourceValue: string;
+  display: string;
+};
 
 function parse(value: string): Parsed {
   const m = value.match(/^([^\d]*)([\d,]+(?:\.\d+)?)([\s\S]*)$/);
@@ -39,16 +44,19 @@ export default function AnimatedNumber({
   value: string;
   durationMs?: number;
 }) {
-  const parsed = parse(value);
-  const [display, setDisplay] = useState<string>(value);
+  const parsed = useMemo(() => parse(value), [value]);
+  const [animation, setAnimation] = useState<AnimationState>(() => ({
+    sourceValue: value,
+    display: value,
+  }));
   const rafRef = useRef<number | null>(null);
 
   useEffect(() => {
-    if (!parsed) { setDisplay(value); return; }
+    if (!parsed) return;
 
     const reduce = typeof window !== 'undefined'
       && window.matchMedia?.('(prefers-reduced-motion: reduce)').matches;
-    if (reduce) { setDisplay(value); return; }
+    if (reduce) return;
 
     let startTs: number | null = null;
     const target = parsed.num;
@@ -56,13 +64,19 @@ export default function AnimatedNumber({
       if (startTs === null) startTs = ts;
       const t = Math.min((ts - startTs) / durationMs, 1);
       const eased = 1 - Math.pow(1 - t, 3); // easeOutCubic
-      setDisplay(`${parsed.prefix}${fmt(target * eased, parsed)}${parsed.suffix}`);
+      setAnimation({
+        sourceValue: value,
+        display: `${parsed.prefix}${fmt(target * eased, parsed)}${parsed.suffix}`,
+      });
       if (t < 1) rafRef.current = requestAnimationFrame(step);
     };
     rafRef.current = requestAnimationFrame(step);
     return () => { if (rafRef.current) cancelAnimationFrame(rafRef.current); };
-    // value 문자열 바뀔 때만 재실행
-  }, [value, durationMs]); // eslint-disable-line react-hooks/exhaustive-deps
+  }, [durationMs, parsed, value]);
+
+  const display = animation.sourceValue === value && parsed
+    ? animation.display
+    : value;
 
   return <span>{display}</span>;
 }

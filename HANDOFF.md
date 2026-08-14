@@ -1,5 +1,15 @@
 # HANDOFF
 
+> 마지막 업데이트: 2026-08-15 08:43 KST
+
+> 🧹 **2026-08-15 08:43 KST — ESLint 경고 2차 정리 완료** [Codex]:
+> - 이 브랜치의 실측 기준은 **0 errors, 18 warnings**였고 비충돌 대상 17건을 제거했다. `components/ShrimpDashboard.tsx`의 미사용 `idx` 1건은 참치왕국 worktree의 Shrimp 계열 동시 작업과 충돌하지 말라는 작업 지시를 따라 수정하지 않아 최종 lint는 **0 errors, 1 warning**이다.
+> - `app/api/galchi/tariffs/route.ts`·`landed-cost/route.ts`·`mackerel-ticker/route.ts`·`macro-environment/route.ts`·`risk-radar/route.ts`는 사용하지 않던 `requireEnv` import만 제거했다. 각 라우트의 요청·응답·환경변수 fallback·캐시 정책은 그대로다.
+> - `app/layout.tsx`는 같은 GA4 주소·측정 ID·초기화문을 `next/script`로 로드하도록 바꿨다. 화면 DOM과 사용자 노출 출력은 바꾸지 않았다. `TunaCorpusStudyInsights.tsx`는 쓰지 않던 map index만, `BasisChips.tsx`는 쓰지 않던 학명 매핑만 제거했다.
+> - `AnimatedNumber.tsx`는 파싱 결과를 메모하고 애니메이션 상태를 원본 값과 묶어, 비숫자·모션 축소 값은 prop에서 직접 표시한다. 기존 rAF·1100ms·easeOutCubic·숫자 포맷은 유지했다. `BasisChips.tsx`의 현재 시각은 hydration snapshot으로 전환해 서버에서는 기존처럼 기준일만, hydration 뒤에는 기준일+경과일을 표시한다.
+> - `TunaExportRaceWidget.tsx`·`TunaInsiderSignalWidget.tsx`는 재조회 시의 loading/error 초기화를 effect에서 기존 재조회 버튼 이벤트로 옮겼고, `series`·`events`·`summary`를 별도 `useMemo`로 안정화했다. `TunaProteinBasketWidget.tsx`도 `items` fallback만 `useMemo`로 안정화했다. endpoint·로딩/오류/빈 상태·차트 데이터·SIT/TAK·TelemetryBadge·cardDesc는 건드리지 않았다.
+> - 검증: 변경 파일 대상 ESLint exit 0, 전체 lint **0 errors, 1 intentional warning**, TypeScript exit 0, 오징어 관련 focused **20/20**, 전체 `npm run verify` exit 0(Vitest **258/258**, API cache **143/143**, Next 정적 페이지 **117/117**, bundle **30 routes**). push·배포 없음. 다음 단계는 CC가 deps와 재조회 렌더 전이를 독립 재현하고, Shrimp 경고는 해당 작업 소유 세션에서 정리하는 것이다.
+
 > 마지막 업데이트: 2026-08-15 07:45 KST
 
 > 🔍 **2026-08-15 07:45 KST — V2.5 무채색+1액센트 반증 리포트** [Grok]:
