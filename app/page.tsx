@@ -5,7 +5,7 @@ import dynamic from 'next/dynamic';
 import Image from 'next/image';
 import Link from 'next/link';
 import styles from './page.module.css';
-import { Activity, Anchor, Ship, Lock, Radio, BarChart2, Navigation, Factory, Waves, Fish, Hexagon, Command, Leaf, Menu, X, Snowflake, CarFront, Shrimp, Droplets, FishSymbol, Shell, Nut, TestTube } from 'lucide-react';
+import { Activity, Anchor, Ship, Lock, Radio, BarChart2, Navigation, Factory, Waves, Fish, Hexagon, Command, Menu, X, Snowflake, Shrimp, Droplets, FishSymbol, Shell, Nut, TestTube } from 'lucide-react';
 import { supabase } from '../lib/supabase';
 import { usePathname, useRouter } from 'next/navigation';
 import { motion } from 'framer-motion';
@@ -47,12 +47,10 @@ const SalmonDashboard = dynamic(() => import('../components/SalmonDashboard'));
 const CashewStrategy = dynamic(() => import('../components/CashewStrategy'));
 const PorkDashboard = dynamic(() => import('../components/PorkDashboard'));
 const WhelkDashboard = dynamic(() => import('../components/WhelkDashboard'));
-const KimDashboard = dynamic(() => import('../components/KimDashboard'));
 const TunaDashboard = dynamic(() => import('../components/TunaDashboard'));
 const LogisticsDashboard = dynamic(() => import('../components/LogisticsDashboard'));
 const CrossCommodityIntelligenceDashboard = dynamic(() => import('../components/CrossCommodityIntelligenceDashboard'));
 
-const UsedCarExport = dynamic(() => import('../components/UsedCarExport'));
 const FleetStrategyMatrix = dynamic(() => import('../components/FleetStrategyMatrix'));
 const MarketDashboard = dynamic(() => import('../components/MarketDashboard'));
 const ResearchLabDashboard = dynamic(() => import('../components/ResearchLabDashboard'));
@@ -64,13 +62,11 @@ const OPERATION_PASSWORD = '349900';
 const SIDEBAR_ICONS: Record<SidebarIconKey, React.ElementType> = {
   Anchor,
   BarChart2,
-  CarFront,
   Droplets,
   Factory,
   Fish,
   FishSymbol,
   Hexagon,
-  Leaf,
   LongArmOctopus: LongArmOctopusIcon,
   Navigation,
   Nut,
@@ -282,11 +278,9 @@ export default function Home() {
     flatfish: <FlatfishDashboard />,
     shrimp: <ShrimpDashboard />,
     whelk: <WhelkDashboard />,
-    kim: <KimDashboard />,
     salmon: <SalmonDashboard />,
     cashew: <CashewStrategy />,
     pork: <PorkDashboard />,
-    'used-car': <UsedCarExport />,
     unloading: <UnloadingStatus />,
     'value-chain': <TunaDashboard />,
     'fleet-strategy': <FleetStrategyMatrix />,
@@ -562,7 +556,7 @@ export default function Home() {
                         <div style={{ fontWeight: 700, color: 'var(--text-main)', marginBottom: '6px' }}>제공 메뉴 미리보기</div>
                         <div>📡 실시간 운영 — 시장 동향 · 선단 운영 · 하역 현황 · 물류·가공</div>
                         <div>🐟 어종별 인텔리전스 — 참치 · 고등어 · 갈치 · 오징어 · 명태 · 새우 · 연어 외</div>
-                        <div>🔬 전략 분석 — 선대 분석 · 중고차 · 연구 재료</div>
+                        <div>🔬 전략 분석 — 선대 분석 · 연구 재료</div>
                         <div>🌾 농산물 — 캐슈넛</div>
                       </div>
                     </motion.div>
