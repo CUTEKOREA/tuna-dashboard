@@ -1,6 +1,11 @@
 # HANDOFF
 
-> 마지막 업데이트: 2026-08-15 00:54 KST
+> 마지막 업데이트: 2026-08-15 00:55 KST
+
+> 🐟 **2026-08-15 00:55 KST — `/flatfish` HTML 보존 후 메뉴 배포** [Grok]:
+> - HTML: agri_data `01_수산물(Seafood)/flatfish/intelligence_reports/Flatfish_Dashboard_Archive_2026-08-15.html`(5기둥·22위젯·KPI 6). JSON 해시는 8/14 스냅샷과 같다. KCS 냉동 2024 396톤·중국 69%는 화면 미사용.
+> - `origin/main` `45322c8`(고등어 라이브 기록 이후) 위에 레지스트리·사이드바·패널·단축키·랜딩에서 `flatfish`를 빼고 `/flatfish`는 명시적 404. `FlatfishDashboard`·`/api/flatfish/*`·JSON은 존치.
+> - 브랜치 `chore/remove-flatfish-20260815`. 사용자 배포 요청에 따라 PR→게이트→라이브 재검증. 낡은 `b4edbd8` worktree는 병합하지 않는다.
 
 > 🚀 **2026-08-15 00:54 KST — `/mackerel` 메뉴 제거 배포 완료** [Grok]:
 > - HTML은 agri_data `01_수산물(Seafood)/mackerel/intelligence_reports/Mackerel_Dashboard_Archive_2026-08-15.html`(KPI 6·정적 28·런타임 14).
@@ -10,8 +15,6 @@
 > - `/api/mackerel-kcs` 200 isLive. `MackerelDashboard`·`/api/mackerel*` 존치.
 > - 이 배포 error/fatal 로그 0. 명태 #334 위에 다시 얹었고 `mackerel/claude-etl`은 포함하지 않았다.
 
-> 마지막 업데이트: 2026-08-15 00:48 KST
-
 > 🚀 **2026-08-15 00:48 KST — 명태(`/pollock`) 메뉴 제거 배포 완료** [Grok]:
 > - HTML은 agri_data `01_수산물(Seafood)/pollock/intelligence_reports/Pollock_Dashboard_Archive_2026-08-15.html`(KPI 8·위젯 58·커스텀 모듈 11).
 > - PR **#334** squash `ee2fae2`. App Quality Gate `31815823806` SUCCESS.
@@ -19,8 +22,6 @@
 > - 라이브 `/pollock` 404(`x-matched-path: /pollock`, 홈 rewrite 없음). 사이트맵·랜딩에 명태 없음. 남은 어종 메뉴: 고등어·가자미. `/mackerel` 200, `/flatfish` 200.
 > - `/api/pollock/dart`·`/api/pollock-kcs`·`/api/pollock-forecast`·`/api/pollock-landed-cost`·`/api/pollock-policy-risk`·`/api/pollock-supply-chain` 200. `PollockDashboard`와 `/api/pollock*` 존치.
 > - 이 배포 error/fatal 로그 0. `mackerel/claude-etl`은 포함하지 않았다.
-
-> 마지막 업데이트: 2026-08-15 00:40 KST
 
 > 🚀 **2026-08-15 00:40 KST — 밀린 아카이브 메뉴 일괄 배포 완료** [Grok]:
 > - HTML: agri_data `01_수산물(Seafood)/tuna/intelligence_reports/Tuna_Value_Chain_Dashboard_Archive_2026-08-14.html`, `octopus/intelligence_reports/Octopus_Dashboard_Archive_2026-08-14.html`, `squid/intelligence_reports/Squid_Dashboard_Archive_2026-08-14.html`.
