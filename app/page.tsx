@@ -35,7 +35,6 @@ const FleetCommandCenter = dynamic(() => import('../components/FleetCommandCente
 // ReeferFreightChart·TraderImportChart 제거 (2026-06-11): 렌더되지 않는 죽은 import였고,
 // 각각 합성 산식 라우트(/api/logistics/freight·trader-import, A-01 위반으로 비활성화)에 의존.
 const UnloadingStatus = dynamic(() => import('../components/UnloadingStatus'));
-const MackerelDashboard = dynamic(() => import('../components/MackerelDashboard'));
 const FlatfishDashboard = dynamic(() => import('../components/FlatfishDashboard'));
 
 const PorkDashboard = dynamic(() => import('../components/PorkDashboard'));
@@ -256,7 +255,6 @@ export default function Home() {
     'cross-intelligence': <CrossCommodityIntelligenceDashboard />,
     fleet: <FleetCommandCenter />,
     logistics: <LogisticsDashboard />,
-    mackerel: <MackerelDashboard />,
     flatfish: <FlatfishDashboard />,
     pork: <PorkDashboard />,
     unloading: <UnloadingStatus />,
@@ -530,7 +528,7 @@ export default function Home() {
                       }}>
                         <div style={{ fontWeight: 700, color: 'var(--text-main)', marginBottom: '6px' }}>제공 메뉴 미리보기</div>
                         <div>📡 실시간 운영 — 시장 동향 · 선단 운영 · 하역 현황 · 물류·가공</div>
-                        <div>🐟 어종별 인텔리전스 — 고등어 · 가자미</div>
+                        <div>🐟 어종별 인텔리전스 — 가자미</div>
                         <div>🌾 농산물 — (현재 공개 메뉴 없음)</div>
                       </div>
                     </motion.div>
