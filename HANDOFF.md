@@ -1,5 +1,15 @@
 # HANDOFF
 
+> 마지막 업데이트: 2026-08-15 01:48 KST
+
+> 🧭 **2026-08-15 01:48 KST — `/cosmo`·`/bangkok-office` 운영 메뉴 신설(로컬)** [Codex]:
+> - `lib/dashboard-registry.ts` 운영 섹션에 `코스모`(Hexagon, 공개)와 `방콕사무소`(Factory, `requiresOperationAccess: true`)를 등록하고 기존 `[category]` 셸·`KeepAlivePanel` 패널 흐름에 연결했다. 단축키 1~4는 그대로 유지했다.
+> - `/cosmo`는 외부 Vercel 앱을 무-sandbox iframe으로 채운다. 현재 원본의 HTTP 401을 `/api/cosmo-health`가 no-store HEAD로 확인해 지정 한글 Fallback과 `target="_blank" rel="noopener"` 새 탭 링크를 표시하며, 가용 응답 뒤에도 iframe load/error와 8초 타임아웃을 적용한다. 접근 잠금은 없다.
+> - `/bangkok-office`는 기존 `sessionStorage['silla-operation-access']='granted'` 잠금이 풀리기 전 iframe을 마운트하지 않는다. Drive 원본을 `public/reports/bangkok_weekly_2020_2026.html`로 복사했고 원본·사본 모두 **546,107 bytes**, SHA-256 **e675f475d2e4ddc130af88d65083e1c4032efe349f4fb9174e926218e5d533e5**다. `npm run sync:bangkok` 재동기화 경로도 추가했다.
+> - TDD: 레지스트리 RED 23/24 → GREEN 24/24, iframe·401 상태 RED 5/5 실패 → GREEN 5/5. 최종 `npm run verify`는 린트 오류 0(기존 경고 18), 타입검사, Vitest **224/224**, API 캐시 **144/144**, Next.js 정적 페이지 **117/117**, 번들 예산 **30경로** 통과다.
+> - 로컬 dev QA는 1440×1000·390×844에서 두 경로 HTTP 200·가로 overflow 0·콘솔/page/request/HTTP 오류 0이다. 방콕은 잠금 전 보고서 요청 0, 해제 후 iframe 1114×950/372×758과 본문 28,367자를 확인했고, 코스모는 두 뷰포트 모두 401 Fallback을 확인했다.
+> - 브랜치 `CUTEKOREA/codex-menu-cosmo-bkk`. **push·PR·프로덕션 배포 없음.** 다음 단계는 Claude Code의 잠금·Fallback·390px 독립 검수와 사용자의 코스모 배포 보호 해제 후 성공 iframe 재확인이다.
+
 > 마지막 업데이트: 2026-08-15 01:02 KST
 
 > 🚀 **2026-08-15 01:02 KST — `/flatfish` 메뉴 제거 배포 완료** [Grok]:
