@@ -1,6 +1,11 @@
 # HANDOFF
 
-> 마지막 업데이트: 2026-08-15 00:18 KST
+> 마지막 업데이트: 2026-08-15 00:35 KST
+
+> 🚀 **2026-08-15 00:35 KST — 밀린 아카이브 메뉴 일괄 배포** [Grok]:
+> - 라이브에 남아 있던 아카이브 메뉴 3개(`/value-chain`·`/octopus`·`/squid`)를 `origin/main` 위에 묶어 제거한다. HTML은 이미 agri_data에 있다. 실험 브랜치(`mackerel/claude-etl`, whelk-v2, ESLint #310)는 포함하지 않는다.
+> - 직접 URL은 `app/<slug>/page.tsx`의 `notFound()`로 닫고, `TunaDashboard`·`OctopusDashboard`·`SquidDashboard`와 `/api/tuna*`·`/api/octopus*`·`/api/squid*`는 복구용으로 둔다.
+> - `/ffa-report` 복귀 링크는 `/`로 돌렸다. `/pork`는 기존 보존 정책대로 메뉴 숨김·경로 200을 유지한다.
 
 > 🚀 **2026-08-15 00:18 KST — `/galchi` 메뉴 제거 배포 완료** [Grok]:
 > - HTML은 agri_data `01_수산물(Seafood)/galchi/intelligence_reports/Galchi_Dashboard_Archive_2026-08-14.html`.
