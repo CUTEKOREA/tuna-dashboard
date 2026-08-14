@@ -1,5 +1,12 @@
 # HANDOFF
 
+> 마지막 업데이트: 2026-08-14 23:50 KST
+
+> 🥜 **2026-08-14 23:50 KST — 캐슈넛 메뉴 제거 배포 준비** [Grok]:
+> - HTML은 이미 agri_data `06_견과류(Nuts)/cashew/intelligence_reports/Cashew_Dashboard_Archive_2026-08-14.html`. 라이브 `origin/main`에 남은 아카이브 메뉴는 캐슈뿐이었다.
+> - `origin/main` 전용 브랜치 `chore/remove-cashew-20260814`에서 메뉴·리라이트 제거. `/cashew`는 `app/cashew/page.tsx` `notFound()`. `/api/cashew/*`와 컴포넌트는 존치.
+> - `mackerel/claude-etl`은 포함하지 않는다.
+
 > 마지막 업데이트: 2026-08-14 23:55 KST
 
 > 🚀 **2026-08-14 23:55 KST — 대기 아카이브 메뉴 일괄 배포** [Grok]:
