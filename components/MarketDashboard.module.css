@@ -1,0 +1,71 @@
+.dashboard {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  gap: 2rem;
+  background: var(--dsc-bg);
+}
+
+.kpiGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 16px;
+}
+
+.kpiCard {
+  position: relative;
+  overflow: hidden;
+  border: 1px solid var(--dsc-surface-border);
+  border-radius: var(--dsc-card-radius);
+  background: var(--dsc-surface) !important;
+  box-shadow: var(--dsc-card-shadow);
+  backdrop-filter: var(--dsc-surface-blur);
+}
+
+.kpiCard::before {
+  position: absolute;
+  z-index: 1;
+  top: 0;
+  right: 0;
+  left: 0;
+  height: 3px;
+  background: var(--accent-primary);
+  content: '';
+}
+
+.kpiCard::after,
+.chartPanel::after {
+  content: none;
+}
+
+.kpiCard:hover {
+  border-color: color-mix(in srgb, var(--accent-primary) 30%, var(--dsc-surface-border));
+  box-shadow: var(--dsc-card-shadow);
+  transform: translateY(-2px);
+}
+
+.chartPanel {
+  min-width: 0;
+  border: 1px solid var(--dsc-surface-border);
+  border-radius: var(--dsc-card-radius);
+  background: var(--dsc-surface) !important;
+  box-shadow: var(--dsc-card-shadow);
+  backdrop-filter: var(--dsc-surface-blur);
+}
+
+.staleBadge {
+  padding: 1px 6px;
+  border: 1px solid color-mix(in srgb, var(--color-warning) 35%, transparent);
+  border-radius: 6px;
+  background: color-mix(in srgb, var(--color-warning) 12%, transparent);
+  color: var(--color-warning);
+  font-size: 0.65rem;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .kpiCard:hover {
+    transform: none;
+  }
+}

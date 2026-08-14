@@ -20,6 +20,7 @@ import {
   calcAtunaDeltaPct,
   latestTwoForAtunaHub,
 } from '../lib/data/atuna-price-summary';
+import styles from './MarketDashboard.module.css';
 
 const fmtPct = (p: number) => `${p >= 0 ? '+' : ''}${p.toFixed(1)}%`;
 const subscribeClientSnapshot = () => () => {};
@@ -44,7 +45,6 @@ export function MarketHero({ rows }: { rows: AtunaPriceRow[] }) {
       label: '만타 SKJ 현물가',
       value: manta.latest.price,
       unit: '($/MT)',
-      accent: '#2dd4bf',
     });
   }
   if (bangkokDelta !== null) {
@@ -52,7 +52,6 @@ export function MarketHero({ rows }: { rows: AtunaPriceRow[] }) {
       label: '방콕 주간 변동',
       value: bangkokDelta,
       unit: '($/MT)',
-      accent: bangkokDelta >= 0 ? '#f59e0b' : '#10b981',
     });
   }
   if (yellowfin.latest) {
@@ -60,7 +59,6 @@ export function MarketHero({ rows }: { rows: AtunaPriceRow[] }) {
       label: '황다랑어 현물가',
       value: yellowfin.latest.price,
       unit: '($/MT)',
-      accent: '#a78bfa',
     });
   }
 
@@ -187,7 +185,7 @@ export default function MarketDashboard({ heroOnly = false }: { heroOnly?: boole
 
   if (heroOnly) {
     return (
-      <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem' }}>
+      <div className={styles.dashboard}>
         {marketHero}
       </div>
     );
@@ -214,7 +212,7 @@ export default function MarketDashboard({ heroOnly = false }: { heroOnly?: boole
     const days = staleDaysOf(date);
     if (days === null || days <= 7) return null;
     return (
-      <span style={{ padding: '1px 6px', borderRadius: '6px', fontSize: '0.65rem', fontWeight: 600, color: '#f59e0b', background: 'rgba(245, 158, 11, 0.12)', border: '1px solid rgba(245, 158, 11, 0.35)', whiteSpace: 'nowrap' }}>
+      <span className={styles.staleBadge}>
         {days}일 전
       </span>
     );
@@ -229,56 +227,22 @@ export default function MarketDashboard({ heroOnly = false }: { heroOnly?: boole
   };
 
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem' }}>
+    <div className={styles.dashboard}>
       {marketHero}
 
       {/* Seafood Stock Widget at the top of the market page */}
       <SeafoodStockWidget />
 
-      {/* Visual-only scoped styles (no data/logic) — KPI signature top bars, hover glow */}
-      <style>{`
-        .mkt-kpi { position: relative; overflow: hidden; }
-        .mkt-kpi::before {
-          content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
-          background: var(--kpi-grad); z-index: 1;
-        }
-        .mkt-kpi::after {
-          content: ''; position: absolute; top: -30px; left: -10%; right: -10%; height: 70px;
-          background: var(--kpi-grad); opacity: 0.10; filter: blur(26px); pointer-events: none;
-        }
-        .mkt-kpi.ds-card:hover {
-          border-color: var(--kpi-border, var(--card-hover-border));
-          box-shadow: 0 14px 40px -14px var(--kpi-glow), 0 4px 18px rgba(0, 0, 0, 0.35);
-        }
-        .mkt-news-grid > .ds-card {
-          transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
-        }
-        .mkt-news-grid > .ds-card:hover {
-          transform: translateY(-3px);
-          border-color: var(--news-glow-border, rgba(56, 189, 248, 0.35));
-          box-shadow: 0 16px 44px -16px var(--news-glow, rgba(56, 189, 248, 0.30)), 0 4px 18px rgba(0, 0, 0, 0.35);
-        }
-        [data-theme='light'] .mkt-kpi::after { opacity: 0.07; }
-        [data-theme='light'] .mkt-kpi.ds-card:hover,
-        [data-theme='light'] .mkt-news-grid > .ds-card:hover {
-          box-shadow: 0 12px 32px -12px rgba(20, 28, 52, 0.18);
-        }
-      `}</style>
-
       {/* ROW 1: CORE MACRO KPIs */}
-      <section style={{
-        display: 'grid',
-        gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))',
-        gap: '16px'
-      }}>
+      <section className={styles.kpiGrid}>
         {/* KPI 1 */}
-        <div className="ds-card mkt-kpi" style={{ '--kpi-grad': 'linear-gradient(90deg, #22d3ee, #3b82f6)', '--kpi-glow': 'rgba(56, 189, 248, 0.35)', '--kpi-border': 'rgba(56, 189, 248, 0.35)' } as React.CSSProperties}>
+        <div className={`ds-card ${styles.kpiCard}`}>
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '8px', color: 'var(--text-muted)', fontSize: '0.8rem' }}>
             <span style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
               <span style={{ fontWeight: 600 }}>SKJ 가다랑어 지역 스프레드</span>
               {renderStaleBadge(atunaLatest.skj?.latest?.date)}
             </span>
-            <Ship size={16} color="#38bdf8" style={{ filter: 'drop-shadow(0 0 6px rgba(56, 189, 248, 0.6))' }} />
+            <Ship size={16} color="var(--accent-primary)" />
           </div>
           <div style={{ fontSize: '1.85rem', fontWeight: 800, letterSpacing: '-0.03em', fontVariantNumeric: 'tabular-nums', color: 'var(--text-main)' }}>
             {atunaLatest.skj?.latest ? `$${atunaLatest.skj.latest.price.toLocaleString()}` : '—'} <span style={{ fontSize: '1rem', color: 'var(--text-muted)', fontWeight: 400 }}>/ton</span>
@@ -297,13 +261,13 @@ export default function MarketDashboard({ heroOnly = false }: { heroOnly?: boole
         </div>
 
         {/* KPI 2 */}
-        <div className="ds-card mkt-kpi" style={{ '--kpi-grad': 'linear-gradient(90deg, #6366f1, #8b5cf6)', '--kpi-glow': 'rgba(139, 92, 246, 0.35)', '--kpi-border': 'rgba(139, 92, 246, 0.35)' } as React.CSSProperties}>
+        <div className={`ds-card ${styles.kpiCard}`}>
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '8px', color: 'var(--text-muted)', fontSize: '0.8rem' }}>
             <span style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
               <span style={{ fontWeight: 600 }}>YF 황다랑어 지역 스프레드</span>
               {renderStaleBadge(atunaLatest.yf?.latest?.date)}
             </span>
-            <Anchor size={16} color="#818cf8" style={{ filter: 'drop-shadow(0 0 6px rgba(139, 92, 246, 0.6))' }} />
+            <Anchor size={16} color="var(--accent-primary)" />
           </div>
           <div style={{ fontSize: '1.85rem', fontWeight: 800, letterSpacing: '-0.03em', fontVariantNumeric: 'tabular-nums', color: 'var(--text-main)' }}>
             {atunaLatest.yf?.latest ? `$${atunaLatest.yf.latest.price.toLocaleString()}` : '—'} <span style={{ fontSize: '1rem', color: 'var(--text-muted)', fontWeight: 400 }}>/ton</span>
@@ -322,19 +286,19 @@ export default function MarketDashboard({ heroOnly = false }: { heroOnly?: boole
         </div>
 
         {/* KPI 3 */}
-        <div className="ds-card mkt-kpi" style={{ '--kpi-grad': 'linear-gradient(90deg, #ef4444, #f59e0b)', '--kpi-glow': 'rgba(239, 68, 68, 0.32)', '--kpi-border': 'rgba(239, 68, 68, 0.35)' } as React.CSSProperties}>
+        <div className={`ds-card ${styles.kpiCard}`}>
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '8px', color: 'var(--text-muted)', fontSize: '0.8rem' }}>
             <span style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
               <span style={{ fontWeight: 600 }}>싱가포르 MGO 유가{mgoData.isEstimate ? ' (Brent 환산추정)' : ''}</span>
               {renderStaleBadge(mgoData.date)}
             </span>
-            <Activity size={16} color="#ef4444" style={{ filter: 'drop-shadow(0 0 6px rgba(239, 68, 68, 0.6))' }} />
+            <Activity size={16} color="var(--accent-primary)" />
           </div>
           <div style={{ fontSize: '1.85rem', fontWeight: 800, letterSpacing: '-0.03em', fontVariantNumeric: 'tabular-nums', color: 'var(--text-main)' }}>
             {mgoData.price !== null ? `$${mgoData.price.toLocaleString()}` : '—'} <span style={{ fontSize: '1rem', color: 'var(--text-muted)', fontWeight: 400 }}>/ton</span>
           </div>
           {mgoData.change !== null && mgoData.price !== null && (
-            <div style={{ display: 'flex', alignItems: 'center', gap: '6px', marginTop: '8px', fontSize: '0.8rem', color: mgoData.change >= 0 ? '#ef4444' : 'var(--accent-success)' }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '6px', marginTop: '8px', fontSize: '0.8rem', color: mgoData.change >= 0 ? 'var(--color-danger)' : 'var(--accent-success)' }}>
               {mgoData.change >= 0 ? <TrendingUp size={14} /> : <TrendingDown size={14} />}
               <span>전일 대비 {mgoData.change >= 0 ? '+' : '-'}${Math.abs(mgoData.change).toLocaleString()}</span>
             </div>
@@ -345,13 +309,13 @@ export default function MarketDashboard({ heroOnly = false }: { heroOnly?: boole
         </div>
 
         {/* KPI 4 */}
-        <div className="ds-card mkt-kpi" style={{ '--kpi-grad': 'linear-gradient(90deg, #10b981, #14b8a6)', '--kpi-glow': 'rgba(16, 185, 129, 0.32)', '--kpi-border': 'rgba(16, 185, 129, 0.35)' } as React.CSSProperties}>
+        <div className={`ds-card ${styles.kpiCard}`}>
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '8px', color: 'var(--text-muted)', fontSize: '0.8rem' }}>
             <span style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
               <span style={{ fontWeight: 600 }}>달러·원 환율</span>
               {renderStaleBadge(fxData.date)}
             </span>
-            <Globe size={16} color="#10b981" style={{ filter: 'drop-shadow(0 0 6px rgba(16, 185, 129, 0.6))' }} />
+            <Globe size={16} color="var(--accent-primary)" />
           </div>
           <div style={{ fontSize: '1.85rem', fontWeight: 800, letterSpacing: '-0.03em', fontVariantNumeric: 'tabular-nums', color: 'var(--text-main)' }}>
             {fxData.usd_krw !== null ? `₩${fxData.usd_krw.toLocaleString()}` : '—'} <span style={{ fontSize: '1rem', color: 'var(--text-muted)', fontWeight: 400 }}>/$</span>
@@ -369,7 +333,7 @@ export default function MarketDashboard({ heroOnly = false }: { heroOnly?: boole
       </section>
 
       {/* ROW 2: TUNA PRICE TRENDS BY REGION */}
-      <section className="ds-card">
+      <section className={`ds-card ${styles.chartPanel}`}>
         <h3 style={{ display: 'flex', alignItems: 'center', gap: '8px', fontSize: '1.1rem', marginBottom: '16px', color: 'var(--text-main)' }}>
           <BarChart2 size={20} color="#38bdf8" />
           글로벌 참치 어가 추이 (SKJ·YF 지역 스프레드)

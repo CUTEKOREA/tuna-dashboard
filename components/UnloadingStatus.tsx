@@ -129,6 +129,7 @@ export function UnloadingHero({
   const carrierHatches = Array.from({ length: 8 }, (_, hatchIndex) => ({
     id: `carrier-hatch-${hatchIndex + 1}`,
     intensity: clampHeroValue(completionRatio * 8 - hatchIndex, 0, 1),
+    color: 'var(--accent-primary)',
   }));
   const annualActualTotal = vessels.reduce(
     (total, vessel) => total + (vessel.annualActualTotal ?? vessel.actualTotal),
@@ -182,7 +183,7 @@ export function UnloadingHero({
       secondaryKpis={[
         { label: '완료 선박', value: completedVessels.length, unit: '(척)' },
         { label: '현재 하역 누계', value: activeActualTotal, unit: '(MT)', decimals: 3 },
-        { label: '잔여 목표량', value: activeRemainingTotal, unit: '(MT)', decimals: 3, accent: '#f59e0b' },
+        { label: '잔여 목표량', value: activeRemainingTotal, unit: '(MT)', decimals: 3 },
       ]}
       strip={strip}
     >
@@ -1248,7 +1249,7 @@ export default function UnloadingStatus({ heroOnly = false }: { heroOnly?: boole
             progress={percent}
             radius={22}
             strokeWidth={4}
-            color={isProgress ? 'var(--accent-primary)' : statusKind === 'waiting' ? '#a78bfa' : '#10b981'}
+            color={isProgress ? 'var(--accent-primary)' : 'var(--dsc-ink-muted)'}
             glow={isProgress}
           />
         </div>
