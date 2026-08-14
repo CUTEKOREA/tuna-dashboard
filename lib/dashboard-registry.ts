@@ -10,7 +10,6 @@ export type SidebarIconKey =
   | 'Cherry'
   | 'Coffee'
   | 'Droplets'
-  | 'Drumstick'
   | 'Factory'
   | 'Fish'
   | 'FishSymbol'
@@ -63,7 +62,6 @@ export const DASHBOARD_MENU_CONFIGS = [
   { key: 'carrot', title: '당근', section: 'agriculture', accent: 'cyan', sidebar: { icon: 'Carrot', suffix: 'Carrot' } },
   { key: 'cocoa', title: '코코아', section: 'agriculture', accent: 'emerald', sidebar: { icon: 'Coffee', suffix: 'Cocoa' } },
   { key: 'mangosteen', title: '망고스틴', section: 'agriculture', accent: 'cyan', sidebar: { icon: 'Cherry', suffix: 'Mangosteen' } },
-  { key: 'chicken', title: '닭', section: 'livestock', accent: 'cyan', sidebar: { icon: 'Drumstick', suffix: 'Chicken' } },
   { key: 'pork', title: '돼지고기', section: 'livestock', accent: 'cyan', sidebar: { icon: 'Hexagon', suffix: 'Pork' } },
   { key: 'beef', title: '소고기', section: 'livestock', accent: 'cyan', sidebar: { icon: 'Beef', suffix: 'Beef' } },
   { key: 'whelk', title: '골뱅이', section: 'fishery', accent: 'cyan', sidebar: { icon: 'Shell', suffix: 'Whelk' } },
@@ -202,7 +200,6 @@ export const DASHBOARD_PANEL_ORDER = [
   'carrot',
   'cocoa',
   'mangosteen',
-  'chicken',
   'pork',
   'beef',
   'used-car',
@@ -244,7 +241,7 @@ const SIDEBAR_SECTION_KEYS: Record<DashboardSection, readonly ActiveMenu[]> = {
     'research-lab',
   ],
   agriculture: ['cashew', 'cassava', 'garlic', 'carrot', 'cocoa', 'mangosteen'],
-  livestock: ['chicken', 'pork', 'beef'],
+  livestock: ['pork', 'beef'],
 };
 
 function getMenuConfig(menu: ActiveMenu): DashboardMenuConfig {

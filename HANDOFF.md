@@ -9,6 +9,14 @@
 > - TDD RED 1건 → GREEN. `npm run verify` 통과: lint 오류 0(기존 경고 18), TypeScript, Vitest **202/202**, API 캐시 **143/143**, Next.js build **98/98**, 번들 예산. 로컬 production `/pork`는 HTTP 200, 직접 제목 렌더, 사이드바·빠른 검색·사이트맵 `pork` 0, 1440px·390px overflow 0을 확인했다.
 > - 독립 로컬 검증도 통과했다. 교차벤더 검증은 Codex 사용량 한도로 미실행이다. 원본 위젯의 기존 탈락 문구 1건과 개발 전용 P-03 문구 경고는 보존본 충실성을 위해 이번 범위에서 수정하지 않았다. **프로덕션 미배포**이며, 배포는 사용자의 별도 명시 요청이 필요하다.
 
+> 🚀 **2026-08-14 20:50 KST — 닭 메뉴·사이드바 외부링크 제거 배포** [Grok]:
+> - `/chicken` 대시보드를 agri_data HTML 아카이브로 옮긴 뒤 라이브 메뉴에서 닭을 뺐다. 사이드바 하단 **청과제국 동화청과**·**신라교역 50년사** 외부 링크도 제거.
+> - 배포 범위: `origin/main`에서 전용 브랜치 `chore/remove-chicken-sidebar-20260814`. `mackerel/claude-etl`은 올리지 않음.
+> - 변경: `lib/dashboard-registry.ts`, `app/page.tsx`, `app/sitemap.ts`, `next.config.mjs`(chicken만 제거, squid rewrite는 main 유지), `__tests__/dashboard-registry.test.ts`.
+> - `/api/chicken/*`와 Chicken 컴포넌트는 교차 인텔리전스·연어 비교용으로 존치.
+> - 검증: Vitest dashboard-registry 9/9, `tsc --noEmit` 통과.
+
+> 마지막 업데이트: 2026-08-14 08:52 KST
 > 🚢 **2026-08-14 08:52 KST — `/unloading` SEIN VENUS 8/13 하역 보고 반영** [Codex 구현]:
 > - Google Drive 원본 2건을 직접 대조했다. 일일 결과보고 XLS SHA-256 `13039293d1036268098aae9179c9566de0dbfcbc17b538ed01d7d699fd657d5d`, 일일 하역량 현황 XLSX SHA-256 `8b4f77a42f6a7d03387f90b7276a32d77316b75a71efa62f2449f05907552b7d`다.
 > - 8/13 당일 **159.590 MT**, 누계 **1,237.580 MT**, 목표 3,275 MT 대비 잔량 **2,037.420 MT**를 반영했다. 작업시간 `08:20 ~ 15:10`, `N/STAR(#2-B)`, 수하처 `MMP`, 온도 `-22.0℃ ~ -23.0℃`, 8/14 약 400톤 계획을 보존했다. 8/12는 별도 일일 보고가 없어 0 MT 행을 만들지 않고 8/11 보고의 공휴일 메모만 유지했다.
