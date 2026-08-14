@@ -2,11 +2,11 @@
 
 > 마지막 업데이트: 2026-08-14 23:10 KST
 
-> 🚀 **2026-08-14 23:10 KST — `/kim`·`/used-car` HTML 보존 후 메뉴 일괄 배포** [Grok]:
-> - 밀린 아카이브는 이 두 메뉴다. 김은 `agri_data/01_수산물(Seafood)/laver/intelligence_reports/Kim_Dashboard_Archive_2026-08-14.html`, 중고차는 `agri_data/13_공통(General)/used-car/Used_Car_Dashboard_Archive_2026-08-14.html`.
-> - `origin/main` `d0650be` 위에 레지스트리·사이드바·패널·랜딩 미리보기·rewrite에서 `kim`·`used-car`를 빼고, 직접 URL은 `app/kim/page.tsx`·`app/used-car/page.tsx`의 명시적 404. 컴포넌트와 API는 존치.
-> - 오래된 `chore/remove-used-car-20260814`(04fd1e4, 20커밋 뒤)는 하역 8/14 어종 정정을 되돌리므로 병합하지 않고 현재 main에 다시 얹었다. 실험 브랜치(mackerel ETL·whelk-v2·value-chain v2·oc-lint-zero)는 포함하지 않는다.
-> - 브랜치 `chore/deploy-kim-used-car-20260814`. 사용자 배포 요청에 따라 PR→게이트→`main`→라이브 재검증을 진행한다.
+> 🚀 **2026-08-14 23:20 KST — `/kim`·`/used-car` 메뉴 일괄 배포 완료** [Grok]:
+> - 밀린 아카이브는 이 두 메뉴였다. HTML은 `agri_data/01_수산물(Seafood)/laver/intelligence_reports/Kim_Dashboard_Archive_2026-08-14.html`, `agri_data/13_공통(General)/used-car/Used_Car_Dashboard_Archive_2026-08-14.html`.
+> - PR **#323** squash 병합 `1023df4`. App Quality Gate `31806352412` SUCCESS, 로컬 `npm run verify`는 ESLint 오류 0(경고 18)·Vitest **211/211**·API 캐시 **143/143**·정적 페이지 **103**·번들 16경로.
+> - Vercel Production `dpl_G7G66VfLwvyMsH2fqsWx8dYm1Fh3` READY, alias `leedonggun.co.kr`. 라이브 `/kim`·`/used-car`는 404(`x-matched-path` 각각 `/kim`·`/used-car`). 사이트맵에 두 경로 없음. `/api/kim/customs` isLive, `/api/used-car` 유지.
+> - 하역 회귀: SEIN VENUS 당일 **424.78**·누계 **1662.36**·SJ **1397.36**·YF **265**·미분류 0·8/14 어종 SJ **368.08**·YF **56.7**. 실험 브랜치는 포함하지 않았고, 낡은 used-car worktree(20커밋 뒤)는 병합하지 않았다.
 
 > 🚢 **2026-08-14 22:21 KST — `/unloading` SEIN VENUS 8/14 엑셀 원본 기준 어종 정정** [Codex]:
 > - 사용자 제공 Google Drive 원본 2건을 읽기 전용으로 대조했다. `20260814 일일 하역결과보고` XLS SHA-256은 `0ad30e784ec9c643dfe1bb42ffa597005c5dffa2ea74523acff7c639637a6d70`, `20260814 일일하역량 현황` XLSX는 `9814a954e5c7984a3be51cb1071cc60bbb9fc6734c20a51e14759a234775f7cf`다.
