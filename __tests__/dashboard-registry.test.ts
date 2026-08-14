@@ -53,6 +53,13 @@ describe('dashboard registry', () => {
     expect(isActiveMenu('used-car')).toBe(false);
   });
 
+  it('retires the whelk dashboard route with an explicit 404 boundary', () => {
+    const routeSource = readFileSync(join(process.cwd(), 'app/whelk/page.tsx'), 'utf8');
+
+    expect(routeSource).toContain('notFound()');
+    expect(isActiveMenu('whelk')).toBe(false);
+  });
+
   it('routes hydration-sensitive dashboards through the client-only category page', () => {
     const configSource = readFileSync(join(process.cwd(), 'next.config.mjs'), 'utf8');
     const categorySource = readFileSync(join(process.cwd(), 'app/[category]/page.tsx'), 'utf8');
@@ -63,6 +70,7 @@ describe('dashboard registry', () => {
     expect(rewriteSource).not.toContain('korea-market');
     expect(rewriteSource).not.toContain('used-car');
     expect(rewriteSource).not.toContain('kim');
+    expect(rewriteSource).not.toContain('whelk');
     expect(rewriteSource).not.toContain('logistics');
     expect(rewriteSource).not.toContain('fleet-strategy');
     expect(rewriteSource?.match(/\(([^)]+)\)/)?.[1].split('|')).not.toContain('fleet');
@@ -136,6 +144,7 @@ describe('dashboard registry', () => {
     expect(isActiveMenu('sashimi-steak')).toBe(false);
     expect(isActiveMenu('kim')).toBe(false);
     expect(isActiveMenu('used-car')).toBe(false);
+    expect(isActiveMenu('whelk')).toBe(false);
     expect(isActiveMenu('retail')).toBe(false);
   });
 
@@ -237,7 +246,7 @@ describe('dashboard registry', () => {
 
     expect(SIDEBAR_SECTIONS.map((section) => section.items.map((item) => item.key))).toEqual([
       ['market', 'fleet', 'unloading', 'logistics'],
-      ['value-chain', 'mackerel', 'galchi', 'squid', 'jukkumi', 'octopus', 'pollock', 'flatfish', 'shrimp', 'whelk', 'salmon'],
+      ['value-chain', 'mackerel', 'galchi', 'squid', 'jukkumi', 'octopus', 'pollock', 'flatfish', 'shrimp', 'salmon'],
       ['fleet-strategy', 'research-lab'],
       ['cashew'],
     ]);
@@ -276,7 +285,6 @@ describe('dashboard registry', () => {
       'pollock',
       'flatfish',
       'shrimp',
-      'whelk',
       'salmon',
       'cashew',
       'pork',

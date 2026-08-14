@@ -46,7 +46,6 @@ const ShrimpDashboard = dynamic(() => import('../components/ShrimpDashboard'));
 const SalmonDashboard = dynamic(() => import('../components/SalmonDashboard'));
 const CashewStrategy = dynamic(() => import('../components/CashewStrategy'));
 const PorkDashboard = dynamic(() => import('../components/PorkDashboard'));
-const WhelkDashboard = dynamic(() => import('../components/WhelkDashboard'));
 const TunaDashboard = dynamic(() => import('../components/TunaDashboard'));
 const LogisticsDashboard = dynamic(() => import('../components/LogisticsDashboard'));
 const CrossCommodityIntelligenceDashboard = dynamic(() => import('../components/CrossCommodityIntelligenceDashboard'));
@@ -277,7 +276,6 @@ export default function Home() {
     pollock: <PollockDashboard />,
     flatfish: <FlatfishDashboard />,
     shrimp: <ShrimpDashboard />,
-    whelk: <WhelkDashboard />,
     salmon: <SalmonDashboard />,
     cashew: <CashewStrategy />,
     pork: <PorkDashboard />,

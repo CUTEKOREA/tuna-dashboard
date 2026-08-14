@@ -1,5 +1,12 @@
 # HANDOFF
 
+> 마지막 업데이트: 2026-08-14 23:45 KST
+
+> 🐌 **2026-08-14 23:45 KST — 골뱅이(`/whelk`) 보존 보고서·메뉴 제거** [Grok]:
+> - 공개 `/whelk`의 KPI 5개·5필라 정적 위젯 31개·KFAS 학술 위젯 5개를 제거 전 정적 HTML로 옮겼다. 산출물은 Google Drive `agri_data/01_수산물(Seafood)/whelk/intelligence_reports/Whelk_Dashboard_Archive_2026-08-14.html`이다. `/api/whelk/kcs`·`/api/whelk/dart` 라이브 응답은 제외했다.
+> - 메뉴 레지스트리·사이드바·패널·리라이트에서 `whelk`를 빼고, 직접 `/whelk` 접근은 `app/whelk/page.tsx`의 `notFound()`로 닫았다. 복구를 위해 `WhelkDashboard.tsx`와 `/api/whelk/*`는 삭제하지 않았다.
+> - 프로덕션 push·배포는 하지 않았다.
+
 > 마지막 업데이트: 2026-08-14 23:10 KST
 
 > 🚀 **2026-08-14 23:20 KST — `/kim`·`/used-car` 메뉴 일괄 배포 완료** [Grok]:
