@@ -61,3 +61,56 @@
 
 - **Grid Layout (2-Column Default):** 하드 코딩된 `px` 너비나 복잡한 반응형(auto-fit)을 피하고, C-Level 임원진의 가독성을 극대화하기 위해 **1열에 2개의 위젯을 크게 배치**하는 CSS Grid (`grid-template-columns: repeat(2, 1fr)`)를 기본값으로 활용합니다.
 - **Lucide-React 기반 시각화:** 메인 메뉴, 카드 헤더, 탭 이름에는 관련된 컨셉의 Lucide 아이콘을 꼭 배치하여 직관성과 퀄리티를 대폭 높입니다.
+
+---
+
+## 5. Deep Sea Command V2 (2026-08-15 리디자인 표준)
+
+> 레퍼런스: Dribbble Twisty(24190386) · Vexto(27220417) · Raktor(26864675).
+> 스펙 원문: `docs/superpowers/specs/2026-08-15-dashboard-redesign-design.md`.
+> 위 1~4장 규칙은 전부 유효하며, 본 장은 그 위에 얹히는 페이지 셸 표준이다.
+
+### 5-1. 히어로 존 (페이지당 정확히 1개)
+
+| 유형 | 적용 | 컴포넌트 |
+| --- | --- | --- |
+| A. Vessel Ops | /fleet /unloading | `HeroZone variant="vessel"` + `VesselTopSVG` |
+| B. Live Map | /logistics | `HeroZone variant="map"` |
+| C. Executive KPI | /market 및 일반 대시보드 | `HeroZone variant="kpi"` |
+
+- 배경(이미지·지도)은 슬롯 — Grok 생성 이미지 ↔ `VesselTopSVG` 폴백이 호출부 1줄로 교체돼야 한다.
+- 배경을 히어로 전체(`inset 0`)에 깔지 말 것 — KPI 행과 겹친다. 위치 제한 wrapper
+  (데스크톱 우측 ~68%, 모바일 상단 밴드 opacity 0.5)가 표준. (`FleetCommandCenter` 참조)
+- 경고 패널(`warning` 프롭)의 권고 줄은 기존 위젯 TAK 재사용 — 새 문구 창작 금지.
+
+### 5-2. 타이포 계층 (웨이트 대비 250 vs 700)
+
+- 페이지 타이틀: `--dsc-title-size`(48-64px), 웨이트 250, 히어로 위에 직접.
+- KPI 주인공: `--dsc-kpi-size`, 웨이트 700, `tabular-nums`, 단위 18px 병기, **nowrap**
+  (소수점 포함 9자리도 390px에서 한 줄).
+- 명조·세리프 헤드라인 금지 (War Room 톤 충돌).
+
+### 5-3. 페이지 구조
+
+```
+페이지 = HeroZone 1 + 핵심 카드 4-6 + PillTabs 계층화
+```
+
+- 탭 키는 페이지 성격에 맞게 (5-Pillar 또는 업무 구분). 기존 탭이 있던 페이지만 PillTabs로 교체.
+- 핵심 카드 선정: LIVE/SYNCED 우선, C레벨 의사결정 직결 순. 나머지는 탭 뒤로 — 위젯 삭제 금지.
+
+### 5-4. 모션 (전부 `prefers-reduced-motion` 존중)
+
+`--dsc-stagger`(60ms 진입 스태거) · `--dsc-breathe`(3.6s 발광 숨쉬기) · `--dsc-lift`(-2px 호버) ·
+KPI 카운트업 1.4s (reduce 시 즉시 표시).
+
+### 5-5. 발광 액센트 = 살아있는 데이터
+
+- `--dsc-glow-*`는 **데이터 연동 하이라이트 전용** (해치 발광 = 적재/하역 비율, LIVE 펄스, 활성 탭).
+- 장식 목적 발광 금지. `VesselTopSVG`는 intensity 0이면 발광하지 않는다.
+
+### 5-6. 전 메뉴 세션 잠금
+
+- 모든 활성 메뉴는 `SESSION_ACCESS_MENUS`(registry) 기반 세션 비밀번호 게이트 뒤에 있다.
+- 클라이언트측 게이트다 — 진짜 인증이 아니며 Supabase 로그인과 별개 층. 신규 메뉴는
+  registry에 추가되는 순간 자동으로 잠금 대상이 된다.
