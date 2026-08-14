@@ -3,7 +3,7 @@
 import React, { useState, useEffect, useRef, useSyncExternalStore } from 'react';
 import { 
   TrendingUp, TrendingDown, Ship, Anchor, BarChart2,
-  Newspaper, Globe, Activity
+  Globe, Activity
 } from 'lucide-react';
 import {
   LineChart, Line, XAxis, YAxis, CartesianGrid, 
@@ -432,110 +432,6 @@ export default function MarketDashboard() {
         </div>
       </section>
 
-      {/* ROW 3: ATUNA NEWS WEEKLY TOP 4 */}
-      <section>
-        <h3 style={{ display: 'flex', alignItems: 'center', gap: '8px', fontSize: '1.1rem', marginBottom: '16px', color: 'var(--text-main)' }}>
-          <Newspaper size={20} color="#f59e0b" />
-          Atuna 2026.08 폴더 (05_ATUNA_뉴스·가격) — gdoc 포인터만 존재 · 최신 상세기사 7/27 PDF 기반 · 가격은 8/6 SKJ $1,900 반영
-        </h3>
-        <div data-mobile-stack className="mkt-news-grid" style={{
-          display: 'grid',
-          gridTemplateColumns: 'repeat(2, 1fr)',
-          gap: '16px'
-        }}>
-          {/* News 1 */}
-          <div className="ds-card" style={{ display: 'flex', flexDirection: 'column', gap: '10px', '--news-glow': 'rgba(16, 185, 129, 0.30)', '--news-glow-border': 'rgba(16, 185, 129, 0.35)' } as React.CSSProperties}>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-              <div style={{ display: 'inline-block', padding: '4px 10px', background: 'linear-gradient(135deg, rgba(16, 185, 129, 0.22), rgba(52, 211, 153, 0.08))', border: '1px solid rgba(16, 185, 129, 0.30)', color: '#10b981', borderRadius: '6px', fontSize: '0.7rem', fontWeight: 600, letterSpacing: '0.02em', width: 'fit-content' }}>
-                수요 / 가격
-              </div>
-              <span style={{ fontSize: '0.78rem', color: 'var(--text-tertiary)', fontWeight: 500 }}>Atuna 2026.08 (드라이브 폴더)</span>
-            </div>
-            <h4 style={{ fontSize: '0.95rem', fontWeight: 600, lineHeight: 1.4, color: 'var(--text-main)' }}>
-              수산물 소비 둔화 속 참치만 역주행 — 유럽 성장·미국 가성비 방어
-            </h4>
-            <div style={{ fontSize: '0.85rem', color: 'var(--text-secondary)', lineHeight: 1.75, flex: 1, display: 'flex', flexDirection: 'column', gap: '6px' }}>
-              <div style={{ display: 'flex', gap: '8px' }}>
-                <span style={{ color: '#10b981', flexShrink: 0, marginTop: '2px' }}>▸</span>
-                <span>EU 전체 수산물 소비는 2014년 대비 21% 줄었지만, 2023년 <strong style={{ color: 'var(--text-main)' }}>가다랑어 662,575톤(+500%)·황다랑어 334,485톤(+49%)</strong>으로 두 어종 합계가 전체 소비의 9%를 차지.</span>
-              </div>
-              <div style={{ display: 'flex', gap: '8px' }}>
-                <span style={{ color: '#10b981', flexShrink: 0, marginTop: '2px' }}>▸</span>
-                <span>미국 상온 수산물 물가는 6월 전년 동월 대비 6.6% 상승했으나, 월마트 5온스 캔참치는 <strong style={{ color: 'var(--text-main)' }}>$0.96로 쇠고기 $6.98/파운드 대비 저가 단백질 지위</strong>를 유지.</span>
-              </div>
-            </div>
-          </div>
-
-          {/* News 2 */}
-          <div className="ds-card" style={{ display: 'flex', flexDirection: 'column', gap: '10px', '--news-glow': 'rgba(245, 158, 11, 0.30)', '--news-glow-border': 'rgba(245, 158, 11, 0.35)' } as React.CSSProperties}>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-              <div style={{ display: 'inline-block', padding: '4px 10px', background: 'linear-gradient(135deg, rgba(245, 158, 11, 0.22), rgba(251, 191, 36, 0.08))', border: '1px solid rgba(245, 158, 11, 0.30)', color: '#f59e0b', borderRadius: '6px', fontSize: '0.7rem', fontWeight: 600, letterSpacing: '0.02em', width: 'fit-content' }}>
-                무역 / 관세
-              </div>
-              <span style={{ fontSize: '0.78rem', color: 'var(--text-tertiary)', fontWeight: 500 }}>Atuna 2026.08 (드라이브 폴더)</span>
-            </div>
-            <h4 style={{ fontSize: '0.95rem', fontWeight: 600, lineHeight: 1.4, color: 'var(--text-main)' }}>
-              미국 추가 관세 재편 — 태국산 염수 캔 25%, 에콰도르산은 예외
-            </h4>
-            <div style={{ fontSize: '0.85rem', color: 'var(--text-secondary)', lineHeight: 1.75, flex: 1, display: 'flex', flexDirection: 'column', gap: '6px' }}>
-              <div style={{ display: 'flex', gap: '8px' }}>
-                <span style={{ color: '#f59e0b', flexShrink: 0, marginTop: '2px' }}>▸</span>
-                <span>미국이 강제노동 대응을 이유로 주요 교역국에 10~12.5% 추가 관세를 시행. 태국산 염수 캔참치는 기존 12.5%에 추가 12.5%가 붙어 <strong style={{ color: 'var(--text-main)' }}>총 관세율 25%</strong>.</span>
-              </div>
-              <div style={{ display: 'flex', gap: '8px' }}>
-                <span style={{ color: '#f59e0b', flexShrink: 0, marginTop: '2px' }}>▸</span>
-                <span>에콰도르산 조제·보존 참치(HTUS 1604.14.40)는 예외. 미국의 2025년 에콰도르산 캔참치 수입은 <strong style={{ color: 'var(--text-main)' }}>1,756톤</strong>으로 아직 제한적이나 상대 관세 우위 확보.</span>
-              </div>
-            </div>
-          </div>
-
-          {/* News 3 */}
-          <div className="ds-card" style={{ display: 'flex', flexDirection: 'column', gap: '10px', '--news-glow': 'rgba(239, 68, 68, 0.30)', '--news-glow-border': 'rgba(239, 68, 68, 0.35)' } as React.CSSProperties}>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-              <div style={{ display: 'inline-block', padding: '4px 10px', background: 'linear-gradient(135deg, rgba(239, 68, 68, 0.22), rgba(248, 113, 113, 0.08))', border: '1px solid rgba(239, 68, 68, 0.30)', color: '#ef4444', borderRadius: '6px', fontSize: '0.7rem', fontWeight: 600, letterSpacing: '0.02em', width: 'fit-content' }}>
-                공급 / 조업
-              </div>
-              <span style={{ fontSize: '0.78rem', color: 'var(--text-tertiary)', fontWeight: 500 }}>Atuna 2026.08 (드라이브 폴더)</span>
-            </div>
-            <h4 style={{ fontSize: '0.95rem', fontWeight: 600, lineHeight: 1.4, color: 'var(--text-main)' }}>
-              태국의 아시아산 원어 수입 10% 감소 — 한국 공급은 26% 급감
-            </h4>
-            <div style={{ fontSize: '0.85rem', color: 'var(--text-secondary)', lineHeight: 1.75, flex: 1, display: 'flex', flexDirection: 'column', gap: '6px' }}>
-              <div style={{ display: 'flex', gap: '8px' }}>
-                <span style={{ color: '#ef4444', flexShrink: 0, marginTop: '2px' }}>▸</span>
-                <span>2026년 1분기 태국의 아시아산 통냉원어 수입은 <strong style={{ color: 'var(--text-main)' }}>95,198톤(-10% 전년 동기 대비)</strong>, 평균 단가는 $1,796/톤. 물량은 2년 만의 최저, 가격은 5년 만의 최저.</span>
-              </div>
-              <div style={{ display: 'flex', gap: '8px' }}>
-                <span style={{ color: '#ef4444', flexShrink: 0, marginTop: '2px' }}>▸</span>
-                <span>한국산 공급은 <strong style={{ color: 'var(--text-main)' }}>19,642톤(-26%)</strong>으로, 구성은 가다랑어 80%·황다랑어 19%. WCPO 어획 여건과 태국 가공 수요 둔화가 동시에 반영.</span>
-              </div>
-            </div>
-          </div>
-
-          {/* News 4 */}
-          <div className="ds-card" style={{ display: 'flex', flexDirection: 'column', gap: '10px', '--news-glow': 'rgba(56, 189, 248, 0.30)', '--news-glow-border': 'rgba(56, 189, 248, 0.35)' } as React.CSSProperties}>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-              <div style={{ display: 'inline-block', padding: '4px 10px', background: 'linear-gradient(135deg, rgba(56, 189, 248, 0.22), rgba(125, 211, 252, 0.08))', border: '1px solid rgba(56, 189, 248, 0.30)', color: '#38bdf8', borderRadius: '6px', fontSize: '0.7rem', fontWeight: 600, letterSpacing: '0.02em', width: 'fit-content' }}>
-                선단 / 투명성
-              </div>
-              <span style={{ fontSize: '0.78rem', color: 'var(--text-tertiary)', fontWeight: 500 }}>Atuna 2026.08 (드라이브 폴더)</span>
-            </div>
-            <h4 style={{ fontSize: '0.95rem', fontWeight: 600, lineHeight: 1.4, color: 'var(--text-main)' }}>
-              대형 연승선 31%가 어창 용량 86% 장악 — 중국·대만 집중
-            </h4>
-            <div style={{ fontSize: '0.85rem', color: 'var(--text-secondary)', lineHeight: 1.75, flex: 1, display: 'flex', flexDirection: 'column', gap: '6px' }}>
-              <div style={{ display: 'flex', gap: '8px' }}>
-                <span style={{ color: '#38bdf8', flexShrink: 0, marginTop: '2px' }}>▸</span>
-                <span>24m 이상 대형 연승선은 2,283척으로 등록 선단의 31%지만 <strong style={{ color: 'var(--text-main)' }}>글로벌 연승선 어창 용량의 86%</strong>를 차지. 등록 선박 약 40%는 IMO 번호가 없어 추적성 공백.</span>
-              </div>
-              <div style={{ display: 'flex', gap: '8px' }}>
-                <span style={{ color: '#38bdf8', flexShrink: 0, marginTop: '2px' }}>▸</span>
-                <span>대만은 선박 수 623척으로 1위지만, 중국은 611척으로 <strong style={{ color: 'var(--text-main)' }}>어창 용량 229,432㎥</strong>를 확보해 대만 149,668㎥를 크게 상회.</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
 
       {/* ROW 4: DAILY TUNA BRIEFING */}
       <section>
