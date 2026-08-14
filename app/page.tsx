@@ -43,16 +43,13 @@ const OctopusDashboard = dynamic(() => import('../components/OctopusDashboard'))
 const PollockDashboard = dynamic(() => import('../components/PollockDashboard'));
 const FlatfishDashboard = dynamic(() => import('../components/FlatfishDashboard'));
 const ShrimpDashboard = dynamic(() => import('../components/ShrimpDashboard'));
-const SalmonDashboard = dynamic(() => import('../components/SalmonDashboard'));
 const CashewStrategy = dynamic(() => import('../components/CashewStrategy'));
 const PorkDashboard = dynamic(() => import('../components/PorkDashboard'));
 const TunaDashboard = dynamic(() => import('../components/TunaDashboard'));
 const LogisticsDashboard = dynamic(() => import('../components/LogisticsDashboard'));
 const CrossCommodityIntelligenceDashboard = dynamic(() => import('../components/CrossCommodityIntelligenceDashboard'));
 
-const FleetStrategyMatrix = dynamic(() => import('../components/FleetStrategyMatrix'));
 const MarketDashboard = dynamic(() => import('../components/MarketDashboard'));
-const ResearchLabDashboard = dynamic(() => import('../components/ResearchLabDashboard'));
 const PurseSeinerDashboard = dynamic(() => import('../components/PurseSeinerDashboard'));
 
 const OPERATION_ACCESS_STORAGE_KEY = 'silla-operation-access';
@@ -276,13 +273,10 @@ export default function Home() {
     pollock: <PollockDashboard />,
     flatfish: <FlatfishDashboard />,
     shrimp: <ShrimpDashboard />,
-    salmon: <SalmonDashboard />,
     cashew: <CashewStrategy />,
     pork: <PorkDashboard />,
     unloading: <UnloadingStatus />,
     'value-chain': <TunaDashboard />,
-    'fleet-strategy': <FleetStrategyMatrix />,
-    'research-lab': <ResearchLabDashboard />,
     'purse-seiner-db': <PurseSeinerDashboard />,
   };
 
@@ -553,8 +547,7 @@ export default function Home() {
                       }}>
                         <div style={{ fontWeight: 700, color: 'var(--text-main)', marginBottom: '6px' }}>제공 메뉴 미리보기</div>
                         <div>📡 실시간 운영 — 시장 동향 · 선단 운영 · 하역 현황 · 물류·가공</div>
-                        <div>🐟 어종별 인텔리전스 — 참치 · 고등어 · 갈치 · 오징어 · 명태 · 새우 · 연어 외</div>
-                        <div>🔬 전략 분석 — 선대 분석 · 연구 재료</div>
+                        <div>🐟 어종별 인텔리전스 — 참치 · 고등어 · 갈치 · 오징어 · 주꾸미 · 낙지 · 명태 · 가자미 · 새우</div>
                         <div>🌾 농산물 — 캐슈넛</div>
                       </div>
                     </motion.div>

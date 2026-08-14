@@ -52,9 +52,6 @@ export const DASHBOARD_MENU_CONFIGS = [
   { key: 'pollock', title: '명태', section: 'fishery', accent: 'cyan', shortcutOrder: 11, sidebar: { icon: 'Snowflake', suffix: 'Pollock' } },
   { key: 'flatfish', title: '가자미', section: 'fishery', accent: 'cyan', shortcutOrder: 12, sidebar: { icon: 'FishSymbol', suffix: 'Flatfish' } },
   { key: 'shrimp', title: '새우', section: 'fishery', accent: 'cyan', shortcutOrder: 13, sidebar: { icon: 'Shrimp', suffix: 'Shrimp' } },
-  { key: 'salmon', title: '연어', section: 'fishery', accent: 'cyan', shortcutOrder: 14, sidebar: { icon: 'Waves', suffix: 'Salmon' } },
-  { key: 'fleet-strategy', title: '선대 전략 분석', section: 'strategy', accent: 'cyan', sidebar: { icon: 'Ship', label: '선대 현황 및 분석' } },
-  { key: 'research-lab', title: '연구 재료', section: 'strategy', accent: 'cyan', sidebar: { icon: 'TestTube', suffix: 'Research Lab' } },
   { key: 'purse-seiner-db', title: '선망선 DB', section: 'strategy', accent: 'cyan' },
 ] as const satisfies readonly DashboardMenuConfigShape[];
 
@@ -166,13 +163,10 @@ export const DASHBOARD_PANEL_ORDER = [
   'pollock',
   'flatfish',
   'shrimp',
-  'salmon',
   'cashew',
   'pork',
   'unloading',
   'value-chain',
-  'fleet-strategy',
-  'research-lab',
   'purse-seiner-db',
 ] as const satisfies readonly ActiveMenu[];
 
@@ -188,11 +182,8 @@ const SIDEBAR_SECTION_KEYS: Record<DashboardSection, readonly ActiveMenu[]> = {
     'pollock',
     'flatfish',
     'shrimp',
-    'salmon',
   ],
   strategy: [
-    'fleet-strategy',
-    'research-lab',
   ],
   agriculture: ['cashew'],
   livestock: ['pork'],

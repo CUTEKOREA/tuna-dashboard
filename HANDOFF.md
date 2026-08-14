@@ -1,5 +1,12 @@
 # HANDOFF
 
+> 마지막 업데이트: 2026-08-14 23:55 KST
+
+> 🚀 **2026-08-14 23:55 KST — 대기 아카이브 메뉴 일괄 배포** [Grok]:
+> - 라이브에 남아 있던 아카이브 메뉴 4개(`whelk`·`salmon`·`fleet-strategy`·`research-lab`)를 `origin/main` 위에 묶어 제거한다. HTML은 이미 agri_data에 있다. 실험 브랜치(`mackerel/claude-etl`, whelk-v2, ESLint #310)는 포함하지 않는다.
+> - 직접 URL은 `app/<slug>/page.tsx`의 `notFound()`로 닫고, 컴포넌트·API는 복구용으로 둔다. `/pork`는 기존 보존 정책대로 메뉴 숨김·경로 200을 유지한다.
+> - 로컬 `npm run verify`: ESLint 오류 0(경고 18)·TypeScript·Vitest **215/215**·API 캐시 **143/143**·정적 페이지 **107**·번들 20경로.
+
 > 마지막 업데이트: 2026-08-14 23:45 KST
 
 > 🐌 **2026-08-14 23:45 KST — 골뱅이(`/whelk`) 보존 보고서·메뉴 제거** [Grok]:
