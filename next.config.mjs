@@ -9,7 +9,7 @@ const nextConfig = {
   async rewrites() {
     return [
       {
-        source: '/:path(market|ranching|value-chain|mackerel|galchi|squid|pollock|field-ops|petfood|tuna-extract)',
+        source: '/:path(market|ranching|value-chain|mackerel|squid|pollock|field-ops|petfood|tuna-extract)',
         destination: '/',
       },
     ]

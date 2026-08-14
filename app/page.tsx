@@ -36,7 +36,6 @@ const FleetCommandCenter = dynamic(() => import('../components/FleetCommandCente
 // 각각 합성 산식 라우트(/api/logistics/freight·trader-import, A-01 위반으로 비활성화)에 의존.
 const UnloadingStatus = dynamic(() => import('../components/UnloadingStatus'));
 const MackerelDashboard = dynamic(() => import('../components/MackerelDashboard'));
-const GalchiDashboard = dynamic(() => import('../components/GalchiDashboard'));
 const SquidDashboard = dynamic(() => import('../components/SquidDashboard'));
 const OctopusDashboard = dynamic(() => import('../components/OctopusDashboard'));
 const PollockDashboard = dynamic(() => import('../components/PollockDashboard'));
@@ -262,7 +261,6 @@ export default function Home() {
     fleet: <FleetCommandCenter />,
     logistics: <LogisticsDashboard />,
     mackerel: <MackerelDashboard />,
-    galchi: <GalchiDashboard />,
     squid: <SquidDashboard />,
     octopus: <OctopusDashboard />,
     pollock: <PollockDashboard />,
@@ -540,7 +538,7 @@ export default function Home() {
                       }}>
                         <div style={{ fontWeight: 700, color: 'var(--text-main)', marginBottom: '6px' }}>제공 메뉴 미리보기</div>
                         <div>📡 실시간 운영 — 시장 동향 · 선단 운영 · 하역 현황 · 물류·가공</div>
-                        <div>🐟 어종별 인텔리전스 — 참치 · 고등어 · 갈치 · 오징어 · 낙지 · 명태 · 가자미</div>
+                        <div>🐟 어종별 인텔리전스 — 참치 · 고등어 · 오징어 · 낙지 · 명태 · 가자미</div>
                         <div>🌾 농산물 — (현재 공개 메뉴 없음)</div>
                       </div>
                     </motion.div>

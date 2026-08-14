@@ -1,6 +1,11 @@
 # HANDOFF
 
-> 마지막 업데이트: 2026-08-15 00:06 KST
+> 마지막 업데이트: 2026-08-15 00:25 KST
+
+> 🚀 **2026-08-15 00:25 KST — `/galchi` HTML 보존 후 메뉴 배포** [Grok]:
+> - HTML: `agri_data/01_수산물(Seafood)/galchi/intelligence_reports/Galchi_Dashboard_Archive_2026-08-14.html`.
+> - `origin/main` `4c984b5` 위에 레지스트리·사이드바·패널·단축키·rewrite·랜딩에서 `galchi`를 빼고 `/galchi`는 명시적 404. `GalchiDashboard`·`/api/galchi/*`·JSON은 존치.
+> - 브랜치 `chore/deploy-galchi-20260815`. 사용자 배포 요청에 따라 PR→게이트→라이브 재검증.
 
 > 🚀 **2026-08-15 00:06 KST — `/jukkumi` 메뉴 제거 배포 완료** [Grok]:
 > - HTML은 agri_data `01_수산물(Seafood)/jukkumi/intelligence_reports/Jukkumi_Dashboard_Archive_2026-08-14.html`(5기둥·34위젯).
@@ -9,8 +14,6 @@
 > - 라이브 `/jukkumi` 404. 사이트맵에 경로 없음. 사이드바 1440·390에 주꾸미 없음. 남은 어종 메뉴: 참치·고등어·갈치·오징어·낙지·명태·가자미. `/octopus` 200.
 > - `/api/jukkumi/kcs` 200 isLive, `/api/jukkumi-intelligence` 200. 이 배포 error/fatal 로그 0.
 > - `mackerel/claude-etl`은 포함하지 않았다.
-
-> 마지막 업데이트: 2026-08-15 00:10 KST
 
 > 🐙 **2026-08-15 00:10 KST — 주꾸미 페이지 HTML 아카이브 + 메뉴 제거(로컬)** [Grok]:
 > - `/jukkumi` 내용을 agri_data `01_수산물(Seafood)/jukkumi/intelligence_reports/Jukkumi_Dashboard_Archive_2026-08-14.html`에 정적 보고서로 옮겼다(5기둥·34위젯).
