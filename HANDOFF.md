@@ -1,6 +1,13 @@
 # HANDOFF
 
-> 마지막 업데이트: 2026-08-15 01:02 KST
+> 마지막 업데이트: 2026-08-15 01:40 KST
+
+> 🎨 **2026-08-15 01:40 KST — 리디자인 "Deep Sea Command" Phase 0 완료** [CC]:
+> - **스펙 확정**: `docs/superpowers/specs/2026-08-15-dashboard-redesign-design.md` — Dribbble 3종(Twisty 24190386·Vexto 27220417·Raktor 26864675) 기반. 사용자와 브레인스토밍으로 5개 쟁점 확정(다크 유지+Twisty 골격 / IA 재편 히어로 존 / 파일럿 /fleet / 선박 비주얼 Grok Imagine / 최종 전 메뉴 잠금). 위젯 룰(SIT/TAK·TelemetryBadge·5-Pillar·W-04)은 전부 생존.
+> - **Phase 0 산출**: `app/globals.css`에 `--dsc-*` 토큰 네임스페이스(기존 토큰 무손상), `components/v2/HeroZone.tsx`(vessel/map/kpi 3유형, 배경 슬롯화로 이미지↔SVG 폴백 가능), `components/v2/PillTabs.tsx`(framer-motion layoutId 필 탭), `docs/2026-08-15_ui_rules_v2_draft.md`(UI_RULES V2 초안 — Phase 3 후 본 파일 병합 예정).
+> - **검증**: 신규 렌더 테스트 4/4 (`__tests__/v2-components-render.test.ts` — vitest include가 `*.test.ts`뿐이라 tsx 아닌 ts로 작성, React.createElement 사용). `npm run verify` 전체 통과(exit 0).
+> - **병행 트랙**: Codex가 별도 worktree(`codex-menu-cosmo-bkk`)에서 메뉴 2종(코스모 iframe·방콕사무소 정적 리포트+운영 잠금) 구현 중. /fleet 히어로용 Grok Imagine 이미지 3장(선망선·연승선·운반선)은 사용자 생성 대기.
+> - **다음 단계**: 이미지 회신 → Phase 1(/fleet, Codex 구현·CC 검수) → Phase 2(운영 페이지) → Phase 3(commodity 일괄, opencode go) → Phase 4(전 메뉴 비밀번호 잠금 — 값은 사용자 지정, git에 기록 안 함).
 
 > 🚀 **2026-08-15 01:02 KST — `/flatfish` 메뉴 제거 배포 완료** [Grok]:
 > - HTML은 agri_data `01_수산물(Seafood)/flatfish/intelligence_reports/Flatfish_Dashboard_Archive_2026-08-15.html`(5기둥·22위젯·KPI 6).
