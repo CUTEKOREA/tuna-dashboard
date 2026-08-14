@@ -55,6 +55,26 @@ describe('Deep Sea Command V2 — HeroZone', () => {
   });
 });
 
+describe('Deep Sea Command V2 — VesselTopSVG', () => {
+  it('데이터 intensity가 있는 해치만 발광 필터를 받는다 (장식 발광 금지, V2 §5)', async () => {
+    const { default: VesselTopSVG } = await import('../components/v2/VesselTopSVG');
+    const markup = renderToStaticMarkup(
+      React.createElement(VesselTopSVG, {
+        kind: 'carrier',
+        hatches: [
+          { id: 'h1', intensity: 0.9 },
+          { id: 'h2', intensity: 0 },
+        ],
+      }),
+    );
+
+    // 발광 필터는 intensity>0 해치에만 — 정확히 1회 등장
+    expect(markup.match(/url\(#vsl-glow\)/g)?.length).toBe(1);
+    // carrier는 크레인 마스트 2기 렌더
+    expect(markup).toContain('선박 상면 도면');
+  });
+});
+
 describe('Deep Sea Command V2 — PillTabs', () => {
   it('탭 라벨을 렌더하고 활성 탭에 aria-selected를 단다', () => {
     const markup = renderToStaticMarkup(
