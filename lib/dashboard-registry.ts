@@ -87,6 +87,8 @@ export const DASHBOARD_MENU_CONFIGS = [
 export type ActiveMenu = (typeof DASHBOARD_MENU_CONFIGS)[number]['key'];
 export type DashboardMenuConfig = Omit<DashboardMenuConfigShape, 'key'> & { key: ActiveMenu };
 
+export const HIDDEN_DASHBOARD_MENU_KEYS = new Set<ActiveMenu>(['pork']);
+
 export interface SidebarMenuItem {
   key: ActiveMenu;
   label: string;
@@ -161,15 +163,21 @@ export const PROTECTED_OPERATION_MENU_KEYS = DASHBOARD_MENU_CONFIGS
 
 export const PROTECTED_OPERATION_MENUS = new Set<ActiveMenu>(PROTECTED_OPERATION_MENU_KEYS);
 
-export const DASHBOARD_COMMANDS = DASHBOARD_MENU_CONFIGS.map((menu) => ({
-  key: menu.key,
-  label: menu.title,
-  category: SECTION_LABELS[menu.section],
-  section: menu.section,
-})) as readonly DashboardCommand[];
+export const DASHBOARD_COMMANDS = DASHBOARD_MENU_CONFIGS
+  .filter((menu) => !HIDDEN_DASHBOARD_MENU_KEYS.has(menu.key))
+  .map((menu) => ({
+    key: menu.key,
+    label: menu.title,
+    category: SECTION_LABELS[menu.section],
+    section: menu.section,
+  })) as readonly DashboardCommand[];
 
 export const PUBLIC_DASHBOARD_ROUTES = DASHBOARD_MENU_CONFIGS
-  .filter((menu) => menu.key !== 'market' && !requiresOperationAccess(menu))
+  .filter((menu) => (
+    menu.key !== 'market'
+    && !requiresOperationAccess(menu)
+    && !HIDDEN_DASHBOARD_MENU_KEYS.has(menu.key)
+  ))
   .map((menu) => menu.key) as readonly ActiveMenu[];
 
 export const DASHBOARD_PANEL_ORDER = [
@@ -270,7 +278,9 @@ function sidebarItemFor(menu: ActiveMenu): SidebarMenuItem {
 export const SIDEBAR_SECTIONS = SIDEBAR_SECTION_ORDER.map((section) => ({
   section,
   title: SIDEBAR_SECTION_TITLES[section],
-  items: SIDEBAR_SECTION_KEYS[section].map(sidebarItemFor),
+  items: SIDEBAR_SECTION_KEYS[section]
+    .filter((menu) => !HIDDEN_DASHBOARD_MENU_KEYS.has(menu))
+    .map(sidebarItemFor),
 })) as readonly SidebarSection[];
 
 const VALID_MENU_SET = new Set<string>(VALID_MENUS);

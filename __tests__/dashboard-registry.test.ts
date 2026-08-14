@@ -115,7 +115,9 @@ describe('dashboard registry', () => {
   });
 
   it('drives command search from the same valid menu registry', () => {
-    expect(DASHBOARD_COMMANDS.map((command) => command.key)).toEqual(VALID_MENUS);
+    expect(DASHBOARD_COMMANDS.map((command) => command.key)).toEqual(
+      VALID_MENUS.filter((menu) => menu !== 'pork'),
+    );
 
     for (const command of DASHBOARD_COMMANDS) {
       expect(command.label).toBe(DASHBOARD_TITLES[command.key]);
@@ -127,9 +129,21 @@ describe('dashboard registry', () => {
     );
   });
 
+  it('retires pork from navigation while preserving the direct dashboard route', () => {
+    const livestockItems = SIDEBAR_SECTIONS
+      .find((section) => section.section === 'livestock')
+      ?.items.map((item) => item.key) ?? [];
+
+    expect(livestockItems).not.toContain('pork');
+    expect(DASHBOARD_COMMANDS.map((command) => command.key)).not.toContain('pork');
+    expect(PUBLIC_DASHBOARD_ROUTES).not.toContain('pork');
+    expect(VALID_MENUS).toContain('pork');
+    expect(DASHBOARD_PANEL_ORDER).toContain('pork');
+  });
+
   it('derives public sitemap dashboard routes from non-protected menus', () => {
     expect(PUBLIC_DASHBOARD_ROUTES).toEqual(
-      VALID_MENUS.filter((menu) => !['market', 'fleet', 'unloading', 'logistics'].includes(menu)),
+      VALID_MENUS.filter((menu) => !['market', 'fleet', 'unloading', 'logistics', 'pork'].includes(menu)),
     );
     expect(PUBLIC_DASHBOARD_ROUTES).toContain('value-chain');
     expect(PUBLIC_DASHBOARD_ROUTES).toContain('cross-intelligence');
@@ -162,7 +176,7 @@ describe('dashboard registry', () => {
       ['value-chain', 'mackerel', 'galchi', 'squid', 'jukkumi', 'octopus', 'pollock', 'flatfish', 'shrimp', 'whelk', 'kim', 'salmon'],
       ['cold-storage', 'fleet-strategy', 'korea-market', 'seasia-oem', 'used-car', 'msc', 'sashimi-steak', 'research-lab'],
       ['cashew', 'cassava', 'garlic', 'carrot', 'cocoa', 'mangosteen'],
-      ['chicken', 'pork', 'beef'],
+      ['chicken', 'beef'],
     ]);
 
     const sidebarKeys = SIDEBAR_SECTIONS.flatMap((section) => section.items.map((item) => item.key));
