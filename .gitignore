@@ -94,3 +94,7 @@ scripts/video/out/
 __pycache__/
 *.pyc
 scripts/squid_build/.cache/
+
+# 2026-08-15: npm 전용 저장소 — Orca setup 훅의 pnpm 산출물 커밋 차단 (재발 3회)
+pnpm-lock.yaml
+pnpm-workspace.yaml
