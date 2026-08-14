@@ -258,8 +258,7 @@ async function runHappyPath(browser) {
   const body = await page.evaluate(() => document.body.innerText);
   assert.match(body, /34,716\s+MT/);
   assert.match(body, /완료 선박:\s*11\s*척/);
-  assert.match(body, /어종 분해 미확인:\s*424\.780톤/);
-  assert.match(body, /기존 어종 누계 기준일은 2026-08-13/);
+  assert.doesNotMatch(body, /어종 분해 미확인/);
 
   await page.click('#unloading-tab-timeline');
   await page.waitForSelector('[data-testid="timeline-node-8-14"]');
@@ -280,14 +279,23 @@ async function runHappyPath(browser) {
   assert.doesNotMatch(latestReport, /350톤/);
 
   await page.click('#unloading-tab-holds');
-  await page.waitForSelector('[data-testid="hold-species-unclassified"]');
-  const unclassifiedHold = await page.$eval(
-    '[data-testid="hold-species-unclassified"]',
+  await page.waitForSelector('[data-testid="hold-species-unavailable"]');
+  const unavailableHold = await page.$eval(
+    '[data-testid="hold-species-unavailable"]',
     (node) => node.innerText,
   );
-  assert.match(unclassifiedHold, /어종별 실적 분해 없음/);
-  assert.match(unclassifiedHold, /424\.780톤/);
-  assert.match(unclassifiedHold, /추정하지 않습니다/);
+  assert.match(unavailableHold, /어창별 어종 분해 없음/);
+  assert.match(unavailableHold, /일일 결과보고는 어종별 합계를 제공/);
+  assert.match(unavailableHold, /추정하지 않습니다/);
+
+  await clickButtonByText(page, '리플레이');
+  await page.waitForSelector('[data-testid="replay-species-chart"]');
+  const replayText = await page.$eval(
+    '[data-testid="replay-species-chart"]',
+    (node) => node.innerText,
+  );
+  assert.doesNotMatch(replayText, /어종별 실적 추이 미제공/);
+  await page.click('button[aria-label="Close"]');
 
   await clickButtonByText(page, '보고서');
   await page.waitForSelector('[role="dialog"][aria-label="일일 보고서 자동 생성"]');

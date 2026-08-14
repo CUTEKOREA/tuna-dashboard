@@ -43,11 +43,12 @@
       "reported_total": 3275,
       "date_range": "2026.08.07 ~ 진행중",
       "mother_vessel": "S/SPR · S/PIO · N/STAR · N/SUN",
-      "unclassified_actual_amount": 424.78,
-      "species_breakdown_as_of": "2026-08-13",
-      "species_breakdown_note": "8/14 원본에는 어종별 물량 분해가 없어 기존 어종 누계를 유지했습니다.",
+      "hold_species_breakdown_available": false,
+      "unclassified_actual_amount": 0,
+      "species_breakdown_as_of": "2026-08-14",
+      "species_breakdown_note": "8/14 일일 결과보고 XLS에서 어종별 일일·누적 물량을 확인했습니다. 개별 어창별 어종 분해는 제공되지 않습니다.",
       "created_at": "2026-08-12T15:34:21+09:00",
-      "updated_at": "2026-08-14T21:01:37+09:00"
+      "updated_at": "2026-08-14T22:07:23+09:00"
     },
     {
       "vessel_id": "hikari-bangkok-2026-07",
@@ -768,6 +769,7 @@
       "target_holds": "N/SUN(#3-B:174.640)",
       "daily_amount": 174.64,
       "cumulative_amount": 174.64,
+      "species_amounts": { "SJ": 150.34, "YF": 24.3 },
       "quality_notes": "N/SUN(#3-B) - 어창 개방 측정온도는 -21.0℃ ~ -23.0℃ 입니다. 8/8 약 160톤 하역 예정입니다.",
       "created_at": "2026-08-12T15:34:21+09:00"
     },
@@ -779,6 +781,7 @@
       "target_holds": "S/PIO(#2-A:109.070)",
       "daily_amount": 109.07,
       "cumulative_amount": 283.71,
+      "species_amounts": { "SJ": 104.17, "YF": 4.9 },
       "quality_notes": "S/PIO(#2-A) - 어창 개방 측정온도는 -22.0℃ ~ -23.0℃ 입니다. 8/9 공휴일로 하역 작업이 없으며, 8/10 약 310톤 하역 예정입니다.",
       "created_at": "2026-08-12T15:34:21+09:00"
     },
@@ -790,6 +793,7 @@
       "target_holds": "S/PIO(#1-A:169.330), N/STAR(#2-A:162.140)",
       "daily_amount": 331.47,
       "cumulative_amount": 615.18,
+      "species_amounts": { "SJ": 272.27, "YF": 59.2 },
       "quality_notes": "S/PIO(#1-A) - 어창 개방 측정온도는 -19.0℃ ~ -20.0℃ 입니다. N/STAR(#2-A) - 어창 개방 측정온도는 -22.0℃ ~ -23.0℃ 입니다. 8/11 약 420톤 하역 예정입니다.",
       "created_at": "2026-08-12T15:34:21+09:00"
     },
@@ -801,6 +805,7 @@
       "target_holds": "S/PIO(#1-A:80.670,#1-B:41.170), N/STAR(#2-A:143.640), N/SUN(#3-B:197.330)",
       "daily_amount": 462.81,
       "cumulative_amount": 1077.99,
+      "species_amounts": { "SJ": 377.61, "YF": 85.2 },
       "quality_notes": "S/PIO(#1-A,#1-B) - 어창 개방 측정온도는 -18.0℃ ~ -19.0℃ 입니다. N/STAR(#2-A) - 어창 개방 측정온도는 -19.0℃ ~ -20.0℃ 입니다. N/SUN(#3-B) - 어창 개방 측정온도는 -22.0℃ ~ -23.0℃ 입니다. 8/12 공휴일로 하역 작업이 없으며, 8/13 약 150톤 하역 예정입니다.",
       "created_at": "2026-08-12T15:34:21+09:00"
     },
@@ -813,6 +818,7 @@
       "consignee": "MMP",
       "daily_amount": 159.59,
       "cumulative_amount": 1237.58,
+      "species_amounts": { "SJ": 124.89, "YF": 34.7 },
       "quality_notes": "N/STAR(#2-B) - 어창 개방 측정온도는 -22.0℃ ~ -23.0℃ 입니다. 8/14 약 400톤 하역 예정입니다.",
       "created_at": "2026-08-14T06:21:36+09:00"
     },
@@ -898,9 +904,12 @@
       ],
       "daily_amount": 424.78,
       "cumulative_amount": 1662.36,
+      "species_amounts": { "SJ": 368.08, "YF": 56.7 },
       "remaining_amount": 1612.64,
       "quality_notes": "N/STAR(#2-B) - 어창 개방 측정온도는 -22.0℃ ~ -23.0℃ 입니다. N/SUN(#3-B) - 어창 개방 측정온도는 -21.0℃ ~ -22.0℃ 입니다. N/SUN(#3-C) - 어창 개방 측정온도는 -22.0℃ ~ -23.0℃ 입니다. S/SPR(#4-B) - 어창 개방 측정온도는 -21.0℃ ~ -22.0℃ 입니다. S/SPR(#4-C) - 어창 개방 측정온도는 -22.0℃ ~ -23.0℃ 입니다.",
       "source_sha256": "2c1a9f4b28f5a6a555b8329d3926fcb9eec0c1cf465deeed778919c7be3af76a",
+      "source_workbook_sha256": "0ad30e784ec9c643dfe1bb42ffa597005c5dffa2ea74523acff7c639637a6d70",
+      "status_workbook_sha256": "9814a954e5c7984a3be51cb1071cc60bbb9fc6734c20a51e14759a234775f7cf",
       "created_at": "2026-08-14T21:01:37+09:00"
     },
     {
@@ -1471,16 +1480,16 @@
       "species_id": "SJ",
       "species_name": "가다랑어·눈다랑어 합산",
       "reported_amount": 2844,
-      "actual_amount": 1029.28,
-      "updated_at": "2026-08-14T06:21:36+09:00"
+      "actual_amount": 1397.36,
+      "updated_at": "2026-08-14T22:07:23+09:00"
     },
     {
       "vessel_id": "sein-venus",
       "species_id": "YF",
       "species_name": "황다랑어",
       "reported_amount": 431,
-      "actual_amount": 208.3,
-      "updated_at": "2026-08-14T06:21:36+09:00"
+      "actual_amount": 265,
+      "updated_at": "2026-08-14T22:07:23+09:00"
     },
     {
       "vessel_id": "hikari-bangkok-2026-07",

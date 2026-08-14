@@ -82,6 +82,7 @@ export async function GET() {
         annualActualTotal: v.annual_actual_total == null ? null : Number(v.annual_actual_total),
         annualStartDate: v.annual_start_date || null,
         holdDataAvailable: v.hold_data_available !== false,
+        holdSpeciesBreakdownAvailable: v.hold_species_breakdown_available !== false,
         unclassifiedActual: v.unclassified_actual_amount == null ? 0 : Number(v.unclassified_actual_amount),
         speciesBreakdownAsOf: v.species_breakdown_as_of || null,
         speciesBreakdownNote: v.species_breakdown_note || null,
@@ -134,6 +135,14 @@ export async function GET() {
             : [],
           dailyAmount: Number(r.daily_amount),
           cumAmount: Number(r.cumulative_amount),
+          speciesAmounts: r.species_amounts
+            && Number.isFinite(Number(r.species_amounts.SJ))
+            && Number.isFinite(Number(r.species_amounts.YF))
+            ? {
+                SJ: Number(r.species_amounts.SJ),
+                YF: Number(r.species_amounts.YF),
+              }
+            : null,
           remainingAmount: r.remaining_amount == null ? null : Number(r.remaining_amount),
           quality: r.quality_notes
         });

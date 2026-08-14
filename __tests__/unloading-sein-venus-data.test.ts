@@ -5,6 +5,7 @@ import { renderToStaticMarkup } from 'react-dom/server';
 import { describe, expect, it } from 'vitest';
 import { GET as getUnloadingData } from '../app/api/unloading-db/route';
 import UnloadingReportGenerator from '../components/UnloadingReportGenerator';
+import { buildStackedAreaData } from '../components/UnloadingTimelineReplay';
 
 type UnloadingLoad = {
   source_vessel: string;
@@ -30,6 +31,7 @@ type UnloadingVessel = {
   status: string;
   reported_total: number;
   date_range: string;
+  hold_species_breakdown_available?: boolean;
   unclassified_actual_amount?: number;
   species_breakdown_as_of?: string;
   species_breakdown_note?: string;
@@ -44,6 +46,9 @@ type UnloadingReport = {
   observations?: UnloadingObservation[];
   remaining_amount?: number;
   source_sha256?: string;
+  source_workbook_sha256?: string;
+  status_workbook_sha256?: string;
+  species_amounts?: { SJ: number; YF: number };
   daily_amount: number;
   cumulative_amount: number;
   target_holds: string;
@@ -96,6 +101,17 @@ describe('SEIN VENUS unloading data', () => {
     ]);
     expect(reports.map((item) => item.daily_amount)).toEqual([174.64, 109.07, 331.47, 462.81, 159.59, 424.78]);
     expect(reports.map((item) => item.cumulative_amount)).toEqual([174.64, 283.71, 615.18, 1077.99, 1237.58, 1662.36]);
+    expect(reports.map((item) => item.species_amounts)).toEqual([
+      { SJ: 150.34, YF: 24.3 },
+      { SJ: 104.17, YF: 4.9 },
+      { SJ: 272.27, YF: 59.2 },
+      { SJ: 377.61, YF: 85.2 },
+      { SJ: 124.89, YF: 34.7 },
+      { SJ: 368.08, YF: 56.7 },
+    ]);
+    for (const report of reports) {
+      expect(report.species_amounts!.SJ + report.species_amounts!.YF).toBeCloseTo(report.daily_amount, 6);
+    }
     expect(reports.reduce((sum, item) => sum + item.daily_amount, 0)).toBeCloseTo(1662.36, 6);
     expect(reports.at(-1)!.cumulative_amount - reports.at(-2)!.cumulative_amount).toBeCloseTo(424.78, 6);
     expect(3275 - reports.at(-1)!.cumulative_amount).toBeCloseTo(1612.64, 6);
@@ -139,6 +155,8 @@ describe('SEIN VENUS unloading data', () => {
     ]);
     expect(latest.quality_notes).not.toContain('350톤');
     expect(latest.source_sha256).toBe('2c1a9f4b28f5a6a555b8329d3926fcb9eec0c1cf465deeed778919c7be3af76a');
+    expect(latest.source_workbook_sha256).toBe('0ad30e784ec9c643dfe1bb42ffa597005c5dffa2ea74523acff7c639637a6d70');
+    expect(latest.status_workbook_sha256).toBe('9814a954e5c7984a3be51cb1071cc60bbb9fc6734c20a51e14759a234775f7cf');
     expect(reports.filter((item) => item.report_date === '8/14')).toHaveLength(1);
 
     expect(reports.at(-2)!.target_holds).toBe('N/STAR(#2-B:159.590)');
@@ -158,7 +176,7 @@ describe('SEIN VENUS unloading data', () => {
     expect(reports[2].quality_notes).toContain('8/11 약 420톤');
   });
 
-  it('keeps the August 13 species split and exposes the August 14 unclassified gap', () => {
+  it('uses the workbook-confirmed August 14 species split without inventing hold-level species', () => {
     const db = loadDb();
     const vessel = db.unloading_vessels.find((item) => item.vessel_id === 'sein-venus')!;
     const species = db.unloading_species.filter((item) => item.vessel_id === 'sein-venus');
@@ -169,23 +187,22 @@ describe('SEIN VENUS unloading data', () => {
         species_id: 'SJ',
         species_name: '가다랑어·눈다랑어 합산',
         reported_amount: 2844,
-        actual_amount: 1029.28,
+        actual_amount: 1397.36,
       }),
       expect.objectContaining({
         species_id: 'YF',
         species_name: '황다랑어',
         reported_amount: 431,
-        actual_amount: 208.3,
+        actual_amount: 265,
       }),
     ]);
     expect(species.reduce((sum, item) => sum + item.reported_amount, 0)).toBe(3275);
-    expect(species.reduce((sum, item) => sum + item.actual_amount, 0)).toBeCloseTo(1237.58, 6);
-    expect(vessel.unclassified_actual_amount).toBeCloseTo(424.78, 6);
-    expect(vessel.species_breakdown_as_of).toBe('2026-08-13');
-    expect(vessel.species_breakdown_note).toContain('8/14 원본');
-    expect(
-      species.reduce((sum, item) => sum + item.actual_amount, 0) + vessel.unclassified_actual_amount!,
-    ).toBeCloseTo(latestReport.cumulative_amount, 6);
+    expect(species.reduce((sum, item) => sum + item.actual_amount, 0)).toBeCloseTo(1662.36, 6);
+    expect(vessel.unclassified_actual_amount).toBe(0);
+    expect(vessel.species_breakdown_as_of).toBe('2026-08-14');
+    expect(vessel.species_breakdown_note).toContain('일일 결과보고 XLS');
+    expect(vessel.hold_species_breakdown_available).toBe(false);
+    expect(species.reduce((sum, item) => sum + item.actual_amount, 0)).toBeCloseTo(latestReport.cumulative_amount, 6);
   });
 
   it('returns the structured August 14 facts through the current API', async () => {
@@ -195,13 +212,34 @@ describe('SEIN VENUS unloading data', () => {
     const latest = vessel.timeline.at(-1);
 
     expect(vessel.actualTotal).toBeCloseTo(1662.36, 6);
-    expect(vessel.unclassifiedActual).toBeCloseTo(424.78, 6);
-    expect(vessel.speciesBreakdownAsOf).toBe('2026-08-13');
+    expect(vessel.unclassifiedActual).toBe(0);
+    expect(vessel.speciesBreakdownAsOf).toBe('2026-08-14');
+    expect(vessel.holdSpeciesBreakdownAvailable).toBe(false);
+    expect(vessel.species).toEqual([
+      expect.objectContaining({ id: 'SJ', actual: 1397.36 }),
+      expect.objectContaining({ id: 'YF', actual: 265 }),
+    ]);
     expect(latest.date).toBe('8/14');
     expect(latest.remainingAmount).toBeCloseTo(1612.64, 6);
     expect(latest.nextDayPlan).toBeUndefined();
     expect(latest.allocations).toHaveLength(3);
     expect(latest.observations).toHaveLength(5);
+    expect(latest.speciesAmounts).toEqual({ SJ: 368.08, YF: 56.7 });
+  });
+
+  it('builds the replay series from exact daily workbook species amounts', async () => {
+    const response = await getUnloadingData();
+    const payload = await response.json();
+    const vessel = payload.data['sein-venus'];
+
+    expect(buildStackedAreaData(vessel.timeline, vessel.species, vessel.actualTotal)).toEqual([
+      { date: '8/7', SJ: 150.34, YF: 24.3 },
+      { date: '8/8', SJ: 254.51, YF: 29.2 },
+      { date: '8/10', SJ: 526.78, YF: 88.4 },
+      { date: '8/11', SJ: 904.39, YF: 173.6 },
+      { date: '8/13', SJ: 1029.28, YF: 208.3 },
+      { date: '8/14', SJ: 1397.36, YF: 265 },
+    ]);
   });
 
   it('renders the August 14 office report from structured consignee and observation facts', async () => {
@@ -246,10 +284,11 @@ describe('SEIN VENUS unloading data', () => {
     expect(source).toContain('수하처:');
     expect(source).toContain('수하처별 하역량');
     expect(source).toContain('어종 분해 미확인');
-    expect(source).toContain('어종별 실적 분해 없음');
+    expect(source).toContain('어창별 어종 분해 없음');
+    expect(source).toContain('holdSpeciesBreakdownAvailable');
     expect(source).toContain('hasUnclassifiedSpecies');
     expect(source).toContain('unclassifiedActual?: number');
-    expect(replaySource).toContain('어종별 실적 추이 미제공');
+    expect(replaySource).toContain('speciesAmounts');
     expect(replaySource).toContain('unclassifiedActual?: number');
     expect(apiSource).toContain('consignee: r.consignee || null');
     expect(analyticsSource).toContain("getVesselStatusKind(status) === 'progress'");
