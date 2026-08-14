@@ -2,6 +2,13 @@
 
 > 마지막 업데이트: 2026-08-14 21:04 KST
 
+> 🥩 **2026-08-14 21:01 KST — 소고기 대시보드 보존 보고서·메뉴 제거** [Codex]:
+> - 공개 `/beef`의 상단 KPI 6개와 5단계 19개 위젯을 제거 전 보존 보고서로 정리했다. 단일 HTML, 정본 `artifact.json`, 재현 렌더러는 Google Drive `agri_data/02_축산낙농(Livestock)/beef`에 저장했다.
+> - 메뉴 레지스트리·사이드바·패널·랜딩 미리보기·사이트맵에서 `beef`를 제외하고, 직접 `/beef` 접근은 명시적 404로 닫았다. 교차 분석과 복구 가능성을 위해 `components/Beef*`, `beefData.ts`, `/api/beef/*`는 삭제하지 않았다.
+> - 보고서 검증: 6개 KPI·19개 위젯·5개 SVG 차트·13개 출처, 외부 요청 0건, 1440px/390px 가로 overflow 0, HTML 재생성 SHA-256 동일(`5efa0ede3f8bb2af490f6d1cc1a738c0e0389a086f58f34f02d183917c28f292`).
+> - 코드 검증: TDD RED 4건 → GREEN 10/10, 전체 Vitest **202/202**, TypeScript, ESLint 오류 0(기존 경고 18), API 캐시 **143/143**, Next build **99/99**, 번들 예산 12개 경로 통과. 로컬 production에서 `/beef` HTTP 404, 사이트맵 미포함, 루트 메뉴의 소고기 항목 없음과 overflow 0을 확인했다.
+> - 프로덕션 push·배포는 하지 않았다. 다음 단계는 사용자 명시 승인 후 이 커밋을 원격에 반영하고 라이브 `/beef` 404·메뉴 제거를 재검증하는 것이다.
+
 > 📦 **2026-08-14 21:02 KST — `/pork` 단일 HTML 보존·대시보드 메뉴 비노출 처리** [Codex]:
 > - 라이브와 동일한 `origin/main` 기준 `/pork`의 6개 KPI·5개 밸류체인·19개 위젯을 모두 펼친 단일 HTML 보고서를 Google Drive `agri_data/02_축산낙농(Livestock)/pork/돼지고기_글로벌_밸류체인_보고서_2026-08-14.html`에 새로 저장했다. 490,700 bytes, SHA-256 `7d74b7d61a5f43534c52c70beffcb15792b00c67d11f70574c1e3b23a2261eff`다.
 > - 보고서는 차트 SVG·위젯 출처·STATIC/SYNCED·기준일을 내장한다. 파일 직접 로드 검증 결과 외부 스크립트·외부 네트워크 요청·중복 ID 0, 1440px·390px 가로 overflow 0이며 기존 CSV 3개는 이동·삭제·덮어쓰지 않았다.

@@ -6,7 +6,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import ErrorBoundary from '../components/ErrorBoundary';
 import styles from './page.module.css';
-import { Activity, Anchor, Ship, Lock, Radio, BarChart2, Navigation, Factory, Waves, Fish, Hexagon, Command, Leaf, Menu, X, Snowflake, CarFront, Shrimp, Droplets, FishSymbol, Shell, Nut, Sprout, LeafyGreen, Carrot, Coffee, Beef, Box, TestTube, ShieldCheck } from 'lucide-react';
+import { Activity, Anchor, Ship, Lock, Radio, BarChart2, Navigation, Factory, Waves, Fish, Hexagon, Command, Leaf, Menu, X, Snowflake, CarFront, Shrimp, Droplets, FishSymbol, Shell, Nut, Sprout, LeafyGreen, Carrot, Coffee, Box, TestTube, ShieldCheck } from 'lucide-react';
 import { supabase } from '../lib/supabase';
 import { usePathname, useRouter } from 'next/navigation';
 import { motion } from 'framer-motion';
@@ -51,7 +51,6 @@ const GarlicDashboard = dynamic(() => import('../components/GarlicDashboard'));
 const CarrotDashboard = dynamic(() => import('../components/CarrotDashboard'));
 const CocoaDashboard = dynamic(() => import('../components/CocoaDashboard'));
 const PorkDashboard = dynamic(() => import('../components/PorkDashboard'));
-const BeefDashboard = dynamic(() => import('../components/BeefDashboard'));
 const WhelkDashboard = dynamic(() => import('../components/WhelkDashboard'));
 const KimDashboard = dynamic(() => import('../components/KimDashboard'));
 const TunaDashboard = dynamic(() => import('../components/TunaDashboard'));
@@ -75,7 +74,6 @@ const OPERATION_PASSWORD = '349900';
 const SIDEBAR_ICONS: Record<SidebarIconKey, React.ElementType> = {
   Anchor,
   BarChart2,
-  Beef,
   Box,
   CarFront,
   Carrot,
@@ -309,7 +307,6 @@ export default function Home() {
     carrot: <CarrotDashboard />,
     cocoa: <CocoaDashboard />,
     pork: <PorkDashboard />,
-    beef: <BeefDashboard />,
     'used-car': <UsedCarExport />,
     unloading: <UnloadingStatus />,
     'value-chain': <TunaDashboard />,
@@ -591,7 +588,7 @@ export default function Home() {
                         <div>📡 실시간 운영 — 시장 동향 · 선단 운영 · 하역 현황 · 물류·가공</div>
                         <div>🐟 어종별 인텔리전스 — 참치 · 고등어 · 갈치 · 오징어 · 명태 · 새우 · 연어 외</div>
                         <div>🔬 전략 분석 — 냉동창고 · 선대 분석 · 글로벌 OEM · MSC · 사시미/스테이크</div>
-                        <div>🌾 농·축산물 — 캐슈넛 · 카사바 · 코코아 · 소고기</div>
+                        <div>🌾 농·축산물 — 캐슈넛 · 카사바 · 코코아</div>
                       </div>
                     </motion.div>
                   </motion.div>

@@ -3,7 +3,6 @@ export type DashboardAccent = 'cyan' | 'emerald' | 'gold' | 'rose';
 export type SidebarIconKey =
   | 'Anchor'
   | 'BarChart2'
-  | 'Beef'
   | 'Box'
   | 'CarFront'
   | 'Carrot'
@@ -61,7 +60,6 @@ export const DASHBOARD_MENU_CONFIGS = [
   { key: 'carrot', title: '당근', section: 'agriculture', accent: 'cyan', sidebar: { icon: 'Carrot', suffix: 'Carrot' } },
   { key: 'cocoa', title: '코코아', section: 'agriculture', accent: 'emerald', sidebar: { icon: 'Coffee', suffix: 'Cocoa' } },
   { key: 'pork', title: '돼지고기', section: 'livestock', accent: 'cyan', sidebar: { icon: 'Hexagon', suffix: 'Pork' } },
-  { key: 'beef', title: '소고기', section: 'livestock', accent: 'cyan', sidebar: { icon: 'Beef', suffix: 'Beef' } },
   { key: 'whelk', title: '골뱅이', section: 'fishery', accent: 'cyan', sidebar: { icon: 'Shell', suffix: 'Whelk' } },
   { key: 'kim', title: '김', section: 'fishery', accent: 'cyan', sidebar: { icon: 'Leaf', suffix: 'Laver' } },
   { key: 'cross-intelligence', title: '통합 인텔리전스', section: 'strategy', accent: 'gold', sidebar: { icon: 'BarChart2', suffix: 'Cross' } },
@@ -198,7 +196,6 @@ export const DASHBOARD_PANEL_ORDER = [
   'carrot',
   'cocoa',
   'pork',
-  'beef',
   'used-car',
   'unloading',
   'value-chain',
@@ -238,7 +235,7 @@ const SIDEBAR_SECTION_KEYS: Record<DashboardSection, readonly ActiveMenu[]> = {
     'research-lab',
   ],
   agriculture: ['cashew', 'cassava', 'garlic', 'carrot', 'cocoa'],
-  livestock: ['pork', 'beef'],
+  livestock: ['pork'],
 };
 
 function getMenuConfig(menu: ActiveMenu): DashboardMenuConfig {

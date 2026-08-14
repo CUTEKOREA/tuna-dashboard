@@ -18,6 +18,13 @@ import {
 } from '../lib/dashboard-registry';
 
 describe('dashboard registry', () => {
+  it('retires the beef dashboard route with an explicit 404 boundary', () => {
+    const routeSource = readFileSync(join(process.cwd(), 'app/beef/page.tsx'), 'utf8');
+
+    expect(routeSource).toContain('notFound()');
+    expect(isActiveMenu('beef')).toBe(false);
+  });
+
   it('routes hydration-sensitive dashboards through the client-only category page', () => {
     const configSource = readFileSync(join(process.cwd(), 'next.config.mjs'), 'utf8');
     const categorySource = readFileSync(join(process.cwd(), 'app/[category]/page.tsx'), 'utf8');
@@ -87,6 +94,7 @@ describe('dashboard registry', () => {
     }
 
     expect(isActiveMenu('ai-forecast')).toBe(false);
+    expect(isActiveMenu('beef')).toBe(false);
     expect(isActiveMenu('retail')).toBe(false);
   });
 
@@ -149,6 +157,7 @@ describe('dashboard registry', () => {
     expect(PUBLIC_DASHBOARD_ROUTES).toContain('cross-intelligence');
     expect(PUBLIC_DASHBOARD_ROUTES).toContain('sashimi-steak');
     expect(PUBLIC_DASHBOARD_ROUTES).not.toContain('bni-global');
+    expect(PUBLIC_DASHBOARD_ROUTES).not.toContain('beef');
     expect(PUBLIC_DASHBOARD_ROUTES).not.toContain('market');
     expect(PUBLIC_DASHBOARD_ROUTES).not.toContain('fleet');
   });
@@ -176,7 +185,7 @@ describe('dashboard registry', () => {
       ['value-chain', 'mackerel', 'galchi', 'squid', 'jukkumi', 'octopus', 'pollock', 'flatfish', 'shrimp', 'whelk', 'kim', 'salmon'],
       ['cold-storage', 'fleet-strategy', 'korea-market', 'seasia-oem', 'used-car', 'msc', 'sashimi-steak', 'research-lab'],
       ['cashew', 'cassava', 'garlic', 'carrot', 'cocoa'],
-      ['beef'],
+      [],
     ]);
 
     const sidebarKeys = SIDEBAR_SECTIONS.flatMap((section) => section.items.map((item) => item.key));
@@ -223,7 +232,6 @@ describe('dashboard registry', () => {
       'carrot',
       'cocoa',
       'pork',
-      'beef',
       'used-car',
       'unloading',
       'value-chain',
