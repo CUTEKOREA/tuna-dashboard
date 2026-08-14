@@ -273,7 +273,8 @@ describe('dashboard registry', () => {
     ]);
     expect(PROTECTED_OPERATION_MENU_KEYS).toContain('bangkok-office');
     expect(PROTECTED_OPERATION_MENU_KEYS).not.toContain('cosmo');
-    expect(PUBLIC_DASHBOARD_ROUTES).toContain('cosmo');
+    // 전 메뉴 세션 잠금(V2 §5-6) 이후 공개 사이트맵 라우트는 없다 — cosmo 포함 전부 잠금 뒤.
+    expect(PUBLIC_DASHBOARD_ROUTES).not.toContain('cosmo');
     expect(PUBLIC_DASHBOARD_ROUTES).not.toContain('bangkok-office');
   });
 
@@ -295,7 +296,7 @@ describe('dashboard registry', () => {
     const sessionAccessKeys = (dashboardRegistry as Record<string, unknown>).SESSION_ACCESS_MENU_KEYS;
 
     expect(sessionAccessKeys).toEqual(VALID_MENUS);
-    expect(PROTECTED_OPERATION_MENU_KEYS).toEqual(['fleet', 'unloading', 'logistics']);
+    expect(PROTECTED_OPERATION_MENU_KEYS).toEqual(['fleet', 'unloading', 'logistics', 'bangkok-office']);
   });
 
   it('drives command search from the same valid menu registry', () => {
