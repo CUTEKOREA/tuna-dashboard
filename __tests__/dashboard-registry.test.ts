@@ -135,22 +135,29 @@ describe('dashboard registry', () => {
     const commandSource = readFileSync(join(process.cwd(), 'components/FleetCommandCenter.tsx'), 'utf8');
     const mapSource = readFileSync(join(process.cwd(), 'components/FleetPixelMap.tsx'), 'utf8');
     const heroSource = readFileSync(join(process.cwd(), 'components/FleetHeroKPI.tsx'), 'utf8');
+    const pillTabsSource = readFileSync(join(process.cwd(), 'components/v2/PillTabs.tsx'), 'utf8');
     const rosterSource = readFileSync(join(process.cwd(), 'components/FleetRosterGrid.tsx'), 'utf8');
     const vdsStrategySource = readFileSync(join(process.cwd(), 'components/VdsStrategyMatrix.tsx'), 'utf8');
 
     for (const label of ['오늘의 운영', '선박·수역', '실적 분석', 'VDS·입어료']) {
       expect(commandSource).toContain(label);
     }
-    expect(commandSource).toContain('role="tablist"');
+    expect(commandSource).toContain('<HeroZone');
+    expect(commandSource).toContain('variant="vessel"');
+    expect(commandSource).toContain('background={heroBackground}');
+    expect(commandSource).toContain('<PillTabs');
     expect(commandSource).toContain('role="tabpanel"');
-    expect(commandSource).toContain('기준일 분리 운영 판단');
+    expect(commandSource).toContain('업무보고 원문 펼치기');
     expect(commandSource).toContain('nationalOverrunCount');
     expect(commandSource).not.toContain('음수 잔여 11건');
     expect(commandSource).toContain("hidden={activeTab !== 'operations'}");
     expect(commandSource).toContain("hidden={activeTab !== 'vessels'}");
     expect(commandSource).toContain("hidden={activeTab !== 'performance'}");
     expect(commandSource).toContain("hidden={activeTab !== 'access'}");
-    expect(commandSource).toContain('onKeyDown');
+    expect(pillTabsSource).toContain('role="tablist"');
+    expect(pillTabsSource).toContain('onKeyDown');
+    expect(pillTabsSource).toContain('tabIndex={active ? 0 : -1}');
+    expect(pillTabsSource).toContain('aria-controls={panelId}');
     expect(mapSource).not.toContain('Math.random');
     expect(mapSource).toContain('aria-expanded');
     expect(mapSource).toContain('aria-controls');
@@ -169,7 +176,7 @@ describe('dashboard registry', () => {
     expect(rosterSource).toContain('countLabel={`${carrierFleet.length}건`}');
     expect(vdsStrategySource).toContain('nationalVds');
     expect(vdsStrategySource).not.toContain('remaining: 315.03');
-    expect(commandSource).toContain('2026년 8월 선단 운영현황');
+    expect(commandSource).toContain('title="선단 운영"');
     expect(heroSource).toContain('val1: summary.weeklyTotal');
     expect(heroSource).not.toContain('val1: 917');
   });

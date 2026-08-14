@@ -1,6 +1,7 @@
 import React from 'react';
 import { renderToStaticMarkup } from 'react-dom/server';
 import { describe, expect, it } from 'vitest';
+import FleetCommandCenter from '../components/FleetCommandCenter';
 import HeroZone from '../components/v2/HeroZone';
 import PillTabs from '../components/v2/PillTabs';
 
@@ -75,8 +76,18 @@ describe('Deep Sea Command V2 — VesselTopSVG', () => {
   });
 });
 
+describe('Deep Sea Command V2 — Fleet pilot', () => {
+  it('실제 선단 대시보드가 V2 선박 히어로의 주간 어획과 데이터 발광 해치를 렌더한다', () => {
+    const markup = renderToStaticMarkup(React.createElement(FleetCommandCenter));
+
+    expect(markup).toContain('선단 운영');
+    expect(markup).toContain('주간 어획량');
+    expect(markup).toContain('url(#vsl-glow)');
+  });
+});
+
 describe('Deep Sea Command V2 — PillTabs', () => {
-  it('탭 라벨을 렌더하고 활성 탭에 aria-selected를 단다', () => {
+  it('탭 라벨과 활성 상태, 선택적 패널 ARIA 연결을 렌더한다', () => {
     const markup = renderToStaticMarkup(
       React.createElement(PillTabs, {
         tabs: [
@@ -85,12 +96,20 @@ describe('Deep Sea Command V2 — PillTabs', () => {
         ],
         activeKey: 's1',
         onChange: () => {},
+        ariaLabel: '선단 업무 보기',
+        tabIdPrefix: 'fleet-tab',
+        panelIdPrefix: 'fleet-panel',
       }),
     );
 
     expect(markup).toContain('원료 수급');
     expect(markup).toContain('가공·생산');
     expect(markup).toContain('aria-selected="true"');
+    expect(markup).toContain('aria-label="선단 업무 보기"');
+    expect(markup).toContain('id="fleet-tab-s1"');
+    expect(markup).toContain('aria-controls="fleet-panel-s1"');
+    expect(markup).toContain('tabindex="0"');
+    expect(markup).toContain('tabindex="-1"');
     expect(markup).toContain('>3<');
   });
 });

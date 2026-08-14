@@ -15,7 +15,7 @@
  */
 'use client';
 
-import React from 'react';
+import React, { useRef } from 'react';
 import { motion } from 'framer-motion';
 
 export interface PillTab {
@@ -33,6 +33,14 @@ export interface PillTabsProps {
   accentFrom?: string;
   accentTo?: string;
   className?: string;
+  /** tablist의 선택적 식별자 */
+  id?: string;
+  /** tablist의 접근성 이름 */
+  ariaLabel?: string;
+  /** 각 탭 id의 접두사. panelIdPrefix와 함께 tab/panel 관계를 만든다. */
+  tabIdPrefix?: string;
+  /** 각 탭 패널 id의 접두사. tabIdPrefix와 함께 tab/panel 관계를 만든다. */
+  panelIdPrefix?: string;
 }
 
 export default function PillTabs({
@@ -42,11 +50,36 @@ export default function PillTabs({
   accentFrom = '#22d3ee',
   accentTo = '#3b82f6',
   className,
+  id,
+  ariaLabel = '필 탭',
+  tabIdPrefix,
+  panelIdPrefix,
 }: PillTabsProps) {
+  const tabRefs = useRef<Record<string, HTMLButtonElement | null>>({});
+
+  const selectAndFocus = (key: string) => {
+    tabRefs.current[key]?.focus();
+    onChange(key);
+  };
+
+  const handleKeyDown = (event: React.KeyboardEvent<HTMLButtonElement>, index: number) => {
+    let nextIndex = index;
+    if (event.key === 'ArrowRight') nextIndex = (index + 1) % tabs.length;
+    else if (event.key === 'ArrowLeft') nextIndex = (index - 1 + tabs.length) % tabs.length;
+    else if (event.key === 'Home') nextIndex = 0;
+    else if (event.key === 'End') nextIndex = tabs.length - 1;
+    else return;
+
+    event.preventDefault();
+    selectAndFocus(tabs[nextIndex].key);
+  };
+
   return (
     <nav
+      id={id}
       className={className}
       role="tablist"
+      aria-label={ariaLabel}
       style={{
         display: 'flex',
         gap: 6,
@@ -61,13 +94,21 @@ export default function PillTabs({
         overflowX: 'auto',
       }}
     >
-      {tabs.map((tab) => {
+      {tabs.map((tab, index) => {
         const active = tab.key === activeKey;
+        const tabId = tabIdPrefix ? `${tabIdPrefix}-${tab.key}` : undefined;
+        const panelId = panelIdPrefix ? `${panelIdPrefix}-${tab.key}` : undefined;
         return (
           <button
             key={tab.key}
+            id={tabId}
+            ref={(node) => { tabRefs.current[tab.key] = node; }}
+            type="button"
             role="tab"
             aria-selected={active}
+            aria-controls={panelId}
+            tabIndex={active ? 0 : -1}
+            onKeyDown={(event) => handleKeyDown(event, index)}
             onClick={() => onChange(tab.key)}
             style={{
               position: 'relative',

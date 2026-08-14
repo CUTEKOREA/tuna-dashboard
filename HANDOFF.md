@@ -1,6 +1,13 @@
 # HANDOFF
 
-> 마지막 업데이트: 2026-08-15 01:40 KST
+> 마지막 업데이트: 2026-08-15 01:59 KST
+
+> 🚢 **2026-08-15 01:59 KST — `/fleet` Deep Sea Command V2 Phase 1 파일럿 완료** [Codex]:
+> - `FleetCommandCenter`의 기존 상단 `FleetHeroKPI` 2개와 자체 탭을 페이지 레벨 `HeroZone variant="vessel"` 1개와 `PillTabs`로 교체했다. `VesselTopSVG kind="seiner"`는 `carrierLoads.loadedTotalMt / (loadedTotalMt + expectedRemainingMt)`를 0..1로 clamp한 뒤 6개 해치에 순차 분배해 실데이터 발광만 렌더한다. 데이터 계약과 `FleetHeroKPI.tsx`는 변경하지 않았다.
+> - 주간·8월 누적·연간 누적·운반선 선적 KPI는 기존 계약의 값과 `(M/T)` 단위를 사용한다. 생산/VDS/전재/대서양 판단 카드 4개는 히어로 임무 스트립으로 이동했고, 기준일 분리 `<details>`는 기본 운영 탭에 남겼다.
+> - `PillTabs`는 API 호환을 유지하며 roving `tabIndex`, ArrowLeft/ArrowRight/Home/End 선택+포커스, 선택적 id/aria-label/tab-panel 연결을 지원한다. 실제 `/fleet` 렌더 회귀와 ARIA 정적 검사를 추가했다.
+> - 검증: TDD RED 후 focused 29/29, 전체 `npm run verify` 통과(ESLint 오류 0·기존 경고 18, TypeScript, Vitest 224/224, API cache 143/143, Next build, bundle 30 routes). 보호 세션 `sessionStorage['silla-operation-access']='granted'`로 1440×1000·390×844 QA에서 HTTP/렌더 정상, page overflow 0, 히어로/KPI/스트립 표시, 네 키의 선택·포커스 일치 확인. 앱 셸의 기존 hydration/script console 신호는 `/fleet` 변경과 무관하며 로컬 `/fleet` 요청 오류는 0.
+> - 다음 단계: CC 검수 후 사용자 명시 배포 요청 전까지 로컬 브랜치 유지. 보고서: `.superpowers/sdd/CODEX_P1_FLEET/task-1-report.md`.
 
 > 🎨 **2026-08-15 01:40 KST — 리디자인 "Deep Sea Command" Phase 0 완료** [CC]:
 > - **스펙 확정**: `docs/superpowers/specs/2026-08-15-dashboard-redesign-design.md` — Dribbble 3종(Twisty 24190386·Vexto 27220417·Raktor 26864675) 기반. 사용자와 브레인스토밍으로 5개 쟁점 확정(다크 유지+Twisty 골격 / IA 재편 히어로 존 / 파일럿 /fleet / 선박 비주얼 Grok Imagine / 최종 전 메뉴 잠금). 위젯 룰(SIT/TAK·TelemetryBadge·5-Pillar·W-04)은 전부 생존.
