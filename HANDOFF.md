@@ -1,5 +1,12 @@
 # HANDOFF
 
+> 마지막 업데이트: 2026-08-15 01:10 KST
+
+> 🚀 **2026-08-15 01:10 KST — 명태(`/pollock`) 메뉴 제거 배포** [Grok]:
+> - HTML은 agri_data `01_수산물(Seafood)/pollock/intelligence_reports/Pollock_Dashboard_Archive_2026-08-15.html`(KPI 8·위젯 58·커스텀 모듈 11). 정본 JSON은 origin/main `public/data/pollock_real_data_v4.json`.
+> - `origin/main` 전용 브랜치 `chore/remove-pollock-20260815`에서 메뉴·리라이트·사이트맵 제거. `/pollock`는 `app/pollock/page.tsx` `notFound()`. `PollockDashboard`와 `/api/pollock*`는 존치.
+> - `mackerel/claude-etl`은 포함하지 않는다. 라이브 검증 후 Vercel ID를 이 블록에 채운다.
+
 > 마지막 업데이트: 2026-08-15 00:40 KST
 
 > 🚀 **2026-08-15 00:40 KST — 밀린 아카이브 메뉴 일괄 배포 완료** [Grok]:
