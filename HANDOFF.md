@@ -1,5 +1,15 @@
 # HANDOFF
 
+> 마지막 업데이트: 2026-08-15 02:37 KST
+
+> 🚢 **2026-08-15 02:37 KST — 운영 3화면 Deep Sea Command V2 Phase 2 완료** [Codex]:
+> - `/unloading`은 `HeroZone variant="vessel"`로 전환했다. 실제 활성 하역량/보고량 비율을 0..1로 제한한 뒤 운반선 SVG 8개 해치에 순차 분배하며, 2026 누적 하역량·완료 선박·현재 하역 누계·잔여 목표량과 하역 중/대기 선박 스트립을 기존 데이터 계약에서 계산한다. 선박 배경은 데스크톱 KPI 행을 침범하지 않고 모바일 상단 밴드로 제한했다.
+> - `/logistics`는 `HeroZone variant="map"` 정적 방콕↔부산 항로와 `reeferWeek31` 기반 방콕 선박 마커 4개를 붙였다. 주간 하역 합계 **18,643.026 MT**와 기존 SIT/TAK의 `입항 상태 재확인` 문구를 그대로 사용하며 새 fetch·JSON은 추가하지 않았다.
+> - `/market`은 `HeroZone variant="kpi"`로 전환하고 기존 atuna 가격 계약에서 방콕 SKJ **1,900 $/MT**, 만타 SKJ·방콕 주간 변동·황다랑어 현물가를 동적으로 유도한다. 세 화면 모두 기존 위젯 내부는 건드리지 않았고 업무 탭은 공용 `PillTabs`의 roving focus/ARIA 연결을 사용한다.
+> - 검증: TDD RED 후 focused **51/51**, 전체 `npm run verify` 통과(ESLint 오류 0·기존 경고 18, TypeScript, Vitest **228/228**, API cache **143/143**, Next build, bundle **30 routes**). S-Grade는 3개 진입점·21개 closure를 검사해 GS 톤·가짜 LIVE 위반 0건을 확인했다. 기존 위젯 closure의 영문/구조 후보는 Phase 2 shell-only 범위 밖이라 수정하지 않았다.
+> - 브라우저 QA: 보호 경로는 `sessionStorage['silla-operation-access']='granted'`로 열고 `/unloading`·`/logistics`·`/market`을 각각 1440×1000·390×844에서 확인했다. 6/6 모두 HTTP 200, page/console/HTTP 오류 0, 가로 overflow 0이며 하역 선박/KPI 겹침 0과 물류 마커 4개를 확인했다. 스크린샷은 `/private/tmp/redesign-p2-phase2-qa-20260815/`에 있다.
+> - npm 전용 환경 전환 전 pnpm 흔적은 삭제 대신 `/private/tmp/redesign-p2-pnpm-backup.pz40eg/`로 이동해 복구 가능하게 보존했다. 프로덕션 push·배포는 하지 않았다. 다음 단계는 CC 검수 후 Phase 3 범위를 확정하는 것이다.
+
 > 마지막 업데이트: 2026-08-15 01:59 KST
 
 > 🚢 **2026-08-15 01:59 KST — `/fleet` Deep Sea Command V2 Phase 1 파일럿 완료** [Codex]:

@@ -180,6 +180,27 @@ describe('dashboard registry', () => {
     expect(heroSource).toContain('val1: summary.weeklyTotal');
     expect(heroSource).not.toContain('val1: 917');
   });
+
+  it('keeps the Phase 2 operation dashboards on their assigned V2 hero shells', () => {
+    const unloadingSource = readFileSync(join(process.cwd(), 'components/UnloadingStatus.tsx'), 'utf8');
+    const logisticsSource = readFileSync(join(process.cwd(), 'components/LogisticsDashboard.tsx'), 'utf8');
+    const marketSource = readFileSync(join(process.cwd(), 'components/MarketDashboard.tsx'), 'utf8');
+
+    expect(unloadingSource).toContain('<HeroZone');
+    expect(unloadingSource).toContain('variant="vessel"');
+    expect(unloadingSource).toContain('kind="carrier"');
+    expect(unloadingSource).toContain('<PillTabs');
+
+    expect(logisticsSource).toContain('<HeroZone');
+    expect(logisticsSource).toContain('variant="map"');
+    expect(logisticsSource).toContain("getMiscData('reeferWeek31')");
+    expect(logisticsSource).toContain('<PillTabs');
+
+    expect(marketSource).toContain('<HeroZone');
+    expect(marketSource).toContain('variant="kpi"');
+    expect(marketSource).toContain('<MarketHero rows={priceData} />');
+  });
+
   it('keeps menu keys unique and title-addressable', () => {
     expect(DASHBOARD_MENU_CONFIGS.length).toBeGreaterThanOrEqual(7);
     expect(new Set(VALID_MENUS).size).toBe(VALID_MENUS.length);

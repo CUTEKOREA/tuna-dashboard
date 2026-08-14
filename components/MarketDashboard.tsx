@@ -11,10 +11,14 @@ import {
 } from 'recharts';
 import WidgetCard from './WidgetCard';
 import SeafoodStockWidget from './SeafoodStockWidget';
+import HeroZone, { type HeroKpi } from './v2/HeroZone';
 import {
+  SKJ_ATUNA_HUBS,
   type AtunaPriceRow,
   type AtunaSpreadSummary,
   buildAtunaMarketSummaries,
+  calcAtunaDeltaPct,
+  latestTwoForAtunaHub,
 } from '../lib/data/atuna-price-summary';
 
 const fmtPct = (p: number) => `${p >= 0 ? '+' : ''}${p.toFixed(1)}%`;
@@ -24,6 +28,58 @@ const getTodayIsoSnapshot = (): string | null => {
   return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
 };
 const getServerTodaySnapshot = (): string | null => null;
+
+export function MarketHero({ rows }: { rows: AtunaPriceRow[] }) {
+  const bangkok = latestTwoForAtunaHub(rows, SKJ_ATUNA_HUBS[0]);
+  const manta = latestTwoForAtunaHub(rows, SKJ_ATUNA_HUBS[1]);
+  const yellowfin = buildAtunaMarketSummaries(rows).yf;
+  const bangkokDeltaPct = calcAtunaDeltaPct(bangkok);
+  const bangkokDelta = bangkok.latest && bangkok.prev
+    ? bangkok.latest.price - bangkok.prev.price
+    : null;
+  const secondaryKpis: HeroKpi[] = [];
+
+  if (manta.latest) {
+    secondaryKpis.push({
+      label: '만타 SKJ 현물가',
+      value: manta.latest.price,
+      unit: '($/MT)',
+      accent: '#2dd4bf',
+    });
+  }
+  if (bangkokDelta !== null) {
+    secondaryKpis.push({
+      label: '방콕 주간 변동',
+      value: bangkokDelta,
+      unit: '($/MT)',
+      accent: bangkokDelta >= 0 ? '#f59e0b' : '#10b981',
+    });
+  }
+  if (yellowfin.latest) {
+    secondaryKpis.push({
+      label: '황다랑어 현물가',
+      value: yellowfin.latest.price,
+      unit: '($/MT)',
+      accent: '#a78bfa',
+    });
+  }
+
+  return (
+    <HeroZone
+      variant="kpi"
+      title="시장 동향"
+      subtitle={bangkok.latest
+        ? `방콕 현물가 기준일 ${bangkok.latest.date.replace(/-/g, '.')}${bangkokDeltaPct === null ? '' : ` · 직전 고시 대비 ${fmtPct(bangkokDeltaPct)}`}`
+        : '참치 가격 데이터 수신 대기'}
+      primaryKpi={bangkok.latest ? {
+        label: '방콕 SKJ 현물가',
+        value: bangkok.latest.price,
+        unit: '($/MT)',
+      } : undefined}
+      secondaryKpis={secondaryKpis}
+    />
+  );
+}
 
 export default function MarketDashboard() {
   const [priceData, setPriceData] = useState<any[]>([]);
@@ -160,6 +216,8 @@ export default function MarketDashboard() {
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem' }}>
+      <MarketHero rows={priceData} />
+
       {/* Seafood Stock Widget at the top of the market page */}
       <SeafoodStockWidget />
 

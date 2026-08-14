@@ -86,6 +86,109 @@ describe('Deep Sea Command V2 — Fleet pilot', () => {
   });
 });
 
+describe('Deep Sea Command V2 — Phase 2 운영 페이지', () => {
+  it('하역 히어로가 현재 하역률을 8개 운반선 해치에 배분하고 진행·대기 선박을 표시한다', async () => {
+    const unloadingModule = await import('../components/UnloadingStatus');
+    const UnloadingHero = (unloadingModule as Record<string, unknown>).UnloadingHero;
+
+    expect(UnloadingHero).toBeTypeOf('function');
+    if (typeof UnloadingHero !== 'function') return;
+
+    const markup = renderToStaticMarkup(
+      React.createElement(UnloadingHero as React.ComponentType<any>, {
+        vessels: [
+          {
+            id: 'completed',
+            name: 'M/V 완료선',
+            status: '하역완료',
+            reportedTotal: 1000,
+            actualTotal: 1000,
+            annualActualTotal: 1000,
+            location: '방콕, 태국',
+            dateRange: '2026.01.01 ~ 2026.01.03',
+          },
+          {
+            id: 'active',
+            name: 'M/V SEIN VENUS',
+            status: '하역중',
+            reportedTotal: 3200,
+            actualTotal: 1600,
+            annualActualTotal: 1600,
+            location: '방콕, 태국',
+            dateRange: '2026.08.07 ~ 진행중',
+          },
+          {
+            id: 'waiting',
+            name: 'M/V HIKARI 1',
+            status: '하역대기',
+            reportedTotal: 2929,
+            actualTotal: 0,
+            annualActualTotal: 0,
+            location: '방콕, 태국',
+            dateRange: '하역 실적 대기',
+          },
+        ],
+        baseDate: '2026.08.14',
+        onSelectVessel: () => {},
+        onOpenFieldMode: () => {},
+      }),
+    );
+
+    expect(markup).toContain('하역 관제');
+    expect(markup).toContain('2026 누적 하역량');
+    expect(markup).toContain('완료 선박');
+    expect(markup).toContain('현재 하역 누계');
+    expect(markup).toContain('잔여 목표량');
+    expect(markup).toContain('M/V SEIN VENUS');
+    expect(markup).toContain('M/V HIKARI 1');
+    expect(markup.match(/url\(#vsl-glow\)/g)?.length).toBe(4);
+  });
+
+  it('물류 히어로가 31주차 4척 항로 마커와 기존 하역 SIT·TAK를 렌더한다', async () => {
+    const logisticsModule = await import('../components/LogisticsDashboard');
+    const LogisticsHero = (logisticsModule as Record<string, unknown>).LogisticsHero;
+
+    expect(LogisticsHero).toBeTypeOf('function');
+    if (typeof LogisticsHero !== 'function') return;
+
+    const markup = renderToStaticMarkup(
+      React.createElement(LogisticsHero as React.ComponentType<any>),
+    );
+
+    expect(markup).toContain('물류·가공');
+    expect(markup).toContain('주간 하역 합계');
+    expect(markup).toContain('(MT)');
+    expect(markup.match(/data-week31-carrier-marker="true"/g)?.length).toBe(4);
+    expect(markup).toContain('2026-08-05 주간 보고에는 방콕 하역선 3척 13,764MT가 기록됐으며, 이 중 8월 누계는 2척 8,891MT입니다.');
+    expect(markup).toContain('SEIN VENUS와 HENG HONG 9의 예정일이 도래했으므로 실제 입항·접안 여부를 확인합니다.');
+  });
+
+  it('시장 히어로가 Atuna 행에서 방콕·만타·주간 변동·황다랑어 KPI를 구성한다', async () => {
+    const marketModule = await import('../components/MarketDashboard');
+    const MarketHero = (marketModule as Record<string, unknown>).MarketHero;
+
+    expect(MarketHero).toBeTypeOf('function');
+    if (typeof MarketHero !== 'function') return;
+
+    const markup = renderToStaticMarkup(
+      React.createElement(MarketHero as React.ComponentType<any>, {
+        rows: [
+          { date: '2026-07-30', skj_bkk: 1790, yf_sey: 2100 },
+          { date: '2026-07-31', skj_mnt: 2150 },
+          { date: '2026-08-06', skj_bkk: 1900 },
+        ],
+      }),
+    );
+
+    expect(markup).toContain('시장 동향');
+    expect(markup).toContain('방콕 SKJ 현물가');
+    expect(markup).toContain('만타 SKJ 현물가');
+    expect(markup).toContain('방콕 주간 변동');
+    expect(markup).toContain('황다랑어 현물가');
+    expect(markup).toContain('($/MT)');
+  });
+});
+
 describe('Deep Sea Command V2 — PillTabs', () => {
   it('탭 라벨과 활성 상태, 선택적 패널 ARIA 연결을 렌더한다', () => {
     const markup = renderToStaticMarkup(

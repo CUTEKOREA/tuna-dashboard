@@ -8,6 +8,9 @@ import TermTooltip from './TermTooltip';
 import HarborBanner from './HarborBanner';
 import { ChartPatternDefs } from './ChartPatterns';
 import UnloadingHistoryBoundary from './UnloadingHistoryBoundary';
+import HeroZone from './v2/HeroZone';
+import PillTabs from './v2/PillTabs';
+import VesselTopSVG from './v2/VesselTopSVG';
 import {
   getUnloadingEtaLabel,
   getVesselStatusKind,
@@ -87,6 +90,11 @@ type UnloadingVesselData = {
   finalReport?: unknown;
 };
 
+export type UnloadingHeroVessel = Pick<
+  UnloadingVesselData,
+  'name' | 'status' | 'reportedTotal' | 'actualTotal' | 'annualActualTotal' | 'location' | 'dateRange'
+> & { id: string };
+
 type DetailTab = 'summary' | 'holds' | 'timeline' | 'analysis';
 
 const DETAIL_TABS: { id: DetailTab; label: string }[] = [
@@ -95,6 +103,95 @@ const DETAIL_TABS: { id: DetailTab; label: string }[] = [
   { id: 'timeline', label: '작업 기록' },
   { id: 'analysis', label: '분석·보고' },
 ];
+
+const clampHeroValue = (value: number, min: number, max: number) => Math.min(Math.max(value, min), max);
+
+export function UnloadingHero({
+  vessels,
+  baseDate,
+  selectedVesselId,
+  onSelectVessel,
+  onOpenFieldMode,
+}: {
+  vessels: UnloadingHeroVessel[];
+  baseDate: string | null;
+  selectedVesselId?: string;
+  onSelectVessel: (id: string) => void;
+  onOpenFieldMode: () => void;
+}) {
+  const activeVessels = vessels.filter(vessel => getVesselStatusKind(vessel.status) === 'progress');
+  const waitingVessels = vessels.filter(vessel => getVesselStatusKind(vessel.status) === 'waiting');
+  const completedVessels = vessels.filter(vessel => getVesselStatusKind(vessel.status) === 'completed');
+  const featuredVessel = activeVessels[0] ?? null;
+  const completionRatio = featuredVessel && featuredVessel.reportedTotal > 0
+    ? clampHeroValue(featuredVessel.actualTotal / featuredVessel.reportedTotal, 0, 1)
+    : 0;
+  const carrierHatches = Array.from({ length: 8 }, (_, hatchIndex) => ({
+    id: `carrier-hatch-${hatchIndex + 1}`,
+    intensity: clampHeroValue(completionRatio * 8 - hatchIndex, 0, 1),
+  }));
+  const annualActualTotal = vessels.reduce(
+    (total, vessel) => total + (vessel.annualActualTotal ?? vessel.actualTotal),
+    0,
+  );
+  const activeActualTotal = activeVessels.reduce((total, vessel) => total + vessel.actualTotal, 0);
+  const activeRemainingTotal = activeVessels.reduce(
+    (total, vessel) => total + Math.max(0, vessel.reportedTotal - vessel.actualTotal),
+    0,
+  );
+  const priorityVessels = [...activeVessels, ...waitingVessels];
+
+  const background = (
+    <div className={styles.heroVessel} aria-hidden>
+      <VesselTopSVG kind="carrier" hatches={carrierHatches} />
+    </div>
+  );
+
+  const strip = priorityVessels.length > 0 ? (
+    <div className={styles.heroMissionStrip}>
+      {priorityVessels.map(vessel => {
+        const statusKind = getVesselStatusKind(vessel.status);
+        const progress = vessel.reportedTotal > 0
+          ? clampHeroValue((vessel.actualTotal / vessel.reportedTotal) * 100, 0, 100)
+          : 0;
+        return (
+          <button
+            key={vessel.id}
+            type="button"
+            className={`${styles.heroMissionCard} ${selectedVesselId === vessel.id ? styles.heroMissionCardActive : ''}`}
+            onClick={() => onSelectVessel(vessel.id)}
+          >
+            <span className={styles.heroMissionStatus}>{statusKind === 'progress' ? '하역 중' : '하역 대기'}</span>
+            <strong>{vessel.name}</strong>
+            <span>{vessel.actualTotal.toLocaleString(undefined, { maximumFractionDigits: 3 })} / {vessel.reportedTotal.toLocaleString(undefined, { maximumFractionDigits: 3 })} (MT)</span>
+            <span>{statusKind === 'progress' ? `진행률 ${progress.toFixed(1)}%` : '하역 실적 대기'}</span>
+          </button>
+        );
+      })}
+    </div>
+  ) : undefined;
+
+  return (
+    <HeroZone
+      className={styles.unloadingHero}
+      variant="vessel"
+      title="하역 관제"
+      subtitle={baseDate ? `최신 하역 보고 기준일 ${baseDate}` : '최신 하역 보고 기준일 확인 중'}
+      background={background}
+      primaryKpi={{ label: '2026 누적 하역량', value: annualActualTotal, unit: '(MT)', decimals: 3 }}
+      secondaryKpis={[
+        { label: '완료 선박', value: completedVessels.length, unit: '(척)' },
+        { label: '현재 하역 누계', value: activeActualTotal, unit: '(MT)', decimals: 3 },
+        { label: '잔여 목표량', value: activeRemainingTotal, unit: '(MT)', decimals: 3, accent: '#f59e0b' },
+      ]}
+      strip={strip}
+    >
+      <button type="button" className={styles.heroAction} onClick={onOpenFieldMode}>
+        <Smartphone size={15} aria-hidden="true" /> 현장 모드
+      </button>
+    </HeroZone>
+  );
+}
 
 // Vessel Stowage Plans
 const vesselStowagePlans: Record<string, Record<string, string[]>> = {
@@ -1112,22 +1209,6 @@ export default function UnloadingStatus() {
     setActiveDetailTab('summary');
   };
 
-  const handleDetailTabKeyDown = (event: React.KeyboardEvent<HTMLButtonElement>, currentTab: DetailTab) => {
-    const currentIndex = DETAIL_TABS.findIndex(tab => tab.id === currentTab);
-    let nextIndex = currentIndex;
-
-    if (event.key === 'ArrowRight' || event.key === 'ArrowDown') nextIndex = (currentIndex + 1) % DETAIL_TABS.length;
-    else if (event.key === 'ArrowLeft' || event.key === 'ArrowUp') nextIndex = (currentIndex - 1 + DETAIL_TABS.length) % DETAIL_TABS.length;
-    else if (event.key === 'Home') nextIndex = 0;
-    else if (event.key === 'End') nextIndex = DETAIL_TABS.length - 1;
-    else return;
-
-    event.preventDefault();
-    const nextTab = DETAIL_TABS[nextIndex];
-    setActiveDetailTab(nextTab.id);
-    document.getElementById(`unloading-tab-${nextTab.id}`)?.focus();
-  };
-
   const renderVesselCard = (v: typeof vesselsList[number]) => {
     const statusKind = getVesselStatusKind(v.status);
     const isProgress = statusKind === 'progress';
@@ -1223,18 +1304,13 @@ export default function UnloadingStatus() {
       </Suspense>
 
       {/* 1. Macro View Header */}
-      <div className={styles.pageTitle}>
-        <Anchor size={28} color="var(--accent-primary)" />
-        하역 관제
-        <div style={{ marginLeft: 'auto', display: 'flex', gap: '8px' }}>
-          <button
-            onClick={() => setShowFieldMode(true)}
-            style={{ padding: '6px 14px', borderRadius: '20px', border: '1px solid rgba(56, 189, 248, 0.3)', background: 'rgba(56, 189, 248, 0.1)', color: '#38bdf8', fontSize: '0.78rem', fontWeight: 600, cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '6px', transition: 'all 0.2s' }}
-          >
-            <Smartphone size={14} /> 현장 모드
-          </button>
-        </div>
-      </div>
+      <UnloadingHero
+        vessels={vesselsList}
+        baseDate={globalBaseDate}
+        selectedVesselId={vesselId}
+        onSelectVessel={selectVessel}
+        onOpenFieldMode={() => setShowFieldMode(true)}
+      />
 
       <section className={styles.decisionPanel} aria-labelledby="unloading-decision-title">
         <div className={styles.decisionLead}>
@@ -1415,24 +1491,15 @@ export default function UnloadingStatus() {
           </section>
         )}
 
-        <div className={styles.detailTabs} role="tablist" aria-label="하역 상세 업무 보기">
-          {DETAIL_TABS.map(tab => (
-            <button
-              key={tab.id}
-              id={`unloading-tab-${tab.id}`}
-              type="button"
-              role="tab"
-              aria-selected={activeDetailTab === tab.id}
-              aria-controls={`unloading-panel-${tab.id}`}
-              tabIndex={activeDetailTab === tab.id ? 0 : -1}
-              className={activeDetailTab === tab.id ? styles.detailTabActive : styles.detailTab}
-              onClick={() => setActiveDetailTab(tab.id)}
-              onKeyDown={event => handleDetailTabKeyDown(event, tab.id)}
-            >
-              {tab.label}
-            </button>
-          ))}
-        </div>
+        <PillTabs
+          className={styles.detailTabs}
+          tabs={DETAIL_TABS.map(tab => ({ key: tab.id, label: tab.label }))}
+          activeKey={activeDetailTab}
+          onChange={key => setActiveDetailTab(key as DetailTab)}
+          ariaLabel="하역 상세 업무 보기"
+          tabIdPrefix="unloading-tab"
+          panelIdPrefix="unloading-panel"
+        />
 
         {/* 3A. Interactive Cargo Hold Stowage Schematic */}
         <div

@@ -298,6 +298,7 @@ describe('SEIN VENUS unloading data', () => {
 
   it('prioritizes active operations and groups the long detail view by task', () => {
     const source = readFileSync(join(process.cwd(), 'components/UnloadingStatus.tsx'), 'utf8');
+    const pillTabsSource = readFileSync(join(process.cwd(), 'components/v2/PillTabs.tsx'), 'utf8');
 
     expect(source).toContain('오늘의 운영 판단');
     expect(source).toContain('완료 선박');
@@ -307,9 +308,12 @@ describe('SEIN VENUS unloading data', () => {
     expect(source).toContain("{ id: 'holds', label: '화물창·품질' }");
     expect(source).toContain("{ id: 'timeline', label: '작업 기록' }");
     expect(source).toContain("{ id: 'analysis', label: '분석·보고' }");
-    expect(source).toContain('aria-selected={activeDetailTab === tab.id}');
-    expect(source).toContain('aria-controls={`unloading-panel-${tab.id}`}');
-    expect(source).toContain("event.key === 'ArrowRight'");
+    expect(source).toContain('<PillTabs');
+    expect(source).toContain('tabIdPrefix="unloading-tab"');
+    expect(source).toContain('panelIdPrefix="unloading-panel"');
+    expect(pillTabsSource).toContain('aria-selected={active}');
+    expect(pillTabsSource).toContain('aria-controls={panelId}');
+    expect(pillTabsSource).toContain("event.key === 'ArrowRight'");
     expect(source.match(/hold\.lastTemperature > -18(?:\.0)?/g)).toHaveLength(2);
     expect(source).toContain("style={{ display: 'flex', flexWrap: 'wrap'");
   });
