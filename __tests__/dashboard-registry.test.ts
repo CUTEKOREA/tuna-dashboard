@@ -39,6 +39,20 @@ describe('dashboard registry', () => {
     expect(isActiveMenu('cassava')).toBe(false);
   });
 
+  it('retires the kim dashboard route with an explicit 404 boundary', () => {
+    const routeSource = readFileSync(join(process.cwd(), 'app/kim/page.tsx'), 'utf8');
+
+    expect(routeSource).toContain('notFound()');
+    expect(isActiveMenu('kim')).toBe(false);
+  });
+
+  it('retires the used-car dashboard route with an explicit 404 boundary', () => {
+    const routeSource = readFileSync(join(process.cwd(), 'app/used-car/page.tsx'), 'utf8');
+
+    expect(routeSource).toContain('notFound()');
+    expect(isActiveMenu('used-car')).toBe(false);
+  });
+
   it('routes hydration-sensitive dashboards through the client-only category page', () => {
     const configSource = readFileSync(join(process.cwd(), 'next.config.mjs'), 'utf8');
     const categorySource = readFileSync(join(process.cwd(), 'app/[category]/page.tsx'), 'utf8');
@@ -47,6 +61,8 @@ describe('dashboard registry', () => {
     expect(rewriteSource).toBeDefined();
     expect(rewriteSource).not.toContain('unloading');
     expect(rewriteSource).not.toContain('korea-market');
+    expect(rewriteSource).not.toContain('used-car');
+    expect(rewriteSource).not.toContain('kim');
     expect(rewriteSource).not.toContain('logistics');
     expect(rewriteSource).not.toContain('fleet-strategy');
     expect(rewriteSource?.match(/\(([^)]+)\)/)?.[1].split('|')).not.toContain('fleet');
@@ -118,6 +134,8 @@ describe('dashboard registry', () => {
     expect(isActiveMenu('cold-storage')).toBe(false);
     expect(isActiveMenu('msc')).toBe(false);
     expect(isActiveMenu('sashimi-steak')).toBe(false);
+    expect(isActiveMenu('kim')).toBe(false);
+    expect(isActiveMenu('used-car')).toBe(false);
     expect(isActiveMenu('retail')).toBe(false);
   });
 
@@ -189,6 +207,8 @@ describe('dashboard registry', () => {
     expect(PUBLIC_DASHBOARD_ROUTES).not.toContain('seasia-oem');
     expect(PUBLIC_DASHBOARD_ROUTES).not.toContain('cold-storage');
     expect(PUBLIC_DASHBOARD_ROUTES).not.toContain('msc');
+    expect(PUBLIC_DASHBOARD_ROUTES).not.toContain('kim');
+    expect(PUBLIC_DASHBOARD_ROUTES).not.toContain('used-car');
     expect(PUBLIC_DASHBOARD_ROUTES).not.toContain('market');
     expect(PUBLIC_DASHBOARD_ROUTES).not.toContain('fleet');
   });
@@ -217,8 +237,8 @@ describe('dashboard registry', () => {
 
     expect(SIDEBAR_SECTIONS.map((section) => section.items.map((item) => item.key))).toEqual([
       ['market', 'fleet', 'unloading', 'logistics'],
-      ['value-chain', 'mackerel', 'galchi', 'squid', 'jukkumi', 'octopus', 'pollock', 'flatfish', 'shrimp', 'whelk', 'kim', 'salmon'],
-      ['fleet-strategy', 'used-car', 'research-lab'],
+      ['value-chain', 'mackerel', 'galchi', 'squid', 'jukkumi', 'octopus', 'pollock', 'flatfish', 'shrimp', 'whelk', 'salmon'],
+      ['fleet-strategy', 'research-lab'],
       ['cashew'],
     ]);
 
@@ -257,11 +277,9 @@ describe('dashboard registry', () => {
       'flatfish',
       'shrimp',
       'whelk',
-      'kim',
       'salmon',
       'cashew',
       'pork',
-      'used-car',
       'unloading',
       'value-chain',
       'fleet-strategy',

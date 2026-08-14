@@ -3,13 +3,11 @@ export type DashboardAccent = 'cyan' | 'emerald' | 'gold' | 'rose';
 export type SidebarIconKey =
   | 'Anchor'
   | 'BarChart2'
-  | 'CarFront'
   | 'Droplets'
   | 'Factory'
   | 'Fish'
   | 'FishSymbol'
   | 'Hexagon'
-  | 'Leaf'
   | 'LongArmOctopus'
   | 'Navigation'
   | 'Nut'
@@ -51,9 +49,7 @@ export const DASHBOARD_MENU_CONFIGS = [
   { key: 'cashew', title: '캐슈넛', section: 'agriculture', accent: 'emerald', sidebar: { icon: 'Nut', suffix: 'Cashew' } },
   { key: 'pork', title: '돼지고기', section: 'livestock', accent: 'cyan', sidebar: { icon: 'Hexagon', suffix: 'Pork' } },
   { key: 'whelk', title: '골뱅이', section: 'fishery', accent: 'cyan', sidebar: { icon: 'Shell', suffix: 'Whelk' } },
-  { key: 'kim', title: '김', section: 'fishery', accent: 'cyan', sidebar: { icon: 'Leaf', suffix: 'Laver' } },
   { key: 'cross-intelligence', title: '통합 인텔리전스', section: 'strategy', accent: 'gold', sidebar: { icon: 'BarChart2', suffix: 'Cross' } },
-  { key: 'used-car', title: '중고차', section: 'strategy', accent: 'cyan', sidebar: { icon: 'CarFront', suffix: 'Used Car' } },
   { key: 'pollock', title: '명태', section: 'fishery', accent: 'cyan', shortcutOrder: 11, sidebar: { icon: 'Snowflake', suffix: 'Pollock' } },
   { key: 'flatfish', title: '가자미', section: 'fishery', accent: 'cyan', shortcutOrder: 12, sidebar: { icon: 'FishSymbol', suffix: 'Flatfish' } },
   { key: 'shrimp', title: '새우', section: 'fishery', accent: 'cyan', shortcutOrder: 13, sidebar: { icon: 'Shrimp', suffix: 'Shrimp' } },
@@ -172,11 +168,9 @@ export const DASHBOARD_PANEL_ORDER = [
   'flatfish',
   'shrimp',
   'whelk',
-  'kim',
   'salmon',
   'cashew',
   'pork',
-  'used-car',
   'unloading',
   'value-chain',
   'fleet-strategy',
@@ -197,12 +191,10 @@ const SIDEBAR_SECTION_KEYS: Record<DashboardSection, readonly ActiveMenu[]> = {
     'flatfish',
     'shrimp',
     'whelk',
-    'kim',
     'salmon',
   ],
   strategy: [
     'fleet-strategy',
-    'used-car',
     'research-lab',
   ],
   agriculture: ['cashew'],
