@@ -6,7 +6,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import ErrorBoundary from '../components/ErrorBoundary';
 import styles from './page.module.css';
-import { Activity, Anchor, Ship, Lock, Radio, BarChart2, Navigation, Factory, Waves, Fish, Hexagon, Command, Leaf, Menu, X, Snowflake, CarFront, Shrimp, Droplets, FishSymbol, Shell, Nut, Sprout, LeafyGreen, Carrot, Coffee, Cherry, Beef, Box, TestTube, ShieldCheck } from 'lucide-react';
+import { Activity, Anchor, Ship, Lock, Radio, BarChart2, Navigation, Factory, Waves, Fish, Hexagon, Command, Leaf, Menu, X, Snowflake, CarFront, Shrimp, Droplets, FishSymbol, Shell, Nut, Sprout, LeafyGreen, Carrot, Coffee, Beef, Box, TestTube, ShieldCheck } from 'lucide-react';
 import { supabase } from '../lib/supabase';
 import { usePathname, useRouter } from 'next/navigation';
 import { motion } from 'framer-motion';
@@ -62,7 +62,6 @@ const SEAsiaOEMDashboard = dynamic(() => import('../components/SEAsiaOEMDashboar
 const UsedCarExport = dynamic(() => import('../components/UsedCarExport'));
 const FleetStrategyMatrix = dynamic(() => import('../components/FleetStrategyMatrix'));
 const KoreaConsignmentDashboard = dynamic(() => import('../components/KoreaConsignmentDashboard'));
-const MangosteenDashboard = dynamic(() => import('../components/MangosteenDashboard'));
 const ColdStorageDashboard = dynamic(() => import('../components/ColdStorageDashboard'));
 const MarketDashboard = dynamic(() => import('../components/MarketDashboard'));
 const ResearchLabDashboard = dynamic(() => import('../components/ResearchLabDashboard'));
@@ -80,7 +79,6 @@ const SIDEBAR_ICONS: Record<SidebarIconKey, React.ElementType> = {
   Box,
   CarFront,
   Carrot,
-  Cherry,
   Coffee,
   Droplets,
   Factory,
@@ -310,11 +308,6 @@ export default function Home() {
     garlic: <GarlicDashboard />,
     carrot: <CarrotDashboard />,
     cocoa: <CocoaDashboard />,
-    mangosteen: (
-      <ErrorBoundary fallbackTitle="MangosteenDashboard Error">
-        <MangosteenDashboard />
-      </ErrorBoundary>
-    ),
     pork: <PorkDashboard />,
     beef: <BeefDashboard />,
     'used-car': <UsedCarExport />,
@@ -598,7 +591,7 @@ export default function Home() {
                         <div>📡 실시간 운영 — 시장 동향 · 선단 운영 · 하역 현황 · 물류·가공</div>
                         <div>🐟 어종별 인텔리전스 — 참치 · 고등어 · 갈치 · 오징어 · 명태 · 새우 · 연어 외</div>
                         <div>🔬 전략 분석 — 냉동창고 · 선대 분석 · 글로벌 OEM · MSC · 사시미/스테이크</div>
-                        <div>🌾 농·축산물 — 캐슈넛 · 카사바 · 코코아 · 망고스틴 · 소고기</div>
+                        <div>🌾 농·축산물 — 캐슈넛 · 카사바 · 코코아 · 소고기</div>
                       </div>
                     </motion.div>
                   </motion.div>

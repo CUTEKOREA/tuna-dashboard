@@ -175,7 +175,7 @@ describe('dashboard registry', () => {
       ['market', 'fleet', 'unloading', 'logistics'],
       ['value-chain', 'mackerel', 'galchi', 'squid', 'jukkumi', 'octopus', 'pollock', 'flatfish', 'shrimp', 'whelk', 'kim', 'salmon'],
       ['cold-storage', 'fleet-strategy', 'korea-market', 'seasia-oem', 'used-car', 'msc', 'sashimi-steak', 'research-lab'],
-      ['cashew', 'cassava', 'garlic', 'carrot', 'cocoa', 'mangosteen'],
+      ['cashew', 'cassava', 'garlic', 'carrot', 'cocoa'],
       ['beef'],
     ]);
 
@@ -222,7 +222,6 @@ describe('dashboard registry', () => {
       'garlic',
       'carrot',
       'cocoa',
-      'mangosteen',
       'pork',
       'beef',
       'used-car',
