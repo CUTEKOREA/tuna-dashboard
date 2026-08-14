@@ -215,8 +215,40 @@ describe('dashboard registry', () => {
     expect(isActiveMenu('retail')).toBe(false);
   });
 
+  it('registers the embedded operation pages with the required access boundaries', () => {
+    const cosmo = DASHBOARD_MENU_CONFIGS.find((menu) => menu.key === 'cosmo');
+    const bangkokOffice = DASHBOARD_MENU_CONFIGS.find((menu) => menu.key === 'bangkok-office');
+    const operationItems = SIDEBAR_SECTIONS
+      .find((section) => section.section === 'operation')
+      ?.items.map((item) => item.key) ?? [];
+
+    expect(cosmo).toMatchObject({
+      title: '코스모',
+      section: 'operation',
+      sidebar: { icon: 'Hexagon' },
+    });
+    expect(bangkokOffice).toMatchObject({
+      title: '방콕사무소',
+      section: 'operation',
+      requiresOperationAccess: true,
+      sidebar: { icon: 'Factory' },
+    });
+    expect(operationItems).toEqual([
+      'market',
+      'fleet',
+      'unloading',
+      'logistics',
+      'cosmo',
+      'bangkok-office',
+    ]);
+    expect(PROTECTED_OPERATION_MENU_KEYS).toContain('bangkok-office');
+    expect(PROTECTED_OPERATION_MENU_KEYS).not.toContain('cosmo');
+    expect(PUBLIC_DASHBOARD_ROUTES).toContain('cosmo');
+    expect(PUBLIC_DASHBOARD_ROUTES).not.toContain('bangkok-office');
+  });
+
   it('keeps operation locks and keyboard shortcuts inside valid menus', () => {
-    expect(PROTECTED_OPERATION_MENU_KEYS).toEqual(['fleet', 'unloading', 'logistics']);
+    expect(PROTECTED_OPERATION_MENU_KEYS).toEqual(['fleet', 'unloading', 'logistics', 'bangkok-office']);
     expect(KEYBOARD_SHORTCUT_MENUS).toEqual([
       'market',
       'fleet',
@@ -258,7 +290,7 @@ describe('dashboard registry', () => {
 
   it('derives public sitemap dashboard routes from non-protected menus', () => {
     expect(PUBLIC_DASHBOARD_ROUTES).toEqual(
-      VALID_MENUS.filter((menu) => !['market', 'fleet', 'unloading', 'logistics', 'pork'].includes(menu)),
+      VALID_MENUS.filter((menu) => !['market', 'fleet', 'unloading', 'logistics', 'bangkok-office', 'pork'].includes(menu)),
     );
     expect(PUBLIC_DASHBOARD_ROUTES).not.toContain('value-chain');
     expect(PUBLIC_DASHBOARD_ROUTES).not.toContain('octopus');
@@ -315,7 +347,7 @@ describe('dashboard registry', () => {
     ]);
 
     expect(SIDEBAR_SECTIONS.map((section) => section.items.map((item) => item.key))).toEqual([
-      ['market', 'fleet', 'unloading', 'logistics'],
+      ['market', 'fleet', 'unloading', 'logistics', 'cosmo', 'bangkok-office'],
     ]);
 
     const sidebarKeys = SIDEBAR_SECTIONS.flatMap((section) => section.items.map((item) => item.key));
@@ -338,6 +370,8 @@ describe('dashboard registry', () => {
       'logistics',
       'pork',
       'unloading',
+      'cosmo',
+      'bangkok-office',
       'purse-seiner-db',
     ]);
     expect(new Set(DASHBOARD_PANEL_ORDER)).toEqual(
