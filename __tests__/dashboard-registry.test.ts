@@ -245,7 +245,7 @@ describe('dashboard registry', () => {
     expect(isActiveMenu('retail')).toBe(false);
   });
 
-  it('registers the embedded operation pages with the required access boundaries', () => {
+  it('registers the native COSMO and embedded Bangkok operation pages with the required access boundaries', () => {
     const cosmo = DASHBOARD_MENU_CONFIGS.find((menu) => menu.key === 'cosmo');
     const bangkokOffice = DASHBOARD_MENU_CONFIGS.find((menu) => menu.key === 'bangkok-office');
     const operationItems = SIDEBAR_SECTIONS

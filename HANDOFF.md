@@ -1,6 +1,14 @@
 # HANDOFF
 
-> 마지막 업데이트: 2026-08-15 07:14 KST
+> 마지막 업데이트: 2026-08-15 07:15 KST
+
+> 🧭 **2026-08-15 07:15 KST — `/cosmo` iframe 폐기·10탭 네이티브 이전 완료** [Codex]:
+> - registry의 `cosmo` 진입점은 외부 iframe 대신 `components/cosmo/CosmoDashboard.tsx`를 동적 로드한다. 원본 10화면을 `경영요약·자금·장기 추이·시장·바이어·생산·손익·원가·데이터 품질·판매·수주·대시보드 소개·구매·재고` PillTabs로 옮겼고, 상단 `HeroZone variant="kpi"`는 원본 최신값에서 주간 판매·누적 순손익·통조림 누적 수율·현금 잔액을 계산한다. 각 탭은 개별 dynamic import이며 기존 참치왕국 전 메뉴 세션 잠금을 그대로 사용한다.
+> - ADR-0005 경계에 맞춰 정적 JSON 4개를 `public/data/cosmo/`에 두고 `lib/data/cosmo.ts`·`cosmo-market.ts`만 이를 import한다. JSON 4쌍의 SHA-256이 원본과 각각 일치하며 총 **1,216,341 bytes**다. 두 계산 모듈은 첫 3개 import 경로를 제외한 본문이 원본과 byte-for-byte 동일하다. 원본 앱과 Vercel은 읽기 외 조작하지 않았다.
+> - 원본 `Chart`·`Ui`와 10개 화면의 수치·판단 문구를 보존하면서 자체 사이드바만 참치왕국 셸로 교체했다. CSS는 `.cosmo-root`와 `--cosmo-*`로 격리해 다크 토큰을 활성화했다. 실브라우저 검수 중 전역 `max-width: 100%`가 Recharts 3.8 측정 래퍼를 0px로 누르는 충돌을 찾아 COSMO 범위에서만 해제했고, 모든 차트의 래퍼 폭과 실제 데이터 도형을 회귀 게이트로 추가했다.
+> - iframe 가용성 fetch·외부 COSMO URL·`/api/cosmo-health`·관련 계약 테스트를 제거했다. 방콕사무소 iframe과 보호 흐름은 유지했다. focused **31/31**, 전체 `npm run verify` 통과: ESLint 오류 0(기존 경고 18), TypeScript, Vitest **244/244**, API cache **143/143**, Next 정적 페이지 **117/117**, bundle **30 routes**. S-Grade 진입점 검사는 exit 0이지만 탭이 동적 import라 closure 0으로 집계되는 도구 한계가 있다.
+> - 브라우저 QA(`/private/tmp/cosmo-native-qa-final-20260815.1azA4N/`): 1440×1000·390×844 모두 HTTP 200, **10/10 탭**, 차트 **48/48**, page/COSMO overflow 0px, page·console·로컬 HTTP·로컬 요청 오류 0, health 요청 0, 다크 토큰 `#0d1216`/`#151d23`이다. 외부 글꼴·광고·분석 요청만 격리했다. 데스크톱/모바일 PNG SHA-256은 각각 `c4ff5d16724ddab8729cf3ef93f9d34678e20764c93ed1b7119d7d4917eca9d4`, `a4cf433e3033a045f6e88a9e4d810fd16135cd149e45fbaefcc20ffbb6e36189`다.
+> - npm 전용 전환 전 pnpm 파일과 기존 `node_modules`는 삭제하지 않고 `/private/tmp/cosmo-native-pnpm-backup.PJ4suJ/`에 보존했다. push·프로덕션 배포는 하지 않았다. 다음 단계는 CC가 대표 수치와 산식 불변 diff를 독립 재현하고, 기존 COSMO Vercel 앱 제거 여부를 별도 작업으로 판단하는 것이다.
 
 > 🔓 **2026-08-15 07:14 KST — 잠금 상태 히어로 KPI 티저 공개 완료** [Codex]:
 > - 히어로가 있는 7개 진입점(`market`·`fleet`·`unloading`·`logistics`·`pork`·`cross-intelligence`·`purse-seiner-db`)에 `heroOnly?: boolean`을 추가했다. 잠금 상태에서는 선택 메뉴의 기존 히어로만 먼저 렌더하고 그 아래 기존 `전체 메뉴 접근 확인` 폼과 공개 범위 안내 문구를 표시한다. 히어로가 없는 코스모·방콕사무소는 기존 잠금 카드만 유지한다.

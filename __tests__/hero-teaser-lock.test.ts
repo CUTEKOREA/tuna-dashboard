@@ -112,7 +112,8 @@ describe('잠금 상태 히어로 티저', () => {
     expect(fullPanelGate).toBeGreaterThan(accessForm);
     expect(fullPanelGateSource).not.toContain('<LiveTicker');
     expect(source).toContain('핵심 지표는 공개되며, 상세 분석은 내부 확인 후 열람할 수 있습니다.');
-    expect(source).not.toMatch(/<CosmoDashboard\s+heroOnly/);
+    // 2026-08-15: 코스모 네이티브 이전으로 히어로 보유 — 티저 지원 목록에 합류
+    expect(source).toMatch(/cosmo: <CosmoDashboard heroOnly \/>/);
     expect(source).not.toMatch(/<BangkokOfficeDashboard\s+heroOnly/);
     expect(source).toContain("!isOperationMenuLocked && activeMenu === 'market'");
   });
