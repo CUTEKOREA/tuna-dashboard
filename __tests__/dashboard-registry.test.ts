@@ -109,6 +109,7 @@ describe('dashboard registry', () => {
     const rewriteSource = configSource.match(/source:\s*'([^']+)'/)?.[1];
 
     expect(rewriteSource).toBeDefined();
+    expect(rewriteSource).not.toContain('market');
     expect(rewriteSource).not.toContain('unloading');
     expect(rewriteSource).not.toContain('korea-market');
     expect(rewriteSource).not.toContain('used-car');
