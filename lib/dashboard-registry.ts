@@ -3,26 +3,20 @@ export type DashboardAccent = 'cyan' | 'emerald' | 'gold' | 'rose';
 export type SidebarIconKey =
   | 'Anchor'
   | 'BarChart2'
-  | 'Box'
   | 'CarFront'
-  | 'Carrot'
-  | 'Coffee'
   | 'Droplets'
   | 'Factory'
   | 'Fish'
   | 'FishSymbol'
   | 'Hexagon'
   | 'Leaf'
-  | 'LeafyGreen'
   | 'LongArmOctopus'
   | 'Navigation'
   | 'Nut'
-  | 'ShieldCheck'
   | 'Shell'
   | 'Ship'
   | 'Shrimp'
   | 'Snowflake'
-  | 'Sprout'
   | 'TestTube'
   | 'Waves'
   | 'WebfootOctopus';
@@ -55,10 +49,6 @@ export const DASHBOARD_MENU_CONFIGS = [
   { key: 'jukkumi', title: '주꾸미', section: 'fishery', accent: 'cyan', shortcutOrder: 9, sidebar: { icon: 'WebfootOctopus', suffix: 'Webfoot Octopus' } },
   { key: 'octopus', title: '낙지', section: 'fishery', accent: 'cyan', shortcutOrder: 10, sidebar: { icon: 'LongArmOctopus', suffix: 'Long-Arm Octopus' } },
   { key: 'cashew', title: '캐슈넛', section: 'agriculture', accent: 'emerald', sidebar: { icon: 'Nut', suffix: 'Cashew' } },
-  { key: 'cassava', title: '카사바', section: 'agriculture', accent: 'cyan', sidebar: { icon: 'Sprout', suffix: 'Cassava' } },
-  { key: 'garlic', title: '마늘', section: 'agriculture', accent: 'cyan', sidebar: { icon: 'LeafyGreen', suffix: 'Garlic' } },
-  { key: 'carrot', title: '당근', section: 'agriculture', accent: 'cyan', sidebar: { icon: 'Carrot', suffix: 'Carrot' } },
-  { key: 'cocoa', title: '코코아', section: 'agriculture', accent: 'emerald', sidebar: { icon: 'Coffee', suffix: 'Cocoa' } },
   { key: 'pork', title: '돼지고기', section: 'livestock', accent: 'cyan', sidebar: { icon: 'Hexagon', suffix: 'Pork' } },
   { key: 'whelk', title: '골뱅이', section: 'fishery', accent: 'cyan', sidebar: { icon: 'Shell', suffix: 'Whelk' } },
   { key: 'kim', title: '김', section: 'fishery', accent: 'cyan', sidebar: { icon: 'Leaf', suffix: 'Laver' } },
@@ -68,14 +58,9 @@ export const DASHBOARD_MENU_CONFIGS = [
   { key: 'flatfish', title: '가자미', section: 'fishery', accent: 'cyan', shortcutOrder: 12, sidebar: { icon: 'FishSymbol', suffix: 'Flatfish' } },
   { key: 'shrimp', title: '새우', section: 'fishery', accent: 'cyan', shortcutOrder: 13, sidebar: { icon: 'Shrimp', suffix: 'Shrimp' } },
   { key: 'salmon', title: '연어', section: 'fishery', accent: 'cyan', shortcutOrder: 14, sidebar: { icon: 'Waves', suffix: 'Salmon' } },
-  { key: 'seasia-oem', title: '글로벌 OEM', section: 'strategy', accent: 'cyan', sidebar: { icon: 'Factory', suffix: 'VN/TH' } },
   { key: 'fleet-strategy', title: '선대 전략 분석', section: 'strategy', accent: 'cyan', sidebar: { icon: 'Ship', label: '선대 현황 및 분석' } },
-  { key: 'korea-market', title: '국내 위판장 인텔리전스', section: 'strategy', accent: 'cyan', sidebar: { icon: 'Anchor' } },
-  { key: 'cold-storage', title: '냉동창고', section: 'strategy', accent: 'cyan', sidebar: { icon: 'Box', suffix: 'Cold Storage' } },
   { key: 'research-lab', title: '연구 재료', section: 'strategy', accent: 'cyan', sidebar: { icon: 'TestTube', suffix: 'Research Lab' } },
   { key: 'purse-seiner-db', title: '선망선 DB', section: 'strategy', accent: 'cyan' },
-  { key: 'msc', title: 'MSC 전략', section: 'strategy', accent: 'cyan', sidebar: { icon: 'ShieldCheck', label: 'MSC', suffix: '지속가능성' } },
-  { key: 'sashimi-steak', title: '사시미/스테이크 전략', section: 'strategy', accent: 'cyan', sidebar: { icon: 'FishSymbol', label: '사시미/스테이크', suffix: 'Sashimi/Steak' } },
 ] as const satisfies readonly DashboardMenuConfigShape[];
 
 export type ActiveMenu = (typeof DASHBOARD_MENU_CONFIGS)[number]['key'];
@@ -178,7 +163,6 @@ export const DASHBOARD_PANEL_ORDER = [
   'market',
   'fleet',
   'logistics',
-  'cold-storage',
   'mackerel',
   'galchi',
   'squid',
@@ -191,21 +175,13 @@ export const DASHBOARD_PANEL_ORDER = [
   'kim',
   'salmon',
   'cashew',
-  'cassava',
-  'garlic',
-  'carrot',
-  'cocoa',
   'pork',
   'used-car',
   'unloading',
   'value-chain',
-  'seasia-oem',
   'fleet-strategy',
-  'korea-market',
   'research-lab',
   'purse-seiner-db',
-  'msc',
-  'sashimi-steak',
 ] as const satisfies readonly ActiveMenu[];
 
 const SIDEBAR_SECTION_KEYS: Record<DashboardSection, readonly ActiveMenu[]> = {
@@ -225,16 +201,11 @@ const SIDEBAR_SECTION_KEYS: Record<DashboardSection, readonly ActiveMenu[]> = {
     'salmon',
   ],
   strategy: [
-    'cold-storage',
     'fleet-strategy',
-    'korea-market',
-    'seasia-oem',
     'used-car',
-    'msc',
-    'sashimi-steak',
     'research-lab',
   ],
-  agriculture: ['cashew', 'cassava', 'garlic', 'carrot', 'cocoa'],
+  agriculture: ['cashew'],
   livestock: ['pork'],
 };
 
@@ -250,10 +221,6 @@ function getMenuConfig(menu: ActiveMenu): DashboardMenuConfig {
 
 function sidebarItemFor(menu: ActiveMenu): SidebarMenuItem {
   const config = getMenuConfig(menu);
-  const labelOverrides: Partial<Record<ActiveMenu, string>> = {
-    'seasia-oem': '글로벌 위탁생산',
-    msc: '지속가능성 인증',
-  };
 
   if (!config.sidebar) {
     throw new Error(`Dashboard menu has no sidebar metadata: ${menu}`);
@@ -261,7 +228,7 @@ function sidebarItemFor(menu: ActiveMenu): SidebarMenuItem {
 
   return {
     key: menu,
-    label: labelOverrides[menu] ?? config.sidebar.label ?? config.title,
+    label: config.sidebar.label ?? config.title,
     icon: config.sidebar.icon,
   };
 }
