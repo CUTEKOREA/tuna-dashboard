@@ -10,7 +10,6 @@ export type SidebarIconKey =
   | 'Hexagon'
   | 'LongArmOctopus'
   | 'Navigation'
-  | 'Nut'
   | 'Shell'
   | 'Ship'
   | 'Shrimp'
@@ -46,7 +45,6 @@ export const DASHBOARD_MENU_CONFIGS = [
   { key: 'squid', title: '오징어', section: 'fishery', accent: 'cyan', shortcutOrder: 8, sidebar: { icon: 'Droplets', suffix: 'Squid' } },
   { key: 'jukkumi', title: '주꾸미', section: 'fishery', accent: 'cyan', shortcutOrder: 9, sidebar: { icon: 'WebfootOctopus', suffix: 'Webfoot Octopus' } },
   { key: 'octopus', title: '낙지', section: 'fishery', accent: 'cyan', shortcutOrder: 10, sidebar: { icon: 'LongArmOctopus', suffix: 'Long-Arm Octopus' } },
-  { key: 'cashew', title: '캐슈넛', section: 'agriculture', accent: 'emerald', sidebar: { icon: 'Nut', suffix: 'Cashew' } },
   { key: 'pork', title: '돼지고기', section: 'livestock', accent: 'cyan', sidebar: { icon: 'Hexagon', suffix: 'Pork' } },
   { key: 'cross-intelligence', title: '통합 인텔리전스', section: 'strategy', accent: 'gold', sidebar: { icon: 'BarChart2', suffix: 'Cross' } },
   { key: 'pollock', title: '명태', section: 'fishery', accent: 'cyan', shortcutOrder: 11, sidebar: { icon: 'Snowflake', suffix: 'Pollock' } },
@@ -163,7 +161,6 @@ export const DASHBOARD_PANEL_ORDER = [
   'pollock',
   'flatfish',
   'shrimp',
-  'cashew',
   'pork',
   'unloading',
   'value-chain',
@@ -185,7 +182,7 @@ const SIDEBAR_SECTION_KEYS: Record<DashboardSection, readonly ActiveMenu[]> = {
   ],
   strategy: [
   ],
-  agriculture: ['cashew'],
+  agriculture: [],
   livestock: ['pork'],
 };
 

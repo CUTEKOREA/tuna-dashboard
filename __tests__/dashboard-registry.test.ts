@@ -172,6 +172,7 @@ describe('dashboard registry', () => {
     expect(isActiveMenu('salmon')).toBe(false);
     expect(isActiveMenu('fleet-strategy')).toBe(false);
     expect(isActiveMenu('research-lab')).toBe(false);
+    expect(isActiveMenu('cashew')).toBe(false);
     expect(isActiveMenu('retail')).toBe(false);
   });
 
@@ -248,6 +249,7 @@ describe('dashboard registry', () => {
     expect(PUBLIC_DASHBOARD_ROUTES).not.toContain('salmon');
     expect(PUBLIC_DASHBOARD_ROUTES).not.toContain('fleet-strategy');
     expect(PUBLIC_DASHBOARD_ROUTES).not.toContain('research-lab');
+    expect(PUBLIC_DASHBOARD_ROUTES).not.toContain('cashew');
     expect(PUBLIC_DASHBOARD_ROUTES).not.toContain('market');
     expect(PUBLIC_DASHBOARD_ROUTES).not.toContain('fleet');
   });
@@ -264,6 +266,7 @@ describe('dashboard registry', () => {
   it('omits sidebar sections after every item in the section is retired', () => {
     expect(SIDEBAR_SECTIONS.map((section) => section.section)).not.toContain('livestock');
     expect(SIDEBAR_SECTIONS.map((section) => section.section)).not.toContain('strategy');
+    expect(SIDEBAR_SECTIONS.map((section) => section.section)).not.toContain('agriculture');
     expect(SIDEBAR_SECTIONS.every((section) => section.items.length > 0)).toBe(true);
   });
 
@@ -271,13 +274,11 @@ describe('dashboard registry', () => {
     expect(SIDEBAR_SECTIONS.map((section) => section.title)).toEqual([
       '📡 실시간 운영',
       '🐟 어종별 인텔리전스',
-      '🌾 농산물 인텔리전스',
     ]);
 
     expect(SIDEBAR_SECTIONS.map((section) => section.items.map((item) => item.key))).toEqual([
       ['market', 'fleet', 'unloading', 'logistics'],
       ['value-chain', 'mackerel', 'galchi', 'squid', 'jukkumi', 'octopus', 'pollock', 'flatfish', 'shrimp'],
-      ['cashew'],
     ]);
 
     const sidebarKeys = SIDEBAR_SECTIONS.flatMap((section) => section.items.map((item) => item.key));
@@ -314,7 +315,6 @@ describe('dashboard registry', () => {
       'pollock',
       'flatfish',
       'shrimp',
-      'cashew',
       'pork',
       'unloading',
       'value-chain',

@@ -5,7 +5,7 @@ import dynamic from 'next/dynamic';
 import Image from 'next/image';
 import Link from 'next/link';
 import styles from './page.module.css';
-import { Activity, Anchor, Ship, Lock, Radio, BarChart2, Navigation, Factory, Waves, Fish, Hexagon, Command, Menu, X, Snowflake, Shrimp, Droplets, FishSymbol, Shell, Nut, TestTube } from 'lucide-react';
+import { Activity, Anchor, Ship, Lock, Radio, BarChart2, Navigation, Factory, Waves, Fish, Hexagon, Command, Menu, X, Snowflake, Shrimp, Droplets, FishSymbol, Shell, TestTube } from 'lucide-react';
 import { supabase } from '../lib/supabase';
 import { usePathname, useRouter } from 'next/navigation';
 import { motion } from 'framer-motion';
@@ -43,7 +43,7 @@ const OctopusDashboard = dynamic(() => import('../components/OctopusDashboard'))
 const PollockDashboard = dynamic(() => import('../components/PollockDashboard'));
 const FlatfishDashboard = dynamic(() => import('../components/FlatfishDashboard'));
 const ShrimpDashboard = dynamic(() => import('../components/ShrimpDashboard'));
-const CashewStrategy = dynamic(() => import('../components/CashewStrategy'));
+
 const PorkDashboard = dynamic(() => import('../components/PorkDashboard'));
 const TunaDashboard = dynamic(() => import('../components/TunaDashboard'));
 const LogisticsDashboard = dynamic(() => import('../components/LogisticsDashboard'));
@@ -65,7 +65,6 @@ const SIDEBAR_ICONS: Record<SidebarIconKey, React.ElementType> = {
   Hexagon,
   LongArmOctopus: LongArmOctopusIcon,
   Navigation,
-  Nut,
   Shell,
   Ship,
   Shrimp,
@@ -273,7 +272,6 @@ export default function Home() {
     pollock: <PollockDashboard />,
     flatfish: <FlatfishDashboard />,
     shrimp: <ShrimpDashboard />,
-    cashew: <CashewStrategy />,
     pork: <PorkDashboard />,
     unloading: <UnloadingStatus />,
     'value-chain': <TunaDashboard />,
@@ -548,7 +546,7 @@ export default function Home() {
                         <div style={{ fontWeight: 700, color: 'var(--text-main)', marginBottom: '6px' }}>제공 메뉴 미리보기</div>
                         <div>📡 실시간 운영 — 시장 동향 · 선단 운영 · 하역 현황 · 물류·가공</div>
                         <div>🐟 어종별 인텔리전스 — 참치 · 고등어 · 갈치 · 오징어 · 주꾸미 · 낙지 · 명태 · 가자미 · 새우</div>
-                        <div>🌾 농산물 — 캐슈넛</div>
+                        <div>🌾 농산물 — (현재 공개 메뉴 없음)</div>
                       </div>
                     </motion.div>
                   </motion.div>
