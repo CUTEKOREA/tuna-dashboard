@@ -40,7 +40,6 @@ export const DASHBOARD_MENU_CONFIGS = [
   { key: 'unloading', title: '하역 현황', section: 'operation', accent: 'cyan', requiresOperationAccess: true, shortcutOrder: 3, sidebar: { icon: 'Anchor', suffix: 'Unloading' } },
   { key: 'value-chain', title: '참치', section: 'fishery', accent: 'cyan', shortcutOrder: 5, sidebar: { icon: 'Fish', suffix: 'Tuna' } },
   { key: 'mackerel', title: '고등어', section: 'fishery', accent: 'cyan', shortcutOrder: 6, sidebar: { icon: 'FishSymbol', suffix: 'Mackerel' } },
-  { key: 'galchi', title: '갈치', section: 'fishery', accent: 'cyan', shortcutOrder: 7, sidebar: { icon: 'Fish', suffix: 'Hairtail' } },
   { key: 'squid', title: '오징어', section: 'fishery', accent: 'cyan', shortcutOrder: 8, sidebar: { icon: 'Droplets', suffix: 'Squid' } },
   { key: 'octopus', title: '낙지', section: 'fishery', accent: 'cyan', shortcutOrder: 10, sidebar: { icon: 'LongArmOctopus', suffix: 'Long-Arm Octopus' } },
   { key: 'pork', title: '돼지고기', section: 'livestock', accent: 'cyan', sidebar: { icon: 'Hexagon', suffix: 'Pork' } },
@@ -151,7 +150,6 @@ export const DASHBOARD_PANEL_ORDER = [
   'fleet',
   'logistics',
   'mackerel',
-  'galchi',
   'squid',
   'octopus',
   'pollock',
@@ -167,7 +165,6 @@ const SIDEBAR_SECTION_KEYS: Record<DashboardSection, readonly ActiveMenu[]> = {
   fishery: [
     'value-chain',
     'mackerel',
-    'galchi',
     'squid',
     'octopus',
     'pollock',

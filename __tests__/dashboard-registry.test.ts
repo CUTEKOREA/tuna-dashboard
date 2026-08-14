@@ -88,6 +88,13 @@ describe('dashboard registry', () => {
     expect(isActiveMenu('shrimp')).toBe(false);
   });
 
+  it('retires the galchi dashboard route with an explicit 404 boundary', () => {
+    const routeSource = readFileSync(join(process.cwd(), 'app/galchi/page.tsx'), 'utf8');
+
+    expect(routeSource).toContain('notFound()');
+    expect(isActiveMenu('galchi')).toBe(false);
+  });
+
   it('routes hydration-sensitive dashboards through the client-only category page', () => {
     const configSource = readFileSync(join(process.cwd(), 'next.config.mjs'), 'utf8');
     const categorySource = readFileSync(join(process.cwd(), 'app/[category]/page.tsx'), 'utf8');
@@ -102,6 +109,7 @@ describe('dashboard registry', () => {
     expect(rewriteSource).not.toContain('salmon');
     expect(rewriteSource).not.toContain('research-lab');
     expect(rewriteSource).not.toContain('shrimp');
+    expect(rewriteSource).not.toContain('galchi');
     expect(rewriteSource).not.toContain('fleet-strategy');
     expect(rewriteSource).not.toContain('logistics');
     expect(rewriteSource).not.toContain('fleet-strategy');
@@ -183,6 +191,7 @@ describe('dashboard registry', () => {
     expect(isActiveMenu('cashew')).toBe(false);
     expect(isActiveMenu('shrimp')).toBe(false);
     expect(isActiveMenu('jukkumi')).toBe(false);
+    expect(isActiveMenu('galchi')).toBe(false);
     expect(isActiveMenu('retail')).toBe(false);
   });
 
@@ -195,7 +204,6 @@ describe('dashboard registry', () => {
       'logistics',
       'value-chain',
       'mackerel',
-      'galchi',
       'squid',
       'octopus',
       'pollock',
@@ -260,6 +268,7 @@ describe('dashboard registry', () => {
     expect(PUBLIC_DASHBOARD_ROUTES).not.toContain('cashew');
     expect(PUBLIC_DASHBOARD_ROUTES).not.toContain('shrimp');
     expect(PUBLIC_DASHBOARD_ROUTES).not.toContain('jukkumi');
+    expect(PUBLIC_DASHBOARD_ROUTES).not.toContain('galchi');
     expect(PUBLIC_DASHBOARD_ROUTES).not.toContain('market');
     expect(PUBLIC_DASHBOARD_ROUTES).not.toContain('fleet');
   });
@@ -288,7 +297,7 @@ describe('dashboard registry', () => {
 
     expect(SIDEBAR_SECTIONS.map((section) => section.items.map((item) => item.key))).toEqual([
       ['market', 'fleet', 'unloading', 'logistics'],
-      ['value-chain', 'mackerel', 'galchi', 'squid', 'octopus', 'pollock', 'flatfish'],
+      ['value-chain', 'mackerel', 'squid', 'octopus', 'pollock', 'flatfish'],
     ]);
 
     const sidebarKeys = SIDEBAR_SECTIONS.flatMap((section) => section.items.map((item) => item.key));
@@ -315,7 +324,6 @@ describe('dashboard registry', () => {
       'fleet',
       'logistics',
       'mackerel',
-      'galchi',
       'squid',
       'octopus',
       'pollock',
