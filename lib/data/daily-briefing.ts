@@ -22,7 +22,8 @@ export type DailyBriefingTakeaways = {
 };
 
 const ISO_DATE_PATTERN = /^\d{4}-\d{2}-\d{2}$/;
-const DIRECTIVE_PATTERN = /(촉구했다|권고했다|요구했다)[.!?]?$/;
+// 2026-08-15: 8/14 실기사에서 '해야 한다' 종결 지침 확인 — 패턴 실측 확장 (scripts/sync_daily_briefing.py와 동기 유지)
+const DIRECTIVE_PATTERN = /(촉구했다|권고했다|요구했다|제안했다|주문했다|요청했다|경고했다|해야 한다|필요가 있다)[.!?]?$/;
 
 function recordAt(value: unknown, path: string): Record<string, unknown> {
   if (typeof value !== 'object' || value === null || Array.isArray(value)) {
@@ -114,9 +115,14 @@ function splitSentences(paragraph: string): string[] {
 export function buildDailyBriefingTakeaways(
   briefing: DailyBriefing,
 ): DailyBriefingTakeaways {
-  const topDigest = briefing.digest.slice(0, 2);
-  if (topDigest.length !== 2 || topDigest.some(({ title }) => !/\d/.test(title))) {
-    throw new Error('SIT에는 숫자가 포함된 상위 다이제스트 2건이 필요합니다.');
+  // W-03: SIT 전체에 숫자가 포함되면 된다 — 문장마다 요구하면 8/14처럼 정성 헤드라인이 섞인 날 깨진다.
+  // 숫자 포함 헤드라인을 우선 선발하되 원문 순서를 보존한다.
+  const numeric = briefing.digest.filter(({ title }) => /\d/.test(title));
+  const rest = briefing.digest.filter(({ title }) => !/\d/.test(title));
+  const topDigest = [...numeric, ...rest].slice(0, 2)
+    .sort((a, b) => briefing.digest.indexOf(a) - briefing.digest.indexOf(b));
+  if (topDigest.length !== 2 || !topDigest.some(({ title }) => /\d/.test(title))) {
+    throw new Error('SIT에는 숫자가 포함된 다이제스트가 최소 1건 필요합니다.');
   }
 
   const actionPlan = briefing.articles

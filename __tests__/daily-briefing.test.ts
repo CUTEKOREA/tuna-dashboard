@@ -14,6 +14,7 @@ import { spawnSync } from 'node:child_process';
 import { renderToStaticMarkup } from 'react-dom/server';
 import { afterEach, describe, expect, it } from 'vitest';
 import MarketDashboard from '../components/MarketDashboard';
+import { dailyBriefing, buildDailyBriefingTakeaways } from '../lib/data/daily-briefing';
 
 const fixture = join(
   process.cwd(),
@@ -32,6 +33,14 @@ function runSyncScript(args: string[]) {
     cwd: process.cwd(),
     encoding: 'utf8',
   });
+}
+
+function escapeHtml(value: string): string {
+  return value
+    .replaceAll('&', '&amp;')
+    .replaceAll('<', '&lt;')
+    .replaceAll('>', '&gt;')
+    .replaceAll('\'', '&#x27;');
 }
 
 function countOccurrences(value: string, token: string): number {
@@ -96,41 +105,41 @@ describe('daily tuna briefing sync', () => {
 });
 
 describe('daily tuna briefing widget', () => {
+  // 데이터는 매일 sync로 갱신된다 — 특정 날짜의 문구를 고정하지 말고
+  // lib/data/daily-briefing.ts 가 노출하는 현재 데이터에서 기대값을 유도한다.
   it('renders the synced date and first digest headline on the market dashboard', () => {
     const markup = renderToStaticMarkup(React.createElement(MarketDashboard));
+    const displayDate = dailyBriefing.date.replaceAll('-', '.');
 
-    expect(markup).toContain('오늘의 참치 뉴스 · 2026.08.13');
-    expect(markup).toContain(
-      '동원그룹 상반기 매출 5조 1,000억원, 9.1% 증가 — 수산 부문이 견인',
-    );
+    expect(markup).toContain(`오늘의 참치 뉴스 · ${displayDate}`);
+    expect(markup).toContain(escapeHtml(dailyBriefing.digest[0].title));
     expect(markup).toContain('>SYNCED<');
     expect(markup).toContain('data-testid="daily-briefing-articles"');
     expect(markup).not.toContain('저가 수요는 견고하지만 관세 부담은 공급망 안에서 재배분');
     expect(markup).not.toContain('태국 원어 수요 둔화와 연승선 투명성 요구를 동시에 관리');
   });
 
-  it('renders five digest items and five article accordions closed by default', () => {
+  it('renders every digest item and article accordion closed by default', () => {
     const markup = renderToStaticMarkup(React.createElement(MarketDashboard));
 
     expect(
       countOccurrences(markup, 'data-testid="daily-briefing-digest-item"'),
-    ).toBe(5);
+    ).toBe(dailyBriefing.digest.length);
     expect(
       countOccurrences(markup, 'data-testid="daily-briefing-article"'),
-    ).toBe(5);
+    ).toBe(dailyBriefing.articles.length);
+    expect(dailyBriefing.digest.length).toBeGreaterThanOrEqual(3);
     expect(markup).not.toMatch(/<details[^>]*\sopen(?:=|>)/);
-    expect(markup).not.toContain('Dongwon Group Reports Higher Turnover');
   });
 
   it('uses the top two digest titles and an exact article directive for SIT and TAK', () => {
     const markup = renderToStaticMarkup(React.createElement(MarketDashboard));
+    const takeaways = buildDailyBriefingTakeaways(dailyBriefing);
 
-    expect(textByTestId(markup, 'daily-briefing-sit')).toBe(
-      '동원그룹 상반기 매출 5조 1,000억원, 9.1% 증가 — 수산 부문이 견인. ' +
-      '태국 캔참치 상반기 수출 250,887 M/T, 대미 16% 감소 — 호르무즈 여파로 중동 엇갈려.',
-    );
-    expect(textByTestId(markup, 'daily-briefing-tak')).toBe(
-      '시장자문위원회(MAC)는 참치·수산물 기업의 비례성, 법적 확실성, 그리고 더 높은 시장 안정성을 확보하도록 EU 집행위에 플랫폼 안정화와 시행 정합성 개선을 촉구했다.',
-    );
+    expect(textByTestId(markup, 'daily-briefing-sit')).toBe(escapeHtml(takeaways.situation));
+    expect(textByTestId(markup, 'daily-briefing-tak')).toBe(escapeHtml(takeaways.actionPlan));
+    // TAK 무-창작 불변식: 기사 본문에 실재하는 문장이어야 한다
+    const allText = dailyBriefing.articles.flatMap((a) => a.paragraphs).join(' ');
+    expect(allText).toContain(takeaways.actionPlan);
   });
 });
