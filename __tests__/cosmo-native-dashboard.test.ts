@@ -30,12 +30,12 @@ describe('COSMO native data intake', () => {
 });
 
 describe('COSMO native dashboard', () => {
-  it('renders the executive hero, representative KPI, and all ten tabs without an iframe', () => {
+  it('renders the executive hero, representative KPI, and all nine tabs without an iframe', () => {
     const markup = renderToStaticMarkup(React.createElement(CosmoDashboard));
 
     expect(markup).toContain('코스모 경영 대시보드');
     expect(markup).toContain('주간 판매');
-    expect(COSMO_TABS).toHaveLength(10);
+    expect(COSMO_TABS).toHaveLength(9);
     for (const tab of COSMO_TABS) expect(markup).toContain(tab.label);
     expect(markup).not.toContain('<iframe');
   });

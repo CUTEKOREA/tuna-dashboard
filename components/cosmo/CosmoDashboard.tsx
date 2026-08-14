@@ -8,7 +8,6 @@ import {
   Factory,
   Globe2,
   History,
-  Info,
   LayoutDashboard,
   ShieldCheck,
   ShoppingCart,
@@ -37,7 +36,6 @@ const ProductionTab = dynamic(() => import('./tabs/ProductionTab'), { loading: P
 const ProfitTab = dynamic(() => import('./tabs/ProfitTab'), { loading: PanelLoading });
 const QualityTab = dynamic(() => import('./tabs/QualityTab'), { loading: PanelLoading });
 const SalesTab = dynamic(() => import('./tabs/SalesTab'), { loading: PanelLoading });
-const ShareTab = dynamic(() => import('./tabs/ShareTab'), { loading: PanelLoading });
 const SupplyTab = dynamic(() => import('./tabs/SupplyTab'), { loading: PanelLoading });
 
 export const COSMO_TABS: PillTab[] = [
@@ -49,7 +47,6 @@ export const COSMO_TABS: PillTab[] = [
   { key: 'profit', label: '손익·원가', icon: <BadgeDollarSign size={15} /> },
   { key: 'quality', label: '데이터 품질', icon: <ShieldCheck size={15} /> },
   { key: 'sales', label: '판매·수주', icon: <ShoppingCart size={15} /> },
-  { key: 'share', label: '대시보드 소개', icon: <Info size={15} /> },
   { key: 'supply', label: '구매·재고', icon: <Boxes size={15} /> },
 ];
 
@@ -62,7 +59,6 @@ const PANELS: Record<CosmoTabKey, React.ComponentType> = {
   profit: ProfitTab,
   quality: QualityTab,
   sales: SalesTab,
-  share: ShareTab,
   supply: SupplyTab,
 };
 
