@@ -45,7 +45,7 @@ const MarketDashboard = dynamic(() => import('../components/MarketDashboard'));
 const PurseSeinerDashboard = dynamic(() => import('../components/PurseSeinerDashboard'));
 
 const OPERATION_ACCESS_STORAGE_KEY = 'silla-operation-access';
-const OPERATION_PASSWORD = '349900';
+const OPERATION_PASSWORD = 'a34349900';
 
 const SIDEBAR_ICONS: Record<SidebarIconKey, React.ElementType> = {
   Anchor,
