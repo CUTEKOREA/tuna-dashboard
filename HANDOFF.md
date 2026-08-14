@@ -1,6 +1,14 @@
 # HANDOFF
 
-> 마지막 업데이트: 2026-08-15 07:15 KST
+> 마지막 업데이트: 2026-08-15 07:45 KST
+
+> 🔍 **2026-08-15 07:45 KST — V2.5 무채색+1액센트 반증 리포트** [Grok]:
+> - 스펙 `docs/superpowers/specs/2026-08-15-v25-institutional-grade-design.md`는 이 worktree에 없어 `origin/docs/v25-institutional-spec`(PR #350) 원문으로 대조했다. 코드는 수정하지 않았다. 산출: `docs/2026-08-15_v25_refutation.md`.
+> - **다품목 식별성 = 무해.** `/cross-intelligence`는 품목을 D-04 색이 아니라 한글 열 라벨+점수색(`scoreColor` 4단)으로 구분한다. 1액센트로 접어도 품목 ID는 남는다.
+> - **경보 위계 = 위험.** `/logistics` 히어로 `WarningPanel`이 상시 rose이고, 운반선 마커 4척이 예외가 아닌데 amber다. 무채색 전환 후 비예외 채색이 진짜 예외와 같은 무게로 붙는다. SYNCED 배지·티커 접두도 amber/rose 장식.
+> - **모노 한글 혼용 = 위험.** `KpiNumber`가 숫자와 `(점)(건)(척)(개국)`을 같은 nowrap 런에 둔다. IBM Plex Mono 라틴+숫자 서브셋은 Hangul이 없어 baseline이 갈라진다. `LiveTicker` 항목 전체 모노 스택, `VesselStatusTables`의 `30톤` 혼합 노드도 동일.
+> - **다시리즈 차트 = 위험(가장 위험).** 스펙 "보조=무채색 명도"는 시리즈 ≤3에서만 성립. `/market` SKJ 5허브, `FleetCharts` 8개월 스택, `PorkWidgets` 7개국, `TunaUsLoinImports` 6스택은 L-07 전에 스펙 예외가 필요하다.
+> - 다음 단계: CC가 스펙 §2.1에 (1) rose/amber는 상태 전이 예외만 (2) 모노는 숫자 런만 (3) 시리즈 ≥4는 범주 팔레트 예외를 반영한 뒤 V2.5-a 검수에서 대조. push·배포 없음.
 
 > 🧭 **2026-08-15 07:15 KST — `/cosmo` iframe 폐기·10탭 네이티브 이전 완료** [Codex]:
 > - registry의 `cosmo` 진입점은 외부 iframe 대신 `components/cosmo/CosmoDashboard.tsx`를 동적 로드한다. 원본 10화면을 `경영요약·자금·장기 추이·시장·바이어·생산·손익·원가·데이터 품질·판매·수주·대시보드 소개·구매·재고` PillTabs로 옮겼고, 상단 `HeroZone variant="kpi"`는 원본 최신값에서 주간 판매·누적 순손익·통조림 누적 수율·현금 잔액을 계산한다. 각 탭은 개별 dynamic import이며 기존 참치왕국 전 메뉴 세션 잠금을 그대로 사용한다.
