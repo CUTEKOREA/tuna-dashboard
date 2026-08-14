@@ -1,12 +1,13 @@
 # HANDOFF
 
-> 마지막 업데이트: 2026-08-14 08:04 KST
-> 🚢 **2026-08-14 08:04 KST — `/unloading` SEIN VENUS 8/13 하역 보고 반영** [Codex 구현]:
+> 마지막 업데이트: 2026-08-14 08:52 KST
+> 🚢 **2026-08-14 08:52 KST — `/unloading` SEIN VENUS 8/13 하역 보고 반영** [Codex 구현]:
 > - Google Drive 원본 2건을 직접 대조했다. 일일 결과보고 XLS SHA-256 `13039293d1036268098aae9179c9566de0dbfcbc17b538ed01d7d699fd657d5d`, 일일 하역량 현황 XLSX SHA-256 `8b4f77a42f6a7d03387f90b7276a32d77316b75a71efa62f2449f05907552b7d`다.
 > - 8/13 당일 **159.590 MT**, 누계 **1,237.580 MT**, 목표 3,275 MT 대비 잔량 **2,037.420 MT**를 반영했다. 작업시간 `08:20 ~ 15:10`, `N/STAR(#2-B)`, 수하처 `MMP`, 온도 `-22.0℃ ~ -23.0℃`, 8/14 약 400톤 계획을 보존했다. 8/12는 별도 일일 보고가 없어 0 MT 행을 만들지 않고 8/11 보고의 공휴일 메모만 유지했다.
 > - 어종 누계는 XLS 원표의 합산 SJ 열 **1,029.280 MT**와 YF **208.300 MT**로 갱신했다. 두 값의 합, 일일량 합, 최신 누계가 모두 1,237.580 MT로 일치한다.
 > - TDD RED 2건 → GREEN 5/5. 전체 lint 오류 0(기존 경고 18), TypeScript, Vitest **201/201**, API 캐시 **143/143**, Next.js build **98/98**, 번들 예산 통과. 보호 세션을 주입한 로컬 production `/unloading`은 1440px·390px 모두 HTTP 200, 가로 overflow 0, page error 0이며 최신 타임라인 렌더를 확인했다. 로컬 주소의 Google Ads 요청 403만 제외했다.
 > - Claude Code 1차 게이트가 `MMP`를 제품으로 오기한 결함을 차단했다. 품질 문장에서 제거하고 별도 `consignee` 계약과 화면의 `수하처`로 분리했으며, 동일 원본 재게이트는 **GATE: PASS**다. 다음 단계는 PR 병합, Vercel production 반영, 라이브 API/UI 재검증이다.
+> - PR #313 첫 CI는 하역 이력 E2E가 8/11 기준 누적 통합값 `34,132 MT`를 고정해 실패했다. 8/13 반영 후 렌더 정본 `34,291 MT`로 행복 경로·API 실패 격리·청크 실패·복구의 네 기대값을 함께 갱신했고, `test:e2e:unloading-history` 전체 시나리오 PASS를 확인했다.
 > 🦐 **2026-08-13 23:44 KST — `/api/shrimp` 라우트 3종 LIVE·수치 정직화** [Codex]:
 > - **`emerging-markets`**: 버리던 Comtrade 응답을 HS 391390 국가·연도별 수출액으로 실제 반환한다. `partnerCode=0`·`partner2ISO=W00`·`motCode=0`·`customsCode=C00` 총계행만 남기고, 중복 reporter·period는 최대 총계 1건으로 제한했다. HS 391390이 키토산 전용 세번이 아니며 시장 규모로 읽을 수 없다는 한계를 응답에 명시했다. 출처 없는 시장규모·CAGR·점유율·잠재매출 블록은 제거했고, 키가 없거나 유효행이 없으면 `chitosanTrade:null`, `isLive:false`다.
 > - **`forecast`**: 존재하지 않던 전망 산식·계수·과거 월 예측·벤치마크를 전부 제거했다. FRED `DCOILWTICO`·`DEXKOUS`의 최신 유효 관측값과 같은 행의 관측일만 반환하며, 결측 `.`·비숫자는 건너뛴다. 한 계열만 성공해도 그 값만 채우고, 둘 다 실패하거나 키가 없으면 네 macro 값이 모두 `null`, `isLive:false`다.
