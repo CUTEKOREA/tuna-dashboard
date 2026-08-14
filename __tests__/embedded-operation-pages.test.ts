@@ -3,8 +3,6 @@ import { renderToStaticMarkup } from 'react-dom/server';
 import { describe, expect, it } from 'vitest';
 import {
   BangkokOfficeDashboard,
-  CosmoDashboard,
-  EmbeddedDashboardFrameView,
 } from '../components/EmbeddedDashboardFrame';
 
 describe('embedded operation pages', () => {
@@ -20,28 +18,4 @@ describe('embedded operation pages', () => {
     expect(markup).not.toContain('sandbox=');
   });
 
-  it('keeps the protected Cosmo iframe unmounted until availability is confirmed', () => {
-    const markup = renderToStaticMarkup(React.createElement(CosmoDashboard));
-
-    expect(markup).toContain('코스모 대시보드 연결 중...');
-    expect(markup).not.toContain('<iframe');
-  });
-
-  it('renders the required Korean Cosmo fallback with a safe new-tab link', () => {
-    const markup = renderToStaticMarkup(React.createElement(EmbeddedDashboardFrameView, {
-      status: 'unavailable',
-      src: 'https://cosmo-dashboard-cutekorea-3280s-projects.vercel.app/',
-      title: '코스모 대시보드',
-      loadingLabel: '코스모 대시보드 연결 중...',
-      unavailableMessage: '코스모 대시보드에 연결할 수 없습니다. Vercel 배포 보호 설정을 확인하세요.',
-      externalLinkLabel: '새 탭에서 열기',
-    }));
-
-    expect(markup).toContain('코스모 대시보드에 연결할 수 없습니다. Vercel 배포 보호 설정을 확인하세요.');
-    expect(markup).toContain('href="https://cosmo-dashboard-cutekorea-3280s-projects.vercel.app/"');
-    expect(markup).toContain('target="_blank"');
-    expect(markup).toContain('rel="noopener"');
-    expect(markup).toContain('새 탭에서 열기');
-    expect(markup).not.toContain('<iframe');
-  });
 });

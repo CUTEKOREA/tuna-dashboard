@@ -43,7 +43,7 @@ const CrossCommodityIntelligenceDashboard = dynamic(() => import('../components/
 
 const MarketDashboard = dynamic(() => import('../components/MarketDashboard'));
 const PurseSeinerDashboard = dynamic(() => import('../components/PurseSeinerDashboard'));
-const CosmoDashboard = dynamic(() => import('../components/EmbeddedDashboardFrame').then((module) => module.CosmoDashboard));
+const CosmoDashboard = dynamic(() => import('../components/cosmo/CosmoDashboard'));
 const BangkokOfficeDashboard = dynamic(() => import('../components/EmbeddedDashboardFrame').then((module) => module.BangkokOfficeDashboard));
 
 const OPERATION_ACCESS_STORAGE_KEY = 'silla-operation-access';

@@ -1,0 +1,264 @@
+/* Scoped native COSMO theme. Source: cosmo-dashboard/app/globals.css. */
+/* COSMO dashboard — tokens follow the 기획서 report palette so both read as one system.
+   Light is the base; dark redefines tokens only. Never declare a colour outside :root blocks. */
+.cosmo-root {
+  --cosmo-paper: #0D1216;
+  --cosmo-surface: #151D23;
+  --cosmo-surface-2: #1A242B;
+  --cosmo-ink: #E8EFF2;
+  --cosmo-ink-2: #A8BAC3;
+  --cosmo-muted: #778B95;
+  --cosmo-line: #253037;
+  --cosmo-line-2: #1D262C;
+  --cosmo-accent: #D9697A;
+  --cosmo-accent-soft: #251A1D;
+  --cosmo-data: #3BA9CB;
+  --cosmo-data-soft: #12222A;
+  --cosmo-s1: #2199B7;
+  --cosmo-s2: #CA5765;
+  --cosmo-s3: #B6880F;
+  --cosmo-s4: #38996E;
+  --cosmo-s5: #8878C4;
+  --cosmo-ok: #38996E;
+  --cosmo-ok-soft: #14261F;
+  --cosmo-warn: #B6880F;
+  --cosmo-warn-soft: #26200E;
+  --cosmo-bad: #D9584A;
+  --cosmo-bad-soft: #2A1815;
+  --cosmo-grid: #222C32;
+  --cosmo-axis: #647680;
+  --cosmo-shadow: 0 1px 2px rgba(0, 0, 0, .3), 0 8px 24px -18px rgba(0, 0, 0, .6);
+  --cosmo-sans: "Apple SD Gothic Neo", "Pretendard", "Malgun Gothic", system-ui, sans-serif;
+  --cosmo-mono: "SF Mono", "JetBrains Mono", ui-monospace, monospace;
+  --cosmo-radius: 11px;
+}
+
+.cosmo-root, .cosmo-root * { box-sizing: border-box; }
+.cosmo-root, .cosmo-root { padding: 0; margin: 0; }
+.cosmo-root {
+  width: 100%;
+  min-width: 0;
+  background: var(--cosmo-paper);
+  color: var(--cosmo-ink);
+  font: 400 15px/1.6 var(--cosmo-sans);
+  letter-spacing: -.008em;
+  -webkit-font-smoothing: antialiased;
+}
+.cosmo-root a { color: inherit; text-decoration: none; }
+.cosmo-root :focus-visible { outline: 2px solid var(--cosmo-data); outline-offset: 2px; border-radius: 4px; }
+@media (prefers-reduced-motion: reduce) { .cosmo-root, .cosmo-root * { transition: none !important; animation: none !important; } }
+
+/* ---------- shell ---------- */
+.cosmo-root .shell { display: grid; grid-template-columns: 216px 1fr; min-height: 100vh; }
+.cosmo-root .side {
+  background: var(--cosmo-surface); border-right: 1px solid var(--cosmo-line);
+  padding: 20px 14px; position: sticky; top: 0; height: 100vh; overflow-y: auto;
+}
+.cosmo-root .brand { display: flex; align-items: center; gap: 8px; margin-bottom: 4px; }
+.cosmo-root .brand .bar { width: 22px; height: 3px; background: var(--cosmo-accent); border-radius: 2px; }
+.cosmo-root .brand span { font: 700 10px var(--cosmo-mono); letter-spacing: .14em; color: var(--cosmo-accent); }
+.cosmo-root .brand-title { font-size: 17px; font-weight: 800; letter-spacing: -.02em; margin: 6px 0 2px; }
+.cosmo-root .brand-sub { font: 500 11px var(--cosmo-mono); color: var(--cosmo-muted); margin-bottom: 20px; }
+.cosmo-root .navgroup { font: 700 9px var(--cosmo-mono); letter-spacing: .12em; color: var(--cosmo-muted); margin: 18px 0 6px 8px; }
+.cosmo-root .navlink {
+  display: flex; align-items: center; justify-content: space-between; gap: 8px;
+  padding: 8px 10px; border-radius: 8px; font-size: 13.5px; color: var(--cosmo-ink-2);
+  transition: background .12s, color .12s;
+}
+.cosmo-root .navlink:hover { background: var(--cosmo-surface-2); color: var(--cosmo-ink); }
+.cosmo-root .navlink[aria-current="page"] { background: var(--cosmo-accent-soft); color: var(--cosmo-accent); font-weight: 650; }
+.cosmo-root .navdot { width: 7px; height: 7px; border-radius: 50%; flex: none; }
+/* grid/flex 자식은 기본 min-width:auto 라 내용보다 좁아지지 못한다.
+   좁은 화면에서 카드·차트가 뷰포트를 밀어내 가로 스크롤이 생기므로 전 계층에서 0 으로 푼다. */
+.cosmo-root .main { padding: 26px 30px 60px; min-width: 0; }
+.cosmo-root .shell > *, .cosmo-root .grid > *, .cosmo-root .card > *, .cosmo-root .kpi, .cosmo-root .sig { min-width: 0; }
+.cosmo-root .chart { min-width: 0; }
+.cosmo-root .sig > * { min-width: 0; }
+.cosmo-root .phead p, .cosmo-root .card .csub, .cosmo-root .card .cnote, .cosmo-root .callout { overflow-wrap: anywhere; }
+@media (max-width: 860px) {
+  .cosmo-root .shell { grid-template-columns: 1fr; }
+  .cosmo-root .side { position: static; height: auto; border-right: none; border-bottom: 1px solid var(--cosmo-line); }
+  .cosmo-root .main { padding: 20px 16px 48px; }
+  .cosmo-root .navlist { display: flex; flex-wrap: wrap; gap: 6px; }
+  .cosmo-root .navlink { padding: 6px 10px; }
+}
+
+/* ---------- page head ---------- */
+.cosmo-root .phead { margin-bottom: 20px; }
+.cosmo-root .phead h1 { font-size: 24px; font-weight: 800; letter-spacing: -.03em; margin: 0 0 6px; text-wrap: balance; }
+.cosmo-root .phead p { margin: 0; color: var(--cosmo-ink-2); font-size: 14px; max-width: 82ch; }
+.cosmo-root .pmeta { display: flex; gap: 14px; flex-wrap: wrap; font: 600 11px var(--cosmo-mono); color: var(--cosmo-muted); margin-top: 10px; }
+
+/* ---------- cards / grid ---------- */
+.cosmo-root .grid { display: grid; gap: 14px; }
+.cosmo-root .g2 { grid-template-columns: repeat(auto-fit, minmax(330px, 1fr)); }
+.cosmo-root .g3 { grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); }
+.cosmo-root .g4 { grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); }
+.cosmo-root .card {
+  background: var(--cosmo-surface); border: 1px solid var(--cosmo-line);
+  border-radius: var(--cosmo-radius); box-shadow: var(--cosmo-shadow); padding: 16px 18px; min-width: 0;
+}
+.cosmo-root .card h2 { font-size: 15px; font-weight: 730; letter-spacing: -.01em; margin: 0 0 3px; }
+.cosmo-root .card .csub { font-size: 12.5px; color: var(--cosmo-ink-2); margin: 0 0 12px; line-height: 1.5; }
+.cosmo-root .card .cnote {
+  margin: 12px -18px -16px; padding: 10px 18px 12px; border-top: 1px solid var(--cosmo-line-2);
+  background: var(--cosmo-surface-2); font-size: 11.5px; color: var(--cosmo-muted); line-height: 1.6;
+  border-radius: 0 0 var(--cosmo-radius) var(--cosmo-radius);
+}
+.cosmo-root .card .cnote b { color: var(--cosmo-ink-2); }
+
+/* ---------- kpi ---------- */
+.cosmo-root .kpi { display: grid; gap: 3px; }
+.cosmo-root .kpi .k { font: 600 9px var(--cosmo-mono); letter-spacing: .11em; text-transform: uppercase; color: var(--cosmo-muted); }
+.cosmo-root .kpi .v { font-family: var(--cosmo-mono); font-variant-numeric: tabular-nums; font-size: 22px; font-weight: 700; letter-spacing: -.03em; }
+.cosmo-root .kpi .v small { font-size: 11px; font-weight: 600; color: var(--cosmo-ink-2); margin-left: 2px; }
+.cosmo-root .kpi .d { font-size: 11.5px; color: var(--cosmo-ink-2); line-height: 1.45; }
+.cosmo-root .up { color: var(--cosmo-ok); } .cosmo-root .down { color: var(--cosmo-bad); } .cosmo-root .flat { color: var(--cosmo-muted); }
+
+/* ---------- signal ---------- */
+.cosmo-root .sig { display: grid; gap: 5px; border-left: 3px solid var(--cosmo-line); padding-left: 12px; }
+.cosmo-root .sig.ok { border-left-color: var(--cosmo-ok); }
+.cosmo-root .sig.warn { border-left-color: var(--cosmo-warn); }
+.cosmo-root .sig.bad { border-left-color: var(--cosmo-bad); }
+.cosmo-root .pill {
+  display: inline-flex; align-items: center; gap: 5px; border-radius: 999px;
+  padding: 2px 9px; font: 700 10px var(--cosmo-mono); letter-spacing: .04em;
+}
+.cosmo-root .pill.ok { background: var(--cosmo-ok-soft); color: var(--cosmo-ok); }
+.cosmo-root .pill.warn { background: var(--cosmo-warn-soft); color: var(--cosmo-warn); }
+.cosmo-root .pill.bad { background: var(--cosmo-bad-soft); color: var(--cosmo-bad); }
+
+/* ---------- table ---------- */
+.cosmo-root .tw { overflow-x: auto; margin: 0 -18px -16px; border-radius: 0 0 var(--cosmo-radius) var(--cosmo-radius); }
+.cosmo-root table { border-collapse: collapse; width: 100%; font-size: 12.5px; }
+.cosmo-root th {
+  text-align: left; padding: 8px 12px; background: var(--cosmo-surface-2);
+  font: 600 9px var(--cosmo-mono); letter-spacing: .06em; text-transform: uppercase;
+  color: var(--cosmo-ink-2); white-space: nowrap; border-block: 1px solid var(--cosmo-line);
+  position: sticky; top: 0;
+}
+.cosmo-root td { padding: 7px 12px; border-top: 1px solid var(--cosmo-line-2); vertical-align: top; }
+.cosmo-root td.n, .cosmo-root th.n { text-align: right; font-family: var(--cosmo-mono); font-variant-numeric: tabular-nums; white-space: nowrap; }
+.cosmo-root tbody tr:hover { background: var(--cosmo-surface-2); }
+.cosmo-root tr.bad td { background: var(--cosmo-bad-soft); }
+.cosmo-root tr.warn td { background: var(--cosmo-warn-soft); }
+/* '우리' 행 — 색만 다르게. 테두리·배지 없이 배경과 글자색으로만 구분한다. */
+.cosmo-root tr.us td { background: var(--cosmo-accent-soft); color: var(--cosmo-accent); font-weight: 650; }
+.cosmo-root tbody tr.us:hover td { background: color-mix(in srgb, var(--cosmo-accent) 12%, transparent); }
+.cosmo-root tr.us .rank { color: var(--cosmo-accent); font-weight: 700; }
+/* 공급국명이 여러 줄로 접히면 표가 세로로 늘어져 비교가 어렵다 */
+.cosmo-root td.nowrap { white-space: nowrap; }
+.cosmo-root .tag { font: 700 9px var(--cosmo-mono); padding: 1px 6px; border-radius: 4px; background: var(--cosmo-surface-2); color: var(--cosmo-ink-2); }
+
+/* ---------- chart ---------- */
+.cosmo-root .chart { width: 100%; height: 260px; }
+.cosmo-root .chart.tall { height: 320px; }
+/* Recharts 3 measures through a zero-width overflow shim. The host dashboard's
+   global `* { max-width: 100% }` otherwise clamps the measured wrapper to 0px. */
+.cosmo-root .recharts-wrapper,
+.cosmo-root .recharts-surface { max-width: none !important; }
+.cosmo-root .legend { display: flex; gap: 14px; flex-wrap: wrap; font: 600 11px var(--cosmo-mono); color: var(--cosmo-ink-2); margin-bottom: 8px; }
+.cosmo-root .legend i { display: inline-block; width: 11px; height: 3px; border-radius: 2px; margin-right: 6px; vertical-align: middle; }
+.cosmo-root .legend i.box { height: 10px; width: 10px; border-radius: 2px; }
+.cosmo-root .tip {
+  background: var(--cosmo-surface); border: 1px solid var(--cosmo-line); border-radius: 8px;
+  box-shadow: var(--cosmo-shadow); padding: 9px 11px; font-size: 12px; color: var(--cosmo-ink);
+}
+.cosmo-root .tip .tk { font-weight: 700; display: block; margin-bottom: 4px; }
+.cosmo-root .tip .tr { display: flex; justify-content: space-between; gap: 16px; font-variant-numeric: tabular-nums; }
+.cosmo-root .tip .tr span { color: var(--cosmo-muted); }
+
+/* ---------- misc ---------- */
+.cosmo-root .callout {
+  border: 1px solid var(--cosmo-line); border-left: 3px solid var(--cosmo-data); background: var(--cosmo-data-soft);
+  border-radius: 8px; padding: 12px 15px; font-size: 13px; line-height: 1.65; color: var(--cosmo-ink-2);
+}
+.cosmo-root .callout.bad { border-left-color: var(--cosmo-bad); background: var(--cosmo-bad-soft); }
+.cosmo-root .callout.warn { border-left-color: var(--cosmo-warn); background: var(--cosmo-warn-soft); }
+.cosmo-root .callout b { color: var(--cosmo-ink); }
+.cosmo-root .callout .lab { display: block; font: 700 9px var(--cosmo-mono); letter-spacing: .12em; text-transform: uppercase; margin-bottom: 4px; color: var(--cosmo-data); }
+.cosmo-root .callout.bad .lab { color: var(--cosmo-bad); }
+.cosmo-root .callout.warn .lab { color: var(--cosmo-warn); }
+.cosmo-root .sechead { scroll-margin-top: 18px; font-size: 12px; font-weight: 700; letter-spacing: .04em; color: var(--cosmo-muted); text-transform: uppercase; margin: 26px 0 10px; font-family: var(--cosmo-mono); }
+.cosmo-root footer.foot { margin-top: 40px; padding-top: 16px; border-top: 1px solid var(--cosmo-line); font: 500 11px var(--cosmo-mono); color: var(--cosmo-muted); line-height: 1.7; }
+
+/* ---------- 공개 소개 페이지 (/share) ---------- */
+.cosmo-root .sharewrap {
+  min-height: 100vh; display: grid; place-items: center;
+  padding: 40px 20px; background: var(--cosmo-paper);
+}
+.cosmo-root .sharecard {
+  width: 100%; max-width: 720px; background: var(--cosmo-surface);
+  border: 1px solid var(--cosmo-line); border-radius: 16px; box-shadow: var(--cosmo-shadow);
+  padding: 40px 40px 32px;
+}
+.cosmo-root .sharecard h1 {
+  font-size: clamp(26px, 5vw, 36px); font-weight: 800; letter-spacing: -.03em;
+  margin: 10px 0 14px; text-wrap: balance;
+}
+.cosmo-root .sharecard .lead { color: var(--cosmo-ink-2); font-size: 15px; line-height: 1.7; margin: 0 0 26px; }
+.cosmo-root .sharecard .lead b { color: var(--cosmo-ink); }
+.cosmo-root .sharegrid { display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 10px; }
+.cosmo-root .shareitem {
+  display: grid; gap: 2px; padding: 12px 14px; border-radius: 10px;
+  background: var(--cosmo-surface-2); border: 1px solid var(--cosmo-line-2); min-width: 0;
+}
+.cosmo-root .shareitem .n { font-size: 13.5px; font-weight: 700; color: var(--cosmo-ink); }
+.cosmo-root .shareitem .d { font-size: 11.5px; color: var(--cosmo-muted); line-height: 1.5; }
+.cosmo-root .sharenote {
+  margin: 26px 0 22px; padding: 14px 18px; border-radius: 10px;
+  border: 1px solid var(--cosmo-line); border-left: 3px solid var(--cosmo-accent);
+  background: var(--cosmo-accent-soft); color: var(--cosmo-ink-2); font-size: 13.5px; line-height: 1.7;
+}
+.cosmo-root .sharenote b { color: var(--cosmo-ink); }
+.cosmo-root .sharebtn {
+  display: inline-flex; align-items: center; justify-content: center;
+  padding: 13px 26px; border-radius: 10px; background: var(--cosmo-accent); color: #fff;
+  font-size: 15px; font-weight: 700; letter-spacing: -.01em;
+  transition: filter .12s;
+  border: 0;
+  cursor: pointer;
+}
+.cosmo-root .sharebtn:hover { filter: brightness(1.08); }
+.cosmo-root .sharefoot {
+  margin-top: 26px; padding-top: 18px; border-top: 1px solid var(--cosmo-line-2);
+  font: 600 11px var(--cosmo-mono); color: var(--cosmo-muted); letter-spacing: .04em;
+}
+
+.cosmo-root .cosmo-tabs {
+  margin: 20px 0 14px;
+}
+
+.cosmo-root .cosmo-panel {
+  min-width: 0;
+  padding: 22px clamp(14px, 2.2vw, 30px) 48px;
+  border: 1px solid var(--cosmo-line);
+  border-radius: 16px;
+  background: color-mix(in srgb, var(--cosmo-paper) 92%, transparent);
+}
+
+.cosmo-root .cosmo-panel-loading {
+  margin: 0;
+  padding: 28px 0;
+  color: var(--cosmo-muted);
+}
+
+.cosmo-root .cosmo-link-card {
+  width: 100%;
+  color: inherit;
+  text-align: left;
+  font: inherit;
+  cursor: pointer;
+}
+
+@media (max-width: 520px) {
+  .cosmo-root .cosmo-panel {
+    padding: 18px 12px 36px;
+  }
+
+  .cosmo-root .g2,
+  .cosmo-root .g3,
+  .cosmo-root .g4 {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
