@@ -1,11 +1,15 @@
 # HANDOFF
 
-> 마지막 업데이트: 2026-08-15 00:55 KST
+> 마지막 업데이트: 2026-08-15 01:02 KST
 
-> 🐟 **2026-08-15 00:55 KST — `/flatfish` HTML 보존 후 메뉴 배포** [Grok]:
-> - HTML: agri_data `01_수산물(Seafood)/flatfish/intelligence_reports/Flatfish_Dashboard_Archive_2026-08-15.html`(5기둥·22위젯·KPI 6). JSON 해시는 8/14 스냅샷과 같다. KCS 냉동 2024 396톤·중국 69%는 화면 미사용.
-> - `origin/main` `45322c8`(고등어 라이브 기록 이후) 위에 레지스트리·사이드바·패널·단축키·랜딩에서 `flatfish`를 빼고 `/flatfish`는 명시적 404. `FlatfishDashboard`·`/api/flatfish/*`·JSON은 존치.
-> - 브랜치 `chore/remove-flatfish-20260815`. 사용자 배포 요청에 따라 PR→게이트→라이브 재검증. 낡은 `b4edbd8` worktree는 병합하지 않는다.
+> 🚀 **2026-08-15 01:02 KST — `/flatfish` 메뉴 제거 배포 완료** [Grok]:
+> - HTML은 agri_data `01_수산물(Seafood)/flatfish/intelligence_reports/Flatfish_Dashboard_Archive_2026-08-15.html`(5기둥·22위젯·KPI 6).
+> - PR **#336** squash `bf77139`. App Quality Gate `31816726565` SUCCESS(직전 동일 코드). 명태 #334·고등어 #335 위에 다시 얹었다.
+> - Vercel Production `dpl_AnTbexhjsxbi3gP7swu3zo4teXfM` READY, alias `leedonggun.co.kr`.
+> - 라이브 `/flatfish` 404(`x-matched-path: /flatfish`, 홈 rewrite 없음). 사이트맵·랜딩에 가자미 없음. 공개 어종 메뉴 없음. `/mackerel`·`/pollock` 404.
+> - `/api/flatfish/kcs` 200 isLive(냉동 2024 396톤). `FlatfishDashboard`·JSON 존치.
+> - SEIN VENUS 8/14 유지: daily 424.78, cum 1662.36, SJ 1397.36, YF 265, unclassified 0.
+> - `mackerel/claude-etl`은 포함하지 않았다.
 
 > 🚀 **2026-08-15 00:54 KST — `/mackerel` 메뉴 제거 배포 완료** [Grok]:
 > - HTML은 agri_data `01_수산물(Seafood)/mackerel/intelligence_reports/Mackerel_Dashboard_Archive_2026-08-15.html`(KPI 6·정적 28·런타임 14).
