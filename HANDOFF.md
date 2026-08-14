@@ -1,5 +1,16 @@
 # HANDOFF
 
+> 마지막 업데이트: 2026-08-15 03:09 KST
+
+> 📰 **2026-08-15 03:09 KST — P2.5 `/market` 데일리 참치 브리핑 전환 완료** [Codex]:
+> - `scripts/sync_daily_briefing.py`를 추가해 `~/Desktop/참치뉴스_게시판용_YYYY-MM-DD.html` 중 파일명 날짜가 가장 최신인 원본을 표준 라이브러리 `html.parser`로 읽는다. 구형 `<td>`·중첩 `<b>`·HTML 엔티티를 복원하며, 필수 헤드라인/기사 블록이 없으면 명확히 실패하고 JSON은 원자적으로만 교체한다. `npm run sync:briefing`으로 실행한다.
+> - 실제 최신 원본 `2026-08-13`(SHA-256 `19868c2f4a4bcfdf72bfdaa31905d15c4240fd74e2b9b4ff9ebe3baa85739afc`)에서 `public/data/tuna_daily_briefing.json`을 생성했다. 결과는 **13,823바이트**, 헤드라인 **5건**·상세 기사 **5건**, SHA-256 `aa61be6075f7827d6d2206d1d337fb413c66feadbc47414d0a5831f3edd6b702`이며 재실행 후 해시가 동일하다.
+> - ADR-0005 경계에 맞춰 `lib/data/daily-briefing.ts`가 JSON을 런타임 검증한 뒤 타입 안전하게 노출한다. `TunaDailyBriefingWidget`은 `WidgetCard`의 S4 위젯으로 `SYNCED`·기준일·`(기사 5건)`·cardDesc·TakeawayBox를 제공하고, 헤드라인 5건과 기본 접힘 `<details>` 기사 5건을 렌더한다. 영문 원제는 JSON에 보존하지만 한글 화면에는 표시하지 않는다.
+> - 기존 7/27 PDF 기반 전략 인사이트 `WidgetCard` 2개를 이 위젯 1개로 교체했다. SIT는 상위 헤드라인 2건을 숫자 포함 두 문장으로 그대로 연결하고, TAK는 기사 본문의 `시장자문위원회(MAC)...개선을 촉구했다.` 한 문장을 그대로 선택해 새 판단을 창작하지 않는다. 원문 독립 대조에서 JSON의 추출 문자열 **50/50**이 일치했다.
+> - 검증: TDD RED 3건 확인 후 데일리 브리핑 **5/5**, 관련 focused **32/32**, 전체 `npm run verify` 통과(ESLint 오류 0·기존 경고 18, TypeScript, Vitest **233/233**, API cache **143/143**, Next 정적 페이지 **117/117**, bundle **30 routes**). S-Grade 실제 closure 9개에서 영문 잔존·GS 톤·가짜 LIVE 위반 0건이다.
+> - 브라우저 QA: `/market`을 1440×1000·390×844에서 확인해 양쪽 모두 HTTP 200, 헤드라인/기사 5/5, 기본 접힘과 열기/닫기 정상, 가로 overflow 0px, 앱 console/page/request/HTTP 오류 0건이다. Google Analytics·광고 요청은 앱 신호와 분리해 격리했으며 스크린샷은 `/private/tmp/redesign-p25-news-qa-20260815/`에 있다.
+> - npm 전용 복구 전 pnpm 파일과 기존 `node_modules`는 삭제하지 않고 `/private/tmp/redesign-p25-npm-backup.HHZfxL/`에 보존했다. push·프로덕션 배포는 하지 않았다. 다음 단계는 CC의 원문 파싱·무-창작 독립 검수다.
+
 > 마지막 업데이트: 2026-08-15 02:37 KST
 
 > 🚢 **2026-08-15 02:37 KST — 운영 3화면 Deep Sea Command V2 Phase 2 완료** [Codex]:
