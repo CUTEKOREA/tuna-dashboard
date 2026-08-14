@@ -42,7 +42,7 @@ const bangkokMarkerPositions = [
   { x: 202, y: 334 },
 ] as const;
 
-function BangkokBusanRouteMap() {
+function FishingGroundToBangkokRouteMap() {
   return (
     <div className={styles.routeMap}>
       <svg viewBox="0 0 960 420" preserveAspectRatio="xMidYMid slice">
@@ -73,8 +73,11 @@ function BangkokBusanRouteMap() {
         <path d="M 206 312 C 350 116, 576 82, 770 144" fill="none" stroke="url(#route-line)" strokeWidth="3" strokeDasharray="10 9" />
         <circle cx="206" cy="312" r="8" fill="#22d3ee" filter="url(#route-marker-glow)" />
         <circle cx="770" cy="144" r="8" fill="#60a5fa" filter="url(#route-marker-glow)" />
+        {/* 흐름 방향: 조업지(태평양 어장) → 하역지(방콕) — 곡선 위 화살표 2개 */}
+        <path d="M 566 92 L 546 86 L 556 104 Z" fill="#7dd3fc" opacity="0.85" />
+        <path d="M 330 138 L 312 142 L 328 156 Z" fill="#7dd3fc" opacity="0.85" />
         <text x="158" y="368" fill="#bae6fd" fontSize="20" fontWeight="700">방콕</text>
-        <text x="786" y="132" fill="#bfdbfe" fontSize="20" fontWeight="700">부산</text>
+        <text x="700" y="120" fill="#bfdbfe" fontSize="20" fontWeight="700">태평양 어장</text>
         {reeferWeek31.map((row, index) => {
           const position = bangkokMarkerPositions[index];
           return (
@@ -100,8 +103,8 @@ export function LogisticsHero() {
       className={styles.logisticsHero}
       variant="map"
       title="물류·가공"
-      subtitle="방콕↔부산 정적 항로도 · 31주차 운반선 보고 기준"
-      background={<BangkokBusanRouteMap />}
+      subtitle="조업지(태평양 어장)→하역지(방콕) 정적 항로도 · 31주차 운반선 보고 기준"
+      background={<FishingGroundToBangkokRouteMap />}
       primaryKpi={{ label: '주간 하역 합계', value: week31Total, unit: '(MT)', decimals: 3 }}
       secondaryKpis={[
         { label: '방콕 보고 선박', value: reeferWeek31.length, unit: '(척)' },
