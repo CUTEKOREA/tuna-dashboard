@@ -1,11 +1,14 @@
 # HANDOFF
 
-> 마지막 업데이트: 2026-08-15 01:10 KST
+> 마지막 업데이트: 2026-08-15 00:48 KST
 
-> 🚀 **2026-08-15 01:10 KST — 명태(`/pollock`) 메뉴 제거 배포** [Grok]:
-> - HTML은 agri_data `01_수산물(Seafood)/pollock/intelligence_reports/Pollock_Dashboard_Archive_2026-08-15.html`(KPI 8·위젯 58·커스텀 모듈 11). 정본 JSON은 origin/main `public/data/pollock_real_data_v4.json`.
-> - `origin/main` 전용 브랜치 `chore/remove-pollock-20260815`에서 메뉴·리라이트·사이트맵 제거. `/pollock`는 `app/pollock/page.tsx` `notFound()`. `PollockDashboard`와 `/api/pollock*`는 존치.
-> - `mackerel/claude-etl`은 포함하지 않는다. 라이브 검증 후 Vercel ID를 이 블록에 채운다.
+> 🚀 **2026-08-15 00:48 KST — 명태(`/pollock`) 메뉴 제거 배포 완료** [Grok]:
+> - HTML은 agri_data `01_수산물(Seafood)/pollock/intelligence_reports/Pollock_Dashboard_Archive_2026-08-15.html`(KPI 8·위젯 58·커스텀 모듈 11).
+> - PR **#334** squash `ee2fae2`. App Quality Gate `31815823806` SUCCESS.
+> - Vercel Production `dpl_754T31JDjQyzdMmXJdEXjK9cDU5y` READY, alias `leedonggun.co.kr`.
+> - 라이브 `/pollock` 404(`x-matched-path: /pollock`, 홈 rewrite 없음). 사이트맵·랜딩에 명태 없음. 남은 어종 메뉴: 고등어·가자미. `/mackerel` 200, `/flatfish` 200.
+> - `/api/pollock/dart`·`/api/pollock-kcs`·`/api/pollock-forecast`·`/api/pollock-landed-cost`·`/api/pollock-policy-risk`·`/api/pollock-supply-chain` 200. `PollockDashboard`와 `/api/pollock*` 존치.
+> - 이 배포 error/fatal 로그 0. `mackerel/claude-etl`은 포함하지 않았다.
 
 > 마지막 업데이트: 2026-08-15 00:40 KST
 
