@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react';
 import { AlertTriangle, CalendarClock, Ship, TrendingUp } from 'lucide-react';
+import FleetHeroKPI from './FleetHeroKPI';
 import FleetRosterGrid from './FleetRosterGrid';
 import { FleetChartSection, FleetDetailPanel } from './FleetAnalysisPanels';
 import FleetPixelMap from './FleetPixelMap';
@@ -88,6 +89,8 @@ export default function FleetCommandCenter() {
       />
 
       <section id="fleet-panel-operations" role="tabpanel" aria-labelledby="fleet-tab-operations" className={s.tabPanel} hidden={activeTab !== 'operations'}>
+          {/* P1 재구성 때 유실됐던 일간 KPI 패널 복원 — 히어로(주간)와 모드가 달라 중복 아님 */}
+          <FleetHeroKPI mode="daily" />
           <details className={s.reportDetails}>
             <summary>업무보고 원문 펼치기</summary>
             <p>주간 어획과 VDS는 8월 9일, 대서양 위치·어획은 8월 11일, 운반선은 8월 12일 기준입니다. 모집단과 기준일이 달라 단일 합계로 합산하지 않습니다.</p>
@@ -101,6 +104,7 @@ export default function FleetCommandCenter() {
       </section>
 
       <section id="fleet-panel-performance" role="tabpanel" aria-labelledby="fleet-tab-performance" className={s.tabPanel} hidden={activeTab !== 'performance'}>
+          <FleetHeroKPI mode="weekly" />
           <FleetChartSection />
           <FleetDetailPanel />
       </section>
