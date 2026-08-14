@@ -242,7 +242,7 @@ async function runHappyPath(browser) {
   await waitForText(page, '[data-testid="history-kpi-actual"]', /76,050\.239 MT/);
 
   const body = await page.evaluate(() => document.body.innerText);
-  assert.match(body, /34,132\s+MT/);
+  assert.match(body, /34,291\s+MT/);
   assert.match(body, /완료 선박:\s*11\s*척/);
 
   await page.click('[data-testid="history-year-2021"]');
@@ -307,7 +307,7 @@ async function runFailureIsolation(browser) {
   await waitForText(page, '[data-testid="unloading-history-section"]', /과거 이력을 불러오지 못했습니다/);
   const body = await page.evaluate(() => document.body.innerText);
   assert.match(body, /다시 시도/);
-  assert.match(body, /34,132\s+MT/);
+  assert.match(body, /34,291\s+MT/);
   assert.match(body, /완료 선박:\s*11\s*척/);
   assert.equal(pageErrors.length, 0, pageErrors.join('\n'));
   assert.equal(consoleErrors.length, 0, consoleErrors.join('\n'));
@@ -370,7 +370,7 @@ async function runChunkFailureIsolation(browser) {
   );
   const body = await page.evaluate(() => document.body.innerText);
   assert.match(body, /다시 시도/);
-  assert.match(body, /34,132\s+MT/);
+  assert.match(body, /34,291\s+MT/);
   assert.match(body, /완료 선박:\s*11\s*척/);
   assert.equal(getBlockedAppRequestCount(), 1);
   await Promise.all([
@@ -380,7 +380,7 @@ async function runChunkFailureIsolation(browser) {
   await page.waitForSelector('[data-testid="unloading-history-panel"]');
   await waitForText(page, '[data-testid="history-kpi-actual"]', /76,050\.239 MT/);
   const recoveredBody = await page.evaluate(() => document.body.innerText);
-  assert.match(recoveredBody, /34,132\s+MT/);
+  assert.match(recoveredBody, /34,291\s+MT/);
   assert.match(recoveredBody, /완료 선박:\s*11\s*척/);
   assert.equal(getBlockedAppRequestCount(), 1);
   assert.equal(pageErrors.length, 0, pageErrors.join('\n'));

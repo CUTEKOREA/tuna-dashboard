@@ -14,6 +14,7 @@ type UnloadingReport = {
   vessel_id: string;
   report_date: string;
   work_time: string;
+  consignee?: string;
   daily_amount: number;
   cumulative_amount: number;
   target_holds: string;
@@ -51,25 +52,31 @@ describe('SEIN VENUS unloading data', () => {
     });
   });
 
-  it('matches the four daily XLS reports through August 11', () => {
+  it('matches the five daily reports through August 13', () => {
     const db = loadDb();
     const reports = db.unloading_reports.filter((item) => item.vessel_id === 'sein-venus');
 
-    expect(reports.map((item) => item.report_date)).toEqual(['8/7', '8/8', '8/10', '8/11']);
+    expect(reports.map((item) => item.report_date)).toEqual(['8/7', '8/8', '8/10', '8/11', '8/13']);
     expect(reports.map((item) => item.work_time)).toEqual([
       '10:10 ~ 19:00',
       '08:10 ~ 13:00',
       '08:10 ~ 16:10',
       '08:10 ~ 14:40',
+      '08:20 ~ 15:10',
     ]);
-    expect(reports.map((item) => item.daily_amount)).toEqual([174.64, 109.07, 331.47, 462.81]);
-    expect(reports.map((item) => item.cumulative_amount)).toEqual([174.64, 283.71, 615.18, 1077.99]);
-    expect(reports.reduce((sum, item) => sum + item.daily_amount, 0)).toBeCloseTo(1077.99, 6);
-    expect(3275 - reports.at(-1)!.cumulative_amount).toBeCloseTo(2197.01, 6);
-    expect(reports.at(-1)!.target_holds).toContain('#1-A:80.670');
-    expect(reports.at(-1)!.target_holds).toContain('#1-B:41.170');
+    expect(reports.map((item) => item.daily_amount)).toEqual([174.64, 109.07, 331.47, 462.81, 159.59]);
+    expect(reports.map((item) => item.cumulative_amount)).toEqual([174.64, 283.71, 615.18, 1077.99, 1237.58]);
+    expect(reports.reduce((sum, item) => sum + item.daily_amount, 0)).toBeCloseTo(1237.58, 6);
+    expect(reports.at(-1)!.cumulative_amount - reports.at(-2)!.cumulative_amount).toBeCloseTo(159.59, 6);
+    expect(3275 - reports.at(-1)!.cumulative_amount).toBeCloseTo(2037.42, 6);
+    expect(reports.at(-1)!.target_holds).toBe('N/STAR(#2-B:159.590)');
+    expect(reports.at(-1)!.consignee).toBe('MMP');
+    expect(reports.at(-1)!.quality_notes).not.toContain('제품 MMP');
     expect(reports.at(-1)!.quality_notes).toContain('-22.0℃ ~ -23.0℃');
-    expect(reports.at(-1)!.quality_notes).toContain('8/12 공휴일');
+    expect(reports.at(-1)!.quality_notes).toContain('8/14 약 400톤');
+    expect(reports.at(-2)!.target_holds).toContain('#1-A:80.670');
+    expect(reports.at(-2)!.target_holds).toContain('#1-B:41.170');
+    expect(reports.at(-2)!.quality_notes).toContain('8/12 공휴일');
     expect(reports[0].quality_notes).toContain('-21.0℃ ~ -23.0℃');
     expect(reports[0].quality_notes).toContain('8/8 약 160톤');
     expect(reports[1].quality_notes).toContain('8/9 공휴일');
@@ -88,22 +95,23 @@ describe('SEIN VENUS unloading data', () => {
         species_id: 'SJ',
         species_name: '가다랑어·눈다랑어 합산',
         reported_amount: 2844,
-        actual_amount: 904.39,
+        actual_amount: 1029.28,
       }),
       expect.objectContaining({
         species_id: 'YF',
         species_name: '황다랑어',
         reported_amount: 431,
-        actual_amount: 173.6,
+        actual_amount: 208.3,
       }),
     ]);
     expect(species.reduce((sum, item) => sum + item.reported_amount, 0)).toBe(3275);
-    expect(species.reduce((sum, item) => sum + item.actual_amount, 0)).toBeCloseTo(1077.99, 6);
+    expect(species.reduce((sum, item) => sum + item.actual_amount, 0)).toBeCloseTo(1237.58, 6);
   });
 
   it('wires the stowage plan and defaults the detail view to the active vessel', () => {
     const source = readFileSync(join(process.cwd(), 'components/UnloadingStatus.tsx'), 'utf8');
     const analyticsSource = readFileSync(join(process.cwd(), 'components/UnloadingAnalytics.tsx'), 'utf8');
+    const apiSource = readFileSync(join(process.cwd(), 'app/api/unloading-db/route.ts'), 'utf8');
 
     expect(source).toContain("'sein-venus': {");
     expect(source).toContain("'#4-B': 90");
@@ -112,6 +120,8 @@ describe('SEIN VENUS unloading data', () => {
     expect(source).toContain("'#1-A': 250");
     expect(source).toContain("useState('sein-venus')");
     expect(source).toContain('원적재선별 하역 비중');
+    expect(source).toContain('수하처:');
+    expect(apiSource).toContain('consignee: r.consignee || null');
     expect(analyticsSource).toContain("getVesselStatusKind(status) === 'progress'");
     expect(analyticsSource).toContain('timedAmount += t.dailyAmount');
     expect(analyticsSource).toContain('getAnalyticsStatus(selectedVessel.status).completed && surplusPct > 3');

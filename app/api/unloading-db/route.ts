@@ -106,6 +106,7 @@ export async function GET() {
           date: r.report_date,
           time: r.work_time,
           targetHol: r.target_holds,
+          consignee: r.consignee || null,
           dailyAmount: Number(r.daily_amount),
           cumAmount: Number(r.cumulative_amount),
           quality: r.quality_notes
