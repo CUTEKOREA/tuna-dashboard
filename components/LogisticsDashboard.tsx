@@ -84,10 +84,11 @@ function FishingGroundToBangkokRouteMap() {
             <g
               key={row.carrier}
               data-week31-carrier-marker="true"
+              data-marker-tone="data"
               transform={`translate(${position.x} ${position.y})`}
             >
-              <circle r="12" fill="rgba(245,158,11,0.16)" stroke="#f59e0b" strokeWidth="2" filter="url(#route-marker-glow)" />
-              <path d="M -5 2 L 7 2 L 3 -4 L -3 -4 Z" fill="#fde68a" />
+              <circle r="12" fill="rgba(34,211,238,0.12)" stroke="#22d3ee" strokeWidth="2" filter="url(#route-marker-glow)" />
+              <path d="M -5 2 L 7 2 L 3 -4 L -3 -4 Z" fill="#a5f3fc" />
               <title>{row.carrier}</title>
             </g>
           );

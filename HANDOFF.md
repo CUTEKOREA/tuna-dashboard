@@ -1,5 +1,16 @@
 # HANDOFF
 
+> 마지막 업데이트: 2026-08-15 08:06 KST
+
+> 🎛️ **2026-08-15 08:06 KST — Institutional Grade V2.5-a 토큰·공용 컴포넌트 완료** [Codex]:
+> - 정본 스펙(`691bf82`)의 중립 팔레트를 `--dsc-bg #0a0a0b`·`--dsc-bg-deep #050506`·반투명 surface/border로 반영하고 일반 모드 Aurora 방사형 배경을 제거했다. `HeroZone`·`PillTabs`는 1px 저대비 경계·12px 계열 반경·단일 액센트로 절제했으며, 4열 공용 `StatRow`를 추가했다. 기존 `WidgetCard`와 약 400개 위젯의 하드코딩 색은 범위대로 건드리지 않았다.
+> - `next/font`의 IBM Plex Mono 700을 로컬 제공하고 `--dsc-font-mono`로 연결했다. **Grok 반증 ① 반영 완료**: `HeroZone`·`StatRow`는 순수 숫자 런만 모노이며 단위(한글 `점`·`건`·`척` 포함)는 산세리프+tabular, `LiveTicker`도 value만 모노이고 등락률은 산세리프+tabular다. LIVE KPI 값 전이에만 80ms 세로 이동과 1회 발광을 주며 reduced-motion에서는 정지한다.
+> - **Grok 반증 ② 반영 완료**: `TelemetryBadge`는 LIVE만 cyan 액센트·pulse이고 SYNCED/STATIC은 slate 고정이다. 티커 접두부는 중립색, 물류 주간 존재 마커는 데이터 cyan으로 바꿨다. rose 경보는 실제 `입항 상태 재확인` 예외처럼 상태 전이가 있는 `WarningPanel`에만 보존했다.
+> - **Grok 반증 ③ 적용 경계 확인**: 이번 단계에서는 공용 차트 색 토큰과 다시리즈 팔레트를 수정하지 않았다. 따라서 5개 이상 시리즈의 명도 단계+대시 패턴 주석 조건은 발동하지 않았으며, 향후 차트 토큰 작업의 완료 게이트로 유지한다.
+> - TDD는 최초 V2.5-a RED 4건, Grok 조건 RED 6건, 브라우저 식별자 RED 1건, 경고 카드 반경 RED 1건을 각각 확인한 뒤 V2 렌더 **19/19**로 전환했다. 최종 `npm run verify` 통과: ESLint 오류 0(기존 경고 18), TypeScript, Vitest **258/258**, API 캐시 **143/143**, Next 정적 페이지 **117/117**, 번들 예산 **30경로**.
+> - 로컬 Puppeteer QA(`/private/tmp/v25a-qa-20260815.qqMpbT/`): `/market`·`/fleet`의 1440×1000·390×844 모두 HTTP 200, 가로 overflow·page error·로컬 HTTP/요청 오류 0. Aurora 없음, Pill 12px, 숫자 모노 로드, 단위·등락률 산세리프 분리를 계산 스타일로 확인했다. `qa-results.json` SHA-256은 `75e43c8f4fd6391ef300e73d7f5e87111045382c4c4432c5a810ecd897ef6fea`; PNG는 fleet desktop/mobile `20b4ebbff03bffd0a94820c650ef995537f6f15411b5c59b311ac155240d1198`/`c790cd234f3051bda972ae613ce9c5a1edf30d7c01e206dc1f911a964b9a69b4`, market desktop/mobile `ecccc2aed375c74b674a88e0eaa6f606ee218c603999b55c6cdc92feefa9c6b1`/`b79506577db7b6aa081cec26478724602279966d84108c5bc8e678fea85cf846`다. 외부 글꼴·광고·분석 요청만 의도적으로 차단했다.
+> - npm 전용 전환 전 pnpm 파일과 기존 `node_modules`는 삭제하지 않고 `/private/tmp/v25a-pnpm-backup.W57Q6T/`에 보존했다. push·프로덕션 배포는 하지 않았다. 다음 단계는 CC가 숫자/단위 폰트 경계, LIVE 전이, 중립 상태 톤을 독립 검수한 뒤 V2.5-b 범위를 확정하는 것이다.
+
 > 마지막 업데이트: 2026-08-15 07:15 KST
 
 > 🧭 **2026-08-15 07:15 KST — `/cosmo` iframe 폐기·10탭 네이티브 이전 완료** [Codex]:

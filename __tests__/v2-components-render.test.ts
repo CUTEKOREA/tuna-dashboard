@@ -2,6 +2,7 @@ import React from 'react';
 import { renderToStaticMarkup } from 'react-dom/server';
 import { describe, expect, it } from 'vitest';
 import FleetCommandCenter from '../components/FleetCommandCenter';
+import { TelemetryBadge } from '../components/TelemetryBadge';
 import HeroZone from '../components/v2/HeroZone';
 import PillTabs from '../components/v2/PillTabs';
 
@@ -39,6 +40,7 @@ describe('Deep Sea Command V2 — HeroZone', () => {
     expect(markup).toContain('콜드체인 경보');
     expect(markup).toContain('방콕 하역 대기 3척 13,764MT');
     expect(markup).toContain('냉동 운반선 우선 배정 권고');
+    expect(markup).toContain('border-radius:12px');
   });
 
   it('vessel 유형: 배경 슬롯과 하단 스트립을 렌더한다 (이미지 교체 가능 구조, 스펙 §6)', () => {
@@ -53,6 +55,118 @@ describe('Deep Sea Command V2 — HeroZone', () => {
 
     expect(markup).toContain('/heroes/seiner.webp');
     expect(markup).toContain('제701태창호');
+  });
+
+  it('KPI 숫자 run만 모노를 쓰고 단위는 산세리프이며 LIVE만 갱신 영역으로 표시한다', () => {
+    const markup = renderToStaticMarkup(
+      React.createElement(HeroZone, {
+        variant: 'kpi',
+        title: '시장 동향',
+        primaryKpi: {
+          label: '실시간 환율',
+          value: 1388.42,
+          unit: '(원/USD)',
+          decimals: 2,
+          live: true,
+        },
+        secondaryKpis: [
+          { label: '고정 목표', value: 1400, unit: '(원/USD)' },
+        ],
+      }),
+    );
+
+    expect(markup.match(/font-family:var\(--dsc-font-mono\)/g)?.length).toBe(2);
+    expect(markup.match(/data-kpi-number="true"/g)?.length).toBe(2);
+    expect(markup.match(/data-kpi-unit="true"/g)?.length).toBe(2);
+    expect(markup.match(/data-kpi-unit="true"[^>]*font-family/g)).toBeNull();
+    expect(markup.match(/data-live-kpi="true"/g)?.length).toBe(1);
+    expect(markup.match(/aria-live="polite"/g)?.length).toBe(1);
+    expect(markup).toContain('background:var(--dsc-bg-deep)');
+    expect(markup).not.toContain('linear-gradient(160deg, var(--dsc-bg)');
+  });
+});
+
+describe('Deep Sea Command V2.5 — StatRow', () => {
+  it('HeroKpi 4개를 저대비 4-up 보조 KPI 목록으로 렌더한다', async () => {
+    const statRowModule = await import('../components/v2/StatRow').catch(() => null);
+
+    expect(statRowModule).not.toBeNull();
+    const StatRow = statRowModule?.default;
+    expect(StatRow).toBeTypeOf('function');
+    if (typeof StatRow !== 'function') return;
+
+    const markup = renderToStaticMarkup(
+      React.createElement(StatRow, {
+        ariaLabel: '선단 보조 지표',
+        kpis: [
+          { label: '8월 누적', value: 1234, unit: '(M/T)' },
+          { label: '연간 누적', value: 56789, unit: '(M/T)' },
+          { label: '선적량', value: 1234.5, unit: '(M/T)', decimals: 1 },
+          { label: '가동 선박', value: 18, unit: '(척)' },
+        ],
+      }),
+    );
+
+    expect(markup).toContain('aria-label="선단 보조 지표"');
+    expect(markup.match(/role="listitem"/g)?.length).toBe(4);
+    expect(markup).toContain('grid-template-columns:repeat(4,minmax(0,1fr))');
+    expect(markup.match(/data-kpi-number="true"/g)?.length).toBe(4);
+    expect(markup.match(/data-kpi-unit="true"/g)?.length).toBe(4);
+    expect(markup.match(/font-family:var\(--dsc-font-mono\)/g)?.length).toBe(4);
+    expect(markup.match(/data-kpi-unit="true"[^>]*font-family/g)).toBeNull();
+    expect(markup).toContain('border-radius:12px');
+    expect(markup).toContain('1,234.5');
+  });
+});
+
+describe('Deep Sea Command V2.5 — LiveTicker', () => {
+  it('시세 라벨·변동값은 산세리프를 유지하고 value 숫자 run에만 모노를 적용한다', async () => {
+    const tickerModule = await import('../components/LiveTicker');
+    const TickerQuote = (tickerModule as Record<string, unknown>).TickerQuote;
+
+    expect(TickerQuote).toBeTypeOf('function');
+    if (typeof TickerQuote !== 'function') return;
+
+    const markup = renderToStaticMarkup(
+      React.createElement(TickerQuote as React.ComponentType<any>, {
+        item: { label: 'SKJ 방콕', value: '$1,900', diff: '+2.1%', trend: 'up' },
+      }),
+    );
+
+    expect(markup).toContain('SKJ 방콕');
+    expect(markup).toContain('$1,900');
+    expect(markup).toContain('+2.1%');
+    expect(markup).toContain('data-ticker-value="true"');
+    expect(markup).toContain('data-ticker-diff="true"');
+    expect(markup.match(/font-family:var\(--dsc-font-mono\)/g)?.length).toBe(1);
+    expect(markup).toContain('font-variant-numeric:tabular-nums');
+  });
+
+  it('티커 접두는 경보색이 아닌 무채색 데이터 크롬으로 렌더한다', async () => {
+    const tickerModule = await import('../components/LiveTicker');
+    const markup = renderToStaticMarkup(React.createElement(tickerModule.default));
+
+    expect(markup).toContain('data-ticker-tone="neutral"');
+  });
+});
+
+describe('Deep Sea Command V2.5 — TelemetryBadge', () => {
+  it('LIVE만 액센트를 쓰고 SYNCED·STATIC은 slate 중립 톤을 쓴다', () => {
+    const liveMarkup = renderToStaticMarkup(
+      React.createElement(TelemetryBadge, { status: 'LIVE' }),
+    );
+    const syncedMarkup = renderToStaticMarkup(
+      React.createElement(TelemetryBadge, { status: 'SYNCED', syncDate: '2026-Q2' }),
+    );
+    const staticMarkup = renderToStaticMarkup(
+      React.createElement(TelemetryBadge, { status: 'STATIC', syncDate: '2026-Q2' }),
+    );
+
+    expect(liveMarkup).toContain('data-telemetry-tone="accent"');
+    expect(syncedMarkup).toContain('data-telemetry-tone="neutral"');
+    expect(staticMarkup).toContain('data-telemetry-tone="neutral"');
+    expect(syncedMarkup).toContain('#94a3b8');
+    expect(syncedMarkup).not.toContain('#f59e0b');
   });
 });
 
@@ -159,6 +273,8 @@ describe('Deep Sea Command V2 — Phase 2 운영 페이지', () => {
     expect(markup).toContain('주간 하역 합계');
     expect(markup).toContain('(MT)');
     expect(markup.match(/data-week31-carrier-marker="true"/g)?.length).toBe(4);
+    expect(markup.match(/data-marker-tone="data"/g)?.length).toBe(4);
+    expect(markup).not.toContain('#f59e0b');
     expect(markup).toContain('2026-08-05 주간 보고에는 방콕 하역선 3척 13,764MT가 기록됐으며, 이 중 8월 누계는 2척 8,891MT입니다.');
     expect(markup).toContain('SEIN VENUS와 HENG HONG 9의 예정일이 도래했으므로 실제 입항·접안 여부를 확인합니다.');
   });
@@ -292,5 +408,25 @@ describe('Deep Sea Command V2 — PillTabs', () => {
     expect(markup).toContain('tabindex="0"');
     expect(markup).toContain('tabindex="-1"');
     expect(markup).toContain('>3<');
+  });
+
+  it('활성 탭은 2색 그라디언트 대신 단일 액센트와 12px 저대비 표면을 쓴다', () => {
+    const markup = renderToStaticMarkup(
+      React.createElement(PillTabs, {
+        tabs: [
+          { key: 's1', label: '원료 수급' },
+          { key: 's2', label: '가공·생산' },
+        ],
+        activeKey: 's1',
+        onChange: () => {},
+        accentFrom: '#123456',
+        accentTo: '#abcdef',
+      }),
+    );
+
+    expect(markup).toContain('border-radius:12px');
+    expect(markup).toContain('#123456');
+    expect(markup).not.toContain('#abcdef');
+    expect(markup).not.toContain('linear-gradient');
   });
 });

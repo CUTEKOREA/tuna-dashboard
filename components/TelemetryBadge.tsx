@@ -18,16 +18,18 @@ export const TelemetryBadge: React.FC<TelemetryBadgeProps> = ({ status, syncDate
   const isSynced = normalizedStatus === 'SYNCED';
 
   // Visual identity per status (status semantics/text/syncDate logic unchanged):
-  // LIVE = cyan pulse dot / SYNCED = amber static dot / STATIC = slate, no dot
-  const accent = isLive ? '#22d3ee' : isSynced ? '#f59e0b' : '#94a3b8';
+  // LIVE만 액센트. SYNCED는 완료 상태이므로 경보색이 아닌 slate 고정.
+  const accent = isLive ? '#22d3ee' : '#94a3b8';
   const borderTint = isLive
     ? 'rgba(34, 211, 238, 0.25)'
-    : isSynced
-      ? 'rgba(245, 158, 11, 0.22)'
-      : 'rgba(148, 163, 184, 0.16)';
+    : 'rgba(148, 163, 184, 0.16)';
 
   return (
-    <div style={{ display: 'flex', alignItems: 'center', gap: '4px', background: 'rgba(20, 28, 52, 0.55)', backdropFilter: 'blur(6px)', WebkitBackdropFilter: 'blur(6px)', padding: '2px 7px', borderRadius: '5px', border: `1px solid ${borderTint}` }}>
+    <div
+      data-telemetry-status={normalizedStatus}
+      data-telemetry-tone={isLive ? 'accent' : 'neutral'}
+      style={{ display: 'flex', alignItems: 'center', gap: '4px', background: 'rgba(24, 24, 27, 0.72)', backdropFilter: 'blur(6px)', WebkitBackdropFilter: 'blur(6px)', padding: '2px 7px', borderRadius: '5px', border: `1px solid ${borderTint}` }}
+    >
       {(isLive || isSynced) && (
         <div style={{ position: 'relative', width: '6px', height: '6px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
           {isLive && <div className={styles.pulse} />}
@@ -38,7 +40,7 @@ export const TelemetryBadge: React.FC<TelemetryBadgeProps> = ({ status, syncDate
         {label ?? normalizedStatus}
       </span>
       {!isLive && syncDate && (
-        <span style={{ fontSize: '0.56rem', fontWeight: 500, color: '#64748B', marginLeft: '2px', whiteSpace: 'nowrap' }}>
+        <span style={{ fontSize: '0.56rem', fontWeight: 500, color: '#71717a', marginLeft: '2px', whiteSpace: 'nowrap' }}>
           {syncDate}
         </span>
       )}
