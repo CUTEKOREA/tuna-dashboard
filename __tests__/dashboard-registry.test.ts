@@ -18,6 +18,13 @@ import {
 } from '../lib/dashboard-registry';
 
 describe('dashboard registry', () => {
+  it('retires the beef dashboard route with an explicit 404 boundary', () => {
+    const routeSource = readFileSync(join(process.cwd(), 'app/beef/page.tsx'), 'utf8');
+
+    expect(routeSource).toContain('notFound()');
+    expect(isActiveMenu('beef')).toBe(false);
+  });
+
   it('routes hydration-sensitive dashboards through the client-only category page', () => {
     const configSource = readFileSync(join(process.cwd(), 'next.config.mjs'), 'utf8');
     const categorySource = readFileSync(join(process.cwd(), 'app/[category]/page.tsx'), 'utf8');
@@ -87,6 +94,7 @@ describe('dashboard registry', () => {
     }
 
     expect(isActiveMenu('ai-forecast')).toBe(false);
+    expect(isActiveMenu('beef')).toBe(false);
     expect(isActiveMenu('retail')).toBe(false);
   });
 
@@ -115,7 +123,9 @@ describe('dashboard registry', () => {
   });
 
   it('drives command search from the same valid menu registry', () => {
-    expect(DASHBOARD_COMMANDS.map((command) => command.key)).toEqual(VALID_MENUS);
+    expect(DASHBOARD_COMMANDS.map((command) => command.key)).toEqual(
+      VALID_MENUS.filter((menu) => menu !== 'pork'),
+    );
 
     for (const command of DASHBOARD_COMMANDS) {
       expect(command.label).toBe(DASHBOARD_TITLES[command.key]);
@@ -127,14 +137,27 @@ describe('dashboard registry', () => {
     );
   });
 
+  it('retires pork from navigation while preserving the direct dashboard route', () => {
+    const livestockItems = SIDEBAR_SECTIONS
+      .find((section) => section.section === 'livestock')
+      ?.items.map((item) => item.key) ?? [];
+
+    expect(livestockItems).not.toContain('pork');
+    expect(DASHBOARD_COMMANDS.map((command) => command.key)).not.toContain('pork');
+    expect(PUBLIC_DASHBOARD_ROUTES).not.toContain('pork');
+    expect(VALID_MENUS).toContain('pork');
+    expect(DASHBOARD_PANEL_ORDER).toContain('pork');
+  });
+
   it('derives public sitemap dashboard routes from non-protected menus', () => {
     expect(PUBLIC_DASHBOARD_ROUTES).toEqual(
-      VALID_MENUS.filter((menu) => !['market', 'fleet', 'unloading', 'logistics'].includes(menu)),
+      VALID_MENUS.filter((menu) => !['market', 'fleet', 'unloading', 'logistics', 'pork'].includes(menu)),
     );
     expect(PUBLIC_DASHBOARD_ROUTES).toContain('value-chain');
     expect(PUBLIC_DASHBOARD_ROUTES).toContain('cross-intelligence');
     expect(PUBLIC_DASHBOARD_ROUTES).toContain('sashimi-steak');
     expect(PUBLIC_DASHBOARD_ROUTES).not.toContain('bni-global');
+    expect(PUBLIC_DASHBOARD_ROUTES).not.toContain('beef');
     expect(PUBLIC_DASHBOARD_ROUTES).not.toContain('market');
     expect(PUBLIC_DASHBOARD_ROUTES).not.toContain('fleet');
   });
@@ -148,21 +171,24 @@ describe('dashboard registry', () => {
     expect(dashboardRoutes).toEqual(PUBLIC_DASHBOARD_ROUTES);
   });
 
+  it('omits sidebar sections after every item in the section is retired', () => {
+    expect(SIDEBAR_SECTIONS.map((section) => section.section)).not.toContain('livestock');
+    expect(SIDEBAR_SECTIONS.every((section) => section.items.length > 0)).toBe(true);
+  });
+
   it('defines sidebar sections from visible registry items in render order', () => {
     expect(SIDEBAR_SECTIONS.map((section) => section.title)).toEqual([
       '📡 실시간 운영',
       '🐟 어종별 인텔리전스',
       '🔬 전략 분석',
       '🌾 농산물 인텔리전스',
-      '🥩 축산물 인텔리전스',
     ]);
 
     expect(SIDEBAR_SECTIONS.map((section) => section.items.map((item) => item.key))).toEqual([
       ['market', 'fleet', 'unloading', 'logistics'],
       ['value-chain', 'mackerel', 'galchi', 'squid', 'jukkumi', 'octopus', 'pollock', 'flatfish', 'shrimp', 'whelk', 'kim', 'salmon'],
       ['cold-storage', 'fleet-strategy', 'korea-market', 'seasia-oem', 'used-car', 'msc', 'sashimi-steak', 'research-lab'],
-      ['cashew', 'cassava', 'garlic', 'carrot', 'cocoa', 'mangosteen'],
-      ['pork', 'beef'],
+      ['cashew', 'cassava', 'garlic', 'carrot', 'cocoa'],
     ]);
 
     const sidebarKeys = SIDEBAR_SECTIONS.flatMap((section) => section.items.map((item) => item.key));
@@ -208,9 +234,7 @@ describe('dashboard registry', () => {
       'garlic',
       'carrot',
       'cocoa',
-      'mangosteen',
       'pork',
-      'beef',
       'used-car',
       'unloading',
       'value-chain',

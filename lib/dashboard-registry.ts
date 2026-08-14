@@ -3,11 +3,9 @@ export type DashboardAccent = 'cyan' | 'emerald' | 'gold' | 'rose';
 export type SidebarIconKey =
   | 'Anchor'
   | 'BarChart2'
-  | 'Beef'
   | 'Box'
   | 'CarFront'
   | 'Carrot'
-  | 'Cherry'
   | 'Coffee'
   | 'Droplets'
   | 'Factory'
@@ -61,9 +59,7 @@ export const DASHBOARD_MENU_CONFIGS = [
   { key: 'garlic', title: '마늘', section: 'agriculture', accent: 'cyan', sidebar: { icon: 'LeafyGreen', suffix: 'Garlic' } },
   { key: 'carrot', title: '당근', section: 'agriculture', accent: 'cyan', sidebar: { icon: 'Carrot', suffix: 'Carrot' } },
   { key: 'cocoa', title: '코코아', section: 'agriculture', accent: 'emerald', sidebar: { icon: 'Coffee', suffix: 'Cocoa' } },
-  { key: 'mangosteen', title: '망고스틴', section: 'agriculture', accent: 'cyan', sidebar: { icon: 'Cherry', suffix: 'Mangosteen' } },
   { key: 'pork', title: '돼지고기', section: 'livestock', accent: 'cyan', sidebar: { icon: 'Hexagon', suffix: 'Pork' } },
-  { key: 'beef', title: '소고기', section: 'livestock', accent: 'cyan', sidebar: { icon: 'Beef', suffix: 'Beef' } },
   { key: 'whelk', title: '골뱅이', section: 'fishery', accent: 'cyan', sidebar: { icon: 'Shell', suffix: 'Whelk' } },
   { key: 'kim', title: '김', section: 'fishery', accent: 'cyan', sidebar: { icon: 'Leaf', suffix: 'Laver' } },
   { key: 'cross-intelligence', title: '통합 인텔리전스', section: 'strategy', accent: 'gold', sidebar: { icon: 'BarChart2', suffix: 'Cross' } },
@@ -84,6 +80,8 @@ export const DASHBOARD_MENU_CONFIGS = [
 
 export type ActiveMenu = (typeof DASHBOARD_MENU_CONFIGS)[number]['key'];
 export type DashboardMenuConfig = Omit<DashboardMenuConfigShape, 'key'> & { key: ActiveMenu };
+
+export const HIDDEN_DASHBOARD_MENU_KEYS = new Set<ActiveMenu>(['pork']);
 
 export interface SidebarMenuItem {
   key: ActiveMenu;
@@ -159,15 +157,21 @@ export const PROTECTED_OPERATION_MENU_KEYS = DASHBOARD_MENU_CONFIGS
 
 export const PROTECTED_OPERATION_MENUS = new Set<ActiveMenu>(PROTECTED_OPERATION_MENU_KEYS);
 
-export const DASHBOARD_COMMANDS = DASHBOARD_MENU_CONFIGS.map((menu) => ({
-  key: menu.key,
-  label: menu.title,
-  category: SECTION_LABELS[menu.section],
-  section: menu.section,
-})) as readonly DashboardCommand[];
+export const DASHBOARD_COMMANDS = DASHBOARD_MENU_CONFIGS
+  .filter((menu) => !HIDDEN_DASHBOARD_MENU_KEYS.has(menu.key))
+  .map((menu) => ({
+    key: menu.key,
+    label: menu.title,
+    category: SECTION_LABELS[menu.section],
+    section: menu.section,
+  })) as readonly DashboardCommand[];
 
 export const PUBLIC_DASHBOARD_ROUTES = DASHBOARD_MENU_CONFIGS
-  .filter((menu) => menu.key !== 'market' && !requiresOperationAccess(menu))
+  .filter((menu) => (
+    menu.key !== 'market'
+    && !requiresOperationAccess(menu)
+    && !HIDDEN_DASHBOARD_MENU_KEYS.has(menu.key)
+  ))
   .map((menu) => menu.key) as readonly ActiveMenu[];
 
 export const DASHBOARD_PANEL_ORDER = [
@@ -191,9 +195,7 @@ export const DASHBOARD_PANEL_ORDER = [
   'garlic',
   'carrot',
   'cocoa',
-  'mangosteen',
   'pork',
-  'beef',
   'used-car',
   'unloading',
   'value-chain',
@@ -232,8 +234,8 @@ const SIDEBAR_SECTION_KEYS: Record<DashboardSection, readonly ActiveMenu[]> = {
     'sashimi-steak',
     'research-lab',
   ],
-  agriculture: ['cashew', 'cassava', 'garlic', 'carrot', 'cocoa', 'mangosteen'],
-  livestock: ['pork', 'beef'],
+  agriculture: ['cashew', 'cassava', 'garlic', 'carrot', 'cocoa'],
+  livestock: ['pork'],
 };
 
 function getMenuConfig(menu: ActiveMenu): DashboardMenuConfig {
@@ -264,11 +266,15 @@ function sidebarItemFor(menu: ActiveMenu): SidebarMenuItem {
   };
 }
 
-export const SIDEBAR_SECTIONS = SIDEBAR_SECTION_ORDER.map((section) => ({
-  section,
-  title: SIDEBAR_SECTION_TITLES[section],
-  items: SIDEBAR_SECTION_KEYS[section].map(sidebarItemFor),
-})) as readonly SidebarSection[];
+export const SIDEBAR_SECTIONS = SIDEBAR_SECTION_ORDER
+  .map((section) => ({
+    section,
+    title: SIDEBAR_SECTION_TITLES[section],
+    items: SIDEBAR_SECTION_KEYS[section]
+      .filter((menu) => !HIDDEN_DASHBOARD_MENU_KEYS.has(menu))
+      .map(sidebarItemFor),
+  }))
+  .filter((section) => section.items.length > 0) as readonly SidebarSection[];
 
 const VALID_MENU_SET = new Set<string>(VALID_MENUS);
 

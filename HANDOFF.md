@@ -1,7 +1,33 @@
 # HANDOFF
 
-> 마지막 업데이트: 2026-08-14 20:50 KST
+> 마지막 업데이트: 2026-08-14 21:22 KST
 
+> 🚀 **2026-08-14 21:22 KST — 닭·망고스틴·돼지고기·소고기 아카이브 메뉴 통합 배포 후보** [Codex]:
+> - 사용자의 명시적 배포 요청에 따라 이미 `origin/main`에 반영된 닭고기에 망고스틴·돼지고기·소고기 완료 커밋을 `codex/deploy-archived-menus-20260814` 브랜치에 통합했다. 미완료 실험 브랜치와 다른 작업트리 변경은 포함하지 않았다.
+> - 사이드바·빠른 검색·랜딩 미리보기·공개 사이트맵에서 네 항목을 제외했다. 통합 결과 아이템이 0개가 된 `축산물 인텔리전스` 빈 섹션도 필터링했다. `/pork`는 보존 정책대로 200, `/beef`는 폐기 경계 정책대로 404를 유지한다.
+> - TDD로 빈 섹션 회귀 검증을 RED → GREEN 처리했다. `npm run verify` 통과: ESLint 오류 0(기존 경고 18), TypeScript, Vitest **204/204**, API 캐시 **143/143**, Next build **99/99**, 번들 예산 12개 경로.
+> - 로컬 production 브라우저 검증은 1440px·390px 메뉴·빠른 검색 잔여 0, 사이트맵 경로 잔여 0, 가로 overflow 0, page/console error 0으로 통과했다. 다음 단계는 PR 게이트·`main` 병합·Vercel READY·라이브 재검증이다.
+
+> 🥩 **2026-08-14 21:01 KST — 소고기 대시보드 보존 보고서·메뉴 제거** [Codex]:
+> - 공개 `/beef`의 상단 KPI 6개와 5단계 19개 위젯을 제거 전 보존 보고서로 정리했다. 단일 HTML, 정본 `artifact.json`, 재현 렌더러는 Google Drive `agri_data/02_축산낙농(Livestock)/beef`에 저장했다.
+> - 메뉴 레지스트리·사이드바·패널·랜딩 미리보기·사이트맵에서 `beef`를 제외하고, 직접 `/beef` 접근은 명시적 404로 닫았다. 교차 분석과 복구 가능성을 위해 `components/Beef*`, `beefData.ts`, `/api/beef/*`는 삭제하지 않았다.
+> - 보고서 검증: 6개 KPI·19개 위젯·5개 SVG 차트·13개 출처, 외부 요청 0건, 1440px/390px 가로 overflow 0, HTML 재생성 SHA-256 동일(`5efa0ede3f8bb2af490f6d1cc1a738c0e0389a086f58f34f02d183917c28f292`).
+> - 코드 검증: TDD RED 4건 → GREEN 10/10, 전체 Vitest **202/202**, TypeScript, ESLint 오류 0(기존 경고 18), API 캐시 **143/143**, Next build **99/99**, 번들 예산 12개 경로 통과. 로컬 production에서 `/beef` HTTP 404, 사이트맵 미포함, 루트 메뉴의 소고기 항목 없음과 overflow 0을 확인했다.
+> - 프로덕션 push·배포는 하지 않았다. 다음 단계는 사용자 명시 승인 후 이 커밋을 원격에 반영하고 라이브 `/beef` 404·메뉴 제거를 재검증하는 것이다.
+
+> 📦 **2026-08-14 21:02 KST — `/pork` 단일 HTML 보존·대시보드 메뉴 비노출 처리** [Codex]:
+> - 라이브와 동일한 `origin/main` 기준 `/pork`의 6개 KPI·5개 밸류체인·19개 위젯을 모두 펼친 단일 HTML 보고서를 Google Drive `agri_data/02_축산낙농(Livestock)/pork/돼지고기_글로벌_밸류체인_보고서_2026-08-14.html`에 새로 저장했다. 490,700 bytes, SHA-256 `7d74b7d61a5f43534c52c70beffcb15792b00c67d11f70574c1e3b23a2261eff`다.
+> - 보고서는 차트 SVG·위젯 출처·STATIC/SYNCED·기준일을 내장한다. 파일 직접 로드 검증 결과 외부 스크립트·외부 네트워크 요청·중복 ID 0, 1440px·390px 가로 overflow 0이며 기존 CSV 3개는 이동·삭제·덮어쓰지 않았다.
+> - `HIDDEN_DASHBOARD_MENU_KEYS`로 `pork`를 사이드바·빠른 검색·공개 사이트맵에서 제외하고, 랜딩의 메뉴 미리보기 잔여 문구도 제거했다. `VALID_MENUS`·패널 순서·동적 import는 유지해 직접 `/pork` 호환성과 원본 컴포넌트는 보존했다.
+> - TDD RED 1건 → GREEN. `npm run verify` 통과: lint 오류 0(기존 경고 18), TypeScript, Vitest **202/202**, API 캐시 **143/143**, Next.js build **98/98**, 번들 예산. 로컬 production `/pork`는 HTTP 200, 직접 제목 렌더, 사이드바·빠른 검색·사이트맵 `pork` 0, 1440px·390px overflow 0을 확인했다.
+> - 독립 로컬 검증도 통과했다. 교차벤더 검증은 Codex 사용량 한도로 미실행이다. 원본 위젯의 기존 탈락 문구 1건과 개발 전용 P-03 문구 경고는 보존본 충실성을 위해 이번 범위에서 수정하지 않았다. **프로덕션 미배포**이며, 배포는 사용자의 별도 명시 요청이 필요하다.
+> 🟣 **2026-08-14 21:04 KST — 망고스틴 페이지 HTML 아카이브 + 메뉴 제거(로컬)** [Grok]:
+> - `/mangosteen` 내용을 agri_data `05_과일(Fruits)/mangosteen/intelligence_reports/Mangosteen_Dashboard_Archive_2026-08-14.html`에 정적 보고서로 옮겼다.
+> - 대시보드 메뉴에서 망고스틴 제거. 브랜치 `chore/remove-mangosteen-20260814` (`origin/main` 기준). **프로덕션 미배포.**
+> - `/api/mangosteen/dashboard`와 컴포넌트는 존치. Cherry 아이콘은 사이드바에서만 쓰여 레지스트리에서 뺐다.
+> - 검증: Vitest dashboard-registry 9/9, `tsc --noEmit` 통과.
+
+> 마지막 업데이트: 2026-08-14 20:50 KST
 > 🚀 **2026-08-14 20:50 KST — 닭 메뉴·사이드바 외부링크 제거 배포** [Grok]:
 > - `/chicken` 대시보드를 agri_data HTML 아카이브로 옮긴 뒤 라이브 메뉴에서 닭을 뺐다. 사이드바 하단 **청과제국 동화청과**·**신라교역 50년사** 외부 링크도 제거.
 > - 배포 범위: `origin/main`에서 전용 브랜치 `chore/remove-chicken-sidebar-20260814`. `mackerel/claude-etl`은 올리지 않음.
