@@ -41,7 +41,6 @@ export const DASHBOARD_MENU_CONFIGS = [
   { key: 'mackerel', title: '고등어', section: 'fishery', accent: 'cyan', shortcutOrder: 6, sidebar: { icon: 'FishSymbol', suffix: 'Mackerel' } },
   { key: 'pork', title: '돼지고기', section: 'livestock', accent: 'cyan', sidebar: { icon: 'Hexagon', suffix: 'Pork' } },
   { key: 'cross-intelligence', title: '통합 인텔리전스', section: 'strategy', accent: 'gold', sidebar: { icon: 'BarChart2', suffix: 'Cross' } },
-  { key: 'pollock', title: '명태', section: 'fishery', accent: 'cyan', shortcutOrder: 11, sidebar: { icon: 'Snowflake', suffix: 'Pollock' } },
   { key: 'flatfish', title: '가자미', section: 'fishery', accent: 'cyan', shortcutOrder: 12, sidebar: { icon: 'FishSymbol', suffix: 'Flatfish' } },
   { key: 'purse-seiner-db', title: '선망선 DB', section: 'strategy', accent: 'cyan' },
 ] as const satisfies readonly DashboardMenuConfigShape[];
@@ -147,7 +146,6 @@ export const DASHBOARD_PANEL_ORDER = [
   'fleet',
   'logistics',
   'mackerel',
-  'pollock',
   'flatfish',
   'pork',
   'unloading',
@@ -158,7 +156,6 @@ const SIDEBAR_SECTION_KEYS: Record<DashboardSection, readonly ActiveMenu[]> = {
   operation: ['market', 'fleet', 'unloading', 'logistics'],
   fishery: [
     'mackerel',
-    'pollock',
     'flatfish',
   ],
   strategy: [

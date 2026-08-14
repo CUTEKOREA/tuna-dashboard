@@ -96,7 +96,7 @@ describe('dashboard registry', () => {
   });
 
   it('retires archived seafood dashboards with explicit 404 boundaries', () => {
-    for (const slug of ['value-chain', 'octopus', 'squid'] as const) {
+    for (const slug of ['value-chain', 'octopus', 'squid', 'pollock'] as const) {
       const routeSource = readFileSync(join(process.cwd(), `app/${slug}/page.tsx`), 'utf8');
       expect(routeSource).toContain('notFound()');
       expect(isActiveMenu(slug)).toBe(false);
@@ -121,6 +121,7 @@ describe('dashboard registry', () => {
     expect(rewriteSource).not.toContain('value-chain');
     expect(rewriteSource).not.toContain('squid');
     expect(rewriteSource).not.toContain('octopus');
+    expect(rewriteSource).not.toContain('pollock');
     expect(rewriteSource).not.toContain('fleet-strategy');
     expect(rewriteSource).not.toContain('logistics');
     expect(rewriteSource).not.toContain('fleet-strategy');
@@ -171,7 +172,7 @@ describe('dashboard registry', () => {
     expect(heroSource).not.toContain('val1: 917');
   });
   it('keeps menu keys unique and title-addressable', () => {
-    expect(DASHBOARD_MENU_CONFIGS.length).toBeGreaterThanOrEqual(10);
+    expect(DASHBOARD_MENU_CONFIGS.length).toBeGreaterThanOrEqual(9);
     expect(new Set(VALID_MENUS).size).toBe(VALID_MENUS.length);
 
     for (const menu of DASHBOARD_MENU_CONFIGS) {
@@ -206,6 +207,7 @@ describe('dashboard registry', () => {
     expect(isActiveMenu('value-chain')).toBe(false);
     expect(isActiveMenu('octopus')).toBe(false);
     expect(isActiveMenu('squid')).toBe(false);
+    expect(isActiveMenu('pollock')).toBe(false);
     expect(isActiveMenu('retail')).toBe(false);
   });
 
@@ -217,7 +219,6 @@ describe('dashboard registry', () => {
       'unloading',
       'logistics',
       'mackerel',
-      'pollock',
       'flatfish',
     ]);
 
@@ -260,6 +261,7 @@ describe('dashboard registry', () => {
     expect(PUBLIC_DASHBOARD_ROUTES).not.toContain('value-chain');
     expect(PUBLIC_DASHBOARD_ROUTES).not.toContain('octopus');
     expect(PUBLIC_DASHBOARD_ROUTES).not.toContain('squid');
+    expect(PUBLIC_DASHBOARD_ROUTES).not.toContain('pollock');
     expect(PUBLIC_DASHBOARD_ROUTES).toContain('cross-intelligence');
     expect(PUBLIC_DASHBOARD_ROUTES).not.toContain('sashimi-steak');
     expect(PUBLIC_DASHBOARD_ROUTES).not.toContain('bni-global');
@@ -310,7 +312,7 @@ describe('dashboard registry', () => {
 
     expect(SIDEBAR_SECTIONS.map((section) => section.items.map((item) => item.key))).toEqual([
       ['market', 'fleet', 'unloading', 'logistics'],
-      ['mackerel', 'pollock', 'flatfish'],
+      ['mackerel', 'flatfish'],
     ]);
 
     const sidebarKeys = SIDEBAR_SECTIONS.flatMap((section) => section.items.map((item) => item.key));
@@ -332,7 +334,6 @@ describe('dashboard registry', () => {
       'fleet',
       'logistics',
       'mackerel',
-      'pollock',
       'flatfish',
       'pork',
       'unloading',

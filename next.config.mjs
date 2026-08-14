@@ -9,7 +9,7 @@ const nextConfig = {
   async rewrites() {
     return [
       {
-        source: '/:path(market|ranching|mackerel|pollock|field-ops|petfood|tuna-extract)',
+        source: '/:path(market|ranching|mackerel|field-ops|petfood|tuna-extract)',
         destination: '/',
       },
     ]
