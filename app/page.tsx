@@ -416,7 +416,6 @@ export default function Home() {
                   전체 메뉴 접근 확인
                 </h2>
                 <p style={{ fontSize: '13px', color: 'var(--text-muted)', marginBottom: '22px', lineHeight: 1.6 }}>
-                  전체 대시보드 메뉴는 내부 확인 후 열람할 수 있습니다.<br />
                   핵심 지표는 공개되며, 상세 분석은 내부 확인 후 열람할 수 있습니다.
                 </p>
 
