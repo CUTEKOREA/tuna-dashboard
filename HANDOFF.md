@@ -1,5 +1,15 @@
 # HANDOFF
 
+> 마지막 업데이트: 2026-08-15 00:06 KST
+
+> 🚀 **2026-08-15 00:06 KST — `/jukkumi` 메뉴 제거 배포 완료** [Grok]:
+> - HTML은 agri_data `01_수산물(Seafood)/jukkumi/intelligence_reports/Jukkumi_Dashboard_Archive_2026-08-14.html`(5기둥·34위젯).
+> - PR **#328** squash `003f5e43`. App Quality Gate `31812242300` SUCCESS.
+> - Vercel Production `dpl_8GtF5RJf36iT3JwUbqhwZ9KiV4zH` READY, alias `leedonggun.co.kr`.
+> - 라이브 `/jukkumi` 404. 사이트맵에 경로 없음. 사이드바 1440·390에 주꾸미 없음. 남은 어종 메뉴: 참치·고등어·갈치·오징어·낙지·명태·가자미. `/octopus` 200.
+> - `/api/jukkumi/kcs` 200 isLive, `/api/jukkumi-intelligence` 200. 이 배포 error/fatal 로그 0.
+> - `mackerel/claude-etl`은 포함하지 않았다.
+
 > 마지막 업데이트: 2026-08-15 00:10 KST
 
 > 🐙 **2026-08-15 00:10 KST — 주꾸미 페이지 HTML 아카이브 + 메뉴 제거(로컬)** [Grok]:
