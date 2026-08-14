@@ -120,17 +120,25 @@ export function LogisticsHero() {
   );
 }
 
-export default function LogisticsDashboard() {
+export default function LogisticsDashboard({ heroOnly = false }: { heroOnly?: boolean }) {
   const [loading, setLoading] = useState(true);
   const [activeTab, setActiveTab] = useState<LogisticsTab>('operations');
 
   useEffect(() => {
+    if (heroOnly) return;
+
     // Simulate loading for the dashboard skeleton
     const timer = setTimeout(() => {
       setLoading(false);
     }, 500);
     return () => clearTimeout(timer);
-  }, []);
+  }, [heroOnly]);
+
+  const logisticsHero = <LogisticsHero />;
+
+  if (heroOnly) {
+    return <div className={styles.dashboard} style={{ minHeight: 'auto' }}>{logisticsHero}</div>;
+  }
 
   if (loading) return (
     <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh', flexDirection: 'column', gap: '1rem' }}>
@@ -141,7 +149,7 @@ export default function LogisticsDashboard() {
 
   return (
     <div className={styles.dashboard}>
-      <LogisticsHero />
+      {logisticsHero}
 
       <PillTabs
         className={styles.taskTabs}

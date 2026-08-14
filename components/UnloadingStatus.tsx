@@ -757,7 +757,7 @@ function RadialGauge({
   );
 }
 
-export default function UnloadingStatus() {
+export default function UnloadingStatus({ heroOnly = false }: { heroOnly?: boolean }) {
   const [selectedVessel, setSelectedVessel] = useState('sein-venus');
   const [liveData, setLiveData] = useState<any>(null);
   const [dbData, setDbData] = useState<Record<string, UnloadingVesselData>>({});
@@ -781,16 +781,18 @@ export default function UnloadingStatus() {
       searchParams = window.location.search;
     }
 
-    const liveSep = searchParams ? (searchParams.includes('?') ? '&' : '?') : '?';
-    fetch('/api/tuna-live' + searchParams + liveSep + 't=' + Date.now(), { cache: 'no-store' })
-      .then(res => {
-        if (!res.ok) {
-          throw new Error("tuna-live API non-ok response: " + res.status);
-        }
-        return res.json();
-      })
-      .then(d => setLiveData(d.unloading))
-      .catch(err => console.error("Failed to fetch live data", err));
+    if (!heroOnly) {
+      const liveSep = searchParams ? (searchParams.includes('?') ? '&' : '?') : '?';
+      fetch('/api/tuna-live' + searchParams + liveSep + 't=' + Date.now(), { cache: 'no-store' })
+        .then(res => {
+          if (!res.ok) {
+            throw new Error("tuna-live API non-ok response: " + res.status);
+          }
+          return res.json();
+        })
+        .then(d => setLiveData(d.unloading))
+        .catch(err => console.error("Failed to fetch live data", err));
+    }
       
     const dbSep = searchParams ? (searchParams.includes('?') ? '&' : '?') : '?';
     fetch('/api/unloading-db' + searchParams + dbSep + 't=' + Date.now(), { cache: 'no-store' })
@@ -809,7 +811,7 @@ export default function UnloadingStatus() {
         console.error("Failed to fetch DB data", err);
         setApiError(err.message || "API Error");
       });
-  }, []);
+  }, [heroOnly]);
 
   const staticData: Record<string, UnloadingVesselData> = {
     'sein-phoenix': {
@@ -1254,6 +1256,19 @@ export default function UnloadingStatus() {
     );
   };
   const selectedCargoBasis = getVesselCargoBasis(vesselId);
+  const unloadingHero = (
+    <UnloadingHero
+      vessels={vesselsList}
+      baseDate={globalBaseDate}
+      selectedVesselId={vesselId}
+      onSelectVessel={selectVessel}
+      onOpenFieldMode={() => setShowFieldMode(true)}
+    />
+  );
+
+  if (heroOnly) {
+    return <div className={styles.container}>{unloadingHero}</div>;
+  }
 
   if (apiError) {
     return (
@@ -1304,13 +1319,7 @@ export default function UnloadingStatus() {
       </Suspense>
 
       {/* 1. Macro View Header */}
-      <UnloadingHero
-        vessels={vesselsList}
-        baseDate={globalBaseDate}
-        selectedVesselId={vesselId}
-        onSelectVessel={selectVessel}
-        onOpenFieldMode={() => setShowFieldMode(true)}
-      />
+      {unloadingHero}
 
       <section className={styles.decisionPanel} aria-labelledby="unloading-decision-title">
         <div className={styles.decisionLead}>

@@ -214,13 +214,19 @@ def parse_briefing_html(source: Path) -> dict[str, Any]:
 
     # TAK 사전 검증 — lib/data/daily-briefing.ts 의 DIRECTIVE_PATTERN 과 동일 기준.
     # 렌더 시점 throw(첫화면 파손)를 막기 위해 나쁜 JSON 은 여기서 생성 자체를 거부한다.
-    directive_pattern = re.compile(r"(촉구했다|권고했다|요구했다)[.!?]?\s*$")
+    directive_pattern = re.compile(r"(촉구했다|권고했다|요구했다|제안했다|주문했다|요청했다|경고했다|해야 한다|필요가 있다)[.!?]?\s*$")
     has_directive = any(
         directive_pattern.search(sentence.strip())
         for article in articles
         for paragraph in article["paragraphs"]
         for sentence in re.split(r"(?<=[.!?])\s+", paragraph)
     )
+    numeric_digest = [d for d in digest if re.search(r"\d", d["title"])]
+    if len(digest) < 2 or not numeric_digest:
+        raise BriefingSyncError(
+            "SIT 를 만들 수 없습니다 — 숫자가 포함된 다이제스트가 최소 1건, 전체 2건 이상 필요합니다."
+        )
+
     if not has_directive:
         raise BriefingSyncError(
             "기사 본문에서 실행 지침 문장(촉구했다/권고했다/요구했다)을 찾지 못했습니다. "

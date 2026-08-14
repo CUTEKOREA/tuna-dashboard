@@ -99,7 +99,7 @@ const heroKpis: { primary: HeroKpi; secondary: HeroKpi[] } = {
   ],
 };
 
-export default function CosmoDashboard() {
+export default function CosmoDashboard({ heroOnly = false }: { heroOnly?: boolean } = {}) {
   const [activeTab, setActiveTab] = useState<CosmoTabKey>('home');
   const [pendingAnchor, setPendingAnchor] = useState<string>();
   const ActivePanel = PANELS[activeTab];
@@ -130,6 +130,7 @@ export default function CosmoDashboard() {
           minHeight={320}
         />
 
+        {heroOnly ? null : (<>
         <PillTabs
           tabs={COSMO_TABS}
           activeKey={activeTab}
@@ -151,6 +152,7 @@ export default function CosmoDashboard() {
         >
           <ActivePanel />
         </section>
+        </>)}
       </div>
     </CosmoNavigationProvider>
   );

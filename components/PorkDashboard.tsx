@@ -75,15 +75,25 @@ const WIDGET_MAP: Record<string, React.FC<any>> = {
   W9: W9_ASFSeafood, W10: W10_Portfolio, W11: W11_SelfSufficiency,
 };
 
-export default function PorkDashboard() {
+export default function PorkDashboard({ heroOnly = false }: { heroOnly?: boolean }) {
   const [activePart, setActivePart] = useState<PorkPillarId>('P1');
+  const porkHero = (
+    <div style={{ marginBottom: '2rem' }}>
+      <PorkHero />
+    </div>
+  );
+
+  if (heroOnly) {
+    return (
+      <div style={{ padding: '0 1.5rem 3rem', color: '#f8fafc', fontFamily: "'Inter',sans-serif" }}>
+        {porkHero}
+      </div>
+    );
+  }
 
   return (
     <div style={{ padding: '0 1.5rem 3rem', color: '#f8fafc', minHeight: '100vh', fontFamily: "'Inter',sans-serif" }}>
-
-      <div style={{ marginBottom: '2rem' }}>
-        <PorkHero />
-      </div>
+      {porkHero}
 
       {/* ═══ KPIs ═══ */}
       <div data-mobile-stack style={{ display: 'grid', gridTemplateColumns: 'repeat(6, 1fr)', gap: '1rem', marginBottom: '2rem' }}>

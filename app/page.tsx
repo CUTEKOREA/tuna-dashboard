@@ -263,6 +263,16 @@ export default function Home() {
     'bangkok-office': <BangkokOfficeDashboard />,
     'purse-seiner-db': <PurseSeinerDashboard />,
   };
+  const heroTeaserPanels: Partial<Record<ActiveMenu, React.ReactNode>> = {
+    market: <MarketDashboard heroOnly />,
+    fleet: <FleetCommandCenter heroOnly />,
+    unloading: <UnloadingStatus heroOnly />,
+    logistics: <LogisticsDashboard heroOnly />,
+    pork: <PorkDashboard heroOnly />,
+    'cross-intelligence': <CrossCommodityIntelligenceDashboard heroOnly />,
+    'purse-seiner-db': <PurseSeinerDashboard heroOnly />,
+    cosmo: <CosmoDashboard heroOnly />,
+  };
 
   return (
     <div className={styles.appWrapper}>
@@ -398,6 +408,8 @@ export default function Home() {
           ) : session ? (
           <>
           {isOperationMenuLocked && (
+            <>
+            {heroTeaserPanels[activeMenu]}
             <div className={styles.landingOverlay} style={{ position: 'relative', inset: 'auto', justifyContent: 'center', minHeight: 'calc(100vh - 80px)', padding: 'clamp(32px, 8vh, 92px) var(--space-4)' }}>
               <div className={styles.loginPanel} style={{ width: 'min(420px, 100%)' }}>
                 <Lock size={34} strokeWidth={1.5} style={{ margin: '0 auto 16px auto', color: 'var(--text-main)' }} />
@@ -405,7 +417,7 @@ export default function Home() {
                   전체 메뉴 접근 확인
                 </h2>
                 <p style={{ fontSize: '13px', color: 'var(--text-muted)', marginBottom: '22px', lineHeight: 1.6 }}>
-                  전체 대시보드 메뉴는 내부 확인 후 열람할 수 있습니다.
+                  핵심 지표는 공개되며, 상세 분석은 내부 확인 후 열람할 수 있습니다.
                 </p>
 
                 <form onSubmit={handleOperationPasswordSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '14px' }}>
@@ -460,6 +472,7 @@ export default function Home() {
                 </div>
               </div>
             </div>
+            </>
           )}
 
           {!isOperationMenuLocked && activeMenu === 'market' && (
@@ -468,6 +481,7 @@ export default function Home() {
             </>
           )}
 
+          {!isOperationMenuLocked && (
           <div style={{ position: 'relative' }}>
             <div style={{
               display: 'flex',
@@ -486,6 +500,7 @@ export default function Home() {
 
             </div>
           </div>
+          )}
 
           {isMgoModalOpen && <MgoChartModal currentPrice={mgoData.price} onClose={() => setIsMgoModalOpen(false)} />}
           </>

@@ -50,34 +50,41 @@ const decisions = [
   { icon: CalendarClock, level: '대서양', title: '8월 11일 일간 220 M/T', detail: 'P/MAS 120 · P/PATH 60 · P/DIS 40 M/T', tone: 'primary' },
 ] as const;
 
-export default function FleetCommandCenter() {
+export default function FleetCommandCenter({ heroOnly = false }: { heroOnly?: boolean }) {
   const [activeTab, setActiveTab] = useState<FleetTaskTab>('operations');
+  const fleetHero = (
+    <HeroZone
+      className={s.fleetHero}
+      variant="vessel"
+      title="선단 운영"
+      subtitle="주간 어획·VDS는 8월 9일, 대서양은 8월 11일, 운반선은 8월 12일 기준"
+      background={heroBackground}
+      primaryKpi={{ label: '주간 어획량', value: purseSeineCatch.summary.weeklyTotal, unit: '(M/T)' }}
+      secondaryKpis={[
+        { label: '8월 누적 어획량', value: purseSeineCatch.summary.monthlyTotal, unit: '(M/T)' },
+        { label: '연간 누적 어획량', value: purseSeineCatch.summary.annualTotal, unit: '(M/T)' },
+        { label: '운반선 선적량', value: carrierLoads.loadedTotalMt, unit: '(M/T)', decimals: 1, accent: '#f59e0b' },
+      ]}
+      strip={(
+        <div className={s.missionStrip}>
+          {decisions.map(({ icon: Icon, level, title, detail, tone }) => (
+            <article key={title} className={`${s.missionCard} ${s[`decision_${tone}`]}`}>
+              <Icon size={18} aria-hidden="true" />
+              <div><span className={s.decisionLevel}>{level}</span><strong>{title}</strong><p>{detail}</p></div>
+            </article>
+          ))}
+        </div>
+      )}
+    />
+  );
+
+  if (heroOnly) {
+    return <div className={s.wrapper}>{fleetHero}</div>;
+  }
 
   return (
     <div className={s.wrapper}>
-      <HeroZone
-        className={s.fleetHero}
-        variant="vessel"
-        title="선단 운영"
-        subtitle="주간 어획·VDS는 8월 9일, 대서양은 8월 11일, 운반선은 8월 12일 기준"
-        background={heroBackground}
-        primaryKpi={{ label: '주간 어획량', value: purseSeineCatch.summary.weeklyTotal, unit: '(M/T)' }}
-        secondaryKpis={[
-          { label: '8월 누적 어획량', value: purseSeineCatch.summary.monthlyTotal, unit: '(M/T)' },
-          { label: '연간 누적 어획량', value: purseSeineCatch.summary.annualTotal, unit: '(M/T)' },
-          { label: '운반선 선적량', value: carrierLoads.loadedTotalMt, unit: '(M/T)', decimals: 1, accent: '#f59e0b' },
-        ]}
-        strip={(
-          <div className={s.missionStrip}>
-            {decisions.map(({ icon: Icon, level, title, detail, tone }) => (
-              <article key={title} className={`${s.missionCard} ${s[`decision_${tone}`]}`}>
-                <Icon size={18} aria-hidden="true" />
-                <div><span className={s.decisionLevel}>{level}</span><strong>{title}</strong><p>{detail}</p></div>
-              </article>
-            ))}
-          </div>
-        )}
-      />
+      {fleetHero}
       <PillTabs
         className={s.taskTabs}
         tabs={taskTabs.map((tab) => ({ key: tab.id, label: tab.label }))}
