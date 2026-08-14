@@ -90,7 +90,7 @@ export default function FfaReportPage() {
       <header className={styles.header}>
         <div className={styles.headerTitle}>
           <button 
-            onClick={() => router.push('/value-chain')}
+            onClick={() => router.push('/')}
             className={styles.backBtn}
             title="대시보드로 돌아가기"
           >
@@ -107,7 +107,7 @@ export default function FfaReportPage() {
         </div>
         <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
           <button 
-            onClick={() => router.push('/value-chain')}
+            onClick={() => router.push('/')}
             style={{
               padding: '6px 14px', fontSize: '0.75rem', fontWeight: 700,
               background: 'rgba(56, 189, 248, 0.08) !important',
