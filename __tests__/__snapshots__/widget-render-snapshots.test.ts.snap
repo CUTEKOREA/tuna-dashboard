@@ -29,7 +29,7 @@ exports[`widget render snapshots > keeps 25 representative WidgetCard shells sta
     "shrimp-esg",
     "agri-supply",
   ],
-  "hash": "2d8029904b78026f271a944573e45c1a848a6f0dc16b6ca009bd05f874dfac70",
+  "hash": "999f93e826999088ba6e18653d3630548251d2a4541a20fd3a112c70c6627736",
   "pillars": [
     "S1",
     "S2",
@@ -80,7 +80,7 @@ exports[`widget render snapshots > keeps 25 representative WidgetCard shells sta
 
 exports[`widget render snapshots > keeps telemetry badge status markup stable 1`] = `
 {
-  "hash": "df17f5844108af2db4e994257980c15a4babfc4652efc60e86448193be9045ff",
+  "hash": "02faefbcd347e6961bd62cb5bf25cfe68cd2dc0d34d5e0171e92fd044308749a",
   "showsLiveSyncDate": false,
   "showsStaticSyncDate": true,
   "showsSyncedSyncDate": true,

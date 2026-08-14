@@ -12,7 +12,7 @@
 'use client';
 
 import React from 'react';
-import { motion, useReducedMotion } from 'framer-motion';
+import { AnimatePresence, motion, useReducedMotion } from 'framer-motion';
 import CountUp from 'react-countup';
 
 // ─── 공통 ──────────────────────────────────────────────────────────────────
@@ -25,6 +25,7 @@ export interface HeroKpi {
   unit: string;             // W-02: 단위 의무 — '(MT)' '(원/kg)' 등
   decimals?: number;
   accent?: string;          // 발광 색 (기본 cyan)
+  live?: boolean;           // 실제 LIVE 값일 때만 tick 모션 허용
 }
 
 export interface HeroWarning {
@@ -57,33 +58,75 @@ export interface HeroZoneProps {
 
 function KpiNumber({ kpi, primary }: { kpi: HeroKpi; primary?: boolean }) {
   const reduce = useReducedMotion();
+  const canAnimateLiveUpdate = Boolean(kpi.live && !reduce);
+  const decimals = kpi.decimals ?? 0;
+  const formattedValue = kpi.value.toLocaleString(undefined, {
+    minimumFractionDigits: decimals,
+    maximumFractionDigits: decimals,
+  });
+  const glow = kpi.accent ?? '#22d3ee';
+
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
-      <span style={{ fontSize: '0.8rem', color: 'var(--text-muted)', fontWeight: 500 }}>
+      <span style={{ fontSize: '0.8rem', color: 'var(--dsc-ink-muted)', fontWeight: 500 }}>
         {kpi.label}
       </span>
       <span
+        data-live-kpi={kpi.live ? 'true' : undefined}
+        aria-live={kpi.live ? 'polite' : undefined}
+        aria-atomic={kpi.live ? 'true' : undefined}
         style={{
           fontSize: primary ? 'var(--dsc-kpi-size)' : '1.6rem',
           fontWeight: 'var(--dsc-kpi-weight)' as React.CSSProperties['fontWeight'],
-          color: '#f8fafc',
+          color: 'var(--dsc-ink)',
           lineHeight: 1.05,
           whiteSpace: 'nowrap', // 숫자·단위 한 줄 유지 — 긴 소수 KPI가 (MT)만 떨어뜨리는 줄바꿈 방지
-          fontVariantNumeric: 'tabular-nums',
-          textShadow: primary ? `0 0 32px ${kpi.accent ?? '#22d3ee'}40` : undefined,
         }}
       >
-        {reduce ? (
-          kpi.value.toLocaleString(undefined, { maximumFractionDigits: kpi.decimals ?? 0 })
-        ) : (
-          <CountUp end={kpi.value} separator="," decimals={kpi.decimals ?? 0} duration={1.4} />
-        )}
+        <span style={{ display: 'inline-grid', overflow: 'hidden', verticalAlign: 'baseline' }}>
+          <AnimatePresence initial={false} mode="popLayout">
+            <motion.span
+              key={`${kpi.label}-${kpi.value}-${decimals}`}
+              data-kpi-number="true"
+              initial={canAnimateLiveUpdate ? { opacity: 0, y: 6 } : false}
+              animate={canAnimateLiveUpdate ? {
+                opacity: 1,
+                y: 0,
+                textShadow: [
+                  '0 0 0 transparent',
+                  `0 0 10px ${glow}`,
+                  '0 0 0 transparent',
+                ],
+              } : { opacity: 1, y: 0, textShadow: '0 0 0 transparent' }}
+              exit={canAnimateLiveUpdate ? { opacity: 0, y: -6 } : undefined}
+              transition={canAnimateLiveUpdate ? {
+                opacity: { duration: 0.08 },
+                y: { duration: 0.08 },
+                textShadow: { duration: 0.24, times: [0, 0.4, 1] },
+              } : { duration: 0 }}
+              style={{
+                display: 'inline-block',
+                gridArea: '1 / 1',
+                fontFamily: 'var(--dsc-font-mono)',
+                fontVariantNumeric: 'tabular-nums',
+              }}
+            >
+              {reduce || kpi.live ? (
+                formattedValue
+              ) : (
+                <CountUp end={kpi.value} separator="," decimals={decimals} duration={1.4} />
+              )}
+            </motion.span>
+          </AnimatePresence>
+        </span>
         <span
+          data-kpi-unit="true"
           style={{
             fontSize: 'var(--dsc-kpi-unit-size)',
             fontWeight: 500,
-            color: 'var(--text-muted)',
+            color: 'var(--dsc-ink-muted)',
             marginLeft: 8,
+            fontVariantNumeric: 'tabular-nums',
           }}
         >
           {kpi.unit}
@@ -101,7 +144,7 @@ function WarningPanel({ warning }: { warning: HeroWarning }) {
       style={{
         background: 'var(--dsc-warn-bg)',
         border: '1px solid var(--dsc-warn-border)',
-        borderRadius: 14,
+        borderRadius: 12,
         padding: '14px 16px',
         backdropFilter: 'var(--dsc-surface-blur)',
         WebkitBackdropFilter: 'var(--dsc-surface-blur)',
@@ -162,9 +205,7 @@ export default function HeroZone({
         borderRadius: 20,
         overflow: 'hidden',
         minHeight: resolvedMinHeight,
-        background: variant === 'kpi'
-          ? 'linear-gradient(160deg, var(--dsc-bg) 0%, var(--dsc-bg-deep) 100%)'
-          : 'var(--dsc-bg-deep)',
+        background: 'var(--dsc-bg-deep)',
         border: '1px solid var(--dsc-surface-border)',
         display: 'flex',
         flexDirection: 'column',
@@ -180,7 +221,7 @@ export default function HeroZone({
               position: 'absolute',
               inset: 0,
               background:
-                'linear-gradient(180deg, rgba(6,13,20,0.72) 0%, rgba(6,13,20,0.12) 34%, rgba(6,13,20,0.55) 100%)',
+                'linear-gradient(180deg, rgba(5,5,6,0.72) 0%, rgba(5,5,6,0.12) 34%, rgba(5,5,6,0.55) 100%)',
               pointerEvents: 'none',
             }}
           />
@@ -199,7 +240,7 @@ export default function HeroZone({
             margin: 0,
             fontSize: 'var(--dsc-title-size)',
             fontWeight: 'var(--dsc-title-weight)' as React.CSSProperties['fontWeight'],
-            color: '#f8fafc',
+            color: 'var(--dsc-ink)',
             letterSpacing: '-0.02em',
             lineHeight: 1.08,
           }}
@@ -207,7 +248,7 @@ export default function HeroZone({
           {title}
         </h1>
         {subtitle && (
-          <p style={{ margin: '6px 0 0', fontSize: '0.9rem', color: 'var(--text-muted)' }}>
+          <p style={{ margin: '6px 0 0', fontSize: '0.9rem', color: 'var(--dsc-ink-muted)' }}>
             {subtitle}
           </p>
         )}

@@ -2,7 +2,7 @@
 
 :root {
   /* Core Palette (Dark Mode Default) — Institutional Precision */
-  --bg-color: #0a0f1f;
+  --bg-color: #0a0a0b;
   --panel-bg: rgba(20, 28, 52, 0.6);
   --panel-border: rgba(140, 170, 255, 0.10);
   --text-main: #f8fafc;
@@ -154,13 +154,8 @@
   --title-gradient: linear-gradient(135deg, #e0f2fe 0%, #67e8f9 28%, #3b82f6 62%, #8b5cf6 100%);
   --title-glow: drop-shadow(0 0 14px rgba(56, 189, 248, 0.25));
 
-  /* Deep Ocean Aurora 백드롭 — cyan→indigo→violet→teal 오로라 글로우 (2026-06-28 [CC]) */
-  --bg-abyss:
-    radial-gradient(1200px 700px at 12% -8%, rgba(34, 211, 238, 0.14) 0%, transparent 60%),
-    radial-gradient(1100px 760px at 92% 4%, rgba(168, 85, 247, 0.13) 0%, transparent 58%),
-    radial-gradient(1000px 900px at 50% 118%, rgba(99, 102, 241, 0.15) 0%, transparent 60%),
-    radial-gradient(760px 520px at 78% 88%, rgba(45, 212, 191, 0.08) 0%, transparent 60%),
-    linear-gradient(180deg, #05070f 0%, #070b18 45%, #04060d 100%);
+  /* V2.5: Aurora 라디얼 배경 제거 — 무채색 깊이는 표면 명도와 보더로만 만든다. */
+  --bg-abyss: none;
 
   /* slim scrollbar tint */
   --scrollbar-thumb-tint: linear-gradient(180deg, rgba(34, 211, 238, 0.32), rgba(59, 130, 246, 0.22));
@@ -171,12 +166,18 @@
    * 스펙: docs/superpowers/specs/2026-08-15-dashboard-redesign-design.md
    * 기존 토큰 무손상 — V2 컴포넌트(HeroZone·PillTabs)만 참조.
    * ========================================================== */
-  /* 팔레트 — 심해 틸-차콜 (Raktor) */
-  --dsc-bg: #0a141d;
-  --dsc-bg-deep: #060d14;
-  --dsc-surface: rgba(16, 28, 39, 0.62);
-  --dsc-surface-border: rgba(148, 196, 220, 0.10);
-  --dsc-surface-blur: blur(14px) saturate(1.1);
+  /* V2.5 Institutional Grade — zinc 무채색 + 화면당 commodity 액센트 1색 */
+  --dsc-bg: #0a0a0b;
+  --dsc-bg-deep: #050506;
+  --dsc-surface: rgba(24, 24, 27, 0.72);
+  --dsc-surface-border: rgba(244, 244, 245, 0.07);
+  --dsc-surface-blur: blur(12px);
+  --dsc-ink: #fafafa;
+  --dsc-ink-muted: #a1a1aa;
+  --dsc-ink-faint: #52525b;
+  --dsc-card-radius: 12px;
+  --dsc-card-shadow: 0 8px 24px rgba(0, 0, 0, 0.18);
+  --dsc-font-mono: var(--font-ibm-plex-mono), 'IBM Plex Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
 
   /* 타이포 계층 (Twisty) — 웨이트 대비 200 vs 700 */
   --dsc-title-size: clamp(2.5rem, 5vw, 4rem);        /* 페이지 타이틀 48-64px */
@@ -984,4 +985,3 @@ h1, h2, h3, h4, .ds-heading-page, .ds-heading-section, .ds-heading-card {
     transform: none;
   }
 }
-

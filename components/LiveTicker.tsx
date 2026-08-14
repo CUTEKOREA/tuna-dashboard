@@ -6,11 +6,40 @@ import { TrendingUp, TrendingDown, Minus } from 'lucide-react';
 
 type Trend = 'up' | 'down' | 'neutral';
 
-interface TickerItem {
+export interface TickerItem {
   label: string;
   value: string;
   diff?: string;
   trend?: Trend;
+}
+
+export function TickerQuote({ item }: { item: TickerItem }) {
+  return (
+    <div className={styles.tickerItem}>
+      <span className={styles.label}>{item.label}</span>
+      <span data-ticker-value="true" className={styles.value} style={{ fontFamily: 'var(--dsc-font-mono)' }}>
+        {item.value}
+      </span>
+      {item.diff && (
+        <span
+          data-ticker-diff="true"
+          className={styles[item.trend || 'neutral'] || styles.neutral}
+          style={{
+            display: 'flex',
+            alignItems: 'center',
+            fontSize: '11px',
+            fontWeight: 'bold',
+            fontVariantNumeric: 'tabular-nums',
+          }}
+        >
+          {item.trend === 'up' && <TrendingUp size={12} style={{ marginRight: '2px' }} />}
+          {item.trend === 'down' && <TrendingDown size={12} style={{ marginRight: '2px' }} />}
+          {item.trend === 'neutral' && <Minus size={12} style={{ marginRight: '2px' }} />}
+          {item.diff}
+        </span>
+      )}
+    </div>
+  );
 }
 
 // 'YYYY-MM-DD' | 'YYYY.MM.DD' -> 'MM.DD' (else null — 미상 포맷은 표기 생략)
@@ -161,7 +190,7 @@ export default function LiveTicker() {
   if (items.length === 0) {
     return (
       <div className={styles.tickerWrap}>
-        <div className={styles.tickerPrefix}>연결 중</div>
+        <div className={styles.tickerPrefix} data-ticker-tone="neutral">연결 중</div>
         <div className={styles.tickerInner} style={{ animation: 'none', paddingLeft: 160, fontSize: 13, color: 'var(--text-muted)' }}>
           📡 글로벌 시장 데이터 연결 중...
         </div>
@@ -171,21 +200,10 @@ export default function LiveTicker() {
 
   return (
     <div className={styles.tickerWrap}>
-      <div className={styles.tickerPrefix}>시장 시세</div>
+      <div className={styles.tickerPrefix} data-ticker-tone="neutral">시장 시세</div>
       <div className={styles.tickerInner}>
         {items.map((item, idx) => (
-          <div key={idx} className={styles.tickerItem}>
-            <span className={styles.label}>{item.label}</span>
-            <span className={styles.value}>{item.value}</span>
-            {item.diff && (
-              <span className={styles[item.trend || 'neutral'] || styles.neutral} style={{ display: 'flex', alignItems: 'center', fontSize: '11px', fontWeight: 'bold' }}>
-                {item.trend === 'up' && <TrendingUp size={12} style={{ marginRight: '2px' }} />}
-                {item.trend === 'down' && <TrendingDown size={12} style={{ marginRight: '2px' }} />}
-                {item.trend === 'neutral' && <Minus size={12} style={{ marginRight: '2px' }} />}
-                {item.diff}
-              </span>
-            )}
-          </div>
+          <TickerQuote key={idx} item={item} />
         ))}
       </div>
     </div>
