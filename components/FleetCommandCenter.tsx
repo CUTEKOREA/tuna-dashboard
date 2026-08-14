@@ -35,7 +35,12 @@ const seinerHatches = Array.from({ length: 6 }, (_, hatchIndex) => ({
   id: `seiner-hatch-${hatchIndex + 1}`,
   intensity: clamp(carrierFillRatio * 6 - hatchIndex, 0, 1),
 }));
-const heroBackground = <VesselTopSVG kind="seiner" hatches={seinerHatches} />;
+// 선체는 우측 상단에 치우쳐 배치 — KPI 행(좌하단)과 겹치지 않게 (Raktor 구도)
+const heroBackground = (
+  <div className={s.heroVessel} aria-hidden>
+    <VesselTopSVG kind="seiner" hatches={seinerHatches} />
+  </div>
+);
 
 const decisions = [
   { icon: TrendingUp, level: '생산', title: `합작선 주간 비중 ${jointWeeklyShare}%`, detail: `${purseSeineCatch.summary.jointWeekly} M/T · KONA 183, MARI 140 M/T 견인`, tone: 'primary' },
