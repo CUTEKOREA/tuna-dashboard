@@ -1,5 +1,12 @@
 # HANDOFF
 
+> 마지막 업데이트: 2026-08-15 00:10 KST
+
+> 🐙 **2026-08-15 00:10 KST — 주꾸미 페이지 HTML 아카이브 + 메뉴 제거(로컬)** [Grok]:
+> - `/jukkumi` 내용을 agri_data `01_수산물(Seafood)/jukkumi/intelligence_reports/Jukkumi_Dashboard_Archive_2026-08-14.html`에 정적 보고서로 옮겼다(5기둥·34위젯).
+> - `origin/main` 전용 브랜치 `chore/remove-jukkumi-20260814`에서 메뉴·리라이트 제거. `/jukkumi`는 `app/jukkumi/page.tsx` `notFound()`. `/api/jukkumi*`와 컴포넌트는 존치.
+> - **프로덕션 미배포.** WebfootOctopus는 사이드바에서만 쓰여 레지스트리에서 뺐다.
+
 > 마지막 업데이트: 2026-08-15 00:05 KST
 
 > 🦐 **2026-08-15 00:05 KST — 새우 메뉴 제거 배포** [Grok]:

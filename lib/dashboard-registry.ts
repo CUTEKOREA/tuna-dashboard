@@ -15,8 +15,7 @@ export type SidebarIconKey =
   | 'Shrimp'
   | 'Snowflake'
   | 'TestTube'
-  | 'Waves'
-  | 'WebfootOctopus';
+  | 'Waves';
 
 interface SidebarMenuMeta {
   icon: SidebarIconKey;
@@ -43,7 +42,6 @@ export const DASHBOARD_MENU_CONFIGS = [
   { key: 'mackerel', title: '고등어', section: 'fishery', accent: 'cyan', shortcutOrder: 6, sidebar: { icon: 'FishSymbol', suffix: 'Mackerel' } },
   { key: 'galchi', title: '갈치', section: 'fishery', accent: 'cyan', shortcutOrder: 7, sidebar: { icon: 'Fish', suffix: 'Hairtail' } },
   { key: 'squid', title: '오징어', section: 'fishery', accent: 'cyan', shortcutOrder: 8, sidebar: { icon: 'Droplets', suffix: 'Squid' } },
-  { key: 'jukkumi', title: '주꾸미', section: 'fishery', accent: 'cyan', shortcutOrder: 9, sidebar: { icon: 'WebfootOctopus', suffix: 'Webfoot Octopus' } },
   { key: 'octopus', title: '낙지', section: 'fishery', accent: 'cyan', shortcutOrder: 10, sidebar: { icon: 'LongArmOctopus', suffix: 'Long-Arm Octopus' } },
   { key: 'pork', title: '돼지고기', section: 'livestock', accent: 'cyan', sidebar: { icon: 'Hexagon', suffix: 'Pork' } },
   { key: 'cross-intelligence', title: '통합 인텔리전스', section: 'strategy', accent: 'gold', sidebar: { icon: 'BarChart2', suffix: 'Cross' } },
@@ -155,7 +153,6 @@ export const DASHBOARD_PANEL_ORDER = [
   'mackerel',
   'galchi',
   'squid',
-  'jukkumi',
   'octopus',
   'pollock',
   'flatfish',
@@ -172,7 +169,6 @@ const SIDEBAR_SECTION_KEYS: Record<DashboardSection, readonly ActiveMenu[]> = {
     'mackerel',
     'galchi',
     'squid',
-    'jukkumi',
     'octopus',
     'pollock',
     'flatfish',

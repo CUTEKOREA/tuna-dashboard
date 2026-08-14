@@ -27,7 +27,7 @@ import PageTransition from '../components/PageTransition';
 import AmbientBackground from '../components/AmbientBackground';
 import CommandPalette from '../components/CommandPalette';
 import KeepAlivePanel from '../components/KeepAlivePanel';
-import { LongArmOctopusIcon, WebfootOctopusIcon } from '../components/SeafoodSidebarIcons';
+import { LongArmOctopusIcon } from '../components/SeafoodSidebarIcons';
 
 // ─── Dynamic imports (loaded on-demand per page) ───
 const MgoChartModal = dynamic(() => import('../components/MgoChartModal'));
@@ -38,7 +38,6 @@ const UnloadingStatus = dynamic(() => import('../components/UnloadingStatus'));
 const MackerelDashboard = dynamic(() => import('../components/MackerelDashboard'));
 const GalchiDashboard = dynamic(() => import('../components/GalchiDashboard'));
 const SquidDashboard = dynamic(() => import('../components/SquidDashboard'));
-const JukkumiDashboard = dynamic(() => import('../components/JukkumiDashboard'));
 const OctopusDashboard = dynamic(() => import('../components/OctopusDashboard'));
 const PollockDashboard = dynamic(() => import('../components/PollockDashboard'));
 const FlatfishDashboard = dynamic(() => import('../components/FlatfishDashboard'));
@@ -70,7 +69,6 @@ const SIDEBAR_ICONS: Record<SidebarIconKey, React.ElementType> = {
   Snowflake,
   TestTube,
   Waves,
-  WebfootOctopus: WebfootOctopusIcon,
 };
 
 const SIDEBAR_SUFFIX_STYLE = { fontSize: '0.75em', opacity: 0.8 };
@@ -266,7 +264,6 @@ export default function Home() {
     mackerel: <MackerelDashboard />,
     galchi: <GalchiDashboard />,
     squid: <SquidDashboard />,
-    jukkumi: <JukkumiDashboard />,
     octopus: <OctopusDashboard />,
     pollock: <PollockDashboard />,
     flatfish: <FlatfishDashboard />,
@@ -543,7 +540,7 @@ export default function Home() {
                       }}>
                         <div style={{ fontWeight: 700, color: 'var(--text-main)', marginBottom: '6px' }}>제공 메뉴 미리보기</div>
                         <div>📡 실시간 운영 — 시장 동향 · 선단 운영 · 하역 현황 · 물류·가공</div>
-                        <div>🐟 어종별 인텔리전스 — 참치 · 고등어 · 갈치 · 오징어 · 주꾸미 · 낙지 · 명태 · 가자미</div>
+                        <div>🐟 어종별 인텔리전스 — 참치 · 고등어 · 갈치 · 오징어 · 낙지 · 명태 · 가자미</div>
                         <div>🌾 농산물 — (현재 공개 메뉴 없음)</div>
                       </div>
                     </motion.div>
