@@ -123,7 +123,7 @@ function AldfgBody() {
       <div>
         <div style={{ fontSize: 12, fontWeight: 700, color: '#cbd5e1', marginBottom: 8 }}>POA-ALDFG 대응계획 5단계 (ISSF 2025-07 권고 구성)</div>
         <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8 }}>
-          {poaSteps.map((s, i) => (
+          {poaSteps.map((s) => (
             <div key={s.n} style={{ flex: '1 1 30%', minWidth: 150, background: 'rgba(13,148,136,0.1)', border: '1px solid rgba(45,212,191,0.25)', borderRadius: 8, padding: '10px 12px', position: 'relative' }}>
               <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 4 }}>
                 <span style={{ width: 20, height: 20, borderRadius: '50%', background: '#0d9488', color: '#fff', fontSize: 11, fontWeight: 700, display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>{s.n}</span>

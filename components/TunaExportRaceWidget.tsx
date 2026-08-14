@@ -70,8 +70,6 @@ const TunaExportRaceWidget = () => {
 
   useEffect(() => {
     let cancelled = false;
-    setLoading(true);
-    setError(false);
     fetch('/api/tuna/comtrade-race')
       .then((res) => {
         if (!res.ok) throw new Error(`HTTP ${res.status}`);
@@ -92,7 +90,13 @@ const TunaExportRaceWidget = () => {
     };
   }, [retryKey]);
 
-  const series = data?.series ?? [];
+  const handleRetry = () => {
+    setLoading(true);
+    setError(false);
+    setRetryKey((key) => key + 1);
+  };
+
+  const series = useMemo(() => data?.series ?? [], [data?.series]);
   const isEmpty = !loading && !error && series.length === 0;
 
   // 차트용 평탄화: { year, thailand: 40.3, ..., __row } (share %)
@@ -156,7 +160,7 @@ const TunaExportRaceWidget = () => {
           수출 점유율 데이터 조회에 실패했습니다.
         </p>
         <button
-          onClick={() => setRetryKey((k) => k + 1)}
+          onClick={handleRetry}
           style={{
             background: 'rgba(34,211,238,0.1)',
             border: '1px solid rgba(34,211,238,0.35)',

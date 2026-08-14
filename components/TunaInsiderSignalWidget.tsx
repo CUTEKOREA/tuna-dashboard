@@ -82,8 +82,6 @@ const TunaInsiderSignalWidget = () => {
 
   useEffect(() => {
     let cancelled = false;
-    setLoading(true);
-    setError(false);
     fetch('/api/tuna/insider-signal')
       .then((res) => {
         if (!res.ok) throw new Error(`HTTP ${res.status}`);
@@ -104,9 +102,15 @@ const TunaInsiderSignalWidget = () => {
     };
   }, [retryKey]);
 
+  const handleRetry = () => {
+    setLoading(true);
+    setError(false);
+    setRetryKey((key) => key + 1);
+  };
+
   const isLive = data?.isLive === true;
-  const events = data?.events ?? [];
-  const summary = data?.summary ?? [];
+  const events = useMemo(() => data?.events ?? [], [data?.events]);
+  const summary = useMemo(() => data?.summary ?? [], [data?.summary]);
   const isEmpty = !loading && !error && isLive && events.length === 0;
   const syncDate = new Date().toISOString().slice(0, 10);
 
@@ -154,7 +158,7 @@ const TunaInsiderSignalWidget = () => {
           전자공시 실시간 조회에 실패했습니다.
         </p>
         <button
-          onClick={() => setRetryKey((k) => k + 1)}
+          onClick={handleRetry}
           style={{
             background: 'rgba(34,211,238,0.1)',
             border: '1px solid rgba(34,211,238,0.35)',
