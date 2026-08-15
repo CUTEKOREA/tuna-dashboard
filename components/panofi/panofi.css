@@ -204,6 +204,14 @@
   font-variant-numeric: tabular-nums;  /* 세로로 자릿수가 맞아야 읽힌다 */
   white-space: nowrap;
 }
+/* 왼쪽 정렬 칸은 글이라 접혀야 한다. 전부 nowrap 이면 좁은 패널에서 잘리고
+   가로 스크롤이 생긴다 — 숫자 칸만 자릿수 정렬을 위해 nowrap 을 유지한다. */
+.panofi-root .pf-table td[style*="left"],
+.panofi-root .pf-table td:first-child {
+  white-space: normal;
+  word-break: keep-all;
+  line-height: 1.5;
+}
 .panofi-root .pf-table tbody tr:last-child td { border-bottom: 0; }
 .panofi-root .pf-table tr.sum td {
   border-top: 1px solid var(--pf-hair);
