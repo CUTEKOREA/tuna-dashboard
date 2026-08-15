@@ -1,3 +1,8 @@
+> 📬 **2026-08-15 16:10 KST — 관리자 전용 Gmail 읽기 전용 통합 메일 배포 후보** [Codex]:
+> - `/mail` 서버 관리자 게이트와 조건부 메뉴, Supabase TOTP AAL2, Gmail OAuth state+PKCE, 최근 20/50건·안 읽은 수·발신자·제목·수신 시각·미리보기·원본 링크, Google 권한 철회+암호화 연결 삭제를 구현했다. 메일 API 7개는 `no-store`, Node runtime, 고정 공개 origin과 변경 요청 Origin 검증을 사용한다.
+> - 운영 Supabase migration 적용, `mail_oauth_connections` 8열·0행 확인, TOTP 활성화, Gmail API·`gmail.readonly`·고정 callback·외부 테스트 사용자 1명 설정, Vercel Production 비밀 환경변수 8종 등록을 완료했다. 자격증명 값은 저장소·문서에 기록하지 않았다.
+> - 기준 브랜치가 최신 `origin/main`보다 뒤여서 배포 후보는 최신 main 위에 43개 소유 파일을 3-way 적용했다. 방콕 네이티브 대시보드와 파노피 메뉴를 보존하면서 메일 항목만 병합했다. 커밋·PR·운영 배포 및 실계정 MFA→Gmail 연결→20/50건→연결 해제 검증은 진행 중이다.
+>
 > 💡 **2026-08-15 14:40 KST — V3 «Answerable BI» 라이트 파일럿 /market 배포** [CC] (PR #393 병합·라이브 200):
 > - **사용자 결정 확정**: ① 색 방향 = Metabase Light 전환(다크는 토글 보존) ② 필터-내러티브 = «전체 기간 기준» 고정 라벨 먼저 ③ 파일럿 = market. 스펙 §7에 기록.
 > - **Phase 0 모순 소거**: Google Fonts CDN `@import` 제거(next/font 정본), Spotify 인젝션 블록(전역 pill 버튼·`!important` 카드 배경) 제거 — 컴포넌트가 자기 스타일 회복.

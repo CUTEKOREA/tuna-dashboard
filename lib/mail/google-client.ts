@@ -1,0 +1,248 @@
+import { GMAIL_READONLY_SCOPE } from './google-oauth';
+import { parseGmailMessage, type GmailMessageResource, type MailListItem } from './gmail-parser';
+
+type MailFetcher = (input: string | URL, init?: RequestInit) => Promise<Response>;
+
+const GOOGLE_TOKEN_URL = 'https://oauth2.googleapis.com/token';
+const GOOGLE_REVOKE_URL = 'https://oauth2.googleapis.com/revoke';
+const GMAIL_API_URL = 'https://gmail.googleapis.com/gmail/v1/users/me';
+const GMAIL_METADATA_CONCURRENCY = 8;
+const GOOGLE_REQUEST_TIMEOUT_MS = 15_000;
+
+function googleRequestSignal(): AbortSignal {
+  return AbortSignal.timeout(GOOGLE_REQUEST_TIMEOUT_MS);
+}
+
+interface GoogleTokenResponse {
+  access_token?: unknown;
+  refresh_token?: unknown;
+  expires_in?: unknown;
+  scope?: unknown;
+  token_type?: unknown;
+}
+
+interface ExchangeCodeOptions {
+  code: string;
+  codeVerifier: string;
+  clientId: string;
+  clientSecret: string;
+  redirectUri: string;
+  fetcher?: MailFetcher;
+}
+
+interface RefreshTokenOptions {
+  refreshToken: string;
+  clientId: string;
+  clientSecret: string;
+  fetcher?: MailFetcher;
+}
+
+interface FetchInboxOptions {
+  accessToken: string;
+  limit: number;
+  fetcher?: MailFetcher;
+}
+
+export interface GoogleAccessToken {
+  accessToken: string;
+  refreshToken?: string;
+  expiresIn: number;
+  scopes: string[];
+}
+
+function parseTokenResponse(value: unknown, requireRefreshToken: boolean): GoogleAccessToken {
+  if (!value || typeof value !== 'object') {
+    throw new Error('Google 인증 응답을 확인하지 못했습니다');
+  }
+
+  const response = value as GoogleTokenResponse;
+  if (
+    typeof response.access_token !== 'string'
+    || !response.access_token
+    || typeof response.expires_in !== 'number'
+    || !Number.isFinite(response.expires_in)
+    || response.expires_in <= 0
+    || (requireRefreshToken && (typeof response.refresh_token !== 'string' || !response.refresh_token))
+  ) {
+    throw new Error('Google 인증 응답을 확인하지 못했습니다');
+  }
+
+  const scopes = typeof response.scope === 'string'
+    ? response.scope.split(/\s+/).filter(Boolean)
+    : [];
+  if (requireRefreshToken && scopes.length > 0 && (scopes.length !== 1 || scopes[0] !== GMAIL_READONLY_SCOPE)) {
+    throw new Error('Gmail 읽기 권한을 확인하지 못했습니다');
+  }
+
+  return {
+    accessToken: response.access_token,
+    ...(typeof response.refresh_token === 'string' && response.refresh_token
+      ? { refreshToken: response.refresh_token }
+      : {}),
+    expiresIn: response.expires_in,
+    scopes: requireRefreshToken && scopes.length === 0 ? [GMAIL_READONLY_SCOPE] : scopes,
+  };
+}
+
+async function readJson(response: Response): Promise<unknown> {
+  try {
+    return await response.json();
+  } catch {
+    return null;
+  }
+}
+
+export async function exchangeGmailAuthorizationCode(
+  options: ExchangeCodeOptions,
+): Promise<GoogleAccessToken & { refreshToken: string }> {
+  const response = await (options.fetcher ?? fetch)(GOOGLE_TOKEN_URL, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+    cache: 'no-store',
+    signal: googleRequestSignal(),
+    body: new URLSearchParams({
+      code: options.code,
+      code_verifier: options.codeVerifier,
+      client_id: options.clientId,
+      client_secret: options.clientSecret,
+      redirect_uri: options.redirectUri,
+      grant_type: 'authorization_code',
+    }).toString(),
+  });
+  if (!response.ok) throw new Error('Google 인증을 완료하지 못했습니다');
+
+  const token = parseTokenResponse(await readJson(response), true);
+  if (!token.refreshToken) throw new Error('Google 인증 응답을 확인하지 못했습니다');
+  return { ...token, refreshToken: token.refreshToken };
+}
+
+export async function refreshGmailAccessToken(options: RefreshTokenOptions): Promise<GoogleAccessToken> {
+  const response = await (options.fetcher ?? fetch)(GOOGLE_TOKEN_URL, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+    cache: 'no-store',
+    signal: googleRequestSignal(),
+    body: new URLSearchParams({
+      refresh_token: options.refreshToken,
+      client_id: options.clientId,
+      client_secret: options.clientSecret,
+      grant_type: 'refresh_token',
+    }).toString(),
+  });
+  if (!response.ok) throw new Error('Google 인증을 갱신하지 못했습니다');
+
+  try {
+    return parseTokenResponse(await readJson(response), false);
+  } catch {
+    throw new Error('Google 인증을 갱신하지 못했습니다');
+  }
+}
+
+async function googleJson(
+  url: URL,
+  accessToken: string,
+  failureMessage: string,
+  fetcher: MailFetcher,
+): Promise<unknown> {
+  const response = await fetcher(url, {
+    method: 'GET',
+    headers: { Authorization: `Bearer ${accessToken}` },
+    cache: 'no-store',
+    signal: googleRequestSignal(),
+  });
+  if (!response.ok) throw new Error(failureMessage);
+  const data = await readJson(response);
+  if (!data || typeof data !== 'object') throw new Error(failureMessage);
+  return data;
+}
+
+export async function fetchGmailProfile(
+  accessToken: string,
+  fetcher: MailFetcher = fetch,
+): Promise<{ accountId: string; email: string }> {
+  const value = await googleJson(
+    new URL(`${GMAIL_API_URL}/profile`),
+    accessToken,
+    'Gmail 계정 정보를 불러오지 못했습니다',
+    fetcher,
+  );
+  const email = (value as { emailAddress?: unknown }).emailAddress;
+  if (typeof email !== 'string' || !email.trim()) {
+    throw new Error('Gmail 계정 정보를 불러오지 못했습니다');
+  }
+  const normalizedEmail = email.trim().toLowerCase();
+  return { accountId: normalizedEmail, email: normalizedEmail };
+}
+
+export async function fetchGmailInbox(options: FetchInboxOptions): Promise<{
+  unreadCount: number;
+  messages: MailListItem[];
+}> {
+  const fetcher = options.fetcher ?? fetch;
+  const limit = Math.min(50, Math.max(1, Math.trunc(options.limit) || 20));
+  const labelValue = await googleJson(
+    new URL(`${GMAIL_API_URL}/labels/INBOX`),
+    options.accessToken,
+    'Gmail 안 읽은 메일 수를 불러오지 못했습니다',
+    fetcher,
+  );
+  const unreadValue = (labelValue as { messagesUnread?: unknown }).messagesUnread;
+  const unreadCount = typeof unreadValue === 'number' && Number.isFinite(unreadValue)
+    ? Math.max(0, Math.trunc(unreadValue))
+    : 0;
+
+  const listUrl = new URL(`${GMAIL_API_URL}/messages`);
+  listUrl.searchParams.set('labelIds', 'INBOX');
+  listUrl.searchParams.set('maxResults', String(limit));
+  const listValue = await googleJson(
+    listUrl,
+    options.accessToken,
+    'Gmail 메일 목록을 불러오지 못했습니다',
+    fetcher,
+  );
+  const references = Array.isArray((listValue as { messages?: unknown }).messages)
+    ? (listValue as { messages: Array<{ id?: unknown }> }).messages
+    : [];
+
+  const selectedReferences = references.slice(0, limit);
+  const messages: MailListItem[] = [];
+  for (let start = 0; start < selectedReferences.length; start += GMAIL_METADATA_CONCURRENCY) {
+    const batch = selectedReferences.slice(start, start + GMAIL_METADATA_CONCURRENCY);
+    const parsedBatch = await Promise.all(batch.map(async (reference) => {
+      if (typeof reference.id !== 'string' || !reference.id) {
+        throw new Error('Gmail 메일 목록을 불러오지 못했습니다');
+      }
+      const messageUrl = new URL(`${GMAIL_API_URL}/messages/${encodeURIComponent(reference.id)}`);
+      messageUrl.searchParams.set('format', 'metadata');
+      for (const header of ['From', 'Subject', 'Date']) {
+        messageUrl.searchParams.append('metadataHeaders', header);
+      }
+      const message = await googleJson(
+        messageUrl,
+        options.accessToken,
+        'Gmail 메일을 불러오지 못했습니다',
+        fetcher,
+      );
+      return parseGmailMessage(message as GmailMessageResource);
+    }));
+    messages.push(...parsedBatch);
+  }
+
+  return { unreadCount, messages };
+}
+
+export async function revokeGoogleToken(
+  token: string,
+  fetcher: MailFetcher = fetch,
+): Promise<void> {
+  const response = await fetcher(GOOGLE_REVOKE_URL, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+    cache: 'no-store',
+    signal: googleRequestSignal(),
+    body: new URLSearchParams({ token }).toString(),
+  });
+  if (!response.ok && response.status !== 400) {
+    throw new Error('Google 권한을 철회하지 못했습니다');
+  }
+}

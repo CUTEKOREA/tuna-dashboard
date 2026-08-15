@@ -386,6 +386,7 @@ describe('dashboard registry', () => {
       'panofi',
       'cosmo',
       'bangkok-office',
+      'mail',
     ]);
     expect(PROTECTED_OPERATION_MENU_KEYS).toContain('bangkok-office');
     expect(PROTECTED_OPERATION_MENU_KEYS).not.toContain('cosmo');
@@ -411,13 +412,17 @@ describe('dashboard registry', () => {
   it('requires the existing session access check for every active menu without changing operation metadata', () => {
     const sessionAccessKeys = (dashboardRegistry as Record<string, unknown>).SESSION_ACCESS_MENU_KEYS;
 
-    expect(sessionAccessKeys).toEqual(VALID_MENUS);
+    expect(sessionAccessKeys).toEqual(VALID_MENUS.filter((menu) => menu !== 'mail'));
     expect(PROTECTED_OPERATION_MENU_KEYS).toEqual(['fleet', 'unloading', 'logistics', 'bangkok-office']);
+    expect(PROTECTED_OPERATION_MENU_KEYS).not.toContain('mail');
+    expect(KEYBOARD_SHORTCUT_MENUS).not.toContain('mail');
+    expect(PUBLIC_DASHBOARD_ROUTES).not.toContain('mail');
+    expect(DASHBOARD_COMMANDS.map((command) => command.key)).not.toContain('mail');
   });
 
   it('drives command search from the same valid menu registry', () => {
     expect(DASHBOARD_COMMANDS.map((command) => command.key)).toEqual(
-      VALID_MENUS.filter((menu) => menu !== 'pork'),
+      VALID_MENUS.filter((menu) => menu !== 'pork' && menu !== 'mail'),
     );
 
     for (const command of DASHBOARD_COMMANDS) {
@@ -498,7 +503,7 @@ describe('dashboard registry', () => {
     ]);
 
     expect(SIDEBAR_SECTIONS.map((section) => section.items.map((item) => item.key))).toEqual([
-      ['market', 'fleet', 'unloading', 'logistics', 'panofi', 'cosmo', 'bangkok-office'],
+      ['market', 'fleet', 'unloading', 'logistics', 'panofi', 'cosmo', 'bangkok-office', 'mail'],
     ]);
 
     const sidebarKeys = SIDEBAR_SECTIONS.flatMap((section) => section.items.map((item) => item.key));
@@ -525,6 +530,7 @@ describe('dashboard registry', () => {
       'panofi',
       'cosmo',
       'bangkok-office',
+      'mail',
       'purse-seiner-db',
     ]);
     expect(new Set(DASHBOARD_PANEL_ORDER)).toEqual(

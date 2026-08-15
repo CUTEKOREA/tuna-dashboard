@@ -9,6 +9,7 @@ export type SidebarIconKey =
   | 'FishSymbol'
   | 'Hexagon'
   | 'LongArmOctopus'
+  | 'Mail'
   | 'Navigation'
   | 'Shell'
   | 'Ship'
@@ -29,6 +30,7 @@ interface DashboardMenuConfigShape {
   section: DashboardSection;
   accent: DashboardAccent;
   requiresOperationAccess?: boolean;
+  requiresAdminAccess?: boolean;
   shortcutOrder?: number;
   sidebar?: SidebarMenuMeta;
 }
@@ -41,6 +43,7 @@ export const DASHBOARD_MENU_CONFIGS = [
   { key: 'panofi', title: '파노피', section: 'operation', accent: 'cyan', sidebar: { icon: 'Ship' } },
   { key: 'cosmo', title: '코스모', section: 'operation', accent: 'cyan', sidebar: { icon: 'Hexagon' } },
   { key: 'bangkok-office', title: '방콕사무소', section: 'operation', accent: 'cyan', requiresOperationAccess: true, sidebar: { icon: 'Factory' } },
+  { key: 'mail', title: '메일', section: 'operation', accent: 'cyan', requiresAdminAccess: true, sidebar: { icon: 'Mail' } },
   { key: 'pork', title: '돼지고기', section: 'livestock', accent: 'cyan', sidebar: { icon: 'Hexagon', suffix: 'Pork' } },
   { key: 'cross-intelligence', title: '통합 인텔리전스', section: 'strategy', accent: 'gold', sidebar: { icon: 'BarChart2', suffix: 'Cross' } },
   { key: 'purse-seiner-db', title: '선망선 DB', section: 'strategy', accent: 'cyan' },
@@ -96,7 +99,7 @@ const SIDEBAR_SECTION_ORDER: readonly DashboardSection[] = [
 ];
 
 export const VALID_MENUS = DASHBOARD_MENU_CONFIGS.map((menu) => menu.key) as readonly ActiveMenu[];
-export const SESSION_ACCESS_MENU_KEYS = VALID_MENUS;
+export const SESSION_ACCESS_MENU_KEYS = VALID_MENUS.filter((menu) => menu !== 'mail') as readonly ActiveMenu[];
 export const SESSION_ACCESS_MENUS = new Set<ActiveMenu>(SESSION_ACCESS_MENU_KEYS);
 
 export const DASHBOARD_TITLES = Object.freeze(
@@ -132,7 +135,7 @@ export const PROTECTED_OPERATION_MENU_KEYS = DASHBOARD_MENU_CONFIGS
 export const PROTECTED_OPERATION_MENUS = new Set<ActiveMenu>(PROTECTED_OPERATION_MENU_KEYS);
 
 export const DASHBOARD_COMMANDS = DASHBOARD_MENU_CONFIGS
-  .filter((menu) => !HIDDEN_DASHBOARD_MENU_KEYS.has(menu.key))
+  .filter((menu) => !HIDDEN_DASHBOARD_MENU_KEYS.has(menu.key) && menu.key !== 'mail')
   .map((menu) => ({
     key: menu.key,
     label: menu.title,
@@ -143,6 +146,7 @@ export const DASHBOARD_COMMANDS = DASHBOARD_MENU_CONFIGS
 export const PUBLIC_DASHBOARD_ROUTES = DASHBOARD_MENU_CONFIGS
   .filter((menu) => (
     !SESSION_ACCESS_MENUS.has(menu.key)
+    && menu.key !== 'mail'
     && !HIDDEN_DASHBOARD_MENU_KEYS.has(menu.key)
   ))
   .map((menu) => menu.key) as readonly ActiveMenu[];
@@ -158,11 +162,12 @@ export const DASHBOARD_PANEL_ORDER = [
   'panofi',
   'cosmo',
   'bangkok-office',
+  'mail',
   'purse-seiner-db',
 ] as const satisfies readonly ActiveMenu[];
 
 const SIDEBAR_SECTION_KEYS: Record<DashboardSection, readonly ActiveMenu[]> = {
-  operation: ['market', 'fleet', 'unloading', 'logistics', 'panofi', 'cosmo', 'bangkok-office'],
+  operation: ['market', 'fleet', 'unloading', 'logistics', 'panofi', 'cosmo', 'bangkok-office', 'mail'],
   fishery: [],
   strategy: [
   ],

@@ -33,6 +33,11 @@ yarn-error.log*
 # env files (can opt-in for committing if needed)
 .env*
 
+# OAuth 자격증명 다운로드 파일은 저장소에 절대 포함하지 않는다.
+client_secret*.json
+client_secrets*.json
+credentials*.json
+
 # vercel
 .vercel
 
