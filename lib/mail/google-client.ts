@@ -1,5 +1,6 @@
-import { GMAIL_READONLY_SCOPE } from './google-oauth';
+import { GMAIL_REQUIRED_SCOPES, hasRequiredGmailScopes } from './google-oauth';
 import { parseGmailMessage, type GmailMessageResource, type MailListItem } from './gmail-parser';
+import { buildGmailRawMessage, type GmailSendMessage } from './send-message';
 
 type MailFetcher = (input: string | URL, init?: RequestInit) => Promise<Response>;
 
@@ -43,6 +44,12 @@ interface FetchInboxOptions {
   fetcher?: MailFetcher;
 }
 
+interface SendGmailMessageOptions {
+  accessToken: string;
+  message: GmailSendMessage;
+  fetcher?: MailFetcher;
+}
+
 export interface GoogleAccessToken {
   accessToken: string;
   refreshToken?: string;
@@ -70,8 +77,8 @@ function parseTokenResponse(value: unknown, requireRefreshToken: boolean): Googl
   const scopes = typeof response.scope === 'string'
     ? response.scope.split(/\s+/).filter(Boolean)
     : [];
-  if (requireRefreshToken && scopes.length > 0 && (scopes.length !== 1 || scopes[0] !== GMAIL_READONLY_SCOPE)) {
-    throw new Error('Gmail 읽기 권한을 확인하지 못했습니다');
+  if (scopes.length > 0 && !hasRequiredGmailScopes(scopes)) {
+    throw new Error('Gmail 권한을 확인하지 못했습니다');
   }
 
   return {
@@ -80,7 +87,7 @@ function parseTokenResponse(value: unknown, requireRefreshToken: boolean): Googl
       ? { refreshToken: response.refresh_token }
       : {}),
     expiresIn: response.expires_in,
-    scopes: requireRefreshToken && scopes.length === 0 ? [GMAIL_READONLY_SCOPE] : scopes,
+    scopes: scopes.length === 0 ? [...GMAIL_REQUIRED_SCOPES] : Array.from(new Set(scopes)).sort(),
   };
 }
 
@@ -229,6 +236,28 @@ export async function fetchGmailInbox(options: FetchInboxOptions): Promise<{
   }
 
   return { unreadCount, messages };
+}
+
+export async function sendGmailMessage(options: SendGmailMessageOptions): Promise<{
+  id: string;
+  threadId: string;
+}> {
+  const response = await (options.fetcher ?? fetch)(`${GMAIL_API_URL}/messages/send`, {
+    method: 'POST',
+    headers: {
+      Authorization: `Bearer ${options.accessToken}`,
+      'Content-Type': 'application/json',
+    },
+    cache: 'no-store',
+    signal: googleRequestSignal(),
+    body: JSON.stringify({ raw: buildGmailRawMessage(options.message) }),
+  });
+  if (!response.ok) throw new Error('Gmail 메일을 발송하지 못했습니다');
+  const value = await readJson(response) as { id?: unknown; threadId?: unknown } | null;
+  if (typeof value?.id !== 'string' || !value.id || typeof value.threadId !== 'string' || !value.threadId) {
+    throw new Error('Gmail 메일 발송 응답을 확인하지 못했습니다');
+  }
+  return { id: value.id, threadId: value.threadId };
 }
 
 export async function revokeGoogleToken(

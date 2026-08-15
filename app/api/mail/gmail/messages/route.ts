@@ -1,5 +1,5 @@
 import { fetchGmailInbox, refreshGmailAccessToken } from '@/lib/mail/google-client';
-import { GMAIL_READONLY_SCOPE } from '@/lib/mail/google-oauth';
+import { hasRequiredGmailScopes } from '@/lib/mail/google-oauth';
 import { mailError, mailJson } from '@/lib/mail/http';
 import { authorizeMailRequest } from '@/lib/mail/request-auth';
 import { getGoogleOAuthConfig, getMailEncryptionKey } from '@/lib/mail/server-env';
@@ -18,10 +18,9 @@ export async function GET(request: Request) {
   try {
     const connection = await getMailConnection(createMailServiceClient(), access.userId, 'gmail');
     if (!connection) return mailError(409, 'gmail_not_connected');
-    if (
-      connection.granted_scopes.length !== 1
-      || connection.granted_scopes[0] !== GMAIL_READONLY_SCOPE
-    ) return mailError(403, 'invalid_gmail_scope');
+    if (!hasRequiredGmailScopes(connection.granted_scopes)) {
+      return mailError(403, 'invalid_gmail_scope');
+    }
 
     const config = getGoogleOAuthConfig();
     const refreshed = await refreshGmailAccessToken({

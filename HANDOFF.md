@@ -13,6 +13,12 @@
 > - 3라운드 나머지: fleet 배지/툴팁/VDS·PNA 라이트 7건, logistics 공장 차트 좌우 배열, bangkok 스톡 지표 평균 입도, 사이드바 «참치 산업 인텔리전스·미경1팀 이동건», 빠른 검색 버튼 제거. 383 테스트·verify GREEN.
 > - **주의**: #413 병합 시 Vercel 프로덕션 자동 트리거 누락(webhook miss) — 빈 커밋 재트리거로 해소. 재발 시 같은 방법.
 
+> 📤 **2026-08-15 18:44 KST — 관리자 Gmail 읽기·즉시 발송 V1 구현** [Codex]:
+> - 사용자 선택에 따라 기존 `gmail.readonly`에 최소 `gmail.send`만 추가했다. OAuth 요청·callback·저장 scope·목록·발송 경로는 두 scope의 정확한 집합만 허용하므로 기존 읽기 전용 연결은 재동의 전까지 fail-closed다. 초안·라벨 변경·삭제·HTML·첨부·다중 수신자·자동 발송은 추가하지 않았다.
+> - `/api/mail/gmail/send`는 관리자+AAL2, 고정 trusted Origin, JSON·40KB 요청 상한, 수신자 1명·제목 200자·일반 텍스트 10,000자, CRLF/NUL 차단, `no-store`를 강제한다. UI는 발송 취소 불가 안내와 브라우저 최종 확인을 거치며 이중 클릭을 잠근다.
+> - UUID idempotency key와 Supabase `mail_send_requests` 원자적 advisory lock을 추가했다. 분당 5건·일 50건을 제한하고 `pending/sent/unknown` 상태와 Gmail message ID만 저장한다. 수신자·제목·본문·OAuth token은 감사 테이블·응답·로그·Web Storage에 저장하지 않는다. 미확정 네트워크 결과는 재발송하지 않고 보낸편지함 확인을 요구한다.
+> - focused 48테스트, 대상 ESLint, TypeScript와 전체 `npm run verify`를 통과했다: ESLint 0 errors·기존 5 warnings, Vitest 72파일·403테스트, API cache 151/151, production build 117 pages, bundle 32 routes. 다음 단계는 독립 반증 완료, migration 적용, PR 병합·Production 배포, Google 재동의와 자기 자신에게 보내는 실계정 발송 검증이다.
+
 > 📬 **2026-08-15 17:01 KST — 관리자 전용 Gmail 읽기 전용 통합 메일 운영 배포·MFA 실계정 교정** [Codex] (PR #407·#410):
 > - `/mail` 서버 관리자 게이트와 조건부 메뉴, Supabase TOTP AAL2, Gmail OAuth state+PKCE, 최근 20/50건·안 읽은 수·발신자·제목·수신 시각·미리보기·원본 링크, Google 권한 철회+암호화 연결 삭제를 구현했다. 메일 API 7개는 `no-store`, Node runtime, 고정 공개 origin과 변경 요청 Origin 검증을 사용한다.
 > - 운영 Supabase migration 적용, `mail_oauth_connections` 8열·0행 확인, TOTP 활성화, Gmail API·`gmail.readonly`·고정 callback·외부 테스트 사용자 1명 설정, Vercel Production 비밀 환경변수 8종 등록을 완료했다. 자격증명 값은 저장소·문서에 기록하지 않았다.

@@ -1,7 +1,7 @@
 'use client';
 
-import { useCallback, useEffect, useState } from 'react';
-import { ExternalLink, Inbox, Link2, Loader2, LockKeyhole, RefreshCw, ShieldCheck, Unlink } from 'lucide-react';
+import { type FormEvent, useCallback, useEffect, useRef, useState } from 'react';
+import { ExternalLink, Inbox, Link2, Loader2, LockKeyhole, MailPlus, RefreshCw, Send, ShieldCheck, Unlink } from 'lucide-react';
 import styles from './MailInboxDashboard.module.css';
 
 type MailStatus = {
@@ -85,10 +85,15 @@ export default function MailInboxDashboard() {
   const [enrollment, setEnrollment] = useState<Enrollment | null>(null);
   const [verificationCode, setVerificationCode] = useState('');
   const [limit, setLimit] = useState(20);
+  const [recipient, setRecipient] = useState('');
+  const [subject, setSubject] = useState('');
+  const [messageText, setMessageText] = useState('');
   const [loading, setLoading] = useState(true);
   const [working, setWorking] = useState(false);
   const [error, setError] = useState('');
   const [notice, setNotice] = useState('');
+  const sendingRef = useRef(false);
+  const sendRequestIdRef = useRef<string | null>(null);
 
   const loadStatus = useCallback(async () => {
     setLoading(true);
@@ -246,6 +251,54 @@ export default function MailInboxDashboard() {
     }
   };
 
+  const sendMail = async (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    if (sendingRef.current) return;
+    const confirmed = window.confirm('메일은 즉시 발송되며 취소할 수 없습니다. 입력한 내용을 확인했고 발송하시겠습니까?');
+    if (!confirmed) return;
+
+    sendingRef.current = true;
+    const requestId = sendRequestIdRef.current ?? crypto.randomUUID();
+    sendRequestIdRef.current = requestId;
+    setWorking(true);
+    setError('');
+    setNotice('');
+    try {
+      const response = await mailRequest('/api/mail/gmail/send', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Idempotency-Key': requestId,
+        },
+        body: JSON.stringify({ to: recipient, subject, text: messageText }),
+      });
+      const value = await response.json().catch(() => ({})) as { code?: string };
+      if (!response.ok) {
+        if (response.status < 500 && value.code !== 'mail_send_status_unknown') {
+          sendRequestIdRef.current = null;
+        }
+        setError(value.code === 'mail_send_rate_limited'
+          ? '발송 횟수 제한에 도달했습니다. 잠시 후 다시 시도해주세요.'
+          : value.code === 'mail_send_status_unknown'
+            ? '발송 상태를 확인할 수 없습니다. 중복 발송을 막기 위해 Gmail 보낸편지함을 먼저 확인해주세요.'
+            : response.status === 400
+              ? '받는 사람·제목·본문을 확인해주세요.'
+              : '메일을 발송하지 못했습니다. Gmail 보낸편지함을 확인한 뒤 다시 시도해주세요.');
+        return;
+      }
+      sendRequestIdRef.current = null;
+      setRecipient('');
+      setSubject('');
+      setMessageText('');
+      setNotice('메일을 즉시 발송했습니다.');
+    } catch {
+      setError('메일을 발송하지 못했습니다. 잠시 후 다시 시도해주세요.');
+    } finally {
+      sendingRef.current = false;
+      setWorking(false);
+    }
+  };
+
   if (loading) {
     return (
       <section className={styles.shell} aria-live="polite">
@@ -277,9 +330,9 @@ export default function MailInboxDashboard() {
     <section className={styles.shell}>
       <header className={styles.header}>
         <div>
-          <div className={styles.eyebrow}><ShieldCheck size={15} /> 관리자 전용 · 읽기 전용</div>
+          <div className={styles.eyebrow}><ShieldCheck size={15} /> 관리자 전용 · 읽기 및 발송</div>
           <h1><Inbox size={28} /> 통합 메일</h1>
-          <p>Gmail 메타데이터만 일시 조회하며 원문은 Gmail에서 확인합니다.</p>
+          <p>메일 목록을 조회하고 확인한 일반 텍스트 메일만 즉시 발송합니다.</p>
         </div>
         {status.gmail && (
           <div className={styles.connectionBadge}>
@@ -352,8 +405,8 @@ export default function MailInboxDashboard() {
       {!status.mfa.required && !status.gmail && (
         <div className={styles.centerCard}>
           <Link2 size={36} />
-          <h2>Gmail 읽기 전용 연결</h2>
-          <p>최근 메일의 발신자·제목·수신 시각·미리보기만 조회합니다.</p>
+          <h2>Gmail 읽기·발송 연결</h2>
+          <p>최근 메일을 조회하고 직접 작성한 일반 텍스트 메일을 발송합니다.</p>
           <button type="button" className={styles.primaryButton} disabled={working} onClick={connectGmail}>
             Gmail 연결
           </button>
@@ -362,6 +415,66 @@ export default function MailInboxDashboard() {
 
       {!status.mfa.required && status.gmail && (
         <>
+          <form className={styles.sendPanel} onSubmit={sendMail}>
+            <div className={styles.sendPanelHeader}>
+              <div>
+                <span className={styles.eyebrow}><MailPlus size={15} /> 새 메일 보내기</span>
+                <h2>일반 텍스트 메일</h2>
+              </div>
+              <p>발송 후 취소할 수 없으며 첨부파일과 자동 발송은 지원하지 않습니다.</p>
+            </div>
+            <div className={styles.sendFields}>
+              <label>
+                받는 사람
+                <input
+                  type="email"
+                  autoComplete="email"
+                  maxLength={254}
+                  required
+                  value={recipient}
+                  onChange={(event) => {
+                    sendRequestIdRef.current = null;
+                    setRecipient(event.target.value);
+                  }}
+                />
+              </label>
+              <label>
+                제목
+                <input
+                  type="text"
+                  maxLength={200}
+                  required
+                  value={subject}
+                  onChange={(event) => {
+                    sendRequestIdRef.current = null;
+                    setSubject(event.target.value);
+                  }}
+                />
+              </label>
+              <label className={styles.messageField}>
+                본문
+                <textarea
+                  maxLength={10_000}
+                  required
+                  rows={7}
+                  value={messageText}
+                  onChange={(event) => {
+                    sendRequestIdRef.current = null;
+                    setMessageText(event.target.value);
+                  }}
+                />
+                <span>{messageText.length.toLocaleString('ko-KR')} / 10,000자</span>
+              </label>
+            </div>
+            <div className={styles.sendActions}>
+              <span>발송 버튼을 누르면 최종 확인창이 표시됩니다.</span>
+              <button type="submit" className={styles.primaryButton} disabled={working}>
+                {working ? <Loader2 className={styles.spinner} size={15} /> : <Send size={15} />}
+                즉시 발송
+              </button>
+            </div>
+          </form>
+
           <div className={styles.toolbar}>
             <div className={styles.unreadMetric}>
               <span>안 읽은 메일</span>
