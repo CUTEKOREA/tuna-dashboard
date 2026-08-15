@@ -1058,8 +1058,8 @@ img, video, canvas, svg {
   --dsc-warn-border: rgba(227, 89, 94, 0.35);
   --dsc-warn-ink: #9f1239;
   --dsc-scrim-rgb: 249, 250, 251;
-  /* Metabase 대형 타이틀 문법 — V2 얇은 250 대신 볼드 + 네거티브 트래킹 (사용자 지시 2026-08-15) */
-  --dsc-title-weight: 700;
+  /* Metabase 대형 타이틀 문법 — 사용자 지시로 900 (2026-08-15 «두껍게» 2차 상향) */
+  --dsc-title-weight: 900;
 
   /* 레거시 토큰 브리지 — market 구위젯이 참조하는 층 */
   --bg-color: #f9fafb;
