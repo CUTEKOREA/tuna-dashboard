@@ -19,6 +19,7 @@
 > - UUID idempotency key와 Supabase `mail_send_requests` 원자적 advisory lock을 추가했다. 분당 5건·일 50건을 제한하고 `pending/sent/unknown` 상태와 Gmail message ID만 저장한다. 수신자·제목·본문·OAuth token은 감사 테이블·응답·로그·Web Storage에 저장하지 않는다. 미확정 네트워크 결과는 재발송하지 않고 보낸편지함 확인을 요구한다.
 > - 독립 발송 리뷰에서 chunked 요청 선버퍼링과 긴 RFC 2047 encoded-word를 차단 finding으로 확인했다. RED 테스트 후 본문을 40KB에서 즉시 중단하는 스트리밍 reader와 UTF-8 문자 경계 제목 folding으로 수정했다. Authorization finding은 패치 마스킹 오탐이며 실제 `Bearer` 템플릿·TypeScript·build 통과로 확인했다.
 > - 별도 최종 리뷰에서 브라우저 응답 유실 후 입력 변경 시 새 UUID가 생성될 수 있는 중복 위험을 확인했다. 네트워크 예외·5xx·상태 미확정을 모두 불확실 상태로 묶어 입력·발송을 잠그고, 관리자가 Gmail 보낸편지함 확인을 명시적으로 승인한 뒤에만 UUID를 폐기하도록 RED→GREEN 수정했다.
+> - 후속 리뷰에서 409 응답 본문만 유실되면 상태 코드를 일반 오류로 오판할 수 있음을 확인했다. 409의 code 없음·unknown은 fail-closed 불확실로, 명확한 `gmail_not_connected`만 발송 전 오류로 판정하는 순수 함수와 회귀 테스트를 추가했다.
 > - focused 48테스트, 대상 ESLint, TypeScript와 전체 `npm run verify`를 통과했다: ESLint 0 errors·기존 5 warnings, Vitest 72파일·403테스트, API cache 151/151, production build 117 pages, bundle 32 routes. 다음 단계는 독립 반증 완료, migration 적용, PR 병합·Production 배포, Google 재동의와 자기 자신에게 보내는 실계정 발송 검증이다.
 
 > 📬 **2026-08-15 17:01 KST — 관리자 전용 Gmail 읽기 전용 통합 메일 운영 배포·MFA 실계정 교정** [Codex] (PR #407·#410):

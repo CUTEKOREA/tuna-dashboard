@@ -2,6 +2,7 @@
 
 import { type FormEvent, useCallback, useEffect, useRef, useState } from 'react';
 import { ExternalLink, Inbox, Link2, Loader2, LockKeyhole, MailPlus, RefreshCw, Send, ShieldCheck, Unlink } from 'lucide-react';
+import { isUncertainMailSendResponse } from '@/lib/mail/send-response';
 import styles from './MailInboxDashboard.module.css';
 
 type MailStatus = {
@@ -275,7 +276,7 @@ export default function MailInboxDashboard() {
       });
       const value = await response.json().catch(() => ({})) as { code?: string };
       if (!response.ok) {
-        if (response.status >= 500 || value.code === 'mail_send_status_unknown') {
+        if (isUncertainMailSendResponse(response.status, value.code)) {
           setSendUncertain(true);
           setError('발송 상태를 확인할 수 없습니다. 중복 발송을 막기 위해 Gmail 보낸편지함을 먼저 확인해주세요.');
           return;
