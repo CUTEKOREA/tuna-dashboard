@@ -1,3 +1,9 @@
+> 🗂️ **2026-08-15 14:05 KST — 방콕사무소 네이티브 탭 전환 (PR #390 병합) + Metabase V3 기획서** [CC]:
+> - **/bangkok-office iframe → 파노피형 PillTabs 7탭 완전 이전.** 원본 주간보고 HTML의 `<script id="payload">` JSON(287주 시계열+캐너리·트레이더·클레임·상관·품질)을 sync 스크립트가 fail-closed 추출(`public/data/bangkok_weekly_payload.json`) → `lib/data/bangkok-weekly.ts` 단일 인테이크 → `components/bangkok/` 탭 7개(개관·원어 시세·하역·트레이더·캐너리·재고·품질 클레임·선행지표·데이터 품질). 탭 구현은 Workflow 7 에이전트 병렬 fan-out(파일 분리·충돌 0), 조립·검증은 CC.
+> - **반증 리뷰(작성자≠검증자)가 병합 전 2건 정정**: P0 — 재고 점유 차트가 %를 «천톤»으로 오표기(같은 화면 스냅샷 표와 모순), P1 — note가 주간보고 파생 568건을 «원장»으로 오인용(원장은 761건). 주간 하역치 비가산성 note 1줄도 추가.
+> - 계약 테스트 갱신: iframe 부재+탭 렌더+heroOnly 티저, payload passthrough 멱등·fail-closed 2종, 인테이크 관계 불변식(주차 합=287, 트레이더 월합=계산합). verify 통과, 7탭 실화면 overflow 0·console error 0.
+> - **Metabase 전면 개편 기획서 작성**: `docs/superpowers/specs/2026-08-15-metabase-bi-redesign-design.md` — 병렬 리서치 4축(디자인 hex 실측·기능 이식성 15종 판정·drill/필터 문법·현행 격차 grep 실측) 기반 V3 "Answerable BI". 사용자 결정 대기: ① 색 방향(Light 전환 추천) ② SIT/TAK-필터 정합성 정책 ③ 파일럿 페이지. 리서치 원문은 세션 스크래치패드 `mb_*.md` 4종.
+
 > 📐 **2026-08-15 13:40 KST — `/panofi` 가나 산업 탭 배치 정리 + 표 잘림 근본 수정** [CC]:
 > - 사용자 요청대로 **테마항 가공공장 패널을 밸류 사다리 우측으로** 옮겼다(둘 다 6칸, 한 줄에 나란히).
 > - **「비고」 열을 제거**했다. 다만 거기 담겨 있던 두 사실 — 이치반 흡수와 고용 수치 출처 혼선 — 은 지우지 않고 **패널 각주로 옮겼다**. 열은 없애되 사실은 남긴다.
