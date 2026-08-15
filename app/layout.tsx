@@ -43,7 +43,7 @@ export const viewport: Viewport = {
   initialScale: 1,
   maximumScale: 5,
   viewportFit: 'cover',
-  themeColor: '#0a0f1f',
+  themeColor: '#f9fafb',
 };
 
 export const metadata: Metadata = {
