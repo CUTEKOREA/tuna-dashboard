@@ -13,14 +13,22 @@
 > - 3라운드 나머지: fleet 배지/툴팁/VDS·PNA 라이트 7건, logistics 공장 차트 좌우 배열, bangkok 스톡 지표 평균 입도, 사이드바 «참치 산업 인텔리전스·미경1팀 이동건», 빠른 검색 버튼 제거. 383 테스트·verify GREEN.
 > - **주의**: #413 병합 시 Vercel 프로덕션 자동 트리거 누락(webhook miss) — 빈 커밋 재트리거로 해소. 재발 시 같은 방법.
 
-> 📤 **2026-08-15 18:44 KST — 관리자 Gmail 읽기·즉시 발송 V1 구현** [Codex]:
+> 📬 **2026-08-15 19:59 KST — 관리자 Gmail 상세·회신·단건 휴지통 V1 구현, 운영 적용 대기** [Codex]:
+> - 사용자 승인 범위는 받은메일 상세 보기, 회신 항목 자동 채움, 선택 메일 1건의 복구 가능한 Gmail 휴지통 이동이다. 자동 발송·일괄 이동·복구 불가능한 삭제는 제외한다. OAuth exact scope 계약은 `gmail.readonly`+`gmail.send`+`gmail.modify`로 확대했으며 기존 연결은 재동의 전까지 fail-closed다.
+> - 상세 조회는 Gmail `format=full`을 서버에서 plain text로만 파싱한다. `text/plain` 우선, HTML-only 텍스트 변환, 첨부 제외, UTF-8/base64url·MIME 깊이 8·노드 100·본문 50,000자 제한을 적용하고 HTML을 브라우저에 전달하지 않는다. `Reply-To` 우선 단일 주소와 Message-ID/References/threadId만 bounded 추출한다.
+> - 회신 작성은 받는 사람·중복 없는 `Re:` 제목·최대 10,000자 원문 인용을 폼에 자동 입력하지만 기존 즉시 발송 최종 확인을 그대로 요구한다. 수신자나 제목을 바꾸면 thread 메타데이터를 폐기해 일반 새 메일로 전환한다. 서버는 threadId·In-Reply-To·References를 다시 검증하고 Gmail send의 threadId와 RFC 헤더를 함께 보낸다.
+> - 휴지통 API는 관리자+AAL2, trusted Origin, JSON 1KB, Gmail ID·UUID 검증, `no-store`를 강제하고 Gmail `users.messages.trash`만 호출한다. `mail_message_actions` service-role 전용 원장은 사용자 advisory lock, 분당 10건·일 100건, pending/completed/unknown 상태를 기록하고 메시지 ID 원문 대신 SHA-256만 저장한다. UUID는 예약 시점부터 해당 SHA-256에 결속되며 unknown 재시도에서 다른 메일 ID로 바꿀 수 없다. UI도 미확정 `{messageId, requestId}`를 상세 닫기·전환에서 보존하고, 목록 새로고침으로 원 메일 소멸을 확인하거나 같은 UUID로 재시도하기 전에는 다른 메일의 휴지통 이동을 막는다.
+> - fresh `npm run verify`는 ESLint 0 errors·기존 5 warnings, Vitest 77파일·430테스트, API cache 153/153, production build 117 pages, bundle 32 routes를 통과했다. 독립 보안 반증, migration 운영 적용, Google Data Access `gmail.modify` 등록, 기존 Gmail 연결 해제·재동의, 실계정 상세/회신/휴지통 복구 확인은 아직 남아 있다.
+>
+> 📤 **2026-08-15 19:29 KST — 관리자 Gmail 읽기·즉시 발송 V1 Production 완료** [Codex] (PR #429):
 > - 사용자 선택에 따라 기존 `gmail.readonly`에 최소 `gmail.send`만 추가했다. OAuth 요청·callback·저장 scope·목록·발송 경로는 두 scope의 정확한 집합만 허용하므로 기존 읽기 전용 연결은 재동의 전까지 fail-closed다. 초안·라벨 변경·삭제·HTML·첨부·다중 수신자·자동 발송은 추가하지 않았다.
 > - `/api/mail/gmail/send`는 관리자+AAL2, 고정 trusted Origin, JSON·40KB 요청 상한, 수신자 1명·제목 200자·일반 텍스트 10,000자, CRLF/NUL 차단, `no-store`를 강제한다. UI는 발송 취소 불가 안내와 브라우저 최종 확인을 거치며 이중 클릭을 잠근다.
 > - UUID idempotency key와 Supabase `mail_send_requests` 원자적 advisory lock을 추가했다. 분당 5건·일 50건을 제한하고 `pending/sent/unknown` 상태와 Gmail message ID만 저장한다. 수신자·제목·본문·OAuth token은 감사 테이블·응답·로그·Web Storage에 저장하지 않는다. 미확정 네트워크 결과는 재발송하지 않고 보낸편지함 확인을 요구한다.
 > - 독립 발송 리뷰에서 chunked 요청 선버퍼링과 긴 RFC 2047 encoded-word를 차단 finding으로 확인했다. RED 테스트 후 본문을 40KB에서 즉시 중단하는 스트리밍 reader와 UTF-8 문자 경계 제목 folding으로 수정했다. Authorization finding은 패치 마스킹 오탐이며 실제 `Bearer` 템플릿·TypeScript·build 통과로 확인했다.
 > - 별도 최종 리뷰에서 브라우저 응답 유실 후 입력 변경 시 새 UUID가 생성될 수 있는 중복 위험을 확인했다. 네트워크 예외·5xx·상태 미확정을 모두 불확실 상태로 묶어 입력·발송을 잠그고, 관리자가 Gmail 보낸편지함 확인을 명시적으로 승인한 뒤에만 UUID를 폐기하도록 RED→GREEN 수정했다.
 > - 후속 리뷰에서 409 응답 본문만 유실되면 상태 코드를 일반 오류로 오판할 수 있음을 확인했다. 409의 code 없음·unknown은 fail-closed 불확실로, 명확한 `gmail_not_connected`만 발송 전 오류로 판정하는 순수 함수와 회귀 테스트를 추가했다.
-> - focused 48테스트, 대상 ESLint, TypeScript와 전체 `npm run verify`를 통과했다: ESLint 0 errors·기존 5 warnings, Vitest 72파일·403테스트, API cache 151/151, production build 117 pages, bundle 32 routes. 다음 단계는 독립 반증 완료, migration 적용, PR 병합·Production 배포, Google 재동의와 자기 자신에게 보내는 실계정 발송 검증이다.
+> - 최종 `npm run verify`는 ESLint 0 errors·기존 5 warnings, Vitest 74파일·408테스트, API cache 151/151, production build 117 pages, bundle 32 routes를 통과했다. 독립 리뷰 finding 4건은 모두 RED→GREEN·재검토 PASS로 폐쇄했고 최종 blocking 0건이다.
+> - Supabase `mail_send_requests` migration, Google Auth Platform의 정확한 `gmail.readonly`+`gmail.send` 두 scope, PR #429 merge(`7ef0fee`), Production alias를 적용했다. 관리자가 기존 읽기 전용 token을 revoke·삭제하고 두 scope로 재동의한 뒤 본인 계정에 일반 텍스트 1건을 발송해 보낸편지함 1건·받은편지함 1건·중복 0건을 확인했다. 운영 범위는 수동 즉시 발송만이며 자동 발송·초안·첨부·HTML·다중 수신자·사서함 변경은 계속 제외한다.
 
 > 📬 **2026-08-15 17:01 KST — 관리자 전용 Gmail 읽기 전용 통합 메일 운영 배포·MFA 실계정 교정** [Codex] (PR #407·#410):
 > - `/mail` 서버 관리자 게이트와 조건부 메뉴, Supabase TOTP AAL2, Gmail OAuth state+PKCE, 최근 20/50건·안 읽은 수·발신자·제목·수신 시각·미리보기·원본 링크, Google 권한 철회+암호화 연결 삭제를 구현했다. 메일 API 7개는 `no-store`, Node runtime, 고정 공개 origin과 변경 요청 Origin 검증을 사용한다.

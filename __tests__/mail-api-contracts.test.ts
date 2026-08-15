@@ -9,7 +9,9 @@ const ROUTES = [
   ['mfa/enroll', 'POST'],
   ['mfa/verify', 'POST'],
   ['gmail/messages', 'GET'],
+  ['gmail/message', 'GET'],
   ['gmail/send', 'POST'],
+  ['gmail/trash', 'POST'],
   ['gmail/disconnect', 'DELETE'],
 ] as const;
 
@@ -26,7 +28,7 @@ describe('관리자 메일 API route 계약', () => {
   });
 
   it('메일 데이터·OAuth는 AAL2, 상태·MFA bootstrap은 확인된 관리자 인증을 검증한다', () => {
-    for (const route of ['gmail/connect', 'gmail/callback', 'gmail/messages', 'gmail/send', 'gmail/disconnect']) {
+    for (const route of ['gmail/connect', 'gmail/callback', 'gmail/messages', 'gmail/message', 'gmail/send', 'gmail/trash', 'gmail/disconnect']) {
       expect(routeSource(route)).toContain('authorizeMailRequest(true)');
     }
     for (const route of ['status', 'mfa/enroll', 'mfa/verify']) {
@@ -35,7 +37,7 @@ describe('관리자 메일 API route 계약', () => {
   });
 
   it('변경 route는 검증된 공개 기준 URL로 Origin을 비교한다', () => {
-    for (const route of ['gmail/connect', 'gmail/send', 'mfa/enroll', 'mfa/verify', 'gmail/disconnect']) {
+    for (const route of ['gmail/connect', 'gmail/send', 'gmail/trash', 'mfa/enroll', 'mfa/verify', 'gmail/disconnect']) {
       const source = routeSource(route);
       expect(source).toContain('getMailPublicBaseUrl()');
       expect(source).toContain('hasTrustedMailOrigin(request,');
@@ -118,5 +120,27 @@ describe('관리자 메일 API route 계약', () => {
     expect(source).not.toContain('console.');
     expect(source).not.toContain('dangerouslySetInnerHTML');
     expect(source).not.toMatch(/message:\s*message/);
+  });
+
+  it('메일 상세 route는 full Gmail 응답을 서버에서 텍스트 상세·회신 초안으로 제한한다', () => {
+    const source = routeSource('gmail/message');
+    expect(source).toContain('fetchGmailMessageDetail');
+    expect(source).toContain('buildReplyDraft');
+    expect(source).toContain('hasRequiredGmailScopes');
+    expect(source).not.toContain('dangerouslySetInnerHTML');
+    expect(source).not.toContain('console.');
+  });
+
+  it('휴지통 route는 단건·Origin·UUID·감사 예약을 강제하고 영구 삭제를 호출하지 않는다', () => {
+    const source = routeSource('gmail/trash');
+    expect(source).toContain('authorizeMailRequest(true)');
+    expect(source).toContain('hasTrustedMailOrigin(request,');
+    expect(source).toContain('MAX_TRASH_REQUEST_BYTES');
+    expect(source).toContain("request.headers.get('idempotency-key')");
+    expect(source).toContain('reserveMailTrashRequest');
+    expect(source).toContain('recordMailTrashOutcome');
+    expect(source).toContain('trashGmailMessage');
+    expect(source).not.toContain('/delete');
+    expect(source).not.toContain('console.');
   });
 });

@@ -240,6 +240,106 @@
   align-items: center;
 }
 
+.replyMode {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 16px;
+  padding: 10px 12px;
+  border: 1px solid rgba(56, 189, 248, 0.24);
+  border-radius: 10px;
+  color: var(--accent-primary);
+  background: rgba(14, 165, 233, 0.09);
+  font-size: 0.82rem;
+}
+
+.messageDetail {
+  margin-bottom: 18px;
+  padding: 20px;
+  border: 1px solid var(--card-border);
+  border-radius: 16px;
+  background: var(--card-bg);
+  box-shadow: 0 18px 48px rgba(2, 6, 23, 0.22);
+}
+
+.messageDetailHeader {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+.messageDetailHeader h2 {
+  margin: 6px 0;
+  color: var(--text-primary);
+  font-size: 1.05rem;
+  overflow-wrap: anywhere;
+}
+
+.messageDetailHeader p,
+.truncatedNotice {
+  margin: 0;
+  color: var(--text-tertiary);
+  font-size: 0.8rem;
+}
+
+.iconButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  border: 1px solid rgba(148, 163, 184, 0.22);
+  border-radius: 9px;
+  color: var(--text-primary);
+  background: var(--table-th-bg);
+  cursor: pointer;
+}
+
+.messageBody {
+  max-height: 520px;
+  margin: 14px 0 18px;
+  padding: 16px;
+  overflow: auto;
+  border: 1px solid rgba(148, 163, 184, 0.14);
+  border-radius: 12px;
+  color: var(--text-primary);
+  background: var(--table-th-bg);
+  font: 0.88rem/1.65 ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+.messageDetailActions,
+.rowActions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.rowActions {
+  flex-wrap: wrap;
+}
+
+.rowActions button,
+.rowActions a {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  border: 0;
+  color: var(--accent-primary);
+  background: transparent;
+  font-size: 0.78rem;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.rowActions button:disabled {
+  cursor: not-allowed;
+  opacity: 0.48;
+}
+
 .toolbar {
   display: flex;
   align-items: center;
@@ -276,7 +376,7 @@
 .tableHeader,
 .mailRow {
   display: grid;
-  grid-template-columns: minmax(150px, 1.1fr) minmax(180px, 1.3fr) 150px minmax(220px, 1.8fr) 145px;
+  grid-template-columns: minmax(150px, 1.1fr) minmax(180px, 1.3fr) 150px minmax(220px, 1.8fr) 190px;
   gap: 14px;
   align-items: center;
 }

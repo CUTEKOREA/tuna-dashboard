@@ -1,7 +1,7 @@
 'use client';
 
 import { type FormEvent, useCallback, useEffect, useRef, useState } from 'react';
-import { ExternalLink, Inbox, Link2, Loader2, LockKeyhole, MailPlus, RefreshCw, Send, ShieldCheck, Unlink } from 'lucide-react';
+import { ExternalLink, Eye, Inbox, Link2, Loader2, LockKeyhole, MailPlus, RefreshCw, Reply, Send, ShieldCheck, Trash2, Unlink, X } from 'lucide-react';
 import { isUncertainMailSendResponse } from '@/lib/mail/send-response';
 import styles from './MailInboxDashboard.module.css';
 
@@ -34,6 +34,32 @@ type InboxResult = {
   ok: true;
   unreadCount: number;
   messages: MailItem[];
+};
+
+type MailMessageDetail = {
+  id: string;
+  threadId: string;
+  from: string;
+  replyTo: string | null;
+  subject: string;
+  receivedAt: string | null;
+  bodyText: string;
+  bodyTruncated: boolean;
+};
+
+type ReplyDraft = {
+  to: string;
+  subject: string;
+  text: string;
+  threadId: string;
+  inReplyTo: string;
+  references: string[];
+};
+
+type MessageDetailResult = {
+  ok: true;
+  message: MailMessageDetail;
+  replyDraft: ReplyDraft | null;
 };
 
 type Enrollment = {
@@ -89,6 +115,9 @@ export default function MailInboxDashboard() {
   const [recipient, setRecipient] = useState('');
   const [subject, setSubject] = useState('');
   const [messageText, setMessageText] = useState('');
+  const [selectedMessage, setSelectedMessage] = useState<MessageDetailResult | null>(null);
+  const [replyMetadata, setReplyMetadata] = useState<ReplyDraft | null>(null);
+  const [trashUncertain, setTrashUncertain] = useState(false);
   const [loading, setLoading] = useState(true);
   const [working, setWorking] = useState(false);
   const [error, setError] = useState('');
@@ -96,6 +125,8 @@ export default function MailInboxDashboard() {
   const [sendUncertain, setSendUncertain] = useState(false);
   const sendingRef = useRef(false);
   const sendRequestIdRef = useRef<string | null>(null);
+  const trashingRef = useRef(false);
+  const trashRequestRef = useRef<{ messageId: string; requestId: string } | null>(null);
 
   const loadStatus = useCallback(async () => {
     setLoading(true);
@@ -135,6 +166,13 @@ export default function MailInboxDashboard() {
         return;
       }
       setInbox(value);
+      const pendingTrash = trashRequestRef.current;
+      if (pendingTrash && !value.messages.some((message) => message.id === pendingTrash.messageId)) {
+        trashRequestRef.current = null;
+        setTrashUncertain(false);
+        setSelectedMessage((current) => current?.message.id === pendingTrash.messageId ? null : current);
+        setNotice('받은메일 새로고침에서 이전 휴지통 이동이 완료된 것을 확인했습니다.');
+      }
     } catch {
       setInbox(null);
       setError('Gmail 메일 목록을 불러오지 못했습니다.');
@@ -142,6 +180,95 @@ export default function MailInboxDashboard() {
       setWorking(false);
     }
   }, []);
+
+  const loadMessageDetail = async (messageId: string) => {
+    setWorking(true);
+    setError('');
+    try {
+      const response = await mailRequest(`/api/mail/gmail/message?id=${encodeURIComponent(messageId)}`);
+      const value = await response.json().catch(() => ({})) as MessageDetailResult & { code?: string };
+      if (!response.ok) {
+        setError(statusMessage(response.status, value.code));
+        return;
+      }
+      setSelectedMessage(value);
+    } catch {
+      setError('메일 본문을 불러오지 못했습니다.');
+    } finally {
+      setWorking(false);
+    }
+  };
+
+  const beginReply = () => {
+    const draft = selectedMessage?.replyDraft;
+    if (!draft) {
+      setError('이 메일의 안전한 회신 주소 또는 원본 메시지 정보를 확인할 수 없습니다.');
+      return;
+    }
+    sendRequestIdRef.current = null;
+    setSendUncertain(false);
+    setRecipient(draft.to);
+    setSubject(draft.subject);
+    setMessageText(draft.text);
+    setReplyMetadata(draft);
+    setError('');
+    setNotice('회신 항목을 자동으로 채웠습니다. 내용을 검토·수정한 뒤 최종 확인을 거쳐 발송해주세요.');
+    requestAnimationFrame(() => document.getElementById('mail-send-form')?.scrollIntoView({ behavior: 'smooth' }));
+  };
+
+  const trashSelectedMessage = async () => {
+    if (!selectedMessage || trashingRef.current) return;
+    const currentRequest = trashRequestRef.current;
+    if (currentRequest && currentRequest.messageId !== selectedMessage.message.id && trashUncertain) {
+      setError('이전 메일의 휴지통 이동 상태가 미확정입니다. 받은메일을 새로고침해 먼저 확인해주세요.');
+      return;
+    }
+    const confirmed = window.confirm('선택한 메일 1건을 Gmail 휴지통으로 이동하시겠습니까? 휴지통에서는 복구할 수 있습니다.');
+    if (!confirmed) return;
+
+    trashingRef.current = true;
+    const requestId = currentRequest?.messageId === selectedMessage.message.id
+      ? currentRequest.requestId
+      : crypto.randomUUID();
+    trashRequestRef.current = { messageId: selectedMessage.message.id, requestId };
+    setWorking(true);
+    setError('');
+    setNotice('');
+    try {
+      const response = await mailRequest('/api/mail/gmail/trash', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Idempotency-Key': requestId,
+        },
+        body: JSON.stringify({ messageId: selectedMessage.message.id }),
+      });
+      const value = await response.json().catch(() => ({})) as { code?: string };
+      if (!response.ok) {
+        if (response.status >= 500 || response.status === 409 || value.code === 'mail_trash_status_unknown') {
+          setTrashUncertain(true);
+          setError('휴지통 이동 상태를 확인할 수 없습니다. 받은메일을 새로고침한 뒤 메일이 남아 있으면 같은 요청으로 다시 확인해주세요.');
+          return;
+        }
+        trashRequestRef.current = null;
+        setError(value.code === 'mail_trash_rate_limited'
+          ? '휴지통 이동 횟수 제한에 도달했습니다. 잠시 후 다시 시도해주세요.'
+          : '메일을 휴지통으로 이동하지 못했습니다.');
+        return;
+      }
+      trashRequestRef.current = null;
+      setTrashUncertain(false);
+      setSelectedMessage(null);
+      setNotice('선택한 메일을 Gmail 휴지통으로 이동했습니다.');
+      await loadInbox(limit);
+    } catch {
+      setTrashUncertain(true);
+      setError('휴지통 이동 상태를 확인할 수 없습니다. 받은메일을 새로고침한 뒤 메일이 남아 있으면 같은 요청으로 다시 확인해주세요.');
+    } finally {
+      trashingRef.current = false;
+      setWorking(false);
+    }
+  };
 
   useEffect(() => {
     const query = new URLSearchParams(window.location.search);
@@ -242,6 +369,10 @@ export default function MailInboxDashboard() {
         return;
       }
       setInbox(null);
+      setSelectedMessage(null);
+      setReplyMetadata(null);
+      trashRequestRef.current = null;
+      setTrashUncertain(false);
       setNotice(value.revoked === false
         ? '저장된 인증 정보는 삭제했지만 Google 권한 철회는 확인하지 못했습니다. Google 계정 보안 설정에서 연결을 삭제해주세요.'
         : 'Gmail 연결과 저장된 인증 정보가 삭제되었습니다.');
@@ -272,7 +403,16 @@ export default function MailInboxDashboard() {
           'Content-Type': 'application/json',
           'Idempotency-Key': requestId,
         },
-        body: JSON.stringify({ to: recipient, subject, text: messageText }),
+        body: JSON.stringify({
+          to: recipient,
+          subject,
+          text: messageText,
+          ...(replyMetadata ? {
+            threadId: replyMetadata.threadId,
+            inReplyTo: replyMetadata.inReplyTo,
+            references: replyMetadata.references,
+          } : {}),
+        }),
       });
       const value = await response.json().catch(() => ({})) as { code?: string };
       if (!response.ok) {
@@ -294,6 +434,7 @@ export default function MailInboxDashboard() {
       setRecipient('');
       setSubject('');
       setMessageText('');
+      setReplyMetadata(null);
       setNotice('메일을 즉시 발송했습니다.');
     } catch {
       setSendUncertain(true);
@@ -344,9 +485,9 @@ export default function MailInboxDashboard() {
     <section className={styles.shell}>
       <header className={styles.header}>
         <div>
-          <div className={styles.eyebrow}><ShieldCheck size={15} /> 관리자 전용 · 읽기 및 발송</div>
+          <div className={styles.eyebrow}><ShieldCheck size={15} /> 관리자 전용 · 상세·회신·휴지통</div>
           <h1><Inbox size={28} /> 통합 메일</h1>
-          <p>메일 목록을 조회하고 확인한 일반 텍스트 메일만 즉시 발송합니다.</p>
+          <p>메일 본문을 안전한 텍스트로 확인하고, 회신 작성과 복구 가능한 휴지통 이동을 제공합니다.</p>
         </div>
         {status.gmail && (
           <div className={styles.connectionBadge}>
@@ -419,8 +560,8 @@ export default function MailInboxDashboard() {
       {!status.mfa.required && !status.gmail && (
         <div className={styles.centerCard}>
           <Link2 size={36} />
-          <h2>Gmail 읽기·발송 연결</h2>
-          <p>최근 메일을 조회하고 직접 작성한 일반 텍스트 메일을 발송합니다.</p>
+          <h2>Gmail 읽기·발송·휴지통 연결</h2>
+          <p>최근 메일을 확인·회신하고 선택한 한 건만 Gmail 휴지통으로 이동합니다.</p>
           <button type="button" className={styles.primaryButton} disabled={working} onClick={connectGmail}>
             Gmail 연결
           </button>
@@ -429,7 +570,7 @@ export default function MailInboxDashboard() {
 
       {!status.mfa.required && status.gmail && (
         <>
-          <form className={styles.sendPanel} onSubmit={sendMail}>
+          <form id="mail-send-form" className={styles.sendPanel} onSubmit={sendMail}>
             <div className={styles.sendPanelHeader}>
               <div>
                 <span className={styles.eyebrow}><MailPlus size={15} /> 새 메일 보내기</span>
@@ -437,6 +578,11 @@ export default function MailInboxDashboard() {
               </div>
               <p>발송 후 취소할 수 없으며 첨부파일과 자동 발송은 지원하지 않습니다.</p>
             </div>
+            {replyMetadata && (
+              <div className={styles.replyMode}>
+                <Reply size={15} /> 회신 작성 중 · 받는 사람이나 제목을 바꾸면 일반 새 메일로 전환됩니다.
+              </div>
+            )}
             <div className={styles.sendFields}>
               <label>
                 받는 사람
@@ -449,7 +595,9 @@ export default function MailInboxDashboard() {
                   value={recipient}
                   onChange={(event) => {
                     sendRequestIdRef.current = null;
-                    setRecipient(event.target.value);
+                    const value = event.target.value;
+                    if (replyMetadata && value !== replyMetadata.to) setReplyMetadata(null);
+                    setRecipient(value);
                   }}
                 />
               </label>
@@ -463,7 +611,9 @@ export default function MailInboxDashboard() {
                   value={subject}
                   onChange={(event) => {
                     sendRequestIdRef.current = null;
-                    setSubject(event.target.value);
+                    const value = event.target.value;
+                    if (replyMetadata && value !== replyMetadata.subject) setReplyMetadata(null);
+                    setSubject(value);
                   }}
                 />
               </label>
@@ -503,6 +653,52 @@ export default function MailInboxDashboard() {
             </div>
           </form>
 
+          {selectedMessage && (
+            <section className={styles.messageDetail} aria-label="받은 메일 상세">
+              <div className={styles.messageDetailHeader}>
+                <div>
+                  <span className={styles.eyebrow}><Eye size={15} /> 받은 메일 내용 확인</span>
+                  <h2>{selectedMessage.message.subject}</h2>
+                  <p>{selectedMessage.message.from} · {formatReceivedAt(selectedMessage.message.receivedAt)}</p>
+                </div>
+                <button
+                  type="button"
+                  className={styles.iconButton}
+                  aria-label="메일 상세 닫기"
+                  onClick={() => setSelectedMessage(null)}
+                >
+                  <X size={18} />
+                </button>
+              </div>
+              {selectedMessage.message.bodyTruncated && (
+                <p className={styles.truncatedNotice}>안전한 표시 한도에 맞춰 본문의 일부만 표시합니다.</p>
+              )}
+              <pre className={styles.messageBody}>{selectedMessage.message.bodyText}</pre>
+              <div className={styles.messageDetailActions}>
+                <button
+                  type="button"
+                  className={styles.primaryButton}
+                  disabled={working || !selectedMessage.replyDraft}
+                  onClick={beginReply}
+                >
+                  <Reply size={15} /> 회신 작성
+                </button>
+                <button
+                  type="button"
+                  className={styles.dangerButton}
+                  disabled={working || (trashUncertain && trashRequestRef.current?.messageId !== selectedMessage.message.id)}
+                  onClick={trashSelectedMessage}
+                >
+                  <Trash2 size={15} /> {
+                    trashUncertain && trashRequestRef.current?.messageId === selectedMessage.message.id
+                      ? '같은 요청으로 다시 확인'
+                      : '휴지통으로 이동'
+                  }
+                </button>
+              </div>
+            </section>
+          )}
+
           <div className={styles.toolbar}>
             <div className={styles.unreadMetric}>
               <span>안 읽은 메일</span>
@@ -529,7 +725,7 @@ export default function MailInboxDashboard() {
               <span>제목</span>
               <span>수신 시각</span>
               <span>미리보기</span>
-              <span>원본</span>
+              <span>동작</span>
             </div>
             {working && !inbox && <div className={styles.empty}><Loader2 className={styles.spinner} size={22} /> 불러오는 중</div>}
             {!working && inbox?.messages.length === 0 && <div className={styles.empty}>최근 메일이 없습니다.</div>}
@@ -539,9 +735,14 @@ export default function MailInboxDashboard() {
                 <div className={styles.subject} data-label="제목">{message.subject}</div>
                 <time data-label="수신 시각" dateTime={message.receivedAt ?? undefined}>{formatReceivedAt(message.receivedAt)}</time>
                 <p data-label="미리보기">{message.snippet || '미리보기 없음'}</p>
-                <a href={message.gmailUrl} target="_blank" rel="noopener noreferrer">
-                  Gmail 원본 열기 <ExternalLink size={14} />
-                </a>
+                <div className={styles.rowActions} data-label="동작">
+                  <button type="button" disabled={working} onClick={() => void loadMessageDetail(message.id)}>
+                    <Eye size={14} /> 내용 확인
+                  </button>
+                  <a href={message.gmailUrl} target="_blank" rel="noopener noreferrer">
+                    Gmail 원본 열기 <ExternalLink size={14} />
+                  </a>
+                </div>
               </article>
             ))}
           </div>

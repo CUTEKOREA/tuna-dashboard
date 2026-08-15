@@ -3,6 +3,7 @@ import {
   GMAIL_READONLY_SCOPE,
   GMAIL_REQUIRED_SCOPES,
   GMAIL_SEND_SCOPE,
+  GMAIL_MODIFY_SCOPE,
   createGmailOAuthFlow,
   consumeGmailOAuthFlow,
   getGmailRedirectUri,
@@ -23,13 +24,13 @@ function createFlow() {
 }
 
 describe('Gmail OAuth state와 PKCE', () => {
-  it('읽기·발송 최소 scope, offline access, consent, S256 PKCE를 고정한다', () => {
+  it('읽기·발송·사서함 변경 최소 scope, offline access, consent, S256 PKCE를 고정한다', () => {
     const flow = createFlow();
     const url = new URL(flow.authorizationUrl);
 
     expect(url.origin + url.pathname).toBe('https://accounts.google.com/o/oauth2/v2/auth');
     expect(url.searchParams.get('scope')).toBe(GMAIL_REQUIRED_SCOPES.join(' '));
-    expect(GMAIL_REQUIRED_SCOPES).toEqual([GMAIL_READONLY_SCOPE, GMAIL_SEND_SCOPE]);
+    expect(GMAIL_REQUIRED_SCOPES).toEqual([GMAIL_READONLY_SCOPE, GMAIL_SEND_SCOPE, GMAIL_MODIFY_SCOPE]);
     expect(url.searchParams.get('access_type')).toBe('offline');
     expect(url.searchParams.get('prompt')).toBe('consent');
     expect(url.searchParams.get('code_challenge_method')).toBe('S256');
@@ -39,8 +40,9 @@ describe('Gmail OAuth state와 PKCE', () => {
     expect(flow.authorizationUrl).not.toContain('client-secret');
   });
 
-  it('읽기·발송 scope가 정확히 모두 있을 때만 허용한다', () => {
-    expect(hasRequiredGmailScopes([GMAIL_SEND_SCOPE, GMAIL_READONLY_SCOPE])).toBe(true);
+  it('읽기·발송·사서함 변경 scope가 정확히 모두 있을 때만 허용한다', () => {
+    expect(hasRequiredGmailScopes([GMAIL_MODIFY_SCOPE, GMAIL_SEND_SCOPE, GMAIL_READONLY_SCOPE])).toBe(true);
+    expect(hasRequiredGmailScopes([GMAIL_SEND_SCOPE, GMAIL_READONLY_SCOPE])).toBe(false);
     expect(hasRequiredGmailScopes([GMAIL_READONLY_SCOPE])).toBe(false);
     expect(hasRequiredGmailScopes([GMAIL_SEND_SCOPE])).toBe(false);
     expect(hasRequiredGmailScopes([...GMAIL_REQUIRED_SCOPES, 'openid'])).toBe(false);

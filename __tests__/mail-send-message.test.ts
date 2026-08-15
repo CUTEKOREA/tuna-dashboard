@@ -44,6 +44,38 @@ describe('Gmail 즉시 발송 입력', () => {
     expect(mime).not.toMatch(/\r\n(?:Cc|Bcc):/i);
   });
 
+  it('검증된 회신 thread 메타데이터를 MIME 헤더로 만들고 입력을 정규화한다', () => {
+    const message = parseGmailSendInput({
+      to: 'reply@example.com',
+      subject: 'Re: 수급 확인',
+      text: '회신 본문',
+      threadId: 'thread_reply_123',
+      inReplyTo: '<message-reply@example.com>',
+      references: ['<older@example.com>', '<message-reply@example.com>'],
+    });
+    expect(message).toMatchObject({
+      threadId: 'thread_reply_123',
+      inReplyTo: '<message-reply@example.com>',
+      references: ['<older@example.com>', '<message-reply@example.com>'],
+    });
+
+    const mime = Buffer.from(buildGmailRawMessage(message), 'base64url').toString('utf8');
+    expect(mime).toContain('In-Reply-To: <message-reply@example.com>\r\n');
+    expect(mime).toContain('References: <older@example.com> <message-reply@example.com>\r\n');
+  });
+
+  it('부분 회신 메타데이터·헤더 주입·비정상 thread ID를 거부한다', () => {
+    for (const value of [
+      { to: 'a@example.com', subject: '제목', text: '본문', threadId: 'thread' },
+      { to: 'a@example.com', subject: '제목', text: '본문', inReplyTo: '<m@example.com>' },
+      { to: 'a@example.com', subject: '제목', text: '본문', threadId: '../evil', inReplyTo: '<m@example.com>', references: [] },
+      { to: 'a@example.com', subject: '제목', text: '본문', threadId: 'thread', inReplyTo: '<m@example.com>\r\nBcc: evil@example.com', references: [] },
+      { to: 'a@example.com', subject: '제목', text: '본문', threadId: 'thread', inReplyTo: '<m@example.com>', references: ['<ok@example.com>', 'bad\r\nCc: x@example.com'] },
+    ]) {
+      expect(() => parseGmailSendInput(value)).toThrow('메일 발송 입력');
+    }
+  });
+
   it('긴 제목을 75자 이하 RFC 2047 encoded-word로 접어 원문을 보존한다', () => {
     const subject = '긴 한글 제목 '.repeat(20).slice(0, 200);
     const raw = buildGmailRawMessage({
