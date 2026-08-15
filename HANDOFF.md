@@ -1,5 +1,21 @@
 # HANDOFF
 
+> 🎛️ **2026-08-15 11:49 KST — V2.5 브리지 무채색 zinc 튜닝 완료** [Codex]:
+> - `--w-slate-50/200/300/400/500`과 각 `-rgb` 쌍만 Tailwind zinc 등가값 `#fafafa/#e4e4e7/#d4d4d8/#a1a1aa/#71717a`로 이동했다. 푸른 기를 제거하되 명도를 유지했으며 `#0a0a0b` 대비비 변화는 단계별 `+0.2%/-2.8%/+0.5%/0.0%/-1.5%`다. 의미색(emerald/amber/red), 액센트(sky/blue/cyan), 시그니처(violet/pink), navy 11색은 기존 값 그대로다.
+> - 계약 테스트는 다섯 zinc 값과 16개 solid/RGB 쌍의 일관성을 고정한다. TDD RED는 기존 slate 5개 값만 차이로 실패했고 GREEN **3/3**이다. 실효색을 해시하는 대표 위젯 스냅샷은 구조·문구 변화 없이 해시 1개만 `999f…7736`→`60ca…0ec7`로 정당 갱신했다.
+> - dev+Puppeteer 1440×1000 전후는 `/tmp/tune_before_market.png`↔`/tmp/tune_after_market.png`, `/tmp/tune_before_fleet.png`↔`/tmp/tune_after_fleet.png`, `/tmp/tune_before_unloading.png`↔`/tmp/tune_after_unloading.png`다. 3경로 모두 HTTP 200, 잠금 잔존·overflow·page error 0이고 계산 CSS는 새 5값과 일치한다. 상단 `/fleet` 쌍은 SHA-256까지 동일하며 `/market`은 자동 갱신 시각 차이가 포함된다. `/unloading`의 dev Strict Mode 중복 `/api/unloading-history` 취소 1건은 기존 기대 신호다. 최종 시각 승인(칙칙함·대비 저하)은 CC 검수 대상으로 남긴다.
+> - 최종 `npm run verify` 완료: ESLint 오류 0(기존 `ShrimpDashboard.tsx` 경고 1), TypeScript, Vitest **264/264**, API cache **143/143**, Next 정적 페이지 **117/117**, bundle **30경로**다. pnpm형 기존 의존성은 삭제하지 않고 `/private/tmp/v25-final-pnpm-node-modules.ts9Rf7/node_modules`에 보존한 뒤 `npm ci`로 재설치했다. push·PR·배포는 하지 않는다.
+
+> 마지막 업데이트: 2026-08-15 11:49 KST
+
+> 📊 **2026-08-15 11:44 KST — V2.5 다시리즈 차트 팔레트·8시리즈 견본 완료** [Codex]:
+> - `app/globals.css`에 `--chart-s1`~`--chart-s8` 공용 팔레트를 추가했다. `#0a0a0b` 배경에서 8색 모두 그래픽 대비 3:1 이상이며 sky·emerald·amber·violet·pink 우선, teal·orange·zinc 보완 순서다. 5개 이상 시리즈는 색과 명도에 더해 5번째부터 서로 다른 `strokeDasharray`를 병행한다는 사용 주석도 함께 고정했다.
+> - Grok 반증 §4의 8시리즈 사례인 `FleetCharts` 월간 누적 막대를 견본으로 전환했다. 1~8월은 각 `var(--chart-s1)`~`var(--chart-s8)`을 fill·stroke에 쓰고 5~8월은 `6 3`·`3 3`·`8 3 2 3`·`2 3` 대시를 적용한다. 다른 위젯 차트 색은 수정하지 않았다.
+> - TDD는 팔레트 부재와 견본 컴포넌트 부재를 각각 RED로 확인한 뒤 GREEN **2/2**로 전환했다. 관련 렌더·V2.5 테스트 **24/24**, 대상 ESLint, TypeScript, `git diff --check`가 통과했다.
+> - 로컬 브라우저 `/fleet` 월간 탭은 HTTP 200, 잠금 잔존·overflow·page/console 오류 0이며 실제 SVG 8개 시리즈와 계산된 RGB·대시를 확인했다. 검수 스크린샷은 `/tmp/v25_chart_palette_fleet_monthly.png`다. push·배포는 하지 않는다. 다음 단계는 무채 slate 브리지 5쌍을 zinc 등가값으로 튜닝하고 `/tmp/tune_before_*.png`와 after를 대조하는 것이다.
+
+> 마지막 업데이트: 2026-08-15 11:44 KST
+
 > 🎨 **2026-08-15 11:21 KST — L-07 2차 rgba·미탐 색 브리지 치환 완료** [Codex]:
 > - `scripts/fix_widget_colors.py`를 확장해 상위 16색과 RGB가 같은 스타일 위치의 rgba를 alpha 원문 그대로 `rgba(var(--w-*-rgb), alpha)`로 치환했다. `app/globals.css`에는 기존 solid 토큰 바로 아래 RGB 성분 토큰 16쌍을 추가했다. 적용 결과는 **170파일·793건(783 rgba + 10 hex)**이고 재실행은 **0파일·0건**이다.
 > - 10개 hex 미탐은 검증된 DOM 삽입 HTML 문자열 4파일의 7건(`PacificVesselMap` 2, `ColdStorageMap` 2, `TunaRestaurantMap` 2, `PetFoodMap` 1)과 `accentColor` 3건(`TradeRouteSankey`·`ExchangeSimulator`·`CarrotDashboard`)이다. HTML allowlist 밖 문자열, ECharts 캔버스 옵션, 데이터 의미값, 주석, `v2`·`cosmo`·테스트 파일은 보존했다.

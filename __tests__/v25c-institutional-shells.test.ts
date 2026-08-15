@@ -18,24 +18,28 @@ function cssRules(source: string, selector: string): string {
 }
 
 describe('V2.5-c institutional page shells', () => {
-  it('defines the 16 inventory bridge colors as stable codemod destinations', () => {
+  it('tunes only the five neutral bridge colors to zinc and keeps every RGB pair aligned', () => {
     const globals = readSource('app/globals.css');
     const bridgeTokens = Object.fromEntries(
       Array.from(globals.matchAll(/(--w-[a-z0-9-]+)\s*:\s*(#[0-9a-f]{6})\s*;/gi))
         .map((match) => [match[1], match[2].toLowerCase()]),
     );
+    const bridgeRgbTokens = Object.fromEntries(
+      Array.from(globals.matchAll(/(--w-[a-z0-9-]+)-rgb\s*:\s*(\d+\s*,\s*\d+\s*,\s*\d+)\s*;/gi))
+        .map((match) => [match[1], match[2].replaceAll(' ', '')]),
+    );
 
     expect(bridgeTokens).toEqual({
-      '--w-slate-400': '#94a3b8',
-      '--w-slate-500': '#64748b',
+      '--w-slate-400': '#a1a1aa',
+      '--w-slate-500': '#71717a',
       '--w-emerald-500': '#10b981',
       '--w-amber-500': '#f59e0b',
       '--w-red-500': '#ef4444',
       '--w-sky-400': '#38bdf8',
-      '--w-slate-200': '#e2e8f0',
-      '--w-slate-50': '#f8fafc',
+      '--w-slate-200': '#e4e4e7',
+      '--w-slate-50': '#fafafa',
       '--w-violet-500': '#8b5cf6',
-      '--w-slate-300': '#cbd5e1',
+      '--w-slate-300': '#d4d4d8',
       '--w-blue-500': '#3b82f6',
       '--w-amber-400': '#fbbf24',
       '--w-navy-900': '#1a2442',
@@ -43,6 +47,10 @@ describe('V2.5-c institutional page shells', () => {
       '--w-cyan-500': '#06b6d4',
       '--w-emerald-400': '#34d399',
     });
+    for (const [token, hex] of Object.entries(bridgeTokens)) {
+      const rgb = hex.match(/[0-9a-f]{2}/gi)?.map((value) => parseInt(value, 16)).join(',');
+      expect(bridgeRgbTokens[token]).toBe(rgb);
+    }
     expect(Object.keys(bridgeTokens).some((token) => /chart|series|palette/.test(token))).toBe(false);
   });
 
