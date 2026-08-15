@@ -565,8 +565,21 @@
     "utilizationPct": 30,
     "employees": "600명 이상",
     "employeesConflict": "수혜자 보고서에는 407명으로 기록돼 있다",
-    "products": "참치 통조림(자체 브랜드 Royal Atlantic), 오일·trimmings, 수출용 참치 플레이크",
-    "grade": "B"
+    "products": "참치 통조림(자체 브랜드 Royal Atlantic), FBU 로인 가공, 오일·trimmings, 수출용 참치 플레이크",
+    "grade": "B",
+    "businessLines": [
+     {
+      "line": "통조림",
+      "detail": "자체 브랜드 Royal Atlantic 등"
+     },
+     {
+      "line": "FBU(로인 가공)",
+      "detail": "이치반 씨푸드를 흡수해 코스모의 FBU 사업으로 운영. SNB 협업으로 1차 가공(로인) 후 포르투갈 OR PA GU 공장에서 2차 가공(스킨팩 진공포장)해 유럽 유통",
+      "source": "사내 확인 · 가나 3개사 보고(2026-03-09)",
+      "grade": "A"
+     }
+    ],
+    "absorbed": "이치반 씨푸드(Ichiban Seafoods) — 외부 자료는 테마항의 별도 가공업체로 나열하지만 코스모의 FBU 사업으로 흡수됐다(사내 확인 2026-08-15). 외부 목록을 인용할 때 이 차이를 밝힌다."
    },
    {
     "plant": "Myroc Foods",
@@ -577,13 +590,6 @@
     "employees": "800명",
     "products": "참치 통조림(HACCP 인증)",
     "grade": "B"
-   },
-   {
-    "plant": "Ichiban Seafoods",
-    "plantKo": "이치반 씨푸드",
-    "owner": "소스 없음",
-    "products": "테마항 양륙 참치 가공",
-    "grade": "C"
    }
   ],
   "exports": {
@@ -845,7 +851,8 @@
   "recollectNote": "NotebookLM 3회 재질의 + Grok 1차출처 대조로 전 항목을 다시 받았다. 소스에 없는 값은 「소스 없음」으로 남기고 추정하지 않는다. 연도가 확인된 값은 반드시 연도를 병기한다 — 오래된 수치를 현재값처럼 쓰면 판단이 어긋난다.",
   "processingCapacityBasisYear": 2015,
   "annualCannedOutputBasisYear": "2015 · 2022 공동 인용",
-  "capacityCaveat": "연간 처리능력 12만톤과 통조림 생산 5.8만톤은 2015년 연구 수치이며 2022년 자료가 같은 값을 재인용한다. 최근 실측치가 아니므로 추세 판단에 쓰지 않는다."
+  "capacityCaveat": "연간 처리능력 12만톤과 통조림 생산 5.8만톤은 2015년 연구 수치이며 2022년 자료가 같은 값을 재인용한다. 최근 실측치가 아니므로 추세 판단에 쓰지 않는다.",
+  "cannersNote": "테마항 가공은 파이오니어 푸드 캐너리·코스모 씨푸드·마이록 푸드 3사 체제다. 외부 자료에 네 번째로 등장하는 이치반 씨푸드는 코스모의 FBU(로인 가공) 사업으로 흡수돼 현재 독립 법인이 아니다 — 사내 확인 사항이며 공개 자료는 아직 갱신되지 않았다."
  },
  "pfcDominance": {
   "note": "타이유니온·PFC의 가나 지배력. 외부 코퍼스는 «질적 지배»는 풍부하나 «정량 지배»는 비어 있어, 비어 있는 칸을 주간동향 31주 실측으로 직접 메웠다.",
