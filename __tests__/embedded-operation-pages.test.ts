@@ -31,6 +31,52 @@ describe('bangkok native dashboard', () => {
     }
   });
 
+  // 2026-08-15: 과제 C — 입도 집계·캐너리 주간 시계열 인테이크 추가에 따른 계약.
+  it('입도 집계는 0 채움 없이 원본 합과 일치한다', async () => {
+    const intake = await import('../lib/data/bangkok-weekly');
+
+    const weeklyTotal = intake.bangkokWeeks.reduce((acc, w) => acc + (w.unloadMt ?? 0), 0);
+    for (const g of ['monthly', 'quarterly', 'yearly'] as const) {
+      const rows = intake.aggregateUnload(g);
+      expect(rows.reduce((acc, r) => acc + r.unloadMt, 0)).toBeCloseTo(weeklyTotal, 6);
+      // 0 채움 금지 — 기록 없는 기간의 행 자체가 없어야 한다
+      for (const r of rows) expect(r.weeks).toBeGreaterThan(0);
+    }
+
+    const monthlyTotal = intake.bangkokTraderMonthly.reduce((acc, m) => acc + m.totalCalc, 0);
+    for (const g of ['quarterly', 'yearly'] as const) {
+      const rows = intake.aggregateTraderVolumes(g);
+      expect(rows.reduce((acc, r) => acc + r.totalMt, 0)).toBeCloseTo(monthlyTotal, 6);
+      for (const r of rows) expect(r.months).toBeGreaterThan(0);
+    }
+
+    // 캐너리 주간 시계열 — 날짜 형식과 비어 있지 않음만 확인 (구조 검증은 sync 스크립트 몫)
+    expect(intake.bangkokCanneryPanel.length).toBeGreaterThan(0);
+    for (const p of intake.bangkokCanneryPanel.slice(0, 3)) {
+      expect(p.weeks.length).toBeGreaterThan(0);
+      for (const w of p.weeks) expect(w.date).toMatch(/^\d{4}-\d{2}-\d{2}$/);
+    }
+  });
+
+  it('하역·캐너리·선행지표 탭이 신규 컨트롤·해설과 함께 렌더된다', async () => {
+    const { UnloadTab } = await import('../components/bangkok/tabs/UnloadTab');
+    const { CanneryTab } = await import('../components/bangkok/tabs/CanneryTab');
+    const { LeadingTab } = await import('../components/bangkok/tabs/LeadingTab');
+
+    const unload = renderToStaticMarkup(React.createElement(UnloadTab));
+    for (const label of ['주간', '월간', '분기별', '연도별', '실량 (MT)', '비중 (%)']) {
+      expect(unload).toContain(label);
+    }
+
+    const cannery = renderToStaticMarkup(React.createElement(CanneryTab));
+    expect(cannery).toContain('캐너리별 가동률 추이');
+    expect(cannery).toContain('캐너리별 원어재고 추이');
+
+    const leading = renderToStaticMarkup(React.createElement(LeadingTab));
+    expect(leading).toContain('이 표를 읽는 법');
+    expect(leading).toContain('상관계수');
+  });
+
   it('네이티브 히어로 + 탭을 렌더하고 iframe은 남기지 않는다', async () => {
     const { default: BangkokDashboard } = await import('../components/bangkok/BangkokDashboard');
     const markup = renderToStaticMarkup(React.createElement(BangkokDashboard));

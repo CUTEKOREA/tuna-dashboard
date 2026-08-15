@@ -12,8 +12,6 @@ import VesselVdsStatus from './VesselVdsStatus';
 import { carrierLoads, nationalVds, purseSeineCatch } from '@/lib/fleet-operations-2026-08-09';
 import HeroZone from './v2/HeroZone';
 import PillTabs from './v2/PillTabs';
-import VesselTopSVG from './v2/VesselTopSVG';
-import VesselPhotoWithFallback from './v2/VesselPhotoWithFallback';
 import s from './FleetCommandCenter.module.css';
 
 type FleetTaskTab = 'operations' | 'vessels' | 'performance' | 'access';
@@ -27,28 +25,7 @@ const taskTabs = [
 
 const nationalOverrunCount = nationalVds.areas.flatMap((area) => area.rows).filter((row) => row.remaining < 0).length;
 const jointWeeklyShare = Math.round(purseSeineCatch.summary.jointWeekly / purseSeineCatch.summary.weeklyTotal * 100);
-const clamp = (value: number, min: number, max: number) => Math.min(Math.max(value, min), max);
-const carrierFillRatio = clamp(
-  carrierLoads.loadedTotalMt / (carrierLoads.loadedTotalMt + carrierLoads.expectedRemainingMt),
-  0,
-  1,
-);
-const seinerHatches = Array.from({ length: 6 }, (_, hatchIndex) => ({
-  id: `seiner-hatch-${hatchIndex + 1}`,
-  intensity: clamp(carrierFillRatio * 6 - hatchIndex, 0, 1),
-  color: 'var(--accent-primary)',
-}));
-// 선체는 우측 상단에 치우쳐 배치 — KPI 행(좌하단)과 겹치지 않게 (Raktor 구도).
-// 배경은 Grok Imagine 생성 실사풍 야간 위성뷰 — 로드 실패 시 VesselTopSVG 폴백(스펙 §6).
-// 데이터 발광(해치 intensity)은 사진 위 좌표 정합이 불가해 폴백 SVG에서만 표현한다.
-const heroBackground = (
-  <div className={s.heroVessel} aria-hidden>
-    <VesselPhotoWithFallback
-      src="/heroes/seiner.webp"
-      fallback={<VesselTopSVG kind="seiner" hatches={seinerHatches} />}
-    />
-  </div>
-);
+// V3 라이트 (2026-08-15 사용자 지시): 선박 사진 배경 제거 — 라이트 히어로는 배경 없이 깨끗하게.
 
 const decisions = [
   { icon: TrendingUp, level: '생산', title: `합작선 주간 비중 ${jointWeeklyShare}%`, detail: `${purseSeineCatch.summary.jointWeekly} M/T · KONA 183, MARI 140 M/T 견인`, tone: 'primary' },
@@ -65,7 +42,6 @@ export default function FleetCommandCenter({ heroOnly = false }: { heroOnly?: bo
       variant="vessel"
       title="선단 운영"
       subtitle="주간 어획·VDS는 8월 9일, 대서양은 8월 11일, 운반선은 8월 12일 기준"
-      background={heroBackground}
       primaryKpi={{ label: '주간 어획량', value: purseSeineCatch.summary.weeklyTotal, unit: '(M/T)' }}
       secondaryKpis={[
         { label: '8월 누적 어획량', value: purseSeineCatch.summary.monthlyTotal, unit: '(M/T)' },

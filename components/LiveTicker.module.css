@@ -252,3 +252,35 @@
     font-size: 9px;
   }
 }
+
+/* ── V3 라이트 (2026-08-15 사용자 지적): 다크 테이프 → 라이트 테이프 전환 ── */
+[data-v3='light'] .tickerWrap {
+  background: #ffffff;
+  border: 1px solid #e2e4e9;
+}
+[data-v3='light'] .tickerWrap::before {
+  background: linear-gradient(90deg, rgba(255, 255, 255, 0.96), rgba(255, 255, 255, 0.5) 45%, transparent);
+}
+[data-v3='light'] .tickerWrap::after {
+  background: linear-gradient(270deg, rgba(255, 255, 255, 0.96), rgba(255, 255, 255, 0.5) 45%, transparent);
+}
+[data-v3='light'] .tickerPrefix {
+  background: #f1f2f4;
+  color: #22242b;
+  box-shadow: none;
+}
+[data-v3='light'] .label {
+  color: #5a6072;
+}
+[data-v3='light'] .value {
+  color: #22242b;
+}
+[data-v3='light'] .up {
+  color: #0f766e;
+}
+[data-v3='light'] .down {
+  color: #be123c;
+}
+[data-v3='light'] .neutral {
+  color: #8d93a5;
+}

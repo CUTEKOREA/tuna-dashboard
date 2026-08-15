@@ -60,18 +60,18 @@
     {
      "fleet": null,
      "vessel": "COSMOS KIM",
-     "arrive": null,
-     "depart": null,
+     "arrive": "10/13",
+     "depart": "미정",
      "tons": null,
-     "note": null
+     "note": "국적증서 발급 중"
     },
     {
      "fleet": null,
      "vessel": "GRANADA",
-     "arrive": null,
-     "depart": null,
-     "tons": null,
-     "note": null
+     "arrive": "12/16",
+     "depart": "12/21",
+     "tons": 750.0,
+     "note": "출항 완료"
     }
    ],
    "prices": {
@@ -150,26 +150,26 @@
     {
      "fleet": "캅센",
      "vessel": "COSMOS KIM",
-     "arrive": null,
-     "depart": null,
+     "arrive": "10/13",
+     "depart": "미정",
      "tons": null,
-     "note": null
+     "note": "국적증서 발급 중"
     },
     {
      "fleet": "그랑블루",
      "vessel": "PONT SAINT LOUIS",
-     "arrive": null,
-     "depart": null,
-     "tons": null,
-     "note": null
+     "arrive": "12/27",
+     "depart": "미정",
+     "tons": 340.0,
+     "note": "선박 수리(킹포스트)"
     },
     {
      "fleet": "그랑블루",
      "vessel": "SEA FRONTIER",
-     "arrive": null,
-     "depart": null,
-     "tons": null,
-     "note": null
+     "arrive": "12/27",
+     "depart": "미정",
+     "tons": 800.0,
+     "note": "하역 중"
     }
    ],
    "prices": {
@@ -268,50 +268,50 @@
     {
      "fleet": "캅센",
      "vessel": "COSMOS KIM",
-     "arrive": null,
-     "depart": null,
+     "arrive": "10/13",
+     "depart": "미정",
      "tons": null,
-     "note": null
+     "note": "국적증서 발급 중"
     },
     {
      "fleet": "캅센",
      "vessel": "ORIENTAL KIM",
-     "arrive": null,
-     "depart": null,
-     "tons": null,
-     "note": null
+     "arrive": "1/5",
+     "depart": "1/10",
+     "tons": 830.0,
+     "note": "출항 완료"
     },
     {
      "fleet": "캅센",
      "vessel": "XIXILI",
-     "arrive": null,
-     "depart": null,
-     "tons": null,
-     "note": null
+     "arrive": "1/5",
+     "depart": "1/12",
+     "tons": 1010.0,
+     "note": "출항 완료"
     },
     {
      "fleet": "그랑블루",
      "vessel": "PONT SAINT LOUIS",
-     "arrive": null,
-     "depart": null,
-     "tons": null,
-     "note": null
+     "arrive": "12/27",
+     "depart": "1/7",
+     "tons": 340.0,
+     "note": "출항 완료"
     },
     {
      "fleet": "그랑블루",
      "vessel": "SEA BREEZE",
-     "arrive": null,
-     "depart": null,
-     "tons": null,
-     "note": null
+     "arrive": "1/1",
+     "depart": "1/7",
+     "tons": 970.0,
+     "note": "출항 완료"
     },
     {
      "fleet": "그랑블루",
      "vessel": "PONT SAINT LOUIS",
-     "arrive": null,
-     "depart": null,
+     "arrive": "1/11",
+     "depart": "미정",
      "tons": null,
-     "note": null
+     "note": "파망으로 긴급 입항"
     }
    ],
    "prices": {
@@ -390,34 +390,34 @@
     {
      "fleet": "캅센",
      "vessel": "COSMOS KIM",
-     "arrive": null,
-     "depart": null,
+     "arrive": "10/13",
+     "depart": "미정",
      "tons": null,
-     "note": null
+     "note": "국적증서 발급 중"
     },
     {
      "fleet": "캅센",
      "vessel": "GRANADA",
-     "arrive": null,
-     "depart": null,
-     "tons": null,
-     "note": null
+     "arrive": "1/19",
+     "depart": "미정",
+     "tons": 710.0,
+     "note": "하역 중"
     },
     {
      "fleet": "그랑블루",
      "vessel": "PONT SAINT LOUIS",
-     "arrive": null,
-     "depart": null,
+     "arrive": "1/11",
+     "depart": "1/15",
      "tons": null,
-     "note": null
+     "note": "어망 수리 후"
     },
     {
      "fleet": "그랑블루",
      "vessel": "SEA DEFENDER",
-     "arrive": null,
-     "depart": null,
-     "tons": null,
-     "note": null
+     "arrive": "1/14",
+     "depart": "1/19",
+     "tons": 900.0,
+     "note": "출항 완료"
     }
    ],
    "prices": {
@@ -496,34 +496,34 @@
     {
      "fleet": "캅센",
      "vessel": "COSMOS KIM",
-     "arrive": null,
-     "depart": null,
+     "arrive": "10/13",
+     "depart": "미정",
      "tons": null,
-     "note": null
+     "note": "국적증서 발급 중"
     },
     {
      "fleet": "캅센",
      "vessel": "WESTERN KIM",
-     "arrive": null,
-     "depart": null,
+     "arrive": "1/27",
+     "depart": "2/1",
      "tons": null,
      "note": null
     },
     {
      "fleet": "그랑블루",
      "vessel": "SEA FRONTIER",
-     "arrive": null,
-     "depart": null,
-     "tons": null,
-     "note": null
+     "arrive": "1/25",
+     "depart": "1/29",
+     "tons": 800.0,
+     "note": "출항 완료"
     },
     {
      "fleet": "그랑블루",
      "vessel": "SEA BREEZ",
-     "arrive": null,
-     "depart": null,
-     "tons": null,
-     "note": null
+     "arrive": "2/3",
+     "depart": "미정",
+     "tons": 995.0,
+     "note": "하역 중"
     }
    ],
    "prices": {
@@ -602,50 +602,50 @@
     {
      "fleet": "캅센",
      "vessel": "COSMOS KIM",
-     "arrive": null,
-     "depart": null,
+     "arrive": "10/13",
+     "depart": "미정",
      "tons": null,
-     "note": null
+     "note": "국적증서 발급 중"
     },
     {
      "fleet": "캅센",
      "vessel": "ORIENTAL KIM",
-     "arrive": null,
-     "depart": null,
-     "tons": null,
-     "note": null
+     "arrive": "2/5",
+     "depart": "미정",
+     "tons": 900.0,
+     "note": "컨베이어 수리로 인한 하역 지연"
     },
     {
      "fleet": "캅센",
      "vessel": "XIXILI",
-     "arrive": null,
-     "depart": null,
-     "tons": null,
-     "note": null
+     "arrive": "2/7",
+     "depart": "미정",
+     "tons": 1105.0,
+     "note": "선석 부족으로"
     },
     {
      "fleet": "그랑블루",
      "vessel": "SEA BREEZ",
-     "arrive": null,
-     "depart": null,
-     "tons": null,
-     "note": null
+     "arrive": "2/3",
+     "depart": "2/8",
+     "tons": 995.0,
+     "note": "출항 완료"
     },
     {
      "fleet": "그랑블루",
      "vessel": "SEA DEFENDER",
-     "arrive": null,
-     "depart": null,
-     "tons": null,
-     "note": null
+     "arrive": "2/6",
+     "depart": "미정",
+     "tons": 920.0,
+     "note": "하역 중"
     },
     {
      "fleet": "그랑블루",
      "vessel": "PONT SAINT LOUIS",
-     "arrive": null,
-     "depart": null,
-     "tons": null,
-     "note": null
+     "arrive": "2/6",
+     "depart": "미정",
+     "tons": 905.0,
+     "note": "하역 중"
     }
    ],
    "prices": {
@@ -724,50 +724,50 @@
     {
      "fleet": "캅센",
      "vessel": "COSMOS KIM",
-     "arrive": null,
-     "depart": null,
+     "arrive": "10/13",
+     "depart": "미정",
      "tons": null,
-     "note": null
+     "note": "가국적 취득"
     },
     {
      "fleet": "캅센",
      "vessel": "ORIENTAL KIM",
-     "arrive": null,
-     "depart": null,
-     "tons": null,
-     "note": null
+     "arrive": "2/5",
+     "depart": "2/10",
+     "tons": 900.0,
+     "note": "출항 완료"
     },
     {
      "fleet": "캅센",
      "vessel": "XIXILI",
-     "arrive": null,
-     "depart": null,
-     "tons": null,
-     "note": null
+     "arrive": "2/7",
+     "depart": "2/15",
+     "tons": 1105.0,
+     "note": "출항 완료"
     },
     {
      "fleet": "캅센",
      "vessel": "GRANADA",
-     "arrive": null,
-     "depart": null,
-     "tons": null,
-     "note": null
+     "arrive": "2/12",
+     "depart": "미정",
+     "tons": 710.0,
+     "note": "하역 중"
     },
     {
      "fleet": "그랑블루",
      "vessel": "SEA DEFENDER",
-     "arrive": null,
-     "depart": null,
-     "tons": null,
-     "note": null
+     "arrive": "2/6",
+     "depart": "2/11",
+     "tons": 920.0,
+     "note": "출항 완료"
     },
     {
      "fleet": "그랑블루",
      "vessel": "PONT SAINT LOUIS",
-     "arrive": null,
-     "depart": null,
-     "tons": null,
-     "note": null
+     "arrive": "2/6",
+     "depart": "2/12",
+     "tons": 905.0,
+     "note": "출항 완료"
     }
    ],
    "prices": {
@@ -846,50 +846,50 @@
     {
      "fleet": "캅센",
      "vessel": "COSMOS KIM",
-     "arrive": null,
-     "depart": null,
+     "arrive": "10/13",
+     "depart": "2/23",
      "tons": null,
-     "note": null
+     "note": "국적 취득 후 출항 완료"
     },
     {
      "fleet": "캅센",
      "vessel": "GRANADA",
-     "arrive": null,
-     "depart": null,
-     "tons": null,
-     "note": null
+     "arrive": "2/12",
+     "depart": "2/16",
+     "tons": 710.0,
+     "note": "출항 완료"
     },
     {
      "fleet": "캅센",
      "vessel": "WESTERN KIM",
-     "arrive": null,
-     "depart": null,
-     "tons": null,
-     "note": null
+     "arrive": "2/18",
+     "depart": "2/23",
+     "tons": 770.0,
+     "note": "출항 완료"
     },
     {
      "fleet": "캅센",
      "vessel": "CAP ATLANTIQUE",
-     "arrive": null,
-     "depart": null,
-     "tons": null,
-     "note": null
+     "arrive": "2/20",
+     "depart": "2/23",
+     "tons": 80.0,
+     "note": "출항 완료"
     },
     {
      "fleet": "그랑블루",
      "vessel": "SEA DEFENDER",
-     "arrive": null,
-     "depart": null,
+     "arrive": "2/17",
+     "depart": "2/18",
      "tons": null,
-     "note": null
+     "note": "자이로 수리 후 출항 완료"
     },
     {
      "fleet": "그랑블루",
      "vessel": "SEA FRONTIER",
-     "arrive": null,
-     "depart": null,
-     "tons": null,
-     "note": null
+     "arrive": "2/17",
+     "depart": "2/22",
+     "tons": 800.0,
+     "note": "출항 완료"
     }
    ],
    "prices": {
@@ -962,18 +962,18 @@
     {
      "fleet": "캅센",
      "vessel": "ORIENTAL KIM",
-     "arrive": null,
-     "depart": null,
-     "tons": null,
-     "note": null
+     "arrive": "2/22",
+     "depart": "2/25",
+     "tons": 960.0,
+     "note": "출항 완료"
     },
     {
      "fleet": "그랑블루",
      "vessel": "PONT SAINT LOUIS",
-     "arrive": null,
-     "depart": null,
-     "tons": null,
-     "note": null
+     "arrive": "2/27",
+     "depart": "3/3",
+     "tons": 1060.0,
+     "note": "출항 완료"
     }
    ],
    "prices": {
@@ -1046,34 +1046,34 @@
     {
      "fleet": "캅센",
      "vessel": "COSMOS KIM",
-     "arrive": null,
-     "depart": null,
-     "tons": null,
-     "note": null
+     "arrive": "3/6",
+     "depart": "미정",
+     "tons": 315.0,
+     "note": "하역 후 M/E 수리 중"
     },
     {
      "fleet": "캅센",
      "vessel": "GRANADA",
-     "arrive": null,
-     "depart": null,
-     "tons": null,
-     "note": null
+     "arrive": "3/8",
+     "depart": "미정",
+     "tons": 690.0,
+     "note": "하역 중"
     },
     {
      "fleet": "캅센",
      "vessel": "WESTERN KIM",
-     "arrive": null,
-     "depart": null,
-     "tons": null,
-     "note": null
+     "arrive": "3/8",
+     "depart": "미정",
+     "tons": 195.0,
+     "note": "하역 중"
     },
     {
      "fleet": "캅센",
      "vessel": "ORIENTAL KIM",
-     "arrive": null,
-     "depart": null,
-     "tons": null,
-     "note": null
+     "arrive": "3/9",
+     "depart": "미정",
+     "tons": 65.0,
+     "note": "하역 중"
     }
    ],
    "prices": {
@@ -1177,50 +1177,50 @@
     {
      "fleet": "캅센",
      "vessel": "COSMOS KIM",
-     "arrive": null,
-     "depart": null,
-     "tons": null,
-     "note": null
+     "arrive": "3/6",
+     "depart": "3/11",
+     "tons": 315.0,
+     "note": "출항 완료"
     },
     {
      "fleet": "캅센",
      "vessel": "GRANADA",
-     "arrive": null,
-     "depart": null,
-     "tons": null,
-     "note": null
+     "arrive": "3/8",
+     "depart": "3/11",
+     "tons": 690.0,
+     "note": "출항 완료"
     },
     {
      "fleet": "캅센",
      "vessel": "WESTERN KIM",
-     "arrive": null,
-     "depart": null,
-     "tons": null,
-     "note": null
+     "arrive": "3/8",
+     "depart": "미정",
+     "tons": 195.0,
+     "note": "하역 후 수리 중"
     },
     {
      "fleet": "캅센",
      "vessel": "ORIENTAL KIM",
-     "arrive": null,
-     "depart": null,
-     "tons": null,
-     "note": null
+     "arrive": "3/9",
+     "depart": "미정",
+     "tons": 65.0,
+     "note": "하역 후 수리 중"
     },
     {
      "fleet": "캅센",
      "vessel": "XIXILI",
-     "arrive": null,
-     "depart": null,
-     "tons": null,
-     "note": null
+     "arrive": "3/11",
+     "depart": "미정",
+     "tons": 1020.0,
+     "note": "하역 및 정비 중"
     },
     {
      "fleet": "그랑블루",
      "vessel": "SEA BREEZE",
-     "arrive": null,
-     "depart": null,
-     "tons": null,
-     "note": null
+     "arrive": "3/15",
+     "depart": "미정",
+     "tons": 895.0,
+     "note": "하역 후 정기 정비 예정"
     }
    ],
    "prices": {
@@ -1329,50 +1329,50 @@
     {
      "fleet": "캅센",
      "vessel": "WESTERN KIM",
-     "arrive": null,
-     "depart": null,
-     "tons": null,
-     "note": null
+     "arrive": "3/8",
+     "depart": "미정",
+     "tons": 195.0,
+     "note": "하역 후 수리 중"
     },
     {
      "fleet": "캅센",
      "vessel": "ORIENTAL KIM",
-     "arrive": null,
-     "depart": null,
-     "tons": null,
-     "note": null
+     "arrive": "3/9",
+     "depart": "미정",
+     "tons": 65.0,
+     "note": "하역 후 수리 중"
     },
     {
      "fleet": "캅센",
      "vessel": "CAP ATLANTIQUE",
-     "arrive": null,
-     "depart": null,
-     "tons": null,
-     "note": null
+     "arrive": "3/19",
+     "depart": "미정",
+     "tons": 50.0,
+     "note": "하역 후 수리/체항 중"
     },
     {
      "fleet": "그랑블루",
      "vessel": "SEA BREEZE",
-     "arrive": null,
-     "depart": null,
-     "tons": null,
-     "note": null
+     "arrive": "3/15",
+     "depart": "미정",
+     "tons": 895.0,
+     "note": "하역 후 수리 중"
     },
     {
      "fleet": "그랑블루",
      "vessel": "SEA DEFENDER",
-     "arrive": null,
-     "depart": null,
-     "tons": null,
-     "note": null
+     "arrive": "3/16",
+     "depart": "미정",
+     "tons": 910.0,
+     "note": "하역 및 정비 중"
     },
     {
      "fleet": "그랑블루",
      "vessel": "PONT SAINT LOUIS",
-     "arrive": null,
-     "depart": null,
-     "tons": null,
-     "note": null
+     "arrive": "3/17",
+     "depart": "3/19",
+     "tons": 300.0,
+     "note": "하역 및 신망 선적 후 출항 완료"
     }
    ],
    "prices": {
@@ -1481,58 +1481,58 @@
     {
      "fleet": "캅센",
      "vessel": "WESTERN KIM",
-     "arrive": null,
-     "depart": null,
-     "tons": null,
-     "note": null
+     "arrive": "3/8",
+     "depart": "미정",
+     "tons": 195.0,
+     "note": "체항 수리중, 조선소 문제로 상가수리 여부 미정"
     },
     {
      "fleet": "캅센",
      "vessel": "ORIENTAL KIM",
-     "arrive": null,
-     "depart": null,
-     "tons": null,
+     "arrive": "3/9",
+     "depart": "미정",
+     "tons": 65.0,
      "note": null
     },
     {
      "fleet": "캅센",
      "vessel": "CAP ATLANTIQUE",
-     "arrive": null,
-     "depart": null,
-     "tons": null,
-     "note": null
+     "arrive": "3/19",
+     "depart": "미정",
+     "tons": 50.0,
+     "note": "체항 수리중"
     },
     {
      "fleet": "캅센",
      "vessel": "XIXILI",
-     "arrive": null,
-     "depart": null,
-     "tons": null,
-     "note": null
+     "arrive": "3/30",
+     "depart": "미정",
+     "tons": 35.0,
+     "note": "메인토핑 윈치 고장으로 수리중"
     },
     {
      "fleet": "블루",
      "vessel": "SEA BREEZE",
-     "arrive": null,
-     "depart": null,
-     "tons": null,
-     "note": null
+     "arrive": "3/15",
+     "depart": "미정",
+     "tons": 895.0,
+     "note": "체항 수리중"
     },
     {
      "fleet": "블루",
      "vessel": "SEA DEFENDER",
-     "arrive": null,
-     "depart": null,
-     "tons": null,
-     "note": null
+     "arrive": "3/16",
+     "depart": "미정",
+     "tons": 910.0,
+     "note": "하역 및 정비 중"
     },
     {
      "fleet": "블루",
      "vessel": "SEA FRONTIER",
-     "arrive": null,
-     "depart": null,
-     "tons": null,
-     "note": null
+     "arrive": "3/25",
+     "depart": "미정",
+     "tons": 755.0,
+     "note": "체항 수리중"
     }
    ],
    "prices": {
@@ -1641,58 +1641,58 @@
     {
      "fleet": "캅센",
      "vessel": "WESTERN KIM",
-     "arrive": null,
-     "depart": null,
-     "tons": null,
-     "note": null
+     "arrive": "3/8",
+     "depart": "미정",
+     "tons": 195.0,
+     "note": "체항 수리중, 조선소 문제로 상가수리 여부 미정"
     },
     {
      "fleet": "캅센",
      "vessel": "ORIENTAL KIM",
-     "arrive": null,
-     "depart": null,
-     "tons": null,
+     "arrive": "3/9",
+     "depart": "미정",
+     "tons": 65.0,
      "note": null
     },
     {
      "fleet": "캅센",
      "vessel": "CAP ATLANTIQUE",
-     "arrive": null,
-     "depart": null,
-     "tons": null,
-     "note": null
+     "arrive": "3/19",
+     "depart": "미정",
+     "tons": 50.0,
+     "note": "체항 수리중"
     },
     {
      "fleet": "캅센",
      "vessel": "XIXILI",
-     "arrive": null,
-     "depart": null,
-     "tons": null,
-     "note": null
+     "arrive": "3/30",
+     "depart": "미정",
+     "tons": 35.0,
+     "note": "체항 수리중"
     },
     {
      "fleet": "블루",
      "vessel": "SEA BREEZE",
-     "arrive": null,
-     "depart": null,
-     "tons": null,
-     "note": null
+     "arrive": "3/15",
+     "depart": "미정",
+     "tons": 895.0,
+     "note": "체항 수리중, 강광진 선장 휴가"
     },
     {
      "fleet": "블루",
      "vessel": "SEA DEFENDER",
-     "arrive": null,
-     "depart": null,
-     "tons": null,
-     "note": null
+     "arrive": "3/16",
+     "depart": "미정",
+     "tons": 910.0,
+     "note": "체항 수리중"
     },
     {
      "fleet": "블루",
      "vessel": "SEA FRONTIER",
-     "arrive": null,
-     "depart": null,
-     "tons": null,
-     "note": null
+     "arrive": "3/25",
+     "depart": "미정",
+     "tons": 755.0,
+     "note": "체항 수리중, 현병갑 선장 휴가"
     }
    ],
    "prices": {
@@ -1801,82 +1801,82 @@
     {
      "fleet": "캅센",
      "vessel": "WESTERN KIM",
-     "arrive": null,
-     "depart": null,
-     "tons": null,
-     "note": null
+     "arrive": "3/8",
+     "depart": "미정",
+     "tons": 195.0,
+     "note": "체항 수리중, 조선소 문제로 상가수리 여부 미정"
     },
     {
      "fleet": "캅센",
      "vessel": "ORIENTAL KIM",
-     "arrive": null,
-     "depart": null,
-     "tons": null,
+     "arrive": "3/9",
+     "depart": "미정",
+     "tons": 65.0,
      "note": null
     },
     {
      "fleet": "캅센",
      "vessel": "CAP ATLANTIQUE",
-     "arrive": null,
-     "depart": null,
-     "tons": null,
-     "note": null
+     "arrive": "3/19",
+     "depart": "미정",
+     "tons": 50.0,
+     "note": "체항 수리중"
     },
     {
      "fleet": "캅센",
      "vessel": "XIXILI",
-     "arrive": null,
-     "depart": null,
-     "tons": null,
-     "note": null
+     "arrive": "3/30",
+     "depart": "미정",
+     "tons": 35.0,
+     "note": "체항 수리중"
     },
     {
      "fleet": "캅센",
      "vessel": "GRANADA",
-     "arrive": null,
-     "depart": null,
-     "tons": null,
-     "note": null
+     "arrive": "4/11",
+     "depart": "미정",
+     "tons": 344.0,
+     "note": "체항 수리중"
     },
     {
      "fleet": "캅센",
      "vessel": "COSMOS KIM",
-     "arrive": null,
-     "depart": null,
-     "tons": null,
-     "note": null
+     "arrive": "4/11",
+     "depart": "미정",
+     "tons": 555.0,
+     "note": "체항 수리중"
     },
     {
      "fleet": "블루",
      "vessel": "SEA BREEZE",
-     "arrive": null,
-     "depart": null,
-     "tons": null,
-     "note": null
+     "arrive": "3/15",
+     "depart": "미정",
+     "tons": 895.0,
+     "note": "체항 수리중, 강광진 선장 휴가"
     },
     {
      "fleet": "블루",
      "vessel": "SEA DEFENDER",
-     "arrive": null,
-     "depart": null,
-     "tons": null,
-     "note": null
+     "arrive": "3/16",
+     "depart": "미정",
+     "tons": 910.0,
+     "note": "체항 수리중"
     },
     {
      "fleet": "블루",
      "vessel": "SEA FRONTIER",
-     "arrive": null,
-     "depart": null,
-     "tons": null,
-     "note": null
+     "arrive": "3/25",
+     "depart": "미정",
+     "tons": 755.0,
+     "note": "체항 수리중, 현병갑 선장 휴가"
     },
     {
      "fleet": "블루",
      "vessel": "PONT SAINT LOUIS",
-     "arrive": null,
-     "depart": null,
-     "tons": null,
-     "note": null
+     "arrive": "4/12",
+     "depart": "미정",
+     "tons": 125.0,
+     "note": "체항 수리중"
     }
    ],
    "prices": {
@@ -1985,82 +1985,82 @@
     {
      "fleet": "캅센",
      "vessel": "WESTERN KIM",
-     "arrive": null,
-     "depart": null,
-     "tons": null,
-     "note": null
+     "arrive": "3/8",
+     "depart": "미정",
+     "tons": 195.0,
+     "note": "체항 수리중, 조선소 문제로 상가수리 여부 미정"
     },
     {
      "fleet": "캅센",
      "vessel": "ORIENTAL KIM",
-     "arrive": null,
-     "depart": null,
-     "tons": null,
+     "arrive": "3/9",
+     "depart": "미정",
+     "tons": 65.0,
      "note": null
     },
     {
      "fleet": "캅센",
      "vessel": "CAP ATLANTIQUE",
-     "arrive": null,
-     "depart": null,
-     "tons": null,
-     "note": null
+     "arrive": "3/19",
+     "depart": "미정",
+     "tons": 50.0,
+     "note": "체항 수리중"
     },
     {
      "fleet": "캅센",
      "vessel": "XIXILI",
-     "arrive": null,
-     "depart": null,
-     "tons": null,
-     "note": null
+     "arrive": "3/30",
+     "depart": "미정",
+     "tons": 35.0,
+     "note": "체항 수리중"
     },
     {
      "fleet": "캅센",
      "vessel": "GRANADA",
-     "arrive": null,
-     "depart": null,
-     "tons": null,
-     "note": null
+     "arrive": "4/11",
+     "depart": "미정",
+     "tons": 344.0,
+     "note": "체항 수리중"
     },
     {
      "fleet": "캅센",
      "vessel": "COSMOS KIM",
-     "arrive": null,
-     "depart": null,
-     "tons": null,
-     "note": null
+     "arrive": "4/11",
+     "depart": "미정",
+     "tons": 555.0,
+     "note": "체항 수리중"
     },
     {
      "fleet": "블루",
      "vessel": "SEA BREEZE",
-     "arrive": null,
-     "depart": null,
-     "tons": null,
-     "note": null
+     "arrive": "3/15",
+     "depart": "미정",
+     "tons": 895.0,
+     "note": "체항 수리중, 강광진 선장 휴가"
     },
     {
      "fleet": "블루",
      "vessel": "SEA DEFENDER",
-     "arrive": null,
-     "depart": null,
-     "tons": null,
-     "note": null
+     "arrive": "3/16",
+     "depart": "미정",
+     "tons": 910.0,
+     "note": "체항 수리중"
     },
     {
      "fleet": "블루",
      "vessel": "SEA FRONTIER",
-     "arrive": null,
-     "depart": null,
-     "tons": null,
-     "note": null
+     "arrive": "3/25",
+     "depart": "미정",
+     "tons": 755.0,
+     "note": "체항 수리중, 현병갑 선장 휴가"
     },
     {
      "fleet": "블루",
      "vessel": "PONT SAINT LOUIS",
-     "arrive": null,
-     "depart": null,
-     "tons": null,
-     "note": null
+     "arrive": "4/12",
+     "depart": "미정",
+     "tons": 125.0,
+     "note": "체항 수리중"
     }
    ],
    "prices": {
@@ -2169,82 +2169,82 @@
     {
      "fleet": "캅센",
      "vessel": "WESTERN KIM",
-     "arrive": null,
-     "depart": null,
-     "tons": null,
-     "note": null
+     "arrive": "3/8",
+     "depart": "4/30",
+     "tons": 195.0,
+     "note": "체항 수리중"
     },
     {
      "fleet": "캅센",
      "vessel": "ORIENTAL KIM",
-     "arrive": null,
-     "depart": null,
-     "tons": null,
-     "note": null
+     "arrive": "3/9",
+     "depart": "4/30",
+     "tons": 65.0,
+     "note": "체항 수리중"
     },
     {
      "fleet": "캅센",
      "vessel": "CAP ATLANTIQUE",
-     "arrive": null,
-     "depart": null,
-     "tons": null,
-     "note": null
+     "arrive": "3/19",
+     "depart": "4/30",
+     "tons": 50.0,
+     "note": "체항 수리중"
     },
     {
      "fleet": "캅센",
      "vessel": "XIXILI",
-     "arrive": null,
-     "depart": null,
-     "tons": null,
-     "note": null
+     "arrive": "3/30",
+     "depart": "4/29",
+     "tons": 35.0,
+     "note": "체항 수리중"
     },
     {
      "fleet": "캅센",
      "vessel": "GRANADA",
-     "arrive": null,
-     "depart": null,
-     "tons": null,
-     "note": null
+     "arrive": "4/12",
+     "depart": "4/28",
+     "tons": 344.0,
+     "note": "출항"
     },
     {
      "fleet": "캅센",
      "vessel": "COSMOS KIM",
-     "arrive": null,
-     "depart": null,
-     "tons": null,
-     "note": null
+     "arrive": "4/12",
+     "depart": "4/30",
+     "tons": 555.0,
+     "note": "체항 수리중"
     },
     {
      "fleet": "블루",
      "vessel": "SEA BREEZE",
-     "arrive": null,
-     "depart": null,
-     "tons": null,
-     "note": null
+     "arrive": "3/15",
+     "depart": "4/29",
+     "tons": 895.0,
+     "note": "체항 수리중"
     },
     {
      "fleet": "블루",
      "vessel": "SEA DEFENDER",
-     "arrive": null,
-     "depart": null,
-     "tons": null,
-     "note": null
+     "arrive": "3/16",
+     "depart": "4/29",
+     "tons": 910.0,
+     "note": "체항 수리중"
     },
     {
      "fleet": "블루",
      "vessel": "SEA FRONTIER",
-     "arrive": null,
-     "depart": null,
-     "tons": null,
-     "note": null
+     "arrive": "3/25",
+     "depart": "4/29",
+     "tons": 755.0,
+     "note": "체항 수리중"
     },
     {
      "fleet": "블루",
      "vessel": "PONT SAINT LOUIS",
-     "arrive": null,
-     "depart": null,
-     "tons": null,
-     "note": null
+     "arrive": "4/12",
+     "depart": "4/29",
+     "tons": 125.0,
+     "note": "체항 수리중"
     }
    ],
    "prices": {
@@ -2317,98 +2317,98 @@
     {
      "fleet": "캅센",
      "vessel": "WESTERN KIM",
-     "arrive": null,
-     "depart": null,
-     "tons": null,
-     "note": null
+     "arrive": "3/8",
+     "depart": "5/3",
+     "tons": 195.0,
+     "note": "출항 완료"
     },
     {
      "fleet": "캅센",
      "vessel": "ORIENTAL KIM",
-     "arrive": null,
-     "depart": null,
-     "tons": null,
-     "note": null
+     "arrive": "3/9",
+     "depart": "5/1",
+     "tons": 65.0,
+     "note": "출항 완료"
     },
     {
      "fleet": "캅센",
      "vessel": "CAP ATLANTIQUE",
-     "arrive": null,
-     "depart": null,
-     "tons": null,
-     "note": null
+     "arrive": "3/19",
+     "depart": "5/2",
+     "tons": 50.0,
+     "note": "출항 완료"
     },
     {
      "fleet": "캅센",
      "vessel": "XIXILI",
-     "arrive": null,
-     "depart": null,
-     "tons": null,
-     "note": null
+     "arrive": "3/30",
+     "depart": "4/29",
+     "tons": 35.0,
+     "note": "출항 완료"
     },
     {
      "fleet": "캅센",
      "vessel": "GRANADA",
-     "arrive": null,
-     "depart": null,
-     "tons": null,
-     "note": null
+     "arrive": "4/12",
+     "depart": "4/28",
+     "tons": 344.0,
+     "note": "출항 완료"
     },
     {
      "fleet": "캅센",
      "vessel": "COSMOS KIM",
-     "arrive": null,
-     "depart": null,
-     "tons": null,
-     "note": null
+     "arrive": "4/12",
+     "depart": "4/30",
+     "tons": 555.0,
+     "note": "출항 완료"
     },
     {
      "fleet": "블루",
      "vessel": "SEA BREEZE",
-     "arrive": null,
-     "depart": null,
-     "tons": null,
-     "note": null
+     "arrive": "3/15",
+     "depart": "4/29",
+     "tons": 895.0,
+     "note": "체항 수리중"
     },
     {
      "fleet": "블루",
      "vessel": "SEA DEFENDER",
-     "arrive": null,
-     "depart": null,
-     "tons": null,
-     "note": null
+     "arrive": "3/16",
+     "depart": "4/29",
+     "tons": 910.0,
+     "note": "출항 완료"
     },
     {
      "fleet": "블루",
      "vessel": "SEA FRONTIER",
-     "arrive": null,
-     "depart": null,
-     "tons": null,
-     "note": null
+     "arrive": "3/25",
+     "depart": "5/2",
+     "tons": 755.0,
+     "note": "출항 완료"
     },
     {
      "fleet": "블루",
      "vessel": "PONT SAINT LOUIS",
-     "arrive": null,
-     "depart": null,
-     "tons": null,
-     "note": null
+     "arrive": "4/12",
+     "depart": "4/30",
+     "tons": 125.0,
+     "note": "출항 완료"
     },
     {
      "fleet": "EU 선단",
      "vessel": "PLAYA DE LAGA",
-     "arrive": null,
-     "depart": null,
-     "tons": null,
-     "note": null
+     "arrive": "5/3",
+     "depart": "미정",
+     "tons": 200.0,
+     "note": "하역 중"
     },
     {
      "fleet": "EU 선단",
      "vessel": "MONTEFRISA NUEVE",
-     "arrive": null,
-     "depart": null,
-     "tons": null,
-     "note": null
+     "arrive": "5/3",
+     "depart": "미정",
+     "tons": 320.0,
+     "note": "하역 대기 중"
     }
    ],
    "prices": {
@@ -2481,42 +2481,42 @@
     {
      "fleet": "캅센",
      "vessel": "WESTERN KIM",
-     "arrive": null,
-     "depart": null,
-     "tons": null,
-     "note": null
+     "arrive": "5/8",
+     "depart": "미정",
+     "tons": 800.0,
+     "note": "하역 중"
     },
     {
      "fleet": "캅센",
      "vessel": "GRANADA",
-     "arrive": null,
-     "depart": null,
-     "tons": null,
-     "note": null
+     "arrive": "5/8",
+     "depart": "미정",
+     "tons": 750.0,
+     "note": "하역 중"
     },
     {
      "fleet": "캅센",
      "vessel": "COSMOS KIM",
-     "arrive": null,
-     "depart": null,
-     "tons": null,
-     "note": null
+     "arrive": "5/9",
+     "depart": "미정",
+     "tons": 900.0,
+     "note": "하역 중"
     },
     {
      "fleet": "블루",
      "vessel": "SEA BREEZE",
-     "arrive": null,
-     "depart": null,
+     "arrive": "3/15",
+     "depart": "5/12",
      "tons": null,
-     "note": null
+     "note": "수리 후 출항 완료"
     },
     {
      "fleet": "블루",
      "vessel": "PONT SAINT LOUIS",
-     "arrive": null,
-     "depart": null,
-     "tons": null,
-     "note": null
+     "arrive": "5/9",
+     "depart": "미정",
+     "tons": 915.0,
+     "note": "하역 중"
     }
    ],
    "prices": {
@@ -2589,74 +2589,66 @@
     {
      "fleet": "캅센",
      "vessel": "WESTERN KIM",
-     "arrive": null,
-     "depart": null,
-     "tons": null,
-     "note": null
+     "arrive": "5/8",
+     "depart": "5/13",
+     "tons": 800.0,
+     "note": "출항 완료"
     },
     {
      "fleet": "캅센",
      "vessel": "GRANADA",
-     "arrive": null,
-     "depart": null,
-     "tons": null,
-     "note": null
+     "arrive": "5/8",
+     "depart": "5/13",
+     "tons": 800.0,
+     "note": "출항 완료"
     },
     {
      "fleet": "캅센",
      "vessel": "COSMOS KIM",
-     "arrive": null,
-     "depart": null,
-     "tons": null,
-     "note": null
+     "arrive": "5/9",
+     "depart": "5/13",
+     "tons": 900.0,
+     "note": "출항 완료"
     },
     {
      "fleet": "캅센",
      "vessel": "ORIENTAL KIM",
-     "arrive": null,
-     "depart": null,
+     "arrive": "5/17",
+     "depart": "미정",
      "tons": null,
-     "note": null
+     "note": "하역 중"
     },
     {
      "fleet": "캅센",
      "vessel": "XIXILI",
-     "arrive": null,
-     "depart": null,
+     "arrive": "5/18",
+     "depart": "미정",
      "tons": null,
-     "note": null
+     "note": "하역 중"
     },
     {
      "fleet": "블루",
      "vessel": "PONT SAINT LOUIS",
-     "arrive": null,
-     "depart": null,
-     "tons": null,
-     "note": null
+     "arrive": "5/9",
+     "depart": "5/16",
+     "tons": 915.0,
+     "note": "출항 완료"
     },
     {
      "fleet": "블루",
      "vessel": "SEA DEFENDER",
-     "arrive": null,
-     "depart": null,
-     "tons": null,
-     "note": null
+     "arrive": "5/13",
+     "depart": "미정",
+     "tons": 920.0,
+     "note": "하역 중"
     },
     {
      "fleet": "블루",
      "vessel": "SEA FRONTIER",
-     "arrive": null,
-     "depart": null,
-     "tons": null,
-     "note": null
-    },
-    {
-     "fleet": "블루",
-     "vessel": "ALBONIGA",
-     "arrive": null,
-     "depart": null,
-     "tons": null,
-     "note": null
+     "arrive": "5/18",
+     "depart": "미정",
+     "tons": 820.0,
+     "note": "하역 중"
     }
    ],
    "prices": {
@@ -2729,50 +2721,42 @@
     {
      "fleet": "캅센",
      "vessel": "GRANADA",
-     "arrive": null,
-     "depart": null,
-     "tons": null,
-     "note": null
+     "arrive": "5/26",
+     "depart": "미정",
+     "tons": 715.0,
+     "note": "하역 대기중"
     },
     {
      "fleet": "캅센",
      "vessel": "COSMOS KIM",
-     "arrive": null,
-     "depart": null,
-     "tons": null,
-     "note": null
+     "arrive": "5/22",
+     "depart": "미정",
+     "tons": 920.0,
+     "note": "하역중"
     },
     {
      "fleet": "캅센",
      "vessel": "ORIENTAL KIM",
-     "arrive": null,
-     "depart": null,
-     "tons": null,
-     "note": null
+     "arrive": "5/17",
+     "depart": "5/22",
+     "tons": 945.0,
+     "note": "출항 완료"
     },
     {
      "fleet": "캅센",
      "vessel": "XIXILI",
-     "arrive": null,
-     "depart": null,
-     "tons": null,
-     "note": null
+     "arrive": "5/18",
+     "depart": "5/23",
+     "tons": 1030.0,
+     "note": "출항 완료"
     },
     {
      "fleet": "블루",
      "vessel": "PONT SAINT LOUIS",
-     "arrive": null,
-     "depart": null,
-     "tons": null,
-     "note": null
-    },
-    {
-     "fleet": "블루",
-     "vessel": "ALBONIGA",
-     "arrive": null,
-     "depart": null,
-     "tons": null,
-     "note": null
+     "arrive": "5/26",
+     "depart": "미정",
+     "tons": 1200.0,
+     "note": "하역 대기중"
     }
    ],
    "prices": {
@@ -2861,66 +2845,58 @@
     {
      "fleet": "캅센",
      "vessel": "GRANADA",
-     "arrive": null,
-     "depart": null,
-     "tons": null,
-     "note": null
+     "arrive": "5/26",
+     "depart": "미정",
+     "tons": 715.0,
+     "note": "하역 대기중"
     },
     {
      "fleet": "캅센",
      "vessel": "COSMOS KIM",
-     "arrive": null,
-     "depart": null,
-     "tons": null,
-     "note": null
+     "arrive": "5/22",
+     "depart": "5/26",
+     "tons": 920.0,
+     "note": "출항 완료"
     },
     {
      "fleet": "캅센",
      "vessel": "WESTERN KIM",
-     "arrive": null,
-     "depart": null,
-     "tons": null,
-     "note": null
+     "arrive": "5/27",
+     "depart": "미정",
+     "tons": 765.0,
+     "note": "하역 중"
     },
     {
      "fleet": "캅센",
      "vessel": "CAP ATLANTIQUE",
-     "arrive": null,
-     "depart": null,
+     "arrive": "5/31",
+     "depart": "미정",
      "tons": null,
-     "note": null
+     "note": "FAD 자재, 유류수급 후 출항"
     },
     {
      "fleet": "블루",
      "vessel": "PONT SAINT LOUIS",
-     "arrive": null,
-     "depart": null,
-     "tons": null,
-     "note": null
+     "arrive": "5/26",
+     "depart": "미정",
+     "tons": 1200.0,
+     "note": "하역 중"
     },
     {
      "fleet": "블루",
      "vessel": "SEA BREEZE",
-     "arrive": null,
-     "depart": null,
-     "tons": null,
-     "note": null
+     "arrive": "5/28",
+     "depart": "미정",
+     "tons": 1000.0,
+     "note": "하역 중"
     },
     {
      "fleet": "블루",
      "vessel": "SEA DEFENDER",
-     "arrive": null,
-     "depart": null,
-     "tons": null,
-     "note": null
-    },
-    {
-     "fleet": "블루",
-     "vessel": "EGALUZE",
-     "arrive": null,
-     "depart": null,
-     "tons": null,
-     "note": null
+     "arrive": "5/30",
+     "depart": "미정",
+     "tons": 910.0,
+     "note": "하역 대기중"
     }
    ],
    "prices": {
@@ -3004,82 +2980,74 @@
     {
      "fleet": "캅센",
      "vessel": "GRANADA",
-     "arrive": null,
-     "depart": null,
-     "tons": null,
-     "note": null
+     "arrive": "5/26",
+     "depart": "6/6",
+     "tons": 715.0,
+     "note": "출항 완료"
     },
     {
      "fleet": "캅센",
      "vessel": "COSMOS KIM",
-     "arrive": null,
-     "depart": null,
-     "tons": null,
-     "note": null
+     "arrive": "6/6",
+     "depart": "미정",
+     "tons": 915.0,
+     "note": "하역 중"
     },
     {
      "fleet": "캅센",
      "vessel": "WESTERN KIM",
-     "arrive": null,
-     "depart": null,
-     "tons": null,
-     "note": null
+     "arrive": "5/27",
+     "depart": "6/6",
+     "tons": 765.0,
+     "note": "출항 완료"
     },
     {
      "fleet": "캅센",
      "vessel": "CAP ATLANTIQUE",
-     "arrive": null,
-     "depart": null,
+     "arrive": "5/31",
+     "depart": "미정",
      "tons": null,
-     "note": null
+     "note": "FAD 자재 선적중"
     },
     {
      "fleet": "블루",
      "vessel": "PONT SAINT LOUIS",
-     "arrive": null,
-     "depart": null,
-     "tons": null,
-     "note": null
+     "arrive": "5/26",
+     "depart": "6/7",
+     "tons": 1200.0,
+     "note": "출항 완료"
     },
     {
      "fleet": "블루",
      "vessel": "SEA BREEZE",
-     "arrive": null,
-     "depart": null,
-     "tons": null,
-     "note": null
+     "arrive": "5/28",
+     "depart": "미정",
+     "tons": 1000.0,
+     "note": "하역 종료, 출항 대기중"
     },
     {
      "fleet": "블루",
      "vessel": "SEA DEFENDER",
-     "arrive": null,
-     "depart": null,
-     "tons": null,
-     "note": null
+     "arrive": "5/30",
+     "depart": "미정",
+     "tons": 910.0,
+     "note": "하역 대기중"
     },
     {
      "fleet": "블루",
      "vessel": "SEA FRONTIER",
-     "arrive": null,
-     "depart": null,
-     "tons": null,
-     "note": null
-    },
-    {
-     "fleet": "블루",
-     "vessel": "EGALUZE",
-     "arrive": null,
-     "depart": null,
-     "tons": null,
-     "note": null
+     "arrive": "6/2",
+     "depart": "미정",
+     "tons": 820.0,
+     "note": "하역 중"
     },
     {
      "fleet": "블루",
      "vessel": "ALBACORA QUINCE",
-     "arrive": null,
-     "depart": null,
-     "tons": null,
-     "note": null
+     "arrive": "6/4",
+     "depart": "미정",
+     "tons": 713.0,
+     "note": "하역 중"
     }
    ],
    "prices": {
@@ -3158,66 +3126,58 @@
     {
      "fleet": "캅센",
      "vessel": "CAP ATLANTIQUE",
-     "arrive": null,
-     "depart": null,
+     "arrive": "5/31",
+     "depart": "6/8",
      "tons": null,
-     "note": null
+     "note": "출항 완료"
     },
     {
      "fleet": "캅센",
      "vessel": "COSMOS KIM",
-     "arrive": null,
-     "depart": null,
-     "tons": null,
-     "note": null
+     "arrive": "6/6",
+     "depart": "6/12",
+     "tons": 915.0,
+     "note": "출항 완료"
     },
     {
      "fleet": "캅센",
      "vessel": "ORIENTAL KIM",
-     "arrive": null,
-     "depart": null,
-     "tons": null,
-     "note": null
+     "arrive": "6/9",
+     "depart": "미정",
+     "tons": 950.0,
+     "note": "하역 중"
     },
     {
      "fleet": "캅센",
      "vessel": "XIXILI",
-     "arrive": null,
-     "depart": null,
-     "tons": null,
-     "note": null
+     "arrive": "6/13",
+     "depart": "미정",
+     "tons": 1115.0,
+     "note": "하역 중"
     },
     {
      "fleet": "블루",
      "vessel": "SEA DEFENDER",
-     "arrive": null,
-     "depart": null,
-     "tons": null,
-     "note": null
+     "arrive": "5/30",
+     "depart": "6/13",
+     "tons": 910.0,
+     "note": "출항 완료"
     },
     {
      "fleet": "블루",
      "vessel": "SEA FRONTIER",
-     "arrive": null,
-     "depart": null,
-     "tons": null,
-     "note": null
-    },
-    {
-     "fleet": "블루",
-     "vessel": "ALBONIGA",
-     "arrive": null,
-     "depart": null,
-     "tons": null,
-     "note": null
+     "arrive": "6/2",
+     "depart": "6/11",
+     "tons": 820.0,
+     "note": "출항 완료"
     },
     {
      "fleet": "블루",
      "vessel": "ALBACORA QUINCE",
-     "arrive": null,
-     "depart": null,
-     "tons": null,
-     "note": null
+     "arrive": "6/4",
+     "depart": "6/12",
+     "tons": 713.0,
+     "note": "출항 완료"
     }
    ],
    "prices": {
@@ -3296,34 +3256,26 @@
     {
      "fleet": "캅센",
      "vessel": "ORIENTAL KIM",
-     "arrive": null,
-     "depart": null,
-     "tons": null,
-     "note": null
+     "arrive": "6/9",
+     "depart": "6/17",
+     "tons": 950.0,
+     "note": "출항"
     },
     {
      "fleet": "캅센",
      "vessel": "XIXILI",
-     "arrive": null,
-     "depart": null,
-     "tons": null,
-     "note": null
+     "arrive": "6/13",
+     "depart": "6/22",
+     "tons": 1115.0,
+     "note": "출항"
     },
     {
      "fleet": "캅센",
      "vessel": "GRANADA",
-     "arrive": null,
-     "depart": null,
-     "tons": null,
-     "note": null
-    },
-    {
-     "fleet": "캅센",
-     "vessel": "ALBONIGA",
-     "arrive": null,
-     "depart": null,
-     "tons": null,
-     "note": null
+     "arrive": "6/21",
+     "depart": "미정",
+     "tons": 710.0,
+     "note": "하역 대기 중"
     }
    ],
    "prices": {
@@ -3402,26 +3354,18 @@
     {
      "fleet": "캅센",
      "vessel": "GRANADA",
-     "arrive": null,
-     "depart": null,
-     "tons": null,
-     "note": null
+     "arrive": "6/21",
+     "depart": "6/26",
+     "tons": 710.0,
+     "note": "출항 완료"
     },
     {
      "fleet": "캅센",
      "vessel": "WESTERN KIM",
-     "arrive": null,
-     "depart": null,
-     "tons": null,
-     "note": null
-    },
-    {
-     "fleet": "캅센",
-     "vessel": "ZUBEROA",
-     "arrive": null,
-     "depart": null,
-     "tons": null,
-     "note": null
+     "arrive": "6/27",
+     "depart": "미정",
+     "tons": 710.0,
+     "note": "하역중"
     }
    ],
    "prices": {
@@ -3530,58 +3474,50 @@
     {
      "fleet": "캅센",
      "vessel": "WESTERN KIM",
-     "arrive": null,
-     "depart": null,
-     "tons": null,
-     "note": null
+     "arrive": "6/27",
+     "depart": "7/1",
+     "tons": 710.0,
+     "note": "출항완료"
     },
     {
      "fleet": "캅센",
      "vessel": "COSMOS KIM",
-     "arrive": null,
-     "depart": null,
-     "tons": null,
-     "note": null
+     "arrive": "6/30",
+     "depart": "미정",
+     "tons": 945.0,
+     "note": "하역중"
     },
     {
      "fleet": "캅센",
      "vessel": "CAP ATLANTIQUE",
-     "arrive": null,
-     "depart": null,
-     "tons": null,
-     "note": null
+     "arrive": "6/30",
+     "depart": "7/4",
+     "tons": 165.0,
+     "note": "출항완료"
     },
     {
      "fleet": "그랑블루",
      "vessel": "SEA BREEZE",
-     "arrive": null,
-     "depart": null,
-     "tons": null,
-     "note": null
+     "arrive": "7/4",
+     "depart": "7/7",
+     "tons": 1000.0,
+     "note": "출항완료"
     },
     {
      "fleet": "그랑블루",
      "vessel": "SEA DEFENDER",
-     "arrive": null,
-     "depart": null,
-     "tons": null,
-     "note": null
+     "arrive": "7/4",
+     "depart": "미정",
+     "tons": 900.0,
+     "note": "하역중"
     },
     {
      "fleet": "그랑블루",
      "vessel": "SEA FRONTIER",
-     "arrive": null,
-     "depart": null,
-     "tons": null,
-     "note": null
-    },
-    {
-     "fleet": "그랑블루",
-     "vessel": "ALBACORA QUINCE",
-     "arrive": null,
-     "depart": null,
-     "tons": null,
-     "note": null
+     "arrive": "7/6",
+     "depart": "미정",
+     "tons": 790.0,
+     "note": "하역중"
     }
    ],
    "prices": {
@@ -3665,82 +3601,74 @@
     {
      "fleet": "캅센",
      "vessel": "XIXILI",
-     "arrive": null,
-     "depart": null,
-     "tons": null,
-     "note": null
+     "arrive": "7/10",
+     "depart": "미정",
+     "tons": 1145.0,
+     "note": "하역중"
     },
     {
      "fleet": "캅센",
      "vessel": "GRANADA",
-     "arrive": null,
-     "depart": null,
-     "tons": null,
-     "note": null
+     "arrive": "7/11",
+     "depart": "미정",
+     "tons": 705.0,
+     "note": "하역 대기중"
     },
     {
      "fleet": "캅센",
      "vessel": "ORIENTAL KIM",
-     "arrive": null,
-     "depart": null,
-     "tons": null,
-     "note": null
+     "arrive": "7/11",
+     "depart": "미정",
+     "tons": 780.0,
+     "note": "하역 대기중"
     },
     {
      "fleet": "캅센",
      "vessel": "WESTERN KIM",
-     "arrive": null,
-     "depart": null,
-     "tons": null,
-     "note": null
+     "arrive": "7/12",
+     "depart": "미정",
+     "tons": 750.0,
+     "note": "하역 대기중"
     },
     {
      "fleet": "그랑블루",
      "vessel": "SEA DEFENDER",
-     "arrive": null,
-     "depart": null,
-     "tons": null,
-     "note": null
+     "arrive": "7/4",
+     "depart": "7/10",
+     "tons": 900.0,
+     "note": "출항 완료"
     },
     {
      "fleet": "그랑블루",
      "vessel": "SEA FRONTIER",
-     "arrive": null,
-     "depart": null,
-     "tons": null,
-     "note": null
+     "arrive": "7/6",
+     "depart": "7/11",
+     "tons": 790.0,
+     "note": "하역 및 운반선 전재 완료"
     },
     {
      "fleet": "그랑블루",
      "vessel": "PONT SAINT LOUIS",
-     "arrive": null,
-     "depart": null,
-     "tons": null,
-     "note": null
-    },
-    {
-     "fleet": "그랑블루",
-     "vessel": "ALBACORA QUINCE",
-     "arrive": null,
-     "depart": null,
-     "tons": null,
-     "note": null
+     "arrive": "7/8",
+     "depart": "미정",
+     "tons": 1060.0,
+     "note": "하역중"
     },
     {
      "fleet": "그랑블루",
      "vessel": "ALBONIGA",
-     "arrive": null,
-     "depart": null,
-     "tons": null,
-     "note": null
+     "arrive": "7/7",
+     "depart": "7/11",
+     "tons": 450.0,
+     "note": "출항 완료"
     },
     {
      "fleet": "운반선",
      "vessel": "GREEN GUATEMALA",
-     "arrive": null,
-     "depart": null,
+     "arrive": "7/9",
+     "depart": "미정",
      "tons": null,
-     "note": null
+     "note": "조업선 물량 전재중"
     }
    ],
    "prices": {
@@ -3813,74 +3741,66 @@
     {
      "fleet": "캅센",
      "vessel": "XIXILI",
-     "arrive": null,
-     "depart": null,
-     "tons": null,
-     "note": null
+     "arrive": "7/10",
+     "depart": "7/16",
+     "tons": 1145.0,
+     "note": "출항 완료"
     },
     {
      "fleet": "캅센",
      "vessel": "GRANADA",
-     "arrive": null,
-     "depart": null,
-     "tons": null,
-     "note": null
+     "arrive": "7/11",
+     "depart": "7/19",
+     "tons": 705.0,
+     "note": "출항 완료"
     },
     {
      "fleet": "캅센",
      "vessel": "ORIENTAL KIM",
-     "arrive": null,
-     "depart": null,
-     "tons": null,
-     "note": null
+     "arrive": "7/11",
+     "depart": "7/21",
+     "tons": 780.0,
+     "note": "하역 완료"
     },
     {
      "fleet": "캅센",
      "vessel": "WESTERN KIM",
-     "arrive": null,
-     "depart": null,
-     "tons": null,
-     "note": null
+     "arrive": "7/12",
+     "depart": "7/21",
+     "tons": 750.0,
+     "note": "하역 완료"
     },
     {
      "fleet": "그랑블루",
      "vessel": "PONT SAINT LOUIS",
-     "arrive": null,
-     "depart": null,
-     "tons": null,
-     "note": null
-    },
-    {
-     "fleet": "그랑블루",
-     "vessel": "ALBACORA QUINCE",
-     "arrive": null,
-     "depart": null,
-     "tons": null,
-     "note": null
+     "arrive": "7/8",
+     "depart": "7/16",
+     "tons": 1060.0,
+     "note": "출항 완료"
     },
     {
      "fleet": "그랑블루",
      "vessel": "ZUBEROA",
-     "arrive": null,
-     "depart": null,
-     "tons": null,
-     "note": null
+     "arrive": "7/13",
+     "depart": "미정",
+     "tons": 730.0,
+     "note": "운반선 전재중"
     },
     {
      "fleet": "그랑블루",
      "vessel": "MONTERAIOLA",
-     "arrive": null,
-     "depart": null,
-     "tons": null,
-     "note": null
+     "arrive": "7/15",
+     "depart": "미정",
+     "tons": 1000.0,
+     "note": "운반선 전재중"
     },
     {
      "fleet": "운반선",
      "vessel": "GREEN GUATEMALA",
-     "arrive": null,
-     "depart": null,
+     "arrive": "7/9",
+     "depart": "미정",
      "tons": null,
-     "note": null
+     "note": "조업선 물량 전재중"
     }
    ],
    "prices": {
@@ -3969,34 +3889,34 @@
     {
      "fleet": "캅센",
      "vessel": "CAP ATLANTIQUE",
-     "arrive": null,
-     "depart": null,
+     "arrive": "7/22",
+     "depart": "미정",
      "tons": null,
-     "note": null
+     "note": "체항수리 중"
     },
     {
      "fleet": "그랑블루",
      "vessel": "SEA FRONTIER",
-     "arrive": null,
-     "depart": null,
-     "tons": null,
-     "note": null
+     "arrive": "7/28",
+     "depart": "8/3",
+     "tons": 830.0,
+     "note": "조업 중"
     },
     {
      "fleet": "EU 선단",
      "vessel": "ZUBEROA",
-     "arrive": null,
-     "depart": null,
-     "tons": null,
-     "note": null
+     "arrive": "7/28",
+     "depart": "미정",
+     "tons": 350.0,
+     "note": "운반선 전재 중"
     },
     {
      "fleet": "운반선",
      "vessel": "GREEN GUATEMALA",
-     "arrive": null,
-     "depart": null,
+     "arrive": "7/9",
+     "depart": "미정",
      "tons": null,
-     "note": null
+     "note": "조업선 물량 전재 중"
     }
    ],
    "prices": {
@@ -4085,58 +4005,58 @@
     {
      "fleet": "캅센",
      "vessel": "CAP ATLANTIQUE",
-     "arrive": null,
-     "depart": null,
+     "arrive": "7/22",
+     "depart": "미정",
      "tons": null,
-     "note": null
+     "note": "체항수리 중"
     },
     {
      "fleet": "캅센",
      "vessel": "WESTERN KIM",
-     "arrive": null,
-     "depart": null,
-     "tons": null,
+     "arrive": "8/3",
+     "depart": "8/8",
+     "tons": 790.0,
      "note": null
     },
     {
      "fleet": "캅센",
      "vessel": "ORIENTAL KIM",
-     "arrive": null,
-     "depart": null,
-     "tons": null,
-     "note": null
+     "arrive": "8/10",
+     "depart": "미정",
+     "tons": 914.0,
+     "note": "하역 중"
     },
     {
      "fleet": "캅센",
      "vessel": "XIXILI",
-     "arrive": null,
-     "depart": null,
-     "tons": null,
-     "note": null
+     "arrive": "8/11",
+     "depart": "미정",
+     "tons": 955.0,
+     "note": "운반선 전재 중"
     },
     {
      "fleet": "그랑블루",
      "vessel": "PONT SAINT LOUIS",
-     "arrive": null,
-     "depart": null,
-     "tons": null,
-     "note": null
+     "arrive": "8/9",
+     "depart": "미정",
+     "tons": 1200.0,
+     "note": "하역 중"
     },
     {
      "fleet": "EU 선단",
      "vessel": "ZUBEROA",
-     "arrive": null,
-     "depart": null,
-     "tons": null,
+     "arrive": "7/28",
+     "depart": "8/8",
+     "tons": 350.0,
      "note": null
     },
     {
      "fleet": "운반선",
      "vessel": "SIERRA LAUREL",
-     "arrive": null,
-     "depart": null,
+     "arrive": "8/10",
+     "depart": "미정",
      "tons": null,
-     "note": null
+     "note": "조업선 물량 전재 중"
     }
    ],
    "prices": {

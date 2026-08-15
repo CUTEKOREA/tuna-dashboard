@@ -35,9 +35,9 @@ const heroOnlyCases: Array<{
     bodyText: '업무보고 원문 펼치기',
   },
   {
-    name: '하역 관제',
+    name: '하역 현황',
     Dashboard: UnloadingStatus as HeroOnlyDashboard,
-    heroTitle: '하역 관제',
+    heroTitle: '하역 현황',
     heroMarker: '2026 누적 하역량',
     bodyText: '오늘의 운영 판단',
   },

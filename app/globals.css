@@ -245,6 +245,7 @@
   --dsc-warn-bg: rgba(69, 26, 33, 0.72);
   --dsc-warn-border: rgba(244, 63, 94, 0.28);
   --dsc-warn-ink: #fecdd3;
+  --dsc-scrim-rgb: 5, 5, 6;
 
   /* 모션 */
   --dsc-stagger: 60ms;
@@ -1054,6 +1055,7 @@ img, video, canvas, svg {
   --dsc-warn-bg: #fef3f2;
   --dsc-warn-border: rgba(227, 89, 94, 0.35);
   --dsc-warn-ink: #9f1239;
+  --dsc-scrim-rgb: 249, 250, 251;
   /* Metabase 대형 타이틀 문법 — V2 얇은 250 대신 볼드 + 네거티브 트래킹 (사용자 지시 2026-08-15) */
   --dsc-title-weight: 700;
 

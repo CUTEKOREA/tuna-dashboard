@@ -15,6 +15,7 @@ import {
   industry,
   pfc,
   priceSeries,
+  regionalLandingSeries,
   weeks,
   trade,
   tradeYear,
@@ -53,6 +54,13 @@ describe('파노피 데이터 인테이크', () => {
     expect(headline.rangeEnd).toBe(weeklyRaw.meta.rangeEnd);
     expect(weeks).toHaveLength(weeklyRaw.weeks.length);
     expect(priceSeries).toHaveLength(weeklyRaw.weeks.length);
+  });
+
+  // 2026-08-15 추가: extract_panofi.py 의 셀 평문화 버그로 31주 내내 입항톤수가
+  // 전부 null 이어서 «역내 입항 물량» 차트가 빈 화면이었다. 회귀 방지 가드.
+  it('역내 입항 물량(입항톤수)이 최소 한 주는 숫자로 존재한다', () => {
+    const withTons = regionalLandingSeries.filter((p) => typeof p.입항톤수 === 'number');
+    expect(withTons.length).toBeGreaterThan(0);
   });
 
   it('주차가 보고일 오름차순으로 정렬돼 있다', () => {

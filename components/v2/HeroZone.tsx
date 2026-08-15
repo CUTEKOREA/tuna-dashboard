@@ -216,13 +216,13 @@ export default function HeroZone({
       {background && (
         <div style={{ position: 'absolute', inset: 0 }} aria-hidden>
           {background}
-          {/* 가독성 스크림 — 타이틀·KPI가 얹히는 영역 */}
+          {/* 가독성 스크림 — 타이틀·KPI가 얹히는 영역. 토큰 경유라 라이트에서는 흰 페이드가 된다. */}
           <div
             style={{
               position: 'absolute',
               inset: 0,
               background:
-                'linear-gradient(180deg, rgba(5,5,6,0.72) 0%, rgba(5,5,6,0.12) 34%, rgba(5,5,6,0.55) 100%)',
+                'linear-gradient(180deg, rgba(var(--dsc-scrim-rgb, 5, 5, 6), 0.72) 0%, rgba(var(--dsc-scrim-rgb, 5, 5, 6), 0.12) 34%, rgba(var(--dsc-scrim-rgb, 5, 5, 6), 0.55) 100%)',
               pointerEvents: 'none',
             }}
           />

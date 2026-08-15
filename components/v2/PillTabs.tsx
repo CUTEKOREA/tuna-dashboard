@@ -120,9 +120,9 @@ export default function PillTabs({
               borderRadius: 8,
               border: 'none',
               background: 'transparent',
-              color: active ? 'var(--dsc-ink)' : 'var(--dsc-ink-muted)',
+              color: active ? '#ffffff' : 'var(--dsc-ink-muted)',
               fontSize: '0.85rem',
-              fontWeight: active ? 600 : 500,
+              fontWeight: active ? 700 : 500,
               cursor: 'pointer',
               whiteSpace: 'nowrap',
               transition: 'color 0.2s ease',
@@ -135,9 +135,9 @@ export default function PillTabs({
                   position: 'absolute',
                   inset: 0,
                   borderRadius: 8,
-                  background: `${accentFrom}22`,
-                  border: `1px solid ${accentFrom}4d`,
-                  boxShadow: `0 0 10px ${accentFrom}1f`,
+                  background: 'var(--accent-primary)',
+                  border: '1px solid var(--accent-primary)',
+                  boxShadow: '0 2px 8px rgba(16, 24, 40, 0.18)',
                 }}
                 transition={reduce ? { duration: 0 } : { type: 'spring', stiffness: 400, damping: 32 }}
               />

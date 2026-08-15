@@ -151,7 +151,8 @@ describe('dashboard registry', () => {
     }
     expect(commandSource).toContain('<HeroZone');
     expect(commandSource).toContain('variant="vessel"');
-    expect(commandSource).toContain('background={heroBackground}');
+    // 2026-08-15 사용자 지시: 선박 사진 배경 제거 — 배경 슬롯 자체가 없어야 한다
+    expect(commandSource).not.toContain('background={heroBackground}');
     expect(commandSource).toContain('<PillTabs');
     expect(commandSource).toContain('role="tabpanel"');
     expect(commandSource).toContain('업무보고 원문 펼치기');
@@ -195,7 +196,8 @@ describe('dashboard registry', () => {
 
     expect(unloadingSource).toContain('<HeroZone');
     expect(unloadingSource).toContain('variant="vessel"');
-    expect(unloadingSource).toContain('kind="carrier"');
+    // 2026-08-15 사용자 지시: 히어로 선박 이미지 제거 (발광 계약은 VesselTopSVG 단위 테스트 소관)
+    expect(unloadingSource).not.toContain('kind="carrier"');
     expect(unloadingSource).toContain('<PillTabs');
 
     expect(logisticsSource).toContain('<HeroZone');
@@ -261,8 +263,9 @@ describe('dashboard registry', () => {
       expect(cssRule(fleetStyles, selector)).toContain('var(--dsc-');
     }
     expect(fleetSource).not.toContain("tone: 'warning'");
+    // 계약의 핵심은 «액센트 hex 하드코딩 금지» — 2026-08-15 히어로 정리로 fleet의
+    // 인라인 액센트 사용처 자체가 사라져 사용 강제는 제거한다.
     expect(fleetSource).not.toMatch(/accent:\s*['"]#/);
-    expect(fleetSource).toContain("color: 'var(--accent-primary)'");
     expect(fleetHeroSource).not.toContain('linear-gradient');
     expect(fleetHeroSource).toContain("background: 'var(--accent-primary)'");
     expect(fleetHeroSource).toContain("background: 'var(--dsc-ink-faint)'");

@@ -219,6 +219,11 @@ def parse_own_vessels(text: str) -> tuple[list[dict], str]:
 def parse_senegal(text: str) -> list[dict]:
     """세네갈·EU 선단 입출항 표 — 선단/선박명/입항일/출항일/입항톤수/비고."""
     blk = section(text, "조업선 동향", "어가동향")
+    # docx_text 는 셀 내부 문단 끝(</w:p>)을 \n, 셀 끝(</w:tc>)을 \t 로 살리므로
+    # 표 한 행이 "셀\n\t셀\n\t…" 로 줄바꿈돼 buried 된다. \n\t 를 \t 로 접어
+    # 행 단위 한 줄로 복원해야 입항일·입항톤수 열이 같은 줄에서 잡힌다.
+    # (이 버그로 31주 내내 tons 가 전부 null 이었다 — 2026-08-15 수정)
+    blk = blk.replace("\n\t", "\t")
     rows = []
     fleet = None
     for line in blk.split("\n"):

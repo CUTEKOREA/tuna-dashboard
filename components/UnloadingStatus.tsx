@@ -5,13 +5,11 @@ import { Ship, Anchor, AlertCircle, BarChart3, Clock, PackageCheck, TrendingDown
 import { ComposedChart, Bar, Line, XAxis, YAxis, CartesianGrid, Tooltip as RechartsTooltip, Legend } from 'recharts';
 import TermTooltip from './TermTooltip';
 
-import HarborBanner from './HarborBanner';
 import { ChartPatternDefs } from './ChartPatterns';
 import UnloadingHistoryBoundary from './UnloadingHistoryBoundary';
 import HeroZone from './v2/HeroZone';
 import PillTabs from './v2/PillTabs';
 import VesselTopSVG from './v2/VesselTopSVG';
-import VesselPhotoWithFallback from './v2/VesselPhotoWithFallback';
 import {
   getUnloadingEtaLabel,
   getVesselStatusKind,
@@ -127,11 +125,6 @@ export function UnloadingHero({
   const completionRatio = featuredVessel && featuredVessel.reportedTotal > 0
     ? clampHeroValue(featuredVessel.actualTotal / featuredVessel.reportedTotal, 0, 1)
     : 0;
-  const carrierHatches = Array.from({ length: 8 }, (_, hatchIndex) => ({
-    id: `carrier-hatch-${hatchIndex + 1}`,
-    intensity: clampHeroValue(completionRatio * 8 - hatchIndex, 0, 1),
-    color: 'var(--accent-primary)',
-  }));
   const annualActualTotal = vessels.reduce(
     (total, vessel) => total + (vessel.annualActualTotal ?? vessel.actualTotal),
     0,
@@ -143,15 +136,7 @@ export function UnloadingHero({
   );
   const priorityVessels = [...activeVessels, ...waitingVessels];
 
-  const background = (
-    <div className={styles.heroVessel} aria-hidden>
-      <VesselPhotoWithFallback
-        src="/heroes/carrier.webp"
-        fallback={<VesselTopSVG kind="carrier" hatches={carrierHatches} />}
-      />
-    </div>
-  );
-
+  // V3 라이트 (2026-08-15 사용자 지시): 선박 사진 배경·픽셀 배너 제거.
   const strip = priorityVessels.length > 0 ? (
     <div className={styles.heroMissionStrip}>
       {priorityVessels.map(vessel => {
@@ -180,9 +165,8 @@ export function UnloadingHero({
     <HeroZone
       className={styles.unloadingHero}
       variant="vessel"
-      title="하역 관제"
+      title="하역 현황"
       subtitle={baseDate ? `최신 하역 보고 기준일 ${baseDate}` : '최신 하역 보고 기준일 확인 중'}
-      background={background}
       primaryKpi={{ label: '2026 누적 하역량', value: annualActualTotal, unit: '(MT)', decimals: 3 }}
       secondaryKpis={[
         { label: '완료 선박', value: completedVessels.length, unit: '(척)' },
@@ -772,7 +756,7 @@ export default function UnloadingStatus({ heroOnly = false }: { heroOnly?: boole
   const [showReportModal, setShowReportModal] = useState(false);
   const [showReplayModal, setShowReplayModal] = useState(false);
   const [showFieldMode, setShowFieldMode] = useState(false);
-  const [showCompletedVessels, setShowCompletedVessels] = useState(false);
+  const [showCompletedVessels, setShowCompletedVessels] = useState(true);
   const [activeDetailTab, setActiveDetailTab] = useState<DetailTab>('summary');
 
   useEffect(() => {
@@ -1426,11 +1410,6 @@ export default function UnloadingStatus({ heroOnly = false }: { heroOnly?: boole
 
       {/* 3. Deep Dive Analytics */}
       <div className={`${styles.deepDiveCard} ${styles.glassPanel}`}>
-        <HarborBanner 
-          vesselName={selectedData.name} 
-          totalAmount={selectedData.reportedTotal} 
-          remainingAmount={selectedData.reportedTotal - selectedData.actualTotal} 
-        />
         <div className={styles.deepDiveHeader}>
           <div className={styles.deepDiveTitle}>
             <TrendingDown color="var(--accent-primary)" />

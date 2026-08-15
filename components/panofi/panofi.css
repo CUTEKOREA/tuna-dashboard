@@ -83,6 +83,28 @@
   margin-top: auto;           /* 패널 높이가 달라도 출처는 바닥에 정렬 */
 }
 
+/* ── 입도·단위 전환 pill ──────────────────────────────────────────────── */
+
+.panofi-root .pf-pillrow { display: flex; flex-wrap: wrap; gap: 6px 12px; }
+.panofi-root .pf-pills { display: inline-flex; gap: 4px; }
+.panofi-root .pf-pill {
+  font: 600 10px / 1 var(--cosmo-mono);
+  letter-spacing: 0.05em;
+  color: var(--cosmo-muted);
+  background: transparent;
+  border: 1px solid var(--pf-hair);
+  border-radius: 999px;
+  padding: 4px 10px;
+  cursor: pointer;
+}
+.panofi-root .pf-pill:hover { color: var(--cosmo-ink); }
+.panofi-root .pf-pill.on {
+  color: var(--cosmo-ink);
+  background: var(--cosmo-surface-2);
+  border-color: var(--cosmo-axis);
+  font-weight: 700;
+}
+
 /* ── stat strip — 숫자를 먼저 읽게 ────────────────────────────────────── */
 
 .panofi-root .pf-stats {

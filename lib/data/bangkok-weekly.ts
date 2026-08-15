@@ -202,6 +202,66 @@ export const bangkokTraderAnnual: readonly BangkokTraderYear[] = Object.entries(
   }))
   .sort((a, b) => a.year - b.year);
 
+/* ── 입도 집계 (주간→월·분기·연) ────────────────────────────────────────── */
+
+export type BangkokGranularity = 'monthly' | 'quarterly' | 'yearly';
+
+/** 정렬 가능한 기간 키 — "2020-08" / "2020-Q3" / "2020" */
+function granKey(year: number, month: number, g: BangkokGranularity): string {
+  if (g === 'yearly') return String(year);
+  if (g === 'quarterly') return `${year}-Q${Math.ceil(month / 3)}`;
+  return `${year}-${String(month).padStart(2, '0')}`;
+}
+
+export type BangkokUnloadAgg = {
+  readonly period: string;
+  readonly unloadMt: number;
+  readonly weeks: number;
+};
+
+/** 주간 하역을 월·분기·연으로 합산 — 기록 있는 주만 (0 채움 금지) */
+export function aggregateUnload(g: BangkokGranularity): readonly BangkokUnloadAgg[] {
+  const acc = new Map<string, { unloadMt: number; weeks: number }>();
+  for (const w of bangkokWeeks) {
+    if (w.unloadMt === null) continue;
+    const key = granKey(w.year, w.month, g);
+    const cur = acc.get(key) ?? { unloadMt: 0, weeks: 0 };
+    cur.unloadMt += w.unloadMt;
+    cur.weeks += 1;
+    acc.set(key, cur);
+  }
+  return [...acc.entries()]
+    .map(([period, v]) => ({ period, ...v }))
+    .sort((a, b) => a.period.localeCompare(b.period));
+}
+
+export type BangkokTraderAgg = {
+  readonly period: string;
+  readonly volumes: Record<BangkokTrader, number>;
+  readonly totalMt: number;
+  readonly months: number;
+};
+
+/** 트레이더 월별 물량을 분기·연으로 합산 — 기록 있는 달만 (0 채움 금지) */
+export function aggregateTraderVolumes(g: 'quarterly' | 'yearly'): readonly BangkokTraderAgg[] {
+  const acc = new Map<string, { volumes: Record<BangkokTrader, number>; totalMt: number; months: number }>();
+  for (const m of bangkokTraderMonthly) {
+    const key = granKey(Number(m.month.slice(0, 4)), Number(m.month.slice(5, 7)), g);
+    const cur = acc.get(key) ?? {
+      volumes: Object.fromEntries(BANGKOK_TRADERS.map((t) => [t, 0])) as Record<BangkokTrader, number>,
+      totalMt: 0,
+      months: 0,
+    };
+    for (const t of BANGKOK_TRADERS) cur.volumes[t] += m.volumes[t];
+    cur.totalMt += m.totalCalc;
+    cur.months += 1;
+    acc.set(key, cur);
+  }
+  return [...acc.entries()]
+    .map(([period, v]) => ({ period, ...v }))
+    .sort((a, b) => a.period.localeCompare(b.period));
+}
+
 /* ── 캐너리 ─────────────────────────────────────────────────────────────── */
 
 export type BangkokCannery = {
@@ -241,6 +301,30 @@ export const bangkokCanneryTrend: readonly {
 }[] = Object.entries(rawPayload.canneryTrend as Record<string, Record<string, BangkokCanneryTrendYear>>).map(
   ([name, years]) => ({ name, years }),
 );
+
+export type BangkokCanneryWeek = {
+  readonly date: string;
+  /** 주간 가동 (톤/일) */
+  readonly current: number | null;
+  readonly utilPct: number | null;
+  readonly stockMt: number | null;
+  readonly days: number | null;
+};
+
+/** 캐너리별 주간 시계열 — payload panel 의 [date, cur, util, stock, days] 행 */
+export const bangkokCanneryPanel: readonly { name: string; weeks: readonly BangkokCanneryWeek[] }[] =
+  Object.entries(rawPayload.panel as unknown as Record<string, (string | number | null)[][]>).map(
+    ([name, rows]) => ({
+      name,
+      weeks: rows.map((r) => ({
+        date: String(r[0]),
+        current: r[1] as number | null,
+        utilPct: r[2] as number | null,
+        stockMt: r[3] as number | null,
+        days: r[4] as number | null,
+      })),
+    }),
+  );
 
 /* ── 상관·계절성 ────────────────────────────────────────────────────────── */
 

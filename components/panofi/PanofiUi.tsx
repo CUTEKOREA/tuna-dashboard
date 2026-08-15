@@ -51,6 +51,35 @@ export function Panel({
   );
 }
 
+/* ── 입도·단위 전환 pill ──────────────────────────────────────────────── */
+
+/** 차트 위 입도(주간·월간…)·단위(실량·비중) 전환. 탭이 아니라 토글 그룹이다. */
+export function Pills<K extends string>({
+  options, value, onChange, label,
+}: {
+  options: readonly { key: K; label: string }[];
+  value: K;
+  onChange: (key: K) => void;
+  /** 접근성 이름 — 그룹이 무엇을 전환하는지 */
+  label: string;
+}) {
+  return (
+    <div className="pf-pills" role="group" aria-label={label}>
+      {options.map((o) => (
+        <button
+          key={o.key}
+          type="button"
+          className={`pf-pill${o.key === value ? ' on' : ''}`}
+          aria-pressed={o.key === value}
+          onClick={() => onChange(o.key)}
+        >
+          {o.label}
+        </button>
+      ))}
+    </div>
+  );
+}
+
 /* ── stat strip ───────────────────────────────────────────────────────── */
 
 export type StatTone = 'up' | 'down' | 'flat';
