@@ -1,3 +1,9 @@
+> 📄 **2026-08-15 21:30 KST — GMTS 주간보고 PDF 정규화·출처 manifest 구현 (로컬 커밋만)** [Codex]:
+> - `scripts/build_gmts_dashboard.py`가 Google Drive의 읽기 전용 GMTS PDF 30건을 `data/gmts_dashboard.json`으로 정규화한다. PDF별 파일명·SHA-256·페이지 수(합계 38)를 manifest로 보존하고, 보고일은 2026-01-21~08-12의 주간 연속성으로 검증한다.
+> - 빈 선언 건수·빈 2026 물량 행은 `null`로 유지한다. 가격의 no-offer/no-transaction 등 qualifier와 원문, 캐너리 7개+합계 원문을 함께 보존하며 누락 수치를 채우지 않는다.
+> - 2026-03-04의 2월 6,220MT가 2026-03-11에 11,968MT로 바뀐 원문 정정을 `volumeHistory.revisions`에 명시한다. 최신 보고 SHA-256은 `e84ad3bb26ebe05e863467bff3f4507775a8cf4b04adefa8026eb3414e1e5243`이며 최신 총 생산 895MT·재고 17,550MT·가격 $1,900/$2,025·누계 63,736MT를 회귀 테스트로 고정했다.
+> - 최종 계약 보강: weekly는 port count·승인 canneryTotal 7키·가격·2026 추세만(연도표/raw 없음), latest는 상세 port/canneries/raw, volumeHistory는 단일 annual 표와 소형 snapshots로 분리했다(86,464 bytes). 최신 보고 하드코딩 없이 `pdfplumber` 좌표·표 행에서 AMAGI·HIKARI·SEIN QUEEN·SEA BLAZER·QUEEN ELLICE의 트레이더·수하인·원문 수치·날짜를 생성한다. `pdfplumber==0.11.9`, focused 19건·sync·165개 레코드 schema GREEN. controller fresh `npm run verify`는 ESLint 0 errors·기존 5 warnings, TypeScript, Vitest 77파일·430테스트, API cache 153/153, Next build 117 pages, bundle 32 routes를 모두 통과했다. 배포·push 없음.
+
 > 🇬🇧 **2026-08-15 18:30 KST — 소유자 리뷰 4~7라운드 (PR #415·#418·#422·#424 병합·프로덕션 READY)** [CC]:
 > - **r4**: 파노피 «자료 없음» = 제원(파노피 마스터)/원장(마스터) 이름 조인 실패 — 접두 제거+선박코드 조인 (G/T 8,745 등록부 일치·생산 22,526톤 KPI 일치). 주간동향 31건 전수: 자사선별 조업량 원문 미기재 확인. 전역 recharts 툴팁 !important를 다크 관례(#303c46)로 통일 — 라이트 흰배경+연회색 근본 해소. 밸류체인 마진율 인덱스(5/20 시나리오, /api/tuna-live)를 8/5 주간보고 카드에서 분리해 별도 STATIC 카드로 (부분 갱신은 왜곡이라 거부).
 > - **r5**: 지도 헤딩·개략 좌표 캡션 제거, 완료 선박 카드 dim→hover 밝힘(fleet 로스터 패턴).
