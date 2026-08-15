@@ -264,8 +264,7 @@ export default function Home() {
     );
   };
   const dashboardPanels: Record<ActiveMenu, React.ReactNode> = {
-    // V3 파일럿: market만 라이트 스코프 (스펙 2026-08-15-metabase-bi-redesign §7)
-    market: <div data-v3="light"><MarketDashboard /></div>,
+    market: <MarketDashboard />,
     'cross-intelligence': <CrossCommodityIntelligenceDashboard />,
     fleet: <FleetCommandCenter />,
     logistics: <LogisticsDashboard />,
@@ -278,7 +277,7 @@ export default function Home() {
     'purse-seiner-db': <PurseSeinerDashboard />,
   };
   const heroTeaserPanels: Partial<Record<ActiveMenu, React.ReactNode>> = {
-    market: <div data-v3="light"><MarketDashboard heroOnly /></div>,
+    market: <MarketDashboard heroOnly />,
     fleet: <FleetCommandCenter heroOnly />,
     unloading: <UnloadingStatus heroOnly />,
     logistics: <LogisticsDashboard heroOnly />,
@@ -427,7 +426,7 @@ export default function Home() {
           <>
           {isOperationMenuLocked && (
             <>
-            {heroTeaserPanels[activeMenu]}
+            <div data-v3="light">{heroTeaserPanels[activeMenu]}</div>
             <div className={styles.landingOverlay} style={{ position: 'relative', inset: 'auto', justifyContent: 'center', minHeight: 'calc(100vh - 80px)', padding: 'clamp(32px, 8vh, 92px) var(--space-4)' }}>
               <div className={styles.loginPanel} style={{ width: 'min(420px, 100%)' }}>
                 <Lock size={34} strokeWidth={1.5} style={{ margin: '0 auto 16px auto', color: 'var(--text-main)' }} />
@@ -508,11 +507,14 @@ export default function Home() {
             }}>
               <PageTransition activeKey={activeMenu}>
 
-              {DASHBOARD_PANEL_ORDER.map((menu) => (
-                <KeepAlivePanel key={menu} active={isPanelActive(menu)}>
-                  {dashboardPanels[menu]}
-                </KeepAlivePanel>
-              ))}
+              {/* V3 라이트 롤아웃 (2026-08-15 사용자 승인): 파일럿 통과 → 전 패널 스코프 확장 */}
+              <div data-v3="light">
+                {DASHBOARD_PANEL_ORDER.map((menu) => (
+                  <KeepAlivePanel key={menu} active={isPanelActive(menu)}>
+                    {dashboardPanels[menu]}
+                  </KeepAlivePanel>
+                ))}
+              </div>
 
               </PageTransition>
 

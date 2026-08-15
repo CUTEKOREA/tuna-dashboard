@@ -155,9 +155,9 @@ function WarningPanel({ warning }: { warning: HeroWarning }) {
         gap: 8,
       }}
     >
-      <span style={{ fontSize: '0.82rem', fontWeight: 700, color: '#fda4af' }}>⚠ {warning.title}</span>
+      <span style={{ fontSize: '0.82rem', fontWeight: 700, color: 'var(--dsc-warn-ink, #fda4af)' }}>⚠ {warning.title}</span>
       {warning.lines.map((line, i) => (
-        <p key={i} style={{ margin: 0, fontSize: '0.78rem', color: '#fecdd3', lineHeight: 1.5 }}>
+        <p key={i} style={{ margin: 0, fontSize: '0.78rem', color: 'var(--dsc-warn-ink, #fecdd3)', lineHeight: 1.5 }}>
           {line}
         </p>
       ))}
@@ -168,7 +168,7 @@ function WarningPanel({ warning }: { warning: HeroWarning }) {
             paddingTop: 8,
             borderTop: '1px solid rgba(244, 63, 94, 0.18)',
             fontSize: '0.78rem',
-            color: '#f8fafc',
+            color: 'var(--dsc-ink, #f8fafc)',
             lineHeight: 1.5,
           }}
         >

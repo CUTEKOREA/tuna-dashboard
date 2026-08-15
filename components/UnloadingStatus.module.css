@@ -39,7 +39,7 @@
 .heroAction:hover,
 .heroAction:focus-visible {
   border-color: rgba(56, 189, 248, 0.7);
-  color: #f8fafc;
+  color: var(--dsc-ink);
 }
 
 .heroMissionStrip { display: flex; gap: 10px; min-width: max-content; }
@@ -72,10 +72,10 @@
   background: var(--dsc-surface);
 }
 
-.heroMissionCard strong { color: #f8fafc; font-size: 0.9rem; }
-.heroMissionStatus { color: #7dd3fc; font-size: 0.67rem; font-weight: 800; }
+.heroMissionCard strong { color: var(--dsc-ink); font-size: 0.9rem; }
+.heroMissionStatus { color: var(--accent-primary); font-size: 0.67rem; font-weight: 800; }
 
-.eyebrow { color: #38bdf8; font-size: 0.72rem; font-weight: 800; letter-spacing: 0.08em; }
+.eyebrow { color: var(--accent-primary); font-size: 0.72rem; font-weight: 800; letter-spacing: 0.08em; }
 
 .decisionPanel {
   display: grid;
@@ -88,8 +88,8 @@
   box-shadow: var(--dsc-card-shadow);
 }
 
-.decisionLead h2 { margin: 5px 0 8px; color: #f8fafc; font-size: 1.25rem; }
-.decisionLead p { max-width: 58ch; color: #cbd5e1; font-size: 0.86rem; line-height: 1.55; }
+.decisionLead h2 { margin: 5px 0 8px; color: var(--dsc-ink); font-size: 1.25rem; }
+.decisionLead p { max-width: 58ch; color: var(--dsc-ink-muted); font-size: 0.86rem; line-height: 1.55; }
 
 .decisionMetrics {
   display: grid;
@@ -105,12 +105,12 @@
 .decisionMetrics > div { min-width: 0; padding: 14px; border-left: 1px solid rgba(148, 163, 184, 0.14); }
 .decisionMetrics > div:first-child { border-left: 0; }
 .decisionMetrics span { display: block; margin-bottom: 6px; color: var(--text-muted); font-size: 0.72rem; }
-.decisionMetrics strong { color: #f8fafc; font-size: 1rem; white-space: nowrap; }
+.decisionMetrics strong { color: var(--dsc-ink); font-size: 1rem; white-space: nowrap; }
 .decisionMetrics .dangerText { color: #f87171; }
 
 .fleetSection { margin-top: 4px; }
 .sectionHeading { display: flex; align-items: flex-end; justify-content: space-between; margin-bottom: 12px; }
-.sectionHeading h3 { margin-top: 3px; color: #f8fafc; font-size: 1.12rem; }
+.sectionHeading h3 { margin-top: 3px; color: var(--dsc-ink); font-size: 1.12rem; }
 .vesselMeta { display: flex; align-items: center; gap: 8px; margin-top: 6px; color: var(--text-muted); font-size: 0.75rem; }
 
 .completedToggle {
@@ -123,11 +123,11 @@
   border: 1px solid var(--dsc-surface-border);
   border-radius: var(--dsc-card-radius) !important;
   background: var(--dsc-surface);
-  color: #cbd5e1;
+  color: var(--dsc-ink-muted);
   cursor: pointer;
 }
 
-.completedToggle:hover { border-color: rgba(56, 189, 248, 0.35); color: #f8fafc; }
+.completedToggle:hover { border-color: rgba(56, 189, 248, 0.35); color: var(--dsc-ink); }
 .completedGrid { margin-top: 12px; opacity: 0.86; }
 
 .detailTabs {
@@ -152,8 +152,8 @@
   cursor: pointer;
 }
 
-.detailTab:hover { color: #e2e8f0; background: rgba(148, 163, 184, 0.08); }
-.detailTabActive { color: #f8fafc; background: rgba(14, 165, 233, 0.18); box-shadow: inset 0 0 0 1px rgba(56, 189, 248, 0.28); }
+.detailTab:hover { color: var(--dsc-ink); background: rgba(148, 163, 184, 0.08); }
+.detailTabActive { color: var(--dsc-ink); background: rgba(14, 165, 233, 0.18); box-shadow: inset 0 0 0 1px rgba(56, 189, 248, 0.28); }
 .tabPanelHidden { display: none !important; }
 
 .pageTitle {
@@ -200,7 +200,7 @@
 .execCardValue {
   font-size: 2rem;
   font-weight: 800;
-  color: #f8fafc;
+  color: var(--dsc-ink);
   margin-bottom: 8px;
 }
 
@@ -261,7 +261,7 @@
 .vesselName {
   font-weight: 800;
   font-size: 1.15rem;
-  color: #f8fafc;
+  color: var(--dsc-ink);
 }
 
 .vesselLocation {
@@ -354,7 +354,7 @@
   display: flex;
   align-items: center;
   gap: 8px;
-  color: #f8fafc;
+  color: var(--dsc-ink);
 }
 
 .cargoBasisPanel {
@@ -381,13 +381,13 @@
 }
 
 .cargoBasisHeader span {
-  color: #38bdf8;
+  color: var(--accent-primary);
   font-size: 0.78rem;
   font-weight: 800;
 }
 
 .cargoBasisHeader strong {
-  color: #e2e8f0;
+  color: var(--dsc-ink);
   font-size: 0.88rem;
 }
 
@@ -414,7 +414,7 @@
 }
 
 .cargoBasisGrid strong {
-  color: #f8fafc;
+  color: var(--dsc-ink);
   font-size: 1rem;
 }
 
@@ -635,6 +635,16 @@
   .schematicLayout {
     flex-direction: column;
   }
+}
+
+/* [data-v3='light'] 라이트 스코프 오버라이드 — 어창 도식 hover가 다크 채움이라 잉크 글자와 충돌 */
+[data-v3='light'] .compartmentGroup:hover rect:first-of-type,
+[data-v3='light'] .compartmentGroup:hover polygon:first-of-type {
+  fill: rgba(30, 41, 59, 0.1);
+}
+
+[data-v3='light'] .compartmentGroup:hover .compartmentText {
+  fill: var(--dsc-ink);
 }
 
 @media (max-width: 640px) {

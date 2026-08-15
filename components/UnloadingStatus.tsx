@@ -753,7 +753,7 @@ function RadialGauge({
           justifyContent: 'center',
           fontSize: radius > 30 ? '0.85rem' : '0.65rem',
           fontWeight: 'bold',
-          color: '#fff'
+          color: 'var(--dsc-ink)'
         }}
       >
         {radius > 30 ? `${cleanProgress.toFixed(1)}%` : `${cleanProgress.toFixed(0)}%`}
@@ -1690,7 +1690,7 @@ export default function UnloadingStatus({ heroOnly = false }: { heroOnly?: boole
                           className={styles.compartmentText}
                           textAnchor="middle"
                           style={{
-                            fill: isSelected ? '#fff' : 'rgba(255, 255, 255, 0.5)',
+                            fill: isSelected ? 'var(--dsc-ink)' : 'var(--dsc-ink-muted)',
                             fontSize: isSelected ? '10px' : '9px',
                             fontWeight: 'bold',
                             pointerEvents: 'none'
@@ -1749,7 +1749,7 @@ export default function UnloadingStatus({ heroOnly = false }: { heroOnly?: boole
             {/* Right Column: Selected Compartment Details */}
             <div className={styles.holdDetailsCard}>
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', borderBottom: '1px solid rgba(255, 255, 255, 0.08)', paddingBottom: '10px' }}>
-                <h4 style={{ fontWeight: 'bold', fontSize: '1rem', color: '#fff', display: 'flex', alignItems: 'center', gap: '8px' }}>
+                <h4 style={{ fontWeight: 'bold', fontSize: '1rem', color: 'var(--dsc-ink)', display: 'flex', alignItems: 'center', gap: '8px' }}>
                   어창 {activeSelectedHold} 상세 정보 <BaseDateTag date={selectedBaseDate} />
                 </h4>
                 <span className={`${styles.statusBadge} ${selectedHoldInfo.dischargedVolume >= selectedHoldInfo.nominalCapacity ? styles.completed : selectedHoldInfo.dischargedVolume > 0 ? styles.progress : ''}`} style={{ alignSelf: 'center' }}>
@@ -1796,7 +1796,7 @@ export default function UnloadingStatus({ heroOnly = false }: { heroOnly?: boole
 
                 {/* Species Breakdown */}
                 <div style={{ borderTop: '1px solid rgba(255, 255, 255, 0.08)', paddingTop: '10px', marginTop: '4px' }}>
-                  <div style={{ fontWeight: 'bold', color: '#fff', marginBottom: '8px', fontSize: '0.8rem' }}>품종별 세부 현황 (Species Breakdown)</div>
+                  <div style={{ fontWeight: 'bold', color: 'var(--dsc-ink)', marginBottom: '8px', fontSize: '0.8rem' }}>품종별 세부 현황 (Species Breakdown)</div>
                   {lacksHoldSpeciesEvidence ? (
                     <div
                       data-testid="hold-species-unavailable"
