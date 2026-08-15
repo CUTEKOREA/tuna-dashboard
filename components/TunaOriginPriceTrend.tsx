@@ -35,7 +35,7 @@ const CustomTooltip = ({ active, payload }: any) => {
   const { region, price, change } = payload[0].payload;
   return (
     <div style={{ background: '#0a0f1f', border: '1px solid #334155', borderRadius: 6, padding: '8px 12px' }}>
-      <p style={{ color: '#f8fafc', fontWeight: 600, margin: 0, fontSize: '0.85rem' }}>
+      <p style={{ color: 'var(--w-slate-50)', fontWeight: 600, margin: 0, fontSize: '0.85rem' }}>
         {region} · {price.toLocaleString()}원/kg · 전월 대비 {change > 0 ? '+' : ''}{change}%
       </p>
     </div>
@@ -64,7 +64,7 @@ const TunaOriginPriceTrend = () => (
         <defs>
           <linearGradient id="tunaOriginPriceGradient" x1="0" y1="0" x2="0" y2="1">
             <stop offset="0%" stopColor="#22d3ee" />
-            <stop offset="100%" stopColor="#3b82f6" />
+            <stop offset="100%" stopColor="var(--w-blue-500)" />
           </linearGradient>
         </defs>
         <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" vertical={false} />

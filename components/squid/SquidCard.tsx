@@ -46,7 +46,7 @@ export const SquidCard: React.FC<SquidCardProps> = ({ widget, sources, builtAt, 
               margin: 0,
               fontSize: '0.95rem',
               fontWeight: 800,
-              color: '#e2e8f0',
+              color: 'var(--w-slate-200)',
               wordBreak: 'keep-all',
               lineHeight: 1.4,
             }}
@@ -54,7 +54,7 @@ export const SquidCard: React.FC<SquidCardProps> = ({ widget, sources, builtAt, 
             {squidWidgetTitle(widget.title)}
           </h3>
           {widget.subtitle && (
-            <p style={{ margin: '4px 0 0', fontSize: '0.75rem', color: '#94a3b8', wordBreak: 'keep-all' }}>
+            <p style={{ margin: '4px 0 0', fontSize: '0.75rem', color: 'var(--w-slate-400)', wordBreak: 'keep-all' }}>
               {koreanUiText(widget.subtitle)}
             </p>
           )}
@@ -70,7 +70,7 @@ export const SquidCard: React.FC<SquidCardProps> = ({ widget, sources, builtAt, 
               borderRadius: '8px',
               border: '1px dashed rgba(245, 158, 11, 0.35)',
               background: 'rgba(245, 158, 11, 0.05)',
-              color: '#f59e0b',
+              color: 'var(--w-amber-500)',
               fontSize: '0.78rem',
               lineHeight: 1.6,
             }}

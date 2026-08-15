@@ -26,7 +26,7 @@ export default function InfoTooltip({ title, description, dataSource, methodolog
       marginBottom: '12px',
       fontSize: '0.8rem',
       fontWeight: 400,
-      color: '#94a3b8',
+      color: 'var(--w-slate-400)',
       lineHeight: 1.5,
       letterSpacing: 'normal',
       whiteSpace: 'normal',
@@ -49,7 +49,7 @@ export default function InfoTooltip({ title, description, dataSource, methodolog
         </span>
       )}
       {(dataSource || (sources && sources.length > 0)) && (
-        <span style={{ display: 'block', color: '#64748b', fontSize: '0.75rem', marginTop: '6px' }}>
+        <span style={{ display: 'block', color: 'var(--w-slate-500)', fontSize: '0.75rem', marginTop: '6px' }}>
           <strong>출처:</strong> {dataSource} {sources && sources.length > 0 ? sources.join(', ') : ''}
         </span>
       )}

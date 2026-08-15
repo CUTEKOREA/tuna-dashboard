@@ -21,7 +21,7 @@ export default function FishStatProteinBubble() {
         <TermTooltip term="가성비 우하단 포지셔닝" description="X축의 단가가 타 육류 대비 현저히 낮으면서 Y축의 단백질량은 대등하게 유지되는 최고 영업 방어도 구간" />
       </div>
       
-      <div style={{ padding: '16px', background: 'rgba(16, 185, 129, 0.1)', borderLeft: '4px solid #10b981', borderRadius: '4px', marginBottom: '24px', display: 'flex', gap: '12px' }}>
+      <div style={{ padding: '16px', background: 'rgba(16, 185, 129, 0.1)', borderLeft: '4px solid var(--w-emerald-500)', borderRadius: '4px', marginBottom: '24px', display: 'flex', gap: '12px' }}>
         <Target size={20} color="var(--color-success)" style={{ flexShrink: 0 }} />
         <div style={{ fontSize: '13px', lineHeight: '1.6' }}>
           <strong style={{ color: 'var(--color-success)' }}>Situation:</strong> 고물가 인플레이션 속에서 타 육류 대비 X축 최좌측(저단가) 우위 입증.<br/>

@@ -47,8 +47,8 @@ const CustomTooltip = ({ active, payload, label }: any) => {
       }}>
         <h4 style={{ margin: '0 0 12px 0', borderBottom: '1px solid rgba(255,255,255,0.1)', paddingBottom: '6px' }}>{label}년 젠산 반입량</h4>
         <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '6px', fontSize: '13px', width: '150px' }}>
-          <span style={{ color: '#8b5cf6', display: 'flex', alignItems: 'center', gap: '6px' }}>
-            <div style={{ width: '8px', height: '8px', backgroundColor: '#8b5cf6', borderRadius: '50%' }}></div>
+          <span style={{ color: 'var(--w-violet-500)', display: 'flex', alignItems: 'center', gap: '6px' }}>
+            <div style={{ width: '8px', height: '8px', backgroundColor: 'var(--w-violet-500)', borderRadius: '50%' }}></div>
             Total
           </span>
           <span style={{ fontWeight: 'bold' }}>{payload[0].value.toLocaleString()} 톤</span>
@@ -137,11 +137,11 @@ export default function GensanImportChart() {
               />
               <Tooltip content={<CustomTooltip />} cursor={{ fill: 'rgba(255,255,255,0.03)' }} />
               <Legend wrapperStyle={{ fontSize: rc.legendFontSize }} />
-              <Bar dataKey="Total" name="연간 총 반입량" fill="#8b5cf6" radius={[4, 4, 0, 0]}>
+              <Bar dataKey="Total" name="연간 총 반입량" fill="var(--w-violet-500)" radius={[4, 4, 0, 0]}>
                 <LabelList content={(props: any) => {
                   const { x, y, width, height, value } = props;
                   if (!value || height < 15) return null;
-                  return <text x={x + width / 2} y={y - 10} fill="#8b5cf6" textAnchor="middle" fontSize={10} fontWeight="bold">{(Number(value) / 1000).toFixed(1)}k</text>;
+                  return <text x={x + width / 2} y={y - 10} fill="var(--w-violet-500)" textAnchor="middle" fontSize={10} fontWeight="bold">{(Number(value) / 1000).toFixed(1)}k</text>;
                 }} />
               </Bar>
             </BarChart>
@@ -151,7 +151,7 @@ export default function GensanImportChart() {
         {/* Right Side: 2026 Monthly */}
         <div style={{ flex: rc.isTablet ? 'none' : '1', minWidth: rc.isTablet ? 'auto' : '220px', backgroundColor: 'rgba(255, 255, 255, 0.02)', border: '1px solid rgba(140, 170, 255, 0.10)', borderRadius: '8px', padding: '16px 12px 16px 0', display: 'flex', flexDirection: 'column', height: rc.isTablet ? '200px' : 'auto' }}>
           <h3 style={{ fontSize: '13px', margin: '0 0 16px 20px', color: 'var(--text-main)', display: 'flex', alignItems: 'center', gap: '8px' }}>
-            <div style={{ width: '8px', height: '8px', background: 'var(--color-success)', borderRadius: '50%', boxShadow: '0 0 6px #10b981' }} />
+            <div style={{ width: '8px', height: '8px', background: 'var(--color-success)', borderRadius: '50%', boxShadow: '0 0 6px var(--w-emerald-500)' }} />
             2026 Monthly Trend Breakdown
           </h3>
           <div style={{ flex: 1 }}>

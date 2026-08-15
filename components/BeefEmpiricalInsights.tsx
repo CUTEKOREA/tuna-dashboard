@@ -13,7 +13,7 @@ const customTooltipStyle = {
   border: '1px solid rgba(255,255,255,0.2)',
   borderRadius: '8px',
   padding: '8px 12px',
-  color: '#f8fafc',
+  color: 'var(--w-slate-50)',
   fontSize: '12px'
 };
 
@@ -23,7 +23,7 @@ const CustomTooltip = ({ active, payload, label }: any) => {
     <div style={customTooltipStyle}>
       <p style={{ margin: '0 0 4px 0', fontWeight: 700 }}>{label}</p>
       {payload.map((e: any, i: number) => (
-        <div key={i} style={{ display: 'flex', justifyContent: 'space-between', gap: '12px', fontSize: '11px', color: '#cbd5e1' }}>
+        <div key={i} style={{ display: 'flex', justifyContent: 'space-between', gap: '12px', fontSize: '11px', color: 'var(--w-slate-300)' }}>
           <span style={{ color: e.color }}>■ {e.name}</span>
           <strong>{typeof e.value === 'number' ? e.value.toLocaleString() : e.value}</strong>
         </div>
@@ -62,15 +62,15 @@ export function InsightFeedCostSpread({ accent = '#e11d48' }: any) {
         <ComposedChart data={feedCostData} margin={{ top: 10, right: 10, left: -20, bottom: 0 }}>
           <ChartPatternDefs />
           <CartesianGrid strokeDasharray="3 3" stroke="rgba(140,170,255,0.12)" vertical={false} />
-          <XAxis dataKey="month" stroke="#64748b" tick={{ fontSize: 9 }} />
-          <YAxis yAxisId="left" stroke="#64748b" tick={{ fontSize: 9 }} domain={[50, 600]} />
-          <YAxis yAxisId="right" orientation="right" stroke="#64748b" tick={{ fontSize: 9 }} domain={[6, 12]} />
+          <XAxis dataKey="month" stroke="var(--w-slate-500)" tick={{ fontSize: 9 }} />
+          <YAxis yAxisId="left" stroke="var(--w-slate-500)" tick={{ fontSize: 9 }} domain={[50, 600]} />
+          <YAxis yAxisId="right" orientation="right" stroke="var(--w-slate-500)" tick={{ fontSize: 9 }} domain={[6, 12]} />
           <Tooltip content={<CustomTooltip />} />
           <Legend verticalAlign="top" wrapperStyle={{ fontSize: '10px', paddingBottom: '10px' }} />
-          <Area yAxisId="left" type="monotone" dataKey="corn" name="옥수수(US$/t)" fill="url(#a11y-diag)" stroke="#f59e0b" fillOpacity={0.3} />
+          <Area yAxisId="left" type="monotone" dataKey="corn" name="옥수수(US$/t)" fill="url(#a11y-diag)" stroke="var(--w-amber-500)" fillOpacity={0.3} />
           <Area yAxisId="left" type="monotone" dataKey="soy" name="대두박(US$/t)" fill="url(#a11y-dots)" stroke="#e11d48" fillOpacity={0.3} />
           <Line yAxisId="left" type="monotone" dataKey="hanwooCost" name="한우원가지수" stroke="#dc2626" strokeWidth={3} dot={{ r: 4 }} />
-          <Line yAxisId="right" type="monotone" dataKey="usBeefPrice" name="미국산단가($/kg)" stroke="#38bdf8" strokeWidth={2} strokeDasharray="5 5" />
+          <Line yAxisId="right" type="monotone" dataKey="usBeefPrice" name="미국산단가($/kg)" stroke="var(--w-sky-400)" strokeWidth={2} strokeDasharray="5 5" />
         </ComposedChart>
       }
     />
@@ -106,15 +106,15 @@ export function InsightCutTracker({ accent = '#fb923c' }: any) {
       chart={
         <ComposedChart data={cutTrackerData} margin={{ top: 10, right: 10, left: -20, bottom: 0 }}>
           <CartesianGrid strokeDasharray="3 3" stroke="rgba(140,170,255,0.12)" vertical={false} />
-          <XAxis dataKey="month" stroke="#64748b" tick={{ fontSize: 9 }} />
-          <YAxis yAxisId="left" stroke="#64748b" tick={{ fontSize: 9 }} domain={[0, 100]} />
-          <YAxis yAxisId="right" orientation="right" stroke="#64748b" tick={{ fontSize: 9 }} domain={[6, 14]} />
+          <XAxis dataKey="month" stroke="var(--w-slate-500)" tick={{ fontSize: 9 }} />
+          <YAxis yAxisId="left" stroke="var(--w-slate-500)" tick={{ fontSize: 9 }} domain={[0, 100]} />
+          <YAxis yAxisId="right" orientation="right" stroke="var(--w-slate-500)" tick={{ fontSize: 9 }} domain={[6, 14]} />
           <Tooltip content={<CustomTooltip />} />
           <Legend verticalAlign="top" wrapperStyle={{ fontSize: '10px', paddingBottom: '10px' }} />
           <Bar yAxisId="left" dataKey="bonelessVol" name="순살 수입량(천톤)" fill="#fb923c" radius={[4, 4, 0, 0]} barSize={20} />
           <Bar yAxisId="left" dataKey="boneVol" name="뼈 수입량(천톤)" fill="#dc2626" radius={[4, 4, 0, 0]} barSize={20} />
           <Line yAxisId="right" type="monotone" dataKey="bonelessPrice" name="순살 단가($/kg)" stroke="#fcd34d" strokeWidth={2} dot={{ r: 3 }} />
-          <Line yAxisId="right" type="monotone" dataKey="bonePrice" name="뼈 단가($/kg)" stroke="#ef4444" strokeWidth={2} dot={{ r: 3 }} />
+          <Line yAxisId="right" type="monotone" dataKey="bonePrice" name="뼈 단가($/kg)" stroke="var(--w-red-500)" strokeWidth={2} dot={{ r: 3 }} />
         </ComposedChart>
       }
     />
@@ -149,12 +149,12 @@ export function InsightDiseaseRadar({ accent = '#ef4444' }: any) {
       chart={
         <RadarChart cx="50%" cy="50%" outerRadius="70%" data={diseaseRadarData}>
           <PolarGrid stroke="rgba(255,255,255,0.1)" />
-          <PolarAngleAxis dataKey="country" tick={{ fill: '#94a3b8', fontSize: 10 }} />
-          <PolarRadiusAxis angle={30} domain={[0, 100]} tick={{ fontSize: 9, fill: '#64748b' }} />
+          <PolarAngleAxis dataKey="country" tick={{ fill: 'var(--w-slate-400)', fontSize: 10 }} />
+          <PolarRadiusAxis angle={30} domain={[0, 100]} tick={{ fontSize: 9, fill: 'var(--w-slate-500)' }} />
           <Tooltip content={<CustomTooltip />} />
           <Legend verticalAlign="bottom" wrapperStyle={{ fontSize: '10px' }} />
-          <Radar name="질병 리스크 지수" dataKey="riskLevel" stroke="#ef4444" fill="#ef4444" fillOpacity={0.4} />
-          <Radar name="대체 공급 여력" dataKey="altCapacity" stroke="#38bdf8" fill="#38bdf8" fillOpacity={0.4} />
+          <Radar name="질병 리스크 지수" dataKey="riskLevel" stroke="var(--w-red-500)" fill="var(--w-red-500)" fillOpacity={0.4} />
+          <Radar name="대체 공급 여력" dataKey="altCapacity" stroke="var(--w-sky-400)" fill="var(--w-sky-400)" fillOpacity={0.4} />
         </RadarChart>
       }
     />

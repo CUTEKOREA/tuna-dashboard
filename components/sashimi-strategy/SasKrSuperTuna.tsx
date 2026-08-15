@@ -35,17 +35,17 @@ export default function SasKrSuperTuna() {
       }}
       customBody={
         <div style={{ display: 'flex', flexDirection: 'column', gap: '12px', width: '100%' }}>
-          <div style={{ fontSize: '0.66rem', color: '#94a3b8', fontWeight: 600, textAlign: 'center' }}>선망 어획 부가가치 지수 (통조림용=100)</div>
+          <div style={{ fontSize: '0.66rem', color: 'var(--w-slate-400)', fontWeight: 600, textAlign: 'center' }}>선망 어획 부가가치 지수 (통조림용=100)</div>
           <div style={{ height: '150px', width: '100%' }}>
             <SafeResponsiveContainer width="100%" height="100%">
               <BarChart data={VALUE} margin={{ top: 18, right: 16, left: 0, bottom: 0 }}>
                 <CartesianGrid strokeDasharray="3 3" opacity={0.15} vertical={false} />
-                <XAxis dataKey="use" fontSize={10} tickLine={false} axisLine={false} stroke="#64748b" interval={0} />
-                <YAxis domain={[0, 330]} tickFormatter={(v: unknown) => `${v}`} fontSize={10} tickLine={false} axisLine={false} stroke="#64748b" />
-                <Tooltip contentStyle={{ borderRadius: '8px', border: 'none', background: '#1a2442', color: '#e2e8f0' }} formatter={(v: unknown) => [`지수 ${v}`, '부가가치']} />
+                <XAxis dataKey="use" fontSize={10} tickLine={false} axisLine={false} stroke="var(--w-slate-500)" interval={0} />
+                <YAxis domain={[0, 330]} tickFormatter={(v: unknown) => `${v}`} fontSize={10} tickLine={false} axisLine={false} stroke="var(--w-slate-500)" />
+                <Tooltip contentStyle={{ borderRadius: '8px', border: 'none', background: 'var(--w-navy-900)', color: 'var(--w-slate-200)' }} formatter={(v: unknown) => [`지수 ${v}`, '부가가치']} />
                 <Bar dataKey="idx" radius={[4, 4, 0, 0]} isAnimationActive={false}>
                   {VALUE.map((d) => <Cell key={d.use} fill={d.color} />)}
-                  <LabelList dataKey="idx" position="top" formatter={(v: unknown) => v === 300 ? '300 (3배)' : `${v}`} fontSize={10.5} fill="#e2e8f0" />
+                  <LabelList dataKey="idx" position="top" formatter={(v: unknown) => v === 300 ? '300 (3배)' : `${v}`} fontSize={10.5} fill="var(--w-slate-200)" />
                 </Bar>
               </BarChart>
             </SafeResponsiveContainer>
@@ -53,13 +53,13 @@ export default function SasKrSuperTuna() {
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '8px' }}>
             {TECH.map((t) => (
               <div key={t.label} style={{ background: 'rgba(56,189,248,0.08)', border: '1px solid rgba(56,189,248,0.2)', borderRadius: '8px', padding: '8px 9px', display: 'flex', flexDirection: 'column', gap: '2px' }}>
-                <span style={{ fontSize: '0.56rem', color: '#94a3b8' }}>{t.label}</span>
-                <span style={{ fontSize: '0.95rem', fontWeight: 800, color: '#38bdf8' }}>{t.value}</span>
-                <span style={{ fontSize: '0.52rem', color: '#64748b' }}>{t.sub}</span>
+                <span style={{ fontSize: '0.56rem', color: 'var(--w-slate-400)' }}>{t.label}</span>
+                <span style={{ fontSize: '0.95rem', fontWeight: 800, color: 'var(--w-sky-400)' }}>{t.value}</span>
+                <span style={{ fontSize: '0.52rem', color: 'var(--w-slate-500)' }}>{t.sub}</span>
               </div>
             ))}
           </div>
-          <div style={{ fontSize: '0.6rem', color: '#64748b', lineHeight: 1.5, textAlign: 'center' }}>
+          <div style={{ fontSize: '0.6rem', color: 'var(--w-slate-500)', lineHeight: 1.5, textAlign: 'center' }}>
             동원산업 기술·사업 개념(2017~2018 특허) — 동원F&B 'BTS 진 슈퍼튜나포유' 마케팅과는 별개
           </div>
         </div>

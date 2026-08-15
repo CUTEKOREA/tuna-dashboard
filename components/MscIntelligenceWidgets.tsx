@@ -42,7 +42,7 @@ const TOOLTIP_STYLE: React.CSSProperties = {
   backgroundColor: 'rgba(20, 28, 52, 0.95)',
   border: '1px solid rgba(148,163,184,0.15)',
   borderRadius: 8,
-  color: '#e2e8f0',
+  color: 'var(--w-slate-200)',
   fontSize: '0.78rem',
   padding: '8px 12px',
 };
@@ -68,7 +68,7 @@ export function MscGlobalTunaGrowthTracker() {
     <div className={styles.insightCard}>
       <div className={styles.cardHeader}>
         <h3 className={styles.cardTitle}>
-          <TrendingUp size={20} style={{ color: '#38bdf8' }} />
+          <TrendingUp size={20} style={{ color: 'var(--w-sky-400)' }} />
           MSC 인증 참치 — 글로벌 성장 궤적
           <TelemetryBadge status="STATIC" syncDate="2025-26" />
         </h3>
@@ -90,13 +90,13 @@ export function MscGlobalTunaGrowthTracker() {
                 borderRadius: '8px',
               }}
             >
-              <div style={{ fontSize: '0.75rem', color: '#94a3b8', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.05em', marginBottom: '4px' }}>
+              <div style={{ fontSize: '0.75rem', color: 'var(--w-slate-400)', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.05em', marginBottom: '4px' }}>
                 {kpi.label}
               </div>
               <div style={{ fontSize: '1.5rem', fontWeight: 700, color: '#fff', fontVariantNumeric: 'tabular-nums' }}>
                 {kpi.value}
               </div>
-              <div style={{ fontSize: '0.78rem', color: '#10b981', marginTop: '4px', display: 'flex', alignItems: 'center', gap: '4px' }}>
+              <div style={{ fontSize: '0.78rem', color: 'var(--w-emerald-500)', marginTop: '4px', display: 'flex', alignItems: 'center', gap: '4px' }}>
                 <TrendingUp size={12} />
                 {kpi.sub}
               </div>
@@ -110,22 +110,22 @@ export function MscGlobalTunaGrowthTracker() {
             <AreaChart data={growthTrend} margin={{ top: 20, right: 30, left: 10, bottom: 5 }}>
               <defs>
                 <linearGradient id="msc-sales-grad" x1="0" y1="0" x2="0" y2="1">
-                  <stop offset="5%" stopColor="#38bdf8" stopOpacity={0.3} />
-                  <stop offset="95%" stopColor="#38bdf8" stopOpacity={0.02} />
+                  <stop offset="5%" stopColor="var(--w-sky-400)" stopOpacity={0.3} />
+                  <stop offset="95%" stopColor="var(--w-sky-400)" stopOpacity={0.02} />
                 </linearGradient>
                 <linearGradient id="msc-cert-grad" x1="0" y1="0" x2="0" y2="1">
-                  <stop offset="5%" stopColor="#10b981" stopOpacity={0.3} />
-                  <stop offset="95%" stopColor="#10b981" stopOpacity={0.02} />
+                  <stop offset="5%" stopColor="var(--w-emerald-500)" stopOpacity={0.3} />
+                  <stop offset="95%" stopColor="var(--w-emerald-500)" stopOpacity={0.02} />
                 </linearGradient>
               </defs>
               <CartesianGrid strokeDasharray="3 3" stroke="rgba(140,170,255,0.12)" vertical={false} />
-              <XAxis dataKey="year" stroke="rgba(255,255,255,0.4)" tick={{ fill: '#94a3b8', fontSize: 12 }} />
-              <YAxis yAxisId="left" stroke="#38bdf8" tick={{ fill: '#38bdf8', fontSize: 11 }} label={{ value: 'MSC 라벨 판매(천톤)', angle: -90, position: 'insideLeft', style: { fill: '#38bdf8', fontSize: 11 } }} />
-              <YAxis yAxisId="right" orientation="right" stroke="#10b981" tick={{ fill: '#10b981', fontSize: 11 }} label={{ value: 'MSC 인증 어획(천톤)', angle: 90, position: 'insideRight', style: { fill: '#10b981', fontSize: 11 } }} />
+              <XAxis dataKey="year" stroke="rgba(255,255,255,0.4)" tick={{ fill: 'var(--w-slate-400)', fontSize: 12 }} />
+              <YAxis yAxisId="left" stroke="var(--w-sky-400)" tick={{ fill: 'var(--w-sky-400)', fontSize: 11 }} label={{ value: 'MSC 라벨 판매(천톤)', angle: -90, position: 'insideLeft', style: { fill: 'var(--w-sky-400)', fontSize: 11 } }} />
+              <YAxis yAxisId="right" orientation="right" stroke="var(--w-emerald-500)" tick={{ fill: 'var(--w-emerald-500)', fontSize: 11 }} label={{ value: 'MSC 인증 어획(천톤)', angle: 90, position: 'insideRight', style: { fill: 'var(--w-emerald-500)', fontSize: 11 } }} />
               <Tooltip contentStyle={TOOLTIP_STYLE} />
               <Legend wrapperStyle={{ paddingTop: '10px', fontSize: '0.78rem' }} />
-              <Area isAnimationActive={false} yAxisId="left" type="monotone" dataKey="sales" name="MSC 라벨 판매(천톤)" stroke="#38bdf8" strokeWidth={2} fill="url(#msc-sales-grad)" dot={{ r: 4, fill: '#38bdf8' }} />
-              <Area isAnimationActive={false} yAxisId="right" type="monotone" dataKey="certified" name="MSC 인증 어획(천톤)" stroke="#10b981" strokeWidth={2} fill="url(#msc-cert-grad)" dot={{ r: 4, fill: '#10b981' }} />
+              <Area isAnimationActive={false} yAxisId="left" type="monotone" dataKey="sales" name="MSC 라벨 판매(천톤)" stroke="var(--w-sky-400)" strokeWidth={2} fill="url(#msc-sales-grad)" dot={{ r: 4, fill: 'var(--w-sky-400)' }} />
+              <Area isAnimationActive={false} yAxisId="right" type="monotone" dataKey="certified" name="MSC 인증 어획(천톤)" stroke="var(--w-emerald-500)" strokeWidth={2} fill="url(#msc-cert-grad)" dot={{ r: 4, fill: 'var(--w-emerald-500)' }} />
             </AreaChart>
           </SafeResponsiveContainer>
         </div>
@@ -172,11 +172,11 @@ export function MscEuropeCountryPenetration() {
           <SafeResponsiveContainer width="100%" height={300}>
             <BarChart data={euroPenetrationData} layout="vertical" margin={{ top: 10, right: 40, left: 20, bottom: 5 }}>
               <CartesianGrid strokeDasharray="3 3" stroke="rgba(140,170,255,0.12)" horizontal={false} />
-              <XAxis type="number" domain={[0, 100]} stroke="rgba(255,255,255,0.4)" tick={{ fill: '#94a3b8', fontSize: 11 }} tickFormatter={(v: unknown) => `${v}%`} />
-              <YAxis type="category" dataKey="country" width={100} tick={{ fill: '#e2e8f0', fontSize: 12 }} />
+              <XAxis type="number" domain={[0, 100]} stroke="rgba(255,255,255,0.4)" tick={{ fill: 'var(--w-slate-400)', fontSize: 11 }} tickFormatter={(v: unknown) => `${v}%`} />
+              <YAxis type="category" dataKey="country" width={100} tick={{ fill: 'var(--w-slate-200)', fontSize: 12 }} />
               <Tooltip contentStyle={TOOLTIP_STYLE} formatter={(value: unknown) => [`${value}%`, 'MSC 침투율']} />
-              <Bar dataKey="penetration" fill="#38bdf8" radius={[0, 6, 6, 0]} barSize={22} isAnimationActive={false}>
-                <LabelList dataKey="penetration" position="right" style={{ fill: '#38bdf8', fontSize: 12, fontWeight: 700 }} formatter={(v: unknown) => `${v}%`} />
+              <Bar dataKey="penetration" fill="var(--w-sky-400)" radius={[0, 6, 6, 0]} barSize={22} isAnimationActive={false}>
+                <LabelList dataKey="penetration" position="right" style={{ fill: 'var(--w-sky-400)', fontSize: 12, fontWeight: 700 }} formatter={(v: unknown) => `${v}%`} />
               </Bar>
             </BarChart>
           </SafeResponsiveContainer>
@@ -196,7 +196,7 @@ export function MscEuropeCountryPenetration() {
                   <th key={h} style={{
                     padding: '10px 12px',
                     textAlign: 'left',
-                    color: '#64748b',
+                    color: 'var(--w-slate-500)',
                     fontWeight: 600,
                     fontSize: '0.72rem',
                     textTransform: 'uppercase',
@@ -210,11 +210,11 @@ export function MscEuropeCountryPenetration() {
             <tbody>
               {euroPenetrationData.map((row) => (
                 <tr key={row.country} style={{ borderBottom: '1px solid rgba(255,255,255,0.04)' }}>
-                  <td style={{ padding: '8px 12px', color: '#e2e8f0', fontWeight: 600 }}>{row.country}</td>
+                  <td style={{ padding: '8px 12px', color: 'var(--w-slate-200)', fontWeight: 600 }}>{row.country}</td>
                   <td style={{ padding: '8px 12px' }}>
                     <span style={{
                       background: row.penetration >= 60 ? 'rgba(56,189,248,0.15)' : 'rgba(245,158,11,0.15)',
-                      color: row.penetration >= 60 ? '#38bdf8' : '#f59e0b',
+                      color: row.penetration >= 60 ? 'var(--w-sky-400)' : 'var(--w-amber-500)',
                       padding: '2px 8px',
                       borderRadius: 6,
                       fontWeight: 600,
@@ -222,13 +222,13 @@ export function MscEuropeCountryPenetration() {
                       {row.penetration}%
                     </span>
                   </td>
-                  <td style={{ padding: '8px 12px', color: row.volume > 0 ? '#10b981' : '#64748b', fontVariantNumeric: 'tabular-nums' }}>
+                  <td style={{ padding: '8px 12px', color: row.volume > 0 ? 'var(--w-emerald-500)' : 'var(--w-slate-500)', fontVariantNumeric: 'tabular-nums' }}>
                     {row.volume > 0 ? row.volume.toLocaleString() : '-'}
                   </td>
-                  <td style={{ padding: '8px 12px', color: row.plShare >= 50 ? '#f59e0b' : '#94a3b8' }}>
+                  <td style={{ padding: '8px 12px', color: row.plShare >= 50 ? 'var(--w-amber-500)' : 'var(--w-slate-400)' }}>
                     {row.plShare > 0 ? `${row.plShare}%` : '-'}
                   </td>
-                  <td style={{ padding: '8px 12px', color: '#94a3b8' }}>{row.solvent}</td>
+                  <td style={{ padding: '8px 12px', color: 'var(--w-slate-400)' }}>{row.solvent}</td>
                 </tr>
               ))}
             </tbody>
@@ -262,7 +262,7 @@ export function MscBrandSourcingScorecard() {
     <div className={styles.insightCard}>
       <div className={styles.cardHeader}>
         <h3 className={styles.cardTitle}>
-          <Award size={20} style={{ color: '#10b981' }} />
+          <Award size={20} style={{ color: 'var(--w-emerald-500)' }} />
           글로벌 브랜드 MSC 소싱 스코어카드
           <TelemetryBadge status="STATIC" syncDate="2025-26" />
         </h3>
@@ -282,7 +282,7 @@ export function MscBrandSourcingScorecard() {
             }}>
               {/* Top row: brand name + percentage */}
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '8px' }}>
-                <span style={{ fontSize: '0.88rem', fontWeight: 600, color: '#e2e8f0' }}>{item.brand}</span>
+                <span style={{ fontSize: '0.88rem', fontWeight: 600, color: 'var(--w-slate-200)' }}>{item.brand}</span>
                 <span style={{ fontSize: '1rem', fontWeight: 700, color: item.color, fontVariantNumeric: 'tabular-nums' }}>{item.rate}%</span>
               </div>
 
@@ -299,10 +299,10 @@ export function MscBrandSourcingScorecard() {
 
               {/* Bottom row: markets + label */}
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: '8px' }}>
-                <span style={{ fontSize: '0.8rem', color: '#94a3b8' }}>
+                <span style={{ fontSize: '0.8rem', color: 'var(--w-slate-400)' }}>
                   {item.markets}
                 </span>
-                <span style={{ fontSize: '0.72rem', color: '#64748b', fontStyle: 'italic' }}>
+                <span style={{ fontSize: '0.72rem', color: 'var(--w-slate-500)', fontStyle: 'italic' }}>
                   {item.label}
                 </span>
               </div>
@@ -338,7 +338,7 @@ export function MscTunaStockHealthGauge() {
     <div className={styles.insightCard}>
       <div className={styles.cardHeader}>
         <h3 className={styles.cardTitle}>
-          <ShieldCheck size={20} style={{ color: '#10b981' }} />
+          <ShieldCheck size={20} style={{ color: 'var(--w-emerald-500)' }} />
           참치 자원 건강도 × 관리 이행 격차
           <TelemetryBadge status="STATIC" syncDate="2025" />
         </h3>
@@ -358,7 +358,7 @@ export function MscTunaStockHealthGauge() {
             padding: '16px',
             textAlign: 'center',
           }}>
-            <div style={{ fontSize: '0.8rem', color: '#94a3b8', fontWeight: 600, marginBottom: '8px', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
+            <div style={{ fontSize: '0.8rem', color: 'var(--w-slate-400)', fontWeight: 600, marginBottom: '8px', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
               자원 건전성
             </div>
             <div style={{ position: 'relative', display: 'inline-block' }}>
@@ -389,8 +389,8 @@ export function MscTunaStockHealthGauge() {
                 transform: 'translate(-50%, -50%)',
                 textAlign: 'center',
               }}>
-                <div style={{ fontSize: '1.5rem', fontWeight: 800, color: '#10b981' }}>52.2%</div>
-                <div style={{ fontSize: '0.65rem', color: '#64748b' }}>12/23</div>
+                <div style={{ fontSize: '1.5rem', fontWeight: 800, color: 'var(--w-emerald-500)' }}>52.2%</div>
+                <div style={{ fontSize: '0.65rem', color: 'var(--w-slate-500)' }}>12/23</div>
               </div>
             </div>
           </div>
@@ -403,7 +403,7 @@ export function MscTunaStockHealthGauge() {
             padding: '16px',
             textAlign: 'center',
           }}>
-            <div style={{ fontSize: '0.8rem', color: '#94a3b8', fontWeight: 600, marginBottom: '8px', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
+            <div style={{ fontSize: '0.8rem', color: 'var(--w-slate-400)', fontWeight: 600, marginBottom: '8px', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
               HCR 이행률
             </div>
             <div style={{ position: 'relative', display: 'inline-block' }}>
@@ -434,8 +434,8 @@ export function MscTunaStockHealthGauge() {
                 transform: 'translate(-50%, -50%)',
                 textAlign: 'center',
               }}>
-                <div style={{ fontSize: '1.5rem', fontWeight: 800, color: '#3b82f6' }}>30.4%</div>
-                <div style={{ fontSize: '0.65rem', color: '#64748b' }}>7/23</div>
+                <div style={{ fontSize: '1.5rem', fontWeight: 800, color: 'var(--w-blue-500)' }}>30.4%</div>
+                <div style={{ fontSize: '0.65rem', color: 'var(--w-slate-500)' }}>7/23</div>
               </div>
             </div>
           </div>
@@ -451,12 +451,12 @@ export function MscTunaStockHealthGauge() {
           alignItems: 'center',
           gap: '12px',
         }}>
-          <AlertTriangle size={24} style={{ color: '#f59e0b', flexShrink: 0 }} />
+          <AlertTriangle size={24} style={{ color: 'var(--w-amber-500)', flexShrink: 0 }} />
           <div>
-            <div style={{ fontSize: '0.85rem', fontWeight: 700, color: '#f59e0b', marginBottom: '4px' }}>
+            <div style={{ fontSize: '0.85rem', fontWeight: 700, color: 'var(--w-amber-500)', marginBottom: '4px' }}>
               규제 진공 격차: 22%p
             </div>
-            <div style={{ fontSize: '0.78rem', color: '#94a3b8', lineHeight: 1.6 }}>
+            <div style={{ fontSize: '0.78rem', color: 'var(--w-slate-400)', lineHeight: 1.6 }}>
               자원 건전성(52.2%) 대비 HCR 이행률(30.4%) 사이 22%p 격차는 &quot;건강하지만 관리되지 않는&quot; 자원이 존재함을 의미.
               RFMO 차원의 급격한 규제 도입 리스크 존재.
             </div>
@@ -510,9 +510,9 @@ export function MscConsumerInsightsRadar() {
           <SafeResponsiveContainer width="100%" height={320}>
             <RadarChart cx="50%" cy="50%" outerRadius="70%" data={consumerRadarData}>
               <PolarGrid stroke="rgba(255,255,255,0.1)" />
-              <PolarAngleAxis dataKey="subject" tick={{ fill: '#94a3b8', fontSize: 11 }} />
-              <PolarRadiusAxis angle={90} domain={[0, 100]} tick={{ fill: '#64748b', fontSize: 10 }} axisLine={false} />
-              <Radar name="글로벌 평균" dataKey="global" stroke="#38bdf8" fill="#38bdf8" fillOpacity={0.2} strokeWidth={2} isAnimationActive={false} />
+              <PolarAngleAxis dataKey="subject" tick={{ fill: 'var(--w-slate-400)', fontSize: 11 }} />
+              <PolarRadiusAxis angle={90} domain={[0, 100]} tick={{ fill: 'var(--w-slate-500)', fontSize: 10 }} axisLine={false} />
+              <Radar name="글로벌 평균" dataKey="global" stroke="var(--w-sky-400)" fill="var(--w-sky-400)" fillOpacity={0.2} strokeWidth={2} isAnimationActive={false} />
               <Radar name="영국" dataKey="uk" stroke="#a78bfa" fill="#a78bfa" fillOpacity={0.15} strokeWidth={2} isAnimationActive={false} />
               <Legend wrapperStyle={{ paddingTop: '10px', fontSize: '0.78rem' }} />
               <Tooltip contentStyle={TOOLTIP_STYLE} formatter={(value: unknown) => [`${value}%`]} />
@@ -530,13 +530,13 @@ export function MscConsumerInsightsRadar() {
               padding: '16px',
               textAlign: 'center',
             }}>
-              <div style={{ fontSize: '0.72rem', color: '#64748b', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.05em', marginBottom: '6px' }}>
+              <div style={{ fontSize: '0.72rem', color: 'var(--w-slate-500)', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.05em', marginBottom: '6px' }}>
                 {m.label}
               </div>
               <div style={{ fontSize: '1.6rem', fontWeight: 800, color: m.color, fontVariantNumeric: 'tabular-nums' }}>
                 {m.value}
               </div>
-              <div style={{ fontSize: '0.72rem', color: '#94a3b8', marginTop: '4px' }}>
+              <div style={{ fontSize: '0.72rem', color: 'var(--w-slate-400)', marginTop: '4px' }}>
                 {m.sub}
               </div>
             </div>

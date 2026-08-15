@@ -54,14 +54,14 @@ export function OctopusChannelMarginMatrix() {
       chart={
         <ComposedChart data={data} margin={{ top: 16, right: 10, left: 0, bottom: 5 }}>
           <CartesianGrid strokeDasharray="3 3" stroke="rgba(140,170,255,0.12)" vertical={false} />
-          <XAxis dataKey="channel" stroke="#94a3b8" tick={{ fontSize: 11 }} />
-          <YAxis yAxisId="left" stroke="#94a3b8" tickFormatter={(v) => `${(v / 1000).toFixed(0)}k`} tick={{ fontSize: 10 }} />
-          <YAxis yAxisId="right" orientation="right" stroke="#ef4444" tickFormatter={(v) => `${v}%`} tick={{ fill: '#ef4444', fontSize: 10 }} />
+          <XAxis dataKey="channel" stroke="var(--w-slate-400)" tick={{ fontSize: 11 }} />
+          <YAxis yAxisId="left" stroke="var(--w-slate-400)" tickFormatter={(v) => `${(v / 1000).toFixed(0)}k`} tick={{ fontSize: 10 }} />
+          <YAxis yAxisId="right" orientation="right" stroke="var(--w-red-500)" tickFormatter={(v) => `${v}%`} tick={{ fill: 'var(--w-red-500)', fontSize: 10 }} />
           <Tooltip contentStyle={tooltipStyle} formatter={(v: any, n: any) => n === '마진율'  ? `${v}%` : `${Number(v).toLocaleString()} 원/kg`} />
           <Legend wrapperStyle={{ fontSize: 11 }} />
           <Bar yAxisId="left" dataKey="unitCost" name="원가" fill="#6366f1" stackId="a" />
-          <Bar yAxisId="left" dataKey="margin" name="마진" fill="#10b981" stackId="a" />
-          <Line yAxisId="right" type="monotone" dataKey="marginPct" name="마진율" stroke="#ef4444" strokeWidth={2} dot={{ r: 4 }} />
+          <Bar yAxisId="left" dataKey="margin" name="마진" fill="var(--w-emerald-500)" stackId="a" />
+          <Line yAxisId="right" type="monotone" dataKey="marginPct" name="마진율" stroke="var(--w-red-500)" strokeWidth={2} dot={{ r: 4 }} />
         </ComposedChart>
       }
       takeaway={{
@@ -95,14 +95,14 @@ export function OctopusColdChainYield() {
       chart={
         <ComposedChart data={routes} margin={{ top: 16, right: 10, left: 0, bottom: 5 }}>
           <CartesianGrid strokeDasharray="3 3" stroke="rgba(140,170,255,0.12)" vertical={false} />
-          <XAxis dataKey="mode" stroke="#94a3b8" tick={{ fontSize: 10 }} />
-          <YAxis yAxisId="left" stroke="#94a3b8" tickFormatter={(v) => `${(v / 1000).toFixed(1)}k`} tick={{ fontSize: 10 }} />
-          <YAxis yAxisId="right" orientation="right" stroke="#10b981" tickFormatter={(v) => `${v}%`} tick={{ fill: '#10b981', fontSize: 10 }} />
+          <XAxis dataKey="mode" stroke="var(--w-slate-400)" tick={{ fontSize: 10 }} />
+          <YAxis yAxisId="left" stroke="var(--w-slate-400)" tickFormatter={(v) => `${(v / 1000).toFixed(1)}k`} tick={{ fontSize: 10 }} />
+          <YAxis yAxisId="right" orientation="right" stroke="var(--w-emerald-500)" tickFormatter={(v) => `${v}%`} tick={{ fill: 'var(--w-emerald-500)', fontSize: 10 }} />
           <Tooltip contentStyle={tooltipStyle} formatter={(v: any, n: any) => n === '생존율'  ? `${v}%` : `${Number(v).toLocaleString()} 원/kg`} />
           <Legend wrapperStyle={{ fontSize: 11 }} />
           <Bar yAxisId="left" dataKey="freightPerKg" name="운송비" fill="#4f46e5" stackId="a" />
-          <Bar yAxisId="left" dataKey="lossPerKg" name="폐기 손실" fill="#ef4444" stackId="a" />
-          <Line yAxisId="right" type="monotone" dataKey="survivalPct" name="생존율" stroke="#10b981" strokeWidth={2} dot={{ r: 4 }} />
+          <Bar yAxisId="left" dataKey="lossPerKg" name="폐기 손실" fill="var(--w-red-500)" stackId="a" />
+          <Line yAxisId="right" type="monotone" dataKey="survivalPct" name="생존율" stroke="var(--w-emerald-500)" strokeWidth={2} dot={{ r: 4 }} />
         </ComposedChart>
       }
       takeaway={{
@@ -146,14 +146,14 @@ export function OctopusPriceTransmission() {
       chart={
         <ComposedChart data={data} margin={{ top: 16, right: 10, left: 0, bottom: 5 }}>
           <CartesianGrid strokeDasharray="3 3" stroke="rgba(140,170,255,0.12)" vertical={false} />
-          <XAxis dataKey="month" stroke="#94a3b8" tick={{ fontSize: 10 }} angle={-30} textAnchor="end" height={50} />
-          <YAxis yAxisId="left" stroke="#94a3b8" tickFormatter={(v) => `${(v / 1000).toFixed(0)}k`} tick={{ fontSize: 10 }} />
-          <YAxis yAxisId="right" orientation="right" stroke="#ef4444" tickFormatter={(v) => `${v}%`} tick={{ fill: '#ef4444', fontSize: 10 }} domain={[0, 60]} />
+          <XAxis dataKey="month" stroke="var(--w-slate-400)" tick={{ fontSize: 10 }} angle={-30} textAnchor="end" height={50} />
+          <YAxis yAxisId="left" stroke="var(--w-slate-400)" tickFormatter={(v) => `${(v / 1000).toFixed(0)}k`} tick={{ fontSize: 10 }} />
+          <YAxis yAxisId="right" orientation="right" stroke="var(--w-red-500)" tickFormatter={(v) => `${v}%`} tick={{ fill: 'var(--w-red-500)', fontSize: 10 }} domain={[0, 60]} />
           <Tooltip contentStyle={tooltipStyle} formatter={(v: any, n: any) => n === '전가율' ? `${v}%` : `${Number(v).toLocaleString()} 원`} />
           <Legend wrapperStyle={{ fontSize: 11 }} />
           <Line yAxisId="left" type="monotone" dataKey="wholesale" name="도매가" stroke="#6366f1" strokeWidth={2.5} dot={{ r: 2 }} />
           <Line yAxisId="left" type="monotone" dataKey="retail" name="소매가" stroke="#a78bfa" strokeWidth={2.5} dot={{ r: 2 }} />
-          <Line yAxisId="right" type="monotone" dataKey="transmissionPct" name="전가율" stroke="#ef4444" strokeWidth={2} strokeDasharray="4 2" dot={{ r: 3 }} />
+          <Line yAxisId="right" type="monotone" dataKey="transmissionPct" name="전가율" stroke="var(--w-red-500)" strokeWidth={2} strokeDasharray="4 2" dot={{ r: 3 }} />
         </ComposedChart>
       }
       takeaway={{
@@ -193,14 +193,14 @@ export function OctopusCephalopodElasticity() {
       chart={
         <LineChart data={data} margin={{ top: 16, right: 10, left: 0, bottom: 5 }}>
           <CartesianGrid strokeDasharray="3 3" stroke="rgba(140,170,255,0.12)" vertical={false} />
-          <XAxis dataKey="month" stroke="#94a3b8" tick={{ fontSize: 10 }} angle={-30} textAnchor="end" height={50} />
-          <YAxis stroke="#94a3b8" tickFormatter={(v) => `${(v / 1000).toFixed(0)}k`} tick={{ fontSize: 10 }} />
+          <XAxis dataKey="month" stroke="var(--w-slate-400)" tick={{ fontSize: 10 }} angle={-30} textAnchor="end" height={50} />
+          <YAxis stroke="var(--w-slate-400)" tickFormatter={(v) => `${(v / 1000).toFixed(0)}k`} tick={{ fontSize: 10 }} />
           <Tooltip contentStyle={tooltipStyle} formatter={(v: any) => `${Number(v).toLocaleString()} 원/kg`} />
           <Legend wrapperStyle={{ fontSize: 11 }} />
-          <ReferenceLine y={20000} stroke="#ef4444" strokeDasharray="4 4" label={{ value: '메뉴 전환 임계 20k', fill: '#ef4444', fontSize: 10, position: 'insideTopRight' }} />
+          <ReferenceLine y={20000} stroke="var(--w-red-500)" strokeDasharray="4 4" label={{ value: '메뉴 전환 임계 20k', fill: 'var(--w-red-500)', fontSize: 10, position: 'insideTopRight' }} />
           <Line type="monotone" dataKey="octopus" name="낙지" stroke="#4f46e5" strokeWidth={2.5} dot={{ r: 3 }} />
           <Line type="monotone" dataKey="jukkumi" name="주꾸미" stroke="#a78bfa" strokeWidth={2} dot={{ r: 3 }} />
-          <Line type="monotone" dataKey="octopusBig" name="문어" stroke="#ef4444" strokeWidth={2} dot={{ r: 3 }} />
+          <Line type="monotone" dataKey="octopusBig" name="문어" stroke="var(--w-red-500)" strokeWidth={2} dot={{ r: 3 }} />
         </LineChart>
       }
       takeaway={{
@@ -236,14 +236,14 @@ export function OctopusAquacultureRace() {
       chart={
         <ComposedChart data={data} layout="vertical" margin={{ top: 16, right: 30, left: 70, bottom: 5 }}>
           <CartesianGrid strokeDasharray="3 3" stroke="rgba(140,170,255,0.12)" horizontal={false} />
-          <XAxis type="number" stroke="#94a3b8" tick={{ fontSize: 10 }} domain={[0, 9]} />
-          <YAxis type="category" dataKey="player" stroke="#94a3b8" tick={{ fontSize: 10 }} width={150} />
+          <XAxis type="number" stroke="var(--w-slate-400)" tick={{ fontSize: 10 }} domain={[0, 9]} />
+          <YAxis type="category" dataKey="player" stroke="var(--w-slate-400)" tick={{ fontSize: 10 }} width={150} />
           <Tooltip contentStyle={tooltipStyle} />
           <Legend wrapperStyle={{ fontSize: 11 }} />
           <Bar dataKey="currentTRL" name="현재 TRL" fill="#4f46e5" radius={[0, 4, 4, 0]}>
-            {data.map((d, i) => <Cell key={i} fill={d.currentTRL >= 8 ? '#ef4444' : d.currentTRL >= 6 ? '#f59e0b' : d.currentTRL >= 4 ? '#a78bfa' : '#64748b'} />)}
+            {data.map((d, i) => <Cell key={i} fill={d.currentTRL >= 8 ? 'var(--w-red-500)' : d.currentTRL >= 6 ? 'var(--w-amber-500)' : d.currentTRL >= 4 ? '#a78bfa' : 'var(--w-slate-500)'} />)}
           </Bar>
-          <Bar dataKey="target2027" name="2027 목표" fill="#10b981" opacity={0.45} radius={[0, 4, 4, 0]} />
+          <Bar dataKey="target2027" name="2027 목표" fill="var(--w-emerald-500)" opacity={0.45} radius={[0, 4, 4, 0]} />
         </ComposedChart>
       }
       takeaway={{
@@ -280,13 +280,13 @@ export function OctopusTacCountdown() {
       chart={
         <BarChart data={stages} margin={{ top: 16, right: 10, left: 0, bottom: 5 }}>
           <CartesianGrid strokeDasharray="3 3" stroke="rgba(140,170,255,0.12)" vertical={false} />
-          <XAxis dataKey="stage" stroke="#94a3b8" tick={{ fontSize: 10 }} angle={-15} textAnchor="end" height={50} />
-          <YAxis stroke="#94a3b8" tick={{ fontSize: 10 }} domain={[2025, 2031]} />
+          <XAxis dataKey="stage" stroke="var(--w-slate-400)" tick={{ fontSize: 10 }} angle={-15} textAnchor="end" height={50} />
+          <YAxis stroke="var(--w-slate-400)" tick={{ fontSize: 10 }} domain={[2025, 2031]} />
           <Tooltip contentStyle={tooltipStyle} formatter={(v: any) => `${v}년`} />
-          <ReferenceLine y={2026} stroke="#10b981" strokeDasharray="3 3" label={{ value: '현재', fill: '#10b981', fontSize: 10, position: 'insideTopLeft' }} />
-          <ReferenceLine y={2030} stroke="#ef4444" strokeDasharray="3 3" label={{ value: '의무 시점', fill: '#ef4444', fontSize: 10, position: 'insideTopRight' }} />
+          <ReferenceLine y={2026} stroke="var(--w-emerald-500)" strokeDasharray="3 3" label={{ value: '현재', fill: 'var(--w-emerald-500)', fontSize: 10, position: 'insideTopLeft' }} />
+          <ReferenceLine y={2030} stroke="var(--w-red-500)" strokeDasharray="3 3" label={{ value: '의무 시점', fill: 'var(--w-red-500)', fontSize: 10, position: 'insideTopRight' }} />
           <Bar dataKey="year" name="진입 연도">
-            {stages.map((s, i) => <Cell key={i} fill={s.status === 'current' ? '#10b981' : s.status === 'next' ? '#f59e0b' : s.status === 'planned' ? '#ef4444' : '#64748b'} />)}
+            {stages.map((s, i) => <Cell key={i} fill={s.status === 'current' ? 'var(--w-emerald-500)' : s.status === 'next' ? 'var(--w-amber-500)' : s.status === 'planned' ? 'var(--w-red-500)' : 'var(--w-slate-500)'} />)}
           </Bar>
         </BarChart>
       }
@@ -323,13 +323,13 @@ export function OctopusFtaTariffMatrix() {
       chart={
         <BarChart data={data} margin={{ top: 16, right: 10, left: 0, bottom: 5 }}>
           <CartesianGrid strokeDasharray="3 3" stroke="rgba(140,170,255,0.12)" vertical={false} />
-          <XAxis dataKey="hs" stroke="#94a3b8" tick={{ fontSize: 10 }} />
-          <YAxis stroke="#94a3b8" tickFormatter={(v) => `${v}%`} tick={{ fontSize: 10 }} />
+          <XAxis dataKey="hs" stroke="var(--w-slate-400)" tick={{ fontSize: 10 }} />
+          <YAxis stroke="var(--w-slate-400)" tickFormatter={(v) => `${v}%`} tick={{ fontSize: 10 }} />
           <Tooltip contentStyle={tooltipStyle} formatter={(v: any) => `${v}%`} />
           <Legend wrapperStyle={{ fontSize: 11 }} />
-          <Bar dataKey="mfn" name="MFN" fill="#ef4444" />
-          <Bar dataKey="kvfta" name="KVFTA(베트남)" fill="#10b981" />
-          <Bar dataKey="rcep" name="RCEP" fill="#f59e0b" />
+          <Bar dataKey="mfn" name="MFN" fill="var(--w-red-500)" />
+          <Bar dataKey="kvfta" name="KVFTA(베트남)" fill="var(--w-emerald-500)" />
+          <Bar dataKey="rcep" name="RCEP" fill="var(--w-amber-500)" />
           <Bar dataKey="cptpp" name="CPTPP" fill="#6366f1" />
         </BarChart>
       }
@@ -370,13 +370,13 @@ export function OctopusSstCorrelation() {
       chart={
         <ScatterChart margin={{ top: 16, right: 10, left: 0, bottom: 10 }}>
           <CartesianGrid strokeDasharray="3 3" stroke="rgba(140,170,255,0.12)" />
-          <XAxis dataKey="sst" name="서해 SST" type="number" domain={[12.8, 15.6]} stroke="#94a3b8" tick={{ fontSize: 10 }} unit="℃" />
-          <YAxis dataKey="catch" name="문어류 어획" type="number" stroke="#94a3b8" tick={{ fontSize: 10 }} unit="kt" />
+          <XAxis dataKey="sst" name="서해 SST" type="number" domain={[12.8, 15.6]} stroke="var(--w-slate-400)" tick={{ fontSize: 10 }} unit="℃" />
+          <YAxis dataKey="catch" name="문어류 어획" type="number" stroke="var(--w-slate-400)" tick={{ fontSize: 10 }} unit="kt" />
           <ZAxis dataKey="year" range={[60, 60]} />
           <Tooltip contentStyle={tooltipStyle} cursor={{ strokeDasharray: '3 3' }} formatter={(v: any, n: any) => n === '문어류 어획' ? `${v} 천 톤` : `${v}℃`} />
           <Legend wrapperStyle={{ fontSize: 11 }} />
           <Scatter name={`연도별 (r=${r})`} data={OCTOPUS_SST_POINTS} fill="#a78bfa">
-            {OCTOPUS_SST_POINTS.map((p, i) => <Cell key={i} fill={p.year >= 2023 ? '#ef4444' : p.year >= 2020 ? '#f59e0b' : '#a78bfa'} />)}
+            {OCTOPUS_SST_POINTS.map((p, i) => <Cell key={i} fill={p.year >= 2023 ? 'var(--w-red-500)' : p.year >= 2020 ? 'var(--w-amber-500)' : '#a78bfa'} />)}
           </Scatter>
         </ScatterChart>
       }

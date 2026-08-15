@@ -481,7 +481,7 @@ export default function UnloadingAnalytics({
         {/* Y-axis labels */}
         {yTicks.map((v, i) => (
           <text key={i} x={margin.left - 6} y={toY(v) + 3} textAnchor="end"
-            fill="#94a3b8" fontSize={10}>
+            fill="var(--w-slate-400)" fontSize={10}>
             {Math.round(v * 10) / 10}{yLabel}
           </text>
         ))}
@@ -489,7 +489,7 @@ export default function UnloadingAnalytics({
         {/* X-axis labels */}
         {data.map((d, i) => (
           <text key={i} x={toX(i)} y={height - 6} textAnchor="middle"
-            fill="#94a3b8" fontSize={10}>
+            fill="var(--w-slate-400)" fontSize={10}>
             {d.date}
           </text>
         ))}
@@ -536,7 +536,7 @@ export default function UnloadingAnalytics({
             {lines.map((l, i) => (
               <g key={l.key} transform={`translate(${i * 80}, 0)`}>
                 <rect x={0} y={2} width={12} height={3} rx={1.5} fill={l.color} />
-                <text x={16} y={10} fill="#94a3b8" fontSize={10}>{l.label || l.key}</text>
+                <text x={16} y={10} fill="var(--w-slate-400)" fontSize={10}>{l.label || l.key}</text>
               </g>
             ))}
           </g>
@@ -568,7 +568,7 @@ export default function UnloadingAnalytics({
             {/* 1a. Vessel Benchmark Comparison */}
             <div className={styles.card}>
               <div className={styles.cardTitle}>
-                <BarChart3 size={14} style={{ color: '#38bdf8' }} />
+                <BarChart3 size={14} style={{ color: 'var(--w-sky-400)' }} />
                 선박 벤치마크 비교
               </div>
               <div style={{ overflowX: 'auto' }}>
@@ -587,7 +587,7 @@ export default function UnloadingAnalytics({
                     {benchmarkData.map(row => (
                       <tr key={row.id} className={row.isSelected ? styles.highlightRow : ''}>
                         <td style={{ fontWeight: row.isSelected ? 700 : 400, whiteSpace: 'nowrap' }}>
-                          {row.isSelected && <span style={{ color: '#38bdf8', marginRight: 4 }}>▸</span>}
+                          {row.isSelected && <span style={{ color: 'var(--w-sky-400)', marginRight: 4 }}>▸</span>}
                           {row.name}
                         </td>
                         <td>{row.comparable ? `${row.totalDays}일` : '—'}</td>
@@ -614,7 +614,7 @@ export default function UnloadingAnalytics({
                 <div className={styles.comparisonMsg}>
                   <TrendingUp size={13} style={{ display: 'inline', verticalAlign: 'middle', marginRight: 4 }} />
                   현재 하역 속도가 벤치마크 평균보다{' '}
-                  <strong style={{ color: comparisonPct >= 0 ? '#34d399' : '#f87171' }}>
+                  <strong style={{ color: comparisonPct >= 0 ? 'var(--w-emerald-400)' : '#f87171' }}>
                     {Math.abs(comparisonPct).toFixed(1)}% {comparisonPct >= 0 ? '높음' : '낮음'}
                   </strong>
                   {' '}(일평균 {fmt(selectedBenchmark.dailyAvg)} MT vs 평균 {fmt(avgDailyAvg)} MT)
@@ -626,7 +626,7 @@ export default function UnloadingAnalytics({
             {isInProgress(selectedVessel.status) && (
               <div className={styles.card}>
                 <div className={styles.cardTitle}>
-                  <Target size={14} style={{ color: '#f59e0b' }} />
+                  <Target size={14} style={{ color: 'var(--w-amber-500)' }} />
                   일일 목표 가이드
                 </div>
                 <div className={styles.targetRow}>
@@ -635,7 +635,7 @@ export default function UnloadingAnalytics({
                       {fmt(dailyTargetData.recommendedDaily)}
                       <span className={styles.targetUnit}> MT/일</span>
                     </div>
-                    <div style={{ fontSize: '0.78rem', color: '#94a3b8', marginTop: 4 }}>
+                    <div style={{ fontSize: '0.78rem', color: 'var(--w-slate-400)', marginTop: 4 }}>
                       잔여 {fmt(dailyTargetData.remaining)} MT · 예상 {dailyTargetData.daysLeft}일 남음
                     </div>
                   </div>
@@ -658,7 +658,7 @@ export default function UnloadingAnalytics({
             {efficiencyTrend.length > 1 && (
               <div className={styles.card}>
                 <div className={styles.cardTitle}>
-                  <TrendingUp size={14} style={{ color: '#10b981' }} />
+                  <TrendingUp size={14} style={{ color: 'var(--w-emerald-500)' }} />
                   하역 효율 추이 (MT/hr)
                 </div>
                 <div className={styles.chartWrap} style={{ width: '100%', overflowX: 'auto' }}>
@@ -689,7 +689,7 @@ export default function UnloadingAnalytics({
             {tempChartData.length > 0 && (
               <div className={styles.card}>
                 <div className={styles.cardTitle}>
-                  <Thermometer size={14} style={{ color: '#ef4444' }} />
+                  <Thermometer size={14} style={{ color: 'var(--w-red-500)' }} />
                   어창별 온도 추이
                 </div>
                 <div className={styles.chartWrap} style={{ width: '100%', overflowX: 'auto' }}>
@@ -713,7 +713,7 @@ export default function UnloadingAnalytics({
             {/* 2b. Quality Summary Card */}
             <div className={styles.card}>
               <div className={styles.cardTitle}>
-                <CheckCircle size={14} style={{ color: '#10b981' }} />
+                <CheckCircle size={14} style={{ color: 'var(--w-emerald-500)' }} />
                 품질 종합 평가
               </div>
               <div className={styles.qualitySummary}>
@@ -755,13 +755,13 @@ export default function UnloadingAnalytics({
                 <div className={styles.tempStats}>
                   <div className={styles.tempStatCard}>
                     <div className={styles.tempStatLabel}>최저 온도</div>
-                    <div className={styles.tempStatValue} style={{ color: '#38bdf8' }}>
+                    <div className={styles.tempStatValue} style={{ color: 'var(--w-sky-400)' }}>
                       {qualitySummary.minTemp}℃
                     </div>
                   </div>
                   <div className={styles.tempStatCard}>
                     <div className={styles.tempStatLabel}>최고 온도</div>
-                    <div className={styles.tempStatValue} style={{ color: qualitySummary.maxTemp! > -18 ? '#ef4444' : '#f8fafc' }}>
+                    <div className={styles.tempStatValue} style={{ color: qualitySummary.maxTemp! > -18 ? 'var(--w-red-500)' : 'var(--w-slate-50)' }}>
                       {qualitySummary.maxTemp}℃
                     </div>
                   </div>
@@ -783,9 +783,9 @@ export default function UnloadingAnalytics({
         <div className={styles.tabContent}>
           <div className={styles.section}>
             <div className={styles.sectionTitle}>
-              <Bell size={15} style={{ color: '#f59e0b' }} />
+              <Bell size={15} style={{ color: 'var(--w-amber-500)' }} />
               실시간 알림
-              <span style={{ fontSize: '0.7rem', color: '#94a3b8', fontWeight: 400, marginLeft: 'auto' }}>
+              <span style={{ fontSize: '0.7rem', color: 'var(--w-slate-400)', fontWeight: 400, marginLeft: 'auto' }}>
                 {alerts.length}건
               </span>
             </div>

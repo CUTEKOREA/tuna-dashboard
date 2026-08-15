@@ -32,32 +32,32 @@ export default function SasTraceabilityRatings() {
           <SafeResponsiveContainer width="100%" height="100%">
             <RadarChart cx="50%" cy="50%" outerRadius="65%" data={RISK_DATA}>
               <PolarGrid stroke="rgba(255,255,255,0.15)" />
-              <PolarAngleAxis dataKey="subject" tick={{ fill: '#cbd5e1', fontSize: 11, fontWeight: 600 }} />
+              <PolarAngleAxis dataKey="subject" tick={{ fill: 'var(--w-slate-300)', fontSize: 11, fontWeight: 600 }} />
               <PolarRadiusAxis angle={90} domain={[0, 5]} tick={false} axisLine={false} />
               <Radar
                 name="현재 규제/환경 리스크 (Red Zone)"
                 dataKey="currentRisk"
-                stroke="#ef4444"
+                stroke="var(--w-red-500)"
                 strokeWidth={2}
-                fill="#ef4444"
+                fill="var(--w-red-500)"
                 fillOpacity={0.3}
                 isAnimationActive={false}
               />
               <Radar
                 name="안전 목표 (Safe Zone)"
                 dataKey="safeTarget"
-                stroke="#10b981"
+                stroke="var(--w-emerald-500)"
                 strokeWidth={2}
-                fill="#10b981"
+                fill="var(--w-emerald-500)"
                 fillOpacity={0.5}
                 isAnimationActive={false}
               />
               <Tooltip 
-                contentStyle={{ borderRadius: '8px', border: 'none', boxShadow: '0 4px 12px rgba(0,0,0,0.3)', backgroundColor: 'rgba(30,41,59,0.95)', color: '#e2e8f0' }}
-                labelStyle={{ color: '#e2e8f0' }}
-                itemStyle={{ color: '#cbd5e1' }}
+                contentStyle={{ borderRadius: '8px', border: 'none', boxShadow: '0 4px 12px rgba(0,0,0,0.3)', backgroundColor: 'rgba(30,41,59,0.95)', color: 'var(--w-slate-200)' }}
+                labelStyle={{ color: 'var(--w-slate-200)' }}
+                itemStyle={{ color: 'var(--w-slate-300)' }}
               />
-              <Legend wrapperStyle={{ paddingTop: '10px', color: '#cbd5e1' }} iconType="circle" />
+              <Legend wrapperStyle={{ paddingTop: '10px', color: 'var(--w-slate-300)' }} iconType="circle" />
             </RadarChart>
           </SafeResponsiveContainer>
         </div>

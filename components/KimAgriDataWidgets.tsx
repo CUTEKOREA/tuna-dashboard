@@ -29,7 +29,7 @@ function rows<T extends Record<string, any> = Record<string, any>>(value: unknow
 }
 
 const Loading = ({ label }: { label: string }) => (
-  <div style={{ padding: '36px', textAlign: 'center', background: 'rgba(255,255,255,0.02)', border: '1px dashed rgba(255,255,255,0.1)', borderRadius: '12px', color: '#64748b', fontSize: '0.82rem' }}>{label} 로딩 중…</div>
+  <div style={{ padding: '36px', textAlign: 'center', background: 'rgba(255,255,255,0.02)', border: '1px dashed rgba(255,255,255,0.1)', borderRadius: '12px', color: 'var(--w-slate-500)', fontSize: '0.82rem' }}>{label} 로딩 중…</div>
 );
 
 /* ───────────── S1: 한국 김 양식 생산 73년 추이 (FishStat) ───────────── */
@@ -50,8 +50,8 @@ export function KimProductionTrend() {
         <AreaChart data={series} margin={{ top: 10, right: 16, left: -8, bottom: 0 }}>
           <defs><linearGradient id="kimProdReal" x1="0" y1="0" x2="0" y2="1"><stop offset="5%" stopColor="#16a34a" stopOpacity={0.5} /><stop offset="95%" stopColor="#16a34a" stopOpacity={0.05} /></linearGradient></defs>
           <CartesianGrid strokeDasharray="3 3" stroke="rgba(140,170,255,0.12)" vertical={false} />
-          <XAxis dataKey="year" stroke="#94a3b8" fontSize={11} tickFormatter={truncateXAxis} minTickGap={20} />
-          <YAxis stroke="#94a3b8" fontSize={11} tickFormatter={(v) => `${v}천t`} />
+          <XAxis dataKey="year" stroke="var(--w-slate-400)" fontSize={11} tickFormatter={truncateXAxis} minTickGap={20} />
+          <YAxis stroke="var(--w-slate-400)" fontSize={11} tickFormatter={(v) => `${v}천t`} />
           <Tooltip contentStyle={tip} formatter={(v) => [`${v}천 톤`, '양식 생산']} />
           <Area type="monotone" dataKey="ton" name="양식 생산 (천 톤)" stroke="#16a34a" fill="url(#kimProdReal)" strokeWidth={2.5} />
         </AreaChart>
@@ -114,8 +114,8 @@ export function KimExportTrend() {
         <AreaChart data={data} margin={{ top: 10, right: 16, left: -5, bottom: 0 }}>
           <defs><linearGradient id="kimExpReal" x1="0" y1="0" x2="0" y2="1"><stop offset="5%" stopColor="#a3e635" stopOpacity={0.5} /><stop offset="95%" stopColor="#a3e635" stopOpacity={0.05} /></linearGradient></defs>
           <CartesianGrid strokeDasharray="3 3" stroke="rgba(140,170,255,0.12)" vertical={false} />
-          <XAxis dataKey="year" stroke="#94a3b8" fontSize={11} tickFormatter={truncateXAxis} />
-          <YAxis stroke="#94a3b8" fontSize={11} tickFormatter={(v) => `$${v}M`} />
+          <XAxis dataKey="year" stroke="var(--w-slate-400)" fontSize={11} tickFormatter={truncateXAxis} />
+          <YAxis stroke="var(--w-slate-400)" fontSize={11} tickFormatter={(v) => `$${v}M`} />
           <Tooltip contentStyle={tip} formatter={(v, n) => n === '수출액 (백만 USD)' ? [`$${v}M`, n] : [`${Number(v ?? 0).toLocaleString()}톤`, n]} />
           <Legend wrapperStyle={{ fontSize: '11px' }} />
           <Area type="monotone" dataKey="usd" name="수출액 (백만 USD)" stroke="#65a30d" fill="url(#kimExpReal)" strokeWidth={2.5} />
@@ -144,8 +144,8 @@ export function KimExportDest() {
       chart={
         <BarChart data={data} layout="vertical" margin={{ top: 6, right: 24, left: 16, bottom: 0 }}>
           <CartesianGrid strokeDasharray="3 3" stroke="rgba(140,170,255,0.12)" horizontal={false} />
-          <XAxis type="number" stroke="#94a3b8" fontSize={11} tickFormatter={(v) => `$${v}M`} />
-          <YAxis type="category" dataKey="name" stroke="#94a3b8" fontSize={12} width={58} />
+          <XAxis type="number" stroke="var(--w-slate-400)" fontSize={11} tickFormatter={(v) => `$${v}M`} />
+          <YAxis type="category" dataKey="name" stroke="var(--w-slate-400)" fontSize={12} width={58} />
           <Tooltip contentStyle={tip} cursor={{ fill: 'rgba(255,255,255,0.04)' }} formatter={(v) => [`$${v}M`, '수출액']} />
           <Bar dataKey="usd" name="2024 수출액 (백만 USD)" fill="#84cc16" radius={[0, 3, 3, 0]} />
         </BarChart>
@@ -173,8 +173,8 @@ export function KimGlobalImporters() {
       chart={
         <BarChart data={data} layout="vertical" margin={{ top: 6, right: 28, left: 16, bottom: 0 }}>
           <CartesianGrid strokeDasharray="3 3" stroke="rgba(140,170,255,0.12)" horizontal={false} />
-          <XAxis type="number" stroke="#94a3b8" fontSize={11} tickFormatter={(v) => `$${v}M`} />
-          <YAxis type="category" dataKey="name" stroke="#94a3b8" fontSize={12} width={52} />
+          <XAxis type="number" stroke="var(--w-slate-400)" fontSize={11} tickFormatter={(v) => `$${v}M`} />
+          <YAxis type="category" dataKey="name" stroke="var(--w-slate-400)" fontSize={12} width={52} />
           <Tooltip contentStyle={tip} cursor={{ fill: 'rgba(255,255,255,0.04)' }} formatter={(v) => [`$${v}M`, '수입액']} />
           <Bar dataKey="usdM" name="수입액 (백만 USD)" radius={[0, 3, 3, 0]}>
             {data.map((x, i) => <Cell key={i} fill={x.name === '중국' ? '#0072B2' : x.name === '대한민국' ? '#16a34a' : '#84cc16'} />)}
@@ -207,8 +207,8 @@ export function KimConsumption() {
         <AreaChart data={data} margin={{ top: 10, right: 16, left: -8, bottom: 0 }}>
           <defs><linearGradient id="kimConsume" x1="0" y1="0" x2="0" y2="1"><stop offset="5%" stopColor="#65a30d" stopOpacity={0.45} /><stop offset="95%" stopColor="#65a30d" stopOpacity={0.04} /></linearGradient></defs>
           <CartesianGrid strokeDasharray="3 3" stroke="rgba(140,170,255,0.12)" vertical={false} />
-          <XAxis dataKey="year" stroke="#94a3b8" fontSize={11} tickFormatter={truncateXAxis} minTickGap={20} />
-          <YAxis stroke="#94a3b8" fontSize={11} tickFormatter={(v) => `${v}kg`} />
+          <XAxis dataKey="year" stroke="var(--w-slate-400)" fontSize={11} tickFormatter={truncateXAxis} minTickGap={20} />
+          <YAxis stroke="var(--w-slate-400)" fontSize={11} tickFormatter={(v) => `${v}kg`} />
           <Tooltip contentStyle={tip} formatter={(v) => [`${v} kg/인/년`, '1인당 공급']} />
           <Area type="monotone" dataKey="v" name="1인당 해조류 공급 (kg/인/년)" stroke="#65a30d" fill="url(#kimConsume)" strokeWidth={2.5} />
         </AreaChart>
@@ -237,8 +237,8 @@ export function KimFxPrice() {
       chart={
         <ComposedChart data={data} margin={{ top: 10, right: 8, left: -6, bottom: 0 }}>
           <CartesianGrid strokeDasharray="3 3" stroke="rgba(140,170,255,0.12)" vertical={false} />
-          <XAxis dataKey="year" stroke="#94a3b8" fontSize={11} tickFormatter={truncateXAxis} />
-          <YAxis yAxisId="l" stroke="#94a3b8" fontSize={11} domain={[1000, 1400]} tickFormatter={(v) => `₩${v}`} />
+          <XAxis dataKey="year" stroke="var(--w-slate-400)" fontSize={11} tickFormatter={truncateXAxis} />
+          <YAxis yAxisId="l" stroke="var(--w-slate-400)" fontSize={11} domain={[1000, 1400]} tickFormatter={(v) => `₩${v}`} />
           <YAxis yAxisId="r" orientation="right" stroke="#a3e635" fontSize={11} tickFormatter={(v) => `$${v}`} />
           <Tooltip contentStyle={tip} />
           <Legend wrapperStyle={{ fontSize: '11px' }} />
@@ -270,8 +270,8 @@ export function KimWorldProduction() {
       chart={
         <LineChart data={data} margin={{ top: 10, right: 16, left: -6, bottom: 0 }}>
           <CartesianGrid strokeDasharray="3 3" stroke="rgba(140,170,255,0.12)" vertical={false} />
-          <XAxis dataKey="year" stroke="#94a3b8" fontSize={11} tickFormatter={truncateXAxis} minTickGap={24} />
-          <YAxis stroke="#94a3b8" fontSize={11} tickFormatter={(v) => `${v}천t`} />
+          <XAxis dataKey="year" stroke="var(--w-slate-400)" fontSize={11} tickFormatter={truncateXAxis} minTickGap={24} />
+          <YAxis stroke="var(--w-slate-400)" fontSize={11} tickFormatter={(v) => `${v}천t`} />
           <Tooltip contentStyle={tip} formatter={(v, n) => [`${Number(v ?? 0).toLocaleString()}천 톤`, n]} />
           <Legend wrapperStyle={{ fontSize: '11px' }} />
           <Line type="monotone" dataKey="중국" name="중국" stroke="#0072B2" strokeWidth={2.5} dot={false} />
@@ -305,8 +305,8 @@ export function KimResearch() {
       chart={
         <BarChart data={data} margin={{ top: 10, right: 16, left: -10, bottom: 0 }}>
           <CartesianGrid strokeDasharray="3 3" stroke="rgba(140,170,255,0.12)" vertical={false} />
-          <XAxis dataKey="year" stroke="#94a3b8" fontSize={11} tickFormatter={truncateXAxis} minTickGap={12} />
-          <YAxis stroke="#94a3b8" fontSize={11} allowDecimals={false} />
+          <XAxis dataKey="year" stroke="var(--w-slate-400)" fontSize={11} tickFormatter={truncateXAxis} minTickGap={12} />
+          <YAxis stroke="var(--w-slate-400)" fontSize={11} allowDecimals={false} />
           <Tooltip contentStyle={tip} cursor={{ fill: 'rgba(255,255,255,0.04)' }} formatter={(v) => [`${v}편`, '논문']} />
           <Bar dataKey="n" name="논문 수 (편)" fill="#22c55e" radius={[3, 3, 0, 0]} />
         </BarChart>

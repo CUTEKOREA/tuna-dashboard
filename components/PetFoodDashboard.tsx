@@ -60,7 +60,7 @@ export default function PetFoodDashboard() {
       .catch(console.error);
   }, []);
 
-  if (!data) return <div style={{ padding: '2rem', color: '#94a3b8', display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh', flexDirection: 'column' }}><div><RefreshCcw size={24} className={styles.rotateIcon} style={{marginBottom: '1rem'}}/></div><div>데이터 로딩 중...</div></div>;
+  if (!data) return <div style={{ padding: '2rem', color: 'var(--w-slate-400)', display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh', flexDirection: 'column' }}><div><RefreshCcw size={24} className={styles.rotateIcon} style={{marginBottom: '1rem'}}/></div><div>데이터 로딩 중...</div></div>;
 
   const {
     d_simulator,
@@ -106,11 +106,11 @@ export default function PetFoodDashboard() {
 
 
         {/* ═══ Executive Strategy Command ═══ */}
-        <div style={{ marginBottom: '2rem', padding: '1.5rem', background: 'linear-gradient(145deg, #1a2442, #0a0f1f)', borderRadius: '12px', borderLeft: '4px solid #f472b6', boxShadow: '0 10px 25px -5px rgba(0, 0, 0, 0.5)' }}>
-          <h2 style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', color: '#f8fafc', fontSize: '1.25rem', marginTop: 0, marginBottom: '1rem' }}>
+        <div style={{ marginBottom: '2rem', padding: '1.5rem', background: 'linear-gradient(145deg, var(--w-navy-900), #0a0f1f)', borderRadius: '12px', borderLeft: '4px solid #f472b6', boxShadow: '0 10px 25px -5px rgba(0, 0, 0, 0.5)' }}>
+          <h2 style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', color: 'var(--w-slate-50)', fontSize: '1.25rem', marginTop: 0, marginBottom: '1rem' }}>
             <Crown size={22} color="#f472b6" /> [경영진 전략 지휘소]
           </h2>
-          <p style={{ color: '#cbd5e1', fontSize: '0.95rem', lineHeight: '1.6', margin: 0 }}>
+          <p style={{ color: 'var(--w-slate-300)', fontSize: '0.95rem', lineHeight: '1.6', margin: 0 }}>
             <strong>전략 요약:</strong> 글로벌 펫푸드 시장 진입의 <span style={{ color: '#f472b6' }}>골든 윈도우는 향후 3~5년</span>입니다. 한국산 펫푸드 수출이 12배 폭증(일본 중심)하고 있으나, 수입 역시 거대하여 1.5억 달러 무역 적자를 기록 중입니다. 경영진은 태국 주문자 상표 부착 생산(OEM) 인프라를 활용하는 <strong>[S2: 소비자 직접 판매(D2C) 주문자 상표 부착 생산(OEM)]</strong> 모델을 최우선으로 검토하고, 중장기적으로 <strong>[S5: 처방식 JV]</strong>를 통해 고부가가치 시장(ROE 극대화)으로 이전해야 합니다.
           </p>
         </div>
@@ -129,12 +129,12 @@ export default function PetFoodDashboard() {
               <ComposedChart data={d_simulator} margin={{ top: 20, right: 30, left: 10, bottom: 5 }}>
                 <ChartPatternDefs />
                 <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#334155" />
-                <XAxis dataKey="name" tick={{ fill: '#94a3b8' }} tickFormatter={xFmt} />
-                <YAxis yAxisId="left" tickFormatter={(v) => `${v}억`} tick={{ fill: '#94a3b8' }} />
-                <YAxis yAxisId="right" orientation="right" unit="%" tick={{ fill: '#94a3b8' }} />
+                <XAxis dataKey="name" tick={{ fill: 'var(--w-slate-400)' }} tickFormatter={xFmt} />
+                <YAxis yAxisId="left" tickFormatter={(v) => `${v}억`} tick={{ fill: 'var(--w-slate-400)' }} />
+                <YAxis yAxisId="right" orientation="right" unit="%" tick={{ fill: 'var(--w-slate-400)' }} />
                 <RechartsTooltip content={<CustomTooltip />} />
                 <Legend />
-                <Bar yAxisId="left" dataKey="capital" name="투입 자본 (억 원)" fill="#64748b" radius={[4, 4, 0, 0]} />
+                <Bar yAxisId="left" dataKey="capital" name="투입 자본 (억 원)" fill="var(--w-slate-500)" radius={[4, 4, 0, 0]} />
                 <Bar yAxisId="left" dataKey="revenue" name="예상 매출 (억 원)" fill="#f472b6" radius={[4, 4, 0, 0]} />
                 <Line yAxisId="right" type="monotone" dataKey="roic" name="예상 ROIC (%)" stroke="var(--color-success)" strokeWidth={3} />
               </ComposedChart>
@@ -166,14 +166,14 @@ export default function PetFoodDashboard() {
                     <ComposedChart data={d_illex_risk} margin={{ top: 20, right: 30, left: 10, bottom: 5 }}>
                       <ChartPatternDefs />
                       <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#334155" />
-                      <XAxis dataKey="week" tick={{fill: '#94a3b8'}} tickFormatter={xFmt} />
-                      <YAxis yAxisId="left" tickFormatter={(v) => `${v}t`} tick={{fill: '#94a3b8'}} />
-                      <YAxis yAxisId="right" orientation="right" tickFormatter={(v) => `${v}`} tick={{fill: '#94a3b8'}} />
+                      <XAxis dataKey="week" tick={{fill: 'var(--w-slate-400)'}} tickFormatter={xFmt} />
+                      <YAxis yAxisId="left" tickFormatter={(v) => `${v}t`} tick={{fill: 'var(--w-slate-400)'}} />
+                      <YAxis yAxisId="right" orientation="right" tickFormatter={(v) => `${v}`} tick={{fill: 'var(--w-slate-400)'}} />
                       <RechartsTooltip content={<CustomTooltip />} />
                       <Legend />
-                      <Bar yAxisId="left" dataKey="catchVolume" name="어획량(톤)" fill="#3b82f6" radius={[4, 4, 0, 0]} />
-                      <Line yAxisId="right" type="monotone" dataKey="squidPrice" name="오징어 단가($)" stroke="#ef4444" strokeWidth={3} />
-                      <Line yAxisId="right" type="monotone" dataKey="sesamePrice" name="참깨 단가($)" stroke="#10b981" strokeWidth={3} />
+                      <Bar yAxisId="left" dataKey="catchVolume" name="어획량(톤)" fill="var(--w-blue-500)" radius={[4, 4, 0, 0]} />
+                      <Line yAxisId="right" type="monotone" dataKey="squidPrice" name="오징어 단가($)" stroke="var(--w-red-500)" strokeWidth={3} />
+                      <Line yAxisId="right" type="monotone" dataKey="sesamePrice" name="참깨 단가($)" stroke="var(--w-emerald-500)" strokeWidth={3} />
                     </ComposedChart>
                   </SafeResponsiveContainer>
                 </div>
@@ -195,13 +195,13 @@ export default function PetFoodDashboard() {
                     <ComposedChart data={d_protein_mix} margin={{ top: 20, right: 30, left: 10, bottom: 5 }}>
                       <ChartPatternDefs />
                       <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#334155" />
-                      <XAxis dataKey="mixRatio" tick={{fill: '#94a3b8'}} />
-                      <YAxis yAxisId="left" tick={{fill: '#94a3b8'}} unit="%" />
-                      <YAxis yAxisId="right" orientation="right" tick={{fill: '#94a3b8'}} />
+                      <XAxis dataKey="mixRatio" tick={{fill: 'var(--w-slate-400)'}} />
+                      <YAxis yAxisId="left" tick={{fill: 'var(--w-slate-400)'}} unit="%" />
+                      <YAxis yAxisId="right" orientation="right" tick={{fill: 'var(--w-slate-400)'}} />
                       <RechartsTooltip content={<CustomTooltip />} />
                       <Legend />
-                      <Area yAxisId="left" type="monotone" dataKey="margin" name="예상 마진(%)" fill="rgba(16,185,129,0.2)" stroke="#10b981" strokeWidth={3} />
-                      <Line yAxisId="right" type="monotone" dataKey="cost" name="톤당 원가($)" stroke="#f59e0b" strokeWidth={3} />
+                      <Area yAxisId="left" type="monotone" dataKey="margin" name="예상 마진(%)" fill="rgba(16,185,129,0.2)" stroke="var(--w-emerald-500)" strokeWidth={3} />
+                      <Line yAxisId="right" type="monotone" dataKey="cost" name="톤당 원가($)" stroke="var(--w-amber-500)" strokeWidth={3} />
                     </ComposedChart>
                   </SafeResponsiveContainer>
                 </div>
@@ -353,7 +353,7 @@ export default function PetFoodDashboard() {
             <XAxis type="number" tickFormatter={(v) => `$${v}`} />
             <YAxis dataKey="ingredient" type="category" width={100} />
             <RechartsTooltip content={<CustomTooltip />} />
-            <Bar dataKey="cost" name="단가 ($/kg)" fill="#8b5cf6" radius={[0, 6, 6, 0]}>
+            <Bar dataKey="cost" name="단가 ($/kg)" fill="var(--w-violet-500)" radius={[0, 6, 6, 0]}>
             {d_w24.map((_: any, i: number) => <Cell key={i} fill={PIE_COLORS[i % PIE_COLORS.length]} />)}
             </Bar>
             </BarChart>
@@ -404,13 +404,13 @@ export default function PetFoodDashboard() {
                       <ComposedChart data={d_kfas_w05.data} margin={{ top: 20, right: 30, left: 10, bottom: 5 }}>
                         <ChartPatternDefs />
                         <CartesianGrid strokeDasharray="3 3" stroke="#334155" />
-                        <XAxis dataKey="species" tick={{fill: '#94a3b8', fontSize: 11}}  tickFormatter={xFmt} />
-                        <YAxis yAxisId="left" tick={{fill: '#94a3b8'}} />
-                        <YAxis yAxisId="right" orientation="right" unit="g" tick={{fill: '#94a3b8'}} />
+                        <XAxis dataKey="species" tick={{fill: 'var(--w-slate-400)', fontSize: 11}}  tickFormatter={xFmt} />
+                        <YAxis yAxisId="left" tick={{fill: 'var(--w-slate-400)'}} />
+                        <YAxis yAxisId="right" orientation="right" unit="g" tick={{fill: 'var(--w-slate-400)'}} />
                         <RechartsTooltip content={<CustomTooltip />} />
                         <Legend />
-                        <Bar yAxisId="left" dataKey="EPA+DHA(mg/100g)" name="EPA+DHA (mg/100g)" fill="#3b82f6" radius={[4, 4, 0, 0]} />
-                        <Line yAxisId="right" type="monotone" dataKey="조지방(g/100g)" name="조지방 (g/100g)" stroke="#f59e0b" strokeWidth={3} dot={{ r: 4 }} />
+                        <Bar yAxisId="left" dataKey="EPA+DHA(mg/100g)" name="EPA+DHA (mg/100g)" fill="var(--w-blue-500)" radius={[4, 4, 0, 0]} />
+                        <Line yAxisId="right" type="monotone" dataKey="조지방(g/100g)" name="조지방 (g/100g)" stroke="var(--w-amber-500)" strokeWidth={3} dot={{ r: 4 }} />
                       </ComposedChart>
                     </SafeResponsiveContainer>
                   </div>
@@ -435,9 +435,9 @@ export default function PetFoodDashboard() {
                     <ComposedChart data={d_nw02_quota} margin={{ top: 20, right: 30, left: 10, bottom: 5 }}>
                       <ChartPatternDefs />
                       <CartesianGrid strokeDasharray="3 3" stroke="#334155" />
-                      <XAxis dataKey="year" tick={{fill: '#94a3b8'}}  tickFormatter={xFmt} />
-                      <YAxis yAxisId="left" tickFormatter={(v) => `${(v/1000).toFixed(0)}K`} tick={{fill: '#94a3b8'}} />
-                      <YAxis yAxisId="right" orientation="right" tick={{fill: '#94a3b8'}} />
+                      <XAxis dataKey="year" tick={{fill: 'var(--w-slate-400)'}}  tickFormatter={xFmt} />
+                      <YAxis yAxisId="left" tickFormatter={(v) => `${(v/1000).toFixed(0)}K`} tick={{fill: 'var(--w-slate-400)'}} />
+                      <YAxis yAxisId="right" orientation="right" tick={{fill: 'var(--w-slate-400)'}} />
                       <RechartsTooltip content={<CustomTooltip />} />
                       <Legend />
                       <Bar yAxisId="left" dataKey="tac" name="TAC (톤)" fill="var(--color-info)" radius={[4, 4, 0, 0]} />
@@ -467,8 +467,8 @@ export default function PetFoodDashboard() {
                     <BarChart data={d_nw03_climate} layout="vertical" margin={{ top: 10, right: 30, left: 20, bottom: 5 }}>
                       <ChartPatternDefs />
                       <CartesianGrid strokeDasharray="3 3" stroke="#334155" />
-                      <XAxis type="number" unit="%" tick={{fill: '#94a3b8'}}  tickFormatter={xFmt} />
-                      <YAxis dataKey="region" type="category" width={100} tick={{fill: '#94a3b8', fontSize: 11}} />
+                      <XAxis type="number" unit="%" tick={{fill: 'var(--w-slate-400)'}}  tickFormatter={xFmt} />
+                      <YAxis dataKey="region" type="category" width={100} tick={{fill: 'var(--w-slate-400)', fontSize: 11}} />
                       <RechartsTooltip content={<CustomTooltip />} />
                       <Legend />
                       <Bar dataKey="change2050" name="2050년 변화(%)" fill="var(--color-warning)" radius={[0, 4, 4, 0]} />
@@ -528,7 +528,7 @@ export default function PetFoodDashboard() {
             <YAxis dataKey="company" type="category" width={100} />
             <RechartsTooltip content={<CustomTooltip />} />
             <Legend />
-            <Bar dataKey="revenue" name="매출 (억 원)" fill="#8b5cf6" radius={[0, 4, 4, 0]} />
+            <Bar dataKey="revenue" name="매출 (억 원)" fill="var(--w-violet-500)" radius={[0, 4, 4, 0]} />
             <Line dataKey="margin" name="영업이익률(%)" stroke={PINK} strokeWidth={3} type="monotone" />
             </ComposedChart>
             </SafeResponsiveContainer>
@@ -587,7 +587,7 @@ export default function PetFoodDashboard() {
             <YAxis yAxisId="right" orientation="right" unit="%" />
             <RechartsTooltip content={<CustomTooltip />} />
             <Legend />
-            <Bar yAxisId="left" dataKey="revenue" name="매출 (억 바트)" fill="#8b5cf6" radius={[4, 4, 0, 0]} />
+            <Bar yAxisId="left" dataKey="revenue" name="매출 (억 바트)" fill="var(--w-violet-500)" radius={[4, 4, 0, 0]} />
             <Line yAxisId="right" type="monotone" dataKey="gpm" name="GPM(%)" stroke={PINK} strokeWidth={3} />
             <Line yAxisId="right" type="monotone" dataKey="npm" name="순이익률(%)" stroke="var(--color-success)" strokeWidth={2} strokeDasharray="5 5" />
             </ComposedChart>
@@ -718,14 +718,14 @@ export default function PetFoodDashboard() {
                       <ComposedChart data={d_kfas_w02.data} margin={{ top: 20, right: 30, left: 10, bottom: 5 }}>
                         <ChartPatternDefs />
                         <CartesianGrid strokeDasharray="3 3" stroke="#334155" />
-                        <XAxis dataKey="enzyme" tick={{fill: '#94a3b8', fontSize: 10}} angle={0} textAnchor="middle"  tickFormatter={xFmt} />
-                        <YAxis yAxisId="left" tick={{fill: '#94a3b8'}} />
-                        <YAxis yAxisId="right" orientation="right" unit="%" tick={{fill: '#94a3b8'}} />
+                        <XAxis dataKey="enzyme" tick={{fill: 'var(--w-slate-400)', fontSize: 10}} angle={0} textAnchor="middle"  tickFormatter={xFmt} />
+                        <YAxis yAxisId="left" tick={{fill: 'var(--w-slate-400)'}} />
+                        <YAxis yAxisId="right" orientation="right" unit="%" tick={{fill: 'var(--w-slate-400)'}} />
                         <RechartsTooltip content={<CustomTooltip />} />
                         <Legend />
-                        <Bar yAxisId="left" dataKey="가수분해도(%)" name="가수분해도(%)" fill="#8b5cf6" radius={[4, 4, 0, 0]} />
-                        <Bar yAxisId="left" dataKey="DPPH라디컬소거(%)" name="DPPH 소거(%)" fill="#10b981" radius={[4, 4, 0, 0]} />
-                        <Line yAxisId="right" type="monotone" dataKey="거품활성(%)" name="거품활성(%)" stroke="#f59e0b" strokeWidth={3} dot={{ r: 4 }} />
+                        <Bar yAxisId="left" dataKey="가수분해도(%)" name="가수분해도(%)" fill="var(--w-violet-500)" radius={[4, 4, 0, 0]} />
+                        <Bar yAxisId="left" dataKey="DPPH라디컬소거(%)" name="DPPH 소거(%)" fill="var(--w-emerald-500)" radius={[4, 4, 0, 0]} />
+                        <Line yAxisId="right" type="monotone" dataKey="거품활성(%)" name="거품활성(%)" stroke="var(--w-amber-500)" strokeWidth={3} dot={{ r: 4 }} />
                       </ComposedChart>
                     </SafeResponsiveContainer>
                   </div>
@@ -745,12 +745,12 @@ export default function PetFoodDashboard() {
                       <BarChart data={d_kfas_w04.data} margin={{ top: 20, right: 30, left: 10, bottom: 5 }}>
                         <ChartPatternDefs />
                         <CartesianGrid strokeDasharray="3 3" stroke="#334155" />
-                        <XAxis dataKey="method" tick={{fill: '#94a3b8', fontSize: 9}} angle={0} textAnchor="middle" height={70}  tickFormatter={xFmt} />
-                        <YAxis tick={{fill: '#94a3b8'}} />
+                        <XAxis dataKey="method" tick={{fill: 'var(--w-slate-400)', fontSize: 9}} angle={0} textAnchor="middle" height={70}  tickFormatter={xFmt} />
+                        <YAxis tick={{fill: 'var(--w-slate-400)'}} />
                         <RechartsTooltip content={<CustomTooltip />} />
                         <Legend />
-                        <Bar dataKey="단백질수율(%)" name="단백질 수율(%)" fill="#10b981" radius={[4, 4, 0, 0]} />
-                        <Bar dataKey="EAA함량(mg/g)" name="EAA 함량(mg/g)" fill="#8b5cf6" radius={[4, 4, 0, 0]} />
+                        <Bar dataKey="단백질수율(%)" name="단백질 수율(%)" fill="var(--w-emerald-500)" radius={[4, 4, 0, 0]} />
+                        <Bar dataKey="EAA함량(mg/g)" name="EAA 함량(mg/g)" fill="var(--w-violet-500)" radius={[4, 4, 0, 0]} />
                       </BarChart>
                     </SafeResponsiveContainer>
                   </div>

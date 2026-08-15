@@ -35,15 +35,15 @@ export default function TunaPngHubStrategy() {
         <BarChart data={data} layout="vertical" margin={{ left: 50 }}>
           <ChartPatternDefs />
           <CartesianGrid strokeDasharray="3 3" stroke="#334155" />
-          <XAxis type="number" stroke="#94a3b8" />
-          <YAxis dataKey="cost_type" type="category" stroke="#94a3b8" fontSize={11} width={120} />
+          <XAxis type="number" stroke="var(--w-slate-400)" />
+          <YAxis dataKey="cost_type" type="category" stroke="var(--w-slate-400)" fontSize={11} width={120} />
           <Tooltip
-            contentStyle={{ backgroundColor: 'rgba(20, 28, 52, 0.9)', borderColor: '#334155', color: '#f8fafc' }}
-            itemStyle={{ color: '#f8fafc' }}
+            contentStyle={{ backgroundColor: 'rgba(20, 28, 52, 0.9)', borderColor: '#334155', color: 'var(--w-slate-50)' }}
+            itemStyle={{ color: 'var(--w-slate-50)' }}
           />
           <Legend />
-          <Bar dataKey="domestic" name="국내 직조달 ($/톤)" fill="#ef4444" />
-          <Bar dataKey="png_hub" name="PNG 산지 추출 ($/톤)" fill="#10b981" />
+          <Bar dataKey="domestic" name="국내 직조달 ($/톤)" fill="var(--w-red-500)" />
+          <Bar dataKey="png_hub" name="PNG 산지 추출 ($/톤)" fill="var(--w-emerald-500)" />
         </BarChart>
       }
       takeaway={{

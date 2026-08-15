@@ -14,8 +14,8 @@ export function MarketGrowthChart({ data }: { data: any[] }) {
       <ComposedChart data={data} margin={{ top: 10, right: 20, left: -10, bottom: 0 }}>
         <ChartPatternDefs />
         <CartesianGrid strokeDasharray="3 3" stroke="rgba(140,170,255,0.12)" vertical={false} />
-        <XAxis dataKey="year" stroke="#94a3b8" tick={{ fill: '#94a3b8', fontSize: 11 }} />
-        <YAxis stroke="#94a3b8" tick={{ fill: '#94a3b8', fontSize: 11 }} tickFormatter={v => `$${v}B`} />
+        <XAxis dataKey="year" stroke="var(--w-slate-400)" tick={{ fill: 'var(--w-slate-400)', fontSize: 11 }} />
+        <YAxis stroke="var(--w-slate-400)" tick={{ fill: 'var(--w-slate-400)', fontSize: 11 }} tickFormatter={v => `$${v}B`} />
         <Tooltip contentStyle={tt} labelStyle={ttLabel} itemStyle={ttItem} formatter={(v: any) => `$${v}B`} />
         <Legend wrapperStyle={{ paddingTop: 10 }} />
         <Area type="monotone" dataKey="domestic" name="국내 시장" fill="rgba(59,130,246,0.15)" stroke="var(--color-info)" strokeWidth={2} />
@@ -32,8 +32,8 @@ export function MarketShareChart({ data }: { data: any[] }) {
       <BarChart data={data} margin={{ top: 10, right: 20, left: -10, bottom: 0 }}>
         <ChartPatternDefs />
         <CartesianGrid strokeDasharray="3 3" stroke="rgba(140,170,255,0.12)" vertical={false} />
-        <XAxis dataKey="year" stroke="#94a3b8" tick={{ fill: '#94a3b8', fontSize: 11 }} />
-        <YAxis stroke="#94a3b8" tick={{ fill: '#94a3b8', fontSize: 11 }} unit="%" />
+        <XAxis dataKey="year" stroke="var(--w-slate-400)" tick={{ fill: 'var(--w-slate-400)', fontSize: 11 }} />
+        <YAxis stroke="var(--w-slate-400)" tick={{ fill: 'var(--w-slate-400)', fontSize: 11 }} unit="%" />
         <Tooltip contentStyle={tt} labelStyle={ttLabel} itemStyle={ttItem} formatter={(v: any) => `${v}%`} />
         <Legend wrapperStyle={{ paddingTop: 10 }} />
         {Object.keys(colors).map(k => <Bar key={k} dataKey={k} stackId="a" fill={colors[k]} />)}
@@ -48,8 +48,8 @@ export function ShippingCostChart({ data }: { data: any[] }) {
       <BarChart data={data} layout="vertical" margin={{ top: 10, right: 30, left: 20, bottom: 0 }}>
         <ChartPatternDefs />
         <CartesianGrid strokeDasharray="3 3" horizontal={false} stroke="rgba(140,170,255,0.12)" />
-        <XAxis type="number" stroke="#94a3b8" tick={{ fill: '#94a3b8', fontSize: 11 }} tickFormatter={v => `$${v.toLocaleString()}`} />
-        <YAxis type="category" dataKey="route" width={160} stroke="#94a3b8" tick={{ fill: '#94a3b8', fontSize: 10 }} />
+        <XAxis type="number" stroke="var(--w-slate-400)" tick={{ fill: 'var(--w-slate-400)', fontSize: 11 }} tickFormatter={v => `$${v.toLocaleString()}`} />
+        <YAxis type="category" dataKey="route" width={160} stroke="var(--w-slate-400)" tick={{ fill: 'var(--w-slate-400)', fontSize: 10 }} />
         <Tooltip contentStyle={tt} labelStyle={ttLabel} itemStyle={ttItem} formatter={(v: any) => `$${Number(v).toLocaleString()}`} />
         <Legend wrapperStyle={{ paddingTop: 10 }} />
         <Bar dataKey="roro" name="RoRo" fill="var(--color-success)" barSize={14} radius={[0,4,4,0]} />
@@ -65,12 +65,12 @@ export function HybridGrowthChart({ data }: { data: any[] }) {
       <BarChart data={data} margin={{ top: 10, right: 20, left: -10, bottom: 0 }}>
         <ChartPatternDefs />
         <CartesianGrid strokeDasharray="3 3" stroke="rgba(140,170,255,0.12)" vertical={false} />
-        <XAxis dataKey="year" stroke="#94a3b8" tick={{ fill: '#94a3b8', fontSize: 11 }} />
-        <YAxis stroke="#94a3b8" tick={{ fill: '#94a3b8', fontSize: 11 }} tickFormatter={v => `$${v}B`} />
+        <XAxis dataKey="year" stroke="var(--w-slate-400)" tick={{ fill: 'var(--w-slate-400)', fontSize: 11 }} />
+        <YAxis stroke="var(--w-slate-400)" tick={{ fill: 'var(--w-slate-400)', fontSize: 11 }} tickFormatter={v => `$${v}B`} />
         <Tooltip contentStyle={tt} labelStyle={ttLabel} itemStyle={ttItem} formatter={(v: any) => `$${v}B`} />
         <Legend wrapperStyle={{ paddingTop: 10 }} />
-        <Bar dataKey="내연기관" stackId="a" fill="#64748b" />
-        <Bar dataKey="하이브리드" stackId="a" fill="#8b5cf6" />
+        <Bar dataKey="내연기관" stackId="a" fill="var(--w-slate-500)" />
+        <Bar dataKey="하이브리드" stackId="a" fill="var(--w-violet-500)" />
         <Bar dataKey="전기차" stackId="a" fill="var(--color-success)" radius={[4,4,0,0]} />
       </BarChart>
     </SafeResponsiveContainer>
@@ -83,8 +83,8 @@ export function FuelPriceChart({ data }: { data: any[] }) {
       <BarChart data={data} margin={{ top: 10, right: 20, left: -10, bottom: 0 }}>
         <ChartPatternDefs />
         <CartesianGrid strokeDasharray="3 3" stroke="rgba(140,170,255,0.12)" vertical={false} />
-        <XAxis dataKey="country" stroke="#94a3b8" tick={{ fill: '#94a3b8', fontSize: 11 }} />
-        <YAxis stroke="#94a3b8" tick={{ fill: '#94a3b8', fontSize: 11 }} unit="$" />
+        <XAxis dataKey="country" stroke="var(--w-slate-400)" tick={{ fill: 'var(--w-slate-400)', fontSize: 11 }} />
+        <YAxis stroke="var(--w-slate-400)" tick={{ fill: 'var(--w-slate-400)', fontSize: 11 }} unit="$" />
         <Tooltip contentStyle={tt} labelStyle={ttLabel} itemStyle={ttItem} formatter={(v: any) => `$${v}/L`} />
         <Bar dataKey="price" name="연료가격($/L)" radius={[4,4,0,0]} barSize={28}>
           {data.map((e, i) => <Cell key={i} fill={e.price > 1.5 ? 'var(--color-danger)' : 'var(--color-warning)'} />)}
@@ -100,8 +100,8 @@ export function AgePenaltyChart({ data }: { data: any[] }) {
       <BarChart data={data} margin={{ top: 10, right: 20, left: -10, bottom: 0 }}>
         <ChartPatternDefs />
         <CartesianGrid strokeDasharray="3 3" stroke="rgba(140,170,255,0.12)" vertical={false} />
-        <XAxis dataKey="range" stroke="#94a3b8" tick={{ fill: '#94a3b8', fontSize: 11 }} />
-        <YAxis stroke="#94a3b8" tick={{ fill: '#94a3b8', fontSize: 11 }} unit="%" />
+        <XAxis dataKey="range" stroke="var(--w-slate-400)" tick={{ fill: 'var(--w-slate-400)', fontSize: 11 }} />
+        <YAxis stroke="var(--w-slate-400)" tick={{ fill: 'var(--w-slate-400)', fontSize: 11 }} unit="%" />
         <Tooltip contentStyle={tt} labelStyle={ttLabel} itemStyle={ttItem} formatter={(v: any) => `${v}%`} />
         <Bar dataKey="penalty" name="페널티율" radius={[4,4,0,0]} barSize={32}>
           {data.map((e, i) => <Cell key={i} fill={e.penalty >= 50 ? 'var(--color-danger)' : e.penalty >= 20 ? 'var(--color-warning)' : 'var(--color-success)'} />)}

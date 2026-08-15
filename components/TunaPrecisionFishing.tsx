@@ -15,16 +15,16 @@ const rawData = getTunaData('precisionFishing');
 const CustomRadarTooltip = ({ active, payload }: any) => {
   if (!active || !payload?.length) return null;
   return (
-    <div style={{ background: 'rgba(20, 28, 52, 0.9)', border: '1px solid rgba(255, 255, 255, 0.1)', padding: '14px', borderRadius: '8px', color: '#f8fafc' }}>
-      <p style={{ margin: '0 0 8px 0', fontWeight: 'bold', color: '#e2e8f0' }}>{payload[0].payload.metric}</p>
+    <div style={{ background: 'rgba(20, 28, 52, 0.9)', border: '1px solid rgba(255, 255, 255, 0.1)', padding: '14px', borderRadius: '8px', color: 'var(--w-slate-50)' }}>
+      <p style={{ margin: '0 0 8px 0', fontWeight: 'bold', color: 'var(--w-slate-200)' }}>{payload[0].payload.metric}</p>
       <div style={{ display: 'flex', flexDirection: 'column', gap: '6px', fontSize: '0.85rem' }}>
         <div style={{ display: 'flex', justifyContent: 'space-between', gap: '20px' }}>
-          <span style={{ color: '#cbd5e1' }}>🧭 과거 직관 조업</span>
+          <span style={{ color: 'var(--w-slate-300)' }}>🧭 과거 직관 조업</span>
           <span>{payload[0].payload.traditional_hunting}{payload[0].payload.unit}</span>
         </div>
         <div style={{ display: 'flex', justifyContent: 'space-between', gap: '20px' }}>
-          <span style={{ color: '#38bdf8', fontWeight: 'bold' }}>📡 스마트 정밀 조업</span>
-          <span style={{ color: '#38bdf8', fontWeight: 'bold' }}>{payload[0].payload.precision_harvesting}{payload[0].payload.unit}</span>
+          <span style={{ color: 'var(--w-sky-400)', fontWeight: 'bold' }}>📡 스마트 정밀 조업</span>
+          <span style={{ color: 'var(--w-sky-400)', fontWeight: 'bold' }}>{payload[0].payload.precision_harvesting}{payload[0].payload.unit}</span>
         </div>
       </div>
     </div>
@@ -48,12 +48,12 @@ export default function TunaPrecisionFishing() {
       chart={
         <RadarChart cx="50%" cy="50%" outerRadius="65%" data={rawData}>
           <PolarGrid stroke="rgba(255,255,255,0.15)" />
-          <PolarAngleAxis dataKey="metric" tick={{ fill: '#cbd5e1', fontSize: 11, fontWeight: 500 }} />
+          <PolarAngleAxis dataKey="metric" tick={{ fill: 'var(--w-slate-300)', fontSize: 11, fontWeight: 500 }} />
           <PolarRadiusAxis angle={30} domain={[0, 100]} tick={false} axisLine={false} />
           <Tooltip content={<CustomRadarTooltip />} />
           <Legend />
-          <Radar name="🧭 과거 직관 의존 조업 (사냥)" dataKey="traditional_hunting" stroke="#94a3b8" fill="#94a3b8" fillOpacity={0.2} />
-          <Radar name="📡 딥테크 정밀 조업 (수확)" dataKey="precision_harvesting" stroke="#38bdf8" fill="#38bdf8" fillOpacity={0.3} />
+          <Radar name="🧭 과거 직관 의존 조업 (사냥)" dataKey="traditional_hunting" stroke="var(--w-slate-400)" fill="var(--w-slate-400)" fillOpacity={0.2} />
+          <Radar name="📡 딥테크 정밀 조업 (수확)" dataKey="precision_harvesting" stroke="var(--w-sky-400)" fill="var(--w-sky-400)" fillOpacity={0.3} />
         </RadarChart>
       }
       takeaway={{

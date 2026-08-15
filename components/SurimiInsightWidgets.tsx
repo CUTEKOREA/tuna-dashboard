@@ -52,7 +52,7 @@ const getKorCountry = (engName: string) => {
 const CustomTooltip = ({ active, payload, label }: any) => {
   if (active && payload && payload.length) {
     return (
-      <div style={{ background: '#1a2442', border: '1px solid rgba(255,255,255,0.1)', padding: '12px', borderRadius: '8px', color: '#f8fafc', boxShadow: '0 10px 25px -5px rgba(0, 0, 0, 0.5)', zIndex: 1000}}>
+      <div style={{ background: 'var(--w-navy-900)', border: '1px solid rgba(255,255,255,0.1)', padding: '12px', borderRadius: '8px', color: 'var(--w-slate-50)', boxShadow: '0 10px 25px -5px rgba(0, 0, 0, 0.5)', zIndex: 1000}}>
         <p style={{ margin: '0 0 8px 0', fontWeight: 'bold', borderBottom: '1px dashed rgba(255,255,255,0.2)', paddingBottom: '4px' }}>{label}</p>
         {payload.map((entry: any, index: number) => (
           <p key={index} style={{ margin: '4px 0', color: entry.color || entry.payload.fill, fontSize: '13px', fontWeight: 600 }}>
@@ -77,7 +77,7 @@ const widgetStyle = {
 };
 
 const headerStyle = { display: 'flex', justifyContent: 'space-between', alignItems: 'center' };
-const titleStyle = { margin: 0, fontSize: '1.1rem', fontWeight: 700, color: '#f8fafc', display: 'flex', alignItems: 'center', gap: '8px' };
+const titleStyle = { margin: 0, fontSize: '1.1rem', fontWeight: 700, color: 'var(--w-slate-50)', display: 'flex', alignItems: 'center', gap: '8px' };
 const chartStyle = { height: '260px', flexShrink: 0, width: '100%', position: 'relative' as const };
 
 /* 1. China Hegemony */
@@ -91,8 +91,8 @@ export const WidgetChinaHegemony = () => (
       <SafeResponsiveContainer width="100%" height="100%">
         <AreaChart data={hegemonyData} margin={{ top: 10, right: 10, left: 0, bottom: 0 }}>
           <CartesianGrid strokeDasharray="3 3" stroke="rgba(140,170,255,0.10)" vertical={false} />
-          <XAxis dataKey="year" stroke="#94a3b8" tick={{ fontSize: 11 }} tickLine={false} minTickGap={5} />
-          <YAxis stroke="#94a3b8" tick={{ fontSize: 11 }} tickLine={false} tickFormatter={(v)=>`${v/1000}M`}/>
+          <XAxis dataKey="year" stroke="var(--w-slate-400)" tick={{ fontSize: 11 }} tickLine={false} minTickGap={5} />
+          <YAxis stroke="var(--w-slate-400)" tick={{ fontSize: 11 }} tickLine={false} tickFormatter={(v)=>`${v/1000}M`}/>
           <RechartsTooltip content={<CustomTooltip />} />
           <Legend wrapperStyle={{ fontSize: 12 }} />
           <Area type="monotone" dataKey="china" stackId="1" name="중국(China)" stroke="var(--color-danger)" fill="rgba(239, 68, 68, 0.6)" strokeWidth={2} />
@@ -122,8 +122,8 @@ export const WidgetLithuaniaParadox = () => {
           <BarChart data={chartData} layout="vertical" margin={{ top: 10, right: 10, left: 30, bottom: 0 }}>
             <ChartPatternDefs />
             <CartesianGrid strokeDasharray="3 3" stroke="rgba(140,170,255,0.10)" horizontal={false} />
-            <XAxis type="number" stroke="#94a3b8" tick={{ fontSize: 11 }} tickFormatter={(val) => `$${val/1000}M`} />
-            <YAxis type="category" dataKey="country" stroke="#f8fafc" tick={{ fontSize: 11, fontWeight: 600 }} width={60} />
+            <XAxis type="number" stroke="var(--w-slate-400)" tick={{ fontSize: 11 }} tickFormatter={(val) => `$${val/1000}M`} />
+            <YAxis type="category" dataKey="country" stroke="var(--w-slate-50)" tick={{ fontSize: 11, fontWeight: 600 }} width={60} />
             <RechartsTooltip content={<CustomTooltip />} />
             <Bar dataKey="value_k" name="수리미 누적 수출액($1000)" fill="var(--color-warning)" radius={[0, 4, 4, 0]} barSize={20} />
           </BarChart>
@@ -149,8 +149,8 @@ export const WidgetKoreaDeficit = () => (
         <ComposedChart data={koreaDeficitData} margin={{ top: 10, right: 10, left: 0, bottom: 0 }}>
           <ChartPatternDefs />
           <CartesianGrid strokeDasharray="3 3" stroke="rgba(140,170,255,0.10)" vertical={false} />
-          <XAxis dataKey="year" stroke="#94a3b8" tick={{ fontSize: 11 }} tickLine={false} minTickGap={2}/>
-          <YAxis stroke="#94a3b8" tick={{ fontSize: 11 }} tickLine={false} tickFormatter={(v)=>`$${v}M`}/>
+          <XAxis dataKey="year" stroke="var(--w-slate-400)" tick={{ fontSize: 11 }} tickLine={false} minTickGap={2}/>
+          <YAxis stroke="var(--w-slate-400)" tick={{ fontSize: 11 }} tickLine={false} tickFormatter={(v)=>`$${v}M`}/>
           <RechartsTooltip content={<CustomTooltip />} />
           <Legend wrapperStyle={{ fontSize: 12 }} />
           <Bar dataKey="import_m" name="한국 수리미 수입 지출액($M)" fill="rgba(244, 63, 94, 0.7)" radius={[4, 4, 0, 0]} barSize={30}/>

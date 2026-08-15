@@ -36,7 +36,7 @@ export default function SasKoreaMedBftImports() {
           {/* ── 콜아웃 배너 ── */}
           <div
             style={{
-              background: 'linear-gradient(135deg, #1e3a5f, #1a2442)',
+              background: 'linear-gradient(135deg, #1e3a5f, var(--w-navy-900))',
               border: '1px solid #38bdf833',
               borderRadius: '10px',
               padding: '14px 18px',
@@ -49,18 +49,18 @@ export default function SasKoreaMedBftImports() {
             }}
           >
             <div>
-              <div style={{ fontSize: '0.78rem', color: '#94a3b8', marginBottom: '2px' }}>
+              <div style={{ fontSize: '0.78rem', color: 'var(--w-slate-400)', marginBottom: '2px' }}>
                 총 수입액 (냉동 필렛 기준)
               </div>
-              <div style={{ fontSize: '1.5rem', fontWeight: 800, color: '#38bdf8' }}>
+              <div style={{ fontSize: '1.5rem', fontWeight: 800, color: 'var(--w-sky-400)' }}>
                 ~$109M
               </div>
             </div>
             <div style={{ textAlign: 'right' }}>
-              <div style={{ fontSize: '0.78rem', color: '#94a3b8', marginBottom: '2px' }}>
+              <div style={{ fontSize: '0.78rem', color: 'var(--w-slate-400)', marginBottom: '2px' }}>
                 평균 수입단가
               </div>
-              <div style={{ fontSize: '1.2rem', fontWeight: 700, color: '#f59e0b' }}>
+              <div style={{ fontSize: '1.2rem', fontWeight: 700, color: 'var(--w-amber-500)' }}>
                 $18.79/kg
               </div>
             </div>
@@ -95,7 +95,7 @@ export default function SasKoreaMedBftImports() {
                 <XAxis
                   type="number"
                   domain={[0, 24]}
-                  tick={{ fontSize: 11, fill: '#94a3b8' }}
+                  tick={{ fontSize: 11, fill: 'var(--w-slate-400)' }}
                   axisLine={false}
                   tickLine={false}
                   unit="M"
@@ -104,7 +104,7 @@ export default function SasKoreaMedBftImports() {
                   dataKey="country"
                   type="category"
                   width={110}
-                  tick={{ fontSize: 12, fill: '#cbd5e1' }}
+                  tick={{ fontSize: 12, fill: 'var(--w-slate-300)' }}
                   axisLine={false}
                   tickLine={false}
                 />
@@ -114,8 +114,8 @@ export default function SasKoreaMedBftImports() {
                     borderRadius: '8px',
                     border: 'none',
                     boxShadow: '0 4px 12px rgba(0,0,0,0.3)',
-                    background: '#1a2442',
-                    color: '#e2e8f0',
+                    background: 'var(--w-navy-900)',
+                    color: 'var(--w-slate-200)',
                     fontSize: '0.8rem',
                   }}
                   formatter={(value: unknown) => [`$${value}M`, '수입액']}

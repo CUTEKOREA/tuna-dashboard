@@ -62,10 +62,10 @@ const TunaComplianceRadar = React.memo(function TunaComplianceRadar() {
     <>
       <div style={{ display: 'flex', gap: '8px', marginBottom: '1rem' }}>
         <div style={{ flex: 1, position: 'relative' }}>
-          <Search size={14} style={{ position: 'absolute', left: '12px', top: '50%', transform: 'translateY(-50%)', color: '#64748b' }} />
+          <Search size={14} style={{ position: 'absolute', left: '12px', top: '50%', transform: 'translateY(-50%)', color: 'var(--w-slate-500)' }} />
           <input type="text" value={query} onChange={(e) => setQuery(e.target.value)} onKeyDown={(e) => e.key === 'Enter' && run()}
             placeholder="거래처명 (예: Thai Union, Dongwon...)"
-            style={{ width: '100%', padding: '10px 12px 10px 36px', fontSize: '0.82rem', background: '#1a1a1a', color: '#f8fafc', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '6px', outline: 'none' }} />
+            style={{ width: '100%', padding: '10px 12px 10px 36px', fontSize: '0.82rem', background: '#1a1a1a', color: 'var(--w-slate-50)', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '6px', outline: 'none' }} />
         </div>
         <button onClick={run} disabled={loading || !query.trim()}
           style={{ padding: '10px 18px', fontSize: '0.82rem', fontWeight: 700, background: '#0ECB81', color: '#0d0d0d', border: 'none', borderRadius: '6px', cursor: query.trim() ? 'pointer' : 'not-allowed', opacity: query.trim() ? 1 : 0.5, display: 'flex', alignItems: 'center', gap: '6px' }}>
@@ -76,15 +76,15 @@ const TunaComplianceRadar = React.memo(function TunaComplianceRadar() {
         <div>
           <div data-mobile-stack style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: '0.8rem', marginBottom: '1rem' }}>
             <div style={{ background: result.ofac.status === 'clean' ? 'rgba(14,203,129,0.06)' : 'rgba(240,185,11,0.06)', border: `1px solid ${result.ofac.status === 'clean' ? 'rgba(14,203,129,0.2)' : 'rgba(240,185,11,0.2)'}`, borderRadius: '8px', padding: '12px' }}>
-              <div style={{ display: 'flex', alignItems: 'center', gap: '6px', marginBottom: '6px' }}>{statusIcon(result.ofac.status)}<span style={{ fontSize: '0.75rem', fontWeight: 700, color: '#f8fafc' }}>OFAC (미국)</span></div>
-              <div style={{ fontSize: '0.7rem', color: '#94a3b8' }}>{result.ofac.detail}</div>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '6px', marginBottom: '6px' }}>{statusIcon(result.ofac.status)}<span style={{ fontSize: '0.75rem', fontWeight: 700, color: 'var(--w-slate-50)' }}>OFAC (미국)</span></div>
+              <div style={{ fontSize: '0.7rem', color: 'var(--w-slate-400)' }}>{result.ofac.detail}</div>
             </div>
             <div style={{ background: result.eu.status === 'clean' ? 'rgba(14,203,129,0.06)' : 'rgba(240,185,11,0.06)', border: `1px solid ${result.eu.status === 'clean' ? 'rgba(14,203,129,0.2)' : 'rgba(240,185,11,0.2)'}`, borderRadius: '8px', padding: '12px' }}>
-              <div style={{ display: 'flex', alignItems: 'center', gap: '6px', marginBottom: '6px' }}>{statusIcon(result.eu.status)}<span style={{ fontSize: '0.75rem', fontWeight: 700, color: '#f8fafc' }}>EU 제재</span></div>
-              <div style={{ fontSize: '0.7rem', color: '#94a3b8' }}>{result.eu.detail}</div>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '6px', marginBottom: '6px' }}>{statusIcon(result.eu.status)}<span style={{ fontSize: '0.75rem', fontWeight: 700, color: 'var(--w-slate-50)' }}>EU 제재</span></div>
+              <div style={{ fontSize: '0.7rem', color: 'var(--w-slate-400)' }}>{result.eu.detail}</div>
             </div>
             <div style={{ background: `${riskColor(result.riskLevel)}10`, border: `1px solid ${riskColor(result.riskLevel)}30`, borderRadius: '8px', padding: '12px', textAlign: 'center' }}>
-              <div style={{ fontSize: '0.68rem', color: '#64748b', fontWeight: 600 }}>종합 위험도</div>
+              <div style={{ fontSize: '0.68rem', color: 'var(--w-slate-500)', fontWeight: 600 }}>종합 위험도</div>
               <div style={{ fontSize: '1.6rem', fontWeight: 800, color: riskColor(result.riskLevel) }}>{result.riskScore}<span style={{ fontSize: '0.8rem' }}>/100</span></div>
               <span style={{ fontSize: '0.68rem', fontWeight: 700, background: `${riskColor(result.riskLevel)}20`, color: riskColor(result.riskLevel), padding: '2px 8px', borderRadius: '500px' }}>{result.riskLevel === 'LOW' ? '저위험' : result.riskLevel === 'MEDIUM' ? '중위험' : '고위험'}</span>
             </div>
@@ -93,9 +93,9 @@ const TunaComplianceRadar = React.memo(function TunaComplianceRadar() {
             <div style={{ background: 'rgba(6, 182, 212, 0.08)', border: '1px solid rgba(6, 182, 212, 0.15)', borderRadius: '8px', padding: '10px 14px', marginBottom: '1rem', display: 'flex', gap: '10px' }}>
               <ShieldCheck size={18} color="#06b6d4" style={{ flexShrink: 0, marginTop: '2px' }} />
               <div>
-                <div style={{ fontSize: '0.75rem', fontWeight: 700, color: '#06b6d4', marginBottom: '4px' }}>AI 오탐지 분석</div>
-                <div style={{ fontSize: '0.75rem', color: '#f8fafc', marginBottom: '4px' }}>오탐지 위험도: <strong style={{ color: result.aiAnalysis.falsePositiveRisk === 'HIGH' ? '#F6465D' : '#0ECB81' }}>{result.aiAnalysis.falsePositiveRisk}</strong> (신뢰도: {(result.aiAnalysis.confidence * 100).toFixed(1)}%)</div>
-                <div style={{ fontSize: '0.7rem', color: '#94a3b8', lineHeight: 1.4 }}>{result.aiAnalysis.recommendation}</div>
+                <div style={{ fontSize: '0.75rem', fontWeight: 700, color: 'var(--w-cyan-500)', marginBottom: '4px' }}>AI 오탐지 분석</div>
+                <div style={{ fontSize: '0.75rem', color: 'var(--w-slate-50)', marginBottom: '4px' }}>오탐지 위험도: <strong style={{ color: result.aiAnalysis.falsePositiveRisk === 'HIGH' ? '#F6465D' : '#0ECB81' }}>{result.aiAnalysis.falsePositiveRisk}</strong> (신뢰도: {(result.aiAnalysis.confidence * 100).toFixed(1)}%)</div>
+                <div style={{ fontSize: '0.7rem', color: 'var(--w-slate-400)', lineHeight: 1.4 }}>{result.aiAnalysis.recommendation}</div>
               </div>
             </div>
           )}
@@ -103,10 +103,10 @@ const TunaComplianceRadar = React.memo(function TunaComplianceRadar() {
       )}
       {showHist && (
         <div>
-          <div style={{ fontSize: '0.75rem', color: '#64748b', fontWeight: 600, marginBottom: '8px', display: 'flex', alignItems: 'center', gap: '6px' }}><Clock size={12} /> 최근 스크리닝 이력</div>
+          <div style={{ fontSize: '0.75rem', color: 'var(--w-slate-500)', fontWeight: 600, marginBottom: '8px', display: 'flex', alignItems: 'center', gap: '6px' }}><Clock size={12} /> 최근 스크리닝 이력</div>
           {HISTORY.map((h, i) => (
             <div key={i} style={{ display: 'grid', gridTemplateColumns: '2fr 0.8fr 0.8fr 0.5fr', alignItems: 'center', padding: '7px 12px', background: 'rgba(255,255,255,0.02)', border: '1px solid rgba(255,255,255,0.04)', borderRadius: '6px', fontSize: '0.78rem', marginBottom: '3px' }}>
-              <span style={{ color: '#f8fafc', fontWeight: 600 }}>{h.entity}</span>
+              <span style={{ color: 'var(--w-slate-50)', fontWeight: 600 }}>{h.entity}</span>
               <span style={{ color: h.score >= 85 ? '#0ECB81' : '#F0B90B', fontWeight: 600 }}>{h.result}</span>
               <span style={{ color: '#4a5568' }}>{h.date}</span>
               <span style={{ textAlign: 'right', color: h.score >= 85 ? '#0ECB81' : '#F0B90B', fontWeight: 700 }}>{h.score}</span>

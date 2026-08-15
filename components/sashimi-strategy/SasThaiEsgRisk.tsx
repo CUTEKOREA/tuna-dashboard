@@ -42,10 +42,10 @@ export default function SasThaiEsgRisk() {
                 <span style={{ fontSize: '0.78rem', fontWeight: 700, color: '#f1f5f9' }}>{e.title}</span>
                 <span style={{ marginLeft: 'auto', fontSize: '0.82rem', fontWeight: 800, color: e.rc }}>{e.value}</span>
               </div>
-              <span style={{ fontSize: '0.64rem', color: '#94a3b8', lineHeight: 1.45 }}>{e.desc}</span>
+              <span style={{ fontSize: '0.64rem', color: 'var(--w-slate-400)', lineHeight: 1.45 }}>{e.desc}</span>
             </div>
           ))}
-          <div style={{ fontSize: '0.62rem', color: '#64748b', lineHeight: 1.5 }}>
+          <div style={{ fontSize: '0.62rem', color: 'var(--w-slate-500)', lineHeight: 1.5 }}>
             ESG 리스크 = 바이어 소싱 다변화 방아쇠 → MSC·추적성·클린 노동 이력 갖춘 한국 공급의 진입 창구
           </div>
         </div>

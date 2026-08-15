@@ -92,7 +92,7 @@ export function FleetChartSection() {
                   {r.badge && <span className={`${s.badge} ${badgeClass[r.badge]}`}>{titles[r.badge]}</span>}
                 </td>
                 <td>{r.name}</td>
-                <td style={{ fontWeight: 700, color: r.daily >= 25 ? '#34d399' : r.daily < 15 ? 'var(--accent-danger)' : 'var(--text-main)' }}>{r.daily}</td>
+                <td style={{ fontWeight: 700, color: r.daily >= 25 ? 'var(--w-emerald-400)' : r.daily < 15 ? 'var(--accent-danger)' : 'var(--text-main)' }}>{r.daily}</td>
                 <td style={{ color: 'var(--text-muted)' }}>{r.weekly}</td>
               </tr>
             ))}
@@ -135,7 +135,7 @@ export function FleetDetailPanel() {
                     <td style={{ color: 'var(--text-muted)' }}>{r.date}</td>
                     <td>{r.days}일</td>
                     <td style={{ fontWeight: 700 }}>{r.catchTotal.toLocaleString()}</td>
-                    <td style={{ fontWeight: 700, color: r.daily >= 25 ? '#34d399' : r.daily < 15 ? 'var(--accent-danger)' : 'var(--text-main)' }}>{r.daily}</td>
+                    <td style={{ fontWeight: 700, color: r.daily >= 25 ? 'var(--w-emerald-400)' : r.daily < 15 ? 'var(--accent-danger)' : 'var(--text-main)' }}>{r.daily}</td>
                     <td className={parseFloat(r.diff) >= 0 ? s.diffPositive : s.diffNegative}>{r.diff}</td>
                     <td className={parseFloat(r.avgDiff) >= 0 ? s.diffPositive : s.diffNegative}>{r.avgDiff}</td>
                   </tr>

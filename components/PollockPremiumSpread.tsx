@@ -21,10 +21,10 @@ export default function PollockPremiumSpread() {
       chart={
         <LineChart data={data as any[]} margin={{ top: 20, right: 20, left: 10, bottom: 5 }}>
           <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" vertical={false} />
-          <XAxis dataKey="year" stroke="#94a3b8" fontSize={12} tickLine={false} />
-          <YAxis stroke="#94a3b8" fontSize={12} tickLine={false} tickFormatter={(v) => `$${v}`} domain={['dataMin - 500', 'dataMax + 500']} />
-          <Tooltip contentStyle={{ backgroundColor: '#1a2442', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '8px', color: '#f8fafc' }} formatter={(value: any) => [`$${value.toLocaleString()}/ton`, '']} />
-          <Legend wrapperStyle={{ fontSize: '12px', color: '#cbd5e1' }} />
+          <XAxis dataKey="year" stroke="var(--w-slate-400)" fontSize={12} tickLine={false} />
+          <YAxis stroke="var(--w-slate-400)" fontSize={12} tickLine={false} tickFormatter={(v) => `$${v}`} domain={['dataMin - 500', 'dataMax + 500']} />
+          <Tooltip contentStyle={{ backgroundColor: 'var(--w-navy-900)', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '8px', color: 'var(--w-slate-50)' }} formatter={(value: any) => [`$${value.toLocaleString()}/ton`, '']} />
+          <Legend wrapperStyle={{ fontSize: '12px', color: 'var(--w-slate-300)' }} />
           <Line type="monotone" dataKey="usa_price" name="미국산 수입 단가 (싱글 프로즌)" stroke="var(--color-info)" strokeWidth={3} dot={{ r: 4, fill: 'var(--color-info)' }} />
           <Line type="monotone" dataKey="china_price" name="중국산 수입 단가 (더블 프로즌)" stroke="var(--color-warning)" strokeWidth={2} strokeDasharray="5 5" />
           <Line type="monotone" dataKey="russia_price" name="러시아산 수입 단가 (반가공·더블)" stroke="var(--color-danger)" strokeWidth={2} strokeDasharray="3 3" />

@@ -25,24 +25,24 @@ const CustomTooltip = ({ active, payload }: any) => {
       borderRadius: '8px',
       padding: '12px',
       fontSize: '0.82rem',
-      color: '#e2e8f0',
+      color: 'var(--w-slate-200)',
       boxShadow: '0 10px 25px rgba(0,0,0,0.4)',
     }}>
       <div style={{ fontWeight: 700, marginBottom: '8px', color: '#ffffff' }}>{d.country}</div>
       <div style={{ display: 'flex', justifyContent: 'space-between', gap: '16px' }}>
         <span>PB 비중:</span>
-        <span style={{ fontWeight: 700, color: '#38bdf8' }}>{d.pb}%</span>
+        <span style={{ fontWeight: 700, color: 'var(--w-sky-400)' }}>{d.pb}%</span>
       </div>
       <div style={{ display: 'flex', justifyContent: 'space-between', gap: '16px' }}>
         <span>MSC 침투율:</span>
-        <span style={{ fontWeight: 700, color: '#34d399' }}>{d.msc}%</span>
+        <span style={{ fontWeight: 700, color: 'var(--w-emerald-400)' }}>{d.msc}%</span>
       </div>
       <div style={{
         display: 'flex', justifyContent: 'space-between', gap: '16px',
         marginTop: '4px', borderTop: '1px solid rgba(148,163,184,0.2)', paddingTop: '4px', fontSize: '0.75rem',
       }}>
         <span>시장 규모:</span>
-        <span style={{ fontWeight: 700, color: '#f59e0b' }}>{d.volume.toLocaleString()}톤</span>
+        <span style={{ fontWeight: 700, color: 'var(--w-amber-500)' }}>{d.volume.toLocaleString()}톤</span>
       </div>
     </div>
   );
@@ -70,16 +70,16 @@ export default function MscPbNbMatrix() {
             <SafeResponsiveContainer width="100%" height="100%">
               <ScatterChart margin={{ top: 20, right: 30, bottom: 20, left: 0 }}>
                 <CartesianGrid strokeDasharray="3 3" opacity={0.15} />
-                <XAxis type="number" dataKey="pb" name="PB 비중" domain={[15, 95]} tick={{ fill: '#94a3b8', fontSize: 11 }} axisLine={false} tickLine={false}>
-                  <Label value="PB 비중 (%)" position="insideBottom" offset={-15} style={{ fill: '#64748b', fontSize: 11 }} />
+                <XAxis type="number" dataKey="pb" name="PB 비중" domain={[15, 95]} tick={{ fill: 'var(--w-slate-400)', fontSize: 11 }} axisLine={false} tickLine={false}>
+                  <Label value="PB 비중 (%)" position="insideBottom" offset={-15} style={{ fill: 'var(--w-slate-500)', fontSize: 11 }} />
                 </XAxis>
-                <YAxis type="number" dataKey="msc" name="MSC 침투율" domain={[15, 100]} tick={{ fill: '#94a3b8', fontSize: 11 }} axisLine={false} tickLine={false}>
-                  <Label value="MSC 침투율 (%)" angle={-90} position="insideLeft" offset={10} style={{ fill: '#64748b', fontSize: 11 }} />
+                <YAxis type="number" dataKey="msc" name="MSC 침투율" domain={[15, 100]} tick={{ fill: 'var(--w-slate-400)', fontSize: 11 }} axisLine={false} tickLine={false}>
+                  <Label value="MSC 침투율 (%)" angle={-90} position="insideLeft" offset={10} style={{ fill: 'var(--w-slate-500)', fontSize: 11 }} />
                 </YAxis>
                 <ZAxis type="number" dataKey="volume" range={[200, 1200]} name="시장 규모" />
                 <Tooltip content={<CustomTooltip />} cursor={{ strokeDasharray: '3 3' }} />
-                <ReferenceLine y={50} stroke="#94a3b8" strokeOpacity={0.5} strokeDasharray="4 4" />
-                <ReferenceLine x={50} stroke="#94a3b8" strokeOpacity={0.5} strokeDasharray="4 4" />
+                <ReferenceLine y={50} stroke="var(--w-slate-400)" strokeOpacity={0.5} strokeDasharray="4 4" />
+                <ReferenceLine x={50} stroke="var(--w-slate-400)" strokeOpacity={0.5} strokeDasharray="4 4" />
                 <Scatter data={bubbleData} isAnimationActive={false}>
                   {bubbleData.map((entry, idx) => (
                     <Cell key={idx} fill={entry.color} fillOpacity={0.7} stroke={entry.color} strokeWidth={2} />
@@ -90,7 +90,7 @@ export default function MscPbNbMatrix() {
           </div>
           <div style={{ display: 'flex', flexWrap: 'wrap', gap: '12px', marginTop: '16px', justifyContent: 'center' }}>
             {bubbleData.map((d) => (
-              <div key={d.country} style={{ display: 'flex', alignItems: 'center', gap: '6px', fontSize: '0.75rem', color: '#64748b', fontWeight: 500 }}>
+              <div key={d.country} style={{ display: 'flex', alignItems: 'center', gap: '6px', fontSize: '0.75rem', color: 'var(--w-slate-500)', fontWeight: 500 }}>
                 <div style={{ width: '10px', height: '10px', borderRadius: '50%', background: d.color }} />
                 {d.country}
               </div>

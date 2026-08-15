@@ -67,10 +67,10 @@ export default function MscConsumptionStructure() {
 
               {/* Content */}
               <div style={{ position: 'relative', zIndex: 1 }}>
-                <div style={{ fontSize: '0.85rem', fontWeight: 700, color: '#e2e8f0', marginBottom: '4px', lineHeight: 1.3 }}>
+                <div style={{ fontSize: '0.85rem', fontWeight: 700, color: 'var(--w-slate-200)', marginBottom: '4px', lineHeight: 1.3 }}>
                   {item.name}
                 </div>
-                <div style={{ fontSize: '0.72rem', color: '#94a3b8', fontWeight: 500 }}>{item.desc}</div>
+                <div style={{ fontSize: '0.72rem', color: 'var(--w-slate-400)', fontWeight: 500 }}>{item.desc}</div>
               </div>
 
               {/* Bottom bar + percentage */}
@@ -115,13 +115,13 @@ export default function MscConsumptionStructure() {
         borderRadius: 8,
         fontSize: '0.75rem',
         fontWeight: 500,
-        color: '#94a3b8',
+        color: 'var(--w-slate-400)',
         flexWrap: 'wrap',
         gap: '8px',
       }}>
-        <span>🔵 북유럽형 <span style={{ fontWeight: 700, color: '#38bdf8', marginLeft: '4px' }}>캔+염수+가다랑어 (35%)</span></span>
-        <span>🟡 남유럽형 <span style={{ fontWeight: 700, color: '#f59e0b', marginLeft: '4px' }}>캔+올리브유+황다랑어 (28%)</span></span>
-        <span style={{ fontWeight: 700, color: '#cbd5e1', marginLeft: '8px' }}>합계 63% (양대 축)</span>
+        <span>🔵 북유럽형 <span style={{ fontWeight: 700, color: 'var(--w-sky-400)', marginLeft: '4px' }}>캔+염수+가다랑어 (35%)</span></span>
+        <span>🟡 남유럽형 <span style={{ fontWeight: 700, color: 'var(--w-amber-500)', marginLeft: '4px' }}>캔+올리브유+황다랑어 (28%)</span></span>
+        <span style={{ fontWeight: 700, color: 'var(--w-slate-300)', marginLeft: '8px' }}>합계 63% (양대 축)</span>
       </div>
     </div>
   );

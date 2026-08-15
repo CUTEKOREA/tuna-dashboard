@@ -81,17 +81,17 @@ const SourcingSignalBoard: React.FC<{ data: any[] }> = ({ data }) => {
           >
             <div style={{ display: 'flex', alignItems: 'center', gap: 7 }}>
               <span style={{ width: 9, height: 9, borderRadius: '50%', background: color, boxShadow: `0 0 8px ${color}88`, flexShrink: 0 }} />
-              <strong style={{ color: '#e2e8f0', fontSize: '0.85rem' }}>{koreanUiText(o.origin)}</strong>
+              <strong style={{ color: 'var(--w-slate-200)', fontSize: '0.85rem' }}>{koreanUiText(o.origin)}</strong>
             </div>
             <div style={{ color, fontWeight: 800, fontSize: '1.15rem', marginTop: 6, display: 'flex', alignItems: 'center', flexWrap: 'wrap', gap: 6 }}>
               {o.status}
               {derived && (
-                <span style={{ fontSize: '0.62rem', fontWeight: 600, color: '#94a3b8', border: '1px dashed #94a3b8', borderRadius: 4, padding: '1px 5px' }}>
+                <span style={{ fontSize: '0.62rem', fontWeight: 600, color: 'var(--w-slate-400)', border: '1px dashed var(--w-slate-400)', borderRadius: 4, padding: '1px 5px' }}>
                   일정 파생
                 </span>
               )}
             </div>
-            <div style={{ fontSize: '0.68rem', color: '#94a3b8', marginTop: 5, lineHeight: 1.55, wordBreak: 'keep-all' }}>
+            <div style={{ fontSize: '0.68rem', color: 'var(--w-slate-400)', marginTop: 5, lineHeight: 1.55, wordBreak: 'keep-all' }}>
               {o.as_of ?? '기준일 없음'} · {koreanUiText(o.reason)}
             </div>
           </div>
@@ -116,7 +116,7 @@ const SegTooltip: React.FC<any> = ({ active, payload }) => {
   const d = payload[0].payload;
   return (
     <div style={TOOLTIP_STYLE}>
-      <div style={{ fontWeight: 700, color: '#e2e8f0', marginBottom: 4 }}>
+      <div style={{ fontWeight: 700, color: 'var(--w-slate-200)', marginBottom: 4 }}>
         {d.name}
       </div>
       <div>배분 {fmtT(d.allocation)}톤</div>
@@ -163,11 +163,11 @@ const QuotaGauge: React.FC<{ data: Record<string, any> }> = ({ data }) => {
           </div>
         </div>
         <div style={{ flex: '1 1 160px', minWidth: 0, display: 'flex', flexDirection: 'column', justifyContent: 'center', gap: 6, padding: '6px 10px', borderRadius: 10, background: 'rgba(16,185,129,0.06)', border: '1px solid rgba(16,185,129,0.25)' }}>
-          <div style={{ fontSize: '0.66rem', color: '#94a3b8' }}>잔여 쿼터 — 조달 가능량</div>
-          <div style={{ fontSize: '1.7rem', fontWeight: 800, color: '#10b981', lineHeight: 1.1 }}>
+          <div style={{ fontSize: '0.66rem', color: 'var(--w-slate-400)' }}>잔여 쿼터 — 조달 가능량</div>
+          <div style={{ fontSize: '1.7rem', fontWeight: 800, color: 'var(--w-emerald-500)', lineHeight: 1.1 }}>
             {fmtT(data.quota_minus_recorded_capture_tonnes)} <span style={{ fontSize: '0.8rem', fontWeight: 600 }}>톤</span>
           </div>
-          <div style={{ fontSize: '0.66rem', color: '#94a3b8', lineHeight: 1.5, wordBreak: 'keep-all' }}>
+          <div style={{ fontSize: '0.66rem', color: 'var(--w-slate-400)', lineHeight: 1.5, wordBreak: 'keep-all' }}>
             법정 쿼터 {fmtT(data.legal_quota_tonnes)}톤 · 누적 포획 {fmtT(data.recorded_capture_tonnes)}톤 ({data.as_of} 기준)
           </div>
         </div>
@@ -189,7 +189,7 @@ const QuotaGauge: React.FC<{ data: Record<string, any> }> = ({ data }) => {
           </div>
           <div style={{ display: 'flex', flexDirection: 'column', gap: 4 }}>
             {breakdown.map((b) => (
-              <div key={b.segment} style={{ display: 'flex', flexWrap: 'wrap', gap: '4px 10px', fontSize: '0.66rem', color: '#94a3b8', lineHeight: 1.5 }}>
+              <div key={b.segment} style={{ display: 'flex', flexWrap: 'wrap', gap: '4px 10px', fontSize: '0.66rem', color: 'var(--w-slate-400)', lineHeight: 1.5 }}>
                 <span style={{ color: BODY, fontWeight: 600 }}>
                   <span title={b.segment}>{SEG_KO[b.segment] ?? koreanUiText(b.segment)}</span>
                 </span>
@@ -219,7 +219,7 @@ const ProdTooltip: React.FC<any> = ({ active, payload, label }) => {
   if (!active || !payload?.length) return null;
   return (
     <div style={TOOLTIP_STYLE}>
-      <div style={{ fontWeight: 700, color: '#e2e8f0', marginBottom: 4 }}>{label}년</div>
+      <div style={{ fontWeight: 700, color: 'var(--w-slate-200)', marginBottom: 4 }}>{label}년</div>
       {payload.map((p: any) => {
         const m = SPECIES_META[p.dataKey];
         return (
@@ -299,7 +299,7 @@ const EffortTooltip: React.FC<any> = ({ active, payload }) => {
   const d = payload[0].payload;
   return (
     <div style={TOOLTIP_STYLE}>
-      <div style={{ fontWeight: 700, color: '#e2e8f0', marginBottom: 4 }}>{d.ko}</div>
+      <div style={{ fontWeight: 700, color: 'var(--w-slate-200)', marginBottom: 4 }}>{d.ko}</div>
       <div>척수 상한 {d.vessel_limit.toLocaleString('ko-KR')} 척</div>
       <div>총 톤수 {d.gross_tonnage_gt.toLocaleString('ko-KR')} 총톤</div>
     </div>
@@ -320,20 +320,20 @@ const EffortLimitChart: React.FC<{ data: any[] }> = ({ data }) => {
           <XAxis dataKey="ko" tick={{ fill: BODY, fontSize: 11 }} axisLine={{ stroke: AXIS }} tickLine={false} />
           <YAxis tick={{ fill: AXIS, fontSize: 10 }} axisLine={false} tickLine={false} width={36} />
           <Tooltip content={<EffortTooltip />} cursor={{ fill: 'rgba(255,255,255,0.04)' }} />
-          <Bar dataKey="vessel_limit" fill="#38bdf8" radius={[4, 4, 0, 0]} maxBarSize={56} name="척수 상한">
+          <Bar dataKey="vessel_limit" fill="var(--w-sky-400)" radius={[4, 4, 0, 0]} maxBarSize={56} name="척수 상한">
             <LabelList dataKey="vessel_limit" position="top" style={{ fill: BODY, fontSize: 11, fontWeight: 700 }} formatter={(v: unknown) => `${v}척`} />
           </Bar>
         </BarChart>
       </SafeResponsiveContainer>
       <div style={{ display: 'flex', flexDirection: 'column', gap: 4, marginTop: 6 }}>
         {members.map((m) => (
-          <div key={m.member} style={{ display: 'flex', flexWrap: 'wrap', gap: '2px 8px', fontSize: '0.66rem', color: '#94a3b8' }}>
+          <div key={m.member} style={{ display: 'flex', flexWrap: 'wrap', gap: '2px 8px', fontSize: '0.66rem', color: 'var(--w-slate-400)' }}>
             <span style={{ color: BODY, fontWeight: 600 }}>{m.ko}</span>
             <span>총 톤수 {m.gross_tonnage_gt.toLocaleString('ko-KR')} 총톤</span>
           </div>
         ))}
         {total && (
-          <div style={{ marginTop: 2, padding: '7px 10px', borderRadius: 8, background: 'rgba(56,189,248,0.07)', border: '1px solid rgba(56,189,248,0.25)', fontSize: '0.72rem', color: '#e2e8f0', fontWeight: 700 }}>
+          <div style={{ marginTop: 2, padding: '7px 10px', borderRadius: 8, background: 'rgba(56,189,248,0.07)', border: '1px solid rgba(56,189,248,0.25)', fontSize: '0.72rem', color: 'var(--w-slate-200)', fontWeight: 700 }}>
             전체 합계 {total.vessel_limit.toLocaleString('ko-KR')}척 · {total.gross_tonnage_gt.toLocaleString('ko-KR')} 총톤
           </div>
         )}
@@ -372,7 +372,7 @@ const PeruTimeline: React.FC<{ data: any[] }> = ({ data }) => {
             />
             <div style={{ display: 'flex', alignItems: 'center', flexWrap: 'wrap', gap: '4px 8px' }}>
               <span style={{ fontFamily: 'monospace', fontSize: '0.68rem', color: AXIS }}>{e.date}</span>
-              <strong style={{ fontSize: '0.82rem', color: '#e2e8f0' }}>{koreanUiText(e.event)}</strong>
+              <strong style={{ fontSize: '0.82rem', color: 'var(--w-slate-200)' }}>{koreanUiText(e.event)}</strong>
               <span style={{ fontSize: '0.62rem', fontWeight: 700, color: sem.color, border: `1px solid ${sem.color}66`, borderRadius: 4, padding: '1px 6px', background: `${sem.color}12` }}>
                 {sem.label}
               </span>

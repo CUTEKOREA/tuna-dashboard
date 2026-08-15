@@ -49,8 +49,8 @@ export default function SasKrDualRoute() {
                 <div style={{ display: 'flex', flexDirection: 'column', gap: '4px' }}>
                   {r.rows.map(([k, v]) => (
                     <div key={k} style={{ display: 'flex', justifyContent: 'space-between', gap: '6px', alignItems: 'baseline' }}>
-                      <span style={{ fontSize: '0.6rem', color: '#64748b' }}>{k}</span>
-                      <span style={{ fontSize: '0.66rem', fontWeight: 700, color: '#e2e8f0', textAlign: 'right' }}>{v}</span>
+                      <span style={{ fontSize: '0.6rem', color: 'var(--w-slate-500)' }}>{k}</span>
+                      <span style={{ fontSize: '0.66rem', fontWeight: 700, color: 'var(--w-slate-200)', textAlign: 'right' }}>{v}</span>
                     </div>
                   ))}
                 </div>
@@ -58,7 +58,7 @@ export default function SasKrDualRoute() {
               </div>
             ))}
           </div>
-          <div style={{ fontSize: '0.62rem', color: '#64748b', lineHeight: 1.5, textAlign: 'center' }}>
+          <div style={{ fontSize: '0.62rem', color: 'var(--w-slate-500)', lineHeight: 1.5, textAlign: 'center' }}>
             태국 관세·ESG 리스크 상승기 → 경로 B(영국 직수출) 비중 확대가 한국의 마진 내재화 전략
           </div>
         </div>

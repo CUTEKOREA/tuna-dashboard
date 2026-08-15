@@ -47,12 +47,12 @@ export default function MscProgramOverview() {
           }}
         >
           <div style={{ color: s.color, opacity: 0.85 }}>{iconMap[s.icon]}</div>
-          <div style={{ fontSize: '0.72rem', color: '#94a3b8', fontWeight: 600 }}>{s.label}</div>
+          <div style={{ fontSize: '0.72rem', color: 'var(--w-slate-400)', fontWeight: 600 }}>{s.label}</div>
           <div style={{ fontSize: '1.35rem', fontWeight: 800, color: s.color, fontVariantNumeric: 'tabular-nums', lineHeight: 1.1 }}>
             {s.value}
           </div>
           {s.sub && (
-            <div style={{ fontSize: '0.65rem', color: '#64748b', lineHeight: 1.3, marginTop: '2px' }}>{s.sub}</div>
+            <div style={{ fontSize: '0.65rem', color: 'var(--w-slate-500)', lineHeight: 1.3, marginTop: '2px' }}>{s.sub}</div>
           )}
         </div>
       ))}
@@ -64,7 +64,7 @@ export default function MscProgramOverview() {
       <div style={{
         fontSize: '0.78rem',
         fontWeight: 700,
-        color: '#e2e8f0',
+        color: 'var(--w-slate-200)',
         marginBottom: '12px',
         display: 'flex',
         alignItems: 'center',
@@ -104,13 +104,13 @@ export default function MscProgramOverview() {
               {p.id}
             </div>
             <div style={{ flex: 1 }}>
-              <div style={{ fontWeight: 700, color: '#e2e8f0', fontSize: '0.85rem' }}>
+              <div style={{ fontWeight: 700, color: 'var(--w-slate-200)', fontSize: '0.85rem' }}>
                 {p.title}
-                <span style={{ fontSize: '0.7rem', color: '#64748b', fontWeight: 500, marginLeft: '6px' }}>
+                <span style={{ fontSize: '0.7rem', color: 'var(--w-slate-500)', fontWeight: 500, marginLeft: '6px' }}>
                   ({p.sub})
                 </span>
               </div>
-              <div style={{ fontSize: '0.72rem', color: '#94a3b8', marginTop: '3px', lineHeight: 1.4 }}>
+              <div style={{ fontSize: '0.72rem', color: 'var(--w-slate-400)', marginTop: '3px', lineHeight: 1.4 }}>
                 {p.desc}
               </div>
             </div>

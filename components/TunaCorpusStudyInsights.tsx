@@ -31,11 +31,11 @@ const StockTooltip = ({ active, payload }: any) => {
   if (!active || !payload?.length) return null;
   const d = payload[0].payload;
   return (
-    <div style={{ background: '#1e293b', border: '1px solid rgba(255,255,255,0.12)', borderRadius: 8, padding: '10px 12px', color: '#f8fafc', fontSize: 12 }}>
+    <div style={{ background: '#1e293b', border: '1px solid rgba(255,255,255,0.12)', borderRadius: 8, padding: '10px 12px', color: 'var(--w-slate-50)', fontSize: 12 }}>
       <div style={{ fontWeight: 700, marginBottom: 4 }}>{d.name} ({d.statusYear} 기준)</div>
       <div>산란자원비 (SB/SBMSY): <strong>{d.sbRatio.toFixed(2)}</strong> {d.sbRatio >= 1 ? '· 건전' : '· 목표 미달'}</div>
       <div>어획강도비 (F/FMSY): <strong>{d.fRatio.toFixed(2)}</strong> {d.fRatio <= 1 ? '· 남획 아님' : '· 남획'}</div>
-      <div style={{ marginTop: 4, color: '#94a3b8' }}>2024 어획량 {d.catch.toLocaleString()}톤 · MSY {d.msy.toLocaleString()}천톤</div>
+      <div style={{ marginTop: 4, color: 'var(--w-slate-400)' }}>2024 어획량 {d.catch.toLocaleString()}톤 · MSY {d.msy.toLocaleString()}천톤</div>
     </div>
   );
 };
@@ -58,18 +58,18 @@ export function IotcTropicalTunaStockStatus() {
       chart={
         <BarChart data={stockData} margin={{ top: 20, right: 20, left: 0, bottom: 8 }}>
           <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" />
-          <XAxis dataKey="name" tick={{ fill: '#cbd5e1', fontSize: 12 }} />
-          <YAxis tick={{ fill: '#94a3b8', fontSize: 11 }} domain={[0, 2.6]} label={{ value: '비율 (배)', angle: -90, position: 'insideLeft', fill: '#94a3b8', fontSize: 11 }} />
+          <XAxis dataKey="name" tick={{ fill: 'var(--w-slate-300)', fontSize: 12 }} />
+          <YAxis tick={{ fill: 'var(--w-slate-400)', fontSize: 11 }} domain={[0, 2.6]} label={{ value: '비율 (배)', angle: -90, position: 'insideLeft', fill: 'var(--w-slate-400)', fontSize: 11 }} />
           <Tooltip content={<StockTooltip />} />
           <Legend wrapperStyle={{ fontSize: 12 }} />
           <ReferenceLine y={1} stroke="#f43f5e" strokeDasharray="5 4" label={{ value: '기준선 1.0', fill: '#f43f5e', fontSize: 10, position: 'right' }} />
           <Bar dataKey="sbRatio" name="산란자원비 (SB/SBMSY)" radius={[4, 4, 0, 0]}>
-            {stockData.map((d, i) => <Cell key={i} fill={d.sbRatio >= 1 ? '#10b981' : '#f59e0b'} />)}
-            <LabelList dataKey="sbRatio" position="top" formatter={(v: any) => Number(v).toFixed(2)} fill="#e2e8f0" fontSize={10} />
+            {stockData.map((d, i) => <Cell key={i} fill={d.sbRatio >= 1 ? 'var(--w-emerald-500)' : 'var(--w-amber-500)'} />)}
+            <LabelList dataKey="sbRatio" position="top" formatter={(v: any) => Number(v).toFixed(2)} fill="var(--w-slate-200)" fontSize={10} />
           </Bar>
           <Bar dataKey="fRatio" name="어획강도비 (F/FMSY)" radius={[4, 4, 0, 0]}>
-            {stockData.map((d, i) => <Cell key={i} fill={d.fRatio <= 1 ? '#38bdf8' : '#ef4444'} />)}
-            <LabelList dataKey="fRatio" position="top" formatter={(v: any) => Number(v).toFixed(2)} fill="#e2e8f0" fontSize={10} />
+            {stockData.map((d, i) => <Cell key={i} fill={d.fRatio <= 1 ? 'var(--w-sky-400)' : 'var(--w-red-500)'} />)}
+            <LabelList dataKey="fRatio" position="top" formatter={(v: any) => Number(v).toFixed(2)} fill="var(--w-slate-200)" fontSize={10} />
           </Bar>
         </BarChart>
       }
@@ -110,26 +110,26 @@ function AldfgBody() {
   return (
     <div style={{ padding: '4px 20px 8px 20px', display: 'flex', flexDirection: 'column', gap: 16 }}>
       <div>
-        <div style={{ fontSize: 12, fontWeight: 700, color: '#cbd5e1', marginBottom: 8 }}>유실어구 3유형 (해상 유출 경로)</div>
+        <div style={{ fontSize: 12, fontWeight: 700, color: 'var(--w-slate-300)', marginBottom: 8 }}>유실어구 3유형 (해상 유출 경로)</div>
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 8 }}>
           {aldfgTypes.map((t) => (
             <div key={t.key} style={{ background: 'rgba(20,28,52,0.6)', border: '1px solid rgba(255,255,255,0.08)', borderRadius: 8, padding: '10px 12px' }}>
               <div style={{ fontSize: 12.5, fontWeight: 700, color: '#5eead4', marginBottom: 4 }}>{t.key}</div>
-              <div style={{ fontSize: 11, color: '#94a3b8', lineHeight: 1.5 }}>{t.desc}</div>
+              <div style={{ fontSize: 11, color: 'var(--w-slate-400)', lineHeight: 1.5 }}>{t.desc}</div>
             </div>
           ))}
         </div>
       </div>
       <div>
-        <div style={{ fontSize: 12, fontWeight: 700, color: '#cbd5e1', marginBottom: 8 }}>POA-ALDFG 대응계획 5단계 (ISSF 2025-07 권고 구성)</div>
+        <div style={{ fontSize: 12, fontWeight: 700, color: 'var(--w-slate-300)', marginBottom: 8 }}>POA-ALDFG 대응계획 5단계 (ISSF 2025-07 권고 구성)</div>
         <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8 }}>
           {poaSteps.map((s) => (
             <div key={s.n} style={{ flex: '1 1 30%', minWidth: 150, background: 'rgba(13,148,136,0.1)', border: '1px solid rgba(45,212,191,0.25)', borderRadius: 8, padding: '10px 12px', position: 'relative' }}>
               <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 4 }}>
                 <span style={{ width: 20, height: 20, borderRadius: '50%', background: '#0d9488', color: '#fff', fontSize: 11, fontWeight: 700, display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>{s.n}</span>
-                <span style={{ fontSize: 12.5, fontWeight: 700, color: '#e2e8f0' }}>{s.label}</span>
+                <span style={{ fontSize: 12.5, fontWeight: 700, color: 'var(--w-slate-200)' }}>{s.label}</span>
               </div>
-              <div style={{ fontSize: 11, color: '#94a3b8', lineHeight: 1.5 }}>{s.desc}</div>
+              <div style={{ fontSize: 11, color: 'var(--w-slate-400)', lineHeight: 1.5 }}>{s.desc}</div>
             </div>
           ))}
         </div>

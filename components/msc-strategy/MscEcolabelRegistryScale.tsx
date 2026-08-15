@@ -85,18 +85,18 @@ export default function MscEcolabelRegistryScale() {
                 <div style={{ minWidth: 0 }}>
                   <div style={{ display: 'flex', alignItems: 'baseline', gap: '6px', flexWrap: 'wrap' }}>
                     <span style={{ fontSize: '0.86rem', fontWeight: 700, color: '#f1f5f9' }}>{l.name}</span>
-                    <span style={{ fontSize: '0.66rem', color: '#94a3b8' }}>{l.full}</span>
+                    <span style={{ fontSize: '0.66rem', color: 'var(--w-slate-400)' }}>{l.full}</span>
                     <span style={{
                       fontSize: '0.58rem', fontWeight: 600, color: l.color,
                       background: `${l.color}1f`, borderRadius: '500px', padding: '1px 7px',
                     }}>{l.scope}</span>
                   </div>
-                  <div style={{ fontSize: '0.66rem', color: '#94a3b8', marginTop: '2px' }}>{l.sub}</div>
-                  <div style={{ fontSize: '0.6rem', color: '#64748b', marginTop: '1px' }}>보증 강도: {l.strength}</div>
+                  <div style={{ fontSize: '0.66rem', color: 'var(--w-slate-400)', marginTop: '2px' }}>{l.sub}</div>
+                  <div style={{ fontSize: '0.6rem', color: 'var(--w-slate-500)', marginTop: '1px' }}>보증 강도: {l.strength}</div>
                 </div>
                 <div style={{ textAlign: 'right', flexShrink: 0 }}>
                   <div style={{ fontSize: '1.05rem', fontWeight: 800, color: l.color, lineHeight: 1.1 }}>{l.metric}</div>
-                  <div style={{ fontSize: '0.58rem', color: '#94a3b8', marginTop: '2px', maxWidth: '120px' }}>{l.metricNote}</div>
+                  <div style={{ fontSize: '0.58rem', color: 'var(--w-slate-400)', marginTop: '2px', maxWidth: '120px' }}>{l.metricNote}</div>
                 </div>
               </div>
             );

@@ -40,13 +40,13 @@ export default function SasUsImportBarriers() {
               }}>
                 <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
                   <span style={{ fontSize: '0.62rem', fontWeight: 800, color: g.color, background: `${g.color}22`, padding: '1px 6px', borderRadius: '4px' }}>관문 {i + 1}</span>
-                  <span style={{ fontSize: '0.74rem', fontWeight: 700, color: '#e2e8f0' }}>{g.key}</span>
+                  <span style={{ fontSize: '0.74rem', fontWeight: 700, color: 'var(--w-slate-200)' }}>{g.key}</span>
                 </div>
                 <div style={{ display: 'flex', alignItems: 'baseline', gap: '4px' }}>
                   <span style={{ fontSize: '1.45rem', fontWeight: 800, color: g.color }}>{g.value}</span>
-                  <span style={{ fontSize: '0.66rem', color: '#94a3b8' }}>{g.unit}</span>
+                  <span style={{ fontSize: '0.66rem', color: 'var(--w-slate-400)' }}>{g.unit}</span>
                 </div>
-                <span style={{ fontSize: '0.64rem', color: '#94a3b8', lineHeight: 1.45 }}>{g.desc}</span>
+                <span style={{ fontSize: '0.64rem', color: 'var(--w-slate-400)', lineHeight: 1.45 }}>{g.desc}</span>
               </div>
             ))}
           </div>
@@ -55,10 +55,10 @@ export default function SasUsImportBarriers() {
             background: 'rgba(239,68,68,0.06)', border: '1px solid rgba(239,68,68,0.2)',
             borderRadius: '8px', padding: '10px 12px',
           }}>
-            <span style={{ fontSize: '0.72rem', color: '#e2e8f0', fontWeight: 600 }}>수산물 = FDA 수입거부 1위 식품군</span>
+            <span style={{ fontSize: '0.72rem', color: 'var(--w-slate-200)', fontWeight: 600 }}>수산물 = FDA 수입거부 1위 식품군</span>
             <span style={{ fontSize: '0.88rem', fontWeight: 800, color: '#f87171' }}>약 20% (USDA ERS 2005~2013·post-2013 미확정)</span>
           </div>
-          <div style={{ fontSize: '0.62rem', color: '#64748b', lineHeight: 1.5 }}>
+          <div style={{ fontSize: '0.62rem', color: 'var(--w-slate-500)', lineHeight: 1.5 }}>
             ※ 수산물수입모니터링제도(SIMP) 대상 5종: 빅아이·황다랑어·날개·가다랑어·참다랑어 (NOAA가 진정 참치류 확대 검토 중)
           </div>
         </div>

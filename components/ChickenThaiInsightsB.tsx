@@ -43,10 +43,10 @@ export function InsightKoreaSpecialLine() {
         <ComposedChart data={koreaSpecialData} margin={{ top: 20, right: 30, left: 20, bottom: 5 }}>
           <ChartPatternDefs />
           <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" />
-          <XAxis dataKey="spec" stroke="#94a3b8" />
-          <YAxis yAxisId="left" stroke="#94a3b8" unit="%" />
-          <YAxis yAxisId="right" orientation="right" stroke="#f59e0b" />
-          <RTooltip contentStyle={{ backgroundColor: '#1a2442', border: 'none', borderRadius: '8px' }} />
+          <XAxis dataKey="spec" stroke="var(--w-slate-400)" />
+          <YAxis yAxisId="left" stroke="var(--w-slate-400)" unit="%" />
+          <YAxis yAxisId="right" orientation="right" stroke="var(--w-amber-500)" />
+          <RTooltip contentStyle={{ backgroundColor: 'var(--w-navy-900)', border: 'none', borderRadius: '8px' }} />
           <Legend />
           <Bar yAxisId="left" dataKey="yield" name="순살 수율(%)" radius={[4, 4, 0, 0]}>
             {koreaSpecialData.map((entry, idx) => {
@@ -55,7 +55,7 @@ export function InsightKoreaSpecialLine() {
             })}
           </Bar>
           <Bar yAxisId="left" dataKey="margin" name="예상 마진(%)" fill={A11Y_PALETTE[2]} radius={[4, 4, 0, 0]} fillOpacity={0.85} />
-          <Line yAxisId="right" type="monotone" dataKey="fcr" name="FCR(사료요구율)" stroke="#ef4444" strokeWidth={2.5} dot={{ r: 4 }} />
+          <Line yAxisId="right" type="monotone" dataKey="fcr" name="FCR(사료요구율)" stroke="var(--w-red-500)" strokeWidth={2.5} dot={{ r: 4 }} />
         </ComposedChart>
       }
       kpiPanel={[
@@ -89,12 +89,12 @@ export function InsightRiskNexus() {
       chart={
         <RadarChart cx="50%" cy="50%" outerRadius="70%" data={riskRadarData}>
           <PolarGrid stroke="rgba(255,255,255,0.15)" />
-          <PolarAngleAxis dataKey="risk" tick={{ fill: '#94a3b8', fontSize: 11 }} />
-          <PolarRadiusAxis angle={30} domain={[0, 100]} tick={{ fill: '#64748b', fontSize: 9 }} />
-          <RTooltip contentStyle={{ backgroundColor: '#1a2442', border: 'none', borderRadius: '8px' }} />
+          <PolarAngleAxis dataKey="risk" tick={{ fill: 'var(--w-slate-400)', fontSize: 11 }} />
+          <PolarRadiusAxis angle={30} domain={[0, 100]} tick={{ fill: 'var(--w-slate-500)', fontSize: 9 }} />
+          <RTooltip contentStyle={{ backgroundColor: 'var(--w-navy-900)', border: 'none', borderRadius: '8px' }} />
           <Legend />
-          <Radar name="🇹🇭 태국 리스크" dataKey="thai" stroke="#10b981" fill="#10b981" fillOpacity={0.3} />
-          <Radar name="🇧🇷 브라질 리스크" dataKey="brazil" stroke="#ef4444" fill="#ef4444" fillOpacity={0.3} />
+          <Radar name="🇹🇭 태국 리스크" dataKey="thai" stroke="var(--w-emerald-500)" fill="var(--w-emerald-500)" fillOpacity={0.3} />
+          <Radar name="🇧🇷 브라질 리스크" dataKey="brazil" stroke="var(--w-red-500)" fill="var(--w-red-500)" fillOpacity={0.3} />
         </RadarChart>
       }
       kpiPanel={[
@@ -128,13 +128,13 @@ export function InsightPartnerMatch() {
       chart={
         <RadarChart cx="50%" cy="50%" outerRadius="70%" data={partnerRadarData}>
           <PolarGrid stroke="rgba(255,255,255,0.15)" />
-          <PolarAngleAxis dataKey="axis" tick={{ fill: '#94a3b8', fontSize: 11 }} />
-          <PolarRadiusAxis angle={30} domain={[0, 100]} tick={{ fill: '#64748b', fontSize: 9 }} />
-          <RTooltip contentStyle={{ backgroundColor: '#1a2442', border: 'none', borderRadius: '8px' }} />
+          <PolarAngleAxis dataKey="axis" tick={{ fill: 'var(--w-slate-400)', fontSize: 11 }} />
+          <PolarRadiusAxis angle={30} domain={[0, 100]} tick={{ fill: 'var(--w-slate-500)', fontSize: 9 }} />
+          <RTooltip contentStyle={{ backgroundColor: 'var(--w-navy-900)', border: 'none', borderRadius: '8px' }} />
           <Legend />
-          <Radar name="CP Foods" dataKey="CP" stroke="#ef4444" fill="#ef4444" fillOpacity={0.25} />
-          <Radar name="Betagro" dataKey="Betagro" stroke="#10b981" fill="#10b981" fillOpacity={0.25} />
-          <Radar name="GFPT" dataKey="GFPT" stroke="#8b5cf6" fill="#8b5cf6" fillOpacity={0.25} />
+          <Radar name="CP Foods" dataKey="CP" stroke="var(--w-red-500)" fill="var(--w-red-500)" fillOpacity={0.25} />
+          <Radar name="Betagro" dataKey="Betagro" stroke="var(--w-emerald-500)" fill="var(--w-emerald-500)" fillOpacity={0.25} />
+          <Radar name="GFPT" dataKey="GFPT" stroke="var(--w-violet-500)" fill="var(--w-violet-500)" fillOpacity={0.25} />
         </RadarChart>
       }
       kpiPanel={[

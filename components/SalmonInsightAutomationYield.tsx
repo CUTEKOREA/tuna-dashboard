@@ -21,7 +21,7 @@ export default function SalmonInsightAutomationYield() {
         <ComposedChart data={rawData} margin={{ top: 10, right: 10, left: -20, bottom: 0 }}>
           <ChartPatternDefs />
           <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" vertical={false} />
-          <XAxis dataKey="year" stroke="#94a3b8" fontSize={11} tickLine={false} axisLine={false} />
+          <XAxis dataKey="year" stroke="var(--w-slate-400)" fontSize={11} tickLine={false} axisLine={false} />
           <YAxis yAxisId="left" stroke="var(--color-success)" fontSize={11} tickLine={false} axisLine={false} tickFormatter={(v) => `${v}%`} />
           <YAxis yAxisId="right" orientation="right" stroke="var(--color-danger)" fontSize={11} tickLine={false} axisLine={false} tickFormatter={(v) => `Index ${v}`} />
           <Tooltip 
@@ -32,7 +32,7 @@ export default function SalmonInsightAutomationYield() {
           
           <Area yAxisId="left" type="monotone" dataKey="yield" name="제품 수율(Yield %)" stroke="var(--color-success)" fill="var(--color-success)" fillOpacity={0.2} />
           <Line yAxisId="right" type="monotone" dataKey="manualCost" name="인건비 지수" stroke="var(--color-danger)" strokeWidth={3} dot={false} />
-          <Line yAxisId="right" type="monotone" dataKey="capex" name="자동화 설비 CAPEX 지수" stroke="#8b5cf6" strokeWidth={2} strokeDasharray="5 5" />
+          <Line yAxisId="right" type="monotone" dataKey="capex" name="자동화 설비 CAPEX 지수" stroke="var(--w-violet-500)" strokeWidth={2} strokeDasharray="5 5" />
         </ComposedChart>
       }
       takeaway={{

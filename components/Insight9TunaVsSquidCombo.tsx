@@ -38,7 +38,7 @@ const BenchmarkTooltip = ({ active, payload, label }: any) => {
         <span style={{ fontWeight: 600 }}>{squid?.value?.toFixed(1)} <span style={{fontSize: '0.8rem', color: '#a1a1aa'}}>({squidRaw.toLocaleString()}t)</span></span>
       </div>
       <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-        <span style={{ color: '#06b6d4' }}>🐟 안정성 (안전자산)</span>
+        <span style={{ color: 'var(--w-cyan-500)' }}>🐟 안정성 (안전자산)</span>
         <span style={{ fontWeight: 600 }}>{tuna?.value?.toFixed(1)} <span style={{fontSize: '0.8rem', color: '#a1a1aa'}}>({tunaRaw.toLocaleString()}t)</span></span>
       </div>
       {squid?.value && tuna?.value && (
@@ -87,7 +87,7 @@ export default function Insight9TunaVsSquidCombo() {
               <Legend wrapperStyle={{ fontSize: mobile ? '11px' : '12px', paddingTop: '8px' }} iconType="plainline" />
               <ReferenceLine y={100} stroke="rgba(255,255,255,0.15)" strokeDasharray="4 4" label={{ value: '기준(100)', fill: 'rgba(255,255,255,0.3)', fontSize: 10, position: 'right' }} />
               
-              <Line type="monotone" dataKey="TunaIndex" name="🐟 참치 트렌드 지수 (안전자산)" stroke="#06b6d4" strokeWidth={3} dot={false} activeDot={{ r: 6, fill: '#22d3ee', stroke: '#06b6d4', strokeWidth: 2 }} />
+              <Line type="monotone" dataKey="TunaIndex" name="🐟 참치 트렌드 지수 (안전자산)" stroke="var(--w-cyan-500)" strokeWidth={3} dot={false} activeDot={{ r: 6, fill: '#22d3ee', stroke: 'var(--w-cyan-500)', strokeWidth: 2 }} />
               <Line type="step" dataKey="SquidIndex" name="🦑 오징어 트렌드 지수 (위험자산)" stroke="#f97316" strokeWidth={2.5} dot={false} activeDot={{ r: 6, fill: '#fb923c', stroke: '#f97316', strokeWidth: 2 }} />
             </LineChart>
           </SafeResponsiveContainer>

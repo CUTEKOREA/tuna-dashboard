@@ -47,14 +47,14 @@ export default function SasUsCompetitorMap() {
               <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '6px' }}>
                 {p.stats.map(([k, v]) => (
                   <div key={k} style={{ display: 'flex', flexDirection: 'column', gap: '1px' }}>
-                    <span style={{ fontSize: '0.58rem', color: '#64748b' }}>{k}</span>
-                    <span style={{ fontSize: '0.72rem', fontWeight: 700, color: '#e2e8f0' }}>{v}</span>
+                    <span style={{ fontSize: '0.58rem', color: 'var(--w-slate-500)' }}>{k}</span>
+                    <span style={{ fontSize: '0.72rem', fontWeight: 700, color: 'var(--w-slate-200)' }}>{v}</span>
                   </div>
                 ))}
               </div>
             </div>
           ))}
-          <div style={{ fontSize: '0.62rem', color: '#64748b', lineHeight: 1.5 }}>
+          <div style={{ fontSize: '0.62rem', color: 'var(--w-slate-500)', lineHeight: 1.5 }}>
             ※ 일본계(미쓰비시·도요레이조 등) 영향력 + 대만 FCF 수직계열이 원물~유통을 압박. 한국은 생물 사시미 유통이 빈 공간.
           </div>
         </div>

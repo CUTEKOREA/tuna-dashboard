@@ -41,21 +41,21 @@ export function PollockConcentrationIndex() {
           <>
             <div style={{ display: 'flex', gap: '8px', marginBottom: '12px' }}>
               <div style={{ flex: 1, background: 'rgba(239,68,68,0.12)', borderRadius: '10px', padding: '12px', textAlign: 'center' }}>
-                <div style={{ fontSize: '2rem', fontWeight: 800, color: '#ef4444' }}>{trend.at(-1)?.hhi?.toLocaleString()}</div>
+                <div style={{ fontSize: '2rem', fontWeight: 800, color: 'var(--w-red-500)' }}>{trend.at(-1)?.hhi?.toLocaleString()}</div>
                 <div style={{ fontSize: '0.65rem', color: '#fca5a5' }}>현재 HHI (극단적 집중)</div>
               </div>
               <div style={{ display: 'grid', gap: '4px', flex: 1 }}>
                 <div style={{ display: 'flex', justifyContent: 'space-between', padding: '4px 8px', background: 'rgba(239,68,68,0.06)', borderRadius: '6px', fontSize: '0.68rem' }}>
                   <span style={{ color: 'var(--text-secondary)' }}>🇷🇺 러시아</span>
-                  <span style={{ fontWeight: 700, color: '#ef4444' }}>{trend.at(-1)?.russia_pct}%</span>
+                  <span style={{ fontWeight: 700, color: 'var(--w-red-500)' }}>{trend.at(-1)?.russia_pct}%</span>
                 </div>
                 <div style={{ display: 'flex', justifyContent: 'space-between', padding: '4px 8px', background: 'rgba(245,158,11,0.06)', borderRadius: '6px', fontSize: '0.68rem' }}>
                   <span style={{ color: 'var(--text-secondary)' }}>🇨🇳 중국</span>
-                  <span style={{ fontWeight: 700, color: '#f59e0b' }}>{trend.at(-1)?.china_pct}%</span>
+                  <span style={{ fontWeight: 700, color: 'var(--w-amber-500)' }}>{trend.at(-1)?.china_pct}%</span>
                 </div>
                 <div style={{ display: 'flex', justifyContent: 'space-between', padding: '4px 8px', background: 'rgba(59,130,246,0.06)', borderRadius: '6px', fontSize: '0.68rem' }}>
                   <span style={{ color: 'var(--text-secondary)' }}>🇺🇸 미국</span>
-                  <span style={{ fontWeight: 700, color: '#3b82f6' }}>{trend.at(-1)?.us_pct}%</span>
+                  <span style={{ fontWeight: 700, color: 'var(--w-blue-500)' }}>{trend.at(-1)?.us_pct}%</span>
                 </div>
               </div>
             </div>
@@ -65,9 +65,9 @@ export function PollockConcentrationIndex() {
                 <XAxis dataKey="year" tick={{ fill: 'var(--text-secondary)', fontSize: 10 }} />
                 <YAxis tick={{ fill: 'var(--text-secondary)', fontSize: 10 }} />
                 <Tooltip contentStyle={{ background: '#1a1a2e', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '8px', fontSize: '0.75rem' }} />
-                <Area type="monotone" dataKey="russia_pct" stackId="1" stroke="#ef4444" fill="#ef444466" name="러시아 %" />
-                <Area type="monotone" dataKey="china_pct" stackId="1" stroke="#f59e0b" fill="#f59e0b66" name="중국 %" />
-                <Area type="monotone" dataKey="us_pct" stackId="1" stroke="#3b82f6" fill="#3b82f666" name="미국 %" />
+                <Area type="monotone" dataKey="russia_pct" stackId="1" stroke="var(--w-red-500)" fill="#ef444466" name="러시아 %" />
+                <Area type="monotone" dataKey="china_pct" stackId="1" stroke="var(--w-amber-500)" fill="#f59e0b66" name="중국 %" />
+                <Area type="monotone" dataKey="us_pct" stackId="1" stroke="var(--w-blue-500)" fill="#3b82f666" name="미국 %" />
                 <Area type="monotone" dataKey="other_pct" stackId="1" stroke="#6b7280" fill="#6b728066" name="기타 %" />
               </AreaChart>
             </div>
@@ -117,7 +117,7 @@ export function PollockAlternativeSourcing() {
               <PolarAngleAxis dataKey="country" tick={{ fill: 'var(--text-secondary)', fontSize: 9 }} />
               <PolarRadiusAxis domain={[0, 100]} tick={false} axisLine={false} />
               <Radar name="원가 경쟁력" dataKey="cost" stroke="#22c55e" fill="#22c55e" fillOpacity={0.2} />
-              <Radar name="품질" dataKey="quality" stroke="#3b82f6" fill="#3b82f6" fillOpacity={0.2} />
+              <Radar name="품질" dataKey="quality" stroke="var(--w-blue-500)" fill="var(--w-blue-500)" fillOpacity={0.2} />
               <Radar name="ESG" dataKey="esg" stroke="#a855f7" fill="#a855f7" fillOpacity={0.2} />
             </RadarChart>
           </div>
@@ -125,7 +125,7 @@ export function PollockAlternativeSourcing() {
             {options.slice(0, 4).map((o: any, i: number) => (
               <div key={i} style={{ display: 'flex', alignItems: 'center', gap: '8px', padding: '5px 8px', background: 'rgba(255,255,255,0.03)', borderRadius: '6px', fontSize: '0.68rem' }}>
                 <span style={{ flex: 1, color: 'var(--text-primary)', fontWeight: 600 }}>{o.country}</span>
-                <span style={{ fontWeight: 700, color: o.score >= 80 ? '#22c55e' : o.score >= 60 ? '#f59e0b' : '#ef4444', fontFamily: 'monospace' }}>{o.score}점</span>
+                <span style={{ fontWeight: 700, color: o.score >= 80 ? '#22c55e' : o.score >= 60 ? 'var(--w-amber-500)' : 'var(--w-red-500)', fontFamily: 'monospace' }}>{o.score}점</span>
                 <span style={{ color: 'var(--text-secondary)', fontSize: '0.6rem', maxWidth: '120px', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{o.note}</span>
               </div>
             ))}
@@ -162,13 +162,13 @@ export function PollockSubstituteElasticity() {
       customBody={
         <div style={{ display: 'grid', gap: '6px' }}>
           {subs.map((s: any, i: number) => (
-            <div key={i} style={{ padding: '10px', background: 'rgba(255,255,255,0.03)', borderRadius: '8px', borderLeft: `3px solid ${s.elasticity > 0.6 ? '#22c55e' : s.elasticity > 0.4 ? '#f59e0b' : '#ef4444'}` }}>
+            <div key={i} style={{ padding: '10px', background: 'rgba(255,255,255,0.03)', borderRadius: '8px', borderLeft: `3px solid ${s.elasticity > 0.6 ? '#22c55e' : s.elasticity > 0.4 ? 'var(--w-amber-500)' : 'var(--w-red-500)'}` }}>
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '4px' }}>
                 <span style={{ fontSize: '0.75rem', fontWeight: 700, color: 'var(--text-primary)' }}>{s.substitute}</span>
-                <span style={{ fontSize: '0.68rem', fontFamily: 'monospace', color: '#8b5cf6' }}>탄력성: {s.elasticity}</span>
+                <span style={{ fontSize: '0.68rem', fontFamily: 'monospace', color: 'var(--w-violet-500)' }}>탄력성: {s.elasticity}</span>
               </div>
               <div style={{ display: 'flex', gap: '12px', fontSize: '0.65rem', color: 'var(--text-secondary)' }}>
-                <span>전환점: <strong style={{ color: '#f59e0b' }}>${s.tipping_point_usd}/MT</strong></span>
+                <span>전환점: <strong style={{ color: 'var(--w-amber-500)' }}>${s.tipping_point_usd}/MT</strong></span>
                 <span>최대 블렌딩: <strong style={{ color: '#22c55e' }}>{s.max_blend}%</strong></span>
                 <span>현재: {s.current_share}%</span>
               </div>

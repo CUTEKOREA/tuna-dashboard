@@ -24,15 +24,15 @@ const CustomTooltip = ({ active, payload, label }: any) => {
   if (!active || !payload) return null;
   return (
     <div style={{
-      background: '#1a2442', border: '1px solid #334155', borderRadius: '8px',
+      background: 'var(--w-navy-900)', border: '1px solid #334155', borderRadius: '8px',
       padding: '10px 14px', boxShadow: '0 4px 12px rgba(0,0,0,0.3)',
     }}>
-      <div style={{ fontSize: '0.78rem', fontWeight: 600, color: '#e2e8f0', marginBottom: '6px' }}>{label}</div>
+      <div style={{ fontSize: '0.78rem', fontWeight: 600, color: 'var(--w-slate-200)', marginBottom: '6px' }}>{label}</div>
       {payload.map((p: any, i: number) => (
         <div key={i} style={{ display: 'flex', alignItems: 'center', gap: '6px', fontSize: '0.72rem', marginBottom: '2px' }}>
           <span style={{ width: '8px', height: '8px', borderRadius: '50%', background: p.color, display: 'inline-block' }} />
-          <span style={{ color: '#94a3b8' }}>{p.name}:</span>
-          <span style={{ color: '#e2e8f0', fontWeight: 600 }}>
+          <span style={{ color: 'var(--w-slate-400)' }}>{p.name}:</span>
+          <span style={{ color: 'var(--w-slate-200)', fontWeight: 600 }}>
             {p.dataKey === 'japanShare' ? `${p.value}%` : `$${p.value}M`}
           </span>
         </div>
@@ -64,8 +64,8 @@ export default function SasKoreaJapanDependency() {
             marginBottom: '12px',
           }}>
             <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-              <path d="M8 1L15 14H1L8 1Z" stroke="#ef4444" strokeWidth="1.2" fill="none" />
-              <path d="M8 6v4M8 11.5v.5" stroke="#ef4444" strokeWidth="1.2" strokeLinecap="round" />
+              <path d="M8 1L15 14H1L8 1Z" stroke="var(--w-red-500)" strokeWidth="1.2" fill="none" />
+              <path d="M8 6v4M8 11.5v.5" stroke="var(--w-red-500)" strokeWidth="1.2" strokeLinecap="round" />
             </svg>
             <span style={{ fontSize: '0.74rem', color: '#fca5a5', fontWeight: 600 }}>
               일본 사시미 소비: 726K → 359K → 112K(2050 전망)
@@ -78,12 +78,12 @@ export default function SasKoreaJapanDependency() {
               <ComposedChart data={tradeData} margin={{ top: 20, right: 20, left: 10, bottom: 0 }}>
                 <defs>
                   <linearGradient id="gradExport" x1="0" y1="0" x2="0" y2="1">
-                    <stop offset="5%" stopColor="#10b981" stopOpacity={0.3} />
-                    <stop offset="95%" stopColor="#10b981" stopOpacity={0} />
+                    <stop offset="5%" stopColor="var(--w-emerald-500)" stopOpacity={0.3} />
+                    <stop offset="95%" stopColor="var(--w-emerald-500)" stopOpacity={0} />
                   </linearGradient>
                   <linearGradient id="gradImport" x1="0" y1="0" x2="0" y2="1">
-                    <stop offset="5%" stopColor="#ef4444" stopOpacity={0.25} />
-                    <stop offset="95%" stopColor="#ef4444" stopOpacity={0} />
+                    <stop offset="5%" stopColor="var(--w-red-500)" stopOpacity={0.25} />
+                    <stop offset="95%" stopColor="var(--w-red-500)" stopOpacity={0} />
                   </linearGradient>
                 </defs>
                 <CartesianGrid strokeDasharray="3 3" opacity={0.15} vertical={false} />
@@ -92,7 +92,7 @@ export default function SasKoreaJapanDependency() {
                   fontSize={11}
                   tickLine={false}
                   axisLine={false}
-                  stroke="#64748b"
+                  stroke="var(--w-slate-500)"
                 />
                 <YAxis
                   yAxisId="left"
@@ -101,7 +101,7 @@ export default function SasKoreaJapanDependency() {
                   fontSize={11}
                   tickLine={false}
                   axisLine={false}
-                  stroke="#64748b"
+                  stroke="var(--w-slate-500)"
                 />
                 <YAxis
                   yAxisId="right"
@@ -111,11 +111,11 @@ export default function SasKoreaJapanDependency() {
                   fontSize={11}
                   tickLine={false}
                   axisLine={false}
-                  stroke="#f59e0b"
+                  stroke="var(--w-amber-500)"
                 />
                 <Tooltip content={<CustomTooltip />} />
                 <Legend
-                  wrapperStyle={{ fontSize: '0.7rem', color: '#94a3b8' }}
+                  wrapperStyle={{ fontSize: '0.7rem', color: 'var(--w-slate-400)' }}
                   iconType="circle"
                   iconSize={8}
                 />
@@ -124,7 +124,7 @@ export default function SasKoreaJapanDependency() {
                   type="monotone"
                   dataKey="filletExport"
                   name="필릿 수출 ($M)"
-                  stroke="#10b981"
+                  stroke="var(--w-emerald-500)"
                   strokeWidth={2}
                   fillOpacity={1}
                   fill="url(#gradExport)"
@@ -135,7 +135,7 @@ export default function SasKoreaJapanDependency() {
                   type="monotone"
                   dataKey="filletImport"
                   name="필릿 수입 ($M)"
-                  stroke="#ef4444"
+                  stroke="var(--w-red-500)"
                   strokeWidth={2}
                   fillOpacity={1}
                   fill="url(#gradImport)"
@@ -146,9 +146,9 @@ export default function SasKoreaJapanDependency() {
                   type="monotone"
                   dataKey="japanShare"
                   name="일본 비중 (%)"
-                  stroke="#f59e0b"
+                  stroke="var(--w-amber-500)"
                   strokeWidth={2.5}
-                  dot={{ r: 3, fill: '#f59e0b', stroke: '#1a2442', strokeWidth: 1.5 }}
+                  dot={{ r: 3, fill: 'var(--w-amber-500)', stroke: 'var(--w-navy-900)', strokeWidth: 1.5 }}
                   isAnimationActive={false}
                 />
               </ComposedChart>
@@ -169,9 +169,9 @@ export default function SasKoreaJapanDependency() {
                 background: `${kpi.color}08`, border: `1px solid ${kpi.color}20`,
                 borderRadius: '6px', padding: '8px 10px', textAlign: 'center',
               }}>
-                <div style={{ fontSize: '0.68rem', color: '#64748b' }}>{kpi.label}</div>
+                <div style={{ fontSize: '0.68rem', color: 'var(--w-slate-500)' }}>{kpi.label}</div>
                 <div style={{ fontSize: '1rem', fontWeight: 700, color: kpi.color, marginTop: '2px' }}>{kpi.value}</div>
-                <div style={{ fontSize: '0.65rem', color: '#94a3b8', marginTop: '2px' }}>{kpi.sub}</div>
+                <div style={{ fontSize: '0.65rem', color: 'var(--w-slate-400)', marginTop: '2px' }}>{kpi.sub}</div>
               </div>
             ))}
           </div>

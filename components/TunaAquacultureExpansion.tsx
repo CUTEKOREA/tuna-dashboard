@@ -25,9 +25,9 @@ function CustomTooltip({ active, payload, label }: any) {
   return (
     <div style={{
       background: 'rgba(20, 28, 52, 0.9)', border: '1px solid rgba(255, 255, 255, 0.1)',
-      padding: '14px', borderRadius: '8px', color: '#f8fafc', boxShadow: '0 4px 6px rgba(0,0,0,0.3)'
+      padding: '14px', borderRadius: '8px', color: 'var(--w-slate-50)', boxShadow: '0 4px 6px rgba(0,0,0,0.3)'
     }}>
-      <p style={{ margin: '0 0 8px 0', fontWeight: 'bold', color: '#e2e8f0' }}>{label}</p>
+      <p style={{ margin: '0 0 8px 0', fontWeight: 'bold', color: 'var(--w-slate-200)' }}>{label}</p>
       <div style={{ display: 'flex', flexDirection: 'column', gap: '6px', fontSize: '0.85rem' }}>
         {payload.map((entry: any, index: number) => (
            <div key={index} style={{ display: 'flex', justifyContent: 'space-between', gap: '20px' }}>
@@ -52,7 +52,7 @@ export default function TunaAquacultureExpansion() {
           <TrendingUp size={18} className={styles.cardIcon} color={ACCENT} />
           글로벌 참치 양식(Aquaculture) 패러다임 시프트
         </h3>
-        <p style={{ margin: '4px 0 0 0', fontSize: '0.82rem', color: '#94a3b8', lineHeight: 1.5 }}>
+        <p style={{ margin: '4px 0 0 0', fontSize: '0.82rem', color: 'var(--w-slate-400)', lineHeight: 1.5 }}>
           RFMO 쿼터 축소로 인한 자연산 어획 한계와 양식산(Farmed) 참치 공급량 역전 시뮬레이션
         </p>
       </div>
@@ -61,8 +61,8 @@ export default function TunaAquacultureExpansion() {
         <SafeResponsiveContainer width="100%" height="100%">
           <AreaChart data={data}>
             <CartesianGrid strokeDasharray="3 3" stroke="#334155" />
-            <XAxis dataKey="year" stroke="#94a3b8" fontSize={12}  angle={0} textAnchor="middle" height={60} tickFormatter={truncateXAxis}/>
-            <YAxis stroke="#94a3b8" fontSize={12} tickFormatter={(val) => `${val / 1000}k`} />
+            <XAxis dataKey="year" stroke="var(--w-slate-400)" fontSize={12}  angle={0} textAnchor="middle" height={60} tickFormatter={truncateXAxis}/>
+            <YAxis stroke="var(--w-slate-400)" fontSize={12} tickFormatter={(val) => `${val / 1000}k`} />
             <RechartsTooltip content={<CustomTooltip />} />
             <Legend wrapperStyle={{ paddingTop: '12px', fontSize: '12px' }} />
             <Area type="monotone" dataKey="farmed" name="양식산 (Farmed BFT)" stroke="#f472b6" fill="#f472b6" fillOpacity={0.6} />

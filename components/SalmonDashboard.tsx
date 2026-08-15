@@ -170,7 +170,7 @@ export default function SalmonDashboard() {
   if (!data) return (
     <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh', flexDirection: 'column', gap: '1rem' }}>
       <RefreshCcw size={32} style={{ color: SALMON_THEME.primary, animation: 'spin 1s linear infinite' }} />
-      <p style={{ color: '#94a3b8', fontSize: '1rem' }}>Loading Intelligence...</p>
+      <p style={{ color: 'var(--w-slate-400)', fontSize: '1rem' }}>Loading Intelligence...</p>
     </div>
   );
 
@@ -187,7 +187,7 @@ export default function SalmonDashboard() {
   /* ─── Unified Chart Renderer ─── */
   const renderChart = (widget: any) => {
     const d = widget.data;
-    if (!d || d.length === 0) return <div style={{height:'100%',display:'flex',alignItems:'center',justifyContent:'center',color:'#64748b'}}>데이터 없음</div>;
+    if (!d || d.length === 0) return <div style={{height:'100%',display:'flex',alignItems:'center',justifyContent:'center',color:'var(--w-slate-500)'}}>데이터 없음</div>;
     const chartType = (widget.chartType || '').toLowerCase();
 
     // NEW FORMAT (Claude widgets)
@@ -202,7 +202,7 @@ export default function SalmonDashboard() {
                 {d.map((_: any, idx: number) => <Cell key={idx} fill={PIE_COLORS[idx % PIE_COLORS.length]} />)}
               </Pie>
               <RechartsTooltip content={<CustomTooltip />} />
-              <Legend wrapperStyle={{ fontSize: '11px', color: '#cbd5e1' }} />
+              <Legend wrapperStyle={{ fontSize: '11px', color: 'var(--w-slate-300)' }} />
             </PieChart>
           );
         case "area":
@@ -217,8 +217,8 @@ export default function SalmonDashboard() {
                 ))}
               </defs>
               <CartesianGrid strokeDasharray="3 3" stroke="rgba(140,170,255,0.12)" vertical={false} />
-              <XAxis dataKey={xKeyVal} stroke="#64748b" tick={{fontSize:10}} tickFormatter={(v) => xFmt(String(v))} minTickGap={20} />
-              <YAxis stroke="#64748b" tick={{fontSize:10}} tickFormatter={(v) => formatYAxis(v, widget.yUnit)} />
+              <XAxis dataKey={xKeyVal} stroke="var(--w-slate-500)" tick={{fontSize:10}} tickFormatter={(v) => xFmt(String(v))} minTickGap={20} />
+              <YAxis stroke="var(--w-slate-500)" tick={{fontSize:10}} tickFormatter={(v) => formatYAxis(v, widget.yUnit)} />
               <RechartsTooltip content={<CustomTooltip />} />
               <Legend wrapperStyle={{fontSize:'11px'}} verticalAlign="top" />
               {(widget.areas || widget.lines)?.map((a: any, i: number) => (
@@ -230,8 +230,8 @@ export default function SalmonDashboard() {
           return (
             <LineChart data={d}>
               <CartesianGrid strokeDasharray="3 3" stroke="rgba(140,170,255,0.12)" vertical={false} />
-              <XAxis dataKey={xKeyVal} stroke="#64748b" tick={{fontSize:10}} tickFormatter={(v) => xFmt(String(v))} minTickGap={20} />
-              <YAxis stroke="#64748b" tick={{fontSize:10}} tickFormatter={(v) => formatYAxis(v, widget.yUnit)} />
+              <XAxis dataKey={xKeyVal} stroke="var(--w-slate-500)" tick={{fontSize:10}} tickFormatter={(v) => xFmt(String(v))} minTickGap={20} />
+              <YAxis stroke="var(--w-slate-500)" tick={{fontSize:10}} tickFormatter={(v) => formatYAxis(v, widget.yUnit)} />
               <RechartsTooltip content={<CustomTooltip />} />
               <Legend wrapperStyle={{fontSize:'11px'}} verticalAlign="top" />
               {widget.lines?.map((l: any, i: number) => (
@@ -244,8 +244,8 @@ export default function SalmonDashboard() {
             <BarChart data={d}>
               <ChartPatternDefs />
               <CartesianGrid strokeDasharray="3 3" stroke="rgba(140,170,255,0.12)" vertical={false} />
-              <XAxis dataKey={xKeyVal} stroke="#64748b" tick={{fontSize:10}} tickFormatter={(v) => xFmt(String(v))} minTickGap={20} />
-              <YAxis stroke="#64748b" tick={{fontSize:10}} tickFormatter={(v) => formatYAxis(v, widget.yUnit)} />
+              <XAxis dataKey={xKeyVal} stroke="var(--w-slate-500)" tick={{fontSize:10}} tickFormatter={(v) => xFmt(String(v))} minTickGap={20} />
+              <YAxis stroke="var(--w-slate-500)" tick={{fontSize:10}} tickFormatter={(v) => formatYAxis(v, widget.yUnit)} />
               <RechartsTooltip content={<CustomTooltip />} cursor={{fill: 'rgba(140,170,255,0.10)'}} />
               <Legend wrapperStyle={{fontSize:'11px'}} verticalAlign="top" />
               {widget.bars?.map((b: any, i: number) => {
@@ -259,8 +259,8 @@ export default function SalmonDashboard() {
             <ComposedChart data={d}>
               <ChartPatternDefs />
               <CartesianGrid strokeDasharray="3 3" stroke="rgba(140,170,255,0.12)" vertical={false} />
-              <XAxis dataKey={xKeyVal} stroke="#64748b" tick={{fontSize:10}} minTickGap={20} />
-              <YAxis yAxisId="left" stroke="#64748b" tick={{fontSize:10}} tickFormatter={(v) => formatYAxis(v, widget.yUnit)} />
+              <XAxis dataKey={xKeyVal} stroke="var(--w-slate-500)" tick={{fontSize:10}} minTickGap={20} />
+              <YAxis yAxisId="left" stroke="var(--w-slate-500)" tick={{fontSize:10}} tickFormatter={(v) => formatYAxis(v, widget.yUnit)} />
               <RechartsTooltip content={<CustomTooltip />} />
               <Legend wrapperStyle={{fontSize:'11px'}} verticalAlign="top" />
               {widget.bars?.map((b: any, i: number) => {
@@ -273,7 +273,7 @@ export default function SalmonDashboard() {
             </ComposedChart>
           );
         default:
-          return <div style={{color:'#64748b',textAlign:'center',marginTop:'40px'}}>Unsupported</div>;
+          return <div style={{color:'var(--w-slate-500)',textAlign:'center',marginTop:'40px'}}>Unsupported</div>;
       }
     }
 
@@ -298,9 +298,9 @@ export default function SalmonDashboard() {
         return (
           <LineChart data={d} margin={{ top: 20, right: 10, left: -10, bottom: 0 }}>
             <CartesianGrid strokeDasharray="3 3" stroke="rgba(140,170,255,0.10)" />
-            <XAxis dataKey={xAxis} stroke="#94a3b8" tick={{ fill: '#94a3b8', fontSize: 11 }} tickFormatter={(v) => xFmt(String(v))} minTickGap={20} />
-            <YAxis yAxisId="left" stroke="#94a3b8" tick={{ fill: '#94a3b8', fontSize: 11 }} tickFormatter={(v) => formatYAxis(v, widget.yUnit)} />
-            {hasRightAxis && <YAxis yAxisId="right" orientation="right" stroke="#94a3b8" tick={{ fill: '#94a3b8', fontSize: 11 }} tickFormatter={(v) => formatYAxis(v, widget.yUnit)} />}
+            <XAxis dataKey={xAxis} stroke="var(--w-slate-400)" tick={{ fill: 'var(--w-slate-400)', fontSize: 11 }} tickFormatter={(v) => xFmt(String(v))} minTickGap={20} />
+            <YAxis yAxisId="left" stroke="var(--w-slate-400)" tick={{ fill: 'var(--w-slate-400)', fontSize: 11 }} tickFormatter={(v) => formatYAxis(v, widget.yUnit)} />
+            {hasRightAxis && <YAxis yAxisId="right" orientation="right" stroke="var(--w-slate-400)" tick={{ fill: 'var(--w-slate-400)', fontSize: 11 }} tickFormatter={(v) => formatYAxis(v, widget.yUnit)} />}
             <RechartsTooltip content={<CustomTooltip />} />
             <Legend wrapperStyle={{ fontSize: '11px' }} iconType="circle" verticalAlign="top" />
             {series.map((s: any, i: number) => (
@@ -312,8 +312,8 @@ export default function SalmonDashboard() {
         return (
           <AreaChart data={d} margin={{ top: 20, right: 10, left: -10, bottom: 0 }}>
             <CartesianGrid strokeDasharray="3 3" stroke="rgba(140,170,255,0.10)" />
-            <XAxis dataKey={xAxis} stroke="#94a3b8" tick={{ fill: '#94a3b8', fontSize: 11 }} tickFormatter={(v) => xFmt(String(v))} minTickGap={20} />
-            <YAxis stroke="#94a3b8" tick={{ fill: '#94a3b8', fontSize: 11 }} tickFormatter={(v) => formatYAxis(v, widget.yUnit)} />
+            <XAxis dataKey={xAxis} stroke="var(--w-slate-400)" tick={{ fill: 'var(--w-slate-400)', fontSize: 11 }} tickFormatter={(v) => xFmt(String(v))} minTickGap={20} />
+            <YAxis stroke="var(--w-slate-400)" tick={{ fill: 'var(--w-slate-400)', fontSize: 11 }} tickFormatter={(v) => formatYAxis(v, widget.yUnit)} />
             <RechartsTooltip content={<CustomTooltip />} />
             <Legend wrapperStyle={{ fontSize: '11px' }} iconType="circle" verticalAlign="top" />
             {series.map((s: any, i: number) => (
@@ -326,8 +326,8 @@ export default function SalmonDashboard() {
           <BarChart data={d} margin={{ top: 20, right: 10, left: -10, bottom: 0 }}>
             <ChartPatternDefs />
             <CartesianGrid strokeDasharray="3 3" stroke="rgba(140,170,255,0.10)" />
-            <XAxis dataKey={xAxis} stroke="#94a3b8" tick={{ fill: '#94a3b8', fontSize: 11 }} tickFormatter={(v) => xFmt(String(v))} minTickGap={20} />
-            <YAxis stroke="#94a3b8" tick={{ fill: '#94a3b8', fontSize: 11 }} tickFormatter={(v) => formatYAxis(v, widget.yUnit)} />
+            <XAxis dataKey={xAxis} stroke="var(--w-slate-400)" tick={{ fill: 'var(--w-slate-400)', fontSize: 11 }} tickFormatter={(v) => xFmt(String(v))} minTickGap={20} />
+            <YAxis stroke="var(--w-slate-400)" tick={{ fill: 'var(--w-slate-400)', fontSize: 11 }} tickFormatter={(v) => formatYAxis(v, widget.yUnit)} />
             <RechartsTooltip content={<CustomTooltip />} cursor={{fill: 'rgba(140,170,255,0.10)'}} />
             <Legend wrapperStyle={{ fontSize: '11px' }} iconType="circle" verticalAlign="top" />
             {series.map((s: any, i: number) => {
@@ -341,9 +341,9 @@ export default function SalmonDashboard() {
           <ComposedChart data={d} margin={{ top: 20, right: 10, left: -10, bottom: 0 }}>
             <ChartPatternDefs />
             <CartesianGrid strokeDasharray="3 3" stroke="rgba(140,170,255,0.10)" />
-            <XAxis dataKey={xAxis} stroke="#94a3b8" tick={{ fill: '#94a3b8', fontSize: 11 }} tickFormatter={(v) => xFmt(String(v))} minTickGap={20} />
-            <YAxis yAxisId="left" stroke="#94a3b8" tick={{ fill: '#94a3b8', fontSize: 11 }} tickFormatter={(v) => formatYAxis(v, widget.yUnit)} />
-            {hasRightAxis && <YAxis yAxisId="right" orientation="right" stroke="#94a3b8" tick={{ fill: '#94a3b8', fontSize: 11 }} tickFormatter={(v) => formatYAxis(v, widget.yUnit)} />}
+            <XAxis dataKey={xAxis} stroke="var(--w-slate-400)" tick={{ fill: 'var(--w-slate-400)', fontSize: 11 }} tickFormatter={(v) => xFmt(String(v))} minTickGap={20} />
+            <YAxis yAxisId="left" stroke="var(--w-slate-400)" tick={{ fill: 'var(--w-slate-400)', fontSize: 11 }} tickFormatter={(v) => formatYAxis(v, widget.yUnit)} />
+            {hasRightAxis && <YAxis yAxisId="right" orientation="right" stroke="var(--w-slate-400)" tick={{ fill: 'var(--w-slate-400)', fontSize: 11 }} tickFormatter={(v) => formatYAxis(v, widget.yUnit)} />}
             <RechartsTooltip content={<CustomTooltip />} />
             <Legend wrapperStyle={{ fontSize: '11px' }} iconType="circle" verticalAlign="top" />
             {series.map((s: any, i: number) => {
@@ -355,12 +355,12 @@ export default function SalmonDashboard() {
           </ComposedChart>
         );
       default:
-        return <div style={{color:'#64748b',textAlign:'center',marginTop:'40px'}}>Unsupported</div>;
+        return <div style={{color:'var(--w-slate-500)',textAlign:'center',marginTop:'40px'}}>Unsupported</div>;
     }
   };
 
   return (
-    <div style={{ padding: '0 1.5rem 3rem', color: '#f8fafc', minHeight: '100vh', fontFamily: "'Inter', sans-serif" }}>
+    <div style={{ padding: '0 1.5rem 3rem', color: 'var(--w-slate-50)', minHeight: '100vh', fontFamily: "'Inter', sans-serif" }}>
       
       {/* ═══ Header ═══ */}
       <header style={{ marginBottom: '2rem', paddingTop: '0.5rem' }}>
@@ -379,13 +379,13 @@ export default function SalmonDashboard() {
                 background: SALMON_THEME.gradientText, WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>
                 대서양 연어 전략 인텔리전스
               </h1>
-              <p style={{ margin: 0, fontSize: '0.8rem', color: '#64748b' }}>V4.2 커맨드 센터 — {widgets.length + INSIGHT_MODULE_COUNT} 위젯 · {SALMON_SECTIONS.length} 필라 · {kpiKeys.length} KPI · API 연동 3종(KCS·KAMIS·Comtrade)</p>
+              <p style={{ margin: 0, fontSize: '0.8rem', color: 'var(--w-slate-500)' }}>V4.2 커맨드 센터 — {widgets.length + INSIGHT_MODULE_COUNT} 위젯 · {SALMON_SECTIONS.length} 필라 · {kpiKeys.length} KPI · API 연동 3종(KCS·KAMIS·Comtrade)</p>
             </div>
           </div>
           <div style={{ 
             fontSize: '0.8rem', padding: '0.5rem 1rem', 
             background: '#11182f', border: '1px solid rgba(236, 72, 153, 0.2)', 
-            borderRadius: '8px', color: '#94a3b8', fontWeight: 500
+            borderRadius: '8px', color: 'var(--w-slate-400)', fontWeight: 500
           }}>
             <span style={{ color: SALMON_THEME.primary }}>FishStatJ 1950-2024 + KFAS</span> · 정적 데이터셋
           </div>
@@ -428,7 +428,7 @@ export default function SalmonDashboard() {
                 </div>
                 <IconComp size={16} style={{ color: theme.text, flexShrink: 0 }} />
               </div>
-              <div style={{ fontSize: '1.5rem', fontWeight: 800, color: '#f8fafc' }}>
+              <div style={{ fontSize: '1.5rem', fontWeight: 800, color: 'var(--w-slate-50)' }}>
                 {key === 'kpi3' && kamisSalmon ? `₩${Math.round(kamisSalmon.currentPrice).toLocaleString()} / ${kamisSalmon.unit || 'kg'}`
                  : key === 'kpi6' && kcsLive ? `$${Math.abs(Math.floor(apiData.kcs.data.reduce((acc: number, item: any) => acc + (item.balPayments || 0), 0) / 1000)).toLocaleString()}K`
                  : parsed ? (
@@ -516,9 +516,9 @@ export default function SalmonDashboard() {
               <div style={{ padding:'1rem 1.5rem', background:`linear-gradient(90deg, ${pc.bg} 0%, transparent 100%)`, borderLeft:`4px solid ${pc.accent}`, marginBottom:'1.5rem', marginTop:'1rem', borderRadius: '0 8px 8px 0' }}>
                 <div style={{ display:'flex', alignItems:'center', gap:'10px' }}>
                   {React.createElement(icon, { size: 22, color: pc.accent })}
-                  <h2 style={{ margin:0, fontSize:'1.15rem', fontWeight:700, color:'#f8fafc' }}>{title}</h2>
+                  <h2 style={{ margin:0, fontSize:'1.15rem', fontWeight:700, color:'var(--w-slate-50)' }}>{title}</h2>
                 </div>
-                {desc && <p style={{ margin:'5px 0 0 0', fontSize:'0.85rem', color:'#94a3b8' }}>{desc}</p>}
+                {desc && <p style={{ margin:'5px 0 0 0', fontSize:'0.85rem', color:'var(--w-slate-400)' }}>{desc}</p>}
               </div>
               <div data-mobile-stack style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '1.5rem' }}>
                 {customInsights}
@@ -546,9 +546,9 @@ export default function SalmonDashboard() {
                 <div style={{ padding:'1rem 1.5rem', background:`linear-gradient(90deg, ${PILLAR_COLORS.forecast.bg} 0%, transparent 100%)`, borderLeft:`4px solid ${PILLAR_COLORS.forecast.accent}`, marginBottom:'1.5rem', marginTop:'1rem', borderRadius: '0 8px 8px 0' }}>
                   <div style={{ display:'flex', alignItems:'center', gap:'10px' }}>
                     <Crosshair size={22} color={PILLAR_COLORS.forecast.accent} />
-                    <h2 style={{ margin:0, fontSize:'1.15rem', fontWeight:700, color:'#f8fafc' }}>착지원가 및 AI 전망</h2>
+                    <h2 style={{ margin:0, fontSize:'1.15rem', fontWeight:700, color:'var(--w-slate-50)' }}>착지원가 및 AI 전망</h2>
                   </div>
-                  <p style={{ margin:'5px 0 0 0', fontSize:'0.85rem', color:'#94a3b8' }}>환율·유가·사료 시나리오 기반 착지원가 시뮬레이션 및 수급 전망</p>
+                  <p style={{ margin:'5px 0 0 0', fontSize:'0.85rem', color:'var(--w-slate-400)' }}>환율·유가·사료 시나리오 기반 착지원가 시뮬레이션 및 수급 전망</p>
                 </div>
                 <SalmonForecastSimulator />
               </div>
@@ -585,9 +585,9 @@ export default function SalmonDashboard() {
                 <div style={{ padding:'1rem 1.5rem', background:`linear-gradient(90deg, ${PILLAR_COLORS.policy.bg} 0%, transparent 100%)`, borderLeft:`4px solid ${PILLAR_COLORS.policy.accent}`, marginBottom:'1.5rem', marginTop:'1rem', borderRadius: '0 8px 8px 0' }}>
                   <div style={{ display:'flex', alignItems:'center', gap:'10px' }}>
                     <Globe size={22} color={PILLAR_COLORS.policy.accent} />
-                    <h2 style={{ margin:0, fontSize:'1.15rem', fontWeight:700, color:'#f8fafc' }}>정책 임팩트 시뮬레이션</h2>
+                    <h2 style={{ margin:0, fontSize:'1.15rem', fontWeight:700, color:'var(--w-slate-50)' }}>정책 임팩트 시뮬레이션</h2>
                   </div>
-                  <p style={{ margin:'5px 0 0 0', fontSize:'0.85rem', color:'#94a3b8' }}>관세·IUU 규제·탄소세 등 정책 변동 시나리오의 수익성 영향 분석</p>
+                  <p style={{ margin:'5px 0 0 0', fontSize:'0.85rem', color:'var(--w-slate-400)' }}>관세·IUU 규제·탄소세 등 정책 변동 시나리오의 수익성 영향 분석</p>
                 </div>
                 <SalmonPolicyImpact />
               </div>

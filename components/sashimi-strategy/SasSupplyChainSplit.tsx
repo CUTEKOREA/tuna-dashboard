@@ -50,11 +50,11 @@ export default function SasSupplyChainSplit() {
               layout="vertical"
             >
               <CartesianGrid strokeDasharray="3 3" horizontal={true} vertical={false} opacity={0.3} />
-              <XAxis type="number" domain={[0, 100]} unit="%" tick={{ fontSize: 12 }} axisLine={false} tickLine={false} stroke="#64748b" />
-              <YAxis dataKey="name" type="category" width={140} tick={{ fontSize: 12, fontWeight: 600, fill: '#94a3b8' }} axisLine={false} tickLine={false} />
+              <XAxis type="number" domain={[0, 100]} unit="%" tick={{ fontSize: 12 }} axisLine={false} tickLine={false} stroke="var(--w-slate-500)" />
+              <YAxis dataKey="name" type="category" width={140} tick={{ fontSize: 12, fontWeight: 600, fill: 'var(--w-slate-400)' }} axisLine={false} tickLine={false} />
               <Tooltip 
                 cursor={{ fill: 'rgba(255,255,255,0.04)' }}
-                contentStyle={{ borderRadius: '8px', border: 'none', boxShadow: '0 4px 12px rgba(0,0,0,0.3)', background: '#1a2442', color: '#e2e8f0' }}
+                contentStyle={{ borderRadius: '8px', border: 'none', boxShadow: '0 4px 12px rgba(0,0,0,0.3)', background: 'var(--w-navy-900)', color: 'var(--w-slate-200)' }}
                 formatter={(value: unknown, name: unknown, props: any) => {
                   const label = chartFmt.toChartText(name);
                   const pct = chartFmt.toChartNumber(value);
@@ -64,8 +64,8 @@ export default function SasSupplyChainSplit() {
                 }}
               />
               <Legend wrapperStyle={{ paddingTop: '10px' }} iconType="circle" />
-              <Bar dataKey="valueShare" name="금액 비중 (%)" fill="#3b82f6" barSize={24} radius={[0, 4, 4, 0]} isAnimationActive={false} />
-              <Bar dataKey="volumeShare" name="물량 비중 (%)" fill="#94a3b8" barSize={24} radius={[0, 4, 4, 0]} isAnimationActive={false} />
+              <Bar dataKey="valueShare" name="금액 비중 (%)" fill="var(--w-blue-500)" barSize={24} radius={[0, 4, 4, 0]} isAnimationActive={false} />
+              <Bar dataKey="volumeShare" name="물량 비중 (%)" fill="var(--w-slate-400)" barSize={24} radius={[0, 4, 4, 0]} isAnimationActive={false} />
             </BarChart>
           </SafeResponsiveContainer>
         </div>

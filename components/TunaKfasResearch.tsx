@@ -63,13 +63,13 @@ export function KfasByproductValueChain() {
         <BarChart data={byproductData} margin={{ top: 20, right: 30, left: 20, bottom: 30 }}>
           <ChartPatternDefs />
           <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" />
-          <XAxis dataKey="part" stroke="#94a3b8" tick={{ fill: '#cbd5e1', fontSize: 11, fontWeight: 500 }} interval={0} height={50} />
-          <YAxis stroke="#94a3b8" unit="%" tick={{ fill: '#cbd5e1', fontSize: 12, fontWeight: 500 }} />
+          <XAxis dataKey="part" stroke="var(--w-slate-400)" tick={{ fill: 'var(--w-slate-300)', fontSize: 11, fontWeight: 500 }} interval={0} height={50} />
+          <YAxis stroke="var(--w-slate-400)" unit="%" tick={{ fill: 'var(--w-slate-300)', fontSize: 12, fontWeight: 500 }} />
           <Tooltip contentStyle={{ backgroundColor: 'rgba(20, 28, 52, 0.9)', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '8px' }} />
           <Legend />
-          <Bar dataKey="protein" name="조단백(g/100g)" fill="#10b981" radius={[4, 4, 0, 0]} />
-          <Bar dataKey="lipid" name="조지방" fill="#3b82f6" radius={[4, 4, 0, 0]} />
-          <Bar dataKey="collagen" name="콜라겐" fill="#f59e0b" radius={[4, 4, 0, 0]} />
+          <Bar dataKey="protein" name="조단백(g/100g)" fill="var(--w-emerald-500)" radius={[4, 4, 0, 0]} />
+          <Bar dataKey="lipid" name="조지방" fill="var(--w-blue-500)" radius={[4, 4, 0, 0]} />
+          <Bar dataKey="collagen" name="콜라겐" fill="var(--w-amber-500)" radius={[4, 4, 0, 0]} />
         </BarChart>
       }
       takeaway={{
@@ -111,14 +111,14 @@ export function KfasLonglineEvolution() {
         <ComposedChart data={longlineData} margin={{ top: 20, right: 30, left: 20, bottom: 20 }}>
           <ChartPatternDefs />
           <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" />
-          <XAxis dataKey="period" stroke="#94a3b8" tick={{ fill: '#cbd5e1', fontSize: 11, fontWeight: 500 }} />
-          <YAxis yAxisId="left" stroke="#94a3b8" tick={{ fill: '#cbd5e1', fontSize: 12, fontWeight: 500 }} />
-          <YAxis yAxisId="right" orientation="right" stroke="#f59e0b" unit="%" tick={{ fill: '#f59e0b', fontSize: 12, fontWeight: 500 }} />
+          <XAxis dataKey="period" stroke="var(--w-slate-400)" tick={{ fill: 'var(--w-slate-300)', fontSize: 11, fontWeight: 500 }} />
+          <YAxis yAxisId="left" stroke="var(--w-slate-400)" tick={{ fill: 'var(--w-slate-300)', fontSize: 12, fontWeight: 500 }} />
+          <YAxis yAxisId="right" orientation="right" stroke="var(--w-amber-500)" unit="%" tick={{ fill: 'var(--w-amber-500)', fontSize: 12, fontWeight: 500 }} />
           <Tooltip contentStyle={{ backgroundColor: 'rgba(20, 28, 52, 0.9)', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '8px' }} />
           <Legend />
-          <Bar yAxisId="left" dataKey="vessels" name="조업 척수" fill="#3b82f6" radius={[4, 4, 0, 0]} fillOpacity={0.7} />
-          <Line yAxisId="left" type="monotone" dataKey="catch_kt" name="어획량(천톤)" stroke="#ef4444" strokeWidth={3} />
-          <Line yAxisId="right" type="monotone" dataKey="bigeye_pct" name="눈다랑어 비중(%)" stroke="#f59e0b" strokeWidth={2} strokeDasharray="5 5" />
+          <Bar yAxisId="left" dataKey="vessels" name="조업 척수" fill="var(--w-blue-500)" radius={[4, 4, 0, 0]} fillOpacity={0.7} />
+          <Line yAxisId="left" type="monotone" dataKey="catch_kt" name="어획량(천톤)" stroke="var(--w-red-500)" strokeWidth={3} />
+          <Line yAxisId="right" type="monotone" dataKey="bigeye_pct" name="눈다랑어 비중(%)" stroke="var(--w-amber-500)" strokeWidth={2} strokeDasharray="5 5" />
         </ComposedChart>
       }
       takeaway={{
@@ -159,13 +159,13 @@ export function KfasIndianOceanRisk() {
       chart={
         <RadarChart cx="50%" cy="50%" outerRadius="65%" data={ioRiskData}>
           <PolarGrid stroke="rgba(255,255,255,0.15)" />
-          <PolarAngleAxis dataKey="subject" tick={{ fill: '#cbd5e1', fontSize: 11, fontWeight: 500 }} />
-          <PolarRadiusAxis angle={30} domain={[0, 3]} tick={{ fill: '#94a3b8', fontSize: 10 }} />
+          <PolarAngleAxis dataKey="subject" tick={{ fill: 'var(--w-slate-300)', fontSize: 11, fontWeight: 500 }} />
+          <PolarRadiusAxis angle={30} domain={[0, 3]} tick={{ fill: 'var(--w-slate-400)', fontSize: 10 }} />
           <Tooltip contentStyle={{ backgroundColor: 'rgba(20, 28, 52, 0.9)', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '8px' }} />
           <Legend />
-          <Radar name="선망(Purse Seine)" dataKey="purseSeine" stroke="#3b82f6" fill="#3b82f6" fillOpacity={0.2} />
-          <Radar name="연승(Longline)" dataKey="longline" stroke="#10b981" fill="#10b981" fillOpacity={0.2} />
-          <Radar name="자망(Gillnet)" dataKey="gillnet" stroke="#ef4444" fill="#ef4444" fillOpacity={0.3} />
+          <Radar name="선망(Purse Seine)" dataKey="purseSeine" stroke="var(--w-blue-500)" fill="var(--w-blue-500)" fillOpacity={0.2} />
+          <Radar name="연승(Longline)" dataKey="longline" stroke="var(--w-emerald-500)" fill="var(--w-emerald-500)" fillOpacity={0.2} />
+          <Radar name="자망(Gillnet)" dataKey="gillnet" stroke="var(--w-red-500)" fill="var(--w-red-500)" fillOpacity={0.3} />
         </RadarChart>
       }
       takeaway={{
@@ -208,14 +208,14 @@ export function KfasElderlyFunctionalFood() {
         <ComposedChart data={elderlyFoodData} margin={{ top: 20, right: 30, left: 20, bottom: 40 }}>
           <ChartPatternDefs />
           <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" />
-          <XAxis dataKey="product" stroke="#94a3b8" tick={{ fill: '#cbd5e1', fontSize: 11, fontWeight: 500 }} interval={0} height={60} />
-          <YAxis yAxisId="left" stroke="#94a3b8" tick={{ fill: '#cbd5e1', fontSize: 12, fontWeight: 500 }} />
-          <YAxis yAxisId="right" orientation="right" stroke="#10b981" unit="%" tick={{ fill: '#10b981', fontSize: 12, fontWeight: 500 }} />
+          <XAxis dataKey="product" stroke="var(--w-slate-400)" tick={{ fill: 'var(--w-slate-300)', fontSize: 11, fontWeight: 500 }} interval={0} height={60} />
+          <YAxis yAxisId="left" stroke="var(--w-slate-400)" tick={{ fill: 'var(--w-slate-300)', fontSize: 12, fontWeight: 500 }} />
+          <YAxis yAxisId="right" orientation="right" stroke="var(--w-emerald-500)" unit="%" tick={{ fill: 'var(--w-emerald-500)', fontSize: 12, fontWeight: 500 }} />
           <Tooltip contentStyle={{ backgroundColor: 'rgba(20, 28, 52, 0.9)', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '8px' }} />
           <Legend />
-          <Bar yAxisId="left" dataKey="protein" name="조단백(%)" fill="#8b5cf6" radius={[4, 4, 0, 0]} />
-          <Bar yAxisId="left" dataKey="hardness" name="경도(N)" fill="#f59e0b" radius={[4, 4, 0, 0]} fillOpacity={0.7} />
-          <Line yAxisId="right" type="monotone" dataKey="acceptance" name="관능 수용도(%)" stroke="#10b981" strokeWidth={3} />
+          <Bar yAxisId="left" dataKey="protein" name="조단백(%)" fill="var(--w-violet-500)" radius={[4, 4, 0, 0]} />
+          <Bar yAxisId="left" dataKey="hardness" name="경도(N)" fill="var(--w-amber-500)" radius={[4, 4, 0, 0]} fillOpacity={0.7} />
+          <Line yAxisId="right" type="monotone" dataKey="acceptance" name="관능 수용도(%)" stroke="var(--w-emerald-500)" strokeWidth={3} />
         </ComposedChart>
       }
       takeaway={{

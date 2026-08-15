@@ -34,7 +34,7 @@ const formatXAxis = (tickItem: any) => {
 const ChartWrapper = ({ data, children, ...rest }: { data: any, children: React.ReactNode } & Record<string, any>) => {
   if (!data || data.length === 0) {
     return (
-      <div style={{height:'100%',display:'flex',flexDirection:'column',alignItems:'center',justifyContent:'center',color:'#64748b',background:'rgba(255,255,255,0.02)',borderRadius:'8px',border:'1px dashed rgba(255,255,255,0.1)'}}>
+      <div style={{height:'100%',display:'flex',flexDirection:'column',alignItems:'center',justifyContent:'center',color:'var(--w-slate-500)',background:'rgba(255,255,255,0.02)',borderRadius:'8px',border:'1px dashed rgba(255,255,255,0.1)'}}>
         <AlertTriangle size={24} style={{marginBottom:'8px',opacity:0.5}}/>
         <span style={{fontSize:'0.85rem',fontWeight:600}}>데이터 집계 중</span>
         <span style={{fontSize:'0.7rem',opacity:0.7,marginTop:'4px'}}>데이터 로딩 중</span>
@@ -243,7 +243,7 @@ export default function CarrotDashboard() {
             </div>
           </div>
           <div className="ds-card" style={{fontSize:'0.88rem', padding:'8px 16px', borderRadius:'500px', display:'flex', alignItems:'center', gap:'8px' }}>
-            <div style={{ width:'8px', height:'8px', borderRadius:'50%', background:'#64748b' }} />
+            <div style={{ width:'8px', height:'8px', borderRadius:'50%', background:'var(--w-slate-500)' }} />
             <span>9개 데이터 소스 <span style={{ color:'#ea580c' }}>인용</span></span>
             <span style={{ margin:'0 8px', color:'#4d4d4d' }}>|</span>
             <span style={{ color:'var(--text-primary)' }}>FAOSTAT · KAMIS · KCS</span>
@@ -258,24 +258,24 @@ export default function CarrotDashboard() {
           <div style={{ borderRight:'1px dashed rgba(255,255,255,0.1)', paddingRight:'1.5rem' }}>
             <div style={{ display:'flex', justifyContent:'space-between', alignItems:'center', marginBottom:'0.8rem' }}>
               <h3 style={{ margin:0, fontSize:'0.9rem', color:'var(--text-primary)', display:'flex', alignItems:'center', gap:'0.5rem' }}><RefreshCcw size={16} color="#ea580c" /> 차익거래 착지원가 비교 (KAMIS 기준값)</h3>
-              <span style={{ fontSize:'0.66rem', background:'#64748b', color:'var(--bg-color)', padding:'2px 8px', borderRadius:'500px', fontWeight:700, textTransform:'uppercase' as const }}>{liveArbitrage?.isLive ? 'LIVE' : 'STATIC'}</span>
+              <span style={{ fontSize:'0.66rem', background:'var(--w-slate-500)', color:'var(--bg-color)', padding:'2px 8px', borderRadius:'500px', fontWeight:700, textTransform:'uppercase' as const }}>{liveArbitrage?.isLive ? 'LIVE' : 'STATIC'}</span>
             </div>
             {liveArbitrage ? (
               <div style={{ display:'flex', justifyContent:'space-between', alignItems:'center' }}>
                 <div>
-                  <div style={{ fontSize:'0.75rem', color:'#94a3b8' }}>{liveArbitrage.recommendation.bestSourcing}</div>
-                  <div style={{ fontSize:'1.4rem', fontWeight:800, color:'#f8fafc' }}>
+                  <div style={{ fontSize:'0.75rem', color:'var(--w-slate-400)' }}>{liveArbitrage.recommendation.bestSourcing}</div>
+                  <div style={{ fontSize:'1.4rem', fontWeight:800, color:'var(--w-slate-50)' }}>
                     +<CountUp end={liveArbitrage.recommendation.savingsPerKg} duration={2} separator="," />원 / kg 마진
                   </div>
-                  <div style={{ fontSize:'0.75rem', color:'#f59e0b', marginTop:'4px' }}>국내 도매가: {liveArbitrage.domesticWholesalePrice_KRW_per_kg.toLocaleString()}원</div>
+                  <div style={{ fontSize:'0.75rem', color:'var(--w-amber-500)', marginTop:'4px' }}>국내 도매가: {liveArbitrage.domesticWholesalePrice_KRW_per_kg.toLocaleString()}원</div>
                 </div>
                 <div style={{ textAlign:'right' }}>
                   <div style={{ fontSize:'0.75rem', color:'#ea580c', fontWeight:700 }}>{liveArbitrage.recommendation.action}</div>
-                  <div style={{ fontSize:'0.65rem', color:'#64748b', marginTop:'4px' }}>환율: THB {liveArbitrage.exchangeRates.THB_to_KRW} / VND {liveArbitrage.exchangeRates.VND_to_KRW}</div>
+                  <div style={{ fontSize:'0.65rem', color:'var(--w-slate-500)', marginTop:'4px' }}>환율: THB {liveArbitrage.exchangeRates.THB_to_KRW} / VND {liveArbitrage.exchangeRates.VND_to_KRW}</div>
                 </div>
               </div>
             ) : (
-              <div style={{ color:'#64748b', fontSize:'0.8rem' }}>Loading Arbitrage Data...</div>
+              <div style={{ color:'var(--w-slate-500)', fontSize:'0.8rem' }}>Loading Arbitrage Data...</div>
             )}
           </div>
           
@@ -284,28 +284,28 @@ export default function CarrotDashboard() {
             <div style={{ display:'flex', justifyContent:'space-between', alignItems:'center', marginBottom:'0.8rem' }}>
               <h3 style={{ margin:0, fontSize:'0.9rem', color:'var(--text-primary)', display:'flex', alignItems:'center', gap:'0.5rem' }}><ShieldCheck size={16} color="#fbbf24" /> KCS 통관 TRQ 현황 (정적 기준값 — 실시간 미연동)</h3>
               {liveTrq?.alerts?.length > 0 && (
-                <span style={{ fontSize:'0.65rem', background:'rgba(239,68,68,0.2)', color:'#f59e0b', padding:'2px 6px', borderRadius:'4px', display:'flex', alignItems:'center', gap:'3px' }}>
+                <span style={{ fontSize:'0.65rem', background:'rgba(239,68,68,0.2)', color:'var(--w-amber-500)', padding:'2px 6px', borderRadius:'4px', display:'flex', alignItems:'center', gap:'3px' }}>
                   <AlertTriangle size={10} /> {liveTrq.alerts[0].level}
                 </span>
               )}
             </div>
             {liveTrq ? (
               <div>
-                <div style={{ display:'flex', justifyContent:'space-between', fontSize:'0.75rem', marginBottom:'6px', color:'#94a3b8' }}>
+                <div style={{ display:'flex', justifyContent:'space-between', fontSize:'0.75rem', marginBottom:'6px', color:'var(--w-slate-400)' }}>
                   <span>잔여 쿼터: {liveTrq.trqStatus.remaining_MT.toLocaleString()} MT</span>
-                  <span>소진율: <strong style={{color:'#f8fafc'}}>{liveTrq.trqStatus.exhaustionRate_percent}%</strong></span>
+                  <span>소진율: <strong style={{color:'var(--w-slate-50)'}}>{liveTrq.trqStatus.exhaustionRate_percent}%</strong></span>
                 </div>
                 <div style={{ width:'100%', height:'8px', background:'rgba(255,255,255,0.1)', borderRadius:'4px', overflow:'hidden' }}>
-                  <div style={{ width:`${liveTrq.trqStatus.exhaustionRate_percent}%`, height:'100%', background: liveTrq.trqStatus.exhaustionRate_percent > 80 ? '#f59e0b' : '#ea580c', transition:'width 1s ease-in-out' }} />
+                  <div style={{ width:`${liveTrq.trqStatus.exhaustionRate_percent}%`, height:'100%', background: liveTrq.trqStatus.exhaustionRate_percent > 80 ? 'var(--w-amber-500)' : '#ea580c', transition:'width 1s ease-in-out' }} />
                 </div>
                 {liveTrq.alerts?.length > 0 && (
-                  <div style={{ fontSize:'0.7rem', color:'#f59e0b', marginTop:'8px', display:'flex', alignItems:'center', gap:'4px' }}>
+                  <div style={{ fontSize:'0.7rem', color:'var(--w-amber-500)', marginTop:'8px', display:'flex', alignItems:'center', gap:'4px' }}>
                     <AlertTriangle size={12} /> {liveTrq.alerts[0].message}
                   </div>
                 )}
               </div>
             ) : (
-              <div style={{ color:'#64748b', fontSize:'0.8rem' }}>Loading TRQ Data...</div>
+              <div style={{ color:'var(--w-slate-500)', fontSize:'0.8rem' }}>Loading TRQ Data...</div>
             )}
           </div>
         </div>
@@ -396,7 +396,7 @@ export default function CarrotDashboard() {
               onChange={(e) => setIqfRate(Number(e.target.value))}
               style={{ width:'100%', cursor:'pointer', accentColor:'#f97316' }}
             />
-            <p style={{ margin:'0.3rem 0 0', fontSize:'0.7rem', color:'#64748b' }}>가공 내재화 수준에 따라 <strong style={{color:'#f8fafc'}}>W19 엑시트 밸류에이션</strong>의 'IQF 자체 가공' 마진이 실시간으로 증감합니다.</p>
+            <p style={{ margin:'0.3rem 0 0', fontSize:'0.7rem', color:'var(--w-slate-500)' }}>가공 내재화 수준에 따라 <strong style={{color:'var(--w-slate-50)'}}>W19 엑시트 밸류에이션</strong>의 'IQF 자체 가공' 마진이 실시간으로 증감합니다.</p>
           </div>
 
           {/* Slider 2 */}
@@ -410,13 +410,13 @@ export default function CarrotDashboard() {
               onChange={(e) => setMarginDiscount(Number(e.target.value))}
               style={{ width:'100%', cursor:'pointer', accentColor:'#c2410c' }}
             />
-            <p style={{ margin:'0.3rem 0 0', fontSize:'0.7rem', color:'#64748b' }}>초기 마진을 양보할수록 <strong style={{color:'#f8fafc'}}>W23 벤더 락인 LTV</strong>의 이탈률이 방어되어 장기 현금흐름이 급증합니다.</p>
+            <p style={{ margin:'0.3rem 0 0', fontSize:'0.7rem', color:'var(--w-slate-500)' }}>초기 마진을 양보할수록 <strong style={{color:'var(--w-slate-50)'}}>W23 벤더 락인 LTV</strong>의 이탈률이 방어되어 장기 현금흐름이 급증합니다.</p>
           </div>
 
           {/* Slider 3 */}
           <div>
             <div style={{ display:'flex', justifyContent:'space-between', marginBottom:'0.5rem' }}>
-              <label style={{ fontSize:'0.85rem', fontWeight:600, color:'#f59e0b' }}>국내(KAMIS) 도매가 스트레스 (원/20kg)</label>
+              <label style={{ fontSize:'0.85rem', fontWeight:600, color:'var(--w-amber-500)' }}>국내(KAMIS) 도매가 스트레스 (원/20kg)</label>
               <span style={{ fontSize:'0.9rem', fontWeight:800, color:'var(--text-primary)' }}>{kamisPrice.toLocaleString()}원</span>
             </div>
             <input 
@@ -424,7 +424,7 @@ export default function CarrotDashboard() {
               onChange={(e) => setKamisPrice(Number(e.target.value))}
               style={{ width:'100%', cursor:'pointer', accentColor:'#f59e0b' }}
             />
-            <p style={{ margin:'0.3rem 0 0', fontSize:'0.7rem', color:'#64748b' }}>도매가 변동 시 <strong style={{color:'#f8fafc'}}>W22 관세 아비트리지</strong>의 베트남산(0%) 유통 마진이 극대화되는 구간을 시연합니다.</p>
+            <p style={{ margin:'0.3rem 0 0', fontSize:'0.7rem', color:'var(--w-slate-500)' }}>도매가 변동 시 <strong style={{color:'var(--w-slate-50)'}}>W22 관세 아비트리지</strong>의 베트남산(0%) 유통 마진이 극대화되는 구간을 시연합니다.</p>
           </div>
         </div>
       </div>
@@ -475,9 +475,9 @@ export default function CarrotDashboard() {
                 <YAxis yAxisId="right" orientation="right" {...yAxisProps} />
                 <RechartsTooltip content={<CustomTooltip />} />
                 <Legend verticalAlign="top" align="right" wrapperStyle={{fontSize:'10px'}} />
-                <Bar yAxisId="left" dataKey="중국_면적" fill="#fbbf24" name="중국 수확면적(ha)" />
+                <Bar yAxisId="left" dataKey="중국_면적" fill="var(--w-amber-400)" name="중국 수확면적(ha)" />
                 <Bar yAxisId="left" dataKey="베트남_면적" fill="#ea580c" name="베트남 수확면적(ha)" />
-                <Line yAxisId="right" type="monotone" dataKey="중국_수율" stroke="#f59e0b" strokeWidth={2} dot={false} name="중국 수율(t/ha)" />
+                <Line yAxisId="right" type="monotone" dataKey="중국_수율" stroke="var(--w-amber-500)" strokeWidth={2} dot={false} name="중국 수율(t/ha)" />
                 <Line yAxisId="right" type="monotone" dataKey="베트남_수율" stroke="#f97316" strokeWidth={2} dot={false} name="베트남 수율(t/ha)" />
               </ComposedChart>
             </ChartWrapper>
@@ -507,7 +507,7 @@ export default function CarrotDashboard() {
               <AreaChart data={faoPriceLive}>
                 <defs>
                   <linearGradient id="colorKorea" x1="0" y1="0" x2="0" y2="1"><stop offset="5%" stopColor="#f97316" stopOpacity={0.4}/><stop offset="95%" stopColor="#f97316" stopOpacity={0.0}/></linearGradient>
-                  <linearGradient id="colorChina" x1="0" y1="0" x2="0" y2="1"><stop offset="5%" stopColor="#f59e0b" stopOpacity={0.4}/><stop offset="95%" stopColor="#f59e0b" stopOpacity={0.0}/></linearGradient>
+                  <linearGradient id="colorChina" x1="0" y1="0" x2="0" y2="1"><stop offset="5%" stopColor="var(--w-amber-500)" stopOpacity={0.4}/><stop offset="95%" stopColor="var(--w-amber-500)" stopOpacity={0.0}/></linearGradient>
                   <linearGradient id="colorVietnam2" x1="0" y1="0" x2="0" y2="1"><stop offset="5%" stopColor="#ea580c" stopOpacity={0.4}/><stop offset="95%" stopColor="#ea580c" stopOpacity={0.0}/></linearGradient>
                 </defs>
                 {grid}
@@ -516,7 +516,7 @@ export default function CarrotDashboard() {
                 <RechartsTooltip content={<CustomTooltip />} />
                 <Legend verticalAlign="top" align="right" wrapperStyle={{fontSize:'10px'}} />
                 <Area connectNulls type="monotone" dataKey="한국" stroke="#f97316" fill="url(#colorKorea)" strokeWidth={2} name="한국 생산자 가격" />
-                <Area connectNulls type="monotone" dataKey="중국" stroke="#f59e0b" fill="url(#colorChina)" strokeWidth={2} name="중국 생산자 가격" />
+                <Area connectNulls type="monotone" dataKey="중국" stroke="var(--w-amber-500)" fill="url(#colorChina)" strokeWidth={2} name="중국 생산자 가격" />
                 <Area connectNulls type="monotone" dataKey="베트남" stroke="#ea580c" fill="url(#colorVietnam2)" strokeWidth={2} name="베트남 생산자 가격" />
               </AreaChart>
             </ChartWrapper>
@@ -546,7 +546,7 @@ export default function CarrotDashboard() {
               <AreaChart data={w1Live}>
                 <defs>
                   <linearGradient id="colorKoreaJeju" x1="0" y1="0" x2="0" y2="1"><stop offset="5%" stopColor="#f97316" stopOpacity={0.8}/><stop offset="95%" stopColor="#f97316" stopOpacity={0.1}/></linearGradient>
-                  <linearGradient id="colorKoreaGangwon" x1="0" y1="0" x2="0" y2="1"><stop offset="5%" stopColor="#f59e0b" stopOpacity={0.8}/><stop offset="95%" stopColor="#f59e0b" stopOpacity={0.1}/></linearGradient>
+                  <linearGradient id="colorKoreaGangwon" x1="0" y1="0" x2="0" y2="1"><stop offset="5%" stopColor="var(--w-amber-500)" stopOpacity={0.8}/><stop offset="95%" stopColor="var(--w-amber-500)" stopOpacity={0.1}/></linearGradient>
                   <linearGradient id="colorVietnam" x1="0" y1="0" x2="0" y2="1"><stop offset="5%" stopColor="#ea580c" stopOpacity={0.8}/><stop offset="95%" stopColor="#ea580c" stopOpacity={0.1}/></linearGradient>
                 </defs>
                 {grid}
@@ -555,7 +555,7 @@ export default function CarrotDashboard() {
                 <RechartsTooltip content={<CustomTooltip />} />
                 <Legend verticalAlign="top" align="right" wrapperStyle={{fontSize:'10px'}} />
                 <Area connectNulls={true} type="monotone" dataKey="한국(제주)" stroke="#f97316" fill="url(#colorKoreaJeju)" name="한국(제주) 도매가" />
-                <Area connectNulls={true} type="monotone" dataKey="한국(강원)" stroke="#f59e0b" fill="url(#colorKoreaGangwon)" name="한국(강원) 도매가" />
+                <Area connectNulls={true} type="monotone" dataKey="한국(강원)" stroke="var(--w-amber-500)" fill="url(#colorKoreaGangwon)" name="한국(강원) 도매가" />
                 <Area connectNulls={true} type="monotone" dataKey="베트남(달랏)" stroke="#ea580c" fill="url(#colorVietnam)" name="베트남 수입가" />
               </AreaChart>
             </ChartWrapper>
@@ -590,7 +590,7 @@ export default function CarrotDashboard() {
                 <RechartsTooltip content={<CustomTooltip />} />
                 <Legend verticalAlign="top" align="right" wrapperStyle={{fontSize:'10px'}} />
                 <Bar yAxisId="left" dataKey="생산수율(%)" fill="#f97316" name="생산수율(%)" barSize={40} />
-                <Line yAxisId="right" type="monotone" dataKey="당도(Brix)" stroke="#fbbf24" strokeWidth={3} dot={{r: 4}} name="당도(Brix)" />
+                <Line yAxisId="right" type="monotone" dataKey="당도(Brix)" stroke="var(--w-amber-400)" strokeWidth={3} dot={{r: 4}} name="당도(Brix)" />
               </ComposedChart>
             </ChartWrapper>
           }
@@ -624,8 +624,8 @@ export default function CarrotDashboard() {
                 <YAxis yAxisId="right" orientation="right" {...yAxisProps} />
                 <RechartsTooltip content={<CustomTooltip />} />
                 <Legend verticalAlign="top" align="right" wrapperStyle={{fontSize:'10px'}} />
-                <Bar yAxisId="left" dataKey="기후리스크지수" fill="#f59e0b" opacity={0.6} name="동북아 기후 리스크(태풍/폭우)" />
-                <Line yAxisId="right" type="monotone" dataKey="동북아_스팟가격폭등률" stroke="#fbbf24" strokeWidth={3} dot={{r: 4}} name="도매 스팟가 폭등률(%)" />
+                <Bar yAxisId="left" dataKey="기후리스크지수" fill="var(--w-amber-500)" opacity={0.6} name="동북아 기후 리스크(태풍/폭우)" />
+                <Line yAxisId="right" type="monotone" dataKey="동북아_스팟가격폭등률" stroke="var(--w-amber-400)" strokeWidth={3} dot={{r: 4}} name="도매 스팟가 폭등률(%)" />
                 <Area yAxisId="left" type="step" dataKey="달랏_생산안정성" stroke="#ea580c" fill="#ea580c" fillOpacity={0.15} name="달랏(해발1500m) 생산안정성" />
               </ComposedChart>
             </ChartWrapper>
@@ -646,9 +646,9 @@ export default function CarrotDashboard() {
                 <YAxis yAxisId="right" orientation="right" {...yAxisProps} />
                 <RechartsTooltip content={<CustomTooltip />} />
                 <Legend verticalAlign="top" align="right" wrapperStyle={{fontSize:'10px'}} />
-                <Bar yAxisId="left" dataKey="중국_통관불합격건수" fill="#f59e0b" name="중국산 통관 불합격 건수" barSize={30} />
+                <Bar yAxisId="left" dataKey="중국_통관불합격건수" fill="var(--w-amber-500)" name="중국산 통관 불합격 건수" barSize={30} />
                 <Bar yAxisId="left" dataKey="베트남_통관불합격건수" fill="#ea580c" name="베트남산 불합격 건수" barSize={30} />
-                <Line yAxisId="right" type="monotone" dataKey="중국_회수물량_톤" stroke="#fbbf24" strokeWidth={3} dot={{r:4}} name="중국산 긴급 회수 물량(톤)" />
+                <Line yAxisId="right" type="monotone" dataKey="중국_회수물량_톤" stroke="var(--w-amber-400)" strokeWidth={3} dot={{r:4}} name="중국산 긴급 회수 물량(톤)" />
               </ComposedChart>
             </ChartWrapper>
           }
@@ -681,8 +681,8 @@ export default function CarrotDashboard() {
                 <RechartsTooltip content={<CustomTooltip />} />
                 <Legend verticalAlign="top" align="right" wrapperStyle={{fontSize:'10px'}} />
                 <Bar dataKey="원물가" stackId="a" fill="#f97316" name="원물(생물) 수입비" />
-                <Bar dataKey="전처리 인건비" stackId="a" fill="#f59e0b" name="B2B 구매자 자체 인건비" />
-                <Bar dataKey="폐기물 처리비" stackId="a" fill="#94a3b8" name="폐기물 처리비용" />
+                <Bar dataKey="전처리 인건비" stackId="a" fill="var(--w-amber-500)" name="B2B 구매자 자체 인건비" />
+                <Bar dataKey="폐기물 처리비" stackId="a" fill="var(--w-slate-400)" name="폐기물 처리비용" />
               </BarChart>
             </ChartWrapper>
           }
@@ -715,7 +715,7 @@ export default function CarrotDashboard() {
                 <RechartsTooltip content={<CustomTooltip />} />
                 <Legend verticalAlign="top" align="right" wrapperStyle={{fontSize:'10px'}} />
                 <Bar dataKey="수율" stackId="a" fill="#ea580c" name="유효 수율(%)" />
-                <Bar dataKey="손실" stackId="a" fill="#f59e0b" name="원물/검역 폐기 손실(%)" />
+                <Bar dataKey="손실" stackId="a" fill="var(--w-amber-500)" name="원물/검역 폐기 손실(%)" />
                 <Bar dataKey="IQF" stackId="a" fill="#f97316" name="IQF 전처리 수율(%)" />
               </BarChart>
             </ChartWrapper>
@@ -749,7 +749,7 @@ export default function CarrotDashboard() {
                 <RechartsTooltip content={<CustomTooltip />} />
                 <Legend verticalAlign="top" align="right" wrapperStyle={{fontSize:'10px'}} />
                 <Line type="monotone" dataKey="한국_전처리비용" stroke="#f97316" strokeWidth={2} name="한국 (한계 도달)" strokeDasharray="3 3" />
-                <Line type="monotone" dataKey="중국_전처리비용" stroke="#f59e0b" strokeWidth={3} name="중국 (수직 상승)" />
+                <Line type="monotone" dataKey="중국_전처리비용" stroke="var(--w-amber-500)" strokeWidth={3} name="중국 (수직 상승)" />
                 <Line type="monotone" dataKey="베트남_전처리비용" stroke="#ea580c" strokeWidth={3} name="베트남 달랏 (인구 보너스)" />
               </LineChart>
             </ChartWrapper>
@@ -785,7 +785,7 @@ export default function CarrotDashboard() {
                 <Area type="monotone" stackId="1" dataKey="IQF냉동_비중" stroke="#c2410c" fill="#c2410c" name="IQF 냉동" />
                 <Area type="monotone" stackId="1" dataKey="전처리_비중" stroke="#f97316" fill="#f97316" name="전처리(절단)" />
                 <Area type="monotone" stackId="1" dataKey="세척_비중" stroke="#ea580c" fill="#ea580c" name="세척 당근" />
-                <Area type="monotone" stackId="1" dataKey="원물_비중" stroke="#64748b" fill="#64748b" name="흙당근(원물)" />
+                <Area type="monotone" stackId="1" dataKey="원물_비중" stroke="var(--w-slate-500)" fill="var(--w-slate-500)" name="흙당근(원물)" />
               </AreaChart>
             </ChartWrapper>
           }
@@ -825,7 +825,7 @@ export default function CarrotDashboard() {
           chart={
               <PieChart>
                 <Pie data={(faoTradeLive as any).links ? (faoTradeLive as any).links.map((l: any) => ({ name: l.source.replace('수출: ',''), value: l.value })) : []} cx="50%" cy="50%" innerRadius={50} outerRadius={90} paddingAngle={3} dataKey="value" label={({name, percent}: any) => `${name} ${(percent*100).toFixed(1)}%`}>
-                  <Cell fill="#f59e0b" />
+                  <Cell fill="var(--w-amber-500)" />
                   <Cell fill="#ea580c" />
                 </Pie>
                 <RechartsTooltip content={<CustomTooltip />} />
@@ -861,10 +861,10 @@ export default function CarrotDashboard() {
                 <YAxis {...yAxisProps} />
                 <RechartsTooltip content={<CustomTooltip />} />
                 <Legend verticalAlign="top" align="right" wrapperStyle={{fontSize:'10px'}} />
-                <Bar dataKey="원물비" stackId="a" fill="#94a3b8" name="원물 비용" />
-                <Bar dataKey="포장/물류비" stackId="a" fill="#fbbf24" name="일반 물류비" />
+                <Bar dataKey="원물비" stackId="a" fill="var(--w-slate-400)" name="원물 비용" />
+                <Bar dataKey="포장/물류비" stackId="a" fill="var(--w-amber-400)" name="일반 물류비" />
                 <Bar dataKey="포장/물류비(MA)" stackId="a" fill="#ea580c" name="MA 특수 포장비" />
-                <Bar dataKey="관세(30%)" stackId="a" fill="#f59e0b" name="관세 (중국 30%)" />
+                <Bar dataKey="관세(30%)" stackId="a" fill="var(--w-amber-500)" name="관세 (중국 30%)" />
               </BarChart>
             </ChartWrapper>
           }
@@ -891,11 +891,11 @@ export default function CarrotDashboard() {
             <ChartWrapper data={w6Live}>
               <RadarChart cx="50%" cy="50%" outerRadius="70%" data={w6Live}>
                 <PolarGrid stroke="rgba(255,255,255,0.1)" />
-                <PolarAngleAxis dataKey="subject" tick={{fill:'#94a3b8', fontSize:10}} />
-                <PolarRadiusAxis angle={30} domain={[0, 'auto']} tick={{fill:'#64748b', fontSize:8}} />
+                <PolarAngleAxis dataKey="subject" tick={{fill:'var(--w-slate-400)', fontSize:10}} />
+                <PolarRadiusAxis angle={30} domain={[0, 'auto']} tick={{fill:'var(--w-slate-500)', fontSize:8}} />
                 <RechartsTooltip content={<CustomTooltip />} />
                 <Legend verticalAlign="top" align="right" wrapperStyle={{fontSize:'10px'}} />
-                <Radar name="일반 상자 포장" dataKey="일반포장" stroke="#f59e0b" fill="#f59e0b" fillOpacity={0.3} />
+                <Radar name="일반 상자 포장" dataKey="일반포장" stroke="var(--w-amber-500)" fill="var(--w-amber-500)" fillOpacity={0.3} />
                 <Radar name="MA 특수 포장" dataKey="MA특수포장" stroke="#ea580c" fill="#ea580c" fillOpacity={0.3} />
               </RadarChart>
             </ChartWrapper>
@@ -924,7 +924,7 @@ export default function CarrotDashboard() {
             <ChartWrapper data={w17Live}>
               <AreaChart data={w17Live}>
                 <defs>
-                  <linearGradient id="colorChinaStorage" x1="0" y1="0" x2="0" y2="1"><stop offset="5%" stopColor="#f59e0b" stopOpacity={0.5}/><stop offset="95%" stopColor="#f59e0b" stopOpacity={0.0}/></linearGradient>
+                  <linearGradient id="colorChinaStorage" x1="0" y1="0" x2="0" y2="1"><stop offset="5%" stopColor="var(--w-amber-500)" stopOpacity={0.5}/><stop offset="95%" stopColor="var(--w-amber-500)" stopOpacity={0.0}/></linearGradient>
                   <linearGradient id="colorVietStorage" x1="0" y1="0" x2="0" y2="1"><stop offset="5%" stopColor="#f97316" stopOpacity={0.5}/><stop offset="95%" stopColor="#f97316" stopOpacity={0.0}/></linearGradient>
                 </defs>
                 {grid}
@@ -932,7 +932,7 @@ export default function CarrotDashboard() {
                 <YAxis {...yAxisProps} />
                 <RechartsTooltip content={<CustomTooltip />} />
                 <Legend verticalAlign="top" align="right" wrapperStyle={{fontSize:'10px'}} />
-                <Area type="monotone" dataKey="중국산_재고유지비" stroke="#f59e0b" fill="url(#colorChinaStorage)" strokeWidth={2} name="중국산 (조기도착/창고비 급증)" />
+                <Area type="monotone" dataKey="중국산_재고유지비" stroke="var(--w-amber-500)" fill="url(#colorChinaStorage)" strokeWidth={2} name="중국산 (조기도착/창고비 급증)" />
                 <Area type="monotone" dataKey="베트남산_재고유지비" stroke="#f97316" fill="url(#colorVietStorage)" strokeWidth={3} name="베트남산 (해상창고 10일 무료)" />
               </AreaChart>
             </ChartWrapper>
@@ -967,8 +967,8 @@ export default function CarrotDashboard() {
                 <RechartsTooltip content={<CustomTooltip />} />
                 <Legend verticalAlign="top" align="right" wrapperStyle={{fontSize:'10px'}} />
                 <Area yAxisId="left" type="monotone" dataKey="베트남산_유통마진" fill="#ea580c" fillOpacity={0.4} stroke="#ea580c" name="베트남산 수입 마진 (USD/t)" />
-                <Area yAxisId="left" type="monotone" dataKey="중국산_유통마진" fill="#fbbf24" fillOpacity={0.2} stroke="#fbbf24" name="중국산 수입 마진 (USD/t)" />
-                <Line yAxisId="left" type="step" dataKey="국내도매가_환산" stroke="#f59e0b" strokeWidth={2} strokeDasharray="5 5" dot={false} name="KAMIS 국내 도매가 환산 (USD/t)" />
+                <Area yAxisId="left" type="monotone" dataKey="중국산_유통마진" fill="var(--w-amber-400)" fillOpacity={0.2} stroke="var(--w-amber-400)" name="중국산 수입 마진 (USD/t)" />
+                <Line yAxisId="left" type="step" dataKey="국내도매가_환산" stroke="var(--w-amber-500)" strokeWidth={2} strokeDasharray="5 5" dot={false} name="KAMIS 국내 도매가 환산 (USD/t)" />
               </ComposedChart>
             </ChartWrapper>
           }
@@ -1014,7 +1014,7 @@ export default function CarrotDashboard() {
                 <RechartsTooltip content={<CustomTooltip />} />
                 <Legend verticalAlign="top" align="right" wrapperStyle={{fontSize:'10px'}} />
                 <Line type="monotone" dataKey="스팟시장(제주)" stroke="#f97316" strokeWidth={2} name="국산 스팟 단가" />
-                <Line type="monotone" dataKey="스팟시장(중국)" stroke="#f59e0b" strokeWidth={2} name="중국산 스팟 단가" strokeDasharray="5 5" />
+                <Line type="monotone" dataKey="스팟시장(중국)" stroke="var(--w-amber-500)" strokeWidth={2} name="중국산 스팟 단가" strokeDasharray="5 5" />
                 <Line type="monotone" dataKey="베트남_장기계약" stroke="#ea580c" strokeWidth={4} name="베트남 연간 계약 고정단가" />
               </LineChart>
             </ChartWrapper>
@@ -1044,7 +1044,7 @@ export default function CarrotDashboard() {
                 <defs>
                   <linearGradient id="gradBull" x1="0" y1="0" x2="0" y2="1"><stop offset="5%" stopColor="#ea580c" stopOpacity={0.3}/><stop offset="95%" stopColor="#ea580c" stopOpacity={0.02}/></linearGradient>
                   <linearGradient id="gradBase" x1="0" y1="0" x2="0" y2="1"><stop offset="5%" stopColor="#f97316" stopOpacity={0.4}/><stop offset="95%" stopColor="#f97316" stopOpacity={0.05}/></linearGradient>
-                  <linearGradient id="gradCons" x1="0" y1="0" x2="0" y2="1"><stop offset="5%" stopColor="#fbbf24" stopOpacity={0.3}/><stop offset="95%" stopColor="#fbbf24" stopOpacity={0.02}/></linearGradient>
+                  <linearGradient id="gradCons" x1="0" y1="0" x2="0" y2="1"><stop offset="5%" stopColor="var(--w-amber-400)" stopOpacity={0.3}/><stop offset="95%" stopColor="var(--w-amber-400)" stopOpacity={0.02}/></linearGradient>
                 </defs>
                 {grid}
                 <XAxis dataKey="year" {...xAxisTextProps} tickFormatter={formatXAxis} />
@@ -1053,7 +1053,7 @@ export default function CarrotDashboard() {
                 <Legend verticalAlign="top" align="right" wrapperStyle={{fontSize:'10px'}} />
                 <Area type="monotone" dataKey="낙관(Bull)" stroke="#ea580c" fill="url(#gradBull)" strokeWidth={2} name="낙관 시나리오(%)" />
                 <Area type="monotone" dataKey="기본(Base)" stroke="#f97316" fill="url(#gradBase)" strokeWidth={3} name="기본 시나리오(%)" strokeDasharray="0" />
-                <Area type="monotone" dataKey="보수적(Conservative)" stroke="#fbbf24" fill="url(#gradCons)" strokeWidth={2} name="보수적 시나리오(%)" strokeDasharray="5 5" />
+                <Area type="monotone" dataKey="보수적(Conservative)" stroke="var(--w-amber-400)" fill="url(#gradCons)" strokeWidth={2} name="보수적 시나리오(%)" strokeDasharray="5 5" />
               </AreaChart>
             </ChartWrapper>
           }
@@ -1081,12 +1081,12 @@ export default function CarrotDashboard() {
             <ChartWrapper data={w12Live}>
               <RadarChart cx="50%" cy="50%" outerRadius="80%" data={w12Live}>
                 <PolarGrid stroke="rgba(255,255,255,0.1)" />
-                <PolarAngleAxis dataKey="subject" tick={{ fill: '#94a3b8', fontSize: 11 }} />
+                <PolarAngleAxis dataKey="subject" tick={{ fill: 'var(--w-slate-400)', fontSize: 11 }} />
                 <PolarRadiusAxis angle={30} domain={[0, 100]} tick={{ fill: '#475569', fontSize: 10 }} />
                 <RechartsTooltip content={<CustomTooltip />} />
                 <Legend verticalAlign="top" align="right" wrapperStyle={{fontSize:'10px'}} />
                 <Radar name="베트남 달랏(역수출)" dataKey="베트남_달랏" stroke="#ea580c" fill="#ea580c" fillOpacity={0.6} />
-                <Radar name="중국산(세척/일본종자)" dataKey="중국산_세척" stroke="#f59e0b" fill="#f59e0b" fillOpacity={0.4} />
+                <Radar name="중국산(세척/일본종자)" dataKey="중국산_세척" stroke="var(--w-amber-500)" fill="var(--w-amber-500)" fillOpacity={0.4} />
               </RadarChart>
             </ChartWrapper>
           }
@@ -1115,12 +1115,12 @@ export default function CarrotDashboard() {
             <ChartWrapper data={w18Live}>
               <RadarChart cx="50%" cy="50%" outerRadius="70%" data={w18Live}>
                 <PolarGrid stroke="rgba(255,255,255,0.1)" />
-                <PolarAngleAxis dataKey="subject" tick={{fill:'#94a3b8', fontSize:9}} />
-                <PolarRadiusAxis angle={30} domain={[0, 100]} tick={{fill:'#64748b', fontSize:8}} />
+                <PolarAngleAxis dataKey="subject" tick={{fill:'var(--w-slate-400)', fontSize:9}} />
+                <PolarRadiusAxis angle={30} domain={[0, 100]} tick={{fill:'var(--w-slate-500)', fontSize:8}} />
                 <RechartsTooltip content={<CustomTooltip />} />
                 <Legend verticalAlign="top" align="right" wrapperStyle={{fontSize:'10px'}} />
                 <Radar name="🇻🇳 달랏 농장 A (1순위)" dataKey="달랏농장A" stroke="#ea580c" fill="#ea580c" fillOpacity={0.35} strokeWidth={2} />
-                <Radar name="🇨🇳 칭다오 공장 B" dataKey="칭다오공장B" stroke="#f59e0b" fill="#f59e0b" fillOpacity={0.15} strokeWidth={1} />
+                <Radar name="🇨🇳 칭다오 공장 B" dataKey="칭다오공장B" stroke="var(--w-amber-500)" fill="var(--w-amber-500)" fillOpacity={0.15} strokeWidth={1} />
                 <Radar name="🇰🇷 제주 산지 C" dataKey="제주산지C" stroke="#f97316" fill="#f97316" fillOpacity={0.15} strokeWidth={1} />
               </RadarChart>
             </ChartWrapper>
@@ -1155,9 +1155,9 @@ export default function CarrotDashboard() {
                 <YAxis yAxisId="right" orientation="right" {...yAxisProps} tickFormatter={(v: number) => `${v}%`} />
                 <RechartsTooltip content={<CustomTooltip />} />
                 <Legend verticalAlign="top" align="right" wrapperStyle={{fontSize:'10px'}} />
-                <Bar yAxisId="left" dataKey="스팟판매_누적수익" fill="#64748b" name="일반 스팟 판매 (누적 FCF)" barSize={40} />
+                <Bar yAxisId="left" dataKey="스팟판매_누적수익" fill="var(--w-slate-500)" name="일반 스팟 판매 (누적 FCF)" barSize={40} />
                 <Area yAxisId="left" type="monotone" dataKey="장기계약_누적수익" fill="#c2410c" stroke="#c2410c" fillOpacity={0.3} name="장기 락인 계약 (누적 FCF)" />
-                <Line yAxisId="right" type="monotone" dataKey="고객이탈률" stroke="#f59e0b" strokeWidth={2} name="스팟 시장 고객 이탈률(%)" strokeDasharray="4 4" />
+                <Line yAxisId="right" type="monotone" dataKey="고객이탈률" stroke="var(--w-amber-500)" strokeWidth={2} name="스팟 시장 고객 이탈률(%)" strokeDasharray="4 4" />
               </ComposedChart>
             </ChartWrapper>
           }
@@ -1205,8 +1205,8 @@ export default function CarrotDashboard() {
                 <Legend verticalAlign="top" align="right" wrapperStyle={{fontSize:'10px'}} />
                 <Bar dataKey="식용소비" stackId="a" fill="#ea580c" name="식탁 소비재" />
                 <Bar dataKey="가공용" stackId="a" fill="#f97316" name="고부가 가공 전환" />
-                <Bar dataKey="사료용" stackId="a" fill="#fbbf24" name="사료 전환" />
-                <Bar dataKey="수확후손실(폐기)" stackId="a" fill="#f59e0b" name="공급망 내 원물 손실(버려짐)" />
+                <Bar dataKey="사료용" stackId="a" fill="var(--w-amber-400)" name="사료 전환" />
+                <Bar dataKey="수확후손실(폐기)" stackId="a" fill="var(--w-amber-500)" name="공급망 내 원물 손실(버려짐)" />
               </BarChart>
             </ChartWrapper>
           }
@@ -1240,7 +1240,7 @@ export default function CarrotDashboard() {
                 <RechartsTooltip content={<CustomTooltip />} />
                 <Legend verticalAlign="top" align="right" wrapperStyle={{fontSize:'10px'}} />
                 <Bar dataKey="수익창출(ROI)" fill="#ea580c" name="수익 창출 (ROI)" />
-                <Bar dataKey="탄소배출(Penalty)" fill="#f59e0b" name="탄소 감축 효과 (양수=감축)" />
+                <Bar dataKey="탄소배출(Penalty)" fill="var(--w-amber-500)" name="탄소 감축 효과 (양수=감축)" />
               </BarChart>
             </ChartWrapper>
           }
@@ -1267,11 +1267,11 @@ export default function CarrotDashboard() {
             <ChartWrapper data={w10Live}>
               <RadarChart cx="50%" cy="50%" outerRadius="70%" data={w10Live}>
                 <PolarGrid stroke="rgba(255,255,255,0.1)" />
-                <PolarAngleAxis dataKey="subject" tick={{fill:'#94a3b8', fontSize:10}} />
-                <PolarRadiusAxis angle={30} domain={[0, 100]} tick={{fill:'#64748b', fontSize:8}} />
+                <PolarAngleAxis dataKey="subject" tick={{fill:'var(--w-slate-400)', fontSize:10}} />
+                <PolarRadiusAxis angle={30} domain={[0, 100]} tick={{fill:'var(--w-slate-500)', fontSize:8}} />
                 <RechartsTooltip content={<CustomTooltip />} />
                 <Legend verticalAlign="top" align="right" wrapperStyle={{fontSize:'10px'}} />
-                <Radar name="기존 원물 소싱" dataKey="기존소싱" stroke="#f59e0b" fill="#f59e0b" fillOpacity={0.25} />
+                <Radar name="기존 원물 소싱" dataKey="기존소싱" stroke="var(--w-amber-500)" fill="var(--w-amber-500)" fillOpacity={0.25} />
                 <Radar name="업사이클링 계약 소싱" dataKey="업사이클링" stroke="#ea580c" fill="#ea580c" fillOpacity={0.35} />
               </RadarChart>
             </ChartWrapper>
@@ -1304,8 +1304,8 @@ export default function CarrotDashboard() {
                 <YAxis {...yAxisProps} domain={[0, 40]} tickFormatter={(v: number) => `${v}%`} />
                 <RechartsTooltip content={<CustomTooltip />} />
                 <Legend verticalAlign="top" align="right" wrapperStyle={{fontSize:'10px'}} />
-                <Line type="monotone" dataKey="기존_중국망" stroke="#94a3b8" strokeWidth={2} name="기존 수입 벤더 (Flat Margin)" strokeDasharray="5 5" />
-                <Area type="monotone" dataKey="PEF_수직계열화" stroke="#f59e0b" fill="#f59e0b" fillOpacity={0.2} strokeWidth={3} name="PEF 수직계열화 (Smile Curve)" />
+                <Line type="monotone" dataKey="기존_중국망" stroke="var(--w-slate-400)" strokeWidth={2} name="기존 수입 벤더 (Flat Margin)" strokeDasharray="5 5" />
+                <Area type="monotone" dataKey="PEF_수직계열화" stroke="var(--w-amber-500)" fill="var(--w-amber-500)" fillOpacity={0.2} strokeWidth={3} name="PEF 수직계열화 (Smile Curve)" />
               </ComposedChart>
             </ChartWrapper>
           }
@@ -1340,7 +1340,7 @@ export default function CarrotDashboard() {
                 <RechartsTooltip content={<CustomTooltip />} />
                 <Legend verticalAlign="top" align="right" wrapperStyle={{fontSize:'10px'}} />
                 <Bar yAxisId="left" dataKey="업사이클링_전환량_톤" fill="#ea580c" name="바이오소재 전환량(톤)" barSize={40} />
-                <Line yAxisId="right" type="monotone" dataKey="바이오소재_프리미엄마진율" stroke="#fbbf24" strokeWidth={3} name="베타카로틴 마진율(%)" />
+                <Line yAxisId="right" type="monotone" dataKey="바이오소재_프리미엄마진율" stroke="var(--w-amber-400)" strokeWidth={3} name="베타카로틴 마진율(%)" />
                 <Line yAxisId="right" type="monotone" dataKey="Scope3_감축량_tCO2e" stroke="#ea580c" strokeWidth={3} strokeDasharray="3 3" name="Scope 3 탄소감축량(tCO2e)" />
               </ComposedChart>
             </ChartWrapper>
@@ -1419,11 +1419,11 @@ export default function CarrotDashboard() {
                 <YAxis {...yAxisProps} tickFormatter={(v: number) => `${(v/1e6).toFixed(0)}M`} />
                 <RechartsTooltip content={<CustomTooltip />} />
                 <Legend verticalAlign="top" align="right" wrapperStyle={{fontSize:'10px'}} />
-                <Area type="monotone" dataKey="중국" stackId="1" stroke="#f59e0b" fill="#f59e0b66" name="중국" />
+                <Area type="monotone" dataKey="중국" stackId="1" stroke="var(--w-amber-500)" fill="#f59e0b66" name="중국" />
                 <Area type="monotone" dataKey="네덜란드" stackId="1" stroke="#f97316" fill="#f9731666" name="네덜란드" />
                 <Area type="monotone" dataKey="미국" stackId="1" stroke="#fdba74" fill="#fdba7466" name="미국" />
                 <Area type="monotone" dataKey="이탈리아" stackId="1" stroke="#ea580c" fill="#ea580c66" name="이탈리아" />
-                <Area type="monotone" dataKey="스페인" stackId="1" stroke="#fbbf24" fill="#f59e0b66" name="스페인" />
+                <Area type="monotone" dataKey="스페인" stackId="1" stroke="var(--w-amber-400)" fill="#f59e0b66" name="스페인" />
                 <Area type="monotone" dataKey="이스라엘" stackId="1" stroke="#c2410c" fill="#c2410c66" name="이스라엘" />
               </AreaChart>
             </ChartWrapper>
@@ -1456,8 +1456,8 @@ export default function CarrotDashboard() {
                 <YAxis {...yAxisProps} tickFormatter={(v: number) => `${(v/1e6).toFixed(0)}M`} />
                 <RechartsTooltip content={<CustomTooltip />} />
                 <Legend verticalAlign="top" align="right" wrapperStyle={{fontSize:'10px'}} />
-                <Line type="monotone" dataKey="독일" stroke="#fbbf24" strokeWidth={2} dot={false} name="독일" />
-                <Line type="monotone" dataKey="캐나다" stroke="#f59e0b" strokeWidth={2} dot={false} name="캐나다" />
+                <Line type="monotone" dataKey="독일" stroke="var(--w-amber-400)" strokeWidth={2} dot={false} name="독일" />
+                <Line type="monotone" dataKey="캐나다" stroke="var(--w-amber-500)" strokeWidth={2} dot={false} name="캐나다" />
                 <Line type="monotone" dataKey="미국" stroke="#fdba74" strokeWidth={2} dot={false} name="미국" />
                 <Line type="monotone" dataKey="프랑스" stroke="#c2410c" strokeWidth={2} dot={false} name="프랑스" />
                 <Line type="monotone" dataKey="일본" stroke="#ea580c" strokeWidth={2} dot={false} name="일본" />
@@ -1493,10 +1493,10 @@ export default function CarrotDashboard() {
                 <YAxis {...yAxisProps} tickFormatter={(v: number) => `${(v/1000).toFixed(0)}K`} />
                 <RechartsTooltip content={<CustomTooltip />} />
                 <Legend verticalAlign="top" align="right" wrapperStyle={{fontSize:'10px'}} />
-                <Line type="monotone" dataKey="y2024" stroke="#f59e0b" strokeWidth={2.5} name="2024 (폭등)" dot={{ fill: '#f59e0b', r: 2 }} />
-                <Line type="monotone" dataKey="y2025" stroke="#fbbf24" strokeWidth={2} name="2025 (회복)" dot={{ fill: '#fbbf24', r: 2 }} />
+                <Line type="monotone" dataKey="y2024" stroke="var(--w-amber-500)" strokeWidth={2.5} name="2024 (폭등)" dot={{ fill: 'var(--w-amber-500)', r: 2 }} />
+                <Line type="monotone" dataKey="y2025" stroke="var(--w-amber-400)" strokeWidth={2} name="2025 (회복)" dot={{ fill: 'var(--w-amber-400)', r: 2 }} />
                 <Line type="monotone" dataKey="y2026" stroke="#ea580c" strokeWidth={2.5} name="2026 (정상화)" dot={{ fill: '#ea580c', r: 3 }} />
-                <Line type="monotone" dataKey="y2023" stroke="#64748b" strokeWidth={1.5} strokeDasharray="5 5" name="2023 (기준)" dot={false} />
+                <Line type="monotone" dataKey="y2023" stroke="var(--w-slate-500)" strokeWidth={1.5} strokeDasharray="5 5" name="2023 (기준)" dot={false} />
                 <Line type="monotone" dataKey="평년" stroke="var(--text-primary)" strokeWidth={1} strokeDasharray="3 3" name="평년 (5년)" dot={false} />
               </LineChart>
             </ChartWrapper>
@@ -1527,13 +1527,13 @@ export default function CarrotDashboard() {
                 <ChartPatternDefs />
                 {grid}
                 <XAxis dataKey="country" {...xAxisTextProps} tickFormatter={formatXAxis} />
-                <YAxis yAxisId="left" {...yAxisProps} label={{ value: '손실률(%)', angle: -90, position: 'insideLeft', fill: '#64748b', fontSize: 9 }} />
-                <YAxis yAxisId="right" orientation="right" {...yAxisProps} tickFormatter={(v: number) => `${(v/1000).toFixed(0)}K`} label={{ value: '손실량(톤)', angle: 90, position: 'insideRight', fill: '#64748b', fontSize: 9 }} />
+                <YAxis yAxisId="left" {...yAxisProps} label={{ value: '손실률(%)', angle: -90, position: 'insideLeft', fill: 'var(--w-slate-500)', fontSize: 9 }} />
+                <YAxis yAxisId="right" orientation="right" {...yAxisProps} tickFormatter={(v: number) => `${(v/1000).toFixed(0)}K`} label={{ value: '손실량(톤)', angle: 90, position: 'insideRight', fill: 'var(--w-slate-500)', fontSize: 9 }} />
                 <RechartsTooltip content={<CustomTooltip />} />
                 <Legend verticalAlign="top" align="right" wrapperStyle={{fontSize:'10px'}} />
                 <Bar yAxisId="right" dataKey="손실" fill="#ef444488" name="손실량(톤)" barSize={35} />
                 <Bar yAxisId="right" dataKey="사료" fill="#f59e0b55" name="사료전환(톤)" barSize={35} />
-                <Line yAxisId="left" type="monotone" dataKey="손실률" stroke="#f59e0b" strokeWidth={3} dot={{ fill: '#f59e0b', r: 5, stroke: 'var(--text-primary)', strokeWidth: 2 }} name="손실률(%)" />
+                <Line yAxisId="left" type="monotone" dataKey="손실률" stroke="var(--w-amber-500)" strokeWidth={3} dot={{ fill: 'var(--w-amber-500)', r: 5, stroke: 'var(--text-primary)', strokeWidth: 2 }} name="손실률(%)" />
               </ComposedChart>
             </ChartWrapper>
           }

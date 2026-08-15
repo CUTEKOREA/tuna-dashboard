@@ -655,14 +655,14 @@ export default function FalklandSquidDashboard() {
                     <th style={{ padding: '14px 10px', textAlign: 'center', fontSize: '10px', fontWeight: 700, color: '#7dd3fc', textTransform: 'uppercase', letterSpacing: '0.15em', width: '50px' }}>#</th>
                     <th style={{ padding: '14px 16px', fontSize: '10px', fontWeight: 700, color: '#7dd3fc', textTransform: 'uppercase', letterSpacing: '0.1em', position: 'sticky', left: 0, zIndex: 31, background: 'linear-gradient(90deg, #0c1929, #111d2e)', boxShadow: '4px 0 16px rgba(0,0,0,0.5)', minWidth: '140px' }}>선명 / 업체</th>
                     {['12월','1월','2월','3월','4월','5월'].map(m => (
-                      <th key={m} style={{ padding: '14px 10px', textAlign: 'right', fontSize: '10px', fontWeight: 600, color: '#64748b', textTransform: 'uppercase', letterSpacing: '0.05em', borderLeft: m === '12월' ? '1px solid rgba(140,170,255,0.10)' : 'none', minWidth: '65px' }}>{m}</th>
+                      <th key={m} style={{ padding: '14px 10px', textAlign: 'right', fontSize: '10px', fontWeight: 600, color: 'var(--w-slate-500)', textTransform: 'uppercase', letterSpacing: '0.05em', borderLeft: m === '12월' ? '1px solid rgba(140,170,255,0.10)' : 'none', minWidth: '65px' }}>{m}</th>
                     ))}
                     <th style={{ padding: '14px 14px', textAlign: 'right', fontSize: '10px', fontWeight: 800, color: '#67e8f9', textTransform: 'uppercase', letterSpacing: '0.05em', borderLeft: '2px solid rgba(34,211,238,0.25)', background: 'rgba(34,211,238,0.04)', minWidth: '85px' }}>누계(팬)</th>
                     <th style={{ padding: '14px 14px', textAlign: 'right', fontSize: '10px', fontWeight: 800, color: '#6ee7b7', textTransform: 'uppercase', letterSpacing: '0.05em', borderLeft: '1px solid rgba(52,211,153,0.2)', background: 'rgba(52,211,153,0.04)', minWidth: '95px' }}>누계(KG)</th>
                     <th style={{ padding: '14px 12px', textAlign: 'center', fontSize: '10px', fontWeight: 700, color: '#c4b5fd', textTransform: 'uppercase', letterSpacing: '0.05em', borderLeft: '1px solid rgba(140,170,255,0.10)', minWidth: '110px' }}>비중</th>
-                    <th style={{ padding: '14px 10px', textAlign: 'center', fontSize: '10px', fontWeight: 600, color: '#64748b', textTransform: 'uppercase', letterSpacing: '0.05em', borderLeft: '2px solid rgba(140,170,255,0.12)' }}>톤수</th>
-                    <th style={{ padding: '14px 10px', textAlign: 'center', fontSize: '10px', fontWeight: 600, color: '#64748b', textTransform: 'uppercase' }}>선령</th>
-                    <th style={{ padding: '14px 10px', textAlign: 'center', fontSize: '10px', fontWeight: 600, color: '#64748b', textTransform: 'uppercase' }}>상태</th>
+                    <th style={{ padding: '14px 10px', textAlign: 'center', fontSize: '10px', fontWeight: 600, color: 'var(--w-slate-500)', textTransform: 'uppercase', letterSpacing: '0.05em', borderLeft: '2px solid rgba(140,170,255,0.12)' }}>톤수</th>
+                    <th style={{ padding: '14px 10px', textAlign: 'center', fontSize: '10px', fontWeight: 600, color: 'var(--w-slate-500)', textTransform: 'uppercase' }}>선령</th>
+                    <th style={{ padding: '14px 10px', textAlign: 'center', fontSize: '10px', fontWeight: 600, color: 'var(--w-slate-500)', textTransform: 'uppercase' }}>상태</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -703,8 +703,8 @@ export default function FalklandSquidDashboard() {
                           )}
                         </td>
                         <td style={{ padding: '12px 16px', position: 'sticky', left: 0, zIndex: 20, background: rowBg === 'transparent' ? 'var(--surface-0, #0a0f1f)' : rowBg, boxShadow: '4px 0 16px rgba(0,0,0,0.4)', transition: 'background 0.15s ease' }}>
-                          <div style={{ fontWeight: 700, fontSize: 14, color: '#f8fafc', lineHeight: 1.3, whiteSpace: 'nowrap' }}>{vessel.name}</div>
-                          <div style={{ fontSize: 10, color: '#64748b', whiteSpace: 'nowrap' }}>{vessel.company}</div>
+                          <div style={{ fontWeight: 700, fontSize: 14, color: 'var(--w-slate-50)', lineHeight: 1.3, whiteSpace: 'nowrap' }}>{vessel.name}</div>
+                          <div style={{ fontSize: 10, color: 'var(--w-slate-500)', whiteSpace: 'nowrap' }}>{vessel.company}</div>
                         </td>
                         {[vessel.m12, vessel.m1, vessel.m2, vessel.m3, vessel.m4, vessel.m5].map((val, mi) => (
                           <td key={mi} style={{ padding: '12px 10px', textAlign: 'right', fontFamily: 'monospace', fontSize: 13, color: heatColor(val || 0), fontWeight: heatWeight(val || 0), whiteSpace: 'nowrap', borderLeft: mi === 0 ? '1px solid rgba(255,255,255,0.03)' : 'none' }}>
@@ -714,22 +714,22 @@ export default function FalklandSquidDashboard() {
                         <td style={{ padding: '12px 14px', textAlign: 'right', fontFamily: 'monospace', fontWeight: 700, fontSize: 14, color: '#22d3ee', whiteSpace: 'nowrap', borderLeft: '2px solid rgba(34,211,238,0.2)', background: 'rgba(34,211,238,0.03)' }}>
                           {vessel.totalPan.toLocaleString()}
                         </td>
-                        <td style={{ padding: '12px 14px', textAlign: 'right', fontFamily: 'monospace', fontWeight: 700, fontSize: 14, color: '#34d399', whiteSpace: 'nowrap', borderLeft: '1px solid rgba(52,211,153,0.15)', background: 'rgba(52,211,153,0.03)' }}>
+                        <td style={{ padding: '12px 14px', textAlign: 'right', fontFamily: 'monospace', fontWeight: 700, fontSize: 14, color: 'var(--w-emerald-400)', whiteSpace: 'nowrap', borderLeft: '1px solid rgba(52,211,153,0.15)', background: 'rgba(52,211,153,0.03)' }}>
                           {vessel.totalKg.toLocaleString()}
                         </td>
                         <td style={{ padding: '12px 12px', borderLeft: '1px solid rgba(255,255,255,0.03)' }}>
                           <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
                             <div style={{ flex: 1, height: 5, background: 'rgba(255,255,255,0.04)', borderRadius: 999, overflow: 'hidden' }}>
-                              <div style={{ height: '100%', borderRadius: 999, background: 'linear-gradient(90deg, #8b5cf6, #ec4899)', width: `${Math.min(100, Number(percent) * 5)}%`, transition: 'width 0.5s ease' }}></div>
+                              <div style={{ height: '100%', borderRadius: 999, background: 'linear-gradient(90deg, var(--w-violet-500), var(--w-pink-500))', width: `${Math.min(100, Number(percent) * 5)}%`, transition: 'width 0.5s ease' }}></div>
                             </div>
                             <span style={{ fontSize: 11, fontWeight: 700, color: '#c4b5fd', fontFamily: 'monospace', minWidth: 36, textAlign: 'right' }}>{percent}%</span>
                           </div>
                         </td>
-                        <td style={{ padding: '12px 10px', textAlign: 'center', fontSize: 12, color: '#94a3b8', fontFamily: 'monospace', borderLeft: '2px solid rgba(140,170,255,0.10)' }}>{vessel.tonnage}</td>
+                        <td style={{ padding: '12px 10px', textAlign: 'center', fontSize: 12, color: 'var(--w-slate-400)', fontFamily: 'monospace', borderLeft: '2px solid rgba(140,170,255,0.10)' }}>{vessel.tonnage}</td>
                         <td style={{ padding: '12px 10px', textAlign: 'center', fontSize: 12 }}>
                           {vessel.age !== "-" ? (
                             <>
-                              <div style={{ fontWeight: 700, color: '#fbbf24', fontSize: 13 }}>{vessel.age}</div>
+                              <div style={{ fontWeight: 700, color: 'var(--w-amber-400)', fontSize: 13 }}>{vessel.age}</div>
                               <div style={{ fontSize: 9, color: '#475569' }}>{vessel.launch}</div>
                             </>
                           ) : <span style={{ color: '#334155' }}>—</span>}
@@ -737,11 +737,11 @@ export default function FalklandSquidDashboard() {
                         <td style={{ padding: '12px 10px', textAlign: 'center' }}>
                           {vessel.status === "교체시급" ? (
                             <span style={{ display: 'inline-flex', alignItems: 'center', gap: 5, padding: '4px 10px', borderRadius: 999, fontSize: 10, fontWeight: 700, background: 'rgba(239,68,68,0.12)', color: '#f87171', border: '1px solid rgba(239,68,68,0.25)' }}>
-                              <span style={{ width: 6, height: 6, borderRadius: '50%', background: '#ef4444', animation: 'pulse 2s infinite' }}></span>교체시급
+                              <span style={{ width: 6, height: 6, borderRadius: '50%', background: 'var(--w-red-500)', animation: 'pulse 2s infinite' }}></span>교체시급
                             </span>
                           ) : vessel.status === "건전" ? (
-                            <span style={{ display: 'inline-flex', alignItems: 'center', gap: 5, padding: '4px 10px', borderRadius: 999, fontSize: 10, fontWeight: 700, background: 'rgba(16,185,129,0.12)', color: '#34d399', border: '1px solid rgba(16,185,129,0.25)' }}>
-                              <span style={{ width: 6, height: 6, borderRadius: '50%', background: '#10b981' }}></span>건전
+                            <span style={{ display: 'inline-flex', alignItems: 'center', gap: 5, padding: '4px 10px', borderRadius: 999, fontSize: 10, fontWeight: 700, background: 'rgba(16,185,129,0.12)', color: 'var(--w-emerald-400)', border: '1px solid rgba(16,185,129,0.25)' }}>
+                              <span style={{ width: 6, height: 6, borderRadius: '50%', background: 'var(--w-emerald-500)' }}></span>건전
                             </span>
                           ) : <span style={{ color: '#334155' }}>—</span>}
                         </td>
@@ -750,7 +750,7 @@ export default function FalklandSquidDashboard() {
                   })}
                   {filteredVessels.length === 0 && (
                     <tr>
-                      <td colSpan={14} style={{ padding: '60px 20px', textAlign: 'center', color: '#64748b' }}>
+                      <td colSpan={14} style={{ padding: '60px 20px', textAlign: 'center', color: 'var(--w-slate-500)' }}>
                         <Search size={36} style={{ opacity: 0.2, marginBottom: 12 }} />
                         <div style={{ fontSize: 16, fontWeight: 600 }}>검색 결과가 없습니다.</div>
                         <div style={{ fontSize: 13, opacity: 0.7, marginTop: 4 }}>다른 선박명이나 업체명을 입력해 보세요.</div>

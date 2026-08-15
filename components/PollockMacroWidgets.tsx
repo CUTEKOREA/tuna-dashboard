@@ -20,10 +20,10 @@ export function Widget1_GlobalCatch() {
             <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" vertical={false} />
             <XAxis dataKey="year" stroke="rgba(255,255,255,0.5)" fontSize={11} tickMargin={10} />
             <YAxis stroke="rgba(255,255,255,0.5)" fontSize={11} tickFormatter={(v) => (v/10000) + '만'} tickMargin={10} />
-            <Tooltip contentStyle={{ background: '#0a0f1f', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '8px', color: '#f8fafc' }} />
+            <Tooltip contentStyle={{ background: '#0a0f1f', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '8px', color: 'var(--w-slate-50)' }} />
             <Area type="monotone" dataKey="러시아" stackId="1" stroke="var(--color-danger)" fill="var(--color-danger)" fillOpacity={0.6} />
             <Area type="monotone" dataKey="미국" stackId="1" stroke="var(--color-info)" fill="var(--color-info)" fillOpacity={0.6} />
-            <Area type="monotone" dataKey="기타" stackId="1" stroke="#8b5cf6" fill="#8b5cf6" fillOpacity={0.6} />
+            <Area type="monotone" dataKey="기타" stackId="1" stroke="var(--w-violet-500)" fill="var(--w-violet-500)" fillOpacity={0.6} />
             <Legend iconType="circle" wrapperStyle={{ fontSize: '11px', color: 'rgba(255,255,255,0.7)', paddingTop: '10px' }} />
           </AreaChart>
       }
@@ -81,7 +81,7 @@ export function Widget3_USARussiaDiverging() {
             <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" vertical={false} />
             <XAxis dataKey="year" stroke="rgba(255,255,255,0.5)" fontSize={11} tickMargin={10} />
             <YAxis stroke="rgba(255,255,255,0.5)" fontSize={11} tickMargin={10} />
-            <Tooltip contentStyle={{ background: '#0a0f1f', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '8px', color: '#f8fafc' }} />
+            <Tooltip contentStyle={{ background: '#0a0f1f', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '8px', color: 'var(--w-slate-50)' }} />
             <Bar dataKey="미국_증감" fill="var(--color-info)" radius={[4,4,0,0]} />
             <Bar dataKey="러시아_증감" fill="var(--color-danger)" radius={[4,4,0,0]} />
             <Legend iconType="circle" wrapperStyle={{ fontSize: '11px', color: 'rgba(255,255,255,0.7)', paddingTop: '10px' }} />
@@ -112,9 +112,9 @@ export function Widget4_KoreaImport() {
             <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" vertical={false} />
             <XAxis dataKey="year" stroke="rgba(255,255,255,0.5)" fontSize={11} tickMargin={10} />
             <YAxis stroke="rgba(255,255,255,0.5)" fontSize={11} tickFormatter={(v) => (v/10000) + '만톤'} tickMargin={10} />
-            <Tooltip contentStyle={{ background: '#0a0f1f', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '8px', color: '#f8fafc' }} />
-            <Line type="monotone" dataKey="수입량" stroke="#34d399" strokeWidth={3} dot={{r:3}} activeDot={{r:6}} />
-            <Line type="monotone" dataKey="자국어획량" stroke="#64748b" strokeDasharray="5 5" strokeWidth={2} dot={false} />
+            <Tooltip contentStyle={{ background: '#0a0f1f', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '8px', color: 'var(--w-slate-50)' }} />
+            <Line type="monotone" dataKey="수입량" stroke="var(--w-emerald-400)" strokeWidth={3} dot={{r:3}} activeDot={{r:6}} />
+            <Line type="monotone" dataKey="자국어획량" stroke="var(--w-slate-500)" strokeDasharray="5 5" strokeWidth={2} dot={false} />
             <Legend iconType="circle" wrapperStyle={{ fontSize: '11px', color: 'rgba(255,255,255,0.7)', paddingTop: '10px' }} />
           </LineChart>
       }

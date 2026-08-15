@@ -39,24 +39,24 @@ export default function MscConsumerAwareness() {
         <div style={{ display: 'flex', flexDirection: 'column', gap: '20px', width: '100%' }}>
           {/* Awareness Trend */}
           <div>
-            <div style={{ fontSize: '0.78rem', fontWeight: 600, color: '#94a3b8', marginBottom: '8px', letterSpacing: '0.05em' }}>
+            <div style={{ fontSize: '0.78rem', fontWeight: 600, color: 'var(--w-slate-400)', marginBottom: '8px', letterSpacing: '0.05em' }}>
               MSC 라벨 인지도·이해도 추이 (%)
             </div>
             <div style={{ height: 200, width: '100%' }}>
               <SafeResponsiveContainer width="100%" height="100%">
                 <LineChart data={awarenessData} margin={{ top: 10, right: 30, left: 0, bottom: 5 }}>
                   <CartesianGrid strokeDasharray="3 3" opacity={0.15} vertical={false} />
-                  <XAxis dataKey="year" stroke="#64748b" tick={{ fill: '#94a3b8', fontSize: 11 }} axisLine={false} tickLine={false} />
-                  <YAxis domain={[10, 95]} stroke="#64748b" tick={{ fill: '#94a3b8', fontSize: 11 }} axisLine={false} tickLine={false} tickFormatter={(v) => `${v}%`} />
+                  <XAxis dataKey="year" stroke="var(--w-slate-500)" tick={{ fill: 'var(--w-slate-400)', fontSize: 11 }} axisLine={false} tickLine={false} />
+                  <YAxis domain={[10, 95]} stroke="var(--w-slate-500)" tick={{ fill: 'var(--w-slate-400)', fontSize: 11 }} axisLine={false} tickLine={false} tickFormatter={(v) => `${v}%`} />
                   <Tooltip
-                    contentStyle={{ borderRadius: '8px', border: 'none', boxShadow: '0 4px 12px rgba(0,0,0,0.3)', backgroundColor: 'rgba(30,41,59,0.95)', color: '#e2e8f0' }}
-                    labelStyle={{ color: '#e2e8f0' }}
-                    itemStyle={{ color: '#cbd5e1' }}
+                    contentStyle={{ borderRadius: '8px', border: 'none', boxShadow: '0 4px 12px rgba(0,0,0,0.3)', backgroundColor: 'rgba(30,41,59,0.95)', color: 'var(--w-slate-200)' }}
+                    labelStyle={{ color: 'var(--w-slate-200)' }}
+                    itemStyle={{ color: 'var(--w-slate-300)' }}
                   />
-                  <Legend iconType="circle" wrapperStyle={{ color: '#94a3b8', fontSize: '0.75rem' }} />
-                  <Line type="monotone" dataKey="awareness" name="인지도" stroke="#38bdf8" strokeWidth={2.5} dot={{ r: 4, fill: '#38bdf8' }} isAnimationActive={false} />
+                  <Legend iconType="circle" wrapperStyle={{ color: 'var(--w-slate-400)', fontSize: '0.75rem' }} />
+                  <Line type="monotone" dataKey="awareness" name="인지도" stroke="var(--w-sky-400)" strokeWidth={2.5} dot={{ r: 4, fill: 'var(--w-sky-400)' }} isAnimationActive={false} />
                   <Line type="monotone" dataKey="understanding" name="이해도" stroke="#a78bfa" strokeWidth={2.5} dot={{ r: 4, fill: '#a78bfa' }} isAnimationActive={false} />
-                  <Line type="monotone" dataKey="oceanConcern" name="해양 건강 우려" stroke="#10b981" strokeWidth={2} strokeDasharray="5 5" dot={{ r: 3, fill: '#10b981' }} isAnimationActive={false} />
+                  <Line type="monotone" dataKey="oceanConcern" name="해양 건강 우려" stroke="var(--w-emerald-500)" strokeWidth={2} strokeDasharray="5 5" dot={{ r: 3, fill: 'var(--w-emerald-500)' }} isAnimationActive={false} />
                 </LineChart>
               </SafeResponsiveContainer>
             </div>
@@ -64,13 +64,13 @@ export default function MscConsumerAwareness() {
 
           {/* Price Premium Bars */}
           <div>
-            <div style={{ fontSize: '0.78rem', fontWeight: 600, color: '#94a3b8', marginBottom: '8px', letterSpacing: '0.05em' }}>
+            <div style={{ fontSize: '0.78rem', fontWeight: 600, color: 'var(--w-slate-400)', marginBottom: '8px', letterSpacing: '0.05em' }}>
               에코라벨 조합별 가격 프리미엄 (미국 닐슨 데이터)
             </div>
             <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
               {premiumData.map((d) => (
                 <div key={d.label} style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-                  <div style={{ width: '140px', fontSize: '0.75rem', color: '#94a3b8', flexShrink: 0, textAlign: 'right' }}>{d.label}</div>
+                  <div style={{ width: '140px', fontSize: '0.75rem', color: 'var(--w-slate-400)', flexShrink: 0, textAlign: 'right' }}>{d.label}</div>
                   <div style={{ flex: 1, position: 'relative', height: '28px', background: 'rgba(255,255,255,0.04)', borderRadius: '6px', overflow: 'hidden' }}>
                     <div style={{
                       width: `${(d.premium / 100) * 100}%`, height: '100%',

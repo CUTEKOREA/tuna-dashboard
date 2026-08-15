@@ -14,7 +14,7 @@ const customTooltipStyle = {
   border: '1px solid rgba(255,255,255,0.2)',
   borderRadius: '8px',
   padding: '8px 12px',
-  color: '#f8fafc',
+  color: 'var(--w-slate-50)',
   fontSize: '12px'
 };
 
@@ -24,7 +24,7 @@ const CustomTooltip = ({ active, payload, label }: any) => {
     <div style={customTooltipStyle}>
       <p style={{ margin: '0 0 4px 0', fontWeight: 700 }}>{label}</p>
       {payload.map((e: any, i: number) => (
-        <div key={i} style={{ display: 'flex', justifyContent: 'space-between', gap: '12px', fontSize: '11px', color: '#cbd5e1' }}>
+        <div key={i} style={{ display: 'flex', justifyContent: 'space-between', gap: '12px', fontSize: '11px', color: 'var(--w-slate-300)' }}>
           <span style={{ color: e.color }}>■ {e.name}</span>
           <strong>{typeof e.value === 'number' ? e.value.toLocaleString() : e.value}</strong>
         </div>
@@ -68,7 +68,7 @@ export function InsightPorkSupplyChain({ accent = '#8b5cf6' }: any) {
       chart={
         <div style={{ height: 300, width: '100%', display: 'flex', gap: '10px' }}>
           <div style={{ flex: 1, position: 'relative' }}>
-            <p style={{ position: 'absolute', top: 10, left: 0, right: 0, textAlign: 'center', fontSize: '11px', color: '#94a3b8', fontWeight: 600 }}>신선육 HS 0203 (118.4천톤·2개월)</p>
+            <p style={{ position: 'absolute', top: 10, left: 0, right: 0, textAlign: 'center', fontSize: '11px', color: 'var(--w-slate-400)', fontWeight: 600 }}>신선육 HS 0203 (118.4천톤·2개월)</p>
             <SafeResponsiveContainer width="100%" height="100%">
               <PieChart>
                 <Tooltip content={<CustomTooltip />} />
@@ -79,12 +79,12 @@ export function InsightPorkSupplyChain({ accent = '#8b5cf6' }: any) {
             </SafeResponsiveContainer>
           </div>
           <div style={{ flex: 1, position: 'relative' }}>
-            <p style={{ position: 'absolute', top: 10, left: 0, right: 0, textAlign: 'center', fontSize: '11px', color: '#94a3b8', fontWeight: 600 }}>가공육 HS 1601·1602 (1.87천톤·2개월)</p>
+            <p style={{ position: 'absolute', top: 10, left: 0, right: 0, textAlign: 'center', fontSize: '11px', color: 'var(--w-slate-400)', fontWeight: 600 }}>가공육 HS 1601·1602 (1.87천톤·2개월)</p>
             <SafeResponsiveContainer width="100%" height="100%">
               <PieChart>
                 <Tooltip content={<CustomTooltip />} />
                 <Pie data={processedMeatData} cx="50%" cy="50%" innerRadius={40} outerRadius={70} paddingAngle={2} dataKey="value" stroke="none">
-                  {processedMeatData.map((entry, index) => <Cell key={`pcell-${index}`} fill={['#f59e0b', '#10b981', '#64748b'][index % 3]} />)}
+                  {processedMeatData.map((entry, index) => <Cell key={`pcell-${index}`} fill={['var(--w-amber-500)', 'var(--w-emerald-500)', 'var(--w-slate-500)'][index % 3]} />)}
                 </Pie>
               </PieChart>
             </SafeResponsiveContainer>
@@ -126,14 +126,14 @@ export function InsightAsfChinaFactor({ accent = '#f43f5e' }: any) {
         <ComposedChart data={chinaFactorData} margin={{ top: 10, right: 10, left: -20, bottom: 0 }}>
           <ChartPatternDefs />
           <CartesianGrid strokeDasharray="3 3" stroke="rgba(140,170,255,0.12)" vertical={false} />
-          <XAxis dataKey="year" stroke="#64748b" tick={{ fontSize: 9 }} />
-          <YAxis yAxisId="left" stroke="#64748b" tick={{ fontSize: 9 }} domain={[200, 500]} />
-          <YAxis yAxisId="right" orientation="right" stroke="#64748b" tick={{ fontSize: 9 }} domain={[0, 200]} />
+          <XAxis dataKey="year" stroke="var(--w-slate-500)" tick={{ fontSize: 9 }} />
+          <YAxis yAxisId="left" stroke="var(--w-slate-500)" tick={{ fontSize: 9 }} domain={[200, 500]} />
+          <YAxis yAxisId="right" orientation="right" stroke="var(--w-slate-500)" tick={{ fontSize: 9 }} domain={[0, 200]} />
           <Tooltip content={<CustomTooltip />} />
           <Legend verticalAlign="top" wrapperStyle={{ fontSize: '10px', paddingBottom: '10px' }} />
-          <Bar yAxisId="right" dataKey="asfOutbreaks" name="아시아 ASF 발병(건)" fill="url(#a11y-diag)" stroke="#ef4444" radius={[4, 4, 0, 0]} barSize={20} fillOpacity={0.4} />
-          <Area yAxisId="left" type="monotone" dataKey="chinaInv" name="중국 사육 두수(백만)" fill="url(#a11y-dots)" stroke="#f59e0b" fillOpacity={0.2} />
-          <Line yAxisId="right" type="step" dataKey="globalPrice" name="글로벌 돈가 지수" stroke="#38bdf8" strokeWidth={2.5} dot={{ r: 3 }} />
+          <Bar yAxisId="right" dataKey="asfOutbreaks" name="아시아 ASF 발병(건)" fill="url(#a11y-diag)" stroke="var(--w-red-500)" radius={[4, 4, 0, 0]} barSize={20} fillOpacity={0.4} />
+          <Area yAxisId="left" type="monotone" dataKey="chinaInv" name="중국 사육 두수(백만)" fill="url(#a11y-dots)" stroke="var(--w-amber-500)" fillOpacity={0.2} />
+          <Line yAxisId="right" type="step" dataKey="globalPrice" name="글로벌 돈가 지수" stroke="var(--w-sky-400)" strokeWidth={2.5} dot={{ r: 3 }} />
         </ComposedChart>
       }
     />
@@ -170,13 +170,13 @@ export function InsightHogCornRatio({ accent = '#ec4899' }: any) {
         <ComposedChart data={hogCornData} margin={{ top: 10, right: 10, left: -20, bottom: 0 }}>
           <ChartPatternDefs />
           <CartesianGrid strokeDasharray="3 3" stroke="rgba(140,170,255,0.12)" vertical={false} />
-          <XAxis dataKey="qtr" stroke="#64748b" tick={{ fontSize: 9 }} />
-          <YAxis yAxisId="left" stroke="#64748b" tick={{ fontSize: 9 }} domain={[150, 300]} />
-          <YAxis yAxisId="right" orientation="right" stroke="#64748b" tick={{ fontSize: 9 }} domain={[10, 25]} />
+          <XAxis dataKey="qtr" stroke="var(--w-slate-500)" tick={{ fontSize: 9 }} />
+          <YAxis yAxisId="left" stroke="var(--w-slate-500)" tick={{ fontSize: 9 }} domain={[150, 300]} />
+          <YAxis yAxisId="right" orientation="right" stroke="var(--w-slate-500)" tick={{ fontSize: 9 }} domain={[10, 25]} />
           <Tooltip content={<CustomTooltip />} />
           <Legend verticalAlign="top" wrapperStyle={{ fontSize: '10px', paddingBottom: '10px' }} />
-          <Area yAxisId="left" type="monotone" dataKey="cornPrice" name="옥수수 단가($/t)" fill="#f59e0b" stroke="#f59e0b" fillOpacity={0.1} />
-          <Line yAxisId="left" type="monotone" dataKey="porkWholesale" name="돈육 도매($/100lb)" stroke="#38bdf8" strokeWidth={2} strokeDasharray="5 5" />
+          <Area yAxisId="left" type="monotone" dataKey="cornPrice" name="옥수수 단가($/t)" fill="var(--w-amber-500)" stroke="var(--w-amber-500)" fillOpacity={0.1} />
+          <Line yAxisId="left" type="monotone" dataKey="porkWholesale" name="돈육 도매($/100lb)" stroke="var(--w-sky-400)" strokeWidth={2} strokeDasharray="5 5" />
           <Bar yAxisId="right" dataKey="ratio" name="Hog-Corn 비율" fill={accent} radius={[4, 4, 0, 0]} barSize={25}>
             {hogCornData.map((e, index) => <Cell key={`cell-${index}`} fillOpacity={e.ratio > 15 ? 0.8 : 0.4} />)}
           </Bar>

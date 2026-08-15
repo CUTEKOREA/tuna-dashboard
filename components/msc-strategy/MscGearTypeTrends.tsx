@@ -30,7 +30,7 @@ const tooltipStyle = {
   backgroundColor: 'rgba(20, 28, 52, 0.95)',
   border: '1px solid rgba(148,163,184,0.15)',
   borderRadius: 8,
-  color: '#e2e8f0',
+  color: 'var(--w-slate-200)',
   fontSize: '0.78rem',
   padding: '8px 12px',
 };
@@ -47,7 +47,7 @@ const CustomTooltip = ({ active, payload, label }: any) => {
   const total = payload.reduce((s: number, p: any) => s + (p.value ?? 0), 0);
   return (
     <div style={tooltipStyle}>
-      <div style={{ fontWeight: 600, marginBottom: 6, color: '#e2e8f0' }}>{label}년</div>
+      <div style={{ fontWeight: 600, marginBottom: 6, color: 'var(--w-slate-200)' }}>{label}년</div>
       {payload.map((p: any) => (
         <div key={p.dataKey} style={{ display: 'flex', justifyContent: 'space-between', gap: 16, marginBottom: 2 }}>
           <span style={{ color: p.color }}>{gearLabels[p.dataKey] || p.dataKey}</span>
@@ -55,7 +55,7 @@ const CustomTooltip = ({ active, payload, label }: any) => {
         </div>
       ))}
       <div style={{ borderTop: '1px solid rgba(148,163,184,0.2)', marginTop: 4, paddingTop: 4, fontWeight: 700, display: 'flex', justifyContent: 'space-between' }}>
-        <span style={{ color: '#94a3b8' }}>합계</span>
+        <span style={{ color: 'var(--w-slate-400)' }}>합계</span>
         <span>{total.toLocaleString()} 천MT</span>
       </div>
     </div>
@@ -85,31 +85,31 @@ export default function MscGearTypeTrends() {
         <AreaChart data={gearData} margin={{ top: 10, right: 20, left: 10, bottom: 0 }}>
           <defs>
             <linearGradient id="gPurseSeine" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="5%" stopColor="#38bdf8" stopOpacity={0.4} />
-              <stop offset="95%" stopColor="#38bdf8" stopOpacity={0.05} />
+              <stop offset="5%" stopColor="var(--w-sky-400)" stopOpacity={0.4} />
+              <stop offset="95%" stopColor="var(--w-sky-400)" stopOpacity={0.05} />
             </linearGradient>
             <linearGradient id="gPoleAndLine" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="5%" stopColor="#10b981" stopOpacity={0.4} />
-              <stop offset="95%" stopColor="#10b981" stopOpacity={0.05} />
+              <stop offset="5%" stopColor="var(--w-emerald-500)" stopOpacity={0.4} />
+              <stop offset="95%" stopColor="var(--w-emerald-500)" stopOpacity={0.05} />
             </linearGradient>
             <linearGradient id="gLongline" x1="0" y1="0" x2="0" y2="1">
               <stop offset="5%" stopColor="#a78bfa" stopOpacity={0.4} />
               <stop offset="95%" stopColor="#a78bfa" stopOpacity={0.05} />
             </linearGradient>
             <linearGradient id="gOther" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="5%" stopColor="#64748b" stopOpacity={0.3} />
-              <stop offset="95%" stopColor="#64748b" stopOpacity={0.05} />
+              <stop offset="5%" stopColor="var(--w-slate-500)" stopOpacity={0.3} />
+              <stop offset="95%" stopColor="var(--w-slate-500)" stopOpacity={0.05} />
             </linearGradient>
           </defs>
           <CartesianGrid strokeDasharray="3 3" stroke="rgba(148,163,184,0.08)" />
           <XAxis
             dataKey="year"
-            tick={{ fill: '#94a3b8', fontSize: 12 }}
+            tick={{ fill: 'var(--w-slate-400)', fontSize: 12 }}
             axisLine={{ stroke: 'rgba(148,163,184,0.15)' }}
             tickLine={false}
           />
           <YAxis
-            tick={{ fill: '#94a3b8', fontSize: 12 }}
+            tick={{ fill: 'var(--w-slate-400)', fontSize: 12 }}
             axisLine={false}
             tickLine={false}
             tickFormatter={(v: number) => `${v.toLocaleString()}`}
@@ -117,13 +117,13 @@ export default function MscGearTypeTrends() {
           <Tooltip content={<CustomTooltip />} />
           <Legend
             formatter={legendFormatter}
-            wrapperStyle={{ fontSize: '0.75rem', color: '#94a3b8', paddingTop: 8 }}
+            wrapperStyle={{ fontSize: '0.75rem', color: 'var(--w-slate-400)', paddingTop: 8 }}
           />
           <Area
             type="monotone"
             dataKey="other"
             stackId="1"
-            stroke="#64748b"
+            stroke="var(--w-slate-500)"
             fill="url(#gOther)"
             strokeWidth={1.5}
             isAnimationActive={false}
@@ -141,7 +141,7 @@ export default function MscGearTypeTrends() {
             type="monotone"
             dataKey="poleAndLine"
             stackId="1"
-            stroke="#10b981"
+            stroke="var(--w-emerald-500)"
             fill="url(#gPoleAndLine)"
             strokeWidth={1.5}
             isAnimationActive={false}
@@ -150,7 +150,7 @@ export default function MscGearTypeTrends() {
             type="monotone"
             dataKey="purseSeine"
             stackId="1"
-            stroke="#38bdf8"
+            stroke="var(--w-sky-400)"
             fill="url(#gPurseSeine)"
             strokeWidth={2}
             isAnimationActive={false}

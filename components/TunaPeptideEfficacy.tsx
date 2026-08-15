@@ -37,13 +37,13 @@ export default function TunaPeptideEfficacy() {
       chart={
         <RadarChart cx="50%" cy="50%" outerRadius="65%" data={data}>
           <PolarGrid stroke="#334155" />
-          <PolarAngleAxis dataKey="metric" tick={{ fill: '#94a3b8', fontSize: 10 }} />
-          <PolarRadiusAxis angle={30} domain={[0, 100]} tick={{ fill: '#64748b', fontSize: 9 }} />
-          <Radar name="효소가수분해 (TPF+HPMC)" dataKey="효소가수분해TPF" stroke="#8b5cf6" fill="#8b5cf6" fillOpacity={0.5} />
-          <Radar name="열수추출 (전통방식)" dataKey="열수추출" stroke="#94a3b8" fill="#94a3b8" fillOpacity={0.3} />
+          <PolarAngleAxis dataKey="metric" tick={{ fill: 'var(--w-slate-400)', fontSize: 10 }} />
+          <PolarRadiusAxis angle={30} domain={[0, 100]} tick={{ fill: 'var(--w-slate-500)', fontSize: 9 }} />
+          <Radar name="효소가수분해 (TPF+HPMC)" dataKey="효소가수분해TPF" stroke="var(--w-violet-500)" fill="var(--w-violet-500)" fillOpacity={0.5} />
+          <Radar name="열수추출 (전통방식)" dataKey="열수추출" stroke="var(--w-slate-400)" fill="var(--w-slate-400)" fillOpacity={0.3} />
           <Tooltip
-            contentStyle={{ backgroundColor: '#0a0f1f', borderColor: '#334155', color: '#f8fafc', fontSize: '0.8rem' }}
-            itemStyle={{ color: '#f8fafc' }}
+            contentStyle={{ backgroundColor: '#0a0f1f', borderColor: '#334155', color: 'var(--w-slate-50)', fontSize: '0.8rem' }}
+            itemStyle={{ color: 'var(--w-slate-50)' }}
           />
           <Legend wrapperStyle={{ fontSize: '10px', paddingTop: '10px' }} />
         </RadarChart>

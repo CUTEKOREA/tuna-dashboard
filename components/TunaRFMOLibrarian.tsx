@@ -54,7 +54,7 @@ function buildChart(w: Widget): React.ReactElement {
           ))}
         </Pie>
         <Tooltip
-          contentStyle={{ background: 'rgba(10, 16, 40, 0.95)', border: '1px solid rgba(255,255,255,0.2)', color: '#e2e8f0' }}
+          contentStyle={{ background: 'rgba(10, 16, 40, 0.95)', border: '1px solid rgba(255,255,255,0.2)', color: 'var(--w-slate-200)' }}
           formatter={(v: any) => [`${v}${w.unit}`, '비중']}
         />
       </PieChart>
@@ -68,7 +68,7 @@ function buildChart(w: Widget): React.ReactElement {
         <XAxis dataKey={w.xKey} stroke="rgba(255,255,255,0.3)" tick={{ fill: 'rgba(255,255,255,0.6)', fontSize: 11 }} />
         <YAxis stroke="rgba(255,255,255,0.2)" tick={{ fill: 'rgba(255,255,255,0.6)', fontSize: 10 }} tickFormatter={(v: number) => COMMA(v)} />
         <Tooltip
-          contentStyle={{ background: 'rgba(10, 16, 40, 0.95)', border: '1px solid rgba(255,255,255,0.2)', color: '#e2e8f0' }}
+          contentStyle={{ background: 'rgba(10, 16, 40, 0.95)', border: '1px solid rgba(255,255,255,0.2)', color: 'var(--w-slate-200)' }}
           formatter={(v: any) => COMMA(Number(v))}
         />
         <Legend wrapperStyle={{ fontSize: '11px' }} />
@@ -86,7 +86,7 @@ function buildChart(w: Widget): React.ReactElement {
       <XAxis dataKey={w.xKey} stroke="rgba(255,255,255,0.3)" tick={{ fill: 'rgba(255,255,255,0.6)', fontSize: 11 }} />
       <YAxis stroke="rgba(255,255,255,0.2)" tick={{ fill: 'rgba(255,255,255,0.6)', fontSize: 10 }} tickFormatter={(v: number) => COMMA(v)} />
       <Tooltip
-        contentStyle={{ background: 'rgba(10, 16, 40, 0.95)', border: '1px solid rgba(255,255,255,0.2)', color: '#e2e8f0' }}
+        contentStyle={{ background: 'rgba(10, 16, 40, 0.95)', border: '1px solid rgba(255,255,255,0.2)', color: 'var(--w-slate-200)' }}
         formatter={(v: any) => COMMA(Number(v))}
       />
       <Legend wrapperStyle={{ fontSize: '11px' }} />

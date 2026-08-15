@@ -50,7 +50,7 @@ export default function MscGlobalEngagementKpi() {
               <div style={{
                 fontSize: '0.72rem',
                 fontWeight: 700,
-                color: '#10b981',
+                color: 'var(--w-emerald-500)',
                 background: 'rgba(16,185,129,0.12)',
                 border: '1px solid rgba(16,185,129,0.25)',
                 borderRadius: 6,
@@ -68,7 +68,7 @@ export default function MscGlobalEngagementKpi() {
           <div style={{
             fontSize: '0.78rem',
             fontWeight: 700,
-            color: '#e2e8f0',
+            color: 'var(--w-slate-200)',
             marginTop: '8px',
             lineHeight: 1.3,
           }}>
@@ -76,7 +76,7 @@ export default function MscGlobalEngagementKpi() {
           </div>
           <div style={{
             fontSize: '0.68rem',
-            color: '#64748b',
+            color: 'var(--w-slate-500)',
             marginTop: '4px',
           }}>
             {kpi.sub}
@@ -109,21 +109,21 @@ export default function MscGlobalEngagementKpi() {
         <TrendingUp size={16} color="#38bdf8" />
       </div>
       <div style={{ flex: 1 }}>
-        <div style={{ fontSize: '0.72rem', color: '#64748b', fontWeight: 600, marginBottom: '4px' }}>
+        <div style={{ fontSize: '0.72rem', color: 'var(--w-slate-500)', fontWeight: 600, marginBottom: '4px' }}>
           MSC 인증 참치 어획량 성장 궤적 (연감 2024 기준)
         </div>
-        <div style={{ fontSize: '0.82rem', color: '#e2e8f0', fontWeight: 600 }}>
-          <span style={{ color: '#64748b' }}>2012:</span>{' '}
-          <span style={{ color: '#94a3b8' }}>100,000</span>
-          <span style={{ color: '#64748b', fontSize: '0.7rem' }}>MT</span>
-          <span style={{ margin: '0 8px', color: '#38bdf8' }}>→</span>
-          <span style={{ color: '#64748b' }}>2023:</span>{' '}
-          <span style={{ color: '#38bdf8', fontWeight: 800 }}>1,600,000</span>
-          <span style={{ color: '#64748b', fontSize: '0.7rem' }}>MT</span>
+        <div style={{ fontSize: '0.82rem', color: 'var(--w-slate-200)', fontWeight: 600 }}>
+          <span style={{ color: 'var(--w-slate-500)' }}>2012:</span>{' '}
+          <span style={{ color: 'var(--w-slate-400)' }}>100,000</span>
+          <span style={{ color: 'var(--w-slate-500)', fontSize: '0.7rem' }}>MT</span>
+          <span style={{ margin: '0 8px', color: 'var(--w-sky-400)' }}>→</span>
+          <span style={{ color: 'var(--w-slate-500)' }}>2023:</span>{' '}
+          <span style={{ color: 'var(--w-sky-400)', fontWeight: 800 }}>1,600,000</span>
+          <span style={{ color: 'var(--w-slate-500)', fontSize: '0.7rem' }}>MT</span>
           <span style={{
             marginLeft: '10px',
             fontSize: '0.72rem',
-            color: '#10b981',
+            color: 'var(--w-emerald-500)',
             fontWeight: 700,
             background: 'rgba(16,185,129,0.12)',
             padding: '2px 8px',

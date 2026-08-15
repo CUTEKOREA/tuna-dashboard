@@ -98,7 +98,7 @@ export default function CassavaDashboard() {
   if (widgets.length === 0) return (
     <div style={{ display:'flex', justifyContent:'center', alignItems:'center', height:'100vh', flexDirection:'column', gap:'1rem' }}>
       <RefreshCcw size={32} style={{ color:CASSAVA_THEME.tertiary, animation:'spin 1s linear infinite' }} />
-      <p style={{ color:'#94a3b8' }}>카사바 인텔리전스 데이터를 불러오는 중...</p>
+      <p style={{ color:'var(--w-slate-400)' }}>카사바 인텔리전스 데이터를 불러오는 중...</p>
     </div>
   );
 
@@ -107,10 +107,10 @@ export default function CassavaDashboard() {
   const renderChart = (w: any) => {
     if (!w) return null;
     const d = w.data;
-    if (!d?.length && w.id !== 'w04') return <div style={{height:'100%',display:'flex',alignItems:'center',justifyContent:'center',color:'#64748b'}}>데이터 없음</div>;
+    if (!d?.length && w.id !== 'w04') return <div style={{height:'100%',display:'flex',alignItems:'center',justifyContent:'center',color:'var(--w-slate-500)'}}>데이터 없음</div>;
     const grid = <CartesianGrid strokeDasharray="3 3" stroke="rgba(140,170,255,0.12)" vertical={false} />;
     const xFmt = (v: any) => { if (typeof v !== 'string') return v; const s = v.replace(/\([^)]*\)/g, '').trim(); return s.length > 6 ? s.slice(0,6)+'..' : s; };
-    const xAxis = <XAxis dataKey={w.xKey} stroke="#64748b" tick={{fontSize:9}} angle={d?.length > 6 ? -20 : 0} textAnchor={d?.length > 6 ? "end" : "middle"} height={d?.length > 6 ? 40 : 30} tickFormatter={xFmt} />;
+    const xAxis = <XAxis dataKey={w.xKey} stroke="var(--w-slate-500)" tick={{fontSize:9}} angle={d?.length > 6 ? -20 : 0} textAnchor={d?.length > 6 ? "end" : "middle"} height={d?.length > 6 ? 40 : 30} tickFormatter={xFmt} />;
     const yFmt = (v: number) => v >= 1000000 ? `${(v/1000000).toFixed(1)}M` : v >= 1000 ? `${(v/1000).toFixed(0)}K` : v.toLocaleString();
 
     if (w.id === 'w04') {
@@ -121,9 +121,9 @@ export default function CassavaDashboard() {
         : null;
       if (!sankeyData) {
         return (
-          <div style={{ height:'100%', display:'flex', flexDirection:'column', alignItems:'center', justifyContent:'center', gap:'8px', color:'#94a3b8', textAlign:'center', padding:'0 1rem' }}>
+          <div style={{ height:'100%', display:'flex', flexDirection:'column', alignItems:'center', justifyContent:'center', gap:'8px', color:'var(--w-slate-400)', textAlign:'center', padding:'0 1rem' }}>
             <EyeOff size={22} color="#64748b" />
-            <strong style={{ color:'#cbd5e1', fontSize:'0.85rem' }}>위젯 보류 — 무역 흐름 실측 데이터 미연동</strong>
+            <strong style={{ color:'var(--w-slate-300)', fontSize:'0.85rem' }}>위젯 보류 — 무역 흐름 실측 데이터 미연동</strong>
             <span style={{ fontSize:'0.75rem' }}>UN Comtrade 실측 집계 연동 후 표시됩니다.</span>
           </div>
         );
@@ -135,7 +135,7 @@ export default function CassavaDashboard() {
         return (
           <g>
             <rect x={x} y={y} width={width} height={height} fill={fill} rx="2" />
-            <text x={x + width / 2} y={y - 8} fill="#f8fafc" fontSize="11" textAnchor="middle" fontWeight="bold">
+            <text x={x + width / 2} y={y - 8} fill="var(--w-slate-50)" fontSize="11" textAnchor="middle" fontWeight="bold">
               {payload.name}
             </text>
           </g>
@@ -178,7 +178,7 @@ export default function CassavaDashboard() {
               ))}
             </defs>
             {grid}{xAxis}
-            <YAxis stroke="#64748b" tick={{fontSize:9}} tickFormatter={yFmt} />
+            <YAxis stroke="var(--w-slate-500)" tick={{fontSize:9}} tickFormatter={yFmt} />
             <RechartsTooltip content={<CustomTooltip />} />
             <Legend wrapperStyle={{fontSize:'10px'}} />
             {w.areas?.map((a:any,i:number) => (
@@ -191,7 +191,7 @@ export default function CassavaDashboard() {
           <BarChart data={d}>
             <ChartPatternDefs />
             {grid}{xAxis}
-            <YAxis stroke="#64748b" tick={{fontSize:9}} tickFormatter={yFmt} />
+            <YAxis stroke="var(--w-slate-500)" tick={{fontSize:9}} tickFormatter={yFmt} />
             <RechartsTooltip content={<CustomTooltip />} cursor={{fill:'rgba(255,255,255,0.04)'}} />
             <Legend wrapperStyle={{fontSize:'10px'}} />
             {w.bars?.map((b:any,i:number) => (
@@ -203,7 +203,7 @@ export default function CassavaDashboard() {
         return (
           <LineChart data={d}>
             {grid}{xAxis}
-            <YAxis stroke="#64748b" tick={{fontSize:9}} tickFormatter={yFmt} />
+            <YAxis stroke="var(--w-slate-500)" tick={{fontSize:9}} tickFormatter={yFmt} />
             <RechartsTooltip content={<CustomTooltip />} />
             <Legend wrapperStyle={{fontSize:'10px'}} />
             {w.lines?.map((l:any,i:number) => (
@@ -216,8 +216,8 @@ export default function CassavaDashboard() {
           <ComposedChart data={d}>
             <ChartPatternDefs />
             {grid}{xAxis}
-            <YAxis yAxisId="left" stroke="#64748b" tick={{fontSize:9}} tickFormatter={yFmt} />
-            <YAxis yAxisId="right" orientation="right" stroke="#64748b" tick={{fontSize:9}} tickFormatter={yFmt} />
+            <YAxis yAxisId="left" stroke="var(--w-slate-500)" tick={{fontSize:9}} tickFormatter={yFmt} />
+            <YAxis yAxisId="right" orientation="right" stroke="var(--w-slate-500)" tick={{fontSize:9}} tickFormatter={yFmt} />
             <RechartsTooltip content={<CustomTooltip />} />
             <Legend wrapperStyle={{fontSize:'10px'}} />
             {w.bars?.map((b:any,i:number) => (
@@ -232,8 +232,8 @@ export default function CassavaDashboard() {
         return (
           <RadarChart cx="50%" cy="50%" outerRadius="70%" data={d}>
             <PolarGrid stroke="rgba(255,255,255,0.1)" />
-            <PolarAngleAxis dataKey={w.xKey} tick={{fill:'#94a3b8', fontSize:10}} />
-            <PolarRadiusAxis angle={30} domain={[0, 100]} tick={{fill:'#64748b', fontSize:8}} />
+            <PolarAngleAxis dataKey={w.xKey} tick={{fill:'var(--w-slate-400)', fontSize:10}} />
+            <PolarRadiusAxis angle={30} domain={[0, 100]} tick={{fill:'var(--w-slate-500)', fontSize:8}} />
             <RechartsTooltip content={<CustomTooltip />} />
             <Legend wrapperStyle={{fontSize:'10px'}} />
             {w.radars?.map((r:any, i:number) => (
@@ -246,7 +246,7 @@ export default function CassavaDashboard() {
   };
 
   return (
-    <div style={{ padding:'0 1.5rem 3rem', color:'#f8fafc', minHeight:'100vh', fontFamily:"'Inter',sans-serif" }}>
+    <div style={{ padding:'0 1.5rem 3rem', color:'var(--w-slate-50)', minHeight:'100vh', fontFamily:"'Inter',sans-serif" }}>
 
       {/* ═══ Header ═══ */}
       <header style={{ marginBottom:'2rem' }}>
@@ -256,14 +256,14 @@ export default function CassavaDashboard() {
               <Sprout size={24} color={CASSAVA_THEME.tertiary} />
             </div>
             <div>
-              <h1 style={{ margin:0, fontSize:'1.6rem', fontWeight:800, letterSpacing:'-0.5px', color: '#f8fafc' }}>
+              <h1 style={{ margin:0, fontSize:'1.6rem', fontWeight:800, letterSpacing:'-0.5px', color: 'var(--w-slate-50)' }}>
                 카사바 & 타피오카 통합 인텔리전스
               </h1>
-              <p style={{ margin:0, fontSize:'0.8rem', color:'#94a3b8' }}>원물에서 핵심 산업소재로의 4F 밸류체인 진화 및 고부가가치화 전략</p>
+              <p style={{ margin:0, fontSize:'0.8rem', color:'var(--w-slate-400)' }}>원물에서 핵심 산업소재로의 4F 밸류체인 진화 및 고부가가치화 전략</p>
             </div>
           </div>
           <div style={{ display:'flex', alignItems:'center', gap:'1rem' }}>
-            <div style={{ fontSize:'0.8rem', padding:'0.5rem 1rem', background: '#11182f', border: '1px solid rgba(140,170,255,0.10)', borderRadius:'8px', color:'#94a3b8' }}>
+            <div style={{ fontSize:'0.8rem', padding:'0.5rem 1rem', background: '#11182f', border: '1px solid rgba(140,170,255,0.10)', borderRadius:'8px', color:'var(--w-slate-400)' }}>
               {/* 단일 출처: /api/cassava 라우트 _metadata.lastSynced (하드코딩 금지) */}
               <span style={{ color:CASSAVA_THEME.tertiary }}>데이터 최종 동기화:</span> {meta?.lastSynced ?? '동기화 정보 없음'} (정적 데이터)
             </div>
@@ -279,10 +279,10 @@ export default function CassavaDashboard() {
             <div key={key} style={{ background: '#11182f', border: '1px solid rgba(255,255,255,0.03)', borderRadius:'12px', padding:'1.2rem', display:'flex', flexDirection:'column', gap:'6px', position:'relative', overflow:'hidden' }}>
               <div style={{ position:'absolute', top:'-15px', right:'-15px', width:'60px', height:'60px', borderRadius:'50%', background:`radial-gradient(circle,${t.glow},transparent)`, pointerEvents:'none' }} />
               <div style={{ display:'flex', justifyContent:'space-between', alignItems:'center' }}>
-                <span style={{ fontSize:'0.72rem', color:'#94a3b8', fontWeight:600 }}>{kpi.title}</span>
+                <span style={{ fontSize:'0.72rem', color:'var(--w-slate-400)', fontWeight:600 }}>{kpi.title}</span>
                 <I size={14} style={{ color:t.text }} />
               </div>
-              <div style={{ fontSize:'1.4rem', fontWeight:800, color:'#f8fafc' }}>
+              <div style={{ fontSize:'1.4rem', fontWeight:800, color:'var(--w-slate-50)' }}>
                 {kpi.value}
               </div>
               <div style={{ fontSize:'0.68rem', color:t.text, fontWeight:600 }}>
@@ -304,7 +304,7 @@ export default function CassavaDashboard() {
             <BookOpen size={20} color={CASSAVA_THEME.tertiary} />
             <div style={{ textAlign:'left' }}>
               <div style={{ fontSize:'1.05rem', fontWeight:700, color:CASSAVA_THEME.tertiary, marginBottom:'4px' }}>2026 전략 요약: 카사바와 타피오카의 통합 밸류체인</div>
-              <div style={{ fontSize:'0.8rem', color:'#94a3b8' }}>단순 구황작물에서 글로벌 4F(Food/Feed/Fuel/Factory) 섹터 내 최상위 마진(Top-tier Margin) 산업소재로 리포지셔닝</div>
+              <div style={{ fontSize:'0.8rem', color:'var(--w-slate-400)' }}>단순 구황작물에서 글로벌 4F(Food/Feed/Fuel/Factory) 섹터 내 최상위 마진(Top-tier Margin) 산업소재로 리포지셔닝</div>
             </div>
           </div>
           <div style={{ transform: showEdu?'rotate(180deg)':'rotate(0deg)', transition:'transform 0.3s' }}>
@@ -316,19 +316,19 @@ export default function CassavaDashboard() {
             <div data-mobile-stack style={{ display:'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap:'1.5rem' }}>
               <div>
                 <h3 style={{ color:CASSAVA_THEME.primary, fontSize:'0.9rem', marginBottom:'0.6rem', display:'flex', alignItems:'center', gap:'6px' }}><Dna size={15}/> 4F 플랫폼 & 패러다임 전환 (Value Pivot)</h3>
-                <p style={{ color:'#cbd5e1', fontSize:'0.82rem', lineHeight:1.6, margin:0 }}>
+                <p style={{ color:'var(--w-slate-300)', fontSize:'0.82rem', lineHeight:1.6, margin:0 }}>
                   카사바(원료)를 타피오카(소재)로 정제하여 <strong>4F(Food, Feed, Fuel, Factory)</strong>로 확장합니다. 단순 사료용 칩(Chip) 원물 수출이라는 저마진(Low-margin) 덫에서 탈피해, 톤당 $6,400를 호가하는 <strong>생분해성 수지(PLA/PBAT)</strong> 및 영업이익률 90% 이상의 <strong>제약용 붕해제</strong> 등 프리미엄(Value-Added) 바이오 소재로 포트폴리오를 피벗 중입니다.
                 </p>
               </div>
               <div>
                 <h3 style={{ color:CASSAVA_THEME.secondary, fontSize:'0.9rem', marginBottom:'0.6rem', display:'flex', alignItems:'center', gap:'6px' }}><Recycle size={15}/> 제로 웨이스트 & 순환경제 (Circular Economy)</h3>
-                <p style={{ color:'#cbd5e1', fontSize:'0.82rem', lineHeight:1.6, margin:0 }}>
+                <p style={{ color:'var(--w-slate-300)', fontSize:'0.82rem', lineHeight:1.6, margin:0 }}>
                   타피오카 추출 후 버려지던 찌꺼기(펄프)와 껍질을 발효해 고단백 사료/버섯 배지로 재자원화합니다. 또한 가공 공정의 폐수로 메탄가스(바이오가스)를 포집해 자체 전력 및 열원으로 전환, 숨겨진 비용(Hidden Cost)을 제로화하는 ESG 인프라 투자가 필수적입니다.
                 </p>
               </div>
               <div>
                 <h3 style={{ color:CASSAVA_THEME.tertiary, fontSize:'0.9rem', marginBottom:'0.6rem', display:'flex', alignItems:'center', gap:'6px' }}><AlertTriangle size={15}/> 가나(Ghana) 중심의 식량안보 & 헷징 전략</h3>
-                <p style={{ color:'#cbd5e1', fontSize:'0.82rem', lineHeight:1.6, margin:0 }}>
+                <p style={{ color:'var(--w-slate-300)', fontSize:'0.82rem', lineHeight:1.6, margin:0 }}>
                   한국의 수입 99.9%가 태국/베트남에 편중되어 있습니다. 이를 탈피하기 위해 가나를 서아프리카 HQCF(고품질 카사바 가루) 전초기지로 육성하여, $400M 규모의 현지 밀가루 수입 대체를 주도하고 글로벌 공급망 쇼크라는 꼬리 리스크를 분산하는 <strong>수직 계열화 롤업 모델</strong>이 최우선 과제입니다.
                 </p>
               </div>
@@ -365,8 +365,8 @@ export default function CassavaDashboard() {
           <div style={{ marginBottom:'1.5rem', display:'flex', alignItems:'center', gap:'0.8rem' }}>
             <div style={{ width:'4px', height:'28px', background:`linear-gradient(180deg,${sec.color},${sec.color}99)`, borderRadius:'2px' }} />
             <div>
-              <h2 style={{ margin:0, fontSize:'1.2rem', fontWeight:800, color:'#f8fafc', letterSpacing:'-0.3px' }}>{sec.title}</h2>
-              <p style={{ margin:'4px 0 0 0', fontSize:'0.8rem', color:'#94a3b8' }}>{sec.desc}</p>
+              <h2 style={{ margin:0, fontSize:'1.2rem', fontWeight:800, color:'var(--w-slate-50)', letterSpacing:'-0.3px' }}>{sec.title}</h2>
+              <p style={{ margin:'4px 0 0 0', fontSize:'0.8rem', color:'var(--w-slate-400)' }}>{sec.desc}</p>
             </div>
           </div>
           <div data-mobile-stack style={{ display:'grid', gridTemplateColumns:'repeat(2, 1fr)', gap:'1.5rem' }}>

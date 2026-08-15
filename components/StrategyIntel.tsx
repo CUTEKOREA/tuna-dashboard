@@ -23,9 +23,9 @@ const CustomScatterTooltip = ({ active, payload }: any) => {
     return (
       <div style={{ background: '#0F172A', border: `1px solid ${data.fill}`, padding: '12px', borderRadius: '8px' }}>
         <p style={{ margin: '0 0 8px 0', fontSize: '14px', fontWeight: 'bold', color: data.fill }}>{data.name}</p>
-        <p style={{ margin: '4px 0', fontSize: '11px', color: '#94a3b8' }}>부가가치/프리미엄: <strong style={{ color: 'var(--text-primary)'}}>{data.x}</strong></p>
-        <p style={{ margin: '4px 0', fontSize: '11px', color: '#94a3b8' }}>선단 장악력: <strong style={{ color: 'var(--text-primary)'}}>{data.y}</strong></p>
-        <p style={{ margin: '8px 0 0 0', fontSize: '12px', color: '#cbd5e1', maxWidth: '200px' }}>{data.desc}</p>
+        <p style={{ margin: '4px 0', fontSize: '11px', color: 'var(--w-slate-400)' }}>부가가치/프리미엄: <strong style={{ color: 'var(--text-primary)'}}>{data.x}</strong></p>
+        <p style={{ margin: '4px 0', fontSize: '11px', color: 'var(--w-slate-400)' }}>선단 장악력: <strong style={{ color: 'var(--text-primary)'}}>{data.y}</strong></p>
+        <p style={{ margin: '8px 0 0 0', fontSize: '12px', color: 'var(--w-slate-300)', maxWidth: '200px' }}>{data.desc}</p>
       </div>
     );
   }
@@ -37,7 +37,7 @@ export default function StrategyIntel({ hideHeader = false }: { hideHeader?: boo
     <div className={styles.container}>
       {!hideHeader && (
         <div className={styles.header}>
-          <Target size={24} style={{ color: '#38bdf8' }} />
+          <Target size={24} style={{ color: 'var(--w-sky-400)' }} />
           <TermTooltip term="글로벌 Big 4 경쟁사 동향 (Competitor Intelligence)" description="세계를 주름잡는 4대 거대 참치 기업(Thai Union, Dongwon, Bolton, FCF)의 시장 지위와 기업별 핵심 전략을 비교 분석하는 인텔리전스 맵입니다." />
         </div>
       )}
@@ -55,8 +55,8 @@ export default function StrategyIntel({ hideHeader = false }: { hideHeader?: boo
               <SafeResponsiveContainer width="100%" height={300}>
                 <ScatterChart margin={{ top: 20, right: 20, bottom: 20, left: 0 }}>
                   <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" />
-                  <XAxis type="number" dataKey="x" name="프리미엄/고부가가치" domain={[0, 100]} tick={{ fill: '#94a3b8', fontSize: 11 }} label={{ value: '일반 캔 ◀ 부가가치 혁신 ▶ 펫푸드/RTE', position: 'insideBottom', fill: '#94a3b8', fontSize: 11, offset: -10 }} />
-                  <YAxis type="number" dataKey="y" name="선단 장악력" domain={[0, 100]} tick={{ fill: '#94a3b8', fontSize: 11 }} label={{ value: '트레이딩 ◀ 선단장악력 ▶ 어망/선대보유', angle: -90, position: 'insideLeft', fill: '#94a3b8', fontSize: 11 }} />
+                  <XAxis type="number" dataKey="x" name="프리미엄/고부가가치" domain={[0, 100]} tick={{ fill: 'var(--w-slate-400)', fontSize: 11 }} label={{ value: '일반 캔 ◀ 부가가치 혁신 ▶ 펫푸드/RTE', position: 'insideBottom', fill: 'var(--w-slate-400)', fontSize: 11, offset: -10 }} />
+                  <YAxis type="number" dataKey="y" name="선단 장악력" domain={[0, 100]} tick={{ fill: 'var(--w-slate-400)', fontSize: 11 }} label={{ value: '트레이딩 ◀ 선단장악력 ▶ 어망/선대보유', angle: -90, position: 'insideLeft', fill: 'var(--w-slate-400)', fontSize: 11 }} />
                   <ZAxis type="number" dataKey="z" range={[100, 300]} />
                   <RechartsTooltip cursor={{ strokeDasharray: '3 3', stroke: 'rgba(255,255,255,0.2)' }} content={<CustomScatterTooltip />} />
                   <Scatter name="Big 4" data={scatterData}>
@@ -79,7 +79,7 @@ export default function StrategyIntel({ hideHeader = false }: { hideHeader?: boo
 
         {/* 3D Flip Cards (Big 4 Profiles) */}
         <div>
-          <div className={styles.header} style={{ fontSize: '16px', color: '#e2e8f0', marginTop: '8px' }}>
+          <div className={styles.header} style={{ fontSize: '16px', color: 'var(--w-slate-200)', marginTop: '8px' }}>
             Big 4 다이나믹 프로필 (마우스 오버)
           </div>
           <div className={styles.flipCardsContainer}>

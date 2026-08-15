@@ -42,16 +42,16 @@ export default function SasKoreaProductionStructure() {
             borderRadius: '8px', marginBottom: '16px',
           }}>
             <div style={{ textAlign: 'center' }}>
-              <div style={{ fontSize: '0.72rem', color: '#94a3b8' }}>총 생산량</div>
-              <div style={{ fontSize: '1.1rem', fontWeight: 700, color: '#e2e8f0' }}>{productionData.total.volume}</div>
+              <div style={{ fontSize: '0.72rem', color: 'var(--w-slate-400)' }}>총 생산량</div>
+              <div style={{ fontSize: '1.1rem', fontWeight: 700, color: 'var(--w-slate-200)' }}>{productionData.total.volume}</div>
             </div>
             <div style={{ textAlign: 'center' }}>
-              <div style={{ fontSize: '0.72rem', color: '#94a3b8' }}>총 생산액</div>
-              <div style={{ fontSize: '1.1rem', fontWeight: 700, color: '#e2e8f0' }}>{productionData.total.value}</div>
+              <div style={{ fontSize: '0.72rem', color: 'var(--w-slate-400)' }}>총 생산액</div>
+              <div style={{ fontSize: '1.1rem', fontWeight: 700, color: 'var(--w-slate-200)' }}>{productionData.total.value}</div>
             </div>
             <div style={{ textAlign: 'center' }}>
-              <div style={{ fontSize: '0.72rem', color: '#94a3b8' }}>전년 대비</div>
-              <div style={{ fontSize: '1.1rem', fontWeight: 700, color: '#10b981' }}>{productionData.total.growth}</div>
+              <div style={{ fontSize: '0.72rem', color: 'var(--w-slate-400)' }}>전년 대비</div>
+              <div style={{ fontSize: '1.1rem', fontWeight: 700, color: 'var(--w-emerald-500)' }}>{productionData.total.growth}</div>
             </div>
           </div>
 
@@ -60,26 +60,26 @@ export default function SasKoreaProductionStructure() {
 
             {/* ── LEFT: Gear Types ── */}
             <div style={{ display: 'flex', flexDirection: 'column', gap: '8px', justifyContent: 'center' }}>
-              <div style={{ fontSize: '0.7rem', color: '#64748b', textAlign: 'center', marginBottom: '4px', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.5px' }}>어법 (Gear)</div>
+              <div style={{ fontSize: '0.7rem', color: 'var(--w-slate-500)', textAlign: 'center', marginBottom: '4px', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.5px' }}>어법 (Gear)</div>
               {productionData.gear.map((g, i) => (
                 <div key={i} style={{
                   background: `${g.color}12`, border: `1px solid ${g.color}30`,
                   borderLeft: `3px solid ${g.color}`, borderRadius: '6px', padding: '10px 12px',
                 }}>
                   <div style={{ fontSize: '0.78rem', fontWeight: 600, color: g.color }}>{g.type}</div>
-                  <div style={{ fontSize: '0.82rem', color: '#e2e8f0', fontWeight: 700, marginTop: '2px' }}>{g.volume}</div>
+                  <div style={{ fontSize: '0.82rem', color: 'var(--w-slate-200)', fontWeight: 700, marginTop: '2px' }}>{g.volume}</div>
                   <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: '4px' }}>
-                    <span style={{ fontSize: '0.7rem', color: '#94a3b8' }}>{g.unitPrice}</span>
+                    <span style={{ fontSize: '0.7rem', color: 'var(--w-slate-400)' }}>{g.unitPrice}</span>
                     <span style={{
                       fontSize: '0.65rem', background: `${g.color}25`, color: g.color,
                       padding: '1px 6px', borderRadius: '4px', fontWeight: 600,
                     }}>{g.purpose}</span>
                   </div>
                   {/* Percentage bar */}
-                  <div style={{ marginTop: '6px', background: '#1a2442', borderRadius: '3px', height: '4px', overflow: 'hidden' }}>
+                  <div style={{ marginTop: '6px', background: 'var(--w-navy-900)', borderRadius: '3px', height: '4px', overflow: 'hidden' }}>
                     <div style={{ width: `${g.pct}%`, height: '100%', background: g.color, borderRadius: '3px' }} />
                   </div>
-                  <div style={{ fontSize: '0.65rem', color: '#64748b', marginTop: '2px', textAlign: 'right' }}>{g.pct}%</div>
+                  <div style={{ fontSize: '0.65rem', color: 'var(--w-slate-500)', marginTop: '2px', textAlign: 'right' }}>{g.pct}%</div>
                 </div>
               ))}
             </div>
@@ -90,19 +90,19 @@ export default function SasKoreaProductionStructure() {
                 <svg width="24" height="120" viewBox="0 0 24 120">
                   <defs>
                     <linearGradient id="arrow1" x1="0" y1="0" x2="0" y2="1">
-                      <stop offset="0%" stopColor="#38bdf8" stopOpacity={0.6} />
-                      <stop offset="100%" stopColor="#f59e0b" stopOpacity={0.6} />
+                      <stop offset="0%" stopColor="var(--w-sky-400)" stopOpacity={0.6} />
+                      <stop offset="100%" stopColor="var(--w-amber-500)" stopOpacity={0.6} />
                     </linearGradient>
                   </defs>
                   <path d="M12 0 L12 100 M6 94 L12 106 L18 94" fill="none" stroke="url(#arrow1)" strokeWidth={2} />
                 </svg>
-                <div style={{ fontSize: '0.6rem', color: '#64748b', writingMode: 'vertical-rl', textOrientation: 'mixed' }}>어획→어종</div>
+                <div style={{ fontSize: '0.6rem', color: 'var(--w-slate-500)', writingMode: 'vertical-rl', textOrientation: 'mixed' }}>어획→어종</div>
               </div>
             </div>
 
             {/* ── CENTER: Species ── */}
             <div style={{ display: 'flex', flexDirection: 'column', gap: '6px', justifyContent: 'center' }}>
-              <div style={{ fontSize: '0.7rem', color: '#64748b', textAlign: 'center', marginBottom: '4px', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.5px' }}>어종 (Species)</div>
+              <div style={{ fontSize: '0.7rem', color: 'var(--w-slate-500)', textAlign: 'center', marginBottom: '4px', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.5px' }}>어종 (Species)</div>
               {productionData.species.map((s, i) => (
                 <div key={i} style={{
                   background: `${s.color}10`, border: `1px solid ${s.color}25`,
@@ -111,14 +111,14 @@ export default function SasKoreaProductionStructure() {
                 }}>
                   <div>
                     <div style={{ fontSize: '0.78rem', fontWeight: 600, color: s.color }}>{s.name}</div>
-                    <div style={{ fontSize: '0.75rem', color: '#cbd5e1', marginTop: '2px' }}>{s.volume}</div>
+                    <div style={{ fontSize: '0.75rem', color: 'var(--w-slate-300)', marginTop: '2px' }}>{s.volume}</div>
                   </div>
                   <div style={{ textAlign: 'right' }}>
                     <div style={{
                       fontSize: '0.7rem', fontWeight: 600,
-                      color: s.growth.startsWith('+') ? '#10b981' : s.growth === '-' ? '#64748b' : '#ef4444',
+                      color: s.growth.startsWith('+') ? 'var(--w-emerald-500)' : s.growth === '-' ? 'var(--w-slate-500)' : 'var(--w-red-500)',
                     }}>{s.growth}</div>
-                    <div style={{ fontSize: '0.68rem', color: '#94a3b8', marginTop: '2px' }}>₩{s.price}/kg</div>
+                    <div style={{ fontSize: '0.68rem', color: 'var(--w-slate-400)', marginTop: '2px' }}>₩{s.price}/kg</div>
                   </div>
                 </div>
               ))}
@@ -130,32 +130,32 @@ export default function SasKoreaProductionStructure() {
                 <svg width="24" height="120" viewBox="0 0 24 120">
                   <defs>
                     <linearGradient id="arrow2" x1="0" y1="0" x2="0" y2="1">
-                      <stop offset="0%" stopColor="#10b981" stopOpacity={0.6} />
+                      <stop offset="0%" stopColor="var(--w-emerald-500)" stopOpacity={0.6} />
                       <stop offset="100%" stopColor="#a78bfa" stopOpacity={0.6} />
                     </linearGradient>
                   </defs>
                   <path d="M12 0 L12 100 M6 94 L12 106 L18 94" fill="none" stroke="url(#arrow2)" strokeWidth={2} />
                 </svg>
-                <div style={{ fontSize: '0.6rem', color: '#64748b', writingMode: 'vertical-rl', textOrientation: 'mixed' }}>어종→무역</div>
+                <div style={{ fontSize: '0.6rem', color: 'var(--w-slate-500)', writingMode: 'vertical-rl', textOrientation: 'mixed' }}>어종→무역</div>
               </div>
             </div>
 
             {/* ── RIGHT: Trade ── */}
             <div style={{ display: 'flex', flexDirection: 'column', gap: '10px', justifyContent: 'center' }}>
-              <div style={{ fontSize: '0.7rem', color: '#64748b', textAlign: 'center', marginBottom: '4px', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.5px' }}>무역 (Trade)</div>
+              <div style={{ fontSize: '0.7rem', color: 'var(--w-slate-500)', textAlign: 'center', marginBottom: '4px', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.5px' }}>무역 (Trade)</div>
               <div style={{
                 background: '#10b98112', border: '1px solid #10b98130',
                 borderRadius: '8px', padding: '14px',
               }}>
-                <div style={{ fontSize: '0.72rem', color: '#94a3b8' }}>수출</div>
-                <div style={{ fontSize: '1.3rem', fontWeight: 700, color: '#10b981' }}>{productionData.trade.exports}</div>
+                <div style={{ fontSize: '0.72rem', color: 'var(--w-slate-400)' }}>수출</div>
+                <div style={{ fontSize: '1.3rem', fontWeight: 700, color: 'var(--w-emerald-500)' }}>{productionData.trade.exports}</div>
               </div>
               <div style={{
                 background: '#ef444412', border: '1px solid #ef444430',
                 borderRadius: '8px', padding: '14px',
               }}>
-                <div style={{ fontSize: '0.72rem', color: '#94a3b8' }}>수입</div>
-                <div style={{ fontSize: '1.3rem', fontWeight: 700, color: '#ef4444' }}>{productionData.trade.imports}</div>
+                <div style={{ fontSize: '0.72rem', color: 'var(--w-slate-400)' }}>수입</div>
+                <div style={{ fontSize: '1.3rem', fontWeight: 700, color: 'var(--w-red-500)' }}>{productionData.trade.imports}</div>
               </div>
               <div style={{
                 background: '#a78bfa12', border: '1px solid #a78bfa30',
@@ -174,13 +174,13 @@ export default function SasKoreaProductionStructure() {
             display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '12px',
           }}>
             <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-              <circle cx="10" cy="10" r="9" stroke="#f59e0b" strokeWidth="1.5" />
-              <path d="M10 6v5M10 13v1" stroke="#f59e0b" strokeWidth="1.5" strokeLinecap="round" />
+              <circle cx="10" cy="10" r="9" stroke="var(--w-amber-500)" strokeWidth="1.5" />
+              <path d="M10 6v5M10 13v1" stroke="var(--w-amber-500)" strokeWidth="1.5" strokeLinecap="round" />
             </svg>
-            <span style={{ fontSize: '0.82rem', fontWeight: 600, color: '#f59e0b' }}>
+            <span style={{ fontSize: '0.82rem', fontWeight: 600, color: 'var(--w-amber-500)' }}>
               선망 vs 연승: 3.3배 가격 프리미엄
             </span>
-            <span style={{ fontSize: '0.72rem', color: '#94a3b8' }}>
+            <span style={{ fontSize: '0.72rem', color: 'var(--w-slate-400)' }}>
               (2,003원/kg → 6,722원/kg)
             </span>
           </div>

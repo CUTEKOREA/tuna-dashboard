@@ -71,42 +71,42 @@ export default function SasMarketKPIs() {
               <AreaChart data={US_IMPORT_DATA} margin={{ top: 10, right: 20, left: 10, bottom: 0 }}>
                 <defs>
                   <linearGradient id="colorFresh" x1="0" y1="0" x2="0" y2="1">
-                    <stop offset="5%" stopColor="#10b981" stopOpacity={0.4} />
-                    <stop offset="95%" stopColor="#10b981" stopOpacity={0} />
+                    <stop offset="5%" stopColor="var(--w-emerald-500)" stopOpacity={0.4} />
+                    <stop offset="95%" stopColor="var(--w-emerald-500)" stopOpacity={0} />
                   </linearGradient>
                   <linearGradient id="colorFrozen" x1="0" y1="0" x2="0" y2="1">
-                    <stop offset="5%" stopColor="#38bdf8" stopOpacity={0.3} />
-                    <stop offset="95%" stopColor="#38bdf8" stopOpacity={0} />
+                    <stop offset="5%" stopColor="var(--w-sky-400)" stopOpacity={0.3} />
+                    <stop offset="95%" stopColor="var(--w-sky-400)" stopOpacity={0} />
                   </linearGradient>
                 </defs>
                 <CartesianGrid strokeDasharray="3 3" opacity={0.15} vertical={false} />
-                <XAxis dataKey="year" fontSize={11} tickLine={false} axisLine={false} stroke="#64748b" />
+                <XAxis dataKey="year" fontSize={11} tickLine={false} axisLine={false} stroke="var(--w-slate-500)" />
                 <YAxis
                   domain={[0, 1200]}
                   tickFormatter={(val: unknown) => `$${val}M`}
                   fontSize={11}
                   tickLine={false}
                   axisLine={false}
-                  stroke="#64748b"
+                  stroke="var(--w-slate-500)"
                 />
                 <Tooltip
-                  contentStyle={{ borderRadius: '8px', border: 'none', boxShadow: '0 4px 6px -1px rgb(0 0 0 / 0.3)', background: '#1a2442', color: '#e2e8f0' }}
+                  contentStyle={{ borderRadius: '8px', border: 'none', boxShadow: '0 4px 6px -1px rgb(0 0 0 / 0.3)', background: 'var(--w-navy-900)', color: 'var(--w-slate-200)' }}
                   formatter={(value: unknown, name: unknown) => [`$${value}M`, name === 'fresh' ? '🟢 Fresh(사시미급)' : '🔵 Frozen·필렛']}
                   labelFormatter={(label: unknown) => `${label}년`}
                 />
-                <Area type="monotone" dataKey="frozen" name="frozen" stackId="1" stroke="#38bdf8" strokeWidth={2} fillOpacity={1} fill="url(#colorFrozen)" isAnimationActive={false} />
-                <Area type="monotone" dataKey="fresh" name="fresh" stackId="1" stroke="#10b981" strokeWidth={2} fillOpacity={1} fill="url(#colorFresh)" isAnimationActive={false} />
+                <Area type="monotone" dataKey="frozen" name="frozen" stackId="1" stroke="var(--w-sky-400)" strokeWidth={2} fillOpacity={1} fill="url(#colorFrozen)" isAnimationActive={false} />
+                <Area type="monotone" dataKey="fresh" name="fresh" stackId="1" stroke="var(--w-emerald-500)" strokeWidth={2} fillOpacity={1} fill="url(#colorFresh)" isAnimationActive={false} />
               </AreaChart>
             </SafeResponsiveContainer>
           </div>
 
           {/* Legend */}
           <div style={{ display: 'flex', gap: '16px', justifyContent: 'center' }}>
-            <span style={{ fontSize: '0.65rem', color: '#10b981' }}>● Fresh(사시미급) $319M</span>
-            <span style={{ fontSize: '0.65rem', color: '#38bdf8' }}>● Frozen·필렛 $509M</span>
-            <span style={{ fontSize: '0.65rem', color: '#94a3b8' }}>합계 $829M (2024)</span>
+            <span style={{ fontSize: '0.65rem', color: 'var(--w-emerald-500)' }}>● Fresh(사시미급) $319M</span>
+            <span style={{ fontSize: '0.65rem', color: 'var(--w-sky-400)' }}>● Frozen·필렛 $509M</span>
+            <span style={{ fontSize: '0.65rem', color: 'var(--w-slate-400)' }}>합계 $829M (2024)</span>
             {sync.ok && (
-              <span style={{ fontSize: '0.62rem', color: '#10b981' }}>✓ Census 동기화 ({sync.coverage})</span>
+              <span style={{ fontSize: '0.62rem', color: 'var(--w-emerald-500)' }}>✓ Census 동기화 ({sync.coverage})</span>
             )}
           </div>
 
@@ -114,24 +114,24 @@ export default function SasMarketKPIs() {
           <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '8px' }}>
             {/* Top Partners */}
             <div style={{ padding: '8px 10px', borderRadius: '8px', background: 'rgba(16,185,129,0.05)', border: '1px solid rgba(16,185,129,0.15)' }}>
-              <div style={{ fontSize: '0.65rem', fontWeight: 600, color: '#10b981', marginBottom: '6px' }}>🏆 Top 5 수출국 (2024)</div>
+              <div style={{ fontSize: '0.65rem', fontWeight: 600, color: 'var(--w-emerald-500)', marginBottom: '6px' }}>🏆 Top 5 수출국 (2024)</div>
               {TOP_PARTNERS.map((p) => (
                 <div key={p.name} style={{ display: 'flex', alignItems: 'center', gap: '4px', marginBottom: '3px' }}>
-                  <span style={{ fontSize: '0.62rem', color: '#e2e8f0', flex: 1 }}>{p.name}</span>
+                  <span style={{ fontSize: '0.62rem', color: 'var(--w-slate-200)', flex: 1 }}>{p.name}</span>
                   <span style={{ fontSize: '0.62rem', fontWeight: 700, color: p.color }}>${p.value}M</span>
-                  <span style={{ fontSize: '0.55rem', color: '#64748b' }}>({p.pct}%)</span>
+                  <span style={{ fontSize: '0.55rem', color: 'var(--w-slate-500)' }}>({p.pct}%)</span>
                 </div>
               ))}
             </div>
             {/* Species */}
             <div style={{ padding: '8px 10px', borderRadius: '8px', background: 'rgba(56,189,248,0.05)', border: '1px solid rgba(56,189,248,0.15)' }}>
-              <div style={{ fontSize: '0.65rem', fontWeight: 600, color: '#38bdf8', marginBottom: '6px' }}>🐟 어종별 수입 (2024)</div>
+              <div style={{ fontSize: '0.65rem', fontWeight: 600, color: 'var(--w-sky-400)', marginBottom: '6px' }}>🐟 어종별 수입 (2024)</div>
               {SPECIES_2024.map((s) => (
                 <div key={s.name} style={{ display: 'flex', alignItems: 'center', gap: '4px', marginBottom: '3px' }}>
                   <div style={{ width: '5px', height: '5px', borderRadius: '50%', background: s.color, flexShrink: 0 }} />
-                  <span style={{ fontSize: '0.62rem', color: '#e2e8f0', flex: 1 }}>{s.name}</span>
+                  <span style={{ fontSize: '0.62rem', color: 'var(--w-slate-200)', flex: 1 }}>{s.name}</span>
                   <span style={{ fontSize: '0.62rem', fontWeight: 700, color: s.color }}>${s.value}M</span>
-                  <span style={{ fontSize: '0.55rem', color: '#64748b' }}>({s.pct}%)</span>
+                  <span style={{ fontSize: '0.55rem', color: 'var(--w-slate-500)' }}>({s.pct}%)</span>
                 </div>
               ))}
             </div>

@@ -43,31 +43,31 @@ export function ThaiImportShift1Q26() {
       customBody={
         <div data-mobile-stack style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16 }}>
           <div style={{ height: 240 }}>
-            <div style={{ fontSize: '0.7rem', color: '#94a3b8', marginBottom: 4, textAlign: 'center' }}>어종별 수입량 (톤)</div>
+            <div style={{ fontSize: '0.7rem', color: 'var(--w-slate-400)', marginBottom: 4, textAlign: 'center' }}>어종별 수입량 (톤)</div>
             <SafeResponsiveContainer width="100%" height="100%">
               <BarChart data={thaiImportData} margin={{ top: 10, right: 10, left: 10, bottom: 30 }}>
                 <ChartPatternDefs />
                 <CartesianGrid strokeDasharray="3 3" stroke="rgba(140,170,255,0.12)" />
-                <XAxis dataKey="species" tick={{ fill: '#94a3b8', fontSize: 10 }} />
-                <YAxis tick={{ fill: '#94a3b8', fontSize: 10 }} />
-                <RechartsTooltip contentStyle={{ background: '#1a2442', border: '1px solid #334155', borderRadius: 8, fontSize: '0.75rem' }} />
+                <XAxis dataKey="species" tick={{ fill: 'var(--w-slate-400)', fontSize: 10 }} />
+                <YAxis tick={{ fill: 'var(--w-slate-400)', fontSize: 10 }} />
+                <RechartsTooltip contentStyle={{ background: 'var(--w-navy-900)', border: '1px solid #334155', borderRadius: 8, fontSize: '0.75rem' }} />
                 <Legend wrapperStyle={{ fontSize: '0.7rem' }} />
-                <Bar dataKey="2025_Q1" name="2025 Q1" fill="#94a3b8" radius={[4, 4, 0, 0]} />
-                <Bar dataKey="2026_Q1" name="2026 Q1" fill="#06b6d4" radius={[4, 4, 0, 0]} />
+                <Bar dataKey="2025_Q1" name="2025 Q1" fill="var(--w-slate-400)" radius={[4, 4, 0, 0]} />
+                <Bar dataKey="2026_Q1" name="2026 Q1" fill="var(--w-cyan-500)" radius={[4, 4, 0, 0]} />
               </BarChart>
             </SafeResponsiveContainer>
           </div>
           <div style={{ height: 240 }}>
-            <div style={{ fontSize: '0.7rem', color: '#94a3b8', marginBottom: 4, textAlign: 'center' }}>해역별 공급 비중 (%)</div>
+            <div style={{ fontSize: '0.7rem', color: 'var(--w-slate-400)', marginBottom: 4, textAlign: 'center' }}>해역별 공급 비중 (%)</div>
             <SafeResponsiveContainer width="100%" height="100%">
               <BarChart data={thaiSourceShiftData} margin={{ top: 10, right: 10, left: 10, bottom: 30 }}>
                 <ChartPatternDefs />
                 <CartesianGrid strokeDasharray="3 3" stroke="rgba(140,170,255,0.12)" />
-                <XAxis dataKey="region" tick={{ fill: '#94a3b8', fontSize: 10 }} />
-                <YAxis tick={{ fill: '#94a3b8', fontSize: 10 }} unit="%" />
-                <RechartsTooltip contentStyle={{ background: '#1a2442', border: '1px solid #334155', borderRadius: 8, fontSize: '0.75rem' }} />
+                <XAxis dataKey="region" tick={{ fill: 'var(--w-slate-400)', fontSize: 10 }} />
+                <YAxis tick={{ fill: 'var(--w-slate-400)', fontSize: 10 }} unit="%" />
+                <RechartsTooltip contentStyle={{ background: 'var(--w-navy-900)', border: '1px solid #334155', borderRadius: 8, fontSize: '0.75rem' }} />
                 <Legend wrapperStyle={{ fontSize: '0.7rem' }} />
-                <Bar dataKey="2025_Q1" name="2025 Q1" fill="#94a3b8" radius={[4, 4, 0, 0]} />
+                <Bar dataKey="2025_Q1" name="2025 Q1" fill="var(--w-slate-400)" radius={[4, 4, 0, 0]} />
                 <Bar dataKey="2026_Q1" name="2026 Q1" fill="#a855f7" radius={[4, 4, 0, 0]} />
               </BarChart>
             </SafeResponsiveContainer>
@@ -118,26 +118,26 @@ export function FrimeAcquisitionWidget() {
       customBody={
         <div data-mobile-stack style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16, padding: '0 16px' }}>
           <div>
-            <div style={{ fontSize: '0.7rem', color: '#94a3b8', marginBottom: 8 }}>EU pre-cooked loin 시장 점유율</div>
+            <div style={{ fontSize: '0.7rem', color: 'var(--w-slate-400)', marginBottom: 8 }}>EU pre-cooked loin 시장 점유율</div>
             <div style={{ background: 'rgba(245,158,11,0.08)', border: '1px solid rgba(245,158,11,0.3)', borderRadius: 12, padding: '24px 16px', textAlign: 'center' }}>
-              <div style={{ fontSize: '2.5rem', fontWeight: 800, color: '#fbbf24', lineHeight: 1 }}>21%</div>
+              <div style={{ fontSize: '2.5rem', fontWeight: 800, color: 'var(--w-amber-400)', lineHeight: 1 }}>21%</div>
               <div style={{ fontSize: '0.75rem', color: '#fcd34d', marginTop: 6 }}>스페인 최대 단일 사업자</div>
-              <div style={{ fontSize: '0.65rem', color: '#94a3b8', marginTop: 4 }}>(MSC 인증 어장 100%)</div>
+              <div style={{ fontSize: '0.65rem', color: 'var(--w-slate-400)', marginTop: 4 }}>(MSC 인증 어장 100%)</div>
             </div>
-            <div style={{ marginTop: 12, fontSize: '0.75rem', color: '#cbd5e1' }}>
-              <strong style={{ color: '#fbbf24' }}>주력:</strong> 유럽 리테일·외식 직접 공급. 신선/냉동 황다랑어 로인 중심.
+            <div style={{ marginTop: 12, fontSize: '0.75rem', color: 'var(--w-slate-300)' }}>
+              <strong style={{ color: 'var(--w-amber-400)' }}>주력:</strong> 유럽 리테일·외식 직접 공급. 신선/냉동 황다랑어 로인 중심.
             </div>
           </div>
           <div style={{ height: 200 }}>
-            <div style={{ fontSize: '0.7rem', color: '#94a3b8', marginBottom: 4, textAlign: 'center' }}>제품군 (추정)</div>
+            <div style={{ fontSize: '0.7rem', color: 'var(--w-slate-400)', marginBottom: 4, textAlign: 'center' }}>제품군 (추정)</div>
             <SafeResponsiveContainer width="100%" height="100%">
               <BarChart data={frimeProductLine} layout="vertical" margin={{ top: 5, right: 20, left: 60, bottom: 5 }}>
                 <ChartPatternDefs />
                 <CartesianGrid strokeDasharray="3 3" stroke="rgba(140,170,255,0.12)" />
-                <XAxis type="number" tick={{ fill: '#94a3b8', fontSize: 10 }} unit="%" />
-                <YAxis type="category" dataKey="product" tick={{ fill: '#94a3b8', fontSize: 11 }} />
-                <RechartsTooltip contentStyle={{ background: '#1a2442', border: '1px solid #334155', borderRadius: 8, fontSize: '0.75rem' }} />
-                <Bar dataKey="share" name="제품 비중" fill="#f59e0b" radius={[0, 4, 4, 0]} />
+                <XAxis type="number" tick={{ fill: 'var(--w-slate-400)', fontSize: 10 }} unit="%" />
+                <YAxis type="category" dataKey="product" tick={{ fill: 'var(--w-slate-400)', fontSize: 11 }} />
+                <RechartsTooltip contentStyle={{ background: 'var(--w-navy-900)', border: '1px solid #334155', borderRadius: 8, fontSize: '0.75rem' }} />
+                <Bar dataKey="share" name="제품 비중" fill="var(--w-amber-500)" radius={[0, 4, 4, 0]} />
               </BarChart>
             </SafeResponsiveContainer>
           </div>
@@ -193,13 +193,13 @@ export function PerfectStormWidget() {
         <ComposedChart data={stormTimeline} margin={{ top: 10, right: 30, left: 10, bottom: 40 }}>
           <ChartPatternDefs />
           <CartesianGrid strokeDasharray="3 3" stroke="rgba(140,170,255,0.12)" />
-          <XAxis dataKey="date" tick={{ fill: '#94a3b8', fontSize: 10 }} angle={-30} textAnchor="end" height={60} />
-          <YAxis yAxisId="left" tick={{ fill: '#94a3b8', fontSize: 10 }} unit="$" />
-          <YAxis yAxisId="right" orientation="right" tick={{ fill: '#94a3b8', fontSize: 10 }} />
-          <RechartsTooltip contentStyle={{ background: '#1a2442', border: '1px solid #334155', borderRadius: 8, fontSize: '0.75rem' }} />
+          <XAxis dataKey="date" tick={{ fill: 'var(--w-slate-400)', fontSize: 10 }} angle={-30} textAnchor="end" height={60} />
+          <YAxis yAxisId="left" tick={{ fill: 'var(--w-slate-400)', fontSize: 10 }} unit="$" />
+          <YAxis yAxisId="right" orientation="right" tick={{ fill: 'var(--w-slate-400)', fontSize: 10 }} />
+          <RechartsTooltip contentStyle={{ background: 'var(--w-navy-900)', border: '1px solid #334155', borderRadius: 8, fontSize: '0.75rem' }} />
           <Legend wrapperStyle={{ fontSize: '0.7rem' }} />
-          <Bar yAxisId="left" dataKey="skj_price" name="가다랑어 방콕가($/MT)" fill="#06b6d4" radius={[4, 4, 0, 0]} />
-          <Line yAxisId="right" type="monotone" dataKey="mgo_index" name="MGO 지수(2025-10=100)" stroke="#ef4444" strokeWidth={2.5} dot={{ r: 4 }} />
+          <Bar yAxisId="left" dataKey="skj_price" name="가다랑어 방콕가($/MT)" fill="var(--w-cyan-500)" radius={[4, 4, 0, 0]} />
+          <Line yAxisId="right" type="monotone" dataKey="mgo_index" name="MGO 지수(2025-10=100)" stroke="var(--w-red-500)" strokeWidth={2.5} dot={{ r: 4 }} />
         </ComposedChart>
       }
       takeaway={{
@@ -254,12 +254,12 @@ export function RasSystemWidget() {
         <BarChart data={rasComparisonData} layout="vertical" margin={{ top: 10, right: 20, left: 100, bottom: 10 }}>
           <ChartPatternDefs />
           <CartesianGrid strokeDasharray="3 3" stroke="rgba(140,170,255,0.12)" />
-          <XAxis type="number" tick={{ fill: '#94a3b8', fontSize: 10 }} />
-          <YAxis type="category" dataKey="metric" tick={{ fill: '#94a3b8', fontSize: 11 }} width={100} />
-          <RechartsTooltip contentStyle={{ background: '#1a2442', border: '1px solid #334155', borderRadius: 8, fontSize: '0.75rem' }} />
+          <XAxis type="number" tick={{ fill: 'var(--w-slate-400)', fontSize: 10 }} />
+          <YAxis type="category" dataKey="metric" tick={{ fill: 'var(--w-slate-400)', fontSize: 11 }} width={100} />
+          <RechartsTooltip contentStyle={{ background: 'var(--w-navy-900)', border: '1px solid #334155', borderRadius: 8, fontSize: '0.75rem' }} />
           <Legend wrapperStyle={{ fontSize: '0.7rem' }} />
-          <Bar dataKey="traditional" name="전통 가두리" fill="#94a3b8" radius={[0, 4, 4, 0]} />
-          <Bar dataKey="RAS" name="RAS (순환여과)" fill="#10b981" radius={[0, 4, 4, 0]} />
+          <Bar dataKey="traditional" name="전통 가두리" fill="var(--w-slate-400)" radius={[0, 4, 4, 0]} />
+          <Bar dataKey="RAS" name="RAS (순환여과)" fill="var(--w-emerald-500)" radius={[0, 4, 4, 0]} />
         </BarChart>
       }
       takeaway={{

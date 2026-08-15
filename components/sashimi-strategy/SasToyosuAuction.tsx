@@ -52,30 +52,30 @@ export default function SasToyosuAuction() {
         <div style={{ display: 'flex', flexDirection: 'column', gap: '14px', width: '100%' }}>
           {/* Auction Price Chart */}
           <div>
-            <div style={{ fontSize: '0.7rem', fontWeight: 600, color: '#94a3b8', marginBottom: '6px' }}>
+            <div style={{ fontSize: '0.7rem', fontWeight: 600, color: 'var(--w-slate-400)', marginBottom: '6px' }}>
               🐟 도요스 신년 첫 경매 낙찰가 (¥ 백만)
             </div>
             <div style={{ height: 160, width: '100%' }}>
               <SafeResponsiveContainer width="100%" height="100%">
                 <BarChart data={auctionPrices} margin={{ top: 10, right: 20, left: 0, bottom: 5 }}>
                   <CartesianGrid strokeDasharray="3 3" opacity={0.15} vertical={false} />
-                  <XAxis dataKey="year" stroke="#64748b" tick={{ fill: '#94a3b8', fontSize: 11 }} axisLine={false} tickLine={false} />
-                  <YAxis stroke="#64748b" tick={{ fill: '#94a3b8', fontSize: 11 }} axisLine={false} tickLine={false} tickFormatter={(v) => `¥${v}M`} />
+                  <XAxis dataKey="year" stroke="var(--w-slate-500)" tick={{ fill: 'var(--w-slate-400)', fontSize: 11 }} axisLine={false} tickLine={false} />
+                  <YAxis stroke="var(--w-slate-500)" tick={{ fill: 'var(--w-slate-400)', fontSize: 11 }} axisLine={false} tickLine={false} tickFormatter={(v) => `¥${v}M`} />
                   <Tooltip
-                    contentStyle={{ borderRadius: '8px', border: 'none', boxShadow: '0 4px 12px rgba(0,0,0,0.3)', backgroundColor: 'rgba(30,41,59,0.95)', color: '#e2e8f0' }}
+                    contentStyle={{ borderRadius: '8px', border: 'none', boxShadow: '0 4px 12px rgba(0,0,0,0.3)', backgroundColor: 'rgba(30,41,59,0.95)', color: 'var(--w-slate-200)' }}
                     formatter={(value: unknown) => [`¥${value}M`, '낙찰가']}
                     labelFormatter={(label) => `${label}년 신년 경매`}
                   />
                   <Bar dataKey="price" radius={[8, 8, 0, 0]} isAnimationActive={false}>
                     {auctionPrices.map((entry, i) => (
-                      <Cell key={i} fill={i === auctionPrices.length - 1 ? '#ef4444' : '#f59e0b'} />
+                      <Cell key={i} fill={i === auctionPrices.length - 1 ? 'var(--w-red-500)' : 'var(--w-amber-500)'} />
                     ))}
                   </Bar>
                 </BarChart>
               </SafeResponsiveContainer>
             </div>
             <div style={{
-              textAlign: 'center', fontSize: '0.62rem', color: '#ef4444', fontWeight: 600, marginTop: '4px',
+              textAlign: 'center', fontSize: '0.62rem', color: 'var(--w-red-500)', fontWeight: 600, marginTop: '4px',
             }}>
               🏆 2026년 ¥510.3M ($3.2M) — 기네스 세계신기록 (4년간 14배)
             </div>
@@ -89,8 +89,8 @@ export default function SasToyosuAuction() {
                 border: '1px solid rgba(140,170,255,0.12)', textAlign: 'center',
               }}>
                 <div style={{ fontSize: '0.88rem', fontWeight: 800, color: m.color }}>{m.value}</div>
-                <div style={{ fontSize: '0.6rem', color: '#94a3b8', marginTop: '1px' }}>{m.label}</div>
-                <div style={{ fontSize: '0.52rem', color: '#64748b', marginTop: '1px' }}>{m.desc}</div>
+                <div style={{ fontSize: '0.6rem', color: 'var(--w-slate-400)', marginTop: '1px' }}>{m.label}</div>
+                <div style={{ fontSize: '0.52rem', color: 'var(--w-slate-500)', marginTop: '1px' }}>{m.desc}</div>
               </div>
             ))}
           </div>
@@ -101,10 +101,10 @@ export default function SasToyosuAuction() {
               padding: '10px', borderRadius: '8px',
               background: 'rgba(255,255,255,0.02)', border: '1px solid rgba(140,170,255,0.12)',
             }}>
-              <div style={{ fontSize: '0.68rem', fontWeight: 600, color: '#cbd5e1', marginBottom: '6px' }}>일상 거래가</div>
+              <div style={{ fontSize: '0.68rem', fontWeight: 600, color: 'var(--w-slate-300)', marginBottom: '6px' }}>일상 거래가</div>
               {priceRanges.map((p) => (
                 <div key={p.grade} style={{ display: 'flex', justifyContent: 'space-between', padding: '3px 0', fontSize: '0.65rem' }}>
-                  <span style={{ color: '#94a3b8' }}>{p.grade}</span>
+                  <span style={{ color: 'var(--w-slate-400)' }}>{p.grade}</span>
                   <span style={{ color: p.color, fontWeight: 600 }}>{p.range}</span>
                 </div>
               ))}
@@ -114,11 +114,11 @@ export default function SasToyosuAuction() {
               background: 'rgba(56,189,248,0.05)', border: '1px solid rgba(56,189,248,0.15)',
               textAlign: 'center', display: 'flex', flexDirection: 'column', justifyContent: 'center',
             }}>
-              <div style={{ fontSize: '0.62rem', color: '#64748b' }}>일본 참치 시장 전망</div>
-              <div style={{ fontSize: '1rem', fontWeight: 800, color: '#38bdf8', margin: '4px 0' }}>
+              <div style={{ fontSize: '0.62rem', color: 'var(--w-slate-500)' }}>일본 참치 시장 전망</div>
+              <div style={{ fontSize: '1rem', fontWeight: 800, color: 'var(--w-sky-400)', margin: '4px 0' }}>
                 {japanMarket.current} → {japanMarket.forecast}
               </div>
-              <div style={{ fontSize: '0.6rem', color: '#94a3b8' }}>CAGR {japanMarket.cagr} ({japanMarket.year})</div>
+              <div style={{ fontSize: '0.6rem', color: 'var(--w-slate-400)' }}>CAGR {japanMarket.cagr} ({japanMarket.year})</div>
             </div>
           </div>
         </div>

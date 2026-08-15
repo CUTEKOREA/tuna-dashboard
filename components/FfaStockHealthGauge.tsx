@@ -73,7 +73,7 @@ function SemiGauge({ ratio, lrp, species, abbr, safetyMargin, speciesColor }: {
         <span style={{ color: speciesColor, fontWeight: 700, fontSize: '0.85rem' }}>
           {species}
         </span>
-        <span style={{ color: '#64748b', fontSize: '0.7rem' }}>({abbr})</span>
+        <span style={{ color: 'var(--w-slate-500)', fontSize: '0.7rem' }}>({abbr})</span>
       </div>
 
       {/* 반원형 게이지 */}
@@ -151,7 +151,7 @@ function SemiGauge({ ratio, lrp, species, abbr, safetyMargin, speciesColor }: {
           </div>
           <div style={{
             fontSize: '0.6rem',
-            color: '#64748b',
+            color: 'var(--w-slate-500)',
             marginTop: '2px',
           }}>
             SB/SBF=0
@@ -167,14 +167,14 @@ function SemiGauge({ ratio, lrp, species, abbr, safetyMargin, speciesColor }: {
         marginTop: '4px',
       }}>
         <div style={{ textAlign: 'center' }}>
-          <div style={{ fontSize: '0.65rem', color: '#64748b' }}>LRP</div>
+          <div style={{ fontSize: '0.65rem', color: 'var(--w-slate-500)' }}>LRP</div>
           <div style={{ fontSize: '0.75rem', color: '#f87171', fontWeight: 600 }}>
             {lrp.toFixed(2)}
           </div>
         </div>
         <div style={{ textAlign: 'center' }}>
-          <div style={{ fontSize: '0.65rem', color: '#64748b' }}>안전배수</div>
-          <div style={{ fontSize: '0.75rem', color: '#34d399', fontWeight: 700 }}>
+          <div style={{ fontSize: '0.65rem', color: 'var(--w-slate-500)' }}>안전배수</div>
+          <div style={{ fontSize: '0.75rem', color: 'var(--w-emerald-400)', fontWeight: 700 }}>
             {safetyMargin.toFixed(2)}×
           </div>
         </div>
@@ -242,7 +242,7 @@ export default function FfaStockHealthGauge() {
               borderRadius: '50%',
               background: item.color,
             }} />
-            <span style={{ fontSize: '0.75rem', color: '#94a3b8' }}>{item.label}</span>
+            <span style={{ fontSize: '0.75rem', color: 'var(--w-slate-400)' }}>{item.label}</span>
           </div>
         ))}
       </div>
@@ -262,7 +262,7 @@ export default function FfaStockHealthGauge() {
           <div style={{ fontSize: '0.8rem', fontWeight: 700, color: '#f87171', marginBottom: '4px' }}>
             LRP (Limit Reference Point) = 0.20
           </div>
-          <div style={{ fontSize: '0.78rem', color: '#94a3b8', lineHeight: 1.5 }}>
+          <div style={{ fontSize: '0.78rem', color: 'var(--w-slate-400)', lineHeight: 1.5 }}>
             SBrecent/SBF=0 비율이 LRP(0.20) 미만으로 떨어지면 남획(overfished) 판정.
             게이지의 적색 마커가 LRP 위치를 표시. 현재 4종 모두 LRP 대비 2배 이상의 안전 마진 확보.
           </div>
@@ -287,7 +287,7 @@ export default function FfaStockHealthGauge() {
                 <th key={h} style={{
                   padding: '10px 12px',
                   textAlign: 'left',
-                  color: '#64748b',
+                  color: 'var(--w-slate-500)',
                   fontWeight: 600,
                   fontSize: '0.72rem',
                   textTransform: 'uppercase',
@@ -302,7 +302,7 @@ export default function FfaStockHealthGauge() {
             {STOCK_DATA.map((s) => (
               <tr key={s.abbr} style={{ borderBottom: '1px solid rgba(255,255,255,0.04)' }}>
                 <td style={{ padding: '8px 12px', color: s.color, fontWeight: 600 }}>
-                  {s.species} <span style={{ color: '#64748b', fontWeight: 400 }}>({s.abbr})</span>
+                  {s.species} <span style={{ color: 'var(--w-slate-500)', fontWeight: 400 }}>({s.abbr})</span>
                 </td>
                 <td style={{ padding: '8px 12px', color: getGaugeColor(s.ratio), fontWeight: 700 }}>
                   {s.ratio.toFixed(2)}
@@ -310,13 +310,13 @@ export default function FfaStockHealthGauge() {
                 <td style={{ padding: '8px 12px', color: '#f87171' }}>
                   {s.lrp.toFixed(2)}
                 </td>
-                <td style={{ padding: '8px 12px', color: '#34d399', fontWeight: 600 }}>
+                <td style={{ padding: '8px 12px', color: 'var(--w-emerald-400)', fontWeight: 600 }}>
                   {s.safetyMargin.toFixed(2)}×
                 </td>
                 <td style={{ padding: '8px 12px' }}>
                   <span style={{
                     background: 'rgba(52, 211, 153, 0.1)',
-                    color: '#34d399',
+                    color: 'var(--w-emerald-400)',
                     padding: '2px 8px',
                     borderRadius: 6,
                     fontSize: '0.72rem',

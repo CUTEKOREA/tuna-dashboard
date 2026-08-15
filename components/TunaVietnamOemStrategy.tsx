@@ -24,12 +24,12 @@ function CustomTooltip({ active, payload }: any) {
   return (
     <div style={{
       background: 'rgba(20, 28, 52, 0.9)', border: '1px solid rgba(255, 255, 255, 0.1)',
-      padding: '14px', borderRadius: '8px', color: '#f8fafc', boxShadow: '0 4px 6px rgba(0,0,0,0.3)'
+      padding: '14px', borderRadius: '8px', color: 'var(--w-slate-50)', boxShadow: '0 4px 6px rgba(0,0,0,0.3)'
     }}>
-      <p style={{ margin: '0 0 8px 0', fontWeight: 'bold', color: '#e2e8f0' }}>{payload[0].payload.metric}</p>
+      <p style={{ margin: '0 0 8px 0', fontWeight: 'bold', color: 'var(--w-slate-200)' }}>{payload[0].payload.metric}</p>
       <div style={{ display: 'flex', flexDirection: 'column', gap: '6px', fontSize: '0.85rem' }}>
         <div style={{ display: 'flex', justifyContent: 'space-between', gap: '20px' }}>
-          <span style={{ color: '#8b5cf6' }}>태국 (Thai)</span>
+          <span style={{ color: 'var(--w-violet-500)' }}>태국 (Thai)</span>
           <span>{payload[0].payload.thailand}</span>
         </div>
         <div style={{ display: 'flex', justifyContent: 'space-between', gap: '20px' }}>
@@ -60,11 +60,11 @@ export default function TunaVietnamOemStrategy() {
           <BarChart data={data} layout="vertical" margin={{ left: 30 }}>
             <ChartPatternDefs />
             <CartesianGrid strokeDasharray="3 3" stroke="#334155" />
-            <XAxis type="number" stroke="#94a3b8"  angle={0} textAnchor="middle" height={60} tickFormatter={truncateXAxis}/>
-            <YAxis dataKey="metric" type="category" stroke="#94a3b8" fontSize={11} width={100} />
+            <XAxis type="number" stroke="var(--w-slate-400)"  angle={0} textAnchor="middle" height={60} tickFormatter={truncateXAxis}/>
+            <YAxis dataKey="metric" type="category" stroke="var(--w-slate-400)" fontSize={11} width={100} />
             <RechartsTooltip content={<CustomTooltip />} />
             <Legend wrapperStyle={{ paddingTop: '12px', fontSize: '12px' }} />
-            <Bar dataKey="thailand" name="태국 (기존 거점)" fill="#8b5cf6" />
+            <Bar dataKey="thailand" name="태국 (기존 거점)" fill="var(--w-violet-500)" />
             <Bar dataKey="vietnam" name="베트남 (신규 거점)" fill="var(--color-success)" />
           </BarChart>
         </SafeResponsiveContainer>

@@ -15,7 +15,7 @@ export default function CompanyVesselStatus() {
 
   return (
     <div style={{ marginBottom: '32px' }}>
-      <h4 style={{ display: 'flex', alignItems: 'center', gap: '8px', color: '#38bdf8', marginBottom: '16px', fontSize: '1rem', fontWeight: 600 }}>
+      <h4 style={{ display: 'flex', alignItems: 'center', gap: '8px', color: 'var(--w-sky-400)', marginBottom: '16px', fontSize: '1rem', fontWeight: 600 }}>
         <Building2 size={18} /> 회사별 업종별 어선보유 현황 (Total Fleet Registry by Company)
       </h4>
 
@@ -28,7 +28,7 @@ export default function CompanyVesselStatus() {
             <tr style={{ borderBottom: '1px solid rgba(255,255,255,0.1)' }}>
               <th rowSpan={2} style={{ padding: '10px', color: 'rgba(255,255,255,0.5)', fontWeight: 600, borderRight: '1px solid rgba(140,170,255,0.10)' }}>구분</th>
               <th rowSpan={2} style={{ padding: '10px', color: 'rgba(255,255,255,0.5)', fontWeight: 600, borderRight: '1px solid rgba(140,170,255,0.10)', minWidth: '120px' }}>회사명</th>
-              <th rowSpan={2} style={{ padding: '10px', color: '#34d399', fontWeight: 700, borderRight: '1px solid rgba(140,170,255,0.10)' }}>소계</th>
+              <th rowSpan={2} style={{ padding: '10px', color: 'var(--w-emerald-400)', fontWeight: 700, borderRight: '1px solid rgba(140,170,255,0.10)' }}>소계</th>
               <th colSpan={2} style={{ padding: '6px', color: '#60a5fa', fontWeight: 600, borderRight: '1px solid rgba(140,170,255,0.10)', borderBottom: '1px solid rgba(140,170,255,0.10)' }}>참치</th>
               <th colSpan={5} style={{ padding: '6px', color: 'var(--color-success)', fontWeight: 600, borderRight: '1px solid rgba(140,170,255,0.10)', borderBottom: '1px solid rgba(140,170,255,0.10)' }}>트롤</th>
               <th style={{ padding: '6px', color: 'var(--color-warning)', fontWeight: 600, borderRight: '1px solid rgba(140,170,255,0.10)', borderBottom: '1px solid rgba(140,170,255,0.10)' }}>오징어</th>
@@ -70,8 +70,8 @@ export default function CompanyVesselStatus() {
                   onMouseOut={(e) => e.currentTarget.style.background = isMajor ? 'rgba(56, 189, 248, 0.05)' : 'transparent'}
                 >
                   <td style={{ padding: '8px', color: 'rgba(255,255,255,0.4)' }}>{row.id}</td>
-                  <td style={{ padding: '8px', color: isMajor ? '#38bdf8' : 'rgba(255,255,255,0.8)', fontWeight: isMajor ? 700 : 400, textAlign: 'left' }}>{row.company}</td>
-                  <td style={{ padding: '8px', color: '#34d399', fontWeight: 600 }}>{row.total}</td>
+                  <td style={{ padding: '8px', color: isMajor ? 'var(--w-sky-400)' : 'rgba(255,255,255,0.8)', fontWeight: isMajor ? 700 : 400, textAlign: 'left' }}>{row.company}</td>
+                  <td style={{ padding: '8px', color: 'var(--w-emerald-400)', fontWeight: 600 }}>{row.total}</td>
                   
                   <td style={{ padding: '8px', color: row.tuna_longline > 0 ? 'var(--text-primary)' : 'rgba(255,255,255,0.2)' }}>{row.tuna_longline || '-'}</td>
                   <td style={{ padding: '8px', color: row.tuna_seine > 0 ? 'var(--text-primary)' : 'rgba(255,255,255,0.2)' }}>{row.tuna_seine || '-'}</td>
@@ -96,7 +96,7 @@ export default function CompanyVesselStatus() {
           <tfoot style={{ position: 'sticky', bottom: 0, background: 'rgba(0, 0, 0, 0.2)', backdropFilter: 'blur(4px)', zIndex: 10 }}>
             <tr style={{ borderTop: '1px solid rgba(255,255,255,0.2)' }}>
               <td colSpan={2} style={{ padding: '12px 8px', color: 'var(--text-primary)', fontWeight: 700 }}>합계 (38개사)</td>
-              <td style={{ padding: '12px 8px', color: '#34d399', fontWeight: 800, fontSize: '1rem' }}>198</td>
+              <td style={{ padding: '12px 8px', color: 'var(--w-emerald-400)', fontWeight: 800, fontSize: '1rem' }}>198</td>
               
               <td style={{ padding: '12px 8px', color: '#60a5fa', fontWeight: 700 }}>105</td>
               <td style={{ padding: '12px 8px', color: '#60a5fa', fontWeight: 700 }}>27</td>

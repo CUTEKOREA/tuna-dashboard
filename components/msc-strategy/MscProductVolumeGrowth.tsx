@@ -41,7 +41,7 @@ const tooltipStyle = {
   backgroundColor: 'rgba(20, 28, 52, 0.95)',
   border: '1px solid rgba(148,163,184,0.15)',
   borderRadius: 8,
-  color: '#e2e8f0',
+  color: 'var(--w-slate-200)',
   fontSize: '0.78rem',
   padding: '8px 12px',
 };
@@ -87,31 +87,31 @@ export default function MscProductVolumeGrowth() {
         <ComposedChart data={volData} margin={{ top: 10, right: 16, left: 6, bottom: 0 }}>
           <defs>
             <linearGradient id="gTotalVol" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="5%" stopColor="#f59e0b" stopOpacity={0.28} />
-              <stop offset="95%" stopColor="#f59e0b" stopOpacity={0.02} />
+              <stop offset="5%" stopColor="var(--w-amber-500)" stopOpacity={0.28} />
+              <stop offset="95%" stopColor="var(--w-amber-500)" stopOpacity={0.02} />
             </linearGradient>
           </defs>
           <CartesianGrid strokeDasharray="3 3" stroke="rgba(148,163,184,0.08)" />
           <XAxis
             dataKey="fy"
-            tick={{ fill: '#94a3b8', fontSize: 11 }}
+            tick={{ fill: 'var(--w-slate-400)', fontSize: 11 }}
             axisLine={{ stroke: 'rgba(148,163,184,0.15)' }}
             tickLine={false}
             interval={1}
           />
           <YAxis
-            tick={{ fill: '#94a3b8', fontSize: 11 }}
+            tick={{ fill: 'var(--w-slate-400)', fontSize: 11 }}
             axisLine={false}
             tickLine={false}
             tickFormatter={(v: number) => `${v.toLocaleString()}`}
           />
           <Tooltip content={<CustomTooltip />} />
-          <Legend formatter={legendFormatter} wrapperStyle={{ fontSize: '0.74rem', color: '#94a3b8', paddingTop: 8 }} />
-          <Area type="monotone" dataKey="total" stroke="#f59e0b" fill="url(#gTotalVol)" strokeWidth={2.4} isAnimationActive={false} />
-          <Line type="monotone" dataKey="frozen" stroke="#38bdf8" strokeWidth={1.6} dot={false} isAnimationActive={false} />
-          <Line type="monotone" dataKey="canned" stroke="#10b981" strokeWidth={1.6} dot={false} isAnimationActive={false} />
+          <Legend formatter={legendFormatter} wrapperStyle={{ fontSize: '0.74rem', color: 'var(--w-slate-400)', paddingTop: 8 }} />
+          <Area type="monotone" dataKey="total" stroke="var(--w-amber-500)" fill="url(#gTotalVol)" strokeWidth={2.4} isAnimationActive={false} />
+          <Line type="monotone" dataKey="frozen" stroke="var(--w-sky-400)" strokeWidth={1.6} dot={false} isAnimationActive={false} />
+          <Line type="monotone" dataKey="canned" stroke="var(--w-emerald-500)" strokeWidth={1.6} dot={false} isAnimationActive={false} />
           <Line type="monotone" dataKey="chilled" stroke="#a78bfa" strokeWidth={1.6} dot={false} isAnimationActive={false} />
-          <Line type="monotone" dataKey="petfood" stroke="#ef4444" strokeWidth={1.6} dot={false} isAnimationActive={false} />
+          <Line type="monotone" dataKey="petfood" stroke="var(--w-red-500)" strokeWidth={1.6} dot={false} isAnimationActive={false} />
         </ComposedChart>
       }
       takeaway={{

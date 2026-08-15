@@ -35,7 +35,7 @@ export default function SasJpDistribution() {
                 <span style={{ fontSize: '0.78rem', fontWeight: 700, color: '#f1f5f9' }}>{it.title}</span>
                 <span style={{ marginLeft: 'auto', fontSize: '0.9rem', fontWeight: 800, color: it.rc }}>{it.value}</span>
               </div>
-              <span style={{ fontSize: '0.64rem', color: '#94a3b8', lineHeight: 1.45 }}>{it.desc}</span>
+              <span style={{ fontSize: '0.64rem', color: 'var(--w-slate-400)', lineHeight: 1.45 }}>{it.desc}</span>
             </div>
           ))}
         </div>

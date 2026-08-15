@@ -167,7 +167,7 @@ function VesselCard({ name, zone, catchAmt, load, capa, trend, status, note }: {
           <div style={{ display: 'flex', alignItems: 'baseline', gap: 4 }}>
             <span style={{
               fontSize: '1.3rem', fontWeight: 800,
-              color: isActive ? '#10b981' : '#475569',
+              color: isActive ? 'var(--w-emerald-500)' : '#475569',
             }}>
               {isActive ? catchAmt : '-'}
             </span>
@@ -189,7 +189,7 @@ function VesselCard({ name, zone, catchAmt, load, capa, trend, status, note }: {
         <div style={{ textAlign: 'right' }}>
           <div style={{ fontSize: '0.65rem', color: 'var(--text-muted)', marginBottom: 2, fontWeight: 500 }}>누적 적재</div>
           <div style={{ display: 'flex', alignItems: 'baseline', gap: 2, justifyContent: 'flex-end' }}>
-            <span style={{ fontSize: '1.3rem', fontWeight: 800, color: '#f59e0b' }}>{load.toLocaleString()}</span>
+            <span style={{ fontSize: '1.3rem', fontWeight: 800, color: 'var(--w-amber-500)' }}>{load.toLocaleString()}</span>
             <span style={{ fontSize: '0.7rem', color: 'var(--text-muted)' }}>t</span>
           </div>
         </div>
@@ -340,7 +340,7 @@ function SectionHeader({ icon: Icon, color, title, count, countLabel, summary }:
         </div>
       </div>
       <div style={{
-        fontSize: '0.72rem', color: '#34d399', fontWeight: 600,
+        fontSize: '0.72rem', color: 'var(--w-emerald-400)', fontWeight: 600,
         padding: '4px 12px', borderRadius: 20,
         background: 'rgba(52,211,153,0.08)',
         border: '1px solid rgba(52,211,153,0.15)',

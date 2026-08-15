@@ -46,7 +46,7 @@ export default function TradeRouteSankey() {
         <div className={styles.controlGroup}>
           <div className={styles.label}>
             <span><TermTooltip term="EU 특정품목(ATQ) 무관세 쿼터 소진율" description="ATQ(Autonomous Tariff Quota). EU가 참치 원료 수입 시 일정 물량(약 3.5만 톤)까지 24%의 관세를 0%로 면제해주는 파격 쿼터입니다. 모두 소진되면 24% 관세 폭탄을 맞습니다." /></span>
-            <span style={{ color: isAtqExhausted ? 'var(--color-danger)' : (isAtqWarning ? '#fbbf24' : '#38bdf8') }}>
+            <span style={{ color: isAtqExhausted ? 'var(--color-danger)' : (isAtqWarning ? 'var(--w-amber-400)' : 'var(--w-sky-400)') }}>
               {atqExhaustion}% {isAtqExhausted ? '(소진 완료)' : ''}
             </span>
           </div>
@@ -63,7 +63,7 @@ export default function TradeRouteSankey() {
         <div className={styles.controlGroup}>
           <div className={styles.label}>
             <span><TermTooltip term="태국-EU FTA 발효 (시뮬레이션)" description="한국 국적의 참치선들이 주로 하역하는 태국 공장이, 미래에 EU와 자유무역협정(FTA)을 체결하여 0% 관세 특혜를 받게 될 경우 회사의 영업이익 증가를 예측하는 시나리오입니다." /></span>
-            <span style={{ color: thaiFtaActive ? 'var(--color-success)' : '#64748b' }}>
+            <span style={{ color: thaiFtaActive ? 'var(--color-success)' : 'var(--w-slate-500)' }}>
               {thaiFtaActive ? '발효 ON (0% 관세)' : '미체결 (24% 기본)'}
             </span>
           </div>
@@ -71,7 +71,7 @@ export default function TradeRouteSankey() {
             <div className={`${styles.toggleSwitch} ${thaiFtaActive ? styles.active : ''}`}>
               <div className={styles.toggleHandle}></div>
             </div>
-            <span style={{ fontSize: '11px', color: '#cbd5e1' }}>What-if 경로 개방</span>
+            <span style={{ fontSize: '11px', color: 'var(--w-slate-300)' }}>What-if 경로 개방</span>
           </div>
         </div>
 

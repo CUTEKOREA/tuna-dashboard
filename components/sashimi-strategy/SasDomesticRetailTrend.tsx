@@ -31,14 +31,14 @@ export default function SasDomesticRetailTrend() {
         <>
           <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16, marginTop: 8 }}>
             <div style={{ background: 'rgba(30,41,59,0.5)', padding: 16, borderRadius: 8, border: '1px solid rgba(140,170,255,0.12)' }}>
-              <p style={{ fontSize: 12, color: '#94a3b8', marginBottom: 4 }}>일본 수출 비중 (블루핀)</p>
+              <p style={{ fontSize: 12, color: 'var(--w-slate-400)', marginBottom: 4 }}>일본 수출 비중 (블루핀)</p>
               <div style={{ fontSize: 24, fontWeight: 900, color: '#60a5fa', fontVariantNumeric: 'tabular-nums' }}>&gt; 90%</div>
-              <p style={{ fontSize: 10, color: '#64748b', marginTop: 4 }}>대부분 초저온 냉동 후 수출</p>
+              <p style={{ fontSize: 10, color: 'var(--w-slate-500)', marginTop: 4 }}>대부분 초저온 냉동 후 수출</p>
             </div>
             <div style={{ background: 'rgba(30,41,59,0.5)', padding: 16, borderRadius: 8, border: '1px solid rgba(140,170,255,0.12)' }}>
-              <p style={{ fontSize: 12, color: '#94a3b8', marginBottom: 4 }}>최대 내수 시장 (프랑스)</p>
+              <p style={{ fontSize: 12, color: 'var(--w-slate-400)', marginBottom: 4 }}>최대 내수 시장 (프랑스)</p>
               <div style={{ fontSize: 24, fontWeight: 900, color: '#818cf8', fontVariantNumeric: 'tabular-nums' }}>9.0%</div>
-              <p style={{ fontSize: 10, color: '#64748b', marginTop: 4 }}>생물 참치 가구당 구매 경험률</p>
+              <p style={{ fontSize: 10, color: 'var(--w-slate-500)', marginTop: 4 }}>생물 참치 가구당 구매 경험률</p>
             </div>
           </div>
 
@@ -46,13 +46,13 @@ export default function SasDomesticRetailTrend() {
             <SafeResponsiveContainer width="100%" height="100%">
               <BarChart data={PENETRATION_DATA} margin={{ top: 20, right: 10, left: -20, bottom: 0 }}>
                 <CartesianGrid strokeDasharray="3 3" opacity={0.2} vertical={false} />
-                <XAxis dataKey="country" fontSize={11} tickLine={false} axisLine={false} tick={{ fill: '#94a3b8' }} />
-                <YAxis fontSize={11} tickLine={false} axisLine={false} tickFormatter={(val) => `${val}%`} domain={[0, 12]} tick={{ fill: '#94a3b8' }} />
+                <XAxis dataKey="country" fontSize={11} tickLine={false} axisLine={false} tick={{ fill: 'var(--w-slate-400)' }} />
+                <YAxis fontSize={11} tickLine={false} axisLine={false} tickFormatter={(val) => `${val}%`} domain={[0, 12]} tick={{ fill: 'var(--w-slate-400)' }} />
                 <Tooltip
                   cursor={{ fill: 'rgba(255,255,255,0.03)' }}
-                  contentStyle={{ borderRadius: '8px', border: 'none', boxShadow: '0 4px 12px rgba(0,0,0,0.3)', backgroundColor: 'rgba(30,41,59,0.95)', color: '#e2e8f0' }}
-                  labelStyle={{ color: '#e2e8f0' }}
-                  itemStyle={{ color: '#cbd5e1' }}
+                  contentStyle={{ borderRadius: '8px', border: 'none', boxShadow: '0 4px 12px rgba(0,0,0,0.3)', backgroundColor: 'rgba(30,41,59,0.95)', color: 'var(--w-slate-200)' }}
+                  labelStyle={{ color: 'var(--w-slate-200)' }}
+                  itemStyle={{ color: 'var(--w-slate-300)' }}
                   formatter={(value: unknown) => [`${value}%`, '가구 침투율']}
                 />
                 <Bar 
@@ -65,7 +65,7 @@ export default function SasDomesticRetailTrend() {
                   {PENETRATION_DATA.map((entry, index) => (
                     <Cell key={`cell-${index}`} fill={entry.color} />
                   ))}
-                  <LabelList dataKey="rate" position="top" formatter={(val: unknown) => `${val}%`} fontSize={10} fill="#cbd5e1" fontWeight={600} />
+                  <LabelList dataKey="rate" position="top" formatter={(val: unknown) => `${val}%`} fontSize={10} fill="var(--w-slate-300)" fontWeight={600} />
                 </Bar>
               </BarChart>
             </SafeResponsiveContainer>

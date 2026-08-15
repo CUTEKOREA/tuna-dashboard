@@ -200,7 +200,7 @@ export default function VdsStrategyMatrix() {
 
           <div className={s.panel} style={{ flex: 1, padding: 0, overflow: 'hidden' }}>
             <div className={s.panelTitle} style={{ padding: 'var(--space-4) var(--space-5) 0' }}>
-              <span><Zap size={16} style={{display:'inline', marginRight:6, verticalAlign:'-3px', color:'#f59e0b'}}/>최신 VDS 트레이딩 인텔리전스</span>
+              <span><Zap size={16} style={{display:'inline', marginRight:6, verticalAlign:'-3px', color:'var(--w-amber-500)'}}/>최신 VDS 트레이딩 인텔리전스</span>
             </div>
             <div className={s.feedContainer}>
               {intelFeed.map((feed, idx) => (
@@ -232,10 +232,10 @@ export default function VdsStrategyMatrix() {
           <SafeResponsiveContainer width="100%" height="100%">
             <LineChart data={chartData} margin={{ top: 5, right: 30, left: -10, bottom: 5 }}>
               <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" vertical={false} />
-              <XAxis dataKey="year" stroke="#94a3b8" tick={{ fill: '#94a3b8', fontSize: 12 }} axisLine={false} tickLine={false} />
-              <YAxis stroke="#94a3b8" tick={{ fill: '#94a3b8', fontSize: 12 }} axisLine={false} tickLine={false} />
+              <XAxis dataKey="year" stroke="var(--w-slate-400)" tick={{ fill: 'var(--w-slate-400)', fontSize: 12 }} axisLine={false} tickLine={false} />
+              <YAxis stroke="var(--w-slate-400)" tick={{ fill: 'var(--w-slate-400)', fontSize: 12 }} axisLine={false} tickLine={false} />
               <Tooltip 
-                contentStyle={{ backgroundColor: 'rgba(20, 28, 52, 0.9)', border: '1px solid #1a2442', borderRadius: 8, fontSize: 13 }}
+                contentStyle={{ backgroundColor: 'rgba(20, 28, 52, 0.9)', border: '1px solid var(--w-navy-900)', borderRadius: 8, fontSize: 13 }}
                 itemStyle={{ fontWeight: 600 }}
               />
               <Legend wrapperStyle={{ fontSize: 13, paddingTop: 10 }} />

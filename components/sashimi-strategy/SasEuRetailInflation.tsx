@@ -31,21 +31,21 @@ export default function SasEuRetailInflation() {
       }}
       customBody={
         <div style={{ display: 'flex', flexDirection: 'column', gap: '12px', width: '100%' }}>
-          <div style={{ fontSize: '0.66rem', color: '#94a3b8', fontWeight: 600, textAlign: 'center' }}>가다랑어 원료가 (CFR 방콕, $/톤) — 변동성</div>
+          <div style={{ fontSize: '0.66rem', color: 'var(--w-slate-400)', fontWeight: 600, textAlign: 'center' }}>가다랑어 원료가 (CFR 방콕, $/톤) — 변동성</div>
           <div style={{ height: '160px', width: '100%' }}>
             <SafeResponsiveContainer width="100%" height="100%">
               <AreaChart data={SKIPJACK} margin={{ top: 12, right: 16, left: 0, bottom: 0 }}>
                 <defs>
                   <linearGradient id="colorSkip" x1="0" y1="0" x2="0" y2="1">
-                    <stop offset="5%" stopColor="#f59e0b" stopOpacity={0.4} />
-                    <stop offset="95%" stopColor="#f59e0b" stopOpacity={0} />
+                    <stop offset="5%" stopColor="var(--w-amber-500)" stopOpacity={0.4} />
+                    <stop offset="95%" stopColor="var(--w-amber-500)" stopOpacity={0} />
                   </linearGradient>
                 </defs>
                 <CartesianGrid strokeDasharray="3 3" opacity={0.15} vertical={false} />
-                <XAxis dataKey="p" fontSize={11} tickLine={false} axisLine={false} stroke="#64748b" />
-                <YAxis domain={[1200, 2200]} tickFormatter={(v: unknown) => `${(chartFmt.toChartNumber(v) / 1000).toFixed(1)}k`} fontSize={10} tickLine={false} axisLine={false} stroke="#64748b" />
-                <Tooltip contentStyle={{ borderRadius: '8px', border: 'none', background: '#1a2442', color: '#e2e8f0' }} formatter={(v: unknown) => [`${chartFmt.formatChartNumber(v)}/t`, '가다랑어']} />
-                <Area type="monotone" dataKey="usd" name="가다랑어 CFR" stroke="#f59e0b" strokeWidth={2.5} fill="url(#colorSkip)" isAnimationActive={false} />
+                <XAxis dataKey="p" fontSize={11} tickLine={false} axisLine={false} stroke="var(--w-slate-500)" />
+                <YAxis domain={[1200, 2200]} tickFormatter={(v: unknown) => `${(chartFmt.toChartNumber(v) / 1000).toFixed(1)}k`} fontSize={10} tickLine={false} axisLine={false} stroke="var(--w-slate-500)" />
+                <Tooltip contentStyle={{ borderRadius: '8px', border: 'none', background: 'var(--w-navy-900)', color: 'var(--w-slate-200)' }} formatter={(v: unknown) => [`${chartFmt.formatChartNumber(v)}/t`, '가다랑어']} />
+                <Area type="monotone" dataKey="usd" name="가다랑어 CFR" stroke="var(--w-amber-500)" strokeWidth={2.5} fill="url(#colorSkip)" isAnimationActive={false} />
               </AreaChart>
             </SafeResponsiveContainer>
           </div>
@@ -55,9 +55,9 @@ export default function SasEuRetailInflation() {
               { k: 'EU 가계 수산 지출', v: '€62.8B', s: '2024년·높은 가격수준 지속(EUMOFA)', c: '#38bdf8' },
             ].map((x) => (
               <div key={x.k} style={{ background: `${x.c}0f`, border: `1px solid ${x.c}2e`, borderRadius: '8px', padding: '9px 11px', display: 'flex', flexDirection: 'column', gap: '2px' }}>
-                <span style={{ fontSize: '0.6rem', color: '#94a3b8' }}>{x.k}</span>
+                <span style={{ fontSize: '0.6rem', color: 'var(--w-slate-400)' }}>{x.k}</span>
                 <span style={{ fontSize: '1.2rem', fontWeight: 800, color: x.c }}>{x.v}</span>
-                <span style={{ fontSize: '0.54rem', color: '#64748b' }}>{x.s}</span>
+                <span style={{ fontSize: '0.54rem', color: 'var(--w-slate-500)' }}>{x.s}</span>
               </div>
             ))}
           </div>

@@ -39,15 +39,15 @@ export default function SasUkChannelSplit() {
             <SafeResponsiveContainer width="100%" height="100%">
               <BarChart data={CHAINS} margin={{ top: 18, right: 16, left: 0, bottom: 0 }}>
                 <CartesianGrid strokeDasharray="3 3" opacity={0.15} vertical={false} />
-                <XAxis dataKey="chain" fontSize={11} tickLine={false} axisLine={false} stroke="#64748b" interval={0} />
-                <YAxis domain={[0, 200]} tickFormatter={(v: unknown) => `£${v}M`} fontSize={10} tickLine={false} axisLine={false} stroke="#64748b" />
+                <XAxis dataKey="chain" fontSize={11} tickLine={false} axisLine={false} stroke="var(--w-slate-500)" interval={0} />
+                <YAxis domain={[0, 200]} tickFormatter={(v: unknown) => `£${v}M`} fontSize={10} tickLine={false} axisLine={false} stroke="var(--w-slate-500)" />
                 <Tooltip
-                  contentStyle={{ borderRadius: '8px', border: 'none', background: '#1a2442', color: '#e2e8f0' }}
+                  contentStyle={{ borderRadius: '8px', border: 'none', background: 'var(--w-navy-900)', color: 'var(--w-slate-200)' }}
                   formatter={(v: unknown) => [`£${v}M`, '연매출']}
                 />
                 <Bar dataKey="rev" radius={[4, 4, 0, 0]} isAnimationActive={false}>
                   {CHAINS.map((d) => <Cell key={d.chain} fill={d.color} />)}
-                  <LabelList dataKey="rev" position="top" formatter={(v: unknown) => `£${v}M`} fontSize={10.5} fill="#e2e8f0" />
+                  <LabelList dataKey="rev" position="top" formatter={(v: unknown) => `£${v}M`} fontSize={10.5} fill="var(--w-slate-200)" />
                 </Bar>
               </BarChart>
             </SafeResponsiveContainer>
@@ -59,9 +59,9 @@ export default function SasUkChannelSplit() {
               { k: '자체브랜드 100% MSC', v: '2사', s: "Waitrose·Sainsbury's", c: '#38bdf8' },
             ].map((x) => (
               <div key={x.k} style={{ background: `${x.c}0f`, border: `1px solid ${x.c}2e`, borderRadius: '8px', padding: '8px 9px', display: 'flex', flexDirection: 'column', gap: '2px' }}>
-                <span style={{ fontSize: '0.58rem', color: '#94a3b8' }}>{x.k}</span>
+                <span style={{ fontSize: '0.58rem', color: 'var(--w-slate-400)' }}>{x.k}</span>
                 <span style={{ fontSize: '1.0rem', fontWeight: 800, color: x.c }}>{x.v}</span>
-                <span style={{ fontSize: '0.54rem', color: '#64748b' }}>{x.s}</span>
+                <span style={{ fontSize: '0.54rem', color: 'var(--w-slate-500)' }}>{x.s}</span>
               </div>
             ))}
           </div>

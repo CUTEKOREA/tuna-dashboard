@@ -34,22 +34,22 @@ export function PolicyRiskScorecard() {
   const radarData = risks.map((r) => ({ subject: r.title.split('(')[0].trim().slice(0, 12), severity: r.severity, probability: r.probability }));
 
   const Body = loading ? (
-    <div style={{ textAlign: 'center', padding: '2rem', color: '#94a3b8' }}>정책 리스크 데이터 로딩 중...</div>
+    <div style={{ textAlign: 'center', padding: '2rem', color: 'var(--w-slate-400)' }}>정책 리스크 데이터 로딩 중...</div>
   ) : (
     <>
       <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', marginBottom: '1rem' }}>
         <div style={{ background: 'rgba(239,68,68,0.15)', borderRadius: '12px', padding: '12px 20px', textAlign: 'center' }}>
-          <div style={{ fontSize: '2rem', fontWeight: 800, color: '#ef4444' }}>{composite.overall}</div>
+          <div style={{ fontSize: '2rem', fontWeight: 800, color: 'var(--w-red-500)' }}>{composite.overall}</div>
           <div style={{ fontSize: '0.7rem', color: '#fca5a5' }}>종합 리스크 ({composite.grade})</div>
         </div>
         <div style={{ flex: 1 }}>
           <SafeResponsiveContainer width="100%" height={180}>
             <RadarChart data={radarData}>
               <PolarGrid stroke="rgba(255,255,255,0.1)" />
-              <PolarAngleAxis dataKey="subject" tick={{ fill: '#94a3b8', fontSize: 9 }} />
+              <PolarAngleAxis dataKey="subject" tick={{ fill: 'var(--w-slate-400)', fontSize: 9 }} />
               <PolarRadiusAxis domain={[0, 100]} tick={false} axisLine={false} />
-              <Radar name="심각도" dataKey="severity" stroke="#ef4444" fill="#ef4444" fillOpacity={0.3} />
-              <Radar name="발생확률" dataKey="probability" stroke="#f59e0b" fill="#f59e0b" fillOpacity={0.2} />
+              <Radar name="심각도" dataKey="severity" stroke="var(--w-red-500)" fill="var(--w-red-500)" fillOpacity={0.3} />
+              <Radar name="발생확률" dataKey="probability" stroke="var(--w-amber-500)" fill="var(--w-amber-500)" fillOpacity={0.2} />
             </RadarChart>
           </SafeResponsiveContainer>
         </div>
@@ -57,10 +57,10 @@ export function PolicyRiskScorecard() {
       <div style={{ display: 'grid', gap: '6px' }}>
         {risks.slice(0, 4).map((r) => (
           <div key={r.id} style={{ display: 'flex', alignItems: 'center', gap: '8px', padding: '6px 10px', background: 'rgba(255,255,255,0.03)', borderRadius: '6px', fontSize: '0.72rem' }}>
-            <div style={{ width: '6px', height: '6px', borderRadius: '50%', background: r.severity >= 80 ? '#ef4444' : r.severity >= 60 ? '#f59e0b' : '#22c55e', flexShrink: 0 }} />
-            <span style={{ flex: 1, color: '#f8fafc' }}>{r.title}</span>
-            <span style={{ color: r.severity >= 80 ? '#ef4444' : '#f59e0b', fontWeight: 700, fontFamily: 'monospace' }}>{r.severity}</span>
-            <span style={{ color: '#94a3b8', fontSize: '0.65rem' }}>${r.impact_usd_millions}M</span>
+            <div style={{ width: '6px', height: '6px', borderRadius: '50%', background: r.severity >= 80 ? 'var(--w-red-500)' : r.severity >= 60 ? 'var(--w-amber-500)' : '#22c55e', flexShrink: 0 }} />
+            <span style={{ flex: 1, color: 'var(--w-slate-50)' }}>{r.title}</span>
+            <span style={{ color: r.severity >= 80 ? 'var(--w-red-500)' : 'var(--w-amber-500)', fontWeight: 700, fontFamily: 'monospace' }}>{r.severity}</span>
+            <span style={{ color: 'var(--w-slate-400)', fontSize: '0.65rem' }}>${r.impact_usd_millions}M</span>
           </div>
         ))}
       </div>
@@ -117,8 +117,8 @@ export function FtaTariffOptimizer() {
       <div data-mobile-stack style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: '6px', marginTop: '8px' }}>
         {routes.slice(0, 3).map((r, i) => (
           <div key={i} style={{ background: 'rgba(34,197,94,0.06)', borderRadius: '6px', padding: '8px', textAlign: 'center' }}>
-            <div style={{ fontSize: '0.65rem', color: '#94a3b8' }}>{r.route}</div>
-            <div style={{ fontSize: '1.1rem', fontWeight: 700, color: r.savings_pct === 100 ? '#22c55e' : '#f59e0b' }}>{r.savings_pct}%</div>
+            <div style={{ fontSize: '0.65rem', color: 'var(--w-slate-400)' }}>{r.route}</div>
+            <div style={{ fontSize: '1.1rem', fontWeight: 700, color: r.savings_pct === 100 ? '#22c55e' : 'var(--w-amber-500)' }}>{r.savings_pct}%</div>
             <div style={{ fontSize: '0.6rem', color: '#86efac' }}>관세 절감</div>
           </div>
         ))}
@@ -140,10 +140,10 @@ export function FtaTariffOptimizer() {
         <BarChart data={chartData} barGap={2}>
           <ChartPatternDefs />
           <CartesianGrid strokeDasharray="3 3" stroke="rgba(140,170,255,0.12)" />
-          <XAxis dataKey="name" tick={{ fill: '#94a3b8', fontSize: 10 }} />
-          <YAxis tick={{ fill: '#94a3b8', fontSize: 10 }} unit="%" />
+          <XAxis dataKey="name" tick={{ fill: 'var(--w-slate-400)', fontSize: 10 }} />
+          <YAxis tick={{ fill: 'var(--w-slate-400)', fontSize: 10 }} unit="%" />
           <Tooltip contentStyle={{ background: '#1a1a2e', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '8px', fontSize: '0.75rem' }} />
-          <Bar dataKey="MFN" fill="#ef4444" name="MFN 관세" radius={[4, 4, 0, 0]} />
+          <Bar dataKey="MFN" fill="var(--w-red-500)" name="MFN 관세" radius={[4, 4, 0, 0]} />
           <Bar dataKey="FTA" fill="#22c55e" name="FTA 관세" radius={[4, 4, 0, 0]} />
         </BarChart>
       }

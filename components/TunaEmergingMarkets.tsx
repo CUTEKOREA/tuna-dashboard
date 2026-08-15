@@ -40,7 +40,7 @@ export function EmergingMarketsHeatmap() {
       telemetry={{ status: data ? 'SYNCED' : 'STATIC', syncDate: '2025-12', source: 'UN Comtrade + 국정연' }}
       customBody={
         loading ? (
-          <div style={{ padding: '2rem', textAlign: 'center', color: '#94a3b8' }}>로딩 중...</div>
+          <div style={{ padding: '2rem', textAlign: 'center', color: 'var(--w-slate-400)' }}>로딩 중...</div>
         ) : (
           <div style={{ display: 'grid', gap: '12px' }}>
             {regions.map((region) => (
@@ -50,10 +50,10 @@ export function EmergingMarketsHeatmap() {
                   {region.markets.slice(0, 3).map((m: Market, i: number) => (
                     <div key={i} style={{ display: 'flex', alignItems: 'center', gap: '8px', padding: '6px 10px', background: 'rgba(255,255,255,0.03)', borderRadius: '6px', fontSize: '0.72rem' }}>
                       <MapPin size={12} color={region.color} />
-                      <span style={{ flex: 1, color: '#f8fafc', fontWeight: 600 }}>{m.country}</span>
+                      <span style={{ flex: 1, color: 'var(--w-slate-50)', fontWeight: 600 }}>{m.country}</span>
                       <span style={{ color: region.color, fontWeight: 700, fontFamily: 'monospace' }}>+{m.tuna_import_growth_5yr}%</span>
-                      <span style={{ color: '#94a3b8', fontSize: '0.65rem' }}>${m.opportunity_usd_m}M</span>
-                      <span style={{ padding: '1px 6px', borderRadius: '4px', fontSize: '0.55rem', fontWeight: 700, background: m.priority === 'HIGH' ? 'rgba(239,68,68,0.15)' : 'rgba(245,158,11,0.15)', color: m.priority === 'HIGH' ? '#ef4444' : '#f59e0b' }}>{m.priority}</span>
+                      <span style={{ color: 'var(--w-slate-400)', fontSize: '0.65rem' }}>${m.opportunity_usd_m}M</span>
+                      <span style={{ padding: '1px 6px', borderRadius: '4px', fontSize: '0.55rem', fontWeight: 700, background: m.priority === 'HIGH' ? 'rgba(239,68,68,0.15)' : 'rgba(245,158,11,0.15)', color: m.priority === 'HIGH' ? 'var(--w-red-500)' : 'var(--w-amber-500)' }}>{m.priority}</span>
                     </div>
                   ))}
                 </div>

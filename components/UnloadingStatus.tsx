@@ -1273,7 +1273,7 @@ export default function UnloadingStatus({ heroOnly = false }: { heroOnly?: boole
 
   if (apiError) {
     return (
-      <div style={{ padding: '40px', textAlign: 'center', color: '#ef4444', background: 'rgba(239, 68, 68, 0.1)', borderRadius: '8px', border: '1px solid #ef4444', margin: '20px' }}>
+      <div style={{ padding: '40px', textAlign: 'center', color: 'var(--w-red-500)', background: 'rgba(239, 68, 68, 0.1)', borderRadius: '8px', border: '1px solid var(--w-red-500)', margin: '20px' }}>
         <h2>에러가 발생했습니다 (API Error)</h2>
         <p>{apiError}</p>
       </div>
@@ -1440,13 +1440,13 @@ export default function UnloadingStatus({ heroOnly = false }: { heroOnly?: boole
             <div style={{ display: 'flex', gap: '6px' }}>
               <button
                 onClick={() => setShowReportModal(true)}
-                style={{ padding: '5px 12px', borderRadius: '16px', border: '1px solid rgba(56, 189, 248, 0.3)', background: 'rgba(56, 189, 248, 0.1)', color: '#38bdf8', fontSize: '0.75rem', fontWeight: 600, cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '5px', transition: 'all 0.2s' }}
+                style={{ padding: '5px 12px', borderRadius: '16px', border: '1px solid rgba(56, 189, 248, 0.3)', background: 'rgba(56, 189, 248, 0.1)', color: 'var(--w-sky-400)', fontSize: '0.75rem', fontWeight: 600, cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '5px', transition: 'all 0.2s' }}
               >
                 <FileText size={13} /> 보고서
               </button>
               <button
                 onClick={() => setShowReplayModal(true)}
-                style={{ padding: '5px 12px', borderRadius: '16px', border: '1px solid rgba(16, 185, 129, 0.3)', background: 'rgba(16, 185, 129, 0.1)', color: '#10b981', fontSize: '0.75rem', fontWeight: 600, cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '5px', transition: 'all 0.2s' }}
+                style={{ padding: '5px 12px', borderRadius: '16px', border: '1px solid rgba(16, 185, 129, 0.3)', background: 'rgba(16, 185, 129, 0.1)', color: 'var(--w-emerald-500)', fontSize: '0.75rem', fontWeight: 600, cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '5px', transition: 'all 0.2s' }}
               >
                 <Play size={13} /> 리플레이
               </button>
@@ -1493,7 +1493,7 @@ export default function UnloadingStatus({ heroOnly = false }: { heroOnly?: boole
               <strong style={{ display: 'block', marginBottom: '3px' }}>
                 어종 분해 미확인: {(selectedData.unclassifiedActual ?? 0).toFixed(3)}톤
               </strong>
-              <span style={{ color: '#e2e8f0', fontSize: '0.82rem', lineHeight: 1.5 }}>
+              <span style={{ color: 'var(--w-slate-200)', fontSize: '0.82rem', lineHeight: 1.5 }}>
                 {selectedData.speciesBreakdownNote || '최신 일보에 어종별 물량 분해가 없어 기존 어종 누계를 유지했습니다.'}
                 {selectedData.speciesBreakdownAsOf ? ` 기존 어종 누계 기준일은 ${selectedData.speciesBreakdownAsOf}입니다.` : ''}
               </span>
@@ -1521,12 +1521,12 @@ export default function UnloadingStatus({ heroOnly = false }: { heroOnly?: boole
           {selectedData.holdDataAvailable === false ? (
             <div style={{ padding: '48px 24px', textAlign: 'center', color: 'var(--text-muted)', border: '1px dashed rgba(148, 163, 184, 0.25)', borderRadius: '12px' }}>
               <Ship size={28} style={{ margin: '0 auto 12px' }} />
-              <strong style={{ display: 'block', color: '#e2e8f0', marginBottom: '6px' }}>화물창별 원자료 없음</strong>
+              <strong style={{ display: 'block', color: 'var(--w-slate-200)', marginBottom: '6px' }}>화물창별 원자료 없음</strong>
               선박·일일·누계·어종 합계는 일일 XLS로 확인했지만, 화물창별 물량과 전 작업일 온도는 원표에 없어 표시하지 않습니다.
             </div>
           ) : (
           <>
-          <h4 style={{ marginBottom: '16px', fontSize: '1rem', fontWeight: 'bold', color: '#f8fafc', display: 'flex', alignItems: 'center', gap: '8px' }}>
+          <h4 style={{ marginBottom: '16px', fontSize: '1rem', fontWeight: 'bold', color: 'var(--w-slate-50)', display: 'flex', alignItems: 'center', gap: '8px' }}>
             <Ship size={18} color="var(--accent-primary)" />
             선박 화물창 적재도 (Cargo Hold Stowage Schematic)
             <BaseDateTag date={selectedBaseDate} />
@@ -1721,20 +1721,20 @@ export default function UnloadingStatus({ heroOnly = false }: { heroOnly?: boole
                       lineHeight: '1.4'
                     }}
                   >
-                    <div style={{ fontWeight: 'bold', borderBottom: '1px solid rgba(255,255,255,0.1)', paddingBottom: '4px', marginBottom: '6px', color: '#38bdf8', display: 'flex', justifyContent: 'space-between' }}>
+                    <div style={{ fontWeight: 'bold', borderBottom: '1px solid rgba(255,255,255,0.1)', paddingBottom: '4px', marginBottom: '6px', color: 'var(--w-sky-400)', display: 'flex', justifyContent: 'space-between' }}>
                       <span>Compartment {tooltipData.holdId}</span>
                       <span data-testid="tooltip-temp" style={{ color: getTemperatureColor(tooltipData.temperature).color }}>
                         {tooltipData.temperature !== null ? `${tooltipData.temperature.toFixed(1)}°C` : '-'}
                       </span>
                     </div>
                     {tooltipData.temperature !== null && tooltipData.temperature > -18.0 && (
-                      <div className="tooltip-alert" style={{ color: '#f59e0b', fontWeight: 'bold', marginBottom: '6px' }}>
+                      <div className="tooltip-alert" style={{ color: 'var(--w-amber-500)', fontWeight: 'bold', marginBottom: '6px' }}>
                         ⚠️ 경고 (Warning)
                       </div>
                     )}
                     <div style={{ marginBottom: '4px' }}>적재업체: <strong>{tooltipData.shippers.join(', ')}</strong></div>
                     <div style={{ marginBottom: '4px' }}>하역 진행: <strong>{tooltipData.actualAmount.toFixed(1)} MT / {tooltipData.nominalCapacity.toFixed(0)} MT</strong> ({(tooltipData.nominalCapacity > 0 ? (tooltipData.actualAmount / tooltipData.nominalCapacity) * 100 : 0).toFixed(1)}%)</div>
-                    <div style={{ fontSize: '0.75rem', color: '#94a3b8', borderTop: '1px solid rgba(140,170,255,0.10)', paddingTop: '4px', marginTop: '4px' }}>
+                    <div style={{ fontSize: '0.75rem', color: 'var(--w-slate-400)', borderTop: '1px solid rgba(140,170,255,0.10)', paddingTop: '4px', marginTop: '4px' }}>
                       {tooltipData.qualityDescription}
                     </div>
                   </div>
@@ -1798,7 +1798,7 @@ export default function UnloadingStatus({ heroOnly = false }: { heroOnly?: boole
                       data-testid="hold-species-unavailable"
                       style={{ padding: '10px', borderRadius: '8px', background: 'rgba(245, 158, 11, 0.10)', border: '1px solid rgba(245, 158, 11, 0.28)', fontSize: '0.75rem', lineHeight: 1.5 }}
                     >
-                      <strong style={{ display: 'block', color: '#fbbf24', marginBottom: '3px' }}>어창별 어종 분해 없음</strong>
+                      <strong style={{ display: 'block', color: 'var(--w-amber-400)', marginBottom: '3px' }}>어창별 어종 분해 없음</strong>
                       {hasUnclassifiedSpecies
                         ? `최신 일보 ${(selectedData.unclassifiedActual ?? 0).toFixed(3)}톤은 어종별 근거가 없어 화물창별 품종 물량을 추정하지 않습니다.`
                         : '일일 결과보고는 어종별 합계를 제공하지만 개별 어창별 분해는 제공하지 않아 추정하지 않습니다.'}
@@ -1815,7 +1815,7 @@ export default function UnloadingStatus({ heroOnly = false }: { heroOnly?: boole
                             <div
                               style={{
                                 width: `${sp.percent}%`,
-                                background: sp.id === 'SJ' ? '#38bdf8' : '#fbbf24',
+                                background: sp.id === 'SJ' ? 'var(--w-sky-400)' : 'var(--w-amber-400)',
                                 height: '100%',
                                 transition: 'width 0.4s ease'
                               }}
@@ -1920,16 +1920,16 @@ export default function UnloadingStatus({ heroOnly = false }: { heroOnly?: boole
                     <ComposedChart width={Math.max(chartData.length * 55, 750)} height={350} data={chartData} margin={{ top: 10, right: 30, left: 10, bottom: 0 }}>
                       <ChartPatternDefs />
                       <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.08)" vertical={false} />
-                      <XAxis dataKey="name" stroke="#94a3b8" fontSize={11} tickLine={false} />
-                      <YAxis stroke="#94a3b8" fontSize={11} tickLine={false} axisLine={false} tickFormatter={(v: number) => v >= 1000 ? `${(v/1000).toFixed(1)}k` : `${v}`} />
+                      <XAxis dataKey="name" stroke="var(--w-slate-400)" fontSize={11} tickLine={false} />
+                      <YAxis stroke="var(--w-slate-400)" fontSize={11} tickLine={false} axisLine={false} tickFormatter={(v: number) => v >= 1000 ? `${(v/1000).toFixed(1)}k` : `${v}`} />
                       <RechartsTooltip 
                         contentStyle={{ backgroundColor: '#0a0f1f', border: '1px solid rgba(255,255,255,0.15)', borderRadius: '8px', color: '#fff', fontSize: '13px' }}
-                        itemStyle={{ color: '#e2e8f0' }}
+                        itemStyle={{ color: 'var(--w-slate-200)' }}
                         formatter={(value: any, name: any) => [`${Number(value).toLocaleString()} MT`, name]}
                       />
                       <Legend iconType="circle" wrapperStyle={{ fontSize: '12px', paddingTop: '8px', paddingBottom: '16px' }} verticalAlign="top" />
-                      <Bar name="일일 하역량" dataKey="일일하역량" fill="#38bdf8" radius={[4, 4, 0, 0]} maxBarSize={36} />
-                      <Line name="누적 하역량" type="monotone" dataKey="누적하역량" stroke="#10b981" strokeWidth={2.5} dot={{ r: 3, fill: '#10b981', strokeWidth: 0 }} />
+                      <Bar name="일일 하역량" dataKey="일일하역량" fill="var(--w-sky-400)" radius={[4, 4, 0, 0]} maxBarSize={36} />
+                      <Line name="누적 하역량" type="monotone" dataKey="누적하역량" stroke="var(--w-emerald-500)" strokeWidth={2.5} dot={{ r: 3, fill: 'var(--w-emerald-500)', strokeWidth: 0 }} />
                     </ComposedChart>
                   </div>
                 </div>
@@ -1967,7 +1967,7 @@ export default function UnloadingStatus({ heroOnly = false }: { heroOnly?: boole
 
                 {/* Dynamic ETA gauge */}
                 <div style={{ background: 'rgba(20, 28, 52, 0.3)', borderRadius: '12px', padding: '20px', border: '1px solid rgba(140,170,255,0.10)' }}>
-                  <h4 style={{ marginBottom: '16px', fontSize: '0.95rem', color: '#10b981', display: 'flex', alignItems: 'center', gap: '8px' }}>
+                  <h4 style={{ marginBottom: '16px', fontSize: '0.95rem', color: 'var(--w-emerald-500)', display: 'flex', alignItems: 'center', gap: '8px' }}>
                     <Clock size={16} /> 진척 현황 및 예측 (ETA) <BaseDateTag date={selectedBaseDate} />
                   </h4>
                   <div style={{ display: 'flex', gap: '16px', alignItems: 'center' }}>
@@ -1985,7 +1985,7 @@ export default function UnloadingStatus({ heroOnly = false }: { heroOnly?: boole
                       </div>
                       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', borderTop: '1px solid rgba(255,255,255,0.08)', paddingTop: '6px' }}>
                         <span style={{ fontSize: '0.8rem', color: 'var(--text-muted)' }}>예상 종료 시점</span>
-                        <span style={{ fontWeight: 'bold', fontSize: '1.05rem', color: '#10b981' }}>
+                        <span style={{ fontWeight: 'bold', fontSize: '1.05rem', color: 'var(--w-emerald-500)' }}>
                           {getUnloadingEtaLabel(selectedData.status, remainingTotal, estimatedDaysLeft)}
                         </span>
                       </div>
@@ -1995,7 +1995,7 @@ export default function UnloadingStatus({ heroOnly = false }: { heroOnly?: boole
 
                 {totalShipperAmount > 0 && (
                   <div style={{ background: 'rgba(20, 28, 52, 0.3)', borderRadius: '12px', padding: '20px', border: '1px solid rgba(140,170,255,0.10)', flex: 1 }}>
-                    <h4 style={{ marginBottom: '16px', fontSize: '0.95rem', color: '#f59e0b', display: 'flex', alignItems: 'center', gap: '8px' }}>
+                    <h4 style={{ marginBottom: '16px', fontSize: '0.95rem', color: 'var(--w-amber-500)', display: 'flex', alignItems: 'center', gap: '8px' }}>
                       <MapPin size={16} /> 원적재선별 하역 비중 <BaseDateTag date={selectedBaseDate} />
                     </h4>
                     <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
@@ -2008,7 +2008,7 @@ export default function UnloadingStatus({ heroOnly = false }: { heroOnly?: boole
                               <span style={{ color: 'var(--text-muted)' }}>{percent.toFixed(1)}%</span>
                             </div>
                             <div style={{ width: '100%', background: 'rgba(255,255,255,0.08)', height: '6px', borderRadius: '3px', overflow: 'hidden' }}>
-                              <div style={{ width: `${percent}%`, background: '#f59e0b', height: '100%' }}></div>
+                              <div style={{ width: `${percent}%`, background: 'var(--w-amber-500)', height: '100%' }}></div>
                             </div>
                           </div>
                         );
@@ -2041,8 +2041,8 @@ export default function UnloadingStatus({ heroOnly = false }: { heroOnly?: boole
                 <defs>
                   <linearGradient id="lane-grad" x1="0" y1="0" x2="0" y2="1">
                     <stop offset="0%" stopColor="#6366f1" />
-                    <stop offset="50%" stopColor="#38bdf8" />
-                    <stop offset="100%" stopColor="#10b981" />
+                    <stop offset="50%" stopColor="var(--w-sky-400)" />
+                    <stop offset="100%" stopColor="var(--w-emerald-500)" />
                   </linearGradient>
                 </defs>
                 <line x1="4" y1="0" x2="4" y2="100%" stroke="rgba(140, 170, 255, 0.10)" strokeWidth="4" strokeLinecap="round" />
@@ -2120,18 +2120,18 @@ export default function UnloadingStatus({ heroOnly = false }: { heroOnly?: boole
                       <div className={styles.logDate} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                         <span>{t.date} <span style={{ fontSize: '0.75rem', fontWeight: 'normal', color: 'var(--text-muted)', marginLeft: '8px' }}>{t.time}</span></span>
                         {t.dailyAmount > 0 && (
-                          <span style={{ fontSize: '0.8rem', color: '#38bdf8', background: 'rgba(56, 189, 248, 0.15)', padding: '2px 8px', borderRadius: '12px', fontWeight: 'bold' }}>
+                          <span style={{ fontSize: '0.8rem', color: 'var(--w-sky-400)', background: 'rgba(56, 189, 248, 0.15)', padding: '2px 8px', borderRadius: '12px', fontWeight: 'bold' }}>
                             +{t.dailyAmount.toFixed(3)} MT
                           </span>
                         )}
                       </div>
                       <div className={styles.logText}>
-                        <div style={{ marginBottom: '4px', color: '#e2e8f0', display: 'flex', alignItems: 'center', gap: '6px' }}>
+                        <div style={{ marginBottom: '4px', color: 'var(--w-slate-200)', display: 'flex', alignItems: 'center', gap: '6px' }}>
                           <PackageCheck size={13} color="#38bdf8" />
                           <span>어창: <strong>{t.targetHol}</strong></span>
                         </div>
                         {t.allocations && t.allocations.length > 0 ? (
-                          <div style={{ marginBottom: '4px', color: '#e2e8f0', display: 'flex', alignItems: 'flex-start', gap: '6px' }}>
+                          <div style={{ marginBottom: '4px', color: 'var(--w-slate-200)', display: 'flex', alignItems: 'flex-start', gap: '6px' }}>
                             <MapPin size={13} color="#38bdf8" style={{ flexShrink: 0, marginTop: '3px' }} />
                             <div style={{ minWidth: 0 }}>
                               <span style={{ display: 'block', marginBottom: '2px' }}>수하처별 하역량</span>
@@ -2146,7 +2146,7 @@ export default function UnloadingStatus({ heroOnly = false }: { heroOnly?: boole
                             </div>
                           </div>
                         ) : t.consignee ? (
-                          <div style={{ marginBottom: '4px', color: '#e2e8f0', display: 'flex', alignItems: 'center', gap: '6px' }}>
+                          <div style={{ marginBottom: '4px', color: 'var(--w-slate-200)', display: 'flex', alignItems: 'center', gap: '6px' }}>
                             <MapPin size={13} color="#38bdf8" />
                             <span>
                               수하처: <strong><TermTooltip term={t.consignee} description="원본 하역 보고서에 기재된 태국 현지 수하처 코드입니다." /></strong>
@@ -2169,14 +2169,14 @@ export default function UnloadingStatus({ heroOnly = false }: { heroOnly?: boole
         {/* Takeaway Box if available */}
         {activeDetailTab === 'summary' && (selectedData as any).finalReport && (
           <div data-testid="exec-takeaway-box" className={styles.takeawayBox}>
-            <h4 style={{ fontSize: '14px', color: '#38BDF8', marginBottom: '8px', fontWeight: 600, display: 'flex', alignItems: 'center', gap: '6px' }}>
+            <h4 style={{ fontSize: '14px', color: 'var(--w-sky-400)', marginBottom: '8px', fontWeight: 600, display: 'flex', alignItems: 'center', gap: '6px' }}>
               <AlertCircle size={16} /> 경영진 요약 (Executive Takeaway)
             </h4>
-            <p style={{ fontSize: '0.9rem', lineHeight: 1.6, color: '#e2e8f0' }}>
-              <strong style={{ color: '#FBBF24' }}>상황:</strong> {(selectedData as any).finalReport.takeaway.situation}
+            <p style={{ fontSize: '0.9rem', lineHeight: 1.6, color: 'var(--w-slate-200)' }}>
+              <strong style={{ color: 'var(--w-amber-400)' }}>상황:</strong> {(selectedData as any).finalReport.takeaway.situation}
             </p>
-            <p style={{ fontSize: '0.9rem', lineHeight: 1.6, color: '#e2e8f0', marginTop: '4px' }}>
-              <strong style={{ color: '#FBBF24' }}>이슈:</strong> {(selectedData as any).finalReport.takeaway.insight}
+            <p style={{ fontSize: '0.9rem', lineHeight: 1.6, color: 'var(--w-slate-200)', marginTop: '4px' }}>
+              <strong style={{ color: 'var(--w-amber-400)' }}>이슈:</strong> {(selectedData as any).finalReport.takeaway.insight}
             </p>
           </div>
         )}

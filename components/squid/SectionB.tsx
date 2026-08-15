@@ -180,7 +180,7 @@ const LadderTooltip: React.FC<{ active?: boolean; payload?: any[] }> = ({ active
   const t = r.trend ? TREND_META[r.trend] : undefined;
   return (
     <div style={tooltipStyle}>
-      <div style={{ fontWeight: 700, color: '#e2e8f0' }}>{r.label}</div>
+      <div style={{ fontWeight: 700, color: 'var(--w-slate-200)' }}>{r.label}</div>
       <div style={{ color: C.faint }}>{r.scientific_name} · {formKo(r.product_form)}</div>
       <div>EUR {r.price_eur_per_kg != null ? fmt(r.price_eur_per_kg) : '—'}/kg</div>
       <div>USD {r.price_usd_per_kg != null ? fmt(r.price_usd_per_kg) : '—'}/kg</div>
@@ -405,7 +405,7 @@ const KmiTooltip: React.FC<{ active?: boolean; payload?: any[] }> = ({ active, p
   if (!r) return null;
   return (
     <div style={tooltipStyle}>
-      <div style={{ fontWeight: 700, color: '#e2e8f0' }}>{r.date}</div>
+      <div style={{ fontWeight: 700, color: 'var(--w-slate-200)' }}>{r.date}</div>
       <div>{fmt(r.price_krw)} 원/마리</div>
     </div>
   );
@@ -503,7 +503,7 @@ const KcsTooltip: React.FC<{ active?: boolean; payload?: any[] }> = ({ active, p
   if (!r) return null;
   return (
     <div style={tooltipStyle}>
-      <div style={{ fontWeight: 700, color: '#e2e8f0' }}>{r.month}</div>
+      <div style={{ fontWeight: 700, color: 'var(--w-slate-200)' }}>{r.month}</div>
       <div>수입금액 {fmt(r.import_usd)}달러</div>
       <div>수입중량 {fmt(r.import_kg)}킬로그램</div>
       <div>가중 단가 {fmt(r.unit_price_usd_mt)}달러/톤</div>
@@ -642,12 +642,12 @@ const StageBoard: React.FC<{ rows: StageRow[] }> = ({ rows }) => (
             <div style={{ fontSize: '0.62rem', color, fontWeight: 800 }}>
               {STAGE_KO[r.market_stage] ?? r.market_stage}
             </div>
-            <div style={{ fontSize: '0.72rem', color: '#e2e8f0', fontWeight: 700, marginTop: 2 }}>
+            <div style={{ fontSize: '0.72rem', color: 'var(--w-slate-200)', fontWeight: 700, marginTop: 2 }}>
               {squidValueLabel(r.label)}
             </div>
             {r.available && r.value != null ? (
               <div style={{ marginTop: 8 }}>
-                <span style={{ fontSize: '1.05rem', fontWeight: 800, color: '#f8fafc' }}>
+                <span style={{ fontSize: '1.05rem', fontWeight: 800, color: 'var(--w-slate-50)' }}>
                   {fmt(r.value)}
                 </span>
                 <span style={{ fontSize: '0.62rem', color: C.faint, marginLeft: 4 }}>{squidUnitLabel(r.unit)}</span>
@@ -715,7 +715,7 @@ const FreshnessBoard: React.FC<{ rows: FreshRow[] }> = ({ rows }) => (
               minWidth: 0,
             }}
           >
-            <div style={{ fontSize: '0.72rem', fontWeight: 700, color: '#e2e8f0' }}>{squidValueLabel(r.indicator)}</div>
+            <div style={{ fontSize: '0.72rem', fontWeight: 700, color: 'var(--w-slate-200)' }}>{squidValueLabel(r.indicator)}</div>
             <div style={{ fontSize: '0.95rem', fontWeight: 800, color, marginTop: 4 }}>
               {r.age_days != null ? `기준일+${r.age_days}일` : '기준일 미상'}
             </div>

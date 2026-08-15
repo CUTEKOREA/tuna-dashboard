@@ -14,7 +14,7 @@ export default function ChickenPartsWidget() {
       .catch(e => console.error(e));
   }, []);
 
-  if (!data) return <div style={{ padding: '2rem', textAlign: 'center', color: '#94a3b8' }}>부위별 인텔리전스 로딩 중...</div>;
+  if (!data) return <div style={{ padding: '2rem', textAlign: 'center', color: 'var(--w-slate-400)' }}>부위별 인텔리전스 로딩 중...</div>;
 
   const IconMap: Record<string, React.FC<any>> = {
     'Scissors': Scissors,
@@ -29,14 +29,14 @@ export default function ChickenPartsWidget() {
     <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
       {data.chartData && (
         <div style={{ background: 'rgba(20, 28, 52, 0.4)', borderRadius: '12px', border: '1px solid rgba(245, 158, 11, 0.15)', padding: '1.2rem' }}>
-          <h4 style={{ margin: '0 0 1rem 0', fontSize: '0.95rem', color: '#f8fafc' }}>KCS HS코드 수입단가 추이</h4>
+          <h4 style={{ margin: '0 0 1rem 0', fontSize: '0.95rem', color: 'var(--w-slate-50)' }}>KCS HS코드 수입단가 추이</h4>
           <div style={{ height: '220px', width: '100%' }}>
             <LineChart width={600} height={220} data={data.chartData.data}>
               <CartesianGrid strokeDasharray="3 3" stroke="rgba(140,170,255,0.10)" vertical={false} />
-              <XAxis dataKey="year" stroke="#94a3b8" tick={{ fontSize: 10 }} />
-              <YAxis stroke="#94a3b8" tick={{ fontSize: 10 }} tickFormatter={yFmt} domain={['auto', 'auto']} />
-              <RechartsTooltip contentStyle={{ background: 'rgba(20, 28, 52, 0.9)', border: '1px solid #f59e0b', borderRadius: '8px', color: '#f8fafc' }} formatter={yFmt} />
-              <Legend wrapperStyle={{ fontSize: '11px', color: '#cbd5e1' }} />
+              <XAxis dataKey="year" stroke="var(--w-slate-400)" tick={{ fontSize: 10 }} />
+              <YAxis stroke="var(--w-slate-400)" tick={{ fontSize: 10 }} tickFormatter={yFmt} domain={['auto', 'auto']} />
+              <RechartsTooltip contentStyle={{ background: 'rgba(20, 28, 52, 0.9)', border: '1px solid var(--w-amber-500)', borderRadius: '8px', color: 'var(--w-slate-50)' }} formatter={yFmt} />
+              <Legend wrapperStyle={{ fontSize: '11px', color: 'var(--w-slate-300)' }} />
               {data.chartData.lines.map((l: any, i: number) => {
                 const color = i === 0 ? '#f59e0b' : '#ea580c';
                 return <Line key={i} type="monotone" dataKey={l.key} name={l.name} stroke={color} strokeWidth={3} dot={{ r: 4 }} activeDot={{ r: 6 }} />;
@@ -60,11 +60,11 @@ export default function ChickenPartsWidget() {
               gap: '0.8rem',
             }}>
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
-                <h4 style={{ margin: 0, color: '#f8fafc', fontSize: '1rem', display: 'flex', alignItems: 'center', gap: '8px' }}>
+                <h4 style={{ margin: 0, color: 'var(--w-slate-50)', fontSize: '1rem', display: 'flex', alignItems: 'center', gap: '8px' }}>
                   <IconComponent size={18} color="#f59e0b" />
                   {part.name}
                 </h4>
-                <span style={{ fontSize: '0.75rem', color: '#fbbf24', background: 'rgba(245, 158, 11, 0.1)', padding: '2px 8px', borderRadius: '12px', whiteSpace: 'nowrap', marginLeft: '8px' }}>
+                <span style={{ fontSize: '0.75rem', color: 'var(--w-amber-400)', background: 'rgba(245, 158, 11, 0.1)', padding: '2px 8px', borderRadius: '12px', whiteSpace: 'nowrap', marginLeft: '8px' }}>
                   타깃: {part.market}
                 </span>
               </div>
@@ -72,11 +72,11 @@ export default function ChickenPartsWidget() {
               <div style={{ display: 'flex', flexDirection: 'column', gap: '0.8rem', fontSize: '0.82rem', flex: 1 }}>
                 <div style={{ background: 'rgba(0, 0, 0, 0.2)', padding: '0.8rem', borderRadius: '8px', borderLeft: '2px solid rgba(245, 158, 11, 0.6)' }}>
                   <div style={{ color: '#fcd34d', fontWeight: 700, marginBottom: '4px', display: 'flex', alignItems: 'center', gap: '4px' }}><AlertTriangle size={12} /> 브라질 한계</div>
-                  <div style={{ color: '#cbd5e1', lineHeight: 1.5 }}>{part.brazil}</div>
+                  <div style={{ color: 'var(--w-slate-300)', lineHeight: 1.5 }}>{part.brazil}</div>
                 </div>
                 <div style={{ background: 'rgba(0, 0, 0, 0.2)', padding: '0.8rem', borderRadius: '8px', borderLeft: '2px solid rgba(234, 88, 12, 0.6)' }}>
                   <div style={{ color: '#fdba74', fontWeight: 700, marginBottom: '4px', display: 'flex', alignItems: 'center', gap: '4px' }}><ShieldCheck size={12} /> 태국 우위</div>
-                  <div style={{ color: '#cbd5e1', lineHeight: 1.5 }}>{part.thailand}</div>
+                  <div style={{ color: 'var(--w-slate-300)', lineHeight: 1.5 }}>{part.thailand}</div>
                 </div>
               </div>
 
@@ -85,11 +85,11 @@ export default function ChickenPartsWidget() {
                 padding: '0.8rem 1rem',
                 borderRadius: '8px',
                 fontSize: '0.82rem',
-                color: '#f8fafc',
+                color: 'var(--w-slate-50)',
                 lineHeight: 1.5,
                 border: '1px dashed rgba(245, 158, 11, 0.3)',
               }}>
-                <strong style={{ color: '#fbbf24' }}>💡 전략적 인사이트:</strong> {part.insight}
+                <strong style={{ color: 'var(--w-amber-400)' }}>💡 전략적 인사이트:</strong> {part.insight}
               </div>
             </div>
           );

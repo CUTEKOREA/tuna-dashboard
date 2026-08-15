@@ -17,7 +17,7 @@ const tooltipStyle = {
   backgroundColor: 'rgba(20, 28, 52, 0.95)',
   border: '1px solid rgba(148,163,184,0.15)',
   borderRadius: 8,
-  color: '#e2e8f0',
+  color: 'var(--w-slate-200)',
   fontSize: '0.78rem',
   padding: '8px 12px',
 };
@@ -36,10 +36,10 @@ function CenterLabel({ viewBox }: { viewBox?: { cx?: number; cy?: number } }) {
   const cy = viewBox?.cy ?? 0;
   return (
     <g>
-      <text x={cx} y={cy - 6} textAnchor="middle" fill="#e2e8f0" fontSize="1.4rem" fontWeight={800}>
+      <text x={cx} y={cy - 6} textAnchor="middle" fill="var(--w-slate-200)" fontSize="1.4rem" fontWeight={800}>
         78%
       </text>
-      <text x={cx} y={cy + 14} textAnchor="middle" fill="#94a3b8" fontSize="0.7rem" fontWeight={500}>
+      <text x={cx} y={cy + 14} textAnchor="middle" fill="var(--w-slate-400)" fontSize="0.7rem" fontWeight={500}>
         참여
       </text>
     </g>
@@ -89,7 +89,7 @@ export default function MscVsFipComparison() {
       {/* Legend */}
       <div style={{ display: 'flex', flexWrap: 'wrap' as const, gap: '12px', justifyContent: 'center' }}>
         {catchData.map((d) => (
-          <div key={d.name} style={{ display: 'flex', alignItems: 'center', gap: '5px', fontSize: '0.72rem', color: '#94a3b8' }}>
+          <div key={d.name} style={{ display: 'flex', alignItems: 'center', gap: '5px', fontSize: '0.72rem', color: 'var(--w-slate-400)' }}>
             <div style={{ width: 10, height: 10, borderRadius: 3, background: d.fill, flexShrink: 0 }} />
             {d.name} ({d.value}%)
           </div>
@@ -103,13 +103,13 @@ export default function MscVsFipComparison() {
       <table style={{ width: '100%', borderCollapse: 'collapse' as const, fontSize: '0.78rem' }}>
         <thead>
           <tr>
-            <th style={{ textAlign: 'left' as const, padding: '10px 12px', color: '#64748b', fontWeight: 600, borderBottom: '1px solid rgba(255,255,255,0.08)', fontSize: '0.72rem' }}>
+            <th style={{ textAlign: 'left' as const, padding: '10px 12px', color: 'var(--w-slate-500)', fontWeight: 600, borderBottom: '1px solid rgba(255,255,255,0.08)', fontSize: '0.72rem' }}>
               항목
             </th>
-            <th style={{ textAlign: 'left' as const, padding: '10px 12px', color: '#10b981', fontWeight: 700, borderBottom: '1px solid rgba(255,255,255,0.08)', fontSize: '0.72rem' }}>
+            <th style={{ textAlign: 'left' as const, padding: '10px 12px', color: 'var(--w-emerald-500)', fontWeight: 700, borderBottom: '1px solid rgba(255,255,255,0.08)', fontSize: '0.72rem' }}>
               MSC 인증
             </th>
-            <th style={{ textAlign: 'left' as const, padding: '10px 12px', color: '#f59e0b', fontWeight: 700, borderBottom: '1px solid rgba(255,255,255,0.08)', fontSize: '0.72rem' }}>
+            <th style={{ textAlign: 'left' as const, padding: '10px 12px', color: 'var(--w-amber-500)', fontWeight: 700, borderBottom: '1px solid rgba(255,255,255,0.08)', fontSize: '0.72rem' }}>
               FIP
             </th>
           </tr>
@@ -117,13 +117,13 @@ export default function MscVsFipComparison() {
         <tbody>
           {comparisonRows.map((row, i) => (
             <tr key={row.item} style={{ background: i % 2 === 0 ? 'rgba(255,255,255,0.02)' : 'transparent' }}>
-              <td style={{ padding: '9px 12px', color: '#94a3b8', fontWeight: 600, borderBottom: '1px solid rgba(255,255,255,0.04)' }}>
+              <td style={{ padding: '9px 12px', color: 'var(--w-slate-400)', fontWeight: 600, borderBottom: '1px solid rgba(255,255,255,0.04)' }}>
                 {row.item}
               </td>
-              <td style={{ padding: '9px 12px', color: '#e2e8f0', borderBottom: '1px solid rgba(255,255,255,0.04)' }}>
+              <td style={{ padding: '9px 12px', color: 'var(--w-slate-200)', borderBottom: '1px solid rgba(255,255,255,0.04)' }}>
                 {row.msc}
               </td>
-              <td style={{ padding: '9px 12px', color: '#e2e8f0', borderBottom: '1px solid rgba(255,255,255,0.04)' }}>
+              <td style={{ padding: '9px 12px', color: 'var(--w-slate-200)', borderBottom: '1px solid rgba(255,255,255,0.04)' }}>
                 {row.fip}
               </td>
             </tr>

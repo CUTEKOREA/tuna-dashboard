@@ -110,7 +110,7 @@ export default function CocoaDashboard() {
   const renderSankeyNode = ({ x, y, width, height, payload }: any) => (
     <g>
       <rect x={x} y={y} width={width} height={height} fill="#78350f" rx={2} />
-      <text x={x < 150 ? x + width + 5 : x - 5} y={y + height / 2} dy={3} textAnchor={x < 150 ? 'start' : 'end'} fill="#cbd5e1" fontSize={10} fontWeight={600}>
+      <text x={x < 150 ? x + width + 5 : x - 5} y={y + height / 2} dy={3} textAnchor={x < 150 ? 'start' : 'end'} fill="var(--w-slate-300)" fontSize={10} fontWeight={600}>
         {payload.name}
       </text>
     </g>
@@ -535,7 +535,7 @@ export default function CocoaDashboard() {
               <Legend wrapperStyle={{fontSize:'10px'}} verticalAlign="top" height={36} />
               <Line type="monotone" dataKey="Price2024" stroke="var(--color-danger)" strokeWidth={3} name="2024년 가격" />
               <Line type="monotone" dataKey="Price2025" stroke="#f97316" strokeWidth={2} strokeDasharray="3 3" name="2025년 가격" />
-              <Line type="monotone" dataKey="Price2026" stroke="#3b82f6" strokeWidth={2} name="2026년 가격 (시나리오)" />
+              <Line type="monotone" dataKey="Price2026" stroke="var(--w-blue-500)" strokeWidth={2} name="2026년 가격 (시나리오)" />
             </LineChart>
           }
           takeaway={{
@@ -676,7 +676,7 @@ export default function CocoaDashboard() {
               <YAxis {...yAxisProps} />
               <RechartsTooltip content={<CustomTooltip />} />
               <Legend wrapperStyle={{fontSize:'10px'}} verticalAlign="top" height={36} />
-              <Bar dataKey="BaseCost" stackId="a" fill="#64748b" name="순수 원물 가격" barSize={40} />
+              <Bar dataKey="BaseCost" stackId="a" fill="var(--w-slate-500)" name="순수 원물 가격" barSize={40} />
               <Bar dataKey="Logistics" stackId="a" fill="var(--color-info)" name="해상 물류비" />
               <Bar dataKey="EudrTax" stackId="a" fill="#b45309" name="유럽연합 산림벌채 규정(EUDR) 준수 비용" />
             </BarChart>
@@ -821,8 +821,8 @@ export default function CocoaDashboard() {
               <RechartsTooltip content={<CustomTooltip />} />
               <Legend wrapperStyle={{fontSize:'10px'}} verticalAlign="top" height={36} />
               <Bar dataKey="costBurden" fill="var(--color-danger)" name="원가 부담률" barSize={30} />
-              <Bar dataKey="cbeRatio" fill="#f59e0b" name="CBE(대체유) 전환율" barSize={30} />
-              <Line dataKey="opMargin" type="monotone" stroke="#3b82f6" strokeWidth={3} name="영업이익률" dot={{r: 5}} />
+              <Bar dataKey="cbeRatio" fill="var(--w-amber-500)" name="CBE(대체유) 전환율" barSize={30} />
+              <Line dataKey="opMargin" type="monotone" stroke="var(--w-blue-500)" strokeWidth={3} name="영업이익률" dot={{r: 5}} />
             </ComposedChart>
           }
           takeaway={{
@@ -989,7 +989,7 @@ export default function CocoaDashboard() {
               <YAxis yAxisId="right" orientation="right" stroke="var(--text-secondary)" tick={{ fontSize: 9 }} />
               <RechartsTooltip cursor={{fill: 'rgba(255,255,255,0.02)'}} content={<CustomTooltip />} />
               <Legend wrapperStyle={{fontSize:'10px'}} verticalAlign="top" height={36} />
-              <Bar yAxisId="left" dataKey="Margin" stackId="a" fill="#f59e0b" name="EBITDA(세전·이자·감가상각비 차감 전 이익) 마진율(%)" barSize={35} />
+              <Bar yAxisId="left" dataKey="Margin" stackId="a" fill="var(--w-amber-500)" name="EBITDA(세전·이자·감가상각비 차감 전 이익) 마진율(%)" barSize={35} />
               <Bar yAxisId="left" dataKey="Growth" stackId="a" fill="#78350f" name="시장 성장률(%)" barSize={35} />
               <Line yAxisId="right" type="monotone" dataKey="Polyphenol_mgGAE_g" stroke="#d97706" strokeWidth={3} name="폴리페놀(mg GAE/g, RHS)" />
               <Line yAxisId="right" type="monotone" dataKey="Antioxidant_DPPH" stroke="var(--color-warning)" strokeWidth={3} strokeDasharray="3 3" name="항산화(DPPH, RHS)" />

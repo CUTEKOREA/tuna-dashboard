@@ -172,7 +172,7 @@ export default function TraderImportChart() {
           borderRadius: '12px',
           border: meta ? '1px solid rgba(16, 185, 129, 0.2)' : '1px solid rgba(148, 163, 184, 0.2)'
         }}>
-          <div style={{ width: 6, height: 6, borderRadius: '50%', background: meta ? 'var(--color-success)' : 'var(--text-muted)', boxShadow: meta ? '0 0 8px #10b981' : 'none' }}></div>
+          <div style={{ width: 6, height: 6, borderRadius: '50%', background: meta ? 'var(--color-success)' : 'var(--text-muted)', boxShadow: meta ? '0 0 8px var(--w-emerald-500)' : 'none' }}></div>
           {meta ? 'SYNCED · KCS API' : 'STATIC'}
         </div>
       </div>
@@ -234,7 +234,7 @@ export default function TraderImportChart() {
         {/* Right Side: 2026 Monthly Trend Breakdown */}
         <div style={{ flex: rc.isTablet ? 'none' : '1', minWidth: rc.isTablet ? 'auto' : '240px', backgroundColor: 'rgba(255, 255, 255, 0.02)', border: '1px solid rgba(140, 170, 255, 0.10)', borderRadius: '8px', padding: '16px 12px 16px 0', display: 'flex', flexDirection: 'column', height: rc.isTablet ? '200px' : 'auto' }}>
           <h3 style={{ fontSize: '13px', margin: '0 0 16px 20px', color: 'var(--text-main)', display: 'flex', alignItems: 'center', gap: '8px' }}>
-            <div style={{ width: '8px', height: '8px', background: 'var(--color-success)', borderRadius: '50%', boxShadow: '0 0 6px #10b981' }} />
+            <div style={{ width: '8px', height: '8px', background: 'var(--color-success)', borderRadius: '50%', boxShadow: '0 0 6px var(--w-emerald-500)' }} />
             2026 Live Monthly Trend
           </h3>
           <div style={{ flex: 1 }}>

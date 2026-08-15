@@ -55,7 +55,7 @@ export default function FleetOperationStatus() {
         <Anchor size={22} color="var(--color-info)" />
         <div className={styles.toolTitle}>선단 위치 및 어획/하역 현황</div>
         {/* L-09: 일일 업무보고 정적 데이터 — '실시간' 표기 금지, 기준일 정직 표기 */}
-        <span className={styles.toolBadge} style={{ background: 'rgba(148, 163, 184, 0.12)', color: '#94a3b8', marginLeft: 'auto' }}>
+        <span className={styles.toolBadge} style={{ background: 'rgba(148, 163, 184, 0.12)', color: 'var(--w-slate-400)', marginLeft: 'auto' }}>
           STATIC · 일일 업무보고 26.07.31 동기화
         </span>
       </div>
@@ -70,7 +70,7 @@ export default function FleetOperationStatus() {
               borderRadius: '8px',
               border: `1px solid ${activeTab === tab.id ? 'var(--color-info)' : 'rgba(255,255,255,0.1)'}`,
               background: activeTab === tab.id ? 'rgba(59, 130, 246, 0.15)' : 'rgba(0,0,0,0.2)',
-              color: activeTab === tab.id ? '#60a5fa' : '#94a3b8',
+              color: activeTab === tab.id ? '#60a5fa' : 'var(--w-slate-400)',
               cursor: 'pointer',
               whiteSpace: 'nowrap',
               display: 'flex',
@@ -89,7 +89,7 @@ export default function FleetOperationStatus() {
         {activeTab === 'pacific' && (
           <table style={{ width: '100%', fontSize: '13px', borderCollapse: 'collapse', textAlign: 'left' }}>
             <thead>
-              <tr style={{ color: '#94a3b8', borderBottom: '1px solid rgba(255,255,255,0.1)' }}>
+              <tr style={{ color: 'var(--w-slate-400)', borderBottom: '1px solid rgba(255,255,255,0.1)' }}>
                 <th style={{ padding: '8px' }}>선박</th>
                 <th style={{ padding: '8px' }}>현재 위치</th>
                 <th style={{ padding: '8px' }}>당일 어획량</th>
@@ -100,11 +100,11 @@ export default function FleetOperationStatus() {
             <tbody>
               {pacificFleet.map((v, idx) => (
                 <tr key={idx} style={{ borderBottom: '1px solid rgba(140,170,255,0.10)' }}>
-                  <td style={{ padding: '8px', fontWeight: 'bold', color: '#e2e8f0' }}>{v.name}</td>
-                  <td style={{ padding: '8px', color: '#38bdf8' }}>{v.pos}</td>
-                  <td style={{ padding: '8px', color: v.catch !== '-' ? 'var(--color-success)' : '#64748b' }}>{v.catch !== '-' ? `${v.catch} 톤` : '-'}</td>
+                  <td style={{ padding: '8px', fontWeight: 'bold', color: 'var(--w-slate-200)' }}>{v.name}</td>
+                  <td style={{ padding: '8px', color: 'var(--w-sky-400)' }}>{v.pos}</td>
+                  <td style={{ padding: '8px', color: v.catch !== '-' ? 'var(--color-success)' : 'var(--w-slate-500)' }}>{v.catch !== '-' ? `${v.catch} 톤` : '-'}</td>
                   <td style={{ padding: '8px', color: 'var(--color-warning)' }}>{v.load !== '-' ? `${v.load} 톤` : '-'}</td>
-                  <td style={{ padding: '8px', color: '#cbd5e1' }}>{v.note}</td>
+                  <td style={{ padding: '8px', color: 'var(--w-slate-300)' }}>{v.note}</td>
                 </tr>
               ))}
             </tbody>
@@ -114,7 +114,7 @@ export default function FleetOperationStatus() {
         {activeTab === 'atlantic' && (
           <table style={{ width: '100%', fontSize: '13px', borderCollapse: 'collapse', textAlign: 'left' }}>
             <thead>
-              <tr style={{ color: '#94a3b8', borderBottom: '1px solid rgba(255,255,255,0.1)' }}>
+              <tr style={{ color: 'var(--w-slate-400)', borderBottom: '1px solid rgba(255,255,255,0.1)' }}>
                 <th style={{ padding: '8px', width: '15%' }}>선박</th>
                 <th style={{ padding: '8px', width: '20%' }}>현재 위치</th>
                 <th style={{ padding: '8px', width: '15%' }}>당일 어획량</th>
@@ -125,11 +125,11 @@ export default function FleetOperationStatus() {
             <tbody>
               {atlanticFleet.map((v, idx) => (
                 <tr key={idx} style={{ borderBottom: '1px solid rgba(140,170,255,0.10)' }}>
-                  <td style={{ padding: '8px', fontWeight: 'bold', color: '#e2e8f0' }}>{v.name}</td>
-                  <td style={{ padding: '8px', color: '#38bdf8' }}>{v.pos}</td>
-                  <td style={{ padding: '8px', color: v.catch !== '-' ? 'var(--color-success)' : '#64748b' }}>{v.catch !== '-' ? `${v.catch} 톤` : '-'}</td>
+                  <td style={{ padding: '8px', fontWeight: 'bold', color: 'var(--w-slate-200)' }}>{v.name}</td>
+                  <td style={{ padding: '8px', color: 'var(--w-sky-400)' }}>{v.pos}</td>
+                  <td style={{ padding: '8px', color: v.catch !== '-' ? 'var(--color-success)' : 'var(--w-slate-500)' }}>{v.catch !== '-' ? `${v.catch} 톤` : '-'}</td>
                   <td style={{ padding: '8px', color: 'var(--color-warning)' }}>{v.load !== '-' ? `${v.load} 톤` : '-'}</td>
-                  <td style={{ padding: '8px', color: '#cbd5e1' }}>{v.note}</td>
+                  <td style={{ padding: '8px', color: 'var(--w-slate-300)' }}>{v.note}</td>
                 </tr>
               ))}
             </tbody>
@@ -139,7 +139,7 @@ export default function FleetOperationStatus() {
         {activeTab === 'longline' && (
           <table style={{ width: '100%', fontSize: '13px', borderCollapse: 'collapse', textAlign: 'left' }}>
             <thead>
-              <tr style={{ color: '#94a3b8', borderBottom: '1px solid rgba(255,255,255,0.1)' }}>
+              <tr style={{ color: 'var(--w-slate-400)', borderBottom: '1px solid rgba(255,255,255,0.1)' }}>
                 <th style={{ padding: '8px' }}>선박</th>
                 <th style={{ padding: '8px' }}>선적량</th>
                 <th style={{ padding: '8px' }}>비고 및 입출항 현황</th>
@@ -148,9 +148,9 @@ export default function FleetOperationStatus() {
             <tbody>
               {longlineFleet.map((v, idx) => (
                 <tr key={idx} style={{ borderBottom: '1px solid rgba(140,170,255,0.10)' }}>
-                  <td style={{ padding: '8px', fontWeight: 'bold', color: '#e2e8f0' }}>{v.name}</td>
+                  <td style={{ padding: '8px', fontWeight: 'bold', color: 'var(--w-slate-200)' }}>{v.name}</td>
                   <td style={{ padding: '8px', color: 'var(--color-warning)' }}>{v.load}</td>
-                  <td style={{ padding: '8px', color: '#cbd5e1' }}>{v.note}</td>
+                  <td style={{ padding: '8px', color: 'var(--w-slate-300)' }}>{v.note}</td>
                 </tr>
               ))}
             </tbody>
@@ -160,7 +160,7 @@ export default function FleetOperationStatus() {
         {activeTab === 'carrier' && (
           <table style={{ width: '100%', fontSize: '13px', borderCollapse: 'collapse', textAlign: 'left' }}>
             <thead>
-              <tr style={{ color: '#94a3b8', borderBottom: '1px solid rgba(255,255,255,0.1)' }}>
+              <tr style={{ color: 'var(--w-slate-400)', borderBottom: '1px solid rgba(255,255,255,0.1)' }}>
                 <th style={{ padding: '8px' }}>선박 (Capa)</th>
                 <th style={{ padding: '8px' }}>선적 현황 / 잔량</th>
                 <th style={{ padding: '8px' }}>목적지 및 상태</th>
@@ -169,9 +169,9 @@ export default function FleetOperationStatus() {
             <tbody>
               {carrierFleet.map((v, idx) => (
                 <tr key={idx} style={{ borderBottom: '1px solid rgba(140,170,255,0.10)' }}>
-                  <td style={{ padding: '8px', fontWeight: 'bold', color: '#e2e8f0' }}>{v.name}</td>
+                  <td style={{ padding: '8px', fontWeight: 'bold', color: 'var(--w-slate-200)' }}>{v.name}</td>
                   <td style={{ padding: '8px', color: 'var(--color-success)' }}>{v.load}</td>
-                  <td style={{ padding: '8px', color: '#cbd5e1' }}>{v.note}</td>
+                  <td style={{ padding: '8px', color: 'var(--w-slate-300)' }}>{v.note}</td>
                 </tr>
               ))}
             </tbody>

@@ -23,8 +23,8 @@ export default function SalmonInsightFeed() {
         <ComposedChart data={rawData} margin={{ top: 10, right: 10, left: -20, bottom: 0 }}>
           <ChartPatternDefs />
           <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" vertical={false} />
-          <XAxis dataKey="year" stroke="#94a3b8" fontSize={11} tickLine={false} axisLine={false} />
-          <YAxis yAxisId="left" stroke="#cbd5e1" fontSize={11} tickLine={false} axisLine={false} tickFormatter={(v) => `${v}%`} />
+          <XAxis dataKey="year" stroke="var(--w-slate-400)" fontSize={11} tickLine={false} axisLine={false} />
+          <YAxis yAxisId="left" stroke="var(--w-slate-300)" fontSize={11} tickLine={false} axisLine={false} tickFormatter={(v) => `${v}%`} />
           <YAxis yAxisId="right" orientation="right" stroke="var(--color-success)" fontSize={11} tickLine={false} axisLine={false} tickFormatter={(v) => `€${v}M`} />
           <Tooltip 
             contentStyle={{ background: '#11182f', border: 'none', borderRadius: '8px' }}
@@ -38,7 +38,7 @@ export default function SalmonInsightFeed() {
           />
           <Legend wrapperStyle={{ fontSize: '0.8rem' }} />
           
-          <Area yAxisId="left" type="monotone" dataKey="marine" name="전통 어분/어유 비중" stackId="1" stroke="#94a3b8" fill="#94a3b8" fillOpacity={0.3} />
+          <Area yAxisId="left" type="monotone" dataKey="marine" name="전통 어분/어유 비중" stackId="1" stroke="var(--w-slate-400)" fill="var(--w-slate-400)" fillOpacity={0.3} />
           <Area yAxisId="left" type="monotone" dataKey="alt" name="대체 단백질 비중" stackId="1" stroke="var(--color-info)" fill="var(--color-info)" fillOpacity={0.6} />
           
           <Line yAxisId="right" type="monotone" dataKey="savings" name="내재화 및 대체원료 원가 절감액" stroke="var(--color-success)" strokeWidth={3} dot={{ r: 4 }} activeDot={{ r: 6 }} />

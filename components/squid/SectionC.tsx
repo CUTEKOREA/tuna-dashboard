@@ -48,7 +48,7 @@ const TOOLTIP_STYLE: React.CSSProperties = {
 const CAPTION_STYLE: React.CSSProperties = {
   margin: '8px 0 0',
   fontSize: '0.66rem',
-  color: '#94a3b8',
+  color: 'var(--w-slate-400)',
   lineHeight: 1.6,
   wordBreak: 'keep-all',
 };
@@ -175,7 +175,7 @@ const ImportMonthlyChart: React.FC<{ data: MonthlyRow[] }> = ({ data }) => {
           />
           <Tooltip
             contentStyle={TOOLTIP_STYLE}
-            labelStyle={{ color: '#e2e8f0' }}
+            labelStyle={{ color: 'var(--w-slate-200)' }}
             labelFormatter={(m: any) => `${m} · 관측`}
             formatter={(v: any, name: any) => [
               `${fmtInt(Number(v))} ${isUsd ? '달러' : '킬로그램'}`,
@@ -287,7 +287,7 @@ const CoverageHeatmap: React.FC<{ data: CoverageRow[] }> = ({ data }) => {
 
       <div style={{ display: 'flex', flexWrap: 'wrap', gap: 10, marginTop: 10 }}>
         {COVERAGE_BINS.map((b) => (
-          <span key={b.label} style={{ display: 'inline-flex', alignItems: 'center', gap: 4, fontSize: '0.62rem', color: '#94a3b8' }}>
+          <span key={b.label} style={{ display: 'inline-flex', alignItems: 'center', gap: 4, fontSize: '0.62rem', color: 'var(--w-slate-400)' }}>
             <span style={{ width: 10, height: 10, borderRadius: 3, background: `${b.color}33`, border: `1px solid ${b.color}88` }} />
             {b.label}
           </span>
@@ -386,7 +386,7 @@ const ConcentrationChart: React.FC<{ data: ConcentrationData[] }> = ({ data }) =
           />
           <Tooltip
             contentStyle={TOOLTIP_STYLE}
-            labelStyle={{ color: '#e2e8f0' }}
+            labelStyle={{ color: 'var(--w-slate-200)' }}
             labelFormatter={(y: any) => `${y}년 · 관측`}
             formatter={(v: any, name: any) =>
               String(name).includes('HHI')
@@ -489,14 +489,14 @@ const HsClassificationMap: React.FC<{ data: HsRow[] }> = ({ data }) => {
               border: `1px solid ${cuttle ? 'rgba(139, 92, 246, 0.4)' : 'rgba(255, 255, 255, 0.06)'}`,
             }}
           >
-            <span style={{ fontFamily: 'monospace', fontWeight: 800, color: '#e2e8f0', fontSize: '0.85rem' }}>
+            <span style={{ fontFamily: 'monospace', fontWeight: 800, color: 'var(--w-slate-200)', fontSize: '0.85rem' }}>
               {r.hs6}
             </span>
             <span
               style={{
                 fontSize: '0.6rem',
                 fontWeight: 700,
-                color: '#94a3b8',
+                color: 'var(--w-slate-400)',
                 border: '1px solid rgba(148, 163, 184, 0.3)',
                 borderRadius: 4,
                 padding: '2px 6px',

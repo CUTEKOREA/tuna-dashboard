@@ -145,7 +145,7 @@ export default function FishingDaysStatus() {
                 background: isActive ? 'rgba(140, 170, 255, 0.10)' : 'transparent',
                 color: isActive ? 'var(--text-main)' : 'var(--text-muted)',
                 border: 'none',
-                borderBottom: isActive ? '2px solid #10b981' : '2px solid transparent',
+                borderBottom: isActive ? '2px solid var(--w-emerald-500)' : '2px solid transparent',
                 cursor: 'pointer',
                 display: 'flex',
                 alignItems: 'center',

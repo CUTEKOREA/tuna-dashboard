@@ -111,7 +111,7 @@ export default function SasFourCountryComparison() {
                       style={{
                         fontSize: '0.65rem',
                         fontWeight: 600,
-                        color: '#64748b',
+                        color: 'var(--w-slate-500)',
                         textTransform: 'uppercase',
                         letterSpacing: '0.5px',
                         marginBottom: '2px',
@@ -122,7 +122,7 @@ export default function SasFourCountryComparison() {
                     <div
                       style={{
                         fontSize: '0.76rem',
-                        color: '#e2e8f0',
+                        color: 'var(--w-slate-200)',
                         lineHeight: 1.35,
                         fontWeight: f.key === 'role' ? 600 : 400,
                       }}
@@ -139,7 +139,7 @@ export default function SasFourCountryComparison() {
           <div
             style={{
               marginTop: '16px',
-              background: 'linear-gradient(135deg, #1a2442, #0a0f1f)',
+              background: 'linear-gradient(135deg, var(--w-navy-900), #0a0f1f)',
               border: '1px solid #f59e0b33',
               borderRadius: '10px',
               padding: '14px 18px',
@@ -153,7 +153,7 @@ export default function SasFourCountryComparison() {
               <div style={{ fontSize: '0.82rem', fontWeight: 700, color: '#facc15' }}>
                 삼각형+1 공급 구조
               </div>
-              <div style={{ fontSize: '0.75rem', color: '#94a3b8', lineHeight: 1.5, marginTop: '2px' }}>
+              <div style={{ fontSize: '0.75rem', color: 'var(--w-slate-400)', lineHeight: 1.5, marginTop: '2px' }}>
                 EU(축양 BFT) → 일본 | 한국(연승 사시미) → 일본 | 미국(소비) ← 전세계 |
                 한국만 생산+수출+수입의 3중 역할 수행
               </div>

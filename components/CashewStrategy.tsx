@@ -145,7 +145,7 @@ export default function CashewStrategy() {
   if (!data) return (
     <div style={{ display:'flex', justifyContent:'center', alignItems:'center', height:'100vh', flexDirection:'column', gap:'1rem' }}>
       <RefreshCcw size={32} style={{ color:'var(--color-success)', animation:'spin 1s linear infinite' }} />
-      <p style={{ color:'#94a3b8' }}>캐슈넛 전략 인텔리전스 데이터 동기화 중...</p>
+      <p style={{ color:'var(--w-slate-400)' }}>캐슈넛 전략 인텔리전스 데이터 동기화 중...</p>
     </div>
   );
 
@@ -157,12 +157,12 @@ export default function CashewStrategy() {
 
   const renderChart = (w: any) => {
     const d = w.data || w.pies;
-    if (!d?.length) return <div style={{height:'100%',display:'flex',alignItems:'center',justifyContent:'center',color:'#64748b'}}>데이터 없음</div>;
+    if (!d?.length) return <div style={{height:'100%',display:'flex',alignItems:'center',justifyContent:'center',color:'var(--w-slate-500)'}}>데이터 없음</div>;
     const isTextAxis = d.length > 0 && typeof d[0][w.xKey] === 'string' && isNaN(Number(d[0][w.xKey]));
     const tickProps = isTextAxis ? {fontSize:10, angle:0, textAnchor:'middle' as const, dy: 5} : {fontSize:10};
     const chartMargin = isTextAxis ? { top: 5, right: 10, left: -10, bottom: 10 } : undefined;
     const grid = <CartesianGrid strokeDasharray="3 3" stroke="rgba(140,170,255,0.12)" vertical={false} />;
-    const xAxis = <XAxis dataKey={w.xKey} stroke="#64748b" tick={tickProps} interval={0} tickFormatter={formatXAxis} />;
+    const xAxis = <XAxis dataKey={w.xKey} stroke="var(--w-slate-500)" tick={tickProps} interval={0} tickFormatter={formatXAxis} />;
     const yFmt = (v: number) => v >= 1000000 ? `${(v/1000000).toFixed(1)}M` : v >= 1000 ? `${(v/1000).toFixed(0)}K` : v.toLocaleString();
 
     switch(w.chartType) {
@@ -188,7 +188,7 @@ export default function CashewStrategy() {
               ))}
             </defs>
             {grid}{xAxis}
-            <YAxis stroke="#64748b" tick={{fontSize:9}} tickFormatter={yFmt} />
+            <YAxis stroke="var(--w-slate-500)" tick={{fontSize:9}} tickFormatter={yFmt} />
             <RechartsTooltip content={<CustomTooltip />} />
             <Legend wrapperStyle={{fontSize:'10px'}} />
             {w.areas?.map((a:any,i:number) => (
@@ -203,11 +203,11 @@ export default function CashewStrategy() {
             {grid}
             {d.length >= 10 ? (
               <>
-                <YAxis type="category" dataKey={w.xKey} interval={0} stroke="#64748b" tick={{fontSize:9}} width={90} tickFormatter={formatXAxis} />
-                <XAxis type="number" stroke="#64748b" tick={{fontSize:9}} tickFormatter={yFmt} />
+                <YAxis type="category" dataKey={w.xKey} interval={0} stroke="var(--w-slate-500)" tick={{fontSize:9}} width={90} tickFormatter={formatXAxis} />
+                <XAxis type="number" stroke="var(--w-slate-500)" tick={{fontSize:9}} tickFormatter={yFmt} />
               </>
             ) : (
-              <>{xAxis}<YAxis stroke="#64748b" tick={{fontSize:9}} tickFormatter={yFmt} /></>
+              <>{xAxis}<YAxis stroke="var(--w-slate-500)" tick={{fontSize:9}} tickFormatter={yFmt} /></>
             )}
             <RechartsTooltip content={<CustomTooltip />} cursor={{fill:'rgba(255,255,255,0.04)'}} />
             <Legend wrapperStyle={{fontSize:'10px'}} />
@@ -220,7 +220,7 @@ export default function CashewStrategy() {
         return (
           <LineChart data={d} margin={chartMargin}>
             {grid}{xAxis}
-            <YAxis stroke="#64748b" tick={{fontSize:9}} tickFormatter={yFmt} />
+            <YAxis stroke="var(--w-slate-500)" tick={{fontSize:9}} tickFormatter={yFmt} />
             <RechartsTooltip content={<CustomTooltip />} />
             <Legend wrapperStyle={{fontSize:'10px'}} />
             {w.lines?.map((l:any,i:number) => (
@@ -233,9 +233,9 @@ export default function CashewStrategy() {
           <ComposedChart data={d} margin={chartMargin}>
             <ChartPatternDefs />
             {grid}{xAxis}
-            <YAxis yAxisId="left" stroke="#64748b" tick={{fontSize:9}} tickFormatter={yFmt} />
+            <YAxis yAxisId="left" stroke="var(--w-slate-500)" tick={{fontSize:9}} tickFormatter={yFmt} />
             {w.lines?.some((l:any) => l.yAxisId === 'right' || !l.yAxisId) && (
-              <YAxis yAxisId="right" orientation="right" stroke="#64748b" tick={{fontSize:9}} tickFormatter={yFmt} />
+              <YAxis yAxisId="right" orientation="right" stroke="var(--w-slate-500)" tick={{fontSize:9}} tickFormatter={yFmt} />
             )}
             <RechartsTooltip content={<CustomTooltip />} />
             <Legend wrapperStyle={{fontSize:'10px'}} />
@@ -251,8 +251,8 @@ export default function CashewStrategy() {
         return (
           <RadarChart cx="50%" cy="50%" outerRadius="70%" data={d}>
             <PolarGrid stroke="rgba(255,255,255,0.1)" />
-            <PolarAngleAxis dataKey={w.xKey} tick={{fill:'#94a3b8', fontSize:10}} />
-            <PolarRadiusAxis angle={30} domain={[0, 'auto']} tick={{fill:'#64748b', fontSize:8}} />
+            <PolarAngleAxis dataKey={w.xKey} tick={{fill:'var(--w-slate-400)', fontSize:10}} />
+            <PolarRadiusAxis angle={30} domain={[0, 'auto']} tick={{fill:'var(--w-slate-500)', fontSize:8}} />
             <RechartsTooltip content={<CustomTooltip />} />
             <Legend wrapperStyle={{fontSize:'10px'}} />
             {w.radars?.map((r:any, i:number) => (
@@ -265,7 +265,7 @@ export default function CashewStrategy() {
   };
 
   return (
-    <div style={{ padding:'0 1.5rem 3rem', color:'#f8fafc', minHeight:'100vh', fontFamily:"'Inter',sans-serif" }}>
+    <div style={{ padding:'0 1.5rem 3rem', color:'var(--w-slate-50)', minHeight:'100vh', fontFamily:"'Inter',sans-serif" }}>
 
       {/* ═══ Header ═══ */}
       <header style={{ marginBottom:'2rem' }}>
@@ -275,13 +275,13 @@ export default function CashewStrategy() {
               <Hexagon size={24} color="var(--text-primary)" />
             </div>
             <div>
-              <h1 style={{ margin:0, fontSize:'1.6rem', fontWeight:800, letterSpacing:'-0.5px', color:'#f8fafc' }}>
+              <h1 style={{ margin:0, fontSize:'1.6rem', fontWeight:800, letterSpacing:'-0.5px', color:'var(--w-slate-50)' }}>
                 캐슈넛 산업 전략 지휘소 (Cashew Command Center)
               </h1>
-              <p style={{ margin:0, fontSize:'0.8rem', color:'#64748b' }}>정적 스냅샷 인텔리전스 · 위젯 {totalWidgetCount}개 · 5-Pillar 구조</p>
+              <p style={{ margin:0, fontSize:'0.8rem', color:'var(--w-slate-500)' }}>정적 스냅샷 인텔리전스 · 위젯 {totalWidgetCount}개 · 5-Pillar 구조</p>
             </div>
           </div>
-          <div style={{ fontSize:'0.8rem', padding:'0.5rem 1rem', background: '#11182f', border: 'none', borderRadius:'8px', color:'#94a3b8' }}>
+          <div style={{ fontSize:'0.8rem', padding:'0.5rem 1rem', background: '#11182f', border: 'none', borderRadius:'8px', color:'var(--w-slate-400)' }}>
             <span style={{ color:'var(--color-success)' }}>FAOSTAT TCL 2024</span> · UN Comtrade · 내부 리서치 노트
           </div>
         </div>
@@ -309,8 +309,8 @@ export default function CashewStrategy() {
                 <div style={{ width: '10px', height: '10px', backgroundColor: 'var(--color-success)', borderRadius: '50%' }} />
                 <div style={{ position: 'absolute', width: '24px', height: '24px', backgroundColor: 'var(--color-success)', borderRadius: '50%', opacity: 0.3, animation: 'pulse 2s infinite' }} />
               </div>
-              <h2 style={{ margin: 0, fontSize: '1.1rem', fontWeight: 700, color: '#f8fafc', letterSpacing: '-0.3px' }}>
-                DATA SOURCE COMMAND CENTER <span style={{ color: '#94a3b8', fontWeight: 600, fontSize: '0.85rem', marginLeft: '6px' }}>INDEXED</span>
+              <h2 style={{ margin: 0, fontSize: '1.1rem', fontWeight: 700, color: 'var(--w-slate-50)', letterSpacing: '-0.3px' }}>
+                DATA SOURCE COMMAND CENTER <span style={{ color: 'var(--w-slate-400)', fontWeight: 600, fontSize: '0.85rem', marginLeft: '6px' }}>INDEXED</span>
               </h2>
             </div>
             
@@ -332,8 +332,8 @@ export default function CashewStrategy() {
                 }}>
                   <Database size={12} color={net.status === 'indexed' ? 'var(--color-success)' : 'var(--color-warning)'} />
                   <div>
-                    <div style={{ fontSize: '0.7rem', fontWeight: 700, color: '#e2e8f0' }}>{net.name}</div>
-                    <div style={{ fontSize: '0.6rem', color: '#94a3b8' }}>{net.desc}</div>
+                    <div style={{ fontSize: '0.7rem', fontWeight: 700, color: 'var(--w-slate-200)' }}>{net.name}</div>
+                    <div style={{ fontSize: '0.6rem', color: 'var(--w-slate-400)' }}>{net.desc}</div>
                   </div>
                 </div>
               ))}
@@ -354,11 +354,11 @@ export default function CashewStrategy() {
               <Database size={16} color="var(--color-success)" />
               <div style={{ fontSize: '0.8rem', fontWeight: 700, color: 'var(--color-success)', letterSpacing: '1px' }}>데이터 기준일</div>
             </div>
-            <div style={{ fontSize: '1.6rem', fontWeight: 900, color: '#f8fafc', lineHeight: 1.2, marginBottom: '4px' }}>
+            <div style={{ fontSize: '1.6rem', fontWeight: 900, color: 'var(--w-slate-50)', lineHeight: 1.2, marginBottom: '4px' }}>
               {data?._metadata?.syncDate || '미기재'}
             </div>
-            <div style={{ fontSize: '0.7rem', color: '#94a3b8', fontWeight: 600 }}>정적 스냅샷 · 수동 갱신</div>
-            <div style={{ fontSize: '0.65rem', color: '#64748b', marginTop: '6px' }}>종합 스트레스 지수는 산식·출처 미확정으로 미산출</div>
+            <div style={{ fontSize: '0.7rem', color: 'var(--w-slate-400)', fontWeight: 600 }}>정적 스냅샷 · 수동 갱신</div>
+            <div style={{ fontSize: '0.65rem', color: 'var(--w-slate-500)', marginTop: '6px' }}>종합 스트레스 지수는 산식·출처 미확정으로 미산출</div>
           </div>
         </div>
       </div>
@@ -373,13 +373,13 @@ export default function CashewStrategy() {
               onMouseLeave={e=>{e.currentTarget.style.transform='none';e.currentTarget.style.borderColor='rgba(140, 170, 255, 0.10)'}}>
               <div style={{ position:'absolute', top:'-15px', right:'-15px', width:'60px', height:'60px', borderRadius:'50%', background:`radial-gradient(circle,${t.glow},transparent)`, pointerEvents:'none' }} />
               <div style={{ display:'flex', justifyContent:'space-between', alignItems:'center' }}>
-                <span style={{ fontSize:'0.72rem', color:'#94a3b8', fontWeight:600 }}>{kpi.title}</span>
+                <span style={{ fontSize:'0.72rem', color:'var(--w-slate-400)', fontWeight:600 }}>{kpi.title}</span>
                 <I size={14} style={{ color:t.text }} />
               </div>
-              <div style={{ fontSize:'1.4rem', fontWeight:800, color:'#f8fafc', letterSpacing:'-0.5px' }}>
+              <div style={{ fontSize:'1.4rem', fontWeight:800, color:'var(--w-slate-50)', letterSpacing:'-0.5px' }}>
                 {kpi.value.startsWith('$')&&'$'}{kpi.value.startsWith('+')&&'+'}
                 <CountUp end={parseFloat(kpi.value.replace(/[^0-9.]/g,''))} duration={2} separator="," decimals={kpi.value.includes('.')?1:0} />
-                <span style={{ fontSize:'0.7rem', color:'#94a3b8', fontWeight:400, marginLeft:'3px' }}>
+                <span style={{ fontSize:'0.7rem', color:'var(--w-slate-400)', fontWeight:400, marginLeft:'3px' }}>
                   {kpi.value.includes('M')&&'M'}{kpi.value.includes('%')&&'%'}{kpi.value.includes('x')&&'x'}{kpi.value.includes('t')&&'t'}
                 </span>
               </div>
@@ -419,8 +419,8 @@ export default function CashewStrategy() {
           <div style={{ marginBottom:'1rem', display:'flex', alignItems:'center', gap:'0.8rem', marginTop: '0' }}>
             <div style={{ width:'4px', height:'28px', background:`linear-gradient(180deg,${sec.color},${sec.color}99)`, borderRadius:'2px' }} />
             <div>
-              <h2 style={{ margin:0, fontSize:'1.15rem', fontWeight:700, color:'#f8fafc' }}>{sec.title}</h2>
-              <p style={{ margin:0, fontSize:'0.75rem', color:'#64748b' }}>{sec.desc}</p>
+              <h2 style={{ margin:0, fontSize:'1.15rem', fontWeight:700, color:'var(--w-slate-50)' }}>{sec.title}</h2>
+              <p style={{ margin:0, fontSize:'0.75rem', color:'var(--w-slate-500)' }}>{sec.desc}</p>
             </div>
           </div>
           <div data-mobile-stack style={{ display:'grid', gridTemplateColumns:'repeat(2, 1fr)', gap:'1.5rem', marginBottom:'2.5rem' }}>
@@ -433,12 +433,12 @@ export default function CashewStrategy() {
               chart: (
                 <AreaChart data={d_vietnam_paradox} margin={{top:5, right:10, left:-10, bottom:10}}>
                   <CartesianGrid strokeDasharray="3 3" stroke="rgba(140,170,255,0.12)" vertical={false} />
-                  <XAxis dataKey="year" stroke="#64748b" tick={{fontSize:10}} />
-                  <YAxis stroke="#64748b" tick={{fontSize:9}} />
+                  <XAxis dataKey="year" stroke="var(--w-slate-500)" tick={{fontSize:10}} />
+                  <YAxis stroke="var(--w-slate-500)" tick={{fontSize:9}} />
                   <RechartsTooltip content={<CustomTooltip />} />
                   <Legend wrapperStyle={{fontSize:'10px'}} />
-                  <Area type="monotone" dataKey="importVolume" name="원물(RCN) 수입량" fill="rgba(239,68,68,0.2)" stroke="#ef4444" strokeWidth={2} />
-                  <Area type="monotone" dataKey="exportVolume" name="커널 수출량" fill="rgba(16,185,129,0.2)" stroke="#10b981" strokeWidth={2} />
+                  <Area type="monotone" dataKey="importVolume" name="원물(RCN) 수입량" fill="rgba(239,68,68,0.2)" stroke="var(--w-red-500)" strokeWidth={2} />
+                  <Area type="monotone" dataKey="exportVolume" name="커널 수출량" fill="rgba(16,185,129,0.2)" stroke="var(--w-emerald-500)" strokeWidth={2} />
                 </AreaChart>
               ),
               situation: (
@@ -464,12 +464,12 @@ export default function CashewStrategy() {
                 <ComposedChart data={d_africa_processing} margin={{top:5, right:10, left:-10, bottom:10}}>
                   <ChartPatternDefs />
                   <CartesianGrid strokeDasharray="3 3" stroke="rgba(140,170,255,0.12)" vertical={false} />
-                  <XAxis dataKey="quarter" stroke="#64748b" tick={{fontSize:10}} />
-                  <YAxis stroke="#64748b" tick={{fontSize:9}} unit="%" />
+                  <XAxis dataKey="quarter" stroke="var(--w-slate-500)" tick={{fontSize:10}} />
+                  <YAxis stroke="var(--w-slate-500)" tick={{fontSize:9}} unit="%" />
                   <RechartsTooltip content={<CustomTooltip />} />
                   <Legend wrapperStyle={{fontSize:'10px'}} />
-                  <Bar dataKey="processingRate" name="현지 가공 비율(%)" fill="#3b82f6" radius={[4,4,0,0]} fillOpacity={0.8} />
-                  <Line type="monotone" dataKey="directSupply" name="B2B 직공급률(%)" stroke="#f59e0b" strokeWidth={2.5} dot={false} activeDot={{r:4}} />
+                  <Bar dataKey="processingRate" name="현지 가공 비율(%)" fill="var(--w-blue-500)" radius={[4,4,0,0]} fillOpacity={0.8} />
+                  <Line type="monotone" dataKey="directSupply" name="B2B 직공급률(%)" stroke="var(--w-amber-500)" strokeWidth={2.5} dot={false} activeDot={{r:4}} />
                 </ComposedChart>
               ),
               situation: (
@@ -495,12 +495,12 @@ export default function CashewStrategy() {
                 <BarChart layout="vertical" data={d_macro_sensitivity} margin={{top:5, right:10, left:-10, bottom:10}}>
                   <ChartPatternDefs />
                   <CartesianGrid strokeDasharray="3 3" stroke="rgba(140,170,255,0.12)" horizontal={true} vertical={false} />
-                  <XAxis type="number" stroke="#64748b" tick={{fontSize:9}} unit="%" />
-                  <YAxis type="category" dataKey="factor" interval={0} width={100} stroke="#64748b" tick={{fontSize:9}} />
+                  <XAxis type="number" stroke="var(--w-slate-500)" tick={{fontSize:9}} unit="%" />
+                  <YAxis type="category" dataKey="factor" interval={0} width={100} stroke="var(--w-slate-500)" tick={{fontSize:9}} />
                   <RechartsTooltip content={<CustomTooltip />} />
                   <Bar dataKey="impact" name="영업 마진 임팩트(%)" radius={[0,4,4,0]}>
                     {d_macro_sensitivity.map((entry: any, index: number) => (
-                      <Cell key={index} fill={entry.impact > 0 ? '#10b981' : '#ef4444'} />
+                      <Cell key={index} fill={entry.impact > 0 ? 'var(--w-emerald-500)' : 'var(--w-red-500)'} />
                     ))}
                   </Bar>
                 </BarChart>

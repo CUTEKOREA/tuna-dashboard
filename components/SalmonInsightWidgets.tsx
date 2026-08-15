@@ -51,8 +51,8 @@ const koName = (n: string) => KO_NAME[n] || n;
 export const CustomTooltip = ({ active, payload, label }: any) => {
   if (active && payload && payload.length) {
     return (
-      <div style={{ backgroundColor: '#0F172A', padding: '12px', border: 'none', borderRadius: '8px', color: '#f8fafc', boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.5)' }}>
-        <p style={{ margin: '0 0 8px 0', fontSize: '0.85rem', color: '#94a3b8', fontWeight: 600 }}>{label}</p>
+      <div style={{ backgroundColor: '#0F172A', padding: '12px', border: 'none', borderRadius: '8px', color: 'var(--w-slate-50)', boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.5)' }}>
+        <p style={{ margin: '0 0 8px 0', fontSize: '0.85rem', color: 'var(--w-slate-400)', fontWeight: 600 }}>{label}</p>
         {payload.map((entry: any, index: number) => {
           let valLabel = typeof entry.value === 'number' ? formatNum(entry.value) : entry.value;
           if (typeof entry.value === 'number' && entry.name.includes('$') || entry.name.includes('USD') || entry.name.includes('단가')) {
@@ -81,7 +81,7 @@ export default function SalmonInsightWidgets() {
   }, []);
 
   if (!data || !data.widgets) {
-    return <div style={{ color: '#94a3b8', padding: '2rem', textAlign: 'center' }}>대서양 연어 인텔리전스 데이터 마이닝 중...</div>;
+    return <div style={{ color: 'var(--w-slate-400)', padding: '2rem', textAlign: 'center' }}>대서양 연어 인텔리전스 데이터 마이닝 중...</div>;
   }
 
   const wMap = data.widgets.reduce((acc: any, w: any) => ({...acc, [w.id]: w}), {});
@@ -104,8 +104,8 @@ export default function SalmonInsightWidgets() {
             ))}
           </defs>
           <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" vertical={false} />
-          <XAxis dataKey={w.xAxis} stroke="#94a3b8" fontSize={11} tickMargin={8} />
-          <YAxis stroke="#94a3b8" fontSize={11} tickFormatter={compactAxis} />
+          <XAxis dataKey={w.xAxis} stroke="var(--w-slate-400)" fontSize={11} tickMargin={8} />
+          <YAxis stroke="var(--w-slate-400)" fontSize={11} tickFormatter={compactAxis} />
           <RechartsTooltip content={<CustomTooltip />} />
           <Legend wrapperStyle={{ fontSize: '11px', paddingTop: '10px' }} />
           {(w.series || w.lines || w.bars || []).map((s: any, idx: number) => (
@@ -117,8 +117,8 @@ export default function SalmonInsightWidgets() {
       ChartComponent = (
         <LineChart data={w.data} margin={{ top: 10, right: 10, left: 0, bottom: 0 }}>
           <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" vertical={false} />
-          <XAxis dataKey={w.xAxis} stroke="#94a3b8" fontSize={11} tickMargin={8} />
-          <YAxis stroke="#94a3b8" fontSize={11} tickFormatter={compactAxis} />
+          <XAxis dataKey={w.xAxis} stroke="var(--w-slate-400)" fontSize={11} tickMargin={8} />
+          <YAxis stroke="var(--w-slate-400)" fontSize={11} tickFormatter={compactAxis} />
           <RechartsTooltip content={<CustomTooltip />} />
           <Legend wrapperStyle={{ fontSize: '11px', paddingTop: '10px' }} />
           {(w.series || w.lines || w.bars || []).map((s: any, idx: number) => (
@@ -131,8 +131,8 @@ export default function SalmonInsightWidgets() {
         <BarChart data={w.data} margin={{ top: 10, right: 10, left: -20, bottom: 0 }} layout="vertical">
           <ChartPatternDefs />
           <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" horizontal={false} />
-          <XAxis type="number" stroke="#94a3b8" fontSize={11} tickFormatter={compactAxis} />
-          <YAxis dataKey={w.xAxis} type="category" stroke="#f8fafc" fontSize={10} width={120} tick={{fill: '#e2e8f0'}} tickFormatter={koName} />
+          <XAxis type="number" stroke="var(--w-slate-400)" fontSize={11} tickFormatter={compactAxis} />
+          <YAxis dataKey={w.xAxis} type="category" stroke="var(--w-slate-50)" fontSize={10} width={120} tick={{fill: 'var(--w-slate-200)'}} tickFormatter={koName} />
           <RechartsTooltip content={<CustomTooltip />} />
           <Legend wrapperStyle={{ fontSize: '11px', paddingTop: '10px' }} />
           {(w.series || w.lines || w.bars || []).map((s: any, idx: number) => {
@@ -144,8 +144,8 @@ export default function SalmonInsightWidgets() {
         <BarChart data={w.data} margin={{ top: 10, right: 10, left: 0, bottom: 0 }}>
           <ChartPatternDefs />
           <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" vertical={false} />
-          <XAxis dataKey={w.xAxis} stroke="#94a3b8" fontSize={11} tickMargin={8} />
-          <YAxis stroke="#94a3b8" fontSize={11} tickFormatter={compactAxis} />
+          <XAxis dataKey={w.xAxis} stroke="var(--w-slate-400)" fontSize={11} tickMargin={8} />
+          <YAxis stroke="var(--w-slate-400)" fontSize={11} tickFormatter={compactAxis} />
           <RechartsTooltip content={<CustomTooltip />} />
           <Legend wrapperStyle={{ fontSize: '11px', paddingTop: '10px' }} />
           {(w.series || w.lines || w.bars || []).map((s: any, idx: number) => {

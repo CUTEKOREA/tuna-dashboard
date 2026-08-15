@@ -19,7 +19,7 @@ const tooltipStyle = {
   backgroundColor: 'rgba(20, 28, 52, 0.95)',
   border: '1px solid rgba(148,163,184,0.15)',
   borderRadius: 8,
-  color: '#e2e8f0',
+  color: 'var(--w-slate-200)',
   fontSize: '0.78rem',
   padding: '8px 12px',
 };
@@ -35,7 +35,7 @@ export default function MscOpenConditions() {
       <XAxis
         type="number"
         domain={[0, 50]}
-        tick={{ fill: '#64748b', fontSize: 11 }}
+        tick={{ fill: 'var(--w-slate-500)', fontSize: 11 }}
         axisLine={{ stroke: 'rgba(148,163,184,0.12)' }}
         tickLine={false}
         tickFormatter={(v: unknown) => `${v}건`}
@@ -44,7 +44,7 @@ export default function MscOpenConditions() {
         type="category"
         dataKey="name"
         width={220}
-        tick={{ fill: '#94a3b8', fontSize: 11 }}
+        tick={{ fill: 'var(--w-slate-400)', fontSize: 11 }}
         axisLine={false}
         tickLine={false}
       />
@@ -95,7 +95,7 @@ export default function MscOpenConditions() {
             border: '1px solid rgba(239,68,68,0.2)',
           }}
         >
-          <span style={{ width: 8, height: 8, borderRadius: 2, background: '#ef4444', display: 'inline-block' }} />
+          <span style={{ width: 8, height: 8, borderRadius: 2, background: 'var(--w-red-500)', display: 'inline-block' }} />
           <span style={{ fontSize: '0.75rem', fontWeight: 600, color: '#f87171' }}>
             P1 수확전략·HCR — 총 80건
           </span>
@@ -111,8 +111,8 @@ export default function MscOpenConditions() {
             border: '1px solid rgba(245,158,11,0.2)',
           }}
         >
-          <span style={{ width: 8, height: 8, borderRadius: 2, background: '#f59e0b', display: 'inline-block' }} />
-          <span style={{ fontSize: '0.75rem', fontWeight: 600, color: '#fbbf24' }}>
+          <span style={{ width: 8, height: 8, borderRadius: 2, background: 'var(--w-amber-500)', display: 'inline-block' }} />
+          <span style={{ fontSize: '0.75rem', fontWeight: 600, color: 'var(--w-amber-400)' }}>
             P2 생태·혼획 — 총 53건
           </span>
         </div>
@@ -127,7 +127,7 @@ export default function MscOpenConditions() {
             border: '1px solid rgba(56,189,248,0.2)',
           }}
         >
-          <span style={{ width: 8, height: 8, borderRadius: 2, background: '#38bdf8', display: 'inline-block' }} />
+          <span style={{ width: 8, height: 8, borderRadius: 2, background: 'var(--w-sky-400)', display: 'inline-block' }} />
           <span style={{ fontSize: '0.75rem', fontWeight: 600, color: '#7dd3fc' }}>
             P3 거버넌스 — 총 32건
           </span>

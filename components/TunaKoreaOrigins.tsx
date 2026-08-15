@@ -32,7 +32,7 @@ const origins = Array.from(allKeys);
 const CustomTooltip = ({ active, payload, label }: any) => {
   if (!active || !payload?.length) return null;
   return (
-    <div style={{ backgroundColor: '#0F172A', border: '1px solid #334155', padding: '12px', borderRadius: '8px', color: '#f8fafc' }}>
+    <div style={{ backgroundColor: '#0F172A', border: '1px solid #334155', padding: '12px', borderRadius: '8px', color: 'var(--w-slate-50)' }}>
       <p style={{ margin: '0 0 8px 0', fontWeight: 'bold' }}>{`${label}년`}</p>
       {payload.map((entry: any, i: number) => (
         <p key={i} style={{ margin: '4px 0', color: entry.color, display: 'flex', justifyContent: 'space-between', gap: '16px' }}>
@@ -41,7 +41,7 @@ const CustomTooltip = ({ active, payload, label }: any) => {
         </p>
       ))}
       <div style={{ borderTop: '1px solid #334155', marginTop: '8px', paddingTop: '8px' }}>
-        <p style={{ margin: 0, display: 'flex', justifyContent: 'space-between', gap: '16px', color: '#f8fafc' }}>
+        <p style={{ margin: 0, display: 'flex', justifyContent: 'space-between', gap: '16px', color: 'var(--w-slate-50)' }}>
           <span>총합:</span>
           <span style={{ fontWeight: 'bold' }}>{formatNumber(payload.reduce((acc: number, c: any) => acc + c.value, 0))} 톤</span>
         </p>
@@ -63,8 +63,8 @@ const TunaKoreaOrigins = () => (
       <BarChart data={koreaOriginsData as any[]} margin={{ top: 20, right: 30, left: 20, bottom: 5 }} barSize={40}>
         <ChartPatternDefs />
         <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#334155" />
-        <XAxis dataKey="Year" stroke="#94a3b8" tick={{ fill: '#94a3b8' }} axisLine={false} tickLine={false} />
-        <YAxis stroke="#94a3b8" tick={{ fill: '#94a3b8' }} axisLine={false} tickLine={false} tickFormatter={(v) => `${formatNumber(v)}`} />
+        <XAxis dataKey="Year" stroke="var(--w-slate-400)" tick={{ fill: 'var(--w-slate-400)' }} axisLine={false} tickLine={false} />
+        <YAxis stroke="var(--w-slate-400)" tick={{ fill: 'var(--w-slate-400)' }} axisLine={false} tickLine={false} tickFormatter={(v) => `${formatNumber(v)}`} />
         <Tooltip content={<CustomTooltip />} />
         <Legend wrapperStyle={{ paddingTop: '20px' }} />
         {origins.map((origin, i) => (

@@ -66,7 +66,7 @@ const ShipMarker = ({ ship, selected, onSelect }: { ship: any; selected: boolean
     >
     <div className={s.shipBody}></div>
     <div id={detailsId} className={s.tooltip} hidden={!selected}>
-      <div className={s.tooltipTitle}>{ship.name} <span style={{fontSize:'10px', color:'#94a3b8', fontWeight:'normal'}}>({ship.type})</span></div>
+      <div className={s.tooltipTitle}>{ship.name} <span style={{fontSize:'10px', color:'var(--w-slate-400)', fontWeight:'normal'}}>({ship.type})</span></div>
       <div className={s.tooltipInfo}>
         <div className={s.tooltipRow}>
           <span className={s.tooltipLabel}>위치</span>
@@ -153,11 +153,11 @@ export default function FleetPixelMap() {
           <div className={s.legend}>
             <div className={s.legendTitle}>태평양 범례</div>
             <div className={s.legendItem}>
-              <div className={s.legendIcon}><div className={`${s.shipBody} ${s['fleet-pacific']}`} style={{backgroundColor:'#38bdf8'}}></div></div>
+              <div className={s.legendIcon}><div className={`${s.shipBody} ${s['fleet-pacific']}`} style={{backgroundColor:'var(--w-sky-400)'}}></div></div>
               <span>태평양 선망선</span>
             </div>
             <div className={s.legendItem}>
-              <div className={s.legendIcon}><div className={`${s.shipBody} ${s['fleet-carrier']}`} style={{backgroundColor:'#10b981', width:'16px', height:'10px', borderRadius:'2px'}}></div></div>
+              <div className={s.legendIcon}><div className={`${s.shipBody} ${s['fleet-carrier']}`} style={{backgroundColor:'var(--w-emerald-500)', width:'16px', height:'10px', borderRadius:'2px'}}></div></div>
               <span>운반선</span>
             </div>
             <div style={{height:'1px', background:'rgba(255,255,255,0.1)', margin:'4px 0'}}></div>
@@ -194,7 +194,7 @@ export default function FleetPixelMap() {
           <div className={s.legend}>
             <div className={s.legendTitle}>대서양 범례</div>
             <div className={s.legendItem}>
-              <div className={s.legendIcon}><div className={`${s.shipBody} ${s['fleet-atlantic']}`} style={{backgroundColor:'#f59e0b'}}></div></div>
+              <div className={s.legendIcon}><div className={`${s.shipBody} ${s['fleet-atlantic']}`} style={{backgroundColor:'var(--w-amber-500)'}}></div></div>
               <span>대서양 선망선</span>
             </div>
             <div style={{height:'1px', background:'rgba(255,255,255,0.1)', margin:'4px 0'}}></div>

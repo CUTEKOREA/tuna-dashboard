@@ -21,7 +21,7 @@ export default function FishStatBlackholeBar() {
         <TermTooltip term="명목 어획량 착시" description="데이터상 총 생산량은 유지되어도, 양식장 사료/어분(Fishmeal)으로 유출되는 비중이 커져 인간 프랩 유통은 고갈 증세" />
       </div>
       
-      <div style={{ padding: '16px', background: 'rgba(245, 158, 11, 0.1)', borderLeft: '4px solid #f59e0b', borderRadius: '4px', marginBottom: '24px', display: 'flex', gap: '12px' }}>
+      <div style={{ padding: '16px', background: 'rgba(245, 158, 11, 0.1)', borderLeft: '4px solid var(--w-amber-500)', borderRadius: '4px', marginBottom: '24px', display: 'flex', gap: '12px' }}>
         <AlertTriangle size={20} color="var(--color-warning)" style={{ flexShrink: 0 }} />
         <div style={{ fontSize: '13px', lineHeight: '1.6' }}>
           <strong style={{ color: 'var(--color-warning)' }}>Situation:</strong> 양식용(참치, 넙치) 생사료 투입 비중이 70%를 돌파하며 B2C 상품 품귀 가속화.<br/>

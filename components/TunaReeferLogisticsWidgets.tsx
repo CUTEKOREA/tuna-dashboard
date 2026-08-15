@@ -49,13 +49,13 @@ const CustomTooltip = ({ active, payload, label }: any) => {
   if (active && payload && payload.length) {
     return (
       <div style={{
-        backgroundColor: '#1a2442',
+        backgroundColor: 'var(--w-navy-900)',
         border: '1px solid #334155',
         padding: '12px',
         borderRadius: '6px',
         boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)'
       }}>
-        <p style={{ margin: '0 0 8px 0', color: '#f8fafc', fontWeight: 600, fontSize: '0.9rem' }}>{label}</p>
+        <p style={{ margin: '0 0 8px 0', color: 'var(--w-slate-50)', fontWeight: 600, fontSize: '0.9rem' }}>{label}</p>
         {payload.map((entry: any, index: number) => (
           <p key={index} style={{ margin: '4px 0 0 0', color: entry.color, fontSize: '0.85rem' }}>
             {entry.name}: {typeof entry.value === 'number' ? entry.value.toLocaleString() : entry.value}
@@ -83,9 +83,9 @@ const InlineTakeaway = ({ situation, short, long, risk, source }: any) => (
       <span style={{ fontSize: '1rem', flexShrink: 0 }}>📊</span>
       <div>
         <strong style={{ color: '#7dd3fc', fontSize: '0.85rem' }}>현황 분석 (Situation):</strong>
-        <p style={{ margin: '4px 0 0 0', fontSize: '0.83rem', color: '#94a3b8', lineHeight: 1.65 }}>{situation}</p>
+        <p style={{ margin: '4px 0 0 0', fontSize: '0.83rem', color: 'var(--w-slate-400)', lineHeight: 1.65 }}>{situation}</p>
         {source && (
-          <p style={{ margin: '6px 0 0 0', fontSize: '0.75rem', color: '#64748b', fontStyle: 'italic' }}>
+          <p style={{ margin: '6px 0 0 0', fontSize: '0.75rem', color: 'var(--w-slate-500)', fontStyle: 'italic' }}>
             * 출처/근거: {source}
           </p>
         )}
@@ -95,7 +95,7 @@ const InlineTakeaway = ({ situation, short, long, risk, source }: any) => (
     <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '4px' }}>
       <span style={{ color: '#bae6fd', fontSize: '0.85rem', fontWeight: 'bold' }}>⚡ 실행 전략 (Executive Takeaway):</span>
     </div>
-    <p style={{ margin: 0, fontSize: '0.83rem', color: '#e2e8f0', lineHeight: 1.65 }}>
+    <p style={{ margin: 0, fontSize: '0.83rem', color: 'var(--w-slate-200)', lineHeight: 1.65 }}>
       {short} {long} {risk}
     </p>
   </div>
@@ -119,11 +119,11 @@ export const ReeferCompetitorInflowWidget = () => (
             <YAxis tickFormatter={(v) => `${v.toLocaleString()}`} />
             <RechartsTooltip content={<CustomTooltip />} />
             <Legend />
-            <Bar dataKey="MMP" name="MMP" stackId="a" fill="#38bdf8" />
-            <Bar dataKey="ISA" name="ISA" stackId="a" fill="#8b5cf6" />
-            <Bar dataKey="UC" name="UC" stackId="a" fill="#f59e0b" />
-            <Bar dataKey="I-TAIL" name="I-TAIL" stackId="a" fill="#10b981" />
-            <Bar dataKey="ASIAN" name="ASIAN" stackId="a" fill="#ef4444" radius={[4, 4, 0, 0]} />
+            <Bar dataKey="MMP" name="MMP" stackId="a" fill="var(--w-sky-400)" />
+            <Bar dataKey="ISA" name="ISA" stackId="a" fill="var(--w-violet-500)" />
+            <Bar dataKey="UC" name="UC" stackId="a" fill="var(--w-amber-500)" />
+            <Bar dataKey="I-TAIL" name="I-TAIL" stackId="a" fill="var(--w-emerald-500)" />
+            <Bar dataKey="ASIAN" name="ASIAN" stackId="a" fill="var(--w-red-500)" radius={[4, 4, 0, 0]} />
           </BarChart>
         </SafeResponsiveContainer>
       </div>
@@ -156,7 +156,7 @@ export const ReeferPortCongestionWidget = () => (
             <RechartsTooltip content={<CustomTooltip />} />
             <Legend />
             <Bar yAxisId="left" dataKey="berthedShips" name="접안 선박 수" fill="rgba(239, 68, 68, 0.6)" radius={[4, 4, 0, 0]} />
-            <Line yAxisId="right" type="monotone" dataKey="avgWaitDays" name="평균 대기일수" stroke="#ef4444" strokeWidth={3} />
+            <Line yAxisId="right" type="monotone" dataKey="avgWaitDays" name="평균 대기일수" stroke="var(--w-red-500)" strokeWidth={3} />
           </ComposedChart>
         </SafeResponsiveContainer>
       </div>
@@ -188,8 +188,8 @@ export const ReeferSupplyPriceOverlayWidget = () => (
             <YAxis yAxisId="right" orientation="right" />
             <RechartsTooltip content={<CustomTooltip />} />
             <Legend />
-            <Area yAxisId="left" type="monotone" dataKey="totalSupply" name="주간 총 물량(MT)" fill="#3b82f6" stroke="#2563eb" fillOpacity={0.3} />
-            <Line yAxisId="right" type="monotone" dataKey="price" name="SKJ 어가($/MT)" stroke="#f59e0b" strokeWidth={3} />
+            <Area yAxisId="left" type="monotone" dataKey="totalSupply" name="주간 총 물량(MT)" fill="var(--w-blue-500)" stroke="#2563eb" fillOpacity={0.3} />
+            <Line yAxisId="right" type="monotone" dataKey="price" name="SKJ 어가($/MT)" stroke="var(--w-amber-500)" strokeWidth={3} />
           </ComposedChart>
         </SafeResponsiveContainer>
       </div>
@@ -221,7 +221,7 @@ export const ReeferCarrierEfficiencyWidget = () => (
             <YAxis yAxisId="right" orientation="right" />
             <RechartsTooltip content={<CustomTooltip />} />
             <Legend />
-            <Bar yAxisId="left" dataKey="efficiencyScore" name="효율성 점수" fill="#10b981" radius={[4, 4, 0, 0]} />
+            <Bar yAxisId="left" dataKey="efficiencyScore" name="효율성 점수" fill="var(--w-emerald-500)" radius={[4, 4, 0, 0]} />
             <Line yAxisId="right" type="monotone" dataKey="leadTimeHrs" name="하역 소요 시간(Hrs)" stroke="#f43f5e" strokeWidth={3} />
           </ComposedChart>
         </SafeResponsiveContainer>

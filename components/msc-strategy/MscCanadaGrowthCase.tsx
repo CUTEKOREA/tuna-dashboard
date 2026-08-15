@@ -47,8 +47,8 @@ export default function MscCanadaGrowthCase() {
                 border: '1px solid rgba(140,170,255,0.12)', textAlign: 'center',
               }}>
                 <div style={{ fontSize: '1.2rem', fontWeight: 800, color: k.color, fontVariantNumeric: 'tabular-nums' }}>{k.value}</div>
-                <div style={{ fontSize: '0.68rem', color: '#94a3b8', marginTop: '4px' }}>{k.label}</div>
-                {k.sub && <div style={{ fontSize: '0.6rem', color: '#64748b', marginTop: '2px' }}>{k.sub}</div>}
+                <div style={{ fontSize: '0.68rem', color: 'var(--w-slate-400)', marginTop: '4px' }}>{k.label}</div>
+                {k.sub && <div style={{ fontSize: '0.6rem', color: 'var(--w-slate-500)', marginTop: '2px' }}>{k.sub}</div>}
               </div>
             ))}
           </div>
@@ -59,25 +59,25 @@ export default function MscCanadaGrowthCase() {
               <ComposedChart data={canadaData} margin={{ top: 10, right: 30, left: 0, bottom: 5 }}>
                 <defs>
                   <linearGradient id="canadaGrad" x1="0" y1="0" x2="0" y2="1">
-                    <stop offset="5%" stopColor="#10b981" stopOpacity={0.3} />
-                    <stop offset="95%" stopColor="#10b981" stopOpacity={0} />
+                    <stop offset="5%" stopColor="var(--w-emerald-500)" stopOpacity={0.3} />
+                    <stop offset="95%" stopColor="var(--w-emerald-500)" stopOpacity={0} />
                   </linearGradient>
                 </defs>
                 <CartesianGrid strokeDasharray="3 3" opacity={0.15} vertical={false} />
-                <XAxis dataKey="year" stroke="#64748b" tick={{ fill: '#94a3b8', fontSize: 10 }} axisLine={false} tickLine={false} />
-                <YAxis yAxisId="left" stroke="#64748b" tick={{ fill: '#94a3b8', fontSize: 11 }} axisLine={false} tickLine={false} tickFormatter={(v) => `${(v / 1000).toFixed(0)}k`} />
-                <YAxis yAxisId="right" orientation="right" stroke="#64748b" tick={{ fill: '#94a3b8', fontSize: 11 }} axisLine={false} tickLine={false} />
+                <XAxis dataKey="year" stroke="var(--w-slate-500)" tick={{ fill: 'var(--w-slate-400)', fontSize: 10 }} axisLine={false} tickLine={false} />
+                <YAxis yAxisId="left" stroke="var(--w-slate-500)" tick={{ fill: 'var(--w-slate-400)', fontSize: 11 }} axisLine={false} tickLine={false} tickFormatter={(v) => `${(v / 1000).toFixed(0)}k`} />
+                <YAxis yAxisId="right" orientation="right" stroke="var(--w-slate-500)" tick={{ fill: 'var(--w-slate-400)', fontSize: 11 }} axisLine={false} tickLine={false} />
                 <Tooltip
-                  contentStyle={{ borderRadius: '8px', border: 'none', boxShadow: '0 4px 12px rgba(0,0,0,0.3)', backgroundColor: 'rgba(30,41,59,0.95)', color: '#e2e8f0' }}
-                  labelStyle={{ color: '#e2e8f0' }}
+                  contentStyle={{ borderRadius: '8px', border: 'none', boxShadow: '0 4px 12px rgba(0,0,0,0.3)', backgroundColor: 'rgba(30,41,59,0.95)', color: 'var(--w-slate-200)' }}
+                  labelStyle={{ color: 'var(--w-slate-200)' }}
                   formatter={(value: unknown, name: unknown) => {
                     const label = chartFmt.toChartText(name);
                     if (label === '판매량') return [`${chartFmt.formatChartNumber(value)} 톤`, label];
                     return [`${chartFmt.toChartNumber(value)}개`, label];
                   }}
                 />
-                <Area yAxisId="left" type="monotone" dataKey="volume" name="판매량" stroke="#10b981" strokeWidth={3} fill="url(#canadaGrad)" isAnimationActive={false} />
-                <Line yAxisId="right" type="monotone" dataKey="products" name="제품 수" stroke="#f59e0b" strokeWidth={2} dot={{ r: 4, fill: '#f59e0b' }} isAnimationActive={false} />
+                <Area yAxisId="left" type="monotone" dataKey="volume" name="판매량" stroke="var(--w-emerald-500)" strokeWidth={3} fill="url(#canadaGrad)" isAnimationActive={false} />
+                <Line yAxisId="right" type="monotone" dataKey="products" name="제품 수" stroke="var(--w-amber-500)" strokeWidth={2} dot={{ r: 4, fill: 'var(--w-amber-500)' }} isAnimationActive={false} />
               </ComposedChart>
             </SafeResponsiveContainer>
           </div>

@@ -14,8 +14,8 @@ const CustomTooltip = ({ active, payload }: any) => {
     return (
       <div className="ds-card" style={{display: "flex", flexDirection: "column", minHeight: "80px", background: "#11182f", borderRadius: "8px", boxShadow: "rgba(0,0,0,0.3) 0px 8px 8px", border: "none", padding: "1rem"}} >
         <p style={{ margin: '0 0 5px 0', fontWeight: 700, color: data.color }}>{data.name}</p>
-        <p style={{ margin: 0, fontSize: '0.85rem', color: '#cbd5e1' }}>환경·사회적 영향 (X): {data.x}</p>
-        <p style={{ margin: 0, fontSize: '0.85rem', color: '#cbd5e1' }}>재무적 영향 (Y): {data.y}</p>
+        <p style={{ margin: 0, fontSize: '0.85rem', color: 'var(--w-slate-300)' }}>환경·사회적 영향 (X): {data.x}</p>
+        <p style={{ margin: 0, fontSize: '0.85rem', color: 'var(--w-slate-300)' }}>재무적 영향 (Y): {data.y}</p>
       </div>
     );
   }
@@ -35,10 +35,10 @@ export default function SalmonInsightDoubleMateriality() {
       chart={
         <ScatterChart margin={{ top: 10, right: 20, bottom: 20, left: -20 }}>
           <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" />
-          <XAxis type="number" dataKey="x" name="환경/사회 영향도" domain={[0, 10]} stroke="#94a3b8" fontSize={11} 
-            label={{ value: '환경·사회적 영향도 (Impact)', position: 'insideBottom', offset: -15, fill: '#94a3b8', fontSize: 10 }} />
-          <YAxis type="number" dataKey="y" name="재무적 영향도" domain={[0, 10]} stroke="#94a3b8" fontSize={11}
-            label={{ value: '재무적 영향도 (Financial)', angle: -90, position: 'insideLeft', fill: '#94a3b8', fontSize: 10 }} />
+          <XAxis type="number" dataKey="x" name="환경/사회 영향도" domain={[0, 10]} stroke="var(--w-slate-400)" fontSize={11}
+            label={{ value: '환경·사회적 영향도 (Impact)', position: 'insideBottom', offset: -15, fill: 'var(--w-slate-400)', fontSize: 10 }} />
+          <YAxis type="number" dataKey="y" name="재무적 영향도" domain={[0, 10]} stroke="var(--w-slate-400)" fontSize={11}
+            label={{ value: '재무적 영향도 (Financial)', angle: -90, position: 'insideLeft', fill: 'var(--w-slate-400)', fontSize: 10 }} />
           <Tooltip content={<CustomTooltip />} cursor={{ strokeDasharray: '3 3', stroke: 'rgba(255,255,255,0.2)' }} />
           <Scatter name="ESG 이슈" data={rawData}>
             {rawData.map((entry: any, index: number) => (

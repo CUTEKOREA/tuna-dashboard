@@ -46,7 +46,7 @@ export default function MscRfmoAlignment() {
           <thead>
             <tr style={{ borderBottom: '1px solid rgba(140,170,255,0.12)' }}>
               {columns.map((col) => (
-                <th key={col} style={{ padding: 12, textAlign: 'center', fontSize: 11, fontWeight: 700, color: '#64748b', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
+                <th key={col} style={{ padding: 12, textAlign: 'center', fontSize: 11, fontWeight: 700, color: 'var(--w-slate-500)', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
                   {col}
                 </th>
               ))}
@@ -56,8 +56,8 @@ export default function MscRfmoAlignment() {
             {rfmoData.map((row, i) => (
               <tr key={row.rfmo} style={i < rfmoData.length - 1 ? { borderBottom: '1px solid rgba(255,255,255,0.04)' } : undefined}>
                 <td style={{ padding: 12, textAlign: 'center' }}>
-                  <div style={{ fontWeight: 700, color: '#e2e8f0' }}>{row.rfmo}</div>
-                  <div style={{ fontSize: 10, color: '#64748b', fontWeight: 500 }}>{row.label}</div>
+                  <div style={{ fontWeight: 700, color: 'var(--w-slate-200)' }}>{row.rfmo}</div>
+                  <div style={{ fontSize: 10, color: 'var(--w-slate-500)', fontWeight: 500 }}>{row.label}</div>
                 </td>
                 <td style={{ padding: 12, textAlign: 'center' }}><RagDot status={row.hcr} /></td>
                 <td style={{ padding: 12, textAlign: 'center' }}><RagDot status={row.tac} /></td>
@@ -81,7 +81,7 @@ export default function MscRfmoAlignment() {
                   fontWeight: 900,
                   fontSize: 18,
                   fontVariantNumeric: 'tabular-nums',
-                  color: row.certified >= 20 ? '#10b981' : row.certified >= 10 ? '#38bdf8' : '#f59e0b',
+                  color: row.certified >= 20 ? 'var(--w-emerald-500)' : row.certified >= 10 ? 'var(--w-sky-400)' : 'var(--w-amber-500)',
                 }}>
                   {row.certified}
                 </td>
@@ -92,14 +92,14 @@ export default function MscRfmoAlignment() {
 
         {/* Summary Row */}
         <div style={{ borderTop: '1px solid rgba(140,170,255,0.12)', padding: 12, display: 'flex', justifyContent: 'center', gap: 24, fontSize: 12 }}>
-          <div style={{ display: 'flex', alignItems: 'center', gap: 6, fontWeight: 500, color: '#94a3b8' }}>
-            <div style={{ width: 10, height: 10, borderRadius: '50%', backgroundColor: '#10b981' }} /> 양호
+          <div style={{ display: 'flex', alignItems: 'center', gap: 6, fontWeight: 500, color: 'var(--w-slate-400)' }}>
+            <div style={{ width: 10, height: 10, borderRadius: '50%', backgroundColor: 'var(--w-emerald-500)' }} /> 양호
           </div>
-          <div style={{ display: 'flex', alignItems: 'center', gap: 6, fontWeight: 500, color: '#94a3b8' }}>
-            <div style={{ width: 10, height: 10, borderRadius: '50%', backgroundColor: '#f59e0b' }} /> 부분
+          <div style={{ display: 'flex', alignItems: 'center', gap: 6, fontWeight: 500, color: 'var(--w-slate-400)' }}>
+            <div style={{ width: 10, height: 10, borderRadius: '50%', backgroundColor: 'var(--w-amber-500)' }} /> 부분
           </div>
-          <div style={{ display: 'flex', alignItems: 'center', gap: 6, fontWeight: 500, color: '#94a3b8' }}>
-            <div style={{ width: 10, height: 10, borderRadius: '50%', backgroundColor: '#ef4444' }} /> 미흡
+          <div style={{ display: 'flex', alignItems: 'center', gap: 6, fontWeight: 500, color: 'var(--w-slate-400)' }}>
+            <div style={{ width: 10, height: 10, borderRadius: '50%', backgroundColor: 'var(--w-red-500)' }} /> 미흡
           </div>
         </div>
       </div>

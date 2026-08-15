@@ -78,7 +78,7 @@ export default function SongkhlaCanneryStatusCharts() {
                   formatter={(value: any) => [`${Number(value).toLocaleString()} 톤`, undefined]}
                 />
                 <Legend wrapperStyle={{ fontSize: '12px', paddingTop: '10px' }} />
-                <defs><linearGradient id="gradProdG" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stopColor="#10b981" stopOpacity={0.95} /><stop offset="100%" stopColor="#34d399" stopOpacity={0.65} /></linearGradient></defs>
+                <defs><linearGradient id="gradProdG" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stopColor="var(--w-emerald-500)" stopOpacity={0.95} /><stop offset="100%" stopColor="var(--w-emerald-400)" stopOpacity={0.65} /></linearGradient></defs>
                 <Bar dataKey="prodMax" name="최대 가능 생산량" fill="rgba(255,255,255,0.07)" radius={[0, 5, 5, 0]} barSize={12} />
                 <Bar dataKey="prodCurrent" name="일 생산량" fill="url(#gradProdG)" radius={[0, 5, 5, 0]} barSize={12} />
               </BarChart>
@@ -141,7 +141,7 @@ export default function SongkhlaCanneryStatusCharts() {
                   }}
                 />
                 <Legend wrapperStyle={{ fontSize: '12px', paddingTop: '10px' }} />
-                <defs><linearGradient id="gradStoreG" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stopColor="#38bdf8" stopOpacity={0.95} /><stop offset="100%" stopColor="#0ea5e9" stopOpacity={0.6} /></linearGradient></defs>
+                <defs><linearGradient id="gradStoreG" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stopColor="var(--w-sky-400)" stopOpacity={0.95} /><stop offset="100%" stopColor="#0ea5e9" stopOpacity={0.6} /></linearGradient></defs>
                 <Bar dataKey="storeMax" name="최대 가능 보관량" fill="rgba(255,255,255,0.07)" radius={[0, 5, 5, 0]} barSize={12} />
                 <Bar dataKey="storeCurrent" name="현 보관량" fill="url(#gradStoreG)" radius={[0, 5, 5, 0]} barSize={12} />
               </BarChart>

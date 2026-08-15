@@ -29,18 +29,18 @@ export default function PollockValueDecoupling() {
         <ComposedChart data={chartData} margin={{ top: 20, right: 30, left: 10, bottom: 5 }}>
           <ChartPatternDefs />
           <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" vertical={false} />
-          <XAxis dataKey="year" stroke="#94a3b8" fontSize={12} tickLine={false} />
-          <YAxis yAxisId="left" stroke="#cbd5e1" fontSize={12} tickLine={false} tickFormatter={(v) => `${v}천톤`} domain={['auto', 'auto']} />
+          <XAxis dataKey="year" stroke="var(--w-slate-400)" fontSize={12} tickLine={false} />
+          <YAxis yAxisId="left" stroke="var(--w-slate-300)" fontSize={12} tickLine={false} tickFormatter={(v) => `${v}천톤`} domain={['auto', 'auto']} />
           <YAxis yAxisId="right" orientation="right" stroke="#14b8a6" fontSize={12} tickLine={false} tickFormatter={(v) => `$${v}백만`} domain={['auto', 'auto']} />
           <Tooltip
-            contentStyle={{ backgroundColor: '#1a2442', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '8px', color: '#f8fafc' }}
+            contentStyle={{ backgroundColor: 'var(--w-navy-900)', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '8px', color: 'var(--w-slate-50)' }}
             formatter={(value: any, name: any) => {
               if (String(name).includes('수량')) return [`${value.toFixed(1)}천톤`, name];
               return [`$${value.toFixed(1)}백만`, name];
             }}
           />
-          <Legend wrapperStyle={{ fontSize: '12px', color: '#cbd5e1' }} />
-          <Bar yAxisId="left" dataKey="vol_k" name="글로벌 수입 수량 (천톤)" fill="#64748b" radius={[4, 4, 0, 0]} barSize={20} opacity={0.6} />
+          <Legend wrapperStyle={{ fontSize: '12px', color: 'var(--w-slate-300)' }} />
+          <Bar yAxisId="left" dataKey="vol_k" name="글로벌 수입 수량 (천톤)" fill="var(--w-slate-500)" radius={[4, 4, 0, 0]} barSize={20} opacity={0.6} />
           <Line yAxisId="right" type="monotone" dataKey="val_m" name="글로벌 수입 금액 (백만 USD)" stroke="#14b8a6" strokeWidth={3} dot={{ r: 4, fill: '#14b8a6' }} />
         </ComposedChart>
       }

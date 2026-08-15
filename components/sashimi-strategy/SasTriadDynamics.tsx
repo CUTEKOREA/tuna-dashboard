@@ -38,14 +38,14 @@ export default function SasTriadDynamics() {
                   width: '32px', height: '32px', borderRadius: '50%',
                   background: 'rgba(16,185,129,0.2)',
                   display: 'flex', alignItems: 'center', justifyContent: 'center',
-                  color: '#34d399',
+                  color: 'var(--w-emerald-400)',
                 }}>
                   <TrendingUp size={16} strokeWidth={2.5} />
                 </div>
                 <h3 style={{ fontSize: '16px', fontWeight: 700, color: '#f1f5f9', margin: 0 }}>미국 (US)</h3>
               </div>
-              <div style={{ fontSize: '12px', fontWeight: 600, color: '#34d399', marginBottom: '4px', letterSpacing: '0.05em' }}>성장 엔진 (Growth Engine)</div>
-              <p style={{ fontSize: '12px', color: '#94a3b8', lineHeight: 1.6, marginTop: 'auto', margin: 0 }}>
+              <div style={{ fontSize: '12px', fontWeight: 600, color: 'var(--w-emerald-400)', marginBottom: '4px', letterSpacing: '0.05em' }}>성장 엔진 (Growth Engine)</div>
+              <p style={{ fontSize: '12px', color: 'var(--w-slate-400)', lineHeight: 1.6, marginTop: 'auto', margin: 0 }}>
                 스시/포케 외식 체인 주도의 폭발적 성장. 비통조림 참치 수입 <strong>$829M</strong> 도달 (2024년 기준 2위).
               </p>
             </div>
@@ -73,7 +73,7 @@ export default function SasTriadDynamics() {
                 <h3 style={{ fontSize: '16px', fontWeight: 700, color: '#f1f5f9', margin: 0 }}>유럽연합 (EU)</h3>
               </div>
               <div style={{ fontSize: '12px', fontWeight: 600, color: '#818cf8', marginBottom: '4px', letterSpacing: '0.05em' }}>생산 기지 (Production Hub)</div>
-              <p style={{ fontSize: '12px', color: '#94a3b8', lineHeight: 1.6, marginTop: 'auto', margin: 0 }}>
+              <p style={{ fontSize: '12px', color: 'var(--w-slate-400)', lineHeight: 1.6, marginTop: 'auto', margin: 0 }}>
                 지중해 참다랑어 축양 산업 글로벌 거점. 값싼 생체를 매입해 고부가가치 냉동품으로 가공 수출.
               </p>
             </div>
@@ -101,7 +101,7 @@ export default function SasTriadDynamics() {
                 <h3 style={{ fontSize: '16px', fontWeight: 700, color: '#f1f5f9', margin: 0 }}>일본 (Japan)</h3>
               </div>
               <div style={{ fontSize: '12px', fontWeight: 600, color: '#f87171', marginBottom: '4px', letterSpacing: '0.05em' }}>구조적 하락 (Legacy)</div>
-              <p style={{ fontSize: '12px', color: '#94a3b8', lineHeight: 1.6, marginTop: 'auto', margin: 0 }}>
+              <p style={{ fontSize: '12px', color: 'var(--w-slate-400)', lineHeight: 1.6, marginTop: 'auto', margin: 0 }}>
                 2000년 정점 대비 소비량 <strong>-51%</strong> 급감. 초고가 경매 상징성만 남은 성숙/축소 시장.
               </p>
             </div>

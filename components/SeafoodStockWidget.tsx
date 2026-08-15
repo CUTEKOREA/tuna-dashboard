@@ -61,12 +61,12 @@ export default function SeafoodStockWidget() {
   return (
     <div style={{ marginBottom: '24px' }}>
       <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '12px' }}>
-        <h3 style={{ fontSize: '0.85rem', fontWeight: 600, color: '#94a3b8', display: 'flex', alignItems: 'center', gap: '6px', letterSpacing: '0.05em' }}>
+        <h3 style={{ fontSize: '0.85rem', fontWeight: 600, color: 'var(--w-slate-400)', display: 'flex', alignItems: 'center', gap: '6px', letterSpacing: '0.05em' }}>
           <Activity size={14} color="#3b82f6" />
           주요 수산업 주가 시세 <span style={{fontSize: '0.7rem', opacity: 0.6}}>(실시간)</span>
         </h3>
         {lastUpdated && (
-          <span style={{ fontSize: '0.7rem', color: '#64748b', display: 'flex', alignItems: 'center', gap: '4px' }}>
+          <span style={{ fontSize: '0.7rem', color: 'var(--w-slate-500)', display: 'flex', alignItems: 'center', gap: '4px' }}>
             <RefreshCw size={10} style={{ opacity: 0.7 }} /> {lastUpdated} 업데이트
           </span>
         )}
@@ -113,13 +113,13 @@ export default function SeafoodStockWidget() {
             }}>
               {/* Top Row: Name and Icon */}
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                <span style={{ fontSize: '0.8rem', fontWeight: 600, color: '#e2e8f0' }}>{stock.name}</span>
+                <span style={{ fontSize: '0.8rem', fontWeight: 600, color: 'var(--w-slate-200)' }}>{stock.name}</span>
                 {stock.error ? <AlertTriangle size={14} color="#f59e0b" /> : <Icon size={14} color={color} />}
               </div>
               
               {/* Bottom Row: Price and Change */}
               {stock.error ? (
-                <div style={{ fontSize: '0.75rem', color: '#64748b', marginTop: '4px' }}>조회 불가</div>
+                <div style={{ fontSize: '0.75rem', color: 'var(--w-slate-500)', marginTop: '4px' }}>조회 불가</div>
               ) : (
                 <div style={{ display: 'flex', alignItems: 'baseline', gap: '8px', marginTop: '2px' }}>
                   <span style={{ fontSize: '1.1rem', fontWeight: 700, color: color, fontFamily: 'monospace' }}>

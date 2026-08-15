@@ -38,27 +38,27 @@ export default function SasGlTradeFlows() {
         <div style={{ display: 'flex', flexDirection: 'column', gap: '10px', width: '100%' }}>
           <div style={{ display: 'flex', gap: '8px' }}>
             <div style={{ flex: 1, background: 'rgba(239,68,68,0.08)', border: '1px solid rgba(239,68,68,0.2)', borderRadius: '8px', padding: '8px 10px', textAlign: 'center' }}>
-              <div style={{ fontSize: '0.58rem', color: '#94a3b8' }}>통조림·가공</div>
+              <div style={{ fontSize: '0.58rem', color: 'var(--w-slate-400)' }}>통조림·가공</div>
               <div style={{ fontSize: '1.0rem', fontWeight: 800, color: '#f87171' }}>$65.0억</div>
-              <div style={{ fontSize: '0.52rem', color: '#64748b' }}>금액 54.8% / 물량 38%</div>
+              <div style={{ fontSize: '0.52rem', color: 'var(--w-slate-500)' }}>금액 54.8% / 물량 38%</div>
             </div>
             <div style={{ flex: 1, background: 'rgba(56,189,248,0.08)', border: '1px solid rgba(56,189,248,0.2)', borderRadius: '8px', padding: '8px 10px', textAlign: 'center' }}>
-              <div style={{ fontSize: '0.58rem', color: '#94a3b8' }}>비통조림(사시미 원료)</div>
-              <div style={{ fontSize: '1.0rem', fontWeight: 800, color: '#38bdf8' }}>$53.6억</div>
-              <div style={{ fontSize: '0.52rem', color: '#64748b' }}>원어냉동 +32% 물량</div>
+              <div style={{ fontSize: '0.58rem', color: 'var(--w-slate-400)' }}>비통조림(사시미 원료)</div>
+              <div style={{ fontSize: '1.0rem', fontWeight: 800, color: 'var(--w-sky-400)' }}>$53.6억</div>
+              <div style={{ fontSize: '0.52rem', color: 'var(--w-slate-500)' }}>원어냉동 +32% 물량</div>
             </div>
           </div>
-          <div style={{ fontSize: '0.62rem', color: '#94a3b8', fontWeight: 600, textAlign: 'center' }}>통조림(HS160414) 수출 1위국 ($B)</div>
+          <div style={{ fontSize: '0.62rem', color: 'var(--w-slate-400)', fontWeight: 600, textAlign: 'center' }}>통조림(HS160414) 수출 1위국 ($B)</div>
           <div style={{ height: '150px', width: '100%' }}>
             <SafeResponsiveContainer width="100%" height="100%">
               <BarChart data={EXPORTERS} margin={{ top: 16, right: 16, left: 0, bottom: 0 }}>
                 <CartesianGrid strokeDasharray="3 3" opacity={0.15} vertical={false} />
-                <XAxis dataKey="c" fontSize={10} tickLine={false} axisLine={false} stroke="#64748b" interval={0} />
-                <YAxis domain={[0, 2.8]} tickFormatter={(v: unknown) => `$${v}B`} fontSize={10} tickLine={false} axisLine={false} stroke="#64748b" />
-                <Tooltip contentStyle={{ borderRadius: '8px', border: 'none', background: '#1a2442', color: '#e2e8f0' }} formatter={(v: unknown) => [`$${v}B`, '캔 수출']} />
+                <XAxis dataKey="c" fontSize={10} tickLine={false} axisLine={false} stroke="var(--w-slate-500)" interval={0} />
+                <YAxis domain={[0, 2.8]} tickFormatter={(v: unknown) => `$${v}B`} fontSize={10} tickLine={false} axisLine={false} stroke="var(--w-slate-500)" />
+                <Tooltip contentStyle={{ borderRadius: '8px', border: 'none', background: 'var(--w-navy-900)', color: 'var(--w-slate-200)' }} formatter={(v: unknown) => [`$${v}B`, '캔 수출']} />
                 <Bar dataKey="v" radius={[4, 4, 0, 0]} isAnimationActive={false}>
                   {EXPORTERS.map((d) => <Cell key={d.c} fill={d.color} />)}
-                  <LabelList dataKey="v" position="top" formatter={(v: unknown) => `$${v}B`} fontSize={10} fill="#e2e8f0" />
+                  <LabelList dataKey="v" position="top" formatter={(v: unknown) => `$${v}B`} fontSize={10} fill="var(--w-slate-200)" />
                 </Bar>
               </BarChart>
             </SafeResponsiveContainer>

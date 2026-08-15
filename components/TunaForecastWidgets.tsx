@@ -36,14 +36,14 @@ export function SkipjackForecastWidget() {
       telemetry={{ status: data ? 'SYNCED' : 'STATIC', syncDate: '/api/tuna-forecast' }}
       customBody={
         loading ? (
-          <div style={{ padding: '2rem', textAlign: 'center', color: '#94a3b8' }}>예측 데이터 로딩 중...</div>
+          <div style={{ padding: '2rem', textAlign: 'center', color: 'var(--w-slate-400)' }}>예측 데이터 로딩 중...</div>
         ) : (
           <>
             <div style={{ height: 200 }}>
               <AreaChart width={680} height={200} data={chartData}>
                 <CartesianGrid strokeDasharray="3 3" stroke="rgba(140,170,255,0.12)" />
-                <XAxis dataKey="period" tick={{ fill: '#94a3b8', fontSize: 9 }} />
-                <YAxis tick={{ fill: '#94a3b8', fontSize: 10 }} domain={['dataMin-200', 'dataMax+200']} />
+                <XAxis dataKey="period" tick={{ fill: 'var(--w-slate-400)', fontSize: 9 }} />
+                <YAxis tick={{ fill: 'var(--w-slate-400)', fontSize: 10 }} domain={['dataMin-200', 'dataMax+200']} />
                 <Tooltip contentStyle={{ background: '#1a1a2e', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '8px', fontSize: '0.75rem' }} />
                 <Area type="monotone" dataKey="upper" stroke="none" fill="#FCD535" fillOpacity={0.1} />
                 <Area type="monotone" dataKey="lower" stroke="none" fill="#FCD535" fillOpacity={0.05} />
@@ -55,9 +55,9 @@ export function SkipjackForecastWidget() {
               <div data-mobile-stack style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '6px', marginTop: '8px' }}>
                 {sk.forecast.map((f: any, i: number) => (
                   <div key={i} style={{ background: 'rgba(252,213,53,0.06)', borderRadius: '6px', padding: '6px', textAlign: 'center' }}>
-                    <div style={{ fontSize: '0.6rem', color: '#94a3b8' }}>{f.period}</div>
+                    <div style={{ fontSize: '0.6rem', color: 'var(--w-slate-400)' }}>{f.period}</div>
                     <div style={{ fontSize: '0.95rem', fontWeight: 700, color: '#FCD535' }}>${f.predicted}</div>
-                    <div style={{ fontSize: '0.55rem', color: '#94a3b8' }}>{f.driver?.slice(0, 15)}</div>
+                    <div style={{ fontSize: '0.55rem', color: 'var(--w-slate-400)' }}>{f.driver?.slice(0, 15)}</div>
                   </div>
                 ))}
               </div>
@@ -131,11 +131,11 @@ export function EnsoCorrelationWidget() {
         <BarChart data={chartData}>
           <ChartPatternDefs />
           <CartesianGrid strokeDasharray="3 3" stroke="rgba(140,170,255,0.12)" />
-          <XAxis dataKey="phase" tick={{ fill: '#94a3b8', fontSize: 9 }} />
-          <YAxis tick={{ fill: '#94a3b8', fontSize: 10 }} unit="%" />
+          <XAxis dataKey="phase" tick={{ fill: 'var(--w-slate-400)', fontSize: 9 }} />
+          <YAxis tick={{ fill: 'var(--w-slate-400)', fontSize: 10 }} unit="%" />
           <Tooltip contentStyle={{ background: '#1a1a2e', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '8px' }} />
           <Bar dataKey="skipjack" fill="#FCD535" name="가다랑어" radius={[4, 4, 0, 0]} />
-          <Bar dataKey="yellowfin" fill="#06b6d4" name="황다랑어" radius={[4, 4, 0, 0]} />
+          <Bar dataKey="yellowfin" fill="var(--w-cyan-500)" name="황다랑어" radius={[4, 4, 0, 0]} />
         </BarChart>
       }
       takeaway={{
@@ -182,9 +182,9 @@ export function LandingCostSensitivity() {
         <div style={{ display: 'grid', gap: '6px' }}>
           {scenarios.map((s: any, i: number) => (
             <div key={i} style={{ display: 'flex', alignItems: 'center', gap: '10px', padding: '8px 12px', background: s.change_pct === 0 ? 'rgba(167,139,250,0.1)' : 'rgba(255,255,255,0.03)', borderRadius: '8px', border: s.change_pct === 0 ? '1px solid rgba(167,139,250,0.3)' : '1px solid transparent' }}>
-              <span style={{ fontSize: '0.75rem', color: '#f8fafc', fontWeight: s.change_pct === 0 ? 700 : 400, flex: 1 }}>{s.name}</span>
-              <span style={{ fontFamily: 'monospace', fontSize: '0.8rem', color: '#f8fafc' }}>₩{s.landing_cost_won_kg?.toLocaleString()}/kg</span>
-              <span style={{ fontFamily: 'monospace', fontSize: '0.75rem', fontWeight: 700, color: s.change_pct > 0 ? '#ef4444' : s.change_pct < 0 ? '#22c55e' : '#a78bfa', minWidth: '50px', textAlign: 'right' }}>
+              <span style={{ fontSize: '0.75rem', color: 'var(--w-slate-50)', fontWeight: s.change_pct === 0 ? 700 : 400, flex: 1 }}>{s.name}</span>
+              <span style={{ fontFamily: 'monospace', fontSize: '0.8rem', color: 'var(--w-slate-50)' }}>₩{s.landing_cost_won_kg?.toLocaleString()}/kg</span>
+              <span style={{ fontFamily: 'monospace', fontSize: '0.75rem', fontWeight: 700, color: s.change_pct > 0 ? 'var(--w-red-500)' : s.change_pct < 0 ? '#22c55e' : '#a78bfa', minWidth: '50px', textAlign: 'right' }}>
                 {s.change_pct > 0 ? '+' : ''}{s.change_pct}%
               </span>
             </div>

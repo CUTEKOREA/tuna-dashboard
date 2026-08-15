@@ -26,7 +26,7 @@ export default function KimLogisticsWidget() {
 
   if (!data) {
     return (
-      <div style={{ gridColumn: '1 / -1', padding: '40px', textAlign: 'center', background: 'rgba(255,255,255,0.02)', border: '1px dashed rgba(255,255,255,0.1)', borderRadius: '12px', color: '#64748b' }}>
+      <div style={{ gridColumn: '1 / -1', padding: '40px', textAlign: 'center', background: 'rgba(255,255,255,0.02)', border: '1px dashed rgba(255,255,255,0.1)', borderRadius: '12px', color: 'var(--w-slate-500)' }}>
         <Ship size={26} style={{ opacity: 0.5, marginBottom: '8px' }} />
         <div style={{ fontSize: '0.85rem', fontWeight: 600 }}>김 수출 통관 데이터 로딩 중…</div>
         <div style={{ fontSize: '0.72rem', marginTop: '4px' }}>관세청 KCS OpenAPI (HS 1212.21)</div>
@@ -52,8 +52,8 @@ export default function KimLogisticsWidget() {
         chart={
           <ComposedChart data={monthly} margin={{ top: 10, right: 10, left: -8, bottom: 0 }}>
             <CartesianGrid strokeDasharray="3 3" stroke="rgba(140,170,255,0.12)" vertical={false} />
-            <XAxis dataKey="month" stroke="#94a3b8" fontSize={11} tickFormatter={truncateXAxis} />
-            <YAxis yAxisId="l" stroke="#94a3b8" fontSize={11} />
+            <XAxis dataKey="month" stroke="var(--w-slate-400)" fontSize={11} tickFormatter={truncateXAxis} />
+            <YAxis yAxisId="l" stroke="var(--w-slate-400)" fontSize={11} />
             <YAxis yAxisId="r" orientation="right" stroke="#a3e635" fontSize={11} tickFormatter={(v) => `$${Math.round(v / 1000)}M`} />
             <Tooltip contentStyle={tip} />
             <Legend wrapperStyle={{ fontSize: '11px' }} />
@@ -77,8 +77,8 @@ export default function KimLogisticsWidget() {
         chart={
           <BarChart data={dest} layout="vertical" margin={{ top: 10, right: 24, left: 14, bottom: 0 }}>
             <CartesianGrid strokeDasharray="3 3" stroke="rgba(140,170,255,0.12)" horizontal={false} />
-            <XAxis type="number" stroke="#94a3b8" fontSize={11} tickFormatter={(v) => `${v}%`} />
-            <YAxis type="category" dataKey="name" stroke="#94a3b8" fontSize={12} width={56} />
+            <XAxis type="number" stroke="var(--w-slate-400)" fontSize={11} tickFormatter={(v) => `${v}%`} />
+            <YAxis type="category" dataKey="name" stroke="var(--w-slate-400)" fontSize={12} width={56} />
             <Tooltip contentStyle={tip} cursor={{ fill: 'rgba(255,255,255,0.04)' }} formatter={(v) => [`${v}%`, '비중']} />
             <Bar dataKey="value" name="수출 비중 (%)" radius={[0, 3, 3, 0]}>
               {dest.map((d: any, i: number) => <Cell key={i} fill={d.fill || '#84cc16'} />)}

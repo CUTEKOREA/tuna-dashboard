@@ -51,7 +51,7 @@ export default function SasKoreaFoodserviceD2C() {
                 }}
               >
                 <div style={{ fontSize: '1.6rem' }}>{f.icon}</div>
-                <div style={{ fontSize: '0.88rem', fontWeight: 700, color: '#e2e8f0' }}>{f.name}</div>
+                <div style={{ fontSize: '0.88rem', fontWeight: 700, color: 'var(--w-slate-200)' }}>{f.name}</div>
                 <div style={{ fontSize: '0.78rem', color: f.color, fontWeight: 600 }}>{f.price}</div>
                 <div
                   style={{
@@ -67,14 +67,14 @@ export default function SasKoreaFoodserviceD2C() {
                 >
                   {f.trend}
                 </div>
-                <div style={{ fontSize: '0.72rem', color: '#94a3b8', marginTop: '2px' }}>{f.desc}</div>
+                <div style={{ fontSize: '0.72rem', color: 'var(--w-slate-400)', marginTop: '2px' }}>{f.desc}</div>
               </div>
             ))}
           </div>
 
           {/* ── 브랜드 테이블 ── */}
           <div style={{ marginBottom: '16px' }}>
-            <div style={{ fontSize: '0.82rem', fontWeight: 700, color: '#cbd5e1', marginBottom: '8px' }}>
+            <div style={{ fontSize: '0.82rem', fontWeight: 700, color: 'var(--w-slate-300)', marginBottom: '8px' }}>
               🏪 주요 참치 외식 브랜드
             </div>
             <div style={{ overflowX: 'auto' }}>
@@ -83,7 +83,7 @@ export default function SasKoreaFoodserviceD2C() {
                   width: '100%',
                   borderCollapse: 'collapse',
                   fontSize: '0.75rem',
-                  color: '#cbd5e1',
+                  color: 'var(--w-slate-300)',
                 }}
               >
                 <thead>
@@ -95,7 +95,7 @@ export default function SasKoreaFoodserviceD2C() {
                           padding: '6px 8px',
                           textAlign: 'left',
                           fontWeight: 600,
-                          color: '#94a3b8',
+                          color: 'var(--w-slate-400)',
                           whiteSpace: 'nowrap',
                         }}
                       >
@@ -106,7 +106,7 @@ export default function SasKoreaFoodserviceD2C() {
                 </thead>
                 <tbody>
                   {brands.map((b) => (
-                    <tr key={b.name} style={{ borderBottom: '1px solid #1a2442' }}>
+                    <tr key={b.name} style={{ borderBottom: '1px solid var(--w-navy-900)' }}>
                       <td style={{ padding: '6px 8px', fontWeight: 600 }}>{b.name}</td>
                       <td style={{ padding: '6px 8px' }}>{b.stores}</td>
                       <td style={{ padding: '6px 8px' }}>{b.type}</td>
@@ -121,7 +121,7 @@ export default function SasKoreaFoodserviceD2C() {
 
           {/* ── D2C 브랜드 필 리스트 ── */}
           <div>
-            <div style={{ fontSize: '0.82rem', fontWeight: 700, color: '#cbd5e1', marginBottom: '8px' }}>
+            <div style={{ fontSize: '0.82rem', fontWeight: 700, color: 'var(--w-slate-300)', marginBottom: '8px' }}>
               📦 D2C 온라인 배달 브랜드
             </div>
             <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px' }}>

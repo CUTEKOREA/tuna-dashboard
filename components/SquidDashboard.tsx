@@ -43,12 +43,12 @@ function SectionNav() {
               padding: '6px 12px', borderRadius: 8, textDecoration: 'none',
               background: 'rgba(15, 23, 42, 0.6)',
               border: `1px solid ${meta.color}44`,
-              color: '#cbd5e1', fontSize: '0.76rem', fontWeight: 700,
+              color: 'var(--w-slate-300)', fontSize: '0.76rem', fontWeight: 700,
             }}
           >
             <span style={{ color: meta.color }}>{meta.orderLabel}</span>
             {meta.label}
-            <span style={{ color: '#64748b', fontWeight: 500 }}>{count}</span>
+            <span style={{ color: 'var(--w-slate-500)', fontWeight: 500 }}>{count}</span>
           </a>
         );
       })}
@@ -65,7 +65,7 @@ export default function SquidDashboard() {
   return (
     <main
       style={{
-        minHeight: '100vh', background: '#070b18', color: '#e2e8f0',
+        minHeight: '100vh', background: '#070b18', color: 'var(--w-slate-200)',
         fontFamily: "'Inter', sans-serif", padding: '24px 20px 80px',
       }}
     >
@@ -75,7 +75,7 @@ export default function SquidDashboard() {
             <h1
               style={{
                 fontSize: '1.6rem', fontWeight: 900, margin: 0,
-                background: 'linear-gradient(135deg, #e2e8f0, #8b5cf6)',
+                background: 'linear-gradient(135deg, var(--w-slate-200), var(--w-violet-500))',
                 WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent',
               }}
             >
@@ -84,19 +84,19 @@ export default function SquidDashboard() {
             <TelemetryBadge status="SYNCED" syncDate={doc.meta.built_at.slice(0, 10)} label="동기화" />
           </div>
 
-          <p style={{ color: '#94a3b8', fontSize: '0.78rem', marginTop: 8, lineHeight: 1.7 }}>
+          <p style={{ color: 'var(--w-slate-400)', fontSize: '0.78rem', marginTop: 8, lineHeight: 1.7 }}>
             위젯 {total}개 · 출처 {doc.sources.length} · 측정 게이트 {doc.gates.length} ·
             모니터링 {doc.monitoring.length}계열 · 아카이브 {koreanUiText(doc.meta.archive_snapshot)}
             {empty > 0 && (
               <>
                 {' · '}
-                <span style={{ color: '#f59e0b' }}>
+                <span style={{ color: 'var(--w-amber-500)' }}>
                   수치 미확정 {empty}개는 원문 링크 카드로 표시
                 </span>
               </>
             )}
           </p>
-          <p style={{ color: '#64748b', fontSize: '0.72rem', marginTop: 4, wordBreak: 'keep-all' }}>
+          <p style={{ color: 'var(--w-slate-500)', fontSize: '0.72rem', marginTop: 4, wordBreak: 'keep-all' }}>
             모든 카드 하단의 근거 칩은 어종·중량기준·거래단계·기준일·출처 등급을 표시한다.
             칩을 누르면 원문 경로와 금지 용법이 열린다.
           </p>

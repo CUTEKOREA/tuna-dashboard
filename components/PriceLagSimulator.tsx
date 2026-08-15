@@ -13,8 +13,8 @@ function CustomTooltip({ active, payload, label }: any) {
     return (
       <div style={{ background: '#0F172A', border: '1px solid rgba(255,255,255,0.1)', padding: '12px', borderRadius: '8px' }}>
         <p style={{ margin: '0 0 8px 0', fontSize: '14px', fontWeight: 'bold', color: 'var(--text-primary)' }}>{label}</p>
-        <p style={{ margin: '4px 0', fontSize: '12px', color: '#38bdf8' }}>원어 원가: <strong style={{color:'var(--text-primary)'}}>${payload[0].value} / MT</strong></p>
-        <p style={{ margin: '4px 0', fontSize: '12px', color: '#fbbf24' }}>B2C 판가지수: <strong style={{color:'var(--text-primary)'}}>{payload[1].value} pt</strong></p>
+        <p style={{ margin: '4px 0', fontSize: '12px', color: 'var(--w-sky-400)' }}>원어 원가: <strong style={{color:'var(--text-primary)'}}>${payload[0].value} / MT</strong></p>
+        <p style={{ margin: '4px 0', fontSize: '12px', color: 'var(--w-amber-400)' }}>B2C 판가지수: <strong style={{color:'var(--text-primary)'}}>{payload[1].value} pt</strong></p>
       </div>
     );
   }
@@ -98,7 +98,7 @@ export default function PriceLagSimulator() {
             onChange={(e) => setLagMonths(Number(e.target.value))}
             className={styles.slider}
           />
-          <div style={{ fontSize: '11px', color: '#64748b', marginTop: '8px' }}>
+          <div style={{ fontSize: '11px', color: 'var(--w-slate-500)', marginTop: '8px' }}>
             * 대형마트 B2B 납품 단가 협상 시, 과거 피크치 단가를 인하해주기까지 버티는 '방어 기간'을 뜻합니다.
           </div>
         </div>
@@ -116,17 +116,17 @@ export default function PriceLagSimulator() {
           <ComposedChart data={data} margin={{ top: 10, right: 10, bottom: 0, left: 0 }}>
             <ChartPatternDefs />
             <CartesianGrid strokeDasharray="3 3" stroke="rgba(140,170,255,0.10)" />
-            <XAxis dataKey="month" tick={{ fill: '#94a3b8', fontSize: 11 }} />
-            <YAxis yAxisId="left" domain={[1200, 2200]} tickFormatter={(val) => `${Number(val).toLocaleString()}`} tick={{ fill: '#38bdf8', fontSize: 11 }} />
-            <YAxis yAxisId="right" orientation="right" domain={[80, 160]} tickFormatter={(val) => `$${Number(val).toLocaleString()}`} tick={{ fill: '#fbbf24', fontSize: 11 }} />
+            <XAxis dataKey="month" tick={{ fill: 'var(--w-slate-400)', fontSize: 11 }} />
+            <YAxis yAxisId="left" domain={[1200, 2200]} tickFormatter={(val) => `${Number(val).toLocaleString()}`} tick={{ fill: 'var(--w-sky-400)', fontSize: 11 }} />
+            <YAxis yAxisId="right" orientation="right" domain={[80, 160]} tickFormatter={(val) => `$${Number(val).toLocaleString()}`} tick={{ fill: 'var(--w-amber-400)', fontSize: 11 }} />
             
             {/* Highlight Spread Window */}
             <ReferenceArea yAxisId="left" x1={`M${p2_start + 1}`} x2={`M${p2_end + 1}`} fill="rgba(16, 185, 129, 0.15)" strokeOpacity={0} />
 
             <RechartsTooltip cursor={{ fill: 'rgba(140,170,255,0.10)' }} content={<CustomTooltip />} />
             
-            <Line yAxisId="left" type="monotone" dataKey="cost" name="원어(SKJ) 가격" stroke="#38bdf8" strokeWidth={3} dot={false} />
-            <Line yAxisId="right" type="monotone" dataKey="cpi" name="소매 지수" stroke="#fbbf24" strokeWidth={3} dot={false} strokeDasharray="5 5" />
+            <Line yAxisId="left" type="monotone" dataKey="cost" name="원어(SKJ) 가격" stroke="var(--w-sky-400)" strokeWidth={3} dot={false} />
+            <Line yAxisId="right" type="monotone" dataKey="cpi" name="소매 지수" stroke="var(--w-amber-400)" strokeWidth={3} dot={false} strokeDasharray="5 5" />
           </ComposedChart>
         </SafeResponsiveContainer>
       </div>

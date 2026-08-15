@@ -44,18 +44,18 @@ export function InsightTimeGapArbitrage() {
           <ChartPatternDefs />
           <defs>
             <linearGradient id="spreadGrad" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="5%" stopColor="#ef4444" stopOpacity={0.6} />
-              <stop offset="95%" stopColor="#ef4444" stopOpacity={0} />
+              <stop offset="5%" stopColor="var(--w-red-500)" stopOpacity={0.6} />
+              <stop offset="95%" stopColor="var(--w-red-500)" stopOpacity={0} />
             </linearGradient>
           </defs>
           <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" />
-          <XAxis dataKey="month" stroke="#94a3b8" />
-          <YAxis yAxisId="left" stroke="#94a3b8" unit="원" />
-          <RTooltip contentStyle={{ backgroundColor: '#1a2442', border: 'none', borderRadius: '8px' }} />
+          <XAxis dataKey="month" stroke="var(--w-slate-400)" />
+          <YAxis yAxisId="left" stroke="var(--w-slate-400)" unit="원" />
+          <RTooltip contentStyle={{ backgroundColor: 'var(--w-navy-900)', border: 'none', borderRadius: '8px' }} />
           <Legend />
           <Area yAxisId="left" type="monotone" dataKey="domestic" name="🇰🇷 국내 도매가" stroke="#f87171" fill="url(#spreadGrad)" />
-          <Line yAxisId="left" type="monotone" dataKey="brazil" name="🇧🇷 브라질산 CIF" stroke="#10b981" strokeWidth={3} dot={{ r: 4 }} />
-          <Line yAxisId="left" type="monotone" dataKey="thai" name="🇹🇭 태국산 CIF" stroke="#8b5cf6" strokeWidth={3} dot={{ r: 4 }} />
+          <Line yAxisId="left" type="monotone" dataKey="brazil" name="🇧🇷 브라질산 CIF" stroke="var(--w-emerald-500)" strokeWidth={3} dot={{ r: 4 }} />
+          <Line yAxisId="left" type="monotone" dataKey="thai" name="🇹🇭 태국산 CIF" stroke="var(--w-violet-500)" strokeWidth={3} dot={{ r: 4 }} />
         </ComposedChart>
       }
       kpiPanel={[
@@ -90,9 +90,9 @@ export function InsightChannelMatrix() {
         <BarChart data={channelData} margin={{ top: 20, right: 30, left: 20, bottom: 5 }} layout="vertical">
           <ChartPatternDefs />
           <CartesianGrid strokeDasharray="3 3" horizontal={false} stroke="rgba(255,255,255,0.1)" />
-          <XAxis type="number" stroke="#94a3b8" unit="%" />
-          <YAxis dataKey="channel" type="category" stroke="#94a3b8" width={120} />
-          <RTooltip contentStyle={{ backgroundColor: '#1a2442', border: 'none', borderRadius: '8px' }} />
+          <XAxis type="number" stroke="var(--w-slate-400)" unit="%" />
+          <YAxis dataKey="channel" type="category" stroke="var(--w-slate-400)" width={120} />
+          <RTooltip contentStyle={{ backgroundColor: 'var(--w-navy-900)', border: 'none', borderRadius: '8px' }} />
           <Legend />
           <Bar dataKey="margin" name="마진율(%)" radius={[0, 4, 4, 0]}>
             {channelData.map((_, idx) => {
@@ -136,18 +136,18 @@ export function InsightVMILockin() {
           <ChartPatternDefs />
           <defs>
             <linearGradient id="retGrad" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="5%" stopColor="#3b82f6" stopOpacity={0.6} />
-              <stop offset="95%" stopColor="#3b82f6" stopOpacity={0} />
+              <stop offset="5%" stopColor="var(--w-blue-500)" stopOpacity={0.6} />
+              <stop offset="95%" stopColor="var(--w-blue-500)" stopOpacity={0} />
             </linearGradient>
           </defs>
           <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" />
-          <XAxis dataKey="stage" stroke="#94a3b8" />
-          <YAxis yAxisId="left" stroke="#94a3b8" unit="%" domain={[0, 100]} />
-          <YAxis yAxisId="right" orientation="right" stroke="#10b981" unit="%" />
-          <RTooltip contentStyle={{ backgroundColor: '#1a2442', border: 'none', borderRadius: '8px' }} />
+          <XAxis dataKey="stage" stroke="var(--w-slate-400)" />
+          <YAxis yAxisId="left" stroke="var(--w-slate-400)" unit="%" domain={[0, 100]} />
+          <YAxis yAxisId="right" orientation="right" stroke="var(--w-emerald-500)" unit="%" />
+          <RTooltip contentStyle={{ backgroundColor: 'var(--w-navy-900)', border: 'none', borderRadius: '8px' }} />
           <Legend />
-          <Area yAxisId="left" type="monotone" dataKey="retention" name="바이어 재계약률(%)" stroke="#3b82f6" fill="url(#retGrad)" />
-          <Line yAxisId="right" type="monotone" dataKey="margin" name="평균 마진율(%)" stroke="#10b981" strokeWidth={3} dot={{ r: 4 }} />
+          <Area yAxisId="left" type="monotone" dataKey="retention" name="바이어 재계약률(%)" stroke="var(--w-blue-500)" fill="url(#retGrad)" />
+          <Line yAxisId="right" type="monotone" dataKey="margin" name="평균 마진율(%)" stroke="var(--w-emerald-500)" strokeWidth={3} dot={{ r: 4 }} />
         </ComposedChart>
       }
       kpiPanel={[

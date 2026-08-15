@@ -31,16 +31,16 @@ export function WidgetRussiaHegemony() {
               <stop offset="95%" stopColor="var(--color-danger)" stopOpacity={0} />
             </linearGradient>
             <linearGradient id="colorRowPol" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="5%" stopColor="#94a3b8" stopOpacity={0.4} />
-              <stop offset="95%" stopColor="#94a3b8" stopOpacity={0} />
+              <stop offset="5%" stopColor="var(--w-slate-400)" stopOpacity={0.4} />
+              <stop offset="95%" stopColor="var(--w-slate-400)" stopOpacity={0} />
             </linearGradient>
           </defs>
           <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" vertical={false} />
-          <XAxis dataKey="year" stroke="#94a3b8" fontSize={12} tickLine={false} />
-          <YAxis stroke="#94a3b8" fontSize={12} tickLine={false} tickFormatter={(v) => `${(v / 1000).toFixed(0)}k`} />
-          <Tooltip contentStyle={{ backgroundColor: '#1a2442', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '8px', color: '#f8fafc' }} formatter={(value: any, name: any) => [`${(Number(value) / 1000).toFixed(1)}k tons`, name]} />
-          <Legend wrapperStyle={{ fontSize: '12px', color: '#cbd5e1' }} />
-          <Area type="monotone" dataKey="row" name="전세계 기타" stroke="#94a3b8" fillOpacity={1} fill="url(#colorRowPol)" stackId="1" />
+          <XAxis dataKey="year" stroke="var(--w-slate-400)" fontSize={12} tickLine={false} />
+          <YAxis stroke="var(--w-slate-400)" fontSize={12} tickLine={false} tickFormatter={(v) => `${(v / 1000).toFixed(0)}k`} />
+          <Tooltip contentStyle={{ backgroundColor: 'var(--w-navy-900)', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '8px', color: 'var(--w-slate-50)' }} formatter={(value: any, name: any) => [`${(Number(value) / 1000).toFixed(1)}k tons`, name]} />
+          <Legend wrapperStyle={{ fontSize: '12px', color: 'var(--w-slate-300)' }} />
+          <Area type="monotone" dataKey="row" name="전세계 기타" stroke="var(--w-slate-400)" fillOpacity={1} fill="url(#colorRowPol)" stackId="1" />
           <Area type="monotone" dataKey="russia" name="러시아 명태 가공 (천 톤)" stroke="var(--color-danger)" fillOpacity={1} fill="url(#colorRussiaPol)" stackId="1" />
         </AreaChart>
       }
@@ -74,10 +74,10 @@ export function WidgetEaCollapse() {
       chart={
         <LineChart data={data} margin={{ top: 20, right: 30, left: 10, bottom: 5 }}>
           <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" vertical={false} />
-          <XAxis dataKey="year" stroke="#94a3b8" fontSize={12} tickLine={false} />
-          <YAxis stroke="#94a3b8" fontSize={12} tickLine={false} tickFormatter={(v) => `${(v / 1000).toFixed(0)}k`} />
-          <Tooltip contentStyle={{ backgroundColor: '#1a2442', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '8px', color: '#f8fafc' }} formatter={(value: any, name: any) => [`${(Number(value) / 1000).toFixed(1)}k tons`, name]} />
-          <Legend wrapperStyle={{ fontSize: '12px', color: '#cbd5e1' }} />
+          <XAxis dataKey="year" stroke="var(--w-slate-400)" fontSize={12} tickLine={false} />
+          <YAxis stroke="var(--w-slate-400)" fontSize={12} tickLine={false} tickFormatter={(v) => `${(v / 1000).toFixed(0)}k`} />
+          <Tooltip contentStyle={{ backgroundColor: 'var(--w-navy-900)', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '8px', color: 'var(--w-slate-50)' }} formatter={(value: any, name: any) => [`${(Number(value) / 1000).toFixed(1)}k tons`, name]} />
+          <Legend wrapperStyle={{ fontSize: '12px', color: 'var(--w-slate-300)' }} />
           <Line type="monotone" dataKey="japan" name="일본" stroke="#eab308" strokeWidth={3} dot={false} />
           <Line type="monotone" dataKey="korea" name="대한민국" stroke="var(--color-info)" strokeWidth={3} dot={false} />
         </LineChart>

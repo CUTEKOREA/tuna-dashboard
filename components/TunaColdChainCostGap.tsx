@@ -33,7 +33,7 @@ const CustomTooltip = ({ active, payload, label }: any) => {
   if (!active || !payload?.length) return null;
   return (
     <div style={{ background: '#0a0f1f', border: '1px solid #334155', borderRadius: 6, padding: '8px 12px' }}>
-      <p style={{ color: '#f8fafc', fontWeight: 600, margin: '0 0 4px 0', fontSize: '0.85rem' }}>{label}</p>
+      <p style={{ color: 'var(--w-slate-50)', fontWeight: 600, margin: '0 0 4px 0', fontSize: '0.85rem' }}>{label}</p>
       {payload.map((entry: any, i: number) => (
         <p key={i} style={{ color: entry.color, margin: '2px 0', fontSize: '0.8rem' }}>
           {entry.dataKey === 'sea' ? '해상' : '항공'} · {entry.value.toLocaleString()}만원/MT
@@ -65,7 +65,7 @@ const TunaColdChainCostGap = () => (
         <defs>
           <linearGradient id="tunaColdChainBarGradient" x1="0" y1="0" x2="0" y2="1">
             <stop offset="0%" stopColor="#22d3ee" />
-            <stop offset="100%" stopColor="#3b82f6" />
+            <stop offset="100%" stopColor="var(--w-blue-500)" />
           </linearGradient>
         </defs>
         <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" vertical={false} />
@@ -98,7 +98,7 @@ const TunaColdChainCostGap = () => (
           )}
         />
         <Bar yAxisId="sea" dataKey="sea" fill="url(#tunaColdChainBarGradient)" radius={[4, 4, 0, 0]} barSize={32} />
-        <Line yAxisId="air" type="monotone" dataKey="air" stroke="#f59e0b" strokeWidth={2} dot={{ fill: '#f59e0b', r: 4, strokeWidth: 0 }} />
+        <Line yAxisId="air" type="monotone" dataKey="air" stroke="var(--w-amber-500)" strokeWidth={2} dot={{ fill: 'var(--w-amber-500)', r: 4, strokeWidth: 0 }} />
       </ComposedChart>
     }
     takeaway={{

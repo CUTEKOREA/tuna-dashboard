@@ -30,20 +30,20 @@ export default function SasThaiSourcing() {
       }}
       customBody={
         <div style={{ display: 'flex', flexDirection: 'column', gap: '12px', width: '100%' }}>
-          <div style={{ fontSize: '0.66rem', color: '#94a3b8', fontWeight: 600, textAlign: 'center' }}>EU 캔참치 수입 관세 — 태국의 24%p 핸디캡</div>
+          <div style={{ fontSize: '0.66rem', color: 'var(--w-slate-400)', fontWeight: 600, textAlign: 'center' }}>EU 캔참치 수입 관세 — 태국의 24%p 핸디캡</div>
           <div style={{ height: '160px', width: '100%' }}>
             <SafeResponsiveContainer width="100%" height="100%">
               <BarChart data={EU_TARIFF} margin={{ top: 18, right: 16, left: 0, bottom: 0 }}>
                 <CartesianGrid strokeDasharray="3 3" opacity={0.15} vertical={false} />
-                <XAxis dataKey="origin" fontSize={11} tickLine={false} axisLine={false} stroke="#64748b" interval={0} />
-                <YAxis domain={[0, 28]} tickFormatter={(v: unknown) => `${v}%`} fontSize={10} tickLine={false} axisLine={false} stroke="#64748b" />
+                <XAxis dataKey="origin" fontSize={11} tickLine={false} axisLine={false} stroke="var(--w-slate-500)" interval={0} />
+                <YAxis domain={[0, 28]} tickFormatter={(v: unknown) => `${v}%`} fontSize={10} tickLine={false} axisLine={false} stroke="var(--w-slate-500)" />
                 <Tooltip
-                  contentStyle={{ borderRadius: '8px', border: 'none', background: '#1a2442', color: '#e2e8f0' }}
+                  contentStyle={{ borderRadius: '8px', border: 'none', background: 'var(--w-navy-900)', color: 'var(--w-slate-200)' }}
                   formatter={(v: unknown, _n: unknown, p: any) => [`${v}% · ${p.payload.note}`, 'EU 관세']}
                 />
                 <Bar dataKey="rate" radius={[4, 4, 0, 0]} isAnimationActive={false}>
                   {EU_TARIFF.map((d) => <Cell key={d.origin} fill={d.color} />)}
-                  <LabelList dataKey="rate" position="top" formatter={(v: unknown) => `${v}%`} fontSize={11} fill="#e2e8f0" />
+                  <LabelList dataKey="rate" position="top" formatter={(v: unknown) => `${v}%`} fontSize={11} fill="var(--w-slate-200)" />
                 </Bar>
               </BarChart>
             </SafeResponsiveContainer>
@@ -54,9 +54,9 @@ export default function SasThaiSourcing() {
               { k: '가다랑어 수입(2024)', v: '$1.01B', s: '670천톤 · 물량 +38.7% YoY', c: '#38bdf8' },
             ].map((x) => (
               <div key={x.k} style={{ background: `${x.c}0f`, border: `1px solid ${x.c}2e`, borderRadius: '8px', padding: '9px 11px', display: 'flex', flexDirection: 'column', gap: '2px' }}>
-                <span style={{ fontSize: '0.6rem', color: '#94a3b8' }}>{x.k}</span>
+                <span style={{ fontSize: '0.6rem', color: 'var(--w-slate-400)' }}>{x.k}</span>
                 <span style={{ fontSize: '1.2rem', fontWeight: 800, color: x.c }}>{x.v}</span>
-                <span style={{ fontSize: '0.56rem', color: '#64748b' }}>{x.s}</span>
+                <span style={{ fontSize: '0.56rem', color: 'var(--w-slate-500)' }}>{x.s}</span>
               </div>
             ))}
           </div>

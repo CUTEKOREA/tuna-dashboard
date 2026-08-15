@@ -219,8 +219,8 @@ export default function PollockDashboard() {
 
   if (!data) return (
     <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh', flexDirection: 'column', gap: '1rem' }}>
-      <RefreshCcw size={32} style={{ color: '#06b6d4', animation: 'spin 1s linear infinite' }} />
-      <p style={{ color: '#94a3b8', fontSize: '1rem' }}>Loading Intelligence...</p>
+      <RefreshCcw size={32} style={{ color: 'var(--w-cyan-500)', animation: 'spin 1s linear infinite' }} />
+      <p style={{ color: 'var(--w-slate-400)', fontSize: '1rem' }}>Loading Intelligence...</p>
     </div>
   );
 
@@ -249,7 +249,7 @@ export default function PollockDashboard() {
   /* ─── Unified Chart Renderer ─── */
   const renderChart = (widget: any) => {
     const d = widget.data;
-    if (!d || d.length === 0) return <div style={{height:'100%',display:'flex',alignItems:'center',justifyContent:'center',color:'#64748b'}}>데이터 없음</div>;
+    if (!d || d.length === 0) return <div style={{height:'100%',display:'flex',alignItems:'center',justifyContent:'center',color:'var(--w-slate-500)'}}>데이터 없음</div>;
     const chartType = (widget.chartType || '').toLowerCase();
 
     // NEW FORMAT (Claude widgets)
@@ -263,7 +263,7 @@ export default function PollockDashboard() {
                 {d.map((_: any, idx: number) => <Cell key={idx} fill={PIE_COLORS[idx % PIE_COLORS.length]} />)}
               </Pie>
               <RechartsTooltip content={<CustomTooltip />} />
-              <Legend wrapperStyle={{ fontSize: '11px', color: '#cbd5e1' }} verticalAlign="top" height={36} />
+              <Legend wrapperStyle={{ fontSize: '11px', color: 'var(--w-slate-300)' }} verticalAlign="top" height={36} />
             </PieChart>
           );
         case "area":
@@ -278,8 +278,8 @@ export default function PollockDashboard() {
                 ))}
               </defs>
               <CartesianGrid strokeDasharray="3 3" stroke="rgba(140,170,255,0.12)" vertical={false} />
-              <XAxis dataKey={widget.xKey} stroke="#64748b" tick={{fontSize:10}} tickFormatter={formatXAxis} minTickGap={20} />
-              <YAxis stroke="#64748b" tick={{fontSize:10}} tickFormatter={formatYAxis} />
+              <XAxis dataKey={widget.xKey} stroke="var(--w-slate-500)" tick={{fontSize:10}} tickFormatter={formatXAxis} minTickGap={20} />
+              <YAxis stroke="var(--w-slate-500)" tick={{fontSize:10}} tickFormatter={formatYAxis} />
               <RechartsTooltip content={<CustomTooltip />} />
               <Legend wrapperStyle={{fontSize:'11px'}} verticalAlign="top" height={36} />
               {widget.areas?.map((a: any, i: number) => (
@@ -294,9 +294,9 @@ export default function PollockDashboard() {
             <ComposedChart data={d}>
               <ChartPatternDefs />
               <CartesianGrid strokeDasharray="3 3" stroke="rgba(140,170,255,0.12)" vertical={false} />
-              <XAxis dataKey={widget.xKey} stroke="#64748b" tick={{fontSize:10}} tickFormatter={formatXAxis} minTickGap={20} />
-              <YAxis yAxisId="left" stroke="#64748b" tick={{fontSize:10}} tickFormatter={formatYAxis} />
-              {hasRightAxisNew && <YAxis yAxisId="right" orientation="right" stroke="#64748b" tick={{fontSize:10}} tickFormatter={formatYAxis} />}
+              <XAxis dataKey={widget.xKey} stroke="var(--w-slate-500)" tick={{fontSize:10}} tickFormatter={formatXAxis} minTickGap={20} />
+              <YAxis yAxisId="left" stroke="var(--w-slate-500)" tick={{fontSize:10}} tickFormatter={formatYAxis} />
+              {hasRightAxisNew && <YAxis yAxisId="right" orientation="right" stroke="var(--w-slate-500)" tick={{fontSize:10}} tickFormatter={formatYAxis} />}
               <RechartsTooltip content={<CustomTooltip />} />
               <Legend wrapperStyle={{fontSize:'11px'}} verticalAlign="top" height={36} />
               {widget.bars?.map((b: any, i: number) => {
@@ -309,7 +309,7 @@ export default function PollockDashboard() {
             </ComposedChart>
           );
         default:
-          return <div style={{color:'#64748b',textAlign:'center',marginTop:'40px'}}>Unsupported</div>;
+          return <div style={{color:'var(--w-slate-500)',textAlign:'center',marginTop:'40px'}}>Unsupported</div>;
       }
     }
 
@@ -334,9 +334,9 @@ export default function PollockDashboard() {
         return (
           <LineChart data={d} margin={{ top: 20, right: 10, left: -10, bottom: 0 }}>
             <CartesianGrid strokeDasharray="3 3" stroke="rgba(140,170,255,0.10)" />
-            <XAxis dataKey={xAxis} stroke="#94a3b8" tick={{ fill: '#94a3b8', fontSize: 11 }} tickFormatter={formatXAxis} minTickGap={20} />
-            <YAxis yAxisId="left" stroke="#94a3b8" tick={{ fill: '#94a3b8', fontSize: 11 }} tickFormatter={formatYAxis} />
-            {hasRightAxis && <YAxis yAxisId="right" orientation="right" stroke="#94a3b8" tick={{ fill: '#94a3b8', fontSize: 11 }} tickFormatter={formatYAxis} />}
+            <XAxis dataKey={xAxis} stroke="var(--w-slate-400)" tick={{ fill: 'var(--w-slate-400)', fontSize: 11 }} tickFormatter={formatXAxis} minTickGap={20} />
+            <YAxis yAxisId="left" stroke="var(--w-slate-400)" tick={{ fill: 'var(--w-slate-400)', fontSize: 11 }} tickFormatter={formatYAxis} />
+            {hasRightAxis && <YAxis yAxisId="right" orientation="right" stroke="var(--w-slate-400)" tick={{ fill: 'var(--w-slate-400)', fontSize: 11 }} tickFormatter={formatYAxis} />}
             <RechartsTooltip content={<CustomTooltip />} />
             <Legend wrapperStyle={{ fontSize: '11px' }} iconType="circle" verticalAlign="top" height={36} />
             {series.map((s: any, i: number) => (
@@ -348,8 +348,8 @@ export default function PollockDashboard() {
         return (
           <AreaChart data={d} margin={{ top: 20, right: 10, left: -10, bottom: 0 }}>
             <CartesianGrid strokeDasharray="3 3" stroke="rgba(140,170,255,0.10)" />
-            <XAxis dataKey={xAxis} stroke="#94a3b8" tick={{ fill: '#94a3b8', fontSize: 11 }} tickFormatter={formatXAxis} minTickGap={20} />
-            <YAxis stroke="#94a3b8" tick={{ fill: '#94a3b8', fontSize: 11 }} tickFormatter={formatYAxis} />
+            <XAxis dataKey={xAxis} stroke="var(--w-slate-400)" tick={{ fill: 'var(--w-slate-400)', fontSize: 11 }} tickFormatter={formatXAxis} minTickGap={20} />
+            <YAxis stroke="var(--w-slate-400)" tick={{ fill: 'var(--w-slate-400)', fontSize: 11 }} tickFormatter={formatYAxis} />
             <RechartsTooltip content={<CustomTooltip />} />
             <Legend wrapperStyle={{ fontSize: '11px' }} iconType="circle" verticalAlign="top" height={36} />
             {series.map((s: any, i: number) => (
@@ -362,8 +362,8 @@ export default function PollockDashboard() {
           <BarChart data={d} margin={{ top: 20, right: 10, left: -10, bottom: 0 }}>
             <ChartPatternDefs />
             <CartesianGrid strokeDasharray="3 3" stroke="rgba(140,170,255,0.10)" />
-            <XAxis dataKey={xAxis} stroke="#94a3b8" tick={{ fill: '#94a3b8', fontSize: 11 }} tickFormatter={formatXAxis} minTickGap={20} />
-            <YAxis stroke="#94a3b8" tick={{ fill: '#94a3b8', fontSize: 11 }} tickFormatter={formatYAxis} />
+            <XAxis dataKey={xAxis} stroke="var(--w-slate-400)" tick={{ fill: 'var(--w-slate-400)', fontSize: 11 }} tickFormatter={formatXAxis} minTickGap={20} />
+            <YAxis stroke="var(--w-slate-400)" tick={{ fill: 'var(--w-slate-400)', fontSize: 11 }} tickFormatter={formatYAxis} />
             <RechartsTooltip content={<CustomTooltip />} cursor={{fill: 'rgba(140,170,255,0.10)'}} />
             <Legend wrapperStyle={{ fontSize: '11px' }} iconType="circle" verticalAlign="top" height={36} />
             {series.map((s: any, i: number) => {
@@ -377,9 +377,9 @@ export default function PollockDashboard() {
           <ComposedChart data={d} margin={{ top: 20, right: 10, left: -10, bottom: 0 }}>
             <ChartPatternDefs />
             <CartesianGrid strokeDasharray="3 3" stroke="rgba(140,170,255,0.10)" />
-            <XAxis dataKey={xAxis} stroke="#94a3b8" tick={{ fill: '#94a3b8', fontSize: 11 }} tickFormatter={formatXAxis} minTickGap={20} />
-            <YAxis yAxisId="left" stroke="#94a3b8" tick={{ fill: '#94a3b8', fontSize: 11 }} tickFormatter={formatYAxis} />
-            {hasRightAxis && <YAxis yAxisId="right" orientation="right" stroke="#94a3b8" tick={{ fill: '#94a3b8', fontSize: 11 }} tickFormatter={formatYAxis} />}
+            <XAxis dataKey={xAxis} stroke="var(--w-slate-400)" tick={{ fill: 'var(--w-slate-400)', fontSize: 11 }} tickFormatter={formatXAxis} minTickGap={20} />
+            <YAxis yAxisId="left" stroke="var(--w-slate-400)" tick={{ fill: 'var(--w-slate-400)', fontSize: 11 }} tickFormatter={formatYAxis} />
+            {hasRightAxis && <YAxis yAxisId="right" orientation="right" stroke="var(--w-slate-400)" tick={{ fill: 'var(--w-slate-400)', fontSize: 11 }} tickFormatter={formatYAxis} />}
             <RechartsTooltip content={<CustomTooltip />} />
             <Legend wrapperStyle={{ fontSize: '11px' }} iconType="circle" verticalAlign="top" height={36} />
             {series.map((s: any, i: number) => {
@@ -391,12 +391,12 @@ export default function PollockDashboard() {
           </ComposedChart>
         );
       default:
-        return <div style={{color:'#64748b',textAlign:'center',marginTop:'40px'}}>Unsupported</div>;
+        return <div style={{color:'var(--w-slate-500)',textAlign:'center',marginTop:'40px'}}>Unsupported</div>;
     }
   };
 
   return (
-    <div style={{ padding: '0 1.5rem 3rem', color: '#f8fafc', minHeight: '100vh', fontFamily: "'Inter', sans-serif" }}>
+    <div style={{ padding: '0 1.5rem 3rem', color: 'var(--w-slate-50)', minHeight: '100vh', fontFamily: "'Inter', sans-serif" }}>
       
 
 
@@ -406,7 +406,7 @@ export default function PollockDashboard() {
           <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
             <div style={{ 
               width: '44px', height: '44px', borderRadius: '8px', 
-              background: 'linear-gradient(135deg, #06b6d4, #3b82f6)', 
+              background: 'linear-gradient(135deg, var(--w-cyan-500), var(--w-blue-500))',
               display: 'flex', alignItems: 'center', justifyContent: 'center',
               boxShadow: '0 0 20px rgba(6, 182, 212, 0.4)'
             }}>
@@ -414,18 +414,18 @@ export default function PollockDashboard() {
             </div>
             <div>
               <h1 style={{ margin: 0, fontSize: '1.6rem', fontWeight: 800, letterSpacing: '-0.5px',
-                background: 'linear-gradient(135deg, #06b6d4, #3b82f6)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>
+                background: 'linear-gradient(135deg, var(--w-cyan-500), var(--w-blue-500))', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>
                 명태 전략 인텔리전스
               </h1>
-              <p style={{ margin: 0, fontSize: '0.8rem', color: '#64748b' }}>명태 전략 커맨드센터 — 위젯 {totalWidgetCount}개 · KPI {kpiKeys.length}개 · API 파이프라인 6개</p>
+              <p style={{ margin: 0, fontSize: '0.8rem', color: 'var(--w-slate-500)' }}>명태 전략 커맨드센터 — 위젯 {totalWidgetCount}개 · KPI {kpiKeys.length}개 · API 파이프라인 6개</p>
             </div>
           </div>
           <div style={{ 
             fontSize: '0.8rem', padding: '0.5rem 1rem', 
             background: 'rgba(0, 0, 0, 0.2)', border: '1px solid rgba(6, 182, 212, 0.2)', 
-            borderRadius: '8px', color: '#94a3b8', fontWeight: 500
+            borderRadius: '8px', color: 'var(--w-slate-400)', fontWeight: 500
           }}>
-            <span style={{ color: '#06b6d4' }}>FishStatJ 1950-2024 + KFAS + 국정연 12건</span> · API-First · Claude Verified
+            <span style={{ color: 'var(--w-cyan-500)' }}>FishStatJ 1950-2024 + KFAS + 국정연 12건</span> · API-First · Claude Verified
           </div>
         </div>
       </header>
@@ -451,7 +451,7 @@ export default function PollockDashboard() {
             >
               <div style={{ position: 'absolute', top: '-15px', right: '-15px', width: '60px', height: '60px', borderRadius: '50%', background: `radial-gradient(circle, ${theme.glow}, transparent)`, pointerEvents: 'none' }} />
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', gap: '8px', minHeight: '32px' }}>
-                <span style={{ fontSize: '0.75rem', color: '#94a3b8', fontWeight: 600, lineHeight: 1.3, wordBreak: 'break-word' }}>{kpi.title}</span>
+                <span style={{ fontSize: '0.75rem', color: 'var(--w-slate-400)', fontWeight: 600, lineHeight: 1.3, wordBreak: 'break-word' }}>{kpi.title}</span>
                 <div style={{ flexShrink: 0 }}>
                   {kpi.telemetry ? (
                     <TelemetryBadge status={kpi.telemetry as any} syncDate={kpi.syncDate} />
@@ -460,7 +460,7 @@ export default function PollockDashboard() {
                   )}
                 </div>
               </div>
-              <div style={{ fontSize: '1.5rem', fontWeight: 800, color: '#f8fafc' }}>
+              <div style={{ fontSize: '1.5rem', fontWeight: 800, color: 'var(--w-slate-50)' }}>
                 {parsed ? (
                   <CountUp end={parsed.numberVal} duration={2} separator="," decimals={parsed.decimals} prefix={parsed.prefix} suffix={parsed.suffix} />
                 ) : kpi.value}
@@ -578,8 +578,8 @@ export default function PollockDashboard() {
               display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '1rem',
             }}>
               <div>
-                <h2 style={{ margin: 0, fontSize: "1.2rem", fontWeight: 700, color: "#f8fafc" }}>{pillar.title}</h2>
-                <p style={{ margin: "5px 0 0 0", fontSize: "0.85rem", color: "#94a3b8" }}>{pillar.desc}</p>
+                <h2 style={{ margin: 0, fontSize: "1.2rem", fontWeight: 700, color: "var(--w-slate-50)" }}>{pillar.title}</h2>
+                <p style={{ margin: "5px 0 0 0", fontSize: "0.85rem", color: "var(--w-slate-400)" }}>{pillar.desc}</p>
               </div>
               <span style={{ fontSize: '0.7rem', color: pillar.color, background: `${pillar.color}20`, padding: '4px 12px', borderRadius: '500px', fontWeight: 600, whiteSpace: 'nowrap' }}>
                 {pillarWidgets.length + (pillar.customInject?.length || 0)} 위젯

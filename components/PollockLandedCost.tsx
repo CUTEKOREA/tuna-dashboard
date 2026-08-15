@@ -71,7 +71,7 @@ export function PollockLandedCostWaterfall() {
                 </div>
                 <div style={{ flex: 1, background: routeData?.margin_vs_domestic > 10 ? 'rgba(34,197,94,0.08)' : 'rgba(239,68,68,0.08)', borderRadius: '8px', padding: '10px', textAlign: 'center' }}>
                   <div style={{ fontSize: '0.6rem', color: 'var(--text-secondary)' }}>국산 대비 마진</div>
-                  <div style={{ fontSize: '1.2rem', fontWeight: 700, color: routeData?.margin_vs_domestic > 10 ? '#22c55e' : '#ef4444' }}>{routeData?.margin_vs_domestic}%</div>
+                  <div style={{ fontSize: '1.2rem', fontWeight: 700, color: routeData?.margin_vs_domestic > 10 ? '#22c55e' : 'var(--w-red-500)' }}>{routeData?.margin_vs_domestic}%</div>
                   <div style={{ fontSize: '0.6rem', color: 'var(--text-secondary)' }}>{routeData?.advantage?.slice(0, 15)}</div>
                 </div>
               </div>
@@ -139,12 +139,12 @@ export function PollockRouteComparison() {
                   <tr key={i} style={{ borderBottom: '1px solid rgba(140,170,255,0.10)' }}>
                     <td style={{ padding: '6px', color: 'var(--text-primary)', fontWeight: 600 }}>{r.route}</td>
                     <td style={{ padding: '6px', textAlign: 'right', fontFamily: 'monospace', color: '#22c55e' }}>₩{r.total_krw_kg?.toLocaleString()}</td>
-                    <td style={{ padding: '6px', textAlign: 'right', fontFamily: 'monospace', color: r.margin_pct > 10 ? '#22c55e' : r.margin_pct > 5 ? '#f59e0b' : '#ef4444' }}>{r.margin_pct}%</td>
+                    <td style={{ padding: '6px', textAlign: 'right', fontFamily: 'monospace', color: r.margin_pct > 10 ? '#22c55e' : r.margin_pct > 5 ? 'var(--w-amber-500)' : 'var(--w-red-500)' }}>{r.margin_pct}%</td>
                     <td style={{ padding: '6px', textAlign: 'right' }}>
-                      <span style={{ padding: '2px 6px', borderRadius: '4px', fontSize: '0.6rem', background: r.risk_score > 80 ? 'rgba(239,68,68,0.15)' : 'rgba(34,197,94,0.15)', color: r.risk_score > 80 ? '#ef4444' : '#22c55e' }}>{r.risk_score}</span>
+                      <span style={{ padding: '2px 6px', borderRadius: '4px', fontSize: '0.6rem', background: r.risk_score > 80 ? 'rgba(239,68,68,0.15)' : 'rgba(34,197,94,0.15)', color: r.risk_score > 80 ? 'var(--w-red-500)' : '#22c55e' }}>{r.risk_score}</span>
                     </td>
                     <td style={{ padding: '6px', textAlign: 'right' }}>
-                      <span style={{ padding: '2px 6px', borderRadius: '4px', fontSize: '0.6rem', background: r.esg_score > 80 ? 'rgba(34,197,94,0.15)' : 'rgba(239,68,68,0.15)', color: r.esg_score > 80 ? '#22c55e' : '#ef4444' }}>{r.esg_score}</span>
+                      <span style={{ padding: '2px 6px', borderRadius: '4px', fontSize: '0.6rem', background: r.esg_score > 80 ? 'rgba(34,197,94,0.15)' : 'rgba(239,68,68,0.15)', color: r.esg_score > 80 ? '#22c55e' : 'var(--w-red-500)' }}>{r.esg_score}</span>
                     </td>
                   </tr>
                 ))}
@@ -159,9 +159,9 @@ export function PollockRouteComparison() {
               <XAxis dataKey="fx" tick={{ fill: 'var(--text-secondary)', fontSize: 10 }} />
               <YAxis tick={{ fill: 'var(--text-secondary)', fontSize: 10 }} />
               <Tooltip contentStyle={{ background: '#1a1a2e', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '8px', fontSize: '0.7rem' }} formatter={(v: any) => `₩${v}`} />
-              <Bar dataKey="russia_krw" fill="#ef4444" name="러시아" radius={[3, 3, 0, 0]} fillOpacity={0.7} />
-              <Bar dataKey="china_krw" fill="#f59e0b" name="중국" radius={[3, 3, 0, 0]} fillOpacity={0.7} />
-              <Bar dataKey="us_krw" fill="#3b82f6" name="미국 MSC" radius={[3, 3, 0, 0]} fillOpacity={0.7} />
+              <Bar dataKey="russia_krw" fill="var(--w-red-500)" name="러시아" radius={[3, 3, 0, 0]} fillOpacity={0.7} />
+              <Bar dataKey="china_krw" fill="var(--w-amber-500)" name="중국" radius={[3, 3, 0, 0]} fillOpacity={0.7} />
+              <Bar dataKey="us_krw" fill="var(--w-blue-500)" name="미국 MSC" radius={[3, 3, 0, 0]} fillOpacity={0.7} />
             </BarChart>
           </SafeResponsiveContainer>
         </>

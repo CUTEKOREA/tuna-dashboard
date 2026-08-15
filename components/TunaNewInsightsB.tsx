@@ -52,14 +52,14 @@ export function InsightTunaExtract() {
         <ComposedChart data={coinBrothData} margin={{ top: 20, right: 30, left: 20, bottom: 5 }}>
           <ChartPatternDefs />
           <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" />
-          <XAxis dataKey="year" stroke="#94a3b8" />
-          <YAxis yAxisId="left" stroke="#94a3b8" unit="억" />
-          <YAxis yAxisId="right" orientation="right" stroke="#10b981" unit="%" />
+          <XAxis dataKey="year" stroke="var(--w-slate-400)" />
+          <YAxis yAxisId="left" stroke="var(--w-slate-400)" unit="억" />
+          <YAxis yAxisId="right" orientation="right" stroke="var(--w-emerald-500)" unit="%" />
           <Tooltip contentStyle={{ backgroundColor: 'rgba(20, 28, 52, 0.9)', border: 'none', borderRadius: '8px' }} />
           <Legend />
-          <Bar yAxisId="left" dataKey="액상_시장" name="액상 시장(억원)" fill="#64748b" radius={[4, 4, 0, 0]} />
-          <Bar yAxisId="left" dataKey="분말_코인" name="분말/코인 시장(억원)" fill="#10b981" radius={[4, 4, 0, 0]} />
-          <Line yAxisId="right" type="monotone" dataKey="마진율_분말" name="분말 B2B 마진율(%)" stroke="#fbbf24" strokeWidth={3} />
+          <Bar yAxisId="left" dataKey="액상_시장" name="액상 시장(억원)" fill="var(--w-slate-500)" radius={[4, 4, 0, 0]} />
+          <Bar yAxisId="left" dataKey="분말_코인" name="분말/코인 시장(억원)" fill="var(--w-emerald-500)" radius={[4, 4, 0, 0]} />
+          <Line yAxisId="right" type="monotone" dataKey="마진율_분말" name="분말 B2B 마진율(%)" stroke="var(--w-amber-400)" strokeWidth={3} />
         </ComposedChart>
       }
       takeaway={{
@@ -102,12 +102,12 @@ export function InsightPillarTwo() {
         <BarChart data={pillarTwoData} margin={{ top: 20, right: 30, left: 20, bottom: 5 }}>
           <ChartPatternDefs />
           <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" />
-          <XAxis dataKey="company" stroke="#94a3b8" />
-          <YAxis stroke="#94a3b8" unit="%" domain={[0, 18]} />
+          <XAxis dataKey="company" stroke="var(--w-slate-400)" />
+          <YAxis stroke="var(--w-slate-400)" unit="%" domain={[0, 18]} />
           <Tooltip contentStyle={{ backgroundColor: 'rgba(20, 28, 52, 0.9)', border: 'none', borderRadius: '8px' }} />
           <Legend />
-          <Bar dataKey="before" name="기존 실효세율(%)" fill="#64748b" radius={[4, 4, 0, 0]} />
-          <Bar dataKey="after" name="Pillar Two 적용 후(%) (2026E)" fill="#fbbf24" radius={[4, 4, 0, 0]} />
+          <Bar dataKey="before" name="기존 실효세율(%)" fill="var(--w-slate-500)" radius={[4, 4, 0, 0]} />
+          <Bar dataKey="after" name="Pillar Two 적용 후(%) (2026E)" fill="var(--w-amber-400)" radius={[4, 4, 0, 0]} />
         </BarChart>
       }
       takeaway={{
@@ -147,12 +147,12 @@ export function InsightVietnamOEM() {
         <BarChart data={vietnamData} margin={{ top: 20, right: 30, left: 20, bottom: 5 }} layout="vertical">
           <ChartPatternDefs />
           <CartesianGrid strokeDasharray="3 3" horizontal={false} stroke="rgba(255,255,255,0.1)" />
-          <XAxis type="number" stroke="#94a3b8" />
-          <YAxis dataKey="metric" type="category" stroke="#94a3b8" width={100} />
+          <XAxis type="number" stroke="var(--w-slate-400)" />
+          <YAxis dataKey="metric" type="category" stroke="var(--w-slate-400)" width={100} />
           <Tooltip contentStyle={{ backgroundColor: 'rgba(20, 28, 52, 0.9)', border: 'none', borderRadius: '8px' }} />
           <Legend />
-          <Bar dataKey="Vietnam" name="🇻🇳 베트남 (2026)" fill="#06b6d4" radius={[0, 4, 4, 0]} />
-          <Bar dataKey="Thailand" name="🇹🇭 태국 (2026)" fill="#64748b" radius={[0, 4, 4, 0]} />
+          <Bar dataKey="Vietnam" name="🇻🇳 베트남 (2026)" fill="var(--w-cyan-500)" radius={[0, 4, 4, 0]} />
+          <Bar dataKey="Thailand" name="🇹🇭 태국 (2026)" fill="var(--w-slate-500)" radius={[0, 4, 4, 0]} />
         </BarChart>
       }
       takeaway={{

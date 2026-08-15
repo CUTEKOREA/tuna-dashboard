@@ -88,18 +88,18 @@ const CustomTooltip = ({ active, payload }: any) => {
       padding: '10px 14px',
       fontSize: '0.82rem',
     }}>
-      <p style={{ color: '#f8fafc', fontWeight: 700, margin: '0 0 6px 0' }}>
+      <p style={{ color: 'var(--w-slate-50)', fontWeight: 700, margin: '0 0 6px 0' }}>
         {point.year}년
       </p>
-      <p style={{ color: '#94a3b8', margin: '3px 0' }}>
+      <p style={{ color: 'var(--w-slate-400)', margin: '3px 0' }}>
         VDS 가격:{' '}
-        <span style={{ color: '#f59e0b', fontWeight: 600 }}>
+        <span style={{ color: 'var(--w-amber-500)', fontWeight: 600 }}>
           ${point.vdsPrice.toLocaleString()}/일
         </span>
       </p>
-      <p style={{ color: '#94a3b8', margin: '3px 0' }}>
+      <p style={{ color: 'var(--w-slate-400)', margin: '3px 0' }}>
         PNA 수익:{' '}
-        <span style={{ color: '#10b981', fontWeight: 600 }}>
+        <span style={{ color: 'var(--w-emerald-500)', fontWeight: 600 }}>
           ${point.pnaRevenue}M
         </span>
       </p>
@@ -154,12 +154,12 @@ export default function FfaVdsMarketIndicator() {
           <ChartPatternDefs />
           <defs>
             <linearGradient id="vdsPriceAreaGrad" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0%" stopColor="#f59e0b" stopOpacity={0.3} />
-              <stop offset="100%" stopColor="#f59e0b" stopOpacity={0.05} />
+              <stop offset="0%" stopColor="var(--w-amber-500)" stopOpacity={0.3} />
+              <stop offset="100%" stopColor="var(--w-amber-500)" stopOpacity={0.05} />
             </linearGradient>
             <linearGradient id="vdsRevenueBarGrad" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0%" stopColor="#10b981" stopOpacity={0.85} />
-              <stop offset="100%" stopColor="#10b981" stopOpacity={0.5} />
+              <stop offset="0%" stopColor="var(--w-emerald-500)" stopOpacity={0.85} />
+              <stop offset="100%" stopColor="var(--w-emerald-500)" stopOpacity={0.5} />
             </linearGradient>
           </defs>
           <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.08)" vertical={false} />
@@ -172,14 +172,14 @@ export default function FfaVdsMarketIndicator() {
           <YAxis
             yAxisId="left"
             stroke="rgba(255,255,255,0.2)"
-            tick={{ fill: '#f59e0b', fontSize: 10 }}
+            tick={{ fill: 'var(--w-amber-500)', fontSize: 10 }}
             domain={[6000, 16000]}
             tickFormatter={(v: number) => `$${(v / 1000).toFixed(0)}K`}
             label={{
               value: 'VDS 가격 ($/일)',
               angle: -90,
               position: 'insideLeft',
-              style: { fill: '#f59e0b', fontSize: 10 },
+              style: { fill: 'var(--w-amber-500)', fontSize: 10 },
               offset: -5,
             }}
           />
@@ -187,14 +187,14 @@ export default function FfaVdsMarketIndicator() {
             yAxisId="right"
             orientation="right"
             stroke="rgba(255,255,255,0.2)"
-            tick={{ fill: '#10b981', fontSize: 10 }}
+            tick={{ fill: 'var(--w-emerald-500)', fontSize: 10 }}
             domain={[200, 750]}
             tickFormatter={(v: number) => `$${v}M`}
             label={{
               value: 'PNA 수익 ($M)',
               angle: 90,
               position: 'insideRight',
-              style: { fill: '#10b981', fontSize: 10 },
+              style: { fill: 'var(--w-emerald-500)', fontSize: 10 },
               offset: -5,
             }}
           />
@@ -215,7 +215,7 @@ export default function FfaVdsMarketIndicator() {
             {vdsData.map((entry, idx) => (
               <Cell
                 key={`rev-${idx}`}
-                fill={entry.year === 2024 ? '#10b981' : '#10b981'}
+                fill={entry.year === 2024 ? 'var(--w-emerald-500)' : 'var(--w-emerald-500)'}
                 fillOpacity={entry.year === 2024 ? 0.9 : 0.55}
               />
             ))}
@@ -225,11 +225,11 @@ export default function FfaVdsMarketIndicator() {
             type="monotone"
             dataKey="vdsPrice"
             name="VDS 가격"
-            stroke="#f59e0b"
+            stroke="var(--w-amber-500)"
             strokeWidth={2.5}
             fill="url(#vdsPriceAreaGrad)"
-            dot={{ fill: '#f59e0b', r: 4, strokeWidth: 0 }}
-            activeDot={{ fill: '#fbbf24', r: 6, strokeWidth: 2, stroke: '#f59e0b' }}
+            dot={{ fill: 'var(--w-amber-500)', r: 4, strokeWidth: 0 }}
+            activeDot={{ fill: 'var(--w-amber-400)', r: 6, strokeWidth: 2, stroke: 'var(--w-amber-500)' }}
           />
         </ComposedChart>
       }

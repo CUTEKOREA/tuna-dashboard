@@ -33,8 +33,8 @@ const defaultTac = [
 const CustomTooltip = ({ active, payload, label }: any) => {
   if (!active || !payload?.length) return null;
   return (
-    <div style={{ background: 'rgba(20, 28, 52, 0.95)', border: '1px solid rgba(255, 255, 255, 0.1)', padding: '14px', borderRadius: '8px', color: '#f8fafc' }}>
-      <p style={{ margin: '0 0 8px 0', fontWeight: 'bold', color: '#e2e8f0' }}>{label}</p>
+    <div style={{ background: 'rgba(20, 28, 52, 0.95)', border: '1px solid rgba(255, 255, 255, 0.1)', padding: '14px', borderRadius: '8px', color: 'var(--w-slate-50)' }}>
+      <p style={{ margin: '0 0 8px 0', fontWeight: 'bold', color: 'var(--w-slate-200)' }}>{label}</p>
       {payload.map((entry: any, i: number) => (
         <p key={i} style={{ color: entry.color, margin: '0.25rem 0', fontSize: '0.8rem' }}>
           {entry.name}: {entry.value}
@@ -54,12 +54,12 @@ export default function TunaTacMonitor({ tacData, forecastData }: TacMonitorProp
         const pctColor = t.pct > 85 ? '#ef4444' : t.pct > 70 ? '#f59e0b' : '#22c55e';
         return (
           <div key={i} style={{ flex: 1, background: 'rgba(20, 28, 52, 0.5)', borderRadius: '8px', padding: '0.75rem', border: `1px solid ${pctColor}40` }}>
-            <div style={{ fontSize: '0.7rem', color: '#94a3b8', marginBottom: '4px' }}>{t.rfmo} · {t.species}</div>
+            <div style={{ fontSize: '0.7rem', color: 'var(--w-slate-400)', marginBottom: '4px' }}>{t.rfmo} · {t.species}</div>
             <div style={{ fontSize: '1.1rem', fontWeight: 700, color: pctColor }}>{t.pct.toFixed(1)}%</div>
             <div style={{ width: '100%', height: '6px', background: 'rgba(20, 28, 52, 0.9)', borderRadius: '3px', marginTop: '6px', overflow: 'hidden' }}>
               <div style={{ width: `${Math.min(t.pct, 100)}%`, height: '100%', borderRadius: '3px', background: pctColor, transition: 'width 0.6s ease' }} />
             </div>
-            <div style={{ fontSize: '0.65rem', color: '#64748b', marginTop: '4px' }}>{t.consumed.toLocaleString()} / {t.tac.toLocaleString()} MT</div>
+            <div style={{ fontSize: '0.65rem', color: 'var(--w-slate-500)', marginTop: '4px' }}>{t.consumed.toLocaleString()} / {t.tac.toLocaleString()} MT</div>
           </div>
         );
       })}
@@ -72,13 +72,13 @@ export default function TunaTacMonitor({ tacData, forecastData }: TacMonitorProp
         <ComposedChart data={chartData}>
           <ChartPatternDefs />
           <CartesianGrid strokeDasharray="3 3" stroke="#334155" />
-          <XAxis dataKey="year" stroke="#94a3b8" fontSize={11} />
-          <YAxis yAxisId="left" stroke="#94a3b8" fontSize={11} domain={[90, 140]} />
-          <YAxis yAxisId="right" orientation="right" stroke="#ef4444" fontSize={11} domain={[0, 100]} />
+          <XAxis dataKey="year" stroke="var(--w-slate-400)" fontSize={11} />
+          <YAxis yAxisId="left" stroke="var(--w-slate-400)" fontSize={11} domain={[90, 140]} />
+          <YAxis yAxisId="right" orientation="right" stroke="var(--w-red-500)" fontSize={11} domain={[0, 100]} />
           <Tooltip content={<CustomTooltip />} />
           <Legend wrapperStyle={{ fontSize: '11px' }} />
-          <Line yAxisId="left" type="monotone" dataKey="priceIndex" name="수산물 가격 지수" stroke="#f59e0b" strokeWidth={3} />
-          <Bar yAxisId="right" dataKey="tacPressure" name="쿼터 압력 (0~100)" fill="#ef4444" fillOpacity={0.6} />
+          <Line yAxisId="left" type="monotone" dataKey="priceIndex" name="수산물 가격 지수" stroke="var(--w-amber-500)" strokeWidth={3} />
+          <Bar yAxisId="right" dataKey="tacPressure" name="쿼터 압력 (0~100)" fill="var(--w-red-500)" fillOpacity={0.6} />
         </ComposedChart>
       </SafeResponsiveContainer>
     </div>

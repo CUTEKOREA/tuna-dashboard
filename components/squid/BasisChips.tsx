@@ -202,7 +202,7 @@ export const BasisChips: React.FC<BasisChipsProps> = ({ basis, sources = [], now
         <div
           style={{
             background: '#1e293b',
-            color: '#f8fafc',
+            color: 'var(--w-slate-50)',
             border: '1px solid rgba(255,255,255,0.08)',
             borderRadius: '8px',
             padding: '10px 12px',
@@ -213,22 +213,22 @@ export const BasisChips: React.FC<BasisChipsProps> = ({ basis, sources = [], now
         >
           <div style={{ fontWeight: 700, marginBottom: '6px' }}>원문 근거</div>
           {basis.archive_path.split(';').map((p) => (
-            <div key={p} style={{ color: '#94a3b8', wordBreak: 'break-all' }}>· {p}</div>
+            <div key={p} style={{ color: 'var(--w-slate-400)', wordBreak: 'break-all' }}>· {p}</div>
           ))}
           {basis.source_ids.map((id, index) => {
             const s = srcById.get(id);
-            if (!s) return <div key={id} style={{ color: '#94a3b8' }}>· 출처 {index + 1}</div>;
+            if (!s) return <div key={id} style={{ color: 'var(--w-slate-400)' }}>· 출처 {index + 1}</div>;
             return (
               <div key={id} style={{ marginTop: '4px' }}>
                 <a
                   href={s.landing_url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  style={{ color: '#38bdf8' }}
+                  style={{ color: 'var(--w-sky-400)' }}
                 >
                   {squidPublisherLabel(s.publisher)} — {koreanUiText(s.series ?? `출처 ${index + 1}`)}
                 </a>
-                <span style={{ color: '#64748b' }}>
+                <span style={{ color: 'var(--w-slate-500)' }}>
                   {' '}(우선순위 {s.priority.replace('P', '')}·{s.grade === 'A' ? '1' : s.grade === 'B' ? '2' : '3'}등급·{squidFrequencyLabel(s.frequency)})
                 </span>
               </div>

@@ -21,7 +21,7 @@ export default function TakeawayBox({ situation, actionPlan, takeaway, source }:
       }}
     >
       <div className={`ds-situation-box ${styles.sit}`} style={{ display: 'flex', flexDirection: 'column', gap: '6px' }}>
-        <span style={{ fontSize: '0.75rem', fontWeight: 800, color: '#94a3b8', letterSpacing: '0.08em', textTransform: 'uppercase', display: 'inline-flex', alignItems: 'center', gap: '6px' }}>
+        <span style={{ fontSize: '0.75rem', fontWeight: 800, color: 'var(--w-slate-400)', letterSpacing: '0.08em', textTransform: 'uppercase', display: 'inline-flex', alignItems: 'center', gap: '6px' }}>
           <span aria-hidden="true" style={{ fontSize: '0.8rem', lineHeight: 1 }}>📊</span>
           현황 분석
         </span>

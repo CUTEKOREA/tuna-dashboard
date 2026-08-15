@@ -40,13 +40,13 @@ export default function SasGlConsumptionMatrix() {
                 <span style={{ marginLeft: 'auto', fontSize: '0.58rem', color: r.rc, fontWeight: 600 }}>{r.size}</span>
               </div>
               <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '4px 10px' }}>
-                <div><span style={{ fontSize: '0.52rem', color: '#64748b' }}>대중 어종 </span><span style={{ fontSize: '0.6rem', color: '#e2e8f0', fontWeight: 600 }}>{r.mass}</span></div>
-                <div><span style={{ fontSize: '0.52rem', color: '#64748b' }}>프리미엄 ★ </span><span style={{ fontSize: '0.6rem', color: '#e2e8f0', fontWeight: 600 }}>{r.prem}</span></div>
-                <div style={{ gridColumn: '1 / -1' }}><span style={{ fontSize: '0.52rem', color: '#64748b' }}>채널 </span><span style={{ fontSize: '0.6rem', color: '#94a3b8' }}>{r.ch}</span></div>
+                <div><span style={{ fontSize: '0.52rem', color: 'var(--w-slate-500)' }}>대중 어종 </span><span style={{ fontSize: '0.6rem', color: 'var(--w-slate-200)', fontWeight: 600 }}>{r.mass}</span></div>
+                <div><span style={{ fontSize: '0.52rem', color: 'var(--w-slate-500)' }}>프리미엄 ★ </span><span style={{ fontSize: '0.6rem', color: 'var(--w-slate-200)', fontWeight: 600 }}>{r.prem}</span></div>
+                <div style={{ gridColumn: '1 / -1' }}><span style={{ fontSize: '0.52rem', color: 'var(--w-slate-500)' }}>채널 </span><span style={{ fontSize: '0.6rem', color: 'var(--w-slate-400)' }}>{r.ch}</span></div>
               </div>
             </div>
           ))}
-          <div style={{ fontSize: '0.56rem', color: '#64748b', lineHeight: 1.5, textAlign: 'center' }}>
+          <div style={{ fontSize: '0.56rem', color: 'var(--w-slate-500)', lineHeight: 1.5, textAlign: 'center' }}>
             ⚠ '사시미 단독' 공식 시장규모 통계 부재 → 외식·수입물량 근사 · 등급: 블루핀(정점)〉빅아이〉황다랑어, 가다랑어=캔 전용
           </div>
         </div>

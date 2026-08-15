@@ -72,7 +72,7 @@ export default function FleetPerformance() {
         </h2>
         {liveData && (
           <div style={{ display: 'flex', alignItems: 'center', gap: '8px', padding: '6px 12px', background: 'rgba(16, 185, 129, 0.1)', border: '1px solid rgba(16, 185, 129, 0.3)', borderRadius: '20px' }}>
-            <span style={{ display: 'inline-block', width: '8px', height: '8px', borderRadius: '50%', background: 'var(--color-success)', boxShadow: '0 0 8px #10b981' }}></span>
+            <span style={{ display: 'inline-block', width: '8px', height: '8px', borderRadius: '50%', background: 'var(--color-success)', boxShadow: '0 0 8px var(--w-emerald-500)' }}></span>
             <span style={{ color: 'var(--color-success)', fontSize: '13px', fontWeight: 'bold' }}>{liveData.status} ({liveData.source})</span>
           </div>
         )}

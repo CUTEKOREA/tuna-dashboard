@@ -54,8 +54,8 @@ export default function SasUkMarket() {
                 border: '1px solid rgba(140,170,255,0.12)', textAlign: 'center',
               }}>
                 <div style={{ fontSize: '1.1rem', fontWeight: 800, color: k.color }}>{k.value}</div>
-                <div style={{ fontSize: '0.62rem', color: '#94a3b8', marginTop: '2px' }}>{k.label}</div>
-                <div style={{ fontSize: '0.55rem', color: '#64748b', marginTop: '1px' }}>{k.sub}</div>
+                <div style={{ fontSize: '0.62rem', color: 'var(--w-slate-400)', marginTop: '2px' }}>{k.label}</div>
+                <div style={{ fontSize: '0.55rem', color: 'var(--w-slate-500)', marginTop: '1px' }}>{k.sub}</div>
               </div>
             ))}
           </div>
@@ -65,10 +65,10 @@ export default function SasUkMarket() {
             <SafeResponsiveContainer width="100%" height="100%">
               <BarChart data={mscGrowthData} margin={{ top: 10, right: 20, left: 0, bottom: 5 }}>
                 <CartesianGrid strokeDasharray="3 3" opacity={0.15} vertical={false} />
-                <XAxis dataKey="year" stroke="#64748b" tick={{ fill: '#94a3b8', fontSize: 10 }} axisLine={false} tickLine={false} />
-                <YAxis stroke="#64748b" tick={{ fill: '#94a3b8', fontSize: 11 }} axisLine={false} tickLine={false} tickFormatter={(v) => `${v}%`} />
+                <XAxis dataKey="year" stroke="var(--w-slate-500)" tick={{ fill: 'var(--w-slate-400)', fontSize: 10 }} axisLine={false} tickLine={false} />
+                <YAxis stroke="var(--w-slate-500)" tick={{ fill: 'var(--w-slate-400)', fontSize: 11 }} axisLine={false} tickLine={false} tickFormatter={(v) => `${v}%`} />
                 <Tooltip
-                  contentStyle={{ borderRadius: '8px', border: 'none', boxShadow: '0 4px 12px rgba(0,0,0,0.3)', backgroundColor: 'rgba(30,41,59,0.95)', color: '#e2e8f0' }}
+                  contentStyle={{ borderRadius: '8px', border: 'none', boxShadow: '0 4px 12px rgba(0,0,0,0.3)', backgroundColor: 'rgba(30,41,59,0.95)', color: 'var(--w-slate-200)' }}
                   formatter={(value: unknown, name: unknown) => {
                     const label = chartFmt.toChartText(name);
                     return [label === 'share' ? `${chartFmt.toChartNumber(value)}%` : `${chartFmt.formatChartNumber(value)}t`, label === 'share' ? 'MSC 비율' : '물량'];
@@ -76,13 +76,13 @@ export default function SasUkMarket() {
                 />
                 <Bar dataKey="share" name="share" radius={[6, 6, 0, 0]} isAnimationActive={false}>
                   {mscGrowthData.map((_, i) => (
-                    <Cell key={i} fill={i === mscGrowthData.length - 1 ? '#f59e0b' : '#38bdf8'} opacity={0.4 + i * 0.15} />
+                    <Cell key={i} fill={i === mscGrowthData.length - 1 ? 'var(--w-amber-500)' : 'var(--w-sky-400)'} opacity={0.4 + i * 0.15} />
                   ))}
                 </Bar>
               </BarChart>
             </SafeResponsiveContainer>
           </div>
-          <div style={{ textAlign: 'center', fontSize: '0.62rem', color: '#64748b', marginTop: '-8px' }}>
+          <div style={{ textAlign: 'center', fontSize: '0.62rem', color: 'var(--w-slate-500)', marginTop: '-8px' }}>
             영국 슈퍼마켓 참치 중 MSC 비율 (%, 2024/25E는 예상치)
           </div>
 
@@ -94,7 +94,7 @@ export default function SasUkMarket() {
                 background: `${ins.color}08`, border: `1px solid ${ins.color}15`,
               }}>
                 <div style={{ fontSize: '0.68rem', fontWeight: 700, color: ins.color }}>{ins.title}</div>
-                <div style={{ fontSize: '0.58rem', color: '#94a3b8', marginTop: '2px' }}>{ins.desc}</div>
+                <div style={{ fontSize: '0.58rem', color: 'var(--w-slate-400)', marginTop: '2px' }}>{ins.desc}</div>
               </div>
             ))}
           </div>

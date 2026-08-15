@@ -39,20 +39,20 @@ export default function SasEuTariffRegime() {
             <SafeResponsiveContainer width="100%" height="100%">
               <BarChart data={CHANNELS} margin={{ top: 18, right: 14, left: 0, bottom: 0 }}>
                 <CartesianGrid strokeDasharray="3 3" opacity={0.15} vertical={false} />
-                <XAxis dataKey="ch" fontSize={9} tickLine={false} axisLine={false} stroke="#64748b" interval={0} angle={-12} textAnchor="end" height={42} />
-                <YAxis domain={[0, 26]} tickFormatter={(v: unknown) => `${v}%`} fontSize={11} tickLine={false} axisLine={false} stroke="#64748b" />
+                <XAxis dataKey="ch" fontSize={9} tickLine={false} axisLine={false} stroke="var(--w-slate-500)" interval={0} angle={-12} textAnchor="end" height={42} />
+                <YAxis domain={[0, 26]} tickFormatter={(v: unknown) => `${v}%`} fontSize={11} tickLine={false} axisLine={false} stroke="var(--w-slate-500)" />
                 <Tooltip
-                  contentStyle={{ borderRadius: '8px', border: 'none', background: '#1a2442', color: '#e2e8f0' }}
+                  contentStyle={{ borderRadius: '8px', border: 'none', background: 'var(--w-navy-900)', color: 'var(--w-slate-200)' }}
                   formatter={(v: unknown, _n: unknown, p: any) => [`${v}% · ${p.payload.note}`, '관세']}
                 />
                 <Bar dataKey="rate" radius={[4, 4, 0, 0]} isAnimationActive={false}>
                   {CHANNELS.map((d) => <Cell key={d.ch} fill={d.color} />)}
-                  <LabelList dataKey="rate" position="top" formatter={(v: unknown) => `${v}%`} fontSize={11} fill="#e2e8f0" />
+                  <LabelList dataKey="rate" position="top" formatter={(v: unknown) => `${v}%`} fontSize={11} fill="var(--w-slate-200)" />
                 </Bar>
               </BarChart>
             </SafeResponsiveContainer>
           </div>
-          <div style={{ textAlign: 'center', fontSize: '0.62rem', color: '#94a3b8' }}>
+          <div style={{ textAlign: 'center', fontSize: '0.62rem', color: 'var(--w-slate-400)' }}>
             무관세 4대 우회로(로인 ATQ·EVFTA·Pacific EPA·한-EU FTA)가 24% 명목세율을 무력화
           </div>
         </div>

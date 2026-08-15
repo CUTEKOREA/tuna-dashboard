@@ -95,16 +95,16 @@ export default function SasExportPartnerStrategy() {
               </div>
 
               <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '8px', marginBottom: '10px' }}>
-                <div style={{ fontSize: '0.65rem', color: '#94a3b8' }}>
-                  <strong style={{ color: '#cbd5e1' }}>시장:</strong> {m.character}
+                <div style={{ fontSize: '0.65rem', color: 'var(--w-slate-400)' }}>
+                  <strong style={{ color: 'var(--w-slate-300)' }}>시장:</strong> {m.character}
                 </div>
-                <div style={{ fontSize: '0.65rem', color: '#94a3b8' }}>
-                  <strong style={{ color: '#cbd5e1' }}>관세:</strong> {m.tariff}
+                <div style={{ fontSize: '0.65rem', color: 'var(--w-slate-400)' }}>
+                  <strong style={{ color: 'var(--w-slate-300)' }}>관세:</strong> {m.tariff}
                 </div>
               </div>
 
-              <div style={{ fontSize: '0.62rem', color: '#64748b', marginBottom: '8px' }}>
-                <strong style={{ color: '#94a3b8' }}>진입요건:</strong> {m.entry}
+              <div style={{ fontSize: '0.62rem', color: 'var(--w-slate-500)', marginBottom: '8px' }}>
+                <strong style={{ color: 'var(--w-slate-400)' }}>진입요건:</strong> {m.entry}
               </div>
 
               <div style={{ display: 'flex', gap: '4px', flexWrap: 'wrap' }}>
@@ -114,9 +114,9 @@ export default function SasExportPartnerStrategy() {
                     padding: '3px 8px', borderRadius: '14px',
                     background: i === 0 ? `${m.color}15` : 'rgba(255,255,255,0.04)',
                     border: `1px solid ${i === 0 ? m.color + '30' : 'rgba(140,170,255,0.12)'}`,
-                    fontSize: '0.6rem', color: i === 0 ? m.color : '#94a3b8', fontWeight: i === 0 ? 600 : 400,
+                    fontSize: '0.6rem', color: i === 0 ? m.color : 'var(--w-slate-400)', fontWeight: i === 0 ? 600 : 400,
                   }}>
-                    <span style={{ fontWeight: 700, color: i === 0 ? m.color : '#64748b' }}>#{i + 1}</span>
+                    <span style={{ fontWeight: 700, color: i === 0 ? m.color : 'var(--w-slate-500)' }}>#{i + 1}</span>
                     {p.name}
                   </div>
                 ))}
@@ -133,8 +133,8 @@ export default function SasExportPartnerStrategy() {
               }}>
                 <div style={{ fontSize: '1rem', marginBottom: '4px' }}>{s.icon}</div>
                 <div style={{ fontSize: '0.72rem', fontWeight: 700, color: s.color }}>{s.phase}</div>
-                <div style={{ fontSize: '0.58rem', color: '#94a3b8', marginTop: '2px' }}>{s.desc}</div>
-                <div style={{ fontSize: '0.55rem', color: '#64748b', marginTop: '4px' }}>{s.targets}</div>
+                <div style={{ fontSize: '0.58rem', color: 'var(--w-slate-400)', marginTop: '2px' }}>{s.desc}</div>
+                <div style={{ fontSize: '0.55rem', color: 'var(--w-slate-500)', marginTop: '4px' }}>{s.targets}</div>
               </div>
             ))}
           </div>

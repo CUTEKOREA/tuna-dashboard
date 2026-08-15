@@ -30,23 +30,23 @@ export default function SasExColdLogistics() {
       }}
       customBody={
         <div style={{ display: 'flex', flexDirection: 'column', gap: '10px', width: '100%' }}>
-          <div style={{ fontSize: '0.66rem', color: '#94a3b8', fontWeight: 600, textAlign: 'center' }}>운송 모드별 상대 운임 (해상=1) · 항공 +50%(약 1.5배)</div>
+          <div style={{ fontSize: '0.66rem', color: 'var(--w-slate-400)', fontWeight: 600, textAlign: 'center' }}>운송 모드별 상대 운임 (해상=1) · 항공 +50%(약 1.5배)</div>
           <div style={{ height: '150px', width: '100%' }}>
             <SafeResponsiveContainer width="100%" height="100%">
               <BarChart data={ROUTES} layout="vertical" margin={{ top: 8, right: 40, left: 0, bottom: 0 }}>
                 <CartesianGrid strokeDasharray="3 3" opacity={0.15} horizontal={false} />
-                <XAxis type="number" domain={[0, 2]} tickFormatter={(v: unknown) => `${v}x`} fontSize={10} tickLine={false} axisLine={false} stroke="#64748b" />
-                <YAxis type="category" dataKey="route" fontSize={10} tickLine={false} axisLine={false} stroke="#64748b" width={120} />
-                <Tooltip contentStyle={{ borderRadius: '8px', border: 'none', background: '#1a2442', color: '#e2e8f0' }} formatter={(v: unknown, _n: unknown, p: any) => [`${v}x 운임 · ${p.payload.days}`, '상대비용']} />
+                <XAxis type="number" domain={[0, 2]} tickFormatter={(v: unknown) => `${v}x`} fontSize={10} tickLine={false} axisLine={false} stroke="var(--w-slate-500)" />
+                <YAxis type="category" dataKey="route" fontSize={10} tickLine={false} axisLine={false} stroke="var(--w-slate-500)" width={120} />
+                <Tooltip contentStyle={{ borderRadius: '8px', border: 'none', background: 'var(--w-navy-900)', color: 'var(--w-slate-200)' }} formatter={(v: unknown, _n: unknown, p: any) => [`${v}x 운임 · ${p.payload.days}`, '상대비용']} />
                 <Bar dataKey="usd" radius={[0, 4, 4, 0]} isAnimationActive={false}>
                   {ROUTES.map((d) => <Cell key={d.route} fill={d.color} />)}
-                  <LabelList dataKey="usd" position="right" formatter={(v: unknown) => `${v}x`} fontSize={11} fill="#e2e8f0" />
+                  <LabelList dataKey="usd" position="right" formatter={(v: unknown) => `${v}x`} fontSize={11} fill="var(--w-slate-200)" />
                 </Bar>
               </BarChart>
             </SafeResponsiveContainer>
           </div>
-          <div style={{ textAlign: 'center', fontSize: '0.62rem', color: '#94a3b8' }}>
-            항공 $3~7/kg + 콜드체인 $0.5~1.5/kg · 수산물 항공 비중 <span style={{ color: '#ef4444', fontWeight: 700 }}>&lt;10%</span> · 부산=정형·재수출 허브
+          <div style={{ textAlign: 'center', fontSize: '0.62rem', color: 'var(--w-slate-400)' }}>
+            항공 $3~7/kg + 콜드체인 $0.5~1.5/kg · 수산물 항공 비중 <span style={{ color: 'var(--w-red-500)', fontWeight: 700 }}>&lt;10%</span> · 부산=정형·재수출 허브
           </div>
         </div>
       }

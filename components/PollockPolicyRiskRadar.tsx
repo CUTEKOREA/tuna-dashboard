@@ -42,7 +42,7 @@ export function PollockSanctionParadox() {
           <>
             <div style={{ display: 'flex', gap: '8px', marginBottom: '12px' }}>
               <div style={{ flex: 1, background: 'rgba(239,68,68,0.1)', borderRadius: '8px', padding: '10px', textAlign: 'center' }}>
-                <div style={{ fontSize: '1.6rem', fontWeight: 800, color: '#ef4444' }}>{sanctionRisk?.severity || 95}</div>
+                <div style={{ fontSize: '1.6rem', fontWeight: 800, color: 'var(--w-red-500)' }}>{sanctionRisk?.severity || 95}</div>
                 <div style={{ fontSize: '0.65rem', color: '#fca5a5' }}>심각도</div>
               </div>
               <div style={{ flex: 1, background: 'rgba(251,146,60,0.1)', borderRadius: '8px', padding: '10px', textAlign: 'center' }}>
@@ -62,8 +62,8 @@ export function PollockSanctionParadox() {
                 <YAxis yAxisId="left" tick={{ fill: 'var(--text-secondary)', fontSize: 10 }} unit="%" />
                 <YAxis yAxisId="right" orientation="right" tick={{ fill: 'var(--text-secondary)', fontSize: 10 }} />
                 <Tooltip contentStyle={{ background: '#1a1a2e', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '8px', fontSize: '0.75rem' }} />
-                <Bar yAxisId="left" dataKey="russia_share" fill="#ef4444" name="러시아 점유율(%)" radius={[4, 4, 0, 0]} fillOpacity={0.7} />
-                <Bar yAxisId="left" dataKey="china_relay" fill="#f59e0b" name="중국 우회 가공(%)" radius={[4, 4, 0, 0]} fillOpacity={0.7} />
+                <Bar yAxisId="left" dataKey="russia_share" fill="var(--w-red-500)" name="러시아 점유율(%)" radius={[4, 4, 0, 0]} fillOpacity={0.7} />
+                <Bar yAxisId="left" dataKey="china_relay" fill="var(--w-amber-500)" name="중국 우회 가공(%)" radius={[4, 4, 0, 0]} fillOpacity={0.7} />
                 <Line yAxisId="right" type="monotone" dataKey="sanction_intensity" stroke="#a855f7" strokeWidth={2} name="제재 강도" dot={{ fill: '#a855f7', r: 3 }} />
               </ComposedChart>
             </div>
@@ -110,7 +110,7 @@ export function PollockFtaTariffMatrix() {
               <XAxis dataKey="name" tick={{ fill: 'var(--text-secondary)', fontSize: 9 }} />
               <YAxis tick={{ fill: 'var(--text-secondary)', fontSize: 10 }} unit="%" />
               <Tooltip contentStyle={{ background: '#1a1a2e', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '8px', fontSize: '0.75rem' }} />
-              <Bar dataKey="MFN" fill="#ef4444" name="MFN 관세" radius={[4, 4, 0, 0]} />
+              <Bar dataKey="MFN" fill="var(--w-red-500)" name="MFN 관세" radius={[4, 4, 0, 0]} />
               <Bar dataKey="FTA" fill="#22c55e" name="FTA 관세" radius={[4, 4, 0, 0]} />
             </BarChart>
           </div>
@@ -118,7 +118,7 @@ export function PollockFtaTariffMatrix() {
             {routes.slice(0, 3).map((r: any, i: number) => (
               <div key={i} style={{ background: 'rgba(34,197,94,0.06)', borderRadius: '6px', padding: '8px', textAlign: 'center' }}>
                 <div style={{ fontSize: '0.6rem', color: 'var(--text-secondary)' }}>{r.route}</div>
-                <div style={{ fontSize: '1.1rem', fontWeight: 700, color: r.savings_pct === 100 ? '#22c55e' : r.savings_pct > 0 ? '#f59e0b' : '#ef4444' }}>{r.savings_pct}%</div>
+                <div style={{ fontSize: '1.1rem', fontWeight: 700, color: r.savings_pct === 100 ? '#22c55e' : r.savings_pct > 0 ? 'var(--w-amber-500)' : 'var(--w-red-500)' }}>{r.savings_pct}%</div>
                 <div style={{ fontSize: '0.6rem', color: '#86efac' }}>관세 절감</div>
               </div>
             ))}
@@ -163,7 +163,7 @@ export function PollockRiskScorecard() {
           <>
             <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', marginBottom: '12px' }}>
               <div style={{ background: 'rgba(239,68,68,0.15)', borderRadius: '12px', padding: '14px 22px', textAlign: 'center' }}>
-                <div style={{ fontSize: '2.2rem', fontWeight: 800, color: '#ef4444' }}>{composite.overall}</div>
+                <div style={{ fontSize: '2.2rem', fontWeight: 800, color: 'var(--w-red-500)' }}>{composite.overall}</div>
                 <div style={{ fontSize: '0.7rem', color: '#fca5a5' }}>종합 리스크 ({composite.grade})</div>
                 <div style={{ fontSize: '0.6rem', color: '#f87171', marginTop: '2px' }}>▲ {composite.trend}</div>
               </div>
@@ -172,8 +172,8 @@ export function PollockRiskScorecard() {
                   <PolarGrid stroke="rgba(255,255,255,0.1)" />
                   <PolarAngleAxis dataKey="subject" tick={{ fill: 'var(--text-secondary)', fontSize: 8 }} />
                   <PolarRadiusAxis domain={[0, 100]} tick={false} axisLine={false} />
-                  <Radar name="심각도" dataKey="severity" stroke="#ef4444" fill="#ef4444" fillOpacity={0.3} />
-                  <Radar name="발생확률" dataKey="probability" stroke="#f59e0b" fill="#f59e0b" fillOpacity={0.2} />
+                  <Radar name="심각도" dataKey="severity" stroke="var(--w-red-500)" fill="var(--w-red-500)" fillOpacity={0.3} />
+                  <Radar name="발생확률" dataKey="probability" stroke="var(--w-amber-500)" fill="var(--w-amber-500)" fillOpacity={0.2} />
                 </RadarChart>
               </div>
             </div>
@@ -183,16 +183,16 @@ export function PollockRiskScorecard() {
                 <div key={key} style={{ display: 'flex', alignItems: 'center', gap: '8px', fontSize: '0.7rem' }}>
                   <span style={{ width: '90px', color: 'var(--text-secondary)', textAlign: 'right' }}>{key.replace(/_/g, ' ')}</span>
                   <div style={{ flex: 1, background: 'rgba(140,170,255,0.10)', borderRadius: '4px', height: '12px', overflow: 'hidden' }}>
-                    <div style={{ width: `${val as number}%`, height: '100%', background: (val as number) >= 90 ? '#ef4444' : (val as number) >= 75 ? '#f59e0b' : '#22c55e', borderRadius: '4px', transition: 'width 0.5s' }} />
+                    <div style={{ width: `${val as number}%`, height: '100%', background: (val as number) >= 90 ? 'var(--w-red-500)' : (val as number) >= 75 ? 'var(--w-amber-500)' : '#22c55e', borderRadius: '4px', transition: 'width 0.5s' }} />
                   </div>
-                  <span style={{ fontWeight: 700, fontFamily: 'monospace', color: (val as number) >= 90 ? '#ef4444' : '#f59e0b', width: '30px' }}>{val as number}</span>
+                  <span style={{ fontWeight: 700, fontFamily: 'monospace', color: (val as number) >= 90 ? 'var(--w-red-500)' : 'var(--w-amber-500)', width: '30px' }}>{val as number}</span>
                 </div>
               ))}
             </div>
             {/* vs Other Species */}
             <div style={{ display: 'flex', gap: '4px', flexWrap: 'wrap' }}>
               {Object.entries(vsSpecies).map(([species, score]) => (
-                <div key={species} style={{ padding: '4px 10px', borderRadius: '12px', background: species === 'pollock' ? 'rgba(239,68,68,0.15)' : 'rgba(140,170,255,0.10)', fontSize: '0.65rem', color: species === 'pollock' ? '#ef4444' : 'var(--text-secondary)' }}>
+                <div key={species} style={{ padding: '4px 10px', borderRadius: '12px', background: species === 'pollock' ? 'rgba(239,68,68,0.15)' : 'rgba(140,170,255,0.10)', fontSize: '0.65rem', color: species === 'pollock' ? 'var(--w-red-500)' : 'var(--text-secondary)' }}>
                   {species}: <strong>{score as number}</strong>
                 </div>
               ))}

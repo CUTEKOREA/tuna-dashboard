@@ -145,7 +145,7 @@ export default function SashimiSteakDashboard() {
           <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
             <div style={{
               width: '44px', height: '44px', borderRadius: '50%',
-              background: 'linear-gradient(135deg, #f59e0b, #ef4444)',
+              background: 'linear-gradient(135deg, var(--w-amber-500), var(--w-red-500))',
               display: 'flex', alignItems: 'center', justifyContent: 'center',
               boxShadow: 'rgba(0,0,0,0.3) 0px 8px 8px', flexShrink: 0,
             }}>

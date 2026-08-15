@@ -28,7 +28,7 @@ const getKorCountry = (engName: string) => {
 const CustomTooltip = ({ active, payload, label }: any) => {
   if (active && payload && payload.length) {
     return (
-      <div style={{ background: 'rgba(20, 28, 52, 0.9)', border: '1px solid rgba(255,255,255,0.1)', padding: '12px', borderRadius: '8px', color: '#f8fafc', boxShadow: '0 10px 25px -5px rgba(0, 0, 0, 0.5)', zIndex: 1000}}>
+      <div style={{ background: 'rgba(20, 28, 52, 0.9)', border: '1px solid rgba(255,255,255,0.1)', padding: '12px', borderRadius: '8px', color: 'var(--w-slate-50)', boxShadow: '0 10px 25px -5px rgba(0, 0, 0, 0.5)', zIndex: 1000}}>
         <p style={{ margin: '0 0 8px 0', fontWeight: 'bold', borderBottom: '1px dashed rgba(255,255,255,0.2)', paddingBottom: '4px' }}>{label}</p>
         {payload.map((entry: any, index: number) => (
           <p key={index} style={{ margin: '4px 0', color: entry.color || entry.payload.fill, fontSize: '13px', fontWeight: 600 }}>
@@ -53,7 +53,7 @@ const widgetStyle = {
 };
 
 const headerStyle = { display: 'flex', justifyContent: 'space-between', alignItems: 'center' };
-const titleStyle = { margin: 0, fontSize: '1.1rem', fontWeight: 700, color: '#f8fafc', display: 'flex', alignItems: 'center', gap: '8px' };
+const titleStyle = { margin: 0, fontSize: '1.1rem', fontWeight: 700, color: 'var(--w-slate-50)', display: 'flex', alignItems: 'center', gap: '8px' };
 const chartStyle = { height: '260px', flexShrink: 0, width: '100%', position: 'relative' as const };
 
 /* 1. Traditional Giants Decline */
@@ -61,8 +61,8 @@ export const WidgetTunaGiantsFall = () => (
   <div style={widgetStyle}>
     <div style={{ ...headerStyle, flexDirection: 'column', alignItems: 'flex-start', gap: '4px' }}>
       <h3 style={titleStyle}><ArrowDownRight size={18} color="#f43f5e" /> [산업 구조변화] 전통 참치 강국의 몰락 (1980-2023)
-      <span style={{ display:'inline-flex', alignItems:'center', gap:'3px', background:'rgba(16,185,129,0.1)', border:'1px solid #10b981', color:'var(--color-success)', fontSize:'0.65rem', fontWeight:600, padding:'1px 5px', borderRadius:'4px', letterSpacing:'0.2px', marginLeft:'6px' }}>🔵 SYNCED (FAO)</span>
-      <span style={{ marginLeft: 'auto', fontSize: '0.75rem', color: '#94a3b8', fontWeight: 500 }}>(단위: 생산량 kMT)</span>
+      <span style={{ display:'inline-flex', alignItems:'center', gap:'3px', background:'rgba(16,185,129,0.1)', border:'1px solid var(--w-emerald-500)', color:'var(--color-success)', fontSize:'0.65rem', fontWeight:600, padding:'1px 5px', borderRadius:'4px', letterSpacing:'0.2px', marginLeft:'6px' }}>🔵 SYNCED (FAO)</span>
+      <span style={{ marginLeft: 'auto', fontSize: '0.75rem', color: 'var(--w-slate-400)', fontWeight: 500 }}>(단위: 생산량 kMT)</span>
       </h3>
     </div>
     <div style={chartStyle}>
@@ -70,8 +70,8 @@ export const WidgetTunaGiantsFall = () => (
         <ComposedChart data={declineData} margin={{ top: 10, right: 10, left: 0, bottom: 0 }}>
           <ChartPatternDefs />
           <CartesianGrid strokeDasharray="3 3" stroke="rgba(140,170,255,0.10)" vertical={false} />
-          <XAxis dataKey="year" stroke="#94a3b8" tick={{ fontSize: 11 }} tickLine={false} minTickGap={5}  angle={0} textAnchor="middle" height={60} tickFormatter={truncateXAxis}/>
-          <YAxis stroke="#94a3b8" tick={{ fontSize: 11 }} tickLine={false} tickFormatter={(v)=>`${v}k`}/>
+          <XAxis dataKey="year" stroke="var(--w-slate-400)" tick={{ fontSize: 11 }} tickLine={false} minTickGap={5}  angle={0} textAnchor="middle" height={60} tickFormatter={truncateXAxis}/>
+          <YAxis stroke="var(--w-slate-400)" tick={{ fontSize: 11 }} tickLine={false} tickFormatter={(v)=>`${v}k`}/>
           <RechartsTooltip content={<CustomTooltip />} />
           <Legend wrapperStyle={{ fontSize: 12 }} />
           <Line type="monotone" dataKey="japan" name={getKorCountry("Japan")} stroke="var(--color-danger)" strokeWidth={3} dot={false}/>
@@ -93,21 +93,21 @@ export const WidgetThaiEmpire = () => (
   <div style={widgetStyle}>
     <div style={{ ...headerStyle, flexDirection: 'column', alignItems: 'flex-start', gap: '4px' }}>
       <h3 style={titleStyle}><Globe size={18} color="var(--color-warning)" /> [가공 패권] 태국과 스페인의 통조림 제국
-      <span style={{ display:'inline-flex', alignItems:'center', gap:'3px', background:'rgba(16,185,129,0.1)', border:'1px solid #10b981', color:'var(--color-success)', fontSize:'0.65rem', fontWeight:600, padding:'1px 5px', borderRadius:'4px', letterSpacing:'0.2px', marginLeft:'6px' }}>🔵 SYNCED (FAO)</span>
-      <span style={{ marginLeft: 'auto', fontSize: '0.75rem', color: '#94a3b8', fontWeight: 500 }}>(단위: 생산량 kMT)</span>
+      <span style={{ display:'inline-flex', alignItems:'center', gap:'3px', background:'rgba(16,185,129,0.1)', border:'1px solid var(--w-emerald-500)', color:'var(--color-success)', fontSize:'0.65rem', fontWeight:600, padding:'1px 5px', borderRadius:'4px', letterSpacing:'0.2px', marginLeft:'6px' }}>🔵 SYNCED (FAO)</span>
+      <span style={{ marginLeft: 'auto', fontSize: '0.75rem', color: 'var(--w-slate-400)', fontWeight: 500 }}>(단위: 생산량 kMT)</span>
       </h3>
     </div>
     <div style={chartStyle}>
       <SafeResponsiveContainer width="100%" height="100%">
         <AreaChart data={empireData} margin={{ top: 10, right: 10, left: 0, bottom: 0 }}>
           <CartesianGrid strokeDasharray="3 3" stroke="rgba(140,170,255,0.10)" vertical={false} />
-          <XAxis dataKey="year" stroke="#94a3b8" tick={{ fontSize: 11 }} tickLine={false} minTickGap={5}  angle={0} textAnchor="middle" height={60} tickFormatter={truncateXAxis}/>
-          <YAxis stroke="#94a3b8" tick={{ fontSize: 11 }} tickLine={false} tickFormatter={(v)=>`${v}k`}/>
+          <XAxis dataKey="year" stroke="var(--w-slate-400)" tick={{ fontSize: 11 }} tickLine={false} minTickGap={5}  angle={0} textAnchor="middle" height={60} tickFormatter={truncateXAxis}/>
+          <YAxis stroke="var(--w-slate-400)" tick={{ fontSize: 11 }} tickLine={false} tickFormatter={(v)=>`${v}k`}/>
           <RechartsTooltip content={<CustomTooltip />} />
           <Legend wrapperStyle={{ fontSize: 12 }} />
           <Area type="monotone" dataKey="spain" stackId="1" name={getKorCountry("Spain")} stroke="var(--color-warning)" fill="rgba(245, 158, 11, 0.6)" strokeWidth={2} />
           <Area type="monotone" dataKey="thailand" stackId="1" name={getKorCountry("Thailand")} stroke="var(--color-success)" fill="rgba(16, 185, 129, 0.6)" strokeWidth={2} />
-          <Area type="monotone" dataKey="other" stackId="1" name="원물 하청 국가군" stroke="#64748b" fill="rgba(100, 116, 139, 0.3)" strokeWidth={1} />
+          <Area type="monotone" dataKey="other" stackId="1" name="원물 하청 국가군" stroke="var(--w-slate-500)" fill="rgba(100, 116, 139, 0.3)" strokeWidth={1} />
         </AreaChart>
       </SafeResponsiveContainer>
     </div>

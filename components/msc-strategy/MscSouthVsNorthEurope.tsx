@@ -32,14 +32,14 @@ function ScatterTooltipContent({ active, payload }: any) {
       border: '1px solid rgba(255,255,255,0.1)',
       borderRadius: 8,
       padding: 12,
-      color: '#e2e8f0',
+      color: 'var(--w-slate-200)',
       fontSize: 14,
       boxShadow: '0 10px 30px rgba(0,0,0,0.4)',
     }}>
       <div style={{ fontWeight: 700, marginBottom: 4, color: '#ffffff' }}>{d.country}</div>
-      <div style={{ color: '#cbd5e1' }}>MSC 침투율: <span style={{ fontWeight: 600, color: '#38bdf8' }}>{d.x}%</span></div>
-      <div style={{ color: '#cbd5e1' }}>연간 성장률: <span style={{ fontWeight: 600, color: '#34d399' }}>{d.y}%</span></div>
-      <div style={{ color: '#94a3b8', marginTop: 4 }}>시장 규모: {d.z.toLocaleString()}톤</div>
+      <div style={{ color: 'var(--w-slate-300)' }}>MSC 침투율: <span style={{ fontWeight: 600, color: 'var(--w-sky-400)' }}>{d.x}%</span></div>
+      <div style={{ color: 'var(--w-slate-300)' }}>연간 성장률: <span style={{ fontWeight: 600, color: 'var(--w-emerald-400)' }}>{d.y}%</span></div>
+      <div style={{ color: 'var(--w-slate-400)', marginTop: 4 }}>시장 규모: {d.z.toLocaleString()}톤</div>
     </div>
   );
 }
@@ -48,7 +48,7 @@ function renderScatterLabel(props: any) {
   const { cx, cy, payload } = props;
   if (!payload) return null;
   return (
-    <text x={cx} y={cy - 14} textAnchor="middle" fill="#cbd5e1" fontSize={11} fontWeight={600}>
+    <text x={cx} y={cy - 14} textAnchor="middle" fill="var(--w-slate-300)" fontSize={11} fontWeight={600}>
       {payload.country}
     </text>
   );
@@ -59,24 +59,24 @@ export default function MscSouthVsNorthEurope() {
     <div style={{ display: 'flex', flexDirection: 'column', gap: 20, marginTop: 8 }}>
       {/* Section A: Dual Panel Comparison */}
       <div>
-        <div style={{ fontSize: 11, fontWeight: 700, color: '#64748b', textTransform: 'uppercase', letterSpacing: '0.1em', marginBottom: 12 }}>
+        <div style={{ fontSize: 11, fontWeight: 700, color: 'var(--w-slate-500)', textTransform: 'uppercase', letterSpacing: '0.1em', marginBottom: 12 }}>
           남유럽 vs 북유럽 시장 특성 비교
         </div>
         <div style={{ border: '1px solid rgba(255,255,255,0.04)', borderRadius: 12, overflow: 'hidden', background: 'rgba(30,41,59,0.3)' }}>
           <table style={{ width: '100%', fontSize: 14, borderCollapse: 'collapse' }}>
             <thead>
               <tr style={{ borderBottom: '1px solid rgba(255,255,255,0.04)', background: 'rgba(30,41,59,0.5)' }}>
-                <th style={{ padding: 12, textAlign: 'left', fontSize: 11, fontWeight: 700, color: '#64748b', textTransform: 'uppercase' }}>비교 축</th>
-                <th style={{ padding: 12, textAlign: 'center', fontSize: 11, fontWeight: 700, color: '#f59e0b', textTransform: 'uppercase' }}>🌞 남유럽 (ES/IT)</th>
-                <th style={{ padding: 12, textAlign: 'center', fontSize: 11, fontWeight: 700, color: '#38bdf8', textTransform: 'uppercase' }}>❄️ 북유럽 (DE/UK)</th>
+                <th style={{ padding: 12, textAlign: 'left', fontSize: 11, fontWeight: 700, color: 'var(--w-slate-500)', textTransform: 'uppercase' }}>비교 축</th>
+                <th style={{ padding: 12, textAlign: 'center', fontSize: 11, fontWeight: 700, color: 'var(--w-amber-500)', textTransform: 'uppercase' }}>🌞 남유럽 (ES/IT)</th>
+                <th style={{ padding: 12, textAlign: 'center', fontSize: 11, fontWeight: 700, color: 'var(--w-sky-400)', textTransform: 'uppercase' }}>❄️ 북유럽 (DE/UK)</th>
               </tr>
             </thead>
             <tbody>
               {comparison.map((row, i) => (
                 <tr key={row.axis} style={i < comparison.length - 1 ? { borderBottom: '1px solid rgba(255,255,255,0.03)' } : undefined}>
-                  <td style={{ padding: 12, fontWeight: 600, color: '#cbd5e1' }}>{row.axis}</td>
-                  <td style={{ padding: 12, textAlign: 'center', color: '#fbbf24', fontWeight: 500 }}>{row.south}</td>
-                  <td style={{ padding: 12, textAlign: 'center', color: '#38bdf8', fontWeight: 500 }}>{row.north}</td>
+                  <td style={{ padding: 12, fontWeight: 600, color: 'var(--w-slate-300)' }}>{row.axis}</td>
+                  <td style={{ padding: 12, textAlign: 'center', color: 'var(--w-amber-400)', fontWeight: 500 }}>{row.south}</td>
+                  <td style={{ padding: 12, textAlign: 'center', color: 'var(--w-sky-400)', fontWeight: 500 }}>{row.north}</td>
                 </tr>
               ))}
             </tbody>
@@ -86,12 +86,12 @@ export default function MscSouthVsNorthEurope() {
 
       {/* Section B: Opportunity Matrix Scatter */}
       <div>
-        <div style={{ fontSize: 11, fontWeight: 700, color: '#64748b', textTransform: 'uppercase', letterSpacing: '0.1em', marginBottom: 12, display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+        <div style={{ fontSize: 11, fontWeight: 700, color: 'var(--w-slate-500)', textTransform: 'uppercase', letterSpacing: '0.1em', marginBottom: 12, display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
           <span>기회 매트릭스 (침투율 × 성장률)</span>
           <div style={{ display: 'flex', gap: 16, fontSize: 11, fontWeight: 600, textTransform: 'lowercase' }}>
-            <span style={{ color: '#10b981' }}>🟢 수확(Harvest)</span>
-            <span style={{ color: '#f59e0b' }}>🟡 가속(Accelerate)</span>
-            <span style={{ color: '#ef4444' }}>🟠 개척(Develop)</span>
+            <span style={{ color: 'var(--w-emerald-500)' }}>🟢 수확(Harvest)</span>
+            <span style={{ color: 'var(--w-amber-500)' }}>🟡 가속(Accelerate)</span>
+            <span style={{ color: 'var(--w-red-500)' }}>🟠 개척(Develop)</span>
           </div>
         </div>
 
@@ -99,17 +99,17 @@ export default function MscSouthVsNorthEurope() {
           <SafeResponsiveContainer width="100%" height="100%">
             <ScatterChart margin={{ top: 20, right: 30, left: 0, bottom: 10 }}>
               <CartesianGrid strokeDasharray="3 3" opacity={0.15} />
-              <XAxis type="number" dataKey="x" name="MSC 침투율" domain={[0, 100]} tick={{ fill: '#94a3b8', fontSize: 11 }} tickFormatter={(v) => `${v}%`} axisLine={false} tickLine={false}>
-                <Label value="현재 MSC 침투율(%)" position="bottom" offset={0} style={{ fill: '#64748b', fontSize: 11 }} />
+              <XAxis type="number" dataKey="x" name="MSC 침투율" domain={[0, 100]} tick={{ fill: 'var(--w-slate-400)', fontSize: 11 }} tickFormatter={(v) => `${v}%`} axisLine={false} tickLine={false}>
+                <Label value="현재 MSC 침투율(%)" position="bottom" offset={0} style={{ fill: 'var(--w-slate-500)', fontSize: 11 }} />
               </XAxis>
-              <YAxis type="number" dataKey="y" name="연간 성장률" domain={[0, 35]} tick={{ fill: '#94a3b8', fontSize: 11 }} tickFormatter={(v) => `${v}%`} axisLine={false} tickLine={false}>
-                <Label value="연간 성장률(%)" angle={-90} position="insideLeft" offset={10} style={{ fill: '#64748b', fontSize: 11 }} />
+              <YAxis type="number" dataKey="y" name="연간 성장률" domain={[0, 35]} tick={{ fill: 'var(--w-slate-400)', fontSize: 11 }} tickFormatter={(v) => `${v}%`} axisLine={false} tickLine={false}>
+                <Label value="연간 성장률(%)" angle={-90} position="insideLeft" offset={10} style={{ fill: 'var(--w-slate-500)', fontSize: 11 }} />
               </YAxis>
               <ZAxis type="number" dataKey="z" range={[200, 800]} name="시장 규모" />
-              <ReferenceLine x={50} stroke="#94a3b8" strokeOpacity={0.5} strokeDasharray="4 4" />
-              <ReferenceLine y={15} stroke="#94a3b8" strokeOpacity={0.5} strokeDasharray="4 4" />
+              <ReferenceLine x={50} stroke="var(--w-slate-400)" strokeOpacity={0.5} strokeDasharray="4 4" />
+              <ReferenceLine y={15} stroke="var(--w-slate-400)" strokeOpacity={0.5} strokeDasharray="4 4" />
               <Tooltip content={<ScatterTooltipContent />} cursor={{ strokeDasharray: '3 3' }} />
-              <Scatter data={opportunityData} fill="#38bdf8" fillOpacity={0.7} isAnimationActive={false} label={renderScatterLabel} />
+              <Scatter data={opportunityData} fill="var(--w-sky-400)" fillOpacity={0.7} isAnimationActive={false} label={renderScatterLabel} />
             </ScatterChart>
           </SafeResponsiveContainer>
         </div>

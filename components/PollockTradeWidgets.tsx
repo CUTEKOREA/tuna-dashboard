@@ -29,7 +29,7 @@ export function Widget5_Importers() {
               <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" horizontal={false} />
               <XAxis type="number" stroke="rgba(255,255,255,0.5)" fontSize={11} tickMargin={10} />
               <YAxis dataKey="country" type="category" stroke="rgba(255,255,255,0.5)" fontSize={11} width={80} tickMargin={5} />
-              <Tooltip contentStyle={{ background: '#0a0f1f', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '8px', color: '#f8fafc' }} />
+              <Tooltip contentStyle={{ background: '#0a0f1f', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '8px', color: 'var(--w-slate-50)' }} />
               <Bar dataKey="volume" name="수입물동량(톤)" radius={[0,4,4,0]}>
                 {data.map((entry: any, idx: number) => <Cell key={idx} fill={entry.color} />)}
               </Bar>
@@ -65,10 +65,10 @@ export function Widget6_UnitPrice() {
               <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" vertical={false} />
               <XAxis dataKey="year" stroke="rgba(255,255,255,0.5)" fontSize={11} tickMargin={10} />
               <YAxis stroke="rgba(255,255,255,0.5)" fontSize={11} tickFormatter={(v)=>`$${v}`} tickMargin={10} />
-              <Tooltip contentStyle={{ background: '#0a0f1f', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '8px', color: '#f8fafc' }} />
-              <Bar dataKey="수출_러시아단가" fill="#64748b" name="러시아산 원물 수출 단가 (미러)" radius={[4,4,0,0]} />
+              <Tooltip contentStyle={{ background: '#0a0f1f', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '8px', color: 'var(--w-slate-50)' }} />
+              <Bar dataKey="수출_러시아단가" fill="var(--w-slate-500)" name="러시아산 원물 수출 단가 (미러)" radius={[4,4,0,0]} />
               <Line type="monotone" dataKey="수입_한국단가" stroke="var(--color-info)" strokeWidth={3} name="한국 수입 단가 (CIF)" dot={{r:3}} />
-              <Line type="monotone" dataKey="수입_독일단가" stroke="#fbbf24" strokeWidth={3} name="독일 수입 단가 (CIF)" dot={{r:3}} />
+              <Line type="monotone" dataKey="수입_독일단가" stroke="var(--w-amber-400)" strokeWidth={3} name="독일 수입 단가 (CIF)" dot={{r:3}} />
               <Legend iconType="circle" wrapperStyle={{ fontSize: '11px', color: 'rgba(255,255,255,0.7)', paddingTop: '10px' }} />
             </ComposedChart>
           </SafeResponsiveContainer>
@@ -96,12 +96,12 @@ export function Widget7_SankeyRoute() {
         <div style={{ height: 280, display: 'flex', flexDirection: 'column', padding: '15px' }}>
           <div style={{display:'flex', justifyContent:'space-between', borderBottom:'1px solid rgba(255,255,255,0.1)', paddingBottom: '20px', marginBottom:'20px', alignItems:'center' }}>
             <div style={{background:'rgba(239, 68, 68, 0.2)', padding:'15px', borderRadius: '8px', width:'30%', textAlign:'center', border:'1px solid rgba(239, 68, 68, 0.5)'}}>
-               <span style={{fontWeight: 700, fontSize: '1rem', color:'#f8fafc'}}>🇷🇺/🇺🇸 원물 하역</span><br/>
+               <span style={{fontWeight: 700, fontSize: '1rem', color:'var(--w-slate-50)'}}>🇷🇺/🇺🇸 원물 하역</span><br/>
                <span style={{fontSize: '0.8rem', color:'var(--color-danger)'}}>[1차 선상 동결]</span>
             </div>
             <div style={{display:'flex', alignItems:'center', color:'var(--color-warning)', fontSize:'0.9rem', fontWeight: 600, letterSpacing:'1px'}}>➪ 이중 동결 ➪</div>
             <div style={{background:'rgba(245, 158, 11, 0.2)', padding:'15px', borderRadius: '8px', width:'30%', textAlign:'center', border:'1px solid rgba(245, 158, 11, 0.5)'}}>
-               <span style={{fontWeight: 700, fontSize: '1rem', color:'#f8fafc'}}>🇨🇳 중국 랴오닝 가공</span><br/>
+               <span style={{fontWeight: 700, fontSize: '1rem', color:'var(--w-slate-50)'}}>🇨🇳 중국 랴오닝 가공</span><br/>
                <span style={{fontSize: '0.8rem', color:'var(--color-warning)'}}>[해동/뼈제거/재동결]</span>
             </div>
           </div>
@@ -109,7 +109,7 @@ export function Widget7_SankeyRoute() {
             <div style={{width:'30%'}}></div>
             <div style={{display:'flex', alignItems:'center', color:'var(--color-info)', fontSize:'0.9rem', fontWeight: 600, letterSpacing:'1px'}}>➪ 필레 우회 수출 ➪</div>
             <div style={{background:'rgba(59, 130, 246, 0.2)', padding:'15px', borderRadius: '8px', width:'30%', textAlign:'center', border:'1px solid rgba(59, 130, 246, 0.5)'}}>
-               <span style={{fontWeight: 700, fontSize: '1rem', color:'#f8fafc'}}>🇪🇺 유럽연합 기업간 시장</span><br/>
+               <span style={{fontWeight: 700, fontSize: '1rem', color:'var(--w-slate-50)'}}>🇪🇺 유럽연합 기업간 시장</span><br/>
                <span style={{fontSize: '0.8rem', color:'var(--color-info)'}}>[제재 회피형 2차 유통]</span>
             </div>
           </div>
@@ -142,7 +142,7 @@ export function Widget8_KoreaDeficit() {
               <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" vertical={false} />
               <XAxis dataKey="year" stroke="rgba(255,255,255,0.5)" fontSize={11} tickMargin={10} />
               <YAxis stroke="rgba(255,255,255,0.5)" fontSize={11} tickFormatter={(v) => `$${v}M`} tickMargin={10} />
-              <Tooltip contentStyle={{ background: '#0a0f1f', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '8px', color: '#f8fafc' }} />
+              <Tooltip contentStyle={{ background: '#0a0f1f', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '8px', color: 'var(--w-slate-50)' }} />
               <Area type="monotone" dataKey="수입액" stroke="var(--color-danger)" fill="var(--color-danger)" fillOpacity={0.4} name="원물 블록 수입 유출 자본금" />
               <Area type="monotone" dataKey="수출액" stroke="var(--color-info)" fill="var(--color-info)" fillOpacity={0.8} name="가공식품 자체 역수출 회수금" />
               <Legend iconType="circle" wrapperStyle={{ fontSize: '11px', color: 'rgba(255,255,255,0.7)', paddingTop: '10px' }} />

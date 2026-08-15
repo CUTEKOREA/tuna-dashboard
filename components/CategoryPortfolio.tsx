@@ -21,26 +21,26 @@ const CustomTooltip = ({ active, payload }: any) => {
     return (
       <div style={{ background: '#0F172A', border: `1px solid ${data.fill}`, padding: '16px', borderRadius: '8px', width: '280px', boxShadow: '0 10px 25px rgba(0,0,0,0.5)' }}>
         <p style={{ margin: '0 0 4px 0', fontSize: '15px', fontWeight: 'bold', color: data.fill }}>{data.name}</p>
-        <span style={{ display: 'inline-block', padding: '2px 8px', background: 'rgba(255,255,255,0.1)', borderRadius: '4px', fontSize: '11px', color: '#cbd5e1', marginBottom: '12px' }}>
+        <span style={{ display: 'inline-block', padding: '2px 8px', background: 'rgba(255,255,255,0.1)', borderRadius: '4px', fontSize: '11px', color: 'var(--w-slate-300)', marginBottom: '12px' }}>
           단면: {data.category}
         </span>
         <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '8px', borderBottom: '1px solid rgba(140,170,255,0.10)', paddingBottom: '8px' }}>
           <div>
-            <p style={{ margin: 0, fontSize: '11px', color: '#94a3b8' }}>시장 점유율</p>
+            <p style={{ margin: 0, fontSize: '11px', color: 'var(--w-slate-400)' }}>시장 점유율</p>
             <p style={{ margin: 0, fontSize: '14px', fontWeight: 'bold', color: 'var(--text-primary)' }}>{data.share}%</p>
           </div>
           <div>
-            <p style={{ margin: 0, fontSize: '11px', color: '#94a3b8' }}>매출 성장률(YoY)</p>
+            <p style={{ margin: 0, fontSize: '11px', color: 'var(--w-slate-400)' }}>매출 성장률(YoY)</p>
             <p style={{ margin: 0, fontSize: '14px', fontWeight: 'bold', color: data.growth > 0 ? 'var(--color-success)' : 'var(--color-danger)' }}>
               {data.growth > 0 ? '+' : ''}{data.growth}%
             </p>
           </div>
           <div>
-            <p style={{ margin: 0, fontSize: '11px', color: '#94a3b8' }}>연매출</p>
+            <p style={{ margin: 0, fontSize: '11px', color: 'var(--w-slate-400)' }}>연매출</p>
             <p style={{ margin: 0, fontSize: '14px', fontWeight: 'bold', color: 'var(--text-primary)' }}>${data.rev}M</p>
           </div>
         </div>
-        <p style={{ margin: 0, fontSize: '12px', color: '#e2e8f0', lineHeight: 1.4 }}>
+        <p style={{ margin: 0, fontSize: '12px', color: 'var(--w-slate-200)', lineHeight: 1.4 }}>
           <strong>AI 팩토리 제언:</strong><br/>
           {data.insight}
         </p>
@@ -83,16 +83,16 @@ export default function CategoryPortfolio() {
               dataKey="share" 
               name="시장 점유율(%)" 
               domain={[0, 80]} 
-              tick={{ fill: '#94a3b8', fontSize: 11 }} 
-              label={{ value: '시장 점유율 %', position: 'insideBottom', fill: '#94a3b8', fontSize: 12, offset: -10 }} 
+              tick={{ fill: 'var(--w-slate-400)', fontSize: 11 }}
+              label={{ value: '시장 점유율 %', position: 'insideBottom', fill: 'var(--w-slate-400)', fontSize: 12, offset: -10 }}
             />
             <YAxis 
               type="number" 
               dataKey="growth" 
               name="연평균 성장률(%)" 
               domain={[-10, 40]} 
-              tick={{ fill: '#94a3b8', fontSize: 11 }} 
-              label={{ value: '성장률 (YoY Growth) %', angle: -90, position: 'insideLeft', fill: '#94a3b8', fontSize: 12 }} 
+              tick={{ fill: 'var(--w-slate-400)', fontSize: 11 }}
+              label={{ value: '성장률 (YoY Growth) %', angle: -90, position: 'insideLeft', fill: 'var(--w-slate-400)', fontSize: 12 }}
             />
             <ZAxis type="number" dataKey="rev" range={[200, 5000]} />
             <RechartsTooltip cursor={{ strokeDasharray: '3 3', stroke: 'rgba(255,255,255,0.2)' }} content={<CustomTooltip />} />

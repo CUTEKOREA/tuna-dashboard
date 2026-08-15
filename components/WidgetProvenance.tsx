@@ -61,7 +61,7 @@ function labelChip(text: string, color: string): React.ReactNode {
 }
 
 const detailLabelStyle: React.CSSProperties = {
-  color: '#64748b',
+  color: 'var(--w-slate-500)',
   fontSize: '0.66rem',
   fontWeight: 600,
   letterSpacing: '0.4px',
@@ -71,7 +71,7 @@ const detailLabelStyle: React.CSSProperties = {
 const monoStyle: React.CSSProperties = {
   fontFamily: 'ui-monospace, SFMono-Regular, Menlo, monospace',
   fontSize: '0.7rem',
-  color: '#cbd5e1',
+  color: 'var(--w-slate-300)',
   wordBreak: 'break-all',
 };
 
@@ -104,7 +104,7 @@ export default function WidgetProvenance({ provenance }: { provenance: Provenanc
           background: 'transparent',
           border: 'none',
           cursor: 'pointer',
-          color: '#94a3b8',
+          color: 'var(--w-slate-400)',
           fontSize: '0.75rem',
           lineHeight: 1.5,
           textAlign: 'left',
@@ -165,7 +165,7 @@ export default function WidgetProvenance({ provenance }: { provenance: Provenanc
                 <div key={`${file}-${index}`}>
                   <div style={monoStyle}>{file}</div>
                   {provenance.input_sha256[index] && (
-                    <div style={{ ...monoStyle, color: '#64748b' }}>
+                    <div style={{ ...monoStyle, color: 'var(--w-slate-500)' }}>
                       sha256 {provenance.input_sha256[index].slice(0, 12)}
                     </div>
                   )}
@@ -193,7 +193,7 @@ export default function WidgetProvenance({ provenance }: { provenance: Provenanc
           {provenance.note ? (
             <div>
               <div style={detailLabelStyle}>노트</div>
-              <div style={{ color: '#cbd5e1', fontSize: '0.72rem', lineHeight: 1.6, wordBreak: 'keep-all' }}>
+              <div style={{ color: 'var(--w-slate-300)', fontSize: '0.72rem', lineHeight: 1.6, wordBreak: 'keep-all' }}>
                 {provenance.note}
               </div>
             </div>

@@ -36,7 +36,7 @@ export default function TunaGlobalHalalStrategy() {
           <Pie data={data} cx="50%" cy="50%" innerRadius={60} outerRadius={100} paddingAngle={5} dataKey="size" nameKey="market" label={({ name, value }: any) => `${name}: $${value.toFixed(2)}B`}>
             {data.map((entry: any, i: number) => <Cell key={i} fill={entry.fill} />)}
           </Pie>
-          <Tooltip contentStyle={{ backgroundColor: 'rgba(20, 28, 52, 0.9)', borderColor: '#334155', color: '#f8fafc' }} itemStyle={{ color: '#f8fafc' }} />
+          <Tooltip contentStyle={{ backgroundColor: 'rgba(20, 28, 52, 0.9)', borderColor: '#334155', color: 'var(--w-slate-50)' }} itemStyle={{ color: 'var(--w-slate-50)' }} />
           <Legend />
         </PieChart>
       }

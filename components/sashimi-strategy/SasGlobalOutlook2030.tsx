@@ -57,7 +57,7 @@ export default function SasGlobalOutlook2030() {
         <div style={{ display: 'flex', flexDirection: 'column', gap: '14px', width: '100%' }}>
           {/* Forecast table */}
           <div>
-            <div style={{ fontSize: '0.68rem', fontWeight: 600, color: '#94a3b8', marginBottom: '6px' }}>📊 시장 규모 전망</div>
+            <div style={{ fontSize: '0.68rem', fontWeight: 600, color: 'var(--w-slate-400)', marginBottom: '6px' }}>📊 시장 규모 전망</div>
             <div style={{ display: 'flex', flexDirection: 'column', gap: '4px' }}>
               {forecasts.map((f) => (
                 <div key={f.segment} style={{
@@ -66,8 +66,8 @@ export default function SasGlobalOutlook2030() {
                   background: 'rgba(255,255,255,0.02)', borderLeft: `3px solid ${f.color}`,
                   alignItems: 'center',
                 }}>
-                  <span style={{ fontSize: '0.7rem', fontWeight: 600, color: '#e2e8f0' }}>{f.segment}</span>
-                  <span style={{ fontSize: '0.7rem', color: '#94a3b8' }}>{f.value2024}</span>
+                  <span style={{ fontSize: '0.7rem', fontWeight: 600, color: 'var(--w-slate-200)' }}>{f.segment}</span>
+                  <span style={{ fontSize: '0.7rem', color: 'var(--w-slate-400)' }}>{f.value2024}</span>
                   <span style={{ fontSize: '0.7rem', fontWeight: 700, color: f.color }}>{f.forecast}</span>
                   <span style={{
                     fontSize: '0.6rem', fontWeight: 600, color: '#0a0f1f',
@@ -85,17 +85,17 @@ export default function SasGlobalOutlook2030() {
               padding: '10px', borderRadius: '8px',
               background: 'rgba(56,189,248,0.05)', border: '1px solid rgba(56,189,248,0.15)',
             }}>
-              <div style={{ fontSize: '0.68rem', fontWeight: 600, color: '#38bdf8', marginBottom: '6px' }}>
+              <div style={{ fontSize: '0.68rem', fontWeight: 600, color: 'var(--w-sky-400)', marginBottom: '6px' }}>
                 🌊 WCPO 2024 기록
               </div>
-              <div style={{ fontSize: '1.1rem', fontWeight: 800, color: '#e2e8f0', marginBottom: '2px' }}>3.059M mt</div>
-              <div style={{ fontSize: '0.58rem', color: '#64748b', marginBottom: '8px' }}>사상 최대 어획 but 가치 -6% ($5.6B)</div>
+              <div style={{ fontSize: '1.1rem', fontWeight: 800, color: 'var(--w-slate-200)', marginBottom: '2px' }}>3.059M mt</div>
+              <div style={{ fontSize: '0.58rem', color: 'var(--w-slate-500)', marginBottom: '8px' }}>사상 최대 어획 but 가치 -6% ($5.6B)</div>
               {wcpoCatch.map((s) => (
                 <div key={s.species} style={{ display: 'flex', alignItems: 'center', gap: '6px', marginBottom: '4px' }}>
                   <div style={{ width: '6px', height: '6px', borderRadius: '50%', background: s.color, flexShrink: 0 }} />
-                  <span style={{ fontSize: '0.62rem', color: '#94a3b8', flex: 1 }}>{s.species}</span>
-                  <span style={{ fontSize: '0.65rem', fontWeight: 600, color: '#e2e8f0' }}>{s.volume}t</span>
-                  <span style={{ fontSize: '0.55rem', color: s.trend.includes('최저') ? '#ef4444' : s.trend.includes('최고') ? '#10b981' : '#64748b' }}>
+                  <span style={{ fontSize: '0.62rem', color: 'var(--w-slate-400)', flex: 1 }}>{s.species}</span>
+                  <span style={{ fontSize: '0.65rem', fontWeight: 600, color: 'var(--w-slate-200)' }}>{s.volume}t</span>
+                  <span style={{ fontSize: '0.55rem', color: s.trend.includes('최저') ? 'var(--w-red-500)' : s.trend.includes('최고') ? 'var(--w-emerald-500)' : 'var(--w-slate-500)' }}>
                     {s.trend}
                   </span>
                 </div>
@@ -107,7 +107,7 @@ export default function SasGlobalOutlook2030() {
               padding: '10px', borderRadius: '8px',
               background: 'rgba(245,158,11,0.05)', border: '1px solid rgba(245,158,11,0.15)',
             }}>
-              <div style={{ fontSize: '0.68rem', fontWeight: 600, color: '#f59e0b', marginBottom: '6px' }}>
+              <div style={{ fontSize: '0.68rem', fontWeight: 600, color: 'var(--w-amber-500)', marginBottom: '6px' }}>
                 🚀 신흥 시장 성장률
               </div>
               {emergingMarkets.map((m) => (
@@ -116,13 +116,13 @@ export default function SasGlobalOutlook2030() {
                   background: 'rgba(255,255,255,0.02)',
                 }}>
                   <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                    <span style={{ fontSize: '0.7rem', fontWeight: 600, color: '#e2e8f0' }}>{m.flag} {m.name}</span>
+                    <span style={{ fontSize: '0.7rem', fontWeight: 600, color: 'var(--w-slate-200)' }}>{m.flag} {m.name}</span>
                     <span style={{
                       fontSize: '0.65rem', fontWeight: 700, color: '#0a0f1f',
                       background: m.color, borderRadius: '10px', padding: '1px 6px',
                     }}>CAGR {m.cagr}</span>
                   </div>
-                  <div style={{ fontSize: '0.55rem', color: '#64748b', marginTop: '2px' }}>{m.drivers}</div>
+                  <div style={{ fontSize: '0.55rem', color: 'var(--w-slate-500)', marginTop: '2px' }}>{m.drivers}</div>
                 </div>
               ))}
             </div>
@@ -136,7 +136,7 @@ export default function SasGlobalOutlook2030() {
                 background: `${r.color}08`, border: `1px solid ${r.color}15`,
               }}>
                 <div style={{ fontSize: '0.65rem', fontWeight: 600, color: r.color }}>⚠️ {r.risk}</div>
-                <div style={{ fontSize: '0.55rem', color: '#94a3b8', marginTop: '2px' }}>{r.impact}</div>
+                <div style={{ fontSize: '0.55rem', color: 'var(--w-slate-400)', marginTop: '2px' }}>{r.impact}</div>
               </div>
             ))}
           </div>

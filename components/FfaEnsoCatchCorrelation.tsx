@@ -120,7 +120,7 @@ const CustomTooltip = ({ active, payload }: any) => {
       padding: '10px 14px',
       fontSize: '0.82rem',
     }}>
-      <p style={{ color: '#f8fafc', fontWeight: 700, margin: '0 0 6px 0' }}>
+      <p style={{ color: 'var(--w-slate-50)', fontWeight: 700, margin: '0 0 6px 0' }}>
         {point.year}년
         <span style={{
           marginLeft: 8,
@@ -134,10 +134,10 @@ const CustomTooltip = ({ active, payload }: any) => {
           {getPhaseLabel(point.phase)}
         </span>
       </p>
-      <p style={{ color: '#94a3b8', margin: '3px 0' }}>
+      <p style={{ color: 'var(--w-slate-400)', margin: '3px 0' }}>
         ONI 지수: <span style={{ color: getPhaseColor(point.phase), fontWeight: 600 }}>{point.oni > 0 ? '+' : ''}{point.oni.toFixed(1)}</span>
       </p>
-      <p style={{ color: '#94a3b8', margin: '3px 0' }}>
+      <p style={{ color: 'var(--w-slate-400)', margin: '3px 0' }}>
         WCPO 어획량: <span style={{ color: '#22d3ee', fontWeight: 600 }}>{point.catch.toLocaleString()}천 MT</span>
       </p>
     </div>
@@ -156,15 +156,15 @@ const CustomLegend = () => (
     marginTop: 4,
   }}>
     <span style={{ display: 'flex', alignItems: 'center', gap: 4 }}>
-      <span style={{ display: 'inline-block', width: 10, height: 10, borderRadius: 2, background: '#ef4444' }} />
+      <span style={{ display: 'inline-block', width: 10, height: 10, borderRadius: 2, background: 'var(--w-red-500)' }} />
       엘니뇨 (ONI ≥ 0.5)
     </span>
     <span style={{ display: 'flex', alignItems: 'center', gap: 4 }}>
-      <span style={{ display: 'inline-block', width: 10, height: 10, borderRadius: 2, background: '#3b82f6' }} />
+      <span style={{ display: 'inline-block', width: 10, height: 10, borderRadius: 2, background: 'var(--w-blue-500)' }} />
       라니냐 (ONI ≤ -0.5)
     </span>
     <span style={{ display: 'flex', alignItems: 'center', gap: 4 }}>
-      <span style={{ display: 'inline-block', width: 10, height: 10, borderRadius: 2, background: '#64748b' }} />
+      <span style={{ display: 'inline-block', width: 10, height: 10, borderRadius: 2, background: 'var(--w-slate-500)' }} />
       중립
     </span>
     <span style={{ display: 'flex', alignItems: 'center', gap: 4 }}>
@@ -202,7 +202,7 @@ export default function FfaEnsoCatchCorrelation() {
           <defs>
             <linearGradient id="ensoCatchLineGrad" x1="0" y1="0" x2="1" y2="0">
               <stop offset="0%" stopColor="#22d3ee" />
-              <stop offset="100%" stopColor="#3b82f6" />
+              <stop offset="100%" stopColor="var(--w-blue-500)" />
             </linearGradient>
           </defs>
           <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.08)" vertical={false} />
@@ -215,14 +215,14 @@ export default function FfaEnsoCatchCorrelation() {
           <YAxis
             yAxisId="left"
             stroke="rgba(255,255,255,0.2)"
-            tick={{ fill: '#94a3b8', fontSize: 10 }}
+            tick={{ fill: 'var(--w-slate-400)', fontSize: 10 }}
             domain={[-1.5, 2.5]}
             tickFormatter={(v: number) => (v > 0 ? `+${v.toFixed(1)}` : v.toFixed(1))}
             label={{
               value: 'ONI 지수',
               angle: -90,
               position: 'insideLeft',
-              style: { fill: '#94a3b8', fontSize: 10 },
+              style: { fill: 'var(--w-slate-400)', fontSize: 10 },
               offset: -5,
             }}
           />
@@ -251,7 +251,7 @@ export default function FfaEnsoCatchCorrelation() {
             label={{
               value: 'ONI=0',
               position: 'left',
-              style: { fill: '#94a3b8', fontSize: 9 },
+              style: { fill: 'var(--w-slate-400)', fontSize: 9 },
             }}
           />
           <Bar
@@ -273,7 +273,7 @@ export default function FfaEnsoCatchCorrelation() {
             stroke="url(#ensoCatchLineGrad)"
             strokeWidth={2.5}
             dot={{ fill: '#22d3ee', r: 4, strokeWidth: 0 }}
-            activeDot={{ fill: '#3b82f6', r: 6, strokeWidth: 2, stroke: '#22d3ee' }}
+            activeDot={{ fill: 'var(--w-blue-500)', r: 6, strokeWidth: 2, stroke: '#22d3ee' }}
           />
         </ComposedChart>
       }

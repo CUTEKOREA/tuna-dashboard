@@ -147,7 +147,7 @@ export default function SalmonLiveTicker() {
           {sources.map(s => (
             <span key={s} style={{
               fontSize: '0.6rem', padding: '1px 5px', borderRadius: '3px',
-              background: 'rgba(16,185,129,0.15)', color: '#10b981', fontWeight: 600,
+              background: 'rgba(16,185,129,0.15)', color: 'var(--w-emerald-500)', fontWeight: 600,
             }}>🟢 {s}</span>
           ))}
         </div>
@@ -157,7 +157,7 @@ export default function SalmonLiveTicker() {
             void fetchAllData();
           }} style={{
             background: 'none', border: 'none', cursor: 'pointer', padding: '4px',
-            color: loading ? '#ec4899' : '#64748b',
+            color: loading ? 'var(--w-pink-500)' : 'var(--w-slate-500)',
           }}>
             <RefreshCcw size={14} style={{ animation: loading ? 'spin 1s linear infinite' : 'none' }} />
           </button>
@@ -183,14 +183,14 @@ export default function SalmonLiveTicker() {
             }}>
               <div style={{ display: 'flex', alignItems: 'center', gap: '6px', marginBottom: '6px' }}>
                 <IconComp size={13} color={t.color} />
-                <span style={{ fontSize: '0.7rem', color: '#94a3b8', fontWeight: 600 }}>{t.label}</span>
+                <span style={{ fontSize: '0.7rem', color: 'var(--w-slate-400)', fontWeight: 600 }}>{t.label}</span>
               </div>
               <div style={{ display: 'flex', alignItems: 'baseline', gap: '6px' }}>
-                <span style={{ fontSize: '1.2rem', fontWeight: 800, color: '#f8fafc' }}>{t.value}</span>
+                <span style={{ fontSize: '1.2rem', fontWeight: 800, color: 'var(--w-slate-50)' }}>{t.value}</span>
                 {t.change && (
                   <span style={{
                     fontSize: '0.7rem', fontWeight: 700,
-                    color: t.changeDirection === 'up' ? '#ef4444' : '#10b981',
+                    color: t.changeDirection === 'up' ? 'var(--w-red-500)' : 'var(--w-emerald-500)',
                     display: 'flex', alignItems: 'center', gap: '2px',
                   }}>
                     {t.changeDirection === 'up' ? <TrendingUp size={10} /> : <TrendingDown size={10} />}

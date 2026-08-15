@@ -136,51 +136,51 @@ const TunaLandingCost = React.memo(function TunaLandingCost() {
       <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 0.8fr 0.5fr', gap: '0.8rem', marginBottom: '1rem' }}>
         {/* Origin Select */}
         <div>
-          <label style={{ fontSize: '0.68rem', color: '#64748b', fontWeight: 600, display: 'block', marginBottom: '4px' }}>원산지</label>
+          <label style={{ fontSize: '0.68rem', color: 'var(--w-slate-500)', fontWeight: 600, display: 'block', marginBottom: '4px' }}>원산지</label>
           <div style={{ position: 'relative' }}>
             <select
               value={origin.code}
               onChange={e => setOrigin(ORIGINS.find(o => o.code === e.target.value) || ORIGINS[0])}
               style={{
                 width: '100%', padding: '8px 30px 8px 12px', fontSize: '0.82rem', fontWeight: 600,
-                background: '#1a1a1a', color: '#f8fafc', border: '1px solid rgba(255,255,255,0.1)',
+                background: '#1a1a1a', color: 'var(--w-slate-50)', border: '1px solid rgba(255,255,255,0.1)',
                 borderRadius: '6px', cursor: 'pointer', appearance: 'none', outline: 'none',
               }}
             >
               {ORIGINS.map(o => <option key={o.code} value={o.code}>{o.flag} {o.name}</option>)}
             </select>
-            <ChevronDown size={14} style={{ position: 'absolute', right: '10px', top: '50%', transform: 'translateY(-50%)', color: '#64748b', pointerEvents: 'none' }} />
+            <ChevronDown size={14} style={{ position: 'absolute', right: '10px', top: '50%', transform: 'translateY(-50%)', color: 'var(--w-slate-500)', pointerEvents: 'none' }} />
           </div>
         </div>
 
         {/* Product Select */}
         <div>
-          <label style={{ fontSize: '0.68rem', color: '#64748b', fontWeight: 600, display: 'block', marginBottom: '4px' }}>품목</label>
+          <label style={{ fontSize: '0.68rem', color: 'var(--w-slate-500)', fontWeight: 600, display: 'block', marginBottom: '4px' }}>품목</label>
           <div style={{ position: 'relative' }}>
             <select
               value={product.code}
               onChange={e => setProduct(PRODUCTS.find(p => p.code === e.target.value) || PRODUCTS[0])}
               style={{
                 width: '100%', padding: '8px 30px 8px 12px', fontSize: '0.82rem', fontWeight: 600,
-                background: '#1a1a1a', color: '#f8fafc', border: '1px solid rgba(255,255,255,0.1)',
+                background: '#1a1a1a', color: 'var(--w-slate-50)', border: '1px solid rgba(255,255,255,0.1)',
                 borderRadius: '6px', cursor: 'pointer', appearance: 'none', outline: 'none',
               }}
             >
               {PRODUCTS.map(p => <option key={p.code} value={p.code}>{p.name}</option>)}
             </select>
-            <ChevronDown size={14} style={{ position: 'absolute', right: '10px', top: '50%', transform: 'translateY(-50%)', color: '#64748b', pointerEvents: 'none' }} />
+            <ChevronDown size={14} style={{ position: 'absolute', right: '10px', top: '50%', transform: 'translateY(-50%)', color: 'var(--w-slate-500)', pointerEvents: 'none' }} />
           </div>
         </div>
 
         {/* Volume */}
         <div>
-          <label style={{ fontSize: '0.68rem', color: '#64748b', fontWeight: 600, display: 'block', marginBottom: '4px' }}>물량 (MT)</label>
+          <label style={{ fontSize: '0.68rem', color: 'var(--w-slate-500)', fontWeight: 600, display: 'block', marginBottom: '4px' }}>물량 (MT)</label>
           <input
             type="number" min={1} max={10000} value={volume}
             onChange={e => setVolume(parseInt(e.target.value) || 100)}
             style={{
               width: '100%', padding: '8px 12px', fontSize: '0.82rem', fontWeight: 600,
-              background: '#1a1a1a', color: '#f8fafc', border: '1px solid rgba(255,255,255,0.1)',
+              background: '#1a1a1a', color: 'var(--w-slate-50)', border: '1px solid rgba(255,255,255,0.1)',
               borderRadius: '6px', outline: 'none',
             }}
           />
@@ -188,7 +188,7 @@ const TunaLandingCost = React.memo(function TunaLandingCost() {
 
         {/* FTA Toggle + Simulate */}
         <div style={{ display: 'flex', flexDirection: 'column', gap: '4px' }}>
-          <label style={{ fontSize: '0.68rem', color: '#64748b', fontWeight: 600 }}>FTA</label>
+          <label style={{ fontSize: '0.68rem', color: 'var(--w-slate-500)', fontWeight: 600 }}>FTA</label>
           <div style={{ display: 'flex', gap: '4px' }}>
             <button
               onClick={() => setUseFTA(!useFTA)}
@@ -233,7 +233,7 @@ const TunaLandingCost = React.memo(function TunaLandingCost() {
                 { label: '환율 영향', value: `${result.fxImpact >= 0 ? '+' : ''}${result.fxImpact}%`, source: `₩${result.fxRate.toLocaleString()}/USD`, color: result.fxImpact >= 0 ? '#F6465D' : '#0ECB81' },
               ].map((row, idx) => (
                 <tr key={idx} style={{ borderBottom: '1px solid rgba(255,255,255,0.04)' }}>
-                  <td style={{ padding: '8px 12px', color: '#94a3b8', fontWeight: 500 }}>{row.label}</td>
+                  <td style={{ padding: '8px 12px', color: 'var(--w-slate-400)', fontWeight: 500 }}>{row.label}</td>
                   <td style={{ padding: '8px 12px', color: row.color, fontWeight: 700, textAlign: 'right' }}>{row.value}</td>
                   <td style={{ padding: '8px 12px', color: '#4a5568', fontSize: '0.72rem', textAlign: 'right' }}>{row.source}</td>
                 </tr>
@@ -243,12 +243,12 @@ const TunaLandingCost = React.memo(function TunaLandingCost() {
                   합계 착지원가
                 </td>
                 <td style={{ padding: '10px 12px', textAlign: 'right' }}>
-                  <div style={{ fontSize: '1.1rem', fontWeight: 800, color: '#f8fafc' }}>${result.totalCIF.toLocaleString()}/MT</div>
+                  <div style={{ fontSize: '1.1rem', fontWeight: 800, color: 'var(--w-slate-50)' }}>${result.totalCIF.toLocaleString()}/MT</div>
                   <div style={{ fontSize: '0.78rem', color: '#FCD535', fontWeight: 600 }}>₩{result.totalKRW.toLocaleString()},000/MT</div>
                 </td>
                 <td style={{ padding: '10px 12px', textAlign: 'right' }}>
-                  <div style={{ fontSize: '0.72rem', color: '#94a3b8' }}>{volume}MT 총액</div>
-                  <div style={{ fontSize: '0.82rem', fontWeight: 700, color: '#f8fafc' }}>${(result.totalCIF * volume).toLocaleString()}</div>
+                  <div style={{ fontSize: '0.72rem', color: 'var(--w-slate-400)' }}>{volume}MT 총액</div>
+                  <div style={{ fontSize: '0.82rem', fontWeight: 700, color: 'var(--w-slate-50)' }}>${(result.totalCIF * volume).toLocaleString()}</div>
                 </td>
               </tr>
             </tbody>

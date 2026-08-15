@@ -160,7 +160,7 @@ export default function JukkumiDashboard() {
     const getMonolithicColor = (i: number) => PALETTE[i % PALETTE.length];
 
     const d = widget.data;
-    if (!d || d.length === 0) return <div style={{height:'100%',display:'flex',alignItems:'center',justifyContent:'center',color:'#64748b'}}>데이터 없음</div>;
+    if (!d || d.length === 0) return <div style={{height:'100%',display:'flex',alignItems:'center',justifyContent:'center',color:'var(--w-slate-500)'}}>데이터 없음</div>;
 
     const chartType = (widget.chartType || '').toLowerCase();
 
@@ -169,8 +169,8 @@ export default function JukkumiDashboard() {
       return (
         <RadarChart data={d} cx="50%" cy="50%" outerRadius="70%">
           <PolarGrid stroke="rgba(255,255,255,0.1)" />
-          <PolarAngleAxis dataKey={widget.radarKey || 'subject'} tick={{ fill: '#94a3b8', fontSize: 11 }} />
-          <PolarRadiusAxis tick={{ fill: '#94a3b8', fontSize: 10 }} stroke="rgba(255,255,255,0.1)" axisLine={false} />
+          <PolarAngleAxis dataKey={widget.radarKey || 'subject'} tick={{ fill: 'var(--w-slate-400)', fontSize: 11 }} />
+          <PolarRadiusAxis tick={{ fill: 'var(--w-slate-400)', fontSize: 10 }} stroke="rgba(255,255,255,0.1)" axisLine={false} />
           <RechartsTooltip content={<CustomTooltip />} />
           <Legend wrapperStyle={{ fontSize: '11px' }} iconType="circle" verticalAlign="top" height={36} />
           {widget.radars.map((r: any, i: number) => (
@@ -226,8 +226,8 @@ export default function JukkumiDashboard() {
             <BarChart data={d} margin={chartMargin}>
               <ChartPatternDefs />
               <CartesianGrid strokeDasharray="3 3" stroke="rgba(140,170,255,0.10)" />
-              <XAxis dataKey={xAxis} stroke="#94a3b8" tick={xTickProps} minTickGap={20} tickFormatter={formatXAxis} />
-              <YAxis stroke="#94a3b8" tick={{ fill: '#94a3b8', fontSize: 11 }} tickFormatter={formatYAxis} />
+              <XAxis dataKey={xAxis} stroke="var(--w-slate-400)" tick={xTickProps} minTickGap={20} tickFormatter={formatXAxis} />
+              <YAxis stroke="var(--w-slate-400)" tick={{ fill: 'var(--w-slate-400)', fontSize: 11 }} tickFormatter={formatYAxis} />
               <RechartsTooltip content={<CustomTooltip />} cursor={{fill: 'rgba(140,170,255,0.10)'}} />
               <Legend wrapperStyle={{ fontSize: '11px' }} iconType="circle" verticalAlign="top" height={36} />
               {series.map((s: any, i: number) => (
@@ -240,9 +240,9 @@ export default function JukkumiDashboard() {
             <ComposedChart data={d} margin={chartMargin}>
               <ChartPatternDefs />
               <CartesianGrid strokeDasharray="3 3" stroke="rgba(140,170,255,0.10)" />
-              <XAxis dataKey={xAxis} stroke="#94a3b8" tick={xTickProps} minTickGap={20} tickFormatter={formatXAxis} scale={series.some((s:any) => s.type !== 'line' && s.type !== 'scatter') ? "band" : "auto"} />
-              <YAxis yAxisId="left" stroke="#94a3b8" tick={{ fill: '#94a3b8', fontSize: 11 }} tickFormatter={formatYAxis} />
-              {hasRightAxis && <YAxis yAxisId="right" orientation="right" stroke="#94a3b8" tick={{ fill: '#94a3b8', fontSize: 11 }} tickFormatter={formatYAxis} />}
+              <XAxis dataKey={xAxis} stroke="var(--w-slate-400)" tick={xTickProps} minTickGap={20} tickFormatter={formatXAxis} scale={series.some((s:any) => s.type !== 'line' && s.type !== 'scatter') ? "band" : "auto"} />
+              <YAxis yAxisId="left" stroke="var(--w-slate-400)" tick={{ fill: 'var(--w-slate-400)', fontSize: 11 }} tickFormatter={formatYAxis} />
+              {hasRightAxis && <YAxis yAxisId="right" orientation="right" stroke="var(--w-slate-400)" tick={{ fill: 'var(--w-slate-400)', fontSize: 11 }} tickFormatter={formatYAxis} />}
               <RechartsTooltip content={<CustomTooltip />} />
               <Legend wrapperStyle={{ fontSize: '11px' }} iconType="circle" verticalAlign="top" height={36} />
               {series.map((s: any, i: number) => {
@@ -256,10 +256,10 @@ export default function JukkumiDashboard() {
             </ComposedChart>
           );
         default:
-          return <div style={{color:'#64748b',textAlign:'center',marginTop:'40px'}}>지원하지 않는 차트 형식</div>;
+          return <div style={{color:'var(--w-slate-500)',textAlign:'center',marginTop:'40px'}}>지원하지 않는 차트 형식</div>;
       }
     }
-    return <div style={{color:'#64748b',textAlign:'center',marginTop:'40px'}}>지원하지 않는 차트 형식</div>;
+    return <div style={{color:'var(--w-slate-500)',textAlign:'center',marginTop:'40px'}}>지원하지 않는 차트 형식</div>;
   };
 
   return (

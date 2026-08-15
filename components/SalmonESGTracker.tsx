@@ -68,14 +68,14 @@ export default function SalmonESGTracker() {
             cursor: 'pointer', transition: 'all 0.2s',
             background: selectedOrigin === o ? 'rgba(16,185,129,0.2)' : 'rgba(255,255,255,0.03)',
             border: selectedOrigin === o ? '1px solid rgba(16,185,129,0.5)' : '1px solid rgba(255,255,255,0.1)',
-            color: selectedOrigin === o ? '#10b981' : '#94a3b8',
+            color: selectedOrigin === o ? 'var(--w-emerald-500)' : 'var(--w-slate-400)',
           }}>
             {o === '노르웨이' ? '🇳🇴' : o === '칠레' ? '🇨🇱' : '🇷🇺'} {o}
           </button>
         ))}
         <div style={{
           marginLeft: 'auto', fontSize: '1rem', fontWeight: 800,
-          color: avgScore >= 80 ? '#10b981' : avgScore >= 60 ? '#f59e0b' : '#ef4444',
+          color: avgScore >= 80 ? 'var(--w-emerald-500)' : avgScore >= 60 ? 'var(--w-amber-500)' : 'var(--w-red-500)',
         }}>
           평균 {avgScore}/100
         </div>
@@ -91,7 +91,7 @@ export default function SalmonESGTracker() {
               borderRadius: '8px', padding: '1rem', textAlign: 'center',
             }}>
               <IconComp size={20} color={cfg.color} style={{ marginBottom: '0.5rem' }} />
-              <div style={{ fontSize: '0.75rem', color: '#94a3b8', fontWeight: 600, marginBottom: '0.4rem' }}>{s.category}</div>
+              <div style={{ fontSize: '0.75rem', color: 'var(--w-slate-400)', fontWeight: 600, marginBottom: '0.4rem' }}>{s.category}</div>
               <div style={{ fontSize: '1.8rem', fontWeight: 800, color: cfg.color, marginBottom: '0.3rem' }}>{s.score}</div>
               <span style={{
                 fontSize: '0.6rem', padding: '2px 6px', borderRadius: '3px',
@@ -100,7 +100,7 @@ export default function SalmonESGTracker() {
 
               <div style={{ marginTop: '0.6rem', textAlign: 'left' }}>
                 {s.details.map((d: string, j: number) => (
-                  <div key={j} style={{ fontSize: '0.65rem', color: '#94a3b8', lineHeight: 1.5, paddingLeft: '0.5rem', borderLeft: `2px solid ${cfg.border}`, marginBottom: '0.2rem' }}>
+                  <div key={j} style={{ fontSize: '0.65rem', color: 'var(--w-slate-400)', lineHeight: 1.5, paddingLeft: '0.5rem', borderLeft: `2px solid ${cfg.border}`, marginBottom: '0.2rem' }}>
                     {d}
                   </div>
                 ))}

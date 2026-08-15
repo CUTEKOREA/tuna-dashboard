@@ -38,10 +38,10 @@ export default function SasEuCatchGate() {
                 <span style={{ fontSize: '0.78rem', fontWeight: 700, color: '#f1f5f9' }}>{g.title}</span>
                 <span style={{ marginLeft: 'auto', fontSize: '0.9rem', fontWeight: 800, color: g.rc }}>{g.value}</span>
               </div>
-              <span style={{ fontSize: '0.64rem', color: '#94a3b8', lineHeight: 1.45 }}>{g.desc}</span>
+              <span style={{ fontSize: '0.64rem', color: 'var(--w-slate-400)', lineHeight: 1.45 }}>{g.desc}</span>
             </div>
           ))}
-          <div style={{ fontSize: '0.62rem', color: '#64748b', lineHeight: 1.5 }}>
+          <div style={{ fontSize: '0.62rem', color: 'var(--w-slate-500)', lineHeight: 1.5 }}>
             규제 통과 = 경쟁국 배제 차익. 베트남 옐로카드 지속 동안 한국 추적성 선점이 진입 창구.
           </div>
         </div>
