@@ -1,4 +1,5 @@
 import { GMAIL_REQUIRED_SCOPES, hasRequiredGmailScopes } from './google-oauth';
+import { parseGmailMessageDetail, type GmailDetailResource, type MailMessageDetail } from './gmail-detail';
 import { parseGmailMessage, type GmailMessageResource, type MailListItem } from './gmail-parser';
 import { buildGmailRawMessage, type GmailSendMessage } from './send-message';
 
@@ -50,11 +51,24 @@ interface SendGmailMessageOptions {
   fetcher?: MailFetcher;
 }
 
+interface GmailMessageActionOptions {
+  accessToken: string;
+  messageId: string;
+  fetcher?: MailFetcher;
+}
+
 export interface GoogleAccessToken {
   accessToken: string;
   refreshToken?: string;
   expiresIn: number;
   scopes: string[];
+}
+
+const GMAIL_RESOURCE_ID = /^[A-Za-z0-9_-]+$/;
+
+function gmailMessageUrl(messageId: string, suffix = ''): URL {
+  if (!GMAIL_RESOURCE_ID.test(messageId)) throw new Error('Gmail 메시지 ID를 확인하지 못했습니다');
+  return new URL(`${GMAIL_API_URL}/messages/${encodeURIComponent(messageId)}${suffix}`);
 }
 
 function parseTokenResponse(value: unknown, requireRefreshToken: boolean): GoogleAccessToken {
@@ -238,6 +252,40 @@ export async function fetchGmailInbox(options: FetchInboxOptions): Promise<{
   return { unreadCount, messages };
 }
 
+export async function fetchGmailMessageDetail(
+  options: GmailMessageActionOptions,
+): Promise<MailMessageDetail> {
+  const fetcher = options.fetcher ?? fetch;
+  const url = gmailMessageUrl(options.messageId);
+  url.searchParams.set('format', 'full');
+  const message = await googleJson(
+    url,
+    options.accessToken,
+    'Gmail 메일 상세를 불러오지 못했습니다',
+    fetcher,
+  );
+  return parseGmailMessageDetail(message as GmailDetailResource);
+}
+
+export async function trashGmailMessage(
+  options: GmailMessageActionOptions,
+): Promise<{ id: string; threadId: string }> {
+  const url = gmailMessageUrl(options.messageId, '/trash');
+  const response = await (options.fetcher ?? fetch)(url, {
+    method: 'POST',
+    headers: { Authorization: `Bearer ${options.accessToken}` },
+    cache: 'no-store',
+    signal: googleRequestSignal(),
+  });
+  if (!response.ok) throw new Error('Gmail 메일을 휴지통으로 이동하지 못했습니다');
+  const value = await readJson(response) as { id?: unknown; threadId?: unknown } | null;
+  if (typeof value?.id !== 'string' || !GMAIL_RESOURCE_ID.test(value.id)
+    || typeof value.threadId !== 'string' || !GMAIL_RESOURCE_ID.test(value.threadId)) {
+    throw new Error('Gmail 휴지통 이동 응답을 확인하지 못했습니다');
+  }
+  return { id: value.id, threadId: value.threadId };
+}
+
 export async function sendGmailMessage(options: SendGmailMessageOptions): Promise<{
   id: string;
   threadId: string;
@@ -250,7 +298,10 @@ export async function sendGmailMessage(options: SendGmailMessageOptions): Promis
     },
     cache: 'no-store',
     signal: googleRequestSignal(),
-    body: JSON.stringify({ raw: buildGmailRawMessage(options.message) }),
+    body: JSON.stringify({
+      raw: buildGmailRawMessage(options.message),
+      ...(options.message.threadId ? { threadId: options.message.threadId } : {}),
+    }),
   });
   if (!response.ok) throw new Error('Gmail 메일을 발송하지 못했습니다');
   const value = await readJson(response) as { id?: unknown; threadId?: unknown } | null;

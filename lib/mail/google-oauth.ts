@@ -3,7 +3,8 @@ import { decryptToken, encryptToken } from './token-crypto';
 
 export const GMAIL_READONLY_SCOPE = 'https://www.googleapis.com/auth/gmail.readonly';
 export const GMAIL_SEND_SCOPE = 'https://www.googleapis.com/auth/gmail.send';
-export const GMAIL_REQUIRED_SCOPES = [GMAIL_READONLY_SCOPE, GMAIL_SEND_SCOPE] as const;
+export const GMAIL_MODIFY_SCOPE = 'https://www.googleapis.com/auth/gmail.modify';
+export const GMAIL_REQUIRED_SCOPES = [GMAIL_READONLY_SCOPE, GMAIL_SEND_SCOPE, GMAIL_MODIFY_SCOPE] as const;
 
 const GOOGLE_AUTHORIZATION_URL = 'https://accounts.google.com/o/oauth2/v2/auth';
 const OAUTH_FLOW_TTL_MS = 10 * 60_000;

@@ -2,10 +2,12 @@ import { describe, expect, it, vi } from 'vitest';
 import {
   exchangeGmailAuthorizationCode,
   fetchGmailInbox,
+  fetchGmailMessageDetail,
   fetchGmailProfile,
   refreshGmailAccessToken,
   revokeGoogleToken,
   sendGmailMessage,
+  trashGmailMessage,
 } from '../lib/mail/google-client';
 
 const TOKEN_URL = 'https://oauth2.googleapis.com/token';
@@ -17,7 +19,7 @@ describe('Google Gmail 서버 클라이언트', () => {
       access_token: 'access-secret',
       refresh_token: 'refresh-secret',
       expires_in: 3600,
-      scope: 'https://www.googleapis.com/auth/gmail.readonly https://www.googleapis.com/auth/gmail.send',
+      scope: 'https://www.googleapis.com/auth/gmail.readonly https://www.googleapis.com/auth/gmail.send https://www.googleapis.com/auth/gmail.modify',
       token_type: 'Bearer',
     }), { status: 200, headers: { 'Content-Type': 'application/json' } }));
 
@@ -40,7 +42,7 @@ describe('Google Gmail 서버 클라이언트', () => {
     expect(body.get('redirect_uri')).toBe('https://leedonggun.co.kr/api/mail/gmail/callback');
   });
 
-  it('Google이 scope를 생략하면 요청한 Gmail 읽기·발송 scope로 정규화한다', async () => {
+  it('Google이 scope를 생략하면 요청한 Gmail 읽기·발송·사서함 변경 scope로 정규화한다', async () => {
     const fetcher = vi.fn<MailFetcher>(async () => Response.json({
       access_token: 'access-secret',
       refresh_token: 'refresh-secret',
@@ -59,6 +61,7 @@ describe('Google Gmail 서버 클라이언트', () => {
     expect(result.scopes).toEqual([
       'https://www.googleapis.com/auth/gmail.readonly',
       'https://www.googleapis.com/auth/gmail.send',
+      'https://www.googleapis.com/auth/gmail.modify',
     ]);
   });
 
@@ -67,7 +70,7 @@ describe('Google Gmail 서버 클라이언트', () => {
       access_token: 'access-secret',
       refresh_token: 'refresh-secret',
       expires_in: 3600,
-      scope: 'https://www.googleapis.com/auth/gmail.readonly https://www.googleapis.com/auth/gmail.send openid',
+      scope: 'https://www.googleapis.com/auth/gmail.readonly https://www.googleapis.com/auth/gmail.send https://www.googleapis.com/auth/gmail.modify openid',
     }));
 
     await expect(exchangeGmailAuthorizationCode({
@@ -84,7 +87,7 @@ describe('Google Gmail 서버 클라이언트', () => {
     const fetcher = vi.fn<MailFetcher>(async () => new Response(JSON.stringify({
       access_token: 'new-access-secret',
       expires_in: 3600,
-      scope: 'https://www.googleapis.com/auth/gmail.readonly https://www.googleapis.com/auth/gmail.send',
+      scope: 'https://www.googleapis.com/auth/gmail.readonly https://www.googleapis.com/auth/gmail.send https://www.googleapis.com/auth/gmail.modify',
       token_type: 'Bearer',
     }), { status: 200, headers: { 'Content-Type': 'application/json' } }));
 
@@ -143,6 +146,70 @@ describe('Google Gmail 서버 클라이언트', () => {
     expect(JSON.stringify(result)).not.toContain('access-secret');
   });
 
+  it('선택한 Gmail 메시지 1건을 full 형식으로 조회해 텍스트 상세만 반환한다', async () => {
+    const fetcher = vi.fn<MailFetcher>(async () => Response.json({
+      id: 'message_detail',
+      threadId: 'thread_detail',
+      internalDate: '1786742400000',
+      payload: {
+        mimeType: 'text/plain',
+        headers: [
+          { name: 'From', value: 'sender@example.com' },
+          { name: 'Subject', value: '상세 확인' },
+        ],
+        body: { data: Buffer.from('본문입니다.', 'utf8').toString('base64url') },
+      },
+    }));
+
+    const result = await fetchGmailMessageDetail({
+      accessToken: 'access-secret',
+      messageId: 'message_detail',
+      fetcher,
+    });
+
+    expect(result.bodyText).toBe('본문입니다.');
+    const [input, init = {}] = fetcher.mock.calls[0]!;
+    const url = new URL(input);
+    expect(url.pathname).toBe('/gmail/v1/users/me/messages/message_detail');
+    expect(url.searchParams.get('format')).toBe('full');
+    expect(init.method).toBe('GET');
+    expect(JSON.stringify(result)).not.toContain('access-secret');
+  });
+
+  it('검증된 메시지 1건만 Gmail trash endpoint로 이동한다', async () => {
+    const fetcher = vi.fn<MailFetcher>(async () => Response.json({
+      id: 'message_trash',
+      threadId: 'thread_trash',
+      labelIds: ['TRASH'],
+    }));
+
+    await expect(trashGmailMessage({
+      accessToken: 'access-secret',
+      messageId: 'message_trash',
+      fetcher,
+    })).resolves.toEqual({ id: 'message_trash', threadId: 'thread_trash' });
+
+    const [input, init = {}] = fetcher.mock.calls[0]!;
+    expect(new URL(input).pathname).toBe('/gmail/v1/users/me/messages/message_trash/trash');
+    expect(init.method).toBe('POST');
+    expect(init.body).toBeUndefined();
+  });
+
+  it('비정상 Gmail 메시지 ID는 provider 호출 전에 거부한다', async () => {
+    const fetcher = vi.fn<MailFetcher>();
+    await expect(fetchGmailMessageDetail({
+      accessToken: 'access-secret',
+      messageId: '../evil',
+      fetcher,
+    })).rejects.toThrow('Gmail 메시지 ID');
+    await expect(trashGmailMessage({
+      accessToken: 'access-secret',
+      messageId: 'https://evil.example',
+      fetcher,
+    })).rejects.toThrow('Gmail 메시지 ID');
+    expect(fetcher).not.toHaveBeenCalled();
+  });
+
   it('공급자 오류 본문이나 토큰을 예외 메시지에 노출하지 않는다', async () => {
     const fetcher = vi.fn<MailFetcher>(async () => new Response(
       JSON.stringify({ error: 'invalid_grant', error_description: 'refresh-secret exposed' }),
@@ -186,6 +253,9 @@ describe('Google Gmail 서버 클라이언트', () => {
         to: 'recipient@example.com',
         subject: '발송 확인',
         text: '일반 텍스트 본문입니다.',
+        threadId: 'thread-reply',
+        inReplyTo: '<message@example.com>',
+        references: ['<older@example.com>', '<message@example.com>'],
       },
       fetcher,
     })).resolves.toEqual({ id: 'sent-id', threadId: 'thread-id' });
@@ -193,7 +263,8 @@ describe('Google Gmail 서버 클라이언트', () => {
     const [input, init = {}] = fetcher.mock.calls[0]!;
     expect(new URL(input).pathname).toBe('/gmail/v1/users/me/messages/send');
     expect(init.method).toBe('POST');
-    const payload = JSON.parse(String(init.body)) as { raw: string };
+    const payload = JSON.parse(String(init.body)) as { raw: string; threadId?: string };
+    expect(payload.threadId).toBe('thread-reply');
     const mime = Buffer.from(payload.raw, 'base64url').toString('utf8');
     expect(mime).toContain('To: recipient@example.com');
     expect(mime).toContain('Subject: =?UTF-8?B?');
