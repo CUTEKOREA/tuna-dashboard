@@ -1,9 +1,10 @@
-> 📈 **2026-08-16 07:43 KST — `/bangkok-office` 원어 시세 월·분기·연 입도 전환 로컬 추가** [Codex]:
+> 📈 **2026-08-16 08:04 KST — `/bangkok-office` 원어 시세 월·분기·연 입도 전환 운영 배포 완료** [Codex]:
 > - `원어 시세 추이`에 **주간·월별·분기별·연도별**, `시세 범위`에 **월별·분기별·연도별** 전환을 추가했다. 기본값은 기존 화면과 같은 주간 추이·연도별 범위이며, 두 컨트롤은 독립 상태로 동작한다.
 > - 월·분기·연 시세는 기록 있는 정상 주의 평균·최저·최고를 산출한다. 결측 주와 의심 플래그 주는 기존 연도별 계약대로 제외하고, 관측 없는 기간은 0으로 채우지 않는다. 새 연도 집계는 2020~2026 기존 확정 평균·최저·최고와 전부 일치한다.
 > - RED→GREEN 전용 테스트 3건과 전체 `npm run verify`를 통과했다: ESLint 0 errors·기존 5 warnings, Vitest 85파일·462테스트, API cache 155/155, Production build 117 pages, bundle 32 routes PASS다. 독립 반증 검토도 기능 blocking 0건이다.
-> - 로컬 Production 브라우저에서 1440×1000·390×844 모두 7개 옵션을 실제 클릭해 제목·`aria-pressed`·두 상태 독립성을 확인했다. HTTP 200, overflow 0, page/local HTTP 오류 0이며 외부 Google 광고 403만 분리 관찰했다.
-> - **미배포**. 작업 브랜치는 `codex/bangkok-price-granularity-20260816`; 사용자 명시 배포 요청 시 최신 main에 순차 반영한다.
+> - PR **#447**은 App Quality Gate와 Vercel Preview를 통과해 squash merge 커밋 `f32d3fc4c371e6a68ff8e84df5269afbb9b8fd98`로 병합됐다. Vercel Production deployment **5925533582**가 성공했고 운영 도메인은 신규 배포 `dpl_9cGARoawDsTgJxnyaZkTpw4kRDu9` 자산을 제공한다.
+> - 운영 `https://leedonggun.co.kr/bangkok-office`의 1440×1000·390×844에서 모두 7개 옵션을 실제 클릭해 제목·`aria-pressed`·두 상태 독립성을 확인했다. HTTP 200, overflow 0, page/local HTTP 오류 0이며 외부 Google 광고 403만 분리 관찰했다.
+> - **다음 단계**: 방콕 주간보고 동기화 후에도 결측·의심 주 제외와 월·분기·연 집계 회귀 테스트를 유지한다.
 >
 > 📤 **2026-08-16 00:33 KST — 회사 메일 SMTP-only 운영 배포 완료·실계정 QA 대기** [Codex]:
 > - 사용자 확인으로 회사 주소는 `ledog@sla.co.kr`지만 Microsoft 로그인은 개인 `silla@outlook.com`이며, 회사 사서함은 Microsoft 365가 아님을 확정했다. Entra 개인 계정에는 디렉터리가 없어 앱 등록이 불가능했고 `/me` exact mailbox 계약도 성립하지 않는다. 미커밋 Graph/Entra 구현은 제거했다.
