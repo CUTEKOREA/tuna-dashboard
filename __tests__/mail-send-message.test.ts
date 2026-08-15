@@ -43,4 +43,27 @@ describe('Gmail 즉시 발송 입력', () => {
     expect(mime).not.toMatch(/Content-Type: text\/html/i);
     expect(mime).not.toMatch(/\r\n(?:Cc|Bcc):/i);
   });
+
+  it('긴 제목을 75자 이하 RFC 2047 encoded-word로 접어 원문을 보존한다', () => {
+    const subject = '긴 한글 제목 '.repeat(20).slice(0, 200);
+    const raw = buildGmailRawMessage({
+      to: 'recipient@example.com',
+      subject,
+      text: '본문',
+    });
+    const mime = Buffer.from(raw, 'base64url').toString('utf8');
+    const subjectBlock = mime.slice(
+      mime.indexOf('Subject: ') + 'Subject: '.length,
+      mime.indexOf('\r\nMIME-Version:'),
+    );
+    const encodedWords = subjectBlock.split('\r\n ');
+
+    expect(encodedWords.length).toBeGreaterThan(1);
+    expect(encodedWords.every((word) => word.length <= 75)).toBe(true);
+    expect(encodedWords.map((word) => {
+      const match = /^=\?UTF-8\?B\?([A-Za-z0-9+/=]+)\?=$/.exec(word);
+      expect(match).not.toBeNull();
+      return Buffer.from(match?.[1] ?? '', 'base64').toString('utf8');
+    }).join('')).toBe(subject);
+  });
 });

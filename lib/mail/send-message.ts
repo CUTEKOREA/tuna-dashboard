@@ -39,11 +39,32 @@ function wrapMimeBase64(value: string): string {
   return Buffer.from(value, 'utf8').toString('base64').match(/.{1,76}/g)?.join('\r\n') ?? '';
 }
 
+function encodeMimeSubject(value: string): string {
+  const chunks: string[] = [];
+  let chunk = '';
+  let chunkBytes = 0;
+
+  for (const character of value) {
+    const characterBytes = Buffer.byteLength(character, 'utf8');
+    if (chunk && chunkBytes + characterBytes > 42) {
+      chunks.push(chunk);
+      chunk = '';
+      chunkBytes = 0;
+    }
+    chunk += character;
+    chunkBytes += characterBytes;
+  }
+  if (chunk) chunks.push(chunk);
+
+  return chunks
+    .map((part) => `=?UTF-8?B?${Buffer.from(part, 'utf8').toString('base64')}?=`)
+    .join('\r\n ');
+}
+
 export function buildGmailRawMessage(message: GmailSendMessage): string {
-  const encodedSubject = Buffer.from(message.subject, 'utf8').toString('base64');
   const mime = [
     `To: ${message.to}`,
-    `Subject: =?UTF-8?B?${encodedSubject}?=`,
+    `Subject: ${encodeMimeSubject(message.subject)}`,
     'MIME-Version: 1.0',
     'Content-Type: text/plain; charset=UTF-8',
     'Content-Transfer-Encoding: base64',

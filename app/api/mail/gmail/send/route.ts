@@ -2,6 +2,7 @@ import { sendGmailMessage, refreshGmailAccessToken } from '@/lib/mail/google-cli
 import { hasTrustedMailOrigin } from '@/lib/mail/csrf';
 import { hasRequiredGmailScopes } from '@/lib/mail/google-oauth';
 import { mailError, mailJson } from '@/lib/mail/http';
+import { readLimitedRequestText, RequestBodyTooLargeError } from '@/lib/mail/request-body';
 import { authorizeMailRequest } from '@/lib/mail/request-auth';
 import { recordMailSendOutcome, reserveMailSendRequest } from '@/lib/mail/send-audit';
 import { getGoogleOAuthConfig, getMailEncryptionKey, getMailPublicBaseUrl } from '@/lib/mail/server-env';
@@ -32,9 +33,13 @@ export async function POST(request: Request) {
     if (Number.isFinite(declaredLength) && declaredLength > MAX_SEND_REQUEST_BYTES) {
       return mailError(413, 'mail_send_too_large');
     }
-    const rawRequest = await request.text();
-    if (Buffer.byteLength(rawRequest, 'utf8') > MAX_SEND_REQUEST_BYTES) {
-      return mailError(413, 'mail_send_too_large');
+    let rawRequest: string;
+    try {
+      rawRequest = await readLimitedRequestText(request, MAX_SEND_REQUEST_BYTES);
+    } catch (error) {
+      return error instanceof RequestBodyTooLargeError
+        ? mailError(413, 'mail_send_too_large')
+        : mailError(400, 'invalid_mail_send_input');
     }
 
     let message;

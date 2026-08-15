@@ -17,6 +17,7 @@
 > - 사용자 선택에 따라 기존 `gmail.readonly`에 최소 `gmail.send`만 추가했다. OAuth 요청·callback·저장 scope·목록·발송 경로는 두 scope의 정확한 집합만 허용하므로 기존 읽기 전용 연결은 재동의 전까지 fail-closed다. 초안·라벨 변경·삭제·HTML·첨부·다중 수신자·자동 발송은 추가하지 않았다.
 > - `/api/mail/gmail/send`는 관리자+AAL2, 고정 trusted Origin, JSON·40KB 요청 상한, 수신자 1명·제목 200자·일반 텍스트 10,000자, CRLF/NUL 차단, `no-store`를 강제한다. UI는 발송 취소 불가 안내와 브라우저 최종 확인을 거치며 이중 클릭을 잠근다.
 > - UUID idempotency key와 Supabase `mail_send_requests` 원자적 advisory lock을 추가했다. 분당 5건·일 50건을 제한하고 `pending/sent/unknown` 상태와 Gmail message ID만 저장한다. 수신자·제목·본문·OAuth token은 감사 테이블·응답·로그·Web Storage에 저장하지 않는다. 미확정 네트워크 결과는 재발송하지 않고 보낸편지함 확인을 요구한다.
+> - 독립 발송 리뷰에서 chunked 요청 선버퍼링과 긴 RFC 2047 encoded-word를 차단 finding으로 확인했다. RED 테스트 후 본문을 40KB에서 즉시 중단하는 스트리밍 reader와 UTF-8 문자 경계 제목 folding으로 수정했다. Authorization finding은 패치 마스킹 오탐이며 실제 `Bearer` 템플릿·TypeScript·build 통과로 확인했다.
 > - focused 48테스트, 대상 ESLint, TypeScript와 전체 `npm run verify`를 통과했다: ESLint 0 errors·기존 5 warnings, Vitest 72파일·403테스트, API cache 151/151, production build 117 pages, bundle 32 routes. 다음 단계는 독립 반증 완료, migration 적용, PR 병합·Production 배포, Google 재동의와 자기 자신에게 보내는 실계정 발송 검증이다.
 
 > 📬 **2026-08-15 17:01 KST — 관리자 전용 Gmail 읽기 전용 통합 메일 운영 배포·MFA 실계정 교정** [Codex] (PR #407·#410):
