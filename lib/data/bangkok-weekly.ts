@@ -218,6 +218,58 @@ export function bangkokPeriodLabel(p: string): string {
   return p.includes('Q') ? `${p.slice(2, 4)}.${p.slice(6)}분기` : p.length === 7 ? p.slice(2) : p;
 }
 
+export type BangkokPriceRow = Pick<BangkokWeek, 'year' | 'month' | 'price' | 'suspect'>;
+
+export type BangkokPriceAgg = {
+  readonly period: string;
+  readonly priceAvg: number;
+  readonly priceMin: number;
+  readonly priceMax: number;
+  readonly weeks: number;
+};
+
+/** 주간 시세를 월·분기·연 범위로 집계한다. 기존 연도별 계약과 같이
+ * 결측치와 의심 플래그는 제외하고, 관측 없는 기간은 0으로 만들지 않는다. */
+export function aggregateBangkokPriceRows(
+  rows: readonly BangkokPriceRow[],
+  g: BangkokGranularity,
+): readonly BangkokPriceAgg[] {
+  const acc = new Map<
+    string,
+    { sum: number; priceMin: number; priceMax: number; weeks: number }
+  >();
+
+  for (const row of rows) {
+    if (row.price === null || row.suspect) continue;
+    const key = granKey(row.year, row.month, g);
+    const cur = acc.get(key) ?? {
+      sum: 0,
+      priceMin: row.price,
+      priceMax: row.price,
+      weeks: 0,
+    };
+    cur.sum += row.price;
+    cur.priceMin = Math.min(cur.priceMin, row.price);
+    cur.priceMax = Math.max(cur.priceMax, row.price);
+    cur.weeks += 1;
+    acc.set(key, cur);
+  }
+
+  return [...acc.entries()]
+    .map(([period, value]) => ({
+      period,
+      priceAvg: Math.round(value.sum / value.weeks),
+      priceMin: value.priceMin,
+      priceMax: value.priceMax,
+      weeks: value.weeks,
+    }))
+    .sort((a, b) => a.period.localeCompare(b.period));
+}
+
+export function aggregateBangkokPrices(g: BangkokGranularity): readonly BangkokPriceAgg[] {
+  return aggregateBangkokPriceRows(bangkokWeeks, g);
+}
+
 export type BangkokUnloadAgg = {
   readonly period: string;
   readonly unloadMt: number;
