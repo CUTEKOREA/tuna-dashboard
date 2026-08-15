@@ -88,6 +88,78 @@ function getTotalDays(vessel: { dateRange?: string; timeline?: TimelineEntry[] }
   return (vessel.timeline || []).length || 1;
 }
 
+function toDateKey(year: number, month: number, day: number): number {
+  const date = new Date(Date.UTC(year, month - 1, day));
+  if (
+    date.getUTCFullYear() !== year
+    || date.getUTCMonth() !== month - 1
+    || date.getUTCDate() !== day
+  ) return 0;
+  return year * 10000 + month * 100 + day;
+}
+
+interface DateAnchor {
+  year: number;
+  month: number;
+  day: number;
+}
+
+function getExplicitDateAnchor(value: string): DateAnchor | null {
+  const match = value.match(/(20\d{2})[./-](\d{1,2})[./-](\d{1,2})/);
+  if (!match) return null;
+
+  const anchor = {
+    year: Number(match[1]),
+    month: Number(match[2]),
+    day: Number(match[3]),
+  };
+  return toDateKey(anchor.year, anchor.month, anchor.day) > 0 ? anchor : null;
+}
+
+function getLatestDateKey(value: string, anchor: DateAnchor | null): number {
+  const match = value.match(
+    /(?:(20\d{2})[./-])?(\d{1,2})[./-](\d{1,2})(?:\s*~\s*(?:(?:(20\d{2})[./-])?(\d{1,2})[./-])?(\d{1,2}))?/,
+  );
+  if (!match) return 0;
+
+  const startMonth = Number(match[2]);
+  const startDay = Number(match[3]);
+  const startYear = match[1]
+    ? Number(match[1])
+    : anchor
+      ? anchor.year + (startMonth < anchor.month ? 1 : 0)
+      : 0;
+  if (startYear === 0 || toDateKey(startYear, startMonth, startDay) === 0) return 0;
+
+  const endMonth = match[5] ? Number(match[5]) : startMonth;
+  const endDay = match[6] ? Number(match[6]) : startDay;
+  const endYear = match[4]
+    ? Number(match[4])
+    : startYear + (endMonth < startMonth ? 1 : 0);
+  return toDateKey(endYear, endMonth, endDay);
+}
+
+function getLatestActualWorkSortKey(vessel: {
+  actualTotal?: number;
+  dateRange?: string;
+  timeline?: TimelineEntry[];
+}): number {
+  const range = String(vessel.dateRange || '');
+  const rangeStart = getExplicitDateAnchor(range);
+
+  const actualWorkKeys = (vessel.timeline || [])
+    .filter(entry => entry.dailyAmount > 0)
+    // '4/26~27', '4/30~5/01'처럼 축약된 범위는 종료일을 실제 작업일로 사용한다.
+    .map(entry => getLatestDateKey(String(entry.date || ''), rangeStart))
+    .filter(key => key > 0);
+
+  if (actualWorkKeys.length > 0) return Math.max(...actualWorkKeys);
+  if ((vessel.actualTotal || 0) <= 0 || !rangeStart) return 0;
+
+  // 상세 작업 기록이 없는 과거 선박만 종료일을 보조 기준으로 사용한다.
+  return getLatestDateKey(range, rangeStart);
+}
+
 export function getAnalyticsStatus(status: string) {
   const kind = getVesselStatusKind(status);
   return {
@@ -172,8 +244,9 @@ export default function UnloadingAnalytics({
         statusLabel: statusMeta.label,
         comparable: statusMeta.comparable,
         isSelected: id === vesselId,
+        latestActualWorkSortKey: getLatestActualWorkSortKey(v),
       };
-    });
+    }).sort((a, b) => b.latestActualWorkSortKey - a.latestActualWorkSortKey);
   }, [allVessels, vesselId]);
 
   const selectedBenchmark = benchmarkData.find(b => b.isSelected);
