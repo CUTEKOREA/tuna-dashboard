@@ -236,7 +236,7 @@ export default function MarketDashboard({ heroOnly = false }: { heroOnly?: boole
       {/* ROW 1: CORE MACRO KPIs */}
       <section className={styles.kpiGrid}>
         {/* KPI 1 */}
-        <div className={`ds-card ${styles.kpiCard}`}>
+        <div className={`dsc-card dsc-card--accent ${styles.kpiCard}`}>
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '8px', color: 'var(--text-muted)', fontSize: '0.8rem' }}>
             <span style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
               <span style={{ fontWeight: 600 }}>SKJ 가다랑어 지역 스프레드</span>
@@ -261,7 +261,7 @@ export default function MarketDashboard({ heroOnly = false }: { heroOnly?: boole
         </div>
 
         {/* KPI 2 */}
-        <div className={`ds-card ${styles.kpiCard}`}>
+        <div className={`dsc-card dsc-card--accent ${styles.kpiCard}`}>
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '8px', color: 'var(--text-muted)', fontSize: '0.8rem' }}>
             <span style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
               <span style={{ fontWeight: 600 }}>YF 황다랑어 지역 스프레드</span>
@@ -286,7 +286,7 @@ export default function MarketDashboard({ heroOnly = false }: { heroOnly?: boole
         </div>
 
         {/* KPI 3 */}
-        <div className={`ds-card ${styles.kpiCard}`}>
+        <div className={`dsc-card dsc-card--accent ${styles.kpiCard}`}>
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '8px', color: 'var(--text-muted)', fontSize: '0.8rem' }}>
             <span style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
               <span style={{ fontWeight: 600 }}>싱가포르 MGO 유가{mgoData.isEstimate ? ' (Brent 환산추정)' : ''}</span>
@@ -309,7 +309,7 @@ export default function MarketDashboard({ heroOnly = false }: { heroOnly?: boole
         </div>
 
         {/* KPI 4 */}
-        <div className={`ds-card ${styles.kpiCard}`}>
+        <div className={`dsc-card dsc-card--accent ${styles.kpiCard}`}>
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '8px', color: 'var(--text-muted)', fontSize: '0.8rem' }}>
             <span style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
               <span style={{ fontWeight: 600 }}>달러·원 환율</span>
@@ -333,7 +333,7 @@ export default function MarketDashboard({ heroOnly = false }: { heroOnly?: boole
       </section>
 
       {/* ROW 2: TUNA PRICE TRENDS BY REGION */}
-      <section className={`ds-card ${styles.chartPanel}`}>
+      <section className={`dsc-card ${styles.chartPanel}`}>
         <h3 style={{ display: 'flex', alignItems: 'center', gap: '8px', fontSize: '1.1rem', marginBottom: '16px', color: 'var(--text-main)' }}>
           <BarChart2 size={20} color="#38bdf8" />
           글로벌 참치 어가 추이 (SKJ·YF 지역 스프레드)
