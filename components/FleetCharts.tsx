@@ -36,6 +36,25 @@ const monthlyData = purseSeineCatch.monthlyByVessel.map((item) => ({
   month5: item.monthlyMt[4], month6: item.monthlyMt[5], month7: item.monthlyMt[6], month8: item.monthlyMt[7],
 }));
 
+type MonthlyCatchSeriesConfig = {
+  dataKey: string;
+  name: string;
+  color: string;
+  strokeDasharray?: string;
+  radius?: [number, number, number, number];
+};
+
+const monthlyCatchSeries: MonthlyCatchSeriesConfig[] = [
+  { dataKey: 'month1', name: '1월', color: 'var(--chart-s1)' },
+  { dataKey: 'month2', name: '2월', color: 'var(--chart-s2)' },
+  { dataKey: 'month3', name: '3월', color: 'var(--chart-s3)' },
+  { dataKey: 'month4', name: '4월', color: 'var(--chart-s4)' },
+  { dataKey: 'month5', name: '5월', color: 'var(--chart-s5)', strokeDasharray: '6 3' },
+  { dataKey: 'month6', name: '6월', color: 'var(--chart-s6)', strokeDasharray: '3 3' },
+  { dataKey: 'month7', name: '7월', color: 'var(--chart-s7)', strokeDasharray: '8 3 2 3', radius: [4, 4, 0, 0] },
+  { dataKey: 'month8', name: '8월', color: 'var(--chart-s8)', strokeDasharray: '2 3', radius: [4, 4, 0, 0] },
+];
+
 const cumulativeData = purseSeineCatch.seasonRanking.map((item) => ({
   rank: item.rank,
   cap: item.captain,
@@ -79,6 +98,27 @@ export function WeeklyCatchChart() {
   );
 }
 
+export function MonthlyCatchSeries() {
+  return (
+    <>
+      {monthlyCatchSeries.map((series) => (
+        <Bar
+          key={series.dataKey}
+          dataKey={series.dataKey}
+          stackId="a"
+          name={series.name}
+          fill={series.color}
+          fillOpacity={series.strokeDasharray ? 0.78 : 1}
+          stroke={series.color}
+          strokeWidth={series.strokeDasharray ? 1.5 : 0}
+          strokeDasharray={series.strokeDasharray}
+          radius={series.radius}
+        />
+      ))}
+    </>
+  );
+}
+
 export function MonthlyCatchChart() {
   const mounted = useSyncExternalStore(subscribeClientReady, getClientReadySnapshot, getServerReadySnapshot);
   const rc = useResponsiveChart();
@@ -102,14 +142,7 @@ export function MonthlyCatchChart() {
         <YAxis stroke="var(--chart-axis)" axisLine={false} tickLine={false} tick={{ fontSize: rc.tickFontSize }} domain={[0, 7000]} width={rc.isMobile ? 30 : 40} />
         <Tooltip contentStyle={{ backgroundColor: 'var(--chart-tooltip-bg)', borderColor: 'var(--chart-tooltip-border)', color: 'var(--text-main)', fontSize: rc.isMobile ? '11px' : '13px' }} />
         <Legend wrapperStyle={{ fontSize: rc.legendFontSize }} />
-        <Bar dataKey="month1" stackId="a" name="1월" fill="var(--pastel-lemon)" />
-        <Bar dataKey="month2" stackId="a" name="2월" fill="var(--pastel-aqua)" />
-        <Bar dataKey="month3" stackId="a" name="3월" fill="var(--pastel-orchid)" />
-        <Bar dataKey="month4" stackId="a" name="4월" fill="#ce7a2c" />
-        <Bar dataKey="month5" stackId="a" name="5월" fill="#ff98ba" />
-        <Bar dataKey="month6" stackId="a" name="6월" fill="#c084fc" />
-        <Bar dataKey="month7" stackId="a" name="7월" fill="#4ade80" radius={[4, 4, 0, 0]} />
-        <Bar dataKey="month8" stackId="a" name="8월" fill="#22d3ee" radius={[4, 4, 0, 0]} />
+        <MonthlyCatchSeries />
       </BarChart>
     </SafeResponsiveContainer>
   );

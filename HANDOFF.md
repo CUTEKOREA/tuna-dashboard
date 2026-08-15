@@ -1,5 +1,13 @@
 # HANDOFF
 
+> 📊 **2026-08-15 11:44 KST — V2.5 다시리즈 차트 팔레트·8시리즈 견본 완료** [Codex]:
+> - `app/globals.css`에 `--chart-s1`~`--chart-s8` 공용 팔레트를 추가했다. `#0a0a0b` 배경에서 8색 모두 그래픽 대비 3:1 이상이며 sky·emerald·amber·violet·pink 우선, teal·orange·zinc 보완 순서다. 5개 이상 시리즈는 색과 명도에 더해 5번째부터 서로 다른 `strokeDasharray`를 병행한다는 사용 주석도 함께 고정했다.
+> - Grok 반증 §4의 8시리즈 사례인 `FleetCharts` 월간 누적 막대를 견본으로 전환했다. 1~8월은 각 `var(--chart-s1)`~`var(--chart-s8)`을 fill·stroke에 쓰고 5~8월은 `6 3`·`3 3`·`8 3 2 3`·`2 3` 대시를 적용한다. 다른 위젯 차트 색은 수정하지 않았다.
+> - TDD는 팔레트 부재와 견본 컴포넌트 부재를 각각 RED로 확인한 뒤 GREEN **2/2**로 전환했다. 관련 렌더·V2.5 테스트 **24/24**, 대상 ESLint, TypeScript, `git diff --check`가 통과했다.
+> - 로컬 브라우저 `/fleet` 월간 탭은 HTTP 200, 잠금 잔존·overflow·page/console 오류 0이며 실제 SVG 8개 시리즈와 계산된 RGB·대시를 확인했다. 검수 스크린샷은 `/tmp/v25_chart_palette_fleet_monthly.png`다. push·배포는 하지 않는다. 다음 단계는 무채 slate 브리지 5쌍을 zinc 등가값으로 튜닝하고 `/tmp/tune_before_*.png`와 after를 대조하는 것이다.
+
+> 마지막 업데이트: 2026-08-15 11:44 KST
+
 > 🎨 **2026-08-15 11:21 KST — L-07 2차 rgba·미탐 색 브리지 치환 완료** [Codex]:
 > - `scripts/fix_widget_colors.py`를 확장해 상위 16색과 RGB가 같은 스타일 위치의 rgba를 alpha 원문 그대로 `rgba(var(--w-*-rgb), alpha)`로 치환했다. `app/globals.css`에는 기존 solid 토큰 바로 아래 RGB 성분 토큰 16쌍을 추가했다. 적용 결과는 **170파일·793건(783 rgba + 10 hex)**이고 재실행은 **0파일·0건**이다.
 > - 10개 hex 미탐은 검증된 DOM 삽입 HTML 문자열 4파일의 7건(`PacificVesselMap` 2, `ColdStorageMap` 2, `TunaRestaurantMap` 2, `PetFoodMap` 1)과 `accentColor` 3건(`TradeRouteSankey`·`ExchangeSimulator`·`CarrotDashboard`)이다. HTML allowlist 밖 문자열, ECharts 캔버스 옵션, 데이터 의미값, 주석, `v2`·`cosmo`·테스트 파일은 보존했다.

@@ -133,6 +133,20 @@
   --w-emerald-400: #34d399;  /* 45 파일 */
   --w-emerald-400-rgb: 52, 211, 153; /* --w-emerald-400 쌍 */
 
+  /* V2.5 차트 시리즈 팔레트 — 다시리즈 구분 표준.
+   * Grok 반증 §4: 5개 이상 시리즈는 무채색 명도만으로 구분 불가 —
+   * 색상 + 명도 단계 + (5번째 시리즈부터) strokeDasharray 병행이 의무다.
+   * 사용처는 Recharts stroke/fill에 var()로 참조하고, 5+ 시리즈 차트는
+   * strokeDasharray="5 5" / "3 3" 등 대시 패턴을 시리즈별로 달리 줄 것. */
+  --chart-s1: #38bdf8;
+  --chart-s2: #34d399;
+  --chart-s3: #fbbf24;
+  --chart-s4: #a78bfa;
+  --chart-s5: #f472b6;
+  --chart-s6: #2dd4bf;
+  --chart-s7: #fb923c;
+  --chart-s8: #d4d4d8;
+
   /* ===== SPACING SCALE (4px 기반) ===== */
   --space-1:  4px;
   --space-2:  8px;
