@@ -1,6 +1,7 @@
 import weeklyRaw from '@/public/data/panofi/panofi_weekly.json';
 import profileRaw from '@/public/data/panofi/panofi_profile.json';
 import tradeRaw from '@/public/data/panofi/ghana_tuna_trade.json';
+import actualsRaw from '@/public/data/panofi/panofi_actuals.json';
 
 /**
  * 파노피(가나 참치 선망) 데이터 인테이크.
@@ -106,6 +107,11 @@ export const regionalLandingSeries: Point[] = weeks.map((w) => ({
   입항톤수: w.senegalFleet.reduce((sum, v) => sum + (v.tons ?? 0), 0) || null,
   척수: w.senegalFleet.length || null,
 }));
+
+const VESSEL_LABEL: Record<string, string> = {
+  'P/MAS': '마스터', 'P/DIS': '디스커버러', 'P/FORE': '포러너', 'P/PATH': '패스파인더',
+  'P/COMM': '커맨더', 'P/QUE': '퀸', 'P/GRA': '그레이스',
+};
 
 /* ------------------------------------------------------------------ 선단 */
 
@@ -314,6 +320,86 @@ export const tradeLadderGap = (() => {
     ),
   };
 })();
+
+/* --------------------------------------------------- 추정실적 xlsx (월별·척별) */
+
+export const actuals = actualsRaw;
+
+/** 월별 손익(천 달러). 원가 배분 변동성이 커서 추세로만 읽고 판단은 누계로 한다. */
+export const monthlySeries = actuals.monthly.map((m) => ({
+  label: m.month ?? `${m.monthIndex}월`,
+  판매량: m.수량MT,
+  평균단가: m.평균단가,
+  매출액: m.매출액 === null ? null : Math.round(m.매출액 / 1000),
+  영업이익: m.영업이익 === null ? null : Math.round(m.영업이익 / 1000),
+  당기순이익: m.당기순이익 === null ? null : Math.round(m.당기순이익 / 1000),
+}));
+
+/** 연도별 판매량·평균단가. 실적 시트 원본이라 전략보고 요약보다 한 단계 정밀하다. */
+export const annualVolumeSeries = actuals.annual.map((a) => ({
+  label: `${a.year}년`,
+  판매량: a.수량MT,
+  평균단가: a.평균단가,
+  원가율: a.원가율 === null ? null : Math.round(a.원가율 * 1000) / 10,
+}));
+
+/**
+ * 척별 완전손익(공통비·판관비·금융비용 배부 후).
+ * 전략보고의 «직접마진»과 순위가 뒤집히는 배가 있다 — 어느 배가 버는지는 지표가 정한다.
+ */
+export const vesselFullPnl = actuals.byVessel.vessels
+  .map((v) => ({
+    code: v.code,
+    name: v.name,
+    productionT: v.생산량MT,
+    unitUsdPerT: v.생산량MT && v.생산매출액 ? Math.round(v.생산매출액 / v.생산량MT) : null,
+    제조원가: v.제조원가,
+    생산총이익: v.생산총이익,
+    영업이익: v.영업이익,
+    세전이익: v.세전이익,
+  }))
+  .sort((a, b) => (b.세전이익 ?? 0) - (a.세전이익 ?? 0));
+
+/** 직접마진 순위와 완전손익 순위의 차이. 클수록 공통비 배부에 민감한 배다. */
+export const marginRankShift = (() => {
+  const direct = [...fleetMargins].map((v, i) => ({ code: v.code, name: v.name, rank: i + 1 }));
+  return vesselFullPnl.map((v, i) => {
+    const d = direct.find((x) => x.code === v.code);
+    return {
+      name: v.name,
+      직접마진순위: d?.rank ?? null,
+      완전손익순위: i + 1,
+      shift: d ? d.rank - (i + 1) : null,
+      세전이익: v.세전이익,
+    };
+  });
+})();
+
+/** 어종별 생산 구성(톤). 가다랑어가 통조림 원료의 주력이다. */
+export const catchBySpecies = (() => {
+  const map = new Map<string, number>();
+  for (const r of actuals.catchMix) {
+    map.set(r.species, (map.get(r.species) ?? 0) + r.totalMT);
+  }
+  const total = [...map.values()].reduce((s, v) => s + v, 0);
+  return [...map.entries()]
+    .map(([label, t]) => ({ label, 생산량: Math.round(t), 비중: Math.round((t / total) * 1000) / 10 }))
+    .sort((a, b) => b.생산량 - a.생산량);
+})();
+
+/** 척별 원가 3분류(재료비·노무비·경비) 합계. */
+export const vesselCostGroups = actuals.byVessel.vessels.map((v) => {
+  const g = { label: VESSEL_LABEL[v.code] ?? v.code, 재료비: 0, 노무비: 0, 경비: 0 };
+  for (const c of v.costs) {
+    if (c.group === '재료비') g.재료비 += c.usd;
+    else if (c.group === '노무비') g.노무비 += c.usd;
+    else g.경비 += c.usd;
+  }
+  g.재료비 = Math.round(g.재료비 / 1000);
+  g.노무비 = Math.round(g.노무비 / 1000);
+  g.경비 = Math.round(g.경비 / 1000);
+  return g;
+});
 
 /** 원자료 품질 플래그. 화면 하단 '데이터 품질'에 그대로 노출해 신뢰도를 스스로 밝힌다. */
 export const dataQuality = {

@@ -17,6 +17,11 @@ import {
   trade,
   tradeYear,
   tradeLadderGap,
+  actuals,
+  vesselFullPnl,
+  marginRankShift,
+  catchBySpecies,
+  monthlySeries,
 } from '../lib/data/panofi';
 import { DASHBOARD_MENU_CONFIGS, SIDEBAR_SECTIONS } from '../lib/dashboard-registry';
 
@@ -171,5 +176,37 @@ describe('메뉴 배선', () => {
     const entry = DASHBOARD_MENU_CONFIGS.find((m) => m.key === 'panofi');
     expect(entry?.title).toBe('파노피');
     expect(entry?.section).toBe('operation');
+  });
+});
+
+describe('추정실적 원장 (월별·척별)', () => {
+  it('척별 생산량 합이 누계와 맞는다 — 열 매핑이 밀리면 여기서 걸린다', () => {
+    // 실제로 한 행 밀려 전 척이 null 로 나온 적이 있다. 합계 대조가 그걸 잡았다.
+    const sum = vesselFullPnl.reduce((s, v) => s + (v.productionT ?? 0), 0);
+    expect(Math.round(sum)).toBe(Math.round(actuals.byVessel.totals.생산량MT!));
+    expect(sum).toBeGreaterThan(0);
+  });
+
+  it('척별 세전이익 합이 누계 세전이익과 맞는다', () => {
+    const sum = vesselFullPnl.reduce((s, v) => s + (v.세전이익 ?? 0), 0);
+    expect(Math.abs(sum - actuals.byVessel.totals.세전이익!)).toBeLessThan(1);
+  });
+
+  it('직접마진 순위와 완전손익 순위가 다른 배가 있다', () => {
+    // 둘이 항상 같다면 완전손익 표를 따로 둘 이유가 없다.
+    expect(marginRankShift.some((r) => (r.shift ?? 0) !== 0)).toBe(true);
+  });
+
+  it('어종 구성이 가다랑어 우위이고 비중 합이 100% 부근이다', () => {
+    expect(catchBySpecies[0].label).toBe('가다랑어');
+    const total = catchBySpecies.reduce((s, c) => s + c.비중, 0);
+    expect(total).toBeGreaterThan(99);
+    expect(total).toBeLessThan(101);
+  });
+
+  it('월별 원장은 6개월치이고 누계와 판매량이 맞는다', () => {
+    expect(monthlySeries).toHaveLength(6);
+    const sum = monthlySeries.reduce((s, m) => s + (Number(m.판매량) || 0), 0);
+    expect(Math.abs(sum - h1.salesT)).toBeLessThan(1);
   });
 });

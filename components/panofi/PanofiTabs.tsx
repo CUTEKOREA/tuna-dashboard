@@ -31,6 +31,13 @@ import {
   seaTempSeries,
   sensitivityBars,
   stopCondition,
+  actuals,
+  monthlySeries,
+  annualVolumeSeries,
+  vesselFullPnl,
+  marginRankShift,
+  catchBySpecies,
+  vesselCostGroups,
   trade,
   tradeBalanceSeries,
   tradeLadderGap,
@@ -205,6 +212,70 @@ export function FleetTab() {
           y2Fmt={(v) => `${v}척`}
         />
       </Card>
+
+      <SecHead>척당 완전손익 — 공통비를 배부하면 순위가 뒤집힌다</SecHead>
+      <Card
+        sub="상반기 세전이익(달러). 공통비·판관비·금융비용까지 배부한 뒤의 값"
+        note="위의 직접마진은 공통비 배부 전이라 «누가 많이 벌어오나»를 보고, 이 표는 배부 후라 «누가 회사 손익에 얼마를 남기나»를 본다. 두 지표의 순위가 어긋나는 배가 있으므로 어느 배를 줄일지 판단할 때는 반드시 배부 후를 본다. 상반기에는 일곱 척 모두 세전 적자다."
+      >
+        <Chart
+          data={vesselFullPnl.map((v) => ({ label: v.name, 세전이익: Math.round((v.세전이익 ?? 0) / 1000) }))}
+          x="label"
+          height={280}
+          horizontal
+          labelWidth={110}
+          series={[S('세전이익', '세전이익', 'var(--cosmo-s1)', { type: 'bar', signColor: ['var(--cosmo-up)', 'var(--cosmo-down)'] })]}
+          zeroLine
+          yFmt={kusd}
+        />
+        <div className="tbl-wrap">
+          <table className="tbl">
+            <thead><tr><th>선박</th><th>직접마진 순위</th><th>완전손익 순위</th><th>변동</th><th>세전이익 (달러)</th></tr></thead>
+            <tbody>
+              {marginRankShift.map((r) => (
+                <tr key={r.name}>
+                  <td>{r.name}</td>
+                  <td>{r.직접마진순위 ?? '자료 없음'}</td>
+                  <td>{r.완전손익순위}</td>
+                  <td className={(r.shift ?? 0) > 0 ? 'up' : (r.shift ?? 0) < 0 ? 'down' : ''}>
+                    {r.shift === null ? '—' : r.shift > 0 ? `▲${r.shift}` : r.shift < 0 ? `▼${-r.shift}` : '—'}
+                  </td>
+                  <td>{(r.세전이익 ?? 0).toLocaleString('en-US')}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </Card>
+
+      <SecHead>어종 구성</SecHead>
+      <Card
+        sub="상반기 생산량(톤)과 비중. 척별·사이즈별 원장을 어종으로 합산했다"
+        note={`가다랑어가 ${catchBySpecies[0]?.비중}%로 주력이며 통조림 원료로 나간다. 어종·사이즈 원장 합계는 ${actuals.meta.catchMixTotalMT.toLocaleString('en-US')}톤으로 총 생산 ${h1.productionT.toLocaleString('en-US')}톤과 약 1,966톤 차이가 난다 — 잡어와 미배분 물량으로 보이며 원본 자체의 차이라 임의로 맞추지 않았다.`}
+      >
+        <Chart
+          data={catchBySpecies}
+          x="label"
+          height={240}
+          series={[S('생산량', '생산량', 'var(--cosmo-s1)', { type: 'bar' })]}
+          yFmt={(v) => `${v.toLocaleString('en-US')}톤`}
+        />
+      </Card>
+
+      <SecHead>척별 원가 3분류</SecHead>
+      <Card sub="단위: 천 달러. 재료비(유류·윤활유)·노무비(선원)·경비(선용품·어구·수선·입어료·항만 등)">
+        <Chart
+          data={vesselCostGroups}
+          x="label"
+          height={280}
+          series={[
+            S('재료비', '재료비', 'var(--cosmo-s1)', { type: 'bar', stackId: 'c' }),
+            S('노무비', '노무비', 'var(--cosmo-s2)', { type: 'bar', stackId: 'c' }),
+            S('경비', '경비', 'var(--cosmo-s3)', { type: 'bar', stackId: 'c' }),
+          ]}
+          yFmt={kusd}
+        />
+      </Card>
     </>
   );
 }
@@ -343,6 +414,39 @@ export function ProfitTab() {
           labelWidth={130}
           series={[S('비중', '매출 대비 비중', 'var(--cosmo-s1)', { type: 'bar' })]}
           yFmt={pct}
+        />
+      </Card>
+
+      <SecHead>월별 추이</SecHead>
+      <Card
+        sub="단위: 판매량(톤)·평균단가(달러/톤). 추정실적 원장 1~6월"
+        note={actuals.meta.caveat}
+      >
+        <Chart
+          data={monthlySeries}
+          x="label"
+          height={260}
+          series={[
+            S('판매량', '판매량', 'var(--cosmo-s1)', { type: 'bar' }),
+            S('평균단가', '평균단가', 'var(--cosmo-s3)', { type: 'line', axis: 'right' }),
+          ]}
+          yFmt={(v) => `${v.toLocaleString('en-US')}톤`}
+          y2Fmt={usd}
+        />
+      </Card>
+
+      <SecHead>연도별 판매량과 어가</SecHead>
+      <Card sub="단위: 판매량(톤)·평균단가(달러/톤)·원가율(%). 2026은 상반기 누계" note="2023년 평균단가 1,499달러가 최고였고 이후 1,270~1,295 대에서 횡보한다. 원가율은 물량이 많은 해에 낮아진다 — 규모의 경제가 실제로 작동한다는 증거다.">
+        <Chart
+          data={annualVolumeSeries}
+          x="label"
+          height={260}
+          series={[
+            S('판매량', '판매량', 'var(--cosmo-s1)', { type: 'bar' }),
+            S('평균단가', '평균단가', 'var(--cosmo-s3)', { type: 'line', axis: 'right' }),
+          ]}
+          yFmt={(v) => `${v.toLocaleString('en-US')}톤`}
+          y2Fmt={usd}
         />
       </Card>
 
