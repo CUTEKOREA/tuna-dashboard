@@ -374,6 +374,7 @@ describe('dashboard registry', () => {
       'fleet',
       'unloading',
       'logistics',
+      'panofi',
       'cosmo',
       'bangkok-office',
     ]);
@@ -488,7 +489,7 @@ describe('dashboard registry', () => {
     ]);
 
     expect(SIDEBAR_SECTIONS.map((section) => section.items.map((item) => item.key))).toEqual([
-      ['market', 'fleet', 'unloading', 'logistics', 'cosmo', 'bangkok-office'],
+      ['market', 'fleet', 'unloading', 'logistics', 'panofi', 'cosmo', 'bangkok-office'],
     ]);
 
     const sidebarKeys = SIDEBAR_SECTIONS.flatMap((section) => section.items.map((item) => item.key));
@@ -512,6 +513,7 @@ describe('dashboard registry', () => {
       'cross-intelligence',
       'pork',
       'unloading',
+      'panofi',
       'cosmo',
       'bangkok-office',
       'purse-seiner-db',
