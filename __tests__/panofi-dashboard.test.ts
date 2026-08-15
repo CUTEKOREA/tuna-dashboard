@@ -286,10 +286,11 @@ describe('출처 표기', () => {
   it('첫 화면의 모든 카드가 출처를 달고 있다', () => {
     // 사내 원장·주간동향·전략보고·무역통계·외부 조사가 섞여 있고 기준(판매/생산)에 따라
     // 값이 갈린다. 출처가 없으면 숫자가 어긋났을 때 어디를 볼지 알 수 없다.
-    const cards = markup.split('class="card"').length - 1;
-    const srcs = markup.split('panofi-src').length - 1;
-    expect(cards).toBeGreaterThan(0);
-    expect(srcs).toBeGreaterThan(0);
+    const panels = markup.split('pf-panel').length - 1;
+    const srcs = markup.split('pf-src').length - 1;
+    expect(panels).toBeGreaterThan(0);
+    // 패널 하나하나가 출처를 달아야 한다. 하나라도 빠지면 그 수치는 근거를 잃는다.
+    expect(srcs).toBe(panels);
   });
 
   it('판매기준과 생산기준 차이를 충돌이 아니라 기준 차로 밝힌다', () => {

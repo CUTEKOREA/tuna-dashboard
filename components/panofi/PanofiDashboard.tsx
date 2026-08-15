@@ -17,6 +17,7 @@ import { headline, h1, company } from '@/lib/data/panofi';
 import HeroZone, { type HeroKpi } from '../v2/HeroZone';
 import PillTabs, { type PillTab } from '../v2/PillTabs';
 import '../cosmo/cosmo.css';
+import './panofi.css';
 import {
   CashTab,
   FleetTab,
@@ -91,7 +92,7 @@ export default function PanofiDashboard({ heroOnly = false }: { heroOnly?: boole
   // 없어 빈 문자열이 되고, SVG 는 fill 에 빈 값을 받으면 검정으로 떨어진다.
   // 코스모와 같은 팔레트를 쓰므로 두 속성을 함께 단다.
   return (
-    <div className="cosmo-root" data-cosmo-dashboard data-panofi-dashboard>
+    <div className="cosmo-root panofi-root" data-cosmo-dashboard data-panofi-dashboard>
       <HeroZone
         variant="kpi"
         title="파노피 조업 대시보드"
