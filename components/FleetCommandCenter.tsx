@@ -95,7 +95,7 @@ export default function FleetCommandCenter({ heroOnly = false }: { heroOnly?: bo
       </section>
 
       <section id="fleet-panel-vessels" role="tabpanel" aria-labelledby="fleet-tab-vessels" className={s.tabPanel} hidden={activeTab !== 'vessels'}>
-          <div className={s.sectionHeading}><div><span className={s.eyebrow}>선박·수역</span><h3>예외 선박과 수역별 배치</h3></div><span>지도는 보고 좌표의 개략 위치입니다</span></div>
+          {/* 헤딩·좌표 캡션 제거 (2026-08-15 사용자 지시) */}
           <FleetRealMap />
           <FleetRosterGrid />
       </section>
