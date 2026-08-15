@@ -239,6 +239,8 @@ export default function HeroZone({
         <h1
           style={{
             margin: 0,
+            // 코스모 계열(.cosmo-root)의 자체 폰트 상속으로 페이지마다 타이틀 서체가 갈리던 문제 — 명시 통일 (2026-08-15)
+            fontFamily: 'var(--font-pretendard), var(--font-geist-sans), "Apple SD Gothic Neo", sans-serif',
             fontSize: 'var(--dsc-title-size)',
             fontWeight: 'var(--dsc-title-weight)' as React.CSSProperties['fontWeight'],
             color: 'var(--dsc-ink)',
