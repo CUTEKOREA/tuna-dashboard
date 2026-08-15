@@ -71,6 +71,35 @@ describe('GMTS dashboard decision surface', () => {
     expect(html).not.toContain('Other');
   });
 
+  it('keeps raw English price qualifiers out of the price tab and shows Korean qualifiers', () => {
+    const html = renderDashboard('price-volume');
+    const source = readFileSync(
+      new URL('../components/gmts/GmtsDashboard.tsx', import.meta.url),
+      'utf8',
+    );
+
+    for (const rawQualifier of [
+      'No price',
+      'No offer',
+      'Around',
+      'Level',
+      'under',
+      'old contract',
+    ]) {
+      expect(html).not.toContain(rawQualifier);
+    }
+    for (const koreanQualifier of ['가격 없음', '제안 없음', '약', '수준', '미만', '기존 계약']) {
+      expect(html).toContain(koreanQualifier);
+    }
+    expect(
+      source.match(
+        /<small>원문: \{row\.(?:nonGspRawText|gspRawText)\}<\/small>/g,
+      ) ?? [],
+    ).toHaveLength(0);
+    expect(source).toContain('{row.nonGspQualifierLabel}');
+    expect(source).toContain('{row.gspQualifierLabel}');
+  });
+
   it('keeps the locked hero teaser free of every detailed surface', () => {
     const html = renderToStaticMarkup(createElement(DashboardComponent, { heroOnly: true }));
 

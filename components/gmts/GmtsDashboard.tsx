@@ -730,12 +730,10 @@ function PriceTooltip({ active, payload }: ChartTooltipProps<GmtsPriceTrendPoint
         <div>
           <dt>비특혜 가격</dt>
           <dd>{formatPrice(row.nonGspAmount)} · {row.nonGspQualifierLabel}</dd>
-          <small>원문: {row.nonGspRawText}</small>
         </div>
         <div>
           <dt>특혜 가격</dt>
           <dd>{formatPrice(row.gspAmount)} · {row.gspQualifierLabel}</dd>
-          <small>원문: {row.gspRawText}</small>
         </div>
       </dl>
       <p>{row.unit}</p>

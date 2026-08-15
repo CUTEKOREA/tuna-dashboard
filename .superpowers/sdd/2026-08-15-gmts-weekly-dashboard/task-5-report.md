@@ -1,6 +1,6 @@
 # Task 5 보고 — GMTS 대시보드 UI
 
-- 작업 시각: 2026-08-16 06:59 KST
+- 작업 시각: 2026-08-16 07:29 KST
 - 작업 경로: `/private/tmp/tuna-gmts-impl.QIPOMn/worktree`
 - 범위: Task 5 UI와 부모 렌더 테스트만 구현
 - 미수행: 커밋, push, 배포, 패키지 설치, `HANDOFF.md` 수정, 서브에이전트 생성
@@ -17,6 +17,19 @@
    - 명령: `npx vitest run __tests__/gmts-dashboard-render.test.ts`
    - 결과: 1파일, 7/7 테스트 통과, exit 0
 
+## 리뷰 수정 — 가격 툴팁 영문 원문 비노출
+
+- 가격 탭 정적 렌더에서 `No price`, `No offer`, `Around`, `Level`, `under`, `old contract` 비노출과 `가격 없음`, `제안 없음`, `약`, `수준`, `미만`, `기존 계약` 노출을 먼저 단언했다.
+- Recharts 툴팁 content는 정적 렌더에 포함되지 않아 이 테스트만으로는 8/8 통과했다. 이 실행은 유효 RED로 계산하지 않았다.
+- 두 rawText 렌더 바인딩만 겨냥한 소스 회귀 단언을 추가한 뒤 유효 RED를 확인했다.
+  - 명령: `npx vitest run __tests__/gmts-dashboard-render.test.ts`
+  - 결과: exit 1, 1실패·7통과
+  - 원인: `<small>원문: {row.nonGspRawText/gspRawText}</small>` 일치 항목이 기대 0개가 아니라 2개
+- 최소 수정으로 위 두 `<small>` 렌더만 제거했다. `buildGmtsPresentation()`의 rawText 보존과 데이터 출처 계보는 변경하지 않았다.
+- 리뷰 GREEN:
+  - 명령: `npx vitest run __tests__/gmts-dashboard-render.test.ts`
+  - 결과: exit 0, 1파일 8/8 통과
+
 ## 구현 내용
 
 - `getGmtsDashboard()`와 `buildGmtsPresentation()`을 모듈 범위에서 한 번만 호출하고, 새 fetch·JSON 직접 import·새 의존성을 만들지 않았다.
@@ -31,11 +44,12 @@
 
 | 검증 | 결과 |
 | --- | --- |
-| `npx vitest run __tests__/gmts-dashboard-render.test.ts __tests__/gmts-presentation.test.ts __tests__/gmts-dashboard-data.test.ts` | exit 0, 3파일 28/28 통과 |
+| `npx vitest run __tests__/gmts-dashboard-render.test.ts __tests__/gmts-presentation.test.ts __tests__/gmts-dashboard-data.test.ts` | exit 0, 3파일 29/29 통과 |
 | `python3 scripts/check_s_grade.py --strict gmts/GmtsDashboard.tsx` | exit 0, 영문 잔존 0, GS 위반 0, 가짜 LIVE 0 |
 | `npm run typecheck` | exit 0 |
 | `npx eslint components/gmts/GmtsDashboard.tsx __tests__/gmts-dashboard-render.test.ts` | exit 0, 출력 없음 |
 | `git diff --check` | exit 0; 별도 fsmonitor IPC 경고 1줄 발생 |
+| `git diff --cached --check` | exit 0; 별도 fsmonitor IPC 경고 1줄 발생 |
 
 ## 검증상 주의
 
@@ -43,9 +57,10 @@
 - `git diff --check`의 fsmonitor IPC 메시지는 이 worktree가 참조하는 상위 저장소 fsmonitor 데몬 경고이며 명령 자체는 exit 0이다.
 - 브라우저 시각 QA와 전체 `npm run verify`는 Task 6 통합 범위이므로 실행하지 않았다.
 
-## 스테이징 대상
+## 리뷰 수정 스테이징 대상
 
 - `components/gmts/GmtsDashboard.tsx`
-- `components/gmts/GmtsDashboard.module.css`
 - `__tests__/gmts-dashboard-render.test.ts`
 - `.superpowers/sdd/2026-08-15-gmts-weekly-dashboard/task-5-report.md`
+
+기존 `components/gmts/GmtsDashboard.module.css`는 리뷰 수정에서 변경하거나 다시 스테이징하지 않았다.
