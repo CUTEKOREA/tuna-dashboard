@@ -21,6 +21,15 @@ DEFAULT_INPUT = Path(
 )
 DEFAULT_HTML_OUTPUT = Path("public/reports/bangkok_weekly_2020_2026.html")
 DEFAULT_JSON_OUTPUT = Path("public/data/bangkok_weekly_kpi.json")
+DEFAULT_PAYLOAD_OUTPUT = Path("public/data/bangkok_weekly_payload.json")
+
+# 네이티브 탭 대시보드가 소비하는 payload 필수 키 — 하나라도 빠지면 fail-closed
+PAYLOAD_REQUIRED_KEYS = (
+    "series", "panel", "traderMonthly", "yearly", "traderAnnual",
+    "corr", "seasonality", "snapshot", "stockShare", "canneryTrend",
+    "salt", "claimsYear", "meta", "mismatch", "corrections", "dupes", "priceFlags",
+)
+PAYLOAD_MIN_SERIES_ROWS = 200
 
 OVERRIDE_BEGIN = "<!-- BEGIN:V25D_BANGKOK_DARK -->"
 OVERRIDE_END = "<!-- END:V25D_BANGKOK_DARK -->"
@@ -283,7 +292,33 @@ def atomic_write(path: Path, content: str) -> None:
         raise
 
 
-def sync_report(input_path: Path, html_output: Path, json_output: Path) -> None:
+def parse_payload_contract(source: str) -> dict[str, Any]:
+    """원본에 내장된 <script id="payload"> JSON을 검증해 그대로 반환한다."""
+    match = re.search(
+        r'<script id="payload" type="application/json">(.*?)</script>', source, re.DOTALL
+    )
+    if match is None:
+        raise BangkokSyncError('payload 스크립트(<script id="payload">)를 찾지 못했습니다.')
+    try:
+        payload = json.loads(match.group(1))
+    except json.JSONDecodeError as error:
+        raise BangkokSyncError(f"payload JSON 파싱 실패: {error}") from error
+    if not isinstance(payload, dict):
+        raise BangkokSyncError("payload는 객체여야 합니다.")
+    missing = [key for key in PAYLOAD_REQUIRED_KEYS if key not in payload]
+    if missing:
+        raise BangkokSyncError(f"payload 필수 키 누락: {', '.join(missing)}")
+    series = payload["series"]
+    if not isinstance(series, list) or len(series) < PAYLOAD_MIN_SERIES_ROWS:
+        raise BangkokSyncError(
+            f"series 행이 {PAYLOAD_MIN_SERIES_ROWS}개 미만입니다: {len(series) if isinstance(series, list) else '리스트 아님'}"
+        )
+    return payload
+
+
+def sync_report(
+    input_path: Path, html_output: Path, json_output: Path, payload_output: Path
+) -> None:
     if not input_path.is_file():
         raise BangkokSyncError(f"원본 HTML을 찾을 수 없습니다: {input_path}")
     try:
@@ -292,30 +327,34 @@ def sync_report(input_path: Path, html_output: Path, json_output: Path) -> None:
         raise BangkokSyncError(f"원본 HTML을 UTF-8로 읽지 못했습니다: {input_path}") from error
 
     kpi_contract = parse_kpi_contract(source)
+    payload_contract = parse_payload_contract(source)
     transformed = inject_dark_override(source)
     json_payload = json.dumps(kpi_contract, ensure_ascii=False, indent=2) + "\n"
+    payload_json = json.dumps(payload_contract, ensure_ascii=False, separators=(",", ":")) + "\n"
 
     try:
         atomic_write(html_output, transformed)
         atomic_write(json_output, json_payload)
+        atomic_write(payload_output, payload_json)
     except OSError as error:
         raise BangkokSyncError(f"동기화 출력을 쓰지 못했습니다: {error}") from error
 
 
 def parse_args(argv: Sequence[str]) -> argparse.Namespace:
     parser = argparse.ArgumentParser(
-        description="방콕 주간보고를 다크 표시본과 KPI JSON으로 동기화합니다."
+        description="방콕 주간보고를 다크 표시본과 KPI·payload JSON으로 동기화합니다."
     )
     parser.add_argument("--input", type=Path, default=DEFAULT_INPUT)
     parser.add_argument("--html-output", type=Path, default=DEFAULT_HTML_OUTPUT)
     parser.add_argument("--json-output", type=Path, default=DEFAULT_JSON_OUTPUT)
+    parser.add_argument("--payload-output", type=Path, default=DEFAULT_PAYLOAD_OUTPUT)
     return parser.parse_args(argv)
 
 
 def main(argv: Sequence[str] | None = None) -> int:
     args = parse_args(argv if argv is not None else sys.argv[1:])
     try:
-        sync_report(args.input, args.html_output, args.json_output)
+        sync_report(args.input, args.html_output, args.json_output, args.payload_output)
     except BangkokSyncError as error:
         print(f"방콕 주간보고 동기화 실패: {error}", file=sys.stderr)
         return 1

@@ -1,17 +1,14 @@
 import React from 'react';
 import { renderToStaticMarkup } from 'react-dom/server';
 import { describe, expect, it } from 'vitest';
-import {
-  BangkokOfficeDashboard,
-} from '../components/EmbeddedDashboardFrame';
 
-describe('embedded operation pages', () => {
-  it('renders the Bangkok KPI hero from the intake contract above the unsandboxed report iframe', async () => {
-    const intakeModule = await import('../lib/data/bangkok-weekly').catch(() => null);
+// 2026-08-15: 방콕사무소가 iframe 표시본에서 네이티브 탭 대시보드로 이전 —
+// 이 파일은 그 계약(히어로 + PillTabs + iframe 부재)을 지킨다.
+describe('bangkok native dashboard', () => {
+  it('KPI 인테이크 계약과 payload 불변식을 지킨다', async () => {
+    const intake = await import('../lib/data/bangkok-weekly');
 
-    expect(intakeModule).not.toBeNull();
-    if (!intakeModule) return;
-    expect(intakeModule.bangkokWeeklyKpi).toEqual({
+    expect(intake.bangkokWeeklyKpi).toEqual({
       period: '2020.05~2026.08',
       weeks: 287,
       latestPrice: 1960,
@@ -21,24 +18,53 @@ describe('embedded operation pages', () => {
       highSaltUsd: 142000,
     });
 
-    const markup = renderToStaticMarkup(React.createElement(BangkokOfficeDashboard));
+    // 관계 불변식 — 산출물 세대가 어긋나면 여기서 끊긴다
+    expect(intake.bangkokWeeks.length).toBe(intake.bangkokWeeklyKpi.weeks);
+    expect(intake.bangkokMeta.reports).toBe(intake.bangkokWeeks.length);
+    expect(intake.bangkokYearly.reduce((acc, y) => acc + y.weeks, 0)).toBe(
+      intake.bangkokWeeks.length,
+    );
+    // 트레이더 월합계는 트레이더별 물량 합과 일치해야 한다
+    for (const m of intake.bangkokTraderMonthly) {
+      const sum = Object.values(m.volumes).reduce((a, b) => a + b, 0);
+      expect(Math.abs(sum - m.totalCalc)).toBeLessThan(1);
+    }
+  });
+
+  it('네이티브 히어로 + 탭을 렌더하고 iframe은 남기지 않는다', async () => {
+    const { default: BangkokDashboard } = await import('../components/bangkok/BangkokDashboard');
+    const markup = renderToStaticMarkup(React.createElement(BangkokDashboard));
 
     expect(markup).toContain('방콕사무소 주간보고');
     expect(markup).toContain('분석 기간 2020.05~2026.08 · 고유 287주');
-    expect(markup).toContain('최신 시세');
-    expect(markup).toContain('방콕 재고');
-    expect(markup).toContain('2026 누적 하역');
-    expect(markup).toContain('가공가능일수');
     for (const value of [1960, 117400, 326005, 44]) {
       expect(markup).toContain(`data-kpi-value="${value}"`);
     }
-    expect(markup).toContain('src="/reports/bangkok_weekly_2020_2026.html"');
-    expect(markup).toContain('title="방콕사무소 주간보고"');
-    expect(markup).toContain('width:100%');
-    expect(markup).toContain('height:100%');
-    expect(markup).toContain('border:0');
-    expect(markup).toContain('방콕사무소 주간보고 불러오는 중...');
-    expect(markup).not.toContain('sandbox=');
+    for (const label of [
+      '개관',
+      '원어 시세',
+      '하역·트레이더',
+      '캐너리·재고',
+      '품질 클레임',
+      '선행지표',
+      '데이터 품질',
+    ]) {
+      expect(markup).toContain(label);
+    }
+    expect(markup).not.toContain('<iframe');
   });
 
+  it('heroOnly 티저는 히어로만 남기고 탭·본문을 감춘다', async () => {
+    const { default: BangkokDashboard } = await import('../components/bangkok/BangkokDashboard');
+    const markup = renderToStaticMarkup(
+      React.createElement(
+        BangkokDashboard as React.ComponentType<{ heroOnly?: boolean }>,
+        { heroOnly: true },
+      ),
+    );
+
+    expect(markup).toContain('방콕사무소 주간보고');
+    expect(markup).not.toContain('role="tablist"');
+    expect(markup).not.toContain('role="tabpanel"');
+  });
 });

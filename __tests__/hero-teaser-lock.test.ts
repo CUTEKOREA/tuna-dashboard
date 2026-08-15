@@ -114,6 +114,8 @@ describe('잠금 상태 히어로 티저', () => {
     expect(source).toContain('핵심 지표는 공개되며, 상세 분석은 내부 확인 후 열람할 수 있습니다.');
     // 2026-08-15: 코스모 네이티브 이전으로 히어로 보유 — 티저 지원 목록에 합류
     expect(source).toMatch(/cosmo: <CosmoDashboard heroOnly \/>/);
+    // 2026-08-15: 방콕사무소도 네이티브 탭 대시보드로 이전 — 티저 합류
+    expect(source).toMatch(/'bangkok-office': <BangkokDashboard heroOnly \/>/);
     expect(source).not.toMatch(/<BangkokOfficeDashboard\s+heroOnly/);
     expect(source).toContain("!isOperationMenuLocked && activeMenu === 'market'");
   });

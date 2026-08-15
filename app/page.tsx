@@ -45,7 +45,7 @@ const MarketDashboard = dynamic(() => import('../components/MarketDashboard'));
 const PurseSeinerDashboard = dynamic(() => import('../components/PurseSeinerDashboard'));
 const PanofiDashboard = dynamic(() => import('../components/panofi/PanofiDashboard'));
 const CosmoDashboard = dynamic(() => import('../components/cosmo/CosmoDashboard'));
-const BangkokOfficeDashboard = dynamic(() => import('../components/EmbeddedDashboardFrame').then((module) => module.BangkokOfficeDashboard));
+const BangkokDashboard = dynamic(() => import('../components/bangkok/BangkokDashboard'));
 
 const OPERATION_ACCESS_STORAGE_KEY = 'silla-operation-access';
 const OPERATION_PASSWORD = 'a34349900';
@@ -273,7 +273,7 @@ export default function Home() {
     unloading: <UnloadingStatus />,
     panofi: <PanofiDashboard />,
     cosmo: <CosmoDashboard />,
-    'bangkok-office': <BangkokOfficeDashboard />,
+    'bangkok-office': <BangkokDashboard />,
     'purse-seiner-db': <PurseSeinerDashboard />,
   };
   const heroTeaserPanels: Partial<Record<ActiveMenu, React.ReactNode>> = {
@@ -286,6 +286,7 @@ export default function Home() {
     'purse-seiner-db': <PurseSeinerDashboard heroOnly />,
     panofi: <PanofiDashboard heroOnly />,
     cosmo: <CosmoDashboard heroOnly />,
+    'bangkok-office': <BangkokDashboard heroOnly />,
   };
 
   return (
