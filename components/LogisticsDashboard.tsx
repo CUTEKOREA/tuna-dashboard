@@ -46,38 +46,23 @@ function FishingGroundToBangkokRouteMap() {
   return (
     <div className={styles.routeMap}>
       <svg viewBox="0 0 960 420" preserveAspectRatio="xMidYMid slice">
-        <defs>
-          <linearGradient id="route-sea" x1="0" y1="0" x2="1" y2="1">
-            <stop offset="0%" stopColor="#07131d" />
-            <stop offset="100%" stopColor="#0d2230" />
-          </linearGradient>
-          <linearGradient id="route-line" x1="0" y1="0" x2="1" y2="0">
-            <stop offset="0%" stopColor="#22d3ee" />
-            <stop offset="100%" stopColor="#3b82f6" />
-          </linearGradient>
-          <filter id="route-marker-glow" x="-100%" y="-100%" width="300%" height="300%">
-            <feGaussianBlur stdDeviation="5" result="blur" />
-            <feMerge><feMergeNode in="blur" /><feMergeNode in="SourceGraphic" /></feMerge>
-          </filter>
-        </defs>
-        <rect width="960" height="420" fill="url(#route-sea)" />
+        <rect width="960" height="420" fill="var(--dsc-bg-deep)" />
         {[80, 160, 240, 320].map(y => (
-          <line key={y} x1="0" y1={y} x2="960" y2={y} stroke="rgba(148,196,220,0.08)" strokeDasharray="4 12" />
+          <line key={y} x1="0" y1={y} x2="960" y2={y} stroke="var(--dsc-surface-border)" strokeDasharray="4 12" />
         ))}
         {[120, 280, 440, 600, 760, 920].map(x => (
-          <line key={x} x1={x} y1="0" x2={x} y2="420" stroke="rgba(148,196,220,0.06)" strokeDasharray="4 12" />
+          <line key={x} x1={x} y1="0" x2={x} y2="420" stroke="var(--dsc-surface-border)" strokeDasharray="4 12" />
         ))}
-        <path d="M 86 366 C 128 318, 160 274, 198 252 C 230 235, 254 254, 278 286 L 245 392 L 112 404 Z" fill="rgba(45,83,96,0.42)" stroke="rgba(148,196,220,0.14)" />
-        <path d="M 714 62 C 760 68, 806 98, 822 136 C 834 165, 808 197, 770 203 C 742 185, 728 151, 724 114 Z" fill="rgba(45,83,96,0.42)" stroke="rgba(148,196,220,0.14)" />
-        <path d="M 206 312 C 350 116, 576 82, 770 144" fill="none" stroke="rgba(34,211,238,0.18)" strokeWidth="12" />
-        <path d="M 206 312 C 350 116, 576 82, 770 144" fill="none" stroke="url(#route-line)" strokeWidth="3" strokeDasharray="10 9" />
-        <circle cx="206" cy="312" r="8" fill="#22d3ee" filter="url(#route-marker-glow)" />
-        <circle cx="770" cy="144" r="8" fill="#60a5fa" filter="url(#route-marker-glow)" />
+        <path d="M 86 366 C 128 318, 160 274, 198 252 C 230 235, 254 254, 278 286 L 245 392 L 112 404 Z" fill="var(--dsc-surface)" stroke="var(--dsc-surface-border)" />
+        <path d="M 714 62 C 760 68, 806 98, 822 136 C 834 165, 808 197, 770 203 C 742 185, 728 151, 724 114 Z" fill="var(--dsc-surface)" stroke="var(--dsc-surface-border)" />
+        <path d="M 206 312 C 350 116, 576 82, 770 144" fill="none" stroke="var(--accent-primary)" strokeWidth="3" strokeDasharray="10 9" />
+        <circle cx="206" cy="312" r="8" fill="var(--accent-primary)" />
+        <circle cx="770" cy="144" r="8" fill="var(--accent-primary)" />
         {/* 흐름 방향: 조업지(태평양 어장) → 하역지(방콕) — 곡선 위 화살표 2개 */}
-        <path d="M 566 92 L 546 86 L 556 104 Z" fill="#7dd3fc" opacity="0.85" />
-        <path d="M 330 138 L 312 142 L 328 156 Z" fill="#7dd3fc" opacity="0.85" />
-        <text x="158" y="368" fill="#bae6fd" fontSize="20" fontWeight="700">방콕</text>
-        <text x="700" y="120" fill="#bfdbfe" fontSize="20" fontWeight="700">태평양 어장</text>
+        <path d="M 566 92 L 546 86 L 556 104 Z" fill="var(--accent-primary)" opacity="0.85" />
+        <path d="M 330 138 L 312 142 L 328 156 Z" fill="var(--accent-primary)" opacity="0.85" />
+        <text x="158" y="368" fill="var(--dsc-ink)" fontSize="20" fontWeight="700">방콕</text>
+        <text x="700" y="120" fill="var(--dsc-ink-muted)" fontSize="20" fontWeight="700">태평양 어장</text>
         {reeferWeek31.map((row, index) => {
           const position = bangkokMarkerPositions[index];
           return (
@@ -87,8 +72,8 @@ function FishingGroundToBangkokRouteMap() {
               data-marker-tone="data"
               transform={`translate(${position.x} ${position.y})`}
             >
-              <circle r="12" fill="rgba(34,211,238,0.12)" stroke="#22d3ee" strokeWidth="2" filter="url(#route-marker-glow)" />
-              <path d="M -5 2 L 7 2 L 3 -4 L -3 -4 Z" fill="#a5f3fc" />
+              <circle r="12" fill="var(--dsc-surface)" stroke="var(--accent-primary)" strokeWidth="2" />
+              <path d="M -5 2 L 7 2 L 3 -4 L -3 -4 Z" fill="var(--accent-primary)" />
               <title>{row.carrier}</title>
             </g>
           );
@@ -212,7 +197,7 @@ export default function LogisticsDashboard({ heroOnly = false }: { heroOnly?: bo
         hidden={activeTab !== 'canneries'}
       >
         <div className={styles.panelHeader}>
-          <Factory size={22} color="var(--color-success)" aria-hidden="true" />
+          <Factory size={22} color="var(--accent-primary)" aria-hidden="true" />
           <div><h2>공장 운영</h2><p>방콕·송클라의 생산 가동률, 원어 재고와 예외 공장을 비교합니다.</p></div>
         </div>
         <div className={styles.stack}>

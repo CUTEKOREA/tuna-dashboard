@@ -1,5 +1,14 @@
 # HANDOFF
 
+> 마지막 업데이트: 2026-08-15 08:49 KST
+
+> 🎛️ **2026-08-15 08:49 KST — V2.5-b 운영 4페이지 Institutional 정리 완료** [Codex]:
+> - `/market`·`/fleet`·`/unloading`·`/logistics`에서만 전역 `AmbientBackground`를 렌더하지 않게 하고, 페이지 셸 배경을 `--dsc-bg`로 고정했다. 시장 KPI·차트 셸, 선단 히어로/KPI·미션 카드, 하역 의사결정·선박·상세 카드, 물류 요약·이력 카드를 `--dsc-surface`·`--dsc-surface-border`·`--dsc-card-radius`에 연결했다. 전역 구형 `!important`가 시장 배경과 버튼형 하역 카드 radius를 덮는 지점은 해당 페이지 범위에서만 우선순위를 복구했다.
+> - 장식 그라디언트와 다색 크롬을 제거했다. 시장 KPI 4색 상단 바는 cyan 3px 단일 바, 선단 `heroStrip` 3색 바와 점유율 바는 cyan+zinc, 하역 CSS 카드·진행 바는 flat surface+cyan, 물류 정적 항로도는 flat zinc 해면+cyan 경로/마커로 바꿨다. 선단·하역의 데이터 연동 선박 해치도 페이지 액센트 cyan을 명시했다. VDS 음수 잔여와 물류 입항 재확인처럼 실제 예외인 rose/amber만 유지했다.
+> - 위젯 내부와 차트 데이터 시리즈는 수정하지 않았다. 소스 가드는 `/market` 5+ 허브 팔레트와 하역 차트 색 보존, 셸 gradient 제거, 토큰 참조, Aurora 미렌더, 물류 경고 존치를 함께 고정한다. TDD 최초 RED 1건을 확인한 뒤 focused **71/71**, 최종 전체 `npm run verify` exit 0: ESLint 오류 0(기존 경고 18), TypeScript, Vitest **259/259**, API cache **143/143**, Next 정적 페이지 **117/117**, bundle **30경로** 통과.
+> - Puppeteer 전후 증거는 `/private/tmp/v25b-pages-qa.A2bz86/{before,after}/`에 있다. 최종 4페이지×1440×1000·390×844 **8/8** 모두 HTTP 200, 가로 overflow 0, page/console/local HTTP/비중단 요청 오류 0, Aurora 0이며 계산 스타일은 카드 `rgba(24,24,27,.72)`·1px 저대비 보더·12px radius다. 하역 dev Strict Mode의 중복 `/api/unloading-history` 취소 1건/뷰포트는 `expectedRequestAborts`로 분리했고 다른 요청은 200이다. 최종 `qa-results.json` SHA-256은 `cb7c182f2cda1b177a62eb5393cda27ec540b88ac5bcc2c74a90f95480a30946`다.
+> - 기존 pnpm형 `node_modules`는 삭제하지 않고 `/private/tmp/v25b-node-modules-backup.cdtjA6/node_modules`에 보존한 뒤 `npm ci`로 재구성했다. push·PR·프로덕션 배포는 하지 않았다. 다음 단계는 CC가 전후 스크린샷, hardcoded grep 예외(차트/데이터), 전역 `!important` 국소 override를 독립 검수하는 것이다.
+
 > 마지막 업데이트: 2026-08-15 08:43 KST
 
 > 🧹 **2026-08-15 08:43 KST — ESLint 경고 2차 정리 완료** [Codex]:
