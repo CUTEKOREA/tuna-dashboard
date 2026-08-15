@@ -31,6 +31,15 @@ import {
   seaTempSeries,
   sensitivityBars,
   stopCondition,
+  trade,
+  tradeBalanceSeries,
+  tradeLadderGap,
+  tradeYear,
+  exportByCommodity,
+  exportByForm,
+  exportBySpecies,
+  exportByPartner,
+  importByPartner,
   valueLadder,
   weeks,
 } from '@/lib/data/panofi';
@@ -561,6 +570,129 @@ export function IndustryTab() {
         <ul className="list">
           {industry.gta.roles.map((r) => <li key={r}>{r}</li>)}
         </ul>
+      </Card>
+    </>
+  );
+}
+
+/* -------------------------------------------------------------- 수출입 */
+
+export function TradeTab() {
+  const gap = tradeLadderGap;
+  return (
+    <>
+      <SecHead>가나 참치 무역수지</SecHead>
+      <Card
+        sub="단위: 백만 달러. 유엔 콤트레이드에 가나가 보고한 값"
+        note={trade.meta.caveat}
+      >
+        <Chart
+          data={tradeBalanceSeries}
+          x="label"
+          height={280}
+          series={[
+            S('수출', '수출', 'var(--cosmo-s1)', { type: 'bar' }),
+            S('수입', '수입', 'var(--cosmo-s3)', { type: 'bar' }),
+            S('무역수지', '무역수지', 'var(--cosmo-s2)', { type: 'line' }),
+          ]}
+          zeroLine
+          yFmt={(v) => `${v}백만불`}
+        />
+      </Card>
+
+      {gap && (
+        <>
+          <SecHead>밸류 사다리 — 무역통계로 본 칸 사이 거리</SecHead>
+          <Card
+            sub={`${tradeYear}년 수출 단가(달러/톤). 파노피가 파는 칸과 가나 수출이 나가는 칸`}
+            note={`같은 참치가 통조림 칸으로 올라가면 톤당 ${gap.multiple}배가 된다. 가나 참치 수출액의 ${gap.cannedSharePct}%가 이 칸에서 나가고, 파노피는 원어 칸에서 판다. 어가 협상보다 밸류체인 위치가 손익을 크게 정한다는 뜻이다 — 가나·유럽연합 잠정 경제동반자협정(2016)으로 가공 참치가 유럽연합에 무관세·무쿼터로 들어가는 것이 이 구조를 떠받친다.`}
+          >
+            <div className="kpis">
+              <Kpi k="냉동 원어" v={usd(gap.rawUsdPerT)} unit="/톤" />
+              <Kpi k="조제·통조림" v={usd(gap.cannedUsdPerT)} unit="/톤" tone="up" />
+              <Kpi k="배수" v={`${gap.multiple}배`} />
+              <Kpi k="통조림 금액 비중" v={pct(gap.cannedSharePct)} />
+            </div>
+            <Chart
+              data={exportByForm}
+              x="label"
+              height={240}
+              horizontal
+              labelWidth={110}
+              series={[S('단가', '수출 단가', 'var(--cosmo-s1)', { type: 'bar' })]}
+              yFmt={usd}
+            />
+          </Card>
+        </>
+      )}
+
+      <SecHead>품목별 수출</SecHead>
+      <Card sub={`${tradeYear}년 · 금액(백만 달러)과 단가(달러/톤)`}>
+        <div className="tbl-wrap">
+          <table className="tbl">
+            <thead><tr><th>품목</th><th>금액 (백만 달러)</th><th>물량 (톤)</th><th>단가 (달러/톤)</th></tr></thead>
+            <tbody>
+              {exportByCommodity.map((c) => (
+                <tr key={c.label}>
+                  <td>{c.label}</td>
+                  <td>{c.금액.toLocaleString('en-US')}</td>
+                  <td>{c.물량.toLocaleString('en-US')}</td>
+                  <td>{c.단가 === null ? '자료 없음' : c.단가.toLocaleString('en-US')}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </Card>
+
+      <SecHead>어종별 수출</SecHead>
+      <Card
+        sub={`${tradeYear}년 원어 기준(냉동·신선). 필레와 통조림은 어종이 합쳐져 보고되므로 제외했다`}
+        note="파노피가 잡는 주력은 가다랑어와 황다랑어다. 통계상 황다랑어 금액이 앞서지만 물량은 가다랑어가 통조림 원료로 더 많이 나간다."
+      >
+        <Chart
+          data={exportBySpecies}
+          x="label"
+          height={240}
+          series={[
+            S('금액', '수출액', 'var(--cosmo-s1)', { type: 'bar' }),
+            S('단가', '단가', 'var(--cosmo-s3)', { type: 'line', axis: 'right' }),
+          ]}
+          yFmt={(v) => `${v}백만불`}
+          y2Fmt={usd}
+        />
+      </Card>
+
+      <SecHead>수출 상대국</SecHead>
+      <Card
+        sub={`${tradeYear}년 · 단위: 백만 달러`}
+        note="상위 4개국이 모두 유럽연합·영국이다. 유럽 리테일 규격과 지속가능성 인증이 사실상 진입 조건이며, 해양관리협의회 인증을 2026년 1월에 딴 이유도 여기에 있다."
+      >
+        <Chart
+          data={exportByPartner}
+          x="label"
+          height={300}
+          horizontal
+          labelWidth={110}
+          series={[S('금액', '수출액', 'var(--cosmo-s1)', { type: 'bar' })]}
+          yFmt={(v) => `${v}백만불`}
+        />
+      </Card>
+
+      <SecHead>수입 상대국 — 원어를 어디서 채우나</SecHead>
+      <Card
+        sub={`${tradeYear}년 · 단위: 백만 달러`}
+        note="가나 가공공장은 자국 선단 양륙만으로 설비를 못 채운다. 계절 부족기에 인접국과 원양선단 물량을 수입해 메우는 구조이며, 이 수입이 늘면 국내 원어 어가 협상력은 그만큼 약해진다."
+      >
+        <Chart
+          data={importByPartner}
+          x="label"
+          height={280}
+          horizontal
+          labelWidth={110}
+          series={[S('금액', '수입액', 'var(--cosmo-s3)', { type: 'bar' })]}
+          yFmt={(v) => `${v}백만불`}
+        />
       </Card>
     </>
   );

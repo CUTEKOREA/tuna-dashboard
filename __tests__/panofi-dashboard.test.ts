@@ -14,6 +14,9 @@ import {
   pfc,
   priceSeries,
   weeks,
+  trade,
+  tradeYear,
+  tradeLadderGap,
 } from '../lib/data/panofi';
 import { DASHBOARD_MENU_CONFIGS, SIDEBAR_SECTIONS } from '../lib/dashboard-registry';
 
@@ -99,12 +102,50 @@ describe('데이터 품질 표기', () => {
   });
 });
 
+describe('가나 참치 무역 통계', () => {
+  it('(연도·흐름·HS·상대국) 조합이 유일하다 — 중복 합산 방지', () => {
+    // Comtrade 는 같은 조합을 통관절차·운송수단별로 쪼개 보내고 소계까지 섞는다.
+    // 집계 행(customsCode C00 · motCode 0)만 남기지 않으면 수치가 2~3배로 부푼다.
+    const keys = trade.rows.map((r) => `${r.year}|${r.flow}|${r.hs}|${r.partnerCode}`);
+    expect(new Set(keys).size).toBe(keys.length);
+  });
+
+  it('preview 500행 상한에 걸린 조회가 없다 — 조용한 잘림 방지', () => {
+    expect(trade.meta.truncatedQueries).toEqual([]);
+  });
+
+  it('상대국명이 모두 한글로 매핑돼 있다', () => {
+    expect(trade.meta.unmappedPartners).toEqual([]);
+    for (const r of trade.rows) expect(r.partner).not.toMatch(/^코드 \d+$/);
+  });
+
+  it('총계는 전세계 행만 쓰고 국가별 행을 더하지 않는다', () => {
+    const year = tradeYear;
+    const world = trade.rows
+      .filter((r) => r.year === year && r.flow === '수출' && r.partnerCode === 0)
+      .reduce((s, r) => s + (r.valueUsd ?? 0), 0);
+    const partners = trade.rows
+      .filter((r) => r.year === year && r.flow === '수출' && r.partnerCode !== 0)
+      .reduce((s, r) => s + (r.valueUsd ?? 0), 0);
+    // 전세계 행이 국가별 합과 같은 자릿수여야 한다. 두 배 이상 벌어지면 축이 섞인 것이다.
+    expect(world).toBeGreaterThan(0);
+    expect(partners / world).toBeGreaterThan(0.5);
+    expect(partners / world).toBeLessThan(2);
+  });
+
+  it('가공 단계가 올라갈수록 단가가 오른다 — 밸류 사다리', () => {
+    expect(tradeLadderGap).not.toBeNull();
+    expect(tradeLadderGap!.cannedUsdPerT).toBeGreaterThan(tradeLadderGap!.rawUsdPerT);
+    expect(tradeLadderGap!.multiple).toBeGreaterThan(2);
+  });
+});
+
 describe('파노피 대시보드 렌더', () => {
   const markup = renderToStaticMarkup(React.createElement(PanofiDashboard));
 
-  it('제목과 8개 탭을 iframe 없이 렌더한다', () => {
+  it('제목과 9개 탭을 iframe 없이 렌더한다', () => {
     expect(markup).toContain('파노피 조업 대시보드');
-    expect(PANOFI_TABS).toHaveLength(8);
+    expect(PANOFI_TABS).toHaveLength(9);
     for (const tab of PANOFI_TABS) expect(markup).toContain(tab.label);
     expect(markup).not.toContain('<iframe');
   });

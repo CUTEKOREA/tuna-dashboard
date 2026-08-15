@@ -8,6 +8,7 @@ import {
   LayoutDashboard,
   Route,
   ShieldCheck,
+  Ship,
   Tag,
   WalletCards,
 } from 'lucide-react';
@@ -25,6 +26,7 @@ import {
   ProfitTab,
   QualityTab,
   StrategyTab,
+  TradeTab,
 } from './PanofiTabs';
 
 export type PanofiTabKey =
@@ -35,6 +37,7 @@ export type PanofiTabKey =
   | 'cash'
   | 'strategy'
   | 'industry'
+  | 'trade'
   | 'quality';
 
 export const PANOFI_TABS: PillTab[] = [
@@ -45,6 +48,7 @@ export const PANOFI_TABS: PillTab[] = [
   { key: 'cash', label: '자금·미수금', icon: <WalletCards size={15} /> },
   { key: 'strategy', label: '하반기 전략', icon: <Route size={15} /> },
   { key: 'industry', label: '가나 산업', icon: <Globe2 size={15} /> },
+  { key: 'trade', label: '수출입', icon: <Ship size={15} /> },
   { key: 'quality', label: '데이터 품질', icon: <ShieldCheck size={15} /> },
 ];
 
@@ -56,6 +60,7 @@ const PANELS: Record<PanofiTabKey, React.ComponentType> = {
   cash: CashTab,
   strategy: StrategyTab,
   industry: IndustryTab,
+  trade: TradeTab,
   quality: QualityTab,
 };
 

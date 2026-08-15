@@ -1,5 +1,6 @@
 import weeklyRaw from '@/public/data/panofi/panofi_weekly.json';
 import profileRaw from '@/public/data/panofi/panofi_profile.json';
+import tradeRaw from '@/public/data/panofi/ghana_tuna_trade.json';
 
 /**
  * 파노피(가나 참치 선망) 데이터 인테이크.
@@ -214,6 +215,105 @@ export const headline = {
       : Math.round(delta(latest.receivables.totalUsd, previous?.receivables.totalUsd)! / 1000),
   h2BaseTargetT: scenarios.rows[0].base,
 };
+
+/* --------------------------------------------------- 가나 참치 무역 (Comtrade) */
+
+export const trade = tradeRaw;
+type TradeRow = (typeof tradeRaw.rows)[number];
+
+const tradeRows = tradeRaw.rows as TradeRow[];
+
+/** 전세계(상대국 0) 행만 총계로 쓴다. 국가별 행을 더하면 이중계상이 된다. */
+const worldRows = tradeRows.filter((r) => r.partnerCode === 0);
+const partnerRows = tradeRows.filter((r) => r.partnerCode !== 0);
+
+const LATEST_TRADE_YEAR = Math.max(...tradeRows.map((r) => r.year));
+export const tradeYear = LATEST_TRADE_YEAR;
+
+/** 연도별 수출입과 무역수지(백만 달러). */
+export const tradeBalanceSeries = trade.meta.years
+  .filter((y) => worldRows.some((r) => r.year === y))
+  .map((y) => {
+    const sum = (flow: string) =>
+      worldRows.filter((r) => r.year === y && r.flow === flow)
+        .reduce((s, r) => s + (r.valueUsd ?? 0), 0);
+    const x = sum('수출');
+    const m = sum('수입');
+    return {
+      label: `${y}년`,
+      year: y,
+      수출: Math.round(x / 1e6),
+      수입: Math.round(m / 1e6),
+      무역수지: Math.round((x - m) / 1e6),
+    };
+  });
+
+function aggregate(rows: TradeRow[], keyOf: (r: TradeRow) => string) {
+  const map = new Map<string, { value: number; weight: number }>();
+  for (const r of rows) {
+    const k = keyOf(r);
+    const cur = map.get(k) ?? { value: 0, weight: 0 };
+    cur.value += r.valueUsd ?? 0;
+    cur.weight += r.netWgtT ?? 0;
+    map.set(k, cur);
+  }
+  return [...map.entries()]
+    .map(([label, v]) => ({
+      label,
+      금액: Math.round(v.value / 1e6),
+      물량: Math.round(v.weight),
+      valueUsd: v.value,
+      단가: v.weight > 0 ? Math.round(v.value / v.weight) : null,
+    }))
+    .sort((a, b) => b.valueUsd - a.valueUsd);
+}
+
+/** 최신 연도 품목별 수출. 통조림 한 칸이 금액의 대부분을 가져간다. */
+export const exportByCommodity = aggregate(
+  worldRows.filter((r) => r.year === LATEST_TRADE_YEAR && r.flow === '수출'),
+  (r) => r.commodity,
+);
+
+/** 가공 형태별 단가 사다리. 같은 참치가 칸을 올라갈 때마다 몇 배가 되는지 본다. */
+export const exportByForm = aggregate(
+  worldRows.filter((r) => r.year === LATEST_TRADE_YEAR && r.flow === '수출'),
+  (r) => r.form,
+);
+
+/** 어종별 수출(냉동·신선 원어만 — 필레·통조림은 어종이 합쳐져 나온다). */
+export const exportBySpecies = aggregate(
+  worldRows.filter(
+    (r) => r.year === LATEST_TRADE_YEAR && r.flow === '수출' && r.species !== '합산',
+  ),
+  (r) => r.species,
+);
+
+/** 상대국별 수출 상위. 국가별 행은 합계를 내지 않고 순위 비교에만 쓴다. */
+export const exportByPartner = aggregate(
+  partnerRows.filter((r) => r.year === LATEST_TRADE_YEAR && r.flow === '수출'),
+  (r) => r.partner,
+).slice(0, 12);
+
+/** 상대국별 수입 상위 — 가나가 원어를 어디서 채워 오는지. */
+export const importByPartner = aggregate(
+  partnerRows.filter((r) => r.year === LATEST_TRADE_YEAR && r.flow === '수입'),
+  (r) => r.partner,
+).slice(0, 10);
+
+/** 원어와 통조림의 단가 격차. 파노피가 선 칸과 가나 수출이 나가는 칸의 거리다. */
+export const tradeLadderGap = (() => {
+  const raw = exportByForm.find((f) => f.label === '냉동 원어');
+  const canned = exportByForm.find((f) => f.label === '조제·통조림');
+  if (!raw?.단가 || !canned?.단가) return null;
+  return {
+    rawUsdPerT: raw.단가,
+    cannedUsdPerT: canned.단가,
+    multiple: Number((canned.단가 / raw.단가).toFixed(1)),
+    cannedSharePct: Math.round(
+      (canned.valueUsd / exportByForm.reduce((s, f) => s + f.valueUsd, 0)) * 100,
+    ),
+  };
+})();
 
 /** 원자료 품질 플래그. 화면 하단 '데이터 품질'에 그대로 노출해 신뢰도를 스스로 밝힌다. */
 export const dataQuality = {
