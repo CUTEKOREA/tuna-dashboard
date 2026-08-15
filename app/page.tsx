@@ -290,7 +290,7 @@ export default function Home() {
   };
 
   return (
-    <div className={styles.appWrapper}>
+    <div className={styles.appWrapper} data-v3="light">
       {!INSTITUTIONAL_MENU_KEYS.has(activeMenu) && (
         <AmbientBackground accent={ambientAccent} />
       )}
@@ -426,7 +426,7 @@ export default function Home() {
           <>
           {isOperationMenuLocked && (
             <>
-            <div data-v3="light">{heroTeaserPanels[activeMenu]}</div>
+            {heroTeaserPanels[activeMenu]}
             <div className={styles.landingOverlay} style={{ position: 'relative', inset: 'auto', justifyContent: 'center', minHeight: 'calc(100vh - 80px)', padding: 'clamp(32px, 8vh, 92px) var(--space-4)' }}>
               <div className={styles.loginPanel} style={{ width: 'min(420px, 100%)' }}>
                 <Lock size={34} strokeWidth={1.5} style={{ margin: '0 auto 16px auto', color: 'var(--text-main)' }} />
@@ -507,14 +507,12 @@ export default function Home() {
             }}>
               <PageTransition activeKey={activeMenu}>
 
-              {/* V3 라이트 롤아웃 (2026-08-15 사용자 승인): 파일럿 통과 → 전 패널 스코프 확장 */}
-              <div data-v3="light">
-                {DASHBOARD_PANEL_ORDER.map((menu) => (
-                  <KeepAlivePanel key={menu} active={isPanelActive(menu)}>
-                    {dashboardPanels[menu]}
-                  </KeepAlivePanel>
-                ))}
-              </div>
+              {/* V3 라이트: 스코프는 appWrapper(셸 전체)에 있다 — 2026-08-15 사이드바 포함 확장 */}
+              {DASHBOARD_PANEL_ORDER.map((menu) => (
+                <KeepAlivePanel key={menu} active={isPanelActive(menu)}>
+                  {dashboardPanels[menu]}
+                </KeepAlivePanel>
+              ))}
 
               </PageTransition>
 

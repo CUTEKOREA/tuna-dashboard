@@ -380,6 +380,29 @@
   margin: 4px 0;
 }
 
+/* ── [data-v3='light'] 오버라이드 — 보고 모달 다크 잔재 라이트 정합 ── */
+[data-v3='light'] .modal {
+  border-color: var(--dsc-surface-border);
+  background: var(--dsc-surface);
+  box-shadow: 0 24px 80px rgba(16, 24, 40, 0.25);
+}
+[data-v3='light'] .header { border-bottom-color: var(--dsc-surface-border); background: var(--dsc-bg); }
+[data-v3='light'] .closeBtn { border-color: var(--dsc-surface-border); background: var(--dsc-bg); }
+[data-v3='light'] .closeBtn:hover { border-color: #c6c9d2; background: var(--dsc-bg-deep); }
+[data-v3='light'] .previewPane { border-right-color: var(--dsc-surface-border); }
+[data-v3='light'] .previewPane::-webkit-scrollbar-thumb,
+[data-v3='light'] .controlsPane::-webkit-scrollbar-thumb { background: rgba(141, 147, 165, 0.35); }
+[data-v3='light'] .reportBox,
+[data-v3='light'] .select,
+[data-v3='light'] .fieldInput { border-color: var(--dsc-surface-border); background: var(--dsc-bg); }
+[data-v3='light'] .btnSecondary { border-color: var(--dsc-surface-border); background: var(--dsc-bg); }
+[data-v3='light'] .btnSecondary:hover { border-color: #c6c9d2; background: var(--dsc-bg-deep); }
+[data-v3='light'] .actionGroup { border-top-color: var(--dsc-surface-border); }
+[data-v3='light'] .separator { background: var(--dsc-surface-border); }
+[data-v3='light'] .statusCompleted { color: #047857; }
+[data-v3='light'] .statusProgress { color: #b45309; }
+[data-v3='light'] .fieldInput::placeholder { color: var(--dsc-ink-faint); }
+
 /* ─── Responsive ─── */
 @media (max-width: 860px) {
   .modal {

@@ -426,6 +426,25 @@
   color: var(--text-main);
 }
 
+/* ── [data-v3='light'] 오버라이드 — 현장 모드 다크 잔재 라이트 정합 ── */
+[data-v3='light'] .overlay { background: rgba(249, 250, 251, 0.98); }
+[data-v3='light'] .topBar { border-bottom-color: var(--dsc-surface-border); }
+[data-v3='light'] .topBarTitle { background: none; -webkit-background-clip: initial; -webkit-text-fill-color: var(--dsc-ink); color: var(--dsc-ink); }
+[data-v3='light'] .closeBtn { border-color: var(--dsc-surface-border); background: var(--dsc-bg-deep); }
+[data-v3='light'] .vesselSelectCard,
+[data-v3='light'] .heroCard,
+[data-v3='light'] .inputSection,
+[data-v3='light'] .todaySummary { border-color: var(--dsc-surface-border); background: var(--dsc-surface); }
+[data-v3='light'] .heroCard { box-shadow: var(--dsc-card-shadow); }
+[data-v3='light'] .vesselSelectCard.active { border-color: rgba(80, 158, 227, 0.5); background: rgba(80, 158, 227, 0.08); box-shadow: none; }
+[data-v3='light'] .heroRemaining { border-top-color: var(--dsc-surface-border); }
+[data-v3='light'] .heroRemainingValue { color: #b45309; }
+[data-v3='light'] .inputField,
+[data-v3='light'] .textArea { border-color: var(--dsc-surface-border); background: var(--dsc-bg); }
+[data-v3='light'] .summaryItem { border-color: var(--dsc-surface-border); background: var(--dsc-bg); }
+[data-v3='light'] .statusBadge.progress { color: #b45309; }
+[data-v3='light'] .statusBadge.completed { color: #047857; }
+
 /* Media Queries */
 @media (min-width: 769px) {
   .container {

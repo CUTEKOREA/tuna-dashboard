@@ -1008,3 +1008,22 @@
     transform: none;
   }
 }
+
+/* ═══ V3 라이트 — 셸(사이드바 포함) 스코프 오버라이드 (2026-08-15) ═══ */
+
+/* 활성 메뉴: 흰 배경에서 라이트 시안이 흐릿 → 브랜드 블루 잉크 */
+[data-v3='light'] .menuItemActive {
+  background: rgba(80, 158, 227, 0.10);
+  color: #1c6bb0;
+  border-color: rgba(80, 158, 227, 0.4);
+  box-shadow: none;
+}
+
+/* 흰 로고(백색 레터링)를 잉크로 — invert 후 hue 복원으로 파란 마크 유지 */
+[data-v3='light'] .sidebar img[alt='신라 로고'] {
+  filter: invert(0.85) hue-rotate(180deg) saturate(1.4);
+}
+
+[data-v3='light'] .sidebar {
+  scrollbar-color: rgba(80, 158, 227, 0.35) transparent;
+}

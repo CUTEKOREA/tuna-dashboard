@@ -216,7 +216,10 @@ describe('dashboard registry', () => {
     const fleetHeroSource = readFileSync(join(root, 'components/FleetHeroKPI.tsx'), 'utf8');
     const fleetStyles = readFileSync(join(root, 'components/FleetCommandCenter.module.css'), 'utf8');
     const unloadingSource = readFileSync(join(root, 'components/UnloadingStatus.tsx'), 'utf8');
-    const unloadingStyles = readFileSync(join(root, 'components/UnloadingStatus.module.css'), 'utf8');
+    // V3 라이트 오버라이드 구간은 flat 계약 대상이 아니다 (사진 블렌드용 페이드는 장식 그라디언트가 아님) —
+    // 다크 정본 구간만 검사한다.
+    const unloadingStyles = readFileSync(join(root, 'components/UnloadingStatus.module.css'), 'utf8')
+      .split("[data-v3='light']")[0];
     const logisticsSource = readFileSync(join(root, 'components/LogisticsDashboard.tsx'), 'utf8');
     const logisticsStyles = readFileSync(join(root, 'components/LogisticsCommandCenter.module.css'), 'utf8');
     const globalsSource = readFileSync(join(root, 'app/globals.css'), 'utf8');

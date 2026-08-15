@@ -429,6 +429,31 @@
   gap: 8px;
 }
 
+/* ── [data-v3='light'] 오버라이드 — 리플레이 모달 다크 잔재 라이트 정합 ── */
+[data-v3='light'] .modal {
+  border-color: var(--dsc-surface-border);
+  background: var(--dsc-surface);
+  box-shadow: 0 24px 80px rgba(16, 24, 40, 0.25);
+}
+[data-v3='light'] .modal::-webkit-scrollbar-thumb { background: rgba(141, 147, 165, 0.35); }
+[data-v3='light'] .header { border-bottom-color: var(--dsc-surface-border); }
+[data-v3='light'] .title { background: none; -webkit-background-clip: initial; -webkit-text-fill-color: var(--dsc-ink); color: var(--dsc-ink); }
+[data-v3='light'] .closeBtn { border-color: var(--dsc-surface-border); background: var(--dsc-bg); }
+[data-v3='light'] .sliderSection,
+[data-v3='light'] .holdGrid,
+[data-v3='light'] .chartSection,
+[data-v3='light'] .daySummary { border-color: var(--dsc-surface-border); background: var(--dsc-bg); }
+[data-v3='light'] .slider,
+[data-v3='light'] .cumProgressTrack { background: var(--dsc-surface-border); }
+[data-v3='light'] .holdCell { border-color: var(--dsc-surface-border); background: var(--dsc-surface); }
+[data-v3='light'] .holdFillBarTrack { background: var(--dsc-surface-border); }
+[data-v3='light'] .summaryDate,
+[data-v3='light'] .dateLabel.activeDateLabel,
+[data-v3='light'] .playbackBtn { color: var(--accent-primary); }
+[data-v3='light'] .holdTag { color: #0369a1; }
+[data-v3='light'] .restDayBadge { color: #b45309; }
+[data-v3='light'] .qualityNote { background: var(--dsc-surface); }
+
 /* Responsive */
 @media (max-width: 1024px) {
   .middleContent {

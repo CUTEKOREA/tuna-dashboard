@@ -356,7 +356,7 @@ export default function UnloadingTimelineReplay({
                             className={styles.holdFillBar}
                             style={{
                               width: `${fillPercent}%`,
-                              backgroundColor: cumData.cumDischarge > 0 ? tempColor : 'rgba(255,255,255,0.08)',
+                              backgroundColor: cumData.cumDischarge > 0 ? tempColor : 'var(--dsc-surface-border)',
                             }}
                           />
                         </div>
@@ -478,11 +478,11 @@ export default function UnloadingTimelineReplay({
                   <stop offset="95%" stopColor="var(--w-amber-400)" stopOpacity={0.02} />
                 </linearGradient>
               </defs>
-              <CartesianGrid strokeDasharray="3 3" stroke="rgba(140,170,255,0.12)" />
+              <CartesianGrid strokeDasharray="3 3" stroke="var(--chart-grid)" />
               <XAxis
                 dataKey="date"
                 tick={{ fontSize: 11, fill: 'var(--w-slate-400)' }}
-                axisLine={{ stroke: 'rgba(255,255,255,0.1)' }}
+                axisLine={{ stroke: '#8d93a5' }}
                 tickLine={false}
               />
               <YAxis
@@ -493,11 +493,11 @@ export default function UnloadingTimelineReplay({
               />
               <RechartsTooltip
                 contentStyle={{
-                  background: 'rgba(20, 28, 52, 0.95)',
-                  border: '1px solid rgba(255,255,255,0.1)',
+                  background: '#303c46',
+                  border: '1px solid rgba(255, 255, 255, 0.12)',
                   borderRadius: 10,
                   fontSize: '0.8rem',
-                  color: 'var(--w-slate-50)',
+                  color: '#fff',
                 }}
                 formatter={(value: any, name: any) => [`${formatNum(Number(value))} MT`, name === 'SJ' ? 'Skipjack' : 'Yellowfin']}
               />

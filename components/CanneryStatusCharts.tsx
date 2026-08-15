@@ -107,19 +107,19 @@ export default function CanneryStatusCharts() {
               barGap={1}
             >
               <ChartPatternDefs />
-              <CartesianGrid strokeDasharray="3 3" horizontal={true} vertical={false} stroke="rgba(140,170,255,0.10)" />
-              <XAxis type="number" stroke="var(--text-muted)" axisLine={false} tickLine={false} tick={{ fontSize: 11 }} />
-              <YAxis dataKey="name" type="category" stroke="var(--text-main)" axisLine={false} tickLine={false} tick={{ fontSize: 11, fontWeight: 'bold' }} width={80} />
-              <Tooltip 
-                cursor={{ fill: 'rgba(255,255,255,0.03)' }}
-                contentStyle={{ background: 'rgba(20, 28, 52, 0.88)', backdropFilter: 'blur(10px)', WebkitBackdropFilter: 'blur(10px)', border: '1px solid rgba(var(--w-emerald-500-rgb), 0.25)', borderRadius: '10px', color: 'var(--text-main)', boxShadow: '0 8px 30px rgba(0,0,0,0.45)' }}
-                itemStyle={{ fontSize: '13px' }}
-                labelStyle={{ fontWeight: 'bold', marginBottom: '8px', borderBottom: '1px solid rgba(255,255,255,0.1)', paddingBottom: '4px' }}
+              <CartesianGrid strokeDasharray="3 3" horizontal={true} vertical={false} stroke="var(--panel-border)" />
+              <XAxis type="number" stroke="var(--text-muted)" axisLine={false} tickLine={false} tick={{ fontSize: 11, fill: 'var(--text-muted)' }} />
+              <YAxis dataKey="name" type="category" stroke="var(--text-main)" axisLine={false} tickLine={false} tick={{ fontSize: 11, fontWeight: 'bold', fill: 'var(--text-muted)' }} width={80} />
+              <Tooltip
+                cursor={{ fill: 'rgba(34,36,43,0.04)' }}
+                contentStyle={{ background: '#303c46', border: '1px solid rgba(255,255,255,0.12)', borderRadius: '10px', color: '#ffffff', boxShadow: '0 8px 24px rgba(16,24,40,0.35)' }}
+                itemStyle={{ fontSize: '13px', color: '#e2e8f0' }}
+                labelStyle={{ fontWeight: 'bold', marginBottom: '8px', borderBottom: '1px solid rgba(255,255,255,0.1)', paddingBottom: '4px', color: '#c6c9d2' }}
                 formatter={(value: any) => [`${Number(value).toLocaleString()} 톤`, undefined]}
               />
-              <Legend wrapperStyle={{ fontSize: '12px', paddingTop: '10px' }} />
+              <Legend wrapperStyle={{ fontSize: '12px', paddingTop: '10px' }} formatter={(value) => <span style={{ color: 'var(--text-muted)' }}>{value}</span>} />
               <defs><linearGradient id="gradProdC" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stopColor="var(--w-emerald-500)" stopOpacity={0.95} /><stop offset="100%" stopColor="var(--w-emerald-400)" stopOpacity={0.65} /></linearGradient></defs>
-              <Bar dataKey="prodMax" name="최대 가능 생산량" fill="rgba(255,255,255,0.07)" radius={[0, 5, 5, 0]} barSize={8} />
+              <Bar dataKey="prodMax" name="최대 가능 생산량" fill="rgba(34,36,43,0.08)" radius={[0, 5, 5, 0]} barSize={8} />
               <Bar dataKey="prodCurrent" name="일 생산량" fill="url(#gradProdC)" radius={[0, 5, 5, 0]} barSize={8} />
             </BarChart>
           </SafeResponsiveContainer>
@@ -160,26 +160,26 @@ export default function CanneryStatusCharts() {
               barGap={1}
             >
               <ChartPatternDefs />
-              <CartesianGrid strokeDasharray="3 3" horizontal={true} vertical={false} stroke="rgba(140,170,255,0.10)" />
-              <XAxis 
-                type="number" 
-                stroke="var(--text-muted)" 
-                axisLine={false} 
-                tickLine={false} 
-                tick={{ fontSize: 11 }} 
-                tickFormatter={(val) => `${(val/1000).toLocaleString()}k`} 
+              <CartesianGrid strokeDasharray="3 3" horizontal={true} vertical={false} stroke="var(--panel-border)" />
+              <XAxis
+                type="number"
+                stroke="var(--text-muted)"
+                axisLine={false}
+                tickLine={false}
+                tick={{ fontSize: 11, fill: 'var(--text-muted)' }}
+                tickFormatter={(val) => `${(val/1000).toLocaleString()}k`}
               />
-              <YAxis dataKey="name" type="category" stroke="var(--text-main)" axisLine={false} tickLine={false} tick={{ fontSize: 11, fontWeight: 'bold' }} width={80} />
-              <Tooltip 
-                cursor={{ fill: 'rgba(255,255,255,0.03)' }}
-                contentStyle={{ background: 'rgba(20, 28, 52, 0.88)', backdropFilter: 'blur(10px)', WebkitBackdropFilter: 'blur(10px)', border: '1px solid rgba(var(--w-emerald-500-rgb), 0.25)', borderRadius: '10px', color: 'var(--text-main)', boxShadow: '0 8px 30px rgba(0,0,0,0.45)' }}
-                itemStyle={{ fontSize: '13px' }}
-                labelStyle={{ fontWeight: 'bold', marginBottom: '8px', borderBottom: '1px solid rgba(255,255,255,0.1)', paddingBottom: '4px' }}
+              <YAxis dataKey="name" type="category" stroke="var(--text-main)" axisLine={false} tickLine={false} tick={{ fontSize: 11, fontWeight: 'bold', fill: 'var(--text-muted)' }} width={80} />
+              <Tooltip
+                cursor={{ fill: 'rgba(34,36,43,0.04)' }}
+                contentStyle={{ background: '#303c46', border: '1px solid rgba(255,255,255,0.12)', borderRadius: '10px', color: '#ffffff', boxShadow: '0 8px 24px rgba(16,24,40,0.35)' }}
+                itemStyle={{ fontSize: '13px', color: '#e2e8f0' }}
+                labelStyle={{ fontWeight: 'bold', marginBottom: '8px', borderBottom: '1px solid rgba(255,255,255,0.1)', paddingBottom: '4px', color: '#c6c9d2' }}
                 formatter={(value: any) => [`${Number(value).toLocaleString()} 톤`, undefined]}
               />
-              <Legend wrapperStyle={{ fontSize: '12px', paddingTop: '10px' }} />
+              <Legend wrapperStyle={{ fontSize: '12px', paddingTop: '10px' }} formatter={(value) => <span style={{ color: 'var(--text-muted)' }}>{value}</span>} />
               <defs><linearGradient id="gradStoreC" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stopColor="var(--w-sky-400)" stopOpacity={0.95} /><stop offset="100%" stopColor="#0ea5e9" stopOpacity={0.6} /></linearGradient></defs>
-              <Bar dataKey="storeMax" name="최대 가능 보관량" fill="rgba(255,255,255,0.07)" radius={[0, 5, 5, 0]} barSize={8} />
+              <Bar dataKey="storeMax" name="최대 가능 보관량" fill="rgba(34,36,43,0.08)" radius={[0, 5, 5, 0]} barSize={8} />
               <Bar dataKey="storeCurrent" name="현 보관량" fill="url(#gradStoreC)" radius={[0, 5, 5, 0]} barSize={8} />
             </BarChart>
           </SafeResponsiveContainer>

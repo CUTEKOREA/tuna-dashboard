@@ -361,3 +361,8 @@
 @media (prefers-reduced-motion: reduce) {
   .tab { transition: none; }
 }
+
+/* ── [data-v3='light'] 오버라이드 (FleetCommandCenter 패턴) ──
+ * 파스텔 텍스트(#fecaca·#fde68a)는 다크 전제 — 라이트에서 잉크 대비값으로 교체. */
+[data-v3='light'] .priorityUrgent { color: #b91c1c; background: rgba(227, 89, 94, 0.12); }
+[data-v3='light'] .priorityWatch { color: #92400e; background: rgba(232, 185, 33, 0.16); }

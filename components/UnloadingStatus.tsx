@@ -717,9 +717,9 @@ function RadialGauge({
           cx={radius + strokeWidth} 
           cy={radius + strokeWidth} 
           r={radius} 
-          fill="transparent" 
-          stroke="rgba(255, 255, 255, 0.08)" 
-          strokeWidth={strokeWidth} 
+          fill="transparent"
+          stroke="var(--dsc-surface-border)"
+          strokeWidth={strokeWidth}
           filter={glow ? "url(#radial-glow)" : undefined}
         />
         <circle 
@@ -1489,7 +1489,7 @@ export default function UnloadingStatus({ heroOnly = false }: { heroOnly?: boole
               border: '1px solid rgba(var(--w-amber-400-rgb), 0.35)',
               borderRadius: '10px',
               background: 'rgba(var(--w-amber-400-rgb), 0.08)',
-              color: '#fde68a',
+              color: 'var(--w-amber-500)',
             }}
           >
             <AlertCircle size={18} style={{ flexShrink: 0, marginTop: '1px' }} />
@@ -1573,9 +1573,9 @@ export default function UnloadingStatus({ heroOnly = false }: { heroOnly?: boole
                   {/* Draw Cabin/Superstructure */}
                   <path 
                     d="M 60,95 L 90,95 L 90,50 L 160,50 L 160,95 Z" 
-                    fill="rgba(30, 41, 59, 0.5)" 
-                    stroke="rgba(255, 255, 255, 0.1)" 
-                    strokeWidth="1.5" 
+                    fill="var(--dsc-bg-deep)"
+                    stroke="var(--dsc-surface-border)"
+                    strokeWidth="1.5"
                   />
                   
                   {/* Draw Ship Outer Hull */}
@@ -1584,9 +1584,9 @@ export default function UnloadingStatus({ heroOnly = false }: { heroOnly?: boole
                        L 700,95 C 730,95 765,125 780,155 L 780,160 C 775,175 760,180 750,180 L 730,180
                        L 710,215 C 700,220 680,220 670,220 
                        L 120,220 C 90,220 60,200 60,155 Z" 
-                    fill="rgba(20, 28, 52, 0.45)" 
-                    stroke="rgba(255, 255, 255, 0.15)" 
-                    strokeWidth="2" 
+                    fill="var(--dsc-bg-deep)"
+                    stroke="var(--dsc-surface-border)"
+                    strokeWidth="2"
                   />
                   
                   {/* Water Line */}
@@ -1646,7 +1646,7 @@ export default function UnloadingStatus({ heroOnly = false }: { heroOnly?: boole
                             height={coords.height} 
                             fill={tempInfo.color} 
                             fillOpacity="0.25"
-                            stroke={isSelected ? "var(--accent-primary)" : "rgba(255, 255, 255, 0.15)"} 
+                            stroke={isSelected ? "var(--accent-primary)" : "var(--dsc-surface-border)"}
                             strokeWidth={isSelected ? 2 : 1}
                             filter={isSelected ? "url(#glow-rect)" : undefined}
                             onClick={() => setSelectedHold(holdId)}
@@ -1659,7 +1659,7 @@ export default function UnloadingStatus({ heroOnly = false }: { heroOnly?: boole
                             points={coords.points} 
                             fill={tempInfo.color} 
                             fillOpacity="0.25"
-                            stroke={isSelected ? "var(--accent-primary)" : "rgba(255, 255, 255, 0.15)"} 
+                            stroke={isSelected ? "var(--accent-primary)" : "var(--dsc-surface-border)"}
                             strokeWidth={isSelected ? 2 : 1}
                             filter={isSelected ? "url(#glow-rect)" : undefined}
                             clipPath={`url(#clip-${vesselId}-${holdId.replace('#', '')})`}
@@ -1712,13 +1712,13 @@ export default function UnloadingStatus({ heroOnly = false }: { heroOnly?: boole
                       left: `${tooltipData.pctX}%`,
                       top: `${tooltipData.pctY}%`,
                       transform: 'translate(-50%, -100%)',
-                      backgroundColor: 'rgba(20, 28, 52, 0.95)',
-                      border: '1px solid rgba(var(--w-sky-400-rgb), 0.4)',
+                      backgroundColor: '#303c46',
+                      border: '1px solid rgba(255, 255, 255, 0.12)',
                       borderRadius: '8px',
                       padding: '12px',
                       zIndex: 100,
                       width: '240px',
-                      boxShadow: '0 8px 24px rgba(0, 0, 0, 0.6)',
+                      boxShadow: '0 8px 24px rgba(16, 24, 40, 0.35)',
                       pointerEvents: 'none',
                       color: '#fff',
                       fontSize: '0.8rem',
@@ -1738,7 +1738,7 @@ export default function UnloadingStatus({ heroOnly = false }: { heroOnly?: boole
                     )}
                     <div style={{ marginBottom: '4px' }}>적재업체: <strong>{tooltipData.shippers.join(', ')}</strong></div>
                     <div style={{ marginBottom: '4px' }}>하역 진행: <strong>{tooltipData.actualAmount.toFixed(1)} MT / {tooltipData.nominalCapacity.toFixed(0)} MT</strong> ({(tooltipData.nominalCapacity > 0 ? (tooltipData.actualAmount / tooltipData.nominalCapacity) * 100 : 0).toFixed(1)}%)</div>
-                    <div style={{ fontSize: '0.75rem', color: 'var(--w-slate-400)', borderTop: '1px solid rgba(140,170,255,0.10)', paddingTop: '4px', marginTop: '4px' }}>
+                    <div style={{ fontSize: '0.75rem', color: '#c6c9d2', borderTop: '1px solid rgba(255, 255, 255, 0.12)', paddingTop: '4px', marginTop: '4px' }}>
                       {tooltipData.qualityDescription}
                     </div>
                   </div>
@@ -1748,7 +1748,7 @@ export default function UnloadingStatus({ heroOnly = false }: { heroOnly?: boole
 
             {/* Right Column: Selected Compartment Details */}
             <div className={styles.holdDetailsCard}>
-              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', borderBottom: '1px solid rgba(255, 255, 255, 0.08)', paddingBottom: '10px' }}>
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', borderBottom: '1px solid var(--dsc-surface-border)', paddingBottom: '10px' }}>
                 <h4 style={{ fontWeight: 'bold', fontSize: '1rem', color: 'var(--dsc-ink)', display: 'flex', alignItems: 'center', gap: '8px' }}>
                   어창 {activeSelectedHold} 상세 정보 <BaseDateTag date={selectedBaseDate} />
                 </h4>
@@ -1779,7 +1779,7 @@ export default function UnloadingStatus({ heroOnly = false }: { heroOnly?: boole
                       {selectedHoldInfo.dischargedVolume.toFixed(3)} MT / {selectedHoldInfo.nominalCapacity.toFixed(0)} MT
                     </span>
                   </div>
-                  <div style={{ width: '100%', background: 'rgba(255, 255, 255, 0.08)', height: '6px', borderRadius: '3px', overflow: 'hidden' }}>
+                  <div style={{ width: '100%', background: 'var(--dsc-surface-border)', height: '6px', borderRadius: '3px', overflow: 'hidden' }}>
                     <div 
                       style={{ 
                         width: `${selectedHoldInfo.nominalCapacity > 0 ? Math.min((selectedHoldInfo.dischargedVolume / selectedHoldInfo.nominalCapacity) * 100, 100) : 0}%`, 
@@ -1795,7 +1795,7 @@ export default function UnloadingStatus({ heroOnly = false }: { heroOnly?: boole
                 </div>
 
                 {/* Species Breakdown */}
-                <div style={{ borderTop: '1px solid rgba(255, 255, 255, 0.08)', paddingTop: '10px', marginTop: '4px' }}>
+                <div style={{ borderTop: '1px solid var(--dsc-surface-border)', paddingTop: '10px', marginTop: '4px' }}>
                   <div style={{ fontWeight: 'bold', color: 'var(--dsc-ink)', marginBottom: '8px', fontSize: '0.8rem' }}>품종별 세부 현황 (Species Breakdown)</div>
                   {lacksHoldSpeciesEvidence ? (
                     <div
@@ -1815,7 +1815,7 @@ export default function UnloadingStatus({ heroOnly = false }: { heroOnly?: boole
                             <span>{sp.name}</span>
                             <span style={{ color: 'var(--text-muted)' }}>{sp.holdActual.toFixed(1)} / {sp.holdNominal.toFixed(0)} MT</span>
                           </div>
-                          <div style={{ width: '100%', background: 'rgba(140, 170, 255, 0.10)', height: '4px', borderRadius: '2px', overflow: 'hidden' }}>
+                          <div style={{ width: '100%', background: 'var(--dsc-surface-border)', height: '4px', borderRadius: '2px', overflow: 'hidden' }}>
                             <div
                               style={{
                                 width: `${sp.percent}%`,
@@ -1917,18 +1917,18 @@ export default function UnloadingStatus({ heroOnly = false }: { heroOnly?: boole
               style={{ display: 'flex', flexWrap: 'wrap', gap: '20px', marginBottom: '20px' }}
             >
               {/* Chart - Left */}
-              <div style={{ flex: '1 1 600px', minWidth: 0, background: 'rgba(20, 28, 52, 0.3)', borderRadius: '12px', padding: '20px', border: '1px solid rgba(140,170,255,0.10)', overflow: 'hidden' }}>
+              <div style={{ flex: '1 1 600px', minWidth: 0, background: 'var(--dsc-surface)', borderRadius: '12px', padding: '20px', border: '1px solid var(--dsc-surface-border)', overflow: 'hidden' }}>
                 <h4 style={{ marginBottom: '16px', fontSize: '0.95rem', color: 'var(--text-muted)', display: 'flex', alignItems: 'center', gap: '8px' }}>일일 및 누적 하역 추이 (MT) <BaseDateTag date={selectedBaseDate} /></h4>
                 <div style={{ width: '100%', overflowX: 'auto', paddingBottom: '8px' }}>
                   <div style={{ width: `${Math.max(chartData.length * 55, 750)}px`, height: '350px' }}>
                     <ComposedChart width={Math.max(chartData.length * 55, 750)} height={350} data={chartData} margin={{ top: 10, right: 30, left: 10, bottom: 0 }}>
                       <ChartPatternDefs />
-                      <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.08)" vertical={false} />
+                      <CartesianGrid strokeDasharray="3 3" stroke="var(--chart-grid)" vertical={false} />
                       <XAxis dataKey="name" stroke="var(--w-slate-400)" fontSize={11} tickLine={false} />
                       <YAxis stroke="var(--w-slate-400)" fontSize={11} tickLine={false} axisLine={false} tickFormatter={(v: number) => v >= 1000 ? `${(v/1000).toFixed(1)}k` : `${v}`} />
                       <RechartsTooltip 
-                        contentStyle={{ backgroundColor: '#0a0f1f', border: '1px solid rgba(255,255,255,0.15)', borderRadius: '8px', color: '#fff', fontSize: '13px' }}
-                        itemStyle={{ color: 'var(--w-slate-200)' }}
+                        contentStyle={{ backgroundColor: '#303c46', border: '1px solid rgba(255,255,255,0.12)', borderRadius: '8px', color: '#fff', fontSize: '13px' }}
+                        itemStyle={{ color: '#ffffff' }}
                         formatter={(value: any, name: any) => [`${Number(value).toLocaleString()} MT`, name]}
                       />
                       <Legend iconType="circle" wrapperStyle={{ fontSize: '12px', paddingTop: '8px', paddingBottom: '16px' }} verticalAlign="top" />
@@ -1941,7 +1941,7 @@ export default function UnloadingStatus({ heroOnly = false }: { heroOnly?: boole
 
               {/* Insights Panel - Right */}
               <div style={{ flex: '1 1 300px', display: 'flex', flexDirection: 'column', gap: '16px' }}>
-                <div style={{ background: 'rgba(20, 28, 52, 0.3)', borderRadius: '12px', padding: '20px', border: '1px solid rgba(140,170,255,0.10)' }}>
+                <div style={{ background: 'var(--dsc-surface)', borderRadius: '12px', padding: '20px', border: '1px solid var(--dsc-surface-border)' }}>
                   <h4 style={{ marginBottom: '16px', fontSize: '0.95rem', color: 'var(--accent-primary)', display: 'flex', alignItems: 'center', gap: '8px' }}>
                     <BarChart3 size={16} /> 하역 효율 지표 <BaseDateTag date={selectedBaseDate} />
                   </h4>
@@ -1970,7 +1970,7 @@ export default function UnloadingStatus({ heroOnly = false }: { heroOnly?: boole
                 </div>
 
                 {/* Dynamic ETA gauge */}
-                <div style={{ background: 'rgba(20, 28, 52, 0.3)', borderRadius: '12px', padding: '20px', border: '1px solid rgba(140,170,255,0.10)' }}>
+                <div style={{ background: 'var(--dsc-surface)', borderRadius: '12px', padding: '20px', border: '1px solid var(--dsc-surface-border)' }}>
                   <h4 style={{ marginBottom: '16px', fontSize: '0.95rem', color: 'var(--w-emerald-500)', display: 'flex', alignItems: 'center', gap: '8px' }}>
                     <Clock size={16} /> 진척 현황 및 예측 (ETA) <BaseDateTag date={selectedBaseDate} />
                   </h4>
@@ -1987,7 +1987,7 @@ export default function UnloadingStatus({ heroOnly = false }: { heroOnly?: boole
                         <span style={{ fontSize: '0.8rem', color: 'var(--text-muted)' }}>잔여 목표량</span>
                         <span style={{ fontWeight: 'bold' }}>{formatNum(remainingTotal)} MT</span>
                       </div>
-                      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', borderTop: '1px solid rgba(255,255,255,0.08)', paddingTop: '6px' }}>
+                      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', borderTop: '1px solid var(--dsc-surface-border)', paddingTop: '6px' }}>
                         <span style={{ fontSize: '0.8rem', color: 'var(--text-muted)' }}>예상 종료 시점</span>
                         <span style={{ fontWeight: 'bold', fontSize: '1.05rem', color: 'var(--w-emerald-500)' }}>
                           {getUnloadingEtaLabel(selectedData.status, remainingTotal, estimatedDaysLeft)}
@@ -1998,7 +1998,7 @@ export default function UnloadingStatus({ heroOnly = false }: { heroOnly?: boole
                 </div>
 
                 {totalShipperAmount > 0 && (
-                  <div style={{ background: 'rgba(20, 28, 52, 0.3)', borderRadius: '12px', padding: '20px', border: '1px solid rgba(140,170,255,0.10)', flex: 1 }}>
+                  <div style={{ background: 'var(--dsc-surface)', borderRadius: '12px', padding: '20px', border: '1px solid var(--dsc-surface-border)', flex: 1 }}>
                     <h4 style={{ marginBottom: '16px', fontSize: '0.95rem', color: 'var(--w-amber-500)', display: 'flex', alignItems: 'center', gap: '8px' }}>
                       <MapPin size={16} /> 원적재선별 하역 비중 <BaseDateTag date={selectedBaseDate} />
                     </h4>
@@ -2011,7 +2011,7 @@ export default function UnloadingStatus({ heroOnly = false }: { heroOnly?: boole
                               <span>{name}</span>
                               <span style={{ color: 'var(--text-muted)' }}>{percent.toFixed(1)}%</span>
                             </div>
-                            <div style={{ width: '100%', background: 'rgba(255,255,255,0.08)', height: '6px', borderRadius: '3px', overflow: 'hidden' }}>
+                            <div style={{ width: '100%', background: 'var(--dsc-surface-border)', height: '6px', borderRadius: '3px', overflow: 'hidden' }}>
                               <div style={{ width: `${percent}%`, background: 'var(--w-amber-500)', height: '100%' }}></div>
                             </div>
                           </div>
@@ -2031,7 +2031,7 @@ export default function UnloadingStatus({ heroOnly = false }: { heroOnly?: boole
           role="tabpanel"
           aria-labelledby="unloading-tab-timeline"
           className={activeDetailTab !== 'timeline' ? styles.tabPanelHidden : ''}
-          style={{ background: 'rgba(20, 28, 52, 0.3)', borderRadius: '12px', padding: '24px', border: '1px solid rgba(140,170,255,0.10)', position: 'relative' }}
+          style={{ background: 'var(--dsc-surface)', borderRadius: '12px', padding: '24px', border: '1px solid var(--dsc-surface-border)', position: 'relative' }}
         >
           <h4 style={{ marginBottom: '20px', fontSize: '0.95rem', color: 'var(--text-muted)', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
             <span style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>작업 기록 (Vertical Shipping Lane Timeline) <BaseDateTag date={selectedBaseDate} /></span>
@@ -2049,7 +2049,7 @@ export default function UnloadingStatus({ heroOnly = false }: { heroOnly?: boole
                     <stop offset="100%" stopColor="var(--w-emerald-500)" />
                   </linearGradient>
                 </defs>
-                <line x1="4" y1="0" x2="4" y2="100%" stroke="rgba(140, 170, 255, 0.10)" strokeWidth="4" strokeLinecap="round" />
+                <line x1="4" y1="0" x2="4" y2="100%" stroke="var(--dsc-surface-border)" strokeWidth="4" strokeLinecap="round" />
                 <line 
                   x1="4" y1="0" 
                   x2="4" y2="100%" 
@@ -2071,8 +2071,8 @@ export default function UnloadingStatus({ heroOnly = false }: { heroOnly?: boole
                 const isFirst = idx === 0;
                 const isLast = idx === arr.length - 1;
                 
-                let iconColor = '#94a3b8';
-                let iconBg = 'rgba(30, 41, 59, 0.8)';
+                let iconColor = 'var(--w-slate-400)';
+                let iconBg = 'var(--dsc-surface)';
                 let glowClass = '';
                 
                 if (isFirst) {
@@ -2120,7 +2120,7 @@ export default function UnloadingStatus({ heroOnly = false }: { heroOnly?: boole
                       )}
                     </div>
 
-                    <div className={styles.timelineLog} style={{ flex: 1, margin: 0, background: 'rgba(30, 41, 59, 0.45)', border: '1px solid rgba(140, 170, 255, 0.10)', borderRadius: '10px' }}>
+                    <div className={styles.timelineLog} style={{ flex: 1, margin: 0, background: 'var(--dsc-surface)', border: '1px solid var(--dsc-surface-border)', borderRadius: '10px' }}>
                       <div className={styles.logDate} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                         <span>{t.date} <span style={{ fontSize: '0.75rem', fontWeight: 'normal', color: 'var(--text-muted)', marginLeft: '8px' }}>{t.time}</span></span>
                         {t.dailyAmount > 0 && (
