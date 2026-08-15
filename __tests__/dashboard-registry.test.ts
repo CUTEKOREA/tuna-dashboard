@@ -1,4 +1,4 @@
-import { readFileSync } from 'node:fs';
+import { existsSync, readFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { describe, expect, it } from 'vitest';
 import sitemap from '../app/sitemap';
@@ -17,6 +17,11 @@ import {
   SIDEBAR_SECTIONS,
   VALID_MENUS,
 } from '../lib/dashboard-registry';
+
+function cssRule(source: string, selector: string): string {
+  const escapedSelector = selector.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+  return source.match(new RegExp(`${escapedSelector}\\s*\\{([^}]*)\\}`, 's'))?.[1] ?? '';
+}
 
 describe('dashboard registry', () => {
   it('retires the beef dashboard route with an explicit 404 boundary', () => {
@@ -201,6 +206,104 @@ describe('dashboard registry', () => {
     expect(marketSource).toContain('<HeroZone');
     expect(marketSource).toContain('variant="kpi"');
     expect(marketSource).toContain('<MarketHero rows={priceData} />');
+  });
+
+  it('keeps the four V2.5-b operation shells flat, tokenized, and separate from chart palettes', () => {
+    const root = process.cwd();
+    const appSource = readFileSync(join(root, 'app/page.tsx'), 'utf8');
+    const marketSource = readFileSync(join(root, 'components/MarketDashboard.tsx'), 'utf8');
+    const fleetSource = readFileSync(join(root, 'components/FleetCommandCenter.tsx'), 'utf8');
+    const fleetHeroSource = readFileSync(join(root, 'components/FleetHeroKPI.tsx'), 'utf8');
+    const fleetStyles = readFileSync(join(root, 'components/FleetCommandCenter.module.css'), 'utf8');
+    const unloadingSource = readFileSync(join(root, 'components/UnloadingStatus.tsx'), 'utf8');
+    const unloadingStyles = readFileSync(join(root, 'components/UnloadingStatus.module.css'), 'utf8');
+    const logisticsSource = readFileSync(join(root, 'components/LogisticsDashboard.tsx'), 'utf8');
+    const logisticsStyles = readFileSync(join(root, 'components/LogisticsCommandCenter.module.css'), 'utf8');
+    const marketStylesPath = join(root, 'components/MarketDashboard.module.css');
+
+    expect(appSource).toContain('INSTITUTIONAL_MENU_KEYS');
+    expect(appSource).toContain('!INSTITUTIONAL_MENU_KEYS.has(activeMenu)');
+
+    expect(existsSync(marketStylesPath)).toBe(true);
+    if (!existsSync(marketStylesPath)) return;
+    const marketStyles = readFileSync(marketStylesPath, 'utf8');
+    expect(marketSource).toContain("import styles from './MarketDashboard.module.css'");
+    expect(marketSource).not.toContain('--kpi-grad');
+    expect(marketSource).not.toMatch(/accent:\s*['"]#/);
+    expect(marketStyles).not.toContain('gradient');
+    for (const selector of ['.dashboard', '.kpiCard', '.chartPanel']) {
+      const rule = cssRule(marketStyles, selector);
+      expect(rule).not.toBe('');
+      expect(rule).toContain('var(--dsc-');
+    }
+    expect(cssRule(marketStyles, '.kpiCard::before')).toContain('var(--accent-primary)');
+    expect(cssRule(marketStyles, '.kpiCard')).toContain('background: var(--dsc-surface) !important');
+    expect(cssRule(marketStyles, '.chartPanel')).toContain('background: var(--dsc-surface) !important');
+
+    for (const selector of [
+      '.commandIntro',
+      '.heroStrip::before',
+      '.kpiCardHighlight',
+      '.decisionPanel',
+      '.missionCard',
+      '.accessAlert',
+    ]) {
+      const rule = cssRule(fleetStyles, selector);
+      expect(rule).not.toBe('');
+      expect(rule).not.toContain('gradient');
+    }
+    for (const selector of ['.missionCard', '.commandIntro', '.heroStrip', '.kpiCard', '.decisionPanel', '.accessAlert']) {
+      expect(cssRule(fleetStyles, selector)).toContain('var(--dsc-');
+    }
+    expect(fleetSource).not.toContain("tone: 'warning'");
+    expect(fleetSource).not.toMatch(/accent:\s*['"]#/);
+    expect(fleetSource).toContain("color: 'var(--accent-primary)'");
+    expect(fleetHeroSource).not.toContain('linear-gradient');
+    expect(fleetHeroSource).toContain("background: 'var(--accent-primary)'");
+    expect(fleetHeroSource).toContain("background: 'var(--dsc-ink-faint)'");
+
+    expect(unloadingStyles).not.toContain('linear-gradient');
+    expect(unloadingSource).not.toMatch(/accent:\s*['"]#/);
+    expect(unloadingSource).toContain("color: 'var(--accent-primary)'");
+    for (const selector of [
+      '.decisionPanel',
+      '.execCard',
+      '.vesselCard',
+      '.deepDiveCard',
+      '.cargoBasisPanel',
+      '.chartContainer',
+      '.schematicContainer',
+      '.shipSchematic',
+      '.holdDetailsCard',
+    ]) {
+      const rule = cssRule(unloadingStyles, selector);
+      expect(rule).not.toBe('');
+      expect(rule).toContain('var(--dsc-surface)');
+      expect(rule).toContain('var(--dsc-surface-border)');
+      expect(rule).toContain('var(--dsc-card-radius)');
+    }
+    expect(cssRule(unloadingStyles, '.progressFill')).toContain('var(--accent-primary)');
+    expect(cssRule(unloadingStyles, '.vesselCard')).toContain('border-radius: var(--dsc-card-radius) !important');
+
+    expect(logisticsSource).not.toContain('<linearGradient');
+    expect(logisticsSource).not.toContain('route-marker-glow');
+    expect(logisticsSource).toContain('warning={{');
+    expect(logisticsStyles).not.toContain('linear-gradient');
+    expect(cssRule(logisticsStyles, '.dashboard')).toContain('var(--dsc-bg)');
+    for (const selector of ['.priceSummary', '.historyNotice']) {
+      const rule = cssRule(logisticsStyles, selector);
+      expect(rule).not.toBe('');
+      expect(rule).toContain('var(--dsc-surface)');
+      expect(rule).toContain('var(--dsc-surface-border)');
+      expect(rule).toContain('var(--dsc-card-radius)');
+    }
+
+    // 차트·데이터 시리즈 팔레트는 V2.5-b 셸 정리 범위 밖이다.
+    for (const chartColor of ['#2dd4bf', '#f472b6', '#facc15', '#fb923c', '#c084fc', '#a78bfa']) {
+      expect(marketSource).toContain(chartColor);
+    }
+    expect(unloadingSource).toContain('fill="#38bdf8"');
+    expect(unloadingSource).toContain('stroke="#10b981"');
   });
 
   it('keeps menu keys unique and title-addressable', () => {

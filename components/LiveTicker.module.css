@@ -95,11 +95,11 @@
   transform: translateY(-50%);
   width: 1px;
   height: 14px;
-  background: linear-gradient(180deg, transparent, rgba(148, 163, 184, 0.35), transparent);
+  background: linear-gradient(180deg, transparent, color-mix(in srgb, var(--dsc-ink-muted) 35%, transparent), transparent);
 }
 
 .label {
-  color: var(--text-muted);
+  color: var(--dsc-ink-muted);
   margin-right: 8px;
   font-weight: 500;
   font-size: 11.5px;
@@ -107,6 +107,7 @@
 
 .value {
   margin-right: 6px;
+  font-family: var(--dsc-font-mono);
   font-variant-numeric: tabular-nums;
   font-weight: 700;
 }
@@ -157,7 +158,7 @@
 }
 
 [data-theme='light'] .tickerItem::after {
-  background: linear-gradient(180deg, transparent, rgba(20, 28, 52, 0.18), transparent);
+  background: linear-gradient(180deg, transparent, color-mix(in srgb, var(--dsc-ink-faint) 35%, transparent), transparent);
 }
 
 [data-theme='light'] .up {

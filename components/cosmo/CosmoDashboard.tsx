@@ -68,7 +68,6 @@ const heroKpis: { primary: HeroKpi; secondary: HeroKpi[] } = {
     value: n(latest.salesWeekUsd) / 1e6,
     unit: '(백만 달러)',
     decimals: 2,
-    accent: '#22d3ee',
   },
   secondary: [
     {
@@ -76,21 +75,18 @@ const heroKpis: { primary: HeroKpi; secondary: HeroKpi[] } = {
       value: n(latestMonth.netYtd) / 1e6,
       unit: '(백만 달러)',
       decimals: 2,
-      accent: '#fb7185',
     },
     {
       label: '통조림 누적 수율',
       value: n(latest.production?.CBU?.cumYield) * 100,
       unit: '(%)',
       decimals: 1,
-      accent: '#34d399',
     },
     {
       label: '현금 잔액',
       value: n(latest.cash.endUsd) / 1e6,
       unit: '(백만 달러)',
       decimals: 2,
-      accent: '#fbbf24',
     },
   ],
 };
@@ -131,8 +127,7 @@ export default function CosmoDashboard({ heroOnly = false }: { heroOnly?: boolea
           tabs={COSMO_TABS}
           activeKey={activeTab}
           onChange={(key) => navigate(key as CosmoTabKey)}
-          accentFrom="#22d3ee"
-          accentTo="#3b82f6"
+          accentFrom="var(--accent-primary)"
           className="cosmo-tabs"
           ariaLabel="코스모 업무 화면"
           tabIdPrefix="cosmo-tab"

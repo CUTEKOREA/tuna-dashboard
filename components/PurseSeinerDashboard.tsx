@@ -33,12 +33,11 @@ export function PurseSeinerHero() {
         label: '검증 선박',
         value: TOTAL_VESSELS,
         unit: '(척)',
-        accent: '#3b82f6',
       }}
       secondaryKpis={[
-        { label: '선적국', value: TOTAL_FLAGS, unit: '(개국)', accent: '#f59e0b' },
-        { label: '운영사', value: TOTAL_OPERATORS, unit: '(개사)', accent: '#ec4899' },
-        { label: '다중 관리기구 등록', value: MULTI_RFMO_COUNT, unit: '(척)', accent: '#8b5cf6' },
+        { label: '선적국', value: TOTAL_FLAGS, unit: '(개국)' },
+        { label: '운영사', value: TOTAL_OPERATORS, unit: '(개사)' },
+        { label: '다중 관리기구 등록', value: MULTI_RFMO_COUNT, unit: '(척)' },
       ]}
     />
   );
@@ -72,16 +71,27 @@ const CONTINENT_KO: Record<string, string> = {
 const flagKo = (f: string) => FLAG_KO[f] || f;
 
 /* ───────── Styles ───────── */
+const pageStyle: React.CSSProperties = {
+  width: '100%',
+  minWidth: 0,
+  maxWidth: 1400,
+  margin: '0 auto',
+  padding: '24px 28px',
+  background: 'var(--dsc-bg)',
+};
+
 const card = (extra?: React.CSSProperties): React.CSSProperties => ({
-  background: 'rgba(255,255,255,0.04)',
-  border: '1px solid rgba(255,255,255,0.08)',
-  borderRadius: 16,
+  background: 'var(--dsc-surface)',
+  border: '1px solid var(--dsc-surface-border)',
+  borderRadius: 'var(--dsc-card-radius)',
+  boxShadow: 'var(--dsc-card-shadow)',
+  backdropFilter: 'var(--dsc-surface-blur)',
   padding: '20px 24px',
   ...extra,
 });
 
 const sectionTitle: React.CSSProperties = {
-  fontSize: 18, fontWeight: 700, color: '#e2e8f0',
+  fontSize: 18, fontWeight: 700, color: 'var(--dsc-ink)',
   marginBottom: 16, display: 'flex', alignItems: 'center', gap: 8,
 };
 
@@ -120,8 +130,8 @@ function ContinentTreemapContent(props: any) {
 }
 
 /* ───────── KPI Card ───────── */
-function KpiCard({ icon, label, value, sub, color }: {
-  icon: React.ReactNode; label: string; value: number; sub?: string; color: string;
+function KpiCard({ icon, label, value, sub }: {
+  icon: React.ReactNode; label: string; value: number; sub?: string;
 }) {
   return (
     <motion.div
@@ -129,17 +139,22 @@ function KpiCard({ icon, label, value, sub, color }: {
       style={{
         ...card(),
         flex: '1 1 160px',
+        position: 'relative',
+        overflow: 'hidden',
         display: 'flex', flexDirection: 'column', alignItems: 'center',
         gap: 6, textAlign: 'center', minWidth: 140,
-        borderTop: `3px solid ${color}`,
       }}
     >
-      <div style={{ color, opacity: 0.9 }}>{icon}</div>
-      <div style={{ fontSize: 32, fontWeight: 800, color: '#f1f5f9', lineHeight: 1 }}>
+      <div
+        aria-hidden
+        style={{ position: 'absolute', inset: '0 0 auto', height: 3, background: 'var(--accent-primary)' }}
+      />
+      <div style={{ color: 'var(--accent-primary)', opacity: 0.9 }}>{icon}</div>
+      <div style={{ fontSize: 32, fontWeight: 800, color: 'var(--dsc-ink)', lineHeight: 1 }}>
         <CountUp end={value} duration={1.6} separator="," />
       </div>
-      <div style={{ fontSize: 13, color: '#94a3b8', fontWeight: 500 }}>{label}</div>
-      {sub && <div style={{ fontSize: 11, color: '#64748b' }}>{sub}</div>}
+      <div style={{ fontSize: 13, color: 'var(--dsc-ink-muted)', fontWeight: 500 }}>{label}</div>
+      {sub && <div style={{ fontSize: 11, color: 'var(--dsc-ink-faint)' }}>{sub}</div>}
     </motion.div>
   );
 }
@@ -694,23 +709,23 @@ export default function PurseSeinerDashboard({ heroOnly = false }: { heroOnly?: 
 
   if (heroOnly) {
     return (
-      <div style={{ padding: '24px 28px', maxWidth: 1400, margin: '0 auto' }}>
+      <div style={pageStyle}>
         {purseSeinerHero}
       </div>
     );
   }
 
   return (
-    <div style={{ padding: '24px 28px', maxWidth: 1400, margin: '0 auto' }}>
+    <div style={pageStyle}>
       {purseSeinerHero}
 
       {/* Section 1: KPI Cards */}
       <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap', marginBottom: 24 }}>
-        <KpiCard icon={<Ship size={24} />} label="총 선박" value={TOTAL_VESSELS} sub="IMO 검증 완료" color="#3b82f6" />
-        <KpiCard icon={<Globe size={24} />} label="RFMO" value={TOTAL_RFMOS} sub="해역 관리 기구" color="#10b981" />
-        <KpiCard icon={<Flag size={24} />} label="선적국" value={TOTAL_FLAGS} sub="국가" color="#f59e0b" />
-        <KpiCard icon={<Building2 size={24} />} label="운영사" value={TOTAL_OPERATORS} sub="식별 완료" color="#ec4899" />
-        <KpiCard icon={<Link2 size={24} />} label="다중 RFMO" value={MULTI_RFMO_COUNT} sub="2+ 해역 등록" color="#8b5cf6" />
+        <KpiCard icon={<Ship size={24} />} label="총 선박" value={TOTAL_VESSELS} sub="IMO 검증 완료" />
+        <KpiCard icon={<Globe size={24} />} label="RFMO" value={TOTAL_RFMOS} sub="해역 관리 기구" />
+        <KpiCard icon={<Flag size={24} />} label="선적국" value={TOTAL_FLAGS} sub="국가" />
+        <KpiCard icon={<Building2 size={24} />} label="운영사" value={TOTAL_OPERATORS} sub="식별 완료" />
+        <KpiCard icon={<Link2 size={24} />} label="다중 RFMO" value={MULTI_RFMO_COUNT} sub="2+ 해역 등록" />
       </div>
 
       {/* Section 2: RFMO Analysis */}
@@ -736,9 +751,9 @@ export default function PurseSeinerDashboard({ heroOnly = false }: { heroOnly?: 
 
       {/* Footer */}
       <div style={{
-        marginTop: 24, padding: '12px 16px', borderRadius: 12,
-        background: 'rgba(255,255,255,0.02)', border: '1px solid rgba(140,170,255,0.12)',
-        fontSize: 11, color: '#475569', textAlign: 'center',
+        marginTop: 24, padding: '12px 16px', borderRadius: 'var(--dsc-card-radius)',
+        background: 'var(--dsc-surface)', border: '1px solid var(--dsc-surface-border)',
+        fontSize: 11, color: 'var(--dsc-ink-faint)', textAlign: 'center',
       }}>
         데이터 출처: RFMO 공개 레지스트리 기반 수집 · IMO 체크디짓 검증 + 등차수열 패턴 탐지 적용 ·
         검증 통과율: 22.9% (155/678) · 일부 선박의 실존 여부는 추가 교차 검증 필요

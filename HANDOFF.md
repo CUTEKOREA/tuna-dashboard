@@ -1,5 +1,24 @@
 # HANDOFF
 
+> 마지막 업데이트: 2026-08-15 09:19 KST
+
+> 🎛️ **2026-08-15 09:19 KST — V2.5-c 잔여 4페이지·색 브리지 완료** [Codex]:
+> - `/pork`·`/cross-intelligence`·`/purse-seiner-db`·`/cosmo`도 `AmbientBackground` 미렌더 대상에 포함했다. 돼지고기 상단 KPI·섹션 크롬, 통합 인텔리전스 패널, 선망선 공용 카드·상단 KPI·푸터, COSMO 루트·활성 탭 패널을 `--dsc-bg`·`--dsc-surface`·`--dsc-surface-border`·`--dsc-card-radius`에 연결하고 장식 radial/linear gradient와 페이지 KPI 다색 accent를 제거했다. 돼지고기 위젯 `accent={sec.color}`, 통합 점수 4색, 선망선/COSMO 차트·데이터 팔레트는 수정하지 않았다.
+> - `app/globals.css`에 인벤토리 우선순위 1의 16색을 `--w-*` 브리지 토큰으로 1:1 등록했다. 값은 원색 그대로이며 위젯 파일 치환과 다시리즈 차트 팔레트 토큰 생성은 하지 않았다. `LiveTicker`는 `.value`만 `--dsc-font-mono`, 라벨·구분자는 중립 `--dsc-ink-*` 토큰을 쓴다.
+> - TDD는 V2.5-c 소스 가드 **RED 3/3 → GREEN 3/3**을 확인했다. focused ESLint exit 0, TypeScript exit 0, 관련 렌더·레지스트리 **61/61**, 최종 `npm run verify` exit 0: ESLint 오류 0(소유 범위 밖 `ShrimpDashboard.tsx` 경고 1), Vitest **262/262**, API cache **143/143**, Next 정적 페이지 **117/117**, bundle **30경로**다.
+> - dev+Puppeteer 증거는 `/private/tmp/v25c-qa-20260815/`에 있다. 4페이지×1440×1000·390×844 **8/8** 모두 HTTP 200, overflow 0, page error·local HTTP/request failure 0, 잠금 잔존 0, Ambient 0이며 계산 스타일은 surface `rgba(24,24,27,.72)`·1px border·12px radius다. COSMO는 양 뷰포트에서 `경영요약→자금→시장·바이어` 3개 탭을 실제 렌더했다. `qa-results.json` SHA-256은 `db8bf4705c94ae0a5c03da7cbc2c89f3a52c74ba2778a0d27e082d04b9cdfe36`이다. 외부 글꼴·광고·분석 4호스트는 의도적으로 차단했고, 기존 돼지고기 P-03 `압도적` 콘솔 신호는 위젯 무접촉 경계로 보존했다.
+> - 시각 관찰에서 선망선 도넛·국가·대륙·운영사 Recharts 일부는 2.2초 대기 후에도 범례만 보였다. 이번 diff의 chart data·`ResponsiveContainer`·series 변경은 0이므로 V2.5-c 수정으로 판정하지 않았고, CC가 pre-V2.5-c 캡처와 독립 비교해야 한다.
+> - 작업 시작 시 원격 `main`은 `a44f309`, V2.5-b PR #366은 OPEN/CONFLICTING이었다. 지시서의 선행 전제를 로컬에서만 충족하기 위해 두 트리를 순차 통합한 기준 커밋은 `d667759`; 원격 push·PR 수정·배포는 하지 않았다. 다음 단계는 CC가 PR #366을 먼저 정리한 뒤 브리지 16색 1:1, 위젯 무접촉 diff, 선망선 차트 기준선을 독립 검수하고 V2.5-c만 순차 반영하는 것이다.
+
+> 마지막 업데이트: 2026-08-15 08:49 KST
+
+> 🎛️ **2026-08-15 08:49 KST — V2.5-b 운영 4페이지 Institutional 정리 완료** [Codex]:
+> - `/market`·`/fleet`·`/unloading`·`/logistics`에서만 전역 `AmbientBackground`를 렌더하지 않게 하고, 페이지 셸 배경을 `--dsc-bg`로 고정했다. 시장 KPI·차트 셸, 선단 히어로/KPI·미션 카드, 하역 의사결정·선박·상세 카드, 물류 요약·이력 카드를 `--dsc-surface`·`--dsc-surface-border`·`--dsc-card-radius`에 연결했다. 전역 구형 `!important`가 시장 배경과 버튼형 하역 카드 radius를 덮는 지점은 해당 페이지 범위에서만 우선순위를 복구했다.
+> - 장식 그라디언트와 다색 크롬을 제거했다. 시장 KPI 4색 상단 바는 cyan 3px 단일 바, 선단 `heroStrip` 3색 바와 점유율 바는 cyan+zinc, 하역 CSS 카드·진행 바는 flat surface+cyan, 물류 정적 항로도는 flat zinc 해면+cyan 경로/마커로 바꿨다. 선단·하역의 데이터 연동 선박 해치도 페이지 액센트 cyan을 명시했다. VDS 음수 잔여와 물류 입항 재확인처럼 실제 예외인 rose/amber만 유지했다.
+> - 위젯 내부와 차트 데이터 시리즈는 수정하지 않았다. 소스 가드는 `/market` 5+ 허브 팔레트와 하역 차트 색 보존, 셸 gradient 제거, 토큰 참조, Aurora 미렌더, 물류 경고 존치를 함께 고정한다. TDD 최초 RED 1건을 확인한 뒤 focused **71/71**, 최종 전체 `npm run verify` exit 0: ESLint 오류 0(기존 경고 18), TypeScript, Vitest **259/259**, API cache **143/143**, Next 정적 페이지 **117/117**, bundle **30경로** 통과.
+> - Puppeteer 전후 증거는 `/private/tmp/v25b-pages-qa.A2bz86/{before,after}/`에 있다. 최종 4페이지×1440×1000·390×844 **8/8** 모두 HTTP 200, 가로 overflow 0, page/console/local HTTP/비중단 요청 오류 0, Aurora 0이며 계산 스타일은 카드 `rgba(24,24,27,.72)`·1px 저대비 보더·12px radius다. 하역 dev Strict Mode의 중복 `/api/unloading-history` 취소 1건/뷰포트는 `expectedRequestAborts`로 분리했고 다른 요청은 200이다. 최종 `qa-results.json` SHA-256은 `cb7c182f2cda1b177a62eb5393cda27ec540b88ac5bcc2c74a90f95480a30946`다.
+> - 기존 pnpm형 `node_modules`는 삭제하지 않고 `/private/tmp/v25b-node-modules-backup.cdtjA6/node_modules`에 보존한 뒤 `npm ci`로 재구성했다. push·PR·프로덕션 배포는 하지 않았다. 다음 단계는 CC가 전후 스크린샷, hardcoded grep 예외(차트/데이터), 전역 `!important` 국소 override를 독립 검수하는 것이다.
+
 > 마지막 업데이트: 2026-08-15 08:43 KST
 
 > 🧹 **2026-08-15 08:43 KST — ESLint 경고 2차 정리 완료** [Codex]:

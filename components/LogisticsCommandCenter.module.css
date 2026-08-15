@@ -1,6 +1,7 @@
 .dashboard {
   min-height: 100vh;
   padding: 0 1.5rem 3rem;
+  background: var(--dsc-bg);
   color: var(--text-primary);
   font-family: 'CircularSp', sans-serif;
 }
@@ -41,9 +42,8 @@
   place-items: center;
   flex: 0 0 auto;
   border-radius: 50%;
-  color: #07111e;
-  background: linear-gradient(135deg, #10b981, #059669);
-  box-shadow: 0 8px 18px rgba(5, 150, 105, 0.16);
+  color: var(--dsc-bg-deep);
+  background: var(--accent-primary);
 }
 
 .brand h1 {
@@ -124,9 +124,9 @@
 }
 
 .tabActive {
-  color: #dff8ef;
-  border-color: rgba(16, 185, 129, 0.34);
-  background: rgba(16, 185, 129, 0.13);
+  color: var(--dsc-ink);
+  border-color: var(--accent-primary);
+  background: var(--dsc-surface);
 }
 
 .panel { min-height: 420px; }
@@ -163,9 +163,12 @@
   align-items: center;
   margin-bottom: 1rem;
   padding: 12px 14px;
-  border-left: 3px solid var(--color-success);
+  border: 1px solid var(--dsc-surface-border);
+  border-left: 3px solid var(--accent-primary);
+  border-radius: var(--dsc-card-radius);
   color: var(--text-secondary);
-  background: rgba(16, 185, 129, 0.055);
+  background: var(--dsc-surface);
+  box-shadow: var(--dsc-card-shadow);
   font-size: 0.78rem;
 }
 
@@ -182,9 +185,10 @@
 .signalStrip,
 .kpiRail,
 .historyDetails {
-  border: 1px solid var(--panel-border);
-  border-radius: 12px;
-  background: var(--panel-bg);
+  border: 1px solid var(--dsc-surface-border);
+  border-radius: var(--dsc-card-radius);
+  background: var(--dsc-surface);
+  box-shadow: var(--dsc-card-shadow);
 }
 
 .signalStrip { padding: 1.25rem; }
@@ -194,7 +198,7 @@
   align-items: flex-start;
   gap: 10px;
   margin-bottom: 1rem;
-  color: var(--color-warning);
+  color: var(--accent-primary);
 }
 
 .sectionHeading h2 {
@@ -254,7 +258,7 @@
 
 .priorityUrgent { color: #fecaca; background: rgba(239, 68, 68, 0.15); }
 .priorityWatch { color: #fde68a; background: rgba(245, 158, 11, 0.13); }
-.priorityConflict { color: #bfdbfe; background: rgba(59, 130, 246, 0.13); }
+.priorityConflict { color: var(--accent-primary); background: var(--dsc-surface); }
 
 .evidence {
   margin: 5px 0 0;
@@ -268,9 +272,9 @@
   align-items: flex-start;
   gap: 7px;
   padding: 9px 10px;
-  border-left: 2px solid rgba(16, 185, 129, 0.55);
-  color: #b7d8cb;
-  background: rgba(16, 185, 129, 0.055);
+  border-left: 2px solid var(--accent-primary);
+  color: var(--dsc-ink-muted);
+  background: var(--dsc-surface);
   font-size: 0.75rem;
   line-height: 1.45;
 }
@@ -300,10 +304,12 @@
 .historyNotice {
   margin-bottom: 1rem;
   padding: 12px 14px;
-  border: 1px solid rgba(245, 158, 11, 0.22);
-  border-radius: 9px;
-  color: #f6d79a;
-  background: rgba(245, 158, 11, 0.06);
+  border: 1px solid var(--dsc-surface-border);
+  border-left: 3px solid var(--color-warning);
+  border-radius: var(--dsc-card-radius);
+  color: var(--color-warning);
+  background: var(--dsc-surface);
+  box-shadow: var(--dsc-card-shadow);
   font-size: 0.78rem;
 }
 

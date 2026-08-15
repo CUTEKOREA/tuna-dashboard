@@ -7,14 +7,15 @@ import { TelemetryBadge } from './TelemetryBadge';
 import { asfCycleData, productionTrendData, selfSufficiencyData } from './porkData';
 import HeroZone, { type HeroKpi } from './v2/HeroZone';
 import PillTabs from './v2/PillTabs';
+import styles from './PorkDashboard.module.css';
 
 const KPIS = [
-  { title: '중국 돈육 생산량 (2024)', value: '57,948천톤', trend: '📊', desc: '전년비 -1.5% 감소 · 글로벌 1위', telemetry: 'synced', syncDate: 'FAOSTAT', color: '#f43f5e' },
-  { title: '한국 1인당 소비량', value: '41.4kg', trend: '📈', desc: '10년간 +34% 폭증', telemetry: 'synced', syncDate: 'FBS 22Y', color: '#ec4899' },
-  { title: '한국 총 수입량 (2024)', value: '594천톤', trend: '🚢', desc: '$22.1억 · 미국+스페인 양강', telemetry: 'synced', syncDate: 'Comtrade 24Y', color: '#8b5cf6' },
-  { title: 'ASF 최대 충격폭', value: '-20.9%', trend: '⚠️', desc: '2019 중국 생산량 급감', telemetry: 'synced', syncDate: 'QCL', color: '#ef4444' },
-  { title: '돈육 탄소 배출', value: '12.3kg', trend: '🌱', desc: 'CO2e/kg — 수산물 대비 6배', telemetry: 'synced', syncDate: 'FAO', color: '#10b981' },
-  { title: '한국 돈육 자급률', value: '66%', trend: '🎯', desc: '34% 구조적 수입 의존', telemetry: 'synced', syncDate: 'PSD', color: '#f59e0b' },
+  { title: '중국 돈육 생산량 (2024)', value: '57,948천톤', trend: '📊', desc: '전년비 -1.5% 감소 · 글로벌 1위', telemetry: 'synced', syncDate: 'FAOSTAT' },
+  { title: '한국 1인당 소비량', value: '41.4kg', trend: '📈', desc: '10년간 +34% 폭증', telemetry: 'synced', syncDate: 'FBS 22Y' },
+  { title: '한국 총 수입량 (2024)', value: '594천톤', trend: '🚢', desc: '$22.1억 · 미국+스페인 양강', telemetry: 'synced', syncDate: 'Comtrade 24Y' },
+  { title: 'ASF 최대 충격폭', value: '-20.9%', trend: '⚠️', desc: '2019 중국 생산량 급감', telemetry: 'synced', syncDate: 'QCL' },
+  { title: '돈육 탄소 배출', value: '12.3kg', trend: '🌱', desc: 'CO2e/kg — 수산물 대비 6배', telemetry: 'synced', syncDate: 'FAO' },
+  { title: '한국 돈육 자급률', value: '66%', trend: '🎯', desc: '34% 구조적 수입 의존', telemetry: 'synced', syncDate: 'PSD' },
 ] as const;
 
 // 5-Pillar 네비게이터 메타 (돼지 시그니처 — pink/rose 톤)
@@ -42,13 +43,11 @@ const PORK_SECONDARY_KPIS: HeroKpi[] = [
     label: '한국 돈육 생산량',
     value: latestProductionTrend.한국,
     unit: '(천 MT)',
-    accent: '#fb7185',
   },
   ...(porkSelfSufficiency ? [{
     label: '한국 돈육 자급률',
     value: porkSelfSufficiency.selfRate,
     unit: '(%)',
-    accent: '#f59e0b',
   }] : []),
 ];
 
@@ -62,7 +61,6 @@ export function PorkHero() {
         label: '중국 돈육 생산량',
         value: latestChinaProduction.production,
         unit: '(천 MT)',
-        accent: '#f43f5e',
       }}
       secondaryKpis={PORK_SECONDARY_KPIS}
     />
@@ -78,48 +76,46 @@ const WIDGET_MAP: Record<string, React.FC<any>> = {
 export default function PorkDashboard({ heroOnly = false }: { heroOnly?: boolean }) {
   const [activePart, setActivePart] = useState<PorkPillarId>('P1');
   const porkHero = (
-    <div style={{ marginBottom: '2rem' }}>
+    <div className={styles.hero}>
       <PorkHero />
     </div>
   );
 
   if (heroOnly) {
     return (
-      <div style={{ padding: '0 1.5rem 3rem', color: '#f8fafc', fontFamily: "'Inter',sans-serif" }}>
+      <div className={`${styles.dashboard} ${styles.heroOnly}`}>
         {porkHero}
       </div>
     );
   }
 
   return (
-    <div style={{ padding: '0 1.5rem 3rem', color: '#f8fafc', minHeight: '100vh', fontFamily: "'Inter',sans-serif" }}>
+    <div className={styles.dashboard}>
       {porkHero}
 
       {/* ═══ KPIs ═══ */}
-      <div data-mobile-stack style={{ display: 'grid', gridTemplateColumns: 'repeat(6, 1fr)', gap: '1rem', marginBottom: '2rem' }}>
+      <div data-mobile-stack className={styles.kpiGrid}>
         {KPIS.map((kpi, idx) => (
-          <div key={idx} style={{ background: '#11182f', border: '1px solid rgba(255,255,255,0.03)', borderRadius: '12px', padding: '1.2rem', display: 'flex', flexDirection: 'column', gap: '6px', position: 'relative', overflow: 'hidden' }}>
-            <div style={{ position: 'absolute', top: '-15px', right: '-15px', width: '60px', height: '60px', borderRadius: '50%', background: `radial-gradient(circle,${kpi.color}40,transparent)`, pointerEvents: 'none' }} />
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-              <span style={{ fontSize: '0.72rem', color: '#94a3b8', fontWeight: 600 }}>{kpi.title}</span>
+          <div key={idx} className={styles.kpiCard}>
+            <div className={styles.kpiHeader}>
+              <span className={styles.kpiTitle}>{kpi.title}</span>
               <TelemetryBadge status={kpi.telemetry} syncDate={kpi.syncDate} />
             </div>
-            <div style={{ fontSize: '1.4rem', fontWeight: 800, color: '#f8fafc', marginTop: '4px' }}>{kpi.value}</div>
-            <div style={{ fontSize: '0.68rem', color: kpi.color, fontWeight: 600 }}>
-              <span style={{ background: `${kpi.color}20`, padding: '2px 5px', borderRadius: '4px', marginRight: '4px' }}>{kpi.trend}</span>{kpi.desc}
+            <div className={styles.kpiValue}>{kpi.value}</div>
+            <div className={styles.kpiTrend}>
+              <span className={styles.trendMark}>{kpi.trend}</span>{kpi.desc}
             </div>
           </div>
         ))}
       </div>
 
       {/* ═══ 5-Pillar 밸류체인 네비게이터 ═══ */}
-      <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '2rem' }}>
+      <div className={styles.tabs}>
         <PillTabs
           tabs={PORK_PILL_TABS}
           activeKey={activePart}
           onChange={(key) => setActivePart(key as PorkPillarId)}
-          accentFrom="#f43f5e"
-          accentTo="#ec4899"
+          accentFrom="var(--accent-primary)"
           ariaLabel="돼지고기 밸류체인 보기"
           tabIdPrefix="pork-tab"
           panelIdPrefix="pork-panel"
@@ -133,16 +129,16 @@ export default function PorkDashboard({ heroOnly = false }: { heroOnly?: boolean
           id={`pork-panel-${sec.id}`}
           role="tabpanel"
           aria-labelledby={`pork-tab-${sec.id}`}
-          style={{ marginBottom: '4rem' }}
+          className={styles.section}
         >
-          <div style={{ marginBottom: '1.5rem', display: 'flex', alignItems: 'center', gap: '0.8rem' }}>
-            <div style={{ width: '4px', height: '28px', background: `linear-gradient(180deg,${sec.color},${sec.color}99)`, borderRadius: '2px' }} />
+          <div className={styles.sectionHeader}>
+            <div className={styles.sectionAccent} />
             <div>
-              <h2 style={{ margin: 0, fontSize: '1.2rem', fontWeight: 800, color: '#f8fafc', letterSpacing: '-0.3px' }}>{sec.title}</h2>
-              <p style={{ margin: '4px 0 0 0', fontSize: '0.8rem', color: '#94a3b8' }}>{sec.desc}</p>
+              <h2 className={styles.sectionTitle}>{sec.title}</h2>
+              <p className={styles.sectionDesc}>{sec.desc}</p>
             </div>
           </div>
-          <div data-mobile-stack style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '1.5rem' }}>
+          <div data-mobile-stack className={styles.widgetGrid}>
             {sec.widgets.map((wId) => {
               const Comp = WIDGET_MAP[wId];
               if (!Comp) return null;

@@ -35,6 +35,7 @@ const carrierFillRatio = clamp(
 const seinerHatches = Array.from({ length: 6 }, (_, hatchIndex) => ({
   id: `seiner-hatch-${hatchIndex + 1}`,
   intensity: clamp(carrierFillRatio * 6 - hatchIndex, 0, 1),
+  color: 'var(--accent-primary)',
 }));
 // 선체는 우측 상단에 치우쳐 배치 — KPI 행(좌하단)과 겹치지 않게 (Raktor 구도)
 const heroBackground = (
@@ -46,7 +47,7 @@ const heroBackground = (
 const decisions = [
   { icon: TrendingUp, level: '생산', title: `합작선 주간 비중 ${jointWeeklyShare}%`, detail: `${purseSeineCatch.summary.jointWeekly} M/T · KONA 183, MARI 140 M/T 견인`, tone: 'primary' },
   { icon: AlertTriangle, level: 'VDS', title: `국적선 음수 잔여 ${nationalOverrunCount}건`, detail: '키리바시·투발루·나우루 등 수역별 추가권리 확인', tone: 'danger' },
-  { icon: Ship, level: '전재', title: `운반선 선적 ${carrierLoads.loadedTotalMt.toLocaleString()} M/T`, detail: `예상잔량 ${carrierLoads.expectedRemainingMt.toLocaleString()} M/T · 방콕/X-MAS/RABAUL 관리`, tone: 'warning' },
+  { icon: Ship, level: '전재', title: `운반선 선적 ${carrierLoads.loadedTotalMt.toLocaleString()} M/T`, detail: `예상잔량 ${carrierLoads.expectedRemainingMt.toLocaleString()} M/T · 방콕/X-MAS/RABAUL 관리`, tone: 'primary' },
   { icon: CalendarClock, level: '대서양', title: '8월 11일 일간 220 M/T', detail: 'P/MAS 120 · P/PATH 60 · P/DIS 40 M/T', tone: 'primary' },
 ] as const;
 
@@ -63,7 +64,7 @@ export default function FleetCommandCenter({ heroOnly = false }: { heroOnly?: bo
       secondaryKpis={[
         { label: '8월 누적 어획량', value: purseSeineCatch.summary.monthlyTotal, unit: '(M/T)' },
         { label: '연간 누적 어획량', value: purseSeineCatch.summary.annualTotal, unit: '(M/T)' },
-        { label: '운반선 선적량', value: carrierLoads.loadedTotalMt, unit: '(M/T)', decimals: 1, accent: '#f59e0b' },
+        { label: '운반선 선적량', value: carrierLoads.loadedTotalMt, unit: '(M/T)', decimals: 1 },
       ]}
       strip={(
         <div className={s.missionStrip}>

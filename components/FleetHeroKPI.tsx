@@ -42,7 +42,7 @@ export default function FleetHeroKPI({ climateRisk, mode = 'daily' }: { climateR
         <div className={`${s.kpiCard} ${s.kpiCardHighlight}`}>
           <div className={s.kpiLabel}>{isWeekly ? '📊' : '⚡'} {kpiData.title}</div>
           <div className={`${s.kpiValue} ${s.kpiValueAccent}`}><CountUp end={kpiData.val1} duration={2} separator="," /><span className={s.kpiUnit}>MT</span></div>
-          <div style={{ fontSize: '0.72rem', color: '#34d399', marginTop: 4 }}>{kpiData.label1}</div>
+          <div style={{ fontSize: '0.72rem', color: 'var(--dsc-ink-muted)', marginTop: 4 }}>{kpiData.label1}</div>
         </div>
         <div className={s.kpiCard}>
           <div className={s.kpiLabel}>{'📅'} 월간 총 어획량</div>
@@ -58,12 +58,12 @@ export default function FleetHeroKPI({ climateRisk, mode = 'daily' }: { climateR
 
       {/* Ratio bar */}
       <div className={s.ratioBar}>
-        <span className={s.ratioLabel} style={{ color: '#38bdf8' }}>{kpiData.ratioLeftLabel}</span>
+        <span className={s.ratioLabel} style={{ color: 'var(--accent-primary)' }}>{kpiData.ratioLeftLabel}</span>
         <div className={s.ratioTrack}>
-          <div className={s.ratioFill} style={{ width: `${kpiData.ratioPercent}%`, background: 'linear-gradient(90deg, #38bdf8, #60a5fa)' }} />
-          <div className={s.ratioFill} style={{ width: `${100 - kpiData.ratioPercent}%`, background: 'linear-gradient(90deg, #a78bfa, #818cf8)' }} />
+          <div className={s.ratioFill} style={{ width: `${kpiData.ratioPercent}%`, background: 'var(--accent-primary)' }} />
+          <div className={s.ratioFill} style={{ width: `${100 - kpiData.ratioPercent}%`, background: 'var(--dsc-ink-faint)' }} />
         </div>
-        <span className={s.ratioLabel} style={{ color: '#a78bfa', textAlign: 'right' }}>{kpiData.ratioRightLabel}</span>
+        <span className={s.ratioLabel} style={{ color: 'var(--dsc-ink-muted)', textAlign: 'right' }}>{kpiData.ratioRightLabel}</span>
       </div>
 
       {/* Climate alert */}

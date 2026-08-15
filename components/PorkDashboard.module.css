@@ -1,0 +1,136 @@
+.dashboard {
+  display: flex;
+  min-width: 0;
+  min-height: 100vh;
+  flex-direction: column;
+  padding: 0 1.5rem 3rem;
+  background: var(--dsc-bg);
+  color: var(--dsc-ink);
+}
+
+.heroOnly {
+  min-height: 0;
+}
+
+.hero {
+  margin-bottom: 2rem;
+}
+
+.kpiGrid {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.kpiCard {
+  position: relative;
+  display: flex;
+  overflow: hidden;
+  flex-direction: column;
+  gap: 6px;
+  padding: 1.2rem;
+  border: 1px solid var(--dsc-surface-border);
+  border-radius: var(--dsc-card-radius);
+  background: var(--dsc-surface);
+  box-shadow: var(--dsc-card-shadow);
+  backdrop-filter: var(--dsc-surface-blur);
+}
+
+.kpiCard::before {
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  height: 3px;
+  background: var(--accent-primary);
+  content: '';
+}
+
+.kpiHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.kpiTitle {
+  color: var(--dsc-ink-muted);
+  font-size: 0.72rem;
+  font-weight: 600;
+}
+
+.kpiValue {
+  margin-top: 4px;
+  color: var(--dsc-ink);
+  font-size: 1.4rem;
+  font-weight: 800;
+}
+
+.kpiTrend {
+  color: var(--accent-primary);
+  font-size: 0.68rem;
+  font-weight: 600;
+}
+
+.trendMark {
+  padding: 2px 5px;
+  margin-right: 4px;
+  border-radius: 4px;
+  background: color-mix(in srgb, var(--accent-primary) 12%, transparent);
+}
+
+.tabs {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 2rem;
+}
+
+.section {
+  margin-bottom: 4rem;
+}
+
+.sectionHeader {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  margin-bottom: 1.5rem;
+}
+
+.sectionAccent {
+  width: 4px;
+  height: 28px;
+  border-radius: 2px;
+  background: var(--accent-primary);
+}
+
+.sectionTitle {
+  margin: 0;
+  color: var(--dsc-ink);
+  font-size: 1.2rem;
+  font-weight: 800;
+  letter-spacing: -0.3px;
+}
+
+.sectionDesc {
+  margin: 4px 0 0;
+  color: var(--dsc-ink-muted);
+  font-size: 0.8rem;
+}
+
+.widgetGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1.5rem;
+}
+
+@media (max-width: 768px) {
+  .dashboard {
+    padding-right: 1rem;
+    padding-left: 1rem;
+  }
+
+  .kpiGrid,
+  .widgetGrid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
