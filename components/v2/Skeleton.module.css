@@ -1,0 +1,66 @@
+.root {
+  display: grid;
+  min-width: 0;
+  gap: 0.75rem;
+}
+
+.label {
+  color: var(--dsc-ink-muted);
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+.items {
+  min-width: 0;
+}
+
+.block .items {
+  display: grid;
+  gap: 0.75rem;
+}
+
+.cardRow .items {
+  display: flex;
+  gap: 1rem;
+  overflow-x: auto;
+  padding-bottom: 1rem;
+  margin-bottom: 1.5rem;
+  scrollbar-width: none;
+}
+
+.cardRow .items::-webkit-scrollbar {
+  display: none;
+}
+
+.item {
+  display: block;
+  width: 100%;
+  min-height: 5rem;
+  border: 1px solid var(--dsc-surface-border);
+  border-radius: var(--dsc-card-radius);
+  background: var(--dsc-surface);
+  animation: skeletonPulse 1.6s ease-in-out infinite;
+}
+
+.cardRow .item {
+  flex: 0 0 10rem;
+  width: 10rem;
+}
+
+@keyframes skeletonPulse {
+  0%,
+  100% {
+    opacity: 0.45;
+  }
+
+  50% {
+    opacity: 0.9;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .item {
+    animation: none;
+    opacity: 0.7;
+  }
+}

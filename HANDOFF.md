@@ -1,5 +1,15 @@
 # HANDOFF
 
+> 🧩 **2026-08-15 12:23 KST — V2.5-d 정합성 마감 완료** [Codex]:
+> - 방콕사무소 표시본 동기화를 fail-closed Python 변환기로 교체했다. Drive 원본 SHA-256 `e675f4…3e5`는 그대로 보존하고, `<head>`에 1회만 들어가는 다크 오버라이드로 `#0a0a0b` 배경·zinc 잉크·반투명 표면을 적용했다. 원본 헤더와 요약 KPI 행은 숨기고 섹션 탭부터 표시한다. 실제 출력 HTML SHA-256은 `08c7dd…715f`, KPI JSON은 `18cfc0…5a0`이며 두 번 재실행해 각각 같은 해시를 확인했다.
+> - 원본 헤더에서 기간·고유 주차·최신 시세·방콕 재고·가공가능일수·2026 누적 하역·하이솔트 확정액을 추출해 `public/data/bangkok_weekly_kpi.json`과 `lib/data/bangkok-weekly.ts` 인테이크 계약으로 연결했다. `/bangkok-office`는 `HeroZone variant="kpi"`에서 1,960 $/MT·117,400 MT·326,005 MT·44일·142,000 USD를 표시하고, iframe은 그 아래 27,953자 다크 본문을 렌더한다.
+> - 공용 `.dsc-card` 계약을 12px·1px 저대비 보더·`dsc-card--accent` 좌측 3px 바 하나로 추가했다. market 스프레드 4장은 기존 상단 의사요소를 제거해 공용 좌측 바로 전환했고, COSMO는 전역 `button { border-radius:500px !important }`가 이상 신호 카드를 타원형으로 만들던 원인을 공유 12px 토큰 override로 상쇄했다. COSMO 일반·공개 카드 radius와 border도 같은 계약으로 정렬하고 회귀 가드를 추가했다.
+> - `components/v2/Skeleton.tsx`와 CSS 모듈을 추가해 한글 상태 라벨·공용 pulse·`prefers-reduced-motion` 정지를 제공한다. market 주가 로딩은 인라인 무표정 박스 6개 대신 `주가 불러오는 중…` 공용 카드 행을 사용한다. TDD는 방콕 **RED 3→GREEN 22/22**, 카드 **RED 4→GREEN 41/41**, Skeleton **RED 3→GREEN 3/3**으로 확인했다.
+> - production build+Puppeteer 1440×1000 QA에서 `/market`·`/cosmo`·`/bangkok-office` 모두 HTTP 200, 잠금·가로 overflow·page/console/local HTTP 오류 0이다. market 4장은 계산 보더 `top/right/bottom 1px · left 3px`, COSMO 신호 6장과 일반 카드는 `12px · 1px`, 방콕 iframe은 배경 `rgb(10,10,11)`·잉크 `rgb(250,250,250)`·원본 헤더/KPI `display:none`·탭 `display:block`이다. 스크린샷은 `/tmp/v25d_market.png`(`16710d…8b3`)·`/tmp/v25d_cosmo.png`(`8117f4…eeb`)·`/tmp/v25d_bangkok-office.png`(`e293f8…52b`)이며 외부 GA 전송 취소만 기대 신호로 분리했다.
+> - 최종 `npm run verify` exit 0: ESLint 오류 0(기존 `ShrimpDashboard.tsx` 경고 1), TypeScript, Vitest **273/273**, API cache **143/143**, Next 정적 페이지 **117/117**, bundle **30경로**다. `node_modules/.pnpm`이 있던 설치는 `/private/tmp/v25d-npm-backup.dWmvaU/node_modules`에 보존한 뒤 `npm ci`로 교체했다. push·PR·배포는 하지 않는다. 다음 단계는 CC가 세 스크린샷을 사용자 원본 3화면과 대비해 최종 시각 승인하는 것이다.
+
+> 마지막 업데이트: 2026-08-15 12:23 KST
+
 > 🎛️ **2026-08-15 11:49 KST — V2.5 브리지 무채색 zinc 튜닝 완료** [Codex]:
 > - `--w-slate-50/200/300/400/500`과 각 `-rgb` 쌍만 Tailwind zinc 등가값 `#fafafa/#e4e4e7/#d4d4d8/#a1a1aa/#71717a`로 이동했다. 푸른 기를 제거하되 명도를 유지했으며 `#0a0a0b` 대비비 변화는 단계별 `+0.2%/-2.8%/+0.5%/0.0%/-1.5%`다. 의미색(emerald/amber/red), 액센트(sky/blue/cyan), 시그니처(violet/pink), navy 11색은 기존 값 그대로다.
 > - 계약 테스트는 다섯 zinc 값과 16개 solid/RGB 쌍의 일관성을 고정한다. TDD RED는 기존 slate 5개 값만 차이로 실패했고 GREEN **3/3**이다. 실효색을 해시하는 대표 위젯 스냅샷은 구조·문구 변화 없이 해시 1개만 `999f…7736`→`60ca…0ec7`로 정당 갱신했다.

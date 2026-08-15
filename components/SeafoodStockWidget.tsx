@@ -2,6 +2,7 @@
 
 import React, { useEffect, useState } from 'react';
 import { TrendingUp, TrendingDown, Activity, AlertTriangle, RefreshCw } from 'lucide-react';
+import Skeleton from './v2/Skeleton';
 
 type StockData = {
   name: string;
@@ -41,21 +42,7 @@ export default function SeafoodStockWidget() {
   }, []);
 
   if (loading && stocks.length === 0) {
-    return (
-      <div style={{
-        display: 'flex', gap: '16px', overflowX: 'auto', paddingBottom: '16px',
-        marginBottom: '24px', msOverflowStyle: 'none', scrollbarWidth: 'none'
-      }}>
-        {[1, 2, 3, 4, 5, 6].map(i => (
-          <div key={i} style={{
-            flex: '0 0 auto', width: '160px', height: '80px',
-            background: 'rgba(30, 41, 59, 0.4)', borderRadius: '12px',
-            border: '1px solid rgba(140,170,255,0.10)',
-            animation: 'pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite'
-          }} />
-        ))}
-      </div>
-    );
+    return <Skeleton label="주가 불러오는 중…" count={6} variant="card-row" />;
   }
 
   return (
