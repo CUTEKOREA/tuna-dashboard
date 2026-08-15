@@ -86,7 +86,8 @@
 /* ── 입도·단위 전환 pill ──────────────────────────────────────────────── */
 
 .panofi-root .pf-pillrow { display: flex; flex-wrap: wrap; gap: 6px 12px; }
-.panofi-root .pf-pills { display: inline-flex; gap: 4px; }
+/* 캐너리 선택처럼 항목이 스무 개 가까운 그룹이 있어 줄바꿈을 허용한다 */
+.panofi-root .pf-pills { display: inline-flex; flex-wrap: wrap; gap: 4px; }
 .panofi-root .pf-pill {
   font: 600 10px / 1 var(--cosmo-mono);
   letter-spacing: 0.05em;

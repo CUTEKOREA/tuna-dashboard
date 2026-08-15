@@ -246,25 +246,34 @@ export type BangkokAvgAgg = {
   readonly weeks: number;
 };
 
-/** 주간 스톡 지표(재고·가공가능일수)를 월·분기·연 «기간 평균»으로 — 스톡 변수라 합산 금지.
- *  null(무기록 주)은 평균에서 제외하고 0으로 채우지 않는다. 관측 주가 없는 기간은 행을 생략한다. */
-export function aggregateWeeklyAvg(
-  pick: (w: BangkokWeek) => number | null,
-  g: BangkokGranularity,
+/** 스톡/율 지표를 기간 평균으로 — null(무기록)은 평균에서 빼고 0으로 채우지 않는다.
+ *  관측이 하나도 없는 기간은 Map에 키가 생기지 않으므로 행 자체가 없다. */
+function avgByPeriod<T>(
+  rows: readonly T[],
+  period: (r: T) => string,
+  pick: (r: T) => number | null,
 ): readonly BangkokAvgAgg[] {
   const acc = new Map<string, { sum: number; weeks: number }>();
-  for (const w of bangkokWeeks) {
-    const v = pick(w);
+  for (const r of rows) {
+    const v = pick(r);
     if (v === null) continue;
-    const key = granKey(w.year, w.month, g);
+    const key = period(r);
     const cur = acc.get(key) ?? { sum: 0, weeks: 0 };
     cur.sum += v;
     cur.weeks += 1;
     acc.set(key, cur);
   }
   return [...acc.entries()]
-    .map(([period, v]) => ({ period, value: v.sum / v.weeks, weeks: v.weeks }))
+    .map(([p, v]) => ({ period: p, value: v.sum / v.weeks, weeks: v.weeks }))
     .sort((a, b) => a.period.localeCompare(b.period));
+}
+
+/** 주간 스톡 지표(재고·가공가능일수)를 월·분기·연 «기간 평균»으로 — 스톡 변수라 합산 금지. */
+export function aggregateWeeklyAvg(
+  pick: (w: BangkokWeek) => number | null,
+  g: BangkokGranularity,
+): readonly BangkokAvgAgg[] {
+  return avgByPeriod(bangkokWeeks, (w) => granKey(w.year, w.month, g), pick);
 }
 
 export type BangkokTraderAgg = {
@@ -357,6 +366,16 @@ export const bangkokCanneryPanel: readonly { name: string; weeks: readonly Bangk
       })),
     }),
   );
+
+/** 캐너리별 주간 시계열을 월·분기·연 «기간 평균»으로 — 가동률(%)·재고(MT) 모두
+ *  스톡/율 지표라 합산 금지. 무기록 주는 평균에서 빠지고 관측 없는 기간은 행이 없다. */
+export function aggregateCanneryAvg(
+  weeks: readonly BangkokCanneryWeek[],
+  pick: (w: BangkokCanneryWeek) => number | null,
+  g: BangkokGranularity,
+): readonly BangkokAvgAgg[] {
+  return avgByPeriod(weeks, (w) => granKey(Number(w.date.slice(0, 4)), Number(w.date.slice(5, 7)), g), pick);
+}
 
 /* ── 상관·계절성 ────────────────────────────────────────────────────────── */
 
