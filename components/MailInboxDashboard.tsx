@@ -167,7 +167,8 @@ export default function MailInboxDashboard() {
       }
       setInbox(value);
       const pendingTrash = trashRequestRef.current;
-      if (pendingTrash && !value.messages.some((message) => message.id === pendingTrash.messageId)) {
+      if (pendingTrash && !trashingRef.current
+        && !value.messages.some((message) => message.id === pendingTrash.messageId)) {
         trashRequestRef.current = null;
         setTrashUncertain(false);
         setSelectedMessage((current) => current?.message.id === pendingTrash.messageId ? null : current);
@@ -246,6 +247,7 @@ export default function MailInboxDashboard() {
       const value = await response.json().catch(() => ({})) as { code?: string };
       if (!response.ok) {
         if (response.status >= 500 || response.status === 409 || value.code === 'mail_trash_status_unknown') {
+          trashRequestRef.current = { messageId: selectedMessage.message.id, requestId };
           setTrashUncertain(true);
           setError('휴지통 이동 상태를 확인할 수 없습니다. 받은메일을 새로고침한 뒤 메일이 남아 있으면 같은 요청으로 다시 확인해주세요.');
           return;
@@ -262,6 +264,7 @@ export default function MailInboxDashboard() {
       setNotice('선택한 메일을 Gmail 휴지통으로 이동했습니다.');
       await loadInbox(limit);
     } catch {
+      trashRequestRef.current = { messageId: selectedMessage.message.id, requestId };
       setTrashUncertain(true);
       setError('휴지통 이동 상태를 확인할 수 없습니다. 받은메일을 새로고침한 뒤 메일이 남아 있으면 같은 요청으로 다시 확인해주세요.');
     } finally {
@@ -706,7 +709,7 @@ export default function MailInboxDashboard() {
             </div>
             <label className={styles.limitControl}>
               조회 건수
-              <select value={limit} onChange={(event) => setLimit(Number(event.target.value))}>
+              <select disabled={working} value={limit} onChange={(event) => setLimit(Number(event.target.value))}>
                 <option value={20}>20건</option>
                 <option value={50}>50건</option>
               </select>
