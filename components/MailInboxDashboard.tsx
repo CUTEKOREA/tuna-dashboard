@@ -9,6 +9,7 @@ import {
   toggleTrashSelection,
 } from '@/lib/mail/bulk-trash';
 import { isUncertainMailSendResponse } from '@/lib/mail/send-response';
+import CompanySmtpPanel from './CompanySmtpPanel';
 import styles from './MailInboxDashboard.module.css';
 
 type MailStatus = {
@@ -23,6 +24,7 @@ type MailStatus = {
     email: string;
     connectedAt: string;
   } | null;
+  companySmtp: { from: string } | null;
 };
 
 type MailItem = {
@@ -650,6 +652,10 @@ export default function MailInboxDashboard() {
             </button>
           </div>
         </div>
+      )}
+
+      {!status.mfa.required && status.companySmtp && (
+        <CompanySmtpPanel from={status.companySmtp.from} />
       )}
 
       {!status.mfa.required && !status.gmail && (

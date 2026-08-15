@@ -11,6 +11,7 @@ const ROUTES = [
   ['gmail/messages', 'GET'],
   ['gmail/message', 'GET'],
   ['gmail/send', 'POST'],
+  ['company-smtp/send', 'POST'],
   ['gmail/trash', 'POST'],
   ['gmail/trash-batch', 'POST'],
   ['gmail/disconnect', 'DELETE'],
@@ -29,7 +30,7 @@ describe('관리자 메일 API route 계약', () => {
   });
 
   it('메일 데이터·OAuth는 AAL2, 상태·MFA bootstrap은 확인된 관리자 인증을 검증한다', () => {
-    for (const route of ['gmail/connect', 'gmail/callback', 'gmail/messages', 'gmail/message', 'gmail/send', 'gmail/trash', 'gmail/trash-batch', 'gmail/disconnect']) {
+    for (const route of ['gmail/connect', 'gmail/callback', 'gmail/messages', 'gmail/message', 'gmail/send', 'company-smtp/send', 'gmail/trash', 'gmail/trash-batch', 'gmail/disconnect']) {
       expect(routeSource(route)).toContain('authorizeMailRequest(true)');
     }
     for (const route of ['status', 'mfa/enroll', 'mfa/verify']) {
@@ -38,7 +39,7 @@ describe('관리자 메일 API route 계약', () => {
   });
 
   it('변경 route는 검증된 공개 기준 URL로 Origin을 비교한다', () => {
-    for (const route of ['gmail/connect', 'gmail/send', 'gmail/trash', 'gmail/trash-batch', 'mfa/enroll', 'mfa/verify', 'gmail/disconnect']) {
+    for (const route of ['gmail/connect', 'gmail/send', 'company-smtp/send', 'gmail/trash', 'gmail/trash-batch', 'mfa/enroll', 'mfa/verify', 'gmail/disconnect']) {
       const source = routeSource(route);
       expect(source).toContain('getMailPublicBaseUrl()');
       expect(source).toContain('hasTrustedMailOrigin(request,');
