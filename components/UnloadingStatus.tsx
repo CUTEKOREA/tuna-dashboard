@@ -165,7 +165,7 @@ export function UnloadingHero({
     <HeroZone
       className={styles.unloadingHero}
       variant="vessel"
-      title="하역 현황"
+      title="Unloading Status"
       subtitle={baseDate ? `최신 하역 보고 기준일 ${baseDate}` : '최신 하역 보고 기준일 확인 중'}
       primaryKpi={{ label: '2026 누적 하역량', value: annualActualTotal, unit: '(MT)', decimals: 3 }}
       secondaryKpis={[

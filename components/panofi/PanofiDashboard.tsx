@@ -95,7 +95,7 @@ export default function PanofiDashboard({ heroOnly = false }: { heroOnly?: boole
     <div className="cosmo-root panofi-root" data-cosmo-dashboard data-panofi-dashboard>
       <HeroZone
         variant="kpi"
-        title="파노피 조업 대시보드"
+        title="PANOFI Operations"
         subtitle={`${company.base} · 선망 ${headline.activeVessels}척 · 주간동향 ${headline.weekCount}주 (${headline.rangeStart} ~ ${headline.rangeEnd})`}
         primaryKpi={heroKpis.primary}
         secondaryKpis={heroKpis.secondary}

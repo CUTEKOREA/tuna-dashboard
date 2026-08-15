@@ -33,7 +33,7 @@ describe('COSMO native dashboard', () => {
   it('renders the executive hero, representative KPI, and all nine tabs without an iframe', () => {
     const markup = renderToStaticMarkup(React.createElement(CosmoDashboard));
 
-    expect(markup).toContain('코스모 경영 대시보드');
+    expect(markup).toContain('COSMO Business');
     expect(markup).toContain('주간 판매');
     expect(COSMO_TABS).toHaveLength(9);
     for (const tab of COSMO_TABS) expect(markup).toContain(tab.label);

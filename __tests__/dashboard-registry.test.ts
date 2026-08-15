@@ -192,7 +192,7 @@ describe('dashboard registry', () => {
     expect(rosterSource).toContain('countLabel={`${carrierFleet.length}건`}');
     expect(vdsStrategySource).toContain('nationalVds');
     expect(vdsStrategySource).not.toContain('remaining: 315.03');
-    expect(commandSource).toContain('title="선단 운영"');
+    expect(commandSource).toContain('title="Fleet Operations"');
     expect(heroSource).toContain('val1: summary.weeklyTotal');
     expect(heroSource).not.toContain('val1: 917');
   });

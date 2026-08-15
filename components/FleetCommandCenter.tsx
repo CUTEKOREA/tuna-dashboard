@@ -47,7 +47,7 @@ export default function FleetCommandCenter({ heroOnly = false }: { heroOnly?: bo
     <HeroZone
       className={s.fleetHero}
       variant="vessel"
-      title="선단 운영"
+      title="Fleet Operations"
       subtitle="주간 어획·VDS는 8월 9일, 대서양은 8월 11일, 운반선은 8월 12일 기준"
       primaryKpi={{ label: '주간 어획량', value: purseSeineCatch.summary.weeklyTotal, unit: '(M/T)' }}
       secondaryKpis={[
