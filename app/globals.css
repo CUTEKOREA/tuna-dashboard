@@ -255,6 +255,21 @@
  * ========================================================== */
 
 /* ===== Card Unified System ===== */
+.dsc-card {
+  position: relative;
+  padding: var(--space-6);
+  border: 1px solid var(--dsc-surface-border);
+  border-radius: var(--dsc-card-radius);
+  background: var(--dsc-surface);
+  box-shadow: var(--dsc-card-shadow);
+  backdrop-filter: var(--dsc-surface-blur);
+  -webkit-backdrop-filter: var(--dsc-surface-blur);
+}
+
+.dsc-card--accent {
+  border-left: 3px solid var(--dsc-card-accent, var(--accent-primary));
+}
+
 .ds-card {
   position: relative;
   background: var(--surface-1);

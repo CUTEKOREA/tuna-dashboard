@@ -88,6 +88,7 @@ function KpiNumber({ kpi, primary }: { kpi: HeroKpi; primary?: boolean }) {
             <motion.span
               key={`${kpi.label}-${kpi.value}-${decimals}`}
               data-kpi-number="true"
+              data-kpi-value={kpi.value}
               initial={canAnimateLiveUpdate ? { opacity: 0, y: 6 } : false}
               animate={canAnimateLiveUpdate ? {
                 opacity: 1,

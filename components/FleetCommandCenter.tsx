@@ -13,6 +13,7 @@ import { carrierLoads, nationalVds, purseSeineCatch } from '@/lib/fleet-operatio
 import HeroZone from './v2/HeroZone';
 import PillTabs from './v2/PillTabs';
 import VesselTopSVG from './v2/VesselTopSVG';
+import VesselPhotoWithFallback from './v2/VesselPhotoWithFallback';
 import s from './FleetCommandCenter.module.css';
 
 type FleetTaskTab = 'operations' | 'vessels' | 'performance' | 'access';
@@ -37,10 +38,15 @@ const seinerHatches = Array.from({ length: 6 }, (_, hatchIndex) => ({
   intensity: clamp(carrierFillRatio * 6 - hatchIndex, 0, 1),
   color: 'var(--accent-primary)',
 }));
-// 선체는 우측 상단에 치우쳐 배치 — KPI 행(좌하단)과 겹치지 않게 (Raktor 구도)
+// 선체는 우측 상단에 치우쳐 배치 — KPI 행(좌하단)과 겹치지 않게 (Raktor 구도).
+// 배경은 Grok Imagine 생성 실사풍 야간 위성뷰 — 로드 실패 시 VesselTopSVG 폴백(스펙 §6).
+// 데이터 발광(해치 intensity)은 사진 위 좌표 정합이 불가해 폴백 SVG에서만 표현한다.
 const heroBackground = (
   <div className={s.heroVessel} aria-hidden>
-    <VesselTopSVG kind="seiner" hatches={seinerHatches} />
+    <VesselPhotoWithFallback
+      src="/heroes/seiner.webp"
+      fallback={<VesselTopSVG kind="seiner" hatches={seinerHatches} />}
+    />
   </div>
 );
 
