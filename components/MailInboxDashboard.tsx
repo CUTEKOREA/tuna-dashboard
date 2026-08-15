@@ -2,6 +2,12 @@
 
 import { type FormEvent, useCallback, useEffect, useRef, useState } from 'react';
 import { ExternalLink, Eye, Inbox, Link2, Loader2, LockKeyhole, MailPlus, RefreshCw, Reply, Send, ShieldCheck, Trash2, Unlink, X } from 'lucide-react';
+import {
+  MAX_BULK_TRASH_SELECTION,
+  MAX_SELECT_ALL_TRASH,
+  selectAllTrashIds,
+  toggleTrashSelection,
+} from '@/lib/mail/bulk-trash';
 import { isUncertainMailSendResponse } from '@/lib/mail/send-response';
 import styles from './MailInboxDashboard.module.css';
 
@@ -117,7 +123,8 @@ export default function MailInboxDashboard() {
   const [messageText, setMessageText] = useState('');
   const [selectedMessage, setSelectedMessage] = useState<MessageDetailResult | null>(null);
   const [replyMetadata, setReplyMetadata] = useState<ReplyDraft | null>(null);
-  const [trashUncertain, setTrashUncertain] = useState(false);
+  const [selectedTrashIds, setSelectedTrashIds] = useState<string[]>([]);
+  const [uncertainTrashIds, setUncertainTrashIds] = useState<string[]>([]);
   const [loading, setLoading] = useState(true);
   const [working, setWorking] = useState(false);
   const [error, setError] = useState('');
@@ -126,7 +133,14 @@ export default function MailInboxDashboard() {
   const sendingRef = useRef(false);
   const sendRequestIdRef = useRef<string | null>(null);
   const trashingRef = useRef(false);
-  const trashRequestRef = useRef<{ messageId: string; requestId: string } | null>(null);
+  const bulkTrashRequestIdsRef = useRef(new Map<string, string>());
+  const uncertainTrashIdsRef = useRef(new Set<string>());
+
+  const updateUncertainTrashIds = useCallback((messageIds: readonly string[]) => {
+    const nextIds = Array.from(new Set(messageIds));
+    uncertainTrashIdsRef.current = new Set(nextIds);
+    setUncertainTrashIds(nextIds);
+  }, []);
 
   const loadStatus = useCallback(async () => {
     setLoading(true);
@@ -166,14 +180,10 @@ export default function MailInboxDashboard() {
         return;
       }
       setInbox(value);
-      const pendingTrash = trashRequestRef.current;
-      if (pendingTrash && !trashingRef.current
-        && !value.messages.some((message) => message.id === pendingTrash.messageId)) {
-        trashRequestRef.current = null;
-        setTrashUncertain(false);
-        setSelectedMessage((current) => current?.message.id === pendingTrash.messageId ? null : current);
-        setNotice('받은메일 새로고침에서 이전 휴지통 이동이 완료된 것을 확인했습니다.');
-      }
+      const visibleIds = new Set(value.messages.map((message) => message.id));
+      setSelectedTrashIds((current) => current.filter((messageId) => (
+        visibleIds.has(messageId) || uncertainTrashIdsRef.current.has(messageId)
+      )));
     } catch {
       setInbox(null);
       setError('Gmail 메일 목록을 불러오지 못했습니다.');
@@ -217,61 +227,138 @@ export default function MailInboxDashboard() {
     requestAnimationFrame(() => document.getElementById('mail-send-form')?.scrollIntoView({ behavior: 'smooth' }));
   };
 
-  const trashSelectedMessage = async () => {
-    if (!selectedMessage || trashingRef.current) return;
-    const currentRequest = trashRequestRef.current;
-    if (currentRequest && currentRequest.messageId !== selectedMessage.message.id && trashUncertain) {
-      setError('이전 메일의 휴지통 이동 상태가 미확정입니다. 받은메일을 새로고침해 먼저 확인해주세요.');
+  const trashMessages = async (messageIds: readonly string[], confirmationMessage: string) => {
+    const targetIds = Array.from(new Set(messageIds));
+    if (trashingRef.current || targetIds.length === 0) return;
+    if (targetIds.length > MAX_BULK_TRASH_SELECTION) {
+      setError('한 번에 최대 50건까지 선택할 수 있습니다.');
       return;
     }
-    const confirmed = window.confirm('선택한 메일 1건을 Gmail 휴지통으로 이동하시겠습니까? 휴지통에서는 복구할 수 있습니다.');
-    if (!confirmed) return;
+    const pendingIds = Array.from(uncertainTrashIdsRef.current);
+    if (pendingIds.length > 0
+      && (pendingIds.length !== targetIds.length || pendingIds.some((messageId) => !targetIds.includes(messageId)))) {
+      setError('이전 휴지통 이동 상태가 미확정입니다. 미확정 메일만 같은 요청으로 다시 확인해주세요.');
+      return;
+    }
+    if (!window.confirm(confirmationMessage)) return;
 
     trashingRef.current = true;
-    const requestId = currentRequest?.messageId === selectedMessage.message.id
-      ? currentRequest.requestId
-      : crypto.randomUUID();
-    trashRequestRef.current = { messageId: selectedMessage.message.id, requestId };
     setWorking(true);
     setError('');
     setNotice('');
     try {
-      const response = await mailRequest('/api/mail/gmail/trash', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'Idempotency-Key': requestId,
-        },
-        body: JSON.stringify({ messageId: selectedMessage.message.id }),
+      const items = targetIds.map((messageId) => {
+        const requestId = bulkTrashRequestIdsRef.current.get(messageId) ?? crypto.randomUUID();
+        bulkTrashRequestIdsRef.current.set(messageId, requestId);
+        return { messageId, requestId };
       });
-      const value = await response.json().catch(() => ({})) as { code?: string };
-      if (!response.ok) {
-        if (response.status >= 500 || response.status === 409 || value.code === 'mail_trash_status_unknown') {
-          trashRequestRef.current = { messageId: selectedMessage.message.id, requestId };
-          setTrashUncertain(true);
-          setError('휴지통 이동 상태를 확인할 수 없습니다. 받은메일을 새로고침한 뒤 메일이 남아 있으면 같은 요청으로 다시 확인해주세요.');
-          return;
+      let results: Array<{ messageId: string; status: 'completed' | 'unknown' | 'failed' }>;
+      try {
+        const response = await mailRequest('/api/mail/gmail/trash-batch', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ items }),
+        });
+        const value = await response.json().catch(() => null) as unknown;
+        if (!response.ok) {
+          const status = response.status >= 500 ? 'unknown' as const : 'failed' as const;
+          results = items.map((item) => ({ messageId: item.messageId, status }));
+        } else {
+          if (!value || typeof value !== 'object' || Array.isArray(value)) throw new Error('invalid');
+          const payload = value as { ok?: unknown; results?: unknown };
+          if (payload.ok !== true || !Array.isArray(payload.results)
+            || payload.results.length !== items.length) throw new Error('invalid');
+          const expectedRequestIds = new Set(items.map((item) => item.requestId));
+          const resultByRequestId = new Map<string, 'completed' | 'unknown' | 'failed'>();
+          for (const result of payload.results) {
+            if (!result || typeof result !== 'object' || Array.isArray(result)) throw new Error('invalid');
+            const row = result as { requestId?: unknown; status?: unknown };
+            if (typeof row.requestId !== 'string' || !expectedRequestIds.has(row.requestId)
+              || resultByRequestId.has(row.requestId)
+              || (row.status !== 'completed' && row.status !== 'unknown' && row.status !== 'failed')) {
+              throw new Error('invalid');
+            }
+            resultByRequestId.set(row.requestId, row.status);
+          }
+          results = items.map((item) => {
+            const status = resultByRequestId.get(item.requestId);
+            if (!status) throw new Error('invalid');
+            return { messageId: item.messageId, status };
+          });
         }
-        trashRequestRef.current = null;
-        setTrashUncertain(false);
-        setError(value.code === 'mail_trash_rate_limited'
-          ? '휴지통 이동 횟수 제한에 도달했습니다. 잠시 후 다시 시도해주세요.'
-          : '메일을 휴지통으로 이동하지 못했습니다.');
-        return;
+      } catch {
+        results = items.map((item) => ({ messageId: item.messageId, status: 'unknown' as const }));
       }
-      trashRequestRef.current = null;
-      setTrashUncertain(false);
-      setSelectedMessage(null);
-      setNotice('선택한 메일을 Gmail 휴지통으로 이동했습니다.');
-      await loadInbox(limit);
-    } catch {
-      trashRequestRef.current = { messageId: selectedMessage.message.id, requestId };
-      setTrashUncertain(true);
-      setError('휴지통 이동 상태를 확인할 수 없습니다. 받은메일을 새로고침한 뒤 메일이 남아 있으면 같은 요청으로 다시 확인해주세요.');
+
+      for (const result of results) {
+        if (result.status !== 'unknown') bulkTrashRequestIdsRef.current.delete(result.messageId);
+      }
+
+      const completedIds = results.filter((result) => result.status === 'completed').map((result) => result.messageId);
+      const unknownIds = results.filter((result) => result.status === 'unknown').map((result) => result.messageId);
+      const failedIds = results.filter((result) => result.status === 'failed').map((result) => result.messageId);
+      updateUncertainTrashIds(unknownIds);
+      setInbox((current) => current ? {
+        ...current,
+        messages: current.messages.filter((message) => !completedIds.includes(message.id)),
+      } : current);
+      setSelectedTrashIds(unknownIds.length > 0 ? unknownIds : failedIds);
+      setSelectedMessage((current) => current && completedIds.includes(current.message.id) ? null : current);
+
+      const summary = `성공 ${completedIds.length}건 · 미확정 ${unknownIds.length}건 · 실패 ${failedIds.length}건`;
+      if (unknownIds.length > 0 || failedIds.length > 0) {
+        setError(`${summary}. 미확정 메일은 같은 요청으로만 다시 확인할 수 있습니다.`);
+      } else {
+        setNotice(`${summary}. 선택한 메일을 Gmail 휴지통으로 이동했습니다.`);
+      }
     } finally {
       trashingRef.current = false;
       setWorking(false);
     }
+  };
+
+  const trashSelectedMessage = async () => {
+    if (!selectedMessage) return;
+    await trashMessages(
+      [selectedMessage.message.id],
+      '선택한 메일 1건을 Gmail 휴지통으로 이동하시겠습니까? 휴지통에서는 복구할 수 있습니다.',
+    );
+  };
+
+  const trashSelectedMessages = async () => {
+    const messageIds = uncertainTrashIds.length > 0 ? uncertainTrashIds : selectedTrashIds;
+    await trashMessages(
+      messageIds,
+      `${messageIds.length}건을 Gmail 휴지통으로 이동하시겠습니까?`,
+    );
+  };
+
+  const toggleSelectedTrash = (messageId: string) => {
+    if (uncertainTrashIds.length > 0) {
+      setError('미확정 휴지통 이동을 먼저 같은 요청으로 확인해주세요.');
+      return;
+    }
+    const result = toggleTrashSelection(selectedTrashIds, messageId);
+    if (result.limitReached) {
+      setError('한 번에 최대 50건까지 선택할 수 있습니다.');
+      return;
+    }
+    setError('');
+    setSelectedTrashIds(result.selected);
+  };
+
+  const toggleSelectAllTrash = () => {
+    if (uncertainTrashIds.length > 0) {
+      setError('미확정 휴지통 이동을 먼저 같은 요청으로 확인해주세요.');
+      return;
+    }
+    const visibleIds = selectAllTrashIds(inbox?.messages.map((message) => message.id) ?? []);
+    const allSelected = visibleIds.length > 0
+      && visibleIds.every((messageId) => selectedTrashIds.includes(messageId));
+    setSelectedTrashIds(allSelected
+      ? selectedTrashIds.filter((messageId) => !visibleIds.includes(messageId))
+      : Array.from(new Set([...selectedTrashIds, ...visibleIds])).slice(0, MAX_BULK_TRASH_SELECTION));
+    setError('');
   };
 
   useEffect(() => {
@@ -375,8 +462,9 @@ export default function MailInboxDashboard() {
       setInbox(null);
       setSelectedMessage(null);
       setReplyMetadata(null);
-      trashRequestRef.current = null;
-      setTrashUncertain(false);
+      setSelectedTrashIds([]);
+      bulkTrashRequestIdsRef.current.clear();
+      updateUncertainTrashIds([]);
       setNotice(value.revoked === false
         ? '저장된 인증 정보는 삭제했지만 Google 권한 철회는 확인하지 못했습니다. Google 계정 보안 설정에서 연결을 삭제해주세요.'
         : 'Gmail 연결과 저장된 인증 정보가 삭제되었습니다.');
@@ -484,6 +572,9 @@ export default function MailInboxDashboard() {
 
   const requiresEnrollment = status.mfa.required && !status.mfa.enrolled;
   const requiresVerification = status.mfa.required && status.mfa.enrolled;
+  const selectAllCandidates = selectAllTrashIds(inbox?.messages.map((message) => message.id) ?? []);
+  const allCandidatesSelected = selectAllCandidates.length > 0
+    && selectAllCandidates.every((messageId) => selectedTrashIds.includes(messageId));
 
   return (
     <section className={styles.shell}>
@@ -565,7 +656,7 @@ export default function MailInboxDashboard() {
         <div className={styles.centerCard}>
           <Link2 size={36} />
           <h2>Gmail 읽기·발송·휴지통 연결</h2>
-          <p>최근 메일을 확인·회신하고 선택한 한 건만 Gmail 휴지통으로 이동합니다.</p>
+          <p>최근 메일을 확인·회신하고 선택한 메일을 Gmail 휴지통으로 이동합니다.</p>
           <button type="button" className={styles.primaryButton} disabled={working} onClick={connectGmail}>
             Gmail 연결
           </button>
@@ -690,11 +781,12 @@ export default function MailInboxDashboard() {
                 <button
                   type="button"
                   className={styles.dangerButton}
-                  disabled={working || (trashUncertain && trashRequestRef.current?.messageId !== selectedMessage.message.id)}
+                  disabled={working || (uncertainTrashIds.length > 0
+                    && !(uncertainTrashIds.length === 1 && uncertainTrashIds.includes(selectedMessage.message.id)))}
                   onClick={trashSelectedMessage}
                 >
                   <Trash2 size={15} /> {
-                    trashUncertain && trashRequestRef.current?.messageId === selectedMessage.message.id
+                    uncertainTrashIds.length === 1 && uncertainTrashIds.includes(selectedMessage.message.id)
                       ? '같은 요청으로 다시 확인'
                       : '휴지통으로 이동'
                   }
@@ -708,6 +800,19 @@ export default function MailInboxDashboard() {
               <span>안 읽은 메일</span>
               <strong>{inbox?.unreadCount ?? '—'}</strong>
             </div>
+            <span className={styles.selectionCount}>선택 {selectedTrashIds.length} / {MAX_BULK_TRASH_SELECTION}건</span>
+            <button
+              type="button"
+              className={styles.dangerButton}
+              disabled={working || (uncertainTrashIds.length === 0 && selectedTrashIds.length === 0)}
+              onClick={() => void trashSelectedMessages()}
+            >
+              <Trash2 size={15} /> {
+                uncertainTrashIds.length > 0
+                  ? `미확정 ${uncertainTrashIds.length}건 다시 확인`
+                  : `선택한 메일 휴지통 이동 (${selectedTrashIds.length}건)`
+              }
+            </button>
             <label className={styles.limitControl}>
               조회 건수
               <select disabled={working} value={limit} onChange={(event) => setLimit(Number(event.target.value))}>
@@ -725,6 +830,16 @@ export default function MailInboxDashboard() {
 
           <div className={styles.tableWrap}>
             <div className={styles.tableHeader}>
+              <span className={styles.selectionCell}>
+                <input
+                  type="checkbox"
+                  aria-label="현재 화면 최대 20건 선택"
+                  title={`현재 화면 최대 ${MAX_SELECT_ALL_TRASH}건 선택`}
+                  checked={allCandidatesSelected}
+                  disabled={working || uncertainTrashIds.length > 0 || selectAllCandidates.length === 0}
+                  onChange={toggleSelectAllTrash}
+                />
+              </span>
               <span>발신자</span>
               <span>제목</span>
               <span>수신 시각</span>
@@ -735,6 +850,15 @@ export default function MailInboxDashboard() {
             {!working && inbox?.messages.length === 0 && <div className={styles.empty}>최근 메일이 없습니다.</div>}
             {inbox?.messages.map((message) => (
               <article key={message.id} className={`${styles.mailRow} ${message.unread ? styles.unread : ''}`}>
+                <div className={styles.selectionCell} data-label="선택">
+                  <input
+                    type="checkbox"
+                    aria-label={`${message.subject} 선택`}
+                    checked={selectedTrashIds.includes(message.id)}
+                    disabled={working || (uncertainTrashIds.length > 0 && !uncertainTrashIds.includes(message.id))}
+                    onChange={() => toggleSelectedTrash(message.id)}
+                  />
+                </div>
                 <div className={styles.sender} data-label="발신자">{message.from}</div>
                 <div className={styles.subject} data-label="제목">{message.subject}</div>
                 <time data-label="수신 시각" dateTime={message.receivedAt ?? undefined}>{formatReceivedAt(message.receivedAt)}</time>

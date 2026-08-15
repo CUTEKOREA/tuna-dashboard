@@ -205,12 +205,19 @@
 .sendFields input,
 .sendFields textarea {
   width: 100%;
-  color: var(--text-primary);
-  background: rgba(5, 12, 28, 0.8);
-  border: 1px solid var(--card-border);
+  color: var(--text-main, var(--text-primary));
+  background: var(--dsc-surface, rgba(5, 12, 28, 0.8));
+  border: 1px solid var(--dsc-surface-border, var(--card-border));
   border-radius: 8px;
   padding: 11px 12px;
   font: inherit;
+  caret-color: var(--accent-primary);
+}
+
+.sendFields input::placeholder,
+.sendFields textarea::placeholder {
+  color: var(--text-muted, var(--text-tertiary));
+  opacity: 1;
 }
 
 .sendFields textarea {
@@ -343,6 +350,7 @@
 .toolbar {
   display: flex;
   align-items: center;
+  flex-wrap: wrap;
   gap: 12px;
   padding: 14px 16px;
   margin-bottom: 16px;
@@ -361,6 +369,13 @@
   font-size: 26px;
 }
 
+.selectionCount {
+  color: var(--text-tertiary);
+  font-size: 12px;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
 .limitControl {
   display: flex;
   align-items: center;
@@ -376,9 +391,27 @@
 .tableHeader,
 .mailRow {
   display: grid;
-  grid-template-columns: minmax(150px, 1.1fr) minmax(180px, 1.3fr) 150px minmax(220px, 1.8fr) 190px;
+  grid-template-columns: 36px minmax(150px, 1.1fr) minmax(180px, 1.3fr) 150px minmax(220px, 1.8fr) 190px;
   gap: 14px;
   align-items: center;
+}
+
+.selectionCell {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.selectionCell input {
+  width: 17px;
+  height: 17px;
+  accent-color: var(--accent-primary);
+  cursor: pointer;
+}
+
+.selectionCell input:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
 }
 
 .tableHeader {

@@ -8,7 +8,16 @@
 > - PR **#434**를 병합 커밋 `9154f77312a9fffb2bf2194b37f2dc253c0d163b`로 순차 병합했고 Production 배포 **5920205019**가 성공했다. 운영 API는 8/15 수치·어종·조정값·보고 전용 8/16 휴무/8/17 300톤 계약을 반환하며, 보호 화면은 데스크톱·390px 모두 overflow 0·페이지/콘솔/자체 네트워크 오류 0으로 실측했다.
 > - Google Tasks `SEIN VENUS ###톤` → `SEIN VENUS 350.740 MT` 동기화는 Chrome 확장 프로그램이 설치·활성화됐으나 브라우저 세션 연결이 노출되지 않아 미완료다. 캘린더 일정으로 대체하지 않았다.
 > - **다음 단계**: Browser 플러그인 재설치·연결 후 8/15 Tasks 제목을 멱등 수정해 재확인한다. 8/16 일보 수신 시 같은 산술·어종 근거·조정값 분리 계약으로 후속 실적을 추가한다.
-
+>
+> 🗑️ **2026-08-15 21:08 KST — 관리자 Gmail 선택 휴지통 V2 구현·검증, 배포 대기** [Codex]:
+> - PR #432(`ff2d299`)는 Production 병합·배포됐고 Google Data Access의 exact `gmail.readonly`+`gmail.send`+`gmail.modify` 등록, 기존 연결 해제·3개 scope 재동의, 일반 텍스트 상세·회신 prefill 실계정 확인까지 완료했다. 사용자가 실제 회신 발송과 단건 휴지통 이동·복원은 건너뛰어 두 side effect는 미검증 상태다.
+> - 신규 선택 휴지통은 행별 체크박스, 현재 화면 전체 선택 최대 20건, 수동 선택 최대 50건, 실제 건수 최종 확인을 제공한다. 영구 삭제·전체 사서함 선택은 없으며 Gmail `users.messages.trash`만 사용한다.
+> - Production 실사용 중 메일 작성 input/textarea만 다크 배경을 하드코딩해 라이트 테마에서 입력 글자가 보이지 않는 문제를 확인했다. `--dsc-surface`/`--dsc-surface-border`/`--text-main` 토큰으로 교체하고 placeholder·caret 대비를 명시하는 회귀 테스트를 추가했다.
+> - 브라우저는 item별 고유 UUID를 map에 보존해 한 번의 `/api/mail/gmail/trash-batch` 요청으로 보낸다. 서버는 관리자+AAL2, trusted Origin, JSON·16KB, 고유 Gmail ID·UUID 1~50건, `no-store`를 강제하고 access token을 한 번만 갱신한 뒤 동시성 3으로 기존 `reserve_mail_message_action`/`record_mail_message_action` 감사 경계를 item별 재사용한다. 응답에는 Gmail ID 대신 요청 UUID와 completed/unknown/failed만 반환한다.
+> - 성공 메일만 목록에서 제거하고 확정 실패는 새 UUID 재시도를 허용한다. 네트워크·5xx·누락/중복/변조 응답은 item UUID를 폐기하지 않고 미확정으로 잠그며, 미확정 집합 전체를 같은 UUID+message ID로 재요청해 Gmail의 확정 응답을 받기 전에는 새 휴지통 작업을 막는다. bounded 목록에서 메일이 안 보인다는 이유로 완료 처리하지 않는다.
+> - `20260815205500_expand_mail_trash_action_limits.sql`은 기존 사용자 advisory lock·UUID↔message SHA-256 결속·service-role 전용 권한을 유지하면서 선택 50건을 위해 공유 제한을 분당 50건·일 200건으로 조정한다. Production 적용 전에는 11번째 item부터 기존 분당 제한으로 부분 실패하므로 migration 선적용이 필수다.
+> - 최신 `origin/main`(`5454618`) 위 fresh `npm run verify`: ESLint 0 errors·기존 5 warnings, Vitest 79파일·440테스트, API cache 154/154, production build 117 pages, bundle 32 routes PASS. 독립 보안·race 반증은 진행 중이며 통과 후 별도 PR로 올린다.
+>
 > 🇬🇧 **2026-08-15 18:30 KST — 소유자 리뷰 4~7라운드 (PR #415·#418·#422·#424 병합·프로덕션 READY)** [CC]:
 > - **r4**: 파노피 «자료 없음» = 제원(파노피 마스터)/원장(마스터) 이름 조인 실패 — 접두 제거+선박코드 조인 (G/T 8,745 등록부 일치·생산 22,526톤 KPI 일치). 주간동향 31건 전수: 자사선별 조업량 원문 미기재 확인. 전역 recharts 툴팁 !important를 다크 관례(#303c46)로 통일 — 라이트 흰배경+연회색 근본 해소. 밸류체인 마진율 인덱스(5/20 시나리오, /api/tuna-live)를 8/5 주간보고 카드에서 분리해 별도 STATIC 카드로 (부분 갱신은 왜곡이라 거부).
 > - **r5**: 지도 헤딩·개략 좌표 캡션 제거, 완료 선박 카드 dim→hover 밝힘(fleet 로스터 패턴).

@@ -12,6 +12,7 @@ const ROUTES = [
   ['gmail/message', 'GET'],
   ['gmail/send', 'POST'],
   ['gmail/trash', 'POST'],
+  ['gmail/trash-batch', 'POST'],
   ['gmail/disconnect', 'DELETE'],
 ] as const;
 
@@ -28,7 +29,7 @@ describe('관리자 메일 API route 계약', () => {
   });
 
   it('메일 데이터·OAuth는 AAL2, 상태·MFA bootstrap은 확인된 관리자 인증을 검증한다', () => {
-    for (const route of ['gmail/connect', 'gmail/callback', 'gmail/messages', 'gmail/message', 'gmail/send', 'gmail/trash', 'gmail/disconnect']) {
+    for (const route of ['gmail/connect', 'gmail/callback', 'gmail/messages', 'gmail/message', 'gmail/send', 'gmail/trash', 'gmail/trash-batch', 'gmail/disconnect']) {
       expect(routeSource(route)).toContain('authorizeMailRequest(true)');
     }
     for (const route of ['status', 'mfa/enroll', 'mfa/verify']) {
@@ -37,7 +38,7 @@ describe('관리자 메일 API route 계약', () => {
   });
 
   it('변경 route는 검증된 공개 기준 URL로 Origin을 비교한다', () => {
-    for (const route of ['gmail/connect', 'gmail/send', 'gmail/trash', 'mfa/enroll', 'mfa/verify', 'gmail/disconnect']) {
+    for (const route of ['gmail/connect', 'gmail/send', 'gmail/trash', 'gmail/trash-batch', 'mfa/enroll', 'mfa/verify', 'gmail/disconnect']) {
       const source = routeSource(route);
       expect(source).toContain('getMailPublicBaseUrl()');
       expect(source).toContain('hasTrustedMailOrigin(request,');
@@ -138,9 +139,30 @@ describe('관리자 메일 API route 계약', () => {
     expect(source).toContain('MAX_TRASH_REQUEST_BYTES');
     expect(source).toContain("request.headers.get('idempotency-key')");
     expect(source).toContain('reserveMailTrashRequest');
+    expect(source).toContain("reservation.decision === 'reserved' || reservation.decision === 'pending_or_unknown'");
+    expect(source).not.toContain("if (reservation.decision === 'pending_or_unknown') return mailError");
     expect(source).toContain('recordMailTrashOutcome');
     expect(source).toContain('trashGmailMessage');
     expect(source).not.toContain('/delete');
+    expect(source).not.toContain('console.');
+  });
+
+  it('선택 휴지통 route는 1~50건을 한 번 인증·token 갱신 후 제한 동시 처리한다', () => {
+    const source = routeSource('gmail/trash-batch');
+    expect(source).toContain('authorizeMailRequest(true)');
+    expect(source).toContain('hasTrustedMailOrigin(request,');
+    expect(source).toContain('MAX_BULK_TRASH_REQUEST_BYTES');
+    expect(source).toContain('readLimitedRequestText');
+    expect(source).toContain('parseBulkTrashInput');
+    expect(source).toContain('refreshGmailAccessToken');
+    expect(source.match(/refreshGmailAccessToken/g)).toHaveLength(2);
+    expect(source).toContain('mapWithConcurrency(items, BULK_TRASH_CONCURRENCY');
+    expect(source).toContain('reserveMailTrashRequest');
+    expect(source).toContain("reservation.decision === 'reserved' || reservation.decision === 'pending_or_unknown'");
+    expect(source).toContain('recordMailTrashOutcome');
+    expect(source).toContain('trashGmailMessage');
+    expect(source).not.toContain('/delete');
+    expect(source).not.toContain('batchDelete');
     expect(source).not.toContain('console.');
   });
 });
