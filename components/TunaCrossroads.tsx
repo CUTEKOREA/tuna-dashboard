@@ -45,7 +45,7 @@ const TunaCrossroads = () => (
         <YAxis stroke="rgba(255,255,255,0.5)" tick={{ fill: 'rgba(255,255,255,0.7)', fontSize: 12 }} tickFormatter={(v) => `${v.toLocaleString()}`} />
         <Tooltip content={<CustomTooltip />} />
         <Legend wrapperStyle={{ paddingTop: '20px' }} />
-        <Area type="monotone" dataKey="Wild_Volume" name="자연 어획량 (Wild Catch)" fill="rgba(139, 92, 246, 0.2)" stroke="var(--w-violet-500)" strokeWidth={2} />
+        <Area type="monotone" dataKey="Wild_Volume" name="자연 어획량 (Wild Catch)" fill="rgba(var(--w-violet-500-rgb), 0.2)" stroke="var(--w-violet-500)" strokeWidth={2} />
         <Line type="monotone" dataKey="Aqua_Volume" name="축양/양식량 (Aquaculture)" stroke="#22c55e" strokeWidth={4} dot={false} activeDot={{ r: 8 }} />
       </ComposedChart>
     }

@@ -121,7 +121,7 @@ export default function PriceLagSimulator() {
             <YAxis yAxisId="right" orientation="right" domain={[80, 160]} tickFormatter={(val) => `$${Number(val).toLocaleString()}`} tick={{ fill: 'var(--w-amber-400)', fontSize: 11 }} />
             
             {/* Highlight Spread Window */}
-            <ReferenceArea yAxisId="left" x1={`M${p2_start + 1}`} x2={`M${p2_end + 1}`} fill="rgba(16, 185, 129, 0.15)" strokeOpacity={0} />
+            <ReferenceArea yAxisId="left" x1={`M${p2_start + 1}`} x2={`M${p2_end + 1}`} fill="rgba(var(--w-emerald-500-rgb), 0.15)" strokeOpacity={0} />
 
             <RechartsTooltip cursor={{ fill: 'rgba(140,170,255,0.10)' }} content={<CustomTooltip />} />
             

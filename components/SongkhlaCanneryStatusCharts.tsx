@@ -72,7 +72,7 @@ export default function SongkhlaCanneryStatusCharts() {
                 <YAxis dataKey="name" type="category" stroke="var(--text-main)" axisLine={false} tickLine={false} tick={{ fontSize: 11, fontWeight: 'bold' }} width={100} />
                 <Tooltip 
                   cursor={{ fill: 'rgba(255,255,255,0.03)' }}
-                  contentStyle={{ background: 'rgba(20, 28, 52, 0.88)', backdropFilter: 'blur(10px)', WebkitBackdropFilter: 'blur(10px)', border: '1px solid rgba(16,185,129,0.25)', borderRadius: '10px', color: 'var(--text-main)', boxShadow: '0 8px 30px rgba(0,0,0,0.45)' }}
+                  contentStyle={{ background: 'rgba(20, 28, 52, 0.88)', backdropFilter: 'blur(10px)', WebkitBackdropFilter: 'blur(10px)', border: '1px solid rgba(var(--w-emerald-500-rgb), 0.25)', borderRadius: '10px', color: 'var(--text-main)', boxShadow: '0 8px 30px rgba(0,0,0,0.45)' }}
                   itemStyle={{ fontSize: '13px' }}
                   labelStyle={{ fontWeight: 'bold', marginBottom: '8px', borderBottom: '1px solid rgba(255,255,255,0.1)', paddingBottom: '4px' }}
                   formatter={(value: any) => [`${Number(value).toLocaleString()} 톤`, undefined]}
@@ -132,7 +132,7 @@ export default function SongkhlaCanneryStatusCharts() {
                 <YAxis dataKey="name" type="category" stroke="var(--text-main)" axisLine={false} tickLine={false} tick={{ fontSize: 11, fontWeight: 'bold' }} width={100} />
                 <Tooltip 
                   cursor={{ fill: 'rgba(255,255,255,0.03)' }}
-                  contentStyle={{ background: 'rgba(20, 28, 52, 0.88)', backdropFilter: 'blur(10px)', WebkitBackdropFilter: 'blur(10px)', border: '1px solid rgba(16,185,129,0.25)', borderRadius: '10px', color: 'var(--text-main)', boxShadow: '0 8px 30px rgba(0,0,0,0.45)' }}
+                  contentStyle={{ background: 'rgba(20, 28, 52, 0.88)', backdropFilter: 'blur(10px)', WebkitBackdropFilter: 'blur(10px)', border: '1px solid rgba(var(--w-emerald-500-rgb), 0.25)', borderRadius: '10px', color: 'var(--text-main)', boxShadow: '0 8px 30px rgba(0,0,0,0.45)' }}
                   itemStyle={{ fontSize: '13px' }}
                   labelStyle={{ fontWeight: 'bold', marginBottom: '8px', borderBottom: '1px solid rgba(255,255,255,0.1)', paddingBottom: '4px' }}
                   formatter={(value: any, name: any, props: any) => {

@@ -315,7 +315,7 @@ export default function FfaStockHealthGauge() {
                 </td>
                 <td style={{ padding: '8px 12px' }}>
                   <span style={{
-                    background: 'rgba(52, 211, 153, 0.1)',
+                    background: 'rgba(var(--w-emerald-400-rgb), 0.1)',
                     color: 'var(--w-emerald-400)',
                     padding: '2px 8px',
                     borderRadius: 6,

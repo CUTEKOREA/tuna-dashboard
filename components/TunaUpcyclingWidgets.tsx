@@ -57,7 +57,7 @@ export function TunaUpcyclingOpportunity() {
             {UPCYCLE_PRODUCTS.map((p, i) => (
               <div key={i} style={{ display: 'flex', alignItems: 'center', gap: 10, padding: '8px 12px', background: 'rgba(255,255,255,0.03)', borderRadius: 8, border: '1px solid rgba(140,170,255,0.12)', fontSize: '0.78rem' }}>
                 <span style={{ color: 'var(--w-slate-50)', fontWeight: 600, flex: 1 }}>{p.product}</span>
-                <span style={{ padding: '2px 8px', borderRadius: 4, fontSize: '0.65rem', fontWeight: 600, background: p.status === '상용화' ? 'rgba(34,197,94,0.15)' : p.status === '성장' ? 'rgba(245,158,11,0.15)' : 'rgba(168,85,247,0.15)', color: p.status === '상용화' ? '#22c55e' : p.status === '성장' ? 'var(--w-amber-500)' : '#a855f7' }}>{p.status}</span>
+                <span style={{ padding: '2px 8px', borderRadius: 4, fontSize: '0.65rem', fontWeight: 600, background: p.status === '상용화' ? 'rgba(34,197,94,0.15)' : p.status === '성장' ? 'rgba(var(--w-amber-500-rgb), 0.15)' : 'rgba(168,85,247,0.15)', color: p.status === '상용화' ? '#22c55e' : p.status === '성장' ? 'var(--w-amber-500)' : '#a855f7' }}>{p.status}</span>
               </div>
             ))}
           </div>

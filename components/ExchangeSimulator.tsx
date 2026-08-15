@@ -45,16 +45,16 @@ export default function ExchangeSimulator({ onSimulationChange }: ExchangeSimula
     <div style={{
       marginBottom: '2.5rem',
       background: 'linear-gradient(145deg, rgba(0, 0, 0, 0.2), rgba(2, 6, 23, 0.9))',
-      border: '1px solid rgba(245, 158, 11, 0.3)',
+      border: '1px solid rgba(var(--w-amber-500-rgb), 0.3)',
       borderRadius: '12px',
       padding: '1.5rem',
-      boxShadow: '0 8px 32px rgba(0,0,0,0.3), inset 0 0 20px rgba(245, 158, 11, 0.05)'
+      boxShadow: '0 8px 32px rgba(0,0,0,0.3), inset 0 0 20px rgba(var(--w-amber-500-rgb), 0.05)'
     }}>
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1.5rem' }}>
         <div>
           <h3 style={{ margin: '0 0 0.25rem 0', display: 'flex', alignItems: 'center', gap: '0.5rem', color: 'var(--color-warning)', fontSize: '1.2rem', fontWeight: 700 }}>
             <Activity size={20} /> Macro Impact Simulator (매크로 스트레스 테스트 엔진)
-            <span style={{ display:'inline-flex', alignItems:'center', background: liveRates ? 'rgba(16, 185, 129, 0.2)' : 'rgba(100, 116, 139, 0.2)', color: liveRates ? 'var(--color-success)' : 'var(--w-slate-400)', fontSize:'0.7rem', padding:'2px 6px', borderRadius:'4px', border: liveRates ? '1px solid var(--w-emerald-500)' : '1px solid #475569' }}>{liveRates ? '🟢 SYNCED' : '⚫ STATIC'}</span>
+            <span style={{ display:'inline-flex', alignItems:'center', background: liveRates ? 'rgba(var(--w-emerald-500-rgb), 0.2)' : 'rgba(var(--w-slate-500-rgb), 0.2)', color: liveRates ? 'var(--color-success)' : 'var(--w-slate-400)', fontSize:'0.7rem', padding:'2px 6px', borderRadius:'4px', border: liveRates ? '1px solid var(--w-emerald-500)' : '1px solid #475569' }}>{liveRates ? '🟢 SYNCED' : '⚫ STATIC'}</span>
           </h3>
           <p style={{ margin: 0, color: 'var(--w-slate-400)', fontSize: '0.85rem' }}>
             실시간 환율/유가 데이터에 충격을 가하여 전체 밸류체인 마진을 자동 재계산합니다. (기준일: {liveRates?.date || 'Today'})
@@ -122,7 +122,7 @@ export default function ExchangeSimulator({ onSimulationChange }: ExchangeSimula
           <input 
             type="range" min="-50" max="50" step="5" value={mgoFactor} 
             onChange={e => setMgoFactor(Number(e.target.value))}
-            style={{ width: '100%', accentColor: '#ec4899' }} 
+            style={{ width: '100%', accentColor: 'var(--w-pink-500)' }}
           />
           <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.75rem', color: 'var(--w-slate-500)', marginTop: '0.5rem' }}>
             <span>-50% (유가 급락)</span>

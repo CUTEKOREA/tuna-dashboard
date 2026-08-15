@@ -17,7 +17,7 @@ const conditionData = [
 
 const tooltipStyle = {
   backgroundColor: 'rgba(20, 28, 52, 0.95)',
-  border: '1px solid rgba(148,163,184,0.15)',
+  border: '1px solid rgba(var(--w-slate-400-rgb), 0.15)',
   borderRadius: 8,
   color: 'var(--w-slate-200)',
   fontSize: '0.78rem',
@@ -91,8 +91,8 @@ export default function MscOpenConditions() {
             gap: 6,
             padding: '6px 14px',
             borderRadius: 8,
-            background: 'rgba(239,68,68,0.08)',
-            border: '1px solid rgba(239,68,68,0.2)',
+            background: 'rgba(var(--w-red-500-rgb), 0.08)',
+            border: '1px solid rgba(var(--w-red-500-rgb), 0.2)',
           }}
         >
           <span style={{ width: 8, height: 8, borderRadius: 2, background: 'var(--w-red-500)', display: 'inline-block' }} />
@@ -107,8 +107,8 @@ export default function MscOpenConditions() {
             gap: 6,
             padding: '6px 14px',
             borderRadius: 8,
-            background: 'rgba(245,158,11,0.08)',
-            border: '1px solid rgba(245,158,11,0.2)',
+            background: 'rgba(var(--w-amber-500-rgb), 0.08)',
+            border: '1px solid rgba(var(--w-amber-500-rgb), 0.2)',
           }}
         >
           <span style={{ width: 8, height: 8, borderRadius: 2, background: 'var(--w-amber-500)', display: 'inline-block' }} />
@@ -123,8 +123,8 @@ export default function MscOpenConditions() {
             gap: 6,
             padding: '6px 14px',
             borderRadius: 8,
-            background: 'rgba(56,189,248,0.08)',
-            border: '1px solid rgba(56,189,248,0.2)',
+            background: 'rgba(var(--w-sky-400-rgb), 0.08)',
+            border: '1px solid rgba(var(--w-sky-400-rgb), 0.2)',
           }}
         >
           <span style={{ width: 8, height: 8, borderRadius: 2, background: 'var(--w-sky-400)', display: 'inline-block' }} />

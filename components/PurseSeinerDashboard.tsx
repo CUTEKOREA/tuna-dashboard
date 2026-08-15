@@ -340,7 +340,7 @@ function OperatorChart({ onFilter }: { onFilter: (op: string) => void }) {
         <div style={{
           display: 'flex', alignItems: 'center', gap: 8,
           padding: '8px 12px', marginBottom: 12, borderRadius: 8,
-          background: 'rgba(245, 158, 11, 0.1)', border: '1px solid rgba(245, 158, 11, 0.2)',
+          background: 'rgba(var(--w-amber-500-rgb), 0.1)', border: '1px solid rgba(var(--w-amber-500-rgb), 0.2)',
           fontSize: 12, color: 'var(--w-amber-500)',
         }}>
           <AlertTriangle size={14} />
@@ -557,8 +557,8 @@ function VesselTable({ initialRfmo, initialFlag, initialOperator }: {
         {hasFilters && (
           <button onClick={resetFilters}
             style={{
-              padding: '7px 14px', borderRadius: 8, border: '1px solid rgba(239,68,68,0.3)',
-              background: 'rgba(239,68,68,0.1)', color: '#f87171', fontSize: 12, cursor: 'pointer',
+              padding: '7px 14px', borderRadius: 8, border: '1px solid rgba(var(--w-red-500-rgb), 0.3)',
+              background: 'rgba(var(--w-red-500-rgb), 0.1)', color: '#f87171', fontSize: 12, cursor: 'pointer',
               display: 'flex', alignItems: 'center', gap: 4,
             }}>
             <X size={12} /> 초기화
@@ -566,8 +566,8 @@ function VesselTable({ initialRfmo, initialFlag, initialOperator }: {
         )}
         <button onClick={exportCSV}
           style={{
-            padding: '7px 14px', borderRadius: 8, border: '1px solid rgba(16,185,129,0.3)',
-            background: 'rgba(16,185,129,0.1)', color: 'var(--w-emerald-400)', fontSize: 12, cursor: 'pointer',
+            padding: '7px 14px', borderRadius: 8, border: '1px solid rgba(var(--w-emerald-500-rgb), 0.3)',
+            background: 'rgba(var(--w-emerald-500-rgb), 0.1)', color: 'var(--w-emerald-400)', fontSize: 12, cursor: 'pointer',
             display: 'flex', alignItems: 'center', gap: 4,
           }}>
           <Download size={12} /> CSV

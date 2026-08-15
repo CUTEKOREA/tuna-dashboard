@@ -86,7 +86,7 @@ export default function MscKoreaPositioning() {
                   display: 'grid', gridTemplateColumns: '1.2fr 1fr 1fr 0.8fr 0.8fr',
                   padding: '10px 12px', borderTop: '1px solid rgba(255,255,255,0.04)',
                   fontSize: '0.75rem', alignItems: 'center',
-                  background: c.country.includes('한국') ? 'rgba(239,68,68,0.05)' : 'transparent',
+                  background: c.country.includes('한국') ? 'rgba(var(--w-red-500-rgb), 0.05)' : 'transparent',
                 }}>
                   <span style={{ fontWeight: 600, color: '#f1f5f9' }}>{c.country}</span>
                   <span style={{ color: 'var(--w-slate-400)' }}>{c.before}</span>
@@ -101,7 +101,7 @@ export default function MscKoreaPositioning() {
           {/* Alert Callout */}
           <div style={{
             padding: '12px 16px', borderRadius: '10px',
-            background: 'rgba(239,68,68,0.08)', border: '1px solid rgba(239,68,68,0.2)',
+            background: 'rgba(var(--w-red-500-rgb), 0.08)', border: '1px solid rgba(var(--w-red-500-rgb), 0.2)',
             display: 'flex', alignItems: 'center', gap: '10px',
           }}>
             <XCircle size={18} color="#ef4444" style={{ flexShrink: 0 }} />

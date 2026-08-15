@@ -74,7 +74,7 @@ export default function FleetHeroKPI({ climateRisk, mode = 'daily' }: { climateR
             <strong style={{ color: 'var(--color-warning)' }}>SST 변동: {climateRisk.sstAnomaly}</strong>
             <span style={{ color: 'var(--text-muted)', marginLeft: 8 }}>{climateRisk.impact}</span>
           </div>
-          <span className={s.statusBadge} style={{ background: 'rgba(239,68,68,0.1)', color: 'var(--color-danger)', marginLeft: 'auto' }}>Risk: {climateRisk.riskLevel}</span>
+          <span className={s.statusBadge} style={{ background: 'rgba(var(--w-red-500-rgb), 0.1)', color: 'var(--color-danger)', marginLeft: 'auto' }}>Risk: {climateRisk.riskLevel}</span>
         </div>
       )}
     </div>

@@ -25,13 +25,13 @@ export default function MscUkShopperTrends() {
             <div
               key={item.metric}
               style={{
-                border: `1px solid ${isUp ? 'rgba(16,185,129,0.2)' : 'rgba(239,68,68,0.2)'}`,
+                border: `1px solid ${isUp ? 'rgba(var(--w-emerald-500-rgb), 0.2)' : 'rgba(var(--w-red-500-rgb), 0.2)'}`,
                 borderRadius: '0.75rem',
                 padding: '1rem',
                 display: 'flex',
                 flexDirection: 'column',
                 gap: '0.75rem',
-                background: isUp ? 'rgba(16,185,129,0.05)' : 'rgba(239,68,68,0.05)',
+                background: isUp ? 'rgba(var(--w-emerald-500-rgb), 0.05)' : 'rgba(var(--w-red-500-rgb), 0.05)',
               }}
             >
               <div style={{ fontSize: '0.75rem', fontWeight: 700, color: 'var(--w-slate-400)' }}>
@@ -79,8 +79,8 @@ export default function MscUkShopperTrends() {
       <div style={{
         marginTop: '1rem',
         padding: '1rem',
-        background: 'rgba(56,189,248,0.1)',
-        border: '1px solid rgba(56,189,248,0.3)',
+        background: 'rgba(var(--w-sky-400-rgb), 0.1)',
+        border: '1px solid rgba(var(--w-sky-400-rgb), 0.3)',
         borderRadius: '0.75rem',
         fontSize: '0.875rem',
         color: 'var(--w-slate-300)',

@@ -29,20 +29,22 @@ COLOR_TOKENS = {
   '#34d399': 'var(--w-emerald-400)',
 }
 
-TARGET_RGB = {
-  tuple(int(color[index:index + 2], 16) for index in (1, 3, 5))
-  for color in COLOR_TOKENS
+RGB_TOKENS = {
+  tuple(int(color[index:index + 2], 16) for index in (1, 3, 5)):
+    token[:-1] + '-rgb)'
+  for color, token in COLOR_TOKENS.items()
 }
+TARGET_RGB = set(RGB_TOKENS)
 
 HEX_RE = re.compile(r'#[0-9a-fA-F]{6}(?![0-9a-fA-F])')
 RGBA_RE = re.compile(
   r'rgba\(\s*(\d{1,3})\s*,\s*(\d{1,3})\s*,\s*(\d{1,3})\s*,'
-  r'\s*(?:\d*\.?\d+|\d+%)\s*\)',
+  r'\s*(\d+(?:\.\d+)?%|\d*\.?\d+)\s*\)',
   re.IGNORECASE,
 )
 STYLE_PROPERTY_RE = re.compile(
   r'(?<![\w-])('
-  r'color|background(?:[A-Z][A-Za-z]*)?|background(?:-[\w-]+)?|'
+  r'accentColor|color|background(?:[A-Z][A-Za-z]*)?|background(?:-[\w-]+)?|'
   r'border(?:[A-Z][A-Za-z]*)?|border(?:-[\w-]+)?|'
   r'stroke|fill|stopColor|boxShadow|box-shadow'
   r')\s*:'
@@ -61,8 +63,15 @@ CSS_PROPERTIES_RE = re.compile(
   r'\b(?:const|let|var)\s+[A-Za-z_$][\w$]*\s*:'
   r'\s*(?:React\.)?CSSProperties\s*=\s*{'
 )
+HTML_STYLE_ATTRIBUTE_RE = re.compile(r'\bstyle\s*=\s*(["\'])', re.IGNORECASE)
 TEST_NAME_RE = re.compile(r'(?:^|\.)(?:test|spec)\.[^.]+$')
 EXCLUDED_DIRECTORIES = {'v2', 'cosmo'}
+VERIFIED_HTML_STYLE_FILES = {
+  'PacificVesselMap.tsx',
+  'ColdStorageMap.tsx',
+  'TunaRestaurantMap.tsx',
+  'PetFoodMap.tsx',
+}
 
 
 @dataclass(frozen=True)
@@ -78,6 +87,7 @@ class FileResult:
   original: str
   updated: str
   replacements: int
+  rgba_replacements: int
 
 
 def mask_comments(source: str) -> str:
@@ -283,6 +293,38 @@ def style_property_contains(masked: str, start: int) -> bool:
   )
 
 
+def html_style_attribute_contains(masked: str, start: int) -> bool:
+  window_start = max(0, start - 4000)
+  prefix = masked[window_start:start]
+  matches = list(HTML_STYLE_ATTRIBUTE_RE.finditer(prefix))
+  if not matches:
+    return False
+
+  last_style = matches[-1]
+  quote = last_style.group(1)
+  escaped = False
+  for char in prefix[last_style.end():]:
+    if escaped:
+      escaped = False
+    elif char == '\\':
+      escaped = True
+    elif char == quote:
+      return False
+  return True
+
+
+def style_position_contains(
+  masked: str,
+  start: int,
+  allow_html_style: bool,
+) -> bool:
+  return (
+    jsx_attribute_contains(masked, start)
+    or style_property_contains(masked, start)
+    or (allow_html_style and html_style_attribute_contains(masked, start))
+  )
+
+
 def count_target_literals(source: str) -> int:
   masked = mask_comments(source)
   count = sum(
@@ -298,9 +340,13 @@ def count_target_literals(source: str) -> int:
   return count
 
 
-def transform_source(source: str) -> tuple[str, int, Counter[str]]:
+def transform_source(
+  source: str,
+  allow_html_style: bool = False,
+) -> tuple[str, int, int, Counter[str]]:
   masked = mask_comments(source)
   replacements: list[Replacement] = []
+  rgba_replacements = 0
   skipped: Counter[str] = Counter()
 
   for match in HEX_RE.finditer(source):
@@ -310,10 +356,7 @@ def transform_source(source: str) -> tuple[str, int, Counter[str]]:
     if masked[match.start():match.end()] != match.group(0):
       skipped['주석'] += 1
       continue
-    if not (
-      jsx_attribute_contains(masked, match.start())
-      or style_property_contains(masked, match.start())
-    ):
+    if not style_position_contains(masked, match.start(), allow_html_style):
       skipped['비스타일/의미값'] += 1
       continue
     replacements.append(
@@ -321,14 +364,26 @@ def transform_source(source: str) -> tuple[str, int, Counter[str]]:
     )
 
   for match in RGBA_RE.finditer(source):
-    if masked[match.start():match.end()] != match.group(0):
-      continue
     rgb = tuple(int(match.group(index)) for index in (1, 2, 3))
-    if rgb in TARGET_RGB:
-      skipped['알파 포함 rgba'] += 1
+    if rgb not in TARGET_RGB:
+      continue
+    if masked[match.start():match.end()] != match.group(0):
+      skipped['주석'] += 1
+      continue
+    if not style_position_contains(masked, match.start(), allow_html_style):
+      skipped['rgba 비스타일/의미값'] += 1
+      continue
+    replacements.append(
+      Replacement(
+        match.start(),
+        match.end(),
+        f'rgba({RGB_TOKENS[rgb]}, {match.group(4)})',
+      )
+    )
+    rgba_replacements += 1
 
   updated = source
-  for replacement in reversed(replacements):
+  for replacement in sorted(replacements, key=lambda item: item.start, reverse=True):
     updated = (
       updated[:replacement.start]
       + replacement.token
@@ -351,7 +406,7 @@ def transform_source(source: str) -> tuple[str, int, Counter[str]]:
         lines[line_index] = line.rstrip(' \t')
     updated = ''.join(lines)
 
-  return updated, len(replacements), skipped
+  return updated, len(replacements), rgba_replacements, skipped
 
 
 def build_samples(results: list[FileResult], root: Path) -> list[str]:
@@ -382,11 +437,14 @@ def render_report(
   dry_run: bool,
 ) -> str:
   total = sum(result.replacements for result in results)
+  rgba_total = sum(result.rgba_replacements for result in results)
   mode = 'DRY-RUN' if dry_run else 'APPLY'
   lines = [
     f'# L-07 위젯 색상 치환 {mode}',
     '',
     f'- 총 치환 수: {total}',
+    f'- 16진수 치환 수: {total - rgba_total}',
+    f'- rgba 치환 수: {rgba_total}',
     f'- 변경 파일 수: {len(results)}',
     '',
     '## 파일별 치환 예정 건수' if dry_run else '## 파일별 치환 건수',
@@ -403,7 +461,7 @@ def render_report(
 
   lines.extend(['', '## 스킵 사유', ''])
   for reason in (
-    '알파 포함 rgba',
+    'rgba 비스타일/의미값',
     '비스타일/의미값',
     '주석',
     '제외 디렉터리(v2/cosmo)',
@@ -434,11 +492,14 @@ def run(root: Path, dry_run: bool) -> tuple[str, int]:
       skipped['테스트 파일'] += count_target_literals(source)
       continue
 
-    updated, count, file_skips = transform_source(source)
+    updated, count, rgba_count, file_skips = transform_source(
+      source,
+      allow_html_style=relative.as_posix() in VERIFIED_HTML_STYLE_FILES,
+    )
     skipped.update(file_skips)
     if count == 0:
       continue
-    results.append(FileResult(path, source, updated, count))
+    results.append(FileResult(path, source, updated, count, rgba_count))
     if not dry_run:
       path.write_text(updated, encoding='utf-8')
 

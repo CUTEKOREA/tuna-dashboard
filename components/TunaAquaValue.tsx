@@ -44,7 +44,7 @@ const TunaAquaValue = () => {
         <h3 className={styles.cardTitle}>
           <Anchor size={20} />
           가치 창출의 마법 (Value Explosion)
-          <span style={{ display:'inline-flex', alignItems:'center', gap:'3px', background:'rgba(16,185,129,0.1)', border:'1px solid var(--w-emerald-500)', color:'var(--color-success)', fontSize:'0.65rem', fontWeight:600, padding:'1px 5px', borderRadius:'4px', letterSpacing:'0.2px', marginLeft:'6px' }}>🔵 SYNCED (FAO)</span>
+          <span style={{ display:'inline-flex', alignItems:'center', gap:'3px', background:'rgba(var(--w-emerald-500-rgb), 0.1)', border:'1px solid var(--w-emerald-500)', color:'var(--color-success)', fontSize:'0.65rem', fontWeight:600, padding:'1px 5px', borderRadius:'4px', letterSpacing:'0.2px', marginLeft:'6px' }}>🔵 SYNCED (FAO)</span>
         </h3>
         <p className={styles.cardSubtitle}>
           이중 Y축을 사용하여 생산 물량(Bar)과 생산 총액(Line)의 상승 기울기를 교차 분석했습니다. (참다랑어 양식 산업이 1차원적인 곡률의 생산량 증가를 넘어, 시장의 희소성과 맞물려 생산액(매출가치)이 기하급수적으로 팽창하는 전형적인 '프리미엄 레버리지' 증명)

@@ -53,7 +53,7 @@ export function EmergingMarketsHeatmap() {
                       <span style={{ flex: 1, color: 'var(--w-slate-50)', fontWeight: 600 }}>{m.country}</span>
                       <span style={{ color: region.color, fontWeight: 700, fontFamily: 'monospace' }}>+{m.tuna_import_growth_5yr}%</span>
                       <span style={{ color: 'var(--w-slate-400)', fontSize: '0.65rem' }}>${m.opportunity_usd_m}M</span>
-                      <span style={{ padding: '1px 6px', borderRadius: '4px', fontSize: '0.55rem', fontWeight: 700, background: m.priority === 'HIGH' ? 'rgba(239,68,68,0.15)' : 'rgba(245,158,11,0.15)', color: m.priority === 'HIGH' ? 'var(--w-red-500)' : 'var(--w-amber-500)' }}>{m.priority}</span>
+                      <span style={{ padding: '1px 6px', borderRadius: '4px', fontSize: '0.55rem', fontWeight: 700, background: m.priority === 'HIGH' ? 'rgba(var(--w-red-500-rgb), 0.15)' : 'rgba(var(--w-amber-500-rgb), 0.15)', color: m.priority === 'HIGH' ? 'var(--w-red-500)' : 'var(--w-amber-500)' }}>{m.priority}</span>
                     </div>
                   ))}
                 </div>

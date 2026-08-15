@@ -37,12 +37,12 @@ export default function SasGlTradeFlows() {
       customBody={
         <div style={{ display: 'flex', flexDirection: 'column', gap: '10px', width: '100%' }}>
           <div style={{ display: 'flex', gap: '8px' }}>
-            <div style={{ flex: 1, background: 'rgba(239,68,68,0.08)', border: '1px solid rgba(239,68,68,0.2)', borderRadius: '8px', padding: '8px 10px', textAlign: 'center' }}>
+            <div style={{ flex: 1, background: 'rgba(var(--w-red-500-rgb), 0.08)', border: '1px solid rgba(var(--w-red-500-rgb), 0.2)', borderRadius: '8px', padding: '8px 10px', textAlign: 'center' }}>
               <div style={{ fontSize: '0.58rem', color: 'var(--w-slate-400)' }}>통조림·가공</div>
               <div style={{ fontSize: '1.0rem', fontWeight: 800, color: '#f87171' }}>$65.0억</div>
               <div style={{ fontSize: '0.52rem', color: 'var(--w-slate-500)' }}>금액 54.8% / 물량 38%</div>
             </div>
-            <div style={{ flex: 1, background: 'rgba(56,189,248,0.08)', border: '1px solid rgba(56,189,248,0.2)', borderRadius: '8px', padding: '8px 10px', textAlign: 'center' }}>
+            <div style={{ flex: 1, background: 'rgba(var(--w-sky-400-rgb), 0.08)', border: '1px solid rgba(var(--w-sky-400-rgb), 0.2)', borderRadius: '8px', padding: '8px 10px', textAlign: 'center' }}>
               <div style={{ fontSize: '0.58rem', color: 'var(--w-slate-400)' }}>비통조림(사시미 원료)</div>
               <div style={{ fontSize: '1.0rem', fontWeight: 800, color: 'var(--w-sky-400)' }}>$53.6억</div>
               <div style={{ fontSize: '0.52rem', color: 'var(--w-slate-500)' }}>원어냉동 +32% 물량</div>

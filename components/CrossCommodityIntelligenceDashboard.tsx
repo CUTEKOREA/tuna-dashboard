@@ -64,7 +64,7 @@ function scoreColor(score: number) {
 
 function ScoreBar({ score }: { score: number }) {
   return (
-    <div style={{ height: 7, borderRadius: 999, background: 'rgba(148, 163, 184, 0.16)', overflow: 'hidden' }}>
+    <div style={{ height: 7, borderRadius: 999, background: 'rgba(var(--w-slate-400-rgb), 0.16)', overflow: 'hidden' }}>
       <div style={{ width: `${score}%`, height: '100%', background: scoreColor(score), borderRadius: 999 }} />
     </div>
   );
@@ -177,7 +177,7 @@ export default function CrossCommodityIntelligenceDashboard({ heroOnly = false }
           </div>
           <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
             {data.substitutionSignals.map((signal) => (
-              <div key={`${signal.from}-${signal.to}`} style={{ borderTop: '1px solid rgba(148, 163, 184, 0.14)', paddingTop: 12 }}>
+              <div key={`${signal.from}-${signal.to}`} style={{ borderTop: '1px solid rgba(var(--w-slate-400-rgb), 0.14)', paddingTop: 12 }}>
                 <div style={{ display: 'flex', alignItems: 'center', gap: 8, color: 'var(--text-main)', fontWeight: 800 }}>
                   <span>{signal.from}</span>
                   <ArrowRight size={14} color="rgba(226,232,240,0.5)" />
@@ -228,9 +228,9 @@ export default function CrossCommodityIntelligenceDashboard({ heroOnly = false }
           </div>
           <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
             {data.portfolioCandidates.map((candidate, index) => (
-              <div key={candidate.commodity} style={{ borderTop: '1px solid rgba(148, 163, 184, 0.14)', paddingTop: 12 }}>
+              <div key={candidate.commodity} style={{ borderTop: '1px solid rgba(var(--w-slate-400-rgb), 0.14)', paddingTop: 12 }}>
                 <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-                  <span style={{ color: 'rgba(226,232,240,0.5)', fontSize: 12 }}>#{index + 1}</span>
+                  <span style={{ color: 'rgba(var(--w-slate-200-rgb), 0.5)', fontSize: 12 }}>#{index + 1}</span>
                   <strong style={{ color: 'var(--text-main)' }}>{candidate.commodity}</strong>
                   <span style={{ marginLeft: 'auto', color: scoreColor(candidate.portfolioScore), fontWeight: 900 }}>{candidate.portfolioScore}</span>
                 </div>
@@ -256,7 +256,7 @@ export default function CrossCommodityIntelligenceDashboard({ heroOnly = false }
                 ...panelStyle,
                 display: 'block',
                 textDecoration: 'none',
-                borderColor: alert.severity === '긴급' ? 'rgba(239, 68, 68, 0.42)' : 'rgba(245, 158, 11, 0.34)',
+                borderColor: alert.severity === '긴급' ? 'rgba(var(--w-red-500-rgb), 0.42)' : 'rgba(var(--w-amber-500-rgb), 0.34)',
               }}
             >
               <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>

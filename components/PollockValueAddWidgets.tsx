@@ -98,8 +98,8 @@ export function Widget11_SurimiSpread() {
               <XAxis dataKey="year" stroke="rgba(255,255,255,0.5)" fontSize={11} tickMargin={10} />
               <YAxis stroke="rgba(255,255,255,0.5)" fontSize={11} tickFormatter={(v)=>`$${v}`} tickMargin={10} />
               <Tooltip contentStyle={{ background: '#0a0f1f', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '8px', color: 'var(--w-slate-50)' }} />
-              <Area type="monotone" dataKey="명태연육_단가" stroke="var(--color-info)" fill="rgba(59,130,246,0.15)" strokeWidth={3} name="알래스카/러시아산 명태 연육 고단가" />
-              <Area type="monotone" dataKey="열대어연육_단가" stroke="var(--color-danger)" fill="rgba(239,68,68,0.15)" strokeWidth={3} strokeDasharray="5 5" name="동남아 실꼬리돔 베스트 저가 연육" />
+              <Area type="monotone" dataKey="명태연육_단가" stroke="var(--color-info)" fill="rgba(var(--w-blue-500-rgb), 0.15)" strokeWidth={3} name="알래스카/러시아산 명태 연육 고단가" />
+              <Area type="monotone" dataKey="열대어연육_단가" stroke="var(--color-danger)" fill="rgba(var(--w-red-500-rgb), 0.15)" strokeWidth={3} strokeDasharray="5 5" name="동남아 실꼬리돔 베스트 저가 연육" />
               <Legend iconType="circle" wrapperStyle={{ fontSize: '11px', color: 'rgba(255,255,255,0.7)', paddingTop: '10px' }} />
             </AreaChart>
           </SafeResponsiveContainer>

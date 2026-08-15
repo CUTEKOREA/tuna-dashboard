@@ -148,7 +148,7 @@ export default function WhelkFTAQuarterly() {
         <div style={PanelStyle}>
           <div style={PanelTitle}>⚠️ 데이터 공백 주의</div>
           <div style={PanelDesc}>2025 Q3·Q4·2026 Q1 KMI 보고서에서 골뱅이가 주요 품목 기재에서 제외됨. <strong>KMI 통계명이 2025년부터 '골뱅이' → '고둥'으로 재분류</strong>됨. 향후 H2 데이터는 발표 시 보강 필요.</div>
-          <div style={{ marginTop: '10px', padding: '10px', background: 'rgba(251, 191, 36, 0.08)', borderLeft: '3px solid var(--w-amber-400)', borderRadius: '4px', fontSize: '0.7rem', color: 'rgba(255,255,255,0.7)', lineHeight: 1.5 }}>
+          <div style={{ marginTop: '10px', padding: '10px', background: 'rgba(var(--w-amber-400-rgb), 0.08)', borderLeft: '3px solid var(--w-amber-400)', borderRadius: '4px', fontSize: '0.7rem', color: 'rgba(255,255,255,0.7)', lineHeight: 1.5 }}>
             <strong style={{ color: 'var(--w-amber-400)' }}>주요 사건 타임라인</strong><br/>
             <span style={{ color: 'rgba(255,255,255,0.5)' }}>2022:</span> 러-우 전쟁 공급 부족, 다운스펙 가공 시작<br/>
             <span style={{ color: 'rgba(255,255,255,0.5)' }}>2024:</span> 영국 자원 위축, 프랑스·중국 수요 경합<br/>
@@ -160,8 +160,8 @@ export default function WhelkFTAQuarterly() {
       <div
         style={{
           ...PanelStyle,
-          background: 'linear-gradient(135deg, rgba(251, 191, 36, 0.18), rgba(146, 64, 14, 0.10))',
-          borderColor: 'rgba(251, 191, 36, 0.25)',
+          background: 'linear-gradient(135deg, rgba(var(--w-amber-400-rgb), 0.18), rgba(146, 64, 14, 0.10))',
+          borderColor: 'rgba(var(--w-amber-400-rgb), 0.25)',
           display: 'grid',
           gridTemplateColumns: 'repeat(4, 1fr)',
           gap: '10px',

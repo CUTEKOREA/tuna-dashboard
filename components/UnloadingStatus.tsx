@@ -638,7 +638,7 @@ function vesselLatestReport(v: { dateRange?: string; timeline?: { date: string }
 function BaseDateTag({ date }: { date: string | null }) {
   if (!date) return null;
   return (
-    <span style={{ marginLeft: 'auto', fontSize: '0.68rem', fontWeight: 'normal', color: 'var(--text-muted)', background: 'rgba(148, 163, 184, 0.12)', border: '1px solid rgba(148, 163, 184, 0.2)', padding: '1px 8px', borderRadius: '10px', whiteSpace: 'nowrap' }}>
+    <span style={{ marginLeft: 'auto', fontSize: '0.68rem', fontWeight: 'normal', color: 'var(--text-muted)', background: 'rgba(var(--w-slate-400-rgb), 0.12)', border: '1px solid rgba(var(--w-slate-400-rgb), 0.2)', padding: '1px 8px', borderRadius: '10px', whiteSpace: 'nowrap' }}>
       기준일 {date}
     </span>
   );
@@ -1273,7 +1273,7 @@ export default function UnloadingStatus({ heroOnly = false }: { heroOnly?: boole
 
   if (apiError) {
     return (
-      <div style={{ padding: '40px', textAlign: 'center', color: 'var(--w-red-500)', background: 'rgba(239, 68, 68, 0.1)', borderRadius: '8px', border: '1px solid var(--w-red-500)', margin: '20px' }}>
+      <div style={{ padding: '40px', textAlign: 'center', color: 'var(--w-red-500)', background: 'rgba(var(--w-red-500-rgb), 0.1)', borderRadius: '8px', border: '1px solid var(--w-red-500)', margin: '20px' }}>
         <h2>에러가 발생했습니다 (API Error)</h2>
         <p>{apiError}</p>
       </div>
@@ -1440,13 +1440,13 @@ export default function UnloadingStatus({ heroOnly = false }: { heroOnly?: boole
             <div style={{ display: 'flex', gap: '6px' }}>
               <button
                 onClick={() => setShowReportModal(true)}
-                style={{ padding: '5px 12px', borderRadius: '16px', border: '1px solid rgba(56, 189, 248, 0.3)', background: 'rgba(56, 189, 248, 0.1)', color: 'var(--w-sky-400)', fontSize: '0.75rem', fontWeight: 600, cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '5px', transition: 'all 0.2s' }}
+                style={{ padding: '5px 12px', borderRadius: '16px', border: '1px solid rgba(var(--w-sky-400-rgb), 0.3)', background: 'rgba(var(--w-sky-400-rgb), 0.1)', color: 'var(--w-sky-400)', fontSize: '0.75rem', fontWeight: 600, cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '5px', transition: 'all 0.2s' }}
               >
                 <FileText size={13} /> 보고서
               </button>
               <button
                 onClick={() => setShowReplayModal(true)}
-                style={{ padding: '5px 12px', borderRadius: '16px', border: '1px solid rgba(16, 185, 129, 0.3)', background: 'rgba(16, 185, 129, 0.1)', color: 'var(--w-emerald-500)', fontSize: '0.75rem', fontWeight: 600, cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '5px', transition: 'all 0.2s' }}
+                style={{ padding: '5px 12px', borderRadius: '16px', border: '1px solid rgba(var(--w-emerald-500-rgb), 0.3)', background: 'rgba(var(--w-emerald-500-rgb), 0.1)', color: 'var(--w-emerald-500)', fontSize: '0.75rem', fontWeight: 600, cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '5px', transition: 'all 0.2s' }}
               >
                 <Play size={13} /> 리플레이
               </button>
@@ -1482,9 +1482,9 @@ export default function UnloadingStatus({ heroOnly = false }: { heroOnly?: boole
               gap: '10px',
               marginBottom: '16px',
               padding: '12px 14px',
-              border: '1px solid rgba(251, 191, 36, 0.35)',
+              border: '1px solid rgba(var(--w-amber-400-rgb), 0.35)',
               borderRadius: '10px',
-              background: 'rgba(251, 191, 36, 0.08)',
+              background: 'rgba(var(--w-amber-400-rgb), 0.08)',
               color: '#fde68a',
             }}
           >
@@ -1519,7 +1519,7 @@ export default function UnloadingStatus({ heroOnly = false }: { heroOnly?: boole
           className={`${styles.schematicContainer} ${activeDetailTab !== 'holds' ? styles.tabPanelHidden : ''}`}
         >
           {selectedData.holdDataAvailable === false ? (
-            <div style={{ padding: '48px 24px', textAlign: 'center', color: 'var(--text-muted)', border: '1px dashed rgba(148, 163, 184, 0.25)', borderRadius: '12px' }}>
+            <div style={{ padding: '48px 24px', textAlign: 'center', color: 'var(--text-muted)', border: '1px dashed rgba(var(--w-slate-400-rgb), 0.25)', borderRadius: '12px' }}>
               <Ship size={28} style={{ margin: '0 auto 12px' }} />
               <strong style={{ display: 'block', color: 'var(--w-slate-200)', marginBottom: '6px' }}>화물창별 원자료 없음</strong>
               선박·일일·누계·어종 합계는 일일 XLS로 확인했지만, 화물창별 물량과 전 작업일 온도는 원표에 없어 표시하지 않습니다.
@@ -1586,7 +1586,7 @@ export default function UnloadingStatus({ heroOnly = false }: { heroOnly?: boole
                   />
                   
                   {/* Water Line */}
-                  <line x1="20" y1="220" x2="780" y2="220" stroke="rgba(56, 189, 248, 0.35)" strokeWidth="2.5" strokeDasharray="8, 4" />
+                  <line x1="20" y1="220" x2="780" y2="220" stroke="rgba(var(--w-sky-400-rgb), 0.35)" strokeWidth="2.5" strokeDasharray="8, 4" />
 
                   {/* Render Compartments */}
                   {holdIds.map(holdId => {
@@ -1709,7 +1709,7 @@ export default function UnloadingStatus({ heroOnly = false }: { heroOnly?: boole
                       top: `${tooltipData.pctY}%`,
                       transform: 'translate(-50%, -100%)',
                       backgroundColor: 'rgba(20, 28, 52, 0.95)',
-                      border: '1px solid rgba(56, 189, 248, 0.4)',
+                      border: '1px solid rgba(var(--w-sky-400-rgb), 0.4)',
                       borderRadius: '8px',
                       padding: '12px',
                       zIndex: 100,
@@ -1796,7 +1796,7 @@ export default function UnloadingStatus({ heroOnly = false }: { heroOnly?: boole
                   {lacksHoldSpeciesEvidence ? (
                     <div
                       data-testid="hold-species-unavailable"
-                      style={{ padding: '10px', borderRadius: '8px', background: 'rgba(245, 158, 11, 0.10)', border: '1px solid rgba(245, 158, 11, 0.28)', fontSize: '0.75rem', lineHeight: 1.5 }}
+                      style={{ padding: '10px', borderRadius: '8px', background: 'rgba(var(--w-amber-500-rgb), 0.10)', border: '1px solid rgba(var(--w-amber-500-rgb), 0.28)', fontSize: '0.75rem', lineHeight: 1.5 }}
                     >
                       <strong style={{ display: 'block', color: 'var(--w-amber-400)', marginBottom: '3px' }}>어창별 어종 분해 없음</strong>
                       {hasUnclassifiedSpecies
@@ -2104,7 +2104,7 @@ export default function UnloadingStatus({ heroOnly = false }: { heroOnly?: boole
                         alignItems: 'center', 
                         justifyContent: 'center',
                         zIndex: 2,
-                        boxShadow: isFirst ? '0 0 10px rgba(56, 189, 248, 0.5)' : 'none'
+                        boxShadow: isFirst ? '0 0 10px rgba(var(--w-sky-400-rgb), 0.5)' : 'none'
                       }}
                     >
                       {isFirst ? (
@@ -2120,7 +2120,7 @@ export default function UnloadingStatus({ heroOnly = false }: { heroOnly?: boole
                       <div className={styles.logDate} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                         <span>{t.date} <span style={{ fontSize: '0.75rem', fontWeight: 'normal', color: 'var(--text-muted)', marginLeft: '8px' }}>{t.time}</span></span>
                         {t.dailyAmount > 0 && (
-                          <span style={{ fontSize: '0.8rem', color: 'var(--w-sky-400)', background: 'rgba(56, 189, 248, 0.15)', padding: '2px 8px', borderRadius: '12px', fontWeight: 'bold' }}>
+                          <span style={{ fontSize: '0.8rem', color: 'var(--w-sky-400)', background: 'rgba(var(--w-sky-400-rgb), 0.15)', padding: '2px 8px', borderRadius: '12px', fontWeight: 'bold' }}>
                             +{t.dailyAmount.toFixed(3)} MT
                           </span>
                         )}

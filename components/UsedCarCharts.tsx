@@ -18,7 +18,7 @@ export function MarketGrowthChart({ data }: { data: any[] }) {
         <YAxis stroke="var(--w-slate-400)" tick={{ fill: 'var(--w-slate-400)', fontSize: 11 }} tickFormatter={v => `$${v}B`} />
         <Tooltip contentStyle={tt} labelStyle={ttLabel} itemStyle={ttItem} formatter={(v: any) => `$${v}B`} />
         <Legend wrapperStyle={{ paddingTop: 10 }} />
-        <Area type="monotone" dataKey="domestic" name="국내 시장" fill="rgba(59,130,246,0.15)" stroke="var(--color-info)" strokeWidth={2} />
+        <Area type="monotone" dataKey="domestic" name="국내 시장" fill="rgba(var(--w-blue-500-rgb), 0.15)" stroke="var(--color-info)" strokeWidth={2} />
         <Bar dataKey="export" name="수출 규모" fill="var(--color-success)" radius={[4,4,0,0]} barSize={20} />
       </ComposedChart>
     </SafeResponsiveContainer>

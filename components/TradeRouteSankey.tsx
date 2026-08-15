@@ -56,7 +56,7 @@ export default function TradeRouteSankey() {
             value={atqExhaustion} 
             onChange={(e) => setAtqExhaustion(Number(e.target.value))}
             className={styles.slider}
-            style={{ accentColor: isAtqExhausted ? 'var(--color-danger)' : '#38bdf8' }}
+            style={{ accentColor: isAtqExhausted ? 'var(--color-danger)' : 'var(--w-sky-400)' }}
           />
         </div>
 
@@ -171,7 +171,7 @@ export default function TradeRouteSankey() {
       )}
 
       {thaiFtaActive && (
-        <div className={styles.aiInsight} style={{ borderLeftColor: 'var(--color-success)', background: 'rgba(16, 185, 129, 0.05)' }}>
+        <div className={styles.aiInsight} style={{ borderLeftColor: 'var(--color-success)', background: 'rgba(var(--w-emerald-500-rgb), 0.05)' }}>
           <Calculator size={16} color="var(--color-success)" style={{ display: 'inline', marginRight: '6px', verticalAlign: 'text-bottom' }} />
           <strong>전략 분석:</strong> 태국-EU FTA가 발효될 경우, 동원/사조 등 한국 국적 선사들의 태국향 WCPFC 물동량 수요가 폭증할 것으로 예상됩니다.<br/>
           👉 현재의 베트남/에콰도르 의존도를 낮추고 태국 공장의 가동률을 극대화하여 유럽 시장 마진을 +18% 이상 재확보할 수 있습니다.

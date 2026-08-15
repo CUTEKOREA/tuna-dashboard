@@ -41,7 +41,7 @@ export function PollockSanctionParadox() {
         loading ? <div style={{ textAlign: 'center', padding: '2rem', color: 'var(--text-secondary)' }}>Loading sanction data...</div> : (
           <>
             <div style={{ display: 'flex', gap: '8px', marginBottom: '12px' }}>
-              <div style={{ flex: 1, background: 'rgba(239,68,68,0.1)', borderRadius: '8px', padding: '10px', textAlign: 'center' }}>
+              <div style={{ flex: 1, background: 'rgba(var(--w-red-500-rgb), 0.1)', borderRadius: '8px', padding: '10px', textAlign: 'center' }}>
                 <div style={{ fontSize: '1.6rem', fontWeight: 800, color: 'var(--w-red-500)' }}>{sanctionRisk?.severity || 95}</div>
                 <div style={{ fontSize: '0.65rem', color: '#fca5a5' }}>심각도</div>
               </div>
@@ -162,7 +162,7 @@ export function PollockRiskScorecard() {
         loading ? <div style={{ textAlign: 'center', padding: '2rem', color: 'var(--text-secondary)' }}>Loading...</div> : (
           <>
             <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', marginBottom: '12px' }}>
-              <div style={{ background: 'rgba(239,68,68,0.15)', borderRadius: '12px', padding: '14px 22px', textAlign: 'center' }}>
+              <div style={{ background: 'rgba(var(--w-red-500-rgb), 0.15)', borderRadius: '12px', padding: '14px 22px', textAlign: 'center' }}>
                 <div style={{ fontSize: '2.2rem', fontWeight: 800, color: 'var(--w-red-500)' }}>{composite.overall}</div>
                 <div style={{ fontSize: '0.7rem', color: '#fca5a5' }}>종합 리스크 ({composite.grade})</div>
                 <div style={{ fontSize: '0.6rem', color: '#f87171', marginTop: '2px' }}>▲ {composite.trend}</div>
@@ -192,7 +192,7 @@ export function PollockRiskScorecard() {
             {/* vs Other Species */}
             <div style={{ display: 'flex', gap: '4px', flexWrap: 'wrap' }}>
               {Object.entries(vsSpecies).map(([species, score]) => (
-                <div key={species} style={{ padding: '4px 10px', borderRadius: '12px', background: species === 'pollock' ? 'rgba(239,68,68,0.15)' : 'rgba(140,170,255,0.10)', fontSize: '0.65rem', color: species === 'pollock' ? 'var(--w-red-500)' : 'var(--text-secondary)' }}>
+                <div key={species} style={{ padding: '4px 10px', borderRadius: '12px', background: species === 'pollock' ? 'rgba(var(--w-red-500-rgb), 0.15)' : 'rgba(140,170,255,0.10)', fontSize: '0.65rem', color: species === 'pollock' ? 'var(--w-red-500)' : 'var(--text-secondary)' }}>
                   {species}: <strong>{score as number}</strong>
                 </div>
               ))}

@@ -42,7 +42,7 @@ export default function CanneryStatusCharts() {
     <div style={{ display: 'flex', flexDirection: 'column', gap: '24px', width: '100%' }}>
       {liveData && (
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '8px', padding: '6px 12px', background: 'rgba(148, 163, 184, 0.1)', border: '1px solid rgba(148, 163, 184, 0.25)', borderRadius: '20px' }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '8px', padding: '6px 12px', background: 'rgba(var(--w-slate-400-rgb), 0.1)', border: '1px solid rgba(var(--w-slate-400-rgb), 0.25)', borderRadius: '20px' }}>
             <span style={{ display: 'inline-block', width: '8px', height: '8px', borderRadius: '50%', background: 'var(--text-muted)' }}></span>
             <span style={{ color: 'var(--text-muted)', fontSize: '13px', fontWeight: 'bold' }}>정적{liveData.syncDate ? ` · ${liveData.syncDate} 기준` : ''} ({liveData.source})</span>
           </div>
@@ -50,14 +50,14 @@ export default function CanneryStatusCharts() {
       )}
 
       {liveData && liveData.marginIndex && (
-        <div style={{ background: 'var(--panel-bg)', border: '1px solid rgba(139, 92, 246, 0.3)', borderRadius: '8px', padding: '20px', display: 'flex', gap: '20px', alignItems: 'center' }}>
-          <div style={{ padding: '12px', background: 'rgba(139, 92, 246, 0.1)', borderRadius: '8px', color: 'var(--w-violet-500)' }}>
+        <div style={{ background: 'var(--panel-bg)', border: '1px solid rgba(var(--w-violet-500-rgb), 0.3)', borderRadius: '8px', padding: '20px', display: 'flex', gap: '20px', alignItems: 'center' }}>
+          <div style={{ padding: '12px', background: 'rgba(var(--w-violet-500-rgb), 0.1)', borderRadius: '8px', color: 'var(--w-violet-500)' }}>
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline></svg>
           </div>
           <div style={{ flex: 1 }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '8px' }}>
               <h3 style={{ margin: 0, fontSize: '16px', fontWeight: 'bold', color: 'var(--text-main)' }}>밸류체인 마진율 인덱스 (시나리오 추정{liveData.syncDate ? `, ${liveData.syncDate} 기준` : ''})</h3>
-              <span style={{ fontSize: '12px', padding: '2px 8px', background: 'rgba(148, 163, 184, 0.1)', color: 'var(--text-muted)', borderRadius: '12px', border: '1px solid rgba(148, 163, 184, 0.25)' }}>전구간 순마진(추정): {liveData.marginIndex.netMargin}</span>
+              <span style={{ fontSize: '12px', padding: '2px 8px', background: 'rgba(var(--w-slate-400-rgb), 0.1)', color: 'var(--text-muted)', borderRadius: '12px', border: '1px solid rgba(var(--w-slate-400-rgb), 0.25)' }}>전구간 순마진(추정): {liveData.marginIndex.netMargin}</span>
             </div>
             <div style={{ display: 'flex', gap: '16px', marginBottom: '8px' }}>
               <span style={{ fontSize: '13px', color: 'var(--text-muted)' }}>원어 원가: <strong style={{color: 'var(--text-main)'}}>${liveData.marginIndex.rawCost}</strong></span>
@@ -112,7 +112,7 @@ export default function CanneryStatusCharts() {
               <YAxis dataKey="name" type="category" stroke="var(--text-main)" axisLine={false} tickLine={false} tick={{ fontSize: 11, fontWeight: 'bold' }} width={80} />
               <Tooltip 
                 cursor={{ fill: 'rgba(255,255,255,0.03)' }}
-                contentStyle={{ background: 'rgba(20, 28, 52, 0.88)', backdropFilter: 'blur(10px)', WebkitBackdropFilter: 'blur(10px)', border: '1px solid rgba(16,185,129,0.25)', borderRadius: '10px', color: 'var(--text-main)', boxShadow: '0 8px 30px rgba(0,0,0,0.45)' }}
+                contentStyle={{ background: 'rgba(20, 28, 52, 0.88)', backdropFilter: 'blur(10px)', WebkitBackdropFilter: 'blur(10px)', border: '1px solid rgba(var(--w-emerald-500-rgb), 0.25)', borderRadius: '10px', color: 'var(--text-main)', boxShadow: '0 8px 30px rgba(0,0,0,0.45)' }}
                 itemStyle={{ fontSize: '13px' }}
                 labelStyle={{ fontWeight: 'bold', marginBottom: '8px', borderBottom: '1px solid rgba(255,255,255,0.1)', paddingBottom: '4px' }}
                 formatter={(value: any) => [`${Number(value).toLocaleString()} 톤`, undefined]}
@@ -172,7 +172,7 @@ export default function CanneryStatusCharts() {
               <YAxis dataKey="name" type="category" stroke="var(--text-main)" axisLine={false} tickLine={false} tick={{ fontSize: 11, fontWeight: 'bold' }} width={80} />
               <Tooltip 
                 cursor={{ fill: 'rgba(255,255,255,0.03)' }}
-                contentStyle={{ background: 'rgba(20, 28, 52, 0.88)', backdropFilter: 'blur(10px)', WebkitBackdropFilter: 'blur(10px)', border: '1px solid rgba(16,185,129,0.25)', borderRadius: '10px', color: 'var(--text-main)', boxShadow: '0 8px 30px rgba(0,0,0,0.45)' }}
+                contentStyle={{ background: 'rgba(20, 28, 52, 0.88)', backdropFilter: 'blur(10px)', WebkitBackdropFilter: 'blur(10px)', border: '1px solid rgba(var(--w-emerald-500-rgb), 0.25)', borderRadius: '10px', color: 'var(--text-main)', boxShadow: '0 8px 30px rgba(0,0,0,0.45)' }}
                 itemStyle={{ fontSize: '13px' }}
                 labelStyle={{ fontWeight: 'bold', marginBottom: '8px', borderBottom: '1px solid rgba(255,255,255,0.1)', paddingBottom: '4px' }}
                 formatter={(value: any) => [`${Number(value).toLocaleString()} 톤`, undefined]}

@@ -161,7 +161,7 @@ const SourceRegistry: React.FC<{ rows: RegistryRow[] }> = ({ rows }) => {
               const gradeColor = GRADE_COLOR[r.grade] ?? C.axis;
               const isC = r.grade === 'C';
               return (
-                <tr key={r.source_id} style={isC ? { background: 'rgba(245,158,11,0.05)' } : undefined}>
+                <tr key={r.source_id} style={isC ? { background: 'rgba(var(--w-amber-500-rgb), 0.05)' } : undefined}>
                   <td style={{ ...TD, whiteSpace: 'nowrap', fontFamily: 'monospace', fontSize: '0.64rem' }}>{r.source_id}</td>
                   <td style={{ ...TD, whiteSpace: 'nowrap' }}>{r.publisher}</td>
                   <td style={{ ...TD, whiteSpace: 'nowrap' }}>{r.series ?? '—'}</td>
@@ -408,7 +408,7 @@ const FreshnessHeatmap: React.FC<{ rows: FreshRow[] }> = ({ rows }) => {
                 flexWrap: 'wrap',
                 padding: '6px 8px',
                 borderRadius: 6,
-                border: `1px solid ${unknown ? 'rgba(100,116,139,0.4)' : `${color}33`}`,
+                border: `1px solid ${unknown ? 'rgba(var(--w-slate-500-rgb), 0.4)' : `${color}33`}`,
                 borderStyle: unknown ? 'dashed' : 'solid',
                 background: unknown ? 'transparent' : `${color}0d`,
               }}

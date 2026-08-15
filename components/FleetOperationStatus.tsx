@@ -55,7 +55,7 @@ export default function FleetOperationStatus() {
         <Anchor size={22} color="var(--color-info)" />
         <div className={styles.toolTitle}>선단 위치 및 어획/하역 현황</div>
         {/* L-09: 일일 업무보고 정적 데이터 — '실시간' 표기 금지, 기준일 정직 표기 */}
-        <span className={styles.toolBadge} style={{ background: 'rgba(148, 163, 184, 0.12)', color: 'var(--w-slate-400)', marginLeft: 'auto' }}>
+        <span className={styles.toolBadge} style={{ background: 'rgba(var(--w-slate-400-rgb), 0.12)', color: 'var(--w-slate-400)', marginLeft: 'auto' }}>
           STATIC · 일일 업무보고 26.07.31 동기화
         </span>
       </div>
@@ -69,7 +69,7 @@ export default function FleetOperationStatus() {
               padding: '10px 16px',
               borderRadius: '8px',
               border: `1px solid ${activeTab === tab.id ? 'var(--color-info)' : 'rgba(255,255,255,0.1)'}`,
-              background: activeTab === tab.id ? 'rgba(59, 130, 246, 0.15)' : 'rgba(0,0,0,0.2)',
+              background: activeTab === tab.id ? 'rgba(var(--w-blue-500-rgb), 0.15)' : 'rgba(0,0,0,0.2)',
               color: activeTab === tab.id ? '#60a5fa' : 'var(--w-slate-400)',
               cursor: 'pointer',
               whiteSpace: 'nowrap',

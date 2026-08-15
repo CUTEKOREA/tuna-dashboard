@@ -40,7 +40,7 @@ import TelemetryBadge from './TelemetryBadge';
 ================================================================ */
 const TOOLTIP_STYLE: React.CSSProperties = {
   backgroundColor: 'rgba(20, 28, 52, 0.95)',
-  border: '1px solid rgba(148,163,184,0.15)',
+  border: '1px solid rgba(var(--w-slate-400-rgb), 0.15)',
   borderRadius: 8,
   color: 'var(--w-slate-200)',
   fontSize: '0.78rem',
@@ -213,7 +213,7 @@ export function MscEuropeCountryPenetration() {
                   <td style={{ padding: '8px 12px', color: 'var(--w-slate-200)', fontWeight: 600 }}>{row.country}</td>
                   <td style={{ padding: '8px 12px' }}>
                     <span style={{
-                      background: row.penetration >= 60 ? 'rgba(56,189,248,0.15)' : 'rgba(245,158,11,0.15)',
+                      background: row.penetration >= 60 ? 'rgba(var(--w-sky-400-rgb), 0.15)' : 'rgba(var(--w-amber-500-rgb), 0.15)',
                       color: row.penetration >= 60 ? 'var(--w-sky-400)' : 'var(--w-amber-500)',
                       padding: '2px 8px',
                       borderRadius: 6,
@@ -443,8 +443,8 @@ export function MscTunaStockHealthGauge() {
 
         {/* Warning Banner */}
         <div style={{
-          background: 'rgba(245,158,11,0.08)',
-          border: '1px solid rgba(245,158,11,0.2)',
+          background: 'rgba(var(--w-amber-500-rgb), 0.08)',
+          border: '1px solid rgba(var(--w-amber-500-rgb), 0.2)',
           borderRadius: 10,
           padding: '14px 18px',
           display: 'flex',

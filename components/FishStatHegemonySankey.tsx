@@ -21,7 +21,7 @@ export default function FishStatHegemonySankey() {
         <TermTooltip term="어획 쿼터 이동" description="노르웨이의 해상 보호 명목 50% TAC 삭감으로 인해, 이탈된 물량이 파로스/아이슬란드로 분산 이동되는 현상" />
       </div>
       
-      <div style={{ padding: '16px', background: 'rgba(239, 68, 68, 0.1)', borderLeft: '4px solid var(--w-red-500)', borderRadius: '4px', marginBottom: '24px', display: 'flex', gap: '12px' }}>
+      <div style={{ padding: '16px', background: 'rgba(var(--w-red-500-rgb), 0.1)', borderLeft: '4px solid var(--w-red-500)', borderRadius: '4px', marginBottom: '24px', display: 'flex', gap: '12px' }}>
         <AlertTriangle size={20} color="var(--color-danger)" style={{ flexShrink: 0 }} />
         <div style={{ fontSize: '13px', lineHeight: '1.6' }}>
           <strong style={{ color: 'var(--color-danger)' }}>Situation:</strong> 노르웨이의 시장 독점 지위가 붕괴 중. 북대서양 패권이 4국 체제로 전환.<br/>

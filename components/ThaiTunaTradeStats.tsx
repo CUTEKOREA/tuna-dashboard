@@ -65,7 +65,7 @@ export default React.memo(function ThaiTunaTradeStats() {
           }}
         >
           <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '1.5rem' }}>
-            <div style={{ background: 'rgba(59, 130, 246, 0.1)', padding: '8px', borderRadius: '8px' }}>
+            <div style={{ background: 'rgba(var(--w-blue-500-rgb), 0.1)', padding: '8px', borderRadius: '8px' }}>
               <TrendingUp size={20} color="var(--color-info)" />
             </div>
             <h3 style={{ fontSize: '1.1rem', fontWeight: 700, color: 'var(--w-slate-50)', margin: 0 }}>태국 참치 무역량 추이 (2019-2023)</h3>
@@ -107,7 +107,7 @@ export default React.memo(function ThaiTunaTradeStats() {
           }}
         >
           <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '1.5rem' }}>
-            <div style={{ background: 'rgba(16, 185, 129, 0.1)', padding: '8px', borderRadius: '8px' }}>
+            <div style={{ background: 'rgba(var(--w-emerald-500-rgb), 0.1)', padding: '8px', borderRadius: '8px' }}>
               <Factory size={20} color="var(--color-success)" />
             </div>
             <h3 style={{ fontSize: '1.1rem', fontWeight: 700, color: 'var(--w-slate-50)', margin: 0 }}>주요 수출 품목 (2023)</h3>
@@ -158,7 +158,7 @@ export default React.memo(function ThaiTunaTradeStats() {
           }}
         >
           <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '1.5rem' }}>
-            <div style={{ background: 'rgba(245, 158, 11, 0.1)', padding: '8px', borderRadius: '8px' }}>
+            <div style={{ background: 'rgba(var(--w-amber-500-rgb), 0.1)', padding: '8px', borderRadius: '8px' }}>
               <Globe size={20} color="var(--color-warning)" />
             </div>
             <h3 style={{ fontSize: '1.1rem', fontWeight: 700, color: 'var(--w-slate-50)', margin: 0 }}>주요 수출 대상국 (2023)</h3>

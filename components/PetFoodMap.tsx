@@ -176,7 +176,7 @@ export default function PetFoodMap() {
             const hint = !selectedProvince ? '클릭 → 시/군/구 드릴다운' : '클릭 → 시설 목록 보기';
             return `<div style="font-weight:700;font-size:14px;margin-bottom:6px">${params.name}</div>` +
               `<div style="display:flex;align-items:center;gap:6px"><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:${accentColor}"></span>${catLabel}: <b>${val}</b>개</div>` +
-              `<div style="color:#64748b;font-size:11px;margin-top:6px">${hint}</div>`;
+              `<div style="color:var(--w-slate-500);font-size:11px;margin-top:6px">${hint}</div>`;
           }
         },
         visualMap: {

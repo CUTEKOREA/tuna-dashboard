@@ -179,8 +179,8 @@ export default function ShrimpFTAQuarterly() {
       <div
         style={{
           ...PanelStyle,
-          background: 'linear-gradient(135deg, rgba(16, 185, 129, 0.18), rgba(20, 184, 166, 0.10))',
-          borderColor: 'rgba(16, 185, 129, 0.25)',
+          background: 'linear-gradient(135deg, rgba(var(--w-emerald-500-rgb), 0.18), rgba(20, 184, 166, 0.10))',
+          borderColor: 'rgba(var(--w-emerald-500-rgb), 0.25)',
           display: 'grid',
           gridTemplateColumns: 'repeat(4, 1fr)',
           gap: '10px',

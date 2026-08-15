@@ -284,7 +284,7 @@ export default function CarrotDashboard() {
             <div style={{ display:'flex', justifyContent:'space-between', alignItems:'center', marginBottom:'0.8rem' }}>
               <h3 style={{ margin:0, fontSize:'0.9rem', color:'var(--text-primary)', display:'flex', alignItems:'center', gap:'0.5rem' }}><ShieldCheck size={16} color="#fbbf24" /> KCS 통관 TRQ 현황 (정적 기준값 — 실시간 미연동)</h3>
               {liveTrq?.alerts?.length > 0 && (
-                <span style={{ fontSize:'0.65rem', background:'rgba(239,68,68,0.2)', color:'var(--w-amber-500)', padding:'2px 6px', borderRadius:'4px', display:'flex', alignItems:'center', gap:'3px' }}>
+                <span style={{ fontSize:'0.65rem', background:'rgba(var(--w-red-500-rgb), 0.2)', color:'var(--w-amber-500)', padding:'2px 6px', borderRadius:'4px', display:'flex', alignItems:'center', gap:'3px' }}>
                   <AlertTriangle size={10} /> {liveTrq.alerts[0].level}
                 </span>
               )}
@@ -312,7 +312,7 @@ export default function CarrotDashboard() {
       )}
 
       {/* ═══ 경영진 전략 지휘소 ═══ */}
-      <div style={{ marginBottom:'2rem', background:'linear-gradient(135deg, rgba(249, 115, 22, 0.1) 0%, rgba(16, 185, 129, 0.05) 100%)', border:'1px solid rgba(249, 115, 22, 0.2)', borderRadius:'8px', padding:'1.5rem', boxShadow:'rgba(0,0,0,0.3) 0px 8px 8px' }}>
+      <div style={{ marginBottom:'2rem', background:'linear-gradient(135deg, rgba(249, 115, 22, 0.1) 0%, rgba(var(--w-emerald-500-rgb), 0.05) 100%)', border:'1px solid rgba(249, 115, 22, 0.2)', borderRadius:'8px', padding:'1.5rem', boxShadow:'rgba(0,0,0,0.3) 0px 8px 8px' }}>
         <h2 style={{ margin:'0 0 1rem 0', fontSize:'1.2rem', fontWeight:800, color:'var(--text-primary)', display:'flex', alignItems:'center', gap:'0.5rem' }}>
           <Target size={20} color="#f97316" /> 경영진 전략 지휘소
         </h2>
@@ -422,7 +422,7 @@ export default function CarrotDashboard() {
             <input 
               type="range" min="30000" max="120000" step="5000" value={kamisPrice} 
               onChange={(e) => setKamisPrice(Number(e.target.value))}
-              style={{ width:'100%', cursor:'pointer', accentColor:'#f59e0b' }}
+              style={{ width:'100%', cursor:'pointer', accentColor:'var(--w-amber-500)' }}
             />
             <p style={{ margin:'0.3rem 0 0', fontSize:'0.7rem', color:'var(--w-slate-500)' }}>도매가 변동 시 <strong style={{color:'var(--w-slate-50)'}}>W22 관세 아비트리지</strong>의 베트남산(0%) 유통 마진이 극대화되는 구간을 시연합니다.</p>
           </div>
@@ -432,7 +432,7 @@ export default function CarrotDashboard() {
 {/* ═══ 5-Pillar 밸류체인 네비게이터 ═══ */}
       <div style={{ background: 'linear-gradient(180deg, rgba(20, 28, 52, 0.5), rgba(20, 28, 52, 0.2))', border: '1px solid rgba(255,255,255,0.04)', borderRadius: '16px', padding: '6px', marginBottom: '2rem', marginTop: '2rem', boxShadow: '0 4px 30px rgba(0,0,0,0.3), inset 0 1px 0 rgba(140,170,255,0.10)' }}>
         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '6px', padding: '4px 0 8px', borderBottom: '1px solid rgba(140,170,255,0.10)', marginBottom: '6px' }}>
-          <span style={{ fontSize: '0.7rem', color: 'rgba(148,163,184,0.7)', fontWeight: 600, letterSpacing: '0.08em', textTransform: 'uppercase' }}>밸류체인 네비게이터 — 아래 단계를 클릭하여 탐색하세요</span>
+          <span style={{ fontSize: '0.7rem', color: 'rgba(var(--w-slate-400-rgb), 0.7)', fontWeight: 600, letterSpacing: '0.08em', textTransform: 'uppercase' }}>밸류체인 네비게이터 — 아래 단계를 클릭하여 탐색하세요</span>
         </div>
         <div data-mobile-stack style={{ display: 'grid', gridTemplateColumns: 'repeat(5, 1fr)', gap: '4px' }}>
           {SECTIONS.map((s, idx) => {
@@ -443,7 +443,7 @@ export default function CarrotDashboard() {
                 onMouseLeave={(e) => { if (!isActive) { e.currentTarget.style.background = 'transparent'; e.currentTarget.style.transform = 'translateY(0)'; e.currentTarget.style.borderColor = 'transparent'; } }}
                 style={{ position: 'relative', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '4px', padding: '12px 8px 14px', background: isActive ? `${s.color}12` : 'transparent', border: `1.5px solid ${isActive ? s.color : 'transparent'}`, borderRadius: '12px', cursor: 'pointer', transition: 'all 0.25s cubic-bezier(0.4, 0, 0.2, 1)', boxShadow: isActive ? `0 0 20px ${s.color}25, inset 0 1px 0 rgba(255,255,255,0.1)` : 'none', overflow: 'hidden' }}>
                 {isActive && (<div style={{ position: 'absolute', bottom: 0, left: '20%', right: '20%', height: '3px', background: `linear-gradient(90deg, transparent, ${s.color}, transparent)`, borderRadius: '3px 3px 0 0' }} />)}
-                <div style={{ width: '28px', height: '28px', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', background: isActive ? s.color : 'rgba(140,170,255,0.12)', color: isActive ? '#0a0f1f' : 'rgba(148,163,184,0.6)', fontSize: '0.75rem', fontWeight: 800, boxShadow: isActive ? `0 0 12px ${s.color}50` : 'none' }}>{idx + 1}</div>
+                <div style={{ width: '28px', height: '28px', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', background: isActive ? s.color : 'rgba(140,170,255,0.12)', color: isActive ? '#0a0f1f' : 'rgba(var(--w-slate-400-rgb), 0.6)', fontSize: '0.75rem', fontWeight: 800, boxShadow: isActive ? `0 0 12px ${s.color}50` : 'none' }}>{idx + 1}</div>
                 <span style={{ fontSize: '0.78rem', fontWeight: isActive ? 700 : 500, color: isActive ? s.color : 'var(--text-secondary)', whiteSpace: 'nowrap' }}>{s.label}</span>
               </button>
             );

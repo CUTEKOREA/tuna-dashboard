@@ -105,8 +105,8 @@ export default function MscSuspensionHistory() {
       {/* Summary Stats */}
       <div style={{
         marginTop: 20,
-        background: 'rgba(239,68,68,0.05)',
-        border: '1px solid rgba(239,68,68,0.2)',
+        background: 'rgba(var(--w-red-500-rgb), 0.05)',
+        border: '1px solid rgba(var(--w-red-500-rgb), 0.2)',
         borderRadius: 12,
         padding: 12,
         display: 'grid',

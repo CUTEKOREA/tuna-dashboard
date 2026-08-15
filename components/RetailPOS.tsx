@@ -88,7 +88,7 @@ export default function RetailPOS({ hideHeader = false }: { hideHeader?: boolean
       <BuySignalDashboard />
 
       {promoEnacted ? (
-        <div className={styles.alertBox} style={{ background: 'rgba(16, 185, 129, 0.1)', border: '1px solid var(--w-emerald-500)' }}>
+        <div className={styles.alertBox} style={{ background: 'rgba(var(--w-emerald-500-rgb), 0.1)', border: '1px solid var(--w-emerald-500)' }}>
           <div className={styles.alertIcon} style={{ color: 'var(--color-success)', animation: 'none' }}>
             <CheckCircle size={28} />
           </div>
@@ -183,7 +183,7 @@ export default function RetailPOS({ hideHeader = false }: { hideHeader?: boolean
               <SafeResponsiveContainer width="100%" height={300}>
                 <AreaChart data={pbTrendData} margin={{top:0,right:0,left:0,bottom:0}}>
                   <Area type="monotone" dataKey="nb" stroke="#60a5fa" fill="transparent" strokeWidth={2} />
-                  <Area type="monotone" dataKey="pb" stroke="var(--w-amber-400)" fill="rgba(251, 191, 36, 0.1)" strokeWidth={2} />
+                  <Area type="monotone" dataKey="pb" stroke="var(--w-amber-400)" fill="rgba(var(--w-amber-400-rgb), 0.1)" strokeWidth={2} />
                 </AreaChart>
               </SafeResponsiveContainer>
               <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '9px', color: 'var(--w-slate-500)', marginTop: '4px' }}>

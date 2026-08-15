@@ -651,14 +651,14 @@ export default function FalklandSquidDashboard() {
             <div style={{ overflowX: 'auto', overflowY: 'auto', maxHeight: '720px' }}>
               <table style={{ width: '100%', minWidth: '1300px', fontSize: '13px', borderCollapse: 'separate', borderSpacing: 0 }}>
                 <thead style={{ position: 'sticky', top: 0, zIndex: 30 }}>
-                  <tr style={{ background: 'linear-gradient(90deg, #0c1929 0%, #111d2e 50%, #0c1929 100%)', borderBottom: '2px solid rgba(56,189,248,0.3)' }}>
+                  <tr style={{ background: 'linear-gradient(90deg, #0c1929 0%, #111d2e 50%, #0c1929 100%)', borderBottom: '2px solid rgba(var(--w-sky-400-rgb), 0.3)' }}>
                     <th style={{ padding: '14px 10px', textAlign: 'center', fontSize: '10px', fontWeight: 700, color: '#7dd3fc', textTransform: 'uppercase', letterSpacing: '0.15em', width: '50px' }}>#</th>
                     <th style={{ padding: '14px 16px', fontSize: '10px', fontWeight: 700, color: '#7dd3fc', textTransform: 'uppercase', letterSpacing: '0.1em', position: 'sticky', left: 0, zIndex: 31, background: 'linear-gradient(90deg, #0c1929, #111d2e)', boxShadow: '4px 0 16px rgba(0,0,0,0.5)', minWidth: '140px' }}>선명 / 업체</th>
                     {['12월','1월','2월','3월','4월','5월'].map(m => (
                       <th key={m} style={{ padding: '14px 10px', textAlign: 'right', fontSize: '10px', fontWeight: 600, color: 'var(--w-slate-500)', textTransform: 'uppercase', letterSpacing: '0.05em', borderLeft: m === '12월' ? '1px solid rgba(140,170,255,0.10)' : 'none', minWidth: '65px' }}>{m}</th>
                     ))}
                     <th style={{ padding: '14px 14px', textAlign: 'right', fontSize: '10px', fontWeight: 800, color: '#67e8f9', textTransform: 'uppercase', letterSpacing: '0.05em', borderLeft: '2px solid rgba(34,211,238,0.25)', background: 'rgba(34,211,238,0.04)', minWidth: '85px' }}>누계(팬)</th>
-                    <th style={{ padding: '14px 14px', textAlign: 'right', fontSize: '10px', fontWeight: 800, color: '#6ee7b7', textTransform: 'uppercase', letterSpacing: '0.05em', borderLeft: '1px solid rgba(52,211,153,0.2)', background: 'rgba(52,211,153,0.04)', minWidth: '95px' }}>누계(KG)</th>
+                    <th style={{ padding: '14px 14px', textAlign: 'right', fontSize: '10px', fontWeight: 800, color: '#6ee7b7', textTransform: 'uppercase', letterSpacing: '0.05em', borderLeft: '1px solid rgba(var(--w-emerald-400-rgb), 0.2)', background: 'rgba(var(--w-emerald-400-rgb), 0.04)', minWidth: '95px' }}>누계(KG)</th>
                     <th style={{ padding: '14px 12px', textAlign: 'center', fontSize: '10px', fontWeight: 700, color: '#c4b5fd', textTransform: 'uppercase', letterSpacing: '0.05em', borderLeft: '1px solid rgba(140,170,255,0.10)', minWidth: '110px' }}>비중</th>
                     <th style={{ padding: '14px 10px', textAlign: 'center', fontSize: '10px', fontWeight: 600, color: 'var(--w-slate-500)', textTransform: 'uppercase', letterSpacing: '0.05em', borderLeft: '2px solid rgba(140,170,255,0.12)' }}>톤수</th>
                     <th style={{ padding: '14px 10px', textAlign: 'center', fontSize: '10px', fontWeight: 600, color: 'var(--w-slate-500)', textTransform: 'uppercase' }}>선령</th>
@@ -714,7 +714,7 @@ export default function FalklandSquidDashboard() {
                         <td style={{ padding: '12px 14px', textAlign: 'right', fontFamily: 'monospace', fontWeight: 700, fontSize: 14, color: '#22d3ee', whiteSpace: 'nowrap', borderLeft: '2px solid rgba(34,211,238,0.2)', background: 'rgba(34,211,238,0.03)' }}>
                           {vessel.totalPan.toLocaleString()}
                         </td>
-                        <td style={{ padding: '12px 14px', textAlign: 'right', fontFamily: 'monospace', fontWeight: 700, fontSize: 14, color: 'var(--w-emerald-400)', whiteSpace: 'nowrap', borderLeft: '1px solid rgba(52,211,153,0.15)', background: 'rgba(52,211,153,0.03)' }}>
+                        <td style={{ padding: '12px 14px', textAlign: 'right', fontFamily: 'monospace', fontWeight: 700, fontSize: 14, color: 'var(--w-emerald-400)', whiteSpace: 'nowrap', borderLeft: '1px solid rgba(var(--w-emerald-400-rgb), 0.15)', background: 'rgba(var(--w-emerald-400-rgb), 0.03)' }}>
                           {vessel.totalKg.toLocaleString()}
                         </td>
                         <td style={{ padding: '12px 12px', borderLeft: '1px solid rgba(255,255,255,0.03)' }}>
@@ -736,11 +736,11 @@ export default function FalklandSquidDashboard() {
                         </td>
                         <td style={{ padding: '12px 10px', textAlign: 'center' }}>
                           {vessel.status === "교체시급" ? (
-                            <span style={{ display: 'inline-flex', alignItems: 'center', gap: 5, padding: '4px 10px', borderRadius: 999, fontSize: 10, fontWeight: 700, background: 'rgba(239,68,68,0.12)', color: '#f87171', border: '1px solid rgba(239,68,68,0.25)' }}>
+                            <span style={{ display: 'inline-flex', alignItems: 'center', gap: 5, padding: '4px 10px', borderRadius: 999, fontSize: 10, fontWeight: 700, background: 'rgba(var(--w-red-500-rgb), 0.12)', color: '#f87171', border: '1px solid rgba(var(--w-red-500-rgb), 0.25)' }}>
                               <span style={{ width: 6, height: 6, borderRadius: '50%', background: 'var(--w-red-500)', animation: 'pulse 2s infinite' }}></span>교체시급
                             </span>
                           ) : vessel.status === "건전" ? (
-                            <span style={{ display: 'inline-flex', alignItems: 'center', gap: 5, padding: '4px 10px', borderRadius: 999, fontSize: 10, fontWeight: 700, background: 'rgba(16,185,129,0.12)', color: 'var(--w-emerald-400)', border: '1px solid rgba(16,185,129,0.25)' }}>
+                            <span style={{ display: 'inline-flex', alignItems: 'center', gap: 5, padding: '4px 10px', borderRadius: 999, fontSize: 10, fontWeight: 700, background: 'rgba(var(--w-emerald-500-rgb), 0.12)', color: 'var(--w-emerald-400)', border: '1px solid rgba(var(--w-emerald-500-rgb), 0.25)' }}>
                               <span style={{ width: 6, height: 6, borderRadius: '50%', background: 'var(--w-emerald-500)' }}></span>건전
                             </span>
                           ) : <span style={{ color: '#334155' }}>—</span>}

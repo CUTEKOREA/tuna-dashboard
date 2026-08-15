@@ -37,7 +37,7 @@ const countryData = [
 
 const tooltipStyle = {
   backgroundColor: 'rgba(20, 28, 52, 0.95)',
-  border: '1px solid rgba(148,163,184,0.15)',
+  border: '1px solid rgba(var(--w-slate-400-rgb), 0.15)',
   borderRadius: 8,
   color: 'var(--w-slate-200)',
   fontSize: '0.78rem',
@@ -78,10 +78,10 @@ export default function MscProductCountByCountry() {
           <div style={{ width: '100%', height: 300 }}>
             <SafeResponsiveContainer width="100%" height="100%">
               <BarChart data={countryData} layout="vertical" margin={{ top: 4, right: 52, left: 8, bottom: 4 }}>
-                <CartesianGrid strokeDasharray="3 3" stroke="rgba(148,163,184,0.08)" horizontal={false} />
+                <CartesianGrid strokeDasharray="3 3" stroke="rgba(var(--w-slate-400-rgb), 0.08)" horizontal={false} />
                 <XAxis type="number" domain={[0, 2600]} tick={{ fill: 'var(--w-slate-400)', fontSize: 11 }} axisLine={false} tickLine={false} tickFormatter={(v: number) => v.toLocaleString()} />
                 <YAxis type="category" dataKey="country" width={60} tick={{ fill: 'var(--w-slate-300)', fontSize: 11 }} axisLine={false} tickLine={false} />
-                <Tooltip content={<CustomTooltip />} cursor={{ fill: 'rgba(148,163,184,0.06)' }} />
+                <Tooltip content={<CustomTooltip />} cursor={{ fill: 'rgba(var(--w-slate-400-rgb), 0.06)' }} />
                 <Bar dataKey="count" radius={[0, 4, 4, 0]} isAnimationActive={false} barSize={16}>
                   {countryData.map((d, i) => (
                     <Cell key={i} fill={d.hot ? ITALY : BASE} fillOpacity={d.hot ? 0.92 : 0.6} />
@@ -93,7 +93,7 @@ export default function MscProductCountByCountry() {
           </div>
           <div style={{
             display: 'flex', alignItems: 'center', gap: '8px', padding: '10px 14px',
-            background: 'rgba(239,68,68,0.06)', border: '1px solid rgba(239,68,68,0.18)', borderRadius: '10px',
+            background: 'rgba(var(--w-red-500-rgb), 0.06)', border: '1px solid rgba(var(--w-red-500-rgb), 0.18)', borderRadius: '10px',
           }}>
             <Zap size={16} color={ITALY} style={{ flexShrink: 0 }} />
             <span style={{ fontSize: '0.72rem', color: 'var(--w-slate-300)' }}>

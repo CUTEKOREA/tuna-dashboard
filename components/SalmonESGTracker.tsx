@@ -66,8 +66,8 @@ export default function SalmonESGTracker() {
           <button key={o} onClick={() => setSelectedOrigin(o)} style={{
             padding: '0.4rem 0.75rem', borderRadius: '6px', fontSize: '0.75rem', fontWeight: 600,
             cursor: 'pointer', transition: 'all 0.2s',
-            background: selectedOrigin === o ? 'rgba(16,185,129,0.2)' : 'rgba(255,255,255,0.03)',
-            border: selectedOrigin === o ? '1px solid rgba(16,185,129,0.5)' : '1px solid rgba(255,255,255,0.1)',
+            background: selectedOrigin === o ? 'rgba(var(--w-emerald-500-rgb), 0.2)' : 'rgba(255,255,255,0.03)',
+            border: selectedOrigin === o ? '1px solid rgba(var(--w-emerald-500-rgb), 0.5)' : '1px solid rgba(255,255,255,0.1)',
             color: selectedOrigin === o ? 'var(--w-emerald-500)' : 'var(--w-slate-400)',
           }}>
             {o === '노르웨이' ? '🇳🇴' : o === '칠레' ? '🇨🇱' : '🇷🇺'} {o}

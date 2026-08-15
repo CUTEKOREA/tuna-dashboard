@@ -59,7 +59,7 @@ export function PollockPriceForecastChart() {
           {loading ? <div style={{ textAlign: 'center', padding: '2rem', color: 'var(--text-secondary)' }}>Loading forecast...</div> : (
             <>
               <div style={{ display: 'flex', gap: '8px', marginBottom: '12px' }}>
-                <div style={{ flex: 1, background: 'rgba(59,130,246,0.08)', borderRadius: '8px', padding: '8px', textAlign: 'center' }}>
+                <div style={{ flex: 1, background: 'rgba(var(--w-blue-500-rgb), 0.08)', borderRadius: '8px', padding: '8px', textAlign: 'center' }}>
                   <div style={{ fontSize: '0.6rem', color: 'var(--text-secondary)' }}>최종 관측치{lastObservedPeriod ? ` (${lastObservedPeriod})` : ''}</div>
                   <div style={{ fontSize: '1.2rem', fontWeight: 700, color: '#60a5fa' }}>${productData?.historical?.at(-1)?.actual?.toLocaleString() || 'N/A'}</div>
                   <div style={{ fontSize: '0.6rem', color: '#93c5fd' }}>{productData?.unit}</div>
@@ -69,7 +69,7 @@ export function PollockPriceForecastChart() {
                   <div style={{ fontSize: '1.2rem', fontWeight: 700, color: '#22c55e' }}>${productData?.forecast?.[0]?.predicted?.toLocaleString() || 'N/A'}</div>
                   <div style={{ fontSize: '0.6rem', color: '#86efac' }}>95% CI</div>
                 </div>
-                <div style={{ flex: 1, background: 'rgba(239,68,68,0.08)', borderRadius: '8px', padding: '8px', textAlign: 'center' }}>
+                <div style={{ flex: 1, background: 'rgba(var(--w-red-500-rgb), 0.08)', borderRadius: '8px', padding: '8px', textAlign: 'center' }}>
                   <div style={{ fontSize: '0.6rem', color: 'var(--text-secondary)' }}>추세</div>
                   <div style={{ fontSize: '1rem', fontWeight: 700, color: productData?.trend === 'UPWARD' || productData?.trend === 'STRUCTURAL_UPWARD' ? 'var(--w-red-500)' : '#22c55e' }}>
                     {productData?.trend === 'UPWARD' ? '▲ 상승' : productData?.trend === 'STRUCTURAL_UPWARD' ? '▲▲ 구조적 상승' : productData?.trend === 'PREMIUM_GROWTH' ? '⭐ 프리미엄' : '→ 안정'}
@@ -133,7 +133,7 @@ export function PollockScenarioSimulator() {
         <>
           <div style={{ display: 'grid', gap: '6px' }}>
             {scenarios.map((s: any, i: number) => (
-              <div key={i} style={{ display: 'flex', alignItems: 'center', gap: '8px', padding: '8px 10px', background: i === 0 ? 'rgba(59,130,246,0.08)' : 'rgba(255,255,255,0.03)', borderRadius: '8px', borderLeft: `3px solid ${s.margin_pct > 12 ? '#22c55e' : s.margin_pct > 7 ? 'var(--w-amber-500)' : 'var(--w-red-500)'}` }}>
+              <div key={i} style={{ display: 'flex', alignItems: 'center', gap: '8px', padding: '8px 10px', background: i === 0 ? 'rgba(var(--w-blue-500-rgb), 0.08)' : 'rgba(255,255,255,0.03)', borderRadius: '8px', borderLeft: `3px solid ${s.margin_pct > 12 ? '#22c55e' : s.margin_pct > 7 ? 'var(--w-amber-500)' : 'var(--w-red-500)'}` }}>
                 <div style={{ flex: 2 }}>
                   <div style={{ fontSize: '0.72rem', fontWeight: 600, color: 'var(--text-primary)' }}>{s.name}</div>
                   <div style={{ fontSize: '0.6rem', color: 'var(--text-secondary)' }}>확률: {s.probability}%</div>
@@ -154,7 +154,7 @@ export function PollockScenarioSimulator() {
             ))}
           </div>
           {sst && (
-            <div style={{ marginTop: '12px', background: 'rgba(239,68,68,0.06)', borderRadius: '8px', padding: '10px', display: 'flex', gap: '12px', alignItems: 'center' }}>
+            <div style={{ marginTop: '12px', background: 'rgba(var(--w-red-500-rgb), 0.06)', borderRadius: '8px', padding: '10px', display: 'flex', gap: '12px', alignItems: 'center' }}>
               <Thermometer size={20} color="#ef4444" />
               <div>
                 <div style={{ fontSize: '0.72rem', fontWeight: 600, color: 'var(--text-primary)' }}>베링해 SST: {sst.current_sst?.anomaly_c > 0 ? '+' : ''}{sst.current_sst?.anomaly_c}°C ({sst.current_sst?.status})</div>
