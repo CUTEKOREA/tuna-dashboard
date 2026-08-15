@@ -1,0 +1,44 @@
+const MAX_TOTP_QR_DATA_URL_LENGTH = 100_000;
+const SVG_PREFIX = 'data:image/svg+xml';
+const ALLOWED_METADATA = new Set([
+  '',
+  ';utf8',
+  ';utf-8',
+  ';charset=utf-8',
+  ';base64',
+  ';charset=utf-8;base64',
+]);
+const FORBIDDEN_SVG_PATTERN = /<\/?(?:script|foreignObject|iframe|object|embed|link|style|use|image|animate(?:Transform|Motion|Color)?|set|mpath|a|video|audio|math|html)\b|\s(?:on[a-z]+|href|src|xlink:href)\s*=|url\s*\(|javascript:|expression\s*\(|@import|<!DOCTYPE|<!ENTITY|<\?xml-stylesheet/i;
+
+function decodeBase64(value: string): string | null {
+  if (!/^(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=)?$/.test(value)) {
+    return null;
+  }
+  return Buffer.from(value, 'base64').toString('utf8');
+}
+
+function decodeSvgDataUrl(value: string): string | null {
+  if (!value.startsWith(SVG_PREFIX) || value.length > MAX_TOTP_QR_DATA_URL_LENGTH) return null;
+
+  const commaIndex = value.indexOf(',');
+  if (commaIndex < 0) return null;
+  const metadata = value.slice(SVG_PREFIX.length, commaIndex).toLowerCase();
+  if (!ALLOWED_METADATA.has(metadata)) return null;
+  const data = value.slice(commaIndex + 1);
+
+  try {
+    return metadata.includes(';base64')
+      ? decodeBase64(data)
+      : decodeURIComponent(data);
+  } catch {
+    return null;
+  }
+}
+
+export function isSafeTotpQrDataUrl(value: unknown): value is string {
+  if (typeof value !== 'string') return false;
+  const svg = decodeSvgDataUrl(value);
+  if (!svg || svg.length > MAX_TOTP_QR_DATA_URL_LENGTH) return false;
+  if (!/^\s*<svg\b/i.test(svg) || !/<\/svg>\s*$/i.test(svg)) return false;
+  return !FORBIDDEN_SVG_PATTERN.test(svg);
+}

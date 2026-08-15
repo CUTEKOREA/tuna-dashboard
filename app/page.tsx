@@ -5,7 +5,7 @@ import dynamic from 'next/dynamic';
 import Image from 'next/image';
 import Link from 'next/link';
 import styles from './page.module.css';
-import { Activity, Anchor, Ship, Lock, Radio, BarChart2, Navigation, Factory, Waves, Fish, Hexagon, Command, Menu, X, Snowflake, Shrimp, Droplets, FishSymbol, Shell, TestTube } from 'lucide-react';
+import { Activity, Anchor, Ship, Lock, Radio, BarChart2, Navigation, Factory, Waves, Fish, Hexagon, Command, Mail, Menu, X, Snowflake, Shrimp, Droplets, FishSymbol, Shell, TestTube } from 'lucide-react';
 import { supabase } from '../lib/supabase';
 import { usePathname, useRouter } from 'next/navigation';
 import { motion } from 'framer-motion';
@@ -46,6 +46,7 @@ const PurseSeinerDashboard = dynamic(() => import('../components/PurseSeinerDash
 const PanofiDashboard = dynamic(() => import('../components/panofi/PanofiDashboard'));
 const CosmoDashboard = dynamic(() => import('../components/cosmo/CosmoDashboard'));
 const BangkokDashboard = dynamic(() => import('../components/bangkok/BangkokDashboard'));
+const MailInboxDashboard = dynamic(() => import('../components/MailInboxDashboard'));
 
 const OPERATION_ACCESS_STORAGE_KEY = 'silla-operation-access';
 const OPERATION_PASSWORD = 'a34349900';
@@ -70,6 +71,7 @@ const SIDEBAR_ICONS: Record<SidebarIconKey, React.ElementType> = {
   FishSymbol,
   Hexagon,
   LongArmOctopus: LongArmOctopusIcon,
+  Mail,
   Navigation,
   Shell,
   Ship,
@@ -109,6 +111,7 @@ export default function Home() {
   const [authLoading, setAuthLoading] = useState(false);
   const [authError, setAuthError] = useState('');
   const [authSuccess, setAuthSuccess] = useState('');
+  const [mailAdminVisible, setMailAdminVisible] = useState(false);
   
   // Modals state
   const [isMgoModalOpen, setIsMgoModalOpen] = useState(false);
@@ -160,6 +163,36 @@ export default function Home() {
       
     }
     fetchMgoPrice();
+  }, []);
+
+  useEffect(() => {
+    let active = true;
+    const refreshMailVisibility = async (hasSession: boolean) => {
+      if (!hasSession) {
+        if (active) setMailAdminVisible(false);
+        return;
+      }
+      try {
+        const response = await fetch('/api/mail/status', {
+          cache: 'no-store',
+          credentials: 'same-origin',
+        });
+        if (active) setMailAdminVisible(response.ok);
+      } catch {
+        if (active) setMailAdminVisible(false);
+      }
+    };
+
+    void supabase.auth.getSession().then(({ data }) => (
+      refreshMailVisibility(Boolean(data.session))
+    ));
+    const { data: authListener } = supabase.auth.onAuthStateChange((_event, nextSession) => {
+      void refreshMailVisibility(Boolean(nextSession));
+    });
+    return () => {
+      active = false;
+      authListener.subscription.unsubscribe();
+    };
   }, []);
 
   const handleAuth = async (e: React.FormEvent) => {
@@ -243,6 +276,7 @@ export default function Home() {
     activeMenu === menu && (!SESSION_ACCESS_MENUS.has(menu) || operationAccessGranted)
   );
   const renderSidebarItem = (item: SidebarMenuItem) => {
+    if (item.key === 'mail' && !mailAdminVisible) return null;
     const Icon = SIDEBAR_ICONS[item.icon];
 
     return (
@@ -274,6 +308,7 @@ export default function Home() {
     panofi: <PanofiDashboard />,
     cosmo: <CosmoDashboard />,
     'bangkok-office': <BangkokDashboard />,
+    mail: mailAdminVisible ? <MailInboxDashboard /> : null,
     'purse-seiner-db': <PurseSeinerDashboard />,
   };
   const heroTeaserPanels: Partial<Record<ActiveMenu, React.ReactNode>> = {
