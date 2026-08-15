@@ -31,3 +31,48 @@ describe('filterAtunaHistory (V3 기간·입도 필터)', () => {
     expect(filterAtunaHistory([], '3m', 'month')).toEqual([]);
   });
 });
+
+/* V3 뉴스 A안 — 임팩트 넘버·카테고리 추출 불변식 */
+import {
+  buildBriefingImpactNumbers,
+  categorizeBriefingTitle,
+  dailyBriefing,
+  parseDailyBriefing,
+} from '../lib/data/daily-briefing';
+
+describe('briefing impact extraction (V3 뉴스 A안)', () => {
+  it('수치 토큰을 원문 그대로 뽑고, 없는 항목은 만들어내지 않는다', () => {
+    const briefing = parseDailyBriefing({
+      date: '2026-08-14',
+      digest: [
+        { title: '숫자 없는 헤드라인' },
+        { title: '만타 가다랑어 원료가 USD 2,200으로 2% 상승' },
+        { title: '몰디브 참치 수출, 관세 인하 후 20% 증가' },
+      ],
+      articles: [
+        { titleKo: 'ㄱ', paragraphs: ['이렇게 해야 한다.'] },
+        { titleKo: 'ㄴ', paragraphs: ['본문'] },
+        { titleKo: 'ㄷ', paragraphs: ['본문'] },
+      ],
+    });
+    const numbers = buildBriefingImpactNumbers(briefing);
+    expect(numbers).toHaveLength(2);
+    expect(numbers[0].value).toBe('USD 2,200');
+    expect(numbers[0].label).toBe('만타 가다랑어 원료가');
+    expect(numbers[1].value).toBe('20%');
+  });
+
+  it('실데이터에서 임팩트 넘버 라벨이 전부 비어 있지 않다', () => {
+    for (const impact of buildBriefingImpactNumbers(dailyBriefing)) {
+      expect(impact.label.length).toBeGreaterThanOrEqual(4);
+      expect(impact.value).toMatch(/\d/);
+    }
+  });
+
+  it('카테고리 배지는 항상 정의된 값 중 하나다', () => {
+    const allowed = ['시장', '규제', '원료가', '무역', '조업', '뉴스'];
+    for (const item of dailyBriefing.digest) {
+      expect(allowed).toContain(categorizeBriefingTitle(item.title));
+    }
+  });
+});
