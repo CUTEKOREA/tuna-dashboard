@@ -1,0 +1,70 @@
+/* FilterBar — Metabase 필터 pill 문법. 토큰만 참조해 다크·라이트 양쪽에서 성립한다. */
+
+.bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px 18px;
+  padding: 10px 14px;
+  border: 1px solid var(--dsc-surface-border);
+  border-radius: var(--dsc-card-radius, 12px);
+  background: var(--dsc-surface);
+}
+
+.group {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.groupLabel {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  margin-right: 2px;
+  color: var(--dsc-ink-muted, var(--text-muted));
+  font-size: 0.78rem;
+  font-weight: 700;
+}
+
+.pill {
+  padding: 5px 12px;
+  border: 1px solid var(--dsc-surface-border);
+  border-radius: 8px;
+  background: transparent;
+  color: var(--dsc-ink-muted, var(--text-muted));
+  font-size: 0.8rem;
+  font-weight: 400;
+  cursor: pointer;
+  transition: background-color 150ms ease, color 150ms ease, border-color 150ms ease;
+}
+
+.pill:hover {
+  border-color: var(--accent-primary);
+  color: var(--dsc-ink, var(--text-main));
+}
+
+.pill:focus-visible {
+  outline: 2px solid var(--accent-primary);
+  outline-offset: 1px;
+}
+
+.pillActive {
+  border-color: var(--accent-primary);
+  background: rgba(80, 158, 227, 0.10);
+  color: var(--accent-primary);
+  font-weight: 700;
+}
+
+.scopeNote {
+  margin-left: auto;
+  color: var(--dsc-ink-faint, var(--text-dim));
+  font-size: 0.74rem;
+}
+
+@media (max-width: 640px) {
+  .scopeNote {
+    margin-left: 0;
+    flex-basis: 100%;
+  }
+}

@@ -12,15 +12,44 @@ import {
 import SeafoodStockWidget from './SeafoodStockWidget';
 import TunaDailyBriefingWidget from './TunaDailyBriefingWidget';
 import HeroZone, { type HeroKpi } from './v2/HeroZone';
+import FilterBar from './v2/FilterBar';
 import {
+  ATUNA_GRAIN_LABELS,
+  ATUNA_PERIOD_LABELS,
+  type AtunaGrainKey,
+  type AtunaPeriodKey,
   SKJ_ATUNA_HUBS,
   type AtunaPriceRow,
   type AtunaSpreadSummary,
   buildAtunaMarketSummaries,
   calcAtunaDeltaPct,
+  filterAtunaHistory,
   latestTwoForAtunaHub,
 } from '../lib/data/atuna-price-summary';
 import styles from './MarketDashboard.module.css';
+
+const PERIOD_KEYS: AtunaPeriodKey[] = ['3m', '6m', '1y', 'all'];
+const GRAIN_KEYS: AtunaGrainKey[] = ['week', 'month'];
+
+/* 필터 상태 URL 동기화 (?period=&grain=) — 공유 링크가 같은 화면을 연다 (스펙 §4-1) */
+function readFilterFromUrl(): { period: AtunaPeriodKey; grain: AtunaGrainKey } {
+  if (typeof window === 'undefined') return { period: 'all', grain: 'week' };
+  const params = new URLSearchParams(window.location.search);
+  const period = params.get('period') as AtunaPeriodKey | null;
+  const grain = params.get('grain') as AtunaGrainKey | null;
+  return {
+    period: period && PERIOD_KEYS.includes(period) ? period : 'all',
+    grain: grain && GRAIN_KEYS.includes(grain) ? grain : 'week',
+  };
+}
+
+function writeFilterToUrl(period: AtunaPeriodKey, grain: AtunaGrainKey) {
+  const params = new URLSearchParams(window.location.search);
+  if (period === 'all') params.delete('period'); else params.set('period', period);
+  if (grain === 'week') params.delete('grain'); else params.set('grain', grain);
+  const query = params.toString();
+  window.history.replaceState(null, '', `${window.location.pathname}${query ? `?${query}` : ''}`);
+}
 
 const fmtPct = (p: number) => `${p >= 0 ? '+' : ''}${p.toFixed(1)}%`;
 const subscribeClientSnapshot = () => () => {};
@@ -83,6 +112,20 @@ export default function MarketDashboard({ heroOnly = false }: { heroOnly?: boole
   const [priceData, setPriceData] = useState<any[]>([]);
   const chartContainerRef = useRef<HTMLDivElement>(null);
   const [chartWidth, setChartWidth] = useState(0);
+
+  // V3 파일럿 필터 — 초기값은 URL에서 (SSR에서는 기본값, 마운트 후 동기화)
+  const [chartFilter, setChartFilter] = useState<{ period: AtunaPeriodKey; grain: AtunaGrainKey }>(
+    { period: 'all', grain: 'week' },
+  );
+  useEffect(() => {
+    // URL은 마운트 후 1회만 읽는다 — SSR 기본값과의 hydration 불일치 방지가 목적이라 동기 setState가 맞다
+    // eslint-disable-next-line react-hooks/set-state-in-effect
+    setChartFilter(readFilterFromUrl());
+  }, []);
+  const applyFilter = (next: { period: AtunaPeriodKey; grain: AtunaGrainKey }) => {
+    setChartFilter(next);
+    writeFilterToUrl(next.period, next.grain);
+  };
 
   // Measure container width with ResizeObserver (works even after display:none -> block toggle)
   useEffect(() => {
@@ -182,6 +225,8 @@ export default function MarketDashboard({ heroOnly = false }: { heroOnly?: boole
   }, [heroOnly]);
 
   const marketHero = <MarketHero rows={priceData} />;
+  // 필터는 어가 추이 차트에만 적용 — KPI·히어로는 전체 기간 기준 (결정 ②)
+  const chartData = filterAtunaHistory(priceData, chartFilter.period, chartFilter.grain);
 
   if (heroOnly) {
     return (
@@ -332,11 +377,25 @@ export default function MarketDashboard({ heroOnly = false }: { heroOnly?: boole
         </div>
       </section>
 
+      {/* V3 필터 바 — 적용 범위를 캡션으로 정직 표기 (스펙 §4-1, 결정 ②) */}
+      <FilterBar
+        periodOptions={PERIOD_KEYS.map((key) => ({ key, label: ATUNA_PERIOD_LABELS[key] }))}
+        period={chartFilter.period}
+        onPeriodChange={(period) => applyFilter({ ...chartFilter, period })}
+        grainOptions={GRAIN_KEYS.map((key) => ({ key, label: ATUNA_GRAIN_LABELS[key] }))}
+        grain={chartFilter.grain}
+        onGrainChange={(grain) => applyFilter({ ...chartFilter, grain })}
+        scopeNote="어가 추이 차트에 적용 · KPI·기사 카드는 전체 기간 기준"
+      />
+
       {/* ROW 2: TUNA PRICE TRENDS BY REGION */}
       <section className={`dsc-card ${styles.chartPanel}`}>
         <h3 style={{ display: 'flex', alignItems: 'center', gap: '8px', fontSize: '1.1rem', marginBottom: '16px', color: 'var(--text-main)' }}>
-          <BarChart2 size={20} color="#38bdf8" />
+          <BarChart2 size={20} color="var(--accent-primary)" />
           글로벌 참치 어가 추이 (SKJ·YF 지역 스프레드)
+          <span style={{ fontSize: '0.75rem', fontWeight: 400, color: 'var(--text-muted)' }}>
+            {ATUNA_PERIOD_LABELS[chartFilter.period]} · {ATUNA_GRAIN_LABELS[chartFilter.grain]}
+          </span>
           {atunaLatest.latestDate && (
             <span style={{ marginLeft: 'auto', fontSize: '0.75rem', fontWeight: 400, color: 'var(--text-muted)', whiteSpace: 'nowrap' }}>
               Atuna 수동동기화 ({formatHubDate(atunaLatest.latestDate)} 기준)
@@ -346,12 +405,12 @@ export default function MarketDashboard({ heroOnly = false }: { heroOnly?: boole
         <div ref={chartContainerRef} style={{ width: '100%', minHeight: '350px', display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(450px, 1fr))', gap: '24px' }}>
           
           {/* LEFT: SKIPJACK (SKJ) */}
-          {chartWidth > 0 && priceData.length > 0 && (
+          {chartWidth > 0 && chartData.length > 0 && (
             <div style={{ display: 'flex', flexDirection: 'column' }}>
               <h4 style={{ fontSize: '0.95rem', fontWeight: 600, color: 'var(--text-muted)', marginBottom: '8px', textAlign: 'center' }}>
                 가다랑어 (SKJ)
               </h4>
-              <LineChart width={chartWidth > 900 ? (chartWidth - 24) / 2 : chartWidth} height={350} data={priceData} margin={{ top: 10, right: 10, left: 0, bottom: 0 }}>
+              <LineChart width={chartWidth > 900 ? (chartWidth - 24) / 2 : chartWidth} height={350} data={chartData} margin={{ top: 10, right: 10, left: 0, bottom: 0 }}>
                 <defs>
                   <linearGradient id="mktGradSkj" x1="0" y1="0" x2="1" y2="0">
                     <stop offset="0%" stopColor="#22d3ee" />
@@ -378,12 +437,12 @@ export default function MarketDashboard({ heroOnly = false }: { heroOnly?: boole
           )}
 
           {/* RIGHT: YELLOWFIN (YF) */}
-          {chartWidth > 0 && priceData.length > 0 && (
+          {chartWidth > 0 && chartData.length > 0 && (
             <div style={{ display: 'flex', flexDirection: 'column' }}>
               <h4 style={{ fontSize: '0.95rem', fontWeight: 600, color: 'var(--text-muted)', marginBottom: '8px', textAlign: 'center' }}>
                 황다랑어 (YF)
               </h4>
-              <LineChart width={chartWidth > 900 ? (chartWidth - 24) / 2 : chartWidth} height={350} data={priceData} margin={{ top: 10, right: 10, left: 0, bottom: 0 }}>
+              <LineChart width={chartWidth > 900 ? (chartWidth - 24) / 2 : chartWidth} height={350} data={chartData} margin={{ top: 10, right: 10, left: 0, bottom: 0 }}>
                 <defs>
                   <linearGradient id="mktGradYf" x1="0" y1="0" x2="1" y2="0">
                     <stop offset="0%" stopColor="#818cf8" />
