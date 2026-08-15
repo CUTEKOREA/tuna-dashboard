@@ -12,6 +12,7 @@ import {
   fleetTotals,
   h1,
   headline,
+  industry,
   pfc,
   priceSeries,
   weeks,
@@ -302,3 +303,18 @@ describe('출처 표기', () => {
     expect(tabs).toContain('판매기준');
   });
 });
+
+describe('가나 가공공장 구성', () => {
+  it('테마항 가공은 3사이고 이치반은 별도 공장으로 나열되지 않는다', () => {
+    // 외부 자료는 네 번째로 이치반을 넣지만 코스모의 FBU 사업으로 흡수됐다(사내 확인).
+    const plants = industry.cannersDetail.map((c) => c.plant);
+    expect(plants).toHaveLength(3);
+    expect(plants).not.toContain('Ichiban Seafoods');
+  });
+
+  it('흡수 사실을 숨기지 않고 코스모 항목과 각주에 남긴다', () => {
+    const cosmo = industry.cannersDetail.find((c) => c.plant === 'Cosmo Seafoods');
+    expect(cosmo && 'absorbed' in cosmo && cosmo.absorbed).toBeTruthy();
+    expect(industry.cannersNote).toContain('이치반');
+  });
+})

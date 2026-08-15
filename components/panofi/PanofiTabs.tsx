@@ -679,8 +679,8 @@ export function IndustryTab() {
             yFmt={(v) => `${v.toLocaleString('en-US')}유로`} />
         </Panel>
 
-        <Panel span={6} title="테마항 가공공장" note={industry.capacityCaveat} src={`${SRC.nlm} · 2026-08-15 재수집`}>
-          <Table head={['공장', '소유', '설립', '처리능력', '고용', '주력 제품']}>
+        <Panel span={12} title="테마항 가공공장" note={`${industry.cannersNote} ${industry.capacityCaveat}`} src={`${SRC.nlm} · 흡수 사실은 사내 확인(2026-08-15)`}>
+          <Table head={['공장', '소유', '설립', '처리능력', '고용', '주력 제품', '비고']}>
             {industry.cannersDetail.map((c) => (
               <tr key={c.plant}>
                 <td>{c.plantKo}</td>
@@ -690,7 +690,11 @@ export function IndustryTab() {
                   {c.capacityTPerDay ? `일 ${c.capacityTPerDay}톤 (실가동 ${c.operatingTPerDay}톤)` : (c.capacity ?? '자료 없음')}
                 </td>
                 <td>{c.employees ?? '자료 없음'}</td>
-                <td style={{ textAlign: 'left' }}>{c.products}{'employeesConflict' in c && c.employeesConflict ? ` · 고용 수치 출처 혼선 — ${c.employeesConflict}` : ''}</td>
+                <td style={{ textAlign: 'left' }}>{c.products}</td>
+                <td style={{ textAlign: 'left' }}>
+                  {'absorbed' in c && c.absorbed ? c.absorbed : ''}
+                  {'employeesConflict' in c && c.employeesConflict ? ` 고용 수치 출처 혼선 — ${c.employeesConflict}` : ''}
+                </td>
               </tr>
             ))}
           </Table>
