@@ -1,7 +1,8 @@
-> 📬 **2026-08-15 16:10 KST — 관리자 전용 Gmail 읽기 전용 통합 메일 배포 후보** [Codex]:
+> 📬 **2026-08-15 16:29 KST — 관리자 전용 Gmail 읽기 전용 통합 메일 운영 배포 완료** [Codex] (PR #407, `1a805c2`):
 > - `/mail` 서버 관리자 게이트와 조건부 메뉴, Supabase TOTP AAL2, Gmail OAuth state+PKCE, 최근 20/50건·안 읽은 수·발신자·제목·수신 시각·미리보기·원본 링크, Google 권한 철회+암호화 연결 삭제를 구현했다. 메일 API 7개는 `no-store`, Node runtime, 고정 공개 origin과 변경 요청 Origin 검증을 사용한다.
 > - 운영 Supabase migration 적용, `mail_oauth_connections` 8열·0행 확인, TOTP 활성화, Gmail API·`gmail.readonly`·고정 callback·외부 테스트 사용자 1명 설정, Vercel Production 비밀 환경변수 8종 등록을 완료했다. 자격증명 값은 저장소·문서에 기록하지 않았다.
-> - 기준 브랜치가 최신 `origin/main`보다 뒤여서 배포 후보는 최신 main 위에 43개 소유 파일을 3-way 적용했다. 방콕 네이티브 대시보드와 파노피 메뉴를 보존하면서 메일 항목만 병합했다. 커밋·PR·운영 배포 및 실계정 MFA→Gmail 연결→20/50건→연결 해제 검증은 진행 중이다.
+> - 최신 main 위 43개 소유 파일로 통합해 방콕 네이티브 대시보드와 파노피 메뉴를 보존했다. 최종 SHA에서 verify(67파일·377테스트, 캐시 150/150, build, bundle 31)와 독립 반증 3건(blocking 0), PR CI·Vercel Preview·Production·S-Grade 검사가 모두 통과했다.
+> - 운영 비인증 스모크: `/mail` 404, status/messages/connect/MFA/disconnect 401, callback invalid flow 307→고정 `/mail?mail_error=failed`; 메일 API는 `no-store`. 다음 단계는 사용자가 관리자 로그인·TOTP·Google 동의를 완료한 뒤 실계정 20/50건, 원본 링크, 연결 해제 `revoked`, DB 0행을 확인하는 것이다.
 >
 > 💡 **2026-08-15 14:40 KST — V3 «Answerable BI» 라이트 파일럿 /market 배포** [CC] (PR #393 병합·라이브 200):
 > - **사용자 결정 확정**: ① 색 방향 = Metabase Light 전환(다크는 토글 보존) ② 필터-내러티브 = «전체 기간 기준» 고정 라벨 먼저 ③ 파일럿 = market. 스펙 §7에 기록.
