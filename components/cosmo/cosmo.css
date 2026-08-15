@@ -276,3 +276,25 @@
   color: var(--cosmo-muted);
   line-height: 1.5;
 }
+
+/* ── V3 라이트 롤아웃 (2026-08-15): 코스모·파노피·방콕이 공유하는 토큰의 라이트 재정의.
+ * 시리즈 5색은 다크 기준으로 이미 중채도라 라이트에서도 대비 성립 — 값 유지.
+ * 소프트 배경(–soft)만 라이트 틴트로 교체한다. ── */
+[data-v3='light'] .cosmo-root {
+  --cosmo-paper: #f9fafb;
+  --cosmo-surface: #ffffff;
+  --cosmo-surface-2: #f1f2f4;
+  --cosmo-ink: #22242b;
+  --cosmo-ink-2: #4c5773;
+  --cosmo-muted: #8d93a5;
+  --cosmo-line: #e2e4e9;
+  --cosmo-line-2: #eceef1;
+  --cosmo-accent-soft: #fdf0f2;
+  --cosmo-data-soft: #eef6fa;
+  --cosmo-ok-soft: #f0f7ee;
+  --cosmo-warn-soft: #fbf6e7;
+  --cosmo-bad-soft: #fdf1ef;
+  --cosmo-grid: #e8eaee;
+  --cosmo-axis: #8d93a5;
+  --cosmo-shadow: 0 4px 8px -2px rgba(16, 24, 40, 0.10), 0 2px 4px -2px rgba(16, 24, 40, 0.06);
+}

@@ -9,8 +9,8 @@
 .missionStrip { display:flex; gap:10px; min-width:max-content; }
 .missionCard { display:flex; gap:11px; width:224px; min-height:92px; padding:14px; border:1px solid var(--dsc-surface-border); border-left-width:3px; border-radius:var(--dsc-card-radius); background:var(--dsc-surface); box-shadow:var(--dsc-card-shadow); backdrop-filter:var(--dsc-surface-blur); }
 .missionCard svg { margin-top:2px; flex:0 0 auto; }
-.missionCard strong { display:block; margin:2px 0 5px; color:#f8fafc; font-size:.93rem; }
-.missionCard p { margin:0; color:#94a3b8; font-size:.78rem; line-height:1.45; }
+.missionCard strong { display:block; margin:2px 0 5px; color:var(--dsc-ink); font-size:.93rem; }
+.missionCard p { margin:0; color:var(--dsc-ink-muted); font-size:.78rem; line-height:1.45; }
 
 .commandIntro { display:flex; align-items:flex-start; justify-content:space-between; gap:16px; padding:22px 24px; border:1px solid var(--dsc-surface-border); border-radius:var(--dsc-card-radius); background:var(--dsc-surface); box-shadow:var(--dsc-card-shadow); }
 .commandIntro h2 { margin:5px 0 7px; color:#f8fafc; font-size:1.45rem; }
@@ -497,7 +497,7 @@
 .tabPanel[hidden] { display:none; }
 .decisionPanel { margin:20px 0 4px; padding:22px; border:1px solid var(--dsc-surface-border); border-radius:var(--dsc-card-radius); background:var(--dsc-surface); box-shadow:var(--dsc-card-shadow); }
 .decisionHeader,.sectionHeading { display:flex; align-items:flex-start; justify-content:space-between; gap:16px; margin-bottom:16px; }
-.decisionHeader h3,.sectionHeading h3 { margin:4px 0 0; color:#f8fafc; font-size:1.25rem; }
+.decisionHeader h3,.sectionHeading h3 { margin:4px 0 0; color:var(--dsc-ink); font-size:1.25rem; }
 .eyebrow { color:#38bdf8; font-size:.72rem; font-weight:800; letter-spacing:.09em; }
 .staticBadge { padding:5px 10px; border:1px solid rgba(148,163,184,.25); border-radius:999px; color:#94a3b8; font-size:.72rem; white-space:nowrap; }
 .decisionGrid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:10px; }
@@ -505,15 +505,15 @@
 .decisionItem svg { margin-top:2px; flex:0 0 auto; }
 .decisionItem strong { display:block; margin:2px 0 5px; color:#f8fafc; font-size:.93rem; }
 .decisionItem p,.accessAlert p { margin:0; color:#94a3b8; font-size:.78rem; line-height:1.45; }
-.decisionLevel { display:block; color:#cbd5e1; font-size:.67rem; font-weight:800; }
+.decisionLevel { display:block; color:var(--dsc-ink-muted); font-size:.67rem; font-weight:800; }
 .decision_danger { border-left-color:#fb7185; } .decision_danger svg{color:#fb7185}
 .decision_warning { border-left-color:var(--accent-primary); } .decision_warning svg{color:var(--accent-primary)}
 .decision_primary { border-left-color:var(--accent-primary); } .decision_primary svg{color:var(--accent-primary)}
-.reportDetails { margin-top:14px; padding-top:12px; border-top:1px solid rgba(148,163,184,.16); color:#cbd5e1; }
+.reportDetails { margin-top:14px; padding-top:12px; border-top:1px solid rgba(148,163,184,.16); color:var(--dsc-ink-muted); }
 .reportDetails summary { cursor:pointer; font-size:.8rem; font-weight:700; }
-.reportDetails p { color:#94a3b8; font-size:.78rem; line-height:1.6; }
+.reportDetails p { color:var(--dsc-ink-muted); font-size:.78rem; line-height:1.6; }
 .sectionHeading { margin:4px 0 16px; }
-.sectionHeading>span { color:#94a3b8; font-size:.74rem; }
+.sectionHeading>span { color:var(--dsc-ink-muted); font-size:.74rem; }
 .accessAlert { display:flex; gap:12px; margin-bottom:18px; padding:14px 16px; border:1px solid var(--dsc-surface-border); border-radius:var(--dsc-card-radius); background:var(--dsc-surface); color:var(--accent-primary); box-shadow:var(--dsc-card-shadow); }
 .accessAlert strong { display:block; margin-bottom:4px; color:var(--dsc-ink); }
 
@@ -560,6 +560,14 @@
   .staticBadge { white-space:normal; }
   .vdsPanel { padding:16px; }
   .vdsSummaryGrid { grid-template-columns:1fr 1fr; }
+}
+
+/* ── [data-v3='light'] 오버라이드 (TakeawayBox 패턴) ──
+ * HeroZone의 다크 스크림(인라인, .heroVessel 바로 뒤 sibling div)을 라이트 페이드로
+ * 교체 — 어두운 선박 사진 위에서 잉크색 KPI 숫자(연간 누적·운반선 선적)가 소실되는
+ * 문제 해결. 인라인 스타일보다 우선하도록 !important 필요. */
+[data-v3='light'] .fleetHero .heroVessel + div {
+  background: linear-gradient(180deg, rgba(249, 250, 251, 0.62) 0%, rgba(249, 250, 251, 0.24) 34%, rgba(249, 250, 251, 0.92) 100%) !important;
 }
 
 @media (max-width:420px) {
