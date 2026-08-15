@@ -232,14 +232,15 @@ describe('dashboard registry', () => {
     expect(marketSource).not.toContain('--kpi-grad');
     expect(marketSource).not.toMatch(/accent:\s*['"]#/);
     expect(marketStyles).not.toContain('gradient');
-    for (const selector of ['.dashboard', '.kpiCard', '.chartPanel']) {
+    for (const selector of ['.kpiCard', '.chartPanel']) {
       const rule = cssRule(marketStyles, selector);
       expect(rule).not.toBe('');
-      expect(rule).toContain('var(--dsc-');
     }
-    expect(cssRule(marketStyles, '.kpiCard::before')).toContain('var(--accent-primary)');
-    expect(cssRule(marketStyles, '.kpiCard')).toContain('background: var(--dsc-surface) !important');
-    expect(cssRule(marketStyles, '.chartPanel')).toContain('background: var(--dsc-surface) !important');
+    expect(cssRule(marketStyles, '.dashboard')).toContain('var(--dsc-bg)');
+    expect(marketSource.match(/dsc-card dsc-card--accent/g)).toHaveLength(4);
+    expect(cssRule(marketStyles, '.kpiCard::before')).toBe('');
+    expect(cssRule(globalsSource, '.dsc-card')).toContain('background: var(--dsc-surface)');
+    expect(cssRule(globalsSource, '.dsc-card')).toContain('border-radius: var(--dsc-card-radius)');
 
     for (const selector of [
       '.commandIntro',

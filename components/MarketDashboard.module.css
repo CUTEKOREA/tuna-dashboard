@@ -13,29 +13,7 @@
 }
 
 .kpiCard {
-  position: relative;
   overflow: hidden;
-  border: 1px solid var(--dsc-surface-border);
-  border-radius: var(--dsc-card-radius);
-  background: var(--dsc-surface) !important;
-  box-shadow: var(--dsc-card-shadow);
-  backdrop-filter: var(--dsc-surface-blur);
-}
-
-.kpiCard::before {
-  position: absolute;
-  z-index: 1;
-  top: 0;
-  right: 0;
-  left: 0;
-  height: 3px;
-  background: var(--accent-primary);
-  content: '';
-}
-
-.kpiCard::after,
-.chartPanel::after {
-  content: none;
 }
 
 .kpiCard:hover {
@@ -46,11 +24,6 @@
 
 .chartPanel {
   min-width: 0;
-  border: 1px solid var(--dsc-surface-border);
-  border-radius: var(--dsc-card-radius);
-  background: var(--dsc-surface) !important;
-  box-shadow: var(--dsc-card-shadow);
-  backdrop-filter: var(--dsc-surface-blur);
 }
 
 .staleBadge {
