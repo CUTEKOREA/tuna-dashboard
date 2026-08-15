@@ -24,6 +24,9 @@ import {
   monthlySeries,
   liquidity,
   liquidityBridge,
+  mirror,
+  mirrorPairs,
+  mirrorTopGap,
 } from '../lib/data/panofi';
 import { DASHBOARD_MENU_CONFIGS, SIDEBAR_SECTIONS } from '../lib/dashboard-registry';
 
@@ -244,5 +247,34 @@ describe('자금유동성 (월간보고 pptx)', () => {
     expect(liquidity.meta.missingMonths).toContain('3월');
     expect(liquidity.meta.missingMonths).toContain('6월');
     expect(liquidity.meta.knownDiscrepancy).toContain('44,158');
+  });
+});
+
+describe('거울통계 교차검증', () => {
+  it('가나 수출과 상대국 수입을 같은 연도·세번으로만 맞댄다', () => {
+    for (const p of mirror.pairs) {
+      expect(mirror.meta.codes).toContain(p.hs);
+    }
+    expect(mirror.meta.year).toBe(2024);
+  });
+
+  it('비율은 양쪽이 다 보고한 쌍에서만 계산한다', () => {
+    for (const p of mirror.pairs) {
+      const both = Boolean(p.ghanaExportUsd && p.partnerImportUsd);
+      expect(p.importOverExport === null).toBe(!both);
+    }
+  });
+
+  it('가장 큰 격차는 비율이 아니라 절대 금액으로 고른다', () => {
+    // 소액 건은 비율이 크게 튄다(포르투갈 9.78배는 20만불 기준). 비율로 고르면 오독한다.
+    expect(mirrorTopGap).not.toBeNull();
+    const maxByGap = Math.max(...mirrorPairs.map((p) => p.gapUsd));
+    expect(mirrorTopGap!.gapUsd).toBe(maxByGap);
+  });
+
+  it('해석 문구가 CIF-FOB 정상 차이를 함께 밝힌다', () => {
+    // 격차를 곧바로 미보고로 읽지 않도록 정상 요인을 반드시 병기한다.
+    expect(mirror.meta.interpretation).toContain('CIF');
+    expect(mirror.meta.interpretation).toContain('판정하지 않는다');
   });
 });

@@ -3,6 +3,7 @@ import profileRaw from '@/public/data/panofi/panofi_profile.json';
 import tradeRaw from '@/public/data/panofi/ghana_tuna_trade.json';
 import actualsRaw from '@/public/data/panofi/panofi_actuals.json';
 import liquidityRaw from '@/public/data/panofi/panofi_liquidity.json';
+import mirrorRaw from '@/public/data/panofi/ghana_tuna_mirror.json';
 
 /**
  * 파노피(가나 참치 선망) 데이터 인테이크.
@@ -451,6 +452,41 @@ export const monthlyEstimates = liquidity.estimates
     전년실적: e.netPrevYear ?? null,
     매출추정: e.revenue ?? null,
   }));
+
+/* ------------------------------------------------------- 거울통계 (교차검증) */
+
+export const mirror = mirrorRaw;
+
+/**
+ * 가나가 «수출했다»고 보고한 값 vs 상대국이 «가나에서 수입했다»고 보고한 값.
+ * 양쪽이 다 보고한 쌍만, 금액 큰 순으로.
+ */
+export const mirrorPairs = mirror.pairs
+  .filter((p) => p.ghanaExportUsd && p.partnerImportUsd)
+  .map((p) => ({
+    label: `${p.partner} ${p.hs}`,
+    partner: p.partner,
+    hs: p.hs,
+    가나수출: Math.round((p.ghanaExportUsd ?? 0) / 1e6),
+    상대국수입: Math.round((p.partnerImportUsd ?? 0) / 1e6),
+    ratio: p.importOverExport,
+    gapUsd: (p.partnerImportUsd ?? 0) - (p.ghanaExportUsd ?? 0),
+  }))
+  .sort((a, b) => b.가나수출 - a.가나수출);
+
+/** 가나만 보고하고 상대국 기록이 없는 건. 받은 쪽 장부에 없다는 뜻이다. */
+export const mirrorUnmatched = mirror.pairs
+  .filter((p) => p.ghanaExportUsd && !p.partnerImportUsd)
+  .map((p) => ({
+    partner: p.partner,
+    hs: p.hs,
+    가나수출: Math.round((p.ghanaExportUsd ?? 0) / 1e6),
+    valueUsd: p.ghanaExportUsd ?? 0,
+  }))
+  .sort((a, b) => b.valueUsd - a.valueUsd);
+
+/** 절대 금액이 가장 크게 벌어진 쌍. 비율만 보면 소액 건이 위로 올라와 오독한다. */
+export const mirrorTopGap = [...mirrorPairs].sort((a, b) => b.gapUsd - a.gapUsd)[0] ?? null;
 
 /** 원자료 품질 플래그. 화면 하단 '데이터 품질'에 그대로 노출해 신뢰도를 스스로 밝힌다. */
 export const dataQuality = {

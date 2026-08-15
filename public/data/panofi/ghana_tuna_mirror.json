@@ -1,0 +1,202 @@
+{
+ "meta": {
+  "year": 2024,
+  "codes": [
+   "160414",
+   "030342",
+   "030343",
+   "030487"
+  ],
+  "source": "UN Comtrade public preview",
+  "method": "가나가 보고한 상대국별 수출 vs 상대국이 보고한 가나發 수입",
+  "interpretation": "거울통계는 원래 정확히 일치하지 않는다. 수입 신고액은 운임·보험이 얹힌 CIF 라 보통 수출(FOB)보다 5~15% 크고, 연말 선적분은 상대국에서 다음 해로 잡히며, 제3국 경유분은 원산지 귀속이 갈린다. 따라서 «수입 > 수출»은 정상이고, 수입이 수출을 크게 밑돌 때만 미보고를 의심한다. 이 파일은 격차만 제시하고 판정하지 않는다.",
+  "pairCount": 18,
+  "bothReportedCount": 13,
+  "medianRatio": 1.75,
+  "ghanaExportTotalUsd": 137179484,
+  "partnerImportTotalUsd": 187712068,
+  "totalRatio": 1.368
+ },
+ "pairs": [
+  {
+   "partner": "영국",
+   "partnerCode": 826,
+   "hs": "160414",
+   "ghanaExportUsd": 55988942,
+   "partnerImportUsd": 109463673,
+   "ghanaExportT": 10789.6,
+   "partnerImportT": 20914.4,
+   "importOverExport": 1.96
+  },
+  {
+   "partner": "독일",
+   "partnerCode": 276,
+   "hs": "160414",
+   "ghanaExportUsd": 26531280,
+   "partnerImportUsd": 35488871,
+   "ghanaExportT": 6484.4,
+   "partnerImportT": 8670.2,
+   "importOverExport": 1.34
+  },
+  {
+   "partner": "이탈리아",
+   "partnerCode": 380,
+   "hs": "160414",
+   "ghanaExportUsd": 22231854,
+   "partnerImportUsd": 21393814,
+   "ghanaExportT": 3073.1,
+   "partnerImportT": 2895.9,
+   "importOverExport": 0.96
+  },
+  {
+   "partner": "아랍에미리트",
+   "partnerCode": 784,
+   "hs": "030342",
+   "ghanaExportUsd": 8249436,
+   "partnerImportUsd": null,
+   "ghanaExportT": 5160.1,
+   "partnerImportT": null,
+   "importOverExport": null
+  },
+  {
+   "partner": "중국",
+   "partnerCode": 156,
+   "hs": "030343",
+   "ghanaExportUsd": 4590501,
+   "partnerImportUsd": null,
+   "ghanaExportT": 3809.5,
+   "partnerImportT": null,
+   "importOverExport": null
+  },
+  {
+   "partner": "벨기에",
+   "partnerCode": 56,
+   "hs": "160414",
+   "ghanaExportUsd": 3989735,
+   "partnerImportUsd": 2423797,
+   "ghanaExportT": 889.6,
+   "partnerImportT": 543.4,
+   "importOverExport": 0.61
+  },
+  {
+   "partner": "네덜란드",
+   "partnerCode": 528,
+   "hs": "160414",
+   "ghanaExportUsd": 3871498,
+   "partnerImportUsd": 4399228,
+   "ghanaExportT": 903.3,
+   "partnerImportT": 977.1,
+   "importOverExport": 1.14
+  },
+  {
+   "partner": "아일랜드",
+   "partnerCode": 372,
+   "hs": "160414",
+   "ghanaExportUsd": 2846801,
+   "partnerImportUsd": 3103162,
+   "ghanaExportT": 577.0,
+   "partnerImportT": 598.0,
+   "importOverExport": 1.09
+  },
+  {
+   "partner": "아랍에미리트",
+   "partnerCode": 784,
+   "hs": "030343",
+   "ghanaExportUsd": 2824602,
+   "partnerImportUsd": null,
+   "ghanaExportT": 2247.5,
+   "partnerImportT": null,
+   "importOverExport": null
+  },
+  {
+   "partner": "중국",
+   "partnerCode": 156,
+   "hs": "030342",
+   "ghanaExportUsd": 1804450,
+   "partnerImportUsd": null,
+   "ghanaExportT": 1553.3,
+   "partnerImportT": null,
+   "importOverExport": null
+  },
+  {
+   "partner": "포르투갈",
+   "partnerCode": 620,
+   "hs": "030487",
+   "ghanaExportUsd": 1774327,
+   "partnerImportUsd": 3346967,
+   "ghanaExportT": 370.4,
+   "partnerImportT": 514.7,
+   "importOverExport": 1.89
+  },
+  {
+   "partner": "이탈리아",
+   "partnerCode": 380,
+   "hs": "030487",
+   "ghanaExportUsd": 706818,
+   "partnerImportUsd": 1234730,
+   "ghanaExportT": 126.0,
+   "partnerImportT": 166.5,
+   "importOverExport": 1.75
+  },
+  {
+   "partner": "이탈리아",
+   "partnerCode": 380,
+   "hs": "030342",
+   "ghanaExportUsd": 665270,
+   "partnerImportUsd": 1006227,
+   "ghanaExportT": 306.1,
+   "partnerImportT": 407.2,
+   "importOverExport": 1.51
+  },
+  {
+   "partner": "스페인",
+   "partnerCode": 724,
+   "hs": "030487",
+   "ghanaExportUsd": 392918,
+   "partnerImportUsd": 2672442,
+   "ghanaExportT": 70.1,
+   "partnerImportT": 421.5,
+   "importOverExport": 6.8
+  },
+  {
+   "partner": "스페인",
+   "partnerCode": 724,
+   "hs": "160414",
+   "ghanaExportUsd": 265262,
+   "partnerImportUsd": 913907,
+   "ghanaExportT": 58.8,
+   "partnerImportT": 187.8,
+   "importOverExport": 3.45
+  },
+  {
+   "partner": "포르투갈",
+   "partnerCode": 620,
+   "hs": "160414",
+   "ghanaExportUsd": 205115,
+   "partnerImportUsd": 2005647,
+   "ghanaExportT": 41.1,
+   "partnerImportT": 371.2,
+   "importOverExport": 9.78
+  },
+  {
+   "partner": "포르투갈",
+   "partnerCode": 620,
+   "hs": "030342",
+   "ghanaExportUsd": 129406,
+   "partnerImportUsd": null,
+   "ghanaExportT": 23.4,
+   "partnerImportT": null,
+   "importOverExport": null
+  },
+  {
+   "partner": "스페인",
+   "partnerCode": 724,
+   "hs": "030342",
+   "ghanaExportUsd": 111269,
+   "partnerImportUsd": 259603,
+   "ghanaExportT": 48.6,
+   "partnerImportT": 97.2,
+   "importOverExport": 2.33
+  }
+ ]
+}

@@ -51,6 +51,10 @@ import {
   exportBySpecies,
   exportByPartner,
   importByPartner,
+  mirror,
+  mirrorPairs,
+  mirrorUnmatched,
+  mirrorTopGap,
   valueLadder,
   weeks,
 } from '@/lib/data/panofi';
@@ -837,6 +841,53 @@ export function TradeTab() {
           series={[S('금액', '수출액', 'var(--cosmo-s1)', { type: 'bar' })]}
           yFmt={(v) => `${v}백만불`}
         />
+      </Card>
+
+      <SecHead>거울통계 — 받은 쪽 장부와 맞대보면</SecHead>
+      <Card
+        sub={`${mirror.meta.year}년 · 단위: 백만 달러. 가나가 «수출했다»고 보고한 값과 상대국이 «가나에서 수입했다»고 보고한 값`}
+        note={mirror.meta.interpretation}
+      >
+        <div className="kpis">
+          <Kpi k="가나 수출 합계" v={`${Math.round(mirror.meta.ghanaExportTotalUsd / 1e6)}`} unit="백만불" />
+          <Kpi k="상대국 수입 합계" v={`${Math.round(mirror.meta.partnerImportTotalUsd / 1e6)}`} unit="백만불" tone="up" />
+          <Kpi k="합계 비율" v={`${mirror.meta.totalRatio}배`} d="운임·보험 차라면 1.05~1.15" tone="down" />
+          <Kpi k="쌍별 중앙값" v={`${mirror.meta.medianRatio}배`} tone="down" />
+        </div>
+        <Chart
+          data={mirrorPairs}
+          x="label"
+          height={300}
+          horizontal
+          labelWidth={130}
+          series={[
+            S('가나수출', '가나 보고(수출)', 'var(--cosmo-s1)', { type: 'bar' }),
+            S('상대국수입', '상대국 보고(수입)', 'var(--cosmo-s3)', { type: 'bar' }),
+          ]}
+          yFmt={(v) => `${v}백만불`}
+        />
+        {mirrorTopGap && (
+          <Callout kind="warn" label="가장 큰 격차">
+            {mirrorTopGap.partner} 세번 {mirrorTopGap.hs} — 가나는 {mirrorTopGap.가나수출}백만 달러를
+            수출했다고 보고했는데 {mirrorTopGap.partner}은 {mirrorTopGap.상대국수입}백만 달러를 가나에서
+            수입했다고 보고한다. {mirrorTopGap.ratio}배, 금액으로 {Math.round(mirrorTopGap.gapUsd / 1e6)}백만 달러 차다.
+            최대 시장에서 이만큼 벌어지는 것은 운임·보험 차로 설명되지 않는다. 제3국을 거친 물량이
+            원산지 기준으로 가나에 귀속되는 것과 가나 측 미보고, 두 가지가 모두 가능하며 이 자료만으로는
+            가르지 못한다.
+          </Callout>
+        )}
+        {mirrorUnmatched.length > 0 && (
+          <Callout kind="warn" label="받은 쪽 기록이 없는 건">
+            {mirrorUnmatched.map((u) => `${u.partner} 세번 ${u.hs} ${u.가나수출}백만 달러`).join(' · ')} —
+            가나는 수출했다고 보고하지만 상대국의 대응 수입 보고가 없다. 두 나라 모두 유엔 콤트레이드
+            보고가 늦거나 빠지는 경우가 있어 미보고로 단정하지 않는다.
+          </Callout>
+        )}
+        <div className="cnote">
+          함의 — 이 화면의 품목·상대국 수치는 모두 <b>가나 보고 기준</b>이다. 상대국 장부가 더 크다면
+          실제 물동량은 여기 표시된 것보다 클 수 있다. 파노피의 실적 판단에는 사내 원장을 쓰고,
+          무역통계는 시장 구조를 읽는 용도로만 본다.
+        </div>
       </Card>
 
       <SecHead>수입 상대국 — 원어를 어디서 채우나</SecHead>
