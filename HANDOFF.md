@@ -2,6 +2,17 @@
 > - **/fleet·/unloading 히어로 배경을 Grok Imagine 실사풍 야간 위성뷰로 교체** (PR #380 병합·라이브 200 확인). 사용자 지시로 grok.com Imagine을 브라우저 자동화로 대행 — 3선종(선망·연승·운반)×4장 생성, 최적 3장 선정, cwebp q80 (~35KB). `public/heroes/{seiner,longliner,carrier}.webp`. **longliner.webp 는 예비 자산** — 연승 전용 페이지가 아직 없다.
 > - `components/v2/VesselPhotoWithFallback.tsx` 신설: 사진 기본, onError 시 VesselTopSVG(데이터 발광) 폴백. 해치 발광은 사진 좌표 정합이 불가하므로 **SVG 폴백 계약에만 남는다**. 렌더 테스트를 사진 src 계약으로 갱신(19/19), VesselTopSVG 단위 테스트가 발광 계약을 계속 지킨다.
 > - **Grok `[Grok]` 실선단 조사 완료** (`/tmp/grok_silla_fleet.md`): 신라 본선 = 한국적 **선망 6척**(SHILLA EXPLORER/PIONEER/HARVESTER/SPRINTER/CHALLENGER/JUPITER, IMO·WCPFC·PNA 교차) + **연승 9척**(SHIN YUNG 4·PANALOX 5). **대시보드의 SEIN \*·TAI JI 는 전부 냉동운반선이며 신라 소유가 아니다**(Sein Shipping 등) — 보유 선단으로 표기하면 허위. 이름 재사용 함정(구 HARVESTER→MOAMARI 등), 회사 사이트 제원이 구 선체 수치인 사례, 클래스별 상면 실루엣 묘사(SUPER 선망 = 헬리패드+우현 파워블록) 수록. 자유 라이선스 실사진은 사실상 없음 → 생성 이미지 경로가 맞았다. **후속 후보**: SVG 폴백을 실선박 비례(80×15.5m, 헬리패드)로 정교화 + 선박 표기에 소유 구분 반영.
+
+> 🚀 **2026-08-15 12:48 KST — `/panofi` 가나 참치 조업 대시보드 라이브 배포 완료** [CC]:
+> - 기능 브랜치 `feat/panofi-ghana`(커밋 7개)를 PR [#378](https://github.com/CUTEKOREA/tuna-dashboard/pull/378)로 `main` 에 병합했다. production merge commit 은 **`9f29fd2cbd7b799cd27979498b81106630225c03`** 이다.
+> - PR 게이트 3종 통과 — App Quality Gate(`lint typecheck test build`) **2분 59초**, Vercel Preview 배포, Preview Comments.
+> - main 게이트 2종 통과 — App Quality Gate run `31862312876`(3분 16초), Data Freshness Audit run `31862312873`(1분 9초). 둘 다 success.
+> - Vercel production 배포가 병합 커밋 `9f29fd2c` 로 잡혔고 상태 success 다. `https://leedonggun.co.kr/panofi` 와 루트 모두 **HTTP 200**, 응답 헤더는 `x-matched-path: /[category]` · `x-vercel-id: icn1` 이다.
+> - 초기 청크에는 파노피 문자열이 없다 — `dynamic()` 지연 로딩이라 메뉴를 선택할 때 별도 청크를 받는 정상 동작이다. 배포 검증은 **production 배포 SHA 가 병합 커밋과 일치하는지**로 했다.
+> - 배포 직전 최신 `origin/main`(v2.5 일관성 작업 179파일)을 병합했고 충돌은 없었다. 병합 후 `npm run verify` 재통과: ESLint **0 errors · 1 warning(main 베이스라인 동일)**, Vitest **297/297**, API cache **143/143**, 정적 페이지 **117개**, bundle budget 30 라우트.
+> - **다음 단계**: 라이브 화면의 9개 탭 육안 검증이 남았다. 전체 메뉴 세션 잠금이 탭 단위라 에이전트가 여는 탭에서는 통과하지 못한다 — 사용자 브라우저에서 데스크톱·390px 모바일 가로 overflow 와 console error 를 확인해야 한다.
+
+> 🔁 **2026-08-15 12:25 KST — `/panofi` 가나 산업 자료 전면 재수집** [CC]:
 > - 사용자 지시로 가나 산업 자료를 **전부 다시 받았다**. NotebookLM 3회 재질의(핵심수치·규제·소유구조)와 Grok 1차출처 대조를 병렬로 돌리고, 항목마다 «수치·연도·소스 문서명·없으면 소스 없음»을 요구했다.
 > - **UN Comtrade 에 2025년 자료가 올라왔다.** 무역·거울통계를 2021~2025로 다시 뽑았다(730행, 잘림 0, 미매핑 0). **2025년 가나 참치 수출 $217,283,984 · 52,518톤으로 2024년 $186.0M 대비 +16.8%** 다. 통조림만 $188.3M·31,956톤.
 > - **MSC 「출처 충돌」이 해소됐다 — 충돌이 아니었다.** 이전 회차에 «선망만 vs 선망+채낚기»로 기록했으나, 재조사 결과 두 출처가 각각 «어업 종류»와 «어종»을 말한 것이었다. 정확히는 **어업은 선망·채낚기 둘 다, 어종은 가다랑어·황다랑어 2종(눈다랑어 제외)** 이다. 화면에 「충돌 해소」 항목으로 경위를 남겼다.
