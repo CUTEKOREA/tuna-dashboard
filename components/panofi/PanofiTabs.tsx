@@ -16,6 +16,7 @@ import {
   costStructure,
   dataQuality,
   exportByCommodity,
+  exportMarkets,
   exportByForm,
   exportByPartner,
   exportBySpecies,
@@ -666,8 +667,8 @@ export function IndustryTab() {
         <Stat k="가공 처리능력" v={num(industry.processingCapacityTPerYear)} unit="톤/년" d={`테마항 3사 · ${industry.processingCapacityBasisYear}년 기준`} />
         <Stat k="연간 통조림 생산" v={num(industry.annualCannedOutputT)} unit="톤" d={`${industry.annualCannedOutputBasisYear} 기준`} />
         <Stat k="설비 가동률" v={`${industry.utilizationPct[0]}~${industry.utilizationPct[1]}%`} d="원료 계절 편차" />
-        <Stat k="통조림 수출액" v={(industry.exports.cannedTunaUsd2025 / 1e6).toFixed(1)} unit="백만불" tone="up" d={`전년비 +${industry.exports.cannedTunaYoyPct}%`} />
-        <Stat k="유럽연합 비중" v={pct(industry.exports.euSharePct)} d="영국이 단일 최대" />
+        <Stat k="통조림 수출액" v={(industry.exports.cannedTunaUsd2025 / 1e6).toFixed(1)} unit="백만불" tone="up" d={`2025년 · 전년비 +${industry.exports.cannedTunaYoyPct}% · ${num(industry.exports.cannedTunaT2025)}톤`} />
+        <Stat k="유럽연합 비중" v={pct(industry.exports.euSharePct)} d="외부 조사 · 영국이 단일 최대" />
       </Stats>
 
       <Sec>밸류 사다리와 가공</Sec>
@@ -692,6 +693,44 @@ export function IndustryTab() {
                 <td style={{ textAlign: 'left' }}>{c.products}{'employeesConflict' in c && c.employeesConflict ? ` · 고용 수치 출처 혼선 — ${c.employeesConflict}` : ''}</td>
               </tr>
             ))}
+          </Table>
+        </Panel>
+      </Grid>
+
+      <Sec>통조림 수출 실측</Sec>
+      <Grid>
+        <Panel
+          span={6} title="수출 상대국" unit="백만 달러 · 2025년 · 다랑어 조제품(HS 160414)"
+          note={industry.exports.externalClaim.note}
+          src={industry.exports.topMarketsBasis}
+        >
+          <Chart data={exportMarkets} x="label" height={230} horizontal labelWidth={86}
+            series={[S('금액', '수출액', C.s1, { type: 'bar' })]} yFmt={musd} />
+        </Panel>
+        <Panel
+          span={6} title="Comtrade 실측 vs 외부 조사" unit="백만 달러 · 2025년 통조림 수출"
+          note={industry.exports.monthlyCompleteness}
+          src={`${industry.exports.basis} · 월별 12개월 대조 2026-08-15`}
+        >
+          <Table head={['구분', '2024', '2025', '전년비']}>
+            <tr>
+              <td>Comtrade 실측</td>
+              <td>{num(Math.round(industry.exports.cannedTunaUsd2024 / 1e6))}</td>
+              <td><b>{num(Math.round(industry.exports.cannedTunaUsd2025 / 1e6))}</b></td>
+              <td className="up">+{industry.exports.cannedTunaYoyPct}%</td>
+            </tr>
+            <tr>
+              <td>외부 조사 주장</td>
+              <td>{num(Math.round(industry.exports.cannedTunaUsd2024 / 1e6))}</td>
+              <td>{num(Math.round(industry.exports.externalClaim.usd / 1e6))}</td>
+              <td>+{industry.exports.externalClaim.yoyPct}%</td>
+            </tr>
+            <tr className="sum">
+              <td>차이</td>
+              <td>—</td>
+              <td className="down">{num(Math.round((industry.exports.externalClaim.usd - industry.exports.cannedTunaUsd2025) / 1e6))}</td>
+              <td>—</td>
+            </tr>
           </Table>
         </Panel>
       </Grid>

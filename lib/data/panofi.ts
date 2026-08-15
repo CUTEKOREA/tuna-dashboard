@@ -171,11 +171,11 @@ export const valueLadder = industry.valueLadder.steps.map((s) => ({
   stage: s.stage,
 }));
 
-/** 수출 상위 시장(백만불, 2024 가공어류 기준). */
+/** 수출 상위 시장(백만불). 외부 2차자료가 아니라 Comtrade 상대국별 실측이다. */
 export const exportMarkets = industry.exports.topMarkets.map((m) => ({
   label: m.market,
-  금액: Math.round(m.usd2024 / 1_000_000),
-  annualT: 'annualT' in m ? m.annualT : null,
+  금액: Math.round(m.usd2025 / 1_000_000),
+  물량: m.t2025,
 }));
 
 /** 비용 구조 상위 항목(매출 대비 %). 유류가 39.6%로 지배적이다. */
