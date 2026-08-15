@@ -253,6 +253,7 @@ export default function MailInboxDashboard() {
           return;
         }
         trashRequestRef.current = null;
+        setTrashUncertain(false);
         setError(value.code === 'mail_trash_rate_limited'
           ? '휴지통 이동 횟수 제한에 도달했습니다. 잠시 후 다시 시도해주세요.'
           : '메일을 휴지통으로 이동하지 못했습니다.');

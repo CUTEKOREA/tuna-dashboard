@@ -81,6 +81,7 @@ describe('관리자 메일 메뉴 계약', () => {
     expect(source).toContain('currentRequest?.messageId === selectedMessage.message.id');
     expect(source).toContain('trashRequestRef.current = { messageId: selectedMessage.message.id, requestId }');
     expect(source).toContain('<select disabled={working} value={limit}');
+    expect(source).toContain("trashRequestRef.current = null;\n        setTrashUncertain(false);\n        setError(value.code === 'mail_trash_rate_limited'");
     expect(source).toContain('threadId: replyMetadata.threadId');
     expect(source).toContain('inReplyTo: replyMetadata.inReplyTo');
     expect(source).toContain('references: replyMetadata.references');
