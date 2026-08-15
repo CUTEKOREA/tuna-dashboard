@@ -5,6 +5,10 @@ function svgDataUrl(svg: string): string {
   return `data:image/svg+xml;utf-8,${encodeURIComponent(svg)}`;
 }
 
+function supabaseSvgDataUrl(svg: string): string {
+  return `data:image/svg+xml;utf-8,${svg}`;
+}
+
 describe('TOTP QR SVG 검증', () => {
   it('내부 도형만 포함한 제한 크기 SVG data URL을 허용한다', () => {
     expect(isSafeTotpQrDataUrl(svgDataUrl(
@@ -15,7 +19,22 @@ describe('TOTP QR SVG 검증', () => {
     ))).toBe(true);
   });
 
+  it('Supabase가 QR 셀마다 rect를 출력한 30만 바이트급 SVG를 허용한다', () => {
+    const cells = Array.from(
+      { length: 3_721 },
+      (_, index) => `<rect x="${index % 61}" y="${Math.floor(index / 61)}" width="5" height="5" style="fill:black;stroke:none"/>`,
+    ).join('');
+    const qrCode = supabaseSvgDataUrl(`<svg width="345" height="345" xmlns="http://www.w3.org/2000/svg">${cells}</svg>`);
+
+    expect(qrCode.length).toBeGreaterThan(250_000);
+    expect(qrCode.length).toBeLessThanOrEqual(750_000);
+    expect(isSafeTotpQrDataUrl(qrCode)).toBe(true);
+  });
+
   it('스크립트·이벤트 핸들러·외부 참조·비 SVG·과대 응답을 거부한다', () => {
+    const oversizedSvg = supabaseSvgDataUrl(`<svg>${' '.repeat(750_001)}</svg>`);
+    expect(oversizedSvg.length).toBeGreaterThan(750_000);
+
     for (const value of [
       svgDataUrl('<svg xmlns="http://www.w3.org/2000/svg"><script>alert(1)</script></svg>'),
       svgDataUrl('<svg xmlns="http://www.w3.org/2000/svg" onload="alert(1)"/>'),
@@ -25,7 +44,7 @@ describe('TOTP QR SVG 검증', () => {
       svgDataUrl('<svg xmlns="http://www.w3.org/2000/svg"><animate attributeName="opacity"/></svg>'),
       svgDataUrl('<svg xmlns="http://www.w3.org/2000/svg"><set attributeName="opacity"/></svg>'),
       'data:text/html,<script>alert(1)</script>',
-      `data:image/svg+xml;utf-8,${'a'.repeat(100_001)}`,
+      oversizedSvg,
     ]) {
       expect(isSafeTotpQrDataUrl(value)).toBe(false);
     }
