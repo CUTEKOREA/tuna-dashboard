@@ -11,6 +11,7 @@ import UnloadingHistoryBoundary from './UnloadingHistoryBoundary';
 import HeroZone from './v2/HeroZone';
 import PillTabs from './v2/PillTabs';
 import VesselTopSVG from './v2/VesselTopSVG';
+import VesselPhotoWithFallback from './v2/VesselPhotoWithFallback';
 import {
   getUnloadingEtaLabel,
   getVesselStatusKind,
@@ -144,7 +145,10 @@ export function UnloadingHero({
 
   const background = (
     <div className={styles.heroVessel} aria-hidden>
-      <VesselTopSVG kind="carrier" hatches={carrierHatches} />
+      <VesselPhotoWithFallback
+        src="/heroes/carrier.webp"
+        fallback={<VesselTopSVG kind="carrier" hatches={carrierHatches} />}
+      />
     </div>
   );
 

@@ -196,7 +196,8 @@ describe('Deep Sea Command V2 — Fleet pilot', () => {
 
     expect(markup).toContain('선단 운영');
     expect(markup).toContain('주간 어획량');
-    expect(markup).toContain('url(#vsl-glow)');
+    // 배경은 Grok 실사진이 기본, 데이터 발광 SVG는 onError 폴백 (VesselPhotoWithFallback)
+    expect(markup).toContain('/heroes/seiner.webp');
   });
 });
 
@@ -255,7 +256,8 @@ describe('Deep Sea Command V2 — Phase 2 운영 페이지', () => {
     expect(markup).toContain('잔여 목표량');
     expect(markup).toContain('M/V SEIN VENUS');
     expect(markup).toContain('M/V HIKARI 1');
-    expect(markup.match(/url\(#vsl-glow\)/g)?.length).toBe(4);
+    // 배경은 Grok 실사진이 기본 (해치 데이터 발광은 폴백 SVG 계약 — 아래 단위 테스트가 보존)
+    expect(markup).toContain('/heroes/carrier.webp');
   });
 
   it('물류 히어로가 31주차 4척 항로 마커와 기존 하역 SIT·TAK를 렌더한다', async () => {
