@@ -679,8 +679,12 @@ export function IndustryTab() {
             yFmt={(v) => `${v.toLocaleString('en-US')}유로`} />
         </Panel>
 
-        <Panel span={12} title="테마항 가공공장" note={`${industry.cannersNote} ${industry.capacityCaveat}`} src={`${SRC.nlm} · 흡수 사실은 사내 확인(2026-08-15)`}>
-          <Table head={['공장', '소유', '설립', '처리능력', '고용', '주력 제품', '비고']}>
+        <Panel
+          span={6} title="테마항 가공공장"
+          note={`${industry.cannersNote} ${industry.capacityCaveat} 고용 인원은 출처마다 갈린다 — 파이오니어 푸드 캐너리 1,800명 이상 / 약 1,100명(최고경영자 발언) / 1,000명 이상, 코스모 씨푸드 600명 이상 / 407명(수혜자 보고서). 교차검증이 필요하다.`}
+          src={`${SRC.nlm} · 흡수 사실은 사내 확인(2026-08-15)`}
+        >
+          <Table head={['공장', '소유', '설립', '처리능력', '고용', '주력 제품']}>
             {industry.cannersDetail.map((c) => (
               <tr key={c.plant}>
                 <td>{c.plantKo}</td>
@@ -691,10 +695,6 @@ export function IndustryTab() {
                 </td>
                 <td>{c.employees ?? '자료 없음'}</td>
                 <td style={{ textAlign: 'left' }}>{c.products}</td>
-                <td style={{ textAlign: 'left' }}>
-                  {'absorbed' in c && c.absorbed ? c.absorbed : ''}
-                  {'employeesConflict' in c && c.employeesConflict ? ` 고용 수치 출처 혼선 — ${c.employeesConflict}` : ''}
-                </td>
               </tr>
             ))}
           </Table>
