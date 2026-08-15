@@ -72,6 +72,11 @@ describe('관리자 메일 메뉴 계약', () => {
     expect(source).toContain("'Idempotency-Key': requestId");
     expect(source).toContain('crypto.randomUUID()');
     expect(source).toContain('Gmail 보낸편지함을 먼저 확인해주세요.');
+    expect(source).toContain('const [sendUncertain, setSendUncertain] = useState(false)');
+    expect(source).toContain("setError('발송 상태를 확인할 수 없습니다. 중복 발송을 막기 위해 Gmail 보낸편지함을 먼저 확인해주세요.')");
+    expect(source).toContain('disabled={working || sendUncertain}');
+    expect(source).toContain('Gmail 보낸편지함 확인 완료');
+    expect(source).toContain("window.confirm('Gmail 보낸편지함에서 발송 여부를 확인하셨습니까? 확인 후에만 새 메일을 준비합니다.')");
     expect(source).toContain('첨부파일과 자동 발송은 지원하지 않습니다.');
     expect(source).not.toContain('type="file"');
     expect(source).not.toMatch(/setInterval|scheduleMail/);

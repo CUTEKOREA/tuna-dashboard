@@ -92,6 +92,7 @@ export default function MailInboxDashboard() {
   const [working, setWorking] = useState(false);
   const [error, setError] = useState('');
   const [notice, setNotice] = useState('');
+  const [sendUncertain, setSendUncertain] = useState(false);
   const sendingRef = useRef(false);
   const sendRequestIdRef = useRef<string | null>(null);
 
@@ -274,29 +275,41 @@ export default function MailInboxDashboard() {
       });
       const value = await response.json().catch(() => ({})) as { code?: string };
       if (!response.ok) {
-        if (response.status < 500 && value.code !== 'mail_send_status_unknown') {
-          sendRequestIdRef.current = null;
+        if (response.status >= 500 || value.code === 'mail_send_status_unknown') {
+          setSendUncertain(true);
+          setError('발송 상태를 확인할 수 없습니다. 중복 발송을 막기 위해 Gmail 보낸편지함을 먼저 확인해주세요.');
+          return;
         }
+        sendRequestIdRef.current = null;
         setError(value.code === 'mail_send_rate_limited'
           ? '발송 횟수 제한에 도달했습니다. 잠시 후 다시 시도해주세요.'
-          : value.code === 'mail_send_status_unknown'
-            ? '발송 상태를 확인할 수 없습니다. 중복 발송을 막기 위해 Gmail 보낸편지함을 먼저 확인해주세요.'
-            : response.status === 400
-              ? '받는 사람·제목·본문을 확인해주세요.'
-              : '메일을 발송하지 못했습니다. Gmail 보낸편지함을 확인한 뒤 다시 시도해주세요.');
+          : response.status === 400
+            ? '받는 사람·제목·본문을 확인해주세요.'
+            : '메일을 발송하지 못했습니다.');
         return;
       }
       sendRequestIdRef.current = null;
+      setSendUncertain(false);
       setRecipient('');
       setSubject('');
       setMessageText('');
       setNotice('메일을 즉시 발송했습니다.');
     } catch {
-      setError('메일을 발송하지 못했습니다. 잠시 후 다시 시도해주세요.');
+      setSendUncertain(true);
+      setError('발송 상태를 확인할 수 없습니다. 중복 발송을 막기 위해 Gmail 보낸편지함을 먼저 확인해주세요.');
     } finally {
       sendingRef.current = false;
       setWorking(false);
     }
+  };
+
+  const acknowledgeUncertainSend = () => {
+    const confirmed = window.confirm('Gmail 보낸편지함에서 발송 여부를 확인하셨습니까? 확인 후에만 새 메일을 준비합니다.');
+    if (!confirmed) return;
+    sendRequestIdRef.current = null;
+    setSendUncertain(false);
+    setError('');
+    setNotice('Gmail 보낸편지함 확인을 완료했습니다. 새 메일을 준비할 수 있습니다.');
   };
 
   if (loading) {
@@ -430,6 +443,7 @@ export default function MailInboxDashboard() {
                   type="email"
                   autoComplete="email"
                   maxLength={254}
+                  disabled={working || sendUncertain}
                   required
                   value={recipient}
                   onChange={(event) => {
@@ -443,6 +457,7 @@ export default function MailInboxDashboard() {
                 <input
                   type="text"
                   maxLength={200}
+                  disabled={working || sendUncertain}
                   required
                   value={subject}
                   onChange={(event) => {
@@ -455,6 +470,7 @@ export default function MailInboxDashboard() {
                 본문
                 <textarea
                   maxLength={10_000}
+                  disabled={working || sendUncertain}
                   required
                   rows={7}
                   value={messageText}
@@ -467,11 +483,22 @@ export default function MailInboxDashboard() {
               </label>
             </div>
             <div className={styles.sendActions}>
-              <span>발송 버튼을 누르면 최종 확인창이 표시됩니다.</span>
-              <button type="submit" className={styles.primaryButton} disabled={working}>
-                {working ? <Loader2 className={styles.spinner} size={15} /> : <Send size={15} />}
-                즉시 발송
-              </button>
+              {sendUncertain ? (
+                <>
+                  <span>중복 발송을 막기 위해 Gmail 보낸편지함에서 발송 여부를 먼저 확인해주세요.</span>
+                  <button type="button" className={styles.secondaryButton} disabled={working} onClick={acknowledgeUncertainSend}>
+                    Gmail 보낸편지함 확인 완료
+                  </button>
+                </>
+              ) : (
+                <>
+                  <span>발송 버튼을 누르면 최종 확인창이 표시됩니다.</span>
+                  <button type="submit" className={styles.primaryButton} disabled={working || sendUncertain}>
+                    {working ? <Loader2 className={styles.spinner} size={15} /> : <Send size={15} />}
+                    즉시 발송
+                  </button>
+                </>
+              )}
             </div>
           </form>
 
