@@ -1,3 +1,9 @@
+> 🔒 **2026-08-15 21:47 KST — Gmail 동일 메일·다른 UUID 병렬 예약 Production hotfix** [Codex]:
+> - PR #437 배포 후 도착한 사전 diff 반증에서, 동일 사용자·동일 Gmail message hash의 기존 요청이 `pending`/`unknown`이어도 다른 UUID가 새 행으로 예약될 수 있는 P1 감사 계약 gap을 확인했다. 기존 UUID↔message hash 결속과 별개로, 함수가 새 UUID insert 전에 동일 message hash의 진행 중 행을 검사하지 않은 것이 원인이다.
+> - `20260815214500_prevent_parallel_mail_trash_requests.sql`은 기존 사용자 advisory lock 안에서 동일 `(user_id, gmail_message_id_hash)`·다른 UUID의 `pending`/`unknown` 행을 검사해 `invalid`로 거부한다. 같은 UUID+동일 message hash 재시도는 기존 lookup이 먼저 실행되므로 계속 허용한다. service-role 전용 권한·고정 search path·분당 50건/일 200건은 유지한다.
+> - RED 1건 후 관련 10테스트·전체 typecheck를 GREEN으로 닫았고, 전체 `npm run verify`는 ESLint 0 errors·기존 5 warnings, Vitest 79파일·441테스트, API cache 154/154, build 117 pages, bundle 32 routes PASS다. 최종 독립 반증도 blocking/P1 0건으로 PASS했다.
+> - Production transaction+rollback 재현은 hotfix 전 `blocked=false`, 적용 후 `blocked=true`로 바뀌었다. synthetic audit row는 rollback 후 0건이며, 함수 정의의 conflict guard·service-role 실행 허용·authenticated 직접 실행 차단도 DB에서 재확인했다.
+>
 > 🚢 **2026-08-15 21:10 KST — SEIN VENUS 8/15 일일 하역실적 반영·운영 배포** [Codex]:
 > - TTA 원본 일보를 기준으로 8/15 실적 **350.740 MT**, 누계 **2,013.100 MT**, 산술 잔량 **1,261.900 MT**를 `public/data/unloading/local_db.json`과 `/api/unloading-db` 계약에 추가했다. TUM 202.590 MT, ISA 148.150 MT와 4개 어창별 하역량·온도를 구조화했으며, 날짜 중복은 없다.
 > - 원본 하단의 일일 조정 **-21.160 MT**, 누적 조정 **-0.730 MT**, 조정 후 잔량 **1,261.170 MT**는 실적·산술 잔량에 합산하지 않고 별도 필드로 보존했다.
