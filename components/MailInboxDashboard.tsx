@@ -69,6 +69,16 @@ function statusMessage(status: number, code?: string): string {
   return '메일 서비스를 불러오지 못했습니다.';
 }
 
+function enrollmentErrorMessage(code?: string): string {
+  if (code === 'mfa_enrollment_pending') {
+    return '진행 중인 2단계 인증 등록을 먼저 완료해주세요.';
+  }
+  if (code && /^mfa_[a-z0-9_]+(?::[a-z0-9_]{1,64})?$/.test(code)) {
+    return `2단계 인증 등록을 시작하지 못했습니다. (진단 코드: ${code})`;
+  }
+  return '2단계 인증 등록을 시작하지 못했습니다.';
+}
+
 export default function MailInboxDashboard() {
   const [status, setStatus] = useState<MailStatus | null>(null);
   const [inbox, setInbox] = useState<InboxResult | null>(null);
@@ -154,9 +164,7 @@ export default function MailInboxDashboard() {
       const response = await mailRequest('/api/mail/mfa/enroll', { method: 'POST' });
       const value = await response.json().catch(() => ({})) as Enrollment & { code?: string };
       if (!response.ok) {
-        setError(value.code === 'mfa_enrollment_pending'
-          ? '진행 중인 2단계 인증 등록을 먼저 완료해주세요.'
-          : '2단계 인증 등록을 시작하지 못했습니다.');
+        setError(enrollmentErrorMessage(value.code));
         return;
       }
       setEnrollment(value);
