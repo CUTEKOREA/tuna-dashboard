@@ -72,6 +72,34 @@ describe('bangkok native dashboard', () => {
     }
   });
 
+  // 2026-08-15: 캐너리별 추이가 전 캐너리 선택 + 입도 전환으로 확장 — 그 집계 계약.
+  it('캐너리 입도 집계도 0 채움 없이 원본 관측치와 재합성된다', async () => {
+    const intake = await import('../lib/data/bangkok-weekly');
+
+    for (const panel of intake.bangkokCanneryPanel) {
+      for (const pick of [
+        (w: (typeof panel.weeks)[number]) => w.utilPct,
+        (w: (typeof panel.weeks)[number]) => w.stockMt,
+      ]) {
+        const observed = panel.weeks.filter((w) => pick(w) !== null);
+        const rawSum = observed.reduce((acc, w) => acc + (pick(w) ?? 0), 0);
+        for (const g of ['monthly', 'quarterly', 'yearly'] as const) {
+          const rows = intake.aggregateCanneryAvg(panel.weeks, pick, g);
+          for (const r of rows) expect(r.weeks).toBeGreaterThan(0);
+          expect(rows.reduce((acc, r) => acc + r.weeks, 0)).toBe(observed.length);
+          // 평균×관측주수 되합침 = 원본 관측치 합 (평균 산식 검증)
+          expect(rows.reduce((acc, r) => acc + r.value * r.weeks, 0)).toBeCloseTo(rawSum, 6);
+        }
+        // 입도가 굵어질수록 행 수는 줄기만 한다
+        const counts = (['monthly', 'quarterly', 'yearly'] as const).map(
+          (g) => intake.aggregateCanneryAvg(panel.weeks, pick, g).length,
+        );
+        expect(counts[0]).toBeGreaterThanOrEqual(counts[1]);
+        expect(counts[1]).toBeGreaterThanOrEqual(counts[2]);
+      }
+    }
+  });
+
   it('하역·캐너리·선행지표 탭이 신규 컨트롤·해설과 함께 렌더된다', async () => {
     const { UnloadTab } = await import('../components/bangkok/tabs/UnloadTab');
     const { CanneryTab } = await import('../components/bangkok/tabs/CanneryTab');
@@ -88,6 +116,17 @@ describe('bangkok native dashboard', () => {
     // 2026-08-15: 과제 D — 재고·가공가능일수 입도 pill
     expect(cannery).toContain('방콕 재고 집계 입도');
     expect(cannery).toContain('가공가능일수 집계 입도');
+
+    // 2026-08-15: 캐너리별 추이 = 전 캐너리 복수 선택 + 입도 전환.
+    // 후보는 주간 시계열이 있는 전 캐너리, 기본 선택은 재고 점유 상위 4개.
+    const intake = await import('../lib/data/bangkok-weekly');
+    expect(cannery).toContain('캐너리 선택');
+    expect(cannery).toContain('캐너리별 추이 집계 입도');
+    for (const p of intake.bangkokCanneryPanel) expect(cannery).toContain(`>${p.name}</button>`);
+    expect(cannery).toContain(`선택 4개 / 전체 ${intake.bangkokCanneryPanel.length}개`);
+    // 기본 선택 4개 + 입도 pill 3벌(재고·가공가능일수·캐너리 추이)의 «주간» 만 켜져 있다.
+    // «전체» 버튼은 기본에서 꺼진 상태.
+    expect(cannery.match(/aria-pressed="true"/g)?.length).toBe(4 + 3);
 
     const leading = renderToStaticMarkup(React.createElement(LeadingTab));
     expect(leading).toContain('이 표를 읽는 법');

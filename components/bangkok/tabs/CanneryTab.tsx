@@ -1,9 +1,10 @@
 'use client';
 
-import { useState } from 'react';
+import { useMemo, useState } from 'react';
 import Chart, { Legend, type Serie } from '../../cosmo/Chart';
 import { Grid, Panel, Pills, Sec, Table } from '../../panofi/PanofiUi';
 import {
+  aggregateCanneryAvg,
   aggregateWeeklyAvg,
   bangkokCanneries,
   bangkokCanneryPanel,
@@ -11,6 +12,7 @@ import {
   bangkokStockShare,
   bangkokWeeklyKpi,
   bangkokWeeks,
+  type BangkokCanneryWeek,
   type BangkokGranularity,
   type BangkokWeek,
 } from '@/lib/data/bangkok-weekly';
@@ -50,6 +52,9 @@ const STOCK_GRAN_OPTIONS = [
   { key: 'yearly', label: '연도별' },
 ] as const;
 
+/* 입도별 X축 tick 간격 — 행 수가 입도마다 한 자릿수까지 줄어든다 */
+const X_INTERVAL: Record<StockGran, number> = { weekly: 51, monthly: 5, quarterly: 1, yearly: 0 };
+
 const AVG_NOTE =
   '기간 평균 — 재고·가공가능일수는 스톡 지표라 합산이 아니라 평균으로 집계한다. 기록 있는 주만 평균 (0 채움 없음), 관측 주가 없는 기간은 행을 생략한다.';
 
@@ -60,57 +65,82 @@ const avgViews = (
   key: '재고' | '가공일수',
   dp: number,
 ): Record<StockGran, StockView> => {
-  const agg = (g: BangkokGranularity, xInterval: number): StockView => ({
+  const agg = (g: BangkokGranularity): StockView => ({
     rows: aggregateWeeklyAvg(pick, g).map((a) => ({
       label: bangkokPeriodLabel(a.period),
       [key]: +a.value.toFixed(dp),
     })),
-    xInterval,
+    xInterval: X_INTERVAL[g],
     note: AVG_NOTE,
   });
   return {
-    weekly: { rows: weekRows.map((r) => ({ label: r.label, [key]: r[key] })), xInterval: 51 },
-    monthly: agg('monthly', 5),
-    quarterly: agg('quarterly', 1),
-    yearly: agg('yearly', 0),
+    weekly: { rows: weekRows.map((r) => ({ label: r.label, [key]: r[key] })), xInterval: X_INTERVAL.weekly },
+    monthly: agg('monthly'),
+    quarterly: agg('quarterly'),
+    yearly: agg('yearly'),
   };
 };
 
 const STOCK_VIEWS = avgViews((w) => w.bkkStockMt, '재고', 0);
 const DAYS_VIEWS = avgViews((w) => w.bkkDays, '가공일수', 1);
 
-/* 캐너리별 주간 시계열 — 재고 점유 상위 4개, 날짜 합집합에 병합 (보간 금지).
-   가동률(%)과 재고(MT)는 축이 달라 이중축 대신 패널을 분리한다. */
-const TOP_CANNERIES = [...bangkokStockShare]
-  .sort((a, b) => b.sharePct - a.sharePct)
-  .map((s) => s.name)
-  .filter((n) => bangkokCanneryPanel.some((p) => p.name === n))
-  .slice(0, 4);
+/* 캐너리별 시계열 — 태국 전 캐너리(방콕·송클라)를 복수 선택하고 입도를 전환한다.
+   가동률(%)과 재고(MT)는 축이 달라 이중축 대신 패널을 분리한다. 병합은 기간 합집합, 보간 금지. */
+const SHARE_PCT = new Map(bangkokStockShare.map((s) => [s.name, s.sharePct]));
 
-const canneryWeekRows = (() => {
-  const byDate = new Map<string, Record<string, string | number | null>>();
-  for (const name of TOP_CANNERIES) {
+/** 선택 후보 = 주간 시계열이 있는 전 캐너리. 재고 점유 큰 순, 점유 미상은 뒤로 */
+const ALL_CANNERIES = bangkokCanneryPanel
+  .map((p) => p.name)
+  .sort((a, b) => (SHARE_PCT.get(b) ?? -1) - (SHARE_PCT.get(a) ?? -1) || a.localeCompare(b));
+
+const DEFAULT_CANNERIES = ALL_CANNERIES.slice(0, 4);
+
+const METRICS = [
+  { suffix: '가동률', pick: (w: BangkokCanneryWeek) => w.utilPct, dp: 1 },
+  { suffix: '재고', pick: (w: BangkokCanneryWeek) => w.stockMt, dp: 0 },
+] as const;
+
+function canneryRows(names: readonly string[], g: StockGran): Record<string, unknown>[] {
+  const byKey = new Map<string, Record<string, string | number | null>>();
+  const rowAt = (key: string, label: string) => {
+    const cur = byKey.get(key) ?? { key, label };
+    byKey.set(key, cur);
+    return cur;
+  };
+  for (const name of names) {
     const panel = bangkokCanneryPanel.find((p) => p.name === name);
     if (!panel) continue;
-    for (const w of panel.weeks) {
-      const row = byDate.get(w.date) ?? { date: w.date, label: w.date.slice(2, 7) };
-      row[`${name}·가동률`] = w.utilPct;
-      row[`${name}·재고`] = w.stockMt;
-      byDate.set(w.date, row);
+    if (g === 'weekly') {
+      for (const w of panel.weeks) {
+        const row = rowAt(w.date, w.date.slice(2, 7));
+        row[`${name}·가동률`] = w.utilPct;
+        row[`${name}·재고`] = w.stockMt;
+      }
+      continue;
+    }
+    for (const m of METRICS) {
+      for (const a of aggregateCanneryAvg(panel.weeks, m.pick, g)) {
+        rowAt(a.period, bangkokPeriodLabel(a.period))[`${name}·${m.suffix}`] = +a.value.toFixed(m.dp);
+      }
     }
   }
-  return [...byDate.values()].sort((a, b) => String(a.date).localeCompare(String(b.date)));
-})();
+  return [...byKey.values()].sort((a, b) => String(a.key).localeCompare(String(b.key)));
+}
 
-const CANNERY_COLORS = [C.s1, C.s2, C.s3, 'var(--cosmo-s4)'];
-const canneryLegend = TOP_CANNERIES.map((n, i) => ({ name: n, color: CANNERY_COLORS[i] }));
-const canneryUtilSeries = TOP_CANNERIES.map((n, i) =>
-  S(`${n}·가동률`, n, CANNERY_COLORS[i], { fmt: (v) => `${v}%` }),
-);
-const canneryStockSeries = TOP_CANNERIES.map((n, i) =>
-  S(`${n}·재고`, n, CANNERY_COLORS[i], { fmt: (v) => v.toLocaleString('ko-KR') }),
-);
-const CANNERY_TREND_NOTE = `재고 점유 상위 ${TOP_CANNERIES.length}개 캐너리 (${TOP_CANNERIES.join(' · ')}) — 무기록 주는 선을 끊는다 (보간하지 않음).`;
+/* 색은 5개뿐이라 6번째부터 점선을 겹쳐 10개까지 구분한다. 그 이상은 색이 겹치므로
+   note 에서 툴팁·범례로 읽으라고 경고한다 (다시리즈 라인차트의 물리적 한계). */
+const SERIE_COLORS = [C.s1, C.s2, C.s3, 'var(--cosmo-s4)', 'var(--cosmo-s5)'];
+const serieStyle = (i: number) => ({
+  color: SERIE_COLORS[i % SERIE_COLORS.length],
+  dash: Math.floor(i / SERIE_COLORS.length) % 2 === 1,
+});
+
+const CANNERY_GRAN_LABEL: Record<StockGran, string> = {
+  weekly: '주간',
+  monthly: '월간 평균',
+  quarterly: '분기 평균',
+  yearly: '연 평균',
+};
 
 /* 재고 점유 상위 10 (전체 17) — 값은 총재고 대비 비중(%) */
 const stockTop = [...bangkokStockShare]
@@ -123,8 +153,33 @@ const stockTop = [...bangkokStockShare]
 export function CanneryTab() {
   const [stockGran, setStockGran] = useState<StockGran>('weekly');
   const [daysGran, setDaysGran] = useState<StockGran>('weekly');
+  const [picked, setPicked] = useState<readonly string[]>(DEFAULT_CANNERIES);
+  const [canneryGran, setCanneryGran] = useState<StockGran>('weekly');
   const stockView = STOCK_VIEWS[stockGran];
   const daysView = DAYS_VIEWS[daysGran];
+
+  const rows = useMemo(() => canneryRows(picked, canneryGran), [picked, canneryGran]);
+  const allOn = picked.length === ALL_CANNERIES.length;
+
+  /* 선택 순서와 무관하게 색을 고정하려고 항상 ALL_CANNERIES 순서로 되돌린다.
+     마지막 하나는 해제하지 않는다 — 빈 차트는 «데이터 없음»과 구분되지 않는다. */
+  const toggle = (name: string) =>
+    setPicked((cur) =>
+      cur.includes(name)
+        ? cur.length > 1 ? cur.filter((n) => n !== name) : cur
+        : ALL_CANNERIES.filter((n) => n === name || cur.includes(n)),
+    );
+
+  const legend = picked.map((n, i) => ({ name: n, ...serieStyle(i) }));
+  const series = (suffix: '가동률' | '재고', fmt: (v: number) => string) =>
+    picked.map((n, i) => S(`${n}·${suffix}`, n, serieStyle(i).color, { dash: serieStyle(i).dash, fmt }));
+
+  const canneryNote =
+    `선택 ${picked.length}개 / 전체 ${ALL_CANNERIES.length}개 (방콕·송클라) · ${CANNERY_GRAN_LABEL[canneryGran]}. ` +
+    (canneryGran === 'weekly'
+      ? '무기록 주는 선을 끊는다 (보간하지 않음).'
+      : '가동률·재고는 스톡 지표라 합산이 아니라 기간 평균 (0 채움 없음, 관측 없는 기간은 행 생략).') +
+    (picked.length > 5 ? ' 선택이 많으면 색만으로 구분되지 않는다 — 툴팁·범례로 확인한다.' : '');
 
   return (
     <>
@@ -192,41 +247,74 @@ export function CanneryTab() {
       </Grid>
 
       <Sec>캐너리별 추이</Sec>
+      {/* 두 패널이 같은 선택·입도를 쓰므로 컨트롤은 한 벌만 패널 밖에 둔다 */}
+      <div className="pf-pillrow" style={{ marginBottom: 'var(--pf-gap)' }}>
+        <Pills
+          options={STOCK_GRAN_OPTIONS}
+          value={canneryGran}
+          onChange={setCanneryGran}
+          label="캐너리별 추이 집계 입도"
+        />
+        <div className="pf-pills" role="group" aria-label="캐너리 선택">
+          <button
+            type="button"
+            className={`pf-pill${allOn ? ' on' : ''}`}
+            aria-pressed={allOn}
+            onClick={() => setPicked(allOn ? DEFAULT_CANNERIES : ALL_CANNERIES)}
+          >
+            전체
+          </button>
+          {ALL_CANNERIES.map((name) => {
+            const on = picked.includes(name);
+            return (
+              <button
+                key={name}
+                type="button"
+                className={`pf-pill${on ? ' on' : ''}`}
+                aria-pressed={on}
+                onClick={() => toggle(name)}
+              >
+                {name}
+              </button>
+            );
+          })}
+        </div>
+      </div>
       <Grid>
         <Panel
           span={6}
           title="캐너리별 가동률 추이"
           unit="(%)"
-          note={CANNERY_TREND_NOTE}
+          note={canneryNote}
           src={SRC}
         >
           <Chart
-            data={canneryWeekRows}
+            data={rows}
             x="label"
             height={250}
-            xInterval={51}
-            series={canneryUtilSeries}
+            xInterval={X_INTERVAL[canneryGran]}
+            series={series('가동률', (v) => `${v}%`)}
             yFmt={(v) => `${v}%`}
           />
-          <Legend items={canneryLegend} />
+          <Legend items={legend} />
         </Panel>
 
         <Panel
           span={6}
           title="캐너리별 원어재고 추이"
           unit="(MT)"
-          note={CANNERY_TREND_NOTE}
+          note={canneryNote}
           src={SRC}
         >
           <Chart
-            data={canneryWeekRows}
+            data={rows}
             x="label"
             height={250}
-            xInterval={51}
-            series={canneryStockSeries}
+            xInterval={X_INTERVAL[canneryGran]}
+            series={series('재고', (v) => v.toLocaleString('ko-KR'))}
             yFmt={(v) => v.toLocaleString('ko-KR')}
           />
-          <Legend items={canneryLegend} />
+          <Legend items={legend} />
         </Panel>
       </Grid>
 
