@@ -182,14 +182,17 @@ export function buildBriefingImpactNumbers(
   const numbers: BriefingImpactNumber[] = [];
   for (const item of briefing.digest) {
     const match = item.title.match(NUMBER_TOKEN_PATTERN);
-    if (!match) continue;
-    const label = item.title
-      .replace(match[0], '')
-      .replace(/[,·]?\s{2,}/g, ' ')
-      .replace(/(으로|로|은|는|이|가)?\s*(상승|하락|증가|감소|급증)?\s*$/, '')
-      .trim()
-      .replace(/[,·]$/, '');
-    numbers.push({ value: match[0].replace(/\s+$/, ''), label });
+    if (!match || match.index === undefined) continue;
+    // 라벨 = 수치 앞의 문구 (조사·구두점 정리). 너무 짧으면 항목 전체에서 수치만 제거.
+    let label = item.title
+      .slice(0, match.index)
+      .replace(/[,·]\s*$/, '')
+      .replace(/(으로|로)\s*$/, '')
+      .trim();
+    if (label.length < 4) {
+      label = item.title.replace(NUMBER_TOKEN_PATTERN, '').replace(/\s{2,}/g, ' ').trim();
+    }
+    numbers.push({ value: match[0].trim(), label });
     if (numbers.length >= limit) break;
   }
   return numbers;

@@ -122,9 +122,11 @@ describe('daily tuna briefing widget', () => {
   it('renders every digest item and article accordion closed by default', () => {
     const markup = renderToStaticMarkup(React.createElement(MarketDashboard));
 
+    // V3 A안 (2026-08-15): 1번 다이제스트는 리드 헤드라인으로 승격 — 목록에는 나머지만
+    expect(countOccurrences(markup, 'data-testid="daily-briefing-lead"')).toBe(1);
     expect(
       countOccurrences(markup, 'data-testid="daily-briefing-digest-item"'),
-    ).toBe(dailyBriefing.digest.length);
+    ).toBe(dailyBriefing.digest.length - 1);
     expect(
       countOccurrences(markup, 'data-testid="daily-briefing-article"'),
     ).toBe(dailyBriefing.articles.length);
