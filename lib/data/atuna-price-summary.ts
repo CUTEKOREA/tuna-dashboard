@@ -139,3 +139,68 @@ export function buildAtunaMarketSummaries(rows: AtunaPriceRow[]): {
     yf: buildAtunaSpreadSummary(rows, YF_ATUNA_HUBS),
   };
 }
+
+/* ── V3 파일럿: 기간·입도 필터 (Metabase 필터/Time grouping 번안, 스펙 §4-1) ── */
+
+export type AtunaPeriodKey = '3m' | '6m' | '1y' | 'all';
+export type AtunaGrainKey = 'week' | 'month';
+
+export const ATUNA_PERIOD_LABELS: Record<AtunaPeriodKey, string> = {
+  '3m': '3개월',
+  '6m': '6개월',
+  '1y': '1년',
+  all: '전체',
+};
+
+export const ATUNA_GRAIN_LABELS: Record<AtunaGrainKey, string> = {
+  week: '주간',
+  month: '월간',
+};
+
+function periodCutoff(maxDate: string, period: AtunaPeriodKey): string | null {
+  if (period === 'all') return null;
+  const months = period === '3m' ? 3 : period === '6m' ? 6 : 12;
+  const [y, m, d] = maxDate.split('-').map(Number);
+  const total = y * 12 + (m - 1) - months;
+  const cy = Math.floor(total / 12);
+  const cm = (total % 12) + 1;
+  return `${cy}-${String(cm).padStart(2, '0')}-${String(d).padStart(2, '0')}`;
+}
+
+/**
+ * 기간 절단 + 시간 입도 변환. month 입도는 시리즈별 «해당 월 관측치 평균»
+ * (null/미관측 주는 제외 — 보간하지 않는다).
+ */
+export function filterAtunaHistory(
+  rows: AtunaPriceRow[],
+  period: AtunaPeriodKey,
+  grain: AtunaGrainKey,
+): AtunaPriceRow[] {
+  const dated = rows.filter((r) => typeof r.date === 'string');
+  if (dated.length === 0) return [];
+  const maxDate = dated.reduce((max, r) => (r.date > max ? r.date : max), dated[0].date);
+  const cutoff = periodCutoff(maxDate, period);
+  const sliced = cutoff ? dated.filter((r) => r.date >= cutoff) : dated;
+  if (grain === 'week') return sliced;
+
+  const byMonth = new Map<string, { sums: Record<string, number>; counts: Record<string, number> }>();
+  for (const row of sliced) {
+    const month = row.date.slice(0, 7);
+    const bucket = byMonth.get(month) ?? { sums: {}, counts: {} };
+    for (const [key, value] of Object.entries(row)) {
+      if (key === 'date' || typeof value !== 'number') continue;
+      bucket.sums[key] = (bucket.sums[key] ?? 0) + value;
+      bucket.counts[key] = (bucket.counts[key] ?? 0) + 1;
+    }
+    byMonth.set(month, bucket);
+  }
+  return Array.from(byMonth.entries())
+    .sort(([a], [b]) => a.localeCompare(b))
+    .map(([month, { sums, counts }]) => {
+      const row: AtunaPriceRow = { date: month };
+      for (const key of Object.keys(sums)) {
+        row[key] = Math.round((sums[key] / counts[key]) * 100) / 100;
+      }
+      return row;
+    });
+}

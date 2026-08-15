@@ -264,7 +264,8 @@ export default function Home() {
     );
   };
   const dashboardPanels: Record<ActiveMenu, React.ReactNode> = {
-    market: <MarketDashboard />,
+    // V3 파일럿: market만 라이트 스코프 (스펙 2026-08-15-metabase-bi-redesign §7)
+    market: <div data-v3="light"><MarketDashboard /></div>,
     'cross-intelligence': <CrossCommodityIntelligenceDashboard />,
     fleet: <FleetCommandCenter />,
     logistics: <LogisticsDashboard />,
@@ -277,7 +278,7 @@ export default function Home() {
     'purse-seiner-db': <PurseSeinerDashboard />,
   };
   const heroTeaserPanels: Partial<Record<ActiveMenu, React.ReactNode>> = {
-    market: <MarketDashboard heroOnly />,
+    market: <div data-v3="light"><MarketDashboard heroOnly /></div>,
     fleet: <FleetCommandCenter heroOnly />,
     unloading: <UnloadingStatus heroOnly />,
     logistics: <LogisticsDashboard heroOnly />,

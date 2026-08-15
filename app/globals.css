@@ -1,4 +1,5 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Sora:wght@300;400;500;600;700;800&display=swap');
+/* V3 Phase 0 (2026-08-15): 외부 CDN @import(Google Fonts) 제거 — V2.5 «외부 CDN 금지» 이행.
+ * 폰트는 next/font self-host(layout.tsx)가 정본. 인라인 'Inter'/'Sora' 선언은 시스템 스택으로 폴백. */
 
 :root {
   /* Core Palette (Dark Mode Default) — Institutional Precision */
@@ -880,34 +881,9 @@ img, video, canvas, svg {
 }
 
 
-/* ===== SPOTIFY DESIGN SYSTEM INJECTIONS ===== */
-button, [role="button"] {
-  border-radius: 500px !important;
-  text-transform: uppercase !important;
-  letter-spacing: 0.1em !important;
-  font-weight: 800 !important;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif !important;
-}
-
-/* Make Circular controls (like close buttons with X) circular */
-button svg {
-  border-radius: 50% !important;
-}
-
-/* Ensure ACHROMATIC UI for standard elements (unless they are data/charts) */
-.ds-card, .ds-card-insight {
-  background: var(--surface-1) !important;
-  background-color: var(--surface-1) !important;
-  color: #ffffff !important;
-}
-
-/* Dense typography */
-h1, h2, h3, h4, .ds-heading-page, .ds-heading-section, .ds-heading-card {
-  font-weight: 800 !important;
-  letter-spacing: -0.03em !important;
-}
-
-
+/* V3 Phase 0 (2026-08-15): «SPOTIFY DESIGN SYSTEM INJECTIONS» 블록 제거 —
+ * 전역 button pill(500px)·uppercase·800, .ds-card !important 배경, 헤딩 -0.03em 강제가
+ * V2.5 절제 규율·컴포넌트 자체 스타일과 충돌하던 잔재. 컴포넌트가 자기 스타일을 되찾는다. */
 
 /* ===== RECHARTS GLOBAL S-GRADE OVERRIDES ===== */
 .recharts-text.recharts-cartesian-axis-tick-value,
@@ -1049,3 +1025,111 @@ h1, h2, h3, h4, .ds-heading-page, .ds-heading-section, .ds-heading-card {
     transform: none;
   }
 }
+
+/* ═══════════════════════════════════════════════════════════════════════════
+ * V3 "Answerable BI" 라이트 스코프 (2026-08-15, 스펙 2026-08-15-metabase-bi-redesign)
+ * Metabase 실측 팔레트 기반. 전역 기본값 전환 전 파일럿(market) 한정 스코프 —
+ * [data-v3='light'] 안에서만 토큰이 라이트로 뒤집힌다. hex 하드코딩 341파일이
+ * 다크 전제라 전역 즉시 전환은 금지 (스펙 §7 스코핑 원칙).
+ * ═══════════════════════════════════════════════════════════════════════════ */
+[data-v3='light'] {
+  color-scheme: light;
+
+  /* 셸 — Metabase: 배경 #f9fafb, 카드 흰색+1px 보더, 구분은 그림자가 아니라 보더 */
+  --dsc-bg: #f9fafb;
+  --dsc-bg-deep: #f1f2f4;
+  --dsc-surface: #ffffff;
+  --dsc-surface-border: #e2e4e9;
+  --dsc-surface-blur: none;
+  --dsc-ink: #22242b;        /* 잉크 네이비 — 순검정 금지 */
+  --dsc-ink-muted: #5a6072;  /* 회청 본문 */
+  --dsc-ink-faint: #8d93a5;
+  --dsc-card-shadow: 0 4px 8px -2px rgba(16, 24, 40, 0.10), 0 2px 4px -2px rgba(16, 24, 40, 0.06);
+  --dsc-font-mono: var(--font-roboto-mono), 'Roboto Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+  /* 발광은 다크 문법 — 라이트에서는 저채도 그림자로 강등 */
+  --dsc-glow-cyan: 0 2px 12px rgba(80, 158, 227, 0.25);
+  --dsc-glow-amber: 0 2px 12px rgba(232, 185, 33, 0.25);
+  --dsc-glow-rose: 0 2px 12px rgba(227, 89, 94, 0.25);
+  --dsc-warn-bg: #fef3f2;
+  --dsc-warn-border: rgba(227, 89, 94, 0.35);
+
+  /* 레거시 토큰 브리지 — market 구위젯이 참조하는 층 */
+  --bg-color: #f9fafb;
+  --panel-bg: #ffffff;
+  --panel-border: #e2e4e9;
+  --text-main: #22242b;
+  --text-muted: #5a6072;
+  --table-th-bg: #f1f2f4;
+  --highlight-bg: rgba(80, 158, 227, 0.08);
+  --hover-bg: rgba(80, 158, 227, 0.05);
+  --warning-bg: rgba(232, 185, 33, 0.10);
+  --surface-0: #f9fafb;
+  --surface-1: #ffffff;
+  --surface-2: #ffffff;
+  --surface-3: #ffffff;
+  --chart-grid: #e2e4e9;
+  --chart-axis: #8d93a5;
+  --accent-primary: #509ee3;  /* Metabase 브랜드 블루 */
+  --accent-secondary: #22242b;
+
+  /* 레거시 카드·텍스트 계층 (WidgetCard 등) */
+  --card-bg: #ffffff;
+  --card-border: #e2e4e9;
+  --card-shadow: 0 4px 8px -2px rgba(16, 24, 40, 0.10), 0 2px 4px -2px rgba(16, 24, 40, 0.06);
+  --card-hover-shadow: 0 8px 8px -4px rgba(16, 24, 40, 0.03), 0 20px 24px -4px rgba(16, 24, 40, 0.08);
+  --card-hover-border: #c6c9d2;
+  --card-gradient-overlay: none;
+  --card-blur: none;
+  --card-border-gradient: linear-gradient(160deg, #e2e4e9, #f1f2f4);
+  --card-border-gradient-hover: linear-gradient(160deg, #c6c9d2, #e2e4e9);
+  --card-title-color: #22242b;
+  --card-subtitle-color: #5a6072;
+  --text-primary: #22242b;
+  --text-secondary: #4c5773;
+  --text-tertiary: #5a6072;
+  --text-dim: #8d93a5;
+  --text-disabled: #c6c9d2;
+  --glow-cyan: 0 4px 8px -2px rgba(16, 24, 40, 0.10);
+  --glow-accent: 0 4px 8px -2px rgba(16, 24, 40, 0.10);
+
+  /* --w-* 브리지 16쌍 — 라이트 가독 값으로 재조정.
+   * slate 스케일은 명도 반전(50=가장 진한 잉크), 액센트는 Metabase accent 계열로 근접 이동. */
+  --w-slate-50: #22242b;     --w-slate-50-rgb: 34, 36, 43;
+  --w-slate-200: #4c5773;    --w-slate-200-rgb: 76, 87, 115;
+  --w-slate-300: #5a6072;    --w-slate-300-rgb: 90, 96, 114;
+  --w-slate-400: #8d93a5;    --w-slate-400-rgb: 141, 147, 165;
+  --w-slate-500: #a6acba;    --w-slate-500-rgb: 166, 172, 186;
+  --w-sky-400: #509ee3;      --w-sky-400-rgb: 80, 158, 227;
+  --w-blue-500: #3685ca;     --w-blue-500-rgb: 54, 133, 202;
+  --w-cyan-500: #0891b2;     --w-cyan-500-rgb: 8, 145, 178;
+  --w-emerald-500: #689735;  --w-emerald-500-rgb: 104, 151, 53;
+  --w-emerald-400: #88bf4d;  --w-emerald-400-rgb: 136, 191, 77;
+  --w-amber-500: #d97706;    --w-amber-500-rgb: 217, 119, 6;
+  --w-amber-400: #e8b921;    --w-amber-400-rgb: 232, 185, 33;
+  --w-red-500: #e3595e;      --w-red-500-rgb: 227, 89, 94;
+  --w-violet-500: #7172ad;   --w-violet-500-rgb: 113, 114, 173;
+  --w-pink-500: #ef8c8c;     --w-pink-500-rgb: 239, 140, 140;
+  --w-navy-900: #f1f4fa;     --w-navy-900-rgb: 241, 244, 250;
+
+  /* V2.5 차트 팔레트 → Metabase accent 8색 (해시 고정 배정은 lib/chart-standards) */
+  --chart-s1: #509ee3;
+  --chart-s2: #88bf4d;
+  --chart-s3: #f9d45c;
+  --chart-s4: #a989c5;
+  --chart-s5: #ef8c8c;
+  --chart-s6: #98d9d9;
+  --chart-s7: #f2a86f;
+  --chart-s8: #7172ad;
+
+  background: var(--dsc-bg);
+  color: var(--dsc-ink);
+  font-family: var(--font-pretendard), var(--font-geist-sans), 'Apple SD Gothic Neo', sans-serif;
+}
+
+/* 라이트 스코프 안 recharts 전역 오버라이드 재조정 (전역 !important 대응) */
+[data-v3='light'] .recharts-text.recharts-cartesian-axis-tick-value,
+[data-v3='light'] .recharts-text.recharts-polar-angle-axis-tick-value,
+[data-v3='light'] .recharts-text.recharts-polar-radius-axis-tick-value {
+  fill: #8d93a5 !important;
+}
+/* 툴팁은 Metabase도 다크 관례 — 전역 다크 툴팁 유지 */
