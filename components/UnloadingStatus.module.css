@@ -315,7 +315,7 @@
 
 .progressTrack {
   height: 6px;
-  background: rgba(255, 255, 255, 0.08);
+  background: var(--dsc-surface-border);
   border-radius: 3px;
   overflow: hidden;
   width: 100%;
@@ -345,7 +345,7 @@
   align-items: center;
   margin-bottom: 24px;
   padding-bottom: 16px;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  border-bottom: 1px solid var(--dsc-surface-border);
 }
 
 .deepDiveTitle {
@@ -448,15 +448,15 @@
   border-radius: 4px;
 }
 .timelineMini::-webkit-scrollbar-thumb {
-  background: rgba(255, 255, 255, 0.15);
+  background: rgba(141, 147, 165, 0.35);
   border-radius: 4px;
 }
 .timelineMini::-webkit-scrollbar-thumb:hover {
-  background: rgba(255, 255, 255, 0.25);
+  background: rgba(141, 147, 165, 0.55);
 }
 
 .timelineLog {
-  background: rgba(30, 41, 59, 0.45);
+  background: var(--dsc-surface);
   border-left: 3px solid var(--accent-primary);
   padding: 16px;
   border-radius: 0 12px 12px 0;
@@ -554,7 +554,7 @@
 }
 
 .compartmentText {
-  fill: #94a3b8;
+  fill: var(--dsc-ink-muted);
   font-size: 10px;
   font-weight: 800;
   pointer-events: none;
@@ -645,6 +645,18 @@
 
 [data-v3='light'] .compartmentGroup:hover .compartmentText {
   fill: var(--dsc-ink);
+}
+
+/* 히어로 다크 스크림(HeroZone 인라인) → 라이트 페이드 교체 — FleetCommandCenter 패턴.
+ * 인라인 스타일보다 우선하도록 !important 필요. */
+[data-v3='light'] .unloadingHero .heroVessel + div {
+  background: linear-gradient(180deg, rgba(249, 250, 251, 0.62) 0%, rgba(249, 250, 251, 0.24) 34%, rgba(249, 250, 251, 0.92) 100%) !important;
+}
+
+/* 야간 위성뷰 운반선 사진이 검은 사각형으로 뜨는 문제 — 가장자리 페이드 마스크로 배경 블렌드 */
+[data-v3='light'] .heroVessel {
+  -webkit-mask-image: radial-gradient(ellipse 62% 58% at 50% 45%, #000 42%, rgba(0, 0, 0, 0.4) 72%, transparent 98%);
+  mask-image: radial-gradient(ellipse 62% 58% at 50% 45%, #000 42%, rgba(0, 0, 0, 0.4) 72%, transparent 98%);
 }
 
 @media (max-width: 640px) {

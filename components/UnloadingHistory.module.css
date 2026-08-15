@@ -83,3 +83,50 @@
 @media (prefers-reduced-motion: reduce) {
   .yearTab, .portButton, .retryButton, .voyageCard { transition: none; }
 }
+
+/* ── [data-v3='light'] 오버라이드 — 2021~2025 역사 실적 다크 네이비 잔재 라이트 정합 (FleetCommandCenter 패턴) ── */
+[data-v3='light'] .section,
+[data-v3='light'] .stateCard {
+  border-color: var(--dsc-surface-border);
+  background: var(--dsc-surface);
+  box-shadow: var(--dsc-card-shadow);
+  color: var(--dsc-ink);
+}
+[data-v3='light'] .header h2,
+[data-v3='light'] .stateCard h2 { background: none; -webkit-background-clip: initial; color: var(--dsc-ink); }
+[data-v3='light'] .eyebrow { color: var(--accent-primary); }
+[data-v3='light'] .cardDesc,
+[data-v3='light'] .stateCard p { color: var(--dsc-ink-muted); }
+[data-v3='light'] .chartCard,
+[data-v3='light'] .yearTabs { border-color: var(--dsc-surface-border); background: var(--dsc-bg); }
+[data-v3='light'] .chartTitle span { color: var(--dsc-ink-muted); }
+[data-v3='light'] .yearTab,
+[data-v3='light'] .portButton { color: var(--dsc-ink-muted); }
+[data-v3='light'] .yearTab:hover,
+[data-v3='light'] .portButton:hover { color: var(--dsc-ink); background: rgba(80, 158, 227, 0.08); }
+[data-v3='light'] .yearTabActive { color: var(--accent-primary); border-color: rgba(80, 158, 227, 0.4); background: rgba(80, 158, 227, 0.12); }
+[data-v3='light'] .kpiCard { border-color: var(--dsc-surface-border); background: var(--dsc-bg); }
+[data-v3='light'] .kpiCard > svg { color: var(--accent-primary); }
+[data-v3='light'] .kpiCard span,
+[data-v3='light'] .kpiCard small { color: var(--dsc-ink-muted); }
+[data-v3='light'] .kpiCard strong { color: var(--dsc-ink); }
+[data-v3='light'] .portButton { border-color: var(--dsc-surface-border); }
+[data-v3='light'] .portButton[aria-pressed="true"] { color: #b45309; border-color: rgba(217, 119, 6, 0.4); background: rgba(217, 119, 6, 0.10); }
+[data-v3='light'] .desktopTable { border-color: var(--dsc-surface-border); }
+[data-v3='light'] .desktopTable th,
+[data-v3='light'] .desktopTable td { border-bottom-color: var(--dsc-surface-border); }
+[data-v3='light'] .desktopTable thead th { color: var(--dsc-ink-muted); background: var(--dsc-bg-deep); }
+[data-v3='light'] .desktopTable tbody th { color: var(--dsc-ink); }
+[data-v3='light'] .desktopTable td { color: var(--dsc-ink-muted); }
+[data-v3='light'] .desktopTable td small { color: var(--dsc-ink-faint); }
+[data-v3='light'] .verified { color: #0e7490; background: rgba(8, 145, 178, 0.10); }
+[data-v3='light'] .partial { color: #b45309; background: rgba(217, 119, 6, 0.10); }
+[data-v3='light'] .unverified { color: var(--dsc-ink-muted); background: rgba(141, 147, 165, 0.12); }
+[data-v3='light'] .empty { border-color: var(--dsc-surface-border); color: var(--dsc-ink-muted); }
+[data-v3='light'] .voyageCard { border-color: var(--dsc-surface-border); background: var(--dsc-bg); }
+[data-v3='light'] .voyageCard h3 { color: var(--dsc-ink); }
+[data-v3='light'] .voyageCard > p,
+[data-v3='light'] .voyageCard dd { color: var(--dsc-ink-muted); }
+[data-v3='light'] .voyageCard dt,
+[data-v3='light'] .voyageCard dd small { color: var(--dsc-ink-faint); }
+[data-v3='light'] .retryButton { color: var(--accent-primary); border-color: rgba(80, 158, 227, 0.4); background: rgba(80, 158, 227, 0.10); }

@@ -431,6 +431,35 @@
   opacity: 0.5;
 }
 
+/* ── [data-v3='light'] 오버라이드 — 분석 탭 다크 패널 잔재 라이트 정합 ── */
+[data-v3='light'] .tabBar { border-color: var(--dsc-surface-border); background: var(--dsc-surface); }
+[data-v3='light'] .tab:hover { background: rgba(80, 158, 227, 0.06); }
+[data-v3='light'] .tabActive { color: var(--accent-primary); border-color: rgba(80, 158, 227, 0.4); background: rgba(80, 158, 227, 0.10); box-shadow: none; }
+[data-v3='light'] .tabContent::-webkit-scrollbar-thumb { background: rgba(141, 147, 165, 0.35); }
+[data-v3='light'] .sectionTitle { color: var(--dsc-ink); }
+[data-v3='light'] .card { border-color: var(--dsc-surface-border); background: var(--dsc-surface); }
+[data-v3='light'] .card:hover { border-color: #c6c9d2; }
+[data-v3='light'] .benchmarkTable th { border-bottom-color: var(--dsc-surface-border); background: var(--dsc-bg-deep); }
+[data-v3='light'] .benchmarkTable td { border-bottom-color: var(--dsc-surface-border); }
+[data-v3='light'] .highlightRow td { color: var(--dsc-ink); }
+[data-v3='light'] .badgeProgress { color: #b45309; }
+[data-v3='light'] .badgeWaiting { color: #6d28d9; }
+[data-v3='light'] .badgeCompleted { color: #047857; }
+[data-v3='light'] .targetValue,
+[data-v3='light'] .tempStatValue,
+[data-v3='light'] .alertTitle { color: var(--dsc-ink); }
+[data-v3='light'] .indicatorGreen { color: #047857; }
+[data-v3='light'] .indicatorYellow { color: #b45309; }
+[data-v3='light'] .indicatorRed { color: #b91c1c; }
+[data-v3='light'] .chartWrap { border-color: var(--dsc-surface-border); background: var(--dsc-surface); }
+[data-v3='light'] .tempStatCard { border-color: var(--dsc-surface-border); background: var(--dsc-bg); }
+[data-v3='light'] .alertCard { border-color: var(--dsc-surface-border); background: var(--dsc-surface); }
+[data-v3='light'] .alertCard:hover { border-color: #c6c9d2; }
+[data-v3='light'] .severityCritical { color: #b91c1c; }
+[data-v3='light'] .severityWarning { color: #b45309; }
+[data-v3='light'] .severityInfo { color: #0369a1; }
+[data-v3='light'] .severityCompleted { color: #047857; }
+
 /* ─── Responsive ─── */
 @media (max-width: 768px) {
   .tabBar {

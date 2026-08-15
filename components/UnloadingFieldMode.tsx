@@ -36,7 +36,7 @@ function RadialGauge({ progress, radius = 50, strokeWidth = 6, color = '#38bdf8'
         </defs>
         <circle
           cx={radius + strokeWidth} cy={radius + strokeWidth} r={radius}
-          fill="transparent" stroke="rgba(255,255,255,0.08)" strokeWidth={strokeWidth}
+          fill="transparent" stroke="var(--dsc-surface-border)" strokeWidth={strokeWidth}
         />
         <circle
           cx={radius + strokeWidth} cy={radius + strokeWidth} r={radius}
@@ -49,7 +49,7 @@ function RadialGauge({ progress, radius = 50, strokeWidth = 6, color = '#38bdf8'
       <div style={{
         position: 'absolute', top: 0, left: 0, width: '100%', height: '100%',
         display: 'flex', alignItems: 'center', justifyContent: 'center',
-        fontSize: '1.1rem', fontWeight: 'bold', color: '#fff',
+        fontSize: '1.1rem', fontWeight: 'bold', color: 'var(--dsc-ink)',
       }}>
         {clean.toFixed(1)}%
       </div>

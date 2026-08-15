@@ -48,7 +48,7 @@ export default function CarrierUnloadingStatus() {
             {currentUnloading.map((row, idx) => (
               <tr key={idx}
                 onMouseEnter={() => setRowHover(idx)} onMouseLeave={() => setRowHover(null)}
-                style={{ borderBottom: '1px solid var(--panel-border)', background: rowHover === idx ? 'rgba(255,255,255,0.04)' : 'transparent', transition: 'background 0.15s ease' }}>
+                style={{ borderBottom: '1px solid var(--panel-border)', background: rowHover === idx ? 'var(--hover-bg)' : 'transparent', transition: 'background 0.15s ease' }}>
                 <td style={{ padding: '12px', textAlign: 'center', fontWeight: 'bold', color: 'var(--text-main)' }}>{row.sort}</td>
                 <td style={{ padding: '12px', textAlign: 'center', color: 'var(--text-muted)' }}>{row.no}</td>
                 <td style={{ padding: '12px', color: 'var(--text-main)', lineHeight: '1.5' }}>{row.carriers}</td>
@@ -61,7 +61,7 @@ export default function CarrierUnloadingStatus() {
             </tr>
           </tbody>
         </table>
-        <div style={{ padding: '12px', fontSize: '11px', color: 'var(--text-muted)', background: 'rgba(0,0,0,0.2)' }}>
+        <div style={{ padding: '12px', fontSize: '11px', color: 'var(--text-muted)', background: 'var(--table-th-bg)' }}>
           * 8월 누계는 운반선 {logisticsWeeklyReport.unloading.monthToDate.vessels}척·{logisticsWeeklyReport.unloading.monthToDate.amount.toLocaleString()} MT입니다. LAKE PEARL 4,873 MT는 7월 반입분입니다.
         </div>
       </div>

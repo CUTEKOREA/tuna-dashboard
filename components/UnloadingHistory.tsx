@@ -439,7 +439,7 @@ export function UnloadingHistoryView({
             <YAxis yAxisId="mt" tick={{ fill: 'var(--w-slate-400)', fontSize: 11 }} tickFormatter={(value) => `${Math.round(Number(value) / 1000)}천`} />
             <YAxis yAxisId="count" orientation="right" tick={{ fill: 'var(--w-slate-400)', fontSize: 11 }} allowDecimals={false} />
             <Tooltip
-              contentStyle={{ background: '#0f172a', border: '1px solid rgba(var(--w-slate-400-rgb), .28)', borderRadius: 10 }}
+              contentStyle={{ background: '#303c46', border: '1px solid rgba(255, 255, 255, 0.12)', borderRadius: 10, color: '#fff' }}
               formatter={(value, name) => name === '검증 하역량' ? [`${formatMt(Number(value))} MT`, name] : [`${value}척`, name]}
               labelFormatter={(label) => `${label}년`}
             />

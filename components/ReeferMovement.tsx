@@ -43,21 +43,21 @@ function CanneryTooltip({ active, payload, label }: any) {
   const d = payload[0]?.payload;
   return (
     <div style={{
-      background: '#1a1a2e', border: '1px solid rgba(255,255,255,0.1)', borderRadius: 8,
-      padding: '12px 16px', fontSize: '0.82rem', color: 'var(--w-slate-200)', minWidth: 180,
-      boxShadow: '0 8px 32px rgba(0,0,0,0.5)'
+      background: '#303c46', border: '1px solid rgba(255,255,255,0.12)', borderRadius: 8,
+      padding: '12px 16px', fontSize: '0.82rem', color: '#e2e8f0', minWidth: 180,
+      boxShadow: '0 8px 24px rgba(16,24,40,0.35)'
     }}>
-      <div style={{ fontWeight: 700, fontSize: '0.95rem', marginBottom: 6, color: 'var(--text-primary)' }}>{label}</div>
+      <div style={{ fontWeight: 700, fontSize: '0.95rem', marginBottom: 6, color: '#ffffff' }}>{label}</div>
       <div style={{ display: 'flex', justifyContent: 'space-between', gap: 16 }}>
-        <span style={{ color: 'var(--w-slate-400)' }}>총 물량</span>
-        <span style={{ fontWeight: 700, color: 'var(--color-success)' }}>{d?.total?.toLocaleString()} MT</span>
+        <span style={{ color: '#c6c9d2' }}>총 물량</span>
+        <span style={{ fontWeight: 700, color: '#88bf4d' }}>{d?.total?.toLocaleString()} MT</span>
       </div>
       <div style={{ display: 'flex', justifyContent: 'space-between', gap: 16 }}>
-        <span style={{ color: 'var(--w-slate-400)' }}>운반선 수</span>
+        <span style={{ color: '#c6c9d2' }}>운반선 수</span>
         <span style={{ fontWeight: 600 }}>{d?.vesselCount}척</span>
       </div>
       {d?.vessels && (
-        <div style={{ marginTop: 8, paddingTop: 8, borderTop: '1px solid rgba(255,255,255,0.08)', fontSize: '0.75rem', color: 'var(--w-slate-500)' }}>
+        <div style={{ marginTop: 8, paddingTop: 8, borderTop: '1px solid rgba(255,255,255,0.08)', fontSize: '0.75rem', color: '#a6acba' }}>
           {d.vessels.join(' · ')}
         </div>
       )}
@@ -155,11 +155,11 @@ export default function ReeferMovement() {
           <SafeResponsiveContainer width="100%" height="100%">
             <BarChart data={canneryAgg} layout="vertical" margin={{ left: 10, right: 30, top: 5, bottom: 5 }}>
               <ChartPatternDefs />
-              <XAxis type="number" tick={{ fill: 'var(--w-slate-500)', fontSize: 11 }} axisLine={false} tickLine={false}
+              <XAxis type="number" tick={{ fill: 'var(--text-muted)', fontSize: 11 }} axisLine={false} tickLine={false}
                 tickFormatter={(v: number) => v >= 1000 ? `${(v/1000).toFixed(1)}K` : `${v}`} />
-              <YAxis type="category" dataKey="name" tick={{ fill: 'var(--w-slate-200)', fontSize: 12, fontWeight: 600 }}
+              <YAxis type="category" dataKey="name" tick={{ fill: 'var(--text-muted)', fontSize: 12, fontWeight: 600 }}
                 axisLine={false} tickLine={false} width={55} />
-              <RechartsTooltip content={<CanneryTooltip />} cursor={{ fill: 'rgba(255,255,255,0.03)' }} />
+              <RechartsTooltip content={<CanneryTooltip />} cursor={{ fill: 'rgba(34,36,43,0.04)' }} />
               <Bar dataKey="total" radius={[0, 6, 6, 0]} barSize={22} name="총 물량 (MT)">
                 {canneryAgg.map((_, i) => (
                   <Cell key={i} fill={BAR_COLORS[i % BAR_COLORS.length]} fillOpacity={0.85} />
@@ -253,7 +253,7 @@ export default function ReeferMovement() {
                         <div style={{ width: 50, fontSize: '0.78rem', fontWeight: 700, color: 'var(--w-slate-200)', textAlign: 'right' }}>
                           {d.cannery}
                         </div>
-                        <div style={{ flex: 1, height: 20, background: 'rgba(255,255,255,0.04)', borderRadius: 4, overflow: 'hidden', position: 'relative' }}>
+                        <div style={{ flex: 1, height: 20, background: 'rgba(34,36,43,0.06)', borderRadius: 4, overflow: 'hidden', position: 'relative' }}>
                           <div style={{
                             width: `${pct}%`, height: '100%', background: color,
                             borderRadius: 4, transition: 'width 0.5s ease',

@@ -475,7 +475,7 @@ export default function UnloadingAnalytics({
         {/* Grid lines */}
         {yTicks.map((v, i) => (
           <line key={i} x1={margin.left} x2={width - margin.right} y1={toY(v)} y2={toY(v)}
-            stroke="rgba(140,170,255,0.12)" strokeDasharray="3 3" />
+            stroke="var(--chart-grid)" strokeDasharray="3 3" />
         ))}
 
         {/* Y-axis labels */}
