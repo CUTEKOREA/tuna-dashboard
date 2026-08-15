@@ -56,8 +56,8 @@ export default function SasThailandHub() {
                 border: '1px solid rgba(140,170,255,0.12)', textAlign: 'center',
               }}>
                 <div style={{ fontSize: '1.1rem', fontWeight: 800, color: k.color }}>{k.value}</div>
-                <div style={{ fontSize: '0.62rem', color: '#94a3b8', marginTop: '2px' }}>{k.label}</div>
-                <div style={{ fontSize: '0.55rem', color: '#64748b', marginTop: '1px' }}>{k.sub}</div>
+                <div style={{ fontSize: '0.62rem', color: 'var(--w-slate-400)', marginTop: '2px' }}>{k.label}</div>
+                <div style={{ fontSize: '0.55rem', color: 'var(--w-slate-500)', marginTop: '1px' }}>{k.sub}</div>
               </div>
             ))}
           </div>
@@ -69,12 +69,12 @@ export default function SasThailandHub() {
           }}>
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '10px' }}>
               <div>
-                <div style={{ fontSize: '0.82rem', fontWeight: 700, color: '#f59e0b' }}>Thai Union Strategy 2030</div>
-                <div style={{ fontSize: '0.6rem', color: '#64748b' }}>설립 {thaiUnion.founded} · 세계 최대 참치 생산기업</div>
+                <div style={{ fontSize: '0.82rem', fontWeight: 700, color: 'var(--w-amber-500)' }}>Thai Union Strategy 2030</div>
+                <div style={{ fontSize: '0.6rem', color: 'var(--w-slate-500)' }}>설립 {thaiUnion.founded} · 세계 최대 참치 생산기업</div>
               </div>
               <div style={{ textAlign: 'right' }}>
-                <div style={{ fontSize: '0.65rem', color: '#94a3b8' }}>매출 목표</div>
-                <div style={{ fontSize: '0.9rem', fontWeight: 800, color: '#10b981' }}>{thaiUnion.revenue2024} → {thaiUnion.target2030}</div>
+                <div style={{ fontSize: '0.65rem', color: 'var(--w-slate-400)' }}>매출 목표</div>
+                <div style={{ fontSize: '0.9rem', fontWeight: 800, color: 'var(--w-emerald-500)' }}>{thaiUnion.revenue2024} → {thaiUnion.target2030}</div>
               </div>
             </div>
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '6px' }}>
@@ -84,8 +84,8 @@ export default function SasThailandHub() {
                   border: '1px solid rgba(140,170,255,0.12)', textAlign: 'center',
                 }}>
                   <div style={{ fontSize: '1rem' }}>{s.icon}</div>
-                  <div style={{ fontSize: '0.68rem', fontWeight: 600, color: '#e2e8f0', marginTop: '2px' }}>{s.item}</div>
-                  <div style={{ fontSize: '0.55rem', color: '#64748b', marginTop: '1px' }}>{s.desc}</div>
+                  <div style={{ fontSize: '0.68rem', fontWeight: 600, color: 'var(--w-slate-200)', marginTop: '2px' }}>{s.item}</div>
+                  <div style={{ fontSize: '0.55rem', color: 'var(--w-slate-500)', marginTop: '1px' }}>{s.desc}</div>
                 </div>
               ))}
             </div>
@@ -93,7 +93,7 @@ export default function SasThailandHub() {
 
           {/* Korea-Thailand link */}
           <div style={{ display: 'flex', flexDirection: 'column', gap: '4px' }}>
-            <div style={{ fontSize: '0.65rem', fontWeight: 600, color: '#64748b', marginBottom: '2px' }}>🇰🇷↔🇹🇭 한국-태국 원료 공급 관계</div>
+            <div style={{ fontSize: '0.65rem', fontWeight: 600, color: 'var(--w-slate-500)', marginBottom: '2px' }}>🇰🇷↔🇹🇭 한국-태국 원료 공급 관계</div>
             {koreaLink.map((l) => (
               <div key={l.flow} style={{
                 display: 'flex', justifyContent: 'space-between', alignItems: 'center',
@@ -101,8 +101,8 @@ export default function SasThailandHub() {
                 borderLeft: `3px solid ${l.color}`,
               }}>
                 <div>
-                  <div style={{ fontSize: '0.68rem', fontWeight: 600, color: '#e2e8f0' }}>{l.flow}</div>
-                  <div style={{ fontSize: '0.55rem', color: '#64748b' }}>{l.desc}</div>
+                  <div style={{ fontSize: '0.68rem', fontWeight: 600, color: 'var(--w-slate-200)' }}>{l.flow}</div>
+                  <div style={{ fontSize: '0.55rem', color: 'var(--w-slate-500)' }}>{l.desc}</div>
                 </div>
                 <div style={{ fontSize: '0.78rem', fontWeight: 700, color: l.color }}>{l.value}</div>
               </div>

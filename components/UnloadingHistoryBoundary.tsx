@@ -83,7 +83,7 @@ export class UnloadingHistoryBoundary extends Component<
               border: '1px solid rgba(56, 189, 248, 0.45)',
               borderRadius: '9px',
               background: 'rgba(14, 165, 233, 0.16)',
-              color: '#e2e8f0',
+              color: 'var(--w-slate-200)',
               fontWeight: 700,
               cursor: 'pointer',
             }}

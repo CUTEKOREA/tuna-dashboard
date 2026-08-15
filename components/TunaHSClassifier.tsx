@@ -60,10 +60,10 @@ const TunaHSClassifier = React.memo(function TunaHSClassifier() {
   const SearchBar = (
     <div style={{ display: 'flex', gap: '8px', marginBottom: '0.8rem' }}>
       <div style={{ flex: 1, position: 'relative' }}>
-        <Search size={14} style={{ position: 'absolute', left: '12px', top: '50%', transform: 'translateY(-50%)', color: '#64748b' }} />
+        <Search size={14} style={{ position: 'absolute', left: '12px', top: '50%', transform: 'translateY(-50%)', color: 'var(--w-slate-500)' }} />
         <input type="text" value={query} onChange={(e) => setQuery(e.target.value)} onKeyDown={(e) => e.key === 'Enter' && classify(query)}
           placeholder="품목명 입력 (한/영 모두 가능)"
-          style={{ width: '100%', padding: '10px 12px 10px 36px', fontSize: '0.82rem', background: '#1a1a1a', color: '#f8fafc', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '6px', outline: 'none' }} />
+          style={{ width: '100%', padding: '10px 12px 10px 36px', fontSize: '0.82rem', background: '#1a1a1a', color: 'var(--w-slate-50)', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '6px', outline: 'none' }} />
       </div>
       <button onClick={() => classify(query)} disabled={loading || !query.trim()}
         style={{ padding: '10px 18px', fontSize: '0.82rem', fontWeight: 700, background: '#2196F3', color: '#fff', border: 'none', borderRadius: '6px', cursor: query.trim() ? 'pointer' : 'not-allowed', opacity: query.trim() ? 1 : 0.5, display: 'flex', alignItems: 'center', gap: '6px' }}>
@@ -94,8 +94,8 @@ const TunaHSClassifier = React.memo(function TunaHSClassifier() {
                 <div style={{ fontSize: '0.65rem', color: '#4a5568', marginTop: '2px' }}>{r.chapter || `Chapter ${(r.hsCode || '').substring(0, 2)}`}</div>
               </div>
               <div>
-                <div style={{ fontSize: '0.78rem', color: '#f8fafc', fontWeight: 500 }}>{toKRDesc(r.description)}</div>
-                {r.notes && <div style={{ fontSize: '0.65rem', color: '#64748b', marginTop: '3px' }}>{toKRNotes(r.notes)}</div>}
+                <div style={{ fontSize: '0.78rem', color: 'var(--w-slate-50)', fontWeight: 500 }}>{toKRDesc(r.description)}</div>
+                {r.notes && <div style={{ fontSize: '0.65rem', color: 'var(--w-slate-500)', marginTop: '3px' }}>{toKRNotes(r.notes)}</div>}
               </div>
               <div style={{ textAlign: 'right' }}>
                 <div style={{ fontSize: '0.82rem', fontWeight: 700, color: (r.confidence || 0) >= 0.95 ? '#0ECB81' : '#F0B90B' }}>
@@ -107,7 +107,7 @@ const TunaHSClassifier = React.memo(function TunaHSClassifier() {
           ))}
         </div>
       ) : !loading && meta && (
-        <div style={{ textAlign: 'center', padding: '2rem', color: '#64748b', fontSize: '0.82rem' }}>분류 결과가 없습니다.</div>
+        <div style={{ textAlign: 'center', padding: '2rem', color: 'var(--w-slate-500)', fontSize: '0.82rem' }}>분류 결과가 없습니다.</div>
       )}
       {!meta && !loading && (
         <div style={{ textAlign: 'center', padding: '2rem', color: '#4a5568', fontSize: '0.82rem' }}>

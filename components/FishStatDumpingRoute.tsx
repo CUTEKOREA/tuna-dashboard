@@ -21,7 +21,7 @@ export default function FishStatDumpingRoute() {
         <TermTooltip term="덤핑/차익거래 루트" description="아시아에서 상품성을 잃은 소형어(치어)가 낮은 해운 운임지수를 타고 가나, 나이지리아 훈제용으로 수출되는 현상" />
       </div>
       
-      <div style={{ padding: '16px', background: 'rgba(59, 130, 246, 0.1)', borderLeft: '4px solid #3b82f6', borderRadius: '4px', marginBottom: '24px', display: 'flex', gap: '12px' }}>
+      <div style={{ padding: '16px', background: 'rgba(59, 130, 246, 0.1)', borderLeft: '4px solid var(--w-blue-500)', borderRadius: '4px', marginBottom: '24px', display: 'flex', gap: '12px' }}>
         <Workflow size={20} color="var(--color-info)" style={{ flexShrink: 0 }} />
         <div style={{ fontSize: '13px', lineHeight: '1.6' }}>
           <strong style={{ color: 'var(--color-info)' }}>Situation:</strong> 동아프리카/서아프리카향 미성어 해운 물동량이 운임지수(SCFI) 급락과 맞물려 폭발 중.<br/>
@@ -40,7 +40,7 @@ export default function FishStatDumpingRoute() {
             <Tooltip contentStyle={{ background: 'rgba(10, 16, 40, 0.9)', border: 'none', borderRadius: '8px' }} formatter={(value: any, name: any) => { return name === 'SCFI' ? [`$${value}`, name] : [`${value}k Tons`, name]; }} />
             <Legend wrapperStyle={{ fontSize: '11px', paddingTop: '10px' }} />
             <Bar yAxisId="left" dataKey="asiaDiscard" name="아시아 미성어 방출" fill="#6366f1" radius={[4, 4, 0, 0]} />
-            <Bar yAxisId="left" dataKey="africaImport" name="서아프리카 수입고" fill="#8b5cf6" radius={[4, 4, 0, 0]} />
+            <Bar yAxisId="left" dataKey="africaImport" name="서아프리카 수입고" fill="var(--w-violet-500)" radius={[4, 4, 0, 0]} />
             <Line yAxisId="right" type="monotone" dataKey="scfi" name="해운운임지수(SCFI)" stroke="var(--color-danger)" strokeWidth={2} dot={{ r: 4, fill: 'var(--color-danger)' }} />
           </ComposedChart>
         </SafeResponsiveContainer>

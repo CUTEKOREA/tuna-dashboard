@@ -19,11 +19,11 @@ const data = [
 const CustomRadarTooltip = ({ active, payload }: any) => {
   if (!active || !payload?.length) return null;
   return (
-    <div style={{ background: 'rgba(20, 28, 52, 0.9)', border: '1px solid rgba(255, 255, 255, 0.1)', padding: '14px', borderRadius: '8px', color: '#f8fafc' }}>
-      <p style={{ margin: '0 0 8px 0', fontWeight: 'bold', color: '#e2e8f0' }}>{payload[0].payload.metric}</p>
+    <div style={{ background: 'rgba(20, 28, 52, 0.9)', border: '1px solid rgba(255, 255, 255, 0.1)', padding: '14px', borderRadius: '8px', color: 'var(--w-slate-50)' }}>
+      <p style={{ margin: '0 0 8px 0', fontWeight: 'bold', color: 'var(--w-slate-200)' }}>{payload[0].payload.metric}</p>
       <div style={{ display: 'flex', flexDirection: 'column', gap: '6px', fontSize: '0.85rem' }}>
         <div style={{ display: 'flex', justifyContent: 'space-between', gap: '20px' }}>
-          <span style={{ color: '#ef4444' }}>인도네시아 조업</span>
+          <span style={{ color: 'var(--w-red-500)' }}>인도네시아 조업</span>
           <span>{payload[0].payload.indonesia}</span>
         </div>
         <div style={{ display: 'flex', justifyContent: 'space-between', gap: '20px' }}>
@@ -48,11 +48,11 @@ export default function TunaEsgRiskRadar() {
       chart={
         <RadarChart cx="50%" cy="50%" outerRadius="70%" data={data}>
           <PolarGrid stroke="#334155" />
-          <PolarAngleAxis dataKey="metric" tick={{ fill: '#e2e8f0', fontSize: 11, fontWeight: 'bold' }} />
+          <PolarAngleAxis dataKey="metric" tick={{ fill: 'var(--w-slate-200)', fontSize: 11, fontWeight: 'bold' }} />
           <PolarRadiusAxis angle={30} domain={[0, 100]} tick={false} axisLine={false} />
           <Tooltip content={<CustomRadarTooltip />} />
           <Legend wrapperStyle={{ paddingTop: '12px', fontSize: '12px' }} />
-          <Radar name="인도네시아 리스크" dataKey="indonesia" stroke="#ef4444" fill="#ef4444" fillOpacity={0.4} />
+          <Radar name="인도네시아 리스크" dataKey="indonesia" stroke="var(--w-red-500)" fill="var(--w-red-500)" fillOpacity={0.4} />
           <Radar name="PNA (기준선)" dataKey="pna" stroke="#22c55e" fill="#22c55e" fillOpacity={0.4} />
         </RadarChart>
       }

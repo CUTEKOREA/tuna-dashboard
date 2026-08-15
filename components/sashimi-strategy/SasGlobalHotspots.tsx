@@ -68,10 +68,10 @@ export default function SasGlobalHotspots() {
               <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
                 {h.metrics.map((m) => (
                   <div key={m.label} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', gap: '8px' }}>
-                    <div style={{ fontSize: '0.68rem', color: '#94a3b8', flex: 1 }}>{m.label}</div>
+                    <div style={{ fontSize: '0.68rem', color: 'var(--w-slate-400)', flex: 1 }}>{m.label}</div>
                     <div style={{ textAlign: 'right' }}>
                       <div style={{ fontSize: '0.78rem', fontWeight: 700, color: '#f1f5f9' }}>{m.value}</div>
-                      <div style={{ fontSize: '0.58rem', color: '#64748b' }}>{m.sub}</div>
+                      <div style={{ fontSize: '0.58rem', color: 'var(--w-slate-500)' }}>{m.sub}</div>
                     </div>
                   </div>
                 ))}

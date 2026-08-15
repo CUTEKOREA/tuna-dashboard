@@ -28,7 +28,7 @@ const segData = [
 
 const tooltipStyle = {
   backgroundColor: 'rgba(20, 28, 52, 0.95)', border: '1px solid rgba(148,163,184,0.15)',
-  borderRadius: 8, color: '#e2e8f0', fontSize: '0.78rem', padding: '8px 12px',
+  borderRadius: 8, color: 'var(--w-slate-200)', fontSize: '0.78rem', padding: '8px 12px',
 };
 
 const SegTooltip = ({ active, payload, label }: any) => {
@@ -39,11 +39,11 @@ const SegTooltip = ({ active, payload, label }: any) => {
     <div style={tooltipStyle}>
       <div style={{ fontWeight: 700, marginBottom: 4 }}>{label}</div>
       <div style={{ display: 'flex', justifyContent: 'space-between', gap: 16 }}>
-        <span style={{ color: '#94a3b8' }}>수입 단가</span>
+        <span style={{ color: 'var(--w-slate-400)' }}>수입 단가</span>
         <span style={{ fontWeight: 700, color: c.color }}>{d.price} €/kg</span>
       </div>
       <div style={{ display: 'flex', justifyContent: 'space-between', gap: 16, marginTop: 2 }}>
-        <span style={{ color: '#94a3b8' }}>수입액 (2024)</span>
+        <span style={{ color: 'var(--w-slate-400)' }}>수입액 (2024)</span>
         <span style={{ fontWeight: 600 }}>{d.val}M €</span>
       </div>
       <div style={{ marginTop: 4, fontSize: '0.64rem', color: c.color }}>● {c.label}</div>
@@ -73,12 +73,12 @@ export default function SasEuImportSegmentation() {
             <SafeResponsiveContainer width="100%" height="100%">
               <BarChart data={segData} layout="vertical" margin={{ top: 4, right: 52, left: 8, bottom: 4 }}>
                 <CartesianGrid strokeDasharray="3 3" stroke="rgba(148,163,184,0.08)" horizontal={false} />
-                <XAxis type="number" domain={[0, 14]} tick={{ fill: '#94a3b8', fontSize: 11 }} axisLine={false} tickLine={false} tickFormatter={(v: unknown) => `${v}€`} />
-                <YAxis type="category" dataKey="name" width={86} tick={{ fill: '#cbd5e1', fontSize: 10.5 }} axisLine={false} tickLine={false} />
+                <XAxis type="number" domain={[0, 14]} tick={{ fill: 'var(--w-slate-400)', fontSize: 11 }} axisLine={false} tickLine={false} tickFormatter={(v: unknown) => `${v}€`} />
+                <YAxis type="category" dataKey="name" width={86} tick={{ fill: 'var(--w-slate-300)', fontSize: 10.5 }} axisLine={false} tickLine={false} />
                 <Tooltip content={<SegTooltip />} cursor={{ fill: 'rgba(148,163,184,0.06)' }} />
                 <Bar dataKey="price" radius={[0, 4, 4, 0]} isAnimationActive={false} barSize={17}>
                   {segData.map((d, i) => <Cell key={i} fill={(CAT as any)[d.cat].color} fillOpacity={0.85} />)}
-                  <LabelList dataKey="price" position="right" formatter={(v: unknown) => `${v}€/kg`} style={{ fill: '#94a3b8', fontSize: 10, fontWeight: 600 }} />
+                  <LabelList dataKey="price" position="right" formatter={(v: unknown) => `${v}€/kg`} style={{ fill: 'var(--w-slate-400)', fontSize: 10, fontWeight: 600 }} />
                 </Bar>
               </BarChart>
             </SafeResponsiveContainer>
@@ -88,7 +88,7 @@ export default function SasEuImportSegmentation() {
             {Object.values(CAT).map((c) => (
               <div key={c.label} style={{ display: 'flex', alignItems: 'center', gap: '5px' }}>
                 <span style={{ width: 10, height: 10, borderRadius: '3px', background: c.color, display: 'inline-block' }} />
-                <span style={{ fontSize: '0.66rem', color: '#94a3b8' }}>{c.label}</span>
+                <span style={{ fontSize: '0.66rem', color: 'var(--w-slate-400)' }}>{c.label}</span>
               </div>
             ))}
           </div>

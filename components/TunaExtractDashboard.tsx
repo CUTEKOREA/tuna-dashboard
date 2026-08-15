@@ -41,7 +41,7 @@ const CustomTooltip = ({ active, payload, label }: any) => {
 
 // Fallback UI component for Empty State
 const EmptyState = ({ message }: { message: string }) => (
-  <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', height: '280px', color: '#94a3b8', background: 'rgba(255,255,255,0.02)', borderRadius: '8px', border: '1px dashed #334155' }}>
+  <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', height: '280px', color: 'var(--w-slate-400)', background: 'rgba(255,255,255,0.02)', borderRadius: '8px', border: '1px dashed #334155' }}>
     <AlertTriangle size={32} style={{ marginBottom: '1rem', opacity: 0.5 }} color="#94a3b8" />
     <p style={{ margin: 0, fontSize: '0.9rem' }}>{message}</p>
   </div>
@@ -226,8 +226,8 @@ export default function TunaExtractDashboard() {
               <BarChart data={data.d_w03} layout="vertical" margin={{ left: 20 }}>
                 <ChartPatternDefs />
                 <CartesianGrid strokeDasharray="3 3" stroke="#334155" />
-                <XAxis type="number" stroke="#94a3b8" />
-                <YAxis dataKey="stage" type="category" stroke="#94a3b8" fontSize={11} width={80} />
+                <XAxis type="number" stroke="var(--w-slate-400)" />
+                <YAxis dataKey="stage" type="category" stroke="var(--w-slate-400)" fontSize={11} width={80} />
                 <Tooltip content={<CustomTooltip />} />
                 <Bar dataKey="value" name="부가가치 ($/kg)" fill="var(--color-info)" />
                 <Bar dataKey="cost" name="가공비용 ($/kg)" fill="var(--color-danger)" />
@@ -266,8 +266,8 @@ export default function TunaExtractDashboard() {
             <ComposedChart data={d_iotc_quota}>
               <ChartPatternDefs />
               <CartesianGrid strokeDasharray="3 3" stroke="#334155" />
-              <XAxis dataKey="연도" stroke="#94a3b8" fontSize={12} />
-              <YAxis stroke="#94a3b8" fontSize={12} />
+              <XAxis dataKey="연도" stroke="var(--w-slate-400)" fontSize={12} />
+              <YAxis stroke="var(--w-slate-400)" fontSize={12} />
               <Tooltip content={<CustomTooltip />} />
               <Legend />
               <Bar dataKey="어획량" name="어획량 (만 톤)" fill="var(--color-info)" />
@@ -310,7 +310,7 @@ export default function TunaExtractDashboard() {
           customBody={
             <div>
               <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', marginBottom: '1rem', background: '#0a0f1f', padding: '1rem', borderRadius: '8px' }}>
-                <span style={{ color: '#cbd5e1', fontWeight: 600 }}>현재 적용 환율 (USD/KRW): <span style={{ color: 'var(--color-info)', fontSize: '1.2rem', marginLeft: '0.5rem' }}>{exchangeRateSlider} 원</span></span>
+                <span style={{ color: 'var(--w-slate-300)', fontWeight: 600 }}>현재 적용 환율 (USD/KRW): <span style={{ color: 'var(--color-info)', fontSize: '1.2rem', marginLeft: '0.5rem' }}>{exchangeRateSlider} 원</span></span>
                 <input
                   type="range" min="1100" max="1600" step="10"
                   value={exchangeRateSlider}
@@ -323,12 +323,12 @@ export default function TunaExtractDashboard() {
                   <ComposedChart data={d_w04_simulated}>
                     <ChartPatternDefs />
                     <CartesianGrid strokeDasharray="3 3" stroke="#334155" />
-                    <XAxis dataKey="type" stroke="#94a3b8" fontSize={12} />
-                    <YAxis yAxisId="left" stroke="#94a3b8" fontSize={12} />
+                    <XAxis dataKey="type" stroke="var(--w-slate-400)" fontSize={12} />
+                    <YAxis yAxisId="left" stroke="var(--w-slate-400)" fontSize={12} />
                     <YAxis yAxisId="right" orientation="right" stroke="var(--color-info)" fontSize={12} domain={[0, 50]} />
                     <Tooltip content={<CustomTooltip />} />
                     <Legend />
-                    <Bar yAxisId="left" dataKey="rawCost" name="원료 단가 (원)" fill="#64748b" />
+                    <Bar yAxisId="left" dataKey="rawCost" name="원료 단가 (원)" fill="var(--w-slate-500)" />
                     <Line yAxisId="right" type="monotone" dataKey="margin" name="영업이익률 (%)" stroke="var(--color-info)" strokeWidth={3} />
                   </ComposedChart>
                 </SafeResponsiveContainer>
@@ -413,7 +413,7 @@ export default function TunaExtractDashboard() {
                           onClick={() => setActiveResearchTab(tab.id)}
                           style={{
                             background: activeResearchTab === tab.id ? 'var(--color-info)' : 'rgba(140,170,255,0.10)',
-                            color: activeResearchTab === tab.id ? '#fff' : '#94a3b8',
+                            color: activeResearchTab === tab.id ? '#fff' : 'var(--w-slate-400)',
                             border: '1px solid rgba(255,255,255,0.1)',
                             padding: '0.5rem 1rem', borderRadius: '6px', cursor: 'pointer',
                             display: 'flex', alignItems: 'center', gap: '0.4rem', fontWeight: 600, fontSize: '0.85rem',
@@ -427,14 +427,14 @@ export default function TunaExtractDashboard() {
                     <div style={{ minHeight: '350px', background: 'rgba(0,0,0,0.2)', padding: '1.5rem', borderRadius: '8px' }}>
                       {activeResearchTab === 'K01' && (
                         <>
-                          <h4 style={{ color: '#e2e8f0', margin: '0 0 1rem 0' }}>통조림 부산물 위생안전성·영양 평가 (히스타민)</h4>
+                          <h4 style={{ color: 'var(--w-slate-200)', margin: '0 0 1rem 0' }}>통조림 부산물 위생안전성·영양 평가 (히스타민)</h4>
                           {data.d_k01_byproduct_safety ? (
                             <SafeResponsiveContainer height={220}>
                               <BarChart data={data.d_k01_byproduct_safety}>
                                 <ChartPatternDefs />
                                 <CartesianGrid strokeDasharray="3 3" stroke="#334155" />
-                                <XAxis dataKey="항목" stroke="#94a3b8" fontSize={10} />
-                                <YAxis stroke="#94a3b8" fontSize={12} />
+                                <XAxis dataKey="항목" stroke="var(--w-slate-400)" fontSize={10} />
+                                <YAxis stroke="var(--w-slate-400)" fontSize={12} />
                                 <Tooltip content={<CustomTooltip />} />
                                 <Legend />
                                 <Bar dataKey="생부산물" fill="var(--color-danger)" />
@@ -447,17 +447,17 @@ export default function TunaExtractDashboard() {
                       )}
                       {activeResearchTab === 'K05' && (
                         <>
-                          <h4 style={{ color: '#e2e8f0', margin: '0 0 1rem 0' }}>속성발효 고순도 액젓 혁신</h4>
+                          <h4 style={{ color: 'var(--w-slate-200)', margin: '0 0 1rem 0' }}>속성발효 고순도 액젓 혁신</h4>
                           {data.d_k05_rapid_anchovy ? (
                             <SafeResponsiveContainer height={220}>
                               <LineChart data={data.d_k05_rapid_anchovy}>
                                 <CartesianGrid strokeDasharray="3 3" stroke="#334155" />
-                                <XAxis dataKey="발효일" stroke="#94a3b8" fontSize={10} />
-                                <YAxis stroke="#94a3b8" fontSize={12} />
+                                <XAxis dataKey="발효일" stroke="var(--w-slate-400)" fontSize={10} />
+                                <YAxis stroke="var(--w-slate-400)" fontSize={12} />
                                 <Tooltip content={<CustomTooltip />} />
                                 <Legend />
                                 <Line type="monotone" dataKey="속성발효TN" stroke="var(--color-success)" strokeWidth={2} />
-                                <Line type="monotone" dataKey="전통TN" stroke="#64748b" strokeDasharray="5 5" />
+                                <Line type="monotone" dataKey="전통TN" stroke="var(--w-slate-500)" strokeDasharray="5 5" />
                               </LineChart>
                             </SafeResponsiveContainer>
                           ) : <EmptyState message="연구 데이터 로딩 실패" />}
@@ -465,17 +465,17 @@ export default function TunaExtractDashboard() {
                       )}
                       {activeResearchTab === 'K07' && (
                         <>
-                          <h4 style={{ color: '#e2e8f0', margin: '0 0 1rem 0' }}>쌀코지 저염 어간장 발효 혁신</h4>
+                          <h4 style={{ color: 'var(--w-slate-200)', margin: '0 0 1rem 0' }}>쌀코지 저염 어간장 발효 혁신</h4>
                           {data.d_k07_kanari_koji ? (
                             <SafeResponsiveContainer height={220}>
                               <BarChart data={data.d_k07_kanari_koji}>
                                 <ChartPatternDefs />
                                 <CartesianGrid strokeDasharray="3 3" stroke="#334155" />
-                                <XAxis dataKey="조건" stroke="#94a3b8" fontSize={10} />
-                                <YAxis stroke="#94a3b8" fontSize={12} />
+                                <XAxis dataKey="조건" stroke="var(--w-slate-400)" fontSize={10} />
+                                <YAxis stroke="var(--w-slate-400)" fontSize={12} />
                                 <Tooltip content={<CustomTooltip />} />
                                 <Legend />
-                                <Bar dataKey="아미노산" fill="#8b5cf6" />
+                                <Bar dataKey="아미노산" fill="var(--w-violet-500)" />
                                 <Line type="monotone" dataKey="관능" stroke="var(--color-success)" strokeWidth={2.5} />
                               </BarChart>
                             </SafeResponsiveContainer>
@@ -484,14 +484,14 @@ export default function TunaExtractDashboard() {
                       )}
                       {activeResearchTab === 'K08' && (
                         <>
-                          <h4 style={{ color: '#e2e8f0', margin: '0 0 1rem 0' }}>오징어 효소 활용 쓴맛 제거 (디비터링)</h4>
+                          <h4 style={{ color: 'var(--w-slate-200)', margin: '0 0 1rem 0' }}>오징어 효소 활용 쓴맛 제거 (디비터링)</h4>
                           {data.d_k08_debit_sauce ? (
                             <SafeResponsiveContainer height={220}>
                               <BarChart data={data.d_k08_debit_sauce}>
                                 <ChartPatternDefs />
                                 <CartesianGrid strokeDasharray="3 3" stroke="#334155" />
-                                <XAxis dataKey="처리단계" stroke="#94a3b8" fontSize={10} />
-                                <YAxis stroke="#94a3b8" fontSize={12} />
+                                <XAxis dataKey="처리단계" stroke="var(--w-slate-400)" fontSize={10} />
+                                <YAxis stroke="var(--w-slate-400)" fontSize={12} />
                                 <Tooltip content={<CustomTooltip />} />
                                 <Legend />
                                 <Bar dataKey="쓴맛강도" fill="var(--color-danger)" />
@@ -529,8 +529,8 @@ export default function TunaExtractDashboard() {
             <ComposedChart data={d_scfi_lagging}>
               <ChartPatternDefs />
               <CartesianGrid strokeDasharray="3 3" stroke="#334155" />
-              <XAxis dataKey="월" stroke="#94a3b8" fontSize={12} />
-              <YAxis yAxisId="left" stroke="#94a3b8" fontSize={12} />
+              <XAxis dataKey="월" stroke="var(--w-slate-400)" fontSize={12} />
+              <YAxis yAxisId="left" stroke="var(--w-slate-400)" fontSize={12} />
               <YAxis yAxisId="right" orientation="right" stroke="var(--color-danger)" fontSize={12} />
               <Tooltip content={<CustomTooltip />} />
               <Legend />
@@ -564,8 +564,8 @@ export default function TunaExtractDashboard() {
           chart={
             <ScatterChart margin={{ top: 20, right: 20, bottom: 20, left: 20 }}>
               <CartesianGrid strokeDasharray="3 3" stroke="#334155" />
-              <XAxis type="number" dataKey="리스크" name="지정학/공급 리스크" stroke="#94a3b8" domain={[0, 100]} />
-              <YAxis type="number" dataKey="조달단가" name="상대적 조달 단가" stroke="#94a3b8" domain={[50, 120]} />
+              <XAxis type="number" dataKey="리스크" name="지정학/공급 리스크" stroke="var(--w-slate-400)" domain={[0, 100]} />
+              <YAxis type="number" dataKey="조달단가" name="상대적 조달 단가" stroke="var(--w-slate-400)" domain={[50, 120]} />
               <ZAxis type="number" dataKey="볼륨" range={[100, 1000]} />
               <Tooltip cursor={{ strokeDasharray: '3 3' }} content={<CustomTooltip />} />
               <Legend />
@@ -608,8 +608,8 @@ export default function TunaExtractDashboard() {
             <BarChart data={d_w07_2026} layout="vertical" margin={{ left: 40 }}>
               <ChartPatternDefs />
               <CartesianGrid strokeDasharray="3 3" stroke="#334155" />
-              <XAxis type="number" stroke="#94a3b8" />
-              <YAxis dataKey="product" type="category" stroke="#94a3b8" fontSize={11} width={80} />
+              <XAxis type="number" stroke="var(--w-slate-400)" />
+              <YAxis dataKey="product" type="category" stroke="var(--w-slate-400)" fontSize={11} width={80} />
               <Tooltip content={<CustomTooltip />} />
               <Legend />
               <Bar dataKey="current" name="현재 사용 (%)" fill="var(--color-danger)" stackId="a" />
@@ -648,12 +648,12 @@ export default function TunaExtractDashboard() {
             <ComposedChart data={d_substitute_corr}>
               <ChartPatternDefs />
               <CartesianGrid strokeDasharray="3 3" stroke="#334155" />
-              <XAxis dataKey="연도" stroke="#94a3b8" fontSize={12} />
-              <YAxis yAxisId="left" stroke="#94a3b8" fontSize={12} />
+              <XAxis dataKey="연도" stroke="var(--w-slate-400)" fontSize={12} />
+              <YAxis yAxisId="left" stroke="var(--w-slate-400)" fontSize={12} />
               <YAxis yAxisId="right" orientation="right" stroke="var(--color-success)" fontSize={12} />
               <Tooltip content={<CustomTooltip />} />
               <Legend />
-              <Bar yAxisId="left" dataKey="멸치생산량" name="국내 멸치/까나리 어획량 지수" fill="#64748b" />
+              <Bar yAxisId="left" dataKey="멸치생산량" name="국내 멸치/까나리 어획량 지수" fill="var(--w-slate-500)" />
               <Line yAxisId="right" type="monotone" dataKey="참치액발주량" name="참치액 B2B 발주량 지수" stroke="var(--color-success)" strokeWidth={3} />
             </ComposedChart>
           }
@@ -692,8 +692,8 @@ export default function TunaExtractDashboard() {
             <SafeResponsiveContainer height={280}>
               <RadarChart cx="50%" cy="50%" outerRadius="70%" data={data.d_w06}>
                 <PolarGrid stroke="#334155" />
-                <PolarAngleAxis dataKey="axis" stroke="#94a3b8" fontSize={11} />
-                <PolarRadiusAxis angle={30} domain={[0, 100]} stroke="#64748b" />
+                <PolarAngleAxis dataKey="axis" stroke="var(--w-slate-400)" fontSize={11} />
+                <PolarRadiusAxis angle={30} domain={[0, 100]} stroke="var(--w-slate-500)" />
                 <Radar name="한국산 리스크 수준" dataKey="KR" stroke="var(--color-danger)" fill="var(--color-danger)" fillOpacity={0.3} />
                 <Radar name="EU 허용 기준치 충족도" dataKey="EU" stroke="var(--color-success)" fill="var(--color-success)" fillOpacity={0.3} />
                 <Tooltip content={<CustomTooltip />} />

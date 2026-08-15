@@ -40,7 +40,7 @@ export default function MscHarvestStrategyTimeline() {
           {/* Vertical line */}
           <div style={{
             position: 'absolute', left: '14px', top: '16px', bottom: '16px',
-            width: '2px', background: 'linear-gradient(to bottom, #10b981, #38bdf8, #f59e0b, #ef4444)',
+            width: '2px', background: 'linear-gradient(to bottom, var(--w-emerald-500), var(--w-sky-400), var(--w-amber-500), var(--w-red-500))',
             borderRadius: '2px',
           }} />
 
@@ -72,7 +72,7 @@ export default function MscHarvestStrategyTimeline() {
                     <div style={{ fontSize: '0.82rem', fontWeight: 600, color: '#f1f5f9', marginBottom: '2px' }}>
                       {m.event}
                     </div>
-                    <div style={{ fontSize: '0.72rem', color: '#94a3b8', lineHeight: 1.4 }}>
+                    <div style={{ fontSize: '0.72rem', color: 'var(--w-slate-400)', lineHeight: 1.4 }}>
                       {m.detail}
                     </div>
                   </div>
@@ -93,10 +93,10 @@ export default function MscHarvestStrategyTimeline() {
             marginTop: '16px', marginLeft: '-24px', padding: '10px 14px', borderRadius: '8px',
             background: 'rgba(239,68,68,0.08)', border: '1px solid rgba(239,68,68,0.15)',
             display: 'flex', justifyContent: 'space-between', alignItems: 'center',
-            fontSize: '0.72rem', color: '#94a3b8',
+            fontSize: '0.72rem', color: 'var(--w-slate-400)',
           }}>
-            <span>HCR 완전 이행: <strong style={{ color: '#ef4444' }}>7 / 23</strong> 자원</span>
-            <span>2030까지 필요: <strong style={{ color: '#f59e0b' }}>+16</strong> 자원</span>
+            <span>HCR 완전 이행: <strong style={{ color: 'var(--w-red-500)' }}>7 / 23</strong> 자원</span>
+            <span>2030까지 필요: <strong style={{ color: 'var(--w-amber-500)' }}>+16</strong> 자원</span>
           </div>
         </div>
       }

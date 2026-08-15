@@ -42,33 +42,33 @@ export default function SasUsDemandSeasonality() {
               <AreaChart data={SEASON_INDEX} margin={{ top: 10, right: 16, left: 0, bottom: 0 }}>
                 <defs>
                   <linearGradient id="colorSeason" x1="0" y1="0" x2="0" y2="1">
-                    <stop offset="5%" stopColor="#38bdf8" stopOpacity={0.4} />
-                    <stop offset="95%" stopColor="#38bdf8" stopOpacity={0} />
+                    <stop offset="5%" stopColor="var(--w-sky-400)" stopOpacity={0.4} />
+                    <stop offset="95%" stopColor="var(--w-sky-400)" stopOpacity={0} />
                   </linearGradient>
                 </defs>
                 <CartesianGrid strokeDasharray="3 3" opacity={0.15} vertical={false} />
-                <XAxis dataKey="m" fontSize={10} tickLine={false} axisLine={false} stroke="#64748b" interval={0} />
-                <YAxis domain={[60, 105]} tickFormatter={(v: unknown) => `${v}`} fontSize={10} tickLine={false} axisLine={false} stroke="#64748b" />
+                <XAxis dataKey="m" fontSize={10} tickLine={false} axisLine={false} stroke="var(--w-slate-500)" interval={0} />
+                <YAxis domain={[60, 105]} tickFormatter={(v: unknown) => `${v}`} fontSize={10} tickLine={false} axisLine={false} stroke="var(--w-slate-500)" />
                 <Tooltip
-                  contentStyle={{ borderRadius: '8px', border: 'none', background: '#1a2442', color: '#e2e8f0' }}
+                  contentStyle={{ borderRadius: '8px', border: 'none', background: 'var(--w-navy-900)', color: 'var(--w-slate-200)' }}
                   formatter={(v: unknown) => [`${v} (인덱스)`, '계절 수요']}
                 />
-                <Area type="monotone" dataKey="idx" name="계절 수요 인덱스" stroke="#38bdf8" strokeWidth={2} fill="url(#colorSeason)" isAnimationActive={false} />
+                <Area type="monotone" dataKey="idx" name="계절 수요 인덱스" stroke="var(--w-sky-400)" strokeWidth={2} fill="url(#colorSeason)" isAnimationActive={false} />
               </AreaChart>
             </SafeResponsiveContainer>
           </div>
-          <div style={{ textAlign: 'center', fontSize: '0.62rem', color: '#94a3b8', marginTop: '-4px' }}>
+          <div style={{ textAlign: 'center', fontSize: '0.62rem', color: 'var(--w-slate-400)', marginTop: '-4px' }}>
             여름 그릴링(7월 고점) · 연말(12월) 피크 · 비수기 2월 저점 · 정성 추정
           </div>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '8px' }}>
             {DRIVERS.map((d) => (
               <div key={d.label} style={{ background: `${d.color}0f`, border: `1px solid ${d.color}2e`, borderRadius: '8px', padding: '8px 9px', display: 'flex', flexDirection: 'column', gap: '2px' }}>
-                <span style={{ fontSize: '0.58rem', color: '#94a3b8' }}>{d.label}</span>
+                <span style={{ fontSize: '0.58rem', color: 'var(--w-slate-400)' }}>{d.label}</span>
                 <span style={{ display: 'flex', alignItems: 'baseline', gap: '3px' }}>
                   <span style={{ fontSize: '1.15rem', fontWeight: 800, color: d.color }}>{d.value}</span>
-                  <span style={{ fontSize: '0.58rem', color: '#94a3b8' }}>{d.unit}</span>
+                  <span style={{ fontSize: '0.58rem', color: 'var(--w-slate-400)' }}>{d.unit}</span>
                 </span>
-                <span style={{ fontSize: '0.56rem', color: '#64748b' }}>{d.sub}</span>
+                <span style={{ fontSize: '0.56rem', color: 'var(--w-slate-500)' }}>{d.sub}</span>
               </div>
             ))}
           </div>

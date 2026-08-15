@@ -48,14 +48,14 @@ const RaceTooltip = ({ active, payload, label }: any) => {
   const row: RaceYearRow | undefined = payload[0]?.payload?.__row;
   return (
     <div style={{ background: '#0a0f1f', border: '1px solid #334155', borderRadius: 6, padding: '8px 12px', zIndex: 50 }}>
-      <p style={{ color: '#f8fafc', fontWeight: 600, margin: 0, fontSize: '0.85rem' }}>
+      <p style={{ color: 'var(--w-slate-50)', fontWeight: 600, margin: 0, fontSize: '0.85rem' }}>
         {label}년 {row ? `· 6개국 합 ${toEokUsd(row.totalUsdM)}억 달러` : ''}
       </p>
       {[...payload].reverse().map((entry: any, i: number) => (
         <p key={i} style={{ color: entry.color, margin: '4px 0 0 0', fontSize: '0.78rem' }}>
           <span>{entry.name}: </span>
           <strong>{Number(entry.value).toFixed(1)}%</strong>
-          {row && <span style={{ color: '#94a3b8' }}> ({toEokUsd(row.abs[entry.dataKey as CountryKey])}억 달러)</span>}
+          {row && <span style={{ color: 'var(--w-slate-400)' }}> ({toEokUsd(row.abs[entry.dataKey as CountryKey])}억 달러)</span>}
         </p>
       ))}
     </div>
@@ -148,7 +148,7 @@ const TunaExportRaceWidget = () => {
   if (loading) {
     stateBody = (
       <div style={{ padding: '48px 12px', textAlign: 'center' }}>
-        <p style={{ color: '#94a3b8', fontSize: '0.85rem', margin: 0, animation: 'pulse 1.5s ease-in-out infinite' }}>
+        <p style={{ color: 'var(--w-slate-400)', fontSize: '0.85rem', margin: 0, animation: 'pulse 1.5s ease-in-out infinite' }}>
           유엔 무역통계(UN Comtrade) 연간 수출액 조회 중…
         </p>
       </div>
@@ -178,7 +178,7 @@ const TunaExportRaceWidget = () => {
   } else if (isEmpty) {
     stateBody = (
       <div style={{ padding: '40px 12px', textAlign: 'center' }}>
-        <p style={{ color: '#94a3b8', fontSize: '0.85rem', margin: 0 }}>
+        <p style={{ color: 'var(--w-slate-400)', fontSize: '0.85rem', margin: 0 }}>
           집계 가능한 연간 수출 레코드가 없습니다 (6개국 전체).
         </p>
       </div>
@@ -212,7 +212,7 @@ const TunaExportRaceWidget = () => {
               domain={[0, 100]}
             />
             <Tooltip content={<RaceTooltip />} />
-            <Legend wrapperStyle={{ fontSize: '11px', color: '#cbd5e1' }} />
+            <Legend wrapperStyle={{ fontSize: '11px', color: 'var(--w-slate-300)' }} />
             {COUNTRY_ORDER.map((c) => (
               <Area
                 key={c.key}

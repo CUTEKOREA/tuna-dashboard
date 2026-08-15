@@ -41,7 +41,7 @@ export default function MscDemographicAcceptance() {
             padding: '0.75rem',
             fontSize: '0.75rem',
             fontWeight: 700,
-            color: '#64748b',
+            color: 'var(--w-slate-500)',
             textTransform: 'uppercase',
             display: 'flex',
             alignItems: 'center',
@@ -55,7 +55,7 @@ export default function MscDemographicAcceptance() {
               textAlign: 'center',
               fontSize: '0.875rem',
               fontWeight: 700,
-              color: '#cbd5e1',
+              color: 'var(--w-slate-300)',
             }}>
               {label}
             </div>
@@ -77,7 +77,7 @@ export default function MscDemographicAcceptance() {
               padding: '0.75rem',
               fontSize: '0.875rem',
               fontWeight: 600,
-              color: '#e2e8f0',
+              color: 'var(--w-slate-200)',
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
@@ -124,7 +124,7 @@ export default function MscDemographicAcceptance() {
         paddingLeft: '0.5rem',
         paddingRight: '0.5rem',
       }}>
-        <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', fontSize: '0.75rem', fontWeight: 600, color: '#64748b' }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', fontSize: '0.75rem', fontWeight: 600, color: 'var(--w-slate-500)' }}>
           <span>낮음</span>
           <div style={{ display: 'flex', gap: '0.25rem' }}>
             <div style={{ width: '1.25rem', height: '0.75rem', borderRadius: '0.25rem', background: 'rgba(100,116,139,0.1)' }} />
@@ -135,8 +135,8 @@ export default function MscDemographicAcceptance() {
           </div>
           <span>높음</span>
         </div>
-        <div style={{ fontSize: '0.75rem', color: '#94a3b8', fontWeight: 500 }}>
-          <span style={{ color: '#34d399', fontWeight: 700, marginRight: '0.25rem' }}>세대 격차 핵심:</span>
+        <div style={{ fontSize: '0.75rem', color: 'var(--w-slate-400)', fontWeight: 500 }}>
+          <span style={{ color: 'var(--w-emerald-400)', fontWeight: 700, marginRight: '0.25rem' }}>세대 격차 핵심:</span>
           Z세대(62%) vs 부머(25%)
         </div>
       </div>

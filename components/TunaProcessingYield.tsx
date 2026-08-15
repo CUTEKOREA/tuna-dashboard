@@ -39,7 +39,7 @@ const CustomTooltip = ({ active, payload, label }: any) => {
   if (!active || !payload?.length) return null;
   return (
     <div style={{ background: '#0a0f1f', border: '1px solid #334155', borderRadius: 6, padding: '8px 12px' }}>
-      <p style={{ color: '#f8fafc', fontWeight: 600, margin: '0 0 4px 0', fontSize: '0.85rem' }}>{label}</p>
+      <p style={{ color: 'var(--w-slate-50)', fontWeight: 600, margin: '0 0 4px 0', fontSize: '0.85rem' }}>{label}</p>
       {payload.map((entry: any, i: number) => {
         const species = SPECIES.find((s) => s.key === entry.dataKey);
         return (

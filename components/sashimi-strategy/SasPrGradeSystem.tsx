@@ -36,12 +36,12 @@ export default function SasPrGradeSystem() {
           {GRADES.map((g) => (
             <div key={g.g} style={{ display: 'flex', alignItems: 'center', gap: '11px', background: `${g.rc}0d`, border: `1px solid ${g.rc}2e`, borderLeft: `3px solid ${g.rc}`, borderRadius: '9px', padding: '10px 12px' }}>
               <span style={{ fontSize: '1.1rem', fontWeight: 800, color: g.rc, minWidth: '34px' }}>{g.g}</span>
-              <span style={{ flex: 1, fontSize: '0.66rem', color: '#e2e8f0', lineHeight: 1.4 }}>{g.desc}</span>
+              <span style={{ flex: 1, fontSize: '0.66rem', color: 'var(--w-slate-200)', lineHeight: 1.4 }}>{g.desc}</span>
               <span style={{ fontSize: '0.6rem', color: g.rc, background: `${g.rc}1f`, padding: '2px 8px', borderRadius: '4px', fontWeight: 700, whiteSpace: 'nowrap' }}>{g.price}</span>
             </div>
           ))}
-          <div style={{ textAlign: 'center', fontSize: '0.62rem', color: '#94a3b8' }}>
-            오토로 지방 <span style={{ color: '#ef4444', fontWeight: 700 }}>25~30%</span>(겨울 40%) · 소매 오토로=아카미 <span style={{ color: '#f59e0b', fontWeight: 700 }}>1.5배</span>
+          <div style={{ textAlign: 'center', fontSize: '0.62rem', color: 'var(--w-slate-400)' }}>
+            오토로 지방 <span style={{ color: 'var(--w-red-500)', fontWeight: 700 }}>25~30%</span>(겨울 40%) · 소매 오토로=아카미 <span style={{ color: 'var(--w-amber-500)', fontWeight: 700 }}>1.5배</span>
           </div>
         </div>
       }

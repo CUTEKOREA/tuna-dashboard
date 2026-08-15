@@ -355,20 +355,20 @@ export default function MarketDashboard({ heroOnly = false }: { heroOnly?: boole
                 <defs>
                   <linearGradient id="mktGradSkj" x1="0" y1="0" x2="1" y2="0">
                     <stop offset="0%" stopColor="#22d3ee" />
-                    <stop offset="100%" stopColor="#3b82f6" />
+                    <stop offset="100%" stopColor="var(--w-blue-500)" />
                   </linearGradient>
                 </defs>
                 <CartesianGrid strokeDasharray="3 3" stroke="rgba(140,170,255,0.12)" vertical={false} />
                 <XAxis dataKey="date" stroke="rgba(255,255,255,0.4)" fontSize={12} tickMargin={10} minTickGap={30} />
                 <YAxis yAxisId="left" stroke="rgba(255,255,255,0.4)" fontSize={12} domain={['auto', 'auto']} tickFormatter={(v) => `$${v}`} />
                 <RechartsTooltip
-                  contentStyle={{ backgroundColor: '#1a2442', border: '1px solid rgba(56, 189, 248, 0.25)', borderRadius: '10px', boxShadow: '0 16px 40px rgba(0, 0, 0, 0.55)' }}
+                  contentStyle={{ backgroundColor: 'var(--w-navy-900)', border: '1px solid rgba(56, 189, 248, 0.25)', borderRadius: '10px', boxShadow: '0 16px 40px rgba(0, 0, 0, 0.55)' }}
                   itemStyle={{ color: '#fff', fontSize: '13px' }}
                   labelStyle={{ color: 'var(--text-muted)', marginBottom: '4px', fontSize: '12px' }}
                 />
                 <Legend iconType="plainline" iconSize={16} wrapperStyle={{ fontSize: '12px', paddingTop: '10px', letterSpacing: '0.01em' }} />
 
-                <Line yAxisId="left" type="monotone" dataKey="skj_bkk" name="SKJ 방콕" stroke="#38bdf8" strokeWidth={2.5} dot={false} activeDot={{ r: 6, fill: '#38bdf8', strokeWidth: 0, style: { filter: 'drop-shadow(0 0 6px rgba(56, 189, 248, 0.85))' } }} connectNulls={true} />
+                <Line yAxisId="left" type="monotone" dataKey="skj_bkk" name="SKJ 방콕" stroke="var(--w-sky-400)" strokeWidth={2.5} dot={false} activeDot={{ r: 6, fill: 'var(--w-sky-400)', strokeWidth: 0, style: { filter: 'drop-shadow(0 0 6px rgba(56, 189, 248, 0.85))' } }} connectNulls={true} />
                 <Line yAxisId="left" type="monotone" dataKey="skj_mnt" name="SKJ 만타" stroke="#2dd4bf" strokeWidth={2} dot={false} connectNulls={true} />
                 <Line yAxisId="left" type="monotone" dataKey="skj_abj" name="SKJ 아비장" stroke="#f472b6" strokeWidth={2} dot={false} strokeDasharray="5 5" connectNulls={true} />
                 <Line yAxisId="left" type="monotone" dataKey="skj_sey" name="SKJ 세이셸" stroke="#facc15" strokeWidth={2} dot={false} connectNulls={true} />
@@ -394,7 +394,7 @@ export default function MarketDashboard({ heroOnly = false }: { heroOnly?: boole
                 <XAxis dataKey="date" stroke="rgba(255,255,255,0.4)" fontSize={12} tickMargin={10} minTickGap={30} />
                 <YAxis yAxisId="left" stroke="rgba(255,255,255,0.4)" fontSize={12} domain={['auto', 'auto']} tickFormatter={(v) => `$${v}`} />
                 <RechartsTooltip
-                  contentStyle={{ backgroundColor: '#1a2442', border: '1px solid rgba(139, 92, 246, 0.25)', borderRadius: '10px', boxShadow: '0 16px 40px rgba(0, 0, 0, 0.55)' }}
+                  contentStyle={{ backgroundColor: 'var(--w-navy-900)', border: '1px solid rgba(139, 92, 246, 0.25)', borderRadius: '10px', boxShadow: '0 16px 40px rgba(0, 0, 0, 0.55)' }}
                   itemStyle={{ color: '#fff', fontSize: '13px' }}
                   labelStyle={{ color: 'var(--text-muted)', marginBottom: '4px', fontSize: '12px' }}
                 />

@@ -30,7 +30,7 @@ const tooltipStyle = {
   backgroundColor: 'rgba(20, 28, 52, 0.95)',
   border: '1px solid rgba(148,163,184,0.15)',
   borderRadius: 8,
-  color: '#e2e8f0',
+  color: 'var(--w-slate-200)',
   fontSize: '0.78rem',
   padding: '8px 12px',
 };
@@ -42,10 +42,10 @@ const CustomTooltip = ({ active, payload, label }: any) => {
     <div style={tooltipStyle}>
       <div style={{ fontWeight: 700, marginBottom: 4 }}>{label}</div>
       <div style={{ display: 'flex', justifyContent: 'space-between', gap: 16 }}>
-        <span style={{ color: '#94a3b8' }}>최근 3년 개선</span>
+        <span style={{ color: 'var(--w-slate-400)' }}>최근 3년 개선</span>
         <span style={{ fontWeight: 700, color: d.color }}>{d.count}건</span>
       </div>
-      <div style={{ marginTop: 4, fontSize: '0.66rem', color: '#94a3b8' }}>{d.note}</div>
+      <div style={{ marginTop: 4, fontSize: '0.66rem', color: 'var(--w-slate-400)' }}>{d.note}</div>
     </div>
   );
 };
@@ -69,20 +69,20 @@ export default function MscImprovementsDelivered() {
               background: 'rgba(16,185,129,0.08)', border: '1px solid rgba(16,185,129,0.25)',
               borderRadius: '10px', padding: '12px 14px',
             }}>
-              <div style={{ fontSize: '0.66rem', color: '#94a3b8', marginBottom: '2px' }}>누적 개선 (제도 출범 이후)</div>
+              <div style={{ fontSize: '0.66rem', color: 'var(--w-slate-400)', marginBottom: '2px' }}>누적 개선 (제도 출범 이후)</div>
               <div style={{ display: 'flex', alignItems: 'baseline', gap: '6px' }}>
-                <span style={{ fontSize: '1.5rem', fontWeight: 800, color: '#10b981' }}>2,625</span>
-                <span style={{ fontSize: '0.72rem', color: '#94a3b8' }}>건</span>
+                <span style={{ fontSize: '1.5rem', fontWeight: 800, color: 'var(--w-emerald-500)' }}>2,625</span>
+                <span style={{ fontSize: '0.72rem', color: 'var(--w-slate-400)' }}>건</span>
               </div>
             </div>
             <div style={{
               background: 'rgba(56,189,248,0.08)', border: '1px solid rgba(56,189,248,0.25)',
               borderRadius: '10px', padding: '12px 14px',
             }}>
-              <div style={{ fontSize: '0.66rem', color: '#94a3b8', marginBottom: '2px' }}>최근 3년 개선</div>
+              <div style={{ fontSize: '0.66rem', color: 'var(--w-slate-400)', marginBottom: '2px' }}>최근 3년 개선</div>
               <div style={{ display: 'flex', alignItems: 'baseline', gap: '6px' }}>
-                <span style={{ fontSize: '1.5rem', fontWeight: 800, color: '#38bdf8' }}>558</span>
-                <span style={{ fontSize: '0.72rem', color: '#94a3b8' }}>건</span>
+                <span style={{ fontSize: '1.5rem', fontWeight: 800, color: 'var(--w-sky-400)' }}>558</span>
+                <span style={{ fontSize: '0.72rem', color: 'var(--w-slate-400)' }}>건</span>
               </div>
             </div>
           </div>
@@ -96,14 +96,14 @@ export default function MscImprovementsDelivered() {
                 margin={{ top: 4, right: 40, left: 8, bottom: 4 }}
               >
                 <CartesianGrid strokeDasharray="3 3" stroke="rgba(148,163,184,0.08)" horizontal={false} />
-                <XAxis type="number" domain={[0, 240]} tick={{ fill: '#94a3b8', fontSize: 11 }} axisLine={false} tickLine={false} />
-                <YAxis type="category" dataKey="cat" width={92} tick={{ fill: '#cbd5e1', fontSize: 11 }} axisLine={false} tickLine={false} />
+                <XAxis type="number" domain={[0, 240]} tick={{ fill: 'var(--w-slate-400)', fontSize: 11 }} axisLine={false} tickLine={false} />
+                <YAxis type="category" dataKey="cat" width={92} tick={{ fill: 'var(--w-slate-300)', fontSize: 11 }} axisLine={false} tickLine={false} />
                 <Tooltip content={<CustomTooltip />} cursor={{ fill: 'rgba(148,163,184,0.06)' }} />
                 <Bar dataKey="count" radius={[0, 4, 4, 0]} isAnimationActive={false} barSize={22}>
                   {improvements.map((d, i) => (
                     <Cell key={i} fill={d.color} fillOpacity={0.85} />
                   ))}
-                  <LabelList dataKey="count" position="right" formatter={(v: unknown) => `${v}건`} style={{ fill: '#94a3b8', fontSize: 11, fontWeight: 600 }} />
+                  <LabelList dataKey="count" position="right" formatter={(v: unknown) => `${v}건`} style={{ fill: 'var(--w-slate-400)', fontSize: 11, fontWeight: 600 }} />
                 </Bar>
               </BarChart>
             </ResponsiveContainer>
@@ -114,8 +114,8 @@ export default function MscImprovementsDelivered() {
             background: 'rgba(16,185,129,0.06)', border: '1px solid rgba(16,185,129,0.18)', borderRadius: '10px',
           }}>
             <TrendingUp size={16} color="#10b981" style={{ flexShrink: 0 }} />
-            <span style={{ fontSize: '0.72rem', color: '#cbd5e1' }}>
-              최근 3년 개선의 <b style={{ color: '#38bdf8' }}>31%(175건)</b>가 멸종위기종·혼획 저감 — 단순 '라벨'이 아닌 실측 보존 성과
+            <span style={{ fontSize: '0.72rem', color: 'var(--w-slate-300)' }}>
+              최근 3년 개선의 <b style={{ color: 'var(--w-sky-400)' }}>31%(175건)</b>가 멸종위기종·혼획 저감 — 단순 '라벨'이 아닌 실측 보존 성과
             </span>
           </div>
         </div>

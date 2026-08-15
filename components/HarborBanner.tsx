@@ -68,7 +68,7 @@ export default function HarborBanner({ vesselName, totalAmount, remainingAmount 
             background: 'rgba(0,0,0,0.6)',
             padding: '4px 8px',
             borderRadius: '4px',
-            color: '#fbbf24',
+            color: 'var(--w-amber-400)',
             fontSize: '0.8rem',
             fontFamily: 'monospace',
             letterSpacing: '1px',
@@ -99,14 +99,14 @@ export default function HarborBanner({ vesselName, totalAmount, remainingAmount 
           borderRadius: '8px',
           boxShadow: '4px 4px 0 rgba(0,0,0,0.5)'
         }}>
-          <div style={{ display: 'flex', justifyContent: 'space-between', color: '#94a3b8', fontSize: '0.8rem', marginBottom: '8px', fontFamily: 'monospace' }}>
+          <div style={{ display: 'flex', justifyContent: 'space-between', color: 'var(--w-slate-400)', fontSize: '0.8rem', marginBottom: '8px', fontFamily: 'monospace' }}>
             <span>UNLOADING PROGRESS</span>
-            <span style={{ color: '#10b981' }}>{progress.toFixed(1)}%</span>
+            <span style={{ color: 'var(--w-emerald-500)' }}>{progress.toFixed(1)}%</span>
           </div>
           <div style={{
             width: '100%',
             height: '24px',
-            background: '#1a2442',
+            background: 'var(--w-navy-900)',
             border: '2px solid #0a0f1f',
             position: 'relative'
           }}>
@@ -116,12 +116,12 @@ export default function HarborBanner({ vesselName, totalAmount, remainingAmount 
               left: 2,
               bottom: 2,
               width: `calc(${progress}% - 4px)`,
-              background: 'linear-gradient(to bottom, #34d399 0%, #10b981 50%, #059669 100%)',
+              background: 'linear-gradient(to bottom, var(--w-emerald-400) 0%, var(--w-emerald-500) 50%, #059669 100%)',
               transition: 'width 1s ease-in-out',
               boxShadow: 'inset 0 2px 0 rgba(255,255,255,0.3), inset 0 -2px 0 rgba(0,0,0,0.2)'
             }} />
           </div>
-          <div style={{ display: 'flex', justifyContent: 'space-between', color: '#64748b', fontSize: '0.75rem', marginTop: '6px', fontFamily: 'monospace' }}>
+          <div style={{ display: 'flex', justifyContent: 'space-between', color: 'var(--w-slate-500)', fontSize: '0.75rem', marginTop: '6px', fontFamily: 'monospace' }}>
             <span>0 MT</span>
             <span>REMAINING: {Math.max(0, remainingAmount).toLocaleString()} MT</span>
           </div>

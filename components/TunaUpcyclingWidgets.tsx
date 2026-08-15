@@ -40,7 +40,7 @@ export function TunaUpcyclingOpportunity() {
       customBody={
         <div style={{ display: 'grid', gridTemplateColumns: '1.2fr 1fr', gap: 24, alignItems: 'start' }}>
           <div style={{ height: 280 }}>
-            <div style={{ fontSize: '0.7rem', color: '#94a3b8', marginBottom: 4, textAlign: 'center' }}>부산물 구성비 (가공 후)</div>
+            <div style={{ fontSize: '0.7rem', color: 'var(--w-slate-400)', marginBottom: 4, textAlign: 'center' }}>부산물 구성비 (가공 후)</div>
             <PieChart width={350} height={260}>
               <Pie data={BYPRODUCT_DATA} cx="50%" cy="50%" innerRadius={45} outerRadius={80} paddingAngle={3} dataKey="value"
                 label={({ name, value }) => `${name} ${value}%`}
@@ -53,11 +53,11 @@ export function TunaUpcyclingOpportunity() {
             </PieChart>
           </div>
           <div style={{ display: 'grid', gap: 6 }}>
-            <div style={{ fontSize: '0.7rem', color: '#94a3b8', marginBottom: 2 }}>업사이클 제품 파이프라인</div>
+            <div style={{ fontSize: '0.7rem', color: 'var(--w-slate-400)', marginBottom: 2 }}>업사이클 제품 파이프라인</div>
             {UPCYCLE_PRODUCTS.map((p, i) => (
               <div key={i} style={{ display: 'flex', alignItems: 'center', gap: 10, padding: '8px 12px', background: 'rgba(255,255,255,0.03)', borderRadius: 8, border: '1px solid rgba(140,170,255,0.12)', fontSize: '0.78rem' }}>
-                <span style={{ color: '#f8fafc', fontWeight: 600, flex: 1 }}>{p.product}</span>
-                <span style={{ padding: '2px 8px', borderRadius: 4, fontSize: '0.65rem', fontWeight: 600, background: p.status === '상용화' ? 'rgba(34,197,94,0.15)' : p.status === '성장' ? 'rgba(245,158,11,0.15)' : 'rgba(168,85,247,0.15)', color: p.status === '상용화' ? '#22c55e' : p.status === '성장' ? '#f59e0b' : '#a855f7' }}>{p.status}</span>
+                <span style={{ color: 'var(--w-slate-50)', fontWeight: 600, flex: 1 }}>{p.product}</span>
+                <span style={{ padding: '2px 8px', borderRadius: 4, fontSize: '0.65rem', fontWeight: 600, background: p.status === '상용화' ? 'rgba(34,197,94,0.15)' : p.status === '성장' ? 'rgba(245,158,11,0.15)' : 'rgba(168,85,247,0.15)', color: p.status === '상용화' ? '#22c55e' : p.status === '성장' ? 'var(--w-amber-500)' : '#a855f7' }}>{p.status}</span>
               </div>
             ))}
           </div>
@@ -104,18 +104,18 @@ export function TunaUpcyclingMarginMap() {
         <BarChart data={marginData} margin={{ top: 20, right: 20, left: 10, bottom: 40 }}>
           <ChartPatternDefs />
           <CartesianGrid strokeDasharray="3 3" stroke="rgba(140,170,255,0.12)" vertical={false} />
-          <XAxis dataKey="name" tick={{ fill: '#cbd5e1', fontSize: 10, fontWeight: 500 }} stroke="#64748b" height={55} />
-          <YAxis tick={{ fill: '#cbd5e1', fontSize: 10 }} stroke="#64748b" />
+          <XAxis dataKey="name" tick={{ fill: 'var(--w-slate-300)', fontSize: 10, fontWeight: 500 }} stroke="var(--w-slate-500)" height={55} />
+          <YAxis tick={{ fill: 'var(--w-slate-300)', fontSize: 10 }} stroke="var(--w-slate-500)" />
           <Tooltip
             contentStyle={{ background: 'rgba(20, 28, 52, 0.9)', border: '1px solid rgba(255,255,255,0.1)', borderRadius: 8 }}
-            itemStyle={{ color: '#e2e8f0', fontWeight: 500, fontSize: '13px' }}
-            labelStyle={{ color: '#cbd5e1', fontWeight: 'bold', marginBottom: '8px' }}
+            itemStyle={{ color: 'var(--w-slate-200)', fontWeight: 500, fontSize: '13px' }}
+            labelStyle={{ color: 'var(--w-slate-300)', fontWeight: 'bold', marginBottom: '8px' }}
             formatter={(value: any, name: any) => [typeof value === 'number' ? value.toFixed(1) : value, String(name)]}
             labelFormatter={(label: any, payload: any) => payload?.[0]?.payload?.fullName || String(label)}
           />
           <Legend wrapperStyle={{ fontSize: '11px' }} />
           <Bar dataKey="margin" fill="#a78bfa" name="마진율(%)" radius={[4, 4, 0, 0]} fillOpacity={0.85} isAnimationActive={false} />
-          <Bar dataKey="market" fill="#06b6d4" name="시장규모($B)" radius={[4, 4, 0, 0]} fillOpacity={0.85} isAnimationActive={false} />
+          <Bar dataKey="market" fill="var(--w-cyan-500)" name="시장규모($B)" radius={[4, 4, 0, 0]} fillOpacity={0.85} isAnimationActive={false} />
         </BarChart>
       }
       takeaway={{

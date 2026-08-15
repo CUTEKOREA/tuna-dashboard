@@ -13,7 +13,7 @@ const CustomTooltip = ({ active, payload, label }: any) => {
   if (!active || !payload?.length) return null;
   return (
     <div style={{ background: '#0a0f1f', border: '1px solid #334155', borderRadius: 6, padding: '8px 12px' }}>
-      <p style={{ color: '#f8fafc', fontWeight: 600, margin: 0, fontSize: '0.85rem' }}>{label}</p>
+      <p style={{ color: 'var(--w-slate-50)', fontWeight: 600, margin: 0, fontSize: '0.85rem' }}>{label}</p>
       {payload.map((entry: any, i: number) => (
         <p key={i} style={{ color: entry.color, margin: '4px 0 0 0', fontSize: '0.8rem' }}>
           <span>{entry.name}: </span>
@@ -53,7 +53,7 @@ const UsTunaImportWidget = () => {
             <YAxis yAxisId="left" stroke="rgba(255,255,255,0.5)" tickFormatter={fmtMillion} tick={{ fill: 'rgba(255,255,255,0.7)', fontSize: 11 }} />
             <YAxis yAxisId="right" orientation="right" stroke="#0ea5e9" tickFormatter={fmtUnit} tick={{ fill: '#0ea5e9', fontSize: 11 }} />
             <Tooltip content={<CustomTooltip />} />
-            <Legend wrapperStyle={{ fontSize: '11px', color: '#cbd5e1' }} />
+            <Legend wrapperStyle={{ fontSize: '11px', color: 'var(--w-slate-300)' }} />
             <Bar yAxisId="left" dataKey="value" name="수입액 ($M)" fill="url(#pattern-cyan)" radius={[2, 2, 0, 0]} isAnimationActive={false} />
             <Line yAxisId="right" type="monotone" dataKey="unitPrice" name="평균 단가 ($/kg)" stroke="#0ea5e9" strokeWidth={2} dot={{ r: 2 }} isAnimationActive={false} />
           </ComposedChart>

@@ -38,21 +38,21 @@ export default function SasUsMarginWaterfall() {
             <SafeResponsiveContainer width="100%" height="100%">
               <BarChart data={LADDER} margin={{ top: 18, right: 16, left: 0, bottom: 0 }}>
                 <CartesianGrid strokeDasharray="3 3" opacity={0.15} vertical={false} />
-                <XAxis dataKey="stage" fontSize={9.5} tickLine={false} axisLine={false} stroke="#64748b" interval={0} angle={-12} textAnchor="end" height={48} />
-                <YAxis domain={[0, 32]} tickFormatter={(v: unknown) => `$${v}`} fontSize={11} tickLine={false} axisLine={false} stroke="#64748b" />
+                <XAxis dataKey="stage" fontSize={9.5} tickLine={false} axisLine={false} stroke="var(--w-slate-500)" interval={0} angle={-12} textAnchor="end" height={48} />
+                <YAxis domain={[0, 32]} tickFormatter={(v: unknown) => `$${v}`} fontSize={11} tickLine={false} axisLine={false} stroke="var(--w-slate-500)" />
                 <Tooltip
-                  contentStyle={{ borderRadius: '8px', border: 'none', background: '#1a2442', color: '#e2e8f0' }}
+                  contentStyle={{ borderRadius: '8px', border: 'none', background: 'var(--w-navy-900)', color: 'var(--w-slate-200)' }}
                   formatter={(v: unknown) => [`$${v}/kg`, '단가']}
                 />
                 <Bar dataKey="price" radius={[4, 4, 0, 0]} isAnimationActive={false}>
                   {LADDER.map((d) => <Cell key={d.stage} fill={d.color} />)}
-                  <LabelList dataKey="price" position="top" formatter={(v: unknown) => `$${v}`} fontSize={10.5} fill="#e2e8f0" />
+                  <LabelList dataKey="price" position="top" formatter={(v: unknown) => `$${v}`} fontSize={10.5} fill="var(--w-slate-200)" />
                 </Bar>
               </BarChart>
             </SafeResponsiveContainer>
           </div>
-          <div style={{ textAlign: 'center', fontSize: '0.66rem', color: '#94a3b8' }}>
-            원물 → 외식 약 <span style={{ color: '#f59e0b', fontWeight: 700 }}>11배</span> 누적(자체 추정) · 최대 마진 = 가공(로인→사쿠) + 외식 수율보정
+          <div style={{ textAlign: 'center', fontSize: '0.66rem', color: 'var(--w-slate-400)' }}>
+            원물 → 외식 약 <span style={{ color: 'var(--w-amber-500)', fontWeight: 700 }}>11배</span> 누적(자체 추정) · 최대 마진 = 가공(로인→사쿠) + 외식 수율보정
           </div>
         </div>
       }

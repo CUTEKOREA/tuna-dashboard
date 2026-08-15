@@ -43,7 +43,7 @@ const tooltipStyle = {
   backgroundColor: 'rgba(20, 28, 52, 0.95)',
   border: '1px solid rgba(148,163,184,0.15)',
   borderRadius: 8,
-  color: '#e2e8f0',
+  color: 'var(--w-slate-200)',
   fontSize: '0.78rem',
   padding: '8px 12px',
 };
@@ -55,7 +55,7 @@ const CustomTooltip = ({ active, payload, label }: any) => {
     <div style={tooltipStyle}>
       <div style={{ fontWeight: 700, marginBottom: 4 }}>{label}</div>
       <div style={{ display: 'flex', justifyContent: 'space-between', gap: 16 }}>
-        <span style={{ color: '#94a3b8' }}>MSC 인증 비율</span>
+        <span style={{ color: 'var(--w-slate-400)' }}>MSC 인증 비율</span>
         <span style={{ fontWeight: 700, color: d.tuna ? TUNA : BASE }}>{d.pct}%</span>
       </div>
       {d.tuna && (
@@ -83,7 +83,7 @@ export default function MscFaoAreaPenetration() {
           <XAxis
             type="number"
             domain={[0, 90]}
-            tick={{ fill: '#94a3b8', fontSize: 11 }}
+            tick={{ fill: 'var(--w-slate-400)', fontSize: 11 }}
             axisLine={false}
             tickLine={false}
             tickFormatter={(v: unknown) => `${v}%`}
@@ -92,7 +92,7 @@ export default function MscFaoAreaPenetration() {
             type="category"
             dataKey="area"
             width={84}
-            tick={{ fill: '#cbd5e1', fontSize: 11 }}
+            tick={{ fill: 'var(--w-slate-300)', fontSize: 11 }}
             axisLine={false}
             tickLine={false}
           />
@@ -105,7 +105,7 @@ export default function MscFaoAreaPenetration() {
               dataKey="pct"
               position="right"
               formatter={(v: unknown) => `${v}%`}
-              style={{ fill: '#94a3b8', fontSize: 10, fontWeight: 600 }}
+              style={{ fill: 'var(--w-slate-400)', fontSize: 10, fontWeight: 600 }}
             />
           </Bar>
         </BarChart>

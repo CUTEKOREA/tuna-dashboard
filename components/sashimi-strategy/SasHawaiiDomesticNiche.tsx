@@ -32,7 +32,7 @@ export default function SasHawaiiDomesticNiche() {
           <SafeResponsiveContainer width="100%" height="100%">
             <AreaChart data={HAWAII_DATA} margin={{ top: 20, right: 30, left: 10, bottom: 0 }}>
               <CartesianGrid strokeDasharray="3 3" opacity={0.3} vertical={false} />
-              <XAxis dataKey="year" fontSize={12} tickLine={false} axisLine={false} stroke="#64748b" />
+              <XAxis dataKey="year" fontSize={12} tickLine={false} axisLine={false} stroke="var(--w-slate-500)" />
               <YAxis 
                 yAxisId="left" 
                 domain={[10, 16]} 
@@ -40,7 +40,7 @@ export default function SasHawaiiDomesticNiche() {
                 fontSize={12} 
                 tickLine={false} 
                 axisLine={false}
-                stroke="#64748b"
+                stroke="var(--w-slate-500)"
               />
               <YAxis 
                 yAxisId="right" 
@@ -50,10 +50,10 @@ export default function SasHawaiiDomesticNiche() {
                 tickLine={false} 
                 axisLine={false} 
                 tickFormatter={(val) => `${val}t`}
-                stroke="#64748b"
+                stroke="var(--w-slate-500)"
               />
               <Tooltip 
-                contentStyle={{ borderRadius: '8px', border: 'none', boxShadow: '0 4px 6px -1px rgb(0 0 0 / 0.1)', background: '#1a2442', color: '#e2e8f0' }}
+                contentStyle={{ borderRadius: '8px', border: 'none', boxShadow: '0 4px 6px -1px rgb(0 0 0 / 0.1)', background: 'var(--w-navy-900)', color: 'var(--w-slate-200)' }}
               />
               <Legend verticalAlign="top" height={36} iconType="circle" />
               <Area 
@@ -61,8 +61,8 @@ export default function SasHawaiiDomesticNiche() {
                 type="monotone" 
                 dataKey="price" 
                 name="최상급(#1) 단가 ($/lb)"
-                stroke="#f59e0b" 
-                fill="#f59e0b" 
+                stroke="var(--w-amber-500)"
+                fill="var(--w-amber-500)"
                 fillOpacity={0.2} 
                 strokeWidth={3}
                 isAnimationActive={false} 
@@ -72,8 +72,8 @@ export default function SasHawaiiDomesticNiche() {
                 type="monotone" 
                 dataKey="volume" 
                 name="거래량 (톤)" 
-                stroke="#94a3b8" 
-                fill="#94a3b8" 
+                stroke="var(--w-slate-400)"
+                fill="var(--w-slate-400)"
                 fillOpacity={0.1} 
                 strokeWidth={2}
                 isAnimationActive={false} 

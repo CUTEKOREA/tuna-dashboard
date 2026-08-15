@@ -32,25 +32,25 @@ export default function SasKrFleetEconomics() {
       }}
       customBody={
         <div style={{ display: 'flex', flexDirection: 'column', gap: '10px', width: '100%' }}>
-          <div style={{ fontSize: '0.66rem', color: '#94a3b8', fontWeight: 600, textAlign: 'center' }}>원양어선 선령 분포 (척, 2019) — 30년+ 64.4%</div>
+          <div style={{ fontSize: '0.66rem', color: 'var(--w-slate-400)', fontWeight: 600, textAlign: 'center' }}>원양어선 선령 분포 (척, 2019) — 30년+ 64.4%</div>
           <div style={{ height: '180px', width: '100%' }}>
             <SafeResponsiveContainer width="100%" height="100%">
               <BarChart data={AGE} margin={{ top: 18, right: 16, left: 0, bottom: 0 }}>
                 <CartesianGrid strokeDasharray="3 3" opacity={0.15} vertical={false} />
-                <XAxis dataKey="seg" fontSize={10} tickLine={false} axisLine={false} stroke="#64748b" interval={0} />
-                <YAxis domain={[0, 130]} tickFormatter={(v: unknown) => `${v}척`} fontSize={10} tickLine={false} axisLine={false} stroke="#64748b" />
-                <Tooltip contentStyle={{ borderRadius: '8px', border: 'none', background: '#1a2442', color: '#e2e8f0' }} formatter={(v: unknown) => [`${v}척`, '원양어선']} />
+                <XAxis dataKey="seg" fontSize={10} tickLine={false} axisLine={false} stroke="var(--w-slate-500)" interval={0} />
+                <YAxis domain={[0, 130]} tickFormatter={(v: unknown) => `${v}척`} fontSize={10} tickLine={false} axisLine={false} stroke="var(--w-slate-500)" />
+                <Tooltip contentStyle={{ borderRadius: '8px', border: 'none', background: 'var(--w-navy-900)', color: 'var(--w-slate-200)' }} formatter={(v: unknown) => [`${v}척`, '원양어선']} />
                 <Bar dataKey="n" radius={[4, 4, 0, 0]} isAnimationActive={false}>
                   {AGE.map((d) => <Cell key={d.seg} fill={d.color} />)}
-                  <LabelList dataKey="n" position="top" formatter={(v: unknown) => `${v}`} fontSize={10.5} fill="#e2e8f0" />
+                  <LabelList dataKey="n" position="top" formatter={(v: unknown) => `${v}`} fontSize={10.5} fill="var(--w-slate-200)" />
                 </Bar>
               </BarChart>
             </SafeResponsiveContainer>
           </div>
-          <div style={{ display: 'flex', justifyContent: 'center', gap: '14px', fontSize: '0.62rem', color: '#94a3b8', flexWrap: 'wrap' }}>
-            <span>해기사 50세+ <span style={{ color: '#ef4444', fontWeight: 700 }}>82.3%</span></span>
-            <span>외국인 선원 의존(원양어업 전체) <span style={{ color: '#f59e0b', fontWeight: 700 }}>45.7%</span></span>
-            <span style={{ color: '#64748b' }}>보조금 없으면 공해어장 54% 적자</span>
+          <div style={{ display: 'flex', justifyContent: 'center', gap: '14px', fontSize: '0.62rem', color: 'var(--w-slate-400)', flexWrap: 'wrap' }}>
+            <span>해기사 50세+ <span style={{ color: 'var(--w-red-500)', fontWeight: 700 }}>82.3%</span></span>
+            <span>외국인 선원 의존(원양어업 전체) <span style={{ color: 'var(--w-amber-500)', fontWeight: 700 }}>45.7%</span></span>
+            <span style={{ color: 'var(--w-slate-500)' }}>보조금 없으면 공해어장 54% 적자</span>
           </div>
         </div>
       }

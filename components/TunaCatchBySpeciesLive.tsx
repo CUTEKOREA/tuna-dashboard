@@ -46,29 +46,29 @@ export default function TunaCatchBySpeciesLive() {
           <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#334155" />
           <XAxis 
             dataKey="year" 
-            stroke="#94a3b8" 
+            stroke="var(--w-slate-400)"
             fontSize={12} 
             tickLine={false} 
             axisLine={false} 
           />
           <YAxis
-            stroke="#94a3b8"
+            stroke="var(--w-slate-400)"
             fontSize={12}
             tickLine={false}
             axisLine={false}
             tickFormatter={(v) => (v / 1000000).toFixed(1) + 'M'}
           />
           <Tooltip
-            contentStyle={{ backgroundColor: '#1a2442', borderColor: '#334155', color: '#f8fafc', borderRadius: '8px' }}
-            itemStyle={{ color: '#f8fafc', fontSize: '13px' }}
+            contentStyle={{ backgroundColor: 'var(--w-navy-900)', borderColor: '#334155', color: 'var(--w-slate-50)', borderRadius: '8px' }}
+            itemStyle={{ color: 'var(--w-slate-50)', fontSize: '13px' }}
             formatter={(value: unknown, name: unknown) => [`${chartFmt.formatChartNumber(value)}톤`, chartFmt.toChartText(name)]}
             labelFormatter={(label) => `${label}년`}
-            labelStyle={{ color: '#94a3b8', fontSize: '13px', marginBottom: '4px' }}
+            labelStyle={{ color: 'var(--w-slate-400)', fontSize: '13px', marginBottom: '4px' }}
           />
           <Legend iconType="circle" wrapperStyle={{ fontSize: '12px', paddingTop: '10px' }} />
-          <Line type="monotone" dataKey="가다랑어" name="가다랑어" stroke="#22d3ee" strokeWidth={2} dot={{ r: 3, fill: '#1a2442', strokeWidth: 2 }} activeDot={{ r: 5 }} />
-          <Line type="monotone" dataKey="황다랑어" name="황다랑어" stroke="#3b82f6" strokeWidth={2} dot={{ r: 3, fill: '#1a2442', strokeWidth: 2 }} activeDot={{ r: 5 }} />
-          <Line type="monotone" dataKey="눈다랑어" name="눈다랑어" stroke="#8b5cf6" strokeWidth={2} dot={{ r: 3, fill: '#1a2442', strokeWidth: 2 }} activeDot={{ r: 5 }} />
+          <Line type="monotone" dataKey="가다랑어" name="가다랑어" stroke="#22d3ee" strokeWidth={2} dot={{ r: 3, fill: 'var(--w-navy-900)', strokeWidth: 2 }} activeDot={{ r: 5 }} />
+          <Line type="monotone" dataKey="황다랑어" name="황다랑어" stroke="var(--w-blue-500)" strokeWidth={2} dot={{ r: 3, fill: 'var(--w-navy-900)', strokeWidth: 2 }} activeDot={{ r: 5 }} />
+          <Line type="monotone" dataKey="눈다랑어" name="눈다랑어" stroke="var(--w-violet-500)" strokeWidth={2} dot={{ r: 3, fill: 'var(--w-navy-900)', strokeWidth: 2 }} activeDot={{ r: 5 }} />
         </LineChart>
       }
       takeaway={{

@@ -50,26 +50,26 @@ export default function SasKoreaTradeDecade() {
               <ComposedChart data={tradeData} margin={{ top: 10, right: 30, left: 0, bottom: 5 }}>
                 <defs>
                   <linearGradient id="exportGrad" x1="0" y1="0" x2="0" y2="1">
-                    <stop offset="5%" stopColor="#10b981" stopOpacity={0.3} />
-                    <stop offset="95%" stopColor="#10b981" stopOpacity={0} />
+                    <stop offset="5%" stopColor="var(--w-emerald-500)" stopOpacity={0.3} />
+                    <stop offset="95%" stopColor="var(--w-emerald-500)" stopOpacity={0} />
                   </linearGradient>
                   <linearGradient id="importGrad" x1="0" y1="0" x2="0" y2="1">
-                    <stop offset="5%" stopColor="#ef4444" stopOpacity={0.3} />
-                    <stop offset="95%" stopColor="#ef4444" stopOpacity={0} />
+                    <stop offset="5%" stopColor="var(--w-red-500)" stopOpacity={0.3} />
+                    <stop offset="95%" stopColor="var(--w-red-500)" stopOpacity={0} />
                   </linearGradient>
                 </defs>
                 <CartesianGrid strokeDasharray="3 3" opacity={0.15} vertical={false} />
-                <XAxis dataKey="year" stroke="#64748b" tick={{ fill: '#94a3b8', fontSize: 10 }} axisLine={false} tickLine={false} />
-                <YAxis stroke="#64748b" tick={{ fill: '#94a3b8', fontSize: 11 }} axisLine={false} tickLine={false} tickFormatter={(v) => `$${v}M`} />
+                <XAxis dataKey="year" stroke="var(--w-slate-500)" tick={{ fill: 'var(--w-slate-400)', fontSize: 10 }} axisLine={false} tickLine={false} />
+                <YAxis stroke="var(--w-slate-500)" tick={{ fill: 'var(--w-slate-400)', fontSize: 11 }} axisLine={false} tickLine={false} tickFormatter={(v) => `$${v}M`} />
                 <Tooltip
-                  contentStyle={{ borderRadius: '8px', border: 'none', boxShadow: '0 4px 12px rgba(0,0,0,0.3)', backgroundColor: 'rgba(30,41,59,0.95)', color: '#e2e8f0' }}
+                  contentStyle={{ borderRadius: '8px', border: 'none', boxShadow: '0 4px 12px rgba(0,0,0,0.3)', backgroundColor: 'rgba(30,41,59,0.95)', color: 'var(--w-slate-200)' }}
                   formatter={(value: unknown, name: unknown) => [`${chartFmt.toChartNumber(value)}M`, chartFmt.toChartText(name)]}
                 />
-                <Legend iconType="circle" wrapperStyle={{ color: '#94a3b8', fontSize: '0.7rem' }} />
-                <Area type="monotone" dataKey="filletExport" name="필렛 수출 (사시미)" stroke="#10b981" strokeWidth={2.5} fill="url(#exportGrad)" isAnimationActive={false} />
-                <Area type="monotone" dataKey="filletImport" name="필렛 수입 (BFT)" stroke="#ef4444" strokeWidth={2} fill="url(#importGrad)" isAnimationActive={false} />
-                <Line type="monotone" dataKey="skipjackExport" name="가다랑어 (→태국)" stroke="#38bdf8" strokeWidth={1.5} strokeDasharray="5 5" dot={false} isAnimationActive={false} />
-                <Line type="monotone" dataKey="yfExport" name="황다랑어 수출" stroke="#f59e0b" strokeWidth={1.5} strokeDasharray="3 3" dot={false} isAnimationActive={false} />
+                <Legend iconType="circle" wrapperStyle={{ color: 'var(--w-slate-400)', fontSize: '0.7rem' }} />
+                <Area type="monotone" dataKey="filletExport" name="필렛 수출 (사시미)" stroke="var(--w-emerald-500)" strokeWidth={2.5} fill="url(#exportGrad)" isAnimationActive={false} />
+                <Area type="monotone" dataKey="filletImport" name="필렛 수입 (BFT)" stroke="var(--w-red-500)" strokeWidth={2} fill="url(#importGrad)" isAnimationActive={false} />
+                <Line type="monotone" dataKey="skipjackExport" name="가다랑어 (→태국)" stroke="var(--w-sky-400)" strokeWidth={1.5} strokeDasharray="5 5" dot={false} isAnimationActive={false} />
+                <Line type="monotone" dataKey="yfExport" name="황다랑어 수출" stroke="var(--w-amber-500)" strokeWidth={1.5} strokeDasharray="3 3" dot={false} isAnimationActive={false} />
               </ComposedChart>
             </SafeResponsiveContainer>
           </div>
@@ -83,8 +83,8 @@ export default function SasKoreaTradeDecade() {
                 display: 'flex', flexDirection: 'column', gap: '2px',
               }}>
                 <div style={{ fontSize: '0.7rem', fontWeight: 600, color: ins.color }}>{ins.label}</div>
-                <div style={{ fontSize: '0.65rem', color: '#94a3b8' }}>{ins.range}</div>
-                <div style={{ fontSize: '0.6rem', color: '#64748b' }}>{ins.trend}</div>
+                <div style={{ fontSize: '0.65rem', color: 'var(--w-slate-400)' }}>{ins.range}</div>
+                <div style={{ fontSize: '0.6rem', color: 'var(--w-slate-500)' }}>{ins.trend}</div>
               </div>
             ))}
           </div>

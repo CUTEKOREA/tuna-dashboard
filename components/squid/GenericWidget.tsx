@@ -48,18 +48,18 @@ export const SignalBoard: React.FC<{ data: any[] }> = ({ data }) => (
           <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
             <span style={{ width: 8, height: 8, borderRadius: '50%', background: color,
                            boxShadow: `0 0 8px ${color}88` }} />
-            <strong style={{ color: '#e2e8f0', fontSize: '0.8rem' }}>{koreanUiText(o.origin)}</strong>
+            <strong style={{ color: 'var(--w-slate-200)', fontSize: '0.8rem' }}>{koreanUiText(o.origin)}</strong>
           </div>
           <div style={{ color, fontWeight: 800, fontSize: '0.95rem', marginTop: '4px' }}>
             {o.status}
             {derived && (
-              <span style={{ fontSize: '0.6rem', fontWeight: 600, marginLeft: '5px', color: '#94a3b8',
-                             border: '1px dashed #94a3b8', borderRadius: 4, padding: '1px 4px' }}>
+              <span style={{ fontSize: '0.6rem', fontWeight: 600, marginLeft: '5px', color: 'var(--w-slate-400)',
+                             border: '1px dashed var(--w-slate-400)', borderRadius: 4, padding: '1px 4px' }}>
                 일정 파생
               </span>
             )}
           </div>
-          <div style={{ fontSize: '0.66rem', color: '#94a3b8', marginTop: '4px', lineHeight: 1.5,
+          <div style={{ fontSize: '0.66rem', color: 'var(--w-slate-400)', marginTop: '4px', lineHeight: 1.5,
                         wordBreak: 'keep-all' }}>
             {o.as_of ?? '기준일 없음'} · {koreanUiText(o.reason)}
           </div>
@@ -90,7 +90,7 @@ export const DataTable: React.FC<{ data: any; previewRows?: number }> = ({ data,
           <thead>
             <tr>
               {cols.map((c) => (
-                <th key={c} style={{ textAlign: 'left', padding: '4px 8px', color: '#64748b',
+                <th key={c} style={{ textAlign: 'left', padding: '4px 8px', color: 'var(--w-slate-500)',
                                      borderBottom: '1px solid rgba(255,255,255,0.08)', whiteSpace: 'nowrap' }}>
                   {squidFieldLabel(c)}
                 </th>
@@ -104,7 +104,7 @@ export const DataTable: React.FC<{ data: any; previewRows?: number }> = ({ data,
                   const v = r?.[c];
                   const text = squidValueLabel(v);
                   return (
-                    <td key={c} style={{ padding: '4px 8px', color: '#cbd5e1',
+                    <td key={c} style={{ padding: '4px 8px', color: 'var(--w-slate-300)',
                                          borderBottom: '1px solid rgba(255,255,255,0.04)',
                                          maxWidth: 260, overflow: 'hidden',
                                          textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
@@ -120,7 +120,7 @@ export const DataTable: React.FC<{ data: any; previewRows?: number }> = ({ data,
       {rows.length > previewRows && (
         <button
           onClick={() => setAll((v) => !v)}
-          style={{ marginTop: 6, background: 'none', border: 'none', color: '#38bdf8',
+          style={{ marginTop: 6, background: 'none', border: 'none', color: 'var(--w-sky-400)',
                    fontSize: '0.68rem', cursor: 'pointer', padding: 0 }}
         >
           {all ? '접기' : `전체 ${rows.length}행 보기`}
@@ -162,7 +162,7 @@ const Excerpt: React.FC<{ row: any }> = ({ row }) => {
   return (
     <blockquote style={{ margin: 0, padding: '8px 0 8px 12px',
                          borderLeft: '2px solid rgba(139, 92, 246, 0.35)' }}>
-      <p style={{ margin: 0, fontSize: '0.78rem', lineHeight: 1.65, color: '#cbd5e1',
+      <p style={{ margin: 0, fontSize: '0.78rem', lineHeight: 1.65, color: 'var(--w-slate-300)',
                   wordBreak: 'keep-all', whiteSpace: 'pre-wrap' }}>
         {displayText}
       </p>
@@ -171,13 +171,13 @@ const Excerpt: React.FC<{ row: any }> = ({ row }) => {
         <button
           onClick={() => setShowSource((v) => !v)}
           style={{ background: 'none', border: '1px solid rgba(148,163,184,0.3)',
-                   borderRadius: 4, padding: '1px 6px', color: '#94a3b8',
+                   borderRadius: 4, padding: '1px 6px', color: 'var(--w-slate-400)',
                    fontSize: '0.6rem', cursor: 'pointer' }}
         >
           {showSource ? '원문 근거 접기' : '원문 근거 보기'}
         </button>
         {!ko && !rawIsMostlyKorean && (
-          <span style={{ fontSize: '0.6rem', color: '#f59e0b',
+          <span style={{ fontSize: '0.6rem', color: 'var(--w-amber-500)',
                          border: '1px solid rgba(245,158,11,0.35)', borderRadius: 4,
                          padding: '1px 6px' }}>
             번역 준비 중
@@ -188,9 +188,9 @@ const Excerpt: React.FC<{ row: any }> = ({ row }) => {
       {showSource && (
         <div style={{ margin: '6px 0 0', padding: '6px 8px', borderRadius: 6,
                       background: 'rgba(20,28,52,0.6)', fontSize: '0.7rem', lineHeight: 1.6,
-                      color: '#94a3b8', whiteSpace: 'pre-wrap' }}>
+                      color: 'var(--w-slate-400)', whiteSpace: 'pre-wrap' }}>
           <cite style={{ display: 'block', marginBottom: 4, fontSize: '0.62rem',
-                         color: '#64748b', fontStyle: 'normal', wordBreak: 'break-all' }}>
+                         color: 'var(--w-slate-500)', fontStyle: 'normal', wordBreak: 'break-all' }}>
             원문 파일: {file}
           </cite>
           <p style={{ margin: 0 }}>{raw}</p>
@@ -213,7 +213,7 @@ export const ExcerptList: React.FC<{ data: any[]; previewItems?: number }> = ({
         <button
           onClick={() => setAll((v) => !v)}
           style={{ alignSelf: 'flex-start', background: 'none', border: 'none',
-                   color: '#38bdf8', fontSize: '0.68rem', cursor: 'pointer', padding: 0 }}
+                   color: 'var(--w-sky-400)', fontSize: '0.68rem', cursor: 'pointer', padding: 0 }}
         >
           {all ? '접기' : `발췌 ${data.length}건 전체 보기`}
         </button>

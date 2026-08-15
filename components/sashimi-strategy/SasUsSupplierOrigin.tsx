@@ -25,7 +25,7 @@ const supplierData = [
 const tooltipStyle = {
   backgroundColor: 'rgba(20, 28, 52, 0.95)',
   border: '1px solid rgba(148,163,184,0.15)',
-  borderRadius: 8, color: '#e2e8f0', fontSize: '0.78rem', padding: '8px 12px',
+  borderRadius: 8, color: 'var(--w-slate-200)', fontSize: '0.78rem', padding: '8px 12px',
 };
 
 const CustomTooltip = ({ active, payload, label }: any) => {
@@ -35,10 +35,10 @@ const CustomTooltip = ({ active, payload, label }: any) => {
     <div style={tooltipStyle}>
       <div style={{ fontWeight: 700, marginBottom: 4 }}>{label}</div>
       <div style={{ display: 'flex', justifyContent: 'space-between', gap: 16 }}>
-        <span style={{ color: '#94a3b8' }}>수입액 (2024)</span>
+        <span style={{ color: 'var(--w-slate-400)' }}>수입액 (2024)</span>
         <span style={{ fontWeight: 700, color: BASE }}>${d.value}M</span>
       </div>
-      <div style={{ marginTop: 4, fontSize: '0.66rem', color: '#94a3b8' }}>{d.note}</div>
+      <div style={{ marginTop: 4, fontSize: '0.66rem', color: 'var(--w-slate-400)' }}>{d.note}</div>
     </div>
   );
 };
@@ -65,26 +65,26 @@ export default function SasUsSupplierOrigin() {
             <SafeResponsiveContainer width="100%" height="100%">
               <BarChart data={supplierData} layout="vertical" margin={{ top: 4, right: 48, left: 8, bottom: 4 }}>
                 <CartesianGrid strokeDasharray="3 3" stroke="rgba(148,163,184,0.08)" horizontal={false} />
-                <XAxis type="number" domain={[0, 230]} tick={{ fill: '#94a3b8', fontSize: 11 }} axisLine={false} tickLine={false} tickFormatter={(v: unknown) => `$${v}M`} />
-                <YAxis type="category" dataKey="country" width={72} tick={{ fill: '#cbd5e1', fontSize: 11 }} axisLine={false} tickLine={false} />
+                <XAxis type="number" domain={[0, 230]} tick={{ fill: 'var(--w-slate-400)', fontSize: 11 }} axisLine={false} tickLine={false} tickFormatter={(v: unknown) => `$${v}M`} />
+                <YAxis type="category" dataKey="country" width={72} tick={{ fill: 'var(--w-slate-300)', fontSize: 11 }} axisLine={false} tickLine={false} />
                 <Tooltip content={<CustomTooltip />} cursor={{ fill: 'rgba(148,163,184,0.06)' }} />
                 <Bar dataKey="value" radius={[0, 4, 4, 0]} isAnimationActive={false} barSize={18}>
                   {supplierData.map((d, i) => <Cell key={i} fill={BASE} fillOpacity={0.7} />)}
-                  <LabelList dataKey="value" position="right" formatter={(v: unknown) => `$${v}M`} style={{ fill: '#94a3b8', fontSize: 10, fontWeight: 600 }} />
+                  <LabelList dataKey="value" position="right" formatter={(v: unknown) => `$${v}M`} style={{ fill: 'var(--w-slate-400)', fontSize: 10, fontWeight: 600 }} />
                 </Bar>
               </BarChart>
             </SafeResponsiveContainer>
           </div>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '10px' }}>
             <div style={{ background: 'rgba(56,189,248,0.07)', border: '1px solid rgba(56,189,248,0.2)', borderRadius: '10px', padding: '10px 12px' }}>
-              <div style={{ fontSize: '0.62rem', color: '#94a3b8' }}>냉동 필렛 집중도</div>
+              <div style={{ fontSize: '0.62rem', color: 'var(--w-slate-400)' }}>냉동 필렛 집중도</div>
               <div style={{ fontSize: '0.92rem', fontWeight: 700, color: BASE }}>인니+베트남 72%</div>
-              <div style={{ fontSize: '0.58rem', color: '#64748b' }}>$487M 라인 / 포케·스시 벌크</div>
+              <div style={{ fontSize: '0.58rem', color: 'var(--w-slate-500)' }}>$487M 라인 / 포케·스시 벌크</div>
             </div>
             <div style={{ background: 'rgba(245,158,11,0.07)', border: '1px solid rgba(245,158,11,0.2)', borderRadius: '10px', padding: '10px 12px' }}>
-              <div style={{ fontSize: '0.62rem', color: '#94a3b8' }}>신선 참다랑어 집중도</div>
+              <div style={{ fontSize: '0.62rem', color: 'var(--w-slate-400)' }}>신선 참다랑어 집중도</div>
               <div style={{ fontSize: '0.92rem', fontWeight: 700, color: KR }}>멕시코+스페인 92%</div>
-              <div style={{ fontSize: '0.58rem', color: '#64748b' }}>$147M / 지중해 축양 프리미엄</div>
+              <div style={{ fontSize: '0.58rem', color: 'var(--w-slate-500)' }}>$147M / 지중해 축양 프리미엄</div>
             </div>
           </div>
         </div>

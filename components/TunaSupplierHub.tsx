@@ -75,7 +75,7 @@ const TunaSupplierHub = React.memo(function TunaSupplierHub() {
         <button key={c.code} onClick={() => handleCountrySelect(c.code)} style={{
           padding: '6px 14px', fontSize: '0.75rem', fontWeight: 600,
           background: selectedCountry === c.code ? 'rgba(155,114,203,0.2)' : 'rgba(255,255,255,0.03)',
-          color: selectedCountry === c.code ? '#c4b5fd' : '#64748b',
+          color: selectedCountry === c.code ? '#c4b5fd' : 'var(--w-slate-500)',
           border: `1px solid ${selectedCountry === c.code ? '#9B72CB' : 'rgba(255,255,255,0.08)'}`,
           borderRadius: '500px', cursor: 'pointer', transition: 'all 0.2s',
           display: 'flex', alignItems: 'center', gap: '4px',
@@ -93,7 +93,7 @@ const TunaSupplierHub = React.memo(function TunaSupplierHub() {
           <RefreshCcw size={24} style={{ color: '#9B72CB', animation: 'spin 1s linear infinite' }} />
         </div>
       ) : facilities.length === 0 ? (
-        <div style={{ textAlign: 'center', padding: '2rem', color: '#64748b', fontSize: '0.82rem' }}>
+        <div style={{ textAlign: 'center', padding: '2rem', color: 'var(--w-slate-500)', fontSize: '0.82rem' }}>
           해당 국가에 등록된 수산 시설이 없습니다.
         </div>
       ) : (
@@ -105,17 +105,17 @@ const TunaSupplierHub = React.memo(function TunaSupplierHub() {
               background: 'rgba(255,255,255,0.02)', border: '1px solid rgba(255,255,255,0.04)', borderRadius: '6px',
             }}>
               <div>
-                <div style={{ fontSize: '0.82rem', fontWeight: 700, color: '#f8fafc', display: 'flex', alignItems: 'center', gap: '4px' }}>
+                <div style={{ fontSize: '0.82rem', fontWeight: 700, color: 'var(--w-slate-50)', display: 'flex', alignItems: 'center', gap: '4px' }}>
                   {COUNTRY_FLAG[f.country] || '🏭'} {f.name}
                 </div>
-                <div style={{ fontSize: '0.68rem', color: '#64748b', marginTop: '2px' }}>
+                <div style={{ fontSize: '0.68rem', color: 'var(--w-slate-500)', marginTop: '2px' }}>
                   <MapPin size={10} style={{ display: 'inline', verticalAlign: 'middle' }} /> {f.address}
                 </div>
               </div>
-              <div style={{ fontSize: '0.72rem', color: '#94a3b8' }}>{f.productType}</div>
-              <div style={{ fontSize: '0.72rem', color: '#64748b' }}>
+              <div style={{ fontSize: '0.72rem', color: 'var(--w-slate-400)' }}>{f.productType}</div>
+              <div style={{ fontSize: '0.72rem', color: 'var(--w-slate-500)' }}>
                 {f.parentCompany && <span style={{ color: '#c4b5fd' }}>{f.parentCompany}</span>}
-                {f.parentCompany && <span style={{ marginLeft: '6px', color: '#94a3b8', fontSize: '0.65rem' }}>ISSF/MSC 미확인</span>}
+                {f.parentCompany && <span style={{ marginLeft: '6px', color: 'var(--w-slate-400)', fontSize: '0.65rem' }}>ISSF/MSC 미확인</span>}
               </div>
               <div style={{ textAlign: 'right' }}>
                 {f.workers && (

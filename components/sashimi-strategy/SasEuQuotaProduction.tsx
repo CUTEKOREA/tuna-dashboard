@@ -39,7 +39,7 @@ export default function SasEuQuotaProduction() {
                 axisLine={false} 
                 tickFormatter={(val) => `${val}t`} 
                 domain={[0, 8000]}
-                tick={{ fill: '#94a3b8' }}
+                tick={{ fill: 'var(--w-slate-400)' }}
               />
               <YAxis 
                 dataKey="country" 
@@ -48,13 +48,13 @@ export default function SasEuQuotaProduction() {
                 tickLine={false} 
                 axisLine={false} 
                 width={100} 
-                tick={{ fill: '#cbd5e1', fontWeight: 600 }}
+                tick={{ fill: 'var(--w-slate-300)', fontWeight: 600 }}
               />
               <Tooltip
                 cursor={{ fill: 'rgba(255,255,255,0.04)' }}
-                contentStyle={{ borderRadius: '8px', border: 'none', boxShadow: '0 4px 12px rgba(0,0,0,0.3)', backgroundColor: 'rgba(30,41,59,0.95)', color: '#e2e8f0' }}
-                labelStyle={{ color: '#e2e8f0' }}
-                itemStyle={{ color: '#cbd5e1' }}
+                contentStyle={{ borderRadius: '8px', border: 'none', boxShadow: '0 4px 12px rgba(0,0,0,0.3)', backgroundColor: 'rgba(30,41,59,0.95)', color: 'var(--w-slate-200)' }}
+                labelStyle={{ color: 'var(--w-slate-200)' }}
+                itemStyle={{ color: 'var(--w-slate-300)' }}
                 formatter={(value: unknown) => [`${chartFmt.formatChartNumber(value)} 톤`, '할당 쿼터']}
               />
               <Bar 

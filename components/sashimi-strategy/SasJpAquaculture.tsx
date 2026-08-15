@@ -33,20 +33,20 @@ export default function SasJpAquaculture() {
       }}
       customBody={
         <div style={{ display: 'flex', flexDirection: 'column', gap: '10px', width: '100%' }}>
-          <div style={{ fontSize: '0.66rem', color: '#94a3b8', fontWeight: 600, textAlign: 'center' }}>완전양식(인공종묘) 비중 추락 (%)</div>
+          <div style={{ fontSize: '0.66rem', color: 'var(--w-slate-400)', fontWeight: 600, textAlign: 'center' }}>완전양식(인공종묘) 비중 추락 (%)</div>
           <div style={{ height: '170px', width: '100%' }}>
             <SafeResponsiveContainer width="100%" height="100%">
               <BarChart data={FULLCYCLE} margin={{ top: 18, right: 16, left: 0, bottom: 0 }}>
                 <CartesianGrid strokeDasharray="3 3" opacity={0.15} vertical={false} />
-                <XAxis dataKey="yr" fontSize={11} tickLine={false} axisLine={false} stroke="#64748b" />
-                <YAxis domain={[0, 18]} tickFormatter={(v: unknown) => `${v}%`} fontSize={10} tickLine={false} axisLine={false} stroke="#64748b" />
-                <Tooltip contentStyle={{ borderRadius: '8px', border: 'none', background: '#1a2442', color: '#e2e8f0' }} formatter={(v: unknown) => [`${v}%`, '완전양식 비중']} />
-                <Bar dataKey="pct" radius={[4, 4, 0, 0]} fill="#ef4444" isAnimationActive={false} />
+                <XAxis dataKey="yr" fontSize={11} tickLine={false} axisLine={false} stroke="var(--w-slate-500)" />
+                <YAxis domain={[0, 18]} tickFormatter={(v: unknown) => `${v}%`} fontSize={10} tickLine={false} axisLine={false} stroke="var(--w-slate-500)" />
+                <Tooltip contentStyle={{ borderRadius: '8px', border: 'none', background: 'var(--w-navy-900)', color: 'var(--w-slate-200)' }} formatter={(v: unknown) => [`${v}%`, '완전양식 비중']} />
+                <Bar dataKey="pct" radius={[4, 4, 0, 0]} fill="var(--w-red-500)" isAnimationActive={false} />
               </BarChart>
             </SafeResponsiveContainer>
           </div>
-          <div style={{ textAlign: 'center', fontSize: '0.62rem', color: '#94a3b8' }}>
-            양식 출하 <span style={{ color: '#10b981', fontWeight: 700 }}>18,687t(+11%)</span> 중 인공종묘는 <span style={{ color: '#ef4444', fontWeight: 700 }}>405t(-46%)</span> · 배경(인과 미확정): 천연치어 저렴 + 사료값↑ + 완전양식 5년 (쿼터 +50%는 2025 적용분)
+          <div style={{ textAlign: 'center', fontSize: '0.62rem', color: 'var(--w-slate-400)' }}>
+            양식 출하 <span style={{ color: 'var(--w-emerald-500)', fontWeight: 700 }}>18,687t(+11%)</span> 중 인공종묘는 <span style={{ color: 'var(--w-red-500)', fontWeight: 700 }}>405t(-46%)</span> · 배경(인과 미확정): 천연치어 저렴 + 사료값↑ + 완전양식 5년 (쿼터 +50%는 2025 적용분)
           </div>
         </div>
       }

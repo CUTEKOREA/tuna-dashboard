@@ -21,7 +21,7 @@ const CustomTooltip = ({ active, payload, label }: any) => {
         border: '1px solid rgba(255,255,255,0.1)',
         borderRadius: '0.5rem',
         padding: '0.75rem',
-        color: '#e2e8f0',
+        color: 'var(--w-slate-200)',
         fontSize: '0.875rem',
         boxShadow: '0 25px 50px -12px rgba(0,0,0,0.5)',
       }}>
@@ -48,12 +48,12 @@ export default function MscEcolabelCompetition() {
         <SafeResponsiveContainer width="100%" height="100%">
           <BarChart data={ecolabelData} margin={{ top: 20, right: 30, left: 0, bottom: 5 }}>
             <CartesianGrid strokeDasharray="3 3" opacity={0.15} vertical={false} />
-            <XAxis dataKey="label" stroke="#64748b" tick={{ fill: '#94a3b8', fontSize: 12 }} axisLine={false} tickLine={false} />
-            <YAxis domain={[0, 100]} stroke="#64748b" tick={{ fill: '#94a3b8', fontSize: 11 }} tickFormatter={(v) => `${v}%`} axisLine={false} tickLine={false} />
+            <XAxis dataKey="label" stroke="var(--w-slate-500)" tick={{ fill: 'var(--w-slate-400)', fontSize: 12 }} axisLine={false} tickLine={false} />
+            <YAxis domain={[0, 100]} stroke="var(--w-slate-500)" tick={{ fill: 'var(--w-slate-400)', fontSize: 11 }} tickFormatter={(v) => `${v}%`} axisLine={false} tickLine={false} />
             <Tooltip content={<CustomTooltip />} cursor={{ fill: 'rgba(0,0,0,0.05)' }} />
             <Legend wrapperStyle={{ paddingTop: '10px', fontSize: '0.78rem' }} iconType="circle" />
-            <Bar dataKey="awareness" name="인지도" fill="#38bdf8" radius={[4, 4, 0, 0]} barSize={20} isAnimationActive={false} />
-            <Bar dataKey="trust" name="신뢰도" fill="#10b981" radius={[4, 4, 0, 0]} barSize={20} isAnimationActive={false} />
+            <Bar dataKey="awareness" name="인지도" fill="var(--w-sky-400)" radius={[4, 4, 0, 0]} barSize={20} isAnimationActive={false} />
+            <Bar dataKey="trust" name="신뢰도" fill="var(--w-emerald-500)" radius={[4, 4, 0, 0]} barSize={20} isAnimationActive={false} />
             <Bar dataKey="purchase" name="구매 전환" fill="#a78bfa" radius={[4, 4, 0, 0]} barSize={20} isAnimationActive={false} />
           </BarChart>
         </SafeResponsiveContainer>
@@ -80,10 +80,10 @@ export default function MscEcolabelCompetition() {
           +81.3%
         </div>
         <div>
-          <div style={{ fontSize: '0.875rem', fontWeight: 700, color: '#e2e8f0', marginBottom: '2px' }}>
+          <div style={{ fontSize: '0.875rem', fontWeight: 700, color: 'var(--w-slate-200)', marginBottom: '2px' }}>
             MSC + Dolphin-Safe 이중라벨 프리미엄
           </div>
-          <div style={{ fontSize: '0.75rem', color: '#94a3b8' }}>
+          <div style={{ fontSize: '0.75rem', color: 'var(--w-slate-400)' }}>
             헤도닉 가격 모델 기준, 단독 MSC(+44.6%) 대비 약 2배의 프리미엄 시너지 효과
           </div>
         </div>

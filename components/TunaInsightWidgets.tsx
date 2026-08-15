@@ -18,8 +18,8 @@ const formatNum = (v: number) => new Intl.NumberFormat('en-US').format(v);
 export const CustomTooltip = ({ active, payload, label }: any) => {
   if (active && payload && payload.length) {
     return (
-      <div style={{ backgroundColor: '#0F172A', padding: '12px', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '8px', color: '#f8fafc', boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.5)' }}>
-        <p style={{ margin: '0 0 8px 0', fontSize: '0.85rem', color: '#94a3b8', fontWeight: 600 }}>{label}</p>
+      <div style={{ backgroundColor: '#0F172A', padding: '12px', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '8px', color: 'var(--w-slate-50)', boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.5)' }}>
+        <p style={{ margin: '0 0 8px 0', fontSize: '0.85rem', color: 'var(--w-slate-400)', fontWeight: 600 }}>{label}</p>
         {payload.map((entry: any, index: number) => {
           let valLabel = typeof entry.value === 'number' ? formatNum(entry.value) : entry.value;
           if (typeof entry.value === 'number' && entry.name.includes('$') || entry.name.includes('USD') || entry.name.includes('단가')) {
@@ -53,7 +53,7 @@ export const WidgetWrapper = ({ title, icon: Icon, term, desc, source, situation
           </div>
           <div>
             <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-              <h3 style={{ fontSize: '1rem', fontWeight: 700, color: '#f8fafc', margin: 0 }}>{title}</h3>
+              <h3 style={{ fontSize: '1rem', fontWeight: 700, color: 'var(--w-slate-50)', margin: 0 }}>{title}</h3>
               <div 
                 style={{ cursor: 'pointer', position: 'relative', display: 'flex', alignItems: 'center' }}
                 onMouseEnter={() => setShowTooltip(true)}
@@ -84,8 +84,8 @@ export const WidgetWrapper = ({ title, icon: Icon, term, desc, source, situation
                         pointerEvents: 'none'
                       }}
                     >
-                      <h4 style={{ margin: '0 0 6px 0', fontSize: '0.8rem', color: '#38bdf8', fontWeight: 700 }}>작동 원리 및 계산 방식</h4>
-                      <p style={{ margin: 0, fontSize: '0.75rem', color: '#cbd5e1', lineHeight: 1.5 }}>
+                      <h4 style={{ margin: '0 0 6px 0', fontSize: '0.8rem', color: 'var(--w-sky-400)', fontWeight: 700 }}>작동 원리 및 계산 방식</h4>
+                      <p style={{ margin: 0, fontSize: '0.75rem', color: 'var(--w-slate-300)', lineHeight: 1.5 }}>
                         {methodology}
                       </p>
                       <div style={{ position: 'absolute', bottom: '-5px', left: '50%', marginLeft: '-5px', width: 0, height: 0, borderLeft: '5px solid transparent', borderRight: '5px solid transparent', borderTop: '5px solid rgba(255,255,255,0.1)' }} />
@@ -94,10 +94,10 @@ export const WidgetWrapper = ({ title, icon: Icon, term, desc, source, situation
                 </AnimatePresence>
               </div>
             </div>
-            <div style={{ fontSize: '0.75rem', color: '#94a3b8', marginTop: '2px' }}>{term} • {desc}</div>
+            <div style={{ fontSize: '0.75rem', color: 'var(--w-slate-400)', marginTop: '2px' }}>{term} • {desc}</div>
           </div>
         </div>
-        <div style={{ fontSize: '0.7rem', color: '#64748b', background: 'rgba(255,255,255,0.03)', padding: '2px 6px', borderRadius: '4px' }}>
+        <div style={{ fontSize: '0.7rem', color: 'var(--w-slate-500)', background: 'rgba(255,255,255,0.03)', padding: '2px 6px', borderRadius: '4px' }}>
           {source}
         </div>
       </div>
@@ -122,7 +122,7 @@ export default function TunaInsightWidgets() {
   }, []);
 
   if (!data || !data.widgets) {
-    return <div style={{ color: '#94a3b8', padding: '2rem', textAlign: 'center' }}>대서양 연어 인텔리전스 데이터 마이닝 중...</div>;
+    return <div style={{ color: 'var(--w-slate-400)', padding: '2rem', textAlign: 'center' }}>대서양 연어 인텔리전스 데이터 마이닝 중...</div>;
   }
 
   const wMap = data.widgets.reduce((acc: any, w: any) => ({...acc, [w.id]: w}), {});
@@ -146,8 +146,8 @@ export default function TunaInsightWidgets() {
               ))}
             </defs>
             <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" vertical={false} />
-            <XAxis dataKey={w.xAxis} stroke="#94a3b8" fontSize={11} tickMargin={8}  angle={0} textAnchor="middle" height={60} tickFormatter={truncateXAxis}/>
-            <YAxis stroke="#94a3b8" fontSize={11} tickFormatter={(v) => (v / 1000).toFixed(0) + 'k'} />
+            <XAxis dataKey={w.xAxis} stroke="var(--w-slate-400)" fontSize={11} tickMargin={8}  angle={0} textAnchor="middle" height={60} tickFormatter={truncateXAxis}/>
+            <YAxis stroke="var(--w-slate-400)" fontSize={11} tickFormatter={(v) => (v / 1000).toFixed(0) + 'k'} />
             <RechartsTooltip content={<CustomTooltip />} />
             <Legend wrapperStyle={{ fontSize: '11px', paddingTop: '10px' }} />
             {(w.series || w.lines || w.bars || []).map((s: any, idx: number) => (
@@ -161,8 +161,8 @@ export default function TunaInsightWidgets() {
         <SafeResponsiveContainer width="100%" height="100%">
           <LineChart data={w.data} margin={{ top: 10, right: 10, left: 0, bottom: 0 }}>
             <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" vertical={false} />
-            <XAxis dataKey={w.xAxis} stroke="#94a3b8" fontSize={11} tickMargin={8}  angle={0} textAnchor="middle" height={60} tickFormatter={truncateXAxis}/>
-            <YAxis stroke="#94a3b8" fontSize={11} tickFormatter={(v) => (v / 1000).toFixed(0) + 'k'} />
+            <XAxis dataKey={w.xAxis} stroke="var(--w-slate-400)" fontSize={11} tickMargin={8}  angle={0} textAnchor="middle" height={60} tickFormatter={truncateXAxis}/>
+            <YAxis stroke="var(--w-slate-400)" fontSize={11} tickFormatter={(v) => (v / 1000).toFixed(0) + 'k'} />
             <RechartsTooltip content={<CustomTooltip />} />
             <Legend wrapperStyle={{ fontSize: '11px', paddingTop: '10px' }} />
             {(w.series || w.lines || w.bars || []).map((s: any, idx: number) => (
@@ -186,8 +186,8 @@ export default function TunaInsightWidgets() {
                 ))}
               </defs>
               <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" horizontal={false} />
-              <XAxis type="number" stroke="#94a3b8" fontSize={11} tickFormatter={(v) => (v / 1000).toFixed(0) + 'k'} angle={0} textAnchor="middle" height={60} />
-              <YAxis dataKey={w.xAxis} type="category" stroke="#f8fafc" fontSize={10} width={120} tick={{fill: '#e2e8f0'}} />
+              <XAxis type="number" stroke="var(--w-slate-400)" fontSize={11} tickFormatter={(v) => (v / 1000).toFixed(0) + 'k'} angle={0} textAnchor="middle" height={60} />
+              <YAxis dataKey={w.xAxis} type="category" stroke="var(--w-slate-50)" fontSize={10} width={120} tick={{fill: 'var(--w-slate-200)'}} />
               <RechartsTooltip content={<CustomTooltip />} />
               <Legend wrapperStyle={{ fontSize: '11px', paddingTop: '10px' }} />
               {(w.series || w.lines || w.bars || []).map((s: any, idx: number) => (
@@ -206,8 +206,8 @@ export default function TunaInsightWidgets() {
                 ))}
               </defs>
               <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" vertical={false} />
-              <XAxis dataKey={w.xAxis} stroke="#94a3b8" fontSize={11} tickMargin={8}  angle={0} textAnchor="middle" height={60} tickFormatter={truncateXAxis}/>
-              <YAxis stroke="#94a3b8" fontSize={11} tickFormatter={(v) => (v / 1000).toFixed(0) + 'k'} />
+              <XAxis dataKey={w.xAxis} stroke="var(--w-slate-400)" fontSize={11} tickMargin={8}  angle={0} textAnchor="middle" height={60} tickFormatter={truncateXAxis}/>
+              <YAxis stroke="var(--w-slate-400)" fontSize={11} tickFormatter={(v) => (v / 1000).toFixed(0) + 'k'} />
               <RechartsTooltip content={<CustomTooltip />} />
               <Legend wrapperStyle={{ fontSize: '11px', paddingTop: '10px' }} />
               {(w.series || w.lines || w.bars || []).map((s: any, idx: number) => (

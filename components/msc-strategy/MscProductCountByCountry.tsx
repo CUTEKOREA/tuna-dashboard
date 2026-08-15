@@ -39,7 +39,7 @@ const tooltipStyle = {
   backgroundColor: 'rgba(20, 28, 52, 0.95)',
   border: '1px solid rgba(148,163,184,0.15)',
   borderRadius: 8,
-  color: '#e2e8f0',
+  color: 'var(--w-slate-200)',
   fontSize: '0.78rem',
   padding: '8px 12px',
 };
@@ -51,11 +51,11 @@ const CustomTooltip = ({ active, payload, label }: any) => {
     <div style={tooltipStyle}>
       <div style={{ fontWeight: 700, marginBottom: 4 }}>{label}</div>
       <div style={{ display: 'flex', justifyContent: 'space-between', gap: 16 }}>
-        <span style={{ color: '#94a3b8' }}>제품 수 (2024/25)</span>
+        <span style={{ color: 'var(--w-slate-400)' }}>제품 수 (2024/25)</span>
         <span style={{ fontWeight: 700 }}>{d.count.toLocaleString()}개</span>
       </div>
       <div style={{ display: 'flex', justifyContent: 'space-between', gap: 16, marginTop: 2 }}>
-        <span style={{ color: '#94a3b8' }}>2009/10 대비</span>
+        <span style={{ color: 'var(--w-slate-400)' }}>2009/10 대비</span>
         <span style={{ fontWeight: 600, color: d.hot ? ITALY : BASE }}>{d.mult} ({d.base.toLocaleString()}개→)</span>
       </div>
     </div>
@@ -79,14 +79,14 @@ export default function MscProductCountByCountry() {
             <SafeResponsiveContainer width="100%" height="100%">
               <BarChart data={countryData} layout="vertical" margin={{ top: 4, right: 52, left: 8, bottom: 4 }}>
                 <CartesianGrid strokeDasharray="3 3" stroke="rgba(148,163,184,0.08)" horizontal={false} />
-                <XAxis type="number" domain={[0, 2600]} tick={{ fill: '#94a3b8', fontSize: 11 }} axisLine={false} tickLine={false} tickFormatter={(v: number) => v.toLocaleString()} />
-                <YAxis type="category" dataKey="country" width={60} tick={{ fill: '#cbd5e1', fontSize: 11 }} axisLine={false} tickLine={false} />
+                <XAxis type="number" domain={[0, 2600]} tick={{ fill: 'var(--w-slate-400)', fontSize: 11 }} axisLine={false} tickLine={false} tickFormatter={(v: number) => v.toLocaleString()} />
+                <YAxis type="category" dataKey="country" width={60} tick={{ fill: 'var(--w-slate-300)', fontSize: 11 }} axisLine={false} tickLine={false} />
                 <Tooltip content={<CustomTooltip />} cursor={{ fill: 'rgba(148,163,184,0.06)' }} />
                 <Bar dataKey="count" radius={[0, 4, 4, 0]} isAnimationActive={false} barSize={16}>
                   {countryData.map((d, i) => (
                     <Cell key={i} fill={d.hot ? ITALY : BASE} fillOpacity={d.hot ? 0.92 : 0.6} />
                   ))}
-                  <LabelList dataKey="mult" position="right" style={{ fill: '#94a3b8', fontSize: 10, fontWeight: 600 }} />
+                  <LabelList dataKey="mult" position="right" style={{ fill: 'var(--w-slate-400)', fontSize: 10, fontWeight: 600 }} />
                 </Bar>
               </BarChart>
             </SafeResponsiveContainer>
@@ -96,7 +96,7 @@ export default function MscProductCountByCountry() {
             background: 'rgba(239,68,68,0.06)', border: '1px solid rgba(239,68,68,0.18)', borderRadius: '10px',
           }}>
             <Zap size={16} color={ITALY} style={{ flexShrink: 0 }} />
-            <span style={{ fontSize: '0.72rem', color: '#cbd5e1' }}>
+            <span style={{ fontSize: '0.72rem', color: 'var(--w-slate-300)' }}>
               <b style={{ color: ITALY }}>이탈리아 10개→1,105개 (110배)</b> · 프랑스 17배 · 벨기에 24배 — 남유럽·신흥 시장이 MSC 매대를 빠르게 확장 중
             </span>
           </div>

@@ -299,7 +299,7 @@ function NegotiationSimulator() {
         </div>
         <div className={styles.costRow} style={{ background: 'rgba(139, 92, 246, 0.05)' }}>
           <div className={styles.costLabel}>현재 Landed Cost</div>
-          <div style={{ fontSize: '0.85rem', fontWeight: 700, color: '#8b5cf6' }}>${landedCost.toLocaleString()}/MT</div>
+          <div style={{ fontSize: '0.85rem', fontWeight: 700, color: 'var(--w-violet-500)' }}>${landedCost.toLocaleString()}/MT</div>
         </div>
         <div className={styles.costRow}>
           <div className={styles.costLabel}>우리 희망가</div>
@@ -379,7 +379,7 @@ function VDSBurnTracker() {
                 <div className={styles.burnPercent} style={{ color: isOverBurn ? 'var(--color-danger)' : z.color }}>{pct}% 소진</div>
               </div>
               <div className={styles.burnBarTrack}>
-                <div className={styles.burnBarFill} style={{ width: `${pct}%`, background: isOverBurn ? `linear-gradient(90deg, ${z.color}, #ef4444)` : z.color }} />
+                <div className={styles.burnBarFill} style={{ width: `${pct}%`, background: isOverBurn ? `linear-gradient(90deg, ${z.color}, var(--w-red-500))` : z.color }} />
               </div>
               <div className={styles.burnStats}>
                 <span>사용: {z.used.toFixed(1)}일 / 배정: {z.total}일</span>
@@ -585,9 +585,9 @@ function DroneRoiTracker() {
             <BarChart data={data} margin={{ top: 20, right: 0, left: -20, bottom: 5 }}>
               <ChartPatternDefs />
               <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="rgba(140,170,255,0.10)" />
-              <XAxis dataKey="name" stroke="#94a3b8" fontSize={12} />
-              <YAxis stroke="#94a3b8" fontSize={12} />
-              <RechartsTooltip contentStyle={{ backgroundColor: '#1a2442', border: 'none', borderRadius: '8px' }} />
+              <XAxis dataKey="name" stroke="var(--w-slate-400)" fontSize={12} />
+              <YAxis stroke="var(--w-slate-400)" fontSize={12} />
+              <RechartsTooltip contentStyle={{ backgroundColor: 'var(--w-navy-900)', border: 'none', borderRadius: '8px' }} />
               <Bar dataKey="drySet" name="공치기 확률 (%)" fill="var(--color-danger)" radius={[4, 4, 0, 0]} barSize={40} />
               <Bar dataKey="fuelWaste" name="낭비 연료(MT/월)" fill="var(--color-warning)" radius={[4, 4, 0, 0]} barSize={40} />
             </BarChart>
@@ -595,16 +595,16 @@ function DroneRoiTracker() {
         </div>
         <div style={{ flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'center', gap: '1rem' }}>
           <div className={styles.kpiBox} style={{ background: 'rgba(6, 182, 212, 0.1)', border: '1px solid rgba(6, 182, 212, 0.2)', padding: '1rem', borderRadius: '8px' }}>
-            <div style={{ fontSize: '0.8rem', color: '#94a3b8', marginBottom: '0.2rem' }}>장비 투자금</div>
+            <div style={{ fontSize: '0.8rem', color: 'var(--w-slate-400)', marginBottom: '0.2rem' }}>장비 투자금</div>
             <div style={{ fontSize: '1.2rem', fontWeight: 'bold', color: 'var(--text-primary)' }}>$1.2M</div>
           </div>
           <div className={styles.kpiBox} style={{ background: 'rgba(16, 185, 129, 0.1)', border: '1px solid rgba(16, 185, 129, 0.2)', padding: '1rem', borderRadius: '8px' }}>
-            <div style={{ fontSize: '0.8rem', color: '#94a3b8', marginBottom: '0.2rem' }}>월 유류 절감 (OPEX)</div>
+            <div style={{ fontSize: '0.8rem', color: 'var(--w-slate-400)', marginBottom: '0.2rem' }}>월 유류 절감 (OPEX)</div>
             <div style={{ fontSize: '1.2rem', fontWeight: 'bold', color: 'var(--color-success)' }}>+$250K</div>
           </div>
           <div style={{ background: 'rgba(140, 170, 255, 0.10)', padding: '0.8rem', borderRadius: '8px', textAlign: 'center' }}>
-            <div style={{ fontSize: '0.85rem', color: '#cbd5e1' }}>투자 회수 기간 (Payback)</div>
-            <div style={{ fontSize: '1.4rem', fontWeight: 'bold', color: '#06b6d4' }}>{payback}개월</div>
+            <div style={{ fontSize: '0.85rem', color: 'var(--w-slate-300)' }}>투자 회수 기간 (Payback)</div>
+            <div style={{ fontSize: '1.4rem', fontWeight: 'bold', color: 'var(--w-cyan-500)' }}>{payback}개월</div>
           </div>
         </div>
       </div>
@@ -633,16 +633,16 @@ function CanalDisruptionIndex() {
         <span className={styles.toolBadge} style={{ background: 'rgba(245, 158, 11, 0.15)', color: 'var(--color-warning)', marginLeft: 'auto' }}>📐 Estimate</span>
       </div>
       <div style={{ padding: '1rem', background: 'rgba(255,255,255,0.03)', borderRadius: '8px', marginBottom: '1rem' }}>
-        <div style={{ marginBottom: '0.5rem', color: '#94a3b8', fontSize: '0.9rem' }}>극동 → 유럽 (EU) 컨테이너 항로 옵션</div>
+        <div style={{ marginBottom: '0.5rem', color: 'var(--w-slate-400)', fontSize: '0.9rem' }}>극동 → 유럽 (EU) 컨테이너 항로 옵션</div>
         <div style={{ display: 'flex', gap: '1rem' }}>
           <button 
-            style={{ flex: 1, padding: '0.8rem', borderRadius: '6px', background: route === 'suez' ? 'rgba(16, 185, 129, 0.2)' : 'rgba(0,0,0,0.2)', border: `1px solid ${route === 'suez' ? 'var(--color-success)' : '#334155'}`, color: route === 'suez' ? 'var(--color-success)' : '#cbd5e1', cursor: 'pointer' }}
+            style={{ flex: 1, padding: '0.8rem', borderRadius: '6px', background: route === 'suez' ? 'rgba(16, 185, 129, 0.2)' : 'rgba(0,0,0,0.2)', border: `1px solid ${route === 'suez' ? 'var(--color-success)' : '#334155'}`, color: route === 'suez' ? 'var(--color-success)' : 'var(--w-slate-300)', cursor: 'pointer' }}
             onClick={() => setRoute('suez')}
           >
             기본 수에즈 운하 (정상)
           </button>
           <button 
-            style={{ flex: 1, padding: '0.8rem', borderRadius: '6px', background: route === 'cape' ? 'rgba(239, 68, 68, 0.2)' : 'rgba(0,0,0,0.2)', border: `1px solid ${route === 'cape' ? 'var(--color-danger)' : '#334155'}`, color: route === 'cape' ? 'var(--color-danger)' : '#cbd5e1', cursor: 'pointer' }}
+            style={{ flex: 1, padding: '0.8rem', borderRadius: '6px', background: route === 'cape' ? 'rgba(239, 68, 68, 0.2)' : 'rgba(0,0,0,0.2)', border: `1px solid ${route === 'cape' ? 'var(--color-danger)' : '#334155'}`, color: route === 'cape' ? 'var(--color-danger)' : 'var(--w-slate-300)', cursor: 'pointer' }}
             onClick={() => setRoute('cape')}
           >
             희망봉 우회 (홍해 차질)
@@ -705,7 +705,7 @@ function StorageTariffCalculator() {
       
       <div style={{ display: 'flex', gap: '1.5rem', alignItems: 'center', marginBottom: '1.5rem', marginTop: '0.8rem' }}>
         <div style={{ flex: 1 }}>
-          <div style={{ color: '#94a3b8', fontSize: '0.85rem', marginBottom: '0.5rem' }}>사전 비축 (관세 면제 기대) 일수 설정</div>
+          <div style={{ color: 'var(--w-slate-400)', fontSize: '0.85rem', marginBottom: '0.5rem' }}>사전 비축 (관세 면제 기대) 일수 설정</div>
           <input 
             type="range" 
             min="10" max="300" 
@@ -713,18 +713,18 @@ function StorageTariffCalculator() {
             onChange={e => setHoldingDays(+e.target.value)} 
             style={{ width: '100%', accentColor: netHedgeProfit >= 0 ? 'var(--color-success)' : 'var(--color-danger)' }} 
           />
-          <div style={{ textAlign: 'center', marginTop: '0.5rem', fontSize: '1.2rem', fontWeight: 700, color: '#38bdf8' }}>
+          <div style={{ textAlign: 'center', marginTop: '0.5rem', fontSize: '1.2rem', fontWeight: 700, color: 'var(--w-sky-400)' }}>
             {holdingDays}일 대기
           </div>
         </div>
         
         <div style={{ flex: 1, padding: '1rem', background: 'rgba(0,0,0,0.2)', borderRadius: '8px', border: '1px solid rgba(140,170,255,0.10)' }}>
           <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '0.5rem' }}>
-            <span style={{ color: '#94a3b8', fontSize: '0.85rem' }}>예상 창고료 (-60°C)</span>
+            <span style={{ color: 'var(--w-slate-400)', fontSize: '0.85rem' }}>예상 창고료 (-60°C)</span>
             <span style={{ color: 'var(--color-danger)' }}>-${storageTotalCost.toLocaleString()}</span>
           </div>
           <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '0.5rem', borderBottom: '1px solid rgba(255,255,255,0.1)', paddingBottom: '0.5rem' }}>
-            <span style={{ color: '#94a3b8', fontSize: '0.85rem' }}>관세 폭탄 회피 수익 (20%)</span>
+            <span style={{ color: 'var(--w-slate-400)', fontSize: '0.85rem' }}>관세 폭탄 회피 수익 (20%)</span>
             <span style={{ color: 'var(--color-success)' }}>+${tariffSaving.toLocaleString()}</span>
           </div>
           <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: '0.5rem', fontWeight: 700 }}>
@@ -783,17 +783,17 @@ function YieldFreightSpread() {
       </div>
 
       <div style={{ display: 'flex', gap: '1rem', marginBottom: '1rem' }}>
-        <div className={styles.totalCostCard} style={{ flex: 1, background: recommendLoin ? 'rgba(255,255,255,0.03)' : 'rgba(16, 185, 129, 0.1)', border: recommendLoin ? '1px solid rgba(140,170,255,0.10)' : '1px solid #10b981' }}>
-          <div style={{ color: '#94a3b8', fontSize: '0.85rem', marginBottom: '0.5rem' }}>A안. 원어 수입 후 국내 가공 (통관/폐기 포함)</div>
-          <div style={{ fontSize: '1.4rem', fontWeight: 'bold', color: 'var(--text-primary)' }}>${Math.round(loinEquivalentCost).toLocaleString()}<span style={{ fontSize: '0.8rem', color: '#64748b', fontWeight: 'normal' }}> / Meat 1MT당</span></div>
+        <div className={styles.totalCostCard} style={{ flex: 1, background: recommendLoin ? 'rgba(255,255,255,0.03)' : 'rgba(16, 185, 129, 0.1)', border: recommendLoin ? '1px solid rgba(140,170,255,0.10)' : '1px solid var(--w-emerald-500)' }}>
+          <div style={{ color: 'var(--w-slate-400)', fontSize: '0.85rem', marginBottom: '0.5rem' }}>A안. 원어 수입 후 국내 가공 (통관/폐기 포함)</div>
+          <div style={{ fontSize: '1.4rem', fontWeight: 'bold', color: 'var(--text-primary)' }}>${Math.round(loinEquivalentCost).toLocaleString()}<span style={{ fontSize: '0.8rem', color: 'var(--w-slate-500)', fontWeight: 'normal' }}> / Meat 1MT당</span></div>
         </div>
-        <div className={styles.totalCostCard} style={{ flex: 1, background: recommendLoin ? 'rgba(139, 92, 246, 0.1)' : 'rgba(255,255,255,0.03)', border: recommendLoin ? '1px solid #8b5cf6' : '1px solid rgba(140,170,255,0.10)' }}>
-          <div style={{ color: '#94a3b8', fontSize: '0.85rem', marginBottom: '0.5rem' }}>B안. 현지 Loin(뼈 제거) 수입 (가공마진 포함)</div>
-          <div style={{ fontSize: '1.4rem', fontWeight: 'bold', color: 'var(--text-primary)' }}>${Math.round(directLoinCost).toLocaleString()}<span style={{ fontSize: '0.8rem', color: '#64748b', fontWeight: 'normal' }}> / Loin 1MT당</span></div>
+        <div className={styles.totalCostCard} style={{ flex: 1, background: recommendLoin ? 'rgba(139, 92, 246, 0.1)' : 'rgba(255,255,255,0.03)', border: recommendLoin ? '1px solid var(--w-violet-500)' : '1px solid rgba(140,170,255,0.10)' }}>
+          <div style={{ color: 'var(--w-slate-400)', fontSize: '0.85rem', marginBottom: '0.5rem' }}>B안. 현지 Loin(뼈 제거) 수입 (가공마진 포함)</div>
+          <div style={{ fontSize: '1.4rem', fontWeight: 'bold', color: 'var(--text-primary)' }}>${Math.round(directLoinCost).toLocaleString()}<span style={{ fontSize: '0.8rem', color: 'var(--w-slate-500)', fontWeight: 'normal' }}> / Loin 1MT당</span></div>
         </div>
       </div>
 
-      <div className={styles.insightBox} style={{ borderLeftColor: recommendLoin ? '#8b5cf6' : 'var(--color-success)' }}>
+      <div className={styles.insightBox} style={{ borderLeftColor: recommendLoin ? 'var(--w-violet-500)' : 'var(--color-success)' }}>
         {recommendLoin ? (
            <><strong>Loin(1차 가공육) 수입 권장:</strong> 해상운임과 국내 인건비 상승으로 인해, 버려질 부산물(55%)까지 운임을 내느니 해외에서 Loin을 수입하는 것이 Loin 1톤당 <strong>${Math.abs(Math.round(delta)).toLocaleString()} 유리</strong>합니다.</>
         ) : (
@@ -827,7 +827,7 @@ function ExchangeShockIndex() {
       
       <div style={{ display: 'flex', gap: '1.5rem', marginTop: '1rem', marginBottom: '1.5rem' }}>
         <div style={{ flex: 1, padding: '1.5rem', background: 'rgba(245, 158, 11, 0.05)', borderRadius: '8px', border: '1px solid rgba(245, 158, 11, 0.2)' }}>
-          <div style={{ color: '#94a3b8', fontSize: '0.85rem', marginBottom: '0.5rem' }}>목표 환율 (KRW/USD) 시뮬레이션</div>
+          <div style={{ color: 'var(--w-slate-400)', fontSize: '0.85rem', marginBottom: '0.5rem' }}>목표 환율 (KRW/USD) 시뮬레이션</div>
           <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: '1rem' }}>
             <span style={{ fontSize: '1.5rem', fontWeight: 'bold', color: 'var(--text-primary)' }}>₩</span>
             <input 
@@ -838,12 +838,12 @@ function ExchangeShockIndex() {
               onChange={e => setFxRate(+e.target.value)} 
             />
           </div>
-          <div style={{ fontSize: '0.85rem', color: '#64748b' }}>기준 환율: ₩{previousFxRate} (전분기 평균)</div>
+          <div style={{ fontSize: '0.85rem', color: 'var(--w-slate-500)' }}>기준 환율: ₩{previousFxRate} (전분기 평균)</div>
         </div>
         
         <div style={{ flex: 1, display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
           <div className={styles.totalCostCard} style={{ background: 'rgba(255,255,255,0.03)', borderColor: 'rgba(140,170,255,0.10)', padding: '1rem' }}>
-            <div style={{ color: '#94a3b8', fontSize: '0.8rem', marginBottom: '0.2rem' }}>1MT 수입 원가 (KRW 환산)</div>
+            <div style={{ color: 'var(--w-slate-400)', fontSize: '0.8rem', marginBottom: '0.2rem' }}>1MT 수입 원가 (KRW 환산)</div>
             <div style={{ fontSize: '1.4rem', fontWeight: 'bold' }}>₩{(costKRW / 10000).toFixed(1)}만</div>
           </div>
           <div className={styles.totalCostCard} style={{ background: shockPercent > 0 ? 'rgba(239, 68, 68, 0.1)' : 'rgba(16, 185, 129, 0.1)', borderColor: shockPercent > 0 ? 'var(--color-danger)' : 'var(--color-success)', padding: '1rem' }}>
@@ -886,7 +886,7 @@ function PriceAsymmetryChart() {
         <div className={styles.toolTitle}>B2C 소매가 비대칭성 모니터 (Rockets & Feathers)</div>
         <span className={styles.toolBadge} style={{ background: 'rgba(245, 158, 11, 0.15)', color: 'var(--color-warning)', marginLeft: 'auto' }}>📐 Estimate</span>
       </div>
-      <div style={{ fontSize: '0.85rem', color: '#94a3b8', marginBottom: '1rem' }}>
+      <div style={{ fontSize: '0.85rem', color: 'var(--w-slate-400)', marginBottom: '1rem' }}>
         "로켓처럼 오르고 깃털처럼 내린다" - 원어가는 하락해도 참치캔 소비자가는 유지되는 현상 추적
       </div>
       
@@ -894,11 +894,11 @@ function PriceAsymmetryChart() {
         <SafeResponsiveContainer width="100%" height="100%">
           <LineChart data={data} margin={{ top: 10, right: 10, left: -20, bottom: 5 }}>
             <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="rgba(140,170,255,0.10)" />
-            <XAxis dataKey="month" stroke="#94a3b8" fontSize={11} tickMargin={10} />
-            <YAxis stroke="#94a3b8" fontSize={11} tickFormatter={(val) => `$${val}`} />
-            <RechartsTooltip contentStyle={{ backgroundColor: '#1a2442', border: 'none', borderRadius: '8px', fontSize: '0.85rem' }} itemStyle={{ color: 'var(--text-primary)' }} />
+            <XAxis dataKey="month" stroke="var(--w-slate-400)" fontSize={11} tickMargin={10} />
+            <YAxis stroke="var(--w-slate-400)" fontSize={11} tickFormatter={(val) => `$${val}`} />
+            <RechartsTooltip contentStyle={{ backgroundColor: 'var(--w-navy-900)', border: 'none', borderRadius: '8px', fontSize: '0.85rem' }} itemStyle={{ color: 'var(--text-primary)' }} />
             <Line type="monotone" dataKey="retail" name="소비자가 (대형마트 캔)" stroke="#0ea5e9" strokeWidth={3} dot={{ r: 4, fill: '#0ea5e9' }} />
-            <Line type="monotone" dataKey="wholesale" name="도매가 (공장 출고)" stroke="#8b5cf6" strokeWidth={2} dot={false} />
+            <Line type="monotone" dataKey="wholesale" name="도매가 (공장 출고)" stroke="var(--w-violet-500)" strokeWidth={2} dot={false} />
             <Line type="monotone" dataKey="raw" name="원어가 (방콕 CFR)" stroke="var(--color-danger)" strokeWidth={2} strokeDasharray="5 5" dot={false} />
           </LineChart>
         </SafeResponsiveContainer>
@@ -922,35 +922,35 @@ function SubstitutionElasticityMonitor() {
         <div className={styles.toolTitle}>어종별 가격 대체 탄력성 모니터링</div>
         <span className={styles.toolBadge} style={{ background: 'rgba(245, 158, 11, 0.15)', color: 'var(--color-warning)', marginLeft: 'auto' }}>📐 Estimate</span>
       </div>
-      <div style={{ fontSize: '0.85rem', color: '#94a3b8', marginBottom: '1rem' }}>
+      <div style={{ fontSize: '0.85rem', color: 'var(--w-slate-400)', marginBottom: '1rem' }}>
         연어/닭가슴살 가격 변동이 캔참치 수요에 미치는 영향성(교차탄력성) 분석
       </div>
       
       <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
         <div className={styles.kpiBox} style={{ background: 'rgba(255,255,255,0.03)', border: '1px solid rgba(255,255,255,0.08)', padding: '1rem', borderRadius: '8px', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
           <div>
-            <div style={{ fontSize: '0.9rem', color: '#cbd5e1' }}>노르웨이 연어 (Salmon)</div>
-            <div style={{ fontSize: '0.75rem', color: '#64748b', marginTop: '0.2rem' }}>단가 추이: 사상 최고치 경신 중 (+18%)</div>
+            <div style={{ fontSize: '0.9rem', color: 'var(--w-slate-300)' }}>노르웨이 연어 (Salmon)</div>
+            <div style={{ fontSize: '0.75rem', color: 'var(--w-slate-500)', marginTop: '0.2rem' }}>단가 추이: 사상 최고치 경신 중 (+18%)</div>
           </div>
           <div style={{ textAlign: 'right' }}>
-            <div style={{ fontSize: '0.8rem', color: '#94a3b8', marginBottom: '0.2rem' }}>교차탄력성 지수</div>
-            <div style={{ fontSize: '1.2rem', fontWeight: 'bold', color: '#ec4899' }}>+0.45 <span style={{ fontSize: '0.75rem', fontWeight: 'normal', color: 'var(--color-success)' }}>(대체수요 유입중)</span></div>
+            <div style={{ fontSize: '0.8rem', color: 'var(--w-slate-400)', marginBottom: '0.2rem' }}>교차탄력성 지수</div>
+            <div style={{ fontSize: '1.2rem', fontWeight: 'bold', color: 'var(--w-pink-500)' }}>+0.45 <span style={{ fontSize: '0.75rem', fontWeight: 'normal', color: 'var(--color-success)' }}>(대체수요 유입중)</span></div>
           </div>
         </div>
 
         <div className={styles.kpiBox} style={{ background: 'rgba(255,255,255,0.03)', border: '1px solid rgba(255,255,255,0.08)', padding: '1rem', borderRadius: '8px', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
           <div>
-            <div style={{ fontSize: '0.9rem', color: '#cbd5e1' }}>육계 (Chicken Breast)</div>
-            <div style={{ fontSize: '0.75rem', color: '#64748b', marginTop: '0.2rem' }}>단가 추이: 조류독감(AI) 영향 완화 (-5%)</div>
+            <div style={{ fontSize: '0.9rem', color: 'var(--w-slate-300)' }}>육계 (Chicken Breast)</div>
+            <div style={{ fontSize: '0.75rem', color: 'var(--w-slate-500)', marginTop: '0.2rem' }}>단가 추이: 조류독감(AI) 영향 완화 (-5%)</div>
           </div>
           <div style={{ textAlign: 'right' }}>
-            <div style={{ fontSize: '0.8rem', color: '#94a3b8', marginBottom: '0.2rem' }}>교차탄력성 지수</div>
-            <div style={{ fontSize: '1.2rem', fontWeight: 'bold', color: '#38bdf8' }}>-0.12 <span style={{ fontSize: '0.75rem', fontWeight: 'normal', color: 'var(--color-danger)' }}>(단백질 수요 이탈 우려)</span></div>
+            <div style={{ fontSize: '0.8rem', color: 'var(--w-slate-400)', marginBottom: '0.2rem' }}>교차탄력성 지수</div>
+            <div style={{ fontSize: '1.2rem', fontWeight: 'bold', color: 'var(--w-sky-400)' }}>-0.12 <span style={{ fontSize: '0.75rem', fontWeight: 'normal', color: 'var(--color-danger)' }}>(단백질 수요 이탈 우려)</span></div>
           </div>
         </div>
       </div>
       
-      <div className={styles.insightBox} style={{ marginTop: '1.2rem', borderLeftColor: '#ec4899' }}>
+      <div className={styles.insightBox} style={{ marginTop: '1.2rem', borderLeftColor: 'var(--w-pink-500)' }}>
         프리미엄 단백질(연어)의 초강세로 인해, 서구권 식단에서 연어를 대체할 <strong>프리미엄 통조림(스테이크용 참치, 올리브유 캔)의 수요가 단기 급증</strong>하고 있습니다. 해당 품목의 마케팅/생산 비중을 확대하십시오.
       </div>
     </div>
@@ -1000,15 +1000,15 @@ function EcolabelRoiCalculator() {
         
         <div style={{ flex: 1, padding: '1.2rem', background: 'rgba(16, 185, 129, 0.05)', borderRadius: '8px', border: '1px solid rgba(16, 185, 129, 0.2)' }}>
           <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '0.8rem', borderBottom: '1px solid rgba(140,170,255,0.10)', paddingBottom: '0.8rem' }}>
-            <span style={{ color: '#94a3b8', fontSize: '0.85rem' }}>예상 톤당 프리미엄 (MSC {mscPremiumPct}%)</span>
+            <span style={{ color: 'var(--w-slate-400)', fontSize: '0.85rem' }}>예상 톤당 프리미엄 (MSC {mscPremiumPct}%)</span>
             <span style={{ color: 'var(--text-primary)' }}>+${Math.round(mscPremiumDollar)}/MT</span>
           </div>
           <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '1rem' }}>
-            <span style={{ color: '#94a3b8', fontSize: '0.85rem' }}>연간 프리미엄 총수익금</span>
+            <span style={{ color: 'var(--w-slate-400)', fontSize: '0.85rem' }}>연간 프리미엄 총수익금</span>
             <span style={{ color: 'var(--color-success)', fontWeight: 'bold' }}>+${Math.round(totalPremiumProfit).toLocaleString()}</span>
           </div>
           <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', marginTop: '1.5rem', background: 'rgba(0,0,0,0.2)', padding: '1rem', borderRadius: '8px' }}>
-            <span style={{ fontSize: '0.8rem', color: '#cbd5e1' }}>순수 인증 ROI (Return on Investment)</span>
+            <span style={{ fontSize: '0.8rem', color: 'var(--w-slate-300)' }}>순수 인증 ROI (Return on Investment)</span>
             <span style={{ fontSize: '1.8rem', fontWeight: 'bold', color: roi >= 0 ? 'var(--color-success)' : 'var(--color-danger)' }}>
               {roi > 0 && '+'}{roi.toFixed(1)}%
             </span>
@@ -1048,7 +1048,7 @@ function ByproductUpcycleTracker() {
         <div className={styles.toolTitle}>폐기물 업사이클링 (펫푸드·바이오) 수익화 트래커</div>
         <span className={styles.toolBadge} style={{ background: 'rgba(245, 158, 11, 0.15)', color: 'var(--color-warning)', marginLeft: 'auto' }}>📐 Estimate</span>
       </div>
-      <div style={{ fontSize: '0.85rem', color: '#94a3b8', marginBottom: '1rem' }}>
+      <div style={{ fontSize: '0.85rem', color: 'var(--w-slate-400)', marginBottom: '1rem' }}>
         가다랑어 가공 시 발생하는 55%의 잔여물(뼈, 껍질, 내장) 1MT당 파생 가치
       </div>
       
@@ -1057,10 +1057,10 @@ function ByproductUpcycleTracker() {
           <BarChart data={chartData} layout="vertical" margin={{ top: 0, right: 30, left: 10, bottom: 0 }}>
             <ChartPatternDefs />
             <CartesianGrid strokeDasharray="3 3" horizontal={false} stroke="rgba(140,170,255,0.10)" />
-            <XAxis type="number" stroke="#94a3b8" fontSize={11} tickFormatter={(val) => `$${val}`} />
-            <YAxis dataKey="name" type="category" stroke="#94a3b8" fontSize={11} width={90} />
+            <XAxis type="number" stroke="var(--w-slate-400)" fontSize={11} tickFormatter={(val) => `$${val}`} />
+            <YAxis dataKey="name" type="category" stroke="var(--w-slate-400)" fontSize={11} width={90} />
             <RechartsTooltip 
-              contentStyle={{ backgroundColor: '#1a2442', border: 'none', borderRadius: '8px' }} 
+              contentStyle={{ backgroundColor: 'var(--w-navy-900)', border: 'none', borderRadius: '8px' }}
               formatter={(value, name) => [`$${value}`, name === 'profit' ? '단순 수익' : '폐기 비용']} 
             />
             <Bar dataKey="cost" stackId="a" fill="var(--color-danger)" radius={[4, 0, 0, 4]} barSize={20} />
@@ -1073,7 +1073,7 @@ function ByproductUpcycleTracker() {
         </SafeResponsiveContainer>
       </div>
 
-      <div className={styles.insightBox} style={{ borderLeftColor: '#ec4899' }}>
+      <div className={styles.insightBox} style={{ borderLeftColor: 'var(--w-pink-500)' }}>
         과거 마이너스 자산이었던 폐기물이 '펫푸드(습식용 파우치)' 및 '화장품용 해양 콜라겐' 원료로 고부가가치화되고 있습니다. 폐기 업체 납부를 중단하고 즉시 국내외 펫푸드 제휴사로의 직납 라인을 개설하십시오.
       </div>
     </div>

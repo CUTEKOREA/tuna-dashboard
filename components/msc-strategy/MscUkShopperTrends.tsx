@@ -34,14 +34,14 @@ export default function MscUkShopperTrends() {
                 background: isUp ? 'rgba(16,185,129,0.05)' : 'rgba(239,68,68,0.05)',
               }}
             >
-              <div style={{ fontSize: '0.75rem', fontWeight: 700, color: '#94a3b8' }}>
+              <div style={{ fontSize: '0.75rem', fontWeight: 700, color: 'var(--w-slate-400)' }}>
                 {item.metric}
               </div>
               <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
                 {/* 2023 value */}
                 <div style={{ textAlign: 'center' }}>
-                  <div style={{ fontSize: '10px', color: '#64748b', fontWeight: 600, marginBottom: '2px' }}>2023년</div>
-                  <div style={{ fontSize: '1.125rem', fontWeight: 700, color: '#94a3b8', fontVariantNumeric: 'tabular-nums' }}>
+                  <div style={{ fontSize: '10px', color: 'var(--w-slate-500)', fontWeight: 600, marginBottom: '2px' }}>2023년</div>
+                  <div style={{ fontSize: '1.125rem', fontWeight: 700, color: 'var(--w-slate-400)', fontVariantNumeric: 'tabular-nums' }}>
                     {item.y2023}{item.unit}
                   </div>
                 </div>
@@ -54,7 +54,7 @@ export default function MscUkShopperTrends() {
                     gap: '0.25rem',
                     fontSize: '0.75rem',
                     fontWeight: 700,
-                    color: isUp ? '#34d399' : '#f87171',
+                    color: isUp ? 'var(--w-emerald-400)' : '#f87171',
                   }}>
                     {isUp ? <TrendingUp size={14} strokeWidth={3} /> : <TrendingDown size={14} strokeWidth={3} />}
                     {isUp ? '+' : ''}{diff}pp
@@ -64,7 +64,7 @@ export default function MscUkShopperTrends() {
 
                 {/* 2026 value */}
                 <div style={{ textAlign: 'center' }}>
-                  <div style={{ fontSize: '10px', color: '#64748b', fontWeight: 600, marginBottom: '2px' }}>2026년</div>
+                  <div style={{ fontSize: '10px', color: 'var(--w-slate-500)', fontWeight: 600, marginBottom: '2px' }}>2026년</div>
                   <div style={{ fontSize: '1.25rem', fontWeight: 900, color: '#f1f5f9', fontVariantNumeric: 'tabular-nums' }}>
                     {item.y2026}{item.unit}
                   </div>
@@ -83,10 +83,10 @@ export default function MscUkShopperTrends() {
         border: '1px solid rgba(56,189,248,0.3)',
         borderRadius: '0.75rem',
         fontSize: '0.875rem',
-        color: '#cbd5e1',
+        color: 'var(--w-slate-300)',
         fontWeight: 500,
       }}>
-        <span style={{ color: '#38bdf8', fontWeight: 700, marginRight: '0.5rem' }}>핵심 패턴:</span>
+        <span style={{ color: 'var(--w-sky-400)', fontWeight: 700, marginRight: '0.5rem' }}>핵심 패턴:</span>
         구매 빈도 하락(-4pp) + 지속가능성 중시(+15pp) + 프리미엄 지불 의향 상승(+12pp) =
         <span style={{
           color: '#f1f5f9',

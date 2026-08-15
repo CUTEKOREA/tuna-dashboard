@@ -10,9 +10,9 @@ const CT = ({ active, payload, label }: any) => {
   if (!active || !payload?.length) return null;
   return (
     <div style={{ background: 'rgba(10, 16, 40, 0.95)', border: '1px solid rgba(255,255,255,0.2)', borderRadius: '8px', padding: '8px 12px' }}>
-      <p style={{ margin: 0, fontSize: '12px', fontWeight: 700, color: '#f8fafc' }}>{label}</p>
+      <p style={{ margin: 0, fontSize: '12px', fontWeight: 700, color: 'var(--w-slate-50)' }}>{label}</p>
       {payload.map((e: any, i: number) => (
-        <div key={i} style={{ display: 'flex', justifyContent: 'space-between', gap: '12px', fontSize: '11px', color: '#cbd5e1', marginTop: '4px' }}>
+        <div key={i} style={{ display: 'flex', justifyContent: 'space-between', gap: '12px', fontSize: '11px', color: 'var(--w-slate-300)', marginTop: '4px' }}>
           <span style={{ color: e.color }}>■ {e.name}</span>
           <strong>{typeof e.value === 'number' ? e.value.toLocaleString() : e.value}</strong>
         </div>
@@ -43,9 +43,9 @@ export function W1_ASFCycle({ accent }: any) {
     strat="세계동물보건기구(WOAH) ASF 모니터링 + 시카고상업거래소(CME) Lean Hogs 선물을 수산물 가격 전략 선행 지표로 삼아 동적 가격 전략 실행." source="FAOSTAT QCL Item 1035 (중국)">
     <ComposedChart data={D.asfCycleData}>
       <ChartPatternDefs /><CartesianGrid strokeDasharray="3 3" stroke="rgba(140,170,255,0.12)" vertical={false} />
-      <XAxis dataKey="year" stroke="#64748b" tick={{ fontSize: 9, fill: '#64748b' }} /><YAxis yAxisId="left" stroke="#64748b" tick={{ fontSize: 9 }} tickFormatter={v => v >= 1000 ? `${(v / 1000).toFixed(0)}K` : v} />
-      <YAxis yAxisId="right" orientation="right" stroke="#64748b" tick={{ fontSize: 9 }} /><RT content={<CT />} /><Legend verticalAlign="top" wrapperStyle={{ fontSize: '10px', paddingBottom: '10px' }} />
-      <Bar yAxisId="left" dataKey="production" name="중국 생산량 (천톤)" fill="#3b82f6" radius={[4, 4, 0, 0]} fillOpacity={0.8} />
+      <XAxis dataKey="year" stroke="var(--w-slate-500)" tick={{ fontSize: 9, fill: 'var(--w-slate-500)' }} /><YAxis yAxisId="left" stroke="var(--w-slate-500)" tick={{ fontSize: 9 }} tickFormatter={v => v >= 1000 ? `${(v / 1000).toFixed(0)}K` : v} />
+      <YAxis yAxisId="right" orientation="right" stroke="var(--w-slate-500)" tick={{ fontSize: 9 }} /><RT content={<CT />} /><Legend verticalAlign="top" wrapperStyle={{ fontSize: '10px', paddingBottom: '10px' }} />
+      <Bar yAxisId="left" dataKey="production" name="중국 생산량 (천톤)" fill="var(--w-blue-500)" radius={[4, 4, 0, 0]} fillOpacity={0.8} />
       <Line yAxisId="right" type="monotone" dataKey="price" name="산지 가격 지수" stroke="#f43f5e" strokeWidth={2.5} dot={true} />
     </ComposedChart>
   </W>;
@@ -58,10 +58,10 @@ export function W2_FeedMargin({ accent }: any) {
     strat="곡물가 상승 시 고마진 특수 부위(삼겹살/항정살) 직판 비율 확대, 저마진 부위는 B2B 급식 전환." source="시카고상품거래소(CBOT) 옥수수·대두 방향성 참고 — 업계추정">
     <ComposedChart data={D.feedCostData}>
       <ChartPatternDefs /><CartesianGrid strokeDasharray="3 3" stroke="rgba(140,170,255,0.12)" vertical={false} />
-      <XAxis dataKey="quarter" stroke="#64748b" tick={{ fontSize: 9, fill: '#64748b' }} /><YAxis yAxisId="left" stroke="#64748b" tick={{ fontSize: 9 }} />
-      <YAxis yAxisId="right" orientation="right" stroke="#64748b" tick={{ fontSize: 9 }} /><RT content={<CT />} /><Legend verticalAlign="top" wrapperStyle={{ fontSize: '10px', paddingBottom: '10px' }} />
+      <XAxis dataKey="quarter" stroke="var(--w-slate-500)" tick={{ fontSize: 9, fill: 'var(--w-slate-500)' }} /><YAxis yAxisId="left" stroke="var(--w-slate-500)" tick={{ fontSize: 9 }} />
+      <YAxis yAxisId="right" orientation="right" stroke="var(--w-slate-500)" tick={{ fontSize: 9 }} /><RT content={<CT />} /><Legend verticalAlign="top" wrapperStyle={{ fontSize: '10px', paddingBottom: '10px' }} />
       <Line yAxisId="left" type="monotone" dataKey="feedIndex" name="사료 가격 지수" stroke="#eab308" strokeWidth={2.5} />
-      <Bar yAxisId="right" dataKey="porkMargin" name="가공 마진율 (%)" fill="#10b981" radius={[4, 4, 0, 0]}>{D.feedCostData.map((e, i) => <Cell key={i} fill={e.porkMargin < 0 ? '#ef4444' : '#10b981'} />)}</Bar>
+      <Bar yAxisId="right" dataKey="porkMargin" name="가공 마진율 (%)" fill="var(--w-emerald-500)" radius={[4, 4, 0, 0]}>{D.feedCostData.map((e, i) => <Cell key={i} fill={e.porkMargin < 0 ? 'var(--w-red-500)' : 'var(--w-emerald-500)'} />)}</Bar>
     </ComposedChart>
   </W>;
 }
@@ -72,8 +72,8 @@ export function W3_TradeSpread({ accent }: any) {
     sit="EU 환경 규제에 따른 생산량 감소로 EU산 단가가 북미산을 추월. 아시아 시장의 높은 소비력(업계추정 방향성)."
     strat="단가가 안정적인 북미 및 남미(브라질)산 비중을 높여 다변화 전략 시급." source="OEC 무역 데이터 방향성 참고 — 업계추정">
     <LineChart data={D.tradeSpreadData}><CartesianGrid strokeDasharray="3 3" stroke="rgba(140,170,255,0.12)" vertical={false} />
-      <XAxis dataKey="month" stroke="#64748b" tick={{ fontSize: 9, fill: '#64748b' }} /><YAxis stroke="#64748b" tick={{ fontSize: 9 }} /><RT content={<CT />} /><Legend verticalAlign="top" wrapperStyle={{ fontSize: '10px', paddingBottom: '10px' }} />
-      <Line type="monotone" dataKey="asiaPrice" name="아시아 도착가" stroke="#f43f5e" strokeWidth={2.5} /><Line type="monotone" dataKey="euPrice" name="EU 수출가" stroke="#3b82f6" strokeWidth={2} strokeDasharray="5 5" />
+      <XAxis dataKey="month" stroke="var(--w-slate-500)" tick={{ fontSize: 9, fill: 'var(--w-slate-500)' }} /><YAxis stroke="var(--w-slate-500)" tick={{ fontSize: 9 }} /><RT content={<CT />} /><Legend verticalAlign="top" wrapperStyle={{ fontSize: '10px', paddingBottom: '10px' }} />
+      <Line type="monotone" dataKey="asiaPrice" name="아시아 도착가" stroke="#f43f5e" strokeWidth={2.5} /><Line type="monotone" dataKey="euPrice" name="EU 수출가" stroke="var(--w-blue-500)" strokeWidth={2} strokeDasharray="5 5" />
       <Line type="monotone" dataKey="usPrice" name="북미 수출가" stroke="#eab308" strokeWidth={2} strokeDasharray="5 5" />
     </LineChart>
   </W>;
@@ -86,8 +86,8 @@ export function W4_ESG({ accent }: any) {
     strat="ESG 보고서에서 수산물의 낮은 탄소 배출을 강조하여 '그린 프리미엄' 획득." source="FAOSTAT 배출량(Emissions)">
     <BarChart data={D.esgData} layout="vertical">
       <ChartPatternDefs /><CartesianGrid strokeDasharray="3 3" stroke="rgba(140,170,255,0.12)" horizontal vertical={false} />
-      <XAxis type="number" stroke="#64748b" tick={{ fontSize: 9, fill: '#64748b' }} /><YAxis type="category" dataKey="category" stroke="#64748b" tick={{ fontSize: 9, fill: '#94a3b8' }} width={80} /><RT content={<CT />} /><Legend verticalAlign="top" wrapperStyle={{ fontSize: '10px', paddingBottom: '10px' }} />
-      <Bar dataKey="carbon" name="CO2e (kg/kg)" radius={[0, 4, 4, 0]}>{D.esgData.map((e, i) => <Cell key={i} fill={e.carbon > 15 ? '#ef4444' : e.carbon > 10 ? '#f59e0b' : '#10b981'} />)}</Bar>
+      <XAxis type="number" stroke="var(--w-slate-500)" tick={{ fontSize: 9, fill: 'var(--w-slate-500)' }} /><YAxis type="category" dataKey="category" stroke="var(--w-slate-500)" tick={{ fontSize: 9, fill: 'var(--w-slate-400)' }} width={80} /><RT content={<CT />} /><Legend verticalAlign="top" wrapperStyle={{ fontSize: '10px', paddingBottom: '10px' }} />
+      <Bar dataKey="carbon" name="CO2e (kg/kg)" radius={[0, 4, 4, 0]}>{D.esgData.map((e, i) => <Cell key={i} fill={e.carbon > 15 ? 'var(--w-red-500)' : e.carbon > 10 ? 'var(--w-amber-500)' : 'var(--w-emerald-500)'} />)}</Bar>
     </BarChart>
   </W>;
 }
@@ -99,7 +99,7 @@ export function W5_Top10({ accent }: any) {
     strat="중국 의존도가 극단적인 시장에서 ASF 재발 시 수산물 수요 폭증 연쇄반응 대비 재고 선확보." source="FAOSTAT QCL Item 1035">
     <BarChart data={D.top10ProducersData} layout="vertical">
       <ChartPatternDefs /><CartesianGrid strokeDasharray="3 3" stroke="rgba(140,170,255,0.12)" horizontal vertical={false} />
-      <XAxis type="number" stroke="#64748b" tick={{ fontSize: 9, fill: '#64748b' }} tickFormatter={v => v >= 1000 ? `${(v / 1000).toFixed(0)}K` : v} /><YAxis type="category" dataKey="country" stroke="#64748b" tick={{ fontSize: 9, fill: '#94a3b8' }} width={55} /><RT content={<CT />} /><Legend verticalAlign="top" wrapperStyle={{ fontSize: '10px', paddingBottom: '10px' }} />
+      <XAxis type="number" stroke="var(--w-slate-500)" tick={{ fontSize: 9, fill: 'var(--w-slate-500)' }} tickFormatter={v => v >= 1000 ? `${(v / 1000).toFixed(0)}K` : v} /><YAxis type="category" dataKey="country" stroke="var(--w-slate-500)" tick={{ fontSize: 9, fill: 'var(--w-slate-400)' }} width={55} /><RT content={<CT />} /><Legend verticalAlign="top" wrapperStyle={{ fontSize: '10px', paddingBottom: '10px' }} />
       <Bar dataKey="production" name="생산량 (천톤)" radius={[0, 4, 4, 0]}>{D.top10ProducersData.map((_, i) => <Cell key={i} fill={COLORS[i]} />)}</Bar>
     </BarChart>
   </W>;
@@ -111,10 +111,10 @@ export function W6_Trend({ accent }: any) {
     sit="독일 2018년 5,350→2024년 4,289천톤(-20%). 브라질 +56%, 베트남 +33% 폭발적 성장."
     strat="역성장 중인 EU국 소싱 축소, 브라질/베트남 저가 원물 직소싱망 구축." source="FAOSTAT QCL">
     <LineChart data={D.productionTrendData}><CartesianGrid strokeDasharray="3 3" stroke="rgba(140,170,255,0.12)" vertical={false} />
-      <XAxis dataKey="year" stroke="#64748b" tick={{ fontSize: 9, fill: '#64748b' }} /><YAxis stroke="#64748b" tick={{ fontSize: 9 }} tickFormatter={v => v >= 1000 ? `${(v / 1000).toFixed(0)}K` : v} /><RT content={<CT />} /><Legend verticalAlign="top" wrapperStyle={{ fontSize: '10px', paddingBottom: '10px' }} />
-      <Line type="monotone" dataKey="중국" stroke="#f43f5e" strokeWidth={3} dot={false} /><Line type="monotone" dataKey="미국" stroke="#3b82f6" strokeWidth={2} dot={false} />
-      <Line type="monotone" dataKey="브라질" stroke="#10b981" strokeWidth={2} dot={false} /><Line type="monotone" dataKey="독일" stroke="#eab308" strokeWidth={2} dot={false} />
-      <Line type="monotone" dataKey="스페인" stroke="#ec4899" strokeWidth={2} dot={false} /><Line type="monotone" dataKey="베트남" stroke="#06b6d4" strokeWidth={2} dot={false} />
+      <XAxis dataKey="year" stroke="var(--w-slate-500)" tick={{ fontSize: 9, fill: 'var(--w-slate-500)' }} /><YAxis stroke="var(--w-slate-500)" tick={{ fontSize: 9 }} tickFormatter={v => v >= 1000 ? `${(v / 1000).toFixed(0)}K` : v} /><RT content={<CT />} /><Legend verticalAlign="top" wrapperStyle={{ fontSize: '10px', paddingBottom: '10px' }} />
+      <Line type="monotone" dataKey="중국" stroke="#f43f5e" strokeWidth={3} dot={false} /><Line type="monotone" dataKey="미국" stroke="var(--w-blue-500)" strokeWidth={2} dot={false} />
+      <Line type="monotone" dataKey="브라질" stroke="var(--w-emerald-500)" strokeWidth={2} dot={false} /><Line type="monotone" dataKey="독일" stroke="#eab308" strokeWidth={2} dot={false} />
+      <Line type="monotone" dataKey="스페인" stroke="var(--w-pink-500)" strokeWidth={2} dot={false} /><Line type="monotone" dataKey="베트남" stroke="var(--w-cyan-500)" strokeWidth={2} dot={false} />
       <Line type="monotone" dataKey="한국" stroke="#f97316" strokeWidth={2} strokeDasharray="5 5" dot={false} />
     </LineChart>
   </W>;
@@ -126,8 +126,8 @@ export function W7_KoreaSupply({ accent }: any) {
     sit="한국 1인당 돈육 소비 2015~2022년간 35.9→41.4kg(+15%) 증가. 생산 증가율(+18%)과 유사하나 수입 의존도가 지속 확대. UN Comtrade 기준 2024년 수입은 594천톤($22.1억)으로 검증됨."
     strat="기존 수산물 콜드체인을 돈육까지 확장하는 '단백질 통합 솔루션' 전략으로 시장 주도권 확보." source="FAOSTAT 식량수급표(FBS) · UN Comtrade 2024 수입 교차검증">
     <ComposedChart data={D.koreaSupplyData}><ChartPatternDefs /><CartesianGrid strokeDasharray="3 3" stroke="rgba(140,170,255,0.12)" vertical={false} />
-      <XAxis dataKey="year" stroke="#64748b" tick={{ fontSize: 9, fill: '#64748b' }} /><YAxis yAxisId="left" stroke="#64748b" tick={{ fontSize: 9 }} />
-      <YAxis yAxisId="right" orientation="right" stroke="#64748b" tick={{ fontSize: 9 }} domain={[30, 45]} /><RT content={<CT />} /><Legend verticalAlign="top" wrapperStyle={{ fontSize: '10px', paddingBottom: '10px' }} />
+      <XAxis dataKey="year" stroke="var(--w-slate-500)" tick={{ fontSize: 9, fill: 'var(--w-slate-500)' }} /><YAxis yAxisId="left" stroke="var(--w-slate-500)" tick={{ fontSize: 9 }} />
+      <YAxis yAxisId="right" orientation="right" stroke="var(--w-slate-500)" tick={{ fontSize: 9 }} domain={[30, 45]} /><RT content={<CT />} /><Legend verticalAlign="top" wrapperStyle={{ fontSize: '10px', paddingBottom: '10px' }} />
       <Bar yAxisId="left" dataKey="production" name="국내 생산 (천톤)" fill={A11Y_PALETTE[0]} radius={[4, 4, 0, 0]} /><Bar yAxisId="left" dataKey="imports" name="수입 (천톤)" fill={A11Y_PALETTE[2]} radius={[4, 4, 0, 0]} />
       <Line yAxisId="right" type="monotone" dataKey="perCapita" name="1인당 소비 (kg)" stroke="#f43f5e" strokeWidth={2.5} dot={{ r: 3 }} />
     </ComposedChart>
@@ -141,7 +141,7 @@ export function W8_ImportPartners({ accent }: any) {
     strat="칠레/브라질/멕시코 등 신흥국과 장기 수매 계약 체결, 미국 가공품 의존도 단계적 저감." source="관세청 수입통계 by 국가 (2026.03-04, 2개월 누적)">
     <BarChart data={D.koreaImportPartnersData} layout="vertical">
       <ChartPatternDefs /><CartesianGrid strokeDasharray="3 3" stroke="rgba(140,170,255,0.12)" horizontal vertical={false} />
-      <XAxis type="number" stroke="#64748b" tick={{ fontSize: 9, fill: '#64748b' }} tickFormatter={v => v >= 1000 ? `${(v / 1000).toFixed(0)}K` : v} /><YAxis type="category" dataKey="country" stroke="#64748b" tick={{ fontSize: 9, fill: '#94a3b8' }} width={60} /><RT content={<CT />} /><Legend verticalAlign="top" wrapperStyle={{ fontSize: '10px', paddingBottom: '10px' }} />
+      <XAxis type="number" stroke="var(--w-slate-500)" tick={{ fontSize: 9, fill: 'var(--w-slate-500)' }} tickFormatter={v => v >= 1000 ? `${(v / 1000).toFixed(0)}K` : v} /><YAxis type="category" dataKey="country" stroke="var(--w-slate-500)" tick={{ fontSize: 9, fill: 'var(--w-slate-400)' }} width={60} /><RT content={<CT />} /><Legend verticalAlign="top" wrapperStyle={{ fontSize: '10px', paddingBottom: '10px' }} />
       <Bar dataKey="volume" name="수입량 (톤)" radius={[0, 4, 4, 0]}>{D.koreaImportPartnersData.map((_, i) => <Cell key={i} fill={COLORS[i]} />)}</Bar>
     </BarChart>
   </W>;
@@ -154,10 +154,10 @@ export function W9_ASFSeafood({ accent }: any) {
     strat="세계동물보건기구(WOAH) ASF 경보 발령 즉시, 자사 핵심 수산물 재고 최대 확보 및 판가 선제적 인상." source="FAOSTAT QCL 중국 생산량 + 수산물 도매가 지수 자체추정">
     <ComposedChart data={D.asfSeafoodData}>
       <ChartPatternDefs /><CartesianGrid strokeDasharray="3 3" stroke="rgba(140,170,255,0.12)" vertical={false} />
-      <XAxis dataKey="year" stroke="#64748b" tick={{ fontSize: 9, fill: '#64748b' }} /><YAxis yAxisId="left" stroke="#64748b" tick={{ fontSize: 9 }} tickFormatter={v => v >= 1000 ? `${(v / 1000).toFixed(0)}K` : v} />
-      <YAxis yAxisId="right" orientation="right" stroke="#64748b" tick={{ fontSize: 9 }} /><RT content={<CT />} /><Legend verticalAlign="top" wrapperStyle={{ fontSize: '10px', paddingBottom: '10px' }} />
+      <XAxis dataKey="year" stroke="var(--w-slate-500)" tick={{ fontSize: 9, fill: 'var(--w-slate-500)' }} /><YAxis yAxisId="left" stroke="var(--w-slate-500)" tick={{ fontSize: 9 }} tickFormatter={v => v >= 1000 ? `${(v / 1000).toFixed(0)}K` : v} />
+      <YAxis yAxisId="right" orientation="right" stroke="var(--w-slate-500)" tick={{ fontSize: 9 }} /><RT content={<CT />} /><Legend verticalAlign="top" wrapperStyle={{ fontSize: '10px', paddingBottom: '10px' }} />
       <Area yAxisId="left" type="monotone" dataKey="chinaProduction" name="중국 생산량 (천톤)" fill="#f43f5e" stroke="#f43f5e" fillOpacity={0.15} strokeWidth={2} />
-      <Line yAxisId="right" type="monotone" dataKey="seafoodIndex" name="수산물 도매가 지수" stroke="#06b6d4" strokeWidth={3} dot={{ r: 5, fill: '#06b6d4' }} />
+      <Line yAxisId="right" type="monotone" dataKey="seafoodIndex" name="수산물 도매가 지수" stroke="var(--w-cyan-500)" strokeWidth={3} dot={{ r: 5, fill: 'var(--w-cyan-500)' }} />
     </ComposedChart>
   </W>;
 }
@@ -169,8 +169,8 @@ export function W10_Portfolio({ accent }: any) {
     strat="'돈육 30% + 수산물 50% + 가금류 20%' 리스크 헤지 포트폴리오 구축." source="FAO · USDA 방향성 참고 — 업계추정 종합지수">
     <BarChart data={D.proteinPortfolioData}>
       <ChartPatternDefs /><CartesianGrid strokeDasharray="3 3" stroke="rgba(140,170,255,0.12)" vertical={false} />
-      <XAxis dataKey="metric" stroke="#64748b" tick={{ fontSize: 8, fill: '#64748b' }} /><YAxis stroke="#64748b" tick={{ fontSize: 9 }} /><RT content={<CT />} /><Legend verticalAlign="top" wrapperStyle={{ fontSize: '10px', paddingBottom: '10px' }} />
-      <Bar dataKey="pork" name="돼지고기" fill="#f43f5e" radius={[4, 4, 0, 0]} /><Bar dataKey="seafood" name="수산물" fill="#06b6d4" radius={[4, 4, 0, 0]} /><Bar dataKey="poultry" name="가금류" fill="#eab308" radius={[4, 4, 0, 0]} />
+      <XAxis dataKey="metric" stroke="var(--w-slate-500)" tick={{ fontSize: 8, fill: 'var(--w-slate-500)' }} /><YAxis stroke="var(--w-slate-500)" tick={{ fontSize: 9 }} /><RT content={<CT />} /><Legend verticalAlign="top" wrapperStyle={{ fontSize: '10px', paddingBottom: '10px' }} />
+      <Bar dataKey="pork" name="돼지고기" fill="#f43f5e" radius={[4, 4, 0, 0]} /><Bar dataKey="seafood" name="수산물" fill="var(--w-cyan-500)" radius={[4, 4, 0, 0]} /><Bar dataKey="poultry" name="가금류" fill="#eab308" radius={[4, 4, 0, 0]} />
     </BarChart>
   </W>;
 }
@@ -182,8 +182,8 @@ export function W11_SelfSufficiency({ accent }: any) {
     strat="자급률 갭이 큰 소고기 > 돈육 > 수산물 순으로 수입 인프라 선점. 콜드체인 확장." source="FAOSTAT 식량수급표(FBS) · USDA 생산공급분배(PSD)">
     <BarChart data={D.selfSufficiencyData} layout="vertical">
       <ChartPatternDefs /><CartesianGrid strokeDasharray="3 3" stroke="rgba(140,170,255,0.12)" horizontal vertical={false} />
-      <XAxis type="number" stroke="#64748b" tick={{ fontSize: 9, fill: '#64748b' }} domain={[0, 100]} /><YAxis type="category" dataKey="protein" stroke="#64748b" tick={{ fontSize: 9, fill: '#94a3b8' }} width={60} /><RT content={<CT />} /><Legend verticalAlign="top" wrapperStyle={{ fontSize: '10px', paddingBottom: '10px' }} />
-      <Bar dataKey="selfRate" name="자급률 (%)" stackId="a" fill="#10b981" /><Bar dataKey="importRate" name="수입 의존도 (%)" stackId="a" fill="#f43f5e" radius={[0, 4, 4, 0]} />
+      <XAxis type="number" stroke="var(--w-slate-500)" tick={{ fontSize: 9, fill: 'var(--w-slate-500)' }} domain={[0, 100]} /><YAxis type="category" dataKey="protein" stroke="var(--w-slate-500)" tick={{ fontSize: 9, fill: 'var(--w-slate-400)' }} width={60} /><RT content={<CT />} /><Legend verticalAlign="top" wrapperStyle={{ fontSize: '10px', paddingBottom: '10px' }} />
+      <Bar dataKey="selfRate" name="자급률 (%)" stackId="a" fill="var(--w-emerald-500)" /><Bar dataKey="importRate" name="수입 의존도 (%)" stackId="a" fill="#f43f5e" radius={[0, 4, 4, 0]} />
     </BarChart>
   </W>;
 }

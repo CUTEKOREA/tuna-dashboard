@@ -44,18 +44,18 @@ export default function SasCoTreatmentImpact() {
               layout="vertical"
             >
               <CartesianGrid strokeDasharray="3 3" horizontal={true} vertical={false} opacity={0.3} />
-              <XAxis type="number" unit="$" domain={[0, 5]} tick={{ fontSize: 12 }} axisLine={false} tickLine={false} stroke="#64748b" />
-              <YAxis dataKey="name" type="category" width={160} tick={{ fontSize: 11, fontWeight: 600, fill: '#94a3b8' }} axisLine={false} tickLine={false} />
+              <XAxis type="number" unit="$" domain={[0, 5]} tick={{ fontSize: 12 }} axisLine={false} tickLine={false} stroke="var(--w-slate-500)" />
+              <YAxis dataKey="name" type="category" width={160} tick={{ fontSize: 11, fontWeight: 600, fill: 'var(--w-slate-400)' }} axisLine={false} tickLine={false} />
               <Tooltip 
                 cursor={{ fill: 'rgba(255,255,255,0.04)' }}
-                contentStyle={{ borderRadius: '8px', border: 'none', boxShadow: '0 4px 12px rgba(0,0,0,0.3)', background: '#1a2442', color: '#e2e8f0' }}
+                contentStyle={{ borderRadius: '8px', border: 'none', boxShadow: '0 4px 12px rgba(0,0,0,0.3)', background: 'var(--w-navy-900)', color: 'var(--w-slate-200)' }}
                 formatter={(value: unknown) => [`${chartFmt.toChartNumber(value).toFixed(2)}/lb`, '도매 단가']}
               />
-              <ReferenceLine x={4.5} stroke="#10b981" strokeDasharray="3 3" label={{ position: 'top', value: '정상 프리미엄 기준선 ($4.5)', fill: '#10b981', fontSize: 10 }} />
+              <ReferenceLine x={4.5} stroke="var(--w-emerald-500)" strokeDasharray="3 3" label={{ position: 'top', value: '정상 프리미엄 기준선 ($4.5)', fill: 'var(--w-emerald-500)', fontSize: 10 }} />
               <Legend wrapperStyle={{ paddingTop: '10px' }} iconType="circle" />
               <Bar dataKey="price" name="도매 단가 ($/lb)" isAnimationActive={false} barSize={32} radius={[0, 4, 4, 0]}>
                 {CO_DATA.map((entry, index) => (
-                  <Cell key={`cell-${index}`} fill={index === 0 ? '#ef4444' : '#3b82f6'} />
+                  <Cell key={`cell-${index}`} fill={index === 0 ? 'var(--w-red-500)' : 'var(--w-blue-500)'} />
                 ))}
               </Bar>
             </BarChart>

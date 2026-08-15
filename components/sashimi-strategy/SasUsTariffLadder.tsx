@@ -38,24 +38,24 @@ export default function SasUsTariffLadder() {
             <SafeResponsiveContainer width="100%" height="100%">
               <BarChart data={TARIFF_DATA} margin={{ top: 18, right: 16, left: 0, bottom: 0 }}>
                 <CartesianGrid strokeDasharray="3 3" opacity={0.15} vertical={false} />
-                <XAxis dataKey="country" fontSize={10} tickLine={false} axisLine={false} stroke="#64748b" interval={0} />
-                <YAxis domain={[0, 24]} tickFormatter={(v: unknown) => `${v}%`} fontSize={11} tickLine={false} axisLine={false} stroke="#64748b" />
+                <XAxis dataKey="country" fontSize={10} tickLine={false} axisLine={false} stroke="var(--w-slate-500)" interval={0} />
+                <YAxis domain={[0, 24]} tickFormatter={(v: unknown) => `${v}%`} fontSize={11} tickLine={false} axisLine={false} stroke="var(--w-slate-500)" />
                 <Tooltip
-                  contentStyle={{ borderRadius: '8px', border: 'none', background: '#1a2442', color: '#e2e8f0' }}
+                  contentStyle={{ borderRadius: '8px', border: 'none', background: 'var(--w-navy-900)', color: 'var(--w-slate-200)' }}
                   formatter={(v: unknown, _n: unknown, p: any) => [`${v}% (${p.payload.note})`, '상호관세']}
                 />
                 <Bar dataKey="rate" radius={[4, 4, 0, 0]} isAnimationActive={false}>
                   {TARIFF_DATA.map((d) => <Cell key={d.country} fill={d.color} />)}
-                  <LabelList dataKey="rate" position="top" formatter={(v: unknown) => `${v}%`} fontSize={11} fill="#e2e8f0" />
+                  <LabelList dataKey="rate" position="top" formatter={(v: unknown) => `${v}%`} fontSize={11} fill="var(--w-slate-200)" />
                 </Bar>
               </BarChart>
             </SafeResponsiveContainer>
           </div>
-          <div style={{ display: 'flex', gap: '12px', justifyContent: 'center', flexWrap: 'wrap', fontSize: '0.62rem', color: '#94a3b8' }}>
-            <span><span style={{ color: '#10b981' }}>●</span> 면제(0%)</span>
-            <span><span style={{ color: '#f59e0b' }}>●</span> 한국 15%</span>
-            <span><span style={{ color: '#ef4444' }}>●</span> 최고 베트남 20%</span>
-            <span style={{ color: '#64748b' }}>한국 대비 SE아시아 +4~5%p</span>
+          <div style={{ display: 'flex', gap: '12px', justifyContent: 'center', flexWrap: 'wrap', fontSize: '0.62rem', color: 'var(--w-slate-400)' }}>
+            <span><span style={{ color: 'var(--w-emerald-500)' }}>●</span> 면제(0%)</span>
+            <span><span style={{ color: 'var(--w-amber-500)' }}>●</span> 한국 15%</span>
+            <span><span style={{ color: 'var(--w-red-500)' }}>●</span> 최고 베트남 20%</span>
+            <span style={{ color: 'var(--w-slate-500)' }}>한국 대비 SE아시아 +4~5%p</span>
           </div>
         </div>
       }

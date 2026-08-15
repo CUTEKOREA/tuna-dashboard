@@ -35,14 +35,14 @@ export default function SasEuProcessingHub() {
             {KPI.map((k) => (
               <div key={k.label} style={{ display: 'flex', alignItems: 'center', gap: '12px', background: `${k.color}0d`, border: `1px solid ${k.color}2e`, borderRadius: '10px', padding: '12px 14px' }}>
                 <div style={{ flex: 1 }}>
-                  <div style={{ fontSize: '0.66rem', color: '#94a3b8', marginBottom: '2px' }}>{k.label}</div>
-                  <div style={{ fontSize: '0.6rem', color: '#64748b' }}>{k.sub}</div>
+                  <div style={{ fontSize: '0.66rem', color: 'var(--w-slate-400)', marginBottom: '2px' }}>{k.label}</div>
+                  <div style={{ fontSize: '0.6rem', color: 'var(--w-slate-500)' }}>{k.sub}</div>
                 </div>
                 <span style={{ fontSize: '1.6rem', fontWeight: 800, color: k.color }}>{k.value}</span>
               </div>
             ))}
           </div>
-          <div style={{ fontSize: '0.62rem', color: '#64748b', lineHeight: 1.5, textAlign: 'center' }}>
+          <div style={{ fontSize: '0.62rem', color: 'var(--w-slate-500)', lineHeight: 1.5, textAlign: 'center' }}>
             냉동 로인 수입 → EU용 캔 재가공 모델 — 원료 관세·쿼터(ATQ)와 직결
           </div>
         </div>

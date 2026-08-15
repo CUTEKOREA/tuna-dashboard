@@ -41,7 +41,7 @@ export default function MscRetailerSkuMonitor() {
             {/* Header: Name + Country */}
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 12 }}>
               <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-                <span style={{ fontSize: 14, fontWeight: 700, color: '#e2e8f0' }}>{r.name}</span>
+                <span style={{ fontSize: 14, fontWeight: 700, color: 'var(--w-slate-200)' }}>{r.name}</span>
                 <span style={{ fontSize: 12 }}>{r.country}</span>
               </div>
               <span style={{ fontSize: 18, fontWeight: 900, fontVariantNumeric: 'tabular-nums', color: r.color }}>
@@ -64,11 +64,11 @@ export default function MscRetailerSkuMonitor() {
             {/* Metrics Row */}
             <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: 12 }}>
               <div style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
-                <span style={{ color: '#94a3b8', fontWeight: 500 }}>MSC SKU</span>
-                <span style={{ color: '#cbd5e1', fontWeight: 700, fontVariantNumeric: 'tabular-nums' }}>{r.skus}개</span>
+                <span style={{ color: 'var(--w-slate-400)', fontWeight: 500 }}>MSC SKU</span>
+                <span style={{ color: 'var(--w-slate-300)', fontWeight: 700, fontVariantNumeric: 'tabular-nums' }}>{r.skus}개</span>
               </div>
               <div style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
-                <span style={{ color: '#94a3b8', fontWeight: 500 }}>PB MSC</span>
+                <span style={{ color: 'var(--w-slate-400)', fontWeight: 500 }}>PB MSC</span>
                 <span style={{ fontWeight: 700, fontVariantNumeric: 'tabular-nums', color: getPbColor(r.pbMsc) }}>
                   {r.pbMsc}%
                 </span>

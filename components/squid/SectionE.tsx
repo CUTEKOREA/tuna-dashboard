@@ -227,7 +227,7 @@ const GateBoard: React.FC<{ rows: GateRow[] }> = ({ rows }) => (
       >
         <div style={{ display: 'flex', alignItems: 'center', gap: 8, flexWrap: 'wrap' }}>
           <Badge label={g.gate_id} color={C.dim} />
-          <strong style={{ color: '#e2e8f0', fontSize: '0.78rem' }}>{g.subject}</strong>
+          <strong style={{ color: 'var(--w-slate-200)', fontSize: '0.78rem' }}>{g.subject}</strong>
           <span
             title="이 게이트를 명시적으로 단 위젯 수"
             style={{ marginLeft: 'auto', fontSize: '0.62rem', color: g.explicit_widget_count > 0 ? C.dim : C.axis }}
@@ -311,7 +311,7 @@ const MonitoringCalendar: React.FC<{ rows: CalendarRow[] }> = ({ rows }) => {
               const meta = STATUS_META[r.status] ?? { label: r.status, color: C.axis };
               return (
                 <tr key={`${r.source_id}-${r.next_check}`}>
-                  <td style={{ ...TD, whiteSpace: 'nowrap', fontWeight: 700, color: '#e2e8f0' }}>{r.next_check}</td>
+                  <td style={{ ...TD, whiteSpace: 'nowrap', fontWeight: 700, color: 'var(--w-slate-200)' }}>{r.next_check}</td>
                   <td style={{ ...TD, whiteSpace: 'nowrap' }} title={r.status}>
                     <span style={{ display: 'inline-flex', alignItems: 'center', gap: 5 }}>
                       <span style={{ width: 7, height: 7, borderRadius: '50%', background: meta.color, boxShadow: `0 0 6px ${meta.color}88` }} />
@@ -414,7 +414,7 @@ const FreshnessHeatmap: React.FC<{ rows: FreshRow[] }> = ({ rows }) => {
               }}
             >
               <div style={{ flex: '1 1 180px', minWidth: 0 }}>
-                <div style={{ fontSize: '0.72rem', fontWeight: 700, color: '#e2e8f0', wordBreak: 'keep-all' }}>{r.series}</div>
+                <div style={{ fontSize: '0.72rem', fontWeight: 700, color: 'var(--w-slate-200)', wordBreak: 'keep-all' }}>{r.series}</div>
                 <div style={{ fontSize: '0.6rem', color: C.axis, fontFamily: 'monospace' }}>{r.source_id}</div>
               </div>
               <div style={{ flex: '0 1 140px', fontSize: '0.64rem', color: C.dim, whiteSpace: 'nowrap' }}>

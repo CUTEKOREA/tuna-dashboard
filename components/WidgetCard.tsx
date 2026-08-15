@@ -191,12 +191,12 @@ export default function WidgetCard(props: WidgetCardProps) {
             )}
           </h3>
           {description && (
-            <p style={{ margin: '4px 0 0 0', fontSize: '0.78rem', color: '#64748b', lineHeight: 1.4 }}>
+            <p style={{ margin: '4px 0 0 0', fontSize: '0.78rem', color: 'var(--w-slate-500)', lineHeight: 1.4 }}>
               {description}
             </p>
           )}
           {cardDesc && (
-            <p style={{ margin: '6px 0 0 0', fontSize: '0.82rem', color: '#cbd5e1', lineHeight: 1.55 }}>
+            <p style={{ margin: '6px 0 0 0', fontSize: '0.82rem', color: 'var(--w-slate-300)', lineHeight: 1.55 }}>
               {cardDesc}
             </p>
           )}
@@ -204,7 +204,7 @@ export default function WidgetCard(props: WidgetCardProps) {
         <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-end', gap: '4px', flexShrink: 0 }}>
           {telemetry && <TelemetryBadge status={telemetry.status} syncDate={telemetry.syncDate} label={telemetry.label} />}
           {unit && (
-            <span style={{ fontSize: '0.72rem', color: '#94a3b8', fontWeight: 500, whiteSpace: 'nowrap' }}>
+            <span style={{ fontSize: '0.72rem', color: 'var(--w-slate-400)', fontWeight: 500, whiteSpace: 'nowrap' }}>
               {unit}
             </span>
           )}

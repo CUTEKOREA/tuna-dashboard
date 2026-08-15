@@ -62,7 +62,7 @@ export default function SasSpeciesPriceTier() {
           {/* Header */}
           <div style={{
             display: 'grid', gridTemplateColumns: '2fr 1fr 1fr 1fr 1fr 0.8fr',
-            padding: '6px 10px', fontSize: '0.6rem', fontWeight: 600, color: '#64748b',
+            padding: '6px 10px', fontSize: '0.6rem', fontWeight: 600, color: 'var(--w-slate-500)',
             textTransform: 'uppercase', letterSpacing: '0.05em',
             borderBottom: '1px solid rgba(140,170,255,0.12)',
           }}>
@@ -80,7 +80,7 @@ export default function SasSpeciesPriceTier() {
               {/* Species Name */}
               <div>
                 <div style={{ fontSize: '0.78rem', fontWeight: 700, color: s.color }}>{s.name}</div>
-                <div style={{ fontSize: '0.6rem', color: '#64748b' }}>{s.nameEn} · {s.gear}</div>
+                <div style={{ fontSize: '0.6rem', color: 'var(--w-slate-500)' }}>{s.nameEn} · {s.gear}</div>
               </div>
               {/* KR Price */}
               <div>
@@ -91,15 +91,15 @@ export default function SasSpeciesPriceTier() {
                 </div>
               </div>
               {/* US Price */}
-              <div style={{ fontSize: '0.72rem', color: '#94a3b8' }}>{s.usPrice}</div>
+              <div style={{ fontSize: '0.72rem', color: 'var(--w-slate-400)' }}>{s.usPrice}</div>
               {/* Use */}
-              <div style={{ fontSize: '0.65rem', color: '#94a3b8' }}>{s.use}</div>
+              <div style={{ fontSize: '0.65rem', color: 'var(--w-slate-400)' }}>{s.use}</div>
               {/* Stock */}
-              <div style={{ fontSize: '0.65rem', color: s.stock.includes('압박') || s.stock.includes('회복') ? '#f59e0b' : '#10b981' }}>{s.stock}</div>
+              <div style={{ fontSize: '0.65rem', color: s.stock.includes('압박') || s.stock.includes('회복') ? 'var(--w-amber-500)' : 'var(--w-emerald-500)' }}>{s.stock}</div>
               {/* Mercury */}
               <div style={{
                 fontSize: '0.6rem', fontWeight: 600,
-                color: s.mercury === '높음' ? '#ef4444' : s.mercury === '중간' ? '#f59e0b' : '#10b981',
+                color: s.mercury === '높음' ? 'var(--w-red-500)' : s.mercury === '중간' ? 'var(--w-amber-500)' : 'var(--w-emerald-500)',
               }}>{s.mercury}</div>
             </div>
           ))}
@@ -108,9 +108,9 @@ export default function SasSpeciesPriceTier() {
           <div style={{
             marginTop: '8px', padding: '10px 14px', borderRadius: '8px',
             background: 'rgba(245,158,11,0.08)', border: '1px solid rgba(245,158,11,0.15)',
-            fontSize: '0.7rem', color: '#94a3b8', textAlign: 'center',
+            fontSize: '0.7rem', color: 'var(--w-slate-400)', textAlign: 'center',
           }}>
-            💡 연승(사시미) <strong style={{ color: '#f59e0b' }}>6,722원/kg</strong> vs 선망(캔) <strong style={{ color: '#38bdf8' }}>2,003원/kg</strong> → <strong style={{ color: '#f59e0b' }}>3.3배</strong> 가격 프리미엄
+            💡 연승(사시미) <strong style={{ color: 'var(--w-amber-500)' }}>6,722원/kg</strong> vs 선망(캔) <strong style={{ color: 'var(--w-sky-400)' }}>2,003원/kg</strong> → <strong style={{ color: 'var(--w-amber-500)' }}>3.3배</strong> 가격 프리미엄
           </div>
         </div>
       }

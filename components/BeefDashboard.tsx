@@ -47,25 +47,25 @@ export default function BeefDashboard() {
   const [activePart, setActivePart] = useState<'P1' | 'P2' | 'P3' | 'P4' | 'P5'>('P1');
 
   return (
-    <div style={{ padding: '0 1.5rem 3rem', color: '#f8fafc', minHeight: '100vh', fontFamily: "'Inter',sans-serif" }}>
+    <div style={{ padding: '0 1.5rem 3rem', color: 'var(--w-slate-50)', minHeight: '100vh', fontFamily: "'Inter',sans-serif" }}>
 
       {/* ═══ Header ═══ */}
       <header style={{ marginBottom: '2rem' }}>
         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
-            <div style={{ width: '44px', height: '44px', borderRadius: '8px', background: 'linear-gradient(135deg, #dc2626, #e11d48, #f59e0b)', display: 'flex', alignItems: 'center', justifyContent: 'center', border: '1px solid rgba(255,255,255,0.1)' }}>
+            <div style={{ width: '44px', height: '44px', borderRadius: '8px', background: 'linear-gradient(135deg, #dc2626, #e11d48, var(--w-amber-500))', display: 'flex', alignItems: 'center', justifyContent: 'center', border: '1px solid rgba(255,255,255,0.1)' }}>
               <Beef size={24} color="#fff" />
             </div>
             <div>
-              <h1 style={{ margin: 0, fontSize: '1.6rem', fontWeight: 800, letterSpacing: '-0.5px', color: '#f8fafc' }}>
+              <h1 style={{ margin: 0, fontSize: '1.6rem', fontWeight: 800, letterSpacing: '-0.5px', color: 'var(--w-slate-50)' }}>
                 🐂 소고기(Beef) 글로벌 밸류체인 대시보드
               </h1>
-              <p style={{ margin: 0, fontSize: '0.8rem', color: '#94a3b8' }}>
+              <p style={{ margin: 0, fontSize: '0.8rem', color: 'var(--w-slate-400)' }}>
                 [V4.2 S-Grade] FAOSTAT·KOSIS·KAMIS·WOAH 실데이터 기반 한우/수입육 공급망 + 광우병 리스크 분석 ({TOTAL_WIDGET_COUNT}개 위젯)
               </p>
             </div>
           </div>
-          <div style={{ fontSize: '0.8rem', padding: '0.5rem 1rem', background: '#11182f', border: '1px solid rgba(140,170,255,0.10)', borderRadius: '8px', color: '#94a3b8' }}>
+          <div style={{ fontSize: '0.8rem', padding: '0.5rem 1rem', background: '#11182f', border: '1px solid rgba(140,170,255,0.10)', borderRadius: '8px', color: 'var(--w-slate-400)' }}>
             <span style={{ color: '#dc2626' }}>PEF 지휘본부:</span> FAOSTAT 동기화 완료
           </div>
         </div>
@@ -77,10 +77,10 @@ export default function BeefDashboard() {
           <div key={idx} style={{ background: '#11182f', border: '1px solid rgba(255,255,255,0.03)', borderRadius: '12px', padding: '1.2rem', display: 'flex', flexDirection: 'column', gap: '6px', position: 'relative', overflow: 'hidden' }}>
             <div style={{ position: 'absolute', top: '-15px', right: '-15px', width: '60px', height: '60px', borderRadius: '50%', background: `radial-gradient(circle,${kpi.color}40,transparent)`, pointerEvents: 'none' }} />
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-              <span style={{ fontSize: '0.72rem', color: '#94a3b8', fontWeight: 600 }}>{kpi.title}</span>
+              <span style={{ fontSize: '0.72rem', color: 'var(--w-slate-400)', fontWeight: 600 }}>{kpi.title}</span>
               <TelemetryBadge status={kpi.telemetry} syncDate={kpi.syncDate} />
             </div>
-            <div style={{ fontSize: '1.4rem', fontWeight: 800, color: '#f8fafc', marginTop: '4px' }}>{kpi.value}</div>
+            <div style={{ fontSize: '1.4rem', fontWeight: 800, color: 'var(--w-slate-50)', marginTop: '4px' }}>{kpi.value}</div>
             <div style={{ fontSize: '0.68rem', color: kpi.color, fontWeight: 600 }}>
               <span style={{ background: `${kpi.color}20`, padding: '2px 5px', borderRadius: '4px', marginRight: '4px' }}>{kpi.trend}</span>{kpi.desc}
             </div>
@@ -116,8 +116,8 @@ export default function BeefDashboard() {
           <div style={{ marginBottom: '1.5rem', display: 'flex', alignItems: 'center', gap: '0.8rem' }}>
             <div style={{ width: '4px', height: '28px', background: `linear-gradient(180deg,${sec.color},${sec.color}99)`, borderRadius: '2px' }} />
             <div>
-              <h2 style={{ margin: 0, fontSize: '1.2rem', fontWeight: 800, color: '#f8fafc', letterSpacing: '-0.3px' }}>{sec.title}</h2>
-              <p style={{ margin: '4px 0 0 0', fontSize: '0.8rem', color: '#94a3b8' }}>{sec.desc}</p>
+              <h2 style={{ margin: 0, fontSize: '1.2rem', fontWeight: 800, color: 'var(--w-slate-50)', letterSpacing: '-0.3px' }}>{sec.title}</h2>
+              <p style={{ margin: '4px 0 0 0', fontSize: '0.8rem', color: 'var(--w-slate-400)' }}>{sec.desc}</p>
             </div>
           </div>
           <div data-mobile-stack style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '1.5rem' }}>

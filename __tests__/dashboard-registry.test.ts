@@ -219,6 +219,7 @@ describe('dashboard registry', () => {
     const unloadingStyles = readFileSync(join(root, 'components/UnloadingStatus.module.css'), 'utf8');
     const logisticsSource = readFileSync(join(root, 'components/LogisticsDashboard.tsx'), 'utf8');
     const logisticsStyles = readFileSync(join(root, 'components/LogisticsCommandCenter.module.css'), 'utf8');
+    const globalsSource = readFileSync(join(root, 'app/globals.css'), 'utf8');
     const marketStylesPath = join(root, 'components/MarketDashboard.module.css');
 
     expect(appSource).toContain('INSTITUTIONAL_MENU_KEYS');
@@ -298,12 +299,14 @@ describe('dashboard registry', () => {
       expect(rule).toContain('var(--dsc-card-radius)');
     }
 
-    // 차트·데이터 시리즈 팔레트는 V2.5-b 셸 정리 범위 밖이다.
+    // V2.5-b에서 보존한 차트 팔레트는 L-07 브리지 토큰으로 같은 색을 유지한다.
     for (const chartColor of ['#2dd4bf', '#f472b6', '#facc15', '#fb923c', '#c084fc', '#a78bfa']) {
       expect(marketSource).toContain(chartColor);
     }
-    expect(unloadingSource).toContain('fill="#38bdf8"');
-    expect(unloadingSource).toContain('stroke="#10b981"');
+    expect(unloadingSource).toContain('fill="var(--w-sky-400)"');
+    expect(unloadingSource).toContain('stroke="var(--w-emerald-500)"');
+    expect(globalsSource).toContain('--w-sky-400: #38bdf8;');
+    expect(globalsSource).toContain('--w-emerald-500: #10b981;');
   });
 
   it('keeps menu keys unique and title-addressable', () => {

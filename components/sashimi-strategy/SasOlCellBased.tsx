@@ -36,7 +36,7 @@ export default function SasOlCellBased() {
                 <span style={{ fontSize: '0.74rem', fontWeight: 700, color: '#f1f5f9' }}>{it.title}</span>
                 <span style={{ marginLeft: 'auto', fontSize: '0.86rem', fontWeight: 800, color: it.rc }}>{it.value}</span>
               </div>
-              <span style={{ fontSize: '0.62rem', color: '#94a3b8', lineHeight: 1.4 }}>{it.desc}</span>
+              <span style={{ fontSize: '0.62rem', color: 'var(--w-slate-400)', lineHeight: 1.4 }}>{it.desc}</span>
             </div>
           ))}
         </div>

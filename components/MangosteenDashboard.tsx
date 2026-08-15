@@ -133,10 +133,10 @@ export default function MangosteenDashboard() {
                 망고스틴 인텔리전스 마스터클래스
                 <span style={{ fontSize: '0.7rem', padding: '2px 8px', borderRadius: '4px', background: '#c026d320', color: '#c026d3', fontWeight: 700, verticalAlign: 'middle' }}>FRUIT QUEEN</span>
               </h1>
-              <p style={{ margin: '0.3rem 0 0', fontSize: '0.9rem', color: '#94a3b8' }}>최고경영진을 위한 기후, 검역, 물류 및 재수출 마진 극대화 통합 관제</p>
+              <p style={{ margin: '0.3rem 0 0', fontSize: '0.9rem', color: 'var(--w-slate-400)' }}>최고경영진을 위한 기후, 검역, 물류 및 재수출 마진 극대화 통합 관제</p>
             </div>
           </div>
-          <div style={{ fontSize: '0.8rem', padding: '6px 12px', background: '#11182f', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '6px', color: '#94a3b8', display: 'flex', alignItems: 'center', gap: '8px' }}>
+          <div style={{ fontSize: '0.8rem', padding: '6px 12px', background: '#11182f', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '6px', color: 'var(--w-slate-400)', display: 'flex', alignItems: 'center', gap: '8px' }}>
             <div style={{ width: '6px', height: '6px', borderRadius: '50%', background: 'var(--color-warning)', boxShadow: '0 0 8px #facc15' }} />
             <span>글로벌 무역 및 노트북LM 통합 시스템</span>
           </div>
@@ -254,7 +254,7 @@ export default function MangosteenDashboard() {
             </div>
           );
         }) : (
-          <div style={{ gridColumn: 'span 6', textAlign: 'center', padding: '2rem', color: '#94a3b8' }}>
+          <div style={{ gridColumn: 'span 6', textAlign: 'center', padding: '2rem', color: 'var(--w-slate-400)' }}>
             라이브 데이터를 동기화 중입니다...
           </div>
         )}
@@ -288,7 +288,7 @@ export default function MangosteenDashboard() {
         <div style={{ width: '4px', height: '28px', background: SECTIONS[0].color, borderRadius: '2px' }} />
         <div>
           <h2 style={{ margin: 0, fontSize: '1.2rem', fontWeight: 700, color: 'var(--text-primary)' }}>{SECTIONS[0].title}</h2>
-          <p style={{ margin: '0.2rem 0 0', fontSize: '0.8rem', color: '#94a3b8' }}>{SECTIONS[0].desc}</p>
+          <p style={{ margin: '0.2rem 0 0', fontSize: '0.8rem', color: 'var(--w-slate-400)' }}>{SECTIONS[0].desc}</p>
         </div>
       </div>
 
@@ -308,7 +308,7 @@ export default function MangosteenDashboard() {
               <XAxis type="number" {...xAxisProps} />
               <YAxis dataKey="country" type="category" {...yAxisProps} width={80} />
               <RechartsTooltip content={<CustomTooltip />} />
-              <Legend verticalAlign="top" height={36} wrapperStyle={{ fontSize: '11px', color: '#94a3b8' }} />
+              <Legend verticalAlign="top" height={36} wrapperStyle={{ fontSize: '11px', color: 'var(--w-slate-400)' }} />
               <Bar dataKey="production" name="생산량 (톤)" fill="#475569" radius={[0, 4, 4, 0]} barSize={15} />
               <Bar dataKey="export" name="수출량 (톤)" fill="#f97316" radius={[0, 4, 4, 0]} barSize={15} />
             </ComposedChart>
@@ -343,11 +343,11 @@ export default function MangosteenDashboard() {
               <ChartPatternDefs />
               {grid}
               <XAxis dataKey="year" {...xAxisProps} />
-              <YAxis yAxisId="left" domain={[60, 100]} {...yAxisProps} label={{ value: '검역 통과 수율 (%)', angle: -90, position: 'insideLeft', fill: '#94a3b8', fontSize: 10 }} />
-              <YAxis yAxisId="right" orientation="right" domain={[-2, 2]} {...yAxisProps} label={{ value: '기후 지수', angle: 90, position: 'insideRight', fill: '#94a3b8', fontSize: 10 }} />
+              <YAxis yAxisId="left" domain={[60, 100]} {...yAxisProps} label={{ value: '검역 통과 수율 (%)', angle: -90, position: 'insideLeft', fill: 'var(--w-slate-400)', fontSize: 10 }} />
+              <YAxis yAxisId="right" orientation="right" domain={[-2, 2]} {...yAxisProps} label={{ value: '기후 지수', angle: 90, position: 'insideRight', fill: 'var(--w-slate-400)', fontSize: 10 }} />
               <RechartsTooltip content={<CustomTooltip />} />
-              <Legend verticalAlign="top" height={36} wrapperStyle={{ fontSize: '11px', color: '#94a3b8' }} />
-              <Bar yAxisId="right" dataKey="oni" name="기후 지수" fill="#64748b" fillOpacity={0.5} barSize={20} />
+              <Legend verticalAlign="top" height={36} wrapperStyle={{ fontSize: '11px', color: 'var(--w-slate-400)' }} />
+              <Bar yAxisId="right" dataKey="oni" name="기후 지수" fill="var(--w-slate-500)" fillOpacity={0.5} barSize={20} />
               <Line yAxisId="left" type="monotone" dataKey="yield" name="검역 통과 수율(%)" stroke="#f97316" strokeWidth={3} dot={{ r: 5 }} />
             </ComposedChart>
           }
@@ -376,7 +376,7 @@ export default function MangosteenDashboard() {
         <div style={{ width: '4px', height: '28px', background: SECTIONS[1].color, borderRadius: '2px' }} />
         <div>
           <h2 style={{ margin: 0, fontSize: '1.2rem', fontWeight: 700, color: 'var(--text-primary)' }}>{SECTIONS[1].title}</h2>
-          <p style={{ margin: '0.2rem 0 0', fontSize: '0.8rem', color: '#94a3b8' }}>{SECTIONS[1].desc}</p>
+          <p style={{ margin: '0.2rem 0 0', fontSize: '0.8rem', color: 'var(--w-slate-400)' }}>{SECTIONS[1].desc}</p>
         </div>
       </div>
 
@@ -393,9 +393,9 @@ export default function MangosteenDashboard() {
             <AreaChart data={marginData}>
               {grid}
               <XAxis dataKey="month" {...xAxisProps} />
-              <YAxis domain={[0, 30]} {...yAxisProps} label={{ value: '마진율 (%)', angle: -90, position: 'insideLeft', fill: '#94a3b8', fontSize: 10 }} />
+              <YAxis domain={[0, 30]} {...yAxisProps} label={{ value: '마진율 (%)', angle: -90, position: 'insideLeft', fill: 'var(--w-slate-400)', fontSize: 10 }} />
               <RechartsTooltip content={<CustomTooltip />} />
-              <Legend verticalAlign="top" height={36} wrapperStyle={{ fontSize: '11px', color: '#94a3b8' }} />
+              <Legend verticalAlign="top" height={36} wrapperStyle={{ fontSize: '11px', color: 'var(--w-slate-400)' }} />
               <Area type="monotone" dataKey="b2cMargin" name="생과 마진율" stroke="#f472b6" fill="#f472b6" fillOpacity={0.2} />
               <Area type="monotone" dataKey="b2bMargin" name="냉동 퓨레 마진율" stroke="#c026d3" fill="#c026d3" fillOpacity={0.4} />
             </AreaChart>
@@ -429,10 +429,10 @@ export default function MangosteenDashboard() {
             <LineChart data={coldchainData}>
               {grid}
               <XAxis dataKey="day" {...xAxisProps} />
-              <YAxis domain={[0, 100]} {...yAxisProps} label={{ value: '신선도 수율(%)', angle: -90, position: 'insideLeft', fill: '#94a3b8', fontSize: 10 }} />
+              <YAxis domain={[0, 100]} {...yAxisProps} label={{ value: '신선도 수율(%)', angle: -90, position: 'insideLeft', fill: 'var(--w-slate-400)', fontSize: 10 }} />
               <RechartsTooltip content={<CustomTooltip />} />
-              <Legend verticalAlign="top" height={36} wrapperStyle={{ fontSize: '11px', color: '#94a3b8' }} />
-              <Line type="monotone" dataKey="standardYield" name="일반 냉장 보관" stroke="#64748b" strokeWidth={2} strokeDasharray="5 5" />
+              <Legend verticalAlign="top" height={36} wrapperStyle={{ fontSize: '11px', color: 'var(--w-slate-400)' }} />
+              <Line type="monotone" dataKey="standardYield" name="일반 냉장 보관" stroke="var(--w-slate-500)" strokeWidth={2} strokeDasharray="5 5" />
               <Line type="monotone" dataKey="mcpYield" name="특수 가스 처리" stroke="#c026d3" strokeWidth={3} dot={{ r: 4 }} />
             </LineChart>
           }
@@ -466,10 +466,10 @@ export default function MangosteenDashboard() {
               <ChartPatternDefs />
               {grid}
               <XAxis dataKey="year" {...xAxisProps} />
-              <YAxis {...yAxisProps} label={{ value: '비용 비중 (%)', angle: -90, position: 'insideLeft', fill: '#94a3b8', fontSize: 10 }} />
+              <YAxis {...yAxisProps} label={{ value: '비용 비중 (%)', angle: -90, position: 'insideLeft', fill: 'var(--w-slate-400)', fontSize: 10 }} />
               <RechartsTooltip content={<CustomTooltip />} />
-              <Legend verticalAlign="top" height={36} wrapperStyle={{ fontSize: '11px', color: '#94a3b8' }} />
-              <Bar dataKey="원물" stackId="a" name="원물 비용" fill="#64748b" barSize={40} />
+              <Legend verticalAlign="top" height={36} wrapperStyle={{ fontSize: '11px', color: 'var(--w-slate-400)' }} />
+              <Bar dataKey="원물" stackId="a" name="원물 비용" fill="var(--w-slate-500)" barSize={40} />
               <Bar dataKey="인건비" stackId="a" name="인건비" fill="#c026d3" />
               <Bar dataKey="라벨링패키징" name="패키징 규제 비용" stackId="a" fill="#f97316" radius={[4, 4, 0, 0]} />
             </BarChart>
@@ -499,7 +499,7 @@ export default function MangosteenDashboard() {
         <div style={{ width: '4px', height: '28px', background: SECTIONS[2].color, borderRadius: '2px' }} />
         <div>
           <h2 style={{ margin: 0, fontSize: '1.2rem', fontWeight: 700, color: 'var(--text-primary)' }}>{SECTIONS[2].title}</h2>
-          <p style={{ margin: '0.2rem 0 0', fontSize: '0.8rem', color: '#94a3b8' }}>{SECTIONS[2].desc}</p>
+          <p style={{ margin: '0.2rem 0 0', fontSize: '0.8rem', color: 'var(--w-slate-400)' }}>{SECTIONS[2].desc}</p>
         </div>
       </div>
 
@@ -513,19 +513,19 @@ export default function MangosteenDashboard() {
           telemetry={{ status: 'STATIC', syncDate: '2026-05-29' }}
           customBody={
             <ul style={{ listStyle: 'none', padding: 0, margin: '0 0 1rem', display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-              <li style={{ background: 'transparent', padding: '1rem', borderRadius: '8px', borderLeft: '4px solid #10b981' }}>
+              <li style={{ background: 'transparent', padding: '1rem', borderRadius: '8px', borderLeft: '4px solid var(--w-emerald-500)' }}>
                 <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '4px' }}>
                   <strong style={{ color: 'var(--text-primary)' }}>태국 및 말레이시아</strong>
                   <span style={{ fontSize: '0.75rem', background: '#10b98120', color: 'var(--color-success)', padding: '2px 8px', borderRadius: '4px' }}>생과 반입</span>
                 </div>
-                <p style={{ margin: 0, fontSize: '0.8rem', color: '#94a3b8' }}>증열처리 시설 검역 필수 통과.</p>
+                <p style={{ margin: 0, fontSize: '0.8rem', color: 'var(--w-slate-400)' }}>증열처리 시설 검역 필수 통과.</p>
               </li>
-              <li style={{ background: 'transparent', padding: '1rem', borderRadius: '8px', borderLeft: '4px solid #ef4444' }}>
+              <li style={{ background: 'transparent', padding: '1rem', borderRadius: '8px', borderLeft: '4px solid var(--w-red-500)' }}>
                 <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '4px' }}>
                   <strong style={{ color: 'var(--text-primary)' }}>인도네시아 및 필리핀</strong>
                   <span style={{ fontSize: '0.75rem', background: '#ef444420', color: 'var(--color-danger)', padding: '2px 8px', borderRadius: '4px' }}>생과 금지</span>
                 </div>
-                <p style={{ margin: 0, fontSize: '0.8rem', color: '#94a3b8' }}>해충 우려로 인해 냉동 가공품만 반입 가능.</p>
+                <p style={{ margin: 0, fontSize: '0.8rem', color: 'var(--w-slate-400)' }}>해충 우려로 인해 냉동 가공품만 반입 가능.</p>
               </li>
             </ul>
           }
@@ -561,8 +561,8 @@ export default function MangosteenDashboard() {
               <XAxis type="number" {...xAxisProps} />
               <YAxis dataKey="mode" type="category" {...yAxisProps} width={100} />
               <RechartsTooltip content={<CustomTooltip />} />
-              <Legend verticalAlign="top" height={36} wrapperStyle={{ fontSize: '11px', color: '#94a3b8' }} />
-              <Bar dataKey="cost" name="운송 단가 ($/kg)" fill="#64748b" radius={[0, 4, 4, 0]} barSize={20} />
+              <Legend verticalAlign="top" height={36} wrapperStyle={{ fontSize: '11px', color: 'var(--w-slate-400)' }} />
+              <Bar dataKey="cost" name="운송 단가 ($/kg)" fill="var(--w-slate-500)" radius={[0, 4, 4, 0]} barSize={20} />
               <Bar dataKey="netYield" name="유효 수율 (%)" fill="var(--color-success)" radius={[0, 4, 4, 0]} barSize={20} />
             </ComposedChart>
           }
@@ -598,7 +598,7 @@ export default function MangosteenDashboard() {
               <XAxis type="number" {...xAxisProps} />
               <YAxis dataKey="route" type="category" {...yAxisProps} width={120} />
               <RechartsTooltip content={<CustomTooltip />} />
-              <Legend verticalAlign="top" height={36} wrapperStyle={{ fontSize: '11px', color: '#94a3b8' }} />
+              <Legend verticalAlign="top" height={36} wrapperStyle={{ fontSize: '11px', color: 'var(--w-slate-400)' }} />
               <Bar dataKey="tariff" name="관세율 (%)" fill="var(--color-danger)" radius={[0, 4, 4, 0]} barSize={12} />
               <Bar dataKey="margin" name="최종 마진율 (%)" fill="var(--color-warning)" radius={[0, 4, 4, 0]} barSize={12} />
             </BarChart>
@@ -633,11 +633,11 @@ export default function MangosteenDashboard() {
               <ChartPatternDefs />
               {grid}
               <XAxis dataKey="month" {...xAxisProps} />
-              <YAxis yAxisId="left" domain={[30, 45]} {...yAxisProps} label={{ value: '환율 (원/바트)', angle: -90, position: 'insideLeft', fill: '#94a3b8', fontSize: 10 }} />
-              <YAxis yAxisId="right" orientation="right" domain={[0, 35]} {...yAxisProps} label={{ value: '최종 마진 (%)', angle: 90, position: 'insideRight', fill: '#94a3b8', fontSize: 10 }} />
+              <YAxis yAxisId="left" domain={[30, 45]} {...yAxisProps} label={{ value: '환율 (원/바트)', angle: -90, position: 'insideLeft', fill: 'var(--w-slate-400)', fontSize: 10 }} />
+              <YAxis yAxisId="right" orientation="right" domain={[0, 35]} {...yAxisProps} label={{ value: '최종 마진 (%)', angle: 90, position: 'insideRight', fill: 'var(--w-slate-400)', fontSize: 10 }} />
               <RechartsTooltip content={<CustomTooltip />} />
-              <Legend verticalAlign="top" height={36} wrapperStyle={{ fontSize: '11px', color: '#94a3b8' }} />
-              <Bar yAxisId="right" dataKey="마진" name="마진율 (%)" fill="#10b981" barSize={20} radius={[4, 4, 0, 0]} />
+              <Legend verticalAlign="top" height={36} wrapperStyle={{ fontSize: '11px', color: 'var(--w-slate-400)' }} />
+              <Bar yAxisId="right" dataKey="마진" name="마진율 (%)" fill="var(--w-emerald-500)" barSize={20} radius={[4, 4, 0, 0]} />
               <Line yAxisId="left" type="monotone" dataKey="환율" name="바트화 환율(원)" stroke="#facc15" strokeWidth={3} dot={{ r: 4 }} />
             </ComposedChart>
           }
@@ -666,7 +666,7 @@ export default function MangosteenDashboard() {
         <div style={{ width: '4px', height: '28px', background: SECTIONS[3].color, borderRadius: '2px' }} />
         <div>
           <h2 style={{ margin: 0, fontSize: '1.2rem', fontWeight: 700, color: 'var(--text-primary)' }}>{SECTIONS[3].title}</h2>
-          <p style={{ margin: '0.2rem 0 0', fontSize: '0.8rem', color: '#94a3b8' }}>{SECTIONS[3].desc}</p>
+          <p style={{ margin: '0.2rem 0 0', fontSize: '0.8rem', color: 'var(--w-slate-400)' }}>{SECTIONS[3].desc}</p>
         </div>
       </div>
 
@@ -679,10 +679,10 @@ export default function MangosteenDashboard() {
               <ChartPatternDefs />
               {grid}
               <XAxis dataKey="month" {...xAxisProps} />
-              <YAxis yAxisId="left" {...yAxisProps} label={{ value: '수입량(톤)', angle: -90, position: 'insideLeft', fill: '#94a3b8', fontSize: 10 }} />
-              <YAxis yAxisId="right" orientation="right" {...yAxisProps} label={{ value: '사과 단가(원)', angle: 90, position: 'insideRight', fill: '#94a3b8', fontSize: 10 }} />
+              <YAxis yAxisId="left" {...yAxisProps} label={{ value: '수입량(톤)', angle: -90, position: 'insideLeft', fill: 'var(--w-slate-400)', fontSize: 10 }} />
+              <YAxis yAxisId="right" orientation="right" {...yAxisProps} label={{ value: '사과 단가(원)', angle: 90, position: 'insideRight', fill: 'var(--w-slate-400)', fontSize: 10 }} />
               <RechartsTooltip content={<CustomTooltip />} />
-              <Legend verticalAlign="top" height={36} wrapperStyle={{ fontSize: '11px', color: '#94a3b8' }} />
+              <Legend verticalAlign="top" height={36} wrapperStyle={{ fontSize: '11px', color: 'var(--w-slate-400)' }} />
               <Bar yAxisId="left" dataKey="mangoImport" name="망고스틴 수입(톤)" fill="#9333ea" barSize={30} radius={[4, 4, 0, 0]} />
               <Line yAxisId="right" type="step" dataKey="applePrice" name="사과 단가(원)" stroke="var(--color-warning)" strokeWidth={2} />
             </ComposedChart>
@@ -713,7 +713,7 @@ export default function MangosteenDashboard() {
               <XAxis type="number" {...xAxisProps} />
               <YAxis dataKey="flow" type="category" {...yAxisProps} width={130} />
               <RechartsTooltip content={<CustomTooltip />} />
-              <Legend verticalAlign="top" height={36} wrapperStyle={{ fontSize: '11px', color: '#94a3b8' }} />
+              <Legend verticalAlign="top" height={36} wrapperStyle={{ fontSize: '11px', color: 'var(--w-slate-400)' }} />
               <Bar dataKey="value" name="물동량(톤/연)" fill="#c026d3" radius={[0, 4, 4, 0]} barSize={20}>
                 {bilateralReExportData?.map((entry: any, index: number) => (
                   <Cell key={`cell-${index}`} fill={index > 2 ? 'var(--color-warning)' : '#c026d3'} />
@@ -745,10 +745,10 @@ export default function MangosteenDashboard() {
               <ChartPatternDefs />
               {grid}
               <XAxis dataKey="month" {...xAxisProps} />
-              <YAxis yAxisId="left" {...yAxisProps} label={{ value: '수출량 (kg)', angle: -90, position: 'insideLeft', fill: '#94a3b8', fontSize: 11 }} />
-              <YAxis yAxisId="right" orientation="right" {...yAxisProps} label={{ value: '단가 ($/kg)', angle: 90, position: 'insideRight', fill: '#94a3b8', fontSize: 11 }} />
+              <YAxis yAxisId="left" {...yAxisProps} label={{ value: '수출량 (kg)', angle: -90, position: 'insideLeft', fill: 'var(--w-slate-400)', fontSize: 11 }} />
+              <YAxis yAxisId="right" orientation="right" {...yAxisProps} label={{ value: '단가 ($/kg)', angle: 90, position: 'insideRight', fill: 'var(--w-slate-400)', fontSize: 11 }} />
               <RechartsTooltip content={<CustomTooltip />} />
-              <Legend verticalAlign="top" height={36} wrapperStyle={{ fontSize: '11px', color: '#94a3b8' }} />
+              <Legend verticalAlign="top" height={36} wrapperStyle={{ fontSize: '11px', color: 'var(--w-slate-400)' }} />
               <Bar yAxisId="left" dataKey="weight_kg" name="수출 물량(kg)" fill="#c026d3" barSize={15} radius={[2, 2, 0, 0]} />
               <Line yAxisId="right" type="step" dataKey="unit_price" name="수출 단가($/kg)" stroke="var(--color-success)" strokeWidth={3} dot={{ r: 4 }} />
             </ComposedChart>
@@ -780,7 +780,7 @@ export default function MangosteenDashboard() {
                 ))}
               </Pie>
               <RechartsTooltip content={<CustomTooltip />} />
-              <Legend verticalAlign="top" height={36} wrapperStyle={{ fontSize: '11px', color: '#94a3b8' }} />
+              <Legend verticalAlign="top" height={36} wrapperStyle={{ fontSize: '11px', color: 'var(--w-slate-400)' }} />
             </PieChart>
           }
           takeaway={{
@@ -807,7 +807,7 @@ export default function MangosteenDashboard() {
         <div style={{ width: '4px', height: '28px', background: SECTIONS[4].color, borderRadius: '2px' }} />
         <div>
           <h2 style={{ margin: 0, fontSize: '1.2rem', fontWeight: 700, color: 'var(--text-primary)' }}>{SECTIONS[4].title}</h2>
-          <p style={{ margin: '0.2rem 0 0', fontSize: '0.8rem', color: '#94a3b8' }}>{SECTIONS[4].desc}</p>
+          <p style={{ margin: '0.2rem 0 0', fontSize: '0.8rem', color: 'var(--w-slate-400)' }}>{SECTIONS[4].desc}</p>
         </div>
       </div>
 
@@ -822,7 +822,7 @@ export default function MangosteenDashboard() {
               <XAxis type="number" {...xAxisProps} />
               <YAxis dataKey="scenario" type="category" {...yAxisProps} width={130} />
               <RechartsTooltip content={<CustomTooltip />} />
-              <Legend verticalAlign="top" height={36} wrapperStyle={{ fontSize: '11px', color: '#94a3b8' }} />
+              <Legend verticalAlign="top" height={36} wrapperStyle={{ fontSize: '11px', color: 'var(--w-slate-400)' }} />
               <Bar dataKey="revenue" name="매출 추정액" fill="#a3e635" barSize={15} />
               <Bar dataKey="rindDisposalCost" name="껍질 폐기비용" fill="var(--color-danger)" barSize={15} />
               <Line dataKey="netMargin" name="최종 넷마진" stroke="var(--text-primary)" strokeWidth={3} dot={{ r: 5 }} />

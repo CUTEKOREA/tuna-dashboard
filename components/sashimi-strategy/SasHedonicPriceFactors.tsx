@@ -35,14 +35,14 @@ export default function SasHedonicPriceFactors() {
               margin={{ top: 20, right: 30, left: 10, bottom: 5 }}
             >
               <CartesianGrid strokeDasharray="3 3" horizontal={true} vertical={false} opacity={0.3} />
-              <ReferenceLine x={0} stroke="#94a3b8" strokeWidth={2} />
-              <XAxis type="number" unit="$" tick={{ fontSize: 12, fill: '#94a3b8' }} axisLine={false} tickLine={false} domain={[-0.3, 1]} />
-              <YAxis dataKey="name" type="category" width={160} tick={{ fontSize: 11, fontWeight: 600, fill: '#cbd5e1' }} axisLine={false} tickLine={false} />
+              <ReferenceLine x={0} stroke="var(--w-slate-400)" strokeWidth={2} />
+              <XAxis type="number" unit="$" tick={{ fontSize: 12, fill: 'var(--w-slate-400)' }} axisLine={false} tickLine={false} domain={[-0.3, 1]} />
+              <YAxis dataKey="name" type="category" width={160} tick={{ fontSize: 11, fontWeight: 600, fill: 'var(--w-slate-300)' }} axisLine={false} tickLine={false} />
               <Tooltip 
                 cursor={{ fill: 'rgba(255,255,255,0.04)' }}
-                contentStyle={{ borderRadius: '8px', border: 'none', boxShadow: '0 4px 12px rgba(0,0,0,0.3)', backgroundColor: 'rgba(30,41,59,0.95)', color: '#e2e8f0' }}
-                labelStyle={{ color: '#e2e8f0' }}
-                itemStyle={{ color: '#cbd5e1' }}
+                contentStyle={{ borderRadius: '8px', border: 'none', boxShadow: '0 4px 12px rgba(0,0,0,0.3)', backgroundColor: 'rgba(30,41,59,0.95)', color: 'var(--w-slate-200)' }}
+                labelStyle={{ color: 'var(--w-slate-200)' }}
+                itemStyle={{ color: 'var(--w-slate-300)' }}
                 formatter={(value: unknown, name: unknown, props: any) => {
                   const delta = chartFmt.toChartNumber(value);
                   return [

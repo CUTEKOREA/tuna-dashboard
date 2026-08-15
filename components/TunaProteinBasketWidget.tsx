@@ -52,10 +52,10 @@ const CustomTooltip = ({ active, payload }: any) => {
   const d: BasketItem = payload[0].payload;
   return (
     <div style={{ background: '#1e293b', border: '1px solid #334155', borderRadius: 6, padding: '8px 12px', zIndex: 50 }}>
-      <p style={{ color: '#f8fafc', fontWeight: 600, margin: 0, fontSize: '0.85rem' }}>
+      <p style={{ color: 'var(--w-slate-50)', fontWeight: 600, margin: 0, fontSize: '0.85rem' }}>
         {d.name} · {d.kind}
       </p>
-      <p style={{ color: '#e2e8f0', margin: '4px 0 0 0', fontSize: '0.8rem' }}>
+      <p style={{ color: 'var(--w-slate-200)', margin: '4px 0 0 0', fontSize: '0.8rem' }}>
         소매가: <strong>{d.price.toLocaleString()}원</strong> ({d.unit})
       </p>
       <p style={{ color: directionColor(d.changePct), margin: '4px 0 0 0', fontSize: '0.8rem' }}>
@@ -66,7 +66,7 @@ const CustomTooltip = ({ active, payload }: any) => {
 };
 
 const bodyMsg = (text: string) => (
-  <div style={{ textAlign: 'center', padding: '2.5rem 1rem', color: '#94a3b8', fontSize: '0.85rem' }}>
+  <div style={{ textAlign: 'center', padding: '2.5rem 1rem', color: 'var(--w-slate-400)', fontSize: '0.85rem' }}>
     {text}
   </div>
 );

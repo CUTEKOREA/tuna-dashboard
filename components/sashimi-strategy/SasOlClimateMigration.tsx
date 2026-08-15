@@ -32,30 +32,30 @@ export default function SasOlClimateMigration() {
       }}
       customBody={
         <div style={{ display: 'flex', flexDirection: 'column', gap: '10px', width: '100%' }}>
-          <div style={{ fontSize: '0.66rem', color: '#94a3b8', fontWeight: 600, textAlign: 'center' }}>2050 어장·자원 변화 (RCP8.5, %)</div>
+          <div style={{ fontSize: '0.66rem', color: 'var(--w-slate-400)', fontWeight: 600, textAlign: 'center' }}>2050 어장·자원 변화 (RCP8.5, %)</div>
           <div style={{ height: '175px', width: '100%' }}>
             <SafeResponsiveContainer width="100%" height="100%">
               <BarChart data={SHIFT} margin={{ top: 18, right: 16, left: 0, bottom: 0 }}>
                 <CartesianGrid strokeDasharray="3 3" opacity={0.15} vertical={false} />
-                <XAxis dataKey="region" fontSize={9} tickLine={false} axisLine={false} stroke="#64748b" interval={0} angle={-10} textAnchor="end" height={42} />
-                <YAxis domain={[-30, 30]} tickFormatter={(v: unknown) => `${v}%`} fontSize={10} tickLine={false} axisLine={false} stroke="#64748b" />
-                <Tooltip contentStyle={{ borderRadius: '8px', border: 'none', background: '#1a2442', color: '#e2e8f0' }} formatter={(v: unknown) => {
+                <XAxis dataKey="region" fontSize={9} tickLine={false} axisLine={false} stroke="var(--w-slate-500)" interval={0} angle={-10} textAnchor="end" height={42} />
+                <YAxis domain={[-30, 30]} tickFormatter={(v: unknown) => `${v}%`} fontSize={10} tickLine={false} axisLine={false} stroke="var(--w-slate-500)" />
+                <Tooltip contentStyle={{ borderRadius: '8px', border: 'none', background: 'var(--w-navy-900)', color: 'var(--w-slate-200)' }} formatter={(v: unknown) => {
                   const pct = chartFmt.toChartNumber(v);
                   return [`${pct > 0 ? '+' : ''}${pct}%`, '변화'];
                 }} />
-                <ReferenceLine y={0} stroke="#64748b" />
+                <ReferenceLine y={0} stroke="var(--w-slate-500)" />
                 <Bar dataKey="pct" radius={[4, 4, 0, 0]} isAnimationActive={false}>
                   {SHIFT.map((d) => <Cell key={d.region} fill={d.color} />)}
                   <LabelList dataKey="pct" position="top" formatter={(v: unknown) => {
                     const pct = chartFmt.toChartNumber(v);
                     return `${pct > 0 ? '+' : ''}${pct}%`;
-                  }} fontSize={10.5} fill="#e2e8f0" />
+                  }} fontSize={10.5} fill="var(--w-slate-200)" />
                 </Bar>
               </BarChart>
             </SafeResponsiveContainer>
           </div>
-          <div style={{ textAlign: 'center', fontSize: '0.62rem', color: '#94a3b8' }}>
-            도서국 입어료 손실 <span style={{ color: '#ef4444', fontWeight: 700 }}>-$90M</span>/년 · 동태평양 공해 어획 +125%(2050) → 조달 지정학 이동
+          <div style={{ textAlign: 'center', fontSize: '0.62rem', color: 'var(--w-slate-400)' }}>
+            도서국 입어료 손실 <span style={{ color: 'var(--w-red-500)', fontWeight: 700 }}>-$90M</span>/년 · 동태평양 공해 어획 +125%(2050) → 조달 지정학 이동
           </div>
         </div>
       }

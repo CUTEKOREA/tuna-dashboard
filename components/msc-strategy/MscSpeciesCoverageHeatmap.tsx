@@ -42,11 +42,11 @@ export default function MscSpeciesCoverageHeatmap() {
       <table style={{ width: '100%', fontSize: '0.85rem', borderCollapse: 'separate', borderSpacing: '0 4px' }}>
         <thead>
           <tr>
-            <th style={{ padding: '8px', textAlign: 'left', fontSize: '0.72rem', fontWeight: 700, color: '#64748b', textTransform: 'uppercase', letterSpacing: '0.05em', minWidth: '120px' }}>어종</th>
+            <th style={{ padding: '8px', textAlign: 'left', fontSize: '0.72rem', fontWeight: 700, color: 'var(--w-slate-500)', textTransform: 'uppercase', letterSpacing: '0.05em', minWidth: '120px' }}>어종</th>
             {rfmos.map((r) => (
-              <th key={r} style={{ padding: '8px', textAlign: 'center', fontSize: '0.72rem', fontWeight: 700, color: '#64748b', textTransform: 'uppercase' }}>{r}</th>
+              <th key={r} style={{ padding: '8px', textAlign: 'center', fontSize: '0.72rem', fontWeight: 700, color: 'var(--w-slate-500)', textTransform: 'uppercase' }}>{r}</th>
             ))}
-            <th style={{ padding: '8px', textAlign: 'center', fontSize: '0.72rem', fontWeight: 700, color: '#94a3b8' }}>평균</th>
+            <th style={{ padding: '8px', textAlign: 'center', fontSize: '0.72rem', fontWeight: 700, color: 'var(--w-slate-400)' }}>평균</th>
           </tr>
         </thead>
         <tbody>
@@ -55,9 +55,9 @@ export default function MscSpeciesCoverageHeatmap() {
             const rowAvg = avg(vals);
             return (
               <tr key={row.species} style={{ background: 'rgba(30,41,59,0.3)' }}>
-                <td style={{ padding: '12px', borderRadius: '8px 0 0 8px', fontWeight: 600, color: '#cbd5e1' }}>
+                <td style={{ padding: '12px', borderRadius: '8px 0 0 8px', fontWeight: 600, color: 'var(--w-slate-300)' }}>
                   {row.species}
-                  <span style={{ fontSize: '0.72rem', color: '#64748b', marginLeft: '8px', fontWeight: 400 }}>({row.speciesKo})</span>
+                  <span style={{ fontSize: '0.72rem', color: 'var(--w-slate-500)', marginLeft: '8px', fontWeight: 400 }}>({row.speciesKo})</span>
                 </td>
                 {rfmos.map((r) => (
                   <td key={r} style={{ padding: '4px' }}>
@@ -98,7 +98,7 @@ export default function MscSpeciesCoverageHeatmap() {
             );
           })}
           <tr style={{ background: 'transparent' }}>
-            <td style={{ padding: '12px', fontSize: '0.72rem', fontWeight: 600, color: '#64748b', textTransform: 'uppercase' as const, letterSpacing: '0.05em' }}>해역 평균</td>
+            <td style={{ padding: '12px', fontSize: '0.72rem', fontWeight: 600, color: 'var(--w-slate-500)', textTransform: 'uppercase' as const, letterSpacing: '0.05em' }}>해역 평균</td>
             {colAvgs.map((ca, i) => (
               <td key={i} style={{ padding: '4px' }}>
                 <div style={{
@@ -139,7 +139,7 @@ export default function MscSpeciesCoverageHeatmap() {
       </table>
 
       {/* Legend */}
-      <div style={{ display: 'flex', justifyContent: 'center', gap: '24px', marginTop: '16px', fontSize: '0.75rem', color: '#64748b', fontWeight: 500 }}>
+      <div style={{ display: 'flex', justifyContent: 'center', gap: '24px', marginTop: '16px', fontSize: '0.75rem', color: 'var(--w-slate-500)', fontWeight: 500 }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
           <span style={{ width: 12, height: 12, borderRadius: 2, background: 'rgba(16,185,129,0.4)', display: 'inline-block' }} /> ≥65% (안전)
         </div>

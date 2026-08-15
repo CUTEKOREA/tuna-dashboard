@@ -42,14 +42,14 @@ export default function SasPrAuctionDirect() {
               <div style={{ display: 'flex', flexDirection: 'column', gap: '3px' }}>
                 {l.rows.map(([k, v]) => (
                   <div key={k} style={{ display: 'flex', justifyContent: 'space-between', gap: '8px', alignItems: 'baseline' }}>
-                    <span style={{ fontSize: '0.6rem', color: '#64748b' }}>{k}</span>
-                    <span style={{ fontSize: '0.66rem', fontWeight: 600, color: '#e2e8f0', textAlign: 'right' }}>{v}</span>
+                    <span style={{ fontSize: '0.6rem', color: 'var(--w-slate-500)' }}>{k}</span>
+                    <span style={{ fontSize: '0.66rem', fontWeight: 600, color: 'var(--w-slate-200)', textAlign: 'right' }}>{v}</span>
                   </div>
                 ))}
               </div>
             </div>
           ))}
-          <div style={{ textAlign: 'center', fontSize: '0.6rem', color: '#64748b' }}>
+          <div style={{ textAlign: 'center', fontSize: '0.6rem', color: 'var(--w-slate-500)' }}>
             최대 마진 = 경매(소비지)~부두(산지) 사이 중간 유통 → 한국 원양 자체 가공·직판으로 내재화
           </div>
         </div>

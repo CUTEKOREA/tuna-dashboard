@@ -44,20 +44,20 @@ function CanneryTooltip({ active, payload, label }: any) {
   return (
     <div style={{
       background: '#1a1a2e', border: '1px solid rgba(255,255,255,0.1)', borderRadius: 8,
-      padding: '12px 16px', fontSize: '0.82rem', color: '#e2e8f0', minWidth: 180,
+      padding: '12px 16px', fontSize: '0.82rem', color: 'var(--w-slate-200)', minWidth: 180,
       boxShadow: '0 8px 32px rgba(0,0,0,0.5)'
     }}>
       <div style={{ fontWeight: 700, fontSize: '0.95rem', marginBottom: 6, color: 'var(--text-primary)' }}>{label}</div>
       <div style={{ display: 'flex', justifyContent: 'space-between', gap: 16 }}>
-        <span style={{ color: '#94a3b8' }}>총 물량</span>
+        <span style={{ color: 'var(--w-slate-400)' }}>총 물량</span>
         <span style={{ fontWeight: 700, color: 'var(--color-success)' }}>{d?.total?.toLocaleString()} MT</span>
       </div>
       <div style={{ display: 'flex', justifyContent: 'space-between', gap: 16 }}>
-        <span style={{ color: '#94a3b8' }}>운반선 수</span>
+        <span style={{ color: 'var(--w-slate-400)' }}>운반선 수</span>
         <span style={{ fontWeight: 600 }}>{d?.vesselCount}척</span>
       </div>
       {d?.vessels && (
-        <div style={{ marginTop: 8, paddingTop: 8, borderTop: '1px solid rgba(255,255,255,0.08)', fontSize: '0.75rem', color: '#64748b' }}>
+        <div style={{ marginTop: 8, paddingTop: 8, borderTop: '1px solid rgba(255,255,255,0.08)', fontSize: '0.75rem', color: 'var(--w-slate-500)' }}>
           {d.vessels.join(' · ')}
         </div>
       )}
@@ -149,15 +149,15 @@ export default function ReeferMovement() {
         <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 16 }}>
           <Factory size={16} color="var(--color-info)" />
           <span style={{ fontSize: '0.9rem', fontWeight: 700, color: 'var(--text-primary)' }}>캔 공장별 원료 배분 총량 (32주차 보고 기준)</span>
-          <span style={{ fontSize: '0.72rem', color: '#64748b', marginLeft: 4 }}>(단위: MT)</span>
+          <span style={{ fontSize: '0.72rem', color: 'var(--w-slate-500)', marginLeft: 4 }}>(단위: MT)</span>
         </div>
         <div style={{ height: Math.max(canneryAgg.length * 36 + 30, 200), width: '100%' }}>
           <SafeResponsiveContainer width="100%" height="100%">
             <BarChart data={canneryAgg} layout="vertical" margin={{ left: 10, right: 30, top: 5, bottom: 5 }}>
               <ChartPatternDefs />
-              <XAxis type="number" tick={{ fill: '#64748b', fontSize: 11 }} axisLine={false} tickLine={false}
+              <XAxis type="number" tick={{ fill: 'var(--w-slate-500)', fontSize: 11 }} axisLine={false} tickLine={false}
                 tickFormatter={(v: number) => v >= 1000 ? `${(v/1000).toFixed(1)}K` : `${v}`} />
-              <YAxis type="category" dataKey="name" tick={{ fill: '#e2e8f0', fontSize: 12, fontWeight: 600 }}
+              <YAxis type="category" dataKey="name" tick={{ fill: 'var(--w-slate-200)', fontSize: 12, fontWeight: 600 }}
                 axisLine={false} tickLine={false} width={55} />
               <RechartsTooltip content={<CanneryTooltip />} cursor={{ fill: 'rgba(255,255,255,0.03)' }} />
               <Bar dataKey="total" radius={[0, 6, 6, 0]} barSize={22} name="총 물량 (MT)">
@@ -207,7 +207,7 @@ export default function ReeferMovement() {
                   <div style={{ fontSize: '0.88rem', fontWeight: 700, color: 'var(--text-primary)', letterSpacing: '0.02em' }}>
                     {card.carrier}
                   </div>
-                  <div style={{ fontSize: '0.72rem', color: '#64748b', marginTop: 2 }}>
+                  <div style={{ fontSize: '0.72rem', color: 'var(--w-slate-500)', marginTop: 2 }}>
                     보고서 기재 접안일: {card.date}
                     {card.other && <span style={{ marginLeft: 8, color: '#475569' }}>부두: {card.other}</span>}
                   </div>
@@ -216,7 +216,7 @@ export default function ReeferMovement() {
                   <div style={{ fontSize: '1rem', fontWeight: 800, color: 'var(--color-success)' }}>
                     {formatMt(card.totalMT)}
                   </div>
-                  <div style={{ fontSize: '0.65rem', color: '#64748b' }}>MT · 공장 {card.deliveries.length}곳</div>
+                  <div style={{ fontSize: '0.65rem', color: 'var(--w-slate-500)' }}>MT · 공장 {card.deliveries.length}곳</div>
                 </div>
                 {isExpanded
                   ? <ChevronUp size={16} color="#64748b" />
@@ -231,11 +231,11 @@ export default function ReeferMovement() {
                     <span key={i} style={{
                       fontSize: '0.7rem', fontWeight: 600, padding: '3px 8px',
                       borderRadius: 6, background: 'rgba(140,170,255,0.12)',
-                      color: '#e2e8f0', display: 'inline-flex', alignItems: 'center', gap: 4
+                      color: 'var(--w-slate-200)', display: 'inline-flex', alignItems: 'center', gap: 4
                     }}>
-                      <span style={{ color: BAR_COLORS[canneryAgg.findIndex(c => c.name === d.cannery) % BAR_COLORS.length] || '#64748b' }}>●</span>
+                      <span style={{ color: BAR_COLORS[canneryAgg.findIndex(c => c.name === d.cannery) % BAR_COLORS.length] || 'var(--w-slate-500)' }}>●</span>
                       {d.cannery}
-                      <span style={{ color: '#94a3b8', fontWeight: 400 }}>{formatMt(d.amount)}</span>
+                      <span style={{ color: 'var(--w-slate-400)', fontWeight: 400 }}>{formatMt(d.amount)}</span>
                     </span>
                   ))}
                 </div>
@@ -250,7 +250,7 @@ export default function ReeferMovement() {
                     const color = BAR_COLORS[colorIdx >= 0 ? colorIdx % BAR_COLORS.length : i % BAR_COLORS.length];
                     return (
                       <div key={i} style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 8 }}>
-                        <div style={{ width: 50, fontSize: '0.78rem', fontWeight: 700, color: '#e2e8f0', textAlign: 'right' }}>
+                        <div style={{ width: 50, fontSize: '0.78rem', fontWeight: 700, color: 'var(--w-slate-200)', textAlign: 'right' }}>
                           {d.cannery}
                         </div>
                         <div style={{ flex: 1, height: 20, background: 'rgba(255,255,255,0.04)', borderRadius: 4, overflow: 'hidden', position: 'relative' }}>
@@ -260,7 +260,7 @@ export default function ReeferMovement() {
                             opacity: 0.75, minWidth: 2
                           }} />
                         </div>
-                        <div style={{ width: 65, fontSize: '0.78rem', fontWeight: 600, color: '#e2e8f0', textAlign: 'right' }}>
+                        <div style={{ width: 65, fontSize: '0.78rem', fontWeight: 600, color: 'var(--w-slate-200)', textAlign: 'right' }}>
                           {formatMt(d.amount)}
                         </div>
                       </div>
@@ -269,7 +269,7 @@ export default function ReeferMovement() {
                   {card.other && (
                     <div style={{
                       marginTop: 8, paddingTop: 8, borderTop: '1px solid rgba(140,170,255,0.12)',
-                      fontSize: '0.72rem', color: '#64748b', display: 'flex', alignItems: 'center', gap: 4
+                      fontSize: '0.72rem', color: 'var(--w-slate-500)', display: 'flex', alignItems: 'center', gap: 4
                     }}>
                       <Package size={12} /> 비고(부두): {card.other}
                     </div>
@@ -290,7 +290,7 @@ export default function ReeferMovement() {
           display: 'flex', alignItems: 'center', gap: 8,
           background: 'none', border: '1px solid var(--panel-border)',
           borderRadius: 8, padding: '10px 16px', cursor: 'pointer',
-          color: '#94a3b8', fontSize: '0.8rem', fontWeight: 600,
+          color: 'var(--w-slate-400)', fontSize: '0.8rem', fontWeight: 600,
           marginBottom: showLegacy ? 12 : 0,
           transition: 'color 0.2s'
         }}

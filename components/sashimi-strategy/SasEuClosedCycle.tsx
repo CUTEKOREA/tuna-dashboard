@@ -37,12 +37,12 @@ export default function SasEuClosedCycle() {
             <div key={m.yr} style={{ display: 'flex', gap: '10px', alignItems: 'flex-start', background: `${m.rc}0d`, border: `1px solid ${m.rc}2e`, borderLeft: `3px solid ${m.rc}`, borderRadius: '9px', padding: '9px 11px' }}>
               <span style={{ fontSize: '0.72rem', fontWeight: 800, color: m.rc, minWidth: '52px' }}>{m.yr}</span>
               <div style={{ flex: 1 }}>
-                <div style={{ fontSize: '0.66rem', color: '#e2e8f0', lineHeight: 1.45 }}>{m.label}</div>
+                <div style={{ fontSize: '0.66rem', color: 'var(--w-slate-200)', lineHeight: 1.45 }}>{m.label}</div>
               </div>
               <span style={{ fontSize: '0.54rem', color: m.rc, background: `${m.rc}1f`, padding: '2px 6px', borderRadius: '4px', fontWeight: 600, whiteSpace: 'nowrap' }}>{m.tag}</span>
             </div>
           ))}
-          <div style={{ fontSize: '0.62rem', color: '#64748b', lineHeight: 1.5, textAlign: 'center' }}>
+          <div style={{ fontSize: '0.62rem', color: 'var(--w-slate-500)', lineHeight: 1.5, textAlign: 'center' }}>
             완전양식 = ICCAT 배분쿼터 탈피 레버 — 단 상업 채산성은 아직 '실물옵션'
           </div>
         </div>

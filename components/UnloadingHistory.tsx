@@ -435,17 +435,17 @@ export function UnloadingHistoryView({
         <SafeResponsiveContainer height={300} className={styles.chart}>
           <ComposedChart data={chartData} margin={{ top: 16, right: 14, left: 4, bottom: 4 }}>
             <CartesianGrid stroke="rgba(148,163,184,.14)" strokeDasharray="3 3" />
-            <XAxis dataKey="year" tick={{ fill: '#cbd5e1', fontSize: 12 }} />
-            <YAxis yAxisId="mt" tick={{ fill: '#94a3b8', fontSize: 11 }} tickFormatter={(value) => `${Math.round(Number(value) / 1000)}천`} />
-            <YAxis yAxisId="count" orientation="right" tick={{ fill: '#94a3b8', fontSize: 11 }} allowDecimals={false} />
+            <XAxis dataKey="year" tick={{ fill: 'var(--w-slate-300)', fontSize: 12 }} />
+            <YAxis yAxisId="mt" tick={{ fill: 'var(--w-slate-400)', fontSize: 11 }} tickFormatter={(value) => `${Math.round(Number(value) / 1000)}천`} />
+            <YAxis yAxisId="count" orientation="right" tick={{ fill: 'var(--w-slate-400)', fontSize: 11 }} allowDecimals={false} />
             <Tooltip
               contentStyle={{ background: '#0f172a', border: '1px solid rgba(148,163,184,.28)', borderRadius: 10 }}
               formatter={(value, name) => name === '검증 하역량' ? [`${formatMt(Number(value))} MT`, name] : [`${value}척`, name]}
               labelFormatter={(label) => `${label}년`}
             />
             <Legend />
-            <Bar yAxisId="mt" dataKey="검증 하역량" fill="#38bdf8" radius={[5, 5, 0, 0]} isAnimationActive={false} />
-            <Line yAxisId="count" dataKey="검증 항차" stroke="#f59e0b" strokeWidth={3} dot={{ fill: '#f59e0b', r: 4 }} isAnimationActive={false} />
+            <Bar yAxisId="mt" dataKey="검증 하역량" fill="var(--w-sky-400)" radius={[5, 5, 0, 0]} isAnimationActive={false} />
+            <Line yAxisId="count" dataKey="검증 항차" stroke="var(--w-amber-500)" strokeWidth={3} dot={{ fill: 'var(--w-amber-500)', r: 4 }} isAnimationActive={false} />
           </ComposedChart>
         </SafeResponsiveContainer>
         <ul className={styles.srOnly}>

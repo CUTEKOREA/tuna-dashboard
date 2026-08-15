@@ -32,7 +32,7 @@ function buildChart(w: Widget): React.ReactElement {
         <XAxis dataKey={w.xKey} stroke="rgba(255,255,255,0.3)" tick={{ fill: 'rgba(255,255,255,0.6)', fontSize: 10 }} angle={-15} textAnchor="end" height={60} />
         <YAxis stroke="rgba(255,255,255,0.2)" tick={{ fill: 'rgba(255,255,255,0.6)', fontSize: 10 }} tickFormatter={(v: number) => COMMA(v)} />
         <Tooltip
-          contentStyle={{ background: 'rgba(10, 16, 40, 0.95)', border: '1px solid rgba(255,255,255,0.2)', color: '#e2e8f0' }}
+          contentStyle={{ background: 'rgba(10, 16, 40, 0.95)', border: '1px solid rgba(255,255,255,0.2)', color: 'var(--w-slate-200)' }}
           formatter={(v: any) => COMMA(Number(v))}
         />
         <Legend wrapperStyle={{ fontSize: '11px' }} />
@@ -48,7 +48,7 @@ function buildChart(w: Widget): React.ReactElement {
       <YAxis yAxisId="left" stroke="rgba(255,255,255,0.2)" tick={{ fill: 'rgba(255,255,255,0.6)', fontSize: 10 }} tickFormatter={(v: number) => COMMA(v)} />
       <YAxis yAxisId="right" orientation="right" stroke="rgba(220,38,38,0.5)" tick={{ fill: 'rgba(220,38,38,0.7)', fontSize: 10 }} tickFormatter={(v: number) => COMMA(v)} />
       <Tooltip
-        contentStyle={{ background: 'rgba(10, 16, 40, 0.95)', border: '1px solid rgba(255,255,255,0.2)', color: '#e2e8f0' }}
+        contentStyle={{ background: 'rgba(10, 16, 40, 0.95)', border: '1px solid rgba(255,255,255,0.2)', color: 'var(--w-slate-200)' }}
         formatter={(v: any) => COMMA(Number(v))}
       />
       <Legend wrapperStyle={{ fontSize: '11px' }} />

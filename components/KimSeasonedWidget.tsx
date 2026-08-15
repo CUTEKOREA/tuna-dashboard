@@ -31,7 +31,7 @@ export default function KimSeasonedWidget() {
 
   if (!data) {
     return (
-      <div style={{ gridColumn: '1 / -1', padding: '40px', textAlign: 'center', background: 'rgba(255,255,255,0.02)', border: '1px dashed rgba(255,255,255,0.1)', borderRadius: '12px', color: '#64748b' }}>
+      <div style={{ gridColumn: '1 / -1', padding: '40px', textAlign: 'center', background: 'rgba(255,255,255,0.02)', border: '1px dashed rgba(255,255,255,0.1)', borderRadius: '12px', color: 'var(--w-slate-500)' }}>
         <Sparkles size={26} style={{ opacity: 0.5, marginBottom: '8px' }} />
         <div style={{ fontSize: '0.85rem', fontWeight: 600 }}>{errored ? '조미김 통관 데이터를 불러오지 못했습니다' : '조미김 수출 통관 데이터 로딩 중…'}</div>
         <div style={{ fontSize: '0.72rem', marginTop: '4px' }}>{errored ? '관세청 KCS OpenAPI 응답 없음 — 잠시 후 새로고침' : '관세청 KCS OpenAPI (HS 2008.99.50.10)'}</div>
@@ -69,8 +69,8 @@ export default function KimSeasonedWidget() {
         chart={
           <ComposedChart data={monthly} margin={{ top: 10, right: 10, left: -8, bottom: 0 }}>
             <CartesianGrid strokeDasharray="3 3" stroke="rgba(140,170,255,0.12)" vertical={false} />
-            <XAxis dataKey="month" stroke="#94a3b8" fontSize={11} tickFormatter={truncateXAxis} />
-            <YAxis yAxisId="l" stroke="#94a3b8" fontSize={11} />
+            <XAxis dataKey="month" stroke="var(--w-slate-400)" fontSize={11} tickFormatter={truncateXAxis} />
+            <YAxis yAxisId="l" stroke="var(--w-slate-400)" fontSize={11} />
             <YAxis yAxisId="r" orientation="right" stroke="#a3e635" fontSize={11} tickFormatter={(v) => `$${Math.round(v / 1000)}M`} />
             <Tooltip contentStyle={tip} />
             <Legend wrapperStyle={{ fontSize: '11px' }} />
@@ -94,8 +94,8 @@ export default function KimSeasonedWidget() {
         chart={
           <BarChart data={dest} layout="vertical" margin={{ top: 10, right: 24, left: 14, bottom: 0 }}>
             <CartesianGrid strokeDasharray="3 3" stroke="rgba(140,170,255,0.12)" horizontal={false} />
-            <XAxis type="number" stroke="#94a3b8" fontSize={11} tickFormatter={(v) => `${v}%`} />
-            <YAxis type="category" dataKey="name" stroke="#94a3b8" fontSize={12} width={56} />
+            <XAxis type="number" stroke="var(--w-slate-400)" fontSize={11} tickFormatter={(v) => `${v}%`} />
+            <YAxis type="category" dataKey="name" stroke="var(--w-slate-400)" fontSize={12} width={56} />
             <Tooltip contentStyle={tip} cursor={{ fill: 'rgba(255,255,255,0.04)' }} formatter={(v) => [`${v}%`, '비중']} />
             <Bar dataKey="value" name="수출 비중 (%)" radius={[0, 3, 3, 0]}>
               {dest.map((d: any, i: number) => <Cell key={i} fill={d.fill || '#84cc16'} />)}
@@ -118,8 +118,8 @@ export default function KimSeasonedWidget() {
         chart={
           <BarChart data={compareData} layout="vertical" margin={{ top: 10, right: 40, left: 18, bottom: 0 }}>
             <CartesianGrid strokeDasharray="3 3" stroke="rgba(140,170,255,0.12)" horizontal={false} />
-            <XAxis type="number" stroke="#94a3b8" fontSize={11} tickFormatter={(v) => `$${v}`} />
-            <YAxis type="category" dataKey="k" stroke="#94a3b8" fontSize={12} width={92} />
+            <XAxis type="number" stroke="var(--w-slate-400)" fontSize={11} tickFormatter={(v) => `$${v}`} />
+            <YAxis type="category" dataKey="k" stroke="var(--w-slate-400)" fontSize={12} width={92} />
             <Tooltip contentStyle={tip} cursor={{ fill: 'rgba(255,255,255,0.04)' }} formatter={(v) => [`$${v}/kg`, '통관 단가']} />
             <Bar dataKey="usd" name="통관 단가 ($/kg)" radius={[0, 3, 3, 0]}>
               {compareData.map((d: any, i: number) => <Cell key={i} fill={d.fill} />)}

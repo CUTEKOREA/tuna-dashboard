@@ -49,11 +49,11 @@ export const SquidSection: React.FC<SquidSectionProps> = ({
           padding: '0 0 0 10px', margin: '0 0 12px', cursor: 'pointer',
         }}
       >
-        <h2 style={{ fontSize: '1.05rem', fontWeight: 800, color: '#e2e8f0', margin: 0 }}>
+        <h2 style={{ fontSize: '1.05rem', fontWeight: 800, color: 'var(--w-slate-200)', margin: 0 }}>
           {meta.orderLabel}. {meta.label}
         </h2>
-        <span style={{ fontSize: '0.72rem', color: '#94a3b8', wordBreak: 'keep-all' }}>{meta.desc}</span>
-        <span style={{ marginLeft: 'auto', fontSize: '0.72rem', color: '#64748b' }}>
+        <span style={{ fontSize: '0.72rem', color: 'var(--w-slate-400)', wordBreak: 'keep-all' }}>{meta.desc}</span>
+        <span style={{ marginLeft: 'auto', fontSize: '0.72rem', color: 'var(--w-slate-500)' }}>
           {list.length}개 {open ? '▲' : '▼'}
         </span>
       </button>

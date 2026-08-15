@@ -173,7 +173,7 @@ export function EuroMacroTradeWidget() {
       <div style={{ position: 'relative', zIndex: 2 }}>
         {loading ? (
           <div style={{ width: '100%', height: 260, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: 12 }}>
-            <div style={{ width: 32, height: 32, border: '3px solid #1a2442', borderTop: '3px solid #3b82f6', borderRadius: '50%', animation: 'spin 1s linear infinite' }} />
+            <div style={{ width: 32, height: 32, border: '3px solid var(--w-navy-900)', borderTop: '3px solid var(--w-blue-500)', borderRadius: '50%', animation: 'spin 1s linear infinite' }} />
             <span style={{ color: COLORS.textDim, fontSize: '0.85rem' }}>데이터 로딩 중...</span>
           </div>
         ) : data.length === 0 ? (
@@ -186,7 +186,7 @@ export function EuroMacroTradeWidget() {
               </Pie>
               <RechartsTooltip
                 contentStyle={{ backgroundColor: 'rgba(20, 28, 52, 0.96)', borderColor: 'rgba(51,65,85,0.5)', borderRadius: '10px', color: '#f1f5f9', boxShadow: '0 12px 40px -8px rgba(0,0,0,0.6)', padding: '10px 14px' }}
-                itemStyle={{ color: '#e2e8f0', fontWeight: 600 }}
+                itemStyle={{ color: 'var(--w-slate-200)', fontWeight: 600 }}
                 formatter={(value: any) => [`${Math.round(value).toLocaleString()} 톤`, '수입량']}
               />
             </PieChart>
@@ -195,7 +195,7 @@ export function EuroMacroTradeWidget() {
               {data.map((entry, i) => (
                 <div key={i} style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
                   <span style={{ width: 10, height: 10, borderRadius: '3px', background: entry.fill, display: 'inline-block', boxShadow: `0 0 6px ${entry.fill}40` }} />
-                  <span style={{ fontSize: '0.72rem', color: '#94a3b8', fontWeight: 500 }}>{entry.name}</span>
+                  <span style={{ fontSize: '0.72rem', color: 'var(--w-slate-400)', fontWeight: 500 }}>{entry.name}</span>
                 </div>
               ))}
             </div>
@@ -240,7 +240,7 @@ export function EuroESGTrackerWidget() {
         <div style={{ padding: '8px', background: 'rgba(99,102,241,0.1)', borderRadius: '10px', border: '1px solid rgba(99,102,241,0.2)', flexShrink: 0 }}>
           <ShieldCheck style={{ width: 22, height: 22, color: COLORS.accent.indigo }} />
         </div>
-        <div style={{ fontSize: '0.75rem', color: '#cbd5e1', lineHeight: 1.7 }}>
+        <div style={{ fontSize: '0.75rem', color: 'var(--w-slate-300)', lineHeight: 1.7 }}>
           상위 5대 브랜드 평균 MSC 소싱률 <strong style={{ color: COLORS.accent.emerald, padding: '1px 4px', background: 'rgba(16,185,129,0.1)', borderRadius: '4px' }}>97%+</strong>.
           MSC 인증은 <strong style={{ color: COLORS.accent.cyan }}>+10% ~ +44.6%</strong> 프리미엄을 창출합니다. 비인증 원료의 유통 채널은 <strong style={{ color: COLORS.accent.amber }}>2027년 내 소멸</strong>될 전망입니다.
         </div>
@@ -331,7 +331,7 @@ export function EuroPremiumWidget() {
         {premiumData.map((item) => (
           <div key={item.label} style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end' }}>
-              <span style={{ fontSize: '0.9rem', fontWeight: 700, color: '#e2e8f0' }}>{item.label}</span>
+              <span style={{ fontSize: '0.9rem', fontWeight: 700, color: 'var(--w-slate-200)' }}>{item.label}</span>
               <span style={{ fontSize: '1.6rem', fontWeight: 800, color: item.color, textShadow: `0 0 18px ${item.color}50`, fontVariantNumeric: 'tabular-nums' }}>+{item.premium}%</span>
             </div>
             <div style={{ width: '100%', background: 'rgba(30,41,59,0.7)', borderRadius: '8px', height: '10px', overflow: 'hidden', border: '1px solid rgba(51,65,85,0.4)' }}>
@@ -342,7 +342,7 @@ export function EuroPremiumWidget() {
       </div>
 
       <div style={{ background: 'rgba(245,158,11,0.08)', border: '1px solid rgba(245,158,11,0.18)', borderRadius: '12px', padding: '14px', position: 'relative', zIndex: 2 }}>
-        <div style={{ fontSize: '0.75rem', color: '#cbd5e1', lineHeight: 1.7 }}>
+        <div style={{ fontSize: '0.75rem', color: 'var(--w-slate-300)', lineHeight: 1.7 }}>
           <strong style={{ color: COLORS.accent.amber, display: 'flex', alignItems: 'center', gap: '4px', marginBottom: '4px' }}>
             <TrendingUp style={{ width: 14, height: 14 }} /> 실증 논문 결론 (2025):
           </strong>
@@ -355,7 +355,7 @@ export function EuroPremiumWidget() {
 
 export function EuroRetailMatrixWidget() {
   const thStyle: React.CSSProperties = { padding: '14px 16px', fontSize: '0.68rem', fontWeight: 700, color: COLORS.textMuted, textTransform: 'uppercase', letterSpacing: '0.06em' };
-  const tdStyle: React.CSSProperties = { padding: '14px 16px', fontSize: '0.82rem', color: '#cbd5e1', borderBottom: '1px solid rgba(51,65,85,0.25)', fontWeight: 500 };
+  const tdStyle: React.CSSProperties = { padding: '14px 16px', fontSize: '0.82rem', color: 'var(--w-slate-300)', borderBottom: '1px solid rgba(51,65,85,0.25)', fontWeight: 500 };
 
   return (
     <div style={{ ...cardBase, gap: '20px' }}>
@@ -409,7 +409,7 @@ export function EuroRetailMatrixWidget() {
 
       <div style={{ background: 'rgba(30,41,59,0.4)', padding: '14px', borderRadius: '12px', border: '1px solid rgba(51,65,85,0.3)', display: 'flex', gap: '12px', alignItems: 'flex-start', position: 'relative', zIndex: 2 }}>
         <span style={{ fontSize: '1.2rem' }}>💡</span>
-        <div style={{ fontSize: '0.75rem', color: '#cbd5e1', lineHeight: 1.7, fontWeight: 500 }}>
+        <div style={{ fontSize: '0.75rem', color: 'var(--w-slate-300)', lineHeight: 1.7, fontWeight: 500 }}>
           독일·영국은 이미 <strong style={{ color: COLORS.accent.emerald }}>MSC 포화 시장</strong> — 인증 없이 매대 진입 불가. 이탈리아(+10.3%)·중앙유럽(+9.7%)은 고성장 구간으로 <strong style={{ color: COLORS.accent.blue }}>전략적 시장 진입 적기</strong>입니다.
         </div>
       </div>

@@ -297,7 +297,7 @@ export default function GarlicDashboard() {
               <Area connectNulls={true} type="monotone" dataKey="한국" stackId="1" stroke="#d97706" fill="#d97706" fillOpacity={0.3} name="한국" />
               <Area connectNulls={true} type="monotone" dataKey="이집트" stackId="1" stroke="#eab308" fill="#eab308" fillOpacity={0.5} name="이집트" />
               <Area connectNulls={true} type="monotone" dataKey="방글라데시" stackId="1" stroke="#84cc16" fill="#84cc16" fillOpacity={0.4} name="방글라데시" />
-              <Area connectNulls={true} type="monotone" dataKey="기타" stackId="1" stroke="#94a3b8" fill="#94a3b8" fillOpacity={0.1} name="기타" />
+              <Area connectNulls={true} type="monotone" dataKey="기타" stackId="1" stroke="var(--w-slate-400)" fill="var(--w-slate-400)" fillOpacity={0.1} name="기타" />
             </AreaChart>
           }
           takeaway={{
@@ -353,7 +353,7 @@ export default function GarlicDashboard() {
                       <Line connectNulls={true} type="monotone" dataKey="y2026" stroke="var(--color-danger)" strokeWidth={3} dot={{ r: 3 }} name="2026년" />
                       <Line connectNulls={true} type="monotone" dataKey="y2025" stroke="#65a30d" strokeWidth={2} dot={false} strokeDasharray="3 3" name="2025년" />
                       <Line connectNulls={true} type="monotone" dataKey="y2024" stroke="#d97706" strokeWidth={2} dot={false} strokeDasharray="3 3" name="2024년" />
-                      <Line connectNulls={true} type="monotone" dataKey="avg" stroke="#94a3b8" strokeWidth={2} dot={false} name="평년" />
+                      <Line connectNulls={true} type="monotone" dataKey="avg" stroke="var(--w-slate-400)" strokeWidth={2} dot={false} name="평년" />
                     </LineChart>
                   )}
                 </SafeResponsiveContainer>
@@ -389,7 +389,7 @@ export default function GarlicDashboard() {
                 <YAxis yAxisId="right" orientation="right" domain={["auto", "auto"]} {...yAxisProps} />
                 <RechartsTooltip content={<CustomTooltip />} />
                 <Legend wrapperStyle={{fontSize:'10px'}} />
-                <Area connectNulls={true} yAxisId="left" type="monotone" dataKey="Traditional" stroke="#94a3b8" fill="#94a3b8" fillOpacity={0.2} name="전통 농법 단수(톤/ha)" />
+                <Area connectNulls={true} yAxisId="left" type="monotone" dataKey="Traditional" stroke="var(--w-slate-400)" fill="var(--w-slate-400)" fillOpacity={0.2} name="전통 농법 단수(톤/ha)" />
                 <Area connectNulls={true} yAxisId="left" type="monotone" dataKey="GPR_Tech" stroke="#eab308" fill="#eab308" fillOpacity={0.4} name="정밀 농법 단수(톤/ha)" />
                 <Line connectNulls={true} yAxisId="right" type="step" dataKey="Fertilizer_Index" stroke="var(--color-danger)" strokeWidth={2} strokeDasharray="5 5" name="비료 원가 지수(Cost Index)" />
               </ComposedChart>

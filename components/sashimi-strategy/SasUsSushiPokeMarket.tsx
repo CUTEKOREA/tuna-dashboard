@@ -18,7 +18,7 @@ const channelData = [
 
 const tooltipStyle = {
   backgroundColor: 'rgba(20, 28, 52, 0.95)', border: '1px solid rgba(148,163,184,0.15)',
-  borderRadius: 8, color: '#e2e8f0', fontSize: '0.78rem', padding: '8px 12px',
+  borderRadius: 8, color: 'var(--w-slate-200)', fontSize: '0.78rem', padding: '8px 12px',
 };
 
 const ChannelTooltip = ({ active, payload, label }: any) => {
@@ -29,7 +29,7 @@ const ChannelTooltip = ({ active, payload, label }: any) => {
     <div style={tooltipStyle}>
       <div style={{ fontWeight: 700, marginBottom: 4 }}>{label}</div>
       <div style={{ display: 'flex', justifyContent: 'space-between', gap: 16 }}>
-        <span style={{ color: '#94a3b8' }}>글로벌 규모</span>
+        <span style={{ color: 'var(--w-slate-400)' }}>글로벌 규모</span>
         <span style={{ fontWeight: 700, color: d.color }}>${d.value}B ({pct}%)</span>
       </div>
     </div>
@@ -68,22 +68,22 @@ export default function SasUsSushiPokeMarket() {
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '8px' }}>
             {kpis.map((k) => (
               <div key={k.label} style={{ background: `${k.color}0f`, border: `1px solid ${k.color}33`, borderRadius: '10px', padding: '10px 8px', textAlign: 'center' }}>
-                <div style={{ fontSize: '0.6rem', color: '#94a3b8', marginBottom: '2px' }}>{k.label}</div>
+                <div style={{ fontSize: '0.6rem', color: 'var(--w-slate-400)', marginBottom: '2px' }}>{k.label}</div>
                 <div style={{ fontSize: '1.05rem', fontWeight: 800, color: k.color }}>{k.value}</div>
-                <div style={{ fontSize: '0.56rem', color: '#64748b', marginTop: '1px' }}>{k.sub}</div>
+                <div style={{ fontSize: '0.56rem', color: 'var(--w-slate-500)', marginTop: '1px' }}>{k.sub}</div>
               </div>
             ))}
           </div>
 
           {/* 채널 분할 바 */}
           <div>
-            <div style={{ fontSize: '0.7rem', color: '#94a3b8', marginBottom: '6px', fontWeight: 600 }}>글로벌 스시급 채널 분할 (10억$)</div>
+            <div style={{ fontSize: '0.7rem', color: 'var(--w-slate-400)', marginBottom: '6px', fontWeight: 600 }}>글로벌 스시급 채널 분할 (10억$)</div>
             <div style={{ height: '110px', width: '100%' }}>
               <SafeResponsiveContainer width="100%" height="100%">
                 <BarChart data={channelData} layout="vertical" margin={{ top: 0, right: 40, left: 8, bottom: 0 }}>
                   <CartesianGrid strokeDasharray="3 3" stroke="rgba(148,163,184,0.08)" horizontal={false} />
-                  <XAxis type="number" domain={[0, 7]} tick={{ fill: '#94a3b8', fontSize: 11 }} axisLine={false} tickLine={false} tickFormatter={(v: number) => `$${v}B`} />
-                  <YAxis type="category" dataKey="name" width={108} tick={{ fill: '#cbd5e1', fontSize: 11 }} axisLine={false} tickLine={false} />
+                  <XAxis type="number" domain={[0, 7]} tick={{ fill: 'var(--w-slate-400)', fontSize: 11 }} axisLine={false} tickLine={false} tickFormatter={(v: number) => `$${v}B`} />
+                  <YAxis type="category" dataKey="name" width={108} tick={{ fill: 'var(--w-slate-300)', fontSize: 11 }} axisLine={false} tickLine={false} />
                   <Tooltip content={<ChannelTooltip />} cursor={{ fill: 'rgba(148,163,184,0.06)' }} />
                   <Bar dataKey="value" radius={[0, 4, 4, 0]} isAnimationActive={false} barSize={26}>
                     {channelData.map((d, i) => <Cell key={i} fill={d.color} fillOpacity={0.8} />)}
@@ -103,9 +103,9 @@ export default function SasUsSushiPokeMarket() {
                     <Icon size={16} color={s.color} />
                   </div>
                   <div style={{ minWidth: 0 }}>
-                    <div style={{ fontSize: '0.6rem', color: '#94a3b8' }}>{s.label}</div>
+                    <div style={{ fontSize: '0.6rem', color: 'var(--w-slate-400)' }}>{s.label}</div>
                     <div style={{ fontSize: '0.95rem', fontWeight: 800, color: s.color }}>{s.value}</div>
-                    <div style={{ fontSize: '0.55rem', color: '#64748b' }}>{s.sub}</div>
+                    <div style={{ fontSize: '0.55rem', color: 'var(--w-slate-500)' }}>{s.sub}</div>
                   </div>
                 </div>
               );

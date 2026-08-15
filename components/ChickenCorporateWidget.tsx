@@ -13,7 +13,7 @@ export default function ChickenCorporateWidget() {
       .catch(e => console.error(e));
   }, []);
 
-  if (!data) return <div style={{ padding: '2rem', textAlign: 'center', color: '#94a3b8' }}>코퍼레이트 헤게모니 로딩 중...</div>;
+  if (!data) return <div style={{ padding: '2rem', textAlign: 'center', color: 'var(--w-slate-400)' }}>코퍼레이트 헤게모니 로딩 중...</div>;
 
   const brazilData = data.data.filter((d: any) => d.company.includes('브라질'));
   const thaiData = data.data.filter((d: any) => d.company.includes('태국'));
@@ -22,14 +22,14 @@ export default function ChickenCorporateWidget() {
     <div data-mobile-stack style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '1.5rem' }}>
       <div style={{ background: 'rgba(239, 68, 68, 0.03)', border: '1px solid rgba(239, 68, 68, 0.15)', borderRadius: '12px', padding: '1.5rem', position: 'relative', overflow: 'hidden' }}>
         <div style={{ position: 'absolute', top: 0, left: 0, width: '4px', height: '100%', background: 'var(--color-danger)' }} />
-        <h4 style={{ margin: '0 0 1rem 0', color: '#f8fafc', display: 'flex', alignItems: 'center', gap: '8px' }}>
+        <h4 style={{ margin: '0 0 1rem 0', color: 'var(--w-slate-50)', display: 'flex', alignItems: 'center', gap: '8px' }}>
           <Snowflake size={18} color="var(--color-danger)" />
           브라질 (Brazil) 빅3: 원물 중심 모델
         </h4>
         <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
           {brazilData.map((co: any, i: number) => (
             <div key={i}>
-              <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.85rem', marginBottom: '6px', color: '#e2e8f0' }}>
+              <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.85rem', marginBottom: '6px', color: 'var(--w-slate-200)' }}>
                 <span>{co.company}</span>
                 <span style={{ color: 'var(--color-danger)', fontWeight: 600 }}>냉동육 {co.frozenFocus}%</span>
               </div>
@@ -44,14 +44,14 @@ export default function ChickenCorporateWidget() {
 
       <div style={{ background: 'rgba(59, 130, 246, 0.03)', border: '1px solid rgba(59, 130, 246, 0.15)', borderRadius: '12px', padding: '1.5rem', position: 'relative', overflow: 'hidden' }}>
         <div style={{ position: 'absolute', top: 0, right: 0, width: '4px', height: '100%', background: 'var(--color-info)' }} />
-        <h4 style={{ margin: '0 0 1rem 0', color: '#f8fafc', display: 'flex', alignItems: 'center', gap: '8px', justifyContent: 'flex-end' }}>
+        <h4 style={{ margin: '0 0 1rem 0', color: 'var(--w-slate-50)', display: 'flex', alignItems: 'center', gap: '8px', justifyContent: 'flex-end' }}>
           태국 (Thailand) 3대장: 프리미엄 가공 모델
           <Factory size={18} color="var(--color-info)" />
         </h4>
         <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
           {thaiData.map((co: any, i: number) => (
             <div key={i}>
-              <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.85rem', marginBottom: '6px', color: '#e2e8f0' }}>
+              <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.85rem', marginBottom: '6px', color: 'var(--w-slate-200)' }}>
                 <span style={{ color: 'var(--color-info)', fontWeight: 600 }}>가공육 {co.processedFocus}%</span>
                 <span>{co.company}</span>
               </div>

@@ -52,14 +52,14 @@ export function InsightNauruSwitch() {
         <ComposedChart data={nauruData} margin={{ top: 20, right: 30, left: 20, bottom: 5 }}>
           <ChartPatternDefs />
           <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" />
-          <XAxis dataKey="year" stroke="#94a3b8" />
-          <YAxis yAxisId="left" stroke="#94a3b8" unit="%" />
-          <YAxis yAxisId="right" orientation="right" stroke="#fbbf24" />
+          <XAxis dataKey="year" stroke="var(--w-slate-400)" />
+          <YAxis yAxisId="left" stroke="var(--w-slate-400)" unit="%" />
+          <YAxis yAxisId="right" orientation="right" stroke="var(--w-amber-400)" />
           <Tooltip contentStyle={{ backgroundColor: 'rgba(20, 28, 52, 0.9)', border: 'none', borderRadius: '8px' }} />
           <Legend />
-          <Bar yAxisId="left" dataKey="China_EU_Loin" name="🇨🇳 중국 EU 로인 M/S(%)" fill="#ef4444" radius={[4, 4, 0, 0]} />
-          <Bar yAxisId="left" dataKey="Ecuador_EU_Loin" name="🇪🇨 에콰도르 EU 로인 M/S(%)" fill="#10b981" radius={[4, 4, 0, 0]} />
-          <Line yAxisId="right" type="monotone" dataKey="Taiwan_PNA_Days" name="🇹🇼 대만 PNA 조업일수" stroke="#fbbf24" strokeWidth={3} />
+          <Bar yAxisId="left" dataKey="China_EU_Loin" name="🇨🇳 중국 EU 로인 M/S(%)" fill="var(--w-red-500)" radius={[4, 4, 0, 0]} />
+          <Bar yAxisId="left" dataKey="Ecuador_EU_Loin" name="🇪🇨 에콰도르 EU 로인 M/S(%)" fill="var(--w-emerald-500)" radius={[4, 4, 0, 0]} />
+          <Line yAxisId="right" type="monotone" dataKey="Taiwan_PNA_Days" name="🇹🇼 대만 PNA 조업일수" stroke="var(--w-amber-400)" strokeWidth={3} />
         </ComposedChart>
       }
       takeaway={{
@@ -108,13 +108,13 @@ export function InsightIOCollapse() {
             </linearGradient>
           </defs>
           <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" />
-          <XAxis dataKey="month" stroke="#94a3b8" />
-          <YAxis yAxisId="left" stroke="#94a3b8" domain={[0, 100]} unit="%" />
-          <YAxis yAxisId="right" orientation="right" stroke="#ef4444" unit="$" />
+          <XAxis dataKey="month" stroke="var(--w-slate-400)" />
+          <YAxis yAxisId="left" stroke="var(--w-slate-400)" domain={[0, 100]} unit="%" />
+          <YAxis yAxisId="right" orientation="right" stroke="var(--w-red-500)" unit="$" />
           <Tooltip contentStyle={{ backgroundColor: 'rgba(20, 28, 52, 0.9)', border: 'none', borderRadius: '8px' }} />
           <Legend />
           <Area yAxisId="left" type="monotone" dataKey="IO_Supply" name="IO 공급 지수" stroke="#f97316" fill="url(#ioGrad)" />
-          <Line yAxisId="right" type="monotone" dataKey="SKJ_Price" name="방콕 SKJ 현물가($/t)" stroke="#ef4444" strokeWidth={3} dot={{ r: 4 }} />
+          <Line yAxisId="right" type="monotone" dataKey="SKJ_Price" name="방콕 SKJ 현물가($/t)" stroke="var(--w-red-500)" strokeWidth={3} dot={{ r: 4 }} />
         </ComposedChart>
       }
       takeaway={{
@@ -161,8 +161,8 @@ export function InsightEU18C() {
         <BarChart data={eu18Data} margin={{ top: 20, right: 30, left: 20, bottom: 5 }} layout="vertical">
           <ChartPatternDefs />
           <CartesianGrid strokeDasharray="3 3" horizontal={false} stroke="rgba(255,255,255,0.1)" />
-          <XAxis type="number" stroke="#94a3b8" unit="%" domain={[0, 50]} />
-          <YAxis dataKey="category" type="category" stroke="#94a3b8" width={140} />
+          <XAxis type="number" stroke="var(--w-slate-400)" unit="%" domain={[0, 50]} />
+          <YAxis dataKey="category" type="category" stroke="var(--w-slate-400)" width={140} />
           <Tooltip contentStyle={{ backgroundColor: 'rgba(20, 28, 52, 0.9)', border: 'none', borderRadius: '8px' }} />
           <Bar dataKey="value" name="글로벌 선단 비율" radius={[0, 4, 4, 0]}>
             {eu18Data.map((entry, idx) => <Cell key={idx} fill={entry.fill} />)}

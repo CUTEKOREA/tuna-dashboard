@@ -21,7 +21,7 @@ export default function FishStatReplacementRadar() {
         <TermTooltip term="어종 교체 현상" description="원가 상승을 버티지 못한 B2B 시장(통조림, 애견 등)이 전갱이, 정어리로 원료를 대거 교체하는 수요 이동 현상" />
       </div>
       
-      <div style={{ padding: '16px', background: 'rgba(239, 68, 68, 0.1)', borderLeft: '4px solid #ef4444', borderRadius: '4px', marginBottom: '24px', display: 'flex', gap: '12px' }}>
+      <div style={{ padding: '16px', background: 'rgba(239, 68, 68, 0.1)', borderLeft: '4px solid var(--w-red-500)', borderRadius: '4px', marginBottom: '24px', display: 'flex', gap: '12px' }}>
         <AlertTriangle size={20} color="var(--color-danger)" style={{ flexShrink: 0 }} />
         <div style={{ fontSize: '13px', lineHeight: '1.6' }}>
           <strong style={{ color: 'var(--color-danger)' }}>Situation:</strong> 펫푸드 및 염가 통조림 영역에서 전갱이/정어리가 고등어의 파이를 완전히 잠식.<br/>

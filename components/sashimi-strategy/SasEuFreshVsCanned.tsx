@@ -21,7 +21,7 @@ const priceData = [
 
 const tooltipStyle = {
   backgroundColor: 'rgba(20, 28, 52, 0.95)', border: '1px solid rgba(148,163,184,0.15)',
-  borderRadius: 8, color: '#e2e8f0', fontSize: '0.78rem', padding: '8px 12px',
+  borderRadius: 8, color: 'var(--w-slate-200)', fontSize: '0.78rem', padding: '8px 12px',
 };
 
 const PriceTooltip = ({ active, payload, label }: any) => {
@@ -31,11 +31,11 @@ const PriceTooltip = ({ active, payload, label }: any) => {
     <div style={tooltipStyle}>
       <div style={{ fontWeight: 700, marginBottom: 4 }}>프랑스 {label}</div>
       <div style={{ display: 'flex', justifyContent: 'space-between', gap: 16 }}>
-        <span style={{ color: '#94a3b8' }}>가계 평균 단가</span>
+        <span style={{ color: 'var(--w-slate-400)' }}>가계 평균 단가</span>
         <span style={{ fontWeight: 700, color: d.color }}>{d.price} €/kg</span>
       </div>
       <div style={{ display: 'flex', justifyContent: 'space-between', gap: 16, marginTop: 2 }}>
-        <span style={{ color: '#94a3b8' }}>가계 소비량 (2024)</span>
+        <span style={{ color: 'var(--w-slate-400)' }}>가계 소비량 (2024)</span>
         <span style={{ fontWeight: 600 }}>{d.vol}</span>
       </div>
     </div>
@@ -62,17 +62,17 @@ export default function SasEuFreshVsCanned() {
         <div style={{ display: 'flex', flexDirection: 'column', gap: '14px', width: '100%' }}>
           {/* 단가 비교 바 */}
           <div>
-            <div style={{ fontSize: '0.7rem', color: '#94a3b8', marginBottom: '6px', fontWeight: 600 }}>프랑스 가계 단가 — 신선 vs 통조림 (€/kg)</div>
+            <div style={{ fontSize: '0.7rem', color: 'var(--w-slate-400)', marginBottom: '6px', fontWeight: 600 }}>프랑스 가계 단가 — 신선 vs 통조림 (€/kg)</div>
             <div style={{ height: '120px', width: '100%' }}>
               <SafeResponsiveContainer width="100%" height="100%">
                 <BarChart data={priceData} layout="vertical" margin={{ top: 0, right: 56, left: 8, bottom: 0 }}>
                   <CartesianGrid strokeDasharray="3 3" stroke="rgba(148,163,184,0.08)" horizontal={false} />
-                  <XAxis type="number" domain={[0, 26]} tick={{ fill: '#94a3b8', fontSize: 11 }} axisLine={false} tickLine={false} tickFormatter={(v: unknown) => `${v}€`} />
-                  <YAxis type="category" dataKey="name" width={76} tick={{ fill: '#cbd5e1', fontSize: 11 }} axisLine={false} tickLine={false} />
+                  <XAxis type="number" domain={[0, 26]} tick={{ fill: 'var(--w-slate-400)', fontSize: 11 }} axisLine={false} tickLine={false} tickFormatter={(v: unknown) => `${v}€`} />
+                  <YAxis type="category" dataKey="name" width={76} tick={{ fill: 'var(--w-slate-300)', fontSize: 11 }} axisLine={false} tickLine={false} />
                   <Tooltip content={<PriceTooltip />} cursor={{ fill: 'rgba(148,163,184,0.06)' }} />
                   <Bar dataKey="price" radius={[0, 4, 4, 0]} isAnimationActive={false} barSize={26}>
                     {priceData.map((d, i) => <Cell key={i} fill={d.color} fillOpacity={0.85} />)}
-                    <LabelList dataKey="price" position="right" formatter={(v: unknown) => `${v} €/kg`} style={{ fill: '#94a3b8', fontSize: 10, fontWeight: 600 }} />
+                    <LabelList dataKey="price" position="right" formatter={(v: unknown) => `${v} €/kg`} style={{ fill: 'var(--w-slate-400)', fontSize: 10, fontWeight: 600 }} />
                   </Bar>
                 </BarChart>
               </SafeResponsiveContainer>
@@ -82,26 +82,26 @@ export default function SasEuFreshVsCanned() {
           {/* KPI: 스페인 1인당 + EU 자급률 */}
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '8px' }}>
             <div style={{ background: 'rgba(16,185,129,0.08)', border: '1px solid rgba(16,185,129,0.25)', borderRadius: '10px', padding: '10px 8px', textAlign: 'center' }}>
-              <div style={{ fontSize: '0.58rem', color: '#94a3b8' }}>스페인 1인 신선</div>
+              <div style={{ fontSize: '0.58rem', color: 'var(--w-slate-400)' }}>스페인 1인 신선</div>
               <div style={{ fontSize: '0.95rem', fontWeight: 800, color: FRESH }}>0.38kg</div>
-              <div style={{ fontSize: '0.54rem', color: '#64748b' }}>통조림은 1.95kg</div>
+              <div style={{ fontSize: '0.54rem', color: 'var(--w-slate-500)' }}>통조림은 1.95kg</div>
             </div>
             <div style={{ background: 'rgba(56,189,248,0.08)', border: '1px solid rgba(56,189,248,0.25)', borderRadius: '10px', padding: '10px 8px', textAlign: 'center' }}>
-              <div style={{ fontSize: '0.58rem', color: '#94a3b8' }}>EU 1인 참치소비</div>
-              <div style={{ fontSize: '0.95rem', fontWeight: 800, color: '#38bdf8' }}>2.68kg</div>
-              <div style={{ fontSize: '0.54rem', color: '#64748b' }}>수산물 소비 1위</div>
+              <div style={{ fontSize: '0.58rem', color: 'var(--w-slate-400)' }}>EU 1인 참치소비</div>
+              <div style={{ fontSize: '0.95rem', fontWeight: 800, color: 'var(--w-sky-400)' }}>2.68kg</div>
+              <div style={{ fontSize: '0.54rem', color: 'var(--w-slate-500)' }}>수산물 소비 1위</div>
             </div>
             <div style={{ background: 'rgba(239,68,68,0.08)', border: '1px solid rgba(239,68,68,0.25)', borderRadius: '10px', padding: '10px 8px', textAlign: 'center' }}>
-              <div style={{ fontSize: '0.58rem', color: '#94a3b8' }}>EU 자급률</div>
-              <div style={{ fontSize: '0.95rem', fontWeight: 800, color: '#ef4444' }}>35%</div>
-              <div style={{ fontSize: '0.54rem', color: '#64748b' }}>수입 의존 구조</div>
+              <div style={{ fontSize: '0.58rem', color: 'var(--w-slate-400)' }}>EU 자급률</div>
+              <div style={{ fontSize: '0.95rem', fontWeight: 800, color: 'var(--w-red-500)' }}>35%</div>
+              <div style={{ fontSize: '0.54rem', color: 'var(--w-slate-500)' }}>수입 의존 구조</div>
             </div>
           </div>
 
           {/* 채널 프리미엄 */}
           <div style={{ display: 'flex', alignItems: 'center', gap: '8px', padding: '10px 14px', background: 'rgba(16,185,129,0.06)', border: '1px solid rgba(16,185,129,0.18)', borderRadius: '10px' }}>
             <Store size={16} color={FRESH} style={{ flexShrink: 0 }} />
-            <span style={{ fontSize: '0.72rem', color: '#cbd5e1' }}>
+            <span style={{ fontSize: '0.72rem', color: 'var(--w-slate-300)' }}>
               프랑스 신선참치 채널: 대형마트 <b>75.8%</b> · 생선전문점 8.8% — 전문점 단가 <b style={{ color: FRESH }}>24.6€ vs 마트 20.5€ (+20%)</b>
             </span>
           </div>

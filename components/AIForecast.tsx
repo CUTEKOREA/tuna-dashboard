@@ -77,7 +77,7 @@ const CustomTooltip = ({ active, payload, label }: any) => {
   if (active && payload && payload.length) {
     return (
       <div style={{ background: '#0F172A', border: '1px solid rgba(255,255,255,0.1)', padding: '12px', borderRadius: '8px', zIndex: 1000, boxShadow: '0 8px 32px rgba(0,0,0,0.5)' }}>
-        <p style={{ color: '#94a3b8', margin: '0 0 8px 0', fontSize: '12px', fontWeight: 'bold' }}>{label}</p>
+        <p style={{ color: 'var(--w-slate-400)', margin: '0 0 8px 0', fontSize: '12px', fontWeight: 'bold' }}>{label}</p>
         {payload.map((entry: any, index: number) => {
           if (entry.value == null) return null;
           return (
@@ -115,7 +115,7 @@ const renderAIForecastDot = (props: any) => {
 
     return (
       <g key={`dot-${index}`}>
-        <circle cx={cx} cy={cy} r={5} fill={dotColor} stroke="#1a2442" strokeWidth={2} />
+        <circle cx={cx} cy={cy} r={5} fill={dotColor} stroke="var(--w-navy-900)" strokeWidth={2} />
         <text 
           x={cx} 
           y={cy - 12} 
@@ -134,7 +134,7 @@ const renderAIForecastDot = (props: any) => {
   // Normal points
   if (isEst && payload.month !== '26-04') return null; // Don't render dots for standard forecast to keep it clean unless it's a spike, actually let's just always render the custom spike dots and nothing else for Est, or keep the original behavior:
   
-  return <circle key={`dot-${index}`} cx={cx} cy={cy} r={4} fill="#1a2442" stroke={dotColor} strokeWidth={2} />;
+  return <circle key={`dot-${index}`} cx={cx} cy={cy} r={4} fill="var(--w-navy-900)" stroke={dotColor} strokeWidth={2} />;
 };
 
 export default function AIForecast({ hideHeader = false }: { hideHeader?: boolean }) {
@@ -145,7 +145,7 @@ export default function AIForecast({ hideHeader = false }: { hideHeader?: boolea
     <div className={styles.container}>
       {!hideHeader && (
         <div className={styles.header}>
-          <Cpu size={22} style={{ color: '#8b5cf6' }} />
+          <Cpu size={22} style={{ color: 'var(--w-violet-500)' }} />
           <TermTooltip term="AI 유가-통조림 단가 예측 시뮬레이터" description="과거 5개년치 글로벌 유가(Brent)와 방콕 참치(SKJ) 수입 단가 사이의 상관관계를 머신러닝으로 분석하여, 지정학적 시나리오별로 향후 6개월간의 원어가격 변동을 예측하는 인공지능 시뮬레이터입니다." />
         </div>
       )}
@@ -165,7 +165,7 @@ export default function AIForecast({ hideHeader = false }: { hideHeader?: boolea
         <div 
           className={`${styles.scenarioBtn} ${scenario === 'base' ? styles.scenarioActive : ''}`}
           onClick={() => setScenario('base')}
-          style={{ borderColor: scenario === 'base' ? '#38bdf8' : '' }}
+          style={{ borderColor: scenario === 'base' ? 'var(--w-sky-400)' : '' }}
         >
           <div className={styles.scenarioTitle}>
             <Minus size={16} color="#38bdf8" /> 기본(Base) 시나리오
@@ -190,7 +190,7 @@ export default function AIForecast({ hideHeader = false }: { hideHeader?: boolea
           <span><TermTooltip term="향후 6개월 단가 전이 예측 (Lag Effect)" description="유가가 급등락할 때 참치 원어가격에 반영되기까지 보통 3~6개월의 시차가 발생(Time Lag)하는 현상을 반영한 선형 예측 그래프입니다." /></span>
           <div className={styles.legends}>
             <div className={styles.legendItem}><div className={styles.colorBox} style={{ background: 'var(--color-warning)' }} /><TermTooltip term="SKJ 과거 실적" description="가다랑어(Skipjack)의 과거 방콕 수입 단가(CFR) 실제 거래 기록입니다." /></div>
-            <div className={styles.legendItem}><div className={styles.colorBox} style={{ background: 'var(--color-danger)', border: '1px dashed #ef4444' }} /><TermTooltip term="SKJ 예측 (Est)" description="Estimated(예상치)의 약자로 AI가 계산한 가다랑어의 향후 예상 가격입니다." /></div>
+            <div className={styles.legendItem}><div className={styles.colorBox} style={{ background: 'var(--color-danger)', border: '1px dashed var(--w-red-500)' }} /><TermTooltip term="SKJ 예측 (Est)" description="Estimated(예상치)의 약자로 AI가 계산한 가다랑어의 향후 예상 가격입니다." /></div>
             <div className={styles.legendItem}><div className={styles.colorBox} style={{ background: 'var(--color-info)' }} /><TermTooltip term="Brent유 실적" description="북해산 브렌트유(Brent crude oil)의 1배럴당 과거 실제 국제가격 추이입니다." /></div>
             <div className={styles.legendItem}><div className={styles.colorBox} style={{ background: '#60a5fa', border: '1px dashed #60a5fa' }} /><TermTooltip term="Brent유 (Est)" description="사용자가 선택한 시나리오에 따른 향후 예상 유가입니다." /></div>
           </div>
@@ -199,9 +199,9 @@ export default function AIForecast({ hideHeader = false }: { hideHeader?: boolea
         <SafeResponsiveContainer width="100%" height={280}>
           <LineChart data={data} margin={{ top: 10, right: 10, left: -20, bottom: 0 }}>
             <CartesianGrid strokeDasharray="3 3" stroke="rgba(140,170,255,0.10)" vertical={false} />
-            <XAxis dataKey="month" stroke="#64748b" fontSize={12} tickLine={false} axisLine={false} />
-            <YAxis yAxisId="left" stroke="#64748b" fontSize={12} tickLine={false} axisLine={false} tickFormatter={(val) => `$${Number(val).toLocaleString()}`} />
-            <YAxis yAxisId="right" orientation="right" stroke="#64748b" fontSize={12} tickLine={false} axisLine={false} />
+            <XAxis dataKey="month" stroke="var(--w-slate-500)" fontSize={12} tickLine={false} axisLine={false} />
+            <YAxis yAxisId="left" stroke="var(--w-slate-500)" fontSize={12} tickLine={false} axisLine={false} tickFormatter={(val) => `$${Number(val).toLocaleString()}`} />
+            <YAxis yAxisId="right" orientation="right" stroke="var(--w-slate-500)" fontSize={12} tickLine={false} axisLine={false} />
             <Tooltip content={<CustomTooltip />} />
             
             <ReferenceLine x="26-03" stroke="rgba(255,255,255,0.2)" strokeDasharray="3 3" />
@@ -215,7 +215,7 @@ export default function AIForecast({ hideHeader = false }: { hideHeader?: boolea
             
             {/* Historical Lines */}
             <Line yAxisId="right" type="monotone" dataKey="skj" name="SKJ Raw Material" stroke="var(--color-warning)" strokeWidth={3} dot={renderAIForecastDot} activeDot={{ r: 6 }} />
-            <Line yAxisId="left" type="stepAfter" dataKey="mgo" name="Brent Oil ($/bbl)" stroke="var(--color-info)" strokeWidth={3} dot={{ r: 4, fill: '#1a2442', strokeWidth: 2 }} />
+            <Line yAxisId="left" type="stepAfter" dataKey="mgo" name="Brent Oil ($/bbl)" stroke="var(--color-info)" strokeWidth={3} dot={{ r: 4, fill: 'var(--w-navy-900)', strokeWidth: 2 }} />
             
             {/* Forecast Lines */}
             <Line yAxisId="right" type="monotone" dataKey="skjEst" name="SKJ Forecast" stroke="var(--color-danger)" strokeWidth={3} strokeDasharray="5 5" dot={false} activeDot={{ r: 6 }} animationDuration={1000} />

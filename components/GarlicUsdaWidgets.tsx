@@ -31,9 +31,9 @@ function buildChart(w: Widget): React.ReactElement {
         <Pie data={data} dataKey={pieKey} nameKey={w.xKey}
           cx="50%" cy="50%" innerRadius={45} outerRadius={80} paddingAngle={2}
           label={(e: any) => `${e[w.xKey]} ${e[pieKey]}%`}>
-          {data.map((d: any, i: number) => (<Cell key={i} fill={d.fill || '#f59e0b'} />))}
+          {data.map((d: any, i: number) => (<Cell key={i} fill={d.fill || 'var(--w-amber-500)'} />))}
         </Pie>
-        <Tooltip contentStyle={{ background: 'rgba(10, 16, 40, 0.95)', border: '1px solid rgba(255,255,255,0.2)', color: '#e2e8f0' }} formatter={(v: any) => [`${v}%`, '비중']} />
+        <Tooltip contentStyle={{ background: 'rgba(10, 16, 40, 0.95)', border: '1px solid rgba(255,255,255,0.2)', color: 'var(--w-slate-200)' }} formatter={(v: any) => [`${v}%`, '비중']} />
       </PieChart>
     );
   }
@@ -44,7 +44,7 @@ function buildChart(w: Widget): React.ReactElement {
         <CartesianGrid strokeDasharray="3 3" stroke="rgba(140,170,255,0.12)" vertical={false} />
         <XAxis dataKey={w.xKey} stroke="rgba(255,255,255,0.3)" tick={{ fill: 'rgba(255,255,255,0.6)', fontSize: 10 }} angle={-15} textAnchor="end" height={60} />
         <YAxis stroke="rgba(255,255,255,0.2)" tick={{ fill: 'rgba(255,255,255,0.6)', fontSize: 10 }} tickFormatter={(v: number) => COMMA(v)} />
-        <Tooltip contentStyle={{ background: 'rgba(10, 16, 40, 0.95)', border: '1px solid rgba(255,255,255,0.2)', color: '#e2e8f0' }} formatter={(v: any) => COMMA(Number(v))} />
+        <Tooltip contentStyle={{ background: 'rgba(10, 16, 40, 0.95)', border: '1px solid rgba(255,255,255,0.2)', color: 'var(--w-slate-200)' }} formatter={(v: any) => COMMA(Number(v))} />
         <Legend wrapperStyle={{ fontSize: '11px' }} />
         {(w.bars || []).map((b) => (<Bar key={b.key} dataKey={b.key} name={b.name} fill={b.color} />))}
       </BarChart>
@@ -57,7 +57,7 @@ function buildChart(w: Widget): React.ReactElement {
       <XAxis dataKey={w.xKey} stroke="rgba(255,255,255,0.3)" tick={{ fill: 'rgba(255,255,255,0.6)', fontSize: 10 }} angle={-15} textAnchor="end" height={50} />
       <YAxis yAxisId="left" stroke="rgba(255,255,255,0.2)" tick={{ fill: 'rgba(255,255,255,0.6)', fontSize: 10 }} tickFormatter={(v: number) => COMMA(v)} />
       <YAxis yAxisId="right" orientation="right" stroke="rgba(220,38,38,0.5)" tick={{ fill: 'rgba(220,38,38,0.7)', fontSize: 10 }} tickFormatter={(v: number) => COMMA(v)} />
-      <Tooltip contentStyle={{ background: 'rgba(10, 16, 40, 0.95)', border: '1px solid rgba(255,255,255,0.2)', color: '#e2e8f0' }} formatter={(v: any) => COMMA(Number(v))} />
+      <Tooltip contentStyle={{ background: 'rgba(10, 16, 40, 0.95)', border: '1px solid rgba(255,255,255,0.2)', color: 'var(--w-slate-200)' }} formatter={(v: any) => COMMA(Number(v))} />
       <Legend wrapperStyle={{ fontSize: '11px' }} />
       {(w.bars || []).map((b) => (<Bar key={b.key} yAxisId="left" dataKey={b.key} name={b.name} fill={b.color} />))}
       {(w.lines || []).map((l) => (<Line key={l.key} yAxisId="right" type="monotone" dataKey={l.key} name={l.name} stroke={l.color} strokeWidth={2} dot={{ fill: l.color, r: 3 }} />))}

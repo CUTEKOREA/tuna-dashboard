@@ -29,7 +29,7 @@ const CustomTooltip = ({ active, payload, label }: any) => {
         border: '1px solid rgba(148,163,184,0.15)',
         borderRadius: '8px',
         padding: '12px',
-        color: '#e2e8f0',
+        color: 'var(--w-slate-200)',
         fontSize: '0.82rem',
         boxShadow: '0 10px 25px rgba(0,0,0,0.4)',
       }}>
@@ -69,8 +69,8 @@ export default function MscRetailChannelPenetration() {
           <SafeResponsiveContainer width="100%" height="100%">
             <BarChart data={channelData} layout="vertical" margin={{ top: 10, right: 30, left: 10, bottom: 5 }}>
               <CartesianGrid strokeDasharray="3 3" opacity={0.15} horizontal={false} />
-              <XAxis type="number" domain={[0, 100]} stroke="#64748b" tick={{ fill: '#94a3b8', fontSize: 11 }} tickFormatter={(v) => `${v}%`} axisLine={false} tickLine={false} />
-              <YAxis type="category" dataKey="channel" width={75} stroke="#64748b" tick={{ fill: '#94a3b8', fontSize: 12, fontWeight: 600 }} axisLine={false} tickLine={false} />
+              <XAxis type="number" domain={[0, 100]} stroke="var(--w-slate-500)" tick={{ fill: 'var(--w-slate-400)', fontSize: 11 }} tickFormatter={(v) => `${v}%`} axisLine={false} tickLine={false} />
+              <YAxis type="category" dataKey="channel" width={75} stroke="var(--w-slate-500)" tick={{ fill: 'var(--w-slate-400)', fontSize: 12, fontWeight: 600 }} axisLine={false} tickLine={false} />
               <Tooltip content={<CustomTooltip />} cursor={{ fill: 'rgba(140,170,255,0.10)' }} />
               <Legend wrapperStyle={{ paddingTop: '10px', fontSize: '0.75rem' }} iconType="circle" />
               {countryBars.map((bar) => (

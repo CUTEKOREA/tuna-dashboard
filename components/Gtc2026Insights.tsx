@@ -82,7 +82,7 @@ export default function Gtc2026Insights() {
               <span style={{ fontSize: '0.75rem', fontWeight: 700, color: '#818cf8', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
                 아키텍처 스펙 및 기술 메커니즘 (METHODOLOGY)
               </span>
-              <p style={{ margin: 0, fontSize: '0.85rem', color: '#94a3b8', fontStyle: 'italic', lineHeight: 1.6 }}>
+              <p style={{ margin: 0, fontSize: '0.85rem', color: 'var(--w-slate-400)', fontStyle: 'italic', lineHeight: 1.6 }}>
                 {insight.methodology}
               </p>
             </div>

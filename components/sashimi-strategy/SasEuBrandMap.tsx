@@ -44,8 +44,8 @@ export default function SasEuBrandMap() {
               <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '6px' }}>
                 {c.rows.map(([k, v]) => (
                   <div key={k} style={{ display: 'flex', flexDirection: 'column', gap: '1px' }}>
-                    <span style={{ fontSize: '0.56rem', color: '#64748b' }}>{k}</span>
-                    <span style={{ fontSize: '0.68rem', fontWeight: 700, color: '#e2e8f0' }}>{v}</span>
+                    <span style={{ fontSize: '0.56rem', color: 'var(--w-slate-500)' }}>{k}</span>
+                    <span style={{ fontSize: '0.68rem', fontWeight: 700, color: 'var(--w-slate-200)' }}>{v}</span>
                   </div>
                 ))}
               </div>

@@ -31,7 +31,7 @@ export default function ShrimpFTAQuarterly() {
           <ChartPatternDefs />
           <CartesianGrid strokeDasharray="3 3" stroke="rgba(140,170,255,0.10)" vertical={false} />
           <XAxis dataKey="year" stroke="rgba(255,255,255,0.3)" tick={{ fill: 'rgba(255,255,255,0.5)', fontSize: 11 }} />
-          <YAxis yAxisId="left" stroke="rgba(255,255,255,0.2)" tickFormatter={(v) => `${v}천톤`} tick={{ fill: '#10b981', fontSize: 10 }} />
+          <YAxis yAxisId="left" stroke="rgba(255,255,255,0.2)" tickFormatter={(v) => `${v}천톤`} tick={{ fill: 'var(--w-emerald-500)', fontSize: 10 }} />
           <YAxis yAxisId="right" orientation="right" stroke="rgba(255,255,255,0.2)" tickFormatter={(v) => `$${v}M`} tick={{ fill: '#14b8a6', fontSize: 10 }} />
           <Tooltip
             contentStyle={tooltipStyle}
@@ -42,7 +42,7 @@ export default function ShrimpFTAQuarterly() {
             }}
           />
           <Legend wrapperStyle={{ fontSize: '11px' }} />
-          <Bar yAxisId="left" dataKey="volume" name="수입량" fill="#10b981" opacity={0.75} radius={[4, 4, 0, 0]} />
+          <Bar yAxisId="left" dataKey="volume" name="수입량" fill="var(--w-emerald-500)" opacity={0.75} radius={[4, 4, 0, 0]} />
           <Line yAxisId="right" type="monotone" dataKey="value" name="수입액" stroke="#5eead4" strokeWidth={2.5} dot={{ r: 4 }} />
         </ComposedChart>
       </ResponsiveContainer>
@@ -55,7 +55,7 @@ export default function ShrimpFTAQuarterly() {
         <ComposedChart data={qSeries} margin={{ top: 16, right: 20, left: -10, bottom: 5 }}>
           <CartesianGrid strokeDasharray="3 3" stroke="rgba(140,170,255,0.10)" vertical={false} />
           <XAxis dataKey="q" stroke="rgba(255,255,255,0.3)" tick={{ fill: 'rgba(255,255,255,0.5)', fontSize: 11 }} />
-          <YAxis yAxisId="left" stroke="rgba(255,255,255,0.2)" tickFormatter={(v) => `${v}천톤`} tick={{ fill: '#10b981', fontSize: 10 }} />
+          <YAxis yAxisId="left" stroke="rgba(255,255,255,0.2)" tickFormatter={(v) => `${v}천톤`} tick={{ fill: 'var(--w-emerald-500)', fontSize: 10 }} />
           <YAxis yAxisId="right" orientation="right" stroke="rgba(255,255,255,0.2)" tickFormatter={(v) => `$${v}M`} tick={{ fill: '#14b8a6', fontSize: 10 }} />
           <Tooltip
             contentStyle={tooltipStyle}
@@ -68,7 +68,7 @@ export default function ShrimpFTAQuarterly() {
           <Legend wrapperStyle={{ fontSize: '11px' }} />
           <Bar yAxisId="left" dataKey="qVolume" name="분기 수입량">
             {qSeries.map((d, i) => (
-              <Cell key={i} fill={d.q === '26Q1' ? '#10b981' : (d.q === '25Q4' ? '#fb923c' : '#34d399')} opacity={0.85} />
+              <Cell key={i} fill={d.q === '26Q1' ? 'var(--w-emerald-500)' : (d.q === '25Q4' ? '#fb923c' : 'var(--w-emerald-400)')} opacity={0.85} />
             ))}
           </Bar>
           <Line yAxisId="right" type="monotone" dataKey="cumValue" name="누적 수입액" stroke="#5eead4" strokeWidth={2} dot={{ r: 3 }} />
@@ -86,9 +86,9 @@ export default function ShrimpFTAQuarterly() {
           <YAxis stroke="rgba(255,255,255,0.2)" tickFormatter={(v) => `$${v}`} tick={{ fill: 'rgba(255,255,255,0.4)', fontSize: 10 }} domain={[6.5, 9]} />
           <Tooltip contentStyle={tooltipStyle} formatter={(val: any, name: any) => [`$${val}/kg`, name]} />
           <Legend wrapperStyle={{ fontSize: '11px' }} />
-          <Line type="monotone" dataKey="vietnam" name="베트남" stroke="#10b981" strokeWidth={2.5} dot={{ r: 4 }} />
+          <Line type="monotone" dataKey="vietnam" name="베트남" stroke="var(--w-emerald-500)" strokeWidth={2.5} dot={{ r: 4 }} />
           <Line type="monotone" dataKey="peru"    name="페루"   stroke="#fb923c" strokeWidth={2.5} dot={{ r: 4 }} />
-          <Line type="monotone" dataKey="china"   name="중국"   stroke="#38bdf8" strokeWidth={2.5} dot={{ r: 4 }} />
+          <Line type="monotone" dataKey="china"   name="중국"   stroke="var(--w-sky-400)" strokeWidth={2.5} dot={{ r: 4 }} />
         </ComposedChart>
       </ResponsiveContainer>
     </div>
@@ -104,7 +104,7 @@ export default function ShrimpFTAQuarterly() {
           <Tooltip contentStyle={tooltipStyle} formatter={(val: any) => [`${val > 0 ? '+' : ''}${val}%`, '전년 동기 대비']} />
           <Bar dataKey="delta" name="전년 동기 대비" radius={[0, 4, 4, 0]}>
             {origin2026.map((d, i) => (
-              <Cell key={i} fill={d.delta > 0 ? '#10b981' : '#ef4444'} opacity={0.85} />
+              <Cell key={i} fill={d.delta > 0 ? 'var(--w-emerald-500)' : 'var(--w-red-500)'} opacity={0.85} />
             ))}
           </Bar>
         </BarChart>
@@ -118,7 +118,7 @@ export default function ShrimpFTAQuarterly() {
         <PieChart>
           <Pie data={formMix} dataKey="value" nameKey="name" cx="50%" cy="50%" outerRadius={65} innerRadius={38} paddingAngle={2}
             label={({ name, value }) => `${name} ${value}%`} labelLine={false}
-            style={{ fontSize: '11px', fill: '#e2e8f0' }}>
+            style={{ fontSize: '11px', fill: 'var(--w-slate-200)' }}>
             {formMix.map((d, i) => <Cell key={i} fill={d.color} />)}
           </Pie>
           <Tooltip contentStyle={tooltipStyle} formatter={(val: any) => [`${val}%`, '비중']} />

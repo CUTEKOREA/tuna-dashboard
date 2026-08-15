@@ -194,8 +194,8 @@ export default function GalchiDashboard() {
 
   if (!data) return (
     <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh', flexDirection: 'column', gap: '1rem' }}>
-      <RefreshCcw size={32} style={{ color: '#38bdf8', animation: 'spin 1s linear infinite' }} />
-      <p style={{ color: '#94a3b8', fontSize: '1rem' }}>인텔리전스 로딩 중...</p>
+      <RefreshCcw size={32} style={{ color: 'var(--w-sky-400)', animation: 'spin 1s linear infinite' }} />
+      <p style={{ color: 'var(--w-slate-400)', fontSize: '1rem' }}>인텔리전스 로딩 중...</p>
     </div>
   );
 
@@ -544,7 +544,7 @@ export default function GalchiDashboard() {
   /* ─── Chart Renderer ─── */
   const renderChart = (widget: any) => {
     const d = widget.data;
-    if (!d || d.length === 0) return <div style={{height:'100%',display:'flex',alignItems:'center',justifyContent:'center',color:'#64748b'}}>데이터 없음</div>;
+    if (!d || d.length === 0) return <div style={{height:'100%',display:'flex',alignItems:'center',justifyContent:'center',color:'var(--w-slate-500)'}}>데이터 없음</div>;
 
     const formatVal = (v: any) => {
       if (typeof v !== 'number') return v;
@@ -564,8 +564,8 @@ export default function GalchiDashboard() {
               ))}
             </defs>
             <CartesianGrid strokeDasharray="3 3" stroke="rgba(140,170,255,0.12)" vertical={false} />
-            <XAxis dataKey={widget.xKey} stroke="#64748b" tick={{fontSize:10}} minTickGap={20} />
-            <YAxis stroke="#64748b" tick={{fontSize:10}} tickFormatter={formatVal} />
+            <XAxis dataKey={widget.xKey} stroke="var(--w-slate-500)" tick={{fontSize:10}} minTickGap={20} />
+            <YAxis stroke="var(--w-slate-500)" tick={{fontSize:10}} tickFormatter={formatVal} />
             <RechartsTooltip content={<CustomTooltip />} />
             <Legend wrapperStyle={{fontSize:'11px'}} verticalAlign="top" height={36} />
             {widget.areas?.map((a: any, i: number) => (
@@ -578,8 +578,8 @@ export default function GalchiDashboard() {
           <BarChart data={d}>
             <ChartPatternDefs />
             <CartesianGrid strokeDasharray="3 3" stroke="rgba(140,170,255,0.12)" vertical={false} />
-            <XAxis dataKey={widget.xKey} stroke="#64748b" tick={{fontSize:10}} minTickGap={20} />
-            <YAxis stroke="#64748b" tick={{fontSize:10}} tickFormatter={formatVal} />
+            <XAxis dataKey={widget.xKey} stroke="var(--w-slate-500)" tick={{fontSize:10}} minTickGap={20} />
+            <YAxis stroke="var(--w-slate-500)" tick={{fontSize:10}} tickFormatter={formatVal} />
             <RechartsTooltip content={<CustomTooltip />} />
             <Legend wrapperStyle={{fontSize:'11px'}} verticalAlign="top" height={36} />
             {widget.bars?.map((b: any, i: number) => {
@@ -593,10 +593,10 @@ export default function GalchiDashboard() {
           <ComposedChart data={d}>
             <ChartPatternDefs />
             <CartesianGrid strokeDasharray="3 3" stroke="rgba(140,170,255,0.12)" vertical={false} />
-            <XAxis dataKey={widget.xKey} stroke="#64748b" tick={{fontSize:10}} minTickGap={20} />
-            <YAxis yAxisId="left" stroke="#64748b" tick={{fontSize:10}} tickFormatter={formatVal} domain={[0, 'auto']} />
+            <XAxis dataKey={widget.xKey} stroke="var(--w-slate-500)" tick={{fontSize:10}} minTickGap={20} />
+            <YAxis yAxisId="left" stroke="var(--w-slate-500)" tick={{fontSize:10}} tickFormatter={formatVal} domain={[0, 'auto']} />
             {widget.dualAxis && (
-              <YAxis yAxisId="right" orientation="right" stroke="#64748b" tick={{fontSize:10}} tickFormatter={formatVal} domain={[0, 'auto']} />
+              <YAxis yAxisId="right" orientation="right" stroke="var(--w-slate-500)" tick={{fontSize:10}} tickFormatter={formatVal} domain={[0, 'auto']} />
             )}
             <RechartsTooltip content={<CustomTooltip unit={widget.unit} />} />
             <Legend wrapperStyle={{fontSize:'11px'}} verticalAlign="top" height={36} />
@@ -610,7 +610,7 @@ export default function GalchiDashboard() {
           </ComposedChart>
         );
       default:
-        return <div style={{color:'#64748b',textAlign:'center',marginTop:'40px'}}>지원 안 되는 차트</div>;
+        return <div style={{color:'var(--w-slate-500)',textAlign:'center',marginTop:'40px'}}>지원 안 되는 차트</div>;
     }
   };
 
@@ -722,7 +722,7 @@ export default function GalchiDashboard() {
                   <Ship size={12} /> 수입 통관 현황
                   {liveKcs.isLive && <span style={{ color: 'var(--color-success)', fontSize: '0.6rem' }}>●</span>}
                 </div>
-                <div style={{ fontSize: '1.3rem', fontWeight: 700, color: '#8b5cf6' }}>{Math.round(liveKcs.summary.totalWgt).toLocaleString()}<span style={{ fontSize: '0.75rem', color: 'var(--text-secondary)' }}>톤</span></div>
+                <div style={{ fontSize: '1.3rem', fontWeight: 700, color: 'var(--w-violet-500)' }}>{Math.round(liveKcs.summary.totalWgt).toLocaleString()}<span style={{ fontSize: '0.75rem', color: 'var(--text-secondary)' }}>톤</span></div>
                 <div style={{ fontSize: '0.72rem', color: 'var(--text-secondary)', marginTop: '2px' }}>{liveKcs.year || '2025'}년 HSK 0303.89-2000 · 중국 {liveKcs.summary.cnPct}% · CIF ${liveKcs.summary.cifPerKg}/kg</div>
               </div>
             )}

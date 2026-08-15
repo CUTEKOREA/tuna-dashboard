@@ -105,7 +105,7 @@ export default function TunaAtuna8YPrice() {
             border: mode === k ? '1px solid rgba(14,165,233,0.5)' : '1px solid rgba(255,255,255,0.1)',
             borderRadius: '4px',
             fontSize: '0.74rem',
-            color: mode === k ? '#7dd3fc' : '#94a3b8',
+            color: mode === k ? '#7dd3fc' : 'var(--w-slate-400)',
             cursor: 'pointer',
           }}
         >
@@ -131,7 +131,7 @@ export default function TunaAtuna8YPrice() {
         domain={['auto', 'auto']}
       />
       <Tooltip
-        contentStyle={{ background: 'rgba(10, 16, 40, 0.95)', border: '1px solid rgba(255,255,255,0.2)', color: '#e2e8f0', fontSize: '0.78rem' }}
+        contentStyle={{ background: 'rgba(10, 16, 40, 0.95)', border: '1px solid rgba(255,255,255,0.2)', color: 'var(--w-slate-200)', fontSize: '0.78rem' }}
         formatter={(v: any) => v ? COMMA(Number(v)) + '/톤' : '-'}
       />
       <Legend wrapperStyle={{ fontSize: '10px' }} iconSize={8} />
@@ -139,7 +139,7 @@ export default function TunaAtuna8YPrice() {
       {mode === 'avg' && (
         <>
           <ReferenceLine y={stats.skjAvg} stroke="#0ea5e9" strokeDasharray="3 3" opacity={0.4} label={{ value: `SKJ 평균 $${stats.skjAvg}`, position: 'insideRight', fill: '#0ea5e9', fontSize: 10 }} />
-          <ReferenceLine y={stats.yfAvg} stroke="#f59e0b" strokeDasharray="3 3" opacity={0.4} label={{ value: `YFT 평균 $${stats.yfAvg}`, position: 'insideRight', fill: '#f59e0b', fontSize: 10 }} />
+          <ReferenceLine y={stats.yfAvg} stroke="var(--w-amber-500)" strokeDasharray="3 3" opacity={0.4} label={{ value: `YFT 평균 $${stats.yfAvg}`, position: 'insideRight', fill: 'var(--w-amber-500)', fontSize: 10 }} />
         </>
       )}
       {currentKeys.map((k) => (
@@ -172,7 +172,7 @@ export default function TunaAtuna8YPrice() {
       cardDesc="로컬 CSV (skjbkk.csv) 월별 파싱 — 방콕 기준 가다랑어 최근 8년 월별 거래가(최신 2026-05). YFT는 SKJ 대비 58% 역사적 프리미엄 적용 추정치."
       telemetry={{ status: data.length > 0 ? 'SYNCED' : 'STATIC', syncDate: data.length > 0 ? stats.lastMonth : undefined }}
       customBody={buttons}
-      chart={loading ? <div style={{ color: '#64748b', textAlign: 'center', marginTop: '100px' }}>데이터 로딩 중...</div> : chart}
+      chart={loading ? <div style={{ color: 'var(--w-slate-500)', textAlign: 'center', marginTop: '100px' }}>데이터 로딩 중...</div> : chart}
       chartHeight={280}
       takeaway={{
         situation: sit,

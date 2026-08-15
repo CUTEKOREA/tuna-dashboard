@@ -27,9 +27,9 @@ export function WidgetRoeMarginSpread() {
         <ComposedChart layout="vertical" data={roeData} margin={{ top: 10, right: 30, left: -20, bottom: 5 }}>
           <ChartPatternDefs />
           <CartesianGrid strokeDasharray="3 3" stroke="rgba(140,170,255,0.10)" horizontal={false} />
-          <XAxis type="number" stroke="#94a3b8" fontSize={11} tickFormatter={(v)=>`${v}%`} />
-          <YAxis dataKey="category" type="category" stroke="#cbd5e1" fontSize={10} width={150} tick={{fill: '#e2e8f0'}} />
-          <RechartsTooltip contentStyle={{ backgroundColor: '#1a2442', border: 'none', color: 'var(--text-primary)' }} />
+          <XAxis type="number" stroke="var(--w-slate-400)" fontSize={11} tickFormatter={(v)=>`${v}%`} />
+          <YAxis dataKey="category" type="category" stroke="var(--w-slate-300)" fontSize={10} width={150} tick={{fill: 'var(--w-slate-200)'}} />
+          <RechartsTooltip contentStyle={{ backgroundColor: 'var(--w-navy-900)', border: 'none', color: 'var(--text-primary)' }} />
           <Bar dataKey="margin" name="최종 영업 이익률 (Margin %)" fill="var(--color-success)" barSize={20} radius={[0, 4, 4, 0]} />
         </ComposedChart>
       }
@@ -78,10 +78,10 @@ export function WidgetPriceTransferResistance() {
       chart={
         <ScatterChart margin={{ top: 20, right: 30, bottom: 20, left: 0 }}>
           <CartesianGrid strokeDasharray="3 3" stroke="rgba(140,170,255,0.10)" />
-          <XAxis dataKey="priceInc" type="number" name="판매가 인상률" tickFormatter={(v)=>`+${v}%`} stroke="#94a3b8" />
-          <YAxis dataKey="saleVol" type="number" name="판매량 유지율" tickFormatter={(v)=>`${v}%`} stroke="#94a3b8" domain={[40, 110]} />
+          <XAxis dataKey="priceInc" type="number" name="판매가 인상률" tickFormatter={(v)=>`+${v}%`} stroke="var(--w-slate-400)" />
+          <YAxis dataKey="saleVol" type="number" name="판매량 유지율" tickFormatter={(v)=>`${v}%`} stroke="var(--w-slate-400)" domain={[40, 110]} />
           <ZAxis dataKey="prod" type="category" name="제품군" />
-          <RechartsTooltip cursor={{ strokeDasharray: '3 3' }} contentStyle={{ backgroundColor: '#1a2442', border: '1px solid #334155' }} />
+          <RechartsTooltip cursor={{ strokeDasharray: '3 3' }} contentStyle={{ backgroundColor: 'var(--w-navy-900)', border: '1px solid #334155' }} />
           <Scatter name="전가 수요 감소 트렌드" data={transferData} fill="#fca5a5" line={{ stroke: '#fca5a5', strokeWidth: 2 }} />
         </ScatterChart>
       }
@@ -128,11 +128,11 @@ export function WidgetMSCPremiumSpread() {
       chart={
         <AreaChart data={mscData} margin={{ top: 10, right: 30, left: 0, bottom: 5 }}>
           <CartesianGrid strokeDasharray="3 3" stroke="rgba(140,170,255,0.10)" vertical={false} />
-          <XAxis dataKey="year" stroke="#94a3b8" fontSize={12} />
-          <YAxis stroke="#94a3b8" fontSize={12} domain={[1500, 3500]} tickFormatter={(v)=>`$${v}`} />
-          <RechartsTooltip contentStyle={{ backgroundColor: '#1a2442', border: '1px solid rgba(255,255,255,0.1)' }} />
+          <XAxis dataKey="year" stroke="var(--w-slate-400)" fontSize={12} />
+          <YAxis stroke="var(--w-slate-400)" fontSize={12} domain={[1500, 3500]} tickFormatter={(v)=>`$${v}`} />
+          <RechartsTooltip contentStyle={{ backgroundColor: 'var(--w-navy-900)', border: '1px solid rgba(255,255,255,0.1)' }} />
           <Legend wrapperStyle={{ fontSize: '12px' }} />
-          <Area type="monotone" dataKey="mscPrice" name="MSC 인증 프리미엄 단가" stroke="#8b5cf6" fill="#8b5cf6" fillOpacity={0.3} />
+          <Area type="monotone" dataKey="mscPrice" name="MSC 인증 프리미엄 단가" stroke="var(--w-violet-500)" fill="var(--w-violet-500)" fillOpacity={0.3} />
           <Area type="monotone" dataKey="normalPrice" name="일반 비인증 단가" stroke="#475569" fill="#475569" fillOpacity={0.1} />
         </AreaChart>
       }
@@ -181,9 +181,9 @@ export function WidgetFactoryAutomation() {
         <ComposedChart data={bepData} margin={{ top: 10, right: 30, left: 0, bottom: 5 }}>
           <ChartPatternDefs />
           <CartesianGrid strokeDasharray="3 3" stroke="rgba(140,170,255,0.10)" />
-          <XAxis dataKey="year" stroke="#94a3b8" fontSize={12} />
-          <YAxis stroke="#cbd5e1" fontSize={12} domain={[1000, 3000]} tickFormatter={(v)=>`₩${v}`} />
-          <RechartsTooltip contentStyle={{ backgroundColor: '#1a2442', border: '1px solid rgba(255,255,255,0.1)' }} />
+          <XAxis dataKey="year" stroke="var(--w-slate-400)" fontSize={12} />
+          <YAxis stroke="var(--w-slate-300)" fontSize={12} domain={[1000, 3000]} tickFormatter={(v)=>`₩${v}`} />
+          <RechartsTooltip contentStyle={{ backgroundColor: 'var(--w-navy-900)', border: '1px solid rgba(255,255,255,0.1)' }} />
           <Legend wrapperStyle={{ fontSize: '12px' }} />
           <Area type="monotone" dataKey="manualCost" name="기존 수작업 1톤당 임가공비" fill="#f43f5e" fillOpacity={0.2} stroke="#f43f5e" strokeWidth={2} />
           <Line type="monotone" dataKey="robotCost" name="자동화 로봇 1톤당 공정비 (상각 포함)" stroke="var(--color-success)" strokeWidth={3} dot={{r: 5}} />
@@ -232,13 +232,13 @@ export const WidgetReeferCapacity = () => {
         <ComposedChart data={dataReeferCapacity} margin={{ top: 10, right: 10, left: -20, bottom: 5 }}>
           <ChartPatternDefs />
           <CartesianGrid strokeDasharray="3 3" stroke="rgba(140,170,255,0.10)" />
-          <XAxis dataKey="month" stroke="#94a3b8" fontSize={12} />
-          <YAxis yAxisId="left" stroke="#94a3b8" fontSize={11} tickFormatter={(v)=>`${v}%`} domain={[60, 100]} />
-          <YAxis yAxisId="right" orientation="right" stroke="#06b6d4" fontSize={11} tickFormatter={(v)=>`$${v}`} />
-          <RechartsTooltip contentStyle={{ backgroundColor: '#1a2442', border: 'none', color: 'var(--text-primary)' }} />
-          <Legend wrapperStyle={{ fontSize: '11px', color: '#cbd5e1' }} />
+          <XAxis dataKey="month" stroke="var(--w-slate-400)" fontSize={12} />
+          <YAxis yAxisId="left" stroke="var(--w-slate-400)" fontSize={11} tickFormatter={(v)=>`${v}%`} domain={[60, 100]} />
+          <YAxis yAxisId="right" orientation="right" stroke="var(--w-cyan-500)" fontSize={11} tickFormatter={(v)=>`$${v}`} />
+          <RechartsTooltip contentStyle={{ backgroundColor: 'var(--w-navy-900)', border: 'none', color: 'var(--text-primary)' }} />
+          <Legend wrapperStyle={{ fontSize: '11px', color: 'var(--w-slate-300)' }} />
           <Bar yAxisId="left" dataKey="capacityPct" name="냉동창고 가동률(%)" fill="var(--color-info)" radius={[4, 4, 0, 0]} barSize={30} />
-          <Line yAxisId="right" type="monotone" dataKey="reeferCost" name="플러그/보관 인상료($)" stroke="#06b6d4" strokeWidth={3} />
+          <Line yAxisId="right" type="monotone" dataKey="reeferCost" name="플러그/보관 인상료($)" stroke="var(--w-cyan-500)" strokeWidth={3} />
         </ComposedChart>
       }
       takeaway={{
@@ -284,12 +284,12 @@ export const WidgetCrewShortage = () => {
         <ComposedChart data={dataCrewShortage} margin={{ top: 10, right: 10, left: -20, bottom: 5 }}>
           <ChartPatternDefs />
           <CartesianGrid strokeDasharray="3 3" stroke="rgba(140,170,255,0.10)" />
-          <XAxis dataKey="year" stroke="#94a3b8" fontSize={12} />
-          <YAxis yAxisId="left" stroke="#94a3b8" fontSize={11} domain={[40, 60]} tickFormatter={(v)=>`${v}세`} />
+          <XAxis dataKey="year" stroke="var(--w-slate-400)" fontSize={12} />
+          <YAxis yAxisId="left" stroke="var(--w-slate-400)" fontSize={11} domain={[40, 60]} tickFormatter={(v)=>`${v}세`} />
           <YAxis yAxisId="right" orientation="right" stroke="var(--color-warning)" fontSize={11} domain={[80, 200]} />
-          <RechartsTooltip contentStyle={{ backgroundColor: '#1a2442', border: 'none', color: 'var(--text-primary)' }} />
-          <Legend wrapperStyle={{ fontSize: '11px', color: '#cbd5e1' }} />
-          <Bar yAxisId="left" dataKey="avgAge" name="항해사/선원 평균 연령" fill="#1a2442" stroke="#cbd5e1" radius={[4, 4, 0, 0]} />
+          <RechartsTooltip contentStyle={{ backgroundColor: 'var(--w-navy-900)', border: 'none', color: 'var(--text-primary)' }} />
+          <Legend wrapperStyle={{ fontSize: '11px', color: 'var(--w-slate-300)' }} />
+          <Bar yAxisId="left" dataKey="avgAge" name="항해사/선원 평균 연령" fill="var(--w-navy-900)" stroke="var(--w-slate-300)" radius={[4, 4, 0, 0]} />
           <Line yAxisId="right" type="stepAfter" dataKey="wageIndex" name="외인 선원 임금 지수(2020=100)" stroke="var(--color-warning)" strokeWidth={3} />
         </ComposedChart>
       }
@@ -336,10 +336,10 @@ export const WidgetFXHedging = () => {
         <BarChart data={dataFXHedging} margin={{ top: 10, right: 10, left: -20, bottom: 5 }} barSize={40}>
           <ChartPatternDefs />
           <CartesianGrid strokeDasharray="3 3" stroke="rgba(140,170,255,0.10)" />
-          <XAxis dataKey="month" stroke="#94a3b8" fontSize={12} />
+          <XAxis dataKey="month" stroke="var(--w-slate-400)" fontSize={12} />
           <YAxis stroke="var(--color-danger)" fontSize={11} domain={[0, 60]} tickFormatter={(v)=>`-${v}%`} />
-          <RechartsTooltip contentStyle={{ backgroundColor: '#1a2442', border: 'none', color: 'var(--text-primary)' }} />
-          <Legend wrapperStyle={{ fontSize: '11px', color: '#cbd5e1' }} />
+          <RechartsTooltip contentStyle={{ backgroundColor: 'var(--w-navy-900)', border: 'none', color: 'var(--text-primary)' }} />
+          <Legend wrapperStyle={{ fontSize: '11px', color: 'var(--w-slate-300)' }} />
           <Bar dataKey="fxLoss" name="영업이익 환차손 증발률(%)" fill="var(--color-danger)" radius={[4, 4, 0, 0]} />
         </BarChart>
       }
@@ -385,12 +385,12 @@ export const WidgetAITimePredict = () => (
       <BarChart data={dataAiTime} margin={{ top: 10, right: 10, left: -20, bottom: 5 }}>
         <ChartPatternDefs />
         <CartesianGrid strokeDasharray="3 3" stroke="rgba(140,170,255,0.10)" />
-        <XAxis dataKey="month" stroke="#94a3b8" fontSize={11} interval={0} />
-        <YAxis stroke="#94a3b8" fontSize={11} tickFormatter={(v)=>`${v}일`} />
-        <RechartsTooltip contentStyle={{ backgroundColor: '#1a2442', border: 'none', color: 'var(--text-primary)' }} />
-        <Legend wrapperStyle={{ fontSize: '11px', color: '#cbd5e1' }} />
+        <XAxis dataKey="month" stroke="var(--w-slate-400)" fontSize={11} interval={0} />
+        <YAxis stroke="var(--w-slate-400)" fontSize={11} tickFormatter={(v)=>`${v}일`} />
+        <RechartsTooltip contentStyle={{ backgroundColor: 'var(--w-navy-900)', border: 'none', color: 'var(--text-primary)' }} />
+        <Legend wrapperStyle={{ fontSize: '11px', color: 'var(--w-slate-300)' }} />
         <Bar dataKey="downtimeConv" name="기존 유지보수 운휴일수" fill="var(--color-danger)" radius={[4,4,0,0]} barSize={25} />
-        <Bar dataKey="downtimeAi" name="AI 예지보전 시 운휴일수" fill="#06b6d4" radius={[4,4,0,0]} barSize={25} />
+        <Bar dataKey="downtimeAi" name="AI 예지보전 시 운휴일수" fill="var(--w-cyan-500)" radius={[4,4,0,0]} barSize={25} />
       </BarChart>
     }
     takeaway={{
@@ -434,11 +434,11 @@ export const WidgetPortTurnaround = () => (
       <ComposedChart data={dataTurnaround} margin={{ top: 10, right: 10, left: -20, bottom: 5 }}>
         <ChartPatternDefs />
         <CartesianGrid strokeDasharray="3 3" stroke="rgba(140,170,255,0.10)" />
-        <XAxis dataKey="month" stroke="#94a3b8" fontSize={11} interval={0} />
-        <YAxis yAxisId="left" stroke="#cbd5e1" fontSize={11} tickFormatter={(v)=>`${v}일`} />
+        <XAxis dataKey="month" stroke="var(--w-slate-400)" fontSize={11} interval={0} />
+        <YAxis yAxisId="left" stroke="var(--w-slate-300)" fontSize={11} tickFormatter={(v)=>`${v}일`} />
         <YAxis yAxisId="right" orientation="right" stroke="#eab308" fontSize={11} tickFormatter={(v)=>`${v}h`} />
-        <RechartsTooltip contentStyle={{ backgroundColor: '#1a2442', border: 'none', color: 'var(--text-primary)' }} />
-        <Legend wrapperStyle={{ fontSize: '11px', color: '#cbd5e1' }} />
+        <RechartsTooltip contentStyle={{ backgroundColor: 'var(--w-navy-900)', border: 'none', color: 'var(--text-primary)' }} />
+        <Legend wrapperStyle={{ fontSize: '11px', color: 'var(--w-slate-300)' }} />
         <Bar yAxisId="left" dataKey="actualDays" name="실제 턴어라운드 (Days)" fill="var(--color-info)" radius={[4,4,0,0]} barSize={20} />
         <Line yAxisId="right" type="monotone" dataKey="bottleneckHours" name="병목 체선 지연 (Hours)" stroke="#eab308" strokeWidth={3} dot={{ r: 4 }} />
       </ComposedChart>
@@ -484,13 +484,13 @@ export const WidgetVesselCapex = () => (
       <ComposedChart data={dataCapex} margin={{ top: 10, right: 10, left: -20, bottom: 5 }}>
         <ChartPatternDefs />
         <CartesianGrid strokeDasharray="3 3" stroke="rgba(140,170,255,0.10)" />
-        <XAxis dataKey="shipAge" stroke="#94a3b8" fontSize={11} interval={0} />
+        <XAxis dataKey="shipAge" stroke="var(--w-slate-400)" fontSize={11} interval={0} />
         <YAxis yAxisId="left" stroke="var(--color-danger)" fontSize={11} domain={[0, 100]} tickFormatter={(v)=>`${v}%`} />
-        <YAxis yAxisId="right" orientation="right" stroke="#94a3b8" fontSize={11} tickFormatter={(v)=>`$${v}k`} />
-        <RechartsTooltip contentStyle={{ backgroundColor: '#1a2442', border: 'none', color: 'var(--text-primary)' }} />
-        <Legend wrapperStyle={{ fontSize: '11px', color: '#cbd5e1' }} />
+        <YAxis yAxisId="right" orientation="right" stroke="var(--w-slate-400)" fontSize={11} tickFormatter={(v)=>`$${v}k`} />
+        <RechartsTooltip contentStyle={{ backgroundColor: 'var(--w-navy-900)', border: 'none', color: 'var(--text-primary)' }} />
+        <Legend wrapperStyle={{ fontSize: '11px', color: 'var(--w-slate-300)' }} />
         <Area yAxisId="left" type="monotone" dataKey="capexRisk" name="대체 CAPEX 강제 압박률 (%)" fill="var(--color-danger)" stroke="var(--color-danger)" fillOpacity={0.3} strokeWidth={2} />
-        <Bar yAxisId="right" dataKey="scrapValue" name="예상 고철(Scrap) 잔존가치" fill="#64748b" radius={[4,4,0,0]} barSize={20} />
+        <Bar yAxisId="right" dataKey="scrapValue" name="예상 고철(Scrap) 잔존가치" fill="var(--w-slate-500)" radius={[4,4,0,0]} barSize={20} />
       </ComposedChart>
     }
     takeaway={{
@@ -533,12 +533,12 @@ export const WidgetRobotTCO = () => (
     chart={
       <LineChart data={dataRobot} margin={{ top: 10, right: 10, left: -20, bottom: 5 }}>
         <CartesianGrid strokeDasharray="3 3" stroke="rgba(140,170,255,0.10)" />
-        <XAxis dataKey="year" stroke="#94a3b8" fontSize={11} interval={0} />
-        <YAxis stroke="#94a3b8" fontSize={11} tickFormatter={(v)=>`$${v}k`} />
-        <RechartsTooltip contentStyle={{ backgroundColor: '#1a2442', border: 'none', color: 'var(--text-primary)' }} />
-        <Legend wrapperStyle={{ fontSize: '11px', color: '#cbd5e1' }} />
+        <XAxis dataKey="year" stroke="var(--w-slate-400)" fontSize={11} interval={0} />
+        <YAxis stroke="var(--w-slate-400)" fontSize={11} tickFormatter={(v)=>`$${v}k`} />
+        <RechartsTooltip contentStyle={{ backgroundColor: 'var(--w-navy-900)', border: 'none', color: 'var(--text-primary)' }} />
+        <Legend wrapperStyle={{ fontSize: '11px', color: 'var(--w-slate-300)' }} />
         <Line type="monotone" dataKey="hCost" name="인간 노무 누적 한계비용" stroke="var(--color-danger)" strokeWidth={3} dot={{ r: 4 }} />
-        <Line type="monotone" dataKey="rCost" name="로봇 설비(TCO) 누적액" stroke="#8b5cf6" strokeWidth={3} dot={{ r: 4 }} />
+        <Line type="monotone" dataKey="rCost" name="로봇 설비(TCO) 누적액" stroke="var(--w-violet-500)" strokeWidth={3} dot={{ r: 4 }} />
       </LineChart>
     }
     takeaway={{
@@ -576,11 +576,11 @@ export const WidgetAirVsOcean = () => (
       <ComposedChart data={dataFreight} margin={{ top: 10, right: 10, left: -20, bottom: 5 }}>
         <ChartPatternDefs />
         <CartesianGrid strokeDasharray="3 3" stroke="rgba(140,170,255,0.10)" />
-        <XAxis dataKey="term" stroke="#94a3b8" fontSize={11} interval={0} />
-        <YAxis yAxisId="left" stroke="#cbd5e1" fontSize={11} tickFormatter={(v)=>`+$${v}`} />
+        <XAxis dataKey="term" stroke="var(--w-slate-400)" fontSize={11} interval={0} />
+        <YAxis yAxisId="left" stroke="var(--w-slate-300)" fontSize={11} tickFormatter={(v)=>`+$${v}`} />
         <YAxis yAxisId="right" orientation="right" stroke="var(--color-danger)" fontSize={11} domain={[0, 40]} tickFormatter={(v)=>`${v}%`} />
-        <RechartsTooltip contentStyle={{ backgroundColor: '#1a2442', border: 'none', color: 'var(--text-primary)' }} />
-        <Legend wrapperStyle={{ fontSize: '11px', color: '#cbd5e1' }} />
+        <RechartsTooltip contentStyle={{ backgroundColor: 'var(--w-navy-900)', border: 'none', color: 'var(--text-primary)' }} />
+        <Legend wrapperStyle={{ fontSize: '11px', color: 'var(--w-slate-300)' }} />
         <Bar yAxisId="left" dataKey="costDiff" name="추가 운임/kg (USD)" fill="var(--color-success)" radius={[4,4,0,0]} barSize={25} />
         <Line yAxisId="right" type="monotone" dataKey="freshnessLoss" name="선도(신선도) 가치 하락률 (%)" stroke="var(--color-danger)" strokeWidth={3} dot={{ r: 4 }} />
       </ComposedChart>

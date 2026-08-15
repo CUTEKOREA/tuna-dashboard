@@ -21,13 +21,13 @@ const CustomTooltip = ({ active, payload, label }: any) => {
   if (active && payload && payload.length) {
     return (
       <div style={{
-        backgroundColor: '#1a2442',
+        backgroundColor: 'var(--w-navy-900)',
         border: '1px solid #334155',
         padding: '12px',
         borderRadius: '6px',
         boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)'
       }}>
-        <p style={{ margin: '0 0 8px 0', color: '#f8fafc', fontWeight: 600, fontSize: '0.9rem' }}>{label}</p>
+        <p style={{ margin: '0 0 8px 0', color: 'var(--w-slate-50)', fontWeight: 600, fontSize: '0.9rem' }}>{label}</p>
         {payload.map((entry: any, index: number) => (
           <p key={index} style={{ margin: '4px 0 0 0', color: entry.color, fontSize: '0.85rem' }}>
             {entry.name}: {typeof entry.value === 'number' ? entry.value.toLocaleString() : entry.value}
@@ -265,9 +265,9 @@ return (
         <span style={{ fontSize: '1rem', flexShrink: 0 }}>📊</span>
         <div>
           <strong style={{ color: '#7dd3fc', fontSize: '0.85rem' }}>현황 분석 (Situation):</strong>
-          <p style={{ margin: '4px 0 0 0', fontSize: '0.83rem', color: '#94a3b8', lineHeight: 1.65 }}>{data.situation}</p>
+          <p style={{ margin: '4px 0 0 0', fontSize: '0.83rem', color: 'var(--w-slate-400)', lineHeight: 1.65 }}>{data.situation}</p>
           {data.source && (
-            <p style={{ margin: '6px 0 0 0', fontSize: '0.75rem', color: '#64748b', fontStyle: 'italic' }}>
+            <p style={{ margin: '6px 0 0 0', fontSize: '0.75rem', color: 'var(--w-slate-500)', fontStyle: 'italic' }}>
               * 출처/근거: {data.source}
             </p>
           )}
@@ -280,7 +280,7 @@ return (
         <AlertCircle size={16} className={styles.takeawayIcon} style={{ flexShrink: 0 }} />
         <strong style={{ color: '#bae6fd', fontSize: '0.85rem' }}>실행 전략 (Executive Takeaway):</strong>
       </div>
-      <p style={{ margin: 0, fontSize: '0.83rem', color: '#e2e8f0', lineHeight: 1.65 }}>
+      <p style={{ margin: 0, fontSize: '0.83rem', color: 'var(--w-slate-200)', lineHeight: 1.65 }}>
         {data.short} {data.long} {data.risk}
       </p>
     </div>
@@ -515,7 +515,7 @@ export const OperationalS1Widgets = () => (
                               <YAxis dataKey="target" type="category" width={90} />
                               <RechartsTooltip content={<CustomTooltip />} />
                               <Legend />
-                              <Bar dataKey="normalFAD" name="일반 FAD" fill="#64748b" radius={[0, 4, 4, 0]} />
+                              <Bar dataKey="normalFAD" name="일반 FAD" fill="var(--w-slate-500)" radius={[0, 4, 4, 0]} />
                               <Bar dataKey="smartFAD" name="스마트 FAD (Eco)" fill="#14b8a6" radius={[0, 4, 4, 0]} />
                             </BarChart>
                           </SafeResponsiveContainer>
@@ -578,7 +578,7 @@ export const OperationalS1Widgets = () => (
                               <YAxis yAxisId="right" orientation="right" />
                               <RechartsTooltip content={<CustomTooltip />} />
                               <Legend />
-                              <Area yAxisId="left" type="monotone" dataKey="optZone" name="최적 조업 남위(°S)" stroke="#8b5cf6" fill="#c4b5fd" />
+                              <Area yAxisId="left" type="monotone" dataKey="optZone" name="최적 조업 남위(°S)" stroke="var(--w-violet-500)" fill="#c4b5fd" />
                               <Line yAxisId="right" type="step" dataKey="cpue" name="추정 CPUE 밀도" stroke="var(--color-danger)" strokeWidth={3} />
                             </AreaChart>
                           </SafeResponsiveContainer>
@@ -644,7 +644,7 @@ export const OperationalS1Widgets = () => (
                               <YAxis yAxisId="right" orientation="right" tickFormatter={(val) => `${val}k`} />
                               <RechartsTooltip content={<CustomTooltip />} />
                               <Legend />
-                              <Bar yAxisId="left" dataKey="bigeye" name="눈다랑어 물량 (k tons)" fill="#94a3b8" radius={[4, 4, 0, 0]} />
+                              <Bar yAxisId="left" dataKey="bigeye" name="눈다랑어 물량 (k tons)" fill="var(--w-slate-400)" radius={[4, 4, 0, 0]} />
                               <Line yAxisId="right" type="monotone" dataKey="bluefin" name="참다랑어 물량 (k tons)" stroke="var(--color-danger)" strokeWidth={3} />
                             </ComposedChart>
                           </SafeResponsiveContainer>
@@ -667,7 +667,7 @@ export const OperationalS1Widgets = () => (
                               <RechartsTooltip content={<CustomTooltip />} />
                               <Legend />
                               <Bar yAxisId="left" dataKey="aquaVol" name="양식 생산량 (k tons)" fill="var(--color-success)" radius={[4, 4, 0, 0]} />
-                              <Line yAxisId="right" type="monotone" dataKey="aquaVal" name="생산액 (1k USD)" stroke="#8b5cf6" strokeWidth={3} />
+                              <Line yAxisId="right" type="monotone" dataKey="aquaVal" name="생산액 (1k USD)" stroke="var(--w-violet-500)" strokeWidth={3} />
                             </ComposedChart>
                           </SafeResponsiveContainer>
                         </div>
@@ -687,7 +687,7 @@ export const OperationalS1Widgets = () => (
                               <RechartsTooltip content={<CustomTooltip />} />
                               <Legend />
                               <Line type="monotone" dataKey="longlineMargin" name="연승 마진" stroke="#c084fc" strokeWidth={3} />
-                              <Line type="monotone" dataKey="seineMargin" name="선망 마진" stroke="#94a3b8" strokeDasharray="5 5" strokeWidth={2} />
+                              <Line type="monotone" dataKey="seineMargin" name="선망 마진" stroke="var(--w-slate-400)" strokeDasharray="5 5" strokeWidth={2} />
                             </LineChart>
                           </SafeResponsiveContainer>
                         </div>
@@ -778,7 +778,7 @@ export const OperationalS2Widgets = () => (
                               <RechartsTooltip content={<CustomTooltip />} />
                               <Legend />
                               <Bar dataKey="tunaPct" name="참치(조업/통조림)" stackId="a" fill="#1e40af" />
-                              <Bar dataKey="valueAddedPct" name="가치 부가(부가가치/펫푸드)" stackId="a" fill="#8b5cf6" />
+                              <Bar dataKey="valueAddedPct" name="가치 부가(부가가치/펫푸드)" stackId="a" fill="var(--w-violet-500)" />
                               <Bar dataKey="aquaPct" name="기타 양식/수산" stackId="a" fill="#0ea5e9" radius={[0, 4, 4, 0]} />
                             </BarChart>
                           </SafeResponsiveContainer>
@@ -809,7 +809,7 @@ export const OperationalS3Widgets = () => (
                               <YAxis yAxisId="right" orientation="right" />
                               <RechartsTooltip content={<CustomTooltip />} />
                               <Legend />
-                              <Bar yAxisId="left" dataKey="reeferRate" name="리퍼 운임($/FEU)" fill="#38bdf8" radius={[4, 4, 0, 0]} />
+                              <Bar yAxisId="left" dataKey="reeferRate" name="리퍼 운임($/FEU)" fill="var(--w-sky-400)" radius={[4, 4, 0, 0]} />
                               <Line yAxisId="right" type="monotone" dataKey="unloadDays" name="하역 대기일(Days)" stroke="#f97316" strokeWidth={3} dot={{ r: 4 }} />
                               <Line yAxisId="right" type="monotone" dataKey="loss" name="대기 손실($k)" stroke="var(--color-danger)" strokeWidth={2} strokeDasharray="5 5" />
                             </ComposedChart>
@@ -832,7 +832,7 @@ export const OperationalS3Widgets = () => (
                               <RechartsTooltip content={<CustomTooltip />} />
                               <Legend />
                               <Bar dataKey="duty" name="EU 수입 관세율(%)" fill="var(--color-danger)" radius={[4, 4, 0, 0]} />
-                              <Bar dataKey="logistics" name="경로 전환 배송비(%)" fill="#94a3b8" radius={[4, 4, 0, 0]} />
+                              <Bar dataKey="logistics" name="경로 전환 배송비(%)" fill="var(--w-slate-400)" radius={[4, 4, 0, 0]} />
                             </BarChart>
                           </SafeResponsiveContainer>
                         </div>
@@ -855,7 +855,7 @@ export const OperationalS3Widgets = () => (
                               <Bar dataKey="japan" name="일본행" stackId="a" fill="var(--color-danger)" />
                               <Bar dataKey="usa" name="미국행" stackId="a" fill="var(--color-info)" />
                               <Bar dataKey="korea" name="한국행" stackId="a" fill="var(--color-success)" />
-                              <Bar dataKey="others" name="기타 지역" stackId="a" fill="#cbd5e1" />
+                              <Bar dataKey="others" name="기타 지역" stackId="a" fill="var(--w-slate-300)" />
                             </BarChart>
                           </SafeResponsiveContainer>
                         </div>
@@ -936,7 +936,7 @@ export const OperationalS4Widgets = () => (
                               <YAxis yAxisId="right" orientation="right" />
                               <RechartsTooltip content={<CustomTooltip />} />
                               <Legend />
-                              <Bar yAxisId="right" dataKey="euInv" name="EU 창고 재고지수" fill="#cbd5e1" radius={[4, 4, 0, 0]} />
+                              <Bar yAxisId="right" dataKey="euInv" name="EU 창고 재고지수" fill="var(--w-slate-300)" radius={[4, 4, 0, 0]} />
                               <Line yAxisId="left" type="monotone" dataKey="price" name="스킵잭 방콕 시세($)" stroke="var(--color-danger)" strokeWidth={3} />
                             </ComposedChart>
                           </SafeResponsiveContainer>
@@ -958,7 +958,7 @@ export const OperationalS4Widgets = () => (
                               <RechartsTooltip content={<CustomTooltip />} />
                               <Legend />
                               <Line type="monotone" dataKey="foodservice" name="외식(Foodservice) 수요" stroke="var(--color-danger)" strokeWidth={3} />
-                              <Bar dataKey="retail" name="슈퍼마켓 B2C 참치캔 수요" fill="#8b5cf6" radius={[4, 4, 0, 0]} />
+                              <Bar dataKey="retail" name="슈퍼마켓 B2C 참치캔 수요" fill="var(--w-violet-500)" radius={[4, 4, 0, 0]} />
                             </ComposedChart>
                           </SafeResponsiveContainer>
                         </div>
@@ -1071,7 +1071,7 @@ export const OperationalS5Widgets = () => (
                               <RechartsTooltip content={<CustomTooltip />} />
                               <Legend />
                               <Bar dataKey="cut27" name="쿼터 삭감률(%)" fill="var(--color-danger)" radius={[4, 4, 0, 0]} />
-                              <Bar dataKey="penaltyRate" name="초과 페널티 배율(%)" fill="#8b5cf6" radius={[4, 4, 0, 0]} />
+                              <Bar dataKey="penaltyRate" name="초과 페널티 배율(%)" fill="var(--w-violet-500)" radius={[4, 4, 0, 0]} />
                             </BarChart>
                           </SafeResponsiveContainer>
                         </div>
@@ -1091,7 +1091,7 @@ export const OperationalS5Widgets = () => (
                               <YAxis tickFormatter={(val) => `$${val}`} />
                               <RechartsTooltip content={<CustomTooltip />} />
                               <Legend />
-                              <Bar dataKey="standardPrice" name="일반 스킵잭 기준가" fill="#94a3b8" radius={[4, 4, 0, 0]} />
+                              <Bar dataKey="standardPrice" name="일반 스킵잭 기준가" fill="var(--w-slate-400)" radius={[4, 4, 0, 0]} />
                               <Bar dataKey="mscPrice" name="MSC 확보 물량 체결가" fill="#059669" radius={[4, 4, 0, 0]} />
                             </BarChart>
                           </SafeResponsiveContainer>

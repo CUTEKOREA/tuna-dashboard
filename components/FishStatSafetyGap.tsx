@@ -36,7 +36,7 @@ export default function FishStatSafetyGap() {
             <YAxis domain={[50, 200]} tickFormatter={(val) => `Index ${val}`} stroke="rgba(255,255,255,0.2)" tick={{ fill: 'rgba(255,255,255,0.4)', fontSize: 10 }} />
             <Tooltip contentStyle={{ background: 'rgba(10, 16, 40, 0.9)', border: 'none', borderRadius: '8px' }} />
             <Legend wrapperStyle={{ fontSize: '11px', paddingTop: '10px' }} />
-            <Area type="monotone" dataKey="japanBase" name="오염수 인접수역 Base" stroke="#64748b" fill="#64748b" fillOpacity={0.2} />
+            <Area type="monotone" dataKey="japanBase" name="오염수 인접수역 Base" stroke="var(--w-slate-500)" fill="var(--w-slate-500)" fillOpacity={0.2} />
             <Area type="monotone" dataKey="koreaPrem" name="한국산 (검증) 프리미엄" stroke="var(--color-warning)" fill="var(--color-warning)" fillOpacity={0.4} />
             <Area type="monotone" dataKey="norwayPrem" name="노르웨이 초과 프리미엄" stroke="#0ea5e9" fill="#0ea5e9" fillOpacity={0.6} />
           </AreaChart>

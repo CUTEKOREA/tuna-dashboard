@@ -52,8 +52,8 @@ export default function PacificEezStrategicWidget() {
           style={{
             padding: '6px 14px', fontSize: '0.75rem', fontWeight: 'bold', border: 'none', borderRadius: '4px', cursor: 'pointer',
             background: activeTab === 'table' ? 'rgba(59, 130, 246, 0.15)' : 'transparent',
-            color: activeTab === 'table' ? '#60a5fa' : '#94a3b8',
-            borderBottom: activeTab === 'table' ? '2px solid #3b82f6' : 'none',
+            color: activeTab === 'table' ? '#60a5fa' : 'var(--w-slate-400)',
+            borderBottom: activeTab === 'table' ? '2px solid var(--w-blue-500)' : 'none',
             transition: 'all 0.2s'
           }}
         >
@@ -64,8 +64,8 @@ export default function PacificEezStrategicWidget() {
           style={{
             padding: '6px 14px', fontSize: '0.75rem', fontWeight: 'bold', border: 'none', borderRadius: '4px', cursor: 'pointer',
             background: activeTab === 'map' ? 'rgba(16, 185, 129, 0.15)' : 'transparent',
-            color: activeTab === 'map' ? '#34d399' : '#94a3b8',
-            borderBottom: activeTab === 'map' ? '2px solid #10b981' : 'none',
+            color: activeTab === 'map' ? 'var(--w-emerald-400)' : 'var(--w-slate-400)',
+            borderBottom: activeTab === 'map' ? '2px solid var(--w-emerald-500)' : 'none',
             transition: 'all 0.2s'
           }}
         >
@@ -94,7 +94,7 @@ export default function PacificEezStrategicWidget() {
                   </td>
                   <td style={{ padding: '12px 10px', color: 'var(--text-secondary)' }}>{row.location}</td>
                   <td style={{ padding: '12px 10px', textAlign: 'right' }}>
-                    <div style={{ fontWeight: 600, color: '#3b82f6' }}>{formatArea(row.areaSqKm)}</div>
+                    <div style={{ fontWeight: 600, color: 'var(--w-blue-500)' }}>{formatArea(row.areaSqKm)}</div>
                     <div style={{ fontSize: '0.65rem', color: 'var(--text-tertiary)' }}>입어료: {row.vdsFee2024 ? formatFee(row.vdsFee2024) : '-'}</div>
                   </td>
                   <td style={{ padding: '12px 10px', color: 'var(--text-secondary)' }}>

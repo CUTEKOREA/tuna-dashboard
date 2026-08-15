@@ -1,5 +1,14 @@
 # HANDOFF
 
+> 마지막 업데이트: 2026-08-15 09:58 KST
+
+> 🎨 **2026-08-15 09:58 KST — L-07 위젯 하드코딩 색 브리지 일괄 치환 완료** [Codex]:
+> - `scripts/fix_widget_colors.py`를 TDD로 추가해 `components/**/*.tsx`의 상위 16개 6자리 색상을 기존 `--w-*` 브리지 토큰으로 1:1 치환했다. 명시적 JSX `stroke`/`fill`/`stopColor`, JSX style·CSS 블록·명시적 스타일 상수만 다루며 rgba·주석·데이터 의미값·임의 `*Color` prop은 보존한다. 최초 적용은 **334파일·4,103건**, 적용 후 재실행은 **0파일·0건**이다.
+> - 원본 드라이런 전체 파일 표·20개 샘플은 `docs/2026-08-15_l07_color_dryrun.md`에 있다. 스킵은 rgba **956건**, 비스타일/의미값 **1,439건**, 주석 **3건**, 제외 디렉터리 표본 **2건**이며 `components/v2`·`components/cosmo`·테스트 파일의 변환 diff는 0이다. Python 단위 테스트 **5/5**, 구문 검사, 원본→변환 exact audit, 토큰 참조 **4,103건**, `git diff --check`를 통과했다.
+> - L-07 표현을 의도적으로 고정하던 기존 레지스트리 테스트는 브리지 참조와 `app/globals.css`의 원색 정의를 함께 검사하도록 갱신했다. 렌더 스냅샷 해시는 실제 CSS 토큰 값을 해석한 뒤 계산하므로 토큰 참조 방식만 바뀌어도 흔들리지 않으며, 토큰의 실효 색이 바뀌면 계속 실패한다. 최종 `npm run verify` exit 0: ESLint 오류 0(기존 `ShrimpDashboard.tsx` 경고 1), TypeScript, Vitest **262/262**, API cache **143/143**, Next 정적 페이지 **117/117**, bundle **30경로** 통과.
+> - Puppeteer 전후 증거는 `/private/tmp/l07-color-qa-20260815/{before,after,diff}/`에 있다. `/unloading`·`/purse-seiner-db`·`/pork`는 각각 1440×1000 전체 **0픽셀 차이**로 SHA-256까지 동일하다. `/market`의 차이 439픽셀은 자동 갱신 시각만 포함하는 `(1304,427)~(1365,436)` 경계에 한정되고 그 밖은 0픽셀 차이다. 4페이지 모두 HTTP 200, 잠금 잔존·가로 overflow·page error·예상 밖 console/local HTTP/request failure 0이다. 기존 하역 dev 중복 요청 취소와 돼지고기 P-03 `압도적` 신호만 기대값으로 분리했다.
+> - 기존 pnpm형 `node_modules`는 삭제하지 않고 `/private/tmp/l07-colors-node-modules.X6vZJK/node_modules`에 보존한 뒤 `npm ci`로 재구성했다. push·PR·프로덕션 배포는 하지 않는다. 다음 단계는 CC가 드라이런 표와 실제 diff, 임의 10개 파일의 비스타일 색 보존, 4페이지 전후 증거를 독립 반증 검수하는 것이다.
+
 > 마지막 업데이트: 2026-08-15 09:19 KST
 
 > 🎛️ **2026-08-15 09:19 KST — V2.5-c 잔여 4페이지·색 브리지 완료** [Codex]:

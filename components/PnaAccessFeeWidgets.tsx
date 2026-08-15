@@ -145,13 +145,13 @@ function HeroCostCard() {
       </div>
       <div style={{ display: 'flex', gap: 16, marginTop: 16, flexWrap: 'wrap' }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: 8, fontSize: '0.78rem', color: 'var(--text-muted)' }}>
-          <span style={{ color: '#f59e0b' }}>●</span> 입어료: <span style={{ fontWeight: 700, color: 'var(--text-main)' }}>${fmt(totalFee)}</span>
+          <span style={{ color: 'var(--w-amber-500)' }}>●</span> 입어료: <span style={{ fontWeight: 700, color: 'var(--text-main)' }}>${fmt(totalFee)}</span>
         </div>
         <div style={{ display: 'flex', alignItems: 'center', gap: 8, fontSize: '0.78rem', color: 'var(--text-muted)' }}>
-          <span style={{ color: '#8b5cf6' }}>●</span> 제반경비: <span style={{ fontWeight: 700, color: 'var(--text-main)' }}>${fmt(totalExtras)}</span>
+          <span style={{ color: 'var(--w-violet-500)' }}>●</span> 제반경비: <span style={{ fontWeight: 700, color: 'var(--text-main)' }}>${fmt(totalExtras)}</span>
         </div>
         <div style={{ display: 'flex', alignItems: 'center', gap: 8, fontSize: '0.78rem', color: 'var(--text-muted)' }}>
-          <span style={{ color: '#06b6d4' }}>●</span> 6개 수역 · 6척 배정
+          <span style={{ color: 'var(--w-cyan-500)' }}>●</span> 6개 수역 · 6척 배정
         </div>
       </div>
     </div>
@@ -167,7 +167,7 @@ function ZoneAllocationChart() {
   return (
     <div className={s.card}>
       <h4 className={s.cardTitle}>
-        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#f59e0b" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M5 21v-6"/><path d="M12 21V3"/><path d="M19 21V9"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--w-amber-500)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M5 21v-6"/><path d="M12 21V3"/><path d="M19 21V9"/></svg>
         수역별 입어료 배분
       </h4>
       <div className={s.zoneList}>
@@ -209,7 +209,7 @@ function UnitCostComparison() {
   return (
     <div className={s.card}>
       <h4 className={s.cardTitle}>
-        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#8b5cf6" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M16 7h6v6"/><path d="m22 7-8.5 8.5-5-5L2 17"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--w-violet-500)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M16 7h6v6"/><path d="m22 7-8.5 8.5-5-5L2 17"/></svg>
         수역별 입어료 단가 비교
         <span style={{ fontSize: '0.72rem', color: 'var(--text-muted)', fontWeight: 400 }}>($/일)</span>
       </h4>
@@ -234,7 +234,7 @@ function UnitCostComparison() {
                   style={{
                     width: `${(z.unitCost / maxCost) * 100}%`,
                     background: isMax
-                      ? 'linear-gradient(90deg, #ef4444, #f87171)'
+                      ? 'linear-gradient(90deg, var(--w-red-500), #f87171)'
                       : `linear-gradient(90deg, ${z.color}, ${z.color}66)`,
                   }}
                 />
@@ -270,7 +270,7 @@ function PaymentTimeline() {
   return (
     <div className={s.card}>
       <h4 className={s.cardTitle}>
-        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#ef4444" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect width="18" height="18" x="3" y="4" rx="2" ry="2"/><line x1="16" x2="16" y1="2" y2="6"/><line x1="8" x2="8" y1="2" y2="6"/><line x1="3" x2="21" y1="10" y2="10"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--w-red-500)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect width="18" height="18" x="3" y="4" rx="2" ry="2"/><line x1="16" x2="16" y1="2" y2="6"/><line x1="8" x2="8" y1="2" y2="6"/><line x1="3" x2="21" y1="10" y2="10"/></svg>
         납부 일정 타임라인
         {today && urgentCount > 0 && (
           <span style={{ fontSize: '0.65rem', padding: '2px 8px', borderRadius: 8, background: 'rgba(239,68,68,0.15)', color: '#f87171', fontWeight: 700, marginLeft: 8 }}>
@@ -329,7 +329,7 @@ function IndustryShareChart() {
   return (
     <div className={s.card}>
       <h4 className={s.cardTitle}>
-        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#06b6d4" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M21.21 15.89A10 10 0 1 1 8 2.83"/><path d="M22 12A10 10 0 0 0 12 2v10z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--w-cyan-500)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M21.21 15.89A10 10 0 1 1 8 2.83"/><path d="M22 12A10 10 0 0 0 12 2v10z"/></svg>
         업계 입어료 점유율
         <span style={{ fontSize: '0.72rem', color: 'var(--text-muted)', fontWeight: 400 }}>2026어기 국적선</span>
       </h4>
@@ -364,7 +364,7 @@ function IndustryShareChart() {
                 <span className={s.legendDot} style={{ background: c.color }} />
                 <span>{c.name}</span>
                 <span style={{ fontSize: '0.72rem', color: 'var(--text-muted)' }}>{c.vessels}척</span>
-                <span className={s.legendValue} style={c.isShinla ? { color: '#f59e0b' } : {}}>
+                <span className={s.legendValue} style={c.isShinla ? { color: 'var(--w-amber-500)' } : {}}>
                   {pct}%
                 </span>
               </div>
@@ -385,7 +385,7 @@ function SupportShipTable() {
   return (
     <div className={s.card}>
       <h4 className={s.cardTitle}>
-        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#10b981" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M12 10.189V14"/><path d="M12 2v3"/><path d="M19 13V7a2 2 0 0 0-2-2H7a2 2 0 0 0-2 2v6"/><path d="M19.38 20A11.6 11.6 0 0 0 21 14l-8.188-3.639a2 2 0 0 0-1.624 0L3 14a11.6 11.6 0 0 0 2.81 7.76"/><path d="M2 21c.6.5 1.2 1 2.5 1 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1s1.2 1 2.5 1c2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--w-emerald-500)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M12 10.189V14"/><path d="M12 2v3"/><path d="M19 13V7a2 2 0 0 0-2-2H7a2 2 0 0 0-2 2v6"/><path d="M19.38 20A11.6 11.6 0 0 0 21 14l-8.188-3.639a2 2 0 0 0-1.624 0L3 14a11.6 11.6 0 0 0 2.81 7.76"/><path d="M2 21c.6.5 1.2 1 2.5 1 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1s1.2 1 2.5 1c2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1"/></svg>
         2026어기 PNG 지원선 입어교섭 경비
       </h4>
       <table className={s.supportTable}>
@@ -412,7 +412,7 @@ function SupportShipTable() {
           <tr style={{ background: 'rgba(255,255,255,0.03)', fontWeight: 700 }}>
             <td style={{ textAlign: 'left' }}>합계</td>
             <td>{SUPPORT_SHIPS.reduce((a, sh) => a + sh.vessels, 0)}척</td>
-            <td style={{ color: '#f59e0b' }}>${fmt(total)}</td>
+            <td style={{ color: 'var(--w-amber-500)' }}>${fmt(total)}</td>
             <td>100%</td>
           </tr>
         </tbody>

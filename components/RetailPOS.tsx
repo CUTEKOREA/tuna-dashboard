@@ -78,7 +78,7 @@ export default function RetailPOS({ hideHeader = false }: { hideHeader?: boolean
     <div className={styles.container}>
       {!hideHeader && (
         <div className={styles.header}>
-          <ShoppingCart size={24} style={{ color: '#38bdf8' }} />
+          <ShoppingCart size={24} style={{ color: 'var(--w-sky-400)' }} />
           <TermTooltip term="소매 유통 POS 모니터 (PB vs NB)" description="전국 대형마트와 쿠팡 등 주요 온/오프라인 매장의 참치캔 실판매 현황(POS 데이터)과 가격 프로모션을 실시간으로 추적하는 모니터링 대시보드입니다." />
           <span className={styles.headerBadge}>V2 INTERACTIVE</span>
         </div>
@@ -88,12 +88,12 @@ export default function RetailPOS({ hideHeader = false }: { hideHeader?: boolean
       <BuySignalDashboard />
 
       {promoEnacted ? (
-        <div className={styles.alertBox} style={{ background: 'rgba(16, 185, 129, 0.1)', border: '1px solid #10b981' }}>
+        <div className={styles.alertBox} style={{ background: 'rgba(16, 185, 129, 0.1)', border: '1px solid var(--w-emerald-500)' }}>
           <div className={styles.alertIcon} style={{ color: 'var(--color-success)', animation: 'none' }}>
             <CheckCircle size={28} />
           </div>
           <div className={styles.alertContent}>
-            <h4 style={{ color: '#34d399' }}>✅ 4+2 번들 프로모션 승인 완료 (ROI 분석)</h4>
+            <h4 style={{ color: 'var(--w-emerald-400)' }}>✅ 4+2 번들 프로모션 승인 완료 (ROI 분석)</h4>
             <p style={{ marginBottom: 0 }}>
               예상 점유율 방어 효과: <strong>+3.5%p</strong> 수성 역전 <br/>
               투입 비용: 마진율 2.5% 희생 분 ($450K) 대비 매출 방어 가치 $2.1M 달성.
@@ -132,7 +132,7 @@ export default function RetailPOS({ hideHeader = false }: { hideHeader?: boolean
               <Store size={18} color="#60a5fa" />
               <TermTooltip term="오프라인/온라인 PB 점유율 추적" description="대형 소매상들이 자체적으로 만든 저가 상표(PB, 예: 노브랜드)와 제조사의 고유 상표(NB, 예: 동원참치) 간의 시장 점유율 뺏고 뺏기기를 시각화한 차트입니다." />
             </div>
-            <span style={{fontSize:'11px', color:'#fbbf24', animation:'pulseWarning 2s infinite'}}>* 도넛 조각을 클릭하세요</span>
+            <span style={{fontSize:'11px', color:'var(--w-amber-400)', animation:'pulseWarning 2s infinite'}}>* 도넛 조각을 클릭하세요</span>
           </div>
           
           <div style={{ display: 'flex', alignItems: 'center' }}>
@@ -163,7 +163,7 @@ export default function RetailPOS({ hideHeader = false }: { hideHeader?: boolean
                   </Pie>
                   <RechartsTooltip 
                     contentStyle={{ background: '#0F172A', border: '1px solid #334155', borderRadius: '8px' }}
-                    itemStyle={{ color: '#e2e8f0' }}
+                    itemStyle={{ color: 'var(--w-slate-200)' }}
                     formatter={(value: any) => [`${value}%`, 'Market Share']}
                   />
                 </PieChart>
@@ -179,16 +179,16 @@ export default function RetailPOS({ hideHeader = false }: { hideHeader?: boolean
 
             {/* V2: Historical PB Threat Line */}
             <div style={{ width: '130px', height: '140px', paddingRight: '10px' }}>
-              <div style={{ fontSize: '10px', color: '#cbd5e1', marginBottom: '8px', textAlign: 'right' }}><TermTooltip term="크로스오버 조짐(과거 6mo)" description="유통사 PB 상품의 점유율이 지속적으로 무섭게 올라가서, 결국 원래 1등이던 제조사(NB) 제품의 점유율을 추월(Crossover)하고 먹어치울 확률이 있는지를 사전 경고하는 지표입니다." /></div>
+              <div style={{ fontSize: '10px', color: 'var(--w-slate-300)', marginBottom: '8px', textAlign: 'right' }}><TermTooltip term="크로스오버 조짐(과거 6mo)" description="유통사 PB 상품의 점유율이 지속적으로 무섭게 올라가서, 결국 원래 1등이던 제조사(NB) 제품의 점유율을 추월(Crossover)하고 먹어치울 확률이 있는지를 사전 경고하는 지표입니다." /></div>
               <SafeResponsiveContainer width="100%" height={300}>
                 <AreaChart data={pbTrendData} margin={{top:0,right:0,left:0,bottom:0}}>
                   <Area type="monotone" dataKey="nb" stroke="#60a5fa" fill="transparent" strokeWidth={2} />
-                  <Area type="monotone" dataKey="pb" stroke="#fbbf24" fill="rgba(251, 191, 36, 0.1)" strokeWidth={2} />
+                  <Area type="monotone" dataKey="pb" stroke="var(--w-amber-400)" fill="rgba(251, 191, 36, 0.1)" strokeWidth={2} />
                 </AreaChart>
               </SafeResponsiveContainer>
-              <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '9px', color: '#64748b', marginTop: '4px' }}>
+              <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '9px', color: 'var(--w-slate-500)', marginTop: '4px' }}>
                 <span style={{color: '#60a5fa'}}>NB↓</span>
-                <span style={{color: '#fbbf24'}}>PB↑</span>
+                <span style={{color: 'var(--w-amber-400)'}}>PB↑</span>
               </div>
             </div>
           </div>
@@ -256,8 +256,8 @@ export default function RetailPOS({ hideHeader = false }: { hideHeader?: boolean
               <ComposedChart data={waterfallData} margin={{ top: 20, right: 30, left: 20, bottom: 20 }}>
                 <ChartPatternDefs />
                 <CartesianGrid strokeDasharray="3 3" stroke="rgba(140,170,255,0.10)" vertical={false} />
-                <XAxis dataKey="step" tick={{fill: '#94a3b8', fontSize: 11}} axisLine={false} tickLine={false} />
-                <YAxis yAxisId="left" domain={[0, 6500]} tick={{fill: '#94a3b8', fontSize: 11}} tickFormatter={(val) => `$${Number(val).toLocaleString()}`} axisLine={false} tickLine={false} />
+                <XAxis dataKey="step" tick={{fill: 'var(--w-slate-400)', fontSize: 11}} axisLine={false} tickLine={false} />
+                <YAxis yAxisId="left" domain={[0, 6500]} tick={{fill: 'var(--w-slate-400)', fontSize: 11}} tickFormatter={(val) => `$${Number(val).toLocaleString()}`} axisLine={false} tickLine={false} />
                 <YAxis yAxisId="right" orientation="right" domain={[-20, 60]} hide />
                 
                 <Bar yAxisId="left" dataKey="range" isAnimationActive={false}>
@@ -284,7 +284,7 @@ export default function RetailPOS({ hideHeader = false }: { hideHeader?: boolean
                 onChange={(e) => setRawPriceBase(Number(e.target.value))}
                 className={styles.rangeInput}
               />
-              <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: '8px', fontSize: '10px', color: '#64748b' }}>
+              <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: '8px', fontSize: '10px', color: 'var(--w-slate-500)' }}>
                 <span>$1,200 (하락장)</span>
                 <span>$2,600 (초급등)</span>
               </div>

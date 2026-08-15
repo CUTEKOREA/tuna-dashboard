@@ -28,9 +28,9 @@ export function Widget9_FilletRatio() {
               <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" vertical={false} />
               <XAxis dataKey="year" stroke="rgba(255,255,255,0.5)" fontSize={11} tickMargin={10} />
               <YAxis stroke="rgba(255,255,255,0.5)" fontSize={11} tickFormatter={(v)=>`${v}%`} tickMargin={10} />
-              <Tooltip contentStyle={{ background: '#0a0f1f', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '8px', color: '#f8fafc' }} />
+              <Tooltip contentStyle={{ background: '#0a0f1f', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '8px', color: 'var(--w-slate-50)' }} />
               <Area type="monotone" stackId="1" dataKey="현장가공_Fillet비율" stroke="var(--color-success)" fill="var(--color-success)" fillOpacity={0.8} name="완제품 선상 필레 생산 점유율" />
-              <Area type="monotone" stackId="1" dataKey="단순_HG비율" stroke="#64748b" fill="#64748b" fillOpacity={0.3} name="저급 일반 H&G(머리내장 제거) 비율" />
+              <Area type="monotone" stackId="1" dataKey="단순_HG비율" stroke="var(--w-slate-500)" fill="var(--w-slate-500)" fillOpacity={0.3} name="저급 일반 H&G(머리내장 제거) 비율" />
               <Legend iconType="circle" wrapperStyle={{ fontSize: '11px', color: 'rgba(255,255,255,0.7)', paddingTop: '10px' }} />
             </AreaChart>
           </SafeResponsiveContainer>
@@ -63,7 +63,7 @@ export function Widget10_SurimiGrowth() {
               <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" vertical={false} />
               <XAxis dataKey="year" stroke="rgba(255,255,255,0.5)" fontSize={11} tickMargin={10} />
               <YAxis stroke="rgba(255,255,255,0.5)" fontSize={11} tickFormatter={(v) => (v/1000) + 'k'} tickMargin={10} />
-              <Tooltip contentStyle={{ background: '#0a0f1f', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '8px', color: '#f8fafc' }} />
+              <Tooltip contentStyle={{ background: '#0a0f1f', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '8px', color: 'var(--w-slate-50)' }} />
               <Line type="monotone" dataKey="글로벌_수리미_생산량" stroke="var(--color-warning)" strokeWidth={3} dot={{ r: 4, fill: 'var(--color-warning)' }} activeDot={{r:7}} name="글로벌 수리미 생산량(톤)" />
               <Legend iconType="circle" wrapperStyle={{ fontSize: '11px', color: 'rgba(255,255,255,0.7)', paddingTop: '10px' }} />
             </LineChart>
@@ -97,7 +97,7 @@ export function Widget11_SurimiSpread() {
               <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" vertical={false} />
               <XAxis dataKey="year" stroke="rgba(255,255,255,0.5)" fontSize={11} tickMargin={10} />
               <YAxis stroke="rgba(255,255,255,0.5)" fontSize={11} tickFormatter={(v)=>`$${v}`} tickMargin={10} />
-              <Tooltip contentStyle={{ background: '#0a0f1f', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '8px', color: '#f8fafc' }} />
+              <Tooltip contentStyle={{ background: '#0a0f1f', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '8px', color: 'var(--w-slate-50)' }} />
               <Area type="monotone" dataKey="명태연육_단가" stroke="var(--color-info)" fill="rgba(59,130,246,0.15)" strokeWidth={3} name="알래스카/러시아산 명태 연육 고단가" />
               <Area type="monotone" dataKey="열대어연육_단가" stroke="var(--color-danger)" fill="rgba(239,68,68,0.15)" strokeWidth={3} strokeDasharray="5 5" name="동남아 실꼬리돔 베스트 저가 연육" />
               <Legend iconType="circle" wrapperStyle={{ fontSize: '11px', color: 'rgba(255,255,255,0.7)', paddingTop: '10px' }} />
@@ -133,7 +133,7 @@ export function Widget12_RoePremium() {
               <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" vertical={false} />
               <XAxis dataKey="name" stroke="rgba(255,255,255,0.5)" fontSize={11} interval={0} angle={0} textAnchor="middle" tickMargin={10} />
               <YAxis stroke="rgba(255,255,255,0.5)" fontSize={11} tickFormatter={(v)=>`$${v}단가`} tickMargin={10} />
-              <Tooltip contentStyle={{ background: '#0a0f1f', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '8px', color: '#f8fafc' }} />
+              <Tooltip contentStyle={{ background: '#0a0f1f', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '8px', color: 'var(--w-slate-50)' }} />
               <Bar dataKey="value" name="카테고리별 마진추정액" radius={[4,4,0,0]}>
                 {data.map((entry: any, idx: number) => <Cell key={idx} fill={entry.fill} />)}
               </Bar>

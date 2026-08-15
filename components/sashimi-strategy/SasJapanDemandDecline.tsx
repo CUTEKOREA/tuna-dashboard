@@ -52,8 +52,8 @@ export default function SasJapanDemandDecline() {
                 border: '1px solid rgba(140,170,255,0.12)', textAlign: 'center',
               }}>
                 <div style={{ fontSize: '1.1rem', fontWeight: 800, color: k.color }}>{k.value}</div>
-                <div style={{ fontSize: '0.62rem', color: '#94a3b8', marginTop: '2px' }}>{k.label}</div>
-                <div style={{ fontSize: '0.58rem', color: '#64748b', marginTop: '1px' }}>{k.sub}</div>
+                <div style={{ fontSize: '0.62rem', color: 'var(--w-slate-400)', marginTop: '2px' }}>{k.label}</div>
+                <div style={{ fontSize: '0.58rem', color: 'var(--w-slate-500)', marginTop: '1px' }}>{k.sub}</div>
               </div>
             ))}
           </div>
@@ -64,19 +64,19 @@ export default function SasJapanDemandDecline() {
               <AreaChart data={consumptionData} margin={{ top: 10, right: 30, left: 0, bottom: 5 }}>
                 <defs>
                   <linearGradient id="jpDeclineGrad" x1="0" y1="0" x2="0" y2="1">
-                    <stop offset="5%" stopColor="#ef4444" stopOpacity={0.3} />
-                    <stop offset="95%" stopColor="#ef4444" stopOpacity={0} />
+                    <stop offset="5%" stopColor="var(--w-red-500)" stopOpacity={0.3} />
+                    <stop offset="95%" stopColor="var(--w-red-500)" stopOpacity={0} />
                   </linearGradient>
                 </defs>
                 <CartesianGrid strokeDasharray="3 3" opacity={0.15} vertical={false} />
-                <XAxis dataKey="year" stroke="#64748b" tick={{ fill: '#94a3b8', fontSize: 10 }} axisLine={false} tickLine={false} />
-                <YAxis stroke="#64748b" tick={{ fill: '#94a3b8', fontSize: 11 }} axisLine={false} tickLine={false} tickFormatter={(v) => `${v}K`} />
+                <XAxis dataKey="year" stroke="var(--w-slate-500)" tick={{ fill: 'var(--w-slate-400)', fontSize: 10 }} axisLine={false} tickLine={false} />
+                <YAxis stroke="var(--w-slate-500)" tick={{ fill: 'var(--w-slate-400)', fontSize: 11 }} axisLine={false} tickLine={false} tickFormatter={(v) => `${v}K`} />
                 <Tooltip
-                  contentStyle={{ borderRadius: '8px', border: 'none', boxShadow: '0 4px 12px rgba(0,0,0,0.3)', backgroundColor: 'rgba(30,41,59,0.95)', color: '#e2e8f0' }}
+                  contentStyle={{ borderRadius: '8px', border: 'none', boxShadow: '0 4px 12px rgba(0,0,0,0.3)', backgroundColor: 'rgba(30,41,59,0.95)', color: 'var(--w-slate-200)' }}
                   formatter={(value: unknown, name: unknown) => [`${chartFmt.formatChartNumber(value)}K톤`, name === 'sashimi' ? '사시미 소비' : '1인당']}
                 />
-                <ReferenceLine x="2022" stroke="#f59e0b" strokeDasharray="5 5" label={{ value: '현재', fill: '#f59e0b', fontSize: 10, position: 'top' }} />
-                <Area type="monotone" dataKey="sashimi" name="sashimi" stroke="#ef4444" strokeWidth={2.5} fill="url(#jpDeclineGrad)" isAnimationActive={false} />
+                <ReferenceLine x="2022" stroke="var(--w-amber-500)" strokeDasharray="5 5" label={{ value: '현재', fill: 'var(--w-amber-500)', fontSize: 10, position: 'top' }} />
+                <Area type="monotone" dataKey="sashimi" name="sashimi" stroke="var(--w-red-500)" strokeWidth={2.5} fill="url(#jpDeclineGrad)" isAnimationActive={false} />
               </AreaChart>
             </SafeResponsiveContainer>
           </div>
@@ -88,15 +88,15 @@ export default function SasJapanDemandDecline() {
             <div style={{
               padding: '10px 12px', borderRadius: '8px',
               background: 'rgba(245,158,11,0.08)', border: '1px solid rgba(245,158,11,0.15)',
-              fontSize: '0.7rem', color: '#94a3b8',
+              fontSize: '0.7rem', color: 'var(--w-slate-400)',
             }}>
-              <strong style={{ color: '#f59e0b' }}>🇰🇷 한국 영향</strong><br />
+              <strong style={{ color: 'var(--w-amber-500)' }}>🇰🇷 한국 영향</strong><br />
               사시미 80% 수출→일본 — 장기 축소 리스크
             </div>
             <div style={{
               padding: '10px 12px', borderRadius: '8px',
               background: 'rgba(167,139,250,0.08)', border: '1px solid rgba(167,139,250,0.15)',
-              fontSize: '0.7rem', color: '#94a3b8',
+              fontSize: '0.7rem', color: 'var(--w-slate-400)',
             }}>
               <strong style={{ color: '#a78bfa' }}>🇪🇺 EU 영향</strong><br />
               BFT 90% 수출→일본 — 중국/미국 다변화 중

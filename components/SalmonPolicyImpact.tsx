@@ -31,12 +31,12 @@ export default function SalmonPolicyImpact() {
               cursor: 'pointer', transition: 'all 0.2s',
               background: selectedScenario === s.id ? sCfg.bg : 'rgba(255,255,255,0.02)',
               border: selectedScenario === s.id ? `1px solid ${sCfg.color}40` : '1px solid rgba(140,170,255,0.12)',
-              color: '#f8fafc',
+              color: 'var(--w-slate-50)',
             }}>
               <IconComp size={16} color={sCfg.color} />
               <div style={{ flex: 1 }}>
                 <div style={{ fontSize: '0.8rem', fontWeight: 600 }}>{s.title}</div>
-                <div style={{ fontSize: '0.65rem', color: '#64748b' }}>{s.description}</div>
+                <div style={{ fontSize: '0.65rem', color: 'var(--w-slate-500)' }}>{s.description}</div>
               </div>
               <span style={{
                 fontSize: '0.6rem', padding: '2px 6px', borderRadius: '3px',
@@ -56,10 +56,10 @@ export default function SalmonPolicyImpact() {
           <div key={i} style={{
             background: 'rgba(0,0,0,0.3)', borderRadius: '8px', padding: '0.8rem', textAlign: 'center',
           }}>
-            <div style={{ fontSize: '0.7rem', color: '#94a3b8', marginBottom: '0.4rem' }}>{m.label}</div>
+            <div style={{ fontSize: '0.7rem', color: 'var(--w-slate-400)', marginBottom: '0.4rem' }}>{m.label}</div>
             <div style={{
               fontSize: '1.4rem', fontWeight: 800,
-              color: m.direction === 'up' ? '#ef4444' : '#10b981',
+              color: m.direction === 'up' ? 'var(--w-red-500)' : 'var(--w-emerald-500)',
               display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '4px',
             }}>
               {m.direction === 'up' ? <TrendingUp size={16} /> : <TrendingDown size={16} />}
@@ -70,8 +70,8 @@ export default function SalmonPolicyImpact() {
         <div style={{
           background: 'rgba(0,0,0,0.3)', borderRadius: '8px', padding: '0.8rem', textAlign: 'center',
         }}>
-          <div style={{ fontSize: '0.7rem', color: '#94a3b8', marginBottom: '0.4rem' }}>공급 안정성</div>
-          <div style={{ fontSize: '0.75rem', fontWeight: 600, color: '#f8fafc' }}>
+          <div style={{ fontSize: '0.7rem', color: 'var(--w-slate-400)', marginBottom: '0.4rem' }}>공급 안정성</div>
+          <div style={{ fontSize: '0.75rem', fontWeight: 600, color: 'var(--w-slate-50)' }}>
             {scenario.impacts.supplyStability}
           </div>
         </div>
@@ -81,10 +81,10 @@ export default function SalmonPolicyImpact() {
         background: 'rgba(245,158,11,0.05)', border: '1px solid rgba(245,158,11,0.15)',
         borderRadius: '8px', padding: '1rem',
       }}>
-        <h4 style={{ color: '#f59e0b', fontSize: '0.8rem', fontWeight: 700, margin: '0 0 0.5rem 0', display: 'flex', alignItems: 'center', gap: '6px' }}>
+        <h4 style={{ color: 'var(--w-amber-500)', fontSize: '0.8rem', fontWeight: 700, margin: '0 0 0.5rem 0', display: 'flex', alignItems: 'center', gap: '6px' }}>
           <Zap size={14} /> 종합 분석
         </h4>
-        <p style={{ fontSize: '0.75rem', color: '#cbd5e1', lineHeight: 1.6, margin: '0 0 0.5rem 0' }}>{scenario.analysis}</p>
+        <p style={{ fontSize: '0.75rem', color: 'var(--w-slate-300)', lineHeight: 1.6, margin: '0 0 0.5rem 0' }}>{scenario.analysis}</p>
         <div style={{ fontSize: '0.6rem', color: '#475569', fontStyle: 'italic' }}>
           📚 {scenario.researchBasis}
         </div>

@@ -35,25 +35,25 @@ export default function SasEuDistantFleet() {
       }}
       customBody={
         <div style={{ display: 'flex', flexDirection: 'column', gap: '10px', width: '100%' }}>
-          <div style={{ fontSize: '0.66rem', color: '#94a3b8', fontWeight: 600, textAlign: 'center' }}>인도양 황다랑어 어획 vs MSY 점추정·상한 (천 톤)</div>
+          <div style={{ fontSize: '0.66rem', color: 'var(--w-slate-400)', fontWeight: 600, textAlign: 'center' }}>인도양 황다랑어 어획 vs MSY 점추정·상한 (천 톤)</div>
           <div style={{ height: '180px', width: '100%' }}>
             <SafeResponsiveContainer width="100%" height="100%">
               <BarChart data={STOCK} margin={{ top: 18, right: 16, left: 0, bottom: 0 }}>
                 <CartesianGrid strokeDasharray="3 3" opacity={0.15} vertical={false} />
-                <XAxis dataKey="label" fontSize={10} tickLine={false} axisLine={false} stroke="#64748b" interval={0} />
-                <YAxis domain={[0, 450]} tickFormatter={(v: unknown) => `${v}K`} fontSize={10} tickLine={false} axisLine={false} stroke="#64748b" />
-                <Tooltip contentStyle={{ borderRadius: '8px', border: 'none', background: '#1a2442', color: '#e2e8f0' }} formatter={(v: unknown) => [`${v}천t`, '물량']} />
-                <ReferenceLine y={430} stroke="#ef4444" strokeDasharray="4 4" label={{ value: 'MSY 상한 430K', position: 'insideTopRight', fontSize: 9, fill: '#fca5a5' }} />
+                <XAxis dataKey="label" fontSize={10} tickLine={false} axisLine={false} stroke="var(--w-slate-500)" interval={0} />
+                <YAxis domain={[0, 450]} tickFormatter={(v: unknown) => `${v}K`} fontSize={10} tickLine={false} axisLine={false} stroke="var(--w-slate-500)" />
+                <Tooltip contentStyle={{ borderRadius: '8px', border: 'none', background: 'var(--w-navy-900)', color: 'var(--w-slate-200)' }} formatter={(v: unknown) => [`${v}천t`, '물량']} />
+                <ReferenceLine y={430} stroke="var(--w-red-500)" strokeDasharray="4 4" label={{ value: 'MSY 상한 430K', position: 'insideTopRight', fontSize: 9, fill: '#fca5a5' }} />
                 <Bar dataKey="t" radius={[4, 4, 0, 0]} isAnimationActive={false}>
                   {STOCK.map((d) => <Cell key={d.label} fill={d.color} />)}
-                  <LabelList dataKey="t" position="top" formatter={(v: unknown) => `${v}K`} fontSize={10.5} fill="#e2e8f0" />
+                  <LabelList dataKey="t" position="top" formatter={(v: unknown) => `${v}K`} fontSize={10.5} fill="var(--w-slate-200)" />
                 </Bar>
               </BarChart>
             </SafeResponsiveContainer>
           </div>
-          <div style={{ display: 'flex', justifyContent: 'center', gap: '14px', fontSize: '0.62rem', color: '#94a3b8', flexWrap: 'wrap' }}>
-            <span>EU 선단 인도양 어획 <span style={{ color: '#38bdf8', fontWeight: 700 }}>약 1/3</span> (50척+)</span>
-            <span>2024 IOTC <span style={{ color: '#10b981', fontWeight: 700 }}>green</span> 재평가(신중론)</span>
+          <div style={{ display: 'flex', justifyContent: 'center', gap: '14px', fontSize: '0.62rem', color: 'var(--w-slate-400)', flexWrap: 'wrap' }}>
+            <span>EU 선단 인도양 어획 <span style={{ color: 'var(--w-sky-400)', fontWeight: 700 }}>약 1/3</span> (50척+)</span>
+            <span>2024 IOTC <span style={{ color: 'var(--w-emerald-500)', fontWeight: 700 }}>green</span> 재평가(신중론)</span>
           </div>
         </div>
       }

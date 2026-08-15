@@ -33,27 +33,27 @@ export default function SasJpImportYen() {
       }}
       customBody={
         <div style={{ display: 'flex', flexDirection: 'column', gap: '12px', width: '100%' }}>
-          <div style={{ fontSize: '0.66rem', color: '#94a3b8', fontWeight: 600, textAlign: 'center' }}>USD/JPY 환율 — 2024.7 161엔(37년 최저)</div>
+          <div style={{ fontSize: '0.66rem', color: 'var(--w-slate-400)', fontWeight: 600, textAlign: 'center' }}>USD/JPY 환율 — 2024.7 161엔(37년 최저)</div>
           <div style={{ height: '155px', width: '100%' }}>
             <SafeResponsiveContainer width="100%" height="100%">
               <AreaChart data={YEN} margin={{ top: 12, right: 16, left: 0, bottom: 0 }}>
                 <defs>
                   <linearGradient id="colorYen" x1="0" y1="0" x2="0" y2="1">
-                    <stop offset="5%" stopColor="#ef4444" stopOpacity={0.4} />
-                    <stop offset="95%" stopColor="#ef4444" stopOpacity={0} />
+                    <stop offset="5%" stopColor="var(--w-red-500)" stopOpacity={0.4} />
+                    <stop offset="95%" stopColor="var(--w-red-500)" stopOpacity={0} />
                   </linearGradient>
                 </defs>
                 <CartesianGrid strokeDasharray="3 3" opacity={0.15} vertical={false} />
-                <XAxis dataKey="p" fontSize={11} tickLine={false} axisLine={false} stroke="#64748b" />
-                <YAxis domain={[120, 170]} tickFormatter={(v: unknown) => `¥${v}`} fontSize={10} tickLine={false} axisLine={false} stroke="#64748b" />
-                <Tooltip contentStyle={{ borderRadius: '8px', border: 'none', background: '#1a2442', color: '#e2e8f0' }} formatter={(v: unknown) => [`¥${v}/$`, '환율']} />
-                <Area type="monotone" dataKey="jpy" name="USD/JPY" stroke="#ef4444" strokeWidth={2.5} fill="url(#colorYen)" isAnimationActive={false} />
+                <XAxis dataKey="p" fontSize={11} tickLine={false} axisLine={false} stroke="var(--w-slate-500)" />
+                <YAxis domain={[120, 170]} tickFormatter={(v: unknown) => `¥${v}`} fontSize={10} tickLine={false} axisLine={false} stroke="var(--w-slate-500)" />
+                <Tooltip contentStyle={{ borderRadius: '8px', border: 'none', background: 'var(--w-navy-900)', color: 'var(--w-slate-200)' }} formatter={(v: unknown) => [`¥${v}/$`, '환율']} />
+                <Area type="monotone" dataKey="jpy" name="USD/JPY" stroke="var(--w-red-500)" strokeWidth={2.5} fill="url(#colorYen)" isAnimationActive={false} />
               </AreaChart>
             </SafeResponsiveContainer>
           </div>
-          <div style={{ display: 'flex', justifyContent: 'center', gap: '14px', fontSize: '0.62rem', color: '#94a3b8', flexWrap: 'wrap' }}>
-            <span>수입 물량 정체 vs 금액 <span style={{ color: '#f59e0b', fontWeight: 700 }}>+2.2%</span>(¥2.1조)</span>
-            <span>지중해 BFT 도매 <span style={{ color: '#10b981', fontWeight: 700 }}>¥1,950</span>(2025 회복)</span>
+          <div style={{ display: 'flex', justifyContent: 'center', gap: '14px', fontSize: '0.62rem', color: 'var(--w-slate-400)', flexWrap: 'wrap' }}>
+            <span>수입 물량 정체 vs 금액 <span style={{ color: 'var(--w-amber-500)', fontWeight: 700 }}>+2.2%</span>(¥2.1조)</span>
+            <span>지중해 BFT 도매 <span style={{ color: 'var(--w-emerald-500)', fontWeight: 700 }}>¥1,950</span>(2025 회복)</span>
           </div>
         </div>
       }

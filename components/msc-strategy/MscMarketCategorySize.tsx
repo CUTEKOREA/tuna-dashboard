@@ -49,7 +49,7 @@ export default function MscMarketCategorySize() {
     <div style={{ width: '100%' }}>
       {/* Section 1: Category Treemap Blocks */}
       <div style={{ marginBottom: 8 }}>
-        <div style={{ fontSize: '0.72rem', fontWeight: 700, color: '#64748b', textTransform: 'uppercase', letterSpacing: '0.05em', marginBottom: 10 }}>
+        <div style={{ fontSize: '0.72rem', fontWeight: 700, color: 'var(--w-slate-500)', textTransform: 'uppercase', letterSpacing: '0.05em', marginBottom: 10 }}>
           카테고리별 MSC 라벨 제품 판매량 (전 어종 상위 5, 톤)
         </div>
 
@@ -77,9 +77,9 @@ export default function MscMarketCategorySize() {
                   <div style={{ fontSize: '0.82rem', fontWeight: 700, color: item.fill, marginBottom: 4 }}>
                     {item.name}
                   </div>
-                  <div style={{ fontSize: '1.2rem', fontWeight: 900, color: '#e2e8f0', fontVariantNumeric: 'tabular-nums' }}>
+                  <div style={{ fontSize: '1.2rem', fontWeight: 900, color: 'var(--w-slate-200)', fontVariantNumeric: 'tabular-nums' }}>
                     {formatVolume(item.volume)}
-                    <span style={{ fontSize: '0.72rem', fontWeight: 500, color: '#94a3b8', marginLeft: 4 }}>톤</span>
+                    <span style={{ fontSize: '0.72rem', fontWeight: 500, color: 'var(--w-slate-400)', marginLeft: 4 }}>톤</span>
                   </div>
                 </div>
                 <div
@@ -97,7 +97,7 @@ export default function MscMarketCategorySize() {
                   <span style={{ fontSize: '0.72rem', fontWeight: 700, color: item.fill }}>
                     {item.growth >= 0 ? '+' : ''}{item.growth}%
                   </span>
-                  <span style={{ fontSize: '0.68rem', color: '#94a3b8' }}>YoY</span>
+                  <span style={{ fontSize: '0.68rem', color: 'var(--w-slate-400)' }}>YoY</span>
                 </div>
               </div>
             );
@@ -123,9 +123,9 @@ export default function MscMarketCategorySize() {
                 <div style={{ fontSize: '0.75rem', fontWeight: 600, color: item.fill, marginBottom: 4, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
                   {item.name}
                 </div>
-                <div style={{ fontSize: '0.95rem', fontWeight: 800, color: '#e2e8f0', fontVariantNumeric: 'tabular-nums' }}>
+                <div style={{ fontSize: '0.95rem', fontWeight: 800, color: 'var(--w-slate-200)', fontVariantNumeric: 'tabular-nums' }}>
                   {formatVolume(item.volume)}
-                  <span style={{ fontSize: '0.68rem', fontWeight: 500, color: '#94a3b8', marginLeft: 3 }}>톤</span>
+                  <span style={{ fontSize: '0.68rem', fontWeight: 500, color: 'var(--w-slate-400)', marginLeft: 3 }}>톤</span>
                 </div>
                 <div style={{ fontSize: '0.68rem', fontWeight: 700, color: item.fill, marginTop: 4 }}>
                   {item.growth >= 0 ? '+' : ''}{item.growth}%
@@ -141,7 +141,7 @@ export default function MscMarketCategorySize() {
 
       {/* Section 2: Country Wholesale Bar Chart */}
       <div>
-        <div style={{ fontSize: '0.72rem', fontWeight: 700, color: '#64748b', textTransform: 'uppercase', letterSpacing: '0.05em', marginBottom: 12 }}>
+        <div style={{ fontSize: '0.72rem', fontWeight: 700, color: 'var(--w-slate-500)', textTransform: 'uppercase', letterSpacing: '0.05em', marginBottom: 12 }}>
           국가별 B2B 도매 시장 규모 ($M)
         </div>
 
@@ -151,7 +151,7 @@ export default function MscMarketCategorySize() {
             const isTop = idx === 0;
             return (
               <div key={item.country} style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
-                <div style={{ minWidth: 100, fontSize: '0.82rem', fontWeight: 600, color: isTop ? '#e2e8f0' : '#94a3b8' }}>
+                <div style={{ minWidth: 100, fontSize: '0.82rem', fontWeight: 600, color: isTop ? 'var(--w-slate-200)' : 'var(--w-slate-400)' }}>
                   {item.country}
                 </div>
                 <div style={{ flex: 1, height: 24, background: 'rgba(255,255,255,0.02)', borderRadius: 6, overflow: 'hidden', position: 'relative' }}>
@@ -174,7 +174,7 @@ export default function MscMarketCategorySize() {
                     fontSize: '0.82rem',
                     fontWeight: 700,
                     fontVariantNumeric: 'tabular-nums',
-                    color: isTop ? '#38bdf8' : '#cbd5e1',
+                    color: isTop ? 'var(--w-sky-400)' : 'var(--w-slate-300)',
                   }}
                 >
                   ${item.value.toLocaleString()}M
@@ -198,7 +198,7 @@ export default function MscMarketCategorySize() {
         }}
       >
         <div style={{ flex: 1, textAlign: 'center' }}>
-          <div style={{ fontSize: 18, fontWeight: 900, color: '#38bdf8', fontVariantNumeric: 'tabular-nums' }}>
+          <div style={{ fontSize: 18, fontWeight: 900, color: 'var(--w-sky-400)', fontVariantNumeric: 'tabular-nums' }}>
             138.5<span style={{ fontSize: 12, fontWeight: 600 }}>만 톤</span>
           </div>
           <div style={{ fontSize: 11, color: '#7dd3fc', fontWeight: 600, marginTop: 2 }}>
@@ -207,19 +207,19 @@ export default function MscMarketCategorySize() {
         </div>
         <div style={{ width: 1, background: 'rgba(56,189,248,0.15)' }} />
         <div style={{ flex: 1, textAlign: 'center' }}>
-          <div style={{ fontSize: 18, fontWeight: 900, color: '#f59e0b', fontVariantNumeric: 'tabular-nums' }}>
+          <div style={{ fontSize: 18, fontWeight: 900, color: 'var(--w-amber-500)', fontVariantNumeric: 'tabular-nums' }}>
             +29.3<span style={{ fontSize: 12, fontWeight: 600 }}>%</span>
           </div>
-          <div style={{ fontSize: 11, color: '#fbbf24', fontWeight: 600, marginTop: 2 }}>
+          <div style={{ fontSize: 11, color: 'var(--w-amber-400)', fontWeight: 600, marginTop: 2 }}>
             펫푸드 최고 성장률
           </div>
         </div>
         <div style={{ width: 1, background: 'rgba(56,189,248,0.15)' }} />
         <div style={{ flex: 1, textAlign: 'center' }}>
-          <div style={{ fontSize: 18, fontWeight: 900, color: '#10b981', fontVariantNumeric: 'tabular-nums' }}>
+          <div style={{ fontSize: 18, fontWeight: 900, color: 'var(--w-emerald-500)', fontVariantNumeric: 'tabular-nums' }}>
             +44.6<span style={{ fontSize: 12, fontWeight: 600 }}>%</span>
           </div>
-          <div style={{ fontSize: 11, color: '#34d399', fontWeight: 600, marginTop: 2 }}>
+          <div style={{ fontSize: 11, color: 'var(--w-emerald-400)', fontWeight: 600, marginTop: 2 }}>
             인증 프리미엄
           </div>
         </div>

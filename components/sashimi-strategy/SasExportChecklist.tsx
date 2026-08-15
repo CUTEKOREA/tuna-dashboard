@@ -61,7 +61,7 @@ export default function SasExportChecklist() {
           {requirements.map((cat) => (
             <div key={cat.category}>
               <div style={{
-                fontSize: '0.72rem', fontWeight: 700, color: '#cbd5e1', marginBottom: '6px',
+                fontSize: '0.72rem', fontWeight: 700, color: 'var(--w-slate-300)', marginBottom: '6px',
                 padding: '4px 10px', background: 'rgba(255,255,255,0.04)', borderRadius: '6px',
                 display: 'inline-block',
               }}>
@@ -75,11 +75,11 @@ export default function SasExportChecklist() {
                     background: 'rgba(255,255,255,0.015)',
                     fontSize: '0.68rem',
                   }}>
-                    <span style={{ color: '#e2e8f0', fontWeight: 500 }}>{item.req}</span>
+                    <span style={{ color: 'var(--w-slate-200)', fontWeight: 500 }}>{item.req}</span>
                     <span style={{ textAlign: 'center' }}>{item.us ? '🇺🇸 ✓' : '—'}</span>
                     <span style={{ textAlign: 'center' }}>{item.uk ? '🇬🇧 ✓' : '—'}</span>
                     <span style={{ textAlign: 'center' }}>{item.jp ? '🇯🇵 ✓' : '—'}</span>
-                    <span style={{ color: '#64748b', fontSize: '0.6rem' }}>{item.note}</span>
+                    <span style={{ color: 'var(--w-slate-500)', fontSize: '0.6rem' }}>{item.note}</span>
                   </div>
                 ))}
               </div>
@@ -90,9 +90,9 @@ export default function SasExportChecklist() {
           <div style={{
             padding: '10px 14px', borderRadius: '8px',
             background: 'rgba(56,189,248,0.08)', border: '1px solid rgba(56,189,248,0.2)',
-            fontSize: '0.7rem', color: '#94a3b8', textAlign: 'center',
+            fontSize: '0.7rem', color: 'var(--w-slate-400)', textAlign: 'center',
           }}>
-            💡 <strong style={{ color: '#38bdf8' }}>Korea-UK FTA</strong>: 냉동참치필렛(HS 0304.87) MFN 18% → <strong style={{ color: '#10b981' }}>0%</strong> = 동남아 대비 결정적 가격 우위
+            💡 <strong style={{ color: 'var(--w-sky-400)' }}>Korea-UK FTA</strong>: 냉동참치필렛(HS 0304.87) MFN 18% → <strong style={{ color: 'var(--w-emerald-500)' }}>0%</strong> = 동남아 대비 결정적 가격 우위
           </div>
         </div>
       }

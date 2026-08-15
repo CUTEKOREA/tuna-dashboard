@@ -9,7 +9,7 @@ const CustomTooltip = ({ active, payload, label }: any) => {
   if (!active || !payload?.length) return null;
   return (
     <div style={{ background: '#0a0f1f', border: '1px solid #334155', borderRadius: 6, padding: '8px 12px' }}>
-      <p style={{ color: '#f8fafc', fontWeight: 600, margin: 0, fontSize: '0.85rem' }}>{label}</p>
+      <p style={{ color: 'var(--w-slate-50)', fontWeight: 600, margin: 0, fontSize: '0.85rem' }}>{label}</p>
       {payload.map((entry: any, i: number) => (
         <p key={i} style={{ color: entry.color, margin: '4px 0 0 0', fontSize: '0.8rem' }}>
           <span>{entry.name}: </span>
@@ -43,11 +43,11 @@ const UsPolicyImpactWidget = () => {
             <XAxis dataKey="time" stroke="rgba(255,255,255,0.5)" tick={{ fill: 'rgba(255,255,255,0.7)', fontSize: 10 }} angle={-45} textAnchor="end" height={50} />
             <YAxis stroke="rgba(255,255,255,0.5)" tickFormatter={(v) => `$${(v / 1_000_000).toFixed(0)}M`} tick={{ fill: 'rgba(255,255,255,0.7)', fontSize: 11 }} />
             <Tooltip content={<CustomTooltip />} />
-            <Legend wrapperStyle={{ fontSize: '11px', color: '#cbd5e1' }} />
-            <ReferenceLine x="2022-06" stroke="#ef4444" strokeDasharray="3 3" label={{ position: 'insideTopLeft', value: 'UFLPA 발효', fill: '#ef4444', fontSize: 11 }} />
-            <Line type="monotone" dataKey="CHINA" name={krCountry('CHINA')} stroke="#ef4444" strokeWidth={2} dot={{ r: 2 }} isAnimationActive={false} />
-            <Line type="monotone" dataKey="VIETNAM" name={krCountry('VIETNAM')} stroke="#10b981" strokeWidth={2} dot={{ r: 2 }} isAnimationActive={false} />
-            <Line type="monotone" dataKey="INDONESIA" name={krCountry('INDONESIA')} stroke="#f59e0b" strokeWidth={2} dot={{ r: 2 }} isAnimationActive={false} />
+            <Legend wrapperStyle={{ fontSize: '11px', color: 'var(--w-slate-300)' }} />
+            <ReferenceLine x="2022-06" stroke="var(--w-red-500)" strokeDasharray="3 3" label={{ position: 'insideTopLeft', value: 'UFLPA 발효', fill: 'var(--w-red-500)', fontSize: 11 }} />
+            <Line type="monotone" dataKey="CHINA" name={krCountry('CHINA')} stroke="var(--w-red-500)" strokeWidth={2} dot={{ r: 2 }} isAnimationActive={false} />
+            <Line type="monotone" dataKey="VIETNAM" name={krCountry('VIETNAM')} stroke="var(--w-emerald-500)" strokeWidth={2} dot={{ r: 2 }} isAnimationActive={false} />
+            <Line type="monotone" dataKey="INDONESIA" name={krCountry('INDONESIA')} stroke="var(--w-amber-500)" strokeWidth={2} dot={{ r: 2 }} isAnimationActive={false} />
           </LineChart>
         </ResponsiveContainer>
       }

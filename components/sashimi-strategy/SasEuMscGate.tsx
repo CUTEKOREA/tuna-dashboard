@@ -36,20 +36,20 @@ export default function SasEuMscGate() {
       }}
       customBody={
         <div style={{ display: 'flex', flexDirection: 'column', gap: '12px', width: '100%' }}>
-          <div style={{ fontSize: '0.66rem', color: '#94a3b8', fontWeight: 600, textAlign: 'center' }}>영국 소매 참치 MSC 라벨 비중 추이 (%)</div>
+          <div style={{ fontSize: '0.66rem', color: 'var(--w-slate-400)', fontWeight: 600, textAlign: 'center' }}>영국 소매 참치 MSC 라벨 비중 추이 (%)</div>
           <div style={{ height: '150px', width: '100%' }}>
             <SafeResponsiveContainer width="100%" height="100%">
               <BarChart data={MSC_GROWTH} margin={{ top: 16, right: 16, left: 0, bottom: 0 }}>
                 <CartesianGrid strokeDasharray="3 3" opacity={0.15} vertical={false} />
-                <XAxis dataKey="yr" fontSize={11} tickLine={false} axisLine={false} stroke="#64748b" />
-                <YAxis domain={[0, 55]} tickFormatter={(v: number) => `${v}%`} fontSize={10} tickLine={false} axisLine={false} stroke="#64748b" />
-                <Tooltip contentStyle={{ borderRadius: '8px', border: 'none', background: '#1a2442', color: '#e2e8f0' }} formatter={((v: number, _n: string, item: { payload?: { isEstimate?: boolean } }) => [`${v}%${item?.payload?.isEstimate ? ' (추정·1차 미확인)' : ''}`, 'MSC 라벨']) as never} />
+                <XAxis dataKey="yr" fontSize={11} tickLine={false} axisLine={false} stroke="var(--w-slate-500)" />
+                <YAxis domain={[0, 55]} tickFormatter={(v: number) => `${v}%`} fontSize={10} tickLine={false} axisLine={false} stroke="var(--w-slate-500)" />
+                <Tooltip contentStyle={{ borderRadius: '8px', border: 'none', background: 'var(--w-navy-900)', color: 'var(--w-slate-200)' }} formatter={((v: number, _n: string, item: { payload?: { isEstimate?: boolean } }) => [`${v}%${item?.payload?.isEstimate ? ' (추정·1차 미확인)' : ''}`, 'MSC 라벨']) as never} />
                 <Bar dataKey="vol" radius={[4, 4, 0, 0]} isAnimationActive={false}>
                   {MSC_GROWTH.map((d) => (
                     <Cell
                       key={d.yr}
-                      fill={d.isEstimate ? '#10b98155' : '#10b981'}
-                      stroke={d.isEstimate ? '#10b981' : undefined}
+                      fill={d.isEstimate ? '#10b98155' : 'var(--w-emerald-500)'}
+                      stroke={d.isEstimate ? 'var(--w-emerald-500)' : undefined}
                       strokeWidth={d.isEstimate ? 1 : 0}
                       strokeDasharray={d.isEstimate ? '3 2' : undefined}
                     />
@@ -58,7 +58,7 @@ export default function SasEuMscGate() {
               </BarChart>
             </SafeResponsiveContainer>
           </div>
-          <div style={{ fontSize: '0.5rem', color: '#64748b', textAlign: 'center', marginTop: '-4px' }}>※ 2021·2026만 MSC UK 참치 쇼퍼 리포트 1차 측정값 · 2023(흐림·점선)은 추정으로 1차 미확인</div>
+          <div style={{ fontSize: '0.5rem', color: 'var(--w-slate-500)', textAlign: 'center', marginTop: '-4px' }}>※ 2021·2026만 MSC UK 참치 쇼퍼 리포트 1차 측정값 · 2023(흐림·점선)은 추정으로 1차 미확인</div>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '8px' }}>
             {[
               { k: 'MSC 인증 참치', v: '305만t', s: '자연산 참치 절반', c: '#38bdf8' },
@@ -66,9 +66,9 @@ export default function SasEuMscGate() {
               { k: '100% MSC 전환', v: '대형 4사+', s: '테스코·세인즈버리 등', c: '#f59e0b' },
             ].map((x) => (
               <div key={x.k} style={{ background: `${x.c}0f`, border: `1px solid ${x.c}2e`, borderRadius: '8px', padding: '8px 9px', display: 'flex', flexDirection: 'column', gap: '2px' }}>
-                <span style={{ fontSize: '0.56rem', color: '#94a3b8' }}>{x.k}</span>
+                <span style={{ fontSize: '0.56rem', color: 'var(--w-slate-400)' }}>{x.k}</span>
                 <span style={{ fontSize: '1.0rem', fontWeight: 800, color: x.c }}>{x.v}</span>
-                <span style={{ fontSize: '0.52rem', color: '#64748b' }}>{x.s}</span>
+                <span style={{ fontSize: '0.52rem', color: 'var(--w-slate-500)' }}>{x.s}</span>
               </div>
             ))}
           </div>

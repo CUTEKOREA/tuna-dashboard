@@ -68,7 +68,7 @@ export default function MscSuspensionHistory() {
                     }}>
                       {item.year}
                     </span>
-                    <span style={{ fontSize: 14, fontWeight: 700, color: '#e2e8f0' }}>
+                    <span style={{ fontSize: 14, fontWeight: 700, color: 'var(--w-slate-200)' }}>
                       {item.fishery}
                     </span>
                   </div>
@@ -88,12 +88,12 @@ export default function MscSuspensionHistory() {
                 {/* Detail Row */}
                 <div style={{ display: 'flex', gap: 24, fontSize: 12, marginTop: 4 }}>
                   <div style={{ display: 'flex', gap: 6 }}>
-                    <span style={{ color: '#94a3b8', fontWeight: 500 }}>사유:</span>
-                    <span style={{ color: '#cbd5e1', fontWeight: 600 }}>{item.reason}</span>
+                    <span style={{ color: 'var(--w-slate-400)', fontWeight: 500 }}>사유:</span>
+                    <span style={{ color: 'var(--w-slate-300)', fontWeight: 600 }}>{item.reason}</span>
                   </div>
                   <div style={{ display: 'flex', gap: 6 }}>
-                    <span style={{ color: '#94a3b8', fontWeight: 500 }}>기간:</span>
-                    <span style={{ color: '#cbd5e1', fontWeight: 600, fontVariantNumeric: 'tabular-nums' }}>{item.duration}</span>
+                    <span style={{ color: 'var(--w-slate-400)', fontWeight: 500 }}>기간:</span>
+                    <span style={{ color: 'var(--w-slate-300)', fontWeight: 600, fontVariantNumeric: 'tabular-nums' }}>{item.duration}</span>
                   </div>
                 </div>
               </div>
@@ -115,16 +115,16 @@ export default function MscSuspensionHistory() {
         textAlign: 'center',
       }}>
         <div>
-          <div style={{ fontSize: 20, fontWeight: 900, color: '#ef4444', fontVariantNumeric: 'tabular-nums' }}>6건</div>
+          <div style={{ fontSize: 20, fontWeight: 900, color: 'var(--w-red-500)', fontVariantNumeric: 'tabular-nums' }}>6건</div>
           <div style={{ fontSize: 12, color: '#f87171', marginTop: 2, fontWeight: 600 }}>총 정지·유예</div>
         </div>
         <div>
-          <div style={{ fontSize: 20, fontWeight: 900, color: '#f59e0b', fontVariantNumeric: 'tabular-nums' }}>50%</div>
-          <div style={{ fontSize: 12, color: '#fbbf24', marginTop: 2, fontWeight: 600 }}>IOTC 해역 비중</div>
+          <div style={{ fontSize: 20, fontWeight: 900, color: 'var(--w-amber-500)', fontVariantNumeric: 'tabular-nums' }}>50%</div>
+          <div style={{ fontSize: 12, color: 'var(--w-amber-400)', marginTop: 2, fontWeight: 600 }}>IOTC 해역 비중</div>
         </div>
         <div>
-          <div style={{ fontSize: 20, fontWeight: 900, color: '#94a3b8', fontVariantNumeric: 'tabular-nums' }}>14.4<span style={{ fontSize: 14, fontWeight: 600, marginLeft: 2 }}>개월</span></div>
-          <div style={{ fontSize: 12, color: '#64748b', marginTop: 2, fontWeight: 600 }}>평균 정지 기간</div>
+          <div style={{ fontSize: 20, fontWeight: 900, color: 'var(--w-slate-400)', fontVariantNumeric: 'tabular-nums' }}>14.4<span style={{ fontSize: 14, fontWeight: 600, marginLeft: 2 }}>개월</span></div>
+          <div style={{ fontSize: 12, color: 'var(--w-slate-500)', marginTop: 2, fontWeight: 600 }}>평균 정지 기간</div>
         </div>
       </div>
     </div>

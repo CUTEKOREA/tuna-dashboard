@@ -481,8 +481,8 @@ export default function MackerelDashboard() {
 
   if (!data) return (
     <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh', flexDirection: 'column', gap: '1rem' }}>
-      <RefreshCcw size={32} style={{ color: '#38bdf8', animation: 'spin 1s linear infinite' }} />
-      <p style={{ color: '#94a3b8', fontSize: '1rem' }}>인텔리전스 데이터 로딩 중...</p>
+      <RefreshCcw size={32} style={{ color: 'var(--w-sky-400)', animation: 'spin 1s linear infinite' }} />
+      <p style={{ color: 'var(--w-slate-400)', fontSize: '1rem' }}>인텔리전스 데이터 로딩 중...</p>
     </div>
   );
 
@@ -504,7 +504,7 @@ export default function MackerelDashboard() {
   /* ─── Chart Renderer ─── */
   const renderChart = (widget: any) => {
     const d = widget.data;
-    if (!d || d.length === 0) return <div style={{height:'100%',display:'flex',alignItems:'center',justifyContent:'center',color:'#64748b'}}>데이터 없음</div>;
+    if (!d || d.length === 0) return <div style={{height:'100%',display:'flex',alignItems:'center',justifyContent:'center',color:'var(--w-slate-500)'}}>데이터 없음</div>;
 
     const formatVal = (v: any) => {
       if (typeof v !== 'number') return v;
@@ -520,7 +520,7 @@ export default function MackerelDashboard() {
               {d.map((_: any, idx: number) => <Cell key={idx} fill={PIE_COLORS[idx % PIE_COLORS.length]} />)}
             </Pie>
             <RechartsTooltip content={<CustomTooltip unit={widget.unit} />} />
-            <Legend wrapperStyle={{ fontSize: '11px', color: '#cbd5e1' }} />
+            <Legend wrapperStyle={{ fontSize: '11px', color: 'var(--w-slate-300)' }} />
           </PieChart>
         );
       case "Area":
@@ -535,8 +535,8 @@ export default function MackerelDashboard() {
               ))}
             </defs>
             <CartesianGrid strokeDasharray="3 3" stroke="rgba(140,170,255,0.12)" vertical={false} />
-            <XAxis dataKey={widget.xKey} stroke="#64748b" tick={{fontSize:10}} />
-            <YAxis stroke="#64748b" tick={{fontSize:10}} tickFormatter={formatVal} />
+            <XAxis dataKey={widget.xKey} stroke="var(--w-slate-500)" tick={{fontSize:10}} />
+            <YAxis stroke="var(--w-slate-500)" tick={{fontSize:10}} tickFormatter={formatVal} />
             <RechartsTooltip content={<CustomTooltip />} />
             <Legend wrapperStyle={{fontSize:'11px'}} />
             {widget.areas?.map((a: any, i: number) => (
@@ -549,8 +549,8 @@ export default function MackerelDashboard() {
           <BarChart data={d}>
             <ChartPatternDefs />
             <CartesianGrid strokeDasharray="3 3" stroke="rgba(140,170,255,0.12)" vertical={false} />
-            <XAxis dataKey={widget.xKey} stroke="#64748b" tick={{fontSize:10}} />
-            <YAxis stroke="#64748b" tick={{fontSize:10}} tickFormatter={formatVal} />
+            <XAxis dataKey={widget.xKey} stroke="var(--w-slate-500)" tick={{fontSize:10}} />
+            <YAxis stroke="var(--w-slate-500)" tick={{fontSize:10}} tickFormatter={formatVal} />
             <RechartsTooltip content={<CustomTooltip />} />
             <Legend wrapperStyle={{fontSize:'11px'}} />
             {widget.bars?.map((b: any, i: number) => {
@@ -563,8 +563,8 @@ export default function MackerelDashboard() {
         return (
           <LineChart data={d}>
             <CartesianGrid strokeDasharray="3 3" stroke="rgba(140,170,255,0.12)" vertical={false} />
-            <XAxis dataKey={widget.xKey} stroke="#64748b" tick={{fontSize:10}} />
-            <YAxis stroke="#64748b" tick={{fontSize:10}} tickFormatter={formatVal} />
+            <XAxis dataKey={widget.xKey} stroke="var(--w-slate-500)" tick={{fontSize:10}} />
+            <YAxis stroke="var(--w-slate-500)" tick={{fontSize:10}} tickFormatter={formatVal} />
             <RechartsTooltip content={<CustomTooltip />} />
             <Legend wrapperStyle={{fontSize:'11px'}} />
             {widget.lines?.map((l: any, i: number) => (
@@ -585,13 +585,13 @@ export default function MackerelDashboard() {
               ))}
             </defs>
             <CartesianGrid strokeDasharray="3 3" stroke="rgba(140,170,255,0.12)" vertical={false} />
-            <XAxis dataKey={widget.xKey} stroke="#64748b" tick={{fontSize:10}} />
+            <XAxis dataKey={widget.xKey} stroke="var(--w-slate-500)" tick={{fontSize:10}} />
             
             {/* Left Axis */}
-            <YAxis yAxisId="left" stroke="#64748b" tick={{fontSize:10}} tickFormatter={formatVal} domain={[0, 'auto']} />
+            <YAxis yAxisId="left" stroke="var(--w-slate-500)" tick={{fontSize:10}} tickFormatter={formatVal} domain={[0, 'auto']} />
             {/* Optional Right Axis */}
             {widget.dualAxis && (
-              <YAxis yAxisId="right" orientation="right" stroke="#64748b" tick={{fontSize:10}} tickFormatter={formatVal} domain={[0, 'auto']} />
+              <YAxis yAxisId="right" orientation="right" stroke="var(--w-slate-500)" tick={{fontSize:10}} tickFormatter={formatVal} domain={[0, 'auto']} />
             )}
             
             <RechartsTooltip content={<CustomTooltip unit={widget.unit} />} />
@@ -613,8 +613,8 @@ export default function MackerelDashboard() {
         return (
           <RadarChart cx="50%" cy="50%" outerRadius={80} data={d}>
             <PolarGrid stroke="rgba(255,255,255,0.15)" />
-            <PolarAngleAxis dataKey={widget.xKey} stroke="#94a3b8" tick={{fontSize:10}} />
-            <PolarRadiusAxis stroke="#64748b" tick={{fontSize:9}} />
+            <PolarAngleAxis dataKey={widget.xKey} stroke="var(--w-slate-400)" tick={{fontSize:10}} />
+            <PolarRadiusAxis stroke="var(--w-slate-500)" tick={{fontSize:9}} />
             <RechartsTooltip content={<CustomTooltip />} />
             <Legend wrapperStyle={{fontSize:'11px'}} />
             {widget.radars?.map((r: any, i: number) => (
@@ -623,7 +623,7 @@ export default function MackerelDashboard() {
           </RadarChart>
         );
       default:
-        return <div style={{color:'#64748b',textAlign:'center',marginTop:'40px'}}>지원 안 되는 차트</div>;
+        return <div style={{color:'var(--w-slate-500)',textAlign:'center',marginTop:'40px'}}>지원 안 되는 차트</div>;
     }
   };
 
@@ -656,7 +656,7 @@ export default function MackerelDashboard() {
             background: '#11182f', border: 'none', 
             borderRadius: '500px', color: 'var(--text-secondary)', fontWeight: 600, display: 'flex', alignItems: 'center', gap: '8px',
             boxShadow: 'rgba(0,0,0,0.3) 0px 8px 8px'}}>
-            <div style={{ width: '8px', height: '8px', borderRadius: '50%', background: tickerHasLive ? 'var(--color-success)' : '#64748b', boxShadow: tickerHasLive ? '0 0 8px #1ed760' : 'none', animation: tickerHasLive ? 'pulse 2s infinite' : 'none' }} />
+            <div style={{ width: '8px', height: '8px', borderRadius: '50%', background: tickerHasLive ? 'var(--color-success)' : 'var(--w-slate-500)', boxShadow: tickerHasLive ? '0 0 8px #1ed760' : 'none', animation: tickerHasLive ? 'pulse 2s infinite' : 'none' }} />
             <span><span style={{ color: 'var(--text-secondary)' }}>EUMOFA 2026 + INFOFISH 2025 + KFAS</span> · {renderedWidgetCount} 위젯 · {tickerData ? `라이브 API ${tickerData.liveSourceCount}/${tickerData.totalSources}` : '정적 데이터'}</span>
           </div>
         </div>
@@ -704,7 +704,7 @@ export default function MackerelDashboard() {
       {tickerData && (
         <div style={{ marginBottom: '2rem', padding: '1rem 1.5rem', background: '#11182f', borderRadius: '8px', boxShadow: 'rgba(0,0,0,0.3) 0px 8px 8px', display: 'flex', alignItems: 'center', gap: '1.5rem', flexWrap: 'wrap', overflow: 'hidden' }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: '6px', flexShrink: 0 }}>
-            <div style={{ width: '8px', height: '8px', borderRadius: '50%', background: tickerHasLive ? 'var(--color-success)' : '#64748b', boxShadow: tickerHasLive ? '0 0 8px #1ed760' : 'none', animation: tickerHasLive ? 'pulse 2s infinite' : 'none' }} />
+            <div style={{ width: '8px', height: '8px', borderRadius: '50%', background: tickerHasLive ? 'var(--color-success)' : 'var(--w-slate-500)', boxShadow: tickerHasLive ? '0 0 8px #1ed760' : 'none', animation: tickerHasLive ? 'pulse 2s infinite' : 'none' }} />
             <span style={{ fontSize: '0.75rem', fontWeight: 700, color: tickerHasLive ? 'var(--color-success)' : 'var(--text-secondary)', textTransform: 'uppercase', letterSpacing: '1px' }}>{tickerHasLive ? 'LIVE 티커' : '정적 티커 (폴백 기준값)'}</span>
           </div>
           {[{

@@ -17,7 +17,7 @@ const CustomTooltip = ({ active, payload }: any) => {
     return (
       <div style={{ backgroundColor: 'rgba(30,41,59,0.95)', padding: 12, borderRadius: 8, boxShadow: '0 4px 12px rgba(0,0,0,0.3)', border: '1px solid rgba(140,170,255,0.12)' }}>
         <p style={{ fontWeight: 700, color: '#f1f5f9', marginBottom: 4 }}>{data.name}</p>
-        <p style={{ fontSize: 14, color: '#cbd5e1' }}>가격대: ${data.min} ~ ${data.max}/kg</p>
+        <p style={{ fontSize: 14, color: 'var(--w-slate-300)' }}>가격대: ${data.min} ~ ${data.max}/kg</p>
         <p style={{ fontSize: 14, fontWeight: 600, color: '#60a5fa' }}>평균 수입단가: ${data.avg}/kg</p>
       </div>
     );
@@ -48,8 +48,8 @@ export default function SasSashimiPriceLadder() {
               layout="vertical"
             >
               <CartesianGrid strokeDasharray="3 3" horizontal={true} vertical={false} opacity={0.3} />
-              <XAxis type="number" unit="$" domain={[0, 50]} tick={{ fontSize: 12, fill: '#94a3b8' }} axisLine={false} tickLine={false} />
-              <YAxis dataKey="name" type="category" width={140} tick={{ fontSize: 11, fontWeight: 600, fill: '#cbd5e1' }} axisLine={false} tickLine={false} />
+              <XAxis type="number" unit="$" domain={[0, 50]} tick={{ fontSize: 12, fill: 'var(--w-slate-400)' }} axisLine={false} tickLine={false} />
+              <YAxis dataKey="name" type="category" width={140} tick={{ fontSize: 11, fontWeight: 600, fill: 'var(--w-slate-300)' }} axisLine={false} tickLine={false} />
               <Tooltip content={<CustomTooltip />} cursor={{ fill: 'rgba(255,255,255,0.04)' }} />
               {/* Using an array [min, max] for range bar */}
               <Bar 

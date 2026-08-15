@@ -23,8 +23,8 @@ export default function SalmonInsightProcessing() {
         <BarChart data={rawData} layout="vertical" margin={{ top: 10, right: 10, left: 10, bottom: 0 }}>
           <ChartPatternDefs />
           <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" horizontal={true} vertical={false} />
-          <XAxis type="number" stroke="#94a3b8" fontSize={11} tickLine={false} axisLine={false} />
-          <YAxis dataKey="name" type="category" stroke="#cbd5e1" fontSize={11} tickLine={false} axisLine={false} width={100} />
+          <XAxis type="number" stroke="var(--w-slate-400)" fontSize={11} tickLine={false} axisLine={false} />
+          <YAxis dataKey="name" type="category" stroke="var(--w-slate-300)" fontSize={11} tickLine={false} axisLine={false} width={100} />
           <Tooltip 
             contentStyle={{ background: '#11182f', border: 'none', borderRadius: '8px' }}
             itemStyle={{ fontSize: '0.85rem' }}

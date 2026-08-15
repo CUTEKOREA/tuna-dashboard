@@ -30,7 +30,7 @@ export default function WhelkFTAQuarterly() {
           <ChartPatternDefs />
           <CartesianGrid strokeDasharray="3 3" stroke="rgba(140,170,255,0.10)" vertical={false} />
           <XAxis dataKey="year" stroke="rgba(255,255,255,0.3)" tick={{ fill: 'rgba(255,255,255,0.5)', fontSize: 11 }} />
-          <YAxis yAxisId="left" stroke="rgba(255,255,255,0.2)" tickFormatter={(v) => `${v}천톤`} tick={{ fill: '#fbbf24', fontSize: 10 }} />
+          <YAxis yAxisId="left" stroke="rgba(255,255,255,0.2)" tickFormatter={(v) => `${v}천톤`} tick={{ fill: 'var(--w-amber-400)', fontSize: 10 }} />
           <YAxis yAxisId="right" orientation="right" stroke="rgba(255,255,255,0.2)" tickFormatter={(v) => `$${v}M`} tick={{ fill: '#d97706', fontSize: 10 }} />
           <Tooltip
             contentStyle={tooltipStyle}
@@ -43,7 +43,7 @@ export default function WhelkFTAQuarterly() {
           <Legend wrapperStyle={{ fontSize: '11px' }} />
           <Bar yAxisId="left" dataKey="volume" name="수입량">
             {yearly.map((d, i) => (
-              <Cell key={i} fill={d.year === '2025H1' ? '#10b981' : '#fbbf24'} opacity={0.85} />
+              <Cell key={i} fill={d.year === '2025H1' ? 'var(--w-emerald-500)' : 'var(--w-amber-400)'} opacity={0.85} />
             ))}
           </Bar>
           <Line yAxisId="right" type="monotone" dataKey="value" name="수입액" stroke="#d97706" strokeWidth={2.5} dot={{ r: 4 }} />
@@ -61,9 +61,9 @@ export default function WhelkFTAQuarterly() {
           <YAxis stroke="rgba(255,255,255,0.2)" tickFormatter={(v) => `${v}%`} tick={{ fill: 'rgba(255,255,255,0.4)', fontSize: 10 }} />
           <Tooltip contentStyle={tooltipStyle} formatter={(val: any, name: any) => [`${val}%`, name]} />
           <Legend wrapperStyle={{ fontSize: '11px' }} />
-          <Area type="monotone" dataKey="uk" name="영국" stackId="1" fill="#fbbf24" stroke="#fbbf24" fillOpacity={0.8} />
+          <Area type="monotone" dataKey="uk" name="영국" stackId="1" fill="var(--w-amber-400)" stroke="var(--w-amber-400)" fillOpacity={0.8} />
           <Area type="monotone" dataKey="ireland" name="아일랜드" stackId="1" fill="#92400e" stroke="#92400e" fillOpacity={0.8} />
-          <Area type="monotone" dataKey="other" name="기타" stackId="1" fill="#64748b" stroke="#64748b" fillOpacity={0.5} />
+          <Area type="monotone" dataKey="other" name="기타" stackId="1" fill="var(--w-slate-500)" stroke="var(--w-slate-500)" fillOpacity={0.5} />
         </AreaChart>
       </ResponsiveContainer>
     </div>
@@ -78,7 +78,7 @@ export default function WhelkFTAQuarterly() {
           <YAxis stroke="rgba(255,255,255,0.2)" tickFormatter={(v) => `$${v}`} tick={{ fill: 'rgba(255,255,255,0.4)', fontSize: 10 }} domain={[9, 16]} />
           <Tooltip contentStyle={tooltipStyle} formatter={(val: any, name: any) => [`$${val}/kg`, name]} />
           <Legend wrapperStyle={{ fontSize: '11px' }} />
-          <Line type="monotone" dataKey="uk" name="영국" stroke="#fbbf24" strokeWidth={2.5} dot={{ r: 3 }} />
+          <Line type="monotone" dataKey="uk" name="영국" stroke="var(--w-amber-400)" strokeWidth={2.5} dot={{ r: 3 }} />
           <Line type="monotone" dataKey="ireland" name="아일랜드" stroke="#92400e" strokeWidth={2.5} dot={{ r: 3 }} />
         </ComposedChart>
       </ResponsiveContainer>
@@ -95,7 +95,7 @@ export default function WhelkFTAQuarterly() {
           <Tooltip contentStyle={tooltipStyle} formatter={(val: any) => [`${val > 0 ? '+' : ''}${val}%`, '전년 동기 대비']} />
           <Bar dataKey="delta" name="전년 동기 대비" radius={[0, 4, 4, 0]}>
             {yoy.map((d, i) => (
-              <Cell key={i} fill={d.delta > 0 ? '#10b981' : '#ef4444'} opacity={0.85} />
+              <Cell key={i} fill={d.delta > 0 ? 'var(--w-emerald-500)' : 'var(--w-red-500)'} opacity={0.85} />
             ))}
           </Bar>
         </BarChart>
@@ -110,7 +110,7 @@ export default function WhelkFTAQuarterly() {
     padding: '12px 14px',
   };
   const PanelTitle: React.CSSProperties = {
-    fontSize: '0.78rem', fontWeight: 700, color: '#fbbf24',
+    fontSize: '0.78rem', fontWeight: 700, color: 'var(--w-amber-400)',
     letterSpacing: '0.04em', marginBottom: '6px',
     display: 'flex', alignItems: 'center', gap: '6px',
   };
@@ -148,8 +148,8 @@ export default function WhelkFTAQuarterly() {
         <div style={PanelStyle}>
           <div style={PanelTitle}>⚠️ 데이터 공백 주의</div>
           <div style={PanelDesc}>2025 Q3·Q4·2026 Q1 KMI 보고서에서 골뱅이가 주요 품목 기재에서 제외됨. <strong>KMI 통계명이 2025년부터 '골뱅이' → '고둥'으로 재분류</strong>됨. 향후 H2 데이터는 발표 시 보강 필요.</div>
-          <div style={{ marginTop: '10px', padding: '10px', background: 'rgba(251, 191, 36, 0.08)', borderLeft: '3px solid #fbbf24', borderRadius: '4px', fontSize: '0.7rem', color: 'rgba(255,255,255,0.7)', lineHeight: 1.5 }}>
-            <strong style={{ color: '#fbbf24' }}>주요 사건 타임라인</strong><br/>
+          <div style={{ marginTop: '10px', padding: '10px', background: 'rgba(251, 191, 36, 0.08)', borderLeft: '3px solid var(--w-amber-400)', borderRadius: '4px', fontSize: '0.7rem', color: 'rgba(255,255,255,0.7)', lineHeight: 1.5 }}>
+            <strong style={{ color: 'var(--w-amber-400)' }}>주요 사건 타임라인</strong><br/>
             <span style={{ color: 'rgba(255,255,255,0.5)' }}>2022:</span> 러-우 전쟁 공급 부족, 다운스펙 가공 시작<br/>
             <span style={{ color: 'rgba(255,255,255,0.5)' }}>2024:</span> 영국 자원 위축, 프랑스·중국 수요 경합<br/>
             <span style={{ color: 'rgba(255,255,255,0.5)' }}>2025 H1:</span> 영국 조업 시즌 개시, 공급선 다변화로 +31.6% 재진입

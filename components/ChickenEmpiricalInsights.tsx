@@ -27,7 +27,7 @@ export default function ChickenEmpiricalInsights() {
     });
   }, []);
 
-  if (!arbData || !procData || !eggsData) return <div style={{ padding: '2rem', textAlign: 'center', color: '#94a3b8' }}>실증 인사이트 로딩 중...</div>;
+  if (!arbData || !procData || !eggsData) return <div style={{ padding: '2rem', textAlign: 'center', color: 'var(--w-slate-400)' }}>실증 인사이트 로딩 중...</div>;
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem', gridColumn: '1 / -1' }}>
@@ -37,8 +37,8 @@ export default function ChickenEmpiricalInsights() {
             <Activity size={24} color="var(--color-success)" />
           </div>
           <div>
-            <h2 style={{ margin: 0, fontSize: '1.4rem', color: '#f8fafc', fontWeight: 800 }}>S-Grade 닭고기 인텔리전스: 실증 인사이트</h2>
-            <p style={{ margin: '4px 0 0 0', fontSize: '0.85rem', color: '#94a3b8' }}>업계추정 기반 인사이트 (차익거래, 리스크 헤징, 가공 밸류체인, 계란 가격 변동성) [STATIC]</p>
+            <h2 style={{ margin: 0, fontSize: '1.4rem', color: 'var(--w-slate-50)', fontWeight: 800 }}>S-Grade 닭고기 인텔리전스: 실증 인사이트</h2>
+            <p style={{ margin: '4px 0 0 0', fontSize: '0.85rem', color: 'var(--w-slate-400)' }}>업계추정 기반 인사이트 (차익거래, 리스크 헤징, 가공 밸류체인, 계란 가격 변동성) [STATIC]</p>
           </div>
         </div>
       </div>
@@ -55,13 +55,13 @@ export default function ChickenEmpiricalInsights() {
           chart={
             <LineChart data={arbData.data}>
               <CartesianGrid strokeDasharray="3 3" stroke="rgba(140,170,255,0.10)" vertical={false} />
-              <XAxis dataKey="month" stroke="#64748b" tick={{ fontSize: 10 }} />
-              <YAxis stroke="#64748b" tick={{ fontSize: 10 }} />
-              <RechartsTooltip contentStyle={{ background: 'rgba(20, 28, 52, 0.9)', border: 'none', borderRadius: '8px', color: '#f8fafc' }} />
+              <XAxis dataKey="month" stroke="var(--w-slate-500)" tick={{ fontSize: 10 }} />
+              <YAxis stroke="var(--w-slate-500)" tick={{ fontSize: 10 }} />
+              <RechartsTooltip contentStyle={{ background: 'rgba(20, 28, 52, 0.9)', border: 'none', borderRadius: '8px', color: 'var(--w-slate-50)' }} />
               <Legend wrapperStyle={{ fontSize: '11px' }} />
               <Line type="monotone" dataKey="domestic" name="국내산 도매가 (KRW/kg)" stroke="#f87171" strokeWidth={3} dot={{ r: 4 }} activeDot={{ r: 6 }} />
               <Line type="monotone" dataKey="brazil" name="브라질산 수입 원가" stroke="var(--color-success)" strokeWidth={3} dot={{ r: 4 }} activeDot={{ r: 6 }} />
-              <Line type="monotone" dataKey="thai" name="태국산 수입 원가" stroke="#8b5cf6" strokeWidth={3} dot={{ r: 4 }} activeDot={{ r: 6 }} />
+              <Line type="monotone" dataKey="thai" name="태국산 수입 원가" stroke="var(--w-violet-500)" strokeWidth={3} dot={{ r: 4 }} activeDot={{ r: 6 }} />
             </LineChart>
           }
           takeaway={{ situation: arbData.sit, actionPlan: arbData.strat, source: arbData.source }}
@@ -81,10 +81,10 @@ export default function ChickenEmpiricalInsights() {
             <ComposedChart data={procData.data}>
               <ChartPatternDefs />
               <CartesianGrid strokeDasharray="3 3" stroke="rgba(140,170,255,0.10)" vertical={false} />
-              <XAxis dataKey="stage" stroke="#64748b" tick={{ fontSize: 10 }} />
-              <YAxis yAxisId="left" stroke="#64748b" tick={{ fontSize: 10 }} />
-              <YAxis yAxisId="right" orientation="right" stroke="#64748b" tick={{ fontSize: 10 }} />
-              <RechartsTooltip contentStyle={{ background: 'rgba(20, 28, 52, 0.9)', border: 'none', borderRadius: '8px', color: '#f8fafc' }} />
+              <XAxis dataKey="stage" stroke="var(--w-slate-500)" tick={{ fontSize: 10 }} />
+              <YAxis yAxisId="left" stroke="var(--w-slate-500)" tick={{ fontSize: 10 }} />
+              <YAxis yAxisId="right" orientation="right" stroke="var(--w-slate-500)" tick={{ fontSize: 10 }} />
+              <RechartsTooltip contentStyle={{ background: 'rgba(20, 28, 52, 0.9)', border: 'none', borderRadius: '8px', color: 'var(--w-slate-50)' }} />
               <Legend wrapperStyle={{ fontSize: '11px' }} />
               <Bar yAxisId="left" dataKey="laborCost" name="인건비 비중 (%)" fill={A11Y_PALETTE[5]} radius={[4, 4, 0, 0]} maxBarSize={60} />
               <Area yAxisId="right" type="monotone" dataKey="valueAdded" name="부가가치 (Value Added)" fill="var(--color-warning)" stroke="var(--color-warning)" fillOpacity={0.2} strokeWidth={3} />
@@ -105,14 +105,14 @@ export default function ChickenEmpiricalInsights() {
             <ComposedChart data={eggsData.data}>
               <ChartPatternDefs />
               <CartesianGrid strokeDasharray="3 3" stroke="rgba(140,170,255,0.10)" vertical={false} />
-              <XAxis dataKey="year" stroke="#64748b" tick={{ fontSize: 10 }} />
-              <YAxis yAxisId="left" stroke="#64748b" tick={{ fontSize: 10 }} />
-              <YAxis yAxisId="right" orientation="right" stroke="#64748b" tick={{ fontSize: 10 }} domain={[0, 250]} />
-              <RechartsTooltip contentStyle={{ background: 'rgba(20, 28, 52, 0.9)', border: 'none', borderRadius: '8px', color: '#f8fafc' }} />
+              <XAxis dataKey="year" stroke="var(--w-slate-500)" tick={{ fontSize: 10 }} />
+              <YAxis yAxisId="left" stroke="var(--w-slate-500)" tick={{ fontSize: 10 }} />
+              <YAxis yAxisId="right" orientation="right" stroke="var(--w-slate-500)" tick={{ fontSize: 10 }} domain={[0, 250]} />
+              <RechartsTooltip contentStyle={{ background: 'rgba(20, 28, 52, 0.9)', border: 'none', borderRadius: '8px', color: 'var(--w-slate-50)' }} />
               <Legend wrapperStyle={{ fontSize: '11px' }} />
               <Bar yAxisId="left" dataKey="liquidImport" stackId="a" name="액상 계란 수입 (톤)" fill={A11Y_PALETTE[0]} radius={[0, 0, 0, 0]} maxBarSize={60} />
               <Bar yAxisId="left" dataKey="driedImport" stackId="a" name="건조 계란 수입 (톤)" fill={A11Y_PALETTE[3]} radius={[4, 4, 0, 0]} maxBarSize={60} />
-              <Line yAxisId="right" type="monotone" dataKey="priceIndex" name="신선란 도매가 지수" stroke="#ec4899" strokeWidth={3} dot={{ r: 4 }} activeDot={{ r: 6 }} />
+              <Line yAxisId="right" type="monotone" dataKey="priceIndex" name="신선란 도매가 지수" stroke="var(--w-pink-500)" strokeWidth={3} dot={{ r: 4 }} activeDot={{ r: 6 }} />
             </ComposedChart>
           }
           takeaway={{ situation: eggsData.sit, actionPlan: eggsData.strat, source: eggsData.source }}

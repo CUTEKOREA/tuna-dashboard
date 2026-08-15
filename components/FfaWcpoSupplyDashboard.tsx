@@ -85,10 +85,10 @@ const DonutTooltip = ({ active, payload }: any) => {
       borderRadius: 8,
       padding: '8px 14px',
     }}>
-      <p style={{ color: '#f8fafc', fontWeight: 600, margin: 0, fontSize: '0.85rem' }}>
+      <p style={{ color: 'var(--w-slate-50)', fontWeight: 600, margin: 0, fontSize: '0.85rem' }}>
         {name}
       </p>
-      <p style={{ color: '#94a3b8', margin: '4px 0 0 0', fontSize: '0.8rem' }}>
+      <p style={{ color: 'var(--w-slate-400)', margin: '4px 0 0 0', fontSize: '0.8rem' }}>
         {value.toLocaleString()} MT ({share}%)
       </p>
     </div>
@@ -105,7 +105,7 @@ const LineTooltip = ({ active, payload, label }: any) => {
       borderRadius: 8,
       padding: '8px 14px',
     }}>
-      <p style={{ color: '#94a3b8', margin: 0, fontSize: '0.8rem' }}>
+      <p style={{ color: 'var(--w-slate-400)', margin: 0, fontSize: '0.8rem' }}>
         {label}년
       </p>
       <p style={{ color: '#22d3ee', fontWeight: 600, margin: '4px 0 0 0', fontSize: '0.85rem' }}>
@@ -132,7 +132,7 @@ export default function FfaWcpoSupplyDashboard() {
         <h4 style={{
           margin: '0 0 8px 0',
           fontSize: '0.85rem',
-          color: '#94a3b8',
+          color: 'var(--w-slate-400)',
           fontWeight: 600,
         }}>
           🐟 어종별 어획 비중 (2024)
@@ -195,21 +195,21 @@ export default function FfaWcpoSupplyDashboard() {
               <span style={{ color: SPECIES_COLORS[i], fontWeight: 700, fontSize: '0.85rem' }}>
                 {s.species}
               </span>
-              <span style={{ color: '#64748b', fontSize: '0.7rem' }}>{s.abbr}</span>
+              <span style={{ color: 'var(--w-slate-500)', fontSize: '0.7rem' }}>{s.abbr}</span>
             </div>
-            <div style={{ color: '#e2e8f0', fontWeight: 600, fontSize: '0.9rem' }}>
+            <div style={{ color: 'var(--w-slate-200)', fontWeight: 600, fontSize: '0.9rem' }}>
               {s.catchMt.toLocaleString()} MT
             </div>
             <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: 4 }}>
               <span style={{
-                color: s.yoy.startsWith('+') ? '#34d399' : '#f87171',
+                color: s.yoy.startsWith('+') ? 'var(--w-emerald-400)' : '#f87171',
                 fontSize: '0.75rem',
                 fontWeight: 600,
               }}>
                 어획 {s.yoy}
               </span>
               <span style={{
-                color: '#94a3b8',
+                color: 'var(--w-slate-400)',
                 fontSize: '0.75rem',
               }}>
                 ${s.valueBn}B ({s.valueYoy})
@@ -224,7 +224,7 @@ export default function FfaWcpoSupplyDashboard() {
         <h4 style={{
           margin: '0 0 8px 0',
           fontSize: '0.85rem',
-          color: '#94a3b8',
+          color: 'var(--w-slate-400)',
           fontWeight: 600,
         }}>
           📈 WCPO 총 어획량 추이 (2012-2024)
@@ -235,20 +235,20 @@ export default function FfaWcpoSupplyDashboard() {
               <defs>
                 <linearGradient id="wcpoLineGrad" x1="0" y1="0" x2="1" y2="0">
                   <stop offset="0%" stopColor="#22d3ee" />
-                  <stop offset="100%" stopColor="#3b82f6" />
+                  <stop offset="100%" stopColor="var(--w-blue-500)" />
                 </linearGradient>
               </defs>
               <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#334155" />
               <XAxis
                 dataKey="year"
-                stroke="#94a3b8"
+                stroke="var(--w-slate-400)"
                 fontSize={11}
                 tickLine={false}
                 axisLine={false}
                 tickFormatter={(tick) => truncateKoreanLabel(tick, 7)}
               />
               <YAxis
-                stroke="#94a3b8"
+                stroke="var(--w-slate-400)"
                 fontSize={11}
                 tickLine={false}
                 axisLine={false}

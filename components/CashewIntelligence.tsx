@@ -66,7 +66,7 @@ export default function CashewIntelligence() {
               <div className={styles.widgetTitle}>
                 {widget.title}
                 {widget.reliability && widget.reliability <= 70 && (
-                  <span style={{ display:'inline-flex', alignItems:'center', gap:'3px', background:'#292524', border:'1px solid #f59e0b', color:'var(--color-warning)', fontSize:'0.65rem', fontWeight:600, padding:'1px 5px', borderRadius:'4px', letterSpacing:'0.2px', marginLeft:'6px', whiteSpace:'nowrap' }}>📐 Estimate</span>
+                  <span style={{ display:'inline-flex', alignItems:'center', gap:'3px', background:'#292524', border:'1px solid var(--w-amber-500)', color:'var(--color-warning)', fontSize:'0.65rem', fontWeight:600, padding:'1px 5px', borderRadius:'4px', letterSpacing:'0.2px', marginLeft:'6px', whiteSpace:'nowrap' }}>📐 Estimate</span>
                 )}
               </div>
               {getTrendIcon(widget.trend)}

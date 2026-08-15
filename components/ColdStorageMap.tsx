@@ -312,7 +312,7 @@ export default function ColdStorageMap() {
           source="행정안전부 지방행정 인허가 데이터 (2026년 4월 기준)"
           situation={`전국 운영 중인 식품냉동냉장업체는 총 ${totalFacilities.toLocaleString()}개이며, 경기도(400개)가 전체의 45%로 입니다. 부산(82개)은 항만 인접 메가 허브로, 경남(78개)과 함께 초도 수입 물류 거점 역할을 수행합니다. 반면 서울(9개)·대전(4개)은 수요 대비 공급 인프라가 극심하게 부족합니다.`}
           actionPlan={
-            <ul style={{ margin: 0, paddingLeft: '1.2rem', color: '#e2e8f0', fontSize: '0.85rem' }}>
+            <ul style={{ margin: 0, paddingLeft: '1.2rem', color: 'var(--w-slate-200)', fontSize: '0.85rem' }}>
               <li style={{ marginBottom: '4px' }}><strong>[Hub]</strong> 부산 사하/서구 + 인천 중/서구 — 초도 수입 축양 참다랑어 대용량 보관 메가 허브</li>
               <li style={{ marginBottom: '4px' }}><strong>[Spoke]</strong> 경기 광주/용인/남양주 — 2차 가공(블록/사쿠) 완료 후 수도권 당일/새벽 배송 전진기지</li>
               <li><strong>[Partner]</strong> 충남 천안/아산, 경남 김해/양산 — 지방 권역별 벤더 파트너십 콜드체인</li>
@@ -363,7 +363,7 @@ export default function ColdStorageMap() {
             source="참치 전문점 + 냉동냉장업 크로스 분석 (2026년 4월 기준)"
             situation="서울(55:1)과 대전(17:1)은 참치 전문점 수요 대비 냉동냉장 인프라가 극심하게 부족합니다. 이는 현재 서울 참치 전문점들이 경기도 물류센터에서 원거리 배송받거나, 도매시장 경유의 비효율(Inefficiency)적 유통 구조에 의존하고 있음을 의미합니다."
             actionPlan={
-              <ul style={{ margin: 0, paddingLeft: '1.2rem', color: '#e2e8f0', fontSize: '0.85rem' }}>
+              <ul style={{ margin: 0, paddingLeft: '1.2rem', color: 'var(--w-slate-200)', fontSize: '0.85rem' }}>
                 <li style={{ marginBottom: '4px' }}><strong>[최우선]</strong> 서울 강서/구로 수산물류단지 인근에 축양 참다랑어 전용 소규모 전진 냉동기지 확보 — 당일 배송 리드타임을 4시간→2시간으로 단축</li>
                 <li style={{ marginBottom: '4px' }}><strong>[기회]</strong> 대전·대구의 공급 공백을 역으로 활용하여, 충청/영남 권역 독점 냉동 거점을 선점하면 경쟁자 진입 전 시장 락인 가능</li>
                 <li><strong>[벤치마크]</strong> 경기(1.5:1)·부산(1.5:1)·제주(1:1) 수준이 이상적 밸런스. 신규 진출 시 수요/공급 비율 2:1 이하를 목표로 설정</li>

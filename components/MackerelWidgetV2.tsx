@@ -165,8 +165,8 @@ function buildChart(widget: MackerelWidget): React.ReactElement {
       return (
         <RadarChart data={widget.data} cx="50%" cy="50%" outerRadius="70%">
           <PolarGrid stroke="rgba(255,255,255,0.1)" />
-          {widget.xKey && <PolarAngleAxis dataKey={widget.xKey} tick={{ fill: '#cbd5e1', fontSize: 11 }} />}
-          <PolarRadiusAxis stroke="rgba(255,255,255,0.1)" tick={{ fill: '#64748b', fontSize: 10 }} />
+          {widget.xKey && <PolarAngleAxis dataKey={widget.xKey} tick={{ fill: 'var(--w-slate-300)', fontSize: 11 }} />}
+          <PolarRadiusAxis stroke="rgba(255,255,255,0.1)" tick={{ fill: 'var(--w-slate-500)', fontSize: 10 }} />
           {series.map((s) => (
             <Radar key={s.key} dataKey={s.key} stroke={s.color} fill={s.color} fillOpacity={0.35} />
           ))}
@@ -211,7 +211,7 @@ export default function MackerelWidgetV2({
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
-              color: '#64748b',
+              color: 'var(--w-slate-500)',
               fontSize: '0.85rem',
               border: '1px dashed rgba(255,255,255,0.08)',
               borderRadius: '8px',

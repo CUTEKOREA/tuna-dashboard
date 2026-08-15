@@ -41,13 +41,13 @@ const ChartTooltip = ({ active, payload }: any) => {
   const d = p.payload;
   return (
     <div style={{ background: '#0a0f1f', border: '1px solid #334155', borderRadius: 6, padding: '8px 12px', zIndex: 50 }}>
-      <p style={{ color: '#f8fafc', fontWeight: 600, margin: 0, fontSize: '0.85rem' }}>{d.name}</p>
-      <p style={{ color: '#38bdf8', margin: '4px 0 0 0', fontSize: '0.8rem' }}>
+      <p style={{ color: 'var(--w-slate-50)', fontWeight: 600, margin: 0, fontSize: '0.85rem' }}>{d.name}</p>
+      <p style={{ color: 'var(--w-sky-400)', margin: '4px 0 0 0', fontSize: '0.8rem' }}>
         수입액: <strong>${Number(d.valueMusd).toFixed(1)}M</strong>
         {typeof d.sharePct === 'number' && <span> ({d.sharePct.toFixed(1)}%)</span>}
       </p>
       {typeof d.qtyT === 'number' && d.qtyT > 0 && (
-        <p style={{ color: '#94a3b8', margin: '2px 0 0 0', fontSize: '0.75rem' }}>
+        <p style={{ color: 'var(--w-slate-400)', margin: '2px 0 0 0', fontSize: '0.75rem' }}>
           물량: {d.qtyT.toLocaleString()} 톤
         </p>
       )}
@@ -134,7 +134,7 @@ const TunaUsGatewayWidget = () => {
         ) : (
           <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 12, minWidth: 0 }}>
             <div style={{ minWidth: 0 }}>
-              <p style={{ margin: '0 0 4px 0', fontSize: '0.78rem', color: '#94a3b8', textAlign: 'center' }}>
+              <p style={{ margin: '0 0 4px 0', fontSize: '0.78rem', color: 'var(--w-slate-400)', textAlign: 'center' }}>
                 통관지구 분포 (%)
               </p>
               <div style={{ width: '100%', height: 280 }}>
@@ -156,13 +156,13 @@ const TunaUsGatewayWidget = () => {
                       ))}
                     </Pie>
                     <Tooltip content={<ChartTooltip />} />
-                    <Legend wrapperStyle={{ fontSize: '11px', color: '#cbd5e1' }} />
+                    <Legend wrapperStyle={{ fontSize: '11px', color: 'var(--w-slate-300)' }} />
                   </PieChart>
                 </ResponsiveContainer>
               </div>
             </div>
             <div style={{ minWidth: 0 }}>
-              <p style={{ margin: '0 0 4px 0', fontSize: '0.78rem', color: '#94a3b8', textAlign: 'center' }}>
+              <p style={{ margin: '0 0 4px 0', fontSize: '0.78rem', color: 'var(--w-slate-400)', textAlign: 'center' }}>
                 원산지 상위 5개국 수입액 ($M)
               </p>
               <div style={{ width: '100%', height: 280 }}>
@@ -180,7 +180,7 @@ const TunaUsGatewayWidget = () => {
                       dataKey="name"
                       width={78}
                       stroke="rgba(255,255,255,0.5)"
-                      tick={{ fill: '#cbd5e1', fontSize: 12, fontWeight: 500 }}
+                      tick={{ fill: 'var(--w-slate-300)', fontSize: 12, fontWeight: 500 }}
                     />
                     <Tooltip content={<ChartTooltip />} cursor={{ fill: 'rgba(255,255,255,0.05)' }} />
                     <Bar dataKey="valueMusd" name="수입액($M)" fill={BAR_COLOR} radius={[0, 4, 4, 0]} isAnimationActive={false} />

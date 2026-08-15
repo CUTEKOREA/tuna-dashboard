@@ -43,7 +43,7 @@ export default function MscKoreaPositioning() {
         <div style={{ display: 'flex', flexDirection: 'column', gap: '16px', width: '100%' }}>
           {/* RFMO Membership Badges */}
           <div>
-            <div style={{ fontSize: '0.78rem', fontWeight: 600, color: '#94a3b8', marginBottom: '10px' }}>
+            <div style={{ fontSize: '0.78rem', fontWeight: 600, color: 'var(--w-slate-400)', marginBottom: '10px' }}>
               한국 RFMO 정회원 현황 (MSC 인증 가능성)
             </div>
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(5, 1fr)', gap: '8px' }}>
@@ -58,7 +58,7 @@ export default function MscKoreaPositioning() {
                       <CheckCircle size={12} color={sc.fg} />
                       <span style={{ fontSize: '0.82rem', fontWeight: 700, color: sc.fg }}>{r.rfmo}</span>
                     </div>
-                    <div style={{ fontSize: '0.62rem', color: '#94a3b8' }}>{r.label}</div>
+                    <div style={{ fontSize: '0.62rem', color: 'var(--w-slate-400)' }}>{r.label}</div>
                     <div style={{ fontSize: '0.58rem', color: sc.fg, fontWeight: 500, marginTop: '2px' }}>{r.note}</div>
                   </div>
                 );
@@ -68,7 +68,7 @@ export default function MscKoreaPositioning() {
 
           {/* Comparison Table */}
           <div>
-            <div style={{ fontSize: '0.78rem', fontWeight: 600, color: '#94a3b8', marginBottom: '10px' }}>
+            <div style={{ fontSize: '0.78rem', fontWeight: 600, color: 'var(--w-slate-400)', marginBottom: '10px' }}>
               MSC 인증 전후 비교 — 에콰도르 vs 한국
             </div>
             <div style={{ borderRadius: '10px', overflow: 'hidden', border: '1px solid rgba(140,170,255,0.12)' }}>
@@ -76,7 +76,7 @@ export default function MscKoreaPositioning() {
               <div style={{
                 display: 'grid', gridTemplateColumns: '1.2fr 1fr 1fr 0.8fr 0.8fr',
                 background: 'rgba(255,255,255,0.04)', padding: '8px 12px',
-                fontSize: '0.65rem', fontWeight: 600, color: '#64748b', textTransform: 'uppercase', letterSpacing: '0.05em',
+                fontSize: '0.65rem', fontWeight: 600, color: 'var(--w-slate-500)', textTransform: 'uppercase', letterSpacing: '0.05em',
               }}>
                 <span>국가</span><span>인증 전</span><span>인증 후</span><span>성장</span><span>EU 수출</span>
               </div>
@@ -89,7 +89,7 @@ export default function MscKoreaPositioning() {
                   background: c.country.includes('한국') ? 'rgba(239,68,68,0.05)' : 'transparent',
                 }}>
                   <span style={{ fontWeight: 600, color: '#f1f5f9' }}>{c.country}</span>
-                  <span style={{ color: '#94a3b8' }}>{c.before}</span>
+                  <span style={{ color: 'var(--w-slate-400)' }}>{c.before}</span>
                   <span style={{ color: c.color, fontWeight: 600 }}>{c.after}</span>
                   <span style={{ color: c.color, fontWeight: 700 }}>{c.growth}</span>
                   <span style={{ color: c.color, fontWeight: 600 }}>{c.euExport}</span>
@@ -106,10 +106,10 @@ export default function MscKoreaPositioning() {
           }}>
             <XCircle size={18} color="#ef4444" style={{ flexShrink: 0 }} />
             <div>
-              <div style={{ fontSize: '0.78rem', fontWeight: 700, color: '#ef4444' }}>
+              <div style={{ fontSize: '0.78rem', fontWeight: 700, color: 'var(--w-red-500)' }}>
                 한국 = 5개 RFMO 모두 정회원, MSC 인증 0건
               </div>
-              <div style={{ fontSize: '0.68rem', color: '#94a3b8', marginTop: '2px' }}>
+              <div style={{ fontSize: '0.68rem', color: 'var(--w-slate-400)', marginTop: '2px' }}>
                 조업 능력은 최상위급이나, 지속가능성 인증은 공백 — 글로벌 공급망에서의 포지션 위축 리스크
               </div>
             </div>

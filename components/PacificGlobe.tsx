@@ -120,12 +120,12 @@ export default function PacificGlobe() {
         />
       )}
       <div style={{ position: 'absolute', bottom: '16px', left: '16px', background: 'rgba(0, 0, 0, 0.2)', padding: '12px', borderRadius: '8px', border: '1px solid rgba(255,255,255,0.1)', pointerEvents: 'none' }}>
-        <h4 style={{ margin: '0 0 8px 0', fontSize: '13px', color: '#e2e8f0', display: 'flex', alignItems: 'center', gap: '6px' }}>
-          <span style={{ display: 'inline-block', width: '8px', height: '8px', borderRadius: '50%', background: 'var(--color-danger)', boxShadow: '0 0 8px #ef4444' }}></span>
+        <h4 style={{ margin: '0 0 8px 0', fontSize: '13px', color: 'var(--w-slate-200)', display: 'flex', alignItems: 'center', gap: '6px' }}>
+          <span style={{ display: 'inline-block', width: '8px', height: '8px', borderRadius: '50%', background: 'var(--color-danger)', boxShadow: '0 0 8px var(--w-red-500)' }}></span>
           참치 선망선 (Seiners)
         </h4>
-        <h4 style={{ margin: '0', fontSize: '13px', color: '#e2e8f0', display: 'flex', alignItems: 'center', gap: '6px' }}>
-          <span style={{ display: 'inline-block', width: '8px', height: '8px', borderRadius: '50%', background: 'var(--color-info)', boxShadow: '0 0 8px #3b82f6' }}></span>
+        <h4 style={{ margin: '0', fontSize: '13px', color: 'var(--w-slate-200)', display: 'flex', alignItems: 'center', gap: '6px' }}>
+          <span style={{ display: 'inline-block', width: '8px', height: '8px', borderRadius: '50%', background: 'var(--color-info)', boxShadow: '0 0 8px var(--w-blue-500)' }}></span>
           운반선 경로 (Reefers)
         </h4>
       </div>

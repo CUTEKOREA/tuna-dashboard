@@ -17,7 +17,7 @@ const CustomTooltip = ({ active, payload, label }: any) => {
   if (!active || !payload?.length) return null;
   return (
     <div style={{ background: '#0a0f1f', border: '1px solid #334155', borderRadius: 6, padding: '8px 12px' }}>
-      <p style={{ color: '#f8fafc', fontWeight: 600, margin: 0, fontSize: '0.85rem' }}>{`${label}년 한국 참다랑어 수입`}</p>
+      <p style={{ color: 'var(--w-slate-50)', fontWeight: 600, margin: 0, fontSize: '0.85rem' }}>{`${label}년 한국 참다랑어 수입`}</p>
       {payload.map((entry: any, i: number) => (
         <p key={i} style={{ color: entry.color, margin: '4px 0 0 0', fontSize: '0.8rem' }}>
           <span>{entry.name}: </span>
@@ -25,7 +25,7 @@ const CustomTooltip = ({ active, payload, label }: any) => {
         </p>
       ))}
       {payload.length >= 2 && payload[0].value > 0 && (
-        <p style={{ color: '#fbbf24', margin: '4px 0 0 0', fontSize: '0.8rem' }}>
+        <p style={{ color: 'var(--w-amber-400)', margin: '4px 0 0 0', fontSize: '0.8rem' }}>
           <span>추정 단가: </span><strong>${(payload[1].value / payload[0].value * 1000).toFixed(0)}/톤</strong>
         </p>
       )}
@@ -47,11 +47,11 @@ const TunaKoreaPosition = () => (
         <ChartPatternDefs />
         <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" vertical={false} />
         <XAxis dataKey="Year" stroke="rgba(255,255,255,0.5)" tick={{ fill: 'rgba(255,255,255,0.7)', fontSize: 12 }} />
-        <YAxis yAxisId="left" stroke="#38bdf8" tick={{ fill: '#38bdf8', fontSize: 12 }} tickFormatter={(v) => `${v.toLocaleString()}`} />
+        <YAxis yAxisId="left" stroke="var(--w-sky-400)" tick={{ fill: 'var(--w-sky-400)', fontSize: 12 }} tickFormatter={(v) => `${v.toLocaleString()}`} />
         <YAxis yAxisId="right" orientation="right" stroke="#f43f5e" tick={{ fill: '#f43f5e', fontSize: 12 }} tickFormatter={(v) => `$${(v / 1000).toFixed(0)}M`} />
         <Tooltip content={<CustomTooltip />} />
         <Legend wrapperStyle={{ paddingTop: '20px' }} />
-        <Bar yAxisId="left" dataKey="Volume" name="수입량 (톤)" fill="#38bdf8" fillOpacity={0.8} radius={[4, 4, 0, 0]} barSize={40} />
+        <Bar yAxisId="left" dataKey="Volume" name="수입량 (톤)" fill="var(--w-sky-400)" fillOpacity={0.8} radius={[4, 4, 0, 0]} barSize={40} />
         <Line yAxisId="right" type="monotone" dataKey="Value" name="수입액 (천 USD)" stroke="#f43f5e" strokeWidth={4} dot={{ r: 5 }} activeDot={{ r: 8 }} />
       </ComposedChart>
     }

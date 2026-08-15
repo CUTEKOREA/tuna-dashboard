@@ -256,7 +256,7 @@ export default function SupplierDiscoveryDashboard() {
 
       {/* Phase 1: Workflow */}
       <motion.div initial="hidden" animate="show" variants={containerVariants} style={{ marginBottom: '3rem' }}>
-        <h3 style={{ borderLeft: '4px solid #3b82f6', paddingLeft: '0.75rem', marginBottom: '1.5rem', color: '#e2e8f0' }}>
+        <h3 style={{ borderLeft: '4px solid var(--w-blue-500)', paddingLeft: '0.75rem', marginBottom: '1.5rem', color: 'var(--w-slate-200)' }}>
           Phase 1: 데이터 기반 조달망 해킹 워크플로우
         </h3>
         <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap' }}>
@@ -270,9 +270,9 @@ export default function SupplierDiscoveryDashboard() {
                 <div style={{ position: 'absolute', top: '-10px', right: '-10px', width: '60px', height: '60px', background: item.color, opacity: 0.1, borderRadius: '50%' }} />
                 <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', marginBottom: '1rem' }}>
                   <div style={{ background: item.color, color: 'white', width: '32px', height: '32px', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 'bold' }}>{item.step}</div>
-                  <h4 style={{ margin: 0, color: '#f8fafc', fontSize: '1.1rem' }}>{item.title}</h4>
+                  <h4 style={{ margin: 0, color: 'var(--w-slate-50)', fontSize: '1.1rem' }}>{item.title}</h4>
                 </div>
-                <p style={{ color: '#94a3b8', fontSize: '0.9rem', lineHeight: '1.5' }}>{item.desc}</p>
+                <p style={{ color: 'var(--w-slate-400)', fontSize: '0.9rem', lineHeight: '1.5' }}>{item.desc}</p>
               </motion.div>
               {idx < 2 && <ArrowRight size={24} color="#475569" style={{ alignSelf: 'center', flexShrink: 0 }} />}
             </React.Fragment>
@@ -283,10 +283,10 @@ export default function SupplierDiscoveryDashboard() {
       <motion.div initial={{ opacity: 0, y: -20 }} animate={{ opacity: 1, y: 0 }} style={{ marginBottom: '3rem', background: 'linear-gradient(135deg, rgba(20, 28, 52, 0.9), rgba(30, 41, 59, 0.9))', border: '1px solid #334155', borderRadius: '16px', padding: '2.5rem', boxShadow: '0 20px 40px -10px rgba(0,0,0,0.7)', position: 'relative', overflow: 'hidden' }}>
         <div style={{ position: 'absolute', top: '-50%', left: '-10%', width: '300px', height: '300px', background: 'radial-gradient(circle, rgba(139, 92, 246, 0.15) 0%, transparent 70%)', filter: 'blur(40px)', zIndex: 0 }} />
         
-        <h2 style={{ position: 'relative', zIndex: 1, fontSize: '1.8rem', color: '#f8fafc', marginBottom: '1.5rem', display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
+        <h2 style={{ position: 'relative', zIndex: 1, fontSize: '1.8rem', color: 'var(--w-slate-50)', marginBottom: '1.5rem', display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
           <Globe color="#8b5cf6" size={28} /> Global Intelligence Engine (통합 소싱 터미널)
         </h2>
-        <p style={{ position: 'relative', zIndex: 1, color: '#94a3b8', marginBottom: '2rem', fontSize: '1.05rem', maxWidth: '800px', lineHeight: '1.5' }}>
+        <p style={{ position: 'relative', zIndex: 1, color: 'var(--w-slate-400)', marginBottom: '2rem', fontSize: '1.05rem', maxWidth: '800px', lineHeight: '1.5' }}>
           품목명과 타겟 국가를 입력하시면 거시적 관세/물동량 데이터(Phase 1.5)부터 타겟 경쟁사 역추적(Phase 2), 그리고 글로벌 AI 추천 공급처 및 자동 RFQ 생성(Phase 3)까지 모든 파이프라인이 한 번에 가동됩니다.
         </p>
 
@@ -347,7 +347,7 @@ export default function SupplierDiscoveryDashboard() {
             type="submit" 
             disabled={isMacroSearching || isSearching || !macroItem.trim()}
             style={{
-              background: 'linear-gradient(135deg, #8b5cf6, #3b82f6)', color: 'white', border: 'none', borderRadius: '12px', padding: '0 2.5rem', 
+              background: 'linear-gradient(135deg, var(--w-violet-500), var(--w-blue-500))', color: 'white', border: 'none', borderRadius: '12px', padding: '0 2.5rem',
               fontSize: '1.1rem', fontWeight: 'bold', cursor: (isMacroSearching || isSearching) ? 'not-allowed' : 'pointer', transition: 'all 0.3s',
               opacity: (isMacroSearching || isSearching || !macroItem.trim()) ? 0.7 : 1, display: 'flex', alignItems: 'center', gap: '0.75rem',
               minWidth: '220px', justifyContent: 'center', boxShadow: '0 10px 20px -5px rgba(139, 92, 246, 0.4)'
@@ -361,11 +361,11 @@ export default function SupplierDiscoveryDashboard() {
       {/* Phase 0: Environment Scan */}
       {(isEnvLoading || envData) && (
         <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.05 }} style={{ marginBottom: '3rem' }}>
-          <h3 style={{ borderLeft: '4px solid #06b6d4', paddingLeft: '0.75rem', marginBottom: '1.5rem', color: '#e2e8f0', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+          <h3 style={{ borderLeft: '4px solid var(--w-cyan-500)', paddingLeft: '0.75rem', marginBottom: '1.5rem', color: 'var(--w-slate-200)', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
             Phase 0: 글로벌 환경 스캔 (ECOS + FRED + KOTRA 실시간) <TrendingUp size={18} color="#06b6d4" />
           </h3>
           {isEnvLoading ? (
-            <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', padding: '2rem', color: '#06b6d4' }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', padding: '2rem', color: 'var(--w-cyan-500)' }}>
               <Loader2 size={20} className={styles.spin} /> 글로벌 환경 데이터 수집 중 (ECOS 환율 + FRED 금리 + KOTRA 시장뉴스)...
             </div>
           ) : envData && (
@@ -374,51 +374,51 @@ export default function SupplierDiscoveryDashboard() {
               <div style={{ background: 'rgba(20, 28, 52, 0.8)', border: '1px solid #334155', borderRadius: '12px', padding: '1.25rem' }}>
                 <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.75rem' }}>
                   <DollarSign size={16} color="#06b6d4" />
-                  <span style={{ color: '#94a3b8', fontSize: '0.85rem' }}>원/{envData.exchangeRate?.currency || 'USD'} 환율</span>
-                  <span style={{ marginLeft: 'auto', fontSize: '0.7rem', background: '#164e63', color: '#06b6d4', padding: '2px 6px', borderRadius: '4px' }}>{envData?.exchangeRate?.isLive ? 'ECOS 실시간' : 'ECOS 캐시'}</span>
+                  <span style={{ color: 'var(--w-slate-400)', fontSize: '0.85rem' }}>원/{envData.exchangeRate?.currency || 'USD'} 환율</span>
+                  <span style={{ marginLeft: 'auto', fontSize: '0.7rem', background: '#164e63', color: 'var(--w-cyan-500)', padding: '2px 6px', borderRadius: '4px' }}>{envData?.exchangeRate?.isLive ? 'ECOS 실시간' : 'ECOS 캐시'}</span>
                 </div>
-                <div style={{ fontSize: '1.8rem', fontWeight: 'bold', color: '#f8fafc' }}>
+                <div style={{ fontSize: '1.8rem', fontWeight: 'bold', color: 'var(--w-slate-50)' }}>
                   ₩{envData.exchangeRate?.currentRate?.toLocaleString() || 'N/A'}
                 </div>
-                <div style={{ color: '#64748b', fontSize: '0.8rem', marginTop: '0.25rem' }}>{envData.exchangeRate?.date || ''}</div>
+                <div style={{ color: 'var(--w-slate-500)', fontSize: '0.8rem', marginTop: '0.25rem' }}>{envData.exchangeRate?.date || ''}</div>
               </div>
               {/* Fed Rate */}
               <div style={{ background: 'rgba(20, 28, 52, 0.8)', border: '1px solid #334155', borderRadius: '12px', padding: '1.25rem' }}>
                 <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.75rem' }}>
                   <TrendingUp size={16} color="#f59e0b" />
-                  <span style={{ color: '#94a3b8', fontSize: '0.85rem' }}>미국 기준금리 (Fed Funds Rate)</span>
-                  <span style={{ marginLeft: 'auto', fontSize: '0.7rem', background: '#451a03', color: '#f59e0b', padding: '2px 6px', borderRadius: '4px' }}>{envData?.fedRate?.isLive ? 'FRED 실시간' : 'FRED 캐시'}</span>
+                  <span style={{ color: 'var(--w-slate-400)', fontSize: '0.85rem' }}>미국 기준금리 (Fed Funds Rate)</span>
+                  <span style={{ marginLeft: 'auto', fontSize: '0.7rem', background: '#451a03', color: 'var(--w-amber-500)', padding: '2px 6px', borderRadius: '4px' }}>{envData?.fedRate?.isLive ? 'FRED 실시간' : 'FRED 캐시'}</span>
                 </div>
-                <div style={{ fontSize: '1.8rem', fontWeight: 'bold', color: '#f8fafc' }}>
+                <div style={{ fontSize: '1.8rem', fontWeight: 'bold', color: 'var(--w-slate-50)' }}>
                   {envData.fedRate?.latest?.value?.toFixed(2) || 'N/A'}%
                 </div>
-                <div style={{ color: '#64748b', fontSize: '0.8rem', marginTop: '0.25rem' }}>{envData.fedRate?.latest?.date || ''}</div>
+                <div style={{ color: 'var(--w-slate-500)', fontSize: '0.8rem', marginTop: '0.25rem' }}>{envData.fedRate?.latest?.date || ''}</div>
               </div>
               {/* CPI */}
               <div style={{ background: 'rgba(20, 28, 52, 0.8)', border: '1px solid #334155', borderRadius: '12px', padding: '1.25rem' }}>
                 <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.75rem' }}>
                   <Activity size={16} color="#10b981" />
-                  <span style={{ color: '#94a3b8', fontSize: '0.85rem' }}>미국 CPI (물가지수)</span>
-                  <span style={{ marginLeft: 'auto', fontSize: '0.7rem', background: '#052e16', color: '#10b981', padding: '2px 6px', borderRadius: '4px' }}>{envData?.cpi?.isLive ? 'FRED 실시간' : 'FRED 캐시'}</span>
+                  <span style={{ color: 'var(--w-slate-400)', fontSize: '0.85rem' }}>미국 CPI (물가지수)</span>
+                  <span style={{ marginLeft: 'auto', fontSize: '0.7rem', background: '#052e16', color: 'var(--w-emerald-500)', padding: '2px 6px', borderRadius: '4px' }}>{envData?.cpi?.isLive ? 'FRED 실시간' : 'FRED 캐시'}</span>
                 </div>
-                <div style={{ fontSize: '1.8rem', fontWeight: 'bold', color: '#f8fafc' }}>
+                <div style={{ fontSize: '1.8rem', fontWeight: 'bold', color: 'var(--w-slate-50)' }}>
                   {envData.cpi?.latest?.value?.toFixed(1) || 'N/A'}
                 </div>
-                <div style={{ color: '#64748b', fontSize: '0.8rem', marginTop: '0.25rem' }}>{envData.cpi?.latest?.date || ''}</div>
+                <div style={{ color: 'var(--w-slate-500)', fontSize: '0.8rem', marginTop: '0.25rem' }}>{envData.cpi?.latest?.date || ''}</div>
               </div>
               {/* KOTRA News */}
               {envData.marketNews && envData.marketNews.length > 0 && (
                 <div style={{ background: 'rgba(20, 28, 52, 0.8)', border: '1px solid #334155', borderRadius: '12px', padding: '1.25rem', gridColumn: 'span 3' }}>
                   <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.75rem' }}>
                     <Newspaper size={16} color="#8b5cf6" />
-                    <span style={{ color: '#94a3b8', fontSize: '0.85rem' }}>KOTRA 해외시장 뉴스</span>
-                    <span style={{ marginLeft: 'auto', fontSize: '0.7rem', background: '#2e1065', color: '#8b5cf6', padding: '2px 6px', borderRadius: '4px' }}>{envData?.marketNewsIsLive ? 'KOTRA 실시간' : 'KOTRA 캐시'}</span>
+                    <span style={{ color: 'var(--w-slate-400)', fontSize: '0.85rem' }}>KOTRA 해외시장 뉴스</span>
+                    <span style={{ marginLeft: 'auto', fontSize: '0.7rem', background: '#2e1065', color: 'var(--w-violet-500)', padding: '2px 6px', borderRadius: '4px' }}>{envData?.marketNewsIsLive ? 'KOTRA 실시간' : 'KOTRA 캐시'}</span>
                   </div>
                   <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
                     {envData.marketNews.slice(0, 3).map((news: any, i: number) => (
-                      <div key={i} style={{ padding: '0.5rem 0.75rem', background: '#1a2442', borderRadius: '6px', borderLeft: '3px solid #8b5cf6' }}>
-                        <div style={{ color: '#f8fafc', fontSize: '0.9rem', fontWeight: '500' }}>{news.title}</div>
-                        <div style={{ color: '#64748b', fontSize: '0.75rem', marginTop: '0.25rem' }}>{news.date} · {news.country}</div>
+                      <div key={i} style={{ padding: '0.5rem 0.75rem', background: 'var(--w-navy-900)', borderRadius: '6px', borderLeft: '3px solid var(--w-violet-500)' }}>
+                        <div style={{ color: 'var(--w-slate-50)', fontSize: '0.9rem', fontWeight: '500' }}>{news.title}</div>
+                        <div style={{ color: 'var(--w-slate-500)', fontSize: '0.75rem', marginTop: '0.25rem' }}>{news.date} · {news.country}</div>
                       </div>
                     ))}
                   </div>
@@ -431,7 +431,7 @@ export default function SupplierDiscoveryDashboard() {
 
       {/* UN Trade Map Macro Terminal */}
       <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1 }} style={{ marginBottom: '3rem' }}>
-        <h3 style={{ borderLeft: '4px solid #ec4899', paddingLeft: '0.75rem', marginBottom: '1.5rem', color: '#e2e8f0', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+        <h3 style={{ borderLeft: '4px solid var(--w-pink-500)', paddingLeft: '0.75rem', marginBottom: '1.5rem', color: 'var(--w-slate-200)', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
           Phase 1.5: 관세 및 물동량 거시 분석기 (UN Trade Map & KCS API 연동) <BarChart2 size={18} color="#ec4899" />
         </h3>
         
@@ -444,28 +444,28 @@ export default function SupplierDiscoveryDashboard() {
                 <div data-mobile-stack style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1.5rem', marginTop: '1.5rem', width: '100%' }}>
                   
                   {/* Tariff & HS Code Stats */}
-                  <div style={{ background: 'rgba(236, 72, 153, 0.1)', border: '1px solid #ec4899', borderRadius: '8px', padding: '1.5rem' }}>
+                  <div style={{ background: 'rgba(236, 72, 153, 0.1)', border: '1px solid var(--w-pink-500)', borderRadius: '8px', padding: '1.5rem' }}>
                     <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '1.5rem' }}>
                       <div style={{ flex: 1 }}>
                         <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.25rem' }}>
-                          <span style={{ color: '#94a3b8', fontSize: '0.9rem', display: 'block' }}>AI HS Code 매핑</span>
-                          <span style={{ fontSize: '0.65rem', background: 'rgba(16, 185, 129, 0.2)', color: '#10b981', padding: '2px 6px', borderRadius: '4px', border: '1px solid rgba(16, 185, 129, 0.3)' }}>{macroData?.isLive ? 'LIVE API: HS Ping' : 'SYNCED: HS 매핑'}</span>
+                          <span style={{ color: 'var(--w-slate-400)', fontSize: '0.9rem', display: 'block' }}>AI HS Code 매핑</span>
+                          <span style={{ fontSize: '0.65rem', background: 'rgba(16, 185, 129, 0.2)', color: 'var(--w-emerald-500)', padding: '2px 6px', borderRadius: '4px', border: '1px solid rgba(16, 185, 129, 0.3)' }}>{macroData?.isLive ? 'LIVE API: HS Ping' : 'SYNCED: HS 매핑'}</span>
                         </div>
                         <div style={{ display: 'flex', alignItems: 'baseline', gap: '0.5rem', flexWrap: 'wrap' }}>
-                          <strong style={{ color: '#f8fafc', fontSize: '1.5rem', display: 'block' }}>{macroData.hsCode}</strong>
+                          <strong style={{ color: 'var(--w-slate-50)', fontSize: '1.5rem', display: 'block' }}>{macroData.hsCode}</strong>
                           {macroData.engItemName && macroData.engItemName !== 'Unknown' && (
                             <span style={{ color: '#60a5fa', fontSize: '1.1rem', fontWeight: 'bold' }}>({macroData.engItemName})</span>
                           )}
                         </div>
-                        <span style={{ color: '#cbd5e1', fontSize: '0.85rem', display: 'block', marginBottom: '0.75rem', lineHeight: '1.4' }}>{macroData.itemDesc}</span>
+                        <span style={{ color: 'var(--w-slate-300)', fontSize: '0.85rem', display: 'block', marginBottom: '0.75rem', lineHeight: '1.4' }}>{macroData.itemDesc}</span>
                         
                         {macroData.relatedHsCodes && macroData.relatedHsCodes.length > 0 && (
                           <div style={{ marginTop: '0.5rem', background: 'rgba(20, 28, 52, 0.5)', padding: '0.75rem', borderRadius: '6px', border: '1px dashed rgba(236, 72, 153, 0.5)' }}>
                             <span style={{ color: '#f472b6', fontSize: '0.8rem', fontWeight: 'bold', display: 'block', marginBottom: '0.4rem' }}>추가 제안 연관 HS Code</span>
                             {macroData.relatedHsCodes.map((rh: any, idx: number) => (
                               <div key={idx} style={{ display: 'flex', gap: '0.5rem', fontSize: '0.85rem', marginBottom: '0.2rem', alignItems: 'flex-start' }}>
-                                <strong style={{ color: '#e2e8f0', minWidth: '60px' }}>{rh.code}</strong>
-                                <span style={{ color: '#94a3b8', lineHeight: '1.3' }}>- {rh.desc}</span>
+                                <strong style={{ color: 'var(--w-slate-200)', minWidth: '60px' }}>{rh.code}</strong>
+                                <span style={{ color: 'var(--w-slate-400)', lineHeight: '1.3' }}>- {rh.desc}</span>
                               </div>
                             ))}
                           </div>
@@ -476,22 +476,22 @@ export default function SupplierDiscoveryDashboard() {
                     
                     <div style={{ background: '#0a0f1f', padding: '1rem', borderRadius: '6px', border: '1px solid #334155' }}>
                       <div style={{ marginBottom: '1rem' }}>
-                        <span style={{ color: '#94a3b8', fontSize: '0.85rem', display: 'block' }}>기본 관세율 (MFN)</span>
-                        <strong style={{ color: '#f8fafc', fontSize: '1.2rem' }}>{macroData.tariff.base}</strong>
+                        <span style={{ color: 'var(--w-slate-400)', fontSize: '0.85rem', display: 'block' }}>기본 관세율 (MFN)</span>
+                        <strong style={{ color: 'var(--w-slate-50)', fontSize: '1.2rem' }}>{macroData.tariff.base}</strong>
                       </div>
                       <div style={{ marginBottom: '1rem' }}>
-                        <span style={{ color: '#94a3b8', fontSize: '0.85rem', display: 'block' }}>FTA 협정 세율 ({macroCountry})</span>
-                        <strong style={{ color: '#10b981', fontSize: '1.2rem' }}>{macroData.tariff.fta}</strong>
+                        <span style={{ color: 'var(--w-slate-400)', fontSize: '0.85rem', display: 'block' }}>FTA 협정 세율 ({macroCountry})</span>
+                        <strong style={{ color: 'var(--w-emerald-500)', fontSize: '1.2rem' }}>{macroData.tariff.fta}</strong>
                       </div>
                       {macroData.kamisPrice && (
-                        <div style={{ marginBottom: '1rem', borderTop: '1px solid #1a2442', paddingTop: '1rem' }}>
-                          <span style={{ color: '#94a3b8', fontSize: '0.85rem', display: 'block' }}>국내 경매 도매가 (KAMIS / 공공데이터포털 연동)</span>
-                          <strong style={{ color: '#fbbf24', fontSize: '1.1rem' }}>{macroData.kamisPrice}</strong>
+                        <div style={{ marginBottom: '1rem', borderTop: '1px solid var(--w-navy-900)', paddingTop: '1rem' }}>
+                          <span style={{ color: 'var(--w-slate-400)', fontSize: '0.85rem', display: 'block' }}>국내 경매 도매가 (KAMIS / 공공데이터포털 연동)</span>
+                          <strong style={{ color: 'var(--w-amber-400)', fontSize: '1.1rem' }}>{macroData.kamisPrice}</strong>
                         </div>
                       )}
                       {macroData.mfdsRejection && (
                         <div>
-                          <span style={{ color: '#94a3b8', fontSize: '0.85rem', display: 'block' }}>글로벌 안전성/적발 이력 (FDA / MFDS API)</span>
+                          <span style={{ color: 'var(--w-slate-400)', fontSize: '0.85rem', display: 'block' }}>글로벌 안전성/적발 이력 (FDA / MFDS API)</span>
                           <strong style={{ color: '#f87171', fontSize: '1.1rem' }}>{macroData.mfdsRejection}</strong>
                         </div>
                       )}
@@ -499,9 +499,9 @@ export default function SupplierDiscoveryDashboard() {
                   </div>
 
                   {/* Volume Chart */}
-                  <div style={{ background: '#1a2442', border: '1px solid #334155', borderRadius: '8px', padding: '1.5rem', minWidth: 0, overflow: 'hidden' }}>
+                  <div style={{ background: 'var(--w-navy-900)', border: '1px solid #334155', borderRadius: '8px', padding: '1.5rem', minWidth: 0, overflow: 'hidden' }}>
                     <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1rem' }}>
-                      <h4 style={{ margin: 0, color: '#f8fafc', fontSize: '1.1rem' }}>한국 ↔ {macroCountry} 누적 물동량 (MT) 추이</h4>
+                      <h4 style={{ margin: 0, color: 'var(--w-slate-50)', fontSize: '1.1rem' }}>한국 ↔ {macroCountry} 누적 물동량 (MT) 추이</h4>
                       <span style={{ fontSize: '0.7rem', background: 'rgba(59, 130, 246, 0.2)', color: '#60a5fa', padding: '3px 8px', borderRadius: '4px', border: '1px solid rgba(59, 130, 246, 0.3)' }}>
                         {macroData?.isLive
                           ? (macroData.tradeVolume?.[0]?.source?.includes('COMTRADE') ? 'LIVE API: UN Comtrade' : 'LIVE API: KCS 관세청')
@@ -514,20 +514,20 @@ export default function SupplierDiscoveryDashboard() {
                           <ChartPatternDefs />
                           <defs>
                             <linearGradient id="importGrad" x1="0" y1="0" x2="0" y2="1">
-                              <stop offset="5%" stopColor="#3b82f6" stopOpacity={0.9}/>
-                              <stop offset="95%" stopColor="#3b82f6" stopOpacity={0.3}/>
+                              <stop offset="5%" stopColor="var(--w-blue-500)" stopOpacity={0.9}/>
+                              <stop offset="95%" stopColor="var(--w-blue-500)" stopOpacity={0.3}/>
                             </linearGradient>
                             <linearGradient id="exportGrad" x1="0" y1="0" x2="0" y2="1">
-                              <stop offset="5%" stopColor="#ec4899" stopOpacity={0.9}/>
-                              <stop offset="95%" stopColor="#ec4899" stopOpacity={0.3}/>
+                              <stop offset="5%" stopColor="var(--w-pink-500)" stopOpacity={0.9}/>
+                              <stop offset="95%" stopColor="var(--w-pink-500)" stopOpacity={0.3}/>
                             </linearGradient>
                           </defs>
                           <CartesianGrid strokeDasharray="3 3" stroke="#334155" vertical={false} opacity={0.6} />
-                          <XAxis dataKey="year" stroke="#94a3b8" fontSize={12} tickLine={false} axisLine={false} tickMargin={8} />
-                          <YAxis stroke="#94a3b8" fontSize={11} tickLine={false} axisLine={false} width={55} tickFormatter={(value: number) => value.toLocaleString()} />
+                          <XAxis dataKey="year" stroke="var(--w-slate-400)" fontSize={12} tickLine={false} axisLine={false} tickMargin={8} />
+                          <YAxis stroke="var(--w-slate-400)" fontSize={11} tickLine={false} axisLine={false} width={55} tickFormatter={(value: number) => value.toLocaleString()} />
                           <RechartsTooltip
                             cursor={{ fill: 'rgba(140,170,255,0.10)' }}
-                            contentStyle={{ background: 'rgba(20, 28, 52, 0.95)', border: '1px solid #475569', borderRadius: '8px', color: '#f8fafc', boxShadow: '0 10px 25px -5px rgba(0, 0, 0, 0.5)' }}
+                            contentStyle={{ background: 'rgba(20, 28, 52, 0.95)', border: '1px solid #475569', borderRadius: '8px', color: 'var(--w-slate-50)', boxShadow: '0 10px 25px -5px rgba(0, 0, 0, 0.5)' }}
                             itemStyle={{ fontWeight: 'bold' }}
                             formatter={(value: any) => `${Number(value).toLocaleString()} MT`}
                           />
@@ -544,9 +544,9 @@ export default function SupplierDiscoveryDashboard() {
                 {/* Market Attractiveness Scorecard */}
                 {macroData.scorecard && (
                   <div style={{ marginTop: '1.5rem', background: '#0a0f1f', border: '1px solid #334155', borderRadius: '8px', padding: '1.5rem' }}>
-                    <h4 style={{ margin: '0 0 1.5rem 0', color: '#f8fafc', fontSize: '1.2rem', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                    <h4 style={{ margin: '0 0 1.5rem 0', color: 'var(--w-slate-50)', fontSize: '1.2rem', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
                       <Activity size={20} color="#10b981" /> 수입시장 매력도 (Market Attractiveness) 상세 평가
-                      <span style={{ marginLeft: 'auto', background: 'rgba(16, 185, 129, 0.2)', color: '#10b981', border: '1px solid #10b981', padding: '0.3rem 1rem', borderRadius: '20px', fontSize: '0.9rem', fontWeight: 'bold' }}>
+                      <span style={{ marginLeft: 'auto', background: 'rgba(16, 185, 129, 0.2)', color: 'var(--w-emerald-500)', border: '1px solid var(--w-emerald-500)', padding: '0.3rem 1rem', borderRadius: '20px', fontSize: '0.9rem', fontWeight: 'bold' }}>
                         종합 점수: {macroData.scorecard.totalScore} / 100점 ({macroData.scorecard.verdict})
                       </span>
                     </h4>
@@ -557,11 +557,11 @@ export default function SupplierDiscoveryDashboard() {
                         { key: 'accessibility', title: '2. 접근성 (Accessibility)', data: macroData.scorecard.accessibility },
                         { key: 'stability', title: '3. 안정성 (Stability)', data: macroData.scorecard.stability }
                       ].map((category) => (
-                        <div key={category.key} style={{ background: '#1a2442', padding: '1.25rem', borderRadius: '8px', borderTop: `4px solid ${getGradeColor(category.data.grade)}` }}>
+                        <div key={category.key} style={{ background: 'var(--w-navy-900)', padding: '1.25rem', borderRadius: '8px', borderTop: `4px solid ${getGradeColor(category.data.grade)}` }}>
                           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1rem' }}>
-                            <span style={{ color: '#cbd5e1', fontWeight: 'bold', fontSize: '1.05rem' }}>{category.title}</span>
+                            <span style={{ color: 'var(--w-slate-300)', fontWeight: 'bold', fontSize: '1.05rem' }}>{category.title}</span>
                             <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-                              <span style={{ color: '#f8fafc', fontWeight: 'bold' }}>{category.data.score}/{category.data.maxScore}</span>
+                              <span style={{ color: 'var(--w-slate-50)', fontWeight: 'bold' }}>{category.data.score}/{category.data.maxScore}</span>
                               <span style={{ color: getGradeColor(category.data.grade), fontWeight: 'bold', background: 'rgba(0,0,0,0.3)', padding: '0.1rem 0.5rem', borderRadius: '4px' }}>{category.data.grade}</span>
                             </div>
                           </div>
@@ -570,10 +570,10 @@ export default function SupplierDiscoveryDashboard() {
                             {category.data.details.map((detail: any, idx: number) => (
                               <li key={idx} style={{ background: 'rgba(20, 28, 52, 0.5)', padding: '1rem', borderRadius: '8px', borderLeft: `3px solid ${getGradeColor(category.data.grade)}`, marginBottom: '0.5rem' }}>
                                 <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '0.5rem', alignItems: 'center' }}>
-                                  <span style={{ color: '#e2e8f0', fontSize: '0.9rem', fontWeight: 'bold' }}>{detail.label}</span>
-                                  <span style={{ background: 'rgba(0,0,0,0.3)', padding: '0.2rem 0.6rem', borderRadius: '4px', color: '#10b981', fontSize: '0.85rem', fontWeight: 'bold' }}>{detail.score} / {detail.max}</span>
+                                  <span style={{ color: 'var(--w-slate-200)', fontSize: '0.9rem', fontWeight: 'bold' }}>{detail.label}</span>
+                                  <span style={{ background: 'rgba(0,0,0,0.3)', padding: '0.2rem 0.6rem', borderRadius: '4px', color: 'var(--w-emerald-500)', fontSize: '0.85rem', fontWeight: 'bold' }}>{detail.score} / {detail.max}</span>
                                 </div>
-                                <span style={{ color: '#94a3b8', fontSize: '0.85rem', display: 'block', lineHeight: '1.4' }}>
+                                <span style={{ color: 'var(--w-slate-400)', fontSize: '0.85rem', display: 'block', lineHeight: '1.4' }}>
                                   {detail.label.includes('수입 규모') && `현재 수입 규모가 $1M 이상의 유의미한 시장인가? 관세청 데이터 기반 KCS-B/L 연동액 분석 결과, ${detail.desc}`}
                                   {detail.label.includes('성장률') && `최근 3개년 CAGR 및 YoY 실적 추이 평가. 시장 규모 팽창 및 장기적 수급 불안정에 대한 헤지(Hedge) 목적성 적합도 분석, ${detail.desc}`}
                                   {detail.label.includes('구매력') && `투입재로 사용되는 후방 산업(예: 식자재, 가공식품 등)의 구매력 및 확장성 평가 결과, ${detail.desc}`}
@@ -604,25 +604,25 @@ export default function SupplierDiscoveryDashboard() {
 
       {/* Phase 3: Sourcing Terminal */}
       <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.3 }}>
-        <h3 style={{ borderLeft: '4px solid #8b5cf6', paddingLeft: '0.75rem', marginBottom: '1.5rem', color: '#e2e8f0', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+        <h3 style={{ borderLeft: '4px solid var(--w-violet-500)', paddingLeft: '0.75rem', marginBottom: '1.5rem', color: 'var(--w-slate-200)', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
           Phase 3: 마이크로 타겟팅 통합 소싱 터미널 (Trademo / Alibaba 연동) <Zap size={18} color="#8b5cf6" />
         </h3>
         
         <div style={{ background: 'rgba(20, 28, 52, 0.8)', border: '1px solid #334155', borderRadius: '12px', padding: '2rem', boxShadow: '0 10px 30px -10px rgba(0,0,0,0.5)' }}>
           <AnimatePresence>
             {searchResults.length === 0 && !isSearching && macroData && (
-               <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} style={{ color: '#94a3b8', textAlign: 'center', padding: '2rem' }}>
+               <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} style={{ color: 'var(--w-slate-400)', textAlign: 'center', padding: '2rem' }}>
                  글로벌 지능형 엔진을 가동하여 추천 공급처를 확인하세요.
                </motion.div>
             )}
             {isSearching && (
-              <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.5rem', padding: '2rem', color: '#8b5cf6' }}>
+              <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.5rem', padding: '2rem', color: 'var(--w-violet-500)' }}>
                 <Loader2 size={24} className={styles.spin} /> AI 분석 중...
               </motion.div>
             )}
             {searchResults.length > 0 && !isSearching && (
               <motion.div initial={{ opacity: 0, height: 0 }} animate={{ opacity: 1, height: 'auto' }} exit={{ opacity: 0, height: 0 }}>
-                <h4 style={{ color: '#f8fafc', marginBottom: '1rem', fontSize: '1.1rem', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                <h4 style={{ color: 'var(--w-slate-50)', marginBottom: '1rem', fontSize: '1.1rem', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
                   <Database size={18} color="#10b981" /> AI 추천 글로벌 공급처 리스트
                 </h4>
                 <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
@@ -631,7 +631,7 @@ export default function SupplierDiscoveryDashboard() {
                       initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: idx * 0.1 }}
                       key={supplier.id} 
                       style={{ 
-                        background: '#1a2442', border: '1px solid #334155', borderRadius: '8px', padding: '1.25rem',
+                        background: 'var(--w-navy-900)', border: '1px solid #334155', borderRadius: '8px', padding: '1.25rem',
                         display: 'flex', justifyContent: 'space-between', alignItems: 'center', cursor: 'pointer',
                         flexDirection: 'column', gap: '1rem'
                       }}
@@ -641,23 +641,23 @@ export default function SupplierDiscoveryDashboard() {
                       <div style={{ width: '100%', display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
                         <div>
                           <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', marginBottom: '0.5rem' }}>
-                            <h5 style={{ margin: 0, color: '#f8fafc', fontSize: '1.15rem' }}>{supplier.name}</h5>
-                            <span style={{ background: 'rgba(16, 185, 129, 0.2)', color: '#10b981', padding: '0.2rem 0.5rem', borderRadius: '4px', fontSize: '0.85rem', display: 'flex', alignItems: 'center', gap: '0.25rem', fontWeight: 'bold' }}>
+                            <h5 style={{ margin: 0, color: 'var(--w-slate-50)', fontSize: '1.15rem' }}>{supplier.name}</h5>
+                            <span style={{ background: 'rgba(16, 185, 129, 0.2)', color: 'var(--w-emerald-500)', padding: '0.2rem 0.5rem', borderRadius: '4px', fontSize: '0.85rem', display: 'flex', alignItems: 'center', gap: '0.25rem', fontWeight: 'bold' }}>
                               <ShieldCheck size={14} /> Trust: {supplier.trust}
                             </span>
                           </div>
-                          <div style={{ color: '#cbd5e1', fontSize: '0.9rem', display: 'flex', gap: '1.5rem', flexWrap: 'wrap', marginBottom: '0.75rem' }}>
+                          <div style={{ color: 'var(--w-slate-300)', fontSize: '0.9rem', display: 'flex', gap: '1.5rem', flexWrap: 'wrap', marginBottom: '0.75rem' }}>
                             <span>📍 {supplier.country}</span>
                             <span>🚢 최근 선적: {supplier.lastShipment}</span>
                             <span>📦 주력: {supplier.products}</span>
                           </div>
                           {supplier.trustRationale && (
-                            <div style={{ color: '#94a3b8', fontSize: '0.85rem', background: '#0a0f1f', padding: '0.6rem 1rem', borderRadius: '6px', borderLeft: '3px solid #8b5cf6' }}>
-                              <strong style={{ color: '#e2e8f0', display: 'block', marginBottom: '0.2rem' }}>AI 신뢰도 산출 근거:</strong> {supplier.trustRationale}
+                            <div style={{ color: 'var(--w-slate-400)', fontSize: '0.85rem', background: '#0a0f1f', padding: '0.6rem 1rem', borderRadius: '6px', borderLeft: '3px solid var(--w-violet-500)' }}>
+                              <strong style={{ color: 'var(--w-slate-200)', display: 'block', marginBottom: '0.2rem' }}>AI 신뢰도 산출 근거:</strong> {supplier.trustRationale}
                             </div>
                           )}
                         </div>
-                        <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', color: '#8b5cf6', fontWeight: 'bold', fontSize: '0.95rem', flexShrink: 0, padding: '0.5rem 1rem', background: 'rgba(139, 92, 246, 0.1)', borderRadius: '8px' }}>
+                        <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', color: 'var(--w-violet-500)', fontWeight: 'bold', fontSize: '0.95rem', flexShrink: 0, padding: '0.5rem 1rem', background: 'rgba(139, 92, 246, 0.1)', borderRadius: '8px' }}>
                           <Mail size={16} /> RFQ 전송 준비 <ChevronRight size={16} />
                         </div>
                       </div>
@@ -673,11 +673,11 @@ export default function SupplierDiscoveryDashboard() {
       {/* Phase 3: Landed Cost Simulator */}
       {(isLandedCostLoading || landedCost) && (
         <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.15 }} style={{ marginBottom: '3rem' }}>
-          <h3 style={{ borderLeft: '4px solid #f59e0b', paddingLeft: '0.75rem', marginBottom: '1.5rem', color: '#e2e8f0', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+          <h3 style={{ borderLeft: '4px solid var(--w-amber-500)', paddingLeft: '0.75rem', marginBottom: '1.5rem', color: 'var(--w-slate-200)', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
             Phase 3: 착지원가 시뮬레이터 (ECOS + KCS 운임 + WITS 관세 실시간) <Calculator size={18} color="#f59e0b" />
           </h3>
           {isLandedCostLoading ? (
-            <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', padding: '2rem', color: '#f59e0b' }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', padding: '2rem', color: 'var(--w-amber-500)' }}>
               <Loader2 size={20} className={styles.spin} /> 착지원가 산출 중 (환율 + 운임 + 관세 통합 계산)...
             </div>
           ) : landedCost?.breakdown && (
@@ -692,15 +692,15 @@ export default function SupplierDiscoveryDashboard() {
                   { label: '총 착지원가', value: `₩${landedCost.breakdown.total.totalKRW?.toLocaleString()}`, color: '#10b981', sub: `₩${landedCost.breakdown.total.perKgKRW?.toLocaleString()}/kg` },
                 ].map((item, i) => (
                   <div key={i} style={{ background: '#0a0f1f', borderRadius: '8px', padding: '1rem', borderLeft: `3px solid ${item.color}` }}>
-                    <div style={{ color: '#94a3b8', fontSize: '0.8rem', marginBottom: '0.25rem' }}>{item.label}</div>
-                    <div style={{ color: '#f8fafc', fontSize: '1.3rem', fontWeight: 'bold' }}>{item.value}</div>
-                    {item.sub && <div style={{ color: '#64748b', fontSize: '0.75rem', marginTop: '0.25rem' }}>{item.sub}</div>}
+                    <div style={{ color: 'var(--w-slate-400)', fontSize: '0.8rem', marginBottom: '0.25rem' }}>{item.label}</div>
+                    <div style={{ color: 'var(--w-slate-50)', fontSize: '1.3rem', fontWeight: 'bold' }}>{item.value}</div>
+                    {item.sub && <div style={{ color: 'var(--w-slate-500)', fontSize: '0.75rem', marginTop: '0.25rem' }}>{item.sub}</div>}
                   </div>
                 ))}
               </div>
               <div style={{ display: 'flex', gap: '0.5rem', flexWrap: 'wrap' }}>
                 {Object.entries(landedCost._meta?.dataSources || {}).map(([key, val]: [string, any]) => (
-                  <span key={key} style={{ fontSize: '0.7rem', background: '#1a2442', color: '#64748b', padding: '3px 8px', borderRadius: '4px' }}>
+                  <span key={key} style={{ fontSize: '0.7rem', background: 'var(--w-navy-900)', color: 'var(--w-slate-500)', padding: '3px 8px', borderRadius: '4px' }}>
                     {key}: {String(val)}
                   </span>
                 ))}
@@ -713,38 +713,38 @@ export default function SupplierDiscoveryDashboard() {
       {/* Phase 4: Risk Radar */}
       {(isRiskLoading || riskData) && (
         <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2 }} style={{ marginBottom: '3rem' }}>
-          <h3 style={{ borderLeft: '4px solid #ef4444', paddingLeft: '0.75rem', marginBottom: '1.5rem', color: '#e2e8f0', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+          <h3 style={{ borderLeft: '4px solid var(--w-red-500)', paddingLeft: '0.75rem', marginBottom: '1.5rem', color: 'var(--w-slate-200)', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
             Phase 4: 리스크 레이더 (MFDS + KOTRA 사기경보 + OFAC 제재) <Shield size={18} color="#ef4444" />
           </h3>
           {isRiskLoading ? (
-            <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', padding: '2rem', color: '#ef4444' }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', padding: '2rem', color: 'var(--w-red-500)' }}>
               <Loader2 size={20} className={styles.spin} /> 리스크 포렌식 스캔 중 (식약처 + KOTRA 사기사례 + OFAC 제재)...
             </div>
           ) : riskData && (
             <div data-mobile-stack style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '1rem' }}>
               {/* OFAC Sanctions */}
-              <div style={{ background: 'rgba(20, 28, 52, 0.8)', border: `1px solid ${riskData.ofac?.isSanctioned ? '#ef4444' : '#334155'}`, borderRadius: '12px', padding: '1.25rem' }}>
+              <div style={{ background: 'rgba(20, 28, 52, 0.8)', border: `1px solid ${riskData.ofac?.isSanctioned ? 'var(--w-red-500)' : '#334155'}`, borderRadius: '12px', padding: '1.25rem' }}>
                 <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.75rem' }}>
                   <Shield size={16} color={riskData.ofac?.isSanctioned ? '#ef4444' : '#10b981'} />
-                  <span style={{ color: '#94a3b8', fontSize: '0.85rem' }}>OFAC 제재 스크리닝</span>
+                  <span style={{ color: 'var(--w-slate-400)', fontSize: '0.85rem' }}>OFAC 제재 스크리닝</span>
                 </div>
-                <div style={{ fontSize: '1.1rem', fontWeight: 'bold', color: riskData.ofac?.isSanctioned ? '#ef4444' : '#10b981', marginBottom: '0.5rem' }}>
+                <div style={{ fontSize: '1.1rem', fontWeight: 'bold', color: riskData.ofac?.isSanctioned ? 'var(--w-red-500)' : 'var(--w-emerald-500)', marginBottom: '0.5rem' }}>
                   {riskData.ofac?.isSanctioned ? `⚠️ 제재 대상국 (${riskData.ofac.sanctionLevel})` : '✅ 제재 대상 아님'}
                 </div>
-                <div style={{ color: '#94a3b8', fontSize: '0.85rem' }}>{riskData.ofac?.warning}</div>
+                <div style={{ color: 'var(--w-slate-400)', fontSize: '0.85rem' }}>{riskData.ofac?.warning}</div>
               </div>
               {/* MFDS */}
               <div style={{ background: 'rgba(20, 28, 52, 0.8)', border: '1px solid #334155', borderRadius: '12px', padding: '1.25rem' }}>
                 <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.75rem' }}>
                   <AlertTriangle size={16} color="#f59e0b" />
-                  <span style={{ color: '#94a3b8', fontSize: '0.85rem' }}>식약처 수입식품 적발</span>
-                  <span style={{ marginLeft: 'auto', fontSize: '0.7rem', background: '#451a03', color: '#f59e0b', padding: '2px 6px', borderRadius: '4px' }}>{riskData.mfds?.source}</span>
+                  <span style={{ color: 'var(--w-slate-400)', fontSize: '0.85rem' }}>식약처 수입식품 적발</span>
+                  <span style={{ marginLeft: 'auto', fontSize: '0.7rem', background: '#451a03', color: 'var(--w-amber-500)', padding: '2px 6px', borderRadius: '4px' }}>{riskData.mfds?.source}</span>
                 </div>
-                <div style={{ fontSize: '1.5rem', fontWeight: 'bold', color: riskData.mfds?.available === false ? '#64748b' : riskData.mfds?.count > 0 ? '#f59e0b' : '#10b981' }}>
+                <div style={{ fontSize: '1.5rem', fontWeight: 'bold', color: riskData.mfds?.available === false ? 'var(--w-slate-500)' : riskData.mfds?.count > 0 ? 'var(--w-amber-500)' : 'var(--w-emerald-500)' }}>
                   {riskData.mfds?.available === false ? '조회불가' : `${riskData.mfds?.count || 0}건`}
                 </div>
                 {riskData.mfds?.items?.slice(0, 2).map((item: any, i: number) => (
-                  <div key={i} style={{ marginTop: '0.5rem', padding: '0.5rem', background: '#1a2442', borderRadius: '6px', fontSize: '0.8rem', color: '#94a3b8' }}>
+                  <div key={i} style={{ marginTop: '0.5rem', padding: '0.5rem', background: 'var(--w-navy-900)', borderRadius: '6px', fontSize: '0.8rem', color: 'var(--w-slate-400)' }}>
                     {item.productName} — {item.reason?.substring(0, 60)}
                   </div>
                 ))}
@@ -753,14 +753,14 @@ export default function SupplierDiscoveryDashboard() {
               <div style={{ background: 'rgba(20, 28, 52, 0.8)', border: '1px solid #334155', borderRadius: '12px', padding: '1.25rem' }}>
                 <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.75rem' }}>
                   <AlertTriangle size={16} color="#ef4444" />
-                  <span style={{ color: '#94a3b8', fontSize: '0.85rem' }}>KOTRA 무역사기 사례</span>
-                  <span style={{ marginLeft: 'auto', fontSize: '0.7rem', background: '#450a0a', color: '#ef4444', padding: '2px 6px', borderRadius: '4px' }}>{riskData.fraud?.source}</span>
+                  <span style={{ color: 'var(--w-slate-400)', fontSize: '0.85rem' }}>KOTRA 무역사기 사례</span>
+                  <span style={{ marginLeft: 'auto', fontSize: '0.7rem', background: '#450a0a', color: 'var(--w-red-500)', padding: '2px 6px', borderRadius: '4px' }}>{riskData.fraud?.source}</span>
                 </div>
-                <div style={{ fontSize: '1.5rem', fontWeight: 'bold', color: riskData.fraud?.count > 0 ? '#ef4444' : '#10b981' }}>
+                <div style={{ fontSize: '1.5rem', fontWeight: 'bold', color: riskData.fraud?.count > 0 ? 'var(--w-red-500)' : 'var(--w-emerald-500)' }}>
                   {riskData.fraud?.count || 0}건
                 </div>
                 {riskData.fraud?.cases?.slice(0, 2).map((c: any, i: number) => (
-                  <div key={i} style={{ marginTop: '0.5rem', padding: '0.5rem', background: '#1a2442', borderRadius: '6px', fontSize: '0.8rem', color: '#94a3b8' }}>
+                  <div key={i} style={{ marginTop: '0.5rem', padding: '0.5rem', background: 'var(--w-navy-900)', borderRadius: '6px', fontSize: '0.8rem', color: 'var(--w-slate-400)' }}>
                     {c.title?.substring(0, 60)} ({c.date})
                   </div>
                 ))}
@@ -770,19 +770,19 @@ export default function SupplierDiscoveryDashboard() {
                 <div style={{ background: 'rgba(20, 28, 52, 0.8)', border: '1px solid #334155', borderRadius: '12px', padding: '1.25rem', gridColumn: 'span 3' }}>
                   <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', marginBottom: '1rem' }}>
                     <Radar size={16} color="#8b5cf6" />
-                    <span style={{ color: '#94a3b8', fontSize: '0.85rem' }}>Gemini AI 종합 리스크 평가</span>
+                    <span style={{ color: 'var(--w-slate-400)', fontSize: '0.85rem' }}>Gemini AI 종합 리스크 평가</span>
                     <span style={{
                       marginLeft: '0.5rem', padding: '4px 12px', borderRadius: '20px', fontWeight: 'bold', fontSize: '0.9rem',
                       background: riskData.aiAssessment.overallRisk === 'LOW' ? '#052e16' : riskData.aiAssessment.overallRisk === 'MEDIUM' ? '#451a03' : '#450a0a',
-                      color: riskData.aiAssessment.overallRisk === 'LOW' ? '#10b981' : riskData.aiAssessment.overallRisk === 'MEDIUM' ? '#f59e0b' : '#ef4444',
+                      color: riskData.aiAssessment.overallRisk === 'LOW' ? 'var(--w-emerald-500)' : riskData.aiAssessment.overallRisk === 'MEDIUM' ? 'var(--w-amber-500)' : 'var(--w-red-500)',
                     }}>
                       {riskData.aiAssessment.overallRisk} ({riskData.aiAssessment.score}/100)
                     </span>
                   </div>
-                  <p style={{ color: '#e2e8f0', fontSize: '0.95rem', lineHeight: '1.6', margin: '0 0 1rem 0' }}>{riskData.aiAssessment.summary_kr}</p>
+                  <p style={{ color: 'var(--w-slate-200)', fontSize: '0.95rem', lineHeight: '1.6', margin: '0 0 1rem 0' }}>{riskData.aiAssessment.summary_kr}</p>
                   <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
                     {riskData.aiAssessment.recommendations_kr?.map((rec: string, i: number) => (
-                      <div key={i} style={{ padding: '0.5rem 0.75rem', background: '#1a2442', borderRadius: '6px', borderLeft: '3px solid #8b5cf6', color: '#cbd5e1', fontSize: '0.85rem' }}>
+                      <div key={i} style={{ padding: '0.5rem 0.75rem', background: 'var(--w-navy-900)', borderRadius: '6px', borderLeft: '3px solid var(--w-violet-500)', color: 'var(--w-slate-300)', fontSize: '0.85rem' }}>
                         {rec}
                       </div>
                     ))}
@@ -808,33 +808,33 @@ export default function SupplierDiscoveryDashboard() {
               initial={{ scale: 0.9, y: 20 }} animate={{ scale: 1, y: 0 }} exit={{ scale: 0.9, y: 20 }}
               style={{ background: '#0a0f1f', border: '1px solid #334155', borderRadius: '12px', width: '90%', maxWidth: '600px', padding: '1.5rem', boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.5)' }}
             >
-              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1.25rem', borderBottom: '1px solid #1a2442', paddingBottom: '1rem' }}>
-                <h3 style={{ margin: 0, color: '#f8fafc', display: 'flex', alignItems: 'center', gap: '0.5rem', fontSize: '1.1rem' }}>
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1.25rem', borderBottom: '1px solid var(--w-navy-900)', paddingBottom: '1rem' }}>
+                <h3 style={{ margin: 0, color: 'var(--w-slate-50)', display: 'flex', alignItems: 'center', gap: '0.5rem', fontSize: '1.1rem' }}>
                   <Zap size={18} color="#f59e0b" /> 자동화된 공급처 RFQ 이메일 초안 생성
                 </h3>
-                <button onClick={() => setSelectedSupplier(null)} style={{ background: '#1a2442', border: 'none', color: '#94a3b8', cursor: 'pointer', fontSize: '1.2rem', width: '30px', height: '30px', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', transition: 'all 0.2s' }} onMouseOver={(e) => e.currentTarget.style.color = '#f8fafc'} onMouseOut={(e) => e.currentTarget.style.color = '#94a3b8'}>&times;</button>
+                <button onClick={() => setSelectedSupplier(null)} style={{ background: 'var(--w-navy-900)', border: 'none', color: 'var(--w-slate-400)', cursor: 'pointer', fontSize: '1.2rem', width: '30px', height: '30px', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', transition: 'all 0.2s' }} onMouseOver={(e) => e.currentTarget.style.color = '#f8fafc'} onMouseOut={(e) => e.currentTarget.style.color = '#94a3b8'}>&times;</button>
               </div>
               
-              <div style={{ background: '#1a2442', border: '1px solid #334155', borderRadius: '8px', padding: '1.25rem', marginBottom: '1.25rem', minHeight: '250px', maxHeight: '400px', overflowY: 'auto', position: 'relative' }}>
+              <div style={{ background: 'var(--w-navy-900)', border: '1px solid #334155', borderRadius: '8px', padding: '1.25rem', marginBottom: '1.25rem', minHeight: '250px', maxHeight: '400px', overflowY: 'auto', position: 'relative' }}>
                 {isGeneratingRfq ? (
-                  <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', height: '100%', minHeight: '200px', color: '#8b5cf6' }}>
+                  <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', height: '100%', minHeight: '200px', color: 'var(--w-violet-500)' }}>
                     <Loader2 size={32} className={styles.spin} style={{ marginBottom: '1rem' }} />
                     <p style={{ margin: 0, fontSize: '0.9rem' }}>공급처에 최적화된 협상 조건 AI 생성 중...</p>
                   </div>
                 ) : (
-                  <p style={{ color: '#e2e8f0', fontSize: '0.9rem', lineHeight: '1.6', whiteSpace: 'pre-wrap', margin: 0, fontFamily: 'monospace' }}>
+                  <p style={{ color: 'var(--w-slate-200)', fontSize: '0.9rem', lineHeight: '1.6', whiteSpace: 'pre-wrap', margin: 0, fontFamily: 'monospace' }}>
                     {rfqText}
                   </p>
                 )}
               </div>
 
               <div style={{ display: 'flex', justifyContent: 'flex-end', gap: '1rem' }}>
-                <button onClick={() => setSelectedSupplier(null)} style={{ background: 'transparent', border: '1px solid #64748b', color: '#cbd5e1', padding: '0.6rem 1.25rem', borderRadius: '6px', cursor: 'pointer', fontSize: '0.9rem', transition: 'all 0.2s' }} onMouseOver={(e) => e.currentTarget.style.background = '#1a2442'} onMouseOut={(e) => e.currentTarget.style.background = 'transparent'}>닫기 (Cancel)</button>
+                <button onClick={() => setSelectedSupplier(null)} style={{ background: 'transparent', border: '1px solid var(--w-slate-500)', color: 'var(--w-slate-300)', padding: '0.6rem 1.25rem', borderRadius: '6px', cursor: 'pointer', fontSize: '0.9rem', transition: 'all 0.2s' }} onMouseOver={(e) => e.currentTarget.style.background = '#1a2442'} onMouseOut={(e) => e.currentTarget.style.background = 'transparent'}>닫기 (Cancel)</button>
                 <button 
                   disabled={isGeneratingRfq}
                   onClick={handleCopyRfq} 
                   style={{ 
-                    background: isCopied ? '#10b981' : '#8b5cf6', border: 'none', color: 'white', padding: '0.6rem 1.25rem', 
+                    background: isCopied ? 'var(--w-emerald-500)' : 'var(--w-violet-500)', border: 'none', color: 'white', padding: '0.6rem 1.25rem',
                     borderRadius: '6px', cursor: isGeneratingRfq ? 'not-allowed' : 'pointer', display: 'flex', alignItems: 'center', gap: '0.5rem', transition: 'background 0.2s', fontSize: '0.9rem',
                     opacity: isGeneratingRfq ? 0.5 : 1, boxShadow: isCopied ? 'none' : '0 4px 6px -1px rgba(139, 92, 246, 0.3)'
                   }}

@@ -144,12 +144,12 @@ const CustomTooltip = ({ active, payload, label }: any) => {
   // truncateXAxis is defined globally
 return (
       <div style={{ backgroundColor: 'rgba(20, 28, 52, 0.9)', padding: '12px', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '8px', boxShadow: '0 4px 6px rgba(0,0,0,0.3)' }}>
-        <p style={{ color: '#cbd5e1', fontWeight: 'bold', marginBottom: '8px', fontSize: '13px', margin: 0 }}>{label}</p>
+        <p style={{ color: 'var(--w-slate-300)', fontWeight: 'bold', marginBottom: '8px', fontSize: '13px', margin: 0 }}>{label}</p>
         <div style={{ display: 'flex', flexDirection: 'column', gap: '4px', marginTop: '8px' }}>
           {payload.map((e: any, i: number) => (
             <div key={i} style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
               <span style={{ color: e.color || e.stroke || e.fill, fontSize: '14px' }}>■</span>
-              <span style={{ color: '#e2e8f0', fontWeight: 500, fontSize: '13px' }}>{e.name}: </span>
+              <span style={{ color: 'var(--w-slate-200)', fontWeight: 500, fontSize: '13px' }}>{e.name}: </span>
               <strong style={{ color: '#fff', fontSize: '13px' }}>
                 {typeof e.value === 'number' ? Math.round(e.value).toLocaleString() : e.value}
                 {e.payload?.unit || ''}
@@ -211,7 +211,7 @@ const CHART_MARGIN = { top: 20, right: 30, left: 0, bottom: 5 };
 
 const renderChart = (w: any) => {
   const d = w.data;
-  if (!d || d.length === 0) return <div style={{height:'100%',display:'flex',alignItems:'center',justifyContent:'center',color:'#64748b'}}>데이터 없음</div>;
+  if (!d || d.length === 0) return <div style={{height:'100%',display:'flex',alignItems:'center',justifyContent:'center',color:'var(--w-slate-500)'}}>데이터 없음</div>;
   const chartType = (w.chartType || '').toLowerCase();
 
   // Custom infographic progress bar rendering for multi-unit byproduct research metrics
@@ -225,13 +225,13 @@ const renderChart = (w: any) => {
           return (
             <div key={idx} style={{ display: 'flex', flexDirection: 'column', gap: '6px' }}>
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                <span style={{ fontSize: '13px', fontWeight: 600, color: '#e2e8f0' }}>{item.name}</span>
+                <span style={{ fontSize: '13px', fontWeight: 600, color: 'var(--w-slate-200)' }}>{item.name}</span>
                 <span style={{ fontSize: '15px', fontWeight: 800, color: barColor }}>{item.value}{item.unit}</span>
               </div>
               <div style={{ width: '100%', height: '8px', backgroundColor: 'rgba(140,170,255,0.10)', borderRadius: '4px', overflow: 'hidden' }}>
                 <div style={{ width: `${percentage}%`, height: '100%', backgroundColor: barColor, borderRadius: '4px', boxShadow: `0 0 8px ${barColor}50` }} />
               </div>
-              <span style={{ fontSize: '11px', color: '#94a3b8', lineHeight: 1.4 }}>{item.desc}</span>
+              <span style={{ fontSize: '11px', color: 'var(--w-slate-400)', lineHeight: 1.4 }}>{item.desc}</span>
             </div>
           );
         })}
@@ -256,7 +256,7 @@ const renderChart = (w: any) => {
               {d.map((_: any, idx: number) => <Cell key={idx} fill={PIE_COLORS[idx % PIE_COLORS.length]} />)}
             </Pie>
             <RechartsTooltip content={<CustomTooltip />} />
-            <Legend wrapperStyle={{ fontSize: '11px', color: '#cbd5e1' }} />
+            <Legend wrapperStyle={{ fontSize: '11px', color: 'var(--w-slate-300)' }} />
           </PieChart>
         );
       case "area":
@@ -307,7 +307,7 @@ const renderChart = (w: any) => {
             {w.bars?.map((b: any, i: number) => (
               <Bar key={`b${i}`} stackId={b.stackId} dataKey={b.key || b.dataKey} name={b.name || b.key || b.dataKey} fill={b.color || b.fill} radius={[6,6,0,0]} fillOpacity={0.85} isAnimationActive={false}>
                 {w.id === 'w50_bunker_freight' && (
-                  <LabelList dataKey="displayLabel" position="top" fill="#f8fafc" fontSize={10} fontWeight={600} />
+                  <LabelList dataKey="displayLabel" position="top" fill="var(--w-slate-50)" fontSize={10} fontWeight={600} />
                 )}
               </Bar>
             ))}
@@ -337,8 +337,8 @@ const renderChart = (w: any) => {
         return (
           <RadarChart cx="50%" cy="50%" outerRadius="70%" data={d}>
             <PolarGrid stroke="rgba(255,255,255,0.1)" />
-            <PolarAngleAxis dataKey={w.radarKey || "subject"} tick={{fill:'#cbd5e1', fontSize:12, fontWeight: 500}} />
-            <PolarRadiusAxis angle={30} domain={[0, 'auto']} tick={{fill:'#cbd5e1', fontSize:10, fontWeight: 500}} />
+            <PolarAngleAxis dataKey={w.radarKey || "subject"} tick={{fill:'var(--w-slate-300)', fontSize:12, fontWeight: 500}} />
+            <PolarRadiusAxis angle={30} domain={[0, 'auto']} tick={{fill:'var(--w-slate-300)', fontSize:10, fontWeight: 500}} />
             <RechartsTooltip content={<CustomTooltip />} />
             <Legend wrapperStyle={{fontSize:'10px'}} />
             {w.radars?.map((r: any, i: number) => (
@@ -347,7 +347,7 @@ const renderChart = (w: any) => {
           </RadarChart>
         );
       default:
-        return <div style={{color:'#64748b',textAlign:'center',marginTop:'40px'}}>미지원</div>;
+        return <div style={{color:'var(--w-slate-500)',textAlign:'center',marginTop:'40px'}}>미지원</div>;
     }
   }
 
@@ -418,7 +418,7 @@ const renderChart = (w: any) => {
         </ComposedChart>
       );
     default:
-      return <div style={{color:'#64748b',textAlign:'center',marginTop:'40px'}}>미지원</div>;
+      return <div style={{color:'var(--w-slate-500)',textAlign:'center',marginTop:'40px'}}>미지원</div>;
   }
 };
 
@@ -449,7 +449,7 @@ const WidgetCard = React.memo(({ widget }: { widget: any }) => {
           </div>
           
           <div style={{ marginLeft: 'auto', flexShrink: 0, display: 'flex', alignItems: 'center', gap: '8px' }}>
-            {widget.unit && <span style={{ fontSize: '0.75rem', color: '#94a3b8', fontWeight: 500 }}>(단위: {widget.unit})</span>}
+            {widget.unit && <span style={{ fontSize: '0.75rem', color: 'var(--w-slate-400)', fontWeight: 500 }}>(단위: {widget.unit})</span>}
           </div>
         </h3>
         {methodologyText && (
@@ -495,7 +495,7 @@ const TunaDashboard = React.memo(function TunaDashboard() {
 
   if (!data) return (
     <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh', flexDirection: 'column', gap: '1rem', backgroundColor: 'transparent' }}>
-      <RefreshCcw size={32} style={{ color: '#38bdf8', animation: 'spin 1s linear infinite' }} />
+      <RefreshCcw size={32} style={{ color: 'var(--w-sky-400)', animation: 'spin 1s linear infinite' }} />
       <p style={{ color: '#848E9C', fontSize: '1rem' }}>전략 인텔리전스 불러오는 중...</p>
     </div>
   );
@@ -512,7 +512,7 @@ const TunaDashboard = React.memo(function TunaDashboard() {
           <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
             <div style={{ 
               width: '44px', height: '44px', borderRadius: '50%', 
-              background: '#38bdf8', 
+              background: 'var(--w-sky-400)',
               display: 'flex', alignItems: 'center', justifyContent: 'center',
               boxShadow: 'rgba(0,0,0,0.3) 0px 8px 8px'
             }}>
@@ -721,7 +721,7 @@ const TunaDashboard = React.memo(function TunaDashboard() {
             <div style={{ marginBottom: '2rem', paddingBottom: '2rem', borderBottom: '1px dashed rgba(255,255,255,0.1)' }}>
               <div style={{ marginBottom: '1rem', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
                 <span style={{ fontSize: '0.8rem', fontWeight: 700, color: '#22d3ee', background: 'rgba(34,211,238,0.1)', padding: '3px 10px', borderRadius: '6px' }}>FFA/SPC</span>
-                <span style={{ fontSize: '0.78rem', color: '#94a3b8' }}>공식 수급 인텔리전스 — 2024 WCPFC 통계 기반</span>
+                <span style={{ fontSize: '0.78rem', color: 'var(--w-slate-400)' }}>공식 수급 인텔리전스 — 2024 WCPFC 통계 기반</span>
               </div>
               <div data-mobile-stack style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '1.5rem' }}>
                 <FfaWcpoSupplyDashboard />
@@ -834,7 +834,7 @@ const TunaDashboard = React.memo(function TunaDashboard() {
             {/* 3. 부산물 고부가가치화 (업사이클링 및 참치액젓 R&D) */}
             <div style={{ marginTop: '2rem', paddingTop: '2rem', borderTop: '1px dashed rgba(255,255,255,0.1)' }}>
               <div style={{ marginBottom: '1.5rem' }}>
-                <h3 style={{ fontSize: '1.05rem', color: '#38bdf8', margin: 0, display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                <h3 style={{ fontSize: '1.05rem', color: 'var(--w-sky-400)', margin: 0, display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
                   <Leaf size={18} /> 부산물 업사이클링 & R&D 
                 </h3>
               </div>
@@ -855,7 +855,7 @@ const TunaDashboard = React.memo(function TunaDashboard() {
             {/* 🐾 파생 사업 (펫푸드) 통합 */}
             <div style={{ marginTop: '3rem', paddingTop: '3rem', borderTop: '1px dashed rgba(255,255,255,0.1)' }}>
               <div style={{ marginBottom: '1.5rem', display: 'flex', alignItems: 'center', gap: '0.8rem' }}>
-                <div style={{ width: '4px', height: '28px', background: '#3b82f6', borderRadius: '2px' }} />
+                <div style={{ width: '4px', height: '28px', background: 'var(--w-blue-500)', borderRadius: '2px' }} />
                 <div>
                   <h2 style={{ margin: 0, fontSize: '1.15rem', fontWeight: 700, color: 'var(--text-primary)' }}>🐾 파생 사업 — 프리미엄 펫케어 시장</h2>
                   <p style={{ margin: 0, fontSize: '0.75rem', color: 'var(--text-secondary)' }}>참치 부산물 기반 고부가가치 펫푸드 시장 진입 전략 및 유통망 구조 분석</p>
@@ -980,8 +980,8 @@ const TunaDashboard = React.memo(function TunaDashboard() {
                 onMouseEnter={(e) => { e.currentTarget.style.background = 'rgba(16,185,129,0.12)'; }}
                 onMouseLeave={(e) => { e.currentTarget.style.background = 'rgba(16,185,129,0.06)'; }}
               >
-                <ShieldCheck size={20} style={{ color: '#10b981' }} />
-                <span style={{ fontSize: '0.88rem', fontWeight: 600, color: '#10b981' }}>MSC 전략 인텔리전스 센터에서 19개 위젯 상세 보기 →</span>
+                <ShieldCheck size={20} style={{ color: 'var(--w-emerald-500)' }} />
+                <span style={{ fontSize: '0.88rem', fontWeight: 600, color: 'var(--w-emerald-500)' }}>MSC 전략 인텔리전스 센터에서 19개 위젯 상세 보기 →</span>
               </div>
             </div>
 
@@ -1048,8 +1048,8 @@ const TunaDashboard = React.memo(function TunaDashboard() {
                 onMouseEnter={(e) => { e.currentTarget.style.background = 'rgba(16,185,129,0.12)'; }}
                 onMouseLeave={(e) => { e.currentTarget.style.background = 'rgba(16,185,129,0.06)'; }}
               >
-                <ShieldCheck size={18} style={{ color: '#10b981' }} />
-                <span style={{ fontSize: '0.82rem', fontWeight: 600, color: '#10b981' }}>MSC 자원 건전성 · RFMO 정합성 → MSC 전략 분석 페이지에서 보기 →</span>
+                <ShieldCheck size={18} style={{ color: 'var(--w-emerald-500)' }} />
+                <span style={{ fontSize: '0.82rem', fontWeight: 600, color: 'var(--w-emerald-500)' }}>MSC 자원 건전성 · RFMO 정합성 → MSC 전략 분석 페이지에서 보기 →</span>
               </div>
             </div>
 

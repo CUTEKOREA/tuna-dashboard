@@ -40,18 +40,18 @@ const CustomTooltip = ({ active, payload }: any) => {
       padding: '10px 14px',
       fontSize: '0.82rem',
     }}>
-      <p style={{ color: '#f8fafc', fontWeight: 700, margin: '0 0 6px 0' }}>
+      <p style={{ color: 'var(--w-slate-50)', fontWeight: 700, margin: '0 0 6px 0' }}>
         {d.국가}
       </p>
-      <p style={{ color: '#94a3b8', margin: '3px 0' }}>
+      <p style={{ color: 'var(--w-slate-400)', margin: '3px 0' }}>
         가공 용량:{' '}
-        <span style={{ color: '#3b82f6', fontWeight: 600 }}>
+        <span style={{ color: 'var(--w-blue-500)', fontWeight: 600 }}>
           {d.용량.toLocaleString()} 천MT/년
         </span>
       </p>
-      <p style={{ color: '#94a3b8', margin: '3px 0' }}>
+      <p style={{ color: 'var(--w-slate-400)', margin: '3px 0' }}>
         가동률:{' '}
-        <span style={{ color: '#f59e0b', fontWeight: 600 }}>
+        <span style={{ color: 'var(--w-amber-500)', fontWeight: 600 }}>
           {d.가동률}%
         </span>
       </p>
@@ -112,7 +112,7 @@ export default function FfaGlobalProcessingCapacity() {
             {processingData.map((entry, idx) => (
               <Cell
                 key={`cap-${idx}`}
-                fill={entry.국가 === '태국' ? '#22d3ee' : '#3b82f6'}
+                fill={entry.국가 === '태국' ? '#22d3ee' : 'var(--w-blue-500)'}
                 fillOpacity={entry.국가 === '태국' ? 0.95 : 0.75}
               />
             ))}

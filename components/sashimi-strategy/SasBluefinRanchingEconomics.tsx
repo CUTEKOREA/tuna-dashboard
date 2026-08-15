@@ -43,7 +43,7 @@ export default function SasBluefinRanchingEconomics() {
                 <Fish style={{ color: '#60a5fa' }} size={24} />
               </div>
               <h4 style={{ fontSize: '14px', fontWeight: 700, color: '#f1f5f9', textAlign: 'center', margin: 0 }}>1. 활어 조업 (Live)</h4>
-              <p style={{ fontSize: '11px', color: '#94a3b8', marginTop: '4px', textAlign: 'center', lineHeight: 1.3 }}>지중해 해상 포획<br/>(선망선)</p>
+              <p style={{ fontSize: '11px', color: 'var(--w-slate-400)', marginTop: '4px', textAlign: 'center', lineHeight: 1.3 }}>지중해 해상 포획<br/>(선망선)</p>
               <div style={{ marginTop: '12px', fontSize: '18px', fontWeight: 900, color: '#60a5fa', letterSpacing: '-0.025em' }}>€6.7 / kg</div>
             </div>
 
@@ -63,7 +63,7 @@ export default function SasBluefinRanchingEconomics() {
                 <TrendingUp style={{ color: '#818cf8' }} size={24} />
               </div>
               <h4 style={{ fontSize: '14px', fontWeight: 700, color: '#f1f5f9', textAlign: 'center', margin: 0 }}>2. 해상 축양 (Fattening)</h4>
-              <p style={{ fontSize: '11px', color: '#94a3b8', marginTop: '4px', textAlign: 'center', lineHeight: 1.3 }}>6~8개월 먹이 급여<br/>(지방 축적)</p>
+              <p style={{ fontSize: '11px', color: 'var(--w-slate-400)', marginTop: '4px', textAlign: 'center', lineHeight: 1.3 }}>6~8개월 먹이 급여<br/>(지방 축적)</p>
               <div style={{ marginTop: '12px', fontSize: '14px', fontWeight: 700, color: '#818cf8' }}>가치 2배 증대</div>
             </div>
 
@@ -80,11 +80,11 @@ export default function SasBluefinRanchingEconomics() {
                 background: 'rgba(16,185,129,0.2)',
                 display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '12px',
               }}>
-                <PlaneTakeoff style={{ color: '#34d399' }} size={24} />
+                <PlaneTakeoff style={{ color: 'var(--w-emerald-400)' }} size={24} />
               </div>
               <h4 style={{ fontSize: '14px', fontWeight: 700, color: '#f1f5f9', textAlign: 'center', margin: 0 }}>3. 가공 및 수출 (-60°C)</h4>
-              <p style={{ fontSize: '11px', color: '#94a3b8', marginTop: '4px', textAlign: 'center', lineHeight: 1.3 }}>초저온 냉동 후<br/>주로 일본행</p>
-              <div style={{ marginTop: '12px', fontSize: '18px', fontWeight: 900, color: '#34d399', letterSpacing: '-0.025em' }}>€13.3 / kg</div>
+              <p style={{ fontSize: '11px', color: 'var(--w-slate-400)', marginTop: '4px', textAlign: 'center', lineHeight: 1.3 }}>초저온 냉동 후<br/>주로 일본행</p>
+              <div style={{ marginTop: '12px', fontSize: '18px', fontWeight: 900, color: 'var(--w-emerald-400)', letterSpacing: '-0.025em' }}>€13.3 / kg</div>
             </div>
           </div>
         </div>

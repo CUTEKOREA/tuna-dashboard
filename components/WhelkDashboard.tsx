@@ -21,7 +21,7 @@ import WhelkFTAQuarterly from './WhelkFTAQuarterly';
 const CustomTooltip = ({ active, payload, label }: any) => {
   if (active && payload?.length) {
     return (
-      <div style={{ background: 'rgba(20, 28, 52, 0.9)', border: '1px solid rgba(255,255,255,0.1)', padding: '12px', borderRadius: '8px', boxShadow: '0 4px 6px rgba(0,0,0,0.3)', color: '#f8fafc', fontSize: '0.88rem' }}>
+      <div style={{ background: 'rgba(20, 28, 52, 0.9)', border: '1px solid rgba(255,255,255,0.1)', padding: '12px', borderRadius: '8px', boxShadow: '0 4px 6px rgba(0,0,0,0.3)', color: 'var(--w-slate-50)', fontSize: '0.88rem' }}>
         <p style={{ margin: '0 0 8px 0', fontWeight: 700, borderBottom: '1px solid rgba(255,255,255,0.1)', paddingBottom: '4px' }}>{label}</p>
         {payload.map((e: any, i: number) => (
           <div key={i} style={{ display: 'flex', justifyContent: 'space-between', gap: '16px', marginBottom: '4px' }}>
@@ -65,7 +65,7 @@ export default function WhelkDashboard() {
 
   if (!data) {
     return (
-      <div style={{ padding: '2rem', color: '#f8fafc', display: 'flex', alignItems: 'center', gap: '1rem' }}>
+      <div style={{ padding: '2rem', color: 'var(--w-slate-50)', display: 'flex', alignItems: 'center', gap: '1rem' }}>
         <RefreshCcw className="animate-spin" size={24} color="var(--color-info)" />
         <span>골뱅이 인텔리전스 로딩 중...</span>
       </div>
@@ -118,7 +118,7 @@ export default function WhelkDashboard() {
   const metaSyncDate = data?._metadata?.syncDate;
 
   return (
-    <div style={{ padding:'0 1.5rem 3rem', color:'#f8fafc', minHeight:'100vh', fontFamily:"'Inter',sans-serif" }}>
+    <div style={{ padding:'0 1.5rem 3rem', color:'var(--w-slate-50)', minHeight:'100vh', fontFamily:"'Inter',sans-serif" }}>
       {/* HEADER */}
       <header style={{ marginBottom: '2rem', paddingTop: '0.5rem' }}>
         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '0.5rem' }}>
@@ -142,8 +142,8 @@ export default function WhelkDashboard() {
             background: '#11182f', border: 'none', 
             borderRadius: '500px', color: 'var(--text-secondary)', fontWeight: 600, display: 'flex', alignItems: 'center', gap: '8px',
             boxShadow: 'rgba(0,0,0,0.3) 0px 8px 8px'}}>
-            <div style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#64748b' }} />
-            <span>5개 출처 <span style={{ color: '#94a3b8' }}>STATIC</span></span>
+            <div style={{ width: '8px', height: '8px', borderRadius: '50%', background: 'var(--w-slate-500)' }} />
+            <span>5개 출처 <span style={{ color: 'var(--w-slate-400)' }}>STATIC</span></span>
             <span style={{ margin: '0 8px', color: '#4d4d4d' }}>|</span>
             <span style={{ color: 'var(--text-primary)' }}>KCS · IFCA · MMO · EFSA · aT FIS</span>
           </div>
@@ -212,7 +212,7 @@ export default function WhelkDashboard() {
             <TelemetryBadge status="static" syncDate="2024" />
           </div>
           <div style={{ fontSize: '1.5rem', fontWeight: 700, color: '#a78bfa' }}>{kfasWidgets.length}건</div>
-          <div style={{ fontSize: '0.88rem', color: '#8b5cf6', fontWeight: 600 }}>
+          <div style={{ fontSize: '0.88rem', color: 'var(--w-violet-500)', fontWeight: 600 }}>
             <span style={{ background: '#8b5cf620', padding: '2px 6px', borderRadius: '4px', marginRight: '6px' }}>학술 검증</span> <span style={{ color: 'var(--text-secondary)', fontWeight: 400 }}>국립수산과학원</span>
           </div>
         </div>
@@ -309,7 +309,7 @@ export default function WhelkDashboard() {
       {activePart === 'S1' && (<>
         <div style={{ gridColumn: '1 / -1', marginTop: '1rem', paddingBottom: '0.5rem', borderBottom: '1px solid rgba(255,255,255,0.1)', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
     <Fish size={20} color="var(--color-info)" />
-    <h2 style={{ margin: 0, fontSize: '1.3rem', color: '#f8fafc' }}>❶ 원료 수급</h2>
+    <h2 style={{ margin: 0, fontSize: '1.3rem', color: 'var(--w-slate-50)' }}>❶ 원료 수급</h2>
   </div>
   <>
             <WidgetCard title="글로벌 어획 생산량 상위 5개국" icon={Globe} iconColor="var(--color-info)" pillar="S1"
@@ -319,8 +319,8 @@ export default function WhelkDashboard() {
                 <BarChart data={globalCaptureData} layout="vertical" margin={{ left: 20 }}>
                   <ChartPatternDefs />
                   <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" horizontal={false} />
-                  <XAxis type="number" tick={{ fill: '#94a3b8', fontSize: 11 }} />
-                  <YAxis dataKey="name" type="category" tick={{ fill: '#f8fafc', fontSize: 11 }} width={60} />
+                  <XAxis type="number" tick={{ fill: 'var(--w-slate-400)', fontSize: 11 }} />
+                  <YAxis dataKey="name" type="category" tick={{ fill: 'var(--w-slate-50)', fontSize: 11 }} width={60} />
                   <RechartsTooltip content={<CustomTooltip />} cursor={{ fill: 'rgba(140,170,255,0.10)' }} />
                   <Bar dataKey="value" name="어획량(톤)" fill="var(--color-info)" radius={[0, 4, 4, 0]}>
                     {globalCaptureData.map((entry: any, index: number) => (
@@ -341,8 +341,8 @@ export default function WhelkDashboard() {
               chart={
                 <LineChart data={canadaCaptureData}>
                   <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" vertical={false} />
-                  <XAxis dataKey="year" tick={{ fill: '#94a3b8', fontSize: 11 }} angle={0} textAnchor="middle" height={60} />
-                  <YAxis tick={{ fill: '#94a3b8', fontSize: 11 }} />
+                  <XAxis dataKey="year" tick={{ fill: 'var(--w-slate-400)', fontSize: 11 }} angle={0} textAnchor="middle" height={60} />
+                  <YAxis tick={{ fill: 'var(--w-slate-400)', fontSize: 11 }} />
                   <RechartsTooltip content={<CustomTooltip />} />
                   <Legend wrapperStyle={{ fontSize: '11px', paddingTop: '10px' }} />
                   <Line type="monotone" dataKey="canada" name="캐나다 어획(톤)" stroke="var(--color-danger)" strokeWidth={2} dot={{ r: 4 }} />
@@ -367,8 +367,8 @@ export default function WhelkDashboard() {
                     </linearGradient>
                   </defs>
                   <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" vertical={false} />
-                  <XAxis dataKey="year" tick={{ fill: '#94a3b8', fontSize: 11 }} angle={0} textAnchor="middle" height={60} />
-                  <YAxis tick={{ fill: '#94a3b8', fontSize: 11 }} domain={[6000, 11000]} />
+                  <XAxis dataKey="year" tick={{ fill: 'var(--w-slate-400)', fontSize: 11 }} angle={0} textAnchor="middle" height={60} />
+                  <YAxis tick={{ fill: 'var(--w-slate-400)', fontSize: 11 }} domain={[6000, 11000]} />
                   <RechartsTooltip content={<CustomTooltip />} />
                   <Area type="monotone" dataKey="capture" name="한국 어획(톤)" stroke="var(--color-success)" fillOpacity={1} fill="url(#colorCapture)" />
                 </AreaChart>
@@ -391,8 +391,8 @@ export default function WhelkDashboard() {
                     </linearGradient>
                   </defs>
                   <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" vertical={false} />
-                  <XAxis dataKey="year" tick={{ fill: '#94a3b8', fontSize: 11 }} />
-                  <YAxis domain={[5000, 15000]} tick={{ fill: '#94a3b8', fontSize: 11 }} />
+                  <XAxis dataKey="year" tick={{ fill: 'var(--w-slate-400)', fontSize: 11 }} />
+                  <YAxis domain={[5000, 15000]} tick={{ fill: 'var(--w-slate-400)', fontSize: 11 }} />
                   <RechartsTooltip content={<CustomTooltip />} />
                   <Legend wrapperStyle={{ fontSize: '11px', paddingTop: '10px' }} />
                   <Area type="monotone" dataKey="baseline" name="현행 유지" stroke="var(--color-info)" fill="url(#colorBaseline)" />
@@ -414,8 +414,8 @@ export default function WhelkDashboard() {
                 <BarChart data={postUkScorecardData} layout="vertical" margin={{ left: 30 }}>
                   <ChartPatternDefs />
                   <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" horizontal={false} />
-                  <XAxis type="number" domain={[0, 100]} tick={{ fill: '#94a3b8', fontSize: 11 }} />
-                  <YAxis dataKey="country" type="category" tick={{ fill: '#f8fafc', fontSize: 11 }} width={70} />
+                  <XAxis type="number" domain={[0, 100]} tick={{ fill: 'var(--w-slate-400)', fontSize: 11 }} />
+                  <YAxis dataKey="country" type="category" tick={{ fill: 'var(--w-slate-50)', fontSize: 11 }} width={70} />
                   <RechartsTooltip content={<CustomTooltip />} />
                   <Legend wrapperStyle={{ fontSize: '11px', paddingTop: '10px' }} />
                   <Bar dataKey="catchTrend" name="어획 추세" fill="var(--color-info)" stackId="a" />
@@ -436,8 +436,8 @@ export default function WhelkDashboard() {
                 <BarChart data={koreaGlobalShareData} layout="vertical" margin={{ left: 20 }}>
                   <ChartPatternDefs />
                   <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" horizontal={false} />
-                  <XAxis type="number" tick={{ fill: '#94a3b8', fontSize: 11 }} />
-                  <YAxis dataKey="name" type="category" tick={{ fill: '#f8fafc', fontSize: 11 }} width={60} />
+                  <XAxis type="number" tick={{ fill: 'var(--w-slate-400)', fontSize: 11 }} />
+                  <YAxis dataKey="name" type="category" tick={{ fill: 'var(--w-slate-50)', fontSize: 11 }} width={60} />
                   <RechartsTooltip content={<CustomTooltip />} cursor={{ fill: 'rgba(140,170,255,0.10)' }} />
                   <Bar dataKey="value" name="어획량(톤)" radius={[0, 4, 4, 0]}>
                     {koreaGlobalShareData.map((entry: any, index: number) => (<Cell key={`kg-${index}`} fill={entry.name === '한국' ? 'var(--color-danger)' : 'var(--color-info)'} />))}
@@ -454,7 +454,7 @@ export default function WhelkDashboard() {
       {activePart === 'S2' && (<>
         <div style={{ gridColumn: '1 / -1', marginTop: '1rem', paddingBottom: '0.5rem', borderBottom: '1px solid rgba(255,255,255,0.1)', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
     <Factory size={20} color="var(--color-info)" />
-    <h2 style={{ margin: 0, fontSize: '1.3rem', color: '#f8fafc' }}>❷ 가공 및 생산</h2>
+    <h2 style={{ margin: 0, fontSize: '1.3rem', color: 'var(--w-slate-50)' }}>❷ 가공 및 생산</h2>
   </div>
   <>
             <WidgetCard title="국내 수입산 골뱅이 국가별 점유율" icon={ChartPie} iconColor="var(--color-info)" pillar="S3"
@@ -482,8 +482,8 @@ export default function WhelkDashboard() {
                 <ComposedChart data={seasonalityData}>
                   <ChartPatternDefs />
                   <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" vertical={false} />
-                  <XAxis dataKey="month" tick={{ fill: '#94a3b8', fontSize: 11 }} angle={0} textAnchor="middle" height={60} />
-                  <YAxis yAxisId="left" tick={{ fill: '#94a3b8', fontSize: 11 }} />
+                  <XAxis dataKey="month" tick={{ fill: 'var(--w-slate-400)', fontSize: 11 }} angle={0} textAnchor="middle" height={60} />
+                  <YAxis yAxisId="left" tick={{ fill: 'var(--w-slate-400)', fontSize: 11 }} />
                   <RechartsTooltip content={<CustomTooltip />} />
                   <Bar yAxisId="left" dataKey="importUSD" name="수입액($M)" fill="var(--color-info)" radius={[4, 4, 0, 0]} />
                   <Line yAxisId="left" type="monotone" dataKey="volume" name="물량(톤)" stroke="var(--color-danger)" strokeWidth={2} />
@@ -503,8 +503,8 @@ export default function WhelkDashboard() {
                 <BarChart data={sgValueUpData} layout="vertical" margin={{ left: 50 }}>
                   <ChartPatternDefs />
                   <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" horizontal={false} />
-                  <XAxis type="number" domain={[0, 100]} tick={{ fill: '#94a3b8', fontSize: 11 }} label={{ value: '개발 진행률(%)', position: 'bottom', fill: '#94a3b8', offset: -5 }} />
-                  <YAxis dataKey="sku" type="category" tick={{ fill: '#f8fafc', fontSize: 10 }} width={130} />
+                  <XAxis type="number" domain={[0, 100]} tick={{ fill: 'var(--w-slate-400)', fontSize: 11 }} label={{ value: '개발 진행률(%)', position: 'bottom', fill: 'var(--w-slate-400)', offset: -5 }} />
+                  <YAxis dataKey="sku" type="category" tick={{ fill: 'var(--w-slate-50)', fontSize: 10 }} width={130} />
                   <RechartsTooltip content={<CustomTooltip />} />
                   <Bar dataKey="status" name="진행률(%)" radius={[0, 4, 4, 0]}>
                     {sgValueUpData.map((entry: any, index: number) => (<Cell key={`sg-${index}`} fill={entry.status >= 70 ? 'var(--color-success)' : entry.status >= 50 ? 'var(--color-warning)' : 'var(--color-info)'} />))}
@@ -524,9 +524,9 @@ export default function WhelkDashboard() {
                 <ComposedChart data={feedstockYoyData}>
                   <ChartPatternDefs />
                   <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" vertical={false} />
-                  <XAxis dataKey="year" tick={{ fill: '#94a3b8', fontSize: 11 }} height={50} />
-                  <YAxis yAxisId="left" tick={{ fill: '#94a3b8', fontSize: 11 }} label={{ value: '물량(톤)', angle: -90, position: 'insideLeft', fill: '#94a3b8' }} />
-                  <YAxis yAxisId="right" orientation="right" domain={[0, 12]} tick={{ fill: '#94a3b8', fontSize: 11 }} label={{ value: '$/kg', angle: 90, position: 'insideRight', fill: '#94a3b8' }} />
+                  <XAxis dataKey="year" tick={{ fill: 'var(--w-slate-400)', fontSize: 11 }} height={50} />
+                  <YAxis yAxisId="left" tick={{ fill: 'var(--w-slate-400)', fontSize: 11 }} label={{ value: '물량(톤)', angle: -90, position: 'insideLeft', fill: 'var(--w-slate-400)' }} />
+                  <YAxis yAxisId="right" orientation="right" domain={[0, 12]} tick={{ fill: 'var(--w-slate-400)', fontSize: 11 }} label={{ value: '$/kg', angle: 90, position: 'insideRight', fill: 'var(--w-slate-400)' }} />
                   <RechartsTooltip content={<CustomTooltip />} />
                   <Legend wrapperStyle={{ fontSize: '11px', paddingTop: '10px' }} />
                   <Bar yAxisId="left" dataKey="volumeT" name="투입물량(톤)" fill="var(--color-info)" radius={[4, 4, 0, 0]} />
@@ -546,8 +546,8 @@ export default function WhelkDashboard() {
                 <BarChart data={originCifGapData} layout="vertical" margin={{ left: 20 }}>
                   <ChartPatternDefs />
                   <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" horizontal={false} />
-                  <XAxis type="number" tick={{ fill: '#94a3b8', fontSize: 11 }} />
-                  <YAxis dataKey="name" type="category" tick={{ fill: '#f8fafc', fontSize: 11 }} width={60} />
+                  <XAxis type="number" tick={{ fill: 'var(--w-slate-400)', fontSize: 11 }} />
+                  <YAxis dataKey="name" type="category" tick={{ fill: 'var(--w-slate-50)', fontSize: 11 }} width={60} />
                   <RechartsTooltip content={<CustomTooltip />} cursor={{ fill: 'rgba(140,170,255,0.10)' }} />
                   <Bar dataKey="value" name="CIF 단가($/kg)" radius={[0, 4, 4, 0]}>
                     {originCifGapData.map((entry: any, index: number) => (<Cell key={`cif-${index}`} fill={entry.value >= 12 ? 'var(--color-danger)' : entry.value <= 7 ? 'var(--color-success)' : 'var(--color-info)'} />))}
@@ -563,7 +563,7 @@ export default function WhelkDashboard() {
       {activePart === 'S3' && (<>
         <div style={{ gridColumn: '1 / -1', marginTop: '1rem', paddingBottom: '0.5rem', borderBottom: '1px solid rgba(255,255,255,0.1)', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
     <Ship size={20} color="var(--color-info)" />
-    <h2 style={{ margin: 0, fontSize: '1.3rem', color: '#f8fafc' }}>❸ 물류 및 통관</h2>
+    <h2 style={{ margin: 0, fontSize: '1.3rem', color: 'var(--w-slate-50)' }}>❸ 물류 및 통관</h2>
   </div>
   <>
             <WidgetCard title="국가별 원물 수율 기반 총사용원가 비교" icon={Scale} iconColor="var(--color-info)" pillar="S3"
@@ -573,10 +573,10 @@ export default function WhelkDashboard() {
                 <ComposedChart data={yieldArbitrageData} layout="vertical" margin={{ left: 40 }}>
                   <ChartPatternDefs />
                   <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" horizontal={false} />
-                  <XAxis type="number" tick={{ fill: '#94a3b8', fontSize: 11 }} />
-                  <YAxis dataKey="origin" type="category" tick={{ fill: '#f8fafc', fontSize: 11 }} width={100} />
+                  <XAxis type="number" tick={{ fill: 'var(--w-slate-400)', fontSize: 11 }} />
+                  <YAxis dataKey="origin" type="category" tick={{ fill: 'var(--w-slate-50)', fontSize: 11 }} width={100} />
                   <RechartsTooltip content={<CustomTooltip />} />
-                  <Bar dataKey="price" name="단가($/kg)" fill="#64748b" barSize={15} />
+                  <Bar dataKey="price" name="단가($/kg)" fill="var(--w-slate-500)" barSize={15} />
                   <Scatter dataKey="yieldMax" name="살수율(%)" fill="var(--color-success)" />
                 </ComposedChart>
               }
@@ -593,10 +593,10 @@ export default function WhelkDashboard() {
                 <BarChart data={waterfallData} margin={{ top: 20 }}>
                   <ChartPatternDefs />
                   <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" vertical={false} />
-                  <XAxis dataKey="name" tick={{ fill: '#94a3b8', fontSize: 10 }} interval={0} angle={0} textAnchor="middle" height={60} />
-                  <YAxis domain={[11.5, 14]} tick={{ fill: '#94a3b8', fontSize: 11 }} />
+                  <XAxis dataKey="name" tick={{ fill: 'var(--w-slate-400)', fontSize: 10 }} interval={0} angle={0} textAnchor="middle" height={60} />
+                  <YAxis domain={[11.5, 14]} tick={{ fill: 'var(--w-slate-400)', fontSize: 11 }} />
                   <RechartsTooltip content={<CustomTooltip />} />
-                  <Bar dataKey="value" name="비용($/kg)" fill="var(--color-info)" label={{ position: 'top', fill: '#f8fafc', fontSize: 10 }}>
+                  <Bar dataKey="value" name="비용($/kg)" fill="var(--color-info)" label={{ position: 'top', fill: 'var(--w-slate-50)', fontSize: 10 }}>
                     {waterfallData.map((entry: any, index: number) => (<Cell key={`cell-${index}`} fill={entry.fill} />))}
                   </Bar>
                 </BarChart>
@@ -613,7 +613,7 @@ export default function WhelkDashboard() {
       {activePart === 'S4' && (<>
         <div style={{ gridColumn: '1 / -1', marginTop: '1rem', paddingBottom: '0.5rem', borderBottom: '1px solid rgba(255,255,255,0.1)', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
     <TrendingUp size={20} color="var(--color-info)" />
-    <h2 style={{ margin: 0, fontSize: '1.3rem', color: '#f8fafc' }}>❹ 판매 및 수요</h2>
+    <h2 style={{ margin: 0, fontSize: '1.3rem', color: 'var(--w-slate-50)' }}>❹ 판매 및 수요</h2>
   </div>
   <>
             <WidgetCard title="B2C 통조림 브랜드 경쟁력 & 가성비 매핑" icon={Target} iconColor="var(--color-info)" pillar="S4"
@@ -622,8 +622,8 @@ export default function WhelkDashboard() {
               chart={
                 <ScatterChart margin={{ top: 20, right: 30, bottom: 30, left: 30 }}>
                   <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" />
-                  <XAxis dataKey="x" type="number" name="고형량" domain={[80, 160]} tick={{ fill: '#94a3b8', fontSize: 11 }} label={{ value: '고형량(g) →', position: 'bottom', fill: '#94a3b8', offset: -5 }} />
-                  <YAxis dataKey="y" type="number" name="가격" domain={[3000, 5500]} tick={{ fill: '#94a3b8', fontSize: 11 }} label={{ value: '100g당 가격(₩) →', angle: -90, position: 'left', fill: '#94a3b8' }} />
+                  <XAxis dataKey="x" type="number" name="고형량" domain={[80, 160]} tick={{ fill: 'var(--w-slate-400)', fontSize: 11 }} label={{ value: '고형량(g) →', position: 'bottom', fill: 'var(--w-slate-400)', offset: -5 }} />
+                  <YAxis dataKey="y" type="number" name="가격" domain={[3000, 5500]} tick={{ fill: 'var(--w-slate-400)', fontSize: 11 }} label={{ value: '100g당 가격(₩) →', angle: -90, position: 'left', fill: 'var(--w-slate-400)' }} />
                   <ZAxis dataKey="z" type="number" range={[200, 1500]} name="점유율(%)" />
                   <RechartsTooltip cursor={{ strokeDasharray: '3 3' }} content={<CustomTooltip />} />
                   <Scatter name="브랜드" data={brandPositioningData} fill="var(--color-info)">
@@ -662,9 +662,9 @@ export default function WhelkDashboard() {
                 <ComposedChart data={usCannedMarketData}>
                   <ChartPatternDefs />
                   <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" vertical={false} />
-                  <XAxis dataKey="year" tick={{ fill: '#94a3b8', fontSize: 11 }} />
-                  <YAxis yAxisId="left" tick={{ fill: '#94a3b8', fontSize: 11 }} label={{ value: '$B', angle: -90, position: 'insideLeft', fill: '#94a3b8' }} />
-                  <YAxis yAxisId="right" orientation="right" tick={{ fill: '#94a3b8', fontSize: 11 }} label={{ value: '%', angle: 90, position: 'insideRight', fill: '#94a3b8' }} />
+                  <XAxis dataKey="year" tick={{ fill: 'var(--w-slate-400)', fontSize: 11 }} />
+                  <YAxis yAxisId="left" tick={{ fill: 'var(--w-slate-400)', fontSize: 11 }} label={{ value: '$B', angle: -90, position: 'insideLeft', fill: 'var(--w-slate-400)' }} />
+                  <YAxis yAxisId="right" orientation="right" tick={{ fill: 'var(--w-slate-400)', fontSize: 11 }} label={{ value: '%', angle: 90, position: 'insideRight', fill: 'var(--w-slate-400)' }} />
                   <RechartsTooltip content={<CustomTooltip />} />
                   <Legend wrapperStyle={{ fontSize: '11px', paddingTop: '10px' }} />
                   <Bar yAxisId="left" dataKey="marketSize" name="미국 캔 시장($B)" fill="var(--color-info)" radius={[4, 4, 0, 0]} />
@@ -685,8 +685,8 @@ export default function WhelkDashboard() {
                 <BarChart data={nutritionBenchmarkData} margin={{ top: 20 }}>
                   <ChartPatternDefs />
                   <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" vertical={false} />
-                  <XAxis dataKey="item" tick={{ fill: '#f8fafc', fontSize: 10 }} angle={0} textAnchor="middle" height={55} />
-                  <YAxis tick={{ fill: '#94a3b8', fontSize: 11 }} />
+                  <XAxis dataKey="item" tick={{ fill: 'var(--w-slate-50)', fontSize: 10 }} angle={0} textAnchor="middle" height={55} />
+                  <YAxis tick={{ fill: 'var(--w-slate-400)', fontSize: 11 }} />
                   <RechartsTooltip content={<CustomTooltip />} />
                   <Legend wrapperStyle={{ fontSize: '10px', paddingTop: '10px' }} />
                   <Bar dataKey="protein" name="단백질(g)" fill="var(--color-info)" radius={[4, 4, 0, 0]} />
@@ -704,7 +704,7 @@ export default function WhelkDashboard() {
         {/* Pillar 5: ESG & 지속가능성 */}
         <div style={{ gridColumn: '1 / -1', marginTop: '1rem', paddingBottom: '0.5rem', borderBottom: '1px solid rgba(255,255,255,0.1)', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
     <Leaf size={20} color="var(--color-success)" />
-    <h2 style={{ margin: 0, fontSize: '1.3rem', color: '#f8fafc' }}>❺ ESG 및 지속가능성</h2>
+    <h2 style={{ margin: 0, fontSize: '1.3rem', color: 'var(--w-slate-50)' }}>❺ ESG 및 지속가능성</h2>
   </div>
   <>
             <WidgetCard title="흑해산 R. venosa 공급 안정성 트렌드" icon={Ship} iconColor="var(--color-info)" pillar="S3"
@@ -714,8 +714,8 @@ export default function WhelkDashboard() {
                 <BarChart data={blackSeaSupplyData} margin={{ top: 10 }}>
                   <ChartPatternDefs />
                   <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" vertical={false} />
-                  <XAxis dataKey="year" tick={{ fill: '#94a3b8', fontSize: 11 }} />
-                  <YAxis tick={{ fill: '#94a3b8', fontSize: 11 }} label={{ value: '톤', angle: -90, position: 'insideLeft', fill: '#94a3b8' }} />
+                  <XAxis dataKey="year" tick={{ fill: 'var(--w-slate-400)', fontSize: 11 }} />
+                  <YAxis tick={{ fill: 'var(--w-slate-400)', fontSize: 11 }} label={{ value: '톤', angle: -90, position: 'insideLeft', fill: 'var(--w-slate-400)' }} />
                   <RechartsTooltip content={<CustomTooltip />} />
                   <Legend wrapperStyle={{ fontSize: '11px', paddingTop: '10px' }} />
                   <Bar dataKey="turkey" name="튀르키예" fill="var(--color-info)" stackId="a" radius={[0, 0, 0, 0]} />
@@ -738,9 +738,9 @@ export default function WhelkDashboard() {
                     <div key={i} style={{ background: 'rgba(255,255,255,0.03)', border: `1px solid ${t.color}40`, borderRadius: '8px', padding: '1rem', display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
                       <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
                         <span style={{ fontSize: '0.85rem', fontWeight: 700, color: t.color }}>{t.level}</span>
-                        <span style={{ fontSize: '0.75rem', color: '#94a3b8' }}>₩{t.min}~{t.max}</span>
+                        <span style={{ fontSize: '0.75rem', color: 'var(--w-slate-400)' }}>₩{t.min}~{t.max}</span>
                       </div>
-                      <div style={{ fontSize: '0.78rem', color: '#cbd5e1', lineHeight: 1.5 }}>대응: <strong style={{ color: t.color }}>{t.action}</strong></div>
+                      <div style={{ fontSize: '0.78rem', color: 'var(--w-slate-300)', lineHeight: 1.5 }}>대응: <strong style={{ color: t.color }}>{t.action}</strong></div>
                       <div style={{ height: '4px', borderRadius: '2px', background: 'rgba(255,255,255,0.1)', overflow: 'hidden' }}>
                         <div style={{ height: '100%', width: `${((t.max - 1200) / 500) * 100}%`, background: t.color, borderRadius: '2px' }} />
                       </div>
@@ -760,9 +760,9 @@ export default function WhelkDashboard() {
                 <ComposedChart data={fxCorrelationData}>
                   <ChartPatternDefs />
                   <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" vertical={false} />
-                  <XAxis dataKey="quarter" tick={{ fill: '#94a3b8', fontSize: 11 }} angle={0} textAnchor="middle" height={60} />
-                  <YAxis yAxisId="left" domain={[11, 13.5]} tick={{ fill: '#94a3b8', fontSize: 11 }} label={{ value: '$/kg', angle: -90, position: 'insideLeft', fill: '#94a3b8' }} />
-                  <YAxis yAxisId="right" orientation="right" domain={[1200, 1450]} tick={{ fill: '#94a3b8', fontSize: 11 }} label={{ value: 'USD/KRW', angle: 90, position: 'insideRight', fill: '#94a3b8' }} />
+                  <XAxis dataKey="quarter" tick={{ fill: 'var(--w-slate-400)', fontSize: 11 }} angle={0} textAnchor="middle" height={60} />
+                  <YAxis yAxisId="left" domain={[11, 13.5]} tick={{ fill: 'var(--w-slate-400)', fontSize: 11 }} label={{ value: '$/kg', angle: -90, position: 'insideLeft', fill: 'var(--w-slate-400)' }} />
+                  <YAxis yAxisId="right" orientation="right" domain={[1200, 1450]} tick={{ fill: 'var(--w-slate-400)', fontSize: 11 }} label={{ value: 'USD/KRW', angle: 90, position: 'insideRight', fill: 'var(--w-slate-400)' }} />
                   <RechartsTooltip content={<CustomTooltip />} />
                   <Legend wrapperStyle={{ fontSize: '11px', paddingTop: '10px' }} />
                   <Bar yAxisId="left" dataKey="avgUnitPrice" name="평균수입단가($/kg)" fill="var(--color-info)" radius={[4, 4, 0, 0]} />
@@ -781,7 +781,7 @@ export default function WhelkDashboard() {
               chart={
                 <RadarChart data={ukRegulatoryRadar} cx="50%" cy="50%" outerRadius="70%">
                   <PolarGrid stroke="rgba(255,255,255,0.15)" />
-                  <PolarAngleAxis dataKey="axis" tick={{ fill: '#94a3b8', fontSize: 10 }} />
+                  <PolarAngleAxis dataKey="axis" tick={{ fill: 'var(--w-slate-400)', fontSize: 10 }} />
                   <PolarRadiusAxis domain={[0, 100]} tick={false} axisLine={false} />
                   <Radar name="리스크 수준" dataKey="value" stroke="var(--color-danger)" fill="var(--color-danger)" fillOpacity={0.25} strokeWidth={2} />
                   <RechartsTooltip content={<CustomTooltip />} />
@@ -803,8 +803,8 @@ export default function WhelkDashboard() {
                 <BarChart data={aquacultureData} margin={{ top: 10 }}>
                   <ChartPatternDefs />
                   <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" vertical={false} />
-                  <XAxis dataKey="species" tick={{ fill: '#f8fafc', fontSize: 11 }} angle={0} textAnchor="middle" height={60} />
-                  <YAxis domain={[0, 100]} tick={{ fill: '#94a3b8', fontSize: 11 }} />
+                  <XAxis dataKey="species" tick={{ fill: 'var(--w-slate-50)', fontSize: 11 }} angle={0} textAnchor="middle" height={60} />
+                  <YAxis domain={[0, 100]} tick={{ fill: 'var(--w-slate-400)', fontSize: 11 }} />
                   <RechartsTooltip content={<CustomTooltip />} />
                   <Legend wrapperStyle={{ fontSize: '11px', paddingTop: '10px' }} />
                   <Bar dataKey="aquaculture" name="양식 가능성" fill="var(--color-success)" radius={[4, 4, 0, 0]} />
@@ -825,14 +825,14 @@ export default function WhelkDashboard() {
                 <ComposedChart data={cadmiumData} margin={{ top: 20 }}>
                   <ChartPatternDefs />
                   <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" vertical={false} />
-                  <XAxis dataKey="part" tick={{ fill: '#f8fafc', fontSize: 11 }} angle={0} textAnchor="middle" height={60} />
-                  <YAxis domain={[0, 7]} tick={{ fill: '#94a3b8', fontSize: 11 }} label={{ value: 'mg/kg', angle: -90, position: 'insideLeft', fill: '#94a3b8' }} />
+                  <XAxis dataKey="part" tick={{ fill: 'var(--w-slate-50)', fontSize: 11 }} angle={0} textAnchor="middle" height={60} />
+                  <YAxis domain={[0, 7]} tick={{ fill: 'var(--w-slate-400)', fontSize: 11 }} label={{ value: 'mg/kg', angle: -90, position: 'insideLeft', fill: 'var(--w-slate-400)' }} />
                   <RechartsTooltip content={<CustomTooltip />} />
                   <Legend wrapperStyle={{ fontSize: '11px', paddingTop: '10px' }} />
-                  <Bar dataKey="cd" name="카드뮴 농도(mg/kg)" fill="var(--color-danger)" radius={[4, 4, 0, 0]} label={{ position: 'top', fill: '#f8fafc', fontSize: 11 }}>
+                  <Bar dataKey="cd" name="카드뮴 농도(mg/kg)" fill="var(--color-danger)" radius={[4, 4, 0, 0]} label={{ position: 'top', fill: 'var(--w-slate-50)', fontSize: 11 }}>
                     {cadmiumData.map((entry: any, index: number) => (<Cell key={`cd-${index}`} fill={index === 1 ? 'var(--color-danger)' : index === 2 ? 'var(--color-warning)' : 'var(--color-success)'} />))}
                   </Bar>
-                  <Line type="monotone" dataKey="limit" name="식약처 기준선(2.0)" stroke="#f8fafc" strokeWidth={2} strokeDasharray="8 4" dot={false} />
+                  <Line type="monotone" dataKey="limit" name="식약처 기준선(2.0)" stroke="var(--w-slate-50)" strokeWidth={2} strokeDasharray="8 4" dot={false} />
                 </ComposedChart>
               }
               takeaway={{
@@ -854,9 +854,9 @@ export default function WhelkDashboard() {
                     </linearGradient>
                   </defs>
                   <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" vertical={false} />
-                  <XAxis dataKey="month" tick={{ fill: '#94a3b8', fontSize: 11 }} angle={0} textAnchor="middle" height={60} />
-                  <YAxis yAxisId="left" tick={{ fill: '#94a3b8', fontSize: 11 }} label={{ value: '톤', angle: -90, position: 'insideLeft', fill: '#94a3b8' }} />
-                  <YAxis yAxisId="right" orientation="right" tick={{ fill: '#94a3b8', fontSize: 11 }} label={{ value: '$M', angle: 90, position: 'insideRight', fill: '#94a3b8' }} />
+                  <XAxis dataKey="month" tick={{ fill: 'var(--w-slate-400)', fontSize: 11 }} angle={0} textAnchor="middle" height={60} />
+                  <YAxis yAxisId="left" tick={{ fill: 'var(--w-slate-400)', fontSize: 11 }} label={{ value: '톤', angle: -90, position: 'insideLeft', fill: 'var(--w-slate-400)' }} />
+                  <YAxis yAxisId="right" orientation="right" tick={{ fill: 'var(--w-slate-400)', fontSize: 11 }} label={{ value: '$M', angle: 90, position: 'insideRight', fill: 'var(--w-slate-400)' }} />
                   <RechartsTooltip content={<CustomTooltip />} />
                   <Legend wrapperStyle={{ fontSize: '11px', paddingTop: '10px' }} />
                   <Area yAxisId="left" type="monotone" dataKey="volume" name="수입량(톤)" stroke="var(--color-success)" fill="url(#colorSurge)" />
@@ -876,8 +876,8 @@ export default function WhelkDashboard() {
                 <BarChart data={byproductData} layout="vertical" margin={{ left: 30 }}>
                   <ChartPatternDefs />
                   <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" horizontal={false} />
-                  <XAxis type="number" tick={{ fill: '#94a3b8', fontSize: 11 }} label={{ value: '중량 비율(%)', position: 'bottom', fill: '#94a3b8', offset: -5 }} />
-                  <YAxis dataKey="name" type="category" tick={{ fill: '#f8fafc', fontSize: 11 }} width={90} />
+                  <XAxis type="number" tick={{ fill: 'var(--w-slate-400)', fontSize: 11 }} label={{ value: '중량 비율(%)', position: 'bottom', fill: 'var(--w-slate-400)', offset: -5 }} />
+                  <YAxis dataKey="name" type="category" tick={{ fill: 'var(--w-slate-50)', fontSize: 11 }} width={90} />
                   <RechartsTooltip content={<CustomTooltip />} />
                   <Bar dataKey="ratio" name="중량 비율(%)" radius={[0, 4, 4, 0]}>
                     {byproductData.map((entry: any, index: number) => (<Cell key={`bp-${index}`} fill={entry.color} />))}
@@ -897,12 +897,12 @@ export default function WhelkDashboard() {
                 <BarChart data={solidContentData} margin={{ top: 20 }}>
                   <ChartPatternDefs />
                   <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" vertical={false} />
-                  <XAxis dataKey="brand" tick={{ fill: '#f8fafc', fontSize: 11 }} angle={0} textAnchor="middle" height={60} />
-                  <YAxis domain={[0, 320]} tick={{ fill: '#94a3b8', fontSize: 11 }} label={{ value: 'g', angle: -90, position: 'insideLeft', fill: '#94a3b8' }} />
+                  <XAxis dataKey="brand" tick={{ fill: 'var(--w-slate-50)', fontSize: 11 }} angle={0} textAnchor="middle" height={60} />
+                  <YAxis domain={[0, 320]} tick={{ fill: 'var(--w-slate-400)', fontSize: 11 }} label={{ value: 'g', angle: -90, position: 'insideLeft', fill: 'var(--w-slate-400)' }} />
                   <RechartsTooltip content={<CustomTooltip />} />
                   <Legend wrapperStyle={{ fontSize: '11px', paddingTop: '10px' }} />
                   <Bar dataKey="solid" name="고형량(살)" stackId="a" fill="var(--color-success)" radius={[0, 0, 0, 0]} />
-                  <Bar dataKey="liquid" name="조미액" stackId="a" fill="#64748b" radius={[4, 4, 0, 0]} />
+                  <Bar dataKey="liquid" name="조미액" stackId="a" fill="var(--w-slate-500)" radius={[4, 4, 0, 0]} />
                 </BarChart>
               }
               takeaway={{
@@ -928,9 +928,9 @@ export default function WhelkDashboard() {
                     </linearGradient>
                   </defs>
                   <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" vertical={false} />
-                  <XAxis dataKey="year" tick={{ fill: '#94a3b8', fontSize: 11 }} angle={0} textAnchor="middle" height={60} />
-                  <YAxis yAxisId="left" tick={{ fill: '#94a3b8', fontSize: 11 }} label={{ value: '어획량(톤)', angle: -90, position: 'insideLeft', fill: '#94a3b8' }} />
-                  <YAxis yAxisId="right" orientation="right" domain={[9, 15]} tick={{ fill: '#94a3b8', fontSize: 11 }} label={{ value: 'SST(°C)', angle: 90, position: 'insideRight', fill: '#94a3b8' }} />
+                  <XAxis dataKey="year" tick={{ fill: 'var(--w-slate-400)', fontSize: 11 }} angle={0} textAnchor="middle" height={60} />
+                  <YAxis yAxisId="left" tick={{ fill: 'var(--w-slate-400)', fontSize: 11 }} label={{ value: '어획량(톤)', angle: -90, position: 'insideLeft', fill: 'var(--w-slate-400)' }} />
+                  <YAxis yAxisId="right" orientation="right" domain={[9, 15]} tick={{ fill: 'var(--w-slate-400)', fontSize: 11 }} label={{ value: 'SST(°C)', angle: 90, position: 'insideRight', fill: 'var(--w-slate-400)' }} />
                   <RechartsTooltip content={<CustomTooltip />} />
                   <Legend wrapperStyle={{ fontSize: '11px', paddingTop: '10px' }} />
                   <Area yAxisId="left" type="monotone" dataKey="ukCatch" name="영국 어획(톤)" stroke="var(--color-info)" fill="url(#colorUkCatch)" />
@@ -956,7 +956,7 @@ export default function WhelkDashboard() {
                       <div style={{ fontSize: '1.5rem', fontWeight: 800, color: d.value >= 70 ? 'var(--color-danger)' : d.value >= 50 ? 'var(--color-warning)' : 'var(--color-success)' }}>
                         {d.value}
                       </div>
-                      <div style={{ fontSize: '0.7rem', color: '#94a3b8', marginTop: '4px', lineHeight: 1.3 }}>{d.axis}</div>
+                      <div style={{ fontSize: '0.7rem', color: 'var(--w-slate-400)', marginTop: '4px', lineHeight: 1.3 }}>{d.axis}</div>
                       <div style={{ height: '3px', borderRadius: '2px', background: 'rgba(255,255,255,0.1)', marginTop: '6px' }}>
                         <div style={{ height: '100%', width: `${d.value}%`, background: d.value >= 70 ? 'var(--color-danger)' : d.value >= 50 ? 'var(--color-warning)' : 'var(--color-success)', borderRadius: '2px' }} />
                       </div>
@@ -978,8 +978,8 @@ export default function WhelkDashboard() {
                 <BarChart data={pfasRiskData} layout="vertical" margin={{ left: 40 }}>
                   <ChartPatternDefs />
                   <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" horizontal={false} />
-                  <XAxis type="number" tick={{ fill: '#94a3b8', fontSize: 11 }} label={{ value: 'ng/g', position: 'bottom', fill: '#94a3b8', offset: -5 }} />
-                  <YAxis dataKey="species" type="category" tick={{ fill: '#f8fafc', fontSize: 10 }} width={100} />
+                  <XAxis type="number" tick={{ fill: 'var(--w-slate-400)', fontSize: 11 }} label={{ value: 'ng/g', position: 'bottom', fill: 'var(--w-slate-400)', offset: -5 }} />
+                  <YAxis dataKey="species" type="category" tick={{ fill: 'var(--w-slate-50)', fontSize: 10 }} width={100} />
                   <RechartsTooltip content={<CustomTooltip />} />
                   <Legend wrapperStyle={{ fontSize: '10px', paddingTop: '10px' }} />
                   <Bar dataKey="pfos" name="PFOS(ng/g)" fill="var(--color-danger)" radius={[0, 4, 4, 0]} />
@@ -1000,8 +1000,8 @@ export default function WhelkDashboard() {
                 <BarChart data={halalCollagenData} margin={{ top: 20 }}>
                   <ChartPatternDefs />
                   <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" vertical={false} />
-                  <XAxis dataKey="region" tick={{ fill: '#f8fafc', fontSize: 10 }} />
-                  <YAxis tick={{ fill: '#94a3b8', fontSize: 11 }} label={{ value: '$M', angle: -90, position: 'insideLeft', fill: '#94a3b8' }} />
+                  <XAxis dataKey="region" tick={{ fill: 'var(--w-slate-50)', fontSize: 10 }} />
+                  <YAxis tick={{ fill: 'var(--w-slate-400)', fontSize: 11 }} label={{ value: '$M', angle: -90, position: 'insideLeft', fill: 'var(--w-slate-400)' }} />
                   <RechartsTooltip content={<CustomTooltip />} />
                   <Legend wrapperStyle={{ fontSize: '10px', paddingTop: '10px' }} />
                   <Bar dataKey="marketSize" name="시장 규모($M)" fill="var(--color-info)" radius={[4, 4, 0, 0]} />
@@ -1020,8 +1020,8 @@ export default function WhelkDashboard() {
           <>
             <div style={{ gridColumn: '1 / -1', marginTop: '2rem', paddingBottom: '0.5rem', borderBottom: '1px solid rgba(255,255,255,0.1)', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
               <Dna size={20} color="#8b5cf6" />
-              <h2 style={{ margin: 0, fontSize: '1.3rem', color: '#f8fafc' }}>KFAS 학술 연구 인텔리전스</h2>
-              <span style={{ fontSize: '0.75rem', color: '#94a3b8', background: 'rgba(139,92,246,0.15)', padding: '2px 8px', borderRadius: '4px', marginLeft: '8px' }}>
+              <h2 style={{ margin: 0, fontSize: '1.3rem', color: 'var(--w-slate-50)' }}>KFAS 학술 연구 인텔리전스</h2>
+              <span style={{ fontSize: '0.75rem', color: 'var(--w-slate-400)', background: 'rgba(139,92,246,0.15)', padding: '2px 8px', borderRadius: '4px', marginLeft: '8px' }}>
                 국립수산과학원 검증 · {kfasWidgets.length}개 위젯
               </span>
             </div>
@@ -1038,8 +1038,8 @@ export default function WhelkDashboard() {
                     <BarChart data={widget.data} margin={{ top: 10 }}>
                       <ChartPatternDefs />
                       <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" vertical={false} />
-                      <XAxis dataKey={widget.xKey} tick={{ fill: '#f8fafc', fontSize: 10 }} interval={0} angle={0} textAnchor="middle" height={55} />
-                      <YAxis tick={{ fill: '#94a3b8', fontSize: 11 }} />
+                      <XAxis dataKey={widget.xKey} tick={{ fill: 'var(--w-slate-50)', fontSize: 10 }} interval={0} angle={0} textAnchor="middle" height={55} />
+                      <YAxis tick={{ fill: 'var(--w-slate-400)', fontSize: 11 }} />
                       <RechartsTooltip content={<CustomTooltip />} />
                       <Legend wrapperStyle={{ fontSize: '10px', paddingTop: '10px' }} />
                       {widget.bars?.map((bar: any, bi: number) => (

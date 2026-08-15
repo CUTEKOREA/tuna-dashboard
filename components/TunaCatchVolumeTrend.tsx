@@ -35,7 +35,7 @@ const CustomTooltip = ({ active, payload }: any) => {
   const { month, catch: catchVolume } = payload[0].payload;
   return (
     <div style={{ background: '#0a0f1f', border: '1px solid #334155', borderRadius: 6, padding: '8px 12px' }}>
-      <p style={{ color: '#f8fafc', fontWeight: 600, margin: 0, fontSize: '0.85rem' }}>
+      <p style={{ color: 'var(--w-slate-50)', fontWeight: 600, margin: 0, fontSize: '0.85rem' }}>
         {month} · {catchVolume.toLocaleString()}천 톤
       </p>
     </div>
@@ -63,7 +63,7 @@ const TunaCatchVolumeTrend = () => (
         <defs>
           <linearGradient id="tunaCatchVolumeGradient" x1="0" y1="0" x2="1" y2="0">
             <stop offset="0%" stopColor="#22d3ee" />
-            <stop offset="100%" stopColor="#3b82f6" />
+            <stop offset="100%" stopColor="var(--w-blue-500)" />
           </linearGradient>
         </defs>
         <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" vertical={false} />
@@ -84,7 +84,7 @@ const TunaCatchVolumeTrend = () => (
           stroke="url(#tunaCatchVolumeGradient)"
           strokeWidth={2.5}
           dot={{ fill: '#22d3ee', r: 3, strokeWidth: 0 }}
-          activeDot={{ fill: '#3b82f6', r: 5, strokeWidth: 0 }}
+          activeDot={{ fill: 'var(--w-blue-500)', r: 5, strokeWidth: 0 }}
         />
       </LineChart>
     }

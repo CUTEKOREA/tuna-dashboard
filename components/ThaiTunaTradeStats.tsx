@@ -32,10 +32,10 @@ const CustomTooltip = ({ active, payload, label }: any) => {
         padding: '12px', 
         border: '1px solid rgba(255,255,255,0.1)', 
         borderRadius: '8px', 
-        color: '#f8fafc',
+        color: 'var(--w-slate-50)',
         boxShadow: '0 10px 15px -3px rgba(0, 0, 0, 0.3)'
       }}>
-        <p style={{ margin: '0 0 8px 0', fontSize: '0.85rem', color: '#94a3b8', fontWeight: 600 }}>{label}</p>
+        <p style={{ margin: '0 0 8px 0', fontSize: '0.85rem', color: 'var(--w-slate-400)', fontWeight: 600 }}>{label}</p>
         {payload.map((entry: any, index: number) => (
           <div key={`item-${index}`} style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '4px', fontSize: '0.9rem' }}>
             <div style={{ width: '8px', height: '8px', borderRadius: '50%', backgroundColor: entry.color }} />
@@ -68,18 +68,18 @@ export default React.memo(function ThaiTunaTradeStats() {
             <div style={{ background: 'rgba(59, 130, 246, 0.1)', padding: '8px', borderRadius: '8px' }}>
               <TrendingUp size={20} color="var(--color-info)" />
             </div>
-            <h3 style={{ fontSize: '1.1rem', fontWeight: 700, color: '#f8fafc', margin: 0 }}>태국 참치 무역량 추이 (2019-2023)</h3>
+            <h3 style={{ fontSize: '1.1rem', fontWeight: 700, color: 'var(--w-slate-50)', margin: 0 }}>태국 참치 무역량 추이 (2019-2023)</h3>
             <div style={{ marginLeft: 'auto' }}><TelemetryBadge status="SYNCED" syncDate="UN Comtrade 2019–23" /></div>
           </div>
-          <p style={{ fontSize: '0.72rem', color: '#64748b', margin: '0 0 1.2rem 0' }}>출처: UN Comtrade — 태국(reporter) 참치 HS1604·0303 연간 수출입 (2019–2023 스냅샷, 단위: 톤)</p>
+          <p style={{ fontSize: '0.72rem', color: 'var(--w-slate-500)', margin: '0 0 1.2rem 0' }}>출처: UN Comtrade — 태국(reporter) 참치 HS1604·0303 연간 수출입 (2019–2023 스냅샷, 단위: 톤)</p>
           
           <div style={{ height: '300px', width: '100%' }}>
             <SafeResponsiveContainer width="100%" height="100%">
               <ComposedChart data={tradeData.yearly_totals}>
                 <ChartPatternDefs />
                 <CartesianGrid strokeDasharray="3 3" stroke="rgba(140,170,255,0.10)" vertical={false} />
-                <XAxis dataKey="year" stroke="#94a3b8" fontSize={12} tickMargin={10} />
-                <YAxis stroke="#94a3b8" fontSize={12} tickFormatter={(val) => (val / 1000).toFixed(0) + 'k'} />
+                <XAxis dataKey="year" stroke="var(--w-slate-400)" fontSize={12} tickMargin={10} />
+                <YAxis stroke="var(--w-slate-400)" fontSize={12} tickFormatter={(val) => (val / 1000).toFixed(0) + 'k'} />
                 <Tooltip content={<CustomTooltip />} />
                 <Legend wrapperStyle={{ paddingTop: '20px', fontSize: '12px' }} />
                 <Bar name="수입 (Imports)" dataKey="imports" fill="var(--color-info)" radius={[4, 4, 0, 0]} barSize={40} opacity={0.6} isAnimationActive={false} />
@@ -110,10 +110,10 @@ export default React.memo(function ThaiTunaTradeStats() {
             <div style={{ background: 'rgba(16, 185, 129, 0.1)', padding: '8px', borderRadius: '8px' }}>
               <Factory size={20} color="var(--color-success)" />
             </div>
-            <h3 style={{ fontSize: '1.1rem', fontWeight: 700, color: '#f8fafc', margin: 0 }}>주요 수출 품목 (2023)</h3>
+            <h3 style={{ fontSize: '1.1rem', fontWeight: 700, color: 'var(--w-slate-50)', margin: 0 }}>주요 수출 품목 (2023)</h3>
             <div style={{ marginLeft: 'auto' }}><TelemetryBadge status="SYNCED" syncDate="UN Comtrade 2023" /></div>
           </div>
-          <p style={{ fontSize: '0.72rem', color: '#64748b', margin: '0 0 1.2rem 0' }}>출처: UN Comtrade — 태국 참치 수출 품목(HS)별 2023 스냅샷 (단위: 톤)</p>
+          <p style={{ fontSize: '0.72rem', color: 'var(--w-slate-500)', margin: '0 0 1.2rem 0' }}>출처: UN Comtrade — 태국 참치 수출 품목(HS)별 2023 스냅샷 (단위: 톤)</p>
 
           <div style={{ height: '300px', width: '100%' }}>
             <SafeResponsiveContainer width="100%" height="100%">
@@ -124,7 +124,7 @@ export default React.memo(function ThaiTunaTradeStats() {
                 <YAxis 
                   dataKey="name" 
                   type="category" 
-                  stroke="#94a3b8" 
+                  stroke="var(--w-slate-400)"
                   fontSize={10} 
                   width={150}
                   tickFormatter={(val) => val.length > 25 ? val.substring(0, 25) + '...' : val}
@@ -161,10 +161,10 @@ export default React.memo(function ThaiTunaTradeStats() {
             <div style={{ background: 'rgba(245, 158, 11, 0.1)', padding: '8px', borderRadius: '8px' }}>
               <Globe size={20} color="var(--color-warning)" />
             </div>
-            <h3 style={{ fontSize: '1.1rem', fontWeight: 700, color: '#f8fafc', margin: 0 }}>주요 수출 대상국 (2023)</h3>
+            <h3 style={{ fontSize: '1.1rem', fontWeight: 700, color: 'var(--w-slate-50)', margin: 0 }}>주요 수출 대상국 (2023)</h3>
             <div style={{ marginLeft: 'auto' }}><TelemetryBadge status="SYNCED" syncDate="UN Comtrade 2023" /></div>
           </div>
-          <p style={{ fontSize: '0.72rem', color: '#64748b', margin: '0 0 1.2rem 0' }}>출처: UN Comtrade — 태국 참치 수출 대상국별 2023 스냅샷 (단위: 톤)</p>
+          <p style={{ fontSize: '0.72rem', color: 'var(--w-slate-500)', margin: '0 0 1.2rem 0' }}>출처: UN Comtrade — 태국 참치 수출 대상국별 2023 스냅샷 (단위: 톤)</p>
 
           <div style={{ height: '300px', width: '100%' }}>
             <SafeResponsiveContainer width="100%" height="100%">

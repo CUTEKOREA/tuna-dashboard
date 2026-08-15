@@ -41,8 +41,8 @@ export default function SalmonInsightTradeDown() {
         onClick={() => setActiveTab('kr')}
         style={{
           background: activeTab === 'kr' ? 'rgba(56, 189, 248, 0.15)' : 'rgba(140,170,255,0.10)',
-          border: `1px solid ${activeTab === 'kr' ? '#38bdf8' : 'transparent'}`,
-          color: activeTab === 'kr' ? '#38bdf8' : '#94a3b8',
+          border: `1px solid ${activeTab === 'kr' ? 'var(--w-sky-400)' : 'transparent'}`,
+          color: activeTab === 'kr' ? 'var(--w-sky-400)' : 'var(--w-slate-400)',
           padding: '0.4rem 0.8rem', borderRadius: '6px', fontSize: '0.8rem', fontWeight: 600, cursor: 'pointer',
           transition: 'all 0.2s'
         }}
@@ -53,8 +53,8 @@ export default function SalmonInsightTradeDown() {
         onClick={() => setActiveTab('eu')}
         style={{
           background: activeTab === 'eu' ? 'rgba(56, 189, 248, 0.15)' : 'rgba(140,170,255,0.10)',
-          border: `1px solid ${activeTab === 'eu' ? '#38bdf8' : 'transparent'}`,
-          color: activeTab === 'eu' ? '#38bdf8' : '#94a3b8',
+          border: `1px solid ${activeTab === 'eu' ? 'var(--w-sky-400)' : 'transparent'}`,
+          color: activeTab === 'eu' ? 'var(--w-sky-400)' : 'var(--w-slate-400)',
           padding: '0.4rem 0.8rem', borderRadius: '6px', fontSize: '0.8rem', fontWeight: 600, cursor: 'pointer',
           transition: 'all 0.2s'
         }}
@@ -71,7 +71,7 @@ export default function SalmonInsightTradeDown() {
           <ComposedChart data={euData} margin={{ top: 10, right: 10, left: -10, bottom: 0 }}>
             <ChartPatternDefs />
             <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" vertical={false} />
-            <XAxis dataKey="year" stroke="#94a3b8" fontSize={11} tickLine={false} axisLine={false} />
+            <XAxis dataKey="year" stroke="var(--w-slate-400)" fontSize={11} tickLine={false} axisLine={false} />
             <YAxis yAxisId="left" stroke="var(--color-info)" fontSize={11} tickLine={false} axisLine={false} tickFormatter={(v) => `${v}k t`} />
             <YAxis yAxisId="right" orientation="right" stroke="#f97316" fontSize={11} tickLine={false} axisLine={false} tickFormatter={(v) => `€${v}M`} />
             <Tooltip contentStyle={{ background: '#11182f', border: 'none', borderRadius: '8px' }} itemStyle={{ fontSize: '0.85rem' }} />
@@ -86,7 +86,7 @@ export default function SalmonInsightTradeDown() {
       )}
       {activeTab === 'kr' && (
         loading ? (
-          <div style={{ height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#94a3b8' }}>
+          <div style={{ height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'var(--w-slate-400)' }}>
             <RefreshCcw size={24} style={{ animation: 'spin 1s linear infinite' }} />
           </div>
         ) : (
@@ -94,7 +94,7 @@ export default function SalmonInsightTradeDown() {
             <ComposedChart data={kamisData} margin={{ top: 10, right: 10, left: 0, bottom: 0 }}>
               <ChartPatternDefs />
               <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" vertical={false} />
-              <XAxis dataKey="date" stroke="#94a3b8" fontSize={11} tickLine={false} axisLine={false} />
+              <XAxis dataKey="date" stroke="var(--w-slate-400)" fontSize={11} tickLine={false} axisLine={false} />
               <YAxis stroke="var(--color-warning)" fontSize={11} tickLine={false} axisLine={false} tickFormatter={(v) => `${(v/1000).toFixed(0)}k₩`} />
               <Tooltip contentStyle={{ background: '#11182f', border: 'none', borderRadius: '8px' }} itemStyle={{ fontSize: '0.85rem' }} />
               <Legend wrapperStyle={{ fontSize: '0.8rem' }} />

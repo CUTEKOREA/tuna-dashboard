@@ -59,7 +59,7 @@ const SparkTooltip = ({ active, payload, label }: any) => {
   if (!active || !payload?.length) return null;
   return (
     <div style={{ background: '#0a0f1f', border: '1px solid #334155', borderRadius: 6, padding: '6px 10px' }}>
-      <p style={{ color: '#f8fafc', margin: 0, fontSize: '0.78rem', fontWeight: 600 }}>{label}</p>
+      <p style={{ color: 'var(--w-slate-50)', margin: 0, fontSize: '0.78rem', fontWeight: 600 }}>{label}</p>
       <p style={{ color: '#22d3ee', margin: '2px 0 0 0', fontSize: '0.76rem' }}>
         보고 {Number(payload[0].value).toLocaleString()}건
       </p>
@@ -70,7 +70,7 @@ const SparkTooltip = ({ active, payload, label }: any) => {
 const cellStyle: React.CSSProperties = {
   padding: '7px 10px',
   fontSize: '0.8rem',
-  color: '#e2e8f0',
+  color: 'var(--w-slate-200)',
   borderBottom: '1px solid rgba(255,255,255,0.06)',
 };
 
@@ -146,7 +146,7 @@ const TunaInsiderSignalWidget = () => {
   if (loading) {
     body = (
       <div style={{ padding: '32px 12px', textAlign: 'center' }}>
-        <p style={{ color: '#94a3b8', fontSize: '0.85rem', margin: 0, animation: 'pulse 1.5s ease-in-out infinite' }}>
+        <p style={{ color: 'var(--w-slate-400)', fontSize: '0.85rem', margin: 0, animation: 'pulse 1.5s ease-in-out infinite' }}>
           전자공시 임원·주요주주 보고 조회 중…
         </p>
       </div>
@@ -176,7 +176,7 @@ const TunaInsiderSignalWidget = () => {
   } else if (isEmpty) {
     body = (
       <div style={{ padding: '28px 12px', textAlign: 'center' }}>
-        <p style={{ color: '#94a3b8', fontSize: '0.85rem', margin: 0 }}>
+        <p style={{ color: 'var(--w-slate-400)', fontSize: '0.85rem', margin: 0 }}>
           최근 180일 임원·주요주주 보고 없음 (4사 전체)
         </p>
       </div>
@@ -194,7 +194,7 @@ const TunaInsiderSignalWidget = () => {
                     key={h}
                     style={{
                       ...cellStyle,
-                      color: '#94a3b8',
+                      color: 'var(--w-slate-400)',
                       fontWeight: 600,
                       fontSize: '0.74rem',
                       textAlign: i === 0 ? 'left' : 'right',
@@ -218,7 +218,7 @@ const TunaInsiderSignalWidget = () => {
                         : undefined
                     }
                   >
-                    <td style={{ ...cellStyle, fontWeight: isSilla ? 700 : 500, color: isSilla ? '#22d3ee' : '#e2e8f0' }}>
+                    <td style={{ ...cellStyle, fontWeight: isSilla ? 700 : 500, color: isSilla ? '#22d3ee' : 'var(--w-slate-200)' }}>
                       {s.company}
                     </td>
                     <td style={{ ...cellStyle, textAlign: 'right', fontWeight: 600, color: changeColor(s.netChange90d) }}>
@@ -235,7 +235,7 @@ const TunaInsiderSignalWidget = () => {
 
         {/* 최근 이벤트 타임라인 — 클릭 시 DART 원문 새 탭 */}
         <div>
-          <p style={{ margin: '0 0 6px 0', fontSize: '0.74rem', color: '#94a3b8', fontWeight: 600 }}>
+          <p style={{ margin: '0 0 6px 0', fontSize: '0.74rem', color: 'var(--w-slate-400)', fontWeight: 600 }}>
             최근 보고 타임라인 (최신 {Math.min(events.length, MAX_TIMELINE)}건 · 클릭 시 전자공시 원문)
           </p>
           <div style={{ display: 'flex', flexDirection: 'column', gap: 4 }}>
@@ -266,12 +266,12 @@ const TunaInsiderSignalWidget = () => {
                   ev.currentTarget.style.transform = 'none';
                 }}
               >
-                <span style={{ fontSize: '0.72rem', color: '#64748b', whiteSpace: 'nowrap' }}>{e.date}</span>
+                <span style={{ fontSize: '0.72rem', color: 'var(--w-slate-500)', whiteSpace: 'nowrap' }}>{e.date}</span>
                 <span
                   style={{
                     fontSize: '0.72rem',
                     fontWeight: 700,
-                    color: e.company === '신라교역' ? '#22d3ee' : '#cbd5e1',
+                    color: e.company === '신라교역' ? '#22d3ee' : 'var(--w-slate-300)',
                     whiteSpace: 'nowrap',
                   }}
                 >
@@ -284,7 +284,7 @@ const TunaInsiderSignalWidget = () => {
                     padding: '1px 6px',
                     borderRadius: 4,
                     whiteSpace: 'nowrap',
-                    color: e.type === '5%보고' ? '#f59e0b' : '#8b5cf6',
+                    color: e.type === '5%보고' ? 'var(--w-amber-500)' : 'var(--w-violet-500)',
                     background: e.type === '5%보고' ? 'rgba(245,158,11,0.12)' : 'rgba(139,92,246,0.12)',
                   }}
                 >
@@ -293,7 +293,7 @@ const TunaInsiderSignalWidget = () => {
                 <span
                   style={{
                     fontSize: '0.74rem',
-                    color: '#e2e8f0',
+                    color: 'var(--w-slate-200)',
                     overflow: 'hidden',
                     textOverflow: 'ellipsis',
                     whiteSpace: 'nowrap',

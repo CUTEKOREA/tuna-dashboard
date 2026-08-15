@@ -35,7 +35,7 @@ const CustomTooltip = ({ active, payload, label }: any) => {
                 <span style={{ display: 'inline-block', width: 8, height: 8, background: entry.color, borderRadius: '50%' }}></span>
                 {entry.name}
               </span>
-              <span style={{ fontWeight: 600, color: '#f8fafc' }}>
+              <span style={{ fontWeight: 600, color: 'var(--w-slate-50)' }}>
                 ${entry.value.toLocaleString()}
               </span>
             </div>
@@ -109,7 +109,7 @@ export default function ReeferFreightChart() {
             borderRadius: '12px',
             border: '1px solid rgba(16, 185, 129, 0.2)'
           }}>
-            <div style={{ width: 6, height: 6, borderRadius: '50%', background: 'var(--color-success)', boxShadow: '0 0 8px #10b981' }}></div>
+            <div style={{ width: 6, height: 6, borderRadius: '50%', background: 'var(--color-success)', boxShadow: '0 0 8px var(--w-emerald-500)' }}></div>
             Live API: {meta.source}
           </div>
         )}

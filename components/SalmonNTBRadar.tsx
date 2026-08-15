@@ -61,7 +61,7 @@ export default function SalmonNTBRadar() {
     <div style={{ padding: '0 0 0.5rem 0' }}>
       <div style={{ display: 'flex', justifyContent: 'flex-end', marginBottom: '0.5rem' }}>
         <button onClick={handleRefresh} style={{
-          background: 'none', border: 'none', cursor: 'pointer', color: '#64748b', padding: '4px',
+          background: 'none', border: 'none', cursor: 'pointer', color: 'var(--w-slate-500)', padding: '4px',
         }}>
           <RefreshCcw size={14} style={{ animation: loading ? 'spin 1s linear infinite' : 'none' }} />
         </button>
@@ -79,19 +79,19 @@ export default function SalmonNTBRadar() {
               <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '0.4rem' }}>
                 <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
                   <StatusIcon size={14} color={cfg.color} />
-                  <span style={{ fontSize: '0.8rem', fontWeight: 700, color: '#f8fafc' }}>{item.regulation}</span>
+                  <span style={{ fontSize: '0.8rem', fontWeight: 700, color: 'var(--w-slate-50)' }}>{item.regulation}</span>
                 </div>
                 <span style={{
                   fontSize: '0.6rem', padding: '1px 5px', borderRadius: '3px',
                   background: cfg.bg, border: `1px solid ${cfg.border}`, color: cfg.color, fontWeight: 600,
                 }}>{cfg.label}</span>
               </div>
-              <div style={{ fontSize: '0.65rem', color: '#94a3b8', marginBottom: '0.3rem' }}>{item.country}</div>
-              <p style={{ fontSize: '0.75rem', color: '#cbd5e1', lineHeight: 1.5, margin: '0 0 0.4rem 0' }}>{item.detail}</p>
+              <div style={{ fontSize: '0.65rem', color: 'var(--w-slate-400)', marginBottom: '0.3rem' }}>{item.country}</div>
+              <p style={{ fontSize: '0.75rem', color: 'var(--w-slate-300)', lineHeight: 1.5, margin: '0 0 0.4rem 0' }}>{item.detail}</p>
               <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
                 <span style={{ fontSize: '0.6rem', color: '#475569' }}>📡 {item.source}</span>
                 {item.researchBasis && (
-                  <span style={{ fontSize: '0.55rem', color: '#64748b', fontStyle: 'italic', maxWidth: '60%', textAlign: 'right' }}>
+                  <span style={{ fontSize: '0.55rem', color: 'var(--w-slate-500)', fontStyle: 'italic', maxWidth: '60%', textAlign: 'right' }}>
                     📚 {item.researchBasis.slice(0, 40)}...
                   </span>
                 )}

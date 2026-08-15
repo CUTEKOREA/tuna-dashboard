@@ -69,7 +69,7 @@ const CustomTooltip = ({ active, payload, label }: any) => {
   if (!active || !payload?.length) return null;
   return (
     <div style={{background:'#1a1a2e',border:'1px solid #2a2a4a',borderRadius:8,padding:'10px 14px',fontSize:'0.8rem'}}>
-      <p style={{color:'#e2e8f0',fontWeight:600,marginBottom:4}}>{label}</p>
+      <p style={{color:'var(--w-slate-200)',fontWeight:600,marginBottom:4}}>{label}</p>
       {payload.map((e:any,i:number) => (
         <div key={i} style={{color:e.color,display:'flex',gap:6}}><span>■ {e.name}</span><strong>{e.value}</strong></div>
       ))}
@@ -114,8 +114,8 @@ export default function ResearchLabDashboard() {
 
   if (!data) return (
     <div style={{display:'flex',justifyContent:'center',alignItems:'center',height:'60vh',flexDirection:'column',gap:'1rem'}}>
-      <Briefcase size={32} style={{color:'#8b5cf6',animation:'bounce 2s infinite'}} />
-      <p style={{color:'#94a3b8'}}>B2B 인텔리전스 데이터를 불러오는 중...</p>
+      <Briefcase size={32} style={{color:'var(--w-violet-500)',animation:'bounce 2s infinite'}} />
+      <p style={{color:'var(--w-slate-400)'}}>B2B 인텔리전스 데이터를 불러오는 중...</p>
     </div>
   );
 
@@ -132,7 +132,7 @@ export default function ResearchLabDashboard() {
       <header style={{marginBottom:'2rem',paddingTop:'0.5rem'}}>
         <div style={{display:'flex',alignItems:'center',justifyContent:'space-between',marginBottom:'0.5rem'}}>
           <div style={{display:'flex',alignItems:'center',gap:'0.75rem'}}>
-            <div style={{width:44,height:44,borderRadius:'50%',background:'linear-gradient(135deg,#8b5cf6,#ec4899)',display:'flex',alignItems:'center',justifyContent:'center',boxShadow:'0 0 20px rgba(139,92,246,0.3)'}}>
+            <div style={{width:44,height:44,borderRadius:'50%',background:'linear-gradient(135deg,var(--w-violet-500),var(--w-pink-500))',display:'flex',alignItems:'center',justifyContent:'center',boxShadow:'0 0 20px rgba(139,92,246,0.3)'}}>
               <Briefcase size={24} color="#fff" />
             </div>
             <div>
@@ -192,7 +192,7 @@ export default function ResearchLabDashboard() {
                   </div>
                   <div style={{background:'var(--surface-2)',padding:'0.6rem',borderRadius:6}}>
                     <div style={{fontSize:'0.7rem',color:'var(--text-secondary)',marginBottom:2}}>기술/실현 난이도</div>
-                    <div style={{fontSize:'0.85rem',fontWeight:700,color:'#e2e8f0'}}>{model.difficulty}</div>
+                    <div style={{fontSize:'0.85rem',fontWeight:700,color:'var(--w-slate-200)'}}>{model.difficulty}</div>
                   </div>
                 </div>
 
@@ -228,7 +228,7 @@ export default function ResearchLabDashboard() {
 
       {/* Pillar Tabs */}
       <div style={{display:'flex',gap:8,marginBottom:'1.5rem',flexWrap:'wrap'}}>
-        <button onClick={()=>setActivePillar('all')} style={{padding:'8px 16px',borderRadius:500,border:'none',cursor:'pointer',fontSize:'0.8rem',fontWeight:600,background:activePillar==='all'?'#8b5cf6':'#11182f',color:activePillar==='all'?'#fff':'var(--text-secondary)',transition:'all 0.2s',boxShadow:'rgba(0,0,0,0.2) 0px 4px 8px'}}>
+        <button onClick={()=>setActivePillar('all')} style={{padding:'8px 16px',borderRadius:500,border:'none',cursor:'pointer',fontSize:'0.8rem',fontWeight:600,background:activePillar==='all'?'var(--w-violet-500)':'#11182f',color:activePillar==='all'?'#fff':'var(--text-secondary)',transition:'all 0.2s',boxShadow:'rgba(0,0,0,0.2) 0px 4px 8px'}}>
           전체 보기 ({papers.length})
         </button>
         {pillars.map((p:any) => {
@@ -249,7 +249,7 @@ export default function ResearchLabDashboard() {
           const isExpanded = expandedCard === p.id;
           const IconComp = meta?.icon || FlaskConical;
           return (
-            <div key={p.id} style={{background:'#11182f',borderRadius:8,boxShadow:'rgba(0,0,0,0.3) 0px 8px 8px',overflow:'hidden',transition:'all 0.2s',borderLeft:`3px solid ${meta?.color||'#8b5cf6'}`}}
+            <div key={p.id} style={{background:'#11182f',borderRadius:8,boxShadow:'rgba(0,0,0,0.3) 0px 8px 8px',overflow:'hidden',transition:'all 0.2s',borderLeft:`3px solid ${meta?.color||'var(--w-violet-500)'}`}}
               onMouseEnter={e=>{e.currentTarget.style.boxShadow='rgba(0,0,0,0.5) 0px 8px 24px';}}
               onMouseLeave={e=>{e.currentTarget.style.boxShadow='rgba(0,0,0,0.3) 0px 8px 8px';}}>
               <div style={{padding:'1.2rem 1.5rem',cursor:'pointer'}} onClick={()=>setExpandedCard(isExpanded?null:p.id)}>
@@ -266,7 +266,7 @@ export default function ResearchLabDashboard() {
                   <span style={{fontSize:'0.66rem',fontWeight:600,padding:'2px 8px',borderRadius:500,background:`${meta?.color}20`,color:meta?.color}}>{meta?.name}</span>
                   <span style={{fontSize:'0.66rem',fontWeight:600,padding:'2px 8px',borderRadius:500,background:'var(--surface-2)',color:'var(--text-secondary)'}}>{p.species}</span>
                   <span style={{fontSize:'0.66rem',fontWeight:600,padding:'2px 8px',borderRadius:500,background:'var(--surface-2)',color:'var(--text-secondary)'}}>🦴 {p.byproduct}</span>
-                  <span style={{fontSize:'0.66rem',fontWeight:600,padding:'2px 8px',borderRadius:500,background:p.source==='특허'?'#fbbf2420':p.source==='정부보고서'?'#22d3ee20':'#818cf820',color:p.source==='특허'?'#fbbf24':p.source==='정부보고서'?'#22d3ee':'#818cf8'}}>{p.source}</span>
+                  <span style={{fontSize:'0.66rem',fontWeight:600,padding:'2px 8px',borderRadius:500,background:p.source==='특허'?'#fbbf2420':p.source==='정부보고서'?'#22d3ee20':'#818cf820',color:p.source==='특허'?'var(--w-amber-400)':p.source==='정부보고서'?'#22d3ee':'#818cf8'}}>{p.source}</span>
                 </div>
                 {/* Key Finding */}
                 <p style={{margin:0,fontSize:'0.85rem',color:'var(--text-secondary)',lineHeight:1.6}}>{p.keyFinding}</p>
@@ -278,7 +278,7 @@ export default function ResearchLabDashboard() {
                     <div style={{marginBottom:'1.2rem', display:'flex', flexDirection:'column', gap:'0.5rem'}}>
                       {p.details.map((detail:string, idx:number) => (
                         <div key={idx} style={{fontSize:'0.85rem', color:'var(--text-primary)', display:'flex', alignItems:'flex-start', gap:'0.5rem', lineHeight:1.5}}>
-                          <span style={{color:meta?.color || '#8b5cf6', fontSize:'1rem', lineHeight:1, flexShrink:0}}>•</span>
+                          <span style={{color:meta?.color || 'var(--w-violet-500)', fontSize:'1rem', lineHeight:1, flexShrink:0}}>•</span>
                           <span>{detail}</span>
                         </div>
                       ))}
@@ -290,12 +290,12 @@ export default function ResearchLabDashboard() {
                       {typeof p.trl === 'number' ? (
                         <div style={{display:'flex',alignItems:'center',gap:8}}>
                           <div style={{flex:1,height:6,background:'#272727',borderRadius:3,overflow:'hidden'}}>
-                            <div style={{width:`${(p.trl/9)*100}%`,height:'100%',background:p.trl>=6?'#34d399':p.trl>=4?'#818cf8':'#94a3b8',borderRadius:3,transition:'width 0.5s'}} />
+                            <div style={{width:`${(p.trl/9)*100}%`,height:'100%',background:p.trl>=6?'var(--w-emerald-400)':p.trl>=4?'#818cf8':'var(--w-slate-400)',borderRadius:3,transition:'width 0.5s'}} />
                           </div>
-                          <span style={{fontSize:'0.85rem',fontWeight:700,color:p.trl>=6?'#34d399':p.trl>=4?'#818cf8':'#94a3b8'}}>TRL {p.trl}</span>
+                          <span style={{fontSize:'0.85rem',fontWeight:700,color:p.trl>=6?'var(--w-emerald-400)':p.trl>=4?'#818cf8':'var(--w-slate-400)'}}>TRL {p.trl}</span>
                         </div>
                       ) : (
-                        <span style={{display:'inline-block',fontSize:'0.75rem',fontWeight:600,color:'#94a3b8',background:'#272727',padding:'3px 10px',borderRadius:500}}>미평가 (신규 수집)</span>
+                        <span style={{display:'inline-block',fontSize:'0.75rem',fontWeight:600,color:'var(--w-slate-400)',background:'#272727',padding:'3px 10px',borderRadius:500}}>미평가 (신규 수집)</span>
                       )}
                     </div>
                     <div style={{background:'var(--surface-2)',borderRadius:6,padding:'0.8rem'}}>
@@ -303,18 +303,18 @@ export default function ResearchLabDashboard() {
                       {typeof p.commercialScore === 'number' ? (
                         <div style={{display:'flex',alignItems:'center',gap:4}}>
                           {[1,2,3,4,5].map(s => (
-                            <Star key={s} size={16} fill={s<=p.commercialScore?'#fbbf24':'transparent'} color={s<=p.commercialScore?'#fbbf24':'#4a4a4a'} />
+                            <Star key={s} size={16} fill={s<=p.commercialScore?'var(--w-amber-400)':'transparent'} color={s<=p.commercialScore?'#fbbf24':'#4a4a4a'} />
                           ))}
-                          <span style={{fontSize:'0.8rem',fontWeight:600,color:'#fbbf24',marginLeft:4}}>{p.commercialScore}/5</span>
+                          <span style={{fontSize:'0.8rem',fontWeight:600,color:'var(--w-amber-400)',marginLeft:4}}>{p.commercialScore}/5</span>
                         </div>
                       ) : (
-                        <span style={{display:'inline-block',fontSize:'0.75rem',fontWeight:600,color:'#94a3b8',background:'#272727',padding:'3px 10px',borderRadius:500}}>미평가 (신규 수집)</span>
+                        <span style={{display:'inline-block',fontSize:'0.75rem',fontWeight:600,color:'var(--w-slate-400)',background:'#272727',padding:'3px 10px',borderRadius:500}}>미평가 (신규 수집)</span>
                       )}
                     </div>
                   </div>
                   <div style={{display:'flex',gap:6,flexWrap:'wrap'}}>
                     {p.tags.map((t:string,i:number) => (
-                      <span key={i} style={{fontSize:'0.7rem',padding:'3px 8px',borderRadius:4,background:'var(--surface-2)',color:'#8b5cf6',fontWeight:500}}>#{t}</span>
+                      <span key={i} style={{fontSize:'0.7rem',padding:'3px 8px',borderRadius:4,background:'var(--surface-2)',color:'var(--w-violet-500)',fontWeight:500}}>#{t}</span>
                     ))}
                   </div>
                 </div>
@@ -342,8 +342,8 @@ export default function ResearchLabDashboard() {
               <BarChart data={trlDistribution} layout="vertical" margin={{left:20}}>
                 <ChartPatternDefs />
                 <CartesianGrid strokeDasharray="3 3" stroke="rgba(140,170,255,0.12)" horizontal={false} />
-                <XAxis type="number" stroke="#64748b" tick={{fontSize:11}} />
-                <YAxis dataKey="level" type="category" stroke="#64748b" tick={{fontSize:10}} width={130} />
+                <XAxis type="number" stroke="var(--w-slate-500)" tick={{fontSize:11}} />
+                <YAxis dataKey="level" type="category" stroke="var(--w-slate-500)" tick={{fontSize:10}} width={130} />
                 <RTooltip content={<CustomTooltip />} />
                 <Bar dataKey="count" name="연구/특허 수" radius={[0,6,6,0]}>
                   {trlDistribution.map((e:any,i:number) => <Cell key={i} fill={TRL_COLORS[i]} fillOpacity={0.85} />)}

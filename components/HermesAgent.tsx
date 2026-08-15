@@ -128,7 +128,7 @@ export default function HermesAgent({
           width: '56px',
           height: '56px',
           borderRadius: '50%',
-          background: 'linear-gradient(135deg, #6366f1 0%, #8b5cf6 50%, #a78bfa 100%)',
+          background: 'linear-gradient(135deg, #6366f1 0%, var(--w-violet-500) 50%, #a78bfa 100%)',
           border: 'none',
           cursor: 'pointer',
           display: 'flex',
@@ -184,10 +184,10 @@ export default function HermesAgent({
         <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
           <span style={{ fontSize: '20px' }}>🏛️</span>
           <div>
-            <div style={{ fontSize: '0.85rem', fontWeight: 700, color: '#e2e8f0', letterSpacing: '-0.01em' }}>
+            <div style={{ fontSize: '0.85rem', fontWeight: 700, color: 'var(--w-slate-200)', letterSpacing: '-0.01em' }}>
               Hermes AI Agent
             </div>
-            <div style={{ fontSize: '0.65rem', color: '#94a3b8', marginTop: '1px' }}>
+            <div style={{ fontSize: '0.65rem', color: 'var(--w-slate-400)', marginTop: '1px' }}>
               {category} 전략 어시스턴트 · Ollama Local
             </div>
           </div>
@@ -206,7 +206,7 @@ export default function HermesAgent({
               width: '6px', height: '6px', borderRadius: '50%',
               background: status === 'online' ? 'var(--color-success)' :
                           status === 'offline' ? 'var(--color-danger)' : '#eab308',
-              boxShadow: status === 'online' ? '0 0 6px #10b981' : 'none',
+              boxShadow: status === 'online' ? '0 0 6px var(--w-emerald-500)' : 'none',
             }} />
             <span style={{
               fontSize: '0.6rem', fontWeight: 600,
@@ -220,7 +220,7 @@ export default function HermesAgent({
             onClick={() => setIsExpanded(false)}
             style={{
               background: 'none', border: 'none', cursor: 'pointer',
-              color: '#94a3b8', fontSize: '18px', padding: '2px',
+              color: 'var(--w-slate-400)', fontSize: '18px', padding: '2px',
               lineHeight: 1, borderRadius: '4px',
             }}
             onMouseEnter={e => (e.target as HTMLElement).style.color = '#e2e8f0'}
@@ -254,10 +254,10 @@ export default function HermesAgent({
           }}>
             <div style={{ fontSize: '40px', opacity: 0.6 }}>🏛️</div>
             <div style={{ textAlign: 'center' }}>
-              <div style={{ fontSize: '0.85rem', color: '#94a3b8', marginBottom: '4px' }}>
+              <div style={{ fontSize: '0.85rem', color: 'var(--w-slate-400)', marginBottom: '4px' }}>
                 {category} 대시보드의 AI 전략 어시스턴트
               </div>
-              <div style={{ fontSize: '0.7rem', color: '#64748b' }}>
+              <div style={{ fontSize: '0.7rem', color: 'var(--w-slate-500)' }}>
                 시세 조회 · 무역 통계 · 마진 계산 · 리스크 분석
               </div>
             </div>
@@ -312,10 +312,10 @@ export default function HermesAgent({
               padding: '10px 14px',
               borderRadius: msg.role === 'user' ? '14px 14px 4px 14px' : '14px 14px 14px 4px',
               background: msg.role === 'user'
-                ? 'linear-gradient(135deg, #6366f1, #8b5cf6)'
+                ? 'linear-gradient(135deg, #6366f1, var(--w-violet-500))'
                 : 'rgba(30, 30, 40, 0.8)',
               border: msg.role === 'user' ? 'none' : '1px solid rgba(99, 102, 241, 0.1)',
-              color: '#e2e8f0',
+              color: 'var(--w-slate-200)',
               fontSize: '0.8rem',
               lineHeight: 1.65,
               wordBreak: 'keep-all' as const,
@@ -332,7 +332,7 @@ export default function HermesAgent({
                 {msg.mode && (
                   <span style={{
                     fontSize: '0.55rem',
-                    color: '#64748b',
+                    color: 'var(--w-slate-500)',
                     padding: '1px 5px',
                     background: 'rgba(100,116,139,0.1)',
                     borderRadius: '4px',
@@ -340,7 +340,7 @@ export default function HermesAgent({
                     {msg.mode === 'hermes-server' ? '🔧 Agent' : msg.mode === 'gemini-cloud' ? '☁️ Gemini' : '💬 Direct'}
                   </span>
                 )}
-                <span style={{ fontSize: '0.6rem', color: '#64748b' }}>
+                <span style={{ fontSize: '0.6rem', color: 'var(--w-slate-500)' }}>
                   {msg.timestamp}
                 </span>
               </div>
@@ -397,7 +397,7 @@ export default function HermesAgent({
               background: 'rgba(30, 30, 40, 0.6)',
               border: '1px solid rgba(99, 102, 241, 0.15)',
               borderRadius: '10px',
-              color: '#e2e8f0',
+              color: 'var(--w-slate-200)',
               fontSize: '0.8rem',
               outline: 'none',
               transition: 'border-color 0.2s',
@@ -415,7 +415,7 @@ export default function HermesAgent({
               borderRadius: '10px',
               border: 'none',
               background: input.trim() && !loading
-                ? 'linear-gradient(135deg, #6366f1, #8b5cf6)'
+                ? 'linear-gradient(135deg, #6366f1, var(--w-violet-500))'
                 : 'rgba(30, 30, 40, 0.6)',
               cursor: input.trim() && !loading ? 'pointer' : 'not-allowed',
               display: 'flex',

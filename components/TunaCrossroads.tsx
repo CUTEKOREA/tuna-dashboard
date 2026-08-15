@@ -17,7 +17,7 @@ const CustomTooltip = ({ active, payload, label }: any) => {
   if (!active || !payload?.length) return null;
   return (
     <div style={{ background: '#0a0f1f', border: '1px solid #334155', borderRadius: 6, padding: '8px 12px' }}>
-      <p style={{ color: '#f8fafc', fontWeight: 600, margin: 0, fontSize: '0.85rem' }}>{`${label}년 참다랑어 공급`}</p>
+      <p style={{ color: 'var(--w-slate-50)', fontWeight: 600, margin: 0, fontSize: '0.85rem' }}>{`${label}년 참다랑어 공급`}</p>
       {payload.map((entry: any, i: number) => (
         <p key={i} style={{ color: entry.color, margin: '4px 0 0 0', fontSize: '0.8rem' }}>
           <span>{entry.name}: </span>
@@ -45,7 +45,7 @@ const TunaCrossroads = () => (
         <YAxis stroke="rgba(255,255,255,0.5)" tick={{ fill: 'rgba(255,255,255,0.7)', fontSize: 12 }} tickFormatter={(v) => `${v.toLocaleString()}`} />
         <Tooltip content={<CustomTooltip />} />
         <Legend wrapperStyle={{ paddingTop: '20px' }} />
-        <Area type="monotone" dataKey="Wild_Volume" name="자연 어획량 (Wild Catch)" fill="rgba(139, 92, 246, 0.2)" stroke="#8b5cf6" strokeWidth={2} />
+        <Area type="monotone" dataKey="Wild_Volume" name="자연 어획량 (Wild Catch)" fill="rgba(139, 92, 246, 0.2)" stroke="var(--w-violet-500)" strokeWidth={2} />
         <Line type="monotone" dataKey="Aqua_Volume" name="축양/양식량 (Aquaculture)" stroke="#22c55e" strokeWidth={4} dot={false} activeDot={{ r: 8 }} />
       </ComposedChart>
     }

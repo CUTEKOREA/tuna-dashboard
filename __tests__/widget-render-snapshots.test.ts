@@ -1,5 +1,7 @@
 import React from 'react';
 import { createHash } from 'node:crypto';
+import { readFileSync } from 'node:fs';
+import { join } from 'node:path';
 import { renderToStaticMarkup } from 'react-dom/server';
 import { describe, expect, it } from 'vitest';
 import {
@@ -65,6 +67,20 @@ function digest(markup: string) {
   return createHash('sha256').update(markup).digest('hex');
 }
 
+function resolveWidgetBridgeColors(markup: string) {
+  const globalsSource = readFileSync(join(process.cwd(), 'app/globals.css'), 'utf8');
+  const bridgeColors = new Map(
+    Array.from(
+      globalsSource.matchAll(/(--w-[\w-]+):\s*(#[0-9a-fA-F]{6});/g),
+      (match) => [match[1], match[2]] as const,
+    ),
+  );
+  return markup.replace(
+    /var\((--w-[\w-]+)\)/g,
+    (reference, token: string) => bridgeColors.get(token) ?? reference,
+  );
+}
+
 function count(markup: string, pattern: RegExp) {
   return Array.from(markup.matchAll(pattern)).length;
 }
@@ -85,7 +101,7 @@ function summarizeTelemetryMarkup(markup: string) {
 
 function summarizeWidgetMarkup(markup: string) {
   return {
-    hash: digest(markup),
+    hash: digest(resolveWidgetBridgeColors(markup)),
     cardIds: Array.from(markup.matchAll(/data-widget-id="([^"]+)"/g)).map((match) => match[1]),
     pillars: Array.from(markup.matchAll(/data-pillar="([^"]+)"/g)).map((match) => match[1]),
     statusCounts: {

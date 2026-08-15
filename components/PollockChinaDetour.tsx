@@ -37,10 +37,10 @@ export default function PollockChinaDetour() {
             </linearGradient>
           </defs>
           <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" vertical={false} />
-          <XAxis dataKey="year" stroke="#94a3b8" fontSize={12} tickLine={false} />
-          <YAxis stroke="#94a3b8" fontSize={12} tickLine={false} tickFormatter={(v) => `${v}k`} />
-          <Tooltip contentStyle={{ backgroundColor: '#1a2442', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '8px', color: '#f8fafc' }} formatter={(value: any) => [`${value.toFixed(1)}k tons`, '']} />
-          <Legend wrapperStyle={{ fontSize: '12px', color: '#cbd5e1' }} />
+          <XAxis dataKey="year" stroke="var(--w-slate-400)" fontSize={12} tickLine={false} />
+          <YAxis stroke="var(--w-slate-400)" fontSize={12} tickLine={false} tickFormatter={(v) => `${v}k`} />
+          <Tooltip contentStyle={{ backgroundColor: 'var(--w-navy-900)', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '8px', color: 'var(--w-slate-50)' }} formatter={(value: any) => [`${value.toFixed(1)}k tons`, '']} />
+          <Legend wrapperStyle={{ fontSize: '12px', color: 'var(--w-slate-300)' }} />
           <Area type="monotone" dataKey="r_to_c" name="러시아 발(發) 중국 수입량 (H&G)" stroke="var(--color-danger)" fillOpacity={1} fill="url(#colorRussia)" />
           <Area type="monotone" dataKey="c_to_w" name="중국 발(發) 서방 수출량 (필렛)" stroke="var(--color-warning)" fillOpacity={1} fill="url(#colorChina)" />
         </AreaChart>

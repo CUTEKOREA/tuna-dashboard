@@ -78,7 +78,7 @@ const TunaLiveTicker = React.memo(function TunaLiveTicker() {
         <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem' }}>
           <div style={{
             width: '8px', height: '8px', borderRadius: '50%',
-            background: isFullyLive ? '#0ECB81' : ticker.length > 0 ? '#F0B90B' : '#64748b',
+            background: isFullyLive ? '#0ECB81' : ticker.length > 0 ? '#F0B90B' : 'var(--w-slate-500)',
             boxShadow: isFullyLive ? '0 0 8px #0ECB81' : ticker.length > 0 ? '0 0 8px #F0B90B' : 'none',
             animation: ticker.length > 0 ? 'pulse 2s infinite' : 'none',
           }} />
@@ -88,9 +88,9 @@ const TunaLiveTicker = React.memo(function TunaLiveTicker() {
           <span style={{
             fontSize: '0.65rem', fontWeight: 600,
             background: isFullyLive ? 'rgba(14,203,129,0.15)' : ticker.length > 0 ? 'rgba(240,185,11,0.15)' : 'rgba(100,116,139,0.15)',
-            color: isFullyLive ? '#0ECB81' : ticker.length > 0 ? '#F0B90B' : '#64748b',
+            color: isFullyLive ? '#0ECB81' : ticker.length > 0 ? '#F0B90B' : 'var(--w-slate-500)',
             padding: '2px 8px', borderRadius: '500px',
-            border: `1px solid ${isFullyLive ? '#0ECB81' : ticker.length > 0 ? '#F0B90B' : '#64748b'}`,
+            border: `1px solid ${isFullyLive ? '#0ECB81' : ticker.length > 0 ? '#F0B90B' : 'var(--w-slate-500)'}`,
           }}>
             {ticker.length === 0
               ? 'STATIC'
@@ -101,14 +101,14 @@ const TunaLiveTicker = React.memo(function TunaLiveTicker() {
         </div>
 
         <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
-          <span style={{ fontSize: '0.65rem', color: '#64748b' }}>
+          <span style={{ fontSize: '0.65rem', color: 'var(--w-slate-500)' }}>
             Next refresh: {Math.floor(countdown / 60)}:{String(countdown % 60).padStart(2, '0')}
           </span>
           <button
             onClick={() => { setLoading(true); fetchTicker(); }}
             style={{
               background: 'none', border: 'none', cursor: 'pointer',
-              color: '#94a3b8', display: 'flex', alignItems: 'center', gap: '4px',
+              color: 'var(--w-slate-400)', display: 'flex', alignItems: 'center', gap: '4px',
               fontSize: '0.7rem', padding: '4px 8px', borderRadius: '4px',
               transition: 'all 0.2s',
             }}
@@ -150,7 +150,7 @@ const TunaLiveTicker = React.memo(function TunaLiveTicker() {
               }} />
             )}
             
-            <div style={{ fontSize: '0.68rem', color: '#64748b', fontWeight: 600, marginBottom: '4px', textTransform: 'uppercase', letterSpacing: '0.3px' }}>
+            <div style={{ fontSize: '0.68rem', color: 'var(--w-slate-500)', fontWeight: 600, marginBottom: '4px', textTransform: 'uppercase', letterSpacing: '0.3px' }}>
               {item.label}
             </div>
             <div style={{ fontSize: '1.15rem', fontWeight: 800, color: 'var(--text-primary)', marginBottom: '3px' }}>

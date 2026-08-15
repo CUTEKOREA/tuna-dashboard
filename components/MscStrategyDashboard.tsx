@@ -100,7 +100,7 @@ export default function MscStrategyDashboard() {
           <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
             <div style={{
               width: '44px', height: '44px', borderRadius: '50%',
-              background: 'linear-gradient(135deg, #10b981, #38bdf8)',
+              background: 'linear-gradient(135deg, var(--w-emerald-500), var(--w-sky-400))',
               display: 'flex', alignItems: 'center', justifyContent: 'center',
               boxShadow: 'rgba(0,0,0,0.3) 0px 8px 8px', flexShrink: 0,
             }}>

@@ -243,7 +243,7 @@ export default function ChickenDashboard() {
   if (widgets.length === 0) return (
     <div style={{ display:'flex', justifyContent:'center', alignItems:'center', height:'100vh', flexDirection:'column', gap:'1rem' }}>
       <RefreshCcw size={32} style={{ color:'var(--color-success)', animation:'spin 1s linear infinite' }} />
-      <p style={{ color:'#94a3b8' }}>닭고기 인텔리전스 데이터 로딩 중...</p>
+      <p style={{ color:'var(--w-slate-400)' }}>닭고기 인텔리전스 데이터 로딩 중...</p>
     </div>
   );
 
@@ -254,7 +254,7 @@ export default function ChickenDashboard() {
     const d = w.data;
     
     if (!d?.length) return (
-      <div style={{height:'100%',display:'flex',flexDirection:'column',alignItems:'center',justifyContent:'center',color:'#64748b',background:'rgba(255,255,255,0.02)',borderRadius:'8px',border:'1px dashed rgba(255,255,255,0.1)'}}>
+      <div style={{height:'100%',display:'flex',flexDirection:'column',alignItems:'center',justifyContent:'center',color:'var(--w-slate-500)',background:'rgba(255,255,255,0.02)',borderRadius:'8px',border:'1px dashed rgba(255,255,255,0.1)'}}>
         <AlertTriangle size={24} style={{marginBottom:'8px',opacity:0.5}}/>
         <span style={{fontSize:'0.85rem',fontWeight:600}}>데이터 집계 중</span>
         <span style={{fontSize:'0.7rem',opacity:0.7,marginTop:'4px'}}>정적 스냅샷 데이터 로딩 중</span>
@@ -284,7 +284,7 @@ export default function ChickenDashboard() {
           <text 
             x={0} y={0} dy={16} 
             textAnchor={d?.length > 5 ? "end" : "middle"} 
-            fill={isForecast ? 'var(--color-warning)' : '#64748b'} 
+            fill={isForecast ? 'var(--color-warning)' : 'var(--w-slate-500)'}
             fontSize={9} 
             fontStyle={isForecast ? 'italic' : 'normal'}
             fontWeight={isForecast ? 'bold' : 'normal'}
@@ -296,7 +296,7 @@ export default function ChickenDashboard() {
       );
     };
 
-    const xAxis = <XAxis dataKey={w.xKey} stroke="#64748b" tick={<CustomXAxisTick />} height={d?.length > 5 ? 45 : 30} />;
+    const xAxis = <XAxis dataKey={w.xKey} stroke="var(--w-slate-500)" tick={<CustomXAxisTick />} height={d?.length > 5 ? 45 : 30} />;
     const yFmt = (v: number) => v >= 1000000 ? `${(v/1000000).toFixed(1)}M` : v >= 1000 ? `${(v/1000).toFixed(0)}K` : v.toLocaleString();
 
     switch(w.chartType) {
@@ -305,7 +305,7 @@ export default function ChickenDashboard() {
           <BarChart data={d}>
             <ChartPatternDefs />
             {grid}{xAxis}
-            {w.bars && <YAxis yAxisId="left" stroke="#64748b" tick={{fontSize:9}} tickFormatter={yFmt} />}
+            {w.bars && <YAxis yAxisId="left" stroke="var(--w-slate-500)" tick={{fontSize:9}} tickFormatter={yFmt} />}
             <RechartsTooltip content={<CustomTooltip />} />
             <Legend verticalAlign="top" wrapperStyle={{fontSize:'10px', paddingBottom:'10px'}} />
             {hasForecast && <ReferenceArea x1={forecastStartKey} x2={forecastEndKey} fill="rgba(245,158,11,0.05)" stroke="rgba(245,158,11,0.2)" strokeDasharray="3 3" />}
@@ -320,9 +320,9 @@ export default function ChickenDashboard() {
           <ComposedChart data={d}>
             <ChartPatternDefs />
             {grid}{xAxis}
-            {w.areas && <YAxis yAxisId="left" stroke="#64748b" tick={{fontSize:9}} tickFormatter={yFmt} />}
-            {w.bars && <YAxis yAxisId="left" stroke="#64748b" tick={{fontSize:9}} tickFormatter={yFmt} />}
-            {w.lines && <YAxis yAxisId="right" orientation="right" stroke="#64748b" tick={{fontSize:9}} tickFormatter={yFmt} />}
+            {w.areas && <YAxis yAxisId="left" stroke="var(--w-slate-500)" tick={{fontSize:9}} tickFormatter={yFmt} />}
+            {w.bars && <YAxis yAxisId="left" stroke="var(--w-slate-500)" tick={{fontSize:9}} tickFormatter={yFmt} />}
+            {w.lines && <YAxis yAxisId="right" orientation="right" stroke="var(--w-slate-500)" tick={{fontSize:9}} tickFormatter={yFmt} />}
             <RechartsTooltip content={<CustomTooltip />} />
             <Legend verticalAlign="top" wrapperStyle={{fontSize:'10px', paddingBottom:'10px'}} />
             {hasForecast && <ReferenceArea x1={forecastStartKey} x2={forecastEndKey} fill="rgba(245,158,11,0.05)" stroke="rgba(245,158,11,0.2)" strokeDasharray="3 3" />}
@@ -342,8 +342,8 @@ export default function ChickenDashboard() {
         return (
           <RadarChart cx="50%" cy="50%" outerRadius="70%" data={d}>
             <PolarGrid stroke="rgba(255,255,255,0.1)" />
-            <PolarAngleAxis dataKey={w.xKey} tick={{fill:'#94a3b8', fontSize:10}} />
-            <PolarRadiusAxis angle={30} domain={[0, 100]} tick={{fontSize:9, fill:'#64748b'}} />
+            <PolarAngleAxis dataKey={w.xKey} tick={{fill:'var(--w-slate-400)', fontSize:10}} />
+            <PolarRadiusAxis angle={30} domain={[0, 100]} tick={{fontSize:9, fill:'var(--w-slate-500)'}} />
             <RechartsTooltip content={<CustomTooltip />} />
             <Legend verticalAlign="top" wrapperStyle={{fontSize:'10px', paddingBottom:'10px'}} />
             {w.radars?.map((r:any,i:number) => (
@@ -357,7 +357,7 @@ export default function ChickenDashboard() {
   };
 
   return (
-    <div style={{ padding:'0 1.5rem 3rem', color:'#f8fafc', minHeight:'100vh', fontFamily:"'Inter',sans-serif" }}>
+    <div style={{ padding:'0 1.5rem 3rem', color:'var(--w-slate-50)', minHeight:'100vh', fontFamily:"'Inter',sans-serif" }}>
 
       {/* ═══ Header ═══ */}
       <header style={{ marginBottom:'2rem' }}>
@@ -367,16 +367,16 @@ export default function ChickenDashboard() {
               <Factory size={24} color="var(--color-warning)" />
             </div>
             <div>
-              <h1 style={{ margin:0, fontSize:'1.6rem', fontWeight:800, letterSpacing:'-0.5px', color: '#f8fafc' }}>
+              <h1 style={{ margin:0, fontSize:'1.6rem', fontWeight:800, letterSpacing:'-0.5px', color: 'var(--w-slate-50)' }}>
                 🐔 육계 글로벌 밸류체인 장악 대시보드
               </h1>
-              <p style={{ margin:0, fontSize:'0.8rem', color:'#94a3b8' }}>
+              <p style={{ margin:0, fontSize:'0.8rem', color:'var(--w-slate-400)' }}>
                 [V4.2 S-Grade] USDA FAS·KITA·FAOSTAT 스냅샷 기반 수출입·차익거래 분석
               </p>
             </div>
           </div>
           <div style={{ display:'flex', alignItems:'center', gap:'1rem' }}>
-            <div style={{ fontSize:'0.8rem', padding:'0.5rem 1rem', background: '#11182f', border: '1px solid rgba(140,170,255,0.10)', borderRadius:'8px', color:'#94a3b8' }}>
+            <div style={{ fontSize:'0.8rem', padding:'0.5rem 1rem', background: '#11182f', border: '1px solid rgba(140,170,255,0.10)', borderRadius:'8px', color:'var(--w-slate-400)' }}>
               <span style={{ color:'var(--color-warning)' }}>PEF Command Center:</span> USDA FAS·KITA·FAOSTAT 스냅샷 기반 정적 데이터
             </div>
           </div>
@@ -391,10 +391,10 @@ export default function ChickenDashboard() {
             <div key={key} style={{ background: '#11182f', border: '1px solid rgba(255,255,255,0.03)', borderRadius:'12px', padding:'1.2rem', display:'flex', flexDirection:'column', gap:'6px', position:'relative', overflow:'hidden' }}>
               <div style={{ position:'absolute', top:'-15px', right:'-15px', width:'60px', height:'60px', borderRadius:'50%', background:`radial-gradient(circle,${t.glow},transparent)`, pointerEvents:'none' }} />
               <div style={{ display:'flex', justifyContent:'space-between', alignItems:'center' }}>
-                <span style={{ fontSize:'0.72rem', color:'#94a3b8', fontWeight:600 }}>{kpi.title}</span>
+                <span style={{ fontSize:'0.72rem', color:'var(--w-slate-400)', fontWeight:600 }}>{kpi.title}</span>
                 {kpi.telemetry ? <TelemetryBadge status={kpi.telemetry} syncDate={kpi.syncDate} /> : <I size={14} style={{ color: t.text }} />}
               </div>
-              <div style={{ fontSize:'1.4rem', fontWeight:800, color:'#f8fafc', marginTop:'4px' }}>
+              <div style={{ fontSize:'1.4rem', fontWeight:800, color:'var(--w-slate-50)', marginTop:'4px' }}>
                 {kpi.value}
               </div>
               <div style={{ fontSize:'0.68rem', color:t.text, fontWeight:600 }}>
@@ -435,8 +435,8 @@ export default function ChickenDashboard() {
           <div style={{ marginBottom:'1.5rem', display:'flex', alignItems:'center', gap:'0.8rem' }}>
             <div style={{ width:'4px', height:'28px', background:`linear-gradient(180deg,${sec.color},${sec.color}99)`, borderRadius:'2px' }} />
             <div>
-              <h2 style={{ margin:0, fontSize:'1.2rem', fontWeight:800, color:'#f8fafc', letterSpacing:'-0.3px' }}>{sec.title}</h2>
-              <p style={{ margin:'4px 0 0 0', fontSize:'0.8rem', color:'#94a3b8' }}>{sec.desc}</p>
+              <h2 style={{ margin:0, fontSize:'1.2rem', fontWeight:800, color:'var(--w-slate-50)', letterSpacing:'-0.3px' }}>{sec.title}</h2>
+              <p style={{ margin:'4px 0 0 0', fontSize:'0.8rem', color:'var(--w-slate-400)' }}>{sec.desc}</p>
             </div>
           </div>
           <div data-mobile-stack style={{ display:'grid', gridTemplateColumns:'repeat(2, 1fr)', gap:'1.5rem' }}>

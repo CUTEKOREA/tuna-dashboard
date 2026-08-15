@@ -139,7 +139,7 @@ export default function FlatfishDashboard() {
   if (!data) return (
     <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh', flexDirection: 'column', gap: '1rem' }}>
       <RefreshCcw size={32} style={{ color: FLATFISH_THEME.primary, animation: 'spin 1s linear infinite' }} />
-      <p style={{ color: '#94a3b8', fontSize: '1rem' }}>가자미 전략 인텔리전스 로딩 중...</p>
+      <p style={{ color: 'var(--w-slate-400)', fontSize: '1rem' }}>가자미 전략 인텔리전스 로딩 중...</p>
     </div>
   );
 
@@ -150,7 +150,7 @@ export default function FlatfishDashboard() {
   /* ─── Chart Renderer ─── */
   const renderChart = (widget: any) => {
     const d = widget.data;
-    if (!d || d.length === 0) return <div style={{ height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#64748b' }}>데이터 없음</div>;
+    if (!d || d.length === 0) return <div style={{ height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'var(--w-slate-500)' }}>데이터 없음</div>;
 
     const chartType = (widget.chartType || '').toLowerCase();
     const hasRight = widget.hasRightAxis || widget.lines?.some((l: any) => l.yAxisId === 'right') || widget.bars?.some((b: any) => b.yAxisId === 'right');
@@ -165,7 +165,7 @@ export default function FlatfishDashboard() {
                 {d.map((_: any, idx: number) => <Cell key={idx} fill={PIE_COLORS[idx % PIE_COLORS.length]} />)}
               </Pie>
               <RechartsTooltip content={<CustomTooltip />} />
-              <Legend wrapperStyle={{ fontSize: '11px', color: '#cbd5e1' }} verticalAlign="top" height={36} />
+              <Legend wrapperStyle={{ fontSize: '11px', color: 'var(--w-slate-300)' }} verticalAlign="top" height={36} />
             </PieChart>
           );
         case 'area':
@@ -180,8 +180,8 @@ export default function FlatfishDashboard() {
                 ))}
               </defs>
               <CartesianGrid strokeDasharray="3 3" stroke="rgba(140,170,255,0.12)" vertical={false} />
-              <XAxis dataKey={widget.xKey} stroke="#64748b" tick={{ fontSize: 10 }} tickFormatter={formatXAxis} minTickGap={20} />
-              <YAxis stroke="#64748b" tick={{ fontSize: 10 }} tickFormatter={formatYAxis} />
+              <XAxis dataKey={widget.xKey} stroke="var(--w-slate-500)" tick={{ fontSize: 10 }} tickFormatter={formatXAxis} minTickGap={20} />
+              <YAxis stroke="var(--w-slate-500)" tick={{ fontSize: 10 }} tickFormatter={formatYAxis} />
               <RechartsTooltip content={<CustomTooltip />} />
               <Legend wrapperStyle={{ fontSize: '11px' }} verticalAlign="top" height={36} />
               {widget.areas?.map((a: any, i: number) => (
@@ -195,9 +195,9 @@ export default function FlatfishDashboard() {
             <ComposedChart data={d}>
               <ChartPatternDefs />
               <CartesianGrid strokeDasharray="3 3" stroke="rgba(140,170,255,0.12)" vertical={false} />
-              <XAxis dataKey={widget.xKey} stroke="#64748b" tick={{ fontSize: 10 }} tickFormatter={formatXAxis} minTickGap={20} />
-              <YAxis yAxisId="left" stroke="#64748b" tick={{ fontSize: 10 }} tickFormatter={formatYAxis} />
-              {hasRight && <YAxis yAxisId="right" orientation="right" stroke="#64748b" tick={{ fontSize: 10 }} tickFormatter={formatYAxis} />}
+              <XAxis dataKey={widget.xKey} stroke="var(--w-slate-500)" tick={{ fontSize: 10 }} tickFormatter={formatXAxis} minTickGap={20} />
+              <YAxis yAxisId="left" stroke="var(--w-slate-500)" tick={{ fontSize: 10 }} tickFormatter={formatYAxis} />
+              {hasRight && <YAxis yAxisId="right" orientation="right" stroke="var(--w-slate-500)" tick={{ fontSize: 10 }} tickFormatter={formatYAxis} />}
               <RechartsTooltip content={<CustomTooltip />} />
               <Legend wrapperStyle={{ fontSize: '11px' }} verticalAlign="top" height={36} />
               {widget.bars?.map((b: any, i: number) => {
@@ -210,10 +210,10 @@ export default function FlatfishDashboard() {
             </ComposedChart>
           );
         default:
-          return <div style={{ color: '#64748b', textAlign: 'center', marginTop: '40px' }}>지원 안 되는 차트</div>;
+          return <div style={{ color: 'var(--w-slate-500)', textAlign: 'center', marginTop: '40px' }}>지원 안 되는 차트</div>;
       }
     }
-    return <div style={{ color: '#64748b', textAlign: 'center', marginTop: '40px' }}>구 포맷 미지원</div>;
+    return <div style={{ color: 'var(--w-slate-500)', textAlign: 'center', marginTop: '40px' }}>구 포맷 미지원</div>;
   };
 
   function renderWidgetCard(w: any, pillar: 'S1' | 'S2' | 'S3' | 'S4' | 'S5' = 'S1') {
@@ -238,22 +238,22 @@ export default function FlatfishDashboard() {
   }
 
   return (
-    <div style={{ padding: '0 1.5rem 3rem', color: '#f8fafc', minHeight: '100vh', fontFamily: "'Inter', sans-serif" }}>
+    <div style={{ padding: '0 1.5rem 3rem', color: 'var(--w-slate-50)', minHeight: '100vh', fontFamily: "'Inter', sans-serif" }}>
       {/* Header */}
       <header style={{ marginBottom: '2rem', paddingTop: '0.5rem' }}>
         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '0.5rem' }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
-            <div style={{ width: '44px', height: '44px', borderRadius: '8px', background: 'linear-gradient(135deg, #1e3a8a, #64748b)', display: 'flex', alignItems: 'center', justifyContent: 'center', boxShadow: '0 0 20px rgba(30,58,138,0.4)' }}>
+            <div style={{ width: '44px', height: '44px', borderRadius: '8px', background: 'linear-gradient(135deg, #1e3a8a, var(--w-slate-500))', display: 'flex', alignItems: 'center', justifyContent: 'center', boxShadow: '0 0 20px rgba(30,58,138,0.4)' }}>
               <Fish size={24} color="#f8fafc" />
             </div>
             <div>
-              <h1 style={{ margin: 0, fontSize: '1.6rem', fontWeight: 800, letterSpacing: '-0.5px', background: 'linear-gradient(135deg, #3b82f6, #94a3b8)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>
+              <h1 style={{ margin: 0, fontSize: '1.6rem', fontWeight: 800, letterSpacing: '-0.5px', background: 'linear-gradient(135deg, var(--w-blue-500), var(--w-slate-400))', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>
                 가자미 전략 인텔리전스
               </h1>
-              <p style={{ margin: 0, fontSize: '0.8rem', color: '#64748b' }}>가자미 전략 커맨드센터 — 위젯 {widgets.length}개 · KPI {kpiKeys.length}개 · KMI 21Q + KFAS + NAFO</p>
+              <p style={{ margin: 0, fontSize: '0.8rem', color: 'var(--w-slate-500)' }}>가자미 전략 커맨드센터 — 위젯 {widgets.length}개 · KPI {kpiKeys.length}개 · KMI 21Q + KFAS + NAFO</p>
             </div>
           </div>
-          <div style={{ fontSize: '0.8rem', padding: '0.5rem 1rem', background: 'rgba(0,0,0,0.2)', border: '1px solid rgba(30,58,138,0.3)', borderRadius: '8px', color: '#94a3b8', fontWeight: 500 }}>
+          <div style={{ fontSize: '0.8rem', padding: '0.5rem 1rem', background: 'rgba(0,0,0,0.2)', border: '1px solid rgba(30,58,138,0.3)', borderRadius: '8px', color: 'var(--w-slate-400)', fontWeight: 500 }}>
             <span style={{ color: FLATFISH_THEME.accent }}>KMI 21Q + 한-미 FTA E유형 + OFAC 사각지대</span> · Forensic v1
           </div>
         </div>
@@ -269,12 +269,12 @@ export default function FlatfishDashboard() {
             <div key={key} style={{ background: 'rgba(0,0,0,0.2)', border: `1px solid ${theme.border}`, borderRadius: '8px', padding: '1.2rem', display: 'flex', flexDirection: 'column', gap: '6px', boxShadow: `0 0 16px ${theme.glow}`, position: 'relative', overflow: 'hidden' }}>
               <div style={{ position: 'absolute', top: '-15px', right: '-15px', width: '60px', height: '60px', borderRadius: '50%', background: `radial-gradient(circle, ${theme.glow}, transparent)`, pointerEvents: 'none' }} />
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', gap: '8px' }}>
-                <span style={{ fontSize: '0.75rem', color: '#94a3b8', fontWeight: 600, lineHeight: 1.3 }}>{kpi.title}</span>
+                <span style={{ fontSize: '0.75rem', color: 'var(--w-slate-400)', fontWeight: 600, lineHeight: 1.3 }}>{kpi.title}</span>
                 <div style={{ flexShrink: 0 }}>
                   {kpi.telemetry ? <TelemetryBadge status={kpi.telemetry as any} syncDate={kpi.syncDate} /> : <IconComp size={14} style={{ color: theme.text }} />}
                 </div>
               </div>
-              <div style={{ fontSize: '1.5rem', fontWeight: 800, color: '#f8fafc' }}>{kpi.value}</div>
+              <div style={{ fontSize: '1.5rem', fontWeight: 800, color: 'var(--w-slate-50)' }}>{kpi.value}</div>
               <div style={{ fontSize: '0.7rem', color: theme.text, fontWeight: 600 }}>
                 <span style={{ background: `${theme.text}20`, padding: '1px 5px', borderRadius: '3px', marginRight: '4px' }}>{kpi.trend}</span>
                 {kpi.desc}
@@ -299,7 +299,7 @@ export default function FlatfishDashboard() {
                 style={{ position: 'relative', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '4px', padding: '12px 8px 14px', background: isActive ? `${s.color}12` : 'transparent', border: `1.5px solid ${isActive ? s.color : 'transparent'}`, borderRadius: '12px', cursor: 'pointer', transition: 'all 0.25s', boxShadow: isActive ? `0 0 20px ${s.color}25, inset 0 1px 0 rgba(255,255,255,0.1)` : 'none', overflow: 'hidden' }}>
                 {isActive && <div style={{ position: 'absolute', bottom: 0, left: '20%', right: '20%', height: '3px', background: `linear-gradient(90deg, transparent, ${s.color}, transparent)`, borderRadius: '3px 3px 0 0' }} />}
                 <div style={{ width: '28px', height: '28px', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', background: isActive ? s.color : 'rgba(140,170,255,0.12)', color: isActive ? '#0a0f1f' : 'rgba(148,163,184,0.6)', fontSize: '0.75rem', fontWeight: 800, boxShadow: isActive ? `0 0 12px ${s.color}50` : 'none' }}>{idx + 1}</div>
-                <span style={{ fontSize: '0.78rem', fontWeight: isActive ? 700 : 500, color: isActive ? s.color : '#94a3b8', whiteSpace: 'nowrap' }}>{s.label}</span>
+                <span style={{ fontSize: '0.78rem', fontWeight: isActive ? 700 : 500, color: isActive ? s.color : 'var(--w-slate-400)', whiteSpace: 'nowrap' }}>{s.label}</span>
                 {isActive && <span style={{ fontSize: '0.6rem', color: 'rgba(148,163,184,0.7)', textAlign: 'center', lineHeight: 1.3, marginTop: '2px', padding: '0 4px' }}>{s.desc.slice(0, 24)}…</span>}
               </button>
             );
@@ -315,8 +315,8 @@ export default function FlatfishDashboard() {
           <section style={{ marginBottom: '4rem' }}>
             <div style={{ padding: '1.25rem 1.5rem', background: `linear-gradient(90deg, ${pillar.color}20 0%, transparent 100%)`, borderLeft: `4px solid ${pillar.color}`, marginBottom: '1.5rem', display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '1rem' }}>
               <div>
-                <h2 style={{ margin: 0, fontSize: '1.2rem', fontWeight: 700, color: '#f8fafc' }}>{pillar.title}</h2>
-                <p style={{ margin: '5px 0 0 0', fontSize: '0.85rem', color: '#94a3b8' }}>{pillar.desc}</p>
+                <h2 style={{ margin: 0, fontSize: '1.2rem', fontWeight: 700, color: 'var(--w-slate-50)' }}>{pillar.title}</h2>
+                <p style={{ margin: '5px 0 0 0', fontSize: '0.85rem', color: 'var(--w-slate-400)' }}>{pillar.desc}</p>
               </div>
               <span style={{ fontSize: '0.7rem', color: pillar.color, background: `${pillar.color}20`, padding: '4px 12px', borderRadius: '500px', fontWeight: 600 }}>
                 {pillarWidgets.length} 위젯
@@ -324,7 +324,7 @@ export default function FlatfishDashboard() {
             </div>
             <div data-mobile-stack style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '1.5rem' }}>
               {pillarWidgets.length === 0
-                ? <div style={{ gridColumn: '1 / -1', padding: '2rem', textAlign: 'center', color: '#64748b', background: 'rgba(255,255,255,0.02)', borderRadius: '12px' }}>이 단계에 위젯이 없습니다</div>
+                ? <div style={{ gridColumn: '1 / -1', padding: '2rem', textAlign: 'center', color: 'var(--w-slate-500)', background: 'rgba(255,255,255,0.02)', borderRadius: '12px' }}>이 단계에 위젯이 없습니다</div>
                 : pillarWidgets.map((w: any) => renderWidgetCard(w, pillar.id.replace('P', 'S') as 'S1' | 'S2' | 'S3' | 'S4' | 'S5'))}
             </div>
           </section>

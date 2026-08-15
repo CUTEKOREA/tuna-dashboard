@@ -24,7 +24,7 @@ const CustomTooltip = ({ active, payload, label }: any) => {
         padding: '12px',
         borderRadius: '8px',
         boxShadow: '0 10px 25px rgba(0,0,0,0.4)',
-        color: '#e2e8f0',
+        color: 'var(--w-slate-200)',
         fontSize: '0.82rem',
       }}>
         <p style={{ fontWeight: 700, marginBottom: '8px', color: '#ffffff' }}>{label}</p>
@@ -61,14 +61,14 @@ export default function MscEuropeRetailPrices() {
           <SafeResponsiveContainer width="100%" height="100%">
             <ComposedChart data={priceData} margin={{ top: 20, right: 30, left: 10, bottom: 5 }}>
               <CartesianGrid strokeDasharray="3 3" opacity={0.1} vertical={false} />
-              <XAxis dataKey="country" stroke="#64748b" tick={{ fill: '#94a3b8', fontSize: 11 }} axisLine={false} tickLine={false} />
-              <YAxis yAxisId="left" stroke="#64748b" tick={{ fill: '#94a3b8', fontSize: 11 }} axisLine={false} tickLine={false} />
-              <YAxis yAxisId="right" orientation="right" stroke="#f59e0b" tick={{ fill: '#f59e0b', fontSize: 11 }} domain={[0, 50]} axisLine={false} tickLine={false} tickFormatter={(val) => `${val}%`} />
+              <XAxis dataKey="country" stroke="var(--w-slate-500)" tick={{ fill: 'var(--w-slate-400)', fontSize: 11 }} axisLine={false} tickLine={false} />
+              <YAxis yAxisId="left" stroke="var(--w-slate-500)" tick={{ fill: 'var(--w-slate-400)', fontSize: 11 }} axisLine={false} tickLine={false} />
+              <YAxis yAxisId="right" orientation="right" stroke="var(--w-amber-500)" tick={{ fill: 'var(--w-amber-500)', fontSize: 11 }} domain={[0, 50]} axisLine={false} tickLine={false} tickFormatter={(val) => `${val}%`} />
               <Tooltip content={<CustomTooltip />} cursor={{ fill: 'rgba(140,170,255,0.10)' }} />
               <Legend wrapperStyle={{ paddingTop: '10px' }} />
-              <Bar yAxisId="left" dataKey="msc" name="MSC 인증" fill="#10b981" radius={[4, 4, 0, 0]} barSize={24} isAnimationActive={false} />
-              <Bar yAxisId="left" dataKey="nonMsc" name="비MSC" fill="#64748b" radius={[4, 4, 0, 0]} barSize={24} isAnimationActive={false} />
-              <Line yAxisId="right" type="monotone" dataKey="premium" name="프리미엄 지수 (%)" stroke="#f59e0b" strokeWidth={3} dot={{ r: 5, fill: '#f59e0b' }} isAnimationActive={false} />
+              <Bar yAxisId="left" dataKey="msc" name="MSC 인증" fill="var(--w-emerald-500)" radius={[4, 4, 0, 0]} barSize={24} isAnimationActive={false} />
+              <Bar yAxisId="left" dataKey="nonMsc" name="비MSC" fill="var(--w-slate-500)" radius={[4, 4, 0, 0]} barSize={24} isAnimationActive={false} />
+              <Line yAxisId="right" type="monotone" dataKey="premium" name="프리미엄 지수 (%)" stroke="var(--w-amber-500)" strokeWidth={3} dot={{ r: 5, fill: 'var(--w-amber-500)' }} isAnimationActive={false} />
             </ComposedChart>
           </SafeResponsiveContainer>
         </div>

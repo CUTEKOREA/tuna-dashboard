@@ -93,19 +93,19 @@ export default function MscStockScorecard() {
       <table style={{ width: '100%', fontSize: '0.82rem', borderCollapse: 'separate', borderSpacing: '0 3px' }}>
         <thead>
           <tr>
-            <th style={{ padding: '8px 10px', textAlign: 'left', fontSize: '0.70rem', fontWeight: 700, color: '#64748b', textTransform: 'uppercase', letterSpacing: '0.05em', minWidth: 90 }}>
+            <th style={{ padding: '8px 10px', textAlign: 'left', fontSize: '0.70rem', fontWeight: 700, color: 'var(--w-slate-500)', textTransform: 'uppercase', letterSpacing: '0.05em', minWidth: 90 }}>
               어종
             </th>
-            <th style={{ padding: '8px 10px', textAlign: 'left', fontSize: '0.70rem', fontWeight: 700, color: '#64748b', textTransform: 'uppercase', letterSpacing: '0.05em', minWidth: 100 }}>
+            <th style={{ padding: '8px 10px', textAlign: 'left', fontSize: '0.70rem', fontWeight: 700, color: 'var(--w-slate-500)', textTransform: 'uppercase', letterSpacing: '0.05em', minWidth: 100 }}>
               RFMO / 해역
             </th>
-            <th style={{ padding: '8px 10px', textAlign: 'center', fontSize: '0.70rem', fontWeight: 700, color: '#64748b', textTransform: 'uppercase', letterSpacing: '0.05em', minWidth: 80 }}>
+            <th style={{ padding: '8px 10px', textAlign: 'center', fontSize: '0.70rem', fontWeight: 700, color: 'var(--w-slate-500)', textTransform: 'uppercase', letterSpacing: '0.05em', minWidth: 80 }}>
               P1 점수
             </th>
-            <th style={{ padding: '8px 10px', textAlign: 'center', fontSize: '0.70rem', fontWeight: 700, color: '#64748b', textTransform: 'uppercase', letterSpacing: '0.05em', minWidth: 80 }}>
+            <th style={{ padding: '8px 10px', textAlign: 'center', fontSize: '0.70rem', fontWeight: 700, color: 'var(--w-slate-500)', textTransform: 'uppercase', letterSpacing: '0.05em', minWidth: 80 }}>
               HCR
             </th>
-            <th style={{ padding: '8px 10px', textAlign: 'center', fontSize: '0.70rem', fontWeight: 700, color: '#64748b', textTransform: 'uppercase', letterSpacing: '0.05em', minWidth: 80 }}>
+            <th style={{ padding: '8px 10px', textAlign: 'center', fontSize: '0.70rem', fontWeight: 700, color: 'var(--w-slate-500)', textTransform: 'uppercase', letterSpacing: '0.05em', minWidth: 80 }}>
               자원 상태
             </th>
           </tr>
@@ -120,17 +120,17 @@ export default function MscStockScorecard() {
                     style={{
                       padding: '10px',
                       fontWeight: 700,
-                      color: SPECIES_COLORS[species] || '#e2e8f0',
+                      color: SPECIES_COLORS[species] || 'var(--w-slate-200)',
                       fontSize: '0.82rem',
                       borderRadius: '8px 0 0 8px',
                       verticalAlign: 'middle',
-                      borderLeft: `3px solid ${SPECIES_COLORS[species] || '#38bdf8'}`,
+                      borderLeft: `3px solid ${SPECIES_COLORS[species] || 'var(--w-sky-400)'}`,
                     }}
                   >
                     {species}
                   </td>
                 )}
-                <td style={{ padding: '8px 10px', color: '#cbd5e1', fontWeight: 500 }}>
+                <td style={{ padding: '8px 10px', color: 'var(--w-slate-300)', fontWeight: 500 }}>
                   {row.rfmo}
                 </td>
                 <td style={{ padding: '4px' }}>
@@ -211,10 +211,10 @@ export default function MscStockScorecard() {
             textAlign: 'center',
           }}
         >
-          <div style={{ fontSize: 22, fontWeight: 900, color: '#10b981', fontVariantNumeric: 'tabular-nums' }}>
+          <div style={{ fontSize: 22, fontWeight: 900, color: 'var(--w-emerald-500)', fontVariantNumeric: 'tabular-nums' }}>
             {passCount}
           </div>
-          <div style={{ fontSize: 11, color: '#34d399', fontWeight: 600, marginTop: 2 }}>
+          <div style={{ fontSize: 11, color: 'var(--w-emerald-400)', fontWeight: 600, marginTop: 2 }}>
             P1 통과 (≥80)
           </div>
         </div>
@@ -227,7 +227,7 @@ export default function MscStockScorecard() {
             textAlign: 'center',
           }}
         >
-          <div style={{ fontSize: 22, fontWeight: 900, color: '#ef4444', fontVariantNumeric: 'tabular-nums' }}>
+          <div style={{ fontSize: 22, fontWeight: 900, color: 'var(--w-red-500)', fontVariantNumeric: 'tabular-nums' }}>
             {failCount}
           </div>
           <div style={{ fontSize: 11, color: '#f87171', fontWeight: 600, marginTop: 2 }}>
@@ -243,17 +243,17 @@ export default function MscStockScorecard() {
             textAlign: 'center',
           }}
         >
-          <div style={{ fontSize: 22, fontWeight: 900, color: '#f59e0b', fontVariantNumeric: 'tabular-nums' }}>
+          <div style={{ fontSize: 22, fontWeight: 900, color: 'var(--w-amber-500)', fontVariantNumeric: 'tabular-nums' }}>
             7<span style={{ fontSize: 14, fontWeight: 600 }}>/19</span>
           </div>
-          <div style={{ fontSize: 11, color: '#fbbf24', fontWeight: 600, marginTop: 2 }}>
+          <div style={{ fontSize: 11, color: 'var(--w-amber-400)', fontWeight: 600, marginTop: 2 }}>
             HCR 완전 이행
           </div>
         </div>
       </div>
 
       {/* Legend */}
-      <div style={{ display: 'flex', justifyContent: 'center', gap: 20, marginTop: 14, fontSize: '0.72rem', color: '#64748b', fontWeight: 500 }}>
+      <div style={{ display: 'flex', justifyContent: 'center', gap: 20, marginTop: 14, fontSize: '0.72rem', color: 'var(--w-slate-500)', fontWeight: 500 }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: 5 }}>
           <span style={{ width: 10, height: 10, borderRadius: 2, background: 'rgba(16,185,129,0.4)', display: 'inline-block' }} /> PASS
         </div>

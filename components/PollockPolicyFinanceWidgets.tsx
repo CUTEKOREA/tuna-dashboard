@@ -28,9 +28,9 @@ export function WidgetHSKBottleneck() {
       chart={
         <RadarChart cx="50%" cy="50%" outerRadius="70%" data={hskData}>
           <PolarGrid stroke="rgba(255,255,255,0.1)" />
-          <PolarAngleAxis dataKey="subject" tick={{ fill: '#cbd5e1', fontSize: 10 }} />
+          <PolarAngleAxis dataKey="subject" tick={{ fill: 'var(--w-slate-300)', fontSize: 10 }} />
           <PolarRadiusAxis angle={30} domain={[0, 100]} tick={false} axisLine={false} />
-          <RechartsTooltip contentStyle={{ backgroundColor: '#1a2442', border: '1px solid rgba(255,255,255,0.1)' }} />
+          <RechartsTooltip contentStyle={{ backgroundColor: 'var(--w-navy-900)', border: '1px solid rgba(255,255,255,0.1)' }} />
           <Radar name="통마리 (0303.67)" dataKey="통마리" stroke="#f43f5e" fill="#f43f5e" fillOpacity={0.5} />
           <Radar name="필레 (0304.75)" dataKey="필레" stroke="var(--color-info)" fill="var(--color-info)" fillOpacity={0.5} />
         </RadarChart>
@@ -68,10 +68,10 @@ export function WidgetWarehouseSniping() {
         <ComposedChart data={wareHouseData} margin={{ top: 10, right: 30, left: 0, bottom: 5 }}>
           <ChartPatternDefs />
           <CartesianGrid strokeDasharray="3 3" stroke="rgba(140,170,255,0.10)" />
-          <XAxis dataKey="month" stroke="#94a3b8" fontSize={12} />
-          <YAxis yAxisId="left" stroke="#cbd5e1" fontSize={12} tickFormatter={(v)=>`${v}t`} domain={[0, 16000]} />
+          <XAxis dataKey="month" stroke="var(--w-slate-400)" fontSize={12} />
+          <YAxis yAxisId="left" stroke="var(--w-slate-300)" fontSize={12} tickFormatter={(v)=>`${v}t`} domain={[0, 16000]} />
           <YAxis yAxisId="right" orientation="right" stroke="var(--color-success)" fontSize={12} tickFormatter={(v)=>`₩${v}`} domain={[1500, 3000]} />
-          <RechartsTooltip contentStyle={{ backgroundColor: '#1a2442', border: '1px solid rgba(255,255,255,0.1)' }} />
+          <RechartsTooltip contentStyle={{ backgroundColor: 'var(--w-navy-900)', border: '1px solid rgba(255,255,255,0.1)' }} />
           <Bar yAxisId="left" dataKey="inventory" name="보세창고 재고량 (톤)" fill="#475569" opacity={0.7} />
           <Line yAxisId="right" type="monotone" dataKey="price" name="시장 평균 도매가" stroke="var(--color-success)" strokeWidth={3} />
           <Scatter yAxisId="right" dataKey="demandIndex" fill="var(--color-warning)" name="명절/금어기 타겟 수요 지수" />
@@ -109,7 +109,7 @@ export function WidgetVDSIntegrity() {
         <div style={{ display: 'flex', width: '100%', height: '80%', alignItems: 'flex-end', gap: '8px' }}>
           {vdsData.map((item, idx) => (
             <div key={idx} style={{ flex: item.value, background: item.fill, height: '100%', borderRadius: '4px 4px 0 0', position: 'relative', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-              <span style={{ position: 'absolute', top: '-25px', color: '#cbd5e1', fontSize: '12px', fontWeight: 'bold' }}>{item.value}%</span>
+              <span style={{ position: 'absolute', top: '-25px', color: 'var(--w-slate-300)', fontSize: '12px', fontWeight: 'bold' }}>{item.value}%</span>
               <span style={{ color: '#000', fontSize: '11px', fontWeight: 'bold', writingMode: 'vertical-rl', transform: 'rotate(180deg)' }}>{item.name}</span>
             </div>
           ))}

@@ -198,7 +198,7 @@ export default function PacificVesselMap({ defaultEezActive = false }: PacificVe
           background: rgba(13, 17, 23, 0.95) !important;
           border: 1px solid rgba(255, 255, 255, 0.15) !important;
           border-radius: 8px !important;
-          color: #f8fafc !important;
+          color: var(--w-slate-50) !important;
           font-family: var(--font-sans), system-ui, sans-serif !important;
           font-size: 12px !important;
           padding: 10px 14px !important;
@@ -212,7 +212,7 @@ export default function PacificVesselMap({ defaultEezActive = false }: PacificVe
         .leaflet-tooltip-left::before { border-left-color: rgba(13, 17, 23, 0.95) !important; }
         .leaflet-tooltip-right::before { border-right-color: rgba(13, 17, 23, 0.95) !important; }
       `}</style>
-      <div style={{ position: 'relative', height: '600px', width: '100%', borderRadius: '8px', overflow: 'hidden', border: typhoonActive ? '2px solid #ef4444' : '1px solid rgba(255,255,255,0.1)', boxShadow: typhoonActive ? '0 0 30px rgba(239, 68, 68, 0.5)' : 'none', transition: 'all 0.3s' }}>
+      <div style={{ position: 'relative', height: '600px', width: '100%', borderRadius: '8px', overflow: 'hidden', border: typhoonActive ? '2px solid var(--w-red-500)' : '1px solid rgba(255,255,255,0.1)', boxShadow: typhoonActive ? '0 0 30px rgba(239, 68, 68, 0.5)' : 'none', transition: 'all 0.3s' }}>
         {typhoonActive && (
           <div style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', pointerEvents: 'none', background: 'rgba(239, 68, 68, 0.1)', zIndex: 500, animation: 'defcon-pulse 2s infinite' }}></div>
         )}
@@ -301,7 +301,7 @@ export default function PacificVesselMap({ defaultEezActive = false }: PacificVe
             >
               <Tooltip direction="top" opacity={0.95}>
                 <div style={{ fontWeight: 'bold', color: eez.color, fontSize: '13px' }}>{eez.country}</div>
-                <div style={{ color: '#cbd5e1', fontSize: '11px', marginTop: '2px' }}>면적: {eez.area}</div>
+                <div style={{ color: 'var(--w-slate-300)', fontSize: '11px', marginTop: '2px' }}>면적: {eez.area}</div>
               </Tooltip>
             </Circle>
             {/* Numbered center marker */}
@@ -316,7 +316,7 @@ export default function PacificVesselMap({ defaultEezActive = false }: PacificVe
             >
               <Tooltip direction="right" opacity={0.95}>
                 <div style={{ fontWeight: 'bold', color: eez.color, fontSize: '13px' }}>{eez.country}</div>
-                <div style={{ color: '#cbd5e1', fontSize: '11px', marginTop: '2px' }}>면적: {eez.area}</div>
+                <div style={{ color: 'var(--w-slate-300)', fontSize: '11px', marginTop: '2px' }}>면적: {eez.area}</div>
               </Tooltip>
             </Marker>
           </React.Fragment>
@@ -341,8 +341,8 @@ export default function PacificVesselMap({ defaultEezActive = false }: PacificVe
             <Marker position={[fad.lat, fad.lng]} icon={FadIcon}>
               <Tooltip direction="top" opacity={1}>
                 <div style={{ fontWeight: 'bold', color: '#60a5fa' }}>{fad.id}</div>
-                <div style={{ color: '#94a3b8', fontSize: '11px' }}>어군량 (Biomass): <span style={{ color: fad.biomass >= 3000 ? 'var(--color-danger)' : '#f8fafc', fontWeight: 'bold' }}>{fad.biomass.toLocaleString()}톤</span></div>
-                <div style={{ color: '#94a3b8', fontSize: '11px' }}>수심: {fad.depth} | 수온: {fad.temp}</div>
+                <div style={{ color: 'var(--w-slate-400)', fontSize: '11px' }}>어군량 (Biomass): <span style={{ color: fad.biomass >= 3000 ? 'var(--color-danger)' : 'var(--w-slate-50)', fontWeight: 'bold' }}>{fad.biomass.toLocaleString()}톤</span></div>
+                <div style={{ color: 'var(--w-slate-400)', fontSize: '11px' }}>수심: {fad.depth} | 수온: {fad.temp}</div>
               </Tooltip>
             </Marker>
           </React.Fragment>
@@ -363,10 +363,10 @@ export default function PacificVesselMap({ defaultEezActive = false }: PacificVe
             >
               <Tooltip direction="top" offset={[-15, 0]} opacity={isBunkeringTarget || isVoyageTarget ? 1 : 0.9} permanent={isDanger || isBunkeringTarget || isVoyageTarget}>
                 <div style={{ minWidth: '160px', maxWidth: '260px' }}>
-                  <div style={{ color: isDanger ? 'var(--color-danger)' : isBunkeringTarget ? '#22c55e' : isVoyageTarget ? '#a855f7' : '#f8fafc', fontSize: '13px', fontWeight: 'bold' }}>
+                  <div style={{ color: isDanger ? 'var(--color-danger)' : isBunkeringTarget ? '#22c55e' : isVoyageTarget ? '#a855f7' : 'var(--w-slate-50)', fontSize: '13px', fontWeight: 'bold' }}>
                     {isDanger ? '⚠️ DEFCON: EVACUATE' : isBunkeringTarget ? `🎯 ${vessel.name} (Bunker Target)` : isVoyageTarget ? `⚖️ ${vessel.name} (AI Target)` : vessel.name}
                   </div>
-                  {!isBunkeringTarget && !isVoyageTarget && <div style={{ color: '#94a3b8', fontSize: '11px', marginTop: '2px' }}>{isDanger ? vessel.name : vessel.locationText}</div>}
+                  {!isBunkeringTarget && !isVoyageTarget && <div style={{ color: 'var(--w-slate-400)', fontSize: '11px', marginTop: '2px' }}>{isDanger ? vessel.name : vessel.locationText}</div>}
                   {!isDanger && !isBunkeringTarget && !isVoyageTarget && <div style={{ color: 'var(--color-warning)', fontSize: '11px', marginTop: '4px' }}>어획량: {vessel.dailyCatch !== '-' ? `${vessel.dailyCatch}톤` : '-'} / 선적량: {vessel.load !== '-' ? `${vessel.load}톤` : '-'}</div>}
                   {(vessel as any).notice && (vessel as any).notice !== '-' && <div style={{ color: '#60a5fa', fontSize: '11px', marginTop: '4px', maxWidth: '240px', whiteSpace: 'normal', lineHeight: '1.4', wordBreak: 'keep-all' }}>{(vessel as any).notice}</div>}
                   {isBunkeringTarget && <div style={{ color: '#22c55e', fontSize: '11px', marginTop: '4px' }}>연료 잔량: 12% (Bunkering Req)</div>}
@@ -387,8 +387,8 @@ export default function PacificVesselMap({ defaultEezActive = false }: PacificVe
               return (
               <Marker key={`port-${idx}`} position={[port.lat, port.lng]} icon={BunkeringIcon}>
                 <Tooltip direction="right" permanent opacity={1}>
-                  <div style={{ fontWeight: 'bold', color: port.recommended ? '#22c55e' : '#f8fafc' }}>{port.name}</div>
-                  <div style={{ color: port.recommended ? '#22c55e' : '#94a3b8', fontSize: '11px' }}>MGO: ${portPrice}/ton</div>
+                  <div style={{ fontWeight: 'bold', color: port.recommended ? '#22c55e' : 'var(--w-slate-50)' }}>{port.name}</div>
+                  <div style={{ color: port.recommended ? '#22c55e' : 'var(--w-slate-400)', fontSize: '11px' }}>MGO: ${portPrice}/ton</div>
                 </Tooltip>
               </Marker>
             )})}
@@ -453,16 +453,16 @@ export default function PacificVesselMap({ defaultEezActive = false }: PacificVe
           <div style={{ fontSize: '12px', fontWeight: 'bold', color: 'var(--text-primary)', borderBottom: '1px solid rgba(255,255,255,0.1)', paddingBottom: '4px' }}>
             수온 이상 (Warm/Cold Pool)
           </div>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '8px', fontSize: '11px', color: '#cbd5e1' }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '8px', fontSize: '11px', color: 'var(--w-slate-300)' }}>
             <div style={{ width: '12px', height: '12px', borderRadius: '50%', background: '#dc2626', boxShadow: '0 0 10px #dc2626' }}></div>
             수온 +2°C 이상 (28~31°C)
           </div>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '8px', fontSize: '11px', color: '#cbd5e1' }}>
-            <div style={{ width: '12px', height: '12px', borderRadius: '50%', background: 'var(--color-warning)', boxShadow: '0 0 10px #f59e0b' }}></div>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '8px', fontSize: '11px', color: 'var(--w-slate-300)' }}>
+            <div style={{ width: '12px', height: '12px', borderRadius: '50%', background: 'var(--color-warning)', boxShadow: '0 0 10px var(--w-amber-500)' }}></div>
             수온 +1°C (26~28°C)
           </div>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '8px', fontSize: '11px', color: '#cbd5e1' }}>
-            <div style={{ width: '12px', height: '12px', borderRadius: '50%', background: 'var(--color-info)', boxShadow: '0 0 10px #3b82f6' }}></div>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '8px', fontSize: '11px', color: 'var(--w-slate-300)' }}>
+            <div style={{ width: '12px', height: '12px', borderRadius: '50%', background: 'var(--color-info)', boxShadow: '0 0 10px var(--w-blue-500)' }}></div>
             수온 -1°C 이하 (&lt;24°C)
           </div>
         </div>
@@ -471,21 +471,21 @@ export default function PacificVesselMap({ defaultEezActive = false }: PacificVe
       {/* EEZ Legend Panel (left side) */}
       {eezActive && (
         <div style={{ position: 'absolute', top: '10px', left: '10px', zIndex: 1000, backgroundColor: 'rgba(13, 17, 23, 0.92)', border: '1px solid rgba(16, 185, 129, 0.3)', borderRadius: '10px', padding: '14px 16px', minWidth: '200px', maxWidth: '230px', backdropFilter: 'blur(8px)', boxShadow: '0 8px 24px rgba(0, 0, 0, 0.5)' }}>
-          <div style={{ fontSize: '12px', fontWeight: 'bold', color: '#34d399', borderBottom: '1px solid rgba(255,255,255,0.1)', paddingBottom: '8px', marginBottom: '8px', display: 'flex', alignItems: 'center', gap: '6px' }}>
+          <div style={{ fontSize: '12px', fontWeight: 'bold', color: 'var(--w-emerald-400)', borderBottom: '1px solid rgba(255,255,255,0.1)', paddingBottom: '8px', marginBottom: '8px', display: 'flex', alignItems: 'center', gap: '6px' }}>
             🌊 PNA EEZ 수역 범례
           </div>
           {PNA_EEZ_DATA.map((eez, idx) => (
-            <div key={idx} style={{ display: 'flex', alignItems: 'center', gap: '8px', padding: '4px 0', fontSize: '11px', color: '#e2e8f0' }}>
+            <div key={idx} style={{ display: 'flex', alignItems: 'center', gap: '8px', padding: '4px 0', fontSize: '11px', color: 'var(--w-slate-200)' }}>
               <div style={{ width: '20px', height: '20px', borderRadius: '50%', background: eez.color, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '10px', fontWeight: 'bold', color: '#fff', flexShrink: 0, boxShadow: `0 0 6px ${eez.color}60`, border: '1.5px solid rgba(255,255,255,0.3)' }}>
                 {idx + 1}
               </div>
               <div style={{ flex: 1 }}>
                 <div style={{ fontWeight: 600, color: eez.color, fontSize: '11px', lineHeight: 1.3 }}>{eez.country.split(' (')[0]}</div>
-                <div style={{ color: '#94a3b8', fontSize: '10px' }}>{eez.area}</div>
+                <div style={{ color: 'var(--w-slate-400)', fontSize: '10px' }}>{eez.area}</div>
               </div>
             </div>
           ))}
-          <div style={{ marginTop: '8px', paddingTop: '6px', borderTop: '1px solid rgba(255,255,255,0.08)', fontSize: '10px', color: '#64748b', lineHeight: 1.4 }}>
+          <div style={{ marginTop: '8px', paddingTop: '6px', borderTop: '1px solid rgba(255,255,255,0.08)', fontSize: '10px', color: 'var(--w-slate-500)', lineHeight: 1.4 }}>
             마커에 마우스를 올리면 상세 정보
           </div>
         </div>
@@ -502,7 +502,7 @@ export default function PacificVesselMap({ defaultEezActive = false }: PacificVe
           onClick={() => {
             setEezActive(!eezActive);
           }} 
-          style={{ padding: '4px 10px', fontSize: '12px', border: '1px solid #10b981', borderRadius: '4px', cursor: 'pointer', background: eezActive ? 'rgba(16, 185, 129, 0.2)' : 'transparent', color: '#10b981', fontWeight: 'bold', boxShadow: eezActive ? '0 0 10px rgba(16,185,129,0.4) inset' : 'none', transition: 'all 0.3s' }}
+          style={{ padding: '4px 10px', fontSize: '12px', border: '1px solid var(--w-emerald-500)', borderRadius: '4px', cursor: 'pointer', background: eezActive ? 'rgba(16, 185, 129, 0.2)' : 'transparent', color: 'var(--w-emerald-500)', fontWeight: 'bold', boxShadow: eezActive ? '0 0 10px rgba(16,185,129,0.4) inset' : 'none', transition: 'all 0.3s' }}
         >
           {eezActive ? '🌊 PNA EEZ (ON)' : '🌊 PNA EEZ 수역'}
         </button>
@@ -529,7 +529,7 @@ export default function PacificVesselMap({ defaultEezActive = false }: PacificVe
             setTyphoonActive(false);
             setVoyageActive(false);
           }} 
-          style={{ padding: '4px 10px', fontSize: '12px', border: '1px solid #3b82f6', borderRadius: '4px', cursor: 'pointer', background: fadActive ? 'rgba(59, 130, 246, 0.2)' : 'transparent', color: 'var(--color-info)', fontWeight: 'bold', boxShadow: fadActive ? '0 0 10px rgba(59,130,246,0.4) inset' : 'none', transition: 'all 0.3s' }}
+          style={{ padding: '4px 10px', fontSize: '12px', border: '1px solid var(--w-blue-500)', borderRadius: '4px', cursor: 'pointer', background: fadActive ? 'rgba(59, 130, 246, 0.2)' : 'transparent', color: 'var(--color-info)', fontWeight: 'bold', boxShadow: fadActive ? '0 0 10px rgba(59,130,246,0.4) inset' : 'none', transition: 'all 0.3s' }}
         >
           {fadActive ? '📡 소나 탐지 종료' : '📡 FAD 소나 탐지'}
         </button>
@@ -567,7 +567,7 @@ export default function PacificVesselMap({ defaultEezActive = false }: PacificVe
             setFadActive(false);
             setVoyageActive(false);
           }} 
-          style={{ padding: '4px 10px', fontSize: '12px', border: '1px solid #f59e0b', borderRadius: '4px', cursor: 'pointer', background: forwardSalesActive ? 'rgba(245, 158, 11, 0.2)' : 'transparent', color: 'var(--color-warning)', fontWeight: 'bold', boxShadow: forwardSalesActive ? '0 0 10px rgba(245,158,11,0.4) inset' : 'none', transition: 'all 0.3s', marginLeft: '4px' }}
+          style={{ padding: '4px 10px', fontSize: '12px', border: '1px solid var(--w-amber-500)', borderRadius: '4px', cursor: 'pointer', background: forwardSalesActive ? 'rgba(245, 158, 11, 0.2)' : 'transparent', color: 'var(--color-warning)', fontWeight: 'bold', boxShadow: forwardSalesActive ? '0 0 10px rgba(245,158,11,0.4) inset' : 'none', transition: 'all 0.3s', marginLeft: '4px' }}
         >
           {forwardSalesActive ? '💰 선도 거래 종료' : '💰 어창 모니터링'}
         </button>
@@ -713,13 +713,13 @@ export default function PacificVesselMap({ defaultEezActive = false }: PacificVe
                   {'>'} Current Load: <span style={{ color: 'var(--text-primary)' }}>{currentLoad}</span> t | Dist: <span style={{ color: 'var(--text-primary)' }}>{distBangkok}</span> NM
                 </div>
                 
-                <div style={{ overflow: 'hidden', whiteSpace: 'nowrap', animation: 'typing-effect 1s steps(40, end) 1s backwards', marginTop: '8px', borderLeft: '2px solid #ef4444', paddingLeft: '6px' }}>
+                <div style={{ overflow: 'hidden', whiteSpace: 'nowrap', animation: 'typing-effect 1s steps(40, end) 1s backwards', marginTop: '8px', borderLeft: '2px solid var(--w-red-500)', paddingLeft: '6px' }}>
                   <div style={{ color: 'var(--text-primary)' }}>Opt A: Return Now</div>
                   <div>Rev: <span style={{ color: '#22c55e' }}>+${(optARevenue/1000).toFixed(1)}k</span> (Total Load)</div>
                   <div>Est Net: <span style={{ color: 'var(--color-danger)' }}>${(optAProfit/1000).toFixed(1)}k</span></div>
                 </div>
 
-                <div style={{ overflow: 'hidden', whiteSpace: 'nowrap', animation: 'typing-effect 1s steps(40, end) 2s backwards', marginTop: '8px', borderLeft: '2px solid #3b82f6', paddingLeft: '6px' }}>
+                <div style={{ overflow: 'hidden', whiteSpace: 'nowrap', animation: 'typing-effect 1s steps(40, end) 2s backwards', marginTop: '8px', borderLeft: '2px solid var(--w-blue-500)', paddingLeft: '6px' }}>
                   <div style={{ color: 'var(--text-primary)' }}>Opt B: Fish +{extraDays} Days</div>
                   <div>Cost Add: <span style={{ color: '#f97316' }}>-${((fishingFuelCost + vdsTotalCost)/1000).toFixed(1)}k</span> (VDS+Fuel)</div>
                   <div>Est Net: <span style={{ color: 'var(--color-info)' }}>${(optBProfit/1000).toFixed(1)}k</span></div>

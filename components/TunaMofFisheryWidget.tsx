@@ -56,13 +56,13 @@ export function MofFishMarketWidget() {
         <ComposedChart data={data} margin={{ top: 20, right: 30, left: 20, bottom: 5 }}>
           <ChartPatternDefs />
           <CartesianGrid strokeDasharray="3 3" stroke="rgba(140,170,255,0.10)" vertical={false} />
-          <XAxis dataKey="market" stroke="#94a3b8" tick={{ fill: '#cbd5e1', fontSize: 12, fontWeight: 500 }} />
-          <YAxis yAxisId="left" stroke="#94a3b8" tick={{ fill: '#cbd5e1', fontSize: 12, fontWeight: 500 }} tickFormatter={(v) => `${(v / 1000).toFixed(1)}k`} />
-          <YAxis yAxisId="right" orientation="right" stroke="#f59e0b" tick={{ fill: '#cbd5e1', fontSize: 12, fontWeight: 500 }} tickFormatter={(v) => `₩${v.toLocaleString()}`} />
+          <XAxis dataKey="market" stroke="var(--w-slate-400)" tick={{ fill: 'var(--w-slate-300)', fontSize: 12, fontWeight: 500 }} />
+          <YAxis yAxisId="left" stroke="var(--w-slate-400)" tick={{ fill: 'var(--w-slate-300)', fontSize: 12, fontWeight: 500 }} tickFormatter={(v) => `${(v / 1000).toFixed(1)}k`} />
+          <YAxis yAxisId="right" orientation="right" stroke="var(--w-amber-500)" tick={{ fill: 'var(--w-slate-300)', fontSize: 12, fontWeight: 500 }} tickFormatter={(v) => `₩${v.toLocaleString()}`} />
           <Tooltip contentStyle={{ backgroundColor: 'rgba(20, 28, 52, 0.9)', border: '1px solid rgba(255, 255, 255, 0.1)', borderRadius: '8px' }} />
           <Legend />
           <Bar yAxisId="left" dataKey="volume" fill="#0ea5e9" name="거래량(MT)" radius={[4, 4, 0, 0]} />
-          <Line yAxisId="right" type="monotone" dataKey="avgPrice" stroke="#f59e0b" strokeWidth={3} name="평균 단가(₩/kg)" dot={{ r: 4 }} />
+          <Line yAxisId="right" type="monotone" dataKey="avgPrice" stroke="var(--w-amber-500)" strokeWidth={3} name="평균 단가(₩/kg)" dot={{ r: 4 }} />
         </ComposedChart>
       }
       takeaway={{
@@ -109,13 +109,13 @@ export function MofTradeBalanceWidget() {
         <ComposedChart data={data} margin={{ top: 20, right: 30, left: 20, bottom: 5 }}>
           <ChartPatternDefs />
           <CartesianGrid strokeDasharray="3 3" stroke="rgba(140,170,255,0.10)" vertical={false} />
-          <XAxis dataKey="month" stroke="#94a3b8" tick={{ fill: '#cbd5e1', fontSize: 12, fontWeight: 500 }} />
-          <YAxis stroke="#94a3b8" tick={{ fill: '#cbd5e1', fontSize: 12, fontWeight: 500 }} tickFormatter={(v) => `$${v}M`} />
+          <XAxis dataKey="month" stroke="var(--w-slate-400)" tick={{ fill: 'var(--w-slate-300)', fontSize: 12, fontWeight: 500 }} />
+          <YAxis stroke="var(--w-slate-400)" tick={{ fill: 'var(--w-slate-300)', fontSize: 12, fontWeight: 500 }} tickFormatter={(v) => `$${v}M`} />
           <Tooltip contentStyle={{ backgroundColor: 'rgba(20, 28, 52, 0.9)', border: '1px solid rgba(255, 255, 255, 0.1)', borderRadius: '8px' }} />
           <Legend />
-          <Bar dataKey="export" fill="#10b981" name="수출($M)" radius={[4, 4, 0, 0]} />
-          <Bar dataKey="import" fill="#ef4444" name="수입($M)" radius={[4, 4, 0, 0]} />
-          <Line type="monotone" dataKey="balance" stroke="#f59e0b" strokeWidth={3} strokeDasharray="5 5" name="무역수지($M)" dot={{ r: 4 }} />
+          <Bar dataKey="export" fill="var(--w-emerald-500)" name="수출($M)" radius={[4, 4, 0, 0]} />
+          <Bar dataKey="import" fill="var(--w-red-500)" name="수입($M)" radius={[4, 4, 0, 0]} />
+          <Line type="monotone" dataKey="balance" stroke="var(--w-amber-500)" strokeWidth={3} strokeDasharray="5 5" name="무역수지($M)" dot={{ r: 4 }} />
         </ComposedChart>
       }
       takeaway={{
@@ -161,10 +161,10 @@ export function MofShippingCostWidget() {
         <div style={{ display: 'grid', gap: '12px', background: 'rgba(0, 0, 0, 0.2)', padding: '20px', borderRadius: '1rem', border: '1px dashed rgba(148, 163, 184, 0.1)' }}>
           {data.map((r, i) => (
             <div key={i} style={{ display: 'grid', gridTemplateColumns: '1.5fr 1fr 1fr 1fr', gap: 16, padding: '14px 20px', alignItems: 'center', background: 'rgba(255,255,255,0.03)', borderRadius: 8, border: '1px solid rgba(140,170,255,0.12)' }}>
-              <span style={{ fontSize: '0.9rem', color: '#f8fafc', fontWeight: 600 }}>{r.route}</span>
+              <span style={{ fontSize: '0.9rem', color: 'var(--w-slate-50)', fontWeight: 600 }}>{r.route}</span>
               <span style={{ fontSize: '0.85rem', color: '#0ea5e9', fontFamily: 'monospace' }}>20ft: ${r.cost20ft.toLocaleString()}</span>
-              <span style={{ fontSize: '0.85rem', color: '#8b5cf6', fontFamily: 'monospace' }}>40ft: ${r.cost40ft.toLocaleString()}</span>
-              <span style={{ fontSize: '0.85rem', fontWeight: 700, color: r.trend.includes('+') ? '#ef4444' : r.trend.includes('-') ? '#10b981' : '#f59e0b', textAlign: 'right' }}>{r.trend}</span>
+              <span style={{ fontSize: '0.85rem', color: 'var(--w-violet-500)', fontFamily: 'monospace' }}>40ft: ${r.cost40ft.toLocaleString()}</span>
+              <span style={{ fontSize: '0.85rem', fontWeight: 700, color: r.trend.includes('+') ? 'var(--w-red-500)' : r.trend.includes('-') ? 'var(--w-emerald-500)' : 'var(--w-amber-500)', textAlign: 'right' }}>{r.trend}</span>
             </div>
           ))}
         </div>

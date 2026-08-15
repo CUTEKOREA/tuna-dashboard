@@ -35,13 +35,13 @@ export default function SasPrGradeBySpecies() {
             <div key={s.ko} style={{ background: `${s.rc}0d`, border: `1px solid ${s.rc}2e`, borderLeft: `3px solid ${s.rc}`, borderRadius: '9px', padding: '9px 11px' }}>
               <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '3px' }}>
                 <span style={{ fontSize: '0.8rem', fontWeight: 700, color: '#f1f5f9' }}>{s.ko}</span>
-                <span style={{ fontSize: '0.56rem', color: '#64748b' }}>{s.en}</span>
+                <span style={{ fontSize: '0.56rem', color: 'var(--w-slate-500)' }}>{s.en}</span>
                 <span style={{ marginLeft: 'auto', fontSize: '0.62rem', fontWeight: 800, color: s.rc, background: `${s.rc}1f`, padding: '2px 8px', borderRadius: '4px', whiteSpace: 'nowrap' }}>{s.factor}</span>
               </div>
-              <span style={{ fontSize: '0.62rem', color: '#94a3b8', lineHeight: 1.4 }}>{s.desc}</span>
+              <span style={{ fontSize: '0.62rem', color: 'var(--w-slate-400)', lineHeight: 1.4 }}>{s.desc}</span>
             </div>
           ))}
-          <div style={{ fontSize: '0.6rem', color: '#64748b', lineHeight: 1.5, textAlign: 'center' }}>
+          <div style={{ fontSize: '0.6rem', color: 'var(--w-slate-500)', lineHeight: 1.5, textAlign: 'center' }}>
             색=미오글로빈 산화(옥시→메트=갈변, CO처리가 위장) · 야케=어획 발버둥 화상육 · 부위별 지방 아카미 5±2%·오토로 20±5%(Balshaw 2008, 양식 남방참다랑어·개체별 편차)
           </div>
         </div>

@@ -21,8 +21,8 @@ export default function SalmonInsightFeedBio() {
         <ComposedChart data={rawData} margin={{ top: 10, right: 10, left: -20, bottom: 0 }}>
           <ChartPatternDefs />
           <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" vertical={false} />
-          <XAxis dataKey="year" stroke="#94a3b8" fontSize={11} tickLine={false} axisLine={false} />
-          <YAxis yAxisId="left" stroke="#cbd5e1" fontSize={11} tickLine={false} axisLine={false} tickFormatter={(v) => `${v}%`} />
+          <XAxis dataKey="year" stroke="var(--w-slate-400)" fontSize={11} tickLine={false} axisLine={false} />
+          <YAxis yAxisId="left" stroke="var(--w-slate-300)" fontSize={11} tickLine={false} axisLine={false} tickFormatter={(v) => `${v}%`} />
           <YAxis yAxisId="right" orientation="right" stroke="var(--color-warning)" fontSize={11} tickLine={false} axisLine={false} />
           <Tooltip 
             contentStyle={{ background: '#11182f', border: 'none', borderRadius: '8px' }}

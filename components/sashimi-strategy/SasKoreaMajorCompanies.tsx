@@ -24,12 +24,12 @@ const CustomBarTooltip = ({ active, payload, label }: any) => {
   if (!active || !payload) return null;
   return (
     <div style={{
-      background: '#1a2442', border: '1px solid #334155', borderRadius: '8px',
+      background: 'var(--w-navy-900)', border: '1px solid #334155', borderRadius: '8px',
       padding: '8px 12px', boxShadow: '0 4px 12px rgba(0,0,0,0.3)',
     }}>
-      <div style={{ fontSize: '0.78rem', fontWeight: 600, color: '#e2e8f0' }}>{label}</div>
-      <div style={{ fontSize: '0.72rem', color: '#94a3b8', marginTop: '4px' }}>
-        수출 점유율: <span style={{ color: '#38bdf8', fontWeight: 600 }}>{payload[0]?.value}%</span>
+      <div style={{ fontSize: '0.78rem', fontWeight: 600, color: 'var(--w-slate-200)' }}>{label}</div>
+      <div style={{ fontSize: '0.72rem', color: 'var(--w-slate-400)', marginTop: '4px' }}>
+        수출 점유율: <span style={{ color: 'var(--w-sky-400)', fontWeight: 600 }}>{payload[0]?.value}%</span>
       </div>
     </div>
   );
@@ -82,14 +82,14 @@ export default function SasKoreaMajorCompanies() {
 
                 <div style={{ marginTop: '10px', display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '6px' }}>
                   <div>
-                    <div style={{ fontSize: '0.65rem', color: '#64748b' }}>매출</div>
-                    <div style={{ fontSize: '0.82rem', fontWeight: 700, color: '#e2e8f0' }}>{c.revenue}</div>
+                    <div style={{ fontSize: '0.65rem', color: 'var(--w-slate-500)' }}>매출</div>
+                    <div style={{ fontSize: '0.82rem', fontWeight: 700, color: 'var(--w-slate-200)' }}>{c.revenue}</div>
                   </div>
                   <div>
-                    <div style={{ fontSize: '0.65rem', color: '#64748b' }}>영업이익</div>
+                    <div style={{ fontSize: '0.65rem', color: 'var(--w-slate-500)' }}>영업이익</div>
                     <div style={{
                       fontSize: '0.82rem', fontWeight: 700,
-                      color: c.opProfit.includes('적자') ? '#ef4444' : '#10b981',
+                      color: c.opProfit.includes('적자') ? 'var(--w-red-500)' : 'var(--w-emerald-500)',
                     }}>{c.opProfit}</div>
                   </div>
                 </div>
@@ -97,10 +97,10 @@ export default function SasKoreaMajorCompanies() {
                 {/* Tuna share bar */}
                 <div style={{ marginTop: '10px' }}>
                   <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '3px' }}>
-                    <span style={{ fontSize: '0.65rem', color: '#64748b' }}>참치 비중</span>
+                    <span style={{ fontSize: '0.65rem', color: 'var(--w-slate-500)' }}>참치 비중</span>
                     <span style={{ fontSize: '0.7rem', fontWeight: 600, color: c.color }}>{c.tunaShare}%</span>
                   </div>
-                  <div style={{ background: '#1a2442', borderRadius: '3px', height: '5px', overflow: 'hidden' }}>
+                  <div style={{ background: 'var(--w-navy-900)', borderRadius: '3px', height: '5px', overflow: 'hidden' }}>
                     <div style={{
                       width: `${c.tunaShare}%`, height: '100%',
                       background: `linear-gradient(90deg, ${c.color}, ${c.color}80)`,
@@ -111,11 +111,11 @@ export default function SasKoreaMajorCompanies() {
 
                 {c.exportShare > 0 && (
                   <div style={{
-                    marginTop: '8px', fontSize: '0.68rem', color: '#94a3b8',
+                    marginTop: '8px', fontSize: '0.68rem', color: 'var(--w-slate-400)',
                     display: 'flex', justifyContent: 'space-between',
                   }}>
                     <span>수출 점유율</span>
-                    <span style={{ fontWeight: 700, color: '#38bdf8' }}>{c.exportShare}%</span>
+                    <span style={{ fontWeight: 700, color: 'var(--w-sky-400)' }}>{c.exportShare}%</span>
                   </div>
                 )}
               </div>
@@ -125,7 +125,7 @@ export default function SasKoreaMajorCompanies() {
           {/* ── Export Market Share Bar Chart ── */}
           <div style={{ marginTop: '16px' }}>
             <div style={{
-              fontSize: '0.78rem', fontWeight: 600, color: '#94a3b8',
+              fontSize: '0.78rem', fontWeight: 600, color: 'var(--w-slate-400)',
               marginBottom: '8px', paddingLeft: '4px',
             }}>
               수출 시장 점유율 (Top 4)
@@ -145,7 +145,7 @@ export default function SasKoreaMajorCompanies() {
                     fontSize={11}
                     tickLine={false}
                     axisLine={false}
-                    stroke="#64748b"
+                    stroke="var(--w-slate-500)"
                   />
                   <YAxis
                     type="category"
@@ -153,7 +153,7 @@ export default function SasKoreaMajorCompanies() {
                     fontSize={11}
                     tickLine={false}
                     axisLine={false}
-                    stroke="#94a3b8"
+                    stroke="var(--w-slate-400)"
                     width={70}
                   />
                   <Tooltip content={<CustomBarTooltip />} />
@@ -166,7 +166,7 @@ export default function SasKoreaMajorCompanies() {
                     label={{
                       position: 'right',
                       fontSize: 11,
-                      fill: '#94a3b8',
+                      fill: 'var(--w-slate-400)',
                       formatter: (v: unknown) => `${chartFmt.toChartNumber(v)}%`,
                     }}
                   >

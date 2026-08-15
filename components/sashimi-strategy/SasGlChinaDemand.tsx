@@ -33,13 +33,13 @@ export default function SasGlChinaDemand() {
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '9px' }}>
             {STAT.map((s) => (
               <div key={s.label} style={{ background: `${s.color}0f`, border: `1px solid ${s.color}2e`, borderRadius: '10px', padding: '11px 12px', display: 'flex', flexDirection: 'column', gap: '2px' }}>
-                <span style={{ fontSize: '0.6rem', color: '#94a3b8' }}>{s.label}</span>
+                <span style={{ fontSize: '0.6rem', color: 'var(--w-slate-400)' }}>{s.label}</span>
                 <span style={{ fontSize: '1.35rem', fontWeight: 800, color: s.color }}>{s.value}</span>
-                <span style={{ fontSize: '0.55rem', color: '#64748b' }}>{s.sub}</span>
+                <span style={{ fontSize: '0.55rem', color: 'var(--w-slate-500)' }}>{s.sub}</span>
               </div>
             ))}
           </div>
-          <div style={{ fontSize: '0.62rem', color: '#64748b', lineHeight: 1.5, textAlign: 'center' }}>
+          <div style={{ fontSize: '0.62rem', color: 'var(--w-slate-500)', lineHeight: 1.5, textAlign: 'center' }}>
             수량 급증 ≫ 금액 급증 = 저가 냉동 주도 · 프리미엄 사시미(일식당 6만+개·세계 최대)는 고마진 진입 창구
           </div>
         </div>

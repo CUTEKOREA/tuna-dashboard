@@ -62,11 +62,11 @@ export default function KimDashboard() {
   const [activePart, setActivePart] = useState('P1');
 
   return (
-    <div style={{ padding: '0 1.5rem 3rem', color: '#f8fafc', minHeight: '100vh', fontFamily: "'Plus Jakarta Sans','Inter',sans-serif" }}>
+    <div style={{ padding: '0 1.5rem 3rem', color: 'var(--w-slate-50)', minHeight: '100vh', fontFamily: "'Plus Jakarta Sans','Inter',sans-serif" }}>
       {/* ═══ 데이터 출처 배너 (실데이터 v1) ═══ */}
       <div style={{ margin: '1rem 0 1.5rem', padding: '12px 16px', background: 'rgba(132,204,22,0.08)', border: '1px solid rgba(132,204,22,0.3)', borderLeft: `3px solid ${KIM_TO}`, borderRadius: '8px', fontSize: '0.82rem', color: '#d9f99d', lineHeight: 1.55 }}>
         ✅ <strong style={{ color: KIM_TO }}>실데이터 v1</strong> — 통계청·관세청/KATI·해양수산부·국립수산과학원·Grand View Research 검증 수치 반영(적대 출처검증 통과). 위젯 telemetry SYNCED + 실출처 표기.
-        <span style={{ color: '#94a3b8' }}> P3(물류·통관)은 관세청 KCS OpenAPI <strong style={{ color: KIM_TO }}>LIVE 연동</strong> — 마른김(HS 1212.21)·조미김(HS 2008.99.50.10) 분리 집계 + 대상국 비중·원초 vs 가공 단가. 실패 시 관세청 실수집 fallback.</span>
+        <span style={{ color: 'var(--w-slate-400)' }}> P3(물류·통관)은 관세청 KCS OpenAPI <strong style={{ color: KIM_TO }}>LIVE 연동</strong> — 마른김(HS 1212.21)·조미김(HS 2008.99.50.10) 분리 집계 + 대상국 비중·원초 vs 가공 단가. 실패 시 관세청 실수집 fallback.</span>
       </div>
 
       {/* ═══ Header ═══ */}
@@ -76,8 +76,8 @@ export default function KimDashboard() {
             <Waves size={24} color="#0a0f1f" />
           </div>
           <div>
-            <h1 style={{ margin: 0, fontSize: '1.6rem', fontWeight: 800, letterSpacing: '-0.5px', color: '#f8fafc' }}>🌿 김(Laver) 글로벌 밸류체인 대시보드</h1>
-            <p style={{ margin: 0, fontSize: '0.8rem', color: '#94a3b8' }}>[V4.2 S-Grade] 한국 수산식품 수출 1위 품목 · 세계 김 시장 70%+ 점유</p>
+            <h1 style={{ margin: 0, fontSize: '1.6rem', fontWeight: 800, letterSpacing: '-0.5px', color: 'var(--w-slate-50)' }}>🌿 김(Laver) 글로벌 밸류체인 대시보드</h1>
+            <p style={{ margin: 0, fontSize: '0.8rem', color: 'var(--w-slate-400)' }}>[V4.2 S-Grade] 한국 수산식품 수출 1위 품목 · 세계 김 시장 70%+ 점유</p>
           </div>
         </div>
       </header>
@@ -87,8 +87,8 @@ export default function KimDashboard() {
         {KPIS.map((kpi, idx) => (
           <div key={idx} style={{ background: '#11182f', border: '1px solid rgba(255,255,255,0.03)', borderRadius: '12px', padding: '1.2rem', position: 'relative', overflow: 'hidden' }}>
             <div style={{ position: 'absolute', top: '-15px', right: '-15px', width: '60px', height: '60px', borderRadius: '50%', background: `radial-gradient(circle,${kpi.color}40,transparent)`, pointerEvents: 'none' }} />
-            <span style={{ fontSize: '0.72rem', color: '#94a3b8', fontWeight: 600 }}>{kpi.title}</span>
-            <div style={{ fontSize: '1.4rem', fontWeight: 800, color: '#f8fafc', margin: '6px 0 4px' }}><AnimatedNumber value={kpi.value} /></div>
+            <span style={{ fontSize: '0.72rem', color: 'var(--w-slate-400)', fontWeight: 600 }}>{kpi.title}</span>
+            <div style={{ fontSize: '1.4rem', fontWeight: 800, color: 'var(--w-slate-50)', margin: '6px 0 4px' }}><AnimatedNumber value={kpi.value} /></div>
             <div style={{ fontSize: '0.68rem', color: kpi.color, fontWeight: 600 }}>
               <span style={{ background: `${kpi.color}20`, padding: '2px 5px', borderRadius: '4px', marginRight: '4px' }}>{kpi.trend}</span>{kpi.desc}
             </div>
@@ -118,8 +118,8 @@ export default function KimDashboard() {
           <div style={{ marginBottom: '1.5rem', display: 'flex', alignItems: 'center', gap: '0.8rem' }}>
             <div style={{ width: '4px', height: '28px', background: `linear-gradient(180deg,${sec.color},${sec.color}99)`, borderRadius: '2px' }} />
             <div>
-              <h2 style={{ margin: 0, fontSize: '1.2rem', fontWeight: 800, color: '#f8fafc' }}>{sec.title}</h2>
-              <p style={{ margin: '4px 0 0 0', fontSize: '0.8rem', color: '#94a3b8' }}>{sec.desc}</p>
+              <h2 style={{ margin: 0, fontSize: '1.2rem', fontWeight: 800, color: 'var(--w-slate-50)' }}>{sec.title}</h2>
+              <p style={{ margin: '4px 0 0 0', fontSize: '0.8rem', color: 'var(--w-slate-400)' }}>{sec.desc}</p>
             </div>
           </div>
           <div data-mobile-stack style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '1.5rem' }}>
@@ -142,8 +142,8 @@ export default function KimDashboard() {
                 chart={
                   <LineChart data={priceData} margin={{ top: 10, right: 20, left: 0, bottom: 0 }}>
                     <CartesianGrid strokeDasharray="3 3" stroke="rgba(140,170,255,0.12)" vertical={false} />
-                    <XAxis dataKey="p" stroke="#94a3b8" fontSize={11} tickFormatter={truncateXAxis} />
-                    <YAxis stroke="#94a3b8" fontSize={11} domain={[1000, 1700]} />
+                    <XAxis dataKey="p" stroke="var(--w-slate-400)" fontSize={11} tickFormatter={truncateXAxis} />
+                    <YAxis stroke="var(--w-slate-400)" fontSize={11} domain={[1000, 1700]} />
                     <Tooltip contentStyle={tip} formatter={(v) => [`${Number(v ?? 0).toLocaleString()}원/10장`, '소매가']} />
                     <Line type="monotone" dataKey="retail" name="마른김 소매가 (원/10장)" stroke="#84cc16" strokeWidth={2.5} dot={{ r: 4 }} />
                   </LineChart>
@@ -169,8 +169,8 @@ export default function KimDashboard() {
                     <AreaChart data={exportData} margin={{ top: 10, right: 20, left: -5, bottom: 0 }}>
                       <defs><linearGradient id="kimExp" x1="0" y1="0" x2="0" y2="1"><stop offset="5%" stopColor="#a3e635" stopOpacity={0.5} /><stop offset="95%" stopColor="#a3e635" stopOpacity={0.05} /></linearGradient></defs>
                       <CartesianGrid strokeDasharray="3 3" stroke="rgba(140,170,255,0.12)" vertical={false} />
-                      <XAxis dataKey="year" stroke="#94a3b8" fontSize={11} tickFormatter={truncateXAxis} />
-                      <YAxis stroke="#94a3b8" fontSize={11} tickFormatter={(v) => `$${v}M`} />
+                      <XAxis dataKey="year" stroke="var(--w-slate-400)" fontSize={11} tickFormatter={truncateXAxis} />
+                      <YAxis stroke="var(--w-slate-400)" fontSize={11} tickFormatter={(v) => `$${v}M`} />
                       <Tooltip contentStyle={tip} formatter={(v) => [`$${v}M`, '수출액']} />
                       <Area type="monotone" dataKey="usd" name="김 수출액 (백만 USD)" stroke="#65a30d" fill="url(#kimExp)" strokeWidth={2.5} />
                     </AreaChart>
@@ -198,11 +198,11 @@ export default function KimDashboard() {
                 chart={
                   <BarChart data={[{ k: '세계 평균', v: 0.52 }, { k: '한국 해역', v: 1.36 }]} layout="vertical" margin={{ top: 10, right: 30, left: 20, bottom: 0 }}>
                     <CartesianGrid strokeDasharray="3 3" stroke="rgba(140,170,255,0.12)" horizontal={false} />
-                    <XAxis type="number" stroke="#94a3b8" fontSize={11} tickFormatter={(v) => `+${v}℃`} />
-                    <YAxis type="category" dataKey="k" stroke="#94a3b8" fontSize={12} width={70} />
+                    <XAxis type="number" stroke="var(--w-slate-400)" fontSize={11} tickFormatter={(v) => `+${v}℃`} />
+                    <YAxis type="category" dataKey="k" stroke="var(--w-slate-400)" fontSize={12} width={70} />
                     <Tooltip contentStyle={tip} cursor={{ fill: 'rgba(255,255,255,0.04)' }} formatter={(v) => [`+${v}℃`, '상승폭']} />
                     <Bar dataKey="v" name="표층수온 상승폭 (℃)" radius={[0, 3, 3, 0]}>
-                      <Cell fill="#64748b" /><Cell fill="#f59e0b" />
+                      <Cell fill="var(--w-slate-500)" /><Cell fill="var(--w-amber-500)" />
                     </Bar>
                   </BarChart>
                 }

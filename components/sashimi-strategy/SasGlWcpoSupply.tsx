@@ -35,23 +35,23 @@ export default function SasGlWcpoSupply() {
       }}
       customBody={
         <div style={{ display: 'flex', flexDirection: 'column', gap: '10px', width: '100%' }}>
-          <div style={{ fontSize: '0.66rem', color: '#94a3b8', fontWeight: 600, textAlign: 'center' }}>WCPO 2024 어종별 어획 (천 톤) — 총 3,059천t</div>
+          <div style={{ fontSize: '0.66rem', color: 'var(--w-slate-400)', fontWeight: 600, textAlign: 'center' }}>WCPO 2024 어종별 어획 (천 톤) — 총 3,059천t</div>
           <div style={{ height: '185px', width: '100%' }}>
             <SafeResponsiveContainer width="100%" height="100%">
               <BarChart data={SPECIES} margin={{ top: 18, right: 16, left: 0, bottom: 0 }}>
                 <CartesianGrid strokeDasharray="3 3" opacity={0.15} vertical={false} />
-                <XAxis dataKey="sp" fontSize={10} tickLine={false} axisLine={false} stroke="#64748b" interval={0} />
-                <YAxis domain={[0, 2200]} tickFormatter={(v: unknown) => `${(chartFmt.toChartNumber(v) / 1000).toFixed(1)}M`} fontSize={10} tickLine={false} axisLine={false} stroke="#64748b" />
-                <Tooltip contentStyle={{ borderRadius: '8px', border: 'none', background: '#1a2442', color: '#e2e8f0' }} formatter={(v: unknown, _n: unknown, p: any) => [`${chartFmt.formatChartNumber(v)}천t (${p.payload.pct}%)`, '어획']} />
+                <XAxis dataKey="sp" fontSize={10} tickLine={false} axisLine={false} stroke="var(--w-slate-500)" interval={0} />
+                <YAxis domain={[0, 2200]} tickFormatter={(v: unknown) => `${(chartFmt.toChartNumber(v) / 1000).toFixed(1)}M`} fontSize={10} tickLine={false} axisLine={false} stroke="var(--w-slate-500)" />
+                <Tooltip contentStyle={{ borderRadius: '8px', border: 'none', background: 'var(--w-navy-900)', color: 'var(--w-slate-200)' }} formatter={(v: unknown, _n: unknown, p: any) => [`${chartFmt.formatChartNumber(v)}천t (${p.payload.pct}%)`, '어획']} />
                 <Bar dataKey="t" radius={[4, 4, 0, 0]} isAnimationActive={false}>
                   {SPECIES.map((d) => <Cell key={d.sp} fill={d.color} />)}
-                  <LabelList dataKey="pct" position="top" formatter={(v: unknown) => `${v}%`} fontSize={10.5} fill="#e2e8f0" />
+                  <LabelList dataKey="pct" position="top" formatter={(v: unknown) => `${v}%`} fontSize={10.5} fill="var(--w-slate-200)" />
                 </Bar>
               </BarChart>
             </SafeResponsiveContainer>
           </div>
-          <div style={{ textAlign: 'center', fontSize: '0.62rem', color: '#94a3b8' }}>
-            선망 <span style={{ color: '#38bdf8', fontWeight: 700 }}>70%</span> · 2024 사상 최대(+15%) → 원료가 하방 · 엘니뇨/라니냐 어장 이동 주의
+          <div style={{ textAlign: 'center', fontSize: '0.62rem', color: 'var(--w-slate-400)' }}>
+            선망 <span style={{ color: 'var(--w-sky-400)', fontWeight: 700 }}>70%</span> · 2024 사상 최대(+15%) → 원료가 하방 · 엘니뇨/라니냐 어장 이동 주의
           </div>
         </div>
       }

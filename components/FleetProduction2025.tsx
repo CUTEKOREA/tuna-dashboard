@@ -97,7 +97,7 @@ export default function FleetProduction2025() {
                       <span>{value.toLocaleString('ko-KR')} M/T · {formatPercent(share)}</span>
                     </div>
                     <div style={{ height: '6px', background: 'rgba(148,163,184,0.12)', borderRadius: '999px', overflow: 'hidden' }}>
-                      <div style={{ height: '100%', width: `${share}%`, minWidth: '3px', borderRadius: '999px', background: key === 'tunaPurseSeine' ? '#22d3ee' : '#64748b' }} />
+                      <div style={{ height: '100%', width: `${share}%`, minWidth: '3px', borderRadius: '999px', background: key === 'tunaPurseSeine' ? '#22d3ee' : 'var(--w-slate-500)' }} />
                     </div>
                   </div>
                 );
@@ -113,10 +113,10 @@ export default function FleetProduction2025() {
               const isSilla = company.companyKo === '신라교역';
               return (
                 <div key={company.companyKo} style={{ display: 'grid', gridTemplateColumns: '22px minmax(82px, 0.8fr) 2fr auto', gap: '8px', alignItems: 'center', fontSize: '0.76rem' }}>
-                  <span style={{ color: isSilla ? '#34d399' : 'rgba(255,255,255,0.42)', fontWeight: 700 }}>{index + 1}</span>
+                  <span style={{ color: isSilla ? 'var(--w-emerald-400)' : 'rgba(255,255,255,0.42)', fontWeight: 700 }}>{index + 1}</span>
                   <span style={{ color: isSilla ? '#6ee7b7' : 'rgba(255,255,255,0.78)', fontWeight: isSilla ? 700 : 500 }}>{company.companyKo}</span>
                   <div style={{ height: '8px', background: 'rgba(148,163,184,0.12)', borderRadius: '999px', overflow: 'hidden' }}>
-                    <div style={{ height: '100%', width: `${company.reportedTotalMt / rankedCompanies[0].reportedTotalMt * 100}%`, borderRadius: '999px', background: isSilla ? '#34d399' : '#475569' }} />
+                    <div style={{ height: '100%', width: `${company.reportedTotalMt / rankedCompanies[0].reportedTotalMt * 100}%`, borderRadius: '999px', background: isSilla ? 'var(--w-emerald-400)' : '#475569' }} />
                   </div>
                   <span style={{ color: 'rgba(255,255,255,0.68)', textAlign: 'right' }}>{company.reportedTotalMt.toLocaleString('ko-KR')} · {formatPercent(share)}</span>
                 </div>
@@ -133,7 +133,7 @@ export default function FleetProduction2025() {
         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '12px', flexWrap: 'wrap', marginBottom: '12px' }}>
           <h4 style={{ margin: 0, color: 'var(--text-primary)', fontSize: '0.96rem' }}>회사별 생산실적 전수표</h4>
           <label style={{ display: 'flex', alignItems: 'center', gap: '7px', padding: '7px 10px', borderRadius: '8px', border: '1px solid rgba(148,163,184,0.18)', background: 'rgba(2,6,23,0.36)' }}>
-            <Search size={14} style={{ color: '#94a3b8' }} />
+            <Search size={14} style={{ color: 'var(--w-slate-400)' }} />
             <span className="sr-only">회사 검색</span>
             <input
               value={query}
@@ -168,7 +168,7 @@ export default function FleetProduction2025() {
                     </td>
                     <td style={{ padding: '9px 8px', textAlign: 'right', color: 'var(--text-primary)', fontWeight: 700 }}>{company.reportedTotalMt.toLocaleString('ko-KR')} M/T</td>
                     <td style={{ padding: '9px 8px', color: 'rgba(255,255,255,0.62)' }}>{topFishery(company)}</td>
-                    <td style={{ padding: '9px 8px', textAlign: 'right', color: hasDifference ? '#fbbf24' : 'rgba(255,255,255,0.46)' }}>
+                    <td style={{ padding: '9px 8px', textAlign: 'right', color: hasDifference ? 'var(--w-amber-400)' : 'rgba(255,255,255,0.46)' }}>
                       {calculatedTotal.toLocaleString('ko-KR')} M/T{hasDifference ? ' *' : ''}
                     </td>
                   </tr>

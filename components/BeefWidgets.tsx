@@ -141,9 +141,9 @@ const CT = ({ active, payload, label }: any) => {
   if (!active || !payload?.length) return null;
   return (
     <div style={{ background: 'rgba(10, 16, 40, 0.95)', border: '1px solid rgba(255,255,255,0.2)', borderRadius: '8px', padding: '8px 12px' }}>
-      <p style={{ margin: 0, fontSize: '12px', fontWeight: 700, color: '#f8fafc' }}>{label}</p>
+      <p style={{ margin: 0, fontSize: '12px', fontWeight: 700, color: 'var(--w-slate-50)' }}>{label}</p>
       {payload.map((e: any, i: number) => (
-        <div key={i} style={{ display: 'flex', justifyContent: 'space-between', gap: '12px', fontSize: '11px', color: '#cbd5e1', marginTop: '4px' }}>
+        <div key={i} style={{ display: 'flex', justifyContent: 'space-between', gap: '12px', fontSize: '11px', color: 'var(--w-slate-300)', marginTop: '4px' }}>
           <span style={{ color: e.color }}>■ {e.name}</span>
           <strong>{typeof e.value === 'number' ? e.value.toLocaleString() : e.value}</strong>
         </div>
@@ -182,12 +182,12 @@ export function W1_ProductionTrend({ accent }: any) {
     source={source}>
     <ComposedChart data={productionTrend}>
       <ChartPatternDefs /><CartesianGrid strokeDasharray="3 3" stroke="rgba(140,170,255,0.12)" vertical={false} />
-      <XAxis dataKey="year" stroke="#64748b" tick={{ fontSize: 9, fill: '#64748b' }} />
-      <YAxis yAxisId="left" stroke="#64748b" tick={{ fontSize: 9 }} tickFormatter={v => v >= 1000 ? `${(v / 1000).toFixed(0)}K` : v} />
-      <YAxis yAxisId="right" orientation="right" stroke="#64748b" tick={{ fontSize: 9 }} />
+      <XAxis dataKey="year" stroke="var(--w-slate-500)" tick={{ fontSize: 9, fill: 'var(--w-slate-500)' }} />
+      <YAxis yAxisId="left" stroke="var(--w-slate-500)" tick={{ fontSize: 9 }} tickFormatter={v => v >= 1000 ? `${(v / 1000).toFixed(0)}K` : v} />
+      <YAxis yAxisId="right" orientation="right" stroke="var(--w-slate-500)" tick={{ fontSize: 9 }} />
       <RT content={<CT />} /><Legend verticalAlign="top" wrapperStyle={{ fontSize: '10px', paddingBottom: '10px' }} />
       <Bar yAxisId="left" dataKey="production" name="생산량 (천톤)" fill="#dc2626" radius={[4, 4, 0, 0]} fillOpacity={0.8} />
-      <Line yAxisId="right" type="monotone" dataKey="price" name="산지 가격 지수" stroke="#f59e0b" strokeWidth={2.5} dot={true} />
+      <Line yAxisId="right" type="monotone" dataKey="price" name="산지 가격 지수" stroke="var(--w-amber-500)" strokeWidth={2.5} dot={true} />
     </ComposedChart>
   </W>;
 }
@@ -203,8 +203,8 @@ export function W2_Top5Producers({ accent }: any) {
     strat="단일국 의존 리스크는 낮으나 브라질 BSE/벌목 환경 리스크는 EU 그린딜 규제 강화 시 즉시 발화 가능. 호주·미국 이중 헤지 권장."
     source={source}>
     <BarChart data={top5} layout="vertical"><ChartPatternDefs /><CartesianGrid strokeDasharray="3 3" stroke="rgba(140,170,255,0.12)" horizontal vertical={false} />
-      <XAxis type="number" stroke="#64748b" tick={{ fontSize: 9, fill: '#64748b' }} tickFormatter={v => v >= 1000 ? `${(v / 1000).toFixed(0)}K` : v} />
-      <YAxis type="category" dataKey="country" stroke="#64748b" tick={{ fontSize: 9, fill: '#94a3b8' }} width={70} />
+      <XAxis type="number" stroke="var(--w-slate-500)" tick={{ fontSize: 9, fill: 'var(--w-slate-500)' }} tickFormatter={v => v >= 1000 ? `${(v / 1000).toFixed(0)}K` : v} />
+      <YAxis type="category" dataKey="country" stroke="var(--w-slate-500)" tick={{ fontSize: 9, fill: 'var(--w-slate-400)' }} width={70} />
       <RT content={<CT />} /><Legend verticalAlign="top" wrapperStyle={{ fontSize: '10px', paddingBottom: '10px' }} />
       <Bar dataKey="production" name="생산량 (천톤)" radius={[0, 4, 4, 0]}>{top5.map((_, i) => {
         const props = getA11yBarProps(i);
@@ -227,13 +227,13 @@ export function W3_SlaughterUtil({ accent }: any) {
     strat="2025년 호주 공급 사이클 정점 진입. 호주산 장기 선도 계약 조기 체결로 단가 절감 기회(업계 추정 4-6%) 확보 검토."
     source={source}>
     <ComposedChart data={data}><ChartPatternDefs /><CartesianGrid strokeDasharray="3 3" stroke="rgba(140,170,255,0.12)" vertical={false} />
-      <XAxis dataKey="month" stroke="#64748b" tick={{ fontSize: 9, fill: '#64748b' }} />
-      <YAxis yAxisId="left" stroke="#64748b" tick={{ fontSize: 9 }} domain={[60, 100]} />
-      <YAxis yAxisId="right" orientation="right" stroke="#64748b" tick={{ fontSize: 9 }} domain={[300, 400]} />
+      <XAxis dataKey="month" stroke="var(--w-slate-500)" tick={{ fontSize: 9, fill: 'var(--w-slate-500)' }} />
+      <YAxis yAxisId="left" stroke="var(--w-slate-500)" tick={{ fontSize: 9 }} domain={[60, 100]} />
+      <YAxis yAxisId="right" orientation="right" stroke="var(--w-slate-500)" tick={{ fontSize: 9 }} domain={[300, 400]} />
       <RT content={<CT />} /><Legend verticalAlign="top" wrapperStyle={{ fontSize: '10px', paddingBottom: '10px' }} />
       <Bar yAxisId="left" dataKey="usUtil" name="미국 가동률 (%)" fill={A11Y_PALETTE[0]} radius={[4, 4, 0, 0]} />
       <Bar yAxisId="left" dataKey="auUtil" name="호주 가동률 (%)" fill={A11Y_PALETTE[1]} radius={[4, 4, 0, 0]} />
-      <Line yAxisId="right" type="monotone" dataKey="usCarcassKg" name="미국 도체중 (kg)" stroke="#f59e0b" strokeWidth={2} dot={{ r: 3 }} />
+      <Line yAxisId="right" type="monotone" dataKey="usCarcassKg" name="미국 도체중 (kg)" stroke="var(--w-amber-500)" strokeWidth={2} dot={{ r: 3 }} />
       <Line yAxisId="right" type="monotone" dataKey="auCarcassKg" name="호주 도체중 (kg)" stroke="#fb923c" strokeWidth={2} dot={{ r: 3 }} />
     </ComposedChart>
   </W>;
@@ -248,13 +248,13 @@ export function W4_FeedMargin({ accent }: any) {
     source="시카고상품거래소(CBOT) 옥수수·대두박 선물 + 미국 농업통계국(USDA NASS) Feeder Cattle">
     <ComposedChart data={D.feedMarginData}>
       <ChartPatternDefs /><CartesianGrid strokeDasharray="3 3" stroke="rgba(140,170,255,0.12)" vertical={false} />
-      <XAxis dataKey="quarter" stroke="#64748b" tick={{ fontSize: 9, fill: '#64748b' }} />
-      <YAxis yAxisId="left" stroke="#64748b" tick={{ fontSize: 9 }} />
-      <YAxis yAxisId="right" orientation="right" stroke="#64748b" tick={{ fontSize: 9 }} domain={[1, 3]} />
+      <XAxis dataKey="quarter" stroke="var(--w-slate-500)" tick={{ fontSize: 9, fill: 'var(--w-slate-500)' }} />
+      <YAxis yAxisId="left" stroke="var(--w-slate-500)" tick={{ fontSize: 9 }} />
+      <YAxis yAxisId="right" orientation="right" stroke="var(--w-slate-500)" tick={{ fontSize: 9 }} domain={[1, 3]} />
       <RT content={<CT />} /><Legend verticalAlign="top" wrapperStyle={{ fontSize: '10px', paddingBottom: '10px' }} />
-      <Line yAxisId="left" type="monotone" dataKey="cornIndex" name="옥수수 가격 지수" stroke="#f59e0b" strokeWidth={2.5} />
+      <Line yAxisId="left" type="monotone" dataKey="cornIndex" name="옥수수 가격 지수" stroke="var(--w-amber-500)" strokeWidth={2.5} />
       <Line yAxisId="left" type="monotone" dataKey="soyIndex" name="대두박 가격 지수" stroke="#fb923c" strokeWidth={2} strokeDasharray="5 5" />
-      <Bar yAxisId="right" dataKey="feederRatio" name="비육우/곡물 비율" fill="#dc2626" radius={[4, 4, 0, 0]}>{D.feedMarginData.map((e, i) => <Cell key={i} fill={e.feederRatio < 1.5 ? '#ef4444' : e.feederRatio > 2 ? '#10b981' : '#f59e0b'} />)}</Bar>
+      <Bar yAxisId="right" dataKey="feederRatio" name="비육우/곡물 비율" fill="#dc2626" radius={[4, 4, 0, 0]}>{D.feedMarginData.map((e, i) => <Cell key={i} fill={e.feederRatio < 1.5 ? 'var(--w-red-500)' : e.feederRatio > 2 ? 'var(--w-emerald-500)' : 'var(--w-amber-500)'} />)}</Bar>
     </ComposedChart>
   </W>;
 }
@@ -274,8 +274,8 @@ export function W5_TradeFlow({ accent }: any) {
     source={source}>
     <BarChart data={data} layout="vertical" margin={{ left: 5 }}>
       <ChartPatternDefs /><CartesianGrid strokeDasharray="3 3" stroke="rgba(140,170,255,0.12)" horizontal vertical={false} />
-      <XAxis type="number" stroke="#64748b" tick={{ fontSize: 9, fill: '#64748b' }} tickFormatter={v => `$${v.toLocaleString()}M`} />
-      <YAxis type="category" dataKey="route" stroke="#64748b" tick={{ fontSize: 9, fill: '#94a3b8' }} width={110} />
+      <XAxis type="number" stroke="var(--w-slate-500)" tick={{ fontSize: 9, fill: 'var(--w-slate-500)' }} tickFormatter={v => `$${v.toLocaleString()}M`} />
+      <YAxis type="category" dataKey="route" stroke="var(--w-slate-500)" tick={{ fontSize: 9, fill: 'var(--w-slate-400)' }} width={110} />
       <RT content={<CT />} /><Legend verticalAlign="top" wrapperStyle={{ fontSize: '10px', paddingBottom: '10px' }} />
       <Bar dataKey="value" name="무역액 (백만 달러)" radius={[0, 4, 4, 0]}>{data.map((_, i) => <Cell key={i} fill={COLORS[i]} />)}</Bar>
     </BarChart>
@@ -294,8 +294,8 @@ export function W6_KoreaImports({ accent }: any) {
     source={source}>
     <BarChart data={data} layout="vertical">
       <ChartPatternDefs /><CartesianGrid strokeDasharray="3 3" stroke="rgba(140,170,255,0.12)" horizontal vertical={false} />
-      <XAxis type="number" stroke="#64748b" tick={{ fontSize: 9, fill: '#64748b' }} tickFormatter={v => v >= 1000 ? `${(v / 1000).toFixed(0)}K` : v} />
-      <YAxis type="category" dataKey="country" stroke="#64748b" tick={{ fontSize: 9, fill: '#94a3b8' }} width={70} />
+      <XAxis type="number" stroke="var(--w-slate-500)" tick={{ fontSize: 9, fill: 'var(--w-slate-500)' }} tickFormatter={v => v >= 1000 ? `${(v / 1000).toFixed(0)}K` : v} />
+      <YAxis type="category" dataKey="country" stroke="var(--w-slate-500)" tick={{ fontSize: 9, fill: 'var(--w-slate-400)' }} width={70} />
       <RT content={<CT />} /><Legend verticalAlign="top" wrapperStyle={{ fontSize: '10px', paddingBottom: '10px' }} />
       <Bar dataKey="volume" name="수입량 (톤)" radius={[0, 4, 4, 0]}>{data.map((_, i) => <Cell key={i} fill={COLORS[i]} />)}</Bar>
     </BarChart>
@@ -317,12 +317,12 @@ export function W7_KoreaSupply({ accent }: any) {
     source={source}>
     <ComposedChart data={data}>
       <ChartPatternDefs /><CartesianGrid strokeDasharray="3 3" stroke="rgba(140,170,255,0.12)" vertical={false} />
-      <XAxis dataKey="year" stroke="#64748b" tick={{ fontSize: 9, fill: '#64748b' }} />
-      <YAxis yAxisId="left" stroke="#64748b" tick={{ fontSize: 9 }} />
-      <YAxis yAxisId="right" orientation="right" stroke="#64748b" tick={{ fontSize: 9 }} domain={[10, 16]} />
+      <XAxis dataKey="year" stroke="var(--w-slate-500)" tick={{ fontSize: 9, fill: 'var(--w-slate-500)' }} />
+      <YAxis yAxisId="left" stroke="var(--w-slate-500)" tick={{ fontSize: 9 }} />
+      <YAxis yAxisId="right" orientation="right" stroke="var(--w-slate-500)" tick={{ fontSize: 9 }} domain={[10, 16]} />
       <RT content={<CT />} /><Legend verticalAlign="top" wrapperStyle={{ fontSize: '10px', paddingBottom: '10px' }} />
       <Bar yAxisId="left" dataKey="production" name="국내 생산 (천톤)" fill="#dc2626" radius={[4, 4, 0, 0]} />
-      <Bar yAxisId="left" dataKey="imports" name="수입 (천톤)" fill="#f59e0b" radius={[4, 4, 0, 0]} />
+      <Bar yAxisId="left" dataKey="imports" name="수입 (천톤)" fill="var(--w-amber-500)" radius={[4, 4, 0, 0]} />
       <Line yAxisId="right" type="monotone" dataKey="perCapita" name="1인당 소비 (kg)" stroke="#fb923c" strokeWidth={2.5} dot={{ r: 3 }} />
     </ComposedChart>
   </W>;
@@ -352,11 +352,11 @@ export function W8_PriceGap({ accent }: any) {
     strat="한우는 명절·선물 프리미엄 채널에만 집중, 일반 외식 B2B는 호주산 위주로 매입. 호주산 단가 변동성 헤지 위해 6개월 선도 매입 계약."
     source={source}>
     <LineChart data={data}><CartesianGrid strokeDasharray="3 3" stroke="rgba(140,170,255,0.12)" vertical={false} />
-      <XAxis dataKey="month" stroke="#64748b" tick={{ fontSize: 9, fill: '#64748b' }} />
-      <YAxis stroke="#64748b" tick={{ fontSize: 9 }} tickFormatter={v => `${(v / 1000).toFixed(0)}K`} />
+      <XAxis dataKey="month" stroke="var(--w-slate-500)" tick={{ fontSize: 9, fill: 'var(--w-slate-500)' }} />
+      <YAxis stroke="var(--w-slate-500)" tick={{ fontSize: 9 }} tickFormatter={v => `${(v / 1000).toFixed(0)}K`} />
       <RT content={<CT />} /><Legend verticalAlign="top" wrapperStyle={{ fontSize: '10px', paddingBottom: '10px' }} />
       <Line type="monotone" dataKey="hanwoo" name="한우 1등급" stroke="#dc2626" strokeWidth={3} dot={{ r: 4 }} />
-      {hasUs && <Line type="monotone" dataKey="usImport" name="미국산 수입" stroke="#f59e0b" strokeWidth={2} dot={{ r: 3 }} />}
+      {hasUs && <Line type="monotone" dataKey="usImport" name="미국산 수입" stroke="var(--w-amber-500)" strokeWidth={2} dot={{ r: 3 }} />}
       {hasAu && <Line type="monotone" dataKey="auImport" name="호주산 수입" stroke="#fb923c" strokeWidth={2} dot={{ r: 3 }} />}
     </LineChart>
   </W>;
@@ -371,13 +371,13 @@ export function W9_DiseaseRisk({ accent }: any) {
     source="세계동물보건기구(WOAH) 동물보건정보시스템(WAHIS)">
     <ScatterChart margin={{ top: 20, right: 20, bottom: 20, left: 20 }}>
       <CartesianGrid strokeDasharray="3 3" stroke="rgba(140,170,255,0.12)" />
-      <XAxis type="number" dataKey="outbreaks" name="발병 건수" stroke="#64748b" tick={{ fontSize: 9 }} label={{ value: '2018-2024 발병 건수', position: 'insideBottom', offset: -5, fill: '#94a3b8', fontSize: 10 }} />
-      <YAxis type="number" dataKey="exportImpact" name="수출 영향도(%)" stroke="#64748b" tick={{ fontSize: 9 }} label={{ value: '수출 영향도 (%)', angle: -90, position: 'insideLeft', fill: '#94a3b8', fontSize: 10 }} />
+      <XAxis type="number" dataKey="outbreaks" name="발병 건수" stroke="var(--w-slate-500)" tick={{ fontSize: 9 }} label={{ value: '2018-2024 발병 건수', position: 'insideBottom', offset: -5, fill: 'var(--w-slate-400)', fontSize: 10 }} />
+      <YAxis type="number" dataKey="exportImpact" name="수출 영향도(%)" stroke="var(--w-slate-500)" tick={{ fontSize: 9 }} label={{ value: '수출 영향도 (%)', angle: -90, position: 'insideLeft', fill: 'var(--w-slate-400)', fontSize: 10 }} />
       <ZAxis range={[200, 800]} />
       <RT content={<CT />} cursor={{ strokeDasharray: '3 3' }} />
       <Legend verticalAlign="top" wrapperStyle={{ fontSize: '10px', paddingBottom: '10px' }} />
       <Scatter name="국가별 리스크" data={D.diseaseRiskData} fill="#dc2626">
-        {D.diseaseRiskData.map((e, i) => <Cell key={i} fill={e.exportImpact > 60 ? '#ef4444' : e.exportImpact > 30 ? '#f59e0b' : '#10b981'} />)}
+        {D.diseaseRiskData.map((e, i) => <Cell key={i} fill={e.exportImpact > 60 ? 'var(--w-red-500)' : e.exportImpact > 30 ? 'var(--w-amber-500)' : 'var(--w-emerald-500)'} />)}
       </Scatter>
     </ScatterChart>
   </W>;
@@ -392,10 +392,10 @@ export function W10_CarbonFootprint({ accent }: any) {
     source="식량농업기구(FAO) Livestock Environmental Assessment + Poore & Nemecek(2018) Science 360:987">
     <BarChart data={D.carbonFootprintData} layout="vertical">
       <ChartPatternDefs /><CartesianGrid strokeDasharray="3 3" stroke="rgba(140,170,255,0.12)" horizontal vertical={false} />
-      <XAxis type="number" stroke="#64748b" tick={{ fontSize: 9, fill: '#64748b' }} />
-      <YAxis type="category" dataKey="category" stroke="#64748b" tick={{ fontSize: 9, fill: '#94a3b8' }} width={90} />
+      <XAxis type="number" stroke="var(--w-slate-500)" tick={{ fontSize: 9, fill: 'var(--w-slate-500)' }} />
+      <YAxis type="category" dataKey="category" stroke="var(--w-slate-500)" tick={{ fontSize: 9, fill: 'var(--w-slate-400)' }} width={90} />
       <RT content={<CT />} /><Legend verticalAlign="top" wrapperStyle={{ fontSize: '10px', paddingBottom: '10px' }} />
-      <Bar dataKey="carbon" name="CO2e (kg/kg 제품)" radius={[0, 4, 4, 0]}>{D.carbonFootprintData.map((e, i) => <Cell key={i} fill={e.carbon > 50 ? '#dc2626' : e.carbon > 10 ? '#f59e0b' : '#10b981'} />)}</Bar>
+      <Bar dataKey="carbon" name="CO2e (kg/kg 제품)" radius={[0, 4, 4, 0]}>{D.carbonFootprintData.map((e, i) => <Cell key={i} fill={e.carbon > 50 ? '#dc2626' : e.carbon > 10 ? 'var(--w-amber-500)' : 'var(--w-emerald-500)'} />)}</Bar>
     </BarChart>
   </W>;
 }
@@ -409,12 +409,12 @@ export function W11_Premium({ accent }: any) {
     source="미국 농업마케팅서비스(USDA AMS) Retail Lamb·Beef Report + 닐슨(Nielsen) Premium Meat Tracker 2023">
     <ComposedChart data={D.premiumData}>
       <ChartPatternDefs /><CartesianGrid strokeDasharray="3 3" stroke="rgba(140,170,255,0.12)" vertical={false} />
-      <XAxis dataKey="segment" stroke="#64748b" tick={{ fontSize: 8, fill: '#64748b' }} angle={-15} textAnchor="end" height={70} interval={0} />
-      <YAxis yAxisId="left" stroke="#64748b" tick={{ fontSize: 9 }} tickFormatter={v => `$${v}`} />
-      <YAxis yAxisId="right" orientation="right" stroke="#64748b" tick={{ fontSize: 9 }} domain={[0, 100]} tickFormatter={v => `${v}%`} />
+      <XAxis dataKey="segment" stroke="var(--w-slate-500)" tick={{ fontSize: 8, fill: 'var(--w-slate-500)' }} angle={-15} textAnchor="end" height={70} interval={0} />
+      <YAxis yAxisId="left" stroke="var(--w-slate-500)" tick={{ fontSize: 9 }} tickFormatter={v => `$${v}`} />
+      <YAxis yAxisId="right" orientation="right" stroke="var(--w-slate-500)" tick={{ fontSize: 9 }} domain={[0, 100]} tickFormatter={v => `${v}%`} />
       <RT content={<CT />} /><Legend verticalAlign="top" wrapperStyle={{ fontSize: '10px', paddingBottom: '10px' }} />
       <Bar yAxisId="left" dataKey="price" name="평균 소매가 (달러/kg)" fill="#dc2626" radius={[4, 4, 0, 0]} />
-      <Line yAxisId="right" type="monotone" dataKey="share" name="점유율 (%)" stroke="#f59e0b" strokeWidth={2.5} dot={{ r: 4 }} />
+      <Line yAxisId="right" type="monotone" dataKey="share" name="점유율 (%)" stroke="var(--w-amber-500)" strokeWidth={2.5} dot={{ r: 4 }} />
     </ComposedChart>
   </W>;
 }

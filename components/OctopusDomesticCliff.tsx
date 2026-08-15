@@ -46,15 +46,15 @@ export default function OctopusDomesticCliff() {
           <ChartPatternDefs />
           <defs>
             <linearGradient id="koreaCatchGradient" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0%" stopColor="#8b5cf6" stopOpacity={0.6} />
-              <stop offset="100%" stopColor="#8b5cf6" stopOpacity={0.05} />
+              <stop offset="0%" stopColor="var(--w-violet-500)" stopOpacity={0.6} />
+              <stop offset="100%" stopColor="var(--w-violet-500)" stopOpacity={0.05} />
             </linearGradient>
           </defs>
           <CartesianGrid strokeDasharray="3 3" stroke="rgba(140,170,255,0.10)" vertical={false} />
           <XAxis dataKey="year" stroke="rgba(255,255,255,0.3)" tick={{ fill: 'rgba(255,255,255,0.5)', fontSize: 10 }} />
-          <YAxis stroke="rgba(255,255,255,0.2)" tickFormatter={(v) => `${(v / 1000).toFixed(0)}k`} tick={{ fill: '#8b5cf6', fontSize: 10 }} />
+          <YAxis stroke="rgba(255,255,255,0.2)" tickFormatter={(v) => `${(v / 1000).toFixed(0)}k`} tick={{ fill: 'var(--w-violet-500)', fontSize: 10 }} />
           <Tooltip contentStyle={tooltipStyle} formatter={(val: any) => [`${Number(val).toLocaleString()} 톤`, '한국 문어류 어획']} />
-          <Area type="monotone" dataKey="korea" name="한국 문어류 어획" stroke="#8b5cf6" strokeWidth={2.5} fill="url(#koreaCatchGradient)" />
+          <Area type="monotone" dataKey="korea" name="한국 문어류 어획" stroke="var(--w-violet-500)" strokeWidth={2.5} fill="url(#koreaCatchGradient)" />
         </AreaChart>
       </SafeResponsiveContainer>
     </div>
@@ -66,11 +66,11 @@ export default function OctopusDomesticCliff() {
         <ComposedChart data={productionSeries} margin={{ top: 16, right: 20, left: -10, bottom: 5 }}>
           <CartesianGrid strokeDasharray="3 3" stroke="rgba(140,170,255,0.10)" vertical={false} />
           <XAxis dataKey="period" stroke="rgba(255,255,255,0.3)" tick={{ fill: 'rgba(255,255,255,0.5)', fontSize: 11 }} />
-          <YAxis stroke="rgba(255,255,255,0.2)" tickFormatter={(v) => `${v}천톤`} tick={{ fill: '#ef4444', fontSize: 10 }} domain={[0, 7]} />
+          <YAxis stroke="rgba(255,255,255,0.2)" tickFormatter={(v) => `${v}천톤`} tick={{ fill: 'var(--w-red-500)', fontSize: 10 }} domain={[0, 7]} />
           <Tooltip contentStyle={tooltipStyle} formatter={(val: any) => [`${val}천 톤`, '국내 생산']} />
           <Bar dataKey="kt" name="국내 생산">
             {productionSeries.map((d, i) => (
-              <Cell key={i} fill={i === 0 ? '#a78bfa' : '#ef4444'} opacity={0.85} />
+              <Cell key={i} fill={i === 0 ? '#a78bfa' : 'var(--w-red-500)'} opacity={0.85} />
             ))}
           </Bar>
         </ComposedChart>
@@ -88,7 +88,7 @@ export default function OctopusDomesticCliff() {
           <Tooltip contentStyle={tooltipStyle} formatter={(val: any) => [`${Number(val).toLocaleString()} 톤`, '2022 어획']} />
           <Bar dataKey="value" name="2022 어획" radius={[0, 4, 4, 0]}>
             {globalShare2022.map((d, i) => (
-              <Cell key={i} fill={d.country === '한국' ? '#ef4444' : '#6366f1'} opacity={d.country === '한국' ? 0.95 : 0.7} />
+              <Cell key={i} fill={d.country === '한국' ? 'var(--w-red-500)' : '#6366f1'} opacity={d.country === '한국' ? 0.95 : 0.7} />
             ))}
           </Bar>
         </ComposedChart>
@@ -140,13 +140,13 @@ export default function OctopusDomesticCliff() {
           {policy.map((p, i) => (
             <div key={i} style={{
               padding: '8px 10px',
-              borderLeft: `3px solid ${p.year === '2025' ? '#ef4444' : p.year === '2026' ? '#10b981' : '#6366f1'}`,
+              borderLeft: `3px solid ${p.year === '2025' ? 'var(--w-red-500)' : p.year === '2026' ? 'var(--w-emerald-500)' : '#6366f1'}`,
               background: 'rgba(99, 102, 241, 0.05)',
               borderRadius: '4px',
               fontSize: '0.75rem',
             }}>
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', gap: '8px', marginBottom: '2px' }}>
-                <span style={{ fontWeight: 700, color: p.year === '2025' ? '#ef4444' : p.year === '2026' ? '#10b981' : '#a78bfa' }}>{p.year}</span>
+                <span style={{ fontWeight: 700, color: p.year === '2025' ? 'var(--w-red-500)' : p.year === '2026' ? 'var(--w-emerald-500)' : '#a78bfa' }}>{p.year}</span>
                 <span style={{ fontSize: '0.65rem', color: 'rgba(255,255,255,0.4)' }}>{p.source}</span>
               </div>
               <div style={{ color: 'rgba(255,255,255,0.75)', lineHeight: 1.45 }}>{p.event}</div>

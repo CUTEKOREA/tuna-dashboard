@@ -71,7 +71,7 @@ export function PollockPriceForecastChart() {
                 </div>
                 <div style={{ flex: 1, background: 'rgba(239,68,68,0.08)', borderRadius: '8px', padding: '8px', textAlign: 'center' }}>
                   <div style={{ fontSize: '0.6rem', color: 'var(--text-secondary)' }}>추세</div>
-                  <div style={{ fontSize: '1rem', fontWeight: 700, color: productData?.trend === 'UPWARD' || productData?.trend === 'STRUCTURAL_UPWARD' ? '#ef4444' : '#22c55e' }}>
+                  <div style={{ fontSize: '1rem', fontWeight: 700, color: productData?.trend === 'UPWARD' || productData?.trend === 'STRUCTURAL_UPWARD' ? 'var(--w-red-500)' : '#22c55e' }}>
                     {productData?.trend === 'UPWARD' ? '▲ 상승' : productData?.trend === 'STRUCTURAL_UPWARD' ? '▲▲ 구조적 상승' : productData?.trend === 'PREMIUM_GROWTH' ? '⭐ 프리미엄' : '→ 안정'}
                   </div>
                   <div style={{ fontSize: '0.6rem', color: '#fca5a5' }}>{productData?.risk_alert?.slice(0, 20)}...</div>
@@ -86,14 +86,14 @@ export function PollockPriceForecastChart() {
                   <Area type="monotone" dataKey="upper" stroke="transparent" fill="#3b82f622" name="상한 밴드" />
                   <Area type="monotone" dataKey="lower" stroke="transparent" fill="#1a1a2e" name="하한 밴드" />
                   <Line type="monotone" dataKey="actual" stroke="#60a5fa" strokeWidth={2} dot={{ fill: '#60a5fa', r: 4 }} name="실제 가격" />
-                  <Line type="monotone" dataKey="predicted" stroke="#f59e0b" strokeWidth={2} strokeDasharray="5 3" dot={{ fill: '#f59e0b', r: 3 }} name="예측 가격" />
+                  <Line type="monotone" dataKey="predicted" stroke="var(--w-amber-500)" strokeWidth={2} strokeDasharray="5 3" dot={{ fill: 'var(--w-amber-500)', r: 3 }} name="예측 가격" />
                 </AreaChart>
               </SafeResponsiveContainer>
               <div style={{ display: 'grid', gap: '4px', marginTop: '8px' }}>
                 {(productData?.forecast || []).slice(0, 3).map((f: any, i: number) => (
                   <div key={i} style={{ display: 'flex', alignItems: 'center', gap: '8px', padding: '4px 8px', background: 'rgba(255,255,255,0.03)', borderRadius: '6px', fontSize: '0.68rem' }}>
                     <span style={{ color: 'var(--text-secondary)', fontFamily: 'monospace', width: '60px' }}>{f.period}</span>
-                    <span style={{ fontWeight: 700, color: '#f59e0b', width: '50px' }}>${f.predicted?.toLocaleString()}</span>
+                    <span style={{ fontWeight: 700, color: 'var(--w-amber-500)', width: '50px' }}>${f.predicted?.toLocaleString()}</span>
                     <span style={{ flex: 1, color: 'var(--text-secondary)' }}>{f.driver}</span>
                   </div>
                 ))}
@@ -133,7 +133,7 @@ export function PollockScenarioSimulator() {
         <>
           <div style={{ display: 'grid', gap: '6px' }}>
             {scenarios.map((s: any, i: number) => (
-              <div key={i} style={{ display: 'flex', alignItems: 'center', gap: '8px', padding: '8px 10px', background: i === 0 ? 'rgba(59,130,246,0.08)' : 'rgba(255,255,255,0.03)', borderRadius: '8px', borderLeft: `3px solid ${s.margin_pct > 12 ? '#22c55e' : s.margin_pct > 7 ? '#f59e0b' : '#ef4444'}` }}>
+              <div key={i} style={{ display: 'flex', alignItems: 'center', gap: '8px', padding: '8px 10px', background: i === 0 ? 'rgba(59,130,246,0.08)' : 'rgba(255,255,255,0.03)', borderRadius: '8px', borderLeft: `3px solid ${s.margin_pct > 12 ? '#22c55e' : s.margin_pct > 7 ? 'var(--w-amber-500)' : 'var(--w-red-500)'}` }}>
                 <div style={{ flex: 2 }}>
                   <div style={{ fontSize: '0.72rem', fontWeight: 600, color: 'var(--text-primary)' }}>{s.name}</div>
                   <div style={{ fontSize: '0.6rem', color: 'var(--text-secondary)' }}>확률: {s.probability}%</div>
@@ -143,11 +143,11 @@ export function PollockScenarioSimulator() {
                   <div style={{ fontSize: '0.55rem', color: 'var(--text-secondary)' }}>명태 FOB</div>
                 </div>
                 <div style={{ textAlign: 'center', flex: 1 }}>
-                  <div style={{ fontSize: '0.8rem', fontWeight: 700, color: '#8b5cf6', fontFamily: 'monospace' }}>${s.surimi_cif}</div>
+                  <div style={{ fontSize: '0.8rem', fontWeight: 700, color: 'var(--w-violet-500)', fontFamily: 'monospace' }}>${s.surimi_cif}</div>
                   <div style={{ fontSize: '0.55rem', color: 'var(--text-secondary)' }}>수리미 CIF</div>
                 </div>
                 <div style={{ textAlign: 'center', flex: 1 }}>
-                  <div style={{ fontSize: '0.8rem', fontWeight: 700, color: s.margin_pct > 12 ? '#22c55e' : s.margin_pct > 7 ? '#f59e0b' : '#ef4444', fontFamily: 'monospace' }}>{s.margin_pct}%</div>
+                  <div style={{ fontSize: '0.8rem', fontWeight: 700, color: s.margin_pct > 12 ? '#22c55e' : s.margin_pct > 7 ? 'var(--w-amber-500)' : 'var(--w-red-500)', fontFamily: 'monospace' }}>{s.margin_pct}%</div>
                   <div style={{ fontSize: '0.55rem', color: 'var(--text-secondary)' }}>마진</div>
                 </div>
               </div>

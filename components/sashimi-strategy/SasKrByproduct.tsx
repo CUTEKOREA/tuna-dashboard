@@ -37,23 +37,23 @@ export default function SasKrByproduct() {
       }}
       customBody={
         <div style={{ display: 'flex', flexDirection: 'column', gap: '10px', width: '100%' }}>
-          <div style={{ fontSize: '0.66rem', color: '#94a3b8', fontWeight: 600, textAlign: 'center' }}>참치 원물 매스밸런스 (%) — 제품 55% vs 부산물 45%</div>
+          <div style={{ fontSize: '0.66rem', color: 'var(--w-slate-400)', fontWeight: 600, textAlign: 'center' }}>참치 원물 매스밸런스 (%) — 제품 55% vs 부산물 45%</div>
           <div style={{ height: '185px', width: '100%' }}>
             <SafeResponsiveContainer width="100%" height="100%">
               <BarChart data={BAL} margin={{ top: 18, right: 16, left: 0, bottom: 0 }}>
                 <CartesianGrid strokeDasharray="3 3" opacity={0.15} vertical={false} />
-                <XAxis dataKey="part" fontSize={9} tickLine={false} axisLine={false} stroke="#64748b" interval={0} angle={-10} textAnchor="end" height={40} />
-                <YAxis domain={[0, 60]} tickFormatter={(v: unknown) => `${v}%`} fontSize={10} tickLine={false} axisLine={false} stroke="#64748b" />
-                <Tooltip contentStyle={{ borderRadius: '8px', border: 'none', background: '#1a2442', color: '#e2e8f0' }} formatter={(v: unknown) => [`${v}%`, '비중']} />
+                <XAxis dataKey="part" fontSize={9} tickLine={false} axisLine={false} stroke="var(--w-slate-500)" interval={0} angle={-10} textAnchor="end" height={40} />
+                <YAxis domain={[0, 60]} tickFormatter={(v: unknown) => `${v}%`} fontSize={10} tickLine={false} axisLine={false} stroke="var(--w-slate-500)" />
+                <Tooltip contentStyle={{ borderRadius: '8px', border: 'none', background: 'var(--w-navy-900)', color: 'var(--w-slate-200)' }} formatter={(v: unknown) => [`${v}%`, '비중']} />
                 <Bar dataKey="pct" radius={[4, 4, 0, 0]} isAnimationActive={false}>
                   {BAL.map((d) => <Cell key={d.part} fill={d.color} />)}
-                  <LabelList dataKey="pct" position="top" formatter={(v: unknown) => `${v}%`} fontSize={10.5} fill="#e2e8f0" />
+                  <LabelList dataKey="pct" position="top" formatter={(v: unknown) => `${v}%`} fontSize={10.5} fill="var(--w-slate-200)" />
                 </Bar>
               </BarChart>
             </SafeResponsiveContainer>
           </div>
-          <div style={{ textAlign: 'center', fontSize: '0.62rem', color: '#94a3b8' }}>
-            동원 창원 가공장 <span style={{ color: '#10b981', fontWeight: 700 }}>약 200톤/일</span> 처리 — 자숙액→참치액·콜라겐·어골칼슘 밸류업 여지(부산물 회계 부재로 잠재 마진 미가시화)
+          <div style={{ textAlign: 'center', fontSize: '0.62rem', color: 'var(--w-slate-400)' }}>
+            동원 창원 가공장 <span style={{ color: 'var(--w-emerald-500)', fontWeight: 700 }}>약 200톤/일</span> 처리 — 자숙액→참치액·콜라겐·어골칼슘 밸류업 여지(부산물 회계 부재로 잠재 마진 미가시화)
           </div>
         </div>
       }

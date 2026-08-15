@@ -38,23 +38,23 @@ export default function SasUkSupplierTariff() {
             <SafeResponsiveContainer width="100%" height="100%">
               <BarChart data={SUPPLIERS} margin={{ top: 18, right: 16, left: 0, bottom: 0 }}>
                 <CartesianGrid strokeDasharray="3 3" opacity={0.15} vertical={false} />
-                <XAxis dataKey="sup" fontSize={10} tickLine={false} axisLine={false} stroke="#64748b" interval={0} />
-                <YAxis domain={[0, 40]} tickFormatter={(v: unknown) => `${v}%`} fontSize={11} tickLine={false} axisLine={false} stroke="#64748b" />
+                <XAxis dataKey="sup" fontSize={10} tickLine={false} axisLine={false} stroke="var(--w-slate-500)" interval={0} />
+                <YAxis domain={[0, 40]} tickFormatter={(v: unknown) => `${v}%`} fontSize={11} tickLine={false} axisLine={false} stroke="var(--w-slate-500)" />
                 <Tooltip
-                  contentStyle={{ borderRadius: '8px', border: 'none', background: '#1a2442', color: '#e2e8f0' }}
+                  contentStyle={{ borderRadius: '8px', border: 'none', background: 'var(--w-navy-900)', color: 'var(--w-slate-200)' }}
                   formatter={(v: unknown, _n: unknown, p: any) => [`${v}% · 관세 ${p.payload.tariff}`, '수입 점유']}
                 />
                 <Bar dataKey="share" radius={[4, 4, 0, 0]} isAnimationActive={false}>
                   {SUPPLIERS.map((d) => <Cell key={d.sup} fill={d.color} />)}
-                  <LabelList dataKey="share" position="top" formatter={(v: unknown) => `${v}%`} fontSize={11} fill="#e2e8f0" />
+                  <LabelList dataKey="share" position="top" formatter={(v: unknown) => `${v}%`} fontSize={11} fill="var(--w-slate-200)" />
                 </Bar>
               </BarChart>
             </SafeResponsiveContainer>
           </div>
-          <div style={{ display: 'flex', justifyContent: 'center', gap: '14px', fontSize: '0.64rem', color: '#94a3b8', flexWrap: 'wrap' }}>
-            <span><span style={{ color: '#10b981' }}>●</span> 무관세 특혜국(DCTS·EPA) 57%</span>
-            <span><span style={{ color: '#ef4444' }}>●</span> 태국 MFN 20% 핸디캡</span>
-            <span style={{ color: '#64748b' }}>캔수입 물량 102K톤 · +16% YoY</span>
+          <div style={{ display: 'flex', justifyContent: 'center', gap: '14px', fontSize: '0.64rem', color: 'var(--w-slate-400)', flexWrap: 'wrap' }}>
+            <span><span style={{ color: 'var(--w-emerald-500)' }}>●</span> 무관세 특혜국(DCTS·EPA) 57%</span>
+            <span><span style={{ color: 'var(--w-red-500)' }}>●</span> 태국 MFN 20% 핸디캡</span>
+            <span style={{ color: 'var(--w-slate-500)' }}>캔수입 물량 102K톤 · +16% YoY</span>
           </div>
         </div>
       }

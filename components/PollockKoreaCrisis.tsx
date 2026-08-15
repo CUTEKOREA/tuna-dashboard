@@ -32,17 +32,17 @@ export default function PollockKoreaCrisis() {
               <stop offset="95%" stopColor="var(--color-success)" stopOpacity={0} />
             </linearGradient>
             <linearGradient id="colorImport" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="5%" stopColor="#8b5cf6" stopOpacity={0.8} />
-              <stop offset="95%" stopColor="#8b5cf6" stopOpacity={0} />
+              <stop offset="5%" stopColor="var(--w-violet-500)" stopOpacity={0.8} />
+              <stop offset="95%" stopColor="var(--w-violet-500)" stopOpacity={0} />
             </linearGradient>
           </defs>
           <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" vertical={false} />
-          <XAxis dataKey="year" stroke="#94a3b8" fontSize={12} tickLine={false} />
-          <YAxis stroke="#94a3b8" fontSize={12} tickLine={false} tickFormatter={(v) => `${v}k`} />
-          <Tooltip contentStyle={{ backgroundColor: '#1a2442', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '8px', color: '#f8fafc' }} formatter={(value: any) => [`${value.toFixed(1)}k tons`, '']} />
-          <Legend wrapperStyle={{ fontSize: '12px', color: '#cbd5e1' }} />
+          <XAxis dataKey="year" stroke="var(--w-slate-400)" fontSize={12} tickLine={false} />
+          <YAxis stroke="var(--w-slate-400)" fontSize={12} tickLine={false} tickFormatter={(v) => `${v}k`} />
+          <Tooltip contentStyle={{ backgroundColor: 'var(--w-navy-900)', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '8px', color: 'var(--w-slate-50)' }} formatter={(value: any) => [`${value.toFixed(1)}k tons`, '']} />
+          <Legend wrapperStyle={{ fontSize: '12px', color: 'var(--w-slate-300)' }} />
           <Area type="monotone" dataKey="catch_k" name="한국 자체 어획량" stroke="var(--color-success)" fillOpacity={1} fill="url(#colorCatch)" />
-          <Area type="monotone" dataKey="import_k" name="한국 절대 수입량" stroke="#8b5cf6" fillOpacity={1} fill="url(#colorImport)" />
+          <Area type="monotone" dataKey="import_k" name="한국 절대 수입량" stroke="var(--w-violet-500)" fillOpacity={1} fill="url(#colorImport)" />
         </AreaChart>
       }
       takeaway={{

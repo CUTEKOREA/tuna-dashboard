@@ -37,8 +37,8 @@ const defaultData = {
 const CustomRadarTooltip = ({ active, payload }: any) => {
   if (!active || !payload?.length) return null;
   return (
-    <div style={{ background: 'rgba(20, 28, 52, 0.95)', border: '1px solid rgba(255, 255, 255, 0.1)', padding: '14px', borderRadius: '8px', color: '#f8fafc' }}>
-      <p style={{ margin: '0 0 8px 0', fontWeight: 'bold', color: '#e2e8f0' }}>{payload[0]?.payload?.sdg}</p>
+    <div style={{ background: 'rgba(20, 28, 52, 0.95)', border: '1px solid rgba(255, 255, 255, 0.1)', padding: '14px', borderRadius: '8px', color: 'var(--w-slate-50)' }}>
+      <p style={{ margin: '0 0 8px 0', fontWeight: 'bold', color: 'var(--w-slate-200)' }}>{payload[0]?.payload?.sdg}</p>
       {payload.map((entry: any, i: number) => (
         <p key={i} style={{ color: entry.color, margin: '0.25rem 0', fontSize: '0.8rem' }}>
           {entry.name}: {entry.value}점
@@ -69,10 +69,10 @@ export default function TunaSdgCircular({ sdgData }: SdgCircularProps) {
       chart={
         <RadarChart cx="50%" cy="50%" outerRadius="65%" data={d.sdg_contributions}>
           <PolarGrid stroke="#334155" />
-          <PolarAngleAxis dataKey="sdg" tick={{ fill: '#94a3b8', fontSize: 9 }} />
-          <PolarRadiusAxis angle={30} domain={[0, 100]} tick={{ fill: '#64748b', fontSize: 9 }} />
-          <Radar name="현재 기여도" dataKey="current" stroke="#f59e0b" fill="#f59e0b" fillOpacity={0.4} />
-          <Radar name="목표 기여도" dataKey="target" stroke="#10b981" fill="#10b981" fillOpacity={0.2} />
+          <PolarAngleAxis dataKey="sdg" tick={{ fill: 'var(--w-slate-400)', fontSize: 9 }} />
+          <PolarRadiusAxis angle={30} domain={[0, 100]} tick={{ fill: 'var(--w-slate-500)', fontSize: 9 }} />
+          <Radar name="현재 기여도" dataKey="current" stroke="var(--w-amber-500)" fill="var(--w-amber-500)" fillOpacity={0.4} />
+          <Radar name="목표 기여도" dataKey="target" stroke="var(--w-emerald-500)" fill="var(--w-emerald-500)" fillOpacity={0.2} />
           <Tooltip content={<CustomRadarTooltip />} />
           <Legend wrapperStyle={{ fontSize: '10px', paddingTop: '8px' }} />
         </RadarChart>

@@ -496,8 +496,8 @@ export default function ColdStorageDashboard() {
 
   if (!data) return (
     <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh', flexDirection: 'column', gap: '1rem' }}>
-      <Activity size={32} style={{ color: '#38bdf8', animation: 'spin 1s linear infinite' }} />
-      <p style={{ color: '#94a3b8', fontSize: '1rem' }}>아세안 콜드체인 전략 인텔리전스 로딩 중...</p>
+      <Activity size={32} style={{ color: 'var(--w-sky-400)', animation: 'spin 1s linear infinite' }} />
+      <p style={{ color: 'var(--w-slate-400)', fontSize: '1rem' }}>아세안 콜드체인 전략 인텔리전스 로딩 중...</p>
     </div>
   );
 
@@ -520,7 +520,7 @@ export default function ColdStorageDashboard() {
       d = d.data;
     }
     
-    if (!d || !Array.isArray(d) || d.length === 0) return <div style={{height:'100%',display:'flex',alignItems:'center',justifyContent:'center',color:'#64748b'}}>데이터 없음</div>;
+    if (!d || !Array.isArray(d) || d.length === 0) return <div style={{height:'100%',display:'flex',alignItems:'center',justifyContent:'center',color:'var(--w-slate-500)'}}>데이터 없음</div>;
 
     const formatVal = (v: any) => {
       if (typeof v !== 'number') return v;
@@ -543,8 +543,8 @@ export default function ColdStorageDashboard() {
           <BarChart data={d}>
             <ChartPatternDefs />
             <CartesianGrid strokeDasharray="3 3" stroke="rgba(140,170,255,0.12)" vertical={false} />
-            <XAxis dataKey={widget.xKey} stroke="#64748b" tick={{fontSize:10}} tickFormatter={formatXAxis} minTickGap={20} />
-            <YAxis stroke="#64748b" tick={{fontSize:10}} tickFormatter={formatVal} />
+            <XAxis dataKey={widget.xKey} stroke="var(--w-slate-500)" tick={{fontSize:10}} tickFormatter={formatXAxis} minTickGap={20} />
+            <YAxis stroke="var(--w-slate-500)" tick={{fontSize:10}} tickFormatter={formatVal} />
             <RechartsTooltip content={<CustomTooltip unit={widget.unit} unitMap={widget.unitMap} />} />
             <Legend verticalAlign="top" height={36} wrapperStyle={{fontSize:'11px'}} />
             {widget.bars?.map((b: any, i: number) => (
@@ -557,10 +557,10 @@ export default function ColdStorageDashboard() {
           <ComposedChart data={d}>
             <ChartPatternDefs />
             <CartesianGrid strokeDasharray="3 3" stroke="rgba(140,170,255,0.12)" vertical={false} />
-            <XAxis dataKey={widget.xKey} stroke="#64748b" tick={{fontSize:10}} tickFormatter={formatXAxis} minTickGap={20} />
-            <YAxis yAxisId="left" stroke="#64748b" tick={{fontSize:10}} tickFormatter={formatVal} />
+            <XAxis dataKey={widget.xKey} stroke="var(--w-slate-500)" tick={{fontSize:10}} tickFormatter={formatXAxis} minTickGap={20} />
+            <YAxis yAxisId="left" stroke="var(--w-slate-500)" tick={{fontSize:10}} tickFormatter={formatVal} />
             {widget.dualAxis && (
-              <YAxis yAxisId="right" orientation="right" stroke="#64748b" tick={{fontSize:10}} tickFormatter={formatVal} />
+              <YAxis yAxisId="right" orientation="right" stroke="var(--w-slate-500)" tick={{fontSize:10}} tickFormatter={formatVal} />
             )}
             <RechartsTooltip content={<CustomTooltip unit={widget.unit} unitMap={widget.unitMap} />} />
             <Legend verticalAlign="top" height={36} wrapperStyle={{fontSize:'11px'}} />
@@ -576,7 +576,7 @@ export default function ColdStorageDashboard() {
         return (
           <RadarChart cx="50%" cy="50%" outerRadius="70%" data={d}>
             <PolarGrid stroke="rgba(255,255,255,0.1)" />
-            <PolarAngleAxis dataKey={widget.xKey} tick={{ fill: '#94a3b8', fontSize: 11 }} tickFormatter={formatXAxis} />
+            <PolarAngleAxis dataKey={widget.xKey} tick={{ fill: 'var(--w-slate-400)', fontSize: 11 }} tickFormatter={formatXAxis} />
             <PolarRadiusAxis angle={30} domain={[0, 100]} tick={false} axisLine={false} />
             <RechartsTooltip content={<CustomTooltip unit={widget.unit} unitMap={widget.unitMap} />} />
             <Legend verticalAlign="top" height={36} wrapperStyle={{fontSize:'11px'}} />
@@ -586,7 +586,7 @@ export default function ColdStorageDashboard() {
           </RadarChart>
         );
       default:
-        return <div style={{color:'#64748b',textAlign:'center',marginTop:'40px'}}>지원되지 않는 차트 형식: {widget.chartType}</div>;
+        return <div style={{color:'var(--w-slate-500)',textAlign:'center',marginTop:'40px'}}>지원되지 않는 차트 형식: {widget.chartType}</div>;
     }
   };
 
@@ -624,7 +624,7 @@ export default function ColdStorageDashboard() {
           <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
             <div style={{ 
               width: '44px', height: '44px', borderRadius: '50%', 
-              background: '#38bdf8', 
+              background: 'var(--w-sky-400)',
               display: 'flex', alignItems: 'center', justifyContent: 'center',
               boxShadow: 'rgba(0,0,0,0.3) 0px 8px 8px'
             }}>
@@ -634,7 +634,7 @@ export default function ColdStorageDashboard() {
               <h1 style={{ margin: 0, fontSize: '1.5rem', fontWeight: 700, letterSpacing: '-0.5px', color: 'var(--text-primary)' }}>
                 아세안 콜드체인 (투자 시나리오 보드)
               </h1>
-              <p style={{ margin: 0, fontSize: '0.88rem', color: 'var(--text-secondary)' }}>전략 투자 및 운영 커맨드 센터 — {widgets.length}개 위젯 · {kpiKeys.length}개 핵심지표 · <span style={{ color: '#38bdf8' }}>KFAS 실증 연구 통합</span></p>
+              <p style={{ margin: 0, fontSize: '0.88rem', color: 'var(--text-secondary)' }}>전략 투자 및 운영 커맨드 센터 — {widgets.length}개 위젯 · {kpiKeys.length}개 핵심지표 · <span style={{ color: 'var(--w-sky-400)' }}>KFAS 실증 연구 통합</span></p>
             </div>
           </div>
         </div>
@@ -814,7 +814,7 @@ export default function ColdStorageDashboard() {
           <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '1.5rem' }}>
             <Snowflake size={24} color="#06b6d4" />
             <h2 style={{ margin: 0, fontSize: '1.5rem', fontWeight: 700, color: 'var(--text-primary)' }}>5. 에너지 최적화 및 품질과학</h2>
-            <span style={{ marginLeft: 'auto', fontSize: '0.8rem', color: '#94a3b8', background: 'rgba(6, 182, 212, 0.1)', padding: '4px 10px', borderRadius: '12px' }}>한국수산과학회지 KFAS 논문 8편 기반</span>
+            <span style={{ marginLeft: 'auto', fontSize: '0.8rem', color: 'var(--w-slate-400)', background: 'rgba(6, 182, 212, 0.1)', padding: '4px 10px', borderRadius: '12px' }}>한국수산과학회지 KFAS 논문 8편 기반</span>
           </div>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 560px), 1fr))', gap: '1.5rem' }}>
             {widgets.filter((w: any) => ['k01', 'k02', 'k03', 'k04', 'k05', 'k06', 'k07', 'k08'].includes(w.id)).map((w: any) => renderWidgetCard(w, 'S5'))}
@@ -827,7 +827,7 @@ export default function ColdStorageDashboard() {
           <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '1.5rem' }}>
             <Anchor size={24} color="#38bdf8" />
             <h2 style={{ margin: 0, fontSize: '1.5rem', fontWeight: 700, color: 'var(--text-primary)' }}>6. 미국 초저온(ULT) 사시미급 보관 인프라</h2>
-            <span style={{ marginLeft: 'auto', fontSize: '0.8rem', color: '#94a3b8', background: 'rgba(56, 189, 248, 0.1)', padding: '4px 10px', borderRadius: '12px' }}>멀티에이전트 조사 2026.06.02 · 동·서부 ULT</span>
+            <span style={{ marginLeft: 'auto', fontSize: '0.8rem', color: 'var(--w-slate-400)', background: 'rgba(56, 189, 248, 0.1)', padding: '4px 10px', borderRadius: '12px' }}>멀티에이전트 조사 2026.06.02 · 동·서부 ULT</span>
           </div>
 
           {/* 미국 ULT 핵심 지표 */}

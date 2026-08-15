@@ -455,9 +455,9 @@ export default function UnloadingTimelineReplay({
           {hasUnclassifiedSpecies || areaData.length === 0 ? (
             <div
               data-testid="replay-species-unclassified"
-              style={{ minHeight: 220, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', textAlign: 'center', padding: 24, color: '#cbd5e1' }}
+              style={{ minHeight: 220, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', textAlign: 'center', padding: 24, color: 'var(--w-slate-300)' }}
             >
-              <strong style={{ color: '#fbbf24', marginBottom: 8 }}>어종별 실적 추이 미제공</strong>
+              <strong style={{ color: 'var(--w-amber-400)', marginBottom: 8 }}>어종별 실적 추이 미제공</strong>
               <span>
                 {hasUnclassifiedSpecies
                   ? `최신 일보 ${unclassifiedActual.toFixed(3)}톤은 어종별 근거가 없어 계획 비율로 추정하지 않습니다.`
@@ -470,23 +470,23 @@ export default function UnloadingTimelineReplay({
             <AreaChart data={areaData} margin={{ top: 5, right: 20, bottom: 5, left: 10 }}>
               <defs>
                 <linearGradient id="gradSJ" x1="0" y1="0" x2="0" y2="1">
-                  <stop offset="5%" stopColor="#38bdf8" stopOpacity={0.4} />
-                  <stop offset="95%" stopColor="#38bdf8" stopOpacity={0.02} />
+                  <stop offset="5%" stopColor="var(--w-sky-400)" stopOpacity={0.4} />
+                  <stop offset="95%" stopColor="var(--w-sky-400)" stopOpacity={0.02} />
                 </linearGradient>
                 <linearGradient id="gradYF" x1="0" y1="0" x2="0" y2="1">
-                  <stop offset="5%" stopColor="#fbbf24" stopOpacity={0.4} />
-                  <stop offset="95%" stopColor="#fbbf24" stopOpacity={0.02} />
+                  <stop offset="5%" stopColor="var(--w-amber-400)" stopOpacity={0.4} />
+                  <stop offset="95%" stopColor="var(--w-amber-400)" stopOpacity={0.02} />
                 </linearGradient>
               </defs>
               <CartesianGrid strokeDasharray="3 3" stroke="rgba(140,170,255,0.12)" />
               <XAxis
                 dataKey="date"
-                tick={{ fontSize: 11, fill: '#94a3b8' }}
+                tick={{ fontSize: 11, fill: 'var(--w-slate-400)' }}
                 axisLine={{ stroke: 'rgba(255,255,255,0.1)' }}
                 tickLine={false}
               />
               <YAxis
-                tick={{ fontSize: 11, fill: '#94a3b8' }}
+                tick={{ fontSize: 11, fill: 'var(--w-slate-400)' }}
                 axisLine={false}
                 tickLine={false}
                 tickFormatter={v => `${(v / 1000).toFixed(1)}k`}
@@ -497,19 +497,19 @@ export default function UnloadingTimelineReplay({
                   border: '1px solid rgba(255,255,255,0.1)',
                   borderRadius: 10,
                   fontSize: '0.8rem',
-                  color: '#f8fafc',
+                  color: 'var(--w-slate-50)',
                 }}
                 formatter={(value: any, name: any) => [`${formatNum(Number(value))} MT`, name === 'SJ' ? 'Skipjack' : 'Yellowfin']}
               />
               <Legend
-                wrapperStyle={{ fontSize: '0.75rem', color: '#94a3b8' }}
+                wrapperStyle={{ fontSize: '0.75rem', color: 'var(--w-slate-400)' }}
                 formatter={(value: string) => (value === 'SJ' ? 'Skipjack' : 'Yellowfin')}
               />
               <Area
                 type="monotone"
                 dataKey="SJ"
                 stackId="1"
-                stroke="#38bdf8"
+                stroke="var(--w-sky-400)"
                 fill="url(#gradSJ)"
                 strokeWidth={2}
               />
@@ -517,20 +517,20 @@ export default function UnloadingTimelineReplay({
                 type="monotone"
                 dataKey="YF"
                 stackId="1"
-                stroke="#fbbf24"
+                stroke="var(--w-amber-400)"
                 fill="url(#gradYF)"
                 strokeWidth={2}
               />
               {/* Vertical reference line at current date */}
               <ReferenceLine
                 x={entry.date}
-                stroke="#38bdf8"
+                stroke="var(--w-sky-400)"
                 strokeWidth={2}
                 strokeDasharray="4 4"
                 label={{
                   value: '▼',
                   position: 'top',
-                  fill: '#38bdf8',
+                  fill: 'var(--w-sky-400)',
                   fontSize: 14,
                 }}
               />

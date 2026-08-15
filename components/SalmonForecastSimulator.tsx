@@ -120,7 +120,7 @@ export default function SalmonForecastSimulator() {
     <div style={{ padding: '0 0 0.5rem 0' }}>
       <div style={{ display: 'flex', justifyContent: 'flex-end', marginBottom: '0.5rem' }}>
         <button onClick={handleRefresh} style={{
-          background: 'none', border: 'none', cursor: 'pointer', color: '#64748b', padding: '4px',
+          background: 'none', border: 'none', cursor: 'pointer', color: 'var(--w-slate-500)', padding: '4px',
         }}>
           <RefreshCcw size={14} style={{ animation: loading ? 'spin 1s linear infinite' : 'none' }} />
         </button>
@@ -135,7 +135,7 @@ export default function SalmonForecastSimulator() {
                 cursor: 'pointer', transition: 'all 0.2s',
                 background: origin === o.value ? 'rgba(16,185,129,0.2)' : 'rgba(255,255,255,0.03)',
                 border: origin === o.value ? '1px solid rgba(16,185,129,0.5)' : '1px solid rgba(255,255,255,0.1)',
-                color: origin === o.value ? '#10b981' : '#94a3b8',
+                color: origin === o.value ? 'var(--w-emerald-500)' : 'var(--w-slate-400)',
               }}>
                 {o.flag} {o.label}
               </button>
@@ -162,7 +162,7 @@ export default function SalmonForecastSimulator() {
                       <span style={{ fontSize: '0.55rem', color: '#475569', marginLeft: '6px' }}>({row.src})</span>
                     )}
                   </div>
-                  <span style={{ fontSize: '0.85rem', fontWeight: 700, color: '#f8fafc' }}>{row.value}</span>
+                  <span style={{ fontSize: '0.85rem', fontWeight: 700, color: 'var(--w-slate-50)' }}>{row.value}</span>
                 </div>
               ))}
 
@@ -173,14 +173,14 @@ export default function SalmonForecastSimulator() {
                 borderTop: '2px solid rgba(16,185,129,0.3)',
               }}>
                 <div>
-                  <span style={{ fontSize: '0.85rem', fontWeight: 700, color: '#10b981' }}>총 착지원가</span>
-                  <span style={{ fontSize: '0.6rem', color: '#64748b', marginLeft: '8px' }}>환율 ₩{breakdown.exchangeRate.toLocaleString()}</span>
+                  <span style={{ fontSize: '0.85rem', fontWeight: 700, color: 'var(--w-emerald-500)' }}>총 착지원가</span>
+                  <span style={{ fontSize: '0.6rem', color: 'var(--w-slate-500)', marginLeft: '8px' }}>환율 ₩{breakdown.exchangeRate.toLocaleString()}</span>
                 </div>
                 <div style={{ textAlign: 'right' }}>
-                  <div style={{ fontSize: '1.3rem', fontWeight: 800, color: '#10b981' }}>
+                  <div style={{ fontSize: '1.3rem', fontWeight: 800, color: 'var(--w-emerald-500)' }}>
                     ₩{breakdown.totalPerKgKRW.toLocaleString()}/kg
                   </div>
-                  <div style={{ fontSize: '0.65rem', color: '#94a3b8' }}>
+                  <div style={{ fontSize: '0.65rem', color: 'var(--w-slate-400)' }}>
                     (${breakdown.totalPerKgUSD.toFixed(2)}/kg)
                   </div>
                 </div>
@@ -195,7 +195,7 @@ export default function SalmonForecastSimulator() {
               background: 'rgba(139,92,246,0.05)', border: '1px solid rgba(139,92,246,0.2)',
               borderRadius: '8px', padding: '1rem',
             }}>
-              <h4 style={{ color: '#8b5cf6', fontSize: '0.9rem', fontWeight: 700, margin: '0 0 0.8rem 0', display: 'flex', alignItems: 'center', gap: '6px' }}>
+              <h4 style={{ color: 'var(--w-violet-500)', fontSize: '0.9rem', fontWeight: 700, margin: '0 0 0.8rem 0', display: 'flex', alignItems: 'center', gap: '6px' }}>
                 <Zap size={16} /> 수급 전망 ({forecast.horizon})
               </h4>
 
@@ -203,20 +203,20 @@ export default function SalmonForecastSimulator() {
                 display: 'flex', alignItems: 'center', gap: '1rem', marginBottom: '1rem',
                 padding: '0.8rem', background: 'rgba(0,0,0,0.3)', borderRadius: '6px',
               }}>
-                <div style={{ fontSize: '2rem', fontWeight: 800, color: forecast.direction === 'up' ? '#ef4444' : '#10b981' }}>
+                <div style={{ fontSize: '2rem', fontWeight: 800, color: forecast.direction === 'up' ? 'var(--w-red-500)' : 'var(--w-emerald-500)' }}>
                   {forecast.pctChange}
                 </div>
                 <div>
-                  <div style={{ fontSize: '0.75rem', color: '#94a3b8' }}>가격 변동 전망</div>
-                  <div style={{ fontSize: '0.7rem', color: '#64748b' }}>신뢰도: {forecast.confidence}</div>
+                  <div style={{ fontSize: '0.75rem', color: 'var(--w-slate-400)' }}>가격 변동 전망</div>
+                  <div style={{ fontSize: '0.7rem', color: 'var(--w-slate-500)' }}>신뢰도: {forecast.confidence}</div>
                 </div>
               </div>
 
               <div style={{ marginBottom: '0.8rem' }}>
-                <h5 style={{ fontSize: '0.75rem', color: '#94a3b8', fontWeight: 600, margin: '0 0 0.5rem 0' }}>주요 변동 요인:</h5>
+                <h5 style={{ fontSize: '0.75rem', color: 'var(--w-slate-400)', fontWeight: 600, margin: '0 0 0.5rem 0' }}>주요 변동 요인:</h5>
                 {forecast.factors.map((f: string, i: number) => (
                   <div key={i} style={{
-                    fontSize: '0.72rem', color: '#cbd5e1', lineHeight: 1.5,
+                    fontSize: '0.72rem', color: 'var(--w-slate-300)', lineHeight: 1.5,
                     padding: '0.3rem 0', paddingLeft: '0.8rem',
                     borderLeft: '2px solid rgba(139,92,246,0.3)',
                     marginBottom: '0.3rem',

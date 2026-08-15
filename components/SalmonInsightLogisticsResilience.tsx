@@ -14,7 +14,7 @@ const FreightTooltip = ({ active, payload, label }: any) => {
     const eventItem = freightData.find(d => d.year === label);
     return (
       <div style={{ background: '#11182f', borderRadius: '8px', padding: '0.75rem', boxShadow: 'rgba(0,0,0,0.3) 0px 8px 8px' }}>
-        <p style={{ margin: '0 0 0.25rem 0', fontWeight: 700, color: '#38bdf8' }}>{label}</p>
+        <p style={{ margin: '0 0 0.25rem 0', fontWeight: 700, color: 'var(--w-sky-400)' }}>{label}</p>
         {eventItem?.event && (
           <p style={{ margin: '0 0 0.5rem 0', color: '#f97316', fontSize: '0.75rem', fontStyle: 'italic' }}>
             ⚡ {eventItem.event}
@@ -54,9 +54,9 @@ export default function SalmonInsightLogisticsResilience() {
         style={{
           padding: '0.35rem 0.75rem',
           borderRadius: '8px',
-          border: activePanel === 'eu' ? '1px solid #06b6d4' : '1px solid rgba(255,255,255,0.1)',
+          border: activePanel === 'eu' ? '1px solid var(--w-cyan-500)' : '1px solid rgba(255,255,255,0.1)',
           background: activePanel === 'eu' ? 'rgba(6, 182, 212, 0.15)' : 'rgba(255,255,255,0.03)',
-          color: activePanel === 'eu' ? '#06b6d4' : '#94a3b8',
+          color: activePanel === 'eu' ? 'var(--w-cyan-500)' : 'var(--w-slate-400)',
           fontSize: '0.78rem', fontWeight: 600, cursor: 'pointer', transition: 'all 0.2s ease',
           display: 'flex', alignItems: 'center', gap: '0.3rem',
         }}
@@ -70,7 +70,7 @@ export default function SalmonInsightLogisticsResilience() {
           borderRadius: '8px',
           border: activePanel === 'freight' ? '1px solid #f97316' : '1px solid rgba(255,255,255,0.1)',
           background: activePanel === 'freight' ? 'rgba(249, 115, 22, 0.15)' : 'rgba(255,255,255,0.03)',
-          color: activePanel === 'freight' ? '#f97316' : '#94a3b8',
+          color: activePanel === 'freight' ? '#f97316' : 'var(--w-slate-400)',
           fontSize: '0.78rem', fontWeight: 600, cursor: 'pointer', transition: 'all 0.2s ease',
           display: 'flex', alignItems: 'center', gap: '0.3rem',
         }}
@@ -87,7 +87,7 @@ export default function SalmonInsightLogisticsResilience() {
           <ComposedChart data={euImportData} margin={{ top: 10, right: 10, left: -10, bottom: 0 }}>
             <ChartPatternDefs />
             <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" vertical={false} />
-            <XAxis dataKey="year" stroke="#94a3b8" fontSize={11} tickLine={false} axisLine={false} />
+            <XAxis dataKey="year" stroke="var(--w-slate-400)" fontSize={11} tickLine={false} axisLine={false} />
             <YAxis yAxisId="left" stroke="var(--color-info)" fontSize={11} tickLine={false} axisLine={false} tickFormatter={(v) => `${v}k`} />
             <YAxis yAxisId="right" orientation="right" stroke="#f97316" fontSize={11} tickLine={false} axisLine={false} tickFormatter={(v) => `€${v}`} />
             <Tooltip contentStyle={{ background: '#11182f', border: 'none', borderRadius: '8px' }} itemStyle={{ fontSize: '0.85rem' }} />
@@ -114,7 +114,7 @@ export default function SalmonInsightLogisticsResilience() {
               </linearGradient>
             </defs>
             <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" vertical={false} />
-            <XAxis dataKey="year" stroke="#94a3b8" fontSize={11} tickLine={false} axisLine={false} />
+            <XAxis dataKey="year" stroke="var(--w-slate-400)" fontSize={11} tickLine={false} axisLine={false} />
             <YAxis yAxisId="left" stroke="var(--color-info)" fontSize={11} tickLine={false} axisLine={false} domain={[500, 3200]} tickFormatter={(v) => v >= 1000 ? `${(v / 1000).toFixed(1)}k` : `${v}`} />
             <YAxis yAxisId="right" orientation="right" stroke="var(--color-success)" fontSize={11} tickLine={false} axisLine={false} tickFormatter={(v) => `${v > 0 ? '+' : ''}${v}%`} />
             <Tooltip content={<FreightTooltip />} />

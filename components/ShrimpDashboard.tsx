@@ -23,7 +23,7 @@ import { truncateXAxis } from '../lib/chart-standards';
 const CustomTooltip = ({ active, payload, label }: any) => {
   if (active && payload && payload.length) {
     return (
-      <div style={{ background: 'rgba(20, 28, 52, 0.9)', border: '1px solid rgba(255,255,255,0.1)', padding: '12px', borderRadius: '8px', boxShadow: '0 4px 6px rgba(0,0,0,0.3)', color: '#f8fafc', fontSize: '0.88rem' }}>
+      <div style={{ background: 'rgba(20, 28, 52, 0.9)', border: '1px solid rgba(255,255,255,0.1)', padding: '12px', borderRadius: '8px', boxShadow: '0 4px 6px rgba(0,0,0,0.3)', color: 'var(--w-slate-50)', fontSize: '0.88rem' }}>
         <p style={{ margin: '0 0 8px 0', fontWeight: 700, borderBottom: '1px solid rgba(255,255,255,0.1)', paddingBottom: '4px' }}>{label}</p>
         {payload.map((entry: any, index: any) => {
           if (entry.value === undefined || entry.name === undefined || entry.name === '') return null;
@@ -182,7 +182,7 @@ export default function ShrimpDashboard() {
   if (!data) return (
     <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh', flexDirection: 'column', gap: '1rem' }}>
       <RefreshCcw size={32} style={{ color: '#f97316', animation: 'spin 1s linear infinite' }} />
-      <p style={{ color: '#94a3b8', fontSize: '1rem' }}>Loading Intelligence...</p>
+      <p style={{ color: 'var(--w-slate-400)', fontSize: '1rem' }}>Loading Intelligence...</p>
     </div>
   );
 
@@ -204,7 +204,7 @@ export default function ShrimpDashboard() {
      포맷 고유의 스타일 차이(축 색·마진·dual-axis 판정·gradient id 규칙)는 isNew 플래그로 보존. */
   const renderChart = (widget: any) => {
     const d = widget.data;
-    if (!d || d.length === 0) return <div style={{height:'100%',display:'flex',alignItems:'center',justifyContent:'center',color:'#64748b'}}>데이터 없음</div>;
+    if (!d || d.length === 0) return <div style={{height:'100%',display:'flex',alignItems:'center',justifyContent:'center',color:'var(--w-slate-500)'}}>데이터 없음</div>;
     const chartType = (widget.chartType || '').toLowerCase();
 
     const isNew = !!(widget.xKey || widget.bars || widget.lines || widget.areas);
@@ -281,7 +281,7 @@ export default function ShrimpDashboard() {
               {d.map((_: any, idx: number) => <Cell key={idx} fill={PIE_COLORS[idx % PIE_COLORS.length]} />)}
             </Pie>
             <RechartsTooltip content={<CustomTooltip />} />
-            <Legend wrapperStyle={{ fontSize: '11px', ...(isNew ? { color: '#cbd5e1' } : {}) }} iconType={isNew ? undefined : 'circle'} verticalAlign="top" height={36} />
+            <Legend wrapperStyle={{ fontSize: '11px', ...(isNew ? { color: 'var(--w-slate-300)' } : {}) }} iconType={isNew ? undefined : 'circle'} verticalAlign="top" height={36} />
           </PieChart>
         );
       case "area":
@@ -391,7 +391,7 @@ export default function ShrimpDashboard() {
         );
       }
       default:
-        return <div style={{color:'#64748b',textAlign:'center',marginTop:'40px'}}>Unsupported</div>;
+        return <div style={{color:'var(--w-slate-500)',textAlign:'center',marginTop:'40px'}}>Unsupported</div>;
     }
   };
 
@@ -404,7 +404,7 @@ export default function ShrimpDashboard() {
           <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
             <div style={{ 
               width: '44px', height: '44px', borderRadius: '50%', 
-              background: 'linear-gradient(135deg, #10b981 0%, #14b8a6 100%)', 
+              background: 'linear-gradient(135deg, var(--w-emerald-500) 0%, #14b8a6 100%)',
               display: 'flex', alignItems: 'center', justifyContent: 'center',
               boxShadow: 'rgba(0,0,0,0.3) 0px 8px 8px'
             }}>
@@ -422,7 +422,7 @@ export default function ShrimpDashboard() {
             background: '#11182f', border: 'none', 
             borderRadius: '500px', color: 'var(--text-secondary)', fontWeight: 600, display: 'flex', alignItems: 'center', gap: '8px',
             boxShadow: 'rgba(0,0,0,0.3) 0px 8px 8px'}}>
-            <Database size={14} style={{ color: '#10b981', flexShrink: 0 }} />
+            <Database size={14} style={{ color: 'var(--w-emerald-500)', flexShrink: 0 }} />
             <span style={{ color: 'var(--text-primary)' }}>FishStat 2026.1.0 · 2024년 기준</span>
           </div>
         </div>
