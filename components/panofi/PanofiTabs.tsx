@@ -201,29 +201,27 @@ export function FleetTab() {
           span={12}
           title="순위 역전"
           unit="직접마진 순위 대비 완전손익 순위"
-          src={`${SRC.strategy} §5-1 + ${SRC.ledger}`}
+          note={`개별 총톤수는 회사 공개자료(sla.co.kr)와 ICCAT 등록부가 일치하는 값이며 7척 합 ${num(fleetTotals.totalGt)} G/T 다. 상반기 생산은 원장 실적(생산) 시트 기준으로 누계 ${orNA(actuals.byVessel.totals.생산량MT, (n) => num(Math.round(n)))}톤과 맞는다 — 전략보고의 어종·사이즈 배분 합계 ${num(actuals.meta.catchMixTotalMT)}톤과는 잡어·미배분만큼 벌어져 억지로 맞추지 않았다. 주간동향 원문에는 자사선 조업량이 없어(입출항·상태만 기재) 척별 생산은 원장에서만 온다.`}
+          src={`${SRC.strategy} §5-1 + ${SRC.ledger} + 선박 등록 제원(sla.co.kr·ICCAT)`}
         >
           <Table head={['선박', '총톤수 (G/T)', '상반기 생산 (톤)', '직접마진 순위', '완전손익 순위', '변동', '세전이익 (달러)']}>
-            {marginRankShift.map((r) => {
-              const spec = fleetMargins.find((f) => f.name === r.name);
-              return (
-                <tr key={r.name}>
-                  <td>{r.name}</td>
-                  <td>{num(spec?.gt)}</td>
-                  <td>{num(spec?.productionT)}</td>
-                  <td>{r.직접마진순위 ?? '—'}</td>
-                  <td>{r.완전손익순위}</td>
-                  <td className={(r.shift ?? 0) > 0 ? 'up' : (r.shift ?? 0) < 0 ? 'down' : ''}>
-                    {r.shift === null || r.shift === 0 ? '—' : r.shift > 0 ? `▲${r.shift}` : `▼${-r.shift}`}
-                  </td>
-                  <td className={(r.세전이익 ?? 0) >= 0 ? 'up' : 'down'}>{num(Math.round(r.세전이익 ?? 0))}</td>
-                </tr>
-              );
-            })}
+            {marginRankShift.map((r) => (
+              <tr key={r.name}>
+                <td>{r.name}</td>
+                <td>{num(r.gt)}</td>
+                <td>{orNA(r.productionT, (n) => num(Math.round(n)))}</td>
+                <td>{r.직접마진순위 ?? '—'}</td>
+                <td>{r.완전손익순위}</td>
+                <td className={(r.shift ?? 0) > 0 ? 'up' : (r.shift ?? 0) < 0 ? 'down' : ''}>
+                  {r.shift === null || r.shift === 0 ? '—' : r.shift > 0 ? `▲${r.shift}` : `▼${-r.shift}`}
+                </td>
+                <td className={(r.세전이익 ?? 0) >= 0 ? 'up' : 'down'}>{num(Math.round(r.세전이익 ?? 0))}</td>
+              </tr>
+            ))}
             <tr className="sum">
               <td>합계</td>
               <td>{num(fleetTotals.totalGt)}</td>
-              <td>{num(fleetTotals.totalProductionT)}</td>
+              <td>{orNA(actuals.byVessel.totals.생산량MT, (n) => num(Math.round(n)))}</td>
               <td colSpan={3} />
               <td className="down">{num(Math.round(actuals.byVessel.totals.세전이익 ?? 0))}</td>
             </tr>

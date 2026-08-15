@@ -121,7 +121,9 @@ const VESSEL_LABEL: Record<string, string> = {
 export const fleetMargins = profile.fleet.purseSeiners
   .map((v) => ({
     code: v.code,
-    name: v.name,
+    // 원장(actuals)은 '마스터'로, 제원(profile)은 '파노피 마스터'로 적는다. 접두를 여기서 떼어
+    // 두 출처의 이름을 맞추고 차트 라벨 낭비도 없앤다.
+    name: v.name.replace(/^파노피\s*/, ''),
     gt: v.gt,
     productionT: v.h1ProductionT,
     marginMusd: v.h1DirectMarginMusd,
@@ -131,7 +133,6 @@ export const fleetMargins = profile.fleet.purseSeiners
 export const fleetTotals = {
   activeCount: profile.fleet.activeCount,
   totalGt: profile.fleet.purseSeiners.reduce((s, v) => s + v.gt, 0),
-  totalProductionT: profile.fleet.purseSeiners.reduce((s, v) => s + v.h1ProductionT, 0),
   totalMarginMusd: Number(
     profile.fleet.purseSeiners.reduce((s, v) => s + v.h1DirectMarginMusd, 0).toFixed(2),
   ),
@@ -364,11 +365,15 @@ export const vesselFullPnl = actuals.byVessel.vessels
 
 /** 직접마진 순위와 완전손익 순위의 차이. 클수록 공통비 배부에 민감한 배다. */
 export const marginRankShift = (() => {
-  const direct = [...fleetMargins].map((v, i) => ({ code: v.code, name: v.name, rank: i + 1 }));
+  const direct = [...fleetMargins].map((v, i) => ({ code: v.code, gt: v.gt, rank: i + 1 }));
   return vesselFullPnl.map((v, i) => {
+    // 총톤수는 제원(profile), 생산량은 원장(actuals)에서 온다. 이름은 출처마다 표기가
+    // 흔들리므로 반드시 선박코드로 잇는다 — 이름 매칭은 접두 하나에 조용히 깨진다.
     const d = direct.find((x) => x.code === v.code);
     return {
       name: v.name,
+      gt: d?.gt ?? null,
+      productionT: v.productionT,
       직접마진순위: d?.rank ?? null,
       완전손익순위: i + 1,
       shift: d ? d.rank - (i + 1) : null,

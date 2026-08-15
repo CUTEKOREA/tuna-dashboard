@@ -1,6 +1,5 @@
 "use client";
 
-import React from 'react';
 import {
   BarChart,
   Bar,
@@ -26,52 +25,11 @@ const canneryData = logisticsWeeklyReport.canneries.bangkok.map((cannery) => ({
 }));
 
 export default function CanneryStatusCharts() {
-  const [liveData, setLiveData] = React.useState<any>(null);
-
-  React.useEffect(() => {
-    fetch('/api/tuna-live')
-      .then(res => res.json())
-      .then(data => setLiveData(data.logistics))
-      .catch(err => console.error("Failed to fetch live data", err));
-  }, []);
-
   const totalProd = canneryData.reduce((acc, curr) => acc + curr.prodCurrent, 0);
   const totalStore = canneryData.reduce((acc, curr) => acc + curr.storeCurrent, 0);
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: '24px', width: '100%' }}>
-      {liveData && (
-        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '8px', padding: '6px 12px', background: 'rgba(var(--w-slate-400-rgb), 0.1)', border: '1px solid rgba(var(--w-slate-400-rgb), 0.25)', borderRadius: '20px' }}>
-            <span style={{ display: 'inline-block', width: '8px', height: '8px', borderRadius: '50%', background: 'var(--text-muted)' }}></span>
-            <span style={{ color: 'var(--text-muted)', fontSize: '13px', fontWeight: 'bold' }}>정적{liveData.syncDate ? ` · ${liveData.syncDate} 기준` : ''} ({liveData.source})</span>
-          </div>
-        </div>
-      )}
-
-      {liveData && liveData.marginIndex && (
-        <div style={{ background: 'var(--panel-bg)', border: '1px solid rgba(var(--w-violet-500-rgb), 0.3)', borderRadius: '8px', padding: '20px', display: 'flex', gap: '20px', alignItems: 'center' }}>
-          <div style={{ padding: '12px', background: 'rgba(var(--w-violet-500-rgb), 0.1)', borderRadius: '8px', color: 'var(--w-violet-500)' }}>
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline></svg>
-          </div>
-          <div style={{ flex: 1 }}>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '8px' }}>
-              <h3 style={{ margin: 0, fontSize: '16px', fontWeight: 'bold', color: 'var(--text-main)' }}>밸류체인 마진율 인덱스 (시나리오 추정{liveData.syncDate ? `, ${liveData.syncDate} 기준` : ''})</h3>
-              <span style={{ fontSize: '12px', padding: '2px 8px', background: 'rgba(var(--w-slate-400-rgb), 0.1)', color: 'var(--text-muted)', borderRadius: '12px', border: '1px solid rgba(var(--w-slate-400-rgb), 0.25)' }}>전구간 순마진(추정): {liveData.marginIndex.netMargin}</span>
-            </div>
-            <div style={{ display: 'flex', gap: '16px', marginBottom: '8px' }}>
-              <span style={{ fontSize: '13px', color: 'var(--text-muted)' }}>원어 원가: <strong style={{color: 'var(--text-main)'}}>${liveData.marginIndex.rawCost}</strong></span>
-              <span style={{ fontSize: '13px', color: 'var(--text-muted)' }}>물류비: <strong style={{color: 'var(--text-main)'}}>${liveData.marginIndex.freight}</strong></span>
-              <span style={{ fontSize: '13px', color: 'var(--text-muted)' }}>가공비: <strong style={{color: 'var(--text-main)'}}>${liveData.marginIndex.processing}</strong></span>
-              <span style={{ fontSize: '13px', color: 'var(--text-muted)' }}>최종 판매가: <strong style={{color: 'var(--accent-info)'}}>${liveData.marginIndex.retailPrice}</strong></span>
-            </div>
-            <p style={{ margin: 0, fontSize: '12px', color: 'var(--text-muted)', opacity: 0.8, fontStyle: 'italic' }}>
-              * {liveData.marginIndex.analysis}
-            </p>
-          </div>
-        </div>
-      )}
-
       {/* 좌우 2열 배치 — 좁은 화면(컨테이너 < 864px)에서는 1열 폴백 */}
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(420px, 100%), 1fr))', gap: '24px', width: '100%' }}>
       {/* Left Chart: Daily Production */}
