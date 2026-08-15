@@ -1,3 +1,58 @@
+> 📈 **2026-08-16 07:43 KST — `/bangkok-office` 원어 시세 월·분기·연 입도 전환 로컬 추가** [Codex]:
+> - `원어 시세 추이`에 **주간·월별·분기별·연도별**, `시세 범위`에 **월별·분기별·연도별** 전환을 추가했다. 기본값은 기존 화면과 같은 주간 추이·연도별 범위이며, 두 컨트롤은 독립 상태로 동작한다.
+> - 월·분기·연 시세는 기록 있는 정상 주의 평균·최저·최고를 산출한다. 결측 주와 의심 플래그 주는 기존 연도별 계약대로 제외하고, 관측 없는 기간은 0으로 채우지 않는다. 새 연도 집계는 2020~2026 기존 확정 평균·최저·최고와 전부 일치한다.
+> - RED→GREEN 전용 테스트 3건과 전체 `npm run verify`를 통과했다: ESLint 0 errors·기존 5 warnings, Vitest 85파일·462테스트, API cache 155/155, Production build 117 pages, bundle 32 routes PASS다. 독립 반증 검토도 기능 blocking 0건이다.
+> - 로컬 Production 브라우저에서 1440×1000·390×844 모두 7개 옵션을 실제 클릭해 제목·`aria-pressed`·두 상태 독립성을 확인했다. HTTP 200, overflow 0, page/local HTTP 오류 0이며 외부 Google 광고 403만 분리 관찰했다.
+> - **미배포**. 작업 브랜치는 `codex/bangkok-price-granularity-20260816`; 사용자 명시 배포 요청 시 최신 main에 순차 반영한다.
+>
+> 📤 **2026-08-16 00:33 KST — 회사 메일 SMTP-only 운영 배포 완료·실계정 QA 대기** [Codex]:
+> - 사용자 확인으로 회사 주소는 `ledog@sla.co.kr`지만 Microsoft 로그인은 개인 `silla@outlook.com`이며, 회사 사서함은 Microsoft 365가 아님을 확정했다. Entra 개인 계정에는 디렉터리가 없어 앱 등록이 불가능했고 `/me` exact mailbox 계약도 성립하지 않는다. 미커밋 Graph/Entra 구현은 제거했다.
+> - DNS·protocol 실측에서 `mail1.sla.co.kr`의 SMTP 587은 STARTTLS를 제공하지만 IMAP 143은 STARTTLS를 거부하고 IMAPS 993은 닫혀 있음을 확인했다. 따라서 받은메일 자격증명을 평문으로 보내지 않도록 조회 기능은 제외하고 SMTP 발송만 구현했다.
+> - `/api/mail/company-smtp/send`는 관리자+AAL2, trusted Origin, JSON 40KB, UUID idempotency, 단일 수신자·제목 200자·일반 텍스트 10,000자, STARTTLS/TLS 1.2+·인증서 검증을 강제한다. UI는 최종 확인과 불확정 재전송 잠금을 제공하며 자동·HTML·첨부·다중 수신자를 지원하지 않는다.
+> - `company_smtp_send_requests`는 UUID를 canonical payload SHA-256에 결속하고 service-role 전용 reserve/complete RPC, 사용자 advisory lock, 분당 5건·일 50건, `pending/sent/unknown` 상태를 둔다. 수신자·제목·본문·비밀번호는 audit에 저장하지 않는다.
+> - 최신 `origin/main` 위 full `npm run verify`를 통과했다: ESLint 0 errors·기존 5 warnings, Vitest 84파일·459테스트, API cache 155/155, Production build 117 pages, bundle 32 routes PASS다. 실제 SMTP는 STARTTLS 220·TLS 1.3·유효한 `*.sla.co.kr` 인증서·TLS 이후 AUTH를 확인했고, `nodemailer@9.0.5`는 npm audit 13건 baseline에 신규 advisory를 추가하지 않았다.
+> - Production SQL editor에서 migration 원문과 `BEGIN…ROLLBACK` model 3,704자를 exact 비교한 뒤 실행해 성공했다. 후속 read-only 조회에서 table/reserve RPC/complete RPC가 모두 NULL이어서 영구 객체가 남지 않았음을 확인했다.
+> - SMTP AUTH는 사용자 clipboard 비밀번호로 발송 없이 성공 확인했고 clipboard를 즉시 비웠다. Vercel에는 `COMPANY_SMTP_*` 5종을 Sensitive·Production-only로 등록했다. 첫 독립 반증의 malformed provider result finding은 배열·accepted 주소·rejected·실제 envelope from/to를 모두 exact 검증하는 RED→GREEN으로 닫았고 최종 재반증은 blocking 0건 PASS다.
+> - SHA-256 `deae288f524f049d57fdeea829522bb88d4122233a99144d32bf2d6b60aae7bb` migration을 Production에 적용했다. 재조회 결과 table·reserve/complete RPC·RLS·service-role EXECUTE=true, authenticated EXECUTE=false, 초기 audit rows=0이다.
+> - PR #443은 GitHub/Vercel Preview checks를 통과해 merge SHA `9b961dcbb8d20df1d8c9169fc561de95d7ac6bcf`로 병합됐다. Vercel Production deployment `9Vcv6o4hWgtdVjZt39ZyDffNHpL3`는 Ready이며 `leedonggun.co.kr`에 반영됐다. 비인증 `/mail/login`은 200 private/no-store, status와 SMTP POST는 401 no-store로 실측했다.
+> - **다음 단계**: 브라우저에 관리자 Supabase 세션이 없어 실계정 UI QA는 fail-closed 상태다. 사용자가 직접 `/mail/login` 로그인·TOTP를 완료한 뒤 `ledog@sla.co.kr` 본인 주소에 일반 텍스트 1건을 보내고 중복 0건·audit `sent` 1행을 확인해야 완료다.
+>
+> 🚢 **2026-08-16 06:32 KST — 선박 벤치마크 최근 실제 하역순 정렬·운영 배포 완료** [Codex]:
+> - `/unloading`의 `선박 벤치마크 비교`가 데이터 객체 등록 순서를 그대로 표시하던 문제를 고쳤다. 각 선박의 `dailyAmount > 0`인 마지막 실제 하역일을 연·월·일 숫자 키로 계산해 내림차순 정렬하며, 선적 계획만 있고 하역 실적이 없는 대기선은 마지막에 둔다.
+> - 축약 날짜(`M/D`), 날짜 범위(`M/D~D`·`M/D~M/D`), 연도 경계 항차를 처리하고, 상세 작업 기록이 없는 과거 실적만 `dateRange` 종료일을 보조 기준으로 사용한다. 동일 날짜는 기존 데이터 순서를 유지한다.
+> - RED→GREEN 렌더 회귀 테스트를 추가했다. 관련 4파일·23테스트와 타입·대상 ESLint가 통과했고, 전체 `npm run verify`는 ESLint 0 errors·기존 5 warnings, Vitest 80파일·442테스트, API cache 154/154, build 117 pages, bundle 32 routes PASS다.
+> - PR **#441**을 squash merge 커밋 `d5f953b3a179e7930affc019b585cb7936beda60`으로 병합했고 Vercel Production deployment **5921488198**이 성공했다. `https://leedonggun.co.kr/unloading`은 HTTP 200이며 새 빌드를 제공한다.
+> - 운영 데스크톱 1440px·모바일 390px에서 13행이 `SEIN VENUS(8/15) → SHIN FUJI(7/6) → BAO LUCKY(6/23) → … → HIKARI 1(실적 없음)` 순서이고 페이지 overflow 0, page/local HTTP 오류 0임을 확인했다. 외부 Google 광고 403만 분리 관찰됐고 Vercel error 로그는 0건이다.
+> - 독립 반증에서 `M/D~D` 종료일 누락을 찾아 RED→GREEN으로 닫았고, 재검토는 blocking 0건 PASS다.
+> - **다음 단계**: 신규 하역 항차 추가 시 같은 실제 작업일 정렬 회귀 테스트를 유지한다.
+>
+> 🔒 **2026-08-15 21:47 KST — Gmail 동일 메일·다른 UUID 병렬 예약 Production hotfix** [Codex]:
+> - PR #437 배포 후 도착한 사전 diff 반증에서, 동일 사용자·동일 Gmail message hash의 기존 요청이 `pending`/`unknown`이어도 다른 UUID가 새 행으로 예약될 수 있는 P1 감사 계약 gap을 확인했다. 기존 UUID↔message hash 결속과 별개로, 함수가 새 UUID insert 전에 동일 message hash의 진행 중 행을 검사하지 않은 것이 원인이다.
+> - `20260815214500_prevent_parallel_mail_trash_requests.sql`은 기존 사용자 advisory lock 안에서 동일 `(user_id, gmail_message_id_hash)`·다른 UUID의 `pending`/`unknown` 행을 검사해 `invalid`로 거부한다. 같은 UUID+동일 message hash 재시도는 기존 lookup이 먼저 실행되므로 계속 허용한다. service-role 전용 권한·고정 search path·분당 50건/일 200건은 유지한다.
+> - RED 1건 후 관련 10테스트·전체 typecheck를 GREEN으로 닫았고, 전체 `npm run verify`는 ESLint 0 errors·기존 5 warnings, Vitest 79파일·441테스트, API cache 154/154, build 117 pages, bundle 32 routes PASS다. 최종 독립 반증도 blocking/P1 0건으로 PASS했다.
+> - Production transaction+rollback 재현은 hotfix 전 `blocked=false`, 적용 후 `blocked=true`로 바뀌었다. synthetic audit row는 rollback 후 0건이며, 함수 정의의 conflict guard·service-role 실행 허용·authenticated 직접 실행 차단도 DB에서 재확인했다.
+>
+> 🚢 **2026-08-15 21:10 KST — SEIN VENUS 8/15 일일 하역실적 반영·운영 배포** [Codex]:
+> - TTA 원본 일보를 기준으로 8/15 실적 **350.740 MT**, 누계 **2,013.100 MT**, 산술 잔량 **1,261.900 MT**를 `public/data/unloading/local_db.json`과 `/api/unloading-db` 계약에 추가했다. TUM 202.590 MT, ISA 148.150 MT와 4개 어창별 하역량·온도를 구조화했으며, 날짜 중복은 없다.
+> - 원본 하단의 일일 조정 **-21.160 MT**, 누적 조정 **-0.730 MT**, 조정 후 잔량 **1,261.170 MT**는 실적·산술 잔량에 합산하지 않고 별도 필드로 보존했다.
+> - 8/15 일일 결과보고 XLS와 일일하역량 현황 XLSX를 대조해 일일 어종 실적 **SJ 318.140 · YF 32.600 MT**, 누계 **SJ 1,715.500 · YF 297.600 MT**를 확정했다. 어창별 어종 분해는 원본에 없어 계속 추정하지 않는다.
+> - 원본 SHA-256은 이미지 `2b295ca629ace7e9aa0b3d50c00992e8f0bdec13b7f1c80d8fb2e6d89fa39b6b`, 결과보고 XLS `a52a830b86c022936bf0c727d617073a548c5df466b1111223adab16e6c175b0`, 현황 XLSX `0f0fe538043a59b9bf75f2cab299e161f1dd6299f41b96661bb642c497993dbd`이다.
+> - 사용자 후속 입력인 **8/16 공휴일 휴무·8/17 약 300톤 예정**은 구조화해 일일보고 5번 문구에만 사용하고, 하역 실적·누계·예측 KPI에는 합산하지 않는다.
+> - RED→GREEN 전용 테스트 **8/8**, 최신 `main` 기준 전체 `npm run verify` **74파일·408테스트**, 하역 이력 E2E가 통과했다(기존 ESLint 경고 5건, 오류 0건).
+> - PR **#434**를 병합 커밋 `9154f77312a9fffb2bf2194b37f2dc253c0d163b`로 순차 병합했고 Production 배포 **5920205019**가 성공했다. 운영 API는 8/15 수치·어종·조정값·보고 전용 8/16 휴무/8/17 300톤 계약을 반환하며, 보호 화면은 데스크톱·390px 모두 overflow 0·페이지/콘솔/자체 네트워크 오류 0으로 실측했다.
+> - Google Tasks `SEIN VENUS ###톤` → `SEIN VENUS 350.740 MT` 동기화는 Chrome 확장 프로그램이 설치·활성화됐으나 브라우저 세션 연결이 노출되지 않아 미완료다. 캘린더 일정으로 대체하지 않았다.
+> - **다음 단계**: Browser 플러그인 재설치·연결 후 8/15 Tasks 제목을 멱등 수정해 재확인한다. 8/16 일보 수신 시 같은 산술·어종 근거·조정값 분리 계약으로 후속 실적을 추가한다.
+>
+> 🗑️ **2026-08-15 21:36 KST — 관리자 Gmail 선택 휴지통 V2 운영 배포 완료** [Codex]:
+> - PR #432(`ff2d299`)는 Production 병합·배포됐고 Google Data Access의 exact `gmail.readonly`+`gmail.send`+`gmail.modify` 등록, 기존 연결 해제·3개 scope 재동의, 일반 텍스트 상세·회신 prefill 실계정 확인까지 완료했다. 사용자가 실제 회신 발송과 단건 휴지통 이동·복원은 건너뛰어 두 side effect는 미검증 상태다.
+> - 신규 선택 휴지통은 행별 체크박스, 현재 화면 전체 선택 최대 20건, 수동 선택 최대 50건, 실제 건수 최종 확인을 제공한다. 영구 삭제·전체 사서함 선택은 없으며 Gmail `users.messages.trash`만 사용한다.
+> - Production 실사용 중 메일 작성 input/textarea만 다크 배경을 하드코딩해 라이트 테마에서 입력 글자가 보이지 않는 문제를 확인했다. `--dsc-surface`/`--dsc-surface-border`/`--text-main` 토큰으로 교체하고 placeholder·caret 대비를 명시하는 회귀 테스트를 추가했다.
+> - 브라우저는 item별 고유 UUID를 map에 보존해 한 번의 `/api/mail/gmail/trash-batch` 요청으로 보낸다. 서버는 관리자+AAL2, trusted Origin, JSON·16KB, 고유 Gmail ID·UUID 1~50건, `no-store`를 강제하고 access token을 한 번만 갱신한 뒤 동시성 3으로 기존 `reserve_mail_message_action`/`record_mail_message_action` 감사 경계를 item별 재사용한다. 응답에는 Gmail ID 대신 요청 UUID와 completed/unknown/failed만 반환한다.
+> - 성공 메일만 목록에서 제거하고 확정 실패는 새 UUID 재시도를 허용한다. 네트워크·5xx·누락/중복/변조 응답은 item UUID를 폐기하지 않고 미확정으로 잠그며, 미확정 집합 전체를 같은 UUID+message ID로 재요청해 Gmail의 확정 응답을 받기 전에는 새 휴지통 작업을 막는다. bounded 목록에서 메일이 안 보인다는 이유로 완료 처리하지 않는다.
+> - `20260815205500_expand_mail_trash_action_limits.sql`을 Production에 선적용했다. DB 재조회에서 함수 인수 `user UUID + request UUID + message SHA-256`, service-role 실행 허용, authenticated 직접 실행 차단, 분당 50건·일 200건, UUID↔message hash 불일치 거부가 모두 확인됐다.
+> - 최신 `origin/main`(`5454618`) 위 fresh `npm run verify`: ESLint 0 errors·기존 5 warnings, Vitest 79파일·440테스트, API cache 154/154, production build 117 pages, bundle 32 routes PASS. 최종 독립 반증은 blocking/P1 0건으로 PASS했다.
+> - PR #437을 Production merge SHA `604b953efdae7a5614cd8627941650fddca4ffaa`로 병합했다. Vercel deployment `2XqAq4Yn1g2yzLu8EpVG4yVZkAJ8`는 Ready·Production·Current이며 `leedonggun.co.kr`에 연결됐다. 운영 비인증 경계는 `/mail/login` 200+private/no-store, `/mail` 404, `/api/mail/gmail/trash-batch` 401+`no-store`로 실측했다. 관리자 실계정의 체크박스·입력 대비와 휴지통 이동·복원 side effect는 사용자 확인 대상으로 남는다.
+>
 > 📄 **2026-08-15 21:30 KST — GMTS 주간보고 PDF 정규화·출처 manifest 구현 (로컬 커밋만)** [Codex]:
 > - `scripts/build_gmts_dashboard.py`가 Google Drive의 읽기 전용 GMTS PDF 30건을 `data/gmts_dashboard.json`으로 정규화한다. PDF별 파일명·SHA-256·페이지 수(합계 38)를 manifest로 보존하고, 보고일은 2026-01-21~08-12의 주간 연속성으로 검증한다.
 > - 빈 선언 건수·빈 2026 물량 행은 `null`로 유지한다. 가격의 no-offer/no-transaction 등 qualifier와 원문, 캐너리 7개+합계 원문을 함께 보존하며 누락 수치를 채우지 않는다.

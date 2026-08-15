@@ -23,6 +23,14 @@ interface ObservationEntry {
   temperaturesC: number[];
 }
 
+interface NextDayEntry {
+  kind: 'work' | 'no_work';
+  date?: string | null;
+  reason?: string | null;
+  resumeDate?: string | null;
+  plannedMt?: string | null;
+}
+
 interface TimelineEntry {
   date: string;
   time: string;
@@ -32,6 +40,7 @@ interface TimelineEntry {
   dailyAmount: number;
   cumAmount: number;
   remainingAmount?: number | null;
+  nextDay?: NextDayEntry | null;
   quality: string;
 }
 
@@ -205,8 +214,8 @@ export default function UnloadingReportGenerator({ vesselData, onClose }: Report
     const tempMax = overrides.tempMax || globalTemps?.max || '';
 
     // Next day plan
-    const nextDayPlan = overrides.nextDayPlan || parseNextDayPlan(entry.quality) || '';
-    const nextDayDate = parseNextDayDate(entry.quality) || '';
+    const nextDayPlan = overrides.nextDayPlan || entry.nextDay?.plannedMt || parseNextDayPlan(entry.quality) || '';
+    const nextDayDate = entry.nextDay?.date || parseNextDayDate(entry.quality) || '';
 
     // Shipper-hold breakdown
     const shipperHolds = parseShipperHolds(entry.targetHol);
@@ -228,6 +237,7 @@ export default function UnloadingReportGenerator({ vesselData, onClose }: Report
       tempMax,
       nextDayPlan,
       nextDayDate,
+      nextDay: entry.nextDay || null,
       shipperHolds,
       shipperTemps,
       allocations,
@@ -250,6 +260,7 @@ export default function UnloadingReportGenerator({ vesselData, onClose }: Report
       endTime,
       nextDayPlan,
       nextDayDate,
+      nextDay,
       shipperHolds,
       shipperTemps,
       allocations,
@@ -355,6 +366,14 @@ export default function UnloadingReportGenerator({ vesselData, onClose }: Report
     // §5
     if (isCompleted && cumulative >= vesselData.reportedTotal) {
       lines.push(`5. 운반선 ${vName}에서 보고량(${fmt(vesselData.reportedTotal)}톤) 대비 ${fmt(Math.abs(surplus))}톤 증가한 ${fmt(vesselData.actualTotal)}톤 하역 종료하였습니다.`);
+    } else if (nextDay?.kind === 'no_work') {
+      const reason = nextDay.reason || '휴무';
+      const resumeDate = nextDay.resumeDate || '';
+      if (resumeDate) {
+        lines.push(`5. 명일(${nextDayDate})은 ${reason}로 하역작업이 없습니다. 재개일(${resumeDate})은 약 ${nextDayPlan || '###'}톤 하역 작업 예정입니다.`);
+      } else {
+        lines.push(`5. 명일(${nextDayDate})은 ${reason}로 하역작업이 없습니다.`);
+      }
     } else if (nextDayPlan) {
       const ndDate = nextDayDate || '';
       lines.push(`5. 명일(${ndDate})은 약 ${nextDayPlan}톤 하역 작업 예정입니다.`);

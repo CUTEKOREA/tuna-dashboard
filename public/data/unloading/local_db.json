@@ -45,10 +45,10 @@
       "mother_vessel": "S/SPR · S/PIO · N/STAR · N/SUN",
       "hold_species_breakdown_available": false,
       "unclassified_actual_amount": 0,
-      "species_breakdown_as_of": "2026-08-14",
-      "species_breakdown_note": "8/14 일일 결과보고 XLS에서 어종별 일일·누적 물량을 확인했습니다. 개별 어창별 어종 분해는 제공되지 않습니다.",
+      "species_breakdown_as_of": "2026-08-15",
+      "species_breakdown_note": "8/15 일일 결과보고 XLS에서 어종별 일일·누적 물량을 확인했고 일일하역량 현황 XLSX로 교차 확인했습니다. 개별 어창별 어종 분해는 제공되지 않습니다.",
       "created_at": "2026-08-12T15:34:21+09:00",
-      "updated_at": "2026-08-14T22:07:23+09:00"
+      "updated_at": "2026-08-15T19:27:19+09:00"
     },
     {
       "vessel_id": "hikari-bangkok-2026-07",
@@ -913,6 +913,90 @@
       "created_at": "2026-08-14T21:01:37+09:00"
     },
     {
+      "id": "sein-venus-8-15",
+      "vessel_id": "sein-venus",
+      "report_year": 2026,
+      "report_date": "8/15",
+      "work_time": "08:10 ~ 17:00",
+      "target_holds": "N/STAR(#2-B:160.600,#2-C:41.990), N/SUN(#3-C:60.100), S/SPR(#4-C:88.050)",
+      "consignee": "TUM · ISA",
+      "allocations": [
+        {
+          "consignee": "TUM",
+          "amount": 202.59,
+          "loads": [
+            {
+              "source_vessel": "N/STAR",
+              "hatch": "#2-B",
+              "amount": 160.6
+            },
+            {
+              "source_vessel": "N/STAR",
+              "hatch": "#2-C",
+              "amount": 41.99
+            }
+          ]
+        },
+        {
+          "consignee": "ISA",
+          "amount": 148.15,
+          "loads": [
+            {
+              "source_vessel": "N/SUN",
+              "hatch": "#3-C",
+              "amount": 60.1
+            },
+            {
+              "source_vessel": "S/SPR",
+              "hatch": "#4-C",
+              "amount": 88.05
+            }
+          ]
+        }
+      ],
+      "observations": [
+        {
+          "source_vessel": "N/STAR",
+          "hatch": "#2-B",
+          "temperatures_c": [-22, -23]
+        },
+        {
+          "source_vessel": "N/STAR",
+          "hatch": "#2-C",
+          "temperatures_c": [-22, -23]
+        },
+        {
+          "source_vessel": "N/SUN",
+          "hatch": "#3-C",
+          "temperatures_c": [-21, -22]
+        },
+        {
+          "source_vessel": "S/SPR",
+          "hatch": "#4-C",
+          "temperatures_c": [-21, -22]
+        }
+      ],
+      "daily_amount": 350.74,
+      "cumulative_amount": 2013.1,
+      "species_amounts": { "SJ": 318.14, "YF": 32.6 },
+      "remaining_amount": 1261.9,
+      "daily_adjustment_amount": -21.16,
+      "cumulative_adjustment_amount": -0.73,
+      "adjusted_remaining_amount": 1261.17,
+      "next_day": {
+        "kind": "no_work",
+        "date": "8/16",
+        "reason": "공휴일",
+        "resume_date": "8/17",
+        "planned_mt": 300
+      },
+      "quality_notes": "N/STAR(#2-B) - 어창 개방 측정온도는 -22.0℃ ~ -23.0℃ 입니다. N/STAR(#2-C) - 어창 개방 측정온도는 -22.0℃ ~ -23.0℃ 입니다. N/SUN(#3-C) - 어창 개방 측정온도는 -21.0℃ ~ -22.0℃ 입니다. S/SPR(#4-C) - 어창 개방 측정온도는 -21.0℃ ~ -22.0℃ 입니다.",
+      "source_sha256": "2b295ca629ace7e9aa0b3d50c00992e8f0bdec13b7f1c80d8fb2e6d89fa39b6b",
+      "source_workbook_sha256": "a52a830b86c022936bf0c727d617073a548c5df466b1111223adab16e6c175b0",
+      "status_workbook_sha256": "0f0fe538043a59b9bf75f2cab299e161f1dd6299f41b96661bb642c497993dbd",
+      "created_at": "2026-08-15T19:27:19+09:00"
+    },
+    {
       "id": "hikari-loading-7-2-4",
       "vessel_id": "hikari-bangkok-2026-07",
       "report_date": "7/2~7/4",
@@ -1480,16 +1564,16 @@
       "species_id": "SJ",
       "species_name": "가다랑어·눈다랑어 합산",
       "reported_amount": 2844,
-      "actual_amount": 1397.36,
-      "updated_at": "2026-08-14T22:07:23+09:00"
+      "actual_amount": 1715.5,
+      "updated_at": "2026-08-15T20:18:44+09:00"
     },
     {
       "vessel_id": "sein-venus",
       "species_id": "YF",
       "species_name": "황다랑어",
       "reported_amount": 431,
-      "actual_amount": 265,
-      "updated_at": "2026-08-14T22:07:23+09:00"
+      "actual_amount": 297.6,
+      "updated_at": "2026-08-15T20:18:44+09:00"
     },
     {
       "vessel_id": "hikari-bangkok-2026-07",

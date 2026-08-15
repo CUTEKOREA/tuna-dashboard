@@ -58,10 +58,10 @@ describe('관리자 메일 메뉴 계약', () => {
     expect(loginComponent).not.toContain('sessionStorage');
   });
 
-  it('메일 화면은 상세 확인·회신 자동 채움·단건 휴지통·확인 후 발송만 제공한다', () => {
+  it('메일 화면은 상세·회신·선택 휴지통·확인 후 발송만 제공한다', () => {
     const source = readFileSync(join(process.cwd(), 'components/MailInboxDashboard.tsx'), 'utf8');
 
-    for (const label of ['안 읽은 메일', '발신자', '제목', '수신 시각', '미리보기', 'Gmail 원본 열기', '내용 확인', '회신 작성', '휴지통으로 이동', '새 메일 보내기', '받는 사람', '본문', '즉시 발송']) {
+    for (const label of ['안 읽은 메일', '발신자', '제목', '수신 시각', '미리보기', 'Gmail 원본 열기', '내용 확인', '회신 작성', '휴지통으로 이동', '현재 화면 최대 20건 선택', '선택한 메일 휴지통 이동', '새 메일 보내기', '받는 사람', '본문', '즉시 발송']) {
       expect(source).toContain(label);
     }
     expect(source).toContain('rel="noopener noreferrer"');
@@ -71,17 +71,35 @@ describe('관리자 메일 메뉴 계약', () => {
     expect(source).toContain('window.confirm');
     expect(source).toContain("'Idempotency-Key': requestId");
     expect(source).toContain('crypto.randomUUID()');
+    expect(source).toContain('MAX_BULK_TRASH_SELECTION');
+    expect(source).toContain('MAX_SELECT_ALL_TRASH');
+
+    expect(source).toContain('selectAllTrashIds');
+    expect(source).toContain('toggleTrashSelection');
+    expect(source).toContain('const [selectedTrashIds, setSelectedTrashIds] = useState<string[]>([])');
+    expect(source).toContain('const bulkTrashRequestIdsRef = useRef(new Map<string, string>())');
+    expect(source).toContain('const [uncertainTrashIds, setUncertainTrashIds] = useState<string[]>([])');
+    expect(source).toContain('한 번에 최대 50건까지 선택할 수 있습니다.');
+    expect(source).toContain('`${messageIds.length}건을 Gmail 휴지통으로 이동하시겠습니까?`');
+    expect(source).toContain('성공 ${completedIds.length}건');
+    expect(source).toContain('미확정 ${unknownIds.length}건');
+    expect(source).toContain('실패 ${failedIds.length}건');
     expect(source).toContain("mailRequest(`/api/mail/gmail/message?id=${encodeURIComponent(messageId)}`)");
-    expect(source).toContain("mailRequest('/api/mail/gmail/trash'");
-    expect(source).toContain("window.confirm('선택한 메일 1건을 Gmail 휴지통으로 이동하시겠습니까? 휴지통에서는 복구할 수 있습니다.')");
-    expect(source).toContain('const trashRequestRef = useRef<{ messageId: string; requestId: string } | null>(null)');
-    expect(source).toContain('currentRequest.messageId !== selectedMessage.message.id && trashUncertain');
-    expect(source).toContain('value.messages.some((message) => message.id === pendingTrash.messageId)');
-    expect(source).toContain('pendingTrash && !trashingRef.current');
-    expect(source).toContain('currentRequest?.messageId === selectedMessage.message.id');
-    expect(source).toContain('trashRequestRef.current = { messageId: selectedMessage.message.id, requestId }');
+    expect(source).toContain("mailRequest('/api/mail/gmail/trash-batch'");
+    expect(source).toContain('body: JSON.stringify({ items })');
+    expect(source).toContain('payload.results.length !== items.length');
+    expect(source).toContain('resultByRequestId.has(row.requestId)');
+    expect(source).toContain("'선택한 메일 1건을 Gmail 휴지통으로 이동하시겠습니까? 휴지통에서는 복구할 수 있습니다.'");
+    expect(source).toContain('window.confirm(confirmationMessage)');
+    expect(source).toContain('pendingIds.length !== targetIds.length');
+    expect(source).toContain('pendingIds.some((messageId) => !targetIds.includes(messageId))');
+    expect(source).not.toContain('confirmedIds');
+    expect(source).not.toContain('받은메일 새로고침에서 이전 휴지통 이동');
+    expect(source).toContain('bulkTrashRequestIdsRef.current.get(messageId) ?? crypto.randomUUID()');
+    expect(source).toContain('bulkTrashRequestIdsRef.current.set(messageId, requestId)');
+    expect(source).toContain("if (result.status !== 'unknown') bulkTrashRequestIdsRef.current.delete(result.messageId)");
     expect(source).toContain('<select disabled={working} value={limit}');
-    expect(source).toContain("trashRequestRef.current = null;\n        setTrashUncertain(false);\n        setError(value.code === 'mail_trash_rate_limited'");
+    expect(source).toContain("const status = response.status >= 500 ? 'unknown' as const : 'failed' as const");
     expect(source).toContain('threadId: replyMetadata.threadId');
     expect(source).toContain('inReplyTo: replyMetadata.inReplyTo');
     expect(source).toContain('references: replyMetadata.references');
@@ -96,5 +114,18 @@ describe('관리자 메일 메뉴 계약', () => {
     expect(source).not.toContain('type="file"');
     expect(source).not.toMatch(/영구 삭제|messages\/delete|batchDelete/);
     expect(source).not.toMatch(/setInterval|scheduleMail/);
+  });
+
+  it('메일 작성 입력은 라이트·다크 공용 토큰과 명시적 글자·placeholder·caret 대비를 사용한다', () => {
+    const css = readFileSync(join(process.cwd(), 'components/MailInboxDashboard.module.css'), 'utf8');
+    const fieldRule = css.match(/\.sendFields input,\s*\.sendFields textarea\s*\{([^}]+)\}/)?.[1] ?? '';
+
+    expect(fieldRule).toContain('color: var(--text-main, var(--text-primary))');
+    expect(fieldRule).toContain('background: var(--dsc-surface, rgba(5, 12, 28, 0.8))');
+    expect(fieldRule).toContain('border: 1px solid var(--dsc-surface-border, var(--card-border))');
+    expect(fieldRule).toContain('caret-color: var(--accent-primary)');
+    expect(css).toContain('.sendFields input::placeholder');
+    expect(css).toContain('.sendFields textarea::placeholder');
+    expect(css).toContain('color: var(--text-muted, var(--text-tertiary))');
   });
 });

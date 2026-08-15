@@ -148,6 +148,18 @@ export async function GET() {
               }
             : null,
           remainingAmount: r.remaining_amount == null ? null : Number(r.remaining_amount),
+          adjustedRemainingAmount: r.adjusted_remaining_amount == null ? null : Number(r.adjusted_remaining_amount),
+          dailyAdjustmentAmount: r.daily_adjustment_amount == null ? null : Number(r.daily_adjustment_amount),
+          cumulativeAdjustmentAmount: r.cumulative_adjustment_amount == null ? null : Number(r.cumulative_adjustment_amount),
+          nextDay: r.next_day && typeof r.next_day === 'object'
+            ? {
+                kind: r.next_day.kind,
+                date: r.next_day.date || null,
+                reason: r.next_day.reason || null,
+                resumeDate: r.next_day.resume_date || null,
+                plannedMt: r.next_day.planned_mt == null ? null : String(r.next_day.planned_mt),
+              }
+            : null,
           quality: r.quality_notes
         });
         mergedData[r.vessel_id].actualTotal = Number(r.cumulative_amount);
