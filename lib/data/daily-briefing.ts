@@ -141,3 +141,56 @@ export function buildDailyBriefingTakeaways(
 }
 
 export const dailyBriefing = parseDailyBriefing(rawBriefing);
+
+/* ── V3 뉴스 임팩트 표현 (A안: 리드 기사 + 임팩트 넘버, 2026-08-15 사용자 확정) ── */
+
+export type BriefingCategory = '시장' | '규제' | '원료가' | '무역' | '조업' | '뉴스';
+
+/** 키워드 기반 태그 — 표시용 배지일 뿐 사실 주장 아님. 미매칭은 «뉴스» */
+const CATEGORY_RULES: readonly { category: BriefingCategory; pattern: RegExp }[] = [
+  { category: '규제', pattern: /WCPFC|IOTC|ICCAT|규제|위원회|쿼터|자원평가|FAD|협정|IUU/ },
+  { category: '원료가', pattern: /원료가|원료 가|가격 상승|가격 하락|시세|달러.*(상승|하락)|USD [\d,]+/ },
+  { category: '무역', pattern: /수출|수입|관세|무역|통관/ },
+  { category: '조업', pattern: /조업|어획|선단|어장|폭풍|참사|해역/ },
+  { category: '시장', pattern: /판매|소비자|소매|수요|시장|물가|인플레이션/ },
+];
+
+export function categorizeBriefingTitle(title: string): BriefingCategory {
+  for (const rule of CATEGORY_RULES) {
+    if (rule.pattern.test(title)) return rule.category;
+  }
+  return '뉴스';
+}
+
+export type BriefingImpactNumber = {
+  /** 원문에서 그대로 뽑은 수치 토큰 (창작·재계산 금지) */
+  readonly value: string;
+  /** 수치를 품은 다이제스트 문구 (라벨) */
+  readonly label: string;
+};
+
+const NUMBER_TOKEN_PATTERN = /([+-]?\d[\d,.]*\s?%|USD\s?[\d,.]+|\$[\d,.]+|[\d,.]+\s?(?:달러|톤|만))/;
+
+/**
+ * 다이제스트 문구에서 수치 토큰을 원문 그대로 추출해 임팩트 넘버로 쓴다.
+ * 숫자가 없는 항목은 건너뛴다 — 수치를 만들어내지 않는다 (fail-closed).
+ */
+export function buildBriefingImpactNumbers(
+  briefing: DailyBriefing,
+  limit = 3,
+): readonly BriefingImpactNumber[] {
+  const numbers: BriefingImpactNumber[] = [];
+  for (const item of briefing.digest) {
+    const match = item.title.match(NUMBER_TOKEN_PATTERN);
+    if (!match) continue;
+    const label = item.title
+      .replace(match[0], '')
+      .replace(/[,·]?\s{2,}/g, ' ')
+      .replace(/(으로|로|은|는|이|가)?\s*(상승|하락|증가|감소|급증)?\s*$/, '')
+      .trim()
+      .replace(/[,·]$/, '');
+    numbers.push({ value: match[0].replace(/\s+$/, ''), label });
+    if (numbers.length >= limit) break;
+  }
+  return numbers;
+}

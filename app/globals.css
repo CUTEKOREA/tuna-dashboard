@@ -1052,6 +1052,8 @@ img, video, canvas, svg {
   --dsc-glow-rose: 0 2px 12px rgba(227, 89, 94, 0.25);
   --dsc-warn-bg: #fef3f2;
   --dsc-warn-border: rgba(227, 89, 94, 0.35);
+  /* Metabase 대형 타이틀 문법 — V2 얇은 250 대신 볼드 + 네거티브 트래킹 (사용자 지시 2026-08-15) */
+  --dsc-title-weight: 700;
 
   /* 레거시 토큰 브리지 — market 구위젯이 참조하는 층 */
   --bg-color: #f9fafb;

@@ -300,10 +300,12 @@ describe('dashboard registry', () => {
       expect(rule).toContain('var(--dsc-card-radius)');
     }
 
-    // V2.5-b에서 보존한 차트 팔레트는 L-07 브리지 토큰으로 같은 색을 유지한다.
-    for (const chartColor of ['#2dd4bf', '#f472b6', '#facc15', '#fb923c', '#c084fc', '#a78bfa']) {
+    // V3 (2026-08-15): market 어가 차트는 Metabase accent 팔레트로 전환 —
+    // 시리즈 간 색상 분리 + gradient stroke 제거(범례 흑색·시리즈 소실 원인) 계약.
+    for (const chartColor of ['#509ee3', '#88bf4d', '#ef8c8c', '#e8b921', '#f2a86f', '#7172ad', '#a989c5']) {
       expect(marketSource).toContain(chartColor);
     }
+    expect(marketSource).not.toContain('url(#mktGrad');
     expect(unloadingSource).toContain('fill="var(--w-sky-400)"');
     expect(unloadingSource).toContain('stroke="var(--w-emerald-500)"');
     expect(globalsSource).toContain('--w-sky-400: #38bdf8;');
