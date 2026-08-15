@@ -262,7 +262,7 @@ export default function LogisticsDashboard({ heroOnly = false }: { heroOnly?: bo
 
           <div>
             <div className={styles.historyNotice}>보고 시점 자료 — 현재 운항 상태가 아닙니다. 실제 입항·접안·하역 여부는 최신 운영 기록으로 재확인해야 합니다.</div>
-            <details className={styles.historyDetails}>
+            <details className={styles.historyDetails} open>
               <summary><span><Navigation size={17} aria-hidden="true" /> 냉동 운반선 보고자료 펼치기</span></summary>
               <div className={styles.historyBody}>
                 <WidgetCard

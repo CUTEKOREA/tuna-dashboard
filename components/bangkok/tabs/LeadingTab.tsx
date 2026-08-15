@@ -20,6 +20,12 @@ const validCells = corrCells.filter((c) => c.r !== null) as {
 const strongest = validCells.reduce((a, b) => (Math.abs(b.r) > Math.abs(a.r) ? b : a));
 const weakCount = validCells.filter((c) => Math.abs(c.r) < 0.3).length;
 
+/* 해설 예시 셀 — 하역 물량 시차 4주. 하드코딩하지 않고 표에서 꺼낸다. */
+const exampleCell = bangkokCorr
+  .find((m) => m.metric === 'unload_mt')
+  ?.lags.find((l) => l.lagWeeks === 4);
+const exampleR = exampleCell && exampleCell.r !== null ? exampleCell.r : null;
+
 const peakMonth = bangkokSeasonality.reduce((a, b) => (b.unloadMt > a.unloadMt ? b : a));
 const lowMonth = bangkokSeasonality.reduce((a, b) => (b.unloadMt < a.unloadMt ? b : a));
 
@@ -30,6 +36,34 @@ export function LeadingTab() {
     <>
       <Sec>시세 선행 상관</Sec>
       <Grid>
+        <Panel span={12} title="이 표를 읽는 법" src={SRC}>
+          <div className="pf-note">
+            아래 표는 각 지표의 N주 전 값이 현재 원어 시세와 얼마나 같이 움직였는지를
+            상관계수 r로 보여드립니다. r는 -1부터 +1 사이의 값으로, +1에 가까울수록 두 값이
+            같은 방향으로, -1에 가까울수록 반대 방향으로 움직였다는 뜻입니다. 음의 상관은
+            예컨대 재고가 늘어난 뒤 시세가 내려가는 경향이 있었다는 의미입니다. 절댓값
+            |r|가 0.3에 못 미치면 함께 움직인 정도가 낮아 방향 판단의 근거로 삼기
+            어렵습니다.
+            {exampleCell && exampleR !== null && (
+              <>
+                {' '}예를 들어 하역 물량 시차 4주의 r={exampleR.toFixed(2)}는 4주 전 하역
+                물량이 많았던 시기에 현재 시세가 {exampleR < 0 ? '낮은' : '높은'} 경향이
+                있었다는 뜻이며, 표본 {exampleCell.n}주에서 계산된 값입니다.
+              </>
+            )}
+            {' '}표본 주수가 적을수록 우연히 큰 상관이 나올 수 있으니 괄호의 주수를 함께
+            봐 주시기 바랍니다.
+          </div>
+          <div className="pf-note">
+            <b>상관계수 (r)</b> — 두 시계열이 같이 움직인 정도. -1(정반대)~+1(같은 방향), 0은 무관.
+            <br />
+            <b>시차 (주)</b> — 지표를 시세보다 N주 앞당겨 비교한 간격. «시차 4주»는 4주 전 지표
+            값과 현재 시세의 비교.
+            <br />
+            <b>표본 (주수)</b> — 상관 계산에 실제로 짝이 맞은 주간 관측치 수. 적을수록 우연에 취약.
+          </div>
+        </Panel>
+
         <Panel
           span={12}
           title="지표별 시세 선행 상관"

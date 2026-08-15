@@ -205,8 +205,8 @@ describe('Deep Sea Command V2 — Fleet pilot', () => {
 
     expect(markup).toContain('선단 운영');
     expect(markup).toContain('주간 어획량');
-    // 배경은 Grok 실사진이 기본, 데이터 발광 SVG는 onError 폴백 (VesselPhotoWithFallback)
-    expect(markup).toContain('/heroes/seiner.webp');
+    // 2026-08-15 사용자 지시: 선박 사진 배경 제거 — 라이트 히어로는 배경 없이
+    expect(markup).not.toContain('/heroes/seiner.webp');
   });
 });
 
@@ -258,15 +258,15 @@ describe('Deep Sea Command V2 — Phase 2 운영 페이지', () => {
       }),
     );
 
-    expect(markup).toContain('하역 관제');
+    expect(markup).toContain('하역 현황');
     expect(markup).toContain('2026 누적 하역량');
     expect(markup).toContain('완료 선박');
     expect(markup).toContain('현재 하역 누계');
     expect(markup).toContain('잔여 목표량');
     expect(markup).toContain('M/V SEIN VENUS');
     expect(markup).toContain('M/V HIKARI 1');
-    // 배경은 Grok 실사진이 기본 (해치 데이터 발광은 폴백 SVG 계약 — 아래 단위 테스트가 보존)
-    expect(markup).toContain('/heroes/carrier.webp');
+    // 2026-08-15 사용자 지시: 선박 사진 배경 제거 (해치 발광 계약은 VesselTopSVG 단위 테스트가 보존)
+    expect(markup).not.toContain('/heroes/carrier.webp');
   });
 
   it('물류 히어로가 31주차 4척 항로 마커와 기존 하역 SIT·TAK를 렌더한다', async () => {
@@ -421,7 +421,7 @@ describe('Deep Sea Command V2 — PillTabs', () => {
     expect(markup).toContain('>3<');
   });
 
-  it('활성 탭은 2색 그라디언트 대신 단일 액센트와 12px 저대비 표면을 쓴다', () => {
+  it('활성 탭은 그라디언트 없이 눈에 띄는 단색 액센트 필을 쓴다 (2026-08-15 사용자 지시)', () => {
     const markup = renderToStaticMarkup(
       React.createElement(PillTabs, {
         tabs: [
@@ -436,7 +436,10 @@ describe('Deep Sea Command V2 — PillTabs', () => {
     );
 
     expect(markup).toContain('border-radius:12px');
-    expect(markup).toContain('#123456');
+    // 활성 필은 accent-primary 단색 + 흰 글자 — 저대비 틴트(«${accentFrom}22») 금지
+    expect(markup).toContain('background:var(--accent-primary)');
+    expect(markup).toContain('color:#ffffff');
+    expect(markup).not.toContain('#12345622');
     expect(markup).not.toContain('#abcdef');
     expect(markup).not.toContain('linear-gradient');
   });

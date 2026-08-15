@@ -4,6 +4,7 @@ import Chart, { Legend, type Serie } from '../../cosmo/Chart';
 import { Grid, Panel, Sec, Table } from '../../panofi/PanofiUi';
 import {
   bangkokCanneries,
+  bangkokCanneryPanel,
   bangkokStockShare,
   bangkokWeeklyKpi,
   bangkokWeeks,
@@ -33,6 +34,39 @@ const weekRows = bangkokWeeks.map((w) => ({
   재고: w.bkkStockMt,
   가공일수: w.bkkDays,
 }));
+
+/* 캐너리별 주간 시계열 — 재고 점유 상위 4개, 날짜 합집합에 병합 (보간 금지).
+   가동률(%)과 재고(MT)는 축이 달라 이중축 대신 패널을 분리한다. */
+const TOP_CANNERIES = [...bangkokStockShare]
+  .sort((a, b) => b.sharePct - a.sharePct)
+  .map((s) => s.name)
+  .filter((n) => bangkokCanneryPanel.some((p) => p.name === n))
+  .slice(0, 4);
+
+const canneryWeekRows = (() => {
+  const byDate = new Map<string, Record<string, string | number | null>>();
+  for (const name of TOP_CANNERIES) {
+    const panel = bangkokCanneryPanel.find((p) => p.name === name);
+    if (!panel) continue;
+    for (const w of panel.weeks) {
+      const row = byDate.get(w.date) ?? { date: w.date, label: w.date.slice(2, 7) };
+      row[`${name}·가동률`] = w.utilPct;
+      row[`${name}·재고`] = w.stockMt;
+      byDate.set(w.date, row);
+    }
+  }
+  return [...byDate.values()].sort((a, b) => String(a.date).localeCompare(String(b.date)));
+})();
+
+const CANNERY_COLORS = [C.s1, C.s2, C.s3, 'var(--cosmo-s4)'];
+const canneryLegend = TOP_CANNERIES.map((n, i) => ({ name: n, color: CANNERY_COLORS[i] }));
+const canneryUtilSeries = TOP_CANNERIES.map((n, i) =>
+  S(`${n}·가동률`, n, CANNERY_COLORS[i], { fmt: (v) => `${v}%` }),
+);
+const canneryStockSeries = TOP_CANNERIES.map((n, i) =>
+  S(`${n}·재고`, n, CANNERY_COLORS[i], { fmt: (v) => v.toLocaleString('ko-KR') }),
+);
+const CANNERY_TREND_NOTE = `재고 점유 상위 ${TOP_CANNERIES.length}개 캐너리 (${TOP_CANNERIES.join(' · ')}) — 무기록 주는 선을 끊는다 (보간하지 않음).`;
 
 /* 재고 점유 상위 10 (전체 17) — 값은 총재고 대비 비중(%) */
 const stockTop = [...bangkokStockShare]
@@ -93,6 +127,45 @@ export function CanneryTab() {
             series={[S('가공일수', '가공가능일수', C.s3)]}
             yFmt={(v) => `${v}일`}
           />
+        </Panel>
+      </Grid>
+
+      <Sec>캐너리별 추이</Sec>
+      <Grid>
+        <Panel
+          span={6}
+          title="캐너리별 가동률 추이"
+          unit="(%)"
+          note={CANNERY_TREND_NOTE}
+          src={SRC}
+        >
+          <Chart
+            data={canneryWeekRows}
+            x="label"
+            height={250}
+            xInterval={51}
+            series={canneryUtilSeries}
+            yFmt={(v) => `${v}%`}
+          />
+          <Legend items={canneryLegend} />
+        </Panel>
+
+        <Panel
+          span={6}
+          title="캐너리별 원어재고 추이"
+          unit="(MT)"
+          note={CANNERY_TREND_NOTE}
+          src={SRC}
+        >
+          <Chart
+            data={canneryWeekRows}
+            x="label"
+            height={250}
+            xInterval={51}
+            series={canneryStockSeries}
+            yFmt={(v) => v.toLocaleString('ko-KR')}
+          />
+          <Legend items={canneryLegend} />
         </Panel>
       </Grid>
 
