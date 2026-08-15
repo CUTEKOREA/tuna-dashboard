@@ -2,6 +2,7 @@ import weeklyRaw from '@/public/data/panofi/panofi_weekly.json';
 import profileRaw from '@/public/data/panofi/panofi_profile.json';
 import tradeRaw from '@/public/data/panofi/ghana_tuna_trade.json';
 import actualsRaw from '@/public/data/panofi/panofi_actuals.json';
+import liquidityRaw from '@/public/data/panofi/panofi_liquidity.json';
 
 /**
  * 파노피(가나 참치 선망) 데이터 인테이크.
@@ -400,6 +401,56 @@ export const vesselCostGroups = actuals.byVessel.vessels.map((v) => {
   g.경비 = Math.round(g.경비 / 1000);
   return g;
 });
+
+/* ------------------------------------------------- 자금유동성 (월간보고 pptx) */
+
+export const liquidity = liquidityRaw;
+
+/** 월말 현금·매출채권·매입채무와 과부족(천 달러). 2026년만 그린다. */
+export const liquiditySeries = liquidity.series
+  .filter((r) => r.asOf >= '2025-12-31')
+  .map((r) => ({
+    label: r.asOf.slice(2).replace(/-/g, '/'),
+    asOf: r.asOf,
+    현금: r.현금,
+    매출채권: r.매출채권,
+    매입채무: r.매입채무,
+    과부족: r.과부족,
+  }));
+
+/**
+ * 과부족 악화의 분해. 매출채권은 줄었는데(회수 성공) 매입채무가 더 크게 늘어
+ * 과부족이 벌어졌다 — «회수했는데 왜 더 나빠졌나»에 답하는 축이다.
+ */
+export const liquidityBridge = (() => {
+  const rows = liquidity.series.filter((r) => r.asOf >= '2025-12-31');
+  const first = rows[0];
+  const last = rows[rows.length - 1];
+  if (!first || !last) return null;
+  const d = (k: '현금' | '매출채권' | '매입채무' | '과부족') =>
+    first[k] === null || last[k] === null ? null : Math.round(last[k]! - first[k]!);
+  return {
+    from: first.asOf,
+    to: last.asOf,
+    현금: d('현금'),
+    매출채권: d('매출채권'),
+    매입채무: d('매입채무'),
+    과부족: d('과부족'),
+    startShortfall: first.과부족,
+    endShortfall: last.과부족,
+  };
+})();
+
+/** 익월 추정손익(천 달러) — 전년 동월 대비. 월간보고에만 있는 선행 수치다. */
+export const monthlyEstimates = liquidity.estimates
+  .slice()
+  .sort((a, b) => a.forMonth - b.forMonth)
+  .map((e) => ({
+    label: `${e.forMonth}월`,
+    당년추정: e.net ?? null,
+    전년실적: e.netPrevYear ?? null,
+    매출추정: e.revenue ?? null,
+  }));
 
 /** 원자료 품질 플래그. 화면 하단 '데이터 품질'에 그대로 노출해 신뢰도를 스스로 밝힌다. */
 export const dataQuality = {

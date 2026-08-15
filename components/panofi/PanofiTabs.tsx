@@ -38,6 +38,10 @@ import {
   marginRankShift,
   catchBySpecies,
   vesselCostGroups,
+  liquidity,
+  liquiditySeries,
+  liquidityBridge,
+  monthlyEstimates,
   trade,
   tradeBalanceSeries,
   tradeLadderGap,
@@ -493,6 +497,58 @@ export function CashTab() {
           <Kpi k="아비장 미수금 잔액" v={kusd(receivables.abidjanKusd)} d={`정점 대비 ${kusd(receivables.recoveredKusd)}`} tone="up" />
         </div>
         <div className="cnote">{receivables.cashShortfallNote}</div>
+      </Card>
+
+      <SecHead>자금유동성 월별</SecHead>
+      <Card
+        sub="단위: 천 달러. 월간보고 원본. 과부족 = 현금 + 매출채권 − 매입채무"
+        note={liquidity.meta.caveat}
+      >
+        <Chart
+          data={liquiditySeries}
+          x="label"
+          height={300}
+          series={[
+            S('현금', '현금', 'var(--cosmo-s1)', { type: 'line' }),
+            S('매출채권', '매출채권', 'var(--cosmo-s2)', { type: 'line' }),
+            S('매입채무', '매입채무', 'var(--cosmo-s4)', { type: 'line' }),
+            S('과부족', '과부족', 'var(--cosmo-s3)', { type: 'bar', signColor: ['var(--cosmo-up)', 'var(--cosmo-down)'] }),
+          ]}
+          zeroLine
+          yFmt={kusd}
+        />
+      </Card>
+
+      {liquidityBridge && (
+        <>
+          <SecHead>회수했는데 왜 더 나빠졌나</SecHead>
+          <Card
+            sub={`${liquidityBridge.from} → ${liquidityBridge.to} 증감(천 달러)`}
+            note="매출채권을 줄이고 현금을 늘렸는데도 과부족이 벌어진 이유는 매입채무다. 회수한 자금이 유류·수리·이자로 나가고 외상이 그보다 크게 쌓였다. 미수금 회수만으로는 과부족이 뒤집히지 않으며, 매입채무 만기 구조 재조정과 관계사 결제 캘린더 합의가 함께 가야 한다."
+          >
+            <div className="kpis">
+              <Kpi k="현금" v={kusd(liquidityBridge.현금 ?? 0)} tone={(liquidityBridge.현금 ?? 0) >= 0 ? 'up' : 'down'} />
+              <Kpi k="매출채권" v={kusd(liquidityBridge.매출채권 ?? 0)} tone="up" d="줄면 회수 성공" />
+              <Kpi k="매입채무" v={kusd(liquidityBridge.매입채무 ?? 0)} tone="down" d="늘면 외상 증가" />
+              <Kpi k="과부족 변화" v={kusd(liquidityBridge.과부족 ?? 0)} tone="down" d={`${kusd(liquidityBridge.startShortfall ?? 0)} → ${kusd(liquidityBridge.endShortfall ?? 0)}`} />
+            </div>
+          </Card>
+        </>
+      )}
+
+      <SecHead>익월 추정손익</SecHead>
+      <Card sub="단위: 천 달러. 월간보고가 제시한 익월 순손익 추정과 전년 동월 실적" note="월간보고 3·6월분은 원본이 없어 빠져 있다. 4월 이후 전년 대비 낙폭이 커지는 흐름이 그대로 보인다.">
+        <Chart
+          data={monthlyEstimates}
+          x="label"
+          height={240}
+          series={[
+            S('전년실적', '전년 동월 실적', 'var(--cosmo-s4)', { type: 'bar' }),
+            S('당년추정', '당년 추정', 'var(--cosmo-s1)', { type: 'bar' }),
+          ]}
+          zeroLine
+          yFmt={kusd}
+        />
       </Card>
 
       <SecHead>소송·채권</SecHead>

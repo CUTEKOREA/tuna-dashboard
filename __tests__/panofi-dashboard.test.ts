@@ -22,6 +22,8 @@ import {
   marginRankShift,
   catchBySpecies,
   monthlySeries,
+  liquidity,
+  liquidityBridge,
 } from '../lib/data/panofi';
 import { DASHBOARD_MENU_CONFIGS, SIDEBAR_SECTIONS } from '../lib/dashboard-registry';
 
@@ -208,5 +210,39 @@ describe('추정실적 원장 (월별·척별)', () => {
     expect(monthlySeries).toHaveLength(6);
     const sum = monthlySeries.reduce((s, m) => s + (Number(m.판매량) || 0), 0);
     expect(Math.abs(sum - h1.salesT)).toBeLessThan(1);
+  });
+});
+
+describe('자금유동성 (월간보고 pptx)', () => {
+  it('과부족이 현금 + 매출채권 − 매입채무와 일치한다', () => {
+    for (const r of liquidity.series) {
+      if (r.현금 === null || r.매출채권 === null || r.매입채무 === null) continue;
+      expect(r.과부족).toBeCloseTo(r.현금! + r.매출채권! - r.매입채무!, 1);
+    }
+  });
+
+  it('전략보고 수치와 교차검증된다 — 연초 -799만불, 6월말 -2,082만불', () => {
+    // 전략보고는 만불 단위 반올림값을 쓴다. 여기서는 천불 원값을 그대로 두고
+    // 만불로 환산했을 때 보고서 값과 0.5만불 이내로 붙는지만 본다
+    // (-7,985 는 -798.5만불이라 반올림 방향에 따라 -798/-799 로 갈린다).
+    const start = liquidity.series.find((r) => r.asOf === '2026-01-01');
+    const end = liquidity.series.find((r) => r.asOf === '2026-06-30');
+    expect(start!.과부족).toBe(-7985);
+    expect(end!.과부족).toBe(-20815);
+    expect(Math.abs(start!.과부족! / 10 - -799)).toBeLessThanOrEqual(0.5);
+    expect(Math.abs(end!.과부족! / 10 - -2082)).toBeLessThanOrEqual(0.5);
+  });
+
+  it('회수는 성공했는데 매입채무가 더 크게 늘어 과부족이 악화됐다', () => {
+    expect(liquidityBridge).not.toBeNull();
+    expect(liquidityBridge!.매출채권).toBeLessThan(0); // 채권 감소 = 회수
+    expect(liquidityBridge!.매입채무).toBeGreaterThan(0); // 채무 증가
+    expect(liquidityBridge!.과부족).toBeLessThan(0); // 그럼에도 과부족 악화
+  });
+
+  it('보고 공백 월을 숨기지 않는다', () => {
+    expect(liquidity.meta.missingMonths).toContain('3월');
+    expect(liquidity.meta.missingMonths).toContain('6월');
+    expect(liquidity.meta.knownDiscrepancy).toContain('44,158');
   });
 });
