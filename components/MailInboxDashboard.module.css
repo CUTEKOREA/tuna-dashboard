@@ -146,9 +146,10 @@
 
 .verifyRow input,
 .limitControl select {
-  color: var(--text-primary);
-  background: rgba(5, 12, 28, 0.8);
-  border: 1px solid var(--card-border);
+  /* V3 라이트 (2026-08-15 사용자 지적): 다크 하드코딩 배경 → 토큰 (라이트 흰 pill) */
+  color: var(--text-main, var(--text-primary));
+  background: var(--dsc-surface, rgba(5, 12, 28, 0.8));
+  border: 1px solid var(--dsc-surface-border, var(--card-border));
   border-radius: 8px;
   padding: 10px 12px;
 }
