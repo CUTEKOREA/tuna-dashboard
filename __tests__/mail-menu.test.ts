@@ -1,4 +1,4 @@
-import { readFileSync } from 'node:fs';
+import { existsSync, readFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { describe, expect, it } from 'vitest';
 
@@ -37,6 +37,25 @@ describe('관리자 메일 메뉴 계약', () => {
     expect(route).toContain('index: false');
     expect(route).toContain('follow: false');
     expect(page).toContain("if (path && isActiveMenu(path)) return path");
+  });
+
+  it('공개 대시보드와 분리된 관리자 로그인 경로가 Supabase 세션을 만든다', () => {
+    const loginPagePath = join(process.cwd(), 'app/mail/login/page.tsx');
+    const loginComponentPath = join(process.cwd(), 'components/MailAdminLogin.tsx');
+
+    expect(existsSync(loginPagePath)).toBe(true);
+    expect(existsSync(loginComponentPath)).toBe(true);
+
+    const loginPage = existsSync(loginPagePath) ? readFileSync(loginPagePath, 'utf8') : '';
+    const loginComponent = existsSync(loginComponentPath) ? readFileSync(loginComponentPath, 'utf8') : '';
+
+    expect(loginPage).toContain('index: false');
+    expect(loginPage).toContain('follow: false');
+    expect(loginComponent).toContain('supabase.auth.signInWithPassword');
+    expect(loginComponent).toContain("router.replace('/mail')");
+    expect(loginComponent).not.toContain('signUp');
+    expect(loginComponent).not.toContain('localStorage');
+    expect(loginComponent).not.toContain('sessionStorage');
   });
 
   it('메일 화면은 텍스트 메타데이터·원본 링크만 제공하고 브라우저 저장소에 토큰을 쓰지 않는다', () => {
