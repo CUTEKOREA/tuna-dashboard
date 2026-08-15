@@ -32,3 +32,89 @@
     opacity: 0;
   }
 }
+
+/* ── 배지 본체 — 다크 기본값 + 라이트 스코프 재정의 (색은 여기서만) ── */
+
+.badge {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 2px 7px;
+  border-radius: 5px;
+  background: rgba(24, 24, 27, 0.72);
+  border: 1px solid rgba(148, 163, 184, 0.16);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+}
+
+.badge[data-telemetry-tone='accent'] {
+  border-color: rgba(34, 211, 238, 0.25);
+}
+
+.dotWrap {
+  position: relative;
+  width: 6px;
+  height: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.dot {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background: #94a3b8;
+}
+
+.badge[data-telemetry-tone='accent'] .dot {
+  background: #22d3ee;
+  box-shadow: 0 0 6px rgba(34, 211, 238, 0.6);
+}
+
+.label {
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  color: #94a3b8;
+}
+
+.badge[data-telemetry-tone='accent'] .label {
+  color: #22d3ee;
+}
+
+.date {
+  font-size: 0.56rem;
+  font-weight: 500;
+  color: #71717a;
+  margin-left: 2px;
+  white-space: nowrap;
+}
+
+/* 라이트 — 흰 pill + 진한 잉크 (SYNCED 흐릿 문제 해소) */
+[data-v3='light'] .badge {
+  background: #ffffff;
+  border-color: #c6c9d2;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+}
+[data-v3='light'] .badge[data-telemetry-tone='accent'] {
+  border-color: rgba(80, 158, 227, 0.5);
+}
+[data-v3='light'] .dot {
+  background: #689735;
+}
+[data-v3='light'] .badge[data-telemetry-tone='accent'] .dot {
+  background: #509ee3;
+  box-shadow: 0 0 6px rgba(80, 158, 227, 0.5);
+}
+[data-v3='light'] .label {
+  color: #4c5773;
+}
+[data-v3='light'] .badge[data-telemetry-tone='accent'] .label {
+  color: #1c6bb0;
+}
+[data-v3='light'] .date {
+  color: #8d93a5;
+}
