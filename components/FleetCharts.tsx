@@ -22,6 +22,37 @@ const subscribeClientReady = () => () => {};
 const getClientReadySnapshot = () => true;
 const getServerReadySnapshot = () => false;
 
+/* V3 라이트: 전역 recharts 기본 툴팁(!important)이 라이트 흰 배경이라 시리즈색 글자가
+ * 소실됨 — 다크 커스텀 툴팁으로 교체 (MarketDashboard의 MarketChartTip 패턴) */
+function FleetChartTip({ active, payload, label }: {
+  active?: boolean;
+  payload?: { name?: string; value?: number | string; color?: string }[];
+  label?: string;
+}) {
+  if (!active || !payload?.length) return null;
+  return (
+    <div style={{
+      background: '#303c46',
+      border: '1px solid rgba(255, 255, 255, 0.12)',
+      borderRadius: '10px',
+      boxShadow: '0 8px 24px rgba(16, 24, 40, 0.35)',
+      padding: '10px 12px',
+      fontSize: '12.5px',
+      lineHeight: 1.6,
+    }}>
+      <div style={{ color: '#c6c9d2', marginBottom: '4px', fontWeight: 700 }}>{label}</div>
+      {payload.map((entry) => (
+        <div key={String(entry.name)} style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
+          <span style={{ width: 8, height: 8, borderRadius: '50%', background: entry.color ?? '#ffffff', flex: '0 0 auto' }} />
+          <span style={{ color: '#ffffff' }}>
+            {entry.name} : {typeof entry.value === 'number' ? entry.value.toLocaleString('ko-KR') : entry.value}
+          </span>
+        </div>
+      ))}
+    </div>
+  );
+}
+
 // Data Definitions
 const weeklyData = purseSeineCatch.weeklyRanking.map((item) => ({
   name: item.vessel,
@@ -89,7 +120,7 @@ export function WeeklyCatchChart() {
         />
         <YAxis yAxisId="left" stroke="var(--chart-axis)" axisLine={false} tickLine={false} tick={{ fontSize: rc.tickFontSize }} width={rc.isMobile ? 30 : 40} />
         <YAxis yAxisId="right" orientation="right" stroke="var(--accent-danger)" axisLine={false} tickLine={false} tick={{ fontSize: rc.tickFontSize }} domain={[0, 30]} width={rc.isMobile ? 25 : 40} hide={rc.isMobile} />
-        <Tooltip contentStyle={{ backgroundColor: 'var(--chart-tooltip-bg)', borderColor: 'var(--chart-tooltip-border)', color: 'var(--text-main)', fontSize: rc.isMobile ? '11px' : '13px' }} />
+        <Tooltip content={<FleetChartTip />} />
         <Legend wrapperStyle={{ fontSize: rc.legendFontSize }} />
         <Bar yAxisId="left" dataKey="weekly" name="주간 어획량 (톤)" fill="var(--pastel-ice)" radius={[4, 4, 0, 0]} />
         <Line yAxisId="right" type="monotone" dataKey="avg" name="일평균 어획량" stroke="var(--accent-danger)" dot={{ r: rc.isMobile ? 3 : 5, fill: 'var(--accent-danger)' }} strokeWidth={0} />
@@ -140,7 +171,7 @@ export function MonthlyCatchChart() {
           interval={0}
         />
         <YAxis stroke="var(--chart-axis)" axisLine={false} tickLine={false} tick={{ fontSize: rc.tickFontSize }} domain={[0, 7000]} width={rc.isMobile ? 30 : 40} />
-        <Tooltip contentStyle={{ backgroundColor: 'var(--chart-tooltip-bg)', borderColor: 'var(--chart-tooltip-border)', color: 'var(--text-main)', fontSize: rc.isMobile ? '11px' : '13px' }} />
+        <Tooltip content={<FleetChartTip />} />
         <Legend wrapperStyle={{ fontSize: rc.legendFontSize }} />
         <MonthlyCatchSeries />
       </BarChart>
@@ -162,9 +193,10 @@ const CustomRankShape = (props: any) => {
 
 const CustomTooltip = ({ active, payload, label }: any) => {
   if (active && payload && payload.length) {
+    // V3 라이트: 다크 툴팁 관례 (MarketChartTip 패턴)
     return (
-      <div style={{ backgroundColor: 'var(--chart-tooltip-bg)', border: '1px solid var(--chart-tooltip-border)', padding: '8px', borderRadius: '6px', color: 'var(--text-main)', fontSize: '11px', maxWidth: '200px' }}>
-        <p style={{ margin: '0 0 6px 0', fontWeight: 'bold', fontSize: '12px' }}>{label}</p>
+      <div style={{ backgroundColor: '#303c46', border: '1px solid rgba(255, 255, 255, 0.12)', padding: '8px', borderRadius: '6px', color: '#ffffff', fontSize: '11px', maxWidth: '200px' }}>
+        <p style={{ margin: '0 0 6px 0', fontWeight: 'bold', fontSize: '12px', color: '#c6c9d2' }}>{label}</p>
         {payload.map((entry: any, index: number) => {
           if (entry.name === 'name' || entry.dataKey === 'name') return null;
           return (

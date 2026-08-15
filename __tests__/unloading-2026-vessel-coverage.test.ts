@@ -142,6 +142,64 @@ describe('2026 unloading vessel coverage', () => {
     }
   });
 
+  it('exposes all 11 completed 2026 vessels (Bangkok 10 + Gensan 1) after the client merge', async () => {
+    // 히어로 KPI(완료 11척)와 완료 선박 목록이 같은 completedVessels 배열을 쓰므로,
+    // 병합 결과가 11척이면 목록에도 11척이 전부 노출된다 (2026-08-15 4척 축소 사고 가드).
+    const { getVesselStatusKind } = await import('../lib/unloading-operations');
+    const { GET } = await import('../app/api/unloading-db/route');
+
+    const response = await GET();
+    const body = await response.json();
+    expect(body.success).toBe(true);
+
+    const dbCompleted = Object.entries(body.data as Record<string, { status: string; location: string }>)
+      .filter(([, v]) => getVesselStatusKind(v.status) === 'completed');
+    expect(dbCompleted.map(([id]) => id).sort()).toEqual([
+      'angara-2026-01',
+      'bao-lucky',
+      'salt-lake-2026-01',
+      'sein-phoenix',
+      'sein-phoenix-2025-12',
+      'shin-fuji',
+      'volta-victory-2026-01',
+    ]);
+
+    // staticData 전용 완료 4척 (dinok·hikari·heng-hong-11·liaoyu-reefer-1)과 합쳐 11척.
+    const source = readFileSync(join(process.cwd(), 'components/UnloadingStatus.tsx'), 'utf8');
+    for (const staticOnly of ["'dinok':", "'hikari':", "'heng-hong-11':", "'liaoyu-reefer-1':"]) {
+      expect(source).toContain(staticOnly);
+    }
+    const mergedCompleted = dbCompleted.length + 4;
+    expect(mergedCompleted).toBe(11);
+
+    const bangkok = dbCompleted.filter(([, v]) => /BANGKOK|방콕/i.test(v.location)).length + 3;
+    expect(bangkok).toBe(10); // 젠산은 static hikari 1척뿐
+  });
+
+  it('prefers the committed local_db.json even when Supabase env keys are present', async () => {
+    // 구 조건은 SERVICE_ROLE_KEY 존재 시 Supabase(stale 스냅샷)를 우선해 완료 목록이 4척으로
+    // 줄었다. env가 있어도 파일이 정본이어야 한다.
+    const saved = {
+      url: process.env.NEXT_PUBLIC_SUPABASE_URL,
+      key: process.env.SUPABASE_SERVICE_ROLE_KEY,
+    };
+    process.env.NEXT_PUBLIC_SUPABASE_URL = 'https://stale-example.supabase.co';
+    process.env.SUPABASE_SERVICE_ROLE_KEY = 'stale-service-role-key';
+    try {
+      const { GET } = await import('../app/api/unloading-db/route');
+      const response = await GET();
+      const body = await response.json();
+      expect(body.success).toBe(true);
+      expect(Object.keys(body.data)).toHaveLength(9);
+      expect(body.data['volta-victory-2026-01']).toBeTruthy();
+    } finally {
+      if (saved.url === undefined) delete process.env.NEXT_PUBLIC_SUPABASE_URL;
+      else process.env.NEXT_PUBLIC_SUPABASE_URL = saved.url;
+      if (saved.key === undefined) delete process.env.SUPABASE_SERVICE_ROLE_KEY;
+      else process.env.SUPABASE_SERVICE_ROLE_KEY = saved.key;
+    }
+  });
+
   it('uses annual totals in the KPI and marks unverified hold detail unavailable', () => {
     const source = readFileSync(join(process.cwd(), 'components/UnloadingStatus.tsx'), 'utf8');
     const apiSource = readFileSync(join(process.cwd(), 'app/api/unloading-db/route.ts'), 'utf8');

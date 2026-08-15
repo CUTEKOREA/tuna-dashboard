@@ -1,13 +1,18 @@
 'use client';
 
+import { useState } from 'react';
 import Chart, { Legend, type Serie } from '../../cosmo/Chart';
-import { Grid, Panel, Sec, Table } from '../../panofi/PanofiUi';
+import { Grid, Panel, Pills, Sec, Table } from '../../panofi/PanofiUi';
 import {
+  aggregateWeeklyAvg,
   bangkokCanneries,
   bangkokCanneryPanel,
+  bangkokPeriodLabel,
   bangkokStockShare,
   bangkokWeeklyKpi,
   bangkokWeeks,
+  type BangkokGranularity,
+  type BangkokWeek,
 } from '@/lib/data/bangkok-weekly';
 
 /* ── 표기 헬퍼 ─────────────────────────────────────────────────────────── */
@@ -34,6 +39,45 @@ const weekRows = bangkokWeeks.map((w) => ({
   재고: w.bkkStockMt,
   가공일수: w.bkkDays,
 }));
+
+/* 방콕 재고·가공가능일수 입도 전환 — 스톡 변수라 합산이 아니라 «기간 평균»으로 집계한다 */
+type StockGran = 'weekly' | BangkokGranularity;
+
+const STOCK_GRAN_OPTIONS = [
+  { key: 'weekly', label: '주간' },
+  { key: 'monthly', label: '월간' },
+  { key: 'quarterly', label: '분기별' },
+  { key: 'yearly', label: '연도별' },
+] as const;
+
+const AVG_NOTE =
+  '기간 평균 — 재고·가공가능일수는 스톡 지표라 합산이 아니라 평균으로 집계한다. 기록 있는 주만 평균 (0 채움 없음), 관측 주가 없는 기간은 행을 생략한다.';
+
+type StockView = { rows: Record<string, unknown>[]; xInterval: number; note?: string };
+
+const avgViews = (
+  pick: (w: BangkokWeek) => number | null,
+  key: '재고' | '가공일수',
+  dp: number,
+): Record<StockGran, StockView> => {
+  const agg = (g: BangkokGranularity, xInterval: number): StockView => ({
+    rows: aggregateWeeklyAvg(pick, g).map((a) => ({
+      label: bangkokPeriodLabel(a.period),
+      [key]: +a.value.toFixed(dp),
+    })),
+    xInterval,
+    note: AVG_NOTE,
+  });
+  return {
+    weekly: { rows: weekRows.map((r) => ({ label: r.label, [key]: r[key] })), xInterval: 51 },
+    monthly: agg('monthly', 5),
+    quarterly: agg('quarterly', 1),
+    yearly: agg('yearly', 0),
+  };
+};
+
+const STOCK_VIEWS = avgViews((w) => w.bkkStockMt, '재고', 0);
+const DAYS_VIEWS = avgViews((w) => w.bkkDays, '가공일수', 1);
 
 /* 캐너리별 주간 시계열 — 재고 점유 상위 4개, 날짜 합집합에 병합 (보간 금지).
    가동률(%)과 재고(MT)는 축이 달라 이중축 대신 패널을 분리한다. */
@@ -77,6 +121,11 @@ const stockTop = [...bangkokStockShare]
 /* ── 캐너리·재고 ───────────────────────────────────────────────────────── */
 
 export function CanneryTab() {
+  const [stockGran, setStockGran] = useState<StockGran>('weekly');
+  const [daysGran, setDaysGran] = useState<StockGran>('weekly');
+  const stockView = STOCK_VIEWS[stockGran];
+  const daysView = DAYS_VIEWS[daysGran];
+
   return (
     <>
       <Sec>가동률</Sec>
@@ -107,23 +156,35 @@ export function CanneryTab() {
 
       <Sec>방콕 재고</Sec>
       <Grid>
-        <Panel span={6} title="방콕 재고" unit="(MT)" src={SRC}>
+        <Panel span={6} title="방콕 재고" unit="(MT)" note={stockView.note} src={SRC}>
+          <Pills
+            options={STOCK_GRAN_OPTIONS}
+            value={stockGran}
+            onChange={setStockGran}
+            label="방콕 재고 집계 입도"
+          />
           <Chart
-            data={weekRows}
+            data={stockView.rows}
             x="label"
             height={240}
-            xInterval={51}
+            xInterval={stockView.xInterval}
             series={[S('재고', '재고', C.s1, { type: 'area' })]}
             yFmt={(v) => v.toLocaleString('ko-KR')}
           />
         </Panel>
 
-        <Panel span={6} title="가공가능일수" unit="(일)" src={SRC}>
+        <Panel span={6} title="가공가능일수" unit="(일)" note={daysView.note} src={SRC}>
+          <Pills
+            options={STOCK_GRAN_OPTIONS}
+            value={daysGran}
+            onChange={setDaysGran}
+            label="가공가능일수 집계 입도"
+          />
           <Chart
-            data={weekRows}
+            data={daysView.rows}
             x="label"
             height={240}
-            xInterval={51}
+            xInterval={daysView.xInterval}
             series={[S('가공일수', '가공가능일수', C.s3)]}
             yFmt={(v) => `${v}일`}
           />

@@ -400,22 +400,22 @@
   margin-left: 6px;
 }
 
+/* V3 라이트 (2026-08-15): 배지 글자색을 진한 잉크 계열로 — 연한 틴트 배경 위 가독 확보 */
 .badgeGold {
   background: rgba(234, 179, 8, 0.2);
-  color: #fde047;
+  color: #854d0e;
   border: 1px solid rgba(234, 179, 8, 0.5);
-  box-shadow: 0 0 8px rgba(234, 179, 8, 0.3);
 }
 
 .badgeSilver {
   background: rgba(148, 163, 184, 0.2);
-  color: #e2e8f0;
+  color: #4c5773;
   border: 1px solid rgba(148, 163, 184, 0.5);
 }
 
 .badgeBronze {
   background: rgba(180, 83, 9, 0.2);
-  color: #fcd34d;
+  color: #7c2d12;
   border: 1px solid rgba(180, 83, 9, 0.5);
 }
 
@@ -498,7 +498,7 @@
 .decisionPanel { margin:20px 0 4px; padding:22px; border:1px solid var(--dsc-surface-border); border-radius:var(--dsc-card-radius); background:var(--dsc-surface); box-shadow:var(--dsc-card-shadow); }
 .decisionHeader,.sectionHeading { display:flex; align-items:flex-start; justify-content:space-between; gap:16px; margin-bottom:16px; }
 .decisionHeader h3,.sectionHeading h3 { margin:4px 0 0; color:var(--dsc-ink); font-size:1.25rem; }
-.eyebrow { color:#38bdf8; font-size:.72rem; font-weight:800; letter-spacing:.09em; }
+.eyebrow { color:#3685ca; font-size:.72rem; font-weight:800; letter-spacing:.09em; }
 .staticBadge { padding:5px 10px; border:1px solid rgba(148,163,184,.25); border-radius:999px; color:#94a3b8; font-size:.72rem; white-space:nowrap; }
 .decisionGrid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:10px; }
 .decisionItem { display:flex; gap:11px; min-height:92px; padding:14px; border:1px solid rgba(148,163,184,.16); border-left-width:3px; border-radius:12px; background:rgba(15,23,42,.72); }
@@ -517,39 +517,40 @@
 .accessAlert { display:flex; gap:12px; margin-bottom:18px; padding:14px 16px; border:1px solid var(--dsc-surface-border); border-radius:var(--dsc-card-radius); background:var(--dsc-surface); color:var(--accent-primary); box-shadow:var(--dsc-card-shadow); }
 .accessAlert strong { display:block; margin-bottom:4px; color:var(--dsc-ink); }
 
-.vdsPanel { margin-bottom:24px; padding:22px; border:1px solid rgba(56,189,248,.2); border-radius:16px; background:rgba(15,23,42,.74); }
+/* V3 라이트 (2026-08-15): VDS 소진현황 다크 네이비 잔존 → 흰 카드 체계 전면 전환 */
+.vdsPanel { margin-bottom:24px; padding:22px; border:1px solid var(--dsc-surface-border); border-radius:var(--dsc-card-radius); background:var(--dsc-surface); box-shadow:var(--dsc-card-shadow); }
 .vdsHeader { display:flex; justify-content:space-between; align-items:flex-start; gap:16px; margin-bottom:16px; }
-.vdsHeader h3 { display:flex; align-items:center; gap:8px; margin:4px 0 5px; color:#f8fafc; font-size:1.16rem; }
-.vdsHeader p { margin:0; color:#94a3b8; font-size:.76rem; }
-.vdsFleetTabs { display:inline-flex; gap:5px; padding:4px; border:1px solid rgba(148,163,184,.18); border-radius:10px; background:rgba(2,6,23,.45); }
-.vdsFleetTabs button { min-height:38px; padding:7px 14px; border:1px solid transparent; border-radius:7px; background:transparent; color:#94a3b8; font:inherit; font-size:.78rem; font-weight:700; cursor:pointer; }
-.vdsFleetTabs button.vdsFleetTabActive { border-color:rgba(56,189,248,.4); background:rgba(14,165,233,.16); color:#e0f2fe; }
+.vdsHeader h3 { display:flex; align-items:center; gap:8px; margin:4px 0 5px; color:var(--dsc-ink); font-size:1.16rem; }
+.vdsHeader p { margin:0; color:var(--dsc-ink-muted); font-size:.76rem; }
+.vdsFleetTabs { display:inline-flex; gap:5px; padding:4px; border:1px solid var(--dsc-surface-border); border-radius:10px; background:var(--dsc-bg-deep); }
+.vdsFleetTabs button { min-height:38px; padding:7px 14px; border:1px solid transparent; border-radius:7px; background:transparent; color:#5a6072; font:inherit; font-size:.78rem; font-weight:700; cursor:pointer; }
+.vdsFleetTabs button.vdsFleetTabActive { border-color:transparent; background:#509ee3; color:#fff; }
 .vdsSummaryGrid { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:10px; margin:14px 0; }
-.vdsSummaryGrid article { padding:13px 14px; border:1px solid rgba(148,163,184,.14); border-top:2px solid; border-radius:10px; background:rgba(2,6,23,.35); }
-.vdsSummaryGrid span { display:block; color:#94a3b8; font-size:.68rem; }
-.vdsSummaryGrid strong { display:block; margin-top:5px; color:#f8fafc; font-size:1.08rem; }
-.vdsStatusLine { display:flex; align-items:center; flex-wrap:wrap; gap:10px 16px; margin-bottom:14px; color:#94a3b8; font-size:.72rem; }
-.vdsStatusLine strong { color:#e2e8f0; }
-.vdsDanger { display:inline-flex; align-items:center; gap:5px; color:#fb7185; }
+.vdsSummaryGrid article { padding:13px 14px; border:1px solid var(--dsc-surface-border); border-top:2px solid; border-radius:10px; background:var(--dsc-surface); }
+.vdsSummaryGrid span { display:block; color:var(--dsc-ink-muted); font-size:.68rem; }
+.vdsSummaryGrid strong { display:block; margin-top:5px; color:var(--dsc-ink); font-size:1.08rem; }
+.vdsStatusLine { display:flex; align-items:center; flex-wrap:wrap; gap:10px 16px; margin-bottom:14px; color:var(--dsc-ink-muted); font-size:.72rem; }
+.vdsStatusLine strong { color:var(--dsc-ink); }
+.vdsDanger { display:inline-flex; align-items:center; gap:5px; color:#b91c1c; }
 .vdsAreaTabs { display:flex; gap:7px; overflow-x:auto; padding-bottom:9px; }
-.vdsAreaTabs button { min-width:118px; padding:9px 11px; border:1px solid rgba(148,163,184,.14); border-radius:9px; background:rgba(2,6,23,.34); color:#cbd5e1; text-align:left; cursor:pointer; }
-.vdsAreaTabs button.vdsAreaTabActive { border-color:rgba(56,189,248,.5); background:rgba(14,165,233,.14); color:#e0f2fe; }
+.vdsAreaTabs button { min-width:118px; padding:9px 11px; border:1px solid var(--dsc-surface-border); border-radius:9px; background:var(--dsc-surface); color:#5a6072; text-align:left; cursor:pointer; }
+.vdsAreaTabs button.vdsAreaTabActive { border-color:#509ee3; background:rgba(80,158,227,.10); color:var(--dsc-ink); }
 .vdsAreaTabs span,.vdsAreaTabs small { display:block; }
 .vdsAreaTabs span { font-size:.75rem; font-weight:800; white-space:nowrap; }
-.vdsAreaTabs small { margin-top:3px; color:#94a3b8; font-size:.62rem; }
-.vdsTableWrap { overflow-x:auto; border:1px solid rgba(148,163,184,.14); border-radius:10px; }
-.vdsTable { width:100%; min-width:680px; border-collapse:collapse; color:#e2e8f0; font-size:.75rem; }
-.vdsTable th,.vdsTable td { padding:10px 12px; border-bottom:1px solid rgba(148,163,184,.1); text-align:right; }
-.vdsTable th { color:#94a3b8; background:rgba(2,6,23,.52); font-size:.67rem; }
+.vdsAreaTabs small { margin-top:3px; color:var(--dsc-ink-faint); font-size:.62rem; }
+.vdsTableWrap { overflow-x:auto; border:1px solid var(--dsc-surface-border); border-radius:10px; }
+.vdsTable { width:100%; min-width:680px; border-collapse:collapse; color:var(--dsc-ink); font-size:.75rem; }
+.vdsTable th,.vdsTable td { padding:10px 12px; border-bottom:1px solid var(--dsc-surface-border); text-align:right; }
+.vdsTable th { color:var(--dsc-ink-muted); background:var(--dsc-bg-deep); font-size:.67rem; }
 .vdsTable th:first-child,.vdsTable td:first-child { text-align:left; font-weight:800; }
 .vdsTable tr:last-child td { border-bottom:0; }
-.vdsNegative { color:#fb7185; font-weight:800; }
-.vdsTotalRow { background:rgba(56,189,248,.07); }
+.vdsNegative { color:#b91c1c; font-weight:800; }
+.vdsTotalRow { background:rgba(80,158,227,.07); }
 .vdsGauge { position:relative; display:flex; align-items:center; gap:7px; min-width:110px; }
-.vdsGauge::before { content:''; width:64px; height:5px; flex:0 0 64px; border-radius:99px; background:rgba(148,163,184,.14); }
-.vdsGauge i { position:absolute; left:0; width:0; max-width:64px; height:5px; border-radius:99px; background:#38bdf8; }
+.vdsGauge::before { content:''; width:64px; height:5px; flex:0 0 64px; border-radius:99px; background:rgba(16,24,40,.10); }
+.vdsGauge i { position:absolute; left:0; width:0; max-width:64px; height:5px; border-radius:99px; background:#509ee3; }
 .vdsGauge span { margin-left:auto; min-width:34px; text-align:right; }
-.vdsNote { margin:10px 0 0; color:#94a3b8; font-size:.7rem; }
+.vdsNote { margin:10px 0 0; color:var(--dsc-ink-muted); font-size:.7rem; }
 
 @media (max-width:768px) {
   .commandIntro,.vdsHeader { flex-direction:column; }

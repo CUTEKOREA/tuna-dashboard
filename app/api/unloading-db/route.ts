@@ -26,7 +26,11 @@ export async function GET() {
     let reports: any[] = [];
     let species: any[] = [];
 
-    const useLocalDb = !getSupabaseClient() || (!process.env.SUPABASE_SERVICE_ROLE_KEY && fs.existsSync(LOCAL_DB_PATH));
+    // 완료 항차의 정본은 repo에 커밋되는 local_db.json (2026-06 이후 [Codex] 파일 커밋으로 동기화).
+    // SERVICE_ROLE_KEY가 있으면 Supabase를 우선하던 구 조건은 stale 스냅샷(사인피닉스·바오럭키
+    // '하역중' 잔존 + 2026 초 항차 미반영)이 static 완료 데이터를 덮어 완료 목록이 11척 → 4척으로
+    // 줄어드는 사고를 냈다(2026-08-15). 파일이 있으면 파일 우선, Supabase는 폴백으로만 사용.
+    const useLocalDb = fs.existsSync(LOCAL_DB_PATH) || !getSupabaseClient();
     if (useLocalDb) {
       try {
         const db = JSON.parse(fs.readFileSync(LOCAL_DB_PATH, 'utf8'));

@@ -3,6 +3,7 @@ import { join } from 'node:path';
 import { describe, expect, it } from 'vitest';
 import sitemap from '../app/sitemap';
 import * as dashboardRegistry from '../lib/dashboard-registry';
+import { parseFleetPosition, toPacificLng } from '../lib/fleet-map-coords';
 import {
   DASHBOARD_COMMANDS,
   DASHBOARD_MENU_CONFIGS,
@@ -140,7 +141,7 @@ describe('dashboard registry', () => {
 
   it('keeps the fleet command center task-focused and deterministic', () => {
     const commandSource = readFileSync(join(process.cwd(), 'components/FleetCommandCenter.tsx'), 'utf8');
-    const mapSource = readFileSync(join(process.cwd(), 'components/FleetPixelMap.tsx'), 'utf8');
+    const mapSource = readFileSync(join(process.cwd(), 'components/FleetRealMap.tsx'), 'utf8');
     const heroSource = readFileSync(join(process.cwd(), 'components/FleetHeroKPI.tsx'), 'utf8');
     const pillTabsSource = readFileSync(join(process.cwd(), 'components/v2/PillTabs.tsx'), 'utf8');
     const rosterSource = readFileSync(join(process.cwd(), 'components/FleetRosterGrid.tsx'), 'utf8');
@@ -166,15 +167,22 @@ describe('dashboard registry', () => {
     expect(pillTabsSource).toContain('onKeyDown');
     expect(pillTabsSource).toContain('tabIndex={active ? 0 : -1}');
     expect(pillTabsSource).toContain('aria-controls={panelId}');
+    // 2026-08-15 사용자 지시(«실제 지도 사용»): 픽셀 아트 지도(FleetPixelMap) → leaflet 실지도(FleetRealMap).
+    // 자체 button 마커의 aria-expanded/Escape 계약은 leaflet 마커·툴팁 계약으로 대체됐다.
+    // 마커 44px 터치 목표와 결정적 좌표(무작위 금지)는 새 컴포넌트에서도 그대로 유지한다.
     expect(mapSource).not.toContain('Math.random');
-    expect(mapSource).toContain('aria-expanded');
-    expect(mapSource).toContain('aria-controls');
-    expect(mapSource).toContain('hidden={!selected}');
-    expect(mapSource).toContain("event.key === 'Escape'");
-    expect(mapSource).toContain('aria-label={`${ship.name} 상세 보기`');
-    const mapStyles = readFileSync(join(process.cwd(), 'components/FleetPixelMap.module.css'), 'utf8');
-    expect(mapStyles).toContain('width: 44px');
-    expect(mapStyles).toContain('height: 44px');
+    expect(mapSource).toContain("import 'leaflet/dist/leaflet.css'");
+    expect(mapSource).toContain('<TileLayer');
+    expect(mapSource).toContain('attribution='); // 타일 라이선스 표기 유지
+    expect(mapSource).toContain('width:44px;height:44px');
+    expect(mapSource).toContain('alt={`${ship.name} 선박 위치`}');
+    expect(commandSource).toContain("import('./FleetRealMap')");
+    expect(commandSource).toContain('ssr: false'); // leaflet은 window 의존 — SSR 금지
+    // 보고 원문의 도·분 표기가 위경도로 정확히 환산되는지 (S/PIO 8/9 위치)
+    expect(parseFleetPosition('N0351 W16734 (H)')).toEqual([3.85, -167 - 34 / 60]);
+    expect(parseFleetPosition('S0112 W01020 (H)')).toEqual([-1.2, -10 - 20 / 60]);
+    expect(parseFleetPosition('X-MAS')).toEqual([1.87, -157.43]);
+    expect(toPacificLng(-157.43)).toBeCloseTo(202.57, 5);
     expect(rosterSource).toContain("port: '⚓ 하역·정박'");
     expect(rosterSource).not.toContain('statusLabels[status] || status');
     expect(rosterSource).not.toContain('weeklyRanking.find');

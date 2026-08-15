@@ -213,6 +213,11 @@ function granKey(year: number, month: number, g: BangkokGranularity): string {
   return `${year}-${String(month).padStart(2, '0')}`;
 }
 
+/** 기간 키 → 표시 라벨: "2020-08"→"20-08", "2020-Q3"→"20.3분기", "2020"→"2020" */
+export function bangkokPeriodLabel(p: string): string {
+  return p.includes('Q') ? `${p.slice(2, 4)}.${p.slice(6)}분기` : p.length === 7 ? p.slice(2) : p;
+}
+
 export type BangkokUnloadAgg = {
   readonly period: string;
   readonly unloadMt: number;
@@ -232,6 +237,33 @@ export function aggregateUnload(g: BangkokGranularity): readonly BangkokUnloadAg
   }
   return [...acc.entries()]
     .map(([period, v]) => ({ period, ...v }))
+    .sort((a, b) => a.period.localeCompare(b.period));
+}
+
+export type BangkokAvgAgg = {
+  readonly period: string;
+  readonly value: number;
+  readonly weeks: number;
+};
+
+/** 주간 스톡 지표(재고·가공가능일수)를 월·분기·연 «기간 평균»으로 — 스톡 변수라 합산 금지.
+ *  null(무기록 주)은 평균에서 제외하고 0으로 채우지 않는다. 관측 주가 없는 기간은 행을 생략한다. */
+export function aggregateWeeklyAvg(
+  pick: (w: BangkokWeek) => number | null,
+  g: BangkokGranularity,
+): readonly BangkokAvgAgg[] {
+  const acc = new Map<string, { sum: number; weeks: number }>();
+  for (const w of bangkokWeeks) {
+    const v = pick(w);
+    if (v === null) continue;
+    const key = granKey(w.year, w.month, g);
+    const cur = acc.get(key) ?? { sum: 0, weeks: 0 };
+    cur.sum += v;
+    cur.weeks += 1;
+    acc.set(key, cur);
+  }
+  return [...acc.entries()]
+    .map(([period, v]) => ({ period, value: v.sum / v.weeks, weeks: v.weeks }))
     .sort((a, b) => a.period.localeCompare(b.period));
 }
 

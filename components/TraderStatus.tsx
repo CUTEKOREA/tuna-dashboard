@@ -7,65 +7,174 @@ import {
 import SafeResponsiveContainer from './SafeResponsiveContainer';
 import TermTooltip from './TermTooltip';
 import { ChartPatternDefs } from './ChartPatterns';
+import {
+  BANGKOK_TRADERS,
+  TRADER_LABELS,
+  aggregateTraderVolumes,
+  bangkokTraderMonthly,
+  bangkokPeriodLabel,
+  type BangkokTrader,
+} from '@/lib/data/bangkok-weekly';
 import { logisticsWeeklyReport } from '@/lib/logistics-weekly-report';
 
-/* 데이터·수치 무수정 — 시각 레이어만 향상 + 영문 한글화(월명·직거래·몰디브) */
-const data2026 = logisticsWeeklyReport.traderReceipts.monthly.map((row) => ({
-  ...row,
-  'Direct deal': row.direct,
+/* 색상은 기존 위젯 그대로 — BANGKOK_TRADERS 와 1:1 */
+const TRADER_STYLE: Record<BangkokTrader, { gid: string; color: string }> = {
+  FCF: { gid: 'tFcf', color: '#38bdf8' },
+  ITOCHU: { gid: 'tIto', color: '#8b5cf6' },
+  'TRI MARINE': { gid: 'tTri', color: '#ec4899' },
+  DIRECT: { gid: 'tDir', color: '#10b981' },
+  MALDIVES: { gid: 'tMal', color: '#f59e0b' },
+};
+
+/** 차트 데이터키 = 화면 라벨 (L-01: 한글 라벨을 그대로 쓴다) */
+const KEY = (t: BangkokTrader) => TRADER_LABELS[t];
+
+type Row = { period: string } & Record<string, number | string>;
+
+const MONTHLY_WINDOW = 24;
+const FIRST_MONTH = bangkokTraderMonthly[0].month;
+const LAST_MONTH = bangkokTraderMonthly[bangkokTraderMonthly.length - 1].month;
+const FULL_RANGE = `${FIRST_MONTH}~${LAST_MONTH}`;
+
+const monthlyRows: Row[] = bangkokTraderMonthly.slice(-MONTHLY_WINDOW).map((m) => ({
+  period: m.month.slice(2),
+  ...Object.fromEntries(BANGKOK_TRADERS.map((t) => [KEY(t), m.volumes[t]])),
 }));
 
-// key=데이터키(유지) · name=표시명(한글화) · gid=그라디언트 id · 회사명 고유명은 유지
-const traderStyles = [
-  { sourceKey: 'FCF', key: 'FCF', gid: 'tFcf', color: '#38bdf8' },
-  { sourceKey: 'ITOCHU', key: 'ITOCHU', gid: 'tIto', color: '#8b5cf6' },
-  { sourceKey: 'TRI MARINE', key: 'TRI MARINE', gid: 'tTri', color: '#ec4899' },
-  { sourceKey: 'direct', key: 'Direct deal', gid: 'tDir', color: '#10b981' },
-  { sourceKey: 'Maldives', key: 'Maldives', gid: 'tMal', color: '#f59e0b' },
-] as const;
+const aggRows = (g: 'quarterly' | 'yearly'): Row[] =>
+  aggregateTraderVolumes(g).map((a) => ({
+    period: bangkokPeriodLabel(a.period),
+    ...Object.fromEntries(BANGKOK_TRADERS.map((t) => [KEY(t), a.volumes[t]])),
+  }));
 
-const TRADERS = traderStyles.map((style, index) => {
-  const trader = logisticsWeeklyReport.traderReceipts.traders[index];
-  if (!trader || trader.key !== style.sourceKey) throw new Error(`트레이더 데이터 누락: ${style.sourceKey}`);
-  return { ...style, name: trader.label, total: trader.total };
-});
+/** 표시 중인 기간의 트레이더별 합 — 하단 카드가 차트와 항상 같은 기간을 가리키게 한다 */
+const sumRows = (rows: Row[]) =>
+  BANGKOK_TRADERS.map((t) => ({
+    key: t as string,
+    name: TRADER_LABELS[t],
+    color: TRADER_STYLE[t].color,
+    total: rows.reduce((s, r) => s + Number(r[KEY(t)] ?? 0), 0),
+  }));
+
+/* 2026 누계 대조 — 기존 위젯은 2026-08-05 보고(317,175MT) 기준이었고,
+   전 기간 소스는 2026-08-12 보고까지 반영해 8월 물량이 갱신됐다. 차이를 덮지 않고 밝힌다. */
+const total2026 = aggregateTraderVolumes('yearly').find((a) => a.period === '2026')?.totalMt ?? 0;
+const prev2026 = logisticsWeeklyReport.traderReceipts.total;
+const diff2026 = total2026 - prev2026;
+const RECONCILE_NOTE =
+  `기록 있는 달만 합산하고 0으로 채우지 않습니다. 2026년 누계는 ${total2026.toLocaleString()}MT로, ` +
+  `기존 2026-08-05 보고 기준 검산값 ${prev2026.toLocaleString()}MT와 ${Math.abs(diff2026).toLocaleString()}MT 차이가 있습니다 ` +
+  `(2026-08 물량이 후속 보고에서 갱신). 원문 트라이마린 누계 46,463MT와 월별 합산 56,463MT의 10,000MT 차이도 월별 합산값을 적용했습니다.`;
+
+const VIEWS = {
+  monthly: {
+    rows: monthlyRows,
+    xInterval: 2,
+    totalLabel: `최근 ${MONTHLY_WINDOW}개월 누계`,
+    note: `전체 ${bangkokTraderMonthly.length}개월(${FULL_RANGE}) 중 최근 ${MONTHLY_WINDOW}개월만 표시합니다 — 전 기간은 분기별·연도별 뷰에서 봅니다. ${RECONCILE_NOTE}`,
+  },
+  quarterly: {
+    rows: aggRows('quarterly'),
+    xInterval: 1,
+    totalLabel: '전 기간 누계',
+    note: `전 기간(${FULL_RANGE}) 월별 물량을 분기로 합산했습니다. ${RECONCILE_NOTE}`,
+  },
+  yearly: {
+    rows: aggRows('yearly'),
+    xInterval: 0,
+    totalLabel: '전 기간 누계',
+    note: `전 기간(${FULL_RANGE}) 월별 물량을 연도로 합산했습니다. 2026년은 8개월치입니다. ${RECONCILE_NOTE}`,
+  },
+} as const;
+
+type Gran = keyof typeof VIEWS;
+
+const GRAN_OPTIONS: readonly { key: Gran; label: string }[] = [
+  { key: 'monthly', label: '월별' },
+  { key: 'quarterly', label: '분기별' },
+  { key: 'yearly', label: '연도별' },
+];
+
+/** 전 기간 누계 — 카드 위 대시보드 SIT/TAK 가 같은 숫자를 쓰도록 내보낸다 */
+export const traderFullPeriod = {
+  range: FULL_RANGE,
+  months: bangkokTraderMonthly.length,
+  totals: sumRows(VIEWS.yearly.rows),
+  grandMt: sumRows(VIEWS.yearly.rows).reduce((s, c) => s + c.total, 0),
+  total2026,
+  diff2026,
+};
 
 export default function TraderStatus() {
+  const [gran, setGran] = React.useState<Gran>('yearly');
   const [hover, setHover] = React.useState<number | null>(null);
-  const cards = [...TRADERS.filter((t) => t.total > 0), { key: 'TOTAL', name: '합계', gid: '', color: 'var(--text-main)', total: logisticsWeeklyReport.traderReceipts.total }];
+  const view = VIEWS[gran];
+
+  const cards = [
+    ...sumRows(view.rows),
+    {
+      key: 'TOTAL',
+      name: '합계',
+      color: 'var(--text-main)',
+      total: sumRows(view.rows).reduce((s, c) => s + c.total, 0),
+    },
+  ];
 
   return (
     <div style={{
       background: 'var(--panel-bg)', border: '1px solid var(--panel-border)',
       borderRadius: '8px', padding: '24px', display: 'flex', flexDirection: 'column',
     }}>
-      <div style={{ marginBottom: '16px', display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
+      <div style={{ marginBottom: '16px', display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', gap: '12px', flexWrap: 'wrap' }}>
         <div>
           <h2 style={{ fontSize: '18px', fontWeight: 'bold', margin: '0 0 4px 0', color: 'var(--text-main)' }}>
-            <TermTooltip term="트레이더별 반입 현황 (2026)" description="월별 트레이더별 반입 물량(MT) 추이" />
+            <TermTooltip term={`트레이더별 반입 현황 (${FIRST_MONTH.slice(0, 4)}~${LAST_MONTH.slice(0, 4)})`} description="월별·분기별·연도별 트레이더별 반입 물량(MT) 추이" />
           </h2>
-          <p style={{ fontSize: '13px', color: 'var(--text-muted)', margin: 0 }}>2026년 1~8월 트레이더별 반입 실적 (MT) — 2026-08-05 주간 보고 기준</p>
+          <p style={{ fontSize: '13px', color: 'var(--text-muted)', margin: 0 }}>
+            {FULL_RANGE} 트레이더별 반입 실적 (MT) — 방콕사무소 주간보고 종합분석
+          </p>
+        </div>
+
+        <div role="group" aria-label="트레이더 반입 집계 입도" style={{ display: 'inline-flex', gap: '4px', padding: '4px', borderRadius: '10px', background: 'rgba(34,36,43,0.05)', border: '1px solid var(--panel-border)' }}>
+          {GRAN_OPTIONS.map((o) => (
+            <button
+              key={o.key}
+              type="button"
+              aria-pressed={o.key === gran}
+              onClick={() => setGran(o.key)}
+              style={{
+                padding: '6px 14px', borderRadius: '7px', fontSize: '12px', cursor: 'pointer',
+                fontWeight: o.key === gran ? 700 : 500,
+                border: `1px solid ${o.key === gran ? 'rgba(var(--w-emerald-500-rgb), 0.35)' : 'transparent'}`,
+                background: o.key === gran ? 'rgba(var(--w-emerald-500-rgb), 0.14)' : 'transparent',
+                color: o.key === gran ? 'var(--text-main)' : 'var(--text-muted)',
+                transition: 'background 0.18s ease, color 0.18s ease',
+              }}
+            >
+              {o.label}
+            </button>
+          ))}
         </div>
       </div>
 
       <p style={{ margin: '0 0 12px', padding: '10px 12px', borderRadius: '8px', background: 'rgba(var(--w-amber-500-rgb), 0.08)', border: '1px solid rgba(var(--w-amber-500-rgb), 0.2)', color: 'var(--text-muted)', fontSize: '12px', lineHeight: 1.5 }}>
-        합계 317,175MT는 월별 검산값입니다. 원문 TRI MARINE 누계 46,463MT는 월별 합산 56,463MT와 10,000MT 차이가 있어 월별 합산값을 적용했습니다.
+        {view.note}
       </p>
 
       <div style={{ flex: 1, minHeight: 300 }}>
         <SafeResponsiveContainer width="100%" height={300}>
-          <BarChart data={data2026} margin={{ top: 20, right: 30, left: 20, bottom: 5 }} barCategoryGap="28%">
+          <BarChart data={view.rows} margin={{ top: 20, right: 30, left: 20, bottom: 5 }} barCategoryGap="28%">
             <ChartPatternDefs />
             <defs>
-              {TRADERS.map((t) => (
-                <linearGradient key={t.gid} id={t.gid} x1="0" y1="0" x2="0" y2="1">
-                  <stop offset="0%" stopColor={t.color} stopOpacity={0.98} />
-                  <stop offset="100%" stopColor={t.color} stopOpacity={0.55} />
+              {BANGKOK_TRADERS.map((t) => (
+                <linearGradient key={TRADER_STYLE[t].gid} id={TRADER_STYLE[t].gid} x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0%" stopColor={TRADER_STYLE[t].color} stopOpacity={0.98} />
+                  <stop offset="100%" stopColor={TRADER_STYLE[t].color} stopOpacity={0.55} />
                 </linearGradient>
               ))}
             </defs>
             <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="var(--panel-border)" />
-            <XAxis dataKey="month" stroke="var(--text-muted)" axisLine={false} tickLine={false} fontSize={12} />
+            <XAxis dataKey="period" stroke="var(--text-muted)" axisLine={false} tickLine={false} fontSize={12} interval={view.xInterval} />
             <YAxis stroke="var(--text-muted)" axisLine={false} tickLine={false} fontSize={11} tickFormatter={(val) => `${(val / 1000)}k`} />
             <Tooltip
               cursor={{ fill: 'rgba(var(--w-emerald-500-rgb), 0.06)' }}
@@ -75,16 +184,22 @@ export default function TraderStatus() {
               formatter={(value: any, name: any) => [`${Number(value).toLocaleString()} MT`, name]}
             />
             <Legend wrapperStyle={{ fontSize: '12px', paddingTop: '10px' }} />
-            <Bar dataKey="FCF" name="FCF" stackId="a" fill="url(#tFcf)" radius={[0, 0, 5, 5]} />
-            <Bar dataKey="ITOCHU" name="ITOCHU" stackId="a" fill="url(#tIto)" />
-            <Bar dataKey="TRI MARINE" name="TRI MARINE" stackId="a" fill="url(#tTri)" />
-            <Bar dataKey="Direct deal" name="직거래" stackId="a" fill="url(#tDir)" radius={[5, 5, 0, 0]} />
-            <Bar dataKey="Maldives" name="몰디브" stackId="a" fill="url(#tMal)" />
+            {BANGKOK_TRADERS.map((t, i) => (
+              <Bar
+                key={t}
+                dataKey={KEY(t)}
+                name={TRADER_LABELS[t]}
+                stackId="a"
+                fill={`url(#${TRADER_STYLE[t].gid})`}
+                radius={i === 0 ? [0, 0, 5, 5] : i === BANGKOK_TRADERS.length - 1 ? [5, 5, 0, 0] : undefined}
+              />
+            ))}
           </BarChart>
         </SafeResponsiveContainer>
       </div>
 
-      <div data-mobile-stack style={{ marginTop: '20px', display: 'grid', gridTemplateColumns: 'repeat(5, 1fr)', gap: '10px' }}>
+      <p style={{ margin: '16px 0 0', fontSize: '12px', color: 'var(--text-muted)' }}>{view.totalLabel}</p>
+      <div data-mobile-stack style={{ marginTop: '8px', display: 'grid', gridTemplateColumns: 'repeat(6, 1fr)', gap: '10px' }}>
         {cards.map((c, i) => (
           <div key={c.key}
             onMouseEnter={() => setHover(i)} onMouseLeave={() => setHover(null)}

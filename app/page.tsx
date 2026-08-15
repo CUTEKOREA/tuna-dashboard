@@ -367,7 +367,7 @@ export default function Home() {
           onMouseLeave={(e) => { e.currentTarget.style.opacity = '1'; }}
         >
           <Image src="/logo1.png" alt="신라 로고" width={184} height={48} style={{ height: '48px', width: 'auto', objectFit: 'contain', marginBottom: '8px' }} />
-          <p className={styles.subtitle} style={{ fontSize: '0.75rem', marginBottom: '8px' }}>수산물 시장 인텔리전스</p>
+          <p className={styles.subtitle} style={{ fontSize: '0.75rem', marginBottom: '8px' }}>참치 산업 인텔리전스</p>
           <div style={{
             fontSize: '0.65rem',
             color: 'var(--text-muted)',
@@ -376,7 +376,7 @@ export default function Home() {
             paddingTop: '8px',
             display: 'inline-block'
           }}>
-            설계 <span style={{
+            미경1팀 <span style={{
               fontWeight: 'bold',
               fontSize: '0.85rem',
               letterSpacing: '1px',
@@ -399,19 +399,8 @@ export default function Home() {
         <div style={{ flex: 1 }} />
 
 
-        <div style={{
-          padding: '8px 12px', margin: '8px 0',
-          background: 'rgba(6, 182, 212, 0.05)',
-          border: '1px solid rgba(6, 182, 212, 0.15)',
-          borderRadius: 8, fontSize: 11, color: 'rgba(255,255,255,0.35)',
-          display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 6,
-          cursor: 'pointer',
-        }} onClick={() => {
-          window.dispatchEvent(new KeyboardEvent('keydown', { key: 'k', metaKey: true }));
-        }} title="빠른 검색 열기">
-          <Command size={12} /> ⌘ 빠른 검색
-        </div>
-        
+        {/* «⌘ 빠른 검색» 버튼 제거 (2026-08-15 사용자 지시) — Cmd+K 단축키·CommandPalette는 유지 */}
+
         {/* Operational access state */}
         {operationAccessGranted ? (
           <button
