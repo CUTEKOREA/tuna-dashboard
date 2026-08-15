@@ -68,7 +68,7 @@ export interface WidgetCardProps {
   icon?: LucideIcon;
   iconColor?: string;
   termTooltip?: { term: string; description: string };
-  cardDesc: string;        // W-04 의무
+  cardDesc?: string;       // W-04 기본 의무 — 뉴스처럼 소유자가 명시 생략한 위젯만 예외 (2026-08-15)
   unit?: string;
 
   // === 분류 ===
@@ -83,7 +83,7 @@ export interface WidgetCardProps {
   children?: React.ReactNode;       // customBody 대안 — children으로 본문 직접 전달
 
   // === Takeaway ===
-  takeaway: TakeawayProps;
+  takeaway?: TakeawayProps;  // 기본 의무 — 소유자 명시 생략 위젯만 예외 (2026-08-15)
 }
 
 // ─── 컨빅션 태그 / AI 티 검출 (P-03 강제) ───────────────────────────────────
@@ -158,15 +158,17 @@ export default function WidgetCard(props: WidgetCardProps) {
 
   // === 런타임 룰북 강제 ===
   // P-03: 컨빅션 태그 / AI 티 / 과장 수식어 검출 (dev only)
-  checkForbidden(takeaway.situation, 'takeaway.situation', title);
-  checkForbidden(takeaway.actionPlan, 'takeaway.actionPlan', title);
-
-  // W-04: cardDesc + source 의무
-  if (!cardDesc.trim()) {
-    console.error(`[WidgetCard:W-04] ${title} — cardDesc는 의무 (산출 방법론·출처 1줄)`);
+  if (takeaway) {
+    checkForbidden(takeaway.situation, 'takeaway.situation', title);
+    checkForbidden(takeaway.actionPlan, 'takeaway.actionPlan', title);
+    if (!takeaway.source.trim()) {
+      console.error(`[WidgetCard:W-04] ${title} — takeaway.source는 의무`);
+    }
   }
-  if (!takeaway.source.trim()) {
-    console.error(`[WidgetCard:W-04] ${title} — takeaway.source는 의무`);
+
+  // W-04: cardDesc 의무 (빈 문자열 금지 — prop 자체 생략은 소유자 결정으로 허용)
+  if (cardDesc !== undefined && !cardDesc.trim()) {
+    console.error(`[WidgetCard:W-04] ${title} — cardDesc는 의무 (산출 방법론·출처 1줄)`);
   }
 
   return (
@@ -224,13 +226,15 @@ export default function WidgetCard(props: WidgetCardProps) {
         {children}
       </div>
 
-      <div style={{ padding: '0 20px 20px 20px' }}>
-        <TakeawayBox
-          situation={takeaway.situation}
-          actionPlan={takeaway.actionPlan}
-          source={takeaway.source}
-        />
-      </div>
+      {takeaway && (
+        <div style={{ padding: '0 20px 20px 20px' }}>
+          <TakeawayBox
+            situation={takeaway.situation}
+            actionPlan={takeaway.actionPlan}
+            source={takeaway.source}
+          />
+        </div>
+      )}
     </div>
   );
 }

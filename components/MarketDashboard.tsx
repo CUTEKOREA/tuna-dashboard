@@ -51,6 +51,36 @@ function writeFilterToUrl(period: AtunaPeriodKey, grain: AtunaGrainKey) {
   window.history.replaceState(null, '', `${window.location.pathname}${query ? `?${query}` : ''}`);
 }
 
+/* 커스텀 차트 툴팁 — 전역 recharts 기본 툴팁 CSS(!important)와 분리해 대비 확보 (Metabase 다크 툴팁 관례) */
+function MarketChartTip({ active, payload, label }: {
+  active?: boolean;
+  payload?: { name?: string; value?: number | string; color?: string }[];
+  label?: string;
+}) {
+  if (!active || !payload?.length) return null;
+  return (
+    <div style={{
+      background: '#303c46',
+      border: '1px solid rgba(255, 255, 255, 0.12)',
+      borderRadius: '10px',
+      boxShadow: '0 8px 24px rgba(16, 24, 40, 0.35)',
+      padding: '10px 12px',
+      fontSize: '12.5px',
+      lineHeight: 1.6,
+    }}>
+      <div style={{ color: '#c6c9d2', marginBottom: '4px', fontWeight: 700 }}>{label}</div>
+      {payload.map((entry) => (
+        <div key={String(entry.name)} style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
+          <span style={{ width: 8, height: 8, borderRadius: '50%', background: entry.color ?? '#ffffff', flex: '0 0 auto' }} />
+          <span style={{ color: '#ffffff' }}>
+            {entry.name} : {typeof entry.value === 'number' ? entry.value.toLocaleString('ko-KR') : entry.value}
+          </span>
+        </div>
+      ))}
+    </div>
+  );
+}
+
 const fmtPct = (p: number) => `${p >= 0 ? '+' : ''}${p.toFixed(1)}%`;
 const subscribeClientSnapshot = () => () => {};
 const getTodayIsoSnapshot = (): string | null => {
@@ -414,11 +444,7 @@ export default function MarketDashboard({ heroOnly = false }: { heroOnly?: boole
                 <CartesianGrid strokeDasharray="3 3" stroke="#e2e4e9" vertical={false} />
                 <XAxis dataKey="date" stroke="#8d93a5" fontSize={12} tickMargin={10} minTickGap={30} />
                 <YAxis yAxisId="left" stroke="#8d93a5" fontSize={12} domain={['auto', 'auto']} tickFormatter={(v) => `$${v}`} />
-                <RechartsTooltip
-                  contentStyle={{ backgroundColor: '#303c46', border: '1px solid rgba(255, 255, 255, 0.10)', borderRadius: '10px', boxShadow: '0 8px 24px rgba(16, 24, 40, 0.35)' }}
-                  itemStyle={{ color: '#ffffff', fontSize: '13px' }}
-                  labelStyle={{ color: '#c6c9d2', marginBottom: '4px', fontSize: '12px' }}
-                />
+                <RechartsTooltip content={<MarketChartTip />} />
                 <Legend iconType="plainline" iconSize={16} wrapperStyle={{ fontSize: '12px', paddingTop: '10px', letterSpacing: '0.01em' }} />
 
                 <Line yAxisId="left" type="monotone" dataKey="skj_bkk" name="SKJ 방콕" stroke="#509ee3" strokeWidth={2.5} dot={false} activeDot={{ r: 6, fill: '#509ee3', strokeWidth: 0 }} connectNulls={true} />
@@ -440,11 +466,7 @@ export default function MarketDashboard({ heroOnly = false }: { heroOnly?: boole
                 <CartesianGrid strokeDasharray="3 3" stroke="#e2e4e9" vertical={false} />
                 <XAxis dataKey="date" stroke="#8d93a5" fontSize={12} tickMargin={10} minTickGap={30} />
                 <YAxis yAxisId="left" stroke="#8d93a5" fontSize={12} domain={['auto', 'auto']} tickFormatter={(v) => `$${v}`} />
-                <RechartsTooltip
-                  contentStyle={{ backgroundColor: '#303c46', border: '1px solid rgba(255, 255, 255, 0.10)', borderRadius: '10px', boxShadow: '0 8px 24px rgba(16, 24, 40, 0.35)' }}
-                  itemStyle={{ color: '#ffffff', fontSize: '13px' }}
-                  labelStyle={{ color: '#c6c9d2', marginBottom: '4px', fontSize: '12px' }}
-                />
+                <RechartsTooltip content={<MarketChartTip />} />
                 <Legend iconType="plainline" iconSize={16} wrapperStyle={{ fontSize: '12px', paddingTop: '10px', letterSpacing: '0.01em' }} />
 
                 <Line yAxisId="left" type="monotone" dataKey="yf_abj" name="YF 아비장" stroke="#7172ad" strokeWidth={2.5} dot={false} activeDot={{ r: 6, fill: '#7172ad', strokeWidth: 0 }} connectNulls={true} />

@@ -134,14 +134,4 @@ describe('daily tuna briefing widget', () => {
     expect(markup).not.toMatch(/<details[^>]*\sopen(?:=|>)/);
   });
 
-  it('uses the top two digest titles and an exact article directive for SIT and TAK', () => {
-    const markup = renderToStaticMarkup(React.createElement(MarketDashboard));
-    const takeaways = buildDailyBriefingTakeaways(dailyBriefing);
-
-    expect(textByTestId(markup, 'daily-briefing-sit')).toBe(escapeHtml(takeaways.situation));
-    expect(textByTestId(markup, 'daily-briefing-tak')).toBe(escapeHtml(takeaways.actionPlan));
-    // TAK 무-창작 불변식: 기사 본문에 실재하는 문장이어야 한다
-    const allText = dailyBriefing.articles.flatMap((a) => a.paragraphs).join(' ');
-    expect(allText).toContain(takeaways.actionPlan);
-  });
 });

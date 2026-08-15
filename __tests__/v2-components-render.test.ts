@@ -1,3 +1,5 @@
+import { readFileSync } from 'node:fs';
+import { join } from 'node:path';
 import React from 'react';
 import { renderToStaticMarkup } from 'react-dom/server';
 import { describe, expect, it } from 'vitest';
@@ -165,8 +167,15 @@ describe('Deep Sea Command V2.5 — TelemetryBadge', () => {
     expect(liveMarkup).toContain('data-telemetry-tone="accent"');
     expect(syncedMarkup).toContain('data-telemetry-tone="neutral"');
     expect(staticMarkup).toContain('data-telemetry-tone="neutral"');
-    expect(syncedMarkup).toContain('#94a3b8');
-    expect(syncedMarkup).not.toContain('#f59e0b');
+
+    // 2026-08-15: 색은 인라인이 아니라 CSS 모듈로 이동 (라이트 스코프 재정의 가능해야 함) —
+    // 톤 계약은 data 속성으로, 중립=slate·경보색 금지 계약은 모듈 CSS 원문으로 검증한다.
+    const badgeCss = readFileSync(
+      join(process.cwd(), 'components/TelemetryBadge.module.css'),
+      'utf8',
+    );
+    expect(badgeCss).toContain('#94a3b8');
+    expect(badgeCss).not.toContain('#f59e0b');
   });
 });
 

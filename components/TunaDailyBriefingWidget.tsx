@@ -4,7 +4,6 @@ import React, { useState } from 'react';
 import { ChevronDown, ChevronRight, Newspaper } from 'lucide-react';
 import {
   buildBriefingImpactNumbers,
-  buildDailyBriefingTakeaways,
   categorizeBriefingTitle,
   dailyBriefing,
 } from '../lib/data/daily-briefing';
@@ -16,7 +15,6 @@ function displayDate(value: string): string {
 }
 
 export default function TunaDailyBriefingWidget() {
-  const takeaways = buildDailyBriefingTakeaways(dailyBriefing);
   const impactNumbers = buildBriefingImpactNumbers(dailyBriefing);
   // 다이제스트 항목 클릭 → 대응 기사 펼침 (digest·articles는 파이프라인이 같은 순서로 산출)
   const [openArticle, setOpenArticle] = useState<number | null>(null);
@@ -31,7 +29,6 @@ export default function TunaDailyBriefingWidget() {
       icon={Newspaper}
       iconColor="#f59e0b"
       pillar="S4"
-      cardDesc="Atuna 일일 뉴스 → 사내 브리핑 파이프라인 산출 · 게시판 원문과 동일 소스"
       telemetry={{ status: 'SYNCED', syncDate: dailyBriefing.date }}
       unit={`(기사 ${dailyBriefing.articles.length}건)`}
       customBody={(
@@ -127,15 +124,6 @@ export default function TunaDailyBriefingWidget() {
           </section>
         </div>
       )}
-      takeaway={{
-        situation: (
-          <span data-testid="daily-briefing-sit">{takeaways.situation}</span>
-        ),
-        actionPlan: (
-          <span data-testid="daily-briefing-tak">{takeaways.actionPlan}</span>
-        ),
-        source: `사내 게시판용 참치 뉴스 브리핑 (${dailyBriefing.date})`,
-      }}
     />
   );
 }
