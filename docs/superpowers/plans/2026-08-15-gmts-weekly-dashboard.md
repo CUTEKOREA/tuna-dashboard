@@ -112,7 +112,7 @@
 
 기존 잠금은 클라이언트 `sessionStorage` 기반 UI 접근 제어이다. JSON을 서버 비밀로 만드는 인증은 아니다.
 
-- v1: 기존 운영 메뉴와 같은 세션 잠금을 적용한다.
+- v1: 기존 운영 메뉴와 같은 세션 잠금을 적용한다. 잠금 전에는 최신 핵심 KPI Hero만 티저로 표시하고 탭·차트·표·상세 수치는 마운트하지 않는다.
 - v1 내부 노출 최소화: JSON을 `public/data` 대신 `data/` 아래 추적하고 `lib/data` 경유로만 번들한다.
 - 서버 인증이 필요하다면 v1 범위에 섞지 않고 별도 기획으로 분리한다.
 
@@ -628,7 +628,7 @@ Expected: FAIL because the GMTS menu is absent between `bangkok-office` and `mai
 }
 ```
 
-`shortcutOrder`가 없는 보호 메뉴가 맨 앞으로 이동하지 않도록 보호 순서에만 별도 fallback을 사용한다.
+`shortcutOrder`가 없는 보호 메뉴가 맨 앞으로 이동하지 않도록 최신 `origin/main`에 이미 있는 보호 메뉴 전용 fallback을 그대로 재사용한다.
 
 ```typescript
 function protectedMenuOrderOf(menu: DashboardMenuConfigShape): number {
@@ -930,7 +930,8 @@ Puppeteer로 `http://127.0.0.1:3026/gmts`를 열고 다음을 확인한다.
 ```javascript
 await page.goto('http://127.0.0.1:3026/gmts', { waitUntil: 'networkidle0' });
 const lockedText = await page.evaluate(() => document.body.innerText);
-assert(lockedText.includes('GMTS 주간보고 접근 확인'));
+assert(lockedText.includes('전체 메뉴 접근 확인'));
+assert(lockedText.includes('GMTS 제너럴산토스 주간보고'));
 assert(!lockedText.includes('2026년 1~7월'));
 ```
 
@@ -986,7 +987,7 @@ HANDOFF에 원문 범위, 단위 미기재, 반입량 revision, 브라우저 QA,
 ## 7. 완료 기준
 
 - [ ] 사이드바 `실시간 운영`에서 `방콕사무소 → GMTS 주간보고 → 메일` 순서로 표시된다.
-- [ ] `/gmts`는 잠금 전 데이터를 렌더하지 않고, 세션 허용 후에만 렌더한다.
+- [ ] `/gmts`는 잠금 전 Hero KPI 티저만 렌더하고, 탭·차트·표·상세 수치는 세션 허용 후에만 렌더한다.
 - [ ] 30건·38쪽·30개 SHA-256이 출처 manifest와 일치한다.
 - [ ] 8/12 하역 중 건수는 `0`이 아닌 `미확정`으로 보인다.
 - [ ] GSP·Non-GSP 가격에 `$/MT`를 붙이지 않고 원문 분모 미기재를 고지한다.
@@ -1000,13 +1001,13 @@ HANDOFF에 원문 범위, 단위 미기재, 반입량 revision, 브라우저 QA,
 
 ---
 
-## 8. 승인 요청 사항
+## 8. 승인 확정 사항
 
-다음 4개를 v1 기본안으로 제안한다.
+사용자가 구현을 승인했으므로 다음 4개를 v1 확정안으로 적용한다.
 
 1. **접근:** 기존 운영 메뉴와 같은 세션 비밀번호 잠금 적용
 2. **단위:** 가격 분모·반입량 단위는 원문 미기재로 명시하고 추정 금지
 3. **기타 서술:** 개인 휴가·출장 정보가 있는 `Other` 섹션은 v1 화면에서 제외
 4. **갱신:** 신규 PDF 수신 시 `npm run sync:gmts` 수동 갱신; 자동 스케줄러는 별도 검토
 
-이 4개 기본안이 승인되면 Task 1부터 구현한다.
+실행 순서는 타입 의존성을 고려해 `Task 1 → Task 2 → Task 4 → Task 5 → Task 3 → Task 6`으로 한다. 메뉴 연결 Task 3은 `GmtsDashboard`가 생성된 뒤 수행한다.
