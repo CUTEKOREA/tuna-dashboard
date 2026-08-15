@@ -1,3 +1,11 @@
+> 💡 **2026-08-15 14:40 KST — V3 «Answerable BI» 라이트 파일럿 /market 배포** [CC] (PR #393 병합·라이브 200):
+> - **사용자 결정 확정**: ① 색 방향 = Metabase Light 전환(다크는 토글 보존) ② 필터-내러티브 = «전체 기간 기준» 고정 라벨 먼저 ③ 파일럿 = market. 스펙 §7에 기록.
+> - **Phase 0 모순 소거**: Google Fonts CDN `@import` 제거(next/font 정본), Spotify 인젝션 블록(전역 pill 버튼·`!important` 카드 배경) 제거 — 컴포넌트가 자기 스타일 회복.
+> - **`[data-v3='light']` 스코프**: Metabase 실측 팔레트(#f9fafb 캔버스·흰 카드+#e2e4e9 헤어라인·잉크 네이비 #22242b·accent 8색 차트 팔레트)를 `--dsc-*`·`--w-*` 16쌍·`--card-*`·`--text-*` 전 토큰 층에 브리지. **다크 페이지는 바이트 불변** — 전역 전환은 L-07 3차(hex 잔존 341파일)와 병행 예정. 가드 테스트 2건은 `:root` 정본 구간만 읽도록 앵커 수정.
+> - **폰트**: Pretendard 가변(self-host, npm) + Roboto Mono 도입. 400/700/900 3단 규율.
+> - **P1 상호작용 1호**: `components/v2/FilterBar`(기간 4·입도 2 pill) + `filterAtunaHistory`(최신 관측일 기준 절단·월간 평균, 0 채움 금지, 단위테스트 4) + `?period=&grain=` URL 동기화. 어가 추이 차트만 반응 — 스코프 캡션으로 정직 표기(결정 ②). 필터 클릭→URL 재작성 실증.
+> - **잔여(다음 단계)**: 어가 차트 시리즈색 --chart-s* 통일(YF 아비장 gradient 범례 흑색 문제 포함), Trend KPI 확대, 타 페이지 확장 판정, L-07 3차 hex 소거, P2(cross-filter·원천 레코드 시트)·P3(구독 PDF·지표 SSOT)는 스펙 §4 로드맵.
+
 > 🗂️ **2026-08-15 14:05 KST — 방콕사무소 네이티브 탭 전환 (PR #390 병합) + Metabase V3 기획서** [CC]:
 > - **/bangkok-office iframe → 파노피형 PillTabs 7탭 완전 이전.** 원본 주간보고 HTML의 `<script id="payload">` JSON(287주 시계열+캐너리·트레이더·클레임·상관·품질)을 sync 스크립트가 fail-closed 추출(`public/data/bangkok_weekly_payload.json`) → `lib/data/bangkok-weekly.ts` 단일 인테이크 → `components/bangkok/` 탭 7개(개관·원어 시세·하역·트레이더·캐너리·재고·품질 클레임·선행지표·데이터 품질). 탭 구현은 Workflow 7 에이전트 병렬 fan-out(파일 분리·충돌 0), 조립·검증은 CC.
 > - **반증 리뷰(작성자≠검증자)가 병합 전 2건 정정**: P0 — 재고 점유 차트가 %를 «천톤»으로 오표기(같은 화면 스냅샷 표와 모순), P1 — note가 주간보고 파생 568건을 «원장»으로 오인용(원장은 761건). 주간 하역치 비가산성 note 1줄도 추가.
