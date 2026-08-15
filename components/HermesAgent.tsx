@@ -134,7 +134,7 @@ export default function HermesAgent({
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
-          boxShadow: '0 4px 24px rgba(99, 102, 241, 0.4), 0 0 40px rgba(139, 92, 246, 0.15)',
+          boxShadow: '0 4px 24px rgba(99, 102, 241, 0.4), 0 0 40px rgba(var(--w-violet-500-rgb), 0.15)',
           zIndex: 9999,
           transition: 'all 0.3s ease',
         }}
@@ -178,7 +178,7 @@ export default function HermesAgent({
         alignItems: 'center',
         justifyContent: 'space-between',
         padding: '14px 16px',
-        background: 'linear-gradient(135deg, rgba(99, 102, 241, 0.15), rgba(139, 92, 246, 0.1))',
+        background: 'linear-gradient(135deg, rgba(99, 102, 241, 0.15), rgba(var(--w-violet-500-rgb), 0.1))',
         borderBottom: '1px solid rgba(99, 102, 241, 0.15)',
       }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
@@ -199,8 +199,8 @@ export default function HermesAgent({
             gap: '4px',
             padding: '3px 8px',
             borderRadius: '10px',
-            background: status === 'online' ? 'rgba(16, 185, 129, 0.15)' :
-                        status === 'offline' ? 'rgba(239, 68, 68, 0.15)' : 'rgba(234, 179, 8, 0.15)',
+            background: status === 'online' ? 'rgba(var(--w-emerald-500-rgb), 0.15)' :
+                        status === 'offline' ? 'rgba(var(--w-red-500-rgb), 0.15)' : 'rgba(234, 179, 8, 0.15)',
           }}>
             <div style={{
               width: '6px', height: '6px', borderRadius: '50%',
@@ -334,7 +334,7 @@ export default function HermesAgent({
                     fontSize: '0.55rem',
                     color: 'var(--w-slate-500)',
                     padding: '1px 5px',
-                    background: 'rgba(100,116,139,0.1)',
+                    background: 'rgba(var(--w-slate-500-rgb), 0.1)',
                     borderRadius: '4px',
                   }}>
                     {msg.mode === 'hermes-server' ? '🔧 Agent' : msg.mode === 'gemini-cloud' ? '☁️ Gemini' : '💬 Direct'}

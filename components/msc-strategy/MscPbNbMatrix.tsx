@@ -21,7 +21,7 @@ const CustomTooltip = ({ active, payload }: any) => {
   return (
     <div style={{
       backgroundColor: 'rgba(20, 28, 52, 0.95)',
-      border: '1px solid rgba(148,163,184,0.15)',
+      border: '1px solid rgba(var(--w-slate-400-rgb), 0.15)',
       borderRadius: '8px',
       padding: '12px',
       fontSize: '0.82rem',
@@ -39,7 +39,7 @@ const CustomTooltip = ({ active, payload }: any) => {
       </div>
       <div style={{
         display: 'flex', justifyContent: 'space-between', gap: '16px',
-        marginTop: '4px', borderTop: '1px solid rgba(148,163,184,0.2)', paddingTop: '4px', fontSize: '0.75rem',
+        marginTop: '4px', borderTop: '1px solid rgba(var(--w-slate-400-rgb), 0.2)', paddingTop: '4px', fontSize: '0.75rem',
       }}>
         <span>시장 규모:</span>
         <span style={{ fontWeight: 700, color: 'var(--w-amber-500)' }}>{d.volume.toLocaleString()}톤</span>

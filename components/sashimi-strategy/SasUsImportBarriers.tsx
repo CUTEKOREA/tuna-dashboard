@@ -52,7 +52,7 @@ export default function SasUsImportBarriers() {
           </div>
           <div style={{
             display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '10px',
-            background: 'rgba(239,68,68,0.06)', border: '1px solid rgba(239,68,68,0.2)',
+            background: 'rgba(var(--w-red-500-rgb), 0.06)', border: '1px solid rgba(var(--w-red-500-rgb), 0.2)',
             borderRadius: '8px', padding: '10px 12px',
           }}>
             <span style={{ fontSize: '0.72rem', color: 'var(--w-slate-200)', fontWeight: 600 }}>수산물 = FDA 수입거부 1위 식품군</span>

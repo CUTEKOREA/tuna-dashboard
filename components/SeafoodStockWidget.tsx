@@ -102,7 +102,7 @@ export default function SeafoodStockWidget() {
               minWidth: '150px',
               background: '#0a0f1f',
               borderRadius: '12px',
-              border: `1px solid ${isUp ? 'rgba(239, 68, 68, 0.2)' : isDown ? 'rgba(59, 130, 246, 0.2)' : 'rgba(140,170,255,0.10)'}`,
+              border: `1px solid ${isUp ? 'rgba(var(--w-red-500-rgb), 0.2)' : isDown ? 'rgba(var(--w-blue-500-rgb), 0.2)' : 'rgba(140,170,255,0.10)'}`,
               padding: '12px 16px',
               boxShadow: `0 4px 12px ${bgGlow}, inset 0 1px 0 rgba(140,170,255,0.10)`,
               display: 'flex',

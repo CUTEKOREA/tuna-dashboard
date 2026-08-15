@@ -64,12 +64,12 @@ export function PollockLandedCostWaterfall() {
                   <div style={{ fontSize: '1.6rem', fontWeight: 800, color: '#22c55e' }}>₩{routeData?.total_krw_kg?.toLocaleString()}</div>
                   <div style={{ fontSize: '0.6rem', color: '#86efac' }}>per kg</div>
                 </div>
-                <div style={{ flex: 1, background: 'rgba(59,130,246,0.08)', borderRadius: '8px', padding: '10px', textAlign: 'center' }}>
+                <div style={{ flex: 1, background: 'rgba(var(--w-blue-500-rgb), 0.08)', borderRadius: '8px', padding: '10px', textAlign: 'center' }}>
                   <div style={{ fontSize: '0.6rem', color: 'var(--text-secondary)' }}>FOB 원물</div>
                   <div style={{ fontSize: '1.2rem', fontWeight: 700, color: '#60a5fa' }}>${routeData?.fob_usd_mt?.toLocaleString()}</div>
                   <div style={{ fontSize: '0.6rem', color: '#93c5fd' }}>/MT</div>
                 </div>
-                <div style={{ flex: 1, background: routeData?.margin_vs_domestic > 10 ? 'rgba(34,197,94,0.08)' : 'rgba(239,68,68,0.08)', borderRadius: '8px', padding: '10px', textAlign: 'center' }}>
+                <div style={{ flex: 1, background: routeData?.margin_vs_domestic > 10 ? 'rgba(34,197,94,0.08)' : 'rgba(var(--w-red-500-rgb), 0.08)', borderRadius: '8px', padding: '10px', textAlign: 'center' }}>
                   <div style={{ fontSize: '0.6rem', color: 'var(--text-secondary)' }}>국산 대비 마진</div>
                   <div style={{ fontSize: '1.2rem', fontWeight: 700, color: routeData?.margin_vs_domestic > 10 ? '#22c55e' : 'var(--w-red-500)' }}>{routeData?.margin_vs_domestic}%</div>
                   <div style={{ fontSize: '0.6rem', color: 'var(--text-secondary)' }}>{routeData?.advantage?.slice(0, 15)}</div>
@@ -87,7 +87,7 @@ export function PollockLandedCostWaterfall() {
               </SafeResponsiveContainer>
               <div style={{ display: 'flex', gap: '4px', flexWrap: 'wrap', marginTop: '8px' }}>
                 {(routeData?.risk_factors || []).map((rf: string, i: number) => (
-                  <div key={i} style={{ padding: '3px 8px', borderRadius: '12px', background: 'rgba(239,68,68,0.08)', fontSize: '0.6rem', color: '#fca5a5' }}>⚠️ {rf}</div>
+                  <div key={i} style={{ padding: '3px 8px', borderRadius: '12px', background: 'rgba(var(--w-red-500-rgb), 0.08)', fontSize: '0.6rem', color: '#fca5a5' }}>⚠️ {rf}</div>
                 ))}
               </div>
             </>
@@ -141,10 +141,10 @@ export function PollockRouteComparison() {
                     <td style={{ padding: '6px', textAlign: 'right', fontFamily: 'monospace', color: '#22c55e' }}>₩{r.total_krw_kg?.toLocaleString()}</td>
                     <td style={{ padding: '6px', textAlign: 'right', fontFamily: 'monospace', color: r.margin_pct > 10 ? '#22c55e' : r.margin_pct > 5 ? 'var(--w-amber-500)' : 'var(--w-red-500)' }}>{r.margin_pct}%</td>
                     <td style={{ padding: '6px', textAlign: 'right' }}>
-                      <span style={{ padding: '2px 6px', borderRadius: '4px', fontSize: '0.6rem', background: r.risk_score > 80 ? 'rgba(239,68,68,0.15)' : 'rgba(34,197,94,0.15)', color: r.risk_score > 80 ? 'var(--w-red-500)' : '#22c55e' }}>{r.risk_score}</span>
+                      <span style={{ padding: '2px 6px', borderRadius: '4px', fontSize: '0.6rem', background: r.risk_score > 80 ? 'rgba(var(--w-red-500-rgb), 0.15)' : 'rgba(34,197,94,0.15)', color: r.risk_score > 80 ? 'var(--w-red-500)' : '#22c55e' }}>{r.risk_score}</span>
                     </td>
                     <td style={{ padding: '6px', textAlign: 'right' }}>
-                      <span style={{ padding: '2px 6px', borderRadius: '4px', fontSize: '0.6rem', background: r.esg_score > 80 ? 'rgba(34,197,94,0.15)' : 'rgba(239,68,68,0.15)', color: r.esg_score > 80 ? '#22c55e' : 'var(--w-red-500)' }}>{r.esg_score}</span>
+                      <span style={{ padding: '2px 6px', borderRadius: '4px', fontSize: '0.6rem', background: r.esg_score > 80 ? 'rgba(34,197,94,0.15)' : 'rgba(var(--w-red-500-rgb), 0.15)', color: r.esg_score > 80 ? '#22c55e' : 'var(--w-red-500)' }}>{r.esg_score}</span>
                     </td>
                   </tr>
                 ))}

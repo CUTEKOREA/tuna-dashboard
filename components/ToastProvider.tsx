@@ -20,10 +20,10 @@ const ToastContext = createContext<ToastContextType>({ addToast: () => {} });
 export const useToast = () => useContext(ToastContext);
 
 const toastStyles: Record<ToastType, React.CSSProperties> = {
-  success: { borderLeft: '4px solid var(--w-emerald-500)', background: 'rgba(16, 185, 129, 0.1)' },
-  error:   { borderLeft: '4px solid var(--w-red-500)', background: 'rgba(239, 68, 68, 0.1)' },
-  info:    { borderLeft: '4px solid var(--w-cyan-500)', background: 'rgba(6, 182, 212, 0.1)' },
-  warning: { borderLeft: '4px solid var(--w-amber-500)', background: 'rgba(245, 158, 11, 0.1)' },
+  success: { borderLeft: '4px solid var(--w-emerald-500)', background: 'rgba(var(--w-emerald-500-rgb), 0.1)' },
+  error:   { borderLeft: '4px solid var(--w-red-500)', background: 'rgba(var(--w-red-500-rgb), 0.1)' },
+  info:    { borderLeft: '4px solid var(--w-cyan-500)', background: 'rgba(var(--w-cyan-500-rgb), 0.1)' },
+  warning: { borderLeft: '4px solid var(--w-amber-500)', background: 'rgba(var(--w-amber-500-rgb), 0.1)' },
 };
 
 const iconMap: Record<ToastType, string> = {

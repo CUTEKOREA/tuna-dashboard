@@ -37,17 +37,17 @@ export default function WestAfricaMap() {
         {/* Cartel Red Zones */}
         <div style={{ position: 'absolute', top: '25%', left: '65%', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
           <ShieldAlert size={20} color="var(--color-danger)" className="animate-pulse" />
-          <span style={{ fontSize:'0.65rem', color:'var(--color-danger)', fontWeight:600, marginTop:'4px', background:'rgba(239,68,68,0.1)', padding:'2px 4px', borderRadius:'4px' }}>Sahel Cartel</span>
+          <span style={{ fontSize:'0.65rem', color:'var(--color-danger)', fontWeight:600, marginTop:'4px', background:'rgba(var(--w-red-500-rgb), 0.1)', padding:'2px 4px', borderRadius:'4px' }}>Sahel Cartel</span>
         </div>
 
         <div style={{ position: 'absolute', top: '65%', left: '15%', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
           <ShieldAlert size={16} color="var(--color-danger)" className="animate-pulse" />
-          <span style={{ fontSize:'0.65rem', color:'var(--color-danger)', fontWeight:600, marginTop:'4px', background:'rgba(239,68,68,0.1)', padding:'2px 4px', borderRadius:'4px' }}>ASM Blockade</span>
+          <span style={{ fontSize:'0.65rem', color:'var(--color-danger)', fontWeight:600, marginTop:'4px', background:'rgba(var(--w-red-500-rgb), 0.1)', padding:'2px 4px', borderRadius:'4px' }}>ASM Blockade</span>
         </div>
 
         {/* Port */}
         <div style={{ position: 'absolute', top: '80%', left: '55%', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-          <div style={{ background:'rgba(59,130,246,0.2)', padding:'4px', borderRadius:'4px', border:'1px solid var(--w-blue-500)' }}>
+          <div style={{ background:'rgba(var(--w-blue-500-rgb), 0.2)', padding:'4px', borderRadius:'4px', border:'1px solid var(--w-blue-500)' }}>
             <Anchor size={16} color="var(--color-info)" />
           </div>
           <span style={{ fontSize:'0.65rem', color:'var(--color-info)', fontWeight:600, marginTop:'4px' }}>Lagos Port</span>

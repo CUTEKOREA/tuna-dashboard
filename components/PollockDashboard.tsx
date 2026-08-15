@@ -408,7 +408,7 @@ export default function PollockDashboard() {
               width: '44px', height: '44px', borderRadius: '8px', 
               background: 'linear-gradient(135deg, var(--w-cyan-500), var(--w-blue-500))',
               display: 'flex', alignItems: 'center', justifyContent: 'center',
-              boxShadow: '0 0 20px rgba(6, 182, 212, 0.4)'
+              boxShadow: '0 0 20px rgba(var(--w-cyan-500-rgb), 0.4)'
             }}>
               <Fish size={24} color="var(--text-primary)" />
             </div>
@@ -422,7 +422,7 @@ export default function PollockDashboard() {
           </div>
           <div style={{ 
             fontSize: '0.8rem', padding: '0.5rem 1rem', 
-            background: 'rgba(0, 0, 0, 0.2)', border: '1px solid rgba(6, 182, 212, 0.2)', 
+            background: 'rgba(0, 0, 0, 0.2)', border: '1px solid rgba(var(--w-cyan-500-rgb), 0.2)',
             borderRadius: '8px', color: 'var(--w-slate-400)', fontWeight: 500
           }}>
             <span style={{ color: 'var(--w-cyan-500)' }}>FishStatJ 1950-2024 + KFAS + 국정연 12건</span> · API-First · Claude Verified
@@ -489,7 +489,7 @@ export default function PollockDashboard() {
           borderBottom: '1px solid rgba(140,170,255,0.10)',
           marginBottom: '6px',
         }}>
-          <span style={{ fontSize: '0.7rem', color: 'rgba(148,163,184,0.7)', fontWeight: 600, letterSpacing: '0.08em', textTransform: 'uppercase' }}>
+          <span style={{ fontSize: '0.7rem', color: 'rgba(var(--w-slate-400-rgb), 0.7)', fontWeight: 600, letterSpacing: '0.08em', textTransform: 'uppercase' }}>
             밸류체인 네비게이터 — 아래 단계를 클릭하여 탐색하세요
           </span>
         </div>
@@ -538,7 +538,7 @@ export default function PollockDashboard() {
                   width: '28px', height: '28px', borderRadius: '50%',
                   display: 'flex', alignItems: 'center', justifyContent: 'center',
                   background: isActive ? s.color : 'rgba(140,170,255,0.12)',
-                  color: isActive ? '#0a0f1f' : 'rgba(148,163,184,0.6)',
+                  color: isActive ? '#0a0f1f' : 'rgba(var(--w-slate-400-rgb), 0.6)',
                   fontSize: '0.75rem', fontWeight: 800,
                   transition: 'all 0.25s',
                   boxShadow: isActive ? `0 0 12px ${s.color}50` : 'none',
@@ -552,7 +552,7 @@ export default function PollockDashboard() {
                 }}>{s.label}</span>
                 {isActive && (
                   <span style={{
-                    fontSize: '0.6rem', color: 'rgba(148,163,184,0.7)',
+                    fontSize: '0.6rem', color: 'rgba(var(--w-slate-400-rgb), 0.7)',
                     textAlign: 'center', lineHeight: 1.3, marginTop: '2px', padding: '0 4px',
                   }}>
                     {s.desc.slice(0, 24)}…

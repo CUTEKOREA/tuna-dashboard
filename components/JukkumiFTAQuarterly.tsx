@@ -271,8 +271,8 @@ export default function JukkumiFTAQuarterly() {
       <div
         style={{
           ...PanelStyle,
-          background: 'linear-gradient(135deg, rgba(139, 92, 246, 0.18), rgba(217, 70, 239, 0.10))',
-          borderColor: 'rgba(139, 92, 246, 0.25)',
+          background: 'linear-gradient(135deg, rgba(var(--w-violet-500-rgb), 0.18), rgba(217, 70, 239, 0.10))',
+          borderColor: 'rgba(var(--w-violet-500-rgb), 0.25)',
           display: 'grid',
           gridTemplateColumns: 'repeat(4, 1fr)',
           gap: '10px',

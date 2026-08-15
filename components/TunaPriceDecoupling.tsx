@@ -58,8 +58,8 @@ export default function TunaPriceDecoupling() {
           </defs>
           <CartesianGrid strokeDasharray="3 3" stroke="rgba(140,170,255,0.10)" vertical={false} />
           <XAxis dataKey="month" stroke="rgba(255,255,255,0.3)" tick={{ fill: 'rgba(255,255,255,0.5)', fontSize: 11 }} />
-          <YAxis yAxisId="left" stroke="rgba(59,130,246,0.5)" tick={{ fill: 'var(--w-blue-500)', fontSize: 11 }} tickFormatter={(v) => `$${v}`} domain={[1300, 2100]} />
-          <YAxis yAxisId="right" orientation="right" stroke="rgba(239,68,68,0.5)" tick={{ fill: 'var(--w-red-500)', fontSize: 11 }} tickFormatter={(v) => `₩${v}`} domain={[2500, 3500]} />
+          <YAxis yAxisId="left" stroke="rgba(var(--w-blue-500-rgb), 0.5)" tick={{ fill: 'var(--w-blue-500)', fontSize: 11 }} tickFormatter={(v) => `$${v}`} domain={[1300, 2100]} />
+          <YAxis yAxisId="right" orientation="right" stroke="rgba(var(--w-red-500-rgb), 0.5)" tick={{ fill: 'var(--w-red-500)', fontSize: 11 }} tickFormatter={(v) => `₩${v}`} domain={[2500, 3500]} />
           <Tooltip content={<CustomTooltip />} />
           <Legend wrapperStyle={{ paddingTop: '12px', fontSize: '12px' }} />
           <Area yAxisId="right" type="monotone" dataKey="margin_spread" name="초과 마진 독식 스프레드" fill="url(#marginSpread)" stroke="none" />

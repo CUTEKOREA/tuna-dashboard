@@ -133,8 +133,8 @@ export default function SalmonForecastSimulator() {
               <button key={o.value} onClick={() => handleOriginSelect(o.value)} style={{
                 padding: '0.4rem 0.75rem', borderRadius: '6px', fontSize: '0.75rem', fontWeight: 600,
                 cursor: 'pointer', transition: 'all 0.2s',
-                background: origin === o.value ? 'rgba(16,185,129,0.2)' : 'rgba(255,255,255,0.03)',
-                border: origin === o.value ? '1px solid rgba(16,185,129,0.5)' : '1px solid rgba(255,255,255,0.1)',
+                background: origin === o.value ? 'rgba(var(--w-emerald-500-rgb), 0.2)' : 'rgba(255,255,255,0.03)',
+                border: origin === o.value ? '1px solid rgba(var(--w-emerald-500-rgb), 0.5)' : '1px solid rgba(255,255,255,0.1)',
                 color: origin === o.value ? 'var(--w-emerald-500)' : 'var(--w-slate-400)',
               }}>
                 {o.flag} {o.label}
@@ -169,8 +169,8 @@ export default function SalmonForecastSimulator() {
               <div style={{
                 display: 'flex', justifyContent: 'space-between', alignItems: 'center',
                 padding: '0.8rem 0.9rem',
-                background: 'rgba(16,185,129,0.1)',
-                borderTop: '2px solid rgba(16,185,129,0.3)',
+                background: 'rgba(var(--w-emerald-500-rgb), 0.1)',
+                borderTop: '2px solid rgba(var(--w-emerald-500-rgb), 0.3)',
               }}>
                 <div>
                   <span style={{ fontSize: '0.85rem', fontWeight: 700, color: 'var(--w-emerald-500)' }}>총 착지원가</span>
@@ -192,7 +192,7 @@ export default function SalmonForecastSimulator() {
         <div>
           {forecast && (
             <div style={{
-              background: 'rgba(139,92,246,0.05)', border: '1px solid rgba(139,92,246,0.2)',
+              background: 'rgba(var(--w-violet-500-rgb), 0.05)', border: '1px solid rgba(var(--w-violet-500-rgb), 0.2)',
               borderRadius: '8px', padding: '1rem',
             }}>
               <h4 style={{ color: 'var(--w-violet-500)', fontSize: '0.9rem', fontWeight: 700, margin: '0 0 0.8rem 0', display: 'flex', alignItems: 'center', gap: '6px' }}>
@@ -218,7 +218,7 @@ export default function SalmonForecastSimulator() {
                   <div key={i} style={{
                     fontSize: '0.72rem', color: 'var(--w-slate-300)', lineHeight: 1.5,
                     padding: '0.3rem 0', paddingLeft: '0.8rem',
-                    borderLeft: '2px solid rgba(139,92,246,0.3)',
+                    borderLeft: '2px solid rgba(var(--w-violet-500-rgb), 0.3)',
                     marginBottom: '0.3rem',
                   }}>
                     {f}

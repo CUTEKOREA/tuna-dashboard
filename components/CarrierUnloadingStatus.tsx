@@ -38,7 +38,7 @@ export default function CarrierUnloadingStatus() {
       <div style={{ border: '1px solid var(--panel-border)', borderRadius: '10px', overflow: 'hidden' }}>
         <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: '13px' }}>
           <thead>
-            <tr style={{ background: 'linear-gradient(90deg, rgba(245,158,11,0.12), rgba(245,158,11,0.04))', borderBottom: '1px solid rgba(245,158,11,0.25)' }}>
+            <tr style={{ background: 'linear-gradient(90deg, rgba(var(--w-amber-500-rgb), 0.12), rgba(var(--w-amber-500-rgb), 0.04))', borderBottom: '1px solid rgba(var(--w-amber-500-rgb), 0.25)' }}>
               <th style={{ padding: '12px', textAlign: 'center', color: 'var(--text-muted)', fontWeight: 700 }}>구분</th>
               <th style={{ padding: '12px', textAlign: 'center', color: 'var(--text-muted)', width: '60px', fontWeight: 700 }}>척수</th>
               <th style={{ padding: '12px', textAlign: 'left', color: 'var(--text-muted)', fontWeight: 700 }}>운반선 (MT)</th>
@@ -54,7 +54,7 @@ export default function CarrierUnloadingStatus() {
                 <td style={{ padding: '12px', color: 'var(--text-main)', lineHeight: '1.5' }}>{row.carriers}</td>
               </tr>
             ))}
-            <tr style={{ background: 'rgba(16, 185, 129, 0.1)' }}>
+            <tr style={{ background: 'rgba(var(--w-emerald-500-rgb), 0.1)' }}>
               <td style={{ padding: '12px', textAlign: 'center', fontWeight: 'bold', color: 'var(--color-success)' }}>합계</td>
               <td style={{ padding: '12px', textAlign: 'center', fontWeight: 'bold', color: 'var(--color-success)' }}>{logisticsWeeklyReport.unloading.currentTotal.vessels}</td>
               <td style={{ padding: '12px', fontWeight: 'bold', color: 'var(--color-success)' }}>{logisticsWeeklyReport.unloading.currentTotal.amount.toLocaleString()} MT</td>
@@ -76,7 +76,7 @@ export default function CarrierUnloadingStatus() {
             <div key={idx}
               onMouseEnter={() => setCardHover(idx)} onMouseLeave={() => setCardHover(null)}
               style={{
-                padding: '12px', background: 'rgba(56,189,248,0.05)', borderRadius: '8px',
+                padding: '12px', background: 'rgba(var(--w-sky-400-rgb), 0.05)', borderRadius: '8px',
                 borderLeft: '3px solid var(--color-info)', display: 'flex', flexDirection: 'column', gap: '4px',
                 transform: cardHover === idx ? 'translateY(-2px)' : 'none',
                 boxShadow: cardHover === idx ? '0 6px 18px rgba(0,0,0,0.35)' : 'none',

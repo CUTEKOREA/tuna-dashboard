@@ -611,7 +611,7 @@ const TunaDashboard = React.memo(function TunaDashboard() {
           borderBottom: '1px solid rgba(140,170,255,0.10)',
           marginBottom: '6px',
         }}>
-          <span style={{ fontSize: '0.7rem', color: 'rgba(148,163,184,0.7)', fontWeight: 600, letterSpacing: '0.08em', textTransform: 'uppercase' }}>
+          <span style={{ fontSize: '0.7rem', color: 'rgba(var(--w-slate-400-rgb), 0.7)', fontWeight: 600, letterSpacing: '0.08em', textTransform: 'uppercase' }}>
             밸류체인 네비게이터 — 아래 단계를 클릭하여 탐색하세요
           </span>
         </div>
@@ -665,7 +665,7 @@ const TunaDashboard = React.memo(function TunaDashboard() {
                   width: '28px', height: '28px', borderRadius: '50%',
                   display: 'flex', alignItems: 'center', justifyContent: 'center',
                   background: isActive ? s.color : 'rgba(140,170,255,0.12)',
-                  color: isActive ? '#0a0f1f' : 'rgba(148,163,184,0.6)',
+                  color: isActive ? '#0a0f1f' : 'rgba(var(--w-slate-400-rgb), 0.6)',
                   fontSize: '0.75rem', fontWeight: 800,
                   transition: 'all 0.25s',
                   boxShadow: isActive ? `0 0 12px ${s.color}50` : 'none',
@@ -686,7 +686,7 @@ const TunaDashboard = React.memo(function TunaDashboard() {
                 {isActive && (
                   <span style={{
                     fontSize: '0.6rem',
-                    color: 'rgba(148,163,184,0.7)',
+                    color: 'rgba(var(--w-slate-400-rgb), 0.7)',
                     textAlign: 'center',
                     lineHeight: 1.3,
                     maxWidth: '120px',
@@ -974,7 +974,7 @@ const TunaDashboard = React.memo(function TunaDashboard() {
                 style={{
                   display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '10px',
                   padding: '18px 24px', borderRadius: '12px', cursor: 'pointer',
-                  background: 'rgba(16,185,129,0.06)', border: '1px solid rgba(16,185,129,0.2)',
+                  background: 'rgba(var(--w-emerald-500-rgb), 0.06)', border: '1px solid rgba(var(--w-emerald-500-rgb), 0.2)',
                   transition: 'all 0.2s',
                 }}
                 onMouseEnter={(e) => { e.currentTarget.style.background = 'rgba(16,185,129,0.12)'; }}
@@ -1042,7 +1042,7 @@ const TunaDashboard = React.memo(function TunaDashboard() {
                 style={{
                   display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '10px',
                   padding: '14px 20px', borderRadius: '10px', cursor: 'pointer',
-                  background: 'rgba(16,185,129,0.06)', border: '1px solid rgba(16,185,129,0.15)',
+                  background: 'rgba(var(--w-emerald-500-rgb), 0.06)', border: '1px solid rgba(var(--w-emerald-500-rgb), 0.15)',
                   transition: 'all 0.2s',
                 }}
                 onMouseEnter={(e) => { e.currentTarget.style.background = 'rgba(16,185,129,0.12)'; }}

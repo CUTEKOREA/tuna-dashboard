@@ -28,7 +28,7 @@ const improvements = [
 
 const tooltipStyle = {
   backgroundColor: 'rgba(20, 28, 52, 0.95)',
-  border: '1px solid rgba(148,163,184,0.15)',
+  border: '1px solid rgba(var(--w-slate-400-rgb), 0.15)',
   borderRadius: 8,
   color: 'var(--w-slate-200)',
   fontSize: '0.78rem',
@@ -66,7 +66,7 @@ export default function MscImprovementsDelivered() {
           {/* KPI 헤더 */}
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '10px' }}>
             <div style={{
-              background: 'rgba(16,185,129,0.08)', border: '1px solid rgba(16,185,129,0.25)',
+              background: 'rgba(var(--w-emerald-500-rgb), 0.08)', border: '1px solid rgba(var(--w-emerald-500-rgb), 0.25)',
               borderRadius: '10px', padding: '12px 14px',
             }}>
               <div style={{ fontSize: '0.66rem', color: 'var(--w-slate-400)', marginBottom: '2px' }}>누적 개선 (제도 출범 이후)</div>
@@ -76,7 +76,7 @@ export default function MscImprovementsDelivered() {
               </div>
             </div>
             <div style={{
-              background: 'rgba(56,189,248,0.08)', border: '1px solid rgba(56,189,248,0.25)',
+              background: 'rgba(var(--w-sky-400-rgb), 0.08)', border: '1px solid rgba(var(--w-sky-400-rgb), 0.25)',
               borderRadius: '10px', padding: '12px 14px',
             }}>
               <div style={{ fontSize: '0.66rem', color: 'var(--w-slate-400)', marginBottom: '2px' }}>최근 3년 개선</div>
@@ -95,10 +95,10 @@ export default function MscImprovementsDelivered() {
                 layout="vertical"
                 margin={{ top: 4, right: 40, left: 8, bottom: 4 }}
               >
-                <CartesianGrid strokeDasharray="3 3" stroke="rgba(148,163,184,0.08)" horizontal={false} />
+                <CartesianGrid strokeDasharray="3 3" stroke="rgba(var(--w-slate-400-rgb), 0.08)" horizontal={false} />
                 <XAxis type="number" domain={[0, 240]} tick={{ fill: 'var(--w-slate-400)', fontSize: 11 }} axisLine={false} tickLine={false} />
                 <YAxis type="category" dataKey="cat" width={92} tick={{ fill: 'var(--w-slate-300)', fontSize: 11 }} axisLine={false} tickLine={false} />
-                <Tooltip content={<CustomTooltip />} cursor={{ fill: 'rgba(148,163,184,0.06)' }} />
+                <Tooltip content={<CustomTooltip />} cursor={{ fill: 'rgba(var(--w-slate-400-rgb), 0.06)' }} />
                 <Bar dataKey="count" radius={[0, 4, 4, 0]} isAnimationActive={false} barSize={22}>
                   {improvements.map((d, i) => (
                     <Cell key={i} fill={d.color} fillOpacity={0.85} />
@@ -111,7 +111,7 @@ export default function MscImprovementsDelivered() {
 
           <div style={{
             display: 'flex', alignItems: 'center', gap: '8px', padding: '10px 14px',
-            background: 'rgba(16,185,129,0.06)', border: '1px solid rgba(16,185,129,0.18)', borderRadius: '10px',
+            background: 'rgba(var(--w-emerald-500-rgb), 0.06)', border: '1px solid rgba(var(--w-emerald-500-rgb), 0.18)', borderRadius: '10px',
           }}>
             <TrendingUp size={16} color="#10b981" style={{ flexShrink: 0 }} />
             <span style={{ fontSize: '0.72rem', color: 'var(--w-slate-300)' }}>

@@ -28,7 +28,7 @@ export default function ChickenPartsWidget() {
   const body = (
     <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
       {data.chartData && (
-        <div style={{ background: 'rgba(20, 28, 52, 0.4)', borderRadius: '12px', border: '1px solid rgba(245, 158, 11, 0.15)', padding: '1.2rem' }}>
+        <div style={{ background: 'rgba(20, 28, 52, 0.4)', borderRadius: '12px', border: '1px solid rgba(var(--w-amber-500-rgb), 0.15)', padding: '1.2rem' }}>
           <h4 style={{ margin: '0 0 1rem 0', fontSize: '0.95rem', color: 'var(--w-slate-50)' }}>KCS HS코드 수입단가 추이</h4>
           <div style={{ height: '220px', width: '100%' }}>
             <LineChart width={600} height={220} data={data.chartData.data}>
@@ -51,8 +51,8 @@ export default function ChickenPartsWidget() {
           const IconComponent = IconMap[part.icon] || Dna;
           return (
             <div key={i} style={{
-              background: 'rgba(245, 158, 11, 0.05)',
-              border: '1px solid rgba(245, 158, 11, 0.2)',
+              background: 'rgba(var(--w-amber-500-rgb), 0.05)',
+              border: '1px solid rgba(var(--w-amber-500-rgb), 0.2)',
               borderRadius: '12px',
               padding: '1.2rem',
               display: 'flex',
@@ -64,13 +64,13 @@ export default function ChickenPartsWidget() {
                   <IconComponent size={18} color="#f59e0b" />
                   {part.name}
                 </h4>
-                <span style={{ fontSize: '0.75rem', color: 'var(--w-amber-400)', background: 'rgba(245, 158, 11, 0.1)', padding: '2px 8px', borderRadius: '12px', whiteSpace: 'nowrap', marginLeft: '8px' }}>
+                <span style={{ fontSize: '0.75rem', color: 'var(--w-amber-400)', background: 'rgba(var(--w-amber-500-rgb), 0.1)', padding: '2px 8px', borderRadius: '12px', whiteSpace: 'nowrap', marginLeft: '8px' }}>
                   타깃: {part.market}
                 </span>
               </div>
 
               <div style={{ display: 'flex', flexDirection: 'column', gap: '0.8rem', fontSize: '0.82rem', flex: 1 }}>
-                <div style={{ background: 'rgba(0, 0, 0, 0.2)', padding: '0.8rem', borderRadius: '8px', borderLeft: '2px solid rgba(245, 158, 11, 0.6)' }}>
+                <div style={{ background: 'rgba(0, 0, 0, 0.2)', padding: '0.8rem', borderRadius: '8px', borderLeft: '2px solid rgba(var(--w-amber-500-rgb), 0.6)' }}>
                   <div style={{ color: '#fcd34d', fontWeight: 700, marginBottom: '4px', display: 'flex', alignItems: 'center', gap: '4px' }}><AlertTriangle size={12} /> 브라질 한계</div>
                   <div style={{ color: 'var(--w-slate-300)', lineHeight: 1.5 }}>{part.brazil}</div>
                 </div>
@@ -81,13 +81,13 @@ export default function ChickenPartsWidget() {
               </div>
 
               <div style={{
-                background: 'rgba(245, 158, 11, 0.1)',
+                background: 'rgba(var(--w-amber-500-rgb), 0.1)',
                 padding: '0.8rem 1rem',
                 borderRadius: '8px',
                 fontSize: '0.82rem',
                 color: 'var(--w-slate-50)',
                 lineHeight: 1.5,
-                border: '1px dashed rgba(245, 158, 11, 0.3)',
+                border: '1px dashed rgba(var(--w-amber-500-rgb), 0.3)',
               }}>
                 <strong style={{ color: 'var(--w-amber-400)' }}>💡 전략적 인사이트:</strong> {part.insight}
               </div>

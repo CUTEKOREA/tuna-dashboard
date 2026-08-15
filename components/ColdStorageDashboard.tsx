@@ -693,7 +693,7 @@ export default function ColdStorageDashboard() {
           display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '6px',
           padding: '4px 0 8px', borderBottom: '1px solid rgba(140,170,255,0.10)', marginBottom: '6px',
         }}>
-          <span style={{ fontSize: '0.7rem', color: 'rgba(148,163,184,0.7)', fontWeight: 600, letterSpacing: '0.08em', textTransform: 'uppercase' }}>
+          <span style={{ fontSize: '0.7rem', color: 'rgba(var(--w-slate-400-rgb), 0.7)', fontWeight: 600, letterSpacing: '0.08em', textTransform: 'uppercase' }}>
             콜드체인 밸류체인 네비게이터 — {SECTIONS.length}개 섹션을 클릭하여 탐색하세요
           </span>
         </div>
@@ -730,7 +730,7 @@ export default function ColdStorageDashboard() {
                   width: '28px', height: '28px', borderRadius: '50%',
                   display: 'flex', alignItems: 'center', justifyContent: 'center',
                   background: isActive ? s.color : 'rgba(140,170,255,0.12)',
-                  color: isActive ? '#0a0f1f' : 'rgba(148,163,184,0.6)',
+                  color: isActive ? '#0a0f1f' : 'rgba(var(--w-slate-400-rgb), 0.6)',
                   transition: 'all 0.25s',
                   boxShadow: isActive ? `0 0 12px ${s.color}50` : 'none',
                 }}>
@@ -745,7 +745,7 @@ export default function ColdStorageDashboard() {
                 </span>
                 {isActive && (
                   <span style={{
-                    fontSize: '0.55rem', color: 'rgba(148,163,184,0.7)', textAlign: 'center',
+                    fontSize: '0.55rem', color: 'rgba(var(--w-slate-400-rgb), 0.7)', textAlign: 'center',
                     lineHeight: 1.3, maxWidth: '130px', overflow: 'hidden', textOverflow: 'ellipsis',
                     display: '-webkit-box', WebkitLineClamp: 2, WebkitBoxOrient: 'vertical' as any,
                   }}>
@@ -814,7 +814,7 @@ export default function ColdStorageDashboard() {
           <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '1.5rem' }}>
             <Snowflake size={24} color="#06b6d4" />
             <h2 style={{ margin: 0, fontSize: '1.5rem', fontWeight: 700, color: 'var(--text-primary)' }}>5. 에너지 최적화 및 품질과학</h2>
-            <span style={{ marginLeft: 'auto', fontSize: '0.8rem', color: 'var(--w-slate-400)', background: 'rgba(6, 182, 212, 0.1)', padding: '4px 10px', borderRadius: '12px' }}>한국수산과학회지 KFAS 논문 8편 기반</span>
+            <span style={{ marginLeft: 'auto', fontSize: '0.8rem', color: 'var(--w-slate-400)', background: 'rgba(var(--w-cyan-500-rgb), 0.1)', padding: '4px 10px', borderRadius: '12px' }}>한국수산과학회지 KFAS 논문 8편 기반</span>
           </div>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 560px), 1fr))', gap: '1.5rem' }}>
             {widgets.filter((w: any) => ['k01', 'k02', 'k03', 'k04', 'k05', 'k06', 'k07', 'k08'].includes(w.id)).map((w: any) => renderWidgetCard(w, 'S5'))}
@@ -827,7 +827,7 @@ export default function ColdStorageDashboard() {
           <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '1.5rem' }}>
             <Anchor size={24} color="#38bdf8" />
             <h2 style={{ margin: 0, fontSize: '1.5rem', fontWeight: 700, color: 'var(--text-primary)' }}>6. 미국 초저온(ULT) 사시미급 보관 인프라</h2>
-            <span style={{ marginLeft: 'auto', fontSize: '0.8rem', color: 'var(--w-slate-400)', background: 'rgba(56, 189, 248, 0.1)', padding: '4px 10px', borderRadius: '12px' }}>멀티에이전트 조사 2026.06.02 · 동·서부 ULT</span>
+            <span style={{ marginLeft: 'auto', fontSize: '0.8rem', color: 'var(--w-slate-400)', background: 'rgba(var(--w-sky-400-rgb), 0.1)', padding: '4px 10px', borderRadius: '12px' }}>멀티에이전트 조사 2026.06.02 · 동·서부 ULT</span>
           </div>
 
           {/* 미국 ULT 핵심 지표 */}

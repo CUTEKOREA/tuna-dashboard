@@ -1,5 +1,15 @@
 # HANDOFF
 
+> 🎨 **2026-08-15 11:21 KST — L-07 2차 rgba·미탐 색 브리지 치환 완료** [Codex]:
+> - `scripts/fix_widget_colors.py`를 확장해 상위 16색과 RGB가 같은 스타일 위치의 rgba를 alpha 원문 그대로 `rgba(var(--w-*-rgb), alpha)`로 치환했다. `app/globals.css`에는 기존 solid 토큰 바로 아래 RGB 성분 토큰 16쌍을 추가했다. 적용 결과는 **170파일·793건(783 rgba + 10 hex)**이고 재실행은 **0파일·0건**이다.
+> - 10개 hex 미탐은 검증된 DOM 삽입 HTML 문자열 4파일의 7건(`PacificVesselMap` 2, `ColdStorageMap` 2, `TunaRestaurantMap` 2, `PetFoodMap` 1)과 `accentColor` 3건(`TradeRouteSankey`·`ExchangeSimulator`·`CarrotDashboard`)이다. HTML allowlist 밖 문자열, ECharts 캔버스 옵션, 데이터 의미값, 주석, `v2`·`cosmo`·테스트 파일은 보존했다.
+> - TDD는 rgba·HTML style·accentColor RED 4건을 확인한 뒤 GREEN으로 전환했고, 첫 전체 dry-run이 발견한 rgba/hex 혼합 오프셋 결함도 별도 RED→GREEN 회귀로 막아 최종 Python 단위 테스트 **9/9**다. 드라이런 전체 표와 20개 샘플은 `docs/2026-08-15_l07_phase2_dryrun.md`에 있다.
+> - `origin/main` 원본→현재 전체 TSX exact audit가 통과했다. 변환 대상은 정확히 793건뿐이며, target rgba alpha 멀티셋 **956건 = 토큰화 783 + 의미값 보존 173**으로 동일하고 RGB 토큰 16쌍은 원 hex 성분과 일치한다. `git diff --check`, Python 구문 검사, 적용 후 멱등성도 통과했다.
+> - production build 기반 브라우저 QA는 `/fleet`·`/unloading`·`/market`·Pacific FAD 임시 하네스의 1440×1000 전후가 모두 **0픽셀 차이**이며 SHA-256까지 화면별 동일하다. 네 화면 모두 overflow·잠금 잔존·page/local HTTP/request 오류 0이고 Pacific FAD 계산 스타일도 전후 `rgb(59, 130, 246)`로 같다. 증거는 `/private/tmp/l07-phase2-qa-20260815/`, 비교 JSON SHA-256은 `6a7c6a58cabed8f2d31341608cfe0b4b5f92358ba6a6ee8e9449b158b133330c`다. 임시 라우트는 제거했다.
+> - 최종 `npm run verify` exit 0: ESLint 오류 0(기존 `ShrimpDashboard.tsx` 경고 1), TypeScript, Vitest **262/262**, API cache **143/143**, Next 정적 페이지 **117/117**, bundle **30경로**다. push·PR·배포는 하지 않는다. 다음 단계는 CC가 dry-run 793건 독립 재현, 미탐 10곳·ECharts 보존, verify와 4화면 증거를 반증 검수하는 것이다.
+
+> 마지막 업데이트: 2026-08-15 11:21 KST
+
 > 🏁 **2026-08-15 10:20 KST — V2.5 Institutional Grade 전체 완결·라이브 검증** [CC]:
 > - **로드맵 완주**: 스펙(#350) → Grok 반증(#359) → V2.5-a 토큰·모노(#360) → b 운영 4페이지(#366) → c 잔여 4페이지+브리지 16색(#367) → **L-07 위젯 4,103건/334파일 치환(#369)**. 전부 main 병합·production 배포.
 > - **L-07 3-관점 검증**: 작성 Codex / CC 사전 검수(dry-run 4,103건 독립 재현 일치·유닛테스트 4/4·무작위 10파일 비토큰 hex 0) / Grok 반증(오탐 0 — 의미값 방어·대문자·멱등성 실파일 확인). 값 동일 치환이므로 스냅샷 불변이 픽셀 무결 증거. verify 양측 독립 통과.

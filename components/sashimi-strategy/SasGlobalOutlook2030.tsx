@@ -83,7 +83,7 @@ export default function SasGlobalOutlook2030() {
             {/* WCPO */}
             <div style={{
               padding: '10px', borderRadius: '8px',
-              background: 'rgba(56,189,248,0.05)', border: '1px solid rgba(56,189,248,0.15)',
+              background: 'rgba(var(--w-sky-400-rgb), 0.05)', border: '1px solid rgba(var(--w-sky-400-rgb), 0.15)',
             }}>
               <div style={{ fontSize: '0.68rem', fontWeight: 600, color: 'var(--w-sky-400)', marginBottom: '6px' }}>
                 🌊 WCPO 2024 기록
@@ -105,7 +105,7 @@ export default function SasGlobalOutlook2030() {
             {/* Emerging */}
             <div style={{
               padding: '10px', borderRadius: '8px',
-              background: 'rgba(245,158,11,0.05)', border: '1px solid rgba(245,158,11,0.15)',
+              background: 'rgba(var(--w-amber-500-rgb), 0.05)', border: '1px solid rgba(var(--w-amber-500-rgb), 0.15)',
             }}>
               <div style={{ fontSize: '0.68rem', fontWeight: 600, color: 'var(--w-amber-500)', marginBottom: '6px' }}>
                 🚀 신흥 시장 성장률

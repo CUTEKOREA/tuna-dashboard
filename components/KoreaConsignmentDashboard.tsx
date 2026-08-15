@@ -185,7 +185,7 @@ export default function KoreaConsignmentDashboard() {
                   background: 'linear-gradient(135deg, var(--w-sky-400), #818cf8)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>
                   해양수산부: 위탁판매 3개년 분석 현황
                 </h1>
-                <span style={{ display:'inline-flex', alignItems:'center', gap:'4px', background:'rgba(16, 185, 129, 0.1)', border:'1px solid var(--w-emerald-500)', color:'var(--color-success)', fontSize:'0.7rem', fontWeight:600, padding:'2px 8px', borderRadius:'12px' }}>
+                <span style={{ display:'inline-flex', alignItems:'center', gap:'4px', background:'rgba(var(--w-emerald-500-rgb), 0.1)', border:'1px solid var(--w-emerald-500)', color:'var(--color-success)', fontSize:'0.7rem', fontWeight:600, padding:'2px 8px', borderRadius:'12px' }}>
                   <span style={{ width: '6px', height: '6px', borderRadius: '50%', background: 'var(--color-success)', display: 'inline-block' }}></span>
                   일자별 전체 거래 동기화
                 </span>
@@ -221,7 +221,7 @@ export default function KoreaConsignmentDashboard() {
         {meta && (
           <div style={{ 
             display: 'flex', gap: '1.5rem', flexWrap: 'wrap',
-            background: 'rgba(16, 185, 129, 0.05)', border: '1px solid rgba(16, 185, 129, 0.15)',
+            background: 'rgba(var(--w-emerald-500-rgb), 0.05)', border: '1px solid rgba(var(--w-emerald-500-rgb), 0.15)',
             borderRadius: '8px', padding: '8px 14px', marginTop: '0.75rem', fontSize: '0.75rem', color: 'var(--w-slate-400)'
           }}>
             <span>📅 집계 기간: <strong style={{color:'var(--color-success)'}}>{coverageLabel || '집계 월 미상'}</strong></span>
@@ -295,7 +295,7 @@ export default function KoreaConsignmentDashboard() {
                 <div style={{ background: 'rgba(2, 14, 28, 0.3)', padding: '14px', borderRadius: '8px', border: '1px solid rgba(140,170,255,0.10)' }}>
                   <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '10px' }}>
                     <span style={{ fontSize: '0.85rem', color: 'var(--w-slate-400)', fontWeight: 600 }}>고등어</span>
-                    <span style={{ fontSize: '0.8rem', padding: '2px 8px', borderRadius: '4px', background: data._liveIntelligence.metrics.arbitrage.mackerel.signal === 'IMPORT' ? 'rgba(16, 185, 129, 0.15)' : 'rgba(245, 158, 11, 0.15)', color: data._liveIntelligence.metrics.arbitrage.mackerel.signal === 'IMPORT' ? 'var(--color-success)' : 'var(--color-warning)', fontWeight: 700 }}>
+                    <span style={{ fontSize: '0.8rem', padding: '2px 8px', borderRadius: '4px', background: data._liveIntelligence.metrics.arbitrage.mackerel.signal === 'IMPORT' ? 'rgba(var(--w-emerald-500-rgb), 0.15)' : 'rgba(var(--w-amber-500-rgb), 0.15)', color: data._liveIntelligence.metrics.arbitrage.mackerel.signal === 'IMPORT' ? 'var(--color-success)' : 'var(--color-warning)', fontWeight: 700 }}>
                       {data._liveIntelligence.metrics.arbitrage.mackerel.signal === 'IMPORT' ? '수입 매입 우위' : '국내 매입 우위'}
                     </span>
                   </div>
@@ -315,7 +315,7 @@ export default function KoreaConsignmentDashboard() {
                 <div style={{ background: 'rgba(2, 14, 28, 0.3)', padding: '14px', borderRadius: '8px', border: '1px solid rgba(140,170,255,0.10)' }}>
                   <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '10px' }}>
                     <span style={{ fontSize: '0.85rem', color: 'var(--w-slate-400)', fontWeight: 600 }}>오징어</span>
-                    <span style={{ fontSize: '0.8rem', padding: '2px 8px', borderRadius: '4px', background: data._liveIntelligence.metrics.arbitrage.squid.signal === 'IMPORT' ? 'rgba(16, 185, 129, 0.15)' : 'rgba(245, 158, 11, 0.15)', color: data._liveIntelligence.metrics.arbitrage.squid.signal === 'IMPORT' ? 'var(--color-success)' : 'var(--color-warning)', fontWeight: 700 }}>
+                    <span style={{ fontSize: '0.8rem', padding: '2px 8px', borderRadius: '4px', background: data._liveIntelligence.metrics.arbitrage.squid.signal === 'IMPORT' ? 'rgba(var(--w-emerald-500-rgb), 0.15)' : 'rgba(var(--w-amber-500-rgb), 0.15)', color: data._liveIntelligence.metrics.arbitrage.squid.signal === 'IMPORT' ? 'var(--color-success)' : 'var(--color-warning)', fontWeight: 700 }}>
                       {data._liveIntelligence.metrics.arbitrage.squid.signal === 'IMPORT' ? '수입 매입 우위' : '국내 매입 우위'}
                     </span>
                   </div>
@@ -351,7 +351,7 @@ export default function KoreaConsignmentDashboard() {
                   </div>
                 </div>
                 
-                <div style={{ background: 'rgba(239, 68, 68, 0.08)', border: '1px solid rgba(239, 68, 68, 0.2)', padding: '16px', borderRadius: '8px', marginTop: 'auto' }}>
+                <div style={{ background: 'rgba(var(--w-red-500-rgb), 0.08)', border: '1px solid rgba(var(--w-red-500-rgb), 0.2)', padding: '16px', borderRadius: '8px', marginTop: 'auto' }}>
                   <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '10px' }}>
                     <span style={{ fontSize: '0.85rem', color: '#fca5a5', fontWeight: 600 }}>단기 출어 포기 리스크 (공급 부족)</span>
                     <span style={{ fontSize: '0.9rem', color: 'var(--color-danger)', fontWeight: 800 }}>{data._liveIntelligence.metrics.fishingRiskScore} / 100</span>
@@ -391,7 +391,7 @@ export default function KoreaConsignmentDashboard() {
                   </div>
                 </div>
 
-                <div style={{ background: 'rgba(16, 185, 129, 0.08)', border: '1px solid rgba(16, 185, 129, 0.2)', padding: '16px', borderRadius: '8px', textAlign: 'center', marginTop: 'auto' }}>
+                <div style={{ background: 'rgba(var(--w-emerald-500-rgb), 0.08)', border: '1px solid rgba(var(--w-emerald-500-rgb), 0.2)', padding: '16px', borderRadius: '8px', textAlign: 'center', marginTop: 'auto' }}>
                   <div style={{ fontSize: '0.85rem', color: '#6ee7b7', fontWeight: 600 }}>유통 마진 스프레드 (추정)</div>
                   <div style={{ fontSize: '1.8rem', color: 'var(--color-success)', fontWeight: 800, margin: '8px 0' }}>
                     ₩{data._liveIntelligence.metrics.retailMarginTracker.marginSpread.toLocaleString()}
@@ -477,7 +477,7 @@ export default function KoreaConsignmentDashboard() {
                 <CartesianGrid strokeDasharray="3 3" stroke="rgba(140,170,255,0.12)" vertical={false} />
                 <XAxis dataKey="month" stroke="var(--w-slate-500)" tick={{ fontSize: 10 }} />
                 <YAxis stroke="var(--w-slate-500)" tick={{ fontSize: 10 }} tickFormatter={(val) => `${Math.round(Number(val) / 1000)}천`} />
-                <RechartsTooltip content={<UnitPriceTooltip />} cursor={{ stroke: 'rgba(148, 163, 184, 0.35)', strokeWidth: 1 }} />
+                <RechartsTooltip content={<UnitPriceTooltip />} cursor={{ stroke: 'rgba(var(--w-slate-400-rgb), 0.35)', strokeWidth: 1 }} />
                 <Legend wrapperStyle={{ fontSize: '11px', paddingTop: '8px' }} />
                 {unitPriceTrend.species.map((name, index) => (
                   <Line
@@ -549,7 +549,7 @@ export default function KoreaConsignmentDashboard() {
                         const totalAmt = monthlyDetail[monthStr].reduce((sum: number, item: any) => sum + item.saleAmount, 0);
                         const avgPrice = totalQty > 0 ? Math.round(totalAmt / totalQty) : 0;
                         return (
-                          <tr style={{ background: 'rgba(56, 189, 248, 0.08)', borderTop: '2px solid rgba(56, 189, 248, 0.3)' }}>
+                          <tr style={{ background: 'rgba(var(--w-sky-400-rgb), 0.08)', borderTop: '2px solid rgba(var(--w-sky-400-rgb), 0.3)' }}>
                             <td colSpan={2} style={{ padding: '12px 14px', color: 'var(--w-sky-400)', textAlign: 'center', fontWeight: 700, letterSpacing: '0.5px' }}>{monthStr} 집계 총괄</td>
                             <td style={{ padding: '12px 14px', color: 'var(--text-primary)', textAlign: 'right', fontWeight: 700 }}>{totalQty.toLocaleString()}</td>
                             <td style={{ padding: '12px 14px', color: 'var(--text-primary)', textAlign: 'right', fontWeight: 700 }}>{totalAmt.toLocaleString()}</td>

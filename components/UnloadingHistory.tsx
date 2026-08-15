@@ -434,12 +434,12 @@ export function UnloadingHistoryView({
         </div>
         <SafeResponsiveContainer height={300} className={styles.chart}>
           <ComposedChart data={chartData} margin={{ top: 16, right: 14, left: 4, bottom: 4 }}>
-            <CartesianGrid stroke="rgba(148,163,184,.14)" strokeDasharray="3 3" />
+            <CartesianGrid stroke="rgba(var(--w-slate-400-rgb), .14)" strokeDasharray="3 3" />
             <XAxis dataKey="year" tick={{ fill: 'var(--w-slate-300)', fontSize: 12 }} />
             <YAxis yAxisId="mt" tick={{ fill: 'var(--w-slate-400)', fontSize: 11 }} tickFormatter={(value) => `${Math.round(Number(value) / 1000)}천`} />
             <YAxis yAxisId="count" orientation="right" tick={{ fill: 'var(--w-slate-400)', fontSize: 11 }} allowDecimals={false} />
             <Tooltip
-              contentStyle={{ background: '#0f172a', border: '1px solid rgba(148,163,184,.28)', borderRadius: 10 }}
+              contentStyle={{ background: '#0f172a', border: '1px solid rgba(var(--w-slate-400-rgb), .28)', borderRadius: 10 }}
               formatter={(value, name) => name === '검증 하역량' ? [`${formatMt(Number(value))} MT`, name] : [`${value}척`, name]}
               labelFormatter={(label) => `${label}년`}
             />

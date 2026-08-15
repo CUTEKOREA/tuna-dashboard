@@ -52,7 +52,7 @@ export default function SasKrSuperTuna() {
           </div>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '8px' }}>
             {TECH.map((t) => (
-              <div key={t.label} style={{ background: 'rgba(56,189,248,0.08)', border: '1px solid rgba(56,189,248,0.2)', borderRadius: '8px', padding: '8px 9px', display: 'flex', flexDirection: 'column', gap: '2px' }}>
+              <div key={t.label} style={{ background: 'rgba(var(--w-sky-400-rgb), 0.08)', border: '1px solid rgba(var(--w-sky-400-rgb), 0.2)', borderRadius: '8px', padding: '8px 9px', display: 'flex', flexDirection: 'column', gap: '2px' }}>
                 <span style={{ fontSize: '0.56rem', color: 'var(--w-slate-400)' }}>{t.label}</span>
                 <span style={{ fontSize: '0.95rem', fontWeight: 800, color: 'var(--w-sky-400)' }}>{t.value}</span>
                 <span style={{ fontSize: '0.52rem', color: 'var(--w-slate-500)' }}>{t.sub}</span>

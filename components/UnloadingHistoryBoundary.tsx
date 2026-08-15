@@ -62,7 +62,7 @@ export class UnloadingHistoryBoundary extends Component<
           style={{
             marginTop: '20px',
             padding: '20px',
-            border: '1px solid rgba(245, 158, 11, 0.32)',
+            border: '1px solid rgba(var(--w-amber-500-rgb), 0.32)',
             borderRadius: '14px',
             background: 'rgba(15, 23, 42, 0.72)',
             color: 'var(--text-main)',
@@ -80,7 +80,7 @@ export class UnloadingHistoryBoundary extends Component<
             style={{
               minHeight: '44px',
               padding: '10px 16px',
-              border: '1px solid rgba(56, 189, 248, 0.45)',
+              border: '1px solid rgba(var(--w-sky-400-rgb), 0.45)',
               borderRadius: '9px',
               background: 'rgba(14, 165, 233, 0.16)',
               color: 'var(--w-slate-200)',

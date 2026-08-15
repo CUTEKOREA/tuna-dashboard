@@ -38,7 +38,7 @@ export default function SasKoreaProductionStructure() {
           {/* ── Total Banner ── */}
           <div style={{
             display: 'flex', justifyContent: 'center', gap: '24px', padding: '10px 16px',
-            background: 'linear-gradient(90deg, rgba(56,189,248,0.08), rgba(245,158,11,0.08))',
+            background: 'linear-gradient(90deg, rgba(var(--w-sky-400-rgb), 0.08), rgba(var(--w-amber-500-rgb), 0.08))',
             borderRadius: '8px', marginBottom: '16px',
           }}>
             <div style={{ textAlign: 'center' }}>

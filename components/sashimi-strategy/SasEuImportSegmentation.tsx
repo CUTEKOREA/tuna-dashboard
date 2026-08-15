@@ -27,7 +27,7 @@ const segData = [
 ];
 
 const tooltipStyle = {
-  backgroundColor: 'rgba(20, 28, 52, 0.95)', border: '1px solid rgba(148,163,184,0.15)',
+  backgroundColor: 'rgba(20, 28, 52, 0.95)', border: '1px solid rgba(var(--w-slate-400-rgb), 0.15)',
   borderRadius: 8, color: 'var(--w-slate-200)', fontSize: '0.78rem', padding: '8px 12px',
 };
 
@@ -72,10 +72,10 @@ export default function SasEuImportSegmentation() {
           <div style={{ height: '236px', width: '100%' }}>
             <SafeResponsiveContainer width="100%" height="100%">
               <BarChart data={segData} layout="vertical" margin={{ top: 4, right: 52, left: 8, bottom: 4 }}>
-                <CartesianGrid strokeDasharray="3 3" stroke="rgba(148,163,184,0.08)" horizontal={false} />
+                <CartesianGrid strokeDasharray="3 3" stroke="rgba(var(--w-slate-400-rgb), 0.08)" horizontal={false} />
                 <XAxis type="number" domain={[0, 14]} tick={{ fill: 'var(--w-slate-400)', fontSize: 11 }} axisLine={false} tickLine={false} tickFormatter={(v: unknown) => `${v}€`} />
                 <YAxis type="category" dataKey="name" width={86} tick={{ fill: 'var(--w-slate-300)', fontSize: 10.5 }} axisLine={false} tickLine={false} />
-                <Tooltip content={<SegTooltip />} cursor={{ fill: 'rgba(148,163,184,0.06)' }} />
+                <Tooltip content={<SegTooltip />} cursor={{ fill: 'rgba(var(--w-slate-400-rgb), 0.06)' }} />
                 <Bar dataKey="price" radius={[0, 4, 4, 0]} isAnimationActive={false} barSize={17}>
                   {segData.map((d, i) => <Cell key={i} fill={(CAT as any)[d.cat].color} fillOpacity={0.85} />)}
                   <LabelList dataKey="price" position="right" formatter={(v: unknown) => `${v}€/kg`} style={{ fill: 'var(--w-slate-400)', fontSize: 10, fontWeight: 600 }} />

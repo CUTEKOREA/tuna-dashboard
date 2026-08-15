@@ -59,7 +59,7 @@ const StateBox = ({ children, color = '#94a3b8' }: { children: React.ReactNode; 
   <div style={{
     height: 300, display: 'flex', alignItems: 'center', justifyContent: 'center',
     background: 'rgba(0,0,0,0.2)', borderRadius: '0.75rem',
-    border: '1px dashed rgba(148,163,184,0.15)', color, fontSize: '0.9rem',
+    border: '1px dashed rgba(var(--w-slate-400-rgb), 0.15)', color, fontSize: '0.9rem',
   }}>
     {children}
   </div>

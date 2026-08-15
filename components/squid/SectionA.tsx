@@ -149,7 +149,7 @@ const QuotaGauge: React.FC<{ data: Record<string, any> }> = ({ data }) => {
           <SafeResponsiveContainer width="100%" height={118}>
             <PieChart>
               <Pie data={[{ value: 1 }]} dataKey="value" cx="50%" cy="100%" startAngle={180} endAngle={0} innerRadius={56} outerRadius={78} stroke="none">
-                <Cell fill="rgba(100,116,139,0.2)" />
+                <Cell fill="rgba(var(--w-slate-500-rgb), 0.2)" />
               </Pie>
               <Pie data={[{ value: fill }, { value: 100 - fill }]} dataKey="value" cx="50%" cy="100%" startAngle={180} endAngle={0} innerRadius={56} outerRadius={78} stroke="none">
                 <Cell fill={color} />
@@ -162,7 +162,7 @@ const QuotaGauge: React.FC<{ data: Record<string, any> }> = ({ data }) => {
             <div style={{ fontSize: '0.62rem', color: AXIS, marginTop: 2 }}>쿼터 소진율</div>
           </div>
         </div>
-        <div style={{ flex: '1 1 160px', minWidth: 0, display: 'flex', flexDirection: 'column', justifyContent: 'center', gap: 6, padding: '6px 10px', borderRadius: 10, background: 'rgba(16,185,129,0.06)', border: '1px solid rgba(16,185,129,0.25)' }}>
+        <div style={{ flex: '1 1 160px', minWidth: 0, display: 'flex', flexDirection: 'column', justifyContent: 'center', gap: 6, padding: '6px 10px', borderRadius: 10, background: 'rgba(var(--w-emerald-500-rgb), 0.06)', border: '1px solid rgba(var(--w-emerald-500-rgb), 0.25)' }}>
           <div style={{ fontSize: '0.66rem', color: 'var(--w-slate-400)' }}>잔여 쿼터 — 조달 가능량</div>
           <div style={{ fontSize: '1.7rem', fontWeight: 800, color: 'var(--w-emerald-500)', lineHeight: 1.1 }}>
             {fmtT(data.quota_minus_recorded_capture_tonnes)} <span style={{ fontSize: '0.8rem', fontWeight: 600 }}>톤</span>
@@ -178,12 +178,12 @@ const QuotaGauge: React.FC<{ data: Record<string, any> }> = ({ data }) => {
           <div style={{ minWidth: 0 }}>
             <SafeResponsiveContainer width="100%" height={130}>
               <BarChart data={segData} layout="vertical" margin={{ top: 4, right: 14, left: 0, bottom: 0 }}>
-                <CartesianGrid strokeDasharray="3 3" stroke="rgba(100,116,139,0.15)" horizontal={false} />
+                <CartesianGrid strokeDasharray="3 3" stroke="rgba(var(--w-slate-500-rgb), 0.15)" horizontal={false} />
                 <XAxis type="number" tick={{ fill: AXIS, fontSize: 10 }} tickFormatter={fmtMan} axisLine={{ stroke: AXIS }} tickLine={false} />
                 <YAxis type="category" dataKey="name" width={96} tick={{ fill: BODY, fontSize: 10 }} axisLine={false} tickLine={false} />
                 <Tooltip content={<SegTooltip />} cursor={{ fill: 'rgba(255,255,255,0.04)' }} />
                 <Bar dataKey="capture" stackId="a" fill={SQUID} name="포획" />
-                <Bar dataKey="balance" stackId="a" fill="rgba(148,163,184,0.18)" name="잔여" radius={[0, 3, 3, 0]} />
+                <Bar dataKey="balance" stackId="a" fill="rgba(var(--w-slate-400-rgb), 0.18)" name="잔여" radius={[0, 3, 3, 0]} />
               </BarChart>
             </SafeResponsiveContainer>
           </div>
@@ -253,7 +253,7 @@ const ProductionSplitChart: React.FC<{ data: any[]; unit?: string }> = ({ data, 
     <div style={{ minWidth: 0 }}>
       <SafeResponsiveContainer width="100%" height={280}>
         <LineChart data={wide} margin={{ top: 8, right: 8, left: 0, bottom: 4 }}>
-          <CartesianGrid strokeDasharray="3 3" stroke="rgba(100,116,139,0.15)" />
+          <CartesianGrid strokeDasharray="3 3" stroke="rgba(var(--w-slate-500-rgb), 0.15)" />
           <XAxis
             dataKey="year"
             type="number"
@@ -316,7 +316,7 @@ const EffortLimitChart: React.FC<{ data: any[] }> = ({ data }) => {
     <div style={{ minWidth: 0 }}>
       <SafeResponsiveContainer width="100%" height={190}>
         <BarChart data={members} margin={{ top: 20, right: 8, left: 0, bottom: 4 }}>
-          <CartesianGrid strokeDasharray="3 3" stroke="rgba(100,116,139,0.15)" vertical={false} />
+          <CartesianGrid strokeDasharray="3 3" stroke="rgba(var(--w-slate-500-rgb), 0.15)" vertical={false} />
           <XAxis dataKey="ko" tick={{ fill: BODY, fontSize: 11 }} axisLine={{ stroke: AXIS }} tickLine={false} />
           <YAxis tick={{ fill: AXIS, fontSize: 10 }} axisLine={false} tickLine={false} width={36} />
           <Tooltip content={<EffortTooltip />} cursor={{ fill: 'rgba(255,255,255,0.04)' }} />
@@ -333,7 +333,7 @@ const EffortLimitChart: React.FC<{ data: any[] }> = ({ data }) => {
           </div>
         ))}
         {total && (
-          <div style={{ marginTop: 2, padding: '7px 10px', borderRadius: 8, background: 'rgba(56,189,248,0.07)', border: '1px solid rgba(56,189,248,0.25)', fontSize: '0.72rem', color: 'var(--w-slate-200)', fontWeight: 700 }}>
+          <div style={{ marginTop: 2, padding: '7px 10px', borderRadius: 8, background: 'rgba(var(--w-sky-400-rgb), 0.07)', border: '1px solid rgba(var(--w-sky-400-rgb), 0.25)', fontSize: '0.72rem', color: 'var(--w-slate-200)', fontWeight: 700 }}>
             전체 합계 {total.vessel_limit.toLocaleString('ko-KR')}척 · {total.gross_tonnage_gt.toLocaleString('ko-KR')} 총톤
           </div>
         )}
@@ -359,7 +359,7 @@ const PeruTimeline: React.FC<{ data: any[] }> = ({ data }) => {
 
   return (
     <div style={{ position: 'relative', paddingLeft: 22, minWidth: 0 }}>
-      <div style={{ position: 'absolute', left: 5, top: 6, bottom: 6, width: 2, background: 'rgba(100,116,139,0.3)' }} />
+      <div style={{ position: 'absolute', left: 5, top: 6, bottom: 6, width: 2, background: 'rgba(var(--w-slate-500-rgb), 0.3)' }} />
       {events.map((e) => {
         const sem = SEM_META[e.quota_semantics] ?? { label: e.quota_semantics, color: AXIS };
         return (
@@ -391,7 +391,7 @@ const PeruTimeline: React.FC<{ data: any[] }> = ({ data }) => {
             )}
 
             {typeof e.progress_pct === 'number' && (
-              <div style={{ marginTop: 6, height: 6, borderRadius: 3, background: 'rgba(100,116,139,0.2)', overflow: 'hidden' }}>
+              <div style={{ marginTop: 6, height: 6, borderRadius: 3, background: 'rgba(var(--w-slate-500-rgb), 0.2)', overflow: 'hidden' }}>
                 <div style={{ width: `${Math.min(e.progress_pct, 100)}%`, height: '100%', borderRadius: 3, background: sem.color }} />
               </div>
             )}
@@ -433,7 +433,7 @@ const KoreaTacTable: React.FC<{ data: any[] }> = ({ data }) => {
           {data.map((r, i) => {
             const hl = r.species === '살오징어';
             return (
-              <tr key={i} style={hl ? { background: 'rgba(139,92,246,0.08)' } : undefined}>
+              <tr key={i} style={hl ? { background: 'rgba(var(--w-violet-500-rgb), 0.08)' } : undefined}>
                 <td style={{ padding: '6px 8px', borderBottom: '1px solid rgba(255,255,255,0.04)', color: hl ? '#a78bfa' : BODY, fontWeight: hl ? 700 : 400, whiteSpace: 'nowrap' }}>
                   {r.species}
                 </td>

@@ -119,7 +119,7 @@ export function FrimeAcquisitionWidget() {
         <div data-mobile-stack style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16, padding: '0 16px' }}>
           <div>
             <div style={{ fontSize: '0.7rem', color: 'var(--w-slate-400)', marginBottom: 8 }}>EU pre-cooked loin 시장 점유율</div>
-            <div style={{ background: 'rgba(245,158,11,0.08)', border: '1px solid rgba(245,158,11,0.3)', borderRadius: 12, padding: '24px 16px', textAlign: 'center' }}>
+            <div style={{ background: 'rgba(var(--w-amber-500-rgb), 0.08)', border: '1px solid rgba(var(--w-amber-500-rgb), 0.3)', borderRadius: 12, padding: '24px 16px', textAlign: 'center' }}>
               <div style={{ fontSize: '2.5rem', fontWeight: 800, color: 'var(--w-amber-400)', lineHeight: 1 }}>21%</div>
               <div style={{ fontSize: '0.75rem', color: '#fcd34d', marginTop: 6 }}>스페인 최대 단일 사업자</div>
               <div style={{ fontSize: '0.65rem', color: 'var(--w-slate-400)', marginTop: 4 }}>(MSC 인증 어장 100%)</div>

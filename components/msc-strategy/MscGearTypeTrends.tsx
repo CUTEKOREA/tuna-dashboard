@@ -28,7 +28,7 @@ const gearData = [
 
 const tooltipStyle = {
   backgroundColor: 'rgba(20, 28, 52, 0.95)',
-  border: '1px solid rgba(148,163,184,0.15)',
+  border: '1px solid rgba(var(--w-slate-400-rgb), 0.15)',
   borderRadius: 8,
   color: 'var(--w-slate-200)',
   fontSize: '0.78rem',
@@ -54,7 +54,7 @@ const CustomTooltip = ({ active, payload, label }: any) => {
           <span style={{ fontWeight: 600 }}>{p.value.toLocaleString()} 천MT</span>
         </div>
       ))}
-      <div style={{ borderTop: '1px solid rgba(148,163,184,0.2)', marginTop: 4, paddingTop: 4, fontWeight: 700, display: 'flex', justifyContent: 'space-between' }}>
+      <div style={{ borderTop: '1px solid rgba(var(--w-slate-400-rgb), 0.2)', marginTop: 4, paddingTop: 4, fontWeight: 700, display: 'flex', justifyContent: 'space-between' }}>
         <span style={{ color: 'var(--w-slate-400)' }}>합계</span>
         <span>{total.toLocaleString()} 천MT</span>
       </div>
@@ -101,7 +101,7 @@ export default function MscGearTypeTrends() {
               <stop offset="95%" stopColor="var(--w-slate-500)" stopOpacity={0.05} />
             </linearGradient>
           </defs>
-          <CartesianGrid strokeDasharray="3 3" stroke="rgba(148,163,184,0.08)" />
+          <CartesianGrid strokeDasharray="3 3" stroke="rgba(var(--w-slate-400-rgb), 0.08)" />
           <XAxis
             dataKey="year"
             tick={{ fill: 'var(--w-slate-400)', fontSize: 12 }}

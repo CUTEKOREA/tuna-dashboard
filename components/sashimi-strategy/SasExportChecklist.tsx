@@ -89,7 +89,7 @@ export default function SasExportChecklist() {
           {/* FTA Highlight */}
           <div style={{
             padding: '10px 14px', borderRadius: '8px',
-            background: 'rgba(56,189,248,0.08)', border: '1px solid rgba(56,189,248,0.2)',
+            background: 'rgba(var(--w-sky-400-rgb), 0.08)', border: '1px solid rgba(var(--w-sky-400-rgb), 0.2)',
             fontSize: '0.7rem', color: 'var(--w-slate-400)', textAlign: 'center',
           }}>
             💡 <strong style={{ color: 'var(--w-sky-400)' }}>Korea-UK FTA</strong>: 냉동참치필렛(HS 0304.87) MFN 18% → <strong style={{ color: 'var(--w-emerald-500)' }}>0%</strong> = 동남아 대비 결정적 가격 우위

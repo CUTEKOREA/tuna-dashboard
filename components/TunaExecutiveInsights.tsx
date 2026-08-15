@@ -81,7 +81,7 @@ export default function TunaExecutiveInsights() {
   return (
     <div className={styles.container}>
       <header className={styles.header}>
-        <div style={{ backgroundColor: 'rgba(56, 189, 248, 0.1)', padding: '0.75rem', borderRadius: '50%' }}>
+        <div style={{ backgroundColor: 'rgba(var(--w-sky-400-rgb), 0.1)', padding: '0.75rem', borderRadius: '50%' }}>
           <Lightbulb size={24} color="#38bdf8" />
         </div>
         <div>

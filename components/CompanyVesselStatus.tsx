@@ -63,7 +63,7 @@ export default function CompanyVesselStatus() {
                   key={row.id} 
                   style={{ 
                     borderBottom: idx !== data.length - 1 ? '1px solid rgba(140,170,255,0.10)' : 'none',
-                    background: isMajor ? 'rgba(56, 189, 248, 0.05)' : 'transparent',
+                    background: isMajor ? 'rgba(var(--w-sky-400-rgb), 0.05)' : 'transparent',
                     transition: 'background 0.2s'
                   }}
                   onMouseOver={(e) => e.currentTarget.style.background = 'rgba(255,255,255,0.08)'}

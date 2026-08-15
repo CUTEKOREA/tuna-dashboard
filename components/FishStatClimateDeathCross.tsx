@@ -21,7 +21,7 @@ export default function FishStatClimateDeathCross() {
         <TermTooltip term="Death Cross" description="국내 및 일본 수역 생산량이 하락하고 러시아 해역 어획량이 상승하여 서로 교차하는 변곡점 현상" />
       </div>
       
-      <div style={{ padding: '16px', background: 'rgba(16, 185, 129, 0.1)', borderLeft: '4px solid var(--w-emerald-500)', borderRadius: '4px', marginBottom: '24px', display: 'flex', gap: '12px' }}>
+      <div style={{ padding: '16px', background: 'rgba(var(--w-emerald-500-rgb), 0.1)', borderLeft: '4px solid var(--w-emerald-500)', borderRadius: '4px', marginBottom: '24px', display: 'flex', gap: '12px' }}>
         <Target size={20} color="var(--color-success)" style={{ flexShrink: 0 }} />
         <div style={{ fontSize: '13px', lineHeight: '1.6' }}>
           <strong style={{ color: 'var(--color-success)' }}>Situation:</strong> 10년간 한국/일본 연안 수온 급등으로 고등어가 러시아 수역으로 피난.<br/>

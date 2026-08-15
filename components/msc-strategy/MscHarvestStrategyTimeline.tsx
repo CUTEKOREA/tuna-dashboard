@@ -91,7 +91,7 @@ export default function MscHarvestStrategyTimeline() {
           {/* Summary bar */}
           <div style={{
             marginTop: '16px', marginLeft: '-24px', padding: '10px 14px', borderRadius: '8px',
-            background: 'rgba(239,68,68,0.08)', border: '1px solid rgba(239,68,68,0.15)',
+            background: 'rgba(var(--w-red-500-rgb), 0.08)', border: '1px solid rgba(var(--w-red-500-rgb), 0.15)',
             display: 'flex', justifyContent: 'space-between', alignItems: 'center',
             fontSize: '0.72rem', color: 'var(--w-slate-400)',
           }}>

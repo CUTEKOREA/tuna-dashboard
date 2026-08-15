@@ -40,20 +40,20 @@ export function PollockConcentrationIndex() {
         loading ? <div style={{ textAlign: 'center', padding: '2rem', color: 'var(--text-secondary)' }}>불러오는 중...</div> : (
           <>
             <div style={{ display: 'flex', gap: '8px', marginBottom: '12px' }}>
-              <div style={{ flex: 1, background: 'rgba(239,68,68,0.12)', borderRadius: '10px', padding: '12px', textAlign: 'center' }}>
+              <div style={{ flex: 1, background: 'rgba(var(--w-red-500-rgb), 0.12)', borderRadius: '10px', padding: '12px', textAlign: 'center' }}>
                 <div style={{ fontSize: '2rem', fontWeight: 800, color: 'var(--w-red-500)' }}>{trend.at(-1)?.hhi?.toLocaleString()}</div>
                 <div style={{ fontSize: '0.65rem', color: '#fca5a5' }}>현재 HHI (극단적 집중)</div>
               </div>
               <div style={{ display: 'grid', gap: '4px', flex: 1 }}>
-                <div style={{ display: 'flex', justifyContent: 'space-between', padding: '4px 8px', background: 'rgba(239,68,68,0.06)', borderRadius: '6px', fontSize: '0.68rem' }}>
+                <div style={{ display: 'flex', justifyContent: 'space-between', padding: '4px 8px', background: 'rgba(var(--w-red-500-rgb), 0.06)', borderRadius: '6px', fontSize: '0.68rem' }}>
                   <span style={{ color: 'var(--text-secondary)' }}>🇷🇺 러시아</span>
                   <span style={{ fontWeight: 700, color: 'var(--w-red-500)' }}>{trend.at(-1)?.russia_pct}%</span>
                 </div>
-                <div style={{ display: 'flex', justifyContent: 'space-between', padding: '4px 8px', background: 'rgba(245,158,11,0.06)', borderRadius: '6px', fontSize: '0.68rem' }}>
+                <div style={{ display: 'flex', justifyContent: 'space-between', padding: '4px 8px', background: 'rgba(var(--w-amber-500-rgb), 0.06)', borderRadius: '6px', fontSize: '0.68rem' }}>
                   <span style={{ color: 'var(--text-secondary)' }}>🇨🇳 중국</span>
                   <span style={{ fontWeight: 700, color: 'var(--w-amber-500)' }}>{trend.at(-1)?.china_pct}%</span>
                 </div>
-                <div style={{ display: 'flex', justifyContent: 'space-between', padding: '4px 8px', background: 'rgba(59,130,246,0.06)', borderRadius: '6px', fontSize: '0.68rem' }}>
+                <div style={{ display: 'flex', justifyContent: 'space-between', padding: '4px 8px', background: 'rgba(var(--w-blue-500-rgb), 0.06)', borderRadius: '6px', fontSize: '0.68rem' }}>
                   <span style={{ color: 'var(--text-secondary)' }}>🇺🇸 미국</span>
                   <span style={{ fontWeight: 700, color: 'var(--w-blue-500)' }}>{trend.at(-1)?.us_pct}%</span>
                 </div>

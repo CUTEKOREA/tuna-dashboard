@@ -342,8 +342,8 @@ function SectionHeader({ icon: Icon, color, title, count, countLabel, summary }:
       <div style={{
         fontSize: '0.72rem', color: 'var(--w-emerald-400)', fontWeight: 600,
         padding: '4px 12px', borderRadius: 20,
-        background: 'rgba(52,211,153,0.08)',
-        border: '1px solid rgba(52,211,153,0.15)',
+        background: 'rgba(var(--w-emerald-400-rgb), 0.08)',
+        border: '1px solid rgba(var(--w-emerald-400-rgb), 0.15)',
       }}>
         {summary}
       </div>

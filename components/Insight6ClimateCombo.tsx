@@ -107,7 +107,7 @@ const Insight6ClimateCombo = () => {
               maxBarSize={30}
             >
               {data.map((entry: any, index: number) => (
-                 <Cell key={`cell-${index}`} fill={entry.enso_index > 0 ? 'rgba(239, 68, 68, 0.4)' : 'rgba(59, 130, 246, 0.4)'} />
+                 <Cell key={`cell-${index}`} fill={entry.enso_index > 0 ? 'rgba(var(--w-red-500-rgb), 0.4)' : 'rgba(var(--w-blue-500-rgb), 0.4)'} />
               ))}
             </Bar>
             

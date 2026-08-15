@@ -87,7 +87,7 @@ const TunaLiveTicker = React.memo(function TunaLiveTicker() {
           </span>
           <span style={{
             fontSize: '0.65rem', fontWeight: 600,
-            background: isFullyLive ? 'rgba(14,203,129,0.15)' : ticker.length > 0 ? 'rgba(240,185,11,0.15)' : 'rgba(100,116,139,0.15)',
+            background: isFullyLive ? 'rgba(14,203,129,0.15)' : ticker.length > 0 ? 'rgba(240,185,11,0.15)' : 'rgba(var(--w-slate-500-rgb), 0.15)',
             color: isFullyLive ? '#0ECB81' : ticker.length > 0 ? '#F0B90B' : 'var(--w-slate-500)',
             padding: '2px 8px', borderRadius: '500px',
             border: `1px solid ${isFullyLive ? '#0ECB81' : ticker.length > 0 ? '#F0B90B' : 'var(--w-slate-500)'}`,

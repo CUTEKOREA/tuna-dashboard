@@ -96,7 +96,7 @@ export default function FleetProduction2025() {
                       <span>{fisheryLabels[key]}</span>
                       <span>{value.toLocaleString('ko-KR')} M/T · {formatPercent(share)}</span>
                     </div>
-                    <div style={{ height: '6px', background: 'rgba(148,163,184,0.12)', borderRadius: '999px', overflow: 'hidden' }}>
+                    <div style={{ height: '6px', background: 'rgba(var(--w-slate-400-rgb), 0.12)', borderRadius: '999px', overflow: 'hidden' }}>
                       <div style={{ height: '100%', width: `${share}%`, minWidth: '3px', borderRadius: '999px', background: key === 'tunaPurseSeine' ? '#22d3ee' : 'var(--w-slate-500)' }} />
                     </div>
                   </div>
@@ -105,7 +105,7 @@ export default function FleetProduction2025() {
           </div>
         </div>
 
-        <div style={{ background: 'rgba(15, 23, 42, 0.48)', border: '1px solid rgba(52, 211, 153, 0.18)', borderRadius: '12px', padding: '18px' }}>
+        <div style={{ background: 'rgba(15, 23, 42, 0.48)', border: '1px solid rgba(var(--w-emerald-400-rgb), 0.18)', borderRadius: '12px', padding: '18px' }}>
           <h4 style={{ margin: '0 0 14px', color: '#6ee7b7', fontSize: '0.95rem' }}>생산량 상위 5개사</h4>
           <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
             {rankedCompanies.slice(0, 5).map((company, index) => {
@@ -115,7 +115,7 @@ export default function FleetProduction2025() {
                 <div key={company.companyKo} style={{ display: 'grid', gridTemplateColumns: '22px minmax(82px, 0.8fr) 2fr auto', gap: '8px', alignItems: 'center', fontSize: '0.76rem' }}>
                   <span style={{ color: isSilla ? 'var(--w-emerald-400)' : 'rgba(255,255,255,0.42)', fontWeight: 700 }}>{index + 1}</span>
                   <span style={{ color: isSilla ? '#6ee7b7' : 'rgba(255,255,255,0.78)', fontWeight: isSilla ? 700 : 500 }}>{company.companyKo}</span>
-                  <div style={{ height: '8px', background: 'rgba(148,163,184,0.12)', borderRadius: '999px', overflow: 'hidden' }}>
+                  <div style={{ height: '8px', background: 'rgba(var(--w-slate-400-rgb), 0.12)', borderRadius: '999px', overflow: 'hidden' }}>
                     <div style={{ height: '100%', width: `${company.reportedTotalMt / rankedCompanies[0].reportedTotalMt * 100}%`, borderRadius: '999px', background: isSilla ? 'var(--w-emerald-400)' : '#475569' }} />
                   </div>
                   <span style={{ color: 'rgba(255,255,255,0.68)', textAlign: 'right' }}>{company.reportedTotalMt.toLocaleString('ko-KR')} · {formatPercent(share)}</span>
@@ -123,16 +123,16 @@ export default function FleetProduction2025() {
               );
             })}
           </div>
-          <div style={{ marginTop: '16px', padding: '11px 12px', borderRadius: '8px', background: 'rgba(52, 211, 153, 0.07)', color: '#a7f3d0', fontSize: '0.76rem', lineHeight: 1.55 }}>
+          <div style={{ marginTop: '16px', padding: '11px 12px', borderRadius: '8px', background: 'rgba(var(--w-emerald-400-rgb), 0.07)', color: '#a7f3d0', fontSize: '0.76rem', lineHeight: 1.55 }}>
             신라교역은 전체 생산량 2위이며, 참치선망 생산량 54,803 M/T는 원문 업종 총계의 {formatPercent(purseSeineShare)}입니다.
           </div>
         </div>
       </div>
 
-      <div style={{ background: 'rgba(15, 23, 42, 0.48)', border: '1px solid rgba(148, 163, 184, 0.14)', borderRadius: '12px', padding: '16px', marginBottom: '16px' }}>
+      <div style={{ background: 'rgba(15, 23, 42, 0.48)', border: '1px solid rgba(var(--w-slate-400-rgb), 0.14)', borderRadius: '12px', padding: '16px', marginBottom: '16px' }}>
         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '12px', flexWrap: 'wrap', marginBottom: '12px' }}>
           <h4 style={{ margin: 0, color: 'var(--text-primary)', fontSize: '0.96rem' }}>회사별 생산실적 전수표</h4>
-          <label style={{ display: 'flex', alignItems: 'center', gap: '7px', padding: '7px 10px', borderRadius: '8px', border: '1px solid rgba(148,163,184,0.18)', background: 'rgba(2,6,23,0.36)' }}>
+          <label style={{ display: 'flex', alignItems: 'center', gap: '7px', padding: '7px 10px', borderRadius: '8px', border: '1px solid rgba(var(--w-slate-400-rgb), 0.18)', background: 'rgba(2,6,23,0.36)' }}>
             <Search size={14} style={{ color: 'var(--w-slate-400)' }} />
             <span className="sr-only">회사 검색</span>
             <input
@@ -146,7 +146,7 @@ export default function FleetProduction2025() {
         <div style={{ overflowX: 'auto', maxHeight: '520px' }}>
           <table style={{ width: '100%', minWidth: '700px', borderCollapse: 'collapse', fontSize: '0.74rem' }}>
             <thead style={{ position: 'sticky', top: 0, zIndex: 2, background: '#111827' }}>
-              <tr style={{ color: 'rgba(255,255,255,0.52)', borderBottom: '1px solid rgba(148,163,184,0.18)' }}>
+              <tr style={{ color: 'rgba(255,255,255,0.52)', borderBottom: '1px solid rgba(var(--w-slate-400-rgb), 0.18)' }}>
                 <th style={{ padding: '10px 8px', textAlign: 'right' }}>순위</th>
                 <th style={{ padding: '10px 8px', textAlign: 'left' }}>회사명</th>
                 <th style={{ padding: '10px 8px', textAlign: 'right' }}>원문 합계</th>
@@ -160,7 +160,7 @@ export default function FleetProduction2025() {
                 const isSilla = company.companyKo === '신라교역';
                 const hasDifference = calculatedTotal !== company.reportedTotalMt;
                 return (
-                  <tr key={company.no} style={{ borderBottom: '1px solid rgba(148,163,184,0.08)', background: isSilla ? 'rgba(52,211,153,0.07)' : 'transparent' }}>
+                  <tr key={company.no} style={{ borderBottom: '1px solid rgba(var(--w-slate-400-rgb), 0.08)', background: isSilla ? 'rgba(var(--w-emerald-400-rgb), 0.07)' : 'transparent' }}>
                     <td style={{ padding: '9px 8px', textAlign: 'right', color: 'rgba(255,255,255,0.42)' }}>{rankedCompanies.indexOf(company) + 1}</td>
                     <td style={{ padding: '9px 8px' }}>
                       <div style={{ color: isSilla ? '#6ee7b7' : 'rgba(255,255,255,0.82)', fontWeight: isSilla ? 700 : 500 }}>{company.companyKo}</div>
@@ -179,7 +179,7 @@ export default function FleetProduction2025() {
         </div>
       </div>
 
-      <div style={{ display: 'flex', alignItems: 'flex-start', gap: '9px', padding: '12px 14px', border: '1px solid rgba(245,158,11,0.22)', borderRadius: '10px', background: 'rgba(245,158,11,0.06)', color: '#fde68a', fontSize: '0.73rem', lineHeight: 1.55, marginBottom: '16px' }}>
+      <div style={{ display: 'flex', alignItems: 'flex-start', gap: '9px', padding: '12px 14px', border: '1px solid rgba(var(--w-amber-500-rgb), 0.22)', borderRadius: '10px', background: 'rgba(var(--w-amber-500-rgb), 0.06)', color: '#fde68a', fontSize: '0.73rem', lineHeight: 1.55, marginBottom: '16px' }}>
         <AlertTriangle size={16} style={{ flexShrink: 0, marginTop: '2px' }} />
         <span>
           원문 검산: 회사별 합계 {fleetProductionReconciliation.reportedCompanyTotalMt.toLocaleString('ko-KR')} M/T, 업종별 행 합산 {fleetProductionReconciliation.calculatedFisheryTotalMt.toLocaleString('ko-KR')} M/T, 표 하단 총계 {fleetProduction2025.reportedGrandTotalMt.toLocaleString('ko-KR')} M/T입니다. 씨맥스피셔리·정일산업·홍진실업은 원문 행 합계와 업종 합산이 각각 1 M/T 차이이며, 해외트롤 하단 합계는 원문에 미표기되어 행 합산값 62,675 M/T를 사용했습니다. 수치를 임의 보정하지 않았습니다.

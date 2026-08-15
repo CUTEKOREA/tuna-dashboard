@@ -20,7 +20,7 @@ export default function ChickenCorporateWidget() {
 
   const body = (
     <div data-mobile-stack style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '1.5rem' }}>
-      <div style={{ background: 'rgba(239, 68, 68, 0.03)', border: '1px solid rgba(239, 68, 68, 0.15)', borderRadius: '12px', padding: '1.5rem', position: 'relative', overflow: 'hidden' }}>
+      <div style={{ background: 'rgba(var(--w-red-500-rgb), 0.03)', border: '1px solid rgba(var(--w-red-500-rgb), 0.15)', borderRadius: '12px', padding: '1.5rem', position: 'relative', overflow: 'hidden' }}>
         <div style={{ position: 'absolute', top: 0, left: 0, width: '4px', height: '100%', background: 'var(--color-danger)' }} />
         <h4 style={{ margin: '0 0 1rem 0', color: 'var(--w-slate-50)', display: 'flex', alignItems: 'center', gap: '8px' }}>
           <Snowflake size={18} color="var(--color-danger)" />
@@ -42,7 +42,7 @@ export default function ChickenCorporateWidget() {
         </div>
       </div>
 
-      <div style={{ background: 'rgba(59, 130, 246, 0.03)', border: '1px solid rgba(59, 130, 246, 0.15)', borderRadius: '12px', padding: '1.5rem', position: 'relative', overflow: 'hidden' }}>
+      <div style={{ background: 'rgba(var(--w-blue-500-rgb), 0.03)', border: '1px solid rgba(var(--w-blue-500-rgb), 0.15)', borderRadius: '12px', padding: '1.5rem', position: 'relative', overflow: 'hidden' }}>
         <div style={{ position: 'absolute', top: 0, right: 0, width: '4px', height: '100%', background: 'var(--color-info)' }} />
         <h4 style={{ margin: '0 0 1rem 0', color: 'var(--w-slate-50)', display: 'flex', alignItems: 'center', gap: '8px', justifyContent: 'flex-end' }}>
           태국 (Thailand) 3대장: 프리미엄 가공 모델

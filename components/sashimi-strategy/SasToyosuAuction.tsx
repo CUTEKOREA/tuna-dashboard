@@ -111,7 +111,7 @@ export default function SasToyosuAuction() {
             </div>
             <div style={{
               padding: '10px', borderRadius: '8px',
-              background: 'rgba(56,189,248,0.05)', border: '1px solid rgba(56,189,248,0.15)',
+              background: 'rgba(var(--w-sky-400-rgb), 0.05)', border: '1px solid rgba(var(--w-sky-400-rgb), 0.15)',
               textAlign: 'center', display: 'flex', flexDirection: 'column', justifyContent: 'center',
             }}>
               <div style={{ fontSize: '0.62rem', color: 'var(--w-slate-500)' }}>일본 참치 시장 전망</div>

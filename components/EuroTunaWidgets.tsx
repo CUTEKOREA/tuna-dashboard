@@ -241,7 +241,7 @@ export function EuroESGTrackerWidget() {
           <ShieldCheck style={{ width: 22, height: 22, color: COLORS.accent.indigo }} />
         </div>
         <div style={{ fontSize: '0.75rem', color: 'var(--w-slate-300)', lineHeight: 1.7 }}>
-          상위 5대 브랜드 평균 MSC 소싱률 <strong style={{ color: COLORS.accent.emerald, padding: '1px 4px', background: 'rgba(16,185,129,0.1)', borderRadius: '4px' }}>97%+</strong>.
+          상위 5대 브랜드 평균 MSC 소싱률 <strong style={{ color: COLORS.accent.emerald, padding: '1px 4px', background: 'rgba(var(--w-emerald-500-rgb), 0.1)', borderRadius: '4px' }}>97%+</strong>.
           MSC 인증은 <strong style={{ color: COLORS.accent.cyan }}>+10% ~ +44.6%</strong> 프리미엄을 창출합니다. 비인증 원료의 유통 채널은 <strong style={{ color: COLORS.accent.amber }}>2027년 내 소멸</strong>될 전망입니다.
         </div>
       </div>
@@ -341,7 +341,7 @@ export function EuroPremiumWidget() {
         ))}
       </div>
 
-      <div style={{ background: 'rgba(245,158,11,0.08)', border: '1px solid rgba(245,158,11,0.18)', borderRadius: '12px', padding: '14px', position: 'relative', zIndex: 2 }}>
+      <div style={{ background: 'rgba(var(--w-amber-500-rgb), 0.08)', border: '1px solid rgba(var(--w-amber-500-rgb), 0.18)', borderRadius: '12px', padding: '14px', position: 'relative', zIndex: 2 }}>
         <div style={{ fontSize: '0.75rem', color: 'var(--w-slate-300)', lineHeight: 1.7 }}>
           <strong style={{ color: COLORS.accent.amber, display: 'flex', alignItems: 'center', gap: '4px', marginBottom: '4px' }}>
             <TrendingUp style={{ width: 14, height: 14 }} /> 실증 논문 결론 (2025):
@@ -389,12 +389,12 @@ export function EuroRetailMatrixWidget() {
                 <td style={{ ...tdStyle, fontSize: '0.75rem', color: COLORS.textMuted }}>{row.marketValue}</td>
                 <td style={{ ...tdStyle, fontSize: '0.75rem' }}>{row.solvent}</td>
                 <td style={{ ...tdStyle, textAlign: 'center' }}>
-                  <span style={{ padding: '3px 10px', borderRadius: '6px', fontSize: '0.72rem', fontWeight: 700, background: parseInt(row.plShare) > 50 ? 'rgba(245,158,11,0.1)' : 'rgba(59,130,246,0.1)', color: parseInt(row.plShare) > 50 ? COLORS.accent.amber : COLORS.accent.blue, border: `1px solid ${parseInt(row.plShare) > 50 ? 'rgba(245,158,11,0.2)' : 'rgba(59,130,246,0.2)'}` }}>
+                  <span style={{ padding: '3px 10px', borderRadius: '6px', fontSize: '0.72rem', fontWeight: 700, background: parseInt(row.plShare) > 50 ? 'rgba(var(--w-amber-500-rgb), 0.1)' : 'rgba(var(--w-blue-500-rgb), 0.1)', color: parseInt(row.plShare) > 50 ? COLORS.accent.amber : COLORS.accent.blue, border: `1px solid ${parseInt(row.plShare) > 50 ? 'rgba(var(--w-amber-500-rgb), 0.2)' : 'rgba(var(--w-blue-500-rgb), 0.2)'}` }}>
                     {row.plShare}
                   </span>
                 </td>
                 <td style={{ ...tdStyle, textAlign: 'center' }}>
-                  <span style={{ padding: '3px 10px', borderRadius: '6px', fontSize: '0.72rem', fontWeight: 700, background: 'rgba(16,185,129,0.1)', color: COLORS.accent.emerald, border: '1px solid rgba(16,185,129,0.2)', boxShadow: '0 0 8px rgba(16,185,129,0.1)' }}>
+                  <span style={{ padding: '3px 10px', borderRadius: '6px', fontSize: '0.72rem', fontWeight: 700, background: 'rgba(var(--w-emerald-500-rgb), 0.1)', color: COLORS.accent.emerald, border: '1px solid rgba(var(--w-emerald-500-rgb), 0.2)', boxShadow: '0 0 8px rgba(var(--w-emerald-500-rgb), 0.1)' }}>
                     {row.msc}
                   </span>
                 </td>
@@ -430,7 +430,7 @@ export default function EuropeanMarketDashboard() {
 
       <div style={{ display: 'flex', flexDirection: 'column', gap: '8px', marginBottom: '8px' }}>
         <h2 style={{ display: 'flex', alignItems: 'center', gap: '12px', margin: 0 }}>
-          <div style={{ padding: '10px', background: 'rgba(56,189,248,0.1)', borderRadius: '12px', border: '1px solid rgba(56,189,248,0.2)' }}>
+          <div style={{ padding: '10px', background: 'rgba(var(--w-sky-400-rgb), 0.1)', borderRadius: '12px', border: '1px solid rgba(var(--w-sky-400-rgb), 0.2)' }}>
             <Euro style={{ width: 24, height: 24, color: COLORS.accent.sky }} />
           </div>
           <span style={{ fontSize: '1.6rem', fontWeight: 800, color: '#fff', letterSpacing: '-0.02em' }}>

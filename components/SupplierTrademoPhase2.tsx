@@ -72,7 +72,7 @@ export default function SupplierTrademoPhase2({ isAnalyzing, results, targetKeyw
                           <EyeOff size={14} /> {item.blindedName}
                         </div>
                         <ArrowRight size={18} color="#10b981" />
-                        <div style={{ background: 'rgba(16, 185, 129, 0.1)', border: '1px solid var(--w-emerald-500)', padding: '0.5rem 1rem', borderRadius: '6px', color: 'var(--w-emerald-500)', fontSize: '1.05rem', fontWeight: 'bold', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                        <div style={{ background: 'rgba(var(--w-emerald-500-rgb), 0.1)', border: '1px solid var(--w-emerald-500)', padding: '0.5rem 1rem', borderRadius: '6px', color: 'var(--w-emerald-500)', fontSize: '1.05rem', fontWeight: 'bold', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
                           {item.unblindedName}
                         </div>
                       </div>

@@ -48,7 +48,7 @@ export default function TraderStatus() {
         </div>
       </div>
 
-      <p style={{ margin: '0 0 12px', padding: '10px 12px', borderRadius: '8px', background: 'rgba(245, 158, 11, 0.08)', border: '1px solid rgba(245, 158, 11, 0.2)', color: 'var(--text-muted)', fontSize: '12px', lineHeight: 1.5 }}>
+      <p style={{ margin: '0 0 12px', padding: '10px 12px', borderRadius: '8px', background: 'rgba(var(--w-amber-500-rgb), 0.08)', border: '1px solid rgba(var(--w-amber-500-rgb), 0.2)', color: 'var(--text-muted)', fontSize: '12px', lineHeight: 1.5 }}>
         합계 317,175MT는 월별 검산값입니다. 원문 TRI MARINE 누계 46,463MT는 월별 합산 56,463MT와 10,000MT 차이가 있어 월별 합산값을 적용했습니다.
       </p>
 
@@ -68,8 +68,8 @@ export default function TraderStatus() {
             <XAxis dataKey="month" stroke="var(--text-muted)" axisLine={false} tickLine={false} fontSize={12} />
             <YAxis stroke="var(--text-muted)" axisLine={false} tickLine={false} fontSize={11} tickFormatter={(val) => `${(val / 1000)}k`} />
             <Tooltip
-              cursor={{ fill: 'rgba(16,185,129,0.06)' }}
-              contentStyle={{ background: 'rgba(20, 28, 52, 0.88)', backdropFilter: 'blur(10px)', WebkitBackdropFilter: 'blur(10px)', border: '1px solid rgba(16,185,129,0.25)', borderRadius: '10px', color: 'var(--text-main)', boxShadow: '0 8px 30px rgba(0,0,0,0.45)' }}
+              cursor={{ fill: 'rgba(var(--w-emerald-500-rgb), 0.06)' }}
+              contentStyle={{ background: 'rgba(20, 28, 52, 0.88)', backdropFilter: 'blur(10px)', WebkitBackdropFilter: 'blur(10px)', border: '1px solid rgba(var(--w-emerald-500-rgb), 0.25)', borderRadius: '10px', color: 'var(--text-main)', boxShadow: '0 8px 30px rgba(0,0,0,0.45)' }}
               itemStyle={{ fontSize: '13px' }}
               labelStyle={{ fontWeight: 'bold', marginBottom: '8px', borderBottom: '1px solid rgba(255,255,255,0.1)', paddingBottom: '4px' }}
               formatter={(value: any, name: any) => [`${Number(value).toLocaleString()} MT`, name]}
@@ -90,8 +90,8 @@ export default function TraderStatus() {
             onMouseEnter={() => setHover(i)} onMouseLeave={() => setHover(null)}
             style={{
               padding: '11px 10px', borderRadius: '8px', textAlign: 'center',
-              background: c.key === 'TOTAL' ? 'rgba(16,185,129,0.08)' : 'rgba(255,255,255,0.03)',
-              border: `1px solid ${c.key === 'TOTAL' ? 'rgba(16,185,129,0.25)' : 'rgba(140,170,255,0.12)'}`,
+              background: c.key === 'TOTAL' ? 'rgba(var(--w-emerald-500-rgb), 0.08)' : 'rgba(255,255,255,0.03)',
+              border: `1px solid ${c.key === 'TOTAL' ? 'rgba(var(--w-emerald-500-rgb), 0.25)' : 'rgba(140,170,255,0.12)'}`,
               borderTop: `2px solid ${c.color}`,
               transform: hover === i ? 'translateY(-2px)' : 'none',
               boxShadow: hover === i ? `0 6px 18px rgba(0,0,0,0.35)` : 'none',

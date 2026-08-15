@@ -39,7 +39,7 @@ const volData = [
 
 const tooltipStyle = {
   backgroundColor: 'rgba(20, 28, 52, 0.95)',
-  border: '1px solid rgba(148,163,184,0.15)',
+  border: '1px solid rgba(var(--w-slate-400-rgb), 0.15)',
   borderRadius: 8,
   color: 'var(--w-slate-200)',
   fontSize: '0.78rem',
@@ -91,7 +91,7 @@ export default function MscProductVolumeGrowth() {
               <stop offset="95%" stopColor="var(--w-amber-500)" stopOpacity={0.02} />
             </linearGradient>
           </defs>
-          <CartesianGrid strokeDasharray="3 3" stroke="rgba(148,163,184,0.08)" />
+          <CartesianGrid strokeDasharray="3 3" stroke="rgba(var(--w-slate-400-rgb), 0.08)" />
           <XAxis
             dataKey="fy"
             tick={{ fill: 'var(--w-slate-400)', fontSize: 11 }}

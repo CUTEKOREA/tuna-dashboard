@@ -109,8 +109,8 @@ export default function FishingDaysStatus() {
             alignItems: 'center',
             gap: '8px',
             padding: '6px 12px',
-            backgroundColor: 'rgba(239, 68, 68, 0.1)',
-            border: '1px solid rgba(239, 68, 68, 0.2)',
+            backgroundColor: 'rgba(var(--w-red-500-rgb), 0.1)',
+            border: '1px solid rgba(var(--w-red-500-rgb), 0.2)',
             color: 'var(--accent-danger)',
             fontSize: '13px',
             borderRadius: '8px'

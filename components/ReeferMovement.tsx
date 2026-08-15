@@ -117,11 +117,11 @@ export default function ReeferMovement() {
           gap: '8px',
           fontSize: '11px',
           fontWeight: 600,
-          background: 'rgba(148, 163, 184, 0.1)',
+          background: 'rgba(var(--w-slate-400-rgb), 0.1)',
           color: 'var(--text-muted)',
           padding: '4px 12px',
           borderRadius: '12px',
-          border: '1px solid rgba(148, 163, 184, 0.2)'
+          border: '1px solid rgba(var(--w-slate-400-rgb), 0.2)'
         }}>
           <div style={{ width: 6, height: 6, borderRadius: '50%', background: 'var(--text-muted)' }}></div>
           32주차 주간 보고 (2026-08-07 ~ 08-13 기준)
@@ -190,8 +190,8 @@ export default function ReeferMovement() {
               background: 'var(--panel-bg)', border: '1px solid var(--panel-border)',
               borderRadius: 10, overflow: 'hidden',
               transition: 'border-color 0.2s, box-shadow 0.2s',
-              boxShadow: isExpanded ? '0 4px 20px rgba(16,185,129,0.1)' : 'none',
-              borderColor: isExpanded ? 'rgba(16,185,129,0.3)' : 'var(--panel-border)'
+              boxShadow: isExpanded ? '0 4px 20px rgba(var(--w-emerald-500-rgb), 0.1)' : 'none',
+              borderColor: isExpanded ? 'rgba(var(--w-emerald-500-rgb), 0.3)' : 'var(--panel-border)'
             }}>
               {/* Card Header */}
               <button

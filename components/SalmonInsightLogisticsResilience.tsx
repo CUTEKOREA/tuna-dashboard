@@ -55,7 +55,7 @@ export default function SalmonInsightLogisticsResilience() {
           padding: '0.35rem 0.75rem',
           borderRadius: '8px',
           border: activePanel === 'eu' ? '1px solid var(--w-cyan-500)' : '1px solid rgba(255,255,255,0.1)',
-          background: activePanel === 'eu' ? 'rgba(6, 182, 212, 0.15)' : 'rgba(255,255,255,0.03)',
+          background: activePanel === 'eu' ? 'rgba(var(--w-cyan-500-rgb), 0.15)' : 'rgba(255,255,255,0.03)',
           color: activePanel === 'eu' ? 'var(--w-cyan-500)' : 'var(--w-slate-400)',
           fontSize: '0.78rem', fontWeight: 600, cursor: 'pointer', transition: 'all 0.2s ease',
           display: 'flex', alignItems: 'center', gap: '0.3rem',

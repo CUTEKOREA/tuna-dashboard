@@ -25,9 +25,9 @@ export default function SasTriadDynamics() {
             {/* US */}
             <div style={{
               display: 'flex', flexDirection: 'column',
-              background: 'linear-gradient(to bottom right, rgba(16,185,129,0.12), rgba(16,185,129,0.05))',
+              background: 'linear-gradient(to bottom right, rgba(var(--w-emerald-500-rgb), 0.12), rgba(var(--w-emerald-500-rgb), 0.05))',
               padding: '16px', borderRadius: '12px',
-              border: '1px solid rgba(16,185,129,0.2)',
+              border: '1px solid rgba(var(--w-emerald-500-rgb), 0.2)',
               position: 'relative', overflow: 'hidden',
             }}>
               <div style={{ position: 'absolute', right: '-16px', top: '-16px', opacity: 0.07 }}>
@@ -36,7 +36,7 @@ export default function SasTriadDynamics() {
               <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '12px' }}>
                 <div style={{
                   width: '32px', height: '32px', borderRadius: '50%',
-                  background: 'rgba(16,185,129,0.2)',
+                  background: 'rgba(var(--w-emerald-500-rgb), 0.2)',
                   display: 'flex', alignItems: 'center', justifyContent: 'center',
                   color: 'var(--w-emerald-400)',
                 }}>
@@ -81,9 +81,9 @@ export default function SasTriadDynamics() {
             {/* Japan */}
             <div style={{
               display: 'flex', flexDirection: 'column',
-              background: 'linear-gradient(to bottom right, rgba(239,68,68,0.12), rgba(239,68,68,0.05))',
+              background: 'linear-gradient(to bottom right, rgba(var(--w-red-500-rgb), 0.12), rgba(var(--w-red-500-rgb), 0.05))',
               padding: '16px', borderRadius: '12px',
-              border: '1px solid rgba(239,68,68,0.2)',
+              border: '1px solid rgba(var(--w-red-500-rgb), 0.2)',
               position: 'relative', overflow: 'hidden',
             }}>
               <div style={{ position: 'absolute', right: '-16px', top: '-16px', opacity: 0.07 }}>
@@ -92,7 +92,7 @@ export default function SasTriadDynamics() {
               <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '12px' }}>
                 <div style={{
                   width: '32px', height: '32px', borderRadius: '50%',
-                  background: 'rgba(239,68,68,0.2)',
+                  background: 'rgba(var(--w-red-500-rgb), 0.2)',
                   display: 'flex', alignItems: 'center', justifyContent: 'center',
                   color: '#f87171',
                 }}>

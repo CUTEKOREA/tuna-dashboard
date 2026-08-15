@@ -127,11 +127,11 @@ export default function MscDemographicAcceptance() {
         <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', fontSize: '0.75rem', fontWeight: 600, color: 'var(--w-slate-500)' }}>
           <span>낮음</span>
           <div style={{ display: 'flex', gap: '0.25rem' }}>
-            <div style={{ width: '1.25rem', height: '0.75rem', borderRadius: '0.25rem', background: 'rgba(100,116,139,0.1)' }} />
-            <div style={{ width: '1.25rem', height: '0.75rem', borderRadius: '0.25rem', background: 'rgba(16,185,129,0.15)' }} />
-            <div style={{ width: '1.25rem', height: '0.75rem', borderRadius: '0.25rem', background: 'rgba(16,185,129,0.3)' }} />
-            <div style={{ width: '1.25rem', height: '0.75rem', borderRadius: '0.25rem', background: 'rgba(16,185,129,0.5)' }} />
-            <div style={{ width: '1.25rem', height: '0.75rem', borderRadius: '0.25rem', background: 'rgba(16,185,129,0.8)' }} />
+            <div style={{ width: '1.25rem', height: '0.75rem', borderRadius: '0.25rem', background: 'rgba(var(--w-slate-500-rgb), 0.1)' }} />
+            <div style={{ width: '1.25rem', height: '0.75rem', borderRadius: '0.25rem', background: 'rgba(var(--w-emerald-500-rgb), 0.15)' }} />
+            <div style={{ width: '1.25rem', height: '0.75rem', borderRadius: '0.25rem', background: 'rgba(var(--w-emerald-500-rgb), 0.3)' }} />
+            <div style={{ width: '1.25rem', height: '0.75rem', borderRadius: '0.25rem', background: 'rgba(var(--w-emerald-500-rgb), 0.5)' }} />
+            <div style={{ width: '1.25rem', height: '0.75rem', borderRadius: '0.25rem', background: 'rgba(var(--w-emerald-500-rgb), 0.8)' }} />
           </div>
           <span>높음</span>
         </div>

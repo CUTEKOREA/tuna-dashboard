@@ -40,7 +40,7 @@ const C_SQUID = '#8b5cf6';
 
 const TOOLTIP_STYLE: React.CSSProperties = {
   background: 'rgba(15, 23, 42, 0.96)',
-  border: '1px solid rgba(148, 163, 184, 0.3)',
+  border: '1px solid rgba(var(--w-slate-400-rgb), 0.3)',
   borderRadius: 8,
   fontSize: '0.72rem',
 };
@@ -158,7 +158,7 @@ const ImportMonthlyChart: React.FC<{ data: MonthlyRow[] }> = ({ data }) => {
 
       <SafeResponsiveContainer height={280}>
         <BarChart data={rows} margin={{ top: 8, right: 4, left: 0, bottom: 0 }}>
-          <CartesianGrid strokeDasharray="3 3" stroke="rgba(100, 116, 139, 0.2)" vertical={false} />
+          <CartesianGrid strokeDasharray="3 3" stroke="rgba(var(--w-slate-500-rgb), 0.2)" vertical={false} />
           <XAxis
             dataKey="month"
             tickFormatter={(m: any) => `${Number(String(m).slice(5))}월`}
@@ -181,7 +181,7 @@ const ImportMonthlyChart: React.FC<{ data: MonthlyRow[] }> = ({ data }) => {
               `${fmtInt(Number(v))} ${isUsd ? '달러' : '킬로그램'}`,
               name as string,
             ]}
-            cursor={{ fill: 'rgba(148, 163, 184, 0.08)' }}
+            cursor={{ fill: 'rgba(var(--w-slate-400-rgb), 0.08)' }}
           />
           <Legend wrapperStyle={{ fontSize: '0.66rem' }} iconSize={8} />
           {series.map((c) => (
@@ -332,7 +332,7 @@ const chipStyle: React.CSSProperties = {
   gap: 4,
   padding: '3px 9px',
   borderRadius: 6,
-  border: '1px solid rgba(148, 163, 184, 0.25)',
+  border: '1px solid rgba(var(--w-slate-400-rgb), 0.25)',
   background: 'rgba(15, 23, 42, 0.5)',
   fontSize: '0.68rem',
   fontWeight: 700,
@@ -356,14 +356,14 @@ const ConcentrationChart: React.FC<{ data: ConcentrationData[] }> = ({ data }) =
     <div style={{ minWidth: 0 }}>
       <div style={{ display: 'flex', flexWrap: 'wrap', gap: 6, marginBottom: 8 }}>
         <span style={chipStyle}>{latest.year} 총수입액 {(latest.total_import_usd / 1e8).toFixed(2)}억 달러</span>
-        <span style={{ ...chipStyle, color: C_WARN, borderColor: 'rgba(245, 158, 11, 0.4)' }}>
+        <span style={{ ...chipStyle, color: C_WARN, borderColor: 'rgba(var(--w-amber-500-rgb), 0.4)' }}>
           시장집중도지수 {fmtHhi(latest.hhi)} · {hhiLabel(latest.hhi)}
         </span>
       </div>
 
       <SafeResponsiveContainer height={220}>
         <ComposedChart data={rows} margin={{ top: 22, right: 0, left: 0, bottom: 0 }}>
-          <CartesianGrid strokeDasharray="3 3" stroke="rgba(100, 116, 139, 0.2)" vertical={false} />
+          <CartesianGrid strokeDasharray="3 3" stroke="rgba(var(--w-slate-500-rgb), 0.2)" vertical={false} />
           <XAxis dataKey="year" tick={{ fill: AXIS, fontSize: 11 }} axisLine={{ stroke: AXIS }} tickLine={false} />
           <YAxis
             yAxisId="share"
@@ -393,7 +393,7 @@ const ConcentrationChart: React.FC<{ data: ConcentrationData[] }> = ({ data }) =
                 ? [fmtHhi(Number(v)), name as string]
                 : [`${Number(v).toFixed(1)}% · 한국 수입 내 비중`, name as string]
             }
-            cursor={{ fill: 'rgba(148, 163, 184, 0.08)' }}
+            cursor={{ fill: 'rgba(var(--w-slate-400-rgb), 0.08)' }}
           />
           <Legend wrapperStyle={{ fontSize: '0.66rem' }} iconSize={8} />
           <Bar yAxisId="share" dataKey="top1" name="상위 1개국 비중" fill={C_SQUID} barSize={38} radius={[4, 4, 0, 0]}>
@@ -486,7 +486,7 @@ const HsClassificationMap: React.FC<{ data: HsRow[] }> = ({ data }) => {
               padding: '8px 10px',
               borderRadius: 8,
               background: 'rgba(15, 23, 42, 0.5)',
-              border: `1px solid ${cuttle ? 'rgba(139, 92, 246, 0.4)' : 'rgba(255, 255, 255, 0.06)'}`,
+              border: `1px solid ${cuttle ? 'rgba(var(--w-violet-500-rgb), 0.4)' : 'rgba(255, 255, 255, 0.06)'}`,
             }}
           >
             <span style={{ fontFamily: 'monospace', fontWeight: 800, color: 'var(--w-slate-200)', fontSize: '0.85rem' }}>
@@ -497,7 +497,7 @@ const HsClassificationMap: React.FC<{ data: HsRow[] }> = ({ data }) => {
                 fontSize: '0.6rem',
                 fontWeight: 700,
                 color: 'var(--w-slate-400)',
-                border: '1px solid rgba(148, 163, 184, 0.3)',
+                border: '1px solid rgba(var(--w-slate-400-rgb), 0.3)',
                 borderRadius: 4,
                 padding: '2px 6px',
                 whiteSpace: 'nowrap',
@@ -514,8 +514,8 @@ const HsClassificationMap: React.FC<{ data: HsRow[] }> = ({ data }) => {
                   fontSize: '0.6rem',
                   fontWeight: 800,
                   color: '#c4b5fd',
-                  background: 'rgba(139, 92, 246, 0.18)',
-                  border: '1px solid rgba(139, 92, 246, 0.5)',
+                  background: 'rgba(var(--w-violet-500-rgb), 0.18)',
+                  border: '1px solid rgba(var(--w-violet-500-rgb), 0.5)',
                   borderRadius: 4,
                   padding: '2px 6px',
                   whiteSpace: 'nowrap',

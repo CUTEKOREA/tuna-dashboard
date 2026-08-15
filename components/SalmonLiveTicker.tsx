@@ -147,7 +147,7 @@ export default function SalmonLiveTicker() {
           {sources.map(s => (
             <span key={s} style={{
               fontSize: '0.6rem', padding: '1px 5px', borderRadius: '3px',
-              background: 'rgba(16,185,129,0.15)', color: 'var(--w-emerald-500)', fontWeight: 600,
+              background: 'rgba(var(--w-emerald-500-rgb), 0.15)', color: 'var(--w-emerald-500)', fontWeight: 600,
             }}>🟢 {s}</span>
           ))}
         </div>
@@ -171,7 +171,7 @@ export default function SalmonLiveTicker() {
         gap: '0',
         background: 'linear-gradient(135deg, rgba(20, 28, 52, 0.5), rgba(30,15,50,0.5))',
         borderRadius: '8px',
-        border: '1px solid rgba(236, 72, 153, 0.2)',
+        border: '1px solid rgba(var(--w-pink-500-rgb), 0.2)',
         overflow: 'hidden',
       }}>
         {tickers.map((t, i) => {

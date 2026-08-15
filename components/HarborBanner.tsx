@@ -73,7 +73,7 @@ export default function HarborBanner({ vesselName, totalAmount, remainingAmount 
             fontFamily: 'monospace',
             letterSpacing: '1px',
             marginBottom: '8px',
-            border: '1px solid rgba(251, 191, 36, 0.3)'
+            border: '1px solid rgba(var(--w-amber-400-rgb), 0.3)'
           }}>
             CURRENT OPERATION
           </div>

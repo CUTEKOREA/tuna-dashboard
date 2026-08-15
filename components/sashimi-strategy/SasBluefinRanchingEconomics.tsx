@@ -37,7 +37,7 @@ export default function SasBluefinRanchingEconomics() {
             }}>
               <div style={{
                 width: '48px', height: '48px', borderRadius: '50%',
-                background: 'rgba(59,130,246,0.2)',
+                background: 'rgba(var(--w-blue-500-rgb), 0.2)',
                 display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '12px',
               }}>
                 <Fish style={{ color: '#60a5fa' }} size={24} />
@@ -77,7 +77,7 @@ export default function SasBluefinRanchingEconomics() {
             }}>
               <div style={{
                 width: '48px', height: '48px', borderRadius: '50%',
-                background: 'rgba(16,185,129,0.2)',
+                background: 'rgba(var(--w-emerald-500-rgb), 0.2)',
                 display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '12px',
               }}>
                 <PlaneTakeoff style={{ color: 'var(--w-emerald-400)' }} size={24} />
