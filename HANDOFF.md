@@ -1,3 +1,11 @@
+> 🗺️ **2026-08-15 17:20 KST — V3 소유자 리뷰 2·3라운드 (PR #405·#413 병합·프로덕션 READY)** [CC]:
+> - **실지도 전환**: FleetPixelMap → `FleetRealMap`(leaflet+react-leaflet, Esri World Ocean 무키 타일, 보고 좌표 도·분 파싱 재사용, 날짜변경선 안전 bounds, 숨김 탭 invalidateSize 가드). 구글 타일은 유료 키 필요 — 키 확보 시 교체.
+> - **완료 선박 11척 정본화**: 프로덕션에서 `SUPABASE_SERVICE_ROLE_KEY` 존재 시 6월 중순 stale Supabase 스냅샷이 로컬 원장 파일을 덮어 4척만 노출되던 버그 — `app/api/unloading-db/route.ts` 파일 우선으로 수정, 11척(방콕 10·젠산 1) 가드 테스트.
+> - **트레이더 반입 위젯**: 2026 단년 → `bangkokTraderMonthly` 2021~2026 전 기간 + 월/분기/연 입도 + 몰디브 카드. 2026-01~07 완전 일치 검증, 8월만 8/12 후속 보고 반영(누계 317,175→326,005MT — 차이는 note에 산출식으로).
+> - 2라운드: 티커 라이트·PillTabs 활성 단색 필·히어로 사진/픽셀 배너 제거·하역 현황 개칭·스크림 토큰화·펼치기 기본화·파노피 입항 차트 데이터 복구(docx 파서 행 복원)·방콕 입도+%뷰+캐너리 추이+선행지표 해설.
+> - 3라운드 나머지: fleet 배지/툴팁/VDS·PNA 라이트 7건, logistics 공장 차트 좌우 배열, bangkok 스톡 지표 평균 입도, 사이드바 «참치 산업 인텔리전스·미경1팀 이동건», 빠른 검색 버튼 제거. 383 테스트·verify GREEN.
+> - **주의**: #413 병합 시 Vercel 프로덕션 자동 트리거 누락(webhook miss) — 빈 커밋 재트리거로 해소. 재발 시 같은 방법.
+
 > 📬 **2026-08-15 17:01 KST — 관리자 전용 Gmail 읽기 전용 통합 메일 운영 배포·MFA 실계정 교정** [Codex] (PR #407·#410):
 > - `/mail` 서버 관리자 게이트와 조건부 메뉴, Supabase TOTP AAL2, Gmail OAuth state+PKCE, 최근 20/50건·안 읽은 수·발신자·제목·수신 시각·미리보기·원본 링크, Google 권한 철회+암호화 연결 삭제를 구현했다. 메일 API 7개는 `no-store`, Node runtime, 고정 공개 origin과 변경 요청 Origin 검증을 사용한다.
 > - 운영 Supabase migration 적용, `mail_oauth_connections` 8열·0행 확인, TOTP 활성화, Gmail API·`gmail.readonly`·고정 callback·외부 테스트 사용자 1명 설정, Vercel Production 비밀 환경변수 8종 등록을 완료했다. 자격증명 값은 저장소·문서에 기록하지 않았다.
