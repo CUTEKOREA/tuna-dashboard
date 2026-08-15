@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
-import { Geist, IBM_Plex_Mono } from "next/font/google";
+import { Geist, IBM_Plex_Mono, Roboto_Mono } from "next/font/google";
+import localFont from "next/font/local";
 import Script from 'next/script';
 import "./globals.css";
 
@@ -12,6 +13,22 @@ const ibmPlexMono = IBM_Plex_Mono({
   variable: "--font-ibm-plex-mono",
   subsets: ["latin"],
   weight: "700",
+  display: "swap",
+});
+
+/* V3 (Metabase 개편): 한글 본문 Pretendard(가변, self-host) + 수치·코드 Roboto Mono.
+ * 400/700/900 3단 웨이트 규율 — 500·600 사용 금지 (스펙 §3-3). */
+const pretendard = localFont({
+  src: "../node_modules/pretendard/dist/web/variable/woff2/PretendardVariable.woff2",
+  variable: "--font-pretendard",
+  weight: "45 920",
+  display: "swap",
+});
+
+const robotoMono = Roboto_Mono({
+  variable: "--font-roboto-mono",
+  subsets: ["latin"],
+  weight: ["400", "700"],
   display: "swap",
 });
 
@@ -160,7 +177,7 @@ export default function RootLayout({
     <html
       lang="ko"
       data-theme="dark"
-      className={`${geistSans.variable} ${ibmPlexMono.variable} h-full antialiased`}
+      className={`${geistSans.variable} ${ibmPlexMono.variable} ${pretendard.variable} ${robotoMono.variable} h-full antialiased`}
     >
       <head>
         {/* Naver Search Advisor */}

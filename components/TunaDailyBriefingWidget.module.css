@@ -158,3 +158,36 @@
     transition: none;
   }
 }
+
+/* ── V3 라이트 스코프 (market 파일럿) — 다크 서피스·텍스트를 Metabase 라이트로 ── */
+[data-v3='light'] .section {
+  border-color: #e2e4e9;
+  background: #f9fafb;
+}
+[data-v3='light'] .sectionTitle {
+  color: #22242b;
+}
+[data-v3='light'] .digestNumber {
+  border-color: rgba(8, 145, 178, 0.35);
+  background: rgba(8, 145, 178, 0.08);
+  color: #0e7490;
+}
+[data-v3='light'] .article {
+  border-color: #e2e4e9;
+  background: #ffffff;
+}
+[data-v3='light'] .article summary {
+  color: #22242b;
+}
+[data-v3='light'] .article summary:hover,
+[data-v3='light'] .article summary:focus-visible {
+  background: rgba(80, 158, 227, 0.06);
+  color: #22242b;
+}
+[data-v3='light'] .chevron {
+  color: #0e7490;
+}
+[data-v3='light'] .paragraphs {
+  border-top-color: #e2e4e9;
+  background: #f9fafb;
+}

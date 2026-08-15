@@ -19,7 +19,8 @@ function cssRules(source: string, selector: string): string {
 
 describe('V2.5-c institutional page shells', () => {
   it('tunes only the five neutral bridge colors to zinc and keeps every RGB pair aligned', () => {
-    const globals = readSource('app/globals.css');
+    // V3 라이트 스코프([data-v3='light'])가 같은 토큰명을 재정의하므로 :root 정본 구간만 본다
+    const globals = readSource('app/globals.css').split('V3 "Answerable BI"')[0];
     const bridgeTokens = Object.fromEntries(
       Array.from(globals.matchAll(/(--w-[a-z0-9-]+)\s*:\s*(#[0-9a-f]{6})\s*;/gi))
         .map((match) => [match[1], match[2].toLowerCase()]),

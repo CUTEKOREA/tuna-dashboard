@@ -22,7 +22,8 @@ function contrastRatio(foreground: string, background: string): number {
 
 describe('V2.5 multi-series chart palette', () => {
   it('provides eight distinct series colors with graphical contrast on the institutional background', () => {
-    const globals = readFileSync(join(process.cwd(), 'app/globals.css'), 'utf8');
+    // V3 라이트 스코프가 --chart-s*를 재정의하므로 :root 정본(다크) 구간만 본다
+    const globals = readFileSync(join(process.cwd(), 'app/globals.css'), 'utf8').split('V3 "Answerable BI"')[0];
     const palette = Object.fromEntries(
       Array.from(globals.matchAll(/(--chart-s[1-8])\s*:\s*(#[0-9a-f]{6})\s*;/gi))
         .map((match) => [match[1], match[2].toLowerCase()]),

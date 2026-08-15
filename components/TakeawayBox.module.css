@@ -60,3 +60,17 @@
     transform: none;
   }
 }
+
+/* ── V3 라이트 스코프 (market 파일럿) — 다크 전제 텍스트만 잉크 계열로 뒤집는다 ── */
+[data-v3='light'] .sit.sit li::before {
+  color: #5a6072;
+}
+[data-v3='light'] .sit.sit li strong {
+  color: #22242b;
+}
+[data-v3='light'] .tak.tak li::before {
+  color: #0891b2;
+}
+[data-v3='light'] .tak.tak li strong {
+  color: #1c6bb0;
+}
