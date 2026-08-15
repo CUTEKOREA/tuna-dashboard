@@ -9,6 +9,7 @@ import { ProfitTab as PanofiTabsProfit } from '../components/panofi/PanofiTabs';
 import {
   bep,
   dataQuality,
+  fleetMargins,
   fleetTotals,
   h1,
   headline,
@@ -205,6 +206,21 @@ describe('추정실적 원장 (월별·척별)', () => {
   it('척별 세전이익 합이 누계 세전이익과 맞는다', () => {
     const sum = vesselFullPnl.reduce((s, v) => s + (v.세전이익 ?? 0), 0);
     expect(Math.abs(sum - actuals.byVessel.totals.세전이익!)).toBeLessThan(1);
+  });
+
+  // 2026-08-15 추가: 제원은 '파노피 마스터', 원장은 '마스터'로 적어 이름 매칭이 조용히
+  // 실패했고 «순위 역전» 표의 총톤수·생산 칸이 전 척 '자료 없음'으로 떴다. 회귀 방지 가드.
+  it('순위 역전 표의 총톤수·상반기 생산이 전 척 채워진다', () => {
+    expect(marginRankShift).toHaveLength(7);
+    expect(marginRankShift.every((r) => r.gt !== null && r.productionT !== null)).toBe(true);
+    expect(marginRankShift.reduce((s, r) => s + (r.gt ?? 0), 0)).toBe(fleetTotals.totalGt);
+  });
+
+  it('선박 이름에 «파노피» 접두가 남지 않는다', () => {
+    expect(fleetMargins.every((v) => !v.name.startsWith('파노피'))).toBe(true);
+    expect(fleetMargins.map((v) => v.name)).toEqual(
+      expect.arrayContaining(vesselFullPnl.map((v) => v.name)),
+    );
   });
 
   it('직접마진 순위와 완전손익 순위가 다른 배가 있다', () => {

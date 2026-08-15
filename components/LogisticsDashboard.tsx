@@ -2,9 +2,10 @@
 
 import React, { useEffect, useState } from 'react';
 import {
-  Factory, RefreshCcw, TrendingUp, Ship, Navigation
+  Activity, Factory, RefreshCcw, TrendingUp, Ship, Navigation
 } from 'lucide-react';
 import CanneryStatusCharts from './CanneryStatusCharts';
+import ValueChainMarginIndex from './ValueChainMarginIndex';
 import SongkhlaCanneryStatusCharts from './SongkhlaCanneryStatusCharts';
 import ReeferMovement from './ReeferMovement';
 import TraderStatus, { traderFullPeriod } from './TraderStatus';
@@ -236,6 +237,21 @@ export default function LogisticsDashboard({ heroOnly = false }: { heroOnly?: bo
               situation: '2026-08-05 보고 기준 송클라 4개 공장은 일 330MT를 생산하고 원어 4,500MT를 보유해 생산능력 대비 37%, 보관능력 대비 17% 수준입니다.',
               actionPlan: '송클라의 낮은 재고율과 SCC 저가동(50/250MT)을 확인한 뒤 물량 전환 가능성을 판단합니다.',
               source: '방콕 사무소 주간보고 (2026-08-05)',
+            }}
+          />
+
+          <WidgetCard
+            title="밸류체인 마진율 인덱스"
+            icon={Activity}
+            iconColor="var(--w-violet-500)"
+            pillar="S4"
+            cardDesc="원어 원가·물류비·가공비·최종 판매가 4구간 착지원가 시나리오 추정 (2026-05-20 기준)"
+            telemetry={{ status: 'STATIC', syncDate: '2026-05-20', label: '정적', source: '추정 시뮬레이션 + KCS 통관' }}
+            customBody={<ValueChainMarginIndex />}
+            takeaway={{
+              situation: `2026-05-20 시나리오는 원어 원가 $2,100/MT를 전제로 전구간 순마진 29.7%를 산출했습니다. ${logisticsWeeklyReport.market.reportDate} 주간보고의 원어 협의가는 $${logisticsWeeklyReport.market.rawMaterialPriceUsdPerMt.toLocaleString()}/MT로 전제보다 $170 낮습니다. 물류비 $350·가공비 $500·판매가 $4,200은 실측 원천이 없는 추정값이라 함께 갱신할 수 없습니다.`,
+              actionPlan: '원어 원가만 실측으로 바꾸면 나머지 3구간이 5월 전제로 남아 마진율이 왜곡되므로, 운임·가공비·판매가 실측 원천을 확보한 뒤 4구간을 동시에 재산출합니다. 확보 전까지 본 지표는 참고용으로만 씁니다.',
+              source: '시나리오 추정 (2026-05-20 갱신) · 원어 협의가 대조: 방콕 사무소 주간보고 (2026-08-05)',
             }}
           />
         </div>
