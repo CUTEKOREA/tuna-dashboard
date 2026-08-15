@@ -55,7 +55,7 @@ export function PorkHero() {
   return (
     <HeroZone
       variant="kpi"
-      title="돼지고기"
+      title="Pork Market"
       subtitle={`데이터 기준일 ${latestChinaProduction.year}년`}
       primaryKpi={{
         label: '중국 돈육 생산량',

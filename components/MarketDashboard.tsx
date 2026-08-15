@@ -124,7 +124,7 @@ export function MarketHero({ rows }: { rows: AtunaPriceRow[] }) {
   return (
     <HeroZone
       variant="kpi"
-      title="시장 동향"
+      title="Market Trends"
       subtitle={bangkok.latest
         ? `방콕 현물가 기준일 ${bangkok.latest.date.replace(/-/g, '.')}${bangkokDeltaPct === null ? '' : ` · 직전 고시 대비 ${fmtPct(bangkokDeltaPct)}`}`
         : '참치 가격 데이터 수신 대기'}
