@@ -2,18 +2,24 @@
 
 from __future__ import annotations
 
-import sys
+import copy
 import inspect
+import json
+import subprocess
+import sys
 import unittest
 from datetime import date, timedelta
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).parent))
 
+import build_gmts_dashboard as gmts  # noqa: E402
+
 from build_gmts_dashboard import (  # noqa: E402
     DEFAULT_SOURCE_DIR,
     MONTH_KEYS,
     build_dashboard,
+    detect_volume_revisions,
     parse_declared_count,
     parse_iso_date,
     parse_measure,
@@ -56,6 +62,42 @@ class WeeklySequenceGateTest(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, "missing"):
             validate_weekly_sequence(missing)
 
+    def test_revision_detection_covers_years_other_than_2026(self) -> None:
+        months_before = {month: None for month in MONTH_KEYS}
+        months_after = dict(months_before)
+        months_before['01'] = 100.0
+        months_after['01'] = 125.0
+        reports = [
+            {
+                'reportDate': '2025-01-01',
+                'volume': {
+                    'annual': {
+                        '2025': {'months': months_before, 'total': 100.0}
+                    }
+                },
+            },
+            {
+                'reportDate': '2025-01-08',
+                'volume': {
+                    'annual': {
+                        '2025': {'months': months_after, 'total': 125.0}
+                    }
+                },
+            },
+        ]
+        self.assertEqual(
+            detect_volume_revisions(reports),
+            [
+                {
+                    'month': '2025-01',
+                    'previousReportDate': '2025-01-01',
+                    'previousValue': 100.0,
+                    'reportDate': '2025-01-08',
+                    'value': 125.0,
+                }
+            ],
+        )
+
 
 class ArchiveEndToEndTest(unittest.TestCase):
     @classmethod
@@ -64,6 +106,28 @@ class ArchiveEndToEndTest(unittest.TestCase):
         cls.latest_report = parse_report(
             SOURCE_DIR / 'GMTS Weekly Report 20260812.pdf'
         )
+
+    def test_runtime_gate_rejects_cannery_sum_mismatch(self) -> None:
+        mutated = copy.deepcopy(self.latest_report)
+        gentuna = next(
+            row for row in mutated['canneries'] if row['name'] == 'Gentuna/Century'
+        )
+        gentuna['currentStockMt'] += 1
+        with self.assertRaisesRegex(ValueError, 'cannery total mismatch'):
+            gmts.validate_report(mutated)
+
+    def test_runtime_gate_rejects_bad_total_utilization(self) -> None:
+        mutated = copy.deepcopy(self.latest_report)
+        total = next(row for row in mutated['canneries'] if row['name'] == 'Total')
+        total['productionUtilizationPercent'] += 1
+        with self.assertRaisesRegex(ValueError, 'utilization mismatch'):
+            gmts.validate_report(mutated)
+
+    def test_runtime_gate_requires_all_annual_rows(self) -> None:
+        mutated = copy.deepcopy(self.latest_report)
+        del mutated['volume']['annual']['2019']
+        with self.assertRaisesRegex(ValueError, 'annual rows'):
+            gmts.validate_report(mutated)
 
     def test_production_parser_has_no_latest_report_fixture_literals(self) -> None:
         source = '\n'.join(
@@ -167,8 +231,6 @@ class ArchiveEndToEndTest(unittest.TestCase):
         self.assertEqual(
             [report["reportDate"] for report in self.dashboard["weekly"]], expected_dates
         )
-        self.assertEqual(self.dashboard["qualityFlags"]["missingWeeks"], [])
-        self.assertEqual(self.dashboard["qualityFlags"]["duplicateReportDates"], [])
 
     def test_each_report_preserves_seven_canneries_and_total_reconciles(self) -> None:
         numeric_fields = (
@@ -193,7 +255,7 @@ class ArchiveEndToEndTest(unittest.TestCase):
 
     def test_blank_2026_volume_row_is_kept_as_unknown(self) -> None:
         first = self.dashboard["volumeHistory"]["snapshots"][0]["volume2026"]
-        self.assertIsNone(first["months"]["01"])
+        self.assertIsNone(first["months"][0])
         self.assertIsNone(first["total"])
 
     def test_latest_source_hash_numeric_anchors_and_blanks_are_source_faithful(self) -> None:
@@ -205,8 +267,12 @@ class ArchiveEndToEndTest(unittest.TestCase):
         )
         self.assertEqual(latest["prices"]["nonGspNonMsc"]["amount"], 1900)
         self.assertEqual(latest["prices"]["gspNonMsc"]["amount"], 2025)
-        self.assertEqual(self.dashboard["volumeHistory"]["annual"]["2026"]["months"]["07"], 12687.0)
-        self.assertEqual(self.dashboard["volumeHistory"]["annual"]["2026"]["total"], 63736.0)
+        annual_2026 = next(
+            row for row in self.dashboard["volumeHistory"]["annual"]
+            if row["year"] == 2026
+        )
+        self.assertEqual(annual_2026["months"][6], 12687.0)
+        self.assertEqual(annual_2026["total"], 63736.0)
         total = next(row for row in latest["canneries"] if row["name"] == "Total")
         self.assertEqual(total["currentProductionMt"], 895.0)
         self.assertEqual(total["currentStockMt"], 17550.0)
@@ -240,17 +306,79 @@ class ArchiveEndToEndTest(unittest.TestCase):
         self.assertIsNone(volume["unit"])
         self.assertTrue(volume["excludesFreshTuna"])
         self.assertNotIn("totalMt", volume)
-        self.assertEqual(volume["annual"]["2025"]["months"]["07"], 16120.0)
-        self.assertEqual(sum(volume["annual"]["2025"]["months"][key] for key in MONTH_KEYS[:7]), 67363.0)
-        self.assertEqual(volume["annual"]["2026"]["total"], 63736.0)
-        self.assertEqual(volume["annual"]["2026"]["months"]["07"], 12687.0)
+        self.assertEqual([row["year"] for row in volume["annual"]], list(range(2019, 2027)))
+        self.assertTrue(all(len(row["months"]) == 12 for row in volume["annual"]))
+        annual_2025 = next(row for row in volume["annual"] if row["year"] == 2025)
+        annual_2026 = next(row for row in volume["annual"] if row["year"] == 2026)
+        self.assertEqual(annual_2025["months"][6], 16120.0)
+        self.assertEqual(sum(annual_2025["months"][:7]), 67363.0)
+        self.assertEqual(annual_2026["total"], 63736.0)
+        self.assertEqual(annual_2026["months"][6], 12687.0)
+        self.assertTrue(
+            all(len(report["volume2026"]["months"]) == 12 for report in self.dashboard["weekly"])
+        )
+        self.assertTrue(
+            all(
+                len(snapshot["volume2026"]["months"]) == 12
+                for snapshot in volume["snapshots"]
+            )
+        )
 
-    def test_quality_flags_are_observed_not_constant_empty_lists(self) -> None:
+    def test_quality_flags_are_an_ordered_structured_array(self) -> None:
         flags = self.dashboard["qualityFlags"]
-        self.assertTrue(flags["blankHeadings"])
-        self.assertTrue(flags["priceQualifiers"])
-        self.assertTrue(flags["volumeRevisions"])
-        self.assertTrue(any(flag["name"] == "Celebes" and flag["storageUtilizationPercent"] == 122.0 for flag in flags["utilizationOverCapacity"]))
+        self.assertIsInstance(flags, list)
+        self.assertEqual(len(flags), 41)
+        self.assertEqual(
+            [flag["code"] for flag in flags],
+            ["blank_declared_count"] * 5
+            + ["price_qualifier"] * 31
+            + ["volume_revision"]
+            + ["capacity_exceeded"] * 2
+            + ["price_basis_unit_missing", "volume_unit_missing"],
+        )
+        self.assertTrue(
+            any(
+                flag["code"] == "capacity_exceeded"
+                and flag["name"] == "Celebes"
+                and flag["storageUtilizationPercent"] == 122.0
+                for flag in flags
+            )
+        )
+
+    def test_emitted_arrays_support_javascript_find_filter_and_slice(self) -> None:
+        script = """
+let input = '';
+process.stdin.on('data', (chunk) => { input += chunk; });
+process.stdin.on('end', () => {
+  const dashboard = JSON.parse(input);
+  const flags = dashboard.qualityFlags;
+  const annual = dashboard.volumeHistory.annual;
+  const months = dashboard.weekly[0].volume2026.months;
+  process.stdout.write(JSON.stringify({
+    revisionCode: flags.find((flag) => flag.code === 'volume_revision')?.code,
+    qualifierCount: flags.filter((flag) => flag.code === 'price_qualifier').length,
+    firstYears: annual.slice(0, 2).map((row) => row.year),
+    firstMonths: months.slice(0, 3),
+  }));
+});
+"""
+        result = subprocess.run(
+            ['node', '-e', script],
+            input=json.dumps(self.dashboard),
+            text=True,
+            capture_output=True,
+            check=False,
+        )
+        self.assertEqual(result.returncode, 0, result.stderr)
+        self.assertEqual(
+            json.loads(result.stdout),
+            {
+                'revisionCode': 'volume_revision',
+                'qualifierCount': 31,
+                'firstYears': [2019, 2020],
+                'firstMonths': [None, None, None],
+            },
+        )
 
     def test_weekly_is_compact_and_volume_history_owns_annual_table(self) -> None:
         weekly = self.dashboard["weekly"][0]

@@ -2,9 +2,9 @@
 
 ## Status
 
-Implementation and focused verification are complete on
-`codex/gmts-dashboard-impl-20260815`. Original PDFs were read only. No commit,
-push, deployment, or full repository verification was performed by this worker.
+Implementation, reviewer corrections, and full verification are complete on
+`codex/gmts-dashboard-impl-20260815`. Original PDFs were read only. No push or
+deployment was performed.
 
 ## Delivered
 
@@ -16,10 +16,15 @@ push, deployment, or full repository verification was performed by this worker.
   the extracted cells. Production parsing code contains no latest date, vessel,
   or latest numeric fixture literals.
 - Generated forced-tracked `data/gmts_dashboard.json`: 30 reports, 38 pages,
-  2026-01-21 through 2026-08-12, 86,464 bytes.
+  2026-01-21 through 2026-08-12, 82,441 bytes.
 - Kept `weekly` compact, `latest` detailed, and `volumeHistory` as the owner of
   the annual volume table. Empty declarations and volume cells remain `null`;
   missing price and volume units remain unknown.
+- Emitted all month series and the 2019–2026 annual table as ordered arrays,
+  and emitted `qualityFlags` as a stable 41-entry structured array. Added a
+  runtime report gate for cannery identity, four sum reconciliations, every
+  individual/Total utilization, all annual rows, and annual totals. Revision
+  detection now covers every present year and month.
 - Added `npm run sync:gmts` and the focused regression suite.
 
 ## TDD evidence
@@ -32,19 +37,28 @@ push, deployment, or full repository verification was performed by this worker.
    generic `parse_report` result.
 3. After the coordinate/table-row parser replaced the override, the same suite
    was GREEN: 19 tests passed.
+4. Reviewer follow-up began RED at 24 tests with 2 failures and 7 errors for the
+   object-shaped external contract, JavaScript array methods, missing runtime
+   gate, and 2026-only revision detection. A minimal `validate_report` stub then
+   proved the three mutation tests behaviorally RED with three expected
+   `ValueError not raised` failures.
+5. The array converters, runtime gate, and all-year revision detector made the
+   focused suite GREEN: 24 tests passed.
 
 ## Verification
 
-- `python3 scripts/test_build_gmts_dashboard.py` — 19 passed.
+- `python3 scripts/test_build_gmts_dashboard.py` — 24 passed.
 - `npm run sync:gmts` — generated 30 reports, latest 2026-08-12.
 - Archive inspection — 165 vessel records; every record has the common five-key
   date schema and non-empty `rawFields`.
-- Generated contract inspection — 86,464 bytes; latest lane counts remain
-  active 0, completed 2, incoming 3.
-- Controller fresh `npm run verify` — exit code 0: ESLint 0 errors and 5
-  pre-existing warnings, TypeScript passed, Vitest 77 files/430 tests passed,
-  API cache 153/153 passed, Next production build generated 117 pages, and
-  bundle budget passed for 32 routes.
+- Generated contract inspection — 82,441 bytes; annual years are ordered
+  2019–2026, all month arrays have 12 entries, `qualityFlags` has 41 ordered
+  entries, and JavaScript `.find()`, `.filter()`, and `.slice()` execute against
+  the emitted arrays. Latest lane counts remain active 0, completed 2, incoming 3.
+- Controller fresh `npm run verify` after the reviewer correction completed with
+  exit code 0: ESLint 0 errors and 5 pre-existing warnings, TypeScript passed,
+  Vitest 77 files/430 tests passed, API cache 153/153 passed, Next production
+  build generated 117 pages, and bundle budget passed for 32 routes.
 
 ## Latest source anchors
 

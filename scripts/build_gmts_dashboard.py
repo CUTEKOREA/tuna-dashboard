@@ -20,6 +20,7 @@ DEFAULT_SOURCE_DIR = (
     "내 드라이브/신라그룹/GMTS/GMTS Weekly Report"
 )
 MONTH_KEYS = tuple(f"{month:02d}" for month in range(1, 13))
+REQUIRED_VOLUME_YEARS = tuple(str(year) for year in range(2019, 2027))
 CANNERY_NAMES = (
     "Gentuna/Century",
     "Philbest",
@@ -411,23 +412,165 @@ def detect_volume_revisions(reports: list[dict[str, object]]) -> list[dict[str, 
     latest_by_month: dict[str, tuple[str, float]] = {}
     revisions: list[dict[str, object]] = []
     for report in reports:
-        for month, value in report["volume"]["annual"]["2026"]["months"].items():
-            if value is None:
-                continue
-            month_key = f"2026-{month}"
-            previous = latest_by_month.get(month_key)
-            if previous and previous[1] != value:
-                revisions.append(
-                    {
-                        "month": month_key,
-                        "previousReportDate": previous[0],
-                        "previousValue": previous[1],
-                        "reportDate": report["reportDate"],
-                        "value": value,
-                    }
+        for year in sorted(report["volume"]["annual"], key=int):
+            for month in MONTH_KEYS:
+                value = report["volume"]["annual"][year]["months"].get(month)
+                if value is None:
+                    continue
+                month_key = f"{year}-{month}"
+                previous = latest_by_month.get(month_key)
+                if previous and previous[1] != value:
+                    revisions.append(
+                        {
+                            "month": month_key,
+                            "previousReportDate": previous[0],
+                            "previousValue": previous[1],
+                            "reportDate": report["reportDate"],
+                            "value": value,
+                        }
+                    )
+                latest_by_month[month_key] = (
+                    str(report["reportDate"]),
+                    float(value),
                 )
-            latest_by_month[month_key] = (str(report["reportDate"]), float(value))
     return revisions
+
+
+def validate_report(report: dict[str, object]) -> None:
+    """Validate one parsed report before it can enter the emitted contract."""
+    rows = report["canneries"]
+    if len(rows) != len(CANNERY_NAMES) or tuple(row["name"] for row in rows) != CANNERY_NAMES:
+        raise ValueError(f"expected seven named canneries plus Total: {report['reportDate']}")
+
+    individuals = rows[:-1]
+    total = rows[-1]
+    for field in (
+        "maximumProductionMt",
+        "currentProductionMt",
+        "maximumCapacityMt",
+        "currentStockMt",
+    ):
+        values = [row[field] for row in individuals]
+        if any(value is None for value in values) or total[field] is None:
+            raise ValueError(f"cannery total field missing: {report['reportDate']} {field}")
+        if not math.isclose(
+            sum(float(value) for value in values),
+            float(total[field]),
+            rel_tol=0,
+            abs_tol=0.001,
+        ):
+            raise ValueError(f"cannery total mismatch: {report['reportDate']} {field}")
+
+    for row in rows:
+        utilization_pairs = (
+            (
+                row["currentProductionMt"],
+                row["maximumProductionMt"],
+                row["productionUtilizationPercent"],
+                "production",
+            ),
+            (
+                row["currentStockMt"],
+                row["maximumCapacityMt"],
+                row["storageUtilizationPercent"],
+                "storage",
+            ),
+        )
+        for actual, capacity, displayed, label in utilization_pairs:
+            if actual is None or capacity in (None, 0) or displayed is None:
+                raise ValueError(
+                    f"utilization field missing: {report['reportDate']} {row['name']} {label}"
+                )
+            expected = math.floor(float(actual) / float(capacity) * 100 + 0.5)
+            if not math.isclose(
+                float(displayed), float(expected), rel_tol=0, abs_tol=0.001
+            ):
+                raise ValueError(
+                    f"utilization mismatch: {report['reportDate']} {row['name']} {label}"
+                )
+
+    annual = report["volume"]["annual"]
+    if tuple(sorted(annual, key=int)) != REQUIRED_VOLUME_YEARS:
+        raise ValueError(f"required annual rows 2019 through 2026 missing: {report['reportDate']}")
+    for year in REQUIRED_VOLUME_YEARS:
+        values = [
+            annual[year]["months"].get(month)
+            for month in MONTH_KEYS
+            if annual[year]["months"].get(month) is not None
+        ]
+        if annual[year]["total"] is not None and not math.isclose(
+            sum(float(value) for value in values),
+            float(annual[year]["total"]),
+            rel_tol=0,
+            abs_tol=0.001,
+        ):
+            raise ValueError(f"annual total mismatch: {report['reportDate']} {year}")
+
+
+def month_array(months: dict[str, float | None]) -> list[float | None]:
+    return [months.get(month) for month in MONTH_KEYS]
+
+
+def annual_array(annual: dict[str, dict[str, object]]) -> list[dict[str, object]]:
+    return [
+        {
+            "year": int(year),
+            "months": month_array(annual[year]["months"]),
+            "total": annual[year]["total"],
+            "rawText": annual[year]["rawText"],
+        }
+        for year in REQUIRED_VOLUME_YEARS
+    ]
+
+
+def build_quality_flags(
+    reports: list[dict[str, object]], revisions: list[dict[str, object]]
+) -> list[dict[str, object]]:
+    flags: list[dict[str, object]] = []
+    flags.extend(
+        {
+            "code": "blank_declared_count",
+            "reportDate": report["reportDate"],
+            "lane": lane,
+        }
+        for report in reports
+        for lane in ("unloading", "completedDischarging", "incoming")
+        if report[lane]["declaredCount"] is None
+    )
+    flags.extend(
+        {
+            "code": "price_qualifier",
+            "reportDate": report["reportDate"],
+            "price": {"nonGsp": "nonGspNonMsc", "gsp": "gspNonMsc"}[key],
+            "qualifier": price["qualifier"],
+        }
+        for report in reports
+        for key, price in report["prices"].items()
+        if price["qualifier"] != "quoted"
+    )
+    flags.extend({"code": "volume_revision", **revision} for revision in revisions)
+    flags.extend(
+        {
+            "code": "capacity_exceeded",
+            "reportDate": report["reportDate"],
+            "name": row["name"],
+            "storageUtilizationPercent": row["storageUtilizationPercent"],
+        }
+        for report in reports
+        for row in report["canneries"]
+        if row["storageUtilizationPercent"] is not None
+        and row["storageUtilizationPercent"] > 100
+    )
+    flags.extend(
+        (
+            {
+                "code": "price_basis_unit_missing",
+                "field": "price_basis_unit_missing",
+            },
+            {"code": "volume_unit_missing", "field": "volume_unit_missing"},
+        )
+    )
+    return flags
 
 
 def build_dashboard(source_dir: Path) -> dict[str, object]:
@@ -444,16 +587,7 @@ def build_dashboard(source_dir: Path) -> dict[str, object]:
             raise ValueError("filename/report date mismatch")
         if date.fromisoformat(report["reportDate"]).weekday() != 2:
             raise ValueError("report date is not Wednesday")
-        for row in report["canneries"]:
-            if row["name"] == "Total":
-                continue
-            for actual, capacity, displayed in ((row["currentProductionMt"], row["maximumProductionMt"], row["productionUtilizationPercent"]), (row["currentStockMt"], row["maximumCapacityMt"], row["storageUtilizationPercent"])):
-                if actual is not None and capacity not in (None, 0) and math.floor(actual / capacity * 100 + 0.5) != displayed:
-                    raise ValueError(f"utilization mismatch: {report['reportDate']} {row['name']}")
-        for annual in report["volume"]["annual"].values():
-            values = [value for value in annual["months"].values() if value is not None]
-            if annual["total"] is not None and sum(values) != annual["total"]:
-                raise ValueError(f"annual total mismatch: {report['reportDate']}")
+        validate_report(report)
     revisions = detect_volume_revisions(reports)
     sources = [report["source"] for report in reports]
     def total(report: dict[str, object]) -> dict[str, object]:
@@ -477,20 +611,11 @@ def build_dashboard(source_dir: Path) -> dict[str, object]:
             "coverageEnd": reports[-1]["reportDate"],
             "latestReportDate": reports[-1]["reportDate"],
         },
-        "weekly": [{"reportDate": report["reportDate"], "operationalAsOf": None, "port": port(report, False), "canneryTotal": total(report), "prices": prices(report), "volume2026": {"year": 2026, "months": report["volume"]["annual"]["2026"]["months"], "total": report["volume"]["annual"]["2026"]["total"]}} for report in reports],
+        "weekly": [{"reportDate": report["reportDate"], "operationalAsOf": None, "port": port(report, False), "canneryTotal": total(report), "prices": prices(report), "volume2026": {"year": 2026, "months": month_array(report["volume"]["annual"]["2026"]["months"]), "total": report["volume"]["annual"]["2026"]["total"]}} for report in reports],
         "latest": latest,
-        "volumeHistory": {"excludesFreshTuna": True, "unit": None, "annual": latest_report["volume"]["annual"], "snapshots": [{"reportDate": report["reportDate"], "volume2026": {"months": report["volume"]["annual"]["2026"]["months"], "total": report["volume"]["annual"]["2026"]["total"]}} for report in reports], "revisions": revisions},
+        "volumeHistory": {"excludesFreshTuna": True, "unit": None, "annual": annual_array(latest_report["volume"]["annual"]), "snapshots": [{"reportDate": report["reportDate"], "volume2026": {"months": month_array(report["volume"]["annual"]["2026"]["months"]), "total": report["volume"]["annual"]["2026"]["total"]}} for report in reports], "revisions": revisions},
         "sources": sources,
-        "qualityFlags": {
-            "missingWeeks": [],
-            "duplicateReportDates": [],
-            "sourceErrors": [],
-            "blankHeadings": [{"reportDate": report["reportDate"], "lane": key} for report in reports for key in ("unloading", "completedDischarging", "incoming") if report[key]["declaredCount"] is None],
-            "priceQualifiers": [{"reportDate": report["reportDate"], "price": {"nonGsp": "nonGspNonMsc", "gsp": "gspNonMsc"}[key], "qualifier": price["qualifier"]} for report in reports for key, price in report["prices"].items() if price["qualifier"] != "quoted"],
-            "volumeRevisions": revisions,
-            "utilizationOverCapacity": [{"reportDate": report["reportDate"], "name": row["name"], "storageUtilizationPercent": row["storageUtilizationPercent"]} for report in reports for row in report["canneries"] if row["storageUtilizationPercent"] is not None and row["storageUtilizationPercent"] > 100],
-            "missingUnits": [{"field": "price_basis_unit_missing"}, {"field": "volume_unit_missing"}],
-        },
+        "qualityFlags": build_quality_flags(reports, revisions),
     }
 
 
