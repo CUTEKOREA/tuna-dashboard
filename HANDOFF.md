@@ -8,16 +8,17 @@
 > - **검증:** 파서 24/24, GMTS+레지스트리 59/59, strict S-Grade exit 0(영문·GS 위반·가짜 LIVE 0), 최종 fresh `npm run verify` exit 0 — ESLint 0 errors·기존 5 warnings, TypeScript, Vitest 88파일·494테스트, API cache 155/155, Next build 117 pages, bundle 32 routes를 통과했다.
 > - **브라우저 QA:** 로컬 Production `/gmts`에서 1440×1000·390×844 전체 5탭을 실제 클릭했다. 잠금 상세 DOM 0, 출처 행 30, 문서 overflow 0, page error 0, 로컬 HTTP error/failure 0이다. 로컬 headless에서만 403을 낸 `googleads.g.doubleclick.net` 요청은 GMTS와 무관한 외부 광고 도메인으로 분리해 204로 격리했다.
 > - **독립 반증:** Task별 리뷰가 배열 계약·캐너리 합계 gate·전 연도 revision·단위 추정·영문 가격 툴팁 문제를 잡아 RED→GREEN으로 닫았다. 최종 전체 리뷰는 원본 30 PDF를 다시 파싱해 코드·데이터·라우팅·잠금·메뉴·모바일에 Critical 0·Important 0으로 판정했고, 향후 선언 건수 표기 Minor도 추가로 수정했다.
-> - **범위:** 작업 브랜치는 `codex/gmts-dashboard-impl-20260815`이며 검토 기준 기능 base `f32d3fc`를 로컬 병합해 후속 방콕·메일·하역 변경을 보존했다. 원래 사용자 worktree는 건드리지 않았고 **push·PR·배포는 하지 않았다.**
+> - **범위:** 작업 브랜치는 `codex/gmts-dashboard-impl-20260815`이며 검토 기준 기능 base `f32d3fc`와 최신 문서 전용 `main` `1d266c3`을 순차 로컬 병합해 후속 방콕·메일·하역 변경을 보존했다. 원래 사용자 worktree는 건드리지 않았고 **push·PR·배포는 하지 않았다.**
 > - **다음 단계:** 사용자가 로컬 화면을 확인한 뒤, 라이브 반영을 원할 때만 명시적 배포 지시를 받아 최신 `main`에 순차 통합한다.
-> - **마지막 업데이트:** 2026-08-16 08:39 KST. 로컬 구현·독립 교차 검증·최종 인계 기록 완료.
+> - **마지막 업데이트:** 2026-08-16 08:46 KST. 로컬 구현·독립 교차 검증·최신 `main` 문서 통합·최종 인계 기록 완료.
 >
-> 📈 **2026-08-16 07:43 KST — `/bangkok-office` 원어 시세 월·분기·연 입도 전환 로컬 추가** [Codex]:
+> 📈 **2026-08-16 08:04 KST — `/bangkok-office` 원어 시세 월·분기·연 입도 전환 운영 배포 완료** [Codex]:
 > - `원어 시세 추이`에 **주간·월별·분기별·연도별**, `시세 범위`에 **월별·분기별·연도별** 전환을 추가했다. 기본값은 기존 화면과 같은 주간 추이·연도별 범위이며, 두 컨트롤은 독립 상태로 동작한다.
 > - 월·분기·연 시세는 기록 있는 정상 주의 평균·최저·최고를 산출한다. 결측 주와 의심 플래그 주는 기존 연도별 계약대로 제외하고, 관측 없는 기간은 0으로 채우지 않는다. 새 연도 집계는 2020~2026 기존 확정 평균·최저·최고와 전부 일치한다.
 > - RED→GREEN 전용 테스트 3건과 전체 `npm run verify`를 통과했다: ESLint 0 errors·기존 5 warnings, Vitest 85파일·462테스트, API cache 155/155, Production build 117 pages, bundle 32 routes PASS다. 독립 반증 검토도 기능 blocking 0건이다.
-> - 로컬 Production 브라우저에서 1440×1000·390×844 모두 7개 옵션을 실제 클릭해 제목·`aria-pressed`·두 상태 독립성을 확인했다. HTTP 200, overflow 0, page/local HTTP 오류 0이며 외부 Google 광고 403만 분리 관찰했다.
-> - **미배포**. 작업 브랜치는 `codex/bangkok-price-granularity-20260816`; 사용자 명시 배포 요청 시 최신 main에 순차 반영한다.
+> - PR **#447**은 App Quality Gate와 Vercel Preview를 통과해 squash merge 커밋 `f32d3fc4c371e6a68ff8e84df5269afbb9b8fd98`로 병합됐다. Vercel Production deployment **5925533582**가 성공했고 운영 도메인은 신규 배포 `dpl_9cGARoawDsTgJxnyaZkTpw4kRDu9` 자산을 제공한다.
+> - 운영 `https://leedonggun.co.kr/bangkok-office`의 1440×1000·390×844에서 모두 7개 옵션을 실제 클릭해 제목·`aria-pressed`·두 상태 독립성을 확인했다. HTTP 200, overflow 0, page/local HTTP 오류 0이며 외부 Google 광고 403만 분리 관찰했다.
+> - **다음 단계**: 방콕 주간보고 동기화 후에도 결측·의심 주 제외와 월·분기·연 집계 회귀 테스트를 유지한다.
 >
 > 📤 **2026-08-16 00:33 KST — 회사 메일 SMTP-only 운영 배포 완료·실계정 QA 대기** [Codex]:
 > - 사용자 확인으로 회사 주소는 `ledog@sla.co.kr`지만 Microsoft 로그인은 개인 `silla@outlook.com`이며, 회사 사서함은 Microsoft 365가 아님을 확정했다. Entra 개인 계정에는 디렉터리가 없어 앱 등록이 불가능했고 `/me` exact mailbox 계약도 성립하지 않는다. 미커밋 Graph/Entra 구현은 제거했다.
