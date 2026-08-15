@@ -1,3 +1,8 @@
+> 🚢 **2026-08-15 13:00 KST — 선박 히어로 실사진 전환 + 신라 실선단 조사** [CC]:
+> - **/fleet·/unloading 히어로 배경을 Grok Imagine 실사풍 야간 위성뷰로 교체** (PR #380 병합·라이브 200 확인). 사용자 지시로 grok.com Imagine을 브라우저 자동화로 대행 — 3선종(선망·연승·운반)×4장 생성, 최적 3장 선정, cwebp q80 (~35KB). `public/heroes/{seiner,longliner,carrier}.webp`. **longliner.webp 는 예비 자산** — 연승 전용 페이지가 아직 없다.
+> - `components/v2/VesselPhotoWithFallback.tsx` 신설: 사진 기본, onError 시 VesselTopSVG(데이터 발광) 폴백. 해치 발광은 사진 좌표 정합이 불가하므로 **SVG 폴백 계약에만 남는다**. 렌더 테스트를 사진 src 계약으로 갱신(19/19), VesselTopSVG 단위 테스트가 발광 계약을 계속 지킨다.
+> - **Grok `[Grok]` 실선단 조사 완료** (`/tmp/grok_silla_fleet.md`): 신라 본선 = 한국적 **선망 6척**(SHILLA EXPLORER/PIONEER/HARVESTER/SPRINTER/CHALLENGER/JUPITER, IMO·WCPFC·PNA 교차) + **연승 9척**(SHIN YUNG 4·PANALOX 5). **대시보드의 SEIN \*·TAI JI 는 전부 냉동운반선이며 신라 소유가 아니다**(Sein Shipping 등) — 보유 선단으로 표기하면 허위. 이름 재사용 함정(구 HARVESTER→MOAMARI 등), 회사 사이트 제원이 구 선체 수치인 사례, 클래스별 상면 실루엣 묘사(SUPER 선망 = 헬리패드+우현 파워블록) 수록. 자유 라이선스 실사진은 사실상 없음 → 생성 이미지 경로가 맞았다. **후속 후보**: SVG 폴백을 실선박 비례(80×15.5m, 헬리패드)로 정교화 + 선박 표기에 소유 구분 반영.
+
 > 🚀 **2026-08-15 12:48 KST — `/panofi` 가나 참치 조업 대시보드 라이브 배포 완료** [CC]:
 > - 기능 브랜치 `feat/panofi-ghana`(커밋 7개)를 PR [#378](https://github.com/CUTEKOREA/tuna-dashboard/pull/378)로 `main` 에 병합했다. production merge commit 은 **`9f29fd2cbd7b799cd27979498b81106630225c03`** 이다.
 > - PR 게이트 3종 통과 — App Quality Gate(`lint typecheck test build`) **2분 59초**, Vercel Preview 배포, Preview Comments.
