@@ -58,16 +58,27 @@ describe('관리자 메일 메뉴 계약', () => {
     expect(loginComponent).not.toContain('sessionStorage');
   });
 
-  it('메일 화면은 텍스트 메타데이터·원본 링크만 제공하고 브라우저 저장소에 토큰을 쓰지 않는다', () => {
+  it('메일 화면은 메타데이터 조회와 확인 후 즉시 발송만 제공하고 브라우저 저장소에 토큰을 쓰지 않는다', () => {
     const source = readFileSync(join(process.cwd(), 'components/MailInboxDashboard.tsx'), 'utf8');
 
-    for (const label of ['안 읽은 메일', '발신자', '제목', '수신 시각', '미리보기', 'Gmail 원본 열기']) {
+    for (const label of ['안 읽은 메일', '발신자', '제목', '수신 시각', '미리보기', 'Gmail 원본 열기', '새 메일 보내기', '받는 사람', '본문', '즉시 발송']) {
       expect(source).toContain(label);
     }
     expect(source).toContain('rel="noopener noreferrer"');
     expect(source).not.toContain('dangerouslySetInnerHTML');
     expect(source).not.toContain('localStorage');
     expect(source).not.toContain('sessionStorage');
-    expect(source).not.toMatch(/답장|첨부파일 저장|메일 발송/);
+    expect(source).toContain('window.confirm');
+    expect(source).toContain("'Idempotency-Key': requestId");
+    expect(source).toContain('crypto.randomUUID()');
+    expect(source).toContain('Gmail 보낸편지함을 먼저 확인해주세요.');
+    expect(source).toContain('const [sendUncertain, setSendUncertain] = useState(false)');
+    expect(source).toContain("setError('발송 상태를 확인할 수 없습니다. 중복 발송을 막기 위해 Gmail 보낸편지함을 먼저 확인해주세요.')");
+    expect(source).toContain('disabled={working || sendUncertain}');
+    expect(source).toContain('Gmail 보낸편지함 확인 완료');
+    expect(source).toContain("window.confirm('Gmail 보낸편지함에서 발송 여부를 확인하셨습니까? 확인 후에만 새 메일을 준비합니다.')");
+    expect(source).toContain('첨부파일과 자동 발송은 지원하지 않습니다.');
+    expect(source).not.toContain('type="file"');
+    expect(source).not.toMatch(/setInterval|scheduleMail/);
   });
 });

@@ -47,6 +47,7 @@
 }
 
 .centerCard,
+.sendPanel,
 .toolbar,
 .tableWrap {
   background: var(--card-bg);
@@ -158,6 +159,85 @@
   width: 150px;
   text-align: center;
   letter-spacing: 0.2em;
+}
+
+.sendPanel {
+  padding: clamp(18px, 3vw, 28px);
+  margin-bottom: 18px;
+}
+
+.sendPanelHeader,
+.sendActions {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.sendPanelHeader h2 {
+  margin: 7px 0 0;
+  font-size: 20px;
+}
+
+.sendPanelHeader p,
+.sendActions > span {
+  margin: 0;
+  color: var(--text-tertiary);
+  font-size: 12px;
+  line-height: 1.6;
+}
+
+.sendFields {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+  margin: 22px 0 16px;
+}
+
+.sendFields label {
+  display: grid;
+  gap: 8px;
+  color: var(--text-tertiary);
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.sendFields input,
+.sendFields textarea {
+  width: 100%;
+  color: var(--text-primary);
+  background: rgba(5, 12, 28, 0.8);
+  border: 1px solid var(--card-border);
+  border-radius: 8px;
+  padding: 11px 12px;
+  font: inherit;
+}
+
+.sendFields textarea {
+  resize: vertical;
+  line-height: 1.6;
+}
+
+.sendFields input:focus-visible,
+.sendFields textarea:focus-visible {
+  border-color: var(--accent-primary);
+  outline: 2px solid rgba(56, 189, 248, 0.25);
+  outline-offset: 1px;
+}
+
+.messageField {
+  grid-column: 1 / -1;
+}
+
+.messageField span {
+  justify-self: end;
+  color: var(--text-dim);
+  font-size: 11px;
+  font-weight: 400;
+}
+
+.sendActions {
+  align-items: center;
 }
 
 .toolbar {
@@ -303,4 +383,8 @@
   .unreadMetric { width: 100%; }
   .verifyRow { flex-direction: column; }
   .verifyRow input { width: 100%; }
+  .sendPanelHeader,
+  .sendActions { flex-direction: column; }
+  .sendFields { grid-template-columns: 1fr; }
+  .sendActions .primaryButton { width: 100%; }
 }

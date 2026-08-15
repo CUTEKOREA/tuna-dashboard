@@ -2,9 +2,17 @@ import { createHash, randomBytes, timingSafeEqual } from 'node:crypto';
 import { decryptToken, encryptToken } from './token-crypto';
 
 export const GMAIL_READONLY_SCOPE = 'https://www.googleapis.com/auth/gmail.readonly';
+export const GMAIL_SEND_SCOPE = 'https://www.googleapis.com/auth/gmail.send';
+export const GMAIL_REQUIRED_SCOPES = [GMAIL_READONLY_SCOPE, GMAIL_SEND_SCOPE] as const;
 
 const GOOGLE_AUTHORIZATION_URL = 'https://accounts.google.com/o/oauth2/v2/auth';
 const OAUTH_FLOW_TTL_MS = 10 * 60_000;
+
+export function hasRequiredGmailScopes(scopes: readonly string[]): boolean {
+  const normalized = Array.from(new Set(scopes)).sort();
+  return normalized.length === GMAIL_REQUIRED_SCOPES.length
+    && GMAIL_REQUIRED_SCOPES.every((scope) => normalized.includes(scope));
+}
 
 interface OAuthFlowPayload {
   state: string;
@@ -93,7 +101,7 @@ export function createGmailOAuthFlow(options: CreateGmailOAuthFlowOptions) {
     client_id: options.clientId,
     redirect_uri: redirectUri,
     response_type: 'code',
-    scope: GMAIL_READONLY_SCOPE,
+    scope: GMAIL_REQUIRED_SCOPES.join(' '),
     access_type: 'offline',
     prompt: 'consent',
     include_granted_scopes: 'false',

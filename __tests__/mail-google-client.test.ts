@@ -5,6 +5,7 @@ import {
   fetchGmailProfile,
   refreshGmailAccessToken,
   revokeGoogleToken,
+  sendGmailMessage,
 } from '../lib/mail/google-client';
 
 const TOKEN_URL = 'https://oauth2.googleapis.com/token';
@@ -16,7 +17,7 @@ describe('Google Gmail 서버 클라이언트', () => {
       access_token: 'access-secret',
       refresh_token: 'refresh-secret',
       expires_in: 3600,
-      scope: 'https://www.googleapis.com/auth/gmail.readonly',
+      scope: 'https://www.googleapis.com/auth/gmail.readonly https://www.googleapis.com/auth/gmail.send',
       token_type: 'Bearer',
     }), { status: 200, headers: { 'Content-Type': 'application/json' } }));
 
@@ -39,7 +40,7 @@ describe('Google Gmail 서버 클라이언트', () => {
     expect(body.get('redirect_uri')).toBe('https://leedonggun.co.kr/api/mail/gmail/callback');
   });
 
-  it('Google이 scope를 생략하면 요청한 Gmail 읽기 전용 scope로 정규화한다', async () => {
+  it('Google이 scope를 생략하면 요청한 Gmail 읽기·발송 scope로 정규화한다', async () => {
     const fetcher = vi.fn<MailFetcher>(async () => Response.json({
       access_token: 'access-secret',
       refresh_token: 'refresh-secret',
@@ -55,7 +56,10 @@ describe('Google Gmail 서버 클라이언트', () => {
       fetcher,
     });
 
-    expect(result.scopes).toEqual(['https://www.googleapis.com/auth/gmail.readonly']);
+    expect(result.scopes).toEqual([
+      'https://www.googleapis.com/auth/gmail.readonly',
+      'https://www.googleapis.com/auth/gmail.send',
+    ]);
   });
 
   it('Google이 추가 scope를 반환하면 연결을 거부한다', async () => {
@@ -63,7 +67,7 @@ describe('Google Gmail 서버 클라이언트', () => {
       access_token: 'access-secret',
       refresh_token: 'refresh-secret',
       expires_in: 3600,
-      scope: 'https://www.googleapis.com/auth/gmail.readonly openid',
+      scope: 'https://www.googleapis.com/auth/gmail.readonly https://www.googleapis.com/auth/gmail.send openid',
     }));
 
     await expect(exchangeGmailAuthorizationCode({
@@ -73,14 +77,14 @@ describe('Google Gmail 서버 클라이언트', () => {
       clientSecret: 'client-secret',
       redirectUri: 'https://leedonggun.co.kr/api/mail/gmail/callback',
       fetcher,
-    })).rejects.toThrow('Gmail 읽기 권한');
+    })).rejects.toThrow('Gmail 권한');
   });
 
   it('refresh token으로 access token을 메모리에서만 발급한다', async () => {
     const fetcher = vi.fn<MailFetcher>(async () => new Response(JSON.stringify({
       access_token: 'new-access-secret',
       expires_in: 3600,
-      scope: 'https://www.googleapis.com/auth/gmail.readonly',
+      scope: 'https://www.googleapis.com/auth/gmail.readonly https://www.googleapis.com/auth/gmail.send',
       token_type: 'Bearer',
     }), { status: 200, headers: { 'Content-Type': 'application/json' } }));
 
@@ -171,5 +175,29 @@ describe('Google Gmail 서버 클라이언트', () => {
     expect(new URL(url).origin + new URL(url).pathname).toBe('https://oauth2.googleapis.com/revoke');
     expect(init.method).toBe('POST');
     expect(init.signal).toBeInstanceOf(AbortSignal);
+  });
+
+  it('검증된 일반 텍스트 메일을 Gmail send endpoint로만 전송한다', async () => {
+    const fetcher = vi.fn<MailFetcher>(async () => Response.json({ id: 'sent-id', threadId: 'thread-id' }));
+
+    await expect(sendGmailMessage({
+      accessToken: 'access-secret',
+      message: {
+        to: 'recipient@example.com',
+        subject: '발송 확인',
+        text: '일반 텍스트 본문입니다.',
+      },
+      fetcher,
+    })).resolves.toEqual({ id: 'sent-id', threadId: 'thread-id' });
+
+    const [input, init = {}] = fetcher.mock.calls[0]!;
+    expect(new URL(input).pathname).toBe('/gmail/v1/users/me/messages/send');
+    expect(init.method).toBe('POST');
+    const payload = JSON.parse(String(init.body)) as { raw: string };
+    const mime = Buffer.from(payload.raw, 'base64url').toString('utf8');
+    expect(mime).toContain('To: recipient@example.com');
+    expect(mime).toContain('Subject: =?UTF-8?B?');
+    expect(mime).toContain('Content-Type: text/plain; charset=UTF-8');
+    expect(mime).not.toContain('access-secret');
   });
 });

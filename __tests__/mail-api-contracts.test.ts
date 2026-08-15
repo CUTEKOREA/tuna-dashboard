@@ -9,6 +9,7 @@ const ROUTES = [
   ['mfa/enroll', 'POST'],
   ['mfa/verify', 'POST'],
   ['gmail/messages', 'GET'],
+  ['gmail/send', 'POST'],
   ['gmail/disconnect', 'DELETE'],
 ] as const;
 
@@ -25,7 +26,7 @@ describe('관리자 메일 API route 계약', () => {
   });
 
   it('메일 데이터·OAuth는 AAL2, 상태·MFA bootstrap은 확인된 관리자 인증을 검증한다', () => {
-    for (const route of ['gmail/connect', 'gmail/callback', 'gmail/messages', 'gmail/disconnect']) {
+    for (const route of ['gmail/connect', 'gmail/callback', 'gmail/messages', 'gmail/send', 'gmail/disconnect']) {
       expect(routeSource(route)).toContain('authorizeMailRequest(true)');
     }
     for (const route of ['status', 'mfa/enroll', 'mfa/verify']) {
@@ -34,7 +35,7 @@ describe('관리자 메일 API route 계약', () => {
   });
 
   it('변경 route는 검증된 공개 기준 URL로 Origin을 비교한다', () => {
-    for (const route of ['gmail/connect', 'mfa/enroll', 'mfa/verify', 'gmail/disconnect']) {
+    for (const route of ['gmail/connect', 'gmail/send', 'mfa/enroll', 'mfa/verify', 'gmail/disconnect']) {
       const source = routeSource(route);
       expect(source).toContain('getMailPublicBaseUrl()');
       expect(source).toContain('hasTrustedMailOrigin(request,');
@@ -102,5 +103,20 @@ describe('관리자 메일 API route 계약', () => {
     expect(source).not.toContain('dangerouslySetInnerHTML');
     expect(source).not.toMatch(/body\s*:/);
     expect(source).not.toMatch(/attachment/i);
+  });
+
+  it('메일 발송 route는 AAL2·Origin·본문 크기·일반 텍스트 입력을 검증하고 응답에 본문을 반환하지 않는다', () => {
+    const source = routeSource('gmail/send');
+    expect(source).toContain('authorizeMailRequest(true)');
+    expect(source).toContain('hasTrustedMailOrigin(request,');
+    expect(source).toContain('MAX_SEND_REQUEST_BYTES');
+    expect(source).toContain("request.headers.get('idempotency-key')");
+    expect(source).toContain('parseGmailSendInput');
+    expect(source).toContain('reserveMailSendRequest');
+    expect(source).toContain('recordMailSendOutcome');
+    expect(source).toContain('sendGmailMessage');
+    expect(source).not.toContain('console.');
+    expect(source).not.toContain('dangerouslySetInnerHTML');
+    expect(source).not.toMatch(/message:\s*message/);
   });
 });

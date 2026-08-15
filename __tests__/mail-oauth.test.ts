@@ -1,9 +1,12 @@
 import { describe, expect, it } from 'vitest';
 import {
   GMAIL_READONLY_SCOPE,
+  GMAIL_REQUIRED_SCOPES,
+  GMAIL_SEND_SCOPE,
   createGmailOAuthFlow,
   consumeGmailOAuthFlow,
   getGmailRedirectUri,
+  hasRequiredGmailScopes,
 } from '../lib/mail/google-oauth';
 
 const KEY = Buffer.alloc(32, 9).toString('base64');
@@ -20,12 +23,13 @@ function createFlow() {
 }
 
 describe('Gmail OAuth state와 PKCE', () => {
-  it('읽기 전용 단일 scope, offline access, consent, S256 PKCE를 고정한다', () => {
+  it('읽기·발송 최소 scope, offline access, consent, S256 PKCE를 고정한다', () => {
     const flow = createFlow();
     const url = new URL(flow.authorizationUrl);
 
     expect(url.origin + url.pathname).toBe('https://accounts.google.com/o/oauth2/v2/auth');
-    expect(url.searchParams.get('scope')).toBe(GMAIL_READONLY_SCOPE);
+    expect(url.searchParams.get('scope')).toBe(GMAIL_REQUIRED_SCOPES.join(' '));
+    expect(GMAIL_REQUIRED_SCOPES).toEqual([GMAIL_READONLY_SCOPE, GMAIL_SEND_SCOPE]);
     expect(url.searchParams.get('access_type')).toBe('offline');
     expect(url.searchParams.get('prompt')).toBe('consent');
     expect(url.searchParams.get('code_challenge_method')).toBe('S256');
@@ -33,6 +37,13 @@ describe('Gmail OAuth state와 PKCE', () => {
     expect(url.searchParams.get('redirect_uri')).toBe('https://leedonggun.co.kr/api/mail/gmail/callback');
     expect(flow.cookieValue).not.toContain(flow.state);
     expect(flow.authorizationUrl).not.toContain('client-secret');
+  });
+
+  it('읽기·발송 scope가 정확히 모두 있을 때만 허용한다', () => {
+    expect(hasRequiredGmailScopes([GMAIL_SEND_SCOPE, GMAIL_READONLY_SCOPE])).toBe(true);
+    expect(hasRequiredGmailScopes([GMAIL_READONLY_SCOPE])).toBe(false);
+    expect(hasRequiredGmailScopes([GMAIL_SEND_SCOPE])).toBe(false);
+    expect(hasRequiredGmailScopes([...GMAIL_REQUIRED_SCOPES, 'openid'])).toBe(false);
   });
 
   it('요청 Host가 아니라 고정 공개 기준 URL로 callback URI를 만든다', () => {
