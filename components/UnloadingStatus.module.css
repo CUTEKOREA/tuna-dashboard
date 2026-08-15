@@ -668,3 +668,16 @@
   .deepDiveCard { padding: 16px; }
   .deepDiveHeader { align-items: flex-start; gap: 12px; }
 }
+
+/* 완료 선박 카드 — 평소 살짝 어둡게, hover 시 밝힘 (fleet 로스터 카드 패턴, 2026-08-15 사용자 지시) */
+.completedGrid .vesselCard {
+  background: rgba(0, 0, 0, 0.14);
+  opacity: 0.82;
+  transition: background 0.25s ease, opacity 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease;
+}
+.completedGrid .vesselCard:hover {
+  background: var(--dsc-surface, #ffffff);
+  opacity: 1;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(16, 24, 40, 0.14);
+}
