@@ -93,10 +93,11 @@ export default function VdsStrategyMatrix() {
     return s.cellSafe;
   };
 
+  // V3 라이트: 흰 배경 가독용 진한 톤 (라이트 --w-red/amber/emerald-500 계열)
   const getBarColor = (remaining: number) => {
-    if (remaining < 0) return '#ef4444';
-    if (remaining < 2) return '#fbbf24';
-    return '#34d399';
+    if (remaining < 0) return '#e3595e';
+    if (remaining < 2) return '#d97706';
+    return '#689735';
   };
 
   // Generate chart data based on activeZone
@@ -231,7 +232,7 @@ export default function VdsStrategyMatrix() {
         <div style={{ height: 300, width: '100%', marginTop: 24 }}>
           <SafeResponsiveContainer width="100%" height="100%">
             <LineChart data={chartData} margin={{ top: 5, right: 30, left: -10, bottom: 5 }}>
-              <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" vertical={false} />
+              <CartesianGrid strokeDasharray="3 3" stroke="var(--chart-grid)" vertical={false} />
               <XAxis dataKey="year" stroke="var(--w-slate-400)" tick={{ fill: 'var(--w-slate-400)', fontSize: 12 }} axisLine={false} tickLine={false} />
               <YAxis stroke="var(--w-slate-400)" tick={{ fill: 'var(--w-slate-400)', fontSize: 12 }} axisLine={false} tickLine={false} />
               <Tooltip 
@@ -247,7 +248,7 @@ export default function VdsStrategyMatrix() {
                   stroke={companyColors[c]} 
                   strokeWidth={3}
                   activeDot={{ r: 6 }} 
-                  dot={{ r: 4, fill: '#0a0f1f', strokeWidth: 2 }}
+                  dot={{ r: 4, fill: 'var(--dsc-surface)', strokeWidth: 2 }}
                 />
               ))}
             </LineChart>

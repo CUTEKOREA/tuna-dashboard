@@ -50,6 +50,20 @@ describe('bangkok native dashboard', () => {
       for (const r of rows) expect(r.months).toBeGreaterThan(0);
     }
 
+    // 2026-08-15: 과제 D 추가 — 스톡 지표(재고·가공일수)는 합산이 아니라 «기간 평균».
+    // null 주는 평균에서 빠지고(0 채움 금지), 관측 주가 없는 기간은 행이 없어야 한다.
+    for (const pickKey of ['bkkStockMt', 'bkkDays'] as const) {
+      const observedWeeks = intake.bangkokWeeks.filter((w) => w[pickKey] !== null).length;
+      const rawSum = intake.bangkokWeeks.reduce((acc, w) => acc + (w[pickKey] ?? 0), 0);
+      for (const g of ['monthly', 'quarterly', 'yearly'] as const) {
+        const rows = intake.aggregateWeeklyAvg((w) => w[pickKey], g);
+        for (const r of rows) expect(r.weeks).toBeGreaterThan(0);
+        expect(rows.reduce((acc, r) => acc + r.weeks, 0)).toBe(observedWeeks);
+        // 평균×관측주수를 되합치면 원본 관측치 합과 일치해야 한다 (평균 산식 검증)
+        expect(rows.reduce((acc, r) => acc + r.value * r.weeks, 0)).toBeCloseTo(rawSum, 6);
+      }
+    }
+
     // 캐너리 주간 시계열 — 날짜 형식과 비어 있지 않음만 확인 (구조 검증은 sync 스크립트 몫)
     expect(intake.bangkokCanneryPanel.length).toBeGreaterThan(0);
     for (const p of intake.bangkokCanneryPanel.slice(0, 3)) {
@@ -71,10 +85,15 @@ describe('bangkok native dashboard', () => {
     const cannery = renderToStaticMarkup(React.createElement(CanneryTab));
     expect(cannery).toContain('캐너리별 가동률 추이');
     expect(cannery).toContain('캐너리별 원어재고 추이');
+    // 2026-08-15: 과제 D — 재고·가공가능일수 입도 pill
+    expect(cannery).toContain('방콕 재고 집계 입도');
+    expect(cannery).toContain('가공가능일수 집계 입도');
 
     const leading = renderToStaticMarkup(React.createElement(LeadingTab));
     expect(leading).toContain('이 표를 읽는 법');
     expect(leading).toContain('상관계수');
+    // 2026-08-15: 과제 D — 하역 계절성 월별/분기별 pill
+    expect(leading).toContain('하역 계절성 집계 입도');
   });
 
   it('네이티브 히어로 + 탭을 렌더하고 iframe은 남기지 않는다', async () => {

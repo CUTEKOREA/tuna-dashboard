@@ -72,10 +72,11 @@ export default function CanneryStatusCharts() {
         </div>
       )}
 
-      <div style={{ display: 'flex', gap: '24px', width: '100%', flexDirection: 'row', flexWrap: 'wrap' }}>
+      {/* 좌우 2열 배치 — 좁은 화면(컨테이너 < 864px)에서는 1열 폴백 */}
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(420px, 100%), 1fr))', gap: '24px', width: '100%' }}>
       {/* Left Chart: Daily Production */}
       <div style={{
-        flex: '1 1 45%',
+        minWidth: 0,
         backgroundColor: 'var(--panel-bg)',
         border: '1px solid var(--panel-border)',
         borderRadius: '8px',
@@ -128,7 +129,7 @@ export default function CanneryStatusCharts() {
 
       {/* Right Chart: Raw Material Storage */}
       <div style={{
-        flex: '1 1 45%',
+        minWidth: 0,
         backgroundColor: 'var(--panel-bg)',
         border: '1px solid var(--panel-border)',
         borderRadius: '8px',

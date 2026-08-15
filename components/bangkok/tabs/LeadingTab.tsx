@@ -1,7 +1,8 @@
 'use client';
 
+import { useState } from 'react';
 import Chart from '../../cosmo/Chart';
-import { Grid, Panel, Sec, Table } from '../../panofi/PanofiUi';
+import { Grid, Panel, Pills, Sec, Table } from '../../panofi/PanofiUi';
 import {
   bangkokCorr,
   bangkokSeasonality,
@@ -31,7 +32,48 @@ const lowMonth = bangkokSeasonality.reduce((a, b) => (b.unloadMt < a.unloadMt ? 
 
 const mt = (v: number) => Math.round(v).toLocaleString('ko-KR');
 
+/* 하역 계절성 입도 전환 — 분기 값은 물량 재합산이 아니라 «월평균값들의 분기 평균»
+   (계절성 비교 기준을 월간과 동일하게 유지하기 위함) */
+const seasonMonthlyRows = bangkokSeasonality.map((m) => ({
+  label: `${m.month}월`,
+  하역량: Math.round(m.unloadMt),
+}));
+
+const seasonQuarterlyRows = [1, 2, 3, 4].flatMap((q) => {
+  const ms = bangkokSeasonality.filter((m) => Math.ceil(m.month / 3) === q);
+  return ms.length
+    ? [{ label: `${q}분기`, 하역량: Math.round(ms.reduce((s, m) => s + m.unloadMt, 0) / ms.length) }]
+    : [];
+});
+
+const SEASON_GRAN_OPTIONS = [
+  { key: 'monthly', label: '월별' },
+  { key: 'quarterly', label: '분기별' },
+] as const;
+type SeasonGran = (typeof SEASON_GRAN_OPTIONS)[number]['key'];
+
+const SEASON_VIEWS: Record<
+  SeasonGran,
+  { rows: { label: string; 하역량: number }[]; title: string; unit: string; note: string }
+> = {
+  monthly: {
+    rows: seasonMonthlyRows,
+    title: '월별 평균 하역 물량',
+    unit: 'MT · 전 기간 월평균',
+    note: `성수기는 ${peakMonth.month}월 (${mt(peakMonth.unloadMt)} MT), 비수기는 ${lowMonth.month}월 (${mt(lowMonth.unloadMt)} MT)이다.`,
+  },
+  quarterly: {
+    rows: seasonQuarterlyRows,
+    title: '분기별 평균 하역 물량',
+    unit: 'MT · 월평균값의 분기 평균',
+    note: '분기 값 = 해당 분기 3개월 월평균값의 단순 평균 (물량 재합산·가중 아님 — 월간과 같은 계절성 비교 기준 유지).',
+  },
+};
+
 export function LeadingTab() {
+  const [seasonGran, setSeasonGran] = useState<SeasonGran>('monthly');
+  const seasonView = SEASON_VIEWS[seasonGran];
+
   return (
     <>
       <Sec>시세 선행 상관</Sec>
@@ -97,14 +139,20 @@ export function LeadingTab() {
       <Grid>
         <Panel
           span={12}
-          title="월별 평균 하역 물량"
-          unit="MT · 전 기간 월평균"
-          note={`성수기는 ${peakMonth.month}월 (${mt(peakMonth.unloadMt)} MT), 비수기는 ${lowMonth.month}월 (${mt(lowMonth.unloadMt)} MT)이다.`}
+          title={seasonView.title}
+          unit={seasonView.unit}
+          note={seasonView.note}
           src={SRC}
         >
+          <Pills
+            options={SEASON_GRAN_OPTIONS}
+            value={seasonGran}
+            onChange={setSeasonGran}
+            label="하역 계절성 집계 입도"
+          />
           <Chart
-            data={bangkokSeasonality.map((m) => ({ 월: `${m.month}월`, 하역량: Math.round(m.unloadMt) }))}
-            x="월"
+            data={seasonView.rows}
+            x="label"
             height={250}
             xInterval={0}
             series={[{ key: '하역량', name: '하역량 (MT)', color: 'var(--cosmo-s1)', type: 'bar' }]}

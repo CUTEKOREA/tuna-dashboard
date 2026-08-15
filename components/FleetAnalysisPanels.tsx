@@ -104,7 +104,8 @@ export function FleetChartSection() {
 }
 
 export function FleetDetailPanel() {
-  const [isOpen, setIsOpen] = useState(false);
+  // 2026-08-15 사용자 지시: 상세 표는 기본 펼침
+  const [isOpen, setIsOpen] = useState(true);
   const data = CumulativeTableData;
 
   return (

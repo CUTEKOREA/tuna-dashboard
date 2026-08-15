@@ -7,7 +7,7 @@ import {
 import CanneryStatusCharts from './CanneryStatusCharts';
 import SongkhlaCanneryStatusCharts from './SongkhlaCanneryStatusCharts';
 import ReeferMovement from './ReeferMovement';
-import TraderStatus from './TraderStatus';
+import TraderStatus, { traderFullPeriod } from './TraderStatus';
 import CarrierUnloadingStatus from './CarrierUnloadingStatus';
 import WidgetCard from './WidgetCard';
 import LogisticsOperationsPanel from './LogisticsOperationsPanel';
@@ -16,6 +16,7 @@ import PillTabs from './v2/PillTabs';
 import styles from './LogisticsCommandCenter.module.css';
 import { logisticsWeeklyReport } from '@/lib/logistics-weekly-report';
 import { getMiscData } from '@/lib/data/misc';
+import { bangkokMeta } from '@/lib/data/bangkok-weekly';
 
 type LogisticsTab = 'operations' | 'receipts' | 'canneries' | 'vessels';
 
@@ -35,6 +36,13 @@ const week31DeliveryTotal = (row: (typeof reeferWeek31)[number]) => Object.entri
   .reduce((total, [, amount]) => total + Number(String(amount).replace(/,/g, '')), 0);
 
 const week31Total = reeferWeek31.reduce((total, row) => total + week31DeliveryTotal(row), 0);
+
+/* 트레이더 SIT/TAK 숫자는 위젯과 같은 집계에서 뽑는다 — 문장과 차트가 어긋나지 않게 */
+const traderShare = (mt: number) => ((mt / traderFullPeriod.grandMt) * 100).toFixed(1);
+const traderOf = (key: string) => traderFullPeriod.totals.find((t) => t.key === key)?.total ?? 0;
+const traderTop = [...traderFullPeriod.totals].sort((a, b) => b.total - a.total)[0];
+const traderDirect = traderOf('DIRECT');
+const traderItochu = traderOf('ITOCHU');
 const bangkokMarkerPositions = [
   { x: 178, y: 304 },
   { x: 204, y: 292 },
@@ -178,13 +186,13 @@ export default function LogisticsDashboard({ heroOnly = false }: { heroOnly?: bo
           icon={TrendingUp}
           iconColor="var(--color-info)"
           pillar="S4"
-          cardDesc="트레이더 단위 반입 물량·점유율 — 주간 보고 (2026년 1~8월, 2026-08-05 기준)"
-          telemetry={{ status: 'STATIC', syncDate: '2026-08-05', label: '정적' }}
+          cardDesc={`트레이더 단위 반입 물량·점유율 — 방콕사무소 주간보고 종합분석 (${traderFullPeriod.range}, ${traderFullPeriod.months}개월)`}
+          telemetry={{ status: 'STATIC', syncDate: bangkokMeta.last, label: '정적' }}
           customBody={<TraderStatus />}
           takeaway={{
-            situation: '2026년 1~8월 트레이더별 누적 반입 물량은 월별 검산 기준 317,175MT이며, 8월 반입은 FCF 3,951MT와 ITOCHU 4,940MT입니다.',
-            actionPlan: '8월 반입이 두 트레이더에 집중된 만큼 다음 주 보고에서 TRI MARINE·직거래 반입 재개 여부를 확인합니다.',
-            source: '방콕 사무소 주간보고 (2026-08-05, 월별 합계 검산)',
+            situation: `${traderFullPeriod.range} ${traderFullPeriod.months}개월 트레이더별 반입 누계는 ${traderFullPeriod.grandMt.toLocaleString()}MT이며, 최대 공급원은 ${traderTop.name} ${traderTop.total.toLocaleString()}MT(${traderShare(traderTop.total)}%)입니다. 2026년 누계는 ${traderFullPeriod.total2026.toLocaleString()}MT로 기존 2026-08-05 보고 기준값보다 ${Math.abs(traderFullPeriod.diff2026).toLocaleString()}MT 많습니다.`,
+            actionPlan: `직거래가 ${traderDirect.toLocaleString()}MT(${traderShare(traderDirect)}%)로 이토추(${traderShare(traderItochu)}%)를 이미 앞선 만큼, 다음 분기 물량 배분에서 직거래 비중을 우선 검토해 트레이더 마진 구간을 재협상합니다.`,
+            source: `방콕사무소 주간보고 종합분석 (${bangkokMeta.reports}건, 최신 ${bangkokMeta.last})`,
           }}
         />
       </section>

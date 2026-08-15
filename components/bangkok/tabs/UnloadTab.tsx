@@ -11,6 +11,7 @@ import {
   bangkokMismatch,
   bangkokTraderAnnual,
   bangkokTraderMonthly,
+  bangkokPeriodLabel as periodLabel,
   bangkokWeeklyKpi,
   bangkokWeeks,
   type BangkokGranularity,
@@ -23,10 +24,6 @@ const gap = (v: number) => `${v > 0 ? '+' : ''}${v.toLocaleString('ko-KR')}`;
 const pctFmt = (v: number) => `${v.toFixed(1)}%`;
 
 const SRC = `방콕사무소 주간보고 종합분석 (${bangkokWeeklyKpi.period}, ${bangkokWeeklyKpi.weeks}주)`;
-
-/** 기간 키 → X축 라벨: "2020-08"→"20-08", "2020-Q3"→"20.3분기", "2020"→"2020" */
-const periodLabel = (p: string) =>
-  p.includes('Q') ? `${p.slice(2, 4)}.${p.slice(6)}분기` : p.length === 7 ? p.slice(2) : p;
 
 /* ── 파생 데이터 (모듈 스코프 1회 계산) ───────────────────────────────── */
 

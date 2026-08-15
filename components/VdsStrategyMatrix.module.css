@@ -26,7 +26,7 @@
 }
 
 .titleIcon {
-  color: #38bdf8;
+  color: #509ee3;
 }
 
 .subtitle {
@@ -35,20 +35,22 @@
   letter-spacing: 0.05em;
 }
 
-/* ─── Year Tabs ─── */
+/* ─── Year Tabs ───
+ * V3 라이트 (2026-08-15): 다크 네이비 트랙 → 라이트 트랙, 비활성 잉크 #5a6072,
+ * 활성은 브랜드 블루 필(#509ee3)+흰 글자 */
 .yearTabs {
   display: flex;
   gap: 8px;
-  background: rgba(20, 28, 52, 0.4);
+  background: var(--dsc-bg-deep);
   padding: 4px;
   border-radius: 8px;
-  border: 1px solid var(--panel-border);
+  border: 1px solid var(--dsc-surface-border);
 }
 
 .yearTab {
   background: transparent;
   border: none;
-  color: var(--text-muted);
+  color: #5a6072;
   font-size: 0.85rem;
   font-weight: var(--weight-semi);
   padding: 6px 16px;
@@ -62,15 +64,15 @@
 }
 
 .activeYear {
-  background: var(--accent-primary);
+  background: #509ee3;
   color: #fff;
-  box-shadow: 0 2px 8px rgba(16, 185, 129, 0.3);
+  box-shadow: 0 2px 8px rgba(80, 158, 227, 0.3);
 }
 
 /* ─── Select Dropdown ─── */
 .zoneSelect {
-  background: rgba(20, 28, 52, 0.8);
-  border: 1px solid var(--panel-border);
+  background: var(--dsc-surface);
+  border: 1px solid var(--dsc-surface-border);
   color: var(--text-primary);
   padding: 4px 12px;
   border-radius: 6px;
@@ -241,10 +243,11 @@
   transition: width 1s ease-out;
 }
 
-/* ─── Intelligence Feed ─── */
+/* ─── Intelligence Feed ───
+ * V3 라이트 (2026-08-15): 다크 터미널 → 라이트 카드(흰 배경+헤어라인), 날짜는 진한 녹색 */
 .feedContainer {
-  background: #0a0f1f;
-  border: 1px solid #1a2442;
+  background: var(--dsc-surface);
+  border: 1px solid var(--dsc-surface-border);
   border-radius: var(--radius-md);
   padding: var(--space-4);
   display: flex;
@@ -259,23 +262,23 @@
   content: '';
   position: absolute;
   top: 0; left: 0; right: 0; height: 30px;
-  background: linear-gradient(to bottom, #0a0f1f, transparent);
+  background: linear-gradient(to bottom, var(--dsc-surface), transparent);
   z-index: 2;
 }
 .feedContainer::after {
   content: '';
   position: absolute;
   bottom: 0; left: 0; right: 0; height: 30px;
-  background: linear-gradient(to top, #0a0f1f, transparent);
+  background: linear-gradient(to top, var(--dsc-surface), transparent);
   z-index: 2;
 }
 
 .feedItem {
   display: flex;
   gap: 12px;
-  font-family: 'JetBrains Mono', monospace, sans-serif;
+  font-family: var(--dsc-font-mono), monospace;
   padding-bottom: 12px;
-  border-bottom: 1px dashed rgba(255,255,255,0.1);
+  border-bottom: 1px dashed var(--dsc-surface-border);
 }
 
 .feedItem:last-child {
@@ -285,7 +288,7 @@
 
 .feedDate {
   font-size: 0.65rem;
-  color: #10b981;
+  color: #4f7526;
   font-weight: var(--weight-semi);
   white-space: nowrap;
   margin-top: 2px;

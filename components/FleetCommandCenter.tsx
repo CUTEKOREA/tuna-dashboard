@@ -1,11 +1,11 @@
 'use client';
 
 import React, { useState } from 'react';
+import dynamic from 'next/dynamic';
 import { AlertTriangle, CalendarClock, Ship, TrendingUp } from 'lucide-react';
 import FleetHeroKPI from './FleetHeroKPI';
 import FleetRosterGrid from './FleetRosterGrid';
 import { FleetChartSection, FleetDetailPanel } from './FleetAnalysisPanels';
-import FleetPixelMap from './FleetPixelMap';
 import VdsStrategyMatrix from './VdsStrategyMatrix';
 import PnaAccessFeeWidgets from './PnaAccessFeeWidgets';
 import VesselVdsStatus from './VesselVdsStatus';
@@ -13,6 +13,13 @@ import { carrierLoads, nationalVds, purseSeineCatch } from '@/lib/fleet-operatio
 import HeroZone from './v2/HeroZone';
 import PillTabs from './v2/PillTabs';
 import s from './FleetCommandCenter.module.css';
+
+// 2026-08-15 사용자 지시(«실제 지도 사용»): 픽셀 아트 지도 → leaflet 실지도.
+// leaflet은 window에 의존해 SSR이 불가하므로 클라이언트에서만 마운트한다.
+const FleetRealMap = dynamic(() => import('./FleetRealMap'), {
+  ssr: false,
+  loading: () => <p style={{ padding: '24px 4px', color: 'var(--text-muted)' }}>지도를 불러오는 중입니다.</p>,
+});
 
 type FleetTaskTab = 'operations' | 'vessels' | 'performance' | 'access';
 
@@ -89,7 +96,7 @@ export default function FleetCommandCenter({ heroOnly = false }: { heroOnly?: bo
 
       <section id="fleet-panel-vessels" role="tabpanel" aria-labelledby="fleet-tab-vessels" className={s.tabPanel} hidden={activeTab !== 'vessels'}>
           <div className={s.sectionHeading}><div><span className={s.eyebrow}>선박·수역</span><h3>예외 선박과 수역별 배치</h3></div><span>지도는 보고 좌표의 개략 위치입니다</span></div>
-          <FleetPixelMap />
+          <FleetRealMap />
           <FleetRosterGrid />
       </section>
 
