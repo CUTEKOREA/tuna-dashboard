@@ -1,5 +1,6 @@
 import { hasTrustedMailOrigin } from '@/lib/mail/csrf';
 import { mailError, mailJson } from '@/lib/mail/http';
+import { getMfaDiagnosticCode } from '@/lib/mail/mfa-diagnostics';
 import { authorizeMailRequest, createMailUserClient } from '@/lib/mail/request-auth';
 import { getMailPublicBaseUrl } from '@/lib/mail/server-env';
 import { isSafeTotpQrDataUrl } from '@/lib/mail/totp-qr';
@@ -19,7 +20,9 @@ export async function POST(request: Request) {
     }
     const client = await createMailUserClient();
     const factors = await client.auth.mfa.listFactors();
-    if (factors.error) throw factors.error;
+    if (factors.error) {
+      return mailError(400, getMfaDiagnosticCode('mfa_factor_list_failed', factors.error));
+    }
     const totpFactors = factors.data.all.filter((factor) => factor.factor_type === 'totp');
     const managedFactorName = '참치왕국 관리자 메일';
     if (totpFactors.some((factor) => factor.status === 'verified')) {
@@ -27,25 +30,29 @@ export async function POST(request: Request) {
     }
     for (const factor of totpFactors.filter((item) => item.status === 'unverified')) {
       const result = await client.auth.mfa.unenroll({ factorId: factor.id });
-      if (result.error) throw result.error;
+      if (result.error) {
+        return mailError(400, getMfaDiagnosticCode('mfa_factor_cleanup_failed', result.error));
+      }
     }
     const { data, error } = await client.auth.mfa.enroll({
       factorType: 'totp',
       friendlyName: managedFactorName,
     });
-    if (
-      error
-      || !isSafeTotpQrDataUrl(data.totp.qr_code)
-      || !data.totp.uri.startsWith('otpauth://totp/')
-    ) {
-      throw error ?? new Error('2단계 인증 응답이 올바르지 않습니다');
+    if (error) {
+      return mailError(400, getMfaDiagnosticCode('mfa_enroll_failed', error));
+    }
+    if (!isSafeTotpQrDataUrl(data.totp.qr_code)) {
+      return mailError(400, 'mfa_qr_rejected');
+    }
+    if (!data.totp.uri.startsWith('otpauth://totp/')) {
+      return mailError(400, 'mfa_uri_rejected');
     }
     return mailJson({
       ok: true,
       factorId: data.id,
       qrCode: data.totp.qr_code,
     }, { headers: RESPONSE_HEADERS });
-  } catch {
-    return mailError(400, 'mfa_enrollment_failed');
+  } catch (error) {
+    return mailError(400, getMfaDiagnosticCode('mfa_enrollment_unexpected', error));
   }
 }

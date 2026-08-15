@@ -54,6 +54,22 @@ describe('관리자 메일 API route 계약', () => {
     expect(source).not.toContain("item.status === 'unverified' && item.friendly_name");
   });
 
+  it('MFA 등록 실패는 원문 오류 대신 안전한 단계·공식 코드만 반환한다', () => {
+    const source = routeSource('mfa/enroll');
+    for (const code of [
+      'mfa_factor_list_failed',
+      'mfa_factor_cleanup_failed',
+      'mfa_enroll_failed',
+      'mfa_qr_rejected',
+      'mfa_uri_rejected',
+    ]) {
+      expect(source).toContain(code);
+    }
+    expect(source).not.toContain('error.message');
+    expect(readFileSync(join(process.cwd(), 'components/MailInboxDashboard.tsx'), 'utf8'))
+      .toContain('진단 코드:');
+  });
+
   it('OAuth cookie는 HttpOnly·SameSite=Lax·10분·callback 전용이고 callback에서 삭제한다', () => {
     const connect = routeSource('gmail/connect');
     const callback = routeSource('gmail/callback');
