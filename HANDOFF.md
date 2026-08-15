@@ -10,13 +10,14 @@
 > - PR #443은 GitHub/Vercel Preview checks를 통과해 merge SHA `9b961dcbb8d20df1d8c9169fc561de95d7ac6bcf`로 병합됐다. Vercel Production deployment `9Vcv6o4hWgtdVjZt39ZyDffNHpL3`는 Ready이며 `leedonggun.co.kr`에 반영됐다. 비인증 `/mail/login`은 200 private/no-store, status와 SMTP POST는 401 no-store로 실측했다.
 > - **다음 단계**: 브라우저에 관리자 Supabase 세션이 없어 실계정 UI QA는 fail-closed 상태다. 사용자가 직접 `/mail/login` 로그인·TOTP를 완료한 뒤 `ledog@sla.co.kr` 본인 주소에 일반 텍스트 1건을 보내고 중복 0건·audit `sent` 1행을 확인해야 완료다.
 >
-> 🚢 **2026-08-15 23:21 KST — 선박 벤치마크 최근 실제 하역순 정렬** [Codex]:
+> 🚢 **2026-08-16 06:32 KST — 선박 벤치마크 최근 실제 하역순 정렬·운영 배포 완료** [Codex]:
 > - `/unloading`의 `선박 벤치마크 비교`가 데이터 객체 등록 순서를 그대로 표시하던 문제를 고쳤다. 각 선박의 `dailyAmount > 0`인 마지막 실제 하역일을 연·월·일 숫자 키로 계산해 내림차순 정렬하며, 선적 계획만 있고 하역 실적이 없는 대기선은 마지막에 둔다.
 > - 축약 날짜(`M/D`), 날짜 범위(`M/D~D`·`M/D~M/D`), 연도 경계 항차를 처리하고, 상세 작업 기록이 없는 과거 실적만 `dateRange` 종료일을 보조 기준으로 사용한다. 동일 날짜는 기존 데이터 순서를 유지한다.
 > - RED→GREEN 렌더 회귀 테스트를 추가했다. 관련 4파일·23테스트와 타입·대상 ESLint가 통과했고, 전체 `npm run verify`는 ESLint 0 errors·기존 5 warnings, Vitest 80파일·442테스트, API cache 154/154, build 117 pages, bundle 32 routes PASS다.
-> - 프로덕션 로컬 빌드의 데스크톱 1440px·모바일 390px에서 13행이 `SEIN VENUS(8/15) → SHIN FUJI(7/6) → BAO LUCKY(6/23) → … → HIKARI 1(실적 없음)` 순서이며 페이지 overflow 0, page/local HTTP 오류 0임을 확인했다. 배포·push는 하지 않았다.
+> - PR **#441**을 squash merge 커밋 `d5f953b3a179e7930affc019b585cb7936beda60`으로 병합했고 Vercel Production deployment **5921488198**이 성공했다. `https://leedonggun.co.kr/unloading`은 HTTP 200이며 새 빌드를 제공한다.
+> - 운영 데스크톱 1440px·모바일 390px에서 13행이 `SEIN VENUS(8/15) → SHIN FUJI(7/6) → BAO LUCKY(6/23) → … → HIKARI 1(실적 없음)` 순서이고 페이지 overflow 0, page/local HTTP 오류 0임을 확인했다. 외부 Google 광고 403만 분리 관찰됐고 Vercel error 로그는 0건이다.
 > - 독립 반증에서 `M/D~D` 종료일 누락을 찾아 RED→GREEN으로 닫았고, 재검토는 blocking 0건 PASS다.
-> - **다음 단계**: 사용자 확인 후 필요할 때만 별도 배포한다.
+> - **다음 단계**: 신규 하역 항차 추가 시 같은 실제 작업일 정렬 회귀 테스트를 유지한다.
 >
 > 🔒 **2026-08-15 21:47 KST — Gmail 동일 메일·다른 UUID 병렬 예약 Production hotfix** [Codex]:
 > - PR #437 배포 후 도착한 사전 diff 반증에서, 동일 사용자·동일 Gmail message hash의 기존 요청이 `pending`/`unknown`이어도 다른 UUID가 새 행으로 예약될 수 있는 P1 감사 계약 gap을 확인했다. 기존 UUID↔message hash 결속과 별개로, 함수가 새 UUID insert 전에 동일 message hash의 진행 중 행을 검사하지 않은 것이 원인이다.
