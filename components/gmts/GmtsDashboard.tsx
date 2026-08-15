@@ -263,19 +263,21 @@ function SummaryPanel() {
         <div className={styles.summaryMetricGrid}>
           <SummaryMetric
             label="하역 중 선언"
-            value={`자료 ${GMTS_VIEW.hero.activeVessels.value}`}
+            value={GMTS_VIEW.hero.activeVessels.value}
             note={`관찰 행 ${GMTS_DATA.latest.port.active.recordCount}건`}
-            warning
+            warning={GMTS_VIEW.hero.activeVessels.tone === 'warning'}
           />
           <SummaryMetric
             label="하역 완료 선언"
-            value={`${GMTS_VIEW.hero.completedVessels.value}${GMTS_VIEW.hero.completedVessels.unit}`}
+            value={GMTS_VIEW.hero.completedVessels.value}
             note={`관찰 행 ${GMTS_DATA.latest.port.completed.recordCount}건`}
+            warning={GMTS_VIEW.hero.completedVessels.tone === 'warning'}
           />
           <SummaryMetric
             label="입항 예정 선언"
-            value={`${GMTS_VIEW.hero.incomingVessels.value}${GMTS_VIEW.hero.incomingVessels.unit}`}
+            value={GMTS_VIEW.hero.incomingVessels.value}
             note={`관찰 행 ${GMTS_DATA.latest.port.incoming.recordCount}건`}
+            warning={GMTS_VIEW.hero.incomingVessels.tone === 'warning'}
           />
           <SummaryMetric
             label="생산 가동률"

@@ -1,3 +1,17 @@
+> ✅ **2026-08-16 08:39 KST — GMTS 주간보고 대시보드·메뉴 로컬 구현 완료** [Codex]:
+> - **완료된 것:** 기존 운영 섹션에 `/gmts`를 추가했고, 사이드바 순서를 사용자 지정대로 `방콕사무소 → GMTS 주간보고 → 메일`로 고정했다. 전용 route·rewrite·API·fetch 없이 기존 `/[category]` 동적 라우트를 재사용했고, GMTS에 숫자 단축키를 배정하지 않았으며 공개 sitemap에서 제외했다.
+> - **접근 경계:** 기존 `silla-operation-access` 세션 잠금을 그대로 쓴다. 잠금 상태는 `heroOnly` 히어로 티저만 렌더하고 탭·차트·표·위젯·YTD·출처 목록을 DOM에 마운트하지 않는다. 메일의 기존 관리자 가시성 계약은 변경하지 않았다.
+> - **원문·데이터:** Google Drive `신라그룹/GMTS/GMTS Weekly Report`의 PDF 30건·38쪽(2026-01-21~08-12)을 읽기 전용으로 파싱한다. `scripts/build_gmts_dashboard.py`는 특정 날짜·선박 하드코딩 없이 `pdfplumber` 표 행을 읽어 `data/gmts_dashboard.json`을 생성하며, PDF별 파일명·SHA-256·페이지를 manifest로 보존한다. 최신 PDF SHA-256은 `e84ad3bb26ebe05e863467bff3f4507775a8cf4b04adefa8026eb3414e1e5243`이고 생성 JSON과 독립 재파싱 결과가 exact equality다.
+> - **원문 충실성:** 8월 12일 하역 중 선언 건수 공란은 `null/미확정`, 하역 완료 2척, 입항 예정 3척으로 보존했다. 완료 화물 2,387.141 MT·양하 2,184.110 MT·SHORT 203.031 MT, 입항 화물 9,919.494 MT와 SEIN QUEEN Gensan 명시 배정 2,092.414 MT를 분리했다. 생산 895/1,095 MT(82%), 재고 17,550/40,600 MT(43%)·20일, 가격 $1,900/$2,025, 2026년 1~7월 63,736을 원문과 수동 대조했다. 가격 분모·반입량 단위는 원문 미기재로 표시하고 `$/MT`·`MT`를 추정하지 않으며, `Other`는 지표에 포함하지 않았다.
+> - **화면:** HeroZone, PillTabs 5개(`운영 요약·항만·선박·공장·재고·가격·반입·데이터 품질`), STATIC WidgetCard 6개, SIT/TAK, 30건 출처 표를 추가했다. JSON은 `lib/data/gmts.ts`만 import하고 순수 `lib/gmts-presentation.ts`를 거쳐 UI에 전달한다. 추후 선언 건수가 정상·공란으로 바뀌어도 `2척`/`미확정`과 경고 tone이 하드코딩 없이 따르도록 회귀 테스트를 추가했다.
+> - **갱신:** `npm run sync:gmts`는 30건을 재생성했고 Git diff 0으로 멱등성을 확인했다. 신규 주간 PDF를 같은 폴더에 추가한 뒤 이 명령으로 정적 스냅샷을 다시 만든다.
+> - **검증:** 파서 24/24, GMTS+레지스트리 59/59, strict S-Grade exit 0(영문·GS 위반·가짜 LIVE 0), 최종 fresh `npm run verify` exit 0 — ESLint 0 errors·기존 5 warnings, TypeScript, Vitest 88파일·494테스트, API cache 155/155, Next build 117 pages, bundle 32 routes를 통과했다.
+> - **브라우저 QA:** 로컬 Production `/gmts`에서 1440×1000·390×844 전체 5탭을 실제 클릭했다. 잠금 상세 DOM 0, 출처 행 30, 문서 overflow 0, page error 0, 로컬 HTTP error/failure 0이다. 로컬 headless에서만 403을 낸 `googleads.g.doubleclick.net` 요청은 GMTS와 무관한 외부 광고 도메인으로 분리해 204로 격리했다.
+> - **독립 반증:** Task별 리뷰가 배열 계약·캐너리 합계 gate·전 연도 revision·단위 추정·영문 가격 툴팁 문제를 잡아 RED→GREEN으로 닫았다. 최종 전체 리뷰는 원본 30 PDF를 다시 파싱해 코드·데이터·라우팅·잠금·메뉴·모바일에 Critical 0·Important 0으로 판정했고, 향후 선언 건수 표기 Minor도 추가로 수정했다.
+> - **범위:** 작업 브랜치는 `codex/gmts-dashboard-impl-20260815`이며 검토 기준 기능 base `f32d3fc`를 로컬 병합해 후속 방콕·메일·하역 변경을 보존했다. 원래 사용자 worktree는 건드리지 않았고 **push·PR·배포는 하지 않았다.**
+> - **다음 단계:** 사용자가 로컬 화면을 확인한 뒤, 라이브 반영을 원할 때만 명시적 배포 지시를 받아 최신 `main`에 순차 통합한다.
+> - **마지막 업데이트:** 2026-08-16 08:39 KST. 로컬 구현·독립 교차 검증·최종 인계 기록 완료.
+>
 > 📈 **2026-08-16 07:43 KST — `/bangkok-office` 원어 시세 월·분기·연 입도 전환 로컬 추가** [Codex]:
 > - `원어 시세 추이`에 **주간·월별·분기별·연도별**, `시세 범위`에 **월별·분기별·연도별** 전환을 추가했다. 기본값은 기존 화면과 같은 주간 추이·연도별 범위이며, 두 컨트롤은 독립 상태로 동작한다.
 > - 월·분기·연 시세는 기록 있는 정상 주의 평균·최저·최고를 산출한다. 결측 주와 의심 플래그 주는 기존 연도별 계약대로 제외하고, 관측 없는 기간은 0으로 채우지 않는다. 새 연도 집계는 2020~2026 기존 확정 평균·최저·최고와 전부 일치한다.

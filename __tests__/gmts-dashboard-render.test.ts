@@ -100,6 +100,23 @@ describe('GMTS dashboard decision surface', () => {
     expect(source).toContain('{row.gspQualifierLabel}');
   });
 
+  it('binds all declared-vessel summary states without hard-coded warning text or units', () => {
+    const source = readFileSync(
+      new URL('../components/gmts/GmtsDashboard.tsx', import.meta.url),
+      'utf8',
+    );
+
+    expect(source).toContain('value={GMTS_VIEW.hero.activeVessels.value}');
+    expect(source).toContain('value={GMTS_VIEW.hero.completedVessels.value}');
+    expect(source).toContain('value={GMTS_VIEW.hero.incomingVessels.value}');
+    expect(source).toContain("warning={GMTS_VIEW.hero.activeVessels.tone === 'warning'}");
+    expect(source).toContain("warning={GMTS_VIEW.hero.completedVessels.tone === 'warning'}");
+    expect(source).toContain("warning={GMTS_VIEW.hero.incomingVessels.tone === 'warning'}");
+    expect(source).not.toContain('value={`자료 ${GMTS_VIEW.hero.activeVessels.value}`}');
+    expect(source).not.toContain('value={`${GMTS_VIEW.hero.completedVessels.value}${GMTS_VIEW.hero.completedVessels.unit}`}');
+    expect(source).not.toContain('value={`${GMTS_VIEW.hero.incomingVessels.value}${GMTS_VIEW.hero.incomingVessels.unit}`}');
+  });
+
   it('keeps the locked hero teaser free of every detailed surface', () => {
     const html = renderToStaticMarkup(createElement(DashboardComponent, { heroOnly: true }));
 

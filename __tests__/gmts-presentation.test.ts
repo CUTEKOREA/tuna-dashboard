@@ -11,8 +11,21 @@ describe('GMTS presentation model', () => {
     const view = buildGmtsPresentation(getGmtsDashboard());
 
     expect(view.hero.activeVessels).toEqual({ value: '미확정', tone: 'warning' });
-    expect(view.hero.completedVessels).toEqual({ value: '2', unit: '척', tone: 'neutral' });
-    expect(view.hero.incomingVessels).toEqual({ value: '3', unit: '척', tone: 'neutral' });
+    expect(view.hero.completedVessels).toEqual({ value: '2척', tone: 'neutral' });
+    expect(view.hero.incomingVessels).toEqual({ value: '3척', tone: 'neutral' });
+  });
+
+  it('formats changed declared counts without attaching units to unknown values', () => {
+    const data = cloneDashboard();
+    data.latest.port.active.declaredCount = 2;
+    data.latest.port.completed.declaredCount = null;
+    data.latest.port.incoming.declaredCount = null;
+
+    const view = buildGmtsPresentation(data);
+
+    expect(view.hero.activeVessels).toEqual({ value: '2척', tone: 'neutral' });
+    expect(view.hero.completedVessels).toEqual({ value: '미확정', tone: 'warning' });
+    expect(view.hero.incomingVessels).toEqual({ value: '미확정', tone: 'warning' });
   });
 
   it('keeps missing source units visible in every price and volume surface', () => {

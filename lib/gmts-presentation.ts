@@ -41,8 +41,8 @@ export interface GmtsHeroPresentation {
     statusLabel: '정적 스냅샷';
   };
   activeVessels: GmtsCountHeroMetric;
-  completedVessels: GmtsHeroMetric;
-  incomingVessels: GmtsHeroMetric;
+  completedVessels: GmtsCountHeroMetric;
+  incomingVessels: GmtsCountHeroMetric;
   productionUtilization: GmtsHeroMetric;
   storageUtilization: GmtsHeroMetric;
   ytdVolume: GmtsVolumeHeroMetric;
@@ -244,6 +244,12 @@ function sumNullable(values: Array<number | null>): number | null {
 
 function formatInteger(value: number | null): string {
   return value === null ? '미확정' : value.toLocaleString('ko-KR');
+}
+
+function formatCountMetric(value: number | null): GmtsCountHeroMetric {
+  return value === null
+    ? { value: '미확정', tone: 'warning' }
+    : { value: `${value.toLocaleString('ko-KR')}척`, tone: 'neutral' };
 }
 
 function formatDecimal(value: number | null, digits = 3): string {
@@ -494,19 +500,9 @@ export function buildGmtsPresentation(data: GmtsDashboardData): GmtsPresentation
         archiveLabel: `${data.metadata.reportCount}건 정적 스냅샷`,
         statusLabel: '정적 스냅샷',
       },
-      activeVessels: data.latest.port.active.declaredCount === null
-        ? { value: '미확정', tone: 'warning' }
-        : { value: `${data.latest.port.active.declaredCount}척`, tone: 'neutral' },
-      completedVessels: {
-        value: formatInteger(data.latest.port.completed.declaredCount),
-        unit: '척',
-        tone: data.latest.port.completed.declaredCount === null ? 'warning' : 'neutral',
-      },
-      incomingVessels: {
-        value: formatInteger(data.latest.port.incoming.declaredCount),
-        unit: '척',
-        tone: data.latest.port.incoming.declaredCount === null ? 'warning' : 'neutral',
-      },
+      activeVessels: formatCountMetric(data.latest.port.active.declaredCount),
+      completedVessels: formatCountMetric(data.latest.port.completed.declaredCount),
+      incomingVessels: formatCountMetric(data.latest.port.incoming.declaredCount),
       productionUtilization: {
         value: formatInteger(data.latest.canneryTotal.productionUtilizationPct),
         unit: '%',
