@@ -1,0 +1,4192 @@
+{
+ "meta": {
+  "generatedFrom": "/Users/idong-geon/my-project/11_Panofi_Cosmo_GGL /11. PANOFI/Panofi",
+  "weekCount": 31,
+  "rangeStart": "2025-12-23",
+  "rangeEnd": "2026-08-11",
+  "coverage": {
+   "prices.cosmoTema": 28,
+   "prices.scodiAbidjan": 31,
+   "fx.cediPerUsd": 31,
+   "dailyProcessing.COSMO": 30,
+   "receivables.totalUsd": 31,
+   "fuel(형식 온전)": 31,
+   "fleetStatus(관측됨)": 31,
+   "senegalFleet": 31,
+   "fishingGround.coastalMax": 31
+  },
+  "vessels": {
+   "P/QUEEN": "P/QUE",
+   "P/GRACE": "P/GRA",
+   "P/FORE": "P/FORE",
+   "P/DIS": "P/DIS",
+   "P/MAS": "P/MAS",
+   "P/PATH": "P/PATH",
+   "P/COMM": "P/COMM"
+  },
+  "processors": [
+   "COSMO",
+   "PFC",
+   "SCODI",
+   "SCASA",
+   "AIRONE"
+  ]
+ },
+ "weeks": [
+  {
+   "reportDate": "2025-12-23",
+   "isoWeek": 52,
+   "source": "PANOFI 주간동향20251223.docx",
+   "sha256": "6516dc628f4aca180161a091a3fba6934fe1eff78b58c9accc23d06d1784142e",
+   "author": "김평회 법인장",
+   "statedYearMismatch": false,
+   "fleetStatus": "detailed",
+   "ownVessels": [
+    {
+     "vessel": "P/DIS",
+     "code": "P/DIS",
+     "status": null
+    }
+   ],
+   "fishingGround": {
+    "coastalMin": 27.8,
+    "coastalMax": 28.9,
+    "oceanMin": 25.3,
+    "oceanMax": 26.8,
+    "coastalCurrent": "동류",
+    "oceanCurrent": "서류"
+   },
+   "senegalFleet": [
+    {
+     "fleet": null,
+     "vessel": "COSMOS KIM",
+     "arrive": null,
+     "depart": null,
+     "tons": null,
+     "note": null
+    },
+    {
+     "fleet": null,
+     "vessel": "GRANADA",
+     "arrive": null,
+     "depart": null,
+     "tons": null,
+     "note": null
+    }
+   ],
+   "prices": {
+    "pfcTema": 1380.0,
+    "cosmoTema": 1380.0,
+    "scodiAbidjan": 1413.0,
+    "marketTemaCedi": 12500.0,
+    "marketTemaUsd": 1094.0,
+    "marketAbidjanCfa": 600000.0,
+    "marketAbidjanUsd": 1043.0
+   },
+   "fx": {
+    "cediPerUsd": 11.42,
+    "cfaPerUsd": 575.0
+   },
+   "dailyProcessing": {
+    "COSMO": 0.0,
+    "PFC": 0.0,
+    "SCODI": 0.0,
+    "SCASA": 50.0,
+    "AIRONE": 0.0
+   },
+   "receivables": {
+    "buyers": [
+     {
+      "buyer": "INTER OCEAN",
+      "cfa": 1501741769.0,
+      "usd": 2589210.0
+     },
+     {
+      "buyer": "ETS BADARA",
+      "cfa": null,
+      "usd": null
+     },
+     {
+      "buyer": "SDMG",
+      "cfa": null,
+      "usd": null
+     }
+    ],
+    "totalCfa": 4601980613.0,
+    "totalUsd": 8003445.0
+   },
+   "fuel": {
+    "abidjan": null,
+    "tema": null,
+    "dakar": null,
+    "tanker": null,
+    "single": 945.0
+   }
+  },
+  {
+   "reportDate": "2025-12-30",
+   "isoWeek": 1,
+   "source": "PANOFI 주간동향20251230.docx",
+   "sha256": "9f411e4482a1f3ffaf8832371a210434d505063c7d37666475808c9f2fa0dad0",
+   "author": "김평회 법인장",
+   "statedYearMismatch": false,
+   "fleetStatus": "detailed",
+   "ownVessels": [
+    {
+     "vessel": "P/MAS",
+     "code": "P/MAS",
+     "status": null
+    }
+   ],
+   "fishingGround": {
+    "coastalMin": 27.1,
+    "coastalMax": 28.9,
+    "oceanMin": 25.5,
+    "oceanMax": 26.7,
+    "coastalCurrent": "동류",
+    "oceanCurrent": "서류"
+   },
+   "senegalFleet": [
+    {
+     "fleet": "캅센",
+     "vessel": "COSMOS KIM",
+     "arrive": null,
+     "depart": null,
+     "tons": null,
+     "note": null
+    },
+    {
+     "fleet": "그랑블루",
+     "vessel": "PONT SAINT LOUIS",
+     "arrive": null,
+     "depart": null,
+     "tons": null,
+     "note": null
+    },
+    {
+     "fleet": "그랑블루",
+     "vessel": "SEA FRONTIER",
+     "arrive": null,
+     "depart": null,
+     "tons": null,
+     "note": null
+    }
+   ],
+   "prices": {
+    "pfcTema": 1380.0,
+    "cosmoTema": 1380.0,
+    "scodiAbidjan": 1411.0,
+    "marketTemaCedi": 12500.0,
+    "marketTemaUsd": 1173.0,
+    "marketAbidjanCfa": 600000.0,
+    "marketAbidjanUsd": 1043.0
+   },
+   "fx": {
+    "cediPerUsd": 10.65,
+    "cfaPerUsd": 575.0
+   },
+   "dailyProcessing": {
+    "COSMO": 0.0,
+    "PFC": 0.0,
+    "SCODI": 0.0,
+    "SCASA": 50.0,
+    "AIRONE": 0.0
+   },
+   "receivables": {
+    "buyers": [
+     {
+      "buyer": "INTER OCEAN",
+      "cfa": 1501741769.0,
+      "usd": 2611725.0
+     },
+     {
+      "buyer": "ETS BADARA",
+      "cfa": null,
+      "usd": null
+     },
+     {
+      "buyer": "SDMG",
+      "cfa": null,
+      "usd": null
+     }
+    ],
+    "totalCfa": 4160253213.0,
+    "totalUsd": 7235223.0
+   },
+   "fuel": {
+    "abidjan": null,
+    "tema": null,
+    "dakar": null,
+    "tanker": null,
+    "single": 925.0
+   }
+  },
+  {
+   "reportDate": "2026-01-13",
+   "isoWeek": 3,
+   "source": "PANOFI 주간동향20260113.docx",
+   "sha256": "4c0f72c77e0ba21f4fa6b6592ccd06e1c8ddd08c77e18402da62480a03052dfc",
+   "author": "김평회 법인장",
+   "statedYearMismatch": true,
+   "fleetStatus": "detailed",
+   "ownVessels": [
+    {
+     "vessel": "P/QUEEN",
+     "code": "P/QUE",
+     "status": null
+    },
+    {
+     "vessel": "P/GRACE",
+     "code": "P/GRA",
+     "status": null
+    },
+    {
+     "vessel": "P/FORE",
+     "code": "P/FORE",
+     "status": null
+    },
+    {
+     "vessel": "P/MAS",
+     "code": "P/MAS",
+     "status": null
+    },
+    {
+     "vessel": "P/COMM",
+     "code": "P/COMM",
+     "status": null
+    }
+   ],
+   "fishingGround": {
+    "coastalMin": 28.6,
+    "coastalMax": 29.1,
+    "oceanMin": 26.2,
+    "oceanMax": 27.0,
+    "coastalCurrent": "동류",
+    "oceanCurrent": "서류"
+   },
+   "senegalFleet": [
+    {
+     "fleet": "캅센",
+     "vessel": "COSMOS KIM",
+     "arrive": null,
+     "depart": null,
+     "tons": null,
+     "note": null
+    },
+    {
+     "fleet": "캅센",
+     "vessel": "ORIENTAL KIM",
+     "arrive": null,
+     "depart": null,
+     "tons": null,
+     "note": null
+    },
+    {
+     "fleet": "캅센",
+     "vessel": "XIXILI",
+     "arrive": null,
+     "depart": null,
+     "tons": null,
+     "note": null
+    },
+    {
+     "fleet": "그랑블루",
+     "vessel": "PONT SAINT LOUIS",
+     "arrive": null,
+     "depart": null,
+     "tons": null,
+     "note": null
+    },
+    {
+     "fleet": "그랑블루",
+     "vessel": "SEA BREEZE",
+     "arrive": null,
+     "depart": null,
+     "tons": null,
+     "note": null
+    },
+    {
+     "fleet": "그랑블루",
+     "vessel": "PONT SAINT LOUIS",
+     "arrive": null,
+     "depart": null,
+     "tons": null,
+     "note": null
+    }
+   ],
+   "prices": {
+    "pfcTema": 1380.0,
+    "cosmoTema": 1380.0,
+    "scodiAbidjan": 1399.0,
+    "marketTemaCedi": 12500.0,
+    "marketTemaUsd": 1167.0,
+    "marketAbidjanCfa": 600000.0,
+    "marketAbidjanUsd": 1043.0
+   },
+   "fx": {
+    "cediPerUsd": 10.71,
+    "cfaPerUsd": 575.0
+   },
+   "dailyProcessing": {
+    "COSMO": 110.0,
+    "PFC": 100.0,
+    "SCODI": 100.0,
+    "SCASA": 50.0,
+    "AIRONE": 0.0
+   },
+   "receivables": {
+    "buyers": [
+     {
+      "buyer": "INTER OCEAN",
+      "cfa": 1501741769.0,
+      "usd": 2634635.0
+     },
+     {
+      "buyer": "ETS BADARA",
+      "cfa": null,
+      "usd": null
+     },
+     {
+      "buyer": "SDMG",
+      "cfa": null,
+      "usd": null
+     }
+    ],
+    "totalCfa": 3810253213.0,
+    "totalUsd": 6626527.0
+   },
+   "fuel": {
+    "abidjan": null,
+    "tema": null,
+    "dakar": null,
+    "tanker": null,
+    "single": 934.0
+   }
+  },
+  {
+   "reportDate": "2026-01-20",
+   "isoWeek": 4,
+   "source": "PANOFI 주간동향20260120.docx",
+   "sha256": "2fb8d81b3dc1717cbce8bf9dae1397e1c8d09d4fd52000ea2ead16696e744349",
+   "author": "김평회 법인장",
+   "statedYearMismatch": true,
+   "fleetStatus": "detailed",
+   "ownVessels": [
+    {
+     "vessel": "P/COMM",
+     "code": "P/COMM",
+     "status": null
+    }
+   ],
+   "fishingGround": {
+    "coastalMin": 28.6,
+    "coastalMax": 28.8,
+    "oceanMin": 26.1,
+    "oceanMax": 28.9,
+    "coastalCurrent": "동류",
+    "oceanCurrent": "서류"
+   },
+   "senegalFleet": [
+    {
+     "fleet": "캅센",
+     "vessel": "COSMOS KIM",
+     "arrive": null,
+     "depart": null,
+     "tons": null,
+     "note": null
+    },
+    {
+     "fleet": "캅센",
+     "vessel": "GRANADA",
+     "arrive": null,
+     "depart": null,
+     "tons": null,
+     "note": null
+    },
+    {
+     "fleet": "그랑블루",
+     "vessel": "PONT SAINT LOUIS",
+     "arrive": null,
+     "depart": null,
+     "tons": null,
+     "note": null
+    },
+    {
+     "fleet": "그랑블루",
+     "vessel": "SEA DEFENDER",
+     "arrive": null,
+     "depart": null,
+     "tons": null,
+     "note": null
+    }
+   ],
+   "prices": {
+    "pfcTema": 1380.0,
+    "cosmoTema": 1380.0,
+    "scodiAbidjan": 1407.0,
+    "marketTemaCedi": 12500.0,
+    "marketTemaUsd": 1153.0,
+    "marketAbidjanCfa": 600000.0,
+    "marketAbidjanUsd": 1043.0
+   },
+   "fx": {
+    "cediPerUsd": 10.84,
+    "cfaPerUsd": 575.0
+   },
+   "dailyProcessing": {
+    "COSMO": 100.0,
+    "PFC": 90.0,
+    "SCODI": 100.0,
+    "SCASA": 50.0,
+    "AIRONE": 0.0
+   },
+   "receivables": {
+    "buyers": [
+     {
+      "buyer": "INTER OCEAN",
+      "cfa": 1501741769.0,
+      "usd": 2634635.0
+     },
+     {
+      "buyer": "ETS BADARA",
+      "cfa": null,
+      "usd": null
+     },
+     {
+      "buyer": "SDMG",
+      "cfa": null,
+      "usd": null
+     }
+    ],
+    "totalCfa": 3710253213.0,
+    "totalUsd": 6452614.0
+   },
+   "fuel": {
+    "abidjan": null,
+    "tema": null,
+    "dakar": null,
+    "tanker": null,
+    "single": 931.0
+   }
+  },
+  {
+   "reportDate": "2026-02-03",
+   "isoWeek": 6,
+   "source": "PANOFI 주간동향20260203.docx",
+   "sha256": "6408ab02d617305c6320cb8b8d6df6671ea5d978ff1eb5cab1fb1645cb202918",
+   "author": "김평회 법인장",
+   "statedYearMismatch": true,
+   "fleetStatus": "detailed",
+   "ownVessels": [
+    {
+     "vessel": "P/DIS",
+     "code": "P/DIS",
+     "status": null
+    }
+   ],
+   "fishingGround": {
+    "coastalMin": 27.8,
+    "coastalMax": 29.2,
+    "oceanMin": 27.0,
+    "oceanMax": 28.8,
+    "coastalCurrent": "동류",
+    "oceanCurrent": "서류"
+   },
+   "senegalFleet": [
+    {
+     "fleet": "캅센",
+     "vessel": "COSMOS KIM",
+     "arrive": null,
+     "depart": null,
+     "tons": null,
+     "note": null
+    },
+    {
+     "fleet": "캅센",
+     "vessel": "WESTERN KIM",
+     "arrive": null,
+     "depart": null,
+     "tons": null,
+     "note": null
+    },
+    {
+     "fleet": "그랑블루",
+     "vessel": "SEA FRONTIER",
+     "arrive": null,
+     "depart": null,
+     "tons": null,
+     "note": null
+    },
+    {
+     "fleet": "그랑블루",
+     "vessel": "SEA BREEZ",
+     "arrive": null,
+     "depart": null,
+     "tons": null,
+     "note": null
+    }
+   ],
+   "prices": {
+    "pfcTema": 1380.0,
+    "cosmoTema": 1380.0,
+    "scodiAbidjan": 1415.0,
+    "marketTemaCedi": 12500.0,
+    "marketTemaUsd": 1140.0,
+    "marketAbidjanCfa": 600000.0,
+    "marketAbidjanUsd": 1052.0
+   },
+   "fx": {
+    "cediPerUsd": 10.96,
+    "cfaPerUsd": 570.0
+   },
+   "dailyProcessing": {
+    "COSMO": 100.0,
+    "PFC": 120.0,
+    "SCODI": 100.0,
+    "SCASA": 50.0,
+    "AIRONE": 0.0
+   },
+   "receivables": {
+    "buyers": [
+     {
+      "buyer": "INTER OCEAN",
+      "cfa": 953997275.0,
+      "usd": 1603357.0
+     },
+     {
+      "buyer": "ETS BADARA",
+      "cfa": null,
+      "usd": null
+     },
+     {
+      "buyer": "SDMG",
+      "cfa": null,
+      "usd": null
+     }
+    ],
+    "totalCfa": 3961845035.0,
+    "totalUsd": 6880282.0
+   },
+   "fuel": {
+    "abidjan": null,
+    "tema": null,
+    "dakar": null,
+    "tanker": null,
+    "single": 895.0
+   }
+  },
+  {
+   "reportDate": "2026-02-10",
+   "isoWeek": 7,
+   "source": "PANOFI 주간동향20260210.docx",
+   "sha256": "fb1b1905f24d5d121416a9395456f5081644a230192288b0b20d5a012aaa1705",
+   "author": "김평회 법인장",
+   "statedYearMismatch": true,
+   "fleetStatus": "detailed",
+   "ownVessels": [
+    {
+     "vessel": "P/PATH",
+     "code": "P/PATH",
+     "status": null
+    }
+   ],
+   "fishingGround": {
+    "coastalMin": 26.7,
+    "coastalMax": 28.7,
+    "oceanMin": 27.1,
+    "oceanMax": 28.9,
+    "coastalCurrent": "동류",
+    "oceanCurrent": "서류"
+   },
+   "senegalFleet": [
+    {
+     "fleet": "캅센",
+     "vessel": "COSMOS KIM",
+     "arrive": null,
+     "depart": null,
+     "tons": null,
+     "note": null
+    },
+    {
+     "fleet": "캅센",
+     "vessel": "ORIENTAL KIM",
+     "arrive": null,
+     "depart": null,
+     "tons": null,
+     "note": null
+    },
+    {
+     "fleet": "캅센",
+     "vessel": "XIXILI",
+     "arrive": null,
+     "depart": null,
+     "tons": null,
+     "note": null
+    },
+    {
+     "fleet": "그랑블루",
+     "vessel": "SEA BREEZ",
+     "arrive": null,
+     "depart": null,
+     "tons": null,
+     "note": null
+    },
+    {
+     "fleet": "그랑블루",
+     "vessel": "SEA DEFENDER",
+     "arrive": null,
+     "depart": null,
+     "tons": null,
+     "note": null
+    },
+    {
+     "fleet": "그랑블루",
+     "vessel": "PONT SAINT LOUIS",
+     "arrive": null,
+     "depart": null,
+     "tons": null,
+     "note": null
+    }
+   ],
+   "prices": {
+    "pfcTema": 1400.0,
+    "cosmoTema": 1400.0,
+    "scodiAbidjan": 1428.0,
+    "marketTemaCedi": 12500.0,
+    "marketTemaUsd": 1137.0,
+    "marketAbidjanCfa": 600000.0,
+    "marketAbidjanUsd": 1058.0
+   },
+   "fx": {
+    "cediPerUsd": 10.99,
+    "cfaPerUsd": 567.0
+   },
+   "dailyProcessing": {
+    "COSMO": 110.0,
+    "PFC": 120.0,
+    "SCODI": 100.0,
+    "SCASA": 50.0,
+    "AIRONE": 0.0
+   },
+   "receivables": {
+    "buyers": [
+     {
+      "buyer": "INTER OCEAN",
+      "cfa": 953997275.0,
+      "usd": 1603357.0
+     },
+     {
+      "buyer": "ETS BADARA",
+      "cfa": null,
+      "usd": null
+     },
+     {
+      "buyer": "SDMG",
+      "cfa": null,
+      "usd": null
+     }
+    ],
+    "totalCfa": 3649187464.0,
+    "totalUsd": 6435956.0
+   },
+   "fuel": {
+    "abidjan": null,
+    "tema": null,
+    "dakar": null,
+    "tanker": null,
+    "single": 827.0
+   }
+  },
+  {
+   "reportDate": "2026-02-17",
+   "isoWeek": 8,
+   "source": "PANOFI 주간동향20260217.docx",
+   "sha256": "dbc75dabff32828386b433990679563f6f168ac70786033dc63c0458ec487f63",
+   "author": "김평회 법인장",
+   "statedYearMismatch": true,
+   "fleetStatus": "detailed",
+   "ownVessels": [
+    {
+     "vessel": "P/MAS",
+     "code": "P/MAS",
+     "status": null
+    }
+   ],
+   "fishingGround": {
+    "coastalMin": 28.5,
+    "coastalMax": 29.3,
+    "oceanMin": 27.3,
+    "oceanMax": 28.1,
+    "coastalCurrent": "동류",
+    "oceanCurrent": "서류"
+   },
+   "senegalFleet": [
+    {
+     "fleet": "캅센",
+     "vessel": "COSMOS KIM",
+     "arrive": null,
+     "depart": null,
+     "tons": null,
+     "note": null
+    },
+    {
+     "fleet": "캅센",
+     "vessel": "ORIENTAL KIM",
+     "arrive": null,
+     "depart": null,
+     "tons": null,
+     "note": null
+    },
+    {
+     "fleet": "캅센",
+     "vessel": "XIXILI",
+     "arrive": null,
+     "depart": null,
+     "tons": null,
+     "note": null
+    },
+    {
+     "fleet": "캅센",
+     "vessel": "GRANADA",
+     "arrive": null,
+     "depart": null,
+     "tons": null,
+     "note": null
+    },
+    {
+     "fleet": "그랑블루",
+     "vessel": "SEA DEFENDER",
+     "arrive": null,
+     "depart": null,
+     "tons": null,
+     "note": null
+    },
+    {
+     "fleet": "그랑블루",
+     "vessel": "PONT SAINT LOUIS",
+     "arrive": null,
+     "depart": null,
+     "tons": null,
+     "note": null
+    }
+   ],
+   "prices": {
+    "pfcTema": 1400.0,
+    "cosmoTema": 1400.0,
+    "scodiAbidjan": 1420.0,
+    "marketTemaCedi": 12500.0,
+    "marketTemaUsd": 1137.0,
+    "marketAbidjanCfa": 600000.0,
+    "marketAbidjanUsd": 1061.0
+   },
+   "fx": {
+    "cediPerUsd": 10.99,
+    "cfaPerUsd": 565.0
+   },
+   "dailyProcessing": {
+    "COSMO": 107.0,
+    "PFC": 120.0,
+    "SCODI": 100.0,
+    "SCASA": 50.0,
+    "AIRONE": 0.0
+   },
+   "receivables": {
+    "buyers": [
+     {
+      "buyer": "INTER OCEAN",
+      "cfa": 953997275.0,
+      "usd": 1603357.0
+     },
+     {
+      "buyer": "ETS BADARA",
+      "cfa": null,
+      "usd": null
+     },
+     {
+      "buyer": "SDMG",
+      "cfa": null,
+      "usd": null
+     }
+    ],
+    "totalCfa": 3449187464.0,
+    "totalUsd": 6104757.0
+   },
+   "fuel": {
+    "abidjan": null,
+    "tema": null,
+    "dakar": null,
+    "tanker": null,
+    "single": 859.0
+   }
+  },
+  {
+   "reportDate": "2026-02-24",
+   "isoWeek": 9,
+   "source": "PANOFI 주간동향20260224.docx",
+   "sha256": "1feb7ab02081d89f0136295406785ba5d804d962171e65df58eaa5a3db16c082",
+   "author": "김평회 법인장",
+   "statedYearMismatch": true,
+   "fleetStatus": "detailed",
+   "ownVessels": [
+    {
+     "vessel": "P/GRACE",
+     "code": "P/GRA",
+     "status": null
+    }
+   ],
+   "fishingGround": {
+    "coastalMin": 28.1,
+    "coastalMax": 29.0,
+    "oceanMin": 27.5,
+    "oceanMax": 28.6,
+    "coastalCurrent": "동류",
+    "oceanCurrent": "서류"
+   },
+   "senegalFleet": [
+    {
+     "fleet": "캅센",
+     "vessel": "COSMOS KIM",
+     "arrive": null,
+     "depart": null,
+     "tons": null,
+     "note": null
+    },
+    {
+     "fleet": "캅센",
+     "vessel": "GRANADA",
+     "arrive": null,
+     "depart": null,
+     "tons": null,
+     "note": null
+    },
+    {
+     "fleet": "캅센",
+     "vessel": "WESTERN KIM",
+     "arrive": null,
+     "depart": null,
+     "tons": null,
+     "note": null
+    },
+    {
+     "fleet": "캅센",
+     "vessel": "CAP ATLANTIQUE",
+     "arrive": null,
+     "depart": null,
+     "tons": null,
+     "note": null
+    },
+    {
+     "fleet": "그랑블루",
+     "vessel": "SEA DEFENDER",
+     "arrive": null,
+     "depart": null,
+     "tons": null,
+     "note": null
+    },
+    {
+     "fleet": "그랑블루",
+     "vessel": "SEA FRONTIER",
+     "arrive": null,
+     "depart": null,
+     "tons": null,
+     "note": null
+    }
+   ],
+   "prices": {
+    "pfcTema": 1400.0,
+    "cosmoTema": 1400.0,
+    "scodiAbidjan": 1413.0,
+    "marketTemaCedi": 12500.0,
+    "marketTemaUsd": 1146.0,
+    "marketAbidjanCfa": 600000.0,
+    "marketAbidjanUsd": 1061.0
+   },
+   "fx": {
+    "cediPerUsd": 10.9,
+    "cfaPerUsd": 565.0
+   },
+   "dailyProcessing": {
+    "COSMO": 115.0,
+    "PFC": 120.0,
+    "SCODI": 100.0,
+    "SCASA": 40.0,
+    "AIRONE": 0.0
+   },
+   "receivables": {
+    "buyers": [
+     {
+      "buyer": "INTER OCEAN",
+      "cfa": 953997275.0,
+      "usd": 1603357.0
+     },
+     {
+      "buyer": "ETS BADARA",
+      "cfa": null,
+      "usd": null
+     },
+     {
+      "buyer": "SDMG",
+      "cfa": null,
+      "usd": null
+     }
+    ],
+    "totalCfa": 3257937282.0,
+    "totalUsd": 5766260.0
+   },
+   "fuel": {
+    "abidjan": null,
+    "tema": null,
+    "dakar": null,
+    "tanker": null,
+    "single": 857.0
+   }
+  },
+  {
+   "reportDate": "2026-03-03",
+   "isoWeek": 10,
+   "source": "PANOFI 주간동향20260303.docx",
+   "sha256": "7d441434b511549fd2bd301c6b064f8064eb36990fa965034e41403a3d4dcd4a",
+   "author": "김평회 법인장",
+   "statedYearMismatch": true,
+   "fleetStatus": "nominal",
+   "ownVessels": [],
+   "fishingGround": {
+    "coastalMin": 28.0,
+    "coastalMax": 29.2,
+    "oceanMin": 27.8,
+    "oceanMax": 28.6,
+    "coastalCurrent": "동류",
+    "oceanCurrent": "서류"
+   },
+   "senegalFleet": [
+    {
+     "fleet": "캅센",
+     "vessel": "ORIENTAL KIM",
+     "arrive": null,
+     "depart": null,
+     "tons": null,
+     "note": null
+    },
+    {
+     "fleet": "그랑블루",
+     "vessel": "PONT SAINT LOUIS",
+     "arrive": null,
+     "depart": null,
+     "tons": null,
+     "note": null
+    }
+   ],
+   "prices": {
+    "pfcTema": 1400.0,
+    "cosmoTema": 1400.0,
+    "scodiAbidjan": 1388.0,
+    "marketTemaCedi": 12500.0,
+    "marketTemaUsd": 1160.0,
+    "marketAbidjanCfa": 600000.0,
+    "marketAbidjanUsd": 1052.0
+   },
+   "fx": {
+    "cediPerUsd": 10.72,
+    "cfaPerUsd": 570.0
+   },
+   "dailyProcessing": {
+    "COSMO": 112.0,
+    "PFC": 120.0,
+    "SCODI": 100.0,
+    "SCASA": 50.0,
+    "AIRONE": 0.0
+   },
+   "receivables": {
+    "buyers": [
+     {
+      "buyer": "INTER OCEAN",
+      "cfa": 953997275.0,
+      "usd": 1603357.0
+     },
+     {
+      "buyer": "ETS BADARA",
+      "cfa": null,
+      "usd": null
+     },
+     {
+      "buyer": "SDMG",
+      "cfa": null,
+      "usd": null
+     }
+    ],
+    "totalCfa": 3068335388.0,
+    "totalUsd": 5383045.0
+   },
+   "fuel": {
+    "abidjan": null,
+    "tema": null,
+    "dakar": null,
+    "tanker": null,
+    "single": 856.0
+   }
+  },
+  {
+   "reportDate": "2026-03-10",
+   "isoWeek": 11,
+   "source": "PANOFI 주간동향20260310.docx",
+   "sha256": "9250cf2af75b2d265af164572cbd4eb677ff82a9b8121026ce560a6918410297",
+   "author": "김평회 법인장",
+   "statedYearMismatch": true,
+   "fleetStatus": "nominal",
+   "ownVessels": [],
+   "fishingGround": {
+    "coastalMin": 28.5,
+    "coastalMax": 29.0,
+    "oceanMin": 27.9,
+    "oceanMax": 29.1,
+    "coastalCurrent": "동류",
+    "oceanCurrent": "서류"
+   },
+   "senegalFleet": [
+    {
+     "fleet": "캅센",
+     "vessel": "COSMOS KIM",
+     "arrive": null,
+     "depart": null,
+     "tons": null,
+     "note": null
+    },
+    {
+     "fleet": "캅센",
+     "vessel": "GRANADA",
+     "arrive": null,
+     "depart": null,
+     "tons": null,
+     "note": null
+    },
+    {
+     "fleet": "캅센",
+     "vessel": "WESTERN KIM",
+     "arrive": null,
+     "depart": null,
+     "tons": null,
+     "note": null
+    },
+    {
+     "fleet": "캅센",
+     "vessel": "ORIENTAL KIM",
+     "arrive": null,
+     "depart": null,
+     "tons": null,
+     "note": null
+    }
+   ],
+   "prices": {
+    "pfcTema": 1400.0,
+    "cosmoTema": 1500.0,
+    "scodiAbidjan": 1397.0,
+    "marketTemaCedi": 13500.0,
+    "marketTemaUsd": 1252.0,
+    "marketAbidjanCfa": 600000.0,
+    "marketAbidjanUsd": 1052.0
+   },
+   "fx": {
+    "cediPerUsd": 10.78,
+    "cfaPerUsd": 570.0
+   },
+   "dailyProcessing": {
+    "COSMO": 115.0,
+    "PFC": 140.0,
+    "SCODI": 100.0,
+    "SCASA": 50.0,
+    "AIRONE": 0.0
+   },
+   "receivables": {
+    "buyers": [
+     {
+      "buyer": "INTER OCEAN",
+      "cfa": 953997275.0,
+      "usd": 1603357.0
+     },
+     {
+      "buyer": "ETS BADARA",
+      "cfa": null,
+      "usd": null
+     },
+     {
+      "buyer": "SDMG",
+      "cfa": null,
+      "usd": null
+     }
+    ],
+    "totalCfa": 3068335388.0,
+    "totalUsd": 5383045.0
+   },
+   "fuel": {
+    "abidjan": 1077.0,
+    "tema": 1578.0,
+    "dakar": 1350.0,
+    "tanker": 1580.0,
+    "single": null
+   }
+  },
+  {
+   "reportDate": "2026-03-17",
+   "isoWeek": 12,
+   "source": "PANOFI 주간동향20260317.docx",
+   "sha256": "314303e4d7a93fc8f4f43854dee8ae4b6f88fd2d440e19fc69ad5d2570881dee",
+   "author": "김평회 법인장",
+   "statedYearMismatch": true,
+   "fleetStatus": "detailed",
+   "ownVessels": [
+    {
+     "vessel": "P/QUEEN",
+     "code": "P/QUE",
+     "status": null
+    },
+    {
+     "vessel": "P/GRACE",
+     "code": "P/GRA",
+     "status": null
+    },
+    {
+     "vessel": "P/FORE",
+     "code": "P/FORE",
+     "status": null
+    },
+    {
+     "vessel": "P/DIS",
+     "code": "P/DIS",
+     "status": null
+    },
+    {
+     "vessel": "P/MAS",
+     "code": "P/MAS",
+     "status": null
+    },
+    {
+     "vessel": "P/PATH",
+     "code": "P/PATH",
+     "status": null
+    }
+   ],
+   "fishingGround": {
+    "coastalMin": 28.4,
+    "coastalMax": 29.5,
+    "oceanMin": 28.3,
+    "oceanMax": 29.2,
+    "coastalCurrent": "동류",
+    "oceanCurrent": "서류"
+   },
+   "senegalFleet": [
+    {
+     "fleet": "캅센",
+     "vessel": "COSMOS KIM",
+     "arrive": null,
+     "depart": null,
+     "tons": null,
+     "note": null
+    },
+    {
+     "fleet": "캅센",
+     "vessel": "GRANADA",
+     "arrive": null,
+     "depart": null,
+     "tons": null,
+     "note": null
+    },
+    {
+     "fleet": "캅센",
+     "vessel": "WESTERN KIM",
+     "arrive": null,
+     "depart": null,
+     "tons": null,
+     "note": null
+    },
+    {
+     "fleet": "캅센",
+     "vessel": "ORIENTAL KIM",
+     "arrive": null,
+     "depart": null,
+     "tons": null,
+     "note": null
+    },
+    {
+     "fleet": "캅센",
+     "vessel": "XIXILI",
+     "arrive": null,
+     "depart": null,
+     "tons": null,
+     "note": null
+    },
+    {
+     "fleet": "그랑블루",
+     "vessel": "SEA BREEZE",
+     "arrive": null,
+     "depart": null,
+     "tons": null,
+     "note": null
+    }
+   ],
+   "prices": {
+    "pfcTema": 1400.0,
+    "cosmoTema": 1500.0,
+    "scodiAbidjan": 1420.0,
+    "marketTemaCedi": 13500.0,
+    "marketTemaUsd": 1241.0,
+    "marketAbidjanCfa": 600000.0,
+    "marketAbidjanUsd": 1052.0
+   },
+   "fx": {
+    "cediPerUsd": 10.87,
+    "cfaPerUsd": 570.0
+   },
+   "dailyProcessing": {
+    "COSMO": 110.0,
+    "PFC": 140.0,
+    "SCODI": 100.0,
+    "SCASA": 50.0,
+    "AIRONE": 0.0
+   },
+   "receivables": {
+    "buyers": [
+     {
+      "buyer": "INTER OCEAN",
+      "cfa": 953997275.0,
+      "usd": 1603357.0
+     },
+     {
+      "buyer": "ETS BADARA",
+      "cfa": null,
+      "usd": null
+     },
+     {
+      "buyer": "SDMG",
+      "cfa": null,
+      "usd": null
+     }
+    ],
+    "totalCfa": 3068335388.0,
+    "totalUsd": 5383045.0
+   },
+   "fuel": {
+    "abidjan": 1228.0,
+    "tema": 1326.0,
+    "dakar": 1332.0,
+    "tanker": 1500.0,
+    "single": null
+   }
+  },
+  {
+   "reportDate": "2026-03-24",
+   "isoWeek": 13,
+   "source": "PANOFI 주간동향20260324.docx",
+   "sha256": "86681af09a5288798bc00f1534ddbc5bc6850a635a4f06631146726f4ef23771",
+   "author": "김평회 법인장",
+   "statedYearMismatch": true,
+   "fleetStatus": "detailed",
+   "ownVessels": [
+    {
+     "vessel": "P/QUEEN",
+     "code": "P/QUE",
+     "status": null
+    },
+    {
+     "vessel": "P/GRACE",
+     "code": "P/GRA",
+     "status": null
+    },
+    {
+     "vessel": "P/FORE",
+     "code": "P/FORE",
+     "status": null
+    },
+    {
+     "vessel": "P/DIS",
+     "code": "P/DIS",
+     "status": null
+    },
+    {
+     "vessel": "P/MAS",
+     "code": "P/MAS",
+     "status": null
+    },
+    {
+     "vessel": "P/PATH",
+     "code": "P/PATH",
+     "status": null
+    },
+    {
+     "vessel": "P/COMM",
+     "code": "P/COMM",
+     "status": null
+    }
+   ],
+   "fishingGround": {
+    "coastalMin": 28.9,
+    "coastalMax": 29.6,
+    "oceanMin": 27.9,
+    "oceanMax": 29.4,
+    "coastalCurrent": "동류",
+    "oceanCurrent": "서류"
+   },
+   "senegalFleet": [
+    {
+     "fleet": "캅센",
+     "vessel": "WESTERN KIM",
+     "arrive": null,
+     "depart": null,
+     "tons": null,
+     "note": null
+    },
+    {
+     "fleet": "캅센",
+     "vessel": "ORIENTAL KIM",
+     "arrive": null,
+     "depart": null,
+     "tons": null,
+     "note": null
+    },
+    {
+     "fleet": "캅센",
+     "vessel": "CAP ATLANTIQUE",
+     "arrive": null,
+     "depart": null,
+     "tons": null,
+     "note": null
+    },
+    {
+     "fleet": "그랑블루",
+     "vessel": "SEA BREEZE",
+     "arrive": null,
+     "depart": null,
+     "tons": null,
+     "note": null
+    },
+    {
+     "fleet": "그랑블루",
+     "vessel": "SEA DEFENDER",
+     "arrive": null,
+     "depart": null,
+     "tons": null,
+     "note": null
+    },
+    {
+     "fleet": "그랑블루",
+     "vessel": "PONT SAINT LOUIS",
+     "arrive": null,
+     "depart": null,
+     "tons": null,
+     "note": null
+    }
+   ],
+   "prices": {
+    "pfcTema": 1400.0,
+    "cosmoTema": 1500.0,
+    "scodiAbidjan": 1477.0,
+    "marketTemaCedi": 13500.0,
+    "marketTemaUsd": 1234.0,
+    "marketAbidjanCfa": 600000.0,
+    "marketAbidjanUsd": 1052.0
+   },
+   "fx": {
+    "cediPerUsd": 10.94,
+    "cfaPerUsd": 570.0
+   },
+   "dailyProcessing": {
+    "COSMO": 107.0,
+    "PFC": 110.0,
+    "SCODI": 100.0,
+    "SCASA": 50.0,
+    "AIRONE": 0.0
+   },
+   "receivables": {
+    "buyers": [
+     {
+      "buyer": "INTER OCEAN",
+      "cfa": 953997275.0,
+      "usd": 1603357.0
+     },
+     {
+      "buyer": "ETS BADARA",
+      "cfa": null,
+      "usd": null
+     },
+     {
+      "buyer": "SDMG",
+      "cfa": null,
+      "usd": null
+     }
+    ],
+    "totalCfa": 2868275476.0,
+    "totalUsd": 5032062.0
+   },
+   "fuel": {
+    "abidjan": 1342.0,
+    "tema": 1389.0,
+    "dakar": 1561.0,
+    "tanker": 1642.0,
+    "single": null
+   }
+  },
+  {
+   "reportDate": "2026-03-31",
+   "isoWeek": 14,
+   "source": "PANOFI 주간동향20260331.docx",
+   "sha256": "239266eb0449dd6c92432cd560f586c5d1df46c25c122d0c1111887246dbbb79",
+   "author": "김평회 법인장",
+   "statedYearMismatch": true,
+   "fleetStatus": "detailed",
+   "ownVessels": [
+    {
+     "vessel": "P/QUEEN",
+     "code": "P/QUE",
+     "status": null
+    },
+    {
+     "vessel": "P/GRACE",
+     "code": "P/GRA",
+     "status": null
+    },
+    {
+     "vessel": "P/FORE",
+     "code": "P/FORE",
+     "status": null
+    },
+    {
+     "vessel": "P/DIS",
+     "code": "P/DIS",
+     "status": null
+    },
+    {
+     "vessel": "P/MAS",
+     "code": "P/MAS",
+     "status": null
+    },
+    {
+     "vessel": "P/PATH",
+     "code": "P/PATH",
+     "status": null
+    },
+    {
+     "vessel": "P/COMM",
+     "code": "P/COMM",
+     "status": null
+    }
+   ],
+   "fishingGround": {
+    "coastalMin": 28.6,
+    "coastalMax": 30.4,
+    "oceanMin": 28.2,
+    "oceanMax": 29.2,
+    "coastalCurrent": "동류",
+    "oceanCurrent": "서류"
+   },
+   "senegalFleet": [
+    {
+     "fleet": "캅센",
+     "vessel": "WESTERN KIM",
+     "arrive": null,
+     "depart": null,
+     "tons": null,
+     "note": null
+    },
+    {
+     "fleet": "캅센",
+     "vessel": "ORIENTAL KIM",
+     "arrive": null,
+     "depart": null,
+     "tons": null,
+     "note": null
+    },
+    {
+     "fleet": "캅센",
+     "vessel": "CAP ATLANTIQUE",
+     "arrive": null,
+     "depart": null,
+     "tons": null,
+     "note": null
+    },
+    {
+     "fleet": "캅센",
+     "vessel": "XIXILI",
+     "arrive": null,
+     "depart": null,
+     "tons": null,
+     "note": null
+    },
+    {
+     "fleet": "블루",
+     "vessel": "SEA BREEZE",
+     "arrive": null,
+     "depart": null,
+     "tons": null,
+     "note": null
+    },
+    {
+     "fleet": "블루",
+     "vessel": "SEA DEFENDER",
+     "arrive": null,
+     "depart": null,
+     "tons": null,
+     "note": null
+    },
+    {
+     "fleet": "블루",
+     "vessel": "SEA FRONTIER",
+     "arrive": null,
+     "depart": null,
+     "tons": null,
+     "note": null
+    }
+   ],
+   "prices": {
+    "pfcTema": 1400.0,
+    "cosmoTema": 1500.0,
+    "scodiAbidjan": 1477.0,
+    "marketTemaCedi": 13500.0,
+    "marketTemaUsd": 1228.0,
+    "marketAbidjanCfa": 600000.0,
+    "marketAbidjanUsd": 1052.0
+   },
+   "fx": {
+    "cediPerUsd": 10.99,
+    "cfaPerUsd": 570.0
+   },
+   "dailyProcessing": {
+    "COSMO": 110.0,
+    "PFC": 110.0,
+    "SCODI": 100.0,
+    "SCASA": 50.0,
+    "AIRONE": 0.0
+   },
+   "receivables": {
+    "buyers": [
+     {
+      "buyer": "INTER OCEAN",
+      "cfa": 953997275.0,
+      "usd": 1603357.0
+     },
+     {
+      "buyer": "ETS BADARA",
+      "cfa": null,
+      "usd": null
+     },
+     {
+      "buyer": "SDMG",
+      "cfa": null,
+      "usd": null
+     }
+    ],
+    "totalCfa": 2868275476.0,
+    "totalUsd": 5032062.0
+   },
+   "fuel": {
+    "abidjan": 1377.0,
+    "tema": 1540.0,
+    "dakar": 1561.0,
+    "tanker": 1642.0,
+    "single": null
+   }
+  },
+  {
+   "reportDate": "2026-04-07",
+   "isoWeek": 15,
+   "source": "PANOFI 주간동향20260407.docx",
+   "sha256": "9d50d8fe99fe2a6187fcda6f8cc68a8a33afc65f81df2b20710c3ff66f078394",
+   "author": "김평회 법인장",
+   "statedYearMismatch": false,
+   "fleetStatus": "detailed",
+   "ownVessels": [
+    {
+     "vessel": "P/QUEEN",
+     "code": "P/QUE",
+     "status": null
+    },
+    {
+     "vessel": "P/GRACE",
+     "code": "P/GRA",
+     "status": null
+    },
+    {
+     "vessel": "P/FORE",
+     "code": "P/FORE",
+     "status": null
+    },
+    {
+     "vessel": "P/DIS",
+     "code": "P/DIS",
+     "status": null
+    },
+    {
+     "vessel": "P/MAS",
+     "code": "P/MAS",
+     "status": null
+    },
+    {
+     "vessel": "P/PATH",
+     "code": "P/PATH",
+     "status": null
+    },
+    {
+     "vessel": "P/COMM",
+     "code": "P/COMM",
+     "status": null
+    }
+   ],
+   "fishingGround": {
+    "coastalMin": 29.1,
+    "coastalMax": 29.9,
+    "oceanMin": 28.7,
+    "oceanMax": 29.5,
+    "coastalCurrent": "동류",
+    "oceanCurrent": "서류"
+   },
+   "senegalFleet": [
+    {
+     "fleet": "캅센",
+     "vessel": "WESTERN KIM",
+     "arrive": null,
+     "depart": null,
+     "tons": null,
+     "note": null
+    },
+    {
+     "fleet": "캅센",
+     "vessel": "ORIENTAL KIM",
+     "arrive": null,
+     "depart": null,
+     "tons": null,
+     "note": null
+    },
+    {
+     "fleet": "캅센",
+     "vessel": "CAP ATLANTIQUE",
+     "arrive": null,
+     "depart": null,
+     "tons": null,
+     "note": null
+    },
+    {
+     "fleet": "캅센",
+     "vessel": "XIXILI",
+     "arrive": null,
+     "depart": null,
+     "tons": null,
+     "note": null
+    },
+    {
+     "fleet": "블루",
+     "vessel": "SEA BREEZE",
+     "arrive": null,
+     "depart": null,
+     "tons": null,
+     "note": null
+    },
+    {
+     "fleet": "블루",
+     "vessel": "SEA DEFENDER",
+     "arrive": null,
+     "depart": null,
+     "tons": null,
+     "note": null
+    },
+    {
+     "fleet": "블루",
+     "vessel": "SEA FRONTIER",
+     "arrive": null,
+     "depart": null,
+     "tons": null,
+     "note": null
+    }
+   ],
+   "prices": {
+    "pfcTema": 1400.0,
+    "cosmoTema": 1500.0,
+    "scodiAbidjan": 1477.0,
+    "marketTemaCedi": 13500.0,
+    "marketTemaUsd": 1227.0,
+    "marketAbidjanCfa": 600000.0,
+    "marketAbidjanUsd": 1052.0
+   },
+   "fx": {
+    "cediPerUsd": 11.0,
+    "cfaPerUsd": 570.0
+   },
+   "dailyProcessing": {
+    "COSMO": 115.0,
+    "PFC": 110.0,
+    "SCODI": 85.0,
+    "SCASA": 40.0,
+    "AIRONE": 0.0
+   },
+   "receivables": {
+    "buyers": [
+     {
+      "buyer": "INTER OCEAN",
+      "cfa": 953997275.0,
+      "usd": 1603357.0
+     },
+     {
+      "buyer": "ETS BADARA",
+      "cfa": null,
+      "usd": null
+     },
+     {
+      "buyer": "SDMG",
+      "cfa": null,
+      "usd": null
+     }
+    ],
+    "totalCfa": 2868275476.0,
+    "totalUsd": 5032062.0
+   },
+   "fuel": {
+    "abidjan": 1477.0,
+    "tema": 1540.0,
+    "dakar": 1561.0,
+    "tanker": 1792.0,
+    "single": null
+   }
+  },
+  {
+   "reportDate": "2026-04-14",
+   "isoWeek": 16,
+   "source": "PANOFI 주간동향20260414.docx",
+   "sha256": "2207da556f9927c0f94ad4c7f5bf149f565629604ff24333a2c34874ac6ebc57",
+   "author": "김평회 법인장",
+   "statedYearMismatch": false,
+   "fleetStatus": "detailed",
+   "ownVessels": [
+    {
+     "vessel": "P/QUEEN",
+     "code": "P/QUE",
+     "status": null
+    },
+    {
+     "vessel": "P/GRACE",
+     "code": "P/GRA",
+     "status": null
+    },
+    {
+     "vessel": "P/FORE",
+     "code": "P/FORE",
+     "status": null
+    },
+    {
+     "vessel": "P/DIS",
+     "code": "P/DIS",
+     "status": null
+    },
+    {
+     "vessel": "P/MAS",
+     "code": "P/MAS",
+     "status": null
+    },
+    {
+     "vessel": "P/PATH",
+     "code": "P/PATH",
+     "status": null
+    },
+    {
+     "vessel": "P/COMM",
+     "code": "P/COMM",
+     "status": null
+    }
+   ],
+   "fishingGround": {
+    "coastalMin": 29.0,
+    "coastalMax": 29.7,
+    "oceanMin": 28.8,
+    "oceanMax": 29.6,
+    "coastalCurrent": "동류",
+    "oceanCurrent": "서류"
+   },
+   "senegalFleet": [
+    {
+     "fleet": "캅센",
+     "vessel": "WESTERN KIM",
+     "arrive": null,
+     "depart": null,
+     "tons": null,
+     "note": null
+    },
+    {
+     "fleet": "캅센",
+     "vessel": "ORIENTAL KIM",
+     "arrive": null,
+     "depart": null,
+     "tons": null,
+     "note": null
+    },
+    {
+     "fleet": "캅센",
+     "vessel": "CAP ATLANTIQUE",
+     "arrive": null,
+     "depart": null,
+     "tons": null,
+     "note": null
+    },
+    {
+     "fleet": "캅센",
+     "vessel": "XIXILI",
+     "arrive": null,
+     "depart": null,
+     "tons": null,
+     "note": null
+    },
+    {
+     "fleet": "캅센",
+     "vessel": "GRANADA",
+     "arrive": null,
+     "depart": null,
+     "tons": null,
+     "note": null
+    },
+    {
+     "fleet": "캅센",
+     "vessel": "COSMOS KIM",
+     "arrive": null,
+     "depart": null,
+     "tons": null,
+     "note": null
+    },
+    {
+     "fleet": "블루",
+     "vessel": "SEA BREEZE",
+     "arrive": null,
+     "depart": null,
+     "tons": null,
+     "note": null
+    },
+    {
+     "fleet": "블루",
+     "vessel": "SEA DEFENDER",
+     "arrive": null,
+     "depart": null,
+     "tons": null,
+     "note": null
+    },
+    {
+     "fleet": "블루",
+     "vessel": "SEA FRONTIER",
+     "arrive": null,
+     "depart": null,
+     "tons": null,
+     "note": null
+    },
+    {
+     "fleet": "블루",
+     "vessel": "PONT SAINT LOUIS",
+     "arrive": null,
+     "depart": null,
+     "tons": null,
+     "note": null
+    }
+   ],
+   "prices": {
+    "pfcTema": 1400.0,
+    "cosmoTema": 1500.0,
+    "scodiAbidjan": 1477.0,
+    "marketTemaCedi": 13500.0,
+    "marketTemaUsd": 1223.0,
+    "marketAbidjanCfa": 600000.0,
+    "marketAbidjanUsd": 1048.0
+   },
+   "fx": {
+    "cediPerUsd": 11.03,
+    "cfaPerUsd": 572.0
+   },
+   "dailyProcessing": {
+    "COSMO": 110.0,
+    "PFC": 110.0,
+    "SCODI": 85.0,
+    "SCASA": 40.0,
+    "AIRONE": 0.0
+   },
+   "receivables": {
+    "buyers": [
+     {
+      "buyer": "INTER OCEAN",
+      "cfa": 953997275.0,
+      "usd": 1603357.0
+     },
+     {
+      "buyer": "ETS BADARA",
+      "cfa": null,
+      "usd": null
+     },
+     {
+      "buyer": "SDMG",
+      "cfa": null,
+      "usd": null
+     }
+    ],
+    "totalCfa": 2569226138.0,
+    "totalUsd": 4491654.0
+   },
+   "fuel": {
+    "abidjan": 1451.0,
+    "tema": 1596.0,
+    "dakar": 1561.0,
+    "tanker": 1790.0,
+    "single": null
+   }
+  },
+  {
+   "reportDate": "2026-04-21",
+   "isoWeek": 17,
+   "source": "PANOFI 주간동향20260421.docx",
+   "sha256": "77b7a9449204adf879280a316a4b9c71117a06468fe48f0d92be695532f9b537",
+   "author": "김평회 법인장",
+   "statedYearMismatch": false,
+   "fleetStatus": "detailed",
+   "ownVessels": [
+    {
+     "vessel": "P/QUEEN",
+     "code": "P/QUE",
+     "status": null
+    },
+    {
+     "vessel": "P/GRACE",
+     "code": "P/GRA",
+     "status": null
+    },
+    {
+     "vessel": "P/FORE",
+     "code": "P/FORE",
+     "status": null
+    },
+    {
+     "vessel": "P/DIS",
+     "code": "P/DIS",
+     "status": null
+    },
+    {
+     "vessel": "P/MAS",
+     "code": "P/MAS",
+     "status": null
+    },
+    {
+     "vessel": "P/PATH",
+     "code": "P/PATH",
+     "status": null
+    },
+    {
+     "vessel": "P/COMM",
+     "code": "P/COMM",
+     "status": null
+    }
+   ],
+   "fishingGround": {
+    "coastalMin": 28.8,
+    "coastalMax": 29.8,
+    "oceanMin": 28.6,
+    "oceanMax": 29.5,
+    "coastalCurrent": "동류",
+    "oceanCurrent": "서류"
+   },
+   "senegalFleet": [
+    {
+     "fleet": "캅센",
+     "vessel": "WESTERN KIM",
+     "arrive": null,
+     "depart": null,
+     "tons": null,
+     "note": null
+    },
+    {
+     "fleet": "캅센",
+     "vessel": "ORIENTAL KIM",
+     "arrive": null,
+     "depart": null,
+     "tons": null,
+     "note": null
+    },
+    {
+     "fleet": "캅센",
+     "vessel": "CAP ATLANTIQUE",
+     "arrive": null,
+     "depart": null,
+     "tons": null,
+     "note": null
+    },
+    {
+     "fleet": "캅센",
+     "vessel": "XIXILI",
+     "arrive": null,
+     "depart": null,
+     "tons": null,
+     "note": null
+    },
+    {
+     "fleet": "캅센",
+     "vessel": "GRANADA",
+     "arrive": null,
+     "depart": null,
+     "tons": null,
+     "note": null
+    },
+    {
+     "fleet": "캅센",
+     "vessel": "COSMOS KIM",
+     "arrive": null,
+     "depart": null,
+     "tons": null,
+     "note": null
+    },
+    {
+     "fleet": "블루",
+     "vessel": "SEA BREEZE",
+     "arrive": null,
+     "depart": null,
+     "tons": null,
+     "note": null
+    },
+    {
+     "fleet": "블루",
+     "vessel": "SEA DEFENDER",
+     "arrive": null,
+     "depart": null,
+     "tons": null,
+     "note": null
+    },
+    {
+     "fleet": "블루",
+     "vessel": "SEA FRONTIER",
+     "arrive": null,
+     "depart": null,
+     "tons": null,
+     "note": null
+    },
+    {
+     "fleet": "블루",
+     "vessel": "PONT SAINT LOUIS",
+     "arrive": null,
+     "depart": null,
+     "tons": null,
+     "note": null
+    }
+   ],
+   "prices": {
+    "pfcTema": 1400.0,
+    "cosmoTema": 1500.0,
+    "scodiAbidjan": 1477.0,
+    "marketTemaCedi": 13500.0,
+    "marketTemaUsd": 1221.0,
+    "marketAbidjanCfa": 600000.0,
+    "marketAbidjanUsd": 1052.0
+   },
+   "fx": {
+    "cediPerUsd": 11.05,
+    "cfaPerUsd": 570.0
+   },
+   "dailyProcessing": {
+    "COSMO": null,
+    "PFC": 110.0,
+    "SCODI": 85.0,
+    "SCASA": 40.0,
+    "AIRONE": 0.0
+   },
+   "receivables": {
+    "buyers": [
+     {
+      "buyer": "INTER OCEAN",
+      "cfa": 953997275.0,
+      "usd": 1603357.0
+     },
+     {
+      "buyer": "ETS BADARA",
+      "cfa": null,
+      "usd": null
+     },
+     {
+      "buyer": "SDMG",
+      "cfa": null,
+      "usd": null
+     }
+    ],
+    "totalCfa": 2247676138.0,
+    "totalUsd": 3943291.0
+   },
+   "fuel": {
+    "abidjan": 1342.0,
+    "tema": 1562.0,
+    "dakar": 1368.0,
+    "tanker": 1688.0,
+    "single": null
+   }
+  },
+  {
+   "reportDate": "2026-04-28",
+   "isoWeek": 18,
+   "source": "PANOFI 주간동향20260428.docx",
+   "sha256": "5f5a15f1c739b4e8585841e9f26a5c07d4666f6007afa7a5823662bc937de76c",
+   "author": "김평회 법인장",
+   "statedYearMismatch": false,
+   "fleetStatus": "detailed",
+   "ownVessels": [
+    {
+     "vessel": "P/QUEEN",
+     "code": "P/QUE",
+     "status": null
+    },
+    {
+     "vessel": "P/GRACE",
+     "code": "P/GRA",
+     "status": null
+    },
+    {
+     "vessel": "P/FORE",
+     "code": "P/FORE",
+     "status": null
+    },
+    {
+     "vessel": "P/DIS",
+     "code": "P/DIS",
+     "status": null
+    },
+    {
+     "vessel": "P/MAS",
+     "code": "P/MAS",
+     "status": null
+    },
+    {
+     "vessel": "P/PATH",
+     "code": "P/PATH",
+     "status": null
+    },
+    {
+     "vessel": "P/COMM",
+     "code": "P/COMM",
+     "status": null
+    }
+   ],
+   "fishingGround": {
+    "coastalMin": 28.7,
+    "coastalMax": 29.7,
+    "oceanMin": 28.5,
+    "oceanMax": 29.4,
+    "coastalCurrent": "동류",
+    "oceanCurrent": "서류"
+   },
+   "senegalFleet": [
+    {
+     "fleet": "캅센",
+     "vessel": "WESTERN KIM",
+     "arrive": null,
+     "depart": null,
+     "tons": null,
+     "note": null
+    },
+    {
+     "fleet": "캅센",
+     "vessel": "ORIENTAL KIM",
+     "arrive": null,
+     "depart": null,
+     "tons": null,
+     "note": null
+    },
+    {
+     "fleet": "캅센",
+     "vessel": "CAP ATLANTIQUE",
+     "arrive": null,
+     "depart": null,
+     "tons": null,
+     "note": null
+    },
+    {
+     "fleet": "캅센",
+     "vessel": "XIXILI",
+     "arrive": null,
+     "depart": null,
+     "tons": null,
+     "note": null
+    },
+    {
+     "fleet": "캅센",
+     "vessel": "GRANADA",
+     "arrive": null,
+     "depart": null,
+     "tons": null,
+     "note": null
+    },
+    {
+     "fleet": "캅센",
+     "vessel": "COSMOS KIM",
+     "arrive": null,
+     "depart": null,
+     "tons": null,
+     "note": null
+    },
+    {
+     "fleet": "블루",
+     "vessel": "SEA BREEZE",
+     "arrive": null,
+     "depart": null,
+     "tons": null,
+     "note": null
+    },
+    {
+     "fleet": "블루",
+     "vessel": "SEA DEFENDER",
+     "arrive": null,
+     "depart": null,
+     "tons": null,
+     "note": null
+    },
+    {
+     "fleet": "블루",
+     "vessel": "SEA FRONTIER",
+     "arrive": null,
+     "depart": null,
+     "tons": null,
+     "note": null
+    },
+    {
+     "fleet": "블루",
+     "vessel": "PONT SAINT LOUIS",
+     "arrive": null,
+     "depart": null,
+     "tons": null,
+     "note": null
+    }
+   ],
+   "prices": {
+    "pfcTema": null,
+    "cosmoTema": 1500.0,
+    "scodiAbidjan": 1405.0,
+    "marketTemaCedi": 13500.0,
+    "marketTemaUsd": 1215.0,
+    "marketAbidjanCfa": 600000.0,
+    "marketAbidjanUsd": 1052.0
+   },
+   "fx": {
+    "cediPerUsd": 11.11,
+    "cfaPerUsd": 570.0
+   },
+   "dailyProcessing": {
+    "COSMO": 125.0,
+    "PFC": 110.0,
+    "SCODI": 85.0,
+    "SCASA": 40.0,
+    "AIRONE": 0.0
+   },
+   "receivables": {
+    "buyers": [
+     {
+      "buyer": "INTER OCEAN",
+      "cfa": 953997275.0,
+      "usd": 1603357.0
+     },
+     {
+      "buyer": "ETS BADARA",
+      "cfa": null,
+      "usd": null
+     },
+     {
+      "buyer": "SDMG",
+      "cfa": null,
+      "usd": null
+     }
+    ],
+    "totalCfa": 2247676138.0,
+    "totalUsd": 3943291.0
+   },
+   "fuel": {
+    "abidjan": 1254.0,
+    "tema": 1543.0,
+    "dakar": 1319.0,
+    "tanker": 1688.0,
+    "single": null
+   }
+  },
+  {
+   "reportDate": "2026-05-05",
+   "isoWeek": 19,
+   "source": "PANOFI 주간동향20260505.docx",
+   "sha256": "5ecab2d59b0c752a1b50f91cf2e295d4419033ada0f28cf7a8ba9e5a3eb31c24",
+   "author": "김평회 법인장",
+   "statedYearMismatch": false,
+   "fleetStatus": "nominal",
+   "ownVessels": [],
+   "fishingGround": {
+    "coastalMin": 29.3,
+    "coastalMax": 29.6,
+    "oceanMin": 28.6,
+    "oceanMax": 29.6,
+    "coastalCurrent": "동류",
+    "oceanCurrent": "서류"
+   },
+   "senegalFleet": [
+    {
+     "fleet": "캅센",
+     "vessel": "WESTERN KIM",
+     "arrive": null,
+     "depart": null,
+     "tons": null,
+     "note": null
+    },
+    {
+     "fleet": "캅센",
+     "vessel": "ORIENTAL KIM",
+     "arrive": null,
+     "depart": null,
+     "tons": null,
+     "note": null
+    },
+    {
+     "fleet": "캅센",
+     "vessel": "CAP ATLANTIQUE",
+     "arrive": null,
+     "depart": null,
+     "tons": null,
+     "note": null
+    },
+    {
+     "fleet": "캅센",
+     "vessel": "XIXILI",
+     "arrive": null,
+     "depart": null,
+     "tons": null,
+     "note": null
+    },
+    {
+     "fleet": "캅센",
+     "vessel": "GRANADA",
+     "arrive": null,
+     "depart": null,
+     "tons": null,
+     "note": null
+    },
+    {
+     "fleet": "캅센",
+     "vessel": "COSMOS KIM",
+     "arrive": null,
+     "depart": null,
+     "tons": null,
+     "note": null
+    },
+    {
+     "fleet": "블루",
+     "vessel": "SEA BREEZE",
+     "arrive": null,
+     "depart": null,
+     "tons": null,
+     "note": null
+    },
+    {
+     "fleet": "블루",
+     "vessel": "SEA DEFENDER",
+     "arrive": null,
+     "depart": null,
+     "tons": null,
+     "note": null
+    },
+    {
+     "fleet": "블루",
+     "vessel": "SEA FRONTIER",
+     "arrive": null,
+     "depart": null,
+     "tons": null,
+     "note": null
+    },
+    {
+     "fleet": "블루",
+     "vessel": "PONT SAINT LOUIS",
+     "arrive": null,
+     "depart": null,
+     "tons": null,
+     "note": null
+    },
+    {
+     "fleet": "EU 선단",
+     "vessel": "PLAYA DE LAGA",
+     "arrive": null,
+     "depart": null,
+     "tons": null,
+     "note": null
+    },
+    {
+     "fleet": "EU 선단",
+     "vessel": "MONTEFRISA NUEVE",
+     "arrive": null,
+     "depart": null,
+     "tons": null,
+     "note": null
+    }
+   ],
+   "prices": {
+    "pfcTema": null,
+    "cosmoTema": null,
+    "scodiAbidjan": 1405.0,
+    "marketTemaCedi": 13500.0,
+    "marketTemaUsd": 1203.0,
+    "marketAbidjanCfa": 600000.0,
+    "marketAbidjanUsd": 1043.0
+   },
+   "fx": {
+    "cediPerUsd": 11.22,
+    "cfaPerUsd": 575.0
+   },
+   "dailyProcessing": {
+    "COSMO": 120.0,
+    "PFC": 110.0,
+    "SCODI": 85.0,
+    "SCASA": 90.0,
+    "AIRONE": 0.0
+   },
+   "receivables": {
+    "buyers": [
+     {
+      "buyer": "INTER OCEAN",
+      "cfa": 953997275.0,
+      "usd": 1603357.0
+     },
+     {
+      "buyer": "ETS BADARA",
+      "cfa": null,
+      "usd": null
+     },
+     {
+      "buyer": "SDMG",
+      "cfa": null,
+      "usd": null
+     }
+    ],
+    "totalCfa": 2239176138.0,
+    "totalUsd": 3894291.0
+   },
+   "fuel": {
+    "abidjan": 1308.0,
+    "tema": 1508.0,
+    "dakar": 1301.0,
+    "tanker": 1665.0,
+    "single": null
+   }
+  },
+  {
+   "reportDate": "2026-05-12",
+   "isoWeek": 20,
+   "source": "PANOFI 주간동향20260512.docx",
+   "sha256": "b4dcf532eb20f264ce6a5a2438490a41ad33d9ac2faa4431208f0935c44a3cf1",
+   "author": "김평회 법인장",
+   "statedYearMismatch": false,
+   "fleetStatus": "nominal",
+   "ownVessels": [],
+   "fishingGround": {
+    "coastalMin": 29.2,
+    "coastalMax": 29.7,
+    "oceanMin": 28.5,
+    "oceanMax": 29.3,
+    "coastalCurrent": "동류",
+    "oceanCurrent": "서류"
+   },
+   "senegalFleet": [
+    {
+     "fleet": "캅센",
+     "vessel": "WESTERN KIM",
+     "arrive": null,
+     "depart": null,
+     "tons": null,
+     "note": null
+    },
+    {
+     "fleet": "캅센",
+     "vessel": "GRANADA",
+     "arrive": null,
+     "depart": null,
+     "tons": null,
+     "note": null
+    },
+    {
+     "fleet": "캅센",
+     "vessel": "COSMOS KIM",
+     "arrive": null,
+     "depart": null,
+     "tons": null,
+     "note": null
+    },
+    {
+     "fleet": "블루",
+     "vessel": "SEA BREEZE",
+     "arrive": null,
+     "depart": null,
+     "tons": null,
+     "note": null
+    },
+    {
+     "fleet": "블루",
+     "vessel": "PONT SAINT LOUIS",
+     "arrive": null,
+     "depart": null,
+     "tons": null,
+     "note": null
+    }
+   ],
+   "prices": {
+    "pfcTema": null,
+    "cosmoTema": null,
+    "scodiAbidjan": 1408.0,
+    "marketTemaCedi": 13500.0,
+    "marketTemaUsd": 1194.0,
+    "marketAbidjanCfa": 600000.0,
+    "marketAbidjanUsd": 1052.0
+   },
+   "fx": {
+    "cediPerUsd": 11.3,
+    "cfaPerUsd": 570.0
+   },
+   "dailyProcessing": {
+    "COSMO": 125.0,
+    "PFC": 110.0,
+    "SCODI": 85.0,
+    "SCASA": 90.0,
+    "AIRONE": 0.0
+   },
+   "receivables": {
+    "buyers": [
+     {
+      "buyer": "INTER OCEAN",
+      "cfa": 953997275.0,
+      "usd": 1603357.0
+     },
+     {
+      "buyer": "ETS BADARA",
+      "cfa": null,
+      "usd": null
+     },
+     {
+      "buyer": "SDMG",
+      "cfa": null,
+      "usd": null
+     }
+    ],
+    "totalCfa": 1828924388.0,
+    "totalUsd": 3208639.0
+   },
+   "fuel": {
+    "abidjan": 1318.0,
+    "tema": 1486.0,
+    "dakar": 1301.0,
+    "tanker": 1690.0,
+    "single": null
+   }
+  },
+  {
+   "reportDate": "2026-05-19",
+   "isoWeek": 21,
+   "source": "PANOFI 주간동향20260519.docx",
+   "sha256": "952b22a823f8c54858e335a1332b9e90d4329589eebf9803f1024a86d67c0968",
+   "author": "김평회 법인장",
+   "statedYearMismatch": false,
+   "fleetStatus": "nominal",
+   "ownVessels": [],
+   "fishingGround": {
+    "coastalMin": 28.4,
+    "coastalMax": 28.9,
+    "oceanMin": 28.3,
+    "oceanMax": 28.9,
+    "coastalCurrent": "동류",
+    "oceanCurrent": "서류"
+   },
+   "senegalFleet": [
+    {
+     "fleet": "캅센",
+     "vessel": "WESTERN KIM",
+     "arrive": null,
+     "depart": null,
+     "tons": null,
+     "note": null
+    },
+    {
+     "fleet": "캅센",
+     "vessel": "GRANADA",
+     "arrive": null,
+     "depart": null,
+     "tons": null,
+     "note": null
+    },
+    {
+     "fleet": "캅센",
+     "vessel": "COSMOS KIM",
+     "arrive": null,
+     "depart": null,
+     "tons": null,
+     "note": null
+    },
+    {
+     "fleet": "캅센",
+     "vessel": "ORIENTAL KIM",
+     "arrive": null,
+     "depart": null,
+     "tons": null,
+     "note": null
+    },
+    {
+     "fleet": "캅센",
+     "vessel": "XIXILI",
+     "arrive": null,
+     "depart": null,
+     "tons": null,
+     "note": null
+    },
+    {
+     "fleet": "블루",
+     "vessel": "PONT SAINT LOUIS",
+     "arrive": null,
+     "depart": null,
+     "tons": null,
+     "note": null
+    },
+    {
+     "fleet": "블루",
+     "vessel": "SEA DEFENDER",
+     "arrive": null,
+     "depart": null,
+     "tons": null,
+     "note": null
+    },
+    {
+     "fleet": "블루",
+     "vessel": "SEA FRONTIER",
+     "arrive": null,
+     "depart": null,
+     "tons": null,
+     "note": null
+    },
+    {
+     "fleet": "블루",
+     "vessel": "ALBONIGA",
+     "arrive": null,
+     "depart": null,
+     "tons": null,
+     "note": null
+    }
+   ],
+   "prices": {
+    "pfcTema": null,
+    "cosmoTema": null,
+    "scodiAbidjan": 1393.0,
+    "marketTemaCedi": 13500.0,
+    "marketTemaUsd": 1179.0,
+    "marketAbidjanCfa": 600000.0,
+    "marketAbidjanUsd": 1043.0
+   },
+   "fx": {
+    "cediPerUsd": 11.45,
+    "cfaPerUsd": 575.0
+   },
+   "dailyProcessing": {
+    "COSMO": 120.0,
+    "PFC": 110.0,
+    "SCODI": 85.0,
+    "SCASA": 90.0,
+    "AIRONE": 0.0
+   },
+   "receivables": {
+    "buyers": [
+     {
+      "buyer": "INTER OCEAN",
+      "cfa": 953997275.0,
+      "usd": 1603357.0
+     },
+     {
+      "buyer": "ETS BADARA",
+      "cfa": null,
+      "usd": null
+     },
+     {
+      "buyer": "SDMG",
+      "cfa": null,
+      "usd": null
+     }
+    ],
+    "totalCfa": 1858195179.0,
+    "totalUsd": 3231643.0
+   },
+   "fuel": {
+    "abidjan": 1318.0,
+    "tema": 1480.0,
+    "dakar": 1312.0,
+    "tanker": 1600.0,
+    "single": null
+   }
+  },
+  {
+   "reportDate": "2026-05-26",
+   "isoWeek": 22,
+   "source": "PANOFI 주간동향20260526.docx",
+   "sha256": "322cc09cf10a81c32a8b22905cf23f3de3477de79ab831931bea9a073ccb0f10",
+   "author": "김평회 법인장",
+   "statedYearMismatch": false,
+   "fleetStatus": "nominal",
+   "ownVessels": [],
+   "fishingGround": {
+    "coastalMin": 28.1,
+    "coastalMax": 28.8,
+    "oceanMin": 26.9,
+    "oceanMax": 28.4,
+    "coastalCurrent": "동류",
+    "oceanCurrent": "서류"
+   },
+   "senegalFleet": [
+    {
+     "fleet": "캅센",
+     "vessel": "GRANADA",
+     "arrive": null,
+     "depart": null,
+     "tons": null,
+     "note": null
+    },
+    {
+     "fleet": "캅센",
+     "vessel": "COSMOS KIM",
+     "arrive": null,
+     "depart": null,
+     "tons": null,
+     "note": null
+    },
+    {
+     "fleet": "캅센",
+     "vessel": "ORIENTAL KIM",
+     "arrive": null,
+     "depart": null,
+     "tons": null,
+     "note": null
+    },
+    {
+     "fleet": "캅센",
+     "vessel": "XIXILI",
+     "arrive": null,
+     "depart": null,
+     "tons": null,
+     "note": null
+    },
+    {
+     "fleet": "블루",
+     "vessel": "PONT SAINT LOUIS",
+     "arrive": null,
+     "depart": null,
+     "tons": null,
+     "note": null
+    },
+    {
+     "fleet": "블루",
+     "vessel": "ALBONIGA",
+     "arrive": null,
+     "depart": null,
+     "tons": null,
+     "note": null
+    }
+   ],
+   "prices": {
+    "pfcTema": 1570.0,
+    "cosmoTema": 1650.0,
+    "scodiAbidjan": 1697.0,
+    "marketTemaCedi": 15000.0,
+    "marketTemaUsd": 1290.0,
+    "marketAbidjanCfa": 600000.0,
+    "marketAbidjanUsd": 1052.0
+   },
+   "fx": {
+    "cediPerUsd": 11.62,
+    "cfaPerUsd": 570.0
+   },
+   "dailyProcessing": {
+    "COSMO": 125.0,
+    "PFC": 110.0,
+    "SCODI": 85.0,
+    "SCASA": 90.0,
+    "AIRONE": 0.0
+   },
+   "receivables": {
+    "buyers": [
+     {
+      "buyer": "INTER OCEAN",
+      "cfa": 953997275.0,
+      "usd": 1603357.0
+     },
+     {
+      "buyer": "ETS BADARA",
+      "cfa": null,
+      "usd": null
+     },
+     {
+      "buyer": "SDMG",
+      "cfa": null,
+      "usd": null
+     }
+    ],
+    "totalCfa": 1858195179.0,
+    "totalUsd": 3259991.0
+   },
+   "fuel": {
+    "abidjan": 1355.0,
+    "tema": 1465.0,
+    "dakar": 1254.0,
+    "tanker": 1500.0,
+    "single": null
+   }
+  },
+  {
+   "reportDate": "2026-06-02",
+   "isoWeek": 23,
+   "source": "PANOFI 주간동향20260602.docx",
+   "sha256": "28f9c3e8e2e9a29c913d00fe10c2773cb1236d932b52588105b6ad80845ba28e",
+   "author": "김평회 법인장",
+   "statedYearMismatch": false,
+   "fleetStatus": "detailed",
+   "ownVessels": [
+    {
+     "vessel": "P/FORE",
+     "code": "P/FORE",
+     "status": "5/31 14:00 Tema 입항, 하역 중 (ETD : 6/3)"
+    },
+    {
+     "vessel": "P/DIS",
+     "code": "P/DIS",
+     "status": "5/29 15:10 Tema 입항, 명일(6/2) 하역 종료 및 출항 전 GMA 검사 후 17:00 출항 완료"
+    },
+    {
+     "vessel": "P/PATH",
+     "code": "P/PATH",
+     "status": "6/1 조업 중 그물 파망사고 발생, 그물 수리하며 회항하여 하역 후 출항 검토 중"
+    }
+   ],
+   "fishingGround": {
+    "coastalMin": 29.4,
+    "coastalMax": 29.7,
+    "oceanMin": 25.9,
+    "oceanMax": 28.7,
+    "coastalCurrent": "동류",
+    "oceanCurrent": "서류"
+   },
+   "senegalFleet": [
+    {
+     "fleet": "캅센",
+     "vessel": "GRANADA",
+     "arrive": null,
+     "depart": null,
+     "tons": null,
+     "note": null
+    },
+    {
+     "fleet": "캅센",
+     "vessel": "COSMOS KIM",
+     "arrive": null,
+     "depart": null,
+     "tons": null,
+     "note": null
+    },
+    {
+     "fleet": "캅센",
+     "vessel": "WESTERN KIM",
+     "arrive": null,
+     "depart": null,
+     "tons": null,
+     "note": null
+    },
+    {
+     "fleet": "캅센",
+     "vessel": "CAP ATLANTIQUE",
+     "arrive": null,
+     "depart": null,
+     "tons": null,
+     "note": null
+    },
+    {
+     "fleet": "블루",
+     "vessel": "PONT SAINT LOUIS",
+     "arrive": null,
+     "depart": null,
+     "tons": null,
+     "note": null
+    },
+    {
+     "fleet": "블루",
+     "vessel": "SEA BREEZE",
+     "arrive": null,
+     "depart": null,
+     "tons": null,
+     "note": null
+    },
+    {
+     "fleet": "블루",
+     "vessel": "SEA DEFENDER",
+     "arrive": null,
+     "depart": null,
+     "tons": null,
+     "note": null
+    },
+    {
+     "fleet": "블루",
+     "vessel": "EGALUZE",
+     "arrive": null,
+     "depart": null,
+     "tons": null,
+     "note": null
+    }
+   ],
+   "prices": {
+    "pfcTema": 1570.0,
+    "cosmoTema": 1650.0,
+    "scodiAbidjan": 1699.0,
+    "marketTemaCedi": 15000.0,
+    "marketTemaUsd": 1276.0,
+    "marketAbidjanCfa": 600000.0,
+    "marketAbidjanUsd": 1052.0
+   },
+   "fx": {
+    "cediPerUsd": 11.75,
+    "cfaPerUsd": 570.0
+   },
+   "dailyProcessing": {
+    "COSMO": 95.0,
+    "PFC": 110.0,
+    "SCODI": 85.0,
+    "SCASA": 100.0,
+    "AIRONE": 0.0
+   },
+   "receivables": {
+    "buyers": [
+     {
+      "buyer": "INTER OCEAN",
+      "cfa": 953997275.0,
+      "usd": 1603357.0
+     },
+     {
+      "buyer": "ETS BADARA",
+      "cfa": null,
+      "usd": null
+     },
+     {
+      "buyer": "SDMG",
+      "cfa": null,
+      "usd": null
+     }
+    ],
+    "totalCfa": 1858195179.0,
+    "totalUsd": 3259991.0
+   },
+   "fuel": {
+    "abidjan": 1228.0,
+    "tema": 1443.0,
+    "dakar": 1105.0,
+    "tanker": 1435.0,
+    "single": null
+   }
+  },
+  {
+   "reportDate": "2026-06-09",
+   "isoWeek": 24,
+   "source": "PANOFI 주간동향20260609.docx",
+   "sha256": "0c32509b4d2a7996bc8b70355d71e218dcd58dbe5458fe67d95f3fa1c839f5a8",
+   "author": "김평회 법인장",
+   "statedYearMismatch": false,
+   "fleetStatus": "detailed",
+   "ownVessels": [
+    {
+     "vessel": "P/QUEEN",
+     "code": "P/QUE",
+     "status": "6/10 07:00 TEMA 입항 및 하역 예정 (ETD : 6/13) ⇒ 하역 완료 후ABIDJAN 입항 신망 선적 예정"
+    },
+    {
+     "vessel": "P/PATH",
+     "code": "P/PATH",
+     "status": "6/7 07:15 TEMA 입항, 하역 중 (ETD : 6/10)"
+    }
+   ],
+   "fishingGround": {
+    "coastalMin": 28.2,
+    "coastalMax": 29.1,
+    "oceanMin": 25.4,
+    "oceanMax": 27.2,
+    "coastalCurrent": "동류",
+    "oceanCurrent": "서류"
+   },
+   "senegalFleet": [
+    {
+     "fleet": "캅센",
+     "vessel": "GRANADA",
+     "arrive": null,
+     "depart": null,
+     "tons": null,
+     "note": null
+    },
+    {
+     "fleet": "캅센",
+     "vessel": "COSMOS KIM",
+     "arrive": null,
+     "depart": null,
+     "tons": null,
+     "note": null
+    },
+    {
+     "fleet": "캅센",
+     "vessel": "WESTERN KIM",
+     "arrive": null,
+     "depart": null,
+     "tons": null,
+     "note": null
+    },
+    {
+     "fleet": "캅센",
+     "vessel": "CAP ATLANTIQUE",
+     "arrive": null,
+     "depart": null,
+     "tons": null,
+     "note": null
+    },
+    {
+     "fleet": "블루",
+     "vessel": "PONT SAINT LOUIS",
+     "arrive": null,
+     "depart": null,
+     "tons": null,
+     "note": null
+    },
+    {
+     "fleet": "블루",
+     "vessel": "SEA BREEZE",
+     "arrive": null,
+     "depart": null,
+     "tons": null,
+     "note": null
+    },
+    {
+     "fleet": "블루",
+     "vessel": "SEA DEFENDER",
+     "arrive": null,
+     "depart": null,
+     "tons": null,
+     "note": null
+    },
+    {
+     "fleet": "블루",
+     "vessel": "SEA FRONTIER",
+     "arrive": null,
+     "depart": null,
+     "tons": null,
+     "note": null
+    },
+    {
+     "fleet": "블루",
+     "vessel": "EGALUZE",
+     "arrive": null,
+     "depart": null,
+     "tons": null,
+     "note": null
+    },
+    {
+     "fleet": "블루",
+     "vessel": "ALBACORA QUINCE",
+     "arrive": null,
+     "depart": null,
+     "tons": null,
+     "note": null
+    }
+   ],
+   "prices": {
+    "pfcTema": 1570.0,
+    "cosmoTema": 1650.0,
+    "scodiAbidjan": 1689.0,
+    "marketTemaCedi": 15000.0,
+    "marketTemaUsd": 1266.0,
+    "marketAbidjanCfa": 800000.0,
+    "marketAbidjanUsd": 1403.0
+   },
+   "fx": {
+    "cediPerUsd": 11.84,
+    "cfaPerUsd": 570.0
+   },
+   "dailyProcessing": {
+    "COSMO": 115.0,
+    "PFC": 110.0,
+    "SCODI": 85.0,
+    "SCASA": 100.0,
+    "AIRONE": 0.0
+   },
+   "receivables": {
+    "buyers": [
+     {
+      "buyer": "INTER OCEAN",
+      "cfa": 953997275.0,
+      "usd": 1603357.0
+     },
+     {
+      "buyer": "ETS BADARA",
+      "cfa": null,
+      "usd": null
+     },
+     {
+      "buyer": "SDMG",
+      "cfa": null,
+      "usd": null
+     }
+    ],
+    "totalCfa": 1858195179.0,
+    "totalUsd": 3259991.0
+   },
+   "fuel": {
+    "abidjan": 1228.0,
+    "tema": 1410.0,
+    "dakar": 1105.0,
+    "tanker": 1435.0,
+    "single": null
+   }
+  },
+  {
+   "reportDate": "2026-06-16",
+   "isoWeek": 25,
+   "source": "PANOFI 주간동향20260616.docx",
+   "sha256": "c9673e2d0bd0ef663f50bff3311b52e2b3ce494978d9292f1dc1b13dcf2f82af",
+   "author": "김평회 법인장",
+   "statedYearMismatch": false,
+   "fleetStatus": "detailed",
+   "ownVessels": [
+    {
+     "vessel": "P/GRACE",
+     "code": "P/GRA",
+     "status": "6/14 16:00 TEMA 입항, 하역 중 (ETD : 6/17)"
+    }
+   ],
+   "fishingGround": {
+    "coastalMin": 26.7,
+    "coastalMax": 28.1,
+    "oceanMin": 25.3,
+    "oceanMax": 26.4,
+    "coastalCurrent": "동류",
+    "oceanCurrent": "서류"
+   },
+   "senegalFleet": [
+    {
+     "fleet": "캅센",
+     "vessel": "CAP ATLANTIQUE",
+     "arrive": null,
+     "depart": null,
+     "tons": null,
+     "note": null
+    },
+    {
+     "fleet": "캅센",
+     "vessel": "COSMOS KIM",
+     "arrive": null,
+     "depart": null,
+     "tons": null,
+     "note": null
+    },
+    {
+     "fleet": "캅센",
+     "vessel": "ORIENTAL KIM",
+     "arrive": null,
+     "depart": null,
+     "tons": null,
+     "note": null
+    },
+    {
+     "fleet": "캅센",
+     "vessel": "XIXILI",
+     "arrive": null,
+     "depart": null,
+     "tons": null,
+     "note": null
+    },
+    {
+     "fleet": "블루",
+     "vessel": "SEA DEFENDER",
+     "arrive": null,
+     "depart": null,
+     "tons": null,
+     "note": null
+    },
+    {
+     "fleet": "블루",
+     "vessel": "SEA FRONTIER",
+     "arrive": null,
+     "depart": null,
+     "tons": null,
+     "note": null
+    },
+    {
+     "fleet": "블루",
+     "vessel": "ALBONIGA",
+     "arrive": null,
+     "depart": null,
+     "tons": null,
+     "note": null
+    },
+    {
+     "fleet": "블루",
+     "vessel": "ALBACORA QUINCE",
+     "arrive": null,
+     "depart": null,
+     "tons": null,
+     "note": null
+    }
+   ],
+   "prices": {
+    "pfcTema": 1570.0,
+    "cosmoTema": 1650.0,
+    "scodiAbidjan": 1692.0,
+    "marketTemaCedi": 15000.0,
+    "marketTemaUsd": 1351.0,
+    "marketAbidjanCfa": 800000.0,
+    "marketAbidjanUsd": 1403.0
+   },
+   "fx": {
+    "cediPerUsd": 11.1,
+    "cfaPerUsd": 570.0
+   },
+   "dailyProcessing": {
+    "COSMO": 115.0,
+    "PFC": 90.0,
+    "SCODI": 85.0,
+    "SCASA": 100.0,
+    "AIRONE": 0.0
+   },
+   "receivables": {
+    "buyers": [
+     {
+      "buyer": "INTER OCEAN",
+      "cfa": 953997275.0,
+      "usd": 1603357.0
+     },
+     {
+      "buyer": "ETS BADARA",
+      "cfa": null,
+      "usd": null
+     },
+     {
+      "buyer": "SDMG",
+      "cfa": null,
+      "usd": null
+     }
+    ],
+    "totalCfa": 1858195179.0,
+    "totalUsd": 3259991.0
+   },
+   "fuel": {
+    "abidjan": 1174.0,
+    "tema": 1468.0,
+    "dakar": 1058.0,
+    "tanker": 1385.0,
+    "single": null
+   }
+  },
+  {
+   "reportDate": "2026-06-23",
+   "isoWeek": 26,
+   "source": "PANOFI 주간동향20260623.docx",
+   "sha256": "dfccd6cd7d08d775fdc33c9283f017f8fc428544d88dabc250a3e6655b453b5c",
+   "author": "김평회 법인장",
+   "statedYearMismatch": false,
+   "fleetStatus": "detailed",
+   "ownVessels": [
+    {
+     "vessel": "P/DIS",
+     "code": "P/DIS",
+     "status": "6/22 ABIDJAN입항, 네트 수리 및 선적 (ETD : 6/23)"
+    }
+   ],
+   "fishingGround": {
+    "coastalMin": 24.4,
+    "coastalMax": 25.2,
+    "oceanMin": null,
+    "oceanMax": null,
+    "coastalCurrent": "동류",
+    "oceanCurrent": "서류"
+   },
+   "senegalFleet": [
+    {
+     "fleet": "캅센",
+     "vessel": "ORIENTAL KIM",
+     "arrive": null,
+     "depart": null,
+     "tons": null,
+     "note": null
+    },
+    {
+     "fleet": "캅센",
+     "vessel": "XIXILI",
+     "arrive": null,
+     "depart": null,
+     "tons": null,
+     "note": null
+    },
+    {
+     "fleet": "캅센",
+     "vessel": "GRANADA",
+     "arrive": null,
+     "depart": null,
+     "tons": null,
+     "note": null
+    },
+    {
+     "fleet": "캅센",
+     "vessel": "ALBONIGA",
+     "arrive": null,
+     "depart": null,
+     "tons": null,
+     "note": null
+    }
+   ],
+   "prices": {
+    "pfcTema": 1570.0,
+    "cosmoTema": 1650.0,
+    "scodiAbidjan": 1663.0,
+    "marketTemaCedi": 15000.0,
+    "marketTemaUsd": 1339.0,
+    "marketAbidjanCfa": 800000.0,
+    "marketAbidjanUsd": 1403.0
+   },
+   "fx": {
+    "cediPerUsd": 11.2,
+    "cfaPerUsd": 570.0
+   },
+   "dailyProcessing": {
+    "COSMO": 110.0,
+    "PFC": 90.0,
+    "SCODI": 85.0,
+    "SCASA": 100.0,
+    "AIRONE": 0.0
+   },
+   "receivables": {
+    "buyers": [
+     {
+      "buyer": "INTER OCEAN",
+      "cfa": 953997275.0,
+      "usd": 1603357.0
+     },
+     {
+      "buyer": "ETS BADARA",
+      "cfa": null,
+      "usd": null
+     },
+     {
+      "buyer": "SDMG",
+      "cfa": null,
+      "usd": null
+     }
+    ],
+    "totalCfa": 1858195179.0,
+    "totalUsd": 3259991.0
+   },
+   "fuel": {
+    "abidjan": 1101.0,
+    "tema": 1352.0,
+    "dakar": 1052.0,
+    "tanker": 1370.0,
+    "single": null
+   }
+  },
+  {
+   "reportDate": "2026-06-30",
+   "isoWeek": 27,
+   "source": "PANOFI 주간동향20260630.docx",
+   "sha256": "08355bb37079bc36b94ce8bd6f59105ec88d96c06eb888a6bba3f0354d858362",
+   "author": "김평회 법인장",
+   "statedYearMismatch": false,
+   "fleetStatus": "detailed",
+   "ownVessels": [
+    {
+     "vessel": "P/DIS",
+     "code": "P/DIS",
+     "status": "6/28 환자 발생, 환자 상태 관찰 하며 동진 조업 중, 환자 상태 악화 시 입항 검토 예정"
+    }
+   ],
+   "fishingGround": {
+    "coastalMin": 25.7,
+    "coastalMax": 27.1,
+    "oceanMin": 23.1,
+    "oceanMax": 25.3,
+    "coastalCurrent": "동류",
+    "oceanCurrent": "서류"
+   },
+   "senegalFleet": [
+    {
+     "fleet": "캅센",
+     "vessel": "GRANADA",
+     "arrive": null,
+     "depart": null,
+     "tons": null,
+     "note": null
+    },
+    {
+     "fleet": "캅센",
+     "vessel": "WESTERN KIM",
+     "arrive": null,
+     "depart": null,
+     "tons": null,
+     "note": null
+    },
+    {
+     "fleet": "캅센",
+     "vessel": "ZUBEROA",
+     "arrive": null,
+     "depart": null,
+     "tons": null,
+     "note": null
+    }
+   ],
+   "prices": {
+    "pfcTema": 1570.0,
+    "cosmoTema": 1650.0,
+    "scodiAbidjan": 1630.0,
+    "marketTemaCedi": 15000.0,
+    "marketTemaUsd": 1324.0,
+    "marketAbidjanCfa": 800000.0,
+    "marketAbidjanUsd": 1367.0
+   },
+   "fx": {
+    "cediPerUsd": 11.33,
+    "cfaPerUsd": 585.0
+   },
+   "dailyProcessing": {
+    "COSMO": 110.0,
+    "PFC": 90.0,
+    "SCODI": 85.0,
+    "SCASA": 110.0,
+    "AIRONE": 0.0
+   },
+   "receivables": {
+    "buyers": [
+     {
+      "buyer": "INTER OCEAN",
+      "cfa": 953997275.0,
+      "usd": 1603357.0
+     },
+     {
+      "buyer": "ETS BADARA",
+      "cfa": null,
+      "usd": null
+     },
+     {
+      "buyer": "SDMG",
+      "cfa": null,
+      "usd": null
+     }
+    ],
+    "totalCfa": 1848275179.0,
+    "totalUsd": 3159444.0
+   },
+   "fuel": {
+    "abidjan": 1073.0,
+    "tema": 1265.0,
+    "dakar": 1025.0,
+    "tanker": 1200.0,
+    "single": null
+   }
+  },
+  {
+   "reportDate": "2026-07-07",
+   "isoWeek": 28,
+   "source": "PANOFI 주간동향20260707.docx",
+   "sha256": "7a1b82c8fff94b536f59c359a707e0327875f396e59e8fb08cbf24df5f62a59a",
+   "author": "김평회 법인장",
+   "statedYearMismatch": false,
+   "fleetStatus": "detailed",
+   "ownVessels": [
+    {
+     "vessel": "P/QUEEN",
+     "code": "P/QUE",
+     "status": null
+    },
+    {
+     "vessel": "P/GRACE",
+     "code": "P/GRA",
+     "status": null
+    },
+    {
+     "vessel": "P/FORE",
+     "code": "P/FORE",
+     "status": null
+    },
+    {
+     "vessel": "P/DIS",
+     "code": "P/DIS",
+     "status": null
+    },
+    {
+     "vessel": "P/MAS",
+     "code": "P/MAS",
+     "status": null
+    },
+    {
+     "vessel": "P/PATH",
+     "code": "P/PATH",
+     "status": null
+    },
+    {
+     "vessel": "P/COMM",
+     "code": "P/COMM",
+     "status": null
+    }
+   ],
+   "fishingGround": {
+    "coastalMin": 25.2,
+    "coastalMax": 26.4,
+    "oceanMin": 23.7,
+    "oceanMax": 24.7,
+    "coastalCurrent": "동류",
+    "oceanCurrent": "서류"
+   },
+   "senegalFleet": [
+    {
+     "fleet": "캅센",
+     "vessel": "WESTERN KIM",
+     "arrive": null,
+     "depart": null,
+     "tons": null,
+     "note": null
+    },
+    {
+     "fleet": "캅센",
+     "vessel": "COSMOS KIM",
+     "arrive": null,
+     "depart": null,
+     "tons": null,
+     "note": null
+    },
+    {
+     "fleet": "캅센",
+     "vessel": "CAP ATLANTIQUE",
+     "arrive": null,
+     "depart": null,
+     "tons": null,
+     "note": null
+    },
+    {
+     "fleet": "그랑블루",
+     "vessel": "SEA BREEZE",
+     "arrive": null,
+     "depart": null,
+     "tons": null,
+     "note": null
+    },
+    {
+     "fleet": "그랑블루",
+     "vessel": "SEA DEFENDER",
+     "arrive": null,
+     "depart": null,
+     "tons": null,
+     "note": null
+    },
+    {
+     "fleet": "그랑블루",
+     "vessel": "SEA FRONTIER",
+     "arrive": null,
+     "depart": null,
+     "tons": null,
+     "note": null
+    },
+    {
+     "fleet": "그랑블루",
+     "vessel": "ALBACORA QUINCE",
+     "arrive": null,
+     "depart": null,
+     "tons": null,
+     "note": null
+    }
+   ],
+   "prices": {
+    "pfcTema": 1570.0,
+    "cosmoTema": 1620.0,
+    "scodiAbidjan": 1633.0,
+    "marketTemaCedi": 15000.0,
+    "marketTemaUsd": 1316.0,
+    "marketAbidjanCfa": 800000.0,
+    "marketAbidjanUsd": 1355.0
+   },
+   "fx": {
+    "cediPerUsd": 11.39,
+    "cfaPerUsd": 590.0
+   },
+   "dailyProcessing": {
+    "COSMO": 110.0,
+    "PFC": 120.0,
+    "SCODI": 85.0,
+    "SCASA": 100.0,
+    "AIRONE": 0.0
+   },
+   "receivables": {
+    "buyers": [
+     {
+      "buyer": "INTER OCEAN",
+      "cfa": 953997275.0,
+      "usd": 1603357.0
+     },
+     {
+      "buyer": "ETS BADARA",
+      "cfa": null,
+      "usd": null
+     },
+     {
+      "buyer": "SDMG",
+      "cfa": null,
+      "usd": null
+     }
+    ],
+    "totalCfa": 1848275179.0,
+    "totalUsd": 3120980.0
+   },
+   "fuel": {
+    "abidjan": 1042.0,
+    "tema": 1276.0,
+    "dakar": 949.0,
+    "tanker": 1175.0,
+    "single": null
+   }
+  },
+  {
+   "reportDate": "2026-07-14",
+   "isoWeek": 29,
+   "source": "PANOFI 주간동향20260714.docx",
+   "sha256": "3dee16a78203b98ef525f5ea448e203cd1c2e9732838d7de277632c3004caed3",
+   "author": "김평회 법인장",
+   "statedYearMismatch": false,
+   "fleetStatus": "detailed",
+   "ownVessels": [
+    {
+     "vessel": "P/GRACE",
+     "code": "P/GRA",
+     "status": null
+    },
+    {
+     "vessel": "P/COMM",
+     "code": "P/COMM",
+     "status": null
+    }
+   ],
+   "fishingGround": {
+    "coastalMin": 25.5,
+    "coastalMax": 27.3,
+    "oceanMin": 22.7,
+    "oceanMax": 25.3,
+    "coastalCurrent": "동류",
+    "oceanCurrent": "서류"
+   },
+   "senegalFleet": [
+    {
+     "fleet": "캅센",
+     "vessel": "XIXILI",
+     "arrive": null,
+     "depart": null,
+     "tons": null,
+     "note": null
+    },
+    {
+     "fleet": "캅센",
+     "vessel": "GRANADA",
+     "arrive": null,
+     "depart": null,
+     "tons": null,
+     "note": null
+    },
+    {
+     "fleet": "캅센",
+     "vessel": "ORIENTAL KIM",
+     "arrive": null,
+     "depart": null,
+     "tons": null,
+     "note": null
+    },
+    {
+     "fleet": "캅센",
+     "vessel": "WESTERN KIM",
+     "arrive": null,
+     "depart": null,
+     "tons": null,
+     "note": null
+    },
+    {
+     "fleet": "그랑블루",
+     "vessel": "SEA DEFENDER",
+     "arrive": null,
+     "depart": null,
+     "tons": null,
+     "note": null
+    },
+    {
+     "fleet": "그랑블루",
+     "vessel": "SEA FRONTIER",
+     "arrive": null,
+     "depart": null,
+     "tons": null,
+     "note": null
+    },
+    {
+     "fleet": "그랑블루",
+     "vessel": "PONT SAINT LOUIS",
+     "arrive": null,
+     "depart": null,
+     "tons": null,
+     "note": null
+    },
+    {
+     "fleet": "그랑블루",
+     "vessel": "ALBACORA QUINCE",
+     "arrive": null,
+     "depart": null,
+     "tons": null,
+     "note": null
+    },
+    {
+     "fleet": "그랑블루",
+     "vessel": "ALBONIGA",
+     "arrive": null,
+     "depart": null,
+     "tons": null,
+     "note": null
+    },
+    {
+     "fleet": "운반선",
+     "vessel": "GREEN GUATEMALA",
+     "arrive": null,
+     "depart": null,
+     "tons": null,
+     "note": null
+    }
+   ],
+   "prices": {
+    "pfcTema": 1570.0,
+    "cosmoTema": 1620.0,
+    "scodiAbidjan": 1637.0,
+    "marketTemaCedi": 15000.0,
+    "marketTemaUsd": 1305.0,
+    "marketAbidjanCfa": 800000.0,
+    "marketAbidjanUsd": 1344.0
+   },
+   "fx": {
+    "cediPerUsd": 11.49,
+    "cfaPerUsd": 595.0
+   },
+   "dailyProcessing": {
+    "COSMO": 110.0,
+    "PFC": 90.0,
+    "SCODI": 85.0,
+    "SCASA": 100.0,
+    "AIRONE": 0.0
+   },
+   "receivables": {
+    "buyers": [
+     {
+      "buyer": "INTER OCEAN",
+      "cfa": 953997275.0,
+      "usd": 1603357.0
+     },
+     {
+      "buyer": "ETS BADARA",
+      "cfa": null,
+      "usd": null
+     },
+     {
+      "buyer": "SDMG",
+      "cfa": null,
+      "usd": null
+     }
+    ],
+    "totalCfa": 1831550179.0,
+    "totalUsd": 3078235.0
+   },
+   "fuel": {
+    "abidjan": 1023.0,
+    "tema": 1349.0,
+    "dakar": 1025.0,
+    "tanker": 1300.0,
+    "single": null
+   }
+  },
+  {
+   "reportDate": "2026-07-21",
+   "isoWeek": 30,
+   "source": "PANOFI 주간동향20260721.docx",
+   "sha256": "34ddba1366b218c96f29564e3d4527c2558101a00e1b356ff295a8392146df28",
+   "author": "김평회 법인장",
+   "statedYearMismatch": false,
+   "fleetStatus": "nominal",
+   "ownVessels": [],
+   "fishingGround": {
+    "coastalMin": 25.5,
+    "coastalMax": 27.2,
+    "oceanMin": 22.1,
+    "oceanMax": 24.9,
+    "coastalCurrent": "동류",
+    "oceanCurrent": "서류"
+   },
+   "senegalFleet": [
+    {
+     "fleet": "캅센",
+     "vessel": "XIXILI",
+     "arrive": null,
+     "depart": null,
+     "tons": null,
+     "note": null
+    },
+    {
+     "fleet": "캅센",
+     "vessel": "GRANADA",
+     "arrive": null,
+     "depart": null,
+     "tons": null,
+     "note": null
+    },
+    {
+     "fleet": "캅센",
+     "vessel": "ORIENTAL KIM",
+     "arrive": null,
+     "depart": null,
+     "tons": null,
+     "note": null
+    },
+    {
+     "fleet": "캅센",
+     "vessel": "WESTERN KIM",
+     "arrive": null,
+     "depart": null,
+     "tons": null,
+     "note": null
+    },
+    {
+     "fleet": "그랑블루",
+     "vessel": "PONT SAINT LOUIS",
+     "arrive": null,
+     "depart": null,
+     "tons": null,
+     "note": null
+    },
+    {
+     "fleet": "그랑블루",
+     "vessel": "ALBACORA QUINCE",
+     "arrive": null,
+     "depart": null,
+     "tons": null,
+     "note": null
+    },
+    {
+     "fleet": "그랑블루",
+     "vessel": "ZUBEROA",
+     "arrive": null,
+     "depart": null,
+     "tons": null,
+     "note": null
+    },
+    {
+     "fleet": "그랑블루",
+     "vessel": "MONTERAIOLA",
+     "arrive": null,
+     "depart": null,
+     "tons": null,
+     "note": null
+    },
+    {
+     "fleet": "운반선",
+     "vessel": "GREEN GUATEMALA",
+     "arrive": null,
+     "depart": null,
+     "tons": null,
+     "note": null
+    }
+   ],
+   "prices": {
+    "pfcTema": 1600.0,
+    "cosmoTema": 1620.0,
+    "scodiAbidjan": 1637.0,
+    "marketTemaCedi": 15000.0,
+    "marketTemaUsd": 1297.0,
+    "marketAbidjanCfa": 800000.0,
+    "marketAbidjanUsd": 1344.0
+   },
+   "fx": {
+    "cediPerUsd": 11.56,
+    "cfaPerUsd": 595.0
+   },
+   "dailyProcessing": {
+    "COSMO": 110.0,
+    "PFC": 90.0,
+    "SCODI": 85.0,
+    "SCASA": 100.0,
+    "AIRONE": 0.0
+   },
+   "receivables": {
+    "buyers": [
+     {
+      "buyer": "INTER OCEAN",
+      "cfa": 953997275.0,
+      "usd": 1603357.0
+     },
+     {
+      "buyer": "ETS BADARA",
+      "cfa": null,
+      "usd": null
+     },
+     {
+      "buyer": "SDMG",
+      "cfa": null,
+      "usd": null
+     }
+    ],
+    "totalCfa": 1831550179.0,
+    "totalUsd": 3078235.0
+   },
+   "fuel": {
+    "abidjan": 1012.0,
+    "tema": 1487.0,
+    "dakar": 1042.0,
+    "tanker": 1300.0,
+    "single": null
+   }
+  },
+  {
+   "reportDate": "2026-08-04",
+   "isoWeek": 32,
+   "source": "PANOFI 주간동향20260804.docx",
+   "sha256": "ec637cb6674994dd2811fb1748cbcd6e648af4fae734575e6c9b73b6cc207c23",
+   "author": "김평회 법인장",
+   "statedYearMismatch": false,
+   "fleetStatus": "detailed",
+   "ownVessels": [
+    {
+     "vessel": "P/FORE",
+     "code": "P/FORE",
+     "status": null
+    },
+    {
+     "vessel": "P/PATH",
+     "code": "P/PATH",
+     "status": null
+    },
+    {
+     "vessel": "P/COMM",
+     "code": "P/COMM",
+     "status": null
+    }
+   ],
+   "fishingGround": {
+    "coastalMin": 25.3,
+    "coastalMax": 26.6,
+    "oceanMin": 22.6,
+    "oceanMax": 25.2,
+    "coastalCurrent": "동류",
+    "oceanCurrent": "서류"
+   },
+   "senegalFleet": [
+    {
+     "fleet": "캅센",
+     "vessel": "CAP ATLANTIQUE",
+     "arrive": null,
+     "depart": null,
+     "tons": null,
+     "note": null
+    },
+    {
+     "fleet": "그랑블루",
+     "vessel": "SEA FRONTIER",
+     "arrive": null,
+     "depart": null,
+     "tons": null,
+     "note": null
+    },
+    {
+     "fleet": "EU 선단",
+     "vessel": "ZUBEROA",
+     "arrive": null,
+     "depart": null,
+     "tons": null,
+     "note": null
+    },
+    {
+     "fleet": "운반선",
+     "vessel": "GREEN GUATEMALA",
+     "arrive": null,
+     "depart": null,
+     "tons": null,
+     "note": null
+    }
+   ],
+   "prices": {
+    "pfcTema": 1600.0,
+    "cosmoTema": 1700.0,
+    "scodiAbidjan": 1700.0,
+    "marketTemaCedi": 14500.0,
+    "marketTemaUsd": 1239.0,
+    "marketAbidjanCfa": 800000.0,
+    "marketAbidjanUsd": 1333.0
+   },
+   "fx": {
+    "cediPerUsd": 11.7,
+    "cfaPerUsd": 600.0
+   },
+   "dailyProcessing": {
+    "COSMO": 114.0,
+    "PFC": 90.0,
+    "SCODI": 85.0,
+    "SCASA": 100.0,
+    "AIRONE": 0.0
+   },
+   "receivables": {
+    "buyers": [
+     {
+      "buyer": "INTER OCEAN",
+      "cfa": 953997275.0,
+      "usd": 1589995.0
+     },
+     {
+      "buyer": "ETS BADARA",
+      "cfa": null,
+      "usd": null
+     },
+     {
+      "buyer": "SDMG",
+      "cfa": null,
+      "usd": null
+     }
+    ],
+    "totalCfa": 1831550179.0,
+    "totalUsd": 3052583.0
+   },
+   "fuel": {
+    "abidjan": 1265.0,
+    "tema": 1516.0,
+    "dakar": 1183.0,
+    "tanker": 1300.0,
+    "single": null
+   }
+  },
+  {
+   "reportDate": "2026-08-11",
+   "isoWeek": 33,
+   "source": "PANOFI 주간동향20260811.docx",
+   "sha256": "8346b0f4dd5a81e93136c599010a56d348f75c192e96151d2874c990564af42e",
+   "author": "김평회 법인장",
+   "statedYearMismatch": false,
+   "fleetStatus": "detailed",
+   "ownVessels": [
+    {
+     "vessel": "P/QUEEN",
+     "code": "P/QUE",
+     "status": null
+    },
+    {
+     "vessel": "P/GRACE",
+     "code": "P/GRA",
+     "status": null
+    },
+    {
+     "vessel": "P/FORE",
+     "code": "P/FORE",
+     "status": null
+    }
+   ],
+   "fishingGround": {
+    "coastalMin": 25.5,
+    "coastalMax": 26.6,
+    "oceanMin": 22.8,
+    "oceanMax": 24.4,
+    "coastalCurrent": "동류",
+    "oceanCurrent": "서류"
+   },
+   "senegalFleet": [
+    {
+     "fleet": "캅센",
+     "vessel": "CAP ATLANTIQUE",
+     "arrive": null,
+     "depart": null,
+     "tons": null,
+     "note": null
+    },
+    {
+     "fleet": "캅센",
+     "vessel": "WESTERN KIM",
+     "arrive": null,
+     "depart": null,
+     "tons": null,
+     "note": null
+    },
+    {
+     "fleet": "캅센",
+     "vessel": "ORIENTAL KIM",
+     "arrive": null,
+     "depart": null,
+     "tons": null,
+     "note": null
+    },
+    {
+     "fleet": "캅센",
+     "vessel": "XIXILI",
+     "arrive": null,
+     "depart": null,
+     "tons": null,
+     "note": null
+    },
+    {
+     "fleet": "그랑블루",
+     "vessel": "PONT SAINT LOUIS",
+     "arrive": null,
+     "depart": null,
+     "tons": null,
+     "note": null
+    },
+    {
+     "fleet": "EU 선단",
+     "vessel": "ZUBEROA",
+     "arrive": null,
+     "depart": null,
+     "tons": null,
+     "note": null
+    },
+    {
+     "fleet": "운반선",
+     "vessel": "SIERRA LAUREL",
+     "arrive": null,
+     "depart": null,
+     "tons": null,
+     "note": null
+    }
+   ],
+   "prices": {
+    "pfcTema": 1600.0,
+    "cosmoTema": 1700.0,
+    "scodiAbidjan": 1700.0,
+    "marketTemaCedi": 14500.0,
+    "marketTemaUsd": 1232.0,
+    "marketAbidjanCfa": 800000.0,
+    "marketAbidjanUsd": 1333.0
+   },
+   "fx": {
+    "cediPerUsd": 11.77,
+    "cfaPerUsd": 600.0
+   },
+   "dailyProcessing": {
+    "COSMO": 114.0,
+    "PFC": 90.0,
+    "SCODI": 85.0,
+    "SCASA": 100.0,
+    "AIRONE": 0.0
+   },
+   "receivables": {
+    "buyers": [
+     {
+      "buyer": "INTER OCEAN",
+      "cfa": 953997275.0,
+      "usd": 1589995.0
+     },
+     {
+      "buyer": "ETS BADARA",
+      "cfa": null,
+      "usd": null
+     },
+     {
+      "buyer": "SDMG",
+      "cfa": null,
+      "usd": null
+     }
+    ],
+    "totalCfa": 1834490179.0,
+    "totalUsd": 3057484.0
+   },
+   "fuel": {
+    "abidjan": 1226.0,
+    "tema": 1495.0,
+    "dakar": 1166.0,
+    "tanker": 1340.0,
+    "single": null
+   }
+  }
+ ]
+}

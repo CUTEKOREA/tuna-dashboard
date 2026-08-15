@@ -38,6 +38,7 @@ export const DASHBOARD_MENU_CONFIGS = [
   { key: 'fleet', title: '선단 운영', section: 'operation', accent: 'cyan', requiresOperationAccess: true, shortcutOrder: 2, sidebar: { icon: 'Navigation', suffix: 'Fleet' } },
   { key: 'logistics', title: '물류·가공', section: 'operation', accent: 'cyan', requiresOperationAccess: true, shortcutOrder: 4, sidebar: { icon: 'Factory', suffix: 'Logistics' } },
   { key: 'unloading', title: '하역 현황', section: 'operation', accent: 'cyan', requiresOperationAccess: true, shortcutOrder: 3, sidebar: { icon: 'Anchor', suffix: 'Unloading' } },
+  { key: 'panofi', title: '파노피', section: 'operation', accent: 'cyan', sidebar: { icon: 'Ship' } },
   { key: 'cosmo', title: '코스모', section: 'operation', accent: 'cyan', sidebar: { icon: 'Hexagon' } },
   { key: 'bangkok-office', title: '방콕사무소', section: 'operation', accent: 'cyan', requiresOperationAccess: true, sidebar: { icon: 'Factory' } },
   { key: 'pork', title: '돼지고기', section: 'livestock', accent: 'cyan', sidebar: { icon: 'Hexagon', suffix: 'Pork' } },
@@ -154,13 +155,14 @@ export const DASHBOARD_PANEL_ORDER = [
 
   'pork',
   'unloading',
+  'panofi',
   'cosmo',
   'bangkok-office',
   'purse-seiner-db',
 ] as const satisfies readonly ActiveMenu[];
 
 const SIDEBAR_SECTION_KEYS: Record<DashboardSection, readonly ActiveMenu[]> = {
-  operation: ['market', 'fleet', 'unloading', 'logistics', 'cosmo', 'bangkok-office'],
+  operation: ['market', 'fleet', 'unloading', 'logistics', 'panofi', 'cosmo', 'bangkok-office'],
   fishery: [],
   strategy: [
   ],

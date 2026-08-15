@@ -43,6 +43,7 @@ const CrossCommodityIntelligenceDashboard = dynamic(() => import('../components/
 
 const MarketDashboard = dynamic(() => import('../components/MarketDashboard'));
 const PurseSeinerDashboard = dynamic(() => import('../components/PurseSeinerDashboard'));
+const PanofiDashboard = dynamic(() => import('../components/panofi/PanofiDashboard'));
 const CosmoDashboard = dynamic(() => import('../components/cosmo/CosmoDashboard'));
 const BangkokOfficeDashboard = dynamic(() => import('../components/EmbeddedDashboardFrame').then((module) => module.BangkokOfficeDashboard));
 
@@ -56,6 +57,7 @@ const INSTITUTIONAL_MENU_KEYS = new Set<ActiveMenu>([
   'pork',
   'cross-intelligence',
   'purse-seiner-db',
+  'panofi',
   'cosmo',
 ]);
 
@@ -269,6 +271,7 @@ export default function Home() {
 
     pork: <PorkDashboard />,
     unloading: <UnloadingStatus />,
+    panofi: <PanofiDashboard />,
     cosmo: <CosmoDashboard />,
     'bangkok-office': <BangkokOfficeDashboard />,
     'purse-seiner-db': <PurseSeinerDashboard />,
@@ -281,6 +284,7 @@ export default function Home() {
     pork: <PorkDashboard heroOnly />,
     'cross-intelligence': <CrossCommodityIntelligenceDashboard heroOnly />,
     'purse-seiner-db': <PurseSeinerDashboard heroOnly />,
+    panofi: <PanofiDashboard heroOnly />,
     cosmo: <CosmoDashboard heroOnly />,
   };
 

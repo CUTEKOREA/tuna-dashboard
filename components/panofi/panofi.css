@@ -1,0 +1,234 @@
+/* 파노피 전용 스킨 — 트레이딩 터미널 밀도.
+ *
+ * 코스모 토큰(--cosmo-*) 위에 얹는다. 색은 코스모 팔레트를 그대로 쓴다
+ * (dataviz 검증기 5개 항목 전부 통과 — 다시 만들 이유가 없다).
+ * 바꾸는 것은 «밀도·계층·정렬» 세 가지다:
+ *   1) 한 화면에 더 많은 지표 — 패널 격자와 stat strip
+ *   2) 숫자를 먼저 읽게 — 모노 수치 + 마이크로 라벨
+ *   3) 표에서 자릿수가 맞게 — tabular-nums (히어로 수치는 제외)
+ */
+
+.panofi-root {
+  --pf-gap: 10px;
+  --pf-pad: 14px;
+  --pf-hair: var(--cosmo-line-2);
+  --pf-label: 9.5px;
+}
+
+/* ── 패널 격자 ────────────────────────────────────────────────────────── */
+
+.panofi-root .pf-grid {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  gap: var(--pf-gap);
+  margin-bottom: var(--pf-gap);
+}
+.panofi-root .pf-col-3 { grid-column: span 3; }
+.panofi-root .pf-col-4 { grid-column: span 4; }
+.panofi-root .pf-col-6 { grid-column: span 6; }
+.panofi-root .pf-col-8 { grid-column: span 8; }
+.panofi-root .pf-col-12 { grid-column: span 12; }
+
+@media (max-width: 1180px) {
+  .panofi-root .pf-col-3,
+  .panofi-root .pf-col-4 { grid-column: span 6; }
+  .panofi-root .pf-col-8 { grid-column: span 12; }
+}
+@media (max-width: 720px) {
+  .panofi-root .pf-grid > * { grid-column: span 12; }
+}
+
+/* ── 패널 ─────────────────────────────────────────────────────────────── */
+
+.panofi-root .pf-panel {
+  background: var(--cosmo-surface);
+  border: 1px solid var(--pf-hair);
+  border-radius: 6px;
+  padding: var(--pf-pad);
+  min-width: 0;               /* 격자 안에서 내용이 넘쳐 가로 스크롤 나는 것 방지 */
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.panofi-root .pf-panel > .pf-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 10px;
+  border-bottom: 1px solid var(--pf-hair);
+  padding-bottom: 7px;
+}
+.panofi-root .pf-title {
+  font-size: 12.5px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  color: var(--cosmo-ink);
+}
+.panofi-root .pf-unit {
+  font: 500 var(--pf-label) / 1 var(--cosmo-mono);
+  letter-spacing: 0.06em;
+  color: var(--cosmo-muted);
+  white-space: nowrap;
+}
+.panofi-root .pf-note {
+  font-size: 11px;
+  line-height: 1.6;
+  color: var(--cosmo-ink-2);
+}
+.panofi-root .pf-src {
+  font: 500 10px / 1.5 var(--cosmo-mono);
+  color: var(--cosmo-muted);
+  border-top: 1px solid var(--pf-hair);
+  padding-top: 6px;
+  margin-top: auto;           /* 패널 높이가 달라도 출처는 바닥에 정렬 */
+}
+
+/* ── stat strip — 숫자를 먼저 읽게 ────────────────────────────────────── */
+
+.panofi-root .pf-stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 1px;                    /* 헤어라인 구분선을 배경으로 만든다 */
+  background: var(--pf-hair);
+  border: 1px solid var(--pf-hair);
+  border-radius: 6px;
+  overflow: hidden;
+  margin-bottom: var(--pf-gap);
+}
+.panofi-root .pf-stat {
+  background: var(--cosmo-surface);
+  padding: 11px 13px 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  min-width: 0;
+}
+.panofi-root .pf-stat-k {
+  font: 600 var(--pf-label) / 1.2 var(--cosmo-mono);
+  letter-spacing: 0.1em;
+  color: var(--cosmo-muted);
+}
+.panofi-root .pf-stat-v {
+  font: 700 21px / 1.1 var(--cosmo-mono);
+  letter-spacing: -0.03em;
+  color: var(--cosmo-ink);
+  /* 히어로급 수치에는 tabular-nums 를 쓰지 않는다 — 큰 크기에서 헐거워 보인다 */
+}
+.panofi-root .pf-stat-v small {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--cosmo-muted);
+  margin-left: 3px;
+}
+.panofi-root .pf-stat-v.up { color: var(--cosmo-ok); }
+.panofi-root .pf-stat-v.down { color: var(--cosmo-bad); }
+.panofi-root .pf-stat-d {
+  font: 500 10.5px / 1.4 var(--cosmo-mono);
+  color: var(--cosmo-ink-2);
+}
+
+/* ── 상태 바 — 신호등 6개를 한 줄로 ──────────────────────────────────── */
+
+.panofi-root .pf-signals {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(178px, 1fr));
+  gap: 1px;
+  background: var(--pf-hair);
+  border: 1px solid var(--pf-hair);
+  border-radius: 6px;
+  overflow: hidden;
+}
+.panofi-root .pf-signal {
+  background: var(--cosmo-surface);
+  padding: 10px 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 0;
+}
+.panofi-root .pf-signal-k {
+  font: 600 var(--pf-label) / 1.3 var(--cosmo-mono);
+  letter-spacing: 0.08em;
+  color: var(--cosmo-muted);
+}
+.panofi-root .pf-signal-row {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  font: 700 13px var(--cosmo-mono);
+  font-variant-numeric: tabular-nums;
+  color: var(--cosmo-ink);
+}
+/* 상태는 색만으로 알리지 않는다 — 점 + 글자를 함께 둔다 (dataviz 접근성 규칙) */
+.panofi-root .pf-dot {
+  width: 7px; height: 7px; border-radius: 50%;
+  flex: none;
+}
+.panofi-root .pf-dot.ok { background: var(--cosmo-ok); }
+.panofi-root .pf-dot.warn { background: var(--cosmo-warn); }
+.panofi-root .pf-signal-warn {
+  font: 500 10.5px var(--cosmo-mono);
+  font-variant-numeric: tabular-nums;
+  color: var(--cosmo-warn);
+}
+.panofi-root .pf-signal-act {
+  font-size: 10.5px;
+  line-height: 1.5;
+  color: var(--cosmo-muted);
+}
+
+/* ── 표 — 자릿수를 맞춘다 ─────────────────────────────────────────────── */
+
+.panofi-root .pf-table-wrap { overflow-x: auto; }
+.panofi-root table.pf-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 11.5px;
+}
+.panofi-root .pf-table th {
+  text-align: right;
+  font: 600 var(--pf-label) var(--cosmo-mono);
+  letter-spacing: 0.07em;
+  color: var(--cosmo-muted);
+  padding: 6px 8px;
+  border-bottom: 1px solid var(--pf-hair);
+  white-space: nowrap;
+}
+.panofi-root .pf-table th:first-child,
+.panofi-root .pf-table td:first-child { text-align: left; }
+.panofi-root .pf-table td {
+  text-align: right;
+  padding: 6px 8px;
+  border-bottom: 1px solid var(--cosmo-line-2);
+  color: var(--cosmo-ink);
+  font-variant-numeric: tabular-nums;  /* 세로로 자릿수가 맞아야 읽힌다 */
+  white-space: nowrap;
+}
+.panofi-root .pf-table tbody tr:last-child td { border-bottom: 0; }
+.panofi-root .pf-table tr.sum td {
+  border-top: 1px solid var(--pf-hair);
+  font-weight: 700;
+}
+.panofi-root .pf-table td.up { color: var(--cosmo-ok); }
+.panofi-root .pf-table td.down { color: var(--cosmo-bad); }
+
+/* ── 섹션 제목 ────────────────────────────────────────────────────────── */
+
+.panofi-root .pf-sec {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  margin: 20px 0 9px;
+}
+.panofi-root .pf-sec::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--pf-hair);
+}
+.panofi-root .pf-sec span {
+  font: 700 10.5px var(--cosmo-mono);
+  letter-spacing: 0.14em;
+  color: var(--cosmo-ink-2);
+}
+.panofi-root .pf-sec:first-child { margin-top: 4px; }
