@@ -256,7 +256,9 @@ describe('거울통계 교차검증', () => {
     for (const p of mirror.pairs) {
       expect(mirror.meta.codes).toContain(p.hs);
     }
-    expect(mirror.meta.year).toBe(2024);
+    // 연도를 박아두면 원자료를 갱신할 때마다 테스트가 깨진다. 무역 데이터의 최신 연도와
+    // 같아야 한다는 관계로 잰다 — 둘이 어긋나면 다른 해를 맞댄 것이라 격차가 무의미해진다.
+    expect(mirror.meta.year).toBe(tradeYear);
   });
 
   it('비율은 양쪽이 다 보고한 쌍에서만 계산한다', () => {

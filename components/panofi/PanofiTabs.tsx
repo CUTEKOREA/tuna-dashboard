@@ -663,8 +663,8 @@ export function IndustryTab() {
   return (
     <>
       <Stats>
-        <Stat k="가공 처리능력" v={num(industry.processingCapacityTPerYear)} unit="톤/년" d="테마항 3사 합계" />
-        <Stat k="연간 통조림 생산" v={num(industry.annualCannedOutputT)} unit="톤" />
+        <Stat k="가공 처리능력" v={num(industry.processingCapacityTPerYear)} unit="톤/년" d={`테마항 3사 · ${industry.processingCapacityBasisYear}년 기준`} />
+        <Stat k="연간 통조림 생산" v={num(industry.annualCannedOutputT)} unit="톤" d={`${industry.annualCannedOutputBasisYear} 기준`} />
         <Stat k="설비 가동률" v={`${industry.utilizationPct[0]}~${industry.utilizationPct[1]}%`} d="원료 계절 편차" />
         <Stat k="통조림 수출액" v={(industry.exports.cannedTunaUsd2025 / 1e6).toFixed(1)} unit="백만불" tone="up" d={`전년비 +${industry.exports.cannedTunaYoyPct}%`} />
         <Stat k="유럽연합 비중" v={pct(industry.exports.euSharePct)} d="영국이 단일 최대" />
@@ -678,7 +678,7 @@ export function IndustryTab() {
             yFmt={(v) => `${v.toLocaleString('en-US')}유로`} />
         </Panel>
 
-        <Panel span={6} title="테마항 가공공장" src={SRC.nlm}>
+        <Panel span={6} title="테마항 가공공장" note={industry.capacityCaveat} src={`${SRC.nlm} · 2026-08-15 재수집`}>
           <Table head={['공장', '소유', '설립', '처리능력', '고용', '주력 제품']}>
             {industry.cannersDetail.map((c) => (
               <tr key={c.plant}>
@@ -689,7 +689,7 @@ export function IndustryTab() {
                   {c.capacityTPerDay ? `일 ${c.capacityTPerDay}톤 (실가동 ${c.operatingTPerDay}톤)` : (c.capacity ?? '자료 없음')}
                 </td>
                 <td>{c.employees ?? '자료 없음'}</td>
-                <td style={{ textAlign: 'left' }}>{c.products}</td>
+                <td style={{ textAlign: 'left' }}>{c.products}{'employeesConflict' in c && c.employeesConflict ? ` · 고용 수치 출처 혼선 — ${c.employeesConflict}` : ''}</td>
               </tr>
             ))}
           </Table>
@@ -725,6 +725,8 @@ export function IndustryTab() {
             {'scope' in r && r.scope && <div className="pf-stat-k">적용 범위 — {r.scope}</div>}
             {'caveat' in r && r.caveat && <Callout kind="warn" label="유의">{r.caveat}</Callout>}
             {'conflict' in r && r.conflict && <Callout kind="warn" label="출처 충돌">{r.conflict}</Callout>}
+            {'resolved' in r && r.resolved && <Callout kind="info" label="충돌 해소">{r.resolved}</Callout>}
+            {'outcome' in r && r.outcome && <div className="pf-stat-k">시행 성과 — {r.outcome}</div>}
           </Panel>
         ))}
 

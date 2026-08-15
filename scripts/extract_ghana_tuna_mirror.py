@@ -21,7 +21,7 @@ from pathlib import Path
 
 BASE = "https://comtradeapi.un.org/public/v1/preview/C/A/HS"
 GHANA = 288
-YEAR = 2024
+YEAR = 2025
 OUT = Path(__file__).resolve().parents[1] / "public/data/panofi/ghana_tuna_mirror.json"
 GHANA_TRADE = Path(__file__).resolve().parents[1] / "public/data/panofi/ghana_tuna_trade.json"
 

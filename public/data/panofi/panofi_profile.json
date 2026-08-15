@@ -1,325 +1,1021 @@
 {
-  "meta": {
-    "subject": "파노피(PANOFI) — 가나 참치 선망 조업",
-    "compiledOn": "2026-08-15",
-    "grades": {
-      "A": "1차 원본(사내 원자료 셀값·문서 원문) 또는 기관 1차 출처",
-      "B": "복수 2차 출처 교차 일치",
-      "C": "단일 출처 또는 추정·가정",
-      "충돌": "출처 간 불일치 — 보수적 값을 채택하고 양쪽을 병기"
-    },
-    "sources": [
-      { "key": "strategy", "title": "파노피 2026년 상반기 평가·하반기 전략 (260729)", "type": "사내", "date": "2026-07-29", "note": "원본 43개(추정실적 xlsx 6 + 월간보고 pptx 5 + 주간동향 docx 32) 기반" },
-      { "key": "weekly", "title": "PANOFI 주간동향 31주", "type": "사내", "date": "2026-08-11", "note": "panofi_weekly.json 으로 별도 추출" },
-      { "key": "ghana3", "title": "가나 3개사 보고 (20260309)", "type": "사내", "date": "2026-03-09" },
-      { "key": "nlm", "title": "NotebookLM 「가나 중심 서아프리카 참치 비즈니스 분석」", "type": "외부", "date": "2026-08-15", "note": "소스 82건" },
-      { "key": "grok", "title": "Grok 1차출처 대조 (금어기·MSC·ILO·GRA·방콕가)", "type": "외부검증", "date": "2026-08-15" }
-    ]
+ "meta": {
+  "subject": "파노피(PANOFI) — 가나 참치 선망 조업",
+  "compiledOn": "2026-08-15",
+  "grades": {
+   "A": "1차 원본(사내 원자료 셀값·문서 원문) 또는 기관 1차 출처",
+   "B": "복수 2차 출처 교차 일치",
+   "C": "단일 출처 또는 추정·가정",
+   "충돌": "출처 간 불일치 — 보수적 값을 채택하고 양쪽을 병기"
   },
-
-  "company": {
-    "name": "파노피",
-    "nameEn": "PANOFI Company Ltd.",
-    "established": "2002-10",
-    "base": "가나 테마(Tema)",
-    "ownership": "신라교역 합작사 — 가나 국적자 지분 50% 이상 의무 규정 적용",
+  "sources": [
+   {
+    "key": "strategy",
+    "title": "파노피 2026년 상반기 평가·하반기 전략 (260729)",
+    "type": "사내",
+    "date": "2026-07-29",
+    "note": "원본 43개(추정실적 xlsx 6 + 월간보고 pptx 5 + 주간동향 docx 32) 기반"
+   },
+   {
+    "key": "weekly",
+    "title": "PANOFI 주간동향 31주",
+    "type": "사내",
+    "date": "2026-08-11",
+    "note": "panofi_weekly.json 으로 별도 추출"
+   },
+   {
+    "key": "ghana3",
+    "title": "가나 3개사 보고 (20260309)",
+    "type": "사내",
+    "date": "2026-03-09"
+   },
+   {
+    "key": "nlm",
+    "title": "NotebookLM 「가나 중심 서아프리카 참치 비즈니스 분석」",
+    "type": "외부",
+    "date": "2026-08-15",
+    "note": "소스 82건"
+   },
+   {
+    "key": "grok",
+    "title": "Grok 1차출처 대조 (금어기·MSC·ILO·GRA·방콕가)",
+    "type": "외부검증",
+    "date": "2026-08-15"
+   }
+  ]
+ },
+ "company": {
+  "name": "파노피",
+  "nameEn": "PANOFI Company Ltd.",
+  "established": "2002-10",
+  "base": "가나 테마(Tema)",
+  "ownership": "신라교역 합작사 — 가나 국적자 지분 50% 이상 의무 규정 적용",
+  "source": "nlm",
+  "grade": "B"
+ },
+ "fleet": {
+  "activeCount": 7,
+  "note": "현재 선단은 선망 7척이다. 외부 등록 정보(ICCAT·업계 분석)에는 운반선 볼타 글로리가 아직 파노피 선단으로 잡히지만 매각이 완료돼 현재 자산이 아니다 — 외부 출처가 이 건에서 낡았고 사내 확인이 정본이다.",
+  "purseSeiners": [
+   {
+    "code": "P/MAS",
+    "name": "파노피 마스터",
+    "nameEn": "PANOFI MASTER",
+    "gt": 995,
+    "loaM": 56.64,
+    "h1ProductionT": 2585,
+    "h1DirectMarginMusd": -1.2
+   },
+   {
+    "code": "P/DIS",
+    "name": "파노피 디스커버러",
+    "nameEn": "PANOFI DISCOVERER",
+    "gt": 1100,
+    "loaM": 70.59,
+    "h1ProductionT": 3470,
+    "h1DirectMarginMusd": 1.23
+   },
+   {
+    "code": "P/FORE",
+    "name": "파노피 포러너",
+    "nameEn": "PANOFI FORE-RUNNER",
+    "gt": 1100,
+    "loaM": 70.59,
+    "h1ProductionT": 3025,
+    "h1DirectMarginMusd": 0.51
+   },
+   {
+    "code": "P/PATH",
+    "name": "파노피 패스파인더",
+    "nameEn": "PANOFI PATH-FINDER",
+    "gt": 1100,
+    "loaM": 70.59,
+    "h1ProductionT": 2975,
+    "h1DirectMarginMusd": -0.35
+   },
+   {
+    "code": "P/COMM",
+    "name": "파노피 커맨더",
+    "nameEn": "PANOFI COMMANDER",
+    "gt": 1416,
+    "loaM": 71.79,
+    "h1ProductionT": 2835,
+    "h1DirectMarginMusd": -0.12
+   },
+   {
+    "code": "P/QUE",
+    "name": "파노피 퀸",
+    "nameEn": "PANOFI QUEEN",
+    "gt": 1517,
+    "loaM": 69.42,
+    "h1ProductionT": 3010,
+    "h1DirectMarginMusd": 1.36
+   },
+   {
+    "code": "P/GRA",
+    "name": "파노피 그레이스",
+    "nameEn": "PANOFI GRACE",
+    "gt": 1517,
+    "loaM": 69.42,
+    "h1ProductionT": 2660,
+    "h1DirectMarginMusd": 0.27
+   }
+  ],
+  "divested": [
+   {
+    "code": "VOLTA",
+    "name": "볼타 글로리",
+    "nameEn": "VOLTA GLORY",
+    "type": "운반선",
+    "gt": 2829,
+    "loaM": 93.8,
+    "status": "매각 완료",
+    "source": "사내 확인",
+    "grade": "A",
+    "note": "외부 등록·업계 분석 자료에는 아직 파노피 선단 8척(선망 7 + 운반선 1)으로 남아 있다. 외부 수치를 인용할 때 이 차이를 함께 밝힌다."
+   }
+  ],
+  "sharedCostMusd": 532,
+  "sourceProduction": "strategy",
+  "sourceSpec": "nlm",
+  "grade": "A/B"
+ },
+ "performance": {
+  "annual": [
+   {
+    "year": 2020,
+    "revenueMusd": 49,
+    "operatingMusd": -5.4,
+    "netMusd": -8.2
+   },
+   {
+    "year": 2021,
+    "revenueMusd": 43,
+    "operatingMusd": -4.1,
+    "netMusd": -6.6
+   },
+   {
+    "year": 2022,
+    "revenueMusd": 85,
+    "operatingMusd": 4.3,
+    "netMusd": 2.1
+   },
+   {
+    "year": 2023,
+    "revenueMusd": 73,
+    "operatingMusd": 4.6,
+    "netMusd": -1.5
+   },
+   {
+    "year": 2024,
+    "revenueMusd": 72,
+    "operatingMusd": 5.7,
+    "netMusd": -2.4
+   },
+   {
+    "year": 2025,
+    "revenueMusd": 84,
+    "operatingMusd": 12.9,
+    "netMusd": 0.0,
+    "productionT": 66674,
+    "note": "생산 전년비 +11,628톤. 영업이익 기록 경신이나 금융비용 -676만불·법인세로 순이익 0 부근"
+   },
+   {
+    "year": 2026,
+    "half": "H1",
+    "revenueMusd": 27,
+    "operatingMusd": -1.06,
+    "netMusd": -6.99
+   }
+  ],
+  "h1_2026": {
+   "productionT": 22526,
+   "productionYoyT": -1625,
+   "productionYoyPct": -7,
+   "salesT": 20671,
+   "salesYoyT": -1578,
+   "salesYoyPct": -7,
+   "priceUsdPerT": 1280,
+   "priceYoyUsd": -50,
+   "priceYoyPct": -4,
+   "revenueKusd": 26463,
+   "revenueYoyPct": -11,
+   "grossProfitKusd": 201,
+   "grossProfitYoyPct": -92,
+   "operatingKusd": -1062,
+   "netKusd": -6992,
+   "costRatioPct": 99.2,
+   "costRatioPrevPct": 91.2,
+   "breakdown": "3겹 적자 — 매출총이익 소멸(-2,401) + 이자(-293만불) + 세무추징 추정(-300만불)"
+  },
+  "bep": {
+   "priceUsdPerT": 1473,
+   "monthlyVolumeT": 6300,
+   "note": "어가 1,300 가정 시 월 6,300톤"
+  },
+  "inventory": {
+   "endT": 8743,
+   "endKusd": 11110,
+   "yoyKusd": 390
+  },
+  "source": "strategy",
+  "grade": "A"
+ },
+ "costStructure": {
+  "basisKusd": 30200,
+  "basisNote": "H1 생산원가 3,020만불 · 매출 2,646만불 기준",
+  "items": [
+   {
+    "item": "유류(연료+윤활)",
+    "kusd": 10480,
+    "revenuePct": 39.6,
+    "nature": "변동",
+    "control": "중"
+   },
+   {
+    "item": "선용품·어구",
+    "kusd": 4680,
+    "revenuePct": 17.7,
+    "nature": "변동",
+    "control": "중"
+   },
+   {
+    "item": "선원 인건비",
+    "kusd": 3850,
+    "revenuePct": 14.5,
+    "nature": "준고정",
+    "control": "중"
+   },
+   {
+    "item": "항만·하역·운반",
+    "kusd": 2760,
+    "revenuePct": 10.4,
+    "nature": "변동",
+    "control": "중"
+   },
+   {
+    "item": "입어료·수수료",
+    "kusd": 2350,
+    "revenuePct": 8.9,
+    "nature": "고정",
+    "control": "하",
+    "note": "가나 118만불 + 라이베리아 41만불 = 159만불/년"
+   },
+   {
+    "item": "수선비",
+    "kusd": 1800,
+    "revenuePct": 6.8,
+    "nature": "변동",
+    "control": "중"
+   },
+   {
+    "item": "감가상각",
+    "kusd": 1550,
+    "revenuePct": 5.9,
+    "nature": "고정",
+    "control": "하"
+   },
+   {
+    "item": "보험(선박+선원)",
+    "kusd": 840,
+    "revenuePct": 3.2,
+    "nature": "고정",
+    "control": "하"
+   },
+   {
+    "item": "특별유류세",
+    "kusd": 590,
+    "revenuePct": 2.2,
+    "nature": "세금",
+    "control": "불가",
+    "note": "가나 정부 정책"
+   },
+   {
+    "item": "이자(영업외)",
+    "kusd": 2930,
+    "revenuePct": 11.1,
+    "nature": "고정",
+    "control": "중"
+   }
+  ],
+  "source": "strategy",
+  "grade": "A"
+ },
+ "h2Scenarios": {
+  "basisNote": "H2 2026 (7~12월) · 천미불. 2025 H2 실적 대비",
+  "rows": [
+   {
+    "metric": "판매량(톤)",
+    "actual2025H2": 42439,
+    "down": 34000,
+    "base": 38000,
+    "up": 42000
+   },
+   {
+    "metric": "판매어가($/t)",
+    "actual2025H2": 1277,
+    "down": 1280,
+    "base": 1300,
+    "up": 1330
+   },
+   {
+    "metric": "매출액",
+    "actual2025H2": 54160,
+    "down": 43520,
+    "base": 49400,
+    "up": 55860
+   },
+   {
+    "metric": "원가율(%)",
+    "actual2025H2": 75.0,
+    "down": 90,
+    "base": 85,
+    "up": 80
+   },
+   {
+    "metric": "매출총이익",
+    "actual2025H2": 13551,
+    "down": 4352,
+    "base": 7410,
+    "up": 11172
+   },
+   {
+    "metric": "영업이익",
+    "actual2025H2": 11535,
+    "down": 2950,
+    "base": 6010,
+    "up": 9670
+   },
+   {
+    "metric": "H2 순이익",
+    "actual2025H2": 5398,
+    "down": -50,
+    "base": 3010,
+    "up": 6770
+   },
+   {
+    "metric": "2026 연간 순이익",
+    "actual2025H2": null,
+    "down": -7040,
+    "base": -3980,
+    "up": -220
+   }
+  ],
+  "premise": {
+   "down": "어장 부진 지속 + 유가 재상승",
+   "base": "잔고기 정상 시즌",
+   "up": "2025 수준 어황 + 어가 유지"
+  },
+  "source": "strategy",
+  "grade": "A/C",
+  "gradeNote": "2025 H2 실적은 실측(A), 하방·기준·상향은 내부 가정 기반 시나리오(C)"
+ },
+ "sensitivity": {
+  "note": "기준 시나리오(판매 38,000톤) 대비 각 변수 단위 변화의 H2 손익 영향(만불)",
+  "items": [
+   {
+    "driver": "어획 ±2,000톤(±5%)",
+    "impactMusd": 150,
+    "type": "통제권 내"
+   },
+   {
+    "driver": "어가 ±$50/t",
+    "impactMusd": 190,
+    "type": "시황·리스크"
+   },
+   {
+    "driver": "원가율 ±2%p",
+    "impactMusd": 99,
+    "type": "통제권 내"
+   },
+   {
+    "driver": "유류 소모 ±5%",
+    "impactMusd": 55,
+    "type": "통제권 내"
+   },
+   {
+    "driver": "미수금 대손(아비장+AIRONE)",
+    "impactMusd": 147,
+    "type": "시황·리스크"
+   },
+   {
+    "driver": "이자 ±10%",
+    "impactMusd": 29,
+    "type": "통제권 내"
+   }
+  ],
+  "source": "strategy",
+  "grade": "C"
+ },
+ "channels": [
+  {
+   "channel": "코스모",
+   "channelEn": "COSMO",
+   "location": "테마",
+   "priceUsdPerT": 1620,
+   "trait": "대량·안정. 관계사",
+   "policy": "우선 배분 유지. 어대금 잔액 1,400만불대"
+  },
+  {
+   "channel": "PFC",
+   "channelEn": "Pioneer Food Cannery",
+   "location": "테마",
+   "priceUsdPerT": 1600,
+   "trait": "연간계약 → 시장연동 전환 중",
+   "policy": "분기 단위 시장연동 정례화 — 연간 고정가 회귀 금지"
+  },
+  {
+   "channel": "SCODI",
+   "channelEn": "SCODI",
+   "location": "아비장",
+   "priceUsdPerT": 1630,
+   "priceRange": [
+    1623,
+    1637
+   ],
+   "trait": "고가·변동 큼",
+   "policy": "어가 우위 시 배분 확대"
+  },
+  {
+   "channel": "아비장 로컬마켓",
+   "channelEn": "Abidjan local",
+   "location": "아비장",
+   "priceUsdPerT": 1333,
+   "trait": "신용판매 — 미수금 리스크 실증",
+   "policy": "미수금 잔액 300만불 상한 + 회수 연동 판매. INTER OCEAN 계열 신규 금지"
+  },
+  {
+   "channel": "테마 로컬마켓",
+   "channelEn": "Tema local",
+   "location": "테마",
+   "priceUsdPerT": 1246,
+   "trait": "즉시 현금·저가",
+   "policy": "R3 저가 사이즈·잡어 소진 채널로 한정"
+  }
+ ],
+ "receivables": {
+  "abidjanKusd": 3052,
+  "abidjanPeakKusd": 8000,
+  "recoveredKusd": -4950,
+  "recoveryPeriod": "2025-12 ~ 2026-07",
+  "cases": [
+   {
+    "party": "INTER OCEAN",
+    "status": "형사 고소 전면 무혐의(결정문 2026-06-08 수령). 상대 항소로 항소심 진행 — 판사 추가 조사 지시로 일정 미정",
+    "grade": "A"
+   },
+   {
+    "party": "ETS BADARA",
+    "status": "회수 진행 중",
+    "grade": "A"
+   },
+   {
+    "party": "AIRONE(이탈리아)",
+    "amountEur": 1218494.5,
+    "status": "2026-04-14 파산 절차 확정. 2026-07-07 파노피 채권 법원 공식 인정. 회수액은 청산 배당에 따름(2026-12-01 금융기관 채권심리)",
+    "grade": "A"
+   }
+  ],
+  "cashShortfallKusd": -20820,
+  "cashShortfallNote": "연초 -799만불 → 6개월새 -1,283만불 악화. 코스모(-938만불) 합산 시 그룹 가나 사업 -3,000만불",
+  "source": "strategy",
+  "grade": "A"
+ },
+ "industry": {
+  "note": "가나 참치산업 전체 맥락. 파노피 단독 실적이 아니라 업계 위치를 읽기 위한 배경이다.",
+  "fleet": [
+   {
+    "fact": "가나 산업용 참치어선 30척(채낚기 14 · 선망 16)",
+    "year": 2019,
     "source": "nlm",
     "grade": "B"
-  },
-
-  "fleet": {
-    "activeCount": 7,
-    "note": "현재 선단은 선망 7척이다. 외부 등록 정보(ICCAT·업계 분석)에는 운반선 볼타 글로리가 아직 파노피 선단으로 잡히지만 매각이 완료돼 현재 자산이 아니다 — 외부 출처가 이 건에서 낡았고 사내 확인이 정본이다.",
-    "purseSeiners": [
-      { "code": "P/MAS", "name": "파노피 마스터", "nameEn": "PANOFI MASTER", "gt": 995, "loaM": 56.64, "h1ProductionT": 2585, "h1DirectMarginMusd": -1.2 },
-      { "code": "P/DIS", "name": "파노피 디스커버러", "nameEn": "PANOFI DISCOVERER", "gt": 1100, "loaM": 70.59, "h1ProductionT": 3470, "h1DirectMarginMusd": 1.23 },
-      { "code": "P/FORE", "name": "파노피 포러너", "nameEn": "PANOFI FORE-RUNNER", "gt": 1100, "loaM": 70.59, "h1ProductionT": 3025, "h1DirectMarginMusd": 0.51 },
-      { "code": "P/PATH", "name": "파노피 패스파인더", "nameEn": "PANOFI PATH-FINDER", "gt": 1100, "loaM": 70.59, "h1ProductionT": 2975, "h1DirectMarginMusd": -0.35 },
-      { "code": "P/COMM", "name": "파노피 커맨더", "nameEn": "PANOFI COMMANDER", "gt": 1416, "loaM": 71.79, "h1ProductionT": 2835, "h1DirectMarginMusd": -0.12 },
-      { "code": "P/QUE", "name": "파노피 퀸", "nameEn": "PANOFI QUEEN", "gt": 1517, "loaM": 69.42, "h1ProductionT": 3010, "h1DirectMarginMusd": 1.36 },
-      { "code": "P/GRA", "name": "파노피 그레이스", "nameEn": "PANOFI GRACE", "gt": 1517, "loaM": 69.42, "h1ProductionT": 2660, "h1DirectMarginMusd": 0.27 }
-    ],
-    "divested": [
-      { "code": "VOLTA", "name": "볼타 글로리", "nameEn": "VOLTA GLORY", "type": "운반선", "gt": 2829, "loaM": 93.8, "status": "매각 완료", "source": "사내 확인", "grade": "A", "note": "외부 등록·업계 분석 자료에는 아직 파노피 선단 8척(선망 7 + 운반선 1)으로 남아 있다. 외부 수치를 인용할 때 이 차이를 함께 밝힌다." }
-    ],
-    "sharedCostMusd": 532,
-    "sourceProduction": "strategy",
-    "sourceSpec": "nlm",
-    "grade": "A/B"
-  },
-
-  "performance": {
-    "annual": [
-      { "year": 2020, "revenueMusd": 49, "operatingMusd": -5.4, "netMusd": -8.2 },
-      { "year": 2021, "revenueMusd": 43, "operatingMusd": -4.1, "netMusd": -6.6 },
-      { "year": 2022, "revenueMusd": 85, "operatingMusd": 4.3, "netMusd": 2.1 },
-      { "year": 2023, "revenueMusd": 73, "operatingMusd": 4.6, "netMusd": -1.5 },
-      { "year": 2024, "revenueMusd": 72, "operatingMusd": 5.7, "netMusd": -2.4 },
-      { "year": 2025, "revenueMusd": 84, "operatingMusd": 12.9, "netMusd": 0.0, "productionT": 66674, "note": "생산 전년비 +11,628톤. 영업이익 기록 경신이나 금융비용 -676만불·법인세로 순이익 0 부근" },
-      { "year": 2026, "half": "H1", "revenueMusd": 27, "operatingMusd": -1.06, "netMusd": -6.99 }
-    ],
-    "h1_2026": {
-      "productionT": 22526, "productionYoyT": -1625, "productionYoyPct": -7,
-      "salesT": 20671, "salesYoyT": -1578, "salesYoyPct": -7,
-      "priceUsdPerT": 1280, "priceYoyUsd": -50, "priceYoyPct": -4,
-      "revenueKusd": 26463, "revenueYoyPct": -11,
-      "grossProfitKusd": 201, "grossProfitYoyPct": -92,
-      "operatingKusd": -1062, "netKusd": -6992,
-      "costRatioPct": 99.2, "costRatioPrevPct": 91.2,
-      "breakdown": "3겹 적자 — 매출총이익 소멸(-2,401) + 이자(-293만불) + 세무추징 추정(-300만불)"
-    },
-    "bep": { "priceUsdPerT": 1473, "monthlyVolumeT": 6300, "note": "어가 1,300 가정 시 월 6,300톤" },
-    "inventory": { "endT": 8743, "endKusd": 11110, "yoyKusd": 390 },
-    "source": "strategy",
-    "grade": "A"
-  },
-
-  "costStructure": {
-    "basisKusd": 30200,
-    "basisNote": "H1 생산원가 3,020만불 · 매출 2,646만불 기준",
-    "items": [
-      { "item": "유류(연료+윤활)", "kusd": 10480, "revenuePct": 39.6, "nature": "변동", "control": "중" },
-      { "item": "선용품·어구", "kusd": 4680, "revenuePct": 17.7, "nature": "변동", "control": "중" },
-      { "item": "선원 인건비", "kusd": 3850, "revenuePct": 14.5, "nature": "준고정", "control": "중" },
-      { "item": "항만·하역·운반", "kusd": 2760, "revenuePct": 10.4, "nature": "변동", "control": "중" },
-      { "item": "입어료·수수료", "kusd": 2350, "revenuePct": 8.9, "nature": "고정", "control": "하", "note": "가나 118만불 + 라이베리아 41만불 = 159만불/년" },
-      { "item": "수선비", "kusd": 1800, "revenuePct": 6.8, "nature": "변동", "control": "중" },
-      { "item": "감가상각", "kusd": 1550, "revenuePct": 5.9, "nature": "고정", "control": "하" },
-      { "item": "보험(선박+선원)", "kusd": 840, "revenuePct": 3.2, "nature": "고정", "control": "하" },
-      { "item": "특별유류세", "kusd": 590, "revenuePct": 2.2, "nature": "세금", "control": "불가", "note": "가나 정부 정책" },
-      { "item": "이자(영업외)", "kusd": 2930, "revenuePct": 11.1, "nature": "고정", "control": "중" }
-    ],
-    "source": "strategy",
-    "grade": "A"
-  },
-
-  "h2Scenarios": {
-    "basisNote": "H2 2026 (7~12월) · 천미불. 2025 H2 실적 대비",
-    "rows": [
-      { "metric": "판매량(톤)", "actual2025H2": 42439, "down": 34000, "base": 38000, "up": 42000 },
-      { "metric": "판매어가($/t)", "actual2025H2": 1277, "down": 1280, "base": 1300, "up": 1330 },
-      { "metric": "매출액", "actual2025H2": 54160, "down": 43520, "base": 49400, "up": 55860 },
-      { "metric": "원가율(%)", "actual2025H2": 75.0, "down": 90, "base": 85, "up": 80 },
-      { "metric": "매출총이익", "actual2025H2": 13551, "down": 4352, "base": 7410, "up": 11172 },
-      { "metric": "영업이익", "actual2025H2": 11535, "down": 2950, "base": 6010, "up": 9670 },
-      { "metric": "H2 순이익", "actual2025H2": 5398, "down": -50, "base": 3010, "up": 6770 },
-      { "metric": "2026 연간 순이익", "actual2025H2": null, "down": -7040, "base": -3980, "up": -220 }
-    ],
-    "premise": {
-      "down": "어장 부진 지속 + 유가 재상승",
-      "base": "잔고기 정상 시즌",
-      "up": "2025 수준 어황 + 어가 유지"
-    },
-    "source": "strategy",
-    "grade": "A/C",
-    "gradeNote": "2025 H2 실적은 실측(A), 하방·기준·상향은 내부 가정 기반 시나리오(C)"
-  },
-
-  "sensitivity": {
-    "note": "기준 시나리오(판매 38,000톤) 대비 각 변수 단위 변화의 H2 손익 영향(만불)",
-    "items": [
-      { "driver": "어획 ±2,000톤(±5%)", "impactMusd": 150, "type": "통제권 내" },
-      { "driver": "어가 ±$50/t", "impactMusd": 190, "type": "시황·리스크" },
-      { "driver": "원가율 ±2%p", "impactMusd": 99, "type": "통제권 내" },
-      { "driver": "유류 소모 ±5%", "impactMusd": 55, "type": "통제권 내" },
-      { "driver": "미수금 대손(아비장+AIRONE)", "impactMusd": 147, "type": "시황·리스크" },
-      { "driver": "이자 ±10%", "impactMusd": 29, "type": "통제권 내" }
-    ],
-    "source": "strategy",
+   },
+   {
+    "fact": "ICCAT 등록 기준 가나 국적 참치어선 37척(선망 17 · 채낚기 20)",
+    "source": "nlm",
+    "grade": "B"
+   },
+   {
+    "fact": "가나 선단 총 어획 90,311톤(채낚기 13,173.5 · 선망 77,137.5). 선망 척당 평균 4,821톤",
+    "year": 2019,
+    "source": "nlm",
+    "grade": "B"
+   },
+   {
+    "fact": "가나 참치 어획량은 2002년 이후 연 6.5만톤 선 유지. 가나참치협회(GTA) 회원사 평균 생산 7.5만톤 — EU 수출 70% · 내수 20%",
+    "source": "nlm",
+    "grade": "B"
+   }
+  ],
+  "processing": [
+   {
+    "plant": "PFC",
+    "plantKo": "파이오니어 푸드 캐너리",
+    "owner": "타이유니온 100% 자회사",
+    "employees": 1800,
+    "source": "nlm",
+    "grade": "B"
+   },
+   {
+    "plant": "Cosmo Seafoods",
+    "plantKo": "코스모 씨푸드",
+    "established": "2011-06",
+    "capacityTPerDay": 200,
+    "operatingTPerDay": 60,
+    "employees": 600,
+    "source": "nlm",
+    "grade": "B"
+   },
+   {
+    "plant": "Myroc Foods",
+    "plantKo": "마이록 푸드",
+    "employees": 800,
+    "source": "nlm",
+    "grade": "B"
+   }
+  ],
+  "processingCapacityTPerYear": 120000,
+  "annualCannedOutputT": 58000,
+  "utilizationPct": [
+   50,
+   60
+  ],
+  "cannersDetail": [
+   {
+    "plant": "PFC",
+    "plantKo": "파이오니어 푸드 캐너리",
+    "owner": "타이유니온 그룹 100% (유럽 계열사 Etablissements Paul Paulet SAS 경유)",
+    "founded": 1973,
+    "foundedNote": "1973년 또는 1970년대 중반으로 출처가 갈린다",
+    "acquired": 2010,
+    "freeZone": 1996,
+    "capacity": "일 수백 톤 — 구체 수치는 소스 없음",
+    "employees": "1,800명 이상",
+    "employeesConflict": "출처별로 1,800명 이상 / 약 1,100명(CEO 발언) / 1,000명 이상으로 갈린다. 교차검증 필요",
+    "products": "상온 참치 통조림(John West·StarKist·Petit Navire·MareBlu OEM 및 자체), 부산물 오메가-3 오일",
+    "grade": "B"
+   },
+   {
+    "plant": "Cosmo Seafoods",
+    "plantKo": "코스모 씨푸드",
+    "owner": "신라교역 주도 합작법인 · 가나 자유구역 등록",
+    "founded": "2011-06",
+    "capacityTPerDay": 200,
+    "operatingTPerDay": 60,
+    "utilizationPct": 30,
+    "employees": "600명 이상",
+    "employeesConflict": "수혜자 보고서에는 407명으로 기록돼 있다",
+    "products": "참치 통조림(자체 브랜드 Royal Atlantic), 오일·trimmings, 수출용 참치 플레이크",
+    "grade": "B"
+   },
+   {
+    "plant": "Myroc Foods",
+    "plantKo": "마이록 푸드",
+    "owner": "가나 현지 사기업",
+    "founded": null,
+    "capacity": "소스 없음",
+    "employees": "800명",
+    "products": "참치 통조림(HACCP 인증)",
+    "grade": "B"
+   },
+   {
+    "plant": "Ichiban Seafoods",
+    "plantKo": "이치반 씨푸드",
+    "owner": "소스 없음",
+    "products": "테마항 양륙 참치 가공",
     "grade": "C"
-  },
-
-  "channels": [
-    { "channel": "코스모", "channelEn": "COSMO", "location": "테마", "priceUsdPerT": 1620, "trait": "대량·안정. 관계사", "policy": "우선 배분 유지. 어대금 잔액 1,400만불대" },
-    { "channel": "PFC", "channelEn": "Pioneer Food Cannery", "location": "테마", "priceUsdPerT": 1600, "trait": "연간계약 → 시장연동 전환 중", "policy": "분기 단위 시장연동 정례화 — 연간 고정가 회귀 금지" },
-    { "channel": "SCODI", "channelEn": "SCODI", "location": "아비장", "priceUsdPerT": 1630, "priceRange": [1623, 1637], "trait": "고가·변동 큼", "policy": "어가 우위 시 배분 확대" },
-    { "channel": "아비장 로컬마켓", "channelEn": "Abidjan local", "location": "아비장", "priceUsdPerT": 1333, "trait": "신용판매 — 미수금 리스크 실증", "policy": "미수금 잔액 300만불 상한 + 회수 연동 판매. INTER OCEAN 계열 신규 금지" },
-    { "channel": "테마 로컬마켓", "channelEn": "Tema local", "location": "테마", "priceUsdPerT": 1246, "trait": "즉시 현금·저가", "policy": "R3 저가 사이즈·잡어 소진 채널로 한정" }
+   }
   ],
-
-  "receivables": {
-    "abidjanKusd": 3052, "abidjanPeakKusd": 8000, "recoveredKusd": -4950,
-    "recoveryPeriod": "2025-12 ~ 2026-07",
-    "cases": [
-      { "party": "INTER OCEAN", "status": "형사 고소 전면 무혐의(결정문 2026-06-08 수령). 상대 항소로 항소심 진행 — 판사 추가 조사 지시로 일정 미정", "grade": "A" },
-      { "party": "ETS BADARA", "status": "회수 진행 중", "grade": "A" },
-      { "party": "AIRONE(이탈리아)", "amountEur": 1218494.5, "status": "2026-04-14 파산 절차 확정. 2026-07-07 파노피 채권 법원 공식 인정. 회수액은 청산 배당에 따름(2026-12-01 금융기관 채권심리)", "grade": "A" }
-    ],
-    "cashShortfallKusd": -20820,
-    "cashShortfallNote": "연초 -799만불 → 6개월새 -1,283만불 악화. 코스모(-938만불) 합산 시 그룹 가나 사업 -3,000만불",
-    "source": "strategy",
-    "grade": "A"
-  },
-
-  "industry": {
-    "note": "가나 참치산업 전체 맥락. 파노피 단독 실적이 아니라 업계 위치를 읽기 위한 배경이다.",
-    "fleet": [
-      { "fact": "가나 산업용 참치어선 30척(채낚기 14 · 선망 16)", "year": 2019, "source": "nlm", "grade": "B" },
-      { "fact": "ICCAT 등록 기준 가나 국적 참치어선 37척(선망 17 · 채낚기 20)", "source": "nlm", "grade": "B" },
-      { "fact": "가나 선단 총 어획 90,311톤(채낚기 13,173.5 · 선망 77,137.5). 선망 척당 평균 4,821톤", "year": 2019, "source": "nlm", "grade": "B" },
-      { "fact": "가나 참치 어획량은 2002년 이후 연 6.5만톤 선 유지. 가나참치협회(GTA) 회원사 평균 생산 7.5만톤 — EU 수출 70% · 내수 20%", "source": "nlm", "grade": "B" }
-    ],
-    "processing": [
-      { "plant": "PFC", "plantKo": "파이오니어 푸드 캐너리", "owner": "타이유니온 100% 자회사", "employees": 1800, "source": "nlm", "grade": "B" },
-      { "plant": "Cosmo Seafoods", "plantKo": "코스모 씨푸드", "established": "2011-06", "capacityTPerDay": 200, "operatingTPerDay": 60, "employees": 600, "source": "nlm", "grade": "B" },
-      { "plant": "Myroc Foods", "plantKo": "마이록 푸드", "employees": 800, "source": "nlm", "grade": "B" }
-    ],
-    "processingCapacityTPerYear": 120000,
-    "annualCannedOutputT": 58000,
-    "utilizationPct": [50, 60],
-    "cannersDetail": [
-      { "plant": "PFC", "plantKo": "파이오니어 푸드 캐너리", "owner": "타이유니온 그룹 100%", "founded": 1973, "acquired": 2010, "freeZone": 1996, "capacity": "일 수백 톤", "employees": "1,800명 이상(출처별 1,000~1,800)", "products": "상온 참치 통조림(John West·StarKist·Petit Navire·MareBlu OEM 및 자체), 부산물 오메가-3 오일", "grade": "B" },
-      { "plant": "Cosmo Seafoods", "plantKo": "코스모 씨푸드", "owner": "신라교역 소유 합작투자사 · 가나 자유구역 기업", "founded": "2011-06", "capacityTPerDay": 200, "operatingTPerDay": 60, "utilizationPct": 30, "employees": "600명 이상", "products": "참치 통조림(자체 브랜드 Royal Atlantic), 오일·trimmings, 수출용 참치 플레이크", "grade": "B" },
-      { "plant": "Myroc Foods", "plantKo": "마이록 푸드", "owner": "가나 현지 개인 자본", "employees": "800명", "products": "참치 통조림(HACCP 인증)", "grade": "B" },
-      { "plant": "Ichiban Seafoods", "plantKo": "이치반 씨푸드", "owner": "소스 없음", "products": "테마항 양륙 참치 가공", "grade": "C" }
-    ],
-    "exports": {
-      "cannedTunaUsd2025": 213500000,
-      "cannedTunaYoyPct": 37.34,
-      "euSharePct": 70,
-      "domesticSharePct": 20,
-      "neighborSharePct": 10,
-      "topMarkets": [
-        { "market": "영국", "usd2024": 55000000, "annualT": 23000, "note": "단일 국가 최대 시장" },
-        { "market": "프랑스", "usd2024": 33700000 },
-        { "market": "이탈리아", "usd2024": 20700000 },
-        { "market": "독일", "usd2024": 17700000 },
-        { "market": "네덜란드", "usd2024": 4400000 }
-      ],
-      "basisNote": "2024년 가공어류 수출 총 1억 4,500만불 기준 국가별 배분",
-      "grade": "B"
+  "exports": {
+   "cannedTunaUsd2025": 213500000,
+   "cannedTunaYoyPct": 37.34,
+   "euSharePct": 70,
+   "domesticSharePct": 20,
+   "neighborSharePct": 10,
+   "topMarkets": [
+    {
+     "market": "영국",
+     "usd2024": 55000000,
+     "annualT": 23000,
+     "note": "단일 국가 최대 시장"
     },
-    "valueLadder": {
-      "note": "같은 참치가 가공 단계마다 몇 배가 되는지. 파노피는 이 사다리의 맨 아래(냉동 원어)에서 판다 — «물량이 곧 손익»인 구조의 근본이다.",
-      "unit": "EUR/톤",
-      "steps": [
-        { "product": "냉동 원어", "productEn": "Frozen raw", "eurPerT": 700, "stage": "조업" },
-        { "product": "참치 통조림", "productEn": "Canned", "eurPerT": 2760, "stage": "가공" },
-        { "product": "참치 로인", "productEn": "Loins", "eurPerT": 2980, "stage": "1차가공", "note": "연 약 3,000톤 EU 수출" },
-        { "product": "냉동 사시미 원어(A등급)", "productEn": "Sashimi grade A", "eurPerT": 9000, "stage": "선별·초저온" }
-      ],
-      "grade": "B"
+    {
+     "market": "프랑스",
+     "usd2024": 33700000
     },
-    "brands": ["StarKist(미국·글로벌)", "John West(영국·유럽)", "Petit Navire(프랑스)", "MareBlu(이탈리아)", "Royal Atlantic(코스모 자체)"],
-    "gta": {
-      "nameKo": "가나참치협회",
-      "members": "가나 등록 산업용 선망·채낚기 선사 + 대형 가공업체(PFC·코스모 등)",
-      "roles": [
-        "MSC 인증 획득·유지의 핵심 주체 (2026-01-21 취득)",
-        "ICCAT·ISSF 가이드라인 이행 — 비얽힘 FAD 도입, 혼획·멸종위기종(ETP) 방생 교육, 지느러미 자연부착(FNA) 정책",
-        "IUU 방지 법안(2025 수산양식법) 제정 시 정부(MoFAD) 대상 업계 창구",
-        "회원사 간 부산물 순환 거래(산업공생) 조율"
-      ],
-      "grade": "B"
+    {
+     "market": "이탈리아",
+     "usd2024": 20700000
     },
-    "coldChain": [
-      { "fact": "타이유니온이 1,400만불을 투자한 8,000톤 중앙집중식 냉동창고가 테마 PFC 인근에 2024년 7월 전면 가동", "source": "nlm", "grade": "B" },
-      { "fact": "냉동 참치는 -15℃ 이하 콜드체인으로 보관·수출", "source": "nlm", "grade": "B" }
-    ],
-    "economy": [
-      { "fact": "가나 통조림 참치 수출액 2억 1,350만불(전년비 +37.34%)", "year": 2025, "source": "nlm", "grade": "B" },
-      { "fact": "참치산업 연간 수출 외화 3.5억~4.25억불. 직접 부가가치 약 1억 유로(어획 3,500만 · 가공 4,400만)", "source": "nlm", "grade": "B" },
-      { "fact": "밸류체인 직접 고용 6,500명(어선단 1,100 · 가공 3,200). 가공 인력의 80%가 여성", "source": "nlm", "grade": "B" }
-    ],
-    "regulation": [
-      { "topic": "MSC 인증", "fact": "2026-01-21 취득, 유효 2031-01-20", "scope": "선망 가다랑어(SKJ)·황다랑어(YFT). 눈다랑어(BET) 제외", "conflict": "적용 선단 범위가 출처 간 불일치 — 외부 분석은 «선망+채낚기», 1차출처 대조는 «선망 SKJ·YFT만». 보수적으로 후자를 채택했다.", "source": "grok/nlm", "grade": "충돌" },
-      { "topic": "EU 옐로카드", "fact": "2013-11 부과 → 2015-10 해제 → 2021-06 재부과(소형 카누 불법 전재 'Saiko' 및 트롤 규제 실패)", "source": "nlm", "grade": "B" },
-      { "topic": "수산양식법 Act 1146", "fact": "2025-08 제정. 배타적 연안전용어업구역(IEZ) 6→12해리 확장, 불법조업 벌금 10배, VMS 전자장치 의무화", "source": "nlm", "grade": "B" },
-      { "topic": "EU 규정 2025/1449", "fact": "2026-01-27 발효. 식용 참치는 선상 -18℃ 이하 급속냉동 설비 입증 의무. 72시간 내 냉동 못한 원어는 통조림용으로만 사용 제한", "source": "nlm", "grade": "B" },
-      { "topic": "금어기", "fact": "가나 공표 금어기 3/17~4/30. ICCAT FAD 조업 금지 45일", "caveat": "가나·코트디부아르 «양국 공동 선망 전면 금어기»는 1차 출처로 확인되지 않았다", "source": "grok", "grade": "부분확인" },
-      { "topic": "ILO C188", "fact": "가나 2024-08-28 비준 → 2025-08-28 발효. 산업선(24m 이상)에 서면계약·협상 임금표·은행 지급·승선 전 점검 적용", "caveat": "2026 전업종 최저임금은 일 GH₵19.97→21.77(+9%)이나, 참치 선원 통상임금은 이 바닥보다 높아 2026 선망 단체협약 인상률은 확인불가", "source": "grok", "grade": "부분확인" },
-      { "topic": "GRA 세무", "fact": "이전가격과(TPU, L.I. 2188)는 2013년부터 상설. 2026년 민간 세무전망은 ITAS 가동·CbCR로 외국계 TP 감사 증가를 예상", "caveat": "거론된 대상 업종은 광산·석유가스·통신·금융·FMCG이며 참치·선망은 없다. «2026 외국계 TP·외환 특별조사» 공식 발표는 확인되지 않았다", "source": "grok", "grade": "부분확인" }
-    ],
-    "players": [
-      { "bloc": "한국계", "fact": "신라교역 합작 파노피가 대규모 선단을 테마항에서 운영하고, 코스모 씨푸드의 합작 투자사로서 조업·가공 밸류체인을 주도", "source": "nlm", "grade": "B" },
-      { "bloc": "중국계", "fact": "참치보다 연안 저인망 트롤에 집중. 외국인 트롤선 단독 소유 금지를 프런트 컴퍼니로 우회해 산업용 트롤선 약 90%를 실질 지배", "source": "nlm", "grade": "B" },
-      { "bloc": "EU계", "fact": "스페인·프랑스 자본이 대서양 공해 원양선단(DWF)을 운영하며 테마항 양륙 주요 공급처. 통조림 브랜드(John West, Petit Navire) 유통을 장악", "source": "nlm", "grade": "B" }
-    ],
-    "skipjackBangkok": {
-      "note": "방콕 양륙 스킵잭 기준가(USD/톤). 서아프리카 어가의 국제 벤치마크",
-      "series": [
-        { "month": "2026-01", "usdPerT": 1500 },
-        { "month": "2026-02", "usdPerT": 1580 },
-        { "month": "2026-03", "usdPerT": 2000 },
-        { "month": "2026-04", "usdPerT": 1875 },
-        { "month": "2026-05", "usdPerT": 1730 },
-        { "month": "2026-06", "usdPerT": 1700 },
-        { "month": "2026-07", "usdPerT": 1850 }
-      ],
-      "caveat": "아비장·테마 절대단가 시계열은 공개 1차출처에 없다(Atuna CFR은 유료). 방콕 대비 서아프리카 스프레드 추이는 확인불가",
-      "source": "grok",
-      "grade": "B"
+    {
+     "market": "독일",
+     "usd2024": 17700000
+    },
+    {
+     "market": "네덜란드",
+     "usd2024": 4400000
     }
+   ],
+   "basisNote": "2024년 가공어류 수출 총 1억 4,500만불 기준 국가별 배분",
+   "grade": "B"
   },
-
-  "pfcDominance": {
-    "note": "타이유니온·PFC의 가나 지배력. 외부 코퍼스는 «질적 지배»는 풍부하나 «정량 지배»는 비어 있어, 비어 있는 칸을 주간동향 31주 실측으로 직접 메웠다.",
-    "qualitative": [
-      { "fact": "PFC는 타이유니온 그룹 100% 자회사(유럽 계열사 Etablissements Paul Paulet SAS 보유). 2010년 인수", "source": "nlm", "grade": "B" },
-      { "fact": "아프리카 내 타이유니온 그룹 2번째로 큰 가공공장. 현지 정규직 약 1,100명", "source": "nlm", "grade": "B", "caveat": "고용 규모는 출처에 따라 1,100명(CEO 발언)과 1,800명 이상(업계 보도)으로 갈린다" },
-      { "fact": "John West·MareBlu·StarKist·Petit Navire 등 유럽·미국 핵심 브랜드의 공급 안정성을 담당하는 요충지(타이유니온 CEO 언급)", "source": "nlm", "grade": "B" },
-      { "fact": "1,400만불을 투자한 8,000톤 냉동창고를 2024년 7월 가동해 분산 임대고 의존을 끊고 품질 통제권을 확보", "source": "nlm", "grade": "B" },
-      { "fact": "코스모에서 참치 머리 부산물을 월 250톤 매입해 오메가-3 오일 원료로 쓰는 산업공생 구조", "source": "nlm", "grade": "B" },
-      { "fact": "원료는 가나 국적선 테마 양륙을 기본으로, 계절 부족기엔 EU 원양선단(DWF) 양륙분과 코트디부아르·세네갈 수입으로 보충", "source": "nlm", "grade": "B" }
-    ],
-    "sourceGaps": [
-      "PFC 단독의 가공량·생산량·수출량이 가나 전체에서 차지하는 비중",
-      "자체 조달 대 외부 매입 비율, 공급 선사별 계약 형태",
-      "PFC가 테마 어가의 가격 선도자인지 추종자인지에 대한 직접 판정",
-      "수직계열화가 파노피 같은 독립 조업사에 주는 경쟁 압력의 개별 서술",
-      "타이유니온·PFC의 가나 내 반독점·시장지배력 남용 분쟁 이력(존재하지 않음)"
-    ],
-    "measured": {
-      "note": "위 공백 중 «가격 선도자냐 추종자냐»는 우리 주간동향으로 답할 수 있다. 31주(2025-12-23~2026-08-11) 채널별 어가 실측 결과다.",
-      "priceChangeCount": { "PFC": 3, "코스모": 5, "SCODI": 23, "weeks": 31 },
-      "gapVsCosmoUsdPerT": { "mean": -56, "worst": -100, "sampleWeeks": 27 },
-      "gapVsScodiUsdPerT": { "mean": -60, "worst": -129, "sampleWeeks": 27 },
-      "currentGapUsdPerT": -100,
-      "currentPrices": { "PFC": 1600, "코스모": 1700, "SCODI": 1700, "asOf": "2026-08-11" },
-      "events": [
-        { "date": "2026-03-10", "fact": "코스모가 단독으로 +$100 인상했으나 PFC는 $1,400을 7주간 고정 — 무반응" },
-        { "date": "2026-05-26", "fact": "시황 급등에 SCODI +$304 · 코스모 +$150 · PFC +$170 동반 조정. 시장(SCODI)이 먼저 움직이고 계약가가 따라간다" },
-        { "date": "2026-07-21", "fact": "PFC +$30 인상 — 전략보고가 «7월 +$30 실적»이라 적은 건과 일치" }
-      ],
-      "volumeTest": {
-        "note": "«저가에도 물량이 이탈하지 않는가»가 수요독점의 판별식이다. 갭 구간별 PFC 일일 처리량을 갈라 봤다.",
-        "wideGapWeeks": { "condition": "PFC-코스모 갭 ≤ -$80", "weeks": 15, "avgPfcDailyT": 107 },
-        "narrowGapWeeks": { "condition": "갭 -$50 ~ 0", "weeks": 12, "avgPfcDailyT": 91 },
-        "finding": "갭이 벌어진 구간에서 PFC 물량이 오히려 18% 많았다. 경쟁시장이라면 저가 구매자는 물량을 잃어야 하는데 정반대다.",
-        "decisiveCase": "2026-03-10 코스모가 단독 +$100 인상해 갭이 -$100으로 벌어진 직후, PFC 처리량은 110→140톤으로 급증했다. 가장 불리한 가격 구간에서 물량이 최대였다."
-      },
-      "absorptionLimits": {
-        "note": "이탈이 불가능한 이유는 대안 채널의 흡수 상한이다.",
-        "SCODI": "31주 내내 일 85톤 고정 — 상한에 걸려 있다",
-        "코스모": "일 95~125톤 실가동(설비 200톤이나 클리너 150명 부족)",
-        "로컬마켓": "$1,246~1,333로 PFC보다 낮고 미수금 리스크가 실증됨",
-        "PFC": "일 수백톤 소화 가능 — 유일한 대량 처리처"
-      },
-      "verdict": "PFC는 시장 지배자다. 다만 지배 방식이 «가격을 끌어올리는 선도»가 아니라 «낮게 불러도 물량이 오는 수요독점(monopsony)»이다. 31주 중 3번만 움직인 가격 경직성은 협상력이 약해서가 아니라, 갭이 벌어져도 공급이 이탈하지 않기 때문에 움직일 필요가 없어서다. 그 대가가 채널 간 단가 격차이며 현재 코스모·SCODI 대비 톤당 $100 낮다.",
-      "verdictNote": "«가격 선도자냐 추종자냐»는 판매자 과점을 재는 렌즈라 이 구도에 맞지 않는다. 구매자 지배력으로 프레임을 바꿔야 데이터가 읽힌다.",
-      "caveat": "PFC 채널의 판매 물량 비중이 원자료에 없어 금액 영향은 산출하지 않았다. 여기서 쓴 처리량은 PFC 공장의 «일일 가공량»이지 파노피가 PFC에 판 물량이 아니다 — 방향성 지표로만 읽고, 채널별 판매 비중을 확보하면 «격차 × 물량»으로 즉시 환산한다.",
-      "source": "weekly",
-      "grade": "A"
+  "valueLadder": {
+   "note": "같은 참치가 가공 단계마다 몇 배가 되는지. 파노피는 이 사다리의 맨 아래(냉동 원어)에서 판다 — «물량이 곧 손익»인 구조의 근본이다.",
+   "unit": "EUR/톤",
+   "steps": [
+    {
+     "product": "냉동 원어",
+     "productEn": "Frozen raw",
+     "eurPerT": 700,
+     "stage": "조업"
+    },
+    {
+     "product": "참치 통조림",
+     "productEn": "Canned",
+     "eurPerT": 2760,
+     "stage": "가공"
+    },
+    {
+     "product": "참치 로인",
+     "productEn": "Loins",
+     "eurPerT": 2980,
+     "stage": "1차가공",
+     "note": "연 약 3,000톤 EU 수출"
+    },
+    {
+     "product": "냉동 사시미 원어(A등급)",
+     "productEn": "Sashimi grade A",
+     "eurPerT": 9000,
+     "stage": "선별·초저온"
     }
+   ],
+   "grade": "B"
   },
-
-  "h2Priorities": [
-    { "rank": 1, "task": "잔고기 시즌 어획 극대화", "detail": "7척 풀가동 · 항차 사이클 ≤6일 · 하역 분산(타코라디·아비장 옵션) · 파망 예방", "effect": "판매 38,000톤 = 매출총이익 +740만불", "due": "7~12월" },
-    { "rank": 2, "task": "재고·미수금 현금화", "detail": "재고 8,743톤 고어가 구간 우선 소진(1,111만불→600만불대), 아비장 미수금 300만불 상한 + 회수 연동 판매", "effect": "현금 +700만불대 · 이자 절감 포함", "due": "10월까지" },
-    { "rank": 3, "task": "채널·가격 구조 개선", "detail": "PFC 시장연동 정례화(연간 고정가 회귀 금지), SCODI 어가 우위 시 배분 확대, 로컬은 저가 사이즈 한정", "effect": "평균 어가 +$20~30/t ≈ +76~114만불", "due": "분기별" },
-    { "rank": 4, "task": "유류·운항 규율", "detail": "특별공급가 유지 협상, 척당 KL/조업일 주간 KPI, 유가 재상승 대비 감속 운항", "effect": "소모 -5% ≈ +55만불", "due": "상시" },
-    { "rank": 5, "task": "그룹 자금 정합", "detail": "코스모 어대금(1,400만불대) 결제 캘린더 합의 — 코스모 재고 현금화(623만불)와 연동, 매입채무 5,106만불 만기 구조 재조정", "effect": "과부족 -2,082 → -1,500만불대", "due": "9월 1차 합의" },
-    { "rank": 6, "task": "세무·소송·규제 관리", "detail": "세무조사 후속 종결, INTER OCEAN 항소심 대응, EU -18℃ 규정 협의, MSC 인증 유지", "effect": "다운사이드 차단", "due": "상시" }
+  "brands": [
+   "StarKist(미국·글로벌)",
+   "John West(영국·유럽)",
+   "Petit Navire(프랑스)",
+   "MareBlu(이탈리아)",
+   "Royal Atlantic(코스모 자체)"
   ],
-
-  "kpiSignals": [
-    { "kpi": "주간 어획(선단)", "unit": "톤", "normal": "≥1,500", "warn": "1,100~1,500", "action": "2주 연속 미달 시 어장 재배치·FAD 전략 회의" },
-    { "kpi": "항차 사이클(만선→출항)", "unit": "일", "normal": "≤6", "warn": "7~8", "action": "하역항 분산·선석 사전 예약" },
-    { "kpi": "유류 KL/조업일(척당)", "unit": "KL", "normal": "기준선 ±5%", "warn": "+5~10%", "action": "항로·표류 운항 점검" },
-    { "kpi": "판매어가 vs SCODI 스프레드", "unit": "%", "normal": "-2% 이내", "warn": "-2~-5%", "action": "채널 배분 재조정" },
-    { "kpi": "아비장 미수금", "unit": "만불", "normal": "≤300 · 감소", "warn": "정체", "action": "증가 시 신용판매 즉시 중단" },
-    { "kpi": "자금 과부족", "unit": "만불", "normal": "개선", "warn": "정체", "action": "2개월 연속 악화 시 그룹 재무 개입" }
+  "gta": {
+   "nameKo": "가나참치협회",
+   "members": "가나 등록 산업용 선망·채낚기 선사 + 대형 가공업체(PFC·코스모 등)",
+   "roles": [
+    "MSC 인증 획득·유지의 핵심 주체 (2026-01-21 취득)",
+    "ICCAT·ISSF 가이드라인 이행 — 비얽힘 FAD 도입, 혼획·멸종위기종(ETP) 방생 교육, 지느러미 자연부착(FNA) 정책",
+    "IUU 방지 법안(2025 수산양식법) 제정 시 정부(MoFAD) 대상 업계 창구",
+    "회원사 간 부산물 순환 거래(산업공생) 조율"
+   ],
+   "grade": "B"
+  },
+  "coldChain": [
+   {
+    "fact": "타이유니온이 1,400만 달러를 직접 투자한 8,000톤 중앙집중식 냉동창고가 테마 PFC 공장 인근에 2024년 7월 완공·전면 가동. 기존 도시 곳곳의 임대 냉동고 의존을 끊고 품질 통제권을 확보했다",
+    "source": "WeAreAquaculture · 산업 종합분석",
+    "grade": "B"
+   },
+   {
+    "fact": "냉동 참치 완제품은 통상 -15℃ 이하 콜드체인으로 보관·수출한다. 창고 자체의 운용 온도대는 소스 없음",
+    "grade": "B"
+   }
   ],
-
-  "stopCondition": "9월말 누적 어획이 기준 시나리오 대비 -15% 이상 미달하고 유가가 재등급하면, 4분기 저효율 선박 감속 운항·조기 정비 모드로 전환한다."
+  "economy": [
+   {
+    "fact": "가나 통조림 참치 수출액 2억 1,350만불(전년비 +37.34%)",
+    "year": 2025,
+    "source": "nlm",
+    "grade": "B"
+   },
+   {
+    "fact": "참치산업 연간 수출 외화 3.5억~4.25억불. 직접 부가가치 약 1억 유로(어획 3,500만 · 가공 4,400만)",
+    "source": "nlm",
+    "grade": "B"
+   },
+   {
+    "fact": "밸류체인 직접 고용 6,500명(어선단 1,100 · 가공 3,200). 가공 인력의 80%가 여성",
+    "source": "nlm",
+    "grade": "B"
+   }
+  ],
+  "regulation": [
+   {
+    "topic": "MSC 인증",
+    "fact": "2026-01-21 취득, 유효 2031-01-20",
+    "scope": "가나참치협회(GTA) 소속 선망(purse seine)·채낚기(pole-and-line) 선단 양쪽. 어종은 가다랑어(SKJ)·황다랑어(YFT) 2종이며 눈다랑어(BET)는 제외. 수역은 가나·코트디부아르·베냉·라이베리아 EEZ와 대서양 공해(FAO 34·41·47)",
+    "source": "MSC Fisheries 평가 문서 · Marine Stewardship Council 발표",
+    "grade": "B",
+    "resolved": "이전 회차에 «선망만 vs 선망+채낚기» 출처 충돌로 기록했으나 재조사에서 해소됐다 — 두 출처가 각각 «어업 종류»와 «어종»을 말한 것이라 상충이 아니다. 어업은 선망·채낚기 둘 다, 어종은 2종이다."
+   },
+   {
+    "topic": "EU 옐로카드",
+    "fact": "2013-11 부과(불법 해상 전재·IUU 통제 결여) → 2015-10 해제(법 개정·감시 강화 인정) → 2021-06 재부과(소형 카누 불법 전재 'Saiko', 트롤 불법 방치, 강제노동 포함 열악한 노동환경)",
+    "source": "Seafood Watch 「Tropical tuna social risk profile — Ghana 2022」 · FAOLEX NPOA-IUU(2021)",
+    "grade": "B",
+    "caveat": "2차 옐로카드 해제 시점은 소스에 없다 — 2026년 8월 현재 해제되지 않은 것으로 본다"
+   },
+   {
+    "topic": "수산양식법 Act 1146",
+    "fact": "2025년 8월 제정·통과, 2025-11-21 공식 서명. 배타적 연안전용어업구역(IEZ) 6→12해리 확장, 심각한 불법조업 최대 벌금 10배 상향 및 반복 위반 시 어선 몰수, 상업선 VMS·전자 로그북 장착과 실시간 위치 송신 의무화",
+    "source": "ResearchGate 영향분석 · Africa Defense Forum · 산업 종합분석",
+    "grade": "B",
+    "outcome": "2026년 기준 수산 라이선스 수입 78% 증가(산업선은 156% 증가), 불법조업 벌금 징수액 340% 증가"
+   },
+   {
+    "topic": "EU 규정 2025/1449",
+    "fact": "2026-01-27 발효. 식용 참치(스테이크·횟감·타타키)를 EU에 수출하는 모든 참치 어선은 선상 -18℃ 이하 급속냉동 설비와 능력을 입증해야 한다. 위성 등 원격통신으로 염수 온도를 실시간 점검하고 데이터를 제출할 수 있어야 한다",
+    "source": "한국원양산업협회(KOFA) 고시",
+    "grade": "B",
+    "caveat": "선상에서 -9℃ 염수로 보존한 참치라도 어획 후 72시간 내 -18℃ 이하로 냉동되지 않으면 통조림 원료용으로만 쓸 수 있다. EU 국적선과 가나·베트남·인도네시아 등 비EU 수출국 선단 모두에 적용된다"
+   },
+   {
+    "topic": "금어기",
+    "fact": "가나 공표 금어기 3/17~4/30. ICCAT FAD 조업 금지 45일",
+    "caveat": "가나·코트디부아르 «양국 공동 선망 전면 금어기»는 1차 출처로 확인되지 않았다",
+    "source": "grok",
+    "grade": "부분확인"
+   },
+   {
+    "topic": "ILO C188",
+    "fact": "가나 2024-08-28 비준 → 2025-08-28 발효. 산업선(24m 이상)에 서면계약·협상 임금표·은행 지급·승선 전 점검 적용",
+    "caveat": "2026 전업종 최저임금은 일 GH₵19.97→21.77(+9%)이나, 참치 선원 통상임금은 이 바닥보다 높아 2026 선망 단체협약 인상률은 확인불가",
+    "source": "grok",
+    "grade": "부분확인"
+   },
+   {
+    "topic": "GRA 세무",
+    "fact": "이전가격과(TPU, L.I. 2188)는 2013년부터 상설. 2026년 민간 세무전망은 ITAS 가동·CbCR로 외국계 TP 감사 증가를 예상",
+    "caveat": "거론된 대상 업종은 광산·석유가스·통신·금융·FMCG이며 참치·선망은 없다. «2026 외국계 TP·외환 특별조사» 공식 발표는 확인되지 않았다",
+    "source": "grok",
+    "grade": "부분확인"
+   },
+   {
+    "topic": "합작 의무 지분율",
+    "fact": "가나 기국 산업용 참치 합작선의 현지 지분 요건이 출처별로 다르다",
+    "conflict": "수산법(Fisheries Act 625, 2002)과 산업 분석은 «현지 국적자 최소 50%»로, 정부 국가행동계획(NPOA-IUU) 문서는 «최소 25%»로 적는다. 어느 쪽이 현행인지 이 자료만으로는 가르지 못한다 — 파노피 지분 구조를 논할 때 반드시 확인이 필요하다.",
+    "source": "Fisheries Act 625(2002) · NPOA-IUU · GEPA Buyer Portal",
+    "grade": "충돌"
+   }
+  ],
+  "players": [
+   {
+    "bloc": "한국계",
+    "fact": "신라교역 합작 파노피가 선망 선단을 테마항에서 운영하고, 같은 계열 코스모 씨푸드가 가공을 맡아 조업·가공 밸류체인을 주도한다. 가나 참치 조업 기업 대부분이 한국 원양 자본과 가나 파트너의 합작 형태이며 선장·기관장 등 주요 사관도 한국인이다(2022년 기준). 신라교역 외 다른 국내 원양선사의 실명은 소스에 없다",
+    "source": "Seafood Watch(2022) 외",
+    "grade": "B"
+   },
+   {
+    "bloc": "중국계",
+    "fact": "참치보다 연안 저인망 트롤에 집중한다. 가나 수산법이 외국인의 트롤선 단독 소유를 금지하지만 현지 프런트 컴퍼니 차명 구조로 우회해 산업용 트롤 선단의 약 90%를 실질 지배한다(2020·2022년 기준). 불법조업·노동착취가 적발된 트롤 선단과 동일 실질소유주가 참치 어선 지분에도 연계된 사례가 있다",
+    "source": "Africa Defense Forum · Seafood Watch(2022)",
+    "grade": "B"
+   },
+   {
+    "bloc": "EU계",
+    "fact": "스페인·프랑스 자본이 대서양 공해 원양선단(DWF)을 운영하며 테마항 양륙의 주요 공급처다. 통조림 브랜드(John West, Petit Navire) 유통을 장악한다",
+    "source": "산업 종합분석",
+    "grade": "B"
+   }
+  ],
+  "skipjackBangkok": {
+   "note": "방콕 양륙 스킵잭 기준가(USD/톤). 서아프리카 어가의 국제 벤치마크",
+   "series": [
+    {
+     "month": "2026-01",
+     "usdPerT": 1500
+    },
+    {
+     "month": "2026-02",
+     "usdPerT": 1580
+    },
+    {
+     "month": "2026-03",
+     "usdPerT": 2000
+    },
+    {
+     "month": "2026-04",
+     "usdPerT": 1875
+    },
+    {
+     "month": "2026-05",
+     "usdPerT": 1730
+    },
+    {
+     "month": "2026-06",
+     "usdPerT": 1700
+    },
+    {
+     "month": "2026-07",
+     "usdPerT": 1850
+    }
+   ],
+   "caveat": "아비장·테마 절대단가 시계열은 공개 1차출처에 없다(Atuna CFR은 유료). 방콕 대비 서아프리카 스프레드 추이는 확인불가",
+   "source": "grok",
+   "grade": "B"
+  },
+  "recollectedOn": "2026-08-15",
+  "recollectNote": "NotebookLM 3회 재질의 + Grok 1차출처 대조로 전 항목을 다시 받았다. 소스에 없는 값은 「소스 없음」으로 남기고 추정하지 않는다. 연도가 확인된 값은 반드시 연도를 병기한다 — 오래된 수치를 현재값처럼 쓰면 판단이 어긋난다.",
+  "processingCapacityBasisYear": 2015,
+  "annualCannedOutputBasisYear": "2015 · 2022 공동 인용",
+  "capacityCaveat": "연간 처리능력 12만톤과 통조림 생산 5.8만톤은 2015년 연구 수치이며 2022년 자료가 같은 값을 재인용한다. 최근 실측치가 아니므로 추세 판단에 쓰지 않는다."
+ },
+ "pfcDominance": {
+  "note": "타이유니온·PFC의 가나 지배력. 외부 코퍼스는 «질적 지배»는 풍부하나 «정량 지배»는 비어 있어, 비어 있는 칸을 주간동향 31주 실측으로 직접 메웠다.",
+  "qualitative": [
+   {
+    "fact": "PFC는 타이유니온 그룹 100% 자회사(유럽 계열사 Etablissements Paul Paulet SAS 보유). 2010년 인수",
+    "source": "nlm",
+    "grade": "B"
+   },
+   {
+    "fact": "아프리카 내 타이유니온 그룹 2번째로 큰 가공공장. 현지 정규직 약 1,100명",
+    "source": "nlm",
+    "grade": "B",
+    "caveat": "고용 규모는 출처에 따라 1,100명(CEO 발언)과 1,800명 이상(업계 보도)으로 갈린다"
+   },
+   {
+    "fact": "John West·MareBlu·StarKist·Petit Navire 등 유럽·미국 핵심 브랜드의 공급 안정성을 담당하는 요충지(타이유니온 CEO 언급)",
+    "source": "nlm",
+    "grade": "B"
+   },
+   {
+    "fact": "1,400만불을 투자한 8,000톤 냉동창고를 2024년 7월 가동해 분산 임대고 의존을 끊고 품질 통제권을 확보",
+    "source": "nlm",
+    "grade": "B"
+   },
+   {
+    "fact": "코스모에서 참치 머리 부산물을 월 250톤 매입해 오메가-3 오일 원료로 쓰는 산업공생 구조",
+    "source": "nlm",
+    "grade": "B"
+   },
+   {
+    "fact": "원료는 가나 국적선 테마 양륙을 기본으로, 계절 부족기엔 EU 원양선단(DWF) 양륙분과 코트디부아르·세네갈 수입으로 보충",
+    "source": "nlm",
+    "grade": "B"
+   }
+  ],
+  "sourceGaps": [
+   "PFC 단독의 가공량·생산량·수출량이 가나 전체에서 차지하는 비중",
+   "자체 조달 대 외부 매입 비율, 공급 선사별 계약 형태",
+   "PFC가 테마 어가의 가격 선도자인지 추종자인지에 대한 직접 판정",
+   "수직계열화가 파노피 같은 독립 조업사에 주는 경쟁 압력의 개별 서술",
+   "타이유니온·PFC의 가나 내 반독점·시장지배력 남용 분쟁 이력(존재하지 않음)"
+  ],
+  "measured": {
+   "note": "위 공백 중 «가격 선도자냐 추종자냐»는 우리 주간동향으로 답할 수 있다. 31주(2025-12-23~2026-08-11) 채널별 어가 실측 결과다.",
+   "priceChangeCount": {
+    "PFC": 3,
+    "코스모": 5,
+    "SCODI": 23,
+    "weeks": 31
+   },
+   "gapVsCosmoUsdPerT": {
+    "mean": -56,
+    "worst": -100,
+    "sampleWeeks": 27
+   },
+   "gapVsScodiUsdPerT": {
+    "mean": -60,
+    "worst": -129,
+    "sampleWeeks": 27
+   },
+   "currentGapUsdPerT": -100,
+   "currentPrices": {
+    "PFC": 1600,
+    "코스모": 1700,
+    "SCODI": 1700,
+    "asOf": "2026-08-11"
+   },
+   "events": [
+    {
+     "date": "2026-03-10",
+     "fact": "코스모가 단독으로 +$100 인상했으나 PFC는 $1,400을 7주간 고정 — 무반응"
+    },
+    {
+     "date": "2026-05-26",
+     "fact": "시황 급등에 SCODI +$304 · 코스모 +$150 · PFC +$170 동반 조정. 시장(SCODI)이 먼저 움직이고 계약가가 따라간다"
+    },
+    {
+     "date": "2026-07-21",
+     "fact": "PFC +$30 인상 — 전략보고가 «7월 +$30 실적»이라 적은 건과 일치"
+    }
+   ],
+   "volumeTest": {
+    "note": "«저가에도 물량이 이탈하지 않는가»가 수요독점의 판별식이다. 갭 구간별 PFC 일일 처리량을 갈라 봤다.",
+    "wideGapWeeks": {
+     "condition": "PFC-코스모 갭 ≤ -$80",
+     "weeks": 15,
+     "avgPfcDailyT": 107
+    },
+    "narrowGapWeeks": {
+     "condition": "갭 -$50 ~ 0",
+     "weeks": 12,
+     "avgPfcDailyT": 91
+    },
+    "finding": "갭이 벌어진 구간에서 PFC 물량이 오히려 18% 많았다. 경쟁시장이라면 저가 구매자는 물량을 잃어야 하는데 정반대다.",
+    "decisiveCase": "2026-03-10 코스모가 단독 +$100 인상해 갭이 -$100으로 벌어진 직후, PFC 처리량은 110→140톤으로 급증했다. 가장 불리한 가격 구간에서 물량이 최대였다."
+   },
+   "absorptionLimits": {
+    "note": "이탈이 불가능한 이유는 대안 채널의 흡수 상한이다.",
+    "SCODI": "31주 내내 일 85톤 고정 — 상한에 걸려 있다",
+    "코스모": "일 95~125톤 실가동(설비 200톤이나 클리너 150명 부족)",
+    "로컬마켓": "$1,246~1,333로 PFC보다 낮고 미수금 리스크가 실증됨",
+    "PFC": "일 수백톤 소화 가능 — 유일한 대량 처리처"
+   },
+   "verdict": "PFC는 시장 지배자다. 다만 지배 방식이 «가격을 끌어올리는 선도»가 아니라 «낮게 불러도 물량이 오는 수요독점(monopsony)»이다. 31주 중 3번만 움직인 가격 경직성은 협상력이 약해서가 아니라, 갭이 벌어져도 공급이 이탈하지 않기 때문에 움직일 필요가 없어서다. 그 대가가 채널 간 단가 격차이며 현재 코스모·SCODI 대비 톤당 $100 낮다.",
+   "verdictNote": "«가격 선도자냐 추종자냐»는 판매자 과점을 재는 렌즈라 이 구도에 맞지 않는다. 구매자 지배력으로 프레임을 바꿔야 데이터가 읽힌다.",
+   "caveat": "PFC 채널의 판매 물량 비중이 원자료에 없어 금액 영향은 산출하지 않았다. 여기서 쓴 처리량은 PFC 공장의 «일일 가공량»이지 파노피가 PFC에 판 물량이 아니다 — 방향성 지표로만 읽고, 채널별 판매 비중을 확보하면 «격차 × 물량»으로 즉시 환산한다.",
+   "source": "weekly",
+   "grade": "A"
+  }
+ },
+ "h2Priorities": [
+  {
+   "rank": 1,
+   "task": "잔고기 시즌 어획 극대화",
+   "detail": "7척 풀가동 · 항차 사이클 ≤6일 · 하역 분산(타코라디·아비장 옵션) · 파망 예방",
+   "effect": "판매 38,000톤 = 매출총이익 +740만불",
+   "due": "7~12월"
+  },
+  {
+   "rank": 2,
+   "task": "재고·미수금 현금화",
+   "detail": "재고 8,743톤 고어가 구간 우선 소진(1,111만불→600만불대), 아비장 미수금 300만불 상한 + 회수 연동 판매",
+   "effect": "현금 +700만불대 · 이자 절감 포함",
+   "due": "10월까지"
+  },
+  {
+   "rank": 3,
+   "task": "채널·가격 구조 개선",
+   "detail": "PFC 시장연동 정례화(연간 고정가 회귀 금지), SCODI 어가 우위 시 배분 확대, 로컬은 저가 사이즈 한정",
+   "effect": "평균 어가 +$20~30/t ≈ +76~114만불",
+   "due": "분기별"
+  },
+  {
+   "rank": 4,
+   "task": "유류·운항 규율",
+   "detail": "특별공급가 유지 협상, 척당 KL/조업일 주간 KPI, 유가 재상승 대비 감속 운항",
+   "effect": "소모 -5% ≈ +55만불",
+   "due": "상시"
+  },
+  {
+   "rank": 5,
+   "task": "그룹 자금 정합",
+   "detail": "코스모 어대금(1,400만불대) 결제 캘린더 합의 — 코스모 재고 현금화(623만불)와 연동, 매입채무 5,106만불 만기 구조 재조정",
+   "effect": "과부족 -2,082 → -1,500만불대",
+   "due": "9월 1차 합의"
+  },
+  {
+   "rank": 6,
+   "task": "세무·소송·규제 관리",
+   "detail": "세무조사 후속 종결, INTER OCEAN 항소심 대응, EU -18℃ 규정 협의, MSC 인증 유지",
+   "effect": "다운사이드 차단",
+   "due": "상시"
+  }
+ ],
+ "kpiSignals": [
+  {
+   "kpi": "주간 어획(선단)",
+   "unit": "톤",
+   "normal": "≥1,500",
+   "warn": "1,100~1,500",
+   "action": "2주 연속 미달 시 어장 재배치·FAD 전략 회의"
+  },
+  {
+   "kpi": "항차 사이클(만선→출항)",
+   "unit": "일",
+   "normal": "≤6",
+   "warn": "7~8",
+   "action": "하역항 분산·선석 사전 예약"
+  },
+  {
+   "kpi": "유류 KL/조업일(척당)",
+   "unit": "KL",
+   "normal": "기준선 ±5%",
+   "warn": "+5~10%",
+   "action": "항로·표류 운항 점검"
+  },
+  {
+   "kpi": "판매어가 vs SCODI 스프레드",
+   "unit": "%",
+   "normal": "-2% 이내",
+   "warn": "-2~-5%",
+   "action": "채널 배분 재조정"
+  },
+  {
+   "kpi": "아비장 미수금",
+   "unit": "만불",
+   "normal": "≤300 · 감소",
+   "warn": "정체",
+   "action": "증가 시 신용판매 즉시 중단"
+  },
+  {
+   "kpi": "자금 과부족",
+   "unit": "만불",
+   "normal": "개선",
+   "warn": "정체",
+   "action": "2개월 연속 악화 시 그룹 재무 개입"
+  }
+ ],
+ "stopCondition": "9월말 누적 어획이 기준 시나리오 대비 -15% 이상 미달하고 유가가 재등급하면, 4분기 저효율 선박 감속 운항·조기 정비 모드로 전환한다."
 }

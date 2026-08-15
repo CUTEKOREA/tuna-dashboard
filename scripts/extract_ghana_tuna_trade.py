@@ -25,7 +25,7 @@ from pathlib import Path
 BASE = "https://comtradeapi.un.org/public/v1/preview/C/A/HS"
 REF = "https://comtradeapi.un.org/files/v1/app/reference/partnerAreas.json"
 GHANA = 288
-YEARS = [2020, 2021, 2022, 2023, 2024]
+YEARS = [2021, 2022, 2023, 2024, 2025]
 OUT = Path(__file__).resolve().parents[1] / "public/data/panofi/ghana_tuna_trade.json"
 
 # 어종·품목 축. 냉동 원어는 어종이 갈리고, 필레·조제품은 어종이 합쳐진다.
@@ -72,7 +72,7 @@ KO = {
     894: "잠비아", 704: "베트남", 116: "캄보디아", 496: "몽골", 899: "지역 미상",
     84: "벨리즈", 234: "페로제도", 251: "프랑스", 364: "이란", 422: "레바논",
     512: "오만", 624: "기니비사우", 699: "인도", 706: "소말리아", 784: "아랍에미리트",
-    842: "미국", 887: "예멘",
+    842: "미국", 887: "예멘", 50: "방글라데시", 579: "노르웨이",
 }
 
 
