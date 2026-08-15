@@ -1,4 +1,5 @@
-const MAX_TOTP_QR_DATA_URL_LENGTH = 100_000;
+// Supabase Auth는 QR의 흑·백 셀을 각각 SVG rect로 출력해 정상 응답도 약 30만 바이트다.
+const MAX_TOTP_QR_DATA_URL_LENGTH = 750_000;
 const SVG_PREFIX = 'data:image/svg+xml';
 const ALLOWED_METADATA = new Set([
   '',

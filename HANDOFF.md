@@ -1,9 +1,10 @@
-> 📬 **2026-08-15 16:39 KST — 관리자 전용 Gmail 읽기 전용 통합 메일 운영 배포 완료** [Codex] (PR #407, `1a805c2`):
+> 📬 **2026-08-15 17:01 KST — 관리자 전용 Gmail 읽기 전용 통합 메일 운영 배포·MFA 실계정 교정** [Codex] (PR #407·#410):
 > - `/mail` 서버 관리자 게이트와 조건부 메뉴, Supabase TOTP AAL2, Gmail OAuth state+PKCE, 최근 20/50건·안 읽은 수·발신자·제목·수신 시각·미리보기·원본 링크, Google 권한 철회+암호화 연결 삭제를 구현했다. 메일 API 7개는 `no-store`, Node runtime, 고정 공개 origin과 변경 요청 Origin 검증을 사용한다.
 > - 운영 Supabase migration 적용, `mail_oauth_connections` 8열·0행 확인, TOTP 활성화, Gmail API·`gmail.readonly`·고정 callback·외부 테스트 사용자 1명 설정, Vercel Production 비밀 환경변수 8종 등록을 완료했다. 자격증명 값은 저장소·문서에 기록하지 않았다.
-> - 최신 main 위 43개 소유 파일로 통합해 방콕 네이티브 대시보드와 파노피 메뉴를 보존했다. 로그인 후속 후보까지 verify(67파일·378테스트, 캐시 150/150, build, bundle 32)와 독립 반증 3건(blocking 0), PR CI·Vercel Preview·Production·S-Grade 검사가 모두 통과했다.
+> - 최신 main 위 43개 소유 파일로 통합해 방콕 네이티브 대시보드와 파노피 메뉴를 보존했다. MFA 교정 후보까지 verify(67파일·379테스트, 캐시 150/150, build, bundle 32)와 독립 반증 3건(blocking 0), PR CI·Vercel Preview·Production·S-Grade 검사가 모두 통과했다.
 > - 운영 비인증 스모크: `/mail` 404, status/messages/connect/MFA/disconnect 401, callback invalid flow 307→고정 `/mail?mail_error=failed`; 메일 API는 `no-store`. 다음 단계는 사용자가 관리자 로그인·TOTP·Google 동의를 완료한 뒤 실계정 20/50건, 원본 링크, 연결 해제 `revoked`, DB 0행을 확인하는 것이다.
 > - 운영 스모크 중 공개 대시보드가 Supabase 로그인 화면을 더 이상 렌더하지 않아 신규 관리자 세션을 만들 진입점이 없는 것을 발견했다. RED 계약 테스트 후 색인 차단된 `/mail/login` 전용 경로를 추가했다. 이 경로는 가입 기능·Web Storage·상세 인증 오류 노출 없이 쿠키 기반 Supabase 로그인만 수행하고, 성공 시 서버 관리자 경계가 있는 `/mail`로 이동한다.
+> - 실계정 MFA 등록에서 정상 Supabase QR을 거부하는 오류를 확인했다. Supabase Auth 원본 구현(`goqrsvg`)과 동일한 재현은 QR 셀 61×61을 모두 `<rect>`로 출력해 data URL이 284,765바이트였으나 서버 검증 상한은 100,000바이트였다. 30만 바이트급 정상 형식을 RED로 고정하고 위험 태그·참조 검사와 750,000바이트 상한은 유지한 채 정상 범위만 확대했다.
 >
 > 💡 **2026-08-15 14:40 KST — V3 «Answerable BI» 라이트 파일럿 /market 배포** [CC] (PR #393 병합·라이브 200):
 > - **사용자 결정 확정**: ① 색 방향 = Metabase Light 전환(다크는 토글 보존) ② 필터-내러티브 = «전체 기간 기준» 고정 라벨 먼저 ③ 파일럿 = market. 스펙 §7에 기록.
