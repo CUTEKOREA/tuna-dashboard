@@ -22,15 +22,15 @@ const stages: FunnelStage[] = [
 export default function MscCertificationPipeline() {
   const kpiCards = (
     <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '12px', marginBottom: '24px' }}>
-      <div style={{ background: 'rgba(56,189,248,0.1)', border: '1px solid rgba(56,189,248,0.2)', borderRadius: 12, padding: '12px', textAlign: 'center' as const }}>
+      <div style={{ background: 'rgba(var(--w-sky-400-rgb), 0.1)', border: '1px solid rgba(var(--w-sky-400-rgb), 0.2)', borderRadius: 12, padding: '12px', textAlign: 'center' as const }}>
         <div style={{ fontSize: '0.72rem', color: 'var(--w-sky-400)', marginBottom: '4px', fontWeight: 600 }}>FIP → MSC 전환율</div>
         <div style={{ fontSize: '1.5rem', fontWeight: 800, color: 'var(--w-sky-400)', fontVariantNumeric: 'tabular-nums' }}>18%</div>
       </div>
-      <div style={{ background: 'rgba(245,158,11,0.1)', border: '1px solid rgba(245,158,11,0.2)', borderRadius: 12, padding: '12px', textAlign: 'center' as const }}>
+      <div style={{ background: 'rgba(var(--w-amber-500-rgb), 0.1)', border: '1px solid rgba(var(--w-amber-500-rgb), 0.2)', borderRadius: 12, padding: '12px', textAlign: 'center' as const }}>
         <div style={{ fontSize: '0.72rem', color: 'var(--w-amber-500)', marginBottom: '4px', fontWeight: 600 }}>평균 소요기간</div>
         <div style={{ fontSize: '1.5rem', fontWeight: 800, color: 'var(--w-amber-500)', fontVariantNumeric: 'tabular-nums' }}>2.8<span style={{ fontSize: '0.78rem', fontWeight: 600, marginLeft: '4px' }}>년</span></div>
       </div>
-      <div style={{ background: 'rgba(16,185,129,0.1)', border: '1px solid rgba(16,185,129,0.2)', borderRadius: 12, padding: '12px', textAlign: 'center' as const }}>
+      <div style={{ background: 'rgba(var(--w-emerald-500-rgb), 0.1)', border: '1px solid rgba(var(--w-emerald-500-rgb), 0.2)', borderRadius: 12, padding: '12px', textAlign: 'center' as const }}>
         <div style={{ fontSize: '0.72rem', color: 'var(--w-emerald-500)', marginBottom: '4px', fontWeight: 600 }}>파이프라인 내 어업</div>
         <div style={{ fontSize: '1.5rem', fontWeight: 800, color: 'var(--w-emerald-500)', fontVariantNumeric: 'tabular-nums' }}>151<span style={{ fontSize: '0.78rem', fontWeight: 600, marginLeft: '4px' }}>건</span></div>
       </div>

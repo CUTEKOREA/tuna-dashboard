@@ -274,7 +274,7 @@ return (
         </div>
       </div>
       {/* Divider */}
-      <div style={{ width: '100%', height: '1px', background: 'rgba(56, 189, 248, 0.1)' }} />
+      <div style={{ width: '100%', height: '1px', background: 'rgba(var(--w-sky-400-rgb), 0.1)' }} />
       {/* ⚡ Executive Takeaway */}
       <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '4px' }}>
         <AlertCircle size={16} className={styles.takeawayIcon} style={{ flexShrink: 0 }} />

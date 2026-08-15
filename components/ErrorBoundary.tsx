@@ -32,8 +32,8 @@ export default class ErrorBoundary extends Component<Props, State> {
       return (
         <div style={{
           padding: '24px',
-          backgroundColor: 'rgba(239, 68, 68, 0.05)',
-          border: '1px solid rgba(239, 68, 68, 0.2)',
+          backgroundColor: 'rgba(var(--w-red-500-rgb), 0.05)',
+          border: '1px solid rgba(var(--w-red-500-rgb), 0.2)',
           borderRadius: '12px',
           color: 'var(--color-danger)',
           margin: '20px 0'

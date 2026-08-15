@@ -78,7 +78,7 @@ export default function SalmonPolicyImpact() {
       </div>
 
       <div style={{
-        background: 'rgba(245,158,11,0.05)', border: '1px solid rgba(245,158,11,0.15)',
+        background: 'rgba(var(--w-amber-500-rgb), 0.05)', border: '1px solid rgba(var(--w-amber-500-rgb), 0.15)',
         borderRadius: '8px', padding: '1rem',
       }}>
         <h4 style={{ color: 'var(--w-amber-500)', fontSize: '0.8rem', fontWeight: 700, margin: '0 0 0.5rem 0', display: 'flex', alignItems: 'center', gap: '6px' }}>

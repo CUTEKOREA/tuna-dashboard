@@ -127,7 +127,7 @@ const STATUS_KO: Record<string, string> = {
 
 const tooltipStyle: React.CSSProperties = {
   background: '#0f172a',
-  border: '1px solid rgba(139,92,246,0.35)',
+  border: '1px solid rgba(var(--w-violet-500-rgb), 0.35)',
   borderRadius: 8,
   padding: '8px 10px',
   fontSize: '0.7rem',
@@ -213,7 +213,7 @@ const PriceLadder: React.FC<{ rows: LadderRow[] }> = ({ rows }) => {
     <div style={{ minWidth: 0 }}>
       <SafeResponsiveContainer width="100%" height={420}>
         <BarChart data={top} layout="vertical" margin={{ top: 4, right: 34, left: 4, bottom: 4 }}>
-          <CartesianGrid strokeDasharray="3 3" stroke="rgba(100,116,139,0.16)" horizontal={false} />
+          <CartesianGrid strokeDasharray="3 3" stroke="rgba(var(--w-slate-500-rgb), 0.16)" horizontal={false} />
           <XAxis
             type="number"
             tick={{ fill: C.axis, fontSize: 10 }}
@@ -229,7 +229,7 @@ const PriceLadder: React.FC<{ rows: LadderRow[] }> = ({ rows }) => {
             axisLine={{ stroke: 'rgba(100,116,139,0.3)' }}
             tickLine={false}
           />
-          <RechartsTooltip content={<LadderTooltip />} cursor={{ fill: 'rgba(139,92,246,0.07)' }} />
+          <RechartsTooltip content={<LadderTooltip />} cursor={{ fill: 'rgba(var(--w-violet-500-rgb), 0.07)' }} />
           <Bar dataKey="price_eur_per_kg" fill={C.squid} radius={[0, 4, 4, 0]} barSize={17}>
             <LabelList dataKey="trend" position="right" content={TrendArrow} />
           </Bar>
@@ -438,7 +438,7 @@ const KmiConsumerPrice: React.FC<{ data: KmiData }> = ({ data }) => {
     <div style={{ minWidth: 0 }}>
       <SafeResponsiveContainer width="100%" height={300}>
         <ComposedChart data={chartData} margin={{ top: 12, right: 8, left: 4, bottom: 4 }}>
-          <CartesianGrid strokeDasharray="3 3" stroke="rgba(100,116,139,0.16)" vertical={false} />
+          <CartesianGrid strokeDasharray="3 3" stroke="rgba(var(--w-slate-500-rgb), 0.16)" vertical={false} />
           <XAxis
             dataKey="label"
             tick={{ fill: C.axis, fontSize: 10 }}
@@ -453,7 +453,7 @@ const KmiConsumerPrice: React.FC<{ data: KmiData }> = ({ data }) => {
             axisLine={{ stroke: 'rgba(100,116,139,0.3)' }}
             tickLine={false}
           />
-          <RechartsTooltip content={<KmiTooltip />} cursor={{ stroke: 'rgba(139,92,246,0.35)' }} />
+          <RechartsTooltip content={<KmiTooltip />} cursor={{ stroke: 'rgba(var(--w-violet-500-rgb), 0.35)' }} />
           {comps.map((c) => (
             <ReferenceLine
               key={c.basis}
@@ -535,7 +535,7 @@ const KcsImportPrice: React.FC<{ rows: KcsRow[] }> = ({ rows }) => {
       <div style={{ position: 'relative' }}>
         <SafeResponsiveContainer width="100%" height={300}>
           <ComposedChart data={data} margin={{ top: 24, right: 8, left: 4, bottom: 4 }}>
-            <CartesianGrid strokeDasharray="3 3" stroke="rgba(100,116,139,0.16)" vertical={false} />
+            <CartesianGrid strokeDasharray="3 3" stroke="rgba(var(--w-slate-500-rgb), 0.16)" vertical={false} />
             <XAxis
               dataKey="label"
               tick={{ fill: C.axis, fontSize: 10 }}
@@ -560,11 +560,11 @@ const KcsImportPrice: React.FC<{ rows: KcsRow[] }> = ({ rows }) => {
               axisLine={{ stroke: 'rgba(100,116,139,0.3)' }}
               tickLine={false}
             />
-            <RechartsTooltip content={<KcsTooltip />} cursor={{ fill: 'rgba(56,189,248,0.06)' }} />
+            <RechartsTooltip content={<KcsTooltip />} cursor={{ fill: 'rgba(var(--w-sky-400-rgb), 0.06)' }} />
             <Bar
               yAxisId="qty"
               dataKey="qty_mt"
-              fill="rgba(56,189,248,0.25)"
+              fill="rgba(var(--w-sky-400-rgb), 0.25)"
               radius={[3, 3, 0, 0]}
               barSize={26}
             />

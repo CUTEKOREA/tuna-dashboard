@@ -58,9 +58,8 @@ class FixWidgetColorsTest(unittest.TestCase):
       )
 
       self.assertEqual(result.returncode, 0, result.stderr)
-      self.assertIn('총 치환 수: 11', result.stdout)
+      self.assertIn('총 치환 수: 12', result.stdout)
       self.assertIn('변경 파일 수: 1', result.stdout)
-      self.assertIn('알파 포함 rgba: 1', result.stdout)
       self.assertEqual(target.read_text(encoding='utf-8'), source)
 
   def test_multiline_style_values_are_replaced(self) -> None:
@@ -190,6 +189,154 @@ export function Widget() {
   return <svg stroke="var(--w-slate-400)" />
 }
 ''',
+      )
+
+  def test_rgba_replacement_preserves_alpha_in_supported_style_positions(self) -> None:
+    source = '''const semanticPalette = {
+  danger: 'rgba(239, 68, 68, 0.4)',
+};
+
+export function Widget() {
+  return (
+    <>
+      <svg stroke="rgba(56, 189, 248, .75)" />
+      <div
+        style={{
+          background: 'rgba(148,163,184,50%)',
+          boxShadow: '0 0 8px rgba(16, 185, 129, 0)',
+        }}
+      />
+      <style jsx>{`
+        .card { border-color: rgba(245, 158, 11, 1); }
+      `}</style>
+    </>
+  );
+}
+'''
+
+    with tempfile.TemporaryDirectory() as temp_dir:
+      root = Path(temp_dir)
+      target = root / 'components' / 'Widget.tsx'
+      target.parent.mkdir(parents=True)
+      target.write_text(source, encoding='utf-8')
+
+      result = subprocess.run(
+        [sys.executable, str(SCRIPT), '--apply', '--root', str(root)],
+        check=False,
+        capture_output=True,
+        text=True,
+      )
+
+      self.assertEqual(result.returncode, 0, result.stderr)
+      self.assertIn('총 치환 수: 4', result.stdout)
+      updated = target.read_text(encoding='utf-8')
+      self.assertIn('rgba(var(--w-sky-400-rgb), .75)', updated)
+      self.assertIn('rgba(var(--w-slate-400-rgb), 50%)', updated)
+      self.assertIn('rgba(var(--w-emerald-500-rgb), 0)', updated)
+      self.assertIn('rgba(var(--w-amber-500-rgb), 1)', updated)
+      self.assertIn("danger: 'rgba(239, 68, 68, 0.4)'", updated)
+
+  def test_html_style_replacement_is_limited_to_verified_dom_insertions(self) -> None:
+    verified_files = (
+      'PacificVesselMap.tsx',
+      'ColdStorageMap.tsx',
+      'TunaRestaurantMap.tsx',
+      'PetFoodMap.tsx',
+    )
+    source = '''const option = {
+  textStyle: { color: '#f8fafc' },
+  formatter: () => `<span style="color:#94a3b8">설명</span>`,
+};
+'''
+
+    with tempfile.TemporaryDirectory() as temp_dir:
+      root = Path(temp_dir)
+      components = root / 'components'
+      components.mkdir(parents=True)
+      for filename in (*verified_files, 'UnverifiedMap.tsx'):
+        (components / filename).write_text(source, encoding='utf-8')
+
+      result = subprocess.run(
+        [sys.executable, str(SCRIPT), '--apply', '--root', str(root)],
+        check=False,
+        capture_output=True,
+        text=True,
+      )
+
+      self.assertEqual(result.returncode, 0, result.stderr)
+      self.assertIn('총 치환 수: 4', result.stdout)
+      self.assertIn('변경 파일 수: 4', result.stdout)
+      for filename in verified_files:
+        updated = (components / filename).read_text(encoding='utf-8')
+        self.assertIn('style="color:var(--w-slate-400)"', updated)
+        self.assertIn("textStyle: { color: '#f8fafc' }", updated)
+      self.assertEqual(
+        (components / 'UnverifiedMap.tsx').read_text(encoding='utf-8'),
+        source,
+      )
+
+  def test_accent_color_is_replaced_only_inside_style_containers(self) -> None:
+    source = '''const semanticAccent = { accentColor: '#ec4899' };
+
+export function Widget() {
+  return (
+    <>
+      <input style={{ width: '100%', accentColor: '#ec4899' }} />
+      <Card accentColor="#ec4899" />
+    </>
+  );
+}
+'''
+
+    with tempfile.TemporaryDirectory() as temp_dir:
+      root = Path(temp_dir)
+      target = root / 'components' / 'Widget.tsx'
+      target.parent.mkdir(parents=True)
+      target.write_text(source, encoding='utf-8')
+
+      result = subprocess.run(
+        [sys.executable, str(SCRIPT), '--apply', '--root', str(root)],
+        check=False,
+        capture_output=True,
+        text=True,
+      )
+
+      self.assertEqual(result.returncode, 0, result.stderr)
+      self.assertIn('총 치환 수: 1', result.stdout)
+      updated = target.read_text(encoding='utf-8')
+      self.assertIn("style={{ width: '100%', accentColor: 'var(--w-pink-500)' }}", updated)
+      self.assertIn("semanticAccent = { accentColor: '#ec4899' }", updated)
+      self.assertIn('accentColor="#ec4899"', updated)
+
+  def test_mixed_hex_and_rgba_replacements_keep_original_offsets(self) -> None:
+    source = '''export function Widget() {
+  return (
+    <input
+      style={{ background: 'rgba(148, 163, 184, 0.2)', cursor: 'pointer', accentColor: '#f59e0b' }}
+    />
+  );
+}
+'''
+
+    with tempfile.TemporaryDirectory() as temp_dir:
+      root = Path(temp_dir)
+      target = root / 'components' / 'Widget.tsx'
+      target.parent.mkdir(parents=True)
+      target.write_text(source, encoding='utf-8')
+
+      result = subprocess.run(
+        [sys.executable, str(SCRIPT), '--apply', '--root', str(root)],
+        check=False,
+        capture_output=True,
+        text=True,
+      )
+
+      self.assertEqual(result.returncode, 0, result.stderr)
+      self.assertIn('총 치환 수: 2', result.stdout)
+      self.assertIn(
+        "style={{ background: 'rgba(var(--w-slate-400-rgb), 0.2)', "
+        "cursor: 'pointer', accentColor: 'var(--w-amber-500)' }}",
+        target.read_text(encoding='utf-8'),
       )
 
 

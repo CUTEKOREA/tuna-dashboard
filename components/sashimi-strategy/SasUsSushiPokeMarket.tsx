@@ -17,7 +17,7 @@ const channelData = [
 ];
 
 const tooltipStyle = {
-  backgroundColor: 'rgba(20, 28, 52, 0.95)', border: '1px solid rgba(148,163,184,0.15)',
+  backgroundColor: 'rgba(20, 28, 52, 0.95)', border: '1px solid rgba(var(--w-slate-400-rgb), 0.15)',
   borderRadius: 8, color: 'var(--w-slate-200)', fontSize: '0.78rem', padding: '8px 12px',
 };
 
@@ -81,10 +81,10 @@ export default function SasUsSushiPokeMarket() {
             <div style={{ height: '110px', width: '100%' }}>
               <SafeResponsiveContainer width="100%" height="100%">
                 <BarChart data={channelData} layout="vertical" margin={{ top: 0, right: 40, left: 8, bottom: 0 }}>
-                  <CartesianGrid strokeDasharray="3 3" stroke="rgba(148,163,184,0.08)" horizontal={false} />
+                  <CartesianGrid strokeDasharray="3 3" stroke="rgba(var(--w-slate-400-rgb), 0.08)" horizontal={false} />
                   <XAxis type="number" domain={[0, 7]} tick={{ fill: 'var(--w-slate-400)', fontSize: 11 }} axisLine={false} tickLine={false} tickFormatter={(v: number) => `$${v}B`} />
                   <YAxis type="category" dataKey="name" width={108} tick={{ fill: 'var(--w-slate-300)', fontSize: 11 }} axisLine={false} tickLine={false} />
-                  <Tooltip content={<ChannelTooltip />} cursor={{ fill: 'rgba(148,163,184,0.06)' }} />
+                  <Tooltip content={<ChannelTooltip />} cursor={{ fill: 'rgba(var(--w-slate-400-rgb), 0.06)' }} />
                   <Bar dataKey="value" radius={[0, 4, 4, 0]} isAnimationActive={false} barSize={26}>
                     {channelData.map((d, i) => <Cell key={i} fill={d.color} fillOpacity={0.8} />)}
                   </Bar>

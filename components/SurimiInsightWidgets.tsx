@@ -95,9 +95,9 @@ export const WidgetChinaHegemony = () => (
           <YAxis stroke="var(--w-slate-400)" tick={{ fontSize: 11 }} tickLine={false} tickFormatter={(v)=>`${v/1000}M`}/>
           <RechartsTooltip content={<CustomTooltip />} />
           <Legend wrapperStyle={{ fontSize: 12 }} />
-          <Area type="monotone" dataKey="china" stackId="1" name="중국(China)" stroke="var(--color-danger)" fill="rgba(239, 68, 68, 0.6)" strokeWidth={2} />
-          <Area type="monotone" dataKey="usa" stackId="1" name="미국(USA)" stroke="var(--color-info)" fill="rgba(59, 130, 246, 0.6)" strokeWidth={2} />
-          <Area type="monotone" dataKey="other" stackId="1" name="기타 국가" stroke="var(--color-success)" fill="rgba(16, 185, 129, 0.6)" strokeWidth={2} />
+          <Area type="monotone" dataKey="china" stackId="1" name="중국(China)" stroke="var(--color-danger)" fill="rgba(var(--w-red-500-rgb), 0.6)" strokeWidth={2} />
+          <Area type="monotone" dataKey="usa" stackId="1" name="미국(USA)" stroke="var(--color-info)" fill="rgba(var(--w-blue-500-rgb), 0.6)" strokeWidth={2} />
+          <Area type="monotone" dataKey="other" stackId="1" name="기타 국가" stroke="var(--color-success)" fill="rgba(var(--w-emerald-500-rgb), 0.6)" strokeWidth={2} />
         </AreaChart>
       </SafeResponsiveContainer>
     </div>

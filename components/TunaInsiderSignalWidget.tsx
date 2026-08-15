@@ -285,7 +285,7 @@ const TunaInsiderSignalWidget = () => {
                     borderRadius: 4,
                     whiteSpace: 'nowrap',
                     color: e.type === '5%보고' ? 'var(--w-amber-500)' : 'var(--w-violet-500)',
-                    background: e.type === '5%보고' ? 'rgba(245,158,11,0.12)' : 'rgba(139,92,246,0.12)',
+                    background: e.type === '5%보고' ? 'rgba(var(--w-amber-500-rgb), 0.12)' : 'rgba(var(--w-violet-500-rgb), 0.12)',
                   }}
                 >
                   {e.type}

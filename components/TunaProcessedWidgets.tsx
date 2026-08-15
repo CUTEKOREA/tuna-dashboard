@@ -61,7 +61,7 @@ export const WidgetTunaGiantsFall = () => (
   <div style={widgetStyle}>
     <div style={{ ...headerStyle, flexDirection: 'column', alignItems: 'flex-start', gap: '4px' }}>
       <h3 style={titleStyle}><ArrowDownRight size={18} color="#f43f5e" /> [산업 구조변화] 전통 참치 강국의 몰락 (1980-2023)
-      <span style={{ display:'inline-flex', alignItems:'center', gap:'3px', background:'rgba(16,185,129,0.1)', border:'1px solid var(--w-emerald-500)', color:'var(--color-success)', fontSize:'0.65rem', fontWeight:600, padding:'1px 5px', borderRadius:'4px', letterSpacing:'0.2px', marginLeft:'6px' }}>🔵 SYNCED (FAO)</span>
+      <span style={{ display:'inline-flex', alignItems:'center', gap:'3px', background:'rgba(var(--w-emerald-500-rgb), 0.1)', border:'1px solid var(--w-emerald-500)', color:'var(--color-success)', fontSize:'0.65rem', fontWeight:600, padding:'1px 5px', borderRadius:'4px', letterSpacing:'0.2px', marginLeft:'6px' }}>🔵 SYNCED (FAO)</span>
       <span style={{ marginLeft: 'auto', fontSize: '0.75rem', color: 'var(--w-slate-400)', fontWeight: 500 }}>(단위: 생산량 kMT)</span>
       </h3>
     </div>
@@ -93,7 +93,7 @@ export const WidgetThaiEmpire = () => (
   <div style={widgetStyle}>
     <div style={{ ...headerStyle, flexDirection: 'column', alignItems: 'flex-start', gap: '4px' }}>
       <h3 style={titleStyle}><Globe size={18} color="var(--color-warning)" /> [가공 패권] 태국과 스페인의 통조림 제국
-      <span style={{ display:'inline-flex', alignItems:'center', gap:'3px', background:'rgba(16,185,129,0.1)', border:'1px solid var(--w-emerald-500)', color:'var(--color-success)', fontSize:'0.65rem', fontWeight:600, padding:'1px 5px', borderRadius:'4px', letterSpacing:'0.2px', marginLeft:'6px' }}>🔵 SYNCED (FAO)</span>
+      <span style={{ display:'inline-flex', alignItems:'center', gap:'3px', background:'rgba(var(--w-emerald-500-rgb), 0.1)', border:'1px solid var(--w-emerald-500)', color:'var(--color-success)', fontSize:'0.65rem', fontWeight:600, padding:'1px 5px', borderRadius:'4px', letterSpacing:'0.2px', marginLeft:'6px' }}>🔵 SYNCED (FAO)</span>
       <span style={{ marginLeft: 'auto', fontSize: '0.75rem', color: 'var(--w-slate-400)', fontWeight: 500 }}>(단위: 생산량 kMT)</span>
       </h3>
     </div>
@@ -105,9 +105,9 @@ export const WidgetThaiEmpire = () => (
           <YAxis stroke="var(--w-slate-400)" tick={{ fontSize: 11 }} tickLine={false} tickFormatter={(v)=>`${v}k`}/>
           <RechartsTooltip content={<CustomTooltip />} />
           <Legend wrapperStyle={{ fontSize: 12 }} />
-          <Area type="monotone" dataKey="spain" stackId="1" name={getKorCountry("Spain")} stroke="var(--color-warning)" fill="rgba(245, 158, 11, 0.6)" strokeWidth={2} />
-          <Area type="monotone" dataKey="thailand" stackId="1" name={getKorCountry("Thailand")} stroke="var(--color-success)" fill="rgba(16, 185, 129, 0.6)" strokeWidth={2} />
-          <Area type="monotone" dataKey="other" stackId="1" name="원물 하청 국가군" stroke="var(--w-slate-500)" fill="rgba(100, 116, 139, 0.3)" strokeWidth={1} />
+          <Area type="monotone" dataKey="spain" stackId="1" name={getKorCountry("Spain")} stroke="var(--color-warning)" fill="rgba(var(--w-amber-500-rgb), 0.6)" strokeWidth={2} />
+          <Area type="monotone" dataKey="thailand" stackId="1" name={getKorCountry("Thailand")} stroke="var(--color-success)" fill="rgba(var(--w-emerald-500-rgb), 0.6)" strokeWidth={2} />
+          <Area type="monotone" dataKey="other" stackId="1" name="원물 하청 국가군" stroke="var(--w-slate-500)" fill="rgba(var(--w-slate-500-rgb), 0.3)" strokeWidth={1} />
         </AreaChart>
       </SafeResponsiveContainer>
     </div>

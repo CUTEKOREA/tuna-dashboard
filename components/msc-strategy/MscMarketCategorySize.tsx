@@ -137,7 +137,7 @@ export default function MscMarketCategorySize() {
       </div>
 
       {/* Divider */}
-      <div style={{ height: 1, background: 'rgba(148,163,184,0.08)', margin: '18px 0' }} />
+      <div style={{ height: 1, background: 'rgba(var(--w-slate-400-rgb), 0.08)', margin: '18px 0' }} />
 
       {/* Section 2: Country Wholesale Bar Chart */}
       <div>
@@ -160,8 +160,8 @@ export default function MscMarketCategorySize() {
                       width: `${barWidthPct}%`,
                       height: '100%',
                       background: isTop
-                        ? 'linear-gradient(90deg, rgba(56,189,248,0.3), rgba(56,189,248,0.6))'
-                        : 'linear-gradient(90deg, rgba(148,163,184,0.1), rgba(148,163,184,0.25))',
+                        ? 'linear-gradient(90deg, rgba(var(--w-sky-400-rgb), 0.3), rgba(var(--w-sky-400-rgb), 0.6))'
+                        : 'linear-gradient(90deg, rgba(var(--w-slate-400-rgb), 0.1), rgba(var(--w-slate-400-rgb), 0.25))',
                       borderRadius: 6,
                       transition: 'width 0.3s ease',
                     }}
@@ -191,8 +191,8 @@ export default function MscMarketCategorySize() {
           marginTop: 16,
           display: 'flex',
           gap: 12,
-          background: 'rgba(56,189,248,0.05)',
-          border: '1px solid rgba(56,189,248,0.15)',
+          background: 'rgba(var(--w-sky-400-rgb), 0.05)',
+          border: '1px solid rgba(var(--w-sky-400-rgb), 0.15)',
           borderRadius: 10,
           padding: 12,
         }}
@@ -205,7 +205,7 @@ export default function MscMarketCategorySize() {
             MSC 라벨 총 판매량 (전 어종, 2024/25)
           </div>
         </div>
-        <div style={{ width: 1, background: 'rgba(56,189,248,0.15)' }} />
+        <div style={{ width: 1, background: 'rgba(var(--w-sky-400-rgb), 0.15)' }} />
         <div style={{ flex: 1, textAlign: 'center' }}>
           <div style={{ fontSize: 18, fontWeight: 900, color: 'var(--w-amber-500)', fontVariantNumeric: 'tabular-nums' }}>
             +29.3<span style={{ fontSize: 12, fontWeight: 600 }}>%</span>
@@ -214,7 +214,7 @@ export default function MscMarketCategorySize() {
             펫푸드 최고 성장률
           </div>
         </div>
-        <div style={{ width: 1, background: 'rgba(56,189,248,0.15)' }} />
+        <div style={{ width: 1, background: 'rgba(var(--w-sky-400-rgb), 0.15)' }} />
         <div style={{ flex: 1, textAlign: 'center' }}>
           <div style={{ fontSize: 18, fontWeight: 900, color: 'var(--w-emerald-500)', fontVariantNumeric: 'tabular-nums' }}>
             +44.6<span style={{ fontSize: 12, fontWeight: 600 }}>%</span>

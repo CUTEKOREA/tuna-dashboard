@@ -41,7 +41,7 @@ const areaData = [
 
 const tooltipStyle = {
   backgroundColor: 'rgba(20, 28, 52, 0.95)',
-  border: '1px solid rgba(148,163,184,0.15)',
+  border: '1px solid rgba(var(--w-slate-400-rgb), 0.15)',
   borderRadius: 8,
   color: 'var(--w-slate-200)',
   fontSize: '0.78rem',
@@ -79,7 +79,7 @@ export default function MscFaoAreaPenetration() {
       chartHeight={440}
       chart={
         <BarChart data={areaData} layout="vertical" margin={{ top: 4, right: 44, left: 8, bottom: 4 }}>
-          <CartesianGrid strokeDasharray="3 3" stroke="rgba(148,163,184,0.08)" horizontal={false} />
+          <CartesianGrid strokeDasharray="3 3" stroke="rgba(var(--w-slate-400-rgb), 0.08)" horizontal={false} />
           <XAxis
             type="number"
             domain={[0, 90]}
@@ -96,7 +96,7 @@ export default function MscFaoAreaPenetration() {
             axisLine={false}
             tickLine={false}
           />
-          <Tooltip content={<CustomTooltip />} cursor={{ fill: 'rgba(148,163,184,0.06)' }} />
+          <Tooltip content={<CustomTooltip />} cursor={{ fill: 'rgba(var(--w-slate-400-rgb), 0.06)' }} />
           <Bar dataKey="pct" radius={[0, 4, 4, 0]} isAnimationActive={false} barSize={15}>
             {areaData.map((d, i) => (
               <Cell key={i} fill={d.tuna ? TUNA : BASE} fillOpacity={d.tuna ? 0.95 : 0.55} />

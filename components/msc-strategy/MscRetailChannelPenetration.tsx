@@ -26,7 +26,7 @@ const CustomTooltip = ({ active, payload, label }: any) => {
     return (
       <div style={{
         backgroundColor: 'rgba(20, 28, 52, 0.95)',
-        border: '1px solid rgba(148,163,184,0.15)',
+        border: '1px solid rgba(var(--w-slate-400-rgb), 0.15)',
         borderRadius: '8px',
         padding: '12px',
         color: 'var(--w-slate-200)',

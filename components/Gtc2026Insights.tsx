@@ -66,7 +66,7 @@ export default function Gtc2026Insights() {
             breakInside: 'avoid', 
             marginBottom: '24px',
             background: 'rgba(0, 0, 0, 0.2)',
-            border: '1px solid rgba(148, 163, 184, 0.1)',
+            border: '1px solid rgba(var(--w-slate-400-rgb), 0.1)',
             borderRadius: '1rem',
             padding: '1.5rem',
             display: 'flex',

@@ -87,7 +87,7 @@ export default function SasJapanDemandDecline() {
           }}>
             <div style={{
               padding: '10px 12px', borderRadius: '8px',
-              background: 'rgba(245,158,11,0.08)', border: '1px solid rgba(245,158,11,0.15)',
+              background: 'rgba(var(--w-amber-500-rgb), 0.08)', border: '1px solid rgba(var(--w-amber-500-rgb), 0.15)',
               fontSize: '0.7rem', color: 'var(--w-slate-400)',
             }}>
               <strong style={{ color: 'var(--w-amber-500)' }}>🇰🇷 한국 영향</strong><br />

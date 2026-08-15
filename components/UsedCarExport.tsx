@@ -9,7 +9,7 @@ const cardTitle = { margin: '0 0 1rem 0', fontSize: '1.05rem', display: 'flex', 
 
 // L-09/L-12: LIVE 판정은 라우트가 출력한 isLive === true 단일 기준. fetch 완료 여부로 SYNCED 격상 금지.
 const DataBadge = ({ source, isLive = false, asOf }: { source?: string; isLive?: boolean; asOf?: string }) => (
-  <span style={{ fontSize: '0.65rem', fontWeight: 600, color: isLive ? 'var(--color-success)' : 'var(--w-slate-400)', background: isLive ? 'rgba(16,185,129,0.15)' : 'rgba(148,163,184,0.1)', padding: '2px 8px', borderRadius: '12px', border: 'none', marginLeft: '8px', display: 'inline-flex', alignItems: 'center', whiteSpace: 'nowrap' }}>
+  <span style={{ fontSize: '0.65rem', fontWeight: 600, color: isLive ? 'var(--color-success)' : 'var(--w-slate-400)', background: isLive ? 'rgba(var(--w-emerald-500-rgb), 0.15)' : 'rgba(var(--w-slate-400-rgb), 0.1)', padding: '2px 8px', borderRadius: '12px', border: 'none', marginLeft: '8px', display: 'inline-flex', alignItems: 'center', whiteSpace: 'nowrap' }}>
     <span style={{ width: '6px', height: '6px', background: isLive ? 'var(--color-success)' : 'var(--w-slate-500)', borderRadius: '50%', marginRight: '4px' }}></span>
     {isLive ? 'LIVE' : 'STATIC'} {source ? `· ${source}` : ''}{asOf ? ` · ${asOf}` : ''}
   </span>
@@ -120,7 +120,7 @@ function GhanaCustomsCalculator({ exchangeRate = 14.5 }: { exchangeRate?: number
         </div>
       </div>
       
-      <div style={{ background: 'rgba(139,92,246,0.05)', padding: '1.5rem', borderRadius: '8px', border: 'none' }}>
+      <div style={{ background: 'rgba(var(--w-violet-500-rgb), 0.05)', padding: '1.5rem', borderRadius: '8px', border: 'none' }}>
         <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '12px', borderBottom: '1px dashed rgba(255,255,255,0.1)', paddingBottom: '12px' }}>
           <span style={{ color: 'var(--w-slate-400)', fontSize: '0.9rem' }}>과세 표준 금액 (CIF)</span>
           <span style={{ color: 'var(--w-slate-200)', fontWeight: 600 }}>${cifUsd.toLocaleString(undefined, {maximumFractionDigits:0})}</span>
@@ -141,7 +141,7 @@ function GhanaCustomsCalculator({ exchangeRate = 14.5 }: { exchangeRate?: number
           <span style={{ color: '#a78bfa', fontWeight: 600, fontSize: '1rem' }}>통관 예상 총 세액 (Total Taxes)</span>
           <span style={{ color: 'var(--color-danger)', fontWeight: 700, fontSize: '1.1rem' }}>${totalTaxesUsd.toLocaleString(undefined, {maximumFractionDigits:0})}</span>
         </div>
-        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: '16px', padding: '12px 16px', background: 'rgba(16,185,129,0.1)', borderRadius: '8px', border: 'none' }}>
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: '16px', padding: '12px 16px', background: 'rgba(var(--w-emerald-500-rgb), 0.1)', borderRadius: '8px', border: 'none' }}>
           <span style={{ color: 'var(--color-success)', fontWeight: 600, fontSize: '1.1rem' }}>가나 현지 최종 랜딩 코스트</span>
           <span style={{ color: 'var(--color-success)', fontWeight: 700, fontSize: '1.4rem' }}>${landedCostUsd.toLocaleString(undefined, {maximumFractionDigits:0})}</span>
         </div>
@@ -178,7 +178,7 @@ export default function UsedCarExport() {
         </h2>
         <div style={{ display: 'flex', gap: '6px', flexWrap: 'wrap' }}>
           {['🇬🇭 가나','🇳🇬 나이지리아','🇸🇳 세네갈','🇨🇮 코트디부아르'].map(c => (
-            <span key={c} style={{ padding: '4px 10px', background: 'rgba(59,130,246,0.1)', border: 'none', borderRadius: '8px', fontSize: '0.78rem', color: '#60a5fa' }}>{c}</span>
+            <span key={c} style={{ padding: '4px 10px', background: 'rgba(var(--w-blue-500-rgb), 0.1)', border: 'none', borderRadius: '8px', fontSize: '0.78rem', color: '#60a5fa' }}>{c}</span>
           ))}
         </div>
       </div>
@@ -284,19 +284,19 @@ export default function UsedCarExport() {
           </div>
           
           <div style={{ flex: 1, minWidth: '350px', display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
-            <div style={{ padding: '1rem', background: 'rgba(59,130,246,0.08)', borderRadius: '8px', borderLeft: '3px solid var(--w-blue-500)' }}>
+            <div style={{ padding: '1rem', background: 'rgba(var(--w-blue-500-rgb), 0.08)', borderRadius: '8px', borderLeft: '3px solid var(--w-blue-500)' }}>
               <div style={{ color: '#60a5fa', fontSize: '0.85rem', fontWeight: 600, marginBottom: '4px' }}>명분 1: SUV 프리미엄 확증 (Data-backed)</div>
               <div style={{ color: 'var(--w-slate-300)', fontSize: '0.82rem', lineHeight: 1.5 }}>
                 싼타페, 투싼, 쏘렌토, 스포티지가 양사 상위권을 차지합니다. 비포장 도로가 많은 현지 특성상 세단 대비 SUV에 +15~20% 프리미엄이 형성되어 수익 창출의 핵심 동력이 됩니다.
               </div>
             </div>
-            <div style={{ padding: '1rem', background: 'rgba(16,185,129,0.08)', borderRadius: '8px', borderLeft: '3px solid var(--w-emerald-500)' }}>
+            <div style={{ padding: '1rem', background: 'rgba(var(--w-emerald-500-rgb), 0.08)', borderRadius: '8px', borderLeft: '3px solid var(--w-emerald-500)' }}>
               <div style={{ color: 'var(--w-emerald-400)', fontSize: '0.85rem', fontWeight: 600, marginBottom: '4px' }}>명분 2: 기아 모닝(Morning)의 폭발적 가성비</div>
               <div style={{ color: 'var(--w-slate-300)', fontSize: '0.82rem', lineHeight: 1.5 }}>
                 기아 모닝이 68건으로 기아 모델 중 3위를 기록하며 현지 라이드헤일링(Uber/Bolt) 택시용 수요를 입증했습니다. 배기량 1,000cc 미만으로 가나 최저 수입 관세(5%) 혜택을 누릴 수 있습니다.
               </div>
             </div>
-            <div style={{ padding: '1rem', background: 'rgba(236,72,153,0.08)', borderRadius: '8px', borderLeft: '3px solid var(--w-pink-500)' }}>
+            <div style={{ padding: '1rem', background: 'rgba(var(--w-pink-500-rgb), 0.08)', borderRadius: '8px', borderLeft: '3px solid var(--w-pink-500)' }}>
               <div style={{ color: '#f472b6', fontSize: '0.85rem', fontWeight: 600, marginBottom: '4px' }}>명분 3: 강한 $11,000 스윗스팟</div>
               <div style={{ color: 'var(--w-slate-300)', fontSize: '0.82rem', lineHeight: 1.5 }}>
                 현지 소매가 $11,000 수준은 동급 일본차 대비 20% 저렴하면서도 현지 중산층이 대출(Loan)로 구매 가능한 최적의 가격대입니다. 원화 약세를 활용한 무위험 차익거래 기회입니다.
@@ -409,7 +409,7 @@ export default function UsedCarExport() {
           가나(GRA/ICUMS)의 중고차 수입 시 차량 연식에 따른 추가 페널티율(CIF 가격 대비 %)을 시각화합니다. 연식이 오래될수록 기하급수적으로 페널티가 증가하는 구조입니다. 가나 관세청(GRA) 공식 규정 및 WC Shipping의 통관 실무 가이드를 교차 검증하여 구간별 페널티율을 정리했습니다.
         </p>
           <AgePenaltyChart data={ghanaAgePenalty} />
-          <div style={{ marginTop: '1rem', padding: '1rem', background: 'rgba(239,68,68,0.05)', border: 'none', borderRadius: '8px' }}>
+          <div style={{ marginTop: '1rem', padding: '1rem', background: 'rgba(var(--w-red-500-rgb), 0.05)', border: 'none', borderRadius: '8px' }}>
             <div style={{ color: 'var(--color-danger)', fontSize: '0.85rem', fontWeight: 600, marginBottom: '6px', display: 'flex', alignItems: 'center', gap: '6px' }}>
               <AlertTriangle size={14} /> 15년 초과 시 CIF 50% 폭탄 페널티
             </div>
@@ -490,7 +490,7 @@ export default function UsedCarExport() {
           <KpiCard icon={<Ship size={14}/>} label="해상 운임" value="$9,000" sub="$4,500 / 40ft HC" color="var(--color-warning)" />
           <KpiCard icon={<DollarSign size={14}/>} label="대당 랜딩 코스트" value="~₩3,500,000" sub="FOB 기준 마진 방어선 확보" color="var(--color-success)" />
         </div>
-        <div style={{ padding: '1rem', background: 'rgba(245,158,11,0.05)', border: 'none', borderRadius: '10px' }}>
+        <div style={{ padding: '1rem', background: 'rgba(var(--w-amber-500-rgb), 0.05)', border: 'none', borderRadius: '10px' }}>
           <div style={{ fontSize: '0.85rem', color: 'var(--color-warning)', fontWeight: 600, marginBottom: '6px' }}>⚠ 가나 관세 요약 (998cc 모닝 기준)</div>
           <div style={{ color: 'var(--w-slate-400)', fontSize: '0.82rem', lineHeight: 1.6 }}>
             기본관세 <strong>5%</strong>(1000cc 미만) + 연식초과 페널티 <strong>20%</strong>(14년) + VAT 15% + NHIL 2.5% + GETFund 2.5% + ECOWAS 0.5% + EXIM 0.75% + 검사수수료 1%
@@ -526,7 +526,7 @@ export default function UsedCarExport() {
               </ul>
             </div>
           ))}
-          <div style={{ background: 'rgba(239,68,68,0.05)', border: 'none', borderRadius: '8px', padding: '1rem' }}>
+          <div style={{ background: 'rgba(var(--w-red-500-rgb), 0.05)', border: 'none', borderRadius: '8px', padding: '1rem' }}>
             <div style={{ color: 'var(--color-danger)', fontSize: '0.85rem', fontWeight: 600, marginBottom: '6px', display: 'flex', alignItems: 'center', gap: '6px' }}><AlertTriangle size={14}/> Critical Risk Alerts</div>
             <ul style={{ margin: 0, paddingLeft: '1.1rem', color: 'var(--w-slate-400)', fontSize: '0.82rem', display: 'flex', flexDirection: 'column', gap: '6px' }}>
               <li><strong style={{ color: 'var(--color-danger)' }}>가나:</strong> 2012년식 차량 {year50For2012}년 이후 선적 시 50% 페널티 구간 진입</li>
@@ -574,7 +574,7 @@ export default function UsedCarExport() {
           {/* 근거 2: 브랜드 파워 */}
           <div style={{ background: '#11182f', border: 'none', borderRadius: '8px', padding: '1.25rem', borderTop: '3px solid var(--w-blue-500)' }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '10px' }}>
-              <div style={{ width: '32px', height: '32px', borderRadius: '8px', background: 'rgba(59,130,246,0.15)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '1.1rem' }}>🚗</div>
+              <div style={{ width: '32px', height: '32px', borderRadius: '8px', background: 'rgba(var(--w-blue-500-rgb), 0.15)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '1.1rem' }}>🚗</div>
               <div>
                 <div style={{ fontSize: '0.72rem', color: 'var(--color-info)', fontWeight: 600, letterSpacing: '0.5px' }}>근거 #2 — 브랜드 신뢰</div>
                 <div style={{ fontSize: '0.95rem', color: 'var(--w-slate-200)', fontWeight: 700 }}>현대·기아 가나 국민차 지위</div>
@@ -586,7 +586,7 @@ export default function UsedCarExport() {
               <li>Uber/Bolt 택시: <strong>기아 피칸토·리오·모닝</strong>이 선호 차종</li>
               <li>상용차: <strong style={{ color: '#60a5fa' }}>현대 포터II·기아 봉고III</strong> 1톤 트럭 아프리카 전역 인기</li>
             </ul>
-            <div style={{ marginTop: '10px', padding: '8px 10px', background: 'rgba(59,130,246,0.08)', borderRadius: '8px', fontSize: '0.78rem', color: '#93c5fd' }}>
+            <div style={{ marginTop: '10px', padding: '8px 10px', background: 'rgba(var(--w-blue-500-rgb), 0.08)', borderRadius: '8px', fontSize: '0.78rem', color: '#93c5fd' }}>
               📌 출처: Ghanaian Times, SBT Japan Market Report, Valley View Motors
             </div>
           </div>
@@ -594,7 +594,7 @@ export default function UsedCarExport() {
           {/* 근거 3: 규제 적합성 */}
           <div style={{ background: '#11182f', border: 'none', borderRadius: '8px', padding: '1.25rem', borderTop: '3px solid var(--w-emerald-500)' }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '10px' }}>
-              <div style={{ width: '32px', height: '32px', borderRadius: '8px', background: 'rgba(16,185,129,0.15)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '1.1rem' }}>📋</div>
+              <div style={{ width: '32px', height: '32px', borderRadius: '8px', background: 'rgba(var(--w-emerald-500-rgb), 0.15)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '1.1rem' }}>📋</div>
               <div>
                 <div style={{ fontSize: '0.72rem', color: 'var(--color-success)', fontWeight: 600, letterSpacing: '0.5px' }}>근거 #3 — 규제 적합</div>
                 <div style={{ fontSize: '0.95rem', color: 'var(--w-slate-200)', fontWeight: 700 }}>한국차 = 좌핸들 + 10년 규칙 적합</div>
@@ -606,7 +606,7 @@ export default function UsedCarExport() {
               <li>배기 기준: <strong>Euro 2 이상</strong> — 한국차 기본 충족</li>
               <li>일본차(우핸들) <strong style={{ color: 'var(--color-danger)' }}>수입 금지</strong> → 한국차에 구조적 우위</li>
             </ul>
-            <div style={{ marginTop: '10px', padding: '8px 10px', background: 'rgba(16,185,129,0.08)', borderRadius: '8px', fontSize: '0.78rem', color: '#6ee7b7' }}>
+            <div style={{ marginTop: '10px', padding: '8px 10px', background: 'rgba(var(--w-emerald-500-rgb), 0.08)', borderRadius: '8px', fontSize: '0.78rem', color: '#6ee7b7' }}>
               📌 출처: Ghana Standards Authority (GSA), U.S. Dept. of Commerce Trade.gov
             </div>
           </div>
@@ -614,7 +614,7 @@ export default function UsedCarExport() {
           {/* 근거 4: 환율 우위 */}
           <div style={{ background: '#11182f', border: 'none', borderRadius: '8px', padding: '1.25rem', borderTop: '3px solid var(--w-pink-500)' }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '10px' }}>
-              <div style={{ width: '32px', height: '32px', borderRadius: '8px', background: 'rgba(236,72,153,0.15)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '1.1rem' }}>💱</div>
+              <div style={{ width: '32px', height: '32px', borderRadius: '8px', background: 'rgba(var(--w-pink-500-rgb), 0.15)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '1.1rem' }}>💱</div>
               <div>
                 <div style={{ fontSize: '0.72rem', color: 'var(--w-pink-500)', fontWeight: 600, letterSpacing: '0.5px' }}>근거 #4 — 원화 약세</div>
                 <div style={{ fontSize: '0.95rem', color: 'var(--w-slate-200)', fontWeight: 700 }}>원/달러 환율 = 가격 경쟁력</div>
@@ -626,7 +626,7 @@ export default function UsedCarExport() {
               <li>가나 바이어에게 동급 일본차 대비 <strong>15~25% 저렴한 가격 포지셔닝</strong> 가능</li>
               <li>자동차는 한국 <strong>중소기업 수출 1위 품목</strong> — 정부 수출지원금 활용 가능</li>
             </ul>
-            <div style={{ marginTop: '10px', padding: '8px 10px', background: 'rgba(236,72,153,0.08)', borderRadius: '8px', fontSize: '0.78rem', color: '#f9a8d4' }}>
+            <div style={{ marginTop: '10px', padding: '8px 10px', background: 'rgba(var(--w-pink-500-rgb), 0.08)', borderRadius: '8px', fontSize: '0.78rem', color: '#f9a8d4' }}>
               📌 출처: InvestKorea, 중소벤처기업부 수출지원 데이터 (2025)
             </div>
           </div>
@@ -634,7 +634,7 @@ export default function UsedCarExport() {
           {/* 근거 5: 물류 인프라 */}
           <div style={{ background: '#11182f', border: 'none', borderRadius: '8px', padding: '1.25rem', borderTop: '3px solid var(--w-violet-500)' }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '10px' }}>
-              <div style={{ width: '32px', height: '32px', borderRadius: '8px', background: 'rgba(139,92,246,0.15)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '1.1rem' }}>🚢</div>
+              <div style={{ width: '32px', height: '32px', borderRadius: '8px', background: 'rgba(var(--w-violet-500-rgb), 0.15)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '1.1rem' }}>🚢</div>
               <div>
                 <div style={{ fontSize: '0.72rem', color: 'var(--w-violet-500)', fontWeight: 600, letterSpacing: '0.5px' }}>근거 #5 — 물류 체계</div>
                 <div style={{ fontSize: '0.95rem', color: 'var(--w-slate-200)', fontWeight: 700 }}>인천→테마항 확립된 해운 루트</div>
@@ -646,7 +646,7 @@ export default function UsedCarExport() {
               <li>주요 선사: <strong>Maersk, COSCO, MSC</strong> 등 정기 노선 운항</li>
               <li>인천 자동차 수출 전문 포워더·검수·서류 대행 업체 <strong>클러스터 형성</strong></li>
             </ul>
-            <div style={{ marginTop: '10px', padding: '8px 10px', background: 'rgba(139,92,246,0.08)', borderRadius: '8px', fontSize: '0.78rem', color: '#c4b5fd' }}>
+            <div style={{ marginTop: '10px', padding: '8px 10px', background: 'rgba(var(--w-violet-500-rgb), 0.08)', borderRadius: '8px', fontSize: '0.78rem', color: '#c4b5fd' }}>
               📌 출처: WC Shipping, GB Freight, Export-Solutions
             </div>
           </div>
@@ -674,7 +674,7 @@ export default function UsedCarExport() {
           {/* 근거 7: 수익 모델 */}
           <div style={{ background: '#11182f', border: 'none', borderRadius: '8px', padding: '1.25rem', borderTop: '3px solid var(--w-amber-500)' }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '10px' }}>
-              <div style={{ width: '32px', height: '32px', borderRadius: '8px', background: 'rgba(245,158,11,0.15)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '1.1rem' }}>💰</div>
+              <div style={{ width: '32px', height: '32px', borderRadius: '8px', background: 'rgba(var(--w-amber-500-rgb), 0.15)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '1.1rem' }}>💰</div>
               <div>
                 <div style={{ fontSize: '0.72rem', color: 'var(--color-warning)', fontWeight: 600, letterSpacing: '0.5px' }}>근거 #7 — 수익 구조</div>
                 <div style={{ fontSize: '0.95rem', color: 'var(--w-slate-200)', fontWeight: 700 }}>대당 $1,500~3,000 순마진</div>
@@ -686,7 +686,7 @@ export default function UsedCarExport() {
               <li>순마진율 <strong style={{ color: 'var(--w-amber-400)' }}>대당 $1,500~3,000</strong> (차종·연식 따라 변동)</li>
               <li>월 20대 규모 → 월 순이익 <strong>$30,000~60,000</strong> 수익 구간</li>
             </ul>
-            <div style={{ marginTop: '10px', padding: '8px 10px', background: 'rgba(245,158,11,0.08)', borderRadius: '8px', fontSize: '0.78rem', color: '#fcd34d' }}>
+            <div style={{ marginTop: '10px', padding: '8px 10px', background: 'rgba(var(--w-amber-500-rgb), 0.08)', borderRadius: '8px', fontSize: '0.78rem', color: '#fcd34d' }}>
               📌 출처: 업계 실거래 마진 분석, WC Shipping Rate Data
             </div>
           </div>

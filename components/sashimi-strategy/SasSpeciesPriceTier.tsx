@@ -107,7 +107,7 @@ export default function SasSpeciesPriceTier() {
           {/* Premium callout */}
           <div style={{
             marginTop: '8px', padding: '10px 14px', borderRadius: '8px',
-            background: 'rgba(245,158,11,0.08)', border: '1px solid rgba(245,158,11,0.15)',
+            background: 'rgba(var(--w-amber-500-rgb), 0.08)', border: '1px solid rgba(var(--w-amber-500-rgb), 0.15)',
             fontSize: '0.7rem', color: 'var(--w-slate-400)', textAlign: 'center',
           }}>
             💡 연승(사시미) <strong style={{ color: 'var(--w-amber-500)' }}>6,722원/kg</strong> vs 선망(캔) <strong style={{ color: 'var(--w-sky-400)' }}>2,003원/kg</strong> → <strong style={{ color: 'var(--w-amber-500)' }}>3.3배</strong> 가격 프리미엄

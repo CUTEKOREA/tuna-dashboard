@@ -33,7 +33,7 @@ export default function ChickenEmpiricalInsights() {
     <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem', gridColumn: '1 / -1' }}>
       <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', paddingBottom: '1rem', borderBottom: '1px solid rgba(255,255,255,0.1)' }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: '0.8rem' }}>
-          <div style={{ padding: '8px', background: 'rgba(16, 185, 129, 0.1)', borderRadius: '8px', border: '1px solid rgba(16, 185, 129, 0.2)' }}>
+          <div style={{ padding: '8px', background: 'rgba(var(--w-emerald-500-rgb), 0.1)', borderRadius: '8px', border: '1px solid rgba(var(--w-emerald-500-rgb), 0.2)' }}>
             <Activity size={24} color="var(--color-success)" />
           </div>
           <div>

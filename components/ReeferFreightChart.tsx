@@ -103,11 +103,11 @@ export default function ReeferFreightChart() {
             gap: '8px', 
             fontSize: '11px', 
             fontWeight: 600,
-            background: 'rgba(16, 185, 129, 0.1)',
+            background: 'rgba(var(--w-emerald-500-rgb), 0.1)',
             color: 'var(--color-success)',
             padding: '4px 10px',
             borderRadius: '12px',
-            border: '1px solid rgba(16, 185, 129, 0.2)'
+            border: '1px solid rgba(var(--w-emerald-500-rgb), 0.2)'
           }}>
             <div style={{ width: 6, height: 6, borderRadius: '50%', background: 'var(--color-success)', boxShadow: '0 0 8px var(--w-emerald-500)' }}></div>
             Live API: {meta.source}

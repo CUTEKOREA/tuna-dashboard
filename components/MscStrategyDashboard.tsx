@@ -142,7 +142,7 @@ export default function MscStrategyDashboard() {
           display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '6px',
           padding: '4px 0 8px', borderBottom: '1px solid rgba(140,170,255,0.10)', marginBottom: '6px',
         }}>
-          <span style={{ fontSize: '0.7rem', color: 'rgba(148,163,184,0.7)', fontWeight: 600, letterSpacing: '0.08em', textTransform: 'uppercase' }}>
+          <span style={{ fontSize: '0.7rem', color: 'rgba(var(--w-slate-400-rgb), 0.7)', fontWeight: 600, letterSpacing: '0.08em', textTransform: 'uppercase' }}>
             MSC 전략 네비게이터 — 7개 섹션을 클릭하여 탐색하세요
           </span>
         </div>
@@ -179,7 +179,7 @@ export default function MscStrategyDashboard() {
                   width: '28px', height: '28px', borderRadius: '50%',
                   display: 'flex', alignItems: 'center', justifyContent: 'center',
                   background: isActive ? s.color : 'rgba(140,170,255,0.12)',
-                  color: isActive ? '#0a0f1f' : 'rgba(148,163,184,0.6)',
+                  color: isActive ? '#0a0f1f' : 'rgba(var(--w-slate-400-rgb), 0.6)',
                   fontSize: '0.75rem', fontWeight: 800, transition: 'all 0.25s',
                   boxShadow: isActive ? `0 0 12px ${s.color}50` : 'none',
                 }}>
@@ -195,7 +195,7 @@ export default function MscStrategyDashboard() {
                 </span>
                 {isActive && (
                   <span style={{
-                    fontSize: '0.55rem', color: 'rgba(148,163,184,0.7)', textAlign: 'center',
+                    fontSize: '0.55rem', color: 'rgba(var(--w-slate-400-rgb), 0.7)', textAlign: 'center',
                     lineHeight: 1.3, maxWidth: '100px', overflow: 'hidden', textOverflow: 'ellipsis',
                     display: '-webkit-box', WebkitLineClamp: 2, WebkitBoxOrient: 'vertical' as any,
                     textTransform: 'none', letterSpacing: 'normal',

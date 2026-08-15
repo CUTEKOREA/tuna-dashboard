@@ -91,7 +91,7 @@ const InlineTakeaway = ({ situation, short, long, risk, source }: any) => (
         )}
       </div>
     </div>
-    <div style={{ width: '100%', height: '1px', background: 'rgba(56, 189, 248, 0.1)' }} />
+    <div style={{ width: '100%', height: '1px', background: 'rgba(var(--w-sky-400-rgb), 0.1)' }} />
     <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '4px' }}>
       <span style={{ color: '#bae6fd', fontSize: '0.85rem', fontWeight: 'bold' }}>⚡ 실행 전략 (Executive Takeaway):</span>
     </div>
@@ -155,7 +155,7 @@ export const ReeferPortCongestionWidget = () => (
             <YAxis yAxisId="right" orientation="right" />
             <RechartsTooltip content={<CustomTooltip />} />
             <Legend />
-            <Bar yAxisId="left" dataKey="berthedShips" name="접안 선박 수" fill="rgba(239, 68, 68, 0.6)" radius={[4, 4, 0, 0]} />
+            <Bar yAxisId="left" dataKey="berthedShips" name="접안 선박 수" fill="rgba(var(--w-red-500-rgb), 0.6)" radius={[4, 4, 0, 0]} />
             <Line yAxisId="right" type="monotone" dataKey="avgWaitDays" name="평균 대기일수" stroke="var(--w-red-500)" strokeWidth={3} />
           </ComposedChart>
         </SafeResponsiveContainer>

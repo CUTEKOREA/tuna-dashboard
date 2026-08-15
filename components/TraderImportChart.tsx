@@ -166,11 +166,11 @@ export default function TraderImportChart() {
           gap: '8px',
           fontSize: '11px',
           fontWeight: 600,
-          background: meta ? 'rgba(16, 185, 129, 0.1)' : 'rgba(148, 163, 184, 0.1)',
+          background: meta ? 'rgba(var(--w-emerald-500-rgb), 0.1)' : 'rgba(var(--w-slate-400-rgb), 0.1)',
           color: meta ? 'var(--color-success)' : 'var(--text-muted)',
           padding: '4px 12px',
           borderRadius: '12px',
-          border: meta ? '1px solid rgba(16, 185, 129, 0.2)' : '1px solid rgba(148, 163, 184, 0.2)'
+          border: meta ? '1px solid rgba(var(--w-emerald-500-rgb), 0.2)' : '1px solid rgba(var(--w-slate-400-rgb), 0.2)'
         }}>
           <div style={{ width: 6, height: 6, borderRadius: '50%', background: meta ? 'var(--color-success)' : 'var(--text-muted)', boxShadow: meta ? '0 0 8px var(--w-emerald-500)' : 'none' }}></div>
           {meta ? 'SYNCED · KCS API' : 'STATIC'}

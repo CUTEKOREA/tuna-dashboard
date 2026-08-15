@@ -158,7 +158,7 @@ export function MofShippingCostWidget() {
       unit="(단위: USD/컨테이너)"
       telemetry={{ status: 'STATIC', syncDate: '2026 초 추정' }}
       customBody={
-        <div style={{ display: 'grid', gap: '12px', background: 'rgba(0, 0, 0, 0.2)', padding: '20px', borderRadius: '1rem', border: '1px dashed rgba(148, 163, 184, 0.1)' }}>
+        <div style={{ display: 'grid', gap: '12px', background: 'rgba(0, 0, 0, 0.2)', padding: '20px', borderRadius: '1rem', border: '1px dashed rgba(var(--w-slate-400-rgb), 0.1)' }}>
           {data.map((r, i) => (
             <div key={i} style={{ display: 'grid', gridTemplateColumns: '1.5fr 1fr 1fr 1fr', gap: 16, padding: '14px 20px', alignItems: 'center', background: 'rgba(255,255,255,0.03)', borderRadius: 8, border: '1px solid rgba(140,170,255,0.12)' }}>
               <span style={{ fontSize: '0.9rem', color: 'var(--w-slate-50)', fontWeight: 600 }}>{r.route}</span>

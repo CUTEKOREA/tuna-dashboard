@@ -39,7 +39,7 @@ export default function GensanVesselStatus() {
             주간 보고 (GMTS 작성) | 기준일 2026/05/06 — 보고 시점 고정 자료
           </p>
         </div>
-        <div style={{ padding: '8px 16px', background: 'rgba(59, 130, 246, 0.1)', border: '1px solid rgba(59, 130, 246, 0.3)', borderRadius: '8px', color: '#60a5fa', fontSize: '13px', fontWeight: 'bold', display: 'flex', flexDirection: 'column', alignItems: 'flex-end' }}>
+        <div style={{ padding: '8px 16px', background: 'rgba(var(--w-blue-500-rgb), 0.1)', border: '1px solid rgba(var(--w-blue-500-rgb), 0.3)', borderRadius: '8px', color: '#60a5fa', fontSize: '13px', fontWeight: 'bold', display: 'flex', flexDirection: 'column', alignItems: 'flex-end' }}>
           <span>젠산 참치 어가 (2026/05/06 기준)</span>
           <span style={{ fontSize: '18px', color: 'var(--text-primary)' }}>GSP (Non-MSC): <strong style={{ color: 'var(--color-success)' }}>$1,900</strong></span>
         </div>

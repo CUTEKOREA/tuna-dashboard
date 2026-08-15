@@ -132,7 +132,7 @@ export default function ResearchLabDashboard() {
       <header style={{marginBottom:'2rem',paddingTop:'0.5rem'}}>
         <div style={{display:'flex',alignItems:'center',justifyContent:'space-between',marginBottom:'0.5rem'}}>
           <div style={{display:'flex',alignItems:'center',gap:'0.75rem'}}>
-            <div style={{width:44,height:44,borderRadius:'50%',background:'linear-gradient(135deg,var(--w-violet-500),var(--w-pink-500))',display:'flex',alignItems:'center',justifyContent:'center',boxShadow:'0 0 20px rgba(139,92,246,0.3)'}}>
+            <div style={{width:44,height:44,borderRadius:'50%',background:'linear-gradient(135deg,var(--w-violet-500),var(--w-pink-500))',display:'flex',alignItems:'center',justifyContent:'center',boxShadow:'0 0 20px rgba(var(--w-violet-500-rgb), 0.3)'}}>
               <Briefcase size={24} color="#fff" />
             </div>
             <div>

@@ -121,9 +121,9 @@ export default function ColdStorageMap() {
           formatter: function(params: any) {
             const val = params.value ? params.value + '개' : '0개';
             if (!selectedProvince) {
-               return `<strong>${params.name}</strong><br/>운영 중인 냉동/냉장업체: ${val}<br/><span style="color:#94a3b8;font-size:11px">클릭하여 시/군/구 보기</span>`;
+               return `<strong>${params.name}</strong><br/>운영 중인 냉동/냉장업체: ${val}<br/><span style="color:var(--w-slate-400);font-size:11px">클릭하여 시/군/구 보기</span>`;
             } else {
-               return `<strong>${params.name}</strong><br/>운영 중인 냉동/냉장업체: ${val}<br/><span style="color:#94a3b8;font-size:11px">클릭하여 세부 목록 보기</span>`;
+               return `<strong>${params.name}</strong><br/>운영 중인 냉동/냉장업체: ${val}<br/><span style="color:var(--w-slate-400);font-size:11px">클릭하여 세부 목록 보기</span>`;
             }
           }
         },

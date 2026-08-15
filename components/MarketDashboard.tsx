@@ -362,7 +362,7 @@ export default function MarketDashboard({ heroOnly = false }: { heroOnly?: boole
                 <XAxis dataKey="date" stroke="rgba(255,255,255,0.4)" fontSize={12} tickMargin={10} minTickGap={30} />
                 <YAxis yAxisId="left" stroke="rgba(255,255,255,0.4)" fontSize={12} domain={['auto', 'auto']} tickFormatter={(v) => `$${v}`} />
                 <RechartsTooltip
-                  contentStyle={{ backgroundColor: 'var(--w-navy-900)', border: '1px solid rgba(56, 189, 248, 0.25)', borderRadius: '10px', boxShadow: '0 16px 40px rgba(0, 0, 0, 0.55)' }}
+                  contentStyle={{ backgroundColor: 'var(--w-navy-900)', border: '1px solid rgba(var(--w-sky-400-rgb), 0.25)', borderRadius: '10px', boxShadow: '0 16px 40px rgba(0, 0, 0, 0.55)' }}
                   itemStyle={{ color: '#fff', fontSize: '13px' }}
                   labelStyle={{ color: 'var(--text-muted)', marginBottom: '4px', fontSize: '12px' }}
                 />
@@ -394,7 +394,7 @@ export default function MarketDashboard({ heroOnly = false }: { heroOnly?: boole
                 <XAxis dataKey="date" stroke="rgba(255,255,255,0.4)" fontSize={12} tickMargin={10} minTickGap={30} />
                 <YAxis yAxisId="left" stroke="rgba(255,255,255,0.4)" fontSize={12} domain={['auto', 'auto']} tickFormatter={(v) => `$${v}`} />
                 <RechartsTooltip
-                  contentStyle={{ backgroundColor: 'var(--w-navy-900)', border: '1px solid rgba(139, 92, 246, 0.25)', borderRadius: '10px', boxShadow: '0 16px 40px rgba(0, 0, 0, 0.55)' }}
+                  contentStyle={{ backgroundColor: 'var(--w-navy-900)', border: '1px solid rgba(var(--w-violet-500-rgb), 0.25)', borderRadius: '10px', boxShadow: '0 16px 40px rgba(0, 0, 0, 0.55)' }}
                   itemStyle={{ color: '#fff', fontSize: '13px' }}
                   labelStyle={{ color: 'var(--text-muted)', marginBottom: '4px', fontSize: '12px' }}
                 />

@@ -113,7 +113,7 @@ export default function SasMarketKPIs() {
           {/* Bottom panels: Partners + Species */}
           <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '8px' }}>
             {/* Top Partners */}
-            <div style={{ padding: '8px 10px', borderRadius: '8px', background: 'rgba(16,185,129,0.05)', border: '1px solid rgba(16,185,129,0.15)' }}>
+            <div style={{ padding: '8px 10px', borderRadius: '8px', background: 'rgba(var(--w-emerald-500-rgb), 0.05)', border: '1px solid rgba(var(--w-emerald-500-rgb), 0.15)' }}>
               <div style={{ fontSize: '0.65rem', fontWeight: 600, color: 'var(--w-emerald-500)', marginBottom: '6px' }}>🏆 Top 5 수출국 (2024)</div>
               {TOP_PARTNERS.map((p) => (
                 <div key={p.name} style={{ display: 'flex', alignItems: 'center', gap: '4px', marginBottom: '3px' }}>
@@ -124,7 +124,7 @@ export default function SasMarketKPIs() {
               ))}
             </div>
             {/* Species */}
-            <div style={{ padding: '8px 10px', borderRadius: '8px', background: 'rgba(56,189,248,0.05)', border: '1px solid rgba(56,189,248,0.15)' }}>
+            <div style={{ padding: '8px 10px', borderRadius: '8px', background: 'rgba(var(--w-sky-400-rgb), 0.05)', border: '1px solid rgba(var(--w-sky-400-rgb), 0.15)' }}>
               <div style={{ fontSize: '0.65rem', fontWeight: 600, color: 'var(--w-sky-400)', marginBottom: '6px' }}>🐟 어종별 수입 (2024)</div>
               {SPECIES_2024.map((s) => (
                 <div key={s.name} style={{ display: 'flex', alignItems: 'center', gap: '4px', marginBottom: '3px' }}>

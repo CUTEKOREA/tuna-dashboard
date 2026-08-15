@@ -21,7 +21,7 @@ export default function FishStatFilletCurve() {
         <TermTooltip term="Fillet Golden Cross" description="에어프라이어 및 1인가구 발달로 통마리(Whole)형태의 수입이 소멸하고 순살 필렛의 유통 비중이 완벽히 역전한 골든 크로스" />
       </div>
       
-      <div style={{ padding: '16px', background: 'rgba(59, 130, 246, 0.1)', borderLeft: '4px solid var(--w-blue-500)', borderRadius: '4px', marginBottom: '24px', display: 'flex', gap: '12px' }}>
+      <div style={{ padding: '16px', background: 'rgba(var(--w-blue-500-rgb), 0.1)', borderLeft: '4px solid var(--w-blue-500)', borderRadius: '4px', marginBottom: '24px', display: 'flex', gap: '12px' }}>
         <Workflow size={20} color="var(--color-info)" style={{ flexShrink: 0 }} />
         <div style={{ fontSize: '13px', lineHeight: '1.6' }}>
           <strong style={{ color: 'var(--color-info)' }}>Situation:</strong> 22년을 기점으로 Round(통마리)와 Fillet(순살)의 B2C 시장 점유율이 완전히 교차 파괴.<br/>

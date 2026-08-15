@@ -161,7 +161,7 @@ const Excerpt: React.FC<{ row: any }> = ({ row }) => {
 
   return (
     <blockquote style={{ margin: 0, padding: '8px 0 8px 12px',
-                         borderLeft: '2px solid rgba(139, 92, 246, 0.35)' }}>
+                         borderLeft: '2px solid rgba(var(--w-violet-500-rgb), 0.35)' }}>
       <p style={{ margin: 0, fontSize: '0.78rem', lineHeight: 1.65, color: 'var(--w-slate-300)',
                   wordBreak: 'keep-all', whiteSpace: 'pre-wrap' }}>
         {displayText}
@@ -170,7 +170,7 @@ const Excerpt: React.FC<{ row: any }> = ({ row }) => {
       <div style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', gap: 8, marginTop: 5 }}>
         <button
           onClick={() => setShowSource((v) => !v)}
-          style={{ background: 'none', border: '1px solid rgba(148,163,184,0.3)',
+          style={{ background: 'none', border: '1px solid rgba(var(--w-slate-400-rgb), 0.3)',
                    borderRadius: 4, padding: '1px 6px', color: 'var(--w-slate-400)',
                    fontSize: '0.6rem', cursor: 'pointer' }}
         >
@@ -178,7 +178,7 @@ const Excerpt: React.FC<{ row: any }> = ({ row }) => {
         </button>
         {!ko && !rawIsMostlyKorean && (
           <span style={{ fontSize: '0.6rem', color: 'var(--w-amber-500)',
-                         border: '1px solid rgba(245,158,11,0.35)', borderRadius: 4,
+                         border: '1px solid rgba(var(--w-amber-500-rgb), 0.35)', borderRadius: 4,
                          padding: '1px 6px' }}>
             번역 준비 중
           </span>

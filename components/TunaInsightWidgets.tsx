@@ -48,7 +48,7 @@ export const WidgetWrapper = ({ title, icon: Icon, term, desc, source, situation
     <div style={{ background: 'rgba(0, 0, 0, 0.2)', border: '1px solid rgba(140,170,255,0.10)', borderRadius: '8px', display: 'flex', flexDirection: 'column', height: '100%' }}>
       <div style={{ padding: '1rem', borderBottom: '1px solid rgba(140,170,255,0.10)', display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-          <div style={{ background: 'rgba(59, 130, 246, 0.1)', padding: '8px', borderRadius: '8px' }}>
+          <div style={{ background: 'rgba(var(--w-blue-500-rgb), 0.1)', padding: '8px', borderRadius: '8px' }}>
             <Icon size={18} color="var(--color-info)" />
           </div>
           <div>

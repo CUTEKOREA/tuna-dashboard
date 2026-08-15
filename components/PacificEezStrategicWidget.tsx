@@ -51,7 +51,7 @@ export default function PacificEezStrategicWidget() {
           onClick={() => setActiveTab('table')}
           style={{
             padding: '6px 14px', fontSize: '0.75rem', fontWeight: 'bold', border: 'none', borderRadius: '4px', cursor: 'pointer',
-            background: activeTab === 'table' ? 'rgba(59, 130, 246, 0.15)' : 'transparent',
+            background: activeTab === 'table' ? 'rgba(var(--w-blue-500-rgb), 0.15)' : 'transparent',
             color: activeTab === 'table' ? '#60a5fa' : 'var(--w-slate-400)',
             borderBottom: activeTab === 'table' ? '2px solid var(--w-blue-500)' : 'none',
             transition: 'all 0.2s'
@@ -63,7 +63,7 @@ export default function PacificEezStrategicWidget() {
           onClick={() => setActiveTab('map')}
           style={{
             padding: '6px 14px', fontSize: '0.75rem', fontWeight: 'bold', border: 'none', borderRadius: '4px', cursor: 'pointer',
-            background: activeTab === 'map' ? 'rgba(16, 185, 129, 0.15)' : 'transparent',
+            background: activeTab === 'map' ? 'rgba(var(--w-emerald-500-rgb), 0.15)' : 'transparent',
             color: activeTab === 'map' ? 'var(--w-emerald-400)' : 'var(--w-slate-400)',
             borderBottom: activeTab === 'map' ? '2px solid var(--w-emerald-500)' : 'none',
             transition: 'all 0.2s'

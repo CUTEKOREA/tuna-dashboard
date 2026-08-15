@@ -38,7 +38,7 @@ export function PolicyRiskScorecard() {
   ) : (
     <>
       <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', marginBottom: '1rem' }}>
-        <div style={{ background: 'rgba(239,68,68,0.15)', borderRadius: '12px', padding: '12px 20px', textAlign: 'center' }}>
+        <div style={{ background: 'rgba(var(--w-red-500-rgb), 0.15)', borderRadius: '12px', padding: '12px 20px', textAlign: 'center' }}>
           <div style={{ fontSize: '2rem', fontWeight: 800, color: 'var(--w-red-500)' }}>{composite.overall}</div>
           <div style={{ fontSize: '0.7rem', color: '#fca5a5' }}>종합 리스크 ({composite.grade})</div>
         </div>

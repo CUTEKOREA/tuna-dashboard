@@ -98,9 +98,9 @@ export default function CommandPalette({ onNavigate }: CommandPaletteProps) {
               position: 'fixed', top: '18%', left: '50%', transform: 'translateX(-50%)',
               width: 580, maxWidth: '90vw', zIndex: 9999,
               background: 'rgba(6, 14, 28, 0.92)',
-              border: '1px solid rgba(6, 182, 212, 0.15)',
+              border: '1px solid rgba(var(--w-cyan-500-rgb), 0.15)',
               borderRadius: 8, overflow: 'hidden',
-              boxShadow: '0 32px 100px rgba(0,0,0,0.7), 0 0 60px rgba(6, 182, 212, 0.08), inset 0 1px 0 rgba(255,255,255,0.04)',
+              boxShadow: '0 32px 100px rgba(0,0,0,0.7), 0 0 60px rgba(var(--w-cyan-500-rgb), 0.08), inset 0 1px 0 rgba(255,255,255,0.04)',
             }}
           >
             <div style={{
@@ -142,7 +142,7 @@ export default function CommandPalette({ onNavigate }: CommandPaletteProps) {
                   style={{
                     display: 'flex', alignItems: 'center', gap: 12,
                     padding: '10px 14px', borderRadius: 8, cursor: 'pointer',
-                    background: i === selectedIndex ? 'rgba(6, 182, 212, 0.12)' : 'transparent',
+                    background: i === selectedIndex ? 'rgba(var(--w-cyan-500-rgb), 0.12)' : 'transparent',
                     color: i === selectedIndex ? 'var(--text-primary)' : 'rgba(255,255,255,0.6)',
                     transition: 'background 0.15s',
                   }}

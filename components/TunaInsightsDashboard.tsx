@@ -744,7 +744,7 @@ export default function TunaInsightsDashboard() {
           <div
             className={`${styles.menuItem} ${activeTab === 'newIntel' ? styles.activeMenu : ''}`}
             onClick={() => setActiveTab('newIntel')}
-            style={activeTab === 'newIntel' ? { background: 'rgba(56, 189, 248, 0.1)', color: 'var(--w-sky-400)', border: '1px solid rgba(56, 189, 248, 0.3)' } : {}}
+            style={activeTab === 'newIntel' ? { background: 'rgba(var(--w-sky-400-rgb), 0.1)', color: 'var(--w-sky-400)', border: '1px solid rgba(var(--w-sky-400-rgb), 0.3)' } : {}}
           >
             <Zap size={18} /> 6. 🔥 신규 전략 인텔리전스
           </div>
@@ -758,7 +758,7 @@ export default function TunaInsightsDashboard() {
         </aside>
 
         <main className={styles.content}>
-          <div style={{ background: 'rgba(56, 189, 248, 0.1)', border: '1px solid rgba(56, 189, 248, 0.2)', padding: '12px 16px', borderRadius: '8px', color: '#bae6fd', fontSize: '0.9rem', marginBottom: '1rem', display: 'flex', alignItems: 'center', gap: '8px' }}>
+          <div style={{ background: 'rgba(var(--w-sky-400-rgb), 0.1)', border: '1px solid rgba(var(--w-sky-400-rgb), 0.2)', padding: '12px 16px', borderRadius: '8px', color: '#bae6fd', fontSize: '0.9rem', marginBottom: '1rem', display: 'flex', alignItems: 'center', gap: '8px' }}>
             <div style={{ width: '8px', height: '8px', borderRadius: '50%', background: 'var(--w-sky-400)', boxShadow: '0 0 10px var(--w-sky-400)' }} />
             정적(STATIC) 참고 데이터 기반. 74년치 참치 데이터에 기반한 15가지 인사이트 시각화 차트 제공 중 (실시간 API 미연동).
           </div>
@@ -770,7 +770,7 @@ export default function TunaInsightsDashboard() {
           {activeTab === 'innovation' && renderInnovationTrack()}
           {activeTab === 'newIntel' && (
             <>
-              <div style={{ background: 'rgba(56, 189, 248, 0.1)', border: '1px solid rgba(56, 189, 248, 0.2)', padding: '12px 16px', borderRadius: '8px', color: '#bae6fd', fontSize: '0.9rem', marginBottom: '0.5rem', display: 'flex', alignItems: 'center', gap: '8px' }}>
+              <div style={{ background: 'rgba(var(--w-sky-400-rgb), 0.1)', border: '1px solid rgba(var(--w-sky-400-rgb), 0.2)', padding: '12px 16px', borderRadius: '8px', color: '#bae6fd', fontSize: '0.9rem', marginBottom: '0.5rem', display: 'flex', alignItems: 'center', gap: '8px' }}>
                 <Zap size={16} color="#38bdf8" />
                 9개 NotebookLM 노트북(1,494 소스) + Google Drive DATA 교차 분석 결과. 기존 대시보드에 부재하던 6개 블라인드 스팟 인사이트.
               </div>

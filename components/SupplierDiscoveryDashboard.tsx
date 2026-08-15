@@ -281,7 +281,7 @@ export default function SupplierDiscoveryDashboard() {
       </motion.div>
 
       <motion.div initial={{ opacity: 0, y: -20 }} animate={{ opacity: 1, y: 0 }} style={{ marginBottom: '3rem', background: 'linear-gradient(135deg, rgba(20, 28, 52, 0.9), rgba(30, 41, 59, 0.9))', border: '1px solid #334155', borderRadius: '16px', padding: '2.5rem', boxShadow: '0 20px 40px -10px rgba(0,0,0,0.7)', position: 'relative', overflow: 'hidden' }}>
-        <div style={{ position: 'absolute', top: '-50%', left: '-10%', width: '300px', height: '300px', background: 'radial-gradient(circle, rgba(139, 92, 246, 0.15) 0%, transparent 70%)', filter: 'blur(40px)', zIndex: 0 }} />
+        <div style={{ position: 'absolute', top: '-50%', left: '-10%', width: '300px', height: '300px', background: 'radial-gradient(circle, rgba(var(--w-violet-500-rgb), 0.15) 0%, transparent 70%)', filter: 'blur(40px)', zIndex: 0 }} />
         
         <h2 style={{ position: 'relative', zIndex: 1, fontSize: '1.8rem', color: 'var(--w-slate-50)', marginBottom: '1.5rem', display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
           <Globe color="#8b5cf6" size={28} /> Global Intelligence Engine (통합 소싱 터미널)
@@ -350,7 +350,7 @@ export default function SupplierDiscoveryDashboard() {
               background: 'linear-gradient(135deg, var(--w-violet-500), var(--w-blue-500))', color: 'white', border: 'none', borderRadius: '12px', padding: '0 2.5rem',
               fontSize: '1.1rem', fontWeight: 'bold', cursor: (isMacroSearching || isSearching) ? 'not-allowed' : 'pointer', transition: 'all 0.3s',
               opacity: (isMacroSearching || isSearching || !macroItem.trim()) ? 0.7 : 1, display: 'flex', alignItems: 'center', gap: '0.75rem',
-              minWidth: '220px', justifyContent: 'center', boxShadow: '0 10px 20px -5px rgba(139, 92, 246, 0.4)'
+              minWidth: '220px', justifyContent: 'center', boxShadow: '0 10px 20px -5px rgba(var(--w-violet-500-rgb), 0.4)'
             }}
           >
             {(isMacroSearching || isSearching) ? <><Loader2 size={20} className={styles.spin} /> 파이프라인 가동 중</> : <><Zap size={20} /> 파이프라인 가동</>}
@@ -444,12 +444,12 @@ export default function SupplierDiscoveryDashboard() {
                 <div data-mobile-stack style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1.5rem', marginTop: '1.5rem', width: '100%' }}>
                   
                   {/* Tariff & HS Code Stats */}
-                  <div style={{ background: 'rgba(236, 72, 153, 0.1)', border: '1px solid var(--w-pink-500)', borderRadius: '8px', padding: '1.5rem' }}>
+                  <div style={{ background: 'rgba(var(--w-pink-500-rgb), 0.1)', border: '1px solid var(--w-pink-500)', borderRadius: '8px', padding: '1.5rem' }}>
                     <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '1.5rem' }}>
                       <div style={{ flex: 1 }}>
                         <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.25rem' }}>
                           <span style={{ color: 'var(--w-slate-400)', fontSize: '0.9rem', display: 'block' }}>AI HS Code 매핑</span>
-                          <span style={{ fontSize: '0.65rem', background: 'rgba(16, 185, 129, 0.2)', color: 'var(--w-emerald-500)', padding: '2px 6px', borderRadius: '4px', border: '1px solid rgba(16, 185, 129, 0.3)' }}>{macroData?.isLive ? 'LIVE API: HS Ping' : 'SYNCED: HS 매핑'}</span>
+                          <span style={{ fontSize: '0.65rem', background: 'rgba(var(--w-emerald-500-rgb), 0.2)', color: 'var(--w-emerald-500)', padding: '2px 6px', borderRadius: '4px', border: '1px solid rgba(var(--w-emerald-500-rgb), 0.3)' }}>{macroData?.isLive ? 'LIVE API: HS Ping' : 'SYNCED: HS 매핑'}</span>
                         </div>
                         <div style={{ display: 'flex', alignItems: 'baseline', gap: '0.5rem', flexWrap: 'wrap' }}>
                           <strong style={{ color: 'var(--w-slate-50)', fontSize: '1.5rem', display: 'block' }}>{macroData.hsCode}</strong>
@@ -460,7 +460,7 @@ export default function SupplierDiscoveryDashboard() {
                         <span style={{ color: 'var(--w-slate-300)', fontSize: '0.85rem', display: 'block', marginBottom: '0.75rem', lineHeight: '1.4' }}>{macroData.itemDesc}</span>
                         
                         {macroData.relatedHsCodes && macroData.relatedHsCodes.length > 0 && (
-                          <div style={{ marginTop: '0.5rem', background: 'rgba(20, 28, 52, 0.5)', padding: '0.75rem', borderRadius: '6px', border: '1px dashed rgba(236, 72, 153, 0.5)' }}>
+                          <div style={{ marginTop: '0.5rem', background: 'rgba(20, 28, 52, 0.5)', padding: '0.75rem', borderRadius: '6px', border: '1px dashed rgba(var(--w-pink-500-rgb), 0.5)' }}>
                             <span style={{ color: '#f472b6', fontSize: '0.8rem', fontWeight: 'bold', display: 'block', marginBottom: '0.4rem' }}>추가 제안 연관 HS Code</span>
                             {macroData.relatedHsCodes.map((rh: any, idx: number) => (
                               <div key={idx} style={{ display: 'flex', gap: '0.5rem', fontSize: '0.85rem', marginBottom: '0.2rem', alignItems: 'flex-start' }}>
@@ -502,7 +502,7 @@ export default function SupplierDiscoveryDashboard() {
                   <div style={{ background: 'var(--w-navy-900)', border: '1px solid #334155', borderRadius: '8px', padding: '1.5rem', minWidth: 0, overflow: 'hidden' }}>
                     <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1rem' }}>
                       <h4 style={{ margin: 0, color: 'var(--w-slate-50)', fontSize: '1.1rem' }}>한국 ↔ {macroCountry} 누적 물동량 (MT) 추이</h4>
-                      <span style={{ fontSize: '0.7rem', background: 'rgba(59, 130, 246, 0.2)', color: '#60a5fa', padding: '3px 8px', borderRadius: '4px', border: '1px solid rgba(59, 130, 246, 0.3)' }}>
+                      <span style={{ fontSize: '0.7rem', background: 'rgba(var(--w-blue-500-rgb), 0.2)', color: '#60a5fa', padding: '3px 8px', borderRadius: '4px', border: '1px solid rgba(var(--w-blue-500-rgb), 0.3)' }}>
                         {macroData?.isLive
                           ? (macroData.tradeVolume?.[0]?.source?.includes('COMTRADE') ? 'LIVE API: UN Comtrade' : 'LIVE API: KCS 관세청')
                           : (macroData ? 'SYNCED: 관세청' : 'STATIC')}
@@ -546,7 +546,7 @@ export default function SupplierDiscoveryDashboard() {
                   <div style={{ marginTop: '1.5rem', background: '#0a0f1f', border: '1px solid #334155', borderRadius: '8px', padding: '1.5rem' }}>
                     <h4 style={{ margin: '0 0 1.5rem 0', color: 'var(--w-slate-50)', fontSize: '1.2rem', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
                       <Activity size={20} color="#10b981" /> 수입시장 매력도 (Market Attractiveness) 상세 평가
-                      <span style={{ marginLeft: 'auto', background: 'rgba(16, 185, 129, 0.2)', color: 'var(--w-emerald-500)', border: '1px solid var(--w-emerald-500)', padding: '0.3rem 1rem', borderRadius: '20px', fontSize: '0.9rem', fontWeight: 'bold' }}>
+                      <span style={{ marginLeft: 'auto', background: 'rgba(var(--w-emerald-500-rgb), 0.2)', color: 'var(--w-emerald-500)', border: '1px solid var(--w-emerald-500)', padding: '0.3rem 1rem', borderRadius: '20px', fontSize: '0.9rem', fontWeight: 'bold' }}>
                         종합 점수: {macroData.scorecard.totalScore} / 100점 ({macroData.scorecard.verdict})
                       </span>
                     </h4>
@@ -642,7 +642,7 @@ export default function SupplierDiscoveryDashboard() {
                         <div>
                           <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', marginBottom: '0.5rem' }}>
                             <h5 style={{ margin: 0, color: 'var(--w-slate-50)', fontSize: '1.15rem' }}>{supplier.name}</h5>
-                            <span style={{ background: 'rgba(16, 185, 129, 0.2)', color: 'var(--w-emerald-500)', padding: '0.2rem 0.5rem', borderRadius: '4px', fontSize: '0.85rem', display: 'flex', alignItems: 'center', gap: '0.25rem', fontWeight: 'bold' }}>
+                            <span style={{ background: 'rgba(var(--w-emerald-500-rgb), 0.2)', color: 'var(--w-emerald-500)', padding: '0.2rem 0.5rem', borderRadius: '4px', fontSize: '0.85rem', display: 'flex', alignItems: 'center', gap: '0.25rem', fontWeight: 'bold' }}>
                               <ShieldCheck size={14} /> Trust: {supplier.trust}
                             </span>
                           </div>
@@ -657,7 +657,7 @@ export default function SupplierDiscoveryDashboard() {
                             </div>
                           )}
                         </div>
-                        <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', color: 'var(--w-violet-500)', fontWeight: 'bold', fontSize: '0.95rem', flexShrink: 0, padding: '0.5rem 1rem', background: 'rgba(139, 92, 246, 0.1)', borderRadius: '8px' }}>
+                        <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', color: 'var(--w-violet-500)', fontWeight: 'bold', fontSize: '0.95rem', flexShrink: 0, padding: '0.5rem 1rem', background: 'rgba(var(--w-violet-500-rgb), 0.1)', borderRadius: '8px' }}>
                           <Mail size={16} /> RFQ 전송 준비 <ChevronRight size={16} />
                         </div>
                       </div>
@@ -836,7 +836,7 @@ export default function SupplierDiscoveryDashboard() {
                   style={{ 
                     background: isCopied ? 'var(--w-emerald-500)' : 'var(--w-violet-500)', border: 'none', color: 'white', padding: '0.6rem 1.25rem',
                     borderRadius: '6px', cursor: isGeneratingRfq ? 'not-allowed' : 'pointer', display: 'flex', alignItems: 'center', gap: '0.5rem', transition: 'background 0.2s', fontSize: '0.9rem',
-                    opacity: isGeneratingRfq ? 0.5 : 1, boxShadow: isCopied ? 'none' : '0 4px 6px -1px rgba(139, 92, 246, 0.3)'
+                    opacity: isGeneratingRfq ? 0.5 : 1, boxShadow: isCopied ? 'none' : '0 4px 6px -1px rgba(var(--w-violet-500-rgb), 0.3)'
                   }}
                 >
                   {isCopied ? <><CheckCircle2 size={16} /> 클립보드 복사됨!</> : <><Copy size={16} /> RFQ 내용 복사 및 이메일 클라이언트 열기</>}

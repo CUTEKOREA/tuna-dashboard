@@ -35,7 +35,7 @@ const FadIcon = L.divIcon({
     <div style="position: relative; width: 24px; height: 24px;">
       <div style="position: absolute; top:0; left:0; width: 100%; height: 100%; border-radius: 50%; animation: sonar-ping 2s infinite ease-out;"></div>
       <div style="position: absolute; top:0; left:0; width: 100%; height: 100%; border-radius: 50%; animation: sonar-ping 2s infinite ease-out 1s;"></div>
-      <div style="position: absolute; top:0; left:0; font-size: 12px; background: rgba(0, 0, 0, 0.2); border: 2px solid #3b82f6; border-radius: 50%; width: 24px; height: 24px; display: flex; align-items: center; justify-content: center; box-shadow: 0 0 10px #3b82f6; z-index: 10;">📡</div>
+      <div style="position: absolute; top:0; left:0; font-size: 12px; background: rgba(0, 0, 0, 0.2); border: 2px solid var(--w-blue-500); border-radius: 50%; width: 24px; height: 24px; display: flex; align-items: center; justify-content: center; box-shadow: 0 0 10px var(--w-blue-500); z-index: 10;">📡</div>
     </div>
   `,
   className: 'custom-fad-icon',
@@ -179,8 +179,8 @@ export default function PacificVesselMap({ defaultEezActive = false }: PacificVe
         .typhoon-core { animation: defcon-pulse 1s infinite; }
         
         @keyframes sonar-ping {
-          0% { box-shadow: 0 0 0 0 rgba(59, 130, 246, 0.8); }
-          100% { box-shadow: 0 0 0 30px rgba(59, 130, 246, 0); }
+          0% { box-shadow: 0 0 0 0 rgba(var(--w-blue-500-rgb), 0.8); }
+          100% { box-shadow: 0 0 0 30px rgba(var(--w-blue-500-rgb), 0); }
         }
         .fad-heatmap-blur {
           filter: blur(25px);
@@ -212,9 +212,9 @@ export default function PacificVesselMap({ defaultEezActive = false }: PacificVe
         .leaflet-tooltip-left::before { border-left-color: rgba(13, 17, 23, 0.95) !important; }
         .leaflet-tooltip-right::before { border-right-color: rgba(13, 17, 23, 0.95) !important; }
       `}</style>
-      <div style={{ position: 'relative', height: '600px', width: '100%', borderRadius: '8px', overflow: 'hidden', border: typhoonActive ? '2px solid var(--w-red-500)' : '1px solid rgba(255,255,255,0.1)', boxShadow: typhoonActive ? '0 0 30px rgba(239, 68, 68, 0.5)' : 'none', transition: 'all 0.3s' }}>
+      <div style={{ position: 'relative', height: '600px', width: '100%', borderRadius: '8px', overflow: 'hidden', border: typhoonActive ? '2px solid var(--w-red-500)' : '1px solid rgba(255,255,255,0.1)', boxShadow: typhoonActive ? '0 0 30px rgba(var(--w-red-500-rgb), 0.5)' : 'none', transition: 'all 0.3s' }}>
         {typhoonActive && (
-          <div style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', pointerEvents: 'none', background: 'rgba(239, 68, 68, 0.1)', zIndex: 500, animation: 'defcon-pulse 2s infinite' }}></div>
+          <div style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', pointerEvents: 'none', background: 'rgba(var(--w-red-500-rgb), 0.1)', zIndex: 500, animation: 'defcon-pulse 2s infinite' }}></div>
         )}
         <MapContainer 
           center={[-1.0, 170.0]} 
@@ -470,7 +470,7 @@ export default function PacificVesselMap({ defaultEezActive = false }: PacificVe
 
       {/* EEZ Legend Panel (left side) */}
       {eezActive && (
-        <div style={{ position: 'absolute', top: '10px', left: '10px', zIndex: 1000, backgroundColor: 'rgba(13, 17, 23, 0.92)', border: '1px solid rgba(16, 185, 129, 0.3)', borderRadius: '10px', padding: '14px 16px', minWidth: '200px', maxWidth: '230px', backdropFilter: 'blur(8px)', boxShadow: '0 8px 24px rgba(0, 0, 0, 0.5)' }}>
+        <div style={{ position: 'absolute', top: '10px', left: '10px', zIndex: 1000, backgroundColor: 'rgba(13, 17, 23, 0.92)', border: '1px solid rgba(var(--w-emerald-500-rgb), 0.3)', borderRadius: '10px', padding: '14px 16px', minWidth: '200px', maxWidth: '230px', backdropFilter: 'blur(8px)', boxShadow: '0 8px 24px rgba(0, 0, 0, 0.5)' }}>
           <div style={{ fontSize: '12px', fontWeight: 'bold', color: 'var(--w-emerald-400)', borderBottom: '1px solid rgba(255,255,255,0.1)', paddingBottom: '8px', marginBottom: '8px', display: 'flex', alignItems: 'center', gap: '6px' }}>
             🌊 PNA EEZ 수역 범례
           </div>
@@ -502,7 +502,7 @@ export default function PacificVesselMap({ defaultEezActive = false }: PacificVe
           onClick={() => {
             setEezActive(!eezActive);
           }} 
-          style={{ padding: '4px 10px', fontSize: '12px', border: '1px solid var(--w-emerald-500)', borderRadius: '4px', cursor: 'pointer', background: eezActive ? 'rgba(16, 185, 129, 0.2)' : 'transparent', color: 'var(--w-emerald-500)', fontWeight: 'bold', boxShadow: eezActive ? '0 0 10px rgba(16,185,129,0.4) inset' : 'none', transition: 'all 0.3s' }}
+          style={{ padding: '4px 10px', fontSize: '12px', border: '1px solid var(--w-emerald-500)', borderRadius: '4px', cursor: 'pointer', background: eezActive ? 'rgba(var(--w-emerald-500-rgb), 0.2)' : 'transparent', color: 'var(--w-emerald-500)', fontWeight: 'bold', boxShadow: eezActive ? '0 0 10px rgba(var(--w-emerald-500-rgb), 0.4) inset' : 'none', transition: 'all 0.3s' }}
         >
           {eezActive ? '🌊 PNA EEZ (ON)' : '🌊 PNA EEZ 수역'}
         </button>
@@ -529,7 +529,7 @@ export default function PacificVesselMap({ defaultEezActive = false }: PacificVe
             setTyphoonActive(false);
             setVoyageActive(false);
           }} 
-          style={{ padding: '4px 10px', fontSize: '12px', border: '1px solid var(--w-blue-500)', borderRadius: '4px', cursor: 'pointer', background: fadActive ? 'rgba(59, 130, 246, 0.2)' : 'transparent', color: 'var(--color-info)', fontWeight: 'bold', boxShadow: fadActive ? '0 0 10px rgba(59,130,246,0.4) inset' : 'none', transition: 'all 0.3s' }}
+          style={{ padding: '4px 10px', fontSize: '12px', border: '1px solid var(--w-blue-500)', borderRadius: '4px', cursor: 'pointer', background: fadActive ? 'rgba(var(--w-blue-500-rgb), 0.2)' : 'transparent', color: 'var(--color-info)', fontWeight: 'bold', boxShadow: fadActive ? '0 0 10px rgba(var(--w-blue-500-rgb), 0.4) inset' : 'none', transition: 'all 0.3s' }}
         >
           {fadActive ? '📡 소나 탐지 종료' : '📡 FAD 소나 탐지'}
         </button>
@@ -567,14 +567,14 @@ export default function PacificVesselMap({ defaultEezActive = false }: PacificVe
             setFadActive(false);
             setVoyageActive(false);
           }} 
-          style={{ padding: '4px 10px', fontSize: '12px', border: '1px solid var(--w-amber-500)', borderRadius: '4px', cursor: 'pointer', background: forwardSalesActive ? 'rgba(245, 158, 11, 0.2)' : 'transparent', color: 'var(--color-warning)', fontWeight: 'bold', boxShadow: forwardSalesActive ? '0 0 10px rgba(245,158,11,0.4) inset' : 'none', transition: 'all 0.3s', marginLeft: '4px' }}
+          style={{ padding: '4px 10px', fontSize: '12px', border: '1px solid var(--w-amber-500)', borderRadius: '4px', cursor: 'pointer', background: forwardSalesActive ? 'rgba(var(--w-amber-500-rgb), 0.2)' : 'transparent', color: 'var(--color-warning)', fontWeight: 'bold', boxShadow: forwardSalesActive ? '0 0 10px rgba(var(--w-amber-500-rgb), 0.4) inset' : 'none', transition: 'all 0.3s', marginLeft: '4px' }}
         >
           {forwardSalesActive ? '💰 선도 거래 종료' : '💰 어창 모니터링'}
         </button>
       </div>
 
       {/* Semi-transparent Overlay Table / AI Analysis */}
-      <div style={{ position: 'absolute', top: '10px', right: '10px', zIndex: 1000, backgroundColor: 'rgba(13, 17, 23, 0.85)', border: typhoonActive ? '1px solid rgba(239, 68, 68, 0.5)' : bunkeringActive ? '1px solid rgba(34, 197, 94, 0.5)' : fadActive ? '1px solid rgba(59, 130, 246, 0.5)' : forwardSalesActive ? '1px solid rgba(245, 158, 11, 0.5)' : '1px solid rgba(255, 255, 255, 0.1)', borderRadius: '8px', padding: '12px', width: '340px', maxHeight: '500px', overflowY: 'auto', color: 'var(--text-main)', boxShadow: '0 4px 12px rgba(0, 0, 0, 0.5)', transition: 'border 0.3s' }}>
+      <div style={{ position: 'absolute', top: '10px', right: '10px', zIndex: 1000, backgroundColor: 'rgba(13, 17, 23, 0.85)', border: typhoonActive ? '1px solid rgba(var(--w-red-500-rgb), 0.5)' : bunkeringActive ? '1px solid rgba(34, 197, 94, 0.5)' : fadActive ? '1px solid rgba(var(--w-blue-500-rgb), 0.5)' : forwardSalesActive ? '1px solid rgba(var(--w-amber-500-rgb), 0.5)' : '1px solid rgba(255, 255, 255, 0.1)', borderRadius: '8px', padding: '12px', width: '340px', maxHeight: '500px', overflowY: 'auto', color: 'var(--text-main)', boxShadow: '0 4px 12px rgba(0, 0, 0, 0.5)', transition: 'border 0.3s' }}>
         
         {bunkeringActive ? (() => {
           const targetVessel = PACIFIC_VESSELS.find(v => v.name === selectedVesselName) || PACIFIC_VESSELS[5];
@@ -623,7 +623,7 @@ export default function PacificVesselMap({ defaultEezActive = false }: PacificVe
           );
         })() : fadActive ? (
           <div>
-            <h4 style={{ margin: '0 0 12px 0', fontSize: '13px', borderBottom: '1px solid rgba(59,130,246,0.3)', paddingBottom: '6px', color: 'var(--color-info)', display: 'flex', alignItems: 'center', gap: '6px' }}>
+            <h4 style={{ margin: '0 0 12px 0', fontSize: '13px', borderBottom: '1px solid rgba(var(--w-blue-500-rgb), 0.3)', paddingBottom: '6px', color: 'var(--color-info)', display: 'flex', alignItems: 'center', gap: '6px' }}>
               <span style={{ display: 'inline-block', width: '8px', height: '8px', background: 'var(--color-info)', borderRadius: '50%', animation: 'sonar-ping 1.5s infinite' }}></span>
               FAD Biomass Scan
             </h4>
@@ -659,7 +659,7 @@ export default function PacificVesselMap({ defaultEezActive = false }: PacificVe
                 </table>
               </div>
               
-              <div style={{ overflow: 'hidden', whiteSpace: 'nowrap', animation: 'typing-effect 0.5s steps(20, end) 2s backwards', marginTop: '12px', background: 'rgba(239,68,68,0.1)', padding: '6px', borderRadius: '4px', color: 'var(--color-danger)', textAlign: 'center', fontWeight: 'bold', border: '1px solid rgba(239,68,68,0.3)' }}>
+              <div style={{ overflow: 'hidden', whiteSpace: 'nowrap', animation: 'typing-effect 0.5s steps(20, end) 2s backwards', marginTop: '12px', background: 'rgba(var(--w-red-500-rgb), 0.1)', padding: '6px', borderRadius: '4px', color: 'var(--color-danger)', textAlign: 'center', fontWeight: 'bold', border: '1px solid rgba(var(--w-red-500-rgb), 0.3)' }}>
                 🚨 MASSIVE BIOMASS DETECTED<br/>
                 DIRECTING FLEET TO FAD-Beta
               </div>
@@ -725,7 +725,7 @@ export default function PacificVesselMap({ defaultEezActive = false }: PacificVe
                   <div>Est Net: <span style={{ color: 'var(--color-info)' }}>${(optBProfit/1000).toFixed(1)}k</span></div>
                 </div>
 
-                <div style={{ overflow: 'hidden', whiteSpace: 'nowrap', animation: 'typing-effect 0.5s steps(20, end) 3.5s backwards', marginTop: '12px', background: isBetterToFish ? 'rgba(34,197,94,0.1)' : 'rgba(239,68,68,0.1)', padding: '6px', borderRadius: '4px', color: isBetterToFish ? '#22c55e' : 'var(--color-danger)', textAlign: 'center', fontWeight: 'bold', border: `1px solid ${isBetterToFish ? 'rgba(34,197,94,0.3)' : 'rgba(239,68,68,0.3)'}` }}>
+                <div style={{ overflow: 'hidden', whiteSpace: 'nowrap', animation: 'typing-effect 0.5s steps(20, end) 3.5s backwards', marginTop: '12px', background: isBetterToFish ? 'rgba(34,197,94,0.1)' : 'rgba(var(--w-red-500-rgb), 0.1)', padding: '6px', borderRadius: '4px', color: isBetterToFish ? '#22c55e' : 'var(--color-danger)', textAlign: 'center', fontWeight: 'bold', border: `1px solid ${isBetterToFish ? 'rgba(34,197,94,0.3)' : 'rgba(var(--w-red-500-rgb), 0.3)'}` }}>
                   {isBetterToFish ? (
                     <>✔️ CONTINUE FISHING<br/>(+${(diffProfit/1000).toFixed(1)}k Margin)</>
                   ) : (
@@ -741,7 +741,7 @@ export default function PacificVesselMap({ defaultEezActive = false }: PacificVe
           const totalYFT = targetVessel.holds?.filter((h: any) => h.species === 'YFT').reduce((acc: number, h: any) => acc + h.filled, 0) || 0;
           return (
             <div>
-              <h4 style={{ margin: '0 0 12px 0', fontSize: '13px', borderBottom: '1px solid rgba(245,158,11,0.3)', paddingBottom: '6px', color: 'var(--color-warning)', display: 'flex', alignItems: 'center', gap: '6px' }}>
+              <h4 style={{ margin: '0 0 12px 0', fontSize: '13px', borderBottom: '1px solid rgba(var(--w-amber-500-rgb), 0.3)', paddingBottom: '6px', color: 'var(--color-warning)', display: 'flex', alignItems: 'center', gap: '6px' }}>
                 <span style={{ display: 'inline-block', width: '8px', height: '8px', background: 'var(--color-warning)', borderRadius: '50%', animation: 'sonar-ping 1s infinite' }}></span>
                 Forward Sales Radar
               </h4>
@@ -781,7 +781,7 @@ export default function PacificVesselMap({ defaultEezActive = false }: PacificVe
                 </div>
 
                 {/* Sales Details */}
-                <div style={{ marginTop: '16px', background: 'rgba(245,158,11,0.1)', border: '1px solid rgba(245,158,11,0.3)', padding: '10px', borderRadius: '6px' }}>
+                <div style={{ marginTop: '16px', background: 'rgba(var(--w-amber-500-rgb), 0.1)', border: '1px solid rgba(var(--w-amber-500-rgb), 0.3)', padding: '10px', borderRadius: '6px' }}>
                   <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '4px' }}>
                     <span>Total Premium SKJ:</span>
                     <span style={{ color: 'var(--color-danger)', fontWeight: 'bold' }}>{totalSKJ} t</span>
@@ -816,7 +816,7 @@ export default function PacificVesselMap({ defaultEezActive = false }: PacificVe
                 {PACIFIC_VESSELS.map((v, i) => {
                   const isDanger = typhoonActive && typhoonCentroids.some(center => Math.hypot(v.lat - center[0], v.lng - center[1]) < dangerRadiusDeg);
                   return (
-                    <tr key={i} style={{ borderBottom: i < PACIFIC_VESSELS.length - 1 ? '1px solid rgba(140,170,255,0.10)' : 'none', backgroundColor: isDanger ? 'rgba(239, 68, 68, 0.15)' : 'transparent' }}>
+                    <tr key={i} style={{ borderBottom: i < PACIFIC_VESSELS.length - 1 ? '1px solid rgba(140,170,255,0.10)' : 'none', backgroundColor: isDanger ? 'rgba(var(--w-red-500-rgb), 0.15)' : 'transparent' }}>
                       <td style={{ padding: '6px 4px', fontWeight: 'bold', color: isDanger ? 'var(--color-danger)' : 'inherit' }}>{v.name} {isDanger && '⚠️'}</td>
                       <td style={{ textAlign: 'right', padding: '6px 4px', color: isDanger ? '#fca5a5' : 'var(--accent-secondary)' }}>{v.dailyCatch !== '-' ? `${v.dailyCatch}톤` : '-'}</td>
                       <td style={{ textAlign: 'right', padding: '6px 4px', color: isDanger ? '#fca5a5' : 'var(--accent-danger)' }}>{v.load !== '-' ? `${v.load}톤` : '-'}</td>

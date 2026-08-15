@@ -157,7 +157,7 @@ const SEAsiaOEMDashboard = React.memo(function SEAsiaOEMDashboard() {
         alignItems: 'flex-end',
         position: 'relative',
         padding: '2rem 2rem 1.5rem',
-        background: 'linear-gradient(135deg, rgba(6,182,212,0.06) 0%, rgba(139,92,246,0.06) 50%, rgba(16,185,129,0.04) 100%)',
+        background: 'linear-gradient(135deg, rgba(var(--w-cyan-500-rgb), 0.06) 0%, rgba(var(--w-violet-500-rgb), 0.06) 50%, rgba(var(--w-emerald-500-rgb), 0.04) 100%)',
         borderRadius: '16px',
         border: '1px solid rgba(140,170,255,0.12)',
         overflow: 'hidden',
@@ -169,7 +169,7 @@ const SEAsiaOEMDashboard = React.memo(function SEAsiaOEMDashboard() {
           left: '-10%',
           width: '50%',
           height: '200%',
-          background: 'radial-gradient(ellipse, rgba(6,182,212,0.08) 0%, transparent 70%)',
+          background: 'radial-gradient(ellipse, rgba(var(--w-cyan-500-rgb), 0.08) 0%, transparent 70%)',
           pointerEvents: 'none',
         }} />
         <div>
@@ -239,7 +239,7 @@ const SEAsiaOEMDashboard = React.memo(function SEAsiaOEMDashboard() {
               padding: '9px 18px',
               borderRadius: '8px',
               border: 'none',
-              background: activeTab === 'vendors' ? 'linear-gradient(135deg, rgba(6,182,212,0.35), rgba(139,92,246,0.2))' : 'transparent',
+              background: activeTab === 'vendors' ? 'linear-gradient(135deg, rgba(var(--w-cyan-500-rgb), 0.35), rgba(var(--w-violet-500-rgb), 0.2))' : 'transparent',
               color: activeTab === 'vendors' ? '#fff' : 'var(--w-slate-400)',
               fontSize: '0.85rem',
               fontWeight: 600,
@@ -248,7 +248,7 @@ const SEAsiaOEMDashboard = React.memo(function SEAsiaOEMDashboard() {
               alignItems: 'center',
               gap: '6px',
               transition: 'all 0.3s ease',
-              boxShadow: activeTab === 'vendors' ? '0 2px 12px rgba(6,182,212,0.2)' : 'none',
+              boxShadow: activeTab === 'vendors' ? '0 2px 12px rgba(var(--w-cyan-500-rgb), 0.2)' : 'none',
             }}
           >
             <Users size={16} /> 벤더 프로필
@@ -259,7 +259,7 @@ const SEAsiaOEMDashboard = React.memo(function SEAsiaOEMDashboard() {
               padding: '9px 18px',
               borderRadius: '8px',
               border: 'none',
-              background: activeTab === 'ma' ? 'linear-gradient(135deg, rgba(6,182,212,0.35), rgba(139,92,246,0.2))' : 'transparent',
+              background: activeTab === 'ma' ? 'linear-gradient(135deg, rgba(var(--w-cyan-500-rgb), 0.35), rgba(var(--w-violet-500-rgb), 0.2))' : 'transparent',
               color: activeTab === 'ma' ? '#fff' : 'var(--w-slate-400)',
               fontSize: '0.85rem',
               fontWeight: 600,
@@ -268,7 +268,7 @@ const SEAsiaOEMDashboard = React.memo(function SEAsiaOEMDashboard() {
               alignItems: 'center',
               gap: '6px',
               transition: 'all 0.3s ease',
-              boxShadow: activeTab === 'ma' ? '0 2px 12px rgba(6,182,212,0.2)' : 'none',
+              boxShadow: activeTab === 'ma' ? '0 2px 12px rgba(var(--w-cyan-500-rgb), 0.2)' : 'none',
             }}
           >
             <Building2 size={16} /> M&A 후보
@@ -279,7 +279,7 @@ const SEAsiaOEMDashboard = React.memo(function SEAsiaOEMDashboard() {
               padding: '9px 18px',
               borderRadius: '8px',
               border: 'none',
-              background: activeTab === 'stats' ? 'linear-gradient(135deg, rgba(6,182,212,0.35), rgba(139,92,246,0.2))' : 'transparent',
+              background: activeTab === 'stats' ? 'linear-gradient(135deg, rgba(var(--w-cyan-500-rgb), 0.35), rgba(var(--w-violet-500-rgb), 0.2))' : 'transparent',
               color: activeTab === 'stats' ? '#fff' : 'var(--w-slate-400)',
               fontSize: '0.85rem',
               fontWeight: 600,
@@ -288,7 +288,7 @@ const SEAsiaOEMDashboard = React.memo(function SEAsiaOEMDashboard() {
               alignItems: 'center',
               gap: '6px',
               transition: 'all 0.3s ease',
-              boxShadow: activeTab === 'stats' ? '0 2px 12px rgba(6,182,212,0.2)' : 'none',
+              boxShadow: activeTab === 'stats' ? '0 2px 12px rgba(var(--w-cyan-500-rgb), 0.2)' : 'none',
             }}
           >
             <BarChart3 size={16} /> 무역 통계
@@ -299,7 +299,7 @@ const SEAsiaOEMDashboard = React.memo(function SEAsiaOEMDashboard() {
       {/* ── Decorative divider ── */}
       <div style={{
         height: '1px',
-        background: 'linear-gradient(90deg, transparent, rgba(6,182,212,0.3), rgba(139,92,246,0.2), transparent)',
+        background: 'linear-gradient(90deg, transparent, rgba(var(--w-cyan-500-rgb), 0.3), rgba(var(--w-violet-500-rgb), 0.2), transparent)',
         margin: '-1rem 0 0.5rem 0',
       }} />
 
@@ -316,7 +316,7 @@ const SEAsiaOEMDashboard = React.memo(function SEAsiaOEMDashboard() {
                 <span style={{
                   fontSize: '0.65rem',
                   fontWeight: 700,
-                  background: activeCountry === 'All' ? 'rgba(6,182,212,0.25)' : 'rgba(255,255,255,0.08)',
+                  background: activeCountry === 'All' ? 'rgba(var(--w-cyan-500-rgb), 0.25)' : 'rgba(255,255,255,0.08)',
                   color: activeCountry === 'All' ? 'var(--w-cyan-500)' : 'var(--w-slate-500)',
                   padding: '1px 6px',
                   borderRadius: '8px',
@@ -331,7 +331,7 @@ const SEAsiaOEMDashboard = React.memo(function SEAsiaOEMDashboard() {
                 <span style={{
                   fontSize: '0.65rem',
                   fontWeight: 700,
-                  background: activeCountry === 'Vietnam' ? 'rgba(6,182,212,0.25)' : 'rgba(255,255,255,0.08)',
+                  background: activeCountry === 'Vietnam' ? 'rgba(var(--w-cyan-500-rgb), 0.25)' : 'rgba(255,255,255,0.08)',
                   color: activeCountry === 'Vietnam' ? 'var(--w-cyan-500)' : 'var(--w-slate-500)',
                   padding: '1px 6px',
                   borderRadius: '8px',
@@ -346,7 +346,7 @@ const SEAsiaOEMDashboard = React.memo(function SEAsiaOEMDashboard() {
                 <span style={{
                   fontSize: '0.65rem',
                   fontWeight: 700,
-                  background: activeCountry === 'Thailand' ? 'rgba(6,182,212,0.25)' : 'rgba(255,255,255,0.08)',
+                  background: activeCountry === 'Thailand' ? 'rgba(var(--w-cyan-500-rgb), 0.25)' : 'rgba(255,255,255,0.08)',
                   color: activeCountry === 'Thailand' ? 'var(--w-cyan-500)' : 'var(--w-slate-500)',
                   padding: '1px 6px',
                   borderRadius: '8px',
@@ -367,7 +367,7 @@ const SEAsiaOEMDashboard = React.memo(function SEAsiaOEMDashboard() {
                 <span style={{
                   fontSize: '0.6rem',
                   fontWeight: 700,
-                  background: activeFilter === f ? 'rgba(6,182,212,0.2)' : 'rgba(140,170,255,0.12)',
+                  background: activeFilter === f ? 'rgba(var(--w-cyan-500-rgb), 0.2)' : 'rgba(140,170,255,0.12)',
                   color: activeFilter === f ? 'var(--w-cyan-500)' : 'var(--w-slate-500)',
                   padding: '1px 5px',
                   borderRadius: '6px',
@@ -419,10 +419,10 @@ const SEAsiaOEMDashboard = React.memo(function SEAsiaOEMDashboard() {
                   </div>
                   <div style={{ display: 'flex', flexDirection: 'column', gap: '4px', alignItems: 'flex-end' }}>
                     {vendor.isNew && (
-                      <span style={{ fontSize: '0.6rem', fontWeight: 800, padding: '2px 6px', borderRadius: '6px', background: 'rgba(6, 182, 212, 0.18)', color: 'var(--w-cyan-500)', border: '1px solid rgba(6, 182, 212, 0.45)', letterSpacing: '0.5px' }}>신규 · 공개정보</span>
+                      <span style={{ fontSize: '0.6rem', fontWeight: 800, padding: '2px 6px', borderRadius: '6px', background: 'rgba(var(--w-cyan-500-rgb), 0.18)', color: 'var(--w-cyan-500)', border: '1px solid rgba(var(--w-cyan-500-rgb), 0.45)', letterSpacing: '0.5px' }}>신규 · 공개정보</span>
                     )}
                     {vendor.reviewFlag && (
-                      <span title={vendor.reviewFlag} style={{ fontSize: '0.6rem', fontWeight: 800, padding: '2px 6px', borderRadius: '6px', background: 'rgba(245, 158, 11, 0.15)', color: 'var(--w-amber-500)', border: '1px solid rgba(245, 158, 11, 0.45)', letterSpacing: '0.5px' }}>⚠️ 재확인 필요</span>
+                      <span title={vendor.reviewFlag} style={{ fontSize: '0.6rem', fontWeight: 800, padding: '2px 6px', borderRadius: '6px', background: 'rgba(var(--w-amber-500-rgb), 0.15)', color: 'var(--w-amber-500)', border: '1px solid rgba(var(--w-amber-500-rgb), 0.45)', letterSpacing: '0.5px' }}>⚠️ 재확인 필요</span>
                     )}
                     <div className={`${styles.tierBadge} ${vendor.tier.includes('Tier 1') ? styles.tier1 : vendor.tier.includes('Tier 2') ? styles.tier2 : styles.tier3}`}>
                       {tierKo(vendor.tier)}
@@ -462,9 +462,9 @@ const SEAsiaOEMDashboard = React.memo(function SEAsiaOEMDashboard() {
                         // 검증 미입증(신뢰도 '낮음') 업체의 인증 주장은 단정 표시하지 않음
                         const unv = isCertUnverified(vendor);
                         const unvStyle = {
-                          background: 'rgba(245,158,11,0.10)',
+                          background: 'rgba(var(--w-amber-500-rgb), 0.10)',
                           color: 'var(--w-amber-500)',
-                          border: '1px dashed rgba(245,158,11,0.45)',
+                          border: '1px dashed rgba(var(--w-amber-500-rgb), 0.45)',
                         };
                         return (
                           <>
@@ -473,9 +473,9 @@ const SEAsiaOEMDashboard = React.memo(function SEAsiaOEMDashboard() {
                                 fontSize: '0.68rem',
                                 padding: '2px 7px',
                                 borderRadius: '6px',
-                                background: 'rgba(139,92,246,0.12)',
+                                background: 'rgba(var(--w-violet-500-rgb), 0.12)',
                                 color: '#C084FC',
-                                border: '1px solid rgba(139,92,246,0.3)',
+                                border: '1px solid rgba(var(--w-violet-500-rgb), 0.3)',
                                 fontWeight: 600,
                                 ...(unv ? unvStyle : {}),
                               }}>EU{unv ? ' 미확인' : ''}</span>
@@ -485,9 +485,9 @@ const SEAsiaOEMDashboard = React.memo(function SEAsiaOEMDashboard() {
                                 fontSize: '0.68rem',
                                 padding: '2px 7px',
                                 borderRadius: '6px',
-                                background: 'rgba(16,185,129,0.12)',
+                                background: 'rgba(var(--w-emerald-500-rgb), 0.12)',
                                 color: 'var(--w-emerald-500)',
-                                border: '1px solid rgba(16,185,129,0.3)',
+                                border: '1px solid rgba(var(--w-emerald-500-rgb), 0.3)',
                                 fontWeight: 600,
                                 ...(unv ? unvStyle : {}),
                               }}>FDA{unv ? ' 미확인' : ''}</span>
@@ -497,9 +497,9 @@ const SEAsiaOEMDashboard = React.memo(function SEAsiaOEMDashboard() {
                                 fontSize: '0.68rem',
                                 padding: '2px 7px',
                                 borderRadius: '6px',
-                                background: 'rgba(56,189,248,0.12)',
+                                background: 'rgba(var(--w-sky-400-rgb), 0.12)',
                                 color: 'var(--w-sky-400)',
-                                border: '1px solid rgba(56,189,248,0.3)',
+                                border: '1px solid rgba(var(--w-sky-400-rgb), 0.3)',
                                 fontWeight: 600,
                                 ...(unv ? unvStyle : {}),
                               }}>MSC{unv ? ' 미확인' : ''}</span>
@@ -733,7 +733,7 @@ const SEAsiaOEMDashboard = React.memo(function SEAsiaOEMDashboard() {
             <div style={{ height: '1px', background: 'linear-gradient(90deg, transparent, rgba(255,255,255,0.08), transparent)', margin: '0 0 1.2rem 0' }} />
 
             {selectedVendor.reviewFlag && (
-              <div style={{ background: 'rgba(245, 158, 11, 0.07)', border: '1px solid rgba(245, 158, 11, 0.3)', padding: '0.75rem 1rem', borderRadius: '8px', margin: '0 0 1.2rem 0', fontSize: '0.82rem', color: 'var(--w-amber-400)', lineHeight: 1.55 }}>
+              <div style={{ background: 'rgba(var(--w-amber-500-rgb), 0.07)', border: '1px solid rgba(var(--w-amber-500-rgb), 0.3)', padding: '0.75rem 1rem', borderRadius: '8px', margin: '0 0 1.2rem 0', fontSize: '0.82rem', color: 'var(--w-amber-400)', lineHeight: 1.55 }}>
                 ⚠️ <strong>재확인 필요</strong> — {selectedVendor.reviewFlag}
               </div>
             )}
@@ -755,7 +755,7 @@ const SEAsiaOEMDashboard = React.memo(function SEAsiaOEMDashboard() {
                     <span style={{
                       width: '6px', height: '6px', borderRadius: '50%', display: 'inline-block',
                       background: c.held ? (unv ? 'var(--w-amber-500)' : 'var(--w-emerald-500)') : 'var(--w-slate-500)',
-                      boxShadow: c.held ? (unv ? '0 0 6px rgba(245,158,11,0.5)' : '0 0 6px rgba(16,185,129,0.5)') : 'none',
+                      boxShadow: c.held ? (unv ? '0 0 6px rgba(var(--w-amber-500-rgb), 0.5)' : '0 0 6px rgba(var(--w-emerald-500-rgb), 0.5)') : 'none',
                     }} />
                     {c.label}{c.held && unv ? ' (미확인)' : ''}
                   </span>
@@ -773,13 +773,13 @@ const SEAsiaOEMDashboard = React.memo(function SEAsiaOEMDashboard() {
             {selectedVendor.meetingData && (
               <div style={{ marginTop: '2rem', padding: '1.5rem', background: 'rgba(255,255,255,0.03)', borderRadius: '8px', border: '1px solid rgba(255,255,255,0.1)' }}>
                 {/* ── Section divider ── */}
-                <div style={{ height: '1px', background: 'linear-gradient(90deg, transparent, rgba(6,182,212,0.15), transparent)', margin: '0 0 1rem 0' }} />
+                <div style={{ height: '1px', background: 'linear-gradient(90deg, transparent, rgba(var(--w-cyan-500-rgb), 0.15), transparent)', margin: '0 0 1rem 0' }} />
                 <h3 style={{ fontSize: '1.1rem', color: 'var(--text-primary)', marginBottom: '1rem', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
                   <ClipboardList size={18} color="#06B6D4" /> 벤더사 미팅/실사 결과 보고
                 </h3>
                 
                 <div data-mobile-stack style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem', marginBottom: '1.5rem' }}>
-                  <div style={{ background: 'rgba(16, 185, 129, 0.05)', padding: '1rem', borderRadius: '8px', borderLeft: '3px solid var(--w-emerald-500)' }}>
+                  <div style={{ background: 'rgba(var(--w-emerald-500-rgb), 0.05)', padding: '1rem', borderRadius: '8px', borderLeft: '3px solid var(--w-emerald-500)' }}>
                     <div style={{ fontSize: '0.85rem', color: 'var(--color-success)', fontWeight: 600, marginBottom: '0.5rem' }}>강점</div>
                     <div style={{ fontSize: '0.85rem', color: 'var(--text-main)', lineHeight: 1.5 }}>{selectedVendor.meetingData.summary.strength}</div>
                   </div>
@@ -810,7 +810,7 @@ const SEAsiaOEMDashboard = React.memo(function SEAsiaOEMDashboard() {
                   </table>
                 </div>
 
-                <div style={{ background: 'rgba(56, 189, 248, 0.05)', border: '1px solid rgba(56, 189, 248, 0.2)', padding: '1.25rem', borderRadius: '8px' }}>
+                <div style={{ background: 'rgba(var(--w-sky-400-rgb), 0.05)', border: '1px solid rgba(var(--w-sky-400-rgb), 0.2)', padding: '1.25rem', borderRadius: '8px' }}>
                   <h4 style={{ fontSize: '0.9rem', color: 'var(--w-sky-400)', marginBottom: '0.75rem', fontWeight: 600 }}>전략적 검토 및 시사점</h4>
                   <ul style={{ margin: 0, paddingLeft: '1.25rem', color: 'var(--text-main)', fontSize: '0.85rem', lineHeight: 1.6 }}>
                     {selectedVendor.meetingData.strategicReview.map((review: string, idx: number) => (
@@ -842,15 +842,15 @@ const SEAsiaOEMDashboard = React.memo(function SEAsiaOEMDashboard() {
               const devs = (pp.recentDevelopments || []) as any[];
               const sources = (pp.sources || []) as any[];
               return (
-                <div style={{ marginTop: '2rem', padding: '1.5rem', background: 'rgba(255,255,255,0.03)', borderRadius: '8px', border: '1px solid rgba(56, 189, 248, 0.15)' }}>
+                <div style={{ marginTop: '2rem', padding: '1.5rem', background: 'rgba(255,255,255,0.03)', borderRadius: '8px', border: '1px solid rgba(var(--w-sky-400-rgb), 0.15)' }}>
                   {/* ── Section divider ── */}
-                  <div style={{ height: '1px', background: 'linear-gradient(90deg, transparent, rgba(56,189,248,0.2), transparent)', margin: '0 0 0.75rem 0' }} />
+                  <div style={{ height: '1px', background: 'linear-gradient(90deg, transparent, rgba(var(--w-sky-400-rgb), 0.2), transparent)', margin: '0 0 0.75rem 0' }} />
                   <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.75rem', flexWrap: 'wrap', gap: '0.5rem' }}>
                     <h3 style={{ fontSize: '1.1rem', color: 'var(--text-primary)', margin: 0, display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
                       <Building2 size={18} color="#38BDF8" /> 공개 기업 정보
                     </h3>
                     <div style={{ display: 'flex', gap: '0.4rem', flexWrap: 'wrap' }}>
-                      <span style={{ fontSize: '0.7rem', padding: '3px 8px', borderRadius: '6px', background: 'rgba(148,163,184,0.12)', color: 'var(--w-slate-400)', border: '1px solid rgba(148,163,184,0.25)' }}>공개정보 기반 · 미실사</span>
+                      <span style={{ fontSize: '0.7rem', padding: '3px 8px', borderRadius: '6px', background: 'rgba(var(--w-slate-400-rgb), 0.12)', color: 'var(--w-slate-400)', border: '1px solid rgba(var(--w-slate-400-rgb), 0.25)' }}>공개정보 기반 · 미실사</span>
                       <span style={{ fontSize: '0.7rem', padding: '3px 8px', borderRadius: '6px', background: `${confColor}22`, color: confColor, border: `1px solid ${confColor}55`, fontWeight: 700 }}>데이터 신뢰도 {confKor}</span>
                     </div>
                   </div>
@@ -893,11 +893,11 @@ const SEAsiaOEMDashboard = React.memo(function SEAsiaOEMDashboard() {
                       </h4>
                       <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
                         {certs.map((c: any, idx: number) => (
-                          <div key={idx} style={{ fontSize: '0.82rem', color: 'var(--text-main)', lineHeight: 1.45, paddingLeft: '0.5rem', borderLeft: '2px solid rgba(56,189,248,0.3)', display: 'flex', alignItems: 'baseline', gap: '6px' }}>
+                          <div key={idx} style={{ fontSize: '0.82rem', color: 'var(--text-main)', lineHeight: 1.45, paddingLeft: '0.5rem', borderLeft: '2px solid rgba(var(--w-sky-400-rgb), 0.3)', display: 'flex', alignItems: 'baseline', gap: '6px' }}>
                             <span style={{
                               width: '6px', height: '6px', borderRadius: '50%', display: 'inline-block', flexShrink: 0,
                               background: c.code ? 'var(--w-emerald-500)' : 'var(--w-amber-500)',
-                              boxShadow: c.code ? '0 0 4px rgba(16,185,129,0.4)' : '0 0 4px rgba(245,158,11,0.4)',
+                              boxShadow: c.code ? '0 0 4px rgba(var(--w-emerald-500-rgb), 0.4)' : '0 0 4px rgba(var(--w-amber-500-rgb), 0.4)',
                               marginTop: '2px',
                             }} />
                             <span>
@@ -929,7 +929,7 @@ const SEAsiaOEMDashboard = React.memo(function SEAsiaOEMDashboard() {
                   )}
 
                   {ppm.verificationSummary && (
-                    <div style={{ background: 'rgba(245, 158, 11, 0.05)', border: '1px solid rgba(245, 158, 11, 0.2)', padding: '1rem 1.25rem', borderRadius: '8px', marginBottom: sources.length > 0 ? '1.25rem' : 0 }}>
+                    <div style={{ background: 'rgba(var(--w-amber-500-rgb), 0.05)', border: '1px solid rgba(var(--w-amber-500-rgb), 0.2)', padding: '1rem 1.25rem', borderRadius: '8px', marginBottom: sources.length > 0 ? '1.25rem' : 0 }}>
                       <h4 style={{ fontSize: '0.85rem', color: 'var(--w-amber-500)', marginBottom: '0.5rem', fontWeight: 600 }}>검증 메모 (무엇이 확인/미확인되었나)</h4>
                       <p style={{ margin: 0, color: 'var(--text-main)', fontSize: '0.8rem', lineHeight: 1.6 }}>{ppm.verificationSummary}</p>
                     </div>

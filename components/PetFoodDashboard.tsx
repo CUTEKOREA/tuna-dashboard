@@ -200,7 +200,7 @@ export default function PetFoodDashboard() {
                       <YAxis yAxisId="right" orientation="right" tick={{fill: 'var(--w-slate-400)'}} />
                       <RechartsTooltip content={<CustomTooltip />} />
                       <Legend />
-                      <Area yAxisId="left" type="monotone" dataKey="margin" name="예상 마진(%)" fill="rgba(16,185,129,0.2)" stroke="var(--w-emerald-500)" strokeWidth={3} />
+                      <Area yAxisId="left" type="monotone" dataKey="margin" name="예상 마진(%)" fill="rgba(var(--w-emerald-500-rgb), 0.2)" stroke="var(--w-emerald-500)" strokeWidth={3} />
                       <Line yAxisId="right" type="monotone" dataKey="cost" name="톤당 원가($)" stroke="var(--w-amber-500)" strokeWidth={3} />
                     </ComposedChart>
                   </SafeResponsiveContainer>
@@ -384,7 +384,7 @@ export default function PetFoodDashboard() {
             <XAxis dataKey="year"  tickFormatter={xFmt} />
             <YAxis tickFormatter={(v) => `$${v}B`} />
             <RechartsTooltip content={<CustomTooltip />} />
-            <Area type="monotone" dataKey="size" name="시장 규모 (억$)" stroke="var(--color-success)" fill="rgba(16,185,129,0.15)" strokeWidth={3} />
+            <Area type="monotone" dataKey="size" name="시장 규모 (억$)" stroke="var(--color-success)" fill="rgba(var(--w-emerald-500-rgb), 0.15)" strokeWidth={3} />
             </AreaChart>
             </SafeResponsiveContainer>
             </div>

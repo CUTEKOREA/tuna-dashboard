@@ -222,7 +222,7 @@ function UnitCostComparison() {
                 <span className={s.unitCostName}>
                   <span style={{ color: z.color, marginRight: 6 }}>●</span>
                   {z.name}
-                  {isMax && <span style={{ marginLeft: 6, fontSize: '0.65rem', padding: '1px 6px', borderRadius: 4, background: 'rgba(239,68,68,0.15)', color: '#f87171', fontWeight: 700 }}>최고</span>}
+                  {isMax && <span style={{ marginLeft: 6, fontSize: '0.65rem', padding: '1px 6px', borderRadius: 4, background: 'rgba(var(--w-red-500-rgb), 0.15)', color: '#f87171', fontWeight: 700 }}>최고</span>}
                 </span>
                 <span className={s.unitCostValue} style={{ color: isMax ? '#f87171' : 'var(--text-main)' }}>
                   ${fmt(z.unitCost)}
@@ -273,7 +273,7 @@ function PaymentTimeline() {
         <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--w-red-500)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect width="18" height="18" x="3" y="4" rx="2" ry="2"/><line x1="16" x2="16" y1="2" y2="6"/><line x1="8" x2="8" y1="2" y2="6"/><line x1="3" x2="21" y1="10" y2="10"/></svg>
         납부 일정 타임라인
         {today && urgentCount > 0 && (
-          <span style={{ fontSize: '0.65rem', padding: '2px 8px', borderRadius: 8, background: 'rgba(239,68,68,0.15)', color: '#f87171', fontWeight: 700, marginLeft: 8 }}>
+          <span style={{ fontSize: '0.65rem', padding: '2px 8px', borderRadius: 8, background: 'rgba(var(--w-red-500-rgb), 0.15)', color: '#f87171', fontWeight: 700, marginLeft: 8 }}>
             {urgentCount}건 임박
           </span>
         )}

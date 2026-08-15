@@ -71,7 +71,7 @@ export default function FleetPerformance() {
           <Anchor size={20} /> 주간 실적 현황 (26.07.13 ~ 07.19) - 7월 셋째주
         </h2>
         {liveData && (
-          <div style={{ display: 'flex', alignItems: 'center', gap: '8px', padding: '6px 12px', background: 'rgba(16, 185, 129, 0.1)', border: '1px solid rgba(16, 185, 129, 0.3)', borderRadius: '20px' }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '8px', padding: '6px 12px', background: 'rgba(var(--w-emerald-500-rgb), 0.1)', border: '1px solid rgba(var(--w-emerald-500-rgb), 0.3)', borderRadius: '20px' }}>
             <span style={{ display: 'inline-block', width: '8px', height: '8px', borderRadius: '50%', background: 'var(--color-success)', boxShadow: '0 0 8px var(--w-emerald-500)' }}></span>
             <span style={{ color: 'var(--color-success)', fontSize: '13px', fontWeight: 'bold' }}>{liveData.status} ({liveData.source})</span>
           </div>
@@ -79,14 +79,14 @@ export default function FleetPerformance() {
       </div>
 
       {liveData && liveData.climateRisk && (
-        <div style={{ marginBottom: '24px', background: 'var(--panel-bg)', border: '1px solid rgba(245, 158, 11, 0.3)', borderRadius: '8px', padding: '20px', display: 'flex', gap: '20px', alignItems: 'flex-start' }}>
-          <div style={{ padding: '12px', background: 'rgba(245, 158, 11, 0.1)', borderRadius: '8px', color: 'var(--color-warning)' }}>
+        <div style={{ marginBottom: '24px', background: 'var(--panel-bg)', border: '1px solid rgba(var(--w-amber-500-rgb), 0.3)', borderRadius: '8px', padding: '20px', display: 'flex', gap: '20px', alignItems: 'flex-start' }}>
+          <div style={{ padding: '12px', background: 'rgba(var(--w-amber-500-rgb), 0.1)', borderRadius: '8px', color: 'var(--color-warning)' }}>
             <Navigation size={24} />
           </div>
           <div>
             <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '8px' }}>
               <h3 style={{ margin: 0, fontSize: '16px', fontWeight: 'bold', color: 'var(--text-main)' }}>기후 리스크 시뮬레이터 (Climate Risk Simulator)</h3>
-              <span style={{ fontSize: '12px', padding: '2px 8px', background: 'rgba(239, 68, 68, 0.1)', color: 'var(--color-danger)', borderRadius: '12px', border: '1px solid rgba(239, 68, 68, 0.3)' }}>Risk: {liveData.climateRisk.riskLevel}</span>
+              <span style={{ fontSize: '12px', padding: '2px 8px', background: 'rgba(var(--w-red-500-rgb), 0.1)', color: 'var(--color-danger)', borderRadius: '12px', border: '1px solid rgba(var(--w-red-500-rgb), 0.3)' }}>Risk: {liveData.climateRisk.riskLevel}</span>
             </div>
             <p style={{ margin: '0 0 8px 0', fontSize: '14px', color: 'var(--text-muted)' }}>
               <strong style={{ color: 'var(--color-warning)' }}>SST 변동: {liveData.climateRisk.sstAnomaly}</strong> | {liveData.climateRisk.impact}

@@ -21,7 +21,7 @@ export default function FishStatTACIllusion() {
         <TermTooltip term="어획 달성 허구율" description="정부가 안심용으로 발표하는 목표 TAC(총허용어획량) 대비 실제 연말 조업분이 턱없이 미달나는 현실의 Gap" />
       </div>
       
-      <div style={{ padding: '16px', background: 'rgba(239, 68, 68, 0.1)', borderLeft: '4px solid var(--w-red-500)', borderRadius: '4px', marginBottom: '24px', display: 'flex', gap: '12px' }}>
+      <div style={{ padding: '16px', background: 'rgba(var(--w-red-500-rgb), 0.1)', borderLeft: '4px solid var(--w-red-500)', borderRadius: '4px', marginBottom: '24px', display: 'flex', gap: '12px' }}>
         <AlertTriangle size={20} color="var(--color-danger)" style={{ flexShrink: 0 }} />
         <div style={{ fontSize: '13px', lineHeight: '1.6' }}>
           <strong style={{ color: 'var(--color-danger)' }}>Situation:</strong> 언론의 "수산물 물량 넉넉" 기사와 달리, 실제 연말 조업 달성률은 50%대를 전전탁.<br/>

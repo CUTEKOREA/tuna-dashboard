@@ -90,7 +90,7 @@ const TunaComplianceRadar = React.memo(function TunaComplianceRadar() {
             </div>
           </div>
           {result.aiAnalysis && (
-            <div style={{ background: 'rgba(6, 182, 212, 0.08)', border: '1px solid rgba(6, 182, 212, 0.15)', borderRadius: '8px', padding: '10px 14px', marginBottom: '1rem', display: 'flex', gap: '10px' }}>
+            <div style={{ background: 'rgba(var(--w-cyan-500-rgb), 0.08)', border: '1px solid rgba(var(--w-cyan-500-rgb), 0.15)', borderRadius: '8px', padding: '10px 14px', marginBottom: '1rem', display: 'flex', gap: '10px' }}>
               <ShieldCheck size={18} color="#06b6d4" style={{ flexShrink: 0, marginTop: '2px' }} />
               <div>
                 <div style={{ fontSize: '0.75rem', fontWeight: 700, color: 'var(--w-cyan-500)', marginBottom: '4px' }}>AI 오탐지 분석</div>

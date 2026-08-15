@@ -64,8 +64,8 @@ export default function SasThailandHub() {
 
           {/* Thai Union Strategy 2030 */}
           <div style={{
-            background: 'rgba(245,158,11,0.05)', borderRadius: '10px', padding: '12px',
-            border: '1px solid rgba(245,158,11,0.15)',
+            background: 'rgba(var(--w-amber-500-rgb), 0.05)', borderRadius: '10px', padding: '12px',
+            border: '1px solid rgba(var(--w-amber-500-rgb), 0.15)',
           }}>
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '10px' }}>
               <div>

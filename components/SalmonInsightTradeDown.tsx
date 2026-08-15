@@ -40,7 +40,7 @@ export default function SalmonInsightTradeDown() {
       <button
         onClick={() => setActiveTab('kr')}
         style={{
-          background: activeTab === 'kr' ? 'rgba(56, 189, 248, 0.15)' : 'rgba(140,170,255,0.10)',
+          background: activeTab === 'kr' ? 'rgba(var(--w-sky-400-rgb), 0.15)' : 'rgba(140,170,255,0.10)',
           border: `1px solid ${activeTab === 'kr' ? 'var(--w-sky-400)' : 'transparent'}`,
           color: activeTab === 'kr' ? 'var(--w-sky-400)' : 'var(--w-slate-400)',
           padding: '0.4rem 0.8rem', borderRadius: '6px', fontSize: '0.8rem', fontWeight: 600, cursor: 'pointer',
@@ -52,7 +52,7 @@ export default function SalmonInsightTradeDown() {
       <button
         onClick={() => setActiveTab('eu')}
         style={{
-          background: activeTab === 'eu' ? 'rgba(56, 189, 248, 0.15)' : 'rgba(140,170,255,0.10)',
+          background: activeTab === 'eu' ? 'rgba(var(--w-sky-400-rgb), 0.15)' : 'rgba(140,170,255,0.10)',
           border: `1px solid ${activeTab === 'eu' ? 'var(--w-sky-400)' : 'transparent'}`,
           color: activeTab === 'eu' ? 'var(--w-sky-400)' : 'var(--w-slate-400)',
           padding: '0.4rem 0.8rem', borderRadius: '6px', fontSize: '0.8rem', fontWeight: 600, cursor: 'pointer',

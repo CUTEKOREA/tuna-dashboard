@@ -141,13 +141,13 @@ export default function MscSpeciesCoverageHeatmap() {
       {/* Legend */}
       <div style={{ display: 'flex', justifyContent: 'center', gap: '24px', marginTop: '16px', fontSize: '0.75rem', color: 'var(--w-slate-500)', fontWeight: 500 }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
-          <span style={{ width: 12, height: 12, borderRadius: 2, background: 'rgba(16,185,129,0.4)', display: 'inline-block' }} /> ≥65% (안전)
+          <span style={{ width: 12, height: 12, borderRadius: 2, background: 'rgba(var(--w-emerald-500-rgb), 0.4)', display: 'inline-block' }} /> ≥65% (안전)
         </div>
         <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
-          <span style={{ width: 12, height: 12, borderRadius: 2, background: 'rgba(245,158,11,0.4)', display: 'inline-block' }} /> 40–64% (보통)
+          <span style={{ width: 12, height: 12, borderRadius: 2, background: 'rgba(var(--w-amber-500-rgb), 0.4)', display: 'inline-block' }} /> 40–64% (보통)
         </div>
         <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
-          <span style={{ width: 12, height: 12, borderRadius: 2, background: 'rgba(239,68,68,0.3)', display: 'inline-block' }} /> &lt;40% (위험)
+          <span style={{ width: 12, height: 12, borderRadius: 2, background: 'rgba(var(--w-red-500-rgb), 0.3)', display: 'inline-block' }} /> &lt;40% (위험)
         </div>
       </div>
     </div>

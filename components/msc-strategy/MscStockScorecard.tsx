@@ -204,8 +204,8 @@ export default function MscStockScorecard() {
       >
         <div
           style={{
-            background: 'rgba(16,185,129,0.08)',
-            border: '1px solid rgba(16,185,129,0.2)',
+            background: 'rgba(var(--w-emerald-500-rgb), 0.08)',
+            border: '1px solid rgba(var(--w-emerald-500-rgb), 0.2)',
             borderRadius: 10,
             padding: '12px 8px',
             textAlign: 'center',
@@ -220,8 +220,8 @@ export default function MscStockScorecard() {
         </div>
         <div
           style={{
-            background: 'rgba(239,68,68,0.06)',
-            border: '1px solid rgba(239,68,68,0.2)',
+            background: 'rgba(var(--w-red-500-rgb), 0.06)',
+            border: '1px solid rgba(var(--w-red-500-rgb), 0.2)',
             borderRadius: 10,
             padding: '12px 8px',
             textAlign: 'center',
@@ -236,8 +236,8 @@ export default function MscStockScorecard() {
         </div>
         <div
           style={{
-            background: 'rgba(245,158,11,0.06)',
-            border: '1px solid rgba(245,158,11,0.2)',
+            background: 'rgba(var(--w-amber-500-rgb), 0.06)',
+            border: '1px solid rgba(var(--w-amber-500-rgb), 0.2)',
             borderRadius: 10,
             padding: '12px 8px',
             textAlign: 'center',
@@ -255,13 +255,13 @@ export default function MscStockScorecard() {
       {/* Legend */}
       <div style={{ display: 'flex', justifyContent: 'center', gap: 20, marginTop: 14, fontSize: '0.72rem', color: 'var(--w-slate-500)', fontWeight: 500 }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: 5 }}>
-          <span style={{ width: 10, height: 10, borderRadius: 2, background: 'rgba(16,185,129,0.4)', display: 'inline-block' }} /> PASS
+          <span style={{ width: 10, height: 10, borderRadius: 2, background: 'rgba(var(--w-emerald-500-rgb), 0.4)', display: 'inline-block' }} /> PASS
         </div>
         <div style={{ display: 'flex', alignItems: 'center', gap: 5 }}>
-          <span style={{ width: 10, height: 10, borderRadius: 2, background: 'rgba(245,158,11,0.4)', display: 'inline-block' }} /> PARTIAL
+          <span style={{ width: 10, height: 10, borderRadius: 2, background: 'rgba(var(--w-amber-500-rgb), 0.4)', display: 'inline-block' }} /> PARTIAL
         </div>
         <div style={{ display: 'flex', alignItems: 'center', gap: 5 }}>
-          <span style={{ width: 10, height: 10, borderRadius: 2, background: 'rgba(239,68,68,0.3)', display: 'inline-block' }} /> FAIL
+          <span style={{ width: 10, height: 10, borderRadius: 2, background: 'rgba(var(--w-red-500-rgb), 0.3)', display: 'inline-block' }} /> FAIL
         </div>
       </div>
     </div>

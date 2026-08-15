@@ -59,7 +59,7 @@ function buildChart(w: Widget): React.ReactElement {
       <CartesianGrid strokeDasharray="3 3" stroke="rgba(140,170,255,0.12)" vertical={false} />
       <XAxis dataKey={w.xKey} stroke="rgba(255,255,255,0.3)" tick={{ fill: 'rgba(255,255,255,0.6)', fontSize: 11 }} />
       <YAxis yAxisId="left" stroke="rgba(255,255,255,0.2)" tick={{ fill: 'rgba(255,255,255,0.6)', fontSize: 10 }} tickFormatter={(v: number) => COMMA(v)} />
-      <YAxis yAxisId="right" orientation="right" stroke="rgba(245,158,11,0.5)" tick={{ fill: 'rgba(245,158,11,0.7)', fontSize: 10 }} tickFormatter={(v: number) => COMMA(v)} />
+      <YAxis yAxisId="right" orientation="right" stroke="rgba(var(--w-amber-500-rgb), 0.5)" tick={{ fill: 'rgba(var(--w-amber-500-rgb), 0.7)', fontSize: 10 }} tickFormatter={(v: number) => COMMA(v)} />
       <Tooltip
         contentStyle={{ background: 'rgba(10, 16, 40, 0.95)', border: '1px solid rgba(255,255,255,0.2)', color: 'var(--w-slate-200)' }}
         formatter={(v: any) => COMMA(Number(v))}
