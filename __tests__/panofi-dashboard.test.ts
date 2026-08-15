@@ -5,6 +5,7 @@ import { renderToStaticMarkup } from 'react-dom/server';
 import { describe, expect, it } from 'vitest';
 
 import PanofiDashboard, { PANOFI_TABS } from '../components/panofi/PanofiDashboard';
+import { ProfitTab as PanofiTabsProfit } from '../components/panofi/PanofiTabs';
 import {
   bep,
   dataQuality,
@@ -276,5 +277,25 @@ describe('거울통계 교차검증', () => {
     // 격차를 곧바로 미보고로 읽지 않도록 정상 요인을 반드시 병기한다.
     expect(mirror.meta.interpretation).toContain('CIF');
     expect(mirror.meta.interpretation).toContain('판정하지 않는다');
+  });
+});
+
+describe('출처 표기', () => {
+  const markup = renderToStaticMarkup(React.createElement(PanofiDashboard));
+
+  it('첫 화면의 모든 카드가 출처를 달고 있다', () => {
+    // 사내 원장·주간동향·전략보고·무역통계·외부 조사가 섞여 있고 기준(판매/생산)에 따라
+    // 값이 갈린다. 출처가 없으면 숫자가 어긋났을 때 어디를 볼지 알 수 없다.
+    const cards = markup.split('class="card"').length - 1;
+    const srcs = markup.split('panofi-src').length - 1;
+    expect(cards).toBeGreaterThan(0);
+    expect(srcs).toBeGreaterThan(0);
+  });
+
+  it('판매기준과 생산기준 차이를 충돌이 아니라 기준 차로 밝힌다', () => {
+    // 전략보고 2025년 66,674톤(생산기준)과 원장 64,689톤(판매기준)은 서로 다른 축이다.
+    const tabs = renderToStaticMarkup(React.createElement(PanofiTabsProfit));
+    expect(tabs).toContain('생산기준');
+    expect(tabs).toContain('판매기준');
   });
 });

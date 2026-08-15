@@ -1,7 +1,9 @@
 'use client';
 
+import type { ReactNode } from 'react';
+
 import Chart, { Legend, type Serie } from '../cosmo/Chart';
-import { Callout, Card, Kpi, SecHead } from '../cosmo/Ui';
+import { Callout, Card as BaseCard, Kpi, SecHead } from '../cosmo/Ui';
 import {
   annualSeries,
   bangkokSeries,
@@ -61,6 +63,32 @@ import {
 
 /* --------------------------------------------------------------- 표기 헬퍼 */
 
+/**
+ * 출처를 항상 달고 다니는 카드.
+ *
+ * 이 화면의 수치는 사내 원장·주간동향·전략보고·유엔 무역통계·외부 조사가 섞여 있고
+ * 같은 항목이라도 «판매기준»과 «생산기준»처럼 기준이 다르면 값이 달라진다. 출처와
+ * 기준을 카드마다 붙여야 숫자가 어긋났을 때 어디를 다시 볼지 바로 알 수 있다.
+ */
+function Card({ src, note, children, ...rest }: {
+  title?: string; sub?: string; note?: ReactNode; span?: number;
+  src?: ReactNode; children: ReactNode;
+}) {
+  return (
+    <BaseCard
+      {...rest}
+      note={
+        <>
+          {note}
+          {src && <div className="panofi-src">출처 — {src}</div>}
+        </>
+      }
+    >
+      {children}
+    </BaseCard>
+  );
+}
+
 const usd = (v: number) => `$${v.toLocaleString('en-US')}`;
 const musd = (v: number) => `${v.toLocaleString('en-US')}만불`;
 const kusd = (v: number) => `${Math.round(v).toLocaleString('en-US')}천불`;
@@ -84,7 +112,8 @@ export function HomeTab() {
     <>
       <SecHead>선단 한눈에</SecHead>
       <div className="grid">
-        <Card title="운영 선단" sub="선망선 기준. 운반선 볼타 글로리는 매각 완료">
+        <Card
+        src={`선단 구성은 사내 확인(2026-08) · 생산·손익은 「파노피 2026 상반기 평가·하반기 전략」(2026-07-29)`} title="운영 선단" sub="선망선 기준. 운반선 볼타 글로리는 매각 완료">
           <div className="kpis">
             <Kpi k="가동 선망선" v={String(fleetTotals.activeCount)} unit="척" />
             <Kpi k="선단 총톤수" v={fleetTotals.totalGt.toLocaleString('en-US')} unit="G/T" />
@@ -96,7 +125,8 @@ export function HomeTab() {
           </div>
         </Card>
 
-        <Card title="손익분기 어가와 현재 어가" sub="단위: 달러/톤. 손익분기선을 넘겨야 물량이 이익이 된다">
+        <Card
+        src={`「2. 추정실적 (2026년 6월).xlsx」 실적 시트 · 최신 어가는 「PANOFI 주간동향」 2026-08-11`} title="손익분기 어가와 현재 어가" sub="단위: 달러/톤. 손익분기선을 넘겨야 물량이 이익이 된다">
           <div className="kpis">
             <Kpi k="손익분기 어가" v={usd(bep.priceUsdPerT)} unit="/톤" />
             <Kpi k="상반기 실현 어가" v={usd(h1.priceUsdPerT)} unit="/톤" tone="down" d={`분기점 대비 ${usd(h1.priceUsdPerT - bep.priceUsdPerT)}`} />
@@ -110,7 +140,8 @@ export function HomeTab() {
       </div>
 
       <SecHead>연도별 실적</SecHead>
-      <Card sub="단위: 백만 달러. 2026은 상반기 누계다" note="2025년은 어획 66,674톤·영업이익 1,291만불로 기록 해였으나 금융비용 -676만불과 법인세로 순이익이 0 부근이었다. 영업으로 벌어 이자·세금으로 소진하는 구조가 만성이며, 2026년엔 영업까지 적자로 꺾였다.">
+      <Card
+        src={`「파노피 2026 상반기 평가·하반기 전략」(2026-07-29) 연도별 실적`} sub="단위: 백만 달러. 2026은 상반기 누계다" note="2025년은 어획 66,674톤·영업이익 1,291만불로 기록 해였으나 금융비용 -676만불과 법인세로 순이익이 0 부근이었다. 영업으로 벌어 이자·세금으로 소진하는 구조가 만성이며, 2026년엔 영업까지 적자로 꺾였다.">
         <Chart
           data={annualSeries}
           x="label"
@@ -148,6 +179,7 @@ export function FleetTab() {
     <>
       <SecHead>척당 경제학 — 벌어주는 배와 까먹는 배</SecHead>
       <Card
+        src={`「파노피 2026 상반기 평가·하반기 전략」 §5-1 척당 경제학 — 공통비 배부 전 직접마진`}
         sub="상반기 직접마진(백만 달러) = 매출 추정 − 직접원가. 공통비·판관비·이자 배부 전"
         note={`7척 직접마진 합계는 ${fleetTotals.totalMarginMusd}백만불로 공통비 ${fleetTotals.sharedCostMusd}만불을 덮지 못한다. 척당 문제가 아니라 선단 전체의 물량 문제다. 마스터(-1.20)는 파망 사고와 상가수리가 겹친 반기라 구조적 부실선으로 단정하지 않는다.`}
       >
@@ -164,7 +196,8 @@ export function FleetTab() {
       </Card>
 
       <SecHead>선박 제원과 상반기 생산</SecHead>
-      <Card sub="총톤수(G/T)와 상반기 생산량(톤)">
+      <Card
+        src={`제원은 외부 등록 정보(ICCAT·업계 분석, 등급 B) · 생산·마진은 전략보고 §5-1`} sub="총톤수(G/T)와 상반기 생산량(톤)">
         <div className="tbl-wrap">
           <table className="tbl">
             <thead>
@@ -191,7 +224,8 @@ export function FleetTab() {
       </Card>
 
       <SecHead>어장 수온</SecHead>
-      <Card sub="단위: 섭씨. 주간동향 실측 상단값 — 어황 선행지표로 읽는다" note="연안과 대양의 수온차가 벌어지면 어군이 흩어져 항차 효율이 떨어진다. 금어기(3/17~4/30)에는 조업 자체가 멈춘다.">
+      <Card
+        src={`「PANOFI 주간동향」 31주(2025-12-23~2026-08-11) 어장상황 실측`} sub="단위: 섭씨. 주간동향 실측 상단값 — 어황 선행지표로 읽는다" note="연안과 대양의 수온차가 벌어지면 어군이 흩어져 항차 효율이 떨어진다. 금어기(3/17~4/30)에는 조업 자체가 멈춘다.">
         <Chart
           data={seaTempSeries}
           x="label"
@@ -206,7 +240,8 @@ export function FleetTab() {
       </Card>
 
       <SecHead>역내 공급 압력 — 세네갈·EU 선단 입항</SecHead>
-      <Card sub="주간 입항 물량(톤)과 척수. 파노피 자사선이 아니라 같은 어장을 쓰는 경쟁 선단이다" note="역내 입항이 몰리면 가공사 처리 슬롯과 선석이 함께 막혀 항차 사이클이 늘어난다. 항차 사이클 목표는 6일 이내다.">
+      <Card
+        src={`「PANOFI 주간동향」 31주 조업선 동향(세네갈·EU 선단) 표`} sub="주간 입항 물량(톤)과 척수. 파노피 자사선이 아니라 같은 어장을 쓰는 경쟁 선단이다" note="역내 입항이 몰리면 가공사 처리 슬롯과 선석이 함께 막혀 항차 사이클이 늘어난다. 항차 사이클 목표는 6일 이내다.">
         <Chart
           data={regionalLandingSeries}
           x="label"
@@ -223,6 +258,7 @@ export function FleetTab() {
 
       <SecHead>척당 완전손익 — 공통비를 배부하면 순위가 뒤집힌다</SecHead>
       <Card
+        src={`「2. 추정실적 (2026년 6월).xlsx」 실적(생산) 시트 — 공통비·판관비·금융비용 배부 후`}
         sub="상반기 세전이익(달러). 공통비·판관비·금융비용까지 배부한 뒤의 값"
         note="위의 직접마진은 공통비 배부 전이라 «누가 많이 벌어오나»를 보고, 이 표는 배부 후라 «누가 회사 손익에 얼마를 남기나»를 본다. 두 지표의 순위가 어긋나는 배가 있으므로 어느 배를 줄일지 판단할 때는 반드시 배부 후를 본다. 상반기에는 일곱 척 모두 세전 적자다."
       >
@@ -258,6 +294,7 @@ export function FleetTab() {
 
       <SecHead>어종 구성</SecHead>
       <Card
+        src={`「2. 추정실적 (2026년 6월).xlsx」 매출단가 시트 — 척별×어종×사이즈 원장`}
         sub="상반기 생산량(톤)과 비중. 척별·사이즈별 원장을 어종으로 합산했다"
         note={`가다랑어가 ${catchBySpecies[0]?.비중}%로 주력이며 통조림 원료로 나간다. 어종·사이즈 원장 합계는 ${actuals.meta.catchMixTotalMT.toLocaleString('en-US')}톤으로 총 생산 ${h1.productionT.toLocaleString('en-US')}톤과 약 1,966톤 차이가 난다 — 잡어와 미배분 물량으로 보이며 원본 자체의 차이라 임의로 맞추지 않았다.`}
       >
@@ -271,7 +308,8 @@ export function FleetTab() {
       </Card>
 
       <SecHead>척별 원가 3분류</SecHead>
-      <Card sub="단위: 천 달러. 재료비(유류·윤활유)·노무비(선원)·경비(선용품·어구·수선·입어료·항만 등)">
+      <Card
+        src={`「2. 추정실적 (2026년 6월).xlsx」 실적(생산) 시트 제조원가 40여 계정`} sub="단위: 천 달러. 재료비(유류·윤활유)·노무비(선원)·경비(선용품·어구·수선·입어료·항만 등)">
         <Chart
           data={vesselCostGroups}
           x="label"
@@ -296,6 +334,7 @@ export function PriceTab() {
     <>
       <SecHead>채널별 어가 31주</SecHead>
       <Card
+        src={`「PANOFI 주간동향」 31주 어가동향 실측`}
         sub="단위: 달러/톤. 관계사·연간계약·시장연동·로컬 네 성격이 한 화면에 있다"
         note={`손익분기 어가 ${usd(bep.priceUsdPerT)}를 넘는 채널이 최근에야 생겼다. 로컬 마켓은 즉시 현금이지만 분기점을 크게 밑돌아 저가 사이즈 소진용으로만 쓴다.`}
       >
@@ -318,6 +357,7 @@ export function PriceTab() {
 
       <SecHead>PFC 수요독점 — 낮게 사는데 물량은 더 온다</SecHead>
       <Card
+        src={`가격·물량은 「PANOFI 주간동향」 31주 실측 · 소유구조는 NotebookLM 「가나 중심 서아프리카 참치 비즈니스 분석」(소스 82건, 등급 B)`}
         sub="타이유니온 자회사 PFC의 지배 방식을 31주 실측으로 판정한 결과"
         note={m.caveat}
       >
@@ -356,7 +396,8 @@ export function PriceTab() {
       </Card>
 
       <SecHead>채널 정책</SecHead>
-      <Card sub="7월 기준 어가와 하반기 운영 방침">
+      <Card
+        src={`「파노피 2026 상반기 평가·하반기 전략」 §6 판매채널·가격`} sub="7월 기준 어가와 하반기 운영 방침">
         <div className="tbl-wrap">
           <table className="tbl">
             <thead>
@@ -378,7 +419,8 @@ export function PriceTab() {
       </Card>
 
       <SecHead>방콕 기준가 대비</SecHead>
-      <Card sub="단위: 달러/톤. 방콕 양륙 가다랑어는 서아프리카 어가의 국제 벤치마크다" note={industry.skipjackBangkok.caveat}>
+      <Card
+        src={`Thai Union 방콕 양륙 시세·FAO GLOBEFISH(2026-07-23) — Grok 1차출처 대조(등급 B)`} sub="단위: 달러/톤. 방콕 양륙 가다랑어는 서아프리카 어가의 국제 벤치마크다" note={industry.skipjackBangkok.caveat}>
         <Chart
           data={bangkokSeries}
           x="label"
@@ -397,7 +439,8 @@ export function ProfitTab() {
   return (
     <>
       <SecHead>상반기 적자의 3겹 구조</SecHead>
-      <Card sub="단위: 천 달러" note={h1.breakdown}>
+      <Card
+        src={`「파노피 2026 상반기 평가·하반기 전략」 §3 + 「2. 추정실적 (2026년 6월).xlsx」 실적 시트`} sub="단위: 천 달러" note={h1.breakdown}>
         <div className="kpis">
           <Kpi k="매출액" v={kusd(h1.revenueKusd)} d={`전년비 ${h1.revenueYoyPct}%`} tone="down" />
           <Kpi k="매출총이익" v={kusd(h1.grossProfitKusd)} d={`전년비 ${h1.grossProfitYoyPct}%`} tone="down" />
@@ -411,6 +454,7 @@ export function ProfitTab() {
 
       <SecHead>비용 구조</SecHead>
       <Card
+        src={`「파노피 2026 상반기 평가·하반기 전략」 §4 비용구조`}
         sub={`매출 대비 비중(%). ${costStructure.basisNote}`}
         note="유류가 매출의 39.6%로 지배적이다. 이미 특별공급가로 시장 대비 25% 싸게 사고 있어 단가 절감 여지는 제한적이며, 레버는 소모량(척당 KL/조업일)과 운항 계획이다."
       >
@@ -427,6 +471,7 @@ export function ProfitTab() {
 
       <SecHead>월별 추이</SecHead>
       <Card
+        src={`「2. 추정실적 (2026년 6월).xlsx」 실적 시트 월별 현황 — 판매기준`}
         sub="단위: 판매량(톤)·평균단가(달러/톤). 추정실적 원장 1~6월"
         note={actuals.meta.caveat}
       >
@@ -444,7 +489,8 @@ export function ProfitTab() {
       </Card>
 
       <SecHead>연도별 판매량과 어가</SecHead>
-      <Card sub="단위: 판매량(톤)·평균단가(달러/톤)·원가율(%). 2026은 상반기 누계" note="2023년 평균단가 1,499달러가 최고였고 이후 1,270~1,295 대에서 횡보한다. 원가율은 물량이 많은 해에 낮아진다 — 규모의 경제가 실제로 작동한다는 증거다.">
+      <Card
+        src={`「2. 추정실적 (2026년 6월).xlsx」 실적 시트 연도별 현황 — **판매기준**. 전략보고가 인용하는 2025년 66,674톤은 생산기준이라 여기 64,689톤과 다르다(충돌 아님)`} sub="단위: 판매량(톤)·평균단가(달러/톤)·원가율(%). 2026은 상반기 누계" note="2023년 평균단가 1,499달러가 최고였고 이후 1,270~1,295 대에서 횡보한다. 원가율은 물량이 많은 해에 낮아진다 — 규모의 경제가 실제로 작동한다는 증거다.">
         <Chart
           data={annualVolumeSeries}
           x="label"
@@ -459,7 +505,8 @@ export function ProfitTab() {
       </Card>
 
       <SecHead>하반기 손익 민감도</SecHead>
-      <Card sub="단위: 만 달러. 기준 시나리오(판매 38,000톤) 대비 변수별 영향" note="어가 ±$50/톤이 ±190만불로 가장 크지만 시황이라 통제 밖이다. 통제권 안에서 가장 큰 레버는 어획 ±2,000톤(±150만불)이며, 이것이 하반기 전략을 «잔고기 시즌 어획 극대화»로 모는 이유다.">
+      <Card
+        src={`「파노피 2026 상반기 평가·하반기 전략」 §4 민감도 — 내부 가정 기반(등급 C)`} sub="단위: 만 달러. 기준 시나리오(판매 38,000톤) 대비 변수별 영향" note="어가 ±$50/톤이 ±190만불로 가장 크지만 시황이라 통제 밖이다. 통제권 안에서 가장 큰 레버는 어획 ±2,000톤(±150만불)이며, 이것이 하반기 전략을 «잔고기 시즌 어획 극대화»로 모는 이유다.">
         <Chart
           data={sensitivityBars}
           x="label"
@@ -481,6 +528,7 @@ export function CashTab() {
     <>
       <SecHead>아비장 미수금 회수</SecHead>
       <Card
+        src={`「PANOFI 주간동향」 31주 아비장 마켓 미수금 표`}
         sub="단위: 천 달러. 주간동향 실측 31주"
         note={`정점 ${kusd(receivables.abidjanPeakKusd)}에서 ${kusd(receivables.abidjanKusd)}까지 줄였다(${receivables.recoveryPeriod}). 회수는 성공했으나 그 자금이 유류·수리·이자로 소진되고 매입채무가 늘어 자금 과부족은 오히려 악화됐다.`}
       >
@@ -505,6 +553,7 @@ export function CashTab() {
 
       <SecHead>자금유동성 월별</SecHead>
       <Card
+        src={`「PANOFI 월간보고」 pptx 5건(1·2·4·5·7월) 자금유동성 표`}
         sub="단위: 천 달러. 월간보고 원본. 과부족 = 현금 + 매출채권 − 매입채무"
         note={liquidity.meta.caveat}
       >
@@ -527,6 +576,7 @@ export function CashTab() {
         <>
           <SecHead>회수했는데 왜 더 나빠졌나</SecHead>
           <Card
+        src={`「PANOFI 월간보고」 pptx — 2025-12-31 대비 2026-06-30`}
             sub={`${liquidityBridge.from} → ${liquidityBridge.to} 증감(천 달러)`}
             note="매출채권을 줄이고 현금을 늘렸는데도 과부족이 벌어진 이유는 매입채무다. 회수한 자금이 유류·수리·이자로 나가고 외상이 그보다 크게 쌓였다. 미수금 회수만으로는 과부족이 뒤집히지 않으며, 매입채무 만기 구조 재조정과 관계사 결제 캘린더 합의가 함께 가야 한다."
           >
@@ -541,7 +591,8 @@ export function CashTab() {
       )}
 
       <SecHead>익월 추정손익</SecHead>
-      <Card sub="단위: 천 달러. 월간보고가 제시한 익월 순손익 추정과 전년 동월 실적" note="월간보고 3·6월분은 원본이 없어 빠져 있다. 4월 이후 전년 대비 낙폭이 커지는 흐름이 그대로 보인다.">
+      <Card
+        src={`「PANOFI 월간보고」 pptx 5건 익월 추정손익 표`} sub="단위: 천 달러. 월간보고가 제시한 익월 순손익 추정과 전년 동월 실적" note="월간보고 3·6월분은 원본이 없어 빠져 있다. 4월 이후 전년 대비 낙폭이 커지는 흐름이 그대로 보인다.">
         <Chart
           data={monthlyEstimates}
           x="label"
@@ -565,7 +616,8 @@ export function CashTab() {
       </div>
 
       <SecHead>유가</SecHead>
-      <Card sub="단위: 달러/킬로리터. 2026년 3월 17일부터 4개 지점 표기로 바뀌었다" note="테마가 아비장보다 꾸준히 비싸다. 하역항 선택이 유류비에 직접 반영되므로 항차 계획과 함께 본다.">
+      <Card
+        src={`「PANOFI 주간동향」 31주 유가 표`} sub="단위: 달러/킬로리터. 2026년 3월 17일부터 4개 지점 표기로 바뀌었다" note="테마가 아비장보다 꾸준히 비싸다. 하역항 선택이 유류비에 직접 반영되므로 항차 계획과 함께 본다.">
         <Chart
           data={fuelSeries}
           x="label"
@@ -591,7 +643,8 @@ export function StrategyTab() {
   return (
     <>
       <SecHead>하반기 시나리오</SecHead>
-      <Card sub={scenarios.basisNote} note={`전제 — 하방: ${scenarios.premise.down} · 기준: ${scenarios.premise.base} · 상향: ${scenarios.premise.up}`}>
+      <Card
+        src={`「파노피 2026 상반기 평가·하반기 전략」 §8 하반기 시나리오 — 2025 실적은 실측(A), 하방·기준·상향은 내부 가정(C)`} sub={scenarios.basisNote} note={`전제 — 하방: ${scenarios.premise.down} · 기준: ${scenarios.premise.base} · 상향: ${scenarios.premise.up}`}>
         <div className="tbl-wrap">
           <table className="tbl">
             <thead>
@@ -639,6 +692,7 @@ export function IndustryTab() {
     <>
       <SecHead>가나 참치 밸류 사다리</SecHead>
       <Card
+        src={`NotebookLM 「가나 중심 서아프리카 참치 비즈니스 분석」(소스 82건, 등급 B)`}
         sub={`단위: ${industry.valueLadder.unit}`}
         note={industry.valueLadder.note}
       >
@@ -654,7 +708,8 @@ export function IndustryTab() {
       </Card>
 
       <SecHead>테마항 가공공장</SecHead>
-      <Card sub={`3사 연간 처리능력 ${industry.processingCapacityTPerYear.toLocaleString('en-US')}톤 · 가나 연간 통조림 생산 ${industry.annualCannedOutputT.toLocaleString('en-US')}톤`} note={`업계 평균 가동률은 설비 대비 ${industry.utilizationPct[0]}~${industry.utilizationPct[1]}% 수준이다. 원료 공급의 계절 편차가 커 설비를 다 못 돌린다.`}>
+      <Card
+        src={`NotebookLM 「가나 중심 서아프리카 참치 비즈니스 분석」(소스 82건, 등급 B)`} sub={`3사 연간 처리능력 ${industry.processingCapacityTPerYear.toLocaleString('en-US')}톤 · 가나 연간 통조림 생산 ${industry.annualCannedOutputT.toLocaleString('en-US')}톤`} note={`업계 평균 가동률은 설비 대비 ${industry.utilizationPct[0]}~${industry.utilizationPct[1]}% 수준이다. 원료 공급의 계절 편차가 커 설비를 다 못 돌린다.`}>
         <div className="tbl-wrap">
           <table className="tbl">
             <thead>
@@ -791,7 +846,8 @@ export function TradeTab() {
       )}
 
       <SecHead>품목별 수출</SecHead>
-      <Card sub={`${tradeYear}년 · 금액(백만 달러)과 단가(달러/톤)`}>
+      <Card
+        src={`UN Comtrade public preview · 가나(reporter 288) 보고 기준`} sub={`${tradeYear}년 · 금액(백만 달러)과 단가(달러/톤)`}>
         <div className="tbl-wrap">
           <table className="tbl">
             <thead><tr><th>품목</th><th>금액 (백만 달러)</th><th>물량 (톤)</th><th>단가 (달러/톤)</th></tr></thead>
@@ -811,6 +867,7 @@ export function TradeTab() {
 
       <SecHead>어종별 수출</SecHead>
       <Card
+        src={`UN Comtrade public preview · 가나 보고 기준`}
         sub={`${tradeYear}년 원어 기준(냉동·신선). 필레와 통조림은 어종이 합쳐져 보고되므로 제외했다`}
         note="파노피가 잡는 주력은 가다랑어와 황다랑어다. 통계상 황다랑어 금액이 앞서지만 물량은 가다랑어가 통조림 원료로 더 많이 나간다."
       >
@@ -845,6 +902,7 @@ export function TradeTab() {
 
       <SecHead>거울통계 — 받은 쪽 장부와 맞대보면</SecHead>
       <Card
+        src={`UN Comtrade public preview · 가나 보고 vs 상대국 보고 대조`}
         sub={`${mirror.meta.year}년 · 단위: 백만 달러. 가나가 «수출했다»고 보고한 값과 상대국이 «가나에서 수입했다»고 보고한 값`}
         note={mirror.meta.interpretation}
       >
