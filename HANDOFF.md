@@ -1,3 +1,14 @@
+> 📤 **2026-08-16 00:03 KST — 회사 메일 Microsoft Graph 경로 폐기·SMTP-only 운영 설정·DB 적용** [Codex]:
+> - 사용자 확인으로 회사 주소는 `ledog@sla.co.kr`지만 Microsoft 로그인은 개인 `silla@outlook.com`이며, 회사 사서함은 Microsoft 365가 아님을 확정했다. Entra 개인 계정에는 디렉터리가 없어 앱 등록이 불가능했고 `/me` exact mailbox 계약도 성립하지 않는다. 미커밋 Graph/Entra 구현은 제거했다.
+> - DNS·protocol 실측에서 `mail1.sla.co.kr`의 SMTP 587은 STARTTLS를 제공하지만 IMAP 143은 STARTTLS를 거부하고 IMAPS 993은 닫혀 있음을 확인했다. 따라서 받은메일 자격증명을 평문으로 보내지 않도록 조회 기능은 제외하고 SMTP 발송만 구현했다.
+> - `/api/mail/company-smtp/send`는 관리자+AAL2, trusted Origin, JSON 40KB, UUID idempotency, 단일 수신자·제목 200자·일반 텍스트 10,000자, STARTTLS/TLS 1.2+·인증서 검증을 강제한다. UI는 최종 확인과 불확정 재전송 잠금을 제공하며 자동·HTML·첨부·다중 수신자를 지원하지 않는다.
+> - `company_smtp_send_requests`는 UUID를 canonical payload SHA-256에 결속하고 service-role 전용 reserve/complete RPC, 사용자 advisory lock, 분당 5건·일 50건, `pending/sent/unknown` 상태를 둔다. 수신자·제목·본문·비밀번호는 audit에 저장하지 않는다.
+> - 최신 `origin/main` 위 full `npm run verify`를 통과했다: ESLint 0 errors·기존 5 warnings, Vitest 84파일·459테스트, API cache 155/155, Production build 117 pages, bundle 32 routes PASS다. 실제 SMTP는 STARTTLS 220·TLS 1.3·유효한 `*.sla.co.kr` 인증서·TLS 이후 AUTH를 확인했고, `nodemailer@9.0.5`는 npm audit 13건 baseline에 신규 advisory를 추가하지 않았다.
+> - Production SQL editor에서 migration 원문과 `BEGIN…ROLLBACK` model 3,704자를 exact 비교한 뒤 실행해 성공했다. 후속 read-only 조회에서 table/reserve RPC/complete RPC가 모두 NULL이어서 영구 객체가 남지 않았음을 확인했다.
+> - SMTP AUTH는 사용자 clipboard 비밀번호로 발송 없이 성공 확인했고 clipboard를 즉시 비웠다. Vercel에는 `COMPANY_SMTP_*` 5종을 Sensitive·Production-only로 등록했다. 첫 독립 반증의 malformed provider result finding은 배열·accepted 주소·rejected·실제 envelope from/to를 모두 exact 검증하는 RED→GREEN으로 닫았고 최종 재반증은 blocking 0건 PASS다.
+> - SHA-256 `deae288f524f049d57fdeea829522bb88d4122233a99144d32bf2d6b60aae7bb` migration을 Production에 적용했다. 재조회 결과 table·reserve/complete RPC·RLS·service-role EXECUTE=true, authenticated EXECUTE=false, 초기 audit rows=0이다.
+> - **다음 단계**: commit/PR/CI/merge/deploy 후 본인 주소에 실발송 1건·중복 0건·audit 1행을 확인해야 완료다.
+>
 > 🚢 **2026-08-15 23:21 KST — 선박 벤치마크 최근 실제 하역순 정렬** [Codex]:
 > - `/unloading`의 `선박 벤치마크 비교`가 데이터 객체 등록 순서를 그대로 표시하던 문제를 고쳤다. 각 선박의 `dailyAmount > 0`인 마지막 실제 하역일을 연·월·일 숫자 키로 계산해 내림차순 정렬하며, 선적 계획만 있고 하역 실적이 없는 대기선은 마지막에 둔다.
 > - 축약 날짜(`M/D`), 날짜 범위(`M/D~D`·`M/D~M/D`), 연도 경계 항차를 처리하고, 상세 작업 기록이 없는 과거 실적만 `dateRange` 종료일을 보조 기준으로 사용한다. 동일 날짜는 기존 데이터 순서를 유지한다.

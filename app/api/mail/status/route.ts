@@ -1,6 +1,7 @@
 import { authorizeMailRequest, createMailUserClient } from '@/lib/mail/request-auth';
 import { mailError, mailJson } from '@/lib/mail/http';
 import { createMailServiceClient } from '@/lib/mail/server-supabase';
+import { getCompanySmtpConfig } from '@/lib/mail/server-env';
 import { getMailConnectionSummary } from '@/lib/mail/token-store';
 
 export const dynamic = 'force-dynamic';
@@ -22,6 +23,15 @@ export async function GET() {
     const gmail = access.aal === 'aal2'
       ? await getMailConnectionSummary(createMailServiceClient(), access.userId, 'gmail')
       : null;
+    let companySmtp: { from: string } | null = null;
+    if (access.aal === 'aal2') {
+      try {
+        const config = getCompanySmtpConfig();
+        companySmtp = { from: config.from };
+      } catch {
+        companySmtp = null;
+      }
+    }
     return mailJson({
       ok: true,
       aal: access.aal,
@@ -34,6 +44,7 @@ export async function GET() {
         email: gmail.provider_email,
         connectedAt: gmail.connected_at,
       } : null,
+      companySmtp: companySmtp ? { from: companySmtp.from } : null,
     }, { headers: RESPONSE_HEADERS });
   } catch {
     return mailError(503, 'mail_service_unavailable');
