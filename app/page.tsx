@@ -48,11 +48,15 @@ const BangkokOfficeDashboard = dynamic(() => import('../components/EmbeddedDashb
 
 const OPERATION_ACCESS_STORAGE_KEY = 'silla-operation-access';
 const OPERATION_PASSWORD = 'a34349900';
-const V25B_INSTITUTIONAL_MENU_KEYS = new Set<ActiveMenu>([
+const INSTITUTIONAL_MENU_KEYS = new Set<ActiveMenu>([
   'market',
   'fleet',
   'unloading',
   'logistics',
+  'pork',
+  'cross-intelligence',
+  'purse-seiner-db',
+  'cosmo',
 ]);
 
 const SIDEBAR_ICONS: Record<SidebarIconKey, React.ElementType> = {
@@ -282,7 +286,7 @@ export default function Home() {
 
   return (
     <div className={styles.appWrapper}>
-      {!V25B_INSTITUTIONAL_MENU_KEYS.has(activeMenu) && (
+      {!INSTITUTIONAL_MENU_KEYS.has(activeMenu) && (
         <AmbientBackground accent={ambientAccent} />
       )}
       {/* SwimmingTuna removed per user request */}

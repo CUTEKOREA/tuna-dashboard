@@ -34,11 +34,12 @@
 }
 
 .cosmo-root, .cosmo-root * { box-sizing: border-box; }
-.cosmo-root, .cosmo-root { padding: 0; margin: 0; }
 .cosmo-root {
   width: 100%;
   min-width: 0;
-  background: var(--cosmo-paper);
+  padding: 0;
+  margin: 0;
+  background: var(--dsc-bg);
   color: var(--cosmo-ink);
   font: 400 15px/1.6 var(--cosmo-sans);
   letter-spacing: -.008em;
@@ -232,9 +233,11 @@
 .cosmo-root .cosmo-panel {
   min-width: 0;
   padding: 22px clamp(14px, 2.2vw, 30px) 48px;
-  border: 1px solid var(--cosmo-line);
-  border-radius: 16px;
-  background: color-mix(in srgb, var(--cosmo-paper) 92%, transparent);
+  border: 1px solid var(--dsc-surface-border);
+  border-radius: var(--dsc-card-radius);
+  background: var(--dsc-surface);
+  box-shadow: var(--dsc-card-shadow);
+  backdrop-filter: var(--dsc-surface-blur);
 }
 
 .cosmo-root .cosmo-panel-loading {

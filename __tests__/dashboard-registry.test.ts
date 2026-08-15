@@ -221,8 +221,8 @@ describe('dashboard registry', () => {
     const logisticsStyles = readFileSync(join(root, 'components/LogisticsCommandCenter.module.css'), 'utf8');
     const marketStylesPath = join(root, 'components/MarketDashboard.module.css');
 
-    expect(appSource).toContain('V25B_INSTITUTIONAL_MENU_KEYS');
-    expect(appSource).toContain('!V25B_INSTITUTIONAL_MENU_KEYS.has(activeMenu)');
+    expect(appSource).toContain('INSTITUTIONAL_MENU_KEYS');
+    expect(appSource).toContain('!INSTITUTIONAL_MENU_KEYS.has(activeMenu)');
 
     expect(existsSync(marketStylesPath)).toBe(true);
     if (!existsSync(marketStylesPath)) return;

@@ -19,9 +19,11 @@ const INITIAL_DATA = getCrossCommodityIntelligence();
 
 const pageStyle: React.CSSProperties = {
   display: 'flex',
+  minWidth: 0,
   flexDirection: 'column',
   gap: 18,
   paddingBottom: 40,
+  background: 'var(--dsc-bg)',
 };
 
 const gridStyle: React.CSSProperties = {
@@ -31,21 +33,23 @@ const gridStyle: React.CSSProperties = {
 };
 
 const panelStyle: React.CSSProperties = {
-  border: '1px solid rgba(148, 163, 184, 0.2)',
-  background: 'rgba(15, 23, 42, 0.64)',
-  borderRadius: 8,
+  border: '1px solid var(--dsc-surface-border)',
+  background: 'var(--dsc-surface)',
+  borderRadius: 'var(--dsc-card-radius)',
   padding: 16,
   minHeight: 0,
+  boxShadow: 'var(--dsc-card-shadow)',
+  backdropFilter: 'var(--dsc-surface-blur)',
 };
 
 const mutedStyle: React.CSSProperties = {
-  color: 'rgba(226, 232, 240, 0.62)',
+  color: 'var(--dsc-ink-muted)',
   fontSize: 12,
   lineHeight: 1.55,
 };
 
 const labelStyle: React.CSSProperties = {
-  color: 'rgba(226, 232, 240, 0.56)',
+  color: 'var(--dsc-ink-muted)',
   fontSize: 11,
   fontWeight: 700,
   letterSpacing: 0,
@@ -95,7 +99,6 @@ export function CrossCommodityHero({
       label: '평균 리스크 충격',
       value: topRisk.averageImpact,
       unit: '(점)',
-      accent: '#f59e0b',
     });
   }
   if (topAllocation) {
@@ -103,14 +106,12 @@ export function CrossCommodityHero({
       label: '최상위 배분 점수',
       value: topAllocation.portfolioScore,
       unit: '(점)',
-      accent: '#10b981',
     });
   }
   secondaryKpis.push({
     label: '활성 이상 경보',
     value: data.anomalyAlerts.length,
     unit: '(건)',
-    accent: '#ef4444',
   });
 
   return (
@@ -122,7 +123,6 @@ export function CrossCommodityHero({
         label: '최대 대체 압력',
         value: primarySignal.pressureScore,
         unit: '(점)',
-        accent: '#38bdf8',
       } : undefined}
       secondaryKpis={secondaryKpis}
     />
@@ -172,7 +172,7 @@ export default function CrossCommodityIntelligenceDashboard({ heroOnly = false }
       <section style={gridStyle}>
         <div style={panelStyle}>
           <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 14 }}>
-            <TrendingUp size={18} color="#38bdf8" />
+            <TrendingUp size={18} color="var(--accent-primary)" />
             <h2 style={{ margin: 0, fontSize: 16, color: 'var(--text-main)' }}>대체재 압력</h2>
           </div>
           <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
@@ -193,7 +193,7 @@ export default function CrossCommodityIntelligenceDashboard({ heroOnly = false }
 
         <div style={panelStyle}>
           <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 14 }}>
-            <BarChart3 size={18} color="#f59e0b" />
+            <BarChart3 size={18} color="var(--accent-primary)" />
             <h2 style={{ margin: 0, fontSize: 16, color: 'var(--text-main)' }}>리스크 히트맵</h2>
           </div>
           <div style={{ overflowX: 'auto' }}>
@@ -223,7 +223,7 @@ export default function CrossCommodityIntelligenceDashboard({ heroOnly = false }
 
         <div style={panelStyle}>
           <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 14 }}>
-            <Gauge size={18} color="#10b981" />
+            <Gauge size={18} color="var(--accent-primary)" />
             <h2 style={{ margin: 0, fontSize: 16, color: 'var(--text-main)' }}>포트폴리오 후보</h2>
           </div>
           <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
