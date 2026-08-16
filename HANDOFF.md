@@ -1,3 +1,7 @@
+> 🛠️ **2026-08-16 — `/market` VolumeBar가 선 그래프를 아래로 민 회귀** [Grok]:
+> - `ResponsiveContainer`가 카드 높이를 재귀로 키워 어가 추이 선이 카드 바닥으로 밀렸다.
+> - VolumeBar는 고정 `width`/`height` BarChart로 바꾸고, 선 그래프 **아래**로 옮겼다.
+
 > 🔐 **2026-08-16 21:11 KST — Google 로그인 CTA CSP 차단 수정·Production 재검증 완료** [Codex]:
 > - **원인:** 운영 `/login`의 GET `<form>` 제출이 `/auth/start`의 307을 거쳐 외부 Supabase OAuth로 이동할 때, Chromium이 리다이렉트도 폼 제출로 취급해 기존 CSP `form-action 'self'`로 차단했다. 실제 클릭에서 `/auth/start` `net::ERR_ABORTED`, CSP 위반, `/login` 잔류를 재현했다.
 > - **수정:** CSP를 느슨하게 변경하지 않고 `form-action 'self'`를 유지한 채, 로그인 CTA를 URL-인코딩된 `next`를 가진 동일 출처 `<a href="/auth/start?...">`로 교체했다. 허용 계정·provider·서명 JWT·AAL2 정책은 변경하지 않았다.

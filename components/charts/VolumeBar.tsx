@@ -5,7 +5,6 @@ import {
   Bar,
   BarChart,
   ReferenceLine,
-  ResponsiveContainer,
   Tooltip,
   XAxis,
   YAxis,
@@ -37,28 +36,30 @@ export function VolumeBarShape({
 }: VolumeBarShapeProps) {
   if (width <= 0 || height <= 0) return null;
 
-  const depth = Math.min(9, Math.max(4, width * 0.22));
-  const frontW = Math.max(width - depth, width * 0.72);
+  const depth = Math.min(7, Math.max(3, width * 0.18));
+  const frontW = Math.max(width - depth, width * 0.75);
+  const bodyH = Math.max(1, height - depth * 0.45);
+  const frontY = y + depth * 0.45;
   const opacity = highlighted ? 1 : 0.34;
 
   return (
     <g aria-hidden="true">
       <path
-        d={`M ${x + frontW} ${y} L ${x + width} ${y + depth * 0.45} L ${x + width} ${y + height + depth * 0.45} L ${x + frontW} ${y + height} Z`}
+        d={`M ${x + frontW} ${frontY} L ${x + width} ${y} L ${x + width} ${y + bodyH} L ${x + frontW} ${frontY + bodyH} Z`}
         fill={fill}
         fillOpacity={opacity * 0.72}
       />
       <path
-        d={`M ${x} ${y} L ${x + depth} ${y - depth * 0.45} L ${x + frontW + depth} ${y - depth * 0.45} L ${x + frontW} ${y} Z`}
+        d={`M ${x} ${frontY} L ${x + depth} ${y} L ${x + frontW + depth} ${y} L ${x + frontW} ${frontY} Z`}
         fill={fill}
         fillOpacity={Math.min(1, opacity + 0.18)}
       />
       <rect
         x={x}
-        y={y}
+        y={frontY}
         width={frontW}
-        height={height}
-        rx={8}
+        height={bodyH}
+        rx={6}
         fill={fill}
         fillOpacity={opacity}
       />
@@ -97,69 +98,82 @@ export function VolumeBarChart({
   data,
   name,
   unit,
-  height = 220,
+  width,
+  height = 160,
   fill = '#22d3ee',
 }: {
   data: VolumeBarPoint[];
   name: string;
   unit: string;
+  width?: number;
   height?: number;
   fill?: string;
 }) {
   if (data.length < 2) return null;
 
-  const maxValue = Math.max(...data.map((d) => d.value));
+  const chartWidth = width && width > 0 ? width : 640;
   const mean = data.reduce((sum, d) => sum + d.value, 0) / data.length;
+  const maxValue = Math.max(...data.map((d) => d.value));
   const highlightIndex = data.findIndex((d) => d.value === maxValue);
 
   return (
-    <div style={{ width: '100%', height, position: 'relative' }} data-volume-bar="true">
+    <div
+      data-volume-bar="true"
+      style={{
+        width: '100%',
+        height,
+        maxHeight: height,
+        overflow: 'hidden',
+        flex: '0 0 auto',
+        position: 'relative',
+      }}
+    >
       <span style={{ position: 'absolute', width: 1, height: 1, overflow: 'hidden' }}>
         {name} 평균 {mean.toLocaleString('ko-KR', { maximumFractionDigits: 0 })} {unit}
       </span>
-      <ResponsiveContainer width="100%" height="100%">
-        <BarChart data={data} margin={{ top: 16, right: 8, left: 0, bottom: 4 }}>
-          <XAxis
-            dataKey="label"
-            tickFormatter={truncateXAxis}
-            stroke="var(--text-tertiary, #94a3b8)"
-            fontSize={12}
-            tickLine={false}
-            axisLine={false}
-          />
-          <YAxis
-            hide
-            domain={[0, (max: number) => max * 1.12]}
-          />
-          <Tooltip
-            cursor={{ fill: 'rgba(255,255,255,0.04)' }}
-            content={<VolumeTip unit={unit} />}
-          />
-          <ReferenceLine
-            y={mean}
-            stroke="rgba(244,244,245,0.35)"
-            strokeDasharray="4 4"
-            label={{
-              value: `평균 ${mean.toLocaleString('ko-KR', { maximumFractionDigits: 0 })} ${unit}`,
-              position: 'right',
-              fill: 'var(--text-tertiary, #94a3b8)',
-              fontSize: 11,
-            }}
-          />
-          <Bar
-            dataKey="value"
-            name={name}
-            isAnimationActive={false}
-            shape={(props) => (
-              <VolumeBarShape
-                {...props}
-                fill={fill}
-                highlighted={props.index === highlightIndex}
-              />
-            )}
-          />
-        </BarChart>
-      </ResponsiveContainer>
+      <BarChart
+        width={chartWidth}
+        height={height}
+        data={data}
+        margin={{ top: 8, right: 12, left: 0, bottom: 4 }}
+      >
+        <XAxis
+          dataKey="label"
+          tickFormatter={truncateXAxis}
+          stroke="var(--text-tertiary, #94a3b8)"
+          fontSize={12}
+          tickLine={false}
+          axisLine={false}
+        />
+        <YAxis hide domain={[0, (max: number) => max * 1.12]} />
+        <Tooltip
+          cursor={{ fill: 'rgba(255,255,255,0.04)' }}
+          content={<VolumeTip unit={unit} />}
+        />
+        <ReferenceLine
+          y={mean}
+          stroke="rgba(148, 163, 184, 0.45)"
+          strokeDasharray="4 4"
+          label={{
+            value: `평균 ${mean.toLocaleString('ko-KR', { maximumFractionDigits: 0 })} ${unit}`,
+            position: 'insideTopRight',
+            fill: 'var(--text-tertiary, #94a3b8)',
+            fontSize: 11,
+          }}
+        />
+        <Bar
+          dataKey="value"
+          name={name}
+          isAnimationActive={false}
+          shape={(props) => (
+            <VolumeBarShape
+              {...props}
+              fill={fill}
+              highlighted={props.index === highlightIndex}
+            />
+          )}
+        />
+      </BarChart>
     </div>
   );
 }

@@ -440,14 +440,6 @@ export default function MarketDashboard({ heroOnly = false }: { heroOnly?: boole
             </span>
           )}
         </h3>
-        {bangkokVolume.length >= 2 && (
-          <div style={{ marginBottom: 20 }}>
-            <h4 style={{ fontSize: '0.9rem', fontWeight: 600, color: 'var(--text-muted)', margin: '0 0 8px' }}>
-              방콕 SKJ 최근 고시 (입체 비교)
-            </h4>
-            <VolumeBarChart data={bangkokVolume} name="방콕 SKJ" unit="($/MT)" height={200} />
-          </div>
-        )}
         <div ref={chartContainerRef} style={{ width: '100%', minHeight: '350px', display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(450px, 100%), 1fr))', gap: '24px' }}>
           
           {/* LEFT: SKIPJACK (SKJ) */}
@@ -493,6 +485,20 @@ export default function MarketDashboard({ heroOnly = false }: { heroOnly?: boole
           )}
 
         </div>
+        {chartWidth > 0 && bangkokVolume.length >= 2 && (
+          <div style={{ marginTop: 20, flex: '0 0 auto' }}>
+            <h4 style={{ fontSize: '0.9rem', fontWeight: 600, color: 'var(--text-muted)', margin: '0 0 8px' }}>
+              방콕 SKJ 최근 고시 (입체 비교)
+            </h4>
+            <VolumeBarChart
+              data={bangkokVolume}
+              name="방콕 SKJ"
+              unit="($/MT)"
+              width={chartWidth}
+              height={160}
+            />
+          </div>
+        )}
       </section>
 
 
