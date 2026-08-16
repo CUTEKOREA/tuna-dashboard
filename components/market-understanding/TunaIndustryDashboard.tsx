@@ -55,6 +55,7 @@ import {
   ExportRankChart,
   OceanFleetChart,
   OceanOperatorChart,
+  OceanTopOwnerChart,
   RetailShareChart,
   OperatorFleetChart,
   CountryRankChart,
@@ -166,6 +167,24 @@ export const CATCH_CHART_SLOTS: Record<string, ChartSlot[]> = {
           rows={OCEAN_OPS.한국선사해역.rows}
           areas={OCEAN_OPS.한국선사해역._meta.해역목록}
         />
+      ),
+    },
+    {
+      title: '서·중부태평양 인가 선박 상위 선사 (척)',
+      caption:
+        '장미색이 한국 선사다. 3,023척의 소유사를 세어 상위 10곳을 뽑았다. 1위 필리핀 회사가 59척으로 2%가 안 된다 — 이 바다에는 지배적 선주가 없다. 「개인 소유」는 회사가 아니라 순위에서 뺐고, 이 수역에서 15.61%를 차지한다.',
+      telemetry: REGISTRY_SYNC,
+      render: () => (
+        <OceanTopOwnerChart rows={OCEAN_OPS.해역['서·중부태평양'].상위선사} area="서·중부태평양" />
+      ),
+    },
+    {
+      title: '동부태평양 인가 선박 상위 선사 (척)',
+      caption:
+        '장미색이 한국 선사다. **사조산업이 27척으로 1위**다 — 이 등록부에서 가장 많은 배를 가진 선주가 한국 회사다. 다만 2,230척 가운데 1.21%라 지배력이라 부를 규모는 아니다.',
+      telemetry: REGISTRY_SYNC,
+      render: () => (
+        <OceanTopOwnerChart rows={OCEAN_OPS.해역['동부태평양'].상위선사} area="동부태평양" />
       ),
     },
     {

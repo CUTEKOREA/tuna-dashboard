@@ -758,3 +758,45 @@ export function RetailShareChart({ rows }: { rows: RetailShareRow[] }) {
     </SafeResponsiveContainer>
   );
 }
+
+/**
+ * 해역별 세계 상위 선사 — 한국 선사가 그 안에서 어디 있는지 함께 본다.
+ *
+ * ⚠ 「개인 소유」는 순위에서 빼 뒀다. 선사가 아니라 개인 소유 선박을 모은 칸이라
+ *   나란히 세우면 1위가 되는데 그건 회사가 아니다. 비중은 캡션에 따로 적는다.
+ */
+export function OceanTopOwnerChart({
+  rows,
+  area,
+}: {
+  rows: { 선사: string; 척수: number; 비중?: number }[];
+  area: string;
+}) {
+  const animate = !useReducedMotion();
+  const data = useMemo(() => rows.slice(0, 10), [rows]);
+
+  return (
+    <SafeResponsiveContainer width="100%" height={330}>
+      <BarChart data={data} layout="vertical" margin={{ top: 12, right: 24, left: 8, bottom: 8 }}>
+        <CartesianGrid stroke="var(--mu-grid)" strokeDasharray="3 3" horizontal={false} />
+        <XAxis type="number" {...AXIS} allowDecimals={false} />
+        <YAxis
+          type="category"
+          dataKey="선사"
+          {...AXIS}
+          width={132}
+          tickFormatter={(v: string) => (v.length > 16 ? `${v.slice(0, 15)}…` : v)}
+        />
+        <Tooltip content={<Tip unit="척" />} />
+        <Bar dataKey="척수" name={`${area} 인가 선박 (척)`} radius={[0, 3, 3, 0]} isAnimationActive={animate}>
+          {data.map((row) => (
+            <Cell
+              key={row.선사}
+              fill={/[가-힣]/.test(row.선사) ? TUNA_ROLE.highlight : TUNA_ROLE.volume}
+            />
+          ))}
+        </Bar>
+      </BarChart>
+    </SafeResponsiveContainer>
+  );
+}

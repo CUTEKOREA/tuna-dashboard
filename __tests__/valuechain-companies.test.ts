@@ -157,8 +157,16 @@ describe('해역별 선사 — 데이터', () => {
     // 해역별 척수를 더하면 중복 인가 때문에 실제 선단보다 커진다
     expect(ocean._meta.합산금지).toContain('더하지');
     expect(ocean.한국선사해역._meta.주의).toContain('총 선단');
-    // 한국 선적만 담은 두 해역이라는 사실을 숨기지 않는다
-    expect(ocean._meta.수집주의).toContain('한국 선적만');
+    // 기구마다 소유사 표기율이 다르다는 사실을 숨기지 않는다
+    expect(ocean._meta.수집주의).toContain('소유사 표기율');
+    // 전 선적을 담았는지 — 한국 아닌 선사가 상위에 있어야 한다
+    const wc = ocean.해역['서·중부태평양'].상위선사;
+    expect(wc.length).toBeGreaterThanOrEqual(5);
+    expect(wc.some((r) => !/[가-힣]/.test(r.선사))).toBe(true);
+    // 「개인 소유」는 선사가 아니라 순위에서 빠져 있어야 한다
+    for (const area of ocean.한국선사해역._meta.해역목록) {
+      expect(ocean.해역[area].상위선사.some((r) => r.선사 === '개인 소유')).toBe(false);
+    }
   });
 });
 
@@ -187,6 +195,8 @@ describe('밸류체인 기업 — 화면 노출', () => {
     expect(titles).toContain('선사별 참치 선단 (척)');
     expect(titles).toContain('한국 원양업계 회사별 수출실적 (천달러)');
     expect(titles).toContain('한국 선사의 해역별 인가 선박 (척)');
+    expect(titles).toContain('서·중부태평양 인가 선박 상위 선사 (척)');
+    expect(titles).toContain('동부태평양 인가 선박 상위 선사 (척)');
     expect(titles).toContain('국내 참치캔 시장 점유율 (%)');
   });
 
@@ -217,6 +227,10 @@ describe('밸류체인 기업 — 화면 노출', () => {
     expect(s02).toContain('더하지 마라');
     // 개인정보 처리를 밝혔는지
     expect(s02).toContain('실명을 기록하지 않았');
+    // 세계 순위에서 한국 선사의 자리
+    expect(s02).toContain('사조산업이 27척으로 1위');
+    // 조업 단계가 흩어져 있다는 요지
+    expect(s02).toContain('시장을 쥔 선주가 없다');
 
     // 소매 단계
     const s07 = textOf(TUNA_ALL_NARRATIVES, 's07');

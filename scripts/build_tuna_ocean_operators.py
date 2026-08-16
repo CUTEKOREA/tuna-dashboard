@@ -49,8 +49,8 @@ REGISTRY = BASE / "RFMO_선박등록부/2026-08-17"
 IOTC = REGISTRY / "IOTC_active_vessels_20250228.xlsx"
 ICCAT = REGISTRY / "ICCAT_vessels_active_2026-08-17.tsv"
 CCSBT = BASE / "RFMO_어획통계_원본/all_vessels_2026-05-04.csv"
-WCPFC = REGISTRY / "WCPFC_RFV_korea_2026-08-17.json"
-IATTC = REGISTRY / "IATTC_RVR_korea_2026-08-17.json"
+WCPFC = REGISTRY / "WCPFC_RFV_all_2026-08-17.json"
+IATTC = REGISTRY / "IATTC_RVR_all_2026-08-17.json"
 
 OUT_PATH = Path(__file__).resolve().parent.parent / "public/data/tuna_ocean_operators_v1.json"
 
@@ -100,36 +100,59 @@ KO_NAME = {
 #   개인정보이므로 화면에도 산출물에도 남기지 않고 「개인 소유」 한 칸으로 모은다.
 INDIVIDUAL_KEY = "개인 소유"
 
+# 법인 표지. 영어·일본어·프랑스어·동남아 표기를 함께 담는다 — 하나라도 빠지면 회사가 개인으로 잡힌다.
+CORPORATE_MARKS = (
+    "CO", "LTD", "LIMITED", "CORP", "INC", "COMPANY", "FISHER", "FISHING", "SHIPPING",
+    "SUSAN", "MULSAN", "ENTERPRISE", "INTERNATIONAL", "PESQUER", "PESCA", "TUNA", "MARINE",
+    "SEAFOOD", "INDUSTR", "TRADING", "GROUP", "HOLDING", "KABUSHIKI", "KAISHA", "KAISYA",
+    "GAISHA", "GAISYA", "GYOGYO", "SUISAN", "MARU", "LLC", "LLP", "SCA", "SCP", "SARL",
+    "SAS", "SNC", "ARMEMENT", "NAVIER", "ARMADOR", "VENTURE", "OCEAN", "SDN", "BHD", "PTE",
+    "PT.", "CV.", "S.A", "S.L", "A/S", "FISKE", "SEA", "PACIFIC", "ATLANT", "BOAT", "VESSEL",
+    "AGENC", "SHOJI", "MANAGEMENT", "SERVICES", "RESOURCES", "FOODS", "PRODUCTS", "EXPORT",
+    "IMPORT", "LINE", "STAR", "BROTHERS", "KEN",
+)
+
+# 사람 이름 꼴 — `SHEU, JHE-MING` 과 `Dexter C. Caballero`
+PERSON_COMMA = re.compile(r"^[A-Z][A-Za-z'’\-]+,\s*[A-Z][A-Za-z'’\- ]+$")
+PERSON_INITIAL = re.compile(r"^[A-Z][a-zA-Z'’\-]+\s+[A-Z]\.\s+[A-Z][a-zA-Z'’\-]+$")
+
 
 def is_individual(name: str) -> bool:
-    """법인 표지가 없고 사람 이름 꼴이면 개인으로 본다.
+    """법인이 아닌 **개인 소유자**인지 본다. 맞으면 실명을 기록하지 않는다.
 
-    ⚠ **원표기로 판정해야 한다.** 접미사를 떼어낸 뒤에 보면 `SILLA CO., LTD` 가
-      `SILLA` 가 되어 개인으로 잡힌다. 실제로 한 번 그렇게 잡혀 신라교역·그린월드가
-      「개인 소유」로 뭉개졌다.
+    ⚠ 원표기로 판정한다. 접미사를 떼고 보면 `SILLA CO., LTD` 가 `SILLA` 가 되어
+      회사가 개인으로 잡힌다 — 실제로 그렇게 신라교역이 뭉개진 적이 있다.
 
-    회사명에는 거의 항상 CO/LTD/CORP/FISHERIES/SHIPPING 같은 말이 붙는다.
-    그런 표지가 하나도 없고 세 낱말 이하이면 개인으로 본다.
+    ⚠ 법인 표지는 영어만이 아니다. 일본 `KABUSHIKI KAISHA`(株式会社)·`YUGENGAISYA`(有限会社),
+      프랑스 `SCA`·`SARL`, 인도네시아 `PT.`, 말레이시아 `SDN BHD` 를 빠뜨렸다가
+      회사 766척을 개인으로 잘못 묶은 적이 있다. 판정은 **좁게** 한다 —
+      사람 이름 꼴이 분명할 때만 개인으로 본다.
     """
-    text = (name or "").upper()
-    marks = (
-        "CO", "LTD", "CORP", "INC", "COMPANY", "FISHER", "FISHING", "SHIPPING",
-        "SUSAN", "MULSAN", "ENTERPRISE", "INTERNATIONAL", "S.A", "SA", "PESQUER",
-        "TUNA", "MARINE", "SEAFOOD", "INDUSTR", "TRADING", "GROUP", "HOLDING",
-    )
-    if any(m in text for m in marks):
+    text = (name or "").strip()
+    if not text:
         return False
+    if any(m in text.upper() for m in CORPORATE_MARKS):
+        return False
+    if PERSON_COMMA.match(text) or PERSON_INITIAL.match(text):
+        return True
     words = [w for w in re.split(r"[\s,]+", text) if w]
-    return 1 <= len(words) <= 3
+    # 짧은 낱말 두셋으로만 이뤄진 대문자 이름 (`KIM JU SUK`)
+    return len(words) in (2, 3) and all(len(w) <= 5 for w in words) and text.upper() == text
 
 
-KOREAN_FLAGS = {
-    "Republic of Korea",   # CCSBT
-    "KOR",                 # ICCAT
-    "Korea_Republic of",   # IOTC
-    "Korea, Republic of",
-    "Korea",
-}
+
+# ⚠ 기구마다 한국을 다르게 적는다 — `Republic of Korea`(CCSBT) · `KOR`(ICCAT) ·
+#   `Korea_Republic of`(IOTC) · `Korea (Republic of)`(WCPFC) · `Korea`(IATTC).
+#   집합으로 나열했다가 표기 하나를 빠뜨려 그 해역의 한국 선사가 0으로 나온 적이 두 번 있다.
+#   목록을 늘리는 대신 **문자열을 정규화해 판정한다.**
+def is_korean_flag(flag: str) -> bool:
+    text = re.sub(r"[^A-Z]", "", (flag or "").upper())
+    if text == "KOR":
+        return True
+    # 북한을 잘못 잡지 않는다
+    if "DEMOCRATICPEOPLE" in text or text.startswith("DPRK"):
+        return False
+    return "KOREA" in text
 
 
 def normalize(name: str) -> str:
@@ -259,17 +282,16 @@ def read_iotc() -> tuple[list[tuple[str, str, str]], dict]:
 
 
 def read_scraped(path, area, org, source, note) -> tuple[list[tuple[str, str, str]], dict]:
-    """브라우저 자동화로 받은 한국 선적 전용 파일.
+    """선박별 상세를 훑어 받은 등록부. 전 선적을 담았다.
 
-    ⚠ 전체 등록부가 아니라 **한국 선적만** 담겨 있다. 그래서 이 블록의
-      「소유사 수」와 「상위5 집중도」는 세계 기준이 아니라 한국 기준이다.
+    목록 표에 소유사가 없어 상세를 하나씩 받았다. 수집 방법은 아카이브 README 에 있다.
     """
     if not path.exists():
         raise SystemExit(f"원본을 찾을 수 없다: {path}")
     payload = json.loads(path.read_text(encoding="utf-8"))
     rows = payload["vessels"]
     out = [
-        (normalize(r.get("owner", "")), (r.get("owner") or "").strip(), "KOR")
+        (normalize(r.get("owner", "")), (r.get("owner") or "").strip(), (r.get("flag") or "").strip())
         for r in rows
         if (r.get("owner") or "").strip()
     ]
@@ -277,11 +299,11 @@ def read_scraped(path, area, org, source, note) -> tuple[list[tuple[str, str, st
         "기구": org,
         "해역": area,
         "기준": f"{payload.get('collected')} 수집",
-        "전체행": payload.get("registerTotal", len(rows)),
+        "전체행": len(rows),
         "유효척수": len(out),
+        "소유사표기율": round(len(out) / len(rows) * 100, 1),
         "출처": source,
         "등급": "A",
-        "한국선적만": True,
         "주의": note,
     }
     return out, meta
@@ -295,6 +317,8 @@ def summarize(entries: list[tuple[str, str, str]], meta: dict) -> dict:
         display.setdefault(key, raw)
 
     total = sum(counter.values()) or 1
+    # 「개인 소유」는 선사가 아니라 묶음이라 순위에 넣지 않는다. 비중만 따로 낸다.
+    ranked = [(k, v) for k, v in counter.most_common() if k != INDIVIDUAL_KEY]
     top = [
         {
             "선사": ko(key, display[key]),
@@ -302,11 +326,11 @@ def summarize(entries: list[tuple[str, str, str]], meta: dict) -> dict:
             "척수": count,
             "비중": round(count / total * 100, 2),
         }
-        for key, count in counter.most_common(10)
+        for key, count in ranked[:10]
     ]
 
     korean = collections.Counter(
-        key for key, _, flag in entries if key and flag in KOREAN_FLAGS
+        key for key, _, flag in entries if key and is_korean_flag(flag)
     )
     korea_rows = [
         {
@@ -318,12 +342,15 @@ def summarize(entries: list[tuple[str, str, str]], meta: dict) -> dict:
         for key, count in korean.most_common()
     ]
 
-    top5 = sum(count for _, count in counter.most_common(5))
+    top5 = sum(count for _, count in ranked[:5])
+    individual = counter.get(INDIVIDUAL_KEY, 0)
     return {
         "_meta": {
             **meta,
-            "소유사수": len(counter),
+            "소유사수": len(ranked),
             "상위5집중도": round(top5 / total * 100, 2),
+            "개인소유척수": individual,
+            "개인소유비중": round(individual / total * 100, 2),
             "한국척수": sum(korean.values()),
         },
         "상위선사": top,
@@ -341,16 +368,17 @@ def main() -> None:
             "서·중부태평양",
             "WCPFC",
             "중서부태평양수산위원회 어선기록부 (공개 열람)",
-            "이 파일은 한국 선적만 담았다. 등록부 전체는 3,039척이고 그중 한국이 174척이다. "
-            "소유사는 목록 표에 없고 선박별 상세 페이지에만 있다.",
+            "소유사는 목록 표에 없고 선박별 상세 페이지에만 있어 3,039척을 하나씩 받았다. "
+            "표기율 99.5% 로 거의 빠짐이 없다.",
         ),
         lambda: read_scraped(
             IATTC,
             "동부태평양",
             "IATTC",
             "미주열대참치위원회 지역선박등록부 (공개 열람)",
-            "이 파일은 한국 선적만 담았다. 등록부 전체는 4,725척이고 그중 한국이 101척이다. "
-            "소유사는 목록에 없고 선박별 상세에만 있다.",
+            "4,725척을 하나씩 받았으나 소유사 표기율이 47.2% 다. 나라마다 편차가 커서 "
+            "중국·한국은 100%, 칠레는 3% 다 — 연안 소형선이 많은 나라일수록 낮다. "
+            "소유사 집계는 표기가 있는 행에 한정된다.",
         ),
     ]
     oceans = {}
@@ -405,9 +433,11 @@ def main() -> None:
                 "서·중부태평양(WCPFC) · 동부태평양(IATTC)"
             ),
             "수집주의": (
-                "서·중부태평양과 동부태평양은 목록에 소유사가 없어 선박별 상세를 하나씩 확인했고 "
-                "**한국 선적만** 담았다. 그래서 두 해역의 「소유사 수」와 「상위5 집중도」는 "
-                "세계 기준이 아니라 한국 기준이라, 앞의 세 해역과 나란히 비교하면 안 된다."
+                "다섯 해역 모두 전 선적을 담았다. 서·중부태평양과 동부태평양은 목록에 소유사가 없어 "
+                "선박별 상세를 하나씩 받았다(각 3,039척·4,725척). "
+                "다만 **소유사 표기율이 기구마다 다르다** — 서·중부태평양 99.5%, 동부태평양 47.2%, "
+                "대서양 48.4% 다. 표기가 없는 행은 집계에서 빠지므로 「소유사 수」를 "
+                "기구 간에 나란히 비교하면 안 된다."
             ),
             "합산금지": (
                 "해역별 척수를 더하지 마라. 한 배가 두 기구에 동시 인가된 사례가 12% 수준이고, "

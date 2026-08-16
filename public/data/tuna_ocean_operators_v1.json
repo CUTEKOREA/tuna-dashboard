@@ -3,7 +3,7 @@
   "생성일": "2026-08-17",
   "주제": "참치 해역별 선사 — 어느 회사가 어느 바다에 배를 두는가",
   "확보": "다섯 기구 전부 — 인도양(IOTC) · 대서양(ICCAT) · 남방참다랑어(CCSBT) · 서·중부태평양(WCPFC) · 동부태평양(IATTC)",
-  "수집주의": "서·중부태평양과 동부태평양은 목록에 소유사가 없어 선박별 상세를 하나씩 확인했고 **한국 선적만** 담았다. 그래서 두 해역의 「소유사 수」와 「상위5 집중도」는 세계 기준이 아니라 한국 기준이라, 앞의 세 해역과 나란히 비교하면 안 된다.",
+  "수집주의": "다섯 해역 모두 전 선적을 담았다. 서·중부태평양과 동부태평양은 목록에 소유사가 없어 선박별 상세를 하나씩 받았다(각 3,039척·4,725척). 다만 **소유사 표기율이 기구마다 다르다** — 서·중부태평양 99.5%, 동부태평양 47.2%, 대서양 48.4% 다. 표기가 없는 행은 집계에서 빠지므로 「소유사 수」를 기구 간에 나란히 비교하면 안 된다.",
   "합산금지": "해역별 척수를 더하지 마라. 한 배가 두 기구에 동시 인가된 사례가 12% 수준이고, 받지 못한 두 기구가 빠져 있어 어느 쪽으로도 실제 선단과 맞지 않는다.",
   "개인정보": "법인이 아닌 개인 소유자는 실명을 기록하지 않는다. 등록부에 개인명이 적힌 행은 「개인 소유」 한 칸으로 모았고 원표기도 남기지 않았다.",
   "정규화": "같은 회사가 등록부마다 다르게 적혀 있다(뒤 공백·법인 접미사·원본 오타). 대소문자·구두점·접미사를 걷어 한 칸에 모았고, 오타는 별칭표로 따로 이었다.",
@@ -20,16 +20,24 @@
     "출처": "인도양참치위원회 활성선박 목록",
     "등급": "A",
     "주의": "원본은 연도 누적 파일이라 91,900행이다. 최신 2024년만 걸러 4,202척을 봤다. 걸르지 않으면 십몇 년 전 배가 지금 있는 것처럼 잡힌다.",
-    "소유사수": 828,
-    "상위5집중도": 68.78,
+    "소유사수": 2776,
+    "상위5집중도": 3.31,
+    "개인소유척수": 271,
+    "개인소유비중": 6.45,
     "한국척수": 8
    },
    "상위선사": [
     {
-     "선사": "개인 소유",
-     "원표기": "(개인 소유자 — 실명 미기록)",
-     "척수": 2821,
-     "비중": 67.13
+     "선사": "BANDAR NELAYAN, PT.",
+     "원표기": "BANDAR NELAYAN, PT.",
+     "척수": 58,
+     "비중": 1.38
+    },
+    {
+     "선사": "INTIMAS SURYA, PT.",
+     "원표기": "INTIMAS SURYA, PT.",
+     "척수": 26,
+     "비중": 0.62
     },
     {
      "선사": "PERINTIS JAYA INTERNASIONAL, PT",
@@ -78,12 +86,6 @@
      "원표기": "KHA YANG MARINE SDN. BHD.",
      "척수": 12,
      "비중": 0.29
-    },
-    {
-     "선사": "ARMADA DEWATA TIMUR, PT.",
-     "원표기": "ARMADA DEWATA TIMUR, PT.",
-     "척수": 11,
-     "비중": 0.26
     }
    ],
    "한국선사": [
@@ -112,17 +114,13 @@
     "출처": "대서양참치보존위원회 선박기록부",
     "등급": "A",
     "주의": "전체 14,685행 중 소유사 이름이 적힌 것은 7,110행(48.4%)뿐이다. 소유사 집계는 이 안에서만 유효하다.",
-    "소유사수": 3020,
-    "상위5집중도": 51.93,
+    "소유사수": 6018,
+    "상위5집중도": 1.34,
+    "개인소유척수": 260,
+    "개인소유비중": 3.66,
     "한국척수": 15
    },
    "상위선사": [
-    {
-     "선사": "개인 소유",
-     "원표기": "(개인 소유자 — 실명 미기록)",
-     "척수": 3612,
-     "비중": 50.8
-    },
     {
      "선사": "BERTRAND PECHE EXPORT (BPE)",
      "원표기": "BERTRAND PECHE EXPORT (BPE)",
@@ -160,22 +158,28 @@
      "비중": 0.18
     },
     {
+     "선사": "AYOUJIL MOHAMED",
+     "원표기": "AYOUJIL MOHAMED",
+     "척수": 12,
+     "비중": 0.17
+    },
+    {
+     "선사": "No info",
+     "원표기": "No info",
+     "척수": 11,
+     "비중": 0.15
+    },
+    {
      "선사": "PANOFI CO. LTD",
      "원표기": "PANOFI CO. LTD",
      "척수": 8,
      "비중": 0.11
     },
     {
-     "선사": "DALIAN OCEAN FISHING CO.,LTD.",
-     "원표기": "DALIAN OCEAN FISHING CO.,LTD.",
-     "척수": 7,
-     "비중": 0.1
-    },
-    {
-     "선사": "Fujian Yaoxiang Marine Fisheries Co.,Ltd",
-     "원표기": "Fujian Yaoxiang Marine Fisheries Co.,Ltd",
-     "척수": 7,
-     "비중": 0.1
+     "선사": "MOHAMED AARAB",
+     "원표기": "MOHAMED AARAB",
+     "척수": 8,
+     "비중": 0.11
     }
    ],
    "한국선사": [
@@ -221,16 +225,24 @@
     "출처": "남방참다랑어보존위원회 승인선박 등록부",
     "등급": "A",
     "주의": "어종 단위 승인 목록이다. 참치 선단 전체가 아니라 남방참다랑어를 잡아도 되는 배들이다.",
-    "소유사수": 351,
-    "상위5집중도": 38.52,
+    "소유사수": 458,
+    "상위5집중도": 17.52,
+    "개인소유척수": 10,
+    "개인소유비중": 1.16,
     "한국척수": 16
    },
    "상위선사": [
     {
-     "선사": "개인 소유",
-     "원표기": "(개인 소유자 — 실명 미기록)",
-     "척수": 270,
-     "비중": 31.32
+     "선사": "BANDAR NELAYAN, PT.",
+     "원표기": "BANDAR NELAYAN, PT.",
+     "척수": 74,
+     "비중": 8.58
+    },
+    {
+     "선사": "INTIMAS SURYA, PT.",
+     "원표기": "INTIMAS SURYA, PT.",
+     "척수": 26,
+     "비중": 3.02
     },
     {
      "선사": "PERINTIS JAYA INTERNASIONAL, PT",
@@ -263,6 +275,12 @@
      "비중": 1.28
     },
     {
+     "선사": "I NYOMAN MORIS",
+     "원표기": "I NYOMAN MORIS",
+     "척수": 10,
+     "비중": 1.16
+    },
+    {
      "선사": "SUMBER MINA SAMUDERA, PT.",
      "원표기": "SUMBER MINA SAMUDERA, PT.",
      "척수": 10,
@@ -273,18 +291,6 @@
      "원표기": "KILAT MANDIRI JAYA, PT.",
      "척수": 9,
      "비중": 1.04
-    },
-    {
-     "선사": "KILAT MUDAH JAYA, PT.",
-     "원표기": "KILAT MUDAH JAYA, PT.",
-     "척수": 8,
-     "비중": 0.93
-    },
-    {
-     "선사": "WANG TAT CORPORATION PTE LTD.",
-     "원표기": "WANG TAT CORPORATION PTE LTD.",
-     "척수": 8,
-     "비중": 0.93
     }
    ],
    "한국선사": [
@@ -319,76 +325,78 @@
     "기구": "WCPFC",
     "해역": "서·중부태평양",
     "기준": "2026-08-17 수집",
-    "전체행": 174,
-    "유효척수": 174,
+    "전체행": 3039,
+    "유효척수": 3023,
+    "소유사표기율": 99.5,
     "출처": "중서부태평양수산위원회 어선기록부 (공개 열람)",
     "등급": "A",
-    "한국선적만": true,
-    "주의": "이 파일은 한국 선적만 담았다. 등록부 전체는 3,039척이고 그중 한국이 174척이다. 소유사는 목록 표에 없고 선박별 상세 페이지에만 있다.",
-    "소유사수": 33,
-    "상위5집중도": 53.45,
+    "주의": "소유사는 목록 표에 없고 선박별 상세 페이지에만 있어 3,039척을 하나씩 받았다. 표기율 99.5% 로 거의 빠짐이 없다.",
+    "소유사수": 1232,
+    "상위5집중도": 6.91,
+    "개인소유척수": 472,
+    "개인소유비중": 15.61,
     "한국척수": 174
    },
    "상위선사": [
     {
+     "선사": "MARCHAEL SEA VENTURES CORPORATION",
+     "원표기": "MARCHAEL SEA VENTURES CORPORATION",
+     "척수": 59,
+     "비중": 1.95
+    },
+    {
+     "선사": "CNFC OVERSEAS FISHERIES CO., LTD",
+     "원표기": "CNFC OVERSEAS FISHERIES CO., LTD",
+     "척수": 48,
+     "비중": 1.59
+    },
+    {
+     "선사": "TRANS-PACIFIC JOURNEY FISHING CORP.",
+     "원표기": "TRANS-PACIFIC JOURNEY FISHING CORP.",
+     "척수": 38,
+     "비중": 1.26
+    },
+    {
+     "선사": "BINTANG MANDIRI BERSAUDARA, PT.",
+     "원표기": "BINTANG MANDIRI BERSAUDARA, PT.",
+     "척수": 33,
+     "비중": 1.09
+    },
+    {
      "선사": "사조산업",
      "원표기": "SAJO INDUSTRIES Co., Ltd",
      "척수": 31,
-     "비중": 17.82
+     "비중": 1.03
+    },
+    {
+     "선사": "LIANCHENG OVERSEAS FISHERY(SHENZHEN)CO.,LTD.",
+     "원표기": "LIANCHENG OVERSEAS FISHERY(SHENZHEN)CO.,LTD.",
+     "척수": 29,
+     "비중": 0.96
+    },
+    {
+     "선사": "RONGCHENG OCEAN FISHERY CO., LTD",
+     "원표기": "RONGCHENG OCEAN FISHERY CO., LTD",
+     "척수": 26,
+     "비중": 0.86
+    },
+    {
+     "선사": "CHINA SOUTHERN FISHERY (SHENZHEN)CO.,LTD.",
+     "원표기": "CHINA SOUTHERN FISHERY (SHENZHEN)CO.,LTD.",
+     "척수": 24,
+     "비중": 0.79
+    },
+    {
+     "선사": "ZHOUSHAN RONGYOURONG OCEAN FISHERY CO.,LTD.",
+     "원표기": "ZHOUSHAN RONGYOURONG OCEAN FISHERY CO.,LTD.",
+     "척수": 23,
+     "비중": 0.76
     },
     {
      "선사": "동원산업",
      "원표기": "DONGWON INDUSTRIES Co., Ltd",
      "척수": 23,
-     "비중": 13.22
-    },
-    {
-     "선사": "신라교역",
-     "원표기": "SILLA Co., Ltd",
-     "척수": 15,
-     "비중": 8.62
-    },
-    {
-     "선사": "동원수산",
-     "원표기": "DONGWON FISHERIES CO.,LTD",
-     "척수": 14,
-     "비중": 8.05
-    },
-    {
-     "선사": "세인해운",
-     "원표기": "SEIN SHIPPING CO.,LTD",
-     "척수": 10,
-     "비중": 5.75
-    },
-    {
-     "선사": "지성해운",
-     "원표기": "JISUNG SHIPPING CO., LTD",
-     "척수": 10,
-     "비중": 5.75
-    },
-    {
-     "선사": "대해수산",
-     "원표기": "DAEHAE FISHERIES CO.,LTD",
-     "척수": 8,
-     "비중": 4.6
-    },
-    {
-     "선사": "씨스카이물산",
-     "원표기": "SEA SKY MULSAN CO., LTD.",
-     "척수": 7,
-     "비중": 4.02
-    },
-    {
-     "선사": "경양수산",
-     "원표기": "KYUNG YANG  FISHERIES CO.,LTD",
-     "척수": 7,
-     "비중": 4.02
-    },
-    {
-     "선사": "케이에이치디코리아",
-     "원표기": "KHD KOREA CO.,LTD",
-     "척수": 4,
-     "비중": 2.3
+     "비중": 0.76
     }
    ],
    "한국선사": [
@@ -598,13 +606,15 @@
     "해역": "동부태평양",
     "기준": "2026-08-17 수집",
     "전체행": 4725,
-    "유효척수": 101,
+    "유효척수": 2230,
+    "소유사표기율": 47.2,
     "출처": "미주열대참치위원회 지역선박등록부 (공개 열람)",
     "등급": "A",
-    "한국선적만": true,
-    "주의": "이 파일은 한국 선적만 담았다. 등록부 전체는 4,725척이고 그중 한국이 101척이다. 소유사는 목록에 없고 선박별 상세에만 있다.",
-    "소유사수": 14,
-    "상위5집중도": 65.35,
+    "주의": "4,725척을 하나씩 받았으나 소유사 표기율이 47.2% 다. 나라마다 편차가 커서 중국·한국은 100%, 칠레는 3% 다 — 연안 소형선이 많은 나라일수록 낮다. 소유사 집계는 표기가 있는 행에 한정된다.",
+    "소유사수": 1296,
+    "상위5집중도": 4.98,
+    "개인소유척수": 0,
+    "개인소유비중": 0.0,
     "한국척수": 101
    },
    "상위선사": [
@@ -612,61 +622,61 @@
      "선사": "사조산업",
      "원표기": "Sajo Industries Company, Ltd.",
      "척수": 27,
-     "비중": 26.73
+     "비중": 1.21
     },
     {
-     "선사": "동원수산",
-     "원표기": "Dong Won Fisheries Company, Ltd.",
-     "척수": 14,
-     "비중": 13.86
+     "선사": "Pesca Azteca, S.A. de C. V.",
+     "원표기": "Pesca Azteca, S.A. de C. V.",
+     "척수": 22,
+     "비중": 0.99
     },
     {
-     "선사": "신라교역",
-     "원표기": "Silla Company, Ltd.",
-     "척수": 9,
-     "비중": 8.91
+     "선사": "Zhoushan Rongyourong Ocean Fishery Co., Ltd.",
+     "원표기": "Zhoushan Rongyourong Ocean Fishery Co., Ltd.",
+     "척수": 21,
+     "비중": 0.94
     },
     {
-     "선사": "동원산업",
-     "원표기": "Dongwon Industries Company, Ltd.",
-     "척수": 8,
-     "비중": 7.92
+     "선사": "Zhejiang Ocean Family Co., Ltd.",
+     "원표기": "Zhejiang Ocean Family Co., Ltd.",
+     "척수": 21,
+     "비중": 0.94
     },
     {
-     "선사": "대해수산",
-     "원표기": "Dae Hae Fisheries Company, Ltd.",
-     "척수": 8,
-     "비중": 7.92
+     "선사": "Pingtairong Ocean Fishery Group Company, Ltd.",
+     "원표기": "Pingtairong Ocean Fishery Group Company, Ltd.",
+     "척수": 20,
+     "비중": 0.9
     },
     {
-     "선사": "경양수산",
-     "원표기": "Kyung Yang Fisheries Company, Ltd.",
-     "척수": 7,
-     "비중": 6.93
+     "선사": "Dalian Ocean Fishing Company, Ltd.",
+     "원표기": "Dalian Ocean Fishing Company, Ltd.",
+     "척수": 19,
+     "비중": 0.85
     },
     {
-     "선사": "씨스카이물산",
-     "원표기": "Sea Sky Mulsan Company, Ltd.",
-     "척수": 7,
-     "비중": 6.93
+     "선사": "Shandong Lidao Oceanic Technology Company Limited",
+     "원표기": "Shandong Lidao Oceanic Technology Company Limited",
+     "척수": 16,
+     "비중": 0.72
     },
     {
-     "선사": "한성기업",
-     "원표기": "Hansung Enterprise Company, Ltd.",
-     "척수": 4,
-     "비중": 3.96
+     "선사": "China Southern Fishery (Shenzhen) Company, Ltd.",
+     "원표기": "China Southern Fishery (Shenzhen) Company, Ltd.",
+     "척수": 15,
+     "비중": 0.67
     },
     {
-     "선사": "케이에이치디코리아",
-     "원표기": "KHD Korea Company, Ltd",
-     "척수": 4,
-     "비중": 3.96
+     "선사": "Shenzhen Rongheng Ocean Fishery Co., Ltd.",
+     "원표기": "Shenzhen Rongheng Ocean Fishery Co., Ltd.",
+     "척수": 15,
+     "비중": 0.67
     },
     {
-     "선사": "아그네스수산",
-     "원표기": "Agnes Fisheries Company, Ltd.",
-     "척수": 3,
-     "비중": 2.97
+     "선사": "Shenzhen Shengang Overseas Industrial Company, Ltd.",
+     "원표기": "Shenzhen Shengang Overseas Industrial Company, Ltd.",
+     "척수": 15,
+     "비중": 0.67
     }
    ],
    "한국선사": [
