@@ -46,7 +46,13 @@
 .protectedDetailGate>div { flex:1; min-width:0; }
 .protectedDetailGate strong { color:var(--dsc-ink); }
 .protectedDetailGate p { margin:5px 0 0; color:var(--dsc-ink-muted); font-size:.8rem; line-height:1.5; }
+.protectedDetailGate { flex-wrap:wrap; }
 .protectedDetailGate a,.protectedDetailGate button { display:inline-flex; align-items:center; justify-content:center; gap:6px; min-height:44px; padding:9px 14px; border:1px solid #509ee3; border-radius:9px; background:#509ee3; color:#fff; font:inherit; font-size:.78rem; font-weight:800; text-decoration:none; white-space:nowrap; cursor:pointer; }
+.stepUpMfa { display:flex; flex-direction:column; gap:8px; min-width:min(100%,280px); }
+.stepUpMfa label { color:var(--dsc-ink-muted); font-size:.74rem; font-weight:700; }
+.stepUpMfaRow { display:flex; flex-wrap:wrap; gap:8px; }
+.stepUpMfa input { min-height:44px; min-width:140px; padding:8px 12px; border:1px solid var(--dsc-surface-border); border-radius:9px; background:var(--dsc-bg-deep); color:var(--dsc-ink); font:inherit; letter-spacing:.12em; }
+.stepUpMfa p { margin:0; color:#b45309; font-size:.74rem; }
 
 .commandIntro { display:flex; align-items:flex-start; justify-content:space-between; gap:16px; padding:22px 24px; border:1px solid var(--dsc-surface-border); border-radius:var(--dsc-card-radius); background:var(--dsc-surface); box-shadow:var(--dsc-card-shadow); }
 .commandIntro h2 { margin:5px 0 7px; color:#f8fafc; font-size:1.45rem; }

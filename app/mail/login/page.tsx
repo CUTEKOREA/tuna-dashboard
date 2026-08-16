@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import MailAdminLogin from '@/components/MailAdminLogin';
+import { resolveProtectedReturnPath } from '@/lib/auth/protected-return';
 
 export const dynamic = 'force-dynamic';
 export const revalidate = 0;
@@ -12,12 +13,7 @@ export const metadata: Metadata = {
   },
 };
 
-type LoginReturnPath = '/mail' | '/fleet';
-
-export function resolveLoginReturnPath(value: string | string[] | undefined): LoginReturnPath {
-  const candidate = Array.isArray(value) ? value[0] : value;
-  return candidate === '/fleet' || candidate === '/mail' ? candidate : '/mail';
-}
+export { resolveProtectedReturnPath as resolveLoginReturnPath } from '@/lib/auth/protected-return';
 
 export default async function MailLoginPage({
   searchParams,
@@ -25,5 +21,5 @@ export default async function MailLoginPage({
   searchParams: Promise<{ next?: string | string[] }>;
 }) {
   const params = await searchParams;
-  return <MailAdminLogin returnTo={resolveLoginReturnPath(params.next)} />;
+  return <MailAdminLogin returnTo={resolveProtectedReturnPath(params.next)} />;
 }

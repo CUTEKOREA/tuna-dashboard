@@ -9,6 +9,7 @@ import {
   toggleTrashSelection,
 } from '@/lib/mail/bulk-trash';
 import { isUncertainMailSendResponse } from '@/lib/mail/send-response';
+import { resolveProtectedReturnPath } from '@/lib/auth/protected-return';
 import CompanySmtpPanel from './CompanySmtpPanel';
 import styles from './MailInboxDashboard.module.css';
 
@@ -422,6 +423,11 @@ export default function MailInboxDashboard() {
       }
       setEnrollment(null);
       setVerificationCode('');
+      const next = resolveProtectedReturnPath(new URLSearchParams(window.location.search).get('next') ?? undefined);
+      if (next === '/fleet') {
+        window.location.assign('/fleet');
+        return;
+      }
       setNotice('2단계 인증이 완료되었습니다.');
       await loadStatus();
     } catch {

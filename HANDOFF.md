@@ -1,3 +1,7 @@
+> 🛠️ **2026-08-16 — 선단 2차 인증이 메일로 튕기고 상세가 503** [Grok]:
+> - 라이브 `/api/fleet/daily`는 2차 인증 후 **503 `fleet_data_unavailable`**. AAL2는 통과했고 `FLEET_DAILY_DETAIL_JSON`이 공개 집계 SHA와 안 맞는다.
+> - 선단 MFA CTA가 `/mail`로 고정돼 인증 뒤 받은편지함에 남았다. 이제 선단에서 코드를 넣고, 메일은 `?next=/fleet`이면 선단으로 돌아온다.
+
 ## 2026-08-16 — 「시장 이해 > 오징어」 신설 [CC]
 
 

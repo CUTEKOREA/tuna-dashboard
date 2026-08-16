@@ -1,6 +1,10 @@
+import { readFileSync } from 'node:fs';
+import { join } from 'node:path';
 import { describe, expect, it } from 'vitest';
 
 import { resolveLoginReturnPath } from '@/app/mail/login/page';
+import { resolveProtectedReturnPath } from '@/lib/auth/protected-return';
+import { fleetDetailGateMessage } from '@/lib/fleet-daily-gate';
 
 describe('protected dashboard login return path', () => {
   it('allows only exact internal protected paths', () => {
@@ -11,5 +15,22 @@ describe('protected dashboard login return path', () => {
     expect(resolveLoginReturnPath('//example.com')).toBe('/mail');
     expect(resolveLoginReturnPath('/fleet?admin=1')).toBe('/mail');
     expect(resolveLoginReturnPath(undefined)).toBe('/mail');
+    expect(resolveProtectedReturnPath('/fleet')).toBe('/fleet');
+  });
+
+  it('keeps fleet MFA on the fleet page and returns from mail to fleet', () => {
+    const fleet = readFileSync(join(process.cwd(), 'components/FleetCommandCenter.tsx'), 'utf8');
+    const mail = readFileSync(join(process.cwd(), 'components/MailInboxDashboard.tsx'), 'utf8');
+    expect(fleet).not.toContain("href: '/mail'");
+    expect(fleet).toContain('FleetStepUpMfa');
+    expect(mail).toContain("if (next === '/fleet')");
+    expect(mail).toContain("window.location.assign('/fleet')");
+  });
+
+  it('explains a public-aggregate mismatch instead of a generic lock', () => {
+    expect(fleetDetailGateMessage({ status: 'error', code: 'fleet_data_unavailable' }))
+      .toBe('선박 상세 데이터가 공개 집계와 맞지 않습니다.');
+    expect(fleetDetailGateMessage({ status: 'denied', code: 'mfa_required' }))
+      .toBe('선박 상세는 2단계 인증 후 표시됩니다.');
   });
 });
