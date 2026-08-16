@@ -296,7 +296,10 @@ function StageSection({ stage, narrative }: { stage: IndustryStage; narrative: S
                   ? {
                       situation: widget.situation,
                       actionPlan: widget.takeaway,
-                      source: widget.source ?? '출처 미표기',
+                      // 원본에 없어 이 페이지가 채운 문장이면 그 사실을 출처 줄에 밝힌다.
+                      source: widget.narrativeFilled
+                        ? `${widget.source ?? '출처 미표기'} — 현황·실행지침은 이 차트의 데이터에서 끌어냈다`
+                        : (widget.source ?? '출처 미표기'),
                     }
                   : undefined
               }

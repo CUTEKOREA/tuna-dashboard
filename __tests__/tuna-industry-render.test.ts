@@ -144,6 +144,23 @@ describe('시장 이해 > 참치 — 데이터 인테이크', () => {
     expect(offenders, `한글화가 빠진 노출 문자열:\n${offenders.join('\n')}`).toEqual([]);
   });
 
+  it('모든 위젯이 현황·실행지침과 카드 설명을 갖췄다 (W-04)', () => {
+    // 셋 중 하나라도 비면 카드가 반쪽이 된다. 격자가 카드를 같은 행 높이로 늘리던 시절에는
+    // 그 반쪽 카드 아래가 통째로 비어 보였다 — 2026-08 사용자 지적으로 드러난 결함이다.
+    const offenders: string[] = [];
+    for (const stage of getTunaIndustryStages()) {
+      for (const widget of stage.widgets) {
+        if (!widget.situation?.trim()) offenders.push(`${widget.id}: 현황(SIT) 없음`);
+        if (!widget.takeaway?.trim()) offenders.push(`${widget.id}: 실행지침(TAK) 없음`);
+        // cardDesc 는 methodology 또는 source 에서 온다. 둘 다 없으면 출처 없는 위젯이다.
+        if (!widget.methodology?.trim() && !widget.source?.trim()) {
+          offenders.push(`${widget.id}: 방법론·출처 둘 다 없음`);
+        }
+      }
+    }
+    expect(offenders, `반쪽 카드:\n${offenders.join('\n')}`).toEqual([]);
+  });
+
   it('집계 기준연도가 FAO 현재 릴리스만큼 최신이다', () => {
     // 2026-08 감사에서 드러난 실수: 사전필터 추출본을 쓰는 바람에 어획 집계가 2022년에
     // 멈춰 있었다. FAO 어획통계의 현재 기준연도는 2024년이다(2026-03 릴리스).
