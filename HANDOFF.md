@@ -25,12 +25,15 @@
 
 **다음 단계** — Partners 데이터로 「누가 누구에게 파는가」 양자 교역 위젯을 붙일 수 있다. PP(가공품 생산)는 2023년까지라 지금은 대기.
 
-> 🚢 **2026-08-16 17:16 KST — 해양수산본부 일일보고 기반 `/fleet` 보안 배포 후보 준비** [Codex]:
+> 🚢 **2026-08-16 17:42 KST — 해양수산본부 일일보고 기반 `/fleet` 보안 배포·운영 QA 완료** [Codex]:
 > - Google Drive 원문 DOCX 135건을 날짜순으로 파싱해 태평양·대서양·운반선·연승 최신 보고와 540회 검산 근거를 생성한다. `-`는 `null`로 유지하고 원문 금액·괄호값·보고 합계·상세 행을 strict 계약으로 교차 검증하며, 공개 화면에는 합계·전일 증감·품질 건수만 둔다.
 > - 최신 좌표·비고·일정·적재 상세는 Git 추적과 클라이언트 번들에서 제외했다. 무시된 최소 detail을 canonical SHA-256으로 공개 집계에 결속하고, 서버 환경변수에서만 읽어 관리자·선단 허용목록 교집합, 확인된 이메일, Supabase AAL2를 모두 통과한 요청에만 반환한다.
 > - `/api/fleet/daily`는 모든 결과에 `private, no-store`, `Vary: Cookie`, `nosniff`를 적용한다. 서비스워커는 `/api/fleet/`를 network-only로 처리하고 이전 API 캐시를 삭제하며, `/mail/login?next=/fleet`은 정확한 반환 경로만 허용한다.
 > - 최신 `main` 통합 후 fresh `npm run verify` 통과: ESLint 0 errors·기존 5 warnings, Python 3/3, Vitest 104파일·561테스트, API cache 157/157, production build 117 pages, 정적 파일 103개에서 실제 보호 상세 33개 누출 0, bundle 32 routes PASS다. 로컬 프로덕션 1440×1000·390×844 브라우저에서 4탭·23개 지도 마커·툴팁·인증 거부·overflow 0을 확인했다.
-> - **다음 단계**: PR #457의 갱신된 Preview·App Quality Gate를 확인한 뒤 병합한다. 병합 후 `leedonggun.co.kr/fleet`과 비인증 API·정적 번들 누출을 운영에서 재검증한다.
+> - PR **#457**을 squash merge SHA `4cccb3d171b199a9d42b76829d49f7d5c573d3aa`로 병합했다. main App Quality Gate `31936439928`과 Data Freshness Audit `31936439926`이 성공했고, Production deployment `5929172216`도 Ready다. 현재 `leedonggun.co.kr` alias는 후속 main `e249f93`의 `dpl_G3Dt58hBZzjHCGZHSjYYdFRMYEqX`를 제공하며 Fleet merge SHA를 조상으로 포함한다.
+> - 실서비스 `/fleet`은 HTTP 200이고 잠금 상태에서도 원문 기반 공개 KPI 335·3,957·75,514.8·9,922.3(MT)을 표시한다. 비인증 `/api/fleet/daily`는 401 `authentication_required`, `private, no-store`, `Vary: Cookie`, `nosniff`이며 브라우저 CacheStorage의 `/api/fleet/` 항목은 0이다. 현재 페이지가 참조하는 정적 JS 13개에서 실제 보호 좌표·비고·적재계획 33개 누출 0을 확인했다.
+> - 운영 Chromium 1440×1000·390×844에서 잠금 화면, 최신 KPI 애니메이션 최종값, 상세 DOM 0, overflow 0, page error·자체 HTTP 오류 0을 확인했다. Preview 검증용 branch-scoped 변수 5개는 병합 후 제거했고 Production Sensitive 변수는 유지했다.
+> - **다음 단계**: 실제 관리자+AAL2 브라우저 세션은 자격증명을 보유하지 않아 운영 상세 4탭을 실계정으로 열지 않았다. 관리자가 `/mail/login?next=/fleet`에서 로그인·2단계 인증 후 최신 선박 행·지도 툴팁을 1회 확인한다. 새 DOCX 수신 시 `scripts/sync_fleet_daily_reports.py`로 재생성하고 동일 누출 게이트를 거쳐 배포한다.
 
 > 🧩 **2026-08-16 17:00 KST — 「시장 이해 > 참치」 반쪽 카드 3건 수정** [CC]:
 > - **사용자 지적:** 일부 위젯 카드 하단에 현황분석·실행전략이 없고 큰 여백만 있다.
