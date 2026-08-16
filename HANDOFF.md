@@ -1,4 +1,4 @@
-> 📱 **2026-08-16 08:55 KST — `/market` iPhone·iPad Atuna 전체 이력 수정 최신 main 통합·배포 준비** [Codex]:
+> 📱 **2026-08-16 09:54 KST — `/market` iPhone·iPad Atuna 전체 이력 수정 최신 main 통합·배포 진행** [Codex]:
 > - 운영을 다시 실측해 Mac Safari·iPhone Safari UA 모두 `/api/atuna-prices`가 `restricted:true`, **13행(2026-05-12~2026-08-06)**만 반환하고 `/api/operation-access`는 404임을 확인했다. 이번 `/bangkok-office` 배포에는 `/market` 수정이 포함되지 않았다.
 > - 원인은 반응형 차트나 필터가 아니라 인증 상태 불일치다. 메뉴 잠금은 클라이언트 `sessionStorage`만 열지만 Atuna API는 Supabase 인증 쿠키만 인정해, 기존 로그인 쿠키가 없는 새 iPhone·iPad에는 정확히 90일 프리뷰가 내려갔다.
 > - 최신 `origin/main` 위에 `/api/operation-access`와 12시간 HMAC 서명 쿠키를 통합해 메뉴 접근 확인과 Atuna 전체 이력 권한을 같은 서버 상태로 맞췄다. 쿠키는 HTTPS에서 `Secure`·`HttpOnly`·`SameSite=Lax`, Atuna 응답은 `private, no-store`·`Vary: Cookie`·`revalidate=0`이다.
@@ -7,7 +7,9 @@
 > - 별도 재현에서 390px 차트 그리드가 `324→450px`로 내부 초과하던 것도 확인했다. 최소 열 폭을 컨테이너 100%로 제한해 **126px→0**으로 해소하고 데스크톱 2열 기준은 유지했다.
 > - RED→GREEN 모바일 폭·접근·서비스워커 테스트와 로컬 Production 접근 흐름을 확인했다. 새 비밀번호 입력 후 API는 `restricted:false`, **739행(1994-01-01~2026-08-06)**, `private/no-store`, `Vary: Cookie`를 반환하고 차트는 2022~2026 축을 표시한다. 전체 `npm run verify`는 ESLint 오류 0건(기존 경고 5건), TypeScript, Vitest **87파일·471테스트**, API cache **156/156**, Production build 117페이지, bundle 32라우트를 통과했다.
 > - 로컬 Production 브라우저 QA는 Chromium 1440px·WebKit 834px·390px에서 모두 HttpOnly 쿠키, `전체·주간`, 739행, 8개 라인, 문서 overflow 0, page error 0을 확인했다. 잠금 후 서버 `granted:false`와 쿠키 제거도 세 환경에서 통과했고, 외부 DoubleClick 403만 분리 관찰했다.
-> - **상태/다음 단계**: 전용 worktree `codex/market-mobile-full-range-prod-20260816`의 로컬 통합본이다. Production 변수 두 개가 현재 없으므로, 위 강도 조건을 만족하고 이전 공개값과 다른 새 메뉴 비밀번호를 사용자에게 확인한 뒤 서명 비밀값과 함께 Vercel Production에 등록하고 PR·배포·iPhone/iPad 운영 검증을 진행한다.
+> - Production 변수 두 개는 새 난수로 생성해 Vercel **Sensitive·Production only**와 macOS 키체인에만 같은 값으로 등록했다. 평문은 터미널·Git·문서에 남기지 않았고 키체인 저장값은 내부 일치 비교로 검증했다.
+> - PR **#450** 첫 CI에서 기존 하역 E2E가 production 모드에서도 `sessionStorage`만 주입해 보호 패널을 마운트하지 못하는 회귀를 확인했다. 같은 30초 selector timeout을 로컬 RED로 재현한 뒤, E2E 전용 자격증명을 격리 주입하고 실제 `/api/operation-access` POST·GET으로 HttpOnly 쿠키를 발급·검증하도록 바꿨다. 테스트 서버는 `127.0.0.1`에만 바인딩해 공개 테스트 자격증명과 개발 환경변수가 LAN에 노출되지 않도록 했다. 데스크톱·모바일·키보드·새로고침·API/청크 오류 격리 시나리오가 GREEN이다.
+> - **상태/다음 단계**: 전용 worktree `codex/market-mobile-full-range-prod-20260816`, PR #450에서 CI 회귀 수정 후 전체 게이트 재실행 단계다. 필수 검사 통과 뒤 squash merge·Vercel Production 완료·iPhone/iPad/데스크톱 운영 검증을 진행한다.
 >
 > 📈 **2026-08-16 08:04 KST — `/bangkok-office` 원어 시세 월·분기·연 입도 전환 운영 배포 완료** [Codex]:
 > - `원어 시세 추이`에 **주간·월별·분기별·연도별**, `시세 범위`에 **월별·분기별·연도별** 전환을 추가했다. 기본값은 기존 화면과 같은 주간 추이·연도별 범위이며, 두 컨트롤은 독립 상태로 동작한다.
