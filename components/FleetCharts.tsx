@@ -122,8 +122,8 @@ export function WeeklyCatchChart() {
         <YAxis yAxisId="right" orientation="right" stroke="var(--accent-danger)" axisLine={false} tickLine={false} tick={{ fontSize: rc.tickFontSize }} domain={[0, 30]} width={rc.isMobile ? 25 : 40} hide={rc.isMobile} />
         <Tooltip content={<FleetChartTip />} />
         <Legend wrapperStyle={{ fontSize: rc.legendFontSize }} />
-        <Bar yAxisId="left" dataKey="weekly" name="주간 어획량 (톤)" fill="var(--pastel-ice)" radius={[4, 4, 0, 0]} />
-        <Line yAxisId="right" type="monotone" dataKey="avg" name="일평균 어획량" stroke="var(--accent-danger)" dot={{ r: rc.isMobile ? 3 : 5, fill: 'var(--accent-danger)' }} strokeWidth={0} />
+        <Bar yAxisId="left" dataKey="weekly" name="주간 어획량 (톤)" fill="var(--chart-s1)" radius={[4, 4, 0, 0]} />
+        <Line yAxisId="right" type="monotone" dataKey="avg" name="일평균 어획량" stroke="var(--accent-danger)" dot={{ r: rc.isMobile ? 3 : 5, fill: 'var(--accent-danger)' }} strokeWidth={2} />
       </ComposedChart>
     </SafeResponsiveContainer>
   );

@@ -4,7 +4,7 @@
  * 선별 위젯(`SquidWidgetView`)이 원본 위젯을 그대로 보여주는 자리라면, 여기는 이 페이지가
  * 스스로 집계한 수치를 그리는 자리다. FAO 어획 2024년과 관세청 통관 2020~2024년이 원본이다.
  *
- * 색은 오징어 시그니처 그라디언트(purple → pink)를 따른다. 참치(cyan → blue)와 구분된다.
+ * 색은 `lib/squid-chart-colors` 한곳. 종 이름이면 고정, 역할이면 물량/강조/가공.
  */
 'use client';
 
@@ -26,11 +26,15 @@ import {
 
 import { getSmartRotation, truncateXAxis } from '@/lib/chart-standards';
 import type { SquidCatchData, SquidTradeData } from '@/lib/data/squid-industry';
+import {
+  SQUID_ROLE,
+  colorForBasket,
+  colorForSeries,
+  colorForSpecies,
+  dashForSeries,
+} from '@/lib/squid-chart-colors';
 import SafeResponsiveContainer from '../SafeResponsiveContainer';
 import styles from './TunaIndustryDashboard.module.css';
-
-/** 오징어 계열 색. 두족류 시그니처(purple → pink)에서 뽑았다. */
-const SQUID_COLORS = ['#7c3aed', '#db2777', '#0ea5e9', '#f59e0b', '#059669', '#64748b'];
 
 const MARGIN = { top: 12, right: 16, left: 0, bottom: 8 };
 const AXIS = { stroke: 'var(--mu-axis)', tick: { fill: 'var(--mu-axis)', fontSize: 11 } } as const;
@@ -103,7 +107,7 @@ export function CollapseChart({ data }: { data: SquidCatchData }) {
           type="monotone"
           dataKey="세계"
           name="세계 어획량 (톤)"
-          stroke={SQUID_COLORS[0]}
+          stroke={SQUID_ROLE.volume}
           strokeWidth={2.4}
           dot={false}
           isAnimationActive={animate}
@@ -112,7 +116,7 @@ export function CollapseChart({ data }: { data: SquidCatchData }) {
           type="monotone"
           dataKey="한국"
           name="한국 어획량 (톤)"
-          stroke={SQUID_COLORS[1]}
+          stroke={SQUID_ROLE.highlight}
           strokeWidth={2.4}
           dot={false}
           isAnimationActive={animate}
@@ -145,17 +149,7 @@ export function SpeciesMixChart({ data }: { data: SquidCatchData }) {
         <Tooltip content={<Tip unit=" 톤" />} />
         <Bar dataKey="어획량" name="어획량 (톤)" radius={[3, 3, 0, 0]} isAnimationActive={animate}>
           {rows.map((row, index) => (
-            <Cell
-              key={index}
-              // 갑오징어·미분류를 다른 색으로 둔다. 합산하면 안 되는 것이 눈에 보이게.
-              fill={
-                row.구분 === '오징어'
-                  ? SQUID_COLORS[0]
-                  : row.구분 === '갑오징어'
-                    ? SQUID_COLORS[1]
-                    : SQUID_COLORS[5]
-              }
-            />
+            <Cell key={index} fill={colorForSpecies(row.어종)} />
           ))}
         </Bar>
       </BarChart>
@@ -186,7 +180,10 @@ export function CountryRankChart({ data }: { data: SquidCatchData }) {
         <Tooltip content={<Tip unit=" 톤" />} />
         <Bar dataKey="어획량" name="어획량 (톤)" radius={[3, 3, 0, 0]} isAnimationActive={animate}>
           {rows.map((row, index) => (
-            <Cell key={index} fill={row.국가 === '대한민국' ? SQUID_COLORS[1] : SQUID_COLORS[0]} />
+            <Cell
+              key={index}
+              fill={row.국가 === '대한민국' ? SQUID_ROLE.highlight : SQUID_ROLE.volume}
+            />
           ))}
         </Bar>
       </BarChart>
@@ -218,7 +215,7 @@ export function AreaRankChart({ data }: { data: SquidCatchData }) {
         <Bar
           dataKey="어획량"
           name="어획량 (톤)"
-          fill={SQUID_COLORS[0]}
+          fill={SQUID_ROLE.volume}
           radius={[3, 3, 0, 0]}
           isAnimationActive={animate}
         />
@@ -252,7 +249,7 @@ export function KoreaTrendChart({ data }: { data: SquidCatchData }) {
           yAxisId="left"
           dataKey="어획량"
           name="한국 어획량 (톤)"
-          fill={SQUID_COLORS[0]}
+          fill={SQUID_ROLE.volume}
           radius={[3, 3, 0, 0]}
           isAnimationActive={animate}
         />
@@ -261,7 +258,7 @@ export function KoreaTrendChart({ data }: { data: SquidCatchData }) {
           type="monotone"
           dataKey="세계점유율"
           name="세계 점유율 (%)"
-          stroke={SQUID_COLORS[1]}
+          stroke={SQUID_ROLE.highlight}
           strokeWidth={2.2}
           dot={false}
           isAnimationActive={animate}
@@ -303,7 +300,7 @@ export function ImportOriginChart({ data }: { data: SquidTradeData }) {
           yAxisId="left"
           dataKey="수입액"
           name="수입액 (백만 달러)"
-          fill={SQUID_COLORS[0]}
+          fill={SQUID_ROLE.volume}
           radius={[3, 3, 0, 0]}
           isAnimationActive={animate}
         />
@@ -312,7 +309,7 @@ export function ImportOriginChart({ data }: { data: SquidTradeData }) {
           type="monotone"
           dataKey="단가"
           name="수입단가 (달러/톤)"
-          stroke={SQUID_COLORS[1]}
+          stroke={SQUID_ROLE.highlight}
           strokeWidth={2.2}
           dot={{ r: 3 }}
           isAnimationActive={animate}
@@ -343,7 +340,7 @@ export function ImportTrendChart({ data }: { data: SquidTradeData }) {
           yAxisId="left"
           dataKey="수입량"
           name="수입량 (톤)"
-          fill={SQUID_COLORS[0]}
+          fill={SQUID_ROLE.volume}
           radius={[3, 3, 0, 0]}
           isAnimationActive={animate}
         />
@@ -352,7 +349,7 @@ export function ImportTrendChart({ data }: { data: SquidTradeData }) {
           type="monotone"
           dataKey="수입단가"
           name="수입단가 (달러/톤)"
-          stroke={SQUID_COLORS[1]}
+          stroke={SQUID_ROLE.highlight}
           strokeWidth={2.4}
           dot={{ r: 3 }}
           isAnimationActive={animate}
@@ -383,7 +380,7 @@ export function StagePriceChart({ data }: { data: SquidTradeData }) {
           yAxisId="left"
           dataKey="수입액"
           name="수입액 (백만 달러)"
-          fill={SQUID_COLORS[0]}
+          fill={SQUID_ROLE.volume}
           radius={[3, 3, 0, 0]}
           isAnimationActive={animate}
         />
@@ -392,7 +389,7 @@ export function StagePriceChart({ data }: { data: SquidTradeData }) {
           type="monotone"
           dataKey="단가"
           name="수입단가 (달러/톤)"
-          stroke={SQUID_COLORS[1]}
+          stroke={SQUID_ROLE.highlight}
           strokeWidth={2.4}
           dot={{ r: 4 }}
           isAnimationActive={animate}
@@ -428,7 +425,8 @@ export function SpeciesTimelineChart({ data }: { data: SquidCatchData }) {
             type="monotone"
             dataKey={key}
             name={key}
-            stroke={SQUID_COLORS[index % SQUID_COLORS.length]}
+            stroke={colorForSeries(key, index)}
+            strokeDasharray={dashForSeries(key)}
             strokeWidth={2}
             dot={false}
             isAnimationActive={animate}
@@ -451,16 +449,7 @@ export function BasketChart({ data }: { data: SquidCatchData }) {
         <Tooltip content={<Tip unit=" 톤" />} />
         <Bar dataKey="어획량" name="어획량 (톤)" radius={[0, 3, 3, 0]} isAnimationActive={animate}>
           {data.바스켓구성.map((row, index) => (
-            <Cell
-              key={index}
-              fill={
-                row.구분 === '오징어'
-                  ? SQUID_COLORS[0]
-                  : row.구분 === '갑오징어'
-                    ? SQUID_COLORS[1]
-                    : SQUID_COLORS[5]
-              }
-            />
+            <Cell key={index} fill={colorForBasket(row.구분)} />
           ))}
         </Bar>
       </BarChart>
@@ -493,8 +482,7 @@ export function KoreaSpeciesChart({ data }: { data: SquidCatchData }) {
           {rows.map((row, index) => (
             <Cell
               key={index}
-              // 살오징어만 다른 색으로 둔다 — 연근해 자원이 어디쯤인지 한눈에 보이게
-              fill={row.어종 === '살오징어' ? SQUID_COLORS[1] : SQUID_COLORS[0]}
+              fill={colorForSpecies(row.어종)}
             />
           ))}
         </Bar>
@@ -517,7 +505,13 @@ export function ImportFormChart({ data }: { data: SquidTradeData }) {
           {data.품목단계.map((row, index) => (
             <Cell
               key={index}
-              fill={row.구분 === '원물' ? SQUID_COLORS[0] : row.구분 === '완제품' ? SQUID_COLORS[1] : SQUID_COLORS[3]}
+              fill={
+                row.구분 === '원물'
+                  ? SQUID_ROLE.volume
+                  : row.구분 === '완제품'
+                    ? SQUID_ROLE.highlight
+                    : SQUID_ROLE.processed
+              }
             />
           ))}
         </Bar>
@@ -568,14 +562,14 @@ export function CountryCompareChart({ data }: { data: SquidTradeData }) {
         <Bar
           dataKey="수입액"
           name="수입액 (백만 달러)"
-          fill={SQUID_COLORS[0]}
+          fill={SQUID_ROLE.volume}
           radius={[3, 3, 0, 0]}
           isAnimationActive={animate}
         />
         <Bar
           dataKey="수출액"
           name="수출액 (백만 달러)"
-          fill={SQUID_COLORS[1]}
+          fill={SQUID_ROLE.highlight}
           radius={[3, 3, 0, 0]}
           isAnimationActive={animate}
         />

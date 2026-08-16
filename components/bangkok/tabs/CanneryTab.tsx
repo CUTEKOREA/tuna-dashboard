@@ -170,9 +170,12 @@ export function CanneryTab() {
         : ALL_CANNERIES.filter((n) => n === name || cur.includes(n)),
     );
 
-  const legend = picked.map((n, i) => ({ name: n, ...serieStyle(i) }));
+  const legend = picked.map((n) => ({ name: n, ...serieStyle(ALL_CANNERIES.indexOf(n)) }));
   const series = (suffix: '가동률' | '재고', fmt: (v: number) => string) =>
-    picked.map((n, i) => S(`${n}·${suffix}`, n, serieStyle(i).color, { dash: serieStyle(i).dash, fmt }));
+    picked.map((n) => {
+      const style = serieStyle(ALL_CANNERIES.indexOf(n));
+      return S(`${n}·${suffix}`, n, style.color, { dash: style.dash, fmt });
+    });
 
   const canneryNote =
     `선택 ${picked.length}개 / 전체 ${ALL_CANNERIES.length}개 (방콕·송클라) · ${CANNERY_GRAN_LABEL[canneryGran]}. ` +

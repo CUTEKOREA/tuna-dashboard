@@ -224,20 +224,20 @@ export default function Profit() {
 
         <Card
           title="사업부별 매출 구성"
-          sub="누적 막대는 Cannery + Fishmeal + FBU. CBU 선은 Cannery+Fishmeal 소계이므로 막대에 겹쳐 쌓지 않았다."
-          note={<>매출 = CBU + FBU 이고 CBU = Cannery + Fishmeal 이라 네 계열을 모두 쌓으면 이중계상됩니다({M.month}월 검산 잔차 {usd(n(M.revenue) - (n(M.revenue_cannery) + n(M.revenue_fishmeal) + n(M.revenue_fbu)))}). Cannery가 매월 매출의 <b>{pct(cannLo, 0)}~{pct(cannHi, 0)}</b>를 차지해 손익은 사실상 Cannery 원가가 결정합니다. {M.month}월 기준 Fishmeal {pct(fishmealShare, 1)}, FBU {pct(fbuShare, 1)}로 <b>믹스를 바꿔 적자를 덮을 규모가 아닙니다</b>.</>}
+          sub="누적 막대는 통조림 + 어분 + FBU. CBU 선은 통조림·어분 소계이므로 막대에 겹쳐 쌓지 않았다."
+          note={<>매출 = CBU + FBU 이고 CBU = 통조림 + 어분 이라 네 계열을 모두 쌓으면 이중계상됩니다({M.month}월 검산 잔차 {usd(n(M.revenue) - (n(M.revenue_cannery) + n(M.revenue_fishmeal) + n(M.revenue_fbu)))}). 통조림이 매월 매출의 <b>{pct(cannLo, 0)}~{pct(cannHi, 0)}</b>를 차지해 손익은 사실상 통조림 원가가 결정합니다. {M.month}월 기준 어분 {pct(fishmealShare, 1)}, FBU {pct(fbuShare, 1)}로 <b>믹스를 바꿔 적자를 덮을 규모가 아닙니다</b>.</>}
         >
           <Legend items={[
-            { name: 'Cannery', color: 'var(--cosmo-s1)', box: true },
-            { name: 'Fishmeal', color: 'var(--cosmo-s3)', box: true },
+            { name: '통조림', color: 'var(--cosmo-s1)', box: true },
+            { name: '어분', color: 'var(--cosmo-s3)', box: true },
             { name: 'FBU', color: 'var(--cosmo-s5)', box: true },
             { name: 'CBU 소계', color: 'var(--cosmo-s4)' },
           ]} />
           <Chart
             data={monthlySeries} x="label" height={250} yFmt={m1}
             series={[
-              { key: 'cannery', name: 'Cannery', color: 'var(--cosmo-s1)', type: 'bar', stackId: 'rev', fmt: m2 },
-              { key: 'fishmeal', name: 'Fishmeal', color: 'var(--cosmo-s3)', type: 'bar', stackId: 'rev', fmt: m2 },
+              { key: 'cannery', name: '통조림', color: 'var(--cosmo-s1)', type: 'bar', stackId: 'rev', fmt: m2 },
+              { key: 'fishmeal', name: '어분', color: 'var(--cosmo-s3)', type: 'bar', stackId: 'rev', fmt: m2 },
               { key: 'fbu', name: 'FBU', color: 'var(--cosmo-s5)', type: 'bar', stackId: 'rev', fmt: m2 },
               { key: 'cbu', name: 'CBU 소계', color: 'var(--cosmo-s4)', fmt: m2 },
             ]}

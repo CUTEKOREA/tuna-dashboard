@@ -31,30 +31,15 @@ import {
   type TunaCatchData,
   type TunaTradeData,
 } from '@/lib/data/tuna-industry';
+import {
+  TUNA_ROLE,
+  colorForCountry,
+  colorForHub,
+  colorForRfmo,
+  colorForSpecies,
+} from '@/lib/tuna-chart-colors';
 import SafeResponsiveContainer from '../SafeResponsiveContainer';
 import styles from './TunaIndustryDashboard.module.css';
-
-const SPECIES_COLOR: Record<string, string> = {
-  가다랑어: '#0e7490',
-  황다랑어: '#0ea5e9',
-  눈다랑어: '#f59e0b',
-  날개다랑어: '#7c3aed',
-  대서양참다랑어: '#e11d48',
-  남방참다랑어: '#be123c',
-  태평양참다랑어: '#9f1239',
-};
-
-const RFMO_COLOR: Record<string, string> = {
-  WCPFC: '#0e7490',
-  IOTC: '#0ea5e9',
-  IATTC: '#f59e0b',
-  ICCAT: '#7c3aed',
-  CCAMLR: '#64748b',
-  미분류: '#94a3b8',
-};
-
-/** 항구 선 색. 방콕(벤치마크)을 가장 진하게 둔다. */
-const HUB_COLOR = ['#0e7490', '#f59e0b', '#0ea5e9', '#7c3aed', '#e11d48'];
 
 const AXIS = { stroke: 'var(--mu-axis)', tick: { fill: 'var(--mu-axis)', fontSize: 11 } } as const;
 const GRID = <CartesianGrid strokeDasharray="3 3" stroke="var(--mu-grid)" vertical={false} />;
@@ -122,8 +107,8 @@ export function SpeciesTimelineChart({ data }: { data: TunaCatchData }) {
             type="monotone"
             dataKey={name}
             stackId="catch"
-            stroke={SPECIES_COLOR[name] ?? '#64748b'}
-            fill={SPECIES_COLOR[name] ?? '#64748b'}
+            stroke={colorForSpecies(name)}
+            fill={colorForSpecies(name)}
             fillOpacity={0.55}
             isAnimationActive={animate}
           />
@@ -149,7 +134,7 @@ export function SpeciesShareChart({ data }: { data: TunaCatchData }) {
         <Tooltip content={<Tip unit="톤" />} cursor={{ fill: 'var(--mu-hover)' }} />
         <Bar dataKey="어획량" name="어획량" radius={[0, 4, 4, 0]} isAnimationActive={animate}>
           {data.어종구성.map((row) => (
-            <Cell key={row.코드} fill={SPECIES_COLOR[row.어종] ?? '#64748b'} />
+            <Cell key={row.코드} fill={colorForSpecies(row.어종)} />
           ))}
         </Bar>
       </BarChart>
@@ -170,7 +155,7 @@ export function CountryRankChart({ data }: { data: TunaCatchData }) {
         <Tooltip content={<Tip unit="톤" />} cursor={{ fill: 'var(--mu-hover)' }} />
         <Bar dataKey="어획량" name="어획량" radius={[0, 4, 4, 0]} isAnimationActive={animate}>
           {rows.map((row) => (
-            <Cell key={row.국가} fill={row.국가 === '대한민국' ? '#e11d48' : '#0e7490'} />
+            <Cell key={row.국가} fill={colorForCountry(row.국가)} />
           ))}
         </Bar>
       </BarChart>
@@ -190,7 +175,7 @@ export function RfmoShareChart({ data }: { data: TunaCatchData }) {
         <Tooltip content={<Tip unit="톤" />} cursor={{ fill: 'var(--mu-hover)' }} />
         <Bar dataKey="어획량" name="어획량" radius={[4, 4, 0, 0]} isAnimationActive={animate}>
           {data.관할별.map((row) => (
-            <Cell key={row.관할} fill={RFMO_COLOR[row.관할] ?? '#64748b'} />
+            <Cell key={row.관할} fill={colorForRfmo(row.관할)} />
           ))}
         </Bar>
       </BarChart>
@@ -211,7 +196,7 @@ export function AreaRankChart({ data }: { data: TunaCatchData }) {
         <Tooltip content={<Tip unit="톤" />} cursor={{ fill: 'var(--mu-hover)' }} />
         <Bar dataKey="어획량" name="어획량" radius={[0, 4, 4, 0]} isAnimationActive={animate}>
           {rows.map((row) => (
-            <Cell key={row.코드} fill={RFMO_COLOR[row.관할] ?? '#64748b'} />
+            <Cell key={row.코드} fill={colorForRfmo(row.관할)} />
           ))}
         </Bar>
       </BarChart>
@@ -237,13 +222,13 @@ export function KoreaTrendChart({ data }: { data: TunaCatchData }) {
         />
         <Tooltip content={<Tip unit="" />} cursor={{ fill: 'var(--mu-hover)' }} />
         <Legend wrapperStyle={{ fontSize: 11, color: 'var(--mu-axis)' }} />
-        <Bar yAxisId="left" dataKey="한국어획량" name="한국 어획량 (톤)" fill="#0e7490" radius={[3, 3, 0, 0]} isAnimationActive={animate} />
+        <Bar yAxisId="left" dataKey="한국어획량" name="한국 어획량 (톤)" fill={TUNA_ROLE.volume} radius={[3, 3, 0, 0]} isAnimationActive={animate} />
         <Line
           yAxisId="right"
           type="monotone"
           dataKey="세계점유율"
           name="세계 점유율 (%)"
-          stroke="#e11d48"
+          stroke={TUNA_ROLE.highlight}
           strokeWidth={2}
           dot={false}
           isAnimationActive={animate}
@@ -266,7 +251,7 @@ export function KoreaSpeciesChart({ data }: { data: TunaCatchData }) {
         <Tooltip content={<Tip unit="톤" />} cursor={{ fill: 'var(--mu-hover)' }} />
         <Bar dataKey="어획량" name="어획량" radius={[0, 4, 4, 0]} isAnimationActive={animate}>
           {rows.map((row) => (
-            <Cell key={row.어종} fill={SPECIES_COLOR[row.어종] ?? '#64748b'} />
+            <Cell key={row.어종} fill={colorForSpecies(row.어종)} />
           ))}
         </Bar>
       </BarChart>
@@ -298,13 +283,13 @@ export function SkjPriceByHubChart({ timeline }: { timeline: PriceTimeline }) {
         />
         <Tooltip content={<Tip unit="달러/톤" />} />
         <Legend wrapperStyle={{ fontSize: 11, color: 'var(--mu-axis)' }} />
-        {SKJ_HUBS.map((hub, index) => (
+        {SKJ_HUBS.map((hub) => (
           <Line
             key={hub.key}
             type="monotone"
             dataKey={hub.label}
             name={hub.label}
-            stroke={HUB_COLOR[index % HUB_COLOR.length]}
+            stroke={colorForHub(hub.label)}
             strokeWidth={hub.key === 'skj_bkk' ? 2.6 : 1.6}
             dot={false}
             connectNulls={false}
@@ -344,14 +329,14 @@ export function BluefinSourceChart({ data }: { data: TunaCatchData }) {
         />
         <Tooltip content={<Tip unit="" />} cursor={{ fill: 'var(--mu-hover)' }} />
         <Legend wrapperStyle={{ fontSize: 11, color: 'var(--mu-axis)' }} />
-        <Bar yAxisId="left" dataKey="자연산" name="자연산 어획 (톤)" fill="#0e7490" radius={[3, 3, 0, 0]} isAnimationActive={animate} />
-        <Bar yAxisId="left" dataKey="축양" name="축양 생산 (톤)" fill="#f59e0b" radius={[3, 3, 0, 0]} isAnimationActive={animate} />
+        <Bar yAxisId="left" dataKey="자연산" name="자연산 어획 (톤)" fill={TUNA_ROLE.volume} radius={[3, 3, 0, 0]} isAnimationActive={animate} />
+        <Bar yAxisId="left" dataKey="축양" name="축양 생산 (톤)" fill={TUNA_ROLE.processed} radius={[3, 3, 0, 0]} isAnimationActive={animate} />
         <Line
           yAxisId="right"
           type="monotone"
           dataKey="축양비중"
           name="축양 비중 (%)"
-          stroke="#e11d48"
+          stroke={TUNA_ROLE.highlight}
           strokeWidth={2}
           dot={false}
           isAnimationActive={animate}
@@ -375,7 +360,7 @@ export function TradeExportRankChart({ data }: { data: TunaTradeData }) {
         <Tooltip content={<Tip unit="백만 달러" />} cursor={{ fill: 'var(--mu-hover)' }} />
         <Bar dataKey="금액" name="수출액" radius={[0, 4, 4, 0]} isAnimationActive={animate}>
           {data.수출상위.map((row) => (
-            <Cell key={row.국가} fill={row.국가 === '대한민국' ? '#e11d48' : '#0e7490'} />
+            <Cell key={row.국가} fill={colorForCountry(row.국가)} />
           ))}
         </Bar>
       </BarChart>
@@ -395,7 +380,7 @@ export function TradeImportRankChart({ data }: { data: TunaTradeData }) {
         <Tooltip content={<Tip unit="백만 달러" />} cursor={{ fill: 'var(--mu-hover)' }} />
         <Bar dataKey="금액" name="수입액" radius={[0, 4, 4, 0]} isAnimationActive={animate}>
           {data.수입상위.map((row) => (
-            <Cell key={row.국가} fill={row.국가 === '대한민국' ? '#e11d48' : '#0ea5e9'} />
+            <Cell key={row.국가} fill={colorForCountry(row.국가)} />
           ))}
         </Bar>
       </BarChart>
@@ -426,13 +411,13 @@ export function TradeStagePriceChart({ data }: { data: TunaTradeData }) {
         />
         <Tooltip content={<Tip unit="" />} cursor={{ fill: 'var(--mu-hover)' }} />
         <Legend wrapperStyle={{ fontSize: 11, color: 'var(--mu-axis)' }} />
-        <Bar yAxisId="left" dataKey="금액" name="교역액 (백만 달러)" fill="#0e7490" radius={[3, 3, 0, 0]} isAnimationActive={animate} />
+        <Bar yAxisId="left" dataKey="금액" name="교역액 (백만 달러)" fill={TUNA_ROLE.volume} radius={[3, 3, 0, 0]} isAnimationActive={animate} />
         <Line
           yAxisId="right"
           type="monotone"
           dataKey="단가"
           name="단가 (달러/톤)"
-          stroke="#e11d48"
+          stroke={TUNA_ROLE.highlight}
           strokeWidth={2}
           isAnimationActive={animate}
         />
@@ -452,9 +437,9 @@ export function KoreaTradeBalanceChart({ data }: { data: TunaTradeData }) {
         <YAxis {...AXIS} tickFormatter={(v: number) => `${v.toLocaleString('ko-KR')}`} width={56} />
         <Tooltip content={<Tip unit="백만 달러" />} cursor={{ fill: 'var(--mu-hover)' }} />
         <Legend wrapperStyle={{ fontSize: 11, color: 'var(--mu-axis)' }} />
-        <Bar dataKey="수출액" name="수출액" fill="#0e7490" radius={[3, 3, 0, 0]} isAnimationActive={animate} />
-        <Bar dataKey="수입액" name="수입액" fill="#f59e0b" radius={[3, 3, 0, 0]} isAnimationActive={animate} />
-        <Line type="monotone" dataKey="무역수지" name="무역수지" stroke="#e11d48" strokeWidth={2} isAnimationActive={animate} />
+        <Bar dataKey="수출액" name="수출액" fill={TUNA_ROLE.volume} radius={[3, 3, 0, 0]} isAnimationActive={animate} />
+        <Bar dataKey="수입액" name="수입액" fill={TUNA_ROLE.processed} radius={[3, 3, 0, 0]} isAnimationActive={animate} />
+        <Line type="monotone" dataKey="무역수지" name="무역수지" stroke={TUNA_ROLE.highlight} strokeWidth={2} isAnimationActive={animate} />
       </ComposedChart>
     </SafeResponsiveContainer>
   );
@@ -478,9 +463,9 @@ export function KoreaExportPriceChart({ data }: { data: TunaTradeData }) {
         />
         <Tooltip content={<Tip unit="" />} cursor={{ fill: 'var(--mu-hover)' }} />
         <Legend wrapperStyle={{ fontSize: 11, color: 'var(--mu-axis)' }} />
-        <Bar yAxisId="left" dataKey="세계평균" name="세계 평균 (달러/톤)" fill="#94a3b8" radius={[3, 3, 0, 0]} isAnimationActive={animate} />
-        <Bar yAxisId="left" dataKey="한국" name="한국 (달러/톤)" fill="#0e7490" radius={[3, 3, 0, 0]} isAnimationActive={animate} />
-        <Line yAxisId="right" type="monotone" dataKey="격차율" name="세계 평균 대비 (%)" stroke="#e11d48" strokeWidth={2} isAnimationActive={animate} />
+        <Bar yAxisId="left" dataKey="세계평균" name="세계 평균 (달러/톤)" fill={TUNA_ROLE.muted} radius={[3, 3, 0, 0]} isAnimationActive={animate} />
+        <Bar yAxisId="left" dataKey="한국" name="한국 (달러/톤)" fill={TUNA_ROLE.highlight} radius={[3, 3, 0, 0]} isAnimationActive={animate} />
+        <Line yAxisId="right" type="monotone" dataKey="격차율" name="세계 평균 대비 (%)" stroke={TUNA_ROLE.highlight} strokeWidth={2} isAnimationActive={animate} />
       </ComposedChart>
     </SafeResponsiveContainer>
   );
@@ -497,9 +482,9 @@ export function ThailandTradeChart({ data }: { data: TunaTradeData }) {
         <YAxis {...AXIS} tickFormatter={(v: number) => `${v.toLocaleString('ko-KR')}`} width={56} />
         <Tooltip content={<Tip unit="백만 달러" />} cursor={{ fill: 'var(--mu-hover)' }} />
         <Legend wrapperStyle={{ fontSize: 11, color: 'var(--mu-axis)' }} />
-        <Bar dataKey="수입액" name="원료 수입액" fill="#f59e0b" radius={[3, 3, 0, 0]} isAnimationActive={animate} />
-        <Bar dataKey="수출액" name="완제품 수출액" fill="#0e7490" radius={[3, 3, 0, 0]} isAnimationActive={animate} />
-        <Line type="monotone" dataKey="무역수지" name="교역 흑자" stroke="#e11d48" strokeWidth={2} isAnimationActive={animate} />
+        <Bar dataKey="수입액" name="원료 수입액" fill={TUNA_ROLE.processed} radius={[3, 3, 0, 0]} isAnimationActive={animate} />
+        <Bar dataKey="수출액" name="완제품 수출액" fill={TUNA_ROLE.volume} radius={[3, 3, 0, 0]} isAnimationActive={animate} />
+        <Line type="monotone" dataKey="무역수지" name="교역 흑자" stroke={TUNA_ROLE.highlight} strokeWidth={2} isAnimationActive={animate} />
       </ComposedChart>
     </SafeResponsiveContainer>
   );

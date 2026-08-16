@@ -34,19 +34,9 @@ import {
 
 import { getSmartRotation, truncateXAxis } from '@/lib/chart-standards';
 import type { IndustryRow, IndustrySeries, IndustryWidget } from '@/lib/data/tuna-industry';
+import { colorForSeries } from '@/lib/tuna-chart-colors';
 import SafeResponsiveContainer from '../SafeResponsiveContainer';
 import styles from './TunaIndustryDashboard.module.css';
-
-const SERIES_COLORS = [
-  '#0e7490',
-  '#0ea5e9',
-  '#f59e0b',
-  '#7c3aed',
-  '#e11d48',
-  '#059669',
-  '#64748b',
-  '#c2410c',
-];
 
 const CHART_MARGIN = { top: 12, right: 16, left: 0, bottom: 8 };
 
@@ -108,7 +98,7 @@ function inferSeries(rows: IndustryRow[], xKey: string): ResolvedSeries[] {
   if (!first) return [];
   return Object.keys(first)
     .filter((key) => key !== xKey && typeof first[key] === 'number')
-    .map((key, index) => ({ key, name: key, color: SERIES_COLORS[index % SERIES_COLORS.length] }));
+    .map((key, index) => ({ key, name: key, color: colorForSeries(key, index) }));
 }
 
 function resolveXKey(widget: IndustryWidget): string {
@@ -132,19 +122,16 @@ export default function TunaIndustryChart({ widget, height = 280 }: TunaIndustry
   const rows = widget.data;
 
   const { lineSeries, barSeries, areaSeries } = useMemo(() => {
-    const withColor = (
-      series: IndustrySeries[] | null | undefined,
-      offset: number,
-    ): ResolvedSeries[] =>
+    const withColor = (series: IndustrySeries[] | null | undefined): ResolvedSeries[] =>
       (series ?? []).map((item, index) => ({
         key: item.key,
         name: item.name,
-        color: item.color ?? SERIES_COLORS[(index + offset) % SERIES_COLORS.length],
+        color: colorForSeries(item.name || item.key, index),
       }));
 
-    let lines = withColor(widget.lines, 0);
-    let bars = withColor(widget.bars, 2);
-    const areas = withColor(widget.areas, 4);
+    let lines = withColor(widget.lines);
+    let bars = withColor(widget.bars);
+    const areas = withColor(widget.areas);
 
     if (lines.length === 0 && bars.length === 0 && areas.length === 0) {
       const inferred = inferSeries(rows, xKey);
@@ -198,8 +185,8 @@ export default function TunaIndustryChart({ widget, height = 280 }: TunaIndustry
             label={(entry: { name?: string }) => entry.name ?? ''}
             isAnimationActive={animate}
           >
-            {rows.map((_, index) => (
-              <Cell key={index} fill={SERIES_COLORS[index % SERIES_COLORS.length]} />
+            {rows.map((row, index) => (
+              <Cell key={index} fill={colorForSeries(String(row[xKey] ?? ''), index)} />
             ))}
           </Pie>
           {tooltip}

@@ -82,7 +82,7 @@ export const SQUID_CHART_SLOTS: Record<string, ChartSlot[]> = {
     {
       title: '어종별 어획량 구성 (톤)',
       caption:
-        '색이 셋으로 갈린 것은 합산하면 안 되기 때문이다. 보라는 오징어, 분홍은 갑오징어, 회색은 종이 특정되지 않은 미분류다.',
+        '같은 갈래는 비슷한 색이다. 오징어는 보라·남색, 갑오징어는 장미, 두족류 미분류는 회색, 그 밖의 종은 호박이다. 이 셋을 더하지 않는다.',
       telemetry: CATCH_SYNC,
       render: () => <SpeciesMixChart data={CATCH} />,
     },
@@ -105,7 +105,7 @@ export const SQUID_CHART_SLOTS: Record<string, ChartSlot[]> = {
   s03: [
     {
       title: '어획 상위 12개국 (톤)',
-      caption: '1위 중국은 자국 연안이 아니라 원양에서 대부분을 잡는다. 분홍이 한국이다.',
+      caption: '1위 중국은 자국 연안이 아니라 원양에서 대부분을 잡는다. 장미색이 한국이다.',
       telemetry: CATCH_SYNC,
       render: () => <CountryRankChart data={CATCH} />,
     },
@@ -153,7 +153,7 @@ export const SQUID_CHART_SLOTS: Record<string, ChartSlot[]> = {
     },
     {
       title: '주요 어종 어획량 추이 (톤)',
-      caption: '한 종이 무너진 자리를 다른 종이 채우는 것이 이 품목의 반복되는 패턴이다.',
+      caption: '2024년 규모 상위 5종의 자리바꿈이다. 살오징어 붕괴는 위 「살오징어 어획량 — 세계와 한국 (톤)」에 따로 있다.',
       telemetry: CATCH_SYNC,
       render: () => <SpeciesTimelineChart data={CATCH} />,
     },
@@ -175,7 +175,7 @@ export const SQUID_CHART_SLOTS: Record<string, ChartSlot[]> = {
     {
       title: '한국 어종별 어획량 (톤)',
       caption:
-        '분홍이 살오징어다. 연근해 자원이 한국 오징어 어획에서 차지하는 몫이 이만큼으로 줄었다.',
+        '보라는 살오징어다. 연근해 자원이 한국 오징어 어획에서 차지하는 몫이 이만큼으로 줄었다.',
       telemetry: CATCH_SYNC,
       render: () => <KoreaSpeciesChart data={CATCH} />,
     },
