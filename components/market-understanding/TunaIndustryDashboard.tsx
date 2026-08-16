@@ -383,7 +383,7 @@ function StageSection({ stage, narrative }: { stage: IndustryStage; narrative: S
 
       <FactTable rows={narrative.facts} />
 
-      <div className={catchCharts.length === 2 ? styles.catchPair : styles.catchStack}>
+      <div className={catchCharts.length >= 2 ? styles.catchGrid : styles.catchStack}>
         {catchCharts.map((slot) => (
           <figure key={slot.title} className={styles.catchFigure}>
             <figcaption className={styles.catchCaption}>
