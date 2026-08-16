@@ -33,6 +33,7 @@ import { TelemetryBadge } from '../TelemetryBadge';
 import TermTooltip from '../TermTooltip';
 import WidgetCard from '../WidgetCard';
 import HeroZone from '../v2/HeroZone';
+import { HeroNowStrip } from '../v2/HeroNowStrip';
 import PillTabs, { type PillTab } from '../v2/PillTabs';
 import {
   AreaRankChart,
@@ -60,6 +61,9 @@ const WIDGETS_META = getSquidWidgetsMeta();
 
 const CATCH_SYNC = { status: 'STATIC' as const, syncDate: `${CATCH.요약.기준연도}년 확정` };
 const TRADE_SYNC = { status: 'STATIC' as const, syncDate: `${TRADE.요약.기준연도}년 확정` };
+const FLYING_SQUID_VS_PEAK_PCT = Number(
+  ((CATCH.요약.살오징어세계최신 / CATCH.요약.살오징어세계정점) * 100).toFixed(1),
+);
 
 interface ChartSlot {
   title: string;
@@ -339,8 +343,8 @@ export default function SquidIndustryDashboard({ heroOnly = false }: SquidIndust
   const hero = (
     <HeroZone
       variant="kpi"
-      title="오징어 산업 해부"
-      subtitle="한 해살이 자원이 만드는 시장 — 밸류체인 7단계와 그것을 관통하는 3개 축"
+      title="오징어"
+      subtitle="오징어 산업 해부 · 한 해살이 자원이 만드는 시장 — 밸류체인 7단계와 그것을 관통하는 3개 축"
       primaryKpi={{
         label: '세계 오징어·갑오징어 어획량',
         value: CATCH.요약.세계어획량,
@@ -350,9 +354,7 @@ export default function SquidIndustryDashboard({ heroOnly = false }: SquidIndust
       secondaryKpis={[
         {
           label: '살오징어 정점 대비',
-          value: Number(
-            ((CATCH.요약.살오징어세계최신 / CATCH.요약.살오징어세계정점) * 100).toFixed(1),
-          ),
+          value: FLYING_SQUID_VS_PEAK_PCT,
           unit: '(%)',
           decimals: 1,
         },
@@ -367,6 +369,29 @@ export default function SquidIndustryDashboard({ heroOnly = false }: SquidIndust
           unit: '(톤)',
         },
       ]}
+      minHeight={360}
+      strip={(
+        <HeroNowStrip
+          items={[
+            {
+              now: true,
+              eyebrow: '기준',
+              title: '세계 어획량',
+              body: `${CATCH.요약.세계어획량.toLocaleString('ko-KR')} (톤)`,
+            },
+            {
+              eyebrow: '살오징어',
+              title: '정점 대비',
+              body: `${FLYING_SQUID_VS_PEAK_PCT.toLocaleString('ko-KR', { maximumFractionDigits: 1 })} (%)`,
+            },
+            {
+              eyebrow: '한국',
+              title: '국내 어획량',
+              body: `${CATCH.요약.한국어획량.toLocaleString('ko-KR')} (톤)`,
+            },
+          ]}
+        />
+      )}
     />
   );
 

@@ -266,7 +266,10 @@ describe('시장 이해 > 오징어 — 렌더', () => {
   it('대시보드가 서버에서 그려진다', () => {
     const markup = renderToStaticMarkup(React.createElement(SquidIndustryDashboard));
     expect(markup).toContain('squid-industry-dashboard');
+    expect(markup).toContain('오징어');
     expect(markup).toContain('오징어 산업 해부');
+    expect(markup).toContain('data-hero-now-strip="true"');
+    expect(markup).toContain('data-now="true"');
     expect(markup).toContain('30초 브리핑');
   });
 
@@ -274,7 +277,9 @@ describe('시장 이해 > 오징어 — 렌더', () => {
     const markup = renderToStaticMarkup(
       React.createElement(SquidIndustryDashboard, { heroOnly: true }),
     );
+    expect(markup).toContain('오징어');
     expect(markup).toContain('오징어 산업 해부');
+    expect(markup).toContain('data-hero-now-strip="true"');
     expect(markup).not.toContain('30초 브리핑');
   });
 
