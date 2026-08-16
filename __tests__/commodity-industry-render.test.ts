@@ -202,6 +202,17 @@ describe('시장 이해 3품목 — 렌더', () => {
     expect(css).toContain("data-commodity='whelk'");
     expect(css).toContain("data-commodity='shrimp'");
   });
+
+  it('캡션 설명은 세로 flex-basis 로 부풀지 않는다', () => {
+    const css = readFileSync(
+      join(process.cwd(), 'components/market-understanding/TunaIndustryDashboard.module.css'),
+      'utf8',
+    );
+    // 예전 가로 배치의 `flex: 1 1 18rem` 이 세로 캡션에서 높이 18rem 빈칸이 됐다
+    expect(css).not.toMatch(/\.catchCaption span\s*\{[^}]*flex:\s*1\s+1\s+18rem/);
+    expect(css).toContain('.chartFrame');
+    expect(css).toContain('.catchTitleRow');
+  });
 });
 
 describe('고등어 — 집계와 본문 대조', () => {
