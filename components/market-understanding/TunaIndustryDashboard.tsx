@@ -15,8 +15,8 @@
  */
 'use client';
 
-import React, { useMemo, useState } from 'react';
-import { BookOpen, Fish } from 'lucide-react';
+import React, { useCallback, useMemo, useRef } from 'react';
+import { ArrowRight, BookOpen, Fish } from 'lucide-react';
 
 import {
   getChainStages,
@@ -45,7 +45,8 @@ import TermTooltip from '../TermTooltip';
 import WidgetCard from '../WidgetCard';
 import HeroZone from '../v2/HeroZone';
 import { HeroNowStrip } from '../v2/HeroNowStrip';
-import PillTabs, { type PillTab } from '../v2/PillTabs';
+import ChainStepper from './ChainStepper';
+import { useStageKey } from './useStageKey';
 import {
   AreaRankChart,
   BluefinSourceChart,
@@ -376,15 +377,34 @@ function FactTable({ rows }: { rows: FactRow[] }) {
   );
 }
 
-function StageSection({ stage, narrative }: { stage: IndustryStage; narrative: StageNarrative }) {
+function StageSection({
+  stage,
+  narrative,
+  next,
+  onGo,
+  headingRef,
+}: {
+  stage: IndustryStage;
+  narrative: StageNarrative;
+  next?: IndustryStage;
+  onGo: (key: string) => void;
+  headingRef: React.RefObject<HTMLHeadingElement | null>;
+}) {
   const catchCharts = CATCH_CHART_SLOTS[stage.key] ?? [];
+  const rail = catchCharts.slice(0, 2);
+  const rest = catchCharts.slice(2);
 
   return (
     <section className={styles.stage} aria-labelledby={`stage-${stage.key}`}>
       <header className={styles.stageHeader}>
         <span className={styles.stageNumeral}>{narrative.numeral}</span>
         <div>
-          <h2 id={`stage-${stage.key}`} className={styles.stageTitle}>
+          <h2
+            id={`stage-${stage.key}`}
+            className={styles.stageTitle}
+            ref={headingRef}
+            tabIndex={-1}
+          >
             {narrative.title}
           </h2>
           <p className={styles.stageQuestion}>{narrative.question}</p>
@@ -392,6 +412,30 @@ function StageSection({ stage, narrative }: { stage: IndustryStage; narrative: S
       </header>
 
       <p className={styles.lede}>{renderEmphasis(narrative.lede)}</p>
+
+      {narrative.facts[0] && (
+        <p className={styles.keyFact}>
+          <span className={styles.keyFactValue}>{narrative.facts[0].value}</span>
+          <span className={styles.keyFactLabel}>{narrative.facts[0].label}</span>
+        </p>
+      )}
+
+      {rail.length > 0 && (
+        <div className={styles.evidenceRail}>
+          {rail.map((slot) => (
+            <figure key={slot.title} className={styles.catchFigure}>
+              <figcaption className={styles.catchCaption}>
+                <div className={styles.catchTitleRow}>
+                  <strong>{slot.title}</strong>
+                  <TelemetryBadge status={slot.telemetry.status} syncDate={slot.telemetry.syncDate} />
+                </div>
+                <span>{slot.caption}</span>
+              </figcaption>
+              <div className={styles.chartFrame}>{slot.render()}</div>
+            </figure>
+          ))}
+        </div>
+      )}
 
       <div className={styles.prose}>
         {narrative.paragraphs.map((paragraph, index) => (
@@ -412,22 +456,31 @@ function StageSection({ stage, narrative }: { stage: IndustryStage; narrative: S
 
       <FactTable rows={narrative.facts} />
 
-      <div className={catchCharts.length >= 2 ? styles.catchGrid : styles.catchStack}>
-        {catchCharts.map((slot) => (
-          <figure key={slot.title} className={styles.catchFigure}>
-            <figcaption className={styles.catchCaption}>
-              <div className={styles.catchTitleRow}>
-                <strong>{slot.title}</strong>
-                <TelemetryBadge status={slot.telemetry.status} syncDate={slot.telemetry.syncDate} />
-              </div>
-              <span>{slot.caption}</span>
-            </figcaption>
-            <div className={styles.chartFrame}>{slot.render()}</div>
-          </figure>
-        ))}
-      </div>
+      {rest.length > 0 && (
+        <div className={styles.stageMore}>
+          <h3 className={styles.stageMoreHeading}>근거</h3>
+          <div className={rest.length >= 2 ? styles.catchGrid : styles.catchStack}>
+            {rest.map((slot) => (
+              <figure key={slot.title} className={styles.catchFigure}>
+                <figcaption className={styles.catchCaption}>
+                  <div className={styles.catchTitleRow}>
+                    <strong>{slot.title}</strong>
+                    <TelemetryBadge status={slot.telemetry.status} syncDate={slot.telemetry.syncDate} />
+                  </div>
+                  <span>{slot.caption}</span>
+                </figcaption>
+                <div className={styles.chartFrame}>{slot.render()}</div>
+              </figure>
+            ))}
+          </div>
+        </div>
+      )}
 
       {stage.widgets.length > 0 && (
+        <details className={styles.widgetFold}>
+          <summary className={styles.widgetFoldSummary}>
+            더 파고들기 · 위젯 {stage.widgets.length}개
+          </summary>
         <div className={styles.widgetGrid}>
           {stage.widgets.map((widget) => (
             <WidgetCard
@@ -460,6 +513,17 @@ function StageSection({ stage, narrative }: { stage: IndustryStage; narrative: S
             />
           ))}
         </div>
+        </details>
+      )}
+
+      {next && (
+        <button type="button" className={styles.stageNext} onClick={() => onGo(next.key)}>
+          <span className={styles.stageNextLabel}>다음</span>
+          <span className={styles.stageNextTitle}>
+            {getNarrative(next.key)?.numeral ?? ''} {next.label}
+          </span>
+          <ArrowRight size={15} aria-hidden="true" />
+        </button>
       )}
     </section>
   );
@@ -470,22 +534,45 @@ export interface TunaIndustryDashboardProps {
 }
 
 export default function TunaIndustryDashboard({ heroOnly = false }: TunaIndustryDashboardProps) {
-  const [activeKey, setActiveKey] = useState<string>(CHAIN_STAGES[0]?.key ?? 's01');
+  const stageKeys = useMemo(() => ALL_STAGES.map((stage) => stage.key), []);
+  const [activeKey, setStage] = useStageKey(stageKeys, CHAIN_STAGES[0]?.key ?? 's01');
+  const headingRef = useRef<HTMLHeadingElement | null>(null);
 
-  const tabs: PillTab[] = useMemo(
+  const go = useCallback((key: string) => {
+    setStage(key);
+    requestAnimationFrame(() => {
+      const heading = headingRef.current;
+      if (!heading) return;
+      const reduce =
+        typeof window !== 'undefined' &&
+        window.matchMedia?.('(prefers-reduced-motion: reduce)').matches;
+      heading.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'start' });
+      heading.focus({ preventScroll: true });
+    });
+  }, [setStage]);
+
+  const chain = useMemo(
     () =>
-      ALL_STAGES.map((stage) => {
-        const narrative = getNarrative(stage.key);
-        return {
-          key: stage.key,
-          label: `${narrative?.numeral ?? ''} ${stage.label}`.trim(),
-        };
-      }),
+      CHAIN_STAGES.map((stage) => ({
+        key: stage.key,
+        numeral: getNarrative(stage.key)?.numeral ?? '',
+        label: getNarrative(stage.key)?.title ?? stage.label,
+      })),
+    [],
+  );
+  const cross = useMemo(
+    () =>
+      CROSS_STAGES.map((stage) => ({
+        key: stage.key,
+        numeral: getNarrative(stage.key)?.numeral ?? '',
+        label: getNarrative(stage.key)?.title ?? stage.label,
+      })),
     [],
   );
 
   const activeStage = ALL_STAGES.find((stage) => stage.key === activeKey) ?? ALL_STAGES[0];
   const activeNarrative = getNarrative(activeStage.key);
+  const nextStage = ALL_STAGES[ALL_STAGES.indexOf(activeStage) + 1];
 
   const hero = (
     <HeroZone
@@ -566,22 +653,18 @@ export default function TunaIndustryDashboard({ heroOnly = false }: TunaIndustry
         </ol>
       </section>
 
-      <ValueChainSpine activeKey={activeKey} onSelect={setActiveKey} />
+      <ChainStepper chain={chain} cross={cross} activeKey={activeKey} onSelect={go} />
 
-      <nav className={styles.tabNav} aria-label="밸류체인 단계 이동">
-        <PillTabs
-          tabs={tabs}
-          activeKey={activeKey}
-          onChange={setActiveKey}
-          accentFrom="#0e7490"
-          ariaLabel="밸류체인 단계"
-          tabIdPrefix="tuna-industry-tab"
-          panelIdPrefix="tuna-industry-panel"
-        />
-      </nav>
+      <ValueChainSpine activeKey={activeKey} onSelect={go} />
 
       {activeNarrative ? (
-        <StageSection stage={activeStage} narrative={activeNarrative} />
+        <StageSection
+          stage={activeStage}
+          narrative={activeNarrative}
+          next={nextStage}
+          onGo={go}
+          headingRef={headingRef}
+        />
       ) : (
         <p className={styles.missing}>이 단계의 서술이 아직 준비되지 않았습니다.</p>
       )}

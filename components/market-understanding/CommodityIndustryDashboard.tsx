@@ -7,20 +7,21 @@
  * 그대로 뒀다 — 돌아가는 코드를 옮기는 것이 목적이 아니다.
  *
  * 이 셋의 공통 골격은 다음과 같다.
- *   히어로 → 30초 브리핑 → 단계 탭 → (서술 + 근거표 + 차트) → 출처와 한계
+ *   히어로 → 30초 브리핑 → 사슬 스테퍼 → (서술 + 근거 레일) → 출처와 한계
  *
  * 품목마다 다른 것은 `CommoditySpec` 하나로 받는다.
  */
 'use client';
 
-import React, { useCallback, useMemo, useRef, useState } from 'react';
+import React, { useCallback, useMemo, useRef } from 'react';
 import { ArrowRight, BookOpen, Waves } from 'lucide-react';
 
 import { TelemetryBadge } from '../TelemetryBadge';
 import TermTooltip from '../TermTooltip';
 import HeroZone, { type HeroKpi } from '../v2/HeroZone';
 import { HeroNowStrip, type HeroNowItem } from '../v2/HeroNowStrip';
-import PillTabs, { type PillTab } from '../v2/PillTabs';
+import ChainStepper, { isChainKey } from './ChainStepper';
+import { useStageKey } from './useStageKey';
 import styles from './TunaIndustryDashboard.module.css';
 
 export type SourceGrade = 'A' | 'B' | 'C';
@@ -160,6 +161,21 @@ function FactTable({ rows }: { rows: FactRow[] }) {
   );
 }
 
+function ChartFigure({ slot }: { slot: ChartSlot }) {
+  return (
+    <figure className={styles.catchFigure}>
+      <figcaption className={styles.catchCaption}>
+        <div className={styles.catchTitleRow}>
+          <strong>{slot.title}</strong>
+          <TelemetryBadge status={slot.telemetry.status} syncDate={slot.telemetry.syncDate} />
+        </div>
+        <span>{slot.caption}</span>
+      </figcaption>
+      <div className={styles.chartFrame}>{slot.render()}</div>
+    </figure>
+  );
+}
+
 function StageSection({
   prefix,
   narrative,
@@ -175,6 +191,9 @@ function StageSection({
   onGo: (key: string) => void;
   headingRef: React.RefObject<HTMLHeadingElement | null>;
 }) {
+  const rail = charts.slice(0, 2);
+  const rest = charts.slice(2);
+
   return (
     <section className={styles.stage} aria-labelledby={`${prefix}-stage-${narrative.key}`}>
       <header className={styles.stageHeader}>
@@ -193,6 +212,21 @@ function StageSection({
       </header>
 
       <p className={styles.lede}>{renderEmphasis(narrative.lede)}</p>
+
+      {narrative.facts[0] && (
+        <p className={styles.keyFact}>
+          <span className={styles.keyFactValue}>{narrative.facts[0].value}</span>
+          <span className={styles.keyFactLabel}>{narrative.facts[0].label}</span>
+        </p>
+      )}
+
+      {rail.length > 0 && (
+        <div className={styles.evidenceRail}>
+          {rail.map((slot) => (
+            <ChartFigure key={slot.title} slot={slot} />
+          ))}
+        </div>
+      )}
 
       <div className={styles.prose}>
         {narrative.paragraphs.map((paragraph, index) => (
@@ -213,20 +247,16 @@ function StageSection({
 
       <FactTable rows={narrative.facts} />
 
-      <div className={charts.length >= 2 ? styles.catchGrid : styles.catchStack}>
-        {charts.map((slot) => (
-          <figure key={slot.title} className={styles.catchFigure}>
-            <figcaption className={styles.catchCaption}>
-              <div className={styles.catchTitleRow}>
-                <strong>{slot.title}</strong>
-                <TelemetryBadge status={slot.telemetry.status} syncDate={slot.telemetry.syncDate} />
-              </div>
-              <span>{slot.caption}</span>
-            </figcaption>
-            <div className={styles.chartFrame}>{slot.render()}</div>
-          </figure>
-        ))}
-      </div>
+      {rest.length > 0 && (
+        <div className={styles.stageMore}>
+          <h3 className={styles.stageMoreHeading}>근거</h3>
+          <div className={rest.length >= 2 ? styles.catchGrid : styles.catchStack}>
+            {rest.map((slot) => (
+              <ChartFigure key={slot.title} slot={slot} />
+            ))}
+          </div>
+        </div>
+      )}
 
       {/* 단계 끝에서 다음으로 넘기는 손잡이. 이것이 없으면 01단계에서 읽기가 끝난다. */}
       {next && (
@@ -251,7 +281,8 @@ export default function CommodityIndustryDashboard({
   spec,
   heroOnly = false,
 }: CommodityIndustryDashboardProps) {
-  const [activeKey, setActiveKey] = useState<string>(spec.narratives[0]?.key ?? '');
+  const stageKeys = useMemo(() => spec.narratives.map((entry) => entry.key), [spec.narratives]);
+  const [activeKey, setStage] = useStageKey(stageKeys, spec.narratives[0]?.key ?? '');
   const headingRef = useRef<HTMLHeadingElement | null>(null);
 
   /**
@@ -259,7 +290,7 @@ export default function CommodityIndustryDashboard({
    * 이게 없으면 앞 단계 차트 높이에 스크롤이 남아 질문과 리드를 건너뛰고 표부터 보게 된다.
    */
   const go = useCallback((key: string) => {
-    setActiveKey(key);
+    setStage(key);
     requestAnimationFrame(() => {
       const heading = headingRef.current;
       if (!heading) return;
@@ -269,14 +300,20 @@ export default function CommodityIndustryDashboard({
       heading.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'start' });
       heading.focus({ preventScroll: true });
     });
-  }, []);
+  }, [setStage]);
 
-  const tabs: PillTab[] = useMemo(
+  const chain = useMemo(
     () =>
-      spec.narratives.map((narrative) => ({
-        key: narrative.key,
-        label: `${narrative.numeral} ${narrative.title}`,
-      })),
+      spec.narratives
+        .filter((entry) => isChainKey(entry.key, entry.numeral))
+        .map((entry) => ({ key: entry.key, numeral: entry.numeral, label: entry.title })),
+    [spec.narratives],
+  );
+  const cross = useMemo(
+    () =>
+      spec.narratives
+        .filter((entry) => !isChainKey(entry.key, entry.numeral))
+        .map((entry) => ({ key: entry.key, numeral: entry.numeral, label: entry.title })),
     [spec.narratives],
   );
 
@@ -335,17 +372,7 @@ export default function CommodityIndustryDashboard({
         </ol>
       </section>
 
-      <nav className={styles.tabNav} aria-label="밸류체인 단계 이동">
-        <PillTabs
-          tabs={tabs}
-          activeKey={active?.key ?? ''}
-          onChange={go}
-          accentFrom={spec.accent}
-          ariaLabel="밸류체인 단계"
-          tabIdPrefix={`${spec.key}-industry-tab`}
-          panelIdPrefix={`${spec.key}-industry-panel`}
-        />
-      </nav>
+      <ChainStepper chain={chain} cross={cross} activeKey={active?.key ?? ''} onSelect={go} />
 
       {active ? (
         <StageSection
