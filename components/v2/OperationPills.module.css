@@ -1,0 +1,37 @@
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 0 0 12px;
+}
+
+.pill {
+  padding: 7px 14px;
+  border: 1px solid var(--dsc-surface-border);
+  border-radius: 999px;
+  background: var(--dsc-surface);
+  color: var(--dsc-ink-muted);
+  font: inherit;
+  font-size: 0.82rem;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: var(--elev-1, none);
+}
+
+.pill:hover,
+.pill:focus-visible {
+  color: var(--dsc-ink);
+  border-color: rgba(34, 211, 238, 0.35);
+}
+
+.active {
+  background: #18181b;
+  color: #fafafa;
+  border-color: transparent;
+  box-shadow: var(--elev-2, none);
+}
+
+:global(html[data-theme='light']) .active {
+  background: #18181b;
+  color: #fafafa;
+}

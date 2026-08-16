@@ -13,6 +13,7 @@ import SeafoodStockWidget from './SeafoodStockWidget';
 import TunaDailyBriefingWidget from './TunaDailyBriefingWidget';
 import HeroZone, { type HeroKpi } from './v2/HeroZone';
 import FilterBar from './v2/FilterBar';
+import { VolumeBarChart, type VolumeBarPoint } from './charts/VolumeBar';
 import {
   ATUNA_GRAIN_LABELS,
   ATUNA_PERIOD_LABELS,
@@ -124,7 +125,7 @@ export function MarketHero({ rows }: { rows: AtunaPriceRow[] }) {
   return (
     <HeroZone
       variant="kpi"
-      title="Market Trends"
+      title="시장 동향"
       subtitle={bangkok.latest
         ? `방콕 현물가 기준일 ${bangkok.latest.date.replace(/-/g, '.')}${bangkokDeltaPct === null ? '' : ` · 직전 고시 대비 ${fmtPct(bangkokDeltaPct)}`}`
         : '참치 가격 데이터 수신 대기'}
@@ -257,6 +258,13 @@ export default function MarketDashboard({ heroOnly = false }: { heroOnly?: boole
   const marketHero = <MarketHero rows={priceData} />;
   // 필터는 어가 추이 차트에만 적용 — KPI·히어로는 전체 기간 기준 (결정 ②)
   const chartData = filterAtunaHistory(priceData, chartFilter.period, chartFilter.grain);
+  const bangkokVolume: VolumeBarPoint[] = chartData
+    .filter((row): row is AtunaPriceRow & { skj_bkk: number } => typeof row.skj_bkk === 'number')
+    .slice(-8)
+    .map((row) => ({
+      label: row.date.slice(5).replace('-', '.'),
+      value: row.skj_bkk,
+    }));
 
   if (heroOnly) {
     return (
@@ -432,6 +440,14 @@ export default function MarketDashboard({ heroOnly = false }: { heroOnly?: boole
             </span>
           )}
         </h3>
+        {bangkokVolume.length >= 2 && (
+          <div style={{ marginBottom: 20 }}>
+            <h4 style={{ fontSize: '0.9rem', fontWeight: 600, color: 'var(--text-muted)', margin: '0 0 8px' }}>
+              방콕 SKJ 최근 고시 (입체 비교)
+            </h4>
+            <VolumeBarChart data={bangkokVolume} name="방콕 SKJ" unit="($/MT)" height={200} />
+          </div>
+        )}
         <div ref={chartContainerRef} style={{ width: '100%', minHeight: '350px', display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(450px, 100%), 1fr))', gap: '24px' }}>
           
           {/* LEFT: SKIPJACK (SKJ) */}

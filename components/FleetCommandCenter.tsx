@@ -55,6 +55,8 @@ const decisions = [
   { icon: AlertTriangle, level: '검산', title: fleetDailyPublicReconciliation.valid ? '최신 상세 행 검산 일치' : fleetDailyPublicReconciliation.unavailableCount > 0 ? '미보고 포함 · 검산 불가' : '최신 상세 행 확인 필요', detail: `전일 합계 ${formatFleetDailyDelta(fleetDailyPublicDeltas.totalDailyMt)} (MT) · 이슈 ${fleetDailyPublicReconciliation.issueCount}건`, tone: fleetDailyPublicReconciliation.valid ? 'primary' : 'danger' },
 ] as const;
 
+const nowDecisionIndex = Math.max(0, decisions.findIndex((item) => item.tone === 'danger'));
+
 function accessAction(code: FleetDailyDetailErrorCode) {
   if (code === 'authentication_required') return { href: '/mail/login?next=/fleet', label: '서버 로그인' };
   if (code === 'mfa_required') return { href: '/mail', label: '2단계 인증' };
@@ -127,7 +129,19 @@ export default function FleetCommandCenter({ heroOnly = false }: { heroOnly?: bo
       subtitle={`${fleetDailyPublicLatest.reportDate} 보고 · ${fleetDailyPublicLatest.asOf} 조업 기준`}
       primaryKpi={{ label: '일간 합계', value: dailyTotalMt, unit: '(MT)' }}
       secondaryKpis={dailyHeroSecondaryKpis}
-      strip={<div className={s.missionStrip}>{decisions.map(({ icon: Icon, level, title, detail, tone }) => <article key={title} className={`${s.missionCard} ${s[`decision_${tone}`]}`}><Icon size={18} aria-hidden="true" /><div><span className={s.decisionLevel}>{level}</span><strong>{title}</strong><p>{detail}</p></div></article>)}</div>}
+      strip={<div className={s.missionStrip}>{decisions.map(({ icon: Icon, level, title, detail, tone }, index) => {
+        const now = index === nowDecisionIndex;
+        return (
+          <article key={title} className={`${s.missionCard} ${s[`decision_${tone}`]} ${now ? s.missionCardNow : ''}`} data-now={now ? 'true' : 'false'}>
+            <Icon size={18} aria-hidden="true" />
+            <div>
+              <span className={s.decisionLevel}>{now ? `지금 · ${level}` : level}</span>
+              <strong>{title}</strong>
+              <p>{detail}</p>
+            </div>
+          </article>
+        );
+      })}</div>}
     />
   );
 

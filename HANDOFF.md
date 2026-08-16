@@ -1,3 +1,11 @@
+> 🎨 **2026-08-16 — Command Deck P0+P1, Google 소유자 인증 main과 병합** [Grok]:
+> - 사용자 승인: P0+P1, VolumeBar 허용. 사이드바=목록+운영 4 알약. 구현은 `visual/command-deck-p01`.
+> - `origin/main`의 전 페이지 Google 소유자 인증(`f9fb402`)과 충돌을 해소했다. 옛 비밀번호 잠금 UI는 되돌리지 않았다.
+> - P0/P1 시각만 유지: OperationPills, VolumeBar, Now 1장, 한글 히어로 제목.
+> - **다음 단계**: 재검증 후 PR #465 병합·production.
+
+> 마지막 업데이트: 2026-08-16 [Grok]
+
 > 🔐 **2026-08-16 17:53 KST — 전 페이지 단일 Google 소유자 인증 로컬 구현** [Codex]:
 > - **완료된 것:** 클라이언트 `sessionStorage`·공용 비밀번호 화면을 제거하고 Next.js 16 `proxy.ts`에서 모든 페이지·API·정적 JSON·이미지·`/_next/static` 실행 청크를 서버 검증한다. Supabase `getClaims()`의 서명 검증 결과에서 정확한 `DASHBOARD_OWNER_EMAIL`, `role=authenticated`, 비익명 세션, 기본 제공자 `google`을 모두 만족해야 통과한다. 다른 이메일과 Google이 연결만 된 이메일·비밀번호 세션은 403/fail-closed다.
 > - **공개 예외:** 자산이 필요 없는 자체 CSP 인라인 로그인(`/login`, `/mail/login`), 서버 Google OAuth 시작·PKCE 콜백(`/auth/start`, `/auth/callback`), 기존 서명 검증 웹훅(`/api/webhooks/unloading`)만 남겼다. OAuth callback·복귀 URL은 요청 Host가 아니라 `DASHBOARD_PUBLIC_BASE_URL` 기준으로 고정해 Host 변조를 막는다. 로컬 Production 응답에서 PKCE S256과 `Secure; SameSite=Lax` 쿠키도 확인했다.

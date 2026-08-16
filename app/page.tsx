@@ -25,6 +25,7 @@ import PageTransition from '../components/PageTransition';
 import AmbientBackground from '../components/AmbientBackground';
 import CommandPalette from '../components/CommandPalette';
 import KeepAlivePanel from '../components/KeepAlivePanel';
+import OperationPills from '../components/v2/OperationPills';
 import { LongArmOctopusIcon } from '../components/SeafoodSidebarIcons';
 
 // ─── Dynamic imports (loaded on-demand per page) ───
@@ -78,8 +79,6 @@ const SIDEBAR_ICONS: Record<SidebarIconKey, React.ElementType> = {
   TestTube,
   Waves,
 };
-
-const SIDEBAR_SUFFIX_STYLE = { fontSize: '0.75em', opacity: 0.8 };
 
 
 export default function Home() {
@@ -235,14 +234,7 @@ export default function Home() {
         onClick={() => { handleMenuClick(item.key); setIsMobileSidebarOpen(false); }}
       >
         <Icon size={18} />
-        <span>
-          {item.label}
-          {item.suffix && (
-            <span style={SIDEBAR_SUFFIX_STYLE}>
-              {' '}({item.suffix})
-            </span>
-          )}
-        </span>
+        <span>{item.label}</span>
       </button>
     );
   };
@@ -372,6 +364,8 @@ export default function Home() {
       {/* Main Content Area */}
       <div className={styles.mainContent}>
         <main className={styles.container}>
+          <OperationPills activeKey={activeMenu} onSelect={handleMenuClick} />
+
           {activeMenu === 'market' && (
             <>
               <LiveTicker />
