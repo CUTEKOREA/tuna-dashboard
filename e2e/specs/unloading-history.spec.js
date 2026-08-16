@@ -53,22 +53,27 @@ async function preparePage(
   page,
   { failHistoryApi = false, blockedAppPath, historyResponse } = {},
 ) {
+  const localE2EAuthSecret = process.env.DASHBOARD_E2E_AUTH_SECRET;
+  assert.ok(localE2EAuthSecret, '로컬 E2E 인증 비밀값이 필요합니다');
   const pageErrors = [];
   const consoleErrors = [];
   const networkErrors = [];
   let blockedAppRequestCount = 0;
   let historyApiRequestCount = 0;
   const expectedPath = failHistoryApi ? '/api/unloading-history' : blockedAppPath;
+  const blockedExternalScriptPatterns = [
+    /The script resource is behind a redirect, which is disallowed\./,
+  ];
   const allowedConsolePatterns = failHistoryApi
-    ? [/500 \(Internal Server Error\)/]
+    ? [...blockedExternalScriptPatterns, /500 \(Internal Server Error\)/]
     : blockedAppPath
-      ? [/과거 실적 패널 렌더링 오류|ChunkLoadError|Loading chunk|Failed to load resource/i]
-      : [];
+      ? [...blockedExternalScriptPatterns, /과거 실적 패널 렌더링 오류|ChunkLoadError|Loading chunk|Failed to load resource/i]
+      : blockedExternalScriptPatterns;
 
   await page.setBypassServiceWorker(true);
   await page.setRequestInterception(true);
   page.on('request', (request) => {
-    if (isBlockedThirdPartyUrl(request.url())) {
+    if (!isAppOwnedUrl(request.url(), appOrigin)) {
       void request.abort('blockedbyclient');
       return;
     }
@@ -98,7 +103,10 @@ async function preparePage(
       });
       return;
     }
-    void request.continue();
+    const requestHeaders = isAppOwnedUrl(request.url(), appOrigin)
+      ? { ...request.headers(), 'x-dashboard-e2e-secret': localE2EAuthSecret }
+      : request.headers();
+    void request.continue({ headers: requestHeaders });
   });
   page.on('pageerror', (error) => pageErrors.push(error.message));
   page.on('console', (message) => {
@@ -113,12 +121,26 @@ async function preparePage(
     }
   });
   page.on('requestfailed', (request) => {
+    const failureText = request.failure()?.errorText ?? '알 수 없는 네트워크 오류';
+    const requestUrl = new URL(request.url(), appOrigin);
+    if (failureText === 'net::ERR_ABORTED' && requestUrl.searchParams.has('_rsc')) {
+      return;
+    }
     if (shouldCaptureNetworkFailure(request.url(), appOrigin, expectedPath)) {
-      networkErrors.push(`${request.url()}: ${request.failure()?.errorText ?? '알 수 없는 네트워크 오류'}`);
+      networkErrors.push(`${request.url()}: ${failureText}`);
     }
   });
   page.on('response', (response) => {
     const responseUrl = response.url();
+    if (
+      response.request().resourceType() === 'script'
+      && response.status() >= 300
+      && response.status() < 400
+      && isAppOwnedUrl(responseUrl, appOrigin)
+    ) {
+      networkErrors.push(`${responseUrl}: HTTP ${response.status()}`);
+      return;
+    }
     if (
       response.status() >= 400
       && shouldCaptureNetworkFailure(responseUrl, appOrigin, expectedPath)
@@ -214,31 +236,10 @@ function findHistoryChunkPath() {
 }
 
 async function unlock(page) {
-  const operationPassword = process.env.SILLA_OPERATION_PASSWORD;
-  assert.ok(operationPassword, 'E2E operation password is required');
-
-  await page.goto(`${appOrigin}/api/operation-access`, { waitUntil: 'networkidle0' });
-  const login = await page.evaluate(async (password) => {
-    const response = await fetch('/api/operation-access', {
-      method: 'POST',
-      credentials: 'same-origin',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ password }),
-    });
-    const body = await response.json();
-    return { status: response.status, granted: body.granted };
-  }, operationPassword);
-  assert.deepEqual(login, { status: 200, granted: true });
-
-  const verified = await page.evaluate(async () => {
-    const response = await fetch('/api/operation-access', {
-      cache: 'no-store',
-      credentials: 'same-origin',
-    });
-    const body = await response.json();
-    return { status: response.status, granted: body.granted };
+  const response = await page.goto(`${appOrigin}/api/mgo`, {
+    waitUntil: 'networkidle0',
   });
-  assert.deepEqual(verified, { status: 200, granted: true });
+  assert.equal(response?.status(), 200, '로컬 E2E 인증 경계를 통과해야 합니다');
 }
 
 async function waitForText(page, selector, pattern) {

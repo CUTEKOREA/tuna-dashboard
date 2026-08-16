@@ -111,6 +111,6 @@ KPI 카운트업 1.4s (reduce 시 즉시 표시).
 
 ### 5-6. 전 메뉴 세션 잠금
 
-- 모든 활성 메뉴는 `SESSION_ACCESS_MENUS`(registry) 기반 세션 비밀번호 게이트 뒤에 있다.
+- 모든 페이지는 Next.js `proxy.ts`의 서버 검증을 거쳐야 하며, `DASHBOARD_OWNER_EMAIL`과 정확히 일치하는 구글 계정만 접근한다.
 - 클라이언트측 게이트다 — 진짜 인증이 아니며 Supabase 로그인과 별개 층. 신규 메뉴는
   registry에 추가되는 순간 자동으로 잠금 대상이 된다.

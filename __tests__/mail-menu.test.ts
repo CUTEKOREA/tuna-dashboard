@@ -14,15 +14,17 @@ describe('관리자 메일 메뉴 계약', () => {
     expect(page).toContain('mail: mailAdminVisible ? <MailInboxDashboard /> : null');
   });
 
-  it('메일 메뉴는 sessionStorage 비밀번호를 보안 경계로 사용하지 않는다', () => {
+  it('메일 메뉴는 클라이언트 비밀번호가 아닌 전역 구글 인증 뒤에 있다', () => {
     const registry = readFileSync(join(process.cwd(), 'lib/dashboard-registry.ts'), 'utf8');
     const mailConfig = registry.match(/\{ key: 'mail',[^\n]+\}/)?.[0] ?? '';
     const page = readFileSync(join(process.cwd(), 'app/page.tsx'), 'utf8');
+    const proxy = readFileSync(join(process.cwd(), 'proxy.ts'), 'utf8');
 
     expect(mailConfig).not.toContain('requiresOperationAccess');
     expect(mailConfig).toContain('requiresAdminAccess: true');
-    expect(registry).toContain("SESSION_ACCESS_MENU_KEYS = VALID_MENUS.filter((menu) => menu !== 'mail')");
-    expect(page).toContain('SESSION_ACCESS_MENUS.has(activeMenu) && !operationAccessGranted');
+    expect(proxy).toContain('updateDashboardOwnerSession');
+    expect(page).not.toContain('SESSION_ACCESS_MENUS');
+    expect(page).not.toContain('operationAccessGranted');
     expect(page).toContain("if (item.key === 'mail' && !mailAdminVisible) return null");
     expect(page).toContain('mail: mailAdminVisible ? <MailInboxDashboard /> : null');
   });
@@ -39,22 +41,27 @@ describe('관리자 메일 메뉴 계약', () => {
     expect(page).toContain("if (path && isActiveMenu(path)) return path");
   });
 
-  it('공개 대시보드와 분리된 관리자 로그인 경로가 Supabase 세션을 만든다', () => {
+  it('메일 로그인 경로도 동일한 구글 소유자 세션을 만든다', () => {
     const loginPagePath = join(process.cwd(), 'app/mail/login/page.tsx');
     const loginComponentPath = join(process.cwd(), 'components/MailAdminLogin.tsx');
+    const oauthStartPath = join(process.cwd(), 'app/auth/start/route.ts');
 
     expect(existsSync(loginPagePath)).toBe(true);
     expect(existsSync(loginComponentPath)).toBe(true);
 
     const loginPage = existsSync(loginPagePath) ? readFileSync(loginPagePath, 'utf8') : '';
     const loginComponent = existsSync(loginComponentPath) ? readFileSync(loginComponentPath, 'utf8') : '';
+    const oauthStart = existsSync(oauthStartPath) ? readFileSync(oauthStartPath, 'utf8') : '';
 
     expect(loginPage).toContain('index: false');
     expect(loginPage).toContain('follow: false');
-    expect(loginComponent).toContain('supabase.auth.signInWithPassword');
+    expect(loginComponent).toContain('action="/auth/start"');
+    expect(loginComponent).toContain('name="next" value={returnTo}');
+    expect(oauthStart).toContain('client.auth.signInWithOAuth');
+    expect(oauthStart).toContain("provider: 'google'");
+    expect(loginComponent).not.toContain('signInWithPassword');
     expect(loginPage).toContain("candidate === '/fleet' || candidate === '/mail'");
     expect(loginPage).toContain("? candidate : '/mail'");
-    expect(loginComponent).toContain('router.replace(returnTo)');
     expect(loginComponent).not.toContain('signUp');
     expect(loginComponent).not.toContain('localStorage');
     expect(loginComponent).not.toContain('sessionStorage');

@@ -1,10 +1,11 @@
 import 'server-only';
 
 import { createServerUserClient, getSupabaseRequestConfig } from '@/lib/auth/supabase-request';
-import { buildFleetEffectiveAllowlist, evaluateFleetAccess, type FleetAccessResult } from './server-auth';
+import { evaluateDashboardOwnerUser } from '@/lib/auth/owner-policy';
+import { evaluateFleetAccess, type FleetAccessResult } from './server-auth';
 
 export async function authorizeFleetRequest(): Promise<FleetAccessResult> {
-  if (!process.env.FLEET_ALLOWED_EMAILS?.trim() || !process.env.MAIL_ADMIN_EMAILS?.trim()) {
+  if (!process.env.DASHBOARD_OWNER_EMAIL?.trim()) {
     return { ok: false, status: 503, code: 'fleet_auth_unavailable' };
   }
   try {
@@ -19,17 +20,34 @@ export async function authorizeFleetRequest(): Promise<FleetAccessResult> {
     if (userError || !userData.user) {
       return { ok: false, status: 401, code: 'authentication_required' };
     }
+    const user = userData.user;
+    const ownerAccess = evaluateDashboardOwnerUser({
+      id: user.id,
+      email: user.email,
+      email_confirmed_at: user.email_confirmed_at,
+      app_metadata: {
+        provider: user.app_metadata?.provider,
+        providers: user.app_metadata?.providers,
+      },
+      identities: user.identities?.map((identity) => ({ provider: identity.provider })),
+    }, process.env.DASHBOARD_OWNER_EMAIL);
+    if (!ownerAccess.ok) {
+      if (ownerAccess.status === 401) {
+        return { ok: false, status: 401, code: 'authentication_required' };
+      }
+      if (ownerAccess.status === 503) {
+        return { ok: false, status: 503, code: 'fleet_auth_unavailable' };
+      }
+      return { ok: false, status: 403, code: 'fleet_access_required' };
+    }
     const { data: aalData, error: aalError } = await client.auth.mfa.getAuthenticatorAssuranceLevel();
     if (aalError) {
       return { ok: false, status: 503, code: 'fleet_auth_unavailable' };
     }
     return evaluateFleetAccess(
-      userData.user,
+      user,
       aalData.currentLevel,
-      buildFleetEffectiveAllowlist(
-        process.env.FLEET_ALLOWED_EMAILS,
-        process.env.MAIL_ADMIN_EMAILS,
-      ),
+      new Set([ownerAccess.email]),
     );
   } catch {
     return { ok: false, status: 503, code: 'fleet_auth_unavailable' };

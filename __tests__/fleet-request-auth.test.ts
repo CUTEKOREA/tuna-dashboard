@@ -15,13 +15,11 @@ vi.mock('@/lib/auth/supabase-request', () => ({
 
 import { authorizeFleetRequest } from '@/lib/fleet/request-auth';
 
-const ORIGINAL_FLEET = process.env.FLEET_ALLOWED_EMAILS;
-const ORIGINAL_MAIL = process.env.MAIL_ADMIN_EMAILS;
+const ORIGINAL_OWNER = process.env.DASHBOARD_OWNER_EMAIL;
 
 beforeEach(() => {
   vi.clearAllMocks();
-  process.env.FLEET_ALLOWED_EMAILS = 'operator@example.com,fleet-only@example.com';
-  process.env.MAIL_ADMIN_EMAILS = 'operator@example.com,mail-only@example.com';
+  process.env.DASHBOARD_OWNER_EMAIL = 'operator@example.com';
   mocks.getConfig.mockReturnValue({ url: 'https://example.supabase.co', anonKey: 'test-key' });
   mocks.getUser.mockResolvedValue({
     data: {
@@ -29,6 +27,8 @@ beforeEach(() => {
         id: 'fleet-user-1',
         email: 'operator@example.com',
         email_confirmed_at: '2026-08-16T00:00:00.000Z',
+        app_metadata: { provider: 'google', providers: ['google'] },
+        identities: [{ provider: 'google' }],
       },
     },
     error: null,
@@ -43,15 +43,13 @@ beforeEach(() => {
 });
 
 afterEach(() => {
-  if (ORIGINAL_FLEET === undefined) delete process.env.FLEET_ALLOWED_EMAILS;
-  else process.env.FLEET_ALLOWED_EMAILS = ORIGINAL_FLEET;
-  if (ORIGINAL_MAIL === undefined) delete process.env.MAIL_ADMIN_EMAILS;
-  else process.env.MAIL_ADMIN_EMAILS = ORIGINAL_MAIL;
+  if (ORIGINAL_OWNER === undefined) delete process.env.DASHBOARD_OWNER_EMAIL;
+  else process.env.DASHBOARD_OWNER_EMAIL = ORIGINAL_OWNER;
 });
 
 describe('fleet request authorization integration', () => {
-  it('fails closed before contacting Supabase when either allowlist is missing', async () => {
-    delete process.env.MAIL_ADMIN_EMAILS;
+  it('fails closed before contacting Supabase when the dashboard owner is missing', async () => {
+    delete process.env.DASHBOARD_OWNER_EMAIL;
 
     await expect(authorizeFleetRequest()).resolves.toEqual({
       ok: false,
@@ -61,7 +59,7 @@ describe('fleet request authorization integration', () => {
     expect(mocks.createClient).not.toHaveBeenCalled();
   });
 
-  it('allows only a confirmed AAL2 user in both administrator allowlists', async () => {
+  it('allows only the confirmed Google dashboard owner with AAL2', async () => {
     await expect(authorizeFleetRequest()).resolves.toEqual({
       ok: true,
       userId: 'fleet-user-1',
@@ -73,8 +71,10 @@ describe('fleet request authorization integration', () => {
       data: {
         user: {
           id: 'fleet-user-2',
-          email: 'fleet-only@example.com',
+          email: 'other@example.com',
           email_confirmed_at: '2026-08-16T00:00:00.000Z',
+          app_metadata: { provider: 'google', providers: ['google'] },
+          identities: [{ provider: 'google' }],
         },
       },
       error: null,
@@ -86,7 +86,28 @@ describe('fleet request authorization integration', () => {
     });
   });
 
-  it('requires AAL2 after the administrator intersection succeeds', async () => {
+  it('rejects a password-primary session even when its email matches the owner', async () => {
+    mocks.getUser.mockResolvedValue({
+      data: {
+        user: {
+          id: 'fleet-user-1',
+          email: 'operator@example.com',
+          email_confirmed_at: '2026-08-16T00:00:00.000Z',
+          app_metadata: { provider: 'email', providers: ['email', 'google'] },
+          identities: [{ provider: 'email' }, { provider: 'google' }],
+        },
+      },
+      error: null,
+    });
+
+    await expect(authorizeFleetRequest()).resolves.toEqual({
+      ok: false,
+      status: 403,
+      code: 'fleet_access_required',
+    });
+  });
+
+  it('requires AAL2 after the dashboard owner check succeeds', async () => {
     mocks.getAal.mockResolvedValue({ data: { currentLevel: 'aal1' }, error: null });
 
     await expect(authorizeFleetRequest()).resolves.toEqual({

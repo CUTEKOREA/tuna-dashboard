@@ -1,8 +1,7 @@
 import { NextResponse } from 'next/server';
-import { cookies } from 'next/headers';
-import { createServerClient } from '@supabase/ssr';
 import fs from 'fs';
 import path from 'path';
+import { authorizeDashboardRequest } from '@/lib/auth/request-auth';
 
 /**
  * Atuna 일일 시장 인텔리전스 endpoint
@@ -23,36 +22,6 @@ import path from 'path';
 export const dynamic = 'force-dynamic';
 
 const DATA_DIR = path.join(process.cwd(), 'data', 'atuna_daily');
-
-/**
- * 쿠키 기반 Supabase 세션 검증 (A-5 인증 게이팅).
- * Atuna 유료 구독 소스 — 무인증 접근은 401로 차단.
- */
-async function isAuthenticated(): Promise<boolean> {
-  // 로컬 개발 우회 — NODE_ENV=development 한정 (주의: page.tsx는 hostname localhost도 우회하므로 npm start 로컬 프로덕션에선 페이지 입장+API 차단 조합이 됨)
-  if (process.env.NODE_ENV === 'development') return true;
-  try {
-    const cookieStore = await cookies();
-    const supabase = createServerClient(
-      process.env.NEXT_PUBLIC_SUPABASE_URL || 'https://placeholder.supabase.co',
-      process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || 'placeholder',
-      {
-        cookies: {
-          getAll() {
-            return cookieStore.getAll();
-          },
-          setAll() {
-            // Route Handler에서는 응답 쿠키 갱신 생략 (읽기 전용 검증)
-          },
-        },
-      }
-    );
-    const { data: { user } } = await supabase.auth.getUser();
-    return Boolean(user);
-  } catch {
-    return false;
-  }
-}
 
 function listAvailableDates(): string[] {
   if (!fs.existsSync(DATA_DIR)) return [];
@@ -86,12 +55,21 @@ function l12(available: string[]) {
 }
 
 export async function GET(request: Request) {
-  // A-5 인증 게이팅 — 무인증 요청은 데이터 미제공
-  const authed = await isAuthenticated();
-  if (!authed) {
+  const access = await authorizeDashboardRequest();
+  if (!access.ok) {
     return NextResponse.json(
-      { error: '로그인이 필요합니다. 인증 후 다시 시도해주세요.', restricted: true, isLive: false },
-      { status: 401 }
+      {
+        error: access.status === 503
+          ? '접속 보안 설정이 완료되지 않았습니다.'
+          : '허용된 구글 계정 로그인이 필요합니다.',
+        code: access.code,
+        restricted: true,
+        isLive: false,
+      },
+      {
+        status: access.status,
+        headers: { 'Cache-Control': 'private, no-store, max-age=0', Vary: 'Cookie' },
+      },
     );
   }
 
