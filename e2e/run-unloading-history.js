@@ -1,11 +1,9 @@
 const { spawn, spawnSync } = require('node:child_process');
+const crypto = require('node:crypto');
 const http = require('node:http');
 const net = require('node:net');
 const path = require('node:path');
 const { once } = require('node:events');
-
-const TEST_OPERATION_PASSWORD = 'Test-Operation!2026';
-const TEST_OPERATION_ACCESS_SECRET = 'test-only-operation-access-secret-2026-08-16';
 
 function getFreePort(startPort) {
   return new Promise((resolve, reject) => {
@@ -83,11 +81,12 @@ async function main() {
   const preferredPort = Number.parseInt(process.env.PORT || '3027', 10);
   const port = await getFreePort(Number.isFinite(preferredPort) ? preferredPort : 3027);
   const nextBin = require.resolve('next/dist/bin/next');
+  const e2eAuthSecret = crypto.randomBytes(32).toString('hex');
   const testEnvironment = {
     ...process.env,
     PORT: String(port),
-    SILLA_OPERATION_PASSWORD: TEST_OPERATION_PASSWORD,
-    SILLA_OPERATION_ACCESS_SECRET: TEST_OPERATION_ACCESS_SECRET,
+    DASHBOARD_E2E_MODE: 'local',
+    DASHBOARD_E2E_AUTH_SECRET: e2eAuthSecret,
   };
   const server = spawn(
     process.execPath,

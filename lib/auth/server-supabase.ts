@@ -1,24 +1,12 @@
 import 'server-only';
-
-import { createServerClient } from '@supabase/ssr';
 import { cookies } from 'next/headers';
+import { createServerClient } from '@supabase/ssr';
+import { getSupabaseAuthConfig } from '@/lib/mail/server-env';
 
-function required(name: string): string {
-  const value = process.env[name]?.trim();
-  if (!value) throw new Error('서버 인증 설정이 완료되지 않았습니다');
-  return value;
-}
-
-export function getSupabaseRequestConfig(): { url: string; anonKey: string } {
-  return {
-    url: required('NEXT_PUBLIC_SUPABASE_URL'),
-    anonKey: required('NEXT_PUBLIC_SUPABASE_ANON_KEY'),
-  };
-}
-
-export async function createServerUserClient() {
-  const config = getSupabaseRequestConfig();
+export async function createDashboardUserClient() {
+  const config = getSupabaseAuthConfig();
   const cookieStore = await cookies();
+
   return createServerClient(config.url, config.anonKey, {
     cookieOptions: {
       path: '/',

@@ -1,7 +1,10 @@
 const http = require('http');
 
 const PORT = process.env.PORT || 3000;
-const TOKEN = 'secret123';
+const TOKEN = process.env.UNLOADING_WEBHOOK_SECRET?.trim();
+if (!TOKEN || TOKEN.length < 32) {
+  throw new Error('UNLOADING_WEBHOOK_SECRET must be at least 32 characters');
+}
 
 const emailJune2 = `금일(6/2) M/V BAO LUCKY 하역결과
 일일 하역량 229.16 MT
@@ -79,11 +82,12 @@ function postEmail(emailBody, subject) {
     const options = {
       hostname: 'localhost',
       port: PORT,
-      path: `/api/webhooks/unloading?token=${TOKEN}`,
+      path: '/api/webhooks/unloading',
       method: 'POST',
       headers: {
         'Content-Type': `multipart/form-data; boundary=${boundary}`,
-        'Content-Length': Buffer.byteLength(payload)
+        'Content-Length': Buffer.byteLength(payload),
+        'x-unloading-webhook-secret': TOKEN
       }
     };
 

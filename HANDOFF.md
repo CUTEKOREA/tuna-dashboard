@@ -1,3 +1,15 @@
+> 🔐 **2026-08-16 17:53 KST — 전 페이지 단일 Google 소유자 인증 로컬 구현** [Codex]:
+> - **완료된 것:** 클라이언트 `sessionStorage`·공용 비밀번호 화면을 제거하고 Next.js 16 `proxy.ts`에서 모든 페이지·API·정적 JSON·이미지·`/_next/static` 실행 청크를 서버 검증한다. Supabase `getClaims()`의 서명 검증 결과에서 정확한 `DASHBOARD_OWNER_EMAIL`, `role=authenticated`, 비익명 세션, 기본 제공자 `google`을 모두 만족해야 통과한다. 다른 이메일과 Google이 연결만 된 이메일·비밀번호 세션은 403/fail-closed다.
+> - **공개 예외:** 자산이 필요 없는 자체 CSP 인라인 로그인(`/login`, `/mail/login`), 서버 Google OAuth 시작·PKCE 콜백(`/auth/start`, `/auth/callback`), 기존 서명 검증 웹훅(`/api/webhooks/unloading`)만 남겼다. OAuth callback·복귀 URL은 요청 Host가 아니라 `DASHBOARD_PUBLIC_BASE_URL` 기준으로 고정해 Host 변조를 막는다. 로컬 Production 응답에서 PKCE S256과 `Secure; SameSite=Lax` 쿠키도 확인했다.
+> - **정적 청크까지 보호한 이유:** 빌드 청크에서 실제 선박·하역 수치가 확인됐다. 따라서 로그인 화면을 Next 실행 자산 없는 서버 HTML로 제공하고, 청크도 인증 뒤로 옮겼다. 인증된 페이지·API·청크는 `private, no-store`, 서비스워커는 기존 CacheStorage를 전부 삭제하고 모든 동일 출처 요청을 network-only로 처리하며 로그아웃도 CacheStorage를 비운다.
+> - **과거 비밀번호 폐기:** `/api/operation-access`의 GET·POST·DELETE는 모두 410이고 쿠키를 발급하지 않는다. `lib/server/operation-access.ts` 호환 심볼도 항상 거부하도록 무력화했으며 `SILLA_OPERATION_PASSWORD`·`SILLA_OPERATION_ACCESS_SECRET`을 더 이상 읽지 않는다. Atuna 가격·일일 API의 개발 우회와 90일 공개 프리뷰도 제거하고 route-level 소유자 검증 뒤에만 원문을 반환한다.
+> - **메일:** 기존 Gmail OAuth·MFA·위험 작업 확인 흐름은 유지하되, 메일 서버 요청도 먼저 정확한 Google 소유자 계정을 재검증한다.
+> - **검증:** 최신 `origin/main` 통합 후 `npm run verify` exit 0 — ESLint 오류 0(기존 경고 4), TypeScript, Python **3/3**, Vitest **105파일·579테스트**(2개 skip), API cache **157/157**, Next build **117페이지 + Proxy**, Fleet client leak **102파일·합성 경계 3건**, bundle **32라우트** 통과. Next 이미지 최적화 요청은 원본 인증 헤더를 전달하지 않으므로 전역 `unoptimized`로 바꾸고 회귀 테스트를 추가했다. 로컬 Production 하역 E2E도 데스크톱·모바일·키보드·새로고침·API/청크 오류격리까지 PASS했다.
+> - **운영 인증 설정:** Google Cloud OAuth 클라이언트에 Supabase callback을 추가했고, Supabase Google provider를 활성화했다. Supabase Site URL은 `https://leedonggun.co.kr`, 허용 redirect URL은 `https://leedonggun.co.kr/auth/callback` 단일값이다. Vercel Production에는 Sensitive `DASHBOARD_OWNER_EMAIL`과 고정 `DASHBOARD_PUBLIC_BASE_URL`을 등록했다. 기존 메일 Gmail redirect URI는 그대로 보존했다.
+> - **독립 반증에서 잡아 고친 것:** 로그아웃 상태의 기존 서비스워커도 `/sw.js` v4를 공개 수신해 과거 캐시를 삭제한다. Fleet 상세는 별도 환경변수 교집합 대신 전역 Google owner를 fresh `getUser()`로 재검증한 뒤 기존 AAL2를 그대로 요구한다. 메일·Fleet 공용 Supabase 쿠키도 Production `Secure`로 통일했다. Vercel 보조 호스트의 page/login/start/callback은 PKCE 전에 운영 호스트로 정규화한다. 공개 하역 웹훅은 `secret123` fallback을 없애고 32자 이상 비밀값·상수시간 검증을 요구하며, 현재 Production 비밀값이 없으므로 503 fail-closed다.
+> - **상태/다음 단계:** 분리 worktree `codex/google-owner-auth-20260816`에서 최신 main 병합과 운영 설정을 완료했다. PR 병합·Production 배포 후 실제 Google 소유자 로그인, 다른 계정 거부, 1440px·390px, API·정적 JSON·이미지·청크 401/307/no-store와 캐시 삭제를 운영에서 재검증한다.
+> - **마지막 업데이트:** 2026-08-16 18:59 KST.
+
 ## 2026-08-16 — 참치 교역 위젯을 FAO 2024 벌크로 교체 [CC]
 
 무역 계열 위젯 5~6개가 2023년에 멈춰 있던 문제를 원본 교체로 끝냈다.
