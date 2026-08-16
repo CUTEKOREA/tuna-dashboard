@@ -496,6 +496,7 @@ export default function MarketDashboard({ heroOnly = false }: { heroOnly?: boole
               unit="($/MT)"
               width={chartWidth}
               height={160}
+              fill="var(--chart-s1, #509ee3)"
             />
           </div>
         )}

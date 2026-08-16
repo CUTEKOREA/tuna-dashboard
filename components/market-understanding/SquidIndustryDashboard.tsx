@@ -406,7 +406,7 @@ export default function SquidIndustryDashboard({ heroOnly = false }: SquidIndust
   if (heroOnly) return hero;
 
   return (
-    <div className={styles.page} data-testid="squid-industry-dashboard">
+    <div className={styles.page} data-testid="squid-industry-dashboard" data-commodity="squid">
       {hero}
 
       <section className={styles.briefing} aria-labelledby="squid-briefing-heading">

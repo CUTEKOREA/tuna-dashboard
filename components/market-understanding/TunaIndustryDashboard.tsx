@@ -443,7 +443,7 @@ export default function TunaIndustryDashboard({ heroOnly = false }: TunaIndustry
   if (heroOnly) return hero;
 
   return (
-    <div className={styles.page} data-testid="tuna-industry-dashboard">
+    <div className={styles.page} data-testid="tuna-industry-dashboard" data-commodity="tuna">
       {hero}
 
       <section className={styles.briefing} aria-labelledby="briefing-heading">

@@ -44,6 +44,8 @@ describe('VolumeBar', () => {
     const volume = readFileSync(join(process.cwd(), 'components/charts/VolumeBar.tsx'), 'utf8');
     expect(market.indexOf('방콕 SKJ 최근 고시')).toBeGreaterThan(market.indexOf('가다랑어 (SKJ)'));
     expect(volume).not.toContain('ResponsiveContainer');
+    expect(volume).toContain('var(--chart-s1, #509ee3)');
+    expect(volume).toContain('var(--chart-axis, #8d93a5)');
   });
 
   it('3면 기둥 도형을 그린다', () => {
