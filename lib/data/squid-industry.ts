@@ -18,6 +18,7 @@
  */
 import rawCatch from '../../public/data/squid_industry_v1.json';
 import rawTrade from '../../public/data/squid_trade_v1.json';
+import rawFleet from '../../public/data/squid_fleet_v1.json';
 import rawWidgets from '../../public/data/squid_industry_widgets_v1.json';
 
 // ─── 어획 집계 ──────────────────────────────────────────────────────────────
@@ -192,6 +193,76 @@ export interface SquidTradeData {
   } | null;
 }
 
+// ─── 어법별 선단 ────────────────────────────────────────────────────────────
+//
+// 이 품목의 가장 중요한 축이다. 어법이 다르면 잡는 종·어장·선박·사업이 모두 다르다.
+// 척당 배분량이 20배 벌어지는 것이 그 증거다.
+
+export interface GearRow {
+  업종: string;
+  척수: number;
+  선령31년이상: number;
+  대상: string;
+}
+
+export interface SquidVessel {
+  회사: string;
+  선명: string;
+  톤수: number;
+  길이: number;
+  진수: string;
+  선령: number;
+}
+
+export interface VesselCompany {
+  회사: string;
+  척수: number;
+  합계톤수: number;
+  최고선령: number;
+}
+
+export interface NationFleetRow {
+  국가: string;
+  척수: number;
+  합계톤수: number | null;
+  평균톤수: number | null;
+  기준: string;
+  출처: string;
+}
+
+export interface CoastalGearRow {
+  업종: string;
+  어법: string;
+  선박수: number;
+  배분량: number;
+  소진율: number | null;
+  척당배분량: number;
+}
+
+export interface FishingGroundRow {
+  어장: string;
+  제도: string;
+  한국배분: number;
+  전체: number;
+  비중: number;
+  대상종: string;
+  비고: string;
+}
+
+interface Sectioned<T> {
+  _meta: Record<string, unknown>;
+  rows: T[];
+}
+
+export interface SquidFleetData {
+  _meta: Record<string, unknown>;
+  원양업종: Sectioned<GearRow>;
+  채낚기선박: Sectioned<SquidVessel> & { 회사별: VesselCompany[] };
+  국가별선단: Sectioned<NationFleetRow>;
+  연근해업종: Sectioned<CoastalGearRow>;
+  어장: Sectioned<FishingGroundRow>;
+}
+
 // ─── 선별 위젯 ──────────────────────────────────────────────────────────────
 
 export interface SquidSeries {
@@ -264,6 +335,7 @@ interface WidgetsFile {
 const CATCH = rawCatch as unknown as SquidCatchData;
 const TRADE = rawTrade as unknown as SquidTradeData;
 const WIDGETS = rawWidgets as unknown as WidgetsFile;
+const FLEET = rawFleet as unknown as SquidFleetData;
 
 /** 사슬 단계 키 접두사. 횡단 단계는 `x` 로 시작한다. */
 const CHAIN_PREFIX = 's';
@@ -290,6 +362,11 @@ export function getSquidCrossStages(): SquidStage[] {
 
 export function getSquidWidgetsMeta(): Record<string, unknown> {
   return WIDGETS._meta;
+}
+
+/** 어법별 선단 구조. 「오징어 어선 몇 척」이라는 합산을 막는 자료다. */
+export function getSquidFleetData(): SquidFleetData {
+  return FLEET;
 }
 
 /** 살오징어 붕괴 시계열. 이 페이지의 중심 서사가 쓴다. */

@@ -25,7 +25,7 @@ import {
 } from 'recharts';
 
 import { getSmartRotation, truncateXAxis } from '@/lib/chart-standards';
-import type { SquidCatchData, SquidTradeData } from '@/lib/data/squid-industry';
+import type { SquidCatchData, SquidFleetData, SquidTradeData } from '@/lib/data/squid-industry';
 import {
   SQUID_ROLE,
   colorForBasket,
@@ -574,6 +574,175 @@ export function CountryCompareChart({ data }: { data: SquidTradeData }) {
           isAnimationActive={animate}
         />
       </BarChart>
+    </SafeResponsiveContainer>
+  );
+}
+
+/** 원양 업종별 척수와 선령 — 어법이 다르면 다른 사업이다. */
+export function DistantGearChart({ data }: { data: SquidFleetData }) {
+  const animate = useAnim();
+  const rows = useMemo(
+    () =>
+      data.원양업종.rows.map((r) => ({
+        업종: r.업종,
+        신조: r.척수 - r.선령31년이상,
+        노후: r.선령31년이상,
+      })),
+    [data],
+  );
+  const rotation = getSmartRotation(rows.map((r) => r.업종));
+
+  return (
+    <SafeResponsiveContainer width="100%" height={310}>
+      <BarChart data={rows} margin={{ ...MARGIN, bottom: rotation.angle ? 52 : 8 }}>
+        {grid}
+        <XAxis
+          dataKey="업종"
+          {...AXIS}
+          tickFormatter={truncateXAxis}
+          angle={rotation.angle}
+          textAnchor={rotation.textAnchor as 'end' | 'middle'}
+          height={rotation.angle ? 66 : 30}
+          interval={0}
+        />
+        <YAxis {...AXIS} />
+        <Tooltip content={<Tip unit=" 척" />} />
+        {legend}
+        <Bar
+          dataKey="노후"
+          name="선령 31년 이상 (척)"
+          stackId="a"
+          fill={SQUID_ROLE.highlight}
+          isAnimationActive={animate}
+        />
+        <Bar
+          dataKey="신조"
+          name="선령 30년 이하 (척)"
+          stackId="a"
+          fill={SQUID_ROLE.volume}
+          radius={[3, 3, 0, 0]}
+          isAnimationActive={animate}
+        />
+      </BarChart>
+    </SafeResponsiveContainer>
+  );
+}
+
+/** 연근해 업종별 척당 배분량 — 같은 「오징어 어선」으로 묶을 수 없는 이유. */
+export function CoastalGearChart({ data }: { data: SquidFleetData }) {
+  const animate = useAnim();
+  const rows = data.연근해업종.rows;
+  const rotation = getSmartRotation(rows.map((r) => r.업종));
+
+  return (
+    <SafeResponsiveContainer width="100%" height={310}>
+      <ComposedChart data={rows} margin={{ ...MARGIN, bottom: rotation.angle ? 52 : 8 }}>
+        {grid}
+        <XAxis
+          dataKey="업종"
+          {...AXIS}
+          tickFormatter={truncateXAxis}
+          angle={rotation.angle}
+          textAnchor={rotation.textAnchor as 'end' | 'middle'}
+          height={rotation.angle ? 66 : 30}
+          interval={0}
+        />
+        <YAxis yAxisId="left" {...AXIS} />
+        <YAxis yAxisId="right" orientation="right" {...AXIS} />
+        <Tooltip content={<Tip />} />
+        {legend}
+        <Bar
+          yAxisId="left"
+          dataKey="선박수"
+          name="선박 수 (척)"
+          fill={SQUID_ROLE.volume}
+          radius={[3, 3, 0, 0]}
+          isAnimationActive={animate}
+        />
+        <Line
+          yAxisId="right"
+          type="monotone"
+          dataKey="척당배분량"
+          name="척당 배분량 (톤)"
+          stroke={SQUID_ROLE.highlight}
+          strokeWidth={2.4}
+          dot={{ r: 4 }}
+          isAnimationActive={animate}
+        />
+      </ComposedChart>
+    </SafeResponsiveContainer>
+  );
+}
+
+/** 채낚기 선박의 선령 분포 — 원양 오징어 선단이 얼마나 늙었는가. */
+export function VesselAgeChart({ data }: { data: SquidFleetData }) {
+  const animate = useAnim();
+  const rows = useMemo(
+    () =>
+      [...data.채낚기선박.rows]
+        .sort((a, b) => b.선령 - a.선령)
+        .map((v) => ({ 선명: v.선명, 선령: v.선령, 톤수: v.톤수 })),
+    [data],
+  );
+  const rotation = getSmartRotation(rows.map((r) => r.선명));
+
+  return (
+    <SafeResponsiveContainer width="100%" height={330}>
+      <BarChart data={rows} margin={{ ...MARGIN, bottom: rotation.angle ? 58 : 8 }}>
+        {grid}
+        <XAxis
+          dataKey="선명"
+          {...AXIS}
+          tickFormatter={truncateXAxis}
+          angle={rotation.angle}
+          textAnchor={rotation.textAnchor as 'end' | 'middle'}
+          height={rotation.angle ? 72 : 30}
+          interval={0}
+        />
+        <YAxis {...AXIS} />
+        <Tooltip content={<Tip unit=" 년" />} />
+        <Bar dataKey="선령" name="선령 (년)" radius={[3, 3, 0, 0]} isAnimationActive={animate}>
+          {rows.map((r, i) => (
+            <Cell key={i} fill={r.선령 >= 31 ? SQUID_ROLE.highlight : SQUID_ROLE.volume} />
+          ))}
+        </Bar>
+      </BarChart>
+    </SafeResponsiveContainer>
+  );
+}
+
+/** 3국 채낚기 선단 — 척수는 대만이, 배 크기는 한국이 크다. */
+export function NationFleetChart({ data }: { data: SquidFleetData }) {
+  const animate = useAnim();
+  return (
+    <SafeResponsiveContainer width="100%" height={280}>
+      <ComposedChart data={data.국가별선단.rows} margin={MARGIN}>
+        {grid}
+        <XAxis dataKey="국가" {...AXIS} interval={0} />
+        <YAxis yAxisId="left" {...AXIS} />
+        <YAxis yAxisId="right" orientation="right" {...AXIS} />
+        <Tooltip content={<Tip />} />
+        {legend}
+        <Bar
+          yAxisId="left"
+          dataKey="척수"
+          name="선박 수 (척)"
+          fill={SQUID_ROLE.volume}
+          radius={[3, 3, 0, 0]}
+          isAnimationActive={animate}
+        />
+        <Line
+          yAxisId="right"
+          type="monotone"
+          dataKey="평균톤수"
+          name="평균 톤수 (톤)"
+          stroke={SQUID_ROLE.highlight}
+          strokeWidth={2.4}
+          dot={{ r: 4 }}
+          connectNulls={false}
+          isAnimationActive={animate}
+        />
+      </ComposedChart>
     </SafeResponsiveContainer>
   );
 }

@@ -55,7 +55,7 @@ STAGES: list[dict] = [
     },
     {
         "key": "s03",
-        "title": "조업과 선단",
+        "title": "어법 — 무엇으로 잡느냐가 사업을 가른다",
         "pillar": "S1",
         "widgets": ["A_sprfmo_cmm18_effort"],
     },

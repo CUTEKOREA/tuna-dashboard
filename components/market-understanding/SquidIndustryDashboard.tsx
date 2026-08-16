@@ -18,6 +18,7 @@ import {
   getSquidCatchData,
   getSquidChainStages,
   getSquidCrossStages,
+  getSquidFleetData,
   getSquidTradeData,
   getSquidWidgetsMeta,
   type SquidStage,
@@ -39,7 +40,11 @@ import {
   AreaRankChart,
   BasketChart,
   CollapseChart,
+  CoastalGearChart,
   CountryCompareChart,
+  DistantGearChart,
+  NationFleetChart,
+  VesselAgeChart,
   CountryRankChart,
   ImportFormChart,
   ImportOriginChart,
@@ -55,6 +60,7 @@ import styles from './TunaIndustryDashboard.module.css';
 
 const CATCH = getSquidCatchData();
 const TRADE = getSquidTradeData();
+const FLEET = getSquidFleetData();
 const CHAIN_STAGES = getSquidChainStages();
 const CROSS_STAGES = getSquidCrossStages();
 const ALL_STAGES: SquidStage[] = [...CHAIN_STAGES, ...CROSS_STAGES];
@@ -62,6 +68,7 @@ const WIDGETS_META = getSquidWidgetsMeta();
 
 const CATCH_SYNC = { status: 'STATIC' as const, syncDate: `${CATCH.요약.기준연도}년 확정` };
 const TRADE_SYNC = { status: 'STATIC' as const, syncDate: `${TRADE.요약.기준연도}년 확정` };
+const FLEET_SYNC = { status: 'STATIC' as const, syncDate: '2024년 말 기준' };
 const FLYING_SQUID_VS_PEAK_PCT = Number(
   ((CATCH.요약.살오징어세계최신 / CATCH.요약.살오징어세계정점) * 100).toFixed(1),
 );
@@ -103,6 +110,20 @@ export const SQUID_CHART_SLOTS: Record<string, ChartSlot[]> = {
     },
   ],
   s03: [
+    {
+      title: '연근해 업종별 선박 수와 척당 배분량 (척·톤)',
+      caption:
+        '막대는 선박 수, 선은 척당 배분량이다. 가장 작은 근해자망 18.6톤과 대형트롤 368.1톤이 20배 벌어진다 — 이 배들을 더해 「오징어 어선」이라 부를 수 없다.',
+      telemetry: { status: 'STATIC' as const, syncDate: '2025/26 어기' },
+      render: () => <CoastalGearChart data={FLEET} />,
+    },
+    {
+      title: '원양 업종별 선박 수와 선령 (척)',
+      caption:
+        '분홍이 선령 31년 이상이다. 한국 원양어선 198척 중 157척이 31년을 넘었고, 오징어채낚기는 20척 중 18척이다.',
+      telemetry: FLEET_SYNC,
+      render: () => <DistantGearChart data={FLEET} />,
+    },
     {
       title: '어획 상위 12개국 (톤)',
       caption: '1위 중국은 자국 연안이 아니라 원양에서 대부분을 잡는다. 장미색이 한국이다.',
@@ -159,6 +180,20 @@ export const SQUID_CHART_SLOTS: Record<string, ChartSlot[]> = {
     },
   ],
   x03: [
+    {
+      title: '오징어채낚기 선박별 선령 (년)',
+      caption:
+        '분홍이 31년 이상이다. 20척 평균 선령 36.5년, 최고 51년이다. 2020년 건조 2척을 빼면 대부분 1970~80년대 배다.',
+      telemetry: FLEET_SYNC,
+      render: () => <VesselAgeChart data={FLEET} />,
+    },
+    {
+      title: '한·일·대만 채낚기 선단 (척·톤)',
+      caption:
+        '막대는 척수, 선은 평균 톤수다. 한국은 큰 배로 원양에, 일본은 작은 배로 근해에 나간다. 대만은 톤수가 공개되지 않는다.',
+      telemetry: { status: 'STATIC' as const, syncDate: '2024~2026년' },
+      render: () => <NationFleetChart data={FLEET} />,
+    },
     {
       title: '한국 어획량과 세계 점유율 (톤·%)',
       caption: '막대는 어획량, 선은 세계에서 차지하는 몫이다.',
