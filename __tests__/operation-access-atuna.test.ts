@@ -109,6 +109,19 @@ describe('운영 화면 접근과 Atuna 전체 이력', () => {
     expect(pageSource).toContain('autoComplete="current-password"');
   });
 
+  it('모바일에서 전체 메뉴 잠금이 성공하면 열린 사이드바도 닫는다', () => {
+    const pageSource = readFileSync(join(process.cwd(), 'app/page.tsx'), 'utf8');
+    const handlerStart = pageSource.indexOf('const handleOperationLock = async () => {');
+    const handlerEnd = pageSource.indexOf('\n  const toggleTheme', handlerStart);
+    const handlerSource = pageSource.slice(handlerStart, handlerEnd);
+
+    expect(handlerStart).toBeGreaterThanOrEqual(0);
+    expect(handlerEnd).toBeGreaterThan(handlerStart);
+    expect(handlerSource).toMatch(
+      /window\.sessionStorage\.removeItem\(OPERATION_ACCESS_STORAGE_KEY\);\s*setOperationAccessGranted\(false\);\s*setIsMobileSidebarOpen\(false\);/,
+    );
+  });
+
   it('틀린 비밀번호와 변조된 쿠키에는 최근 90일 프리뷰만 제공한다', async () => {
     const accessRoute = await loadOperationAccessRoute();
 
