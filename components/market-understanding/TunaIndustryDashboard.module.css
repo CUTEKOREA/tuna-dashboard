@@ -125,6 +125,58 @@
   color: var(--mu-ink-soft);
 }
 
+/* 요약 한 줄에서 그 근거가 있는 단계로 가는 손잡이 */
+.briefingJump {
+  align-self: flex-start;
+  margin-top: 0.125rem;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--mu-accent);
+  font-size: 0.75rem;
+  font-weight: 600;
+  cursor: pointer;
+  text-underline-offset: 3px;
+}
+
+.briefingJump:hover,
+.briefingJump:focus-visible {
+  text-decoration: underline;
+}
+
+/* 단계 끝의 인계 버튼. 이것이 없으면 첫 단계에서 읽기가 끝난다 */
+.stageNext {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  align-self: flex-start;
+  margin-top: 0.5rem;
+  padding: 0.625rem 0.875rem;
+  border: 1px solid var(--mu-line);
+  border-radius: 10px;
+  background: var(--mu-surface);
+  color: var(--mu-ink);
+  font-size: 0.875rem;
+  cursor: pointer;
+  transition: background 0.15s ease, border-color 0.15s ease;
+}
+
+.stageNext:hover,
+.stageNext:focus-visible {
+  background: var(--mu-hover);
+  border-color: var(--mu-accent);
+}
+
+.stageNextLabel {
+  color: var(--mu-ink-muted);
+  font-size: 0.75rem;
+  letter-spacing: 0.04em;
+}
+
+.stageNextTitle {
+  font-weight: 600;
+}
+
 /* ─── 분기도 ──────────────────────────────────────────────────── */
 
 .spineFigure {

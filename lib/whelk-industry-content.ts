@@ -21,7 +21,10 @@
  * 표기 규약: 본문의 낫표(「」)는 **그 단계에 실린 차트 제목을 가리킬 때만** 쓴다.
  * 강조 인용은 큰따옴표를 쓴다. 테스트가 이 규약을 강제한다.
  */
-import type { StageNarrative } from '@/components/market-understanding/CommodityIndustryDashboard';
+import type {
+  BriefingPoint,
+  StageNarrative,
+} from '@/components/market-understanding/CommodityIndustryDashboard';
 
 const STAGE_01: StageNarrative = {
   key: 's01',
@@ -311,12 +314,12 @@ export const WHELK_NARRATIVES: StageNarrative[] = [
   CROSS_A,
 ];
 
-export const WHELK_BRIEFING_POINTS: string[] = [
-  '세계 “골뱅이” 생산의 **83.23%는 중국 양식 피뿔고둥**이다. 통조림 원료인 참골뱅이는 7.91%뿐이다.',
-  '참골뱅이 어획은 영국·프랑스·캐나다·아일랜드가 94.5%를 차지하고 **한국은 0**이다.',
-  '한국은 국제 통계에 종을 보고하지 않는다 — 55개 연도 전부 **고둥류 미분류** 한 코드다.',
-  '통조림 원료는 **영국에서 조제저장품으로** 들어오고, 국산 원물은 **활·신선으로 일본·중국에** 나간다.',
-  '통관 세번이 골뱅이 전용인지 **확인되지 않았고**, 2025년에는 통계 항목명 자체가 바뀌었다.',
+export const WHELK_BRIEFING_POINTS: BriefingPoint[] = [
+  { stage: 's01', text: '세계 “골뱅이” 생산의 **83.23%는 중국 양식 피뿔고둥**이다. 통조림 원료인 참골뱅이는 7.91%뿐이다.' },
+  { stage: 's02', text: '참골뱅이 어획은 영국·프랑스·캐나다·아일랜드가 94.5%를 차지하고 **한국은 0**이다.' },
+  { stage: 's03', text: '한국은 국제 통계에 종을 보고하지 않는다 — 55개 연도 전부 **고둥류 미분류** 한 코드다.' },
+  { stage: 's04', text: '통조림 원료는 **영국에서 조제저장품으로** 들어오고, 국산 원물은 **활·신선으로 일본·중국에** 나간다.' },
+  { stage: 'x01', text: '통관 세번이 골뱅이 전용인지 **확인되지 않았고**, 2025년에는 통계 항목명 자체가 바뀌었다.' },
 ];
 
 export const WHELK_SOURCE_NOTES: string[] = [

@@ -29,7 +29,12 @@ export interface PillTabsProps {
   tabs: PillTab[];
   activeKey: string;
   onChange: (key: string) => void;
-  /** 활성 탭 단일 액센트 — commodity 시그니처 대표색 (D-04). */
+  /**
+   * @deprecated 실제로는 쓰이지 않는다. 활성 필 배경은 전역 `--accent-primary` 로 고정돼 있고
+   * `__tests__/v2-components-render.test.ts` 가 그 고정을 강제한다 — 품목 시그니처 색을 여기
+   * 넣으면 흰 글자 대비가 4.5:1 아래로 떨어지는 조합이 생긴다(teal-600 등). 시그니처 색(D-04)은
+   * 히어로 KPI 와 차트가 낸다. 호출부 호환을 위해 남겨 둔다.
+   */
   accentFrom?: string;
   /** @deprecated V2.5는 한 화면 1액센트만 사용한다. 호출부 호환을 위해 유지. */
   accentTo?: string;
@@ -48,7 +53,7 @@ export default function PillTabs({
   tabs,
   activeKey,
   onChange,
-  accentFrom = '#22d3ee',
+
   className,
   id,
   ariaLabel = '필 탭',
@@ -130,11 +135,17 @@ export default function PillTabs({
           >
             {active && (
               <motion.span
-                layoutId="dsc-pill-active"
+                /* layoutId 는 인스턴스마다 달라야 한다. 패널을 살려 두는 셸에서는
+                   여러 PillTabs 가 동시에 마운트돼 있어, 같은 id 를 쓰면
+                   활성 알약이 패널을 건너뛰어 날아간다. */
+                layoutId={`dsc-pill-active-${tabIdPrefix ?? id ?? ariaLabel}`}
                 style={{
                   position: 'absolute',
                   inset: 0,
                   borderRadius: 8,
+                  /* 활성 필은 전역 강조색 단색 + 흰 글자로 고정한다.
+                     품목 시그니처 색을 여기 넣으면 흰 글자 대비가 4.5:1 아래로 떨어지는
+                     조합이 생긴다(예: teal-600). 시그니처 색은 히어로와 차트가 낸다. */
                   background: 'var(--accent-primary)',
                   border: '1px solid var(--accent-primary)',
                   boxShadow: '0 2px 8px rgba(16, 24, 40, 0.18)',

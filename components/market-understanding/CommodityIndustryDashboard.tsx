@@ -13,8 +13,8 @@
  */
 'use client';
 
-import React, { useMemo, useState } from 'react';
-import { BookOpen, Waves } from 'lucide-react';
+import React, { useCallback, useMemo, useRef, useState } from 'react';
+import { ArrowRight, BookOpen, Waves } from 'lucide-react';
 
 import { TelemetryBadge } from '../TelemetryBadge';
 import TermTooltip from '../TermTooltip';
@@ -61,6 +61,15 @@ export interface ChartSlot {
   render: () => React.ReactNode;
 }
 
+/**
+ * 브리핑 한 줄. `stage` 는 이 줄이 나온 단계다 —
+ * 요약을 읽다가 근거가 궁금해지면 그 단계로 바로 갈 수 있어야 한다.
+ */
+export interface BriefingPoint {
+  stage: string;
+  text: string;
+}
+
 export interface CommoditySpec {
   /** DOM id·testid 접두사 겸 data-commodity 값 */
   key: string;
@@ -71,7 +80,7 @@ export interface CommoditySpec {
   primaryKpi: HeroKpi;
   secondaryKpis: HeroKpi[];
   stripItems: HeroNowItem[];
-  briefing: string[];
+  briefing: BriefingPoint[];
   narratives: StageNarrative[];
   chartSlots: Record<string, ChartSlot[]>;
   sourceNotes: string[];
@@ -155,17 +164,28 @@ function StageSection({
   prefix,
   narrative,
   charts,
+  next,
+  onGo,
+  headingRef,
 }: {
   prefix: string;
   narrative: StageNarrative;
   charts: ChartSlot[];
+  next?: StageNarrative;
+  onGo: (key: string) => void;
+  headingRef: React.RefObject<HTMLHeadingElement | null>;
 }) {
   return (
     <section className={styles.stage} aria-labelledby={`${prefix}-stage-${narrative.key}`}>
       <header className={styles.stageHeader}>
         <span className={styles.stageNumeral}>{narrative.numeral}</span>
         <div>
-          <h2 id={`${prefix}-stage-${narrative.key}`} className={styles.stageTitle}>
+          <h2
+            id={`${prefix}-stage-${narrative.key}`}
+            className={styles.stageTitle}
+            ref={headingRef}
+            tabIndex={-1}
+          >
             {narrative.title}
           </h2>
           <p className={styles.stageQuestion}>{narrative.question}</p>
@@ -203,6 +223,17 @@ function StageSection({
           {slot.render()}
         </figure>
       ))}
+
+      {/* 단계 끝에서 다음으로 넘기는 손잡이. 이것이 없으면 01단계에서 읽기가 끝난다. */}
+      {next && (
+        <button type="button" className={styles.stageNext} onClick={() => onGo(next.key)}>
+          <span className={styles.stageNextLabel}>다음</span>
+          <span className={styles.stageNextTitle}>
+            {next.numeral} {next.title}
+          </span>
+          <ArrowRight size={15} aria-hidden="true" />
+        </button>
+      )}
     </section>
   );
 }
@@ -217,6 +248,24 @@ export default function CommodityIndustryDashboard({
   heroOnly = false,
 }: CommodityIndustryDashboardProps) {
   const [activeKey, setActiveKey] = useState<string>(spec.narratives[0]?.key ?? '');
+  const headingRef = useRef<HTMLHeadingElement | null>(null);
+
+  /**
+   * 단계를 바꿀 때 새 단계의 제목으로 데려간다.
+   * 이게 없으면 앞 단계 차트 높이에 스크롤이 남아 질문과 리드를 건너뛰고 표부터 보게 된다.
+   */
+  const go = useCallback((key: string) => {
+    setActiveKey(key);
+    requestAnimationFrame(() => {
+      const heading = headingRef.current;
+      if (!heading) return;
+      const reduce =
+        typeof window !== 'undefined' &&
+        window.matchMedia?.('(prefers-reduced-motion: reduce)').matches;
+      heading.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'start' });
+      heading.focus({ preventScroll: true });
+    });
+  }, []);
 
   const tabs: PillTab[] = useMemo(
     () =>
@@ -261,11 +310,24 @@ export default function CommodityIndustryDashboard({
           아래로 내려가지 않아도 되는 사람을 위한 요약이다. 각 항목은 사슬의 한 단계에서 나온다.
         </p>
         <ol className={styles.briefingList}>
-          {spec.briefing.map((point) => (
-            <li key={point}>
-              <span>{renderEmphasis(point)}</span>
-            </li>
-          ))}
+          {spec.briefing.map((point) => {
+            const stage = spec.narratives.find((entry) => entry.key === point.stage);
+            return (
+              <li key={point.text}>
+                <span>{renderEmphasis(point.text)}</span>
+                {/* 요약을 읽다 근거가 궁금해지면 그 단계로 바로 간다 */}
+                {stage && (
+                  <button
+                    type="button"
+                    className={styles.briefingJump}
+                    onClick={() => go(stage.key)}
+                  >
+                    {stage.numeral}단계에서 보기
+                  </button>
+                )}
+              </li>
+            );
+          })}
         </ol>
       </section>
 
@@ -273,7 +335,7 @@ export default function CommodityIndustryDashboard({
         <PillTabs
           tabs={tabs}
           activeKey={active?.key ?? ''}
-          onChange={setActiveKey}
+          onChange={go}
           accentFrom={spec.accent}
           ariaLabel="밸류체인 단계"
           tabIdPrefix={`${spec.key}-industry-tab`}
@@ -286,6 +348,9 @@ export default function CommodityIndustryDashboard({
           prefix={spec.key}
           narrative={active}
           charts={spec.chartSlots[active.key] ?? []}
+          next={spec.narratives[spec.narratives.indexOf(active) + 1]}
+          onGo={go}
+          headingRef={headingRef}
         />
       ) : (
         <p className={styles.missing}>이 단계의 서술이 아직 준비되지 않았습니다.</p>

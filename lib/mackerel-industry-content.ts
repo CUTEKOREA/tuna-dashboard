@@ -19,7 +19,10 @@
  * 표기 규약: 본문의 낫표(「」)는 **그 단계에 실린 차트 제목을 가리킬 때만** 쓴다.
  * 강조 인용은 큰따옴표를 쓴다. 테스트가 이 규약을 강제한다.
  */
-import type { StageNarrative } from '@/components/market-understanding/CommodityIndustryDashboard';
+import type {
+  BriefingPoint,
+  StageNarrative,
+} from '@/components/market-understanding/CommodityIndustryDashboard';
 
 const STAGE_01: StageNarrative = {
   key: 's01',
@@ -338,12 +341,12 @@ export const MACKEREL_NARRATIVES: StageNarrative[] = [
   CROSS_A,
 ];
 
-export const MACKEREL_BRIEFING_POINTS: string[] = [
-  '한국 고등어의 **99.59%가 연근해**에서 나온다. 어장을 옮겨 물량을 벌 방법이 없다.',
-  '총허용어획량이 **2011년부터 대형선망 한 업종에만** 배분된다. 어법은 이 품목의 축이 아니다.',
-  '위판 단가가 등급에 따라 **2.4배** 벌어지는데 물량의 **78.25%가 최하 등급**이다.',
-  '수입액의 **75.31%가 노르웨이** 한 나라다. 같은 통관 코드 안에서 단가가 8배 벌어진다.',
-  '고등어·망치고등어·대서양고등어가 **한 통관 코드**에 있고, 2026~27 시즌부터 총허용어획량도 합쳐진다.',
+export const MACKEREL_BRIEFING_POINTS: BriefingPoint[] = [
+  { stage: 's01', text: '한국 고등어의 **99.59%가 연근해**에서 나온다. 어장을 옮겨 물량을 벌 방법이 없다.' },
+  { stage: 's02', text: '총허용어획량이 **2011년부터 대형선망 한 업종에만** 배분된다. 어법은 이 품목의 축이 아니다.' },
+  { stage: 's03', text: '위판 단가가 등급에 따라 **2.4배** 벌어지는데 물량의 **78.25%가 최하 등급**이다.' },
+  { stage: 's04', text: '수입액의 **75.31%가 노르웨이** 한 나라다. 같은 통관 코드 안에서 단가가 8배 벌어진다.' },
+  { stage: 'x01', text: '고등어·망치고등어·대서양고등어가 **한 통관 코드**에 있고, 2026~27 시즌부터 총허용어획량도 합쳐진다.' },
 ];
 
 export const MACKEREL_SOURCE_NOTES: string[] = [

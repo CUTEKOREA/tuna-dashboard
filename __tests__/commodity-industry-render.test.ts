@@ -23,6 +23,7 @@ import WhelkIndustryDashboard, {
   WHELK_CHART_SLOTS,
 } from '../components/market-understanding/WhelkIndustryDashboard';
 import type {
+  BriefingPoint,
   ChartSlot,
   StageNarrative,
 } from '../components/market-understanding/CommodityIndustryDashboard';
@@ -51,7 +52,7 @@ interface Page {
   이름: string;
   narratives: StageNarrative[];
   slots: Record<string, ChartSlot[]>;
-  briefing: string[];
+  briefing: BriefingPoint[];
   notes: string[];
   render: () => React.ReactElement;
 }
@@ -112,10 +113,15 @@ describe('시장 이해 3품목 — 서술 골격', () => {
   it.each(PAGES)('$이름 — 브리핑과 출처 주의가 비어 있지 않다', (page) => {
     expect(page.briefing.length).toBeGreaterThanOrEqual(4);
     expect(page.notes.length).toBeGreaterThanOrEqual(4);
-    for (const line of [...page.briefing, ...page.notes]) {
+    const stageKeys = new Set(page.narratives.map((stage) => stage.key));
+    for (const line of [...page.briefing.map((p) => p.text), ...page.notes]) {
       expect(line.length).toBeGreaterThan(10);
       // L-01 — 사용자 노출 문자열은 한글이어야 한다
       expect(line).toMatch(/[가-힣]/);
+    }
+    // 요약 한 줄마다 근거가 있는 단계로 갈 수 있어야 한다
+    for (const point of page.briefing) {
+      expect(stageKeys.has(point.stage), `${page.이름}: ${point.stage} 단계가 없다`).toBe(true);
     }
   });
 });

@@ -19,7 +19,10 @@
  * 표기 규약: 본문의 낫표(「」)는 **그 단계에 실린 차트 제목을 가리킬 때만** 쓴다.
  * 강조 인용은 큰따옴표를 쓴다. 테스트가 이 규약을 강제한다.
  */
-import type { StageNarrative } from '@/components/market-understanding/CommodityIndustryDashboard';
+import type {
+  BriefingPoint,
+  StageNarrative,
+} from '@/components/market-understanding/CommodityIndustryDashboard';
 
 const STAGE_01: StageNarrative = {
   key: 's01',
@@ -313,12 +316,12 @@ export const SHRIMP_NARRATIVES: StageNarrative[] = [
   CROSS_A,
 ];
 
-export const SHRIMP_BRIEFING_POINTS: string[] = [
-  '**양식이 이긴 유일한 주요 수산 품목**이다. 1950년 0.3%였던 양식 비중이 2024년 74.4%가 됐다.',
-  '**흰다리새우 한 종이 세계의 60.01%**다. 산지를 나눠도 종 리스크는 나뉘지 않는다.',
-  '나라마다 성격이 갈린다 — **에콰도르 99.3% 양식, 아르헨티나 100% 자연산.**',
-  '한국은 세계와 뒤집혀 있다. **양식 22.7%**이고 1위 품목이 새우젓 원료인 **젓새우 50.0%**다.',
-  '세계 생산의 **13.06%는 담수 양식**이다. 해산 새우 시장 규모를 말할 때는 빼야 한다.',
+export const SHRIMP_BRIEFING_POINTS: BriefingPoint[] = [
+  { stage: 's01', text: '**양식이 이긴 유일한 주요 수산 품목**이다. 1950년 0.3%였던 양식 비중이 2024년 74.4%가 됐다.' },
+  { stage: 's02', text: '**흰다리새우 한 종이 세계의 60.01%**다. 산지를 나눠도 종 리스크는 나뉘지 않는다.' },
+  { stage: 's03', text: '나라마다 성격이 갈린다 — **에콰도르 99.3% 양식, 아르헨티나 100% 자연산.**' },
+  { stage: 's04', text: '한국은 세계와 뒤집혀 있다. **양식 22.7%**이고 1위 품목이 새우젓 원료인 **젓새우 50.0%**다.' },
+  { stage: 'x01', text: '세계 생산의 **13.06%는 담수 양식**이다. 해산 새우 시장 규모를 말할 때는 빼야 한다.' },
 ];
 
 export const SHRIMP_SOURCE_NOTES: string[] = [
