@@ -256,7 +256,7 @@ describe('대시보드 단일 구글 계정 보안 경계', () => {
     expect(authMocks.getClaims).not.toHaveBeenCalled();
   });
 
-  it('로그인 화면은 공개 실행 청크 없이 서버 HTML과 자체 CSP만 사용한다', async () => {
+  it('로그인 화면은 서버 탐색 링크로 OAuth를 시작하고 엄격한 폼 CSP를 유지한다', async () => {
     const response = await proxy(new NextRequest(
       'https://dashboard.example/login?next=%2Funloading%3Fday%3D15',
     ));
@@ -265,9 +265,11 @@ describe('대시보드 단일 구글 계정 보안 경계', () => {
     expect(response.status).toBe(200);
     expect(response.headers.get('cache-control')).toContain('no-store');
     expect(response.headers.get('content-security-policy')).toContain("default-src 'none'");
+    expect(response.headers.get('content-security-policy')).toContain("form-action 'self'");
     expect(html).toContain('참치왕국 보안 로그인');
     expect(html).toContain('구글 계정으로 로그인');
-    expect(html).toContain('value="/unloading?day=15"');
+    expect(html).toContain('href="/auth/start?next=%2Funloading%3Fday%3D15"');
+    expect(html).not.toContain('<form');
     expect(html).not.toContain('/_next/static');
     expect(html).not.toContain('<script');
     expect(authMocks.getClaims).not.toHaveBeenCalled();

@@ -30,6 +30,7 @@ export function renderDashboardLogin(request: NextRequest): NextResponse {
   const errorMarkup = errorMessage
     ? `<p class="error" role="alert">${escapeHtml(errorMessage)}</p>`
     : '';
+  const loginHref = `/auth/start?next=${encodeURIComponent(nextPath)}`;
 
   const html = `<!doctype html>
 <html lang="ko">
@@ -48,9 +49,8 @@ export function renderDashboardLogin(request: NextRequest): NextResponse {
     h1{margin:0 0 18px;font-size:30px;line-height:1.25;letter-spacing:-.03em}
     .description,.boundary{color:#94a3b8;line-height:1.75}
     .description{margin:0 0 28px;font-size:16px}
-    form{margin:0}
-    button{width:100%;min-height:48px;border:0;border-radius:11px;background:#38bdf8;color:#03131c;font-size:14px;font-weight:800;cursor:pointer}
-    button:focus-visible{outline:3px solid #f8fafc;outline-offset:3px}
+    .login-link{width:100%;min-height:48px;display:grid;place-items:center;border-radius:11px;background:#38bdf8;color:#03131c;font-size:14px;font-weight:800;text-decoration:none}
+    .login-link:focus-visible{outline:3px solid #f8fafc;outline-offset:3px}
     .boundary{margin:22px 0 0;padding-top:20px;border-top:1px solid #243047;font-size:12px}
     .error{margin:0 0 18px;padding:12px;border:1px solid #9f3141;border-radius:10px;background:#38131a;color:#fecdd3;font-size:13px;line-height:1.55}
     @media(max-width:520px){.card{padding:28px;border-radius:18px}h1{font-size:26px}}
@@ -63,10 +63,7 @@ export function renderDashboardLogin(request: NextRequest): NextResponse {
     <h1 id="login-title">참치왕국 보안 로그인</h1>
     <p class="description">허용된 구글 계정 한 개로만 대시보드와 내부 데이터를 열람할 수 있습니다.</p>
     ${errorMarkup}
-    <form action="/auth/start" method="get">
-      <input type="hidden" name="next" value="${escapeHtml(nextPath)}">
-      <button type="submit">구글 계정으로 로그인</button>
-    </form>
+    <a class="login-link" href="${escapeHtml(loginHref)}">구글 계정으로 로그인</a>
     <p class="boundary">다른 구글 계정이나 이메일·비밀번호 계정은 로그인되어 있어도 접근할 수 없습니다.</p>
   </main>
 </body>
