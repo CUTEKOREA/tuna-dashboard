@@ -21,6 +21,7 @@ export interface DashboardOwnerClaims {
   email?: unknown;
   role?: unknown;
   is_anonymous?: unknown;
+  amr?: unknown;
   app_metadata?: {
     provider?: unknown;
     providers?: unknown;
@@ -57,9 +58,44 @@ function normalizeEmail(value: unknown): string {
   return typeof value === 'string' ? value.trim().toLowerCase() : '';
 }
 
-function hasGooglePrimaryProvider(metadata: DashboardOwnerClaims['app_metadata']): boolean {
-  return typeof metadata?.provider === 'string'
-    && metadata.provider.trim().toLowerCase() === 'google';
+function hasOnlyGoogleOrEmailProviders(
+  metadata: DashboardOwnerClaims['app_metadata'],
+): boolean {
+  const providers: unknown[] = [];
+  if (metadata?.provider !== undefined) providers.push(metadata.provider);
+  if (metadata?.providers !== undefined) {
+    if (!Array.isArray(metadata.providers)) return false;
+    providers.push(...metadata.providers);
+  }
+  if (providers.length === 0) return false;
+
+  const normalized = providers.map((provider) => (
+    typeof provider === 'string' ? provider.trim().toLowerCase() : ''
+  ));
+  return normalized.includes('google')
+    && normalized.every((provider) => provider === 'google' || provider === 'email');
+}
+
+function hasOAuthAuthenticationMethod(amr: unknown): boolean {
+  if (!Array.isArray(amr)) return false;
+  return amr.some((entry) => {
+    if (typeof entry === 'string') return entry.trim().toLowerCase() === 'oauth';
+    if (!entry || typeof entry !== 'object' || !('method' in entry)) return false;
+    const method = (entry as { method?: unknown }).method;
+    return typeof method === 'string' && method.trim().toLowerCase() === 'oauth';
+  });
+}
+
+function hasGoogleIdentity(user: DashboardOwnerUser): boolean {
+  if (!hasOnlyGoogleOrEmailProviders(user.app_metadata) || !Array.isArray(user.identities)) {
+    return false;
+  }
+  const providers = user.identities.map((identity) => (
+    typeof identity.provider === 'string' ? identity.provider.trim().toLowerCase() : ''
+  ));
+  return providers.length > 0
+    && providers.includes('google')
+    && providers.every((provider) => provider === 'google' || provider === 'email');
 }
 
 export function parseDashboardOwnerEmail(value: string | undefined): string | null {
@@ -90,7 +126,10 @@ export function evaluateDashboardOwnerClaims(
   if (email !== ownerEmail) {
     return { ok: false, status: 403, code: 'owner_required' };
   }
-  if (!hasGooglePrimaryProvider(claims.app_metadata)) {
+  if (
+    !hasOnlyGoogleOrEmailProviders(claims.app_metadata)
+    || !hasOAuthAuthenticationMethod(claims.amr)
+  ) {
     return { ok: false, status: 403, code: 'google_account_required' };
   }
 
@@ -119,7 +158,7 @@ export function evaluateDashboardOwnerUser(
   if (email !== ownerEmail) {
     return { ok: false, status: 403, code: 'owner_required' };
   }
-  if (!hasGooglePrimaryProvider(user.app_metadata)) {
+  if (!hasGoogleIdentity(user)) {
     return { ok: false, status: 403, code: 'google_account_required' };
   }
 

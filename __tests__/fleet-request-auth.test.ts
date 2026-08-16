@@ -86,7 +86,7 @@ describe('fleet request authorization integration', () => {
     });
   });
 
-  it('rejects a password-primary session even when its email matches the owner', async () => {
+  it('accepts the owner when an existing email user is linked to Google', async () => {
     mocks.getUser.mockResolvedValue({
       data: {
         user: {
@@ -95,6 +95,49 @@ describe('fleet request authorization integration', () => {
           email_confirmed_at: '2026-08-16T00:00:00.000Z',
           app_metadata: { provider: 'email', providers: ['email', 'google'] },
           identities: [{ provider: 'email' }, { provider: 'google' }],
+        },
+      },
+      error: null,
+    });
+
+    await expect(authorizeFleetRequest()).resolves.toEqual({
+      ok: true,
+      userId: 'fleet-user-1',
+      email: 'operator@example.com',
+      aal: 'aal2',
+    });
+  });
+
+  it('rejects the owner when no Google identity is linked', async () => {
+    mocks.getUser.mockResolvedValue({
+      data: {
+        user: {
+          id: 'fleet-user-1',
+          email: 'operator@example.com',
+          email_confirmed_at: '2026-08-16T00:00:00.000Z',
+          app_metadata: { provider: 'email', providers: ['email'] },
+          identities: [{ provider: 'email' }],
+        },
+      },
+      error: null,
+    });
+
+    await expect(authorizeFleetRequest()).resolves.toEqual({
+      ok: false,
+      status: 403,
+      code: 'fleet_access_required',
+    });
+  });
+
+  it('fails closed when another OAuth identity is also linked', async () => {
+    mocks.getUser.mockResolvedValue({
+      data: {
+        user: {
+          id: 'fleet-user-1',
+          email: 'operator@example.com',
+          email_confirmed_at: '2026-08-16T00:00:00.000Z',
+          app_metadata: { provider: 'email', providers: ['email', 'google', 'github'] },
+          identities: [{ provider: 'email' }, { provider: 'google' }, { provider: 'github' }],
         },
       },
       error: null,
