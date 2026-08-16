@@ -148,10 +148,13 @@ export function UnloadingHero({
           <button
             key={vessel.id}
             type="button"
-            className={`${styles.heroMissionCard} ${selectedVesselId === vessel.id ? styles.heroMissionCardActive : ''}`}
+            className={`${styles.heroMissionCard} ${selectedVesselId === vessel.id ? styles.heroMissionCardActive : ''} ${statusKind === 'progress' && vessel.id === featuredVessel?.id ? styles.heroMissionCardNow : ''}`}
             onClick={() => onSelectVessel(vessel.id)}
+            data-now={statusKind === 'progress' && vessel.id === featuredVessel?.id ? 'true' : 'false'}
           >
-            <span className={styles.heroMissionStatus}>{statusKind === 'progress' ? '하역 중' : '하역 대기'}</span>
+            <span className={styles.heroMissionStatus}>
+              {statusKind === 'progress' && vessel.id === featuredVessel?.id ? '지금 · 하역 중' : statusKind === 'progress' ? '하역 중' : '하역 대기'}
+            </span>
             <strong>{vessel.name}</strong>
             <span>{vessel.actualTotal.toLocaleString(undefined, { maximumFractionDigits: 3 })} / {vessel.reportedTotal.toLocaleString(undefined, { maximumFractionDigits: 3 })} (MT)</span>
             <span>{statusKind === 'progress' ? `진행률 ${progress.toFixed(1)}%` : '하역 실적 대기'}</span>
@@ -165,7 +168,7 @@ export function UnloadingHero({
     <HeroZone
       className={styles.unloadingHero}
       variant="vessel"
-      title="Unloading Status"
+      title="하역 현황"
       subtitle={baseDate ? `최신 하역 보고 기준일 ${baseDate}` : '최신 하역 보고 기준일 확인 중'}
       primaryKpi={{ label: '2026 누적 하역량', value: annualActualTotal, unit: '(MT)', decimals: 3 }}
       secondaryKpis={[

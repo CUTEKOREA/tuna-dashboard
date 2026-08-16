@@ -23,7 +23,7 @@ const heroOnlyCases: Array<{
   {
     name: '시장 동향',
     Dashboard: MarketDashboard as HeroOnlyDashboard,
-    heroTitle: 'Market Trends',
+    heroTitle: '시장 동향',
     heroMarker: '참치 가격 데이터 수신 대기',
     bodyText: '글로벌 참치 어가 추이',
   },
@@ -37,7 +37,7 @@ const heroOnlyCases: Array<{
   {
     name: '하역 현황',
     Dashboard: UnloadingStatus as HeroOnlyDashboard,
-    heroTitle: 'Unloading Status',
+    heroTitle: '하역 현황',
     heroMarker: '2026 누적 하역량',
     bodyText: '오늘의 운영 판단',
   },

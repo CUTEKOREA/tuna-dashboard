@@ -8,6 +8,17 @@ import { TelemetryBadge } from '../components/TelemetryBadge';
 import HeroZone from '../components/v2/HeroZone';
 import PillTabs from '../components/v2/PillTabs';
 
+describe('Fleet Now strip', () => {
+  it('선단 히어로 판단 카드 중 한 장만 지금이다', () => {
+    const markup = renderToStaticMarkup(
+      React.createElement(FleetCommandCenter, { heroOnly: true }),
+    );
+    const nowCount = markup.match(/data-now="true"/g)?.length ?? 0;
+    expect(nowCount).toBe(1);
+    expect(markup).toContain('지금 ·');
+  });
+});
+
 describe('Deep Sea Command V2 — HeroZone', () => {
   it('kpi 유형: 타이틀·주인공 KPI·단위·보조 KPI를 렌더한다 (W-02 단위 병기)', () => {
     const markup = renderToStaticMarkup(
@@ -259,7 +270,8 @@ describe('Deep Sea Command V2 — Phase 2 운영 페이지', () => {
       }),
     );
 
-    expect(markup).toContain('Unloading Status');
+    expect(markup).toContain('하역 현황');
+    expect(markup).toContain('data-now="true"');
     expect(markup).toContain('2026 누적 하역량');
     expect(markup).toContain('완료 선박');
     expect(markup).toContain('현재 하역 누계');
@@ -308,7 +320,7 @@ describe('Deep Sea Command V2 — Phase 2 운영 페이지', () => {
       }),
     );
 
-    expect(markup).toContain('Market Trends');
+    expect(markup).toContain('시장 동향');
     expect(markup).toContain('방콕 SKJ 현물가');
     expect(markup).toContain('만타 SKJ 현물가');
     expect(markup).toContain('방콕 주간 변동');

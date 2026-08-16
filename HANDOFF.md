@@ -1,3 +1,14 @@
+> 🎨 **2026-08-16 — Command Deck P0+P1 구현 (로컬, 미배포)** [Grok]:
+> - 사용자 승인: P0+P1, VolumeBar 3면 허용. 사이드바는 **목록 유지 + 운영 4 알약**. 베이스는 `origin/main` 전용 워크트리 `visual/command-deck-p01` (`/Users/idong-geon/orca/workspaces/tuna-dashboard/visual-deck-p01`). `mackerel/claude-etl`·더러운 `codex/fleet-production-2025`와 섞지 않음.
+> - 근거: `origin/main`에 Deep Sea Command V2(`HeroZone`·`PillTabs`)가 이미 있다. 이번 작업은 그 위에 공간 문법만 얹는다.
+> - P0: `--elev-1/2/3`, `--dsc-card-radius` 20px, `WidgetCard` 바이올렛 글로우 제거, `OperationPills`, 사이드바 영어 suffix 비표시.
+> - P1: `/market` 제목 한글 + 방콕 SKJ `VolumeBarChart`. `/fleet` 판단 스트립 1장만 `지금`. `/unloading` 제목 한글 + 진행 항차 1장 `지금`.
+> - 신규: `components/charts/VolumeBar.tsx`, `components/v2/NowCard.tsx`, `components/v2/OperationPills.tsx`. 데이터 계약·SIT/TAK 변경 없음.
+> - 검증: `npm run verify` 통과. ESLint 0 errors(기존 warnings 5) · TypeScript · Vitest **566/566**(skip 2) · API cache **157/157** · Next.js 정적 페이지 **117** · fleet leak · bundle 32 routes.
+> - 사용자 배포 요청에 따라 PR·production 반영을 진행한다.
+
+> 마지막 업데이트: 2026-08-16 [Grok]
+
 ## 2026-08-16 — 참치 교역 위젯을 FAO 2024 벌크로 교체 [CC]
 
 무역 계열 위젯 5~6개가 2023년에 멈춰 있던 문제를 원본 교체로 끝냈다.

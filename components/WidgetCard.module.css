@@ -39,11 +39,7 @@
 .card:hover {
   transform: translateY(-2px);
   border-color: var(--card-hover-border, rgba(140, 170, 255, 0.32));
-  /* Deep Ocean Aurora — cyan+violet 듀얼 글로우 (2026-06-28 [CC]) */
-  box-shadow:
-    0 14px 44px rgba(0, 0, 0, 0.6),
-    0 0 26px rgba(34, 211, 238, 0.12),
-    0 0 40px rgba(168, 85, 247, 0.10);
+  box-shadow: var(--elev-2, 0 14px 44px rgba(0, 0, 0, 0.55));
 }
 
 @media (prefers-reduced-motion: reduce) {
