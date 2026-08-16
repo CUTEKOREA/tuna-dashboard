@@ -200,10 +200,22 @@
   cursor: pointer;
 }
 
+/* SVG 요소의 outline 은 브라우저마다 그려주지 않는다. 포커스는 상자 테두리로도 보이게 한다. */
 .spineNode:focus-visible,
 .spineNodeActive:focus-visible {
   outline: 2px solid var(--mu-accent);
   outline-offset: 3px;
+}
+
+.spineNode:focus-visible .spineBoxCanned,
+.spineNode:focus-visible .spineBoxSashimi,
+.spineNode:focus-visible .spineBoxBoth,
+.spineNodeActive:focus-visible .spineBoxCanned,
+.spineNodeActive:focus-visible .spineBoxSashimi,
+.spineNodeActive:focus-visible .spineBoxBoth {
+  stroke: var(--mu-accent);
+  stroke-width: 3;
+  fill: var(--mu-hover);
 }
 
 .spineNode:hover .spineBoxCanned,
