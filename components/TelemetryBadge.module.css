@@ -36,9 +36,13 @@
 /* ── 배지 본체 — 다크 기본값 + 라이트 스코프 재정의 (색은 여기서만) ── */
 
 .badge {
-  display: flex;
-  align-items: center;
-  gap: 4px;
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 4px 6px;
+  max-width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
   padding: 2px 7px;
   border-radius: 5px;
   background: rgba(24, 24, 27, 0.72);
@@ -88,8 +92,9 @@
   font-size: 0.56rem;
   font-weight: 500;
   color: #71717a;
-  margin-left: 2px;
-  white-space: nowrap;
+  min-width: 0;
+  overflow-wrap: anywhere;
+  word-break: break-all;
 }
 
 /* 라이트 — 흰 pill + 진한 잉크 (SYNCED 흐릿 문제 해소) */

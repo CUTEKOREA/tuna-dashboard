@@ -187,6 +187,17 @@ describe('Deep Sea Command V2.5 — TelemetryBadge', () => {
     );
     expect(badgeCss).toContain('#94a3b8');
     expect(badgeCss).not.toContain('#f59e0b');
+    // 긴 기준 구간이 배지 밖으로 넘치지 않게 — nowrap 금지
+    expect(badgeCss).toContain('inline-flex');
+    expect(badgeCss).not.toMatch(/\.date\s*\{[^}]*white-space:\s*nowrap/);
+
+    const longDate = renderToStaticMarkup(
+      React.createElement(TelemetryBadge, {
+        status: 'STATIC',
+        syncDate: '2021-06-01~2025-09-30',
+      }),
+    );
+    expect(longDate).toContain('2021-06-01~2025-09-30');
   });
 });
 
