@@ -268,7 +268,8 @@ function renderEmphasis(text: string): React.ReactNode[] {
 
 function FactTable({ rows }: { rows: FactRow[] }) {
   return (
-    <div className={styles.factWrap}>
+    <>
+      <div className={styles.factWrap}>
       <table className={styles.factTable}>
         <caption className={styles.factCaption}>
           본문에 인용한 수치와 출처. 등급 A는 기관 1차문서 원문 확인, B는 기관 2차 인용, C는 업계 매체다.
@@ -301,7 +302,28 @@ function FactTable({ rows }: { rows: FactRow[] }) {
           ))}
         </tbody>
       </table>
-    </div>
+      </div>
+
+      {/* 좁은 화면용 — 같은 데이터를 목록으로 낸다.
+          표를 CSS 로 접으면 일부 브라우저에서 표 의미가 깨지므로 마크업을 따로 둔다. */}
+      <ul className={styles.factList}>
+        {rows.map((row, index) => (
+          <li key={`m-${row.label}-${index}`}>
+            <div className={styles.factHead}>
+              <span className={styles.factLabel}>{row.label}</span>
+              <span className={styles.grade} data-grade={row.grade}>
+                신뢰 {row.grade}
+              </span>
+            </div>
+            <p className={styles.factListValue}>{row.value}</p>
+            <p className={styles.factMeta}>
+              {row.asOf} · {row.source}
+            </p>
+            {row.note ? <p className={styles.factListNote}>{row.note}</p> : null}
+          </li>
+        ))}
+      </ul>
+    </>
   );
 }
 

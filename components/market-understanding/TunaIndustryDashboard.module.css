@@ -735,3 +735,121 @@
   color: var(--mu-ink-muted);
   margin-right: 0.3rem;
 }
+
+/* ── 읽기 순서 교정 (2026-08-17) ─────────────────────────────────────
+   서술이 본체이고 차트는 근거인데, 시각 무게가 반대였다. 차트는 글래스 카드에
+   원색으로 들어가고 서술은 흐린 색 38rem 이라 눈이 차트로 먼저 갔다.
+   Segel & Heer 의 마티니 글라스 구조 — 앞은 저자가 순서를 잡고 탐색은 뒤에 연다.
+   차트에서 카드 크롬을 걷어 문단과 같은 계층으로 내린다. */
+
+.lede {
+  /* 리드는 본체의 첫 문장이다. 부가 설명 색이면 안 된다 */
+  color: var(--mu-ink);
+  font-weight: 500;
+}
+
+.prose p {
+  /* 본문도 한 단계 올린다 — soft 는 캡션용이다 */
+  color: var(--mu-ink);
+}
+
+.catchFigure {
+  /* 카드가 아니라 캡션 달린 그림으로 */
+  background: transparent;
+  border: 0;
+  border-top: 1px solid var(--mu-line);
+  border-radius: 0;
+  padding: 0.85rem 0 0;
+  margin: 0.5rem 0 0;
+}
+
+.catchCaption {
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.3rem;
+  margin-bottom: 0.6rem;
+}
+
+.catchCaption strong {
+  /* 제목이 아니라 한 줄 주장이다 */
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--mu-ink);
+}
+
+.catchCaption span {
+  font-size: 0.78rem;
+  line-height: 1.7;
+  color: var(--mu-ink-muted);
+  max-width: 38rem;
+}
+
+/* ── 사실표 반응형 (2026-08-17) ──────────────────────────────────────
+   5열 표가 좁은 화면에서 잘렸다. CSS 로 표를 접으면 일부 브라우저에서
+   표 의미가 깨지므로(Roselli), 같은 데이터를 두 마크업으로 낸다. */
+
+.factList {
+  display: none;
+}
+
+@media (max-width: 720px) {
+  .factWrap {
+    display: none;
+  }
+
+  .factList {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    margin: 1rem 0 0;
+    padding: 0;
+    list-style: none;
+    border: 1px solid var(--mu-line);
+    border-radius: 10px;
+    overflow: hidden;
+  }
+
+  .factList li {
+    padding: 0.85rem 0.9rem;
+    background: var(--mu-surface);
+  }
+
+  .factList li + li {
+    border-top: 1px solid var(--mu-line);
+  }
+
+  .factHead {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 0.5rem;
+    margin-bottom: 0.35rem;
+  }
+
+  .factLabel {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--mu-ink);
+  }
+
+  .factListValue {
+    margin: 0 0 0.3rem;
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: var(--mu-ink);
+    font-variant-numeric: tabular-nums;
+  }
+
+  .factMeta {
+    margin: 0;
+    font-size: 0.72rem;
+    color: var(--mu-ink-muted);
+  }
+
+  .factListNote {
+    margin: 0.35rem 0 0;
+    font-size: 0.72rem;
+    line-height: 1.65;
+    color: var(--mu-ink-soft);
+  }
+}
