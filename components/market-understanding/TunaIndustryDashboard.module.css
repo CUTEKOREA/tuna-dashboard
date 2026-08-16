@@ -581,3 +581,117 @@
     grid-template-columns: 1fr;
   }
 }
+
+/* ── 오징어 위젯 — 표·발췌형 ─────────────────────────────────────────
+   참치 위젯은 전부 차트였다. 오징어 원본은 표와 원문 발췌가 절반을 넘어
+   그 형태를 그대로 보여주는 자리가 필요하다. */
+.squidWidgetBody {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  min-width: 0;
+}
+
+.dataTableWrap {
+  /* 넓은 표가 카드 밖으로 밀지 않게 자기 안에서 가로 스크롤한다 */
+  overflow-x: auto;
+  border: 1px solid var(--mu-line);
+  border-radius: 8px;
+  background: var(--mu-surface);
+}
+
+.dataTable {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.78rem;
+  font-variant-numeric: tabular-nums;
+}
+
+.dataTable th,
+.dataTable td {
+  padding: 0.45rem 0.7rem;
+  text-align: left;
+  border-top: 1px solid var(--mu-line);
+  white-space: nowrap;
+}
+
+.dataTable thead th {
+  border-top: 0;
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: var(--mu-ink-muted);
+  letter-spacing: 0.02em;
+  background: var(--mu-surface-2);
+  position: sticky;
+  top: 0;
+}
+
+.dataTable tbody tr:nth-child(even) {
+  background: var(--mu-surface-2);
+}
+
+.dataTableMore {
+  margin: 0;
+  font-size: 0.72rem;
+  color: var(--mu-ink-muted);
+}
+
+.excerptWrap {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  min-width: 0;
+}
+
+.excerpt {
+  margin: 0;
+  padding: 0.6rem 0.85rem;
+  border-left: 3px solid var(--mu-accent);
+  background: var(--mu-surface-2);
+  border-radius: 0 6px 6px 0;
+}
+
+.excerpt p {
+  margin: 0;
+  font-size: 0.82rem;
+  line-height: 1.65;
+  color: var(--mu-ink);
+}
+
+.excerptCite {
+  display: block;
+  margin-top: 0.35rem;
+  font-size: 0.7rem;
+  font-style: normal;
+  color: var(--mu-ink-muted);
+  word-break: break-all;
+}
+
+/* 측정 게이트 — 이 수치를 무엇과 비교하면 안 되는지 */
+.basisRow {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.3rem 0.5rem;
+  margin: 0;
+  font-size: 0.7rem;
+}
+
+.basisRow dt {
+  font-weight: 700;
+  color: var(--mu-ink-muted);
+}
+
+.basisRow dd {
+  margin: 0;
+  padding: 0.1rem 0.45rem;
+  border: 1px solid var(--mu-line);
+  border-radius: 999px;
+  color: var(--mu-ink);
+  background: var(--mu-surface-2);
+}
+
+.basisRow dd span {
+  color: var(--mu-ink-muted);
+  margin-right: 0.3rem;
+}

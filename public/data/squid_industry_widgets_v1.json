@@ -1,0 +1,5276 @@
+{
+ "_meta": {
+  "생성일": "2026-08-16",
+  "원본": "public/data/squid_v5.json (위젯 39개)",
+  "선별": 30,
+  "규칙": "학습용 페이지는 운영 감시용 위젯을 전부 싣지 않는다. 서사 단계에 근거로 붙는 것만 고른다. 데이터가 빈 위젯은 뺀다.",
+  "보완": "원본에 없는 현황·실행지침을 채운 위젯은 narrativeFilled=true 로 표시하고 카드 출처 줄에 그 사실을 밝힌다. 채울 때는 그 위젯 자신의 데이터만 쓴다.",
+  "게이트": "원본 위젯의 basis(측정 게이트)를 한글 키로 옮겨 카드에 함께 싣는다. 이 수치를 무엇과 비교하면 안 되는지가 학습용에서는 수치만큼 중요하다.",
+  "갱신방법": "python3 scripts/curate_squid_industry_widgets.py"
+ },
+ "stages": [
+  {
+   "key": "s01",
+   "title": "자원 — 한 해살이 생물",
+   "widgets": [
+    {
+     "id": "A_species_production_split",
+     "title": "주요 4종 어획량 45년 (톤)",
+     "chartType": "line",
+     "data": [
+      {
+       "year": 1980,
+       "scientific_name": "살오징어",
+       "tonnes_live_weight": 405420
+      },
+      {
+       "year": 1980,
+       "scientific_name": "아르헨티나오징어",
+       "tonnes_live_weight": 15975
+      },
+      {
+       "year": 1980,
+       "scientific_name": "대왕오징어",
+       "tonnes_live_weight": 19068
+      },
+      {
+       "year": 1980,
+       "scientific_name": "파타고니아오징어",
+       "tonnes_live_weight": 391
+      },
+      {
+       "year": 1981,
+       "scientific_name": "살오징어",
+       "tonnes_live_weight": 290381
+      },
+      {
+       "year": 1981,
+       "scientific_name": "아르헨티나오징어",
+       "tonnes_live_weight": 33342
+      },
+      {
+       "year": 1981,
+       "scientific_name": "대왕오징어",
+       "tonnes_live_weight": 9787
+      },
+      {
+       "year": 1981,
+       "scientific_name": "파타고니아오징어",
+       "tonnes_live_weight": 1053
+      },
+      {
+       "year": 1982,
+       "scientific_name": "살오징어",
+       "tonnes_live_weight": 274206
+      },
+      {
+       "year": 1982,
+       "scientific_name": "아르헨티나오징어",
+       "tonnes_live_weight": 79744
+      },
+      {
+       "year": 1982,
+       "scientific_name": "대왕오징어",
+       "tonnes_live_weight": 1152
+      },
+      {
+       "year": 1982,
+       "scientific_name": "파타고니아오징어",
+       "tonnes_live_weight": 1724
+      },
+      {
+       "year": 1983,
+       "scientific_name": "살오징어",
+       "tonnes_live_weight": 245855
+      },
+      {
+       "year": 1983,
+       "scientific_name": "아르헨티나오징어",
+       "tonnes_live_weight": 56186
+      },
+      {
+       "year": 1983,
+       "scientific_name": "대왕오징어",
+       "tonnes_live_weight": 91
+      },
+      {
+       "year": 1983,
+       "scientific_name": "파타고니아오징어",
+       "tonnes_live_weight": 16970
+      },
+      {
+       "year": 1984,
+       "scientific_name": "살오징어",
+       "tonnes_live_weight": 286501
+      },
+      {
+       "year": 1984,
+       "scientific_name": "아르헨티나오징어",
+       "tonnes_live_weight": 106091
+      },
+      {
+       "year": 1984,
+       "scientific_name": "대왕오징어",
+       "tonnes_live_weight": 380
+      },
+      {
+       "year": 1984,
+       "scientific_name": "파타고니아오징어",
+       "tonnes_live_weight": 15950
+      },
+      {
+       "year": 1985,
+       "scientific_name": "살오징어",
+       "tonnes_live_weight": 214275
+      },
+      {
+       "year": 1985,
+       "scientific_name": "아르헨티나오징어",
+       "tonnes_live_weight": 204860
+      },
+      {
+       "year": 1985,
+       "scientific_name": "대왕오징어",
+       "tonnes_live_weight": 15886
+      },
+      {
+       "year": 1985,
+       "scientific_name": "파타고니아오징어",
+       "tonnes_live_weight": 13150
+      },
+      {
+       "year": 1986,
+       "scientific_name": "살오징어",
+       "tonnes_live_weight": 141457
+      },
+      {
+       "year": 1986,
+       "scientific_name": "아르헨티나오징어",
+       "tonnes_live_weight": 271348
+      },
+      {
+       "year": 1986,
+       "scientific_name": "대왕오징어",
+       "tonnes_live_weight": 1233
+      },
+      {
+       "year": 1986,
+       "scientific_name": "파타고니아오징어",
+       "tonnes_live_weight": 73274
+      },
+      {
+       "year": 1987,
+       "scientific_name": "살오징어",
+       "tonnes_live_weight": 262025
+      },
+      {
+       "year": 1987,
+       "scientific_name": "아르헨티나오징어",
+       "tonnes_live_weight": 524769
+      },
+      {
+       "year": 1987,
+       "scientific_name": "대왕오징어",
+       "tonnes_live_weight": 309
+      },
+      {
+       "year": 1987,
+       "scientific_name": "파타고니아오징어",
+       "tonnes_live_weight": 139907
+      },
+      {
+       "year": 1988,
+       "scientific_name": "살오징어",
+       "tonnes_live_weight": 227786
+      },
+      {
+       "year": 1988,
+       "scientific_name": "아르헨티나오징어",
+       "tonnes_live_weight": 564334
+      },
+      {
+       "year": 1988,
+       "scientific_name": "대왕오징어",
+       "tonnes_live_weight": 1737
+      },
+      {
+       "year": 1988,
+       "scientific_name": "파타고니아오징어",
+       "tonnes_live_weight": 78625
+      },
+      {
+       "year": 1989,
+       "scientific_name": "살오징어",
+       "tonnes_live_weight": 319790
+      },
+      {
+       "year": 1989,
+       "scientific_name": "아르헨티나오징어",
+       "tonnes_live_weight": 558453
+      },
+      {
+       "year": 1989,
+       "scientific_name": "대왕오징어",
+       "tonnes_live_weight": 10372
+      },
+      {
+       "year": 1989,
+       "scientific_name": "파타고니아오징어",
+       "tonnes_live_weight": 136527
+      },
+      {
+       "year": 1990,
+       "scientific_name": "살오징어",
+       "tonnes_live_weight": 321459
+      },
+      {
+       "year": 1990,
+       "scientific_name": "아르헨티나오징어",
+       "tonnes_live_weight": 410117
+      },
+      {
+       "year": 1990,
+       "scientific_name": "대왕오징어",
+       "tonnes_live_weight": 15103
+      },
+      {
+       "year": 1990,
+       "scientific_name": "파타고니아오징어",
+       "tonnes_live_weight": 83861
+      },
+      {
+       "year": 1991,
+       "scientific_name": "살오징어",
+       "tonnes_live_weight": 402976
+      },
+      {
+       "year": 1991,
+       "scientific_name": "아르헨티나오징어",
+       "tonnes_live_weight": 559505
+      },
+      {
+       "year": 1991,
+       "scientific_name": "대왕오징어",
+       "tonnes_live_weight": 46585
+      },
+      {
+       "year": 1991,
+       "scientific_name": "파타고니아오징어",
+       "tonnes_live_weight": 56012
+      },
+      {
+       "year": 1992,
+       "scientific_name": "살오징어",
+       "tonnes_live_weight": 545209
+      },
+      {
+       "year": 1992,
+       "scientific_name": "아르헨티나오징어",
+       "tonnes_live_weight": 610369
+      },
+      {
+       "year": 1992,
+       "scientific_name": "대왕오징어",
+       "tonnes_live_weight": 120459
+      },
+      {
+       "year": 1992,
+       "scientific_name": "파타고니아오징어",
+       "tonnes_live_weight": 83131
+      },
+      {
+       "year": 1993,
+       "scientific_name": "살오징어",
+       "tonnes_live_weight": 548365
+      },
+      {
+       "year": 1993,
+       "scientific_name": "아르헨티나오징어",
+       "tonnes_live_weight": 640275
+      },
+      {
+       "year": 1993,
+       "scientific_name": "대왕오징어",
+       "tonnes_live_weight": 131832
+      },
+      {
+       "year": 1993,
+       "scientific_name": "파타고니아오징어",
+       "tonnes_live_weight": 52486
+      },
+      {
+       "year": 1994,
+       "scientific_name": "살오징어",
+       "tonnes_live_weight": 504425
+      },
+      {
+       "year": 1994,
+       "scientific_name": "아르헨티나오징어",
+       "tonnes_live_weight": 507638
+      },
+      {
+       "year": 1994,
+       "scientific_name": "대왕오징어",
+       "tonnes_live_weight": 195434
+      },
+      {
+       "year": 1994,
+       "scientific_name": "파타고니아오징어",
+       "tonnes_live_weight": 65730
+      },
+      {
+       "year": 1995,
+       "scientific_name": "살오징어",
+       "tonnes_live_weight": 513413
+      },
+      {
+       "year": 1995,
+       "scientific_name": "아르헨티나오징어",
+       "tonnes_live_weight": 521634
+      },
+      {
+       "year": 1995,
+       "scientific_name": "대왕오징어",
+       "tonnes_live_weight": 136288
+      },
+      {
+       "year": 1995,
+       "scientific_name": "파타고니아오징어",
+       "tonnes_live_weight": 103227
+      },
+      {
+       "year": 1996,
+       "scientific_name": "살오징어",
+       "tonnes_live_weight": 715908
+      },
+      {
+       "year": 1996,
+       "scientific_name": "아르헨티나오징어",
+       "tonnes_live_weight": 658105
+      },
+      {
+       "year": 1996,
+       "scientific_name": "대왕오징어",
+       "tonnes_live_weight": 142188
+      },
+      {
+       "year": 1996,
+       "scientific_name": "파타고니아오징어",
+       "tonnes_live_weight": 86109
+      },
+      {
+       "year": 1997,
+       "scientific_name": "살오징어",
+       "tonnes_live_weight": 603367
+      },
+      {
+       "year": 1997,
+       "scientific_name": "아르헨티나오징어",
+       "tonnes_live_weight": 991799
+      },
+      {
+       "year": 1997,
+       "scientific_name": "대왕오징어",
+       "tonnes_live_weight": 152543
+      },
+      {
+       "year": 1997,
+       "scientific_name": "파타고니아오징어",
+       "tonnes_live_weight": 31133
+      },
+      {
+       "year": 1998,
+       "scientific_name": "살오징어",
+       "tonnes_live_weight": 378605
+      },
+      {
+       "year": 1998,
+       "scientific_name": "아르헨티나오징어",
+       "tonnes_live_weight": 700443
+      },
+      {
+       "year": 1998,
+       "scientific_name": "대왕오징어",
+       "tonnes_live_weight": 27364
+      },
+      {
+       "year": 1998,
+       "scientific_name": "파타고니아오징어",
+       "tonnes_live_weight": 55450
+      },
+      {
+       "year": 1999,
+       "scientific_name": "살오징어",
+       "tonnes_live_weight": 497887
+      },
+      {
+       "year": 1999,
+       "scientific_name": "아르헨티나오징어",
+       "tonnes_live_weight": 1153279
+      },
+      {
+       "year": 1999,
+       "scientific_name": "대왕오징어",
+       "tonnes_live_weight": 131850
+      },
+      {
+       "year": 1999,
+       "scientific_name": "파타고니아오징어",
+       "tonnes_live_weight": 45980
+      },
+      {
+       "year": 2000,
+       "scientific_name": "살오징어",
+       "tonnes_live_weight": 570427
+      },
+      {
+       "year": 2000,
+       "scientific_name": "아르헨티나오징어",
+       "tonnes_live_weight": 984392.76
+      },
+      {
+       "year": 2000,
+       "scientific_name": "대왕오징어",
+       "tonnes_live_weight": 210063
+      },
+      {
+       "year": 2000,
+       "scientific_name": "파타고니아오징어",
+       "tonnes_live_weight": 92926
+      },
+      {
+       "year": 2001,
+       "scientific_name": "살오징어",
+       "tonnes_live_weight": 528523
+      },
+      {
+       "year": 2001,
+       "scientific_name": "아르헨티나오징어",
+       "tonnes_live_weight": 750418.667
+      },
+      {
+       "year": 2001,
+       "scientific_name": "대왕오징어",
+       "tonnes_live_weight": 244955
+      },
+      {
+       "year": 2001,
+       "scientific_name": "파타고니아오징어",
+       "tonnes_live_weight": 76865
+      },
+      {
+       "year": 2002,
+       "scientific_name": "살오징어",
+       "tonnes_live_weight": 504438
+      },
+      {
+       "year": 2002,
+       "scientific_name": "아르헨티나오징어",
+       "tonnes_live_weight": 540413.978
+      },
+      {
+       "year": 2002,
+       "scientific_name": "대왕오징어",
+       "tonnes_live_weight": 412428
+      },
+      {
+       "year": 2002,
+       "scientific_name": "파타고니아오징어",
+       "tonnes_live_weight": 36411
+      },
+      {
+       "year": 2003,
+       "scientific_name": "살오징어",
+       "tonnes_live_weight": 487576
+      },
+      {
+       "year": 2003,
+       "scientific_name": "아르헨티나오징어",
+       "tonnes_live_weight": 503611.838
+      },
+      {
+       "year": 2003,
+       "scientific_name": "대왕오징어",
+       "tonnes_live_weight": 402042
+      },
+      {
+       "year": 2003,
+       "scientific_name": "파타고니아오징어",
+       "tonnes_live_weight": 76746
+      },
+      {
+       "year": 2004,
+       "scientific_name": "살오징어",
+       "tonnes_live_weight": 447820
+      },
+      {
+       "year": 2004,
+       "scientific_name": "아르헨티나오징어",
+       "tonnes_live_weight": 178973.995
+      },
+      {
+       "year": 2004,
+       "scientific_name": "대왕오징어",
+       "tonnes_live_weight": 834754
+      },
+      {
+       "year": 2004,
+       "scientific_name": "파타고니아오징어",
+       "tonnes_live_weight": 42180
+      },
+      {
+       "year": 2005,
+       "scientific_name": "살오징어",
+       "tonnes_live_weight": 411644
+      },
+      {
+       "year": 2005,
+       "scientific_name": "아르헨티나오징어",
+       "tonnes_live_weight": 287590
+      },
+      {
+       "year": 2005,
+       "scientific_name": "대왕오징어",
+       "tonnes_live_weight": 779678
+      },
+      {
+       "year": 2005,
+       "scientific_name": "파타고니아오징어",
+       "tonnes_live_weight": 70721
+      },
+      {
+       "year": 2006,
+       "scientific_name": "살오징어",
+       "tonnes_live_weight": 388087
+      },
+      {
+       "year": 2006,
+       "scientific_name": "아르헨티나오징어",
+       "tonnes_live_weight": 703804
+      },
+      {
+       "year": 2006,
+       "scientific_name": "대왕오징어",
+       "tonnes_live_weight": 871335
+      },
+      {
+       "year": 2006,
+       "scientific_name": "파타고니아오징어",
+       "tonnes_live_weight": 52532
+      },
+      {
+       "year": 2007,
+       "scientific_name": "살오징어",
+       "tonnes_live_weight": 429162
+      },
+      {
+       "year": 2007,
+       "scientific_name": "아르헨티나오징어",
+       "tonnes_live_weight": 955044
+      },
+      {
+       "year": 2007,
+       "scientific_name": "대왕오징어",
+       "tonnes_live_weight": 684786
+      },
+      {
+       "year": 2007,
+       "scientific_name": "파타고니아오징어",
+       "tonnes_live_weight": 59405
+      },
+      {
+       "year": 2008,
+       "scientific_name": "살오징어",
+       "tonnes_live_weight": 403722
+      },
+      {
+       "year": 2008,
+       "scientific_name": "아르헨티나오징어",
+       "tonnes_live_weight": 837935
+      },
+      {
+       "year": 2008,
+       "scientific_name": "대왕오징어",
+       "tonnes_live_weight": 895329
+      },
+      {
+       "year": 2008,
+       "scientific_name": "파타고니아오징어",
+       "tonnes_live_weight": 58545
+      },
+      {
+       "year": 2009,
+       "scientific_name": "살오징어",
+       "tonnes_live_weight": 408188
+      },
+      {
+       "year": 2009,
+       "scientific_name": "아르헨티나오징어",
+       "tonnes_live_weight": 261227
+      },
+      {
+       "year": 2009,
+       "scientific_name": "대왕오징어",
+       "tonnes_live_weight": 642847
+      },
+      {
+       "year": 2009,
+       "scientific_name": "파타고니아오징어",
+       "tonnes_live_weight": 48027
+      },
+      {
+       "year": 2010,
+       "scientific_name": "살오징어",
+       "tonnes_live_weight": 359322
+      },
+      {
+       "year": 2010,
+       "scientific_name": "아르헨티나오징어",
+       "tonnes_live_weight": 189966.896
+      },
+      {
+       "year": 2010,
+       "scientific_name": "대왕오징어",
+       "tonnes_live_weight": 815968
+      },
+      {
+       "year": 2010,
+       "scientific_name": "파타고니아오징어",
+       "tonnes_live_weight": 71838
+      },
+      {
+       "year": 2011,
+       "scientific_name": "살오징어",
+       "tonnes_live_weight": 414100
+      },
+      {
+       "year": 2011,
+       "scientific_name": "아르헨티나오징어",
+       "tonnes_live_weight": 187576.696
+      },
+      {
+       "year": 2011,
+       "scientific_name": "대왕오징어",
+       "tonnes_live_weight": 906307
+      },
+      {
+       "year": 2011,
+       "scientific_name": "파타고니아오징어",
+       "tonnes_live_weight": 37459
+      },
+      {
+       "year": 2012,
+       "scientific_name": "살오징어",
+       "tonnes_live_weight": 350381
+      },
+      {
+       "year": 2012,
+       "scientific_name": "아르헨티나오징어",
+       "tonnes_live_weight": 305062.762
+      },
+      {
+       "year": 2012,
+       "scientific_name": "대왕오징어",
+       "tonnes_live_weight": 950610
+      },
+      {
+       "year": 2012,
+       "scientific_name": "파타고니아오징어",
+       "tonnes_live_weight": 99757
+      },
+      {
+       "year": 2013,
+       "scientific_name": "살오징어",
+       "tonnes_live_weight": 337925
+      },
+      {
+       "year": 2013,
+       "scientific_name": "아르헨티나오징어",
+       "tonnes_live_weight": 491937
+      },
+      {
+       "year": 2013,
+       "scientific_name": "대왕오징어",
+       "tonnes_live_weight": 847292
+      },
+      {
+       "year": 2013,
+       "scientific_name": "파타고니아오징어",
+       "tonnes_live_weight": 62394
+      },
+      {
+       "year": 2014,
+       "scientific_name": "살오징어",
+       "tonnes_live_weight": 339685
+      },
+      {
+       "year": 2014,
+       "scientific_name": "아르헨티나오징어",
+       "tonnes_live_weight": 860504.7
+      },
+      {
+       "year": 2014,
+       "scientific_name": "대왕오징어",
+       "tonnes_live_weight": 1161690
+      },
+      {
+       "year": 2014,
+       "scientific_name": "파타고니아오징어",
+       "tonnes_live_weight": 71690.7
+      },
+      {
+       "year": 2015,
+       "scientific_name": "살오징어",
+       "tonnes_live_weight": 295304
+      },
+      {
+       "year": 2015,
+       "scientific_name": "아르헨티나오징어",
+       "tonnes_live_weight": 1007786.9
+      },
+      {
+       "year": 2015,
+       "scientific_name": "대왕오징어",
+       "tonnes_live_weight": 1003774
+      },
+      {
+       "year": 2015,
+       "scientific_name": "파타고니아오징어",
+       "tonnes_live_weight": 51214.6
+      },
+      {
+       "year": 2016,
+       "scientific_name": "살오징어",
+       "tonnes_live_weight": 197418
+      },
+      {
+       "year": 2016,
+       "scientific_name": "아르헨티나오징어",
+       "tonnes_live_weight": 146533.7
+      },
+      {
+       "year": 2016,
+       "scientific_name": "대왕오징어",
+       "tonnes_live_weight": 747010
+      },
+      {
+       "year": 2016,
+       "scientific_name": "파타고니아오징어",
+       "tonnes_live_weight": 56426.9
+      },
+      {
+       "year": 2017,
+       "scientific_name": "살오징어",
+       "tonnes_live_weight": 155923
+      },
+      {
+       "year": 2017,
+       "scientific_name": "아르헨티나오징어",
+       "tonnes_live_weight": 332720.55
+      },
+      {
+       "year": 2017,
+       "scientific_name": "대왕오징어",
+       "tonnes_live_weight": 763440
+      },
+      {
+       "year": 2017,
+       "scientific_name": "파타고니아오징어",
+       "tonnes_live_weight": 68142.1
+      },
+      {
+       "year": 2018,
+       "scientific_name": "살오징어",
+       "tonnes_live_weight": 98879
+      },
+      {
+       "year": 2018,
+       "scientific_name": "아르헨티나오징어",
+       "tonnes_live_weight": 298810.653
+      },
+      {
+       "year": 2018,
+       "scientific_name": "대왕오징어",
+       "tonnes_live_weight": 892419
+      },
+      {
+       "year": 2018,
+       "scientific_name": "파타고니아오징어",
+       "tonnes_live_weight": 81477.4
+      },
+      {
+       "year": 2019,
+       "scientific_name": "살오징어",
+       "tonnes_live_weight": 101798
+      },
+      {
+       "year": 2019,
+       "scientific_name": "아르헨티나오징어",
+       "tonnes_live_weight": 170834.282
+      },
+      {
+       "year": 2019,
+       "scientific_name": "대왕오징어",
+       "tonnes_live_weight": 906691.958
+      },
+      {
+       "year": 2019,
+       "scientific_name": "파타고니아오징어",
+       "tonnes_live_weight": 94518.18
+      },
+      {
+       "year": 2020,
+       "scientific_name": "살오징어",
+       "tonnes_live_weight": 119617.397
+      },
+      {
+       "year": 2020,
+       "scientific_name": "아르헨티나오징어",
+       "tonnes_live_weight": 344912.212
+      },
+      {
+       "year": 2020,
+       "scientific_name": "대왕오징어",
+       "tonnes_live_weight": 905380.968
+      },
+      {
+       "year": 2020,
+       "scientific_name": "파타고니아오징어",
+       "tonnes_live_weight": 66841.233
+      },
+      {
+       "year": 2021,
+       "scientific_name": "살오징어",
+       "tonnes_live_weight": 100681.011
+      },
+      {
+       "year": 2021,
+       "scientific_name": "아르헨티나오징어",
+       "tonnes_live_weight": 490845.585
+      },
+      {
+       "year": 2021,
+       "scientific_name": "대왕오징어",
+       "tonnes_live_weight": 997021.125
+      },
+      {
+       "year": 2021,
+       "scientific_name": "파타고니아오징어",
+       "tonnes_live_weight": 97624.889
+      },
+      {
+       "year": 2022,
+       "scientific_name": "살오징어",
+       "tonnes_live_weight": 70711.705
+      },
+      {
+       "year": 2022,
+       "scientific_name": "아르헨티나오징어",
+       "tonnes_live_weight": 392836.293
+      },
+      {
+       "year": 2022,
+       "scientific_name": "대왕오징어",
+       "tonnes_live_weight": 1076428.136
+      },
+      {
+       "year": 2022,
+       "scientific_name": "파타고니아오징어",
+       "tonnes_live_weight": 106256.297
+      },
+      {
+       "year": 2023,
+       "scientific_name": "살오징어",
+       "tonnes_live_weight": 45290.347
+      },
+      {
+       "year": 2023,
+       "scientific_name": "아르헨티나오징어",
+       "tonnes_live_weight": 400824.017
+      },
+      {
+       "year": 2023,
+       "scientific_name": "대왕오징어",
+       "tonnes_live_weight": 1225798.162
+      },
+      {
+       "year": 2023,
+       "scientific_name": "파타고니아오징어",
+       "tonnes_live_weight": 74468.448
+      },
+      {
+       "year": 2024,
+       "scientific_name": "살오징어",
+       "tonnes_live_weight": 33502.034
+      },
+      {
+       "year": 2024,
+       "scientific_name": "아르헨티나오징어",
+       "tonnes_live_weight": 480844.236
+      },
+      {
+       "year": 2024,
+       "scientific_name": "대왕오징어",
+       "tonnes_live_weight": 609505.847
+      },
+      {
+       "year": 2024,
+       "scientific_name": "파타고니아오징어",
+       "tonnes_live_weight": 68444.412
+      }
+     ],
+     "pillar": "S1",
+     "columns": [
+      {
+       "key": "year",
+       "label": "연도"
+      },
+      {
+       "key": "scientific_name",
+       "label": "어종"
+      },
+      {
+       "key": "tonnes_live_weight",
+       "label": "어획량 (톤)"
+      }
+     ],
+     "xKey": "year",
+     "xLabel": "연도",
+     "series": [
+      {
+       "key": "tonnes_live_weight",
+       "name": "살오징어",
+       "groupBy": "scientific_name"
+      },
+      {
+       "key": "tonnes_live_weight",
+       "name": "아르헨티나오징어",
+       "groupBy": "scientific_name"
+      },
+      {
+       "key": "tonnes_live_weight",
+       "name": "대왕오징어",
+       "groupBy": "scientific_name"
+      },
+      {
+       "key": "tonnes_live_weight",
+       "name": "파타고니아오징어",
+       "groupBy": "scientific_name"
+      }
+     ],
+     "unit": "톤(활중량)",
+     "cardDesc": "Scientific_Name 4종 화이트리스트 적용 후 Q_tlw 국가·해역 행을 연도·종별 합산",
+     "dataYear": 2025,
+     "basis": {
+      "분류범위": "오징어만",
+      "중량기준": "생중량",
+      "거래단계": "해당 없음",
+      "합산여부": "없음",
+      "쿼터의미": "catch"
+     },
+     "situation": "네 종의 45년 궤적이 서로 반대로 간다. 살오징어는 1980년 40만 톤대에서 2024년 3.4만 톤으로 내려앉았고, 같은 기간 대왕오징어와 아르헨티나오징어가 그 자리를 채웠다. 세계 총량은 유지되는데 구성이 통째로 바뀐 것이다.",
+     "takeaway": "원료를 어종이 아니라 **산지**로 관리해야 한다. 살오징어 기준으로 짠 조달 계획은 이미 존재하지 않는 자원을 전제한다. 남미 두 종에 대한 산지 계약과 대체 산지를 같은 표에서 관리하라.",
+     "narrativeFilled": true
+    }
+   ]
+  },
+  {
+   "key": "s02",
+   "title": "어장 — 다섯 곳이 세계를 먹인다",
+   "widgets": [
+    {
+     "id": "A_sourcing_signal_board",
+     "title": "산지 다섯 곳의 조업 상태",
+     "chartType": "signal",
+     "data": [
+      {
+       "origin": "페루 대왕오징어(포타)",
+       "status": "중단·제한",
+       "as_of": "2026-07-24",
+       "reason": "페루 생산부 중단공지 확인"
+      },
+      {
+       "origin": "칠레 대왕오징어(히비아)",
+       "status": "조업중",
+       "as_of": "2026-08-06",
+       "reason": "누적 포획이 증가 중이며 잔여 78,131톤"
+      },
+      {
+       "origin": "포클랜드 파타고니아오징어",
+       "status": "어기중",
+       "as_of": "2026-08-13",
+       "reason": "공개 어기 일정(2기: 7월 말부터 64일) 기준이며 2026 개장 공지 확인은 아님"
+      },
+      {
+       "origin": "아르헨티나오징어(일렉스)",
+       "status": "어기외",
+       "as_of": "2026-05-28",
+       "reason": "후속 법령의 과거형 언급으로 어기 종료를 확인했으나 2026 주간공보 부재로 어획 실적은 미확인"
+      },
+      {
+       "origin": "한국 살오징어",
+       "status": "데이터공백",
+       "as_of": "2026-06-30",
+       "reason": "총허용어획량 적용 업종·단계 표는 현재 조업 상태를 확인하지 않음"
+      }
+     ],
+     "pillar": "S1",
+     "columns": [
+      {
+       "key": "origin",
+       "label": "산지"
+      },
+      {
+       "key": "status",
+       "label": "상태"
+      },
+      {
+       "key": "as_of",
+       "label": "기준일"
+      },
+      {
+       "key": "reason",
+       "label": "근거"
+      }
+     ],
+     "cardDesc": "공식 중단공지는 관측 상태, SERNAPESCA 누적 포획은 관측보고 기반 활동, FIFD 어기중은 공개 일정 기반 파생, 아르헨티나 어기외는 후속 법령의 과거형 언급 기반 파생으로 분리하고 근거 유형을 행마다 표시",
+     "dataYear": 2027,
+     "basis": {
+      "분류범위": "오징어만",
+      "중량기준": "해당 없음",
+      "거래단계": "해당 없음",
+      "합산여부": "없음",
+      "쿼터의미": "closure_notice"
+     },
+     "situation": "다섯 산지의 상태가 같은 시점에 갈린다. 페루 대왕오징어는 2026년 7월 24일 중단 공지가 확인됐고, 칠레는 조업 중이며 잔여 쿼터가 남아 있다. 산지마다 신호가 다르다는 것 자체가 이 시장의 구조다.",
+     "takeaway": "한 산지가 멈춰도 다른 산지가 도는 것이 오징어 조달의 기본 전제다. **단일 산지 의존을 계약 단계에서 금지**하고, 산지별 중단 공지를 주간 단위로 확인하라.",
+     "narrativeFilled": true
+    },
+    {
+     "id": "A_peru_pota_timeline",
+     "title": "페루 대왕오징어 조업 중단 경과",
+     "chartType": "timeline",
+     "data": [
+      {
+       "date": "2026-07-04",
+       "event": "법정 최대 허용어획량 조정",
+       "quota_semantics": "법정 한도",
+       "tonnes": 589230,
+       "source_path": "00_오징어_관련자료/01_오징어_시장·가격/02_쿼터·어장/20260706-PRODUCE-RM00191_2026_Pota_LMCTP.md"
+      },
+      {
+       "date": "2026-07-09",
+       "event": "누적 하역 공지",
+       "quota_semantics": "소진 공지",
+       "tonnes": 529391.41,
+       "progress_pct": 89.84,
+       "source_path": "00_오징어_관련자료/01_오징어_시장·가격/02_쿼터·어장/20260709-PRODUCE-Pota_Catch_Progress.md"
+      },
+      {
+       "date": "2026-07-24",
+       "event": "조업 중단 공지",
+       "quota_semantics": "중단 조치_공지",
+       "closures": [
+        {
+         "vessel_capacity": "10㎥ 미만",
+         "effective_date": "2026-07-22",
+         "source_text": "22 de julio de\n   2026"
+        },
+        {
+         "vessel_capacity": "10~32.6㎥",
+         "effective_date": "2026-07-18",
+         "source_text": "18 de julio de\n   2026"
+        }
+       ],
+       "source_path": "00_오징어_관련자료/01_오징어_시장·가격/02_쿼터·어장/20260724-PRODUCE-Pota_Suspension.md"
+      }
+     ],
+     "pillar": "S1",
+     "columns": [
+      {
+       "key": "date",
+       "label": "일자"
+      },
+      {
+       "key": "event",
+       "label": "사건"
+      },
+      {
+       "key": "quota_semantics",
+       "label": "쿼터 성격"
+      },
+      {
+       "key": "tonnes",
+       "label": "물량 (톤)"
+      },
+      {
+       "key": "source_path",
+       "label": "출처 파일"
+      },
+      {
+       "key": "progress_pct",
+       "label": "소진율 (%)"
+      },
+      {
+       "key": "closures",
+       "label": "중단 조치"
+      }
+     ],
+     "xKey": "date",
+     "xLabel": "date",
+     "series": [
+      {
+       "key": "tonnes",
+       "name": "물량 (톤)"
+      },
+      {
+       "key": "progress_pct",
+       "name": "소진율 (%)"
+      }
+     ],
+     "unit": "톤·%",
+     "cardDesc": "PRODUCE 3개 문서에서 법정한도·누적하역·중단공지를 분리 추출하고 사건일 오름차순 정렬",
+     "dataYear": 2026,
+     "basis": {
+      "분류범위": "오징어만",
+      "중량기준": "생중량",
+      "거래단계": "해당 없음",
+      "합산여부": "없음",
+      "쿼터의미": "법정 한도"
+     },
+     "situation": "페루 생산부 문서는 2026년 7월 4일 법정한도를 589,230톤으로 조정했고, 7월 9일에는 누적 하역량이 529,391.41톤으로 한도의 89.84%에 이르렀다고 공지했다. 이어 7월 24일 공지에서 선창용적 10세제곱미터 미만 선박은 7월 22일부터, 10~32.6세제곱미터 선박은 7월 18일부터 조업이 중단됐다. 소진율 공지에서 중단 발효까지 열흘 안팎이 걸렸다.",
+     "takeaway": "페루산 원물은 소진율이 90%에 닿는 순간 선적 창구가 열흘 안에 닫힐 수 있으므로, **잔여 한도 10% 구간에서는 신규 발주를 멈추고 기확보 물량의 선적 완료 확인에 집중**하는 기준을 두어야 한다.",
+     "narrativeFilled": true
+    },
+    {
+     "id": "A_falkland_loligo_season",
+     "title": "포클랜드 파타고니아오징어 어기 전 자원조사 — 원문 발췌",
+     "chartType": "excerpt",
+     "data": [],
+     "pillar": "S1",
+     "excerpts": [
+      {
+       "인용": "생물량 추정치는 2020년 이후 제1기 어기 전 조사 중 가장 낮았다.",
+       "출처": "00_오징어_관련자료/01_오징어_시장·가격/01_생산·자원/20251021-FIFD-Loligo_Preseason_Survey_2025.md"
+      },
+      {
+       "인용": "포클랜드 로리고(파타고니아오징어; 포클랜드 칼라마리·파타고니아 긴지느러미오징어, 통칭 Loligo)의 자원평가 조사는 포클랜드 수산국(포클랜드 수산국)이 시험면허 FK0044E25에 따라 2025년 이월 5일부터 20일까지 어선 골든 치차(Golden Chicha)호에서 수행했다. 이 조사는 2006년 이월부터 어기 개시 직전에 수행해 온 조사 계열을 이어간다. 그 목적은 어기 시작 시 상업어업에 이용 가능한 포클랜드 로리고(D. gahi) 자원을 추정하고, 자원의 감소 시계열을 토대로 어기 중 관리모형을 가동하는 것이다. 조사 목적은 다음과 같았다:",
+       "출처": "00_오징어_관련자료/01_오징어_시장·가격/01_생산·자원/20251021-FIFD-Loligo_Preseason_Survey_2025.md"
+      },
+      {
+       "인용": "고밀도 또는 변동성이 큰 지점의 포클랜드 로리고(파타고니아오징어) 생물량 추정치, 악천후로 조업 하루를 놓쳤고 그 결과 계획한 21회보다 트롤 횟수가 적었다.",
+       "출처": "00_오징어_관련자료/01_오징어_시장·가격/01_생산·자원/20251021-FIFD-Loligo_Preseason_Survey_2025.md"
+      },
+      {
+       "인용": "포클랜드 로리고(D. gahi) 어기 전 조사의 과학조사 어획량과 생물량 추정치(미터톤). 2006년 이전에는 어기 개시 직전에 조사를 수행하지 않았다.",
+       "출처": "00_오징어_관련자료/01_오징어_시장·가격/01_생산·자원/20251021-FIFD-Loligo_Preseason_Survey_2025.md"
+      },
+      {
+       "인용": "어족자원 구역의 포클랜드 로리고(D. gahi) 총 생물량은 31, 048.62e톤으로 추정됐고, 95% 신뢰구간은 [27, 431.33~42, 174.42톤]이었다. 총 생물량 추정치는 2020년 이후 제1기 어기 전 조사 중 가장 낮았다(표 1). 추정 생물량은 북부 2, 679.17톤[1, 331.30~4, 850.16톤], 남부 28, 369.45톤[24, 658.05~38, 952.79톤]으로 나뉘었다. 북부 생물량 비중(8.62%)은 2017년 이후 제1기 어기 전 조사 중 가장 낮았다. 북부 하위구역에서는 포클랜드 로리고(D. gahi) 밀도의 50%가 368개 5×5 km 구획 중 34개에 모여 있었고, 밀도의 95%는 368개 5×5 km 구획 중 158개에 모여 있었다(그림 3). 남부 하위구역에서는 밀도의 50%가 392개 5×5 km 구획 중 73개에, 밀도의 95%가 392개 5×5 km 구획 중 228개에 모여 있었다(그림 3).",
+       "출처": "00_오징어_관련자료/01_오징어_시장·가격/01_생산·자원/20251021-FIFD-Loligo_Preseason_Survey_2025.md"
+      },
+      {
+       "인용": "생물량 추정치는 2022년 이후 제2기 어기 전 조사 중 가장 높았지만 장기 중앙값보다는 낮았다.",
+       "출처": "00_오징어_관련자료/01_오징어_시장·가격/01_생산·자원/20250829-FIFD-Loligo_Second_Season_Survey_2025.md"
+      },
+      {
+       "인용": "포클랜드 로리고(파타고니아오징어; 포클랜드 칼라마리·파타고니아 긴지느러미오징어, 통칭 Loligo)의 자원평가 조사는 포클랜드 수산국(포클랜드 수산국)이 시험면허 FK049E25에 따라 2025년 칠월 10일부터 24일까지 어선 프리온(Prion, ZDLS4)호에서 수행했다. 이 조사는 2006년 이월부터 어기 개시 직전에 수행해 온 조사 계열을 이어간다. 그 목적은 어기 시작 시 상업어업에 이용 가능한 포클랜드 로리고(D. gahi) 자원을 추정하고, 자원의 감소 시계열을 토대로 어기 중 관리모형을 가동하는 것이다. 조사 목적은 다음과 같았다. 1) 2025년 제2기 어업 개시 시점의 어장에서 포클랜드 로리고(D. gahi)의 생물량과 공간분포를 추정한다. 2) 어류 연구조사와 병행해 이 자원들을 계속 모니터링하기 위해 ‘로리고 박스(Loligo Box)’에서 파타고니아 록코드(Patagonotothen ramsayi)와 그 밖의 상업종의 생물량 및 분포를 추정한다. 3) 포클랜드 로리고(D. gahi) 트롤에서 파타고니아 이빨고기(Dissostichus eleginoides)의 혼획량을 추정한다. 4) 포클랜드 로리고(D. gahi), 파타고니아 록코드, 파타고니아 이빨고기와 트롤에서 기회적으로 잡힌 그 밖의 어류 및 무척추동물에 관한 생물학적 정보를 수집한다.",
+       "출처": "00_오징어_관련자료/01_오징어_시장·가격/01_생산·자원/20250829-FIFD-Loligo_Second_Season_Survey_2025.md"
+      },
+      {
+       "인용": "표 1. 포클랜드 로리고(D. gahi) 어기 전 조사의 과학조사 어획량과 생물량 추정치(미터톤). 2006년 이전에는 어기 개시 직전에 조사를 수행하지 않았다.",
+       "출처": "00_오징어_관련자료/01_오징어_시장·가격/01_생산·자원/20250829-FIFD-Loligo_Second_Season_Survey_2025.md"
+      },
+      {
+       "인용": "어족자원 구역의 포클랜드 로리고(D. gahi) 총 생물량은 21,695톤으로 추정됐고, 95% 신뢰구간은 [17,568~31,591 t]였다. 총 생물량 추정치는 2022년 이후 제2기 어기 전 조사 중 가장 높았지만 장기 중앙값보다는 낮았다(2006~2025년 스무 해 동안 5번째로 낮음)(표 1). 추정 생물량은 북부 7,464톤[4,281~15,818 t], 남부 14,231톤[11,351~18,874 t]으로 나뉘었다. 북부 생물량 비중(34.4%)은 2022년 이후 제2기 어기 전 조사 중 가장 높았다. 북부 하위구역에서는 포클랜드 로리고(D. gahi) 밀도의 50%가 368개 5×5 km 구획 중 67개에 모여 있었고, 밀도의 95%는 368개 5×5 km 구획 중 269개에 모여 있었다(그림 3). 남부 하위구역에서는 밀도의 50%가 392개 5×5 km 구획 중 84개에, 밀도의 95%가 392개 5×5 km 구획 중 308개에 모여 있었다(그림 3).",
+       "출처": "00_오징어_관련자료/01_오징어_시장·가격/01_생산·자원/20250829-FIFD-Loligo_Second_Season_Survey_2025.md"
+      },
+      {
+       "인용": "포클랜드 수산국(포클랜드 수산국). 2025. 2026년 선박 단위, 허용 노력량 및 허용 어획량(Vessel Units, Allowable Effort, and Allowable Catch 2026). 요약 및 권고. 포클랜드 제도 정부(포클랜드제도 Government) 천연자원국(Directorate of Natural Resources) 수산부(Fisheries Department).",
+       "출처": "00_오징어_관련자료/01_오징어_시장·가격/02_쿼터·어장/20251212-FIFD-Licensing_Advice_2026.md"
+      },
+      {
+       "인용": "2 1. 머리말 및 요약. 2025년 면허 자문서(Licensing Advice document: Vessel Units, Allowable Effort, and Allowable Catch)는 B면허 일렉스(Illex) 어업을 제외한 2025년 포클랜드 제도 보존수역 내 모든 규제어업에 대한 면허 자문을 요약한다. 현행 면허 자문은 어류·이빨고기·가오리류에 대해서는 2024년 말까지의 자료, 칼라마리에 대해서는 2025년 제1기 어기 말까지의 자료를 토대로 한다. 면허 자문 요약표는 보고서 끝에 제시한다. 면허 자문 기준의 근거가 되는 자원평가, 위원회 문서 및 조사자료는 별도 보고서로 발행되며 포클랜드 제도 수산국(포클랜드제도 Fisheries Department) 웹사이트 https://www.falklands.gov.fk/fisheries/ 의 간행물(publications)에서 이용할 수 있다.",
+       "출처": "00_오징어_관련자료/01_오징어_시장·가격/02_쿼터·어장/20251212-FIFD-Licensing_Advice_2026.md"
+      },
+      {
+       "인용": "2025년 제1기 어기 포클랜드 칼라마리(Doryteuthis (Loligo) gahi) 어업은 소형 오징어 크기에 대한 우려로 약 엿새 일찍 중단됐다. 이에 따라 이 어기의 어획량과 단위노력당어획량(CPUE)은 2020년 이후 제1기 어기 중 가장 낮았지만, 2004년 이후 제1기 어기 중앙값보다는 높았다. 따라서 허용 노력량은 2026년에 어기를 온전히 운영한다는 전제로 설정했고, 선박 단위(Vessel Units)는 지난 세 해 평균인 27.01로 산정했다. 그러나 가장 최근의 제2기 어기 세 차례가 각각 조기 종료됐고(2023), 자원보전을 위해 아예 개시하지 않았으며(2024), 현재도 보통 수준에 그치고 있으므로(2025), 포클랜드 로리고(D. gahi) 개체군 상태를 계속 예방적으로 모니터링할 필요가 있다.",
+       "출처": "00_오징어_관련자료/01_오징어_시장·가격/02_쿼터·어장/20251212-FIFD-Licensing_Advice_2026.md"
+      },
+      {
+       "인용": "어류 면허(A, G, W) 배분은 2022년부터 목표종 비중, 총허용어획량(총허용어획량) 비중 및 자원 풍도 계수로 총허용노력량(TAE)을 조정하는 절차에 근거해 왔다. 이 조정계수들은 주로 G·W 면허에서 배분 대상이 아닌 헤이크류(Merluccius spp.)의 혼획률이 높았던 데 대응해 개발됐다. 이러한 조치에 사실상 대응해 헤이크 혼획이 감소하면서, A면허가 배분 어획량 확보나 비배분 혼획 회피 측면에서 종전보다 더 나쁘게 조업한다는 뚜렷한 증거가 없는데도 해당 절차는 A면허를 갈수록 더 제한하게 됐다. 이에 2025년에는 TAE 절차를 재평가할 때까지 A·G·W 면허 배분을 전년도와 같은 수준으로 ‘동결’하는 제안을 채택했다. TAE 절차의 재평가가 계속 진행 중이므로 면허 배분 동결도 유지된다. 따라서 2026년 A·G·W 면허의 총허용노력량은 2024년 및 2025년과 동일하다.",
+       "출처": "00_오징어_관련자료/01_오징어_시장·가격/02_쿼터·어장/20251212-FIFD-Licensing_Advice_2026.md"
+      },
+      {
+       "인용": "포클랜드 로리고(파타고니아오징어; 포클랜드 칼라마리, 통칭 Loligo) 대상어업은 두 수준의 통제로 관리한다. 1) 어기 일정, 2) 어기별 최소 탈출 잔존량 임계치에 따른 총생물량 통제이다. 현재 어기 일정은 다음과 같이 정한다. 제1기 어기(C 면허)는 이월 하순부터 64/65일간 개장하고, 제2기 어기(X 면허)는 칠월 하순부터 64일간 개장한다.",
+       "출처": "00_오징어_관련자료/01_오징어_시장·가격/02_쿼터·어장/20251212-FIFD-Licensing_Advice_2026.md"
+      },
+      {
+       "인용": "제1기 어기 칼라마리 제1기 어기 칼라마리. 연도 / 어획량(t) / 생물량(t)a / 탈출 잔존량이 <10,000 t일 위험 / 총 선박 단위(VU) 배분. 2021 59,499 165,172 0.000. 2022 56,080 274,651 0.000. 2023 52,704 190,210 0.000 27.01. 2024 47,588 177,576 0.000. 2025 37,492 083,179 0.001. a: 어기 시작 시점의 생물량 추정치에 어기 중 유입량을 더한 값이다. (어기 전 조사 생물량 추정치에 어기 중 유입량을 더했던 작년 계산과 다르다.)",
+       "출처": "00_오징어_관련자료/01_오징어_시장·가격/02_쿼터·어장/20251212-FIFD-Licensing_Advice_2026.md"
+      },
+      {
+       "인용": "포클랜드 수산국(포클랜드 수산국). 2019. 2020년 선박 단위, 허용 노력량 및 허용 어획량(Vessel Units, Allowable Effort, and Allowable Catch 2020). 제I부. 요약 및 권고. 포클랜드 제도 정부(포클랜드제도 Government) 천연자원국(Directorate of Natural Resources) 수산부(Fisheries Dept.), 21 p.",
+       "출처": "00_오징어_관련자료/01_오징어_시장·가격/02_쿼터·어장/20251212-FIFD-Licensing_Advice_2026.md"
+      },
+      {
+       "인용": "포클랜드 수산국(포클랜드 수산국). 2024. 2025년 선박 단위, 허용 노력량 및 허용 어획량(Vessel Units, Allowable Effort, and Allowable Catch 2025). 요약 및 권고. 포클랜드 제도 정부(포클랜드제도 Government) 천연자원국(Directorate of Natural Resources) 수산부(Fisheries Dept.), 20 p.",
+       "출처": "00_오징어_관련자료/01_오징어_시장·가격/02_쿼터·어장/20251212-FIFD-Licensing_Advice_2026.md"
+      }
+     ],
+     "cardDesc": "위젯별 config 정규식으로 보관 Markdown/HTML의 원문 블록만 선택; 수치 보간·번역·요약 없음",
+     "dataYear": 2026,
+     "basis": {
+      "분류범위": "오징어만",
+      "중량기준": "생중량",
+      "거래단계": "해당 없음",
+      "합산여부": "없음",
+      "쿼터의미": "allocation"
+     },
+     "situation": "포클랜드 수산국 조사에서 2025년 제1기 어기 전 총 생물량은 31,048.62톤(95% 신뢰구간 27,431.33~42,174.42톤)으로 2020년 이후 제1기 조사 중 가장 낮았고, 제2기는 21,695톤으로 2022년 이후 제2기 중 최고였으나 2006~2025년 스무 해 가운데 다섯 번째로 낮았다. 어획량은 2021년 59,499톤에서 2025년 37,492톤으로 줄었고, 2025년 제1기 어기는 소형 오징어 크기 우려로 약 엿새 일찍 중단됐다. 2026년 허용 노력량의 선박 단위는 최근 세 해 평균인 27.01로 산정됐는데, 이는 어획량 배분이 아니라 노력량 기준이다.",
+     "takeaway": "제2기 어기가 최근 세 차례 각각 조기 종료·미개장·보통 수준으로 흔들렸으므로, **포클랜드산 계약에는 어기 단축 시 물량 감축 조항과 대체 산지 전환 시점을 미리 명시**해 어기 리스크를 계약으로 넘겨야 한다.",
+     "narrativeFilled": true
+    }
+   ]
+  },
+  {
+   "key": "s03",
+   "title": "조업과 선단",
+   "widgets": [
+    {
+     "id": "A_sprfmo_cmm18_effort",
+     "title": "남태평양 공해 오징어 선박 상한 (척·총톤수)",
+     "chartType": "bar",
+     "data": [
+      {
+       "member": "중국",
+       "vessel_limit": 570,
+       "gross_tonnage_gt": 548097
+      },
+      {
+       "member": "대한민국",
+       "vessel_limit": 43,
+       "gross_tonnage_gt": 38907
+      },
+      {
+       "member": "대만",
+       "vessel_limit": 38,
+       "gross_tonnage_gt": 38674
+      },
+      {
+       "member": "합계",
+       "vessel_limit": 651,
+       "gross_tonnage_gt": 625678
+      }
+     ],
+     "pillar": "S1",
+     "columns": [
+      {
+       "key": "member",
+       "label": "회원국"
+      },
+      {
+       "key": "vessel_limit",
+       "label": "선박 상한 (척)"
+      },
+      {
+       "key": "gross_tonnage_gt",
+       "label": "총톤수 (GT)"
+      }
+     ],
+     "series": [
+      {
+       "key": "vessel_limit",
+       "name": "선박 상한 (척)"
+      },
+      {
+       "key": "gross_tonnage_gt",
+       "name": "총톤수 (GT)"
+      }
+     ],
+     "unit": "척·GT",
+     "cardDesc": "SPRFMO CMM 18-2026 표 1의 회원별 선박수 상한과 총톤수(GT)를 정수로 구조화; TAC 또는 실제 조업척수로 해석하지 않음",
+     "basis": {
+      "분류범위": "오징어만",
+      "중량기준": "해당 없음",
+      "거래단계": "해당 없음",
+      "합산여부": "없음",
+      "쿼터의미": "허용노력량"
+     },
+     "situation": "남태평양 공해 오징어 조업은 선박 수로 관리한다. 상한 651척 중 중국이 570척으로 87.6%를 가진다. 한국은 43척, 대만은 38척이다. 총톤수로도 중국이 54.8만 GT 중 대부분이다.",
+     "takeaway": "공해 오징어 가격은 사실상 **중국 선단의 조업 결정**에 달려 있다. 중국의 연례 조업 계획과 자율 휴어 공고를 원료 가격 선행지표로 삼아라.",
+     "narrativeFilled": true
+    }
+   ]
+  },
+  {
+   "key": "s04",
+   "title": "쿼터와 규칙",
+   "widgets": [
+    {
+     "id": "A_korea_tac",
+     "title": "한국 총허용어획량 적용 업종 확대",
+     "chartType": "table",
+     "data": [
+      {
+       "species": "민어",
+       "applicable_fishery": "대형트롤",
+       "application_stage": 2
+      },
+      {
+       "species": "살오징어",
+       "applicable_fishery": "서남해구외끌이중형저인망",
+       "application_stage": 2
+      },
+      {
+       "species": "전 어종",
+       "applicable_fishery": "정치망",
+       "application_stage": 1
+      }
+     ],
+     "pillar": "S3",
+     "columns": [
+      {
+       "key": "species",
+       "label": "어종"
+      },
+      {
+       "key": "applicable_fishery",
+       "label": "적용 업종"
+      },
+      {
+       "key": "application_stage",
+       "label": "적용 단계"
+      }
+     ],
+     "cardDesc": "해양수산부 보도자료의 어종·적용업종·적용단계 표 3행을 구조화; 문서에 없는 살오징어 배분 톤수는 생성하지 않음",
+     "basis": {
+      "분류범위": "오징어만",
+      "중량기준": "해당 없음",
+      "거래단계": "해당 없음",
+      "합산여부": "없음",
+      "쿼터의미": "해당 없음"
+     },
+     "situation": "해양수산부 보도자료 표에는 총허용어획량 적용 업종 확대 3건이 담겼다. 살오징어는 서남해구외끌이중형저인망에 2단계로, 민어는 대형트롤에 2단계로 적용하며, 정치망은 전 어종을 1단계로 적용한다. 이 표에는 어종·업종·적용 단계만 있고 살오징어에 배분되는 물량(톤)은 적혀 있지 않다.",
+     "takeaway": "살오징어에 총허용어획량이 걸리는 업종이 늘어나는 만큼, **국내 산지 매입 계약에 업종별 소진 시점 확인 조항을 넣고** 배분 물량이 고시되면 연간 매입 계획을 즉시 다시 계산해야 한다.",
+     "narrativeFilled": true
+    },
+    {
+     "id": "A_japan_surumeika_tac",
+     "title": "일본 살오징어 총허용어획량",
+     "chartType": "excerpt",
+     "data": [],
+     "pillar": "S3",
+     "excerpts": [
+      {
+       "인용": "레이와 ８(서기 이천이십육) 관리연도(레이와 ８년 ４월~레이와 ９년 ３월) 살오징어(살오징어) 어획가능량(총허용어획량)의 설정 및 배분에 관하여(안)",
+       "출처": "00_오징어_관련자료/01_오징어_시장·가격/02_쿼터·어장/20260204-JFA-Surumeika_TAC_2026.md"
+      },
+      {
+       "인용": "살오징어(살오징어) 추계 발생계군 레이와 7년도 자원평가 결과에 관하여. 제7회 자원관리방침 검토회(살오징어 전체 계군), 2026년 1월 14일(도쿄). 레이와 ７년도 자원평가 결과 개요. 추계 발생계군(주로 동해를 북상). • 2025년 친어량(※１)은 3.9만 톤이다. • 목표관리기준값(※２) 25.5만 톤 및 한계관리기준값(※４) 12.3만 톤을 밑돈다.",
+       "출처": "00_오징어_관련자료/01_오징어_시장·가격/01_생산·자원/20260114-JFA-Surumeika_Autumn_Stock_Assessment.md"
+      },
+      {
+       "인용": "※１ 친어량: 어기가 끝날 때까지 살아남아 다음 해 자원을 낳는 친어자원의 양. ※２ 목표관리기준값: 최대지속생산량(※３)을 실현하는 것을 목표로 설정하는 자원관리상의 목표 기준값. ※３ 최대지속생산량(MSY): 현재 및 합리적으로 예측되는 장래의 자연조건 아래에서 지속적으로 어획할 수 있는 수산자원의 최대 수량. ※４ 한계관리기준값: 자원 수준 저하로 최대지속생산량의 실현이 현저히 어려워지는 것을 미연에 방지하기 위한 임계값. 살오징어(살오징어)에 대해서는 잠정관리기준값이다. ※５ 자원량: 단년생인 살오징어의 경우 특정 해에 어획대상이 된, 즉 가입한 자원의 양. 1 전년도 자원평가에서 달라진 점",
+       "출처": "00_오징어_관련자료/01_오징어_시장·가격/01_생산·자원/20260114-JFA-Surumeika_Autumn_Stock_Assessment.md"
+      },
+      {
+       "인용": "2 살오징어(살오징어, 추계 발생계군)① 살오징어는 일본 주변에 널리 서식한다. 이 계군은 그중 가을철에 동해 서부~동중국해 북부에서 발생해 주로 봄철~여름철에 동해를 북상하고 가을철에 남하하는 무리이다. 이 계군의 어획량과 자원량은 어기연도(4월~다음 해 3월)의 수치를 나타낸다. 250",
+       "출처": "00_오징어_관련자료/01_오징어_시장·가격/01_생산·자원/20260114-JFA-Surumeika_Autumn_Stock_Assessment.md"
+      },
+      {
+       "인용": "살오징어(살오징어) 동계 발생계군 레이와 7년도 자원평가 결과에 관하여. 제7회 자원관리방침 검토회(살오징어 전체 계군), 2026년 1월 14일(도쿄). 레이와 ７년도 자원평가 결과 개요. 동계 발생계군(주로 태평양을 북상). • 2025년 친어량(※１)은 15.0만 톤이다. • 목표관리기준값(※２) 25.5만 톤을 밑돌지만 한계관리기준값(※４) 14.5만 톤은 웃돈다.",
+       "출처": "00_오징어_관련자료/01_오징어_시장·가격/01_생산·자원/20260114-JFA-Surumeika_Winter_Stock_Assessment.md"
+      },
+      {
+       "인용": "※１ 친어량: 어기가 끝날 때까지 살아남아 다음 해 자원을 낳는 친어자원의 양. ※２ 목표관리기준값: 최대지속생산량(※３)을 실현하는 것을 목표로 설정하는 자원관리상의 목표 기준값. ※３ 최대지속생산량(MSY): 현재 및 합리적으로 예측되는 장래의 자연조건 아래에서 지속적으로 어획할 수 있는 수산자원의 최대 수량. ※４ 한계관리기준값: 자원 수준 저하로 최대지속생산량의 실현이 현저히 어려워지는 것을 미연에 방지하기 위한 임계값. 살오징어(살오징어)에 대해서는 잠정관리기준값이다. ※５ 자원량: 단년생인 살오징어의 경우 특정 해에 어획대상이 된, 즉 가입한 자원의 양. 1 금년도 살오징어 자원량 증가 요인. 요점 • 금년 자원을 낳은 친어량(5.7만 톤, 추정치)은 전년(4.0만 톤)보다 소폭 증가했다. • 산란해역인 동중국해 가운데 태평양으로 흘러나가기 쉬운 남쪽에서 유생이 전년보다 많이 분포해 산란량이 많았던 것으로 추정된다. • 쿠로시오 대사행 해소에 따라 동중국해에서 성장해역인 쿠로시오 속류역(동경 140도보다 동쪽)으로 원활하게 수송(※１)되는 유생이 많았던 것으로 추정된다.",
+       "출처": "00_오징어_관련자료/01_오징어_시장·가격/01_생산·자원/20260114-JFA-Surumeika_Winter_Stock_Assessment.md"
+      },
+      {
+       "인용": "살오징어(살오징어, 동계 발생계군)① 살오징어는 일본 주변에 널리 서식한다. 이 계군은 그중 주로 겨울철에 동중국해에서 발생해 태평양을 북상하고 가을·겨울철에 동해를 남하하는 무리이다. 이 계군의 어획량과 자원량은 어기연도(4월~다음 해 3월)의 수치를 나타낸다. 그림 1 분포역 자원량 친어량 120",
+       "출처": "00_오징어_관련자료/01_오징어_시장·가격/01_생산·자원/20260114-JFA-Surumeika_Winter_Stock_Assessment.md"
+      },
+      {
+       "인용": "어획 시나리오에 따라 어획했을 때의 평균 친어량과 평균 어획량에 대한 장래 예측을 제시한다. 어획 시나리오에서는 β=0.5를 적용한 어획관리규칙에 따라 어획한다(붉은 테두리). 2025년 어기의 어획량은 일본과 한국이 살오징어(살오징어)를 어획가능량(총허용어획량) 상한까지 어획한다고 보고 산출한 3.9만 톤으로 가정했다. 이 어획 시나리오를 따르면 2026년 어기의 평균 어획량은 4.4만 톤이며, 2034년 어기에 친어량이 한계관리기준값(잠정관리기준값)을 웃돌 확률은 58%, 2044년 어기에 목표관리기준값을 웃돌 확률은 58%로 예측된다. 아울러 β를 0.4~0.7 범위에서 바꾼 경우와 현행 어획압(2022~2024년 어기 평균: β=0.66 상당, 친어량 및 가입 변동 예측의 불확실성은 고려하지 않음)의 장래 예측 결과도 제시했다. 표 3. ABC 요약표. 2026년 어기의 ABC / 2026년 어기의 친어량 예측 평균값(만 톤) / 현행 어획압 대비 비율(F/F2022-2024) / 2026년 어기의 어획비율(%). 4.4 18.2 1.00 14 8. ※표의 값은 향후 자원평가에 따라 갱신된다. 시산 요청(※１)에 대한 대응. ※１ 레이와 7년 11월 20일자 일본 수산청(Fisheries Agency) 요청.",
+       "출처": "00_오징어_관련자료/01_오징어_시장·가격/01_생산·자원/20260114-JFA-Surumeika_Winter_Stock_Assessment.md"
+      }
+     ],
+     "cardDesc": "위젯별 config 정규식으로 보관 Markdown/HTML의 원문 블록만 선택; 수치 보간·번역·요약 없음",
+     "dataYear": 2026,
+     "basis": {
+      "분류범위": "오징어만",
+      "중량기준": "생중량",
+      "거래단계": "해당 없음",
+      "합산여부": "없음",
+      "쿼터의미": "allocation"
+     },
+     "situation": "일본 수산청 자원평가에서 살오징어 추계 발생계군의 2025년 친어량은 3.9만 톤으로 목표관리기준값 25.5만 톤과 한계관리기준값 12.3만 톤을 모두 밑돌았다. 동계 발생계군은 친어량 15.0만 톤으로 목표값에는 못 미치지만 한계값 14.5만 톤은 웃돌았다. 동계계군의 2026년 어기 생물학적허용어획량은 4.4만 톤으로 제시됐고, 레이와 8 관리연도(2026년 4월~2027년 3월)의 어획가능량 설정·배분은 아직 안(案) 단계다.",
+     "takeaway": "두 계군 모두 목표관리기준값 아래에 있고 배분도 확정 전이므로, **일본산 살오징어를 전제로 한 물량 계획은 확정 고시 전까지 보수적으로 잡고** 남미산 대체 비중을 미리 점검해야 한다.",
+     "narrativeFilled": true
+    },
+    {
+     "id": "D_southam_regulation_timeline",
+     "title": "남미 3국 규제 변화 경과",
+     "chartType": "excerpt",
+     "data": [],
+     "pillar": "S3",
+     "excerpts": [
+      {
+       "인용": "원문 - 결의 6/2026(Resolución 6/2026) - 연방수산위원회(CONSEJO FEDERAL PESQUERO) | 아르헨티나.gob.ar",
+       "출처": "00_오징어_관련자료/01_오징어_시장·가격/02_쿼터·어장/20260812-ARG-Resolution_6_2026.html"
+      },
+      {
+       "인용": "국립수산연구개발원(Instituto Nacional de Investigación y Desarrollo Pesquero, 아르헨티나 수산연구소) 연구국(Dirección Nacional de Investigación)은 2026년 오월 12일자 공문 Nota NO-2026-47486068-APN-DNI#아르헨티나 수산연구소(DNI N° 41)을 통해, 오징어 채낚기선(buques poteros)을 이용한 어업사업계획 등록부를 개설할 가능성과 관련해 아르헨티나오징어(아르헨티나오징어) 어업의 지속가능성을 평가해 달라는 요청에 답하는 기술보고서를 집행기관(Autoridad de Aplicación)에 보냈다.",
+       "출처": "00_오징어_관련자료/01_오징어_시장·가격/02_쿼터·어장/20260812-ARG-Resolution_6_2026.html"
+      },
+      {
+       "인용": "제1조. 사업계획서 제출. 이 결의의 요건을 충족하는 자가 오징어 채낚기선(buques poteros)을 이용해 아르헨티나오징어(아르헨티나오징어)를 어획하기 위한 어업사업계획서를 제출하는 것을 허가한다.",
+       "출처": "00_오징어_관련자료/01_오징어_시장·가격/02_쿼터·어장/20260812-ARG-Resolution_6_2026.html"
+      },
+      {
+       "인용": "제7조. 사업계획의 요건. 제출하는 어획사업계획은 오로지 채낚기(poteras)만을 사용해 아르헨티나오징어(아르헨티나오징어)를 어획하는 내용이어야 한다. 제안 선박은 선창용적이 천삼백(UN MIL TRESCIENTOS) 1.300세제곱미터 이하여야 하며, 건조 시점부터 이 결의일 현재까지의 선령이 스무(VEINTE, 20)년 미만이어야 한다. 이러한 특성은 조선공학전문위원회(Consejo Profesional de Ingeniería Naval) 전문가의 보고서로 입증해야 한다.",
+       "출처": "00_오징어_관련자료/01_오징어_시장·가격/02_쿼터·어장/20260812-ARG-Resolution_6_2026.html"
+      },
+      {
+       "인용": "제12조. 절차. 국가수산조정감독국(DIRECCIÓN NACIONAL DE COORDINACIÓN Y FISCALIZACIÓN PESQUERA)은 각 사업계획이 이 결의에서 정하고 요구한 요건을 충족하는지 확인하고 평가한다. 국가수산조정감독국은 해당 요건을 충족한 사업계획에 지명된 각 선박을 이 결의의 부속서 V(ANEXO V, IF-2026-00000203-CFP-CFP)에 정한 기준에 따라 개별 평가한다. 국가수산조정감독국은 사안의 정황에 비추어 정당한 근거가 있는 결정으로 해당 사업계획이 공모의 틀 안에서 평가·비교되기 위한 최소조건을 갖추지 못했다고 판단하거나, 그 처리가 동등대우·투명성 또는 절차의 완전성에 영향을 줄 수 있다고 판단하면 제출을 부적격으로 선언할 수 있다. 사업계획 평가가 끝나면 해당 법률의 집행기관은 같은 법 제9조 d)호의 규정에 따른 승인 여부를 검토하도록 이를 연방수산위원회(CONSEJO FEDERAL PESQUERO)에 송부한다.",
+       "출처": "00_오징어_관련자료/01_오징어_시장·가격/02_쿼터·어장/20260812-ARG-Resolution_6_2026.html"
+      },
+      {
+       "인용": "원문 - 결의 2/2026(Resolución 2/2026) - 해양전선 공동기술위원회(COMISION TECNICA MIXTA DEL FRENTE MARITIMO) | 아르헨티나.gob.ar",
+       "출처": "00_오징어_관련자료/01_오징어_시장·가격/02_쿼터·어장/20260812-ARG-CTMFM_Resolution_2_2026.html"
+      },
+      {
+       "인용": "2026년 어획기에 공동어업수역(Zona Común de Pesca)에서 아르헨티나오징어(아르헨티나오징어) 대상어업 기간을 개시하는 것이 타당함.",
+       "출처": "00_오징어_관련자료/01_오징어_시장·가격/02_쿼터·어장/20260812-ARG-CTMFM_Resolution_2_2026.html"
+      },
+      {
+       "인용": "제1조. 2026년 사월 1일부터 공동어업수역(Zona Común de Pesca)에서 아르헨티나오징어(아르헨티나오징어) 대상어업을 허용한다.",
+       "출처": "00_오징어_관련자료/01_오징어_시장·가격/02_쿼터·어장/20260812-ARG-CTMFM_Resolution_2_2026.html"
+      },
+      {
+       "인용": "제1조. 2026년 전국 해역에서 페루대왕오징어 또는 붉은오징어(대왕오징어)의 총어획쿼터를 200.000톤으로 정하고 다음과 같이 나눈다:",
+       "출처": "00_오징어_관련자료/01_오징어_시장·가격/02_쿼터·어장/20251218-SUBPESCA-Jibia_Quota_2026.md"
+      },
+      {
+       "인용": "[아리카 이 파리나코타(ARICA Y PARINACOTA)에서 마가야네스(MAGALLANES)까지의 페루대왕오징어 또는 붉은오징어(JIBIA O CALAMAR ROJO) 수역, 2026년",
+       "출처": "00_오징어_관련자료/01_오징어_시장·가격/02_쿼터·어장/20251218-SUBPESCA-Jibia_Quota_2026.md"
+      },
+      {
+       "인용": "(발췌) 본 부처의 면제령 제2O2oI 2C호(Decreto Exento N° 2O2oI 2C)에 따라, e! afio 2026(원문 표기)에 전국 해역의 페루대왕오징어 또는 붉은오징어(대왕오징어) 총어획쿼터를 200.000톤으로 정하고 다음과 같이 나눈다:",
+       "출처": "00_오징어_관련자료/01_오징어_시장·가격/02_쿼터·어장/20251218-SUBPESCA-Jibia_Quota_2026.md"
+      }
+     ],
+     "cardDesc": "위젯별 config 정규식으로 보관 Markdown/HTML의 원문 블록만 선택; 수치 보간·번역·요약 없음",
+     "dataYear": 2026,
+     "basis": {
+      "분류범위": "오징어만",
+      "중량기준": "해당 없음",
+      "거래단계": "해당 없음",
+      "합산여부": "없음",
+      "쿼터의미": "법정 한도"
+     },
+     "situation": "아르헨티나 연방수산위원회 결의 6/2026은 채낚기만 쓰는 아르헨티나오징어 어업사업계획서 제출을 허가하면서 선창용적 1,300세제곱미터 이하, 선령 20년 미만이라는 선박 요건을 달았다. 해양전선 공동기술위원회 결의 2/2026은 2026년 4월 1일부터 공동어업수역에서 같은 어종의 대상어업을 열었다. 칠레 수산차관실은 2026년 전국 해역의 대왕오징어 총어획쿼터를 200,000톤으로 정했다.",
+     "takeaway": "세 관할권이 같은 해에 진입 요건과 쿼터를 동시에 손대고 있으므로, **산지 계약 전에 상대 선단의 선박 제원이 신규 등록 요건을 충족하는지 문서로 확인**해 통관 단계의 서류 리스크를 줄여야 한다.",
+     "narrativeFilled": true
+    }
+   ]
+  },
+  {
+   "key": "s05",
+   "title": "가공과 제품",
+   "widgets": [
+    {
+     "id": "C_eu_processing_hub",
+     "title": "유럽 가공 허브 — 원문 발췌",
+     "chartType": "excerpt",
+     "data": [],
+     "pillar": "S2",
+     "excerpts": [
+      {
+       "인용": "오징어류 전체 어종의 어획량은 2023년 3.200.000톤을 넘어 세계 어획량의 3,5%를 차지했다. 페루대왕오징어(대왕오징어) 어획량은 1.225.798톤이었고, 주로 페루와 중국 선단이 어획했다. 주요 오징어 생산국은 중국과 페루로 2023년 세계 어획량의 53%를 차지했으며, 인도네시아·인도·아르헨티나가 각각 8%, 6%, 5%로 뒤를 이었다. 유럽연합(EU) 어획량은 2023년 세계 어획량의 1%였다. 지난 십 년(2014-2023) 동안 세계 오징어 어획량은 2016년에 전년보다 -32% 감소했고, 이후 점진적으로 증가했다(+22%).",
+       "출처": "00_오징어_관련자료/01_오징어_시장·가격/05_시장·소비/20260812-EUMOFA-Squid_Profile.html"
+      },
+      {
+       "인용": "유럽연합(EU)의 오징어 어획량은 2023년 40.861톤에 이르렀다. 아르헨티나오징어(아르헨티나오징어) 어획량은 EU 어획량의 35%를 차지했다. 스페인은 단연 최대 생산국으로 EU 어획량의 62%를 차지했고, 프랑스와 포르투갈이 각각 13%와 8%로 뒤를 이었다. 지난 십 년(2014-2023) 동안 EU 오징어 어획량은 등락했으며, 스페인 어획량 감소(-53%)와 관련해 전체적으로 45% 감소했다.",
+       "출처": "00_오징어_관련자료/01_오징어_시장·가격/05_시장·소비/20260812-EUMOFA-Squid_Profile.html"
+      },
+      {
+       "인용": "유럽연합(EU)의 오징어 제품 교역(톤 – 2024)",
+       "출처": "00_오징어_관련자료/01_오징어_시장·가격/05_시장·소비/20260812-EUMOFA-Squid_Profile.html"
+      },
+      {
+       "인용": "유럽연합(EU) 역외 수출: 2024년 오징어 수출량은 총 17.063톤이었다. 수출품은 거의 전부 냉동 오징어였다(98%). 스페인은 단연 EU 최대 수출국으로 수출량의 83%를 차지했다. 그 밖의 EU 수출국인 포르투갈·이탈리아·그리스는 합계로 2024년 EU 수출량의 12%를 차지했다. 중국·한국·알바니아·모로코는 주요 목적지 시장으로 EU 수출의 69%를 차지했다.",
+       "출처": "00_오징어_관련자료/01_오징어_시장·가격/05_시장·소비/20260812-EUMOFA-Squid_Profile.html"
+      },
+      {
+       "인용": "2.2 주요 어종별 분석. 표 8. 1인당 소비량. 제품42 및 전체에서의 비중. 자급률. 자급률(kg, 생체중 환산 겉보기 소비량). 유럽연합(EU)에서 가장 많이 소비되는 상위-15개 제품의 비율(2023). 참치류(Tuna, 12%) 2,68 34%. 연어류(Salmon, 10%) 2,39 1%. 알래스카명태(Gadus chalcogrammus, 8%) 1,78 0%. 새우류(Shrimps, 7%) 1,59 11%. 대구류(Cod, 7%) 1,53 5%. 홍합류(Mussel, 5%) 1,14 74%. 헤이크류(Hake, 4%) 1,01 40%. 청어류(Herring, 4%) 0,98 67%. 오징어류(Squid, 3%) 0,61 15%. 수리미(Surimi, 2%) 43 0,54 해당 없음. 고등어류(Mackerel, 2%) 0,50 87%. 정어리류(Sardine, 2%) 0,49 67%. 송어류(Trout, 2%) 0,46 84%. 세이스 또는 콜피시(Pollachius virens; Saithe = Coalfish, 2%) 0,36 11%. 유럽참돔(Sparus aurata; Gilthead seabream, 1%) 0,33 74%. 출처: 유럽 수산물 시장 관측소(유럽 수산시장관측소), 유럽연합 통계청(EUROSTAT)의 온라인 데이터 코드 fish_ca_main, fish_aq2a 및 DS-045409와 유엔식량농업기구(FAO) 자료를 토대로 함. 사용한 출처의 세부사항은 방법론 배경(Methodological background)에서 확인할 수 있다.",
+       "출처": "00_오징어_관련자료/01_오징어_시장·가격/05_시장·소비/20251202-EUMOFA-The_EU_Fish_Market_2025.md"
+      },
+      {
+       "인용": "표 9. 1인당 소비량. 겉보기 소비량 상위 15개 제품: 제품 / 소비량(kg, 생체중 환산) / 2023/2022 증감 / 자연산 비중 / 양식산 비중(2023). 참치류(Tuna) 2,68 -9% 98,2% 1,8%. 연어류(Salmon) 2,39 -5% 5,7% 94,3%. 알래스카명태(Gadus chalcogrammus) 1,78 +7% 100% 0%. 새우류(Shrimps) 1,59 -6% 42,0% 58,0%. 대구류(Cod) 1,53 -6% 99,9% 0,1%. 홍합류(Mussel) 1,14 -6% 7,1% 92,9%. 헤이크류(Hake) 1,01 -2% 100% 0%. 청어류(Herring) 0,98 +12% 100% 0%. 오징어류(Squid) 0,61 -16% 100% 0%. 수리미(Surimi) 0,54 -10% 100% 0%. 고등어류(Mackerel) 0,50 -9% 100% 0%. 정어리류(Sardine) 0,49 -10% 100% 0%. 송어류(Trout) 0,46 -1% 0,9% 99,1%. 세이스 또는 콜피시(Pollachius virens; Saithe = Coalfish) 0,36 -3% 100% 0%. 유럽참돔(Sparus aurata; Gilthead seabream) 0,33 +2% 2,4% 97,6%. 기타 제품 6,48 +2% 77,4% 22,6%. 합계 22,89 -3% 71,5% 28,5%. 출처: 유럽 수산물 시장 관측소(유럽 수산시장관측소), 유럽연합 통계청(EUROSTAT)의 온라인 데이터 코드 fish_ca_main, fish_aq2a 및 DS-045409와 유엔식량농업기구(FAO) 자료를 토대로 함. 수출입 생산방식과 어획물의 목적 용도를 평가하는 데 사용한 출처 및 방법론적 접근의 세부사항은 방법론 배경(Methodological background)에서 확인할 수 있다.",
+       "출처": "00_오징어_관련자료/01_오징어_시장·가격/05_시장·소비/20251202-EUMOFA-The_EU_Fish_Market_2025.md"
+      },
+      {
+       "인용": "유럽연합(EU)으로 수입됐다. 2022년에는 검토 대상 주요 어종 대부분의 가격이 지난 다섯 해 중 최고 수준에 이르렀고, 연어·대구·가다랑어(Katsuwonus pelamis)는 2023년에 다시 상승했다. 그러나 2024년에는 대부분의 수입가격이 하락했다. 연어는 다섯 해 만에 처음으로 가격이 하락해 4% 내린 8,07 EUR/kg이 됐으며, 이는 2021년 이후 최저치였다. 수입량은 늘었지만 총금액은 변하지 않은 가운데 나타난 하락이다. 문어·오징어·가다랑어 가격도 각각 4%, 5%, 7% 하락했다. 새우류는 보합세를 유지하며 6,88 EUR/kg에 판매됐다. 대구만 가격이 오른 유일한 어종으로, 3% 상승한 6,90 EUR/kg을 기록했다. 이 때문에 수입량 감소폭이 금액 감소폭보다 커졌으며 각각 10%와 7% 감소했다. 차트 43 10,50 명목 단가 10,00 9,20 EUR/kg -4% 일부 주요 품목의 금액 9,50 9,00 상위 8,50 8,07 EUR/kg.",
+       "출처": "00_오징어_관련자료/01_오징어_시장·가격/05_시장·소비/20251202-EUMOFA-The_EU_Fish_Market_2025.md"
+      }
+     ],
+     "cardDesc": "위젯별 config 정규식으로 보관 Markdown/HTML의 원문 블록만 선택; 수치 보간·번역·요약 없음",
+     "dataYear": 2026,
+     "basis": {
+      "분류범위": "두족류 미분류 포함",
+      "중량기준": "제품중량",
+      "거래단계": "해당 없음",
+      "합산여부": "없음",
+      "쿼터의미": "해당 없음"
+     },
+     "situation": "유럽 수산물 시장 관측소 자료에서 유럽연합의 2023년 오징어 어획량은 40,861톤으로 세계 어획량의 1%였고, 오징어 자급률은 15%에 그쳤다. 1인당 오징어 소비는 0.61킬로그램으로 전년 대비 16% 줄었다. 반면 2024년 역외 수출은 17,063톤이었고 그중 98%가 냉동품, 스페인이 수출량의 83%를 차지했으며 중국·한국·알바니아·모로코가 수출의 69%를 받았다.",
+     "takeaway": "유럽은 자급률 15%의 순수입 지역이면서 냉동품을 다시 내보내는 가공 허브이므로, **스페인발 냉동 재수출 물량을 상시 견적 대상에 넣어** 산지 직구매 단가와 비교하는 편이 조달 선택지를 넓힌다.",
+     "narrativeFilled": true
+    },
+    {
+     "id": "C_india_mpeda_exports",
+     "title": "인도 두족류 수출",
+     "chartType": "excerpt",
+     "data": [],
+     "pillar": "S2",
+     "excerpts": [
+      {
+       "인용": "냉동 오징어 수출은 1,02,060 MT에 이르러 ₹4,493.80크로어($ 513.84백만)의 수익을 올렸다. 한편 냉동 갑오징어는 물량과 금액이 모두 증가해 수량 기준 13.32%, $ 금액 기준 16.25% 성장했으며, 수출량은 67,157 MT, 수출액은 $ 331.96백만이었다.",
+       "출처": "00_오징어_관련자료/01_오징어_시장·가격/03_무역·HS/20260600-MPEDA-Marine_Products_Export_Figures_2025-26.md"
+      }
+     ],
+     "cardDesc": "위젯별 config 정규식으로 보관 Markdown/HTML의 원문 블록만 선택; 수치 보간·번역·요약 없음",
+     "dataYear": 2026,
+     "basis": {
+      "분류범위": "두족류 미분류 포함",
+      "중량기준": "제품중량",
+      "거래단계": "export_unit",
+      "합산여부": "없음",
+      "쿼터의미": "해당 없음"
+     },
+     "situation": "인도 해산물수출개발청 자료에서 냉동 오징어 수출은 102,060톤, 5억 1,384만 달러였다. 냉동 갑오징어는 67,157톤에 3억 3,196만 달러로 수량 13.32%, 달러 금액 16.25% 늘었다. 원문에는 냉동 오징어의 전년 대비 증감률이 없어 두 품목의 증감을 같은 기준으로 나란히 놓을 수는 없다.",
+     "takeaway": "인도는 오징어와 갑오징어를 별도 품목으로 집계·수출하는 산지이므로, **견적과 계약서에서 두 품목의 통관 코드를 분리 표기**해 갑오징어 물량이 오징어 단가로 계상되는 것을 막아야 한다.",
+     "narrativeFilled": true
+    }
+   ]
+  },
+  {
+   "key": "s06",
+   "title": "교역과 통관",
+   "widgets": [
+    {
+     "id": "C_hs_classification_map",
+     "title": "오징어 통관 코드 분류표",
+     "chartType": "matrix",
+     "data": [
+      {
+       "hs6": "030741",
+       "stage": "1단계 활·신선 (포괄)",
+       "description": "갑오징어·오징어 활·신선·냉장 (구 포괄분류)"
+      },
+      {
+       "hs6": "030742",
+       "stage": "1단계 활·신선·냉장",
+       "description": "갑오징어·오징어 활·신선·냉장"
+      },
+      {
+       "hs6": "030743",
+       "stage": "1단계 냉동",
+       "description": "갑오징어·오징어 냉동"
+      },
+      {
+       "hs6": "030749",
+       "stage": "2단계 건조·염장·훈제",
+       "description": "갑오징어·오징어 그 밖의 것 (건조·염장·훈제)"
+      },
+      {
+       "hs6": "160554",
+       "stage": "3단계 조제·저장",
+       "description": "갑오징어·오징어 조제·저장"
+      }
+     ],
+     "pillar": "S3",
+     "columns": [
+      {
+       "key": "hs6",
+       "label": "통관 코드"
+      },
+      {
+       "key": "stage",
+       "label": "단계"
+      },
+      {
+       "key": "description",
+       "label": "설명"
+      }
+     ],
+     "xKey": "stage",
+     "xLabel": "stage",
+     "series": [
+      {
+       "key": "hs6",
+       "name": "통관 코드"
+      }
+     ],
+     "cardDesc": "보관 HS matrix의 5개 코드·제품형태·영문 설명을 원문 그대로 적재",
+     "basis": {
+      "분류범위": "갑오징어 포함",
+      "중량기준": "해당 없음",
+      "거래단계": "해당 없음",
+      "합산여부": "없음",
+      "쿼터의미": "해당 없음"
+     },
+     "situation": "통관 코드가 오징어와 갑오징어를 한 소호에 담는다. 0307.42·0307.43·0307.49 가 모두 「갑오징어와 오징어」로 묶여 있고, 조제품만 1605.54 로 갈린다.",
+     "takeaway": "통관 통계로 오징어만 따로 세려는 시도는 **소호 단계에서 이미 불가능하다.** 종 구분이 필요한 계약에서는 통관 코드가 아니라 어획증명·원산지증명을 근거로 삼아라.",
+     "narrativeFilled": true
+    },
+    {
+     "id": "C_korea_import_monthly",
+     "title": "한국 월별 수입 × 상대국 (달러·킬로그램)",
+     "chartType": "stackedBar",
+     "data": [
+      {
+       "month": "2026-01",
+       "country_code": "CN",
+       "country": "중국",
+       "import_usd": 20272987,
+       "import_kg": 5405672
+      },
+      {
+       "month": "2026-01",
+       "country_code": "PE",
+       "country": "페루",
+       "import_usd": 15135871,
+       "import_kg": 4220742
+      },
+      {
+       "month": "2026-01",
+       "country_code": "VN",
+       "country": "베트남",
+       "import_usd": 8306951,
+       "import_kg": 859989
+      },
+      {
+       "month": "2026-01",
+       "country_code": "EC",
+       "country": "에쿠아도르",
+       "import_usd": 2759270,
+       "import_kg": 1611640
+      },
+      {
+       "month": "2026-01",
+       "country_code": "CL",
+       "country": "칠레",
+       "import_usd": 1824317,
+       "import_kg": 667774
+      },
+      {
+       "month": "2026-01",
+       "country_code": "AR",
+       "country": "아르헨티나",
+       "import_usd": 1023022,
+       "import_kg": 150802
+      },
+      {
+       "month": "2026-01",
+       "country_code": "TH",
+       "country": "태국",
+       "import_usd": 744274,
+       "import_kg": 83696
+      },
+      {
+       "month": "2026-01",
+       "country_code": "ID",
+       "country": "인도네시아",
+       "import_usd": 737180,
+       "import_kg": 126792
+      },
+      {
+       "month": "2026-01",
+       "country_code": "TW",
+       "country": "대만",
+       "import_usd": 585382,
+       "import_kg": 120005
+      },
+      {
+       "month": "2026-01",
+       "country_code": "VU",
+       "country": "바누아투",
+       "import_usd": 504656,
+       "import_kg": 131108
+      },
+      {
+       "month": "2026-01",
+       "country_code": "MX",
+       "country": "멕시코",
+       "import_usd": 273466,
+       "import_kg": 122500
+      },
+      {
+       "month": "2026-01",
+       "country_code": "US",
+       "country": "미국",
+       "import_usd": 164089,
+       "import_kg": 72128
+      },
+      {
+       "month": "2026-01",
+       "country_code": "PT",
+       "country": "포루투갈",
+       "import_usd": 115302,
+       "import_kg": 24769
+      },
+      {
+       "month": "2026-01",
+       "country_code": "PH",
+       "country": "필리핀",
+       "import_usd": 105137,
+       "import_kg": 9028
+      },
+      {
+       "month": "2026-01",
+       "country_code": "IN",
+       "country": "인도",
+       "import_usd": 80125,
+       "import_kg": 20164
+      },
+      {
+       "month": "2026-01",
+       "country_code": "MY",
+       "country": "말레이시아",
+       "import_usd": 74012,
+       "import_kg": 15664
+      },
+      {
+       "month": "2026-01",
+       "country_code": "GN",
+       "country": "기니",
+       "import_usd": 61234,
+       "import_kg": 25583
+      },
+      {
+       "month": "2026-01",
+       "country_code": "JP",
+       "country": "일본",
+       "import_usd": 40766,
+       "import_kg": 1177
+      },
+      {
+       "month": "2026-01",
+       "country_code": "OM",
+       "country": "오만",
+       "import_usd": 38116,
+       "import_kg": 7560
+      },
+      {
+       "month": "2026-01",
+       "country_code": "MM",
+       "country": "미얀마",
+       "import_usd": 30131,
+       "import_kg": 3540
+      },
+      {
+       "month": "2026-01",
+       "country_code": "NZ",
+       "country": "뉴질랜드",
+       "import_usd": 1995,
+       "import_kg": 54
+      },
+      {
+       "month": "2026-01",
+       "country_code": "PK",
+       "country": "파키스탄",
+       "import_usd": 854,
+       "import_kg": 80
+      },
+      {
+       "month": "2026-01",
+       "country_code": "ES",
+       "country": "스페인",
+       "import_usd": 2,
+       "import_kg": 0
+      },
+      {
+       "month": "2026-02",
+       "country_code": "CN",
+       "country": "중국",
+       "import_usd": 16596242,
+       "import_kg": 4528263
+      },
+      {
+       "month": "2026-02",
+       "country_code": "PE",
+       "country": "페루",
+       "import_usd": 8470769,
+       "import_kg": 2834502
+      },
+      {
+       "month": "2026-02",
+       "country_code": "VN",
+       "country": "베트남",
+       "import_usd": 7231343,
+       "import_kg": 735369
+      },
+      {
+       "month": "2026-02",
+       "country_code": "VU",
+       "country": "바누아투",
+       "import_usd": 1084775,
+       "import_kg": 333775
+      },
+      {
+       "month": "2026-02",
+       "country_code": "AR",
+       "country": "아르헨티나",
+       "import_usd": 1032104,
+       "import_kg": 165088
+      },
+      {
+       "month": "2026-02",
+       "country_code": "CL",
+       "country": "칠레",
+       "import_usd": 687661,
+       "import_kg": 331434
+      },
+      {
+       "month": "2026-02",
+       "country_code": "TH",
+       "country": "태국",
+       "import_usd": 505797,
+       "import_kg": 53566
+      },
+      {
+       "month": "2026-02",
+       "country_code": "ID",
+       "country": "인도네시아",
+       "import_usd": 356764,
+       "import_kg": 60704
+      },
+      {
+       "month": "2026-02",
+       "country_code": "TW",
+       "country": "대만",
+       "import_usd": 330870,
+       "import_kg": 71600
+      },
+      {
+       "month": "2026-02",
+       "country_code": "CM",
+       "country": "카메룬",
+       "import_usd": 168437,
+       "import_kg": 43750
+      },
+      {
+       "month": "2026-02",
+       "country_code": "PH",
+       "country": "필리핀",
+       "import_usd": 154614,
+       "import_kg": 14307
+      },
+      {
+       "month": "2026-02",
+       "country_code": "US",
+       "country": "미국",
+       "import_usd": 113072,
+       "import_kg": 48011
+      },
+      {
+       "month": "2026-02",
+       "country_code": "SO",
+       "country": "소말리아",
+       "import_usd": 78277,
+       "import_kg": 22221
+      },
+      {
+       "month": "2026-02",
+       "country_code": "MY",
+       "country": "말레이시아",
+       "import_usd": 73544,
+       "import_kg": 14904
+      },
+      {
+       "month": "2026-02",
+       "country_code": "NZ",
+       "country": "뉴질랜드",
+       "import_usd": 52531,
+       "import_kg": 10944
+      },
+      {
+       "month": "2026-02",
+       "country_code": "JP",
+       "country": "일본",
+       "import_usd": 51753,
+       "import_kg": 3162
+      },
+      {
+       "month": "2026-02",
+       "country_code": "IN",
+       "country": "인도",
+       "import_usd": 43200,
+       "import_kg": 21600
+      },
+      {
+       "month": "2026-02",
+       "country_code": "OM",
+       "country": "오만",
+       "import_usd": 35959,
+       "import_kg": 7280
+      },
+      {
+       "month": "2026-02",
+       "country_code": "MX",
+       "country": "멕시코",
+       "import_usd": 6750,
+       "import_kg": 2500
+      },
+      {
+       "month": "2026-02",
+       "country_code": "PK",
+       "country": "파키스탄",
+       "import_usd": 2970,
+       "import_kg": 240
+      },
+      {
+       "month": "2026-02",
+       "country_code": "SG",
+       "country": "싱가포르",
+       "import_usd": 1605,
+       "import_kg": 96
+      },
+      {
+       "month": "2026-02",
+       "country_code": "AU",
+       "country": "호주",
+       "import_usd": 121,
+       "import_kg": 11
+      },
+      {
+       "month": "2026-03",
+       "country_code": "PE",
+       "country": "페루",
+       "import_usd": 14943710,
+       "import_kg": 5234067
+      },
+      {
+       "month": "2026-03",
+       "country_code": "CN",
+       "country": "중국",
+       "import_usd": 14113223,
+       "import_kg": 4356765
+      },
+      {
+       "month": "2026-03",
+       "country_code": "VN",
+       "country": "베트남",
+       "import_usd": 4945926,
+       "import_kg": 473433
+      },
+      {
+       "month": "2026-03",
+       "country_code": "EC",
+       "country": "에쿠아도르",
+       "import_usd": 4231877,
+       "import_kg": 2854535
+      },
+      {
+       "month": "2026-03",
+       "country_code": "CL",
+       "country": "칠레",
+       "import_usd": 957269,
+       "import_kg": 482520
+      },
+      {
+       "month": "2026-03",
+       "country_code": "TH",
+       "country": "태국",
+       "import_usd": 748441,
+       "import_kg": 81070
+      },
+      {
+       "month": "2026-03",
+       "country_code": "US",
+       "country": "미국",
+       "import_usd": 458879,
+       "import_kg": 192014
+      },
+      {
+       "month": "2026-03",
+       "country_code": "ID",
+       "country": "인도네시아",
+       "import_usd": 431150,
+       "import_kg": 71314
+      },
+      {
+       "month": "2026-03",
+       "country_code": "AR",
+       "country": "아르헨티나",
+       "import_usd": 350834,
+       "import_kg": 91009
+      },
+      {
+       "month": "2026-03",
+       "country_code": "TW",
+       "country": "대만",
+       "import_usd": 227605,
+       "import_kg": 49549
+      },
+      {
+       "month": "2026-03",
+       "country_code": "JP",
+       "country": "일본",
+       "import_usd": 136015,
+       "import_kg": 6408
+      },
+      {
+       "month": "2026-03",
+       "country_code": "MY",
+       "country": "말레이시아",
+       "import_usd": 77701,
+       "import_kg": 7369
+      },
+      {
+       "month": "2026-03",
+       "country_code": "PH",
+       "country": "필리핀",
+       "import_usd": 71381,
+       "import_kg": 5707
+      },
+      {
+       "month": "2026-03",
+       "country_code": "MX",
+       "country": "멕시코",
+       "import_usd": 68466,
+       "import_kg": 28500
+      },
+      {
+       "month": "2026-03",
+       "country_code": "NZ",
+       "country": "뉴질랜드",
+       "import_usd": 62208,
+       "import_kg": 12960
+      },
+      {
+       "month": "2026-03",
+       "country_code": "SO",
+       "country": "소말리아",
+       "import_usd": 56424,
+       "import_kg": 15984
+      },
+      {
+       "month": "2026-03",
+       "country_code": "SN",
+       "country": "세네갈",
+       "import_usd": 23423,
+       "import_kg": 2470
+      },
+      {
+       "month": "2026-03",
+       "country_code": "FR",
+       "country": "프랑스",
+       "import_usd": 4355,
+       "import_kg": 80
+      },
+      {
+       "month": "2026-03",
+       "country_code": "IN",
+       "country": "인도",
+       "import_usd": 656,
+       "import_kg": 16
+      },
+      {
+       "month": "2026-03",
+       "country_code": "AU",
+       "country": "호주",
+       "import_usd": 69,
+       "import_kg": 2
+      },
+      {
+       "month": "2026-04",
+       "country_code": "CN",
+       "country": "중국",
+       "import_usd": 19169938,
+       "import_kg": 5760811
+      },
+      {
+       "month": "2026-04",
+       "country_code": "PE",
+       "country": "페루",
+       "import_usd": 15946183,
+       "import_kg": 5880950
+      },
+      {
+       "month": "2026-04",
+       "country_code": "VN",
+       "country": "베트남",
+       "import_usd": 6704412,
+       "import_kg": 697102
+      },
+      {
+       "month": "2026-04",
+       "country_code": "CL",
+       "country": "칠레",
+       "import_usd": 2275032,
+       "import_kg": 1301985
+      },
+      {
+       "month": "2026-04",
+       "country_code": "EC",
+       "country": "에쿠아도르",
+       "import_usd": 1990747,
+       "import_kg": 1328915
+      },
+      {
+       "month": "2026-04",
+       "country_code": "TH",
+       "country": "태국",
+       "import_usd": 684533,
+       "import_kg": 72674
+      },
+      {
+       "month": "2026-04",
+       "country_code": "ID",
+       "country": "인도네시아",
+       "import_usd": 558114,
+       "import_kg": 78454
+      },
+      {
+       "month": "2026-04",
+       "country_code": "AR",
+       "country": "아르헨티나",
+       "import_usd": 452242,
+       "import_kg": 119127
+      },
+      {
+       "month": "2026-04",
+       "country_code": "US",
+       "country": "미국",
+       "import_usd": 444210,
+       "import_kg": 192212
+      },
+      {
+       "month": "2026-04",
+       "country_code": "ES",
+       "country": "스페인",
+       "import_usd": 330656,
+       "import_kg": 97413
+      },
+      {
+       "month": "2026-04",
+       "country_code": "TW",
+       "country": "대만",
+       "import_usd": 228575,
+       "import_kg": 47815
+      },
+      {
+       "month": "2026-04",
+       "country_code": "MY",
+       "country": "말레이시아",
+       "import_usd": 182148,
+       "import_kg": 32979
+      },
+      {
+       "month": "2026-04",
+       "country_code": "PH",
+       "country": "필리핀",
+       "import_usd": 181501,
+       "import_kg": 17081
+      },
+      {
+       "month": "2026-04",
+       "country_code": "VU",
+       "country": "바누아투",
+       "import_usd": 162938,
+       "import_kg": 41250
+      },
+      {
+       "month": "2026-04",
+       "country_code": "NZ",
+       "country": "뉴질랜드",
+       "import_usd": 66413,
+       "import_kg": 24000
+      },
+      {
+       "month": "2026-04",
+       "country_code": "CM",
+       "country": "카메룬",
+       "import_usd": 62562,
+       "import_kg": 16250
+      },
+      {
+       "month": "2026-04",
+       "country_code": "JP",
+       "country": "일본",
+       "import_usd": 58799,
+       "import_kg": 2126
+      },
+      {
+       "month": "2026-04",
+       "country_code": "OM",
+       "country": "오만",
+       "import_usd": 12326,
+       "import_kg": 2370
+      },
+      {
+       "month": "2026-04",
+       "country_code": "IN",
+       "country": "인도",
+       "import_usd": 9800,
+       "import_kg": 3500
+      },
+      {
+       "month": "2026-04",
+       "country_code": "IT",
+       "country": "이탈리아",
+       "import_usd": 41,
+       "import_kg": 2
+      },
+      {
+       "month": "2026-05",
+       "country_code": "CN",
+       "country": "중국",
+       "import_usd": 16370107,
+       "import_kg": 4512819
+      },
+      {
+       "month": "2026-05",
+       "country_code": "PE",
+       "country": "페루",
+       "import_usd": 14840171,
+       "import_kg": 5552944
+      },
+      {
+       "month": "2026-05",
+       "country_code": "VN",
+       "country": "베트남",
+       "import_usd": 7361969,
+       "import_kg": 667606
+      },
+      {
+       "month": "2026-05",
+       "country_code": "CL",
+       "country": "칠레",
+       "import_usd": 4194561,
+       "import_kg": 2395687
+      },
+      {
+       "month": "2026-05",
+       "country_code": "AR",
+       "country": "아르헨티나",
+       "import_usd": 3922083,
+       "import_kg": 1126713
+      },
+      {
+       "month": "2026-05",
+       "country_code": "ES",
+       "country": "스페인",
+       "import_usd": 1146202,
+       "import_kg": 328466
+      },
+      {
+       "month": "2026-05",
+       "country_code": "ID",
+       "country": "인도네시아",
+       "import_usd": 842853,
+       "import_kg": 142198
+      },
+      {
+       "month": "2026-05",
+       "country_code": "EC",
+       "country": "에쿠아도르",
+       "import_usd": 690915,
+       "import_kg": 459745
+      },
+      {
+       "month": "2026-05",
+       "country_code": "MY",
+       "country": "말레이시아",
+       "import_usd": 475632,
+       "import_kg": 78499
+      },
+      {
+       "month": "2026-05",
+       "country_code": "TH",
+       "country": "태국",
+       "import_usd": 322312,
+       "import_kg": 35167
+      },
+      {
+       "month": "2026-05",
+       "country_code": "VU",
+       "country": "바누아투",
+       "import_usd": 258996,
+       "import_kg": 75300
+      },
+      {
+       "month": "2026-05",
+       "country_code": "MX",
+       "country": "멕시코",
+       "import_usd": 238920,
+       "import_kg": 110000
+      },
+      {
+       "month": "2026-05",
+       "country_code": "PH",
+       "country": "필리핀",
+       "import_usd": 187536,
+       "import_kg": 15173
+      },
+      {
+       "month": "2026-05",
+       "country_code": "CM",
+       "country": "카메룬",
+       "import_usd": 144134,
+       "import_kg": 37438
+      },
+      {
+       "month": "2026-05",
+       "country_code": "JP",
+       "country": "일본",
+       "import_usd": 95588,
+       "import_kg": 4698
+      },
+      {
+       "month": "2026-05",
+       "country_code": "OM",
+       "country": "오만",
+       "import_usd": 61200,
+       "import_kg": 12000
+      },
+      {
+       "month": "2026-05",
+       "country_code": "SO",
+       "country": "소말리아",
+       "import_usd": 17442,
+       "import_kg": 4941
+      },
+      {
+       "month": "2026-05",
+       "country_code": "US",
+       "country": "미국",
+       "import_usd": 135,
+       "import_kg": 4
+      }
+     ],
+     "pillar": "S3",
+     "columns": [
+      {
+       "key": "month",
+       "label": "월"
+      },
+      {
+       "key": "country_code",
+       "label": "국가코드"
+      },
+      {
+       "key": "country",
+       "label": "국가"
+      },
+      {
+       "key": "import_usd",
+       "label": "수입액 (달러)"
+      },
+      {
+       "key": "import_kg",
+       "label": "수입량 (킬로그램)"
+      }
+     ],
+     "xKey": "month",
+     "xLabel": "월",
+     "series": [
+      {
+       "key": "import_usd",
+       "name": "수입액 (달러)"
+      },
+      {
+       "key": "import_kg",
+       "name": "수입량 (킬로그램)"
+      }
+     ],
+     "unit": "USD·kg",
+     "cardDesc": "KCS HS 030742·030743·030749·160554의 HS10 상세행을 월·상대국별로 합산하며 총계행은 제외",
+     "dataYear": 2027,
+     "basis": {
+      "분류범위": "갑오징어 포함",
+      "중량기준": "순중량",
+      "거래단계": "수입단가",
+      "합산여부": "없음",
+      "쿼터의미": "해당 없음"
+     },
+     "situation": "관세청 통관 자료에서 2026년 1월 오징어·갑오징어 수입은 중국 2,027만 달러(540.6만 킬로그램)와 페루 1,514만 달러(422.1만 킬로그램)가 앞섰다. 베트남은 831만 달러로 금액 3위였지만 물량은 86.0만 킬로그램에 그쳐, 276만 달러에 161.2만 킬로그램을 들여온 에콰도르보다 적었다. 2026년 2월에도 중국이 1,660만 달러(452.8만 킬로그램)로 선두였다.",
+     "takeaway": "금액 순위와 물량 순위가 어긋나는 국가는 제품 형태가 다르다는 신호이므로, **국가별 견적을 킬로그램당 단가와 제품형태를 함께 놓고 비교**해 베트남산 고단가 물량을 원물 단가 협상의 근거로 쓰지 말아야 한다.",
+     "narrativeFilled": true
+    },
+    {
+     "id": "C_import_concentration",
+     "title": "한국 수입 집중도 5년",
+     "chartType": "bar",
+     "data": [
+      {
+       "year": 2020,
+       "total_import_usd": 524666603,
+       "top1_share_pct": 36.1915,
+       "top3_share_pct": 74.5496,
+       "hhi": 2330.55
+      },
+      {
+       "year": 2021,
+       "total_import_usd": 408596870,
+       "top1_share_pct": 36.0844,
+       "top3_share_pct": 75.9975,
+       "hhi": 2304.72
+      },
+      {
+       "year": 2022,
+       "total_import_usd": 462680864,
+       "top1_share_pct": 36.704,
+       "top3_share_pct": 79.1519,
+       "hhi": 2393.73
+      },
+      {
+       "year": 2023,
+       "total_import_usd": 546599008,
+       "top1_share_pct": 37.8534,
+       "top3_share_pct": 79.7848,
+       "hhi": 2524.39
+      },
+      {
+       "year": 2024,
+       "total_import_usd": 560139683,
+       "top1_share_pct": 46.1483,
+       "top3_share_pct": 74.2491,
+       "hhi": 2622.62
+      }
+     ],
+     "pillar": "S3",
+     "columns": [
+      {
+       "key": "year",
+       "label": "연도"
+      },
+      {
+       "key": "total_import_usd",
+       "label": "총 수입액 (달러)"
+      },
+      {
+       "key": "top1_share_pct",
+       "label": "1위국 비중 (%)"
+      },
+      {
+       "key": "top3_share_pct",
+       "label": "상위 3국 비중 (%)"
+      },
+      {
+       "key": "hhi",
+       "label": "집중도 지수"
+      }
+     ],
+     "series": [
+      {
+       "key": "share_pct",
+       "name": "비중 (%)"
+      }
+     ],
+     "unit": "%·USD",
+     "cardDesc": "KCS 2020~2024 연도별 HS 030742·030743·030749·160554 상대국 비중과 HHI. 비중은 한국 수입 안에서의 비중이며 글로벌 점유율이 아님",
+     "dataYear": 2025,
+     "basis": {
+      "분류범위": "갑오징어 포함",
+      "중량기준": "순중량",
+      "거래단계": "수입단가",
+      "합산여부": "없음",
+      "쿼터의미": "해당 없음"
+     },
+     "situation": "한국의 수입은 소수 산지에 몰려 있다. 2020년 상위 1개국 비중 36.2%, 상위 3개국 74.5%, 집중도 지수 2,330이었다. 경쟁당국이 통상 집중 시장으로 보는 1,800을 크게 넘는다.",
+     "takeaway": "집중도가 높다는 것은 한 산지의 사고가 곧 가격 충격이 된다는 뜻이다. 상위 3국 비중을 낮추는 것 자체를 조달 목표로 세우고 해마다 측정하라.",
+     "narrativeFilled": true
+    }
+   ]
+  },
+  {
+   "key": "s07",
+   "title": "가격과 소비",
+   "widgets": [
+    {
+     "id": "B_stage_separated_prices",
+     "title": "거래 단계별 가격 — 섞어 쓰면 안 되는 셋",
+     "chartType": "table",
+     "data": [
+      {
+       "market_stage": "소비자",
+       "label": "한국 소비자가",
+       "available": true,
+       "value": 4926,
+       "unit": "원/마리",
+       "currency": "KRW",
+       "weight_basis": "제품중량",
+       "coverage_end": "2026-08-11"
+      },
+      {
+       "market_stage": "수입단가",
+       "label": "EU 거래가격",
+       "available": true,
+       "value": null,
+       "unit": "EUR/kg·USD/kg",
+       "currency": "EUR·USD",
+       "weight_basis": "제품중량",
+       "coverage_end": "2026-07"
+      },
+      {
+       "market_stage": "수입단가",
+       "label": "한국 수입단가",
+       "available": true,
+       "value": 3288.74,
+       "unit": "USD/톤",
+       "currency": "USD",
+       "weight_basis": "순중량",
+       "coverage_end": "2026-05"
+      }
+     ],
+     "pillar": "S4",
+     "columns": [
+      {
+       "key": "market_stage",
+       "label": "거래 단계"
+      },
+      {
+       "key": "label",
+       "label": "항목"
+      },
+      {
+       "key": "available",
+       "label": "확보 여부"
+      },
+      {
+       "key": "value",
+       "label": "값"
+      },
+      {
+       "key": "unit",
+       "label": "단위"
+      },
+      {
+       "key": "currency",
+       "label": "통화"
+      },
+      {
+       "key": "weight_basis",
+       "label": "중량 기준"
+      },
+      {
+       "key": "coverage_end",
+       "label": "자료 종료 시점"
+      }
+     ],
+     "cardDesc": "서로 다른 거래단계·통화·중량기준을 행 단위로 분리하며 평균·환산·스프레드를 계산하지 않음",
+     "dataYear": 2026,
+     "basis": {
+      "분류범위": "오징어만",
+      "중량기준": "해당 없음",
+      "거래단계": "해당 없음",
+      "합산여부": "없음",
+      "쿼터의미": "해당 없음"
+     },
+     "situation": "같은 오징어라도 어느 단계의 가격인지에 따라 값이 다르다. 소비자가는 마리당 4,926원, 수입단가는 톤당 3,288.74달러다. 단위도 기준중량도 달라 그대로 비교할 수 없다.",
+     "takeaway": "가격을 인용할 때 **거래 단계와 중량 기준을 함께 적어라.** 소비자가로 수입 채산성을 따지거나 수입단가로 소매 마진을 추정하면 결론이 통째로 틀린다.",
+     "narrativeFilled": true
+    },
+    {
+     "id": "B_species_price_ladder",
+     "title": "종·규격별 수입 거래가격 계단 (유로/킬로그램)",
+     "chartType": "bar",
+     "data": [
+      {
+       "scientific_name": "유럽오징어",
+       "product_form": "신선 통마리",
+       "size_grade": "300-500",
+       "price_eur_per_kg": 25.0,
+       "price_usd_per_kg": 28.74,
+       "trend": "+",
+       "reference_area": null,
+       "incoterm": "운송비지급",
+       "origin": "크로아티아",
+       "rank": 1,
+       "market_stage": "수입단가"
+      },
+      {
+       "scientific_name": "유럽오징어",
+       "product_form": "신선 통마리",
+       "size_grade": "100-300 g/pc",
+       "price_eur_per_kg": 24.0,
+       "price_usd_per_kg": 27.59,
+       "trend": "+",
+       "reference_area": "도매",
+       "incoterm": null,
+       "origin": "이탈리아",
+       "rank": 2,
+       "market_stage": "수입단가"
+      },
+      {
+       "scientific_name": "유럽오징어",
+       "product_form": "신선 통마리",
+       "size_grade": "Small",
+       "price_eur_per_kg": 21.5,
+       "price_usd_per_kg": 24.71,
+       "trend": "=",
+       "reference_area": "프랑스",
+       "incoterm": null,
+       "origin": "프랑스",
+       "rank": 3,
+       "market_stage": "수입단가"
+      },
+      {
+       "scientific_name": "유럽오징어",
+       "product_form": "신선 통마리",
+       "size_grade": "Medium",
+       "price_eur_per_kg": 20.5,
+       "price_usd_per_kg": 23.56,
+       "trend": "-",
+       "reference_area": "도매",
+       "incoterm": null,
+       "origin": "프랑스",
+       "rank": 4,
+       "market_stage": "수입단가"
+      },
+      {
+       "scientific_name": "유럽오징어",
+       "product_form": "신선 통마리",
+       "size_grade": "300-500",
+       "price_eur_per_kg": 19.9,
+       "price_usd_per_kg": 22.87,
+       "trend": null,
+       "reference_area": "도매",
+       "incoterm": null,
+       "origin": "모로코",
+       "rank": 5,
+       "market_stage": "수입단가"
+      },
+      {
+       "scientific_name": "유럽오징어",
+       "product_form": "통마리",
+       "size_grade": "200-300 g/pc",
+       "price_eur_per_kg": 19.0,
+       "price_usd_per_kg": 21.84,
+       "trend": null,
+       "reference_area": "도매",
+       "incoterm": null,
+       "origin": "스페인",
+       "rank": 6,
+       "market_stage": "수입단가"
+      },
+      {
+       "scientific_name": "유럽오징어",
+       "product_form": "신선 통마리",
+       "size_grade": "400-600",
+       "price_eur_per_kg": 17.37,
+       "price_usd_per_kg": 19.97,
+       "trend": "-",
+       "reference_area": null,
+       "incoterm": "운송비지급",
+       "origin": "크로아티아",
+       "rank": 7,
+       "market_stage": "수입단가"
+      },
+      {
+       "scientific_name": "유럽오징어",
+       "product_form": "신선 통마리",
+       "size_grade": "500-1000",
+       "price_eur_per_kg": 16.8,
+       "price_usd_per_kg": 19.31,
+       "trend": "-",
+       "reference_area": null,
+       "incoterm": "운송비지급",
+       "origin": "크로아티아",
+       "rank": 8,
+       "market_stage": "수입단가"
+      },
+      {
+       "scientific_name": "유럽오징어",
+       "product_form": "신선 통마리",
+       "size_grade": "100-300 g/pc",
+       "price_eur_per_kg": 15.27,
+       "price_usd_per_kg": 17.55,
+       "trend": "-",
+       "reference_area": null,
+       "incoterm": "운송비지급",
+       "origin": "크로아티아",
+       "rank": 9,
+       "market_stage": "수입단가"
+      },
+      {
+       "scientific_name": "유럽오징어",
+       "product_form": "통마리",
+       "size_grade": "22-36 cm/pc",
+       "price_eur_per_kg": 13.55,
+       "price_usd_per_kg": 15.57,
+       "trend": null,
+       "reference_area": "스페인",
+       "incoterm": "운임보험료포함",
+       "origin": "모로코",
+       "rank": 10,
+       "market_stage": "수입단가"
+      },
+      {
+       "scientific_name": "유럽오징어",
+       "product_form": "통마리",
+       "size_grade": "27-31",
+       "price_eur_per_kg": 12.98,
+       "price_usd_per_kg": 14.92,
+       "trend": null,
+       "reference_area": "스페인",
+       "incoterm": "운임보험료포함",
+       "origin": "모로코",
+       "rank": 11,
+       "market_stage": "수입단가"
+      },
+      {
+       "scientific_name": "오징어속",
+       "product_form": "통마리",
+       "size_grade": "L (25-30)",
+       "price_eur_per_kg": 10.9,
+       "price_usd_per_kg": 12.53,
+       "trend": null,
+       "reference_area": "이탈리아",
+       "incoterm": "운임보험료포함",
+       "origin": "남아프리카공화국",
+       "rank": 12,
+       "market_stage": "수입단가"
+      },
+      {
+       "scientific_name": "오징어속",
+       "product_form": "통마리",
+       "size_grade": "XL (>30)",
+       "price_eur_per_kg": 10.9,
+       "price_usd_per_kg": 12.53,
+       "trend": null,
+       "reference_area": "이탈리아",
+       "incoterm": "운임보험료포함",
+       "origin": "남아프리카공화국",
+       "rank": 13,
+       "market_stage": "수입단가"
+      },
+      {
+       "scientific_name": "유럽오징어",
+       "product_form": "통마리",
+       "size_grade": "big",
+       "price_eur_per_kg": 9.98,
+       "price_usd_per_kg": 11.47,
+       "trend": null,
+       "reference_area": "모리타니",
+       "incoterm": "본선인도",
+       "origin": "모리타니",
+       "rank": 14,
+       "market_stage": "수입단가"
+      },
+      {
+       "scientific_name": "유럽오징어",
+       "product_form": "통마리",
+       "size_grade": "very big",
+       "price_eur_per_kg": 9.98,
+       "price_usd_per_kg": 11.47,
+       "trend": null,
+       "reference_area": "모리타니",
+       "incoterm": "본선인도",
+       "origin": "모리타니",
+       "rank": 15,
+       "market_stage": "수입단가"
+      },
+      {
+       "scientific_name": "유럽오징어",
+       "product_form": "통마리",
+       "size_grade": "medium",
+       "price_eur_per_kg": 9.77,
+       "price_usd_per_kg": 11.23,
+       "trend": null,
+       "reference_area": "모리타니",
+       "incoterm": "본선인도",
+       "origin": "모리타니",
+       "rank": 16,
+       "market_stage": "수입단가"
+      },
+      {
+       "scientific_name": "오징어속",
+       "product_form": "통마리",
+       "size_grade": "M (18-25)",
+       "price_eur_per_kg": 9.5,
+       "price_usd_per_kg": 10.92,
+       "trend": null,
+       "reference_area": "이탈리아",
+       "incoterm": "운임보험료포함",
+       "origin": "남아프리카공화국",
+       "rank": 17,
+       "market_stage": "수입단가"
+      },
+      {
+       "scientific_name": "유럽오징어",
+       "product_form": "통마리",
+       "size_grade": "small",
+       "price_eur_per_kg": 9.45,
+       "price_usd_per_kg": 10.86,
+       "trend": null,
+       "reference_area": "모리타니",
+       "incoterm": "본선인도",
+       "origin": "모리타니",
+       "rank": 18,
+       "market_stage": "수입단가"
+      },
+      {
+       "scientific_name": "유럽오징어",
+       "product_form": "통마리",
+       "size_grade": "16-21",
+       "price_eur_per_kg": 8.98,
+       "price_usd_per_kg": 10.32,
+       "trend": null,
+       "reference_area": "스페인",
+       "incoterm": "운임보험료포함",
+       "origin": "모로코",
+       "rank": 19,
+       "market_stage": "수입단가"
+      },
+      {
+       "scientific_name": "오징어속",
+       "product_form": "통마리",
+       "size_grade": "S (< 18 cm)",
+       "price_eur_per_kg": 8.9,
+       "price_usd_per_kg": 10.23,
+       "trend": null,
+       "reference_area": "이탈리아",
+       "incoterm": "운임보험료포함",
+       "origin": "남아프리카공화국",
+       "rank": 20,
+       "market_stage": "수입단가"
+      },
+      {
+       "scientific_name": "유럽오징어",
+       "product_form": "통마리",
+       "size_grade": "12-16",
+       "price_eur_per_kg": 6.98,
+       "price_usd_per_kg": 8.02,
+       "trend": null,
+       "reference_area": "스페인",
+       "incoterm": "운임보험료포함",
+       "origin": "모로코",
+       "rank": 21,
+       "market_stage": "수입단가"
+      },
+      {
+       "scientific_name": "유럽오징어",
+       "product_form": "A등급",
+       "size_grade": "< 3 pc/kg",
+       "price_eur_per_kg": 6.93,
+       "price_usd_per_kg": 7.9,
+       "trend": null,
+       "reference_area": "포르투갈·이탈리아",
+       "incoterm": "운임보험료포함",
+       "origin": "예멘",
+       "rank": 22,
+       "market_stage": "수입단가"
+      },
+      {
+       "scientific_name": "유럽오징어",
+       "product_form": "A등급",
+       "size_grade": "3-6",
+       "price_eur_per_kg": 6.84,
+       "price_usd_per_kg": 7.8,
+       "trend": null,
+       "reference_area": "포르투갈·이탈리아",
+       "incoterm": "운임보험료포함",
+       "origin": "예멘",
+       "rank": 23,
+       "market_stage": "수입단가"
+      },
+      {
+       "scientific_name": "아르헨티나오징어",
+       "product_form": "통마리",
+       "size_grade": "1",
+       "price_eur_per_kg": 6.2,
+       "price_usd_per_kg": 7.13,
+       "trend": "-",
+       "reference_area": "스페인 도매",
+       "incoterm": null,
+       "origin": "포클랜드제도",
+       "rank": 24,
+       "market_stage": "수입단가"
+      },
+      {
+       "scientific_name": "아르헨티나오징어",
+       "product_form": "통마리",
+       "size_grade": "2",
+       "price_eur_per_kg": 6.2,
+       "price_usd_per_kg": 7.13,
+       "trend": "-",
+       "reference_area": "스페인 도매",
+       "incoterm": null,
+       "origin": "포클랜드제도",
+       "rank": 25,
+       "market_stage": "수입단가"
+      },
+      {
+       "scientific_name": "아르헨티나오징어",
+       "product_form": "통마리",
+       "size_grade": "3",
+       "price_eur_per_kg": 6.2,
+       "price_usd_per_kg": 7.13,
+       "trend": "-",
+       "reference_area": "스페인 도매",
+       "incoterm": null,
+       "origin": "포클랜드제도",
+       "rank": 26,
+       "market_stage": "수입단가"
+      },
+      {
+       "scientific_name": "아르헨티나오징어",
+       "product_form": "통마리",
+       "size_grade": "4",
+       "price_eur_per_kg": 6.2,
+       "price_usd_per_kg": 7.13,
+       "trend": "-",
+       "reference_area": "스페인 도매",
+       "incoterm": null,
+       "origin": "포클랜드제도",
+       "rank": 27,
+       "market_stage": "수입단가"
+      },
+      {
+       "scientific_name": "아르헨티나오징어",
+       "product_form": "통마리",
+       "size_grade": "300-400",
+       "price_eur_per_kg": 5.83,
+       "price_usd_per_kg": 6.65,
+       "trend": null,
+       "reference_area": "아르헨티나",
+       "incoterm": "본선인도",
+       "origin": "아르헨티나",
+       "rank": 28,
+       "market_stage": "수입단가"
+      },
+      {
+       "scientific_name": "유럽오징어",
+       "product_form": "A등급",
+       "size_grade": "10-20",
+       "price_eur_per_kg": 5.22,
+       "price_usd_per_kg": 5.95,
+       "trend": null,
+       "reference_area": "포르투갈·이탈리아",
+       "incoterm": "운임보험료포함",
+       "origin": "예멘",
+       "rank": 29,
+       "market_stage": "수입단가"
+      },
+      {
+       "scientific_name": "유럽오징어",
+       "product_form": "A등급",
+       "size_grade": "6-10",
+       "price_eur_per_kg": 5.22,
+       "price_usd_per_kg": 5.95,
+       "trend": null,
+       "reference_area": "포르투갈·이탈리아",
+       "incoterm": "운임보험료포함",
+       "origin": "예멘",
+       "rank": 30,
+       "market_stage": "수입단가"
+      },
+      {
+       "scientific_name": "아르헨티나오징어",
+       "product_form": "통마리",
+       "size_grade": "20-24",
+       "price_eur_per_kg": 4.4,
+       "price_usd_per_kg": 5.06,
+       "trend": null,
+       "reference_area": null,
+       "incoterm": null,
+       "origin": "스페인",
+       "rank": 31,
+       "market_stage": "수입단가"
+      },
+      {
+       "scientific_name": "아르헨티나오징어",
+       "product_form": "통마리",
+       "size_grade": "S",
+       "price_eur_per_kg": 4.36,
+       "price_usd_per_kg": 5.01,
+       "trend": "+",
+       "reference_area": "이탈리아",
+       "incoterm": "운송비지급",
+       "origin": "아르헨티나",
+       "rank": 32,
+       "market_stage": "수입단가"
+      },
+      {
+       "scientific_name": "아르헨티나오징어",
+       "product_form": "통마리",
+       "size_grade": "M",
+       "price_eur_per_kg": 4.03,
+       "price_usd_per_kg": 4.63,
+       "trend": "-",
+       "reference_area": "이탈리아",
+       "incoterm": "운송비지급",
+       "origin": "아르헨티나",
+       "rank": 33,
+       "market_stage": "수입단가"
+      },
+      {
+       "scientific_name": "아르헨티나오징어",
+       "product_form": "통마리",
+       "size_grade": "22-26",
+       "price_eur_per_kg": 3.75,
+       "price_usd_per_kg": 4.31,
+       "trend": null,
+       "reference_area": null,
+       "incoterm": null,
+       "origin": "스페인",
+       "rank": 34,
+       "market_stage": "수입단가"
+      },
+      {
+       "scientific_name": "아르헨티나오징어",
+       "product_form": "통마리",
+       "size_grade": "14-18 cm/pc",
+       "price_eur_per_kg": 3.65,
+       "price_usd_per_kg": 4.2,
+       "trend": null,
+       "reference_area": null,
+       "incoterm": null,
+       "origin": "스페인",
+       "rank": 35,
+       "market_stage": "수입단가"
+      },
+      {
+       "scientific_name": "아르헨티나오징어",
+       "product_form": "통마리",
+       "size_grade": "18-22",
+       "price_eur_per_kg": 3.65,
+       "price_usd_per_kg": 4.2,
+       "trend": "-",
+       "reference_area": null,
+       "incoterm": null,
+       "origin": "스페인",
+       "rank": 36,
+       "market_stage": "수입단가"
+      },
+      {
+       "scientific_name": "아르헨티나오징어",
+       "product_form": "통마리",
+       "size_grade": "100-200 g/pc",
+       "price_eur_per_kg": 3.51,
+       "price_usd_per_kg": 4.0,
+       "trend": "-",
+       "reference_area": "아르헨티나",
+       "incoterm": "본선인도",
+       "origin": "아르헨티나",
+       "rank": 37,
+       "market_stage": "수입단가"
+      },
+      {
+       "scientific_name": "파타고니아오징어",
+       "product_form": "통마리",
+       "size_grade": "9-12",
+       "price_eur_per_kg": 3.29,
+       "price_usd_per_kg": 3.78,
+       "trend": null,
+       "reference_area": "스페인",
+       "incoterm": "본선인도",
+       "origin": "아르헨티나",
+       "rank": 38,
+       "market_stage": "수입단가"
+      },
+      {
+       "scientific_name": "아르헨티나오징어",
+       "product_form": "통마리",
+       "size_grade": "80-150",
+       "price_eur_per_kg": 3.19,
+       "price_usd_per_kg": 3.64,
+       "trend": null,
+       "reference_area": "중국계 수요",
+       "incoterm": null,
+       "origin": "아르헨티나",
+       "rank": 39,
+       "market_stage": "수입단가"
+      },
+      {
+       "scientific_name": "아르헨티나오징어",
+       "product_form": "통마리",
+       "size_grade": "60-80",
+       "price_eur_per_kg": 3.16,
+       "price_usd_per_kg": 3.6,
+       "trend": null,
+       "reference_area": "포클랜드제도",
+       "incoterm": "본선인도",
+       "origin": "포클랜드제도",
+       "rank": 40,
+       "market_stage": "수입단가"
+      },
+      {
+       "scientific_name": "짧은지느러미오징어",
+       "product_form": "통마리",
+       "size_grade": "100-150 g/pc",
+       "price_eur_per_kg": 2.95,
+       "price_usd_per_kg": 3.39,
+       "trend": "+",
+       "reference_area": "스페인",
+       "incoterm": "본선인도",
+       "origin": "모로코",
+       "rank": 41,
+       "market_stage": "수입단가"
+      },
+      {
+       "scientific_name": "짧은지느러미오징어",
+       "product_form": "통마리",
+       "size_grade": "150-200",
+       "price_eur_per_kg": 2.95,
+       "price_usd_per_kg": 3.39,
+       "trend": "+",
+       "reference_area": "스페인",
+       "incoterm": "본선인도",
+       "origin": "모로코",
+       "rank": 42,
+       "market_stage": "수입단가"
+      },
+      {
+       "scientific_name": "아르헨티나오징어",
+       "product_form": "통마리",
+       "size_grade": "40-60 g/pc",
+       "price_eur_per_kg": 2.89,
+       "price_usd_per_kg": 3.3,
+       "trend": null,
+       "reference_area": "포클랜드제도",
+       "incoterm": "본선인도",
+       "origin": "포클랜드제도",
+       "rank": 43,
+       "market_stage": "수입단가"
+      },
+      {
+       "scientific_name": "파타고니아오징어",
+       "product_form": "통마리",
+       "size_grade": "< 10 cm/pc",
+       "price_eur_per_kg": 2.28,
+       "price_usd_per_kg": 2.62,
+       "trend": null,
+       "reference_area": "스페인",
+       "incoterm": "본선인도",
+       "origin": "아르헨티나",
+       "rank": 44,
+       "market_stage": "수입단가"
+      }
+     ],
+     "pillar": "S4",
+     "columns": [
+      {
+       "key": "scientific_name",
+       "label": "어종"
+      },
+      {
+       "key": "product_form",
+       "label": "제품 형태"
+      },
+      {
+       "key": "size_grade",
+       "label": "규격"
+      },
+      {
+       "key": "price_eur_per_kg",
+       "label": "가격 (유로/킬로그램)"
+      },
+      {
+       "key": "price_usd_per_kg",
+       "label": "가격 (달러/킬로그램)"
+      },
+      {
+       "key": "trend",
+       "label": "추세"
+      },
+      {
+       "key": "reference_area",
+       "label": "기준 해역"
+      },
+      {
+       "key": "incoterm",
+       "label": "인도조건"
+      },
+      {
+       "key": "origin",
+       "label": "산지"
+      },
+      {
+       "key": "rank",
+       "label": "순위"
+      },
+      {
+       "key": "market_stage",
+       "label": "거래 단계"
+      }
+     ],
+     "series": [
+      {
+       "key": "price_eur_per_kg",
+       "name": "가격 (유로/킬로그램)"
+      },
+      {
+       "key": "price_usd_per_kg",
+       "name": "가격 (달러/킬로그램)"
+      }
+     ],
+     "unit": "EUR/kg·USD/kg",
+     "cardDesc": "FAO 거래가격 중 규격이 명시된 44행을 단일 import_unit 단계 안에서 EUR/kg 내림차순으로 정렬; 다른 거래단계와 비교·평균하지 않음",
+     "basis": {
+      "분류범위": "오징어만",
+      "중량기준": "제품중량",
+      "거래단계": "수입단가",
+      "합산여부": "없음",
+      "쿼터의미": "해당 없음"
+     },
+     "situation": "유엔식량농업기구 거래가격을 수입단가 단계 안에서만 정렬하면 최상단은 크로아티아산 신선 통마리 300-500 규격 25.00유로/킬로그램, 이탈리아산 100-300그램/마리 24.00유로/킬로그램이다. 같은 원산지·인도조건 안에서는 규격이 커질수록 값이 올라, 모로코산 유럽오징어 통마리(스페인 도착 운임·보험료포함인도)가 12-16 규격 6.98유로에서 27-31 규격 12.98유로까지 벌어진다. 남아프리카공화국산 오징어속 통마리(이탈리아 도착)도 18센티미터 미만 8.90유로에서 25~30센티미터 10.90유로로 계단을 이룬다.",
+     "takeaway": "같은 산지 안에서도 규격 한 칸이 킬로그램당 2~4유로를 가르므로, **매입 규격을 한 칸 낮추고 가공 수율로 메우는 안**을 원가표에 올려 규격 차익부터 확인해야 한다.",
+     "narrativeFilled": true
+    },
+    {
+     "id": "B_kcs_import_unit_price",
+     "title": "한국 수입단가 5년 (달러/톤)",
+     "chartType": "line",
+     "data": [
+      {
+       "month": "2026-01",
+       "import_usd": 52879139,
+       "import_kg": 13680467,
+       "unit_price_usd_mt": 3865.3
+      },
+      {
+       "month": "2026-02",
+       "import_usd": 37079158,
+       "import_kg": 9303327,
+       "unit_price_usd_mt": 3985.58
+      },
+      {
+       "month": "2026-03",
+       "import_usd": 41909612,
+       "import_kg": 13965772,
+       "unit_price_usd_mt": 3000.88
+      },
+      {
+       "month": "2026-04",
+       "import_usd": 49521170,
+       "import_kg": 15717016,
+       "unit_price_usd_mt": 3150.8
+      },
+      {
+       "month": "2026-05",
+       "import_usd": 51170756,
+       "import_kg": 15559398,
+       "unit_price_usd_mt": 3288.74
+      }
+     ],
+     "pillar": "S4",
+     "columns": [
+      {
+       "key": "month",
+       "label": "월"
+      },
+      {
+       "key": "import_usd",
+       "label": "수입액 (달러)"
+      },
+      {
+       "key": "import_kg",
+       "label": "수입량 (킬로그램)"
+      },
+      {
+       "key": "unit_price_usd_mt",
+       "label": "수입단가 (달러/톤)"
+      }
+     ],
+     "xKey": "month",
+     "xLabel": "월",
+     "series": [
+      {
+       "key": "unit_price_usd_mt",
+       "name": "수입단가 (달러/톤)"
+      }
+     ],
+     "unit": "USD/톤",
+     "cardDesc": "KCS HS 030742·030743·030749·160554 상세행의 수입금액 합계를 수입중량 합계로 나눈 월별 가중 수입단가",
+     "dataYear": 2026,
+     "basis": {
+      "분류범위": "갑오징어 포함",
+      "중량기준": "순중량",
+      "거래단계": "수입단가",
+      "합산여부": "없음",
+      "쿼터의미": "해당 없음"
+     },
+     "situation": "관세청 통관 자료로 계산한 오징어·갑오징어 가중 수입단가(달러/톤)는 2026년 2월 3,985.58달러로 가장 높았다가 3월 3,000.88달러로 한 달 만에 24.7% 내렸다. 이후 4월 3,150.80달러, 5월 3,288.74달러로 두 달 연속 올랐다. 자료에 담긴 구간은 2026년 1~5월 다섯 달뿐이어서 연 단위 추세로 읽을 수는 없다.",
+     "takeaway": "단가가 3,000달러 선에서 반등한 구간이므로, **톤당 3,100달러 아래를 분할 매입 실행선으로 정해두고** 다음 저점 구간에서 물량을 앞당겨 확보하는 규칙을 세워두는 편이 낫다.",
+     "narrativeFilled": true
+    },
+    {
+     "id": "B_eu_market_prices",
+     "title": "유럽 시장 거래가격표",
+     "chartType": "table",
+     "data": [
+      {
+       "scientific_name": "오징어속",
+       "product_form": "통마리",
+       "size_grade": "S (< 18 cm)",
+       "price_eur_per_kg": 8.9,
+       "price_usd_per_kg": 10.23,
+       "trend": null,
+       "reference_area": "이탈리아",
+       "incoterm": "운임보험료포함",
+       "origin": "남아프리카공화국"
+      },
+      {
+       "scientific_name": "오징어속",
+       "product_form": "통마리",
+       "size_grade": "M (18-25)",
+       "price_eur_per_kg": 9.5,
+       "price_usd_per_kg": 10.92,
+       "trend": null,
+       "reference_area": "이탈리아",
+       "incoterm": "운임보험료포함",
+       "origin": "남아프리카공화국"
+      },
+      {
+       "scientific_name": "오징어속",
+       "product_form": "통마리",
+       "size_grade": "L (25-30)",
+       "price_eur_per_kg": 10.9,
+       "price_usd_per_kg": 12.53,
+       "trend": null,
+       "reference_area": "이탈리아",
+       "incoterm": "운임보험료포함",
+       "origin": "남아프리카공화국"
+      },
+      {
+       "scientific_name": "오징어속",
+       "product_form": "통마리",
+       "size_grade": "XL (>30)",
+       "price_eur_per_kg": 10.9,
+       "price_usd_per_kg": 12.53,
+       "trend": null,
+       "reference_area": "이탈리아",
+       "incoterm": "운임보험료포함",
+       "origin": "남아프리카공화국"
+      },
+      {
+       "scientific_name": "유럽오징어",
+       "product_form": "신선 통마리",
+       "size_grade": "100-300 g/pc",
+       "price_eur_per_kg": 15.27,
+       "price_usd_per_kg": 17.55,
+       "trend": "-",
+       "reference_area": null,
+       "incoterm": "운송비지급",
+       "origin": "크로아티아"
+      },
+      {
+       "scientific_name": "유럽오징어",
+       "product_form": "신선 통마리",
+       "size_grade": "300-500",
+       "price_eur_per_kg": 25.0,
+       "price_usd_per_kg": 28.74,
+       "trend": "+",
+       "reference_area": null,
+       "incoterm": "운송비지급",
+       "origin": "크로아티아"
+      },
+      {
+       "scientific_name": "유럽오징어",
+       "product_form": "신선 통마리",
+       "size_grade": "400-600",
+       "price_eur_per_kg": 17.37,
+       "price_usd_per_kg": 19.97,
+       "trend": "-",
+       "reference_area": null,
+       "incoterm": "운송비지급",
+       "origin": "크로아티아"
+      },
+      {
+       "scientific_name": "유럽오징어",
+       "product_form": "신선 통마리",
+       "size_grade": "500-1000",
+       "price_eur_per_kg": 16.8,
+       "price_usd_per_kg": 19.31,
+       "trend": "-",
+       "reference_area": null,
+       "incoterm": "운송비지급",
+       "origin": "크로아티아"
+      },
+      {
+       "scientific_name": "유럽오징어",
+       "product_form": "신선 통마리",
+       "size_grade": null,
+       "price_eur_per_kg": 9.99,
+       "price_usd_per_kg": 11.48,
+       "trend": null,
+       "reference_area": null,
+       "incoterm": "운송비지급",
+       "origin": "이탈리아"
+      },
+      {
+       "scientific_name": "유럽오징어",
+       "product_form": "신선 통마리",
+       "size_grade": "100-300 g/pc",
+       "price_eur_per_kg": 24.0,
+       "price_usd_per_kg": 27.59,
+       "trend": "+",
+       "reference_area": "도매",
+       "incoterm": null,
+       "origin": "이탈리아"
+      },
+      {
+       "scientific_name": "유럽오징어",
+       "product_form": "신선 통마리",
+       "size_grade": "300-500",
+       "price_eur_per_kg": 19.9,
+       "price_usd_per_kg": 22.87,
+       "trend": null,
+       "reference_area": "도매",
+       "incoterm": null,
+       "origin": "모로코"
+      },
+      {
+       "scientific_name": "유럽오징어",
+       "product_form": "A등급",
+       "size_grade": "< 3 pc/kg",
+       "price_eur_per_kg": 6.93,
+       "price_usd_per_kg": 7.9,
+       "trend": null,
+       "reference_area": "포르투갈·이탈리아",
+       "incoterm": "운임보험료포함",
+       "origin": "예멘"
+      },
+      {
+       "scientific_name": "유럽오징어",
+       "product_form": "A등급",
+       "size_grade": "3-6",
+       "price_eur_per_kg": 6.84,
+       "price_usd_per_kg": 7.8,
+       "trend": null,
+       "reference_area": "포르투갈·이탈리아",
+       "incoterm": "운임보험료포함",
+       "origin": "예멘"
+      },
+      {
+       "scientific_name": "유럽오징어",
+       "product_form": "A등급",
+       "size_grade": "6-10",
+       "price_eur_per_kg": 5.22,
+       "price_usd_per_kg": 5.95,
+       "trend": null,
+       "reference_area": "포르투갈·이탈리아",
+       "incoterm": "운임보험료포함",
+       "origin": "예멘"
+      },
+      {
+       "scientific_name": "유럽오징어",
+       "product_form": "A등급",
+       "size_grade": "10-20",
+       "price_eur_per_kg": 5.22,
+       "price_usd_per_kg": 5.95,
+       "trend": null,
+       "reference_area": "포르투갈·이탈리아",
+       "incoterm": "운임보험료포함",
+       "origin": "예멘"
+      },
+      {
+       "scientific_name": "유럽오징어",
+       "product_form": "신선 통마리",
+       "size_grade": "Small",
+       "price_eur_per_kg": 21.5,
+       "price_usd_per_kg": 24.71,
+       "trend": "=",
+       "reference_area": "프랑스",
+       "incoterm": null,
+       "origin": "프랑스"
+      },
+      {
+       "scientific_name": "유럽오징어",
+       "product_form": "신선 통마리",
+       "size_grade": "Medium",
+       "price_eur_per_kg": 20.5,
+       "price_usd_per_kg": 23.56,
+       "trend": "-",
+       "reference_area": "도매",
+       "incoterm": null,
+       "origin": "프랑스"
+      },
+      {
+       "scientific_name": "유럽오징어",
+       "product_form": "통마리",
+       "size_grade": "22-36 cm/pc",
+       "price_eur_per_kg": 13.55,
+       "price_usd_per_kg": 15.57,
+       "trend": null,
+       "reference_area": "스페인",
+       "incoterm": "운임보험료포함",
+       "origin": "모로코"
+      },
+      {
+       "scientific_name": "유럽오징어",
+       "product_form": "통마리",
+       "size_grade": "27-31",
+       "price_eur_per_kg": 12.98,
+       "price_usd_per_kg": 14.92,
+       "trend": null,
+       "reference_area": "스페인",
+       "incoterm": "운임보험료포함",
+       "origin": "모로코"
+      },
+      {
+       "scientific_name": "유럽오징어",
+       "product_form": "통마리",
+       "size_grade": "16-21",
+       "price_eur_per_kg": 8.98,
+       "price_usd_per_kg": 10.32,
+       "trend": null,
+       "reference_area": "스페인",
+       "incoterm": "운임보험료포함",
+       "origin": "모로코"
+      },
+      {
+       "scientific_name": "유럽오징어",
+       "product_form": "통마리",
+       "size_grade": "12-16",
+       "price_eur_per_kg": 6.98,
+       "price_usd_per_kg": 8.02,
+       "trend": null,
+       "reference_area": "스페인",
+       "incoterm": "운임보험료포함",
+       "origin": "모로코"
+      },
+      {
+       "scientific_name": "유럽오징어",
+       "product_form": "통마리",
+       "size_grade": "200-300 g/pc",
+       "price_eur_per_kg": 19.0,
+       "price_usd_per_kg": 21.84,
+       "trend": null,
+       "reference_area": "도매",
+       "incoterm": null,
+       "origin": "스페인"
+      },
+      {
+       "scientific_name": "유럽오징어",
+       "product_form": "통마리",
+       "size_grade": "very big",
+       "price_eur_per_kg": 9.98,
+       "price_usd_per_kg": 11.47,
+       "trend": null,
+       "reference_area": "모리타니",
+       "incoterm": "본선인도",
+       "origin": "모리타니"
+      },
+      {
+       "scientific_name": "유럽오징어",
+       "product_form": "통마리",
+       "size_grade": "big",
+       "price_eur_per_kg": 9.98,
+       "price_usd_per_kg": 11.47,
+       "trend": null,
+       "reference_area": "모리타니",
+       "incoterm": "본선인도",
+       "origin": "모리타니"
+      },
+      {
+       "scientific_name": "유럽오징어",
+       "product_form": "통마리",
+       "size_grade": "medium",
+       "price_eur_per_kg": 9.77,
+       "price_usd_per_kg": 11.23,
+       "trend": null,
+       "reference_area": "모리타니",
+       "incoterm": "본선인도",
+       "origin": "모리타니"
+      },
+      {
+       "scientific_name": "유럽오징어",
+       "product_form": "통마리",
+       "size_grade": "small",
+       "price_eur_per_kg": 9.45,
+       "price_usd_per_kg": 10.86,
+       "trend": null,
+       "reference_area": "모리타니",
+       "incoterm": "본선인도",
+       "origin": "모리타니"
+      },
+      {
+       "scientific_name": "유럽오징어",
+       "product_form": "개별급속동결·빙의",
+       "size_grade": null,
+       "price_eur_per_kg": 2.06,
+       "price_usd_per_kg": 2.35,
+       "trend": null,
+       "reference_area": "미국",
+       "incoterm": "운임보험료포함",
+       "origin": "인도"
+      },
+      {
+       "scientific_name": "유럽오징어",
+       "product_form": "절단·지느러미 제거·다리 포함",
+       "size_grade": null,
+       "price_eur_per_kg": 2.63,
+       "price_usd_per_kg": 3.0,
+       "trend": null,
+       "reference_area": "미국",
+       "incoterm": "운임보험료포함",
+       "origin": "인도"
+      },
+      {
+       "scientific_name": "파타고니아오징어",
+       "product_form": "통마리",
+       "size_grade": "< 10 cm/pc",
+       "price_eur_per_kg": 2.28,
+       "price_usd_per_kg": 2.62,
+       "trend": null,
+       "reference_area": "스페인",
+       "incoterm": "본선인도",
+       "origin": "아르헨티나"
+      },
+      {
+       "scientific_name": "파타고니아오징어",
+       "product_form": "통마리",
+       "size_grade": "9-12",
+       "price_eur_per_kg": 3.29,
+       "price_usd_per_kg": 3.78,
+       "trend": null,
+       "reference_area": "스페인",
+       "incoterm": "본선인도",
+       "origin": "아르헨티나"
+      },
+      {
+       "scientific_name": "파타고니아오징어",
+       "product_form": "몸통 껍질 있음",
+       "size_grade": null,
+       "price_eur_per_kg": 6.7,
+       "price_usd_per_kg": 7.7,
+       "trend": null,
+       "reference_area": "스페인",
+       "incoterm": "본선인도",
+       "origin": "아르헨티나"
+      },
+      {
+       "scientific_name": "파타고니아오징어",
+       "product_form": "몸통 껍질 벗김",
+       "size_grade": null,
+       "price_eur_per_kg": 7.2,
+       "price_usd_per_kg": 8.28,
+       "trend": null,
+       "reference_area": "스페인",
+       "incoterm": "본선인도",
+       "origin": "아르헨티나"
+      },
+      {
+       "scientific_name": "아르헨티나오징어",
+       "product_form": "통마리",
+       "size_grade": "14-18 cm/pc",
+       "price_eur_per_kg": 3.65,
+       "price_usd_per_kg": 4.2,
+       "trend": null,
+       "reference_area": null,
+       "incoterm": null,
+       "origin": "스페인"
+      },
+      {
+       "scientific_name": "아르헨티나오징어",
+       "product_form": "통마리",
+       "size_grade": "18-22",
+       "price_eur_per_kg": 3.65,
+       "price_usd_per_kg": 4.2,
+       "trend": "-",
+       "reference_area": null,
+       "incoterm": null,
+       "origin": "스페인"
+      },
+      {
+       "scientific_name": "아르헨티나오징어",
+       "product_form": "통마리",
+       "size_grade": "20-24",
+       "price_eur_per_kg": 4.4,
+       "price_usd_per_kg": 5.06,
+       "trend": null,
+       "reference_area": null,
+       "incoterm": null,
+       "origin": "스페인"
+      },
+      {
+       "scientific_name": "아르헨티나오징어",
+       "product_form": "통마리",
+       "size_grade": "22-26",
+       "price_eur_per_kg": 3.75,
+       "price_usd_per_kg": 4.31,
+       "trend": null,
+       "reference_area": null,
+       "incoterm": null,
+       "origin": "스페인"
+      },
+      {
+       "scientific_name": "아르헨티나오징어",
+       "product_form": "통마리",
+       "size_grade": "M",
+       "price_eur_per_kg": 4.03,
+       "price_usd_per_kg": 4.63,
+       "trend": "-",
+       "reference_area": "이탈리아",
+       "incoterm": "운송비지급",
+       "origin": "아르헨티나"
+      },
+      {
+       "scientific_name": "아르헨티나오징어",
+       "product_form": "통마리",
+       "size_grade": "S",
+       "price_eur_per_kg": 4.36,
+       "price_usd_per_kg": 5.01,
+       "trend": "+",
+       "reference_area": "이탈리아",
+       "incoterm": "운송비지급",
+       "origin": "아르헨티나"
+      },
+      {
+       "scientific_name": "아르헨티나오징어",
+       "product_form": "통마리",
+       "size_grade": "1",
+       "price_eur_per_kg": 6.2,
+       "price_usd_per_kg": 7.13,
+       "trend": "-",
+       "reference_area": "스페인 도매",
+       "incoterm": null,
+       "origin": "포클랜드제도"
+      },
+      {
+       "scientific_name": "아르헨티나오징어",
+       "product_form": "통마리",
+       "size_grade": "2",
+       "price_eur_per_kg": 6.2,
+       "price_usd_per_kg": 7.13,
+       "trend": "-",
+       "reference_area": "스페인 도매",
+       "incoterm": null,
+       "origin": "포클랜드제도"
+      },
+      {
+       "scientific_name": "아르헨티나오징어",
+       "product_form": "통마리",
+       "size_grade": "3",
+       "price_eur_per_kg": 6.2,
+       "price_usd_per_kg": 7.13,
+       "trend": "-",
+       "reference_area": "스페인 도매",
+       "incoterm": null,
+       "origin": "포클랜드제도"
+      },
+      {
+       "scientific_name": "아르헨티나오징어",
+       "product_form": "통마리",
+       "size_grade": "4",
+       "price_eur_per_kg": 6.2,
+       "price_usd_per_kg": 7.13,
+       "trend": "-",
+       "reference_area": "스페인 도매",
+       "incoterm": null,
+       "origin": "포클랜드제도"
+      },
+      {
+       "scientific_name": "아르헨티나오징어",
+       "product_form": "통마리",
+       "size_grade": "40-60 g/pc",
+       "price_eur_per_kg": 2.89,
+       "price_usd_per_kg": 3.3,
+       "trend": null,
+       "reference_area": "포클랜드제도",
+       "incoterm": "본선인도",
+       "origin": "포클랜드제도"
+      },
+      {
+       "scientific_name": "아르헨티나오징어",
+       "product_form": "통마리",
+       "size_grade": "60-80",
+       "price_eur_per_kg": 3.16,
+       "price_usd_per_kg": 3.6,
+       "trend": null,
+       "reference_area": "포클랜드제도",
+       "incoterm": "본선인도",
+       "origin": "포클랜드제도"
+      },
+      {
+       "scientific_name": "아르헨티나오징어",
+       "product_form": "통마리",
+       "size_grade": "100-200 g/pc",
+       "price_eur_per_kg": 3.51,
+       "price_usd_per_kg": 4.0,
+       "trend": "-",
+       "reference_area": "아르헨티나",
+       "incoterm": "본선인도",
+       "origin": "아르헨티나"
+      },
+      {
+       "scientific_name": "아르헨티나오징어",
+       "product_form": "통마리",
+       "size_grade": "300-400",
+       "price_eur_per_kg": 5.83,
+       "price_usd_per_kg": 6.65,
+       "trend": null,
+       "reference_area": "아르헨티나",
+       "incoterm": "본선인도",
+       "origin": "아르헨티나"
+      },
+      {
+       "scientific_name": "아르헨티나오징어",
+       "product_form": "통마리",
+       "size_grade": "80-150",
+       "price_eur_per_kg": 3.19,
+       "price_usd_per_kg": 3.64,
+       "trend": null,
+       "reference_area": "중국계 수요",
+       "incoterm": null,
+       "origin": "아르헨티나"
+      },
+      {
+       "scientific_name": "짧은지느러미오징어",
+       "product_form": "통마리",
+       "size_grade": "100-150 g/pc",
+       "price_eur_per_kg": 2.95,
+       "price_usd_per_kg": 3.39,
+       "trend": "+",
+       "reference_area": "스페인",
+       "incoterm": "본선인도",
+       "origin": "모로코"
+      },
+      {
+       "scientific_name": "짧은지느러미오징어",
+       "product_form": "통마리",
+       "size_grade": "150-200",
+       "price_eur_per_kg": 2.95,
+       "price_usd_per_kg": 3.39,
+       "trend": "+",
+       "reference_area": "스페인",
+       "incoterm": "본선인도",
+       "origin": "모로코"
+      }
+     ],
+     "pillar": "S4",
+     "columns": [
+      {
+       "key": "scientific_name",
+       "label": "어종"
+      },
+      {
+       "key": "product_form",
+       "label": "제품 형태"
+      },
+      {
+       "key": "size_grade",
+       "label": "규격"
+      },
+      {
+       "key": "price_eur_per_kg",
+       "label": "가격 (유로/킬로그램)"
+      },
+      {
+       "key": "price_usd_per_kg",
+       "label": "가격 (달러/킬로그램)"
+      },
+      {
+       "key": "trend",
+       "label": "추세"
+      },
+      {
+       "key": "reference_area",
+       "label": "기준 해역"
+      },
+      {
+       "key": "incoterm",
+       "label": "인도조건"
+      },
+      {
+       "key": "origin",
+       "label": "산지"
+      }
+     ],
+     "series": [
+      {
+       "key": "price_eur_per_kg",
+       "name": "가격 (유로/킬로그램)"
+      },
+      {
+       "key": "price_usd_per_kg",
+       "name": "가격 (달러/킬로그램)"
+      }
+     ],
+     "unit": "EUR/kg·USD/kg",
+     "cardDesc": "FAO 원문 표 머리글의 Price per kg 두 열(EUR/kg·USD/kg)을 그대로 구조화; 통화 환산·행간 가격 보간 없음",
+     "basis": {
+      "분류범위": "오징어만",
+      "중량기준": "제품중량",
+      "거래단계": "수입단가",
+      "합산여부": "없음",
+      "쿼터의미": "해당 없음"
+     },
+     "situation": "표에 담긴 오징어 거래가격은 예멘산 등급품 6-10·10-20 규격 5.22유로/킬로그램에서 크로아티아산 신선 통마리 300-500 규격 25.00유로/킬로그램까지 다섯 배 가까이 벌어진다. 다만 한 표 안에 운임·보험료포함인도, 운송비지급인도, 본선인도와 도매 기준이 섞여 있어 행끼리 빼서 마진으로 읽을 수 없다. 같은 유럽오징어라도 신선 통마리(크로아티아 15.27~25.00유로)와 등급품(예멘 5.22~6.93유로)이 서로 다른 구간을 이룬다.",
+     "takeaway": "이 표를 벤치마크로 쓸 때는 **인도조건과 제품형태가 같은 행끼리만 묶어 비교**하고, 조건이 다른 행을 평균 낸 단일 시세는 협상 자료로 인용하지 말아야 한다.",
+     "narrativeFilled": true
+    },
+    {
+     "id": "B_globefish_market_brief",
+     "title": "세계 두족류 시장 브리핑 — 원문 발췌",
+     "chartType": "excerpt",
+     "data": [],
+     "pillar": "S4",
+     "excerpts": [
+      {
+       "인용": "두족류: 오징어류 및 갑오징어류와 달리 문어 시장에서는 공급 동향이 가격을 끌어올린다.",
+       "출처": "00_오징어_관련자료/01_오징어_시장·가격/05_시장·소비/20260703-FAO-GLOBEFISH_Highlights_2_2026.md"
+      },
+      {
+       "인용": "세계 두족류 시장은 2026년에 어종별로 엇갈린 흐름을 보이며 출발했다. 주요 생산지역의 지속적인 공급 제약 속에서 주요 시장의 문어 가격은 사상 최고치에 이르렀다. 반면 오징어류 및 갑오징어류 시장은 주요 생산자의 강한 어획에 힘입은 풍부한 공급이 특징이었고, 이는 가격에 하방 압력을 가했다. 냉동제품이 국제무역을 계속 지배하는 가운데 부가가치 두족류 조제품의 중요성도 커지고 있다. 이는 변화하는 소비 양상, 꾸준한 외식 수요, 개선된 가공 및 콜드체인 역량을 반영한다.",
+       "출처": "00_오징어_관련자료/01_오징어_시장·가격/05_시장·소비/20260703-FAO-GLOBEFISH_Highlights_2_2026.md"
+      },
+      {
+       "인용": "아르헨티나의 아르헨티나오징어(아르헨티나오징어) 어획량은 2026년 일월~삼월 169 592.7톤이었다. 이는 2025년 첫 분기보다 73.35% 급증한 수치로, 해당 어기의 강한 어획을 나타낸다. 2025년 아르헨티나의 오징어 양륙량은 총 208 743.5톤으로, 2024년보다 34.7% 증가했다.",
+       "출처": "00_오징어_관련자료/01_오징어_시장·가격/05_시장·소비/20260703-FAO-GLOBEFISH_Highlights_2_2026.md"
+      },
+      {
+       "인용": "페루의 페루대왕오징어(대왕오징어) 어획쿼터는 2026년 일월~유월 305 417톤으로 설정됐다. 2026년 첫 분기 오징어 양륙량은 200 211톤으로 쿼터의 거의 삼분의 이에 달했다. 2025년 페루는 연간 페루대왕오징어 어획쿼터를 609 935톤으로 설정했다. 그러나 보고된 어획량은 712 200톤에 이르러, 양륙량이 188 300톤이었던 2024년보다 약 278% 증가했다. 어획 증가는 우호적인 해양조건과 풍부한 생물자원에서 비롯됐다.",
+       "출처": "00_오징어_관련자료/01_오징어_시장·가격/05_시장·소비/20260703-FAO-GLOBEFISH_Highlights_2_2026.md"
+      },
+      {
+       "인용": "2025년 중국의 오징어류 및 갑오징어류 수입량은 551 614톤으로, 2024년보다 40.7% 크게 증가했다. 한편 중국의 오징어류 및 갑오징어류 수출량은 9.6% 감소해 2025년 498 721톤이었다. 미국 -1.77%. 대한민국 +15.15%. 스페인의 오징어류 및 갑오징어류 수입량은 2025년 303 477톤으로, 2024년보다 9.1% 증가했다. 소비용 및 가공업체용 오징어류와 갑오징어류의 국내 판매가 호조를 보여 수입이 증가했다.",
+       "출처": "00_오징어_관련자료/01_오징어_시장·가격/05_시장·소비/20260703-FAO-GLOBEFISH_Highlights_2_2026.md"
+      },
+      {
+       "인용": "대한민국의 2025년 오징어류 및 갑오징어류 수입량은 177 244톤으로 2024년보다 15.15% 증가했다. 중국산 수입은 17.81% 감소한 60 330톤이었다. 반면 페루산과 칠레산 공급은 각각 42 517톤과 17 583톤으로 68.1% 및 6.58% 증가했다.",
+       "출처": "00_오징어_관련자료/01_오징어_시장·가격/05_시장·소비/20260703-FAO-GLOBEFISH_Highlights_2_2026.md"
+      },
+      {
+       "인용": "일본은 2025년에 오징어류 및 갑오징어류 131 508톤을 수입해 2024년보다 15.36% 감소했다. 중국발 물량은 70 602톤으로 22.77% 줄었다. 페루산 수입은 40.02% 증가한 22 134톤이었고, 칠레산은 25.02% 감소한 9 328톤이었다.",
+       "출처": "00_오징어_관련자료/01_오징어_시장·가격/05_시장·소비/20260703-FAO-GLOBEFISH_Highlights_2_2026.md"
+      },
+      {
+       "인용": "2026년 오월 분기별 두족류 분석. 두족류: 오징어류 및 갑오징어류와 달리 문어 시장에서는 공급 동향이 가격을 끌어올린다.",
+       "출처": "00_오징어_관련자료/01_오징어_시장·가격/05_시장·소비/20260525-FAO_GLOBEFISH-Cephalopods_May_2026.md"
+      },
+      {
+       "인용": "세계 두족류 시장은 2026년에 어종별로 엇갈린 흐름을 보이며 출발했다. 주요 생산지역의 지속적인 공급 제약 속에서 주요 시장의 문어 가격은 사상 최고치에 이르렀다. 반면 오징어류 및 갑오징어류 시장은 주요 생산자의 강한 어획에 힘입은 풍부한 공급이 특징이었고, 이는 가격에 하방 압력을 가했다. 냉동제품이 국제무역을 계속 지배하는 가운데 부가가치 두족류 조제품의 중요성도 커지고 있다. 이는 변화하는 소비 양상, 꾸준한 외식 수요, 개선된 가공 및 콜드체인 역량을 반영한다.",
+       "출처": "00_오징어_관련자료/01_오징어_시장·가격/05_시장·소비/20260525-FAO_GLOBEFISH-Cephalopods_May_2026.md"
+      },
+      {
+       "인용": "아르헨티나의 아르헨티나오징어(아르헨티나오징어) 어획량은 2026년 일월~삼월 169 592.7톤이었다. 이는 2025년 첫 분기보다 73.35% 급증한 수치로, 해당 어기의 강한 어획을 나타낸다. 2025년 아르헨티나의 오징어 양륙량은 총 208 743.5톤으로, 2024년보다 34.7% 증가했다.",
+       "출처": "00_오징어_관련자료/01_오징어_시장·가격/05_시장·소비/20260525-FAO_GLOBEFISH-Cephalopods_May_2026.md"
+      },
+      {
+       "인용": "페루의 페루대왕오징어(대왕오징어) 어획쿼터는 2026년 일월~유월 305 417톤으로 설정됐다. 2026년 첫 분기 오징어 양륙량은 200 211톤으로 쿼터의 거의 삼분의 이에 달했다. 2025년 페루는 연간 페루대왕오징어 어획쿼터를 609 935톤으로 설정했다. 그러나 보고된 어획량은 712 200톤에 이르러, 양륙량이 188 300톤이었던 2024년보다 약 278% 증가했다. 어획 증가는 우호적인 해양조건과 풍부한 생물자원에서 비롯됐다.",
+       "출처": "00_오징어_관련자료/01_오징어_시장·가격/05_시장·소비/20260525-FAO_GLOBEFISH-Cephalopods_May_2026.md"
+      },
+      {
+       "인용": "2025년 중국의 오징어류 및 갑오징어류 수입량은 551 614톤으로, 2024년보다 40.7% 크게 증가했다. 한편 중국의 오징어류 및 갑오징어류 수출량은 9.6% 감소해 2025년 498 721톤이었다. 미국 -1.77%. 대한민국 +15.15%. 스페인의 오징어류 및 갑오징어류 수입량은 2025년 303 477톤으로, 2024년보다 9.1% 증가했다. 소비용 및 가공업체용 오징어류와 갑오징어류의 국내 판매가 호조를 보여 수입이 증가했다.",
+       "출처": "00_오징어_관련자료/01_오징어_시장·가격/05_시장·소비/20260525-FAO_GLOBEFISH-Cephalopods_May_2026.md"
+      },
+      {
+       "인용": "대한민국의 2025년 오징어류 및 갑오징어류 수입량은 177 244톤으로 2024년보다 15.15% 증가했다. 중국산 수입은 17.81% 감소한 60 330톤이었다. 반면 페루산과 칠레산 공급은 각각 42 517톤과 17 583톤으로 68.1% 및 6.58% 증가했다.",
+       "출처": "00_오징어_관련자료/01_오징어_시장·가격/05_시장·소비/20260525-FAO_GLOBEFISH-Cephalopods_May_2026.md"
+      },
+      {
+       "인용": "일본은 2025년에 오징어류 및 갑오징어류 131 508톤을 수입해 2024년보다 15.36% 감소했다. 중국발 물량은 70 602톤으로 22.77% 줄었다. 페루산 수입은 40.02% 증가한 22 134톤이었고, 칠레산은 25.02% 감소한 9 328톤이었다.",
+       "출처": "00_오징어_관련자료/01_오징어_시장·가격/05_시장·소비/20260525-FAO_GLOBEFISH-Cephalopods_May_2026.md"
+      }
+     ],
+     "cardDesc": "위젯별 config 정규식으로 보관 Markdown/HTML의 원문 블록만 선택; 수치 보간·번역·요약 없음",
+     "dataYear": 2026,
+     "basis": {
+      "분류범위": "두족류 미분류 포함",
+      "중량기준": "해당 없음",
+      "거래단계": "해당 없음",
+      "합산여부": "없음",
+      "쿼터의미": "해당 없음"
+     },
+     "situation": "유엔식량농업기구 세계수산물무역정보는 2026년 초 문어 가격이 사상 최고에 이른 것과 달리 오징어·갑오징어는 풍부한 공급이 가격에 하방 압력을 가했다고 정리했다. 페루의 2026년 1~6월 어획쿼터는 305,417톤이고 1분기 양륙량은 200,211톤으로 쿼터의 3분의 2에 가까웠으며, 아르헨티나의 2026년 1~3월 어획량은 169,592.7톤으로 2025년 같은 분기보다 73.35% 많았다. 한국의 2025년 오징어·갑오징어 수입은 177,244톤으로 15.15% 늘었는데, 중국산은 17.81% 줄어 60,330톤, 페루산은 68.1% 늘어 42,517톤이었다.",
+     "takeaway": "남미 공급 확대와 중국산 축소가 한국 수입 구성에서도 함께 확인되므로, **중국 경유 물량의 일부를 페루·칠레 직수입으로 옮기는 안**을 원가와 리드타임 기준으로 비교해볼 시점이다.",
+     "narrativeFilled": true
+    }
+   ]
+  },
+  {
+   "key": "x01",
+   "title": "기후와 자원 변동",
+   "widgets": [
+    {
+     "id": "A_climate_stock_brief",
+     "title": "기후 변화와 연근해 어획 구성 — 원문 발췌",
+     "chartType": "excerpt",
+     "data": [],
+     "pillar": "S1",
+     "excerpts": [
+      {
+       "인용": "긴지느러미오징어류(longfin 오징어)의 어업은 해당 종의 계절 이동을 반영한다.",
+       "출처": "00_오징어_관련자료/01_오징어_시장·가격/01_생산·자원/20260812-NOAA-Longfin_Squid_Science.html"
+      }
+     ],
+     "cardDesc": "위젯별 config 정규식으로 보관 Markdown/HTML의 원문 블록만 선택; 수치 보간·번역·요약 없음",
+     "dataYear": 2026,
+     "basis": {
+      "분류범위": "오징어만",
+      "중량기준": "해당 없음",
+      "거래단계": "해당 없음",
+      "합산여부": "없음",
+      "쿼터의미": "해당 없음"
+     },
+     "situation": "국립수산과학원 기후변화 브리핑 원문은 살오징어가 1990~2000년대에 높은 어획량을 기록한 뒤 2010년대 이후 급감했고 그 뒤로도 낮은 수준이 이어진다고 적었다. 같은 문서에서 명태는 자원량 급감으로 2019년부터 전면 조업이 금지됐고, 갈치는 2020년대 들어 반등해 연평균 약 5.5만 톤 수준을 기록하고 있다. 함께 실린 미국 해양대기청 자료는 긴지느러미오징어 어업이 이 어종의 계절 이동을 반영한다는 사실만 밝힌다.",
+     "takeaway": "국내 살오징어 물량이 곧 회복된다는 전제를 이 원문은 뒷받침하지 않으므로, **연근해 살오징어를 고정 원료로 잡은 계약은 수입 대체 경로와 짝지어** 설계해야 한다.",
+     "narrativeFilled": true
+    },
+    {
+     "id": "B_price_freshness_board",
+     "title": "가격 자료 신선도 점검판",
+     "chartType": "heatmap",
+     "data": [
+      {
+       "indicator": "한국해양수산개발원 소비자가",
+       "coverage_end": "2026-08-11",
+       "age_days": 2,
+       "available": true,
+       "status": "정상"
+      },
+      {
+       "indicator": "FAO 유럽 거래가격",
+       "coverage_end": "2026-07",
+       "age_days": null,
+       "available": true,
+       "status": "기준일정밀도부족"
+      },
+      {
+       "indicator": "관세청 수입단가",
+       "coverage_end": "2026-05",
+       "age_days": null,
+       "available": true,
+       "status": "기준일정밀도부족"
+      }
+     ],
+     "pillar": "S1",
+     "columns": [
+      {
+       "key": "indicator",
+       "label": "지표"
+      },
+      {
+       "key": "coverage_end",
+       "label": "자료 종료 시점"
+      },
+      {
+       "key": "age_days",
+       "label": "경과 일수"
+      },
+      {
+       "key": "available",
+       "label": "확보 여부"
+      },
+      {
+       "key": "status",
+       "label": "상태"
+      }
+     ],
+     "cardDesc": "정확한 일자(YYYY-MM-DD)만 경과일을 계산하고 월·연도 기준은 정밀도 부족으로 유지",
+     "dataYear": 2026,
+     "basis": {
+      "분류범위": "오징어만",
+      "중량기준": "해당 없음",
+      "거래단계": "해당 없음",
+      "합산여부": "없음",
+      "쿼터의미": "해당 없음"
+     },
+     "situation": "가격 자료 세 종 가운데 기준일이 날짜까지 확정된 것은 한국해양수산개발원 소비자가격뿐으로, 2026년 8월 11일까지를 담아 경과 2일이다. 유엔식량농업기구 유럽 거래가격은 2026년 7월, 관세청 수입단가는 2026년 5월까지여서 월 단위 표기 탓에 경과일을 계산할 수 없는 「기준일정밀도부족」 상태다. 세 자료의 최신 시점은 최대 석 달가량 어긋난다.",
+     "takeaway": "시차가 다른 세 자료를 한 화면에 얹으면 마진 착시가 생기므로, **월 단위 자료에는 기준월을 함께 적고** 주간 매입 판단에는 날짜가 확정된 자료만 쓰는 규칙이 필요하다.",
+     "narrativeFilled": true
+    }
+   ]
+  },
+  {
+   "key": "x02",
+   "title": "지속가능성·불법어업·노동",
+   "widgets": [
+    {
+     "id": "D_sprfmo_iuu_list",
+     "title": "남태평양 공해 불법어업 선박 목록",
+     "chartType": "excerpt",
+     "data": [],
+     "pillar": "S5",
+     "excerpts": [
+      {
+       "인용": "선박명 싱파(XING FA, 2025-12 발효). 이전 명칭: 펑하이(FENG HAI, 2025-03 발효), 샹하이(XIANG HAI, 2023-07 발효), 제이 쇼어(J SHORE, 2022-09 발효), 싱퉁유 59(XING TONG YOU 59, 2018-01 발효), 둥청유 10(DONG CHENG YOU 10, 2003-07 발효). 기국: 상투메 프린시페(SAO TOME AND PRINCIPE, 2025-10-21 발효). 이전 기국: 미상(Unknown, 2025-09 발효), 시에라리온(Sierra Leone, 2025-03 발효), 미상(Unknown, 2024-10 발효), 벨리즈(Belize, 2023-07 발효), 시에라리온(Sierra Leone, 2022-09 발효), 중국(중국, 2018-01 발효), 중국(중국, 2003-07 발효). 소유자 명칭 및 주소: 골드 참 인터내셔널 엔터프라이즈(GOLD CHARM INTERNATIONAL ENTERPRISE LTD, IMO 회사번호 0357330), 룸 5201-03, 더 센터(The Centre) 52층, 퀸스로드 센트럴(Queen's Road Central) 99, 홍콩, 중국(2025-10-24 발효 – 출처: IMO GISIS). 홍콩 췬쉰 시핑(HONGKONG QUN XUN SHIPPING LTD, IMO 회사번호 8550740), 유닛 3504, 웨스트 타워(West Tower) 35층, 코노트로드 웨스트(Connaught Road West) 200, 셩완(Sheung Wan), 홍콩, 중국, 999077(2025-03-13 발효 – 출처: IMO GISIS).",
+       "출처": "00_오징어_관련자료/01_오징어_시장·가격/07_지속가능성·IUU·노동/20260220-SPRFMO-IUU_Vessel_List_2026.md"
+      },
+      {
+       "인용": "불법·비보고·비규제(불법어업) 선박목록 등재일: 불법어업 선박목록 2026년 삼월 02일. 위치: 남태평양지역수산관리기구(SPRFMO) 협약수역 동부 사분면의 여러 위치. SPRFMO 보존관리조치 12는 협약수역에서 두 선박 사이의 연료·선원·어구 또는 그 밖의 보급품 해상 이전은 위원회 선박등록부(Commission Record of Vessels)에 포함된 허가 선박끼리만 수행해야 한다고 규정한다. 급유선 펑하이(FENG HAI)호는 2025년 삼월 시에라리온(SL) 기국이었다. SL은 SPRFMO 회원국 또는 CNCP 지위가 없고, 그 선박들은 SPRFMO 선박등록부에 등재돼 있지 않다. 펑하이(FENG HAI, SL)호는 종전에",
+       "출처": "00_오징어_관련자료/01_오징어_시장·가격/07_지속가능성·IUU·노동/20260220-SPRFMO-IUU_Vessel_List_2026.md"
+      },
+      {
+       "인용": "선박명 싱파(XING FA, 2025-12 발효). 남태평양지역수산관리기구(SPRFMO) 선박등록부에 등재돼 허가를 받고, 벨리즈 기국 선박 샹하이(XIANG HAI)호로 SPRFMO에서 조업했다. 다만 2024년 시월 벨리즈 선적부에서 말소됐다. SPRFMO 허가가 끝난 뒤 이 급유선은 2024년 십일월 SPRFMO 어선에 서비스를 제공했다. 2025년에는 선명을 바꾸고 기국을 변경한 펑하이(FENG HAI, SL)호로 SPRFMO 협약수역에 돌아와, SPRFMO 선박등록부의 허가 없이 2025년 오월~칠월 협약수역 내 SPRFMO 어선에 급유 서비스를 제공했다.",
+       "출처": "00_오징어_관련자료/01_오징어_시장·가격/07_지속가능성·IUU·노동/20260220-SPRFMO-IUU_Vessel_List_2026.md"
+      },
+      {
+       "인용": "결과: 최종 불법·비보고·비규제(불법어업) 선박목록에 등재됨",
+       "출처": "00_오징어_관련자료/01_오징어_시장·가격/07_지속가능성·IUU·노동/20260220-SPRFMO-IUU_Vessel_List_2026.md"
+      }
+     ],
+     "cardDesc": "위젯별 config 정규식으로 보관 Markdown/HTML의 원문 블록만 선택; 수치 보간·번역·요약 없음",
+     "dataYear": 2026,
+     "basis": {
+      "분류범위": "오징어만",
+      "중량기준": "해당 없음",
+      "거래단계": "해당 없음",
+      "합산여부": "없음",
+      "쿼터의미": "해당 없음"
+     },
+     "situation": "남태평양 공해 관리기구가 불법어업 선박을 명단으로 관리한다. 등재된 선박과 그 이력이 공표된다.",
+     "takeaway": "명단은 **거래 전 확인 항목**이다. 공급업체의 선박명·호출부호를 최신 명단과 대조하는 절차를 구매 표준작업절차에 넣어라. 등재 선박의 어획물은 미국·유럽 시장에서 통관이 막힌다.",
+     "narrativeFilled": true
+    },
+    {
+     "id": "D_sprfmo_compliance",
+     "title": "남태평양 공해 준수보고 요약",
+     "chartType": "excerpt",
+     "data": [],
+     "pillar": "S5",
+     "excerpts": [
+      {
+       "인용": "이 보고서의 보고기간: 2024/25(2024년 시월 01일~2025년 구월 30일). 보고일: 2026년 삼월 02일. 요약: 이 보고서는 다음 표에서 확인된 7개 보존관리조치(보존관리조치) 조항과 관련해 잠재적 비준수 사안인 선박감시시스템(VMS) 사건 28건 및 비VMS 사안 13건에 대한 준수평가 결과를 요약한다. 다른 보존관리조치과 관련해서는 준수 문제가 확인되지 않았다.",
+       "출처": "00_오징어_관련자료/01_오징어_시장·가격/07_지속가능성·IUU·노동/20260220-SPRFMO-Final_Compliance_Report_2024-2025.md"
+      },
+      {
+       "인용": "잠재적 준수 문제가 확인된 보존관리조치(보존관리조치). 보존관리조치 / 약칭 / 사안 수 / 표 번호. 보존관리조치 01-2025 칠레전갱이(Trachurus murphyi) 1 1. 보존관리조치 02-2025 자료표준(Data Standards) 4 2. 보존관리조치 05-2023 선박등록부(Record of Vessels) 1 3. 보존관리조치 06-2023 위원회 선박감시시스템(Commission VMS) 28 4. 보존관리조치 07-2025 항만검사(Port Inspection) 2 5. 보존관리조치 12-2023 전재 및 이전(Transhipment and Transfers) 4 6. 보존관리조치 18-2025 페루대왕오징어(대왕오징어; Jumbo Flying Squid) 1 7.",
+       "출처": "00_오징어_관련자료/01_오징어_시장·가격/07_지속가능성·IUU·노동/20260220-SPRFMO-Final_Compliance_Report_2024-2025.md"
+      },
+      {
+       "인용": "보존관리조치(보존관리조치) 10-2020 제16항에 따라 최종 준수보고서(Final Compliance Report)는 다음을 포함해야 한다. a) 협약 및 보존관리조치에 따른 의무 이행과 관련한 각 회원국 및 협력 비체약 당사자(CNCP)의 준수 상태와, 해당 회원국 또는 CNCP에서 확인된 준수 문제를 바탕으로 필요한 시정조치에 관한 권고. b) 회원국 및 CNCP가 겪는 이행 또는 준수상의 어려움을 해소하기 위해 기존 보존관리조치을 개정하거나 개선할 수 있는 방안. c) 역량강화 요건을 포함해 회원국 및 CNCP가 확인한 이행 장애요인. d) 준수모니터링제도(CMS)에서 검토해야 할 추가 의무. e) 최종 준수보고서에 기재된 비준수에 대응하거나 협약, 보존관리조치 및 CMS에서 검토한 기타 의무의 준수를 촉진하기 위해 위원회(Commission)가 적절하다고 판단하는 그 밖의 조치.",
+       "출처": "00_오징어_관련자료/01_오징어_시장·가격/07_지속가능성·IUU·노동/20260220-SPRFMO-Final_Compliance_Report_2024-2025.md"
+      },
+      {
+       "인용": "남태평양지역수산관리기구(SPRFMO) 선박등록부 정보에 따르면 관련 어선 25척은 다음 3개 회사가 소유했다. 푸젠 핑탄현 해양어업그룹 유한회사(Fujian Pingtan County Ocean Fishery Group Co Ltd, 선박 15척): 푸위안위(FU YUAN YU) 7601/7604/7606/7611/7612/7613/7614/7615/7616/7617/7618/7619/7882/7883/7887. 푸젠 쥐창타이 수산그룹 유한회사(Fujian Juchangtai Fishery Group Co Ltd, 선박 8척): 푸위안위(FU YUAN YU) 7641/7642/7643/7646/7703/7704/7711/7713. 푸저우 훙룽 원양어업 유한회사(Fuzhou Hong Long Ocean Fishing Co Ltd, 선박 2척): 푸위안위(FU YUAN YU) 7888/7889. 회원국/협력 비체약 당사자(CNCP): 중국. 이전 준수 상태: 준수(Compliant). 현재 준수 상태: 비준수(Non-Compliant), 추가 조치 없음(No Further Action). 회원국/CNCP 의견: 중화인민공화국(People’s Republic of 중국)은 모든 남태평양지역수산관리기구(SPRFMO) 보존관리조치(Conservation and Management Measures)를 준수하겠다는 일관되고 확고한 의지를 유지한다.",
+       "출처": "00_오징어_관련자료/01_오징어_시장·가격/07_지속가능성·IUU·노동/20260220-SPRFMO-Final_Compliance_Report_2024-2025.md"
+      },
+      {
+       "인용": "사무국 평가: (제9항 – 전재자료 지연 제출) 비준수(Non-Compliant). 대한민국 기국 선박 제5 동일보(No.5 DONG IL)가 2025년 1월 22일 수행한 오징어 전재와 관련해 전재작업 세부자료를 늦게 제출한 잠재적 준수 문제가 확인됐다. 상태 표기는 대한민국 준수, 추가 조치 없음(대한민국 Compliant No Further Action)이다. 페루대왕오징어(대왕오징어; Jumbo Flying Squid) 관련 1분기 전재작업 세부자료의 정해진 제출기한은 2025년 사월 20일이었고, 정보는 2025년 오월 08일 제출됐다.",
+       "출처": "00_오징어_관련자료/01_오징어_시장·가격/07_지속가능성·IUU·노동/20260220-SPRFMO-Final_Compliance_Report_2024-2025.md"
+      },
+      {
+       "인용": "회원국/CNCP 의견: 부산항에서 수행한 검사 중 이 사건을 인지하자마자 관련 운반선 카노 리퍼(KANO REEFER)호의 기국인 파나마와 사무국에 사건을 알렸다. 어선 제5 동일보(No.5 DONG IL)의 경우 양륙 시 어획물을 우선 보관했다가 나중에 풀어줬다. 선박 운영자가 대한민국의 관련 국내규정에 따라 한국 어업감시센터(FMC)에 보고했다는 사실에 근거해 어선 또는 운영자에게 특정 정보를 고의로 오보고하거나 숨길 의도가 없었다고 결론 내렸기 때문이다. 상태 표기는 비준수, 대한민국 준수, 추가 조치(Non-Compliant, 대한민국 Compliant, Further Action)이다.",
+       "출처": "00_오징어_관련자료/01_오징어_시장·가격/07_지속가능성·IUU·노동/20260220-SPRFMO-Final_Compliance_Report_2024-2025.md"
+      },
+      {
+       "인용": "회원국/CNCP 의견: 운반선 카노 리퍼(KANO REEFER)호가 2025년 일월 22일 수행한 해상 전재에 대한 사무국 평가와 관련해 파나마는 대한민국 관할기관이 수행한 양륙검사에서 나온 정보를 받은 뒤 파나마 수산자원청(Aquatic Resources Authority of Panama, ARAP)이 해당 행정제재 절차를 개시했다고 알린다. 남태평양지역수산관리기구(SPRFMO) 선박등록부(Record of Vessels)에 기재된 선박의 허가가 2024년 십이월 08일 만료된 뒤 SPRFMO 관리자원의 전재가 수행됐음을 확인한 후, 해당 사건은 적용 가능한 국내 법체계에 따라 처리됐다. 상태 표기는 비준수, 파나마 준수, 추가 조치 없음(Non-Compliant, Panama Compliant, No Further Action)이다. 행정절차의 모든 단계는 이제 적법하게 완료됐다.",
+       "출처": "00_오징어_관련자료/01_오징어_시장·가격/07_지속가능성·IUU·노동/20260220-SPRFMO-Final_Compliance_Report_2024-2025.md"
+      },
+      {
+       "인용": "표 7: 보존관리조치 18-2025(페루대왕오징어(대왕오징어; Jumbo Flying Squid)). 2023/24 2024/25 회원국/준수 2024/25 평가 - 보존관리조치 18-2025(페루대왕오징어)의 잠재적 준수 문제. 준수 CNCP 상태 상태.",
+       "출처": "00_오징어_관련자료/01_오징어_시장·가격/07_지속가능성·IUU·노동/20260220-SPRFMO-Final_Compliance_Report_2024-2025.md"
+      },
+      {
+       "인용": "2% 기준을 충족하지 못한 주된 이유는 다음과 같다.  첫째, 옵서버가 항만과 어장 사이를 왕복하는 데 약 90일이 걸려 실제 어선에서 근무하는 시간이 줄어든다.  둘째, 일부 예기치 못한 사건으로 관찰 대상 조업일수가 감소했다. 예를 들어 한 옵서버가 갑자기 병에 걸려 관찰 임무를 조기에 종료해야 했고, 그 결과 어선에서 한 달만 근무했다.  셋째, 다음 해 총 조업일수 추정과 옵서버 배치 과정의 불확실성, 예컨대 옵서버의 출항 시점과 어장 도착 후 운반선에서 대상 어선으로 이동하는 데 걸리는 시간 때문에 배치 옵서버 수와 관찰일수의 추정치에 편차가 발생했다. 회원국/협력 비체약 당사자(CNCP): 중국. 이전 준수 상태: 준수(Compliant). 현재 준수 상태: 우선순위 비준수(Priority Non-Compliant).",
+       "출처": "00_오징어_관련자료/01_오징어_시장·가격/07_지속가능성·IUU·노동/20260220-SPRFMO-Final_Compliance_Report_2024-2025.md"
+      },
+      {
+       "인용": "표 9: 전년도 - ‘비준수’ 요약(최종 준수보고서). 전년도 – 최종 CMS의 비준수 요약. 평가대상 01- 02- 03- 03a- 04- 05- 06- 07- 08- 09- 10- 11- 12- 13- 14a- 14b- 14c- 14d- 14e- 15- 16- 17- 18- 19- 보존관리조치 2022 2022 2022 2021 2020 2022 2020 2022 2019 2017 2020 2015 2020 2021 2022 2022 2019 2020 2021 2016 2022 2022 2020 2021. 2025 3 3 0 0 0 4 9 0 0 0 1 3 0 0 0 0 0 0 0 0 0 0 0 0. 2024 2 3 1 0 0 3 11 0 0 0 2 0 2 n/c 0 1 - n/a 0 0 0 0 0 n/a. 2023 1 8 0 1 0 2 10/8 1 0 0 2 0 1 0 0 0 - n/a 0 0 0 0 0 n/a. 2022 0 1 0 0 0 5 0 1 0 0 4 0 1 1 0 n/a - n/a n/a 0 0 0 1 n/a. 2021 0 8 0 0 0 3 1 0 0 1 7 0 0 0 0 0 0 n/a - 0 0 0 n/a n/a. 2020 1 1 0 0 0 4 1 3 0 1 5 2 2 0 0 0 0 n/a - 0 0 2 n/a n/a. 2019 3 2 0 n/a 3 6 4 0 0 0 7 0 4 0 n/a 0 n/a n/a - 0 n/a n/a n/a n/a. 2018 5 4 2 n/a 0 4 0 3 0 1 4 0 2 1 n/a n/a n/a n/a - 0 n/a n/a n/a n/a. 2017 4 4 0 n/a 0 8 n/a 4 0 2 5 0 6 n/a n/a n/a n/a n/a - 0 n/a n/a n/a n/a. 2016 9 9 2 n/a 1 8 n/a 6 0 6 8 n/a n/a n/a n/a n/a n/a n/a - n/a n/a n/a n/a n/a.",
+       "출처": "00_오징어_관련자료/01_오징어_시장·가격/07_지속가능성·IUU·노동/20260220-SPRFMO-Final_Compliance_Report_2024-2025.md"
+      }
+     ],
+     "cardDesc": "위젯별 config 정규식으로 보관 Markdown/HTML의 원문 블록만 선택; 수치 보간·번역·요약 없음",
+     "dataYear": 2026,
+     "basis": {
+      "분류범위": "오징어만",
+      "중량기준": "해당 없음",
+      "거래단계": "해당 없음",
+      "합산여부": "없음",
+      "쿼터의미": "해당 없음"
+     },
+     "situation": "남태평양 공해 관리기구의 2024/25년(2024년 10월~2025년 9월) 최종 준수보고서는 선박감시시스템 사건 28건과 그 밖의 사안 13건, 모두 7개 보존관리조치와 관련된 잠재적 비준수를 정리했다. 페루대왕오징어를 다루는 보존관리조치 제18-2025호 관련 사안은 1건, 전재 및 이전(제12-2023호)은 4건이었다. 대한민국 기국 어선 제5동일보의 2025년 1월 22일 오징어 전재는 1분기 전재자료 제출기한 2025년 4월 20일을 넘겨 5월 8일에 제출돼 비준수로 기록됐다.",
+     "takeaway": "전재 서류 지연 한 건이 기국 준수기록에 남는 구조이므로, **전재가 발생하면 분기 제출기한을 역산해 내부 마감을 앞당기는 규칙**을 원양 협력선사 계약에 넣어야 한다.",
+     "narrativeFilled": true
+    },
+    {
+     "id": "D_noaa_simp_checklist",
+     "title": "미국 수산물 수입 감시 프로그램 점검표",
+     "chartType": "excerpt",
+     "data": [],
+     "pillar": "S5",
+     "excerpts": [
+      {
+       "인용": "수산물 수입 모니터링 프로그램(Seafood Import Monitoring Program) | 미국 해양대기청 수산국(NOAA Fisheries)",
+       "출처": "00_오징어_관련자료/01_오징어_시장·가격/07_지속가능성·IUU·노동/20260812-NOAA-Seafood_Import_Monitoring_Program.html"
+      },
+      {
+       "인용": "위험 기반 추적성 제도인 수산물 수입 모니터링 프로그램(Seafood Import Monitoring Program, 미국 수산물 수입감시제도)은 1,100+개의 고유 어종에 대해 어획 시점부터 미국 상거래 진입 시점까지의 핵심 자료를 수입자가 제공하고 보고하도록 요구한다. 미국 수산물 수입감시제도는 미국 전체 수산물 수입의 거의 절반을 포괄한다.",
+       "출처": "00_오징어_관련자료/01_오징어_시장·가격/07_지속가능성·IUU·노동/20260812-NOAA-Seafood_Import_Monitoring_Program.html"
+      },
+      {
+       "인용": "수산물 수입 모니터링 프로그램(Seafood Import Monitoring Program, 미국 수산물 수입감시제도)은 불법·비보고·비규제 어획 수산물 및 부정표시 수산물이 미국 상거래에 진입하는 것을 막기 위해 열세 개 수산물 어종군 수입에 관한 보고 및 기록보관 요건을 정한다. 미국 수산물 수입감시제도는 미국 국가경제, 세계 식량안보, 공동 해양자원의 지속가능성을 추가로 보호한다.",
+       "출처": "00_오징어_관련자료/01_오징어_시장·가격/07_지속가능성·IUU·노동/20260812-NOAA-Seafood_Import_Monitoring_Program.html"
+      },
+      {
+       "인용": "참치류(Tuna): 날개다랑어(Thunnus alalunga; Albacore), 눈다랑어(Thunnus obesus; Bigeye), 가다랑어(Katsuwonus pelamis; Skipjack), 황다랑어(Thunnus albacares; Yellowfin), 참다랑어류(Thunnus spp.; Bluefin)",
+       "출처": "00_오징어_관련자료/01_오징어_시장·가격/07_지속가능성·IUU·노동/20260812-NOAA-Seafood_Import_Monitoring_Program.html"
+      },
+      {
+       "인용": "수산물 수입 모니터링 프로그램(Seafood Import Monitoring Program) 종합검토 업데이트",
+       "출처": "00_오징어_관련자료/01_오징어_시장·가격/07_지속가능성·IUU·노동/20260812-NOAA-Seafood_Import_Monitoring_Program.html"
+      },
+      {
+       "인용": "수산물 수입 모니터링 프로그램(Seafood Import Monitoring Program)에 관한 5부작 시리즈의 다섯 영상 중 한 편이다. 이 영상은 산란부터 어획까지 소유권 아래 있었던 어종을 포함하는 양식 공급망을 다룬다.",
+       "출처": "00_오징어_관련자료/01_오징어_시장·가격/07_지속가능성·IUU·노동/20260812-NOAA-Seafood_Import_Monitoring_Program.html"
+      },
+      {
+       "인용": "수산물 수입 모니터링 프로그램(Seafood Import Monitoring Program)에 관한 5부작 시리즈의 다섯 영상 중 한 편으로, 자연환경에서 어획되는 어종을 포함한 자연산 어획 공급망을 다룬다.",
+       "출처": "00_오징어_관련자료/01_오징어_시장·가격/07_지속가능성·IUU·노동/20260812-NOAA-Seafood_Import_Monitoring_Program.html"
+      },
+      {
+       "인용": "수산물 수입 모니터링 프로그램(Seafood Import Monitoring Program) 5부작 시리즈의 다섯 영상 중 한 편으로 자연산 어획을 다룬다. 축양 뒤 어획, 즉 ‘랜칭(ranching)’은 살아 있는 자연산 어류를 포획해 양식시설로 옮긴 뒤 다시 어획할 때까지 먹이를 주고 성장시키는 방식이다.",
+       "출처": "00_오징어_관련자료/01_오징어_시장·가격/07_지속가능성·IUU·노동/20260812-NOAA-Seafood_Import_Monitoring_Program.html"
+      },
+      {
+       "인용": "수산물 수입 모니터링 프로그램(Seafood Import Monitoring Program) 표준 어획증명서(Model Catch Certificate)",
+       "출처": "00_오징어_관련자료/01_오징어_시장·가격/07_지속가능성·IUU·노동/20260812-NOAA-Seafood_Import_Monitoring_Program.html"
+      },
+      {
+       "인용": "수산물 수입 모니터링 프로그램(Seafood Import Monitoring Program) 표준 통합 어획증명서(Model Aggregated Catch Certificate)",
+       "출처": "00_오징어_관련자료/01_오징어_시장·가격/07_지속가능성·IUU·노동/20260812-NOAA-Seafood_Import_Monitoring_Program.html"
+      },
+      {
+       "인용": "수산물 수입 모니터링 프로그램(Seafood Import Monitoring Program) 준수 안내서(Compliance Guide)",
+       "출처": "00_오징어_관련자료/01_오징어_시장·가격/07_지속가능성·IUU·노동/20260812-NOAA-Seafood_Import_Monitoring_Program.html"
+      },
+      {
+       "인용": "수산물 수입 모니터링 프로그램(Seafood Import Monitoring Program), 즉 미국 수산물 수입감시제도는 불법·비보고·비규제 어획 수산물이 진입하는 것을 막는 데 필요한 보고 및 기록보관 요건을 설정하며…",
+       "출처": "00_오징어_관련자료/01_오징어_시장·가격/07_지속가능성·IUU·노동/20260812-NOAA-Seafood_Import_Monitoring_Program.html"
+      },
+      {
+       "인용": "수산물 수입 모니터링 프로그램(Seafood Import Monitoring Program) 감사요건 안내서(Guide to Audit Requirements)",
+       "출처": "00_오징어_관련자료/01_오징어_시장·가격/07_지속가능성·IUU·노동/20260812-NOAA-Seafood_Import_Monitoring_Program.html"
+      },
+      {
+       "인용": "수산물 수입 모니터링 프로그램(미국 수산물 수입감시제도) 감사의 목적은 수입신고에 제공된 어획 및 양륙 정보와 관리 연속성의 충분성을 검증하는 것이며…",
+       "출처": "00_오징어_관련자료/01_오징어_시장·가격/07_지속가능성·IUU·노동/20260812-NOAA-Seafood_Import_Monitoring_Program.html"
+      }
+     ],
+     "cardDesc": "위젯별 config 정규식으로 보관 Markdown/HTML의 원문 블록만 선택; 수치 보간·번역·요약 없음",
+     "dataYear": 2026,
+     "basis": {
+      "분류범위": "오징어만",
+      "중량기준": "해당 없음",
+      "거래단계": "해당 없음",
+      "합산여부": "없음",
+      "쿼터의미": "해당 없음"
+     },
+     "situation": "미국은 수입 수산물에 어획 이력 신고를 요구한다. 오징어도 대상이며 신고 항목이 정해져 있다.",
+     "takeaway": "대미 수출을 계획한다면 **어획 단계부터 신고 항목을 수집**해야 한다. 가공 후에 소급해 만들 수 없는 항목이 있어, 사후 대응으로는 선적이 막힌다.",
+     "narrativeFilled": true
+    },
+    {
+     "id": "D_ejf_risk_map",
+     "title": "원양 선단 리스크 지도 — 원문 발췌",
+     "chartType": "excerpt",
+     "data": [],
+     "pillar": "S5",
+     "excerpts": [
+      {
+       "인용": "2 목차. 요약 4. 핵심 조사 결과 6. 서론 7. 오징어 인기 상승 9. 세계 오징어 시장에서 중국의 역할 12. 호황과 불황의 순환 15. 세계 오징어 어업의 거버넌스 공백 16. 세계에서 가장 중요한 오징어 어업 세 곳 전반의 우려 사유 18. 현행 원양어업(DWF) 규제 지형 20. 기국 규정 20. 남동태평양(SEP)과 북서인도양(NWIO)의 지역수산관리기구(RFMO) 거버넌스 공백 25. 곧 발효될 주요 국제조약과 잠재적 영향 29. 조사 결과 31. 세 어업의 규모·동향·운영모형 31. 세 오징어 어업 전반에 파괴적 어업관행이 만연한 정도 37. 세 오징어 어업 전반에 인권침해가 만연한 정도 - 착취 위에 세워진 산업 48. 세 기국 전반에 수산·노동 침해가 만연한 정도 52. 다자간 공조의 기회 58. 시장 분석, 이 오징어는 모두 어디로 가는가? 59. 오징어가 세계 수산물 공급망에 들어오는 방식 59. 고위험 제품이 주요 소비시장에 도달하는 방식 63. 구조적 취약성에 가로막힌 수입통제 65. 결론 66. 권고 68.",
+       "출처": "00_오징어_관련자료/01_오징어_시장·가격/07_지속가능성·IUU·노동/20260604-EJF-Global_Squid_Report_2026.md"
+      },
+      {
+       "인용": "중국 기국이었다. 이 선박 가운데 70%는 중국, 16%는 대만, 14%는 대한민국 기국이었다.\n선박의 해상 체류 기간이 육 개월 미만인지 또는 13~24개월인지에 따라.\n● 중국 선단에서 일한 어업인들은 대한민국 또는 대만 기국 선박에서보다 일관되게 더 심각한 학대를 설명했다.\n● 조업 항차 기간은 가장 강한 관련성을 보였으며",
+       "출처": "00_오징어_관련자료/01_오징어_시장·가격/07_지속가능성·IUU·노동/20260604-EJF-Global_Squid_Report_2026.md"
+      },
+      {
+       "인용": "● 강제노동의 존재는 원양 오징어선 고용의 기본 조건을 이룬다. 조사 표본의 87%인 중국 선박 152척에서 선내 강제노동 지표가 8개에서 12개 사이로 나타났다.",
+       "출처": "00_오징어_관련자료/01_오징어_시장·가격/07_지속가능성·IUU·노동/20260604-EJF-Global_Squid_Report_2026.md"
+      },
+      {
+       "인용": "유엔식량농업기구(FAO)에 ‘달리 포함되지 않음’으로 분류돼 보고된 오징어 양륙량 비중은 2002년 25%에서 이천이십삼 년 33%로 증가했다(원문의 연도·각주 결합 표기: 2023.18).",
+       "출처": "00_오징어_관련자료/01_오징어_시장·가격/07_지속가능성·IUU·노동/20260604-EJF-Global_Squid_Report_2026.md"
+      },
+      {
+       "인용": "10 표 1: 2023년에 보고된 전체 오징어 양륙량의 98.6%를 10개 어종 범주가 차지했다. 환경정의재단(EJF)의 조사가 초점을 맞춘 세 어종·원양어업(DWF) 선단·어업은 녹색으로 표시했다. 페루대왕오징어(대왕오징어, 남동태평양(SEP)), 아르헨티나오징어(아르헨티나오징어, 남서대서양(SWA)), 북서인도양(NWIO)의 기타 오징어류(미분류)이다. EJF가 조사한 DWF 선단은 이 세 어업에서 연안국 선단과 함께 조업하며, 연안국 선단이 나머지의 상당 부분을 차지한다. 각 어업에서 조업하는 모든 기국의 어획량을 합치면 SEP·SWA·NWIO는 세계에서 보고된 오징어 양륙량의 약 60%를 차지한다.",
+       "출처": "00_오징어_관련자료/01_오징어_시장·가격/07_지속가능성·IUU·노동/20260604-EJF-Global_Squid_Report_2026.md"
+      },
+      {
+       "인용": "보고된 오징어 양륙량을 톤수로 집계한 상위 10개 주요 기국(2023). 포클랜드 제도(말비나스)(포클랜드제도 (Malvinas)) 3%. 태국 3%. 러시아연방 4%.",
+       "출처": "00_오징어_관련자료/01_오징어_시장·가격/07_지속가능성·IUU·노동/20260604-EJF-Global_Squid_Report_2026.md"
+      },
+      {
+       "인용": "그림 2: 보고된 오징어 양륙량을 톤수로 집계한 상위 10개 주요 기국(2023)",
+       "출처": "00_오징어_관련자료/01_오징어_시장·가격/07_지속가능성·IUU·노동/20260604-EJF-Global_Squid_Report_2026.md"
+      },
+      {
+       "인용": "17 세계에서 가장 중요한 오징어 어업 세 곳 전반의 우려 사유. 세계에서 상업적으로 가장 중요한 오징어 어업 세 곳인 북서인도양(NWIO), 남서대서양(SWA), 남동태평양(SEP)은 산업적 어업 활동이 빠르게 확대되는 동안 규제가 그 속도를 따라가지 못해 각각 서로 다른 과제에 직면해 있다. 환경정의재단(EJF)의 최근 조사에서는 세 곳 모두에서 지속적인 강제노동, 파괴적 어업관행, 의도적인 불투명성도 기록했다. 아르헨티나오징어(아르헨티나오징어)는 2014년부터 2023.76까지 비규제 어업으로 잡힌 모든 수산물 종 가운데 중량 기준 약 77%를 차지했다. 남서대서양: 2026년 이월 아이슬란드 레이캬비크에서 열린 유엔식량농업기구(FAO) 수산위원회(COFI) 소위원회 회의를 앞두고 발행된 FAO 논문은 세계 오징어 어획량의 16%를 차지하는 아르헨티나오징어가 ‘지역수산관리기구 또는 협정의 권한 밖’, 즉 비규제 어업에서 단연 가장 많이 어획된 수산물 종이라고 밝혔다.77 이 종의 주요 FAO 어업구역인 FAO 41도 매우 중요하며, 추정된 세계 비규제(estimated unregulated global)의 94.6%",
+       "출처": "00_오징어_관련자료/01_오징어_시장·가격/07_지속가능성·IUU·노동/20260604-EJF-Global_Squid_Report_2026.md"
+      },
+      {
+       "인용": "전용 해양경제 장에서 ‘심해 양식과 현대적 원양어업 개발’.115 그러나 공개된 계획 개요와 중국 농업농촌부(MARA)의 2026년 이월 어업 업무 배치 회의 어느 쪽도 오징어를 구체적으로 언급하지 않으며, 어느 쪽에도 원양어업(DWF) 선단의 수치화된 어획노력 상한, 보조금 단계적 폐지 또는 정량화된 불법·비보고·비규제(불법어업) 어업 감축 목표가 없다.116 현재 증거에 따르면 제15차 계획은 개혁 문서가 아니라 기반 조성 및 연속성 문서이며, 중국 원양 오징어선단의 실질적 규제를 동일한\n2024년 칠월 대만 농업부(Taiwan's Ministry of Agriculture)는 모니터링 역량 확대와 오징어를 포함한 주요 어종의 추적성 강화를 중심으로 하는 불법어업 어업 근절 사 개년 계획을 발표했다.121 2025년 칠월 대만 정부는 세계 수산투명성 헌장(Global Charter for Fisheries Transparency)도 지지해 지속가능한 수산개혁에서 시민사회와 협력할 의지를 나타냈다.122 이는 환영할 조치이며, 대만의 행보는 중국의 규제 비관여 양상과 대조된다.",
+       "출처": "00_오징어_관련자료/01_오징어_시장·가격/07_지속가능성·IUU·노동/20260604-EJF-Global_Squid_Report_2026.md"
+      },
+      {
+       "인용": "“어업인: 맞은 다른 선원이 있었다. 환경정의재단(EJF): 왜 그런 일이 일어났는가? 어업인: 큰 실수 때문이었다. 예를 들어 끌어올려야 할 어획물이 많았을 때 그가 어획물을 놓치는 실수를 했다. EJF: 그가 일부러 풀어주도록 승인했는가? 어업인: 그렇다. 그래서 그는 [더] 잘 수 있었다.” 대한민국은 선박 수 기준으로 세계에서 네 번째로 큰 원양 오징어선단을 운영하며, 태평양과 대서양 공해에 걸쳐 선박 32척을 보유한다.125 대한민국의 원양산업발전법(Distant Water Fisheries Development Act)은 모든 선박에 선박감시시스템(VMS) 설치를 의무화하고, 해상 전재를 감독하며, 대한민국 국민에게 불법·비보고·비규제(불법어업) 어업의 형사책임을 묻는다.126 노동 보호는 강제노동과 여권 압수를 금지하는 선원법(Seafarers Act)의 적용을 받는다.127 남서대서양(SWA)에서 조업하는 대만 기국 오징어선에서 일한 인도네시아 어업인 면담, 2023년 일월.",
+       "출처": "00_오징어_관련자료/01_오징어_시장·가격/07_지속가능성·IUU·노동/20260604-EJF-Global_Squid_Report_2026.md"
+      },
+      {
+       "인용": "상세한 증거와 대한민국 원양 오징어선단의 파괴적 어업 및 인권침해를 기록한 방대한 데이터세트를 고려할 때, 대한민국은 실질적인 추가 조치를 취할 의무가 있다.\n남동태평양(SEP)에서 남태평양지역수산관리기구(SPRFMO)는 2012년 발효 이후 페루대왕오징어(대왕오징어) 어업에 대한 권한을 보유해 왔지만, 2026년 오월 현재 어획노력 제한도 총허용어획량도 설정된 바가",
+       "출처": "00_오징어_관련자료/01_오징어_시장·가격/07_지속가능성·IUU·노동/20260604-EJF-Global_Squid_Report_2026.md"
+      },
+      {
+       "인용": "이 보고서는 세계에서 상업적으로 가장 중요한 원양 오징어 어업 세 곳, 즉 남서대서양(SWA)·남동태평양(SEP)·북서인도양(NWIO)의 노동조건을 면담에 근거해 비교한 최초의 분석을 제시한다. 세 어업 모두 중국 기국 원양어선이 지배한다. 연구대상 선박 249척 가운데 70%는 중국, 16%는 대만, 14%는 대한민국 기국이었다. 환경정의재단(EJF)의 앞선 조사들은 SWA와 SEP 선단을 각각 검토했으며,176/177 대한민국과 대만의 조업은 거의 전부 SWA에 집중돼 있었다.",
+       "출처": "00_오징어_관련자료/01_오징어_시장·가격/07_지속가능성·IUU·노동/20260604-EJF-Global_Squid_Report_2026.md"
+      },
+      {
+       "인용": "기국별 위반: 중국. 모두 중국 기국인 선박 20척에서 사망자 25명이 확인됐다.",
+       "출처": "00_오징어_관련자료/01_오징어_시장·가격/07_지속가능성·IUU·노동/20260604-EJF-Global_Squid_Report_2026.md"
+      },
+      {
+       "인용": "47 세 오징어 어업 전반에 인권침해가 만연한 정도 - 착취 위에 세워진 산업. 면담자들은 본 연구의 오징어선 전반에서 노동권 침해가 놀랄 만큼 일관되게 나타난다고 보고했다. 면담자 431명 가운데 강제노동 지표의 중앙값은 가능한 12개 지표 중 9개였다. 이 증거는 강제노동 조건이 예외가 아니라 원양 오징어선 고용의 기본 운영조건임을 나타낸다. 강제노동 지표는 면담자 개인별로 분석했다. 어업인마다 서로 다른 강제노동 지표를 경험할 수 있기 때문이다.",
+       "출처": "00_오징어_관련자료/01_오징어_시장·가격/07_지속가능성·IUU·노동/20260604-EJF-Global_Squid_Report_2026.md"
+      }
+     ],
+     "cardDesc": "위젯별 config 정규식으로 보관 Markdown/HTML의 원문 블록만 선택; 수치 보간·번역·요약 없음",
+     "dataYear": 2026,
+     "basis": {
+      "분류범위": "오징어만",
+      "중량기준": "해당 없음",
+      "거래단계": "해당 없음",
+      "합산여부": "없음",
+      "쿼터의미": "해당 없음"
+     },
+     "situation": "환경정의재단 조사에서 대상 원양 오징어선 249척의 기국은 중국 70%, 대만 16%, 대한민국 14%였고, 중국 선박 152척(표본의 87%)에서 강제노동 지표가 8~12개 확인됐다. 면담자 431명 기준 강제노동 지표의 중앙값은 12개 중 9개였다. 같은 보고서는 남동태평양·남서대서양·북서인도양 세 어업이 세계 보고 양륙량의 약 60%를 차지하는데, 유엔식량농업기구에 「달리 포함되지 않음」으로 보고된 오징어 비중은 2002년 25%에서 2023년 33%로 늘었다고 적었다.",
+     "takeaway": "세계 물량의 상당 부분이 위험이 집중된 선단에서 나오고 어종 분류마저 흐려지고 있으므로, **매입 계약에 선박 단위 식별정보 제출을 필수 조건으로 넣어** 기국 표기만으로 위험을 판단하지 않는 실사 기준을 세워야 한다.",
+     "narrativeFilled": true
+    },
+    {
+     "id": "D_dwf_labor_risk",
+     "title": "원양 어선 노동 리스크 — 원문 발췌",
+     "chartType": "excerpt",
+     "data": [],
+     "pillar": "S5",
+     "excerpts": [
+      {
+       "인용": "원양어업(Distant Water Fishing) 공급망의 강제노동 평가",
+       "출처": "00_오징어_관련자료/01_오징어_시장·가격/07_지속가능성·IUU·노동/20260500-US_DOL-Distant_Water_Fishing_Labor_Risk.md"
+      },
+      {
+       "인용": "• 수산물은 양륙된 뒤 자주 합쳐지고 혼합되며 포장된 다음 국내 소비용으로 판매되거나 수출되므로, 강제노동과 연계된 어획물을 다른 제품 로트와 구분하는 것이 사실상 불가능해진다. • 대형 산업공장이나 허브항을 거치는 가공 과정에서 추적성이 자주 약화되며, 견고한 선박 단위 추적성과 감사 가능한 관리 연속성 통제가 없으면 강제노동 연계 어획물을 다른 제품 로트와 구분할 수 없는 지경에 이른다. • 강제노동을 식별하는 데 현재 사용하는 자발적 체계인 수산물 노예노동 위험도구(Seafood Slavery Risk Tool)나 수산물 해법 보전연합(Conservation Alliance for Seafood Solutions)의 인권 및 사회적 책임 정책(Human Rights and Social Responsibility Policy)은 항만, 냉동창고, 가공시설 및 거래업자가 수산 어획물을 혼합하는 위험을 완화하기에 충분하지 않다. 이로 인해 강제노동 조건이 있는 선박의 어획물이 하류 공급망을 오염시킬 위험이 커진다.",
+       "출처": "00_오징어_관련자료/01_오징어_시장·가격/07_지속가능성·IUU·노동/20260500-US_DOL-Distant_Water_Fishing_Labor_Risk.md"
+      },
+      {
+       "인용": "법적 체계와 집행 현실. 집행의 취약성은 법적 권한의 부재가 아니라 불충분한 제도 역량과 정치적 의지에서 비롯된다. • 중국·인도네시아·대만에는 강제노동 관행을 금지하는 포괄적 법률 체계가 있지만, 조사한 모든 관할권에서 체계적인 집행 공백이 지속된다. • 기국은 유엔해양법협약(United Nations Convention on the Law of the Sea) 제94조에 명확한 법적 권한이 있는데도 해상 검사를 거부한다. • 항만국은 검사 자원을 노동조건보다 수산규정 준수에 배정한다. • 송출국은 어업 부문 모집 위반에 대한 준수 장치에 충분한 자원을 투입하지 않는다.",
+       "출처": "00_오징어_관련자료/01_오징어_시장·가격/07_지속가능성·IUU·노동/20260500-US_DOL-Distant_Water_Fishing_Labor_Risk.md"
+      },
+      {
+       "인용": "1 2026년 이월, 미국과 대만은 미국-대만 상호무역협정(U.S.–Taiwan Agreement on Reciprocal Trade)에 서명했다. 이 협정에는 상업 어선의 노동권 보호 개선, 일부 부문의 모집수수료 부과 문제 해결, 노동자 신분증명서 보관 금지, 노동법 집행 강화, 강제노동으로 생산된 상품의 수입 금지 등 대만 상업어업 부문과 관련된 노동 약속이 포함된다. 미국 무역대표부(Office of the U.S. Trade Representative)의 ‘미국-대만 상호무역협정 팩트시트(Fact Sheet on U.S.-Taiwan Agreement on Reciprocal Trade)’(2026년 이월 12일)를 참조한다. 이 노동 조항들은 단계적 일정에 따라 시행돼 향후 세~다섯 해에 걸쳐 발효될 것으로 예상된다. 이는 시장국이 어업 노동기준을 발전시키기 위해 무역협상을 통해 영향력을 행사할 수 있는 한 방식을 보여준다.",
+       "출처": "00_오징어_관련자료/01_오징어_시장·가격/07_지속가능성·IUU·노동/20260500-US_DOL-Distant_Water_Fishing_Labor_Risk.md"
+      },
+      {
+       "인용": "본 연구는 이차자료 분석, 노동자 면담, 핵심 정보제공자 면담(KIIs)을 통합한 혼합방법론을 사용해 원양어업(DWF) 부문의 강제노동을 조사했다. 또한 선박, 선장, 선박 소유자, 어획물 유형, 판매된 어획물의 도착 국가, 후속 가공 여부, 국내 소비 또는 수출 동향을 식별하기 위한 직접 추적을 수행했다.",
+       "출처": "00_오징어_관련자료/01_오징어_시장·가격/07_지속가능성·IUU·노동/20260500-US_DOL-Distant_Water_Fishing_Labor_Risk.md"
+      },
+      {
+       "인용": "이 조사 결과는 인도네시아 선원들 사이에 강제노동이 여전히 만연함을 보여준다. 임금 지급 지연, 이동과 통신의 제한, 위험한 노동, 매우 긴 노동시간이 작업환경의 일반적 특징이다. 특히 노동자의 60%는 보복을 두려워하지 않고는 자신의 노동조건에 대한 문제를 제기할 수 없다고 답해, 안전한 신고 장치가 부족함을 드러냈다. 그런데도 이러한 위험 속에서 85%는 외국 어선에서 다시 일할 계획이라고 답했으며, 이는 강한 경제적 압박과 육상에서의 제한된 대안을 반영한다. 지속되는 강압과 다시 일하려는 의사가 결합된 이 상황은 강제노동 지표를 줄이고 고충처리 장치 및 선상 통신연결에 대한 실질적 접근을 넓히는 개혁이 시급함을 보여준다. 그래야 향후 고용이 안전성과 공정성에서 실질적으로 개선될 수 있다.",
+       "출처": "00_오징어_관련자료/01_오징어_시장·가격/07_지속가능성·IUU·노동/20260500-US_DOL-Distant_Water_Fishing_Labor_Risk.md"
+      },
+      {
+       "인용": "이러한 불일치를 종합하면 실사의 핵심 함의가 더욱 분명해진다. 기국만으로는 운영 통제나 책임 소재를 제대로 가늠할 수 없으며, 강제노동 위험을 추적하려면 원양 조업을 가능하게 하고 어획물을 가공 및 수출 경로와 연결하는 선장, 서비스 항만, 상업 네트워크로 이뤄진 더 넓은 선단 ‘생태계’에 주의를 기울여야 한다. 공급망의 핵심 결과는 양륙이 이뤄지기 전부터 관리 연속성이 가려질 수 있다는 점이다. 어획물이 어획선에서 다른 곳으로 옮겨지고 다른 선박의 어획물과 합쳐진 뒤, 다른 선박의 신원과 서류를 내세워 다시 전달될 수 있다.",
+       "출처": "00_오징어_관련자료/01_오징어_시장·가격/07_지속가능성·IUU·노동/20260500-US_DOL-Distant_Water_Fishing_Labor_Risk.md"
+      },
+      {
+       "인용": "이 절은 이렇게 추적한 거점과 어종별 가공 특성(표 22)을 종합해, 제품이 선박에서 냉동창고·공장·재수출 네트워크로 이동한 뒤 관리 연속성이 가장 흔히 약화되는 지점을 식별한다.",
+       "출처": "00_오징어_관련자료/01_오징어_시장·가격/07_지속가능성·IUU·노동/20260500-US_DOL-Distant_Water_Fishing_Labor_Risk.md"
+      },
+      {
+       "인용": "출처: ICF. 수산물이 선박에서 육상 냉동창고로 옮겨진 뒤, 특히 대형 산업시설이나 허브항을 거쳐 가공될 때 추적성은 흔히 약화된다. 핵심 정보제공자들은 가공공장 내부에서, 일부 상황에서는 냉동창고와 화물 통합 거점에서도 추가적인 혼합 위험이 생길 수 있다고 강조했다. 특히 구매자가 질량수지 방식이나 집계형 추적성 방식을 받아들일 때 그렇다. 이 단계에서는 견고한 선박 단위 문서와 감사 가능한 관리 연속성 통제가 없으면 강제노동과 연계된 어획물을 다른 제품 로트와 구별할 수 없다. 이는 핵심 과제를 만든다. 양륙 뒤에는 무역자료만으로 제품 원산지를 구별할 수 없다. 따라서 위험관리는 선박뿐 아니라 공급업체, 가공업체 및 검증된 추적성 체계에도 초점을 맞춰야 한다. 현행 규정은 이 문제를 완전히 다루지 못한다. 유럽연합(EU) 규정은 가공이 이루어지는 경우를 포함해 교역 전반에서 합법성 검증을 뒷받침하도록 어획증명서와 관련 문서를 요구하며",
+       "출처": "00_오징어_관련자료/01_오징어_시장·가격/07_지속가능성·IUU·노동/20260500-US_DOL-Distant_Water_Fishing_Labor_Risk.md"
+      },
+      {
+       "인용": "미국 관세국경보호청(CBP)은 지난 십 년 동안 어선과 선단을 대상으로 다수의 강제노동 무역집행 조치를 내렸다. 어선과 선단을 대상으로 한 강제노동 무역집행 조치 다섯 건은 여전히 유효하다(미국",
+       "출처": "00_오징어_관련자료/01_오징어_시장·가격/07_지속가능성·IUU·노동/20260500-US_DOL-Distant_Water_Fishing_Labor_Risk.md"
+      },
+      {
+       "인용": "원양어업(DWF)에서 강제노동이 지속되는 것은 세계 수산물 공급망과 어업이 안고 있는 더 광범위한 구조적·거버넌스 과제를 반영한다.",
+       "출처": "00_오징어_관련자료/01_오징어_시장·가격/07_지속가능성·IUU·노동/20260500-US_DOL-Distant_Water_Fishing_Labor_Risk.md"
+      },
+      {
+       "인용": "원양어업(DWF) 관련 국내법상 보호. 중국·대만·인도네시아에는 이 보고서에서 다룬 보증금, 채무노예, 위험한 노동조건, 임금 조작, 이동 제한, 문서 보관, 강압, 계약상 학대를 포함해 어업의 강제노동과 관련된 관행 대부분을 명목상 금지하는 국내 노동법이 있다. 중국 노동계약법(Labor Contract Law) 제9조와 제84조는 보증금과 문서 보관을 명시적으로 금지한다. 인도네시아의 인신매매에 관한 2007년 법률 제21호(Law No. 21 of 2007 on Trafficking)는 채무노예를 범죄로 규정하고 최대 15년의 징역형을 둔다. 대만 인신매매 방지법(Human Trafficking Pr수시ion and Control Act)은 문서 압수를 금지하고 최대 한 해의 형사처벌을 둔다. 그러나 모든 관할권에는 근본적인 집행 공백이 있다. 어느 곳도 어업 노동을 규율하는 주된 국제문서인 국제노동기구(ILO) 어선원노동협약(Convention 188, Work in Fishing)을 비준하지 않았고, 문서화된 조사에서는 서류상 포괄적인 법적 금지에도 강제노동 지표가 높은 비율로 일관되게 확인된다.",
+       "출처": "00_오징어_관련자료/01_오징어_시장·가격/07_지속가능성·IUU·노동/20260500-US_DOL-Distant_Water_Fishing_Labor_Risk.md"
+      },
+      {
+       "인용": "공급망 사례연구 1: 호놀룰루(HONOLULU). 이 연구를 위해 수행한 어업인 면담에서 하와이 기반 연승어선 두 척인 스타 92호(Star 92)와 빅토리어스(Victorious)호에 강제노동이 있었던 것으로 지목됐다. 이들 선박 중 한 척의 응답자는 보급 문제로 인한 식량 부족, 선박 기계 문제로 인한 임금 지급 지연, 수면 부족으로 이어지는 과도한 노동시간, 휴식 없는 노동을 보고했다. 이 노동자는 본국으로 송환돼 해고될 위험 때문에 과도한 노동시간을 거부할 수 없었다. 다른 선박의 응답자도 식량 부족, 낮은 어획량으로 인한 임금 지급 지연, 통신(Wi-Fi)에 거의 접근할 수 없는 상태, 자비로 본국에 보내질 수 있다는 위협 아래 매우 긴 시간 일한 사실을 보고했다. 이 노동자는 선박이 해상에 있었기 때문에 계약 종료일이 지난 뒤에도 여러 달 일했다. 선박자동식별시스템(AIS) 자료와 면담 자료를 함께 보면, 하와이 기반 연승선이 잡은 참치가 공해에서 호놀룰루의 고도로 집중된 양륙·최초판매 거점으로 이동한 뒤 현지 음식문화와 미국 본토 시장으로 들어가는 과정이 일관되게 드러난다.",
+       "출처": "00_오징어_관련자료/01_오징어_시장·가격/07_지속가능성·IUU·노동/20260500-US_DOL-Distant_Water_Fishing_Labor_Risk.md"
+      },
+      {
+       "인용": "그러나 원양어업(DWF) 참치 공급망에서 강제노동이 광범위하게 발생한다는 점을 고려하면, 이들의 조업은 강제노동으로 전부 또는 일부 생산된 참치가 미국에 진입할 수 있는",
+       "출처": "00_오징어_관련자료/01_오징어_시장·가격/07_지속가능성·IUU·노동/20260500-US_DOL-Distant_Water_Fishing_Labor_Risk.md"
+      }
+     ],
+     "cardDesc": "위젯별 config 정규식으로 보관 Markdown/HTML의 원문 블록만 선택; 수치 보간·번역·요약 없음",
+     "dataYear": 2026,
+     "basis": {
+      "분류범위": "오징어만",
+      "중량기준": "해당 없음",
+      "거래단계": "해당 없음",
+      "합산여부": "없음",
+      "쿼터의미": "해당 없음"
+     },
+     "situation": "미국 노동부 보고서는 원양어업 어획물이 양륙 뒤 합쳐지고 혼합·포장되면서 강제노동 연계 물량을 다른 제품 로트와 구분하기가 사실상 불가능해진다고 진단했다. 인도네시아 선원 조사에서 60%는 보복이 두려워 노동조건 문제를 제기할 수 없다고 답했고, 85%는 외국 어선에서 다시 일할 계획이라고 답했다. 중국·대만·인도네시아 어느 곳도 국제노동기구 어선원노동협약 제188호를 비준하지 않았으며, 미국 관세국경보호청의 강제노동 무역집행 조치 다섯 건이 어선·선단을 대상으로 유효하다.",
+     "takeaway": "미국향 물량은 집행 조치 한 건으로 통관이 멈출 수 있으므로, **선박 단위 문서와 감사 가능한 관리 연속성을 갖춘 공급처로 미국향 라인을 분리 운영**하는 편이 사후 대응보다 비용이 싸다.",
+     "narrativeFilled": true
+    },
+    {
+     "id": "D_msc_certified",
+     "title": "지속가능 인증 어장",
+     "chartType": "excerpt",
+     "data": [],
+     "pillar": "S5",
+     "excerpts": [
+      {
+       "인용": "해양관리협의회(지속가능 인증)는 지속가능한 어종이 따로 있는 것이 아니라 지속가능한 자원만 있다고 본다. ‘자원(stock)’은 어류의 집단 또는 개체군을 뜻하는 다른 말이다. 오징어 자원은 다수이며, 인증된 오징어 어업은 네 곳이다. 이는 지속가능 인증의 파란 물고기 라벨이 붙은 오징어를 북미 전역의 상점과 음식점에서 찾을 수 있다는 뜻이다.",
+       "출처": "00_오징어_관련자료/01_오징어_시장·가격/07_지속가능성·IUU·노동/20260812-MSC-Squid.html"
+      },
+      {
+       "인용": "간단히 말하면, 오징어에 해양관리협의회(지속가능 인증) 파란 물고기 라벨이 붙어 있다면 지속가능하다!",
+       "출처": "00_오징어_관련자료/01_오징어_시장·가격/07_지속가능성·IUU·노동/20260812-MSC-Squid.html"
+      },
+      {
+       "인용": "이는 번식을 계속할 만큼 충분한 오징어가 남아 있고, 환경 영향을 최소화하는 방식으로 어획했으며, 개체군이나 환경의 모든 변화를 모니터링하고 필요에 따라 대응할 수 있도록 책임 있는 관리체계가 마련돼 있다는 뜻이다. 해양관리협의회(지속가능 인증) 파란 물고기 라벨이 붙은 오징어는 지속가능성 인증을 받았고, 관리가 잘 되는 어업까지 추적할 수 있다.",
+       "출처": "00_오징어_관련자료/01_오징어_시장·가격/07_지속가능성·IUU·노동/20260812-MSC-Squid.html"
+      },
+      {
+       "인용": "해양관리협의회(지속가능 인증) 인증 오징어는 대개 가까운 식료품점의 냉동식품 코너 또는 온라인 소매점에서 찾을 수 있다. ‘지속가능 인증 인증 수산물 구매처(Where to Buy 지속가능 인증 Certified Seafood)’ 페이지를 살펴보거나 ‘파란 물고기 안내서(Blue Fish Guide)’를 내려받아 거주 지역에서 지속가능 인증 파란 물고기 라벨이 붙은 모든 유형의 제품을 찾는 데 능숙해질 수 있다.",
+       "출처": "00_오징어_관련자료/01_오징어_시장·가격/07_지속가능성·IUU·노동/20260812-MSC-Squid.html"
+      }
+     ],
+     "cardDesc": "위젯별 config 정규식으로 보관 Markdown/HTML의 원문 블록만 선택; 수치 보간·번역·요약 없음",
+     "dataYear": 2026,
+     "basis": {
+      "분류범위": "오징어만",
+      "중량기준": "해당 없음",
+      "거래단계": "해당 없음",
+      "합산여부": "없음",
+      "쿼터의미": "해당 없음"
+     },
+     "situation": "지속가능 인증을 받은 오징어 어장이 존재한다. 인증 어장과 그 범위가 목록으로 공표된다.",
+     "takeaway": "유럽 대형 유통은 인증을 사실상 입점 조건으로 요구한다. 인증 어장 물량을 **프리미엄 채널 전용**으로 분리 조달해 채널별 원가를 나눠 관리하라.",
+     "narrativeFilled": true
+    }
+   ]
+  },
+  {
+   "key": "x03",
+   "title": "한국의 자리",
+   "widgets": [
+    {
+     "id": "C_import_concentration",
+     "title": "한국 수입 집중도 5년",
+     "chartType": "bar",
+     "data": [
+      {
+       "year": 2020,
+       "total_import_usd": 524666603,
+       "top1_share_pct": 36.1915,
+       "top3_share_pct": 74.5496,
+       "hhi": 2330.55
+      },
+      {
+       "year": 2021,
+       "total_import_usd": 408596870,
+       "top1_share_pct": 36.0844,
+       "top3_share_pct": 75.9975,
+       "hhi": 2304.72
+      },
+      {
+       "year": 2022,
+       "total_import_usd": 462680864,
+       "top1_share_pct": 36.704,
+       "top3_share_pct": 79.1519,
+       "hhi": 2393.73
+      },
+      {
+       "year": 2023,
+       "total_import_usd": 546599008,
+       "top1_share_pct": 37.8534,
+       "top3_share_pct": 79.7848,
+       "hhi": 2524.39
+      },
+      {
+       "year": 2024,
+       "total_import_usd": 560139683,
+       "top1_share_pct": 46.1483,
+       "top3_share_pct": 74.2491,
+       "hhi": 2622.62
+      }
+     ],
+     "pillar": "S4",
+     "columns": [
+      {
+       "key": "year",
+       "label": "연도"
+      },
+      {
+       "key": "total_import_usd",
+       "label": "총 수입액 (달러)"
+      },
+      {
+       "key": "top1_share_pct",
+       "label": "1위국 비중 (%)"
+      },
+      {
+       "key": "top3_share_pct",
+       "label": "상위 3국 비중 (%)"
+      },
+      {
+       "key": "hhi",
+       "label": "집중도 지수"
+      }
+     ],
+     "series": [
+      {
+       "key": "share_pct",
+       "name": "비중 (%)"
+      }
+     ],
+     "unit": "%·USD",
+     "cardDesc": "KCS 2020~2024 연도별 HS 030742·030743·030749·160554 상대국 비중과 HHI. 비중은 한국 수입 안에서의 비중이며 글로벌 점유율이 아님",
+     "dataYear": 2025,
+     "basis": {
+      "분류범위": "갑오징어 포함",
+      "중량기준": "순중량",
+      "거래단계": "수입단가",
+      "합산여부": "없음",
+      "쿼터의미": "해당 없음"
+     },
+     "situation": "한국의 수입은 소수 산지에 몰려 있다. 2020년 상위 1개국 비중 36.2%, 상위 3개국 74.5%, 집중도 지수 2,330이었다. 경쟁당국이 통상 집중 시장으로 보는 1,800을 크게 넘는다.",
+     "takeaway": "집중도가 높다는 것은 한 산지의 사고가 곧 가격 충격이 된다는 뜻이다. 상위 3국 비중을 낮추는 것 자체를 조달 목표로 세우고 해마다 측정하라.",
+     "narrativeFilled": true
+    },
+    {
+     "id": "C_comtrade_coverage_matrix",
+     "title": "국제 무역통계 수록 범위 점검",
+     "chartType": "matrix",
+     "data": [
+      {
+       "reporter_code": "156",
+       "reporter": "중국",
+       "year": "2021",
+       "row_count": 77,
+       "density_pct": 4.9
+      },
+      {
+       "reporter_code": "156",
+       "reporter": "중국",
+       "year": "2022",
+       "row_count": 69,
+       "density_pct": 4.4
+      },
+      {
+       "reporter_code": "156",
+       "reporter": "중국",
+       "year": "2023",
+       "row_count": 91,
+       "density_pct": 5.8
+      },
+      {
+       "reporter_code": "392",
+       "reporter": "일본",
+       "year": "2021",
+       "row_count": 27,
+       "density_pct": 1.7
+      },
+      {
+       "reporter_code": "392",
+       "reporter": "일본",
+       "year": "2022",
+       "row_count": 18,
+       "density_pct": 1.2
+      },
+      {
+       "reporter_code": "392",
+       "reporter": "일본",
+       "year": "2023",
+       "row_count": 54,
+       "density_pct": 3.5
+      },
+      {
+       "reporter_code": "410",
+       "reporter": "한국",
+       "year": "2021",
+       "row_count": 78,
+       "density_pct": 5.0
+      },
+      {
+       "reporter_code": "410",
+       "reporter": "한국",
+       "year": "2022",
+       "row_count": 77,
+       "density_pct": 4.9
+      },
+      {
+       "reporter_code": "410",
+       "reporter": "한국",
+       "year": "2023",
+       "row_count": 72,
+       "density_pct": 4.6
+      },
+      {
+       "reporter_code": "604",
+       "reporter": "페루",
+       "year": "2021",
+       "row_count": 5,
+       "density_pct": 0.3
+      },
+      {
+       "reporter_code": "604",
+       "reporter": "페루",
+       "year": "2022",
+       "row_count": 2,
+       "density_pct": 0.1
+      },
+      {
+       "reporter_code": "604",
+       "reporter": "페루",
+       "year": "2023",
+       "row_count": 9,
+       "density_pct": 0.6
+      },
+      {
+       "reporter_code": "724",
+       "reporter": "스페인",
+       "year": "2021",
+       "row_count": 1501,
+       "density_pct": 96.1
+      },
+      {
+       "reporter_code": "724",
+       "reporter": "스페인",
+       "year": "2022",
+       "row_count": 960,
+       "density_pct": 61.5
+      },
+      {
+       "reporter_code": "724",
+       "reporter": "스페인",
+       "year": "2023",
+       "row_count": 1562,
+       "density_pct": 100.0
+      },
+      {
+       "reporter_code": "764",
+       "reporter": "태국",
+       "year": "2021",
+       "row_count": 321,
+       "density_pct": 20.6
+      },
+      {
+       "reporter_code": "764",
+       "reporter": "태국",
+       "year": "2022",
+       "row_count": 166,
+       "density_pct": 10.6
+      },
+      {
+       "reporter_code": "764",
+       "reporter": "태국",
+       "year": "2023",
+       "row_count": 267,
+       "density_pct": 17.1
+      },
+      {
+       "reporter_code": "842",
+       "reporter": "미국",
+       "year": "2021",
+       "row_count": 76,
+       "density_pct": 4.9
+      },
+      {
+       "reporter_code": "842",
+       "reporter": "미국",
+       "year": "2022",
+       "row_count": 75,
+       "density_pct": 4.8
+      },
+      {
+       "reporter_code": "842",
+       "reporter": "미국",
+       "year": "2023",
+       "row_count": 93,
+       "density_pct": 6.0
+      }
+     ],
+     "pillar": "S4",
+     "columns": [
+      {
+       "key": "reporter_code",
+       "label": "보고국 코드"
+      },
+      {
+       "key": "reporter",
+       "label": "보고국"
+      },
+      {
+       "key": "year",
+       "label": "연도"
+      },
+      {
+       "key": "row_count",
+       "label": "행 수"
+      },
+      {
+       "key": "density_pct",
+       "label": "수록 밀도 (%)"
+      }
+     ],
+     "xKey": "year",
+     "xLabel": "연도",
+     "series": [
+      {
+       "key": "row_count",
+       "name": "행 수"
+      }
+     ],
+     "cardDesc": "reporter×year 원본 행수. 21개 조합 모두 행이 존재하므로 결측이 아니라 밀도 불균등이 한계다. 30행 미만 조합 5개: 일본 2021 27행, 일본 2022 18행, 페루 2021 5행, 페루 2022 2행, 페루 2023 9행. 이 불균등 때문에 G-005 가 총액·점유율·CAGR 산출을 차단한다",
+     "dataYear": 2023,
+     "basis": {
+      "분류범위": "갑오징어 포함",
+      "중량기준": "순중량",
+      "거래단계": "해당 없음",
+      "합산여부": "없음",
+      "쿼터의미": "해당 없음"
+     },
+     "situation": "국제 무역통계의 보고국×연도 21개 조합은 모두 행이 존재하지만 밀도가 크게 갈린다. 스페인은 2023년 1,562행(밀도 100.0%)인 반면 페루는 2022년 2행(0.1%), 일본은 2022년 18행(1.2%)에 그친다. 한국은 2021~2023년 78·77·72행으로 고르지만 밀도는 5% 안팎이다.",
+     "takeaway": "밀도가 이렇게 어긋난 자료로 뽑은 점유율과 연평균성장률은 보고 습관을 시장 구조로 오독하게 하므로, **이 자료는 품목 존재 확인용으로만 쓰고 금액 집계는 관세청 자료로 대체**해야 한다.",
+     "narrativeFilled": true
+    },
+    {
+     "id": "E_gate_status_board",
+     "title": "측정 게이트 현황판",
+     "chartType": "table",
+     "data": [
+      {
+       "gate_id": "G-001",
+       "subject": "어종",
+       "allowed_use": "종·계군별 비교",
+       "blocked_use": "모든 오징어를 단일 공급원으로 합산",
+       "explicit_widget_count": 1
+      },
+      {
+       "gate_id": "G-002",
+       "subject": "오징어/갑오징어/문어",
+       "allowed_use": "원문 분류가 동일할 때만 합계",
+       "blocked_use": "오징어만 시장규모로 재명명",
+       "explicit_widget_count": 10
+      },
+      {
+       "gate_id": "G-003",
+       "subject": "중량 기준",
+       "allowed_use": "각 기준 내 시계열",
+       "blocked_use": "생중량와 제품중량 직접 합산",
+       "explicit_widget_count": 0
+      },
+      {
+       "gate_id": "G-004",
+       "subject": "관세청 2026 연초 누계",
+       "allowed_use": "HS 설명을 붙인 월별 수출입",
+       "blocked_use": "2026-01~06 완결치 또는 오징어만로 표현",
+       "explicit_widget_count": 4
+      },
+      {
+       "gate_id": "G-005",
+       "subject": "유엔 무역통계 구 계열",
+       "allowed_use": "수록 보고국·연도 기술",
+       "blocked_use": "글로벌 총액·점유율·연평균 성장률",
+       "explicit_widget_count": 1
+      },
+      {
+       "gate_id": "G-006",
+       "subject": "페루 대왕오징어(포타)",
+       "allowed_use": "날짜·선창규모별 공급상태",
+       "blocked_use": "법정 최대 허용어획량를 실적 또는 향후 조달가능량으로 사용",
+       "explicit_widget_count": 2
+      },
+      {
+       "gate_id": "G-007",
+       "subject": "총허용어획량/쿼터/어획",
+       "allowed_use": "동일 문서 정의 내 비교",
+       "blocked_use": "총허용어획량를 생산량·재고량으로 대체",
+       "explicit_widget_count": 3
+      },
+      {
+       "gate_id": "G-008",
+       "subject": "가격",
+       "allowed_use": "동일 측정 기준 추세",
+       "blocked_use": "서로 다른 거래단계 가격 평균",
+       "explicit_widget_count": 1
+      },
+      {
+       "gate_id": "G-009",
+       "subject": "통화와 명목/실질",
+       "allowed_use": "원통화 표시",
+       "blocked_use": "기준일 없는 환산·인플레이션 비교",
+       "explicit_widget_count": 1
+      },
+      {
+       "gate_id": "G-010",
+       "subject": "출처 등급",
+       "allowed_use": "C등급은 위험 탐색",
+       "blocked_use": "C등급 단독으로 법규·시장규모 확정",
+       "explicit_widget_count": 3
+      },
+      {
+       "gate_id": "G-011",
+       "subject": "최신성",
+       "allowed_use": "각 기준일을 병기",
+       "blocked_use": "검색일을 데이터 기준일로 표현",
+       "explicit_widget_count": 2
+      }
+     ],
+     "pillar": "S4",
+     "columns": [
+      {
+       "key": "gate_id",
+       "label": "게이트"
+      },
+      {
+       "key": "subject",
+       "label": "대상"
+      },
+      {
+       "key": "allowed_use",
+       "label": "허용 용도"
+      },
+      {
+       "key": "blocked_use",
+       "label": "금지 용도"
+      },
+      {
+       "key": "explicit_widget_count",
+       "label": "적용 위젯 수"
+      }
+     ],
+     "cardDesc": "원문에서 표시값을 확정하지 못해 링크 카드로 강등",
+     "dataYear": 2026,
+     "basis": {
+      "분류범위": "오징어만",
+      "중량기준": "해당 없음",
+      "거래단계": "해당 없음",
+      "합산여부": "없음",
+      "쿼터의미": "해당 없음"
+     },
+     "situation": "이 페이지가 쓰는 자료마다 「무엇과 비교하면 안 되는지」가 게이트로 걸려 있다. 종 범위·중량 기준·거래 단계·합산 여부가 항목별로 기록돼 있다.",
+     "takeaway": "게이트를 무시한 합산이 이 품목에서 가장 흔한 오류다. 새 지표를 만들 때 **먼저 게이트를 확인하고**, 통과하지 못하면 지표를 만들지 마라.",
+     "narrativeFilled": true
+    },
+    {
+     "id": "E_source_registry",
+     "title": "표준 출처 원장",
+     "chartType": "table",
+     "data": [
+      {
+       "publisher": "FAO",
+       "series": "FishStat capture production",
+       "priority": "P0",
+       "grade": "A",
+       "frequency": "연간",
+       "landing_url": "https://www.fao.org/fishery/en/statistics/software/fishstatj",
+       "latest_verified": "2024",
+       "note": "기존 갱신_2026-07-06 자료 재사용; 갑오징어와 두족류 미분류가 포함되어 종 필터 게이트 필요"
+      },
+      {
+       "publisher": "Statistics Korea KOSIS",
+       "series": "DT_1EW0005 fishery production",
+       "priority": "P0",
+       "grade": "A",
+       "frequency": "월간",
+       "landing_url": "https://kosis.kr/statHtml/statHtml.do?orgId=101&tblId=DT_1EW0005&conn_path=I3",
+       "latest_verified": "access page 2026-08-12",
+       "note": "수치 CSV 내보내기는 공식 화면 수동 검증 대기"
+      },
+      {
+       "publisher": "National Institute of Fisheries Science",
+       "series": "Fisheries climate change briefing",
+       "priority": "P1",
+       "grade": "A",
+       "frequency": "연간",
+       "landing_url": "https://www.nifs.go.kr/cmmn/file/climatechange_06.pdf",
+       "latest_verified": "2026",
+       "note": "살오징어 장기 어획변화의 기후 맥락; 단기 공급량 예측치가 아님"
+      },
+      {
+       "publisher": "INIDEP",
+       "series": "Cephalopod fisheries programme and weekly bulletins",
+       "priority": "P0",
+       "grade": "A",
+       "frequency": "어기 중 주간",
+       "landing_url": "https://www.argentina.gob.ar/inidep/investigacion-cientifica/direccion-de-pesquerias-de-invertebrados/pesquerias-de-cefalopodos",
+       "latest_verified": "programme page 2026-08-12",
+       "note": "2026 주간 PDF 직접목록은 후속 모니터링"
+      },
+      {
+       "publisher": "Japan Fisheries Agency",
+       "series": "Surumeika stock assessment",
+       "priority": "P0",
+       "grade": "A",
+       "frequency": "연간·수시",
+       "landing_url": "https://www.jfa.maff.go.jp/j/study/kanri/231027_8.html",
+       "latest_verified": "2026-01-14",
+       "note": ""
+      },
+      {
+       "publisher": "Falkland Islands Fisheries Department",
+       "series": "Falkland calamari stock surveys",
+       "priority": "P0",
+       "grade": "A",
+       "frequency": "어기별",
+       "landing_url": "https://www.falklands.gov.fk/fisheries/publications/falkland-calamari-loligo/category/2-loligo-survey-report?start=0",
+       "latest_verified": "2025 surveys",
+       "note": ""
+      },
+      {
+       "publisher": "SPRFMO",
+       "series": "Scientific Committee squid work",
+       "priority": "P0",
+       "grade": "A",
+       "frequency": "연간·수시",
+       "landing_url": "https://www.sprfmo.int/meetings/scientific-committee/13th-sc-2025/",
+       "latest_verified": "SC13 2025",
+       "note": "중국 연차보고의 2024 어획·척수는 제출국 보고치"
+      },
+      {
+       "publisher": "NOAA Fisheries",
+       "series": "Longfin squid science",
+       "priority": "P2",
+       "grade": "A",
+       "frequency": "연간",
+       "landing_url": "https://www.fisheries.noaa.gov/species/longfin-squid/science",
+       "latest_verified": "access 2026-08-12",
+       "note": ""
+      },
+      {
+       "publisher": "Korea Ministry of Oceans and Fisheries",
+       "series": "TAC implementation plan",
+       "priority": "P0",
+       "grade": "A",
+       "frequency": "연간·수시",
+       "landing_url": "https://www.mof.go.kr/doc/ko/selectDoc.do?bbsSeq=10&docSeq=67222&menuSeq=971",
+       "latest_verified": "2026-06-30",
+       "note": "전체 총허용어획량 623079t와 살오징어 업종 확대를 확인; 품종별 총허용어획량와 실제 어획 분리"
+      },
+      {
+       "publisher": "PRODUCE Peru",
+       "series": "Pota LMCTP progress and closures",
+       "priority": "P0",
+       "grade": "A",
+       "frequency": "수시·주간",
+       "landing_url": "https://www.gob.pe/institucion/produce/tema/pesca",
+       "latest_verified": "2026-07-24",
+       "note": "7월 9일 529391.41t/89.84% 뒤 선창규모별 중단 공지; 최신 공지가 우선"
+      },
+      {
+       "publisher": "SUBPESCA Chile",
+       "series": "Jibia quota decree",
+       "priority": "P0",
+       "grade": "A",
+       "frequency": "연간·수시",
+       "landing_url": "https://www.subpesca.cl/portal/616/w3-propertyvalue-51189.html",
+       "latest_verified": "2026 quota",
+       "note": ""
+      },
+      {
+       "publisher": "SERNAPESCA Chile",
+       "series": "Quota consumption",
+       "priority": "P0",
+       "grade": "A",
+       "frequency": "주간·월간",
+       "landing_url": "https://www.sernapesca.cl/informacion-utilidad/consumo-de-cuotas/",
+       "latest_verified": "2026-08-06",
+       "note": "원시 XLSX; 쿼터·어획·잔량 단위 검증 후 사용"
+      },
+      {
+       "publisher": "Japan Fisheries Agency",
+       "series": "Surumeika TAC management",
+       "priority": "P0",
+       "grade": "A",
+       "frequency": "연간·수시",
+       "landing_url": "https://www.jfa.maff.go.jp/j/study/kanri/231027_8.html",
+       "latest_verified": "2026-03-23",
+       "note": ""
+      },
+      {
+       "publisher": "Falkland Islands Fisheries Department",
+       "series": "Licensing advice",
+       "priority": "P0",
+       "grade": "A",
+       "frequency": "어기별",
+       "landing_url": "https://www.falklands.gov.fk/fisheries/publications/licensing-advice",
+       "latest_verified": "2026",
+       "note": ""
+      },
+      {
+       "publisher": "SPRFMO",
+       "series": "CMM 18 Squid",
+       "priority": "P0",
+       "grade": "A",
+       "frequency": "연간·수시",
+       "landing_url": "https://www.sprfmo.int/fisheries/conservation-and-management-measures",
+       "latest_verified": "CMM 18-2026",
+       "note": ""
+      },
+      {
+       "publisher": "Argentina government and CTMFM",
+       "series": "Illex fishery regulations",
+       "priority": "P1",
+       "grade": "A",
+       "frequency": "수시",
+       "landing_url": "https://www.argentina.gob.ar/normativa",
+       "latest_verified": "2026-06-01",
+       "note": ""
+      },
+      {
+       "publisher": "NOAA Fisheries",
+       "series": "Longfin squid management and quota monitor",
+       "priority": "P2",
+       "grade": "A",
+       "frequency": "주간·연간",
+       "landing_url": "https://www.fisheries.noaa.gov/species/longfin-squid/management",
+       "latest_verified": "access 2026-08-12",
+       "note": ""
+      },
+      {
+       "publisher": "Korea Customs Service",
+       "series": "Monthly trade by HS",
+       "priority": "P0",
+       "grade": "A",
+       "frequency": "월간",
+       "landing_url": "https://unipass.customs.go.kr/",
+       "latest_verified": "2026-01 to 2026-05 observed",
+       "note": "기존 CSV 543 데이터 행; 수집 로그의 1~6월 표기와 달리 실제 연도 필드는 1~5월만 존재; HS 030742/030743/030749/160554는 갑오징어 혼재"
+      },
+      {
+       "publisher": "UN Statistics Division",
+       "series": "UN Comtrade Plus",
+       "priority": "P1",
+       "grade": "A",
+       "frequency": "월간·연간",
+       "landing_url": "https://comtradeplus.un.org/",
+       "latest_verified": "legacy 2021-2023",
+       "note": "기존 5600 데이터 행·7 보고국; 일본/스페인/태국 연도 누락 때문에 글로벌 점유율 산출 금지"
+      },
+      {
+       "publisher": "Korea Maritime Institute",
+       "series": "FTA seafood import trends",
+       "priority": "P0",
+       "grade": "B",
+       "frequency": "연간",
+       "landing_url": "https://fta.kmi.re.kr/",
+       "latest_verified": "2025",
+       "note": ""
+      },
+      {
+       "publisher": "Marine Products Export Development Authority India",
+       "series": "Marine products export figures",
+       "priority": "P1",
+       "grade": "A",
+       "frequency": "연간",
+       "landing_url": "https://mpeda.gov.in/",
+       "latest_verified": "FY 2025-26",
+       "note": "냉동 오징어와 냉동 갑오징어를 별도 행으로 유지"
+      },
+      {
+       "publisher": "FAO",
+       "series": "HS Codes for Cephalopods",
+       "priority": "P0",
+       "grade": "A",
+       "frequency": "개정 시",
+       "landing_url": "https://openknowledge.fao.org/handle/20.500.14283/cd8685en",
+       "latest_verified": "2026 publication",
+       "note": ""
+      },
+      {
+       "publisher": "KMI FishData",
+       "series": "Seafood price trends",
+       "priority": "P0",
+       "grade": "B",
+       "frequency": "주간",
+       "landing_url": "https://fishdata.kmi.re.kr/front/kmisys/seafoodPriceTrends.do",
+       "latest_verified": "2026-08-11",
+       "note": "aT 농수산물유통정보 기반 소비자가격; 원양 냉동 오징어 중품 1마리·가중치 1.0 기준"
+      },
+      {
+       "publisher": "FAO GLOBEFISH",
+       "series": "European Fish Price Report",
+       "priority": "P0",
+       "grade": "B",
+       "frequency": "월간",
+       "landing_url": "https://www.fao.org/in-action/globefish/market-reports/resource-detail/en/c/338601/",
+       "latest_verified": "2026-07",
+       "note": "품종·원산지·제품형태·인도조건이 다른 가격을 혼합하지 않음"
+      },
+      {
+       "publisher": "FAO GLOBEFISH",
+       "series": "Cephalopods analysis and Highlights",
+       "priority": "P0",
+       "grade": "B",
+       "frequency": "분기",
+       "landing_url": "https://www.fao.org/in-action/globefish/species-analysis/cephalopods/en",
+       "latest_verified": "Issue 2/2026",
+       "note": ""
+      },
+      {
+       "publisher": "European Commission EUMOFA",
+       "series": "Squid profile and EU Fish Market",
+       "priority": "P1",
+       "grade": "A",
+       "frequency": "월간·연간",
+       "landing_url": "https://fishery-aquaculture-market-observatory.ec.europa.eu/en/country-and-species-profiles/species-profiles/squid",
+       "latest_verified": "profile access 2026-08-12",
+       "note": ""
+      },
+      {
+       "publisher": "MPEDA",
+       "series": "Exporter and processing plant directory",
+       "priority": "P2",
+       "grade": "A",
+       "frequency": "분기",
+       "landing_url": "https://e-mpeda.nic.in/registration/Rpt_Region_Wise_Exporters_new.aspx",
+       "latest_verified": "not collected",
+       "note": "회사 연락처·승인상태는 원문 조회일과 함께 별도 수집 필요"
+      },
+      {
+       "publisher": "National Fishery Products Quality Management Service",
+       "series": "Import inspection and quarantine notices",
+       "priority": "P1",
+       "grade": "A",
+       "frequency": "수시·월간",
+       "landing_url": "https://www.nfqs.go.kr/",
+       "latest_verified": "not collected",
+       "note": "식품안전·검역 전용 경로은 기존 구조 승인 후 분리 권고"
+      },
+      {
+       "publisher": "SPRFMO",
+       "series": "IUU list and compliance report",
+       "priority": "P0",
+       "grade": "A",
+       "frequency": "연간·수시",
+       "landing_url": "https://www.sprfmo.int/fisheries/iuu-lists",
+       "latest_verified": "2026",
+       "note": ""
+      },
+      {
+       "publisher": "US Department of Labor ILAB",
+       "series": "Distant-water fishing labor risk",
+       "priority": "P1",
+       "grade": "A",
+       "frequency": "연간·수시",
+       "landing_url": "https://www.dol.gov/agencies/ilab",
+       "latest_verified": "2026",
+       "note": ""
+      },
+      {
+       "publisher": "Environmental Justice Foundation",
+       "series": "Global Squid Report",
+       "priority": "P1",
+       "grade": "C",
+       "frequency": "수시",
+       "landing_url": "https://ejfoundation.org/reports/global-squid-report",
+       "latest_verified": "2026",
+       "note": "위험 탐색용 C등급; 공식 통계나 법적 판정 대체 불가"
+      },
+      {
+       "publisher": "NOAA Fisheries",
+       "series": "Seafood Import Monitoring Program",
+       "priority": "P1",
+       "grade": "A",
+       "frequency": "수시",
+       "landing_url": "https://www.fisheries.noaa.gov/international/international-affairs/seafood-import-monitoring-program",
+       "latest_verified": "access 2026-08-12",
+       "note": "현행 적용 목록에 오징어가 포함된다고 주장하지 않음"
+      },
+      {
+       "publisher": "Marine Stewardship Council",
+       "series": "Squid certified fishery overview",
+       "priority": "P2",
+       "grade": "C",
+       "frequency": "분기",
+       "landing_url": "https://www.msc.org/en-us/what-you-can-do/choose-sustainable-seafood/sustainable-species/squid",
+       "latest_verified": "access 2026-08-12",
+       "note": ""
+      },
+      {
+       "publisher": "USDA Foreign Agricultural Service",
+       "series": "Korea Seafood Market Update",
+       "priority": "P2",
+       "grade": "A",
+       "frequency": "연간",
+       "landing_url": "https://gain.fas.usda.gov/",
+       "latest_verified": "2025",
+       "note": "공식 원본과 MD를 검증; 오징어 외 전체 수산물 시장 맥락 포함"
+      },
+      {
+       "publisher": "India Department of Commerce",
+       "series": "TradeStat commodity-country trade",
+       "priority": "P2",
+       "grade": "A",
+       "frequency": "월간",
+       "landing_url": "https://tradestat.commerce.gov.in/meidb/commodity_wise_all_countries_export",
+       "latest_verified": "through 2026-05 displayed",
+       "note": "공개 화면 수동 내보내기 대기; API 키 사용 금지"
+      },
+      {
+       "publisher": "SPRFMO",
+       "series": "14th Scientific Committee",
+       "priority": "P0",
+       "grade": "A",
+       "frequency": "수시",
+       "landing_url": "https://sprfmo.int/meetings/scientific-committee/14th-sc-2026",
+       "latest_verified": "pre-meeting 2026-08-12",
+       "note": "회의 2026-09-07~12 예정; 최종 보고서 미발간"
+      }
+     ],
+     "pillar": "S4",
+     "columns": [
+      {
+       "key": "publisher",
+       "label": "발행기관"
+      },
+      {
+       "key": "series",
+       "label": "계열"
+      },
+      {
+       "key": "priority",
+       "label": "우선순위"
+      },
+      {
+       "key": "grade",
+       "label": "등급"
+      },
+      {
+       "key": "frequency",
+       "label": "갱신 주기"
+      },
+      {
+       "key": "landing_url",
+       "label": "원문 주소"
+      },
+      {
+       "key": "latest_verified",
+       "label": "최종 확인"
+      },
+      {
+       "key": "note",
+       "label": "비고"
+      }
+     ],
+     "cardDesc": "원문에서 표시값을 확정하지 못해 링크 카드로 강등",
+     "dataYear": 2026,
+     "basis": {
+      "분류범위": "오징어만",
+      "중량기준": "해당 없음",
+      "거래단계": "해당 없음",
+      "합산여부": "없음",
+      "쿼터의미": "해당 없음"
+     },
+     "situation": "출처 원장은 발행기관·갱신주기·최종 확인일과 함께 각 출처의 사용 제약을 한 줄로 묶어 둔 표다. 신뢰등급을 한 단계 낮춰 잡은 항목은 한국해양수산개발원 자유무역협정 수입동향과 수산물 가격동향, 유엔식량농업기구 유럽 어가보고 셋이고 나머지 표시 항목은 모두 최상 등급이다. 제약 메모에는 관세청 자료가 2026년 1~5월만 존재하고 해당 통관 코드에 갑오징어가 섞여 있다는 점, 국제 무역통계는 일본·스페인·태국의 연도 누락으로 세계 점유율 산출이 금지된다는 점이 적혀 있다.",
+     "takeaway": "원장의 메모가 곧 각 위젯의 사용 한계이므로, **새 수치를 인용하기 전에 해당 출처의 제약 메모를 먼저 확인**하고 금지된 산출(세계 점유율·연평균성장률)을 요구하는 보고 양식은 바꾸는 편이 낫다.",
+     "narrativeFilled": true
+    }
+   ]
+  }
+ ]
+}

@@ -48,6 +48,7 @@ const BangkokDashboard = dynamic(() => import('../components/bangkok/BangkokDash
 const GmtsDashboard = dynamic(() => import('../components/gmts/GmtsDashboard'));
 const MailInboxDashboard = dynamic(() => import('../components/MailInboxDashboard'));
 const TunaIndustryDashboard = dynamic(() => import('../components/market-understanding/TunaIndustryDashboard'));
+const SquidIndustryDashboard = dynamic(() => import('../components/market-understanding/SquidIndustryDashboard'));
 
 const INSTITUTIONAL_MENU_KEYS = new Set<ActiveMenu>([
   'market',
@@ -253,6 +254,7 @@ export default function Home() {
     mail: mailAdminVisible ? <MailInboxDashboard /> : null,
     'purse-seiner-db': <PurseSeinerDashboard />,
     'tuna-industry': <TunaIndustryDashboard />,
+    'squid-industry': <SquidIndustryDashboard />,
   };
   return (
     <div className={styles.appWrapper} data-v3="light">
