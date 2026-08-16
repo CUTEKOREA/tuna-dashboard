@@ -1,0 +1,140 @@
+import { describe, expect, it } from 'vitest';
+
+import {
+  fleetDailyPublic,
+  fleetDailyPublicDeltas,
+  fleetDailyPublicLatest,
+  fleetDailyPublicReconciliation,
+} from '@/lib/data/fleet-daily-public';
+import {
+  validateFleetDailyDetailPayload,
+  type FleetDailyDetailPayload,
+} from '@/lib/contracts/fleet-daily-api';
+
+const VALID_DETAIL: FleetDailyDetailPayload = {
+  reportDate: '2026-08-14',
+  asOf: '2026-08-13',
+  pacific: {
+    asOf: '2026-08-13',
+    dailyMt: 130,
+    monthlyMt: 1_947,
+    annualMt: 46_779.8,
+    vessels: [{ name: '보호 선박', position: 'N0100 E00100', catchMt: null, loadedMt: 10, note: '-' }],
+  },
+  atlantic: {
+    asOf: '2026-08-13',
+    dailyMt: 205,
+    monthlyMt: 2_010,
+    annualMt: 28_735,
+    vessels: [{ name: '보호 합작선', position: 'S0100 W00100', catchMt: 5, loadedMt: null, note: '-' }],
+  },
+  carrier: {
+    loadedTotalMt: 9_922.3,
+    expectedRemainingMt: 7_887.7,
+    vessels: [{
+      name: '보호 운반선',
+      displayName: '보호 운반선',
+      capacityMt: 3_700,
+      entityType: 'vessel',
+      loadedMt: 1_000,
+      expectedRemainingMt: 2_700,
+      loadPlan: '-',
+      note: '방콕 시험 상태',
+    }],
+  },
+  longline: {
+    vessels: [{ name: '보호 연승선', loadedMt: null, note: '-' }],
+  },
+};
+
+function collectKeys(value: unknown, keys = new Set<string>()): Set<string> {
+  if (!value || typeof value !== 'object') return keys;
+  if (Array.isArray(value)) {
+    for (const item of value) collectKeys(item, keys);
+    return keys;
+  }
+  for (const [key, child] of Object.entries(value)) {
+    keys.add(key);
+    collectKeys(child, keys);
+  }
+  return keys;
+}
+
+describe('fleet daily public and private DTO boundary', () => {
+  it('publishes only aggregate values and derived quality counts', () => {
+    expect(fleetDailyPublic).toEqual({
+      _meta: {
+        schemaVersion: 1,
+        reportCount: 135,
+        firstReportDate: '2026-01-16',
+        latestReportDate: '2026-08-14',
+        latestAsOf: '2026-08-13',
+        detailSha256: expect.stringMatching(/^[a-f0-9]{64}$/),
+      },
+      latest: {
+        reportDate: '2026-08-14',
+        asOf: '2026-08-13',
+        pacific: { asOf: '2026-08-13', dailyMt: 130, monthlyMt: 1_947, annualMt: 46_779.8 },
+        atlantic: { asOf: '2026-08-13', dailyMt: 205, monthlyMt: 2_010, annualMt: 28_735 },
+        carrier: { loadedTotalMt: 9_922.3, expectedRemainingMt: 7_887.7 },
+      },
+      deltas: { pacificDailyMt: 45, atlanticDailyMt: 35, totalDailyMt: 80 },
+      reconciliation: {
+        pacificDaily: { reportedMt: 130, rowsMt: null, matches: null, missingCount: 9 },
+        atlanticDaily: { reportedMt: 205, rowsMt: null, matches: null, missingCount: 3 },
+        carrierLoaded: { reportedMt: 9_922.3, rowsMt: null, matches: null, missingCount: 1 },
+        carrierExpectedRemaining: { reportedMt: 7_887.7, rowsMt: null, matches: null, missingCount: 5 },
+        valid: false,
+        unavailableCount: 4,
+        issueCount: 0,
+      },
+      quality: {
+        counts: {
+          reconciliationChecks: 540,
+          reconciliationCompleteChecks: 30,
+          reconciliationUnavailableChecks: 510,
+          reconciliationUnavailableDocuments: 135,
+          reconciliationIssues: 9,
+          reconciliationDocuments: 8,
+          reconciliationPartialDifferences: 14,
+          reconciliationPartialDifferenceDocuments: 12,
+          duplicateVesselRows: 4,
+          coordinateFormatIssues: 6,
+          longlineSectionMissing: 13,
+        },
+        incompletePartialDifferences: 5,
+        incompletePartialDifferenceDocuments: 5,
+      },
+    });
+
+    expect(fleetDailyPublicLatest).toBe(fleetDailyPublic.latest);
+    expect(fleetDailyPublicDeltas).toBe(fleetDailyPublic.deltas);
+    expect(fleetDailyPublicReconciliation).toBe(fleetDailyPublic.reconciliation);
+
+    const keys = collectKeys(fleetDailyPublic);
+    for (const forbidden of [
+      'vessels', 'name', 'position', 'note', 'loadPlan', 'daily',
+      'catchMtRaw', 'loadedMtRaw',
+      'catchMtParenthetical', 'loadedMtParenthetical',
+    ]) {
+      expect(keys.has(forbidden), forbidden).toBe(false);
+    }
+    expect(Array.isArray((fleetDailyPublic.quality as Record<string, unknown>).reconciliationChecks)).toBe(false);
+  });
+
+  it('accepts only the minimized latest detail DTO and rejects source-only fields', () => {
+    expect(validateFleetDailyDetailPayload(VALID_DETAIL)).toEqual(VALID_DETAIL);
+
+    const withRaw = structuredClone(VALID_DETAIL) as FleetDailyDetailPayload & Record<string, unknown>;
+    (withRaw.pacific.vessels[0] as unknown as Record<string, unknown>).catchMtRaw = '-';
+    expect(() => validateFleetDailyDetailPayload(withRaw)).toThrow();
+
+    const withHistory = structuredClone(VALID_DETAIL) as FleetDailyDetailPayload & Record<string, unknown>;
+    withHistory.daily = [];
+    expect(() => validateFleetDailyDetailPayload(withHistory)).toThrow();
+
+    const withQualityEvidence = structuredClone(VALID_DETAIL) as FleetDailyDetailPayload & Record<string, unknown>;
+    withQualityEvidence.reconciliationChecks = [];
+    expect(() => validateFleetDailyDetailPayload(withQualityEvidence)).toThrow();
+  });
+});

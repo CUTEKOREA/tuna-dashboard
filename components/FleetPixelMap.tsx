@@ -1,8 +1,20 @@
 'use client';
 
 import React, { useMemo, useState } from 'react';
+import type { FleetDailyDetailPayload } from '@/lib/contracts/fleet-daily-api';
+import { buildFleetRoster, formatFleetDailyNote } from '@/lib/fleet-daily-presentation';
 import s from './FleetPixelMap.module.css';
-import { atlanticFleet, carrierFleet, pacificFleet } from './FleetRosterGrid';
+
+interface PixelMapShip {
+  name: string;
+  zone: string;
+  type: 'pacific' | 'carrier' | 'atlantic';
+  status: 'reported';
+  loadedMt: number | null;
+  capacityMt: number | null;
+  note: string;
+  pos: { x: number; y: number };
+}
 
 function getPacificCoordinates(zone: string): { x: number; y: number } {
   const z = zone.toUpperCase();
@@ -45,7 +57,7 @@ function getAtlanticCoordinates(zone: string): { x: number; y: number } {
   return { x: 50, y: 50 };
 }
 
-const ShipMarker = ({ ship, selected, onSelect }: { ship: any; selected: boolean; onSelect: () => void }) => {
+const ShipMarker = ({ ship, selected, onSelect }: { ship: PixelMapShip; selected: boolean; onSelect: () => void }) => {
   const detailsId = `ship-details-${ship.name.toLowerCase().replace(/[^a-z0-9]+/g, '-')}`;
 
   return (
@@ -61,7 +73,7 @@ const ShipMarker = ({ ship, selected, onSelect }: { ship: any; selected: boolean
           onSelect();
         }
       }}
-      className={`${s.shipMarker} ${s[`fleet-${ship.type}`]} ${s[`state-${ship.status === 'transship' ? 'transit' : ship.status}`]}`}
+      className={`${s.shipMarker} ${s[`fleet-${ship.type}`]} ${s['state-reported'] ?? ''}`}
       style={{ left: `${ship.pos.x}%`, top: `${ship.pos.y}%` }}
     >
     <div className={s.shipBody}></div>
@@ -75,30 +87,45 @@ const ShipMarker = ({ ship, selected, onSelect }: { ship: any; selected: boolean
         <div className={s.tooltipRow}>
           <span className={s.tooltipLabel}>상태</span>
           <span className={s.tooltipValue}>
-            {ship.status === 'fishing' && '조업 중 🎣'}
-            {(ship.status === 'transit' || ship.status === 'transship') && '이동/전재 🌊'}
-            {ship.status === 'port' && '하역/정박 ⚓'}
+            보고 위치 📍
           </span>
         </div>
         <div className={s.tooltipRow}>
           <span className={s.tooltipLabel}>적재량</span>
-          <span className={s.tooltipValue}>{ship.load.toLocaleString()} / {ship.capa.toLocaleString()} t</span>
+          <span className={s.tooltipValue}>{ship.loadedMt?.toLocaleString() ?? '미보고'} / {ship.capacityMt?.toLocaleString() ?? '미보고'} (MT)</span>
         </div>
       </div>
-      {ship.note && <div className={s.tooltipNote}>{ship.note}</div>}
+      {ship.note && <div className={s.tooltipNote}>{formatFleetDailyNote(ship.note)}</div>}
     </div>
     </button>
   );
 };
 
-export default function FleetPixelMap() {
+export default function FleetPixelMap({ detail }: { detail: FleetDailyDetailPayload }) {
   const [selectedShip, setSelectedShip] = useState<string | null>(null);
+  const roster = useMemo(() => buildFleetRoster(detail), [detail]);
   
   const mappedPacific = useMemo(() => {
     const positions: Record<string, number> = {};
     const combined = [
-      ...pacificFleet.map((ship) => ({ ...ship, type: 'pacific' as const })),
-      ...carrierFleet.map((ship) => ({ ...ship, type: 'carrier' as const, status: ship.status === 'waiting' ? 'port' : ship.status })),
+      ...roster.pacific.map((ship) => ({
+        name: ship.name,
+        zone: ship.zone,
+        type: 'pacific' as const,
+        status: 'reported' as const,
+        loadedMt: ship.loadedMt,
+        capacityMt: null,
+        note: ship.note,
+      })),
+      ...roster.carrierPhysical.map((ship) => ({
+        name: ship.name,
+        zone: ship.zone,
+        type: 'carrier' as const,
+        status: 'reported' as const,
+        loadedMt: ship.loadedMt,
+        capacityMt: ship.capacityMt,
+        note: ship.note,
+      })),
     ];
     return combined.map((ship) => {
       const basePos = getPacificCoordinates(ship.zone);
@@ -112,12 +139,20 @@ export default function FleetPixelMap() {
       }
       return { ...ship, pos: basePos };
     });
-  }, []);
+  }, [roster]);
 
   const mappedAtlantic = useMemo(() => {
     const positions: Record<string, number> = {};
-    return atlanticFleet.map((item) => {
-      const ship = { ...item, type: 'atlantic' as const };
+    return roster.atlantic.map((item) => {
+      const ship = {
+        name: item.name,
+        zone: item.zone,
+        type: 'atlantic' as const,
+        status: 'reported' as const,
+        loadedMt: item.loadedMt,
+        capacityMt: null,
+        note: item.note,
+      };
       const basePos = getAtlanticCoordinates(ship.zone);
       const posKey = `${basePos.x}-${basePos.y}`;
       if (positions[posKey]) {
@@ -129,7 +164,7 @@ export default function FleetPixelMap() {
       }
       return { ...ship, pos: basePos };
     });
-  }, []);
+  }, [roster]);
 
   return (
     <div className={s.mapsGrid}>

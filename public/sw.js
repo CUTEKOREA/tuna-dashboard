@@ -1,4 +1,4 @@
-const VERSION = 'v1-2026-05-22';
+const VERSION = 'v2-2026-08-16';
 const STATIC_CACHE = `static-${VERSION}`;
 const RUNTIME_CACHE = `runtime-${VERSION}`;
 const API_CACHE = `api-${VERSION}`;
@@ -37,6 +37,12 @@ self.addEventListener('fetch', (event) => {
   // Never cache Next.js HMR / RSC payloads in dev
   if (url.pathname.startsWith('/_next/webpack-hmr')) return;
   if (url.search.includes('__nextDevBrowserId')) return;
+
+  // 인증 데이터는 CacheStorage에 쓰거나 과거 응답으로 대체하지 않는다.
+  if (url.pathname.startsWith('/api/fleet/') || url.pathname.startsWith('/api/mail/')) {
+    event.respondWith(fetch(request));
+    return;
+  }
 
   // API: network-first, fall back to stale cache (Telemetry stays usable offline)
   if (url.pathname.startsWith('/api/')) {

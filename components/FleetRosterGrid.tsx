@@ -1,419 +1,98 @@
 'use client';
-import React, { useState } from 'react';
-import { Ship, Anchor, Navigation, Package, ArrowUp, ArrowDown, MapPin } from 'lucide-react';
+
+import React, { useMemo, useState } from 'react';
+import { Anchor, MapPin, Navigation, Package, Ship, type LucideIcon } from 'lucide-react';
+
+import type { FleetDailyDetailPayload } from '@/lib/contracts/fleet-daily-api';
+import { buildFleetRoster, formatFleetDailyNote, type FleetRoster } from '@/lib/fleet-daily-presentation';
 import s from './FleetCommandCenter.module.css';
-import { atlanticDailyReport, carrierLoads, longlineDailyReport, pacificDailyReport, purseSeineCatch } from '@/lib/fleet-operations-2026-08-09';
 
-/* ── Data ── */
-const pacificDisplayNames: Record<string, string> = {
-  MOAMARI: 'MARI',
-  MOAKONA: 'KONA',
-  'NAOERO SUN': 'N/SUN',
-  'NAOERO STAR': 'N/STAR',
-};
-
-export const pacificFleet = pacificDailyReport.vessels.map((vessel) => {
-  const displayName = pacificDisplayNames[vessel.name] ?? vessel.name;
-  const trend = purseSeineCatch.monthlyByVessel.find((item) => item.vessel === displayName)?.monthlyMt ?? [];
-  return {
-    name: displayName,
-    zone: vessel.position,
-    catch: vessel.catchMt,
-    load: vessel.loadedMt,
-    capa: 1200,
-    trend,
-    status: vessel.position === 'X-MAS' ? 'port' : 'fishing',
-    note: vessel.note,
-  };
-});
-
-export const atlanticFleet = atlanticDailyReport.vessels.map((vessel) => ({
-  name: vessel.name,
-  zone: vessel.position,
-  catch: vessel.catchMt,
-  load: vessel.loadedMt,
-  capa: 1200,
-  trend: [vessel.loadedMt],
-  status: vessel.position === 'TEMA' ? 'port' : 'fishing',
-  note: vessel.note,
-}));
-
-const longlineFleet = longlineDailyReport.vessels.map((vessel) => ({
-  name: vessel.name,
-  status: `${vessel.loadedMt.toLocaleString('ko-KR', { minimumFractionDigits: 3 })}톤 (${vessel.loadPlan}) | ${vessel.note}`,
-  badge: '하역 예정',
-  badgeColor: '#38bdf8',
-}));
-
-export const carrierFleet = carrierLoads.vessels.map((vessel) => ({
-  name: vessel.name,
-  zone: vessel.note.includes('방콕') ? 'BKK' : vessel.note.includes('GENSAN') ? 'GENSAN' : vessel.note.includes('RABAUL') ? 'RABAUL' : 'X-MAS',
-  capa: vessel.capacityMt,
-  load: vessel.loadedMt,
-  pct: Math.round(vessel.loadedMt / vessel.capacityMt * 100),
-  status: vessel.note.includes('하역') ? 'port' : vessel.note.includes('전재 중') ? 'transit' : 'waiting',
-  note: `${vessel.note}${vessel.expectedRemainingMt ? ` · 예상잔량 ${vessel.expectedRemainingMt.toLocaleString()}t` : ''}`,
-  color: vessel.note.includes('대기') ? '#f59e0b' : '#38bdf8',
-}));
-
-/* ── Status helpers ── */
-const statusConfig: Record<string, { label: string; color: string; pulse: boolean }> = {
-  fishing:    { label: '조업 중',   color: '#10b981', pulse: true },
-  returning:  { label: '귀항 중',   color: '#f59e0b', pulse: false },
-  transship:  { label: '전재 예정', color: '#38bdf8', pulse: false },
-  port:       { label: '입항',      color: '#64748b', pulse: false },
-};
-
-/* ── Mini Sparkline (pure SVG) ── */
-function MiniSparkline({ data, color, width = 64, height = 24 }: { data: number[]; color: string; width?: number; height?: number }) {
-  if (!data || data.length < 2) return null;
-  const min = Math.min(...data);
-  const max = Math.max(...data);
-  const range = max - min || 1;
-  const points = data.map((v, i) => {
-    const x = (i / (data.length - 1)) * width;
-    const y = height - ((v - min) / range) * (height - 4) - 2;
-    return `${x},${y}`;
-  }).join(' ');
-  const areaPoints = `0,${height} ${points} ${width},${height}`;
-  return (
-    <svg width={width} height={height} viewBox={`0 0 ${width} ${height}`} style={{ overflow: 'visible' }}>
-      <defs>
-        <linearGradient id={`spark-${color.replace('#','')}`} x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0%" stopColor={color} stopOpacity="0.3" />
-          <stop offset="100%" stopColor={color} stopOpacity="0" />
-        </linearGradient>
-      </defs>
-      <polygon points={areaPoints} fill={`url(#spark-${color.replace('#','')})`} />
-      <polyline points={points} fill="none" stroke={color} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-      {/* End dot */}
-      <circle cx={(data.length - 1) / (data.length - 1) * width} cy={height - ((data[data.length - 1] - min) / range) * (height - 4) - 2} r="2.5" fill={color} />
-    </svg>
-  );
+function formatMt(value: number | null) {
+  return value === null ? '미보고' : value.toLocaleString('ko-KR', { maximumFractionDigits: 3 });
 }
 
-/* ── Vessel Card Component ── */
-function VesselCard({ name, zone, catchAmt, load, capa, trend, status, note }: {
-  name: string; zone: string; catchAmt: number; load: number; capa: number; trend: number[]; status: string; note: string;
-}) {
-  const [hovered, setHovered] = useState(false);
-  const pct = Math.min(Math.round((load / capa) * 100), 100);
-  const st = statusConfig[status] || statusConfig.fishing;
-  const isActive = catchAmt > 0;
+type FishingFleetRow = FleetRoster['pacific'][number];
+type CarrierFleetRow = FleetRoster['carrier'][number];
+type LonglineFleetRow = FleetRoster['longline'][number];
 
-  // Color based on load %
-  const loadColor = pct >= 90 ? '#ef4444' : pct >= 70 ? '#f59e0b' : pct >= 40 ? '#38bdf8' : '#10b981';
-  const trendDir = trend.length >= 2 ? trend[trend.length - 1] - trend[trend.length - 2] : 0;
-
-  return (
-    <div
-      onMouseEnter={() => setHovered(true)}
-      onMouseLeave={() => setHovered(false)}
-      style={{
-        background: hovered ? 'rgba(255,255,255,0.04)' : 'rgba(0,0,0,0.2)',
-        border: `1px solid ${hovered ? 'rgba(255,255,255,0.1)' : 'rgba(255,255,255,0.04)'}`,
-        borderRadius: 12,
-        padding: '16px',
-        transition: 'all 0.25s ease',
-        transform: hovered ? 'translateY(-2px)' : 'none',
-        boxShadow: hovered ? '0 8px 24px rgba(0,0,0,0.3)' : 'none',
-        cursor: 'default',
-        position: 'relative',
-        overflow: 'hidden',
-      }}
-    >
-      {/* Top accent line */}
-      <div style={{
-        position: 'absolute', top: 0, left: 0, right: 0, height: 2,
-        background: `linear-gradient(90deg, ${st.color}, transparent)`,
-        opacity: hovered ? 1 : 0.5,
-        transition: 'opacity 0.3s',
-      }} />
-
-      {/* Header: Name + Status */}
-      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 12 }}>
-        <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-          <span style={{ fontSize: '1rem', fontWeight: 800, color: 'var(--text-main)', letterSpacing: '-0.3px' }}>{name}</span>
-          <span style={{
-            fontSize: '0.65rem', fontWeight: 600, padding: '2px 8px', borderRadius: 20,
-            background: `${st.color}18`, color: st.color, border: `1px solid ${st.color}30`,
-            display: 'flex', alignItems: 'center', gap: 4,
-          }}>
-            {st.pulse && (
-              <span style={{
-                width: 5, height: 5, borderRadius: '50%', background: st.color,
-                boxShadow: `0 0 6px ${st.color}`,
-                display: 'inline-block',
-                animation: 'pulse 2s ease-in-out infinite',
-              }} />
-            )}
-            {st.label}
-          </span>
-        </div>
-        <div style={{
-          display: 'flex', alignItems: 'center', gap: 4,
-          fontSize: '0.7rem', color: 'var(--text-muted)',
-        }}>
-          <MapPin size={11} />
-          {zone}
-        </div>
-      </div>
-
-      {/* Body: Stats row */}
-      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', marginBottom: 10 }}>
-        {/* Daily catch */}
-        <div>
-          <div style={{ fontSize: '0.65rem', color: 'var(--text-muted)', marginBottom: 2, fontWeight: 500 }}>일간 어획</div>
-          <div style={{ display: 'flex', alignItems: 'baseline', gap: 4 }}>
-            <span style={{
-              fontSize: '1.3rem', fontWeight: 800,
-              color: isActive ? 'var(--w-emerald-500)' : '#475569',
-            }}>
-              {isActive ? catchAmt : '-'}
-            </span>
-            {isActive && <span style={{ fontSize: '0.7rem', color: 'var(--text-muted)' }}>t</span>}
-            {isActive && trendDir !== 0 && (
-              <span style={{ display: 'flex', alignItems: 'center', marginLeft: 2 }}>
-                {trendDir > 0 ? <ArrowUp size={12} color="#10b981" /> : <ArrowDown size={12} color="#ef4444" />}
-              </span>
-            )}
-          </div>
-        </div>
-
-        {/* Sparkline */}
-        <div style={{ opacity: hovered ? 1 : 0.7, transition: 'opacity 0.3s' }}>
-          <MiniSparkline data={trend} color={loadColor} width={72} height={28} />
-        </div>
-
-        {/* Cumulative */}
-        <div style={{ textAlign: 'right' }}>
-          <div style={{ fontSize: '0.65rem', color: 'var(--text-muted)', marginBottom: 2, fontWeight: 500 }}>누적 적재</div>
-          <div style={{ display: 'flex', alignItems: 'baseline', gap: 2, justifyContent: 'flex-end' }}>
-            <span style={{ fontSize: '1.3rem', fontWeight: 800, color: 'var(--w-amber-500)' }}>{load.toLocaleString()}</span>
-            <span style={{ fontSize: '0.7rem', color: 'var(--text-muted)' }}>t</span>
-          </div>
-        </div>
-      </div>
-
-      {/* Progress bar */}
-      <div style={{ marginBottom: note ? 8 : 0 }}>
-        <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 4 }}>
-          <span style={{ fontSize: '0.65rem', color: 'var(--text-muted)' }}>적재율</span>
-          <span style={{ fontSize: '0.65rem', fontWeight: 700, color: loadColor }}>{pct}%</span>
-        </div>
-        <div style={{
-          width: '100%', height: 4, background: 'rgba(140,170,255,0.12)',
-          borderRadius: 2, overflow: 'hidden',
-        }}>
-          <div style={{
-            width: `${pct}%`, height: '100%', borderRadius: 2,
-            background: `linear-gradient(90deg, ${loadColor}88, ${loadColor})`,
-            transition: 'width 1s ease',
-          }} />
-        </div>
-      </div>
-
-      {/* Note */}
-      {note && (
-        <div style={{
-          fontSize: '0.7rem', color: st.color, fontWeight: 500,
-          padding: '4px 8px', borderRadius: 6,
-          background: `${st.color}08`,
-          marginTop: 4,
-        }}>
-          {note}
-        </div>
-      )}
-    </div>
-  );
-}
-
-/* ── Carrier Card Component ── */
-function CarrierCard({ name, capa, load, pct, status, note, color }: {
-  name: string; capa: number; load: number; pct: number; status: string; note: string; color: string;
-}) {
-  const [hovered, setHovered] = useState(false);
-  const isDone = status === 'done';
-  const statusLabels: Record<string, string> = {
-    done: '✅ 완료', unloading: '📦 하역 중', waiting: '⏳ 대기', transit: '🚢 이동 중', port: '⚓ 하역·정박',
-  };
-
-  return (
-    <div
-      onMouseEnter={() => setHovered(true)}
-      onMouseLeave={() => setHovered(false)}
-      style={{
-        background: hovered ? 'rgba(255,255,255,0.04)' : 'rgba(0,0,0,0.2)',
-        border: `1px solid ${hovered ? 'rgba(255,255,255,0.1)' : 'rgba(255,255,255,0.04)'}`,
-        borderRadius: 12,
-        padding: '14px 16px',
-        transition: 'all 0.25s ease',
-        transform: hovered ? 'translateY(-1px)' : 'none',
-        opacity: isDone ? 0.6 : 1,
-      }}
-    >
-      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 10 }}>
-        <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-          <span style={{ fontSize: '0.95rem', fontWeight: 800, color: 'var(--text-main)', textDecoration: isDone ? 'line-through' : 'none' }}>{name}</span>
-          <span style={{
-            fontSize: '0.62rem', fontWeight: 600, padding: '2px 8px', borderRadius: 20,
-            background: `${color}18`, color, border: `1px solid ${color}30`,
-          }}>
-            {statusLabels[status] ?? '상태 확인 필요'}
-          </span>
-        </div>
-        <span style={{ fontSize: '0.75rem', color: 'var(--text-muted)' }}>
-          {load.toLocaleString()}t / {capa.toLocaleString()}t
-        </span>
-      </div>
-
-      {/* Full-width gauge */}
-      <div style={{
-        width: '100%', height: 6, background: 'rgba(140,170,255,0.12)',
-        borderRadius: 3, overflow: 'hidden', marginBottom: 6,
-      }}>
-        <div style={{
-          width: `${Math.min(pct, 100)}%`, height: '100%', borderRadius: 3,
-          background: `linear-gradient(90deg, ${color}88, ${color})`,
-          transition: 'width 1s ease',
-        }} />
-      </div>
-
-      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-        <span style={{ fontSize: '0.7rem', color: 'var(--text-muted)' }}>{note}</span>
-        <span style={{ fontSize: '0.75rem', fontWeight: 700, color }}>{pct}%</span>
-      </div>
-    </div>
-  );
-}
-
-/* ── Longline Card ── */
-function LonglineCard({ name, status, badge, badgeColor }: { name: string; status: string; badge: string; badgeColor: string }) {
+function FishingVesselCard({ vessel }: { vessel: FishingFleetRow }) {
   const [hovered, setHovered] = useState(false);
   return (
-    <div
+    <article
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
-      style={{
-        background: hovered ? 'rgba(255,255,255,0.04)' : 'rgba(0,0,0,0.2)',
-        border: `1px solid ${hovered ? 'rgba(255,255,255,0.1)' : 'rgba(255,255,255,0.04)'}`,
-        borderRadius: 12,
-        padding: '14px 16px',
-        display: 'flex', justifyContent: 'space-between', alignItems: 'center',
-        transition: 'all 0.25s ease',
-      }}
+      className={s.latestVesselCard}
+      data-hovered={hovered || undefined}
     >
-      <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
-        <span style={{ fontSize: '0.95rem', fontWeight: 800, color: 'var(--text-main)' }}>{name}</span>
-        <span style={{ fontSize: '0.78rem', color: 'var(--text-muted)' }}>{status}</span>
+      <div className={s.latestVesselHeader}><strong>{vessel.displayName}</strong><span><MapPin size={12} aria-hidden="true" />{vessel.location}</span></div>
+      <div className={s.latestVesselMetrics}>
+        <div><span>일간 어획</span><strong>{formatMt(vessel.catchMt)} <small>(MT)</small></strong></div>
+        <div><span>누적 적재</span><strong>{formatMt(vessel.loadedMt)} <small>(MT)</small></strong></div>
       </div>
-      <span style={{
-        fontSize: '0.72rem', fontWeight: 600, padding: '3px 10px',
-        borderRadius: 20, background: `${badgeColor}18`,
-        color: badgeColor, border: `1px solid ${badgeColor}30`,
-      }}>
-        {badge}
-      </span>
-    </div>
+      {vessel.note !== '-' ? <p className={s.latestVesselNote}>보고 당시 비고: {formatFleetDailyNote(vessel.note)}</p> : null}
+    </article>
   );
 }
 
-/* ── Section Header ── */
-function SectionHeader({ icon: Icon, color, title, count, countLabel, summary }: {
-  icon: any; color: string; title: string; count?: number; countLabel?: string; summary: string;
-}) {
+function CarrierCard({ vessel }: { vessel: CarrierFleetRow }) {
+  const [hovered, setHovered] = useState(false);
+  const loadedPercent = vessel.loadedMt === null || vessel.capacityMt === null
+    ? null
+    : Math.min(Math.round(vessel.loadedMt / vessel.capacityMt * 100), 100);
   return (
-    <div style={{
-      padding: '16px 20px', display: 'flex', justifyContent: 'space-between', alignItems: 'center',
-      borderBottom: '1px solid var(--panel-border)',
-    }}>
-      <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
-        <div style={{
-          width: 32, height: 32, borderRadius: 8,
-          background: `${color}15`, display: 'flex', alignItems: 'center', justifyContent: 'center',
-        }}>
-          <Icon size={16} color={color} />
-        </div>
-        <div>
-          <div style={{ fontSize: '0.95rem', fontWeight: 700, color: 'var(--text-main)' }}>{title}</div>
-          <div style={{ fontSize: '0.7rem', color: 'var(--text-muted)' }}>{countLabel ?? `${count}척 운항`}</div>
-        </div>
+    <article
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
+      className={s.latestVesselCard}
+      data-carrier-entity={vessel.entityType}
+      data-hovered={hovered || undefined}
+    >
+      <div className={s.latestVesselHeader}><strong>{vessel.displayName}</strong><span>{vessel.entityType === 'container' ? <Package size={12} aria-hidden="true" /> : <MapPin size={12} aria-hidden="true" />}{vessel.location ?? '미보고'}</span></div>
+      <div className={s.latestVesselMetrics}>
+        <div><span>선적</span><strong>{formatMt(vessel.loadedMt)} <small>(MT)</small></strong></div>
+        <div><span>예상잔량</span><strong>{formatMt(vessel.expectedRemainingMt)} <small>(MT)</small></strong></div>
       </div>
-      <div style={{
-        fontSize: '0.72rem', color: 'var(--w-emerald-400)', fontWeight: 600,
-        padding: '4px 12px', borderRadius: 20,
-        background: 'rgba(var(--w-emerald-400-rgb), 0.08)',
-        border: '1px solid rgba(var(--w-emerald-400-rgb), 0.15)',
-      }}>
-        {summary}
-      </div>
-    </div>
+      <p className={s.latestVesselNote}>{vessel.entityType === 'container' ? '컨테이너 화물 기록' : `용량 ${formatMt(vessel.capacityMt)} (MT) · 적재율 ${loadedPercent === null ? '미보고' : `${loadedPercent}%`}`} · 보고 당시 비고: {formatFleetDailyNote(vessel.note)}</p>
+    </article>
   );
 }
 
-/* ── Main Component ── */
-export default function FleetRosterGrid() {
+function LonglineCard({ vessel }: { vessel: LonglineFleetRow }) {
+  return <article className={s.latestVesselCard} data-longline-record="true"><div className={s.latestVesselHeader}><strong>{vessel.displayName}</strong></div><div className={s.latestVesselMetrics}><div><span>선적</span><strong>{formatMt(vessel.loadedMt)} <small>(MT)</small></strong></div></div><p className={s.latestVesselNote}>보고 당시 비고: {formatFleetDailyNote(vessel.note || '미보고')}</p></article>;
+}
+
+function SectionHeader({ icon: Icon, title, count, summary, countLabel = `${count}척 보고` }: { icon: LucideIcon; title: string; count: number; summary: string; countLabel?: string }) {
   return (
-    <>
-      <style>{`
-        @keyframes pulse {
-          0%, 100% { opacity: 1; }
-          50% { opacity: 0.4; }
-        }
-      `}</style>
-      <div className={s.rosterGrid}>
-        {/* Pacific */}
-        <div className={s.rosterSection}>
-          <SectionHeader
-            icon={Navigation} color="#38bdf8"
-            title="태평양 선망" count={pacificFleet.length}
-             summary={`일간 ${pacificDailyReport.dailyCatchMt.toLocaleString()}t · 월간 ${pacificDailyReport.monthlyCatchMt.toLocaleString()}t · 연간 ${pacificDailyReport.annualCatchMt.toLocaleString()}t · 8/11`}
-          />
-          <div data-mobile-stack style={{ padding: 16, display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: 12 }}>
-            {pacificFleet.map(v => (
-              <VesselCard
-                key={v.name} name={v.name} zone={v.zone}
-                catchAmt={v.catch} load={v.load} capa={v.capa}
-                trend={v.trend} status={v.status} note={v.note}
-              />
-            ))}
-          </div>
-        </div>
+    <header className={s.latestRosterHeader}>
+      <div><Icon size={18} aria-hidden="true" /><strong>{title}</strong><span>{countLabel}</span></div>
+      <p>{summary}</p>
+    </header>
+  );
+}
 
-        {/* Atlantic */}
-        <div className={s.rosterSection}>
-          <SectionHeader
-            icon={Ship} color="#a78bfa"
-            title="대서양 선망" count={atlanticFleet.length}
-             summary={`일간 ${atlanticDailyReport.dailyCatchMt.toLocaleString()}t · 월간 ${atlanticDailyReport.monthlyCatchMt.toLocaleString()}t · 연간 ${atlanticDailyReport.annualCatchMt.toLocaleString()}t · 8/11`}
-          />
-          <div data-mobile-stack style={{ padding: 16, display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: 12 }}>
-            {atlanticFleet.map(v => (
-              <VesselCard
-                key={v.name} name={v.name} zone={v.zone}
-                catchAmt={v.catch} load={v.load} capa={v.capa}
-                trend={v.trend} status={v.status} note={v.note}
-              />
-            ))}
-          </div>
-        </div>
+export default function FleetRosterGrid({ detail }: { detail: FleetDailyDetailPayload }) {
+  const roster = useMemo(() => buildFleetRoster(detail), [detail]);
+  const pacificSummary = `일간 ${detail.pacific.dailyMt.toLocaleString()} (MT) · 월간 ${detail.pacific.monthlyMt.toLocaleString()} (MT) · 연간 ${detail.pacific.annualMt.toLocaleString()} (MT) · ${detail.asOf}`;
+  const atlanticSummary = `일간 ${detail.atlantic.dailyMt.toLocaleString()} (MT) · 월간 ${detail.atlantic.monthlyMt.toLocaleString()} (MT) · 연간 ${detail.atlantic.annualMt.toLocaleString()} (MT) · ${detail.asOf}`;
 
-        {/* Longline */}
-        <div className={s.rosterSection}>
-           <SectionHeader icon={Anchor} color="#f59e0b" title="연승선" count={longlineFleet.length} summary="TAIHO MARU 338.699t · 8/12 보고" />
-          <div style={{ padding: 16, display: 'flex', flexDirection: 'column', gap: 10 }}>
-            {longlineFleet.map(v => <LonglineCard key={v.name} {...v} />)}
-          </div>
-        </div>
-
-        {/* Carriers */}
-        <div className={s.rosterSection}>
-           <SectionHeader icon={Package} color="#34d399" title="운반선·컨테이너" countLabel={`${carrierFleet.length}건`} summary="선적 9,922.3t · 예상잔량 7,887.7t · 8/12" />
-          <div style={{ padding: 16, display: 'flex', flexDirection: 'column', gap: 10 }}>
-            {carrierFleet.map(v => <CarrierCard key={v.name} {...v} />)}
-          </div>
-        </div>
-      </div>
-    </>
+  return (
+    <div className={s.rosterGrid}>
+      <section className={s.rosterSection}>
+        <SectionHeader icon={Navigation} title="태평양 선망" count={roster.pacific.length} summary={pacificSummary} />
+        <div className={s.latestRosterCards}>{roster.pacific.map((vessel) => <FishingVesselCard key={vessel.name} vessel={vessel} />)}</div>
+      </section>
+      <section className={s.rosterSection}>
+        <SectionHeader icon={Ship} title="대서양 선망" count={roster.atlantic.length} summary={atlanticSummary} />
+        <div className={s.latestRosterCards}>{roster.atlantic.map((vessel) => <FishingVesselCard key={vessel.name} vessel={vessel} />)}</div>
+      </section>
+      <section className={s.rosterSection}>
+        <SectionHeader icon={Anchor} title="연승선" count={roster.longline.length} countLabel={`${roster.longline.length}척 보고`} summary="최신 일일보고 원문 상세" />
+        {roster.longline.length === 0 ? <p className={s.emptyRoster}>최신 원문에 연승선 상세가 없어 표시하지 않습니다.</p> : <div className={s.latestRosterCards}>{roster.longline.map((vessel) => <LonglineCard key={vessel.name} vessel={vessel} />)}</div>}
+      </section>
+      <section className={s.rosterSection}>
+        <SectionHeader icon={Package} title="운반선·컨테이너" count={roster.carrier.length} countLabel={`${roster.carrier.length}건`} summary={`선적 ${formatMt(detail.carrier.loadedTotalMt)} (MT) · 예상잔량 ${formatMt(detail.carrier.expectedRemainingMt)} (MT) · ${detail.asOf}`} />
+        <div className={s.latestRosterCards}>{roster.carrier.map((vessel) => <CarrierCard key={vessel.name} vessel={vessel} />)}</div>
+      </section>
+    </div>
   );
 }

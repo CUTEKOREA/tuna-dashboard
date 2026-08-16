@@ -1,0 +1,81 @@
+{
+  "_meta": {
+    "schemaVersion": 1,
+    "reportCount": 135,
+    "firstReportDate": "2026-01-16",
+    "latestReportDate": "2026-08-14",
+    "latestAsOf": "2026-08-13",
+    "detailSha256": "8180d52a1a9856cf0a33bfb1ddfaec0a115217e33b5258c3fb91012b852fd66f"
+  },
+  "latest": {
+    "reportDate": "2026-08-14",
+    "asOf": "2026-08-13",
+    "pacific": {
+      "asOf": "2026-08-13",
+      "dailyMt": 130,
+      "monthlyMt": 1947,
+      "annualMt": 46779.8
+    },
+    "atlantic": {
+      "asOf": "2026-08-13",
+      "dailyMt": 205,
+      "monthlyMt": 2010,
+      "annualMt": 28735
+    },
+    "carrier": {
+      "loadedTotalMt": 9922.3,
+      "expectedRemainingMt": 7887.7
+    }
+  },
+  "deltas": {
+    "pacificDailyMt": 45,
+    "atlanticDailyMt": 35,
+    "totalDailyMt": 80
+  },
+  "reconciliation": {
+    "pacificDaily": {
+      "reportedMt": 130,
+      "rowsMt": null,
+      "matches": null,
+      "missingCount": 9
+    },
+    "atlanticDaily": {
+      "reportedMt": 205,
+      "rowsMt": null,
+      "matches": null,
+      "missingCount": 3
+    },
+    "carrierLoaded": {
+      "reportedMt": 9922.3,
+      "rowsMt": null,
+      "matches": null,
+      "missingCount": 1
+    },
+    "carrierExpectedRemaining": {
+      "reportedMt": 7887.7,
+      "rowsMt": null,
+      "matches": null,
+      "missingCount": 5
+    },
+    "valid": false,
+    "unavailableCount": 4,
+    "issueCount": 0
+  },
+  "quality": {
+    "counts": {
+      "reconciliationChecks": 540,
+      "reconciliationCompleteChecks": 30,
+      "reconciliationUnavailableChecks": 510,
+      "reconciliationUnavailableDocuments": 135,
+      "reconciliationIssues": 9,
+      "reconciliationDocuments": 8,
+      "reconciliationPartialDifferences": 14,
+      "reconciliationPartialDifferenceDocuments": 12,
+      "duplicateVesselRows": 4,
+      "coordinateFormatIssues": 6,
+      "longlineSectionMissing": 13
+    },
+    "incompletePartialDifferences": 5,
+    "incompletePartialDifferenceDocuments": 5
+  }
+}
