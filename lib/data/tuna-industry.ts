@@ -128,6 +128,8 @@ export interface IndustryWidget {
   syncDate?: string | null;
   /** 데이터가 끝나는 연도. 기관마다 공표 주기가 달라 위젯끼리 어긋나므로 화면에 드러낸다 */
   dataYear?: number | null;
+  /** 원본에 현황·실행지침이 없어 이 페이지가 데이터에서 끌어내 채운 경우 true */
+  narrativeFilled?: boolean;
   telemetry: 'SYNCED';
   data: IndustryRow[];
   lines?: IndustrySeries[] | null;
