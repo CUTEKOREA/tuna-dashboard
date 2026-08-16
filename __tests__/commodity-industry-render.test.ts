@@ -9,6 +9,8 @@
  *   3. 본문 수치와 집계 JSON 이 어긋났다
  *      → 핵심 수치를 JSON 에서 다시 계산해 본문 문자열과 맞춘다
  */
+import { readFileSync } from 'node:fs';
+import { join } from 'node:path';
 import React from 'react';
 import { renderToStaticMarkup } from 'react-dom/server';
 import { describe, expect, it } from 'vitest';
@@ -169,6 +171,14 @@ describe('시장 이해 3품목 — 렌더', () => {
     const html = renderToStaticMarkup(page.render());
     expect(html).toContain('30초 브리핑');
     expect(html).toContain('출처와 한계');
+    expect(html).toMatch(/data-commodity="(mackerel|whelk|shrimp)"/);
+  });
+
+  it('새우 01단계는 차트 둘을 2열 격자에 둔다', () => {
+    const html = renderToStaticMarkup(React.createElement(ShrimpIndustryDashboard));
+    expect(html).toContain('catchGrid');
+    expect(html).toContain('양식과 자연산 75년');
+    expect(html).toContain('생산 방식별 규모');
   });
 
   // 오징어에서 겪은 사고를 그대로 막는 검사다.
@@ -181,6 +191,16 @@ describe('시장 이해 3품목 — 렌더', () => {
         expect(key).toMatch(/^[sx]\d\d$/);
       }
     }
+  });
+
+  it('고등어·골뱅이·새우 액센트 스코프가 CSS에 있다', () => {
+    const css = readFileSync(
+      join(process.cwd(), 'components/market-understanding/TunaIndustryDashboard.module.css'),
+      'utf8',
+    );
+    expect(css).toContain("data-commodity='mackerel'");
+    expect(css).toContain("data-commodity='whelk'");
+    expect(css).toContain("data-commodity='shrimp'");
   });
 });
 

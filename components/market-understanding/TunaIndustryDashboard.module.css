@@ -74,6 +74,42 @@
   --mu-hover: rgba(109, 40, 217, 0.08);
 }
 
+.page[data-commodity='mackerel'] {
+  --mu-accent: #38bdf8;
+  --mu-accent-deep: #0e7490;
+  --mu-hover: rgba(14, 116, 144, 0.1);
+}
+
+:global([data-v3='light']) .page[data-commodity='mackerel'] {
+  --mu-accent: #0e7490;
+  --mu-accent-deep: #155e75;
+  --mu-hover: rgba(14, 116, 144, 0.08);
+}
+
+.page[data-commodity='whelk'] {
+  --mu-accent: #f59e0b;
+  --mu-accent-deep: #92400e;
+  --mu-hover: rgba(146, 64, 14, 0.12);
+}
+
+:global([data-v3='light']) .page[data-commodity='whelk'] {
+  --mu-accent: #b45309;
+  --mu-accent-deep: #78350f;
+  --mu-hover: rgba(180, 83, 9, 0.08);
+}
+
+.page[data-commodity='shrimp'] {
+  --mu-accent: #2dd4bf;
+  --mu-accent-deep: #0d9488;
+  --mu-hover: rgba(13, 148, 136, 0.12);
+}
+
+:global([data-v3='light']) .page[data-commodity='shrimp'] {
+  --mu-accent: #0f766e;
+  --mu-accent-deep: #115e59;
+  --mu-hover: rgba(15, 118, 110, 0.08);
+}
+
 /* ─── 30초 브리핑 ─────────────────────────────────────────────── */
 
 .briefing {
