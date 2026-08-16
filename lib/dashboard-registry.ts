@@ -1,4 +1,4 @@
-export type DashboardSection = 'operation' | 'fishery' | 'strategy' | 'agriculture' | 'livestock';
+export type DashboardSection = 'operation' | 'understanding' | 'fishery' | 'strategy' | 'agriculture' | 'livestock';
 export type DashboardAccent = 'cyan' | 'emerald' | 'gold' | 'rose';
 export type SidebarIconKey =
   | 'Anchor'
@@ -43,7 +43,9 @@ export const DASHBOARD_MENU_CONFIGS = [
   { key: 'panofi', title: '파노피', section: 'operation', accent: 'cyan', sidebar: { icon: 'Ship' } },
   { key: 'cosmo', title: '코스모', section: 'operation', accent: 'cyan', sidebar: { icon: 'Hexagon' } },
   { key: 'bangkok-office', title: '방콕사무소', section: 'operation', accent: 'cyan', requiresOperationAccess: true, sidebar: { icon: 'Factory' } },
+  { key: 'gmts', title: 'GMTS 주간보고', section: 'operation', accent: 'cyan', requiresOperationAccess: true, sidebar: { icon: 'Factory', label: 'GMTS' } },
   { key: 'mail', title: '메일', section: 'operation', accent: 'cyan', requiresAdminAccess: true, sidebar: { icon: 'Mail' } },
+  { key: 'tuna-industry', title: '참치', section: 'understanding', accent: 'cyan', sidebar: { icon: 'Fish' } },
   { key: 'pork', title: '돼지고기', section: 'livestock', accent: 'cyan', sidebar: { icon: 'Hexagon', suffix: 'Pork' } },
   { key: 'cross-intelligence', title: '통합 인텔리전스', section: 'strategy', accent: 'gold', sidebar: { icon: 'BarChart2', suffix: 'Cross' } },
   { key: 'purse-seiner-db', title: '선망선 DB', section: 'strategy', accent: 'cyan' },
@@ -76,6 +78,7 @@ export interface DashboardCommand {
 
 const SECTION_LABELS: Record<DashboardSection, string> = {
   operation: '실시간 운영',
+  understanding: '시장 이해',
   fishery: '어종별 인텔리전스',
   strategy: '전략 분석',
   agriculture: '농산물 인텔리전스',
@@ -84,6 +87,7 @@ const SECTION_LABELS: Record<DashboardSection, string> = {
 
 const SIDEBAR_SECTION_TITLES: Record<DashboardSection, string> = {
   operation: '📡 실시간 운영',
+  understanding: '📚 시장 이해',
   fishery: '🐟 어종별 인텔리전스',
   strategy: '🔬 전략 분석',
   agriculture: '🌾 농산물 인텔리전스',
@@ -92,6 +96,7 @@ const SIDEBAR_SECTION_TITLES: Record<DashboardSection, string> = {
 
 const SIDEBAR_SECTION_ORDER: readonly DashboardSection[] = [
   'operation',
+  'understanding',
   'fishery',
   'strategy',
   'agriculture',
@@ -162,12 +167,15 @@ export const DASHBOARD_PANEL_ORDER = [
   'panofi',
   'cosmo',
   'bangkok-office',
+  'gmts',
   'mail',
   'purse-seiner-db',
+  'tuna-industry',
 ] as const satisfies readonly ActiveMenu[];
 
 const SIDEBAR_SECTION_KEYS: Record<DashboardSection, readonly ActiveMenu[]> = {
-  operation: ['market', 'fleet', 'unloading', 'logistics', 'panofi', 'cosmo', 'bangkok-office', 'mail'],
+  operation: ['market', 'fleet', 'unloading', 'logistics', 'panofi', 'cosmo', 'bangkok-office', 'gmts', 'mail'],
+  understanding: ['tuna-industry'],
   fishery: [],
   strategy: [
   ],

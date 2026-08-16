@@ -10,6 +10,7 @@
     "simulate": "node scripts/simulate_webhooks.js",
     "sync:consignment": "node --disable-warning=MODULE_TYPELESS_PACKAGE_JSON scripts/sync_consignment_data.ts",
     "sync:briefing": "python3 scripts/sync_daily_briefing.py",
+    "sync:gmts": "python3 scripts/build_gmts_dashboard.py",
     "sync:bangkok": "bash scripts/sync_bangkok_report.sh",
     "sync:fleet-daily": "python3 scripts/sync_fleet_daily_reports.py",
     "test:fleet-daily-sync": "python3 scripts/test_sync_fleet_daily_reports.py",

@@ -214,9 +214,31 @@ function findHistoryChunkPath() {
 }
 
 async function unlock(page) {
-  await page.evaluateOnNewDocument(() => {
-    sessionStorage.setItem('silla-operation-access', 'granted');
+  const operationPassword = process.env.SILLA_OPERATION_PASSWORD;
+  assert.ok(operationPassword, 'E2E operation password is required');
+
+  await page.goto(`${appOrigin}/api/operation-access`, { waitUntil: 'networkidle0' });
+  const login = await page.evaluate(async (password) => {
+    const response = await fetch('/api/operation-access', {
+      method: 'POST',
+      credentials: 'same-origin',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ password }),
+    });
+    const body = await response.json();
+    return { status: response.status, granted: body.granted };
+  }, operationPassword);
+  assert.deepEqual(login, { status: 200, granted: true });
+
+  const verified = await page.evaluate(async () => {
+    const response = await fetch('/api/operation-access', {
+      cache: 'no-store',
+      credentials: 'same-origin',
+    });
+    const body = await response.json();
+    return { status: response.status, granted: body.granted };
   });
+  assert.deepEqual(verified, { status: 200, granted: true });
 }
 
 async function waitForText(page, selector, pattern) {

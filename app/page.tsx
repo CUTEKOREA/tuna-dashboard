@@ -46,10 +46,11 @@ const PurseSeinerDashboard = dynamic(() => import('../components/PurseSeinerDash
 const PanofiDashboard = dynamic(() => import('../components/panofi/PanofiDashboard'));
 const CosmoDashboard = dynamic(() => import('../components/cosmo/CosmoDashboard'));
 const BangkokDashboard = dynamic(() => import('../components/bangkok/BangkokDashboard'));
+const GmtsDashboard = dynamic(() => import('../components/gmts/GmtsDashboard'));
 const MailInboxDashboard = dynamic(() => import('../components/MailInboxDashboard'));
+const TunaIndustryDashboard = dynamic(() => import('../components/market-understanding/TunaIndustryDashboard'));
 
 const OPERATION_ACCESS_STORAGE_KEY = 'silla-operation-access';
-const OPERATION_PASSWORD = 'a34349900';
 const INSTITUTIONAL_MENU_KEYS = new Set<ActiveMenu>([
   'market',
   'fleet',
@@ -98,12 +99,11 @@ export default function Home() {
     if (path && isActiveMenu(path)) return path;
     return 'market';
   }, [pathname]);
-  const [operationAccessGranted, setOperationAccessGranted] = useState(() => {
-    if (typeof window === 'undefined') return false;
-    return window.sessionStorage.getItem(OPERATION_ACCESS_STORAGE_KEY) === 'granted';
-  });
+  const [operationAccessGranted, setOperationAccessGranted] = useState(false);
+  const [operationAccessChecking, setOperationAccessChecking] = useState(true);
   const [operationPassword, setOperationPassword] = useState('');
   const [operationAuthError, setOperationAuthError] = useState('');
+  const [operationAuthLoading, setOperationAuthLoading] = useState(false);
   const [isSignUp, setIsSignUp] = useState(false);
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
@@ -118,6 +118,44 @@ export default function Home() {
   
   // Mobile sidebar state
   const [isMobileSidebarOpen, setIsMobileSidebarOpen] = useState(false);
+
+  useEffect(() => {
+    let cancelled = false;
+    const storedAccess = window.sessionStorage.getItem(OPERATION_ACCESS_STORAGE_KEY) === 'granted';
+    const isLocalHost = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
+
+    // 로컬 브라우저 QA는 기존 sessionStorage 주입 방식을 유지한다.
+    if (storedAccess && isLocalHost && process.env.NODE_ENV === 'development') {
+      setOperationAccessGranted(true);
+      setOperationAccessChecking(false);
+      return;
+    }
+
+    fetch('/api/operation-access', { cache: 'no-store', credentials: 'same-origin' })
+      .then((response) => response.json())
+      .then((data) => {
+        if (cancelled) return;
+        const granted = data?.granted === true;
+        setOperationAccessGranted(granted);
+        if (granted) {
+          window.sessionStorage.setItem(OPERATION_ACCESS_STORAGE_KEY, 'granted');
+        } else {
+          window.sessionStorage.removeItem(OPERATION_ACCESS_STORAGE_KEY);
+        }
+      })
+      .catch(() => {
+        if (cancelled) return;
+        window.sessionStorage.removeItem(OPERATION_ACCESS_STORAGE_KEY);
+        setOperationAccessGranted(false);
+      })
+      .finally(() => {
+        if (!cancelled) setOperationAccessChecking(false);
+      });
+
+    return () => {
+      cancelled = true;
+    };
+  }, []);
 
   const navigateToMenu = React.useCallback((menu: ActiveMenu) => {
     setOperationAuthError('');
@@ -226,24 +264,75 @@ export default function Home() {
     setAuthLoading(false);
   };
 
-  const handleOperationPasswordSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleOperationPasswordSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    if (operationPassword.trim() !== OPERATION_PASSWORD) {
-      setOperationAuthError('비밀번호를 다시 확인해주세요.');
-      return;
-    }
-
-    window.sessionStorage.setItem(OPERATION_ACCESS_STORAGE_KEY, 'granted');
-    setOperationAccessGranted(true);
+    setOperationAuthLoading(true);
     setOperationAuthError('');
-    setOperationPassword('');
+    try {
+      const response = await fetch('/api/operation-access', {
+        method: 'POST',
+        credentials: 'same-origin',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ password: operationPassword }),
+      });
+      const result = await response.json().catch(() => null);
+      if (!response.ok || result?.granted !== true) {
+        setOperationAuthError(result?.error || '비밀번호를 다시 확인해주세요.');
+        return;
+      }
+
+      const verificationResponse = await fetch('/api/operation-access', {
+        cache: 'no-store',
+        credentials: 'same-origin',
+      });
+      const verification = await verificationResponse.json().catch(() => null);
+      if (!verificationResponse.ok || verification?.granted !== true) {
+        setOperationAuthError('브라우저에서 접속 권한을 저장하지 못했습니다. 쿠키 설정을 확인해주세요.');
+        return;
+      }
+
+      window.sessionStorage.setItem(OPERATION_ACCESS_STORAGE_KEY, 'granted');
+      setOperationAccessGranted(true);
+      setOperationPassword('');
+    } catch {
+      setOperationAuthError('접속 권한을 확인하지 못했습니다. 다시 시도해주세요.');
+    } finally {
+      setOperationAuthLoading(false);
+    }
   };
 
-  const handleOperationLock = () => {
-    window.sessionStorage.removeItem(OPERATION_ACCESS_STORAGE_KEY);
-    setOperationAccessGranted(false);
-    setOperationPassword('');
+  const handleOperationLock = async () => {
+    setOperationAuthLoading(true);
     setOperationAuthError('');
+    try {
+      const response = await fetch('/api/operation-access', {
+        method: 'DELETE',
+        credentials: 'same-origin',
+      });
+      const result = await response.json().catch(() => null);
+      if (!response.ok || result?.granted !== false) {
+        setOperationAuthError('서버 잠금을 완료하지 못했습니다. 네트워크를 확인한 뒤 다시 눌러주세요.');
+        return;
+      }
+
+      const verificationResponse = await fetch('/api/operation-access', {
+        cache: 'no-store',
+        credentials: 'same-origin',
+      });
+      const verification = await verificationResponse.json().catch(() => null);
+      if (!verificationResponse.ok || verification?.granted !== false) {
+        setOperationAuthError('브라우저 잠금 상태를 확인하지 못했습니다. 다시 눌러주세요.');
+        return;
+      }
+
+      window.sessionStorage.removeItem(OPERATION_ACCESS_STORAGE_KEY);
+      setOperationAccessGranted(false);
+      setOperationPassword('');
+    } catch {
+      setOperationAuthError('서버 잠금을 확인하지 못했습니다. 다시 시도해주세요.');
+    } finally {
+      setOperationAuthLoading(false);
+    }
   };
 
   const toggleTheme = React.useCallback(() => {
@@ -308,8 +397,10 @@ export default function Home() {
     panofi: <PanofiDashboard />,
     cosmo: <CosmoDashboard />,
     'bangkok-office': <BangkokDashboard />,
+    gmts: <GmtsDashboard />,
     mail: mailAdminVisible ? <MailInboxDashboard /> : null,
     'purse-seiner-db': <PurseSeinerDashboard />,
+    'tuna-industry': <TunaIndustryDashboard />,
   };
   const heroTeaserPanels: Partial<Record<ActiveMenu, React.ReactNode>> = {
     market: <MarketDashboard heroOnly />,
@@ -322,6 +413,7 @@ export default function Home() {
     panofi: <PanofiDashboard heroOnly />,
     cosmo: <CosmoDashboard heroOnly />,
     'bangkok-office': <BangkokDashboard heroOnly />,
+    gmts: <GmtsDashboard heroOnly />,
   };
 
   return (
@@ -403,26 +495,36 @@ export default function Home() {
 
         {/* Operational access state */}
         {operationAccessGranted ? (
-          <button
-            onClick={handleOperationLock}
-            style={{
-              fontSize: '12px',
-              padding: '10px 12px',
-              backgroundColor: 'rgba(239, 68, 68, 0.05)',
-              border: '1px solid rgba(239, 68, 68, 0.35)',
-              borderRadius: '8px',
-              color: 'var(--accent-danger)',
-              cursor: 'pointer',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              gap: '8px',
-              width: '100%',
-              marginTop: '1rem'
-            }}
-          >
-            <Lock size={14} /> 전체 메뉴 잠금
-          </button>
+          <>
+            <button
+              type="button"
+              onClick={handleOperationLock}
+              disabled={operationAuthLoading}
+              style={{
+                fontSize: '12px',
+                padding: '10px 12px',
+                backgroundColor: 'rgba(239, 68, 68, 0.05)',
+                border: '1px solid rgba(239, 68, 68, 0.35)',
+                borderRadius: '8px',
+                color: 'var(--accent-danger)',
+                cursor: operationAuthLoading ? 'wait' : 'pointer',
+                opacity: operationAuthLoading ? 0.7 : 1,
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                gap: '8px',
+                width: '100%',
+                marginTop: '1rem'
+              }}
+            >
+              <Lock size={14} /> {operationAuthLoading ? '잠금 확인 중...' : '전체 메뉴 잠금'}
+            </button>
+            {operationAuthError && (
+              <div role="alert" style={{ color: 'var(--accent-danger)', fontSize: '11px', lineHeight: 1.5, marginTop: '8px' }}>
+                {operationAuthError}
+              </div>
+            )}
+          </>
         ) : (
           <div style={{ fontSize: '12px', color: 'var(--text-muted)', textAlign: 'center', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '6px', marginTop: '1rem' }}>
             <Lock size={14} /> 전체 메뉴 잠김
@@ -449,6 +551,19 @@ export default function Home() {
           ) : session ? (
           <>
           {isOperationMenuLocked && (
+            operationAccessChecking ? (
+              <div style={{
+                minHeight: 'calc(100vh - 80px)',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                gap: '10px',
+                color: 'var(--text-muted)',
+                fontSize: '14px'
+              }}>
+                <Activity size={16} /> 메뉴 접근 권한 확인 중...
+              </div>
+            ) : (
             <>
             {heroTeaserPanels[activeMenu]}
             <div className={styles.landingOverlay} style={{ position: 'relative', inset: 'auto', justifyContent: 'center', minHeight: 'calc(100vh - 80px)', padding: 'clamp(32px, 8vh, 92px) var(--space-4)' }}>
@@ -464,10 +579,11 @@ export default function Home() {
                 <form onSubmit={handleOperationPasswordSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '14px' }}>
                   <input
                     type="password"
-                    inputMode="numeric"
+                    autoComplete="current-password"
                     placeholder="메뉴 비밀번호"
                     value={operationPassword}
                     onChange={(e) => setOperationPassword(e.target.value)}
+                    disabled={operationAuthLoading}
                     autoFocus
                     style={{
                       padding: '12px 14px',
@@ -488,6 +604,7 @@ export default function Home() {
                   )}
                   <button
                     type="submit"
+                    disabled={operationAuthLoading}
                     style={{
                       padding: '14px',
                       borderRadius: '8px',
@@ -496,7 +613,8 @@ export default function Home() {
                       fontWeight: 'bold',
                       fontSize: '14px',
                       border: 'none',
-                      cursor: 'pointer',
+                      cursor: operationAuthLoading ? 'wait' : 'pointer',
+                      opacity: operationAuthLoading ? 0.7 : 1,
                       marginTop: '8px',
                       transition: 'background-color 0.2s, transform 0.1s'
                     }}
@@ -504,7 +622,7 @@ export default function Home() {
                     onMouseUp={(e) => e.currentTarget.style.transform = 'scale(1)'}
                     onMouseLeave={(e) => e.currentTarget.style.transform = 'scale(1)'}
                   >
-                    확인
+                    {operationAuthLoading ? '확인 중...' : '확인'}
                   </button>
                 </form>
 
@@ -514,6 +632,7 @@ export default function Home() {
               </div>
             </div>
             </>
+            )
           )}
 
           {!isOperationMenuLocked && activeMenu === 'market' && (

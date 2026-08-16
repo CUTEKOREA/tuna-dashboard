@@ -9,6 +9,17 @@ const PRECACHE = [
   '/icons/icon-512.png',
 ];
 
+const NEVER_CACHE_API_PATHS = new Set([
+  '/api/operation-access',
+  '/api/atuna-prices',
+]);
+
+function isApiResponseCacheable(response) {
+  if (!response.ok) return false;
+  const cacheControl = (response.headers.get('cache-control') || '').toLowerCase();
+  return !cacheControl.includes('no-store') && !cacheControl.includes('private');
+}
+
 self.addEventListener('install', (event) => {
   event.waitUntil(
     caches.open(STATIC_CACHE).then((cache) => cache.addAll(PRECACHE)).then(() => self.skipWaiting())
@@ -38,22 +49,29 @@ self.addEventListener('fetch', (event) => {
   if (url.pathname.startsWith('/_next/webpack-hmr')) return;
   if (url.search.includes('__nextDevBrowserId')) return;
 
-  // 인증 데이터는 CacheStorage에 쓰거나 과거 응답으로 대체하지 않는다.
-  if (url.pathname.startsWith('/api/fleet/') || url.pathname.startsWith('/api/mail/')) {
+  // 인증·유료 원장 API는 네트워크 응답만 사용하고 CacheStorage에 남기지 않는다.
+  if (
+    NEVER_CACHE_API_PATHS.has(url.pathname)
+    || url.pathname.startsWith('/api/fleet/')
+    || url.pathname.startsWith('/api/mail/')
+  ) {
     event.respondWith(fetch(request));
     return;
   }
 
-  // API: network-first, fall back to stale cache (Telemetry stays usable offline)
+  // API: 공개 캐시 가능 응답만 network-first + stale fallback을 허용한다.
   if (url.pathname.startsWith('/api/')) {
     event.respondWith(
       fetch(request)
         .then((res) => {
-          if (res.ok) {
+          let cacheWork;
+          if (isApiResponseCacheable(res)) {
             const copy = res.clone();
-            caches.open(API_CACHE).then((c) => c.put(request, copy));
+            cacheWork = caches.open(API_CACHE).then((c) => c.put(request, copy));
+          } else {
+            cacheWork = caches.open(API_CACHE).then((c) => c.delete(request));
           }
-          return res;
+          return cacheWork.catch(() => undefined).then(() => res);
         })
         .catch(() => caches.match(request))
     );

@@ -1,0 +1,579 @@
+/* 「시장 이해 > 참치」 스타일
+ *
+ * 색은 전부 지역 토큰(--mu-*)으로 받는다. 기본값은 다크 셸 기준이고,
+ * [data-v3='light'] 안에서 라이트 값으로 뒤집힌다 — 전역 globals.css 의 규약과 같다.
+ * 하드코딩 hex 는 차트 시리즈 색(양쪽에서 모두 읽히는 값)에만 쓴다.
+ */
+
+.page {
+  --mu-ink: #f1f5f9;
+  --mu-ink-soft: #cbd5e1;
+  --mu-ink-muted: #94a3b8;
+  --mu-surface: rgba(20, 28, 52, 0.55);
+  --mu-surface-2: rgba(20, 28, 52, 0.3);
+  --mu-line: rgba(140, 170, 255, 0.16);
+  --mu-accent: #38bdf8;
+  --mu-accent-deep: #0e7490;
+  --mu-canned: #0ea5e9;
+  --mu-sashimi: #e11d48;
+  --mu-axis: #94a3b8;
+  --mu-grid: rgba(148, 163, 184, 0.22);
+  --mu-hover: rgba(56, 189, 248, 0.08);
+  /* 출처 신뢰도 배지 — 다크 지면에서 읽히는 밝은 값 */
+  --mu-grade-a-bg: rgba(16, 185, 129, 0.18);
+  --mu-grade-a-ink: #6ee7b7;
+  --mu-grade-b-bg: rgba(245, 158, 11, 0.18);
+  --mu-grade-b-ink: #fcd34d;
+  --mu-grade-c-bg: rgba(148, 163, 184, 0.2);
+  --mu-grade-c-ink: #cbd5e1;
+
+  display: flex;
+  flex-direction: column;
+  gap: 1.75rem;
+  color: var(--mu-ink);
+}
+
+:global([data-v3='light']) .page {
+  --mu-ink: #0f172a;
+  --mu-ink-soft: #334155;
+  --mu-ink-muted: #64748b;
+  --mu-surface: #ffffff;
+  --mu-surface-2: #f1f5f9;
+  --mu-line: #e2e8f0;
+  --mu-accent: #0284c7;
+  --mu-accent-deep: #0e7490;
+  --mu-canned: #0284c7;
+  --mu-sashimi: #be123c;
+  --mu-axis: #64748b;
+  --mu-grid: rgba(100, 116, 139, 0.2);
+  --mu-hover: rgba(2, 132, 199, 0.07);
+  /* 라이트 지면에서는 같은 배지를 어둡게 뒤집는다 */
+  --mu-grade-a-bg: rgba(5, 150, 105, 0.14);
+  --mu-grade-a-ink: #047857;
+  --mu-grade-b-bg: rgba(245, 158, 11, 0.16);
+  --mu-grade-b-ink: #b45309;
+  --mu-grade-c-bg: rgba(100, 116, 139, 0.16);
+  --mu-grade-c-ink: #475569;
+}
+
+/* ─── 30초 브리핑 ─────────────────────────────────────────────── */
+
+.briefing {
+  background: var(--mu-surface);
+  border: 1px solid var(--mu-line);
+  border-radius: 16px;
+  padding: 1.5rem;
+}
+
+.briefingHeading {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin: 0 0 0.35rem;
+  font-size: 1.0625rem;
+  font-weight: 700;
+  color: var(--mu-ink);
+}
+
+.briefingIntro {
+  margin: 0 0 1rem;
+  font-size: 0.8125rem;
+  color: var(--mu-ink-muted);
+}
+
+.briefingList {
+  display: grid;
+  gap: 0.75rem;
+  margin: 0;
+  padding-left: 1.25rem;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+}
+
+.briefingList li {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  padding-left: 0.25rem;
+}
+
+.briefingList strong {
+  font-size: 0.9375rem;
+  color: var(--mu-ink);
+}
+
+.briefingList span {
+  font-size: 0.8125rem;
+  line-height: 1.7;
+  color: var(--mu-ink-soft);
+}
+
+/* ─── 분기도 ──────────────────────────────────────────────────── */
+
+.spineFigure {
+  margin: 0;
+  background: var(--mu-surface);
+  border: 1px solid var(--mu-line);
+  border-radius: 16px;
+  padding: 1.25rem 1.25rem 0.75rem;
+}
+
+.spineCaption {
+  margin-bottom: 0.75rem;
+  font-size: 0.8125rem;
+  color: var(--mu-ink-muted);
+}
+
+.spineScroll {
+  overflow-x: auto;
+}
+
+.spineSvg {
+  display: block;
+  width: 100%;
+  min-width: 900px;
+  height: auto;
+}
+
+.spineLaneLabel {
+  font-size: 12px;
+  font-weight: 700;
+  fill: var(--mu-ink-muted);
+}
+
+.spineNumeral {
+  font-size: 13px;
+  font-weight: 700;
+  text-anchor: middle;
+  fill: var(--mu-accent);
+  font-variant-numeric: tabular-nums;
+}
+
+.spineStageLabel {
+  font-size: 12.5px;
+  text-anchor: middle;
+  fill: var(--mu-ink-soft);
+}
+
+.spineBoxText {
+  font-size: 11.5px;
+  text-anchor: middle;
+  fill: var(--mu-ink);
+}
+
+.spineBoxCanned,
+.spineBoxSashimi,
+.spineBoxBoth {
+  fill: var(--mu-surface-2);
+  stroke-width: 1.5;
+}
+
+.spineBoxCanned {
+  stroke: var(--mu-canned);
+}
+
+.spineBoxSashimi {
+  stroke: var(--mu-sashimi);
+}
+
+.spineBoxBoth {
+  stroke: var(--mu-accent-deep);
+}
+
+.spineLinkCanned,
+.spineLinkSashimi {
+  fill: none;
+  stroke-width: 2;
+}
+
+.spineLinkCanned {
+  stroke: var(--mu-canned);
+  opacity: 0.55;
+}
+
+.spineLinkSashimi {
+  stroke: var(--mu-sashimi);
+  opacity: 0.55;
+}
+
+.spineNode,
+.spineNodeActive {
+  cursor: pointer;
+}
+
+/* SVG 요소의 outline 은 브라우저마다 그려주지 않는다. 포커스는 상자 테두리로도 보이게 한다. */
+.spineNode:focus-visible,
+.spineNodeActive:focus-visible {
+  outline: 2px solid var(--mu-accent);
+  outline-offset: 3px;
+}
+
+.spineNode:focus-visible .spineBoxCanned,
+.spineNode:focus-visible .spineBoxSashimi,
+.spineNode:focus-visible .spineBoxBoth,
+.spineNodeActive:focus-visible .spineBoxCanned,
+.spineNodeActive:focus-visible .spineBoxSashimi,
+.spineNodeActive:focus-visible .spineBoxBoth {
+  stroke: var(--mu-accent);
+  stroke-width: 3;
+  fill: var(--mu-hover);
+}
+
+.spineNode:hover .spineBoxCanned,
+.spineNode:hover .spineBoxSashimi,
+.spineNode:hover .spineBoxBoth {
+  fill: var(--mu-hover);
+}
+
+.spineNodeActive .spineBoxCanned,
+.spineNodeActive .spineBoxSashimi,
+.spineNodeActive .spineBoxBoth {
+  fill: var(--mu-hover);
+  stroke-width: 2.5;
+}
+
+.spineNodeActive .spineNumeral {
+  fill: var(--mu-sashimi);
+}
+
+/* ─── 탭 ──────────────────────────────────────────────────────── */
+
+.tabNav {
+  overflow-x: auto;
+  padding-bottom: 0.25rem;
+}
+
+/* ─── 단계 본문 ───────────────────────────────────────────────── */
+
+.stage {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.stageHeader {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.875rem;
+}
+
+.stageNumeral {
+  flex: 0 0 auto;
+  min-width: 2.75rem;
+  padding: 0.375rem 0.5rem;
+  border-radius: 10px;
+  background: var(--mu-surface-2);
+  border: 1px solid var(--mu-line);
+  color: var(--mu-accent);
+  font-size: 1.125rem;
+  font-weight: 700;
+  text-align: center;
+  font-variant-numeric: tabular-nums;
+}
+
+.stageTitle {
+  margin: 0;
+  font-size: 1.375rem;
+  font-weight: 700;
+  color: var(--mu-ink);
+  text-wrap: balance;
+}
+
+.stageQuestion {
+  margin: 0.25rem 0 0;
+  font-size: 0.875rem;
+  color: var(--mu-ink-muted);
+}
+
+.lede {
+  margin: 0;
+  padding-left: 0.875rem;
+  border-left: 3px solid var(--mu-accent);
+  font-size: 1rem;
+  line-height: 1.8;
+  color: var(--mu-ink);
+  text-wrap: pretty;
+}
+
+.prose {
+  display: flex;
+  flex-direction: column;
+  gap: 0.875rem;
+  max-width: 74ch;
+}
+
+.prose p {
+  margin: 0;
+  font-size: 0.9375rem;
+  line-height: 1.9;
+  color: var(--mu-ink-soft);
+  text-wrap: pretty;
+}
+
+.prose strong {
+  color: var(--mu-ink);
+}
+
+/* ─── 용어 ────────────────────────────────────────────────────── */
+
+.termRow {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.termRowLabel {
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: var(--mu-ink-muted);
+}
+
+.termChip {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.25rem 0.625rem;
+  border-radius: 999px;
+  background: var(--mu-surface-2);
+  border: 1px solid var(--mu-line);
+  font-size: 0.8125rem;
+  color: var(--mu-ink);
+}
+
+/* ─── 사실 표 ─────────────────────────────────────────────────── */
+
+.factWrap {
+  overflow-x: auto;
+  border: 1px solid var(--mu-line);
+  border-radius: 14px;
+  background: var(--mu-surface);
+}
+
+.factTable {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.8125rem;
+  font-variant-numeric: tabular-nums;
+}
+
+.factCaption {
+  padding: 0.875rem 1rem 0.5rem;
+  text-align: left;
+  font-size: 0.75rem;
+  color: var(--mu-ink-muted);
+}
+
+.factTable th,
+.factTable td {
+  padding: 0.625rem 1rem;
+  text-align: left;
+  vertical-align: top;
+  border-top: 1px solid var(--mu-line);
+}
+
+.factTable thead th {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--mu-ink-muted);
+  white-space: nowrap;
+}
+
+.factTable tbody th {
+  font-weight: 600;
+  color: var(--mu-ink);
+  min-width: 12rem;
+}
+
+.factNote {
+  display: block;
+  margin-top: 0.25rem;
+  font-size: 0.75rem;
+  font-weight: 400;
+  line-height: 1.6;
+  color: var(--mu-ink-muted);
+}
+
+.factValue {
+  color: var(--mu-ink);
+  font-weight: 600;
+}
+
+.factTable td {
+  color: var(--mu-ink-soft);
+}
+
+.grade {
+  display: inline-block;
+  min-width: 1.5rem;
+  padding: 0.125rem 0.375rem;
+  border-radius: 6px;
+  text-align: center;
+  font-size: 0.6875rem;
+  font-weight: 700;
+}
+
+.grade[data-grade='A'] {
+  background: var(--mu-grade-a-bg);
+  color: var(--mu-grade-a-ink);
+}
+
+.grade[data-grade='B'] {
+  background: var(--mu-grade-b-bg);
+  color: var(--mu-grade-b-ink);
+}
+
+.grade[data-grade='C'] {
+  background: var(--mu-grade-c-bg);
+  color: var(--mu-grade-c-ink);
+}
+
+/* ─── FishStat 전용 차트 ──────────────────────────────────────── */
+
+.catchFigure {
+  margin: 0;
+  padding: 1.125rem 1.25rem 0.75rem;
+  background: var(--mu-surface);
+  border: 1px solid var(--mu-line);
+  border-radius: 16px;
+}
+
+.catchCaption {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem 0.75rem;
+  margin-bottom: 0.875rem;
+}
+
+.catchCaption strong {
+  font-size: 0.9375rem;
+  color: var(--mu-ink);
+}
+
+.catchCaption span {
+  flex: 1 1 18rem;
+  font-size: 0.75rem;
+  line-height: 1.7;
+  color: var(--mu-ink-muted);
+}
+
+.chartEmpty {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 8rem;
+  font-size: 0.8125rem;
+  color: var(--mu-ink-muted);
+}
+
+/* ─── 위젯 격자 ───────────────────────────────────────────────── */
+
+.widgetGrid {
+  display: grid;
+  gap: 1.25rem;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 30rem), 1fr));
+}
+
+/* ─── 툴팁 ────────────────────────────────────────────────────── */
+
+.tooltip {
+  min-width: 10rem;
+  padding: 0.625rem 0.75rem;
+  border-radius: 10px;
+  background: var(--mu-surface);
+  border: 1px solid var(--mu-line);
+  box-shadow: 0 8px 24px rgba(15, 23, 42, 0.18);
+  font-size: 0.75rem;
+}
+
+.tooltipLabel {
+  margin-bottom: 0.375rem;
+  font-weight: 700;
+  color: var(--mu-ink);
+}
+
+.tooltipRow {
+  display: flex;
+  align-items: center;
+  gap: 0.375rem;
+  padding: 0.0625rem 0;
+}
+
+.tooltipSwatch {
+  width: 0.625rem;
+  height: 0.625rem;
+  border-radius: 3px;
+  flex: 0 0 auto;
+}
+
+.tooltipName {
+  color: var(--mu-ink-soft);
+}
+
+.tooltipValue {
+  margin-left: auto;
+  color: var(--mu-ink);
+  font-variant-numeric: tabular-nums;
+}
+
+/* ─── 출처 ────────────────────────────────────────────────────── */
+
+.sources {
+  background: var(--mu-surface-2);
+  border: 1px solid var(--mu-line);
+  border-radius: 16px;
+  padding: 1.25rem 1.5rem;
+}
+
+.sourcesHeading {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin: 0 0 0.75rem;
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--mu-ink);
+}
+
+.sourceList {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin: 0 0 0.875rem;
+  padding-left: 1.125rem;
+}
+
+.sourceList li {
+  font-size: 0.8125rem;
+  line-height: 1.8;
+  color: var(--mu-ink-soft);
+}
+
+.sourceMeta {
+  margin: 0;
+  padding-top: 0.75rem;
+  border-top: 1px solid var(--mu-line);
+  font-size: 0.75rem;
+  color: var(--mu-ink-muted);
+}
+
+.missing {
+  padding: 2rem;
+  text-align: center;
+  font-size: 0.875rem;
+  color: var(--mu-ink-muted);
+}
+
+@media (max-width: 720px) {
+  .stageHeader {
+    gap: 0.625rem;
+  }
+
+  .stageTitle {
+    font-size: 1.125rem;
+  }
+
+  .briefingList {
+    grid-template-columns: 1fr;
+  }
+}
