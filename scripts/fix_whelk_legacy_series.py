@@ -150,6 +150,49 @@ def main() -> None:
         for y in bs_years
     ]
 
+    # ── 7. 기후 리스크 계열 — 없는 추세를 만들어 냈다 ──
+    #
+    # 위젯은 영국을 12,800~14,100 으로 평평하게, 캐나다를 7,500 → 2,100 으로 매끄럽게
+    # 줄어드는 것으로 그렸다. 실측은 둘 다 그렇지 않다 —
+    # 영국은 2005년 11,463 에서 2020년 21,280 까지 올랐다가 2024년 16,511 로 내려왔고,
+    # 캐나다는 오르내린다. **매끄러운 감소선은 자료에 없다.**
+    #
+    # 해수면 온도(SST) 계열은 뺀다. 10.2 → 13.8 을 0.6도씩 균등하게 올린 값이라
+    # 실측일 수 없고, 출처로 적힌 기구는 이런 형태의 시계열을 내지 않는다.
+    # 2025E·2030E·2035E 추정치도 뺀다 — 근거가 적혀 있지 않다.
+    #
+    # 캐나다는 과(科)가 바뀌므로 한 선으로 잇지 않고 **두 계열로 나눠** 내보낸다.
+    climate_years = [2005, 2010, 2015, 2020, 2024]
+    uk = fao_series(
+        "buccinum",
+        {"uk": "United Kingdom of Great Britain and Northern Ireland"},
+        climate_years,
+    )["uk"]
+    ca_bucc = fao_series("buccinum", {"ca": "Canada"}, climate_years)["ca"]
+    ca_busy = fao_series("busycon", {"ca": "Canada"}, climate_years)["ca"]
+    legacy["climateRiskData"] = [
+        {
+            "year": str(y),
+            "ukCatch": round(uk.get(y, 0)),
+            # 두 과를 따로 낸다. 한쪽이 비는 해는 선이 끊긴다 — 그것이 사실이다.
+            "canadaBusycon": round(ca_busy[y]) if y in ca_busy else None,
+            "canadaBuccinum": round(ca_bucc[y]) if y in ca_bucc else None,
+        }
+        for y in climate_years
+    ]
+
+    # ── 8. 최소보존규격 시나리오 — 기준선이 낡은 값이었다 ──
+    # 2024년 기준선이 14,091 로 박혀 있는데 실제 영국 참골뱅이 어획은 16,511 이다.
+    # 시나리오 자체는 가정이라 그대로 두되, **출발점은 실측이어야 한다.**
+    uk2024 = round(uk.get(2024, 0))
+    if uk2024:
+        old_base = legacy["mcrsScenarioData"][0]["baseline"]
+        scale = uk2024 / old_base if old_base else 1
+        for row in legacy["mcrsScenarioData"]:
+            for key in ("baseline", "mcrs50", "mcrs55", "mcrs60"):
+                if key in row:
+                    row[key] = round(row[key] * scale)
+
     legacy["_정정"] = {
         "일자": "2026-08-17",
         "출처": "FAO FishStat 2026.1.0 파생 CSV + 국가통계포털 어업생산동향조사",
@@ -167,6 +210,13 @@ def main() -> None:
             "불가리아 1,800 → 3,515, 루마니아 950 → 7,330. 루마니아는 실제의 8분의 1이었다.",
             "흑해에 우크라이나·러시아를 추가했다. 우크라이나는 2019년 11,203톤에서 "
             "**2022년부터 0** 이다 — 이 수역 공급 구조에서 가장 큰 변화인데 빠져 있었다.",
+            "기후 리스크 계열이 **없는 추세를 그리고 있었다.** 영국을 평평하게(실제는 11,463 → "
+            "21,280 → 16,511), 캐나다를 매끄러운 감소로(실제는 오르내림) 그렸다. 실측으로 바꾸고 "
+            "캐나다는 과(科)가 바뀌므로 두 계열로 나눴다.",
+            "기후 계열의 해수면 온도(SST)를 뺐다. 0.6도씩 균등하게 오르는 값이라 실측일 수 없고 "
+            "출처로 적힌 기구는 그런 시계열을 내지 않는다. 2025E·2030E·2035E 추정치도 뺐다.",
+            "최소보존규격 시나리오의 기준선을 실측으로 옮겼다 — 2024년 14,091 → 16,511. "
+            "시나리오는 가정이라 그대로 두되 출발점은 실측이어야 한다.",
         ],
         "범위밖": (
             "수입 점유율·수율차익·브랜드 포지셔닝·규제 레이더 등 나머지 계열은 아직 대조하지 않았다. "

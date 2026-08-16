@@ -913,8 +913,8 @@ export default function WhelkDashboard() {
                 source: 'aT FIS 식품산업통계',
               }} />
 
-            <WidgetCard title="해수온 상승에 따른 조업지 이탈 기후 리스크" icon={Thermometer} iconColor="var(--color-danger)" pillar="S1"
-              cardDesc="북대서양 해수면 온도(SST) + 영국·캐나다 어획량 — 포스트 영국(Post-UK) 대비"
+            <WidgetCard title="영국·캐나다 어획 20년 (2005~2024)" icon={Thermometer} iconColor="var(--color-danger)" pillar="S1"
+              cardDesc="FAO 실측만. 캐나다는 2016년에 보고 과(科)가 바뀌어 두 계열로 나눴다"
               telemetry={{ status: 'STATIC', syncDate: '2026 기후 시뮬레이션' }} chartHeight={300}
               chart={
                 <ComposedChart data={climateRiskData}>
@@ -936,14 +936,14 @@ export default function WhelkDashboard() {
                   <RechartsTooltip content={<CustomTooltip />} />
                   <Legend wrapperStyle={{ fontSize: '11px', paddingTop: '10px' }} />
                   <Area yAxisId="left" type="monotone" dataKey="ukCatch" name="영국 어획(톤)" stroke="var(--color-info)" fill="url(#colorUkCatch)" />
-                  <Area yAxisId="left" type="monotone" dataKey="canadaCatch" name="캐나다 어획(톤)" stroke="var(--color-danger)" fill="url(#colorCaCatch)" />
-                  <Line yAxisId="right" type="monotone" dataKey="sst" name="북대서양 수온(°C)" stroke="var(--color-warning)" strokeWidth={3} dot={{ r: 5, fill: 'var(--color-warning)' }} />
+                  <Area yAxisId="left" type="monotone" dataKey="canadaBusycon" name="캐나다 미국고둥류(톤)" stroke="var(--color-warning)" fill="url(#colorCaCatch)" />
+                  <Area yAxisId="left" type="monotone" dataKey="canadaBuccinum" name="캐나다 참골뱅이(톤)" stroke="var(--color-danger)" fill="url(#colorCaCatch)" />
                 </ComposedChart>
               }
               takeaway={{
-                situation: <span>[IPCC/FAOSTAT] 바닷물 온도가 높아지면 찬물에 사는 골뱅이가 서식지를 떠나버립니다. 캐나다에서는 이미 수온 상승으로 어획량이 크게 줄어들었습니다.</span>,
-                actionPlan: <span>골뱅이 공급망의 진짜 적은 경쟁사가 아니라 '기후변화'입니다. 냉수성 저서생물인 B. undatum은 <TermTooltip term="SST" description="Sea Surface Temperature. 해수면 온도. 북대서양 수온이 15°C를 넘으면 골뱅이의 서식지 이탈과 산란율 급감이 시작됨." /> 15°C를 넘으면 서식지를 이탈하며, 이미 캐나다에서 이 시나리오가 현실화되어 어획량이 -74% 붕괴했습니다. IPCC 예측에 따르면 현재 한국 수입의 52%를 차지하는 영국 북해도 수온이 2035년까지 1.5~2°C 상승할 전망이며, 이는 10년 내 영국산 물량이 연간 10~15%씩 자연 감소할 수 있음을 의미합니다. 전략기획실은 '포스트-영국(Post-UK)' 시대를 대비하여 아이슬란드·노르웨이 등 고위도 신규 어장 개척과 흑해(튀르키예) R. venosa의 총사용원가(TCU) 기반 경제성 재평가를 즉각 병행해야 합니다.</span>,
-                source: 'IPCC / FAOSTAT',
+                situation: <span>[FAO FishStat 2026.1.0] 영국 참골뱅이 어획은 2005년 11,463톤에서 <strong>2020년 21,280톤까지 늘었다가</strong> 2024년 16,511톤입니다. 캐나다는 2016년에 보고 과(科)가 바뀌어 그 전후를 이을 수 없고, 참골뱅이 기준으로는 2020년 2,336 → 2024년 5,410톤으로 <strong>늘었습니다.</strong></span>,
+                actionPlan: <span>이전 판은 이 자리에 <strong>수온 곡선과 2035년까지의 어획 전망</strong>을 그리고 &ldquo;기후로 캐나다가 붕괴했고 영국도 연 10~15% 줄어든다&rdquo;고 했습니다. 그 수온 값은 0.6도씩 균등하게 오르는 합성 계열이었고, 어획 곡선도 실측과 달랐습니다 — 영국을 평평하게, 캐나다를 매끄러운 감소로 그렸는데 <strong>실제 자료에는 그런 추세가 없습니다.</strong> 수온 계열과 전망치를 걷어내고 실측만 남겼습니다. 남는 사실은 &ldquo;기후로 한 산지가 사라진다&rdquo;가 아니라 <strong>&ldquo;두 산지 모두 해마다 크게 흔들리고 방향이 일정하지 않다&rdquo;</strong>입니다. 조달 판단은 단일 대체 산지 확보가 아니라 <strong>복수 산지·복수 계약</strong>에서 출발해야 하고, 기후 영향을 논하려면 실측 수온 자료를 따로 확보해야 합니다.</span>,
+                source: 'FAO FishStat 2026.1.0 — 물레고둥과·물레고둥붙이과 어획, 2005~2024',
               }} />
           </>
 

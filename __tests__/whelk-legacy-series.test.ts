@@ -24,6 +24,8 @@ const data = legacy as unknown as {
   koreaCaptureData: { year: string; capture: number }[];
   canadaCaptureData: { year: string; canada: number; uk: number }[];
   blackSeaSupplyData: Record<string, string | number>[];
+  climateRiskData: Record<string, string | number | null>[];
+  mcrsScenarioData: Record<string, string | number>[];
   _정정?: { 내용: string[]; 범위밖: string };
 };
 
@@ -92,5 +94,31 @@ describe('골뱅이 기존 대시보드 — 정정된 계열', () => {
     expect(Number(y2022!.ukraine), '2022년부터 보고가 0이다').toBe(0);
     // 튀르키예를 절반으로 적던 값으로 되돌아가지 않는지
     expect(Number(y2019!.turkey)).toBe(11646);
+  });
+
+  it('기후 계열에 합성 수온과 전망치가 없다', () => {
+    const rows = data.climateRiskData;
+    for (const row of rows) {
+      // 0.6도씩 균등하게 오르던 수온 계열은 실측이 아니었다
+      expect(row).not.toHaveProperty('sst');
+      // 「2025E」 같은 전망 연도를 실측 계열에 섞지 않는다
+      expect(String(row.year)).toMatch(/^\d{4}$/);
+    }
+    // 캐나다는 과(科)를 나눠 담아야 한다 — 한 키로 합치면 다시 이어 그리게 된다
+    expect(rows[0]).toHaveProperty('canadaBusycon');
+    expect(rows[0]).toHaveProperty('canadaBuccinum');
+    expect(rows[0]).not.toHaveProperty('canadaCatch');
+  });
+
+  it('기후 계열의 영국 값이 실측이고 평평하지 않다', () => {
+    const uk = data.climateRiskData.map((r) => Number(r.ukCatch));
+    // 이전 판은 12,800~14,100 으로 평평했다. 실측은 2배 가까이 벌어진다
+    expect(Math.max(...uk) / Math.min(...uk)).toBeGreaterThan(1.5);
+    expect(uk[uk.length - 1]).toBe(16511);
+  });
+
+  it('최소보존규격 시나리오의 기준선이 실측이다', () => {
+    const base2024 = data.mcrsScenarioData.find((r) => r.year === '2024');
+    expect(Number(base2024!.baseline), '2024년 기준선은 실측 영국 어획이어야 한다').toBe(16511);
   });
 });
