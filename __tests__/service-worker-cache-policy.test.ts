@@ -9,21 +9,17 @@ type WorkerEvent = {
   waitUntil: (work: Promise<unknown>) => void;
 };
 
-function loadServiceWorker(cacheControl: string = 'public, max-age=60') {
+function loadServiceWorker() {
   const source = readFileSync(join(process.cwd(), 'public/sw.js'), 'utf8');
   const handlers = new Map<string, (event: WorkerEvent) => void>();
   const cachedUrls: string[] = [];
-  const deletedUrls: string[] = [];
   const deletedCaches: string[] = [];
   const cache = {
     addAll: vi.fn(async () => undefined),
     put: vi.fn(async (request: Request) => {
       cachedUrls.push(request.url);
     }),
-    delete: vi.fn(async (request: Request) => {
-      deletedUrls.push(request.url);
-      return true;
-    }),
+    delete: vi.fn(async () => true),
   };
   const caches = {
     open: vi.fn(async () => cache),
@@ -40,7 +36,7 @@ function loadServiceWorker(cacheControl: string = 'public, max-age=60') {
   };
   const fetchMock = vi.fn(async () => new Response('{}', {
     status: 200,
-    headers: { 'Cache-Control': cacheControl },
+    headers: { 'Cache-Control': 'public, max-age=60' },
   }));
   const selfMock = {
     location: { origin: 'https://dashboard.example' },
@@ -61,12 +57,16 @@ function loadServiceWorker(cacheControl: string = 'public, max-age=60') {
     Promise,
   });
 
-  async function dispatchFetch(pathname: string) {
+  async function dispatchFetch(pathname: string, mode: RequestMode = 'cors') {
     const waits: Promise<unknown>[] = [];
     let responsePromise: Promise<Response> | undefined;
     let dispatching = true;
     handlers.get('fetch')?.({
-      request: new Request(`https://dashboard.example${pathname}`),
+      request: {
+        method: 'GET',
+        mode,
+        url: `https://dashboard.example${pathname}`,
+      } as Request,
       respondWith: (response) => {
         responsePromise = Promise.resolve(response);
       },
@@ -92,11 +92,11 @@ function loadServiceWorker(cacheControl: string = 'public, max-age=60') {
     await Promise.all(waits);
   }
 
-  return { cachedUrls, deletedCaches, deletedUrls, dispatchActivate, dispatchFetch, fetchMock };
+  return { cachedUrls, deletedCaches, dispatchActivate, dispatchFetch, fetchMock };
 }
 
 describe('service worker API cache policy', () => {
-  it.each(['/api/operation-access', '/api/atuna-prices'])(
+  it.each(['/api/operation-access', '/api/atuna-prices', '/api/mail/status'])(
     '%s는 네트워크 응답만 사용하고 캐시에 저장하지 않는다',
     async (pathname) => {
       const worker = loadServiceWorker();
@@ -108,15 +108,14 @@ describe('service worker API cache policy', () => {
     },
   );
 
-  it('no-store 또는 private API 응답은 일반 API 캐시에도 저장하지 않는다', async () => {
-    for (const cacheControl of ['no-store, max-age=0', 'private, max-age=60']) {
-      const worker = loadServiceWorker(cacheControl);
+  it('보호된 JSON과 HTML 화면도 캐시하지 않는다', async () => {
+    const worker = loadServiceWorker();
 
-      await worker.dispatchFetch('/api/mail/status');
+    await worker.dispatchFetch('/data/unloading-db.json');
+    await worker.dispatchFetch('/unloading', 'navigate');
 
-      expect(worker.cachedUrls).toEqual([]);
-      expect(worker.deletedUrls).toEqual(['https://dashboard.example/api/mail/status']);
-    }
+    expect(worker.fetchMock).toHaveBeenCalledTimes(2);
+    expect(worker.cachedUrls).toEqual([]);
   });
 
   it('새 서비스워커 활성화 시 과거 API 캐시 버전을 삭제한다', async () => {
@@ -125,5 +124,15 @@ describe('service worker API cache policy', () => {
     await worker.dispatchActivate();
 
     expect(worker.deletedCaches).toContain('api-v1-2026-05-22');
+    expect(worker.deletedCaches).toContain('runtime-v1-2026-05-22');
+  });
+
+  it('실행용 정적 자산만 새 정적 캐시에 저장한다', async () => {
+    const worker = loadServiceWorker();
+
+    await worker.dispatchFetch('/_next/static/chunks/app.js');
+
+    expect(worker.fetchMock).toHaveBeenCalledOnce();
+    expect(worker.cachedUrls).toEqual([]);
   });
 });

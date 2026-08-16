@@ -5,10 +5,9 @@ import dynamic from 'next/dynamic';
 import Image from 'next/image';
 import Link from 'next/link';
 import styles from './page.module.css';
-import { Activity, Anchor, Ship, Lock, Radio, BarChart2, Navigation, Factory, Waves, Fish, Hexagon, Command, Mail, Menu, X, Snowflake, Shrimp, Droplets, FishSymbol, Shell, TestTube } from 'lucide-react';
+import { Anchor, Ship, LogOut, BarChart2, Navigation, Factory, Waves, Fish, Hexagon, Mail, Menu, X, Snowflake, Shrimp, Droplets, FishSymbol, Shell, TestTube } from 'lucide-react';
 import { supabase } from '../lib/supabase';
 import { usePathname, useRouter } from 'next/navigation';
-import { motion } from 'framer-motion';
 import {
   ActiveMenu,
   DASHBOARD_PANEL_ORDER,
@@ -16,7 +15,6 @@ import {
   getDashboardTitle,
   isActiveMenu,
   KEYBOARD_SHORTCUT_MENUS,
-  SESSION_ACCESS_MENUS,
   SIDEBAR_SECTIONS,
 } from '../lib/dashboard-registry';
 import type { SidebarIconKey, SidebarMenuItem } from '../lib/dashboard-registry';
@@ -50,7 +48,6 @@ const GmtsDashboard = dynamic(() => import('../components/gmts/GmtsDashboard'));
 const MailInboxDashboard = dynamic(() => import('../components/MailInboxDashboard'));
 const TunaIndustryDashboard = dynamic(() => import('../components/market-understanding/TunaIndustryDashboard'));
 
-const OPERATION_ACCESS_STORAGE_KEY = 'silla-operation-access';
 const INSTITUTIONAL_MENU_KEYS = new Set<ActiveMenu>([
   'market',
   'fleet',
@@ -87,10 +84,6 @@ const SIDEBAR_SUFFIX_STYLE = { fontSize: '0.75em', opacity: 0.8 };
 
 export default function Home() {
   const [mgoData, setMgoData] = useState({ price: 0, change: 0, date: '', loading: true });
-  
-  // Supabase 로그인과 별개로 모든 활성 메뉴를 기존 세션 비밀번호로 잠근다.
-  const session = { user: { email: 'public@silla.local' } };
-  const authChecked = true;
   const pathname = usePathname();
   const router = useRouter();
   
@@ -99,19 +92,9 @@ export default function Home() {
     if (path && isActiveMenu(path)) return path;
     return 'market';
   }, [pathname]);
-  const [operationAccessGranted, setOperationAccessGranted] = useState(false);
-  const [operationAccessChecking, setOperationAccessChecking] = useState(true);
-  const [operationPassword, setOperationPassword] = useState('');
-  const [operationAuthError, setOperationAuthError] = useState('');
-  const [operationAuthLoading, setOperationAuthLoading] = useState(false);
-  const [isSignUp, setIsSignUp] = useState(false);
-  const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [authLoading, setAuthLoading] = useState(false);
-  const [authError, setAuthError] = useState('');
-  const [authSuccess, setAuthSuccess] = useState('');
   const [mailAdminVisible, setMailAdminVisible] = useState(false);
+  const [signOutLoading, setSignOutLoading] = useState(false);
+  const [signOutError, setSignOutError] = useState('');
   
   // Modals state
   const [isMgoModalOpen, setIsMgoModalOpen] = useState(false);
@@ -119,47 +102,7 @@ export default function Home() {
   // Mobile sidebar state
   const [isMobileSidebarOpen, setIsMobileSidebarOpen] = useState(false);
 
-  useEffect(() => {
-    let cancelled = false;
-    const storedAccess = window.sessionStorage.getItem(OPERATION_ACCESS_STORAGE_KEY) === 'granted';
-    const isLocalHost = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
-
-    // 로컬 브라우저 QA는 기존 sessionStorage 주입 방식을 유지한다.
-    if (storedAccess && isLocalHost && process.env.NODE_ENV === 'development') {
-      setOperationAccessGranted(true);
-      setOperationAccessChecking(false);
-      return;
-    }
-
-    fetch('/api/operation-access', { cache: 'no-store', credentials: 'same-origin' })
-      .then((response) => response.json())
-      .then((data) => {
-        if (cancelled) return;
-        const granted = data?.granted === true;
-        setOperationAccessGranted(granted);
-        if (granted) {
-          window.sessionStorage.setItem(OPERATION_ACCESS_STORAGE_KEY, 'granted');
-        } else {
-          window.sessionStorage.removeItem(OPERATION_ACCESS_STORAGE_KEY);
-        }
-      })
-      .catch(() => {
-        if (cancelled) return;
-        window.sessionStorage.removeItem(OPERATION_ACCESS_STORAGE_KEY);
-        setOperationAccessGranted(false);
-      })
-      .finally(() => {
-        if (!cancelled) setOperationAccessChecking(false);
-      });
-
-    return () => {
-      cancelled = true;
-    };
-  }, []);
-
   const navigateToMenu = React.useCallback((menu: ActiveMenu) => {
-    setOperationAuthError('');
-    setOperationPassword('');
     router.replace(`/${menu}`, { scroll: false });
   }, [router]);
 
@@ -233,105 +176,25 @@ export default function Home() {
     };
   }, []);
 
-  const handleAuth = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setAuthLoading(true);
-    setAuthError('');
-    setAuthSuccess('');
-
-    if (isSignUp) {
-      const { error } = await supabase.auth.signUp({
-        email,
-        password,
-        options: { data: { name } }
-      });
-      if (error) {
-        setAuthError(error.message);
-      } else {
-        setAuthSuccess('가입 신청이 완료되었습니다. 관리자의 승인을 기다려주세요.');
-        setIsSignUp(false); // 가입 신청 후 로그인 화면으로 전환
-      }
-    } else {
-      const { error } = await supabase.auth.signInWithPassword({ email, password });
-      if (error) {
-        if (error.message.includes('Email not confirmed')) {
-          setAuthError('아직 관리자의 승인(Verify)이 완료되지 않았습니다.');
-        } else {
-          setAuthError('로그인 실패: 이메일과 내선번호를 확인하세요. (' + error.message + ')');
-        }
-      }
-    }
-    setAuthLoading(false);
-  };
-
-  const handleOperationPasswordSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    setOperationAuthLoading(true);
-    setOperationAuthError('');
+  const handleSignOut = async () => {
+    if (signOutLoading) return;
+    setSignOutLoading(true);
+    setSignOutError('');
     try {
-      const response = await fetch('/api/operation-access', {
-        method: 'POST',
-        credentials: 'same-origin',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ password: operationPassword }),
-      });
-      const result = await response.json().catch(() => null);
-      if (!response.ok || result?.granted !== true) {
-        setOperationAuthError(result?.error || '비밀번호를 다시 확인해주세요.');
+      const { error } = await supabase.auth.signOut({ scope: 'local' });
+      if (error) {
+        setSignOutError('로그아웃하지 못했습니다. 다시 시도해주세요.');
         return;
       }
-
-      const verificationResponse = await fetch('/api/operation-access', {
-        cache: 'no-store',
-        credentials: 'same-origin',
-      });
-      const verification = await verificationResponse.json().catch(() => null);
-      if (!verificationResponse.ok || verification?.granted !== true) {
-        setOperationAuthError('브라우저에서 접속 권한을 저장하지 못했습니다. 쿠키 설정을 확인해주세요.');
-        return;
+      if ('caches' in window) {
+        const cacheNames = await window.caches.keys();
+        await Promise.all(cacheNames.map((cacheName) => window.caches.delete(cacheName)));
       }
-
-      window.sessionStorage.setItem(OPERATION_ACCESS_STORAGE_KEY, 'granted');
-      setOperationAccessGranted(true);
-      setOperationPassword('');
+      window.location.replace('/login');
     } catch {
-      setOperationAuthError('접속 권한을 확인하지 못했습니다. 다시 시도해주세요.');
+      setSignOutError('로그아웃하지 못했습니다. 다시 시도해주세요.');
     } finally {
-      setOperationAuthLoading(false);
-    }
-  };
-
-  const handleOperationLock = async () => {
-    setOperationAuthLoading(true);
-    setOperationAuthError('');
-    try {
-      const response = await fetch('/api/operation-access', {
-        method: 'DELETE',
-        credentials: 'same-origin',
-      });
-      const result = await response.json().catch(() => null);
-      if (!response.ok || result?.granted !== false) {
-        setOperationAuthError('서버 잠금을 완료하지 못했습니다. 네트워크를 확인한 뒤 다시 눌러주세요.');
-        return;
-      }
-
-      const verificationResponse = await fetch('/api/operation-access', {
-        cache: 'no-store',
-        credentials: 'same-origin',
-      });
-      const verification = await verificationResponse.json().catch(() => null);
-      if (!verificationResponse.ok || verification?.granted !== false) {
-        setOperationAuthError('브라우저 잠금 상태를 확인하지 못했습니다. 다시 눌러주세요.');
-        return;
-      }
-
-      window.sessionStorage.removeItem(OPERATION_ACCESS_STORAGE_KEY);
-      setOperationAccessGranted(false);
-      setOperationPassword('');
-    } catch {
-      setOperationAuthError('서버 잠금을 확인하지 못했습니다. 다시 시도해주세요.');
-    } finally {
-      setOperationAuthLoading(false);
+      setSignOutLoading(false);
     }
   };
 
@@ -360,10 +223,7 @@ export default function Home() {
 
   // Ambient color based on active page
   const ambientAccent = getDashboardAccent(activeMenu);
-  const isOperationMenuLocked = SESSION_ACCESS_MENUS.has(activeMenu) && !operationAccessGranted;
-  const isPanelActive = (menu: ActiveMenu) => (
-    activeMenu === menu && (!SESSION_ACCESS_MENUS.has(menu) || operationAccessGranted)
-  );
+  const isPanelActive = (menu: ActiveMenu) => activeMenu === menu;
   const renderSidebarItem = (item: SidebarMenuItem) => {
     if (item.key === 'mail' && !mailAdminVisible) return null;
     const Icon = SIDEBAR_ICONS[item.icon];
@@ -402,20 +262,6 @@ export default function Home() {
     'purse-seiner-db': <PurseSeinerDashboard />,
     'tuna-industry': <TunaIndustryDashboard />,
   };
-  const heroTeaserPanels: Partial<Record<ActiveMenu, React.ReactNode>> = {
-    market: <MarketDashboard heroOnly />,
-    fleet: <FleetCommandCenter heroOnly />,
-    unloading: <UnloadingStatus heroOnly />,
-    logistics: <LogisticsDashboard heroOnly />,
-    pork: <PorkDashboard heroOnly />,
-    'cross-intelligence': <CrossCommodityIntelligenceDashboard heroOnly />,
-    'purse-seiner-db': <PurseSeinerDashboard heroOnly />,
-    panofi: <PanofiDashboard heroOnly />,
-    cosmo: <CosmoDashboard heroOnly />,
-    'bangkok-office': <BangkokDashboard heroOnly />,
-    gmts: <GmtsDashboard heroOnly />,
-  };
-
   return (
     <div className={styles.appWrapper} data-v3="light">
       {!INSTITUTIONAL_MENU_KEYS.has(activeMenu) && (
@@ -493,41 +339,32 @@ export default function Home() {
 
         {/* «⌘ 빠른 검색» 버튼 제거 (2026-08-15 사용자 지시) — Cmd+K 단축키·CommandPalette는 유지 */}
 
-        {/* Operational access state */}
-        {operationAccessGranted ? (
-          <>
-            <button
-              type="button"
-              onClick={handleOperationLock}
-              disabled={operationAuthLoading}
-              style={{
-                fontSize: '12px',
-                padding: '10px 12px',
-                backgroundColor: 'rgba(239, 68, 68, 0.05)',
-                border: '1px solid rgba(239, 68, 68, 0.35)',
-                borderRadius: '8px',
-                color: 'var(--accent-danger)',
-                cursor: operationAuthLoading ? 'wait' : 'pointer',
-                opacity: operationAuthLoading ? 0.7 : 1,
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                gap: '8px',
-                width: '100%',
-                marginTop: '1rem'
-              }}
-            >
-              <Lock size={14} /> {operationAuthLoading ? '잠금 확인 중...' : '전체 메뉴 잠금'}
-            </button>
-            {operationAuthError && (
-              <div role="alert" style={{ color: 'var(--accent-danger)', fontSize: '11px', lineHeight: 1.5, marginTop: '8px' }}>
-                {operationAuthError}
-              </div>
-            )}
-          </>
-        ) : (
-          <div style={{ fontSize: '12px', color: 'var(--text-muted)', textAlign: 'center', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '6px', marginTop: '1rem' }}>
-            <Lock size={14} /> 전체 메뉴 잠김
+        <button
+          type="button"
+          onClick={handleSignOut}
+          disabled={signOutLoading}
+          style={{
+            fontSize: '12px',
+            padding: '10px 12px',
+            backgroundColor: 'rgba(239, 68, 68, 0.05)',
+            border: '1px solid rgba(239, 68, 68, 0.35)',
+            borderRadius: '8px',
+            color: 'var(--accent-danger)',
+            cursor: signOutLoading ? 'wait' : 'pointer',
+            opacity: signOutLoading ? 0.7 : 1,
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            gap: '8px',
+            width: '100%',
+            marginTop: '1rem'
+          }}
+        >
+          <LogOut size={14} /> {signOutLoading ? '로그아웃 중' : '보안 로그아웃'}
+        </button>
+        {signOutError && (
+          <div role="alert" style={{ color: 'var(--accent-danger)', fontSize: '11px', lineHeight: 1.5, marginTop: '8px' }}>
+            {signOutError}
           </div>
         )}
       </aside>
@@ -535,113 +372,12 @@ export default function Home() {
       {/* Main Content Area */}
       <div className={styles.mainContent}>
         <main className={styles.container}>
-          {/* A-5 인증 게이팅: 세션 확정 전 → 로딩 / 미로그인 → 로그인 랜딩만 / 로그인 → 대시보드 마운트 */}
-          {!authChecked ? (
-            <div style={{
-              minHeight: 'calc(100vh - 40px)',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              gap: '10px',
-              color: 'var(--text-muted)',
-              fontSize: '14px'
-            }}>
-              <Activity size={16} /> 접속 권한 확인 중...
-            </div>
-          ) : session ? (
-          <>
-          {isOperationMenuLocked && (
-            operationAccessChecking ? (
-              <div style={{
-                minHeight: 'calc(100vh - 80px)',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                gap: '10px',
-                color: 'var(--text-muted)',
-                fontSize: '14px'
-              }}>
-                <Activity size={16} /> 메뉴 접근 권한 확인 중...
-              </div>
-            ) : (
-            <>
-            {heroTeaserPanels[activeMenu]}
-            <div className={styles.landingOverlay} style={{ position: 'relative', inset: 'auto', justifyContent: 'center', minHeight: 'calc(100vh - 80px)', padding: 'clamp(32px, 8vh, 92px) var(--space-4)' }}>
-              <div className={styles.loginPanel} style={{ width: 'min(420px, 100%)' }}>
-                <Lock size={34} strokeWidth={1.5} style={{ margin: '0 auto 16px auto', color: 'var(--text-main)' }} />
-                <h2 style={{ fontSize: '20px', fontWeight: 'bold', marginBottom: '8px', color: 'var(--text-main)' }}>
-                  전체 메뉴 접근 확인
-                </h2>
-                <p style={{ fontSize: '13px', color: 'var(--text-muted)', marginBottom: '22px', lineHeight: 1.6 }}>
-                  핵심 지표는 공개되며, 상세 분석은 내부 확인 후 열람할 수 있습니다.
-                </p>
-
-                <form onSubmit={handleOperationPasswordSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '14px' }}>
-                  <input
-                    type="password"
-                    autoComplete="current-password"
-                    placeholder="메뉴 비밀번호"
-                    value={operationPassword}
-                    onChange={(e) => setOperationPassword(e.target.value)}
-                    disabled={operationAuthLoading}
-                    autoFocus
-                    style={{
-                      padding: '12px 14px',
-                      borderRadius: '8px',
-                      border: '1px solid var(--panel-border)',
-                      backgroundColor: 'rgba(0,0,0,0.3)',
-                      color: 'var(--text-main)',
-                      fontSize: '14px',
-                      outline: 'none',
-                      transition: 'border-color 0.2s'
-                    }}
-                    required
-                  />
-                  {operationAuthError && (
-                    <div style={{ color: 'var(--accent-danger)', fontSize: '12px', textAlign: 'left', marginTop: '-4px' }}>
-                      {operationAuthError}
-                    </div>
-                  )}
-                  <button
-                    type="submit"
-                    disabled={operationAuthLoading}
-                    style={{
-                      padding: '14px',
-                      borderRadius: '8px',
-                      backgroundColor: 'var(--accent-primary)',
-                      color: '#fff',
-                      fontWeight: 'bold',
-                      fontSize: '14px',
-                      border: 'none',
-                      cursor: operationAuthLoading ? 'wait' : 'pointer',
-                      opacity: operationAuthLoading ? 0.7 : 1,
-                      marginTop: '8px',
-                      transition: 'background-color 0.2s, transform 0.1s'
-                    }}
-                    onMouseDown={(e) => e.currentTarget.style.transform = 'scale(0.98)'}
-                    onMouseUp={(e) => e.currentTarget.style.transform = 'scale(1)'}
-                    onMouseLeave={(e) => e.currentTarget.style.transform = 'scale(1)'}
-                  >
-                    {operationAuthLoading ? '확인 중...' : '확인'}
-                  </button>
-                </form>
-
-                <div style={{ marginTop: '18px', fontSize: '12px', color: 'var(--text-muted)', lineHeight: 1.6 }}>
-                  보호 대상: 전체 대시보드 메뉴
-                </div>
-              </div>
-            </div>
-            </>
-            )
-          )}
-
-          {!isOperationMenuLocked && activeMenu === 'market' && (
+          {activeMenu === 'market' && (
             <>
               <LiveTicker />
             </>
           )}
 
-          {!isOperationMenuLocked && (
           <div style={{ position: 'relative' }}>
             <div style={{
               display: 'flex',
@@ -661,211 +397,8 @@ export default function Home() {
 
             </div>
           </div>
-          )}
 
           {isMgoModalOpen && <MgoChartModal currentPrice={mgoData.price} onClose={() => setIsMgoModalOpen(false)} />}
-          </>
-          ) : (
-              /* 미로그인 — 대시보드 미마운트, 정적 소개 + 로그인 랜딩만 렌더 (atuna 페이월 fetch 없음 — 단 상단 useEffect의 mgo/exchange/tuna-live 공개 API 호출은 세션 무관 실행됨) */
-              <div className={styles.landingOverlay} style={{ position: 'relative', inset: 'auto' }}>
-                <div className={styles.landingTopRow}>
-                  {/* Premium Hero Section */}
-                  <motion.div 
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.8, ease: "easeOut" }}
-                    className={styles.landingHero}
-                  >
-                    <motion.div 
-                      initial={{ scale: 0.95, opacity: 0 }}
-                      animate={{ scale: 1, opacity: 1 }}
-                      transition={{ delay: 0.2, duration: 0.8 }}
-                      className={styles.landingBrand}
-                    >
-                      <Image src="/logo1.png" alt="Silla Co." width={345} height={90} className={styles.landingLogo} />
-                      <h1 className={styles.landingTitle}>TUNA KINGDOM</h1>
-                      <p className={styles.landingSubtitle}>S-Grade Executive Intelligence</p>
-                    </motion.div>
-                    
-                    <motion.div 
-                      initial={{ opacity: 0 }}
-                      animate={{ opacity: 1 }}
-                      transition={{ delay: 0.5, duration: 1 }}
-                      className={styles.landingMessage}
-                    >
-                      <p>글로벌 수산·물류 밸류체인의 핵심 동향을 실시간으로 통제합니다.</p>
-                      <p>오직 인가된 임원진을 위한 최상위 전략 의사결정 커맨드 센터.</p>
-                      <div style={{
-                        marginTop: '18px',
-                        padding: '14px 16px',
-                        background: 'rgba(20, 28, 52, 0.5)',
-                        border: '1px solid rgba(255, 255, 255, 0.08)',
-                        borderRadius: '10px',
-                        fontSize: '12.5px',
-                        lineHeight: 1.9,
-                        color: 'var(--text-muted)'
-                      }}>
-                        <div style={{ fontWeight: 700, color: 'var(--text-main)', marginBottom: '6px' }}>제공 메뉴 미리보기</div>
-                        <div>📡 실시간 운영 — 시장 동향 · 선단 운영 · 하역 현황 · 물류·가공 · 코스모 · 방콕사무소</div>
-                        <div>🐟 어종별 인텔리전스 — (현재 공개 메뉴 없음)</div>
-                        <div>🌾 농산물 — (현재 공개 메뉴 없음)</div>
-                      </div>
-                    </motion.div>
-                  </motion.div>
-
-                  {/* Login Form Panel */}
-                  <motion.div 
-                    initial={{ opacity: 0, x: 20 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ delay: 0.4, duration: 0.6 }}
-                    className={styles.loginPanel}
-                  >
-                    <Lock size={36} strokeWidth={1.5} style={{ margin: '0 auto 16px auto', color: 'var(--text-main)' }} />
-                    <h2 style={{ fontSize: '20px', fontWeight: 'bold', marginBottom: '8px', color: 'var(--text-main)' }}>
-                      {isSignUp ? '가입 신청하기' : '대시보드 로그인'}
-                    </h2>
-                    <p style={{ fontSize: '13px', color: 'var(--text-muted)', marginBottom: '24px', lineHeight: 1.5 }}>
-                      {isSignUp 
-                        ? '가입 신청 후 관리자가 Supabase에서 이메일을 승인(Verify)하면 접속할 수 있습니다.' 
-                        : '실시간 시장 정보, 선단 동향 및 데이터를 열람하기 위해 로그인해주세요.'}
-                    </p>
-                    
-                    <form onSubmit={handleAuth} style={{ display: 'flex', flexDirection: 'column', gap: '14px' }}>
-                      {isSignUp && (
-                        <input
-                          type="text"
-                          placeholder="이름 (Name)"
-                          value={name}
-                          onChange={(e) => setName(e.target.value)}
-                          style={{
-                            padding: '12px 14px',
-                            borderRadius: '8px',
-                            border: '1px solid var(--panel-border)',
-                            backgroundColor: 'rgba(0,0,0,0.3)',
-                            color: 'var(--text-main)',
-                            fontSize: '14px',
-                            outline: 'none',
-                            transition: 'border-color 0.2s'
-                          }}
-                          required
-                        />
-                      )}
-                      <input
-                        type="email"
-                        placeholder="이메일 (ID)"
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)}
-                        style={{
-                          padding: '12px 14px',
-                          borderRadius: '8px',
-                          border: '1px solid var(--panel-border)',
-                          backgroundColor: 'rgba(0,0,0,0.3)',
-                          color: 'var(--text-main)',
-                          fontSize: '14px',
-                          outline: 'none',
-                          transition: 'border-color 0.2s'
-                        }}
-                        required
-                      />
-                      <input
-                        type="password"
-                        placeholder="내선번호 (비밀번호)"
-                        value={password}
-                        onChange={(e) => setPassword(e.target.value)}
-                        style={{
-                          padding: '12px 14px',
-                          borderRadius: '8px',
-                          border: '1px solid var(--panel-border)',
-                          backgroundColor: 'rgba(0,0,0,0.3)',
-                          color: 'var(--text-main)',
-                          fontSize: '14px',
-                          outline: 'none',
-                          transition: 'border-color 0.2s'
-                        }}
-                        required
-                      />
-                      {authError && <div style={{ color: 'var(--accent-danger)', fontSize: '12px', textAlign: 'left', marginTop: '-4px' }}>{authError}</div>}
-                      {authSuccess && <div style={{ color: '#10b981', fontSize: '12px', textAlign: 'left', marginTop: '-4px', fontWeight: 'bold' }}>{authSuccess}</div>}
-                      <button
-                        type="submit"
-                        disabled={authLoading}
-                        style={{
-                          padding: '14px',
-                          borderRadius: '8px',
-                          backgroundColor: 'var(--accent-primary)',
-                          color: '#fff',
-                          fontWeight: 'bold',
-                          fontSize: '14px',
-                          border: 'none',
-                          cursor: authLoading ? 'default' : 'pointer',
-                          opacity: authLoading ? 0.7 : 1,
-                          marginTop: '10px',
-                          transition: 'background-color 0.2s, transform 0.1s'
-                        }}
-                        onMouseDown={(e) => e.currentTarget.style.transform = 'scale(0.98)'}
-                        onMouseUp={(e) => e.currentTarget.style.transform = 'scale(1)'}
-                        onMouseLeave={(e) => e.currentTarget.style.transform = 'scale(1)'}
-                      >
-                        {authLoading ? '처리중...' : (isSignUp ? '신청 완료' : '보안 접속 승인')}
-                      </button>
-                    </form>
-                    <button
-                      onClick={() => {
-                        setIsSignUp(!isSignUp);
-                        setAuthError('');
-                        setAuthSuccess('');
-                      }}
-                      style={{
-                        marginTop: '16px',
-                        background: 'none',
-                        border: 'none',
-                        color: 'var(--text-muted)',
-                        fontSize: '12px',
-                        cursor: 'pointer',
-                        textDecoration: 'underline'
-                      }}
-                    >
-                      {isSignUp ? '이미 승인된 계정이 있으신가요? 로그인' : '권한이 없으신가요? 가입 신청하기'}
-                    </button>
-                  </motion.div>
-                </div>
-
-                {/* Recent Updates Section */}
-                <motion.div 
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.6, duration: 0.6 }}
-                  className={styles.landingUpdates}
-                >
-                  <h3 className={styles.landingUpdatesTitle}>
-                    <Radio size={16} color="var(--accent-primary)" />
-                    최근 시스템 주요 업데이트
-                  </h3>
-                  <div className={styles.landingUpdatesGrid}>
-                    <div className={styles.updateItem}>
-                      <span className={styles.updateDate}>26.06.02</span>
-                      <span className={styles.updateContent}>물류 현황 패널: BAO LUCKY BKK 하역 개시 (진척률 4.8%) 및 1일차 결과 반영</span>
-                    </div>
-                    <div className={styles.updateItem}>
-                      <span className={styles.updateDate}>26.05.31</span>
-                      <span className={styles.updateContent}>선단 운영 커맨드 센터: 5월 4주차 주간/월간 선장 실적 및 어획량 차트 갱신</span>
-                    </div>
-                    <div className={styles.updateItem}>
-                      <span className={styles.updateDate}>26.05.31</span>
-                      <span className={styles.updateContent}>물류 현황 패널: SEIN PHOENIX BKK 하역 진척률(33.1%) 실시간 연동 반영</span>
-                    </div>
-                    <div className={styles.updateItem}>
-                      <span className={styles.updateDate}>26.05.30</span>
-                      <span className={styles.updateContent}>참치(Tuna) 밸류체인: 태국산 가다랑어(SKJ) 수입 단가 및 Bangkok MGO 유가 업데이트</span>
-                    </div>
-                    <div className={styles.updateItem}>
-                      <span className={styles.updateDate}>26.05.29</span>
-                      <span className={styles.updateContent}>가자미(Flatfish) 대시보드 신규 런칭 및 글로벌 해상 운임(SCFI) 실시간 연동</span>
-                    </div>
-                  </div>
-                </motion.div>
-              </div>
-          )}
         </main>
       </div>
     </div>

@@ -1,0 +1,296 @@
+import { existsSync, readdirSync, readFileSync } from 'node:fs';
+import { join } from 'node:path';
+import { NextRequest } from 'next/server';
+import { unstable_doesMiddlewareMatch } from 'next/experimental/testing/server';
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
+import {
+  evaluateDashboardOwnerClaims,
+  evaluateDashboardOwnerUser,
+  isPublicDashboardPath,
+  normalizeDashboardNextPath,
+} from '../lib/auth/owner-policy';
+import { LOCAL_E2E_AUTH_HEADER } from '../lib/auth/local-e2e-access';
+import { config, proxy } from '../proxy';
+
+const authMocks = vi.hoisted(() => ({
+  exchangeCodeForSession: vi.fn(),
+  getClaims: vi.fn(),
+  signInWithOAuth: vi.fn(),
+  signOut: vi.fn(),
+}));
+
+vi.mock('server-only', () => ({}));
+
+vi.mock('next/headers', () => ({
+  cookies: vi.fn(async () => ({
+    getAll: () => [],
+    set: vi.fn(),
+  })),
+}));
+
+vi.mock('@supabase/ssr', () => ({
+  createServerClient: vi.fn(() => ({
+    auth: {
+      exchangeCodeForSession: authMocks.exchangeCodeForSession,
+      getClaims: authMocks.getClaims,
+      signInWithOAuth: authMocks.signInWithOAuth,
+      signOut: authMocks.signOut,
+    },
+  })),
+}));
+
+const OWNER_EMAIL = 'owner@example.com';
+const GOOGLE_CLAIMS = {
+  sub: 'owner-user-id',
+  email: OWNER_EMAIL,
+  role: 'authenticated',
+  is_anonymous: false,
+  app_metadata: { provider: 'google', providers: ['google'] },
+};
+
+function apiRoutes(root: string): string[] {
+  const apiRoot = join(root, 'app/api');
+  const routes: string[] = [];
+
+  function visit(directory: string): void {
+    for (const entry of readdirSync(directory, { withFileTypes: true })) {
+      const absolute = join(directory, entry.name);
+      if (entry.isDirectory()) {
+        visit(absolute);
+      } else if (entry.name === 'route.ts') {
+        routes.push(`/${absolute.slice(join(root, 'app').length + 1).replace(/\/route\.ts$/, '')}`);
+      }
+    }
+  }
+
+  visit(apiRoot);
+  return routes;
+}
+
+describe('대시보드 단일 구글 계정 보안 경계', () => {
+  beforeEach(() => {
+    vi.stubEnv('NEXT_PUBLIC_SUPABASE_URL', 'https://example.supabase.co');
+    vi.stubEnv('NEXT_PUBLIC_SUPABASE_ANON_KEY', 'test-anon-key');
+    vi.stubEnv('DASHBOARD_OWNER_EMAIL', OWNER_EMAIL);
+    vi.stubEnv('DASHBOARD_PUBLIC_BASE_URL', 'https://dashboard.example');
+    authMocks.exchangeCodeForSession.mockResolvedValue({ error: null });
+    authMocks.getClaims.mockResolvedValue({ data: null, error: new Error('no session') });
+    authMocks.signInWithOAuth.mockResolvedValue({
+      data: { url: 'https://accounts.example/authorize' },
+      error: null,
+    });
+    authMocks.signOut.mockResolvedValue({ error: null });
+  });
+
+  afterEach(() => {
+    vi.unstubAllEnvs();
+    vi.clearAllMocks();
+  });
+
+  it('공용 비밀번호 대신 전역 서버 프록시와 구글 로그인만 사용한다', () => {
+    const root = process.cwd();
+    const pageSource = readFileSync(join(root, 'app/page.tsx'), 'utf8');
+    const serverClientSource = readFileSync(join(root, 'lib/auth/server-supabase.ts'), 'utf8');
+
+    expect(existsSync(join(root, 'proxy.ts'))).toBe(true);
+    expect(existsSync(join(root, 'lib/auth/login-response.ts'))).toBe(true);
+    expect(existsSync(join(root, 'app/auth/start/route.ts'))).toBe(true);
+    expect(existsSync(join(root, 'app/auth/callback/route.ts'))).toBe(true);
+    expect(pageSource).not.toContain('/api/operation-access');
+    expect(pageSource).not.toContain('signInWithPassword');
+    expect(pageSource).not.toContain('signUp');
+    expect(pageSource).not.toContain('silla-operation-access');
+    expect(serverClientSource).toContain("secure: process.env.NODE_ENV === 'production'");
+  });
+
+  it('정확히 허용된 구글 계정만 승인한다', () => {
+    expect(evaluateDashboardOwnerClaims(GOOGLE_CLAIMS, ' OWNER@example.com ')).toEqual({
+      ok: true,
+      email: OWNER_EMAIL,
+      subject: 'owner-user-id',
+    });
+    expect(evaluateDashboardOwnerClaims({
+      ...GOOGLE_CLAIMS,
+      email: 'other@example.com',
+    }, OWNER_EMAIL)).toEqual({ ok: false, status: 403, code: 'owner_required' });
+    expect(evaluateDashboardOwnerClaims({
+      ...GOOGLE_CLAIMS,
+      app_metadata: { provider: 'email', providers: ['email'] },
+    }, OWNER_EMAIL)).toEqual({ ok: false, status: 403, code: 'google_account_required' });
+    expect(evaluateDashboardOwnerClaims({
+      ...GOOGLE_CLAIMS,
+      app_metadata: { provider: 'email', providers: ['email', 'google'] },
+    }, OWNER_EMAIL)).toEqual({ ok: false, status: 403, code: 'google_account_required' });
+    expect(evaluateDashboardOwnerClaims(GOOGLE_CLAIMS, undefined)).toEqual({
+      ok: false,
+      status: 503,
+      code: 'configuration_required',
+    });
+  });
+
+  it('메일의 최신 사용자 조회에서도 확인된 구글 소유자만 승인한다', () => {
+    expect(evaluateDashboardOwnerUser({
+      id: 'owner-user-id',
+      email: OWNER_EMAIL,
+      email_confirmed_at: '2026-08-16T00:00:00Z',
+      app_metadata: { provider: 'google' },
+      identities: [{ provider: 'google' }],
+    }, OWNER_EMAIL)).toMatchObject({ ok: true, email: OWNER_EMAIL });
+    expect(evaluateDashboardOwnerUser({
+      id: 'owner-user-id',
+      email: OWNER_EMAIL,
+      email_confirmed_at: '2026-08-16T00:00:00Z',
+      app_metadata: { provider: 'email' },
+      identities: [{ provider: 'email' }],
+    }, OWNER_EMAIL)).toEqual({ ok: false, status: 403, code: 'google_account_required' });
+  });
+
+  it('로그인·콜백과 서명 웹훅만 공개 경로로 둔다', () => {
+    expect(isPublicDashboardPath('/login')).toBe(true);
+    expect(isPublicDashboardPath('/mail/login')).toBe(true);
+    expect(isPublicDashboardPath('/auth/start')).toBe(true);
+    expect(isPublicDashboardPath('/auth/callback')).toBe(true);
+    expect(isPublicDashboardPath('/api/webhooks/unloading')).toBe(true);
+    expect(isPublicDashboardPath('/market')).toBe(false);
+    expect(isPublicDashboardPath('/api/unloading-history')).toBe(false);
+  });
+
+  it('외부·인증 경로로 향하는 next 값을 대시보드 기본 경로로 되돌린다', () => {
+    expect(normalizeDashboardNextPath('/unloading?date=2026-08-15')).toBe('/unloading?date=2026-08-15');
+    expect(normalizeDashboardNextPath('https://evil.example/steal')).toBe('/market');
+    expect(normalizeDashboardNextPath('//evil.example/steal')).toBe('/market');
+    expect(normalizeDashboardNextPath('/auth/callback')).toBe('/market');
+    expect(normalizeDashboardNextPath('/login?next=/mail')).toBe('/market');
+  });
+
+  it('미인증 페이지는 로그인으로 보내고 미인증 API는 JSON 401로 닫는다', async () => {
+    const pageResponse = await proxy(new NextRequest('https://dashboard.example/unloading?day=15'));
+    expect(pageResponse.status).toBe(307);
+    expect(pageResponse.headers.get('location')).toBe(
+      'https://dashboard.example/login?next=%2Funloading%3Fday%3D15',
+    );
+
+    const apiResponse = await proxy(new NextRequest('https://dashboard.example/api/unloading-history'));
+    expect(apiResponse.status).toBe(401);
+    expect(await apiResponse.json()).toEqual({
+      error: '구글 로그인이 필요합니다.',
+      code: 'authentication_required',
+    });
+    expect(apiResponse.headers.get('cache-control')).toContain('no-store');
+  });
+
+  it('로그인 화면은 공개 실행 청크 없이 서버 HTML과 자체 CSP만 사용한다', async () => {
+    const response = await proxy(new NextRequest(
+      'https://dashboard.example/login?next=%2Funloading%3Fday%3D15',
+    ));
+    const html = await response.text();
+
+    expect(response.status).toBe(200);
+    expect(response.headers.get('cache-control')).toContain('no-store');
+    expect(response.headers.get('content-security-policy')).toContain("default-src 'none'");
+    expect(html).toContain('참치왕국 보안 로그인');
+    expect(html).toContain('구글 계정으로 로그인');
+    expect(html).toContain('value="/unloading?day=15"');
+    expect(html).not.toContain('/_next/static');
+    expect(html).not.toContain('<script');
+    expect(authMocks.getClaims).not.toHaveBeenCalled();
+  });
+
+  it('서버 OAuth 시작과 콜백이 안전한 복귀 경로로 구글 세션을 연결한다', async () => {
+    const startRoute = await import('../app/auth/start/route');
+    const startResponse = await startRoute.GET(new NextRequest(
+      'https://forged-host.example/auth/start?next=%2Funloading%3Fday%3D15',
+    ));
+    expect(startResponse.status).toBe(307);
+    expect(startResponse.headers.get('location')).toBe('https://accounts.example/authorize');
+    expect(authMocks.signInWithOAuth).toHaveBeenCalledWith({
+      provider: 'google',
+      options: {
+        redirectTo: 'https://dashboard.example/auth/callback?next=%2Funloading%3Fday%3D15',
+        scopes: 'openid email profile',
+        queryParams: { prompt: 'select_account' },
+      },
+    });
+
+    authMocks.getClaims.mockResolvedValue({ data: { claims: GOOGLE_CLAIMS }, error: null });
+    const callbackRoute = await import('../app/auth/callback/route');
+    const callbackResponse = await callbackRoute.GET(new NextRequest(
+      'https://forged-host.example/auth/callback?code=oauth-code&next=%2Funloading%3Fday%3D15',
+    ));
+    expect(authMocks.exchangeCodeForSession).toHaveBeenCalledWith('oauth-code');
+    expect(callbackResponse.status).toBe(307);
+    expect(callbackResponse.headers.get('location')).toBe(
+      'https://dashboard.example/unloading?day=15',
+    );
+  });
+
+  it('다른 계정과 비구글 계정은 세션이 있어도 거부한다', async () => {
+    authMocks.getClaims.mockResolvedValue({
+      data: { claims: { ...GOOGLE_CLAIMS, email: 'other@example.com' } },
+      error: null,
+    });
+    const otherAccount = await proxy(new NextRequest('https://dashboard.example/api/tuna'));
+    expect(otherAccount.status).toBe(403);
+
+    authMocks.getClaims.mockResolvedValue({
+      data: {
+        claims: {
+          ...GOOGLE_CLAIMS,
+          app_metadata: { provider: 'email', providers: ['email'] },
+        },
+      },
+      error: null,
+    });
+    const passwordAccount = await proxy(new NextRequest('https://dashboard.example/market'));
+    expect(passwordAccount.status).toBe(307);
+    expect(passwordAccount.headers.get('location')).toContain('error=google_account_required');
+  });
+
+  it('허용된 구글 계정은 페이지와 API를 통과시킨다', async () => {
+    authMocks.getClaims.mockResolvedValue({ data: { claims: GOOGLE_CLAIMS }, error: null });
+
+    const pageResponse = await proxy(new NextRequest('https://dashboard.example/market'));
+    const apiResponse = await proxy(new NextRequest('https://dashboard.example/api/tuna'));
+
+    expect(pageResponse.status).toBe(200);
+    expect(pageResponse.headers.get('x-middleware-next')).toBe('1');
+    expect(apiResponse.status).toBe(200);
+    expect(apiResponse.headers.get('cache-control')).toContain('private');
+  });
+
+  it('로컬 E2E 난수 경계는 loopback에서만 열리고 Vercel에서는 열리지 않는다', async () => {
+    const secret = 'random-test-secret-that-is-longer-than-32-characters';
+    vi.stubEnv('DASHBOARD_E2E_MODE', 'local');
+    vi.stubEnv('DASHBOARD_E2E_AUTH_SECRET', secret);
+    vi.stubEnv('VERCEL', '');
+    vi.stubEnv('VERCEL_ENV', '');
+
+    const localResponse = await proxy(new NextRequest('http://127.0.0.1:3027/unloading', {
+      headers: { [LOCAL_E2E_AUTH_HEADER]: secret },
+    }));
+    expect(localResponse.status).toBe(200);
+    expect(localResponse.headers.get('x-middleware-next')).toBe('1');
+    expect(authMocks.getClaims).not.toHaveBeenCalled();
+
+    const externalResponse = await proxy(new NextRequest('https://dashboard.example/unloading', {
+      headers: { [LOCAL_E2E_AUTH_HEADER]: secret },
+    }));
+    expect(externalResponse.status).toBe(307);
+
+    vi.stubEnv('VERCEL', '1');
+    const vercelResponse = await proxy(new NextRequest('http://127.0.0.1:3027/unloading', {
+      headers: { [LOCAL_E2E_AUTH_HEADER]: secret },
+    }));
+    expect(vercelResponse.status).toBe(307);
+  });
+
+  it('모든 API·JSON·실행 청크·이미지는 프록시 대상이다', () => {
+    const root = process.cwd();
+    for (const route of apiRoutes(root)) {
+      expect(unstable_doesMiddlewareMatch({ config, nextConfig: {}, url: route }), route).toBe(true);
+    }
+    expect(unstable_doesMiddlewareMatch({ config, nextConfig: {}, url: '/data/private.json' })).toBe(true);
+    expect(unstable_doesMiddlewareMatch({ config, nextConfig: {}, url: '/_next/static/chunk.js' })).toBe(true);
+    expect(unstable_doesMiddlewareMatch({ config, nextConfig: {}, url: '/icons/icon-192.png' })).toBe(true);
+  });
+});

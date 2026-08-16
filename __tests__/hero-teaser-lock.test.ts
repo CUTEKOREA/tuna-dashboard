@@ -82,8 +82,11 @@ describe('잠금 상태 히어로 티저', () => {
     expect(markup).not.toContain(bodyText);
   });
 
-  it('잠금 분기에서 지원 메뉴의 heroOnly 티저와 접근 확인 폼을 함께 렌더한다', () => {
+  it('전역 서버 인증 전에는 heroOnly 티저나 비밀번호 폼도 렌더하지 않는다', () => {
     const source = readFileSync(join(process.cwd(), 'app/page.tsx'), 'utf8');
+    const proxySource = readFileSync(join(process.cwd(), 'proxy.ts'), 'utf8');
+    const loginSource = readFileSync(join(process.cwd(), 'lib/auth/login-response.ts'), 'utf8');
+    const oauthStartSource = readFileSync(join(process.cwd(), 'app/auth/start/route.ts'), 'utf8');
     const supportedDashboards = [
       'MarketDashboard',
       'FleetCommandCenter',
@@ -95,28 +98,15 @@ describe('잠금 상태 히어로 티저', () => {
     ];
 
     for (const dashboard of supportedDashboards) {
-      expect(source).toMatch(new RegExp(`<${dashboard}\\s+heroOnly\\s*/>`));
+      expect(source).not.toMatch(new RegExp(`<${dashboard}\\s+heroOnly\\s*/>`));
     }
 
-    const lockedBranch = source.indexOf('{isOperationMenuLocked && (');
-    const teaserRender = source.indexOf('{heroTeaserPanels[activeMenu]}', lockedBranch);
-    const accessForm = source.indexOf('전체 메뉴 접근 확인', teaserRender);
-    const dashboardPanelRender = source.indexOf('{DASHBOARD_PANEL_ORDER.map', accessForm);
-    const fullPanelGate = source.lastIndexOf('{!isOperationMenuLocked && (', dashboardPanelRender);
-    const fullPanelGateSource = source.slice(fullPanelGate, dashboardPanelRender);
-
-    expect(lockedBranch).toBeGreaterThan(-1);
-    expect(teaserRender).toBeGreaterThan(lockedBranch);
-    expect(accessForm).toBeGreaterThan(teaserRender);
-    expect(dashboardPanelRender).toBeGreaterThan(accessForm);
-    expect(fullPanelGate).toBeGreaterThan(accessForm);
-    expect(fullPanelGateSource).not.toContain('<LiveTicker');
-    expect(source).toContain('핵심 지표는 공개되며, 상세 분석은 내부 확인 후 열람할 수 있습니다.');
-    // 2026-08-15: 코스모 네이티브 이전으로 히어로 보유 — 티저 지원 목록에 합류
-    expect(source).toMatch(/cosmo: <CosmoDashboard heroOnly \/>/);
-    // 2026-08-15: 방콕사무소도 네이티브 탭 대시보드로 이전 — 티저 합류
-    expect(source).toMatch(/'bangkok-office': <BangkokDashboard heroOnly \/>/);
-    expect(source).not.toMatch(/<BangkokOfficeDashboard\s+heroOnly/);
-    expect(source).toContain("!isOperationMenuLocked && activeMenu === 'market'");
+    expect(source).toContain('{DASHBOARD_PANEL_ORDER.map');
+    expect(source).not.toContain('isOperationMenuLocked');
+    expect(source).not.toContain('heroTeaserPanels');
+    expect(source).not.toContain('전체 메뉴 접근 확인');
+    expect(proxySource).toContain('updateDashboardOwnerSession');
+    expect(loginSource).toContain('action="/auth/start"');
+    expect(oauthStartSource).toContain("provider: 'google'");
   });
 });

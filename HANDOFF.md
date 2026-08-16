@@ -1,3 +1,13 @@
+> 🔐 **2026-08-16 17:53 KST — 전 페이지 단일 Google 소유자 인증 로컬 구현** [Codex]:
+> - **완료된 것:** 클라이언트 `sessionStorage`·공용 비밀번호 화면을 제거하고 Next.js 16 `proxy.ts`에서 모든 페이지·API·정적 JSON·이미지·`/_next/static` 실행 청크를 서버 검증한다. Supabase `getClaims()`의 서명 검증 결과에서 정확한 `DASHBOARD_OWNER_EMAIL`, `role=authenticated`, 비익명 세션, 기본 제공자 `google`을 모두 만족해야 통과한다. 다른 이메일과 Google이 연결만 된 이메일·비밀번호 세션은 403/fail-closed다.
+> - **공개 예외:** 자산이 필요 없는 자체 CSP 인라인 로그인(`/login`, `/mail/login`), 서버 Google OAuth 시작·PKCE 콜백(`/auth/start`, `/auth/callback`), 기존 서명 검증 웹훅(`/api/webhooks/unloading`)만 남겼다. OAuth callback·복귀 URL은 요청 Host가 아니라 `DASHBOARD_PUBLIC_BASE_URL` 기준으로 고정해 Host 변조를 막는다. 로컬 Production 응답에서 PKCE S256과 `Secure; SameSite=Lax` 쿠키도 확인했다.
+> - **정적 청크까지 보호한 이유:** 빌드 청크에서 실제 선박·하역 수치가 확인됐다. 따라서 로그인 화면을 Next 실행 자산 없는 서버 HTML로 제공하고, 청크도 인증 뒤로 옮겼다. 인증된 페이지·API·청크는 `private, no-store`, 서비스워커는 기존 CacheStorage를 전부 삭제하고 모든 동일 출처 요청을 network-only로 처리하며 로그아웃도 CacheStorage를 비운다.
+> - **과거 비밀번호 폐기:** `/api/operation-access`의 GET·POST·DELETE는 모두 410이고 쿠키를 발급하지 않는다. `lib/server/operation-access.ts` 호환 심볼도 항상 거부하도록 무력화했으며 `SILLA_OPERATION_PASSWORD`·`SILLA_OPERATION_ACCESS_SECRET`을 더 이상 읽지 않는다. Atuna 가격·일일 API의 개발 우회와 90일 공개 프리뷰도 제거하고 route-level 소유자 검증 뒤에만 원문을 반환한다.
+> - **메일:** 기존 Gmail OAuth·MFA·위험 작업 확인 흐름은 유지하되, 메일 서버 요청도 먼저 정확한 Google 소유자 계정을 재검증한다.
+> - **검증:** `npm run verify` exit 0 — ESLint 오류 0, TypeScript, Vitest **92파일·536테스트**, API cache **156/156**, Next build **117페이지 + Proxy**, bundle **32라우트** 통과. 로컬 Production에서 미인증 `/unloading` 307, API 401, 정적 청크·아이콘 307, 로그인 200+CSP/no-store를 확인했다. Chromium 1440px·390px 모두 overflow 0, 대시보드 데이터 노출 0, page/console error 0. 로컬 전용 난수 인증(`VERCEL*` 존재 시 강제 거부·loopback 전용)으로 하역 데스크톱/모바일/키보드/새로고침/API·청크 오류격리 E2E도 PASS했다.
+> - **상태/다음 단계:** 분리 worktree `codex/google-owner-auth-20260816`의 로컬 구현이며 **push·배포·Vercel/Supabase 설정 변경은 하지 않았다.** 배포 전 Supabase Google provider를 활성화하고 허용 redirect URL에 `https://leedonggun.co.kr/auth/callback`을 등록한다. Vercel에는 Sensitive Production 변수 `DASHBOARD_OWNER_EMAIL=<본인 Google 이메일>`과 `DASHBOARD_PUBLIC_BASE_URL=https://leedonggun.co.kr`을 설정한다. 사용자가 명시적으로 배포를 요청하면 병합·Production 배포 후 실제 Google 로그인, 다른 계정 거부, 1440px·390px, API·청크 401/307/no-store를 운영에서 재검증한다.
+> - **마지막 업데이트:** 2026-08-16 17:53 KST.
+>
 > 📅 **2026-08-16 16:40 KST — 「시장 이해 > 참치」 전 수치 기준연도 재검수·갱신** [CC]:
 > - **사용자 지적이 맞았다.** FAO FishStat 어획통계는 2026-03 릴리스로 **현재 기준연도 1950–2024** 인데 내 집계는 2022에서 끊겨 있었다. 원인은 `FishStat_Capture_tuna_66species.csv`(2024 릴리스 시점 사전필터 추출본)를 쓴 것 — **같은 폴더의 벌크 `Capture_Quantity.csv`(105만 행, 1950–2024)가 정답이었다.**
 > - **FAO 는 릴리스마다 과거 연도도 개정한다.** 2022년 주요 7종 합계가 5,280,367 → 5,316,039톤으로 바뀌었다. 즉 낡은 추출본은 최신 연도만 빠진 게 아니라 **과거 값도 틀렸다.**

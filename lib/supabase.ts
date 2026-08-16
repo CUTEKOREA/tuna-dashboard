@@ -15,6 +15,12 @@ const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || 'placeholde
  * 기존 로그인 사용자는 1회 재로그인이 필요함.
  *
  * auth API 시그니처(supabase.auth.getSession / onAuthStateChange /
- * signInWithPassword / signUp / signOut)는 supabase-js와 동일.
+ * 세션 조회와 로그아웃 API 시그니처는 supabase-js와 동일.
  */
-export const supabase = createBrowserClient(supabaseUrl, supabaseAnonKey);
+export const supabase = createBrowserClient(supabaseUrl, supabaseAnonKey, {
+  cookieOptions: {
+    path: '/',
+    sameSite: 'lax',
+    secure: process.env.NODE_ENV === 'production',
+  },
+});

@@ -1,12 +1,7 @@
 import { NextResponse } from 'next/server';
-import { cookies } from 'next/headers';
-import { createServerClient } from '@supabase/ssr';
 import fs from 'node:fs/promises';
 import path from 'node:path';
-import {
-  OPERATION_ACCESS_COOKIE_NAME,
-  verifyOperationAccessToken,
-} from '@/lib/server/operation-access';
+import { authorizeDashboardRequest } from '@/lib/auth/request-auth';
 
 export const dynamic = 'force-dynamic';
 export const revalidate = 0;
@@ -15,43 +10,6 @@ const RESPONSE_HEADERS = {
   'Cache-Control': 'private, no-store, max-age=0',
   Vary: 'Cookie',
 };
-
-/** 무인증 요청에 공개하는 프리뷰 기간 (일) — Atuna 유료 구독 소스 보호 */
-const PREVIEW_DAYS = 90;
-
-/**
- * 서버가 검증한 운영 접근 쿠키 또는 Supabase 세션만 전체 이력을 허용한다.
- * Supabase getUser()는 Auth 서버에 토큰 유효성을 확인하고,
- * 운영 접근 쿠키는 별도의 서버 비밀값으로 HMAC 서명을 검증한다.
- */
-async function isAuthenticated(): Promise<boolean> {
-  // 로컬 개발 우회 — NODE_ENV=development 한정
-  if (process.env.NODE_ENV === 'development') return true;
-  try {
-    const cookieStore = await cookies();
-    if (verifyOperationAccessToken(cookieStore.get(OPERATION_ACCESS_COOKIE_NAME)?.value)) {
-      return true;
-    }
-    const supabase = createServerClient(
-      process.env.NEXT_PUBLIC_SUPABASE_URL || 'https://placeholder.supabase.co',
-      process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || 'placeholder',
-      {
-        cookies: {
-          getAll() {
-            return cookieStore.getAll();
-          },
-          setAll() {
-            // Route Handler에서는 응답 쿠키 갱신 생략 (읽기 전용 검증)
-          },
-        },
-      }
-    );
-    const { data: { user } } = await supabase.auth.getUser();
-    return Boolean(user);
-  } catch {
-    return false;
-  }
-}
 
 type PriceEntry = {
   date: string;
@@ -91,9 +49,21 @@ function staleDaysFrom(dataAsOf: string): number {
  *   - FAO GLOBEFISH 월간 보고서 PDF 파싱
  */
 export async function GET() {
-  try {
-    const authed = await isAuthenticated();
+  const access = await authorizeDashboardRequest();
+  if (!access.ok) {
+    return NextResponse.json(
+      {
+        error: access.status === 503
+          ? '접속 보안 설정이 완료되지 않았습니다.'
+          : '허용된 구글 계정 로그인이 필요합니다.',
+        code: access.code,
+        restricted: true,
+      },
+      { status: access.status, headers: RESPONSE_HEADERS },
+    );
+  }
 
+  try {
     const filePath = path.join(process.cwd(), 'data', 'atuna_prices.json');
     const raw = await fs.readFile(filePath, 'utf-8');
     const history: PriceEntry[] = JSON.parse(raw);
@@ -118,35 +88,19 @@ export async function GET() {
       hubFreshness[hub] = entry.date;
     }
 
-    // 무인증 요청: Atuna 유료 구독 소스 보호 — history를 최근 90일로 트림.
-    // 200 응답 유지 (미로그인 랜딩 프리뷰 호환), restricted: true로 표시.
-    let servedHistory = history;
-    if (!authed) {
-      const baseTime = latestDate
-        ? new Date(`${latestDate}T00:00:00Z`).getTime()
-        : Date.now();
-      const cutoffTime = baseTime - PREVIEW_DAYS * 86_400_000;
-      servedHistory = history.filter((e) => {
-        const t = new Date(`${e.date}T00:00:00Z`).getTime();
-        return !Number.isNaN(t) && t >= cutoffTime;
-      });
-    }
-
     return NextResponse.json({
       source: 'data/atuna_prices.json (manual sync — Atuna paywall, 라우트 경유 전용)',
       latestDate,
       hubLabels: HUB_LABELS,
       latestByHub,
-      history: servedHistory,
+      history,
       fetchedAt: new Date().toISOString(),
       // L-12 표준 필드 — 정적 JSON 서빙이므로 정직하게 isLive: false
       isLive: false,
       dataAsOf: latestDate, // 데이터의 실제 기준일 (최신 행 날짜, 응답 생성일 아님)
       staleDays: latestDate ? staleDaysFrom(latestDate) : null,
       hubFreshness,
-      // A-5 인증 게이팅 — 무인증 시 최근 90일 프리뷰만 제공
-      restricted: !authed,
-      ...(authed ? {} : { restrictedNote: `미인증 프리뷰 — 최근 ${PREVIEW_DAYS}일 데이터만 제공됩니다. 전체 이력은 접근 확인 후 열람 가능합니다.` }),
+      restricted: false,
     }, { headers: RESPONSE_HEADERS });
   } catch (err) {
     return NextResponse.json(

@@ -478,7 +478,7 @@ describe('dashboard registry', () => {
       ) ?? [],
     ).toHaveLength(1);
     expect(appSource.match(/^\s+gmts: <GmtsDashboard \/>,$/gm) ?? []).toHaveLength(1);
-    expect(appSource.match(/^\s+gmts: <GmtsDashboard heroOnly \/>,$/gm) ?? []).toHaveLength(1);
+    expect(appSource.match(/^\s+gmts: <GmtsDashboard heroOnly \/>,$/gm) ?? []).toHaveLength(0);
     expect(existsSync(join(process.cwd(), 'app/gmts/page.tsx'))).toBe(false);
     expect(rewriteSource).not.toContain('gmts');
   });
@@ -497,8 +497,10 @@ describe('dashboard registry', () => {
     }
   });
 
-  it('requires the existing session access check for every active menu without changing operation metadata', () => {
+  it('keeps legacy menu sensitivity metadata out of the new global server boundary', () => {
     const sessionAccessKeys = (dashboardRegistry as Record<string, unknown>).SESSION_ACCESS_MENU_KEYS;
+    const appSource = readFileSync(join(process.cwd(), 'app/page.tsx'), 'utf8');
+    const proxySource = readFileSync(join(process.cwd(), 'proxy.ts'), 'utf8');
 
     expect(sessionAccessKeys).toEqual(VALID_MENUS.filter((menu) => menu !== 'mail'));
     expect(PROTECTED_OPERATION_MENU_KEYS).toEqual(['fleet', 'unloading', 'logistics', 'bangkok-office', 'gmts']);
@@ -506,6 +508,8 @@ describe('dashboard registry', () => {
     expect(KEYBOARD_SHORTCUT_MENUS).not.toContain('mail');
     expect(PUBLIC_DASHBOARD_ROUTES).not.toContain('mail');
     expect(DASHBOARD_COMMANDS.map((command) => command.key)).not.toContain('mail');
+    expect(appSource).not.toContain('SESSION_ACCESS_MENUS');
+    expect(proxySource).toContain('updateDashboardOwnerSession');
   });
 
   it('drives command search from the same valid menu registry', () => {
