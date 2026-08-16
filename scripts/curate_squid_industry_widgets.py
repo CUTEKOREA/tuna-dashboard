@@ -232,6 +232,7 @@ CELL_FIXES = {
     "LMCTP": "법정 최대 허용어획량",
     "consumption": "소진 공지",
     "closure": "중단 조치",
+    "closure_notice": "중단 공지",
     "notice": "공지",
     "adjustment": "조정",
     "broad": "포괄 분류",
@@ -706,6 +707,27 @@ ABBREV_KO = {
 UNMAPPED_CELLS: set[str] = set()
 
 
+def flatten_cell(value):
+    """중첩 구조를 읽을 수 있는 한 줄로 편다.
+
+    원본에 객체·배열 셀이 섞여 있다(예: 페루 조업중단 공지의 선박 규모별 목록).
+    그대로 두면 화면이 렌더에서 죽는다. 여기서 문자열로 눕히고,
+    렌더 쪽에도 같은 방어를 둔다.
+    """
+    if isinstance(value, list):
+        return " · ".join(flatten_cell(v) for v in value if v not in (None, ""))
+    if isinstance(value, dict):
+        parts = [
+            str(v)
+            for k, v in value.items()
+            # 원문 발췌·경로는 셀에 넣지 않는다 — 길고 화면에서 읽히지 않는다
+            if k not in ("source_text", "source_path", "archive_path", "derivation", "evidence_type")
+            and isinstance(v, (str, int, float))
+        ]
+        return " ".join(parts)
+    return value
+
+
 def localize_value(value):
     """셀 값 하나를 한글화한다. 문자열이 아니면 그대로 둔다."""
     if not isinstance(value, str):
@@ -747,7 +769,11 @@ def localize_rows(rows: list) -> list:
             continue
         out.append(
             {
-                k: (v if k in PROPER_NOUN_COLUMNS or k == "kind" else localize_value(v))
+                k: (
+                    flatten_cell(v)
+                    if k in PROPER_NOUN_COLUMNS or k == "kind"
+                    else localize_value(flatten_cell(v))
+                )
                 for k, v in row.items()
                 # 발췌 판별에 쓰는 kind/text_ko/source_path 는 뒤에서 따로 처리하므로 남긴다
                 if k not in COLUMN_DROP or k in ("kind", "text_ko", "source_path")

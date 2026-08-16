@@ -5,6 +5,7 @@ import { describe, expect, it } from 'vitest';
 import SquidIndustryDashboard, {
   SQUID_CHART_SLOTS,
 } from '../components/market-understanding/SquidIndustryDashboard';
+import SquidWidgetView from '../components/market-understanding/SquidWidgetView';
 import {
   getSquidCatchData,
   getSquidChainStages,
@@ -275,6 +276,44 @@ describe('시장 이해 > 오징어 — 렌더', () => {
     );
     expect(markup).toContain('오징어 산업 해부');
     expect(markup).not.toContain('30초 브리핑');
+  });
+
+  it('위젯 30개가 하나도 빠짐없이 그려진다', () => {
+    // 이 검사가 없어서 배포 후에 페이지가 죽었다. 원본 셀에 객체 배열이 들어 있었고
+    // React 가 그것을 자식으로 받으면 페이지 전체가 사라진다. 단계 하나가 죽으면
+    // 그 단계만 비는 것이 아니라 대시보드가 통째로 오류 화면이 된다.
+    const broken: string[] = [];
+    for (const stage of getSquidStages()) {
+      for (const widget of stage.widgets) {
+        try {
+          const markup = renderToStaticMarkup(
+            React.createElement(SquidWidgetView, { widget }),
+          );
+          if (markup.length < 20) broken.push(`${stage.key}/${widget.id} (빈 출력)`);
+        } catch (error) {
+          broken.push(`${stage.key}/${widget.id} — ${(error as Error).message.slice(0, 80)}`);
+        }
+      }
+    }
+    expect(broken, `렌더 실패: ${broken.join(' / ')}`).toHaveLength(0);
+  });
+
+  it('셀에 객체·배열이 남아 있지 않다', () => {
+    // 위 검사를 통과해도 데이터에 중첩 구조가 남아 있으면 렌더러 방어에만 기대는 셈이다.
+    // 큐레이션에서 펴는 것이 정석이므로 데이터 쪽도 잡는다.
+    const nested: string[] = [];
+    for (const stage of getSquidStages()) {
+      for (const widget of stage.widgets) {
+        for (const row of widget.data) {
+          for (const [key, value] of Object.entries(row)) {
+            if (value !== null && typeof value === 'object') {
+              nested.push(`${widget.id}.${key}`);
+            }
+          }
+        }
+      }
+    }
+    expect(nested, `중첩 셀: ${nested.join(', ')}`).toHaveLength(0);
   });
 
   it('차트 슬롯이 모두 그려진다', () => {

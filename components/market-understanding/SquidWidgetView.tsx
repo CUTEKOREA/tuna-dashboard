@@ -48,14 +48,31 @@ const EXCERPT_CAP = 6;
 
 type Row = Record<string, string | number | null>;
 
-function formatCell(value: string | number | null): string {
+function formatCell(value: unknown): string {
   if (value === null || value === undefined || value === '') return '—';
+  // 원본 위젯의 셀에 객체·배열이 들어 있는 경우가 있다(예: 중단 조치 목록).
+  // 그대로 React 자식으로 넘기면 페이지 전체가 죽으므로 여기서 문자열로 눕힌다.
+  // 큐레이션에서 펴는 것이 정석이지만, 방어는 렌더에도 둔다 — 한 셀 때문에 화면이 사라지면 안 된다.
+  if (typeof value === 'object') {
+    const rows = Array.isArray(value) ? value : [value];
+    return rows
+      .map((row) =>
+        row && typeof row === 'object'
+          ? Object.values(row as Record<string, unknown>)
+              .filter((v) => typeof v === 'string' || typeof v === 'number')
+              .join(' ')
+          : String(row),
+      )
+      .filter(Boolean)
+      .join(' · ');
+  }
+  if (typeof value === 'boolean') return value ? '예' : '아니오';
   if (typeof value === 'number') {
     // 연도는 콤마를 찍지 않는다. 1,996년으로 보이면 읽는 사람이 멈춘다.
     if (Number.isInteger(value) && value >= 1900 && value <= 2100) return String(value);
     return value.toLocaleString('ko-KR', { maximumFractionDigits: 2 });
   }
-  return value;
+  return String(value);
 }
 
 /**
