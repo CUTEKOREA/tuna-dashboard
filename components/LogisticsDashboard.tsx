@@ -97,7 +97,7 @@ export function LogisticsHero() {
     <HeroZone
       className={styles.logisticsHero}
       variant="map"
-      title="Logistics & Processing"
+      title="물류·가공"
       subtitle="조업지(태평양 어장)→하역지(방콕) 정적 항로도 · 31주차 운반선 보고 기준"
       background={<FishingGroundToBangkokRouteMap />}
       primaryKpi={{ label: '주간 하역 합계', value: week31Total, unit: '(MT)', decimals: 3 }}

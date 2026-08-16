@@ -115,7 +115,7 @@ export default function CosmoDashboard({ heroOnly = false }: { heroOnly?: boolea
       <div className="cosmo-root" data-cosmo-dashboard>
         <HeroZone
           variant="kpi"
-          title="COSMO Business"
+          title="코스모"
           subtitle={`2026년 ${latest.week}주차 운영 지표 · 손익 1~${latestMonth.month}월 · 정적 원본 ${meta.weekCount}주`}
           primaryKpi={heroKpis.primary}
           secondaryKpis={heroKpis.secondary}

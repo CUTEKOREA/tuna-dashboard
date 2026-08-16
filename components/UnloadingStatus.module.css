@@ -79,16 +79,16 @@
 .heroMissionCardNow:hover,
 .heroMissionCardNow:focus-visible,
 .heroMissionCardNow.heroMissionCardActive {
-  background: var(--dsc-ink);
-  border-color: var(--dsc-ink);
+  background: var(--dsc-surface);
+  border-color: var(--accent-primary);
   box-shadow: var(--elev-2, var(--dsc-card-shadow));
-  color: var(--dsc-bg);
+  color: var(--dsc-ink-muted);
 }
 
 .heroMissionCardNow strong,
 .heroMissionCardNow:hover strong,
 .heroMissionCardNow.heroMissionCardActive strong {
-  color: var(--dsc-bg);
+  color: var(--dsc-ink);
 }
 
 .heroMissionCardNow .heroMissionStatus,

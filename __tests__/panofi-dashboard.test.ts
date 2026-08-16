@@ -165,7 +165,7 @@ describe('파노피 대시보드 렌더', () => {
   const markup = renderToStaticMarkup(React.createElement(PanofiDashboard));
 
   it('제목과 9개 탭을 iframe 없이 렌더한다', () => {
-    expect(markup).toContain('PANOFI Operations');
+    expect(markup).toContain('파노피');
     expect(PANOFI_TABS).toHaveLength(9);
     for (const tab of PANOFI_TABS) expect(markup).toContain(tab.label);
     expect(markup).not.toContain('<iframe');

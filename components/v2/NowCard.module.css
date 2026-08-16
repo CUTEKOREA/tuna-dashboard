@@ -17,10 +17,10 @@
 }
 
 .now {
-  background: var(--dsc-ink);
-  border-color: var(--dsc-ink);
+  background: var(--dsc-surface);
+  border-color: var(--accent-primary);
   box-shadow: var(--elev-2, var(--dsc-card-shadow));
-  color: var(--dsc-bg);
+  color: var(--dsc-ink);
 }
 
 .meta {
@@ -60,7 +60,7 @@
 }
 
 .now .title {
-  color: var(--dsc-bg);
+  color: var(--dsc-ink);
 }
 
 .body {
@@ -70,5 +70,5 @@
 }
 
 .now .body {
-  color: var(--dsc-bg);
+  color: var(--dsc-ink-muted);
 }
