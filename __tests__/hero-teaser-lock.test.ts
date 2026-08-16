@@ -106,7 +106,8 @@ describe('잠금 상태 히어로 티저', () => {
     expect(source).not.toContain('heroTeaserPanels');
     expect(source).not.toContain('전체 메뉴 접근 확인');
     expect(proxySource).toContain('updateDashboardOwnerSession');
-    expect(loginSource).toContain('action="/auth/start"');
+    expect(loginSource).toContain('href="${escapeHtml(loginHref)}"');
+    expect(loginSource).not.toContain('<form');
     expect(oauthStartSource).toContain("provider: 'google'");
   });
 });
