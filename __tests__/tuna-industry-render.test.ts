@@ -367,6 +367,10 @@ describe('시장 이해 > 참치 — 렌더', () => {
     expect(markup).toContain('evidenceRail');
     expect(markup).toContain('chainTrack');
     expect(markup).not.toContain('PillTabs');
+    // 횡단 칩은 제목을 자르지 않는다 — 「가격은 어떻게」처럼 끊기면 의미가 깨진다
+    expect(markup).toContain('가격은 어떻게 정해지는가');
+    expect(markup).toContain('규제와 지속가능성');
+    expect(markup).toContain('한국과 신라의 자리');
     expect(markup).toContain('관할 기구별 어획량');
     expect(markup).toContain('해역별 어획량 상위 8곳');
   });

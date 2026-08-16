@@ -445,36 +445,61 @@
 }
 
 .chainLabel {
-  font-size: 0.6875rem;
+  font-size: 0.75rem;
+  line-height: 1.35;
   text-align: center;
-  max-width: 4.6em;
+  max-width: 8em;
   color: inherit;
 }
 
 .crossRow {
   display: flex;
-  flex-wrap: wrap;
-  gap: 0.5rem;
-  margin-top: 0.75rem;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.45rem;
+  margin-top: 0.85rem;
+  padding-top: 0.75rem;
+  border-top: 1px solid var(--mu-line);
 }
 
 .crossRowLabel {
+  margin: 0;
   font-size: 0.6875rem;
   font-weight: 700;
   letter-spacing: 0.04em;
   color: var(--mu-ink-muted);
-  align-self: center;
+}
+
+.crossChips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
 }
 
 .crossChip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
   min-height: 36px;
-  padding: 0.25rem 0.75rem;
+  padding: 0.35rem 0.85rem;
   border-radius: 999px;
-  border: 1px dashed var(--mu-line);
-  background: transparent;
+  border: 1px solid var(--mu-line);
+  background: var(--mu-surface-2);
   color: var(--mu-ink-soft);
   font-size: 0.8125rem;
+  line-height: 1.35;
   cursor: pointer;
+  text-align: left;
+}
+
+.crossNumeral {
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  color: var(--mu-ink-muted);
+}
+
+.crossChip[aria-current='true'] .crossNumeral {
+  color: var(--mu-accent-deep);
 }
 
 .crossChip[aria-current='true'] {

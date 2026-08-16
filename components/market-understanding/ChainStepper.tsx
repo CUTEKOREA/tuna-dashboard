@@ -108,7 +108,8 @@ export default function ChainStepper({
 
       {cross.length > 0 && (
         <div className={styles.crossRow}>
-          <span className={styles.crossRowLabel}>횡단</span>
+          <p className={styles.crossRowLabel}>사슬을 가로지르는 축</p>
+          <div className={styles.crossChips}>
           {cross.map((step, index) => {
             const current = step.key === activeKey;
             return (
@@ -125,10 +126,12 @@ export default function ChainStepper({
                 onClick={() => onSelect(step.key)}
                 onKeyDown={(event) => handleKeyDown(event, cross, index)}
               >
-                {step.numeral} {shortStepLabel(step.label, 8)}
+                <span className={styles.crossNumeral}>{step.numeral}</span>
+                {step.label}
               </button>
             );
           })}
+          </div>
         </div>
       )}
     </nav>
