@@ -176,9 +176,10 @@ describe('시장 이해 3품목 — 렌더', () => {
 
   it('새우 01단계는 차트 둘을 2열 격자에 둔다', () => {
     const html = renderToStaticMarkup(React.createElement(ShrimpIndustryDashboard));
-    expect(html).toContain('catchGrid');
+    expect(html).toContain('evidenceRail');
     expect(html).toContain('양식과 자연산 75년');
     expect(html).toContain('생산 방식별 규모');
+    expect(html).toContain('chainTrack');
   });
 
   // 오징어에서 겪은 사고를 그대로 막는 검사다.
