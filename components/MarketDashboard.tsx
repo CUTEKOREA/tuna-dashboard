@@ -32,6 +32,15 @@ import styles from './MarketDashboard.module.css';
 const PERIOD_KEYS: AtunaPeriodKey[] = ['3m', '6m', '1y', 'all'];
 const GRAIN_KEYS: AtunaGrainKey[] = ['week', 'month'];
 
+/** 항구 색은 가다랑어·황다랑어가 같다. 노란 세선은 흰 지면에서 안 읽힌다. */
+const MARKET_HUB = {
+  bkk: '#509ee3',
+  mnt: '#3f6212',
+  sey: '#b45309',
+  abj: '#5b4b8a',
+  vig: '#9a3412',
+} as const;
+
 /* 필터 상태 URL 동기화 (?period=&grain=) — 공유 링크가 같은 화면을 연다 (스펙 §4-1) */
 function readFilterFromUrl(): { period: AtunaPeriodKey; grain: AtunaGrainKey } {
   if (typeof window === 'undefined') return { period: 'all', grain: 'week' };
@@ -455,11 +464,11 @@ export default function MarketDashboard({ heroOnly = false }: { heroOnly?: boole
                 <RechartsTooltip content={<MarketChartTip />} />
                 <Legend iconType="plainline" iconSize={16} wrapperStyle={{ fontSize: '12px', paddingTop: '10px', letterSpacing: '0.01em' }} />
 
-                <Line yAxisId="left" type="monotone" dataKey="skj_bkk" name="SKJ 방콕" stroke="#509ee3" strokeWidth={2.5} dot={false} activeDot={{ r: 6, fill: '#509ee3', strokeWidth: 0 }} connectNulls={true} />
-                <Line yAxisId="left" type="monotone" dataKey="skj_mnt" name="SKJ 만타" stroke="#88bf4d" strokeWidth={2} dot={false} connectNulls={true} />
-                <Line yAxisId="left" type="monotone" dataKey="skj_abj" name="SKJ 아비장" stroke="#ef8c8c" strokeWidth={2} dot={false} strokeDasharray="5 5" connectNulls={true} />
-                <Line yAxisId="left" type="monotone" dataKey="skj_sey" name="SKJ 세이셸" stroke="#e8b921" strokeWidth={2} dot={false} connectNulls={true} />
-                <Line yAxisId="left" type="monotone" dataKey="skj_vig" name="SKJ 비고" stroke="#f2a86f" strokeWidth={2} dot={false} strokeDasharray="3 3" connectNulls={true} />
+                <Line yAxisId="left" type="monotone" dataKey="skj_bkk" name="방콕" stroke={MARKET_HUB.bkk} strokeWidth={2.5} dot={false} activeDot={{ r: 6, fill: MARKET_HUB.bkk, strokeWidth: 0 }} connectNulls={true} />
+                <Line yAxisId="left" type="monotone" dataKey="skj_mnt" name="만타" stroke={MARKET_HUB.mnt} strokeWidth={2} dot={false} connectNulls={true} />
+                <Line yAxisId="left" type="monotone" dataKey="skj_abj" name="아비장" stroke={MARKET_HUB.abj} strokeWidth={2} dot={false} strokeDasharray="5 5" connectNulls={true} />
+                <Line yAxisId="left" type="monotone" dataKey="skj_sey" name="세이셸" stroke={MARKET_HUB.sey} strokeWidth={2} dot={false} connectNulls={true} />
+                <Line yAxisId="left" type="monotone" dataKey="skj_vig" name="비고" stroke={MARKET_HUB.vig} strokeWidth={2} dot={false} strokeDasharray="3 3" connectNulls={true} />
               </LineChart>
             </div>
           )}
@@ -477,9 +486,9 @@ export default function MarketDashboard({ heroOnly = false }: { heroOnly?: boole
                 <RechartsTooltip content={<MarketChartTip />} />
                 <Legend iconType="plainline" iconSize={16} wrapperStyle={{ fontSize: '12px', paddingTop: '10px', letterSpacing: '0.01em' }} />
 
-                <Line yAxisId="left" type="monotone" dataKey="yf_abj" name="YF 아비장" stroke="#7172ad" strokeWidth={2.5} dot={false} activeDot={{ r: 6, fill: '#7172ad', strokeWidth: 0 }} connectNulls={true} />
-                <Line yAxisId="left" type="monotone" dataKey="yf_sey" name="YF 세이셸" stroke="#f2a86f" strokeWidth={2} dot={false} strokeDasharray="3 3" connectNulls={true} />
-                <Line yAxisId="left" type="monotone" dataKey="yf_vig" name="YF 비고" stroke="#a989c5" strokeWidth={2} dot={false} strokeDasharray="5 5" connectNulls={true} />
+                <Line yAxisId="left" type="monotone" dataKey="yf_abj" name="아비장" stroke={MARKET_HUB.abj} strokeWidth={2.5} dot={false} activeDot={{ r: 6, fill: MARKET_HUB.abj, strokeWidth: 0 }} connectNulls={true} />
+                <Line yAxisId="left" type="monotone" dataKey="yf_sey" name="세이셸" stroke={MARKET_HUB.sey} strokeWidth={2} dot={false} strokeDasharray="3 3" connectNulls={true} />
+                <Line yAxisId="left" type="monotone" dataKey="yf_vig" name="비고" stroke={MARKET_HUB.vig} strokeWidth={2} dot={false} strokeDasharray="5 5" connectNulls={true} />
               </LineChart>
             </div>
           )}

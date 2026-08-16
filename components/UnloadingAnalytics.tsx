@@ -6,7 +6,7 @@ import {
   Info, BarChart3, Target, Clock
 } from 'lucide-react';
 // Pure SVG charts — recharts fails in lazy-loaded tab context
-import { A11Y_PALETTE } from './ChartPatterns';
+
 import { getVesselStatusKind } from '../lib/unloading-operations';
 
 // ─── Types ───────────────────────────────────────────────
@@ -187,11 +187,20 @@ function fmt(n: number, decimals = 1): string {
   return n.toLocaleString('ko-KR', { minimumFractionDigits: decimals, maximumFractionDigits: decimals });
 }
 
-// Hold line colors — use A11Y palette plus extras for many holds
+// 어창 선 색. 노란·시안 세선은 흰 지면에서 안 읽힌다.
 const HOLD_COLORS = [
-  ...A11Y_PALETTE,
-  '#06b6d4', '#8b5cf6', '#ec4899', '#14b8a6', '#f43f5e',
-  '#a855f7', '#22d3ee', '#fb923c'
+  '#0072B2',
+  '#D55E00',
+  '#009E73',
+  '#CC79A7',
+  '#3685ca',
+  '#5b4b8a',
+  '#be123c',
+  '#0f766e',
+  '#9a3412',
+  '#155e75',
+  '#64748b',
+  '#b45309',
 ];
 
 // ─── Component ───────────────────────────────────────────
@@ -651,8 +660,8 @@ export default function UnloadingAnalytics({
                       <th>선박명</th>
                       <th>총 일수</th>
                       <th>작업일</th>
-                      <th>일평균 (MT)</th>
-                      <th>MT/hr</th>
+                      <th>일평균 (톤)</th>
+                      <th>톤/시간</th>
                       <th>상태</th>
                     </tr>
                   </thead>
@@ -732,18 +741,18 @@ export default function UnloadingAnalytics({
               <div className={styles.card}>
                 <div className={styles.cardTitle}>
                   <TrendingUp size={14} style={{ color: 'var(--w-emerald-500)' }} />
-                  하역 효율 추이 (MT/hr)
+                  하역 효율 추이 (톤/시간)
                 </div>
                 <div className={styles.chartWrap} style={{ width: '100%', overflowX: 'auto' }}>
                   <SvgLineChart
                     data={efficiencyTrend}
-                    lines={[{ key: 'mtPerHr', color: '#38bdf8', label: 'MT/hr' }]}
+                    lines={[{ key: 'mtPerHr', color: 'var(--chart-s1, #509ee3)', label: '톤/시간' }]}
                     width={Math.max(efficiencyTrend.length * 50, 600)}
                     height={220}
                     refLine={{
                       y: Math.round(avgEfficiency * 10) / 10,
                       color: '#f59e0b',
-                      label: `평균 ${(Math.round(avgEfficiency * 10) / 10)} MT/hr`,
+                      label: `평균 ${(Math.round(avgEfficiency * 10) / 10)} 톤/시간`,
                     }}
                   />
                 </div>

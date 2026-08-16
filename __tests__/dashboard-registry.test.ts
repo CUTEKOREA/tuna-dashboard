@@ -322,9 +322,8 @@ describe('dashboard registry', () => {
       expect(rule).toContain('var(--dsc-card-radius)');
     }
 
-    // V3 (2026-08-15): market 어가 차트는 Metabase accent 팔레트로 전환 —
-    // 시리즈 간 색상 분리 + gradient stroke 제거(범례 흑색·시리즈 소실 원인) 계약.
-    for (const chartColor of ['#509ee3', '#88bf4d', '#ef8c8c', '#e8b921', '#f2a86f', '#7172ad', '#a989c5']) {
+    // 항구 색은 가다랑어·황다랑어가 같고, 흰 지면에서 세선이 읽히게 둔다.
+    for (const chartColor of ['#509ee3', '#3f6212', '#b45309', '#5b4b8a', '#9a3412']) {
       expect(marketSource).toContain(chartColor);
     }
     expect(marketSource).not.toContain('url(#mktGrad');

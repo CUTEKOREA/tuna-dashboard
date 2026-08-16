@@ -19,11 +19,11 @@ import { logisticsWeeklyReport } from '@/lib/logistics-weekly-report';
 
 /* 색상은 기존 위젯 그대로 — BANGKOK_TRADERS 와 1:1 */
 const TRADER_STYLE: Record<BangkokTrader, { gid: string; color: string }> = {
-  FCF: { gid: 'tFcf', color: '#38bdf8' },
-  ITOCHU: { gid: 'tIto', color: '#8b5cf6' },
-  'TRI MARINE': { gid: 'tTri', color: '#ec4899' },
-  DIRECT: { gid: 'tDir', color: '#10b981' },
-  MALDIVES: { gid: 'tMal', color: '#f59e0b' },
+  FCF: { gid: 'tFcf', color: 'var(--chart-s1, #509ee3)' },
+  ITOCHU: { gid: 'tIto', color: 'var(--chart-s8, #7172ad)' },
+  'TRI MARINE': { gid: 'tTri', color: 'var(--chart-s5, #ef8c8c)' },
+  DIRECT: { gid: 'tDir', color: 'var(--chart-s2, #88bf4d)' },
+  MALDIVES: { gid: 'tMal', color: 'var(--chart-s7, #f2a86f)' },
 };
 
 /** 차트 데이터키 = 화면 라벨 (L-01: 한글 라벨을 그대로 쓴다) */
