@@ -2,7 +2,14 @@ import { readFileSync } from 'node:fs';
 import { createElement, type ComponentType } from 'react';
 import { renderToStaticMarkup } from 'react-dom/server';
 import { describe, expect, it } from 'vitest';
-import GmtsDashboard, { type GmtsTabKey } from '../components/gmts/GmtsDashboard';
+import GmtsDashboard, {
+  CanneryUtilizationChart,
+  MonthlyVolumeChart,
+  PortFlowChart,
+  PriceTrendChart,
+  type ChartSizeProps,
+  type GmtsTabKey,
+} from '../components/gmts/GmtsDashboard';
 
 type DashboardProps = NonNullable<Parameters<typeof GmtsDashboard>[0]>;
 const DashboardComponent = GmtsDashboard as ComponentType<DashboardProps>;
@@ -12,6 +19,22 @@ function renderDashboard(initialTab?: GmtsTabKey): string {
 }
 
 describe('GMTS dashboard decision surface', () => {
+  it.each([
+    ['항만 선박 흐름', PortFlowChart],
+    ['공장 이용률', CanneryUtilizationChart],
+    ['가격 추세', PriceTrendChart],
+    ['월별 반입량', MonthlyVolumeChart],
+  ] as const)('%s 차트가 측정된 카드 크기를 Recharts에 전달한다', (_label, Chart) => {
+    const html = renderToStaticMarkup(
+      createElement(Chart as ComponentType<ChartSizeProps>, { width: 457, height: 330 }),
+    );
+
+    expect(html).toContain('class="recharts-wrapper"');
+    expect(html).toContain('width="457"');
+    expect(html).toContain('height="330"');
+    expect(html).toContain('width:457px;height:330px');
+  });
+
   it('renders the real parent summary with source uncertainty and current derived figures', () => {
     const html = renderDashboard();
 
@@ -69,6 +92,11 @@ describe('GMTS dashboard decision surface', () => {
     expect(html.match(/data-widget-id=/g)).toHaveLength(2);
     expect(html).not.toContain('$/MT');
     expect(html).not.toContain('Other');
+    if (tab === 'cannery') {
+      expect(html.match(/data-gmts-kpi="true"/g)).toHaveLength(2);
+      expect(html).toContain('data-gmts-kpi-label="true"');
+      expect(html).toContain('data-gmts-kpi-value="true"');
+    }
   });
 
   it('keeps raw English price qualifiers out of the price tab and shows Korean qualifiers', () => {

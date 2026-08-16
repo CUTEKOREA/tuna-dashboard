@@ -1,3 +1,13 @@
+> ✅ **2026-08-16 09:14 KST — GMTS 메뉴명·차트 렌더·KPI 대비 수정 완료** [Codex]:
+> - **메뉴:** 운영 사이드바의 `GMTS 주간보고` 표기를 `GMTS`로 축약했다. 위치와 접근 경계는 기존대로 `방콕사무소 → GMTS → 메일`, 세션 잠금 유지다.
+> - **차트 원인·수정:** `WidgetCard`의 크기 측정 래퍼가 자식에게 `width/height`를 전달하지만 GMTS의 4개 중간 차트 컴포넌트가 이 props를 버려, 457×330 영역 안에 빈 Recharts wrapper만 생성됐다. 네 컴포넌트가 측정 크기를 `ComposedChart`까지 전달하도록 고치고 렌더 회귀 테스트 4건을 추가했다.
+> - **KPI 색상:** 공용 다크 KPI 스타일을 쓰던 생산·냉동재고 2개 상자를 GMTS 전용 연청색 타일로 교체했다. 브라우저 계산 명암비는 라벨 6.82:1, 값 14.35:1이다.
+> - **검증:** fresh `npm run verify` exit 0 — ESLint 0 errors·기존 5 warnings, TypeScript, Vitest 88파일·498테스트, API cache 155/155, Next build 117 pages, bundle 32 routes 통과.
+> - **브라우저 QA:** 로컬 Production `/gmts`의 1440×1000·390×844에서 전체 5탭을 다시 클릭했다. 항만 1 SVG·3선, 공장 1 SVG·2선, 가격·반입 2 SVG·21개 도형을 확인했고 모든 SVG는 데스크톱에서 457×330이다. 양 해상도 모두 overflow 0, console/page/local HTTP error·failure 0, 잠금 상세 DOM 0, 출처 30행이다.
+> - **범위:** 브랜치 `codex/gmts-dashboard-impl-20260815`의 로컬 수정이며 원래 사용자 worktree는 건드리지 않았다. **push·PR·배포는 하지 않았다.**
+> - **다음 단계:** 사용자가 `http://127.0.0.1:3026/gmts`에서 화면을 확인한 뒤, 라이브 반영을 원할 때만 명시적 배포 지시를 받는다.
+> - **마지막 업데이트:** 2026-08-16 09:14 KST.
+>
 > ✅ **2026-08-16 08:39 KST — GMTS 주간보고 대시보드·메뉴 로컬 구현 완료** [Codex]:
 > - **완료된 것:** 기존 운영 섹션에 `/gmts`를 추가했고, 사이드바 순서를 사용자 지정대로 `방콕사무소 → GMTS 주간보고 → 메일`로 고정했다. 전용 route·rewrite·API·fetch 없이 기존 `/[category]` 동적 라우트를 재사용했고, GMTS에 숫자 단축키를 배정하지 않았으며 공개 sitemap에서 제외했다.
 > - **접근 경계:** 기존 `silla-operation-access` 세션 잠금을 그대로 쓴다. 잠금 상태는 `heroOnly` 히어로 티저만 렌더하고 탭·차트·표·위젯·YTD·출처 목록을 DOM에 마운트하지 않는다. 메일의 기존 관리자 가시성 계약은 변경하지 않았다.

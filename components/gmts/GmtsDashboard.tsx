@@ -60,6 +60,11 @@ interface ChartTooltipProps<Row> {
   }>;
 }
 
+export interface ChartSizeProps {
+  width?: number;
+  height?: number;
+}
+
 interface PipelineRow {
   lane: '하역 완료' | '입항 예정';
   record: GmtsVesselRecord;
@@ -344,9 +349,11 @@ function PortTooltip({ active, payload }: ChartTooltipProps<GmtsPortTrendPoint>)
   );
 }
 
-function PortFlowChart() {
+export function PortFlowChart({ width, height }: ChartSizeProps) {
   return (
     <ComposedChart
+      width={width}
+      height={height}
       data={GMTS_VIEW.portTrend}
       margin={{ top: 12, right: 18, left: 0, bottom: 12 }}
       role="img"
@@ -580,9 +587,11 @@ function CanneryTooltip({ active, payload }: ChartTooltipProps<GmtsCanneryTrendP
   );
 }
 
-function CanneryUtilizationChart() {
+export function CanneryUtilizationChart({ width, height }: ChartSizeProps) {
   return (
     <ComposedChart
+      width={width}
+      height={height}
       data={GMTS_VIEW.canneryTrend}
       margin={{ top: 12, right: 18, left: 0, bottom: 12 }}
       role="img"
@@ -630,6 +639,30 @@ function CanneryUtilizationChart() {
         isAnimationActive={false}
       />
     </ComposedChart>
+  );
+}
+
+function CanneryKpiSummary() {
+  const items = [
+    {
+      label: '최신 일생산',
+      value: `${formatNumber(GMTS_DATA.latest.canneryTotal.currentDailyProductionMt)} / ${formatNumber(GMTS_DATA.latest.canneryTotal.maxDailyProductionMt)} MT`,
+    },
+    {
+      label: '최신 냉동 재고',
+      value: `${formatNumber(GMTS_DATA.latest.canneryTotal.currentStockMt)} / ${formatNumber(GMTS_DATA.latest.canneryTotal.storageCapacityMt)} MT`,
+    },
+  ];
+
+  return (
+    <div className={styles.canneryKpiGrid} aria-label="최신 생산과 냉동 재고 요약">
+      {items.map((item) => (
+        <article key={item.label} className={styles.canneryKpi} data-gmts-kpi>
+          <span data-gmts-kpi-label>{item.label}</span>
+          <strong data-gmts-kpi-value>{item.value}</strong>
+        </article>
+      ))}
+    </div>
   );
 }
 
@@ -685,16 +718,7 @@ function CanneryPanel() {
         telemetry={STATIC_TELEMETRY}
         chart={<CanneryUtilizationChart />}
         chartHeight={330}
-        kpiPanel={[
-          {
-            label: '최신 일생산',
-            value: `${formatNumber(GMTS_DATA.latest.canneryTotal.currentDailyProductionMt)} / ${formatNumber(GMTS_DATA.latest.canneryTotal.maxDailyProductionMt)} MT`,
-          },
-          {
-            label: '최신 냉동 재고',
-            value: `${formatNumber(GMTS_DATA.latest.canneryTotal.currentStockMt)} / ${formatNumber(GMTS_DATA.latest.canneryTotal.storageCapacityMt)} MT`,
-          },
-        ]}
+        customBody={<CanneryKpiSummary />}
         takeaway={{
           situation: GMTS_VIEW.insights.cannery.situation,
           actionPlan: GMTS_VIEW.insights.cannery.action,
@@ -743,9 +767,11 @@ function PriceTooltip({ active, payload }: ChartTooltipProps<GmtsPriceTrendPoint
   );
 }
 
-function PriceTrendChart() {
+export function PriceTrendChart({ width, height }: ChartSizeProps) {
   return (
     <ComposedChart
+      width={width}
+      height={height}
       data={GMTS_VIEW.priceTrend}
       margin={{ top: 12, right: 18, left: 8, bottom: 12 }}
       role="img"
@@ -835,7 +861,7 @@ function VolumeTooltip({ active, payload }: ChartTooltipProps<GmtsMonthlyVolumeP
   );
 }
 
-function MonthlyVolumeChart() {
+export function MonthlyVolumeChart({ width, height }: ChartSizeProps) {
   const revisionRows = GMTS_VIEW.monthlyVolume.filter((row) => (
     row.currentValue !== null && row.revisions.length > 0
   ));
@@ -844,6 +870,8 @@ function MonthlyVolumeChart() {
 
   return (
     <ComposedChart
+      width={width}
+      height={height}
       data={GMTS_VIEW.monthlyVolume}
       margin={{ top: 20, right: 18, left: 8, bottom: 12 }}
       role="img"

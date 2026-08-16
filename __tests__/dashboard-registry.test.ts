@@ -424,7 +424,7 @@ describe('dashboard registry', () => {
       section: 'operation',
       accent: 'cyan',
       requiresOperationAccess: true,
-      sidebar: { icon: 'Factory', label: 'GMTS 주간보고' },
+      sidebar: { icon: 'Factory', label: 'GMTS' },
     });
     expect(gmts).not.toHaveProperty('shortcutOrder');
     expect(operationItems).toEqual([
@@ -446,7 +446,7 @@ describe('dashboard registry', () => {
     ]);
     expect(operationLabels.slice(gmtsSidebarIndex - 1, gmtsSidebarIndex + 2)).toEqual([
       '방콕사무소',
-      'GMTS 주간보고',
+      'GMTS',
       '메일',
     ]);
     expect(PROTECTED_OPERATION_MENU_KEYS).toEqual([

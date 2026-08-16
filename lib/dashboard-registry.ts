@@ -43,7 +43,7 @@ export const DASHBOARD_MENU_CONFIGS = [
   { key: 'panofi', title: '파노피', section: 'operation', accent: 'cyan', sidebar: { icon: 'Ship' } },
   { key: 'cosmo', title: '코스모', section: 'operation', accent: 'cyan', sidebar: { icon: 'Hexagon' } },
   { key: 'bangkok-office', title: '방콕사무소', section: 'operation', accent: 'cyan', requiresOperationAccess: true, sidebar: { icon: 'Factory' } },
-  { key: 'gmts', title: 'GMTS 주간보고', section: 'operation', accent: 'cyan', requiresOperationAccess: true, sidebar: { icon: 'Factory', label: 'GMTS 주간보고' } },
+  { key: 'gmts', title: 'GMTS 주간보고', section: 'operation', accent: 'cyan', requiresOperationAccess: true, sidebar: { icon: 'Factory', label: 'GMTS' } },
   { key: 'mail', title: '메일', section: 'operation', accent: 'cyan', requiresAdminAccess: true, sidebar: { icon: 'Mail' } },
   { key: 'pork', title: '돼지고기', section: 'livestock', accent: 'cyan', sidebar: { icon: 'Hexagon', suffix: 'Pork' } },
   { key: 'cross-intelligence', title: '통합 인텔리전스', section: 'strategy', accent: 'gold', sidebar: { icon: 'BarChart2', suffix: 'Cross' } },
