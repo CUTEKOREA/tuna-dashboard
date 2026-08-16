@@ -19,6 +19,8 @@
  *     사조는 연결 기준으로 적는다. 합계끼리 비교하면 안 된다.
  */
 
+import rawOceanOperators from '../../public/data/tuna_ocean_operators_v1.json';
+
 export type CompanyGrade = 'A' | 'B' | 'C';
 
 /** 조업 단계 — 선사별 보유 선단. 어법별로 갈라 둔다. */
@@ -197,8 +199,22 @@ const 참치_수출순위: ExportRankRow[] = [
   { 순위: 9, 회사: '사조오양', 수출실적: 4486, 비율: 1.16 },
 ];
 
+/** 소매 단계 — 국내 참치캔 시장. 한 조사기관·한 품목이라 시계열로 세울 수 있다. */
+export interface RetailShareRow {
+  기간: string;
+  점유율: number;
+}
+
+const 참치캔_점유율: RetailShareRow[] = [
+  { 기간: '2023년', 점유율: 81.7 },
+  { 기간: '2024년', 점유율: 81.4 },
+  { 기간: '2025년', 점유율: 78.9 },
+  { 기간: '2026년 상반기', 점유율: 79.2 },
+];
+
 export interface TunaCompanyData {
   조업: { _meta: Record<string, string>; rows: OperatorRow[] };
+  소매: { _meta: Record<string, string>; rows: RetailShareRow[] };
   가공: { _meta: Record<string, string>; rows: ProcessorRow[] };
   수출순위: { _meta: Record<string, string>; rows: ExportRankRow[] };
 }
@@ -223,6 +239,20 @@ const TUNA: TunaCompanyData = {
         '차트를 만들지 않고 표로만 낸다. 등급 C는 회사 원문을 확인하지 못한 것이다.',
     },
     rows: 참치_가공,
+  },
+  소매: {
+    _meta: {
+      회사: '동원에프앤비',
+      품목: '참치캔 (국내)',
+      조사기관: '닐슨',
+      출처: '동원에프앤비 금융감독원 전자공시 반기보고서 (2026년 6월)',
+      등급: 'A',
+      주의:
+        '동원에프앤비가 공시한 자사 점유율이다. 나머지 20%대를 누가 어떻게 나누는지는 ' +
+        '이 자료로 알 수 없다 — 경쟁사 점유율은 별도 확인이 필요하다.',
+      부문매출: '일반식품부문 외부매출 1조 928억원 · 영업이익 484억원 (2026년 상반기)',
+    },
+    rows: 참치캔_점유율,
   },
   수출순위: {
     _meta: {
@@ -288,4 +318,46 @@ export function getTunaCompanyData(): TunaCompanyData {
 /** 오징어 — 선사 성격 메모. 선단 수치는 `getSquidFleetData()` 가 낸다. */
 export function getSquidCompanyData(): SquidCompanyData {
   return SQUID;
+}
+
+// ─── 참치 해역별 선사 ──────────────────────────────────────────────────────
+
+/**
+ * 지역수산관리기구 인가선박 등록부에서 뽑은 해역별 선사.
+ * `scripts/build_tuna_ocean_operators.py` 산출물이라 이쪽은 집계다.
+ *
+ * ⚠ 다섯 기구 중 셋이다. 서·중부태평양은 등록부가 로그인을 요구하고 동부태평양은
+ *   목록이 자바스크립트로 그려져 받지 못했다. **한국 선단의 본거지가 서·중부태평양**이라
+ *   이 빈칸이 결과를 크게 좌우한다 — 화면에도 그렇게 적는다.
+ */
+export interface OceanOperatorRow {
+  선사: string;
+  원표기: string;
+  척수: number;
+  비중?: number;
+}
+
+export interface OceanBlock {
+  _meta: Record<string, unknown>;
+  상위선사: OceanOperatorRow[];
+  한국선사: OceanOperatorRow[];
+}
+
+/** 선사 한 줄 × 해역 칸. 행을 더해 「총 선단」으로 읽으면 안 된다. */
+export type OceanMatrixRow = Record<string, string | number> & { 선사: string };
+
+export interface TunaOceanOperatorData {
+  _meta: Record<string, string>;
+  해역: Record<string, OceanBlock>;
+  한국선사해역: {
+    _meta: { 해역목록: string[]; 주의: string };
+    rows: OceanMatrixRow[];
+  };
+}
+
+const OCEAN = rawOceanOperators as unknown as TunaOceanOperatorData;
+
+/** 참치 — 해역별 선사. 해역 간 합산 금지(중복 인가 + 두 기구 누락). */
+export function getTunaOceanOperators(): TunaOceanOperatorData {
+  return OCEAN;
 }

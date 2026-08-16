@@ -29,7 +29,10 @@ import {
   SKJ_HUBS,
   type IndustryStage,
 } from '@/lib/data/tuna-industry';
-import { getTunaCompanyData } from '@/lib/data/valuechain-companies';
+import {
+  getTunaCompanyData,
+  getTunaOceanOperators,
+} from '@/lib/data/valuechain-companies';
 import {
   BRIEFING_POINTS,
   getNarrative,
@@ -50,6 +53,8 @@ import {
   KoreaTunaGearChart,
   ExportRankChart,
   OceanFleetChart,
+  OceanOperatorChart,
+  RetailShareChart,
   OperatorFleetChart,
   CountryRankChart,
   KoreaExportPriceChart,
@@ -74,6 +79,7 @@ const PRICES = getSkjPriceTimeline();
 const TRADE = getTunaTradeData();
 const FLEET = getTunaFleetData();
 const COMPANIES = getTunaCompanyData();
+const OCEAN_OPS = getTunaOceanOperators();
 const CHAIN_STAGES = getChainStages();
 const CROSS_STAGES = getCrossStages();
 const ALL_STAGES: IndustryStage[] = [...CHAIN_STAGES, ...CROSS_STAGES];
@@ -93,6 +99,8 @@ const TRADE_SYNC = { status: 'STATIC' as const, syncDate: `${TRADE.요약.기준
 const FLEET_SYNC = { status: 'STATIC' as const, syncDate: '2025년 6월 기준' };
 const OPERATOR_SYNC = { status: 'STATIC' as const, syncDate: '2026년 6월 공시 (신라교역은 2024년 12월)' };
 const EXPORT_SYNC = { status: 'STATIC' as const, syncDate: '2024년 실적' };
+const REGISTRY_SYNC = { status: 'STATIC' as const, syncDate: '2026년 8월 등록부' };
+const RETAIL_SYNC = { status: 'STATIC' as const, syncDate: '2026년 6월 공시' };
 const PRICE_SYNC = {
   status: 'SYNCED' as const,
   syncDate: PRICES.points.length > 0 ? String(PRICES.points[PRICES.points.length - 1].월) : '',
@@ -146,6 +154,18 @@ export const CATCH_CHART_SLOTS: Record<string, ChartSlot[]> = {
         '보라가 선망, 주황이 연승이다. 사조는 연승에, 동원은 선망에 무게가 실려 있고 신라교역은 둘을 비슷하게 갖는다. ⚠ 기준시점이 달라 같은 날의 사진이 아니다 — 동원·사조는 2026년 6월, 신라교역은 2024년 12월이다.',
       telemetry: OPERATOR_SYNC,
       render: () => <OperatorFleetChart rows={COMPANIES.조업.rows} />,
+    },
+    {
+      title: '한국 선사의 해역별 인가 선박 (척)',
+      caption:
+        '지역수산관리기구 인가 등록부에서 소유사 이름으로 센 것이다. ⚠ 높이를 그 회사의 총 선단으로 읽지 마라 — 한 배가 두 기구에 인가될 수 있고, 서·중부태평양과 동부태평양 두 기구가 빠져 있다. 이 그림은 규모가 아니라 어느 바다에 있느냐를 말한다.',
+      telemetry: REGISTRY_SYNC,
+      render: () => (
+        <OceanOperatorChart
+          rows={OCEAN_OPS.한국선사해역.rows}
+          areas={OCEAN_OPS.한국선사해역._meta.해역목록}
+        />
+      ),
     },
     {
       title: '선적국별 선망선과 어창용적 (척·㎥)',
@@ -228,6 +248,15 @@ export const CATCH_CHART_SLOTS: Record<string, ChartSlot[]> = {
       caption: '원어를 사서 완제품으로 되파는 구조가 그대로 보인다. 그 차액이 가공국이 가져가는 몫이다.',
       telemetry: TRADE_SYNC,
       render: () => <ThailandTradeChart data={TRADE} />,
+    },
+  ],
+  s07: [
+    {
+      title: '국내 참치캔 시장 점유율 (%)',
+      caption:
+        '사슬 끝에서는 한 회사가 시장을 거의 다 갖는다. 2023년 81.7%에서 조금씩 내려와 2026년 상반기 79.2%다. 나머지 20%대를 누가 나누는지는 이 공시로 알 수 없다.',
+      telemetry: RETAIL_SYNC,
+      render: () => <RetailShareChart rows={COMPANIES.소매.rows} />,
     },
   ],
   x03: [

@@ -41,7 +41,9 @@ import {
 } from '@/lib/tuna-chart-colors';
 import type {
   ExportRankRow,
+  OceanMatrixRow,
   OperatorRow,
+  RetailShareRow,
 } from '@/lib/data/valuechain-companies';
 import SafeResponsiveContainer from '../SafeResponsiveContainer';
 import styles from './TunaIndustryDashboard.module.css';
@@ -684,6 +686,75 @@ export function ExportRankChart({ rows }: { rows: ExportRankRow[] }) {
           ))}
         </Bar>
       </BarChart>
+    </SafeResponsiveContainer>
+  );
+}
+
+/**
+ * 해역별 선사 — 한국 선사가 어느 바다에 배를 두는가.
+ *
+ * ⚠ 막대를 쌓았지만 **높이를 그 회사의 총 선단으로 읽으면 안 된다.**
+ *   한 배가 두 기구에 동시 인가될 수 있고, 서·중부태평양·동부태평양 두 기구가 빠져 있다.
+ *   이 그림이 말하는 것은 규모가 아니라 **어느 바다에 있느냐**다.
+ */
+export function OceanOperatorChart({
+  rows,
+  areas,
+}: {
+  rows: OceanMatrixRow[];
+  areas: string[];
+}) {
+  const animate = !useReducedMotion();
+  const fills = [TUNA_ROLE.volume, TUNA_ROLE.processed, TUNA_ROLE.highlight];
+
+  return (
+    <SafeResponsiveContainer width="100%" height={300}>
+      <BarChart data={rows} margin={{ top: 12, right: 16, left: 0, bottom: 8 }}>
+        <CartesianGrid stroke="var(--mu-grid)" strokeDasharray="3 3" vertical={false} />
+        <XAxis dataKey="선사" {...AXIS} tickFormatter={truncateXAxis} interval={0} />
+        <YAxis {...AXIS} allowDecimals={false} />
+        <Tooltip content={<Tip unit="척" />} />
+        <Legend wrapperStyle={{ fontSize: 11, color: 'var(--mu-axis)' }} />
+        {areas.map((area, index) => (
+          <Bar
+            key={area}
+            dataKey={area}
+            name={`${area} (척)`}
+            stackId="a"
+            fill={fills[index % fills.length]}
+            radius={index === areas.length - 1 ? [3, 3, 0, 0] : undefined}
+            isAnimationActive={animate}
+          />
+        ))}
+      </BarChart>
+    </SafeResponsiveContainer>
+  );
+}
+
+/**
+ * 소매 단계 — 국내 참치캔 시장 점유율.
+ *
+ * 한 회사가 공시한 자사 점유율이라 나머지가 어떻게 나뉘는지는 알 수 없다.
+ * 축을 0부터 두지 않고 70~85 구간으로 좁히면 하락이 과장되므로 0에서 시작한다.
+ */
+export function RetailShareChart({ rows }: { rows: RetailShareRow[] }) {
+  const animate = !useReducedMotion();
+
+  return (
+    <SafeResponsiveContainer width="100%" height={280}>
+      <ComposedChart data={rows} margin={{ top: 12, right: 16, left: 0, bottom: 8 }}>
+        <CartesianGrid stroke="var(--mu-grid)" strokeDasharray="3 3" vertical={false} />
+        <XAxis dataKey="기간" {...AXIS} tickFormatter={truncateXAxis} interval={0} />
+        <YAxis {...AXIS} domain={[0, 100]} tickFormatter={(v: number) => `${v}%`} />
+        <Tooltip content={<Tip unit="%" />} />
+        <Bar
+          dataKey="점유율"
+          name="참치캔 점유율 (%)"
+          fill={TUNA_ROLE.volume}
+          radius={[3, 3, 0, 0]}
+          isAnimationActive={animate}
+        />
+      </ComposedChart>
     </SafeResponsiveContainer>
   );
 }

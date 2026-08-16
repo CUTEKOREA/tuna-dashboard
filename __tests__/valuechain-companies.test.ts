@@ -19,6 +19,7 @@ import { getSquidFleetData } from '../lib/data/squid-industry';
 import {
   getSquidCompanyData,
   getTunaCompanyData,
+  getTunaOceanOperators,
 } from '../lib/data/valuechain-companies';
 import { ALL_NARRATIVES as TUNA_ALL_NARRATIVES } from '../lib/tuna-industry-content';
 import { SQUID_ALL_NARRATIVES } from '../lib/squid-industry-content';
@@ -91,6 +92,74 @@ describe('밸류체인 기업 — 데이터', () => {
   });
 });
 
+describe('해역별 선사 — 데이터', () => {
+  const ocean = getTunaOceanOperators();
+
+  it('세 해역이 다 있고 기구·출처가 붙어 있다', () => {
+    const areas = ocean.한국선사해역._meta.해역목록;
+    expect(areas).toHaveLength(3);
+    for (const area of areas) {
+      const block = ocean.해역[area];
+      expect(block, `${area} 블록이 없다`).toBeDefined();
+      expect(String(block._meta.출처)).not.toBe('');
+      expect(String(block._meta.등급)).toBe('A');
+      expect(Number(block._meta.유효척수)).toBeGreaterThan(0);
+    }
+  });
+
+  it('회사 이름 정규화가 먹었다 — 한 회사가 여러 칸으로 갈리지 않는다', () => {
+    // 원본에 `Dongwon Industires`(오타)·뒤 공백 표기가 섞여 있다
+    for (const area of ocean.한국선사해역._meta.해역목록) {
+      const names = ocean.해역[area].한국선사.map((row) => row.선사);
+      expect(new Set(names).size, `${area} 에 중복 상호가 있다`).toBe(names.length);
+    }
+    const matrixNames = ocean.한국선사해역.rows.map((row) => row.선사);
+    expect(new Set(matrixNames).size).toBe(matrixNames.length);
+  });
+
+  it('한국 상호가 한글로 나온다 (L-01)', () => {
+    for (const row of ocean.한국선사해역.rows) {
+      expect(row.선사, `${row.선사} 가 한글이 아니다`).toMatch(/[가-힣]/);
+    }
+  });
+
+  it('교차표의 칸이 해역별 집계와 일치한다', () => {
+    for (const area of ocean.한국선사해역._meta.해역목록) {
+      const fromBlock = ocean.해역[area].한국선사.reduce((sum, row) => sum + row.척수, 0);
+      const fromMatrix = ocean.한국선사해역.rows.reduce(
+        (sum, row) => sum + Number(row[area] ?? 0),
+        0,
+      );
+      expect(fromMatrix, `${area} 교차표 합이 어긋난다`).toBe(fromBlock);
+    }
+  });
+
+  it('합산 금지 경고가 붙어 있다', () => {
+    // 해역별 척수를 더하면 중복 인가 때문에 실제 선단보다 커진다
+    expect(ocean._meta.합산금지).toContain('더하지');
+    expect(ocean.한국선사해역._meta.주의).toContain('총 선단');
+    // 받지 못한 두 기구를 숨기지 않는다
+    expect(ocean._meta.미확보).toContain('서·중부태평양');
+  });
+});
+
+describe('소매 단계 — 데이터', () => {
+  const retail = getTunaCompanyData().소매;
+
+  it('점유율 시계열이 4개 기간이고 범위가 온전하다', () => {
+    expect(retail.rows.length).toBeGreaterThanOrEqual(4);
+    for (const row of retail.rows) {
+      expect(row.점유율).toBeGreaterThan(0);
+      expect(row.점유율).toBeLessThanOrEqual(100);
+    }
+  });
+
+  it('자사 공시라는 한계가 적혀 있다', () => {
+    expect(retail._meta.주의).toContain('경쟁사');
+    expect(retail._meta.조사기관).not.toBe('');
+  });
+});
+
 describe('밸류체인 기업 — 화면 노출', () => {
   it('참치 차트에 선사 선단과 수출실적이 있다', () => {
     const titles = Object.values(CATCH_CHART_SLOTS)
@@ -98,6 +167,8 @@ describe('밸류체인 기업 — 화면 노출', () => {
       .map((slot) => slot.title);
     expect(titles).toContain('선사별 참치 선단 (척)');
     expect(titles).toContain('한국 원양업계 회사별 수출실적 (천달러)');
+    expect(titles).toContain('한국 선사의 해역별 인가 선박 (척)');
+    expect(titles).toContain('국내 참치캔 시장 점유율 (%)');
   });
 
   it('오징어 차트에 선사별 선단이 있다', () => {
@@ -119,6 +190,15 @@ describe('밸류체인 기업 — 화면 노출', () => {
     expect(x03).toContain('신라교역');
     expect(x03).toContain('22.73');
     expect(x03).toContain('StarKist');
+
+    // 해역별 선사 — 받지 못한 기구를 숨기지 않았는지
+    expect(s02).toContain('신라교역이 세 등록부 어디에도 없다');
+    expect(s02).toContain('서·중부태평양');
+
+    // 소매 단계
+    const s07 = textOf(TUNA_ALL_NARRATIVES, 's07');
+    expect(s07).toContain('동원에프앤비');
+    expect(s07).toContain('79.2');
   });
 
   it('참치 근거표에 선사와 가공사가 올라 있다', () => {
