@@ -113,7 +113,7 @@ def extract_fishstat(
             for name in SPECIES_ORDER
         ],
         "unit": "톤(활중량)",
-        "methodology": "Scientific_Name 4종 화이트리스트 적용 후 Q_tlw 국가·해역 행을 연도·종별 합산",
+        "methodology": "학명 기준 4종만 남긴 뒤 활중량 국가·해역 행을 연도·종별로 합산",
         "basis": {
             "coverage_start": "1980",
             "coverage_end": "2024",

@@ -225,6 +225,11 @@ CELL_FIXES = {
     "n/a": "해당 없음",
     "legal_limit": "법정 한도",
     "actual_catch": "실제 어획량",
+    "catch": "어획량",
+    "allocation": "배분",
+    "export_unit": "수출단가",
+    "Scientific_Name 4종 화이트리스트 적용 후 Q_tlw 국가·해역 행을 연도·종별 합산":
+        "학명 기준 4종만 남긴 뒤 활중량 국가·해역 행을 연도·종별로 합산",
     "recommendation": "권고안",
     "adopted": "채택된 조치",
     "effort_limit": "허용노력량",
@@ -925,7 +930,7 @@ def main() -> None:
             if raw.get("unit"):
                 entry["unit"] = raw["unit"]
             if raw.get("methodology"):
-                entry["cardDesc"] = raw["methodology"]
+                entry["cardDesc"] = CELL_FIXES.get(raw["methodology"], raw["methodology"])
             year = detect_year(raw)
             if year:
                 entry["dataYear"] = year

@@ -25,19 +25,9 @@ import {
 
 import { getSmartRotation, truncateXAxis } from '@/lib/chart-standards';
 import type { SquidWidget } from '@/lib/data/squid-industry';
+import { colorForSeries, dashForSeries } from '@/lib/squid-chart-colors';
 import SafeResponsiveContainer from '../SafeResponsiveContainer';
 import styles from './TunaIndustryDashboard.module.css';
-
-const SERIES_COLORS = [
-  '#7c3aed',
-  '#db2777',
-  '#0ea5e9',
-  '#f59e0b',
-  '#059669',
-  '#e11d48',
-  '#64748b',
-  '#c2410c',
-];
 
 const CHART_MARGIN = { top: 12, right: 16, left: 0, bottom: 8 };
 
@@ -191,7 +181,8 @@ function ChartView({ widget, height }: { widget: SquidWidget; height: number }) 
               type="monotone"
               dataKey={key}
               name={nameOf(key)}
-              stroke={SERIES_COLORS[index % SERIES_COLORS.length]}
+              stroke={colorForSeries(nameOf(key), index)}
+              strokeDasharray={dashForSeries(nameOf(key))}
               strokeWidth={2}
               dot={false}
               isAnimationActive={animate}
@@ -213,7 +204,7 @@ function ChartView({ widget, height }: { widget: SquidWidget; height: number }) 
             dataKey={key}
             name={nameOf(key)}
             stackId={stacked ? 'a' : undefined}
-            fill={SERIES_COLORS[index % SERIES_COLORS.length]}
+            fill={colorForSeries(nameOf(key), index)}
             radius={stacked ? undefined : [3, 3, 0, 0]}
             isAnimationActive={animate}
           />

@@ -177,6 +177,20 @@ describe('시장 이해 > 오징어 — 위젯 큐레이션', () => {
     expect(offenders.slice(0, 12), `영문 잔존: ${offenders.slice(0, 12).join(' / ')}`).toHaveLength(0);
   });
 
+  it('방법론 캡션과 측정 기준에 원본 영문 키가 남지 않는다', () => {
+    // 캡션은 화면에 그대로 나간다. 학명 열 이름·활중량 코드를 그대로 쓰면 L-01.
+    for (const stage of getSquidStages()) {
+      for (const widget of stage.widgets) {
+        expect(widget.cardDesc ?? '', widget.id).not.toMatch(/Scientific_Name|Q_tlw/);
+        for (const [key, value] of Object.entries(widget.basis ?? {})) {
+          expect(String(value), `${widget.id}.${key}`).not.toMatch(
+            /^(catch|allocation|export_unit)$/i,
+          );
+        }
+      }
+    }
+  });
+
   it('원문 발췌는 한글 번역이 있는 것만 싣는다', () => {
     for (const stage of getSquidStages()) {
       for (const widget of stage.widgets) {
