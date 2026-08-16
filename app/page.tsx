@@ -327,6 +327,7 @@ export default function Home() {
 
       window.sessionStorage.removeItem(OPERATION_ACCESS_STORAGE_KEY);
       setOperationAccessGranted(false);
+      setIsMobileSidebarOpen(false);
       setOperationPassword('');
     } catch {
       setOperationAuthError('서버 잠금을 확인하지 못했습니다. 다시 시도해주세요.');
