@@ -20,7 +20,7 @@ import { TelemetryBadge } from '../TelemetryBadge';
 import TermTooltip from '../TermTooltip';
 import HeroZone, { type HeroKpi } from '../v2/HeroZone';
 import { HeroNowStrip, type HeroNowItem } from '../v2/HeroNowStrip';
-import ChainStepper, { isChainKey } from './ChainStepper';
+import PillTabs, { type PillTab } from '../v2/PillTabs';
 import { useStageKey } from './useStageKey';
 import styles from './TunaIndustryDashboard.module.css';
 
@@ -306,18 +306,12 @@ export default function CommodityIndustryDashboard({
     });
   }, [setStage]);
 
-  const chain = useMemo(
+  const tabs: PillTab[] = useMemo(
     () =>
-      spec.narratives
-        .filter((entry) => isChainKey(entry.key, entry.numeral))
-        .map((entry) => ({ key: entry.key, numeral: entry.numeral, label: entry.title })),
-    [spec.narratives],
-  );
-  const cross = useMemo(
-    () =>
-      spec.narratives
-        .filter((entry) => !isChainKey(entry.key, entry.numeral))
-        .map((entry) => ({ key: entry.key, numeral: entry.numeral, label: entry.title })),
+      spec.narratives.map((narrative) => ({
+        key: narrative.key,
+        label: `${narrative.numeral} ${narrative.title}`,
+      })),
     [spec.narratives],
   );
 
@@ -376,7 +370,16 @@ export default function CommodityIndustryDashboard({
         </ol>
       </section>
 
-      <ChainStepper chain={chain} cross={cross} activeKey={active?.key ?? ''} onSelect={go} />
+      <nav className={styles.tabNav} aria-label="밸류체인 단계 이동">
+        <PillTabs
+          tabs={tabs}
+          activeKey={active?.key ?? ''}
+          onChange={go}
+          ariaLabel="밸류체인 단계"
+          tabIdPrefix={`${spec.key}-industry-tab`}
+          panelIdPrefix={`${spec.key}-industry-panel`}
+        />
+      </nav>
 
       {active ? (
         <StageSection

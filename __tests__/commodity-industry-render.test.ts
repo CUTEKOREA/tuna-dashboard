@@ -179,7 +179,7 @@ describe('시장 이해 3품목 — 렌더', () => {
     expect(html).toContain('evidenceRail');
     expect(html).toContain('양식과 자연산 75년');
     expect(html).toContain('생산 방식별 규모');
-    expect(html).toContain('chainTrack');
+    expect(html).toContain('shrimp-industry-tab');
   });
 
   // 오징어에서 겪은 사고를 그대로 막는 검사다.

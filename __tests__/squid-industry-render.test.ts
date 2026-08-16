@@ -287,7 +287,7 @@ describe('시장 이해 > 오징어 — 렌더', () => {
     expect(markup).toContain('data-now="true"');
     expect(markup).toContain('30초 브리핑');
     expect(markup).toContain('evidenceRail');
-    expect(markup).toContain('chainTrack');
+    expect(markup).toContain('squid-industry-tab');
     expect(markup).toContain('어종별 어획량 구성');
     expect(markup).toContain('무엇을 오징어라 부르는가');
   });
