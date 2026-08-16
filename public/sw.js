@@ -55,7 +55,12 @@ self.addEventListener('fetch', (event) => {
     || url.pathname.startsWith('/api/fleet/')
     || url.pathname.startsWith('/api/mail/')
   ) {
-    event.respondWith(fetch(request));
+    event.respondWith(
+      caches.open(API_CACHE)
+        .then((cache) => cache.delete(request))
+        .catch(() => undefined)
+        .then(() => fetch(request))
+    );
     return;
   }
 
