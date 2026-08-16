@@ -30,9 +30,9 @@ const heroOnlyCases: Array<{
   {
     name: '선단 운영',
     Dashboard: FleetCommandCenter as HeroOnlyDashboard,
-    heroTitle: 'Fleet Operations',
-    heroMarker: '주간 어획량',
-    bodyText: '업무보고 원문 펼치기',
+    heroTitle: '선단 일일 작전',
+    heroMarker: '일간 합계',
+    bodyText: '일일 선단 운영 보고',
   },
   {
     name: '하역 현황',

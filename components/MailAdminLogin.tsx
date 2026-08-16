@@ -6,7 +6,7 @@ import { useRouter } from 'next/navigation';
 import { supabase } from '@/lib/supabase';
 import styles from './MailAdminLogin.module.css';
 
-export default function MailAdminLogin() {
+export default function MailAdminLogin({ returnTo = '/mail' }: { returnTo?: '/mail' | '/fleet' }) {
   const router = useRouter();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -28,7 +28,7 @@ export default function MailAdminLogin() {
         setError('로그인 정보를 확인하지 못했습니다.');
         return;
       }
-      router.replace('/mail');
+      router.replace(returnTo);
       router.refresh();
     } catch {
       setError('로그인 정보를 확인하지 못했습니다.');

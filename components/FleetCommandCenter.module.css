@@ -6,11 +6,39 @@
 }
 
 .fleetHero { width:100%; min-width:0; }
-.missionStrip { display:flex; gap:10px; min-width:max-content; }
-.missionCard { display:flex; gap:11px; width:224px; min-height:92px; padding:14px; border:1px solid var(--dsc-surface-border); border-left-width:3px; border-radius:var(--dsc-card-radius); background:var(--dsc-surface); box-shadow:var(--dsc-card-shadow); backdrop-filter:var(--dsc-surface-blur); }
+.missionStrip { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:10px; min-width:0; width:100%; }
+.missionCard { display:flex; gap:11px; min-width:0; min-height:92px; padding:14px; border:1px solid var(--dsc-surface-border); border-left-width:3px; border-radius:var(--dsc-card-radius); background:var(--dsc-surface); box-shadow:var(--dsc-card-shadow); backdrop-filter:var(--dsc-surface-blur); }
 .missionCard svg { margin-top:2px; flex:0 0 auto; }
 .missionCard strong { display:block; margin:2px 0 5px; color:var(--dsc-ink); font-size:.93rem; }
 .missionCard p { margin:0; color:var(--dsc-ink-muted); font-size:.78rem; line-height:1.45; }
+
+.dailyOperations { display:flex; flex-direction:column; gap:16px; padding:20px; border:1px solid var(--dsc-surface-border); border-radius:var(--dsc-card-radius); background:var(--dsc-surface); box-shadow:var(--dsc-card-shadow); }
+.dailyOperationsHeader,.dailyCardHeading,.latestRosterHeader>div,.latestVesselHeader,.latestVesselMetrics { display:flex; align-items:center; justify-content:space-between; gap:12px; }
+.dailyOperationsHeader { align-items:flex-start; }
+.dailyOperationsHeader h2,.dailyCardHeading h3 { margin:4px 0 5px; color:var(--dsc-ink); font-size:1.15rem; }
+.dailyOperationsHeader p,.dailyDetailCard>p,.latestVesselNote,.emptyRoster { margin:0; color:var(--dsc-ink-muted); font-size:.78rem; line-height:1.55; }
+.dailyMetricGrid { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:10px; }
+.dailyMetricCard,.dailyDetailCard { padding:14px; border:1px solid var(--dsc-surface-border); border-radius:12px; background:var(--dsc-bg-deep); }
+.dailyMetricCard>span,.latestVesselMetrics span { display:block; color:var(--dsc-ink-muted); font-size:.7rem; }
+.dailyMetricCard>strong { display:block; margin-top:5px; color:var(--dsc-ink); font-size:1.35rem; font-variant-numeric:tabular-nums; }
+.dailyMetricCard small,.latestVesselMetrics small { color:var(--dsc-ink-muted); font-size:.68rem; font-weight:500; }
+.dailyMetricCard p { margin:5px 0; color:var(--dsc-ink-muted); font-size:.7rem; line-height:1.45; }
+.dailyMetricCard em { color:#3685ca; font-size:.72rem; font-style:normal; font-weight:700; }
+.dailyDetailGrid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:16px; }
+.dailyCardHeading { justify-content:flex-start; color:#3685ca; }
+.scheduleList,.reconciliationList { display:flex; flex-direction:column; gap:8px; margin:12px 0 0; padding:0; list-style:none; }
+.scheduleList li { display:flex; flex-direction:column; gap:3px; padding:9px 0; border-top:1px solid var(--dsc-surface-border); color:var(--dsc-ink-muted); font-size:.75rem; line-height:1.45; }
+.scheduleList strong { color:var(--dsc-ink); }
+.reconciliationList li { display:flex; justify-content:space-between; gap:10px; padding:8px 0; border-top:1px solid var(--dsc-surface-border); color:var(--dsc-ink-muted); font-size:.74rem; }
+.reconciliationList li span { display:flex; align-items:center; gap:5px; }
+.reconciliationList strong { color:var(--dsc-ink); font-variant-numeric:tabular-nums; text-align:right; }
+.qualitySummary { margin-top:12px; padding:10px; border-radius:8px; background:rgba(54,133,202,.1); color:var(--dsc-ink-muted); font-size:.74rem; line-height:1.5; }
+.protectedDetailStatus { margin:12px 0 0; padding:10px 12px; border:1px solid var(--dsc-surface-border); border-radius:8px; background:var(--dsc-surface); color:var(--dsc-ink-muted); font-size:.76rem; line-height:1.5; }
+.protectedDetailGate { display:flex; align-items:center; gap:14px; min-height:180px; padding:24px; border:1px solid var(--dsc-surface-border); border-radius:var(--dsc-card-radius); background:var(--dsc-surface); color:#3685ca; box-shadow:var(--dsc-card-shadow); }
+.protectedDetailGate>div { flex:1; min-width:0; }
+.protectedDetailGate strong { color:var(--dsc-ink); }
+.protectedDetailGate p { margin:5px 0 0; color:var(--dsc-ink-muted); font-size:.8rem; line-height:1.5; }
+.protectedDetailGate a,.protectedDetailGate button { display:inline-flex; align-items:center; justify-content:center; gap:6px; min-height:44px; padding:9px 14px; border:1px solid #509ee3; border-radius:9px; background:#509ee3; color:#fff; font:inherit; font-size:.78rem; font-weight:800; text-decoration:none; white-space:nowrap; cursor:pointer; }
 
 .commandIntro { display:flex; align-items:flex-start; justify-content:space-between; gap:16px; padding:22px 24px; border:1px solid var(--dsc-surface-border); border-radius:var(--dsc-card-radius); background:var(--dsc-surface); box-shadow:var(--dsc-card-shadow); }
 .commandIntro h2 { margin:5px 0 7px; color:#f8fafc; font-size:1.45rem; }
@@ -279,6 +307,19 @@
   border-radius: var(--card-radius);
   overflow: hidden;
 }
+.latestRosterHeader { padding:14px 16px; border-bottom:1px solid var(--panel-border); }
+.latestRosterHeader>div { justify-content:flex-start; color:var(--dsc-ink); }
+.latestRosterHeader>div>span { color:var(--dsc-ink-muted); font-size:.72rem; }
+.latestRosterHeader>p { margin:8px 0 0; color:var(--dsc-ink-muted); font-size:.72rem; line-height:1.45; }
+.latestRosterCards { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:10px; padding:14px; }
+.latestVesselCard { padding:12px; border:1px solid var(--dsc-surface-border); border-radius:10px; background:var(--dsc-surface); transition:transform .2s ease, border-color .2s ease; }
+.latestVesselCard[data-hovered] { transform:translateY(-2px); border-color:rgba(54,133,202,.55); }
+.latestVesselHeader strong { color:var(--dsc-ink); font-size:.9rem; }
+.latestVesselHeader span { display:flex; align-items:center; gap:3px; color:var(--dsc-ink-muted); font-size:.68rem; text-align:right; }
+.latestVesselMetrics { margin-top:12px; align-items:flex-end; }
+.latestVesselMetrics strong { display:block; margin-top:3px; color:var(--dsc-ink); font-size:1rem; font-variant-numeric:tabular-nums; }
+.latestVesselNote { margin-top:10px; padding-top:9px; border-top:1px solid var(--dsc-surface-border); }
+.emptyRoster { padding:16px; }
 
 .rosterHeader {
   padding: 14px 20px;
@@ -553,6 +594,7 @@
 .vdsNote { margin:10px 0 0; color:var(--dsc-ink-muted); font-size:.7rem; }
 
 @media (max-width:768px) {
+  .missionStrip,.dailyMetricGrid,.dailyDetailGrid,.latestRosterCards { grid-template-columns:1fr; }
   .commandIntro,.vdsHeader { flex-direction:column; }
   .decisionGrid { grid-template-columns:1fr; }
   .decisionHeader,.sectionHeading { align-items:flex-start; flex-direction:column; }
@@ -561,6 +603,8 @@
   .staticBadge { white-space:normal; }
   .vdsPanel { padding:16px; }
   .vdsSummaryGrid { grid-template-columns:1fr 1fr; }
+  .protectedDetailGate { align-items:flex-start; flex-wrap:wrap; padding:18px; }
+  .protectedDetailGate>div { flex-basis:calc(100% - 42px); }
 }
 
 /* ── [data-v3='light'] 오버라이드 (TakeawayBox 패턴) ──

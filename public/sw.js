@@ -50,8 +50,17 @@ self.addEventListener('fetch', (event) => {
   if (url.search.includes('__nextDevBrowserId')) return;
 
   // 인증·유료 원장 API는 네트워크 응답만 사용하고 CacheStorage에 남기지 않는다.
-  if (NEVER_CACHE_API_PATHS.has(url.pathname)) {
-    event.respondWith(fetch(request));
+  if (
+    NEVER_CACHE_API_PATHS.has(url.pathname)
+    || url.pathname.startsWith('/api/fleet/')
+    || url.pathname.startsWith('/api/mail/')
+  ) {
+    event.respondWith(
+      caches.open(API_CACHE)
+        .then((cache) => cache.delete(request))
+        .catch(() => undefined)
+        .then(() => fetch(request))
+    );
     return;
   }
 

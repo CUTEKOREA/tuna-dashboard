@@ -200,11 +200,12 @@ describe('Deep Sea Command V2 — VesselTopSVG', () => {
 });
 
 describe('Deep Sea Command V2 — Fleet pilot', () => {
-  it('실제 선단 대시보드가 V2 선박 히어로의 주간 어획과 데이터 발광 해치를 렌더한다', () => {
+  it('실제 선단 대시보드가 최신 일일보고 히어로와 데이터 기반 KPI를 렌더한다', () => {
     const markup = renderToStaticMarkup(React.createElement(FleetCommandCenter));
 
-    expect(markup).toContain('Fleet Operations');
-    expect(markup).toContain('주간 어획량');
+    expect(markup).toContain('선단 일일 작전');
+    expect(markup).toContain('일간 합계');
+    expect(markup).toContain('data-kpi-value="335"');
     // 2026-08-15 사용자 지시: 선박 사진 배경 제거 — 라이트 히어로는 배경 없이
     expect(markup).not.toContain('/heroes/seiner.webp');
   });

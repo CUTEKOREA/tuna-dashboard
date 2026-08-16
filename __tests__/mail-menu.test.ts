@@ -52,7 +52,9 @@ describe('관리자 메일 메뉴 계약', () => {
     expect(loginPage).toContain('index: false');
     expect(loginPage).toContain('follow: false');
     expect(loginComponent).toContain('supabase.auth.signInWithPassword');
-    expect(loginComponent).toContain("router.replace('/mail')");
+    expect(loginPage).toContain("candidate === '/fleet' || candidate === '/mail'");
+    expect(loginPage).toContain("? candidate : '/mail'");
+    expect(loginComponent).toContain('router.replace(returnTo)');
     expect(loginComponent).not.toContain('signUp');
     expect(loginComponent).not.toContain('localStorage');
     expect(loginComponent).not.toContain('sessionStorage');

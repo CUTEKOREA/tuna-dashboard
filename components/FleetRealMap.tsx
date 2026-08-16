@@ -4,7 +4,8 @@ import React, { useMemo } from 'react';
 import L from 'leaflet';
 import { MapContainer, Marker, TileLayer, Tooltip, useMap } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
-import { atlanticFleet, carrierFleet, pacificFleet } from './FleetRosterGrid';
+import type { FleetDailyDetailPayload } from '@/lib/contracts/fleet-daily-api';
+import { buildFleetRoster, formatFleetDailyNote } from '@/lib/fleet-daily-presentation';
 import { parseFleetPosition, toPacificLng } from '@/lib/fleet-map-coords';
 
 type FleetKind = 'pacific' | 'carrier' | 'atlantic';
@@ -16,19 +17,18 @@ const FLEET_STYLE: Record<FleetKind, { color: string; label: string; square: boo
 };
 
 const STATUS_VIEW: Record<string, { text: string; icon: string }> = {
-  fishing: { text: '조업 중', icon: '🎣' },
-  transit: { text: '이동·전재', icon: '🌊' },
-  transship: { text: '이동·전재', icon: '🌊' },
-  port: { text: '정박·하역', icon: '⚓' },
-  waiting: { text: '정박·하역', icon: '⚓' },
+  reported: { text: '보고 위치', icon: '📍' },
 };
 
 interface FleetRow {
   name: string;
-  zone: string;
+  displayName: string;
+  position: string | null;
+  location: string | null;
   status: string;
-  load: number;
-  capa: number;
+  catchMt?: number | null;
+  loadedMt: number | null;
+  capacityMt?: number | null;
   note?: string;
 }
 
@@ -46,7 +46,8 @@ function mapFleet(rows: FleetRow[], kind: FleetKind, isPacific: boolean): Mapped
   const seen: Record<string, number> = {};
   const ships: MappedShip[] = [];
   for (const row of rows) {
-    const position = parseFleetPosition(row.zone);
+    if (!row.position || !row.location) continue;
+    const position = parseFleetPosition(row.position);
     if (!position) continue;
     const lat = position[0];
     const lng = isPacific ? toPacificLng(position[1]) : position[1];
@@ -117,7 +118,7 @@ function FleetMapPanel({
             maxZoom={13}
           />
           {ships.map((ship) => {
-            const status = STATUS_VIEW[ship.status] ?? STATUS_VIEW.port;
+            const status = STATUS_VIEW[ship.status] ?? STATUS_VIEW.reported;
             return (
               <Marker
                 key={ship.name}
@@ -130,18 +131,21 @@ function FleetMapPanel({
                 <Tooltip direction="top" opacity={1}>
                   <div style={{ minWidth: '150px', maxWidth: '240px' }}>
                     <div style={{ fontWeight: 700, fontSize: '13px', color: FLEET_STYLE[ship.kind].color }}>
-                      {ship.name} <span style={{ fontWeight: 400, color: '#94a3b8' }}>({FLEET_STYLE[ship.kind].label})</span>
+                      {ship.displayName} <span style={{ fontWeight: 400, color: '#94a3b8' }}>({FLEET_STYLE[ship.kind].label})</span>
                     </div>
-                    <div style={{ marginTop: '4px', fontSize: '11px', color: '#e2e8f0' }}>위치 {ship.zone}</div>
+                    <div style={{ marginTop: '4px', fontSize: '11px', color: '#e2e8f0' }}>위치 {ship.location ?? '미보고'}</div>
                     <div style={{ fontSize: '11px', color: '#e2e8f0' }}>
                       상태 {status.text} {status.icon}
                     </div>
                     <div style={{ fontSize: '11px', color: '#e2e8f0' }}>
-                      적재량 {ship.load.toLocaleString()} / {ship.capa.toLocaleString()} (M/T)
+                      적재량 {ship.loadedMt?.toLocaleString() ?? '미보고'} / {ship.capacityMt?.toLocaleString() ?? '미보고'} (MT)
                     </div>
+                    {ship.catchMt !== undefined ? (
+                      <div style={{ fontSize: '11px', color: '#e2e8f0' }}>일간 어획 {ship.catchMt?.toLocaleString() ?? '미보고'} (MT)</div>
+                    ) : null}
                     {ship.note ? (
                       <div style={{ marginTop: '4px', fontSize: '10px', lineHeight: 1.4, color: '#fcd34d', wordBreak: 'keep-all' }}>
-                        {ship.note}
+                        {formatFleetDailyNote(ship.note)}
                       </div>
                     ) : null}
                   </div>
@@ -184,9 +188,7 @@ function FleetMapPanel({
               {FLEET_STYLE[kind].label}
             </span>
           ))}
-          <span style={{ borderTop: '1px solid rgba(15,23,42,0.1)', paddingTop: '6px' }}>🎣 조업 중</span>
-          <span>🌊 이동·전재</span>
-          <span>⚓ 정박·하역</span>
+          <span style={{ borderTop: '1px solid rgba(15,23,42,0.1)', paddingTop: '6px' }}>📍 보고 위치</span>
         </div>
       </div>
     </section>
@@ -214,20 +216,21 @@ function MapSizeGuard({ bounds }: { bounds: L.LatLngBoundsExpression }) {
   return null;
 }
 
-export default function FleetRealMap() {
+export default function FleetRealMap({ detail }: { detail: FleetDailyDetailPayload }) {
+  const roster = useMemo(() => buildFleetRoster(detail), [detail]);
   const pacificShips = useMemo(
     () => [
-      ...mapFleet(pacificFleet as FleetRow[], 'pacific', true),
-      ...mapFleet(carrierFleet as FleetRow[], 'carrier', true),
+      ...mapFleet(roster.pacific, 'pacific', true),
+      ...mapFleet(roster.carrierPhysical, 'carrier', true),
     ],
-    [],
+    [roster],
   );
-  const atlanticShips = useMemo(() => mapFleet(atlanticFleet as FleetRow[], 'atlantic', false), []);
+  const atlanticShips = useMemo(() => mapFleet(roster.atlantic, 'atlantic', false), [roster]);
 
   return (
     <>
       {/* divIcon 기본 흰 배경 제거 — 마커 모양은 html 안에서 직접 그린다 */}
-      <style>{`.fleet-real-marker { background: transparent; border: 0; }`}</style>
+      <style>{`.fleet-real-marker { width: 44px !important; min-width: 44px !important; max-width: 44px !important; height: 44px !important; background: transparent; border: 0; }`}</style>
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(340px, 1fr))', gap: '24px', width: '100%' }}>
         <FleetMapPanel
           title="태평양 수역"

@@ -55,6 +55,11 @@ _archive/
 scratch/
 20260518_070729_78ad28
 
+# 선단 일일보고 원문 파생물과 배포 DTO는 로컬·서버에만 둔다.
+/lib/data/generated/fleet-daily-private.json
+/lib/data/generated/fleet-daily-latest.json
+/artifacts/fleet-daily-detail.json
+
 # scratch and deploy logs
 scratch*.py
 scratch_*.py

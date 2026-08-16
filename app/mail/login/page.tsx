@@ -12,6 +12,18 @@ export const metadata: Metadata = {
   },
 };
 
-export default function MailLoginPage() {
-  return <MailAdminLogin />;
+type LoginReturnPath = '/mail' | '/fleet';
+
+export function resolveLoginReturnPath(value: string | string[] | undefined): LoginReturnPath {
+  const candidate = Array.isArray(value) ? value[0] : value;
+  return candidate === '/fleet' || candidate === '/mail' ? candidate : '/mail';
+}
+
+export default async function MailLoginPage({
+  searchParams,
+}: {
+  searchParams: Promise<{ next?: string | string[] }>;
+}) {
+  const params = await searchParams;
+  return <MailAdminLogin returnTo={resolveLoginReturnPath(params.next)} />;
 }
