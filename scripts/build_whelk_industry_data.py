@@ -143,7 +143,9 @@ def main() -> None:
     ]
 
     # ── 한국 수입 (조제저장 고둥류 HS 1605.59) ──
-    imports = []
+    # 한 나라가 여러 통관코드로 들어온다(중국은 1605591090·1605599090 둘 다).
+    # 나라 축으로 그릴 것이므로 나라 단위로 합치고, 어떤 코드가 섞였는지는 남긴다.
+    by_country: dict[str, dict] = {}
     if KCS.exists():
         with open(KCS, encoding="utf-8-sig") as handle:
             for r in csv.DictReader(handle):
@@ -151,39 +153,56 @@ def main() -> None:
                 kg = float(r.get("imp_kg") or 0)
                 if usd <= 0:
                     continue
-                imports.append(
-                    {
-                        "국가": r["partner_kr"].strip(),
-                        "통관코드": r["hs10"],
-                        "수입액": round(usd / 1e6, 2),
-                        "수입량": round(kg / 1000, 1),
-                        "단가": round(usd / (kg / 1000)) if kg else 0,
-                    }
-                )
-        imports.sort(key=lambda r: -r["수입액"])
-    imports = imports[:10]
+                name = r["partner_kr"].strip()
+                e = by_country.setdefault(name, {"usd": 0.0, "kg": 0.0, "codes": set()})
+                e["usd"] += usd
+                e["kg"] += kg
+                e["codes"].add(r["hs10"])
+    imports = sorted(
+        (
+            {
+                "국가": n,
+                "통관코드": " · ".join(sorted(e["codes"])),
+                "수입액": round(e["usd"] / 1e6, 2),
+                "수입량": round(e["kg"] / 1000, 1),
+                "단가": round(e["usd"] / (e["kg"] / 1000)) if e["kg"] else 0,
+            }
+            for n, e in by_country.items()
+        ),
+        key=lambda r: -r["수입액"],
+    )[:10]
     import_total = sum(r["수입액"] for r in imports)
 
     # ── 국내 생산 — 코드가 두 번 갈린다 ──
     # 130303 골뱅이(1990~2009) 와 130311 고둥류(2010~2025) 는 다른 코드다.
     # 한 선으로 그으면 안 되므로 계열을 나눠 담는다.
-    korea_series: dict[str, list[dict]] = {"골뱅이": [], "고둥류": [], "소라": []}
+    # ⚠ 원자료에 같은 (종·연도)가 두 줄 있는 구간이 있다(1990~2009 골뱅이).
+    # 그대로 담으면 선이 겹쳐 두 배로 보인다. 연도를 키로 써서 한 점만 남긴다.
+    seen: dict[str, dict[str, int]] = {"골뱅이": {}, "고둥류": {}, "소라": {}}
     if KOSIS.exists():
         with open(KOSIS, encoding="utf-8-sig") as handle:
             for r in csv.DictReader(handle):
                 if not r.get("value") or "qty" not in (r.get("series_id") or ""):
                     continue
                 name = (r.get("species_kr") or "").strip()
-                if name not in korea_series:
+                if name not in seen:
                     continue
                 try:
-                    korea_series[name].append(
-                        {"연도": r["prd_de"], "생산량": round(float(r["value"]))}
-                    )
+                    value = round(float(r["value"]))
                 except ValueError:
                     continue
-    for rows in korea_series.values():
-        rows.sort(key=lambda r: r["연도"])
+                year = r["prd_de"]
+                prev = seen[name].get(year)
+                if prev is not None and prev != value:
+                    raise SystemExit(
+                        f"{name} {year}년에 값이 다른 중복 행이 있다 ({prev} vs {value}). "
+                        "어느 계열을 쓸지 정하고 필터를 좁혀라."
+                    )
+                seen[name][year] = value
+    korea_series: dict[str, list[dict]] = {
+        name: [{"연도": y, "생산량": v} for y, v in sorted(years.items())]
+        for name, years in seen.items()
+    }
 
     payload = {
         "_meta": {

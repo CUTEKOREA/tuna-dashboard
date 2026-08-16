@@ -49,6 +49,9 @@ const GmtsDashboard = dynamic(() => import('../components/gmts/GmtsDashboard'));
 const MailInboxDashboard = dynamic(() => import('../components/MailInboxDashboard'));
 const TunaIndustryDashboard = dynamic(() => import('../components/market-understanding/TunaIndustryDashboard'));
 const SquidIndustryDashboard = dynamic(() => import('../components/market-understanding/SquidIndustryDashboard'));
+const MackerelIndustryDashboard = dynamic(() => import('../components/market-understanding/MackerelIndustryDashboard'));
+const WhelkIndustryDashboard = dynamic(() => import('../components/market-understanding/WhelkIndustryDashboard'));
+const ShrimpIndustryDashboard = dynamic(() => import('../components/market-understanding/ShrimpIndustryDashboard'));
 
 const INSTITUTIONAL_MENU_KEYS = new Set<ActiveMenu>([
   'market',
@@ -255,6 +258,9 @@ export default function Home() {
     'purse-seiner-db': <PurseSeinerDashboard />,
     'tuna-industry': <TunaIndustryDashboard />,
     'squid-industry': <SquidIndustryDashboard />,
+    'mackerel-industry': <MackerelIndustryDashboard />,
+    'whelk-industry': <WhelkIndustryDashboard />,
+    'shrimp-industry': <ShrimpIndustryDashboard />,
   };
   return (
     <div className={styles.appWrapper} data-v3="light">

@@ -604,7 +604,7 @@ describe('dashboard registry', () => {
 
     expect(SIDEBAR_SECTIONS.map((section) => section.items.map((item) => item.key))).toEqual([
       ['market', 'fleet', 'unloading', 'logistics', 'panofi', 'cosmo', 'bangkok-office', 'gmts', 'mail'],
-      ['tuna-industry', 'squid-industry'],
+      ['tuna-industry', 'squid-industry', 'mackerel-industry', 'whelk-industry', 'shrimp-industry'],
     ]);
 
     const sidebarKeys = SIDEBAR_SECTIONS.flatMap((section) => section.items.map((item) => item.key));
@@ -636,6 +636,9 @@ describe('dashboard registry', () => {
       'purse-seiner-db',
       'tuna-industry',
       'squid-industry',
+      'mackerel-industry',
+      'whelk-industry',
+      'shrimp-industry',
     ]);
     expect(new Set(DASHBOARD_PANEL_ORDER)).toEqual(
       new Set(VALID_MENUS),

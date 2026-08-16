@@ -37,6 +37,8 @@ ARCHIVE = Path(
 )
 CAPTURE = "FishStat_2026.1.0_capture_shrimp.csv"
 AQUA = "FishStat_2026.1.0_aquaculture_shrimp.csv"
+# 양식 환경(기수/담수/해수) 컬럼은 이 파일에만 있다.
+GLOBAL = "FishStat_2026.1.0_global_production_shrimp.csv"
 
 OUT_PATH = Path(__file__).resolve().parent.parent / "public/data/shrimp_industry_v1.json"
 MIN_EXPECTED_YEAR = 2024
@@ -57,6 +59,23 @@ SPECIES_KO = {
     "TIP": "얼룩새우",             # Penaeus semisulcatus
     "ARA": "붉은새우",             # Aristeus antennatus
     "KUP": "보리새우",             # Penaeus japonicus
+    "PRF": "큰징거미새우",          # Macrobrachium rosenbergii — 민물
+    "MNX": "징거미새우",           # Macrobrachium nipponense — 민물
+    "TRV": "꽃새우",               # Trachysalambria curvirostris
+    "FLP": "대하",                 # Penaeus chinensis
+    "LAA": "아르헨티나붉은새우",     # Pleoticus muelleri — 아르헨티나 자연산 주력
+    "PPZ": "민물새우 미분류",        # Palaemonidae — 민물
+    "PEZ": "보리새우과 미분류",      # Penaeidae
+}
+
+# 양식 환경 한글명. 원본에 `PRODUCTION_SOURCE_DET.CODE` 로 박혀 있어 추정할 필요가 없다.
+#
+# ⚠ 「새우 양식」이 다 같은 것이 아니다. 기수(汽水) 양식장이 우리가 아는 새우 양식이고,
+#   담수는 강·논에서 기르는 민물새우다. 산지도 유통도 원가도 다르다.
+ENV_KO = {
+    "BRACKISHWATER": "기수",
+    "FRESHWATER": "담수",
+    "MARINE": "해수",
 }
 
 COUNTRY_KO = {
@@ -154,6 +173,16 @@ def main() -> None:
         for r in rows:
             if int(r["PERIOD"]) == latest:
                 sp[ko_species(r)] += float(r["VALUE"])
+    # 게이트 — 이름 없는 코드가 1%를 넘으면 내보내지 않는다.
+    # 「기타 새우(AKS)」 같은 라벨이 화면에 나가는 사고를 한 번 겪었다. 학명을 확인해 붙일 것.
+    unnamed = {n: v for n, v in sp.items() if n.startswith("기타 새우(") and v / world > 0.01}
+    if unnamed:
+        raise SystemExit(
+            "종 코드가 한글로 매핑되지 않았다 — 화면에 코드가 그대로 나간다:\n"
+            + "\n".join(f"  {n} {v / world * 100:.2f}%" for n, v in sorted(unnamed.items(), key=lambda kv: -kv[1]))
+            + "\nSPECIES_KO 에 학명을 확인해 추가하라."
+        )
+
     top_sp = sp.most_common(8)
     rest = world - sum(v for _, v in top_sp)
     species = [
@@ -161,6 +190,29 @@ def main() -> None:
     ]
     if rest > 0:
         species.append({"종": "그 밖의 종", "생산량": round(rest), "비중": round(rest / world * 100, 2)})
+
+    # ── 양식 환경 — 「양식」 한 낱말이 감추는 것 ──
+    # 어획·양식 파일에는 환경 컬럼이 없다. 합본 파일을 따로 읽는다.
+    glob_rows = read(src / GLOBAL)
+    glob_total = total(glob_rows, latest)
+    if round(glob_total) != round(world):
+        raise SystemExit(
+            f"합본과 어획+양식이 어긋난다: {round(glob_total):,} vs {round(world):,}. "
+            "바스켓 범위가 파일마다 다르다는 뜻이므로 확인 전에는 내보내지 않는다."
+        )
+    env_c = collections.Counter()
+    for r in glob_rows:
+        if int(r["PERIOD"]) != latest:
+            continue
+        code = r.get("PRODUCTION_SOURCE_DET.CODE") or ""
+        if code == "CAPTURE":
+            continue
+        env_c[ENV_KO.get(code, code or "미상")] += float(r["VALUE"])
+    envs = [
+        {"환경": k, "생산량": round(v), "비중": round(v / world * 100, 2)}
+        for k, v in env_c.most_common()
+    ]
+    fresh_now = env_c["담수"]
 
     # ── 국가별 — 양식 비중으로 나라 성격이 갈린다 ──
     cap_c, aqua_c = collections.Counter(), collections.Counter()
@@ -229,6 +281,13 @@ def main() -> None:
                 "양식과 자연산은 종·지리·원가·계절성·리스크가 전부 다르다. 합쳐 「새우 생산량」으로 "
                 "부르면 무엇이 늘었는지가 사라진다."
             ),
+            "바스켓주의": (
+                f"「양식」 {round(aqua_now):,}톤 가운데 {round(fresh_now):,}톤"
+                f"(세계 생산의 {round(fresh_now / world * 100, 2)}%)은 **담수 양식**이다. "
+                "강·논에서 기르는 민물새우라 기수 양식장에서 나오는 흰다리새우와 산지도 유통도 다르다. "
+                "「해산 새우 시장」을 말할 때는 이 물량을 빼야 한다. "
+                "원본의 PRODUCTION_SOURCE_DET 컬럼으로 갈랐으므로 추정이 아니다."
+            ),
             "갱신방법": "python3 scripts/build_shrimp_industry_data.py",
         },
         "요약": {
@@ -239,11 +298,14 @@ def main() -> None:
             "양식비중": round(aqua_now / world * 100, 1),
             "최대종": species[0]["종"],
             "최대종비중": species[0]["비중"],
+            "담수양식": round(fresh_now),
+            "담수양식비중": round(fresh_now / world * 100, 2),
             "한국생산": korea["합계"] if korea else None,
             "한국양식비중": korea["양식비중"] if korea else None,
             "한국순위": korea_rank,
         },
         "양식자연산추이": timeline,
+        "양식환경": envs,
         "종구성": species,
         "국가별": countries,
         "한국종구성": korea_species,
@@ -254,6 +316,7 @@ def main() -> None:
     print(f"✅ {OUT_PATH} ({OUT_PATH.stat().st_size / 1024:,.0f} KB)")
     print(f"   {latest}년 세계 {round(world):,} t · 양식 {round(aqua_now / world * 100, 1)}% · 자연산 {round(cap_now / world * 100, 1)}%")
     print(f"   최대종 {species[0]['종']} {species[0]['비중']}%")
+    print("   양식 환경: " + " · ".join(f"{e['환경']} {e['비중']}%" for e in envs))
     if timeline:
         print(f"   양식 비중 {timeline[0]['연도']}년 {timeline[0]['양식비중']}% → {latest}년 {round(aqua_now / world * 100, 1)}%")
     if korea:

@@ -5,7 +5,7 @@ import styles from './AmbientBackground.module.css';
 
 export default function AmbientBackground({ 
   accent = 'cyan' 
-}: { accent?: 'cyan' | 'emerald' | 'gold' | 'rose' | 'purple' }) {
+}: { accent?: import('../lib/dashboard-registry').DashboardAccent }) {
   // Deep Ocean Aurora — 비비드 오로라 밴드 (2026-06-28 [CC]). orb은 blur+screen 블렌드(.module.css).
   const colorMap = {
     cyan:    ['rgba(34, 211, 238, 0.30)',  'rgba(168, 85, 247, 0.26)',  'rgba(34, 211, 238, 0)',   'rgba(168, 85, 247, 0)'],
@@ -14,6 +14,10 @@ export default function AmbientBackground({
     rose:    ['rgba(244, 63, 94, 0.24)',   'rgba(168, 85, 247, 0.24)',  'rgba(244, 63, 94, 0)',    'rgba(168, 85, 247, 0)'],
     // 두족류 시그니처(purple → pink). 오징어·주꾸미 계열이 쓴다
     purple:  ['rgba(124, 58, 237, 0.26)',  'rgba(219, 39, 119, 0.24)',  'rgba(124, 58, 237, 0)',   'rgba(219, 39, 119, 0)'],
+    // 골뱅이 시그니처(amber → brown, 룰북 D-04)
+    amber:   ['rgba(251, 191, 36, 0.26)',  'rgba(146, 64, 14, 0.24)',   'rgba(251, 191, 36, 0)',   'rgba(146, 64, 14, 0)'],
+    // 새우 시그니처(emerald → teal). emerald 항목과 달리 청록 쪽으로 더 붙였다
+    teal:    ['rgba(20, 184, 166, 0.28)',  'rgba(52, 211, 153, 0.24)',  'rgba(20, 184, 166, 0)',   'rgba(52, 211, 153, 0)'],
   };
 
   const [c1, c2, c1_transparent, c2_transparent] = colorMap[accent];

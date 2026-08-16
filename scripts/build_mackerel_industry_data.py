@@ -130,6 +130,7 @@ def read_wipan() -> tuple[list[dict], dict]:
         lambda: {"물량": 0.0, "단가합": 0.0, "건수": 0}
     )
     excluded: dict[str, float] = collections.defaultdict(float)
+    dates: list[str] = []
     with open(WIPAN, encoding="euc-kr", errors="replace") as handle:
         for r in csv.DictReader(handle):
             name = (r.get("상품명") or "").strip()
@@ -147,6 +148,9 @@ def read_wipan() -> tuple[list[dict], dict]:
                 continue
             if qty <= 0 or unit <= 0:
                 continue
+            day = (r.get("위판일자") or "").strip()
+            if day:
+                dates.append(day)
             e = agg[name]
             e["물량"] += qty
             e["단가합"] += unit * qty  # 물량가중
@@ -163,8 +167,10 @@ def read_wipan() -> tuple[list[dict], dict]:
         }
         for k, v in sorted(agg.items(), key=lambda kv: -kv[1]["물량"])
     ]
+    span = f"{min(dates)}~{max(dates)}" if dates else "구간 미상"
     meta = {
-        "출처": "해양수산부 부산 위판장 실적 (2024~2025)",
+        "구간": span,
+        "출처": f"해양수산부 부산 위판장 실적 ({span})",
         "등급": "A",
         "단위주의": (
             "원자료의 「위판금액」 컬럼은 총액이 아니라 **원/kg 단가**다. "

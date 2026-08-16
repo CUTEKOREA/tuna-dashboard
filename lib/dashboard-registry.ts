@@ -1,5 +1,5 @@
 export type DashboardSection = 'operation' | 'understanding' | 'fishery' | 'strategy' | 'agriculture' | 'livestock';
-export type DashboardAccent = 'cyan' | 'emerald' | 'gold' | 'rose' | 'purple';
+export type DashboardAccent = 'cyan' | 'emerald' | 'gold' | 'rose' | 'purple' | 'amber' | 'teal';
 export type SidebarIconKey =
   | 'Anchor'
   | 'BarChart2'
@@ -47,6 +47,9 @@ export const DASHBOARD_MENU_CONFIGS = [
   { key: 'mail', title: '메일', section: 'operation', accent: 'cyan', requiresAdminAccess: true, sidebar: { icon: 'Mail' } },
   { key: 'tuna-industry', title: '참치', section: 'understanding', accent: 'cyan', sidebar: { icon: 'Fish' } },
   { key: 'squid-industry', title: '오징어', section: 'understanding', accent: 'purple', sidebar: { icon: 'Waves' } },
+  { key: 'mackerel-industry', title: '고등어', section: 'understanding', accent: 'cyan', sidebar: { icon: 'FishSymbol' } },
+  { key: 'whelk-industry', title: '골뱅이', section: 'understanding', accent: 'amber', sidebar: { icon: 'Shell' } },
+  { key: 'shrimp-industry', title: '새우', section: 'understanding', accent: 'teal', sidebar: { icon: 'Shrimp' } },
   { key: 'pork', title: '돼지고기', section: 'livestock', accent: 'cyan', sidebar: { icon: 'Hexagon', suffix: 'Pork' } },
   { key: 'cross-intelligence', title: '통합 인텔리전스', section: 'strategy', accent: 'gold', sidebar: { icon: 'BarChart2', suffix: 'Cross' } },
   { key: 'purse-seiner-db', title: '선망선 DB', section: 'strategy', accent: 'cyan' },
@@ -173,11 +176,20 @@ export const DASHBOARD_PANEL_ORDER = [
   'purse-seiner-db',
   'tuna-industry',
   'squid-industry',
+  'mackerel-industry',
+  'whelk-industry',
+  'shrimp-industry',
 ] as const satisfies readonly ActiveMenu[];
 
 const SIDEBAR_SECTION_KEYS: Record<DashboardSection, readonly ActiveMenu[]> = {
   operation: ['market', 'fleet', 'unloading', 'logistics', 'panofi', 'cosmo', 'bangkok-office', 'gmts', 'mail'],
-  understanding: ['tuna-industry', 'squid-industry'],
+  understanding: [
+    'tuna-industry',
+    'squid-industry',
+    'mackerel-industry',
+    'whelk-industry',
+    'shrimp-industry',
+  ],
   fishery: [],
   strategy: [
   ],
