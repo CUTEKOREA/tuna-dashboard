@@ -310,3 +310,48 @@ export function SkjPriceByHubChart({ timeline }: { timeline: PriceTimeline }) {
     </SafeResponsiveContainer>
   );
 }
+
+/**
+ * 참다랑어 자연산 대 축양.
+ *
+ * 축양(ranching)은 어린 개체를 잡아 가두리에서 살찌우는 방식이라 통계상 양식으로 잡히지만
+ * 종자를 자연에서 가져온다. 그래서 자연산 어획량과 나란히 놓아야 뜻이 보인다 —
+ * 최근 몇 해 동안 두 값이 거의 같다.
+ */
+export function BluefinSourceChart({ data }: { data: TunaCatchData }) {
+  const animate = useChartAnimation();
+  return (
+    <SafeResponsiveContainer width="100%" height={300}>
+      <ComposedChart
+        data={data.참다랑어자연산대축양}
+        margin={{ top: 12, right: 16, left: 0, bottom: 8 }}
+      >
+        {GRID}
+        <XAxis dataKey="연도" {...AXIS} interval={3} />
+        <YAxis yAxisId="left" {...AXIS} tickFormatter={thousandTons} width={56} />
+        <YAxis
+          yAxisId="right"
+          orientation="right"
+          {...AXIS}
+          tickFormatter={(value: number) => `${value}%`}
+          width={44}
+          domain={[0, 100]}
+        />
+        <Tooltip content={<Tip unit="" />} cursor={{ fill: 'var(--mu-hover)' }} />
+        <Legend wrapperStyle={{ fontSize: 11, color: 'var(--mu-axis)' }} />
+        <Bar yAxisId="left" dataKey="자연산" name="자연산 어획 (톤)" fill="#0e7490" radius={[3, 3, 0, 0]} isAnimationActive={animate} />
+        <Bar yAxisId="left" dataKey="축양" name="축양 생산 (톤)" fill="#f59e0b" radius={[3, 3, 0, 0]} isAnimationActive={animate} />
+        <Line
+          yAxisId="right"
+          type="monotone"
+          dataKey="축양비중"
+          name="축양 비중 (%)"
+          stroke="#e11d48"
+          strokeWidth={2}
+          dot={false}
+          isAnimationActive={animate}
+        />
+      </ComposedChart>
+    </SafeResponsiveContainer>
+  );
+}

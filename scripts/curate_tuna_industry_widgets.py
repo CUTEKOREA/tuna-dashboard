@@ -52,7 +52,6 @@ STAGES: list[dict] = [
             "w67_longline_cost",
             "w19_ecuador_surge",
             "w22_japan_decline",
-            "w24_bluefin_ranch",
         ],
     },
     {
@@ -182,7 +181,6 @@ TITLE_OVERRIDES: dict[str, str] = {
     "w67_longline_cost": "연승어업 비용 구조와 유류비 민감도",
     "w19_ecuador_surge": "에콰도르 어획량 증가 추이",
     "w22_japan_decline": "일본 어획량 감소와 한국의 상대 위치",
-    "w24_bluefin_ranch": "참다랑어 축양 생산량 추이",
     # 03 환적과 운반
     "w62_fuel_impact": "선박용 경유(MGO) 가격과 조업 원가",
     "w50_bunker_freight": "해상운임·연료·포장재 원가 변동",
@@ -305,6 +303,32 @@ CELL_LABEL_FIXES: dict[str, str] = {
 }
 
 
+# 데이터에서 연도를 뽑을 때 쓰는 패턴. 1950~2029 만 연도로 본다
+YEAR_RE = re.compile(r"\b(19[5-9]\d|20[0-2]\d)\b")
+
+
+def detect_data_year(widget: dict) -> int | None:
+    """위젯 데이터가 몇 년에서 끝나는지 추정한다.
+
+    2026-08 감사에서 48개 중 10개가 2023년 이전에서 끊긴 것이 드러났다. 낡은 것 자체는
+    어쩔 수 없지만(원본 기관이 아직 안 냈거나 우리가 못 받았거나), **낡은 줄 모르고 보는 것**은
+    막아야 한다. 여기서 뽑은 연도를 카드에 그대로 띄운다.
+
+    문자열 셀과 methodology·source 문자열에서 연도를 긁는다. 숫자 셀은 값이지 연도가 아니다.
+    """
+    years: set[int] = set()
+    for row in widget.get("data") or []:
+        for value in row.values():
+            if isinstance(value, str):
+                years.update(int(y) for y in YEAR_RE.findall(value))
+    if not years:
+        # 데이터에 연도가 없으면 방법론·출처 문자열에서 찾는다 (덜 믿음직하므로 후순위)
+        for field in ("methodology", "source"):
+            text = widget.get(field) or ""
+            years.update(int(y) for y in YEAR_RE.findall(text))
+    return max(years) if years else None
+
+
 def localize_cells(rows: list[dict]) -> list[dict]:
     """X축에 찍히는 문자열 셀을 한글로 바꾼다 (L-01).
 
@@ -373,6 +397,8 @@ def main() -> None:
                     "situation": source.get("situation"),
                     "takeaway": source.get("takeaway"),
                     "syncDate": source.get("syncDate"),
+                    # 데이터가 어느 해에서 끝나는지. 화면에 그대로 띄워 연식을 드러낸다.
+                    "dataYear": detect_data_year(source),
                     # 이 페이지는 정적 집계본을 읽는다. 원본이 isLive 였더라도
                     # 런타임 fetch 가 없으므로 SYNCED 로 낮춘다 (L-09 정직 표기).
                     "telemetry": "SYNCED",
@@ -409,6 +435,11 @@ def main() -> None:
                 "데이터·출처·방법론·SIT·TAK 는 원문 그대로 보존한다."
             ),
             "텔레메트리": "런타임 fetch 가 없는 정적 재사용이므로 전부 SYNCED (L-09)",
+            "연식표기": (
+                "각 위젯에 dataYear(데이터 마지막 연도)를 붙여 화면에 띄운다. "
+                "원본 기관의 공표 주기가 도메인마다 달라 위젯끼리 기준연도가 어긋나는데, "
+                "그것을 숨기지 않고 드러내는 것이 이 페이지의 방침이다."
+            ),
             "갱신방법": "python3 scripts/curate_tuna_industry_widgets.py",
         },
         "stages": stages_out,

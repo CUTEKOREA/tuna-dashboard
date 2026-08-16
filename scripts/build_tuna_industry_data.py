@@ -24,6 +24,28 @@ DEFAULT_SOURCE = Path(
     "/Users/idong-geon/Library/CloudStorage/GoogleDrive-cutekorea@gmail.com/내 드라이브"
     "/agri_data/01_수산물(Seafood)/tuna/00_참치_관련자료/10_원본데이터셋/01_FAO_FishStat_추출"
 )
+
+# 어획량 원본 후보. 앞쪽을 우선 쓴다.
+#
+# ⚠ 사전필터 추출본(FishStat_Capture_tuna_*.csv)을 쓰지 마라. 그건 FAO 2024 릴리스
+#   시점의 스냅샷이라 2022년에서 끊긴다. FAO 는 해마다 릴리스하며 **과거 연도도 개정**한다
+#   (2022년 주요 7종 합계: 2024 릴리스 5,280,367톤 → 최신 릴리스 5,316,039톤).
+#   벌크 파일이 유일하게 현재 기준연도를 담는다.
+CAPTURE_CANDIDATES = [
+    "Capture_Quantity.csv",              # 벌크 — 현재 기준연도
+    "FishStat_Capture_tuna_66species.csv",  # 구 추출본 — 벌크가 없을 때만
+]
+
+# 자연산·축양을 한 파일에 담은 벌크. PRODUCTION_SOURCE_DET.CODE 로 갈린다
+# (CAPTURE / MARINE / BRACKISHWATER / FRESHWATER). 참다랑어 축양 비중 산출에 쓴다.
+PRODUCTION_BULK = "Global_production_quantity.csv"
+
+# 참다랑어 3종. 축양(ranching)이 실질적으로 이 세 종에만 있다.
+BLUEFIN = ["BFT", "PBF", "SBF"]
+
+# 이 연도보다 최신 데이터가 없으면 원본이 낡은 것이다.
+# FAO FishStat 릴리스 캘린더(2026-07-31 판): 어획통계 현재 기준연도 1950–2024.
+MIN_EXPECTED_YEAR = 2024
 OUT_PATH = Path(__file__).resolve().parent.parent / "public/data/tuna_industry_v1.json"
 
 # ── 주요 상업어종(principal market tunas) ─────────────────────────────
@@ -274,15 +296,32 @@ def korean_country(name_en: str) -> str:
 def build(source: Path) -> dict:
     _species_en, countries_en = load_lookup(source)
 
-    capture_csv = source / "FishStat_Capture_tuna_66species.csv"
+    capture_csv = next((source / name for name in CAPTURE_CANDIDATES if (source / name).exists()), None)
+    if capture_csv is None:
+        raise SystemExit(
+            f"어획량 원본을 찾지 못했다. 다음 중 하나가 있어야 한다: {', '.join(CAPTURE_CANDIDATES)}"
+        )
+
     with open(capture_csv, encoding="utf-8-sig") as handle:
-        rows = [r for r in csv.DictReader(handle) if r["SPECIES.ALPHA_3_CODE"] in PRINCIPAL_TUNAS]
+        rows = [
+            r
+            for r in csv.DictReader(handle)
+            if r["SPECIES.ALPHA_3_CODE"] in PRINCIPAL_TUNAS and r.get("MEASURE") == "Q_tlw"
+        ]
 
     if not rows:
         raise SystemExit("FishStat 원본에서 주요 상업어종 행을 찾지 못했다 — 원본 경로를 확인하라")
 
     years = sorted({int(r["PERIOD"]) for r in rows})
     latest = years[-1]
+
+    # 신선도 가드. 낡은 추출본을 조용히 쓰면 페이지가 몇 해 뒤처진 숫자를 사실처럼 말한다.
+    if latest < MIN_EXPECTED_YEAR:
+        raise SystemExit(
+            f"원본이 낡았다: {capture_csv.name} 의 최신 연도가 {latest}인데 {MIN_EXPECTED_YEAR} 이상이어야 한다.\n"
+            f"FAO FishStat 어획통계를 다시 내려받아라 — https://www.fao.org/fishery/en/collection/capture\n"
+            f"사전필터 추출본이 아니라 벌크 파일(Capture_Quantity.csv)을 받아야 한다."
+        )
 
     # ── 어종 × 연도 시계열 (최근 20년) ──
     by_species_year: dict[int, dict[str, float]] = collections.defaultdict(
@@ -413,6 +452,37 @@ def build(source: Path) -> dict:
                 }
             )
 
+    # ── 참다랑어 자연산 대 축양 ──
+    # 축양은 어린 개체를 잡아 가두리에서 살찌우는 방식이라 통계상 양식으로 잡히지만
+    # 종자를 자연에서 가져온다. 자연산 어획량과 나란히 놓아야 뜻이 보인다.
+    bluefin_series: list[dict] = []
+    production_csv = source / PRODUCTION_BULK
+    if production_csv.exists():
+        wild: collections.Counter[int] = collections.Counter()
+        farmed: collections.Counter[int] = collections.Counter()
+        with open(production_csv, encoding="utf-8-sig") as handle:
+            for row in csv.DictReader(handle):
+                if row["SPECIES.ALPHA_3_CODE"] not in BLUEFIN or row.get("MEASURE") != "Q_tlw":
+                    continue
+                year = int(row["PERIOD"])
+                value = float(row["VALUE"] or 0)
+                if row["PRODUCTION_SOURCE_DET.CODE"] == "CAPTURE":
+                    wild[year] += value
+                else:
+                    farmed[year] += value
+        for year in [y for y in sorted(set(wild) | set(farmed)) if y >= latest - 19]:
+            total = wild[year] + farmed[year]
+            bluefin_series.append(
+                {
+                    "연도": str(year),
+                    "자연산": round(wild[year]),
+                    "축양": round(farmed[year]),
+                    "축양비중": round(farmed[year] / total * 100, 1) if total else 0,
+                }
+            )
+    else:
+        print(f"⚠️  {PRODUCTION_BULK} 없음 — 참다랑어 축양 계열을 건너뛴다", file=sys.stderr)
+
     if unmapped:
         print(f"⚠️  한글 미매핑 국가 {len(unmapped)}건: {', '.join(unmapped)}", file=sys.stderr)
 
@@ -422,7 +492,7 @@ def build(source: Path) -> dict:
             "기준연도": latest,
             "바스켓": "주요 상업어종 7종 (가다랑어·황다랑어·눈다랑어·날개다랑어·참다랑어 3종)",
             "단위": "톤 (생물중량 기준, FAO MEASURE=Q_tlw)",
-            "출처": "FAO FishStat 어획통계 (FishStat_Capture_tuna_66species.csv, 175,253행)",
+            "출처": f"FAO FishStat 어획통계 ({capture_csv.name}, 주요 7종 {len(rows):,}행 추출)",
             "출처경로": "agri_data/01_수산물(Seafood)/tuna/00_참치_관련자료/10_원본데이터셋/01_FAO_FishStat_추출",
             "주의": (
                 "FishStat의 '참치·참치류 66종'에는 삼치·새치류가 포함돼 시장 규모를 과대계상한다. "
@@ -450,6 +520,7 @@ def build(source: Path) -> dict:
         "관할별": rfmo_share,
         "한국시계열": korea_timeline,
         "한국어종구성": korea_species,
+        "참다랑어자연산대축양": bluefin_series,
     }
 
 
