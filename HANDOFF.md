@@ -1,3 +1,10 @@
+> 🔐 **2026-08-16 19:34 KST — 전 페이지 Google 소유자 인증 운영 판정 보정** [Codex]:
+> - PR **#464**를 squash merge SHA `f9fb40277d78b3e2ea16fe3db4d45604e35c6e1d`로 병합했고 Vercel Production `tuna-dashboard-69qpfeas9-cutekorea-3280s-projects.vercel.app`이 READY다. 비인증 운영 요청에서 페이지·이미지·실행 청크는 `/login` 307, API는 401, 로그인·인증 응답은 `private, no-store`, `/sw.js` v4는 과거 캐시 전부 삭제, 미설정 하역 웹훅은 503 fail-closed임을 확인했다.
+> - 실제 Google 로그인에서 Google Cloud의 기존 client secret과 Supabase 설정 불일치가 드러나 Auth 로그의 `invalid client` 500을 근거로 새 secret을 무중단 추가했다. Supabase Google provider와 Vercel Production Sensitive 변수를 같은 값으로 교체했으며, 기존 메일 redirect URI는 보존했다. 로그에 노출된 시험 secret은 적용 전 즉시 중지·삭제했다.
+> - secret 교체 후 OAuth code exchange는 성공했지만, 기존 email 사용자가 Google identity와 자동 연결되면 Supabase가 `app_metadata.provider=email`, `providers=[email,google]`을 유지해 앱의 `primary provider=google` 판정이 정상 Google 세션까지 거부했다. 서명 JWT에서 provider 집합이 `email|google`만 포함하고 Google이 필수이며 현재 `amr`가 `oauth`일 때만 승인하도록 보정했다. Email provider가 켜져 있어도 password·OTP·magic-link 세션은 `amr`가 달라 거부되고, GitHub 등 다른 identity가 추가돼도 fail-closed다. 운영 Supabase에서 Google 외 OAuth provider는 모두 Disabled임을 확인했다. Mail·Fleet의 fresh `getUser()` 방어도 identity 집합을 같은 규칙으로 재검증한다.
+> - **현재 검증:** 최신 `main` 통합 뒤 변경 집중 Vitest **22/22**, TypeScript, 변경 ESLint 오류 0, 전체 `npm run verify`(Vitest **587 pass·2 skip**, API cache **157/157**, Next build **117페이지 + Proxy**, Fleet client leak·bundle)와 하역 E2E(데스크톱·모바일·키보드·새로고침·API/청크 오류격리) 통과. 독립 반증도 OTP·magic-link·제3 OAuth 혼합 거부와 Google-linked OAuth 승인을 재현해 **BLOCKING 0 / PASS**로 판정했다. 후속 PR 병합·새 Production 배포·실계정 1440px/390px 운영 QA를 이어서 완료한다.
+> - **마지막 업데이트:** 2026-08-16 19:34 KST.
+
 > 🎨 **2026-08-16 — Command Deck P0+P1, Google 소유자 인증 main과 병합** [Grok]:
 > - 사용자 승인: P0+P1, VolumeBar 허용. 사이드바=목록+운영 4 알약. 구현은 `visual/command-deck-p01`.
 > - `origin/main`의 전 페이지 Google 소유자 인증(`f9fb402`)과 충돌을 해소했다. 옛 비밀번호 잠금 UI는 되돌리지 않았다.

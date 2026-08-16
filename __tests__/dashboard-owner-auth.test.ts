@@ -45,6 +45,7 @@ const GOOGLE_CLAIMS = {
   email: OWNER_EMAIL,
   role: 'authenticated',
   is_anonymous: false,
+  amr: [{ method: 'oauth', timestamp: 1_786_886_400 }],
   app_metadata: { provider: 'google', providers: ['google'] },
 };
 
@@ -122,6 +123,23 @@ describe('대시보드 단일 구글 계정 보안 경계', () => {
     expect(evaluateDashboardOwnerClaims({
       ...GOOGLE_CLAIMS,
       app_metadata: { provider: 'email', providers: ['email', 'google'] },
+    }, OWNER_EMAIL)).toEqual({
+      ok: true,
+      email: OWNER_EMAIL,
+      subject: 'owner-user-id',
+    });
+    expect(evaluateDashboardOwnerClaims({
+      ...GOOGLE_CLAIMS,
+      amr: [{ method: 'password', timestamp: 1_786_886_400 }],
+      app_metadata: { provider: 'email', providers: ['email', 'google'] },
+    }, OWNER_EMAIL)).toEqual({ ok: false, status: 403, code: 'google_account_required' });
+    expect(evaluateDashboardOwnerClaims({
+      ...GOOGLE_CLAIMS,
+      app_metadata: { provider: 'email', providers: ['email', 'google', 'github'] },
+    }, OWNER_EMAIL)).toEqual({ ok: false, status: 403, code: 'google_account_required' });
+    expect(evaluateDashboardOwnerClaims({
+      ...GOOGLE_CLAIMS,
+      amr: undefined,
     }, OWNER_EMAIL)).toEqual({ ok: false, status: 403, code: 'google_account_required' });
     expect(evaluateDashboardOwnerClaims(GOOGLE_CLAIMS, undefined)).toEqual({
       ok: false,
@@ -144,6 +162,20 @@ describe('대시보드 단일 구글 계정 보안 경계', () => {
       email_confirmed_at: '2026-08-16T00:00:00Z',
       app_metadata: { provider: 'email' },
       identities: [{ provider: 'email' }],
+    }, OWNER_EMAIL)).toEqual({ ok: false, status: 403, code: 'google_account_required' });
+    expect(evaluateDashboardOwnerUser({
+      id: 'owner-user-id',
+      email: OWNER_EMAIL,
+      email_confirmed_at: '2026-08-16T00:00:00Z',
+      app_metadata: { provider: 'email', providers: ['email', 'google'] },
+      identities: [{ provider: 'email' }, { provider: 'google' }],
+    }, OWNER_EMAIL)).toMatchObject({ ok: true, email: OWNER_EMAIL });
+    expect(evaluateDashboardOwnerUser({
+      id: 'owner-user-id',
+      email: OWNER_EMAIL,
+      email_confirmed_at: '2026-08-16T00:00:00Z',
+      app_metadata: { provider: 'email', providers: ['email', 'google', 'github'] },
+      identities: [{ provider: 'email' }, { provider: 'google' }, { provider: 'github' }],
     }, OWNER_EMAIL)).toEqual({ ok: false, status: 403, code: 'google_account_required' });
   });
 
