@@ -314,16 +314,18 @@ function StageSection({ stage, narrative }: { stage: IndustryStage; narrative: S
 
       <FactTable rows={narrative.facts} />
 
-      {catchCharts.map((slot) => (
-        <figure key={slot.title} className={styles.catchFigure}>
-          <figcaption className={styles.catchCaption}>
-            <strong>{slot.title}</strong>
-            <span>{slot.caption}</span>
-            <TelemetryBadge status={slot.telemetry.status} syncDate={slot.telemetry.syncDate} />
-          </figcaption>
-          {slot.render()}
-        </figure>
-      ))}
+      <div className={catchCharts.length === 2 ? styles.catchPair : styles.catchStack}>
+        {catchCharts.map((slot) => (
+          <figure key={slot.title} className={styles.catchFigure}>
+            <figcaption className={styles.catchCaption}>
+              <strong>{slot.title}</strong>
+              <span>{slot.caption}</span>
+              <TelemetryBadge status={slot.telemetry.status} syncDate={slot.telemetry.syncDate} />
+            </figcaption>
+            {slot.render()}
+          </figure>
+        ))}
+      </div>
 
       {stage.widgets.length > 0 && (
         <div className={styles.widgetGrid}>

@@ -107,6 +107,11 @@ describe('NowCard', () => {
 });
 
 describe('OperationPills', () => {
+  it('홈 셸 상단에서 운영 알약을 그리지 않는다', () => {
+    const page = readFileSync(join(process.cwd(), 'app/page.tsx'), 'utf8');
+    expect(page).not.toContain('OperationPills');
+  });
+
   it('운영 4메뉴를 한글로 나열하고 현재 페이지만 표시한다', () => {
     const markup = renderToStaticMarkup(
       React.createElement(OperationPills, {

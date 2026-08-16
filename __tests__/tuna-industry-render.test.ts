@@ -364,6 +364,9 @@ describe('시장 이해 > 참치 — 렌더', () => {
     // 기본 활성 단계는 01 자원과 해역이다.
     expect(markup).toContain('자원과 해역');
     expect(markup).toContain('참치가 사는 바다는 누구의 관할인가');
+    expect(markup).toContain('catchPair');
+    expect(markup).toContain('관할 기구별 어획량');
+    expect(markup).toContain('해역별 어획량 상위 8곳');
   });
 
   it('heroOnly 는 히어로만 렌더하고 본문은 내지 않는다', () => {
