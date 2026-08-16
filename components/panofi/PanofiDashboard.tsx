@@ -15,6 +15,7 @@ import {
 
 import { headline, h1, company } from '@/lib/data/panofi';
 import HeroZone, { type HeroKpi } from '../v2/HeroZone';
+import { HeroNowStrip } from '../v2/HeroNowStrip';
 import PillTabs, { type PillTab } from '../v2/PillTabs';
 import '../cosmo/cosmo.css';
 import './panofi.css';
@@ -99,7 +100,29 @@ export default function PanofiDashboard({ heroOnly = false }: { heroOnly?: boole
         subtitle={`${company.base} · 선망 ${headline.activeVessels}척 · 주간동향 ${headline.weekCount}주 (${headline.rangeStart} ~ ${headline.rangeEnd})`}
         primaryKpi={heroKpis.primary}
         secondaryKpis={heroKpis.secondary}
-        minHeight={320}
+        minHeight={360}
+        strip={(
+          <HeroNowStrip
+            items={[
+              {
+                now: true,
+                eyebrow: '상반기',
+                title: '생산',
+                body: `${h1.productionT.toLocaleString('ko-KR')} (톤)`,
+              },
+              {
+                eyebrow: '선단',
+                title: '가동 선망선',
+                body: `${headline.activeVessels.toLocaleString('ko-KR')} (척)`,
+              },
+              {
+                eyebrow: '원가',
+                title: '손익분기 어가',
+                body: `${headline.bepPriceUsdPerT.toLocaleString('ko-KR')} (달러/톤)`,
+              },
+            ]}
+          />
+        )}
       />
 
       {heroOnly ? null : (
