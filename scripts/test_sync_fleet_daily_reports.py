@@ -168,7 +168,8 @@ class FleetDailyReportSyncTest(unittest.TestCase):
             self.assertEqual(payload["latest"]["pacific"]["vessels"][1]["catchMtParenthetical"], 3)
             self.assertEqual(payload["latest"]["pacific"]["vessels"][0]["loadedMtRaw"], "100(5)")
             self.assertEqual(payload["latest"]["pacific"]["vessels"][0]["loadedMtParenthetical"], 5)
-            self.assertIsNone(payload["latest"]["pacific"]["vessels"][2]["catchMt"])
+            self.assertEqual(payload["latest"]["pacific"]["vessels"][2]["catchMt"], 0)
+            self.assertEqual(payload["latest"]["pacific"]["vessels"][2]["catchMtRaw"], "-")
             self.assertEqual(payload["latest"]["carrier"]["loadedTotalMt"], 1001)
             self.assertEqual(payload["latest"]["carrier"]["loadedTotalParentheticalMt"], 10)
             self.assertEqual(payload["latest"]["carrier"]["vessels"][1]["expectedRemainingMt"], 300)
@@ -184,7 +185,7 @@ class FleetDailyReportSyncTest(unittest.TestCase):
                 },
                 {
                     "name": "TEST LONGLINE B",
-                    "loadedMt": None,
+                    "loadedMt": 0,
                     "loadedMtRaw": "-",
                     "loadedMtParenthetical": None,
                     "note": "8/19~22 시험항 휴게 입항 예정",
@@ -202,11 +203,11 @@ class FleetDailyReportSyncTest(unittest.TestCase):
             self.assertEqual(
                 [(check["reportDate"], check["field"], check["missingCount"], check["status"]) for check in payload["quality"]["reconciliationChecks"]],
                 [
-                    ("2026-08-13", "pacific.dailyMt", 1, "incompleteUnavailable"),
+                    ("2026-08-13", "pacific.dailyMt", 0, "completeMatch"),
                     ("2026-08-13", "atlantic.dailyMt", 0, "completeMatch"),
                     ("2026-08-13", "carrier.loadedMt", 0, "completeMatch"),
                     ("2026-08-13", "carrier.expectedRemainingMt", 0, "completeMatch"),
-                    ("2026-08-14", "pacific.dailyMt", 1, "knownRowsExceedReported"),
+                    ("2026-08-14", "pacific.dailyMt", 0, "completeMismatch"),
                     ("2026-08-14", "atlantic.dailyMt", 0, "completeMatch"),
                     ("2026-08-14", "carrier.loadedMt", 0, "completeMismatch"),
                     ("2026-08-14", "carrier.expectedRemainingMt", 0, "completeMatch"),
@@ -214,9 +215,9 @@ class FleetDailyReportSyncTest(unittest.TestCase):
             )
             self.assertEqual(payload["quality"]["counts"], {
                 "reconciliationChecks": 8,
-                "reconciliationCompleteChecks": 6,
-                "reconciliationUnavailableChecks": 2,
-                "reconciliationUnavailableDocuments": 2,
+                "reconciliationCompleteChecks": 8,
+                "reconciliationUnavailableChecks": 0,
+                "reconciliationUnavailableDocuments": 0,
                 "reconciliationIssues": 2,
                 "reconciliationDocuments": 1,
                 "reconciliationPartialDifferences": 2,
@@ -250,6 +251,18 @@ class FleetDailyReportSyncTest(unittest.TestCase):
 
             check = self.run_sync(source_dir, output, "--check")
             self.assertEqual(check.returncode, 0, check.stderr)
+
+
+class ParseAmountDashIsZero(unittest.TestCase):
+    def test_dash_and_blank_are_zero_tons(self):
+        module = load_sync_module()
+        dash = module.parse_amount("-")
+        blank = module.parse_amount("")
+        self.assertEqual(dash.raw, "-")
+        self.assertEqual(dash.value, 0)
+        self.assertIsNone(dash.parenthetical)
+        self.assertEqual(blank.value, 0)
+        self.assertEqual(blank.raw, "-")
 
 
 if __name__ == "__main__":

@@ -10,7 +10,7 @@ import {
   fleetDailyPublicLatest,
   fleetDailyPublicReconciliation,
 } from '@/lib/data/fleet-daily-public';
-import { formatFleetDailyDelta } from '@/lib/fleet-daily-presentation';
+import { formatFleetDailyDelta, formatReportedMt } from '@/lib/fleet-daily-presentation';
 import FleetDailyOperations from './FleetDailyOperations';
 import FleetHeroKPI from './FleetHeroKPI';
 import FleetRosterGrid from './FleetRosterGrid';
@@ -39,7 +39,7 @@ const taskTabs = [
 const dailyTotalMt = fleetDailyPublicLatest.pacific.dailyMt + fleetDailyPublicLatest.atlantic.dailyMt;
 const dailyMonthlyMt = fleetDailyPublicLatest.pacific.monthlyMt + fleetDailyPublicLatest.atlantic.monthlyMt;
 const dailyAnnualMt = fleetDailyPublicLatest.pacific.annualMt + fleetDailyPublicLatest.atlantic.annualMt;
-const formatOptionalMt = (value: number | null) => value === null ? '미보고' : value.toLocaleString();
+const formatOptionalMt = (value: number | null) => formatReportedMt(value);
 const dailyHeroSecondaryKpis = [
   { label: '월간 합계', value: dailyMonthlyMt, unit: '(MT)' },
   { label: '연간 합계', value: dailyAnnualMt, unit: '(MT)', decimals: 1 },

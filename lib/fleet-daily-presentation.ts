@@ -13,6 +13,11 @@ export function formatFleetDailyDelta(value: number) {
   return `${value > 0 ? '+' : ''}${value.toLocaleString('ko-KR', { maximumFractionDigits: 3 })}`;
 }
 
+/** 원문 `-`·null 수치는 0톤. 위치·비고의 미기입과는 구분한다. */
+export function formatReportedMt(value: number | null) {
+  return (value ?? 0).toLocaleString('ko-KR', { maximumFractionDigits: 3 });
+}
+
 export function formatFleetDailyNote(note: string) {
   return Object.entries(PORT_LABELS).reduce(
     (localized, [source, label]) => localized.replaceAll(source, label),

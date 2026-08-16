@@ -138,10 +138,10 @@ function FleetMapPanel({
                       상태 {status.text} {status.icon}
                     </div>
                     <div style={{ fontSize: '11px', color: '#e2e8f0' }}>
-                      적재량 {ship.loadedMt?.toLocaleString() ?? '미보고'} / {ship.capacityMt?.toLocaleString() ?? '미보고'} (MT)
+                      적재량 {(ship.loadedMt ?? 0).toLocaleString()} / {ship.capacityMt?.toLocaleString() ?? '미보고'} (MT)
                     </div>
                     {ship.catchMt !== undefined ? (
-                      <div style={{ fontSize: '11px', color: '#e2e8f0' }}>일간 어획 {ship.catchMt?.toLocaleString() ?? '미보고'} (MT)</div>
+                      <div style={{ fontSize: '11px', color: '#e2e8f0' }}>일간 어획 {(ship.catchMt ?? 0).toLocaleString()} (MT)</div>
                     ) : null}
                     {ship.note ? (
                       <div style={{ marginTop: '4px', fontSize: '10px', lineHeight: 1.4, color: '#fcd34d', wordBreak: 'keep-all' }}>

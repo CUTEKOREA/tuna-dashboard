@@ -4,11 +4,11 @@ import React, { useMemo, useState } from 'react';
 import { Anchor, MapPin, Navigation, Package, Ship, type LucideIcon } from 'lucide-react';
 
 import type { FleetDailyDetailPayload } from '@/lib/contracts/fleet-daily-api';
-import { buildFleetRoster, formatFleetDailyNote, type FleetRoster } from '@/lib/fleet-daily-presentation';
+import { buildFleetRoster, formatFleetDailyNote, formatReportedMt, type FleetRoster } from '@/lib/fleet-daily-presentation';
 import s from './FleetCommandCenter.module.css';
 
 function formatMt(value: number | null) {
-  return value === null ? '미보고' : value.toLocaleString('ko-KR', { maximumFractionDigits: 3 });
+  return formatReportedMt(value);
 }
 
 type FishingFleetRow = FleetRoster['pacific'][number];

@@ -284,6 +284,9 @@ describe('dashboard registry', () => {
     expect(fleetHeroSource).toContain("background: 'var(--dsc-ink-faint)'");
 
     expect(unloadingStyles).not.toContain('linear-gradient');
+    expect(unloadingStyles.indexOf('.heroMissionCardNow')).toBeGreaterThan(unloadingStyles.indexOf('.heroMissionCardActive'));
+    expect(unloadingStyles.lastIndexOf('.heroMissionCardNow strong')).toBeGreaterThan(unloadingStyles.indexOf('.heroMissionCard strong'));
+    expect(unloadingStyles).toContain('.heroMissionCardNow.heroMissionCardActive');
     expect(unloadingSource).not.toMatch(/accent:\s*['"]#/);
     expect(unloadingSource).toContain("color: 'var(--accent-primary)'");
     for (const selector of [

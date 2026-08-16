@@ -92,7 +92,7 @@ const ShipMarker = ({ ship, selected, onSelect }: { ship: PixelMapShip; selected
         </div>
         <div className={s.tooltipRow}>
           <span className={s.tooltipLabel}>적재량</span>
-          <span className={s.tooltipValue}>{ship.loadedMt?.toLocaleString() ?? '미보고'} / {ship.capacityMt?.toLocaleString() ?? '미보고'} (MT)</span>
+          <span className={s.tooltipValue}>{(ship.loadedMt ?? 0).toLocaleString()} / {ship.capacityMt?.toLocaleString() ?? '미보고'} (MT)</span>
         </div>
       </div>
       {ship.note && <div className={s.tooltipNote}>{formatFleetDailyNote(ship.note)}</div>}

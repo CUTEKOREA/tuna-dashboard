@@ -7,13 +7,12 @@ import {
   fleetDailyPublicLatest,
   fleetDailyPublicReconciliation,
 } from '@/lib/data/fleet-daily-public';
-import { formatFleetDailyDelta, formatFleetDailyNote } from '@/lib/fleet-daily-presentation';
+import { formatFleetDailyDelta, formatFleetDailyNote, formatReportedMt } from '@/lib/fleet-daily-presentation';
 import TelemetryBadge from './TelemetryBadge';
 import s from './FleetCommandCenter.module.css';
 
 function formatMt(value: number | null) {
-  if (value === null) return '미보고';
-  return value.toLocaleString('ko-KR', { minimumFractionDigits: 0, maximumFractionDigits: 3 });
+  return formatReportedMt(value);
 }
 
 const reconciliationRows = [
