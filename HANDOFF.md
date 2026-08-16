@@ -15,13 +15,15 @@
 > - **검증:** `npm run verify` exit 0 — 91파일·523테스트. 브라우저로 10개 단계 전수 재확인(TakeawayBox 결측 0, 최대 여백 2px). 배포 `39da74b`.
 > - **마지막 업데이트:** 2026-08-16 17:00 KST.
 >
-> 📱 **2026-08-16 16:51 KST — `/market` 모바일 전체 이력 운영 QA·잠금 drawer 후속 수정** [Codex]:
-> - PR **#450** squash merge `6792b2a4fa7f289fff4136523491b92f5bdfcde1`와 Production deployment **5928593404**가 성공했다. main App Quality Gate `31932953562`, Data Freshness Audit `31932953569`도 성공했다.
-> - 배포된 `leedonggun.co.kr/market`에서 Chromium 1440px와 WebKit iPad 834px는 로그인 전 13행 → 로그인 후 **739행(1994-01-01~2026-08-06)**, 차트 원천 **2022~2026**, SKJ/YF **5/3선**, 문서·패널 overflow 0, 보호 API CacheStorage 0, 잠금 후 13행 복귀까지 통과했다. iPad가 2022 시작 눈금을 생략한 것은 Recharts `preserveEnd` 눈금 선택이며, 실제 선은 시간축 폭의 96% 이상을 가로질러 전체 기간 렌더를 확인했다.
-> - iPhone 390px도 739행·2022~2026·5/3선·overflow 0까지 통과했으나, 마지막 잠금 QA에서 닫힌 사이드바가 `translateX(-100%)`일 뿐 DOM상 visible이라 자동화가 화면 밖 버튼을 클릭하려던 문제와, 실제 잠금 성공 뒤 열린 drawer가 로그인 화면 위에 남는 UX 회귀를 분리 확인했다.
-> - 최신 `origin/main` `4d28878`에서 잠금 DELETE와 후속 GET이 모두 `granted:false`로 확인된 성공 경로에만 `setIsMobileSidebarOpen(false)`를 추가했다. 실패 경로는 기존 접근·drawer 상태를 유지한다. 회귀 테스트는 RED를 확인한 뒤 focused Vitest **6/6** GREEN, 독립 반증 리뷰 blocking 0이다.
-> - **상태/다음 단계:** 후속 수정 브랜치 `codex/market-mobile-lock-followup-20260816`에서 전체 `npm run verify` → PR·Production 배포 → 세 기기 전체 운영 QA 재실행 후 이 항목을 최종 증빙으로 갱신한다.
-> - **마지막 업데이트:** 2026-08-16 16:51 KST.
+> 📱 **2026-08-16 17:15 KST — `/market` iPhone·iPad Atuna 전체 이력 수정 최종 배포 완료** [Codex]:
+> - 본 수정 PR **#450**은 squash merge `6792b2a4fa7f289fff4136523491b92f5bdfcde1`, Production deployment **5928593404**로 반영됐다. 메뉴 확인과 Atuna 권한을 같은 12시간 HMAC HttpOnly 쿠키로 통합했고, Vercel Sensitive Production 변수와 macOS 키체인에만 새 자격증명을 보관한다.
+> - 배포 QA 중 iPhone에서 잠금 성공 뒤 열린 drawer가 로그인 화면을 덮는 후속 UX 회귀를 발견했다. DELETE와 후속 GET이 모두 `granted:false`인 성공 경로에서만 drawer를 닫도록 RED→GREEN 수정했고, 독립 반증 리뷰 blocking 0을 거쳐 PR **#459** squash merge `137d337ac8e4c33f0c7b170e6fe9e1b482615c15`로 반영했다.
+> - 최신 main App Quality Gate **31935605495**는 전체 verify와 하역 브라우저 E2E를 포함해 성공했다. 통합 로컬 게이트도 ESLint 오류 0건(기존 경고 5건), TypeScript, Vitest **91파일·524테스트**, API cache **156/156**, Production build 117페이지, bundle 32라우트를 통과했다.
+> - 후속 Production deployment **5929029927**가 merge SHA `137d337a`로 성공했다. 실제 `leedonggun.co.kr/market`을 Chromium 1440×1000, WebKit iPad 834×1194, WebKit iPhone 390×664에서 새 브라우저로 전수 확인했다.
+> - 세 환경 모두 로그인 전 **13행** → 로그인 후 **739행(1994-01-01~2026-08-06)**, 차트 원천 **233행(2022-01-01~2026-08-06)**, SKJ/YF **5/3선**, 선의 시간축 커버리지 99.57%/97.84%, 문서·패널 overflow 0을 확인했다. iPad가 시작 눈금을 자동 생략해도 실제 선은 전체 기간을 가로지른다.
+> - 서비스워커는 접근 권한·Atuna API를 network-only로 처리하고 CacheStorage 민감 항목은 로그인 전·전체 이력·잠금 후 모두 0이다. 쿠키는 HttpOnly·Secure·SameSite=Lax·Path=/이며, 잠금 뒤 쿠키·세션 표식이 제거되고 세 환경 모두 다시 13행으로 복귀했다. iPhone drawer도 닫혔다.
+> - 자체 page·console·HTTP 오류는 0이다. 외부 Google 광고 403만 별도 격리했다. **필수 후속 작업 없음.**
+> - **마지막 업데이트:** 2026-08-16 17:15 KST.
 >
 > 📅 **2026-08-16 16:40 KST — 「시장 이해 > 참치」 전 수치 기준연도 재검수·갱신** [CC]:
 > - **사용자 지적이 맞았다.** FAO FishStat 어획통계는 2026-03 릴리스로 **현재 기준연도 1950–2024** 인데 내 집계는 2022에서 끊겨 있었다. 원인은 `FishStat_Capture_tuna_66species.csv`(2024 릴리스 시점 사전필터 추출본)를 쓴 것 — **같은 폴더의 벌크 `Capture_Quantity.csv`(105만 행, 1950–2024)가 정답이었다.**
