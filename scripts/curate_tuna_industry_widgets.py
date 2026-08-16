@@ -99,9 +99,6 @@ STAGES: list[dict] = [
         "pillar": "S3",
         "widgets": [
             "w106_kr_frozen_canned_gap",
-            "w20_thailand_paradox",
-            "w07_export",
-            "w08_import",
             "w65_export_price_benchmark",
             "w58_atq_loin_export",
         ],
@@ -156,9 +153,6 @@ STAGES: list[dict] = [
         "pillar": "S4",
         "widgets": [
             "w13_korea_empire",
-            "w17_korea_margin",
-            "w21_korea_price_truth",
-            "w23_korea_surplus",
             "w68_vessel_productivity",
             "w47_korea_thailand_pipeline",
         ],
@@ -196,10 +190,7 @@ TITLE_OVERRIDES: dict[str, str] = {
     "w66_petfood_capacity_defense": "부산물 펫푸드 전환과 가동률",
     # 06 교역과 통관
     "w106_kr_frozen_canned_gap": "한국 냉동 원어와 통조림의 단가 차이",
-    "w20_thailand_paradox": "태국의 어획량과 수출액 대비",
     "w47_korea_thailand_pipeline": "한국 원어에서 EU 수출까지의 경로",
-    "w07_export": "참치 조제품 수출 상위 10개국",
-    "w08_import": "참치 조제품 수입 상위 10개국",
     "w65_export_price_benchmark": "국가별 캔참치 수출 단가 비교",
     # 07 소비
     "w43_retail_price_map": "유럽 16개국 캔참치 소매가 비교",
@@ -221,9 +212,6 @@ TITLE_OVERRIDES: dict[str, str] = {
     "w88_eu_landing_obligation": "EU 투기금지의무의 적용 범위",
     # x03 한국
     "w13_korea_empire": "한국 참치 어획량과 세계 순위",
-    "w17_korea_margin": "한국 수출 단가와 세계 평균 대비",
-    "w21_korea_price_truth": "한국의 수출 단가 포지션",
-    "w23_korea_surplus": "원양 조업의 무역수지 기여",
     "w68_vessel_productivity": "선박별 생산성 분포",
 }
 

@@ -2,7 +2,9 @@ import React from 'react';
 import { renderToStaticMarkup } from 'react-dom/server';
 import { describe, expect, it } from 'vitest';
 
-import TunaIndustryDashboard from '../components/market-understanding/TunaIndustryDashboard';
+import TunaIndustryDashboard, {
+  CATCH_CHART_SLOTS,
+} from '../components/market-understanding/TunaIndustryDashboard';
 import {
   getChainStages,
   getCrossStages,
@@ -201,7 +203,11 @@ describe('시장 이해 > 참치 — 데이터 인테이크', () => {
     for (const narrative of ALL_NARRATIVES) {
       const stage = stages.find((entry) => entry.key === narrative.key);
       expect(stage, `${narrative.key} 단계가 없다`).toBeDefined();
-      const titles = new Set(stage!.widgets.map((widget) => widget.title));
+      // 화면의 카드는 큐레이션 위젯 + 직접 그린 차트 슬롯 둘 다다. 양쪽을 다 인정한다.
+      const titles = new Set([
+        ...stage!.widgets.map((widget) => widget.title),
+        ...(CATCH_CHART_SLOTS[narrative.key] ?? []).map((slot) => slot.title),
+      ]);
       const text = [...narrative.paragraphs, narrative.lede].join('\n');
 
       for (const match of text.matchAll(quoted)) {
