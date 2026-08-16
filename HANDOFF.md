@@ -1,8 +1,8 @@
-> 🚢 **2026-08-16 16:00 KST — 해양수산본부 일일보고 기반 `/fleet` 보안 배포 후보 준비** [Codex]:
+> 🚢 **2026-08-16 16:48 KST — 해양수산본부 일일보고 기반 `/fleet` 보안 배포 후보 준비** [Codex]:
 > - Google Drive 원문 DOCX 135건을 날짜순으로 파싱해 태평양·대서양·운반선·연승 최신 보고와 540회 검산 근거를 생성한다. `-`는 `null`로 유지하고 원문 금액·괄호값·보고 합계·상세 행을 strict 계약으로 교차 검증하며, 공개 화면에는 합계·전일 증감·품질 건수만 둔다.
 > - 최신 좌표·비고·일정·적재 상세는 Git 추적과 클라이언트 번들에서 제외했다. 무시된 최소 detail을 canonical SHA-256으로 공개 집계에 결속하고, 서버 환경변수에서만 읽어 관리자·선단 허용목록 교집합, 확인된 이메일, Supabase AAL2를 모두 통과한 요청에만 반환한다.
 > - `/api/fleet/daily`는 모든 결과에 `private, no-store`, `Vary: Cookie`, `nosniff`를 적용한다. 서비스워커는 `/api/fleet/`를 network-only로 처리하고 이전 API 캐시를 삭제하며, `/mail/login?next=/fleet`은 정확한 반환 경로만 허용한다.
-> - fresh `npm run verify` 통과: ESLint 0 errors·기존 5 warnings, Python 3/3, Vitest 98파일·498테스트, API cache 156/156, production build 117 pages, 실제 보호 상세 33개 정적 번들 누출 0, bundle 32 routes PASS다. 로컬 프로덕션 1440×1000·390×844 브라우저에서 4탭·23개 지도 마커·툴팁·인증 거부·overflow 0을 확인했다.
+> - 최신 `main` 통합 후 fresh `npm run verify` 통과: ESLint 0 errors·기존 5 warnings, Python 3/3, Vitest 104파일·559테스트, API cache 157/157, production build 117 pages, 정적 파일 103개에서 실제 보호 상세 33개 누출 0, bundle 32 routes PASS다. 로컬 프로덕션 1440×1000·390×844 브라우저에서 4탭·23개 지도 마커·툴팁·인증 거부·overflow 0을 확인했다.
 > - **다음 단계**: Preview·Production에 민감 환경변수를 먼저 등록하고, 원문 이력이 없는 secure branch만 push해 PR/Preview를 검증한다. 병합 후 `leedonggun.co.kr/fleet`과 비인증 API·정적 번들 누출을 운영에서 재검증한다.
 
 > 📅 **2026-08-16 16:40 KST — 「시장 이해 > 참치」 전 수치 기준연도 재검수·갱신** [CC]:
