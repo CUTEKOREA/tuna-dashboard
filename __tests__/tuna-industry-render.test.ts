@@ -365,8 +365,10 @@ describe('시장 이해 > 참치 — 렌더', () => {
     expect(markup).toContain('자원과 해역');
     expect(markup).toContain('참치가 사는 바다는 누구의 관할인가');
     expect(markup).toContain('evidenceRail');
-    expect(markup).toContain('chainTrack');
-    expect(markup).not.toContain('PillTabs');
+    expect(markup).toContain('tuna-industry-tab');
+    expect(markup).toContain('가격은 어떻게 정해지는가');
+    expect(markup).toContain('규제와 지속가능성');
+    expect(markup).toContain('한국과 신라의 자리');
     expect(markup).toContain('관할 기구별 어획량');
     expect(markup).toContain('해역별 어획량 상위 8곳');
   });

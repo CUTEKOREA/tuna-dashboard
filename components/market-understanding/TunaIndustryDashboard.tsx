@@ -45,7 +45,7 @@ import TermTooltip from '../TermTooltip';
 import WidgetCard from '../WidgetCard';
 import HeroZone from '../v2/HeroZone';
 import { HeroNowStrip } from '../v2/HeroNowStrip';
-import ChainStepper from './ChainStepper';
+import PillTabs, { type PillTab } from '../v2/PillTabs';
 import { useStageKey } from './useStageKey';
 import {
   AreaRankChart,
@@ -559,22 +559,15 @@ export default function TunaIndustryDashboard({ heroOnly = false }: TunaIndustry
     });
   }, [setStage]);
 
-  const chain = useMemo(
+  const tabs: PillTab[] = useMemo(
     () =>
-      CHAIN_STAGES.map((stage) => ({
-        key: stage.key,
-        numeral: getNarrative(stage.key)?.numeral ?? '',
-        label: getNarrative(stage.key)?.title ?? stage.label,
-      })),
-    [],
-  );
-  const cross = useMemo(
-    () =>
-      CROSS_STAGES.map((stage) => ({
-        key: stage.key,
-        numeral: getNarrative(stage.key)?.numeral ?? '',
-        label: getNarrative(stage.key)?.title ?? stage.label,
-      })),
+      ALL_STAGES.map((stage) => {
+        const narrative = getNarrative(stage.key);
+        return {
+          key: stage.key,
+          label: `${narrative?.numeral ?? ''} ${narrative?.title ?? stage.label}`.trim(),
+        };
+      }),
     [],
   );
 
@@ -661,7 +654,16 @@ export default function TunaIndustryDashboard({ heroOnly = false }: TunaIndustry
         </ol>
       </section>
 
-      <ChainStepper chain={chain} cross={cross} activeKey={activeKey} onSelect={go} />
+      <nav className={styles.tabNav} aria-label="밸류체인 단계 이동">
+        <PillTabs
+          tabs={tabs}
+          activeKey={activeKey}
+          onChange={go}
+          ariaLabel="밸류체인 단계"
+          tabIdPrefix="tuna-industry-tab"
+          panelIdPrefix="tuna-industry-panel"
+        />
+      </nav>
 
       <ValueChainSpine activeKey={activeKey} onSelect={go} />
 

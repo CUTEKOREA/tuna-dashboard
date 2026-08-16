@@ -341,6 +341,11 @@
   fill: var(--mu-sashimi);
 }
 
+.tabNav {
+  overflow-x: auto;
+  padding-bottom: 0.25rem;
+}
+
 /* ─── 사슬 스테퍼 ─────────────────────────────────────────────── */
 
 .stageNav {
