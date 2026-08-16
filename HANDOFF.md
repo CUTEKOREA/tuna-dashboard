@@ -1,3 +1,11 @@
+> 🚀 **2026-08-16 15:26 KST — GMTS 대시보드 운영 배포·실서비스 QA 완료** [Codex]:
+> - **병합:** PR **#451**을 squash merge SHA `222012e4ad804f74de351caffa8128176691dffb`로 `main`에 반영했다. App Quality Gate run `31918317595`와 Data Freshness Audit run `31918317613`은 모두 성공했다.
+> - **배포:** 기능 병합 Vercel Production deployment **5926297483**가 성공했다. 이후 최신 `main` deployment **5927115248**도 성공했으며 GMTS merge SHA를 조상으로 포함한다. 운영 주소는 `https://leedonggun.co.kr/gmts`이고 HTTP 200, `x-matched-path: /[category]`를 확인했다.
+> - **실서비스 QA:** 잠금 상태에서 상세 DOM 0과 `방콕사무소 → GMTS → 메일` 순서를 확인했다. 세션 잠금 해제 후 데스크톱 1440px·모바일 390px에서 5개 탭을 전부 클릭했다. 항만 차트 1 SVG·3선, 공장 차트 1 SVG·2선, 가격·반입 차트 2 SVG·21도형, 출처 30행이 실제 렌더됐다.
+> - **화면 정정 확인:** 메뉴는 `GMTS`, 생산·냉동재고 KPI는 연청색 배경과 진한 글자로 표시된다. 전 탭 문서 overflow 0, console/page/자체 HTTP error·request failure 0이다. 외부 Google 광고 요청만 로컬 headless 검증에서 204로 격리했다.
+> - **다음 단계:** 신규 GMTS 주간 PDF가 추가되면 `npm run sync:gmts`로 정적 스냅샷을 재생성하고 같은 파서·렌더·출처 계약을 유지한다.
+> - **마지막 업데이트:** 2026-08-16 15:26 KST.
+>
 > 🈚 **2026-08-16 12:10 KST — 「시장 이해 > 참치」 후속 검증 2건 정정·배포** [CC]:
 > - **L-01 위반 실제 발견.** L-02(X축 7자 회전) 감사를 돌리다 옆집 문제를 찾았다 — 원본 93위젯 상당수가 시리즈 `name` 이 비어 있어 **렌더러가 영문 dataKey 를 그대로 범례에 노출**하고 있었다. 축 카테고리 값에도 영문이 남아 있었다.
 > - **시리즈명 21건 + 축 라벨 18건 한글화.** 어종(Skipjack→가다랑어), 원가(MGOCost→선박용 경유(MGO) 가격), 규제(Reported Bycatch→보고된 혼획, ANN-Standardized CPUE→표준화 단위노력당어획량), 시나리오(Slow (< 1 ton/min)→저속 (1톤/분 미만)), 분기(Q1→1분기), 국가코드(PNG→파푸아뉴기니). **큐레이션 스크립트에 넣어 재생성해도 유지된다.** dataKey 는 안 건드린다 — 데이터 행의 키다.
