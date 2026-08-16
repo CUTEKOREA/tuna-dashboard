@@ -1,3 +1,5 @@
+import { readFileSync } from 'node:fs';
+import { join } from 'node:path';
 import React from 'react';
 import { renderToStaticMarkup } from 'react-dom/server';
 import { describe, expect, it } from 'vitest';
@@ -21,6 +23,8 @@ describe('VolumeBar', () => {
     expect(markup).toContain('data-volume-bar="true"');
     expect(markup).toContain('평균');
     expect(markup).toContain('($/MT)');
+    expect(markup).toContain('max-height:160px');
+    expect(markup).not.toContain('recharts-responsive-container');
   });
 
   it('점이 1개면 차트를 그리지 않는다', () => {
@@ -32,6 +36,13 @@ describe('VolumeBar', () => {
       }),
     );
     expect(markup).toBe('');
+  });
+
+  it('시장 동향에서 입체 막대는 선 그래프 아래에 두고 ResponsiveContainer를 쓰지 않는다', () => {
+    const market = readFileSync(join(process.cwd(), 'components/MarketDashboard.tsx'), 'utf8');
+    const volume = readFileSync(join(process.cwd(), 'components/charts/VolumeBar.tsx'), 'utf8');
+    expect(market.indexOf('방콕 SKJ 최근 고시')).toBeGreaterThan(market.indexOf('가다랑어 (SKJ)'));
+    expect(volume).not.toContain('ResponsiveContainer');
   });
 
   it('3면 기둥 도형을 그린다', () => {
