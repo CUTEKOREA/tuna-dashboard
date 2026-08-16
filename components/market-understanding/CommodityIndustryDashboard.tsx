@@ -167,7 +167,11 @@ function ChartFigure({ slot }: { slot: ChartSlot }) {
       <figcaption className={styles.catchCaption}>
         <div className={styles.catchTitleRow}>
           <strong>{slot.title}</strong>
-          <TelemetryBadge status={slot.telemetry.status} syncDate={slot.telemetry.syncDate} />
+          <TelemetryBadge
+            variant="caption"
+            status={slot.telemetry.status}
+            syncDate={slot.telemetry.syncDate}
+          />
         </div>
         <span>{slot.caption}</span>
       </figcaption>
