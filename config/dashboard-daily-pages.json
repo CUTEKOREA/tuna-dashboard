@@ -1,0 +1,79 @@
+{
+  "schemaVersion": 1,
+  "pages": [
+    {
+      "id": "market-briefing",
+      "label": "시장 동향 데일리 기사",
+      "route": "/market",
+      "cadence": "daily",
+      "adapter": "command",
+      "prepare": ["python3", "scripts/sync_daily_briefing.py"],
+      "sourceArg": "--input",
+      "verify": ["npx", "vitest", "run", "__tests__/daily-briefing.test.ts"],
+      "outputs": ["public/data/tuna_daily_briefing.json"],
+      "dateOutput": "public/data/tuna_daily_briefing.json",
+      "datePath": "date"
+    },
+    {
+      "id": "fleet-daily",
+      "label": "선단 일일 업무보고",
+      "route": "/fleet",
+      "cadence": "daily",
+      "adapter": "command",
+      "prepare": ["python3", "scripts/sync_fleet_daily_reports.py"],
+      "sourceArg": "--source-dir",
+      "verify": ["python3", "scripts/test_sync_fleet_daily_reports.py"],
+      "outputs": ["lib/data/generated/fleet-daily-public.json"],
+      "dateOutput": "lib/data/generated/fleet-daily-public.json",
+      "datePath": "_meta.latestReportDate"
+    },
+    {
+      "id": "unloading-daily",
+      "label": "하역 데일리 보고",
+      "route": "/unloading",
+      "cadence": "event",
+      "adapter": "skill",
+      "skill": "silla-unloading-daily-report",
+      "outputs": []
+    },
+    {
+      "id": "bangkok-weekly",
+      "label": "방콕사무소 주간보고",
+      "route": "/bangkok-office",
+      "cadence": "weekly",
+      "adapter": "command",
+      "prepare": ["bash", "scripts/sync_bangkok_report.sh"],
+      "sourceArg": "--input",
+      "verify": ["npx", "vitest", "run", "__tests__/bangkok-weekly-sync.test.ts", "__tests__/embedded-operation-pages.test.ts"],
+      "outputs": [
+        "public/reports/bangkok_weekly_2020_2026.html",
+        "public/data/bangkok_weekly_kpi.json",
+        "public/data/bangkok_weekly_payload.json"
+      ],
+      "dateOutput": "public/data/bangkok_weekly_payload.json",
+      "datePath": "meta.last"
+    },
+    {
+      "id": "gmts-weekly",
+      "label": "젠산사무소 주간보고",
+      "route": "/gmts",
+      "cadence": "weekly",
+      "adapter": "command",
+      "prepare": ["python3", "scripts/build_gmts_dashboard.py"],
+      "sourceArg": "--source-dir",
+      "verify": ["python3", "scripts/test_build_gmts_dashboard.py"],
+      "outputs": ["data/gmts_dashboard.json"],
+      "dateOutput": "data/gmts_dashboard.json",
+      "datePath": "metadata.latestReportDate"
+    },
+    {
+      "id": "logistics-weekly",
+      "label": "물류 주간 요약",
+      "route": "/logistics",
+      "cadence": "weekly",
+      "adapter": "manual",
+      "note": "방콕 원문과 하역 자료를 대조한 뒤 lib/logistics-weekly-report.ts를 갱신한다.",
+      "outputs": ["lib/logistics-weekly-report.ts"]
+    }
+  ]
+}

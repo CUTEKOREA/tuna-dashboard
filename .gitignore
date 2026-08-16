@@ -59,6 +59,7 @@ scratch/
 /lib/data/generated/fleet-daily-private.json
 /lib/data/generated/fleet-daily-latest.json
 /artifacts/fleet-daily-detail.json
+/artifacts/dashboard-daily-operator/
 
 # scratch and deploy logs
 scratch*.py
