@@ -1,9 +1,11 @@
-> 🔐 **2026-08-16 20:56 KST — Google 로그인 CTA CSP 차단 수정 및 배포 준비** [Codex]:
+> 🔐 **2026-08-16 21:11 KST — Google 로그인 CTA CSP 차단 수정·Production 재검증 완료** [Codex]:
 > - **원인:** 운영 `/login`의 GET `<form>` 제출이 `/auth/start`의 307을 거쳐 외부 Supabase OAuth로 이동할 때, Chromium이 리다이렉트도 폼 제출로 취급해 기존 CSP `form-action 'self'`로 차단했다. 실제 클릭에서 `/auth/start` `net::ERR_ABORTED`, CSP 위반, `/login` 잔류를 재현했다.
 > - **수정:** CSP를 느슨하게 변경하지 않고 `form-action 'self'`를 유지한 채, 로그인 CTA를 URL-인코딩된 `next`를 가진 동일 출처 `<a href="/auth/start?...">`로 교체했다. 허용 계정·provider·서명 JWT·AAL2 정책은 변경하지 않았다.
-> - **검증:** 회귀 계약 테스트는 수정 전 1건 실패(RED), 수정 후 **16/16 PASS**(GREEN)다. 로컬 Chromium에서 CTA 클릭 후 `/login` 잔류 0, CSP `form-action` 차단 0, `/auth/start` 307 및 외부 OAuth 요청 발생을 확인했다.
-> - **상태/다음 단계:** 수정 커밋 `268a85e`를 최신 `origin/main` 위로 rebase했다. 전체 `npm run verify`와 하역 E2E를 신규 증거로 통과한 뒤 PR 병합·Production 배포·운영 Chromium 클릭을 재검증한다.
-> - **마지막 업데이트:** 2026-08-16 20:56 KST.
+> - **검증:** 회귀 계약 테스트는 수정 전 1건 실패(RED), 수정 후 **16/16 PASS**(GREEN)다. 전체 `npm run verify`도 ESLint 오류 0(기존 경고 4), Python **3/3**, Vitest **587 pass·2 skip**, API cache **157/157**, Next **117페이지**, Fleet 누출·번들 **32라우트**를 통과했고 하역 E2E도 PASS했다. 별도 반증 검증은 **BLOCKING 0 / PASS**다.
+> - **배포/운영 증거:** PR **#470**을 squash merge SHA `003a65e90310322e7991fbb603d8a6a792d1acbc`로 병합했다. GitHub Production deployment **5930789892**와 Vercel `tuna-dashboard-5052ladwy-cutekorea-3280s-projects.vercel.app`은 `success`다. 운영 `/login`은 200·`private, no-store`·엄격한 `form-action 'self'`와 인코딩된 `/auth/start` 링크를 제공하고 `<form>`은 없다.
+> - **실제 클릭:** 운영 Chromium에서 `/login` → `/auth/start` 307 → Supabase authorize 302 → `accounts.google.com/v3/signin/identifier`로 이동했다. `/login` 잔류 0, CSP `form-action` 차단 0, 실패 요청 0이며, 비인증 `/api/unloading-history`는 계속 401·`private, no-store`다. Aside daemon은 접속되지 않아 해당 런에서 소유자 계정 최종 복귀까지는 재수행하지 않았다.
+> - **상태/다음 단계:** 운영 반영·버튼 무반응 재현 해소를 확인했다. 사용자는 기존 탭을 새로고침한 뒤 동일 CTA로 Google 로그인하면 된다.
+> - **마지막 업데이트:** 2026-08-16 21:11 KST.
 >
 > 🔐 **2026-08-16 20:29 KST — 전 페이지 Google 소유자 인증 Production 배포 완료** [Codex]:
 > - PR **#464**(`f9fb40277d78b3e2ea16fe3db4d45604e35c6e1d`)와 후속 PR **#468**(`22c919dd98de4db91adcb097ce40a8c08ddefb75`)을 squash merge했다. GitHub Production deployment **5930365109**와 Vercel `tuna-dashboard-qvvo6e7yx-cutekorea-3280s-projects.vercel.app`은 `success`/READY이며 `https://leedonggun.co.kr`에 반영됐다. 배포 뒤 Vercel 최근 30분 error 로그는 0건이다.
