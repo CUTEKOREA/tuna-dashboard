@@ -16,6 +16,7 @@ import {
 
 import { latest, latestMonth, meta, n } from '@/lib/data/cosmo';
 import HeroZone, { type HeroKpi } from '../v2/HeroZone';
+import { HeroNowStrip } from '../v2/HeroNowStrip';
 import PillTabs, { type PillTab } from '../v2/PillTabs';
 import {
   CosmoNavigationProvider,
@@ -119,7 +120,29 @@ export default function CosmoDashboard({ heroOnly = false }: { heroOnly?: boolea
           subtitle={`2026년 ${latest.week}주차 운영 지표 · 손익 1~${latestMonth.month}월 · 정적 원본 ${meta.weekCount}주`}
           primaryKpi={heroKpis.primary}
           secondaryKpis={heroKpis.secondary}
-          minHeight={320}
+          minHeight={360}
+          strip={(
+            <HeroNowStrip
+              items={[
+                {
+                  now: true,
+                  eyebrow: `${latest.week}주차`,
+                  title: '주간 판매',
+                  body: `${heroKpis.primary.value.toLocaleString('ko-KR', { maximumFractionDigits: 2 })} (백만 달러)`,
+                },
+                {
+                  eyebrow: '누적',
+                  title: '순손익',
+                  body: `${heroKpis.secondary[0].value.toLocaleString('ko-KR', { maximumFractionDigits: 2 })} (백만 달러)`,
+                },
+                {
+                  eyebrow: '자금',
+                  title: '현금 잔액',
+                  body: `${heroKpis.secondary[2].value.toLocaleString('ko-KR', { maximumFractionDigits: 2 })} (백만 달러)`,
+                },
+              ]}
+            />
+          )}
         />
 
         {heroOnly ? null : (<>

@@ -38,7 +38,9 @@ describe('GMTS dashboard decision surface', () => {
   it('renders the real parent summary with source uncertainty and current derived figures', () => {
     const html = renderDashboard();
 
-    expect(html).toContain('GMTS 제너럴산토스 주간보고');
+    expect(html).toContain('GMTS');
+    expect(html).toContain('제너럴산토스 주간보고');
+    expect(html).toContain('data-now="true"');
     expect(html).toContain('운영 기준일 미기재');
     expect(html).toContain('자료 미확정');
     expect(html).toContain('정적');
@@ -148,7 +150,9 @@ describe('GMTS dashboard decision surface', () => {
   it('keeps the locked hero teaser free of every detailed surface', () => {
     const html = renderToStaticMarkup(createElement(DashboardComponent, { heroOnly: true }));
 
-    expect(html).toContain('GMTS 제너럴산토스 주간보고');
+    expect(html).toContain('GMTS');
+    expect(html).toContain('제너럴산토스 주간보고');
+    expect(html).toContain('data-now="true"');
     expect(html).toContain('자료 미확정');
     expect(html).not.toContain('role="tablist"');
     expect(html).not.toContain('role="img"');

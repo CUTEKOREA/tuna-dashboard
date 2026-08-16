@@ -140,6 +140,7 @@ describe('bangkok native dashboard', () => {
     const markup = renderToStaticMarkup(React.createElement(BangkokDashboard));
 
     expect(markup).toContain('방콕사무소');
+    expect(markup).toContain('data-now="true"');
     expect(markup).toContain('분석 기간 2020.05~2026.08 · 고유 287주');
     for (const value of [1960, 117400, 326005, 44]) {
       expect(markup).toContain(`data-kpi-value="${value}"`);
@@ -169,6 +170,7 @@ describe('bangkok native dashboard', () => {
 
     // 2026-08-15: 히어로 타이틀 영문 전환 (소유자 지시 — L-01 히어로 한정 예외)
     expect(markup).toContain('방콕사무소');
+    expect(markup).toContain('data-now="true"');
     expect(markup).not.toContain('role="tablist"');
     expect(markup).not.toContain('role="tabpanel"');
   });

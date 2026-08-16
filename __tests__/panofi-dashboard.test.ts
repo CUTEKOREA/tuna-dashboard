@@ -166,6 +166,8 @@ describe('파노피 대시보드 렌더', () => {
 
   it('제목과 9개 탭을 iframe 없이 렌더한다', () => {
     expect(markup).toContain('파노피');
+    expect(markup).toContain('data-now="true"');
+    expect(markup).toContain('data-hero-now-strip="true"');
     expect(PANOFI_TABS).toHaveLength(9);
     for (const tab of PANOFI_TABS) expect(markup).toContain(tab.label);
     expect(markup).not.toContain('<iframe');

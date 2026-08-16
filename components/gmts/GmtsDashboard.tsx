@@ -36,6 +36,7 @@ import { TelemetryBadge } from '../TelemetryBadge';
 import TermTooltip from '../TermTooltip';
 import WidgetCard from '../WidgetCard';
 import HeroZone from '../v2/HeroZone';
+import { HeroNowStrip } from '../v2/HeroNowStrip';
 import PillTabs, { type PillTab } from '../v2/PillTabs';
 import styles from './GmtsDashboard.module.css';
 
@@ -151,8 +152,9 @@ function GmtsHero() {
     <HeroZone
       className={styles.hero}
       variant="kpi"
-      title="GMTS 제너럴산토스 주간보고"
+      title="GMTS"
       subtitle={[
+        '제너럴산토스 주간보고',
         GMTS_VIEW.hero.report.reportDateLabel,
         GMTS_VIEW.hero.report.operationalAsOfLabel,
         GMTS_VIEW.hero.report.archiveLabel,
@@ -186,7 +188,29 @@ function GmtsHero() {
           `가격 ${GMTS_VIEW.hero.gspPrice.unit} · 반입량 ${GMTS_VIEW.hero.ytdVolume.unit}`,
         ],
       }}
-      minHeight={340}
+      minHeight={360}
+      strip={(
+        <HeroNowStrip
+          items={[
+            {
+              now: true,
+              eyebrow: '이번 보고',
+              title: '생산 가동률',
+              body: `${GMTS_DATA.latest.canneryTotal.productionUtilizationPct.toLocaleString('ko-KR')} (%)`,
+            },
+            {
+              eyebrow: '항만',
+              title: '하역 완료',
+              body: `${GMTS_DATA.latest.port.completed.recordCount.toLocaleString('ko-KR')} (척)`,
+            },
+            {
+              eyebrow: '항만',
+              title: '입항 예정',
+              body: `${GMTS_DATA.latest.port.incoming.recordCount.toLocaleString('ko-KR')} (척)`,
+            },
+          ]}
+        />
+      )}
     >
       <div className={styles.heroContext}>
         <TermTooltip

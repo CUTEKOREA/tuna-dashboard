@@ -34,6 +34,8 @@ describe('COSMO native dashboard', () => {
     const markup = renderToStaticMarkup(React.createElement(CosmoDashboard));
 
     expect(markup).toContain('코스모');
+    expect(markup).toContain('data-now="true"');
+    expect(markup).toContain('data-hero-now-strip="true"');
     expect(markup).toContain('주간 판매');
     expect(COSMO_TABS).toHaveLength(9);
     for (const tab of COSMO_TABS) expect(markup).toContain(tab.label);

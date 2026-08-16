@@ -39,6 +39,7 @@ import { TelemetryBadge } from '../TelemetryBadge';
 import TermTooltip from '../TermTooltip';
 import WidgetCard from '../WidgetCard';
 import HeroZone from '../v2/HeroZone';
+import { HeroNowStrip } from '../v2/HeroNowStrip';
 import PillTabs, { type PillTab } from '../v2/PillTabs';
 import {
   AreaRankChart,
@@ -387,8 +388,8 @@ export default function TunaIndustryDashboard({ heroOnly = false }: TunaIndustry
   const hero = (
     <HeroZone
       variant="kpi"
-      title="참치 산업 해부"
-      subtitle="바다에서 식탁까지 — 밸류체인 7단계와 그것을 관통하는 3개 축"
+      title="참치"
+      subtitle="참치 산업 해부 · 바다에서 식탁까지 — 밸류체인 7단계와 그것을 관통하는 3개 축"
       primaryKpi={{
         label: '세계 주요 상업 참치 어획량',
         value: CATCH.요약.세계어획량,
@@ -413,6 +414,29 @@ export default function TunaIndustryDashboard({ heroOnly = false }: TunaIndustry
           unit: '(종)',
         },
       ]}
+      minHeight={360}
+      strip={(
+        <HeroNowStrip
+          items={[
+            {
+              now: true,
+              eyebrow: '기준',
+              title: '세계 어획량',
+              body: `${CATCH.요약.세계어획량.toLocaleString('ko-KR')} (톤)`,
+            },
+            {
+              eyebrow: '해역',
+              title: '서·중부태평양',
+              body: `${(CATCH.요약.최대해역비중 ?? 0).toLocaleString('ko-KR', { maximumFractionDigits: 2 })} (%)`,
+            },
+            {
+              eyebrow: '한국',
+              title: '국내 어획량',
+              body: `${(CATCH.요약.한국어획량 ?? 0).toLocaleString('ko-KR')} (톤)`,
+            },
+          ]}
+        />
+      )}
     />
   );
 

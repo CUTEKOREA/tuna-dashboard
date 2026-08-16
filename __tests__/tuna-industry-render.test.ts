@@ -348,7 +348,9 @@ describe('시장 이해 > 참치 — 렌더', () => {
   it('첫 단계와 30초 브리핑, 분기도, 출처 고지를 함께 렌더한다', () => {
     const markup = renderToStaticMarkup(React.createElement(TunaIndustryDashboard));
 
+    expect(markup).toContain('참치');
     expect(markup).toContain('참치 산업 해부');
+    expect(markup).toContain('data-now="true"');
     expect(markup).toContain('30초 브리핑');
     expect(markup).toContain('참치 밸류체인 분기도');
     expect(markup).toContain('출처와 한계');
@@ -369,7 +371,9 @@ describe('시장 이해 > 참치 — 렌더', () => {
       React.createElement(TunaIndustryDashboard, { heroOnly: true }),
     );
 
+    expect(markup).toContain('참치');
     expect(markup).toContain('참치 산업 해부');
+    expect(markup).toContain('data-now="true"');
     expect(markup).not.toContain('30초 브리핑');
     expect(markup).not.toContain('출처와 한계');
   });

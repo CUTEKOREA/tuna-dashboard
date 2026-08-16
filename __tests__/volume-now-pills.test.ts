@@ -4,6 +4,7 @@ import React from 'react';
 import { renderToStaticMarkup } from 'react-dom/server';
 import { describe, expect, it } from 'vitest';
 import { VolumeBarChart, VolumeBarShape } from '../components/charts/VolumeBar';
+import { HeroNowStrip } from '../components/v2/HeroNowStrip';
 import { NowCard } from '../components/v2/NowCard';
 import OperationPills from '../components/v2/OperationPills';
 
@@ -57,6 +58,23 @@ describe('VolumeBar', () => {
     );
     expect(markup).toContain('<path');
     expect(markup).toContain('<rect');
+  });
+});
+
+describe('HeroNowStrip', () => {
+  it('지금 카드 한 장과 대기 카드를 나란히 둔다', () => {
+    const markup = renderToStaticMarkup(
+      React.createElement(HeroNowStrip, {
+        items: [
+          { now: true, eyebrow: '상반기', title: '생산', body: '1 (톤)' },
+          { eyebrow: '선단', title: '가동 선망선', body: '2 (척)' },
+        ],
+      }),
+    );
+    expect(markup).toContain('data-hero-now-strip="true"');
+    expect(markup.match(/data-now="true"/g)?.length).toBe(1);
+    expect(markup).toContain('지금');
+    expect(markup).toContain('생산');
   });
 });
 

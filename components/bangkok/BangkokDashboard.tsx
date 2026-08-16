@@ -13,6 +13,7 @@ import {
 
 import { bangkokWeeklyKpi } from '@/lib/data/bangkok-weekly';
 import HeroZone from '../v2/HeroZone';
+import { HeroNowStrip } from '../v2/HeroNowStrip';
 import PillTabs, { type PillTab } from '../v2/PillTabs';
 import '../cosmo/cosmo.css';
 import '../panofi/panofi.css';
@@ -80,7 +81,29 @@ export default function BangkokDashboard({ heroOnly = false }: { heroOnly?: bool
           { label: '가공가능일수', value: bangkokWeeklyKpi.processDays, unit: '(일)' },
           { label: '하이솔트 확정액', value: bangkokWeeklyKpi.highSaltUsd, unit: '(USD)' },
         ]}
-        minHeight={320}
+        minHeight={360}
+        strip={(
+          <HeroNowStrip
+            items={[
+              {
+                now: true,
+                eyebrow: '최신',
+                title: '방콕 시세',
+                body: `${bangkokWeeklyKpi.latestPrice.toLocaleString('ko-KR')} ($/MT)`,
+              },
+              {
+                eyebrow: '재고',
+                title: '방콕 재고',
+                body: `${bangkokWeeklyKpi.stockMt.toLocaleString('ko-KR')} (MT)`,
+              },
+              {
+                eyebrow: '누적',
+                title: '2026 하역',
+                body: `${bangkokWeeklyKpi.cumUnloadMt.toLocaleString('ko-KR')} (MT)`,
+              },
+            ]}
+          />
+        )}
       />
 
       {heroOnly ? null : (
