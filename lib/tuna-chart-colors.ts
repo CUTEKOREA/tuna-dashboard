@@ -23,10 +23,10 @@ const SPECIES_COLOR: Record<string, string> = {
 };
 
 const RFMO_COLOR: Record<string, string> = {
-  WCPFC: TUNA_ROLE.volume,
-  IOTC: '#0284c7',
-  IATTC: TUNA_ROLE.processed,
-  ICCAT: '#155e75',
+  WCPFC: '#0e7490',
+  IOTC: '#1d4ed8',
+  IATTC: '#15803d',
+  ICCAT: '#334155',
   CCAMLR: '#64748b',
   미분류: TUNA_ROLE.muted,
 };

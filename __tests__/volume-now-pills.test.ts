@@ -3,7 +3,7 @@ import { join } from 'node:path';
 import React from 'react';
 import { renderToStaticMarkup } from 'react-dom/server';
 import { describe, expect, it } from 'vitest';
-import { VolumeBarChart, VolumeBarShape } from '../components/charts/VolumeBar';
+import { VolumeBarChart, VolumeBarShape, volumeBarFillForValue } from '../components/charts/VolumeBar';
 import { HeroNowStrip } from '../components/v2/HeroNowStrip';
 import { NowCard } from '../components/v2/NowCard';
 import OperationPills from '../components/v2/OperationPills';
@@ -55,11 +55,22 @@ describe('VolumeBar', () => {
         y: 20,
         width: 24,
         height: 80,
-        highlighted: true,
       }),
     );
     expect(markup).toContain('<path');
     expect(markup).toContain('<rect');
+  });
+
+  it('값이 높을수록 더 진한 파랑을 쓴다', () => {
+    const low = volumeBarFillForValue(1700, 1700, 2000);
+    const high = volumeBarFillForValue(2000, 1700, 2000);
+    const toLum = (hex: string) => {
+      const n = hex.match(/[0-9a-f]{2}/gi)?.map((part) => parseInt(part, 16) / 255) ?? [];
+      const lin = n.map((c) => (c <= 0.04045 ? c / 12.92 : ((c + 0.055) / 1.055) ** 2.4));
+      return lin[0] * 0.2126 + lin[1] * 0.7152 + lin[2] * 0.0722;
+    };
+    expect(low).not.toBe(high);
+    expect(toLum(high)).toBeLessThan(toLum(low));
   });
 });
 
@@ -96,6 +107,11 @@ describe('NowCard', () => {
 });
 
 describe('OperationPills', () => {
+  it('홈 셸 상단에서 운영 알약을 그리지 않는다', () => {
+    const page = readFileSync(join(process.cwd(), 'app/page.tsx'), 'utf8');
+    expect(page).not.toContain('OperationPills');
+  });
+
   it('운영 4메뉴를 한글로 나열하고 현재 페이지만 표시한다', () => {
     const markup = renderToStaticMarkup(
       React.createElement(OperationPills, {

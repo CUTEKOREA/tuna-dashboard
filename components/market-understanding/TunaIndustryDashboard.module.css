@@ -449,12 +449,26 @@
 
 /* ─── FishStat 전용 차트 ──────────────────────────────────────── */
 
+.catchStack {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.catchPair {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 1.25rem;
+  align-items: start;
+}
+
 .catchFigure {
   margin: 0;
   padding: 1.125rem 1.25rem 0.75rem;
   background: var(--mu-surface);
   border: 1px solid var(--mu-line);
   border-radius: 16px;
+  min-width: 0;
 }
 
 .catchCaption {
@@ -586,6 +600,12 @@
   text-align: center;
   font-size: 0.875rem;
   color: var(--mu-ink-muted);
+}
+
+@media (max-width: 860px) {
+  .catchPair {
+    grid-template-columns: 1fr;
+  }
 }
 
 @media (max-width: 720px) {

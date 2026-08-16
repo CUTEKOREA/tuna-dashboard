@@ -25,7 +25,7 @@ import PageTransition from '../components/PageTransition';
 import AmbientBackground from '../components/AmbientBackground';
 import CommandPalette from '../components/CommandPalette';
 import KeepAlivePanel from '../components/KeepAlivePanel';
-import OperationPills, { OPERATION_PILLS } from '../components/v2/OperationPills';
+
 import { LongArmOctopusIcon } from '../components/SeafoodSidebarIcons';
 
 // ─── Dynamic imports (loaded on-demand per page) ───
@@ -366,12 +366,6 @@ export default function Home() {
       {/* Main Content Area */}
       <div className={styles.mainContent}>
         <main className={styles.container}>
-          {/* 실시간 운영 4개 화면 사이를 오가는 단축 띠다.
-              「시장 이해」처럼 성격이 다른 화면에서는 갈 곳이 아니라 방해가 되므로 감춘다. */}
-          {OPERATION_PILLS.some((pill) => pill.key === activeMenu) && (
-            <OperationPills activeKey={activeMenu} onSelect={handleMenuClick} />
-          )}
-
           {activeMenu === 'market' && (
             <>
               <LiveTicker />

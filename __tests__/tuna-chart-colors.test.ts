@@ -54,8 +54,10 @@ describe('참치 차트 색', () => {
   it('항구·기구 색이 서로 겹치지 않는다', () => {
     const hubs = ['방콕', '만타', '세이셸', '아비장', '비고'].map(colorForHub);
     expect(new Set(hubs).size).toBe(5);
-    const rfmos = ['WCPFC', 'IOTC', 'IATTC', 'ICCAT'].map(colorForRfmo);
-    expect(new Set(rfmos).size).toBe(4);
+    const rfmos = ['WCPFC', 'IOTC', 'IATTC', 'ICCAT', 'CCAMLR'].map(colorForRfmo);
+    expect(new Set(rfmos).size).toBe(5);
+    expect(colorForRfmo('WCPFC')).not.toBe(colorForRfmo('ICCAT'));
+    expect(colorForRfmo('IATTC')).not.toBe(TUNA_ROLE.processed);
   });
 
   it('고정색이 흰 지면에서 그래픽 대비 3:1을 넘는다', () => {
