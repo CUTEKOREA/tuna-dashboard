@@ -7,7 +7,9 @@ import {
   fleetDailyPublicLatest,
   fleetDailyPublicReconciliation,
 } from '@/lib/data/fleet-daily-public';
+import { fleetDetailGateMessage } from '@/lib/fleet-daily-gate';
 import { formatFleetDailyDelta, formatFleetDailyNote, formatReportedMt } from '@/lib/fleet-daily-presentation';
+import FleetStepUpMfa from './FleetStepUpMfa';
 import TelemetryBadge from './TelemetryBadge';
 import s from './FleetCommandCenter.module.css';
 
@@ -27,7 +29,13 @@ function reconciliationLabel(matches: boolean | null) {
   return matches ? '일치' : '확인 필요';
 }
 
-function ProtectedSchedule({ detailState }: { detailState: FleetDailyDetailState }) {
+function ProtectedSchedule({
+  detailState,
+  onRetry,
+}: {
+  detailState: FleetDailyDetailState;
+  onRetry: () => void;
+}) {
   if (detailState.status === 'ready') {
     const latestSchedules = [
       ...detailState.detail.pacific.vessels,
@@ -53,13 +61,22 @@ function ProtectedSchedule({ detailState }: { detailState: FleetDailyDetailState
       <div className={s.dailyCardHeading}><LockKeyhole size={18} aria-hidden="true" /><h3>선박 상세 보호</h3></div>
       <p>최신 일일보고에서 새로 추가된 좌표·비고·일정·적재 상세는 관리자·선단 허용목록과 2단계 인증을 모두 확인한 뒤에만 표시합니다.</p>
       <p className={s.protectedDetailStatus} role="status">
-        {detailState.status === 'loading' ? '서버 권한을 확인하는 중입니다.' : detailState.code === 'mfa_required' ? '2단계 인증이 필요합니다.' : detailState.code === 'fleet_access_required' ? '선단 상세 권한이 없습니다.' : detailState.code === 'authentication_required' ? '서버 로그인이 필요합니다.' : '보호된 상세를 불러올 수 없습니다.'}
+        {fleetDetailGateMessage(detailState)}
       </p>
+      {detailState.status === 'denied' && detailState.code === 'mfa_required' ? (
+        <FleetStepUpMfa onVerified={onRetry} />
+      ) : null}
     </>
   );
 }
 
-export default function FleetDailyOperations({ detailState }: { detailState: FleetDailyDetailState }) {
+export default function FleetDailyOperations({
+  detailState,
+  onRetry,
+}: {
+  detailState: FleetDailyDetailState;
+  onRetry: () => void;
+}) {
   const totalDailyMt = fleetDailyPublicLatest.pacific.dailyMt + fleetDailyPublicLatest.atlantic.dailyMt;
   const totalMonthlyMt = fleetDailyPublicLatest.pacific.monthlyMt + fleetDailyPublicLatest.atlantic.monthlyMt;
   const totalAnnualMt = fleetDailyPublicLatest.pacific.annualMt + fleetDailyPublicLatest.atlantic.annualMt;
@@ -98,7 +115,7 @@ export default function FleetDailyOperations({ detailState }: { detailState: Fle
       </div>
 
       <div className={s.dailyDetailGrid}>
-        <article className={s.dailyDetailCard}><ProtectedSchedule detailState={detailState} /></article>
+        <article className={s.dailyDetailCard}><ProtectedSchedule detailState={detailState} onRetry={onRetry} /></article>
         <article className={s.dailyDetailCard}>
           <div className={s.dailyCardHeading}><ClipboardCheck size={18} aria-hidden="true" /><h3>최신 검산</h3></div>
           <p>최신 상세 행 합계와 보고 합계를 비교합니다. 원문 이상은 자동 보정하지 않았습니다.</p>

@@ -60,8 +60,10 @@ describe('관리자 메일 메뉴 계약', () => {
     expect(oauthStart).toContain('client.auth.signInWithOAuth');
     expect(oauthStart).toContain("provider: 'google'");
     expect(loginComponent).not.toContain('signInWithPassword');
-    expect(loginPage).toContain("candidate === '/fleet' || candidate === '/mail'");
-    expect(loginPage).toContain("? candidate : '/mail'");
+    expect(loginPage).toContain("export { resolveProtectedReturnPath as resolveLoginReturnPath }");
+    const returnPath = readFileSync(join(process.cwd(), 'lib/auth/protected-return.ts'), 'utf8');
+    expect(returnPath).toContain("candidate === '/fleet' || candidate === '/mail'");
+    expect(returnPath).toContain("? candidate : '/mail'");
     expect(loginComponent).not.toContain('signUp');
     expect(loginComponent).not.toContain('localStorage');
     expect(loginComponent).not.toContain('sessionStorage');

@@ -10,8 +10,10 @@ import {
   fleetDailyPublicLatest,
   fleetDailyPublicReconciliation,
 } from '@/lib/data/fleet-daily-public';
+import { fleetDetailGateMessage } from '@/lib/fleet-daily-gate';
 import { formatFleetDailyDelta, formatReportedMt } from '@/lib/fleet-daily-presentation';
 import FleetDailyOperations from './FleetDailyOperations';
+import FleetStepUpMfa from './FleetStepUpMfa';
 import FleetHeroKPI from './FleetHeroKPI';
 import FleetRosterGrid from './FleetRosterGrid';
 import { FleetChartSection, FleetDetailPanel } from './FleetAnalysisPanels';
@@ -57,7 +59,6 @@ const decisions = [
 
 function accessAction(code: FleetDailyDetailErrorCode) {
   if (code === 'authentication_required') return { href: '/mail/login?next=/fleet', label: '서버 로그인' };
-  if (code === 'mfa_required') return { href: '/mail', label: '2단계 인증' };
   return null;
 }
 
@@ -67,20 +68,12 @@ function VesselDetailBoundary({ state, onRetry }: { state: FleetDailyDetailState
   }
 
   const action = state.status === 'loading' ? null : accessAction(state.code);
-  const message = state.status === 'loading'
-    ? '서버 권한을 확인하는 중입니다.'
-    : state.code === 'authentication_required'
-      ? '최신 좌표·비고·일정·적재 상세를 보려면 서버 로그인이 필요합니다.'
-      : state.code === 'mfa_required'
-        ? '선박 상세는 2단계 인증 후 표시됩니다.'
-        : state.code === 'fleet_access_required'
-          ? '이 계정에는 선단 상세 권한이 없습니다.'
-          : '보호된 상세를 불러올 수 없습니다.';
 
   return (
     <section className={s.protectedDetailGate} aria-live="polite">
       <LockKeyhole size={24} aria-hidden="true" />
-      <div><strong>선박 상세 보호</strong><p>{message}</p></div>
+      <div><strong>선박 상세 보호</strong><p>{fleetDetailGateMessage(state)}</p></div>
+      {state.status === 'denied' && state.code === 'mfa_required' ? <FleetStepUpMfa onVerified={onRetry} /> : null}
       {action ? <a href={action.href}>{action.label}</a> : null}
       {state.status === 'error' ? <button type="button" onClick={onRetry}><RotateCcw size={15} aria-hidden="true" />다시 확인</button> : null}
     </section>
@@ -148,7 +141,7 @@ export default function FleetCommandCenter({ heroOnly = false }: { heroOnly?: bo
     <div className={s.wrapper}>
       {fleetHero}
       <PillTabs className={s.taskTabs} tabs={taskTabs.map((tab) => ({ key: tab.id, label: tab.label }))} activeKey={activeTab} onChange={(key) => setActiveTab(key as FleetTaskTab)} ariaLabel="선단 업무 보기" tabIdPrefix="fleet-tab" panelIdPrefix="fleet-panel" />
-      <section id="fleet-panel-operations" role="tabpanel" aria-labelledby="fleet-tab-operations" className={s.tabPanel} hidden={activeTab !== 'operations'}><FleetDailyOperations detailState={detailState} /></section>
+      <section id="fleet-panel-operations" role="tabpanel" aria-labelledby="fleet-tab-operations" className={s.tabPanel} hidden={activeTab !== 'operations'}><FleetDailyOperations detailState={detailState} onRetry={() => { setDetailState({ status: 'loading' }); setRetryCount((value) => value + 1); }} /></section>
       <section id="fleet-panel-vessels" role="tabpanel" aria-labelledby="fleet-tab-vessels" className={s.tabPanel} hidden={activeTab !== 'vessels'}><VesselDetailBoundary state={detailState} onRetry={() => { setDetailState({ status: 'loading' }); setRetryCount((value) => value + 1); }} /></section>
       <section id="fleet-panel-performance" role="tabpanel" aria-labelledby="fleet-tab-performance" className={s.tabPanel} hidden={activeTab !== 'performance'}><FleetHeroKPI mode="weekly" /><FleetChartSection /><FleetDetailPanel /></section>
       <section id="fleet-panel-access" role="tabpanel" aria-labelledby="fleet-tab-access" className={s.tabPanel} hidden={activeTab !== 'access'}><div className={s.accessAlert}><AlertTriangle size={18} aria-hidden="true" /><div><strong>국적선과 키리바시 선박을 분리 집계</strong><p>국적선 6척과 키리바시 선박 4척은 별도 모집단입니다. 음수 잔여는 원문을 그대로 표시했습니다.</p></div></div><VesselVdsStatus /><VdsStrategyMatrix /><PnaAccessFeeWidgets /></section>

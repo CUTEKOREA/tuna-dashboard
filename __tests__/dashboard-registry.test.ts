@@ -158,7 +158,7 @@ describe('dashboard registry', () => {
     expect(commandSource).toContain('<PillTabs');
     expect(commandSource).toContain('role="tabpanel"');
     expect(commandSource).toContain("import FleetDailyOperations from './FleetDailyOperations'");
-    expect(commandSource).toContain('<FleetDailyOperations detailState={detailState} />');
+    expect(commandSource).toContain('<FleetDailyOperations detailState={detailState} onRetry=');
     expect(commandSource).toContain("from '@/lib/data/fleet-daily-public'");
     expect(commandSource).toContain("from '@/lib/fleet-daily-presentation'");
     expect(commandSource).toContain("fetch('/api/fleet/daily'");
