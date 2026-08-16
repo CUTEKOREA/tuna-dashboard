@@ -589,10 +589,12 @@ describe('dashboard registry', () => {
   it('defines sidebar sections from visible registry items in render order', () => {
     expect(SIDEBAR_SECTIONS.map((section) => section.title)).toEqual([
       '📡 실시간 운영',
+      '📚 시장 이해',
     ]);
 
     expect(SIDEBAR_SECTIONS.map((section) => section.items.map((item) => item.key))).toEqual([
       ['market', 'fleet', 'unloading', 'logistics', 'panofi', 'cosmo', 'bangkok-office', 'gmts', 'mail'],
+      ['tuna-industry'],
     ]);
 
     const sidebarKeys = SIDEBAR_SECTIONS.flatMap((section) => section.items.map((item) => item.key));
@@ -622,6 +624,7 @@ describe('dashboard registry', () => {
       'gmts',
       'mail',
       'purse-seiner-db',
+      'tuna-industry',
     ]);
     expect(new Set(DASHBOARD_PANEL_ORDER)).toEqual(
       new Set(VALID_MENUS),

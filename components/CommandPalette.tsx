@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect, useCallback, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Search, ArrowRight, BarChart2, Beef, Fish, Leaf, Target } from 'lucide-react';
+import { Search, ArrowRight, BarChart2, Beef, BookOpen, Fish, Leaf, Target } from 'lucide-react';
 import { DASHBOARD_COMMANDS } from '../lib/dashboard-registry';
 import type { DashboardSection } from '../lib/dashboard-registry';
 
@@ -20,6 +20,7 @@ interface CommandPaletteProps {
 
 const SECTION_ICONS: Record<DashboardSection, React.ReactNode> = {
   operation: <BarChart2 size={16} />,
+  understanding: <BookOpen size={16} />,
   fishery: <Fish size={16} />,
   strategy: <Target size={16} />,
   agriculture: <Leaf size={16} />,

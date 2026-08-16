@@ -48,6 +48,7 @@ const CosmoDashboard = dynamic(() => import('../components/cosmo/CosmoDashboard'
 const BangkokDashboard = dynamic(() => import('../components/bangkok/BangkokDashboard'));
 const GmtsDashboard = dynamic(() => import('../components/gmts/GmtsDashboard'));
 const MailInboxDashboard = dynamic(() => import('../components/MailInboxDashboard'));
+const TunaIndustryDashboard = dynamic(() => import('../components/market-understanding/TunaIndustryDashboard'));
 
 const OPERATION_ACCESS_STORAGE_KEY = 'silla-operation-access';
 const OPERATION_PASSWORD = 'a34349900';
@@ -312,6 +313,7 @@ export default function Home() {
     gmts: <GmtsDashboard />,
     mail: mailAdminVisible ? <MailInboxDashboard /> : null,
     'purse-seiner-db': <PurseSeinerDashboard />,
+    'tuna-industry': <TunaIndustryDashboard />,
   };
   const heroTeaserPanels: Partial<Record<ActiveMenu, React.ReactNode>> = {
     market: <MarketDashboard heroOnly />,
