@@ -335,9 +335,9 @@ export default function WhelkDashboard() {
                 source: 'FAO FishStat 2026.1.0 — 물레고둥과(Buccinum) 어획 (2024)',
               }} />
 
-            <WidgetCard title="캐나다 vs 영국 어획량 장기 시계열" icon={TrendingUp} iconColor="var(--color-info)" pillar="S1"
-              cardDesc="해수온 상승의 캐나다 어획 영향 + 영국산 수요 이동 예측"
-              telemetry={{ status: 'STATIC', syncDate: '2024년 1H 기준' }} chartHeight={300}
+            <WidgetCard title="캐나다·영국 참골뱅이 어획 (2016~2024)" icon={TrendingUp} iconColor="var(--color-info)" pillar="S1"
+              cardDesc="물레고둥과(Buccinum)만 센 값. 캐나다는 2016년부터 이 과로 보고해 그 이전과 잇지 않는다"
+              telemetry={{ status: 'STATIC', syncDate: '2024년 확정' }} chartHeight={300}
               chart={
                 <LineChart data={canadaCaptureData}>
                   <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" vertical={false} />
@@ -350,9 +350,9 @@ export default function WhelkDashboard() {
                 </LineChart>
               }
               takeaway={{
-                situation: <span>[DFO Canada] 바닷물 온도가 높아지면서 캐나다 해역의 골뱅이가 사라지고 있으며, 이로 인해 전 세계 바이어들이 유일한 대안인 영국으로 몰려 경쟁이 치열해지고 있습니다.</span>,
-                actionPlan: <span>캐나다 해역 어획량이 수온 상승 등 해양 생태계 변화로 인해 과거 10년간 74%나 급감하며 사실상 산업 붕괴(Collapse) 수준에 도달했습니다. 이는 글로벌 수급 밸런스를 붕괴시키며, 유일한 고품질 대체재인 영국산 원물에 대한 전 세계 바이어들의 패닉 바잉(Panic Buying)과 가격 폭등을 촉발할 가능성이 농후합니다. 경영진은 이를 구조적 위기로 인식하고, 즉각적인 <TermTooltip term="장기 공급계약(LTC)" description="Long-Term Contract. 시장 가격 변동성에 대비하여 원물 공급자에게 고정 가격 혹은 최소 보장 물량을 담보받는 장기 선도 계약." /> 체결 및 선급금 지급을 통해서라도 영국 해역 내 확고한 물량 락인을 최우선으로 확보해야 합니다.</span>,
-                source: 'DFO Canada / UK MMO (2024 1H)',
+                situation: <span>[FAO FishStat 2026.1.0] 캐나다 참골뱅이 어획은 2016년 3,592톤에서 2022년 1,847톤까지 줄었다가 <strong>2024년 5,410톤으로 되올라왔습니다.</strong> 영국은 같은 기간 20,366 → 14,298 → 16,511톤으로 오르내립니다. 두 나라 모두 <strong>추세라 부를 만한 방향이 없습니다.</strong></span>,
+                actionPlan: <span>이전 판에서는 캐나다를 2008년 7,219톤에서 2022년 1,847톤으로 그리며 &ldquo;10년간 74% 붕괴&rdquo;라고 했는데, <strong>그 두 값은 다른 과(科)입니다.</strong> 2008·2013년 수치는 미국고둥류(<TermTooltip term="Busycon" description="물레고둥붙이과(Melongenidae). 북미 대서양 연안의 고둥으로, 물레고둥과(Buccinidae)의 참골뱅이와 다른 과다." />)이고 2016년부터가 참골뱅이입니다. 캐나다의 보고 코드가 바뀐 것을 어획 붕괴로 읽은 것입니다. 과가 다른 계열을 이으면 안 됩니다 — 국내 통계의 골뱅이(130303)와 고둥류(130311)를 잇지 않는 것과 같은 이유입니다. 조달 판단은 &ldquo;캐나다가 사라졌다&rdquo;가 아니라 <strong>&ldquo;두 산지 모두 해마다 크게 흔들린다&rdquo;</strong>에서 출발해야 하고, 그렇다면 필요한 것은 패닉 바잉이 아니라 복수 산지 계약입니다.</span>,
+                source: 'FAO FishStat 2026.1.0 — 물레고둥과(Buccinum) 어획, 2016~2024',
               }} />
             
             <WidgetCard title="한국 연안 고둥류 어획 생산량" icon={Activity} iconColor="var(--color-info)" pillar="S1"
@@ -708,7 +708,7 @@ export default function WhelkDashboard() {
   </div>
   <>
             <WidgetCard title="흑해산 R. venosa 공급 안정성 트렌드" icon={Ship} iconColor="var(--color-info)" pillar="S3"
-              cardDesc="튀르키예·불가리아·루마니아 흑해산 R. venosa 어획 추이"
+              cardDesc="흑해 5개국 피뿔고둥(R. venosa) 어획. 우크라이나는 2022년부터 보고가 0이다"
               telemetry={{ status: 'STATIC', syncDate: 'FAO FishStat 2022' }} chartHeight={300}
               chart={
                 <BarChart data={blackSeaSupplyData} margin={{ top: 10 }}>
@@ -720,13 +720,15 @@ export default function WhelkDashboard() {
                   <Legend wrapperStyle={{ fontSize: '11px', paddingTop: '10px' }} />
                   <Bar dataKey="turkey" name="튀르키예" fill="var(--color-info)" stackId="a" radius={[0, 0, 0, 0]} />
                   <Bar dataKey="bulgaria" name="불가리아" fill="var(--color-warning)" stackId="a" radius={[0, 0, 0, 0]} />
-                  <Bar dataKey="romania" name="루마니아" fill="var(--color-success)" stackId="a" radius={[4, 4, 0, 0]} />
+                  <Bar dataKey="romania" name="루마니아" fill="var(--color-success)" stackId="a" radius={[0, 0, 0, 0]} />
+                  <Bar dataKey="ukraine" name="우크라이나" fill="var(--color-danger)" stackId="a" radius={[0, 0, 0, 0]} />
+                  <Bar dataKey="russia" name="러시아" fill="var(--w-slate-400)" stackId="a" radius={[4, 4, 0, 0]} />
                 </BarChart>
               }
               takeaway={{
-                situation: <span>[FAOSTAT] 흑해산 R. venosa(뿔고둥)는 튀르키예가 연간 4,000~4,500톤을 안정적으로 생산하며, 영국산 B. undatum의 유일한 대규모 대체 공급원입니다.</span>,
-                actionPlan: <span>흑해산 R. venosa는 총사용원가(TCU) 기준으로 영국산 대비 15~20% 저렴하며, 맛과 식감이 유사하여 통조림 가공 적합성이 높습니다. 다만 불가리아(-31%)와 루마니아(-32%)의 어획량이 꾸준히 감소 중이므로, 사실상 튀르키예 단일 의존 구조입니다. 조달팀은 튀르키예 이스탄불 소재 대형 벤더(3곳)와 장기 공급계약(2~3년)을 체결하여 물량을 선제 확보하고, 한-튀르키예 FTA 발효 시 관세 인하 효과를 극대화할 전략을 준비해야 합니다.</span>,
-                source: 'FAO FishStat Capture 2022 (흑해 R. venosa 어획)',
+                situation: <span>[FAO FishStat 2026.1.0] 흑해 피뿔고둥은 튀르키예가 가장 크지만 <strong>안정적이지 않습니다</strong> — 2019년 11,646톤에서 2021년 7,008톤으로 떨어졌다가 2023년 9,869톤, 2024년 6,962톤입니다. 연도 간 최대 1.7배가 벌어집니다.</span>,
+                actionPlan: <span>이 수역에서 가장 큰 변화는 <strong>우크라이나가 사라진 것</strong>입니다. 2019년 11,203톤으로 튀르키예에 버금갔는데 <strong>2022년부터 보고가 0</strong>입니다. 루마니아도 2018년 7,330톤에서 2024년 2,068톤으로 <strong>−72%</strong>, 불가리아는 3,515 → 2,297톤으로 −35%입니다. 흑해 전체 공급이 2019년 정점의 절반 아래로 내려앉았고, 남은 물량이 튀르키예에 쏠렸습니다. 이전 판은 세 나라를 실제의 절반~8분의 1로 적고 튀르키예를 &ldquo;안정적&rdquo;이라 했는데 둘 다 사실과 다릅니다. 조달팀은 흑해를 <strong>영국산의 대체가 아니라 그 자체로 불안정한 축</strong>으로 놓고, 튀르키예 단일 계약에 물량을 몰지 말아야 합니다.</span>,
+                source: 'FAO FishStat 2026.1.0 — 뿔소라과(Rapana) 어획, 2018~2024',
               }} />
 
             <WidgetCard title="환율 1,500원 비상 경보 시스템" icon={AlertTriangle} iconColor="#dc2626" pillar="S3"
