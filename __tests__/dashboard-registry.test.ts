@@ -15,6 +15,7 @@ import {
   KEYBOARD_SHORTCUT_MENUS,
   PUBLIC_DASHBOARD_ROUTES,
   PROTECTED_OPERATION_MENU_KEYS,
+  SESSION_ACCESS_MENUS,
   SIDEBAR_SECTIONS,
   VALID_MENUS,
 } from '../lib/dashboard-registry';
@@ -394,6 +395,7 @@ describe('dashboard registry', () => {
       'panofi',
       'cosmo',
       'bangkok-office',
+      'gmts',
       'mail',
     ]);
     expect(PROTECTED_OPERATION_MENU_KEYS).toContain('bangkok-office');
@@ -403,8 +405,86 @@ describe('dashboard registry', () => {
     expect(PUBLIC_DASHBOARD_ROUTES).not.toContain('bangkok-office');
   });
 
+  it('places the protected GMTS route between Bangkok office and mail without changing shortcuts', () => {
+    const gmts = DASHBOARD_MENU_CONFIGS.find((menu) => menu.key === 'gmts');
+    const operationSection = SIDEBAR_SECTIONS.find((section) => section.section === 'operation');
+    const operationItems = operationSection?.items.map((item) => item.key) ?? [];
+    const operationLabels = operationSection?.items.map((item) => item.label) ?? [];
+    const gmtsSidebarIndex = operationItems.indexOf('gmts' as (typeof operationItems)[number]);
+    const gmtsPanelIndex = DASHBOARD_PANEL_ORDER.indexOf('gmts' as (typeof DASHBOARD_PANEL_ORDER)[number]);
+    const gmtsCommand = DASHBOARD_COMMANDS.find((command) => command.key === 'gmts');
+    const sitemapRoutes = sitemap().map((entry) => new URL(entry.url).pathname);
+    const appSource = readFileSync(join(process.cwd(), 'app/page.tsx'), 'utf8');
+    const configSource = readFileSync(join(process.cwd(), 'next.config.mjs'), 'utf8');
+    const rewriteSource = configSource.match(/source:\s*'([^']+)'/)?.[1];
+
+    expect(gmts).toMatchObject({
+      key: 'gmts',
+      title: 'GMTS 주간보고',
+      section: 'operation',
+      accent: 'cyan',
+      requiresOperationAccess: true,
+      sidebar: { icon: 'Factory', label: 'GMTS' },
+    });
+    expect(gmts).not.toHaveProperty('shortcutOrder');
+    expect(operationItems).toEqual([
+      'market',
+      'fleet',
+      'unloading',
+      'logistics',
+      'panofi',
+      'cosmo',
+      'bangkok-office',
+      'gmts',
+      'mail',
+    ]);
+    expect(operationItems.filter((key) => key === 'gmts')).toHaveLength(1);
+    expect(operationItems.slice(gmtsSidebarIndex - 1, gmtsSidebarIndex + 2)).toEqual([
+      'bangkok-office',
+      'gmts',
+      'mail',
+    ]);
+    expect(operationLabels.slice(gmtsSidebarIndex - 1, gmtsSidebarIndex + 2)).toEqual([
+      '방콕사무소',
+      'GMTS',
+      '메일',
+    ]);
+    expect(PROTECTED_OPERATION_MENU_KEYS).toEqual([
+      'fleet',
+      'unloading',
+      'logistics',
+      'bangkok-office',
+      'gmts',
+    ]);
+    expect(KEYBOARD_SHORTCUT_MENUS).toEqual(['market', 'fleet', 'unloading', 'logistics']);
+    expect(SESSION_ACCESS_MENUS.has('gmts' as (typeof VALID_MENUS)[number])).toBe(true);
+    expect(gmtsCommand).toMatchObject({
+      key: 'gmts',
+      label: 'GMTS 주간보고',
+      category: '실시간 운영',
+      section: 'operation',
+    });
+    expect(PUBLIC_DASHBOARD_ROUTES).not.toContain('gmts' as (typeof PUBLIC_DASHBOARD_ROUTES)[number]);
+    expect(sitemapRoutes).not.toContain('/gmts');
+    expect(DASHBOARD_PANEL_ORDER.filter((key) => key === 'gmts')).toHaveLength(1);
+    expect(DASHBOARD_PANEL_ORDER.slice(gmtsPanelIndex - 1, gmtsPanelIndex + 2)).toEqual([
+      'bangkok-office',
+      'gmts',
+      'mail',
+    ]);
+    expect(
+      appSource.match(
+        /const GmtsDashboard = dynamic\(\(\) => import\('\.\.\/components\/gmts\/GmtsDashboard'\)\);/g,
+      ) ?? [],
+    ).toHaveLength(1);
+    expect(appSource.match(/^\s+gmts: <GmtsDashboard \/>,$/gm) ?? []).toHaveLength(1);
+    expect(appSource.match(/^\s+gmts: <GmtsDashboard heroOnly \/>,$/gm) ?? []).toHaveLength(1);
+    expect(existsSync(join(process.cwd(), 'app/gmts/page.tsx'))).toBe(false);
+    expect(rewriteSource).not.toContain('gmts');
+  });
+
   it('keeps operation locks and keyboard shortcuts inside valid menus', () => {
-    expect(PROTECTED_OPERATION_MENU_KEYS).toEqual(['fleet', 'unloading', 'logistics', 'bangkok-office']);
+    expect(PROTECTED_OPERATION_MENU_KEYS).toEqual(['fleet', 'unloading', 'logistics', 'bangkok-office', 'gmts']);
     expect(KEYBOARD_SHORTCUT_MENUS).toEqual([
       'market',
       'fleet',
@@ -421,7 +501,7 @@ describe('dashboard registry', () => {
     const sessionAccessKeys = (dashboardRegistry as Record<string, unknown>).SESSION_ACCESS_MENU_KEYS;
 
     expect(sessionAccessKeys).toEqual(VALID_MENUS.filter((menu) => menu !== 'mail'));
-    expect(PROTECTED_OPERATION_MENU_KEYS).toEqual(['fleet', 'unloading', 'logistics', 'bangkok-office']);
+    expect(PROTECTED_OPERATION_MENU_KEYS).toEqual(['fleet', 'unloading', 'logistics', 'bangkok-office', 'gmts']);
     expect(PROTECTED_OPERATION_MENU_KEYS).not.toContain('mail');
     expect(KEYBOARD_SHORTCUT_MENUS).not.toContain('mail');
     expect(PUBLIC_DASHBOARD_ROUTES).not.toContain('mail');
@@ -487,6 +567,7 @@ describe('dashboard registry', () => {
     expect(PUBLIC_DASHBOARD_ROUTES).not.toContain('galchi');
     expect(PUBLIC_DASHBOARD_ROUTES).not.toContain('market');
     expect(PUBLIC_DASHBOARD_ROUTES).not.toContain('fleet');
+    expect(PUBLIC_DASHBOARD_ROUTES).not.toContain('gmts' as (typeof PUBLIC_DASHBOARD_ROUTES)[number]);
   });
 
   it('keeps every session-locked dashboard path out of the sitemap', () => {
@@ -511,7 +592,7 @@ describe('dashboard registry', () => {
     ]);
 
     expect(SIDEBAR_SECTIONS.map((section) => section.items.map((item) => item.key))).toEqual([
-      ['market', 'fleet', 'unloading', 'logistics', 'panofi', 'cosmo', 'bangkok-office', 'mail'],
+      ['market', 'fleet', 'unloading', 'logistics', 'panofi', 'cosmo', 'bangkok-office', 'gmts', 'mail'],
     ]);
 
     const sidebarKeys = SIDEBAR_SECTIONS.flatMap((section) => section.items.map((item) => item.key));
@@ -538,6 +619,7 @@ describe('dashboard registry', () => {
       'panofi',
       'cosmo',
       'bangkok-office',
+      'gmts',
       'mail',
       'purse-seiner-db',
     ]);

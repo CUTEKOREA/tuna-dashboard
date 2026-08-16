@@ -46,6 +46,7 @@ const PurseSeinerDashboard = dynamic(() => import('../components/PurseSeinerDash
 const PanofiDashboard = dynamic(() => import('../components/panofi/PanofiDashboard'));
 const CosmoDashboard = dynamic(() => import('../components/cosmo/CosmoDashboard'));
 const BangkokDashboard = dynamic(() => import('../components/bangkok/BangkokDashboard'));
+const GmtsDashboard = dynamic(() => import('../components/gmts/GmtsDashboard'));
 const MailInboxDashboard = dynamic(() => import('../components/MailInboxDashboard'));
 
 const OPERATION_ACCESS_STORAGE_KEY = 'silla-operation-access';
@@ -308,6 +309,7 @@ export default function Home() {
     panofi: <PanofiDashboard />,
     cosmo: <CosmoDashboard />,
     'bangkok-office': <BangkokDashboard />,
+    gmts: <GmtsDashboard />,
     mail: mailAdminVisible ? <MailInboxDashboard /> : null,
     'purse-seiner-db': <PurseSeinerDashboard />,
   };
@@ -322,6 +324,7 @@ export default function Home() {
     panofi: <PanofiDashboard heroOnly />,
     cosmo: <CosmoDashboard heroOnly />,
     'bangkok-office': <BangkokDashboard heroOnly />,
+    gmts: <GmtsDashboard heroOnly />,
   };
 
   return (

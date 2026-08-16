@@ -1,3 +1,27 @@
+> ✅ **2026-08-16 09:14 KST — GMTS 메뉴명·차트 렌더·KPI 대비 수정 완료** [Codex]:
+> - **메뉴:** 운영 사이드바의 `GMTS 주간보고` 표기를 `GMTS`로 축약했다. 위치와 접근 경계는 기존대로 `방콕사무소 → GMTS → 메일`, 세션 잠금 유지다.
+> - **차트 원인·수정:** `WidgetCard`의 크기 측정 래퍼가 자식에게 `width/height`를 전달하지만 GMTS의 4개 중간 차트 컴포넌트가 이 props를 버려, 457×330 영역 안에 빈 Recharts wrapper만 생성됐다. 네 컴포넌트가 측정 크기를 `ComposedChart`까지 전달하도록 고치고 렌더 회귀 테스트 4건을 추가했다.
+> - **KPI 색상:** 공용 다크 KPI 스타일을 쓰던 생산·냉동재고 2개 상자를 GMTS 전용 연청색 타일로 교체했다. 브라우저 계산 명암비는 라벨 6.82:1, 값 14.35:1이다.
+> - **검증:** fresh `npm run verify` exit 0 — ESLint 0 errors·기존 5 warnings, TypeScript, Vitest 88파일·498테스트, API cache 155/155, Next build 117 pages, bundle 32 routes 통과.
+> - **브라우저 QA:** 로컬 Production `/gmts`의 1440×1000·390×844에서 전체 5탭을 다시 클릭했다. 항만 1 SVG·3선, 공장 1 SVG·2선, 가격·반입 2 SVG·21개 도형을 확인했고 모든 SVG는 데스크톱에서 457×330이다. 양 해상도 모두 overflow 0, console/page/local HTTP error·failure 0, 잠금 상세 DOM 0, 출처 30행이다.
+> - **범위:** 브랜치 `codex/gmts-dashboard-impl-20260815`의 로컬 수정이며 원래 사용자 worktree는 건드리지 않았다. **push·PR·배포는 하지 않았다.**
+> - **다음 단계:** 사용자가 `http://127.0.0.1:3026/gmts`에서 화면을 확인한 뒤, 라이브 반영을 원할 때만 명시적 배포 지시를 받는다.
+> - **마지막 업데이트:** 2026-08-16 09:14 KST.
+>
+> ✅ **2026-08-16 08:39 KST — GMTS 주간보고 대시보드·메뉴 로컬 구현 완료** [Codex]:
+> - **완료된 것:** 기존 운영 섹션에 `/gmts`를 추가했고, 사이드바 순서를 사용자 지정대로 `방콕사무소 → GMTS 주간보고 → 메일`로 고정했다. 전용 route·rewrite·API·fetch 없이 기존 `/[category]` 동적 라우트를 재사용했고, GMTS에 숫자 단축키를 배정하지 않았으며 공개 sitemap에서 제외했다.
+> - **접근 경계:** 기존 `silla-operation-access` 세션 잠금을 그대로 쓴다. 잠금 상태는 `heroOnly` 히어로 티저만 렌더하고 탭·차트·표·위젯·YTD·출처 목록을 DOM에 마운트하지 않는다. 메일의 기존 관리자 가시성 계약은 변경하지 않았다.
+> - **원문·데이터:** Google Drive `신라그룹/GMTS/GMTS Weekly Report`의 PDF 30건·38쪽(2026-01-21~08-12)을 읽기 전용으로 파싱한다. `scripts/build_gmts_dashboard.py`는 특정 날짜·선박 하드코딩 없이 `pdfplumber` 표 행을 읽어 `data/gmts_dashboard.json`을 생성하며, PDF별 파일명·SHA-256·페이지를 manifest로 보존한다. 최신 PDF SHA-256은 `e84ad3bb26ebe05e863467bff3f4507775a8cf4b04adefa8026eb3414e1e5243`이고 생성 JSON과 독립 재파싱 결과가 exact equality다.
+> - **원문 충실성:** 8월 12일 하역 중 선언 건수 공란은 `null/미확정`, 하역 완료 2척, 입항 예정 3척으로 보존했다. 완료 화물 2,387.141 MT·양하 2,184.110 MT·SHORT 203.031 MT, 입항 화물 9,919.494 MT와 SEIN QUEEN Gensan 명시 배정 2,092.414 MT를 분리했다. 생산 895/1,095 MT(82%), 재고 17,550/40,600 MT(43%)·20일, 가격 $1,900/$2,025, 2026년 1~7월 63,736을 원문과 수동 대조했다. 가격 분모·반입량 단위는 원문 미기재로 표시하고 `$/MT`·`MT`를 추정하지 않으며, `Other`는 지표에 포함하지 않았다.
+> - **화면:** HeroZone, PillTabs 5개(`운영 요약·항만·선박·공장·재고·가격·반입·데이터 품질`), STATIC WidgetCard 6개, SIT/TAK, 30건 출처 표를 추가했다. JSON은 `lib/data/gmts.ts`만 import하고 순수 `lib/gmts-presentation.ts`를 거쳐 UI에 전달한다. 추후 선언 건수가 정상·공란으로 바뀌어도 `2척`/`미확정`과 경고 tone이 하드코딩 없이 따르도록 회귀 테스트를 추가했다.
+> - **갱신:** `npm run sync:gmts`는 30건을 재생성했고 Git diff 0으로 멱등성을 확인했다. 신규 주간 PDF를 같은 폴더에 추가한 뒤 이 명령으로 정적 스냅샷을 다시 만든다.
+> - **검증:** 파서 24/24, GMTS+레지스트리 59/59, strict S-Grade exit 0(영문·GS 위반·가짜 LIVE 0), 최종 fresh `npm run verify` exit 0 — ESLint 0 errors·기존 5 warnings, TypeScript, Vitest 88파일·494테스트, API cache 155/155, Next build 117 pages, bundle 32 routes를 통과했다.
+> - **브라우저 QA:** 로컬 Production `/gmts`에서 1440×1000·390×844 전체 5탭을 실제 클릭했다. 잠금 상세 DOM 0, 출처 행 30, 문서 overflow 0, page error 0, 로컬 HTTP error/failure 0이다. 로컬 headless에서만 403을 낸 `googleads.g.doubleclick.net` 요청은 GMTS와 무관한 외부 광고 도메인으로 분리해 204로 격리했다.
+> - **독립 반증:** Task별 리뷰가 배열 계약·캐너리 합계 gate·전 연도 revision·단위 추정·영문 가격 툴팁 문제를 잡아 RED→GREEN으로 닫았다. 최종 전체 리뷰는 원본 30 PDF를 다시 파싱해 코드·데이터·라우팅·잠금·메뉴·모바일에 Critical 0·Important 0으로 판정했고, 향후 선언 건수 표기 Minor도 추가로 수정했다.
+> - **범위:** 작업 브랜치는 `codex/gmts-dashboard-impl-20260815`이며 검토 기준 기능 base `f32d3fc`와 최신 문서 전용 `main` `1d266c3`을 순차 로컬 병합해 후속 방콕·메일·하역 변경을 보존했다. 원래 사용자 worktree는 건드리지 않았고 **push·PR·배포는 하지 않았다.**
+> - **다음 단계:** 사용자가 로컬 화면을 확인한 뒤, 라이브 반영을 원할 때만 명시적 배포 지시를 받아 최신 `main`에 순차 통합한다.
+> - **마지막 업데이트:** 2026-08-16 08:46 KST. 로컬 구현·독립 교차 검증·최신 `main` 문서 통합·최종 인계 기록 완료.
+>
 > 📈 **2026-08-16 08:04 KST — `/bangkok-office` 원어 시세 월·분기·연 입도 전환 운영 배포 완료** [Codex]:
 > - `원어 시세 추이`에 **주간·월별·분기별·연도별**, `시세 범위`에 **월별·분기별·연도별** 전환을 추가했다. 기본값은 기존 화면과 같은 주간 추이·연도별 범위이며, 두 컨트롤은 독립 상태로 동작한다.
 > - 월·분기·연 시세는 기록 있는 정상 주의 평균·최저·최고를 산출한다. 결측 주와 의심 플래그 주는 기존 연도별 계약대로 제외하고, 관측 없는 기간은 0으로 채우지 않는다. 새 연도 집계는 2020~2026 기존 확정 평균·최저·최고와 전부 일치한다.
@@ -54,6 +78,12 @@
 > - 최신 `origin/main`(`5454618`) 위 fresh `npm run verify`: ESLint 0 errors·기존 5 warnings, Vitest 79파일·440테스트, API cache 154/154, production build 117 pages, bundle 32 routes PASS. 최종 독립 반증은 blocking/P1 0건으로 PASS했다.
 > - PR #437을 Production merge SHA `604b953efdae7a5614cd8627941650fddca4ffaa`로 병합했다. Vercel deployment `2XqAq4Yn1g2yzLu8EpVG4yVZkAJ8`는 Ready·Production·Current이며 `leedonggun.co.kr`에 연결됐다. 운영 비인증 경계는 `/mail/login` 200+private/no-store, `/mail` 404, `/api/mail/gmail/trash-batch` 401+`no-store`로 실측했다. 관리자 실계정의 체크박스·입력 대비와 휴지통 이동·복원 side effect는 사용자 확인 대상으로 남는다.
 >
+> 📄 **2026-08-15 21:30 KST — GMTS 주간보고 PDF 정규화·출처 manifest 구현 (로컬 커밋만)** [Codex]:
+> - `scripts/build_gmts_dashboard.py`가 Google Drive의 읽기 전용 GMTS PDF 30건을 `data/gmts_dashboard.json`으로 정규화한다. PDF별 파일명·SHA-256·페이지 수(합계 38)를 manifest로 보존하고, 보고일은 2026-01-21~08-12의 주간 연속성으로 검증한다.
+> - 빈 선언 건수·빈 2026 물량 행은 `null`로 유지한다. 가격의 no-offer/no-transaction 등 qualifier와 원문, 캐너리 7개+합계 원문을 함께 보존하며 누락 수치를 채우지 않는다.
+> - 2026-03-04의 2월 6,220이 2026-03-11에 11,968로 바뀐 원문 정정을 `volumeHistory.revisions`에 명시한다. 최신 보고 SHA-256은 `e84ad3bb26ebe05e863467bff3f4507775a8cf4b04adefa8026eb3414e1e5243`이며 최신 총 생산 895MT·재고 17,550MT·가격 $1,900/$2,025·반입 누계 63,736을 회귀 테스트로 고정했다. 반입량은 원문 단위가 없어 MT를 부여하지 않는다.
+> - 최종 계약 보강: weekly는 port count·승인 canneryTotal 7키·가격·2026 추세만(연도표/raw 없음), latest는 상세 port/canneries/raw, volumeHistory는 단일 annual 배열과 소형 snapshots로 분리했다(82,441 bytes). 월 자료·연도표·품질 플래그는 외부 JSON에서 배열로 제공한다. 최신 보고 하드코딩 없이 `pdfplumber` 좌표·표 행에서 AMAGI·HIKARI·SEIN QUEEN·SEA BLAZER·QUEEN ELLICE의 트레이더·수하인·원문 수치·날짜를 생성한다. 7개 캐너리+Total 합계·전체 이용률·2019~2026 연도 행을 생성 시점에 검증하고 모든 연도 revision을 추적한다. `pdfplumber==0.11.9`, focused 24건·sync·165개 레코드 schema GREEN. 변경 후 controller fresh `npm run verify`는 exit 0으로 ESLint 0 errors·기존 5 warnings, TypeScript, Vitest 77파일·430테스트, API cache 153/153, Next build 117 pages, bundle 32 routes를 모두 통과했다. 배포·push 없음.
+
 > 🇬🇧 **2026-08-15 18:30 KST — 소유자 리뷰 4~7라운드 (PR #415·#418·#422·#424 병합·프로덕션 READY)** [CC]:
 > - **r4**: 파노피 «자료 없음» = 제원(파노피 마스터)/원장(마스터) 이름 조인 실패 — 접두 제거+선박코드 조인 (G/T 8,745 등록부 일치·생산 22,526톤 KPI 일치). 주간동향 31건 전수: 자사선별 조업량 원문 미기재 확인. 전역 recharts 툴팁 !important를 다크 관례(#303c46)로 통일 — 라이트 흰배경+연회색 근본 해소. 밸류체인 마진율 인덱스(5/20 시나리오, /api/tuna-live)를 8/5 주간보고 카드에서 분리해 별도 STATIC 카드로 (부분 갱신은 왜곡이라 거부).
 > - **r5**: 지도 헤딩·개략 좌표 캡션 제거, 완료 선박 카드 dim→hover 밝힘(fleet 로스터 패턴).
@@ -247,6 +277,13 @@
 > - **다음 단계**: ① 채널별 판매 물량 비중을 확보하면 PFC 격차를 「단가 × 물량」 금액으로 환산할 수 있다 — 현재는 단가 격차만 제시한다. ② 월간보고 pptx 5건·추정실적 xlsx 6건은 아직 미추출이다(전략보고 PDF 경유 수치만 반영). ③ GGL·GTS 냉동창고 부문은 이번 범위에서 제외했다.
 
 # HANDOFF
+
+> 📋 **2026-08-15 20:43 KST — GMTS 주간보고 대시보드 기획 완료·구현 승인** [Codex]:
+> - **원문 분석**: 새 Google Drive 경로의 `GMTS/GMTS Weekly Report` PDF 30건(2026-01-21~2026-08-12, 38쪽)을 대조했다. 범위 내 수요일 누락·보고일 중복·SHA-256 중복은 없으며, 최신본의 하역 중 건수는 공란이므로 `0`이 아닌 `null`로 보존한다.
+> - **기획 완료**: `docs/superpowers/plans/2026-08-15-gmts-weekly-dashboard.md`에 `/gmts`, 5개 탭·6개 위젯, 정적 데이터 계약, PDF 변환기, TDD·전체 게이트·데스크톱/390px QA 절차를 작성했다.
+> - **메뉴 위치 확정**: 사용자가 제공한 실제 사이드바 기준으로 `실시간 운영` 섹션의 `방콕사무소` 바로 아래·`메일` 바로 위에 `GMTS 주간보고`를 배치한다. 별도 `방콕사무소` 섹션은 만들지 않는다.
+> - **원문 충실성**: 가격 분모 단위와 Gensan 반입량 단위는 원문 미기재로 표시하고 추정하지 않는다. 2026년 2월 반입량 수정 이력과 Celebes 창고 이용률 122%도 자동 정정하지 않고 품질 경고로 보존한다.
+> - **현재 상태**: 사용자가 구현을 승인했다. 최신 `origin/main` 기반 전용 worktree에서 구현·로컬 검증하며, push·배포는 별도 요청 전까지 수행하지 않는다.
 
 > 🧩 **2026-08-15 12:23 KST — V2.5-d 정합성 마감 완료** [Codex]:
 > - 방콕사무소 표시본 동기화를 fail-closed Python 변환기로 교체했다. Drive 원본 SHA-256 `e675f4…3e5`는 그대로 보존하고, `<head>`에 1회만 들어가는 다크 오버라이드로 `#0a0a0b` 배경·zinc 잉크·반투명 표면을 적용했다. 원본 헤더와 요약 KPI 행은 숨기고 섹션 탭부터 표시한다. 실제 출력 HTML SHA-256은 `08c7dd…715f`, KPI JSON은 `18cfc0…5a0`이며 두 번 재실행해 각각 같은 해시를 확인했다.

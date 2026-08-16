@@ -1,0 +1,3469 @@
+{
+  "schemaVersion": 1,
+  "metadata": {
+    "status": "STATIC",
+    "reportCount": 30,
+    "pageCount": 38,
+    "firstReportDate": "2026-01-21",
+    "coverageStart": "2026-01-21",
+    "coverageEnd": "2026-08-12",
+    "latestReportDate": "2026-08-12"
+  },
+  "weekly": [
+    {
+      "reportDate": "2026-01-21",
+      "operationalAsOf": null,
+      "port": {
+        "active": {
+          "declaredCount": 2,
+          "recordCount": 2
+        },
+        "completed": {
+          "declaredCount": 1,
+          "recordCount": 1
+        },
+        "incoming": {
+          "declaredCount": 2,
+          "recordCount": 2
+        }
+      },
+      "canneryTotal": {
+        "maxDailyProductionMt": 1050.0,
+        "currentDailyProductionMt": 710.0,
+        "productionUtilizationPct": 68.0,
+        "storageCapacityMt": 41100.0,
+        "currentStockMt": 12250.0,
+        "storageUtilizationPct": 30.0,
+        "reportedProcessingDays": 17.0
+      },
+      "prices": {
+        "nonGspNonMsc": {
+          "amount": 1460,
+          "currencySymbol": "$",
+          "basisUnit": null,
+          "qualifier": "quoted",
+          "rawText": "$1460"
+        },
+        "gspNonMsc": {
+          "amount": 1550,
+          "currencySymbol": "$",
+          "basisUnit": null,
+          "qualifier": "quoted",
+          "rawText": "$1550"
+        }
+      },
+      "volume2026": {
+        "year": 2026,
+        "months": [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        "total": null
+      }
+    },
+    {
+      "reportDate": "2026-01-28",
+      "operationalAsOf": null,
+      "port": {
+        "active": {
+          "declaredCount": 3,
+          "recordCount": 3
+        },
+        "completed": {
+          "declaredCount": 1,
+          "recordCount": 1
+        },
+        "incoming": {
+          "declaredCount": 2,
+          "recordCount": 2
+        }
+      },
+      "canneryTotal": {
+        "maxDailyProductionMt": 1050.0,
+        "currentDailyProductionMt": 710.0,
+        "productionUtilizationPct": 68.0,
+        "storageCapacityMt": 41100.0,
+        "currentStockMt": 13150.0,
+        "storageUtilizationPct": 32.0,
+        "reportedProcessingDays": 19.0
+      },
+      "prices": {
+        "nonGspNonMsc": {
+          "amount": 1460,
+          "currencySymbol": "$",
+          "basisUnit": null,
+          "qualifier": "quoted",
+          "rawText": "$1460"
+        },
+        "gspNonMsc": {
+          "amount": 1550,
+          "currencySymbol": "$",
+          "basisUnit": null,
+          "qualifier": "quoted",
+          "rawText": "$1550"
+        }
+      },
+      "volume2026": {
+        "year": 2026,
+        "months": [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        "total": null
+      }
+    },
+    {
+      "reportDate": "2026-02-04",
+      "operationalAsOf": null,
+      "port": {
+        "active": {
+          "declaredCount": 2,
+          "recordCount": 2
+        },
+        "completed": {
+          "declaredCount": 2,
+          "recordCount": 2
+        },
+        "incoming": {
+          "declaredCount": 5,
+          "recordCount": 5
+        }
+      },
+      "canneryTotal": {
+        "maxDailyProductionMt": 1050.0,
+        "currentDailyProductionMt": 710.0,
+        "productionUtilizationPct": 68.0,
+        "storageCapacityMt": 41100.0,
+        "currentStockMt": 13950.0,
+        "storageUtilizationPct": 34.0,
+        "reportedProcessingDays": 20.0
+      },
+      "prices": {
+        "nonGspNonMsc": {
+          "amount": 1460,
+          "currencySymbol": "$",
+          "basisUnit": null,
+          "qualifier": "quoted",
+          "rawText": "$1460"
+        },
+        "gspNonMsc": {
+          "amount": 1520,
+          "currencySymbol": "$",
+          "basisUnit": null,
+          "qualifier": "quoted",
+          "rawText": "$1520"
+        }
+      },
+      "volume2026": {
+        "year": 2026,
+        "months": [
+          4920.0,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        "total": 4920.0
+      }
+    },
+    {
+      "reportDate": "2026-02-11",
+      "operationalAsOf": null,
+      "port": {
+        "active": {
+          "declaredCount": 3,
+          "recordCount": 3
+        },
+        "completed": {
+          "declaredCount": 1,
+          "recordCount": 1
+        },
+        "incoming": {
+          "declaredCount": 3,
+          "recordCount": 3
+        }
+      },
+      "canneryTotal": {
+        "maxDailyProductionMt": 1050.0,
+        "currentDailyProductionMt": 910.0,
+        "productionUtilizationPct": 87.0,
+        "storageCapacityMt": 41100.0,
+        "currentStockMt": 12550.0,
+        "storageUtilizationPct": 31.0,
+        "reportedProcessingDays": 14.0
+      },
+      "prices": {
+        "nonGspNonMsc": {
+          "amount": 1460,
+          "currencySymbol": "$",
+          "basisUnit": null,
+          "qualifier": "no-transaction",
+          "rawText": "$1460 (There has been no transaction)"
+        },
+        "gspNonMsc": {
+          "amount": 1590,
+          "currencySymbol": "$",
+          "basisUnit": null,
+          "qualifier": "quoted",
+          "rawText": "$1590"
+        }
+      },
+      "volume2026": {
+        "year": 2026,
+        "months": [
+          4920.0,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        "total": 4920.0
+      }
+    },
+    {
+      "reportDate": "2026-02-18",
+      "operationalAsOf": null,
+      "port": {
+        "active": {
+          "declaredCount": 2,
+          "recordCount": 2
+        },
+        "completed": {
+          "declaredCount": 1,
+          "recordCount": 1
+        },
+        "incoming": {
+          "declaredCount": 3,
+          "recordCount": 3
+        }
+      },
+      "canneryTotal": {
+        "maxDailyProductionMt": 1050.0,
+        "currentDailyProductionMt": 910.0,
+        "productionUtilizationPct": 87.0,
+        "storageCapacityMt": 41100.0,
+        "currentStockMt": 14750.0,
+        "storageUtilizationPct": 36.0,
+        "reportedProcessingDays": 16.0
+      },
+      "prices": {
+        "nonGspNonMsc": {
+          "amount": 1460,
+          "currencySymbol": "$",
+          "basisUnit": null,
+          "qualifier": "quoted",
+          "rawText": "$1460"
+        },
+        "gspNonMsc": {
+          "amount": 1590,
+          "currencySymbol": "$",
+          "basisUnit": null,
+          "qualifier": "quoted",
+          "rawText": "$1590"
+        }
+      },
+      "volume2026": {
+        "year": 2026,
+        "months": [
+          4920.0,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        "total": 4920.0
+      }
+    },
+    {
+      "reportDate": "2026-02-25",
+      "operationalAsOf": null,
+      "port": {
+        "active": {
+          "declaredCount": 2,
+          "recordCount": 2
+        },
+        "completed": {
+          "declaredCount": 1,
+          "recordCount": 1
+        },
+        "incoming": {
+          "declaredCount": 2,
+          "recordCount": 2
+        }
+      },
+      "canneryTotal": {
+        "maxDailyProductionMt": 1050.0,
+        "currentDailyProductionMt": 910.0,
+        "productionUtilizationPct": 87.0,
+        "storageCapacityMt": 41100.0,
+        "currentStockMt": 13100.0,
+        "storageUtilizationPct": 32.0,
+        "reportedProcessingDays": 14.0
+      },
+      "prices": {
+        "nonGspNonMsc": {
+          "amount": null,
+          "currencySymbol": "$",
+          "basisUnit": null,
+          "qualifier": "no-price",
+          "rawText": "No price"
+        },
+        "gspNonMsc": {
+          "amount": 1650,
+          "currencySymbol": "$",
+          "basisUnit": null,
+          "qualifier": "quoted",
+          "rawText": "$1650"
+        }
+      },
+      "volume2026": {
+        "year": 2026,
+        "months": [
+          4920.0,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        "total": 4920.0
+      }
+    },
+    {
+      "reportDate": "2026-03-04",
+      "operationalAsOf": null,
+      "port": {
+        "active": {
+          "declaredCount": 1,
+          "recordCount": 1
+        },
+        "completed": {
+          "declaredCount": 3,
+          "recordCount": 3
+        },
+        "incoming": {
+          "declaredCount": 1,
+          "recordCount": 1
+        }
+      },
+      "canneryTotal": {
+        "maxDailyProductionMt": 1050.0,
+        "currentDailyProductionMt": 910.0,
+        "productionUtilizationPct": 87.0,
+        "storageCapacityMt": 41100.0,
+        "currentStockMt": 11900.0,
+        "storageUtilizationPct": 29.0,
+        "reportedProcessingDays": 13.0
+      },
+      "prices": {
+        "nonGspNonMsc": {
+          "amount": 1460,
+          "currencySymbol": "$",
+          "basisUnit": null,
+          "qualifier": "quoted",
+          "rawText": "$1460"
+        },
+        "gspNonMsc": {
+          "amount": 1650,
+          "currencySymbol": "$",
+          "basisUnit": null,
+          "qualifier": "quoted",
+          "rawText": "$1650"
+        }
+      },
+      "volume2026": {
+        "year": 2026,
+        "months": [
+          4920.0,
+          6220.0,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        "total": 11140.0
+      }
+    },
+    {
+      "reportDate": "2026-03-11",
+      "operationalAsOf": null,
+      "port": {
+        "active": {
+          "declaredCount": 3,
+          "recordCount": 3
+        },
+        "completed": {
+          "declaredCount": 1,
+          "recordCount": 1
+        },
+        "incoming": {
+          "declaredCount": 3,
+          "recordCount": 3
+        }
+      },
+      "canneryTotal": {
+        "maxDailyProductionMt": 1240.0,
+        "currentDailyProductionMt": 930.0,
+        "productionUtilizationPct": 75.0,
+        "storageCapacityMt": 43200.0,
+        "currentStockMt": 14100.0,
+        "storageUtilizationPct": 33.0,
+        "reportedProcessingDays": 15.0
+      },
+      "prices": {
+        "nonGspNonMsc": {
+          "amount": 1625,
+          "currencySymbol": "$",
+          "basisUnit": null,
+          "qualifier": "quoted",
+          "rawText": "$1625"
+        },
+        "gspNonMsc": {
+          "amount": 1700,
+          "currencySymbol": "$",
+          "basisUnit": null,
+          "qualifier": "quoted",
+          "rawText": "$1700"
+        }
+      },
+      "volume2026": {
+        "year": 2026,
+        "months": [
+          4920.0,
+          11968.0,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        "total": 16888.0
+      }
+    },
+    {
+      "reportDate": "2026-03-18",
+      "operationalAsOf": null,
+      "port": {
+        "active": {
+          "declaredCount": 2,
+          "recordCount": 2
+        },
+        "completed": {
+          "declaredCount": 2,
+          "recordCount": 2
+        },
+        "incoming": {
+          "declaredCount": 2,
+          "recordCount": 2
+        }
+      },
+      "canneryTotal": {
+        "maxDailyProductionMt": 1240.0,
+        "currentDailyProductionMt": 930.0,
+        "productionUtilizationPct": 75.0,
+        "storageCapacityMt": 43200.0,
+        "currentStockMt": 14100.0,
+        "storageUtilizationPct": 33.0,
+        "reportedProcessingDays": 15.0
+      },
+      "prices": {
+        "nonGspNonMsc": {
+          "amount": 1625,
+          "currencySymbol": "$",
+          "basisUnit": null,
+          "qualifier": "quoted",
+          "rawText": "$ 1,625"
+        },
+        "gspNonMsc": {
+          "amount": 1700,
+          "currencySymbol": "$",
+          "basisUnit": null,
+          "qualifier": "quoted",
+          "rawText": "$ 1,700"
+        }
+      },
+      "volume2026": {
+        "year": 2026,
+        "months": [
+          4920.0,
+          11968.0,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        "total": 16888.0
+      }
+    },
+    {
+      "reportDate": "2026-03-25",
+      "operationalAsOf": null,
+      "port": {
+        "active": {
+          "declaredCount": null,
+          "recordCount": 0
+        },
+        "completed": {
+          "declaredCount": 2,
+          "recordCount": 2
+        },
+        "incoming": {
+          "declaredCount": 1,
+          "recordCount": 1
+        }
+      },
+      "canneryTotal": {
+        "maxDailyProductionMt": 1240.0,
+        "currentDailyProductionMt": 930.0,
+        "productionUtilizationPct": 75.0,
+        "storageCapacityMt": 43200.0,
+        "currentStockMt": 14100.0,
+        "storageUtilizationPct": 33.0,
+        "reportedProcessingDays": 15.0
+      },
+      "prices": {
+        "nonGspNonMsc": {
+          "amount": 1900,
+          "currencySymbol": "$",
+          "basisUnit": null,
+          "qualifier": "around",
+          "rawText": "Around $1,900"
+        },
+        "gspNonMsc": {
+          "amount": 1950,
+          "currencySymbol": "$",
+          "basisUnit": null,
+          "qualifier": "around",
+          "rawText": "Around $1,950"
+        }
+      },
+      "volume2026": {
+        "year": 2026,
+        "months": [
+          4920.0,
+          11968.0,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        "total": 16888.0
+      }
+    },
+    {
+      "reportDate": "2026-04-01",
+      "operationalAsOf": null,
+      "port": {
+        "active": {
+          "declaredCount": 0,
+          "recordCount": 0
+        },
+        "completed": {
+          "declaredCount": 0,
+          "recordCount": 0
+        },
+        "incoming": {
+          "declaredCount": 2,
+          "recordCount": 2
+        }
+      },
+      "canneryTotal": {
+        "maxDailyProductionMt": 1125.0,
+        "currentDailyProductionMt": 915.0,
+        "productionUtilizationPct": 81.0,
+        "storageCapacityMt": 42700.0,
+        "currentStockMt": 17550.0,
+        "storageUtilizationPct": 41.0,
+        "reportedProcessingDays": 19.0
+      },
+      "prices": {
+        "nonGspNonMsc": {
+          "amount": 1900,
+          "currencySymbol": "$",
+          "basisUnit": null,
+          "qualifier": "quoted",
+          "rawText": "$1900"
+        },
+        "gspNonMsc": {
+          "amount": 1950,
+          "currencySymbol": "$",
+          "basisUnit": null,
+          "qualifier": "quoted",
+          "rawText": "$1950"
+        }
+      },
+      "volume2026": {
+        "year": 2026,
+        "months": [
+          4920.0,
+          11968.0,
+          8757.0,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        "total": null
+      }
+    },
+    {
+      "reportDate": "2026-04-08",
+      "operationalAsOf": null,
+      "port": {
+        "active": {
+          "declaredCount": null,
+          "recordCount": 0
+        },
+        "completed": {
+          "declaredCount": null,
+          "recordCount": 0
+        },
+        "incoming": {
+          "declaredCount": 3,
+          "recordCount": 3
+        }
+      },
+      "canneryTotal": {
+        "maxDailyProductionMt": 1125.0,
+        "currentDailyProductionMt": 915.0,
+        "productionUtilizationPct": 81.0,
+        "storageCapacityMt": 42700.0,
+        "currentStockMt": 17550.0,
+        "storageUtilizationPct": 41.0,
+        "reportedProcessingDays": 19.0
+      },
+      "prices": {
+        "nonGspNonMsc": {
+          "amount": 1900,
+          "currencySymbol": "$",
+          "basisUnit": null,
+          "qualifier": "no-transaction",
+          "rawText": "No deal after $1900"
+        },
+        "gspNonMsc": {
+          "amount": 2050,
+          "currencySymbol": "$",
+          "basisUnit": null,
+          "qualifier": "quoted",
+          "rawText": "$2050"
+        }
+      },
+      "volume2026": {
+        "year": 2026,
+        "months": [
+          4920.0,
+          11968.0,
+          8757.0,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        "total": 25645.0
+      }
+    },
+    {
+      "reportDate": "2026-04-15",
+      "operationalAsOf": null,
+      "port": {
+        "active": {
+          "declaredCount": 1,
+          "recordCount": 1
+        },
+        "completed": {
+          "declaredCount": null,
+          "recordCount": 0
+        },
+        "incoming": {
+          "declaredCount": 2,
+          "recordCount": 2
+        }
+      },
+      "canneryTotal": {
+        "maxDailyProductionMt": 1125.0,
+        "currentDailyProductionMt": 915.0,
+        "productionUtilizationPct": 81.0,
+        "storageCapacityMt": 42700.0,
+        "currentStockMt": 17550.0,
+        "storageUtilizationPct": 41.0,
+        "reportedProcessingDays": 19.0
+      },
+      "prices": {
+        "nonGspNonMsc": {
+          "amount": 2000,
+          "currencySymbol": "$",
+          "basisUnit": null,
+          "qualifier": "quoted",
+          "rawText": "$2,000"
+        },
+        "gspNonMsc": {
+          "amount": 2050,
+          "currencySymbol": "$",
+          "basisUnit": null,
+          "qualifier": "quoted",
+          "rawText": "$2,050"
+        }
+      },
+      "volume2026": {
+        "year": 2026,
+        "months": [
+          4920.0,
+          11968.0,
+          8757.0,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        "total": 25645.0
+      }
+    },
+    {
+      "reportDate": "2026-04-22",
+      "operationalAsOf": null,
+      "port": {
+        "active": {
+          "declaredCount": 3,
+          "recordCount": 3
+        },
+        "completed": {
+          "declaredCount": 1,
+          "recordCount": 1
+        },
+        "incoming": {
+          "declaredCount": 1,
+          "recordCount": 1
+        }
+      },
+      "canneryTotal": {
+        "maxDailyProductionMt": 1125.0,
+        "currentDailyProductionMt": 915.0,
+        "productionUtilizationPct": 81.0,
+        "storageCapacityMt": 42700.0,
+        "currentStockMt": 17550.0,
+        "storageUtilizationPct": 41.0,
+        "reportedProcessingDays": 19.0
+      },
+      "prices": {
+        "nonGspNonMsc": {
+          "amount": 2000,
+          "currencySymbol": "$",
+          "basisUnit": null,
+          "qualifier": "level",
+          "rawText": "$2,000 Level"
+        },
+        "gspNonMsc": {
+          "amount": 2100,
+          "currencySymbol": "$",
+          "basisUnit": null,
+          "qualifier": "level",
+          "rawText": "$2,100 Level"
+        }
+      },
+      "volume2026": {
+        "year": 2026,
+        "months": [
+          4920.0,
+          11968.0,
+          8757.0,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        "total": 25645.0
+      }
+    },
+    {
+      "reportDate": "2026-04-29",
+      "operationalAsOf": null,
+      "port": {
+        "active": {
+          "declaredCount": 2,
+          "recordCount": 2
+        },
+        "completed": {
+          "declaredCount": 1,
+          "recordCount": 1
+        },
+        "incoming": {
+          "declaredCount": 1,
+          "recordCount": 1
+        }
+      },
+      "canneryTotal": {
+        "maxDailyProductionMt": 1125.0,
+        "currentDailyProductionMt": 915.0,
+        "productionUtilizationPct": 81.0,
+        "storageCapacityMt": 42700.0,
+        "currentStockMt": 17550.0,
+        "storageUtilizationPct": 41.0,
+        "reportedProcessingDays": 19.0
+      },
+      "prices": {
+        "nonGspNonMsc": {
+          "amount": 2000,
+          "currencySymbol": "$",
+          "basisUnit": null,
+          "qualifier": "level",
+          "rawText": "$2,000 Level"
+        },
+        "gspNonMsc": {
+          "amount": 2100,
+          "currencySymbol": "$",
+          "basisUnit": null,
+          "qualifier": "level",
+          "rawText": "$2,100 Level"
+        }
+      },
+      "volume2026": {
+        "year": 2026,
+        "months": [
+          4920.0,
+          11968.0,
+          8757.0,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        "total": 25645.0
+      }
+    },
+    {
+      "reportDate": "2026-05-06",
+      "operationalAsOf": null,
+      "port": {
+        "active": {
+          "declaredCount": 0,
+          "recordCount": 0
+        },
+        "completed": {
+          "declaredCount": 2,
+          "recordCount": 2
+        },
+        "incoming": {
+          "declaredCount": 3,
+          "recordCount": 3
+        }
+      },
+      "canneryTotal": {
+        "maxDailyProductionMt": 1125.0,
+        "currentDailyProductionMt": 915.0,
+        "productionUtilizationPct": 81.0,
+        "storageCapacityMt": 42700.0,
+        "currentStockMt": 17550.0,
+        "storageUtilizationPct": 41.0,
+        "reportedProcessingDays": 19.0
+      },
+      "prices": {
+        "nonGspNonMsc": {
+          "amount": null,
+          "currencySymbol": "$",
+          "basisUnit": null,
+          "qualifier": "no-offer",
+          "rawText": "No offer"
+        },
+        "gspNonMsc": {
+          "amount": 1900,
+          "currencySymbol": "$",
+          "basisUnit": null,
+          "qualifier": "quoted",
+          "rawText": "$1,900"
+        }
+      },
+      "volume2026": {
+        "year": 2026,
+        "months": [
+          4920.0,
+          11968.0,
+          8757.0,
+          8059.0,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        "total": 33704.0
+      }
+    },
+    {
+      "reportDate": "2026-05-13",
+      "operationalAsOf": null,
+      "port": {
+        "active": {
+          "declaredCount": 1,
+          "recordCount": 1
+        },
+        "completed": {
+          "declaredCount": 0,
+          "recordCount": 0
+        },
+        "incoming": {
+          "declaredCount": 3,
+          "recordCount": 3
+        }
+      },
+      "canneryTotal": {
+        "maxDailyProductionMt": 1125.0,
+        "currentDailyProductionMt": 915.0,
+        "productionUtilizationPct": 81.0,
+        "storageCapacityMt": 42700.0,
+        "currentStockMt": 17550.0,
+        "storageUtilizationPct": 41.0,
+        "reportedProcessingDays": 19.0
+      },
+      "prices": {
+        "nonGspNonMsc": {
+          "amount": null,
+          "currencySymbol": "$",
+          "basisUnit": null,
+          "qualifier": "no-offer",
+          "rawText": "No offer"
+        },
+        "gspNonMsc": {
+          "amount": 1900,
+          "currencySymbol": "$",
+          "basisUnit": null,
+          "qualifier": "quoted",
+          "rawText": "$1,900"
+        }
+      },
+      "volume2026": {
+        "year": 2026,
+        "months": [
+          4920.0,
+          11968.0,
+          8757.0,
+          8059.0,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        "total": 33704.0
+      }
+    },
+    {
+      "reportDate": "2026-05-20",
+      "operationalAsOf": null,
+      "port": {
+        "active": {
+          "declaredCount": 1,
+          "recordCount": 1
+        },
+        "completed": {
+          "declaredCount": 1,
+          "recordCount": 1
+        },
+        "incoming": {
+          "declaredCount": 2,
+          "recordCount": 2
+        }
+      },
+      "canneryTotal": {
+        "maxDailyProductionMt": 1125.0,
+        "currentDailyProductionMt": 915.0,
+        "productionUtilizationPct": 81.0,
+        "storageCapacityMt": 42700.0,
+        "currentStockMt": 17550.0,
+        "storageUtilizationPct": 41.0,
+        "reportedProcessingDays": 19.0
+      },
+      "prices": {
+        "nonGspNonMsc": {
+          "amount": null,
+          "currencySymbol": "$",
+          "basisUnit": null,
+          "qualifier": "no-offer",
+          "rawText": "No offer"
+        },
+        "gspNonMsc": {
+          "amount": 1900,
+          "currencySymbol": "$",
+          "basisUnit": null,
+          "qualifier": "quoted",
+          "rawText": "$ 1,900"
+        }
+      },
+      "volume2026": {
+        "year": 2026,
+        "months": [
+          4920.0,
+          11968.0,
+          8757.0,
+          8059.0,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        "total": 33704.0
+      }
+    },
+    {
+      "reportDate": "2026-05-27",
+      "operationalAsOf": null,
+      "port": {
+        "active": {
+          "declaredCount": 0,
+          "recordCount": 0
+        },
+        "completed": {
+          "declaredCount": 1,
+          "recordCount": 1
+        },
+        "incoming": {
+          "declaredCount": 6,
+          "recordCount": 6
+        }
+      },
+      "canneryTotal": {
+        "maxDailyProductionMt": 1125.0,
+        "currentDailyProductionMt": 915.0,
+        "productionUtilizationPct": 81.0,
+        "storageCapacityMt": 42700.0,
+        "currentStockMt": 17550.0,
+        "storageUtilizationPct": 41.0,
+        "reportedProcessingDays": 19.0
+      },
+      "prices": {
+        "nonGspNonMsc": {
+          "amount": 1800,
+          "currencySymbol": "$",
+          "basisUnit": null,
+          "qualifier": "old-contract",
+          "rawText": "$1,800 (old contract)"
+        },
+        "gspNonMsc": {
+          "amount": 1900,
+          "currencySymbol": "$",
+          "basisUnit": null,
+          "qualifier": "under",
+          "rawText": "$1,900 under"
+        }
+      },
+      "volume2026": {
+        "year": 2026,
+        "months": [
+          4920.0,
+          11968.0,
+          8757.0,
+          8059.0,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        "total": 33704.0
+      }
+    },
+    {
+      "reportDate": "2026-06-03",
+      "operationalAsOf": null,
+      "port": {
+        "active": {
+          "declaredCount": 2,
+          "recordCount": 2
+        },
+        "completed": {
+          "declaredCount": 0,
+          "recordCount": 0
+        },
+        "incoming": {
+          "declaredCount": 4,
+          "recordCount": 4
+        }
+      },
+      "canneryTotal": {
+        "maxDailyProductionMt": 1125.0,
+        "currentDailyProductionMt": 915.0,
+        "productionUtilizationPct": 81.0,
+        "storageCapacityMt": 42700.0,
+        "currentStockMt": 17550.0,
+        "storageUtilizationPct": 41.0,
+        "reportedProcessingDays": 19.0
+      },
+      "prices": {
+        "nonGspNonMsc": {
+          "amount": 1750,
+          "currencySymbol": "$",
+          "basisUnit": null,
+          "qualifier": "level",
+          "rawText": "$1,750 Level"
+        },
+        "gspNonMsc": {
+          "amount": 1850,
+          "currencySymbol": "$",
+          "basisUnit": null,
+          "qualifier": "quoted",
+          "rawText": "$1,850"
+        }
+      },
+      "volume2026": {
+        "year": 2026,
+        "months": [
+          4920.0,
+          11968.0,
+          8757.0,
+          8059.0,
+          3307.0,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        "total": 37011.0
+      }
+    },
+    {
+      "reportDate": "2026-06-10",
+      "operationalAsOf": null,
+      "port": {
+        "active": {
+          "declaredCount": 2,
+          "recordCount": 2
+        },
+        "completed": {
+          "declaredCount": 0,
+          "recordCount": 0
+        },
+        "incoming": {
+          "declaredCount": 4,
+          "recordCount": 4
+        }
+      },
+      "canneryTotal": {
+        "maxDailyProductionMt": 1125.0,
+        "currentDailyProductionMt": 915.0,
+        "productionUtilizationPct": 81.0,
+        "storageCapacityMt": 42700.0,
+        "currentStockMt": 17550.0,
+        "storageUtilizationPct": 41.0,
+        "reportedProcessingDays": 19.0
+      },
+      "prices": {
+        "nonGspNonMsc": {
+          "amount": 1750,
+          "currencySymbol": "$",
+          "basisUnit": null,
+          "qualifier": "level",
+          "rawText": "$1,750 Level"
+        },
+        "gspNonMsc": {
+          "amount": 1820,
+          "currencySymbol": "$",
+          "basisUnit": null,
+          "qualifier": "level",
+          "rawText": "$1820 Level"
+        }
+      },
+      "volume2026": {
+        "year": 2026,
+        "months": [
+          4920.0,
+          11968.0,
+          8757.0,
+          8059.0,
+          3307.0,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        "total": 37011.0
+      }
+    },
+    {
+      "reportDate": "2026-06-17",
+      "operationalAsOf": null,
+      "port": {
+        "active": {
+          "declaredCount": 1,
+          "recordCount": 1
+        },
+        "completed": {
+          "declaredCount": 1,
+          "recordCount": 1
+        },
+        "incoming": {
+          "declaredCount": 6,
+          "recordCount": 6
+        }
+      },
+      "canneryTotal": {
+        "maxDailyProductionMt": 1125.0,
+        "currentDailyProductionMt": 915.0,
+        "productionUtilizationPct": 81.0,
+        "storageCapacityMt": 42700.0,
+        "currentStockMt": 17550.0,
+        "storageUtilizationPct": 41.0,
+        "reportedProcessingDays": 19.0
+      },
+      "prices": {
+        "nonGspNonMsc": {
+          "amount": 1750,
+          "currencySymbol": "$",
+          "basisUnit": null,
+          "qualifier": "level",
+          "rawText": "$1,750 Level"
+        },
+        "gspNonMsc": {
+          "amount": 1820,
+          "currencySymbol": "$",
+          "basisUnit": null,
+          "qualifier": "level",
+          "rawText": "$1820 Level"
+        }
+      },
+      "volume2026": {
+        "year": 2026,
+        "months": [
+          4920.0,
+          11968.0,
+          8757.0,
+          8059.0,
+          3307.0,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        "total": 37011.0
+      }
+    },
+    {
+      "reportDate": "2026-06-24",
+      "operationalAsOf": null,
+      "port": {
+        "active": {
+          "declaredCount": 3,
+          "recordCount": 3
+        },
+        "completed": {
+          "declaredCount": 1,
+          "recordCount": 1
+        },
+        "incoming": {
+          "declaredCount": 5,
+          "recordCount": 5
+        }
+      },
+      "canneryTotal": {
+        "maxDailyProductionMt": 1095.0,
+        "currentDailyProductionMt": 895.0,
+        "productionUtilizationPct": 82.0,
+        "storageCapacityMt": 43200.0,
+        "currentStockMt": 17550.0,
+        "storageUtilizationPct": 41.0,
+        "reportedProcessingDays": 20.0
+      },
+      "prices": {
+        "nonGspNonMsc": {
+          "amount": 1750,
+          "currencySymbol": "$",
+          "basisUnit": null,
+          "qualifier": "level",
+          "rawText": "$1,750 Level"
+        },
+        "gspNonMsc": {
+          "amount": 1820,
+          "currencySymbol": "$",
+          "basisUnit": null,
+          "qualifier": "level",
+          "rawText": "$1,820 Level"
+        }
+      },
+      "volume2026": {
+        "year": 2026,
+        "months": [
+          4920.0,
+          11968.0,
+          8757.0,
+          8059.0,
+          3307.0,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        "total": 37011.0
+      }
+    },
+    {
+      "reportDate": "2026-07-01",
+      "operationalAsOf": null,
+      "port": {
+        "active": {
+          "declaredCount": 2,
+          "recordCount": 2
+        },
+        "completed": {
+          "declaredCount": 2,
+          "recordCount": 2
+        },
+        "incoming": {
+          "declaredCount": 4,
+          "recordCount": 4
+        }
+      },
+      "canneryTotal": {
+        "maxDailyProductionMt": 1095.0,
+        "currentDailyProductionMt": 895.0,
+        "productionUtilizationPct": 82.0,
+        "storageCapacityMt": 43200.0,
+        "currentStockMt": 17550.0,
+        "storageUtilizationPct": 41.0,
+        "reportedProcessingDays": 20.0
+      },
+      "prices": {
+        "nonGspNonMsc": {
+          "amount": 1750,
+          "currencySymbol": "$",
+          "basisUnit": null,
+          "qualifier": "no-transaction",
+          "rawText": "$1,750 Level (No Deal)"
+        },
+        "gspNonMsc": {
+          "amount": 1800,
+          "currencySymbol": "$",
+          "basisUnit": null,
+          "qualifier": "level",
+          "rawText": "$1,800 Level"
+        }
+      },
+      "volume2026": {
+        "year": 2026,
+        "months": [
+          4920.0,
+          11968.0,
+          8757.0,
+          8059.0,
+          3307.0,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        "total": 37011.0
+      }
+    },
+    {
+      "reportDate": "2026-07-08",
+      "operationalAsOf": null,
+      "port": {
+        "active": {
+          "declaredCount": 3,
+          "recordCount": 3
+        },
+        "completed": {
+          "declaredCount": 1,
+          "recordCount": 1
+        },
+        "incoming": {
+          "declaredCount": 2,
+          "recordCount": 2
+        }
+      },
+      "canneryTotal": {
+        "maxDailyProductionMt": 1095.0,
+        "currentDailyProductionMt": 895.0,
+        "productionUtilizationPct": 82.0,
+        "storageCapacityMt": 43200.0,
+        "currentStockMt": 17550.0,
+        "storageUtilizationPct": 41.0,
+        "reportedProcessingDays": 20.0
+      },
+      "prices": {
+        "nonGspNonMsc": {
+          "amount": 1750,
+          "currencySymbol": "$",
+          "basisUnit": null,
+          "qualifier": "level",
+          "rawText": "$1,750 Level"
+        },
+        "gspNonMsc": {
+          "amount": 1820,
+          "currencySymbol": "$",
+          "basisUnit": null,
+          "qualifier": "level",
+          "rawText": "$1,820 Level"
+        }
+      },
+      "volume2026": {
+        "year": 2026,
+        "months": [
+          4920.0,
+          11968.0,
+          8757.0,
+          8059.0,
+          3307.0,
+          14038.0,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        "total": 51049.0
+      }
+    },
+    {
+      "reportDate": "2026-07-15",
+      "operationalAsOf": null,
+      "port": {
+        "active": {
+          "declaredCount": 1,
+          "recordCount": 1
+        },
+        "completed": {
+          "declaredCount": 2,
+          "recordCount": 2
+        },
+        "incoming": {
+          "declaredCount": 2,
+          "recordCount": 2
+        }
+      },
+      "canneryTotal": {
+        "maxDailyProductionMt": 1095.0,
+        "currentDailyProductionMt": 895.0,
+        "productionUtilizationPct": 82.0,
+        "storageCapacityMt": 43200.0,
+        "currentStockMt": 17550.0,
+        "storageUtilizationPct": 41.0,
+        "reportedProcessingDays": 20.0
+      },
+      "prices": {
+        "nonGspNonMsc": {
+          "amount": 1730,
+          "currencySymbol": "$",
+          "basisUnit": null,
+          "qualifier": "level",
+          "rawText": "$1,730 Level"
+        },
+        "gspNonMsc": {
+          "amount": 1820,
+          "currencySymbol": "$",
+          "basisUnit": null,
+          "qualifier": "level",
+          "rawText": "$1,820 Level"
+        }
+      },
+      "volume2026": {
+        "year": 2026,
+        "months": [
+          4920.0,
+          11968.0,
+          8757.0,
+          8059.0,
+          3307.0,
+          14038.0,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        "total": 51049.0
+      }
+    },
+    {
+      "reportDate": "2026-07-22",
+      "operationalAsOf": null,
+      "port": {
+        "active": {
+          "declaredCount": 1,
+          "recordCount": 1
+        },
+        "completed": {
+          "declaredCount": 2,
+          "recordCount": 0
+        },
+        "incoming": {
+          "declaredCount": 2,
+          "recordCount": 3
+        }
+      },
+      "canneryTotal": {
+        "maxDailyProductionMt": 1095.0,
+        "currentDailyProductionMt": 895.0,
+        "productionUtilizationPct": 82.0,
+        "storageCapacityMt": 43200.0,
+        "currentStockMt": 17550.0,
+        "storageUtilizationPct": 41.0,
+        "reportedProcessingDays": 20.0
+      },
+      "prices": {
+        "nonGspNonMsc": {
+          "amount": 1730,
+          "currencySymbol": "$",
+          "basisUnit": null,
+          "qualifier": "level",
+          "rawText": "$1,730 Level"
+        },
+        "gspNonMsc": {
+          "amount": 1820,
+          "currencySymbol": "$",
+          "basisUnit": null,
+          "qualifier": "level",
+          "rawText": "$1,820 Level"
+        }
+      },
+      "volume2026": {
+        "year": 2026,
+        "months": [
+          4920.0,
+          11968.0,
+          8757.0,
+          8059.0,
+          3307.0,
+          14038.0,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        "total": 51049.0
+      }
+    },
+    {
+      "reportDate": "2026-07-29",
+      "operationalAsOf": null,
+      "port": {
+        "active": {
+          "declaredCount": 3,
+          "recordCount": 3
+        },
+        "completed": {
+          "declaredCount": 0,
+          "recordCount": 0
+        },
+        "incoming": {
+          "declaredCount": 2,
+          "recordCount": 2
+        }
+      },
+      "canneryTotal": {
+        "maxDailyProductionMt": 1095.0,
+        "currentDailyProductionMt": 895.0,
+        "productionUtilizationPct": 82.0,
+        "storageCapacityMt": 43200.0,
+        "currentStockMt": 17550.0,
+        "storageUtilizationPct": 41.0,
+        "reportedProcessingDays": 20.0
+      },
+      "prices": {
+        "nonGspNonMsc": {
+          "amount": 1900,
+          "currencySymbol": "$",
+          "basisUnit": null,
+          "qualifier": "level",
+          "rawText": "$1,900 Level"
+        },
+        "gspNonMsc": {
+          "amount": 1925,
+          "currencySymbol": "$",
+          "basisUnit": null,
+          "qualifier": "level",
+          "rawText": "$1,925 Level"
+        }
+      },
+      "volume2026": {
+        "year": 2026,
+        "months": [
+          4920.0,
+          11968.0,
+          8757.0,
+          8059.0,
+          3307.0,
+          14038.0,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        "total": 51049.0
+      }
+    },
+    {
+      "reportDate": "2026-08-05",
+      "operationalAsOf": null,
+      "port": {
+        "active": {
+          "declaredCount": 1,
+          "recordCount": 1
+        },
+        "completed": {
+          "declaredCount": 2,
+          "recordCount": 2
+        },
+        "incoming": {
+          "declaredCount": 4,
+          "recordCount": 4
+        }
+      },
+      "canneryTotal": {
+        "maxDailyProductionMt": 1095.0,
+        "currentDailyProductionMt": 895.0,
+        "productionUtilizationPct": 82.0,
+        "storageCapacityMt": 40600.0,
+        "currentStockMt": 17550.0,
+        "storageUtilizationPct": 43.0,
+        "reportedProcessingDays": 20.0
+      },
+      "prices": {
+        "nonGspNonMsc": {
+          "amount": 1900,
+          "currencySymbol": "$",
+          "basisUnit": null,
+          "qualifier": "quoted",
+          "rawText": "$1,900"
+        },
+        "gspNonMsc": {
+          "amount": 2025,
+          "currencySymbol": "$",
+          "basisUnit": null,
+          "qualifier": "quoted",
+          "rawText": "$2,025"
+        }
+      },
+      "volume2026": {
+        "year": 2026,
+        "months": [
+          4920.0,
+          11968.0,
+          8757.0,
+          8059.0,
+          3307.0,
+          14038.0,
+          12687.0,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        "total": 63736.0
+      }
+    },
+    {
+      "reportDate": "2026-08-12",
+      "operationalAsOf": null,
+      "port": {
+        "active": {
+          "declaredCount": null,
+          "recordCount": 0
+        },
+        "completed": {
+          "declaredCount": 2,
+          "recordCount": 2
+        },
+        "incoming": {
+          "declaredCount": 3,
+          "recordCount": 3
+        }
+      },
+      "canneryTotal": {
+        "maxDailyProductionMt": 1095.0,
+        "currentDailyProductionMt": 895.0,
+        "productionUtilizationPct": 82.0,
+        "storageCapacityMt": 40600.0,
+        "currentStockMt": 17550.0,
+        "storageUtilizationPct": 43.0,
+        "reportedProcessingDays": 20.0
+      },
+      "prices": {
+        "nonGspNonMsc": {
+          "amount": 1900,
+          "currencySymbol": "$",
+          "basisUnit": null,
+          "qualifier": "quoted",
+          "rawText": "$1,900"
+        },
+        "gspNonMsc": {
+          "amount": 2025,
+          "currencySymbol": "$",
+          "basisUnit": null,
+          "qualifier": "quoted",
+          "rawText": "$2,025"
+        }
+      },
+      "volume2026": {
+        "year": 2026,
+        "months": [
+          4920.0,
+          11968.0,
+          8757.0,
+          8059.0,
+          3307.0,
+          14038.0,
+          12687.0,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        "total": 63736.0
+      }
+    }
+  ],
+  "latest": {
+    "reportDate": "2026-08-12",
+    "operationalAsOf": null,
+    "port": {
+      "active": {
+        "declaredCount": null,
+        "recordCount": 0,
+        "records": [],
+        "rawText": "A. Unloading Vessels :"
+      },
+      "completed": {
+        "declaredCount": 2,
+        "recordCount": 2,
+        "records": [
+          {
+            "sourceIdentifier": "MV AMAGI",
+            "displayName": "AMAGI",
+            "traders": [
+              "TPJ",
+              "FFC"
+            ],
+            "cargo": 2102.141,
+            "discharged": 1899.28,
+            "short": 202.861,
+            "gensanAllocation": null,
+            "etaOrUnloadingDate": null,
+            "consignees": [
+              "T/S",
+              "GENTUNA",
+              "SEATRADE"
+            ],
+            "dates": {
+              "arrived": {
+                "value": "2026-07-23",
+                "rawText": "2026/07/23"
+              },
+              "unloadingStarted": {
+                "value": "2026-07-25",
+                "rawText": "2026/07/25"
+              },
+              "etd": {
+                "value": "2026-08-07",
+                "rawText": "2026/08/07 MT"
+              },
+              "etaStart": {
+                "value": null,
+                "rawText": null
+              },
+              "etaEnd": {
+                "value": null,
+                "rawText": null
+              }
+            },
+            "rawFields": {
+              "cargo": "2,102.141 MT",
+              "discharged": "1,899.280 MT",
+              "short": "202.861 MT"
+            },
+            "rawText": "TPJ FFC | MV AMAGI | Total Cargo | 2,102.141 MT | T/S GENTUNA SEATRADE\nArrived | 2026/07/23\nUnloading started | 2026/07/25\nTotal Discharged | 1,899.280 MT\nSHORT | 202.861 MT\nETD | 2026/08/07 MT"
+          },
+          {
+            "sourceIdentifier": "MV HIKARI 1",
+            "displayName": "HIKARI 1",
+            "traders": [
+              "SHILLA"
+            ],
+            "cargo": 285.0,
+            "discharged": 284.83,
+            "short": 0.17,
+            "gensanAllocation": null,
+            "etaOrUnloadingDate": null,
+            "consignees": [
+              "SHILLA TRANSHIPMENT"
+            ],
+            "dates": {
+              "arrived": {
+                "value": "2026-08-05",
+                "rawText": "2026/08/05"
+              },
+              "unloadingStarted": {
+                "value": "2026-08-06",
+                "rawText": "2026/08/06 MT"
+              },
+              "etd": {
+                "value": "2026-08-07",
+                "rawText": "2026/08/07"
+              },
+              "etaStart": {
+                "value": null,
+                "rawText": null
+              },
+              "etaEnd": {
+                "value": null,
+                "rawText": null
+              }
+            },
+            "rawFields": {
+              "cargo": "285.000 MT",
+              "discharged": "284.830 MT",
+              "short": "0.170 MT"
+            },
+            "rawText": "SHILLA | MV HIKARI 1 | Total Cargo | 285.000 MT | SHILLA TRANSHIPMENT\nArrived | 2026/08/05\nUnloading started | 2026/08/06 MT\nTotal Discharged | 284.830 MT\nSHORT | 0.170 MT\nETD | 2026/08/07"
+          }
+        ],
+        "rawText": "A-1. Completed Discharging Vessels:2"
+      },
+      "incoming": {
+        "declaredCount": 3,
+        "recordCount": 3,
+        "records": [
+          {
+            "sourceIdentifier": "MV SEIN QUEEN",
+            "displayName": "SEIN QUEEN",
+            "traders": [
+              "TPJ"
+            ],
+            "cargo": 4994.414,
+            "discharged": null,
+            "short": null,
+            "gensanAllocation": 2092.414,
+            "etaOrUnloadingDate": "2026/08/12-13",
+            "consignees": [
+              "GENTUNA"
+            ],
+            "dates": {
+              "arrived": {
+                "value": null,
+                "rawText": null
+              },
+              "unloadingStarted": {
+                "value": null,
+                "rawText": null
+              },
+              "etd": {
+                "value": null,
+                "rawText": null
+              },
+              "etaStart": {
+                "value": "2026-08-12",
+                "rawText": "2026/08/12-13"
+              },
+              "etaEnd": {
+                "value": "2026-08-13",
+                "rawText": "2026/08/12-13"
+              }
+            },
+            "rawFields": {
+              "cargo": "4,994.414 MT",
+              "gensanAllocation": "2,092.414 MT"
+            },
+            "rawText": "TPJ | MV SEIN QUEEN | Total Cargo | 4,994.414 MT | GENTUNA\nFor Gensan | 2,092.414 MT\nETA(AMEND) | 2026/08/12-13"
+          },
+          {
+            "sourceIdentifier": "MV SEA BLAZER",
+            "displayName": "SEA BLAZER",
+            "traders": [
+              "FCF"
+            ],
+            "cargo": 4345.08,
+            "discharged": null,
+            "short": null,
+            "gensanAllocation": null,
+            "etaOrUnloadingDate": "2026/08/11",
+            "consignees": [
+              "FOODSPHERE",
+              "FCF TRANSHIPMENT"
+            ],
+            "dates": {
+              "arrived": {
+                "value": null,
+                "rawText": null
+              },
+              "unloadingStarted": {
+                "value": null,
+                "rawText": null
+              },
+              "etd": {
+                "value": null,
+                "rawText": null
+              },
+              "etaStart": {
+                "value": "2026-08-11",
+                "rawText": "2026/08/11"
+              },
+              "etaEnd": {
+                "value": null,
+                "rawText": null
+              }
+            },
+            "rawFields": {
+              "cargo": "4,345.080 MT"
+            },
+            "rawText": "FCF | MV SEA BLAZER | FOODSPHERE FCF TRANSHIPMENT\nTotal Cargo | 4,345.080 MT\nETA(AMEND) | 2026/08/11"
+          },
+          {
+            "sourceIdentifier": "FV QUEEN ELLICE",
+            "displayName": "QUEEN ELLICE",
+            "traders": [
+              "ITOCHU"
+            ],
+            "cargo": 580.0,
+            "discharged": null,
+            "short": null,
+            "gensanAllocation": null,
+            "etaOrUnloadingDate": "2026/08/11",
+            "consignees": [
+              "GENTUNA"
+            ],
+            "dates": {
+              "arrived": {
+                "value": null,
+                "rawText": null
+              },
+              "unloadingStarted": {
+                "value": null,
+                "rawText": null
+              },
+              "etd": {
+                "value": null,
+                "rawText": null
+              },
+              "etaStart": {
+                "value": "2026-08-11",
+                "rawText": "2026/08/11"
+              },
+              "etaEnd": {
+                "value": null,
+                "rawText": null
+              }
+            },
+            "rawFields": {
+              "cargo": "580.000 MT"
+            },
+            "rawText": "ITOCHU | FV QUEEN ELLICE | Total Cargo | 580.000 MT | GENTUNA\nETA(AMEND) | 2026/08/11\n"
+          }
+        ],
+        "rawText": "B. Incoming Vessel: 3"
+      }
+    },
+    "canneries": [
+      {
+        "name": "Gentuna/Century",
+        "rawText": "Gentuna/Century 800    600     75%     25,000   12,000    48%  20",
+        "rawValues": {
+          "maximumProductionMt": "800",
+          "currentProductionMt": "600",
+          "productionUtilizationPercent": "75",
+          "maximumCapacityMt": "25,000",
+          "currentStockMt": "12,000",
+          "storageUtilizationPercent": "48",
+          "processingDays": "20"
+        },
+        "maximumProductionMt": 800.0,
+        "currentProductionMt": 600.0,
+        "productionUtilizationPercent": 75.0,
+        "maximumCapacityMt": 25000.0,
+        "currentStockMt": 12000.0,
+        "storageUtilizationPercent": 48.0,
+        "processingDays": 20.0
+      },
+      {
+        "name": "Philbest",
+        "rawText": "Philbest 60       50      83%      3,000    800      27%  16",
+        "rawValues": {
+          "maximumProductionMt": "60",
+          "currentProductionMt": "50",
+          "productionUtilizationPercent": "83",
+          "maximumCapacityMt": "3,000",
+          "currentStockMt": "800",
+          "storageUtilizationPercent": "27",
+          "processingDays": "16"
+        },
+        "maximumProductionMt": 60.0,
+        "currentProductionMt": 50.0,
+        "productionUtilizationPercent": 83.0,
+        "maximumCapacityMt": 3000.0,
+        "currentStockMt": 800.0,
+        "storageUtilizationPercent": 27.0,
+        "processingDays": 16.0
+      },
+      {
+        "name": "Alliance",
+        "rawText": "Alliance 80       80      100%     6,500   2,000     31%  25",
+        "rawValues": {
+          "maximumProductionMt": "80",
+          "currentProductionMt": "80",
+          "productionUtilizationPercent": "100",
+          "maximumCapacityMt": "6,500",
+          "currentStockMt": "2,000",
+          "storageUtilizationPercent": "31",
+          "processingDays": "25"
+        },
+        "maximumProductionMt": 80.0,
+        "currentProductionMt": 80.0,
+        "productionUtilizationPercent": 100.0,
+        "maximumCapacityMt": 6500.0,
+        "currentStockMt": 2000.0,
+        "storageUtilizationPercent": 31.0,
+        "processingDays": 25.0
+      },
+      {
+        "name": "Celebes",
+        "rawText": "Celebes 40       45      113%     1,600   1,950    122%  43",
+        "rawValues": {
+          "maximumProductionMt": "40",
+          "currentProductionMt": "45",
+          "productionUtilizationPercent": "113",
+          "maximumCapacityMt": "1,600",
+          "currentStockMt": "1,950",
+          "storageUtilizationPercent": "122",
+          "processingDays": "43"
+        },
+        "maximumProductionMt": 40.0,
+        "currentProductionMt": 45.0,
+        "productionUtilizationPercent": 113.0,
+        "maximumCapacityMt": 1600.0,
+        "currentStockMt": 1950.0,
+        "storageUtilizationPercent": 122.0,
+        "processingDays": 43.0
+      },
+      {
+        "name": "Foodsphere",
+        "rawText": "Foodsphere 50       55      110%     2,500    200      8%   6",
+        "rawValues": {
+          "maximumProductionMt": "50",
+          "currentProductionMt": "55",
+          "productionUtilizationPercent": "110",
+          "maximumCapacityMt": "2,500",
+          "currentStockMt": "200",
+          "storageUtilizationPercent": "8",
+          "processingDays": "6"
+        },
+        "maximumProductionMt": 50.0,
+        "currentProductionMt": 55.0,
+        "productionUtilizationPercent": 110.0,
+        "maximumCapacityMt": 2500.0,
+        "currentStockMt": 200.0,
+        "storageUtilizationPercent": 8.0,
+        "processingDays": 6.0
+      },
+      {
+        "name": "Sea Trade",
+        "rawText": "Sea Trade 50       50      100%     1,500    500      33%  10",
+        "rawValues": {
+          "maximumProductionMt": "50",
+          "currentProductionMt": "50",
+          "productionUtilizationPercent": "100",
+          "maximumCapacityMt": "1,500",
+          "currentStockMt": "500",
+          "storageUtilizationPercent": "33",
+          "processingDays": "10"
+        },
+        "maximumProductionMt": 50.0,
+        "currentProductionMt": 50.0,
+        "productionUtilizationPercent": 100.0,
+        "maximumCapacityMt": 1500.0,
+        "currentStockMt": 500.0,
+        "storageUtilizationPercent": 33.0,
+        "processingDays": 10.0
+      },
+      {
+        "name": "R&R",
+        "rawText": "R&R 15       15      100%     500      100      20%  7",
+        "rawValues": {
+          "maximumProductionMt": "15",
+          "currentProductionMt": "15",
+          "productionUtilizationPercent": "100",
+          "maximumCapacityMt": "500",
+          "currentStockMt": "100",
+          "storageUtilizationPercent": "20",
+          "processingDays": "7"
+        },
+        "maximumProductionMt": 15.0,
+        "currentProductionMt": 15.0,
+        "productionUtilizationPercent": 100.0,
+        "maximumCapacityMt": 500.0,
+        "currentStockMt": 100.0,
+        "storageUtilizationPercent": 20.0,
+        "processingDays": 7.0
+      },
+      {
+        "name": "Total",
+        "rawText": "Total 1,095     895     82%     40,600   17,550    43%  20",
+        "rawValues": {
+          "maximumProductionMt": "1,095",
+          "currentProductionMt": "895",
+          "productionUtilizationPercent": "82",
+          "maximumCapacityMt": "40,600",
+          "currentStockMt": "17,550",
+          "storageUtilizationPercent": "43",
+          "processingDays": "20"
+        },
+        "maximumProductionMt": 1095.0,
+        "currentProductionMt": 895.0,
+        "productionUtilizationPercent": 82.0,
+        "maximumCapacityMt": 40600.0,
+        "currentStockMt": 17550.0,
+        "storageUtilizationPercent": 43.0,
+        "processingDays": 20.0
+      }
+    ],
+    "canneryTotal": {
+      "maxDailyProductionMt": 1095.0,
+      "currentDailyProductionMt": 895.0,
+      "productionUtilizationPct": 82.0,
+      "storageCapacityMt": 40600.0,
+      "currentStockMt": 17550.0,
+      "storageUtilizationPct": 43.0,
+      "reportedProcessingDays": 20.0
+    },
+    "prices": {
+      "nonGspNonMsc": {
+        "amount": 1900,
+        "currencySymbol": "$",
+        "basisUnit": null,
+        "qualifier": "quoted",
+        "rawText": "$1,900"
+      },
+      "gspNonMsc": {
+        "amount": 2025,
+        "currencySymbol": "$",
+        "basisUnit": null,
+        "qualifier": "quoted",
+        "rawText": "$2,025"
+      }
+    },
+    "source": {
+      "reportDate": "2026-08-12",
+      "fileName": "GMTS Weekly Report 20260812.pdf",
+      "sha256": "e84ad3bb26ebe05e863467bff3f4507775a8cf4b04adefa8026eb3414e1e5243",
+      "pages": 1
+    }
+  },
+  "volumeHistory": {
+    "excludesFreshTuna": true,
+    "unit": null,
+    "annual": [
+      {
+        "year": 2019,
+        "months": [
+          11534.0,
+          14067.0,
+          10293.0,
+          10950.0,
+          12466.0,
+          9938.0,
+          18182.0,
+          14655.0,
+          14521.0,
+          18775.0,
+          19862.0,
+          15976.0
+        ],
+        "total": 171219.0,
+        "rawText": "2019 11,534 14,067 10,293 10,950 12,466 9,938 18,182 14,655 14,521 18,775 19,862 15,976 171,219"
+      },
+      {
+        "year": 2020,
+        "months": [
+          9278.0,
+          8329.0,
+          13033.0,
+          17300.0,
+          15130.0,
+          20190.0,
+          15678.0,
+          9587.0,
+          15537.0,
+          9996.0,
+          10235.0,
+          10685.0
+        ],
+        "total": 154978.0,
+        "rawText": "2020 9,278 8,329 13,033 17,300 15,130 20,190 15,678 9,587 15,537 9,996 10,235 10,685 154,978"
+      },
+      {
+        "year": 2021,
+        "months": [
+          14450.0,
+          15070.0,
+          16714.0,
+          16007.0,
+          13451.0,
+          11063.0,
+          11004.0,
+          7997.0,
+          14199.0,
+          11430.0,
+          13132.0,
+          9542.0
+        ],
+        "total": 154059.0,
+        "rawText": "2021 14,450 15,070 16,714 16,007 13,451 11,063 11,004 7,997 14,199 11,430 13,132 9,542 154,059"
+      },
+      {
+        "year": 2022,
+        "months": [
+          9139.0,
+          13420.0,
+          10029.0,
+          13441.0,
+          15735.0,
+          18626.0,
+          16369.0,
+          13554.0,
+          5435.0,
+          3335.0,
+          15984.0,
+          14284.0
+        ],
+        "total": 149351.0,
+        "rawText": "2022 9,139 13,420 10,029 13,441 15,735 18,626 16,369 13,554 5,435 3,335 15,984 14,284 149,351"
+      },
+      {
+        "year": 2023,
+        "months": [
+          7833.0,
+          9605.0,
+          16390.0,
+          6469.0,
+          6609.0,
+          3200.0,
+          12264.0,
+          19237.0,
+          15209.0,
+          17150.0,
+          5300.0,
+          4300.0
+        ],
+        "total": 123566.0,
+        "rawText": "2023 7,833 9,605 16,390 6,469 6,609 3,200 12,264 19,237 15,209 17,150 5,300 4,300 123,566"
+      },
+      {
+        "year": 2024,
+        "months": [
+          9950.0,
+          10011.0,
+          11990.0,
+          21980.0,
+          9622.0,
+          17716.0,
+          14225.0,
+          14675.0,
+          6177.0,
+          8640.0,
+          7595.0,
+          12730.0
+        ],
+        "total": 145311.0,
+        "rawText": "2024 9,950 10,011 11,990 21,980 9,622 17,716 14,225 14,675 6,177 8,640 7,595 12,730 145,311"
+      },
+      {
+        "year": 2025,
+        "months": [
+          6188.0,
+          6249.0,
+          10070.0,
+          11352.0,
+          5280.0,
+          12104.0,
+          16120.0,
+          12155.0,
+          3645.0,
+          5065.0,
+          12094.0,
+          12664.0
+        ],
+        "total": 112986.0,
+        "rawText": "2025 6,188 6,249 10,070 11,352 5,280 12,104 16,120 12,155 3,645 5,065 12,094 12,664 112,986"
+      },
+      {
+        "year": 2026,
+        "months": [
+          4920.0,
+          11968.0,
+          8757.0,
+          8059.0,
+          3307.0,
+          14038.0,
+          12687.0,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        "total": 63736.0,
+        "rawText": "2026 4,920 11,968 8,757 8,059 3,307 14,038 12,687 63,736"
+      }
+    ],
+    "snapshots": [
+      {
+        "reportDate": "2026-01-21",
+        "volume2026": {
+          "months": [
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+          ],
+          "total": null
+        }
+      },
+      {
+        "reportDate": "2026-01-28",
+        "volume2026": {
+          "months": [
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+          ],
+          "total": null
+        }
+      },
+      {
+        "reportDate": "2026-02-04",
+        "volume2026": {
+          "months": [
+            4920.0,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+          ],
+          "total": 4920.0
+        }
+      },
+      {
+        "reportDate": "2026-02-11",
+        "volume2026": {
+          "months": [
+            4920.0,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+          ],
+          "total": 4920.0
+        }
+      },
+      {
+        "reportDate": "2026-02-18",
+        "volume2026": {
+          "months": [
+            4920.0,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+          ],
+          "total": 4920.0
+        }
+      },
+      {
+        "reportDate": "2026-02-25",
+        "volume2026": {
+          "months": [
+            4920.0,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+          ],
+          "total": 4920.0
+        }
+      },
+      {
+        "reportDate": "2026-03-04",
+        "volume2026": {
+          "months": [
+            4920.0,
+            6220.0,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+          ],
+          "total": 11140.0
+        }
+      },
+      {
+        "reportDate": "2026-03-11",
+        "volume2026": {
+          "months": [
+            4920.0,
+            11968.0,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+          ],
+          "total": 16888.0
+        }
+      },
+      {
+        "reportDate": "2026-03-18",
+        "volume2026": {
+          "months": [
+            4920.0,
+            11968.0,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+          ],
+          "total": 16888.0
+        }
+      },
+      {
+        "reportDate": "2026-03-25",
+        "volume2026": {
+          "months": [
+            4920.0,
+            11968.0,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+          ],
+          "total": 16888.0
+        }
+      },
+      {
+        "reportDate": "2026-04-01",
+        "volume2026": {
+          "months": [
+            4920.0,
+            11968.0,
+            8757.0,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+          ],
+          "total": null
+        }
+      },
+      {
+        "reportDate": "2026-04-08",
+        "volume2026": {
+          "months": [
+            4920.0,
+            11968.0,
+            8757.0,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+          ],
+          "total": 25645.0
+        }
+      },
+      {
+        "reportDate": "2026-04-15",
+        "volume2026": {
+          "months": [
+            4920.0,
+            11968.0,
+            8757.0,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+          ],
+          "total": 25645.0
+        }
+      },
+      {
+        "reportDate": "2026-04-22",
+        "volume2026": {
+          "months": [
+            4920.0,
+            11968.0,
+            8757.0,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+          ],
+          "total": 25645.0
+        }
+      },
+      {
+        "reportDate": "2026-04-29",
+        "volume2026": {
+          "months": [
+            4920.0,
+            11968.0,
+            8757.0,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+          ],
+          "total": 25645.0
+        }
+      },
+      {
+        "reportDate": "2026-05-06",
+        "volume2026": {
+          "months": [
+            4920.0,
+            11968.0,
+            8757.0,
+            8059.0,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+          ],
+          "total": 33704.0
+        }
+      },
+      {
+        "reportDate": "2026-05-13",
+        "volume2026": {
+          "months": [
+            4920.0,
+            11968.0,
+            8757.0,
+            8059.0,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+          ],
+          "total": 33704.0
+        }
+      },
+      {
+        "reportDate": "2026-05-20",
+        "volume2026": {
+          "months": [
+            4920.0,
+            11968.0,
+            8757.0,
+            8059.0,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+          ],
+          "total": 33704.0
+        }
+      },
+      {
+        "reportDate": "2026-05-27",
+        "volume2026": {
+          "months": [
+            4920.0,
+            11968.0,
+            8757.0,
+            8059.0,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+          ],
+          "total": 33704.0
+        }
+      },
+      {
+        "reportDate": "2026-06-03",
+        "volume2026": {
+          "months": [
+            4920.0,
+            11968.0,
+            8757.0,
+            8059.0,
+            3307.0,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+          ],
+          "total": 37011.0
+        }
+      },
+      {
+        "reportDate": "2026-06-10",
+        "volume2026": {
+          "months": [
+            4920.0,
+            11968.0,
+            8757.0,
+            8059.0,
+            3307.0,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+          ],
+          "total": 37011.0
+        }
+      },
+      {
+        "reportDate": "2026-06-17",
+        "volume2026": {
+          "months": [
+            4920.0,
+            11968.0,
+            8757.0,
+            8059.0,
+            3307.0,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+          ],
+          "total": 37011.0
+        }
+      },
+      {
+        "reportDate": "2026-06-24",
+        "volume2026": {
+          "months": [
+            4920.0,
+            11968.0,
+            8757.0,
+            8059.0,
+            3307.0,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+          ],
+          "total": 37011.0
+        }
+      },
+      {
+        "reportDate": "2026-07-01",
+        "volume2026": {
+          "months": [
+            4920.0,
+            11968.0,
+            8757.0,
+            8059.0,
+            3307.0,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+          ],
+          "total": 37011.0
+        }
+      },
+      {
+        "reportDate": "2026-07-08",
+        "volume2026": {
+          "months": [
+            4920.0,
+            11968.0,
+            8757.0,
+            8059.0,
+            3307.0,
+            14038.0,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+          ],
+          "total": 51049.0
+        }
+      },
+      {
+        "reportDate": "2026-07-15",
+        "volume2026": {
+          "months": [
+            4920.0,
+            11968.0,
+            8757.0,
+            8059.0,
+            3307.0,
+            14038.0,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+          ],
+          "total": 51049.0
+        }
+      },
+      {
+        "reportDate": "2026-07-22",
+        "volume2026": {
+          "months": [
+            4920.0,
+            11968.0,
+            8757.0,
+            8059.0,
+            3307.0,
+            14038.0,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+          ],
+          "total": 51049.0
+        }
+      },
+      {
+        "reportDate": "2026-07-29",
+        "volume2026": {
+          "months": [
+            4920.0,
+            11968.0,
+            8757.0,
+            8059.0,
+            3307.0,
+            14038.0,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+          ],
+          "total": 51049.0
+        }
+      },
+      {
+        "reportDate": "2026-08-05",
+        "volume2026": {
+          "months": [
+            4920.0,
+            11968.0,
+            8757.0,
+            8059.0,
+            3307.0,
+            14038.0,
+            12687.0,
+            null,
+            null,
+            null,
+            null,
+            null
+          ],
+          "total": 63736.0
+        }
+      },
+      {
+        "reportDate": "2026-08-12",
+        "volume2026": {
+          "months": [
+            4920.0,
+            11968.0,
+            8757.0,
+            8059.0,
+            3307.0,
+            14038.0,
+            12687.0,
+            null,
+            null,
+            null,
+            null,
+            null
+          ],
+          "total": 63736.0
+        }
+      }
+    ],
+    "revisions": [
+      {
+        "month": "2026-02",
+        "previousReportDate": "2026-03-04",
+        "previousValue": 6220.0,
+        "reportDate": "2026-03-11",
+        "value": 11968.0
+      }
+    ]
+  },
+  "sources": [
+    {
+      "reportDate": "2026-01-21",
+      "fileName": "GMTS-Weekly-Report- 20260121.pdf",
+      "sha256": "076efe1e6634e3a9d4efa7352df7ea16ecf047e0f42f4882754451104c26e221",
+      "pages": 1
+    },
+    {
+      "reportDate": "2026-01-28",
+      "fileName": "GMTS-Weekly-Report- 20260128.pdf",
+      "sha256": "9bcb37a759e516da0de7f9cad6a1d2ced4d40b61e0f387dfbe4ac41b07c3e6f6",
+      "pages": 2
+    },
+    {
+      "reportDate": "2026-02-04",
+      "fileName": "GMTS-Weekly-Report- 20260204.pdf",
+      "sha256": "9cd9240339162de25c84c2a90dd35041f0e69d3cbb71a371dd37a9cf071c6fd2",
+      "pages": 2
+    },
+    {
+      "reportDate": "2026-02-11",
+      "fileName": "GMTS-Weekly-Report- 20260211.pdf",
+      "sha256": "16213feceaa2bd7195836d2c09844250d1d0c5d7003fa2698d86a80275bc2f89",
+      "pages": 2
+    },
+    {
+      "reportDate": "2026-02-18",
+      "fileName": "GMTS-Weekly-Report- 20260218.pdf",
+      "sha256": "533be54795d93dd10fdfdfb2f22c50974830dc00686ecd70da68577bb058af18",
+      "pages": 2
+    },
+    {
+      "reportDate": "2026-02-25",
+      "fileName": "GMTS-Weekly-Report- 20260225.pdf",
+      "sha256": "7561157aeba69992f51eea83748e1e939e0131d571edac513a6b9727c86f84a5",
+      "pages": 2
+    },
+    {
+      "reportDate": "2026-03-04",
+      "fileName": "GMTS-Weekly-Report- 20260304.pdf",
+      "sha256": "ea8e909b1a6c685e6392f3977bdd3aea653f65081d8b07da3d6a990e2b5e5ca6",
+      "pages": 2
+    },
+    {
+      "reportDate": "2026-03-11",
+      "fileName": "GMTS Weekly Report 20260311.pdf",
+      "sha256": "3e9210e24fd7b05f193ece19d45f84b7f7be08194fb206fadb673fafae869332",
+      "pages": 1
+    },
+    {
+      "reportDate": "2026-03-18",
+      "fileName": "GMTS Weekly Report 20260318.pdf",
+      "sha256": "64c7680c903143f573850a7c20988fb7971ae8d9159669316760fd9a0e172313",
+      "pages": 1
+    },
+    {
+      "reportDate": "2026-03-25",
+      "fileName": "GMTS Weekly Report 20260325.pdf",
+      "sha256": "e1554491ec71c063f3b702e06f97cd2c4c3f6cef0beb6353bc9733d5828c7640",
+      "pages": 1
+    },
+    {
+      "reportDate": "2026-04-01",
+      "fileName": "GMTS Weekly Report 20260401.pdf",
+      "sha256": "5fc434130f8256127def20bd6d637a18cd698ee42d46dc5d4ce8edd9a3bd48ae",
+      "pages": 1
+    },
+    {
+      "reportDate": "2026-04-08",
+      "fileName": "GMTS Weekly Report 20260408.pdf",
+      "sha256": "3e457f07219f1163fa03f00714cef2c32b327ea8b517a1cb2fc8ebfd8606df75",
+      "pages": 1
+    },
+    {
+      "reportDate": "2026-04-15",
+      "fileName": "GMTS Weekly Report 20260415.pdf",
+      "sha256": "725225f34151fa3cc4f0851406275b4e046a6de209f02b3a218692f2e2112332",
+      "pages": 1
+    },
+    {
+      "reportDate": "2026-04-22",
+      "fileName": "GMTS Weekly Report 20260422.pdf",
+      "sha256": "8cf58a3a7406bc95600675bcb01af092b41a3a4e3efb534338bafcc2e08b9972",
+      "pages": 1
+    },
+    {
+      "reportDate": "2026-04-29",
+      "fileName": "GMTS Weekly Report 20260429.pdf",
+      "sha256": "89285af3a82cfb91db5175058b3e633ee8c84020e0dd12752646612fab3a32e4",
+      "pages": 1
+    },
+    {
+      "reportDate": "2026-05-06",
+      "fileName": "GMTS Weekly Report 20260506.pdf",
+      "sha256": "593a7aaddd2280864b289c3912c673ec10f19689480f321102611ba32bbf2bc2",
+      "pages": 1
+    },
+    {
+      "reportDate": "2026-05-13",
+      "fileName": "GMTS Weekly Report 20260513.pdf",
+      "sha256": "a274bf4865860fde8df9e29b67075aec6940020819545eea3464e1e5aaef08b3",
+      "pages": 1
+    },
+    {
+      "reportDate": "2026-05-20",
+      "fileName": "GMTS Weekly Report 20260520.pdf",
+      "sha256": "8b52656669c8e906030919f95446adf0735bdf5e260bf6d9e88e0e34b810d2ac",
+      "pages": 1
+    },
+    {
+      "reportDate": "2026-05-27",
+      "fileName": "GMTS Weekly Report 20260527.pdf",
+      "sha256": "64d977d87831e095789a8affbb25ccf5364c22c68ef523283b14b2fa6fad4a65",
+      "pages": 1
+    },
+    {
+      "reportDate": "2026-06-03",
+      "fileName": "GMTS Weekly Report 20260603.pdf",
+      "sha256": "8314e536591bdacd12bbf5014351b134c4c90855b86a4077e4a1b9cc00e1bebc",
+      "pages": 1
+    },
+    {
+      "reportDate": "2026-06-10",
+      "fileName": "GMTS Weekly Report 20260610.pdf",
+      "sha256": "5e6bc8ec7d1b2f36841746dcbf7d4759e2fc092096ced872093d92da49bd5385",
+      "pages": 1
+    },
+    {
+      "reportDate": "2026-06-17",
+      "fileName": "GMTS Weekly Report 20260617.pdf",
+      "sha256": "6afe37ea70430311018eba1a1697995a904862cca615ab91b38439f66b19f02d",
+      "pages": 1
+    },
+    {
+      "reportDate": "2026-06-24",
+      "fileName": "GMTS Weekly Report 20260624.pdf",
+      "sha256": "059bfa14806d849ed3c09a9ede3fe5d525aa7c47b4379acb748c9e8ef77c881c",
+      "pages": 2
+    },
+    {
+      "reportDate": "2026-07-01",
+      "fileName": "GMTS Weekly Report 20260701.pdf",
+      "sha256": "106d7a3a75b027beb190655be67e14b6e742dedb26d3728c1016472af8432f29",
+      "pages": 1
+    },
+    {
+      "reportDate": "2026-07-08",
+      "fileName": "GMTS Weekly Report 20260708 .pdf",
+      "sha256": "8956d09d5bc3d4f27b11e03ad3b6cf3aaf00ad039e617b3652e9d0e5b102567e",
+      "pages": 1
+    },
+    {
+      "reportDate": "2026-07-15",
+      "fileName": "GMTS Weekly Report 20260715.pdf",
+      "sha256": "f8513a256f12a0bf68f208080f0d3057538a00e975faaeef58cda991bc135c9e",
+      "pages": 1
+    },
+    {
+      "reportDate": "2026-07-22",
+      "fileName": "GMTS Weekly Report 20260722.pdf",
+      "sha256": "dd4f3a1c6335190ebba55cf0c3a8d5f7db9d40355a69fa623208319eec4bf4f2",
+      "pages": 1
+    },
+    {
+      "reportDate": "2026-07-29",
+      "fileName": "GMTS Weekly Report 20260729.pdf",
+      "sha256": "69a0bd9229ddb6a9ce6bd23f06c23ad550e196ed1c0a2e071877aef2da6aa44b",
+      "pages": 2
+    },
+    {
+      "reportDate": "2026-08-05",
+      "fileName": "GMTS Weekly Report 20260805.pdf",
+      "sha256": "a7bf02e4faa77ad3f3ea2781a3e30a07351cb7e8ccc195cb37cc8afa0d98c99d",
+      "pages": 1
+    },
+    {
+      "reportDate": "2026-08-12",
+      "fileName": "GMTS Weekly Report 20260812.pdf",
+      "sha256": "e84ad3bb26ebe05e863467bff3f4507775a8cf4b04adefa8026eb3414e1e5243",
+      "pages": 1
+    }
+  ],
+  "qualityFlags": [
+    {
+      "code": "blank_declared_count",
+      "reportDate": "2026-03-25",
+      "lane": "unloading"
+    },
+    {
+      "code": "blank_declared_count",
+      "reportDate": "2026-04-08",
+      "lane": "unloading"
+    },
+    {
+      "code": "blank_declared_count",
+      "reportDate": "2026-04-08",
+      "lane": "completedDischarging"
+    },
+    {
+      "code": "blank_declared_count",
+      "reportDate": "2026-04-15",
+      "lane": "completedDischarging"
+    },
+    {
+      "code": "blank_declared_count",
+      "reportDate": "2026-08-12",
+      "lane": "unloading"
+    },
+    {
+      "code": "price_qualifier",
+      "reportDate": "2026-02-11",
+      "price": "nonGspNonMsc",
+      "qualifier": "no-transaction"
+    },
+    {
+      "code": "price_qualifier",
+      "reportDate": "2026-02-25",
+      "price": "nonGspNonMsc",
+      "qualifier": "no-price"
+    },
+    {
+      "code": "price_qualifier",
+      "reportDate": "2026-03-25",
+      "price": "nonGspNonMsc",
+      "qualifier": "around"
+    },
+    {
+      "code": "price_qualifier",
+      "reportDate": "2026-03-25",
+      "price": "gspNonMsc",
+      "qualifier": "around"
+    },
+    {
+      "code": "price_qualifier",
+      "reportDate": "2026-04-08",
+      "price": "nonGspNonMsc",
+      "qualifier": "no-transaction"
+    },
+    {
+      "code": "price_qualifier",
+      "reportDate": "2026-04-22",
+      "price": "nonGspNonMsc",
+      "qualifier": "level"
+    },
+    {
+      "code": "price_qualifier",
+      "reportDate": "2026-04-22",
+      "price": "gspNonMsc",
+      "qualifier": "level"
+    },
+    {
+      "code": "price_qualifier",
+      "reportDate": "2026-04-29",
+      "price": "nonGspNonMsc",
+      "qualifier": "level"
+    },
+    {
+      "code": "price_qualifier",
+      "reportDate": "2026-04-29",
+      "price": "gspNonMsc",
+      "qualifier": "level"
+    },
+    {
+      "code": "price_qualifier",
+      "reportDate": "2026-05-06",
+      "price": "nonGspNonMsc",
+      "qualifier": "no-offer"
+    },
+    {
+      "code": "price_qualifier",
+      "reportDate": "2026-05-13",
+      "price": "nonGspNonMsc",
+      "qualifier": "no-offer"
+    },
+    {
+      "code": "price_qualifier",
+      "reportDate": "2026-05-20",
+      "price": "nonGspNonMsc",
+      "qualifier": "no-offer"
+    },
+    {
+      "code": "price_qualifier",
+      "reportDate": "2026-05-27",
+      "price": "nonGspNonMsc",
+      "qualifier": "old-contract"
+    },
+    {
+      "code": "price_qualifier",
+      "reportDate": "2026-05-27",
+      "price": "gspNonMsc",
+      "qualifier": "under"
+    },
+    {
+      "code": "price_qualifier",
+      "reportDate": "2026-06-03",
+      "price": "nonGspNonMsc",
+      "qualifier": "level"
+    },
+    {
+      "code": "price_qualifier",
+      "reportDate": "2026-06-10",
+      "price": "nonGspNonMsc",
+      "qualifier": "level"
+    },
+    {
+      "code": "price_qualifier",
+      "reportDate": "2026-06-10",
+      "price": "gspNonMsc",
+      "qualifier": "level"
+    },
+    {
+      "code": "price_qualifier",
+      "reportDate": "2026-06-17",
+      "price": "nonGspNonMsc",
+      "qualifier": "level"
+    },
+    {
+      "code": "price_qualifier",
+      "reportDate": "2026-06-17",
+      "price": "gspNonMsc",
+      "qualifier": "level"
+    },
+    {
+      "code": "price_qualifier",
+      "reportDate": "2026-06-24",
+      "price": "nonGspNonMsc",
+      "qualifier": "level"
+    },
+    {
+      "code": "price_qualifier",
+      "reportDate": "2026-06-24",
+      "price": "gspNonMsc",
+      "qualifier": "level"
+    },
+    {
+      "code": "price_qualifier",
+      "reportDate": "2026-07-01",
+      "price": "nonGspNonMsc",
+      "qualifier": "no-transaction"
+    },
+    {
+      "code": "price_qualifier",
+      "reportDate": "2026-07-01",
+      "price": "gspNonMsc",
+      "qualifier": "level"
+    },
+    {
+      "code": "price_qualifier",
+      "reportDate": "2026-07-08",
+      "price": "nonGspNonMsc",
+      "qualifier": "level"
+    },
+    {
+      "code": "price_qualifier",
+      "reportDate": "2026-07-08",
+      "price": "gspNonMsc",
+      "qualifier": "level"
+    },
+    {
+      "code": "price_qualifier",
+      "reportDate": "2026-07-15",
+      "price": "nonGspNonMsc",
+      "qualifier": "level"
+    },
+    {
+      "code": "price_qualifier",
+      "reportDate": "2026-07-15",
+      "price": "gspNonMsc",
+      "qualifier": "level"
+    },
+    {
+      "code": "price_qualifier",
+      "reportDate": "2026-07-22",
+      "price": "nonGspNonMsc",
+      "qualifier": "level"
+    },
+    {
+      "code": "price_qualifier",
+      "reportDate": "2026-07-22",
+      "price": "gspNonMsc",
+      "qualifier": "level"
+    },
+    {
+      "code": "price_qualifier",
+      "reportDate": "2026-07-29",
+      "price": "nonGspNonMsc",
+      "qualifier": "level"
+    },
+    {
+      "code": "price_qualifier",
+      "reportDate": "2026-07-29",
+      "price": "gspNonMsc",
+      "qualifier": "level"
+    },
+    {
+      "code": "volume_revision",
+      "month": "2026-02",
+      "previousReportDate": "2026-03-04",
+      "previousValue": 6220.0,
+      "reportDate": "2026-03-11",
+      "value": 11968.0
+    },
+    {
+      "code": "capacity_exceeded",
+      "reportDate": "2026-08-05",
+      "name": "Celebes",
+      "storageUtilizationPercent": 122.0
+    },
+    {
+      "code": "capacity_exceeded",
+      "reportDate": "2026-08-12",
+      "name": "Celebes",
+      "storageUtilizationPercent": 122.0
+    },
+    {
+      "code": "price_basis_unit_missing",
+      "field": "price_basis_unit_missing"
+    },
+    {
+      "code": "volume_unit_missing",
+      "field": "volume_unit_missing"
+    }
+  ]
+}
