@@ -13,6 +13,7 @@
 import rawAtuna from '../../public/data/tuna_industry_prices_v1.json';
 import rawCatch from '../../public/data/tuna_industry_v1.json';
 import rawTrade from '../../public/data/tuna_trade_v1.json';
+import rawFleet from '../../public/data/tuna_fleet_v1.json';
 import rawWidgets from '../../public/data/tuna_industry_widgets_v1.json';
 
 // ─── 어획 집계 ──────────────────────────────────────────────────────────────
@@ -364,4 +365,71 @@ export function getCrossStages(): IndustryStage[] {
   return widgetsData.stages
     .filter((stage) => stage.axis === 'cross')
     .sort((a, b) => a.order - b.order);
+}
+
+// ─── 어법·선단 ──────────────────────────────────────────────────────────────
+//
+// 선망과 연승은 잡는 어종도 가는 시장도 다르다. 선망 어획은 통조림으로,
+// 연승 어획은 횟감으로 간다 — 합산해 「참치 어선」이라 부르면 안 된다.
+
+export interface TunaOceanFleetRow {
+  해역: string;
+  기구: string;
+  허가: number;
+  실조업: number | null;
+}
+
+export interface TunaFlagRow {
+  선적국: string;
+  척수: number;
+  어창용적: number;
+}
+
+export interface TunaGearRow {
+  업종: string;
+  척수: number;
+  선령31년이상: number;
+  용도: string;
+  주어장: string;
+}
+
+export interface TunaCompanyFleetRow {
+  회사: string;
+  구분: string;
+  참치선망: number;
+  참치연승: number;
+  기타: number;
+  합계: number;
+  비고: string;
+}
+
+export interface TunaGearProfileRow {
+  어법: string;
+  주대상: string;
+  용도: string;
+  조업방식: string;
+  선박: string;
+  한국척수: number;
+}
+
+interface TunaSectioned<T> {
+  _meta: Record<string, unknown>;
+  rows: T[];
+}
+
+export interface TunaFleetData {
+  _meta: Record<string, unknown>;
+  세계선단: Record<string, unknown>;
+  해역별: TunaSectioned<TunaOceanFleetRow>;
+  선적국: TunaSectioned<TunaFlagRow>;
+  한국업종: TunaSectioned<TunaGearRow>;
+  한국선사: TunaSectioned<TunaCompanyFleetRow>;
+  어법성격: TunaSectioned<TunaGearProfileRow>;
+}
+
+const FLEET = rawFleet as unknown as TunaFleetData;
+
+/** 어법·선단 구조. 「참치 어선 몇 척」이라는 합산을 막는 자료다. */
+export function getTunaFleetData(): TunaFleetData {
+  return FLEET;
 }

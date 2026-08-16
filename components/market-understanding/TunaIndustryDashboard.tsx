@@ -24,6 +24,7 @@ import {
   getSkjPriceTimeline,
   getTunaCatchData,
   getTunaIndustryWidgetsMeta,
+  getTunaFleetData,
   getTunaTradeData,
   SKJ_HUBS,
   type IndustryStage,
@@ -44,6 +45,9 @@ import PillTabs, { type PillTab } from '../v2/PillTabs';
 import {
   AreaRankChart,
   BluefinSourceChart,
+  FlagFleetChart,
+  KoreaTunaGearChart,
+  OceanFleetChart,
   CountryRankChart,
   KoreaExportPriceChart,
   KoreaSpeciesChart,
@@ -65,6 +69,7 @@ import styles from './TunaIndustryDashboard.module.css';
 const CATCH = getTunaCatchData();
 const PRICES = getSkjPriceTimeline();
 const TRADE = getTunaTradeData();
+const FLEET = getTunaFleetData();
 const CHAIN_STAGES = getChainStages();
 const CROSS_STAGES = getCrossStages();
 const ALL_STAGES: IndustryStage[] = [...CHAIN_STAGES, ...CROSS_STAGES];
@@ -81,6 +86,7 @@ interface ChartSlot {
 
 const CATCH_SYNC = { status: 'STATIC' as const, syncDate: `${CATCH._meta.기준연도}년 확정` };
 const TRADE_SYNC = { status: 'STATIC' as const, syncDate: `${TRADE.요약.기준연도}년 확정` };
+const FLEET_SYNC = { status: 'STATIC' as const, syncDate: '2025년 6월 기준' };
 const PRICE_SYNC = {
   status: 'SYNCED' as const,
   syncDate: PRICES.points.length > 0 ? String(PRICES.points[PRICES.points.length - 1].월) : '',
@@ -120,6 +126,20 @@ export const CATCH_CHART_SLOTS: Record<string, ChartSlot[]> = {
       caption: '붉은 막대가 대한민국이다. 주요 상업어종 7종 기준 5위다.',
       telemetry: CATCH_SYNC,
       render: () => <CountryRankChart data={CATCH} />,
+    },
+    {
+      title: '해역별 허가 선망선과 실제 조업 (척)',
+      caption:
+        '등록부는 「조업해도 된다」는 목록이지 「지금 조업 중」이 아니다. 해역별 허가를 더하면 758척이지만 중복을 빼면 675척이다.',
+      telemetry: FLEET_SYNC,
+      render: () => <OceanFleetChart data={FLEET} />,
+    },
+    {
+      title: '선적국별 선망선과 어창용적 (척·㎥)',
+      caption:
+        '막대는 척수, 선은 어창용적이다. 분홍이 한국 — 척수는 5위인데 용적은 3위다. 배가 크다는 뜻이고, 척수만 세면 과소평가된다.',
+      telemetry: FLEET_SYNC,
+      render: () => <FlagFleetChart data={FLEET} />,
     },
     {
       title: '참다랑어 자연산과 축양 (톤)',
@@ -198,6 +218,13 @@ export const CATCH_CHART_SLOTS: Record<string, ChartSlot[]> = {
     },
   ],
   x03: [
+    {
+      title: '한국 참치 업종별 척수와 선령 (척)',
+      caption:
+        '분홍이 선령 31년 이상이다. 연승은 105척 중 99척(94%)이 31년을 넘었고 선망은 27척 중 6척(22%)이다 — 같은 참치라도 선단 갱신 속도가 다르다.',
+      telemetry: { status: 'STATIC' as const, syncDate: '2024년 말 기준' },
+      render: () => <KoreaTunaGearChart data={FLEET} />,
+    },
     {
       title: '한국 어획량과 세계 점유율 20년',
       caption: '막대는 어획량(톤), 선은 세계 점유율(%)이다. 물량이 늘어도 점유율은 5%대에서 움직인다.',

@@ -29,6 +29,7 @@ import {
   SKJ_HUBS,
   type PriceTimeline,
   type TunaCatchData,
+  type TunaFleetData,
   type TunaTradeData,
 } from '@/lib/data/tuna-industry';
 import {
@@ -486,6 +487,110 @@ export function ThailandTradeChart({ data }: { data: TunaTradeData }) {
         <Bar dataKey="수출액" name="완제품 수출액" fill={TUNA_ROLE.volume} radius={[3, 3, 0, 0]} isAnimationActive={animate} />
         <Line type="monotone" dataKey="무역수지" name="교역 흑자" stroke={TUNA_ROLE.highlight} strokeWidth={2} isAnimationActive={animate} />
       </ComposedChart>
+    </SafeResponsiveContainer>
+  );
+}
+
+/** 해역별 허가 선망선과 실제 조업 — 등록부는 「조업해도 된다」는 목록이다. */
+export function OceanFleetChart({ data }: { data: TunaFleetData }) {
+  const animate = !useReducedMotion();
+  const rows = data.해역별.rows;
+  const rotation = { angle: -30, textAnchor: 'end' as const };
+
+  return (
+    <SafeResponsiveContainer width="100%" height={300}>
+      <BarChart data={rows} margin={{ top: 12, right: 16, left: 0, bottom: rotation.angle ? 52 : 8 }}>
+        <CartesianGrid stroke="var(--mu-grid)" strokeDasharray="3 3" vertical={false} />
+        <XAxis
+          dataKey="해역"
+          stroke="var(--mu-axis)"
+          tick={{ fill: 'var(--mu-axis)', fontSize: 11 }}
+          tickFormatter={truncateXAxis}
+          angle={rotation.angle}
+          textAnchor={rotation.textAnchor}
+          height={rotation.angle ? 66 : 30}
+          interval={0}
+        />
+        <YAxis stroke="var(--mu-axis)" tick={{ fill: 'var(--mu-axis)', fontSize: 11 }} />
+        <Tooltip content={<Tip unit="척" />} />
+        <Legend wrapperStyle={{ fontSize: 11, color: 'var(--mu-axis)' }} />
+        <Bar dataKey="허가" name="허가 척수 (척)" fill="#0e7490" radius={[3, 3, 0, 0]} isAnimationActive={animate} />
+        <Bar dataKey="실조업" name="실제 조업 (척)" fill="#f59e0b" radius={[3, 3, 0, 0]} isAnimationActive={animate} />
+      </BarChart>
+    </SafeResponsiveContainer>
+  );
+}
+
+/** 선적국별 척수와 어창용적 — 척수만 세면 한국이 과소평가된다. */
+export function FlagFleetChart({ data }: { data: TunaFleetData }) {
+  const animate = !useReducedMotion();
+  const rows = data.선적국.rows;
+  const rotation = { angle: -45, textAnchor: 'end' as const };
+
+  return (
+    <SafeResponsiveContainer width="100%" height={320}>
+      <ComposedChart data={rows} margin={{ top: 12, right: 16, left: 0, bottom: rotation.angle ? 56 : 8 }}>
+        <CartesianGrid stroke="var(--mu-grid)" strokeDasharray="3 3" vertical={false} />
+        <XAxis
+          dataKey="선적국"
+          stroke="var(--mu-axis)"
+          tick={{ fill: 'var(--mu-axis)', fontSize: 11 }}
+          tickFormatter={truncateXAxis}
+          angle={rotation.angle}
+          textAnchor={rotation.textAnchor}
+          height={rotation.angle ? 70 : 30}
+          interval={0}
+        />
+        <YAxis yAxisId="left" stroke="var(--mu-axis)" tick={{ fill: 'var(--mu-axis)', fontSize: 11 }} />
+        <YAxis
+          yAxisId="right"
+          orientation="right"
+          stroke="var(--mu-axis)"
+          tick={{ fill: 'var(--mu-axis)', fontSize: 11 }}
+          tickFormatter={(v: number) => `${Math.round(v / 1000)}천`}
+        />
+        <Tooltip content={<Tip unit="척" />} />
+        <Legend wrapperStyle={{ fontSize: 11, color: 'var(--mu-axis)' }} />
+        <Bar yAxisId="left" dataKey="척수" name="선박 수 (척)" radius={[3, 3, 0, 0]} isAnimationActive={animate}>
+          {rows.map((r, i) => (
+            <Cell key={i} fill={r.선적국 === '대한민국' ? '#e11d48' : '#0e7490'} />
+          ))}
+        </Bar>
+        <Line
+          yAxisId="right"
+          type="monotone"
+          dataKey="어창용적"
+          name="어창용적 (㎥)"
+          stroke="#f59e0b"
+          strokeWidth={2.2}
+          dot={{ r: 3 }}
+          isAnimationActive={animate}
+        />
+      </ComposedChart>
+    </SafeResponsiveContainer>
+  );
+}
+
+/** 한국 참치 업종별 척수와 선령 — 연승은 배를 거의 새로 짓지 않았다. */
+export function KoreaTunaGearChart({ data }: { data: TunaFleetData }) {
+  const animate = !useReducedMotion();
+  const rows = data.한국업종.rows.map((r) => ({
+    업종: r.업종,
+    노후: r.선령31년이상,
+    신조: r.척수 - r.선령31년이상,
+  }));
+
+  return (
+    <SafeResponsiveContainer width="100%" height={260}>
+      <BarChart data={rows} margin={{ top: 12, right: 16, left: 0, bottom: 8 }}>
+        <CartesianGrid stroke="var(--mu-grid)" strokeDasharray="3 3" vertical={false} />
+        <XAxis dataKey="업종" stroke="var(--mu-axis)" tick={{ fill: 'var(--mu-axis)', fontSize: 11 }} interval={0} />
+        <YAxis stroke="var(--mu-axis)" tick={{ fill: 'var(--mu-axis)', fontSize: 11 }} />
+        <Tooltip content={<Tip unit="척" />} />
+        <Legend wrapperStyle={{ fontSize: 11, color: 'var(--mu-axis)' }} />
+        <Bar dataKey="노후" name="선령 31년 이상 (척)" stackId="a" fill="#e11d48" isAnimationActive={animate} />
+        <Bar dataKey="신조" name="선령 30년 이하 (척)" stackId="a" fill="#0e7490" radius={[3, 3, 0, 0]} isAnimationActive={animate} />
+      </BarChart>
     </SafeResponsiveContainer>
   );
 }
