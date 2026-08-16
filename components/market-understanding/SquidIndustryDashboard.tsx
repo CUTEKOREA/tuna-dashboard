@@ -343,11 +343,13 @@ function StageSection({
         {charts.map((slot) => (
           <figure key={slot.title} className={styles.catchFigure}>
             <figcaption className={styles.catchCaption}>
-              <strong>{slot.title}</strong>
+              <div className={styles.catchTitleRow}>
+                <strong>{slot.title}</strong>
+                <TelemetryBadge status={slot.telemetry.status} syncDate={slot.telemetry.syncDate} />
+              </div>
               <span>{slot.caption}</span>
-              <TelemetryBadge status={slot.telemetry.status} syncDate={slot.telemetry.syncDate} />
             </figcaption>
-            {slot.render()}
+            <div className={styles.chartFrame}>{slot.render()}</div>
           </figure>
         ))}
       </div>
