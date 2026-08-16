@@ -213,17 +213,17 @@
      "bars": [
       {
        "key": "Skipjack",
-       "name": "Skipjack",
+       "name": "가다랑어",
        "color": "#38bdf8"
       },
       {
        "key": "Yellowfin",
-       "name": "Yellowfin",
+       "name": "황다랑어",
        "color": "#f59e0b"
       },
       {
        "key": "Bigeye",
-       "name": "Bigeye",
+       "name": "눈다랑어",
        "color": "#ef4444"
       }
      ],
@@ -908,14 +908,14 @@
      "lines": [
       {
        "key": "MGOCost",
-       "name": "MGOCost",
+       "name": "선박용 경유(MGO) 가격",
        "color": "#ef4444"
       }
      ],
      "bars": [
       {
        "key": "LandingCost",
-       "name": "LandingCost",
+       "name": "착지원가",
        "color": "#10b981"
       }
      ],
@@ -971,7 +971,7 @@
      "bars": [
       {
        "key": "Value",
-       "name": "Value",
+       "name": "금액",
        "color": "#10b981"
       }
      ],
@@ -1168,7 +1168,7 @@
      "lines": [
       {
        "key": "매출총이익률",
-       "name": "매출총이익률 (Gross Margin, %)",
+       "name": "매출총이익률 (%)",
        "color": "#f59e0b"
       }
      ],
@@ -1202,7 +1202,7 @@
        "unit": "%"
       },
       {
-       "name": "자숙 로인(Loin) 수입 비중",
+       "name": "자숙 로인 수입 비중",
        "value": 60,
        "unit": "%"
       }
@@ -1261,7 +1261,7 @@
       },
       {
        "key": "스마트팩토리(EU/US)",
-       "name": "스마트팩토리(EU/US)",
+       "name": "스마트팩토리 (유럽·미국)",
        "color": "#38bdf8"
       }
      ],
@@ -1292,28 +1292,28 @@
      "telemetry": "SYNCED",
      "data": [
       {
-       "Quarter": "Q1",
+       "Quarter": "1분기",
        "Silla SG&A": 13.5,
        "TU SG&A": 12.8,
        "Silla GPM": 11.5,
        "TU GPM": 16.5
       },
       {
-       "Quarter": "Q2",
+       "Quarter": "2분기",
        "Silla SG&A": 13.8,
        "TU SG&A": 12.1,
        "Silla GPM": 11,
        "TU GPM": 17.8
       },
       {
-       "Quarter": "Q3",
+       "Quarter": "3분기",
        "Silla SG&A": 14.1,
        "TU SG&A": 11.5,
        "Silla GPM": 10.8,
        "TU GPM": 18.5
       },
       {
-       "Quarter": "Q4",
+       "Quarter": "4분기",
        "Silla SG&A": 13.9,
        "TU SG&A": 11.2,
        "Silla GPM": 10.5,
@@ -1323,24 +1323,24 @@
      "lines": [
       {
        "key": "Silla GPM",
-       "name": "Silla GPM",
+       "name": "신라 매출총이익률",
        "color": "#64748b"
       },
       {
        "key": "TU GPM",
-       "name": "TU GPM",
+       "name": "타이유니온 매출총이익률",
        "color": "#f59e0b"
       }
      ],
      "bars": [
       {
        "key": "Silla SG&A",
-       "name": "Silla SG&A",
+       "name": "신라 판매관리비",
        "color": "#94a3b8"
       },
       {
        "key": "TU SG&A",
-       "name": "TU SG&A",
+       "name": "타이유니온 판매관리비",
        "color": "#10b981"
       }
      ],
@@ -1475,13 +1475,13 @@
        "CapacityUtil_Pct": 56.5
       },
       {
-       "year": "2025(E)",
+       "year": "2025 (추정)",
        "CanTuna_KTon": 650,
        "PetFood_KTon": 230,
        "CapacityUtil_Pct": 59
       },
       {
-       "year": "2026(E)",
+       "year": "2026 (추정)",
        "CanTuna_KTon": 670,
        "PetFood_KTon": 270,
        "CapacityUtil_Pct": 62.5
@@ -1855,7 +1855,7 @@
      "telemetry": "SYNCED",
      "data": [
       {
-       "Export Form": "통원어 (Whole Round)",
+       "Export Form": "통원어",
        "Base Price": 2,
        "Tariff Penalty (24%)": -0.48,
        "Net Revenue": 1.52
@@ -1867,7 +1867,7 @@
        "Net Revenue": 6.5
       },
       {
-       "Export Form": "가공캔 (Prepared)",
+       "Export Form": "가공캔",
        "Base Price": 4.7,
        "Tariff Penalty (24%)": 0,
        "Net Revenue": 4.7
@@ -1877,12 +1877,12 @@
      "bars": [
       {
        "key": "Net Revenue",
-       "name": "Net Revenue",
+       "name": "실수취 단가",
        "color": "#10b981"
       },
       {
        "key": "Tariff Penalty (24%)",
-       "name": "Tariff Penalty (24%)",
+       "name": "관세 부담 (24%)",
        "color": "#ef4444"
       }
      ],
@@ -2111,7 +2111,7 @@
      "telemetry": "SYNCED",
      "data": [
       {
-       "stage": "1. 원어 (Raw)",
+       "stage": "1. 원어",
        "price": 2
       },
       {
@@ -2191,12 +2191,12 @@
      "bars": [
       {
        "key": "Canned/Preserved Import",
-       "name": "Canned/Preserved Import",
+       "name": "조제·저장품 수입",
        "color": "#f59e0b"
       },
       {
        "key": "Fresh/Frozen Import",
-       "name": "Fresh/Frozen Import",
+       "name": "신선·냉동 수입",
        "color": "#38bdf8"
       }
      ],
@@ -2228,7 +2228,7 @@
        "price": 6.82
       },
       {
-       "origin": "PNG",
+       "origin": "파푸아뉴기니",
        "volume": 4.45,
        "price": 5.1
       },
@@ -2419,7 +2419,7 @@
      "lines": [
       {
        "key": "현물가",
-       "name": "방콕 SKJ 현물가(USD/톤)",
+       "name": "방콕 가다랑어 현물가 (USD/톤)",
        "color": "#0ea5e9"
       }
      ],
@@ -2622,12 +2622,12 @@
      "bars": [
       {
        "key": "Required Coverage",
-       "name": "Required Coverage",
+       "name": "요구 커버리지",
        "color": "#ef4444"
       },
       {
        "key": "Current Level",
-       "name": "Current Level",
+       "name": "현재 수준",
        "color": "#38bdf8"
       }
      ],
@@ -2649,22 +2649,22 @@
      "telemetry": "SYNCED",
      "data": [
       {
-       "Scenario": "규제 없음 (Baseline)",
+       "Scenario": "규제 없음",
        "Revenue": 1700,
        "Loss": 0
       },
       {
-       "Scenario": "3개월 dFAD 금어기",
+       "Scenario": "3개월 집어장치 금어",
        "Revenue": 1500,
        "Loss": 200
       },
       {
-       "Scenario": "6개월 dFAD 금어기",
+       "Scenario": "6개월 집어장치 금어",
        "Revenue": 1450,
        "Loss": 250
       },
       {
-       "Scenario": "연중 dFAD 금지",
+       "Scenario": "연중 집어장치 금지",
        "Revenue": 1100,
        "Loss": 600
       }
@@ -2673,12 +2673,12 @@
      "bars": [
       {
        "key": "Revenue",
-       "name": "Revenue",
+       "name": "조업 수익",
        "color": "#10b981"
       },
       {
        "key": "Loss",
-       "name": "Loss",
+       "name": "감소분",
        "color": "#ef4444"
       }
      ],
@@ -2738,12 +2738,12 @@
      "lines": [
       {
        "key": "Nominal CPUE",
-       "name": "Nominal CPUE",
+       "name": "명목 단위노력당어획량",
        "color": "#94a3b8"
       },
       {
        "key": "ANN-Standardized CPUE",
-       "name": "ANN-Standardized CPUE",
+       "name": "표준화 단위노력당어획량",
        "color": "#10b981"
       }
      ],
@@ -2766,17 +2766,17 @@
      "telemetry": "SYNCED",
      "data": [
       {
-       "Brailing Speed": "Slow (< 1 ton/min)",
+       "Brailing Speed": "저속 (1톤/분 미만)",
        "Reported Bycatch": 45,
        "Undetected (Hidden)": 15
       },
       {
-       "Brailing Speed": "Medium (1-2 ton/min)",
+       "Brailing Speed": "중속 (1~2톤/분)",
        "Reported Bycatch": 38,
        "Undetected (Hidden)": 42
       },
       {
-       "Brailing Speed": "Fast (> 2 ton/min)",
+       "Brailing Speed": "고속 (2톤/분 초과)",
        "Reported Bycatch": 19,
        "Undetected (Hidden)": 81
       }
@@ -2785,12 +2785,12 @@
      "bars": [
       {
        "key": "Reported Bycatch",
-       "name": "Reported Bycatch",
+       "name": "보고된 혼획",
        "color": "#38bdf8"
       },
       {
        "key": "Undetected (Hidden)",
-       "name": "Undetected (Hidden)",
+       "name": "미검출 혼획",
        "color": "#ef4444"
       }
      ],
@@ -2822,7 +2822,7 @@
        "Unreported Discard": 22
       },
       {
-       "Era": "2020~ (Full)",
+       "Era": "2020~ (전면)",
        "Reported Catch": 95,
        "Unreported Discard": 5
       }
@@ -2831,12 +2831,12 @@
      "bars": [
       {
        "key": "Reported Catch",
-       "name": "Reported Catch",
+       "name": "보고 어획",
        "color": "#10b981"
       },
       {
        "key": "Unreported Discard",
-       "name": "Unreported Discard",
+       "name": "미보고 투기",
        "color": "#ef4444"
       }
      ],
@@ -3240,7 +3240,7 @@
       },
       {
        "key": "투망수_만",
-       "name": "투망 수 (만 hook)",
+       "name": "투망 수 (만 개)",
        "color": "#f59e0b"
       }
      ],

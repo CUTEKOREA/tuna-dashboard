@@ -234,13 +234,86 @@ TITLE_OVERRIDES: dict[str, str] = {
 # SIT/TAK 안의 과장 표현은 손대지 않되(검증된 원문 보존), 제목에 남은 대괄호 태그는 지운다.
 BRACKET_TAG = re.compile(r"^\s*\[[^\]]+\]\s*")
 
-# 원본 시리즈 라벨의 오타 교정. dataKey 는 데이터 행의 키라 건드리면 안 되고,
-# 화면에 보이는 name 만 바꾼다. (예: w14 의 '가랑어' → '가다랑어')
+# 원본 시리즈 라벨의 오타 교정과 한글화. dataKey 는 데이터 행의 키라 건드리면 안 되고,
+# 화면에 보이는 name 만 바꾼다. 원본 93위젯 중 일부는 시리즈 name 이 비어 있어
+# 렌더러가 영문 dataKey 를 그대로 범례에 노출한다 — 여기서 한글 표시명을 준다 (L-01).
 SERIES_NAME_FIXES: dict[str, str] = {
+    # 오타
     "가랑어(통조림용)": "가다랑어 (통조림용)",
     "황다랑어(초밥용)": "황다랑어 (사시미용)",
     "참다랑어(블루핀)": "참다랑어",
+    # 어종 영문명
+    "Skipjack": "가다랑어",
+    "Yellowfin": "황다랑어",
+    "Bigeye": "눈다랑어",
+    # 원가·물류
+    "MGOCost": "선박용 경유(MGO) 가격",
+    "LandingCost": "착지원가",
+    "Value": "금액",
+    # 가공·기업
+    "Silla SG&A": "신라 판매관리비",
+    "TU SG&A": "타이유니온 판매관리비",
+    "Silla GPM": "신라 매출총이익률",
+    "TU GPM": "타이유니온 매출총이익률",
+    "매출총이익률 (Gross Margin, %)": "매출총이익률 (%)",
+    "스마트팩토리(EU/US)": "스마트팩토리 (유럽·미국)",
+    # 관세·교역
+    "Base Price": "기준 단가",
+    "Tariff Penalty (24%)": "관세 부담 (24%)",
+    "Net Revenue": "실수취 단가",
+    "Canned/Preserved Import": "조제·저장품 수입",
+    "Fresh/Frozen Import": "신선·냉동 수입",
+    # 규제·모니터링
+    "Required Coverage": "요구 커버리지",
+    "Current Level": "현재 수준",
+    "Revenue": "조업 수익",
+    "Loss": "감소분",
+    "Nominal CPUE": "명목 단위노력당어획량",
+    "ANN-Standardized CPUE": "표준화 단위노력당어획량",
+    "Reported Bycatch": "보고된 혼획",
+    "Undetected (Hidden)": "미검출 혼획",
+    "Reported Catch": "보고 어획",
+    "Unreported Discard": "미보고 투기",
+    # 단위 표기 정리
+    "방콕 SKJ 현물가(USD/톤)": "방콕 가다랑어 현물가 (USD/톤)",
+    "자숙 로인(Loin) 수입 비중": "자숙 로인 수입 비중",
+    "투망 수 (만 hook)": "투망 수 (만 개)",
 }
+
+# X축에 그대로 찍히는 데이터 셀 문자열. 이쪽은 표시값이자 라벨이라 값 자체를 바꾼다.
+# 시리즈 dataKey 가 아니므로 데이터 정합에는 영향이 없다.
+CELL_LABEL_FIXES: dict[str, str] = {
+    "1. 원어 (Raw)": "1. 원어",
+    "PNG": "파푸아뉴기니",
+    "자숙 로인(Loin) 수입 비중": "자숙 로인 수입 비중",
+    "2020~ (Full)": "2020~ (전면)",
+    "2025(E)": "2025 (추정)",
+    "2026(E)": "2026 (추정)",
+    "3개월 dFAD 금어기": "3개월 집어장치 금어",
+    "6개월 dFAD 금어기": "6개월 집어장치 금어",
+    "연중 dFAD 금지": "연중 집어장치 금지",
+    "규제 없음 (Baseline)": "규제 없음",
+    "Slow (< 1 ton/min)": "저속 (1톤/분 미만)",
+    "Medium (1-2 ton/min)": "중속 (1~2톤/분)",
+    "Fast (> 2 ton/min)": "고속 (2톤/분 초과)",
+    "통원어 (Whole Round)": "통원어",
+    "가공캔 (Prepared)": "가공캔",
+    "Q1": "1분기",
+    "Q2": "2분기",
+    "Q3": "3분기",
+    "Q4": "4분기",
+}
+
+
+def localize_cells(rows: list[dict]) -> list[dict]:
+    """X축에 찍히는 문자열 셀을 한글로 바꾼다 (L-01).
+
+    숫자 셀과 시리즈 dataKey 는 건드리지 않는다 — 바꾸면 차트가 값을 못 찾는다.
+    """
+    out: list[dict] = []
+    for row in rows:
+        out.append({k: (CELL_LABEL_FIXES.get(v, v) if isinstance(v, str) else v) for k, v in row.items()})
+    return out
 
 
 def normalize_series(raw: list[dict] | None) -> list[dict] | None:
@@ -303,7 +376,7 @@ def main() -> None:
                     # 이 페이지는 정적 집계본을 읽는다. 원본이 isLive 였더라도
                     # 런타임 fetch 가 없으므로 SYNCED 로 낮춘다 (L-09 정직 표기).
                     "telemetry": "SYNCED",
-                    "data": source.get("data") or [],
+                    "data": localize_cells(source.get("data") or []),
                     "lines": normalize_series(source.get("lines")),
                     "bars": normalize_series(source.get("bars")),
                     "areas": normalize_series(source.get("areas")),

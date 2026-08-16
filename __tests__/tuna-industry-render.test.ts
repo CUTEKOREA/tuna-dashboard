@@ -101,6 +101,49 @@ describe('시장 이해 > 참치 — 데이터 인테이크', () => {
     }
   });
 
+  it('차트에 노출되는 문자열이 한글이다 — 약어·단위·고유명사만 예외 (L-01)', () => {
+    // 원본 93위젯 중 일부는 시리즈 name 이 비어 있어 렌더러가 영문 dataKey 를 그대로
+    // 범례에 노출한다. 큐레이션이 한글 표시명을 주지 않으면 화면에 영문이 남는다.
+    // 축 라벨(데이터 셀)도 같은 이유로 검사한다.
+    // 낱말 단위로 쪼갠다. "USD/kg" 는 통화와 단위 두 낱말이지 영문 문구가 아니다.
+    const allowed = new Set([
+      // 통화·단위
+      'USD', 'EUR', 'JPY', 'KRW', 'MT', 'kg', 't', 'm', 'km', 'min', 'ton',
+      // 기관·지표 약어
+      'RFMO', 'WCPFC', 'IATTC', 'IOTC', 'ICCAT', 'CCSBT', 'ISSF', 'FAO', 'FFA',
+      'EUMOFA', 'KOSIS', 'TTIA', 'ANFACO', 'NOAA', 'PNA', 'VDS', 'MSC', 'MMPA',
+      'ATQ', 'CFR', 'EU', 'US', 'UN', 'HS', 'HSK', 'MGO', 'CPUE', 'EMS', 'FAD',
+      'SG', 'A', 'GPM', 'TU', 'WCPO', 'EPO', 'WPO', 'IO', 'CAPEX', 'OPEX', 'YTD', 'CFP',
+      // 자원 지표
+      'F', 'FMSY', 'MSY', 'SSB', 'TRO', 'TAC',
+      // 고유명사
+      'Comtrade', 'Atuna',
+    ]);
+    const englishTokens = (text: string) =>
+      (text.match(/[A-Za-z]+/g) ?? []).filter((token) => !allowed.has(token));
+
+    const offenders: string[] = [];
+    for (const stage of getTunaIndustryStages()) {
+      for (const widget of stage.widgets) {
+        const surfaces: string[] = [widget.title];
+        for (const series of [...(widget.lines ?? []), ...(widget.bars ?? []), ...(widget.areas ?? [])]) {
+          surfaces.push(series.name);
+        }
+        for (const row of widget.data) {
+          for (const value of Object.values(row)) {
+            if (typeof value === 'string') surfaces.push(value);
+          }
+        }
+        for (const surface of surfaces) {
+          const tokens = englishTokens(surface);
+          if (tokens.length > 0) offenders.push(`${widget.id}: "${surface}" → ${tokens.join(', ')}`);
+        }
+      }
+    }
+
+    expect(offenders, `한글화가 빠진 노출 문자열:\n${offenders.join('\n')}`).toEqual([]);
+  });
+
   it('서술이 「」로 지목한 위젯이 그 단계에 실제로 있다', () => {
     // 서술은 "아래 「위젯 제목」이 …를 보여준다" 식으로 근거를 가리킨다.
     // 큐레이션에서 위젯을 옮기거나 제목을 바꾸면 그 지목이 허공을 가리키게 되는데,
