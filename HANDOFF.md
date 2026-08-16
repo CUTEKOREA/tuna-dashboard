@@ -15,6 +15,14 @@
 > - **검증:** `npm run verify` exit 0 — 91파일·523테스트. 브라우저로 10개 단계 전수 재확인(TakeawayBox 결측 0, 최대 여백 2px). 배포 `39da74b`.
 > - **마지막 업데이트:** 2026-08-16 17:00 KST.
 >
+> 📱 **2026-08-16 16:51 KST — `/market` 모바일 전체 이력 운영 QA·잠금 drawer 후속 수정** [Codex]:
+> - PR **#450** squash merge `6792b2a4fa7f289fff4136523491b92f5bdfcde1`와 Production deployment **5928593404**가 성공했다. main App Quality Gate `31932953562`, Data Freshness Audit `31932953569`도 성공했다.
+> - 배포된 `leedonggun.co.kr/market`에서 Chromium 1440px와 WebKit iPad 834px는 로그인 전 13행 → 로그인 후 **739행(1994-01-01~2026-08-06)**, 차트 원천 **2022~2026**, SKJ/YF **5/3선**, 문서·패널 overflow 0, 보호 API CacheStorage 0, 잠금 후 13행 복귀까지 통과했다. iPad가 2022 시작 눈금을 생략한 것은 Recharts `preserveEnd` 눈금 선택이며, 실제 선은 시간축 폭의 96% 이상을 가로질러 전체 기간 렌더를 확인했다.
+> - iPhone 390px도 739행·2022~2026·5/3선·overflow 0까지 통과했으나, 마지막 잠금 QA에서 닫힌 사이드바가 `translateX(-100%)`일 뿐 DOM상 visible이라 자동화가 화면 밖 버튼을 클릭하려던 문제와, 실제 잠금 성공 뒤 열린 drawer가 로그인 화면 위에 남는 UX 회귀를 분리 확인했다.
+> - 최신 `origin/main` `4d28878`에서 잠금 DELETE와 후속 GET이 모두 `granted:false`로 확인된 성공 경로에만 `setIsMobileSidebarOpen(false)`를 추가했다. 실패 경로는 기존 접근·drawer 상태를 유지한다. 회귀 테스트는 RED를 확인한 뒤 focused Vitest **6/6** GREEN, 독립 반증 리뷰 blocking 0이다.
+> - **상태/다음 단계:** 후속 수정 브랜치 `codex/market-mobile-lock-followup-20260816`에서 전체 `npm run verify` → PR·Production 배포 → 세 기기 전체 운영 QA 재실행 후 이 항목을 최종 증빙으로 갱신한다.
+> - **마지막 업데이트:** 2026-08-16 16:51 KST.
+>
 > 📅 **2026-08-16 16:40 KST — 「시장 이해 > 참치」 전 수치 기준연도 재검수·갱신** [CC]:
 > - **사용자 지적이 맞았다.** FAO FishStat 어획통계는 2026-03 릴리스로 **현재 기준연도 1950–2024** 인데 내 집계는 2022에서 끊겨 있었다. 원인은 `FishStat_Capture_tuna_66species.csv`(2024 릴리스 시점 사전필터 추출본)를 쓴 것 — **같은 폴더의 벌크 `Capture_Quantity.csv`(105만 행, 1950–2024)가 정답이었다.**
 > - **FAO 는 릴리스마다 과거 연도도 개정한다.** 2022년 주요 7종 합계가 5,280,367 → 5,316,039톤으로 바뀌었다. 즉 낡은 추출본은 최신 연도만 빠진 게 아니라 **과거 값도 틀렸다.**
