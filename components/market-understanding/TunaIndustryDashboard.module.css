@@ -507,11 +507,26 @@
   gap: 1.25rem;
 }
 
-.catchPair {
+.catchGrid {
   display: grid;
   grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
   gap: 1.25rem;
   align-items: start;
+}
+
+.catchGrid > .catchFigure:last-child:nth-child(odd) {
+  grid-column: 1 / -1;
+}
+
+.catchGrid .catchCaption {
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.35rem;
+}
+
+.catchGrid .catchCaption span {
+  flex: none;
+  width: 100%;
 }
 
 .catchFigure {
@@ -655,8 +670,12 @@
 }
 
 @media (max-width: 860px) {
-  .catchPair {
+  .catchGrid {
     grid-template-columns: 1fr;
+  }
+
+  .catchGrid > .catchFigure:last-child:nth-child(odd) {
+    grid-column: auto;
   }
 }
 
