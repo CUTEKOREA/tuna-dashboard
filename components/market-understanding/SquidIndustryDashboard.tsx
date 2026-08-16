@@ -39,6 +39,7 @@ import {
   BasketChart,
   CollapseChart,
   CountryRankChart,
+  ImportFormChart,
   ImportOriginChart,
   ImportTrendChart,
   KoreaSpeciesChart,
@@ -95,11 +96,22 @@ export const SQUID_CHART_SLOTS: Record<string, ChartSlot[]> = {
       telemetry: CATCH_SYNC,
       render: () => <AreaRankChart data={CATCH} />,
     },
+  ],
+  s03: [
     {
       title: '어획 상위 12개국 (톤)',
       caption: '1위 중국은 자국 연안이 아니라 원양에서 대부분을 잡는다. 분홍이 한국이다.',
       telemetry: CATCH_SYNC,
       render: () => <CountryRankChart data={CATCH} />,
+    },
+  ],
+  s05: [
+    {
+      title: '한국 수입의 형태 구성 (톤)',
+      caption:
+        '한국이 사 오는 것의 4분의 3이 원물이다. 완제품 비중이 그 다음이고, 건조·염장은 물량으로는 작다 — 단가는 그 반대다.',
+      telemetry: TRADE_SYNC,
+      render: () => <ImportFormChart data={TRADE} />,
     },
   ],
   s06: [

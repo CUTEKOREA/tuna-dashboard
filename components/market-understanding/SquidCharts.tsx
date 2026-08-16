@@ -502,3 +502,26 @@ export function KoreaSpeciesChart({ data }: { data: SquidCatchData }) {
     </SafeResponsiveContainer>
   );
 }
+
+/** 수입 형태 구성 — 한국은 어떤 모습으로 사 오는가. 단가가 아니라 물량이 축이다. */
+export function ImportFormChart({ data }: { data: SquidTradeData }) {
+  const animate = useAnim();
+  return (
+    <SafeResponsiveContainer width="100%" height={240}>
+      <BarChart data={data.품목단계} layout="vertical" margin={{ ...MARGIN, left: 72 }}>
+        {grid}
+        <XAxis type="number" {...AXIS} tickFormatter={(v: number) => `${Math.round(v / 1000)}천`} />
+        <YAxis type="category" dataKey="구분" {...AXIS} width={70} />
+        <Tooltip content={<Tip unit=" 톤" />} />
+        <Bar dataKey="수입량" name="수입량 (톤)" radius={[0, 3, 3, 0]} isAnimationActive={animate}>
+          {data.품목단계.map((row, index) => (
+            <Cell
+              key={index}
+              fill={row.구분 === '원물' ? SQUID_COLORS[0] : row.구분 === '완제품' ? SQUID_COLORS[1] : SQUID_COLORS[3]}
+            />
+          ))}
+        </Bar>
+      </BarChart>
+    </SafeResponsiveContainer>
+  );
+}
