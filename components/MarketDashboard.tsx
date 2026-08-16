@@ -432,7 +432,7 @@ export default function MarketDashboard({ heroOnly = false }: { heroOnly?: boole
             </span>
           )}
         </h3>
-        <div ref={chartContainerRef} style={{ width: '100%', minHeight: '350px', display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(450px, 1fr))', gap: '24px' }}>
+        <div ref={chartContainerRef} style={{ width: '100%', minHeight: '350px', display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(450px, 100%), 1fr))', gap: '24px' }}>
           
           {/* LEFT: SKIPJACK (SKJ) */}
           {chartWidth > 0 && chartData.length > 0 && (

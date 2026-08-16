@@ -1,3 +1,16 @@
+> 📱 **2026-08-16 15:36 KST — `/market` iPhone·iPad Atuna 전체 이력 수정 최신 main 재통합·배포 진행** [Codex]:
+> - 운영을 다시 실측해 Mac Safari·iPhone Safari UA 모두 `/api/atuna-prices`가 `restricted:true`, **13행(2026-05-12~2026-08-06)**만 반환하고 `/api/operation-access`는 404임을 확인했다. 이번 `/bangkok-office` 배포에는 `/market` 수정이 포함되지 않았다.
+> - 원인은 반응형 차트나 필터가 아니라 인증 상태 불일치다. 메뉴 잠금은 클라이언트 `sessionStorage`만 열지만 Atuna API는 Supabase 인증 쿠키만 인정해, 기존 로그인 쿠키가 없는 새 iPhone·iPad에는 정확히 90일 프리뷰가 내려갔다.
+> - 최신 `origin/main` 위에 `/api/operation-access`와 12시간 HMAC 서명 쿠키를 통합해 메뉴 접근 확인과 Atuna 전체 이력 권한을 같은 서버 상태로 맞췄다. 쿠키는 HTTPS에서 `Secure`·`HttpOnly`·`SameSite=Lax`, Atuna 응답은 `private, no-store`·`Vary: Cookie`·`revalidate=0`이다.
+> - 과거 클라이언트 코드에 노출된 공유 비밀번호와 모든 fallback을 차단했다. 새 `SILLA_OPERATION_PASSWORD`(16자 이상·영대문자·영소문자·숫자·기호 포함)와 별도 `SILLA_OPERATION_ACCESS_SECRET`(32자 이상)이 모두 있고 서로 다를 때만 권한을 발급하며, 미설정·약한 값·동일 값·이전 공개값은 503/fail-closed다. iOS 숫자 키패드 고정도 제거해 새 영숫자 비밀번호를 입력할 수 있다.
+> - 기존 서비스워커가 `no-store` API까지 CacheStorage에 강제 저장하던 보안 회귀를 RED 4건으로 재현했다. 서비스워커 버전을 올려 과거 `api-v1-2026-05-22` 캐시를 삭제하고, 접근 권한·Atuna API는 network-only, 일반 API도 `no-store`·`private` 응답은 저장하지 않도록 막았다.
+> - 별도 재현에서 390px 차트 그리드가 `324→450px`로 내부 초과하던 것도 확인했다. 최소 열 폭을 컨테이너 100%로 제한해 **126px→0**으로 해소하고 데스크톱 2열 기준은 유지했다.
+> - RED→GREEN 모바일 폭·접근·서비스워커 테스트와 로컬 Production 접근 흐름을 확인했다. 새 비밀번호 입력 후 API는 `restricted:false`, **739행(1994-01-01~2026-08-06)**, `private/no-store`, `Vary: Cookie`를 반환하고 차트는 2022~2026 축을 표시한다. 전체 `npm run verify`는 ESLint 오류 0건(기존 경고 5건), TypeScript, Vitest **87파일·471테스트**, API cache **156/156**, Production build 117페이지, bundle 32라우트를 통과했다.
+> - 로컬 Production 브라우저 QA는 Chromium 1440px·WebKit 834px·390px에서 모두 HttpOnly 쿠키, `전체·주간`, 739행, 8개 라인, 문서 overflow 0, page error 0을 확인했다. 잠금 후 서버 `granted:false`와 쿠키 제거도 세 환경에서 통과했고, 외부 DoubleClick 403만 분리 관찰했다.
+> - Production 변수 두 개는 새 난수로 생성해 Vercel **Sensitive·Production only**와 macOS 키체인에만 같은 값으로 등록했다. 평문은 터미널·Git·문서에 남기지 않았고 키체인 저장값은 내부 일치 비교로 검증했다.
+> - PR **#450** 첫 CI에서 기존 하역 E2E가 production 모드에서도 `sessionStorage`만 주입해 보호 패널을 마운트하지 못하는 회귀를 확인했다. 같은 30초 selector timeout을 로컬 RED로 재현한 뒤, E2E 전용 자격증명을 격리 주입하고 실제 `/api/operation-access` POST·GET으로 HttpOnly 쿠키를 발급·검증하도록 바꿨다. 테스트 서버는 `127.0.0.1`에만 바인딩해 공개 테스트 자격증명과 개발 환경변수가 LAN에 노출되지 않도록 했다. 데스크톱·모바일·키보드·새로고침·API/청크 오류 격리 시나리오가 GREEN이다.
+> - 작업 중 `main`에 GMTS와 「시장 이해 > 참치」 변경 및 GMTS 운영 배포 기록이 순차 병합돼 PR이 두 차례 충돌 상태가 됐다. history 재작성 없이 최신 `origin/main`을 일반 merge하고 `app/page.tsx` 자동 병합 결과와 HANDOFF 양쪽 기록을 모두 보존했다.
+> - **상태/다음 단계**: 전용 worktree `codex/market-mobile-full-range-prod-20260816`, PR #450에 최신 main 통합 후 전체 게이트를 다시 실행하는 단계다. 필수 검사 통과 뒤 squash merge·Vercel Production 완료·iPhone/iPad/데스크톱 운영 검증을 진행한다.
 > 🚀 **2026-08-16 15:26 KST — GMTS 대시보드 운영 배포·실서비스 QA 완료** [Codex]:
 > - **병합:** PR **#451**을 squash merge SHA `222012e4ad804f74de351caffa8128176691dffb`로 `main`에 반영했다. App Quality Gate run `31918317595`와 Data Freshness Audit run `31918317613`은 모두 성공했다.
 > - **배포:** 기능 병합 Vercel Production deployment **5926297483**가 성공했다. 이후 최신 `main` deployment **5927115248**도 성공했으며 GMTS merge SHA를 조상으로 포함한다. 운영 주소는 `https://leedonggun.co.kr/gmts`이고 HTTP 200, `x-matched-path: /[category]`를 확인했다.

@@ -4,6 +4,9 @@ const net = require('node:net');
 const path = require('node:path');
 const { once } = require('node:events');
 
+const TEST_OPERATION_PASSWORD = 'Test-Operation!2026';
+const TEST_OPERATION_ACCESS_SECRET = 'test-only-operation-access-secret-2026-08-16';
+
 function getFreePort(startPort) {
   return new Promise((resolve, reject) => {
     const probe = net.createServer();
@@ -80,12 +83,22 @@ async function main() {
   const preferredPort = Number.parseInt(process.env.PORT || '3027', 10);
   const port = await getFreePort(Number.isFinite(preferredPort) ? preferredPort : 3027);
   const nextBin = require.resolve('next/dist/bin/next');
-  const server = spawn(process.execPath, [nextBin, 'start', '-p', String(port)], {
-    cwd: path.resolve(__dirname, '..'),
-    detached: process.platform !== 'win32',
-    env: { ...process.env, PORT: String(port) },
-    stdio: ['ignore', 'inherit', 'inherit'],
-  });
+  const testEnvironment = {
+    ...process.env,
+    PORT: String(port),
+    SILLA_OPERATION_PASSWORD: TEST_OPERATION_PASSWORD,
+    SILLA_OPERATION_ACCESS_SECRET: TEST_OPERATION_ACCESS_SECRET,
+  };
+  const server = spawn(
+    process.execPath,
+    [nextBin, 'start', '-p', String(port), '-H', '127.0.0.1'],
+    {
+      cwd: path.resolve(__dirname, '..'),
+      detached: process.platform !== 'win32',
+      env: testEnvironment,
+      stdio: ['ignore', 'inherit', 'inherit'],
+    },
+  );
 
   const stopOnSignal = (signal) => {
     void stopServer(server).finally(() => {
@@ -102,7 +115,7 @@ async function main() {
       [path.join(__dirname, 'specs', 'unloading-history.spec.js')],
       {
         cwd: path.resolve(__dirname, '..'),
-        env: { ...process.env, PORT: String(port) },
+        env: testEnvironment,
         stdio: 'inherit',
       },
     );
