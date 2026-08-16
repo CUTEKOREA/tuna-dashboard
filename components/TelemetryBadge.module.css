@@ -97,6 +97,30 @@
   word-break: break-all;
 }
 
+/* 차트 캡션용 — 상자 없이 기준일만. STATIC 영문 알약은 쓰지 않는다. */
+.caption {
+  display: inline;
+  max-width: 100%;
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: none;
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: #8d93a5;
+  letter-spacing: 0;
+}
+
+.captionStatus + .captionDate::before {
+  content: ' · ';
+}
+
+.captionDate {
+  overflow-wrap: anywhere;
+  word-break: break-all;
+}
+
 /* 라이트 — 흰 pill + 진한 잉크 (SYNCED 흐릿 문제 해소) */
 [data-v3='light'] .badge {
   background: #ffffff;
@@ -122,4 +146,10 @@
 }
 [data-v3='light'] .date {
   color: #8d93a5;
+}
+[data-v3='light'] .caption {
+  color: #8d93a5;
+}
+[data-v3='light'] .caption[data-telemetry-tone='accent'] {
+  color: #1c6bb0;
 }

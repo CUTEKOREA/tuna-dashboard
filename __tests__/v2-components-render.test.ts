@@ -199,6 +199,21 @@ describe('Deep Sea Command V2.5 — TelemetryBadge', () => {
     );
     expect(longDate).toContain('2021-06-01~2025-09-30');
   });
+
+  it('캡션 변형은 영문 STATIC 상자 없이 기준일만 낸다', () => {
+    const markup = renderToStaticMarkup(
+      React.createElement(TelemetryBadge, {
+        variant: 'caption',
+        status: 'STATIC',
+        syncDate: '2024년 확정',
+      }),
+    );
+    expect(markup).toContain('data-telemetry-variant="caption"');
+    expect(markup).toContain('data-telemetry-status="STATIC"');
+    expect(markup).toContain('2024년 확정');
+    expect(markup).not.toContain('>STATIC<');
+    expect(markup).not.toContain('정적');
+  });
 });
 
 describe('Deep Sea Command V2 — VesselTopSVG', () => {
