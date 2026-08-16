@@ -4,9 +4,104 @@
 > - **정적 청크까지 보호한 이유:** 빌드 청크에서 실제 선박·하역 수치가 확인됐다. 따라서 로그인 화면을 Next 실행 자산 없는 서버 HTML로 제공하고, 청크도 인증 뒤로 옮겼다. 인증된 페이지·API·청크는 `private, no-store`, 서비스워커는 기존 CacheStorage를 전부 삭제하고 모든 동일 출처 요청을 network-only로 처리하며 로그아웃도 CacheStorage를 비운다.
 > - **과거 비밀번호 폐기:** `/api/operation-access`의 GET·POST·DELETE는 모두 410이고 쿠키를 발급하지 않는다. `lib/server/operation-access.ts` 호환 심볼도 항상 거부하도록 무력화했으며 `SILLA_OPERATION_PASSWORD`·`SILLA_OPERATION_ACCESS_SECRET`을 더 이상 읽지 않는다. Atuna 가격·일일 API의 개발 우회와 90일 공개 프리뷰도 제거하고 route-level 소유자 검증 뒤에만 원문을 반환한다.
 > - **메일:** 기존 Gmail OAuth·MFA·위험 작업 확인 흐름은 유지하되, 메일 서버 요청도 먼저 정확한 Google 소유자 계정을 재검증한다.
-> - **검증:** `npm run verify` exit 0 — ESLint 오류 0, TypeScript, Vitest **92파일·536테스트**, API cache **156/156**, Next build **117페이지 + Proxy**, bundle **32라우트** 통과. 로컬 Production에서 미인증 `/unloading` 307, API 401, 정적 청크·아이콘 307, 로그인 200+CSP/no-store를 확인했다. Chromium 1440px·390px 모두 overflow 0, 대시보드 데이터 노출 0, page/console error 0. 로컬 전용 난수 인증(`VERCEL*` 존재 시 강제 거부·loopback 전용)으로 하역 데스크톱/모바일/키보드/새로고침/API·청크 오류격리 E2E도 PASS했다.
-> - **상태/다음 단계:** 분리 worktree `codex/google-owner-auth-20260816`의 로컬 구현이며 **push·배포·Vercel/Supabase 설정 변경은 하지 않았다.** 배포 전 Supabase Google provider를 활성화하고 허용 redirect URL에 `https://leedonggun.co.kr/auth/callback`을 등록한다. Vercel에는 Sensitive Production 변수 `DASHBOARD_OWNER_EMAIL=<본인 Google 이메일>`과 `DASHBOARD_PUBLIC_BASE_URL=https://leedonggun.co.kr`을 설정한다. 사용자가 명시적으로 배포를 요청하면 병합·Production 배포 후 실제 Google 로그인, 다른 계정 거부, 1440px·390px, API·청크 401/307/no-store를 운영에서 재검증한다.
-> - **마지막 업데이트:** 2026-08-16 17:53 KST.
+> - **검증:** 최신 `origin/main` 통합 후 `npm run verify` exit 0 — ESLint 오류 0(기존 경고 4), TypeScript, Python **3/3**, Vitest **105파일·579테스트**(2개 skip), API cache **157/157**, Next build **117페이지 + Proxy**, Fleet client leak **102파일·합성 경계 3건**, bundle **32라우트** 통과. Next 이미지 최적화 요청은 원본 인증 헤더를 전달하지 않으므로 전역 `unoptimized`로 바꾸고 회귀 테스트를 추가했다. 로컬 Production 하역 E2E도 데스크톱·모바일·키보드·새로고침·API/청크 오류격리까지 PASS했다.
+> - **운영 인증 설정:** Google Cloud OAuth 클라이언트에 Supabase callback을 추가했고, Supabase Google provider를 활성화했다. Supabase Site URL은 `https://leedonggun.co.kr`, 허용 redirect URL은 `https://leedonggun.co.kr/auth/callback` 단일값이다. Vercel Production에는 Sensitive `DASHBOARD_OWNER_EMAIL`과 고정 `DASHBOARD_PUBLIC_BASE_URL`을 등록했다. 기존 메일 Gmail redirect URI는 그대로 보존했다.
+> - **독립 반증에서 잡아 고친 것:** 로그아웃 상태의 기존 서비스워커도 `/sw.js` v4를 공개 수신해 과거 캐시를 삭제한다. Fleet 상세는 별도 환경변수 교집합 대신 전역 Google owner를 fresh `getUser()`로 재검증한 뒤 기존 AAL2를 그대로 요구한다. 메일·Fleet 공용 Supabase 쿠키도 Production `Secure`로 통일했다. Vercel 보조 호스트의 page/login/start/callback은 PKCE 전에 운영 호스트로 정규화한다. 공개 하역 웹훅은 `secret123` fallback을 없애고 32자 이상 비밀값·상수시간 검증을 요구하며, 현재 Production 비밀값이 없으므로 503 fail-closed다.
+> - **상태/다음 단계:** 분리 worktree `codex/google-owner-auth-20260816`에서 최신 main 병합과 운영 설정을 완료했다. PR 병합·Production 배포 후 실제 Google 소유자 로그인, 다른 계정 거부, 1440px·390px, API·정적 JSON·이미지·청크 401/307/no-store와 캐시 삭제를 운영에서 재검증한다.
+> - **마지막 업데이트:** 2026-08-16 18:59 KST.
+
+## 2026-08-16 — 참치 교역 위젯을 FAO 2024 벌크로 교체 [CC]
+
+무역 계열 위젯 5~6개가 2023년에 멈춰 있던 문제를 원본 교체로 끝냈다.
+
+**받은 것** — FAO FishStat 무역 벌크 3종(GlobalTrade Quantity/Value, PP, Partners). 원본은
+`agri_data/01_수산물(Seafood)/tuna/00_참치_관련자료/10_원본데이터셋/01_FAO_FishStat_추출/` 에 보관.
+`TRADE_QUANTITY.csv` 는 1976~2024년 129만 행. Partners·PP 는 이번에 쓰지 않고 나중을 위해 남겨 뒀다.
+
+**함정 하나** — ISSCFC 접두사를 `035.02`(건조·염장)로 잡으면 틸라피아·연어·장어가 딸려 온다.
+실측하니 그 접두사 아래 117개 코드 중 참치류는 8개뿐이었다. `.5.6` 가지까지 내려가야 참치·가다랑어·새치다.
+이걸 고치기 전 세계 수입액이 241.7억 달러로 부풀어 있었고, 고친 뒤 169.3억 달러가 맞는 값이다.
+
+**바뀐 것**
+- `scripts/build_tuna_trade_data.py` 신설 → `public/data/tuna_trade_v1.json`. 2024년 미만이면 빌드가 거부한다.
+- 낡은 위젯 6개(w07·w08·w17·w20·w21·w23) 큐레이션에서 제거. 46개 → 40개.
+- 2024년 실측 차트 6종 신설: 품목군 단가, 수출·수입 상위 10개국, 태국 교역, 한국 무역수지, 한국 수출단가.
+- 「」 가드가 차트 슬롯도 보도록 넓혔다. 이전엔 큐레이션 위젯만 봐서 직접 그린 차트 지목이 검증 밖이었다.
+
+**배운 것 (교육 포인트)** — 톤당 단가가 원어 2,281 → 완제품 5,227 → **반제품(로인·필렛) 9,914 달러**다.
+"가공할수록 톤당 비싸진다"는 직관이 여기서 깨진다. 로인은 순수 가식부고 통조림은 액체·용기 무게가 함께 계량되기 때문이다.
+비싼 것은 가공 단계가 아니라 가식부 농도다.
+
+**한국 위치** — 2024년 수출단가 2,538 달러/톤 대 세계평균 3,657 (−30.6%). 9년 내내 평균을 밑돌았고 격차가 좁혀지지 않았다.
+무역수지는 +473백만 달러 흑자지만 그 출처는 많이 판 것이지 비싸게 판 것이 아니다.
+
+**태국 어획 순위 정정** — 아티팩트에 4,318톤 세계 55위(0.08%)로 적혀 있던 것은 2022년 추출본 기준이었다.
+벌크로 다시 세니 2024년 6,044톤 · 131개 보고국 중 53위 · 0.10% 다. 세계 합계 5,908,076톤으로 JSON 과 반올림 오차 내 일치.
+
+**배포** — `e249f93` → Vercel 프로덕션 READY (leedonggun.co.kr). `/data/tuna_trade_v1.json` 이 기준연도 2024 로 서빙되는 것까지 확인.
+
+**회귀 가드** — 서술의 교역 수치(품목군 단가 3종·한국 수출단가·세계평균)가 JSON 과 어긋나면 테스트가 실패한다.
+9,914 를 9,900 으로 바꿔 실제로 걸리는 것까지 확인했다. 기준연도가 2024 미만이어도 실패한다.
+
+**출처 등재** — `docs/2026-08-16_tuna_valuechain_sources.md` 축3에 3-15~3-18 추가.
+기관 공표치가 아니라 벌크에서 직접 집계한 값이라 **어느 스크립트가 무엇을 어떻게 셌는지**가 출처의 일부다.
+
+**자기검증으로 잡은 것 — 바스켓이 반대 방향으로도 틀렸다.** 넓게 잡으면 남이 딸려 온다는 것만 보고
+좁게 잡으면 참치가 빠진다는 것을 안 봤다. 코드 이름 검색이 아니라 **세그먼트가 5 다음 6 인지**로 전수를 훑으니
+살코기(신선·냉동) · 다진 조제품 · 활 참다랑어가 빠져 있었다 — 2024년 수입 7.67억 USD, 전체의 4.5%.
+접두사 9개 → 13개로 넓혀 다시 집계했다.
+
+| | 수정 전 | 수정 후 |
+| --- | --- | --- |
+| 세계 수입 | 169.3억 USD · 442만 t | **176.9억 USD · 458만 t** |
+| 원어 / 완제품 / 반제품 단가 | 2,281 / 5,227 / 9,914 | **2,296 / 5,194 / 9,818** |
+| 수출 2위 | 에콰도르 1,649 | **스페인 1,726** (순위 역전) |
+| 미국 수입 | 1,917 (11.32%) | **2,172 (12.28%)** |
+| 한국 단가 격차 | −30.6% | **−31.4%** |
+
+단가 서열(원어 < 완제품 < 반제품)은 그대로다 — 이 페이지가 가르치려는 결론은 바뀌지 않았다.
+
+**알고 넣은 것 / 뺀 것** — 삼치는 참치가 아니지만 FAO 의 이 그룹 정의에 들어 있다. 원어 수입의 0.18%라
+규모가 작고 표준 그룹에서 한 종만 손으로 빼면 남과 대조할 수 없어 넣은 채로 밝힌다.
+참치 어분은 사료라 식품 밸류체인 밖으로 보고 뺐다.
+
+**금액·물량 커버리지 확인** — 2024년 참치류 행이 두 파일에서 3,523행으로 정확히 일치하고 한쪽에만 있는 키가 0건이다.
+단위는 Q_tpw(제품중량 톤)과 V_USD_1000(천 USD)이라 단가 = 천USD/톤 × 1000 = USD/톤 이 맞다.
+접두사 13개는 서로 부모-자식으로 겹치지 않아 이중계상도 없다.
+
+**커밋** — `e249f93`(교체) · `7a71607`(각주) · `8e52e62`(가드) · `0e9e41d`(출처) · 바스켓 정정. 모두 main 배포.
+
+**다음 단계** — Partners 데이터로 「누가 누구에게 파는가」 양자 교역 위젯을 붙일 수 있다. PP(가공품 생산)는 2023년까지라 지금은 대기.
+
+> 🚢 **2026-08-16 17:42 KST — 해양수산본부 일일보고 기반 `/fleet` 보안 배포·운영 QA 완료** [Codex]:
+> - Google Drive 원문 DOCX 135건을 날짜순으로 파싱해 태평양·대서양·운반선·연승 최신 보고와 540회 검산 근거를 생성한다. `-`는 `null`로 유지하고 원문 금액·괄호값·보고 합계·상세 행을 strict 계약으로 교차 검증하며, 공개 화면에는 합계·전일 증감·품질 건수만 둔다.
+> - 최신 좌표·비고·일정·적재 상세는 Git 추적과 클라이언트 번들에서 제외했다. 무시된 최소 detail을 canonical SHA-256으로 공개 집계에 결속하고, 서버 환경변수에서만 읽어 관리자·선단 허용목록 교집합, 확인된 이메일, Supabase AAL2를 모두 통과한 요청에만 반환한다.
+> - `/api/fleet/daily`는 모든 결과에 `private, no-store`, `Vary: Cookie`, `nosniff`를 적용한다. 서비스워커는 `/api/fleet/`를 network-only로 처리하고 이전 API 캐시를 삭제하며, `/mail/login?next=/fleet`은 정확한 반환 경로만 허용한다.
+> - 최신 `main` 통합 후 fresh `npm run verify` 통과: ESLint 0 errors·기존 5 warnings, Python 3/3, Vitest 104파일·561테스트, API cache 157/157, production build 117 pages, 정적 파일 103개에서 실제 보호 상세 33개 누출 0, bundle 32 routes PASS다. 로컬 프로덕션 1440×1000·390×844 브라우저에서 4탭·23개 지도 마커·툴팁·인증 거부·overflow 0을 확인했다.
+> - PR **#457**을 squash merge SHA `4cccb3d171b199a9d42b76829d49f7d5c573d3aa`로 병합했다. main App Quality Gate `31936439928`과 Data Freshness Audit `31936439926`이 성공했고, Production deployment `5929172216`도 Ready다. 현재 `leedonggun.co.kr` alias는 후속 main `e249f93`의 `dpl_G3Dt58hBZzjHCGZHSjYYdFRMYEqX`를 제공하며 Fleet merge SHA를 조상으로 포함한다.
+> - 실서비스 `/fleet`은 HTTP 200이고 잠금 상태에서도 원문 기반 공개 KPI 335·3,957·75,514.8·9,922.3(MT)을 표시한다. 비인증 `/api/fleet/daily`는 401 `authentication_required`, `private, no-store`, `Vary: Cookie`, `nosniff`이며 브라우저 CacheStorage의 `/api/fleet/` 항목은 0이다. 현재 페이지가 참조하는 정적 JS 13개에서 실제 보호 좌표·비고·적재계획 33개 누출 0을 확인했다.
+> - 운영 Chromium 1440×1000·390×844에서 잠금 화면, 최신 KPI 애니메이션 최종값, 상세 DOM 0, overflow 0, page error·자체 HTTP 오류 0을 확인했다. Preview 검증용 branch-scoped 변수 5개는 병합 후 제거했고 Production Sensitive 변수는 유지했다.
+> - **다음 단계**: 실제 관리자+AAL2 브라우저 세션은 자격증명을 보유하지 않아 운영 상세 4탭을 실계정으로 열지 않았다. 관리자가 `/mail/login?next=/fleet`에서 로그인·2단계 인증 후 최신 선박 행·지도 툴팁을 1회 확인한다. 새 DOCX 수신 시 `scripts/sync_fleet_daily_reports.py`로 재생성하고 동일 누출 게이트를 거쳐 배포한다.
+
+> 🧩 **2026-08-16 17:00 KST — 「시장 이해 > 참치」 반쪽 카드 3건 수정** [CC]:
+> - **사용자 지적:** 일부 위젯 카드 하단에 현황분석·실행전략이 없고 큰 여백만 있다.
+> - **원인 둘.** ① 원본 93위젯 중 3개가 SIT/TAK 가 비어 있었다(w107_rfmo_kobe_radar · w106_kr_frozen_canned_gap · w102_spain_loin_outsourcing). ② `.widgetGrid` 가 기본값 `align-items: stretch` 라 **짧은 카드가 같은 행 최고 높이까지 늘어났다** — 실측 결과 내용 464px 카드가 1040px 로 늘어 **576px 여백**이 생겼다.
+> - **그리드:** `align-items: start` 로 바꿨다. 카드마다 서술 길이가 달라 높이가 다른 게 정상이고, 아랫단이 들쭉날쭉한 편이 반쪽 카드보다 낫다. 전 단계 실측 여백 576px → **2px**.
+> - **SIT/TAK 보충 2건:** 큐레이션 스크립트에 `SIT_TAK_FILLINS` 를 두고 **그 위젯 자신의 데이터에서만** 끌어내 채웠다. 원본에 있던 문장은 절대 덮어쓰지 않는다(비었을 때만). `narrativeFilled=true` 로 표시하고 **카드 출처 줄에 「현황·실행지침은 이 차트의 데이터에서 끌어냈다」를 명기**한다 — 원본 위젯의 문장인 것처럼 두면 이 페이지의 존재 이유에 어긋난다.
+> - **위젯 1건 제거:** `w102_spain_loin_outsourcing` 은 **출처·방법론·연도가 전부 없고**, 60/40 이라는 값이 이 페이지가 이미 싣고 있는 FAO GLOBEFISH 실측(2025년 조리냉동 로인 115,850톤 대 통마리냉동 99,546톤 = 54/46)과 어긋난다. 출처 없는 차트가 출처 있는 수치와 충돌하는 건 차트가 없는 것보다 나쁘다. 위젯 47 → 46개.
+> - **가드 테스트 추가:** 위젯에 현황·실행지침이 없거나 방법론·출처가 둘 다 없으면 실패한다.
+> - **검증:** `npm run verify` exit 0 — 91파일·523테스트. 브라우저로 10개 단계 전수 재확인(TakeawayBox 결측 0, 최대 여백 2px). 배포 `39da74b`.
+> - **마지막 업데이트:** 2026-08-16 17:00 KST.
+>
+> 📱 **2026-08-16 17:15 KST — `/market` iPhone·iPad Atuna 전체 이력 수정 최종 배포 완료** [Codex]:
+> - 본 수정 PR **#450**은 squash merge `6792b2a4fa7f289fff4136523491b92f5bdfcde1`, Production deployment **5928593404**로 반영됐다. 메뉴 확인과 Atuna 권한을 같은 12시간 HMAC HttpOnly 쿠키로 통합했고, Vercel Sensitive Production 변수와 macOS 키체인에만 새 자격증명을 보관한다.
+> - 배포 QA 중 iPhone에서 잠금 성공 뒤 열린 drawer가 로그인 화면을 덮는 후속 UX 회귀를 발견했다. DELETE와 후속 GET이 모두 `granted:false`인 성공 경로에서만 drawer를 닫도록 RED→GREEN 수정했고, 독립 반증 리뷰 blocking 0을 거쳐 PR **#459** squash merge `137d337ac8e4c33f0c7b170e6fe9e1b482615c15`로 반영했다.
+> - 최신 main App Quality Gate **31935605495**는 전체 verify와 하역 브라우저 E2E를 포함해 성공했다. 통합 로컬 게이트도 ESLint 오류 0건(기존 경고 5건), TypeScript, Vitest **91파일·524테스트**, API cache **156/156**, Production build 117페이지, bundle 32라우트를 통과했다.
+> - 후속 Production deployment **5929029927**가 merge SHA `137d337a`로 성공했다. 실제 `leedonggun.co.kr/market`을 Chromium 1440×1000, WebKit iPad 834×1194, WebKit iPhone 390×664에서 새 브라우저로 전수 확인했다.
+> - 세 환경 모두 로그인 전 **13행** → 로그인 후 **739행(1994-01-01~2026-08-06)**, 차트 원천 **233행(2022-01-01~2026-08-06)**, SKJ/YF **5/3선**, 선의 시간축 커버리지 99.57%/97.84%, 문서·패널 overflow 0을 확인했다. iPad가 시작 눈금을 자동 생략해도 실제 선은 전체 기간을 가로지른다.
+> - 서비스워커는 접근 권한·Atuna API를 network-only로 처리하고 CacheStorage 민감 항목은 로그인 전·전체 이력·잠금 후 모두 0이다. 쿠키는 HttpOnly·Secure·SameSite=Lax·Path=/이며, 잠금 뒤 쿠키·세션 표식이 제거되고 세 환경 모두 다시 13행으로 복귀했다. iPhone drawer도 닫혔다.
+> - 자체 page·console·HTTP 오류는 0이다. 외부 Google 광고 403만 별도 격리했다. **필수 후속 작업 없음.**
+> - **마지막 업데이트:** 2026-08-16 17:15 KST.
 >
 > 📅 **2026-08-16 16:40 KST — 「시장 이해 > 참치」 전 수치 기준연도 재검수·갱신** [CC]:
 > - **사용자 지적이 맞았다.** FAO FishStat 어획통계는 2026-03 릴리스로 **현재 기준연도 1950–2024** 인데 내 집계는 2022에서 끊겨 있었다. 원인은 `FishStat_Capture_tuna_66species.csv`(2024 릴리스 시점 사전필터 추출본)를 쓴 것 — **같은 폴더의 벌크 `Capture_Quantity.csv`(105만 행, 1950–2024)가 정답이었다.**

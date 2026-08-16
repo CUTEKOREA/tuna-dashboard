@@ -56,10 +56,12 @@ describe('관리자 메일 메뉴 계약', () => {
     expect(loginPage).toContain('index: false');
     expect(loginPage).toContain('follow: false');
     expect(loginComponent).toContain('action="/auth/start"');
-    expect(loginComponent).toContain('name="next" value="/mail"');
+    expect(loginComponent).toContain('name="next" value={returnTo}');
     expect(oauthStart).toContain('client.auth.signInWithOAuth');
     expect(oauthStart).toContain("provider: 'google'");
     expect(loginComponent).not.toContain('signInWithPassword');
+    expect(loginPage).toContain("candidate === '/fleet' || candidate === '/mail'");
+    expect(loginPage).toContain("? candidate : '/mail'");
     expect(loginComponent).not.toContain('signUp');
     expect(loginComponent).not.toContain('localStorage');
     expect(loginComponent).not.toContain('sessionStorage');

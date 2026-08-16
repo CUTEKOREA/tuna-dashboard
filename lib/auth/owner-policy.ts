@@ -47,6 +47,8 @@ const PUBLIC_AUTH_PATHS = new Set([
 
 const PUBLIC_SERVICE_PATHS = new Set([
   '/api/webhooks/unloading',
+  // 로그아웃 상태의 기존 서비스워커도 새 버전을 받아 과거 캐시를 삭제해야 한다.
+  '/sw.js',
 ]);
 
 const DEFAULT_NEXT_PATH = '/market';

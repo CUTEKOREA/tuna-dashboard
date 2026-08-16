@@ -91,6 +91,7 @@ describe('대시보드 단일 구글 계정 보안 경계', () => {
     const root = process.cwd();
     const pageSource = readFileSync(join(root, 'app/page.tsx'), 'utf8');
     const serverClientSource = readFileSync(join(root, 'lib/auth/server-supabase.ts'), 'utf8');
+    const requestClientSource = readFileSync(join(root, 'lib/auth/supabase-request.ts'), 'utf8');
 
     expect(existsSync(join(root, 'proxy.ts'))).toBe(true);
     expect(existsSync(join(root, 'lib/auth/login-response.ts'))).toBe(true);
@@ -101,6 +102,7 @@ describe('대시보드 단일 구글 계정 보안 경계', () => {
     expect(pageSource).not.toContain('signUp');
     expect(pageSource).not.toContain('silla-operation-access');
     expect(serverClientSource).toContain("secure: process.env.NODE_ENV === 'production'");
+    expect(requestClientSource).toContain("secure: process.env.NODE_ENV === 'production'");
   });
 
   it('정확히 허용된 구글 계정만 승인한다', () => {
@@ -145,14 +147,48 @@ describe('대시보드 단일 구글 계정 보안 경계', () => {
     }, OWNER_EMAIL)).toEqual({ ok: false, status: 403, code: 'google_account_required' });
   });
 
-  it('로그인·콜백과 서명 웹훅만 공개 경로로 둔다', () => {
+  it('로그인·콜백·서명 웹훅과 캐시 삭제 서비스워커만 공개 경로로 둔다', () => {
     expect(isPublicDashboardPath('/login')).toBe(true);
     expect(isPublicDashboardPath('/mail/login')).toBe(true);
     expect(isPublicDashboardPath('/auth/start')).toBe(true);
     expect(isPublicDashboardPath('/auth/callback')).toBe(true);
     expect(isPublicDashboardPath('/api/webhooks/unloading')).toBe(true);
+    expect(isPublicDashboardPath('/sw.js')).toBe(true);
     expect(isPublicDashboardPath('/market')).toBe(false);
     expect(isPublicDashboardPath('/api/unloading-history')).toBe(false);
+  });
+
+  it('공개 하역 웹훅은 기본 토큰 없이 독립적으로 fail-closed 한다', async () => {
+    const route = await import('../app/api/webhooks/unloading/route');
+    vi.stubEnv('UNLOADING_WEBHOOK_SECRET', '');
+
+    const unconfigured = await route.POST(new Request(
+      'https://dashboard.example/api/webhooks/unloading?token=secret123',
+      { method: 'POST' },
+    ));
+    expect(unconfigured.status).toBe(503);
+
+    const secret = 'random-webhook-secret-that-is-longer-than-32-characters';
+    vi.stubEnv('UNLOADING_WEBHOOK_SECRET', secret);
+    const rejected = await route.POST(new Request(
+      'https://dashboard.example/api/webhooks/unloading?token=secret123',
+      { method: 'POST' },
+    ));
+    expect(rejected.status).toBe(401);
+
+    const formData = new FormData();
+    const authenticated = await route.POST(new Request(
+      'https://dashboard.example/api/webhooks/unloading',
+      {
+        method: 'POST',
+        headers: { 'x-unloading-webhook-secret': secret },
+        body: formData,
+      },
+    ));
+    expect(authenticated.status).toBe(400);
+    await expect(authenticated.json()).resolves.toEqual({
+      error: 'No text body found in email',
+    });
   });
 
   it('외부·인증 경로로 향하는 next 값을 대시보드 기본 경로로 되돌린다', () => {
@@ -179,6 +215,15 @@ describe('대시보드 단일 구글 계정 보안 경계', () => {
     expect(apiResponse.headers.get('cache-control')).toContain('no-store');
   });
 
+  it('미인증 기존 브라우저도 캐시 삭제 서비스워커 갱신은 받을 수 있다', async () => {
+    const response = await proxy(new NextRequest('https://dashboard.example/sw.js'));
+
+    expect(response.status).toBe(200);
+    expect(response.headers.get('x-middleware-next')).toBe('1');
+    expect(response.headers.get('cache-control')).toContain('no-store');
+    expect(authMocks.getClaims).not.toHaveBeenCalled();
+  });
+
   it('로그인 화면은 공개 실행 청크 없이 서버 HTML과 자체 CSP만 사용한다', async () => {
     const response = await proxy(new NextRequest(
       'https://dashboard.example/login?next=%2Funloading%3Fday%3D15',
@@ -196,10 +241,39 @@ describe('대시보드 단일 구글 계정 보안 경계', () => {
     expect(authMocks.getClaims).not.toHaveBeenCalled();
   });
 
+  it('보조 Vercel 호스트의 로그인 요청은 PKCE 전에 운영 호스트로 정규화한다', async () => {
+    const pageResponse = await proxy(new NextRequest(
+      'https://preview-alias.vercel.app/unloading?day=15',
+    ));
+    expect(pageResponse.status).toBe(307);
+    expect(pageResponse.headers.get('location')).toBe(
+      'https://dashboard.example/login?next=%2Funloading%3Fday%3D15',
+    );
+
+    const loginResponse = await proxy(new NextRequest(
+      'https://preview-alias.vercel.app/login?next=%2Funloading',
+    ));
+
+    expect(loginResponse.status).toBe(307);
+    expect(loginResponse.headers.get('location')).toBe(
+      'https://dashboard.example/login?next=%2Funloading',
+    );
+    expect(authMocks.getClaims).toHaveBeenCalledTimes(1);
+  });
+
   it('서버 OAuth 시작과 콜백이 안전한 복귀 경로로 구글 세션을 연결한다', async () => {
     const startRoute = await import('../app/auth/start/route');
-    const startResponse = await startRoute.GET(new NextRequest(
+    const canonicalStart = await startRoute.GET(new NextRequest(
       'https://forged-host.example/auth/start?next=%2Funloading%3Fday%3D15',
+    ));
+    expect(canonicalStart.status).toBe(307);
+    expect(canonicalStart.headers.get('location')).toBe(
+      'https://dashboard.example/auth/start?next=%2Funloading%3Fday%3D15',
+    );
+    expect(authMocks.signInWithOAuth).not.toHaveBeenCalled();
+
+    const startResponse = await startRoute.GET(new NextRequest(
+      'https://dashboard.example/auth/start?next=%2Funloading%3Fday%3D15',
     ));
     expect(startResponse.status).toBe(307);
     expect(startResponse.headers.get('location')).toBe('https://accounts.example/authorize');
@@ -214,8 +288,17 @@ describe('대시보드 단일 구글 계정 보안 경계', () => {
 
     authMocks.getClaims.mockResolvedValue({ data: { claims: GOOGLE_CLAIMS }, error: null });
     const callbackRoute = await import('../app/auth/callback/route');
-    const callbackResponse = await callbackRoute.GET(new NextRequest(
+    const canonicalCallback = await callbackRoute.GET(new NextRequest(
       'https://forged-host.example/auth/callback?code=oauth-code&next=%2Funloading%3Fday%3D15',
+    ));
+    expect(canonicalCallback.status).toBe(307);
+    expect(canonicalCallback.headers.get('location')).toBe(
+      'https://dashboard.example/auth/callback?code=oauth-code&next=%2Funloading%3Fday%3D15',
+    );
+    expect(authMocks.exchangeCodeForSession).not.toHaveBeenCalled();
+
+    const callbackResponse = await callbackRoute.GET(new NextRequest(
+      'https://dashboard.example/auth/callback?code=oauth-code&next=%2Funloading%3Fday%3D15',
     ));
     expect(authMocks.exchangeCodeForSession).toHaveBeenCalledWith('oauth-code');
     expect(callbackResponse.status).toBe(307);
@@ -292,5 +375,11 @@ describe('대시보드 단일 구글 계정 보안 경계', () => {
     expect(unstable_doesMiddlewareMatch({ config, nextConfig: {}, url: '/data/private.json' })).toBe(true);
     expect(unstable_doesMiddlewareMatch({ config, nextConfig: {}, url: '/_next/static/chunk.js' })).toBe(true);
     expect(unstable_doesMiddlewareMatch({ config, nextConfig: {}, url: '/icons/icon-192.png' })).toBe(true);
+  });
+
+  it('인증 이미지의 요청 헤더를 잃는 최적화 경로를 사용하지 않는다', () => {
+    const nextConfigSource = readFileSync(join(process.cwd(), 'next.config.mjs'), 'utf8');
+
+    expect(nextConfigSource).toMatch(/images:\s*\{\s*unoptimized: true,/);
   });
 });

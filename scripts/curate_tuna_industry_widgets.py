@@ -75,7 +75,6 @@ STAGES: list[dict] = [
         "widgets": [
             "w15_canning_factory",
             "w25_byproduct_cashcow",
-            "w102_spain_loin_outsourcing",
             "w49_yield_labor",
         ],
     },
@@ -100,9 +99,6 @@ STAGES: list[dict] = [
         "pillar": "S3",
         "widgets": [
             "w106_kr_frozen_canned_gap",
-            "w20_thailand_paradox",
-            "w07_export",
-            "w08_import",
             "w65_export_price_benchmark",
             "w58_atq_loin_export",
         ],
@@ -157,9 +153,6 @@ STAGES: list[dict] = [
         "pillar": "S4",
         "widgets": [
             "w13_korea_empire",
-            "w17_korea_margin",
-            "w21_korea_price_truth",
-            "w23_korea_surplus",
             "w68_vessel_productivity",
             "w47_korea_thailand_pipeline",
         ],
@@ -188,7 +181,6 @@ TITLE_OVERRIDES: dict[str, str] = {
     # 04 1차 가공
     "w15_canning_factory": "가공 처리량과 통조림 수출액의 국가별 분리",
     "w25_byproduct_cashcow": "가공 수율과 부산물 비중",
-    "w102_spain_loin_outsourcing": "스페인의 아시아산 로인 조달 비중",
     "w49_yield_labor": "국가별 가공 수율과 인건비 비교",
     "w58_atq_loin_export": "EU 자율관세할당(ATQ)과 로인 수출",
     # 05 최종 가공
@@ -198,10 +190,7 @@ TITLE_OVERRIDES: dict[str, str] = {
     "w66_petfood_capacity_defense": "부산물 펫푸드 전환과 가동률",
     # 06 교역과 통관
     "w106_kr_frozen_canned_gap": "한국 냉동 원어와 통조림의 단가 차이",
-    "w20_thailand_paradox": "태국의 어획량과 수출액 대비",
     "w47_korea_thailand_pipeline": "한국 원어에서 EU 수출까지의 경로",
-    "w07_export": "참치 조제품 수출 상위 10개국",
-    "w08_import": "참치 조제품 수입 상위 10개국",
     "w65_export_price_benchmark": "국가별 캔참치 수출 단가 비교",
     # 07 소비
     "w43_retail_price_map": "유럽 16개국 캔참치 소매가 비교",
@@ -223,10 +212,41 @@ TITLE_OVERRIDES: dict[str, str] = {
     "w88_eu_landing_obligation": "EU 투기금지의무의 적용 범위",
     # x03 한국
     "w13_korea_empire": "한국 참치 어획량과 세계 순위",
-    "w17_korea_margin": "한국 수출 단가와 세계 평균 대비",
-    "w21_korea_price_truth": "한국의 수출 단가 포지션",
-    "w23_korea_surplus": "원양 조업의 무역수지 기여",
     "w68_vessel_productivity": "선박별 생산성 분포",
+}
+
+# ── SIT/TAK 보충 ────────────────────────────────────────────────────────
+# 원본 93위젯 중 몇 개는 현황(SIT)·실행지침(TAK)이 비어 있다. 룰북 W-04 는 둘을 의무로
+# 두므로 그대로 두면 카드가 반쪽이 되고, 격자에서 옆 카드 높이에 맞춰 늘어나 큰 여백이 생긴다.
+#
+# 여기서 채우는 문장은 **그 위젯 자신의 데이터에서만** 끌어낸다. 밖에서 사실을 들여오지
+# 않는다. 원본에 있던 SIT/TAK 는 절대 덮어쓰지 않는다 — 비어 있을 때만 넣는다.
+SIT_TAK_FILLINS: dict[str, dict[str, str]] = {
+    "w107_rfmo_kobe_radar": {
+        "situation": (
+            "다섯 기구 관할 수역의 어획강도(F/FMSY)가 모두 임계선 1.0 아래에 있다. "
+            "대서양(ICCAT)이 0.89로 가장 높아 임계선에 가장 가깝고, 인도양(IOTC) 0.75가 그다음이다. "
+            "한국 원양의 주력 수역인 중서태평양(WCPFC)은 0.35로 다섯 곳 중 가장 낮다."
+        ),
+        "takeaway": (
+            "자원 여유와 규제 강도는 같이 가지 않는다. 여유가 가장 큰 중서태평양이 "
+            "입어료와 집어장치 금어가 가장 촘촘한 수역이기도 하다. "
+            "해역을 옮기는 판단은 자원 지표만이 아니라 그 수역의 규제 원가까지 함께 놓고 해야 한다."
+        ),
+    },
+    "w106_kr_frozen_canned_gap": {
+        "situation": (
+            "냉동 원어와 통조림의 수입단가 격차가 2022년 0.52달러에서 2024년 1.44달러까지 벌어졌다가 "
+            "2025년 0.16달러로 급격히 좁혀졌다. 원어 단가가 3.28달러에서 4.50달러로 37% 뛴 반면 "
+            "통조림 단가는 4.71달러에서 4.66달러로 오히려 내렸기 때문이다."
+        ),
+        "takeaway": (
+            "가공 부가가치는 고정된 몫이 아니라 원료가에 눌리는 잔여분이다. "
+            "원어값이 뛴 해에 판가 전가가 늦으면 그 차이가 그대로 마진에서 빠진다. "
+            "원어 조달을 장기·분산 계약으로 묶고 판가 개정 주기를 원료가 주기에 맞추는 것이 "
+            "이 그림에서 나오는 실무 과제다."
+        ),
+    },
 }
 
 # SIT/TAK 안의 과장 표현은 손대지 않되(검증된 원문 보존), 제목에 남은 대괄호 태그는 지운다.
@@ -394,8 +414,13 @@ def main() -> None:
                     "unit": source.get("unit"),
                     "source": source.get("source"),
                     "methodology": source.get("methodology"),
-                    "situation": source.get("situation"),
-                    "takeaway": source.get("takeaway"),
+                    "situation": (source.get("situation") or "").strip()
+                    or SIT_TAK_FILLINS.get(widget_id, {}).get("situation"),
+                    "takeaway": (source.get("takeaway") or "").strip()
+                    or SIT_TAK_FILLINS.get(widget_id, {}).get("takeaway"),
+                    # 원본에 없어 이 페이지가 채운 문장인지 표시한다 (출처 표기의 정직성)
+                    "narrativeFilled": widget_id in SIT_TAK_FILLINS
+                    and not (source.get("situation") or "").strip(),
                     "syncDate": source.get("syncDate"),
                     # 데이터가 어느 해에서 끝나는지. 화면에 그대로 띄워 연식을 드러낸다.
                     "dataYear": detect_data_year(source),
@@ -435,6 +460,10 @@ def main() -> None:
                 "데이터·출처·방법론·SIT·TAK 는 원문 그대로 보존한다."
             ),
             "텔레메트리": "런타임 fetch 가 없는 정적 재사용이므로 전부 SYNCED (L-09)",
+            "서술보충": (
+                "원본에 현황·실행지침이 비어 있던 위젯은 그 위젯 자신의 데이터에서만 끌어내 채웠고 "
+                "narrativeFilled=true 로 표시했다. 원본에 있던 문장은 덮어쓰지 않는다."
+            ),
             "연식표기": (
                 "각 위젯에 dataYear(데이터 마지막 연도)를 붙여 화면에 띄운다. "
                 "원본 기관의 공표 주기가 도메인마다 달라 위젯끼리 기준연도가 어긋나는데, "

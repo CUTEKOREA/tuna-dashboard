@@ -11,11 +11,11 @@ export const dynamic = 'force-dynamic';
 export const revalidate = 0;
 
 function loginRedirect(
-  request: NextRequest,
+  publicOrigin: string,
   error: OwnerAccessCode | 'oauth_failed',
   nextPath: string,
 ): NextResponse {
-  const loginUrl = new URL('/login', request.url);
+  const loginUrl = new URL('/login', publicOrigin);
   loginUrl.searchParams.set('error', error);
   loginUrl.searchParams.set('next', nextPath);
   return NextResponse.redirect(loginUrl, {
@@ -27,17 +27,26 @@ function loginRedirect(
 }
 
 export async function GET(request: NextRequest) {
-  const code = request.nextUrl.searchParams.get('code');
   const nextPath = normalizeDashboardNextPath(request.nextUrl.searchParams.get('next'));
-  if (!code || request.nextUrl.searchParams.has('error')) {
-    return loginRedirect(request, 'oauth_failed', nextPath);
-  }
 
   try {
     const publicOrigin = getDashboardPublicOrigin();
+    if (request.nextUrl.origin !== publicOrigin) {
+      const canonicalUrl = new URL(`/auth/callback${request.nextUrl.search}`, publicOrigin);
+      return NextResponse.redirect(canonicalUrl, {
+        headers: {
+          'Cache-Control': 'private, no-store, max-age=0',
+          Vary: 'Cookie',
+        },
+      });
+    }
+    const code = request.nextUrl.searchParams.get('code');
+    if (!code || request.nextUrl.searchParams.has('error')) {
+      return loginRedirect(publicOrigin, 'oauth_failed', nextPath);
+    }
     const client = await createDashboardUserClient();
     const { error: exchangeError } = await client.auth.exchangeCodeForSession(code);
-    if (exchangeError) return loginRedirect(request, 'oauth_failed', nextPath);
+    if (exchangeError) return loginRedirect(publicOrigin, 'oauth_failed', nextPath);
 
     const { data, error: claimsError } = await client.auth.getClaims();
     const access = claimsError || !data?.claims
@@ -46,7 +55,7 @@ export async function GET(request: NextRequest) {
 
     if (!access.ok) {
       await client.auth.signOut({ scope: 'local' });
-      return loginRedirect(request, access.code, nextPath);
+      return loginRedirect(publicOrigin, access.code, nextPath);
     }
 
     return NextResponse.redirect(new URL(nextPath, publicOrigin), {
@@ -56,6 +65,13 @@ export async function GET(request: NextRequest) {
       },
     });
   } catch {
-    return loginRedirect(request, 'configuration_required', nextPath);
+    return new NextResponse('접속 보안 설정이 완료되지 않았습니다.', {
+      status: 503,
+      headers: {
+        'Cache-Control': 'private, no-store, max-age=0',
+        'Content-Type': 'text/plain; charset=utf-8',
+        Vary: 'Cookie',
+      },
+    });
   }
 }

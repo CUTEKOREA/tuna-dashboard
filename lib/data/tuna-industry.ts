@@ -12,6 +12,7 @@
  */
 import rawAtuna from '../../public/data/tuna_industry_prices_v1.json';
 import rawCatch from '../../public/data/tuna_industry_v1.json';
+import rawTrade from '../../public/data/tuna_trade_v1.json';
 import rawWidgets from '../../public/data/tuna_industry_widgets_v1.json';
 
 // ─── 어획 집계 ──────────────────────────────────────────────────────────────
@@ -102,6 +103,54 @@ export interface TunaCatchData {
   참다랑어자연산대축양: BluefinSourceRow[];
 }
 
+// ─── 교역 집계 (FAO FishStat 무역통계) ─────────────────────────────────────
+// ⚠ 바스켓이 어획 집계와 다르다. ISSCFC 는 참치·가다랑어·새치류를 한 묶음으로 분류해
+//   참치만 떼어낼 수 없다. 두 숫자를 나란히 놓을 때는 그 사실을 밝혀야 한다.
+
+export interface TradeRank {
+  국가: string;
+  금액: number;
+  비중: number;
+}
+
+export interface TradeBalancePoint {
+  연도: string;
+  수출액: number;
+  수입액: number;
+  무역수지: number;
+}
+
+export interface TradePriceGapPoint {
+  연도: string;
+  한국: number;
+  세계평균: number;
+  격차율: number;
+}
+
+export interface TradeStageMix {
+  구분: string;
+  금액: number;
+  물량: number;
+  단가: number;
+}
+
+export interface TunaTradeData {
+  _meta: Record<string, string | number>;
+  요약: {
+    기준연도: number;
+    세계수입액: number;
+    세계수입물량: number;
+    최대수출국: string | null;
+    최대수입국: string | null;
+  };
+  수출상위: TradeRank[];
+  수입상위: TradeRank[];
+  한국교역: TradeBalancePoint[];
+  태국교역: TradeBalancePoint[];
+  수출단가비교: TradePriceGapPoint[];
+  품목군구성: TradeStageMix[];
+}
+
 // ─── 선별 위젯 ──────────────────────────────────────────────────────────────
 
 export type IndustryChartType = 'bar' | 'line' | 'area' | 'composed' | 'pie' | 'radar';
@@ -128,6 +177,8 @@ export interface IndustryWidget {
   syncDate?: string | null;
   /** 데이터가 끝나는 연도. 기관마다 공표 주기가 달라 위젯끼리 어긋나므로 화면에 드러낸다 */
   dataYear?: number | null;
+  /** 원본에 현황·실행지침이 없어 이 페이지가 데이터에서 끌어내 채운 경우 true */
+  narrativeFilled?: boolean;
   telemetry: 'SYNCED';
   data: IndustryRow[];
   lines?: IndustrySeries[] | null;
@@ -273,11 +324,17 @@ export function getSkjPriceTimeline(): PriceTimeline {
 // ─── 접근자 ────────────────────────────────────────────────────────────────
 
 const catchData = rawCatch as unknown as TunaCatchData;
+const tradeData = rawTrade as unknown as TunaTradeData;
 const widgetsData = rawWidgets as unknown as IndustryWidgetsData;
 
 /** FAO FishStat 기반 어획 집계 전체. */
 export function getTunaCatchData(): TunaCatchData {
   return catchData;
+}
+
+/** FAO FishStat 무역통계 기반 교역 집계. */
+export function getTunaTradeData(): TunaTradeData {
+  return tradeData;
 }
 
 /** 밸류체인 단계별 선별 위젯 전체 (사슬 7단계 + 횡단 3축). */

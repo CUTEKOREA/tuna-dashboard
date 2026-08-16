@@ -2,13 +2,16 @@ import React from 'react';
 import { renderToStaticMarkup } from 'react-dom/server';
 import { describe, expect, it } from 'vitest';
 
-import TunaIndustryDashboard from '../components/market-understanding/TunaIndustryDashboard';
+import TunaIndustryDashboard, {
+  CATCH_CHART_SLOTS,
+} from '../components/market-understanding/TunaIndustryDashboard';
 import {
   getChainStages,
   getCrossStages,
   getSkjPriceTimeline,
   getTunaCatchData,
   getTunaIndustryStages,
+  getTunaTradeData,
   SKJ_HUBS,
 } from '../lib/data/tuna-industry';
 import { ALL_NARRATIVES, CHAIN_NARRATIVES, CROSS_NARRATIVES } from '../lib/tuna-industry-content';
@@ -144,6 +147,23 @@ describe('시장 이해 > 참치 — 데이터 인테이크', () => {
     expect(offenders, `한글화가 빠진 노출 문자열:\n${offenders.join('\n')}`).toEqual([]);
   });
 
+  it('모든 위젯이 현황·실행지침과 카드 설명을 갖췄다 (W-04)', () => {
+    // 셋 중 하나라도 비면 카드가 반쪽이 된다. 격자가 카드를 같은 행 높이로 늘리던 시절에는
+    // 그 반쪽 카드 아래가 통째로 비어 보였다 — 2026-08 사용자 지적으로 드러난 결함이다.
+    const offenders: string[] = [];
+    for (const stage of getTunaIndustryStages()) {
+      for (const widget of stage.widgets) {
+        if (!widget.situation?.trim()) offenders.push(`${widget.id}: 현황(SIT) 없음`);
+        if (!widget.takeaway?.trim()) offenders.push(`${widget.id}: 실행지침(TAK) 없음`);
+        // cardDesc 는 methodology 또는 source 에서 온다. 둘 다 없으면 출처 없는 위젯이다.
+        if (!widget.methodology?.trim() && !widget.source?.trim()) {
+          offenders.push(`${widget.id}: 방법론·출처 둘 다 없음`);
+        }
+      }
+    }
+    expect(offenders, `반쪽 카드:\n${offenders.join('\n')}`).toEqual([]);
+  });
+
   it('집계 기준연도가 FAO 현재 릴리스만큼 최신이다', () => {
     // 2026-08 감사에서 드러난 실수: 사전필터 추출본을 쓰는 바람에 어획 집계가 2022년에
     // 멈춰 있었다. FAO 어획통계의 현재 기준연도는 2024년이다(2026-03 릴리스).
@@ -184,7 +204,11 @@ describe('시장 이해 > 참치 — 데이터 인테이크', () => {
     for (const narrative of ALL_NARRATIVES) {
       const stage = stages.find((entry) => entry.key === narrative.key);
       expect(stage, `${narrative.key} 단계가 없다`).toBeDefined();
-      const titles = new Set(stage!.widgets.map((widget) => widget.title));
+      // 화면의 카드는 큐레이션 위젯 + 직접 그린 차트 슬롯 둘 다다. 양쪽을 다 인정한다.
+      const titles = new Set([
+        ...stage!.widgets.map((widget) => widget.title),
+        ...(CATCH_CHART_SLOTS[narrative.key] ?? []).map((slot) => slot.title),
+      ]);
       const text = [...narrative.paragraphs, narrative.lede].join('\n');
 
       for (const match of text.matchAll(quoted)) {
@@ -234,6 +258,36 @@ describe('시장 이해 > 참치 — 데이터 인테이크', () => {
       ).toBe(true);
     }
     expect(containsAny(pct(bluefinShare)), '참다랑어 3종 합계 비중이 본문과 다르다').toBe(true);
+  });
+
+  it('본문이 인용한 교역 수치가 집계 결과와 글자 그대로 같다', () => {
+    // 어획 쪽과 같은 이유다. 교역은 원본이 2023년에서 2024년으로 갈아끼워진 직후라
+    // 서술만 옛 숫자로 남을 위험이 특히 크다.
+    const trade = getTunaTradeData();
+    const quoted = ALL_NARRATIVES.flatMap((entry) => [
+      ...entry.paragraphs,
+      entry.lede,
+      ...entry.facts.map((fact) => `${fact.label} ${fact.value} ${fact.note ?? ''}`),
+    ]).join('\n');
+
+    const num = (value: number) => value.toLocaleString('en-US');
+
+    // 품목군 단가 — 이 페이지의 교역 단계가 가르치려는 핵심 숫자다
+    for (const group of trade.품목군구성) {
+      expect(
+        quoted.includes(num(group.단가)),
+        `${group.구분} 단가 ${num(group.단가)} 가 본문에 없다 — 집계를 다시 돌린 뒤 서술이 안 따라온 것이다`,
+      ).toBe(true);
+    }
+
+    // 한국 최신 연도 — 수출단가와 세계평균은 이 페이지의 결론 문장을 떠받친다
+    const korea = trade.수출단가비교.at(-1);
+    expect(korea).toBeDefined();
+    expect(quoted).toContain(num(korea!.한국));
+    expect(quoted).toContain(num(korea!.세계평균));
+
+    // 기준연도가 밀렸는데 본문이 안 따라오면 여기서 걸린다
+    expect(trade.요약.기준연도).toBeGreaterThanOrEqual(2024);
   });
 
   it('항구별 가격 시계열이 결측을 메우지 않고 격차를 옳게 잰다', () => {

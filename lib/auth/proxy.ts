@@ -9,6 +9,7 @@ import {
 } from './owner-policy';
 import { isLocalDashboardE2ERequest } from './local-e2e-access';
 import { renderDashboardLogin } from './login-response';
+import { getDashboardPublicOrigin } from './server-config';
 
 const PRIVATE_HEADERS = {
   'Cache-Control': 'private, no-store, max-age=0',
@@ -39,7 +40,18 @@ function pageDenied(
   request: NextRequest,
   access: Extract<OwnerAccessResult, { ok: false }>,
 ): NextResponse {
-  const loginUrl = new URL('/login', request.url);
+  let loginUrl: URL;
+  try {
+    loginUrl = new URL('/login', getDashboardPublicOrigin());
+  } catch {
+    return new NextResponse('접속 보안 설정이 완료되지 않았습니다.', {
+      status: 503,
+      headers: {
+        ...PRIVATE_HEADERS,
+        'Content-Type': 'text/plain; charset=utf-8',
+      },
+    });
+  }
   loginUrl.searchParams.set(
     'next',
     normalizeDashboardNextPath(`${request.nextUrl.pathname}${request.nextUrl.search}`),
@@ -52,6 +64,24 @@ function pageDenied(
 
 export async function updateDashboardOwnerSession(request: NextRequest): Promise<NextResponse> {
   if (request.nextUrl.pathname === '/login' || request.nextUrl.pathname === '/mail/login') {
+    try {
+      const publicOrigin = getDashboardPublicOrigin();
+      if (request.nextUrl.origin !== publicOrigin) {
+        const canonicalUrl = new URL(
+          `${request.nextUrl.pathname}${request.nextUrl.search}`,
+          publicOrigin,
+        );
+        return privateResponse(NextResponse.redirect(canonicalUrl));
+      }
+    } catch {
+      return new NextResponse('접속 보안 설정이 완료되지 않았습니다.', {
+        status: 503,
+        headers: {
+          ...PRIVATE_HEADERS,
+          'Content-Type': 'text/plain; charset=utf-8',
+        },
+      });
+    }
     return renderDashboardLogin(request);
   }
   if (isPublicDashboardPath(request.nextUrl.pathname)) {

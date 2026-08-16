@@ -24,6 +24,7 @@ import {
   getSkjPriceTimeline,
   getTunaCatchData,
   getTunaIndustryWidgetsMeta,
+  getTunaTradeData,
   SKJ_HUBS,
   type IndustryStage,
 } from '@/lib/data/tuna-industry';
@@ -43,12 +44,18 @@ import {
   AreaRankChart,
   BluefinSourceChart,
   CountryRankChart,
+  KoreaExportPriceChart,
   KoreaSpeciesChart,
+  KoreaTradeBalanceChart,
   KoreaTrendChart,
   RfmoShareChart,
   SkjPriceByHubChart,
   SpeciesShareChart,
   SpeciesTimelineChart,
+  ThailandTradeChart,
+  TradeExportRankChart,
+  TradeImportRankChart,
+  TradeStagePriceChart,
 } from './TunaCatchCharts';
 import TunaIndustryChart from './TunaIndustryChart';
 import ValueChainSpine from './ValueChainSpine';
@@ -56,6 +63,7 @@ import styles from './TunaIndustryDashboard.module.css';
 
 const CATCH = getTunaCatchData();
 const PRICES = getSkjPriceTimeline();
+const TRADE = getTunaTradeData();
 const CHAIN_STAGES = getChainStages();
 const CROSS_STAGES = getCrossStages();
 const ALL_STAGES: IndustryStage[] = [...CHAIN_STAGES, ...CROSS_STAGES];
@@ -71,12 +79,13 @@ interface ChartSlot {
 }
 
 const CATCH_SYNC = { status: 'STATIC' as const, syncDate: `${CATCH._meta.기준연도}년 확정` };
+const TRADE_SYNC = { status: 'STATIC' as const, syncDate: `${TRADE.요약.기준연도}년 확정` };
 const PRICE_SYNC = {
   status: 'SYNCED' as const,
   syncDate: PRICES.points.length > 0 ? String(PRICES.points[PRICES.points.length - 1].월) : '',
 };
 
-const CATCH_CHART_SLOTS: Record<string, ChartSlot[]> = {
+export const CATCH_CHART_SLOTS: Record<string, ChartSlot[]> = {
   s01: [
     {
       title: '관할 기구별 어획량 (톤)',
@@ -159,6 +168,34 @@ const CATCH_CHART_SLOTS: Record<string, ChartSlot[]> = {
       ),
     },
   ],
+  s06: [
+    {
+      title: '품목군별 교역 규모와 단가 (달러/톤)',
+      caption:
+        '막대는 교역액, 선은 톤당 단가다. 「가공할수록 비싸진다」는 직관이 여기서 깨진다 — 로인·필렛이 톤당 가장 비싼 이유는 순수 가식부이기 때문이고, 통조림은 액체와 용기 무게가 섞여 톤당으로는 싸 보인다.',
+      telemetry: TRADE_SYNC,
+      render: () => <TradeStagePriceChart data={TRADE} />,
+    },
+    {
+      title: '참치류 수출액 상위 10개국 (백만 달러)',
+      caption: '잡는 나라와 파는 나라가 다르다. 1위 태국은 참치를 거의 잡지 않는다.',
+      telemetry: TRADE_SYNC,
+      render: () => <TradeExportRankChart data={TRADE} />,
+    },
+    {
+      title: '참치류 수입액 상위 10개국 (백만 달러)',
+      caption:
+        '소비 시장과 가공 허브가 섞여 있다. 미국·일본·이탈리아는 먹으려고 사고, 태국·스페인은 가공하려고 산다.',
+      telemetry: TRADE_SYNC,
+      render: () => <TradeImportRankChart data={TRADE} />,
+    },
+    {
+      title: '태국 원료 수입과 완제품 수출 (백만 달러)',
+      caption: '원어를 사서 완제품으로 되파는 구조가 그대로 보인다. 그 차액이 가공국이 가져가는 몫이다.',
+      telemetry: TRADE_SYNC,
+      render: () => <ThailandTradeChart data={TRADE} />,
+    },
+  ],
   x03: [
     {
       title: '한국 어획량과 세계 점유율 20년',
@@ -172,6 +209,20 @@ const CATCH_CHART_SLOTS: Record<string, ChartSlot[]> = {
         '가다랑어가 74.9%다. 통조림 원료 공급이 한국 원양의 본체라는 사실이 이 한 장에 들어 있다.',
       telemetry: CATCH_SYNC,
       render: () => <KoreaSpeciesChart data={CATCH} />,
+    },
+    {
+      title: '한국 참치류 수출입과 무역수지 (백만 달러)',
+      caption:
+        '한국은 참치류 교역에서 꾸준한 흑자국이다. 다만 그 흑자는 원어를 많이 팔아서 나오는 것이지 비싸게 팔아서 나오는 것이 아니다 — 아래 단가 그림과 함께 봐야 한다.',
+      telemetry: TRADE_SYNC,
+      render: () => <KoreaTradeBalanceChart data={TRADE} />,
+    },
+    {
+      title: '한국 수출단가와 세계 평균 (달러/톤)',
+      caption:
+        '막대는 톤당 단가, 선은 세계 평균 대비 격차다. 한국은 9년 내내 세계 평균을 밑돌았고 그 폭이 좁혀지지 않았다.',
+      telemetry: TRADE_SYNC,
+      render: () => <KoreaExportPriceChart data={TRADE} />,
     },
   ],
 };
@@ -296,7 +347,10 @@ function StageSection({ stage, narrative }: { stage: IndustryStage; narrative: S
                   ? {
                       situation: widget.situation,
                       actionPlan: widget.takeaway,
-                      source: widget.source ?? '출처 미표기',
+                      // 원본에 없어 이 페이지가 채운 문장이면 그 사실을 출처 줄에 밝힌다.
+                      source: widget.narrativeFilled
+                        ? `${widget.source ?? '출처 미표기'} — 현황·실행지침은 이 차트의 데이터에서 끌어냈다`
+                        : (widget.source ?? '출처 미표기'),
                     }
                   : undefined
               }

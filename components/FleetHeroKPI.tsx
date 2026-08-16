@@ -41,7 +41,7 @@ export default function FleetHeroKPI({ climateRisk, mode = 'daily' }: { climateR
       <div className={s.kpiRow}>
         <div className={`${s.kpiCard} ${s.kpiCardHighlight}`}>
           <div className={s.kpiLabel}>{isWeekly ? '📊' : '⚡'} {kpiData.title}</div>
-          <div className={`${s.kpiValue} ${s.kpiValueAccent}`}><CountUp end={kpiData.val1} duration={2} separator="," /><span className={s.kpiUnit}>MT</span></div>
+          <div className={`${s.kpiValue} ${s.kpiValueAccent}`} data-kpi-value={kpiData.val1}><CountUp end={kpiData.val1} duration={2} separator="," /><span className={s.kpiUnit}>MT</span></div>
           <div style={{ fontSize: '0.72rem', color: 'var(--dsc-ink-muted)', marginTop: 4 }}>{kpiData.label1}</div>
         </div>
         <div className={s.kpiCard}>

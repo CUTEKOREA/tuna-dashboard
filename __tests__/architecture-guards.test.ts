@@ -103,6 +103,34 @@ describe('architecture guards', () => {
     expect(offenders).toEqual([]);
   });
 
+  it('keeps fleet detail in a server-only environment boundary', async () => {
+    const sourceFiles = (await Promise.all(
+      SOURCE_DIRS.map((dir) => listFiles(path.join(ROOT, dir)))
+    )).flat();
+    const privateJsonImports = await filesWithMatches(
+      sourceFiles,
+      /from\s+['"][^'"]*fleet-daily-(?:latest|private)\.json['"]/,
+    );
+    expect(privateJsonImports).toEqual([]);
+
+    const envReaders = await filesWithMatches(sourceFiles, /FLEET_DAILY_DETAIL_JSON/);
+    expect(envReaders).toEqual(['lib/data/fleet-daily-detail.ts']);
+
+    const detailSource = await readFile(path.join(ROOT, 'lib', 'data', 'fleet-daily-detail.ts'), 'utf8');
+    const publicSource = await readFile(path.join(ROOT, 'lib', 'data', 'fleet-daily-public.ts'), 'utf8');
+    expect(detailSource).toContain("import 'server-only'");
+    expect(detailSource).toContain('validateFleetDailyDetailPayload');
+    expect(publicSource).toContain("from './generated/fleet-daily-public.json'");
+    expect(publicSource).not.toContain('FLEET_DAILY_DETAIL_JSON');
+
+    const appAndComponents = (await Promise.all(
+      APP_COMPONENT_DIRS.map((dir) => listFiles(path.join(ROOT, dir)))
+    )).flat();
+    expect(await filesWithMatches(appAndComponents, /fleet-daily-detail/)).toEqual([
+      'app/api/fleet/daily/route.ts',
+    ]);
+  });
+
   it('keeps TypeScript and Next build gates enabled', async () => {
     const sourceFiles = (await Promise.all(
       SOURCE_DIRS.map((dir) => listFiles(path.join(ROOT, dir)))

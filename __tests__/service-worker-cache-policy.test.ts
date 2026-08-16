@@ -96,7 +96,7 @@ function loadServiceWorker() {
 }
 
 describe('service worker API cache policy', () => {
-  it.each(['/api/operation-access', '/api/atuna-prices', '/api/mail/status'])(
+  it.each(['/api/operation-access', '/api/atuna-prices', '/api/mail/status', '/api/fleet/daily'])(
     '%s는 네트워크 응답만 사용하고 캐시에 저장하지 않는다',
     async (pathname) => {
       const worker = loadServiceWorker();

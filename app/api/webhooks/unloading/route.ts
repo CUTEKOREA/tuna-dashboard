@@ -1,12 +1,25 @@
 import { NextResponse } from 'next/server';
 import { createClient } from '@supabase/supabase-js';
+import { timingSafeEqual } from 'node:crypto';
 import fs from 'fs';
 import path from 'path';
 
 export const dynamic = 'force-dynamic';
 
-// 웹훅 보안을 위한 커스텀 토큰 
-const WEBHOOK_SECRET = process.env.UNLOADING_WEBHOOK_SECRET || 'secret123';
+const MIN_WEBHOOK_SECRET_LENGTH = 32;
+const WEBHOOK_SECRET_HEADER = 'x-unloading-webhook-secret';
+
+function getWebhookSecret(): string | null {
+  const secret = process.env.UNLOADING_WEBHOOK_SECRET?.trim() ?? '';
+  return secret.length >= MIN_WEBHOOK_SECRET_LENGTH ? secret : null;
+}
+
+function secretMatches(received: string, expected: string): boolean {
+  const receivedBytes = Buffer.from(received);
+  const expectedBytes = Buffer.from(expected);
+  return receivedBytes.length === expectedBytes.length
+    && timingSafeEqual(receivedBytes, expectedBytes);
+}
 
 // Supabase 클라이언트 (Vercel 환경 변수 사용 및 trailing newline 제거)
 let globalSupabase: any = null;
@@ -84,8 +97,21 @@ export async function POST(req: Request) {
   try {
     // 1. 보안 토큰 검증
     const { searchParams } = new URL(req.url);
-    if (searchParams.get('token') !== WEBHOOK_SECRET) {
-      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+    const expectedSecret = getWebhookSecret();
+    if (!expectedSecret) {
+      return NextResponse.json(
+        { error: '웹훅 인증 설정이 필요합니다.' },
+        { status: 503, headers: { 'Cache-Control': 'private, no-store, max-age=0' } },
+      );
+    }
+    const receivedSecret = req.headers.get(WEBHOOK_SECRET_HEADER)
+      ?? searchParams.get('token')
+      ?? '';
+    if (!secretMatches(receivedSecret, expectedSecret)) {
+      return NextResponse.json(
+        { error: '웹훅 인증에 실패했습니다.' },
+        { status: 401, headers: { 'Cache-Control': 'private, no-store, max-age=0' } },
+      );
     }
 
     // 2. 이메일 데이터 추출 (SendGrid Inbound Parse는 multipart/form-data 형식으로 전송됨)
