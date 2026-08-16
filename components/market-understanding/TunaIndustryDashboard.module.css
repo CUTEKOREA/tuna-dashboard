@@ -34,18 +34,18 @@
 }
 
 :global([data-v3='light']) .page {
-  --mu-ink: #0f172a;
-  --mu-ink-soft: #334155;
-  --mu-ink-muted: #64748b;
+  --mu-ink: #22242b;
+  --mu-ink-soft: #4c5773;
+  --mu-ink-muted: #5a6072;
   --mu-surface: #ffffff;
-  --mu-surface-2: #f1f5f9;
-  --mu-line: #e2e8f0;
+  --mu-surface-2: #f1f2f4;
+  --mu-line: #e2e4e9;
   --mu-accent: #0284c7;
   --mu-accent-deep: #0e7490;
   --mu-canned: #0284c7;
   --mu-sashimi: #be123c;
-  --mu-axis: #64748b;
-  --mu-grid: rgba(100, 116, 139, 0.2);
+  --mu-axis: #8d93a5;
+  --mu-grid: rgba(141, 147, 165, 0.28);
   --mu-hover: rgba(2, 132, 199, 0.07);
   /* 라이트 지면에서는 같은 배지를 어둡게 뒤집는다 */
   --mu-grade-a-bg: rgba(5, 150, 105, 0.14);
@@ -54,6 +54,18 @@
   --mu-grade-b-ink: #b45309;
   --mu-grade-c-bg: rgba(100, 116, 139, 0.16);
   --mu-grade-c-ink: #475569;
+}
+
+.page[data-commodity='squid'] {
+  --mu-accent: #7c3aed;
+  --mu-accent-deep: #6d28d9;
+  --mu-hover: rgba(124, 58, 237, 0.10);
+}
+
+:global([data-v3='light']) .page[data-commodity='squid'] {
+  --mu-accent: #6d28d9;
+  --mu-accent-deep: #5b21b6;
+  --mu-hover: rgba(109, 40, 217, 0.08);
 }
 
 /* ─── 30초 브리핑 ─────────────────────────────────────────────── */

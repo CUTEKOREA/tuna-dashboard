@@ -13,7 +13,7 @@
   color: var(--dsc-ink-muted);
   font: inherit;
   font-size: 0.82rem;
-  font-weight: 600;
+  font-weight: 700;
   cursor: pointer;
   box-shadow: var(--elev-1, none);
 }
@@ -21,7 +21,7 @@
 .pill:hover,
 .pill:focus-visible {
   color: var(--dsc-ink);
-  border-color: rgba(34, 211, 238, 0.35);
+  border-color: var(--accent-primary);
 }
 
 .active {

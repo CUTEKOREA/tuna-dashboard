@@ -64,11 +64,11 @@ function KpiNumber({ kpi, primary }: { kpi: HeroKpi; primary?: boolean }) {
     minimumFractionDigits: decimals,
     maximumFractionDigits: decimals,
   });
-  const glow = kpi.accent ?? '#22d3ee';
+  const glow = kpi.accent ?? 'var(--accent-primary)';
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
-      <span style={{ fontSize: '0.8rem', color: 'var(--dsc-ink-muted)', fontWeight: 500 }}>
+      <span style={{ fontSize: '0.8rem', color: 'var(--dsc-ink-muted)', fontWeight: 400 }}>
         {kpi.label}
       </span>
       <span
@@ -124,7 +124,7 @@ function KpiNumber({ kpi, primary }: { kpi: HeroKpi; primary?: boolean }) {
           data-kpi-unit="true"
           style={{
             fontSize: 'var(--dsc-kpi-unit-size)',
-            fontWeight: 500,
+            fontWeight: 400,
             color: 'var(--dsc-ink-muted)',
             marginLeft: 8,
             fontVariantNumeric: 'tabular-nums',

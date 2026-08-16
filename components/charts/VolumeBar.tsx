@@ -31,7 +31,7 @@ export function VolumeBarShape({
   y = 0,
   width = 0,
   height = 0,
-  fill = '#22d3ee',
+  fill = 'var(--chart-s1, #509ee3)',
   highlighted = false,
 }: VolumeBarShapeProps) {
   if (width <= 0 || height <= 0) return null;
@@ -87,6 +87,7 @@ function VolumeTip({
         padding: '8px 10px',
         color: '#fff',
         fontSize: 12.5,
+        fontFamily: 'var(--font-pretendard), var(--font-geist-sans), sans-serif',
       }}
     >
       {typeof value === 'number' ? `${value.toLocaleString('ko-KR')} ${unit}` : '—'}
@@ -100,7 +101,7 @@ export function VolumeBarChart({
   unit,
   width,
   height = 160,
-  fill = '#22d3ee',
+  fill = 'var(--chart-s1, #509ee3)',
 }: {
   data: VolumeBarPoint[];
   name: string;
@@ -140,24 +141,24 @@ export function VolumeBarChart({
         <XAxis
           dataKey="label"
           tickFormatter={truncateXAxis}
-          stroke="var(--text-tertiary, #94a3b8)"
+          stroke="var(--chart-axis, #8d93a5)"
           fontSize={12}
           tickLine={false}
           axisLine={false}
         />
         <YAxis hide domain={[0, (max: number) => max * 1.12]} />
         <Tooltip
-          cursor={{ fill: 'rgba(255,255,255,0.04)' }}
+          cursor={{ fill: 'rgba(80, 158, 227, 0.08)' }}
           content={<VolumeTip unit={unit} />}
         />
         <ReferenceLine
           y={mean}
-          stroke="rgba(148, 163, 184, 0.45)"
+          stroke="var(--chart-axis, #8d93a5)"
           strokeDasharray="4 4"
           label={{
             value: `평균 ${mean.toLocaleString('ko-KR', { maximumFractionDigits: 0 })} ${unit}`,
             position: 'insideTopRight',
-            fill: 'var(--text-tertiary, #94a3b8)',
+            fill: 'var(--chart-axis, #8d93a5)',
             fontSize: 11,
           }}
         />

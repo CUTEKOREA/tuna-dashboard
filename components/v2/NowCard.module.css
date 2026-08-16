@@ -33,7 +33,7 @@
 
 .eyebrow {
   font-size: 0.67rem;
-  font-weight: 800;
+  font-weight: 700;
   letter-spacing: 0.04em;
   color: var(--accent-primary);
 }
@@ -47,10 +47,10 @@
   align-items: center;
   padding: 2px 8px;
   border-radius: 999px;
-  background: #f59e0b;
-  color: #1c1917;
+  background: var(--w-amber-400, #e8b921);
+  color: var(--dsc-ink, #22242b);
   font-size: 0.65rem;
-  font-weight: 800;
+  font-weight: 700;
   letter-spacing: 0.04em;
 }
 

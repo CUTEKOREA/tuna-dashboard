@@ -122,7 +122,7 @@ export default function PillTabs({
               background: 'transparent',
               color: active ? '#ffffff' : 'var(--dsc-ink-muted)',
               fontSize: '0.85rem',
-              fontWeight: active ? 700 : 500,
+              fontWeight: active ? 700 : 400,
               cursor: 'pointer',
               whiteSpace: 'nowrap',
               transition: 'color 0.2s ease',
