@@ -1,3 +1,11 @@
+> 🚀 **2026-08-16 22:42 KST — 파노피·코스모·방콕·GMTS·참치 지금 스트립 Production** [Grok]:
+> - PR **#476** squash merge `d1ed75130359c740b784a8c63c22c0038f57ad1e`. App Quality Gate **31950180021** SUCCESS. GitHub Production deployment **5931541079**.
+> - Vercel `dpl_4s1XWJZi44phZjNWVMz6hzFywQhk` READY · region `icn1` · alias `https://leedonggun.co.kr` · `tuna-dashboard-kappa.vercel.app`.
+> - 비인증 보호 경로는 307 `/login`. `/login` 200 · `/auth/start` 링크 · `<form>` 없음.
+> - 로그인 세션 실측: 파노피 상반기 생산 22,526톤 · 코스모 32주차 주간 판매 1.31백만 달러 · 방콕 시세 1,960$/MT · GMTS 가동률 82% · 참치 세계 어획량 5,908,078톤. 흰 Now 카드·노란 `지금` 칩 확인.
+> - 배포 후 30분 runtime error 0건.
+> - 메일은 받은편지함이라 이번 범위 밖. 고등어·오징어·골뱅이·새우 디자인 시스템은 그대로.
+
 > 🎨 **2026-08-16 — 파노피·코스모·방콕·GMTS·참치 히어로에 지금 스트립** [Grok]:
 > - 다섯 화면에 흰 Now 카드 한 줄을 붙였다. 수치는 기존 히어로 KPI와 같다.
 > - GMTS 제목은 사이드바와 같이 `GMTS`, 참치는 `참치`. 메일은 받은편지함이라 이번 범위 밖.
