@@ -5,7 +5,13 @@
  * 하드코딩 hex 는 차트 시리즈 색(양쪽에서 모두 읽히는 값)에만 쓴다.
  */
 
+/* 한글은 기본값으로 두면 **단어 중간에서 줄이 바뀐다** — 「한국」이 「한 / 국」으로 갈린다.
+   keep-all 은 띄어쓰기에서만 끊게 한다. 대신 끊을 곳이 없는 긴 토큰(주소·코드)이
+   상자를 밀어내므로 overflow-wrap 을 함께 둔다. */
 .page {
+  word-break: keep-all;
+  overflow-wrap: break-word;
+
   --mu-ink: #f1f5f9;
   --mu-ink-soft: #cbd5e1;
   --mu-ink-muted: #94a3b8;
@@ -310,7 +316,9 @@
   display: flex;
   flex-direction: column;
   gap: 0.875rem;
-  max-width: 74ch;
+  /* ch 는 숫자 0 의 너비라 한글에서는 이 값이 실제보다 넓게 잡힌다.
+     한글 한 줄은 40자 안팎이 읽기 편해 rem 으로 못 박는다. */
+  max-width: 38rem;
 }
 
 .prose p {
