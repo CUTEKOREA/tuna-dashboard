@@ -97,7 +97,10 @@ describe('해역별 선사 — 데이터', () => {
 
   it('세 해역이 다 있고 기구·출처가 붙어 있다', () => {
     const areas = ocean.한국선사해역._meta.해역목록;
-    expect(areas).toHaveLength(3);
+    // 다섯 기구 전부 — 뒤 둘(서·중부태평양·동부태평양)은 브라우저 자동화로 받았다
+    expect(areas).toHaveLength(5);
+    expect(areas).toContain('서·중부태평양');
+    expect(areas).toContain('동부태평양');
     for (const area of areas) {
       const block = ocean.해역[area];
       expect(block, `${area} 블록이 없다`).toBeDefined();
@@ -123,6 +126,22 @@ describe('해역별 선사 — 데이터', () => {
     }
   });
 
+  it('개인 소유자 실명이 산출물 어디에도 없다', () => {
+    // 등록부에는 개인명이 그대로 적힌 행이 있다. 「개인 소유」 한 칸으로만 나가야 한다
+    const blob = JSON.stringify(ocean);
+    expect(blob).not.toMatch(/PARK, ?CHUNHWA/i);
+    expect(blob).not.toMatch(/KIM JU SUK/i);
+    expect(blob).not.toMatch(/LIM JUN TAEK/i);
+    for (const area of ocean.한국선사해역._meta.해역목록) {
+      for (const row of ocean.해역[area].한국선사) {
+        if (row.선사 === '개인 소유') {
+          expect(row.원표기).toBe('(개인 소유자 — 실명 미기록)');
+        }
+      }
+    }
+    expect(String(ocean._meta.개인정보)).toContain('실명을 기록하지 않는다');
+  });
+
   it('교차표의 칸이 해역별 집계와 일치한다', () => {
     for (const area of ocean.한국선사해역._meta.해역목록) {
       const fromBlock = ocean.해역[area].한국선사.reduce((sum, row) => sum + row.척수, 0);
@@ -138,8 +157,8 @@ describe('해역별 선사 — 데이터', () => {
     // 해역별 척수를 더하면 중복 인가 때문에 실제 선단보다 커진다
     expect(ocean._meta.합산금지).toContain('더하지');
     expect(ocean.한국선사해역._meta.주의).toContain('총 선단');
-    // 받지 못한 두 기구를 숨기지 않는다
-    expect(ocean._meta.미확보).toContain('서·중부태평양');
+    // 한국 선적만 담은 두 해역이라는 사실을 숨기지 않는다
+    expect(ocean._meta.수집주의).toContain('한국 선적만');
   });
 });
 
@@ -191,9 +210,13 @@ describe('밸류체인 기업 — 화면 노출', () => {
     expect(x03).toContain('22.73');
     expect(x03).toContain('StarKist');
 
-    // 해역별 선사 — 받지 못한 기구를 숨기지 않았는지
-    expect(s02).toContain('신라교역이 세 등록부 어디에도 없다');
-    expect(s02).toContain('서·중부태평양');
+    // 해역별 선사 — 태평양 두 수역에만 있다는 사실이 본문에 남아 있는지
+    expect(s02).toContain('태평양 밖으로 나가지 않는다');
+    expect(s02).toContain('서·중부태평양 15');
+    // 합산 금지 경고가 본문에도 있어야 한다
+    expect(s02).toContain('더하지 마라');
+    // 개인정보 처리를 밝혔는지
+    expect(s02).toContain('실명을 기록하지 않았');
 
     // 소매 단계
     const s07 = textOf(TUNA_ALL_NARRATIVES, 's07');
