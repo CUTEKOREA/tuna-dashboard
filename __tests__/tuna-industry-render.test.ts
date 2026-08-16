@@ -6,8 +6,10 @@ import TunaIndustryDashboard from '../components/market-understanding/TunaIndust
 import {
   getChainStages,
   getCrossStages,
+  getSkjPriceTimeline,
   getTunaCatchData,
   getTunaIndustryStages,
+  SKJ_HUBS,
 } from '../lib/data/tuna-industry';
 import { ALL_NARRATIVES, CHAIN_NARRATIVES, CROSS_NARRATIVES } from '../lib/tuna-industry-content';
 
@@ -96,6 +98,71 @@ describe('시장 이해 > 참치 — 데이터 인테이크', () => {
           ).toBe(true);
         }
       }
+    }
+  });
+
+  it('본문이 인용한 FishStat 수치가 집계 결과와 글자 그대로 같다', () => {
+    // 서술은 사람이 쓰고 집계는 스크립트가 만든다. 둘이 어긋나면 페이지가 거짓을 말한다.
+    // 집계를 다시 돌렸을 때 본문만 옛 숫자로 남는 것이 이 페이지의 가장 위험한 회귀다.
+    const data = getTunaCatchData();
+    const summary = data.요약;
+    const species = Object.fromEntries(data.어종구성.map((row) => [row.어종, row]));
+    const bluefinShare = Number(
+      (
+        species['대서양참다랑어'].비중 +
+        species['남방참다랑어'].비중 +
+        species['태평양참다랑어'].비중
+      ).toFixed(2),
+    );
+
+    const quoted = ALL_NARRATIVES.flatMap((entry) => [
+      ...entry.paragraphs,
+      entry.lede,
+      ...entry.facts.map((fact) => `${fact.label} ${fact.value} ${fact.note ?? ''}`),
+    ]).join('\n');
+
+    expect(quoted).toContain(`${summary.세계어획량.toLocaleString('en-US')} 톤`);
+    expect(quoted).toContain(`${summary.최대해역비중}%`);
+    expect(quoted).toContain(
+      `${summary.한국어획량?.toLocaleString('en-US')} 톤 — 세계 ${summary.한국순위}위`,
+    );
+    expect(quoted).toContain(
+      `가다랑어 ${species['가다랑어'].비중}% · 황다랑어 ${species['황다랑어'].비중}% · ` +
+        `눈다랑어 ${species['눈다랑어'].비중}% · 날개다랑어 ${species['날개다랑어'].비중}% · ` +
+        `참다랑어 3종 ${bluefinShare}%`,
+    );
+  });
+
+  it('항구별 가격 시계열이 결측을 메우지 않고 격차를 옳게 잰다', () => {
+    const timeline = getSkjPriceTimeline();
+
+    expect(timeline.points.length).toBeGreaterThan(100);
+    expect(SKJ_HUBS).toHaveLength(5);
+
+    // 결측은 null 로 남아야 한다. 앞 값으로 메우면 없는 고시가를 있는 것처럼 그린다.
+    const hasNull = timeline.points.some((point) =>
+      SKJ_HUBS.some((hub) => point[hub.label] === null),
+    );
+    expect(hasNull).toBe(true);
+
+    // 격차는 다섯 항구가 모두 고시된 달에서만 잰다 — 빠진 항구가 최고·최저였을 수 있다.
+    const spread = timeline.latestSpread;
+    expect(spread).not.toBeNull();
+    if (spread) {
+      const row = timeline.points.find((point) => point.월 === spread.month);
+      expect(row).toBeDefined();
+      const prices = SKJ_HUBS.map((hub) => row?.[hub.label]).filter(
+        (value): value is number => typeof value === 'number',
+      );
+      expect(prices).toHaveLength(SKJ_HUBS.length);
+      expect(spread.maxPrice).toBe(Math.max(...prices));
+      expect(spread.minPrice).toBe(Math.min(...prices));
+      expect(spread.gap).toBe(spread.maxPrice - spread.minPrice);
+    }
+
+    // 항구 라벨은 화면에 그대로 노출되므로 한글이어야 한다 (L-01).
+    for (const hub of SKJ_HUBS) {
+      expect(hub.label).toMatch(/^[가-힣]+$/);
     }
   });
 

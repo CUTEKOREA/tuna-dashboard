@@ -21,8 +21,10 @@ import { BookOpen, Fish } from 'lucide-react';
 import {
   getChainStages,
   getCrossStages,
+  getSkjPriceTimeline,
   getTunaCatchData,
   getTunaIndustryWidgetsMeta,
+  SKJ_HUBS,
   type IndustryStage,
 } from '@/lib/data/tuna-industry';
 import {
@@ -43,6 +45,7 @@ import {
   KoreaSpeciesChart,
   KoreaTrendChart,
   RfmoShareChart,
+  SkjPriceByHubChart,
   SpeciesShareChart,
   SpeciesTimelineChart,
 } from './TunaCatchCharts';
@@ -51,23 +54,40 @@ import ValueChainSpine from './ValueChainSpine';
 import styles from './TunaIndustryDashboard.module.css';
 
 const CATCH = getTunaCatchData();
+const PRICES = getSkjPriceTimeline();
 const CHAIN_STAGES = getChainStages();
 const CROSS_STAGES = getCrossStages();
 const ALL_STAGES: IndustryStage[] = [...CHAIN_STAGES, ...CROSS_STAGES];
 const WIDGETS_META = getTunaIndustryWidgetsMeta();
 
-/** 이 단계에 FishStat 전용 차트를 몇 개 얹을지 — 단계별 편집 결정이다. */
-const CATCH_CHART_SLOTS: Record<string, { title: string; caption: string; render: () => React.ReactNode }[]> = {
+/** 단계에 직접 붙는 자체 집계 도표. 큐레이션 위젯과 달리 원본을 직접 집계한 값이다. */
+interface ChartSlot {
+  title: string;
+  caption: string;
+  /** 텔레메트리 표기 — 자료마다 기준 시점이 다르므로 슬롯이 직접 들고 있는다 (L-09) */
+  telemetry: { status: 'STATIC' | 'SYNCED'; syncDate: string };
+  render: () => React.ReactNode;
+}
+
+const CATCH_SYNC = { status: 'STATIC' as const, syncDate: `${CATCH._meta.기준연도}년 확정` };
+const PRICE_SYNC = {
+  status: 'SYNCED' as const,
+  syncDate: PRICES.points.length > 0 ? String(PRICES.points[PRICES.points.length - 1].월) : '',
+};
+
+const CATCH_CHART_SLOTS: Record<string, ChartSlot[]> = {
   s01: [
     {
       title: '관할 기구별 어획량 (톤)',
       caption:
         'FAO 주요어업해역을 관할 RFMO로 묶어 집계했다. 남방참다랑어를 어종 단위로 관리하는 CCSBT는 해역이 겹치므로 별도 항목이 없다.',
+      telemetry: CATCH_SYNC,
       render: () => <RfmoShareChart data={CATCH} />,
     },
     {
       title: '해역별 어획량 상위 8곳 (톤)',
       caption: '색은 관할 기구를 나타낸다. 서·중부태평양 한 곳이 전체의 46.55%다.',
+      telemetry: CATCH_SYNC,
       render: () => <AreaRankChart data={CATCH} />,
     },
   ],
@@ -75,29 +95,74 @@ const CATCH_CHART_SLOTS: Record<string, { title: string; caption: string; render
     {
       title: '어종별 어획량 (톤)',
       caption: '가다랑어 한 종이 전체의 57.98%다. 참다랑어 3종을 합쳐도 1.38%에 그친다.',
+      telemetry: CATCH_SYNC,
       render: () => <SpeciesShareChart data={CATCH} />,
     },
     {
       title: '어종별 어획량 20년 추이 (톤)',
       caption: '총량은 늘었지만 어종 구성비는 거의 변하지 않았다. 어법 구조가 고정돼 있다는 뜻이다.',
+      telemetry: CATCH_SYNC,
       render: () => <SpeciesTimelineChart data={CATCH} />,
     },
     {
       title: '국가별 어획량 상위 12 (톤)',
       caption: '붉은 막대가 대한민국이다. 주요 상업어종 7종 기준 5위다.',
+      telemetry: CATCH_SYNC,
       render: () => <CountryRankChart data={CATCH} />,
+    },
+  ],
+  x01: [
+    {
+      title: `항구별 가다랑어 고시가 추이 (달러/톤, ${PRICES.meta.span})`,
+      caption: PRICES.latestSpread
+        ? `같은 어종인데 다섯 항구가 따로 움직인다. 다섯 곳이 모두 고시된 마지막 달인 ${PRICES.latestSpread.month}에 ` +
+          `${PRICES.latestSpread.maxLabel} ${PRICES.latestSpread.maxPrice.toLocaleString('ko-KR')}달러와 ` +
+          `${PRICES.latestSpread.minLabel} ${PRICES.latestSpread.minPrice.toLocaleString('ko-KR')}달러의 격차가 ` +
+          `톤당 ${PRICES.latestSpread.gap.toLocaleString('ko-KR')}달러(${PRICES.latestSpread.gapPct}%)였다. ` +
+          '선이 끊긴 구간은 그 항구 고시가 멈춘 것이라 값을 메우지 않았다. 방콕이 굵은 선이다.'
+        : '같은 어종인데 다섯 항구가 따로 움직인다. 선이 끊긴 구간은 값을 메우지 않았다.',
+      telemetry: PRICE_SYNC,
+      render: () => <SkjPriceByHubChart timeline={PRICES} />,
+    },
+    {
+      title: '항구가 다르면 무엇이 다른가',
+      telemetry: PRICE_SYNC,
+      caption:
+        '항구는 지리가 아니라 수요처를 뜻한다. 어느 캐너리로 가는 원료인지가 다르므로 가격도 따로 움직인다.',
+      render: () => (
+        <div className={styles.factWrap}>
+          <table className={styles.factTable}>
+            <thead>
+              <tr>
+                <th scope="col">항구</th>
+                <th scope="col">이 가격이 대표하는 수요</th>
+              </tr>
+            </thead>
+            <tbody>
+              {SKJ_HUBS.map((hub) => (
+                <tr key={hub.key}>
+                  <th scope="row">{hub.label}</th>
+                  <td>{hub.serves}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      ),
     },
   ],
   x03: [
     {
       title: '한국 어획량과 세계 점유율 20년',
       caption: '막대는 어획량(톤), 선은 세계 점유율(%)이다. 물량이 늘어도 점유율은 5%대에서 움직인다.',
+      telemetry: CATCH_SYNC,
       render: () => <KoreaTrendChart data={CATCH} />,
     },
     {
       title: '한국 어종별 어획량 (톤)',
       caption:
         '가다랑어가 71%다. 통조림 원료 공급이 한국 원양의 본체라는 사실이 이 한 장에 들어 있다.',
+      telemetry: CATCH_SYNC,
       render: () => <KoreaSpeciesChart data={CATCH} />,
     },
   ],
@@ -194,7 +259,7 @@ function StageSection({ stage, narrative }: { stage: IndustryStage; narrative: S
           <figcaption className={styles.catchCaption}>
             <strong>{slot.title}</strong>
             <span>{slot.caption}</span>
-            <TelemetryBadge status="STATIC" syncDate={`${CATCH._meta.기준연도}년 확정`} />
+            <TelemetryBadge status={slot.telemetry.status} syncDate={slot.telemetry.syncDate} />
           </figcaption>
           {slot.render()}
         </figure>

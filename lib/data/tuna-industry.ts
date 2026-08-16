@@ -10,6 +10,7 @@
  *
  * 둘 다 정적 산출물이다. 런타임 fetch 가 없으므로 텔레메트리는 STATIC/SYNCED 로만 표기한다(L-09).
  */
+import rawAtuna from '../../public/data/tuna_atuna_8y.json';
 import rawCatch from '../../public/data/tuna_industry_v1.json';
 import rawWidgets from '../../public/data/tuna_industry_widgets_v1.json';
 
@@ -140,6 +141,114 @@ export interface IndustryStage {
 export interface IndustryWidgetsData {
   _meta: Record<string, string>;
   stages: IndustryStage[];
+}
+
+// ─── 항구별 가격 시계열 ────────────────────────────────────────────────────
+// ⚠ Atuna 는 유료 구독 자료다. 사내 열람까지만 쓰고 대외 배포물에는
+//   FAO GLOBEFISH 공표치로 대체한다. 페이지 하단 「출처와 한계」에 명시돼 있다.
+
+/** 항구 하나. 한글명은 화면 노출용이고 skjKey/yfKey 는 원본 컬럼명이다. */
+export interface PriceHub {
+  key: string;
+  label: string;
+  /** 그 항구가 어떤 시장으로 가는 원료인가 — 항구를 묶어 보면 안 되는 이유 */
+  serves: string;
+}
+
+/** 가다랑어 고시 항구 5곳. */
+export const SKJ_HUBS: PriceHub[] = [
+  { key: 'skj_bkk', label: '방콕', serves: '태국 캐너리 — 업계 벤치마크' },
+  { key: 'skj_mnt', label: '만타', serves: '에콰도르 캐너리 — 동태평양 어획' },
+  { key: 'skj_sey', label: '세이셸', serves: '인도양 어획 · 유럽향' },
+  { key: 'skj_abj', label: '아비장', serves: '서아프리카 · 유럽 캐너리향' },
+  { key: 'skj_vig', label: '비고', serves: '스페인 캐너리 도착가' },
+];
+
+/** 월별 가격 한 점. 항구 한글명을 키로 쓴다 — 차트가 그대로 라벨로 쓴다. */
+export type PricePoint = Record<string, string | number | null>;
+
+export interface PriceTimeline {
+  /** 월별 항구 가격 (USD/톤). 결측은 null 이라 선이 끊긴다 — 메우지 않는다 */
+  points: PricePoint[];
+  /** 마지막으로 모든 항구 값이 있는 달의 최고·최저 항구와 격차 */
+  latestSpread: {
+    month: string;
+    maxLabel: string;
+    maxPrice: number;
+    minLabel: string;
+    minPrice: number;
+    gap: number;
+    gapPct: number;
+  } | null;
+  meta: { source: string; unit: string; fetched: string; span: string };
+}
+
+interface AtunaRow {
+  month: string;
+  [key: string]: string | number | undefined;
+}
+
+interface AtunaFile {
+  _meta: { source: string; unit: string; fetched: string };
+  timeline: AtunaRow[];
+}
+
+const atunaFile = rawAtuna as unknown as AtunaFile;
+
+function buildPriceTimeline(): PriceTimeline {
+  const rows = atunaFile.timeline;
+
+  const points: PricePoint[] = rows.map((row) => {
+    const point: PricePoint = { 월: row.month };
+    for (const hub of SKJ_HUBS) {
+      const value = row[hub.key];
+      point[hub.label] = typeof value === 'number' ? value : null;
+    }
+    return point;
+  });
+
+  // 모든 항구가 채워진 마지막 달을 찾는다. 결측이 섞인 달로 격차를 재면
+  // 빠진 항구가 최고·최저였을 수 있어 숫자가 거짓이 된다.
+  let latestSpread: PriceTimeline['latestSpread'] = null;
+  for (let index = rows.length - 1; index >= 0; index -= 1) {
+    const row = rows[index];
+    const observed = SKJ_HUBS.map((hub) => ({ label: hub.label, price: row[hub.key] })).filter(
+      (entry): entry is { label: string; price: number } => typeof entry.price === 'number',
+    );
+    if (observed.length < SKJ_HUBS.length) continue;
+
+    const sorted = [...observed].sort((a, b) => a.price - b.price);
+    const min = sorted[0];
+    const max = sorted[sorted.length - 1];
+    latestSpread = {
+      month: row.month,
+      maxLabel: max.label,
+      maxPrice: max.price,
+      minLabel: min.label,
+      minPrice: min.price,
+      gap: max.price - min.price,
+      gapPct: Number((((max.price - min.price) / min.price) * 100).toFixed(1)),
+    };
+    break;
+  }
+
+  return {
+    points,
+    latestSpread,
+    meta: {
+      source: atunaFile._meta.source,
+      unit: atunaFile._meta.unit,
+      fetched: atunaFile._meta.fetched,
+      span: rows.length > 0 ? `${rows[0].month} ~ ${rows[rows.length - 1].month}` : '',
+    },
+  };
+}
+
+const priceTimeline = buildPriceTimeline();
+
+/** 항구별 가다랑어 가격 시계열. 「가격 형성」 축이 쓴다. */
+export function getSkjPriceTimeline(): PriceTimeline {
+  return priceTimeline;
 }
 
 // ─── 접근자 ────────────────────────────────────────────────────────────────

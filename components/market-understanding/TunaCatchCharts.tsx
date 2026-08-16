@@ -17,13 +17,14 @@ import {
   ComposedChart,
   Legend,
   Line,
+  LineChart,
   Tooltip,
   XAxis,
   YAxis,
 } from 'recharts';
 
 import { truncateXAxis } from '@/lib/chart-standards';
-import type { TunaCatchData } from '@/lib/data/tuna-industry';
+import { SKJ_HUBS, type PriceTimeline, type TunaCatchData } from '@/lib/data/tuna-industry';
 import SafeResponsiveContainer from '../SafeResponsiveContainer';
 import styles from './TunaIndustryDashboard.module.css';
 
@@ -45,6 +46,9 @@ const RFMO_COLOR: Record<string, string> = {
   CCAMLR: '#64748b',
   미분류: '#94a3b8',
 };
+
+/** 항구 선 색. 방콕(벤치마크)을 가장 진하게 둔다. */
+const HUB_COLOR = ['#0e7490', '#f59e0b', '#0ea5e9', '#7c3aed', '#e11d48'];
 
 const AXIS = { stroke: 'var(--mu-axis)', tick: { fill: 'var(--mu-axis)', fontSize: 11 } } as const;
 const GRID = <CartesianGrid strokeDasharray="3 3" stroke="var(--mu-grid)" vertical={false} />;
@@ -242,6 +246,46 @@ export function KoreaSpeciesChart({ data }: { data: TunaCatchData }) {
           ))}
         </Bar>
       </BarChart>
+    </SafeResponsiveContainer>
+  );
+}
+
+/**
+ * 항구별 가다랑어 가격 9년 추이.
+ *
+ * 「참치 가격」이라는 단일 숫자가 왜 성립하지 않는지를 한 장으로 보여준다 —
+ * 다섯 항구가 같은 어종을 두고 따로 움직이고 때로는 반대로 간다.
+ * 결측은 메우지 않는다. 선이 끊기는 것 자체가 그 항구 고시가 멈췄다는 정보다.
+ *
+ * ⚠ 원자료 Atuna 는 유료 구독이다. 사내 열람 한정.
+ */
+export function SkjPriceByHubChart({ timeline }: { timeline: PriceTimeline }) {
+  return (
+    <SafeResponsiveContainer width="100%" height={320}>
+      <LineChart data={timeline.points} margin={{ top: 12, right: 16, left: 0, bottom: 8 }}>
+        {GRID}
+        <XAxis dataKey="월" {...AXIS} interval={11} />
+        <YAxis
+          {...AXIS}
+          width={64}
+          domain={['dataMin - 150', 'dataMax + 150']}
+          tickFormatter={(value: number) => value.toLocaleString('ko-KR')}
+        />
+        <Tooltip content={<Tip unit="달러/톤" />} />
+        <Legend wrapperStyle={{ fontSize: 11, color: 'var(--mu-axis)' }} />
+        {SKJ_HUBS.map((hub, index) => (
+          <Line
+            key={hub.key}
+            type="monotone"
+            dataKey={hub.label}
+            name={hub.label}
+            stroke={HUB_COLOR[index % HUB_COLOR.length]}
+            strokeWidth={hub.key === 'skj_bkk' ? 2.6 : 1.6}
+            dot={false}
+            connectNulls={false}
+          />
+        ))}
+      </LineChart>
     </SafeResponsiveContainer>
   );
 }
