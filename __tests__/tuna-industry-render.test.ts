@@ -144,6 +144,36 @@ describe('시장 이해 > 참치 — 데이터 인테이크', () => {
     expect(offenders, `한글화가 빠진 노출 문자열:\n${offenders.join('\n')}`).toEqual([]);
   });
 
+  it('집계 기준연도가 FAO 현재 릴리스만큼 최신이다', () => {
+    // 2026-08 감사에서 드러난 실수: 사전필터 추출본을 쓰는 바람에 어획 집계가 2022년에
+    // 멈춰 있었다. FAO 어획통계의 현재 기준연도는 2024년이다(2026-03 릴리스).
+    // 다음에 원본이 낡으면 빌드 스크립트가 막지만, 이미 커밋된 산출물은 이 테스트가 잡는다.
+    const data = getTunaCatchData();
+    expect(
+      data.요약.기준연도,
+      'FAO 어획통계 기준연도가 2024년보다 낮다 — 낡은 추출본으로 집계했을 가능성',
+    ).toBeGreaterThanOrEqual(2024);
+
+    // 참다랑어 축양 계열도 같은 릴리스에서 나와야 한다.
+    const bluefin = data.참다랑어자연산대축양;
+    expect(bluefin.length).toBeGreaterThan(0);
+    expect(Number(bluefin[bluefin.length - 1].연도)).toBeGreaterThanOrEqual(2024);
+
+    // 가격 시계열은 월 단위라 더 최신이어야 한다.
+    const prices = getSkjPriceTimeline();
+    const lastMonth = String(prices.points[prices.points.length - 1].월);
+    expect(lastMonth >= '2026-06', `가격 시계열이 ${lastMonth} 에서 멈췄다`).toBe(true);
+  });
+
+  it('위젯마다 데이터 기준연도가 붙어 화면에서 연식을 알 수 있다', () => {
+    // 원본 기관의 공표 주기가 달라 위젯끼리 기준연도가 어긋나는 것은 어쩔 수 없다.
+    // 다만 **낡은 줄 모르고 보는 것**은 막아야 한다.
+    const stages = getTunaIndustryStages();
+    const withYear = stages.flatMap((s) => s.widgets).filter((w) => typeof w.dataYear === 'number');
+    const total = stages.flatMap((s) => s.widgets).length;
+    expect(withYear.length / total, '연도를 못 뽑은 위젯이 너무 많다').toBeGreaterThan(0.8);
+  });
+
   it('서술이 「」로 지목한 위젯이 그 단계에 실제로 있다', () => {
     // 서술은 "아래 「위젯 제목」이 …를 보여준다" 식으로 근거를 가리킨다.
     // 큐레이션에서 위젯을 옮기거나 제목을 바꾸면 그 지목이 허공을 가리키게 되는데,
@@ -186,16 +216,24 @@ describe('시장 이해 > 참치 — 데이터 인테이크', () => {
       ...entry.facts.map((fact) => `${fact.label} ${fact.value} ${fact.note ?? ''}`),
     ]).join('\n');
 
+    // 백분율은 본문이 소수 둘째 자리까지 적고 집계는 뒤 0을 떨어뜨린다(47.4 대 47.40).
+    // 표기 차이는 신선도 문제가 아니므로 숫자로 비교한다.
+    const pct = (value: number) => [`${value}%`, `${value.toFixed(2)}%`];
+    const containsAny = (candidates: string[]) => candidates.some((c) => quoted.includes(c));
+
     expect(quoted).toContain(`${summary.세계어획량.toLocaleString('en-US')} 톤`);
-    expect(quoted).toContain(`${summary.최대해역비중}%`);
+    expect(containsAny(pct(summary.최대해역비중 ?? 0)), '최대해역 비중이 본문과 다르다').toBe(true);
     expect(quoted).toContain(
       `${summary.한국어획량?.toLocaleString('en-US')} 톤 — 세계 ${summary.한국순위}위`,
     );
-    expect(quoted).toContain(
-      `가다랑어 ${species['가다랑어'].비중}% · 황다랑어 ${species['황다랑어'].비중}% · ` +
-        `눈다랑어 ${species['눈다랑어'].비중}% · 날개다랑어 ${species['날개다랑어'].비중}% · ` +
-        `참다랑어 3종 ${bluefinShare}%`,
-    );
+    for (const [name, row] of Object.entries(species)) {
+      if (row.비중 < 1) continue; // 참다랑어 3종은 아래에서 합산으로 검사한다
+      expect(
+        containsAny(pct(row.비중)),
+        `${name} 비중 ${row.비중}% 가 본문에 없다 — 집계를 다시 돌린 뒤 서술이 안 따라온 것이다`,
+      ).toBe(true);
+    }
+    expect(containsAny(pct(bluefinShare)), '참다랑어 3종 합계 비중이 본문과 다르다').toBe(true);
   });
 
   it('항구별 가격 시계열이 결측을 메우지 않고 격차를 옳게 잰다', () => {

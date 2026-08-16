@@ -10,7 +10,7 @@
  *
  * 둘 다 정적 산출물이다. 런타임 fetch 가 없으므로 텔레메트리는 STATIC/SYNCED 로만 표기한다(L-09).
  */
-import rawAtuna from '../../public/data/tuna_atuna_8y.json';
+import rawAtuna from '../../public/data/tuna_industry_prices_v1.json';
 import rawCatch from '../../public/data/tuna_industry_v1.json';
 import rawWidgets from '../../public/data/tuna_industry_widgets_v1.json';
 
@@ -49,6 +49,13 @@ export interface KoreaTrendPoint {
   연도: string;
   한국어획량: number;
   세계점유율: number;
+}
+
+export interface BluefinSourceRow {
+  연도: string;
+  자연산: number;
+  축양: number;
+  축양비중: number;
 }
 
 export interface KoreaSpeciesRow {
@@ -92,6 +99,7 @@ export interface TunaCatchData {
   관할별: RfmoShare[];
   한국시계열: KoreaTrendPoint[];
   한국어종구성: KoreaSpeciesRow[];
+  참다랑어자연산대축양: BluefinSourceRow[];
 }
 
 // ─── 선별 위젯 ──────────────────────────────────────────────────────────────
@@ -118,6 +126,8 @@ export interface IndustryWidget {
   situation?: string | null;
   takeaway?: string | null;
   syncDate?: string | null;
+  /** 데이터가 끝나는 연도. 기관마다 공표 주기가 달라 위젯끼리 어긋나므로 화면에 드러낸다 */
+  dataYear?: number | null;
   telemetry: 'SYNCED';
   data: IndustryRow[];
   lines?: IndustrySeries[] | null;
@@ -189,7 +199,16 @@ interface AtunaRow {
 }
 
 interface AtunaFile {
-  _meta: { source: string; unit: string; fetched: string };
+  _meta: {
+    생성일: string;
+    출처: string;
+    단위: string;
+    구간: string;
+    재배포제한: string;
+    결측처리: string;
+    계열별_마지막관측: Record<string, string | null>;
+    갱신방법: string;
+  };
   timeline: AtunaRow[];
 }
 
@@ -236,10 +255,10 @@ function buildPriceTimeline(): PriceTimeline {
     points,
     latestSpread,
     meta: {
-      source: atunaFile._meta.source,
-      unit: atunaFile._meta.unit,
-      fetched: atunaFile._meta.fetched,
-      span: rows.length > 0 ? `${rows[0].month} ~ ${rows[rows.length - 1].month}` : '',
+      source: atunaFile._meta.출처,
+      unit: atunaFile._meta.단위,
+      fetched: atunaFile._meta.생성일,
+      span: atunaFile._meta.구간,
     },
   };
 }

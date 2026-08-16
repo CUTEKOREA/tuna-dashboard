@@ -41,6 +41,7 @@ import HeroZone from '../v2/HeroZone';
 import PillTabs, { type PillTab } from '../v2/PillTabs';
 import {
   AreaRankChart,
+  BluefinSourceChart,
   CountryRankChart,
   KoreaSpeciesChart,
   KoreaTrendChart,
@@ -86,7 +87,7 @@ const CATCH_CHART_SLOTS: Record<string, ChartSlot[]> = {
     },
     {
       title: '해역별 어획량 상위 8곳 (톤)',
-      caption: '색은 관할 기구를 나타낸다. 서·중부태평양 한 곳이 전체의 46.55%다.',
+      caption: '색은 관할 기구를 나타낸다. 서·중부태평양 한 곳이 전체의 47.40%다.',
       telemetry: CATCH_SYNC,
       render: () => <AreaRankChart data={CATCH} />,
     },
@@ -94,7 +95,7 @@ const CATCH_CHART_SLOTS: Record<string, ChartSlot[]> = {
   s02: [
     {
       title: '어종별 어획량 (톤)',
-      caption: '가다랑어 한 종이 전체의 57.98%다. 참다랑어 3종을 합쳐도 1.38%에 그친다.',
+      caption: '가다랑어 한 종이 전체의 60.52%다. 참다랑어 3종을 합쳐도 1.20%에 그친다.',
       telemetry: CATCH_SYNC,
       render: () => <SpeciesShareChart data={CATCH} />,
     },
@@ -109,6 +110,13 @@ const CATCH_CHART_SLOTS: Record<string, ChartSlot[]> = {
       caption: '붉은 막대가 대한민국이다. 주요 상업어종 7종 기준 5위다.',
       telemetry: CATCH_SYNC,
       render: () => <CountryRankChart data={CATCH} />,
+    },
+    {
+      title: '참다랑어 자연산과 축양 (톤)',
+      caption:
+        '축양은 어린 개체를 잡아 가두리에서 살찌우는 방식이라 통계상 양식으로 잡히지만 종자를 자연에서 가져온다. 두 값이 거의 같아 참다랑어 공급의 절반가량이 축양에서 나온다.',
+      telemetry: CATCH_SYNC,
+      render: () => <BluefinSourceChart data={CATCH} />,
     },
   ],
   x01: [
@@ -161,7 +169,7 @@ const CATCH_CHART_SLOTS: Record<string, ChartSlot[]> = {
     {
       title: '한국 어종별 어획량 (톤)',
       caption:
-        '가다랑어가 71%다. 통조림 원료 공급이 한국 원양의 본체라는 사실이 이 한 장에 들어 있다.',
+        '가다랑어가 74.9%다. 통조림 원료 공급이 한국 원양의 본체라는 사실이 이 한 장에 들어 있다.',
       telemetry: CATCH_SYNC,
       render: () => <KoreaSpeciesChart data={CATCH} />,
     },
@@ -276,7 +284,9 @@ function StageSection({ stage, narrative }: { stage: IndustryStage; narrative: S
               unit={widget.unit ?? undefined}
               telemetry={{
                 status: widget.telemetry,
-                syncDate: widget.syncDate ?? undefined,
+                // 배지에는 syncDate 대신 **데이터가 끝나는 연도**를 띄운다.
+                // 언제 받아왔는지보다 언제까지의 값인지가 독자에게 중요하다.
+                syncDate: widget.dataYear ? `${widget.dataYear}년 자료` : (widget.syncDate ?? undefined),
                 source: widget.source ?? undefined,
               }}
               chart={<TunaIndustryChart widget={widget} />}
