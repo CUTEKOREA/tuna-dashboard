@@ -312,9 +312,9 @@ export default function WhelkDashboard() {
     <h2 style={{ margin: 0, fontSize: '1.3rem', color: 'var(--w-slate-50)' }}>❶ 원료 수급</h2>
   </div>
   <>
-            <WidgetCard title="글로벌 어획 생산량 상위 5개국" icon={Globe} iconColor="var(--color-info)" pillar="S1"
-              cardDesc="전 세계 골뱅이 원물 주요 생산국 비중·생산량 — 글로벌 수급 헤게모니"
-              telemetry={{ status: 'STATIC', syncDate: '2022년 기준' }} chartHeight={300}
+            <WidgetCard title="참골뱅이 어획 상위국" icon={Globe} iconColor="var(--color-info)" pillar="S1"
+              cardDesc="통조림 원료인 물레고둥과(Buccinum)만 세었다 — 과(科)가 다른 종을 더하지 않는다"
+              telemetry={{ status: 'STATIC', syncDate: '2024년 확정' }} chartHeight={300}
               chart={
                 <BarChart data={globalCaptureData} layout="vertical" margin={{ left: 20 }}>
                   <ChartPatternDefs />
@@ -330,9 +330,9 @@ export default function WhelkDashboard() {
                 </BarChart>
               }
               takeaway={{
-                situation: <span>[FAOSTAT] 전 세계 골뱅이 생산량이 북대서양(영국·아일랜드) 등 특정 해역에 편중되어 있어, 한 국가의 어획량이 줄어들면 전체 수급이 크게 흔들릴 수 있는 상황입니다.</span>,
-                actionPlan: <span>상위 5개국 중 영국과 아일랜드가 글로벌 고품질 골뱅이 물량의 핵심 공급망을 장악하고 있습니다. 한국 프리미엄 B2C 통조림 시장은 육질이 뛰어난 <TermTooltip term="B. undatum" description="북해에서 조업되는 물레고둥(백골뱅이). 수율이 높고 육질이 부드러워 한국 B2C 통조림 1위 원물." /> 에 절대적으로 의존합니다. 이러한 단일 해역 의존 리스크(Single Point of Failure) 방어를 위해 조달 파트는 영국 내 핵심 벤더와 선제적 쿼터 매입 및 다년 선도 계약을 추진하여 원가 변동성으로부터 전사 이익을 수성해야 합니다.</span>,
-                source: 'FAOSTAT (2022)',
+                situation: <span>[FAO FishStat 2026.1.0] 2024년 참골뱅이 어획 35,744톤 가운데 영국 16,511톤·프랑스 7,696톤·캐나다 5,410톤·아일랜드 4,590톤이 94.5%를 차지합니다. 통조림 원료가 북대서양 네 나라에 몰려 있습니다.</span>,
+                actionPlan: <span>이 순위에 <strong>한국은 없습니다 — 참골뱅이 어획이 0</strong>입니다. 한국이 국제 통계에 종을 나눠 보고하지 않기 때문이기도 하고(전 연도 고둥류 미분류), 통조림 원료를 전량 수입하는 구조이기도 합니다. 프리미엄 B2C 라인의 원물인 <TermTooltip term="B. undatum" description="북대서양 찬 바다의 물레고둥(백골뱅이). 수율이 높고 육질이 부드러워 한국 B2C 통조림 1위 원물." /> 은 대체 산지가 사실상 위 네 나라뿐이므로, 조달 파트는 영국 편중을 아일랜드·캐나다로 나누는 다년 선도 계약을 우선 검토해야 합니다.</span>,
+                source: 'FAO FishStat 2026.1.0 — 물레고둥과(Buccinum) 어획 (2024)',
               }} />
 
             <WidgetCard title="캐나다 vs 영국 어획량 장기 시계열" icon={TrendingUp} iconColor="var(--color-info)" pillar="S1"
@@ -355,9 +355,9 @@ export default function WhelkDashboard() {
                 source: 'DFO Canada / UK MMO (2024 1H)',
               }} />
             
-            <WidgetCard title="한국 연안 골뱅이 어획 생산량" icon={Activity} iconColor="var(--color-info)" pillar="S1"
-              cardDesc="국내 어획량 장기 추이 — 신선 활어 전량 일본 직수출, 국내 가공용은 100% 수입"
-              telemetry={{ status: 'STATIC', syncDate: '2024년 기준' }} chartHeight={300}
+            <WidgetCard title="한국 연안 고둥류 어획 생산량" icon={Activity} iconColor="var(--color-info)" pillar="S1"
+              cardDesc="국가통계포털 고둥류(130311) 실측. 종 구분이 없는 항목이라 참골뱅이라 단정할 수 없다"
+              telemetry={{ status: 'STATIC', syncDate: '2025년 확정' }} chartHeight={300}
               chart={
                 <AreaChart data={koreaCaptureData}>
                   <defs>
@@ -374,9 +374,9 @@ export default function WhelkDashboard() {
                 </AreaChart>
               }
               takeaway={{
-                situation: <span>[FAO FishStat] 한국 바다에서도 골뱅이가 많이 잡히지만, 값비싼 신선(활어) 상태로 전량 일본에 직수출되고 있어 정작 국내 가공용은 수입에 100% 의존하고 있습니다.</span>,
-                actionPlan: <span>한국은 연안에서 연간 9,000톤 수준을 어획하는 글로벌 상위 생산국이나, 해당 원물은 프리미엄 단가를 쫓아 전량 <TermTooltip term="신선/냉장 활어" description="가공되지 않은 살아있는 상태로 주로 일본의 이자카야 및 고급 해산물 시장으로 직수출됨." /> 형태로 일본 시장에 직수출되고 있습니다. 반면, 국내 B2C 통조림 제조를 위한 대량의 가공 원물은 100% 수입산에 의존하는 기형적 '이중 가공무역' 구조에 갇혀 있습니다. 이러한 태생적 한계로 당사의 수익성은 글로벌 환율 및 해운 운임 변동성에 무방비로 노출되므로, 체질 개선을 위한 환헤지 및 통관 물류 효율화 투자가 필수불가결합니다.</span>,
-                source: 'FAO FishStat Capture (한국 골뱅이 어획 실측, ~2022)',
+                situation: <span>[국가통계포털] 한국 연안 고둥류 어획은 2019년 10,190톤을 정점으로 2024년 9,670톤, 2025년 9,171톤입니다. 15년째 9,000~10,000톤 구간에서 크게 벗어나지 않습니다.</span>,
+                actionPlan: <span>이 물량이 무슨 종인지는 통계에 없습니다 — 국내 항목명이 &ldquo;고둥류&rdquo;이고 국제 보고도 전 연도 미분류입니다. 국산 원물은 주로 <TermTooltip term="활·신선" description="가공하지 않은 살아 있는 상태. 2024년 활·신선 고둥류가 중국에 1,101만 달러, 소라가 일본에 319만 달러 나갔다." /> 형태로 일본·중국에 나가고, 통조림 원료는 조제저장품으로 영국에서 들어옵니다. 한 품목의 두 사슬이 반대로 흐르는 구조입니다. 국산 전환을 검토하려면 <strong>종 판별이 선행 과제</strong>이며, 그 전까지 원가 개선의 여지는 환헤지와 통관 효율에 한정됩니다.</span>,
+                source: '국가통계포털 어업생산동향조사 고둥류(130311), 2010~2025',
               }} />
 
             <WidgetCard title="영국 MCRS 상향 시나리오별 공급쇼크 시뮬레이션" icon={AlertTriangle} iconColor="var(--color-danger)" pillar="S1"
@@ -429,9 +429,9 @@ export default function WhelkDashboard() {
                 source: 'FAOSTAT + ICES (2026 분석)',
               }} />
 
-            <WidgetCard title="한국 골뱅이 어획 글로벌 순위 (FAO 2022)" icon={Navigation} iconColor="var(--color-info)" pillar="S1"
-              cardDesc="FAO FishStat Capture 2022 — 한국 세계 5위(종코드 7종 합산)"
-              telemetry={{ status: 'STATIC', syncDate: 'FAO FishStat Capture 2022' }} chartHeight={300}
+            <WidgetCard title="원료 산지 — 한국이 들어가지 못하는 순위" icon={Navigation} iconColor="var(--color-info)" pillar="S1"
+              cardDesc="참골뱅이(Buccinum) 어획 상위국. 한국은 이 종을 보고하지 않아 순위에 없다"
+              telemetry={{ status: 'STATIC', syncDate: '2024년 확정' }} chartHeight={300}
               chart={
                 <BarChart data={koreaGlobalShareData} layout="vertical" margin={{ left: 20 }}>
                   <ChartPatternDefs />
@@ -445,9 +445,9 @@ export default function WhelkDashboard() {
                 </BarChart>
               }
               takeaway={{
-                situation: <span>[FAO] 2022년 한국 골뱅이 어획은 9,062톤으로 세계 5위입니다(멕시코 17,782·영국 14,091·프랑스 10,117·러시아 9,229·한국 9,062 順).</span>,
-                actionPlan: <span>한국이 세계 5위 생산국이면서도 어획 물량 대부분이 신선 활어로 일본에 직수출돼 국내 가공용 원물은 수입에 의존하는 모순 구조입니다. 전략기획실은 국내 어획 일부를 가공용으로 전환하는 산지 직계약과, 활어 수출가 대비 수입 가공가의 차익 모델을 재검토해야 합니다. 종코드는 단일 GAS가 아닌 7종(GAS/RPW/WHE/WHX/WJT/WKO/WKQ) 합산 기준입니다.</span>,
-                source: 'FAO FishStat Capture 2022',
+                situation: <span>[FAO FishStat 2026.1.0] 2024년 참골뱅이 어획 상위는 영국 16,511톤·프랑스 7,696톤·캐나다 5,410톤·아일랜드 4,590톤이고 <strong>한국은 0톤</strong>입니다. 한국의 고둥류 어획 9,670톤은 종을 나누지 않은 미분류 값이라 이 순위에 넣을 수 없습니다.</span>,
+                actionPlan: <span>이전 판에서는 다른 나라의 종코드 7개 합산값과 한국의 미분류 단일 코드를 나란히 세워 &ldquo;한국 세계 5위&rdquo;로 표기했는데, 과(科)가 다른 종을 더한 값이라 성립하지 않습니다. 원본 설명서도 이 합산을 명시적으로 금지합니다. 실무적으로 남는 사실은 하나입니다 — <strong>통조림 원료는 국내에서 조달되지 않습니다.</strong> 국내 어획을 가공용으로 돌리는 안을 검토하려면 먼저 그 9,670톤이 무슨 종인지부터 확인해야 하고, 그 자료가 현재 없습니다.</span>,
+                source: 'FAO FishStat 2026.1.0 + 국가통계포털 어업생산동향조사 (2024)',
               }} />
           </>
       </>)}
