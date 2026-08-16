@@ -117,7 +117,7 @@ export function CrossCommodityHero({
   return (
     <HeroZone
       variant="kpi"
-      title="Cross Intelligence"
+      title="통합 인텔리전스"
       subtitle={`데이터 기준일 ${syncDate} · ${data.meta.method}`}
       primaryKpi={primarySignal ? {
         label: '최대 대체 압력',

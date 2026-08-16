@@ -72,18 +72,30 @@
   background: var(--dsc-surface);
 }
 
-.heroMissionCardNow {
-  background: var(--dsc-ink);
-  border-color: var(--dsc-ink);
-  box-shadow: var(--elev-2, var(--dsc-card-shadow));
-  color: var(--dsc-bg);
-}
-
-.heroMissionCardNow strong { color: var(--dsc-bg); }
-.heroMissionCardNow .heroMissionStatus { color: var(--w-amber-400); }
-
 .heroMissionCard strong { color: var(--dsc-ink); font-size: 0.9rem; }
 .heroMissionStatus { color: var(--accent-primary); font-size: 0.67rem; font-weight: 800; }
+
+.heroMissionCardNow,
+.heroMissionCardNow:hover,
+.heroMissionCardNow:focus-visible,
+.heroMissionCardNow.heroMissionCardActive {
+  background: var(--dsc-surface);
+  border-color: var(--accent-primary);
+  box-shadow: var(--elev-2, var(--dsc-card-shadow));
+  color: var(--dsc-ink-muted);
+}
+
+.heroMissionCardNow strong,
+.heroMissionCardNow:hover strong,
+.heroMissionCardNow.heroMissionCardActive strong {
+  color: var(--dsc-ink);
+}
+
+.heroMissionCardNow .heroMissionStatus,
+.heroMissionCardNow:hover .heroMissionStatus,
+.heroMissionCardNow.heroMissionCardActive .heroMissionStatus {
+  color: var(--w-amber-400);
+}
 
 .eyebrow { color: var(--accent-primary); font-size: 0.72rem; font-weight: 800; letter-spacing: 0.08em; }
 

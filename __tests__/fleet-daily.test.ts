@@ -5,6 +5,7 @@ import {
   buildFleetRoster,
   formatFleetDailyDelta,
   formatFleetDailyNote,
+  formatReportedMt,
 } from '@/lib/fleet-daily-presentation';
 import {
   fleetDailyPublic,
@@ -98,17 +99,23 @@ describe('fleet daily bounded intake', () => {
     });
     expect(fleetDailyPublic.quality.counts).toMatchObject({
       reconciliationChecks: 540,
-      reconciliationCompleteChecks: 30,
-      reconciliationUnavailableChecks: 510,
-      reconciliationUnavailableDocuments: 135,
-      reconciliationIssues: 9,
-      reconciliationDocuments: 8,
+      reconciliationCompleteChecks: 540,
+      reconciliationUnavailableChecks: 0,
+      reconciliationUnavailableDocuments: 0,
+      reconciliationIssues: 14,
+      reconciliationDocuments: 12,
       reconciliationPartialDifferences: 14,
       reconciliationPartialDifferenceDocuments: 12,
       duplicateVesselRows: 4,
       coordinateFormatIssues: 6,
       longlineSectionMissing: 13,
     });
+  });
+
+  it('renders a dash amount as zero tons', () => {
+    expect(formatReportedMt(null)).toBe('0');
+    expect(formatReportedMt(0)).toBe('0');
+    expect(formatReportedMt(130)).toBe('130');
   });
 
   it('formats signed deltas and reported port names without changing source values', () => {

@@ -21,8 +21,9 @@ function assertAmountContract(
   const parsedParenthetical = parentheticalMatch === undefined
     ? null
     : Number(parentheticalMatch.replaceAll(',', ''));
+  // 원문 `-`는 0톤. 빈 칸만 미기입(null)으로 남긴다.
   const invalid = normalizedRaw === '-'
-    ? value !== null || parenthetical !== null
+    ? value !== 0 || parenthetical !== null
     : parsedValue === null || value !== parsedValue || parenthetical !== parsedParenthetical;
   if (invalid) {
     ctx.addIssue({

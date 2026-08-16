@@ -73,8 +73,9 @@ def display_number(value: float | None) -> int | float | None:
 
 def parse_amount(value: str) -> Amount:
     raw = compact_amount(value)
+    # 원문 `-`는 미기입이 아니라 0톤(당일 무어획·무선적).
     if raw in {"", "-"}:
-        return Amount(raw=raw or "-", value=None, parenthetical=None)
+        return Amount(raw=raw or "-", value=0, parenthetical=None)
     base_match = re.match(r"^\(?([-+]?\d[\d,]*(?:\.\d+)?)", raw)
     base = float(base_match.group(1).replace(",", "")) if base_match else None
     parenthetical_match = re.match(r"^[-+]?\d[\d,]*(?:\.\d+)?\(([-+]?\d[\d,]*(?:\.\d+)?)\)", raw)

@@ -9,13 +9,13 @@ import HeroZone from '../components/v2/HeroZone';
 import PillTabs from '../components/v2/PillTabs';
 
 describe('Fleet Now strip', () => {
-  it('선단 히어로 판단 카드 중 한 장만 지금이다', () => {
+  it('선단 히어로 판단 카드는 흰 표면을 유지하고 검산을 어둡게 뒤집지 않는다', () => {
     const markup = renderToStaticMarkup(
       React.createElement(FleetCommandCenter, { heroOnly: true }),
     );
-    const nowCount = markup.match(/data-now="true"/g)?.length ?? 0;
-    expect(nowCount).toBe(1);
-    expect(markup).toContain('지금 ·');
+    expect(markup.match(/data-now="true"/g)?.length ?? 0).toBe(0);
+    expect(markup).not.toContain('지금 ·');
+    expect(markup).toContain('검산');
   });
 });
 
@@ -214,7 +214,7 @@ describe('Deep Sea Command V2 — Fleet pilot', () => {
   it('실제 선단 대시보드가 최신 일일보고 히어로와 데이터 기반 KPI를 렌더한다', () => {
     const markup = renderToStaticMarkup(React.createElement(FleetCommandCenter));
 
-    expect(markup).toContain('선단 일일 작전');
+    expect(markup).toContain('선단 운영');
     expect(markup).toContain('일간 합계');
     expect(markup).toContain('data-kpi-value="335"');
     // 2026-08-15 사용자 지시: 선박 사진 배경 제거 — 라이트 히어로는 배경 없이
@@ -293,7 +293,7 @@ describe('Deep Sea Command V2 — Phase 2 운영 페이지', () => {
       React.createElement(LogisticsHero as React.ComponentType<any>),
     );
 
-    expect(markup).toContain('Logistics &amp; Processing');
+    expect(markup).toContain('물류·가공');
     expect(markup).toContain('주간 하역 합계');
     expect(markup).toContain('(MT)');
     expect(markup.match(/data-week31-carrier-marker="true"/g)?.length).toBe(4);
@@ -341,7 +341,7 @@ describe('Deep Sea Command V2 — Phase 3 잔여 페이지', () => {
       React.createElement(PorkHero as React.ComponentType),
     );
 
-    expect(markup).toContain('Pork Market');
+    expect(markup).toContain('돼지고기');
     expect(markup).toContain('데이터 기준일 2024년');
     expect(markup).toContain('중국 돈육 생산량');
     expect(markup).toContain('(천 MT)');
@@ -377,7 +377,7 @@ describe('Deep Sea Command V2 — Phase 3 잔여 페이지', () => {
       }),
     );
 
-    expect(markup).toContain('Cross Intelligence');
+    expect(markup).toContain('통합 인텔리전스');
     expect(markup).toContain('데이터 기준일 2026.07.03');
     expect(markup).toContain('최대 대체 압력');
     expect(markup).toContain('평균 리스크 충격');
@@ -396,7 +396,7 @@ describe('Deep Sea Command V2 — Phase 3 잔여 페이지', () => {
       React.createElement(PurseSeinerHero as React.ComponentType),
     );
 
-    expect(markup).toContain('Purse Seiner DB');
+    expect(markup).toContain('선망선 DB');
     expect(markup).toContain('데이터 기준일 2026.05.27');
     expect(markup).toContain('검증 선박');
     expect(markup).toContain('(척)');

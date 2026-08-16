@@ -27,7 +27,7 @@ export function PurseSeinerHero() {
   return (
     <HeroZone
       variant="kpi"
-      title="Purse Seiner DB"
+      title="선망선 DB"
       subtitle={`데이터 기준일 ${DATA_DATE.replace(/-/g, '.')} · 국제해사기구 번호 검증 완료`}
       primaryKpi={{
         label: '검증 선박',

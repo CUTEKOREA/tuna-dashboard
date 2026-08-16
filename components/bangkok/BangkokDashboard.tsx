@@ -67,7 +67,7 @@ export default function BangkokDashboard({ heroOnly = false }: { heroOnly?: bool
     <div className="cosmo-root panofi-root" data-cosmo-dashboard data-bangkok-dashboard>
       <HeroZone
         variant="kpi"
-        title="Bangkok Office Weekly"
+        title="방콕사무소"
         subtitle={`분석 기간 ${bangkokWeeklyKpi.period} · 고유 ${bangkokWeeklyKpi.weeks}주`}
         primaryKpi={{
           label: '최신 시세',

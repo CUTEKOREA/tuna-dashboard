@@ -5,7 +5,7 @@
     "firstReportDate": "2026-01-16",
     "latestReportDate": "2026-08-14",
     "latestAsOf": "2026-08-13",
-    "detailSha256": "8180d52a1a9856cf0a33bfb1ddfaec0a115217e33b5258c3fb91012b852fd66f"
+    "detailSha256": "bbf130c7718413463d15f1941bfc9af70e3c963c1ac52b707d2be2468ffdca3c"
   },
   "latest": {
     "reportDate": "2026-08-14",
@@ -35,47 +35,47 @@
   "reconciliation": {
     "pacificDaily": {
       "reportedMt": 130,
-      "rowsMt": null,
-      "matches": null,
-      "missingCount": 9
+      "rowsMt": 130,
+      "matches": true,
+      "missingCount": 0
     },
     "atlanticDaily": {
       "reportedMt": 205,
-      "rowsMt": null,
-      "matches": null,
-      "missingCount": 3
+      "rowsMt": 205,
+      "matches": true,
+      "missingCount": 0
     },
     "carrierLoaded": {
       "reportedMt": 9922.3,
-      "rowsMt": null,
-      "matches": null,
-      "missingCount": 1
+      "rowsMt": 9922.3,
+      "matches": true,
+      "missingCount": 0
     },
     "carrierExpectedRemaining": {
       "reportedMt": 7887.7,
-      "rowsMt": null,
-      "matches": null,
-      "missingCount": 5
+      "rowsMt": 7887.7,
+      "matches": true,
+      "missingCount": 0
     },
-    "valid": false,
-    "unavailableCount": 4,
+    "valid": true,
+    "unavailableCount": 0,
     "issueCount": 0
   },
   "quality": {
     "counts": {
       "reconciliationChecks": 540,
-      "reconciliationCompleteChecks": 30,
-      "reconciliationUnavailableChecks": 510,
-      "reconciliationUnavailableDocuments": 135,
-      "reconciliationIssues": 9,
-      "reconciliationDocuments": 8,
+      "reconciliationCompleteChecks": 540,
+      "reconciliationUnavailableChecks": 0,
+      "reconciliationUnavailableDocuments": 0,
+      "reconciliationIssues": 14,
+      "reconciliationDocuments": 12,
       "reconciliationPartialDifferences": 14,
       "reconciliationPartialDifferenceDocuments": 12,
       "duplicateVesselRows": 4,
       "coordinateFormatIssues": 6,
       "longlineSectionMissing": 13
     },
-    "incompletePartialDifferences": 5,
-    "incompletePartialDifferenceDocuments": 5
+    "incompletePartialDifferences": 0,
+    "incompletePartialDifferenceDocuments": 0
   }
 }
