@@ -78,7 +78,6 @@ STAGES: list[dict] = [
             "w25_byproduct_cashcow",
             "w102_spain_loin_outsourcing",
             "w49_yield_labor",
-            "w58_atq_loin_export",
         ],
     },
     {
@@ -103,10 +102,10 @@ STAGES: list[dict] = [
         "widgets": [
             "w106_kr_frozen_canned_gap",
             "w20_thailand_paradox",
-            "w47_korea_thailand_pipeline",
             "w07_export",
             "w08_import",
             "w65_export_price_benchmark",
+            "w58_atq_loin_export",
         ],
     },
     {
@@ -121,6 +120,7 @@ STAGES: list[dict] = [
             "w34_germany_blackhole",
             "w31_italy_multiplier",
             "w59_inflation_downtrading",
+            "w37_china_dumping",
         ],
     },
     {
@@ -162,6 +162,7 @@ STAGES: list[dict] = [
             "w21_korea_price_truth",
             "w23_korea_surplus",
             "w68_vessel_productivity",
+            "w47_korea_thailand_pipeline",
         ],
     },
 ]
@@ -210,6 +211,7 @@ TITLE_OVERRIDES: dict[str, str] = {
     "w34_germany_blackhole": "독일 수입 시장의 제품 구성",
     "w31_italy_multiplier": "이탈리아 시장의 원가·소매가 배수",
     "w59_inflation_downtrading": "물가 상승기의 제품군별 수요 이동",
+    "w37_china_dumping": "중국의 저가 통조림과 유럽 시장",
     # x01 가격
     "w105_skj_spot": "방콕 가다랑어 현물가 추이",
     "w42_first_sale_cascade": "스페인 항구 경매가의 전이",

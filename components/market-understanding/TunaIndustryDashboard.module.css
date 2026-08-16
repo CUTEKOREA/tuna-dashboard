@@ -19,6 +19,13 @@
   --mu-axis: #94a3b8;
   --mu-grid: rgba(148, 163, 184, 0.22);
   --mu-hover: rgba(56, 189, 248, 0.08);
+  /* 출처 신뢰도 배지 — 다크 지면에서 읽히는 밝은 값 */
+  --mu-grade-a-bg: rgba(16, 185, 129, 0.18);
+  --mu-grade-a-ink: #6ee7b7;
+  --mu-grade-b-bg: rgba(245, 158, 11, 0.18);
+  --mu-grade-b-ink: #fcd34d;
+  --mu-grade-c-bg: rgba(148, 163, 184, 0.2);
+  --mu-grade-c-ink: #cbd5e1;
 
   display: flex;
   flex-direction: column;
@@ -40,6 +47,13 @@
   --mu-axis: #64748b;
   --mu-grid: rgba(100, 116, 139, 0.2);
   --mu-hover: rgba(2, 132, 199, 0.07);
+  /* 라이트 지면에서는 같은 배지를 어둡게 뒤집는다 */
+  --mu-grade-a-bg: rgba(5, 150, 105, 0.14);
+  --mu-grade-a-ink: #047857;
+  --mu-grade-b-bg: rgba(245, 158, 11, 0.16);
+  --mu-grade-b-ink: #b45309;
+  --mu-grade-c-bg: rgba(100, 116, 139, 0.16);
+  --mu-grade-c-ink: #475569;
 }
 
 /* ─── 30초 브리핑 ─────────────────────────────────────────────── */
@@ -387,18 +401,18 @@
 }
 
 .grade[data-grade='A'] {
-  background: rgba(5, 150, 105, 0.16);
-  color: #059669;
+  background: var(--mu-grade-a-bg);
+  color: var(--mu-grade-a-ink);
 }
 
 .grade[data-grade='B'] {
-  background: rgba(245, 158, 11, 0.16);
-  color: #b45309;
+  background: var(--mu-grade-b-bg);
+  color: var(--mu-grade-b-ink);
 }
 
 .grade[data-grade='C'] {
-  background: rgba(100, 116, 139, 0.18);
-  color: #64748b;
+  background: var(--mu-grade-c-bg);
+  color: var(--mu-grade-c-ink);
 }
 
 /* ─── FishStat 전용 차트 ──────────────────────────────────────── */

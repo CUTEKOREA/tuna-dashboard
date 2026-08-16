@@ -2,7 +2,7 @@
  "_meta": {
   "생성일": "2026-08-16",
   "원본": "public/data/tuna_real_data_v3.json (93위젯)",
-  "선별": "47개",
+  "선별": "48개",
   "규칙": "밸류체인 7단계 + 횡단 3축으로 재배치. 제목은 결론 선언형에서 서술형으로 고쳐 썼고 데이터·출처·방법론·SIT·TAK 는 원문 그대로 보존한다.",
   "텔레메트리": "런타임 fetch 가 없는 정적 재사용이므로 전부 SYNCED (L-09)",
   "갱신방법": "python3 scripts/curate_tuna_industry_widgets.py"
@@ -1267,55 +1267,6 @@
      ],
      "areas": null,
      "xKey": "Cost Structure"
-    },
-    {
-     "id": "w58_atq_loin_export",
-     "title": "EU 자율관세할당(ATQ)과 로인 수출",
-     "원제목": "[관세 혜택] EU 자율관세할당(ATQ) 로인 수출 선제 전략",
-     "chartType": "composed",
-     "xAxis": null,
-     "unit": "EUR / KG",
-     "source": "EUMOFA Impact Report 2026 (Sec.4.5.2) / European Council ATQ Regulation 2024-2026 / 시장점유율이FTA의환율전가도영향및수출가격경쟁구조에미친영향 (한국 학술 논문)",
-     "methodology": "EU ATQ 제도하에서 통원어/냉동 로인/가공캔의 수출 형태별 실제 통관 단가와 MFN 관세(24%) 적용 여부를 비교하여, 형태 전환에 따른 순수익(Net Revenue) 차이를 정량화. 한-EU FTA 실증 효과(수출액 4.7x 성장)를 관세 면제 효과의 벤치마크로 활용.",
-     "situation": "EU는 자국 가공업체 보호를 위해 연간 35,000톤의 참치 로인(Loin)에 무관세(0%) 자율관세할당(ATQ)을 부여하지만, 이는 매년 1월 초에 즉각 소진되어 글로벌 수출업체 간의 극심한 통관 속도 경쟁을 유발합니다.",
-     "takeaway": "유럽 역내 보세 창고(Bonded Warehouse)에 선제적으로 재고를 전진 배치하여 1월 개시 즉시 무관세 쿼터를 100% 확보하고, 향후 ATQ에 의무화될 수 있는 지속가능성(노동/환경) 컴플라이언스 기준에 사전 대비해야 합니다.",
-     "syncDate": null,
-     "telemetry": "SYNCED",
-     "data": [
-      {
-       "Export Form": "통원어 (Whole Round)",
-       "Base Price": 2,
-       "Tariff Penalty (24%)": -0.48,
-       "Net Revenue": 1.52
-      },
-      {
-       "Export Form": "냉동 로인 (ATQ 적용)",
-       "Base Price": 6.5,
-       "Tariff Penalty (24%)": 0,
-       "Net Revenue": 6.5
-      },
-      {
-       "Export Form": "가공캔 (Prepared)",
-       "Base Price": 4.7,
-       "Tariff Penalty (24%)": 0,
-       "Net Revenue": 4.7
-      }
-     ],
-     "lines": null,
-     "bars": [
-      {
-       "key": "Net Revenue",
-       "name": "Net Revenue",
-       "color": "#10b981"
-      },
-      {
-       "key": "Tariff Penalty (24%)",
-       "name": "Tariff Penalty (24%)",
-       "color": "#ef4444"
-      }
-     ],
-     "areas": null,
-     "xKey": "Export Form"
     }
    ]
   },
@@ -1696,57 +1647,6 @@
      "xKey": "year"
     },
     {
-     "id": "w47_korea_thailand_pipeline",
-     "title": "한국 원어에서 EU 수출까지의 경로",
-     "원제목": "[밸류체인 이동] 한국 원어 → 태국 가공 → EU 수출 파이프라인",
-     "chartType": "bar",
-     "xAxis": "destination",
-     "unit": "USD Million",
-     "source": "Eurostat (TDM 2024, non-EU Trade Reports)",
-     "methodology": null,
-     "situation": "한국의 원양 선단이 어획한 원어가 태국 허브로 수출되어 로인(Loin) 및 캔으로 1차 가공된 후, 미국 및 EU 등 최종 소비 시장으로 재수출되는 복합적인 다단계 글로벌 가치사슬(GVC)이 고착화되어 있음.",
-     "takeaway": "미국의 상호관세 등 지정학적 무역 장벽을 우회하기 위해, 원어 단순 매각에 그치지 않고 태국 또는 제3국(아프리카, 남미)의 가공 거점을 선점/투자하여 밸류체인 하류(Downstream)의 마진을 내재화해야 함.",
-     "syncDate": null,
-     "telemetry": "SYNCED",
-     "data": [
-      {
-       "destination": "한국→태국 (원어)",
-       "volume": 10.72,
-       "price": 1.1
-      },
-      {
-       "destination": "한국→중국 (원어)",
-       "volume": 4.2,
-       "price": 1.84
-      },
-      {
-       "destination": "한국→일본 (원어)",
-       "volume": 1.97,
-       "price": 6.89
-      },
-      {
-       "destination": "태국→EU (완제품)",
-       "volume": 57.95,
-       "price": 3.97
-      }
-     ],
-     "lines": null,
-     "bars": [
-      {
-       "key": "volume",
-       "name": "수출량 (만 톤)",
-       "color": "#14b8a6"
-      },
-      {
-       "key": "price",
-       "name": "수출 단가 (EUR/kg)",
-       "color": "#f59e0b"
-      }
-     ],
-     "areas": null,
-     "xKey": "destination"
-    },
-    {
      "id": "w07_export",
      "title": "참치 조제품 수출 상위 10개국",
      "원제목": "[공급 허브] 통조림 수출 메가 배후국 Top 10 동향",
@@ -1939,6 +1839,55 @@
      ],
      "areas": null,
      "xKey": "country"
+    },
+    {
+     "id": "w58_atq_loin_export",
+     "title": "EU 자율관세할당(ATQ)과 로인 수출",
+     "원제목": "[관세 혜택] EU 자율관세할당(ATQ) 로인 수출 선제 전략",
+     "chartType": "composed",
+     "xAxis": null,
+     "unit": "EUR / KG",
+     "source": "EUMOFA Impact Report 2026 (Sec.4.5.2) / European Council ATQ Regulation 2024-2026 / 시장점유율이FTA의환율전가도영향및수출가격경쟁구조에미친영향 (한국 학술 논문)",
+     "methodology": "EU ATQ 제도하에서 통원어/냉동 로인/가공캔의 수출 형태별 실제 통관 단가와 MFN 관세(24%) 적용 여부를 비교하여, 형태 전환에 따른 순수익(Net Revenue) 차이를 정량화. 한-EU FTA 실증 효과(수출액 4.7x 성장)를 관세 면제 효과의 벤치마크로 활용.",
+     "situation": "EU는 자국 가공업체 보호를 위해 연간 35,000톤의 참치 로인(Loin)에 무관세(0%) 자율관세할당(ATQ)을 부여하지만, 이는 매년 1월 초에 즉각 소진되어 글로벌 수출업체 간의 극심한 통관 속도 경쟁을 유발합니다.",
+     "takeaway": "유럽 역내 보세 창고(Bonded Warehouse)에 선제적으로 재고를 전진 배치하여 1월 개시 즉시 무관세 쿼터를 100% 확보하고, 향후 ATQ에 의무화될 수 있는 지속가능성(노동/환경) 컴플라이언스 기준에 사전 대비해야 합니다.",
+     "syncDate": null,
+     "telemetry": "SYNCED",
+     "data": [
+      {
+       "Export Form": "통원어 (Whole Round)",
+       "Base Price": 2,
+       "Tariff Penalty (24%)": -0.48,
+       "Net Revenue": 1.52
+      },
+      {
+       "Export Form": "냉동 로인 (ATQ 적용)",
+       "Base Price": 6.5,
+       "Tariff Penalty (24%)": 0,
+       "Net Revenue": 6.5
+      },
+      {
+       "Export Form": "가공캔 (Prepared)",
+       "Base Price": 4.7,
+       "Tariff Penalty (24%)": 0,
+       "Net Revenue": 4.7
+      }
+     ],
+     "lines": null,
+     "bars": [
+      {
+       "key": "Net Revenue",
+       "name": "Net Revenue",
+       "color": "#10b981"
+      },
+      {
+       "key": "Tariff Penalty (24%)",
+       "name": "Tariff Penalty (24%)",
+       "color": "#ef4444"
+      }
+     ],
+     "areas": null,
+     "xKey": "Export Form"
     }
    ]
   },
@@ -2253,6 +2202,63 @@
      ],
      "areas": null,
      "xKey": "Year"
+    },
+    {
+     "id": "w37_china_dumping",
+     "title": "중국의 저가 통조림과 유럽 시장",
+     "원제목": "[보이지 않는 위협] 중국의 초저가 통조림 폭격과 시장 잠식",
+     "chartType": "composed",
+     "xAxis": "origin",
+     "unit": "EUR/kg",
+     "source": "Eurostat (COMEXT 2024)",
+     "methodology": null,
+     "situation": "중국 원양 선단은 막대한 국가 보조금과 선단 확장을 바탕으로 중서부태평양(WCPO) 및 인도양에서 조업량을 늘려 초저가 냉동 원물 및 로인(Loin) 물량 공세를 펴고 있으며, 통조림용 석도강판(Tinplate) 시장까지 저가로 침투해 기존 유럽 가공업체들의 원가 및 판가 구조를 심각하게 교란하고 있음.",
+     "takeaway": "중국산 저가 수산물에 대한 서구권의 규제(Anti-dumping 관세, 강제노동 WRO 조치 등) 리스크가 커짐에 따라, 타겟 기업의 공급망 실사(Supply Chain DD)를 강화하고, 비중국(Non-China) 기반의 합법적이고 투명한 대안 소싱 네트워크를 구축한 기업에 경영권 프리미엄을 부여해야 함.",
+     "syncDate": null,
+     "telemetry": "SYNCED",
+     "data": [
+      {
+       "origin": "에콰도르",
+       "volume": 17.2,
+       "price": 4.81
+      },
+      {
+       "origin": "스페인(역내)",
+       "volume": 12.3,
+       "price": 6.82
+      },
+      {
+       "origin": "PNG",
+       "volume": 4.45,
+       "price": 5.1
+      },
+      {
+       "origin": "중국",
+       "volume": 4.38,
+       "price": 3.92
+      },
+      {
+       "origin": "네덜란드",
+       "volume": 4.27,
+       "price": 5.49
+      }
+     ],
+     "lines": [
+      {
+       "key": "price",
+       "name": "수출 단가 (EUR/kg)",
+       "color": "#ef4444"
+      }
+     ],
+     "bars": [
+      {
+       "key": "volume",
+       "name": "통조림 수출량 (만 톤)",
+       "color": "#f59e0b"
+      }
+     ],
+     "areas": null,
+     "xKey": "origin"
     }
    ]
   },
@@ -3247,6 +3253,57 @@
      ],
      "areas": null,
      "xKey": "year"
+    },
+    {
+     "id": "w47_korea_thailand_pipeline",
+     "title": "한국 원어에서 EU 수출까지의 경로",
+     "원제목": "[밸류체인 이동] 한국 원어 → 태국 가공 → EU 수출 파이프라인",
+     "chartType": "bar",
+     "xAxis": "destination",
+     "unit": "USD Million",
+     "source": "Eurostat (TDM 2024, non-EU Trade Reports)",
+     "methodology": null,
+     "situation": "한국의 원양 선단이 어획한 원어가 태국 허브로 수출되어 로인(Loin) 및 캔으로 1차 가공된 후, 미국 및 EU 등 최종 소비 시장으로 재수출되는 복합적인 다단계 글로벌 가치사슬(GVC)이 고착화되어 있음.",
+     "takeaway": "미국의 상호관세 등 지정학적 무역 장벽을 우회하기 위해, 원어 단순 매각에 그치지 않고 태국 또는 제3국(아프리카, 남미)의 가공 거점을 선점/투자하여 밸류체인 하류(Downstream)의 마진을 내재화해야 함.",
+     "syncDate": null,
+     "telemetry": "SYNCED",
+     "data": [
+      {
+       "destination": "한국→태국 (원어)",
+       "volume": 10.72,
+       "price": 1.1
+      },
+      {
+       "destination": "한국→중국 (원어)",
+       "volume": 4.2,
+       "price": 1.84
+      },
+      {
+       "destination": "한국→일본 (원어)",
+       "volume": 1.97,
+       "price": 6.89
+      },
+      {
+       "destination": "태국→EU (완제품)",
+       "volume": 57.95,
+       "price": 3.97
+      }
+     ],
+     "lines": null,
+     "bars": [
+      {
+       "key": "volume",
+       "name": "수출량 (만 톤)",
+       "color": "#14b8a6"
+      },
+      {
+       "key": "price",
+       "name": "수출 단가 (EUR/kg)",
+       "color": "#f59e0b"
+      }
+     ],
+     "areas": null,
+     "xKey": "destination"
     }
    ]
   }

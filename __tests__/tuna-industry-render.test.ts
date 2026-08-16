@@ -101,6 +101,28 @@ describe('시장 이해 > 참치 — 데이터 인테이크', () => {
     }
   });
 
+  it('서술이 「」로 지목한 위젯이 그 단계에 실제로 있다', () => {
+    // 서술은 "아래 「위젯 제목」이 …를 보여준다" 식으로 근거를 가리킨다.
+    // 큐레이션에서 위젯을 옮기거나 제목을 바꾸면 그 지목이 허공을 가리키게 되는데,
+    // 화면에서는 조용히 사라져 눈에 띄지 않는다. 여기서 잡는다.
+    const stages = getTunaIndustryStages();
+    const quoted = /「([^」]+)」/g;
+
+    for (const narrative of ALL_NARRATIVES) {
+      const stage = stages.find((entry) => entry.key === narrative.key);
+      expect(stage, `${narrative.key} 단계가 없다`).toBeDefined();
+      const titles = new Set(stage!.widgets.map((widget) => widget.title));
+      const text = [...narrative.paragraphs, narrative.lede].join('\n');
+
+      for (const match of text.matchAll(quoted)) {
+        expect(
+          titles.has(match[1]),
+          `${narrative.key}: 서술이 「${match[1]}」을 가리키는데 그 단계에 없다`,
+        ).toBe(true);
+      }
+    }
+  });
+
   it('본문이 인용한 FishStat 수치가 집계 결과와 글자 그대로 같다', () => {
     // 서술은 사람이 쓰고 집계는 스크립트가 만든다. 둘이 어긋나면 페이지가 거짓을 말한다.
     // 집계를 다시 돌렸을 때 본문만 옛 숫자로 남는 것이 이 페이지의 가장 위험한 회귀다.
