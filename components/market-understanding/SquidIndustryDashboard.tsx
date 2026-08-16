@@ -39,6 +39,7 @@ import {
   AreaRankChart,
   BasketChart,
   CollapseChart,
+  CountryCompareChart,
   CountryRankChart,
   ImportFormChart,
   ImportOriginChart,
@@ -163,6 +164,13 @@ export const SQUID_CHART_SLOTS: Record<string, ChartSlot[]> = {
       caption: '막대는 어획량, 선은 세계에서 차지하는 몫이다.',
       telemetry: CATCH_SYNC,
       render: () => <KoreaTrendChart data={CATCH} />,
+    },
+    {
+      title: '주요국 오징어 수출입 (백만 달러)',
+      caption:
+        '한국은 사는 쪽이다. 아르헨티나·칠레·페루는 파는 쪽이고, 스페인은 사서 되판다. 페루는 2025년 보고가 없어 2024년 값이다.',
+      telemetry: TRADE_SYNC,
+      render: () => <CountryCompareChart data={TRADE} />,
     },
     {
       title: '한국 어종별 어획량 (톤)',

@@ -122,6 +122,8 @@ export interface TradePoint {
   수출액: number;
   수출량: number;
   수입단가: number;
+  /** 관세청 상세는 2024년까지다. 그 뒤는 유엔 무역통계로 이었다. */
+  출처: string;
 }
 
 export interface OriginRow {
@@ -137,6 +139,16 @@ export interface TradeStageRow {
   수입액: number;
   수입량: number;
   단가: number;
+}
+
+/** 주요국 수출입 비교 한 줄. 보고가 없는 해는 null 로 둔다 — 0 이 아니다. */
+export interface CountryCompareRow {
+  국가: string;
+  연도: string;
+  수입액: number | null;
+  수출액: number | null;
+  수입량: number | null;
+  수출량: number | null;
 }
 
 export interface SquidTradeData {
@@ -168,6 +180,7 @@ export interface SquidTradeData {
     제외품목: string[];
   };
   교역시계열: TradePoint[];
+  국가비교: CountryCompareRow[];
   수입국구성: OriginRow[];
   품목단계: TradeStageRow[];
   최근누계: {

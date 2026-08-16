@@ -118,7 +118,7 @@ STAGES: list[dict] = [
         "key": "x03",
         "title": "한국의 자리",
         "pillar": "S4",
-        "widgets": ["C_import_concentration", "C_comtrade_coverage_matrix", "E_gate_status_board", "E_source_registry"],
+        "widgets": ["C_import_concentration", "E_gate_status_board", "E_source_registry"],
     },
 ]
 
@@ -337,6 +337,27 @@ SERIES_FIXES = {
     "value": "값",
     "year": "연도",
     "month": "월",
+}
+
+# ── 차트 축·시리즈 교정 ────────────────────────────────────────────────
+# 원본 위젯 일부가 `xAxis` 없이 차트 타입만 들고 있다. 그대로 두면 렌더러가
+# 존재하지 않는 키를 축으로 잡아 **빈 차트**가 나온다 — 화면에는 축만 있고 막대가 없다.
+# 원본에 없는 것을 여기서 지정한다.
+XKEY_OVERRIDES = {
+    "A_sprfmo_cmm18_effort": "member",
+    "C_import_concentration": "year",
+    "B_species_price_ladder": "__label",
+}
+
+# 시리즈 키가 데이터에 없는 경우도 있다(예: share_pct 는 origins 안에만 있었다).
+SERIES_OVERRIDES = {
+    "C_import_concentration": ["top1_share_pct", "top3_share_pct"],
+    "B_species_price_ladder": ["price_eur_per_kg"],
+}
+
+# 축으로 쓸 라벨이 없는 위젯은 여러 열을 합쳐 만든다.
+LABEL_RECIPES = {
+    "B_species_price_ladder": ("scientific_name", "product_form"),
 }
 
 # ── 축 라벨 한글화 ────────────────────────────────────────────────────
@@ -880,12 +901,27 @@ def main() -> None:
             columns = build_columns(plain)
             if columns:
                 entry["columns"] = columns
-            if raw.get("xAxis"):
-                entry["xKey"] = raw["xAxis"]
-                entry["xLabel"] = XKEY_KO.get(raw["xAxis"], raw["xAxis"])
+            # 축으로 쓸 라벨을 합성해야 하는 위젯
+            recipe = LABEL_RECIPES.get(wid)
+            if recipe:
+                for row in plain:
+                    parts = [str(row.get(k)) for k in recipe if row.get(k)]
+                    row["__label"] = " ".join(parts) or "미상"
+                if columns and not any(c["key"] == "__label" for c in columns):
+                    columns.insert(0, {"key": "__label", "label": "구분"})
+
             series = normalize_series(raw)
+            override = SERIES_OVERRIDES.get(wid)
+            if override:
+                series = [
+                    {"key": k, "name": SERIES_FIXES.get(k) or COLUMN_KO.get(k, k)} for k in override
+                ]
             if series:
                 entry["series"] = series
+            xkey = XKEY_OVERRIDES.get(wid) or raw.get("xAxis")
+            if xkey:
+                entry["xKey"] = xkey
+                entry["xLabel"] = XKEY_KO.get(xkey, COLUMN_KO.get(xkey, xkey))
             if raw.get("unit"):
                 entry["unit"] = raw["unit"]
             if raw.get("methodology"):
@@ -929,6 +965,41 @@ def main() -> None:
         },
         "stages": stages_out,
     }
+
+    # ── 차트 무결성 게이트 ──
+    # 축이나 시리즈 키가 데이터에 없으면 화면에 **빈 차트**가 나온다. 축만 있고
+    # 막대가 없는 그림은 오류처럼 보이지 않아 사후에 발견되기 어렵다. 빌드에서 막는다.
+    CHART_TYPES = {"line", "bar", "stackedBar"}
+    chart_problems: list[str] = []
+    for stage in stages_out:
+        for widget in stage["widgets"]:
+            if widget["chartType"] not in CHART_TYPES:
+                continue
+            rows = widget.get("data") or []
+            xkey = widget.get("xKey")
+            if not xkey:
+                chart_problems.append(f"{widget['id']}: 축(xKey)이 없다")
+                continue
+            if not any(xkey in row for row in rows):
+                chart_problems.append(f"{widget['id']}: 축 '{xkey}' 가 데이터에 없다")
+            series = widget.get("series") or []
+            if not series:
+                chart_problems.append(f"{widget['id']}: 시리즈가 없다")
+                continue
+            for item in series:
+                key = item.get("key")
+                grouped = item.get("groupBy")
+                # groupBy 를 쓰는 경우 값 열과 분류 열이 둘 다 있어야 한다
+                needed = [key] + ([grouped] if grouped else [])
+                for column in needed:
+                    if not any(column in row for row in rows):
+                        chart_problems.append(f"{widget['id']}: 시리즈 열 '{column}' 이 데이터에 없다")
+
+    if chart_problems:
+        raise SystemExit(
+            "차트가 빈 채로 나갈 것이다 — XKEY_OVERRIDES / SERIES_OVERRIDES 를 고쳐라:\n  "
+            + "\n  ".join(chart_problems)
+        )
 
     if UNMAPPED_CELLS:
         raise SystemExit(

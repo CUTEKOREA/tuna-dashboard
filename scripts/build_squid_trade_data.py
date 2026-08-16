@@ -36,9 +36,20 @@ BASE = Path(
 HISTORY = BASE / "extras/kcs/KCS_squid_HS_2020-2024.csv"
 YTD = BASE / "update_2026-07-06/kcs/KCS_2026YTD_HS_squid.csv"
 
+# 관세청 추출본은 2024년에서 끝난다. 2025년은 유엔 무역통계(Comtrade)로 잇는다.
+# 두 출처의 2024년 값이 품목별로 일치함을 확인하고 붙였다 —
+# 030743 349.5백만USD·109,942톤, 030749 33.6·1,466, 160554 177.1·36,295.
+# 값이 어긋나면 스크립트가 멈춘다(아래 CROSS_CHECK_TOLERANCE).
+COMTRADE = (
+    BASE
+    / "00_오징어_관련자료/01_오징어_시장·가격/03_무역·HS"
+    / "20260816-COMTRADE-core_reporters_World_TOTALS_squid_HS_2024-2025.csv"
+)
+CROSS_CHECK_TOLERANCE = 0.02  # 2%
+
 OUT_PATH = Path(__file__).resolve().parent.parent / "public/data/squid_trade_v1.json"
 
-MIN_EXPECTED_YEAR = 2024
+MIN_EXPECTED_YEAR = 2025
 
 # 오징어 바스켓. 값은 (한글 품목명, 사슬 단계).
 # 0307.4x 는 갑오징어와 오징어가 한 소호에 있다 — 통관에서 가를 수 없다.
@@ -60,6 +71,78 @@ NOT_SQUID_HS = {
     "160555": "문어 조제품",
     "160559": "기타 연체동물 조제품",
 }
+
+
+def read_comtrade() -> dict[tuple[int, str], dict[str, float]]:
+    """한국 수출입을 (연도, HS6) → {수입액·수입량·수출액·수출량} 으로 편다."""
+    if not COMTRADE.exists():
+        return {}
+    out: dict[tuple[int, str], dict[str, float]] = {}
+    with open(COMTRADE, encoding="utf-8-sig") as handle:
+        for row in csv.DictReader(handle):
+            if row.get("reporterISO") != "KOR":
+                continue
+            flow = row.get("flowCode")
+            if flow not in ("M", "X"):
+                continue
+            key = (int(row["refYear"]), row["cmdCode"])
+            entry = out.setdefault(
+                key, {"value": 0.0, "weight": 0.0, "expValue": 0.0, "expWeight": 0.0}
+            )
+            if flow == "M":
+                entry["value"] += float(row.get("primaryValue") or 0)
+                entry["weight"] += float(row.get("netWgt") or 0)
+            else:
+                entry["expValue"] += float(row.get("primaryValue") or 0)
+                entry["expWeight"] += float(row.get("netWgt") or 0)
+    return out
+
+
+COUNTRY_KO_ISO = {
+    "ARG": "아르헨티나",
+    "CHL": "칠레",
+    "ESP": "스페인",
+    "JPN": "일본",
+    "KOR": "대한민국",
+    "PER": "페루",
+}
+
+
+def read_country_compare() -> list[dict]:
+    """주요국 수출입을 (국가, 연도) 로 편다. 한국이 어디에 서 있는지 보이게 하는 표다."""
+    if not COMTRADE.exists():
+        return []
+    agg: dict[tuple[str, str], dict[str, float]] = {}
+    with open(COMTRADE, encoding="utf-8-sig") as handle:
+        for row in csv.DictReader(handle):
+            iso = row.get("reporterISO") or ""
+            if iso not in COUNTRY_KO_ISO:
+                continue
+            key = (COUNTRY_KO_ISO[iso], row["refYear"])
+            entry = agg.setdefault(key, {"imp": 0.0, "exp": 0.0, "impW": 0.0, "expW": 0.0})
+            value = float(row.get("primaryValue") or 0)
+            weight = float(row.get("netWgt") or 0)
+            if row.get("flowCode") == "M":
+                entry["imp"] += value
+                entry["impW"] += weight
+            elif row.get("flowCode") == "X":
+                entry["exp"] += value
+                entry["expW"] += weight
+
+    out = []
+    for (country, year), v in sorted(agg.items()):
+        # 한 해에 한쪽 흐름만 보고된 나라가 있다(페루 2025년 미보고). 그건 0 이 아니라 결측이다.
+        out.append(
+            {
+                "국가": country,
+                "연도": year,
+                "수입액": round(v["imp"] / 1e6, 1) if v["imp"] else None,
+                "수출액": round(v["exp"] / 1e6, 1) if v["exp"] else None,
+                "수입량": round(v["impW"] / 1000) if v["impW"] else None,
+                "수출량": round(v["expW"] / 1000) if v["expW"] else None,
+            }
+        )
+    return out
 
 
 def read_history() -> list[dict]:
@@ -84,11 +167,32 @@ def main() -> None:
         raise SystemExit(f"통관 원본을 찾을 수 없다: {HISTORY}\nGoogle Drive 동기화를 확인하라.")
 
     rows = read_history()
-    years = sorted({int(r["year"]) for r in rows})
+    kcs_years = sorted({int(r["year"]) for r in rows})
+    comtrade = read_comtrade()
+    comtrade_years = sorted({y for y, _ in comtrade})
+
+    # ── 두 출처의 겹치는 해를 대조한다 ──
+    # 어긋난 채로 이으면 시계열에 계단이 생기고, 그 계단을 시장 변화로 읽게 된다.
+    overlap = sorted(set(kcs_years) & set(comtrade_years))
+    for year in overlap:
+        for hs in SQUID_HS:
+            kcs_v = sum(num(r["impDlr"]) for r in rows if int(r["year"]) == year and r["hsSgn"] == hs)
+            ct = comtrade.get((year, hs))
+            if not ct or not kcs_v:
+                continue
+            gap = abs(ct["value"] - kcs_v) / kcs_v
+            if gap > CROSS_CHECK_TOLERANCE:
+                raise SystemExit(
+                    f"두 출처가 {year}년 {hs} 에서 {gap * 100:.1f}% 어긋난다 "
+                    f"(관세청 {kcs_v / 1e6:.1f} · 유엔 {ct['value'] / 1e6:.1f} 백만USD). "
+                    "이어 붙이기 전에 원인을 확인하라."
+                )
+
+    years = sorted(set(kcs_years) | set(comtrade_years))
     latest = years[-1]
     if latest < MIN_EXPECTED_YEAR:
         raise SystemExit(
-            f"원본이 낡았다: 최신 연도 {latest} < {MIN_EXPECTED_YEAR}. 관세청 자료를 다시 받아라."
+            f"원본이 낡았다: 최신 연도 {latest} < {MIN_EXPECTED_YEAR}. 무역 자료를 다시 받아라."
         )
 
     squid = [r for r in rows if r["hsSgn"] in SQUID_HS]
@@ -102,10 +206,13 @@ def main() -> None:
             sum(num(r["impWgt"]) for r in sel),
         )
 
-    sq_v, sq_w = totals(squid, latest)
-    ot_v, ot_w = totals(other, latest)
+    # 오징어 아닌 품목이 얼마나 섞여 있었는지는 관세청 상세행에서만 잴 수 있다.
+    # 유엔 무역통계는 애초에 오징어 코드만 뽑은 것이라 비교 대상이 없다.
+    kcs_latest_for_exclusion = sorted({int(r["year"]) for r in rows})[-1]
+    sq_v, sq_w = totals(squid, kcs_latest_for_exclusion)
+    ot_v, ot_w = totals(other, kcs_latest_for_exclusion)
     exclusion = {
-        "기준연도": latest,
+        "기준연도": kcs_latest_for_exclusion,
         "오징어수입액": round(sq_v / 1e6, 1),
         "제외수입액": round(ot_v / 1e6, 1),
         "제외비중": round(ot_v / (sq_v + ot_v) * 100, 1) if (sq_v + ot_v) else 0,
@@ -120,6 +227,19 @@ def main() -> None:
         y = int(r["year"])
         for k in ("impDlr", "impWgt", "expDlr", "expWgt"):
             by_year[y][k] += num(r[k])
+
+    # 관세청에 없는 해(2025)는 유엔 무역통계로 채운다. 수입만 있고 수출은 없다.
+    comtrade_only = sorted(set(comtrade_years) - set(kcs_years))
+    for year in comtrade_only:
+        for hs in SQUID_HS:
+            ct = comtrade.get((year, hs))
+            if not ct:
+                continue
+            by_year[year]["impDlr"] += ct["value"]
+            by_year[year]["impWgt"] += ct["weight"]
+            by_year[year]["expDlr"] += ct.get("expValue", 0.0)
+            by_year[year]["expWgt"] += ct.get("expWeight", 0.0)
+
     timeline = [
         {
             "연도": str(y),
@@ -130,15 +250,20 @@ def main() -> None:
             "수입단가": round(by_year[y]["impDlr"] / (by_year[y]["impWgt"] / 1000))
             if by_year[y]["impWgt"]
             else 0,
+            # 어느 출처에서 왔는지 화면에서 밝힌다 — 수출이 비는 해가 있기 때문이다
+            "출처": "유엔 무역통계" if y in comtrade_only else "관세청",
         }
         for y in years
     ]
 
-    # ── 수입국 구성 (최신연도) ──
+    # ── 수입국 구성 ──
+    # 상대국 분해는 관세청 상세행에만 있다. 유엔 무역통계는 對세계 합계라 국가를 못 가른다.
+    # 그래서 이 표만 관세청 최신해 기준이고, 시계열은 한 해 더 간다.
+    kcs_latest = kcs_years[-1]
     origin_v: collections.Counter = collections.Counter()
     origin_w: collections.Counter = collections.Counter()
     for r in squid:
-        if int(r["year"]) != latest:
+        if int(r["year"]) != kcs_latest:
             continue
         name = (r.get("statCdCntnKor1") or "").strip() or "미상"
         origin_v[name] += num(r["impDlr"])
@@ -159,7 +284,7 @@ def main() -> None:
     stage_v: collections.Counter = collections.Counter()
     stage_w: collections.Counter = collections.Counter()
     for r in squid:
-        if int(r["year"]) != latest:
+        if int(r["year"]) != kcs_latest:
             continue
         _, stage = SQUID_HS[r["hsSgn"]]
         stage_v[stage] += num(r["impDlr"])
@@ -221,6 +346,7 @@ def main() -> None:
         },
         "바스켓제외": exclusion,
         "교역시계열": timeline,
+        "국가비교": read_country_compare(),
         "수입국구성": origins,
         "품목단계": stages,
         "최근누계": ytd,

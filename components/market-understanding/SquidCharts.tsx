@@ -525,3 +525,61 @@ export function ImportFormChart({ data }: { data: SquidTradeData }) {
     </SafeResponsiveContainer>
   );
 }
+
+/** 주요국 수출입 비교 — 한국이 어디에 서 있는가. */
+export function CountryCompareChart({ data }: { data: SquidTradeData }) {
+  const animate = useAnim();
+  // 최신 연도만 본다. 보고가 없는 나라는 직전 해로 대신하되 그 사실이 라벨에 남는다.
+  const rows = useMemo(() => {
+    const byCountry = new Map<string, { 국가: string; 수입액: number; 수출액: number; 연도: string }>();
+    for (const row of data.국가비교) {
+      const prev = byCountry.get(row.국가);
+      if (prev && prev.연도 >= row.연도) continue;
+      byCountry.set(row.국가, {
+        국가: row.연도 === (prev?.연도 ?? row.연도) ? row.국가 : row.국가,
+        수입액: row.수입액 ?? 0,
+        수출액: row.수출액 ?? 0,
+        연도: row.연도,
+      });
+    }
+    return [...byCountry.values()]
+      .map((r) => ({ ...r, 국가: r.연도 === '2025' ? r.국가 : `${r.국가} (${r.연도})` }))
+      .sort((a, b) => b.수입액 + b.수출액 - (a.수입액 + a.수출액));
+  }, [data]);
+
+  const rotation = getSmartRotation(rows.map((row) => row.국가));
+
+  return (
+    <SafeResponsiveContainer width="100%" height={300}>
+      <BarChart data={rows} margin={{ ...MARGIN, bottom: rotation.angle ? 48 : 8 }}>
+        {grid}
+        <XAxis
+          dataKey="국가"
+          {...AXIS}
+          tickFormatter={truncateXAxis}
+          angle={rotation.angle}
+          textAnchor={rotation.textAnchor as 'end' | 'middle'}
+          height={rotation.angle ? 62 : 30}
+          interval={0}
+        />
+        <YAxis {...AXIS} tickFormatter={(v: number) => `${v}`} />
+        <Tooltip content={<Tip unit=" 백만달러" />} />
+        {legend}
+        <Bar
+          dataKey="수입액"
+          name="수입액 (백만 달러)"
+          fill={SQUID_COLORS[0]}
+          radius={[3, 3, 0, 0]}
+          isAnimationActive={animate}
+        />
+        <Bar
+          dataKey="수출액"
+          name="수출액 (백만 달러)"
+          fill={SQUID_COLORS[1]}
+          radius={[3, 3, 0, 0]}
+          isAnimationActive={animate}
+        />
+      </BarChart>
+    </SafeResponsiveContainer>
+  );
+}
