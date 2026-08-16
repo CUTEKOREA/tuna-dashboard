@@ -9,8 +9,16 @@
 > - 로컬 Production 브라우저 QA는 Chromium 1440px·WebKit 834px·390px에서 모두 HttpOnly 쿠키, `전체·주간`, 739행, 8개 라인, 문서 overflow 0, page error 0을 확인했다. 잠금 후 서버 `granted:false`와 쿠키 제거도 세 환경에서 통과했고, 외부 DoubleClick 403만 분리 관찰했다.
 > - Production 변수 두 개는 새 난수로 생성해 Vercel **Sensitive·Production only**와 macOS 키체인에만 같은 값으로 등록했다. 평문은 터미널·Git·문서에 남기지 않았고 키체인 저장값은 내부 일치 비교로 검증했다.
 > - PR **#450** 첫 CI에서 기존 하역 E2E가 production 모드에서도 `sessionStorage`만 주입해 보호 패널을 마운트하지 못하는 회귀를 확인했다. 같은 30초 selector timeout을 로컬 RED로 재현한 뒤, E2E 전용 자격증명을 격리 주입하고 실제 `/api/operation-access` POST·GET으로 HttpOnly 쿠키를 발급·검증하도록 바꿨다. 테스트 서버는 `127.0.0.1`에만 바인딩해 공개 테스트 자격증명과 개발 환경변수가 LAN에 노출되지 않도록 했다. 데스크톱·모바일·키보드·새로고침·API/청크 오류 격리 시나리오가 GREEN이다.
-> - 작업 중 `main`에 GMTS와 「시장 이해 > 참치」 변경이 병합돼 PR이 충돌 상태가 됐다. history 재작성 없이 최신 `origin/main`을 일반 merge하고 `app/page.tsx` 자동 병합 결과와 HANDOFF 양쪽 기록을 모두 보존했다.
+> - 작업 중 `main`에 GMTS와 「시장 이해 > 참치」 변경 및 GMTS 운영 배포 기록이 순차 병합돼 PR이 두 차례 충돌 상태가 됐다. history 재작성 없이 최신 `origin/main`을 일반 merge하고 `app/page.tsx` 자동 병합 결과와 HANDOFF 양쪽 기록을 모두 보존했다.
 > - **상태/다음 단계**: 전용 worktree `codex/market-mobile-full-range-prod-20260816`, PR #450에 최신 main 통합 후 전체 게이트를 다시 실행하는 단계다. 필수 검사 통과 뒤 squash merge·Vercel Production 완료·iPhone/iPad/데스크톱 운영 검증을 진행한다.
+> 🚀 **2026-08-16 15:26 KST — GMTS 대시보드 운영 배포·실서비스 QA 완료** [Codex]:
+> - **병합:** PR **#451**을 squash merge SHA `222012e4ad804f74de351caffa8128176691dffb`로 `main`에 반영했다. App Quality Gate run `31918317595`와 Data Freshness Audit run `31918317613`은 모두 성공했다.
+> - **배포:** 기능 병합 Vercel Production deployment **5926297483**가 성공했다. 이후 최신 `main` deployment **5927115248**도 성공했으며 GMTS merge SHA를 조상으로 포함한다. 운영 주소는 `https://leedonggun.co.kr/gmts`이고 HTTP 200, `x-matched-path: /[category]`를 확인했다.
+> - **실서비스 QA:** 잠금 상태에서 상세 DOM 0과 `방콕사무소 → GMTS → 메일` 순서를 확인했다. 세션 잠금 해제 후 데스크톱 1440px·모바일 390px에서 5개 탭을 전부 클릭했다. 항만 차트 1 SVG·3선, 공장 차트 1 SVG·2선, 가격·반입 차트 2 SVG·21도형, 출처 30행이 실제 렌더됐다.
+> - **화면 정정 확인:** 메뉴는 `GMTS`, 생산·냉동재고 KPI는 연청색 배경과 진한 글자로 표시된다. 전 탭 문서 overflow 0, console/page/자체 HTTP error·request failure 0이다. 외부 Google 광고 요청만 로컬 headless 검증에서 204로 격리했다.
+> - **다음 단계:** 신규 GMTS 주간 PDF가 추가되면 `npm run sync:gmts`로 정적 스냅샷을 재생성하고 같은 파서·렌더·출처 계약을 유지한다.
+> - **마지막 업데이트:** 2026-08-16 15:26 KST.
+>
 > 🈚 **2026-08-16 12:10 KST — 「시장 이해 > 참치」 후속 검증 2건 정정·배포** [CC]:
 > - **L-01 위반 실제 발견.** L-02(X축 7자 회전) 감사를 돌리다 옆집 문제를 찾았다 — 원본 93위젯 상당수가 시리즈 `name` 이 비어 있어 **렌더러가 영문 dataKey 를 그대로 범례에 노출**하고 있었다. 축 카테고리 값에도 영문이 남아 있었다.
 > - **시리즈명 21건 + 축 라벨 18건 한글화.** 어종(Skipjack→가다랑어), 원가(MGOCost→선박용 경유(MGO) 가격), 규제(Reported Bycatch→보고된 혼획, ANN-Standardized CPUE→표준화 단위노력당어획량), 시나리오(Slow (< 1 ton/min)→저속 (1톤/분 미만)), 분기(Q1→1분기), 국가코드(PNG→파푸아뉴기니). **큐레이션 스크립트에 넣어 재생성해도 유지된다.** dataKey 는 안 건드린다 — 데이터 행의 키다.
