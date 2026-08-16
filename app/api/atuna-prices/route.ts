@@ -3,24 +3,35 @@ import { cookies } from 'next/headers';
 import { createServerClient } from '@supabase/ssr';
 import fs from 'node:fs/promises';
 import path from 'node:path';
+import {
+  OPERATION_ACCESS_COOKIE_NAME,
+  verifyOperationAccessToken,
+} from '@/lib/server/operation-access';
 
 export const dynamic = 'force-dynamic';
-export const revalidate = 3600; // 1시간 캐시
+export const revalidate = 0;
+
+const RESPONSE_HEADERS = {
+  'Cache-Control': 'private, no-store, max-age=0',
+  Vary: 'Cookie',
+};
 
 /** 무인증 요청에 공개하는 프리뷰 기간 (일) — Atuna 유료 구독 소스 보호 */
 const PREVIEW_DAYS = 90;
 
 /**
- * 쿠키 기반 Supabase 세션 검증 (A-5 인증 게이팅).
- * lib/supabase.ts의 createBrowserClient가 세션을 쿠키에 저장하므로
- * 라우트에서 createServerClient로 읽어 검증 가능.
- * getUser()는 Supabase Auth 서버에 토큰 유효성을 확인 — 위조 쿠키 차단.
+ * 서버가 검증한 운영 접근 쿠키 또는 Supabase 세션만 전체 이력을 허용한다.
+ * Supabase getUser()는 Auth 서버에 토큰 유효성을 확인하고,
+ * 운영 접근 쿠키는 별도의 서버 비밀값으로 HMAC 서명을 검증한다.
  */
 async function isAuthenticated(): Promise<boolean> {
-  // 로컬 개발 우회 — NODE_ENV=development 한정 (주의: page.tsx는 hostname localhost도 우회하므로 npm start 로컬 프로덕션에선 페이지 입장+API 차단 조합이 됨)
+  // 로컬 개발 우회 — NODE_ENV=development 한정
   if (process.env.NODE_ENV === 'development') return true;
   try {
     const cookieStore = await cookies();
+    if (verifyOperationAccessToken(cookieStore.get(OPERATION_ACCESS_COOKIE_NAME)?.value)) {
+      return true;
+    }
     const supabase = createServerClient(
       process.env.NEXT_PUBLIC_SUPABASE_URL || 'https://placeholder.supabase.co',
       process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || 'placeholder',
@@ -135,8 +146,8 @@ export async function GET() {
       hubFreshness,
       // A-5 인증 게이팅 — 무인증 시 최근 90일 프리뷰만 제공
       restricted: !authed,
-      ...(authed ? {} : { restrictedNote: `미로그인 프리뷰 — 최근 ${PREVIEW_DAYS}일 데이터만 제공됩니다. 전체 이력은 로그인 후 열람 가능합니다.` }),
-    });
+      ...(authed ? {} : { restrictedNote: `미인증 프리뷰 — 최근 ${PREVIEW_DAYS}일 데이터만 제공됩니다. 전체 이력은 접근 확인 후 열람 가능합니다.` }),
+    }, { headers: RESPONSE_HEADERS });
   } catch (err) {
     return NextResponse.json(
       {
@@ -152,7 +163,7 @@ export async function GET() {
         hubFreshness: {},
         restricted: true,
       },
-      { status: 500 }
+      { status: 500, headers: RESPONSE_HEADERS }
     );
   }
 }

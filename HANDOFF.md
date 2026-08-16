@@ -1,3 +1,14 @@
+> 📱 **2026-08-16 08:55 KST — `/market` iPhone·iPad Atuna 전체 이력 수정 최신 main 통합·배포 준비** [Codex]:
+> - 운영을 다시 실측해 Mac Safari·iPhone Safari UA 모두 `/api/atuna-prices`가 `restricted:true`, **13행(2026-05-12~2026-08-06)**만 반환하고 `/api/operation-access`는 404임을 확인했다. 이번 `/bangkok-office` 배포에는 `/market` 수정이 포함되지 않았다.
+> - 원인은 반응형 차트나 필터가 아니라 인증 상태 불일치다. 메뉴 잠금은 클라이언트 `sessionStorage`만 열지만 Atuna API는 Supabase 인증 쿠키만 인정해, 기존 로그인 쿠키가 없는 새 iPhone·iPad에는 정확히 90일 프리뷰가 내려갔다.
+> - 최신 `origin/main` 위에 `/api/operation-access`와 12시간 HMAC 서명 쿠키를 통합해 메뉴 접근 확인과 Atuna 전체 이력 권한을 같은 서버 상태로 맞췄다. 쿠키는 HTTPS에서 `Secure`·`HttpOnly`·`SameSite=Lax`, Atuna 응답은 `private, no-store`·`Vary: Cookie`·`revalidate=0`이다.
+> - 과거 클라이언트 코드에 노출된 공유 비밀번호와 모든 fallback을 차단했다. 새 `SILLA_OPERATION_PASSWORD`(16자 이상·영대문자·영소문자·숫자·기호 포함)와 별도 `SILLA_OPERATION_ACCESS_SECRET`(32자 이상)이 모두 있고 서로 다를 때만 권한을 발급하며, 미설정·약한 값·동일 값·이전 공개값은 503/fail-closed다. iOS 숫자 키패드 고정도 제거해 새 영숫자 비밀번호를 입력할 수 있다.
+> - 기존 서비스워커가 `no-store` API까지 CacheStorage에 강제 저장하던 보안 회귀를 RED 4건으로 재현했다. 서비스워커 버전을 올려 과거 `api-v1-2026-05-22` 캐시를 삭제하고, 접근 권한·Atuna API는 network-only, 일반 API도 `no-store`·`private` 응답은 저장하지 않도록 막았다.
+> - 별도 재현에서 390px 차트 그리드가 `324→450px`로 내부 초과하던 것도 확인했다. 최소 열 폭을 컨테이너 100%로 제한해 **126px→0**으로 해소하고 데스크톱 2열 기준은 유지했다.
+> - RED→GREEN 모바일 폭·접근·서비스워커 테스트와 로컬 Production 접근 흐름을 확인했다. 새 비밀번호 입력 후 API는 `restricted:false`, **739행(1994-01-01~2026-08-06)**, `private/no-store`, `Vary: Cookie`를 반환하고 차트는 2022~2026 축을 표시한다. 전체 `npm run verify`는 ESLint 오류 0건(기존 경고 5건), TypeScript, Vitest **87파일·471테스트**, API cache **156/156**, Production build 117페이지, bundle 32라우트를 통과했다.
+> - 로컬 Production 브라우저 QA는 Chromium 1440px·WebKit 834px·390px에서 모두 HttpOnly 쿠키, `전체·주간`, 739행, 8개 라인, 문서 overflow 0, page error 0을 확인했다. 잠금 후 서버 `granted:false`와 쿠키 제거도 세 환경에서 통과했고, 외부 DoubleClick 403만 분리 관찰했다.
+> - **상태/다음 단계**: 전용 worktree `codex/market-mobile-full-range-prod-20260816`의 로컬 통합본이다. Production 변수 두 개가 현재 없으므로, 위 강도 조건을 만족하고 이전 공개값과 다른 새 메뉴 비밀번호를 사용자에게 확인한 뒤 서명 비밀값과 함께 Vercel Production에 등록하고 PR·배포·iPhone/iPad 운영 검증을 진행한다.
+>
 > 📈 **2026-08-16 08:04 KST — `/bangkok-office` 원어 시세 월·분기·연 입도 전환 운영 배포 완료** [Codex]:
 > - `원어 시세 추이`에 **주간·월별·분기별·연도별**, `시세 범위`에 **월별·분기별·연도별** 전환을 추가했다. 기본값은 기존 화면과 같은 주간 추이·연도별 범위이며, 두 컨트롤은 독립 상태로 동작한다.
 > - 월·분기·연 시세는 기록 있는 정상 주의 평균·최저·최고를 산출한다. 결측 주와 의심 플래그 주는 기존 연도별 계약대로 제외하고, 관측 없는 기간은 0으로 채우지 않는다. 새 연도 집계는 2020~2026 기존 확정 평균·최저·최고와 전부 일치한다.
