@@ -29,6 +29,7 @@ import {
   SKJ_HUBS,
   type IndustryStage,
 } from '@/lib/data/tuna-industry';
+import { getTunaCompanyData } from '@/lib/data/valuechain-companies';
 import {
   BRIEFING_POINTS,
   getNarrative,
@@ -47,7 +48,9 @@ import {
   BluefinSourceChart,
   FlagFleetChart,
   KoreaTunaGearChart,
+  ExportRankChart,
   OceanFleetChart,
+  OperatorFleetChart,
   CountryRankChart,
   KoreaExportPriceChart,
   KoreaSpeciesChart,
@@ -70,6 +73,7 @@ const CATCH = getTunaCatchData();
 const PRICES = getSkjPriceTimeline();
 const TRADE = getTunaTradeData();
 const FLEET = getTunaFleetData();
+const COMPANIES = getTunaCompanyData();
 const CHAIN_STAGES = getChainStages();
 const CROSS_STAGES = getCrossStages();
 const ALL_STAGES: IndustryStage[] = [...CHAIN_STAGES, ...CROSS_STAGES];
@@ -87,6 +91,8 @@ interface ChartSlot {
 const CATCH_SYNC = { status: 'STATIC' as const, syncDate: `${CATCH._meta.기준연도}년 확정` };
 const TRADE_SYNC = { status: 'STATIC' as const, syncDate: `${TRADE.요약.기준연도}년 확정` };
 const FLEET_SYNC = { status: 'STATIC' as const, syncDate: '2025년 6월 기준' };
+const OPERATOR_SYNC = { status: 'STATIC' as const, syncDate: '2026년 6월 공시 (신라교역은 2024년 12월)' };
+const EXPORT_SYNC = { status: 'STATIC' as const, syncDate: '2024년 실적' };
 const PRICE_SYNC = {
   status: 'SYNCED' as const,
   syncDate: PRICES.points.length > 0 ? String(PRICES.points[PRICES.points.length - 1].월) : '',
@@ -133,6 +139,13 @@ export const CATCH_CHART_SLOTS: Record<string, ChartSlot[]> = {
         '등록부는 「조업해도 된다」는 목록이지 「지금 조업 중」이 아니다. 해역별 허가를 더하면 758척이지만 중복을 빼면 675척이다.',
       telemetry: FLEET_SYNC,
       render: () => <OceanFleetChart data={FLEET} />,
+    },
+    {
+      title: '선사별 참치 선단 (척)',
+      caption:
+        '보라가 선망, 주황이 연승이다. 사조는 연승에, 동원은 선망에 무게가 실려 있고 신라교역은 둘을 비슷하게 갖는다. ⚠ 기준시점이 달라 같은 날의 사진이 아니다 — 동원·사조는 2026년 6월, 신라교역은 2024년 12월이다.',
+      telemetry: OPERATOR_SYNC,
+      render: () => <OperatorFleetChart rows={COMPANIES.조업.rows} />,
     },
     {
       title: '선적국별 선망선과 어창용적 (척·㎥)',
@@ -218,6 +231,13 @@ export const CATCH_CHART_SLOTS: Record<string, ChartSlot[]> = {
     },
   ],
   x03: [
+    {
+      title: '한국 원양업계 회사별 수출실적 (천달러)',
+      caption:
+        '장미색이 신라교역이다. 2024년 3억 8,700만 달러 가운데 22.73%로 2위다. 한 출처·한 통화·한 해라서 이 단계에서 나란히 세울 수 있는 유일한 값이다.',
+      telemetry: EXPORT_SYNC,
+      render: () => <ExportRankChart rows={COMPANIES.수출순위.rows} />,
+    },
     {
       title: '한국 참치 업종별 척수와 선령 (척)',
       caption:

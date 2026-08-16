@@ -41,6 +41,7 @@ import {
   BasketChart,
   CollapseChart,
   CoastalGearChart,
+  CompanyFleetChart,
   CountryCompareChart,
   DistantGearChart,
   NationFleetChart,
@@ -123,6 +124,13 @@ export const SQUID_CHART_SLOTS: Record<string, ChartSlot[]> = {
         '분홍이 선령 31년 이상이다. 한국 원양어선 198척 중 157척이 31년을 넘었고, 오징어채낚기는 20척 중 18척이다.',
       telemetry: FLEET_SYNC,
       render: () => <DistantGearChart data={FLEET} />,
+    },
+    {
+      title: '선사별 채낚기 선단 (척·톤)',
+      caption:
+        '막대는 보유 척수, 선은 선단 합계 톤수다. 열 개 회사가 스무 척을 나눠 갖는데 여섯 척을 가진 곳과 한 척뿐인 곳이 섞여 있다 — 「오징어 선사」를 한 덩어리로 부르면 이 차이가 사라진다.',
+      telemetry: FLEET_SYNC,
+      render: () => <CompanyFleetChart data={FLEET} />,
     },
     {
       title: '어획 상위 12개국 (톤)',

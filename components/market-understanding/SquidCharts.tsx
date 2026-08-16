@@ -746,3 +746,62 @@ export function NationFleetChart({ data }: { data: SquidFleetData }) {
     </SafeResponsiveContainer>
   );
 }
+
+/**
+ * 선사별 채낚기 선단 — 척수와 선단 규모(합계 톤수).
+ *
+ * 열 개 회사가 스무 척을 나눠 갖는다. 한 회사가 여러 척을 가진 곳과 한 척뿐인 곳이
+ * 섞여 있어, 「오징어 선사」를 한 덩어리로 보면 규모 차이가 사라진다.
+ */
+export function CompanyFleetChart({ data }: { data: SquidFleetData }) {
+  const animate = useAnim();
+  const rows = useMemo(
+    () => [...data.채낚기선박.회사별].sort((a, b) => b.척수 - a.척수 || b.합계톤수 - a.합계톤수),
+    [data],
+  );
+  const rot = getSmartRotation(rows.map((r) => r.회사));
+
+  return (
+    <SafeResponsiveContainer width="100%" height={320}>
+      <ComposedChart data={rows} margin={{ ...MARGIN, bottom: rot.angle ? 54 : 8 }}>
+        {grid}
+        <XAxis
+          dataKey="회사"
+          {...AXIS}
+          tickFormatter={truncateXAxis}
+          angle={rot.angle}
+          textAnchor={rot.textAnchor as 'end' | 'middle'}
+          height={rot.angle ? 68 : 30}
+          interval={0}
+        />
+        <YAxis yAxisId="left" {...AXIS} allowDecimals={false} />
+        <YAxis
+          yAxisId="right"
+          orientation="right"
+          {...AXIS}
+          tickFormatter={(v: number) => `${Math.round(v / 1000)}천`}
+        />
+        <Tooltip content={<Tip />} />
+        <Legend wrapperStyle={{ fontSize: 11, color: 'var(--mu-axis)' }} />
+        <Bar
+          yAxisId="left"
+          dataKey="척수"
+          name="보유 척수 (척)"
+          fill={SQUID_ROLE.volume}
+          radius={[3, 3, 0, 0]}
+          isAnimationActive={animate}
+        />
+        <Line
+          yAxisId="right"
+          type="monotone"
+          dataKey="합계톤수"
+          name="선단 합계 톤수 (톤)"
+          stroke={SQUID_ROLE.highlight}
+          strokeWidth={2.2}
+          dot={{ r: 3 }}
+          isAnimationActive={animate}
+        />
+      </ComposedChart>
+    </SafeResponsiveContainer>
+  );
+}

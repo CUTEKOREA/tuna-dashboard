@@ -39,6 +39,10 @@ import {
   colorForRfmo,
   colorForSpecies,
 } from '@/lib/tuna-chart-colors';
+import type {
+  ExportRankRow,
+  OperatorRow,
+} from '@/lib/data/valuechain-companies';
 import SafeResponsiveContainer from '../SafeResponsiveContainer';
 import styles from './TunaIndustryDashboard.module.css';
 
@@ -590,6 +594,95 @@ export function KoreaTunaGearChart({ data }: { data: TunaFleetData }) {
         <Legend wrapperStyle={{ fontSize: 11, color: 'var(--mu-axis)' }} />
         <Bar dataKey="노후" name="선령 31년 이상 (척)" stackId="a" fill="#e11d48" isAnimationActive={animate} />
         <Bar dataKey="신조" name="선령 30년 이하 (척)" stackId="a" fill="#0e7490" radius={[3, 3, 0, 0]} isAnimationActive={animate} />
+      </BarChart>
+    </SafeResponsiveContainer>
+  );
+}
+
+// ─── 밸류체인 단계별 기업 ──────────────────────────────────────────────────
+
+/**
+ * 조업 단계 — 선사별 보유 선단을 어법으로 갈라 본다.
+ *
+ * ⚠ 기준시점이 회사마다 다르다. 막대를 나란히 놓았지만 같은 날의 사진이 아니다.
+ *   캡션에 그 사실을 적어 둔다.
+ */
+export function OperatorFleetChart({ rows }: { rows: OperatorRow[] }) {
+  const animate = !useReducedMotion();
+  const data = useMemo(
+    () => [...rows].sort((a, b) => b.참치선망 + b.참치연승 - (a.참치선망 + a.참치연승)),
+    [rows],
+  );
+
+  return (
+    <SafeResponsiveContainer width="100%" height={300}>
+      <BarChart data={data} margin={{ top: 12, right: 16, left: 0, bottom: 8 }}>
+        <CartesianGrid stroke="var(--mu-grid)" strokeDasharray="3 3" vertical={false} />
+        <XAxis dataKey="회사" {...AXIS} tickFormatter={truncateXAxis} interval={0} />
+        <YAxis {...AXIS} />
+        <Tooltip content={<Tip unit="척" />} />
+        <Legend wrapperStyle={{ fontSize: 11, color: 'var(--mu-axis)' }} />
+        <Bar
+          dataKey="참치선망"
+          name="참치선망 (척)"
+          stackId="a"
+          fill={TUNA_ROLE.volume}
+          isAnimationActive={animate}
+        />
+        <Bar
+          dataKey="참치연승"
+          name="참치연승 (척)"
+          stackId="a"
+          fill={TUNA_ROLE.processed}
+          radius={[3, 3, 0, 0]}
+          isAnimationActive={animate}
+        />
+      </BarChart>
+    </SafeResponsiveContainer>
+  );
+}
+
+/**
+ * 유통 단계 — 2024년 한국 원양업계 회사별 수출실적.
+ * 한 출처·한 통화·한 해라서 이 단계에서 유일하게 나란히 세울 수 있는 값이다.
+ */
+export function ExportRankChart({ rows }: { rows: ExportRankRow[] }) {
+  const animate = !useReducedMotion();
+
+  return (
+    <SafeResponsiveContainer width="100%" height={320}>
+      <BarChart
+        data={rows}
+        layout="vertical"
+        margin={{ top: 12, right: 24, left: 8, bottom: 8 }}
+      >
+        <CartesianGrid stroke="var(--mu-grid)" strokeDasharray="3 3" horizontal={false} />
+        <XAxis
+          type="number"
+          {...AXIS}
+          tickFormatter={(v: number) => `${Math.round(v / 1000)}백만`}
+        />
+        <YAxis
+          type="category"
+          dataKey="회사"
+          {...AXIS}
+          width={86}
+          tickFormatter={truncateXAxis}
+        />
+        <Tooltip content={<Tip unit="천달러" />} />
+        <Bar
+          dataKey="수출실적"
+          name="수출실적 (천달러)"
+          radius={[0, 3, 3, 0]}
+          isAnimationActive={animate}
+        >
+          {rows.map((row) => (
+            <Cell
+              key={row.회사}
+              fill={row.회사 === '신라교역' ? TUNA_ROLE.highlight : TUNA_ROLE.volume}
+            />
+          ))}
+        </Bar>
       </BarChart>
     </SafeResponsiveContainer>
   );
