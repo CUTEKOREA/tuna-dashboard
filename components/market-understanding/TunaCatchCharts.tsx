@@ -7,6 +7,7 @@
 'use client';
 
 import React, { useMemo } from 'react';
+import { useReducedMotion } from 'framer-motion';
 import {
   Area,
   AreaChart,
@@ -87,10 +88,20 @@ function Tip({
   );
 }
 
+/**
+ * 그리기 애니메이션을 켤지. 사용자가 모션 감소를 요청했으면 끈다.
+ * 108개월 × 5선 같은 조밀한 차트는 애니메이션이 이해를 돕지 않고 지연만 만든다.
+ */
+function useChartAnimation(dense = false): boolean {
+  const reduce = useReducedMotion();
+  return !reduce && !dense;
+}
+
 const thousandTons = (value: number) => `${Math.round(value / 1000).toLocaleString('ko-KR')}천`;
 
 /** 어종별 어획량 20년 누적 추이 — 구성비가 거의 변하지 않는다는 것을 보여준다. */
 export function SpeciesTimelineChart({ data }: { data: TunaCatchData }) {
+  const animate = useChartAnimation();
   const species = useMemo(() => data.어종구성.map((row) => row.어종), [data.어종구성]);
   return (
     <SafeResponsiveContainer width="100%" height={300}>
@@ -109,6 +120,7 @@ export function SpeciesTimelineChart({ data }: { data: TunaCatchData }) {
             stroke={SPECIES_COLOR[name] ?? '#64748b'}
             fill={SPECIES_COLOR[name] ?? '#64748b'}
             fillOpacity={0.55}
+            isAnimationActive={animate}
           />
         ))}
       </AreaChart>
@@ -118,6 +130,7 @@ export function SpeciesTimelineChart({ data }: { data: TunaCatchData }) {
 
 /** 어종별 구성비 — 가다랑어 한 종이 절반을 넘는다. */
 export function SpeciesShareChart({ data }: { data: TunaCatchData }) {
+  const animate = useChartAnimation();
   return (
     <SafeResponsiveContainer width="100%" height={280}>
       <BarChart
@@ -129,7 +142,7 @@ export function SpeciesShareChart({ data }: { data: TunaCatchData }) {
         <XAxis type="number" {...AXIS} tickFormatter={thousandTons} />
         <YAxis type="category" dataKey="어종" {...AXIS} width={92} tickFormatter={truncateXAxis} />
         <Tooltip content={<Tip unit="톤" />} cursor={{ fill: 'var(--mu-hover)' }} />
-        <Bar dataKey="어획량" name="어획량" radius={[0, 4, 4, 0]}>
+        <Bar dataKey="어획량" name="어획량" radius={[0, 4, 4, 0]} isAnimationActive={animate}>
           {data.어종구성.map((row) => (
             <Cell key={row.코드} fill={SPECIES_COLOR[row.어종] ?? '#64748b'} />
           ))}
@@ -141,6 +154,7 @@ export function SpeciesShareChart({ data }: { data: TunaCatchData }) {
 
 /** 국가별 어획 상위 12 — 한국의 위치를 눈으로 확인시킨다. */
 export function CountryRankChart({ data }: { data: TunaCatchData }) {
+  const animate = useChartAnimation();
   const rows = useMemo(() => data.국가순위.slice(0, 12), [data.국가순위]);
   return (
     <SafeResponsiveContainer width="100%" height={320}>
@@ -149,7 +163,7 @@ export function CountryRankChart({ data }: { data: TunaCatchData }) {
         <XAxis type="number" {...AXIS} tickFormatter={thousandTons} />
         <YAxis type="category" dataKey="국가" {...AXIS} width={92} tickFormatter={truncateXAxis} />
         <Tooltip content={<Tip unit="톤" />} cursor={{ fill: 'var(--mu-hover)' }} />
-        <Bar dataKey="어획량" name="어획량" radius={[0, 4, 4, 0]}>
+        <Bar dataKey="어획량" name="어획량" radius={[0, 4, 4, 0]} isAnimationActive={animate}>
           {rows.map((row) => (
             <Cell key={row.국가} fill={row.국가 === '대한민국' ? '#e11d48' : '#0e7490'} />
           ))}
@@ -161,6 +175,7 @@ export function CountryRankChart({ data }: { data: TunaCatchData }) {
 
 /** RFMO 관할별 어획 — 규제 한 줄이 산업 절반을 흔드는 이유. */
 export function RfmoShareChart({ data }: { data: TunaCatchData }) {
+  const animate = useChartAnimation();
   return (
     <SafeResponsiveContainer width="100%" height={260}>
       <BarChart data={data.관할별} margin={{ top: 8, right: 16, left: 0, bottom: 8 }}>
@@ -168,7 +183,7 @@ export function RfmoShareChart({ data }: { data: TunaCatchData }) {
         <XAxis dataKey="관할" {...AXIS} />
         <YAxis {...AXIS} tickFormatter={thousandTons} width={56} />
         <Tooltip content={<Tip unit="톤" />} cursor={{ fill: 'var(--mu-hover)' }} />
-        <Bar dataKey="어획량" name="어획량" radius={[4, 4, 0, 0]}>
+        <Bar dataKey="어획량" name="어획량" radius={[4, 4, 0, 0]} isAnimationActive={animate}>
           {data.관할별.map((row) => (
             <Cell key={row.관할} fill={RFMO_COLOR[row.관할] ?? '#64748b'} />
           ))}
@@ -180,6 +195,7 @@ export function RfmoShareChart({ data }: { data: TunaCatchData }) {
 
 /** 해역별 어획 상위 8 — 서·중부태평양 한 곳이 절반 가까이다. */
 export function AreaRankChart({ data }: { data: TunaCatchData }) {
+  const animate = useChartAnimation();
   const rows = useMemo(() => data.해역순위.slice(0, 8), [data.해역순위]);
   return (
     <SafeResponsiveContainer width="100%" height={280}>
@@ -188,7 +204,7 @@ export function AreaRankChart({ data }: { data: TunaCatchData }) {
         <XAxis type="number" {...AXIS} tickFormatter={thousandTons} />
         <YAxis type="category" dataKey="해역" {...AXIS} width={104} tickFormatter={truncateXAxis} />
         <Tooltip content={<Tip unit="톤" />} cursor={{ fill: 'var(--mu-hover)' }} />
-        <Bar dataKey="어획량" name="어획량" radius={[0, 4, 4, 0]}>
+        <Bar dataKey="어획량" name="어획량" radius={[0, 4, 4, 0]} isAnimationActive={animate}>
           {rows.map((row) => (
             <Cell key={row.코드} fill={RFMO_COLOR[row.관할] ?? '#64748b'} />
           ))}
@@ -200,6 +216,7 @@ export function AreaRankChart({ data }: { data: TunaCatchData }) {
 
 /** 한국 어획량과 세계 점유율 20년 — 물량은 늘어도 점유율은 정체다. */
 export function KoreaTrendChart({ data }: { data: TunaCatchData }) {
+  const animate = useChartAnimation();
   return (
     <SafeResponsiveContainer width="100%" height={300}>
       <ComposedChart data={data.한국시계열} margin={{ top: 12, right: 16, left: 0, bottom: 8 }}>
@@ -215,7 +232,7 @@ export function KoreaTrendChart({ data }: { data: TunaCatchData }) {
         />
         <Tooltip content={<Tip unit="" />} cursor={{ fill: 'var(--mu-hover)' }} />
         <Legend wrapperStyle={{ fontSize: 11, color: 'var(--mu-axis)' }} />
-        <Bar yAxisId="left" dataKey="한국어획량" name="한국 어획량 (톤)" fill="#0e7490" radius={[3, 3, 0, 0]} />
+        <Bar yAxisId="left" dataKey="한국어획량" name="한국 어획량 (톤)" fill="#0e7490" radius={[3, 3, 0, 0]} isAnimationActive={animate} />
         <Line
           yAxisId="right"
           type="monotone"
@@ -224,6 +241,7 @@ export function KoreaTrendChart({ data }: { data: TunaCatchData }) {
           stroke="#e11d48"
           strokeWidth={2}
           dot={false}
+          isAnimationActive={animate}
         />
       </ComposedChart>
     </SafeResponsiveContainer>
@@ -232,6 +250,7 @@ export function KoreaTrendChart({ data }: { data: TunaCatchData }) {
 
 /** 한국 어종 구성 — 가다랑어 편중이 선단 성격을 말해준다. */
 export function KoreaSpeciesChart({ data }: { data: TunaCatchData }) {
+  const animate = useChartAnimation();
   const rows = useMemo(() => data.한국어종구성.filter((row) => row.어획량 > 0), [data.한국어종구성]);
   return (
     <SafeResponsiveContainer width="100%" height={260}>
@@ -240,7 +259,7 @@ export function KoreaSpeciesChart({ data }: { data: TunaCatchData }) {
         <XAxis type="number" {...AXIS} tickFormatter={thousandTons} />
         <YAxis type="category" dataKey="어종" {...AXIS} width={92} tickFormatter={truncateXAxis} />
         <Tooltip content={<Tip unit="톤" />} cursor={{ fill: 'var(--mu-hover)' }} />
-        <Bar dataKey="어획량" name="어획량" radius={[0, 4, 4, 0]}>
+        <Bar dataKey="어획량" name="어획량" radius={[0, 4, 4, 0]} isAnimationActive={animate}>
           {rows.map((row) => (
             <Cell key={row.어종} fill={SPECIES_COLOR[row.어종] ?? '#64748b'} />
           ))}
@@ -260,6 +279,7 @@ export function KoreaSpeciesChart({ data }: { data: TunaCatchData }) {
  * ⚠ 원자료 Atuna 는 유료 구독이다. 사내 열람 한정.
  */
 export function SkjPriceByHubChart({ timeline }: { timeline: PriceTimeline }) {
+  const animate = useChartAnimation(true);
   return (
     <SafeResponsiveContainer width="100%" height={320}>
       <LineChart data={timeline.points} margin={{ top: 12, right: 16, left: 0, bottom: 8 }}>
@@ -283,6 +303,7 @@ export function SkjPriceByHubChart({ timeline }: { timeline: PriceTimeline }) {
             strokeWidth={hub.key === 'skj_bkk' ? 2.6 : 1.6}
             dot={false}
             connectNulls={false}
+            isAnimationActive={animate}
           />
         ))}
       </LineChart>

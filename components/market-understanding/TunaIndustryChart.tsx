@@ -8,6 +8,7 @@
 'use client';
 
 import React, { useMemo } from 'react';
+import { useReducedMotion } from 'framer-motion';
 import {
   Area,
   AreaChart,
@@ -125,6 +126,8 @@ export interface TunaIndustryChartProps {
 }
 
 export default function TunaIndustryChart({ widget, height = 280 }: TunaIndustryChartProps) {
+  // 모션 감소를 요청한 사용자에게는 그리기 애니메이션을 끈다.
+  const animate = !useReducedMotion();
   const xKey = resolveXKey(widget);
   const rows = widget.data;
 
@@ -193,6 +196,7 @@ export default function TunaIndustryChart({ widget, height = 280 }: TunaIndustry
             nameKey={xKey}
             outerRadius="72%"
             label={(entry: { name?: string }) => entry.name ?? ''}
+            isAnimationActive={animate}
           >
             {rows.map((_, index) => (
               <Cell key={index} fill={SERIES_COLORS[index % SERIES_COLORS.length]} />
@@ -220,6 +224,7 @@ export default function TunaIndustryChart({ widget, height = 280 }: TunaIndustry
               stroke={item.color}
               fill={item.color}
               fillOpacity={0.22}
+            isAnimationActive={animate}
             />
           ))}
           {tooltip}
@@ -247,6 +252,7 @@ export default function TunaIndustryChart({ widget, height = 280 }: TunaIndustry
               stroke={item.color}
               strokeWidth={2}
               dot={false}
+            isAnimationActive={animate}
             />
           ))}
         </LineChart>
@@ -274,6 +280,7 @@ export default function TunaIndustryChart({ widget, height = 280 }: TunaIndustry
               fill={item.color}
               fillOpacity={0.18}
               strokeWidth={2}
+            isAnimationActive={animate}
             />
           ))}
         </AreaChart>
@@ -299,10 +306,18 @@ export default function TunaIndustryChart({ widget, height = 280 }: TunaIndustry
               stroke={item.color}
               fill={item.color}
               fillOpacity={0.16}
+            isAnimationActive={animate}
             />
           ))}
           {barSeries.map((item) => (
-            <Bar key={item.key} dataKey={item.key} name={item.name} fill={item.color} radius={[3, 3, 0, 0]} />
+            <Bar
+              key={item.key}
+              dataKey={item.key}
+              name={item.name}
+              fill={item.color}
+              radius={[3, 3, 0, 0]}
+              isAnimationActive={animate}
+            />
           ))}
           {lineSeries.map((item) => (
             <Line
@@ -313,6 +328,7 @@ export default function TunaIndustryChart({ widget, height = 280 }: TunaIndustry
               stroke={item.color}
               strokeWidth={2}
               dot={false}
+            isAnimationActive={animate}
             />
           ))}
         </ComposedChart>
@@ -331,7 +347,14 @@ export default function TunaIndustryChart({ widget, height = 280 }: TunaIndustry
         {tooltip}
         {series.length > 1 && legend}
         {series.map((item) => (
-          <Bar key={item.key} dataKey={item.key} name={item.name} fill={item.color} radius={[3, 3, 0, 0]} />
+          <Bar
+              key={item.key}
+              dataKey={item.key}
+              name={item.name}
+              fill={item.color}
+              radius={[3, 3, 0, 0]}
+              isAnimationActive={animate}
+            />
         ))}
       </BarChart>
     </SafeResponsiveContainer>
