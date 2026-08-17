@@ -1,3 +1,9 @@
+> 📧 **2026-08-17 21:00 KST — 주간 브리핑 이메일 자동 발송 구축 (PR #588 병합·READY)** [CC]:
+> - Vercel cron(UTC 일 23:00 = KST 월 08:00) → `/api/cron/weekly-briefing` → 회사 SMTP → cutekorea@gmail.com. 본문: 허브 8곳 시세+증감·하역 13척 요약(진행 선박 진행률·일평균)·선망선 상위 3척·뉴스 헤드라인 — 전부 서버측 모듈 직접 조립(화면 스크랩 없음), 숫자마다 기준일.
+> - 보안: 게이트 무개변 — PUBLIC_SERVICE_PATHS 1줄(웹훅 선례 메커니즘) + 라우트 내부 CRON_SECRET Bearer timingSafeEqual fail-closed (계약 테스트 3단). Gmail API 경로는 owner userId 확보 부재로 기각, SMTP는 env 단독.
+> - **소유자 액션 대기: Vercel env `CRON_SECRET`(임의 32자+) 설정** — 미설정 시 cron이 503 정직 거부(발송 없음). 설정 후 첫 월요일 08:00에 자동 발송. 수동 검증은 설정 후 `curl -H "Authorization: Bearer <값>" https://leedonggun.co.kr/api/cron/weekly-briefing`.
+> - 뉴스 섹션은 빌드 스냅샷(dailyBriefing 정적 import) — 메일에 발행 기준일 명시로 정직 처리.
+
 > 🎛️ **2026-08-17 19:45 KST — 조종석 모드 2단계: 차트 보조 지표** [CC]:
 > - 스펙에 규약만 있고 코드엔 없던 `cockpitExtra` 를 구현. `ChartSlot.cockpitExtra?: () => ReactNode` + `components/market-understanding/CockpitExtra.tsx`(`CockpitOnly`·`SeriesStats`).
 > - **노출은 CSS 한 곳(`.cockpit-only`)이 가른다.** JS 로 모드를 검사하지 않아 하이드레이션 불일치가 없고 스펙 §2 「컴포넌트 분기 금지」도 지켜진다. 기본 모드에서는 DOM 에 있되 `display:none`.
