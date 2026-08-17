@@ -696,7 +696,8 @@ export default function UnloadingAnalytics({
                 <div className={styles.comparisonMsg}>
                   <TrendingUp size={13} style={{ display: 'inline', verticalAlign: 'middle', marginRight: 4 }} />
                   현재 하역 속도가 벤치마크 평균보다{' '}
-                  <strong style={{ color: comparisonPct >= 0 ? 'var(--w-emerald-400)' : '#f87171' }}>
+                  {/* 2026-08-17 주식 컨벤션 확산: 상승 빨강·하락 파랑 (기존 녹/빨 반전 정정) */}
+              <strong style={{ color: comparisonPct >= 0 ? 'var(--delta-up)' : 'var(--delta-down)' }}>
                     {Math.abs(comparisonPct).toFixed(1)}% {comparisonPct >= 0 ? '높음' : '낮음'}
                   </strong>
                   {' '}(일평균 {fmt(selectedBenchmark.dailyAvg)} MT vs 평균 {fmt(avgDailyAvg)} MT)

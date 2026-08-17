@@ -2,6 +2,10 @@
  * 폰트는 next/font self-host(layout.tsx)가 정본. 인라인 'Inter'/'Sora' 선언은 시스템 스택으로 폴백. */
 
 :root {
+  /* 증감 시맨틱 — 주식 컨벤션(상승 빨강·하락 파랑), 2026-08-17 소유자 채택. 양 테마 동일 */
+  --delta-up: #ef4444;
+  --delta-down: #3b82f6;
+  --delta-flat: #94a3b8;
   /* Core Palette (Dark Mode Default) — Institutional Precision */
   --bg-color: #0a0a0b;
   --panel-bg: rgba(20, 28, 52, 0.6);
