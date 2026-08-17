@@ -6,7 +6,6 @@ import { Ship, Anchor, AlertTriangle, Target, ArrowLeft, Users, Package, Trendin
 import TakeawayBox from './TakeawayBox';
 import CompanyVesselStatus from './CompanyVesselStatus';
 import FleetProduction2025 from './FleetProduction2025';
-import OfisMonthlyPanel from './OfisMonthlyPanel';
 
 // Mock detailed data as fallback while loading
 const fallbackVesselDetails: Record<string, any[]> = {
@@ -316,7 +315,6 @@ export default function FleetStrategyMatrix() {
 
   return (
     <div className={styles.glassCard} style={{ borderColor: 'rgba(var(--w-blue-500-rgb), 0.3)', marginTop: '20px' }}>
-      <OfisMonthlyPanel />
       <FleetProduction2025 />
       
       {/* 0. Macro Industry Overview — 전수조사 교정 완료 */}

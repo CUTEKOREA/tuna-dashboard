@@ -18,6 +18,7 @@ import {
 } from '../data/purseSeinerData';
 import TelemetryBadge from './TelemetryBadge';
 import FleetRegistryExplorer from './FleetRegistryExplorer';
+import OfisMonthlyPanel from './OfisMonthlyPanel';
 import HeroZone from './v2/HeroZone';
 
 /* ───────── 데이터 기준일 (data/purseSeinerData.ts 최종 검증일) ───────── */
@@ -792,6 +793,7 @@ export default function PurseSeinerDashboard({ heroOnly = false }: { heroOnly?: 
     return (
       <div style={pageStyle}>
         {purseSeinerHero}
+        <OfisMonthlyPanel />
         <div style={{ display: 'flex', gap: '0.5rem', marginBottom: 20, flexWrap: 'wrap' }}>
           {tabButton('purse', '선망선 (등록부 파생 · 2,076척)')}
           {tabButton('tuna', '참치 등록부 (5개 기구 · 전 해역)')}
@@ -812,6 +814,7 @@ export default function PurseSeinerDashboard({ heroOnly = false }: { heroOnly?: 
   return (
     <div style={pageStyle}>
       {purseSeinerHero}
+      <OfisMonthlyPanel />
 
       <div style={{ display: 'flex', gap: '0.5rem', marginBottom: 20, flexWrap: 'wrap' }}>
         {tabButton('purse', '선망선 (등록부 파생 · 2,076척)')}

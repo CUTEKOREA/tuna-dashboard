@@ -1,3 +1,10 @@
+> 📘 **2026-08-18 — OFIS를 라이브 선단 DB로 옮김** [Grok]:
+> - `/fleet-strategy`는 퇴역 404다. 사이드바 실사용은 **선단 DB**(`purse-seiner-db` → `PurseSeinerDashboard`).
+> - `OfisMonthlyPanel`을 히어로 아래(전 탭)에 붙였다. 죽은 `FleetStrategyMatrix`에서는 뺐다.
+> - worktree `ofis-monthly-fleet` · 브랜치 `feat/ofis-on-purse-db`. 배포는 사용자 요청.
+
+> 마지막 업데이트: 2026-08-18 [Grok]
+
 > 📰 **2026-08-18 08:10 KST — 8/17 데일리 브리핑 반영 + TAK 계약 완화** [CC]:
 > - `/market` 「오늘의 참치 뉴스」를 **8/14 → 8/17**(기사 5건)로 갱신. 원문·게시판 HTML은 데일리 기사 파이프라인 산출물.
 > - **막혀 있던 원인은 게이트였다.** `sync_daily_briefing.py` 가 실행 지침 문장(촉구했다/권고했다/…)이 없으면 JSON 생성을 거부해 회차 전체가 대시보드에 못 올랐다. 8/17 기사 5건은 **전부 관측·보고형**이라 그런 문장이 존재하지 않는다 — 없는 날이 정상적으로 있다.
@@ -5,6 +12,7 @@
 > - `actionPlan` 을 `string | null` 로 두고 없으면 없는 대로 둔다. 지침을 지어내는 것이 무-창작 원칙 위반이다. Python 쪽은 차단 대신 NOTE 로그만 남긴다.
 > - `daily-briefing.test.ts` 4/4 통과, `tsc --noEmit` 클린.
 > - **다음**: 데일리 기사 파이프라인이 감사 판정을 `state/audit-<날짜>.txt` 에 기록하지 않아 자동배포 게이트가 안 열린다. 기록 의무를 `tuna-briefing-auditor` 정의로 옮겨야 한다.
+
 > 🚀 **2026-08-18 — OFIS 2026.6 선대 라이브 배포** [Grok]:
 > - PR [#616](https://github.com/CUTEKOREA/tuna-dashboard/pull/616) squash `b7a0020b`. Gate `32071345938` 성공. Freshness `32071345937` 성공. PR 게이트 `32070898536` 성공.
 > - Vercel production `dpl_36VePzwtUofbvNBqSvk56FLcrRD9` READY · alias `https://leedonggun.co.kr` · region `icn1`.
