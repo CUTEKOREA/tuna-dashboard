@@ -12,6 +12,7 @@ import {
   Tooltip as RechartsTooltip,
 } from 'recharts';
 import { getVesselStatusKind, type VesselStatusKind } from '../lib/unloading-operations';
+import { progressPct } from '../lib/metrics';
 
 /* 상태(하역중/대기/완료)는 증감이 아니므로 증감색 토큰을 쓰지 않는다 — 진행 중만 액센트, 나머지 muted */
 const ACCENT = 'var(--chart-s1, #509ee3)';
@@ -208,7 +209,7 @@ export default function UnloadingVoyageGantt({ vesselsById }: {
   if (failed) return <p style={{ color: MUTED, fontSize: 13 }}>하역 데이터 수신 실패 — 시안 평가 불가 (새로고침으로 재시도)</p>;
   if (!vessels || !selected || !axis) return <p style={{ color: MUTED, fontSize: 13 }}>하역 데이터 수신 중…</p>;
 
-  const progressPct = selected.reportedTotal > 0 ? (selected.actualTotal / selected.reportedTotal) * 100 : null;
+  const selectedProgressPct = progressPct(selected.actualTotal, selected.reportedTotal);
   const remaining = selected.reportedTotal - selected.actualTotal;
   const reportCount = selected.timeline.length;
   // 누계가 아닌 일일 보고값의 평균 — 조정분이 끼면 누계÷횟수와 갈라진다
@@ -233,7 +234,7 @@ export default function UnloadingVoyageGantt({ vesselsById }: {
             <span style={{ fontSize: '0.9rem', fontWeight: 400, color: MUTED, marginLeft: 6 }}>(MT)</span>
           </div>
           <div style={{ fontSize: '0.8rem', fontWeight: 700, color: selected.kind === 'progress' ? ACCENT : MUTED }}>
-            신고량 {mt(selected.reportedTotal)} (MT) 대비 진행률 {progressPct === null ? '—' : `${progressPct.toFixed(1)}%`}
+            신고량 {mt(selected.reportedTotal)} (MT) 대비 진행률 {selectedProgressPct === null ? '—' : `${selectedProgressPct.toFixed(1)}%`}
           </div>
           <div style={{ display: 'flex', gap: 18, marginTop: 10 }}>
             <Stat label="일평균 (MT/일)" value={dailyAvg === null ? '—' : mt(dailyAvg)} />
@@ -280,7 +281,7 @@ export default function UnloadingVoyageGantt({ vesselsById }: {
         {vessels.map((vessel) => {
           const left = axis.pct(vessel.startMs);
           const width = Math.max(axis.pct(vessel.endMs) - left, 0.7);
-          const pct = vessel.reportedTotal > 0 ? (vessel.actualTotal / vessel.reportedTotal) * 100 : null;
+          const pct = progressPct(vessel.actualTotal, vessel.reportedTotal);
           const isProgress = vessel.kind === 'progress';
           const isWaiting = vessel.kind === 'waiting';
           const isActive = vessel.id === selected.id;
