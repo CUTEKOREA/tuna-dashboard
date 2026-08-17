@@ -1,6 +1,8 @@
-> 🦐 **2026-08-17 — s06 탭명을 수입 창구로 바꿈** [Grok]:
+> 🚀 **2026-08-17 — s06 탭명을 수입 창구로 배포** [Grok]:
 > - 04 한국(FAO 국산 생산)과 겹쳐 보여 단계 제목·차트 낫표를 `수입 창구`로 바꿨다.
-> - PR [#604](https://github.com/CUTEKOREA/tuna-dashboard/pull/604). 확인: 사이드바 새우 → **06 수입 창구**. 열린 탭은 하드 리프레시.
+> - PR [#604](https://github.com/CUTEKOREA/tuna-dashboard/pull/604) squash `83ec4a4`. Gate `32031842781` 성공.
+> - Vercel production `dpl_FVYcCweRa5cTSMon9JnjW9uvN9y7` READY · alias `https://leedonggun.co.kr`.
+> - 확인: 사이드바 새우 → **06 수입 창구**. 열린 탭은 하드 리프레시.
 
 > ⚓ **2026-08-17 21:40 KST — SEIN VENUS 8/17 일일보고 프로덕션 반영 완료** [Codex]:
 > - PR [#593](https://github.com/CUTEKOREA/tuna-dashboard/pull/593)을 squash merge `3027123`으로 병합했다. 현재 `main`/활성 운영 배포 `ef9092d`가 이 커밋을 조상으로 포함하며, Vercel `dpl_3sup1AbvR2vKoYoG5mFym1YmFa3v`는 `READY`이고 `https://leedonggun.co.kr` alias를 가리킨다.
