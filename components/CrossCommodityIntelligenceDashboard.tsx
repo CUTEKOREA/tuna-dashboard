@@ -210,7 +210,7 @@ export default function CrossCommodityIntelligenceDashboard({ heroOnly = false }
                   {heatmapCommodities.map((commodity) => {
                     const score = factor.impacts[commodity] ?? 0;
                     return (
-                      <div key={`${factor.factor}-${commodity}`} style={{ borderRadius: 6, padding: '7px 6px', textAlign: 'center', color: '#fff', fontSize: 12, fontWeight: 800, background: `${scoreColor(score)}${score >= 80 ? '55' : '33'}` }}>
+                      <div key={`${factor.factor}-${commodity}`} style={{ borderRadius: 6, padding: '7px 6px', textAlign: 'center', color: 'var(--text-main)', fontSize: 12, fontWeight: 800, background: `${scoreColor(score)}${score >= 80 ? '55' : '33'}` }}>
                         {score}
                       </div>
                     );
