@@ -23,7 +23,7 @@ import WhelkIndustryDashboard from '@/components/market-understanding/WhelkIndus
 const DASHBOARDS = [
   ['오징어', SquidIndustryDashboard, 10],
   ['참치', TunaIndustryDashboard, 10],
-  ['새우', ShrimpIndustryDashboard, 6],
+  ['새우', ShrimpIndustryDashboard, 7],
   ['고등어', MackerelIndustryDashboard, 5],
   ['골뱅이', WhelkIndustryDashboard, 5],
 ] as const;

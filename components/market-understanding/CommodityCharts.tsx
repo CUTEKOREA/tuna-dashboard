@@ -33,6 +33,7 @@ import {
   argentinaKoreaImports,
   argentinaRoutes,
 } from '@/lib/data/shrimp-argentina';
+import { seriesUnits, seriesWindows } from '@/lib/data/shrimp-country-series';
 import SafeResponsiveContainer from '../SafeResponsiveContainer';
 import styles from './TunaIndustryDashboard.module.css';
 
@@ -734,6 +735,76 @@ export function ShrimpArgentinaRouteChart() {
           ))}
         </Bar>
       </ComposedChart>
+    </SafeResponsiveContainer>
+  );
+}
+
+/* ── 6개국 시리즈 한국 창구 (관세청 nitemtrade 2026년 1~6월) ──────────────
+ *
+ * ⚠ 제품중량이다. 위 FAO 생산 차트·05단계 1~5월 표와 더하지 않는다.
+ */
+
+/** 시리즈 5개국 HS 030617 원물과 160521 조제품. 베트남만 강조 — 두 창구가 비슷한 무게다. */
+export function ShrimpSeriesWindowsChart() {
+  const animate = !useReducedMotion();
+  const { base: BASE, highlight: HIGHLIGHT } = PALETTE.새우;
+  const rot = rotated(seriesWindows.map((r) => r.국가));
+
+  return (
+    <SafeResponsiveContainer width="100%" height={320}>
+      <BarChart data={seriesWindows} margin={{ ...MARGIN, bottom: rot.angle ? 54 : 8 }}>
+        {grid}
+        <XAxis
+          dataKey="국가"
+          {...AXIS}
+          tickFormatter={truncateXAxis}
+          angle={rot.angle}
+          textAnchor={rot.textAnchor as 'end' | 'middle'}
+          height={rot.angle ? 68 : 30}
+          interval={0}
+        />
+        <YAxis {...AXIS} tickFormatter={(v: number) => `${(v / 1000).toFixed(0)}천`} />
+        <Tooltip content={<Tip unit=" 톤" />} />
+        {legend}
+        <Bar dataKey="원물" name="030617 원물 (톤)" fill={BASE} isAnimationActive={animate}>
+          {seriesWindows.map((r) => (
+            <Cell key={`raw-${r.국가}`} fill={r.국가 === '베트남' ? HIGHLIGHT : BASE} />
+          ))}
+        </Bar>
+        <Bar dataKey="조제품" name="160521 조제품 (톤)" fill="#f59e0b" isAnimationActive={animate} />
+      </BarChart>
+    </SafeResponsiveContainer>
+  );
+}
+
+/** HS 030617 신고단가. 에콰도르만 강조 — 물량은 작은데 단가가 가장 낮다. */
+export function ShrimpSeriesUnitChart() {
+  const animate = !useReducedMotion();
+  const { base: BASE, highlight: HIGHLIGHT } = PALETTE.새우;
+  const rot = rotated(seriesUnits.map((r) => r.국가));
+
+  return (
+    <SafeResponsiveContainer width="100%" height={280}>
+      <BarChart data={seriesUnits} margin={{ ...MARGIN, bottom: rot.angle ? 54 : 8 }}>
+        {grid}
+        <XAxis
+          dataKey="국가"
+          {...AXIS}
+          tickFormatter={truncateXAxis}
+          angle={rot.angle}
+          textAnchor={rot.textAnchor as 'end' | 'middle'}
+          height={rot.angle ? 68 : 30}
+          interval={0}
+        />
+        <YAxis {...AXIS} tickFormatter={(v: number) => `$${v}`} domain={[0, 14]} />
+        <Tooltip content={<Tip unit=" 달러/kg" />} />
+        {legend}
+        <Bar dataKey="단가" name="030617 단가 (달러/kg)" isAnimationActive={animate}>
+          {seriesUnits.map((r) => (
+            <Cell key={r.국가} fill={r.국가 === '에콰도르' ? HIGHLIGHT : BASE} />
+          ))}
+        </Bar>
+      </BarChart>
     </SafeResponsiveContainer>
   );
 }
