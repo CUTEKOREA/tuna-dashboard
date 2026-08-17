@@ -54,6 +54,7 @@ export const MACKEREL_CHART_SLOTS: Record<string, ChartSlot[]> = {
       caption:
         '1996년 415,003톤이 정점, 2020년 77,605톤이 바닥이다. 망치고등어 선이 2017년에 0으로 떨어지는 것은 어획이 멈춰서가 아니라 보고가 합쳐져서다.',
       telemetry: CATCH_SYNC,
+      span: 'full',
       render: () => <MackerelCatchChart data={DATA} />,
     },
   ],
@@ -62,12 +63,14 @@ export const MACKEREL_CHART_SLOTS: Record<string, ChartSlot[]> = {
       title: '국가별 가공 거점과 기업',
       caption: MACKEREL_RESEARCH.가공.요지,
       telemetry: { status: 'STATIC' as const, syncDate: '2026-08-17 조사' },
+      span: 'full',
       render: () => <CanneryCountryTable rows={MACKEREL_RESEARCH.가공.rows} />,
     },
     {
       title: '브랜드와 점유율 (성격 구분)',
       caption: MACKEREL_RESEARCH.브랜드.요지,
       telemetry: { status: 'STATIC' as const, syncDate: '2026-08-17 조사' },
+      span: 'full',
       render: () => <BrandMarketTable rows={MACKEREL_RESEARCH.브랜드.rows} />,
     },
     {
@@ -83,6 +86,7 @@ export const MACKEREL_CHART_SLOTS: Record<string, ChartSlot[]> = {
       title: '공급 기업 — 누가 잡고 누가 파는가',
       caption: MACKEREL_RESEARCH.공급.요지,
       telemetry: { status: 'STATIC' as const, syncDate: '2026-08-17 조사' },
+      span: 'full',
       render: () => <TraderTable rows={MACKEREL_RESEARCH.공급.rows} />,
     },
     {
@@ -99,6 +103,7 @@ export const MACKEREL_CHART_SLOTS: Record<string, ChartSlot[]> = {
       caption:
         '01단계와 같은 자료를 종에 초점을 두고 다시 본다. 2016년 22,244톤이던 망치고등어가 이듬해 0이 되고 그대로 유지된다 — 부산 위판장에는 계속 올라오는데도 그렇다.',
       telemetry: CATCH_SYNC,
+      span: 'full',
       render: () => <MackerelCatchChart data={DATA} />,
     },
   ],

@@ -39,10 +39,12 @@ describe('VolumeBar', () => {
     expect(markup).toBe('');
   });
 
-  it('시장 동향에서 입체 막대는 선 그래프 아래에 두고 ResponsiveContainer를 쓰지 않는다', () => {
+  it('시장 동향에서 방콕 SKJ 입체 비교 막대를 쓰지 않는다', () => {
     const market = readFileSync(join(process.cwd(), 'components/MarketDashboard.tsx'), 'utf8');
     const volume = readFileSync(join(process.cwd(), 'components/charts/VolumeBar.tsx'), 'utf8');
-    expect(market.indexOf('방콕 SKJ 최근 고시')).toBeGreaterThan(market.indexOf('가다랑어 (SKJ)'));
+    expect(market).not.toContain('방콕 SKJ 최근 고시');
+    expect(market).not.toContain('VolumeBarChart');
+    expect(market).not.toContain('bangkokVolume');
     expect(volume).not.toContain('ResponsiveContainer');
     expect(volume).toContain('var(--chart-s1, #509ee3)');
     expect(volume).toContain('var(--chart-axis, #8d93a5)');

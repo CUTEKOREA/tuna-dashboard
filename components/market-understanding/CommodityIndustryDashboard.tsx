@@ -60,6 +60,11 @@ export interface ChartSlot {
   caption: string;
   telemetry: { status: 'STATIC' | 'SYNCED' | 'LIVE'; syncDate: string };
   render: () => React.ReactNode;
+  /**
+   * 배치. 표와 수십 년 시계열은 `full`(1열 1개).
+   * 없으면 그래프 기본값 — 1열에 2개.
+   */
+  span?: 'full' | 'half';
 }
 
 /**
@@ -163,7 +168,7 @@ function FactTable({ rows }: { rows: FactRow[] }) {
 
 function ChartFigure({ slot }: { slot: ChartSlot }) {
   return (
-    <figure className={styles.catchFigure}>
+    <figure className={styles.catchFigure} data-span={slot.span === 'full' ? 'full' : 'half'}>
       <figcaption className={styles.catchCaption}>
         <div className={styles.catchTitleRow}>
           <strong>{slot.title}</strong>

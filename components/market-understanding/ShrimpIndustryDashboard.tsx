@@ -43,6 +43,7 @@ export const SHRIMP_CHART_SLOTS: Record<string, ChartSlot[]> = {
       caption:
         '연두색이 양식, 청록색이 자연산이다. 선은 양식 비중으로 2010년에 50%를 넘는다. 자연산 막대가 줄어든 것이 아니라 양식이 그 위에 쌓였다.',
       telemetry: SYNC,
+      span: 'full',
       render: () => <ShrimpTrendChart data={DATA} />,
     },
     {
@@ -66,12 +67,14 @@ export const SHRIMP_CHART_SLOTS: Record<string, ChartSlot[]> = {
       title: '공급 기업 — 누가 잡고 누가 파는가',
       caption: SHRIMP_RESEARCH.공급.요지,
       telemetry: { status: 'STATIC' as const, syncDate: '2026-08-17 조사' },
+      span: 'full',
       render: () => <TraderTable rows={SHRIMP_RESEARCH.공급.rows} />,
     },
     {
       title: '국가별 가공 거점과 기업',
       caption: SHRIMP_RESEARCH.가공.요지,
       telemetry: { status: 'STATIC' as const, syncDate: '2026-08-17 조사' },
+      span: 'full',
       render: () => <CanneryCountryTable rows={SHRIMP_RESEARCH.가공.rows} />,
     },
     {
@@ -87,6 +90,7 @@ export const SHRIMP_CHART_SLOTS: Record<string, ChartSlot[]> = {
       title: '브랜드와 점유율 (성격 구분)',
       caption: SHRIMP_RESEARCH.브랜드.요지,
       telemetry: { status: 'STATIC' as const, syncDate: '2026-08-17 조사' },
+      span: 'full',
       render: () => <BrandMarketTable rows={SHRIMP_RESEARCH.브랜드.rows} />,
     },
     {

@@ -741,7 +741,9 @@
   align-items: start;
 }
 
-.catchGrid > .catchFigure:last-child:nth-child(odd) {
+/* 표·장시계열은 한 줄에 하나. 홀수 마지막 장을 자동 전폭하면
+   표 다음 그래프 쌍이 깨지므로 명시적 span 만 전폭으로 둔다. */
+.catchFigure[data-span='full'] {
   grid-column: 1 / -1;
 }
 
@@ -916,7 +918,7 @@
     grid-template-columns: 1fr;
   }
 
-  .catchGrid > .catchFigure:last-child:nth-child(odd) {
+  .catchFigure[data-span='full'] {
     grid-column: auto;
   }
 }

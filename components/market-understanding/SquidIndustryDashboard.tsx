@@ -88,6 +88,8 @@ interface ChartSlot {
   caption: string;
   telemetry: { status: 'STATIC' | 'SYNCED' | 'LIVE'; syncDate: string };
   render: () => React.ReactNode;
+  /** 표·장시계열은 full(1열 1개). 없으면 그래프 기본 — 1열 2개. */
+  span?: 'full' | 'half';
 }
 
 /**
@@ -118,6 +120,7 @@ export const SQUID_CHART_SLOTS: Record<string, ChartSlot[]> = {
       title: '공급 기업 — 누가 잡고 누가 파는가',
       caption: SQUID_RESEARCH.공급.요지,
       telemetry: { status: 'SYNCED' as const, syncDate: '2026-08-17 조사' },
+      span: 'full',
       render: () => <TraderTable rows={SQUID_RESEARCH.공급.rows} />,
     },
     {
@@ -168,6 +171,7 @@ export const SQUID_CHART_SLOTS: Record<string, ChartSlot[]> = {
       title: '국가별 가공 거점과 기업',
       caption: SQUID_RESEARCH.가공.요지,
       telemetry: { status: 'SYNCED' as const, syncDate: '2026-08-17 조사' },
+      span: 'full',
       render: () => <CanneryCountryTable rows={SQUID_RESEARCH.가공.rows} />,
     },
     {
@@ -183,6 +187,7 @@ export const SQUID_CHART_SLOTS: Record<string, ChartSlot[]> = {
       title: '한국 수입량과 수입단가 (톤·달러/톤)',
       caption: '막대는 수입량, 선은 톤당 단가다. 적게 사면서 비싸게 사는 흐름이 보인다.',
       telemetry: TRADE_SYNC,
+      span: 'full',
       render: () => <ImportTrendChart data={TRADE} />,
     },
     {
@@ -198,6 +203,7 @@ export const SQUID_CHART_SLOTS: Record<string, ChartSlot[]> = {
       title: '브랜드와 점유율 (성격 구분)',
       caption: SQUID_RESEARCH.브랜드.요지,
       telemetry: { status: 'SYNCED' as const, syncDate: '2026-08-17 조사' },
+      span: 'full',
       render: () => <BrandMarketTable rows={SQUID_RESEARCH.브랜드.rows} />,
     },
     {
@@ -214,12 +220,14 @@ export const SQUID_CHART_SLOTS: Record<string, ChartSlot[]> = {
       caption:
         '세계는 1968년, 한국은 1996년이 정점이다. 두 선이 함께 내려앉는 동안 오징어 전체 어획량은 유지됐다.',
       telemetry: CATCH_SYNC,
+      span: 'full',
       render: () => <CollapseChart data={CATCH} />,
     },
     {
       title: '주요 어종 어획량 추이 (톤)',
       caption: '2024년 규모 상위 5종의 자리바꿈이다. 살오징어 붕괴는 위 「살오징어 어획량 — 세계와 한국 (톤)」에 따로 있다.',
       telemetry: CATCH_SYNC,
+      span: 'full',
       render: () => <SpeciesTimelineChart data={CATCH} />,
     },
   ],
@@ -229,6 +237,7 @@ export const SQUID_CHART_SLOTS: Record<string, ChartSlot[]> = {
       caption:
         '분홍이 31년 이상이다. 20척 평균 선령 36.5년, 최고 51년이다. 2020년 건조 2척을 빼면 대부분 1970~80년대 배다.',
       telemetry: FLEET_SYNC,
+      span: 'full',
       render: () => <VesselAgeChart data={FLEET} />,
     },
     {
@@ -242,6 +251,7 @@ export const SQUID_CHART_SLOTS: Record<string, ChartSlot[]> = {
       title: '한국 어획량과 세계 점유율 (톤·%)',
       caption: '막대는 어획량, 선은 세계에서 차지하는 몫이다.',
       telemetry: CATCH_SYNC,
+      span: 'full',
       render: () => <KoreaTrendChart data={CATCH} />,
     },
     {
@@ -400,7 +410,11 @@ function StageSection({
           <h3 className={styles.stageMoreHeading}>근거</h3>
           <div className={rest.length >= 2 ? styles.catchGrid : styles.catchStack}>
             {rest.map((slot) => (
-              <figure key={slot.title} className={styles.catchFigure}>
+              <figure
+                key={slot.title}
+                className={styles.catchFigure}
+                data-span={slot.span === 'full' ? 'full' : 'half'}
+              >
                 <figcaption className={styles.catchCaption}>
                   <div className={styles.catchTitleRow}>
                     <strong>{slot.title}</strong>

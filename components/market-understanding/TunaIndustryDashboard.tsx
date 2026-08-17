@@ -111,6 +111,8 @@ interface ChartSlot {
   /** 텔레메트리 표기 — 자료마다 기준 시점이 다르므로 슬롯이 직접 들고 있는다 (L-09) */
   telemetry: { status: 'STATIC' | 'SYNCED'; syncDate: string };
   render: () => React.ReactNode;
+  /** 표·장시계열은 full(1열 1개). 없으면 그래프 기본 — 1열 2개. */
+  span?: 'full' | 'half';
 }
 
 const CATCH_SYNC = { status: 'STATIC' as const, syncDate: `${CATCH._meta.기준연도}년 확정` };
@@ -134,6 +136,7 @@ export const CATCH_CHART_SLOTS: Record<string, ChartSlot[]> = {
       caption:
         '크기·성숙·어법·제품 형태를 한자리에 놓았다. 어획 비중과 물량은 이 저장소의 FAO 집계이고, 나머지 서술은 참조 자료에서 가져왔다. 가다랑어가 통조림으로, 눈다랑어가 사시미로 가는 이유가 크기와 성숙 나이에 이미 들어 있다.',
       telemetry: CATCH_SYNC,
+      span: 'full',
       render: () => (
         <SpeciesProfileCards
           profiles={GLOSSARY.어종프로필}
@@ -146,6 +149,7 @@ export const CATCH_CHART_SLOTS: Record<string, ChartSlot[]> = {
       caption:
         '어획량은 얼마나 잡았는지를 말할 뿐 자원이 버티는지를 말하지 않는다. 그 판단은 해역을 관리하는 기구가 따로 한다. ⚠ 평가에는 시점이 있다 — 원문 수록은 2022년 평가이고, 오늘 상태가 아니라 그 해의 판정이다.',
       telemetry: STOCK_SYNC,
+      span: 'full',
       render: () => <StockStatusTable rows={GLOSSARY.자원상태} />,
     },
     {
@@ -173,6 +177,7 @@ export const CATCH_CHART_SLOTS: Record<string, ChartSlot[]> = {
       title: '어종별 어획량 20년 추이 (톤)',
       caption: '총량은 늘었지만 어종 구성비는 거의 변하지 않았다. 어법 구조가 고정돼 있다는 뜻이다.',
       telemetry: CATCH_SYNC,
+      span: 'full',
       render: () => <SpeciesTimelineChart data={CATCH} />,
     },
     {
@@ -266,6 +271,7 @@ export const CATCH_CHART_SLOTS: Record<string, ChartSlot[]> = {
   x01: [
     {
       title: `항구별 가다랑어 고시가 추이 (달러/톤, ${PRICES.meta.span})`,
+      span: 'full',
       caption: PRICES.latestSpread
         ? `같은 어종인데 다섯 항구가 따로 움직인다. 다섯 곳이 모두 고시된 마지막 달인 ${PRICES.latestSpread.month}에 ` +
           `${PRICES.latestSpread.maxLabel} ${PRICES.latestSpread.maxPrice.toLocaleString('ko-KR')}달러와 ` +
@@ -279,6 +285,7 @@ export const CATCH_CHART_SLOTS: Record<string, ChartSlot[]> = {
     {
       title: '항구가 다르면 무엇이 다른가',
       telemetry: PRICE_SYNC,
+      span: 'full',
       caption:
         '항구는 지리가 아니라 수요처를 뜻한다. 어느 캐너리로 가는 원료인지가 다르므로 가격도 따로 움직인다.',
       render: () => (
@@ -322,12 +329,14 @@ export const CATCH_CHART_SLOTS: Record<string, ChartSlot[]> = {
       title: '국제 리퍼·환적 실세 (등록부 밖 보강)',
       caption: COMPANY_RESEARCH.운반선사보강.요지,
       telemetry: { status: 'SYNCED' as const, syncDate: '2026-08-17 조사' },
+      span: 'full',
       render: () => <CarrierProfileTable rows={COMPANY_RESEARCH.운반선사보강.rows} />,
     },
     {
       title: '캐닝용 원어 트레이더 (빅3와 한국의 자리)',
       caption: COMPANY_RESEARCH.트레이더.구조,
       telemetry: { status: 'SYNCED' as const, syncDate: '2026-08-17 조사' },
+      span: 'full',
       render: () => <TraderTable rows={COMPANY_RESEARCH.트레이더.rows} />,
     },
   ],
@@ -336,6 +345,7 @@ export const CATCH_CHART_SLOTS: Record<string, ChartSlot[]> = {
       title: '국가별 캔참치 공장과 주요 기업',
       caption: COMPANY_RESEARCH.캔공장.요지,
       telemetry: { status: 'SYNCED' as const, syncDate: '2026-08-17 조사' },
+      span: 'full',
       render: () => <CanneryCountryTable rows={COMPANY_RESEARCH.캔공장.rows} />,
     },
   ],
@@ -372,6 +382,7 @@ export const CATCH_CHART_SLOTS: Record<string, ChartSlot[]> = {
       title: '국가별 참치캔 브랜드와 점유율 (성격 구분)',
       caption: COMPANY_RESEARCH.브랜드.요지,
       telemetry: { status: 'SYNCED' as const, syncDate: '2026-08-17 조사' },
+      span: 'full',
       render: () => <BrandMarketTable rows={COMPANY_RESEARCH.브랜드.rows} />,
     },
     {
@@ -379,6 +390,7 @@ export const CATCH_CHART_SLOTS: Record<string, ChartSlot[]> = {
       caption:
         '소비 단계에서 반복해 나오는 질문이다. ⚠ 규제 기준과 관측값을 「구분」 열로 갈라 두었다 — 평균 함량을 허용 상한으로 오해하면 판단이 통째로 뒤집힌다.',
       telemetry: REF_SYNC,
+      span: 'full',
       render: () => <FoodSafetyTable rows={GLOSSARY.식품안전.rows} />,
     },
     {
@@ -395,6 +407,7 @@ export const CATCH_CHART_SLOTS: Record<string, ChartSlot[]> = {
       caption:
         '규제가 원가로 번역되는 통로 가운데 하나다. 위생 절차가 바닥이고 그 위에 공정 예방체계, 국제 규격, 유통사 요구, 사회적 책임이 얹힌다. 조문이 아니라 「무엇을 보는 제도인가」를 정리한 것이다.',
       telemetry: REF_SYNC,
+      span: 'full',
       render: () => (
         <CertificationTable
           rows={GLOSSARY.인증.rows}
@@ -422,6 +435,7 @@ export const CATCH_CHART_SLOTS: Record<string, ChartSlot[]> = {
       title: '한국 어획량과 세계 점유율 20년',
       caption: '막대는 어획량(톤), 선은 세계 점유율(%)이다. 물량이 늘어도 점유율은 5%대에서 움직인다.',
       telemetry: CATCH_SYNC,
+      span: 'full',
       render: () => <KoreaTrendChart data={CATCH} />,
     },
     {
@@ -587,7 +601,11 @@ function StageSection({
           <h3 className={styles.stageMoreHeading}>근거</h3>
           <div className={rest.length >= 2 ? styles.catchGrid : styles.catchStack}>
             {rest.map((slot) => (
-              <figure key={slot.title} className={styles.catchFigure}>
+              <figure
+                key={slot.title}
+                className={styles.catchFigure}
+                data-span={slot.span === 'full' ? 'full' : 'half'}
+              >
                 <figcaption className={styles.catchCaption}>
                   <div className={styles.catchTitleRow}>
                     <strong>{slot.title}</strong>

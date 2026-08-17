@@ -14,7 +14,6 @@ import HeroMarketCommand from './HeroMarketCommand';
 import NewsFrontPage from './NewsFrontPage';
 import HeroZone from './v2/HeroZone';
 import FilterBar from './v2/FilterBar';
-import { VolumeBarChart, type VolumeBarPoint } from './charts/VolumeBar';
 import {
   ATUNA_GRAIN_LABELS,
   ATUNA_PERIOD_LABELS,
@@ -279,13 +278,6 @@ export default function MarketDashboard({ heroOnly = false }: { heroOnly?: boole
     () => filterAtunaHistory(priceData, chartFilter.period, chartFilter.grain),
     [priceData, chartFilter.period, chartFilter.grain],
   );
-  const bangkokVolume: VolumeBarPoint[] = chartData
-    .filter((row): row is AtunaPriceRow & { skj_bkk: number } => typeof row.skj_bkk === 'number')
-    .slice(-8)
-    .map((row) => ({
-      label: row.date.slice(5).replace('-', '.'),
-      value: row.skj_bkk,
-    }));
 
   if (heroOnly) {
     return (
@@ -459,21 +451,6 @@ export default function MarketDashboard({ heroOnly = false }: { heroOnly?: boole
           )}
 
         </div>
-        {chartWidth > 0 && bangkokVolume.length >= 2 && (
-          <div style={{ marginTop: 20, flex: '0 0 auto' }}>
-            <h4 style={{ fontSize: '0.9rem', fontWeight: 600, color: 'var(--text-muted)', margin: '0 0 8px' }}>
-              방콕 SKJ 최근 고시 (입체 비교)
-            </h4>
-            <VolumeBarChart
-              data={bangkokVolume}
-              name="방콕 SKJ"
-              unit="($/MT)"
-              width={chartWidth}
-              height={160}
-              fill="var(--chart-s1, #509ee3)"
-            />
-          </div>
-        )}
       </section>
 
 
