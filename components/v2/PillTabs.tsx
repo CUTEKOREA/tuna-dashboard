@@ -47,6 +47,14 @@ export interface PillTabsProps {
   tabIdPrefix?: string;
   /** 각 탭 패널 id의 접두사. tabIdPrefix와 함께 tab/panel 관계를 만든다. */
   panelIdPrefix?: string;
+  /**
+   * 탭이 넘치면 가로 스크롤 대신 다음 줄로 내린다.
+   *
+   * 탭이 10개쯤 되면 가로 스크롤은 잘 안 굴러간다 — 스크롤바가 숨는 macOS 에서는
+   * 더 있다는 사실조차 안 보이고, 활성 탭이 화면 밖에 있으면 지금 어디인지도 모른다.
+   * 단계 내비처럼 «전체를 한눈에 보는 것»이 목적인 곳에서는 줄을 늘리는 편이 낫다.
+   */
+  wrap?: boolean;
 }
 
 export default function PillTabs({
@@ -59,6 +67,7 @@ export default function PillTabs({
   ariaLabel = '필 탭',
   tabIdPrefix,
   panelIdPrefix,
+  wrap = false,
 }: PillTabsProps) {
   const tabRefs = useRef<Record<string, HTMLButtonElement | null>>({});
   const reduce = useReducedMotion();
@@ -97,7 +106,11 @@ export default function PillTabs({
         WebkitBackdropFilter: 'var(--dsc-surface-blur)',
         width: 'fit-content',
         maxWidth: '100%',
-        overflowX: 'auto',
+        // 줄바꿈을 켜면 스크롤 컨테이너를 만들지 않는다. 둘을 같이 두면 넘칠 때
+        // 스크롤도 되고 줄도 바뀌어 어느 쪽으로 움직일지 예측이 안 된다.
+        flexWrap: wrap ? 'wrap' : 'nowrap',
+        overflowX: wrap ? 'visible' : 'auto',
+        rowGap: wrap ? 6 : undefined,
       }}
     >
       {tabs.map((tab, index) => {

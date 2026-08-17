@@ -521,7 +521,10 @@ export default function SquidIndustryDashboard({ heroOnly = false }: SquidIndust
         const narrative = getNarrative(stage.key);
         return {
           key: stage.key,
-          label: `${narrative?.numeral ?? ''} ${narrative?.title ?? stage.title}`.trim(),
+          // 탭에는 단계 이름만 싣고 부제(「— …」)는 뺀다. 열 개가 한 줄에 안 들어가고,
+          // 부제를 단 단계 수가 품목마다 달라 탭 폭이 들쭉날쭉해진다. 부제는 바로 아래
+          // 단계 머리글이 전문으로 보여주므로 여기서 빼도 잃는 정보가 없다.
+          label: `${narrative?.numeral ?? ''} ${(narrative?.title ?? stage.title).split(' — ')[0]}`.trim(),
         };
       }),
     [],
@@ -617,6 +620,7 @@ export default function SquidIndustryDashboard({ heroOnly = false }: SquidIndust
           ariaLabel="밸류체인 단계"
           tabIdPrefix="squid-industry-tab"
           panelIdPrefix="squid-industry-panel"
+          wrap
         />
       </nav>
 

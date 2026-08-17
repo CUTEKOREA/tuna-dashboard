@@ -303,11 +303,19 @@ export default function CommodityIndustryDashboard({
     });
   }, [setStage]);
 
+  /**
+   * 탭에는 단계 이름만 싣고 부제(「— …」)는 뺀다.
+   *
+   * 부제를 그대로 넣으면 새우는 라벨이 135자, 오징어는 132자가 되어 열 개가 한 줄에
+   * 들어가지 않는다. 게다가 품목마다 부제를 단 단계 수가 달라(오징어는 10개 중 3개)
+   * 탭 폭이 들쭉날쭉해진다. 부제는 바로 아래 단계 머리글이 전문으로 보여주므로
+   * 여기서 빼도 잃는 정보가 없다.
+   */
   const tabs: PillTab[] = useMemo(
     () =>
       spec.narratives.map((narrative) => ({
         key: narrative.key,
-        label: `${narrative.numeral} ${narrative.title}`,
+        label: `${narrative.numeral} ${narrative.title.split(' — ')[0]}`,
       })),
     [spec.narratives],
   );
@@ -375,6 +383,7 @@ export default function CommodityIndustryDashboard({
           ariaLabel="밸류체인 단계"
           tabIdPrefix={`${spec.key}-industry-tab`}
           panelIdPrefix={`${spec.key}-industry-panel`}
+          wrap
         />
       </nav>
 
