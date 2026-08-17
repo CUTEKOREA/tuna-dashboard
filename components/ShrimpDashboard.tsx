@@ -61,15 +61,16 @@ const KPI_THEMES: Record<string, { text: string; icon: any }> = {
 };
 const KPI_THEME_FALLBACK = { text: 'var(--text-primary)', icon: Database };
 
-/* ─── Widget Icons (v4 위젯 21개 기준) ─── */
+/* ─── Widget Icons (v4 위젯 + 시리즈 6개국) ─── */
 const WIDGET_ICONS: Record<string, any> = {
   w01_paradigm_shift: Activity, w02_top10_by_source: BarChart2, w03_species_concentration: Layers,
-  w04_argentina_landings: Anchor, w50_kfas_bft_pathogen: AlertCircle,
+  w_series_country_roles: Globe, w04_argentina_landings: Anchor, w50_kfas_bft_pathogen: AlertCircle,
   w03_processing: Factory, w_proc1_type_production: Factory,
   w08_processing_reversal: RefreshCcw, w09_feed_vs_processing_margin: Scale,
   w10_world_exporters: Globe, w11_ecuador_monthly: Ship, w12_reprocessing_hubs: MapPin, w13_kr_import_by_stage: BarChart2,
+  w_series_kr_windows: Layers,
   w14_top_import_markets: DollarSign, w15_pinksheet_nominal: TrendingUp, w16_spain_exw_ladder: Scale,
-  w_kr_shrimp_origin_price: DollarSign, w_proc2_kr_import_type: BarChart2,
+  w_kr_shrimp_origin_price: DollarSign, w_series_kr_unit: DollarSign, w_proc2_kr_import_type: BarChart2,
   w_india_shaphari: ShieldCheck, w_vn_traceability_risk: AlertTriangle, w21_cert_landscape: ShieldCheck,
 };
 
@@ -89,20 +90,20 @@ type PillarDef = {
 
 const PILLARS: readonly PillarDef[] = [
   { id: 'S1', num: '❶', label: '원료 수급', title: '🦐 제1기둥 — 원료 수급',
-    desc: '글로벌 양식·어획 동향, 산지 단가, 질병 리스크', color: '#10b981', icon: Anchor,
-    widgets: ['w01_paradigm_shift', 'w02_top10_by_source', 'w03_species_concentration', 'w04_argentina_landings', 'w50_kfas_bft_pathogen'],
+    desc: '글로벌 양식·어획 동향, 시리즈 6개국 역할, 질병 리스크', color: '#10b981', icon: Anchor,
+    widgets: ['w01_paradigm_shift', 'w02_top10_by_source', 'w03_species_concentration', 'w_series_country_roles', 'w04_argentina_landings', 'w50_kfas_bft_pathogen'],
     customInject: [] },
   { id: 'S2', num: '❷', label: '가공·생산', title: '🏭 제2기둥 — 가공·생산',
     desc: '가공 유형별 생산, 가공 전환·마진, 한국 수입 가공품 구조', color: '#14b8a6', icon: Factory,
     widgets: ['w03_processing', 'w_proc1_type_production', 'w08_processing_reversal', 'w09_feed_vs_processing_margin'],
     customInject: [] },
   { id: 'S3', num: '❸', label: '물류·통관', title: '🚢 제3기둥 — 물류·통관',
-    desc: '글로벌 수출 경쟁, 에콰도르 동향, 재가공 허브, 한국 수입 단계', color: '#0d9488', icon: Ship,
-    widgets: ['w10_world_exporters', 'w11_ecuador_monthly', 'w12_reprocessing_hubs', 'w13_kr_import_by_stage'],
+    desc: '글로벌 수출 경쟁, 에콰도르 동향, 재가공 허브, 한국 수입 단계·시리즈 창구', color: '#0d9488', icon: Ship,
+    widgets: ['w10_world_exporters', 'w11_ecuador_monthly', 'w12_reprocessing_hubs', 'w13_kr_import_by_stage', 'w_series_kr_windows'],
     customInject: [ShrimpFTAQuarterly] },
   { id: 'S4', num: '❹', label: '판매·수요', title: '📈 제4기둥 — 판매·수요',
-    desc: '수입 시장 단가 트렌드, 원산지별 가격 구조', color: '#5eead4', icon: DollarSign,
-    widgets: ['w14_top_import_markets', 'w15_pinksheet_nominal', 'w16_spain_exw_ladder', 'w_kr_shrimp_origin_price', 'w_proc2_kr_import_type'],
+    desc: '수입 시장 단가 트렌드, 원산지별 가격 구조, 시리즈 창구 단가', color: '#5eead4', icon: DollarSign,
+    widgets: ['w14_top_import_markets', 'w15_pinksheet_nominal', 'w16_spain_exw_ladder', 'w_kr_shrimp_origin_price', 'w_series_kr_unit', 'w_proc2_kr_import_type'],
     customInject: [] },
   { id: 'S5', num: '❺', label: 'ESG·지속가능성', title: '🌱 제5기둥 — ESG·지속가능성',
     desc: '양식 인증·추적성, 지속가능성 컴플라이언스', color: '#99f6e4', icon: ShieldCheck,
@@ -112,6 +113,9 @@ const PILLARS: readonly PillarDef[] = [
 
 /* ─── Term Tooltip Parser ─── */
 const TERM_DICTIONARY: Record<string, string> = {
+  "SECA": "한–에콰도르 전략적경제협력협정. 이 화면 기준일에 발효일과 양허표 원문은 확인하지 못했다.",
+  "VKFTA": "한–베트남 자유무역협정. 실행세율은 세번별로 따로 확인한다.",
+  "CEPA": "한–인도 포괄적경제동반자협정. 발효 중이지만 실행세율은 이 화면이 다시 읽지 않았다.",
   "EMS": "조기폐사증후군(Early Mortality Syndrome). 새우 양식업의 치명적 질병으로 폐사율이 100%에 달할 수 있음.",
   "FCR": "사료요구율(Feed Conversion Ratio). 생물 1kg을 생산하기 위해 투입되는 사료의 양. 낮을수록 효율적.",
   "바이오플락": "미생물을 활용하여 사육수 내 오염물질을 정화하고, 이를 다시 사료화하는 친환경 양식법.",
@@ -414,7 +418,7 @@ export default function ShrimpDashboard() {
               <h1 style={{ margin: 0, fontSize: '1.5rem', fontWeight: 700, letterSpacing: '-0.5px', color: 'var(--text-primary)' }}>
                 새우 전략 인텔리전스
               </h1>
-              <p style={{ margin: 0, fontSize: '0.88rem', color: 'var(--text-secondary)' }}>새우 전략 종합 커맨드 센터 — {displayWidgets?.length ?? 0}개 위젯 · {kpiKeys.length}개 핵심지표</p>
+              <p style={{ margin: 0, fontSize: '0.88rem', color: 'var(--text-secondary)' }}>6개국 산업 보고서를 5기둥에 재구성 — {displayWidgets?.length ?? 0}개 위젯 · {kpiKeys.length}개 핵심지표</p>
             </div>
           </div>
           {/* 데이터 빈티지 배지 — 정적 스냅샷 기준 연도만 정직 표기 (L-09) */}
@@ -430,7 +434,7 @@ export default function ShrimpDashboard() {
 
       {/* ═══ 6 KPIs ═══ */}
       <div data-mobile-stack style={{ display: 'grid', gridTemplateColumns: 'repeat(6, 1fr)', gap: '1rem', marginBottom: '2rem' }}>
-        {kpiKeys.map((key, idx) => {
+        {kpiKeys.map((key) => {
           const kpi = kpis[key];
           const theme = KPI_THEMES[key] ?? KPI_THEME_FALLBACK;
           const IconComp = theme.icon;
@@ -613,19 +617,35 @@ export default function ShrimpDashboard() {
     const isChartless = (w.chartType || '').toLowerCase() === 'none';
     // customBody 항목은 {name, issuer, version, date, scope} 객체다.
     // text/label만 찾으면 전부 빈 불릿으로 렌더된다.
+    const isCountryRoles = w.id === 'w_series_country_roles';
     const customBody = isChartless && Array.isArray(w.customBody) ? (
-      <div style={{ display: 'flex', flexDirection: 'column', gap: '12px', fontSize: '0.88rem', lineHeight: 1.5 }}>
+      <div style={{
+        display: isCountryRoles ? 'grid' : 'flex',
+        gridTemplateColumns: isCountryRoles ? '1fr 1fr' : undefined,
+        flexDirection: isCountryRoles ? undefined : 'column',
+        gap: '12px',
+        fontSize: '0.88rem',
+        lineHeight: 1.5,
+      }}>
         {w.customBody.map((item: any, i: number) => {
           if (typeof item === 'string') {
             return <div key={i} style={{ color: 'var(--text-secondary)' }}>{item}</div>;
           }
-          const meta = [item?.issuer, item?.version, item?.date].filter(Boolean).join(' · ');
+          const role = item?.role || item?.issuer;
+          const meta = [item?.version, item?.date].filter(Boolean).join(' · ');
           return (
             <div key={i} style={{ borderLeft: '2px solid var(--color-success)', paddingLeft: '10px' }}>
               <div style={{ color: 'var(--text-primary)', fontWeight: 600 }}>
                 {item?.name || item?.text || item?.label || ''}
+                {role && item?.role ? (
+                  <span style={{ marginLeft: '8px', fontWeight: 500, color: 'var(--text-secondary)', fontSize: '0.8rem' }}>{role}</span>
+                ) : null}
               </div>
-              {meta && <div style={{ color: 'var(--text-secondary)', fontSize: '0.78rem', marginTop: '2px' }}>{meta}</div>}
+              {!item?.role && role && (
+                <div style={{ color: 'var(--text-secondary)', fontSize: '0.78rem', marginTop: '2px' }}>{[role, meta].filter(Boolean).join(' · ')}</div>
+              )}
+              {item?.role && meta && <div style={{ color: 'var(--text-secondary)', fontSize: '0.78rem', marginTop: '2px' }}>{meta}</div>}
+              {item?.korea && <div style={{ color: '#5eead4', fontSize: '0.8rem', marginTop: '2px' }}>{item.korea}</div>}
               {item?.scope && <div style={{ color: 'var(--text-secondary)', marginTop: '4px' }}>{item.scope}</div>}
             </div>
           );
@@ -633,8 +653,8 @@ export default function ShrimpDashboard() {
       </div>
     ) : undefined;
 
-    return (
-      <WidgetCard key={w.id}
+    const card = (
+      <WidgetCard
         id={w.id}
         title={w.title}
         icon={IconComp}
@@ -655,6 +675,10 @@ export default function ShrimpDashboard() {
         }}
       />
     );
+    if (isCountryRoles) {
+      return <div key={w.id} style={{ gridColumn: '1 / -1' }}>{card}</div>;
+    }
+    return <React.Fragment key={w.id}>{card}</React.Fragment>;
   }
 }
 
