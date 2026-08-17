@@ -6,16 +6,12 @@
 'use client';
 
 import React, { useEffect, useState } from 'react';
-import TunaDailyBriefingWidget from '../TunaDailyBriefingWidget';
-import FilterBar from '../v2/FilterBar';
 import HeroMarketCommand from '../HeroMarketCommand';
-import {
-  ATUNA_GRAIN_LABELS,
-  ATUNA_PERIOD_LABELS,
-  type AtunaGrainKey,
-  type AtunaPeriodKey,
-  type AtunaPriceRow,
-} from '../../lib/data/atuna-price-summary';
+import NewsFrontPage from './r5/NewsFrontPage';
+import NewsWire from './r5/NewsWire';
+import FilterUnderline from './r5/FilterUnderline';
+import FilterSegment from './r5/FilterSegment';
+import { type AtunaPriceRow } from '../../lib/data/atuna-price-summary';
 
 export interface DesignVariant {
   /** localStorage 평가 키 — 라운드가 바뀌어도 재사용하지 않는다 */
@@ -26,27 +22,6 @@ export interface DesignVariant {
   /** 이 시안에서 무엇을 보라는 것인지 한 줄 */
   note: string;
   render: () => React.ReactNode;
-}
-
-const PERIOD_KEYS: AtunaPeriodKey[] = ['3m', '6m', '1y', 'all'];
-const GRAIN_KEYS: AtunaGrainKey[] = ['week', 'month'];
-
-/** FilterBar는 제어 컴포넌트다 — 미리보기용 더미 상태를 여기서 쥔다 */
-function FilterBarPreview() {
-  const [period, setPeriod] = useState<AtunaPeriodKey>('all');
-  const [grain, setGrain] = useState<AtunaGrainKey>('week');
-
-  return (
-    <FilterBar
-      periodOptions={PERIOD_KEYS.map((key) => ({ key, label: ATUNA_PERIOD_LABELS[key] }))}
-      period={period}
-      onPeriodChange={setPeriod}
-      grainOptions={GRAIN_KEYS.map((key) => ({ key, label: ATUNA_GRAIN_LABELS[key] }))}
-      grain={grain}
-      onGrainChange={setGrain}
-      scopeNote="시안 미리보기 — 어떤 차트에도 연결되지 않은 더미 상태"
-    />
-  );
 }
 
 /* r1 판정 반영(★1 «수치 확인이 안됨»): 시안은 실데이터를 렌더한다 (SOUL ④ 숫자 정직).
@@ -95,19 +70,33 @@ export const DESIGN_VARIANTS: DesignVariant[] = [
     note: '4라운드 수렴 결과. 실페이지에 반영 — 추가 지적은 여기 코멘트로',
     render: () => <AdoptedHero />,
   },
-  // r1 히어로(빈 데이터 시안)는 ★1 «수치 확인이 안됨»으로 라운드 종료 — r2a~c가 대체
+  // r5 (2026-08-17): 뉴스·필터 다변화 라운드 — 현행(★3)은 실페이지가 기준선, 갤러리는 대안 4종
   {
-    id: 'daily-briefing-r1',
-    title: '오늘의 참치 뉴스 위젯',
-    round: 1,
-    note: '리드 기사 + 임팩트 넘버 위계. 다이제스트 클릭 펼침 동작까지 평가 대상',
-    render: () => <TunaDailyBriefingWidget />,
+    id: 'news-r5a',
+    title: '뉴스 r5-A: 신문 1면형',
+    round: 5,
+    note: '리드 초대형 헤드라인+첫 문단, 임팩트 넘버 세로 스택, 나머지 2단 컬럼 전부 펼침',
+    render: () => <NewsFrontPage />,
   },
   {
-    id: 'filter-bar-r1',
-    title: '기간·입도 필터 바',
-    round: 1,
-    note: '탐색 손잡이(취향 7조 ⑦). 활성 pill 대비가 흐릿하지 않은가',
-    render: () => <FilterBarPreview />,
+    id: 'news-r5b',
+    title: '뉴스 r5-B: 와이어형',
+    round: 5,
+    note: '임팩트 넘버 스트립 + 기사 전체 시간순 테이블. 밀도 지향, 행 hover 리프트',
+    render: () => <NewsWire />,
+  },
+  {
+    id: 'filter-r5a',
+    title: '필터 r5-A: 언더라인 탭형',
+    round: 5,
+    note: '활성 = 액센트 굵은 언더라인 + 900 웨이트 (pill 대비 잉크 절약형)',
+    render: () => <FilterUnderline />,
+  },
+  {
+    id: 'filter-r5b',
+    title: '필터 r5-B: 세그먼트형',
+    round: 5,
+    note: '트랙 안에서 활성 배경이 슬라이딩. 흰 배경+잉크 = 눈에 띄게(취향 ②)',
+    render: () => <FilterSegment />,
   },
 ];
