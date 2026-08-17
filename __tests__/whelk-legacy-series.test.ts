@@ -28,6 +28,9 @@ const data = legacy as unknown as {
   mcrsScenarioData: Record<string, string | number>[];
   seasonalityData: { month: string; importUSD: number; volume: number }[];
   importSurgeData: { month: string; volume: number; value: number }[];
+  fxCorrelationData: { quarter: string; avgUnitPrice: number; usdkrw: number }[];
+  nutritionBenchmarkData: { item: string; protein: number; fat: number; iron: number }[];
+  pfasRiskData: { species: string; pfsa: number }[];
   _정정?: { 내용: string[]; 범위밖: string };
 };
 
@@ -144,6 +147,42 @@ describe('골뱅이 기존 대시보드 — 정정된 계열', () => {
     expect(feb.volume).toBe(146);
     const feb24 = data.importSurgeData.find((r) => r.month === '24.02')!;
     expect(feb.volume / feb24.volume).toBeGreaterThan(1.5);
+  });
+
+  it('환율×단가 계열이 실측의 굴곡을 담고 있다', () => {
+    // 조작본은 단조 상승 계단이었고 25Q3·Q4 가 통째로 없었다. 실측의 지문은
+    // 25Q1 환율 급등(1,449.5)과 같은 분기 단가 하락(12.85 < 24Q4 13.21)이다.
+    const q = Object.fromEntries(data.fxCorrelationData.map((r) => [r.quarter, r]));
+    expect(q['25Q3'], '25Q3 이 다시 사라졌다').toBeDefined();
+    expect(q['25Q4'], '25Q4 가 다시 사라졌다').toBeDefined();
+    expect(q['25Q1'].usdkrw).toBeCloseTo(1449.5, 1);
+    expect(q['25Q1'].avgUnitPrice).toBeLessThan(q['24Q4'].avgUnitPrice);
+    expect(q['25Q2'].usdkrw).toBeLessThan(q['25Q1'].usdkrw);
+  });
+
+  it('영양 벤치마크가 성분표 값이고 철분 슈퍼푸드 서사가 없다', () => {
+    // 조작본은 골뱅이 철분을 3.2mg 로 적었다 — 성분표(통조림 고형물)는 0.95mg 다.
+    const whelk = data.nutritionBenchmarkData.find((r) => r.item === '골뱅이캔')!;
+    expect(whelk.iron).toBeCloseTo(0.95, 2);
+    expect(whelk.protein).toBeCloseTo(19.33, 2);
+    // 한우 등심은 지방 > 단백질 — 조작본은 이 구조가 뒤집혀 있었다
+    const beef = data.nutritionBenchmarkData.find((r) => r.item === '소등심')!;
+    expect(beef.fat).toBeGreaterThan(beef.protein);
+  });
+
+  it('PFAS 계열이 논문의 실제 분류군 값이고 가짜 기준이 없다', () => {
+    // 조작본은 존재하지 않는 「기준 1.0」에 골뱅이·담치·굴 값을 만들어 붙였다.
+    // 논문에는 그 시료가 없고 이매패류가 전 분류군 최저(0.03)다.
+    const rows = Object.fromEntries(data.pfasRiskData.map((r) => [r.species, r.pfsa]));
+    expect(rows['이매패류']).toBeCloseTo(0.03, 2);
+    expect(rows['갑각류']).toBeCloseTo(0.63, 2);
+    const names = data.pfasRiskData.map((r) => r.species);
+    for (const fake of ['골뱅이(복족류)', '담치', '굴']) {
+      expect(names, `${fake} — 논문에 없는 시료가 되돌아왔다`).not.toContain(fake);
+    }
+    for (const r of data.pfasRiskData) {
+      expect(r, '가짜 기준(limit)이 되돌아왔다').not.toHaveProperty('limit');
+    }
   });
 
   it('최소보존규격 시나리오의 기준선이 실측이다', () => {

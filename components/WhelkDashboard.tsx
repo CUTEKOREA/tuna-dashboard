@@ -5,7 +5,7 @@ import {
   LineChart, Line, BarChart, Bar, AreaChart, Area, ComposedChart,
   PieChart, Pie, Cell, XAxis, YAxis, CartesianGrid, Tooltip as RechartsTooltip,
   Legend, Radar, RadarChart, PolarGrid, PolarAngleAxis, PolarRadiusAxis,
-  ScatterChart, Scatter, ZAxis
+  ScatterChart, Scatter, ZAxis, ReferenceLine
 } from 'recharts';
 import {
   Globe, TrendingUp, AlertTriangle, Factory, DollarSign, Scale, RefreshCcw,
@@ -145,7 +145,7 @@ export default function WhelkDashboard() {
             <div style={{ width: '8px', height: '8px', borderRadius: '50%', background: 'var(--w-slate-500)' }} />
             <span>5개 출처 <span style={{ color: 'var(--w-slate-400)' }}>STATIC</span></span>
             <span style={{ margin: '0 8px', color: '#4d4d4d' }}>|</span>
-            <span style={{ color: 'var(--text-primary)' }}>KCS · IFCA · MMO · EFSA · aT FIS</span>
+            <span style={{ color: 'var(--text-primary)' }}>KCS · FAO · 국가통계포털 · EU 규정 · 성분표</span>
           </div>
         </div>
       </header>
@@ -408,7 +408,7 @@ export default function WhelkDashboard() {
               }} />
 
             <WidgetCard title="포스트 영국(Post-UK) 시대 대비 신규 어장 스코어카드" icon={Navigation} iconColor="var(--color-info)" pillar="S1"
-              cardDesc="대체 어장 4축 평가 — 어획 추세·FTA 혜택·물류 효율"
+              cardDesc="대체 어장 4축 — 자체 점수 + 개략 수온. 측정 시계열이 아니라 탐색용 판단이다"
               telemetry={{ status: 'STATIC', syncDate: '2026 분석' }} chartHeight={300}
               chart={
                 <BarChart data={postUkScorecardData} layout="vertical" margin={{ left: 30 }}>
@@ -540,7 +540,7 @@ export default function WhelkDashboard() {
               }} />
 
             <WidgetCard title="원산지별 CIF 단가 격차 — 대체재 탄력성" icon={Package} iconColor="var(--color-warning)" pillar="S4"
-              cardDesc="KCS HS160559 원산지별 CIF($/kg) — 북해 vs 저단가 대체재"
+              cardDesc="KCS HS160559 원산지별 CIF($/kg) — 2024 통관 원본 재계산과 5개국 전부 일치 확인(2026-08-17)"
               telemetry={{ status: metaStatus, syncDate: metaSyncDate || 'KCS 2024 연간' }} chartHeight={300}
               chart={
                 <BarChart data={originCifGapData} layout="vertical" margin={{ left: 20 }}>
@@ -632,13 +632,13 @@ export default function WhelkDashboard() {
                 </ScatterChart>
               }
               takeaway={{
-                situation: <span>[aT FIS] 유동 골뱅이가 1위를 지키고 있으나, 타 브랜드들이 고형량(살코기 비율)을 늘리거나 가격을 낮추는 방식으로 가성비 경쟁을 치열하게 전개 중입니다.</span>,
+                situation: <span>[업계 보도] 유동 골뱅이가 1위를 지키고 있으나, 타 브랜드들이 고형량(살코기 비율)을 늘리거나 가격을 낮추는 방식으로 가성비 경쟁을 치열하게 전개 중입니다.</span>,
                 actionPlan: <span>경쟁사 '동표골뱅이'는 <TermTooltip term="고형량" description="Solid weight. 통조림 내 액상액(조미액)을 제외한 순수 고기 무게." />(147g)과 저렴한 100g당 단가(₩3,600)를 무기로 매니아층 및 B2B 시장의 바닥을 무섭게 잠식하고 있습니다. 1위 브랜드인 유동(130g, ₩4,200)은 강력한 브랜드 헤리티지로 프리미엄 B2C 시장을 철통 수성 중이나, 합리적 소비 트렌드 확산에 따라 가성비 이탈 현상이 관측됩니다. 장기적 성장을 위해서는 프리미엄 라인의 고형량 투명성 강화 캠페인과 더불어, 중저가 원물 믹스를 통한 실속형 '세컨드 브랜드' 출시로 하방 압력을 분산해야 합니다.</span>,
                 source: '⚠ 출처 정정 — aT 세분시장에는 브랜드 점유율이 없다. 2013년 AC닐슨 인용 보도(유동 49.7%·동원 41.2%)가 확인되는 마지막 공개 수치다',
               }} />
 
             <WidgetCard title="B2C 및 B2B 채널별 매출 분포" icon={Building2} iconColor="var(--color-info)" pillar="S4"
-              cardDesc="채널별 점유율 — ⚠ 원본 대조 미완. 인용한 통계의 원문을 확인하지 못했다"
+              cardDesc="채널별 점유율 — 자체 추정. 골뱅이 단독 채널 통계는 공표된 것이 없음을 확인했다(2026-08-17)"
               telemetry={{ status: 'STATIC', syncDate: '2024년 기준' }} chartHeight={300}
               chart={
                 <PieChart>
@@ -649,9 +649,9 @@ export default function WhelkDashboard() {
                 </PieChart>
               }
               takeaway={{
-                situation: <span>[aT FIS] 대형마트 판매는 둔화되는 반면, 쿠팡 등 이커머스와 B2B 식자재 유통 채널의 성장이 폭발적입니다.</span>,
-                actionPlan: <span>과거 시장을 지배하던 대형마트 및 SSM의 점유율(62.3%) 독과점 체제가 빠르게 허물어지며 유통 구조의 파편화가 진행 중입니다. 쿠팡을 위시한 e커머스(11.8%)의 묶음 배송과 1인 가구 홈술족을 겨냥한 편의점(6.4%) 매출이 폭발적으로 성장하고 있습니다. 무엇보다 외식 물가 상승으로 인한 호프/주점용 프랜차이즈 납품 시장, 즉 B2B 식자재(19.5%) 채널이 강력한 '현금창출원(Cash Cow)'로 부상했습니다. 기존 300~400g 캔 규격의 틀을 깨고 <TermTooltip term="SKU 다변화" description="Stock Keeping Unit. 150g 소포장(CVS용), 1kg 대용량 벌크 파우치(B2B용) 등 포장 규격의 세분화 전략." />(150g 파우치, 1kg 벌크 등)를 통한 전방위 채널 침투 전략을 수립해야 합니다.</span>,
-                source: 'aT FIS 식품산업통계',
+                situation: <span>[자체 추정] 대형마트 중심 판매가 둔화되고 이커머스·B2B 식자재 채널이 성장한다는 업계 정성 평가를 비율로 옮긴 추정 분포입니다. 골뱅이 단독 채널 통계는 공표된 적이 없습니다.</span>,
+                actionPlan: <span>과거 시장을 지배하던 대형마트 및 SSM 중심 체제(추정 62.3%)가 허물어지며 유통 구조의 파편화가 진행 중입니다. 쿠팡을 위시한 e커머스(11.8%)의 묶음 배송과 1인 가구 홈술족을 겨냥한 편의점(6.4%) 매출이 폭발적으로 성장하고 있습니다. 무엇보다 외식 물가 상승으로 인한 호프/주점용 프랜차이즈 납품 시장, 즉 B2B 식자재(19.5%) 채널이 강력한 '현금창출원(Cash Cow)'로 부상했습니다. 기존 300~400g 캔 규격의 틀을 깨고 <TermTooltip term="SKU 다변화" description="Stock Keeping Unit. 150g 소포장(CVS용), 1kg 대용량 벌크 파우치(B2B용) 등 포장 규격의 세분화 전략." />(150g 파우치, 1kg 벌크 등)를 통한 전방위 채널 침투 전략을 수립해야 합니다.</span>,
+                source: '자체 추정 — aT 소매 POS는 골뱅이를 「수산물캔」에 합산하고 온라인·B2B 채널은 패널에 없다',
               }} />
           </>
 
@@ -679,8 +679,8 @@ export default function WhelkDashboard() {
               }} />
 
             <WidgetCard title="헬시플레저 시대 — 골뱅이 영양 경쟁력 벤치마크" icon={Activity} iconColor="var(--color-success)" pillar="S4"
-              cardDesc="영양 성분 벤치마크 — ⚠ 식품성분표 인용이나 판(版) 대조 미완"
-              telemetry={{ status: 'STATIC', syncDate: 'KFDA 2024 기준' }} chartHeight={300}
+              cardDesc="100g당 실측 — 국가표준식품성분표 10판. 골뱅이캔=「큰구슬우렁이」 통조림 고형물, 참치캔=유지 담금, 새우=보리새우 삶은것, 소등심=한우 생것"
+              telemetry={{ status: 'STATIC', syncDate: '국가표준식품성분표 10판 (2026-08-17 대조)' }} chartHeight={300}
               chart={
                 <BarChart data={nutritionBenchmarkData} margin={{ top: 20 }}>
                   <ChartPatternDefs />
@@ -695,9 +695,9 @@ export default function WhelkDashboard() {
                 </BarChart>
               }
               takeaway={{
-                situation: <span>[KMI 헬시플레저] 골뱅이는 100g당 82kcal, 단백질 18.2g, 지방 0.8g으로 닭가슴살보다 낮은 칼로리에 3배 이상의 철분을 보유한 '숨은 슈퍼푸드'입니다.</span>,
-                actionPlan: <span>골뱅이(자숙)의 영양 프로필은 헬시플레저 트렌드의 핵심 지표에서 경쟁 식품을 압도합니다. 칼로리 82kcal(닭가슴살 109kcal 대비 -25%), 지방 0.8g(소등심 15.0g 대비 -95%), 철분 3.2mg(닭가슴살 0.7mg 대비 4.5배)을 보유합니다. 마케팅팀은 '다이어트 안주의 혁명'이라는 포지셔닝으로 피트니스 인플루언서 협업 캠페인을 전개하고, 제품 패키지에 '82kcal 슈퍼프로틴' 배지를 전면 부착해야 합니다. 특히 여성 1인 가구 타겟의 '단백질 간식' 카테고리 진입이 가장 높은 ROI를 보일 것입니다.</span>,
-                source: 'KFDA 2024 식품성분표',
+                situation: <span>[국가표준식품성분표] 골뱅이캔은 100g당 109kcal·단백질 19.3g·지방 0.83g — 참치캔(유지 10.6g)이나 소등심(26.3g)의 10분의 1 이하인 저지방 고단백 안주입니다.</span>,
+                actionPlan: <span>성분표 실측 기준 골뱅이캔의 무기는 칼로리가 아니라 지방입니다 — 단백질은 닭가슴살(23.0g)·삶은새우(28.2g)에 못 미치고 칼로리(109kcal)도 닭가슴살(106kcal)과 비슷하지만, 지방 0.83g은 안주 경쟁군에서 가장 낮은 축입니다. 철분 0.95mg은 닭가슴살(0.28mg)의 3.4배이나 소등심(2.24mg)보다 낮으므로 「철분 슈퍼푸드」 소구는 쓰지 않습니다. 마케팅팀은 '저지방 고단백 안주' 포지셔닝으로 좁혀 소구하고, 패키지 수치 표기는 성분표 값(109kcal·단백질 19.3g)만 사용해야 합니다.</span>,
+                source: '국가표준식품성분표 제10개정판 (DB 10.4, 2026)',
               }} />
       </>)}
       {activePart === 'S5' && (<>
@@ -756,15 +756,15 @@ export default function WhelkDashboard() {
                 source: '한국은행 실시간 환율',
               }} />
             <WidgetCard title="환율 및 수입 단가 복합 변동성" icon={DollarSign} iconColor="var(--color-info)" pillar="S3"
-              cardDesc="분기별 USD 단가 vs 원달러 환율 — 환율은 실측, 단가는 통관 집계다. 상관은 자체 해석이다"
-              telemetry={{ status: metaStatus, syncDate: metaSyncDate || 'KCS/한국은행 2026-05-15' }} chartHeight={300}
+              cardDesc="영국산 CIF 단가(관세청 재계산) vs 원달러 분기 평균(시장환율 근사) — 상관 해석은 자체 판단"
+              telemetry={{ status: metaStatus, syncDate: 'KCS·시장환율 2026-08-17' }} chartHeight={300}
               chart={
                 <ComposedChart data={fxCorrelationData}>
                   <ChartPatternDefs />
                   <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" vertical={false} />
                   <XAxis dataKey="quarter" tick={{ fill: 'var(--w-slate-400)', fontSize: 11 }} angle={0} textAnchor="middle" height={60} />
-                  <YAxis yAxisId="left" domain={[11, 13.5]} tick={{ fill: 'var(--w-slate-400)', fontSize: 11 }} label={{ value: '$/kg', angle: -90, position: 'insideLeft', fill: 'var(--w-slate-400)' }} />
-                  <YAxis yAxisId="right" orientation="right" domain={[1200, 1450]} tick={{ fill: 'var(--w-slate-400)', fontSize: 11 }} label={{ value: 'USD/KRW', angle: 90, position: 'insideRight', fill: 'var(--w-slate-400)' }} />
+                  <YAxis yAxisId="left" domain={[10, 15.5]} tick={{ fill: 'var(--w-slate-400)', fontSize: 11 }} label={{ value: '$/kg', angle: -90, position: 'insideLeft', fill: 'var(--w-slate-400)' }} />
+                  <YAxis yAxisId="right" orientation="right" domain={[1250, 1520]} tick={{ fill: 'var(--w-slate-400)', fontSize: 11 }} label={{ value: 'USD/KRW', angle: 90, position: 'insideRight', fill: 'var(--w-slate-400)' }} />
                   <RechartsTooltip content={<CustomTooltip />} />
                   <Legend wrapperStyle={{ fontSize: '11px', paddingTop: '10px' }} />
                   <Bar yAxisId="left" dataKey="avgUnitPrice" name="평균수입단가($/kg)" fill="var(--color-info)" radius={[4, 4, 0, 0]} />
@@ -773,8 +773,8 @@ export default function WhelkDashboard() {
               }
               takeaway={{
                 situation: <span>[KCS+BOK] 수입 단가(달러) 자체는 안정적이어도 환율이 오르면 실제 기업이 지불해야 하는 원화 결제액이 크게 늘어나 수익성이 악화됩니다.</span>,
-                actionPlan: <span>2023년 1분기부터 2024년 4분기 시계열 분석 결과, 거시 경제의 최악의 시나리오인 'Double Whammy(이중 타격)' 현상이 확인됩니다. 영국산 원물 USD 단가가 $11.82에서 $12.75(+7.9%)로 인상된 것에 더해, 동기간 USD/KRW 환율마저 1,264원에서 1,400원(+10.8%)으로 수직 상승했습니다. 이로 인해 국내 수입사가 체감하는 원화 환산 매입 원가는 무려 20% 가까이 폭등했습니다. 재무 라인은 즉각 비상 경영 체제로 돌입하여 능동적인 <TermTooltip term="FX Forward 헤지" description="환변동 위험을 방어하기 위해 미래 특정 시점의 환율을 현재 시점에 사전 고정시키는 선도 계약." /> 및 통화 분산 스왑을 가동, 판관비 및 이익률 훼손을 방어하는 최후의 보루 역할을 수행해야 합니다.</span>,
-                source: 'KCS / 한국은행',
+                actionPlan: <span>2023년 1분기부터 2026년 2분기까지 실측 결과 'Double Whammy(이중 타격)'가 확인됩니다. 영국산 원물 USD 단가가 $10.29에서 $14.68(+42.7%)로 오르는 동안 USD/KRW 분기 평균 환율도 1,275원에서 1,501원(+17.7%)으로 올라, 원화 환산 매입 원가는 약 +68% 뛰었습니다. 다만 단가는 25Q1·25Q4에 두 차례 내려왔고 환율도 25Q1 급등(1,449원) 후 되돌림이 있었습니다 — 단조 상승이 아니라 출렁이며 오르는 곡선입니다. 재무 라인은 즉각 비상 경영 체제로 돌입하여 능동적인 <TermTooltip term="FX Forward 헤지" description="환변동 위험을 방어하기 위해 미래 특정 시점의 환율을 현재 시점에 사전 고정시키는 선도 계약." /> 및 통화 분산 스왑을 가동, 판관비 및 이익률 훼손을 방어하는 최후의 보루 역할을 수행해야 합니다.</span>,
+                source: '관세청 품목별 국가별 수출입실적 재계산 + 일별 시장환율 분기 평균 (2026-08-17)',
               }} />
 
             <WidgetCard title="영국 현지 어획 규제 리스크 진단" icon={Shield} iconColor="var(--color-info)" pillar="S3"
@@ -908,9 +908,9 @@ export default function WhelkDashboard() {
                 </BarChart>
               }
               takeaway={{
-                situation: <span>[aT FIS] 일반적인 300g 캔 제품의 절반 이상이 국물(조미액)이며, 실제 골뱅이 살코기는 40~50% 수준에 불과합니다.</span>,
+                situation: <span>[제품 표시사항] 일반적인 300g 캔 제품의 절반 이상이 국물(조미액)이며, 실제 골뱅이 살코기는 40~50% 수준에 불과합니다.</span>,
                 actionPlan: <span>300g 골뱅이 통조림에서 실제 <TermTooltip term="고형량" description="Solid weight. 통조림 내 액상액(조미액)을 제외한 순수 고기 무게. 소비자가 실제 먹게 되는 골뱅이 살의 양." /> 은 120~150g(40~50%)에 불과하며, 나머지는 간장 기반 조미액입니다. '헬시 플레저' 트렌드와 고물가 시대의 합리적 소비 심리가 맞물리면, 고형량 비율이 낮은 브랜드는 소비자 신뢰를 급격히 잃을 수 있습니다. 선제적으로 '고형량 65%+' 프리미엄 라인을 출시하고, 패키지 전면에 고형량 비율을 대형 표기하는 '투명성 마케팅'이 차별화 전략의 핵심입니다.</span>,
-                source: 'aT FIS 식품산업통계',
+                source: '제품 표시사항 취합 (제품별 실측 대조 미완)',
               }} />
 
             <WidgetCard title="영국·캐나다 어획 20년 (2005~2024)" icon={Thermometer} iconColor="var(--color-danger)" pillar="S1"
@@ -949,7 +949,7 @@ export default function WhelkDashboard() {
 
             {/* W23: EU 포장규제 리스크 */}
             <WidgetCard title="EU PPWR 포장규제 컴플라이언스 리스크" icon={Recycle} iconColor="var(--color-warning)" pillar="S5"
-              cardDesc="EU 포장폐기물규정(PPWR)이 골뱅이 캔 패키징 비용·수출 경쟁력에 미치는 리스크 6축 평가"
+              cardDesc="EU 포장폐기물규정(PPWR) 리스크 6축 — 자체 위협도 점수(0~100). 측정값이 아니라 판단이다"
               telemetry={{ status: 'STATIC', syncDate: 'KMI 2026.03' }}
               customBody={
                 <div data-mobile-stack style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '0.5rem' }}>
@@ -974,24 +974,26 @@ export default function WhelkDashboard() {
 
             {/* W24: PFAS 식품안전 매트릭스 */}
             <WidgetCard title="PFAS(과불화화합물) 차세대 식품안전 리스크" icon={FlaskConical} iconColor="var(--color-warning)" pillar="S3"
-              cardDesc="EU·미국 PFAS 규제 — 어종별 농도는 문헌값, 위험 등급은 자체 판단이다"
-              telemetry={{ status: 'STATIC', syncDate: 'KFAS 2024' }} chartHeight={280}
+              cardDesc="군산연안 분류군별 실측(한국수산과학회지 2022) vs EU 기준 — 골뱅이(복족류)는 실측도 규제 카테고리도 없다"
+              telemetry={{ status: 'STATIC', syncDate: '수과원 연구 2022 (2026-08-17 원문 대조)' }} chartHeight={280}
               chart={
-                <BarChart data={pfasRiskData} layout="vertical" margin={{ left: 40 }}>
+                <BarChart data={pfasRiskData} layout="vertical" margin={{ left: 40, right: 20 }}>
                   <ChartPatternDefs />
                   <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" horizontal={false} />
-                  <XAxis type="number" tick={{ fill: 'var(--w-slate-400)', fontSize: 11 }} label={{ value: 'ng/g', position: 'bottom', fill: 'var(--w-slate-400)', offset: -5 }} />
+                  <XAxis type="number" domain={[0, 3.5]} tick={{ fill: 'var(--w-slate-400)', fontSize: 11 }} label={{ value: 'ng/g', position: 'bottom', fill: 'var(--w-slate-400)', offset: -5 }} />
                   <YAxis dataKey="species" type="category" tick={{ fill: 'var(--w-slate-50)', fontSize: 10 }} width={100} />
                   <RechartsTooltip content={<CustomTooltip />} />
                   <Legend wrapperStyle={{ fontSize: '10px', paddingTop: '10px' }} />
-                  <Bar dataKey="pfos" name="PFOS(ng/g)" fill="var(--color-danger)" radius={[0, 4, 4, 0]} />
-                  <Bar dataKey="pfoa" name="PFOA(ng/g)" fill="var(--color-warning)" radius={[0, 4, 4, 0]} />
+                  {/* EU Reg 2023/915 PFOS 기준: 갑각류·이매패류 3.0, 어육 2.0. 복족류는 카테고리 없음 */}
+                  <ReferenceLine x={3.0} stroke="var(--color-danger)" strokeDasharray="4 4" label={{ value: 'EU 갑각류·패류 3.0', fill: 'var(--color-danger)', fontSize: 10, position: 'top' }} />
+                  <ReferenceLine x={2.0} stroke="var(--color-warning)" strokeDasharray="4 4" label={{ value: 'EU 어육 2.0', fill: 'var(--color-warning)', fontSize: 10, position: 'top' }} />
+                  <Bar dataKey="pfsa" name="과불화술폰산 합계(ng/g)" fill="var(--color-info)" radius={[0, 4, 4, 0]} />
                 </BarChart>
               }
               takeaway={{
-                situation: <span>[KFAS 군산연안 연구] 골뱅이(복족류)의 PFOS 수치(0.42 ng/g)는 EU 기준(1.0 ng/g) 이하로 '주의' 수준이나, 담치·굴 등 이매패류는 이미 기준을 초과하여 규제 강화 시 연쇄 영향이 우려됩니다.</span>,
-                actionPlan: <span>PFAS는 '영원한 화학물질(Forever Chemicals)'로 불리며, EU가 2025년부터 수산물 PFOS/PFOA 모니터링을 의무화했습니다. 골뱅이는 현재 안전 범위이나, PFAS는 해양 환경에서 생물농축되므로 향후 규제 기준 강화(0.5 ng/g으로 하향) 시 '주의→초과'로 격상될 위험이 있습니다. 품질관리팀은 분기별 PFAS 모니터링 프로토콜을 신설하고, 원산지별(영국/튀르키예/아일랜드) PFAS 농도 프로파일을 확보하여 선제적 리스크 맵을 구축해야 합니다.</span>,
-                source: 'KFAS 군산연안 연구',
+                situation: <span>[수과원 군산연안 연구] 국내 실측에서 전 분류군이 EU 기준을 크게 밑돌고(최고 갑각류 0.63 vs 기준 3.0 ng/g), 이매패류는 오히려 최저(0.03)입니다. 정작 문제는 수치가 아니라 공백입니다 — 골뱅이(복족류)는 국내 실측 자료가 없고 EU 기준에도 카테고리가 없습니다.</span>,
+                actionPlan: <span>PFAS는 '영원한 화학물질(Forever Chemicals)'로 불리며, EU는 2023년부터 수산물에 기준치를 적용하고 2022~2025년 모니터링을 권고(2022/1431)하고 있습니다. 골뱅이는 기준 카테고리가 없어 지금은 통관 장벽이 아니지만, 복족류로 규제가 확장되는 순간 우리는 제시할 자체 실측 데이터가 없습니다. 품질관리팀은 원산지별(영국/아일랜드/튀르키예) PFAS 실측 프로파일을 선제 확보해 규제 신설 시 즉시 대응 가능한 상태를 만들어야 합니다. 한국 식약처도 아직 수산물 PFAS 기준이 없어 국내 규제 신설 동향 모니터링이 함께 필요합니다.</span>,
+                source: '한국수산과학회지 55(5) 이봉민 외(2022) 원문 대조 + EU Reg 2023/915',
               }} />
 
             {/* W28: 할랄 해양콜라겐 시장 */}
