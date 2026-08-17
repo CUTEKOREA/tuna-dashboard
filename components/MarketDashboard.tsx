@@ -1,13 +1,13 @@
 'use client';
 
-import React, { useState, useEffect, useRef, useSyncExternalStore } from 'react';
+import React, { useState, useEffect, useMemo, useRef, useSyncExternalStore } from 'react';
 import { 
   TrendingUp, TrendingDown, Ship, Anchor, BarChart2,
   Globe, Activity
 } from 'lucide-react';
 import {
-  LineChart, Line, XAxis, YAxis, CartesianGrid, 
-  Tooltip as RechartsTooltip, Legend
+  LineChart, Line, XAxis, YAxis, CartesianGrid,
+  Tooltip as RechartsTooltip, Legend, Brush
 } from 'recharts';
 import SeafoodStockWidget from './SeafoodStockWidget';
 import TunaDailyBriefingWidget from './TunaDailyBriefingWidget';
@@ -32,6 +32,15 @@ import styles from './MarketDashboard.module.css';
 const PERIOD_KEYS: AtunaPeriodKey[] = ['3m', '6m', '1y', 'all'];
 const GRAIN_KEYS: AtunaGrainKey[] = ['week', 'month'];
 
+/* P2 클릭 문법 — 범례 클릭으로 숨길 수 있는 허브 시리즈 축 (차트별 dataKey) */
+const HUB_SERIES_KEYS = [
+  'skj_bkk', 'skj_mnt', 'skj_abj', 'skj_sey', 'skj_vig',
+  'yf_abj', 'yf_sey', 'yf_vig',
+] as const;
+type HubSeriesKey = (typeof HUB_SERIES_KEYS)[number];
+const isHubSeriesKey = (v: unknown): v is HubSeriesKey =>
+  typeof v === 'string' && (HUB_SERIES_KEYS as readonly string[]).includes(v);
+
 /** 항구 색은 가다랑어·황다랑어가 같다. 노란 세선은 흰 지면에서 안 읽힌다. */
 const MARKET_HUB = {
   bkk: '#509ee3',
@@ -41,22 +50,31 @@ const MARKET_HUB = {
   vig: '#9a3412',
 } as const;
 
-/* 필터 상태 URL 동기화 (?period=&grain=) — 공유 링크가 같은 화면을 연다 (스펙 §4-1) */
-function readFilterFromUrl(): { period: AtunaPeriodKey; grain: AtunaGrainKey } {
-  if (typeof window === 'undefined') return { period: 'all', grain: 'week' };
+/* 필터 상태 URL 동기화 (?period=&grain=&hide=) — 공유 링크가 같은 화면을 연다 (스펙 §4-1, P2) */
+interface MarketChartFilter {
+  period: AtunaPeriodKey;
+  grain: AtunaGrainKey;
+  hidden: HubSeriesKey[];
+}
+
+function readFilterFromUrl(): MarketChartFilter {
+  if (typeof window === 'undefined') return { period: 'all', grain: 'week', hidden: [] };
   const params = new URLSearchParams(window.location.search);
   const period = params.get('period') as AtunaPeriodKey | null;
   const grain = params.get('grain') as AtunaGrainKey | null;
+  const hidden = (params.get('hide') ?? '').split(',').filter(isHubSeriesKey);
   return {
     period: period && PERIOD_KEYS.includes(period) ? period : 'all',
     grain: grain && GRAIN_KEYS.includes(grain) ? grain : 'week',
+    hidden,
   };
 }
 
-function writeFilterToUrl(period: AtunaPeriodKey, grain: AtunaGrainKey) {
+function writeFilterToUrl({ period, grain, hidden }: MarketChartFilter) {
   const params = new URLSearchParams(window.location.search);
   if (period === 'all') params.delete('period'); else params.set('period', period);
   if (grain === 'week') params.delete('grain'); else params.set('grain', grain);
+  if (hidden.length === 0) params.delete('hide'); else params.set('hide', hidden.join(','));
   const query = params.toString();
   window.history.replaceState(null, '', `${window.location.pathname}${query ? `?${query}` : ''}`);
 }
@@ -154,17 +172,36 @@ export default function MarketDashboard({ heroOnly = false }: { heroOnly?: boole
   const [chartWidth, setChartWidth] = useState(0);
 
   // V3 파일럿 필터 — 초기값은 URL에서 (SSR에서는 기본값, 마운트 후 동기화)
-  const [chartFilter, setChartFilter] = useState<{ period: AtunaPeriodKey; grain: AtunaGrainKey }>(
-    { period: 'all', grain: 'week' },
+  const [chartFilter, setChartFilter] = useState<MarketChartFilter>(
+    { period: 'all', grain: 'week', hidden: [] },
   );
   useEffect(() => {
     // URL은 마운트 후 1회만 읽는다 — SSR 기본값과의 hydration 불일치 방지가 목적이라 동기 setState가 맞다
     // eslint-disable-next-line react-hooks/set-state-in-effect
     setChartFilter(readFilterFromUrl());
   }, []);
-  const applyFilter = (next: { period: AtunaPeriodKey; grain: AtunaGrainKey }) => {
+  const applyFilter = (next: MarketChartFilter) => {
     setChartFilter(next);
-    writeFilterToUrl(next.period, next.grain);
+    writeFilterToUrl(next);
+  };
+  // P2: 범례 클릭 → 허브 시리즈 숨김/복원 (recharts Legend onClick payload에서 dataKey 추출)
+  const toggleHubSeries = (entry: { dataKey?: unknown; payload?: { dataKey?: unknown } }) => {
+    const key = entry?.dataKey ?? entry?.payload?.dataKey;
+    if (!isHubSeriesKey(key)) return;
+    applyFilter({
+      ...chartFilter,
+      hidden: chartFilter.hidden.includes(key)
+        ? chartFilter.hidden.filter((k) => k !== key)
+        : [...chartFilter.hidden, key],
+    });
+  };
+  const legendFormatter = (value: React.ReactNode, entry: { dataKey?: unknown }) => {
+    const off = isHubSeriesKey(entry?.dataKey) && chartFilter.hidden.includes(entry.dataKey);
+    return (
+      <span style={{ cursor: 'pointer', opacity: off ? 0.42 : 1, textDecoration: off ? 'line-through' : 'none' }}>
+        {value}
+      </span>
+    );
   };
 
   // Measure container width with ResizeObserver (works even after display:none -> block toggle)
@@ -266,7 +303,12 @@ export default function MarketDashboard({ heroOnly = false }: { heroOnly?: boole
 
   const marketHero = <MarketHero rows={priceData} />;
   // 필터는 어가 추이 차트에만 적용 — KPI·히어로는 전체 기간 기준 (결정 ②)
-  const chartData = filterAtunaHistory(priceData, chartFilter.period, chartFilter.grain);
+  // useMemo 필수: recharts Brush가 data 배열 identity에 묶여 있어, 매 렌더 새 배열이면
+  // 범례 토글·리사이즈마다 Brush 선택 구간이 풀 레인지로 리셋된다 (반증 리뷰 P1-1)
+  const chartData = useMemo(
+    () => filterAtunaHistory(priceData, chartFilter.period, chartFilter.grain),
+    [priceData, chartFilter.period, chartFilter.grain],
+  );
   const bangkokVolume: VolumeBarPoint[] = chartData
     .filter((row): row is AtunaPriceRow & { skj_bkk: number } => typeof row.skj_bkk === 'number')
     .slice(-8)
@@ -449,6 +491,9 @@ export default function MarketDashboard({ heroOnly = false }: { heroOnly?: boole
             </span>
           )}
         </h3>
+        <p style={{ margin: '-8px 0 12px', fontSize: '0.75rem', color: 'var(--text-muted)' }}>
+          범례 클릭 = 허브 숨김·복원 · 차트 하단 띠 드래그 = 기간 확대
+        </p>
         <div ref={chartContainerRef} style={{ width: '100%', minHeight: '350px', display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(450px, 100%), 1fr))', gap: '24px' }}>
           
           {/* LEFT: SKIPJACK (SKJ) */}
@@ -457,18 +502,19 @@ export default function MarketDashboard({ heroOnly = false }: { heroOnly?: boole
               <h4 style={{ fontSize: '0.95rem', fontWeight: 600, color: 'var(--text-muted)', marginBottom: '8px', textAlign: 'center' }}>
                 가다랑어 (SKJ)
               </h4>
-              <LineChart width={chartWidth > 900 ? (chartWidth - 24) / 2 : chartWidth} height={350} data={chartData} margin={{ top: 10, right: 10, left: 0, bottom: 0 }}>
+              <LineChart width={chartWidth > 900 ? (chartWidth - 24) / 2 : chartWidth} height={382} data={chartData} margin={{ top: 10, right: 10, left: 0, bottom: 0 }}>
                 <CartesianGrid strokeDasharray="3 3" stroke="#e2e4e9" vertical={false} />
                 <XAxis dataKey="date" stroke="#8d93a5" fontSize={12} tickMargin={10} minTickGap={30} />
                 <YAxis yAxisId="left" stroke="#8d93a5" fontSize={12} domain={['auto', 'auto']} tickFormatter={(v) => `$${v}`} />
                 <RechartsTooltip content={<MarketChartTip />} />
-                <Legend iconType="plainline" iconSize={16} wrapperStyle={{ fontSize: '12px', paddingTop: '10px', letterSpacing: '0.01em' }} />
+                <Legend iconType="plainline" iconSize={16} wrapperStyle={{ fontSize: '12px', paddingTop: '10px', letterSpacing: '0.01em' }} onClick={toggleHubSeries} formatter={legendFormatter} />
+                <Brush dataKey="date" height={22} travellerWidth={8} stroke="var(--chart-s1, #509ee3)" fill="rgba(80, 158, 227, 0.06)" tickFormatter={() => ''} />
 
-                <Line yAxisId="left" type="monotone" dataKey="skj_bkk" name="방콕" stroke={MARKET_HUB.bkk} strokeWidth={2.5} dot={false} activeDot={{ r: 6, fill: MARKET_HUB.bkk, strokeWidth: 0 }} connectNulls={true} />
-                <Line yAxisId="left" type="monotone" dataKey="skj_mnt" name="만타" stroke={MARKET_HUB.mnt} strokeWidth={2} dot={false} connectNulls={true} />
-                <Line yAxisId="left" type="monotone" dataKey="skj_abj" name="아비장" stroke={MARKET_HUB.abj} strokeWidth={2} dot={false} strokeDasharray="5 5" connectNulls={true} />
-                <Line yAxisId="left" type="monotone" dataKey="skj_sey" name="세이셸" stroke={MARKET_HUB.sey} strokeWidth={2} dot={false} connectNulls={true} />
-                <Line yAxisId="left" type="monotone" dataKey="skj_vig" name="비고" stroke={MARKET_HUB.vig} strokeWidth={2} dot={false} strokeDasharray="3 3" connectNulls={true} />
+                <Line yAxisId="left" type="monotone" dataKey="skj_bkk" name="방콕" hide={chartFilter.hidden.includes('skj_bkk')} stroke={MARKET_HUB.bkk} strokeWidth={2.5} dot={false} activeDot={{ r: 6, fill: MARKET_HUB.bkk, strokeWidth: 0 }} connectNulls={true} />
+                <Line yAxisId="left" type="monotone" dataKey="skj_mnt" name="만타" hide={chartFilter.hidden.includes('skj_mnt')} stroke={MARKET_HUB.mnt} strokeWidth={2} dot={false} connectNulls={true} />
+                <Line yAxisId="left" type="monotone" dataKey="skj_abj" name="아비장" hide={chartFilter.hidden.includes('skj_abj')} stroke={MARKET_HUB.abj} strokeWidth={2} dot={false} strokeDasharray="5 5" connectNulls={true} />
+                <Line yAxisId="left" type="monotone" dataKey="skj_sey" name="세이셸" hide={chartFilter.hidden.includes('skj_sey')} stroke={MARKET_HUB.sey} strokeWidth={2} dot={false} connectNulls={true} />
+                <Line yAxisId="left" type="monotone" dataKey="skj_vig" name="비고" hide={chartFilter.hidden.includes('skj_vig')} stroke={MARKET_HUB.vig} strokeWidth={2} dot={false} strokeDasharray="3 3" connectNulls={true} />
               </LineChart>
             </div>
           )}
@@ -479,16 +525,17 @@ export default function MarketDashboard({ heroOnly = false }: { heroOnly?: boole
               <h4 style={{ fontSize: '0.95rem', fontWeight: 600, color: 'var(--text-muted)', marginBottom: '8px', textAlign: 'center' }}>
                 황다랑어 (YF)
               </h4>
-              <LineChart width={chartWidth > 900 ? (chartWidth - 24) / 2 : chartWidth} height={350} data={chartData} margin={{ top: 10, right: 10, left: 0, bottom: 0 }}>
+              <LineChart width={chartWidth > 900 ? (chartWidth - 24) / 2 : chartWidth} height={382} data={chartData} margin={{ top: 10, right: 10, left: 0, bottom: 0 }}>
                 <CartesianGrid strokeDasharray="3 3" stroke="#e2e4e9" vertical={false} />
                 <XAxis dataKey="date" stroke="#8d93a5" fontSize={12} tickMargin={10} minTickGap={30} />
                 <YAxis yAxisId="left" stroke="#8d93a5" fontSize={12} domain={['auto', 'auto']} tickFormatter={(v) => `$${v}`} />
                 <RechartsTooltip content={<MarketChartTip />} />
-                <Legend iconType="plainline" iconSize={16} wrapperStyle={{ fontSize: '12px', paddingTop: '10px', letterSpacing: '0.01em' }} />
+                <Legend iconType="plainline" iconSize={16} wrapperStyle={{ fontSize: '12px', paddingTop: '10px', letterSpacing: '0.01em' }} onClick={toggleHubSeries} formatter={legendFormatter} />
+                <Brush dataKey="date" height={22} travellerWidth={8} stroke="var(--chart-s1, #509ee3)" fill="rgba(80, 158, 227, 0.06)" tickFormatter={() => ''} />
 
-                <Line yAxisId="left" type="monotone" dataKey="yf_abj" name="아비장" stroke={MARKET_HUB.abj} strokeWidth={2.5} dot={false} activeDot={{ r: 6, fill: MARKET_HUB.abj, strokeWidth: 0 }} connectNulls={true} />
-                <Line yAxisId="left" type="monotone" dataKey="yf_sey" name="세이셸" stroke={MARKET_HUB.sey} strokeWidth={2} dot={false} strokeDasharray="3 3" connectNulls={true} />
-                <Line yAxisId="left" type="monotone" dataKey="yf_vig" name="비고" stroke={MARKET_HUB.vig} strokeWidth={2} dot={false} strokeDasharray="5 5" connectNulls={true} />
+                <Line yAxisId="left" type="monotone" dataKey="yf_abj" name="아비장" hide={chartFilter.hidden.includes('yf_abj')} stroke={MARKET_HUB.abj} strokeWidth={2.5} dot={false} activeDot={{ r: 6, fill: MARKET_HUB.abj, strokeWidth: 0 }} connectNulls={true} />
+                <Line yAxisId="left" type="monotone" dataKey="yf_sey" name="세이셸" hide={chartFilter.hidden.includes('yf_sey')} stroke={MARKET_HUB.sey} strokeWidth={2} dot={false} strokeDasharray="3 3" connectNulls={true} />
+                <Line yAxisId="left" type="monotone" dataKey="yf_vig" name="비고" hide={chartFilter.hidden.includes('yf_vig')} stroke={MARKET_HUB.vig} strokeWidth={2} dot={false} strokeDasharray="5 5" connectNulls={true} />
               </LineChart>
             </div>
           )}

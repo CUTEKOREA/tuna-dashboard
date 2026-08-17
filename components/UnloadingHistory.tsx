@@ -430,10 +430,19 @@ export function UnloadingHistoryView({
       <div className={styles.chartCard}>
         <div className={styles.chartTitle}>
           <div><BarChart3 size={18} /><strong>연도별 검증 실적</strong></div>
-          <span>왼쪽 하역량(MT) · 오른쪽 항차(척)</span>
+          <span>왼쪽 하역량(MT) · 오른쪽 항차(척) · 막대 클릭 = 해당 연도 항차 상세</span>
         </div>
         <SafeResponsiveContainer height={300} className={styles.chart}>
-          <ComposedChart data={chartData} margin={{ top: 16, right: 14, left: 4, bottom: 4 }}>
+          <ComposedChart
+            data={chartData}
+            margin={{ top: 16, right: 14, left: 4, bottom: 4 }}
+            style={{ cursor: 'pointer' }}
+            onClick={(state) => {
+              // P2 클릭 문법: 차트의 연도 클릭 → 아래 연도 탭·항차 표(원천 레코드)로 드릴
+              const year = Number(state?.activeLabel);
+              if (HISTORY_YEARS.includes(year as HistoryYear)) chooseYear(year as HistoryYear, true);
+            }}
+          >
             <CartesianGrid stroke="rgba(var(--w-slate-400-rgb), .14)" strokeDasharray="3 3" />
             <XAxis dataKey="year" tick={{ fill: 'var(--w-slate-300)', fontSize: 12 }} />
             <YAxis yAxisId="mt" tick={{ fill: 'var(--w-slate-400)', fontSize: 11 }} tickFormatter={(value) => `${Math.round(Number(value) / 1000)}천`} />

@@ -1,6 +1,10 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import { readFileSync } from 'node:fs';
 import { join } from 'node:path';
+import { NextRequest } from 'next/server';
+
+// 2026-08-17: atuna 라우트 GET이 NextRequest를 받도록 변경 (로컬 E2E 경계를 라우트 2차 방어에도 전달)
+const atunaRequest = (path: string) => new NextRequest(`https://dashboard.example${path}`);
 
 const authState = vi.hoisted(() => ({
   access: {
@@ -63,7 +67,7 @@ describe('구글 소유자 인증과 Atuna 전체 이력', () => {
 
   it('미인증 요청에는 Atuna 프리뷰를 포함한 어떤 원장 데이터도 주지 않는다', async () => {
     const { GET } = await import('../app/api/atuna-prices/route');
-    const response = await GET();
+    const response = await GET(atunaRequest('/api/atuna-prices'));
     const body = await response.json();
 
     expect(response.status).toBe(401);
@@ -84,7 +88,7 @@ describe('구글 소유자 인증과 Atuna 전체 이력', () => {
       code: 'granted',
     };
     const { GET } = await import('../app/api/atuna-prices/route');
-    const response = await GET();
+    const response = await GET(atunaRequest('/api/atuna-prices'));
     const body = await response.json() as {
       restricted: boolean;
       history: Array<{ date: string }>;
@@ -99,7 +103,7 @@ describe('구글 소유자 인증과 Atuna 전체 이력', () => {
 
   it('Atuna 일일 데이터도 미인증 요청에서 본문 없이 차단한다', async () => {
     const { GET } = await import('../app/api/atuna-daily/route');
-    const response = await GET(new Request('https://dashboard.example/api/atuna-daily'));
+    const response = await GET(atunaRequest('/api/atuna-daily'));
     const body = await response.json();
 
     expect(response.status).toBe(401);
