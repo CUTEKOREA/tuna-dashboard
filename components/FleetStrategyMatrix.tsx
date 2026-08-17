@@ -6,6 +6,7 @@ import { Ship, Anchor, AlertTriangle, Target, ArrowLeft, Users, Package, Trendin
 import TakeawayBox from './TakeawayBox';
 import CompanyVesselStatus from './CompanyVesselStatus';
 import FleetProduction2025 from './FleetProduction2025';
+import OfisMonthlyPanel from './OfisMonthlyPanel';
 
 // Mock detailed data as fallback while loading
 const fallbackVesselDetails: Record<string, any[]> = {
@@ -60,15 +61,15 @@ export default function FleetStrategyMatrix() {
   }, []);
 
   const statsData: Record<string, { vessels: string | number, crew: string, production: string, export: string, price: string }> = {
-    '참치 (원양선망)': { vessels: 27, crew: '201명 (선장월급 5,546만원)', production: '288,742 톤', export: '5,784 억 원', price: '1,910 원/kg' },
-    '참치 (원양연승)': { vessels: 105, crew: '549명 (선장월급 1,763만원)', production: '46,619 톤', export: '3,134 억 원', price: '6,722 원/kg' },
-    '명태 (북양트롤)': { vessels: 3, crew: '145명 (선장월급 5,532만원)', production: '28,999 톤', export: '438 억 원', price: '1,512 원/kg' },
-    '남빙양트롤 (크릴)': { vessels: 1, crew: '145명 (트롤 통합)', production: '15,105 톤 (크릴)', export: '114 억 원', price: '753 원/kg' },
-    '대서양트롤': { vessels: 11, crew: '145명 (트롤 통합)', production: '62,992 톤', export: '2,074 억 원', price: '3,293 원/kg' },
-    '오징어 (채낚기)': { vessels: 20, crew: '172명 (선장월급 4,133만원)', production: '63,156 톤', export: '3,995 억 원', price: '6,326 원/kg' },
-    '꽁치봉수망 (겸업)': { vessels: 18, crew: '22명 (선장월급 1,467만원)', production: '5,866 톤', export: '283 억 원', price: '4,822 원/kg' },
-    '저연승 (이빨고기)': { vessels: 4, crew: '약 120명 (전문 선원)', production: '3,878 톤', export: '827 억 원', price: '21,336 원/kg' },
-    '통발·저연승 겸업': { vessels: 9, crew: '약 200명 (겸업 선원)', production: '822 톤', export: '53 억 원', price: '6,443 원/kg' }
+    '참치 (원양선망)': { vessels: 27, crew: '201명 (선장월급 5,546만원)', production: '2024년 288,742 톤', export: '5,784 억 원', price: '1,910 원/kg' },
+    '참치 (원양연승)': { vessels: 105, crew: '549명 (선장월급 1,763만원)', production: '2024년 46,619 톤', export: '3,134 억 원', price: '6,722 원/kg' },
+    '명태 (북양트롤)': { vessels: 3, crew: '145명 (선장월급 5,532만원)', production: '2024년 28,999 톤', export: '438 억 원', price: '1,512 원/kg' },
+    '남빙양트롤 (크릴)': { vessels: 1, crew: '145명 (트롤 통합)', production: '2024년 15,105 톤 (크릴)', export: '114 억 원', price: '753 원/kg' },
+    '대서양트롤': { vessels: 11, crew: '145명 (트롤 통합)', production: '2024년 62,992 톤', export: '2,074 억 원', price: '3,293 원/kg' },
+    '오징어 (채낚기)': { vessels: 20, crew: '172명 (선장월급 4,133만원)', production: '2024년 63,156 톤', export: '3,995 억 원', price: '6,326 원/kg' },
+    '꽁치봉수망 (겸업)': { vessels: 18, crew: '22명 (선장월급 1,467만원)', production: '2024년 5,866 톤', export: '283 억 원', price: '4,822 원/kg' },
+    '저연승 (이빨고기)': { vessels: 4, crew: '약 120명 (전문 선원)', production: '2024년 3,878 톤', export: '827 억 원', price: '21,336 원/kg' },
+    '통발·저연승 겸업': { vessels: 9, crew: '약 200명 (겸업 선원)', production: '2024년 822 톤', export: '53 억 원', price: '6,443 원/kg' }
   };
 
   // matrixData에서 현재 선택된 카테고리의 풍부한 데이터 매칭
@@ -125,7 +126,7 @@ export default function FleetStrategyMatrix() {
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(140px, 1fr))', gap: '12px', marginBottom: '24px' }}>
           {[
             { icon: <Ship size={20} />, label: '가동 어선', value: `${currentStats.vessels}척`, color: '#38bdf8' },
-            { icon: <Package size={20} />, label: '연간 생산량', value: currentStats.production, color: 'var(--color-warning)' },
+            { icon: <Package size={20} />, label: '2024년 생산량', value: currentStats.production, color: 'var(--color-warning)' },
             { icon: <DollarSign size={20} />, label: '생산 금액', value: currentStats.export, color: '#a78bfa' },
             { icon: <TrendingUp size={20} />, label: '단가', value: currentStats.price, color: '#fb7185' },
             { icon: <Activity size={20} />, label: '척당 매출', value: (matchedMatrix as any)?.perVessel || '-', color: '#fbbf24' },
@@ -315,6 +316,7 @@ export default function FleetStrategyMatrix() {
 
   return (
     <div className={styles.glassCard} style={{ borderColor: 'rgba(var(--w-blue-500-rgb), 0.3)', marginTop: '20px' }}>
+      <OfisMonthlyPanel />
       <FleetProduction2025 />
       
       {/* 0. Macro Industry Overview — 전수조사 교정 완료 */}

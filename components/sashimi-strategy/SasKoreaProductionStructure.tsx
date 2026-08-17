@@ -4,10 +4,10 @@ import React from 'react';
 import WidgetCard from '../WidgetCard';
 
 const productionData = {
-  total: { volume: '479,000t', value: '1.53조원', growth: '+16.8%' },
+  total: { volume: '2024년 479,000t', value: '1.53조원', growth: '+16.8%' },
   gear: [
-    { type: '선망 (Purse Seine)', volume: '288,742t', unitPrice: '2,003원/kg', purpose: '캐닝용', color: '#38bdf8', pct: 60 },
-    { type: '연승 (Longline)', volume: '46,619t', unitPrice: '6,722원/kg', purpose: '사시미용', color: '#f59e0b', pct: 10 },
+    { type: '선망 (Purse Seine)', volume: '2024년 288,742t', unitPrice: '2,003원/kg', purpose: '캐닝용', color: '#38bdf8', pct: 60 },
+    { type: '연승 (Longline)', volume: '2024년 46,619t', unitPrice: '6,722원/kg', purpose: '사시미용', color: '#f59e0b', pct: 10 },
     { type: '기타', volume: '143,639t', unitPrice: '-', purpose: '혼합', color: '#64748b', pct: 30 },
   ],
   species: [
@@ -42,7 +42,7 @@ export default function SasKoreaProductionStructure() {
             borderRadius: '8px', marginBottom: '16px',
           }}>
             <div style={{ textAlign: 'center' }}>
-              <div style={{ fontSize: '0.72rem', color: 'var(--w-slate-400)' }}>총 생산량</div>
+              <div style={{ fontSize: '0.72rem', color: 'var(--w-slate-400)' }}>2024년 총 생산량</div>
               <div style={{ fontSize: '1.1rem', fontWeight: 700, color: 'var(--w-slate-200)' }}>{productionData.total.volume}</div>
             </div>
             <div style={{ textAlign: 'center' }}>
