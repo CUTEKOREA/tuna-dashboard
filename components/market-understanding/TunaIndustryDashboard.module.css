@@ -498,7 +498,6 @@
   flex-wrap: wrap;
   align-items: baseline;
   gap: 0.5rem 0.75rem;
-  max-width: 38rem;
   padding: 0.75rem 0;
   border-bottom: 1px solid var(--mu-line);
 }
@@ -542,27 +541,6 @@
 .factWrap,
 .factList {
   grid-column: 1;
-}
-
-/* 글 블록은 전 폭에서도 읽기 폭을 지킨다 */
-.lede,
-.prose,
-.termRow {
-  max-width: 44rem;
-}
-
-/* 근거 레일: 사이드 고정을 풀고 본문 아래에서 차트 2열 격자로 흐른다 */
-.evidenceRail {
-  grid-column: 1;
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-  gap: 1.25rem;
-  align-items: start;
-  min-width: 0;
-}
-
-.evidenceRail > .catchFigure:last-child:nth-child(odd) {
-  grid-column: 1 / -1;
 }
 
 .stageMore,
@@ -618,9 +596,7 @@
   display: flex;
   flex-direction: column;
   gap: 0.875rem;
-  /* ch 는 숫자 0 의 너비라 한글에서는 이 값이 실제보다 넓게 잡힌다.
-     한글 한 줄은 40자 안팎이 읽기 편해 rem 으로 못 박는다. */
-  max-width: 38rem;
+  /* 2026-08-17 사용자 지시: 본문은 창 전체를 쓴다 — 읽기 폭 캡 해제 */
 }
 
 .prose p {
@@ -933,16 +909,6 @@
   text-align: center;
   font-size: 0.875rem;
   color: var(--mu-ink-muted);
-}
-
-@media (max-width: 860px) {
-  .evidenceRail {
-    grid-template-columns: 1fr;
-  }
-
-  .evidenceRail > .catchFigure:last-child:nth-child(odd) {
-    grid-column: auto;
-  }
 }
 
 @media (max-width: 860px) {

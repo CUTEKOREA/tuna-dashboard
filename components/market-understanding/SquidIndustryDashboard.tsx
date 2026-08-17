@@ -321,8 +321,8 @@ function StageSection({
   headingRef: React.RefObject<HTMLHeadingElement | null>;
 }) {
   const charts = SQUID_CHART_SLOTS[stage.key] ?? [];
-  const rail = charts.slice(0, 2);
-  const rest = charts.slice(2);
+  // 2026-08-17 사용자 지시: 차트는 전부 사실표 아래로 — 본문 위 근거 레일 폐지
+  const rest = charts;
 
   return (
     <section className={styles.stage} aria-labelledby={`squid-stage-${stage.key}`}>
@@ -348,27 +348,6 @@ function StageSection({
           <span className={styles.keyFactValue}>{narrative.facts[0].value}</span>
           <span className={styles.keyFactLabel}>{narrative.facts[0].label}</span>
         </p>
-      )}
-
-      {rail.length > 0 && (
-        <div className={styles.evidenceRail}>
-          {rail.map((slot) => (
-            <figure key={slot.title} className={styles.catchFigure}>
-              <figcaption className={styles.catchCaption}>
-                <div className={styles.catchTitleRow}>
-                  <strong>{slot.title}</strong>
-                  <TelemetryBadge
-                    variant="caption"
-                    status={slot.telemetry.status}
-                    syncDate={slot.telemetry.syncDate}
-                  />
-                </div>
-                <span>{slot.caption}</span>
-              </figcaption>
-              <div className={styles.chartFrame}>{slot.render()}</div>
-            </figure>
-          ))}
-        </div>
       )}
 
       <div className={styles.prose}>

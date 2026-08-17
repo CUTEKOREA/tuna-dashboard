@@ -286,7 +286,9 @@ describe('시장 이해 > 오징어 — 렌더', () => {
     expect(markup).toContain('data-hero-now-strip="true"');
     expect(markup).toContain('data-now="true"');
     expect(markup).toContain('30초 브리핑');
-    expect(markup).toContain('evidenceRail');
+    // 2026-08-17 사용자 지시: 본문 위 근거 레일 폐지 — 차트는 전부 사실표 아래 근거 블록
+    expect(markup).toContain('stageMore');
+    expect(markup).not.toContain('evidenceRail');
     expect(markup).toContain('squid-industry-tab');
     expect(markup).toContain('어종별 어획량 구성');
     expect(markup).toContain('무엇을 오징어라 부르는가');

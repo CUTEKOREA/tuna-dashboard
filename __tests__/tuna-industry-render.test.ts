@@ -369,7 +369,9 @@ describe('시장 이해 > 참치 — 렌더', () => {
     // 기본 활성 단계는 01 자원과 해역이다.
     expect(markup).toContain('자원과 해역');
     expect(markup).toContain('참치가 사는 바다는 누구의 관할인가');
-    expect(markup).toContain('evidenceRail');
+    // 2026-08-17 사용자 지시: 본문 위 근거 레일 폐지 — 차트는 전부 사실표 아래 근거 블록
+    expect(markup).toContain('stageMore');
+    expect(markup).not.toContain('evidenceRail');
     expect(markup).toContain('tuna-industry-tab');
     expect(markup).toContain('가격은 어떻게 정해지는가');
     expect(markup).toContain('규제와 지속가능성');

@@ -176,7 +176,9 @@ describe('시장 이해 3품목 — 렌더', () => {
 
   it('새우 01단계는 차트 둘을 2열 격자에 둔다', () => {
     const html = renderToStaticMarkup(React.createElement(ShrimpIndustryDashboard));
-    expect(html).toContain('evidenceRail');
+    // 2026-08-17 사용자 지시: 본문 위 근거 레일 폐지 — 차트는 전부 사실표 아래 근거 블록
+    expect(html).toContain('stageMore');
+    expect(html).not.toContain('evidenceRail');
     expect(html).toContain('양식과 자연산 75년');
     expect(html).toContain('생산 방식별 규모');
     expect(html).toContain('shrimp-industry-tab');
