@@ -66,10 +66,6 @@ import {
   OperatorFleetChart,
   CarrierFlagChart,
   CarrierOwnerChart,
-  CarrierProfileTable,
-  TraderTable,
-  CanneryCountryTable,
-  BrandMarketTable,
   CountryRankChart,
   KoreaExportPriceChart,
   KoreaSpeciesChart,
@@ -84,6 +80,12 @@ import {
   TradeImportRankChart,
   TradeStagePriceChart,
 } from './TunaCatchCharts';
+import {
+  TraderTable,
+  CarrierProfileTable,
+  CanneryCountryTable,
+  BrandMarketTable,
+} from './CompanyResearchTables';
 import TunaIndustryChart from './TunaIndustryChart';
 import ValueChainSpine from './ValueChainSpine';
 import styles from './TunaIndustryDashboard.module.css';

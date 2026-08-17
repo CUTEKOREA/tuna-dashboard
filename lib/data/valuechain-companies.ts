@@ -22,6 +22,10 @@
 import rawOceanOperators from '../../public/data/tuna_ocean_operators_v1.json';
 import rawCarrierFleet from '../../public/data/tuna_carrier_fleet_v1.json';
 import rawCompanyResearch from '../../public/data/tuna_company_research_v1.json';
+import rawSquidResearch from '../../public/data/squid_company_research_v1.json';
+import rawMackerelResearch from '../../public/data/mackerel_company_research_v1.json';
+import rawWhelkResearch from '../../public/data/whelk_company_research_v1.json';
+import rawShrimpResearch from '../../public/data/shrimp_company_research_v1.json';
 
 export type CompanyGrade = 'A' | 'B' | 'C';
 
@@ -496,4 +500,31 @@ export interface TunaCompanyResearchData {
 
 export function getTunaCompanyResearch(): TunaCompanyResearchData {
   return rawCompanyResearch as unknown as TunaCompanyResearchData;
+}
+
+/**
+ * 어종별 기업 조사 큐레이션 (참치 외 4종) — 공급·가공(국가별)·브랜드 3섹션 공통 형태.
+ * 표 컴포넌트(CompanyResearchTables)를 전 어종이 공유한다.
+ */
+export interface CommodityCompanyResearch {
+  _meta: Record<string, unknown>;
+  공급: { 요지: string; rows: TraderRow[] };
+  가공: { 요지: string; rows: CanneryCountryRow[] };
+  브랜드: { 요지: string; rows: BrandMarketRow[] };
+}
+
+export function getSquidCompanyResearch(): CommodityCompanyResearch {
+  return rawSquidResearch as unknown as CommodityCompanyResearch;
+}
+
+export function getMackerelCompanyResearch(): CommodityCompanyResearch {
+  return rawMackerelResearch as unknown as CommodityCompanyResearch;
+}
+
+export function getWhelkCompanyResearch(): CommodityCompanyResearch {
+  return rawWhelkResearch as unknown as CommodityCompanyResearch;
+}
+
+export function getShrimpCompanyResearch(): CommodityCompanyResearch {
+  return rawShrimpResearch as unknown as CommodityCompanyResearch;
 }

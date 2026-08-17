@@ -6,6 +6,12 @@
 'use client';
 
 import React from 'react';
+import {
+  TraderTable,
+  CanneryCountryTable,
+  BrandMarketTable,
+} from './CompanyResearchTables';
+import { getShrimpCompanyResearch } from '@/lib/data/valuechain-companies';
 
 import { getShrimpIndustryData } from '@/lib/data/commodity-industry';
 import {
@@ -27,6 +33,8 @@ import {
 
 const DATA = getShrimpIndustryData();
 const SYNC = { status: 'STATIC' as const, syncDate: `${DATA.요약.기준연도}년 확정` };
+
+const SHRIMP_RESEARCH = getShrimpCompanyResearch();
 
 export const SHRIMP_CHART_SLOTS: Record<string, ChartSlot[]> = {
   s01: [
@@ -55,6 +63,18 @@ export const SHRIMP_CHART_SLOTS: Record<string, ChartSlot[]> = {
   ],
   s03: [
     {
+      title: '공급 기업 — 누가 잡고 누가 파는가',
+      caption: SHRIMP_RESEARCH.공급.요지,
+      telemetry: { status: 'STATIC' as const, syncDate: '2026-08-17 조사' },
+      render: () => <TraderTable rows={SHRIMP_RESEARCH.공급.rows} />,
+    },
+    {
+      title: '국가별 가공 거점과 기업',
+      caption: SHRIMP_RESEARCH.가공.요지,
+      telemetry: { status: 'STATIC' as const, syncDate: '2026-08-17 조사' },
+      render: () => <CanneryCountryTable rows={SHRIMP_RESEARCH.가공.rows} />,
+    },
+    {
       title: '국가별 생산과 양식 비중 (톤·%)',
       caption:
         '막대 높이는 규모, 색 구성은 양식과 자연산의 비율, 선은 양식 비중이다. 선이 바닥에 붙은 나라와 천장에 붙은 나라는 사는 물건이 다르다.',
@@ -63,6 +83,12 @@ export const SHRIMP_CHART_SLOTS: Record<string, ChartSlot[]> = {
     },
   ],
   s04: [
+    {
+      title: '브랜드와 점유율 (성격 구분)',
+      caption: SHRIMP_RESEARCH.브랜드.요지,
+      telemetry: { status: 'STATIC' as const, syncDate: '2026-08-17 조사' },
+      render: () => <BrandMarketTable rows={SHRIMP_RESEARCH.브랜드.rows} />,
+    },
     {
       title: '한국 종별 생산량 (톤)',
       caption:

@@ -8,6 +8,12 @@
 'use client';
 
 import React from 'react';
+import {
+  TraderTable,
+  CanneryCountryTable,
+  BrandMarketTable,
+} from './CompanyResearchTables';
+import { getMackerelCompanyResearch } from '@/lib/data/valuechain-companies';
 
 import { getMackerelIndustryData } from '@/lib/data/commodity-industry';
 import {
@@ -39,6 +45,8 @@ const IMPORT_SYNC = {
   syncDate: String(DATA.수입원산지._meta.구간 ?? '통관 실적'),
 };
 
+const MACKEREL_RESEARCH = getMackerelCompanyResearch();
+
 export const MACKEREL_CHART_SLOTS: Record<string, ChartSlot[]> = {
   s01: [
     {
@@ -51,6 +59,18 @@ export const MACKEREL_CHART_SLOTS: Record<string, ChartSlot[]> = {
   ],
   s03: [
     {
+      title: '국가별 가공 거점과 기업',
+      caption: MACKEREL_RESEARCH.가공.요지,
+      telemetry: { status: 'STATIC' as const, syncDate: '2026-08-17 조사' },
+      render: () => <CanneryCountryTable rows={MACKEREL_RESEARCH.가공.rows} />,
+    },
+    {
+      title: '브랜드와 점유율 (성격 구분)',
+      caption: MACKEREL_RESEARCH.브랜드.요지,
+      telemetry: { status: 'STATIC' as const, syncDate: '2026-08-17 조사' },
+      render: () => <BrandMarketTable rows={MACKEREL_RESEARCH.브랜드.rows} />,
+    },
+    {
       title: '위판 등급별 물량과 단가 (kg·원/kg)',
       caption:
         '막대는 물량, 선은 물량가중 평균단가다. 단가가 가장 높은 등급의 막대가 가장 낮다는 것이 이 그림의 요지다.',
@@ -59,6 +79,12 @@ export const MACKEREL_CHART_SLOTS: Record<string, ChartSlot[]> = {
     },
   ],
   s04: [
+    {
+      title: '공급 기업 — 누가 잡고 누가 파는가',
+      caption: MACKEREL_RESEARCH.공급.요지,
+      telemetry: { status: 'STATIC' as const, syncDate: '2026-08-17 조사' },
+      render: () => <TraderTable rows={MACKEREL_RESEARCH.공급.rows} />,
+    },
     {
       title: '수입 원산지 구성 (%)',
       caption:

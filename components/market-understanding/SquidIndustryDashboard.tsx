@@ -59,6 +59,12 @@ import {
   StagePriceChart,
 } from './SquidCharts';
 import SquidWidgetView from './SquidWidgetView';
+import {
+  TraderTable,
+  CanneryCountryTable,
+  BrandMarketTable,
+} from './CompanyResearchTables';
+import { getSquidCompanyResearch } from '@/lib/data/valuechain-companies';
 import styles from './TunaIndustryDashboard.module.css';
 
 const CATCH = getSquidCatchData();
@@ -88,6 +94,8 @@ interface ChartSlot {
  * 단계마다 이 페이지가 직접 그리는 차트. 선별 위젯과 달리 집계 JSON 을 원본으로 쓴다.
  * 제목은 서술이 「」로 지목하는 이름이므로 함부로 바꾸면 참조가 끊긴다(테스트가 잡는다).
  */
+const SQUID_RESEARCH = getSquidCompanyResearch();
+
 export const SQUID_CHART_SLOTS: Record<string, ChartSlot[]> = {
   s01: [
     {
@@ -106,6 +114,12 @@ export const SQUID_CHART_SLOTS: Record<string, ChartSlot[]> = {
     },
   ],
   s02: [
+    {
+      title: '공급 기업 — 누가 잡고 누가 파는가',
+      caption: SQUID_RESEARCH.공급.요지,
+      telemetry: { status: 'SYNCED' as const, syncDate: '2026-08-17 조사' },
+      render: () => <TraderTable rows={SQUID_RESEARCH.공급.rows} />,
+    },
     {
       title: '해역별 어획량 (톤)',
       caption: '다섯 해역이 세계의 89.5%를 낸다. 그중 셋이 남미 앞바다다.',
@@ -151,6 +165,12 @@ export const SQUID_CHART_SLOTS: Record<string, ChartSlot[]> = {
   ],
   s05: [
     {
+      title: '국가별 가공 거점과 기업',
+      caption: SQUID_RESEARCH.가공.요지,
+      telemetry: { status: 'SYNCED' as const, syncDate: '2026-08-17 조사' },
+      render: () => <CanneryCountryTable rows={SQUID_RESEARCH.가공.rows} />,
+    },
+    {
       title: '한국 수입의 형태 구성 (톤)',
       caption:
         '한국이 사 오는 것의 4분의 3이 원물이다. 완제품 비중이 그 다음이고, 건조·염장은 물량으로는 작다 — 단가는 그 반대다.',
@@ -174,6 +194,12 @@ export const SQUID_CHART_SLOTS: Record<string, ChartSlot[]> = {
     },
   ],
   s07: [
+    {
+      title: '브랜드와 점유율 (성격 구분)',
+      caption: SQUID_RESEARCH.브랜드.요지,
+      telemetry: { status: 'SYNCED' as const, syncDate: '2026-08-17 조사' },
+      render: () => <BrandMarketTable rows={SQUID_RESEARCH.브랜드.rows} />,
+    },
     {
       title: '품목 단계별 수입액과 단가 (달러/톤)',
       caption:

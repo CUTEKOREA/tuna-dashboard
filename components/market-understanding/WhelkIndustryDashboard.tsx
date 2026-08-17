@@ -9,6 +9,12 @@
 'use client';
 
 import React from 'react';
+import {
+  TraderTable,
+  CanneryCountryTable,
+  BrandMarketTable,
+} from './CompanyResearchTables';
+import { getWhelkCompanyResearch } from '@/lib/data/valuechain-companies';
 
 import { getWhelkIndustryData } from '@/lib/data/commodity-industry';
 import {
@@ -35,6 +41,8 @@ const KCS_SYNC = {
 };
 const KOSIS_SYNC = { status: 'STATIC' as const, syncDate: '2025년까지' };
 
+const WHELK_RESEARCH = getWhelkCompanyResearch();
+
 export const WHELK_CHART_SLOTS: Record<string, ChartSlot[]> = {
   s01: [
     {
@@ -46,6 +54,12 @@ export const WHELK_CHART_SLOTS: Record<string, ChartSlot[]> = {
     },
   ],
   s02: [
+    {
+      title: '공급 기업 — 누가 잡고 누가 파는가',
+      caption: WHELK_RESEARCH.공급.요지,
+      telemetry: { status: 'STATIC' as const, syncDate: '2026-08-17 조사' },
+      render: () => <TraderTable rows={WHELK_RESEARCH.공급.rows} />,
+    },
     {
       title: '참골뱅이 어획 상위국 (톤)',
       caption: '열 나라를 다 세워도 한국은 나오지 않는다. 어획량이 0이기 때문이다.',
@@ -63,6 +77,18 @@ export const WHELK_CHART_SLOTS: Record<string, ChartSlot[]> = {
     },
   ],
   s04: [
+    {
+      title: '국가별 가공 거점과 기업',
+      caption: WHELK_RESEARCH.가공.요지,
+      telemetry: { status: 'STATIC' as const, syncDate: '2026-08-17 조사' },
+      render: () => <CanneryCountryTable rows={WHELK_RESEARCH.가공.rows} />,
+    },
+    {
+      title: '브랜드와 점유율 (성격 구분)',
+      caption: WHELK_RESEARCH.브랜드.요지,
+      telemetry: { status: 'STATIC' as const, syncDate: '2026-08-17 조사' },
+      render: () => <BrandMarketTable rows={WHELK_RESEARCH.브랜드.rows} />,
+    },
     {
       title: '한국 수입 상대국별 규모와 단가 (백만 달러·달러/톤)',
       caption:
