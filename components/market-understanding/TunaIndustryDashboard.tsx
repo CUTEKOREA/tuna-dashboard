@@ -177,7 +177,6 @@ export const CATCH_CHART_SLOTS: Record<string, ChartSlot[]> = {
       title: '어종별 어획량 20년 추이 (톤)',
       caption: '총량은 늘었지만 어종 구성비는 거의 변하지 않았다. 어법 구조가 고정돼 있다는 뜻이다.',
       telemetry: CATCH_SYNC,
-      span: 'full',
       render: () => <SpeciesTimelineChart data={CATCH} />,
     },
     {
@@ -596,10 +595,16 @@ function StageSection({
 
       <FactTable rows={narrative.facts} />
 
-      {rest.length > 0 && (
+      {(rest.length > 0 || stage.widgets.length > 0) && (
         <div className={styles.stageMore}>
           <h3 className={styles.stageMoreHeading}>근거</h3>
-          <div className={rest.length >= 2 ? styles.catchGrid : styles.catchStack}>
+          {/* 차트 슬롯과 승격 위젯을 한 격자에 둔다. 나누면 마지막 반폭 그래프가
+              혼자 남고 다음 위젯이 아래로 떨어진다. */}
+          <div
+            className={
+              rest.length + stage.widgets.length >= 2 ? styles.catchGrid : styles.catchStack
+            }
+          >
             {rest.map((slot) => (
               <figure
                 key={slot.title}
@@ -620,17 +625,12 @@ function StageSection({
                 <div className={styles.chartFrame}>{slot.render()}</div>
               </figure>
             ))}
-          </div>
-        </div>
-      )}
-
-      {stage.widgets.length > 0 && (
-        <div className={styles.stageMore}>
-          {/* 2026-08-17 재점검: 구컨셉 카드(현황/실행 박스)를 버리고, 승격된 위젯만
-              근거 figure 와 같은 신컨셉(주장 한 문장 + 차트)으로 낸다. */}
-          <div className={stage.widgets.length >= 2 ? styles.catchGrid : styles.catchStack}>
             {stage.widgets.map((widget) => (
-              <figure key={widget.id} className={styles.catchFigure}>
+              <figure
+                key={widget.id}
+                className={styles.catchFigure}
+                data-span="half"
+              >
                 <figcaption className={styles.catchCaption}>
                   <div className={styles.catchTitleRow}>
                     <strong>{widget.title}</strong>

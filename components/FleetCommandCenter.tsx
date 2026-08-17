@@ -20,6 +20,7 @@ import { FleetChartSection, FleetDetailPanel } from './FleetAnalysisPanels';
 import VdsStrategyMatrix from './VdsStrategyMatrix';
 import PnaAccessFeeWidgets from './PnaAccessFeeWidgets';
 import VesselVdsStatus from './VesselVdsStatus';
+import FleetHeroCommand from './FleetHeroCommand';
 import HeroZone from './v2/HeroZone';
 import PillTabs from './v2/PillTabs';
 import s from './FleetCommandCenter.module.css';
@@ -140,6 +141,8 @@ export default function FleetCommandCenter({ heroOnly = false }: { heroOnly?: bo
   return (
     <div className={s.wrapper}>
       {fleetHero}
+      {/* 디자인 랩 r6 채택본 — 선망선 어획 지휘형 (히어로 KPI는 공개 집계, 이 카드는 주간 랭킹 소스) */}
+      <FleetHeroCommand />
       <PillTabs className={s.taskTabs} tabs={taskTabs.map((tab) => ({ key: tab.id, label: tab.label }))} activeKey={activeTab} onChange={(key) => setActiveTab(key as FleetTaskTab)} ariaLabel="선단 업무 보기" tabIdPrefix="fleet-tab" panelIdPrefix="fleet-panel" />
       <section id="fleet-panel-operations" role="tabpanel" aria-labelledby="fleet-tab-operations" className={s.tabPanel} hidden={activeTab !== 'operations'}><FleetDailyOperations detailState={detailState} onRetry={() => { setDetailState({ status: 'loading' }); setRetryCount((value) => value + 1); }} /></section>
       <section id="fleet-panel-vessels" role="tabpanel" aria-labelledby="fleet-tab-vessels" className={s.tabPanel} hidden={activeTab !== 'vessels'}><VesselDetailBoundary state={detailState} onRetry={() => { setDetailState({ status: 'loading' }); setRetryCount((value) => value + 1); }} /></section>

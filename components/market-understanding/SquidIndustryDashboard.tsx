@@ -405,10 +405,14 @@ function StageSection({
 
       <FactTable rows={narrative.facts} />
 
-      {rest.length > 0 && (
+      {(rest.length > 0 || stage.widgets.length > 0) && (
         <div className={styles.stageMore}>
           <h3 className={styles.stageMoreHeading}>근거</h3>
-          <div className={rest.length >= 2 ? styles.catchGrid : styles.catchStack}>
+          <div
+            className={
+              rest.length + stage.widgets.length >= 2 ? styles.catchGrid : styles.catchStack
+            }
+          >
             {rest.map((slot) => (
               <figure
                 key={slot.title}
@@ -429,17 +433,8 @@ function StageSection({
                 <div className={styles.chartFrame}>{slot.render()}</div>
               </figure>
             ))}
-          </div>
-        </div>
-      )}
-
-      {stage.widgets.length > 0 && (
-        <div className={styles.stageMore}>
-          {/* 2026-08-17 재점검: 구컨셉 카드(현황/실행 박스)를 버리고, 승격된 위젯만
-              근거 figure 와 같은 신컨셉(주장 한 문장 + 차트)으로 낸다. */}
-          <div className={stage.widgets.length >= 2 ? styles.catchGrid : styles.catchStack}>
             {stage.widgets.map((widget) => (
-              <figure key={widget.id} className={styles.catchFigure}>
+              <figure key={widget.id} className={styles.catchFigure} data-span="half">
                 <figcaption className={styles.catchCaption}>
                   <div className={styles.catchTitleRow}>
                     <strong>{widget.title}</strong>

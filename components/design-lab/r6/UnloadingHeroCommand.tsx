@@ -60,7 +60,14 @@ function toVessels(data: Record<string, VesselRaw>): Vessel[] {
   return Object.entries(data)
     .filter(([, v]) => v && typeof v.name === 'string' && Array.isArray(v.timeline))
     .map(([id, v]) => ({ ...v, id, kind: getVesselStatusKind(v.status) }))
-    .sort((a, b) => STATUS_RANK[a.kind] - STATUS_RANK[b.kind]);
+    // 소유자 r6 판정 «하단 정렬은 월 기준»: 항차 시작 연월 최신순. 같은 월이면 하역중 우선
+    .sort((a, b) => {
+      const key = (v: Vessel) => {
+        const m = v.dateRange.match(/(\d{4})\.(\d{1,2})/);
+        return m ? Number(m[1]) * 100 + Number(m[2]) : 0;
+      };
+      return key(b) - key(a) || STATUS_RANK[a.kind] - STATUS_RANK[b.kind];
+    });
 }
 
 function UnloadingTip({ active, payload }: {
