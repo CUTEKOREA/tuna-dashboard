@@ -1,0 +1,20 @@
+공개 출처만 대조해 확인합니다. 상호가 비슷한 법인은 등기번호로 분리하고, 확인되지 않은 값은 추정하지 않겠습니다.법인 식별은 세금번호 `1700443464`로 고정했습니다. 등기·인증·규모 페이지를 원문 대조합니다.세금번호와 대표자까지는 나왔습니다. 자본·지분·캐파·재무는 아직 원문이 부족해서 회사 사이트와 등기 미러를 더 엽니다.회사 소개·그룹 페이지와 캐파 주장을 원문에서 확인합니다. 매출 절대액은 아직 공개본이 없습니다.
+캐파·직원 수는 출처가 서로 어긋납니다. 공식 등기·인증 목록으로 다시 맞춥니다.상호가 비슷한 `Phú Cường Kiên Cường`(DL-294)과 섞이지 않게, 이 법인(MST 1700443464·DL 409)만 다시 조회합니다.직원·캐파 숫자는 출처가 갈립니다. 공식 인증 목록과 회사 사이트만 추가로 대조합니다.1) 지배구조·상장  
+값: 등기·세금번호 **1700443464**. 법정책임자 **Nguyễn Quang Minh**(응우옌 꽝 민; 출처에 따라 이사회 의장 또는 감독). 납입자본·지분율 **확인불가**. 비상장 주식회사(Công ty cổ phần). HOSE/HNX/UPCoM 티커 없음. 별개 법인 「Công ty TNHH Phú Cường – Kiên Cường」(MST **2001309235**, EU **DL 294**, 까마우)와 혼동 금지.  
+출처: 베트남 산업통상부 VITIC ASEMCONNECT 기업정보; thongtincongty.vn·infodoanhnghiep(총국세 연계 미러); VASEP 회원정보  
+조회일: 2026-08-17
+
+2) 규모·캐파  
+값: 일일 처리능력 **확인불가**. 연간 캐파 **확인불가**(Phú Cường 그룹 회원사 페이지는 완제품 12,000톤/년, Yellow Pages Vietnam 2020 갱신본은 3,000톤 이상/년 — 수치 충돌). 공개 주소·EU코드 기준 가공장 **1곳**(Tắc Cậu 어항공단). 직원 수 **확인불가**(EMIS 2023=100명 vs Yellow Pages 2020=550명 이상). 냉동창고 용량 **확인불가**.  
+출처: phucuongseafood.com 「Kiên Cường Seafood」; Yellow Pages Vietnam 리스팅(MST 1700443464); EMIS 회사 프로필  
+조회일: 2026-08-17
+
+3) 인증  
+값: VASEP 회원 프로필 **HACCP·BRC·HALAL**. EU 승인번호 **DL 409**(EU TRACES NT 수산물 가공장 목록에 등재). 대만 FDA·러시아 Rosselkhoznadzor도 DL 409로 동일 상호 등재. **IFS·MSC·ASC·FDA 등록번호 확인불가**.  
+출처: VASEP 회원·공급사 페이지; EU TRACES NT Establishment list (VN/FISHERY_PRODUCTS); 대만 FDA 「베트남 수산물 가공장 대만 수출 승인 목록」; Rosselkhoznadzor 기업등록  
+조회일: 2026-08-17
+
+4) 재무  
+값: 최근 **매출·순이익·총자산 금액 확인불가**. 회계연도 기준 재무제표 원문 없음. (참고·재무제표 아님: VASEP 수산물 **수출액** 2025년 1–5월 **14.961백만 USD**. EMIS는 2024년 매출 +15.83%·순이익 +23.52%·총자산 +2.66%만 공개, 절대액은 유료.)  
+출처: VASEP 「Doanh nghiệp XK thủy sản Việt Nam 5 tháng đầu năm 2025」(2025-06-20); EMIS 「Kien Cuong Seafood Processing Import-Export Joint Stock Company」(2026-05-12 갱신)  
+조회일: 2026-08-17

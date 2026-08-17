@@ -26,7 +26,8 @@
     "mackerel": "python3 scripts/mackerel/build.py && python3 scripts/mackerel/validate_provenance.py",
     "mackerel:test": "python3 scripts/mackerel/test_build.py",
     "mackerel:ledger": "python3 scripts/mackerel/build_ledger.py && python3 scripts/mackerel/validate_consolidation.py",
-    "mackerel:score": "python3 scripts/mackerel/score_4axis.py"
+    "mackerel:score": "python3 scripts/mackerel/score_4axis.py",
+    "check:enrich": "python3 scripts/tests/check_enrich_verbatim.py"
   },
   "dependencies": {
     "@chenglou/pretext": "^0.0.5",

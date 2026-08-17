@@ -176,6 +176,44 @@ def main() -> int:
     payload["meta"]["registryTotal"] = total
     payload["meta"]["taggedCells"] = tagged
 
+    # 이 스크립트는 원자료가 갱신되면 다시 돌린다. 그때 Grok 보강분(enrich)을 함께
+    # 날려버리면 몇 시간짜리 조사가 조용히 사라진다 — 회사·열 단위로 되살린다.
+    # 원본 값이 바뀐 칸은 되살리지 않는다. 옛 보강이 새 값에 붙으면 거짓이 된다.
+    carried = restored = dropped = 0
+    if OUT.exists():
+        try:
+            old = json.loads(OUT.read_text(encoding="utf8"))
+        except Exception:  # noqa: BLE001 — 깨진 이전 파일 때문에 추출을 막지 않는다
+            old = None
+        if old:
+            for country, rep in payload["countries"].items():
+                old_rows = (old.get("countries", {}).get(country, {}) or {}).get("profiles", [])
+                old_by_name = {}
+                for r in old_rows:
+                    nm = ((r.get("회사/등기") or r.get("회사/세번·DL") or {}).get("v") or "").strip()
+                    if nm:
+                        old_by_name[nm] = r
+                for row in rep["profiles"]:
+                    nm = ((row.get("회사/등기") or row.get("회사/세번·DL") or {}).get("v") or "").strip()
+                    prev = old_by_name.get(nm)
+                    if not prev:
+                        continue
+                    for key, cell_new in row.items():
+                        cell_old = prev.get(key)
+                        if not isinstance(cell_old, dict) or "enrich" not in cell_old:
+                            continue
+                        carried += 1
+                        if cell_old.get("v") == cell_new.get("v"):
+                            cell_new["enrich"] = cell_old["enrich"]
+                            restored += 1
+                        else:
+                            dropped += 1
+            if old.get("meta", {}).get("enrichment"):
+                payload["meta"]["enrichment"] = old["meta"]["enrichment"]
+    if carried:
+        print(f"보강분 {carried}칸 중 {restored}칸 되살림 · {dropped}칸은 원본이 바뀌어 폐기",
+              file=sys.stderr)
+
     OUT.parent.mkdir(parents=True, exist_ok=True)
     OUT.write_text(json.dumps(payload, ensure_ascii=False, indent=1), encoding="utf8")
     print(f"-> {OUT} ({OUT.stat().st_size // 1024}KB) · 전수표 합계 {total}개사", file=sys.stderr)
