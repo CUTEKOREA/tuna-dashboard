@@ -1,3 +1,9 @@
+> 🖨️ **2026-08-17 20:40 KST — P3 진행: 지표 SSOT 마감 + PDF 내보내기 1단계 (PR #582·#585 병합·READY)** [CC]:
+> - #582: 일평균을 정의별 함수로 고정(avgPerReportDay 완료예상용·avgPerWorkedDay 능력용 — 통일이 아니라 구분, 표시값 무변), \$/MT 스케일 휴리스틱 3곳 → `app/api/_shared/price-scale.ts`. **KCS 4라우트 → kcs-client 통일안은 룰북 L-11과 충돌해 기각** (해제하려면 활성 라우트 실증+ADR).
+> - #585: P3-7 1단계 — @media print + 사이드바 «PDF 내보내기»(window.print). A4 2페이지 실증(사이드바 숨김·카드 무잘림·차트 축소·뉴스 1면). **2단계(주간 자동 발송)는 채널(이메일/Slack)·주기 소유자 확정 대기.**
+> - 반복 함정 확립: main 고속 전진 환경에서 PR 충돌 시 «origin/main 위 cherry-pick 재구성 + 본 워크트리 ref push» 패턴이 표준 (temp 워크트리는 node_modules 없어 pre-push 빌드 실패).
+> - P3 잔여: ⑨ usage 피드백(Vercel Analytics) ⑩ 검증 배지(TelemetryBadge 확장) + PDF 2단계.
+
 > 🧮 **2026-08-17 19:50 KST — 지표 SSOT 일괄 교체 완료 (PR #579 병합·READY)** [CC]:
 > - L-07: 인라인 증감률 31곳 → `pctChange`, 진행률 6곳 → `progressPct`. 소유자 확정 정책 «초과 그대로 표시» — 숫자 라벨 실값(106%), 시각 게이지 호·바만 clampMax 100. 간트 106% vs 상태판 100% 모순 해소.
 > - 검출기 `scripts/fix_metric_ssot.py` 잔존 0/0 유지 확인용. 반증 리뷰 37곳 전수 대조 — 표시 의미 보존 위반 0 (P0·P1 없음, P2 참고 3건: FieldTools 0-cost·FRED «.» 결측·mackerel margin 0 — degenerate 경로 개선 후보).
