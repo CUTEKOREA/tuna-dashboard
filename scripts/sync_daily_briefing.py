@@ -227,11 +227,11 @@ def parse_briefing_html(source: Path) -> dict[str, Any]:
             "SIT 를 만들 수 없습니다 — 숫자가 포함된 다이제스트가 최소 1건, 전체 2건 이상 필요합니다."
         )
 
+    # 2026-08-17: 지침 문장 없음은 실패가 아니다. 그날 기사가 전부 관측·보고형일 수 있다
+    # (8/17 5건 전부 해당). TAK 은 데일리 브리핑 렌더 경로에 쓰이지 않으므로 차단하지 않고
+    # 로그만 남긴다. 여기서 막으면 그날 회차 전체가 대시보드에 못 올라간다.
     if not has_directive:
-        raise BriefingSyncError(
-            "기사 본문에서 실행 지침 문장(촉구했다/권고했다/요구했다)을 찾지 못했습니다. "
-            "TakeawayBox TAK 을 만들 수 없어 JSON 생성을 중단합니다."
-        )
+        print("NOTE 실행 지침 문장 없음 — TAK 없이 진행(관측·보고형 기사만 있는 날)")
 
     return {
         "date": briefing_date,

@@ -18,7 +18,8 @@ export type DailyBriefing = {
 
 export type DailyBriefingTakeaways = {
   readonly situation: string;
-  readonly actionPlan: string;
+  /** 실행 지침 문장. 관측·보고형 기사만 있는 날엔 없다 — 없는 걸 지어내지 않는다. */
+  readonly actionPlan: string | null;
 };
 
 const ISO_DATE_PATTERN = /^\d{4}-\d{2}-\d{2}$/;
@@ -130,13 +131,12 @@ export function buildDailyBriefingTakeaways(
     .flatMap(splitSentences)
     .find((sentence) => DIRECTIVE_PATTERN.test(sentence));
 
-  if (!actionPlan) {
-    throw new Error('기사 본문에서 실행 지침 문장을 찾지 못했습니다.');
-  }
-
+  // 2026-08-17: 실행 지침이 없는 날이 정상적으로 존재한다(8/17 기사 5건 전부 관측·보고형).
+  // 이때 throw 하면 그날 회차가 통째로 막힌다. TAK 은 데일리 브리핑 렌더에 쓰이지 않으므로
+  // 없으면 없는 대로 둔다 — 지침을 지어내는 것이 무-창작 원칙 위반이다.
   return {
     situation: topDigest.map(({ title }) => asSentence(title)).join(' '),
-    actionPlan,
+    actionPlan: actionPlan ?? null,
   };
 }
 
