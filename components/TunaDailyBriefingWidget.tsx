@@ -108,7 +108,13 @@ export default function TunaDailyBriefingWidget() {
                   }}
                 >
                   <summary>
-                    <span className={styles.articleTitle}>{article.titleKo}</span>
+                    <span className={styles.articleTitle}>
+                      {article.titleKo}
+                      {/* 제목은 파이프라인 원문 그대로 — 길이 보강은 첫 문단 미리보기로 (2026-08-17 라운드 지적) */}
+                      {article.paragraphs[0] && (
+                        <span className={styles.articlePreview}>{article.paragraphs[0]}</span>
+                      )}
+                    </span>
                     <ChevronDown className={styles.chevron} size={17} aria-hidden="true" />
                   </summary>
                   <div className={styles.paragraphs}>

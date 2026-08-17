@@ -255,7 +255,8 @@ describe('dashboard registry', () => {
       expect(rule).not.toBe('');
     }
     expect(cssRule(marketStyles, '.dashboard')).toContain('var(--dsc-bg)');
-    expect(marketSource.match(/dsc-card dsc-card--accent/g)).toHaveLength(4);
+    // 2026-08-17 디자인 랩 채택: SKJ/YF 스프레드 KPI 2장은 지휘형 카드(HeroMarketCommand)로 대체 — 잔여 2장(MGO·환율)
+    expect(marketSource.match(/dsc-card dsc-card--accent/g)).toHaveLength(2);
     expect(cssRule(marketStyles, '.kpiCard::before')).toBe('');
     expect(cssRule(globalsSource, '.dsc-card')).toContain('background: var(--dsc-surface)');
     expect(cssRule(globalsSource, '.dsc-card')).toContain('border-radius: var(--dsc-card-radius)');

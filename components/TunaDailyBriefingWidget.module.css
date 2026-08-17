@@ -107,6 +107,23 @@
   word-break: keep-all;
 }
 
+/* 접힌 상태에서만 첫 문단 미리보기 1줄 — 펼치면 본문과 중복이라 숨김 */
+.articlePreview {
+  display: block;
+  margin-top: 3px;
+  font-size: 0.78rem;
+  font-weight: 400;
+  color: var(--text-muted, #5a6072);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  max-width: 60ch;
+}
+
+.article[open] .articlePreview {
+  display: none;
+}
+
 .chevron {
   flex: 0 0 auto;
   color: #67e8f9;

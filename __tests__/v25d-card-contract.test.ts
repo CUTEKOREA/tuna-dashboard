@@ -35,11 +35,12 @@ describe('V2.5-d card contract', () => {
     expect(accent).not.toMatch(/border-(?:top|right|bottom)\s*:/);
   });
 
-  it('uses the shared left-accent contract on exactly four market spread cards', () => {
+  it('uses the shared left-accent contract on exactly two market macro cards', () => {
     const source = readSource('components/MarketDashboard.tsx');
     const styles = readSource('components/MarketDashboard.module.css');
 
-    expect(source.match(/dsc-card dsc-card--accent/g)).toHaveLength(4);
+    // 2026-08-17 디자인 랩 채택: 스프레드 KPI 2장 제거 — MGO·환율 2장이 좌측 액센트 계약 유지
+    expect(source.match(/dsc-card dsc-card--accent/g)).toHaveLength(2);
     expect(source).toContain('className={`dsc-card ${styles.chartPanel}`}');
     expect(cssRule(styles, '.kpiCard::before')).toBe('');
     expect(cssRule(styles, '.kpiCard')).not.toMatch(/border-(?:top|right|bottom|left)\s*:/);

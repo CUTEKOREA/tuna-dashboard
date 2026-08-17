@@ -329,7 +329,7 @@ describe('Deep Sea Command V2 — Phase 2 운영 페이지', () => {
     expect(markup).toContain('SEIN VENUS와 HENG HONG 9의 예정일이 도래했으므로 실제 입항·접안 여부를 확인합니다.');
   });
 
-  it('시장 히어로가 Atuna 행에서 방콕·만타·주간 변동·황다랑어 KPI를 구성한다', async () => {
+  it('시장 히어로가 타이틀·기준일만 남긴다 — KPI는 지휘형 카드가 대체 (2026-08-17 채택)', async () => {
     const marketModule = await import('../components/MarketDashboard');
     const MarketHero = (marketModule as Record<string, unknown>).MarketHero;
 
@@ -340,18 +340,16 @@ describe('Deep Sea Command V2 — Phase 2 운영 페이지', () => {
       React.createElement(MarketHero as React.ComponentType<any>, {
         rows: [
           { date: '2026-07-30', skj_bkk: 1790, yf_sey: 2100 },
-          { date: '2026-07-31', skj_mnt: 2150 },
           { date: '2026-08-06', skj_bkk: 1900 },
         ],
       }),
     );
 
     expect(markup).toContain('시장 동향');
-    expect(markup).toContain('방콕 SKJ 현물가');
-    expect(markup).toContain('만타 SKJ 현물가');
-    expect(markup).toContain('방콕 주간 변동');
-    expect(markup).toContain('황다랑어 현물가');
-    expect(markup).toContain('($/MT)');
+    expect(markup).toContain('방콕 현물가 기준일 2026.08.06');
+    expect(markup).toContain('직전 고시 대비 +6.1%');
+    // KPI 나열은 히어로에서 제거됨 — HeroMarketCommand가 담당
+    expect(markup).not.toContain('만타 SKJ 현물가');
   });
 });
 
