@@ -6,17 +6,17 @@
 'use client';
 
 import React, { useEffect, useState } from 'react';
-import { LineChart, Line, YAxis } from 'recharts';
-import { MarketHero } from '../MarketDashboard';
 import TunaDailyBriefingWidget from '../TunaDailyBriefingWidget';
 import FilterBar from '../v2/FilterBar';
+import HeroFull from './r3/HeroFull';
+import HeroHubSpark from './r3/HeroHubSpark';
+import HeroStripStock from './r3/HeroStripStock';
+import HeroKpiStock from './r3/HeroKpiStock';
+import HeroSparkPlus from './r3/HeroSparkPlus';
+import HeroSpread from './r3/HeroSpread';
 import {
   ATUNA_GRAIN_LABELS,
   ATUNA_PERIOD_LABELS,
-  SKJ_ATUNA_HUBS,
-  YF_ATUNA_HUBS,
-  latestTwoForAtunaHub,
-  calcAtunaDeltaPct,
   type AtunaGrainKey,
   type AtunaPeriodKey,
   type AtunaPriceRow,
@@ -81,123 +81,64 @@ function DataGuard({ rows, failed, children }: {
   return <>{children(rows)}</>;
 }
 
-function HeroRealData() {
-  const state = useAtunaRows();
-  return <DataGuard {...state}>{(rows) => <MarketHero rows={rows} />}</DataGuard>;
+/** r3: rows 주입형 시안을 공용 fetch로 감싼다 */
+function withRows(Comp: React.ComponentType<{ rows: AtunaPriceRow[] }>) {
+  function BoundVariant() {
+    const state = useAtunaRows();
+    return <DataGuard {...state}>{(rows) => <Comp rows={rows} />}</DataGuard>;
+  }
+  return BoundVariant;
 }
+const R3Full = withRows(HeroFull);
+const R3HubSpark = withRows(HeroHubSpark);
+const R3StripStock = withRows(HeroStripStock);
+const R3KpiStock = withRows(HeroKpiStock);
+const R3SparkPlus = withRows(HeroSparkPlus);
+const R3Spread = withRows(HeroSpread);
 
-/** r2-B 밀도형 — 주 KPI + 전 허브 스탯 스트립 (조종석 밀도 철학) */
-function HeroStatStrip() {
-  const state = useAtunaRows();
-  return (
-    <DataGuard {...state}>
-      {(rows) => {
-        const bkk = latestTwoForAtunaHub(rows, SKJ_ATUNA_HUBS[0]);
-        const hubs = [
-          ...SKJ_ATUNA_HUBS.map((hub) => ({ hub, kind: 'SKJ' })),
-          ...YF_ATUNA_HUBS.map((hub) => ({ hub, kind: 'YF' })),
-        ];
-        return (
-          <div className="dsc-card" style={{ padding: '20px 22px' }}>
-            <div style={{ display: 'flex', alignItems: 'baseline', gap: 14, flexWrap: 'wrap' }}>
-              <span style={{ fontSize: '0.8rem', fontWeight: 700, color: 'var(--text-muted)' }}>방콕 SKJ 현물가</span>
-              <span style={{ fontSize: '2.6rem', fontWeight: 900, letterSpacing: '-0.03em', fontVariantNumeric: 'tabular-nums', color: 'var(--text-main)' }}>
-                {bkk.latest ? `$${bkk.latest.price.toLocaleString()}` : '—'}
-              </span>
-              <span style={{ fontSize: '0.85rem', color: 'var(--text-muted)' }}>($/MT)</span>
-              {bkk.latest && (
-                <span style={{ marginLeft: 'auto', fontSize: '0.75rem', color: 'var(--text-muted)' }}>
-                  기준일 {bkk.latest.date.replace(/-/g, '.')}
-                </span>
-              )}
-            </div>
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(118px, 1fr))', gap: 8, marginTop: 14 }}>
-              {hubs.map(({ hub, kind }) => {
-                const pair = latestTwoForAtunaHub(rows, hub);
-                const delta = calcAtunaDeltaPct(pair);
-                return (
-                  <div key={hub.key} style={{ border: '1px solid var(--card-border, #e2e4e9)', borderRadius: 8, padding: '8px 10px' }}>
-                    <div style={{ fontSize: '0.7rem', fontWeight: 700, color: 'var(--text-muted)' }}>{kind} {hub.label}</div>
-                    <div style={{ fontSize: '1.05rem', fontWeight: 800, fontVariantNumeric: 'tabular-nums', color: 'var(--text-main)' }}>
-                      {pair.latest ? `$${pair.latest.price.toLocaleString()}` : '—'}
-                    </div>
-                    <div style={{ fontSize: '0.7rem', fontWeight: 700, color: delta === null ? 'var(--text-muted)' : delta >= 0 ? 'var(--accent-warning, #b45309)' : 'var(--accent-success, #3f6212)' }}>
-                      {delta === null ? '직전 없음' : `${delta >= 0 ? '▲' : '▼'} ${Math.abs(delta).toFixed(1)}%`}
-                    </div>
-                  </div>
-                );
-              })}
-            </div>
-          </div>
-        );
-      }}
-    </DataGuard>
-  );
-}
-
-/** r2-C 추세형 — 주 KPI + 방콕 SKJ 최근 12주 스파크라인 */
-function HeroSparkline() {
-  const state = useAtunaRows();
-  return (
-    <DataGuard {...state}>
-      {(rows) => {
-        const bkk = latestTwoForAtunaHub(rows, SKJ_ATUNA_HUBS[0]);
-        const deltaPct = calcAtunaDeltaPct(bkk);
-        const recent = rows
-          .filter((row) => typeof row.skj_bkk === 'number')
-          .slice(-12)
-          .map((row) => ({ date: row.date, price: row.skj_bkk as number }));
-        return (
-          <div className="dsc-card" style={{ padding: '20px 22px', display: 'flex', gap: 24, alignItems: 'center', flexWrap: 'wrap' }}>
-            <div>
-              <div style={{ fontSize: '0.8rem', fontWeight: 700, color: 'var(--text-muted)' }}>방콕 SKJ 현물가</div>
-              <div style={{ fontSize: '2.6rem', fontWeight: 900, letterSpacing: '-0.03em', fontVariantNumeric: 'tabular-nums', color: 'var(--text-main)' }}>
-                {bkk.latest ? `$${bkk.latest.price.toLocaleString()}` : '—'}
-                <span style={{ fontSize: '0.9rem', fontWeight: 400, color: 'var(--text-muted)', marginLeft: 6 }}>($/MT)</span>
-              </div>
-              {deltaPct !== null && (
-                <div style={{ fontSize: '0.8rem', fontWeight: 700, color: deltaPct >= 0 ? 'var(--accent-warning, #b45309)' : 'var(--accent-success, #3f6212)' }}>
-                  직전 고시 대비 {deltaPct >= 0 ? '▲' : '▼'} {Math.abs(deltaPct).toFixed(1)}%
-                </div>
-              )}
-              {bkk.latest && (
-                <div style={{ fontSize: '0.72rem', color: 'var(--text-muted)', marginTop: 4 }}>기준일 {bkk.latest.date.replace(/-/g, '.')} · 최근 12주 고시</div>
-              )}
-            </div>
-            {recent.length >= 2 && (
-              <LineChart width={340} height={92} data={recent} margin={{ top: 8, right: 8, left: 8, bottom: 8 }}>
-                <YAxis hide domain={['auto', 'auto']} />
-                <Line type="monotone" dataKey="price" stroke="var(--chart-s1, #509ee3)" strokeWidth={2.5} dot={false} isAnimationActive={false} />
-              </LineChart>
-            )}
-          </div>
-        );
-      }}
-    </DataGuard>
-  );
-}
-
+// r2 히어로 3종은 전원 ★3으로 라운드 종료 — 판정(주식 컬러 요청·전 형태 긍정)을 r3 6종이 계승
 export const DESIGN_VARIANTS: DesignVariant[] = [
   {
-    id: 'market-hero-r2a',
-    title: '히어로 r2-A: 현행 KPI형 + 실데이터',
-    round: 2,
-    note: 'r1 지적(수치 확인 안됨) 반영 — 현행 히어로에 실데이터. 이것이 기준선',
-    render: () => <HeroRealData />,
+    id: 'market-hero-r3a',
+    title: '히어로 r3-A: 풀 하이브리드',
+    round: 3,
+    note: '대형 KPI + 12주 스파크라인 + 8허브 스트립 전부 결합 (B+C). 주식 컬러(상승 빨강·하락 파랑)',
+    render: () => <R3Full />,
   },
   {
-    id: 'market-hero-r2b',
-    title: '히어로 r2-B: 밀도형 — 전 허브 스탯 스트립',
-    round: 2,
-    note: '8개 허브 최신가·증감을 한 화면에. 조종석 밀도 철학의 히어로 번안',
-    render: () => <HeroStatStrip />,
+    id: 'market-hero-r3b',
+    title: '히어로 r3-B: 허브별 미니 스파크',
+    round: 3,
+    note: '8허브 카드마다 최신가+증감+8주 미니 추세선. 밀도×추세 조합',
+    render: () => <R3HubSpark />,
   },
   {
-    id: 'market-hero-r2c',
-    title: '히어로 r2-C: 추세형 — KPI + 12주 스파크라인',
-    round: 2,
-    note: '숫자 하나 크게 + 방향은 선으로. 5초 판단(테슬라 철학) 극단형',
-    render: () => <HeroSparkline />,
+    id: 'market-hero-r3c',
+    title: '히어로 r3-C: 밀도형 개량 (r2-B+주식 컬러)',
+    round: 3,
+    note: 'r2-B 그대로 + 상승 빨강·하락 파랑·보합 회색, SKJ/YF 배지 구분',
+    render: () => <R3StripStock />,
+  },
+  {
+    id: 'market-hero-r3d',
+    title: '히어로 r3-D: 현행 KPI형 개량 (r2-A+주식 컬러)',
+    round: 3,
+    note: '현행 구성(주 KPI+보조 3개)에 주식 컬러 ▲▼ 적용',
+    render: () => <R3KpiStock />,
+  },
+  {
+    id: 'market-hero-r3e',
+    title: '히어로 r3-E: 추세형 개량 (r2-C+최고·최저선)',
+    round: 3,
+    note: '스파크라인에 12주 최고·최저 점선과 값, 마지막 점 강조',
+    render: () => <R3SparkPlus />,
+  },
+  {
+    id: 'market-hero-r3f',
+    title: '히어로 r3-F: 스프레드 포커스',
+    round: 3,
+    note: '허브 min~max 가로 스프레드 바 — 어디가 싸고 어디가 비싼지 한 줄',
+    render: () => <R3Spread />,
   },
   // r1 히어로(빈 데이터 시안)는 ★1 «수치 확인이 안됨»으로 라운드 종료 — r2a~c가 대체
   {
