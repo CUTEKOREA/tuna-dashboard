@@ -73,6 +73,27 @@ KCS_PATH = (
     / "03_무역·가격/Korea_KCS/snapshot_2026-07-06/kcs/"
     "KCS_2026YTD_HS_shrimp.csv"
 )
+NITEMTRADE_PATH = (
+    ARCHIVE
+    / "03_무역·가격/Korea_KCS/extracts/"
+    "20260816-Korea_Customs-nitemtrade_shrimp_HS_partner_202401-202606.csv"
+)
+SERIES_ORIGIN_ORDER = ("에콰도르", "베트남", "인도", "태국", "중국")
+SERIES_KCS_NAME = {
+    "에콰도르": "에쿠아도르",  # nitemtrade 표기
+    "베트남": "베트남",
+    "인도": "인도",
+    "태국": "태국",
+    "중국": "중국",
+}
+SERIES_FAO_COUNTRIES = {
+    "에콰도르": "Ecuador",
+    "베트남": "Viet Nam",
+    "인도": "India",
+    "태국": "Thailand",
+    "중국": "China",
+    "한국": "Republic of Korea",
+}
 HS_MATRIX_PATH = (
     ARCHIVE
     / "03_무역·가격/Korea_KCS/snapshot_2026-07-06/hs/"
@@ -93,7 +114,8 @@ SOFIA_PATH = (
 AQUACULTURE_SOURCES = frozenset({"BRACKISHWATER", "FRESHWATER", "MARINE"})
 ALLOWED_TELEMETRY = frozenset({"SYNCED", "STATIC"})
 ALLOWED_PILLARS = frozenset({"S1", "S2", "S3", "S4", "S5"})
-EXPECTED_PILLARS = {"S1": 5, "S2": 4, "S3": 4, "S4": 5, "S5": 3}
+EXPECTED_PILLARS = {"S1": 6, "S2": 4, "S3": 5, "S4": 6, "S5": 3}
+EXPECTED_WIDGET_COUNT = sum(EXPECTED_PILLARS.values())
 BANNED_STRINGS = (
     "illustrative",
     "자체 추정",
@@ -491,9 +513,10 @@ def _fishstat_widgets(
         "sourceQuote": "PERIOD=2024; filtered ISSCAAP group; ranked by aquaculture only",
         "sit": (
             f"양식 1위 중국은 {int(round(top_countries[0][1]['aquaculture'])):,}톤이다. "
-            "순위는 양식 생산량으로 고정했기 때문에 자연산 막대는 같은 국가의 공급 구조 차이를 보여준다."
+            "순위는 양식 생산량으로 고정했기 때문에 자연산 막대는 같은 국가의 공급 구조 차이를 보여준다. "
+            "이 순위는 한국 창구 순위가 아니다."
         ),
-        "strat": "국가 순위와 생산방식을 분리해 보면 양식 공급 집중과 자연산 보완축을 같은 분모에서 비교할 수 있다.",
+        "strat": "생산 1위 원산지를 한국 주력 창구로 읽지 말고, 시리즈 6개국 역할·관세청 세번 위젯과 따로 대조한다.",
         "xKey": "국가",
         "bars": [
             {"key": "양식", "name": "양식", "color": "#10b981"},
@@ -905,9 +928,10 @@ def _globefish_widgets() -> tuple[dict[str, Any], dict[str, Any], dict[str, Any]
             f"2025년 에콰도르 수출은 {float(export_chart_rows[0]['2025']):,.2f}천 톤으로 전년보다 "
             f"{export_chart_rows[0]['change']:+d}% 늘었다. 아르헨티나는 "
             f"{next(row for row in exporters if row['country']=='Argentina')['change']:+d}%, "
-            f"태국은 {next(row for row in exporters if row['country']=='Thailand')['change']:+d}%로 감소했다."
+            f"태국은 {next(row for row in exporters if row['country']=='Thailand')['change']:+d}%로 감소했다. "
+            "세계 수출 순위는 한국 창구 순위가 아니다."
         ),
-        "strat": "수출 흐름은 최대 공급국의 확대와 일부 자연산·가공국의 감소가 동시에 진행되는 비대칭 구조다.",
+        "strat": "수출 1위 원산지를 한국 주력 창구로 읽지 말고, 관세청 세번·단가 위젯과 따로 대조한다.",
         "xKey": "국가",
         "bars": copy.deepcopy(common_bars),
         "data": data_export,
@@ -948,27 +972,42 @@ def _globefish_widgets() -> tuple[dict[str, Any], dict[str, Any], dict[str, Any]
     return w10, w14, facts
 
 
-def _cna_widget() -> dict[str, Any]:
+def _cna_widget() -> tuple[dict[str, Any], dict[str, Decimal]]:
     workbook = load_workbook(_require_file(CNA_PATH), read_only=True, data_only=True)
     try:
         monthly = cna_resumen_monthly(workbook["RESUMEN"])
         market_ws = workbook["MERCADO PAÍS ACUM"]
+        # 권역 비교표는 A열이 아니라 J열(라벨)·K/L열(2025/2026 물량 비중)이다.
+        # A열 EUROPA 행의 K/L은 같은 줄의 RESTO DE ASIA 비중이 붙어 있어
+        # 유럽을 4.7%로 오독한다.
         market_rows: dict[str, tuple[Decimal, Decimal]] = {}
-        for row_number in range(12, 20):
-            label = market_ws.cell(row=row_number, column=1).value
-            if label in {"CHINA", "EEUU", "EUROPA"}:
-                market_rows[str(label)] = (
+        korea_share: Decimal | None = None
+        for row_number in range(12, 80):
+            bloc = market_ws.cell(row=row_number, column=10).value
+            if bloc in {"CHINA", "EEUU", "EUROPA"} and bloc not in market_rows:
+                market_rows[str(bloc)] = (
                     _decimal(market_ws.cell(row=row_number, column=11).value, context=f"CNA K{row_number}"),
                     _decimal(market_ws.cell(row=row_number, column=12).value, context=f"CNA L{row_number}"),
+                )
+            country = market_ws.cell(row=row_number, column=1).value
+            if country == "COREA DEL SUR":
+                korea_share = _decimal(
+                    market_ws.cell(row=row_number, column=8).value,
+                    context=f"CNA H{row_number} COREA DEL SUR",
                 )
     finally:
         workbook.close()
     if set(market_rows) != {"CHINA", "EEUU", "EUROPA"}:
         raise DataContractError(f"CNA market rows incomplete: {sorted(market_rows)}")
+    if korea_share is None:
+        raise DataContractError("CNA COREA DEL SUR share was not found")
     first = monthly[0]
     last = monthly[-1]
     if first["month"].strftime("%Y-%m") != "2017-01" or last["month"].strftime("%Y-%m") != "2026-05":
         raise DataContractError("CNA monthly date range is not 2017-01 through 2026-05")
+    europe_2026 = market_rows["EUROPA"][1]
+    if not (Decimal("0.17") <= europe_2026 <= Decimal("0.19")):
+        raise DataContractError(f"CNA Europe 2026 share out of range: {europe_2026}")
     data = [
         {
             "기간": row["month"].strftime("%Y-%m"),
@@ -979,33 +1018,43 @@ def _cna_widget() -> dict[str, Any]:
     ]
     china_2026 = float(market_rows["CHINA"][1] * 100)
     us_2026 = float(market_rows["EEUU"][1] * 100)
-    europe_2025 = float(market_rows["EUROPA"][0] * 100)
-    europe_2026 = float(market_rows["EUROPA"][1] * 100)
-    return {
-        "id": "w11_ecuador_monthly",
-        "title": "에콰도르 월별 수출량과 단가 (백만 파운드 · 달러/파운드)",
-        "subtitle": "CNA RESUMEN 10~122행만 사용한 2017년 1월~2026년 5월 113개월",
-        "chartType": "composed",
-        "pillar": "S3",
-        "telemetry": "SYNCED",
-        "syncDate": "CNA 2026년 5월",
-        "source": "Cámara Nacional de Acuacultura, Export Statistics May 2026",
-        "sourceQuote": (
-            f"RESUMEN!AB122:AE122 | {last['month'].date()} | {last['pounds']} | "
-            f"{last['dollars']} | {last['price']}"
-        ),
-        "sit": (
-            f"2026년 1~5월 목적지 비중은 중국 {china_2026:.1f}%, 미국 {us_2026:.1f}%, "
-            f"유럽 {europe_2026:.1f}%다. 유럽은 2025년 같은 누계 {europe_2025:.1f}%에서 낮아졌다."
-        ),
-        "strat": "수출량과 파운드당 단가를 한 축으로 합치지 않고 이중축으로 분리해 물량 확대와 가격 변화를 동시에 읽는다.",
-        "xKey": "기간",
-        "bars": [{"key": "수출량", "name": "수출량 (백만 파운드)", "color": "#10b981"}],
-        "lines": [{"key": "단가", "name": "단가 (달러/파운드)", "color": "#f59e0b"}],
-        "data": data,
-        "unit": "백만 파운드 · 달러/파운드",
-        "yUnit": "백만 파운드 · 달러/파운드",
-    }
+    europe_2025_pct = float(market_rows["EUROPA"][0] * 100)
+    europe_2026_pct = float(europe_2026 * 100)
+    korea_pct = float(korea_share * 100)
+    return (
+        {
+            "id": "w11_ecuador_monthly",
+            "title": "에콰도르 월별 수출량과 단가 (백만 파운드 · 달러/파운드)",
+            "subtitle": "CNA RESUMEN 10~122행만 사용한 2017년 1월~2026년 5월 113개월",
+            "chartType": "composed",
+            "pillar": "S3",
+            "telemetry": "SYNCED",
+            "syncDate": "CNA 2026년 5월",
+            "source": "Cámara Nacional de Acuacultura, Export Statistics May 2026",
+            "sourceQuote": (
+                f"RESUMEN!AB122:AE122 | {last['month'].date()} | {last['pounds']} | "
+                f"{last['dollars']} | {last['price']} | "
+                f"COREA DEL SUR Part. Libras={korea_share}"
+            ),
+            "sit": (
+                f"2026년 1~5월 목적지 비중은 중국 {china_2026:.1f}%, 미국 {us_2026:.1f}%, "
+                f"유럽 {europe_2026_pct:.1f}%다. 유럽은 2025년 같은 누계 {europe_2025_pct:.1f}%에서 "
+                f"낮아졌다. 한국(COREA DEL SUR)은 같은 표에서 {korea_pct:.2f}%다."
+            ),
+            "strat": (
+                "한국 창구는 에콰도르 수출의 잔여 규격이다. 수출량과 파운드당 단가를 "
+                "한 축으로 합치지 말고, 중국·미국 창구가 변할 때 한국으로 흘러오는 "
+                "규격을 따로 읽는다. SECA 특혜는 발효·양허 확인 전 견적에 넣지 않는다."
+            ),
+            "xKey": "기간",
+            "bars": [{"key": "수출량", "name": "수출량 (백만 파운드)", "color": "#10b981"}],
+            "lines": [{"key": "단가", "name": "단가 (달러/파운드)", "color": "#f59e0b"}],
+            "data": data,
+            "unit": "백만 파운드 · 달러/파운드",
+            "yUnit": "백만 파운드 · 달러/파운드",
+        },
+        {"korea_share": korea_share},
+    )
 
 
 def _infofish_widget() -> dict[str, Any]:
@@ -1049,9 +1098,10 @@ def _infofish_widget() -> dict[str, Any]:
         "sourceQuote": f"{_normalize_space(vietnam.group(0))} {_normalize_space(thailand.group(0))}",
         "sit": (
             f"2025년 냉동 새우 수입은 베트남 {int(vn_tonnes):,}톤({vn_change:+d}%), "
-            f"태국 {int(th_tonnes):,}톤({th_change:+d}%)이다. 두 나라 모두 주요 공급원은 에콰도르와 인도다."
+            f"태국 {int(th_tonnes):,}톤({th_change:+d}%)이다. 두 나라 모두 주요 공급원은 에콰도르와 인도다. "
+            "태국은 원물을 들여 가공하는 허브이고, 한국이 받는 태국산은 원물보다 조제품이 더 무겁다."
         ),
-        "strat": "산지에서 끝나지 않고 베트남·태국 재가공 허브를 거치는 흐름이 별도 원료 수입으로 나타난다.",
+        "strat": "산지 완제품과 제3국 재가공을 한 공급자로 묶지 말고, 한국 창구는 세번(030617·160521)으로 나눈다.",
         "xKey": "허브",
         "bars": [{"key": "수입량", "name": "수입량", "color": "#0d9488"}],
         "data": [
@@ -1121,7 +1171,8 @@ def _kcs_widget() -> tuple[dict[str, Any], dict[str, Decimal]]:
             "sit": (
                 f"4개 HS 상세행 합계는 USD {int(total_dollars):,}, {int(total_weight):,}kg이다. "
                 f"베트남은 냉동 USD {int(countries['베트남']['1_frozen']):,}와 조제 USD "
-                f"{int(countries['베트남']['3_prepared']):,}를 합쳐 최대 공급국이다."
+                f"{int(countries['베트남']['3_prepared']):,}를 합쳐 최대 공급국이다. "
+                "이 표는 2026년 1~5월 금액이다. 시리즈 6개국 물량·단가는 상반기 030617·160521 위젯에서 따로 본다."
             ),
             "strat": "0306 냉동과 1605 조제를 함께 보아야 재가공국의 역할과 한국 수입 구성을 동시에 설명할 수 있다.",
             "xKey": "교역국",
@@ -1442,6 +1493,272 @@ def _build_kpis(
     }
 
 
+def _nitemtrade_h1(hs_code: str) -> dict[str, dict[str, Decimal]]:
+    rows = _read_csv_dicts(NITEMTRADE_PATH)
+    totals: dict[str, dict[str, Decimal]] = defaultdict(
+        lambda: {"imp_usd": Decimal(0), "imp_kg": Decimal(0)}
+    )
+    matched = 0
+    for row in rows:
+        if not row["year"].startswith("2026"):
+            continue
+        if row["hsCd"] != hs_code:
+            continue
+        country = row["statCdCntnKor1"]
+        totals[country]["imp_usd"] += _decimal(row["impDlr"], context=f"nitem {hs_code} {country} usd")
+        totals[country]["imp_kg"] += _decimal(row["impWgt"], context=f"nitem {hs_code} {country} kg")
+        matched += 1
+    if matched == 0:
+        raise DataContractError(f"nitemtrade 2026 {hs_code} returned zero rows")
+    return totals
+
+
+def _series_production_2024(
+    rows: Sequence[Mapping[str, str]],
+) -> dict[str, dict[str, Decimal]]:
+    totals: dict[str, dict[str, Decimal]] = defaultdict(
+        lambda: {"total": Decimal(0), "aquaculture": Decimal(0)}
+    )
+    for row in rows:
+        if row["PERIOD"] != "2024":
+            continue
+        country = row["COUNTRY.Name_En"]
+        value = _decimal(row["VALUE"], context=f"FishStat 2024 {country}")
+        totals[country]["total"] += value
+        if row["PRODUCTION_SOURCE_DET.CODE"] in AQUACULTURE_SOURCES:
+            totals[country]["aquaculture"] += value
+    return totals
+
+
+def _series_widgets(
+    fish_rows: Sequence[Mapping[str, str]],
+    cna_facts: Mapping[str, Decimal],
+) -> tuple[dict[str, Any], dict[str, Any], dict[str, Any]]:
+    raw = _nitemtrade_h1("030617")
+    prepared = _nitemtrade_h1("160521")
+    production = _series_production_2024(fish_rows)
+    expected_raw_kg = {
+        "베트남": Decimal("10604991"),
+        "중국": Decimal("11568205"),
+        "인도": Decimal("1830664"),
+        "에콰도르": Decimal("1085664"),
+        "태국": Decimal("828720"),
+    }
+    for country, expected in expected_raw_kg.items():
+        actual = raw[SERIES_KCS_NAME[country]]["imp_kg"]
+        if actual != expected:
+            raise DataContractError(
+                f"nitemtrade 030617 2026H1 {country} kg={actual}, expected {expected}"
+            )
+
+    window_data = []
+    unit_data = []
+    facts: dict[str, dict[str, Decimal]] = {}
+    for country in SERIES_ORIGIN_ORDER:
+        kcs_name = SERIES_KCS_NAME[country]
+        raw_kg = raw[kcs_name]["imp_kg"]
+        raw_usd = raw[kcs_name]["imp_usd"]
+        prep_kg = prepared[kcs_name]["imp_kg"]
+        unit = raw_usd / raw_kg
+        facts[country] = {
+            "raw_t": raw_kg / Decimal(1000),
+            "prep_t": prep_kg / Decimal(1000),
+            "unit": unit,
+        }
+        window_data.append(
+            {
+                "국가": country,
+                "원물": _json_number(raw_kg / Decimal(1000), 1),
+                "조제품": _json_number(prep_kg / Decimal(1000), 1),
+            }
+        )
+        unit_data.append(
+            {
+                "국가": country,
+                "단가": _json_number(unit, 2),
+            }
+        )
+
+    korea_cna_pct = float(cna_facts["korea_share"] * 100)
+    prod_line = {}
+    for label, fao_name in SERIES_FAO_COUNTRIES.items():
+        if fao_name not in production:
+            raise DataContractError(f"FishStat 2024 missing {fao_name}")
+        prod_line[label] = production[fao_name]
+
+    vn = facts["베트남"]
+    ec = facts["에콰도르"]
+    india = facts["인도"]
+    th = facts["태국"]
+    cn = facts["중국"]
+    sum_raw = sum((facts[name]["raw_t"] for name in SERIES_ORIGIN_ORDER), Decimal(0))
+    sum_prep = sum((facts[name]["prep_t"] for name in SERIES_ORIGIN_ORDER), Decimal(0))
+
+    roles = [
+        {
+            "name": "에콰도르",
+            "role": "수출 표준 생산국",
+            "korea": "한국 잔여 저단가 창구",
+            "issuer": "수출 표준 생산국",
+            "date": "CNA 2026년 1~5월 · 관세청 2026년 1~6월",
+            "scope": (
+                f"CNA 한국(COREA DEL SUR) 비중 {korea_cna_pct:.2f}%. "
+                f"관세청 HS 030617 {float(ec['raw_t']):,.1f}톤, {float(ec['unit']):.2f}달러/kg. "
+                "세계 수출 1위의 잔여 규격이다. SECA 발효·양허는 미확인."
+            ),
+        },
+        {
+            "name": "베트남",
+            "role": "원물·조제품 이중 창구",
+            "korea": "030617과 160521이 비슷한 무게",
+            "issuer": "원물·조제품 이중 창구",
+            "date": "FishStat 2024 · 관세청 2026년 1~6월",
+            "scope": (
+                f"필터 후 2024 생산 {int(round(prod_line['베트남']['total'])):,}톤. "
+                f"한국 원물 {float(vn['raw_t']):,.1f}톤, 조제품 {float(vn['prep_t']):,.1f}톤. "
+                "흰다리와 블랙타이거(*Penaeus monodon*)가 같이 있다. 한 원산지 이름으로 묶지 않는다."
+            ),
+        },
+        {
+            "name": "인도",
+            "role": "미국·중국향 수출 생산국",
+            "korea": "작은 원물 창구",
+            "issuer": "미국·중국향 수출 생산국",
+            "date": "FishStat 2024 · 관세청 2026년 1~6월",
+            "scope": (
+                f"필터 후 2024 생산 {int(round(prod_line['인도']['total'])):,}톤"
+                f"(양식 {int(round(prod_line['인도']['aquaculture'])):,}). "
+                f"한국 030617 {float(india['raw_t']):,.1f}톤, 조제품 {float(india['prep_t']):,.1f}톤. "
+                "블랙타이거는 *Penaeus monodon*이다. 본진은 한국이 아니다."
+            ),
+        },
+        {
+            "name": "태국",
+            "role": "원물 수입 가공국",
+            "korea": "고단가 조제품 창구",
+            "issuer": "원물 수입 가공국",
+            "date": "관세청 2026년 1~6월",
+            "scope": (
+                f"한국 030617 {float(th['raw_t']):,.1f}톤({float(th['unit']):.2f}달러/kg), "
+                f"조제품 {float(th['prep_t']):,.1f}톤. 원물보다 조제품이 더 무겁다. "
+                "산지 완제품이 아니라 가공국 창구로 읽는다."
+            ),
+        },
+        {
+            "name": "중국",
+            "role": "세계 1위 생산 · 한국 원물 1위",
+            "korea": "030617 물량 1위, 조제품은 작다",
+            "issuer": "세계 1위 생산 · 한국 원물 1위",
+            "date": "FishStat 2024 · 관세청 2026년 1~6월",
+            "scope": (
+                f"필터 후 2024 생산 {int(round(prod_line['중국']['total'])):,}톤. "
+                f"한국 030617 {float(cn['raw_t']):,.1f}톤({float(cn['unit']):.2f}달러/kg), "
+                f"조제품 {float(cn['prep_t']):,.1f}톤. "
+                "대하는 *Penaeus chinensis*만 가리킨다."
+            ),
+        },
+        {
+            "name": "한국",
+            "role": "사서 쓰는 시장",
+            "korea": "생산국이 아니라 창구 지도",
+            "issuer": "사서 쓰는 시장",
+            "date": "FishStat 2024 · 관세청 2026년 1~6월",
+            "scope": (
+                f"필터 후 2024 생산 {int(round(prod_line['한국']['total'])):,}톤. "
+                f"시리즈 5개국에서 원물 {float(sum_raw):,.1f}톤, 조제품 {float(sum_prep):,.1f}톤을 사들인다. "
+                "원산지마다 FTA가 다르고 SECA 발효 여부는 미확인이다."
+            ),
+        },
+    ]
+
+    w_roles = {
+        "id": "w_series_country_roles",
+        "title": "시리즈 6개국 역할",
+        "subtitle": "에콰도르→베트남→인도→태국→중국→한국. 생산 순위와 한국 창구를 같은 표에 섞지 않음",
+        "chartType": "none",
+        "pillar": "S1",
+        "telemetry": "STATIC",
+        "syncDate": "FishStat 2024 · CNA 2026.1–5 · 관세청 2026.1–6",
+        "source": "FAO FishStat 2026.1.0 · CNA May 2026 · 관세청 nitemtrade 2024-01~2026-06",
+        "sourceQuote": (
+            f"COREA DEL SUR={cna_facts['korea_share']}; "
+            f"030617 kg VN={int(raw['베트남']['imp_kg'])} CN={int(raw['중국']['imp_kg'])} "
+            f"IN={int(raw['인도']['imp_kg'])} EC={int(raw[SERIES_KCS_NAME['에콰도르']]['imp_kg'])} "
+            f"TH={int(raw['태국']['imp_kg'])}"
+        ),
+        "sit": (
+            "여섯 나라는 같은 새우 공급국이 아니다. 에콰도르는 수출 표준, 베트남은 원물·조제품 이중 창구, "
+            "인도는 미국·중국향이 본진, 태국은 원물 수입 가공, 중국은 한국 원물 물량 1위, "
+            "한국은 사서 쓰는 시장이다. 생산 톤은 FishStat 새우 필터 후 값이며 무역 제품중량과 빼지 않는다."
+        ),
+        "strat": (
+            "원산지 이름으로 단가와 수율을 묶지 말고 세번(030617 vs 160521)과 학명을 계약서에 고정한다. "
+            "한–에콰도르 SECA 특혜는 발효·양허를 확인하기 전 견적에 넣지 않는다."
+        ),
+        "customBody": roles,
+        "unit": "역할 카드",
+    }
+
+    cheapest = min(SERIES_ORIGIN_ORDER, key=lambda name: facts[name]["unit"])
+    dearest = max(SERIES_ORIGIN_ORDER, key=lambda name: facts[name]["unit"])
+    w_windows = {
+        "id": "w_series_kr_windows",
+        "title": "한국 창구 물량 (톤)",
+        "subtitle": "2026년 1~6월 · HS 030617 원물과 160521 조제품 · 연환산 금지",
+        "chartType": "bar",
+        "pillar": "S3",
+        "telemetry": "SYNCED",
+        "syncDate": "관세청 2026년 1~6월",
+        "source": "관세청 nitemtrade HS×상대국 2024-01~2026-06",
+        "sourceQuote": (
+            f"year prefix 2026; hsCd 030617/160521; "
+            f"VN raw={int(raw['베트남']['imp_kg'])} prep={int(prepared['베트남']['imp_kg'])}"
+        ),
+        "sit": (
+            f"원물 물량은 중국 {float(cn['raw_t']):,.1f}톤, 베트남 {float(vn['raw_t']):,.1f}톤이다. "
+            f"조제품은 베트남 {float(vn['prep_t']):,.1f}톤, 태국 {float(th['prep_t']):,.1f}톤이다. "
+            f"인도 원물은 {float(india['raw_t']):,.1f}톤, 에콰도르는 {float(ec['raw_t']):,.1f}톤이다. "
+            "같은 원산지라도 세번이 갈리면 창구가 다르다."
+        ),
+        "strat": "베트남을 싼 원물로, 에콰도르를 한국 주력으로 가정하지 말고 세번별 물량으로 발주 창구를 나눈다.",
+        "xKey": "국가",
+        "bars": [
+            {"key": "원물", "name": "030617 원물", "color": "#38bdf8"},
+            {"key": "조제품", "name": "160521 조제품", "color": "#f59e0b"},
+        ],
+        "data": window_data,
+        "unit": "톤",
+        "yUnit": "톤",
+    }
+    w_unit = {
+        "id": "w_series_kr_unit",
+        "title": "한국 창구 단가 (달러/kg)",
+        "subtitle": "2026년 1~6월 HS 030617 신고액÷중량 · 조제품 단가와 섞지 않음",
+        "chartType": "bar",
+        "pillar": "S4",
+        "telemetry": "SYNCED",
+        "syncDate": "관세청 2026년 1~6월",
+        "source": "관세청 nitemtrade HS×상대국 2024-01~2026-06",
+        "sourceQuote": (
+            f"EC {float(ec['unit']):.4f} · IN {float(india['unit']):.4f} · "
+            f"CN {float(cn['unit']):.4f} · VN {float(vn['unit']):.4f} · "
+            f"TH {float(th['unit']):.4f} USD/kg"
+        ),
+        "sit": (
+            f"030617 단가는 {cheapest} {float(facts[cheapest]['unit']):.2f}달러/kg가 가장 낮고 "
+            f"{dearest} {float(facts[dearest]['unit']):.2f}달러/kg가 가장 높다. "
+            f"중국은 물량 1위지만 단가는 {float(cn['unit']):.2f}달러로 중간이다."
+        ),
+        "strat": "낮은 단가를 수율로 바꾸지 말고, 글레이즈·카운트·잔류 시험을 같은 로트에 붙인 뒤에만 비교한다.",
+        "xKey": "국가",
+        "bars": [{"key": "단가", "name": "030617 단가", "color": "#14b8a6"}],
+        "data": unit_data,
+        "unit": "달러/kg",
+        "yUnit": "달러/kg",
+    }
+    return w_roles, w_windows, w_unit
+
+
 def build_payload() -> tuple[dict[str, Any], dict[str, Decimal]]:
     _require_file(V3_PATH)
     v3 = json.loads(V3_PATH.read_text(encoding="utf-8"))
@@ -1455,9 +1772,10 @@ def build_payload() -> tuple[dict[str, Any], dict[str, Decimal]]:
     w08 = _processing_reversal_widget()
     w09 = _avanti_widget()
     w10, w14, globefish_facts = _globefish_widgets()
-    w11 = _cna_widget()
+    w11, cna_facts = _cna_widget()
     w12 = _infofish_widget()
     w13, kcs_facts = _kcs_widget()
+    w_roles, w_windows, w_unit = _series_widgets(fish_rows, cna_facts)
     w15 = _pinksheet_widget()
     w16 = _price_ladder_widget()
     w21 = _cert_landscape_widget()
@@ -1467,6 +1785,7 @@ def build_payload() -> tuple[dict[str, Any], dict[str, Decimal]]:
         w01,
         w02,
         w03,
+        w_roles,
         w04,
         inherited["w50_kfas_bft_pathogen"],
         inherited["w03_processing"],
@@ -1477,10 +1796,12 @@ def build_payload() -> tuple[dict[str, Any], dict[str, Decimal]]:
         w11,
         w12,
         w13,
+        w_windows,
         w14,
         w15,
         w16,
         inherited["w_kr_shrimp_origin_price"],
+        w_unit,
         inherited["w_proc2_kr_import_type"],
         inherited["w_india_shaphari"],
         inherited["w_vn_traceability_risk"],
@@ -1504,8 +1825,8 @@ def validate_payload(payload: Mapping[str, Any]) -> list[str]:
         return ["widgets is not a list"]
     if not isinstance(kpis, dict):
         return ["kpis is not an object"]
-    if len(widgets) != 21:
-        errors.append(f"widget count={len(widgets)}, expected 21")
+    if len(widgets) != EXPECTED_WIDGET_COUNT:
+        errors.append(f"widget count={len(widgets)}, expected {EXPECTED_WIDGET_COUNT}")
     if len(kpis) != 6:
         errors.append(f"KPI count={len(kpis)}, expected 6")
 
@@ -1571,7 +1892,11 @@ def run_verify() -> int:
             for error in integrity_errors:
                 print(f"integrity: FAIL | {error}")
         else:
-            print("integrity: PASS | widgets=21 | kpis=6 | pillars=S1:5,S2:4,S3:4,S4:5,S5:3 | LIVE=0")
+            pillars = ",".join(f"{key}:{EXPECTED_PILLARS[key]}" for key in sorted(EXPECTED_PILLARS))
+            print(
+                f"integrity: PASS | widgets={EXPECTED_WIDGET_COUNT} | kpis=6 | "
+                f"pillars={pillars} | LIVE=0"
+            )
         return 0 if all(result.passed for result in results) and not integrity_errors else 1
     except Exception as exc:
         print(f"verify: FAIL | {type(exc).__name__}: {exc}", file=sys.stderr)
