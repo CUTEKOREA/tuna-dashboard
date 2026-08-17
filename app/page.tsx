@@ -27,6 +27,7 @@ import CommandPalette from '../components/CommandPalette';
 import KeepAlivePanel from '../components/KeepAlivePanel';
 
 import { LongArmOctopusIcon } from '../components/SeafoodSidebarIcons';
+import { applyDensity, readStoredDensity } from '@/lib/cockpit-density';
 
 // ─── Dynamic imports (loaded on-demand per page) ───
 const MgoChartModal = dynamic(() => import('../components/MgoChartModal'));
@@ -106,13 +107,10 @@ export default function Home() {
   const [isMobileSidebarOpen, setIsMobileSidebarOpen] = useState(false);
 
   // 조종석 모드 — 전역 밀도 토글 (2026-08-17 스펙). 토큰 계층으로만 동작.
-  const [cockpitMode, setCockpitMode] = useState(() => {
-    if (typeof window === 'undefined') return false;
-    return window.localStorage.getItem('cockpit-mode') === 'on';
-  });
+  // 키·속성 이름은 lib/cockpit-density 가 갖는다. 여기 문자열을 다시 적으면 두 곳이 갈린다.
+  const [cockpitMode, setCockpitMode] = useState(readStoredDensity);
   useEffect(() => {
-    document.documentElement.setAttribute('data-density', cockpitMode ? 'cockpit' : 'default');
-    window.localStorage.setItem('cockpit-mode', cockpitMode ? 'on' : 'off');
+    applyDensity(cockpitMode);
   }, [cockpitMode]);
 
   // 다크 모드 — 결정 ①(라이트 기본, 다크는 토글 보존). data-v3='light' 스코프를 떼면
