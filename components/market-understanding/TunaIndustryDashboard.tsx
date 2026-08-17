@@ -15,8 +15,8 @@
  */
 'use client';
 
-import React, { useCallback, useMemo, useRef } from 'react';
-import { ArrowRight, BookOpen, Fish } from 'lucide-react';
+import React from 'react';
+import { BookOpen } from 'lucide-react';
 
 import {
   getChainStages,
@@ -43,15 +43,7 @@ import {
   BRIEFING_POINTS,
   getNarrative,
   SOURCE_NOTES,
-  type FactRow,
-  type StageNarrative,
 } from '@/lib/tuna-industry-content';
-import { TelemetryBadge } from '../TelemetryBadge';
-import TermTooltip from '../TermTooltip';
-import HeroZone from '../v2/HeroZone';
-import { HeroNowStrip } from '../v2/HeroNowStrip';
-import PillTabs, { type PillTab } from '../v2/PillTabs';
-import { useStageKey } from './useStageKey';
 import {
   AreaRankChart,
   BluefinSourceChart,
@@ -97,6 +89,10 @@ import {
   BrandMarketTable,
 } from './CompanyResearchTables';
 import TunaIndustryChart from './TunaIndustryChart';
+import CommodityIndustryDashboard, {
+  type ChartSlot,
+  type CommoditySpec,
+} from './CommodityIndustryDashboard';
 import ValueChainSpine from './ValueChainSpine';
 import styles from './TunaIndustryDashboard.module.css';
 
@@ -132,15 +128,6 @@ const ALL_STAGES: IndustryStage[] = [...CHAIN_STAGES, ...CROSS_STAGES];
 const WIDGETS_META = getTunaIndustryWidgetsMeta();
 
 /** 단계에 직접 붙는 자체 집계 도표. 큐레이션 위젯과 달리 원본을 직접 집계한 값이다. */
-interface ChartSlot {
-  title: string;
-  caption: string;
-  /** 텔레메트리 표기 — 자료마다 기준 시점이 다르므로 슬롯이 직접 들고 있는다 (L-09) */
-  telemetry: { status: 'STATIC' | 'SYNCED'; syncDate: string };
-  render: () => React.ReactNode;
-  /** 표·장시계열은 full(1열 1개). 없으면 그래프 기본 — 1열 2개. */
-  span?: 'full' | 'half';
-}
 
 const CATCH_SYNC = { status: 'STATIC' as const, syncDate: `${CATCH._meta.기준연도}년 확정` };
 const TRADE_SYNC = { status: 'STATIC' as const, syncDate: `${TRADE.요약.기준연도}년 확정` };
@@ -156,7 +143,25 @@ const PRICE_SYNC = {
   syncDate: PRICES.points.length > 0 ? String(PRICES.points[PRICES.points.length - 1].월) : '',
 };
 
-export const CATCH_CHART_SLOTS: Record<string, ChartSlot[]> = {
+/**
+ * 큐레이션 위젯을 차트 슬롯으로 옮긴다. 위젯 figure 가 슬롯 figure 와 다른 점은
+ * 끝에 붙는 출처 한 줄뿐이라 `ChartSlot.sourceLine` 으로 흡수한다.
+ */
+function widgetSlots(stageKey: string): ChartSlot[] {
+  const stage = ALL_STAGES.find((entry) => entry.key === stageKey);
+  return (stage?.widgets ?? []).map((widget) => ({
+    title: widget.title,
+    caption: widget.thesis ?? widget.methodology ?? '',
+    telemetry: {
+      status: widget.telemetry,
+      syncDate: widget.dataYear ? `${widget.dataYear}년 자료` : (widget.syncDate ?? undefined),
+    },
+    render: () => <TunaIndustryChart widget={widget} />,
+    sourceLine: `출처: ${widget.source ?? '출처 미표기'}`,
+  }));
+}
+
+const CATCH_BASE_SLOTS: Record<string, ChartSlot[]> = {
   s01: [
     {
       title: '어종 카드 — 무엇이 어떻게 쓰이는가',
@@ -537,398 +542,113 @@ export const CATCH_CHART_SLOTS: Record<string, ChartSlot[]> = {
   ],
 };
 
-/**
- * 서술 본문의 `**강조**` 구간만 굵게 만든다.
- * 마크다운 전체를 파싱하지 않는다 — 이 페이지가 쓰는 표기는 강조 하나뿐이고,
- * 파서를 들이면 콘텐츠에 HTML 을 흘려 넣을 수 있는 통로가 생긴다.
- */
-function renderEmphasis(text: string): React.ReactNode[] {
-  return text.split(/\*\*(.+?)\*\*/g).map((chunk, index) =>
-    index % 2 === 1 ? <strong key={index}>{chunk}</strong> : <React.Fragment key={index}>{chunk}</React.Fragment>,
-  );
-}
+/** 차트 슬롯 + 위젯 슬롯. 위젯은 차트 뒤에 이어 붙는다(기존 배치 유지). */
+export const CATCH_CHART_SLOTS: Record<string, ChartSlot[]> = Object.fromEntries(
+  ALL_STAGES.map((stage) => [
+    stage.key,
+    [...(CATCH_BASE_SLOTS[stage.key] ?? []), ...widgetSlots(stage.key)],
+  ]),
+);
 
-function FactTable({ rows }: { rows: FactRow[] }) {
+
+/** 참치에만 있는 구역 — 약어 사전. 골격은 위치만 알고 내용은 모른다. */
+function GlossarySection() {
   return (
-    <>
-      <div className={styles.factWrap}>
-      <table className={styles.factTable}>
-        <caption className={styles.factCaption}>
-          본문에 인용한 수치와 출처. 등급 A는 기관 1차문서 원문 확인, B는 기관 2차 인용, C는 업계 매체다.
-        </caption>
-        <thead>
-          <tr>
-            <th scope="col">항목</th>
-            <th scope="col">값</th>
-            <th scope="col">기준</th>
-            <th scope="col">출처</th>
-            <th scope="col">등급</th>
-          </tr>
-        </thead>
-        <tbody>
-          {rows.map((row, index) => (
-            <tr key={`${row.label}-${index}`}>
-              <th scope="row">
-                {row.label}
-                {row.note ? <span className={styles.factNote}>{row.note}</span> : null}
-              </th>
-              <td className={styles.factValue}>{row.value}</td>
-              <td>{row.asOf}</td>
-              <td>{row.source}</td>
-              <td>
-                <span className={styles.grade} data-grade={row.grade}>
-                  {row.grade}
-                </span>
-              </td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
-      </div>
-
-      {/* 좁은 화면용 — 같은 데이터를 목록으로 낸다.
-          표를 CSS 로 접으면 일부 브라우저에서 표 의미가 깨지므로 마크업을 따로 둔다. */}
-      <ul className={styles.factList}>
-        {rows.map((row, index) => (
-          <li key={`m-${row.label}-${index}`}>
-            <div className={styles.factHead}>
-              <span className={styles.factLabel}>{row.label}</span>
-              <span className={styles.grade} data-grade={row.grade}>
-                신뢰 {row.grade}
-              </span>
-            </div>
-            <p className={styles.factListValue}>{row.value}</p>
-            <p className={styles.factMeta}>
-              {row.asOf} · {row.source}
-            </p>
-            {row.note ? <p className={styles.factListNote}>{row.note}</p> : null}
+    <section className={styles.glossary} aria-labelledby="glossary-heading">
+      <h2 id="glossary-heading" className={styles.glossaryHeading}>
+        <BookOpen size={16} aria-hidden="true" />
+        용어 사전
+      </h2>
+      <p className={styles.glossaryIntro}>
+        참치 업계에서 쓰는 약어 {GLOSSARY.약어.length}개다. 한글이 있는 것은 이 페이지가 쓰는 표기이고,
+        없는 것은 아직 옮기지 않아 영문 그대로 둔 것이다.
+      </p>
+      <ul className={styles.glossaryList}>
+        {GLOSSARY.약어.map((row) => (
+          <li key={row.약어} className={styles.glossaryItem}>
+            <span className={styles.glossaryAbbr}>{row.약어}</span>
+            <span>
+              {row.한글 ? <span className={styles.glossaryKo}>{row.한글} </span> : null}
+              <span className={styles.glossaryEn}>{row.영문}</span>
+            </span>
           </li>
         ))}
       </ul>
-    </>
-  );
-}
-
-function StageSection({
-  stage,
-  narrative,
-  next,
-  onGo,
-  headingRef,
-}: {
-  stage: IndustryStage;
-  narrative: StageNarrative;
-  next?: IndustryStage;
-  onGo: (key: string) => void;
-  headingRef: React.RefObject<HTMLHeadingElement | null>;
-}) {
-  const catchCharts = CATCH_CHART_SLOTS[stage.key] ?? [];
-  // 2026-08-17 사용자 지시: 차트는 전부 사실표 아래로 — 본문 위 근거 레일 폐지
-  const rest = catchCharts;
-
-  return (
-    <section className={styles.stage} aria-labelledby={`stage-${stage.key}`}>
-      <header className={styles.stageHeader}>
-        <span className={styles.stageNumeral}>{narrative.numeral}</span>
-        <div>
-          <h2
-            id={`stage-${stage.key}`}
-            className={styles.stageTitle}
-            ref={headingRef}
-            tabIndex={-1}
-          >
-            {narrative.title}
-          </h2>
-          <p className={styles.stageQuestion}>{narrative.question}</p>
-        </div>
-      </header>
-
-      <p className={styles.lede}>{renderEmphasis(narrative.lede)}</p>
-
-      {narrative.facts[0] && (
-        <p className={styles.keyFact}>
-          <span className={styles.keyFactValue}>{narrative.facts[0].value}</span>
-          <span className={styles.keyFactLabel}>{narrative.facts[0].label}</span>
-        </p>
-      )}
-
-      <div className={styles.prose}>
-        {narrative.paragraphs.map((paragraph, index) => (
-          <p key={index}>{renderEmphasis(paragraph)}</p>
-        ))}
-      </div>
-
-      {narrative.terms.length > 0 && (
-        <div className={styles.termRow}>
-          <span className={styles.termRowLabel}>용어</span>
-          {narrative.terms.map((term) => (
-            <span key={term.term} className={styles.termChip}>
-              <TermTooltip term={term.term} description={term.description} />
-            </span>
-          ))}
-        </div>
-      )}
-
-      <FactTable rows={narrative.facts} />
-
-      {(rest.length > 0 || stage.widgets.length > 0) && (
-        <div className={styles.stageMore}>
-          <h3 className={styles.stageMoreHeading}>근거</h3>
-          {/* 차트 슬롯과 승격 위젯을 한 격자에 둔다. 나누면 마지막 반폭 그래프가
-              혼자 남고 다음 위젯이 아래로 떨어진다. */}
-          <div
-            className={
-              rest.length + stage.widgets.length >= 2 ? styles.catchGrid : styles.catchStack
-            }
-          >
-            {rest.map((slot) => (
-              <figure
-                key={slot.title}
-                className={styles.catchFigure}
-                data-span={slot.span === 'full' ? 'full' : 'half'}
-              >
-                <figcaption className={styles.catchCaption}>
-                  <div className={styles.catchTitleRow}>
-                    <strong>{slot.title}</strong>
-                    <TelemetryBadge
-                    variant="caption"
-                    status={slot.telemetry.status}
-                    syncDate={slot.telemetry.syncDate}
-                  />
-                  </div>
-                  <span>{slot.caption}</span>
-                </figcaption>
-                <div className={styles.chartFrame}>{slot.render()}</div>
-              </figure>
-            ))}
-            {stage.widgets.map((widget) => (
-              <figure
-                key={widget.id}
-                className={styles.catchFigure}
-                data-span="half"
-              >
-                <figcaption className={styles.catchCaption}>
-                  <div className={styles.catchTitleRow}>
-                    <strong>{widget.title}</strong>
-                    <TelemetryBadge
-                      variant="caption"
-                      status={widget.telemetry}
-                      syncDate={widget.dataYear ? `${widget.dataYear}년 자료` : (widget.syncDate ?? undefined)}
-                    />
-                  </div>
-                  <span>{widget.thesis ?? widget.methodology ?? ''}</span>
-                </figcaption>
-                <div className={styles.chartFrame}>
-                  <TunaIndustryChart widget={widget} />
-                </div>
-                <figcaption className={styles.catchSourceLine}>
-                  출처: {widget.source ?? '출처 미표기'}
-                </figcaption>
-              </figure>
-            ))}
-          </div>
-        </div>
-      )}
-
-      {next && (
-        <button type="button" className={styles.stageNext} onClick={() => onGo(next.key)}>
-          <span className={styles.stageNextLabel}>다음</span>
-          <span className={styles.stageNextTitle}>
-            {getNarrative(next.key)?.numeral ?? ''} {next.label}
-          </span>
-          <ArrowRight size={15} aria-hidden="true" />
-        </button>
-      )}
     </section>
   );
 }
+
+const SPEC: CommoditySpec = {
+  key: 'tuna',
+  title: '참치',
+  subtitle: '참치 산업 해부 · 바다에서 식탁까지 — 밸류체인 7단계와 그것을 관통하는 3개 축',
+  accent: '#0e7490',
+  primaryKpi: {
+    label: '세계 주요 상업 참치 어획량',
+    value: CATCH.요약.세계어획량,
+    unit: '(톤)',
+    accent: '#0e7490',
+  },
+  secondaryKpis: [
+    { label: '서·중부태평양 비중', value: CATCH.요약.최대해역비중 ?? 0, unit: '(%)', decimals: 2 },
+    { label: '한국 어획량', value: CATCH.요약.한국어획량 ?? 0, unit: '(톤)' },
+    { label: '주요 상업어종', value: CATCH.요약.어종수, unit: '(종)' },
+  ],
+  stripItems: [
+    {
+      now: true,
+      eyebrow: '기준',
+      title: '세계 어획량',
+      body: `${CATCH.요약.세계어획량.toLocaleString('ko-KR')} (톤)`,
+    },
+    {
+      eyebrow: '해역',
+      title: '서·중부태평양',
+      body: `${(CATCH.요약.최대해역비중 ?? 0).toLocaleString('ko-KR', { maximumFractionDigits: 2 })} (%)`,
+    },
+    {
+      eyebrow: '한국',
+      title: '국내 어획량',
+      body: `${(CATCH.요약.한국어획량 ?? 0).toLocaleString('ko-KR')} (톤)`,
+    },
+  ],
+  // 참치 브리핑은 «결론 + 부연» 두 층이다. headline 이 굵은 앞줄을 그대로 살린다.
+  briefing: BRIEFING_POINTS.map((point) => ({
+    stage: '',
+    headline: point.headline,
+    text: point.detail,
+  })),
+  narratives: ALL_STAGES.map(
+    (stage) =>
+      getNarrative(stage.key) ?? {
+        key: stage.key,
+        numeral: '',
+        title: stage.label,
+        question: '',
+        lede: '',
+        paragraphs: [],
+        facts: [],
+        terms: [],
+      },
+  ),
+  chartSlots: CATCH_CHART_SLOTS,
+  sourceNotes: SOURCE_NOTES,
+  sourceMeta: [
+    `어획 집계 · ${CATCH._meta.출처} · 기준 ${CATCH._meta.기준연도}년 · 갱신 ${CATCH._meta.생성일}`,
+    `위젯 ${WIDGETS_META.선별} (${WIDGETS_META.원본})`,
+  ].join(' · '),
+  insets: {
+    AfterTabs: ({ activeKey, go }) => <ValueChainSpine activeKey={activeKey} onSelect={go} />,
+    AfterStage: GlossarySection,
+  },
+};
 
 export interface TunaIndustryDashboardProps {
   heroOnly?: boolean;
 }
 
-export default function TunaIndustryDashboard({ heroOnly = false }: TunaIndustryDashboardProps) {
-  const stageKeys = useMemo(() => ALL_STAGES.map((stage) => stage.key), []);
-  const [activeKey, setStage] = useStageKey(stageKeys, CHAIN_STAGES[0]?.key ?? 's01');
-  const headingRef = useRef<HTMLHeadingElement | null>(null);
-
-  const go = useCallback((key: string) => {
-    setStage(key);
-    requestAnimationFrame(() => {
-      const heading = headingRef.current;
-      if (!heading) return;
-      const reduce =
-        typeof window !== 'undefined' &&
-        window.matchMedia?.('(prefers-reduced-motion: reduce)').matches;
-      heading.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'start' });
-      heading.focus({ preventScroll: true });
-    });
-  }, [setStage]);
-
-  const tabs: PillTab[] = useMemo(
-    () =>
-      ALL_STAGES.map((stage) => {
-        const narrative = getNarrative(stage.key);
-        return {
-          key: stage.key,
-          // 탭에는 단계 이름만 싣고 부제(「— …」)는 뺀다. 열 개가 한 줄에 안 들어가고,
-          // 부제를 단 단계 수가 품목마다 달라 탭 폭이 들쭉날쭉해진다. 부제는 바로 아래
-          // 단계 머리글이 전문으로 보여주므로 여기서 빼도 잃는 정보가 없다.
-          label: `${narrative?.numeral ?? ''} ${(narrative?.title ?? stage.label).split(' — ')[0]}`.trim(),
-        };
-      }),
-    [],
-  );
-
-  const activeStage = ALL_STAGES.find((stage) => stage.key === activeKey) ?? ALL_STAGES[0];
-  const activeNarrative = getNarrative(activeStage.key);
-  const nextStage = ALL_STAGES[ALL_STAGES.indexOf(activeStage) + 1];
-
-  const hero = (
-    <HeroZone
-      variant="kpi"
-      title="참치"
-      subtitle="참치 산업 해부 · 바다에서 식탁까지 — 밸류체인 7단계와 그것을 관통하는 3개 축"
-      primaryKpi={{
-        label: '세계 주요 상업 참치 어획량',
-        value: CATCH.요약.세계어획량,
-        unit: '(톤)',
-        accent: '#0e7490',
-      }}
-      secondaryKpis={[
-        {
-          label: '서·중부태평양 비중',
-          value: CATCH.요약.최대해역비중 ?? 0,
-          unit: '(%)',
-          decimals: 2,
-        },
-        {
-          label: '한국 어획량',
-          value: CATCH.요약.한국어획량 ?? 0,
-          unit: '(톤)',
-        },
-        {
-          label: '주요 상업어종',
-          value: CATCH.요약.어종수,
-          unit: '(종)',
-        },
-      ]}
-      minHeight={360}
-      strip={(
-        <HeroNowStrip
-          items={[
-            {
-              now: true,
-              eyebrow: '기준',
-              title: '세계 어획량',
-              body: `${CATCH.요약.세계어획량.toLocaleString('ko-KR')} (톤)`,
-            },
-            {
-              eyebrow: '해역',
-              title: '서·중부태평양',
-              body: `${(CATCH.요약.최대해역비중 ?? 0).toLocaleString('ko-KR', { maximumFractionDigits: 2 })} (%)`,
-            },
-            {
-              eyebrow: '한국',
-              title: '국내 어획량',
-              body: `${(CATCH.요약.한국어획량 ?? 0).toLocaleString('ko-KR')} (톤)`,
-            },
-          ]}
-        />
-      )}
-    />
-  );
-
-  if (heroOnly) return hero;
-
-  return (
-    <div className={styles.page} data-testid="tuna-industry-dashboard" data-commodity="tuna">
-      {hero}
-
-      <section className={styles.briefing} aria-labelledby="briefing-heading">
-        <h2 id="briefing-heading" className={styles.briefingHeading}>
-          <BookOpen size={16} aria-hidden="true" />
-          30초 브리핑
-        </h2>
-        <p className={styles.briefingIntro}>
-          아래로 내려가지 않아도 되는 사람을 위한 요약이다. 각 항목은 사슬의 한 단계에서 나온다.
-        </p>
-        <ol className={styles.briefingList}>
-          {BRIEFING_POINTS.map((point) => (
-            <li key={point.headline}>
-              <strong>{point.headline}</strong>
-              <span>{point.detail}</span>
-            </li>
-          ))}
-        </ol>
-      </section>
-
-      <nav className={styles.tabNav} aria-label="밸류체인 단계 이동">
-        <PillTabs
-          tabs={tabs}
-          activeKey={activeKey}
-          onChange={go}
-          ariaLabel="밸류체인 단계"
-          tabIdPrefix="tuna-industry-tab"
-          panelIdPrefix="tuna-industry-panel"
-          wrap
-        />
-      </nav>
-
-      <ValueChainSpine activeKey={activeKey} onSelect={go} />
-
-      {activeNarrative ? (
-        <StageSection
-          stage={activeStage}
-          narrative={activeNarrative}
-          next={nextStage}
-          onGo={go}
-          headingRef={headingRef}
-        />
-      ) : (
-        <p className={styles.missing}>이 단계의 서술이 아직 준비되지 않았습니다.</p>
-      )}
-
-      {/* 용어 사전 — 이 페이지의 약어를 한자리에 모은다.
-          위젯 라벨의 용어가 표류하지 않게 하는 것이 이 절의 목적이다. */}
-      <section className={styles.glossary} aria-labelledby="glossary-heading">
-        <h2 id="glossary-heading" className={styles.glossaryHeading}>
-          <BookOpen size={16} aria-hidden="true" />
-          용어 사전
-        </h2>
-        <p className={styles.glossaryIntro}>
-          참치 업계에서 쓰는 약어 {GLOSSARY.약어.length}개다. 한글이 있는 것은 이 페이지가 쓰는 표기이고,
-          없는 것은 아직 옮기지 않아 영문 그대로 둔 것이다.
-        </p>
-        <ul className={styles.glossaryList}>
-          {GLOSSARY.약어.map((row) => (
-            <li key={row.약어} className={styles.glossaryItem}>
-              <span className={styles.glossaryAbbr}>{row.약어}</span>
-              <span>
-                {row.한글 ? <span className={styles.glossaryKo}>{row.한글} </span> : null}
-                <span className={styles.glossaryEn}>{row.영문}</span>
-              </span>
-            </li>
-          ))}
-        </ul>
-      </section>
-
-      <section className={styles.sources} aria-labelledby="sources-heading">
-        <h2 id="sources-heading" className={styles.sourcesHeading}>
-          <Fish size={16} aria-hidden="true" />
-          출처와 한계
-        </h2>
-        <ul className={styles.sourceList}>
-          {SOURCE_NOTES.map((note) => (
-            <li key={note}>{note}</li>
-          ))}
-        </ul>
-        <p className={styles.sourceMeta}>
-          어획 집계 · {CATCH._meta.출처} · 기준 {CATCH._meta.기준연도}년 · 갱신 {CATCH._meta.생성일}
-          {' · '}
-          위젯 {WIDGETS_META.선별} ({WIDGETS_META.원본})
-        </p>
-      </section>
-    </div>
-  );
+export default function TunaIndustryDashboard({
+  heroOnly = false,
+}: TunaIndustryDashboardProps) {
+  return <CommodityIndustryDashboard spec={SPEC} heroOnly={heroOnly} />;
 }

@@ -1,3 +1,11 @@
+> 🧩 **2026-08-17 21:35 KST — 참치 대시보드도 공용 골격으로 통합 (다섯 품목 전부 완료)** [CC]:
+> - **참치 934줄 → 654줄.** 오징어(677→394)에 이어 마지막 자체 구현이 사라졌다. 이제 다섯 품목이 모두 `CommodityIndustryDashboard` 를 쓴다 — 단계 내비·조종석 보조 지표 같은 변경이 **한 곳**에서 끝난다.
+> - 앞 세션에서 「참치는 갈라진 지점 셋이 전부 참치에만 있어 보류」로 판단했는데, 소비자 하나뿐인 prop 을 셋 만드는 대신 **`insets` 하나로 모았다.** 골격은 위치만 알고 내용은 모른다.
+> - **`insets` 는 노드가 아니라 컴포넌트 타입으로 받는다.** 처음엔 `spec.insets({activeKey, go})` 처럼 함수로 받았는데 린터가 「Cannot access refs during render」로 잡았다 — `go` 가 제목 ref 로 스크롤하기 때문이다. JSX 로 그리면 정상 렌더 경로다. **린터가 옳았다.**
+> - 브리핑은 `BriefingPoint.headline` 을 옵션으로 더해 참치의 «결론 + 부연» 두 층 마크업을 그대로 살렸다. 기존 품목은 headline 이 없어 화면 불변(기존 렌더 테스트 44건 그대로 통과).
+> - **바뀐 DOM 은 넷뿐이고 전부 확인했다** — aria id 12줄(`briefing-heading`→`tuna-briefing-heading` 등, 내부 참조라 테스트 무관), 출처 아이콘 11줄(물고기→물결, 장식용·다른 품목과 통일), 근거표 캡션 문구(공용이 더 정확), 다음 단계 이름(`02 어획`→`02 어획 — 하나가 아니라 두 산업`, 전문 표기). **잃은 정보 없음.**
+> - 소스 문자열(`rest.length + stage.widgets.length`)을 검사하던 테스트를 **실제 배치 검사**로 바꿨다. 위젯이 슬롯으로 합쳐졌으니 그 문자열은 이제 존재하지 않는다.
+> - `npm run verify` 통과 (796/798, 경고 5건 = main 베이스라인).
 > 🚀 **2026-08-17 — /shrimp 6개국 창구 라이브** [Grok]:
 > - PR [#596](https://github.com/CUTEKOREA/tuna-dashboard/pull/596) squash `1b71ccd`. Gate `32028157303` 성공.
 > - Vercel production `dpl_CwEn36myK9JagrEbJeKcMDXTZ15w` READY · alias `https://leedonggun.co.kr`.
