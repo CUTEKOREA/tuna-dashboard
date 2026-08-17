@@ -227,6 +227,8 @@ export default function UnloadingAnalytics({
       const statusMeta = getAnalyticsStatus(v.status || '');
       const workDays = getWorkingDays(v.timeline || []);
       const totalDays = statusMeta.comparable ? getTotalDays(v) : 0;
+      // ⚠ 분자가 actualTotal(실측 누계)라 avgPerWorkedDay(일일 보고 합)와 조정분만큼 다를 수 있다 —
+      // 능력 비교(작업일 분모) 정의는 lib/unloading-operations SSOT 참조
       const dailyAvg = workDays > 0 ? v.actualTotal / workDays : 0;
 
       // Compute total work hours to get MT/hr

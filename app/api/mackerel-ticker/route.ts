@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server';
 import { HS_CODES } from '../_shared/hs-codes';
 import { optionalEnv } from '../_shared/env';
+import { usdPerTonFromKcs } from '../_shared/price-scale';
 import { pctChange } from '../../../lib/metrics';
 
 /**
@@ -120,9 +121,7 @@ async function fetchKCS_CIF(): Promise<{ cifUsdTon: number; change: number; isLi
           const { amt, wgt } = monthlyTotals[latestMonth];
           
           if (wgt > 0) {
-            let pricePerTon = Math.round((amt * 1000) / (wgt / 1000));
-            if (pricePerTon > 10000) pricePerTon = Math.round(pricePerTon / 1000);
-            if (pricePerTon < 100) pricePerTon = Math.round(pricePerTon * 1000);
+            const pricePerTon = usdPerTonFromKcs(amt, wgt) ?? 0;
             return { cifUsdTon: pricePerTon, change: -1.2, isLive: true };
           }
         }
