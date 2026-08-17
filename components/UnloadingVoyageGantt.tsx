@@ -1,8 +1,8 @@
 /**
- * 하역 항차 기간 바 — 디자인 랩 7라운드 시안 B.
- * 선박별 가로 바를 월 눈금 시간축 위에 얹어 «항차들이 시간축 위 어디에 있는가»를 읽힌다.
- * 바 클릭 = 상단 누계·일평균·잔여 KPI 전환(r6 지휘형 상단 유지).
- * 데이터·연도 보정 로직은 r6 UnloadingHeroCommand 계승. 실응답만 사용하고 실패는 정직하게 표기한다.
+ * 하역 항차 기간 바 — 디자인 랩 7라운드 최종 채택본 (r7-B ★4 «표현방식 마음에 듦», 2026-08-17).
+ * 선박별 가로 바를 월 눈금 시간축 위에 얹는다. 바 클릭 = 상단 누계·일평균·잔여 KPI 전환.
+ * 실페이지(하역 현황)는 static+DB 병합 13척을 props로 주입 — «13척 전부» 판정 반영.
+ * props 없으면 /api/unloading-db 단독(9척) — 갤러리 미리보기 경로.
  */
 'use client';
 
@@ -11,7 +11,7 @@ import {
   LineChart, Line, XAxis, YAxis, ReferenceDot,
   Tooltip as RechartsTooltip,
 } from 'recharts';
-import { getVesselStatusKind, type VesselStatusKind } from '../../../lib/unloading-operations';
+import { getVesselStatusKind, type VesselStatusKind } from '../lib/unloading-operations';
 
 /* 상태(하역중/대기/완료)는 증감이 아니므로 증감색 토큰을 쓰지 않는다 — 진행 중만 액센트, 나머지 muted */
 const ACCENT = 'var(--chart-s1, #509ee3)';
@@ -166,21 +166,31 @@ function Stat({ label, value }: { label: string; value: string }) {
   );
 }
 
-export default function UnloadingVoyageGantt() {
-  const [vessels, setVessels] = useState<Vessel[] | null>(null);
+export default function UnloadingVoyageGantt({ vesselsById }: {
+  /** 호출부가 병합 데이터를 주면 fetch 없이 그대로 그린다 (실페이지 13척 경로) */
+  vesselsById?: Record<string, VesselRaw>;
+} = {}) {
+  const [fetched, setFetched] = useState<Vessel[] | null>(null);
   const [failed, setFailed] = useState(false);
   const [selectedId, setSelectedId] = useState<string | null>(null);
   const [hoverId, setHoverId] = useState<string | null>(null);
 
+  const injected = useMemo(
+    () => (vesselsById ? toVessels(vesselsById) : null),
+    [vesselsById],
+  );
+  const vessels = injected ?? fetched;
+
   useEffect(() => {
+    if (vesselsById) return;
     fetch('/api/unloading-db', { cache: 'no-store' })
       .then((res) => res.json())
       .then((json: { success?: boolean; data?: Record<string, VesselRaw> }) => {
         const list = json?.success && json.data ? toVessels(json.data) : [];
-        if (list.length === 0) setFailed(true); else setVessels(list);
+        if (list.length === 0) setFailed(true); else setFetched(list);
       })
       .catch(() => setFailed(true));
-  }, []);
+  }, [vesselsById]);
 
   const axis = useMemo(() => (vessels ? buildAxis(vessels) : null), [vessels]);
 

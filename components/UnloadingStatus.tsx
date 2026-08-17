@@ -7,6 +7,7 @@ import TermTooltip from './TermTooltip';
 
 import { ChartPatternDefs } from './ChartPatterns';
 import UnloadingHistoryBoundary from './UnloadingHistoryBoundary';
+import UnloadingVoyageGantt from './UnloadingVoyageGantt';
 import HeroZone from './v2/HeroZone';
 import PillTabs from './v2/PillTabs';
 import VesselTopSVG from './v2/VesselTopSVG';
@@ -1262,6 +1263,9 @@ export default function UnloadingStatus({ heroOnly = false }: { heroOnly?: boole
     return <div className={styles.container}>{unloadingHero}</div>;
   }
 
+  /* 디자인 랩 r7-B 채택본 — 항차 기간 바. static+DB 병합 전체(13척)를 주입 («13척 전부» 판정) */
+  const voyageGantt = <UnloadingVoyageGantt vesselsById={data} />;
+
   if (apiError) {
     return (
       <div style={{ padding: '40px', textAlign: 'center', color: 'var(--w-red-500)', background: 'rgba(var(--w-red-500-rgb), 0.1)', borderRadius: '8px', border: '1px solid var(--w-red-500)', margin: '20px' }}>
@@ -1312,6 +1316,8 @@ export default function UnloadingStatus({ heroOnly = false }: { heroOnly?: boole
 
       {/* 1. Macro View Header */}
       {unloadingHero}
+
+      {voyageGantt}
 
       <section className={styles.decisionPanel} aria-labelledby="unloading-decision-title">
         <div className={styles.decisionLead}>
