@@ -27,32 +27,53 @@
   font-weight: 700;
 }
 
-.pill {
-  padding: 5px 12px;
+/* 세그먼트 컨트롤 (r5-B 채택) — 트랙 + 슬라이딩 썸 */
+.track {
+  position: relative;
+  display: inline-grid;
+  padding: 3px;
   border: 1px solid var(--dsc-surface-border);
+  border-radius: 10px;
+  background: var(--dsc-bg-deep, #f1f2f4);
+}
+
+.thumb {
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  height: calc(100% - 6px);
   border-radius: 8px;
+  background: var(--dsc-surface, #ffffff);
+  box-shadow: 0 1px 4px rgba(16, 24, 40, 0.14), 0 0 0 1px var(--dsc-surface-border);
+  transition: transform 180ms ease;
+}
+
+.segment {
+  position: relative;
+  z-index: 1;
+  padding: 5px 14px;
+  border: none;
   background: transparent;
   color: var(--dsc-ink-muted, var(--text-muted));
   font-size: 0.8rem;
   font-weight: 400;
+  white-space: nowrap;
   cursor: pointer;
-  transition: background-color 150ms ease, color 150ms ease, border-color 150ms ease;
+  transition: color 150ms ease;
 }
 
-.pill:hover {
-  border-color: var(--accent-primary);
+.segment:hover {
   color: var(--dsc-ink, var(--text-main));
 }
 
-.pill:focus-visible {
+.segment:focus-visible {
   outline: 2px solid var(--accent-primary);
   outline-offset: 1px;
+  border-radius: 8px;
 }
 
-.pillActive {
-  border-color: var(--accent-primary);
-  background: rgba(80, 158, 227, 0.10);
-  color: var(--accent-primary);
+.segmentActive {
+  color: var(--dsc-ink, var(--text-main));
   font-weight: 700;
 }
 

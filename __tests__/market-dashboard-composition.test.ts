@@ -34,7 +34,9 @@ describe('market dashboard composition', () => {
     // 2026-08-15: 정적 Atuna 월간 카드 4장 제거 — 데일리 브리핑 위젯과 중복 (사용자 지시)
     expect(source).not.toContain('Atuna 2026.08 폴더 (05_ATUNA_뉴스·가격)');
     expect(source).not.toContain('태국산 염수 캔 25%, 에콰도르산은 예외');
-    expect(source).toContain('<TunaDailyBriefingWidget />');
+    // 2026-08-17 r5-A 채택: 신문 1면형이 데일리 브리핑 위젯을 대체
+    expect(source).toContain('<NewsFrontPage />');
+    expect(source).not.toContain('<TunaDailyBriefingWidget />');
     expect(source).not.toContain('7/23~27 (확인 기사 7/23~24)');
   });
 });

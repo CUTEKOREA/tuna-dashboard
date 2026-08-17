@@ -107,31 +107,30 @@ describe('daily tuna briefing sync', () => {
 describe('daily tuna briefing widget', () => {
   // 데이터는 매일 sync로 갱신된다 — 특정 날짜의 문구를 고정하지 말고
   // lib/data/daily-briefing.ts 가 노출하는 현재 데이터에서 기대값을 유도한다.
-  it('renders the synced date and first digest headline on the market dashboard', () => {
+  // 2026-08-17 r5-A 채택: 신문 1면형(NewsFrontPage)이 데일리 브리핑 위젯을 대체
+  it('renders the front-page news with date line and lead headline on the market dashboard', () => {
     const markup = renderToStaticMarkup(React.createElement(MarketDashboard));
     const displayDate = dailyBriefing.date.replaceAll('-', '.');
 
-    expect(markup).toContain(`오늘의 참치 뉴스 · ${displayDate}`);
-    expect(markup).toContain(escapeHtml(dailyBriefing.digest[0].title));
-    expect(markup).toContain('>SYNCED<');
-    expect(markup).toContain('data-testid="daily-briefing-articles"');
+    expect(markup).toContain('오늘의 참치 뉴스');
+    expect(markup).toContain(`기준일 ${displayDate}`);
+    expect(markup).toContain(escapeHtml(dailyBriefing.articles[0].titleKo));
     expect(markup).not.toContain('저가 수요는 견고하지만 관세 부담은 공급망 안에서 재배분');
     expect(markup).not.toContain('태국 원어 수요 둔화와 연승선 투명성 요구를 동시에 관리');
   });
 
-  it('renders every digest item and article accordion closed by default', () => {
+  it('renders every article headline with full text collapsed by default', () => {
     const markup = renderToStaticMarkup(React.createElement(MarketDashboard));
 
-    // V3 A안 (2026-08-15): 1번 다이제스트는 리드 헤드라인으로 승격 — 목록에는 나머지만
-    expect(countOccurrences(markup, 'data-testid="daily-briefing-lead"')).toBe(1);
-    expect(
-      countOccurrences(markup, 'data-testid="daily-briefing-digest-item"'),
-    ).toBe(dailyBriefing.digest.length - 1);
-    expect(
-      countOccurrences(markup, 'data-testid="daily-briefing-article"'),
-    ).toBe(dailyBriefing.articles.length);
-    expect(dailyBriefing.digest.length).toBeGreaterThanOrEqual(3);
-    expect(markup).not.toMatch(/<details[^>]*\sopen(?:=|>)/);
+    // 신문 1면형: 리드 1건 + 나머지 기사 전부 제목·첫 문장 상시 노출, 전문은 클릭 펼침
+    for (const article of dailyBriefing.articles) {
+      expect(markup).toContain(escapeHtml(article.titleKo));
+    }
+    expect(markup).toContain('계속 읽기');
+    // 기본 상태에서 리드 2번째 문단(전문)은 미노출
+    const leadSecond = dailyBriefing.articles[0].paragraphs[1];
+    if (leadSecond) expect(markup).not.toContain(escapeHtml(leadSecond));
+    expect(dailyBriefing.articles.length).toBeGreaterThanOrEqual(3);
   });
 
 });

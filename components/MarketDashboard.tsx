@@ -11,7 +11,7 @@ import {
 } from 'recharts';
 import SeafoodStockWidget from './SeafoodStockWidget';
 import HeroMarketCommand from './HeroMarketCommand';
-import TunaDailyBriefingWidget from './TunaDailyBriefingWidget';
+import NewsFrontPage from './NewsFrontPage';
 import HeroZone from './v2/HeroZone';
 import FilterBar from './v2/FilterBar';
 import { VolumeBarChart, type VolumeBarPoint } from './charts/VolumeBar';
@@ -477,9 +477,9 @@ export default function MarketDashboard({ heroOnly = false }: { heroOnly?: boole
       </section>
 
 
-      {/* ROW 4: DAILY TUNA BRIEFING */}
+      {/* ROW 4: 오늘의 참치 뉴스 — 신문 1면형 (디자인 랩 r5-A 채택) */}
       <section>
-        <TunaDailyBriefingWidget />
+        <NewsFrontPage />
       </section>
 
     </div>

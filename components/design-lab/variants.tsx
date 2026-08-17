@@ -7,10 +7,8 @@
 
 import React, { useEffect, useState } from 'react';
 import HeroMarketCommand from '../HeroMarketCommand';
-import NewsFrontPage from './r5/NewsFrontPage';
-import NewsWire from './r5/NewsWire';
-import FilterUnderline from './r5/FilterUnderline';
-import FilterSegment from './r5/FilterSegment';
+import NewsFrontPage from '../NewsFrontPage';
+import FilterBar from '../v2/FilterBar';
 import { type AtunaPriceRow } from '../../lib/data/atuna-price-summary';
 
 export interface DesignVariant {
@@ -70,33 +68,38 @@ export const DESIGN_VARIANTS: DesignVariant[] = [
     note: '4라운드 수렴 결과. 실페이지에 반영 — 추가 지적은 여기 코멘트로',
     render: () => <AdoptedHero />,
   },
-  // r5 (2026-08-17): 뉴스·필터 다변화 라운드 — 현행(★3)은 실페이지가 기준선, 갤러리는 대안 4종
+  // r5 판정: 뉴스 A ★4·필터 B ★4 — 채택, 실페이지 반영. 갤러리는 채택본만 (추가 지적 수집용)
   {
-    id: 'news-r5a',
-    title: '뉴스 r5-A: 신문 1면형',
+    id: 'news-adopted',
+    title: '뉴스 최종 채택본 (r5-A 신문 1면형 · 시장 동향 반영됨)',
     round: 5,
-    note: '리드 초대형 헤드라인+첫 문단, 임팩트 넘버 세로 스택, 나머지 2단 컬럼 전부 펼침',
+    note: '승격 시 기사 클릭 = 전문 펼침 추가. 추가 지적은 여기 코멘트로',
     render: () => <NewsFrontPage />,
   },
   {
-    id: 'news-r5b',
-    title: '뉴스 r5-B: 와이어형',
+    id: 'filter-adopted',
+    title: '필터 최종 채택본 (r5-B 세그먼트형 · FilterBar 반영됨)',
     round: 5,
-    note: '임팩트 넘버 스트립 + 기사 전체 시간순 테이블. 밀도 지향, 행 hover 리프트',
-    render: () => <NewsWire />,
-  },
-  {
-    id: 'filter-r5a',
-    title: '필터 r5-A: 언더라인 탭형',
-    round: 5,
-    note: '활성 = 액센트 굵은 언더라인 + 900 웨이트 (pill 대비 잉크 절약형)',
-    render: () => <FilterUnderline />,
-  },
-  {
-    id: 'filter-r5b',
-    title: '필터 r5-B: 세그먼트형',
-    round: 5,
-    note: '트랙 안에서 활성 배경이 슬라이딩. 흰 배경+잉크 = 눈에 띄게(취향 ②)',
-    render: () => <FilterSegment />,
+    note: '실페이지 FilterBar 내부가 세그먼트로 교체됨. 미리보기는 더미 상태',
+    render: () => <FilterAdoptedPreview />,
   },
 ];
+
+function FilterAdoptedPreview() {
+  const [period, setPeriod] = useState('all');
+  const [grain, setGrain] = useState('week');
+  return (
+    <FilterBar
+      periodOptions={[
+        { key: '3m', label: '3개월' }, { key: '6m', label: '6개월' },
+        { key: '1y', label: '1년' }, { key: 'all', label: '전체' },
+      ]}
+      period={period}
+      onPeriodChange={setPeriod}
+      grainOptions={[{ key: 'week', label: '주간' }, { key: 'month', label: '월간' }]}
+      grain={grain}
+      onGrainChange={setGrain}
+      scopeNote="시안 미리보기 — 더미 상태"
+    />
+  );
+}
