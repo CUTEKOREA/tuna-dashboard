@@ -9,6 +9,7 @@ const nextConfig = {
   outputFileTracingIncludes: {
     '/api/atuna-prices': ['./data/atuna_prices.json'],
     '/api/atuna-daily': ['./data/atuna_daily/**/*'],
+    '/api/cron/weekly-briefing': ['./data/atuna_prices.json', './public/data/unloading/local_db.json'],
   },
   async rewrites() {
     return [

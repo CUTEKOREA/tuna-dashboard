@@ -1,3 +1,11 @@
 {
-  "regions": ["icn1"]
+  "regions": [
+    "icn1"
+  ],
+  "crons": [
+    {
+      "path": "/api/cron/weekly-briefing",
+      "schedule": "0 23 * * 0"
+    }
+  ]
 }
