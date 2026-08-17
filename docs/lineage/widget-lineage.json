@@ -1,8 +1,8 @@
 {
  "_meta": {
   "entry": "app/page.tsx",
-  "files": 149,
-  "widgets": 100,
+  "files": 150,
+  "widgets": 101,
   "dataFiles": 58,
   "generator": "scripts/widget_lineage.py"
  },
@@ -500,6 +500,10 @@
    "dataFiles": [
     "data/gmts_dashboard.json"
    ]
+  },
+  "components/market-understanding/CockpitExtra.tsx": {
+   "dataModules": [],
+   "dataFiles": []
   },
   "components/market-understanding/CommodityCharts.tsx": {
    "dataModules": [

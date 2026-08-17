@@ -65,6 +65,14 @@ export interface ChartSlot {
    * 없으면 그래프 기본값 — 1열에 2개.
    */
   span?: 'full' | 'half';
+  /**
+   * 조종석 모드에서만 차트 아래 붙는 보조 수치 (스펙 cockpit-mode-design §3, 2단계).
+   *
+   * **그 차트가 이미 쓰는 배열에서 세거나 고른 값만** 넣는다. 다른 출처를 끌어오거나
+   * 비율을 새로 계산하면 아무도 검수하지 않는 수치가 화면에 생긴다.
+   * 노출은 `CockpitOnly` 가 CSS 로 가르므로 여기서 모드를 검사하지 않는다.
+   */
+  cockpitExtra?: () => React.ReactNode;
 }
 
 /**
@@ -181,6 +189,7 @@ function ChartFigure({ slot }: { slot: ChartSlot }) {
         <span>{slot.caption}</span>
       </figcaption>
       <div className={styles.chartFrame}>{slot.render()}</div>
+      {slot.cockpitExtra?.()}
     </figure>
   );
 }
@@ -303,11 +312,19 @@ export default function CommodityIndustryDashboard({
     });
   }, [setStage]);
 
+  /**
+   * 탭에는 단계 이름만 싣고 부제(「— …」)는 뺀다.
+   *
+   * 부제를 그대로 넣으면 새우는 라벨이 135자, 오징어는 132자가 되어 열 개가 한 줄에
+   * 들어가지 않는다. 게다가 품목마다 부제를 단 단계 수가 달라(오징어는 10개 중 3개)
+   * 탭 폭이 들쭉날쭉해진다. 부제는 바로 아래 단계 머리글이 전문으로 보여주므로
+   * 여기서 빼도 잃는 정보가 없다.
+   */
   const tabs: PillTab[] = useMemo(
     () =>
       spec.narratives.map((narrative) => ({
         key: narrative.key,
-        label: `${narrative.numeral} ${narrative.title}`,
+        label: `${narrative.numeral} ${narrative.title.split(' — ')[0]}`,
       })),
     [spec.narratives],
   );
@@ -375,6 +392,7 @@ export default function CommodityIndustryDashboard({
           ariaLabel="밸류체인 단계"
           tabIdPrefix={`${spec.key}-industry-tab`}
           panelIdPrefix={`${spec.key}-industry-panel`}
+          wrap
         />
       </nav>
 

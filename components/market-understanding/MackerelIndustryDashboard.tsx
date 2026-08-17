@@ -21,6 +21,7 @@ import {
   MACKEREL_NARRATIVES,
   MACKEREL_SOURCE_NOTES,
 } from '@/lib/mackerel-industry-content';
+import { SeriesStats } from './CockpitExtra';
 import CommodityIndustryDashboard, {
   type ChartSlot,
   type CommoditySpec,
@@ -79,6 +80,9 @@ export const MACKEREL_CHART_SLOTS: Record<string, ChartSlot[]> = {
         '막대는 물량, 선은 물량가중 평균단가다. 단가가 가장 높은 등급의 막대가 가장 낮다는 것이 이 그림의 요지다.',
       telemetry: WIPAN_SYNC,
       render: () => <MackerelGradeChart data={DATA} />,
+      cockpitExtra: () => (
+        <SeriesStats rows={DATA.위판등급.rows} labelKey="등급" valueKey="물량" unit="(톤)" sum />
+      ),
     },
   ],
   s04: [
@@ -95,6 +99,10 @@ export const MACKEREL_CHART_SLOTS: Record<string, ChartSlot[]> = {
         '장미색이 노르웨이다. 나머지를 다 합쳐도 노르웨이 하나에 못 미친다.',
       telemetry: IMPORT_SYNC,
       render: () => <MackerelOriginChart data={DATA} />,
+      // 단가는 합계가 뜻이 없다. 물량만 더한다.
+      cockpitExtra: () => (
+        <SeriesStats rows={DATA.수입원산지.rows} labelKey="원산지" valueKey="수입량" unit="(톤)" sum />
+      ),
     },
   ],
   x01: [

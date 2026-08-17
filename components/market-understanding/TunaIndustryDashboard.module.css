@@ -341,8 +341,9 @@
   fill: var(--mu-sashimi);
 }
 
+/* 스크롤을 걸지 않는다. 안쪽 PillTabs 가 줄바꿈으로 넘침을 처리하므로 여기서 또
+   가로 스크롤을 만들면 컨테이너가 둘이 되어 드래그·휠이 어디로 갈지 예측되지 않는다. */
 .tabNav {
-  overflow-x: auto;
   padding-bottom: 0.25rem;
 }
 
