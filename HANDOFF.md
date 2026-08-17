@@ -1,5 +1,13 @@
+> 🚀 **2026-08-18 — OFIS 2026.6 선대 라이브 배포** [Grok]:
+> - PR [#616](https://github.com/CUTEKOREA/tuna-dashboard/pull/616) squash `b7a0020b`. Gate `32071345938` 성공. Freshness `32071345937` 성공. PR 게이트 `32070898536` 성공.
+> - Vercel production `dpl_36VePzwtUofbvNBqSvk56FLcrRD9` READY · alias `https://leedonggun.co.kr` · region `icn1`.
+> - 확인: 사이드바 **선대 현황 및 분석**. 라이브는 소유자 로그인. 열린 탭은 하드 리프레시.
+> - 런타임 error/fatal 최근 30분 0건.
+
+> 마지막 업데이트: 2026-08-18 [Grok]
+
 > 📘 **2026-08-18 — OFIS 월보를 선대 화면에 (0+1+2)** [Grok]:
-> - worktree `ofis-monthly-fleet` · 브랜치 `feat/ofis-monthly-fleet`. 배포 없음.
+> - worktree `ofis-monthly-fleet` · 브랜치 `feat/ofis-monthly-fleet`. 배포는 #616.
 > - 0: `288,742`·`479,000` 옆에 2024 라벨. 선대 업종 KPI도 2024년 생산량.
 > - 1: `lib/data/ofis-monthly.ts` ← `public/data/ofis_monthly_v1.json`. 최신호 2026.6만. STATIC `2026-08-07`.
 > - 2: `/fleet-strategy` 위젯 3개 — 전국 물량 · 선망·연승·참치 단가 · 해역 회전.
