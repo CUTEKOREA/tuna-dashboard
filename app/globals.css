@@ -1177,3 +1177,34 @@ img, video, canvas, svg {
   --dsc-card-radius: 12px;
   --card-radius: 12px;
 }
+
+/* ─── PDF 내보내기 (P3-7 1단계, 2026-08-17) — 브라우저 인쇄로 아침 스냅샷을 종이/PDF로.
+   서버 렌더 없이 print CSS만 — 발송(구독)은 2단계에서 채널 확정 후. ─── */
+@media print {
+  /* 탐색·조작 UI는 종이에 없다 */
+  aside[class*='sidebar'],
+  [class*='sidebarOverlay'],
+  .no-print {
+    display: none !important;
+  }
+  body {
+    background: #ffffff !important;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+  /* 카드가 페이지 경계에서 잘리지 않게 */
+  .dsc-card,
+  article,
+  section {
+    break-inside: avoid;
+  }
+  /* 고정폭 차트 svg가 A4를 넘치면 가로만 축소 (경미한 왜곡 허용 — 잘림보다 낫다) */
+  .recharts-wrapper,
+  .recharts-wrapper svg {
+    max-width: 100% !important;
+  }
+  /* 인터랙션 힌트 캡션은 인쇄물에서 무의미 */
+  [data-print-hide='true'] {
+    display: none !important;
+  }
+}
