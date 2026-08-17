@@ -708,7 +708,9 @@ export default function UnloadingStatus({ heroOnly = false }: { heroOnly?: boole
   const [showReportModal, setShowReportModal] = useState(false);
   const [showReplayModal, setShowReplayModal] = useState(false);
   const [showFieldMode, setShowFieldMode] = useState(false);
-  const [showCompletedVessels, setShowCompletedVessels] = useState(true);
+  // 2026-08-17 소유자 재지시: 완료 선박은 접힘이 기본 — 과거 항차라 필요할 때만 펼친다
+  // (SOUL ⑥ «펼쳐라»의 명시 예외로 기록)
+  const [showCompletedVessels, setShowCompletedVessels] = useState(false);
   const [activeDetailTab, setActiveDetailTab] = useState<DetailTab>('summary');
 
   useEffect(() => {
