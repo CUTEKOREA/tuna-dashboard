@@ -795,13 +795,13 @@ export default function PurseSeinerDashboard({ heroOnly = false }: { heroOnly?: 
         <div style={{ display: 'flex', gap: '0.5rem', marginBottom: 20, flexWrap: 'wrap' }}>
           {tabButton('purse', '선망선 (등록부 파생 · 2,076척)')}
           {tabButton('tuna', '참치 등록부 (5개 기구 · 전 해역)')}
-          {tabButton('squid', '오징어 등록부 (남태평양)')}
+          {tabButton('squid', '오징어 등록부 (남태평양+북태평양)')}
           {tabButton('kofa', '한국 원양선단 (협회 연보 2024)')}
         </div>
         {dbTab === 'tuna' ? (
           <FleetRegistryExplorer key="tuna" src="/data/tuna_fleet_db_v1.json" title="참치 인가 선박 등록부 — 전 해역" />
         ) : dbTab === 'squid' ? (
-          <FleetRegistryExplorer key="squid" src="/data/squid_fleet_db_v1.json" title="오징어 인가 선박 등록부 — 남태평양 공해" />
+          <FleetRegistryExplorer key="squid" src="/data/squid_fleet_db_v1.json" title="오징어 인가 선박 등록부 — 남태평양 공해 + 북태평양(NPFC)" />
         ) : (
           <FleetRegistryExplorer key="kofa" src="/data/kofa_fleet_db_v1.json" title="한국 원양선단 명부 — 원양산업 통계연보 (2024년말, 198척)" />
         )}
@@ -816,7 +816,7 @@ export default function PurseSeinerDashboard({ heroOnly = false }: { heroOnly?: 
       <div style={{ display: 'flex', gap: '0.5rem', marginBottom: 20, flexWrap: 'wrap' }}>
         {tabButton('purse', '선망선 (등록부 파생 · 2,076척)')}
         {tabButton('tuna', '참치 등록부 (5개 기구 · 전 해역)')}
-        {tabButton('squid', '오징어 등록부 (남태평양)')}
+        {tabButton('squid', '오징어 등록부 (남태평양+북태평양)')}
         {tabButton('kofa', '한국 원양선단 (협회 연보 2024)')}
       </div>
 

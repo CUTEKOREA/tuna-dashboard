@@ -27,6 +27,7 @@
 | IATTC 등록부 | 목록은 in-page `RegionalVRClicked()` 경유, 상세는 `X-Requested-With: XMLHttpRequest` 헤더 필수 (아카이브 README 참조) | 위와 같음 |
 | ICCAT (tsv) · IOTC (xlsx) | 각 기구 공개 다운로드 | 위와 같음 |
 | SPRFMO 등록부 (오징어) | 공개 CSV — `sprfmo.org/rov/registry` | `build_squid_ocean_fleet.py` · `build_fleet_db.py` |
+| NPFC 등록부 (북태평양 오징어·고등어·꽁치) | 공개 CSV — `npfc.int/sites/default/files/{vessels,authorizations}_export.csv` | `build_fleet_db.py` |
 | CCSBT 승인선박 | 공개 CSV | `build_fleet_db.py` |
 
 경로는 각 빌드 스크립트 상단 상수에 있다 — 새 날짜 폴더로 받았으면 상수의 날짜를

@@ -1,9 +1,9 @@
 {
  "_meta": {
   "entry": "app/page.tsx",
-  "files": 148,
+  "files": 149,
   "widgets": 100,
-  "dataFiles": 54,
+  "dataFiles": 58,
   "generator": "scripts/widget_lineage.py"
  },
  "widgetToData": {
@@ -503,10 +503,12 @@
   },
   "components/market-understanding/CommodityCharts.tsx": {
    "dataModules": [
-    "lib/data/commodity-industry.ts"
+    "lib/data/commodity-industry.ts",
+    "lib/data/shrimp-argentina.ts"
    ],
    "dataFiles": [
     "public/data/mackerel_industry_v1.json",
+    "public/data/shrimp_argentina.json",
     "public/data/shrimp_industry_v1.json",
     "public/data/whelk_industry_v1.json"
    ]
@@ -520,6 +522,9 @@
     "lib/data/valuechain-companies.ts"
    ],
    "dataFiles": [
+    "public/data/kofa_fleet_age_v1.json",
+    "public/data/kofa_insights_v1.json",
+    "public/data/kofa_series_v1.json",
     "public/data/mackerel_company_research_v1.json",
     "public/data/shrimp_company_research_v1.json",
     "public/data/squid_company_research_v1.json",
@@ -535,8 +540,12 @@
     "lib/data/valuechain-companies.ts"
    ],
    "dataFiles": [
+    "public/data/kofa_fleet_age_v1.json",
+    "public/data/kofa_insights_v1.json",
+    "public/data/kofa_series_v1.json",
     "public/data/mackerel_company_research_v1.json",
     "public/data/mackerel_industry_v1.json",
+    "public/data/shrimp_argentina.json",
     "public/data/shrimp_company_research_v1.json",
     "public/data/shrimp_industry_v1.json",
     "public/data/squid_company_research_v1.json",
@@ -550,11 +559,16 @@
   "components/market-understanding/ShrimpIndustryDashboard.tsx": {
    "dataModules": [
     "lib/data/commodity-industry.ts",
+    "lib/data/shrimp-argentina.ts",
     "lib/data/valuechain-companies.ts"
    ],
    "dataFiles": [
+    "public/data/kofa_fleet_age_v1.json",
+    "public/data/kofa_insights_v1.json",
+    "public/data/kofa_series_v1.json",
     "public/data/mackerel_company_research_v1.json",
     "public/data/mackerel_industry_v1.json",
+    "public/data/shrimp_argentina.json",
     "public/data/shrimp_company_research_v1.json",
     "public/data/shrimp_industry_v1.json",
     "public/data/squid_company_research_v1.json",
@@ -583,6 +597,9 @@
     "lib/data/valuechain-companies.ts"
    ],
    "dataFiles": [
+    "public/data/kofa_fleet_age_v1.json",
+    "public/data/kofa_insights_v1.json",
+    "public/data/kofa_series_v1.json",
     "public/data/mackerel_company_research_v1.json",
     "public/data/shrimp_company_research_v1.json",
     "public/data/squid_company_research_v1.json",
@@ -615,6 +632,9 @@
     "lib/data/valuechain-companies.ts"
    ],
    "dataFiles": [
+    "public/data/kofa_fleet_age_v1.json",
+    "public/data/kofa_insights_v1.json",
+    "public/data/kofa_series_v1.json",
     "public/data/mackerel_company_research_v1.json",
     "public/data/shrimp_company_research_v1.json",
     "public/data/squid_company_research_v1.json",
@@ -649,6 +669,9 @@
     "lib/data/valuechain-companies.ts"
    ],
    "dataFiles": [
+    "public/data/kofa_fleet_age_v1.json",
+    "public/data/kofa_insights_v1.json",
+    "public/data/kofa_series_v1.json",
     "public/data/mackerel_company_research_v1.json",
     "public/data/shrimp_company_research_v1.json",
     "public/data/squid_company_research_v1.json",
@@ -674,8 +697,12 @@
     "lib/data/valuechain-companies.ts"
    ],
    "dataFiles": [
+    "public/data/kofa_fleet_age_v1.json",
+    "public/data/kofa_insights_v1.json",
+    "public/data/kofa_series_v1.json",
     "public/data/mackerel_company_research_v1.json",
     "public/data/mackerel_industry_v1.json",
+    "public/data/shrimp_argentina.json",
     "public/data/shrimp_company_research_v1.json",
     "public/data/shrimp_industry_v1.json",
     "public/data/squid_company_research_v1.json",
@@ -885,6 +912,33 @@
    "components/PorkDashboard.tsx",
    "components/PorkUsdaWidgets.tsx"
   ],
+  "public/data/kofa_fleet_age_v1.json": [
+   "components/market-understanding/CompanyResearchTables.tsx",
+   "components/market-understanding/MackerelIndustryDashboard.tsx",
+   "components/market-understanding/ShrimpIndustryDashboard.tsx",
+   "components/market-understanding/SquidIndustryDashboard.tsx",
+   "components/market-understanding/TunaCatchCharts.tsx",
+   "components/market-understanding/TunaIndustryDashboard.tsx",
+   "components/market-understanding/WhelkIndustryDashboard.tsx"
+  ],
+  "public/data/kofa_insights_v1.json": [
+   "components/market-understanding/CompanyResearchTables.tsx",
+   "components/market-understanding/MackerelIndustryDashboard.tsx",
+   "components/market-understanding/ShrimpIndustryDashboard.tsx",
+   "components/market-understanding/SquidIndustryDashboard.tsx",
+   "components/market-understanding/TunaCatchCharts.tsx",
+   "components/market-understanding/TunaIndustryDashboard.tsx",
+   "components/market-understanding/WhelkIndustryDashboard.tsx"
+  ],
+  "public/data/kofa_series_v1.json": [
+   "components/market-understanding/CompanyResearchTables.tsx",
+   "components/market-understanding/MackerelIndustryDashboard.tsx",
+   "components/market-understanding/ShrimpIndustryDashboard.tsx",
+   "components/market-understanding/SquidIndustryDashboard.tsx",
+   "components/market-understanding/TunaCatchCharts.tsx",
+   "components/market-understanding/TunaIndustryDashboard.tsx",
+   "components/market-understanding/WhelkIndustryDashboard.tsx"
+  ],
   "public/data/mackerel_company_research_v1.json": [
    "components/market-understanding/CompanyResearchTables.tsx",
    "components/market-understanding/MackerelIndustryDashboard.tsx",
@@ -923,6 +977,12 @@
   "public/data/panofi/panofi_weekly.json": [
    "components/panofi/PanofiDashboard.tsx",
    "components/panofi/PanofiTabs.tsx"
+  ],
+  "public/data/shrimp_argentina.json": [
+   "components/market-understanding/CommodityCharts.tsx",
+   "components/market-understanding/MackerelIndustryDashboard.tsx",
+   "components/market-understanding/ShrimpIndustryDashboard.tsx",
+   "components/market-understanding/WhelkIndustryDashboard.tsx"
   ],
   "public/data/shrimp_company_research_v1.json": [
    "components/market-understanding/CompanyResearchTables.tsx",

@@ -36,6 +36,9 @@ SPRFMO = (
     BASE / "squid/00_오징어_관련자료/01_오징어_시장·가격/01_생산·자원"
     "/SPRFMO_ROV/2026-08-17/SPRFMO_ROV_all_2026-08-17.csv"
 )
+NPFC_DIR = BASE / "squid/00_오징어_관련자료/01_오징어_시장·가격/01_생산·자원/NPFC_등록부/2026-08-17"
+NPFC_VESSELS = NPFC_DIR / "npfc_vessels.csv"
+NPFC_AUTH = NPFC_DIR / "npfc_auth.csv"
 
 OUT_DIR = Path(__file__).resolve().parent.parent / "public/data"
 AS_OF = datetime.date(2026, 8, 17)
@@ -174,7 +177,7 @@ def ko_flag(raw: str | None, warn: set[str]) -> str:
 
 # ── 어법·선종 한글 ──
 GEAR_KO = {
-    "TW": "트롤", "UN": "미지정", "UNCL": "미분류", "STERN": "선미식 트롤",
+    "FACTORY MOTHERSHIP (HSF)": "공모선", "TW": "트롤", "UN": "미지정", "UNCL": "미분류", "STERN": "선미식 트롤",
     "LHM": "기계식 손낚시", "LL,BB": "연승·채낚기", "LL,TROL": "연승·끌낚시",
     "MULT": "다목적", "MWT": "중층 트롤", "NK": "미지정", "SB": "선망(소형)",
     "TROL": "끌낚시", "TROL,MWT": "끌낚시·트롤", "HARVESTING MACHINES": "기계식 채취",
@@ -250,7 +253,7 @@ def tonnage_from_text(text: str | None) -> int | None:
 
 
 def main() -> None:  # noqa: C901 — 등록부 5개를 그대로 다루는 함수라 길다
-    for path in (WCPFC, IATTC, ICCAT, IOTC, CCSBT, SPRFMO):
+    for path in (WCPFC, IATTC, ICCAT, IOTC, CCSBT, SPRFMO, NPFC_VESSELS, NPFC_AUTH):
         if not path.exists():
             raise SystemExit(f"원본을 찾을 수 없다: {path}")
 
@@ -432,17 +435,44 @@ def main() -> None:  # noqa: C901 — 등록부 5개를 그대로 다루는 함�
         counts[r["o"]] = counts.get(r["o"], 0) + 1
     tuna_payload["_meta"]["기구별"] = counts
 
+    # ── 오징어: NPFC (북태평양) — 기준일에 인가가 살아 있는 오징어(OFJ·SQJ) 선박 ──
+    with open(NPFC_AUTH, encoding="utf-8-sig", errors="replace") as handle:
+        live_squid_ids = {
+            a["npfc_vessel_id"]
+            for a in csv.DictReader(handle)
+            if ("OFJ" in a["target_species"] or "SQJ" in a["target_species"])
+            and (a["authorization_end"] or "9999") >= AS_OF.isoformat()
+        }
+    with open(NPFC_VESSELS, encoding="utf-8-sig", errors="replace") as handle:
+        for r in csv.DictReader(handle):
+            if r["npfc_vessel_id"] not in live_squid_ids:
+                continue
+            rows_squid.append({
+                "o": "NPFC", "n": (r.get("vessel_name") or "").strip(),
+                "f": ko_flag(r.get("flag_state"), flag_warn),
+                "g": ko_gear((r.get("type_of_fishing_method") or "").split(",")[0].split("(")[0].strip()
+                             or r.get("vessel_type"), gear_warn),
+                "t": to_int(r.get("tonnage")),
+                "y": None,  # 이 등록부는 건조년을 싣지 않는다
+                "l": to_int(r.get("length")),
+                "w": None,  # 소유사 열 자체가 없다
+                "p": None,
+                "h": (r.get("port_of_registry") or "").strip() or None,
+                "e": "빨강·살오징어 인가 유효",
+            })
+
     squid_payload = {
         "_meta": {
             "생성일": "2026-08-17",
-            "출처": "남태평양 공해 관리기구 공개 선박등록부 (아카이브 2026-08-17 수집)",
+            "출처": "남태평양 공해 관리기구 + 북태평양수산위원회(NPFC) 공개 등록부 (아카이브 2026-08-17)",
             "등급": "A",
             "키": legend,
             "행수": len(rows_squid),
             "주의": (
                 "이 등록부는 소유사를 공개하지 않는다. 한국 조업선은 원양산업 통계연보 2024년말 "
                 "명부와 선명·건조년을 대조해 회사를 보완했다(「— 연보 대조」 표기). 나머지 빈칸은 "
-                "결측이 아니라 등록부의 한계다. 북태평양(NPFC)·아르헨티나·포클랜드는 국가 관할이라 여기 없다. "
+                "결측이 아니라 등록부의 한계다 — 북태평양(NPFC) 등록부도 소유사·건조년이 없다. "
+                "아르헨티나·포클랜드는 국가 관할이라 여기 없다. "
                 "한국 연근해 개별 선박 명부도 공개 등록부가 없다."
             ),
             "갱신방법": "python3 scripts/build_fleet_db.py",
