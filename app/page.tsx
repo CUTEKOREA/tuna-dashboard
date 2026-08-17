@@ -5,7 +5,7 @@ import dynamic from 'next/dynamic';
 import Image from 'next/image';
 import Link from 'next/link';
 import styles from './page.module.css';
-import { Anchor, Ship, LogOut, Gauge, Moon, BarChart2, Navigation, Factory, Waves, Fish, Hexagon, Mail, Menu, X, Snowflake, Shrimp, Droplets, FishSymbol, Shell, TestTube } from 'lucide-react';
+import { Anchor, Ship, LogOut, Gauge, Moon, Printer, BarChart2, Navigation, Factory, Waves, Fish, Hexagon, Mail, Menu, X, Snowflake, Shrimp, Droplets, FishSymbol, Shell, TestTube } from 'lucide-react';
 import { supabase } from '../lib/supabase';
 import { usePathname, useRouter } from 'next/navigation';
 import {
@@ -397,6 +397,25 @@ export default function Home() {
             <Moon size={13} /> 다크 모드
           </span>
           <span style={{ fontSize: 11, fontWeight: 400 }}>{darkMode ? '켜짐' : '꺼짐'}</span>
+        </button>
+
+        <button
+          type="button"
+          onClick={() => window.print()}
+          title="현재 화면을 브라우저 인쇄로 PDF 저장 — 아침 스냅샷 공유용 (P3-7 1단계)"
+          style={{
+            display: 'flex', alignItems: 'center', justifyContent: 'space-between',
+            padding: '8px 12px', margin: '4px 0',
+            border: '1px solid var(--dsc-surface-border, #e2e4e9)',
+            borderRadius: 8, background: 'transparent',
+            color: 'var(--text-tertiary)',
+            fontSize: 12, fontWeight: 700, cursor: 'pointer', width: '100%',
+          }}
+        >
+          <span style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
+            <Printer size={13} /> PDF 내보내기
+          </span>
+          <span style={{ fontSize: 11, fontWeight: 400 }}>인쇄</span>
         </button>
 
         <button
