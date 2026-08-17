@@ -84,9 +84,24 @@ export interface ChartSlot {
  * 브리핑 한 줄. `stage` 는 이 줄이 나온 단계다 —
  * 요약을 읽다가 근거가 궁금해지면 그 단계로 바로 갈 수 있어야 한다.
  */
+/**
+ * 끼워 넣는 구역이 받는 것. 노드가 아니라 **컴포넌트 타입**으로 받는 이유가 있다 —
+ * 렌더 중에 `spec.insets(...)` 처럼 함수를 부르면 그 안에서 ref 를 읽게 되고
+ * (`go` 가 제목 ref 로 스크롤한다) React 규칙 위반이다. JSX 로 그리면 정상 경로다.
+ */
+export interface InsetProps {
+  activeKey: string;
+  go: (key: string) => void;
+}
+
 export interface BriefingPoint {
   stage: string;
   text: string;
+  /**
+   * 굵게 앞세우는 한 줄. 참치처럼 «결론 + 부연» 두 층으로 쓰는 품목이 있다.
+   * 없으면 `text` 한 줄만 나온다 — 기존 품목의 화면은 그대로다.
+   */
+  headline?: string;
 }
 
 export interface CommoditySpec {
@@ -104,6 +119,20 @@ export interface CommoditySpec {
   chartSlots: Record<string, ChartSlot[]>;
   sourceNotes: string[];
   sourceMeta: string;
+  /**
+   * 품목 고유 구역을 끼우는 자리. 참치는 탭 아래에 밸류체인 척추를, 단계 아래에
+   * 약어 사전을 둔다.
+   *
+   * 자리마다 이름 붙은 prop 을 따로 만들지 않고 하나로 모은 이유는, 그렇게 하면
+   * 품목이 늘 때마다 골격의 표면이 넓어지기 때문이다. 여기 들어오는 것은 골격이
+   * 뜻을 모르는 덩어리이고, 골격은 위치만 안다.
+   */
+  insets?: {
+    /** 탭 아래. 참치의 밸류체인 척추처럼 단계 상태가 필요한 내비가 여기 온다. */
+    AfterTabs?: React.ComponentType<InsetProps>;
+    /** 단계와 출처 사이. 참치의 약어 사전. */
+    AfterStage?: React.ComponentType<InsetProps>;
+  };
 }
 
 /** `**강조**` 만 해석한다. 마크다운 파서를 끌어올 이유가 없다. */
@@ -375,6 +404,7 @@ export default function CommodityIndustryDashboard({
             const stage = spec.narratives.find((entry) => entry.key === point.stage);
             return (
               <li key={point.text}>
+                {point.headline && <strong>{point.headline}</strong>}
                 <span>{renderEmphasis(point.text)}</span>
                 {/* 요약을 읽다 근거가 궁금해지면 그 단계로 바로 간다 */}
                 {stage && (
@@ -404,6 +434,8 @@ export default function CommodityIndustryDashboard({
         />
       </nav>
 
+      {spec.insets?.AfterTabs && <spec.insets.AfterTabs activeKey={activeKey} go={go} />}
+
       {active ? (
         <StageSection
           prefix={spec.key}
@@ -416,6 +448,8 @@ export default function CommodityIndustryDashboard({
       ) : (
         <p className={styles.missing}>이 단계의 서술이 아직 준비되지 않았습니다.</p>
       )}
+
+      {spec.insets?.AfterStage && <spec.insets.AfterStage activeKey={activeKey} go={go} />}
 
       <section className={styles.sources} aria-labelledby={`${spec.key}-sources-heading`}>
         <h2 id={`${spec.key}-sources-heading`} className={styles.sourcesHeading}>

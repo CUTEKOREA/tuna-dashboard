@@ -1,5 +1,3 @@
-import { readFileSync } from 'node:fs';
-import { join } from 'node:path';
 import React from 'react';
 import { renderToStaticMarkup } from 'react-dom/server';
 import { describe, expect, it } from 'vitest';
@@ -358,11 +356,13 @@ describe('시장 이해 > 참치 — 데이터 인테이크', () => {
     expect(trend?.span).not.toBe('full');
     expect(bluefin?.span).not.toBe('full');
 
-    const source = readFileSync(
-      join(process.cwd(), 'components/market-understanding/TunaIndustryDashboard.tsx'),
-      'utf8',
-    );
-    expect(source).toContain('rest.length + stage.widgets.length');
+    // 위젯이 별도 개념이 아니라 차트 슬롯으로 합쳐졌다. 「한 격자를 쓴다」는 이제
+    // 소스 문자열이 아니라 **슬롯 목록에 위젯이 섞여 있는지**로 확인한다 —
+    // 공용 골격이 슬롯 개수로 격자·스택을 고르므로 그것이 곧 같은 격자라는 뜻이다.
+    const widgetSlot = CATCH_CHART_SLOTS.s02.find((slot) => slot.sourceLine);
+    expect(widgetSlot, '어획 단계에 승격 위젯 슬롯이 없다').toBeTruthy();
+    expect(widgetSlot?.span).not.toBe('full');
+    expect(CATCH_CHART_SLOTS.s02.length).toBeGreaterThanOrEqual(2);
   });
 });
 
