@@ -26,6 +26,8 @@ const data = legacy as unknown as {
   blackSeaSupplyData: Record<string, string | number>[];
   climateRiskData: Record<string, string | number | null>[];
   mcrsScenarioData: Record<string, string | number>[];
+  seasonalityData: { month: string; importUSD: number; volume: number }[];
+  importSurgeData: { month: string; volume: number; value: number }[];
   _정정?: { 내용: string[]; 범위밖: string };
 };
 
@@ -115,6 +117,33 @@ describe('골뱅이 기존 대시보드 — 정정된 계열', () => {
     // 이전 판은 12,800~14,100 으로 평평했다. 실측은 2배 가까이 벌어진다
     expect(Math.max(...uk) / Math.min(...uk)).toBeGreaterThan(1.5);
     expect(uk[uk.length - 1]).toBe(16511);
+  });
+
+  it('월별 계절성이 관세청 실측이고 종형 곡선이 아니다', () => {
+    // 조작본은 8월 한 점만 실측이고 나머지가 매끄러운 종형이었다. 실측의 지문은
+    // 11월 골짜기($0.53M·40톤)다 — 종형으로 되돌리면 이 값이 사라져 여기서 잡힌다.
+    const nov = data.seasonalityData.find((r) => r.month === '11월')!;
+    expect(nov.importUSD).toBeCloseTo(0.53, 2);
+    expect(nov.volume).toBe(40);
+    const aug = data.seasonalityData.find((r) => r.month === '8월')!;
+    expect(aug.importUSD).toBeCloseTo(5.7, 2);
+    expect(aug.volume).toBe(435);
+    // 5~8월 물량이 연간의 절반을 넘는다는 위젯 진단은 실측으로도 참이어야 한다
+    const total = data.seasonalityData.reduce((acc, r) => acc + r.volume, 0);
+    const summer = data.seasonalityData
+      .filter((r) => ['5월', '6월', '7월', '8월'].includes(r.month))
+      .reduce((acc, r) => acc + r.volume, 0);
+    expect(summer / total).toBeGreaterThan(0.5);
+  });
+
+  it('수입 급증 계열의 2025년 2월이 과장 전 실측값이다', () => {
+    // 조작본은 $2.85M·170톤으로 적어 「역대 최고치 경신」의 근거를 만들었다.
+    // 실측은 $1.86M·146톤 — 급증은 사실이지만 크기가 부풀려져 있었다.
+    const feb = data.importSurgeData.find((r) => r.month === '25.02')!;
+    expect(feb.value).toBeCloseTo(1.86, 2);
+    expect(feb.volume).toBe(146);
+    const feb24 = data.importSurgeData.find((r) => r.month === '24.02')!;
+    expect(feb.volume / feb24.volume).toBeGreaterThan(1.5);
   });
 
   it('최소보존규격 시나리오의 기준선이 실측이다', () => {

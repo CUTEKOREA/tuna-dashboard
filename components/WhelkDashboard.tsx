@@ -471,13 +471,13 @@ export default function WhelkDashboard() {
               }
               takeaway={{
                 situation: <span>[KCS] 2024년 연간 수입금액 기준 영국(52.1%)·아일랜드(12.9%) 두 나라에 65%를 의존하고 있어, 해당 지역에 문제가 생기면 공급망 전체가 마비될 위험이 큽니다.</span>,
-                actionPlan: <span>영국산 원물 수입액이 $30.4M(2024년 연간 수입액 $58.5M의 52.1%)으로 1위를 수성 중이며, 지리적으로 연접한 아일랜드 물량($7.6M)까지 합산 시 북해 해역에 대한 <TermTooltip term="HS160559" description="조제하거나 보존처리한 연체동물(골뱅이 포함)의 무역 품목 분류 코드." /> 의존도가 65%에 육박하는 등 단일 해역 리스크가 한계치를 초과했습니다. 저단가인 튀르키예 및 중국산(R. venosa)은 B2B 시장의 원가 방어를 위한 블렌딩 용도로만 제한적으로 활용 가능합니다. 거시적 공급 충격에 대비하여 노르웨이, 아이슬란드 등 신규 북대서양 어장 개척 및 프리미엄 라인업 다변화 검증 테스트가 시급합니다.</span>,
+                actionPlan: <span>영국산 원물 수입액이 $30.5M(2024년 연간 수입액 $58.5M의 52.1%)으로 1위를 수성 중이며, 지리적으로 연접한 아일랜드 물량($7.6M)까지 합산 시 북해 해역에 대한 <TermTooltip term="HS160559" description="조제하거나 보존처리한 연체동물(골뱅이 포함)의 무역 품목 분류 코드." /> 의존도가 65%에 육박하는 등 단일 해역 리스크가 한계치를 초과했습니다. 저단가인 튀르키예 및 중국산(R. venosa)은 B2B 시장의 원가 방어를 위한 블렌딩 용도로만 제한적으로 활용 가능합니다. 거시적 공급 충격에 대비하여 노르웨이, 아이슬란드 등 신규 북대서양 어장 개척 및 프리미엄 라인업 다변화 검증 테스트가 시급합니다.</span>,
                 source: 'KCS 관세청 (2026-05-15)',
               }} />
 
             <WidgetCard title="영국산 원물 월별 수입 계절성" icon={Snowflake} iconColor="var(--color-info)" pillar="S3"
-              cardDesc="월별 수입액·물량 — ⚠ 원본 대조 미완. 월별 통관 원자료를 아직 확보하지 못했다"
-              telemetry={{ status: metaStatus, syncDate: metaSyncDate || 'KCS 2026-05-15' }} chartHeight={300}
+              cardDesc="2024년 영국산(HS 160559) 월별 수입액·물량 — 관세청 품목별 국가별 수출입실적 API 실측"
+              telemetry={{ status: metaStatus, syncDate: 'KCS 2026-08-17' }} chartHeight={300}
               chart={
                 <ComposedChart data={seasonalityData}>
                   <ChartPatternDefs />
@@ -492,7 +492,7 @@ export default function WhelkDashboard() {
               takeaway={{
                 situation: <span>[KCS] 국내 골뱅이 소비는 여름철 비빔면과 야식 수요로 인해 5월~8월에 집중되며, 이때 수입 물량이 연간 물량의 절반을 넘습니다.</span>,
                 actionPlan: <span>여름철 성수기 집중 현상으로 인해 단월 최고치($5.7M)를 기록하는 8월 전후로는 글로벌 <TermTooltip term="Reefer" description="냉장/냉동 컨테이너(Refrigerated Container). 여름철 해상운송 단가 급등을 유발하는 주요 물류 변수." /> 해상운임 급등과 국내 항만 적체 현상이 빈번히 발생합니다. 이러한 '성수기 할증(Peak Season Penalty)' 비용 구조를 우회하기 위해 조달팀은 비수기인 3~4월에 전략적 조기 발주를 단행하고, 선제적인 부산항 배후 냉동창고 슬롯을 대규모로 저가 확보하여 공급망 병목 및 물류비 인상을 억제해야 합니다.</span>,
-                source: 'KCS 관세청 월별 통관 시계열',
+                source: '관세청 품목별 국가별 수출입실적 (2026-08-17 조회)',
               }} />
           </>
 
@@ -844,8 +844,8 @@ export default function WhelkDashboard() {
               }} />
 
             <WidgetCard title="1인 가구 혼술 트렌드 및 채널 수입량 변동" icon={ShoppingBag} iconColor="var(--color-success)" pillar="S4"
-              cardDesc="월별 수입량 변동 — ⚠ 원본 대조 미완. 월별 통관 원자료를 확보하지 못했다"
-              telemetry={{ status: metaStatus, syncDate: metaSyncDate || 'KCS 월별 통관 2026-05-15' }} chartHeight={300}
+              cardDesc="영국산(HS 160559) 월별 수입량 — 관세청 품목별 국가별 수출입실적 API 실측"
+              telemetry={{ status: metaStatus, syncDate: 'KCS 2026-08-17' }} chartHeight={300}
               chart={
                 <ComposedChart data={importSurgeData}>
                   <ChartPatternDefs />
@@ -866,9 +866,9 @@ export default function WhelkDashboard() {
                 </ComposedChart>
               }
               takeaway={{
-                situation: <span>[KCS/FishFocus] 1인 가구의 '혼술' 트렌드가 유행을 넘어 구조적 소비로 굳어지며, 냉동 조미 골뱅이의 수입량이 2배 넘게 급증했습니다.</span>,
-                actionPlan: <span>2025년 2월 기준 냉동 자숙 골뱅이육 수입이 170톤(전년 동기 대비 +105%), 1~2월 누적 수입액 USD 4.95M(+84%)을 기록하며 역대 최고치를 경신했습니다. 이는 <TermTooltip term="혼술 이코노미" description="1인 가구와 홈술(집에서 마시는 술) 문화가 만든 소비 경제. 편의점 안주, 소포장 HMR 등 새로운 수요 창출의 원동력." /> 가 일시적 유행이 아닌 비가역적(Irreversible) 소비 구조 전환임을 입증합니다. 마케팅팀은 150g 소포장 '혼술 에디션'과 에어프라이어용 '마늘버터 골뱅이 키트' 등 채널 맞춤형 SKU를 Q3 성수기 전 선제 출시해야 합니다.</span>,
-                source: 'KCS / FishFocus UK',
+                situation: <span>[KCS] 1인 가구의 '혼술' 트렌드가 구조적 소비로 굳어지며, 2025년 1~2월 자숙 골뱅이육 수입액이 전년 동기의 2배($2.0M → $4.05M)로 늘었습니다.</span>,
+                actionPlan: <span>2025년 2월 영국산 자숙 골뱅이육 수입은 146톤(전년 동기 대비 +72%), 1~2월 누적 수입액은 $4.05M(+102%)입니다. 성수기(8월 435톤)에는 못 미치지만 겨울 비수기의 바닥이 두 배로 올라온 것입니다. 이는 <TermTooltip term="혼술 이코노미" description="1인 가구와 홈술(집에서 마시는 술) 문화가 만든 소비 경제. 편의점 안주, 소포장 HMR 등 새로운 수요 창출의 원동력." /> 가 일시적 유행이 아닌 비가역적(Irreversible) 소비 구조 전환임을 입증합니다. 마케팅팀은 150g 소포장 '혼술 에디션'과 에어프라이어용 '마늘버터 골뱅이 키트' 등 채널 맞춤형 SKU를 Q3 성수기 전 선제 출시해야 합니다.</span>,
+                source: '관세청 품목별 국가별 수출입실적 (2026-08-17 조회)',
               }} />
 
             <WidgetCard title="원물 부산물(패각/내장) 업사이클링 순환 가치" icon={Recycle} iconColor="var(--color-success)" pillar="S5"

@@ -40,9 +40,10 @@ const routes = [
     label: '/api/whelk/kcs',
     importRoute: () => import('../app/api/whelk/kcs/route') as Promise<RouteModule>,
     url: 'http://localhost/api/whelk/kcs?year=2024&hs=frozen',
-    hs: '0307600000',
+    // 2026-08-17 정정: 0307600000 은 달팽이 코드였다. 골뱅이는 자숙 조제(160559)로 들어온다.
+    hs: '160559',
     mainOrigin: '영국',
-    mainShare: 60,
+    mainShare: 52.1,
     mainKey: 'gbPct',
   },
   {

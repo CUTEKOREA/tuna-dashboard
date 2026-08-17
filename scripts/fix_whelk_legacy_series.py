@@ -42,6 +42,35 @@ ARCHIVE = Path(
     "/agri_data/01_수산물(Seafood)/whelk/00_골뱅이_관련자료/11_분석·가공데이터"
 )
 FAO_CAPTURE = ARCHIVE / "FAO_FishStat/updates/2026-08-16/species_groups/capture_with_group.csv"
+KCS_DIR = ARCHIVE / "KCS_품목별국가별/2026-08-17"
+
+
+def kcs_gb_monthly() -> dict[str, tuple[float, float]]:
+    """관세청 HS 160559 영국(GB) 월별 수입 — {YYYY.MM: (수입 USD, 수입 kg)}.
+
+    골뱅이 수입의 실체는 자숙 냉동육이라 0307 이 아니라 **1605.59(조제)** 로 들어온다.
+    2024년 이 코드 전체 수입 $58.5M · 영국 $30.5M(52.1%) — 파이 위젯의 주장과 일치해
+    코드 선택 자체가 교차 검증된다.
+    """
+    import re as _re
+
+    acc: dict[str, tuple[float, float]] = {}
+    for name in ("kcs_160559_2024.xml", "kcs_160559_2025.xml"):
+        path = KCS_DIR / name
+        if not path.exists():
+            raise SystemExit(f"원본을 찾을 수 없다: {path}\n아카이브 README 의 재수집 방법을 보라.")
+        xml = path.read_text(encoding="utf-8")
+        for item in _re.findall(r"<item>(.*?)</item>", xml, _re.S):
+            def field(tag: str) -> str:
+                found = _re.search(f"<{tag}>(.*?)</{tag}>", item)
+                return found.group(1) if found else ""
+
+            if field("year") == "총계" or field("statCd") != "GB":
+                continue
+            ym = field("year")
+            dlr, wgt = acc.get(ym, (0.0, 0.0))
+            acc[ym] = (dlr + float(field("impDlr") or 0), wgt + float(field("impWgt") or 0))
+    return acc
 
 
 def fao_series(group: str, countries: dict[str, str], years: list[int]) -> dict:
@@ -193,9 +222,38 @@ def main() -> None:
                 if key in row:
                     row[key] = round(row[key] * scale)
 
+    # ── 9·10. 월별 수입 두 계열 — 실측 한 점에 종형 곡선을 붙여 놨다 ──
+    #
+    # seasonalityData 는 8월(실측 $5.70M·435톤)만 맞고 나머지는 매끄러운 종형이다.
+    # 11월은 실제 $0.53M·40톤인데 $1.8M·140톤으로 3.4배 부풀려져 있었다.
+    # importSurgeData 는 대체로 실측에 가깝지만 25.02 가 $2.85M 로 적혀 있었다 —
+    # 실제는 $1.86M 다. 「역대 최고치 경신」의 근거가 됐던 그 값이다.
+    gb = kcs_gb_monthly()
+    need = [f"2024.{m:02d}" for m in range(1, 13)] + ["2025.01", "2025.02"]
+    absent = [ym for ym in need if ym not in gb]
+    if absent:
+        raise SystemExit(f"관세청 원본에 없는 달이 있다: {absent}")
+
+    legacy["seasonalityData"] = [
+        {
+            "month": f"{m}월",
+            "importUSD": round(gb[f"2024.{m:02d}"][0] / 1e6, 2),
+            "volume": round(gb[f"2024.{m:02d}"][1] / 1e3),
+        }
+        for m in range(1, 13)
+    ]
+    legacy["importSurgeData"] = [
+        {
+            "month": ym[2:4] + "." + ym[5:7],
+            "volume": round(gb[ym][1] / 1e3),
+            "value": round(gb[ym][0] / 1e6, 2),
+        }
+        for ym in ["2024.01", "2024.02", "2024.07", "2024.08", "2024.12", "2025.01", "2025.02"]
+    ]
+
     legacy["_정정"] = {
         "일자": "2026-08-17",
-        "출처": "FAO FishStat 2026.1.0 파생 CSV + 국가통계포털 어업생산동향조사",
+        "출처": "FAO FishStat 2026.1.0 파생 CSV + 국가통계포털 어업생산동향조사 + 관세청 품목별 국가별 수출입실적(HS 160559)",
         "갱신방법": "python3 scripts/fix_whelk_legacy_series.py",
         "내용": [
             "한국에 붙은 종명(B. opisoplectum)을 뺐다 — 한국은 종을 보고하지 않는다(전 연도 GAS).",
@@ -217,9 +275,15 @@ def main() -> None:
             "출처로 적힌 기구는 그런 시계열을 내지 않는다. 2025E·2030E·2035E 추정치도 뺐다.",
             "최소보존규격 시나리오의 기준선을 실측으로 옮겼다 — 2024년 14,091 → 16,511. "
             "시나리오는 가정이라 그대로 두되 출발점은 실측이어야 한다.",
+            "월별 계절성 계열을 관세청 실측으로 바꿨다. 8월 한 점만 실측이고 나머지는 "
+            "매끄러운 종형이었다 — 11월은 실제 $0.53M·40톤인데 $1.8M·140톤으로 부풀려져 있었다. "
+            "5~8월 물량이 연간의 절반을 넘는다는 진단 자체는 실측으로도 참(51.9%)이다.",
+            "수입 급증 계열의 2025년 2월 값을 고쳤다 — $2.85M·170톤이 아니라 $1.86M·146톤이다. "
+            "전년 동기 대비 물량 +72%, 1~2월 누적 수입액 $2.0M → $4.05M(+102%). "
+            "급증은 사실이지만 크기가 과장돼 있었다.",
         ],
         "범위밖": (
-            "수입 점유율·수율차익·브랜드 포지셔닝·규제 레이더 등 나머지 계열은 아직 대조하지 않았다. "
+            "수율차익·브랜드 포지셔닝·규제 레이더 등 나머지 계열은 아직 대조하지 않았다. "
             "그중 상당수는 실측이 아니라 **모델·점수**다(레이더 축 점수, 시나리오, 시장 전망). "
             "그런 계열은 수치를 고치는 문제가 아니라 「모델임을 화면에 밝혔는가」의 문제다."
         ),
