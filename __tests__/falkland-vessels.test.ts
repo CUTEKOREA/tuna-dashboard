@@ -13,6 +13,7 @@ import { describe, expect, it } from 'vitest';
 
 import {
   companiesFromVessels,
+  idleVessels,
   falklandMeta,
   falklandVessels,
   fleetTotals,
@@ -56,7 +57,20 @@ describe('포클랜드 선박별 실적', () => {
     const fromVessels = companiesFromVessels();
     expect(fromVessels.reduce((n, c) => n + c.vessels, 0)).toBe(falklandVessels.length);
     expect(fromVessels.reduce((n, c) => n + c.totalPan, 0)).toBe(fleetTotals().판);
-    expect(fromVessels.some((c) => c.name === '현원수산'), '원본 집계에서 빠졌던 회사다').toBe(true);
+    // 원본 집계에 없던 회사다. 누락이 아니라 실적 0이라 빠진 것인데, 선단에 있는 배는
+    // 세어야 한다 — 조업하지 않은 것과 존재하지 않는 것은 다르다.
+    expect(fromVessels.some((c) => c.name === '현원수산')).toBe(true);
+  });
+
+  /**
+   * 실적 0인 배를 「없는 배」로 처리하면 선단 규모가 줄어 보인다. 108은해는 선령 39년에
+   * 「교체시급」이고 한 어기를 통째로 쉬었다 — 그 사실 자체가 선단의 상태다.
+   */
+  it('한 어기를 쉰 배가 선단에 남아 있다', () => {
+    const idle = idleVessels();
+    expect(idle.length).toBeGreaterThan(0);
+    expect(idle.every((v) => v.totalPan === 0)).toBe(true);
+    expect(falklandVessels.length).toBe(companiesFromVessels().reduce((n, c) => n + c.vessels, 0));
   });
 
   it('선박 정렬이 누계 내림차순이다', () => {

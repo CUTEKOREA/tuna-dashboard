@@ -67,8 +67,11 @@ export function vesselsByPan(): Vessel[] {
 /**
  * 회사별 집계를 선박에서 다시 계산한다.
  *
- * 원본 `companies` 를 그대로 쓰지 않는 이유가 있다 — 거기엔 현원수산이 빠져 있어
- * 선단 전체를 담지 못한다. 선박이 진실이므로 선박에서 세운다.
+ * 원본 `companies` 에는 현원수산이 없다. 처음엔 누락으로 봤는데 아니었다 — 이 회사의
+ * 유일한 배(108은해)가 **한 어기 동안 0판**이라 집계에서 빠진 것이다.
+ *
+ * 그래도 선박에서 다시 센다. 선령 39년에 「교체시급」인 배가 한 어기를 통째로 쉬었다는
+ * 것은 그 자체로 선단의 상태를 말한다. 회사 수를 셀 때 조용히 사라지면 안 된다.
  */
 export function companiesFromVessels(): (Company & { totalPan: number })[] {
   const acc = new Map<string, { totalKg: number; totalPan: number; vessels: number }>();
@@ -90,6 +93,11 @@ export function seasonTotals(): { 월: string; 물량: number }[] {
     월: SEASON_LABELS[i],
     물량: data.vessels.reduce((n, v) => n + v[m], 0),
   }));
+}
+
+/** 한 어기 동안 실적이 없던 배. 선단에 있으나 조업하지 않은 것과 없는 것은 다르다. */
+export function idleVessels(): Vessel[] {
+  return data.vessels.filter((v) => v.totalPan === 0);
 }
 
 /** 선단 합계. 두 중량을 함께 낸다 — 어느 쪽인지 밝히지 않으면 숫자가 안 맞는다. */
