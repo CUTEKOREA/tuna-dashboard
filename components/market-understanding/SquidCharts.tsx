@@ -860,3 +860,43 @@ export function OceanJiggerChart({ data }: { data: SquidOceanFleetData }) {
     </SafeResponsiveContainer>
   );
 }
+
+/* ─── 원양산업 통계연보 시리즈 (2026-08-17 전사) ─────────────── */
+
+/** 한국 원양 오징어 어가 — 수역별 연평균 (원/kg). 결측 연도는 선이 끊긴다. */
+export function SquidYearbookPriceChart({ rows }: {
+  rows: { 연도: string; 남서대서양: number | null; 뉴질랜드: number | null; 페루: number | null }[];
+}) {
+  return (
+    <SafeResponsiveContainer width="100%" height={300}>
+      <LineChart data={rows} margin={{ top: 12, right: 16, left: 8, bottom: 8 }}>
+        <CartesianGrid stroke="var(--mu-grid)" strokeDasharray="3 3" vertical={false} />
+        <XAxis dataKey="연도" stroke="var(--mu-axis)" tick={{ fill: 'var(--mu-axis)', fontSize: 11 }} />
+        <YAxis stroke="var(--mu-axis)" tick={{ fill: 'var(--mu-axis)', fontSize: 11 }}
+          tickFormatter={(v: number) => `${(v / 1000).toFixed(0)}천`} />
+        <Tooltip formatter={(value) => [`${Number(value ?? 0).toLocaleString()} 원/kg`, '']} />
+        <Legend wrapperStyle={{ fontSize: 11 }} />
+        <Line type="monotone" dataKey="남서대서양" name="남서대서양 (원/kg)" stroke="#7c3aed" strokeWidth={2} dot={{ r: 2 }} connectNulls={false} />
+        <Line type="monotone" dataKey="뉴질랜드" name="뉴질랜드 (원/kg)" stroke="#0ea5e9" strokeWidth={2} dot={{ r: 2 }} connectNulls={false} />
+        <Line type="monotone" dataKey="페루" name="페루 (원/kg)" stroke="#f59e0b" strokeWidth={2} dot={{ r: 2 }} connectNulls={false} />
+      </LineChart>
+    </SafeResponsiveContainer>
+  );
+}
+
+/** 2024년 한국 원양 오징어류 월별 생산 (톤). */
+export function SquidMonthlyCatchChart({ months }: { months: number[] }) {
+  const data = months.map((value, index) => ({ 월: `${index + 1}월`, 생산: value }));
+  return (
+    <SafeResponsiveContainer width="100%" height={300}>
+      <BarChart data={data} margin={{ top: 12, right: 16, left: 8, bottom: 8 }}>
+        <CartesianGrid stroke="var(--mu-grid)" strokeDasharray="3 3" vertical={false} />
+        <XAxis dataKey="월" stroke="var(--mu-axis)" tick={{ fill: 'var(--mu-axis)', fontSize: 11 }} interval={0} />
+        <YAxis stroke="var(--mu-axis)" tick={{ fill: 'var(--mu-axis)', fontSize: 11 }}
+          tickFormatter={(v: number) => `${(v / 1000).toFixed(0)}천`} />
+        <Tooltip formatter={(value) => [`${Number(value ?? 0).toLocaleString()} 톤`, '']} />
+        <Bar dataKey="생산" name="생산 (톤)" fill="#7c3aed" radius={[3, 3, 0, 0]} />
+      </BarChart>
+    </SafeResponsiveContainer>
+  );
+}

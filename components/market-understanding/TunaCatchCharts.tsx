@@ -1180,3 +1180,79 @@ export function CrewCompositionChart({ rows }: { rows: { 구분: string; 인원:
     </SafeResponsiveContainer>
   );
 }
+
+/* ─── 연보 시리즈 — 수출·계절성·어가 ─────────────────────────── */
+
+import type { ExportCompanyRow, MonthlyCatchRow } from '@/lib/data/valuechain-companies';
+
+const MONTH_LABELS = ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'];
+
+/** 회사별 수출 물량 — 가공용(선망)·횟감용(연승) 스택. 신라 강조는 캡션이 진다. */
+export function ExportByCompanyChart({ rows }: { rows: ExportCompanyRow[] }) {
+  const animate = !useReducedMotion();
+
+  return (
+    <SafeResponsiveContainer width="100%" height={300}>
+      <BarChart data={rows} margin={{ top: 12, right: 16, left: 8, bottom: 8 }}>
+        <CartesianGrid stroke="var(--mu-grid)" strokeDasharray="3 3" vertical={false} />
+        <XAxis dataKey="회사" {...AXIS} tickFormatter={truncateXAxis} interval={0}
+          angle={-30} textAnchor="end" height={56} />
+        <YAxis {...AXIS} tickFormatter={(v: number) => `${(v / 1000).toFixed(0)}천`} />
+        <Tooltip content={<Tip unit="톤" />} />
+        <Legend wrapperStyle={{ fontSize: 11, color: 'var(--mu-axis)' }} />
+        <Bar dataKey="가공용참치" name="가공용 참치 (톤)" stackId="a" fill={TUNA_ROLE.volume} isAnimationActive={animate} />
+        <Bar dataKey="횟감용참치" name="횟감용 참치 (톤)" stackId="a" fill={TUNA_ROLE.highlight} isAnimationActive={animate} />
+        <Bar dataKey="그밖" name="그 밖 (톤)" stackId="a" fill={TUNA_ROLE.processed} radius={[3, 3, 0, 0]} isAnimationActive={animate} />
+      </BarChart>
+    </SafeResponsiveContainer>
+  );
+}
+
+/** 2024년 월별 어종 생산 — 계절성. 가다랑어 축이 지배적이라 어종별 정규화 없이 그대로 둔다. */
+export function MonthlyCatchChart({ rows }: { rows: MonthlyCatchRow[] }) {
+  const animate = !useReducedMotion();
+  const data = MONTH_LABELS.map((label, index) => {
+    const point: Record<string, number | string> = { 월: label };
+    for (const row of rows) point[row.어종] = row.월별[index];
+    return point;
+  });
+  const palette = [TUNA_ROLE.volume, TUNA_ROLE.highlight, TUNA_ROLE.processed, '#8b5cf6'];
+
+  return (
+    <SafeResponsiveContainer width="100%" height={300}>
+      <LineChart data={data} margin={{ top: 12, right: 16, left: 8, bottom: 8 }}>
+        <CartesianGrid stroke="var(--mu-grid)" strokeDasharray="3 3" vertical={false} />
+        <XAxis dataKey="월" {...AXIS} interval={0} />
+        <YAxis {...AXIS} tickFormatter={(v: number) => `${(v / 1000).toFixed(0)}천`} />
+        <Tooltip content={<Tip unit="톤" />} />
+        <Legend wrapperStyle={{ fontSize: 11, color: 'var(--mu-axis)' }} />
+        {rows.map((row, index) => (
+          <Line key={row.어종} type="monotone" dataKey={row.어종} name={`${row.어종} (톤)`}
+            stroke={palette[index % palette.length]} strokeWidth={2} dot={{ r: 2 }}
+            isAnimationActive={animate} />
+        ))}
+      </LineChart>
+    </SafeResponsiveContainer>
+  );
+}
+
+/** 연승 어가 장기 — 눈다랑어·황다랑어 연평균 (달러/톤). */
+export function LonglinePriceChart({ rows }: {
+  rows: { 연도: string; 눈다랑어: number | null; 황다랑어: number | null }[];
+}) {
+  const animate = !useReducedMotion();
+
+  return (
+    <SafeResponsiveContainer width="100%" height={300}>
+      <LineChart data={rows} margin={{ top: 12, right: 16, left: 8, bottom: 8 }}>
+        <CartesianGrid stroke="var(--mu-grid)" strokeDasharray="3 3" vertical={false} />
+        <XAxis dataKey="연도" {...AXIS} />
+        <YAxis {...AXIS} domain={[3000, 9000]} tickFormatter={(v: number) => `$${(v / 1000).toFixed(0)}k`} />
+        <Tooltip content={<Tip unit="달러/톤" />} />
+        <Legend wrapperStyle={{ fontSize: 11, color: 'var(--mu-axis)' }} />
+        <Line type="monotone" dataKey="눈다랑어" name="눈다랑어 (달러/톤)" stroke={TUNA_ROLE.highlight} strokeWidth={2} dot={{ r: 2 }} isAnimationActive={animate} />
+        <Line type="monotone" dataKey="황다랑어" name="황다랑어 (달러/톤)" stroke={TUNA_ROLE.volume} strokeWidth={2} dot={{ r: 2 }} isAnimationActive={animate} />
+      </LineChart>
+    </SafeResponsiveContainer>
+  );
+}

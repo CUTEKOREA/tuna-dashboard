@@ -57,6 +57,8 @@ import {
   SpeciesMixChart,
   SpeciesTimelineChart,
   StagePriceChart,
+  SquidYearbookPriceChart,
+  SquidMonthlyCatchChart,
 } from './SquidCharts';
 import SquidWidgetView from './SquidWidgetView';
 import {
@@ -64,7 +66,7 @@ import {
   CanneryCountryTable,
   BrandMarketTable,
 } from './CompanyResearchTables';
-import { getSquidCompanyResearch } from '@/lib/data/valuechain-companies';
+import { getSquidCompanyResearch, getKofaSeries } from '@/lib/data/valuechain-companies';
 import styles from './TunaIndustryDashboard.module.css';
 
 const CATCH = getSquidCatchData();
@@ -97,6 +99,8 @@ interface ChartSlot {
  * 제목은 서술이 「」로 지목하는 이름이므로 함부로 바꾸면 참조가 끊긴다(테스트가 잡는다).
  */
 const SQUID_RESEARCH = getSquidCompanyResearch();
+const KOFA_SERIES = getKofaSeries();
+const SQUID_MONTHLY = KOFA_SERIES.월별생산2024.find((row) => row.어종 === '오징어류');
 
 export const SQUID_CHART_SLOTS: Record<string, ChartSlot[]> = {
   s01: [
@@ -200,6 +204,13 @@ export const SQUID_CHART_SLOTS: Record<string, ChartSlot[]> = {
   ],
   s07: [
     {
+      title: '한국 원양 오징어 어가 — 수역별 연평균 (원/kg)',
+      caption:
+        '원양산업 통계연보 어가표의 연평균 열(2015~2024). 남서대서양 어가가 2015년 1,555원에서 2024년 6,637원으로 4.3배 뛰었다 — 국내 연근해 흉어와 세계 공급 수축이 원양 원료가에 그대로 얹힌 궤적이다. 결측 연도(조업 없음)는 선이 끊긴다.',
+      telemetry: { status: 'STATIC' as const, syncDate: '연보 2015~2024' },
+      render: () => <SquidYearbookPriceChart rows={KOFA_SERIES.어가.오징어원kg} />,
+    },
+    {
       title: '브랜드와 점유율 (성격 구분)',
       caption: SQUID_RESEARCH.브랜드.요지,
       telemetry: { status: 'SYNCED' as const, syncDate: '2026-08-17 조사' },
@@ -232,6 +243,13 @@ export const SQUID_CHART_SLOTS: Record<string, ChartSlot[]> = {
     },
   ],
   x03: [
+    {
+      title: '한국 원양 오징어류 월별 생산 — 2024년 (톤)',
+      caption:
+        '연보 월별 실적 전사(계 63,156톤, 검산 일치). 상반기(1~5월)에 물량이 두껍다 — 남서대서양 어기가 상반기에 걸리는 구조라, 국내 재고·가격 판단은 이 리듬 위에서 읽어야 한다.',
+      telemetry: { status: 'STATIC' as const, syncDate: '연보 2024' },
+      render: () => (SQUID_MONTHLY ? <SquidMonthlyCatchChart months={SQUID_MONTHLY.월별} /> : null),
+    },
     {
       title: '오징어채낚기 선박별 선령 (년)',
       caption:

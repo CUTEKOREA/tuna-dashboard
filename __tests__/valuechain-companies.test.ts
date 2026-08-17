@@ -327,3 +327,21 @@ describe('원양산업 통계연보 파생 인사이트', () => {
   });
 });
 
+describe('연보 시리즈 (수출·경영체·월별·어가)', () => {
+  it('전사 게이트 산출물의 핵심 수치가 유지된다', async () => {
+    const { getKofaSeries } = await import('../lib/data/valuechain-companies');
+    const series = getKofaSeries();
+    expect(series.수출회사별.합계.물량).toBe(202278);
+    expect(series.수출회사별.합계.금액천달러).toBe(387000);
+    const silla = series.수출회사별.rows.find((row) => row.회사 === '신라교역')!;
+    expect(silla.물량, '신라 수출 물량 2위 서술과 연동').toBe(73966);
+    expect(series.경영체.합계).toBe(38);
+    const squid = series.월별생산2024.find((row) => row.어종 === '오징어류')!;
+    expect(squid.계).toBe(63156);
+    const ll2024 = series.어가.연승달러톤.find((row) => row.연도 === '2024')!;
+    expect(ll2024.눈다랑어).toBe(6036);
+    const sq2024 = series.어가.오징어원kg.find((row) => row.연도 === '2024')!;
+    expect(sq2024.남서대서양).toBe(6637);
+  });
+});
+

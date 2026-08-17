@@ -37,6 +37,7 @@ import {
   getTunaCompanyResearch,
   getKofaFleetAge,
   getKofaInsights,
+  getKofaSeries,
 } from '@/lib/data/valuechain-companies';
 import {
   BRIEFING_POINTS,
@@ -70,6 +71,9 @@ import {
   CarrierOwnerChart,
   KoreaFleetAgeChart,
   SeinerProductivityChart,
+  ExportByCompanyChart,
+  MonthlyCatchChart,
+  LonglinePriceChart,
   AccessFeeChart,
   CrewCompositionChart,
   CountryRankChart,
@@ -107,6 +111,7 @@ const CARRIER_FLEET = getTunaCarrierFleet();
 const COMPANY_RESEARCH = getTunaCompanyResearch();
 const KOFA_AGE = getKofaFleetAge();
 const KOFA_INSIGHTS = getKofaInsights();
+const KOFA_SERIES = getKofaSeries();
 const CREW_ROWS = (() => {
   const crew = KOFA_INSIGHTS.선원 as Record<string, Record<string, number>> & Record<string, unknown>;
   const foreign = crew['외국인_원양어선'] as Record<string, number>;
@@ -189,6 +194,13 @@ export const CATCH_CHART_SLOTS: Record<string, ChartSlot[]> = {
     },
   ],
   s02: [
+    {
+      title: '월별 어종별 생산 — 2024년 계절성 (톤)',
+      caption:
+        '연보 월별 실적 전사(계 열 검산 일치). 가다랑어는 연중 고른 편이나 황다랑어는 하반기(7~10월)에 몰리고, 오징어류는 상반기가 두껍다 — 조달 타이밍과 선복 배치의 근거가 되는 리듬이다.',
+      telemetry: { status: 'SYNCED' as const, syncDate: '연보 2024' },
+      render: () => <MonthlyCatchChart rows={KOFA_SERIES.월별생산2024} />,
+    },
     {
       title: '어종별 어획량 (톤)',
       caption: '가다랑어 한 종이 전체의 60.52%다. 참다랑어 3종을 합쳐도 1.20%에 그친다.',
@@ -290,6 +302,13 @@ export const CATCH_CHART_SLOTS: Record<string, ChartSlot[]> = {
     },
   ],
   x01: [
+    {
+      title: '참치연승 어가 장기 — 연평균 (달러/톤)',
+      caption:
+        '연보 어가표의 연평균 열(2008~2024, 눈다랑어 40kg·황다랑어 25kg 기준). 2008년 눈다랑어 7,600달러가 2024년 6,036달러다 — 17년째 명목가가 옛 고점을 회복하지 못했다. 선망 가다랑어도 같은 기간 1,564→1,441달러로 정체다(연보의 선망 어가는 이 페이지 시세와 같은 Atuna CFR 계열).',
+      telemetry: { status: 'SYNCED' as const, syncDate: '연보 2008~2024' },
+      render: () => <LonglinePriceChart rows={KOFA_SERIES.어가.연승달러톤} />,
+    },
     {
       title: `항구별 가다랑어 고시가 추이 (달러/톤, ${PRICES.meta.span})`,
       span: 'full',
@@ -452,6 +471,13 @@ export const CATCH_CHART_SLOTS: Record<string, ChartSlot[]> = {
     },
   ],
   x03: [
+    {
+      title: '회사별 수출실적 — 2024년 (톤)',
+      caption:
+        '연보 회사별 수출(행합·열합 검산 전부 일치). 물량 1위 동원(85,512톤)에 이어 신라교역이 73,966톤으로 2위 — 전량 가공용(선망) 참치다. 금액까지 보면 동원 1.48억 달러·신라 0.88억 달러. 원양어업 전체 수출은 20.2만 톤·3.87억 달러이고, 경영체는 38개사(1~5척 영세가 28개사) — 최근 10년 부도·도산은 10개사다.',
+      telemetry: { status: 'SYNCED' as const, syncDate: '연보 2024' },
+      render: () => <ExportByCompanyChart rows={KOFA_SERIES.수출회사별.rows} />,
+    },
     {
       title: '한국 원양선단 업종별 평균 선령 (년)',
       caption:

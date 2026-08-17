@@ -28,6 +28,7 @@ import rawWhelkResearch from '../../public/data/whelk_company_research_v1.json';
 import rawShrimpResearch from '../../public/data/shrimp_company_research_v1.json';
 import rawKofaAge from '../../public/data/kofa_fleet_age_v1.json';
 import rawKofaInsights from '../../public/data/kofa_insights_v1.json';
+import rawKofaSeries from '../../public/data/kofa_series_v1.json';
 
 export type CompanyGrade = 'A' | 'B' | 'C';
 
@@ -588,4 +589,36 @@ export function getKofaFleetAge(): KofaFleetAgeData {
 
 export function getKofaInsights(): KofaInsightsData {
   return rawKofaInsights as unknown as KofaInsightsData;
+}
+
+/** 연보 시리즈 (수출·경영체·월별생산·어가) — build_kofa_series.py 산출물. */
+export interface ExportCompanyRow {
+  회사: string;
+  물량: number;
+  금액천달러: number;
+  가공용참치: number;
+  횟감용참치: number;
+  그밖: number;
+}
+
+export interface MonthlyCatchRow {
+  어종: string;
+  계: number;
+  월별: number[];
+}
+
+export interface KofaSeriesData {
+  _meta: Record<string, unknown>;
+  수출회사별: { rows: ExportCompanyRow[]; 합계: { 물량: number; 금액천달러: number } };
+  경영체: { 기준: string; 보유척수별: Record<string, number>; 합계: number; 부도10년: number; 정성: string };
+  월별생산2024: MonthlyCatchRow[];
+  어가: {
+    연승달러톤: { 연도: string; 눈다랑어: number | null; 황다랑어: number | null }[];
+    선망달러톤: { 연도: string; 가다랑어: number | null }[];
+    오징어원kg: { 연도: string; 남서대서양: number | null; 뉴질랜드: number | null; 페루: number | null }[];
+  };
+}
+
+export function getKofaSeries(): KofaSeriesData {
+  return rawKofaSeries as unknown as KofaSeriesData;
 }
