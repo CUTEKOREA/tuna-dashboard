@@ -174,7 +174,7 @@ describe('시장 이해 3품목 — 렌더', () => {
     expect(html).toMatch(/data-commodity="(mackerel|whelk|shrimp)"/);
   });
 
-  it('새우 01단계는 차트 둘을 2열 격자에 둔다', () => {
+  it('새우 01단계는 차트 둘을 근거 블록에 둔다', () => {
     const html = renderToStaticMarkup(React.createElement(ShrimpIndustryDashboard));
     // 2026-08-17 사용자 지시: 본문 위 근거 레일 폐지 — 차트는 전부 사실표 아래 근거 블록
     expect(html).toContain('stageMore');
@@ -182,6 +182,26 @@ describe('시장 이해 3품목 — 렌더', () => {
     expect(html).toContain('양식과 자연산 75년');
     expect(html).toContain('생산 방식별 규모');
     expect(html).toContain('shrimp-industry-tab');
+    // 75년 시계열은 전폭, 옆의 규모 막대는 반폭
+    expect(html).toMatch(/data-span="full"[^>]*>[\s\S]*양식과 자연산 75년|양식과 자연산 75년[\s\S]*data-span="full"/);
+  });
+
+  it('표는 전폭, 일반 그래프는 반폭이다', () => {
+    const brand = SHRIMP_CHART_SLOTS.s04.find((s) => s.title.startsWith('브랜드와 점유율'));
+    const korea = SHRIMP_CHART_SLOTS.s04.find((s) => s.title.startsWith('한국 종별 생산량'));
+    const trend = SHRIMP_CHART_SLOTS.s01.find((s) => s.title.includes('75년'));
+    const env = SHRIMP_CHART_SLOTS.s01.find((s) => s.title.startsWith('생산 방식별'));
+    expect(brand?.span).toBe('full');
+    expect(korea?.span).not.toBe('full');
+    expect(trend?.span).toBe('full');
+    expect(env?.span).not.toBe('full');
+
+    const css = readFileSync(
+      join(process.cwd(), 'components/market-understanding/TunaIndustryDashboard.module.css'),
+      'utf8',
+    );
+    expect(css).toContain("[data-span='full']");
+    expect(css).not.toContain('.catchGrid > .catchFigure:last-child:nth-child(odd)');
   });
 
   // 오징어에서 겪은 사고를 그대로 막는 검사다.

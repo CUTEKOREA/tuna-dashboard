@@ -58,6 +58,7 @@ export const WHELK_CHART_SLOTS: Record<string, ChartSlot[]> = {
       title: '공급 기업 — 누가 잡고 누가 파는가',
       caption: WHELK_RESEARCH.공급.요지,
       telemetry: { status: 'STATIC' as const, syncDate: '2026-08-17 조사' },
+      span: 'full',
       render: () => <TraderTable rows={WHELK_RESEARCH.공급.rows} />,
     },
     {
@@ -73,6 +74,7 @@ export const WHELK_CHART_SLOTS: Record<string, ChartSlot[]> = {
       caption:
         '두 선이 2009년과 2010년 사이에서 끊긴다. 통계 코드가 바뀐 자리라 잇지 않았다. 점선인 소라는 다른 종이므로 합산 대상이 아니다.',
       telemetry: KOSIS_SYNC,
+      span: 'full',
       render: () => <WhelkKoreaSeriesChart data={DATA} />,
     },
   ],
@@ -81,12 +83,14 @@ export const WHELK_CHART_SLOTS: Record<string, ChartSlot[]> = {
       title: '국가별 가공 거점과 기업',
       caption: WHELK_RESEARCH.가공.요지,
       telemetry: { status: 'STATIC' as const, syncDate: '2026-08-17 조사' },
+      span: 'full',
       render: () => <CanneryCountryTable rows={WHELK_RESEARCH.가공.rows} />,
     },
     {
       title: '브랜드와 점유율 (성격 구분)',
       caption: WHELK_RESEARCH.브랜드.요지,
       telemetry: { status: 'STATIC' as const, syncDate: '2026-08-17 조사' },
+      span: 'full',
       render: () => <BrandMarketTable rows={WHELK_RESEARCH.브랜드.rows} />,
     },
     {
