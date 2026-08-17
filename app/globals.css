@@ -1147,3 +1147,29 @@ img, video, canvas, svg {
   fill: #8d93a5 !important;
 }
 /* 툴팁은 Metabase도 다크 관례 — 전역 다크 툴팁 유지 */
+
+/* ═══════════════════════════════════════════════════════════════════════════
+ * 조종석 모드 (2026-08-17 스펙: cockpit-mode-design) — 전역 밀도 토글.
+ * 루트 data-density='cockpit'에서 토큰만 조정한다. 컴포넌트 분기 금지.
+ * 히어로 타이틀·KPI 크기는 양 모드 동일(정체성 유지) — 카드 패딩·간격·차트 높이만 압축.
+ * 파노피·코스모는 이미 조종석 밀도라 자체 값 복원으로 제외한다.
+ * ═══════════════════════════════════════════════════════════════════════════ */
+[data-density='cockpit'] {
+  --space-5: 14px;
+  --space-6: 14px;
+  --space-8: 20px;
+  --card-padding: 0.9rem;
+  --dsc-card-radius: 10px;
+  --card-radius: 10px;
+  --chart-height: 280px;
+}
+
+[data-density='cockpit'] .dsc-card {
+  padding: 14px 16px;
+}
+
+/* 파노피·코스모 자체 밀도 유지 (스펙 §4 적용 제외) */
+[data-density='cockpit'] .cosmo-root {
+  --dsc-card-radius: 12px;
+  --card-radius: 12px;
+}
