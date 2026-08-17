@@ -344,6 +344,8 @@ describe('SEIN VENUS unloading data', () => {
     expect(source).toContain('오늘의 운영 판단');
     expect(source).toContain('완료 선박');
     expect(source).toContain('완료 선박 펼치기');
+    // 2026-08-17 소유자 재지시: 완료 선박은 접힘 기본 (SOUL ⑥ 명시 예외)
+    expect(source).toContain('const [showCompletedVessels, setShowCompletedVessels] = useState(false);');
     expect(source).toContain("useState<DetailTab>('summary')");
     expect(source).toContain("{ id: 'summary', label: '운영 요약' }");
     expect(source).toContain("{ id: 'holds', label: '화물창·품질' }");
