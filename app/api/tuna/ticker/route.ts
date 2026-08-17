@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server';
 import { requireEnv, optionalEnv } from '../../_shared/env';
+import { usdPerTonFromKcs } from '../../_shared/price-scale';
 import { pctChange } from '../../../../lib/metrics';
 
 export const runtime = 'nodejs';
@@ -82,15 +83,7 @@ async function fetchKCSTunaPrice(): Promise<TickerItem | null> {
         const { amt, wgt } = monthlyTotals[latestMonth];
         
         if (wgt > 0) {
-          // amt is in $1000s, wgt is in KG. 
-          // (amt * 1000) yields total USD. wgt is in KG.
-          // Example: amt=100 -> $100,000. wgt=50,000 -> 50,000 KG = 50 Tonnes.
-          // Price per Tonne = ($100,000 / 50) = $2000/T.
-          // Formula: (amt * 1000) / (wgt / 1000)
-          let pricePerTon = Math.round((amt * 1000) / (wgt / 1000));
-          
-          if (pricePerTon > 10000) pricePerTon = Math.round(pricePerTon / 1000);
-          if (pricePerTon < 100) pricePerTon = Math.round(pricePerTon * 1000);
+          const pricePerTon = usdPerTonFromKcs(amt, wgt) ?? 0;
           
           return {
             id: 'kcs_import_price',
@@ -197,9 +190,7 @@ async function fetchKCSTunaExport(): Promise<TickerItem | null> {
         const { amt, wgt } = monthlyTotals[latestMonth];
         
         if (wgt > 0) {
-          let pricePerTon = Math.round((amt * 1000) / (wgt / 1000));
-          if (pricePerTon > 10000) pricePerTon = Math.round(pricePerTon / 1000);
-          if (pricePerTon < 100) pricePerTon = Math.round(pricePerTon * 1000);
+          const pricePerTon = usdPerTonFromKcs(amt, wgt) ?? 0;
           
           let change = 0;
           if (sortedMonths.length > 1) {

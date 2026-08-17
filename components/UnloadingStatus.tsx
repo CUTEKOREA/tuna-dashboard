@@ -21,6 +21,7 @@ import HeroZone from './v2/HeroZone';
 import PillTabs from './v2/PillTabs';
 import VesselTopSVG from './v2/VesselTopSVG';
 import {
+  avgPerReportDay,
   getUnloadingEtaLabel,
   getVesselStatusKind,
 } from '../lib/unloading-operations';
@@ -828,9 +829,8 @@ export default function UnloadingStatus({ heroOnly = false }: { heroOnly?: boole
   const selectedBaseDate = vesselLatestReport(selectedData as any)?.label || null;
   const selectedStatusKind = getVesselStatusKind(selectedData.status);
   const selectedTimeline = (selectedData.timeline || []).filter(t => t.dailyAmount > 0);
-  const selectedDailyAverage = selectedTimeline.length > 0
-    ? selectedTimeline.reduce((sum, entry) => sum + entry.dailyAmount, 0) / selectedTimeline.length
-    : 0;
+  // 보고일 전체 기준 (완료 예상일 산출용 — lib/unloading-operations SSOT 정의)
+  const selectedDailyAverage = avgPerReportDay(selectedTimeline) ?? 0;
   const selectedRemaining = Math.max(0, selectedData.reportedTotal - selectedData.actualTotal);
   const selectedProgress = progressPct(selectedData.actualTotal, selectedData.reportedTotal) ?? 0;
   const selectedEstimatedDays = selectedStatusKind === 'progress' && selectedDailyAverage > 0
