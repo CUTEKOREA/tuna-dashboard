@@ -33,7 +33,6 @@ import {
 } from '@/lib/squid-industry-content';
 import { TelemetryBadge } from '../TelemetryBadge';
 import TermTooltip from '../TermTooltip';
-import WidgetCard from '../WidgetCard';
 import HeroZone from '../v2/HeroZone';
 import { HeroNowStrip } from '../v2/HeroNowStrip';
 import PillTabs, { type PillTab } from '../v2/PillTabs';
@@ -416,40 +415,33 @@ function StageSection({
       )}
 
       {stage.widgets.length > 0 && (
-        <details className={styles.widgetFold}>
-          <summary className={styles.widgetFoldSummary}>
-            더 파고들기 · 위젯 {stage.widgets.length}개
-          </summary>
-          <div className={styles.widgetGrid}>
+        <div className={styles.stageMore}>
+          {/* 2026-08-17 재점검: 구컨셉 카드(현황/실행 박스)를 버리고, 승격된 위젯만
+              근거 figure 와 같은 신컨셉(주장 한 문장 + 차트)으로 낸다. */}
+          <div className={stage.widgets.length >= 2 ? styles.catchGrid : styles.catchStack}>
             {stage.widgets.map((widget) => (
-              <WidgetCard
-                key={widget.id}
-                title={widget.title}
-                pillar={widget.pillar ?? 'S1'}
-                cardDesc={widget.cardDesc ?? undefined}
-                unit={widget.unit ?? undefined}
-                telemetry={{
-                  status: 'STATIC',
-                  syncDate: widget.dataYear ? `${widget.dataYear}년 자료` : undefined,
-                  source: widget.source ?? undefined,
-                }}
-                chart={<SquidWidgetView widget={widget} />}
-                chartHeight={280}
-                takeaway={
-                  widget.situation && widget.takeaway
-                    ? {
-                        situation: widget.situation,
-                        actionPlan: widget.takeaway,
-                        source: widget.narrativeFilled
-                          ? '현황·실행지침은 이 위젯의 데이터에서 끌어냈다'
-                          : (widget.source ?? '출처 미표기'),
-                      }
-                    : undefined
-                }
-              />
+              <figure key={widget.id} className={styles.catchFigure}>
+                <figcaption className={styles.catchCaption}>
+                  <div className={styles.catchTitleRow}>
+                    <strong>{widget.title}</strong>
+                    <TelemetryBadge
+                      variant="caption"
+                      status="STATIC"
+                      syncDate={widget.dataYear ? `${widget.dataYear}년 자료` : undefined}
+                    />
+                  </div>
+                  <span>{widget.thesis ?? widget.cardDesc ?? ''}</span>
+                </figcaption>
+                <div className={styles.chartFrame}>
+                  <SquidWidgetView widget={widget} />
+                </div>
+                <figcaption className={styles.catchSourceLine}>
+                  출처: {widget.source ?? '출처 미표기'}
+                </figcaption>
+              </figure>
             ))}
           </div>
-        </details>
+        </div>
       )}
 
       {next && (

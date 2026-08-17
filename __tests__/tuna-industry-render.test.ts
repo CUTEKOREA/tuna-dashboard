@@ -63,14 +63,19 @@ describe('시장 이해 > 참치 — 데이터 인테이크', () => {
     expect(getChainStages()).toHaveLength(7);
     expect(getCrossStages()).toHaveLength(3);
 
+    // 2026-08-17 재점검: 구컨셉 위젯을 인사이트 있는 것만 승격했다(40→9).
+    // 위젯이 없는 단계가 정상이 됐다 — 대신 총수와 승격 기준(thesis 보유)을 지킨다.
+    const total = stages.reduce((acc, stage) => acc + stage.widgets.length, 0);
+    expect(total).toBe(9);
     for (const stage of stages) {
-      expect(stage.widgets.length).toBeGreaterThan(0);
       for (const widget of stage.widgets) {
         // 정적 재사용이므로 LIVE 가 남아 있으면 안 된다.
         expect(widget.telemetry).toBe('SYNCED');
         expect(widget.data.length).toBeGreaterThan(0);
         // 결론 선언형 제목의 대괄호 태그가 남아 있으면 큐레이션이 빠진 것이다.
         expect(widget.title.startsWith('[')).toBe(false);
+        // 신컨셉: 카드 박스 대신 차트 위에 얹는 주장 한 문장이 반드시 있다
+        expect((widget.thesis ?? '').length, `${widget.id} 에 thesis 가 없다`).toBeGreaterThan(20);
       }
     }
   });

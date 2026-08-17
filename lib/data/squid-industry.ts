@@ -320,6 +320,8 @@ export interface SquidWidget {
   basis?: MeasurementBasis;
   /** SIT/TAK 를 이 페이지가 그 위젯 자신의 데이터에서 끌어내 채웠으면 true. */
   narrativeFilled?: boolean;
+  /** 신컨셉: 카드 박스 대신 차트 위에 얹는 주장 한 문장 (2026-08-17 재점검) */
+  thesis?: string;
 }
 
 export interface SquidStage {

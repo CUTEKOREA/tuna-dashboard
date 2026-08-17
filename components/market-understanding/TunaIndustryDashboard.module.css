@@ -530,18 +530,6 @@
   color: var(--mu-ink-muted);
 }
 
-.widgetFold {
-  border-top: 1px solid var(--mu-line);
-  padding-top: 0.75rem;
-}
-
-.widgetFoldSummary {
-  cursor: pointer;
-  font-size: 0.875rem;
-  font-weight: 600;
-  color: var(--mu-ink);
-}
-
 /* ─── 단계 본문 ───────────────────────────────────────────────── */
 
 .stage {
@@ -571,7 +559,6 @@
 }
 
 .stageMore,
-.widgetFold,
 .stageNext {
   grid-column: 1 / -1;
 }
@@ -851,18 +838,6 @@
   color: var(--mu-ink-muted);
 }
 
-/* ─── 위젯 격자 ───────────────────────────────────────────────── */
-
-.widgetGrid {
-  display: grid;
-  gap: 1.25rem;
-  grid-template-columns: repeat(auto-fit, minmax(min(100%, 30rem), 1fr));
-  /* 카드마다 서술 길이가 달라 높이가 다르다. 기본값(stretch)으로 두면 짧은 카드가
-     같은 행 최고 높이까지 늘어나 아래가 통째로 빈다 — 2026-08 사용자 지적.
-     각 카드를 제 높이대로 두고, 아랫단이 들쭉날쭉한 편을 택한다. */
-  align-items: start;
-}
-
 /* ─── 툴팁 ────────────────────────────────────────────────────── */
 
 .tooltip {
@@ -967,7 +942,6 @@
   .factList,
   .evidenceRail,
   .stageMore,
-  .widgetFold,
   .stageNext {
     grid-column: 1;
   }
@@ -1397,4 +1371,14 @@
 
 .speciesFactValue {
   color: var(--mu-ink-soft);
+}
+
+
+/* 2026-08-17 재점검: 승격 위젯 figure 의 하단 출처 줄 */
+.catchSourceLine {
+  padding: 0.4rem 1rem 0.7rem;
+  font-size: 0.72rem;
+  line-height: 1.5;
+  color: var(--mu-ink-faint, var(--mu-ink-soft));
+  word-break: keep-all;
 }

@@ -43,7 +43,6 @@ import {
 } from '@/lib/tuna-industry-content';
 import { TelemetryBadge } from '../TelemetryBadge';
 import TermTooltip from '../TermTooltip';
-import WidgetCard from '../WidgetCard';
 import HeroZone from '../v2/HeroZone';
 import { HeroNowStrip } from '../v2/HeroNowStrip';
 import PillTabs, { type PillTab } from '../v2/PillTabs';
@@ -575,43 +574,33 @@ function StageSection({
       )}
 
       {stage.widgets.length > 0 && (
-        <details className={styles.widgetFold}>
-          <summary className={styles.widgetFoldSummary}>
-            더 파고들기 · 위젯 {stage.widgets.length}개
-          </summary>
-        <div className={styles.widgetGrid}>
-          {stage.widgets.map((widget) => (
-            <WidgetCard
-              key={widget.id}
-              title={widget.title}
-              pillar={stage.pillar}
-              cardDesc={widget.methodology ?? widget.source ?? undefined}
-              unit={widget.unit ?? undefined}
-              telemetry={{
-                status: widget.telemetry,
-                // 배지에는 syncDate 대신 **데이터가 끝나는 연도**를 띄운다.
-                // 언제 받아왔는지보다 언제까지의 값인지가 독자에게 중요하다.
-                syncDate: widget.dataYear ? `${widget.dataYear}년 자료` : (widget.syncDate ?? undefined),
-                source: widget.source ?? undefined,
-              }}
-              chart={<TunaIndustryChart widget={widget} />}
-              chartHeight={280}
-              takeaway={
-                widget.situation && widget.takeaway
-                  ? {
-                      situation: widget.situation,
-                      actionPlan: widget.takeaway,
-                      // 원본에 없어 이 페이지가 채운 문장이면 그 사실을 출처 줄에 밝힌다.
-                      source: widget.narrativeFilled
-                        ? `${widget.source ?? '출처 미표기'} — 현황·실행지침은 이 차트의 데이터에서 끌어냈다`
-                        : (widget.source ?? '출처 미표기'),
-                    }
-                  : undefined
-              }
-            />
-          ))}
+        <div className={styles.stageMore}>
+          {/* 2026-08-17 재점검: 구컨셉 카드(현황/실행 박스)를 버리고, 승격된 위젯만
+              근거 figure 와 같은 신컨셉(주장 한 문장 + 차트)으로 낸다. */}
+          <div className={stage.widgets.length >= 2 ? styles.catchGrid : styles.catchStack}>
+            {stage.widgets.map((widget) => (
+              <figure key={widget.id} className={styles.catchFigure}>
+                <figcaption className={styles.catchCaption}>
+                  <div className={styles.catchTitleRow}>
+                    <strong>{widget.title}</strong>
+                    <TelemetryBadge
+                      variant="caption"
+                      status={widget.telemetry}
+                      syncDate={widget.dataYear ? `${widget.dataYear}년 자료` : (widget.syncDate ?? undefined)}
+                    />
+                  </div>
+                  <span>{widget.thesis ?? widget.methodology ?? ''}</span>
+                </figcaption>
+                <div className={styles.chartFrame}>
+                  <TunaIndustryChart widget={widget} />
+                </div>
+                <figcaption className={styles.catchSourceLine}>
+                  출처: {widget.source ?? '출처 미표기'}
+                </figcaption>
+              </figure>
+            ))}
+          </div>
         </div>
-        </details>
       )}
 
       {next && (

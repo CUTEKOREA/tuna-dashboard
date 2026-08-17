@@ -26,6 +26,24 @@ OUT = ROOT / "public/data/tuna_industry_widgets_v1.json"
 # ── 밸류체인 단계 정의 ────────────────────────────────────────────────────
 # 세로축 7단계 = 참치 한 마리가 지나는 순서. 가로축 3축 = 사슬 전체를 관통하는 레이어.
 # pillar 는 저장소 표준 5-Pillar 매핑 (WidgetCard 가 요구한다).
+
+# ── 2026-08-17 재점검 (사용자 지시) ──
+# 구컨셉 위젯(글래스 카드 + 현황/실행 박스)을 유지할 필요가 없다. 인사이트가 있는 것만
+# 신컨셉(주장 한 문장 + 차트)으로 승격하고 나머지는 버린다. 아래에 없는 id 는 폐기다.
+# 판정 근거: 3-에이전트 triage (기존 슬롯·본문과의 중복 / 출처 강도 / 주장 도출 가능성).
+# 값은 각 위젯의 data 에서 직접 도출된 문장이어야 한다 — 별도 검증 게이트가 대조한다.
+PROMOTED: dict[str, str] = {
+    "w94_wcpo_record_catch": "서·중부태평양 4대 다랑어 어획량은 2017~2023년 256만~295만 톤 사이를 오가다 2024년 300.7만 톤(+13.2%)으로 시계열 최대를 기록했다.",
+    "w19_ecuador_surge": "에콰도르 어획량은 2024년 55.8만 톤(전년 대비 +51%)으로 치솟아 한국(34.4만 톤)·일본(33.5만 톤)과의 격차를 한 해 만에 20만 톤 이상으로 벌렸다.",
+    "w39_nl_tollgate": "네덜란드는 역외에서 들여온 물량과 맞먹는 양을 EU 역내로 되파는 통관 톨게이트다 — 소비 시장이 아니라 경유지로서 유럽 물류의 관문을 쥔다.",
+    "w15_canning_factory": "가공 톤수와 수출 패권은 분리돼 있다 — 2023년 가공 생산 1위는 스페인(51.7만 톤)이고 통조림 수출 1위는 태국이며, 그 사이 한국 가공량은 2013년 37.7만 톤에서 16.3만 톤으로 57% 급감했다.",
+    "w33_spain_vs_france": "스페인은 kg당 3.39유로짜리 원료를 31.5만 톤 들여와 규모로 가공하고, 프랑스는 그 2.7배 값(8.99유로)의 원료를 1.2만 톤만 가공한다 — 같은 EU 가공업이지만 원가 주도와 프리미엄 주도로 사업 모델이 갈린다.",
+    "w106_kr_frozen_canned_gap": "한국 통관 기준 냉동 원어와 통조림의 단가 격차는 2024년 1.44달러/kg까지 벌어졌다가 2025년 원어 단가가 37% 뛰면서 0.16달러로 무너졌다 — 가공 부가가치는 고정된 몫이 아니라 원료가에 눌리는 잔여분이다.",
+    "w43_retail_price_map": "같은 캔참치인데 유럽 온라인 소매가는 그리스 8.01유로에서 스웨덴 2.09유로까지 3.8배 벌어진다 — 판가를 정하는 것은 원가가 아니라 나라별 시장 구조다.",
+    "w37_china_dumping": "EU 조제 참치 수입에서 중국산 단가는 kg당 3.92유로로 에콰도르(4.81)보다 19%, 스페인(6.82)보다 43% 낮고, 물량은 이미 파푸아뉴기니(4.45만 톤)에 육박하는 4.38만 톤이다.",
+    "w11_kr_price": "한국 참치 수입 통관단가는 2022년 4.95달러/kg에서 2026년(연초 누계) 4.15달러/kg로 16% 내렸지만 같은 기간 국내 참치캔 소매가는 내리지 않았다 — 원가 상승은 판가로 가고 원가 하락은 소매가로 돌아오지 않는다.",
+}
+
 STAGES: list[dict] = [
     {
         "key": "s01",
@@ -399,6 +417,9 @@ def main() -> None:
     for stage in STAGES:
         widgets_out = []
         for widget_id in stage["widgets"]:
+            # 2026-08-17 재점검: 승격 표에 없는 위젯은 내보내지 않는다
+            if widget_id not in PROMOTED:
+                continue
             source = by_id.get(widget_id)
             if source is None:
                 missing.append(widget_id)
@@ -411,7 +432,9 @@ def main() -> None:
                     "원제목": source.get("title", ""),
                     "chartType": (source.get("chartType") or "bar").lower(),
                     "xAxis": source.get("xAxis"),
-                    "unit": source.get("unit"),
+                    # 2026-08-17 검증: w39 원본 unit 「1,000톤」은 오기다. 같은 출처(w37)의
+                    # 네덜란드 역내 통조림 수출만 4.27만 톤이라 6.5/5.74 는 만 톤일 수밖에 없다.
+                    "unit": "만 톤" if widget_id == "w39_nl_tollgate" else source.get("unit"),
                     "source": source.get("source"),
                     "methodology": source.get("methodology"),
                     "situation": (source.get("situation") or "").strip()
@@ -421,6 +444,8 @@ def main() -> None:
                     # 원본에 없어 이 페이지가 채운 문장인지 표시한다 (출처 표기의 정직성)
                     "narrativeFilled": widget_id in SIT_TAK_FILLINS
                     and not (source.get("situation") or "").strip(),
+                    # 신컨셉: 카드 박스 대신 차트 위에 얹는 주장 한 문장
+                    "thesis": PROMOTED[widget_id],
                     "syncDate": source.get("syncDate"),
                     # 데이터가 어느 해에서 끝나는지. 화면에 그대로 띄워 연식을 드러낸다.
                     "dataYear": detect_data_year(source),

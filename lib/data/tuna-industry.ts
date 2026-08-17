@@ -181,6 +181,8 @@ export interface IndustryWidget {
   dataYear?: number | null;
   /** 원본에 현황·실행지침이 없어 이 페이지가 데이터에서 끌어내 채운 경우 true */
   narrativeFilled?: boolean;
+  /** 신컨셉: 카드 박스 대신 차트 위에 얹는 주장 한 문장 (2026-08-17 재점검) */
+  thesis?: string;
   telemetry: 'SYNCED';
   data: IndustryRow[];
   lines?: IndustrySeries[] | null;

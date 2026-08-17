@@ -36,6 +36,19 @@ OUT = ROOT / "public/data/squid_industry_widgets_v1.json"
 # ── 단계 정의 ────────────────────────────────────────────────────────
 # 사슬 7단계(s01~s07) + 횡단 3단계(x01~x03). 각 단계에 실을 위젯을 원본 id 로 지목한다.
 # pillar 는 룰북의 Universal 5-Pillar.
+
+# ── 2026-08-17 재점검 (사용자 지시) ──
+# 구컨셉 위젯을 유지하지 않는다. 인사이트가 있는 것만 신컨셉(주장 한 문장 + 차트)으로
+# 승격하고 나머지는 버린다. 아래에 없는 id 는 폐기다. 판정: 3-에이전트 triage.
+PROMOTED: dict[str, str] = {
+    "A_sourcing_signal_board": "2026년 5~8월 기준일의 다섯 산지 신호가 갈린다 — 페루는 중단 공지, 칠레는 잔여 쿼터 78,131톤으로 조업 중, 아르헨티나는 어기 종료, 한국 살오징어는 조업 상태를 확인할 데이터 자체가 없다.",
+    "A_peru_pota_timeline": "페루 대왕오징어는 7월 9일 소진율 89.8%(529,391톤/589,230톤) 공지 뒤 열흘 안팎에 선창 규모별로 조업이 닫혔다 — 잔여 한도 10% 진입이 곧 발주 마감 신호다.",
+    "C_korea_import_monthly": "2026년 월별 수입에서 금액 순위와 물량 순위가 어긋난다 — 1월 베트남은 831만 달러로 금액 3위지만 물량 86만 kg 는 276만 달러어치 161만 kg 를 들여온 에콰도르보다 적다.",
+    "C_import_concentration": "한국 수입 집중은 5년 새 완화가 아니라 심화됐다 — 1위국 비중 36.2%→46.1%, 집중도 지수 2,331→2,623 (2020→2024).",
+    "B_species_price_ladder": "모로코산 통마리에서는 규격 한 칸이 킬로그램당 2~4유로를 가른다 — 12-16 규격 6.98유로에서 27-31 규격 12.98유로로 86% 벌어진다. 산지에 따라서는 규격 차이가 거의 없는 곳(포클랜드)도 있어, 규격 프리미엄은 산지별로 따져야 한다.",
+    "D_sprfmo_compliance": "2024/25 남태평양 공해 준수보고의 잠재적 비준수 41건에는 한국 기국 어선의 오징어 전재자료 기한 초과 제출 1건이 포함됐다 — 서류 지연 한 건이 기국 준수기록에 남는 구조다.",
+}
+
 STAGES: list[dict] = [
     {
         "key": "s01",
@@ -118,6 +131,8 @@ STAGES: list[dict] = [
         "key": "x03",
         "title": "한국의 자리",
         "pillar": "S4",
+        # C_import_concentration 은 s06(수입)과 여기(한국의 자리) **의도적 이중 게재**다 —
+        # 같은 근거가 두 논지를 받친다. _meta 의 「선별」은 게재 수(중복 포함)다.
         "widgets": ["C_import_concentration", "E_gate_status_board", "E_source_registry"],
     },
 ]
@@ -874,6 +889,10 @@ def main() -> None:
     for stage in STAGES:
         items = []
         for wid in stage["widgets"]:
+            # 2026-08-17 재점검: 승격 표에 없는 위젯은 내보내지 않는다
+            if wid not in PROMOTED:
+                dropped.append(f"{wid} (재점검 폐기 — 신컨셉 승격 기준 미달)")
+                continue
             raw = widgets.get(wid)
             if raw is None:
                 dropped.append(f"{wid} (원본에 없음)")
@@ -900,6 +919,8 @@ def main() -> None:
                 "chartType": chart_type,
                 "data": plain,
                 "pillar": stage["pillar"],
+                # 신컨셉: 카드 박스 대신 차트 위에 얹는 주장 한 문장
+                "thesis": PROMOTED[wid],
             }
             if excerpts:
                 entry["excerpts"] = excerpts
@@ -932,6 +953,13 @@ def main() -> None:
             if raw.get("methodology"):
                 entry["cardDesc"] = CELL_FIXES.get(raw["methodology"], raw["methodology"])
             year = detect_year(raw)
+            # 2026-08-17: 어기 표기(2026/27)가 이듬해로 잡히는 보정 + 기준일 없는 위젯 채움
+            DATAYEAR_OVERRIDES = {
+                "A_sourcing_signal_board": 2026,
+                "C_korea_import_monthly": 2026,
+                "B_species_price_ladder": 2024,
+            }
+            year = DATAYEAR_OVERRIDES.get(wid, year)
             if year:
                 entry["dataYear"] = year
             basis = basis_ko(raw.get("basis"))
@@ -954,6 +982,7 @@ def main() -> None:
             "생성일": "2026-08-16",
             "원본": "public/data/squid_v5.json (위젯 39개)",
             "선별": picked,
+            "선별주석": "게재 수(중복 포함) — C_import_concentration 이 s06·x03 에 의도적으로 두 번 실린다",
             "규칙": (
                 "학습용 페이지는 운영 감시용 위젯을 전부 싣지 않는다. 서사 단계에 근거로 "
                 "붙는 것만 고른다. 데이터가 빈 위젯은 뺀다."
