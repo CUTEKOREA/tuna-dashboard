@@ -1,3 +1,10 @@
+> 🚀 **2026-08-17 — 골뱅이 05 수입 창구 라이브 배포** [Grok]:
+> - PR [#606](https://github.com/CUTEKOREA/tuna-dashboard/pull/606) squash `804519a2`. Gate `32038278859` 성공. Freshness `32038278593` 성공.
+> - Vercel production `dpl_65GiRpn5DS7a5Mwa6vG6ozd58q4F` READY · alias `https://leedonggun.co.kr`.
+> - 확인: 사이드바 골뱅이 → **05 수입 창구**. 라이브는 소유자 로그인. 열린 탭은 하드 리프레시.
+
+> 마지막 업데이트: 2026-08-17 [Grok]
+
 > 📘 **2026-08-17 — 골뱅이 6개국 보고서를 시장이해 수입 창구로 재구성** [Grok]:
 > - worktree `whelk-country-series` · 브랜치 `feat/whelk-country-series`. PR #606.
 > - 라이브 골뱅이=`whelk-industry`. 05단계 **수입 창구**. 04 교역(2024 연간)과 기간을 섞지 않음.
