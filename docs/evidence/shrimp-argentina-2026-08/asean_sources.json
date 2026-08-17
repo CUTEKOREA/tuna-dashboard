@@ -1,0 +1,230 @@
+[
+ {
+  "id": "S1",
+  "title": "FAO FishStat Global Production 2026.1.0",
+  "publisher": "Food and Agriculture Organization of the United Nations",
+  "url": "https://www.fao.org/fishery/static/Data/GlobalProduction_2026.1.0.zip",
+  "local_path": "update_2026-07-06/fishstat/FishStat_2026.1.0_global_production_shrimp.csv",
+  "accessed_at": "2026-08-12",
+  "caveat": "488개 새우·보리새우류 ASFIS 코드 범위. 생산원천별 행을 한 번씩 합산했다."
+ },
+ {
+  "id": "S2",
+  "title": "아르헨티나 2025 어종·선단별 양륙표",
+  "publisher": "Argentina Secretaría de Agricultura, Ganadería y Pesca",
+  "url": "https://www.magyp.gob.ar/sitio/areas/pesca_maritima/desembarques/lectura.php?imp=1&tabla=especie_flota_2025",
+  "accessed_at": "2026-08-12",
+  "caveat": "국가 양륙통계이며 FAO 어획통계와 발표시점·집계체계가 다를 수 있다."
+ },
+ {
+  "id": "S3",
+  "title": "La pesca argentina alcanzó en 2025 el segundo mejor registro histórico de exportaciones",
+  "publisher": "Argentina.gob.ar",
+  "url": "https://www.argentina.gob.ar/noticias/la-pesca-argentina-alcanzo-en-2025-el-segundo-mejor-registro-historico-de-exportaciones",
+  "accessed_at": "2026-08-12",
+  "caveat": "langostino 여러 제품형태를 합친 수출량이며 양륙량과 직접 차감할 수 없다."
+ },
+ {
+  "id": "S4",
+  "title": "2026 선상동결 통새우 품질 프로토콜",
+  "publisher": "Argentina.gob.ar Normativa Nacional",
+  "url": "https://www.argentina.gob.ar/normativa/nacional/norma-427136/texto",
+  "accessed_at": "2026-08-12",
+  "caveat": "자율 프로토콜 참여제품 범위이며 전체 아르헨티나산 공통 법정사양은 아니다."
+ },
+ {
+  "id": "S5A",
+  "title": "MSC Argentine red shrimp coastal trawling fishery in Chubut waters",
+  "publisher": "Marine Stewardship Council",
+  "url": "https://fisheries.msc.org/en/fisheries/argentine-red-shrimp-pleoticus-muelleri-coastal-trawling-fishery-in-waters-of-province-of-chubut/",
+  "accessed_at": "2026-08-12",
+  "caveat": "UoC-3147. 로트별 선박·고객그룹·CoC 확인이 필요하다."
+ },
+ {
+  "id": "S5B",
+  "title": "MSC Argentine red shrimp offshore bottom trawl fishery in federal waters",
+  "publisher": "Marine Stewardship Council",
+  "url": "https://fisheries.msc.org/en/fisheries/argentine-red-shrimp-pleoticus-muelleri-offshore-bottom-trawl-fishery-in-federal-waters/@@assessments",
+  "accessed_at": "2026-08-12",
+  "caveat": "UoC-3212. 로트별 선박·고객그룹·CoC 확인이 필요하다."
+ },
+ {
+  "id": "S6",
+  "title": "UN Comtrade 아르헨티나·태국·베트남·인도네시아 새우 교역 스냅샷",
+  "publisher": "United Nations Statistics Division",
+  "url": "https://comtradeplus.un.org/",
+  "local_path": "raw_data/shrimp_trade_comtrade.csv",
+  "accessed_at": "2026-08-12",
+  "caveat": "2026-05-05 추출. HS 030617은 학명별 코드가 아니며 수출·수입측 거울통계에는 시점·FOB/CIF 차이가 있다."
+ },
+ {
+  "id": "S7",
+  "title": "아르헨티나 원산 새우의 한국 수입경로 2년 분석",
+  "publisher": "한국 식품의약품안전처 수입식품정보마루 기반 자체 집계",
+  "url": "https://impfood.mfds.go.kr/",
+  "local_path": "business_reports/argentina_red_shrimp_korea_2026/아르헨티나_새우_수입식품조회_2년분석_2026-08-11.xlsx",
+  "accessed_at": "2026-08-12",
+  "caveat": "373건은 공개 조회행 빈도이며 물량·금액·시장점유율이나 현재 계약을 뜻하지 않는다."
+ },
+ {
+  "id": "S8",
+  "title": "Thai Spring Fish Products — Argentina Red Shrimp",
+  "publisher": "Thai Spring Fish Co., Ltd.",
+  "url": "https://thaispringfish.co.th/products",
+  "accessed_at": "2026-08-12",
+  "caveat": "회사 자사 제품 페이지. 현재 MOQ·가동능력·계약 가능 여부는 별도 확인이 필요하다."
+ },
+ {
+  "id": "S9",
+  "title": "Frozen Argentina Red Shrimp",
+  "publisher": "Chocksamut Marine Co., Ltd.",
+  "url": "https://chocksamut.co.th/product/frozen-argentina-red-shrimp/",
+  "accessed_at": "2026-08-12",
+  "caveat": "회사 자사 제품 페이지. 실제 인증·규격은 계약 시 확인한다."
+ },
+ {
+  "id": "S10",
+  "title": "2025년 1분기 수산물 위생증명 실적 — PT. Mega Marine Pride의 부산향 FROZEN RED ARGENTINA SHRIMP",
+  "publisher": "Indonesia Ministry of Marine Affairs and Fisheries",
+  "url": "https://www.kkp.go.id/storage/AkuntabilitasKinerja/3138/document-akuntabilitas-kinerja-68624d508e0a3laporan%20kinerja%20tahunan%20TW%20I%20-%202025%20oke.pdf",
+  "accessed_at": "2026-08-12",
+  "caveat": "기관 분기보고서의 개별 위생증명 행. 지속적인 현재 계약이나 전체 물량을 뜻하지 않는다."
+ },
+ {
+  "id": "S11",
+  "title": "Mega Marine Pride Products",
+  "publisher": "PT. Mega Marine Pride",
+  "url": "https://megamarinepride.com/products",
+  "accessed_at": "2026-08-12",
+  "caveat": "회사 자사 제품 페이지. 아르헨티나 원료의 현재 가동여력은 RFI에서 확인한다."
+ },
+ {
+  "id": "S12",
+  "title": "Value-added products: the key for Vietnamese shrimp to break through",
+  "publisher": "Vietnam Association of Seafood Exporters and Producers",
+  "url": "https://seafood.vasep.com.vn/key-seafood-sectors/shrimp/news/value-added-products-the-key-for-vietnamese-shrimp-to-break-through-34934.html",
+  "local_path": "vasep_shrimp/html/en/34934__value-added-products-the-key-for-vietnamese-shrimp-to-break-through-34934.html",
+  "accessed_at": "2026-08-12",
+  "caveat": "2025년 첫 8개월 HS 16 수출액 자료. 아르헨티나 원료의 사용실적은 아니다."
+ },
+ {
+  "id": "S13",
+  "title": "Vietnam’s shrimp exports hit a record USD 4.6 billion in 2025",
+  "publisher": "Vietnam Association of Seafood Exporters and Producers",
+  "url": "https://seafood.vasep.com.vn/key-seafood-sectors/shrimp/vietnam-s-shrimp-exports-hit-a-record-usd-4-6-billion-in-2025-35993.html",
+  "accessed_at": "2026-08-12",
+  "caveat": "베트남 새우 수출산업 전체 실적이며 아르헨티나 홍새우 한국행 실적이 아니다."
+ },
+ {
+  "id": "S14",
+  "title": "CMSSCO shrimp products and markets",
+  "publisher": "Ca Mau Seafood Processing and Service JSC",
+  "url": "https://www.cmssco.com.vn/",
+  "accessed_at": "2026-08-12",
+  "caveat": "회사 자사정보. 아르헨티나 홍새우 취급·한국 등록·가동여력은 미검증이다."
+ },
+ {
+  "id": "S15",
+  "title": "Fish One value-added frozen shrimp products",
+  "publisher": "Fish One",
+  "url": "https://fishone.com.vn/en/",
+  "accessed_at": "2026-08-12",
+  "caveat": "회사 자사정보. 아르헨티나 홍새우 취급·한국 등록·가동여력은 미검증이다."
+ },
+ {
+  "id": "S16",
+  "title": "KB Seafood products and export markets",
+  "publisher": "KB Seafood",
+  "url": "https://kbseafood.vn/",
+  "accessed_at": "2026-08-12",
+  "caveat": "회사 자사정보. 실제 생산공장·아르헨티나 원료실적·한국 등록은 미검증이다."
+ },
+ {
+  "id": "S17",
+  "title": "Korea–Viet Nam FTA Annex 3-A Product Specific Rules",
+  "publisher": "Korea Customs Service FTA Portal",
+  "url": "https://www.customs.go.kr/download/ftaportalkor/_down/trty/han_vn_08_eng.pdf",
+  "accessed_at": "2026-08-12",
+  "caveat": "HS 030617 WO, HS 160521·160529 CC 또는 RVC40. 실제 적용은 완제품 분류와 전체 원산지 요건을 함께 판정한다."
+ },
+ {
+  "id": "S18",
+  "title": "Korea–Indonesia CEPA Annex 3-A Product Specific Rules",
+  "publisher": "Korea Customs Service FTA Portal",
+  "url": "https://www.customs.go.kr/download/ftaportalkor/_down/trty/kor_ind_06.pdf",
+  "accessed_at": "2026-08-12",
+  "caveat": "HS 030617 CC, HS 160521·160529 CC 또는 RVC/QVC40. 단순가공과 증명요건을 별도 검토한다."
+ },
+ {
+  "id": "S19",
+  "title": "ASEAN–Korea FTA Product Specific Rules",
+  "publisher": "Korea Customs Service FTA Portal",
+  "url": "https://www.customs.go.kr/download/ftaportalkor/_down/trty/han_asean_06_2.pdf",
+  "accessed_at": "2026-08-12",
+  "caveat": "HS 030617 완전획득, HS 160521·160529 FOB 기준 역내가치 35%. 실제 양허와 증명은 개별국·제품별 확인이 필요하다."
+ },
+ {
+  "id": "S20",
+  "title": "Guideline of Importation for Sale",
+  "publisher": "Thai Food and Drug Administration",
+  "url": "https://en.fda.moph.go.th/import-inspection-service/guideline-of-importation-for-sale-01",
+  "accessed_at": "2026-08-12",
+  "caveat": "수입허가·건별 LPI·세관·FDA 기본절차. 수출목적 가공과 제품별 추가요건은 별도 확인한다."
+ },
+ {
+  "id": "S21",
+  "title": "Fish Product Traceability System for Imported Fish",
+  "publisher": "Thailand Department of Fisheries",
+  "url": "https://www4.fisheries.go.th/index.php/dof_en/view_role/24/24",
+  "accessed_at": "2026-08-12",
+  "caveat": "수입원료의 IMD·catch certificate·processing statement 연계를 설명한다."
+ },
+ {
+  "id": "S22",
+  "title": "베트남 국가단일창구 수산물 수입·검역 절차 목록",
+  "publisher": "Vietnam National Single Window",
+  "url": "https://vnsw.gov.vn/profile/MinistriesDetail.aspx?id=19&item=328",
+  "accessed_at": "2026-08-12",
+  "caveat": "정확한 절차와 서류는 제품·거래형태·현지 수입자에 따라 달라진다."
+ },
+ {
+  "id": "S23",
+  "title": "Decree 15/2018 food safety administrative procedures",
+  "publisher": "Vietnam Food Administration",
+  "url": "https://nghidinh15.vfa.gov.vn/Thutuchanhchinh",
+  "accessed_at": "2026-08-12",
+  "caveat": "식품 자가공표·시설·수출입 검사 절차 안내. 수산검역을 대신하지 않는다."
+ },
+ {
+  "id": "S24",
+  "title": "Indonesia Regulation No. 19/2025 on fishery commodity imports",
+  "publisher": "Indonesia Ministry of Trade",
+  "url": "https://jdih.kemendag.go.id/pdf/Regulasi/0/Permendag%20Nomor%2019%20Tahun%202025%20tentang%20Kebijakan%20dan%20Pengaturan%20Impor%20Garam%20dan%20Komoditas%20Perikanan.pdf",
+  "accessed_at": "2026-08-12",
+  "caveat": "이후 개정 여부와 수출목적 가공 예외·허가 적용은 현지 수입자와 확인해야 한다."
+ },
+ {
+  "id": "S25",
+  "title": "수입식품안전관리 특별법 제5조 해외제조업소 등록",
+  "publisher": "국가법령정보센터",
+  "url": "https://www.law.go.kr/LSW/lsLinkCommonInfo.do?chrClsCd=010202&lsJoLnkSeq=1031033511",
+  "accessed_at": "2026-08-12",
+  "caveat": "거래시점의 현행 조문과 실제 제조시설 등록상태를 확인한다."
+ },
+ {
+  "id": "S26",
+  "title": "해외제조업소 등록 안내",
+  "publisher": "한국 식품의약품안전처 수입식품정보마루",
+  "url": "https://impfood.mfds.go.kr/CFAAA01F01/?cvaaClsNo=1471000999101",
+  "accessed_at": "2026-08-12",
+  "caveat": "실제 제조·가공시설의 등록과 수입신고 정보 일치가 필요하다."
+ },
+ {
+  "id": "S27",
+  "title": "FTA 활용 절차와 원산지 사전심사 안내",
+  "publisher": "Korea Customs Service FTA Portal",
+  "url": "https://www.customs.go.kr/ftaportalkor/cm/cntnts/cntntsView.do?cntntsId=1027&mi=3350",
+  "accessed_at": "2026-08-12",
+  "caveat": "제품별 HSK·협정·원산지 증빙을 거래 전에 확정해야 한다."
+ }
+]
