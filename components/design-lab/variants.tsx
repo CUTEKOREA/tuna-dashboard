@@ -8,7 +8,7 @@
 import React, { useEffect, useState } from 'react';
 import HeroMarketCommand from '../HeroMarketCommand';
 import NewsFrontPage from '../NewsFrontPage';
-import FleetHeroCommand from './r6/FleetHeroCommand';
+import FleetHeroCommand from '../FleetHeroCommand';
 import UnloadingHeroCommand from './r6/UnloadingHeroCommand';
 import FilterBar from '../v2/FilterBar';
 import { type AtunaPriceRow } from '../../lib/data/atuna-price-summary';
@@ -72,17 +72,17 @@ export const DESIGN_VARIANTS: DesignVariant[] = [
   },
   // r6 (2026-08-17): 채택된 지휘형 문법의 운영 페이지 번안 — 선단·하역
   {
-    id: 'fleet-hero-r6',
-    title: '선단 히어로 r6: 선망선 지휘형',
+    id: 'fleet-hero-adopted',
+    title: '선단 지휘형 최종 채택본 (r6 ★4 · 선단 운영 반영됨)',
     round: 6,
-    note: '선망선 10척 카드(연간 누계+8개월 미니 추세) 클릭 → 상단 연간·당월·시즌 일평균 전환. 주간 랭킹 기준일 표기',
+    note: '실페이지에 히어로 아래 섹션으로 반영 — 추가 지적은 여기 코멘트로',
     render: () => <FleetHeroCommand />,
   },
   {
-    id: 'unloading-hero-r6',
-    title: '하역 히어로 r6: 항차 지휘형',
+    id: 'unloading-hero-r6b',
+    title: '하역 히어로 r6-개량: 항차 지휘형 (월 기준 정렬)',
     round: 6,
-    note: '전 선박 카드(실적·진행률·일일 미니 추세) 클릭 → 상단 누계·일평균·잔여·추이 전환. 최신 보고 기준일',
+    note: 'r6 판정 «하단 정렬은 월 기준» 반영 — 카드가 항차 연월 최신순, 같은 월은 하역중 우선',
     render: () => <UnloadingHeroCommand />,
   },
   // r5 판정: 뉴스 A ★4·필터 B ★4 — 채택, 실페이지 반영. 갤러리는 채택본만 (추가 지적 수집용)

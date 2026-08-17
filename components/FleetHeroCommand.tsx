@@ -1,7 +1,8 @@
 /**
- * 선단 운영 히어로 지휘형 — 디자인 랩 6라운드 시안 1 (HeroMarketCommand 문법 번안).
- * 선박 카드 클릭 = 상단 대형 KPI·월별 추이 전환, 카드 hover 리프트, 카드별 8개월 미니 스파크.
- * 소스는 선망선 주간 실적(purseSeineCatch) 단독 — 다른 집계와 섞지 않는다.
+ * 선망선 어획 지휘형 카드 — 디자인 랩 6라운드 채택본 (★4 «정보 이해 만족», 2026-08-17).
+ * 선망선 10척 카드(연간 누계+1~8월 미니 추세) 클릭 → 상단 연간·당월·시즌 일평균·월별 차트 전환.
+ * 소스는 fleet-operations 주간 랭킹 단독 — 히어로의 공개 집계(fleet-daily-public)와 기준일이
+ * 달라 섞지 않는다. 증감은 완결 월끼리(6월 대비 7월)만 (부분 집계 왜곡 금지).
  */
 'use client';
 
@@ -10,7 +11,7 @@ import {
   BarChart, Bar, LineChart, Line, XAxis, YAxis,
   Tooltip as RechartsTooltip,
 } from 'recharts';
-import { purseSeineCatch } from '../../../lib/fleet-operations-2026-08-09';
+import { purseSeineCatch } from '../lib/fleet-operations-2026-08-09';
 
 /* 증감 시맨틱 토큰 (globals.css SSOT) — 주식 컨벤션 (상승 빨강·하락 파랑) */
 const UP = 'var(--delta-up, #ef4444)';
