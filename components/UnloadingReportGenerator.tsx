@@ -374,6 +374,8 @@ export default function UnloadingReportGenerator({ vesselData, onClose }: Report
       } else {
         lines.push(`5. 명일(${nextDayDate})은 ${reason}로 하역작업이 없습니다.`);
       }
+    } else if (nextDay?.kind === 'work') {
+      lines.push(`5. 명일(${nextDayDate})은 약 ${nextDayPlan || '###'}톤 하역 작업 예정입니다.`);
     } else if (nextDayPlan) {
       const ndDate = nextDayDate || '';
       lines.push(`5. 명일(${ndDate})은 약 ${nextDayPlan}톤 하역 작업 예정입니다.`);
