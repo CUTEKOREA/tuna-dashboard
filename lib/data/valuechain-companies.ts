@@ -26,6 +26,8 @@ import rawSquidResearch from '../../public/data/squid_company_research_v1.json';
 import rawMackerelResearch from '../../public/data/mackerel_company_research_v1.json';
 import rawWhelkResearch from '../../public/data/whelk_company_research_v1.json';
 import rawShrimpResearch from '../../public/data/shrimp_company_research_v1.json';
+import rawKofaAge from '../../public/data/kofa_fleet_age_v1.json';
+import rawKofaInsights from '../../public/data/kofa_insights_v1.json';
 
 export type CompanyGrade = 'A' | 'B' | 'C';
 
@@ -527,4 +529,63 @@ export function getWhelkCompanyResearch(): CommodityCompanyResearch {
 
 export function getShrimpCompanyResearch(): CommodityCompanyResearch {
   return rawShrimpResearch as unknown as CommodityCompanyResearch;
+}
+
+/**
+ * 원양산업 통계연보 파생 인사이트 (선령·척당 생산성·입어료·선원).
+ * 스캔본 직독 전사 — 합계 게이트로 검증된 build_kofa_* 산출물이다.
+ */
+export interface FleetAgeRow {
+  업종: string;
+  척수: number;
+  평균선령: number;
+  신조15년이하: number;
+  최소선령: number;
+}
+
+export interface SeinerAgeRow {
+  회사: string;
+  척수: number;
+  평균선령: number;
+  신조15년이하: number;
+}
+
+export interface KofaFleetAgeData {
+  _meta: Record<string, unknown>;
+  업종별: FleetAgeRow[];
+  선망회사별: SeinerAgeRow[];
+}
+
+export interface SeinerProductivityRow {
+  회사: string;
+  척수: number;
+  선망생산톤: number;
+  척당톤: number;
+}
+
+export interface AccessFeeCountryRow {
+  국가: string;
+  입어료: number;
+}
+
+export interface KofaInsightsData {
+  _meta: Record<string, unknown>;
+  선망생산성: {
+    rows: SeinerProductivityRow[];
+    선망전체: { 생산톤: number; 척수: number; 척당톤: number };
+  };
+  입어료: {
+    연도별선망합: Record<string, number>;
+    국가별2024: AccessFeeCountryRow[];
+    요약2024: { 합계: number; 상위2국비중: number; 톤당달러: number };
+  };
+  선원: Record<string, unknown> & { 외국인비중: number };
+}
+
+export function getKofaFleetAge(): KofaFleetAgeData {
+  return rawKofaAge as unknown as KofaFleetAgeData;
+}
+
+export function getKofaInsights(): KofaInsightsData {
+  return rawKofaInsights as unknown as KofaInsightsData;
 }

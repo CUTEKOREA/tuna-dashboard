@@ -35,6 +35,8 @@ import {
   getTunaOceanOperators,
   getTunaCarrierFleet,
   getTunaCompanyResearch,
+  getKofaFleetAge,
+  getKofaInsights,
 } from '@/lib/data/valuechain-companies';
 import {
   BRIEFING_POINTS,
@@ -66,6 +68,10 @@ import {
   OperatorFleetChart,
   CarrierFlagChart,
   CarrierOwnerChart,
+  KoreaFleetAgeChart,
+  SeinerProductivityChart,
+  AccessFeeChart,
+  CrewCompositionChart,
   CountryRankChart,
   KoreaExportPriceChart,
   KoreaSpeciesChart,
@@ -99,6 +105,22 @@ const GLOSSARY = getTunaGlossary();
 const OCEAN_OPS = getTunaOceanOperators();
 const CARRIER_FLEET = getTunaCarrierFleet();
 const COMPANY_RESEARCH = getTunaCompanyResearch();
+const KOFA_AGE = getKofaFleetAge();
+const KOFA_INSIGHTS = getKofaInsights();
+const CREW_ROWS = (() => {
+  const crew = KOFA_INSIGHTS.선원 as Record<string, Record<string, number>> & Record<string, unknown>;
+  const foreign = crew['외국인_원양어선'] as Record<string, number>;
+  const korean = crew['한국인_원양어선'] as Record<string, number>;
+  return [
+    { 구분: '인도네시아', 인원: foreign['인도네시아'] },
+    { 구분: '한국인 해기사', 인원: korean['해기사'] },
+    { 구분: '필리핀', 인원: foreign['필리핀'] },
+    { 구분: '베트남', 인원: foreign['베트남'] },
+    { 구분: '한국인 부원', 인원: korean['부원'] },
+    { 구분: '미얀마', 인원: foreign['미얀마'] },
+    { 구분: '그 밖 외국인', 인원: (foreign['중국'] ?? 0) + (foreign['기타'] ?? 0) },
+  ];
+})();
 const CHAIN_STAGES = getChainStages();
 const CROSS_STAGES = getCrossStages();
 const ALL_STAGES: IndustryStage[] = [...CHAIN_STAGES, ...CROSS_STAGES];
@@ -402,6 +424,20 @@ export const CATCH_CHART_SLOTS: Record<string, ChartSlot[]> = {
   ],
   x02: [
     {
+      title: '참치선망 입어료 — 2024년 국가별 (달러)',
+      caption:
+        '협회 집계 지불액 실측. 2024년 선망 입어료 5,711만 달러 중 파푸아뉴기니·키리바시 두 나라가 73.8%다 — 생산 1톤당 197.8달러로, 입어료는 어가의 한 자릿수 후반~10%대를 차지하는 고정 규제 원가다.',
+      telemetry: { status: 'SYNCED' as const, syncDate: '연보 2024' },
+      render: () => <AccessFeeChart rows={KOFA_INSIGHTS.입어료.국가별2024} />,
+    },
+    {
+      title: '원양어선 승선원 구성 — 국적과 직급 (명)',
+      caption:
+        '2024년말 원양어선 승선원의 80.0%가 외국인이다(외국인 4,352명 vs 한국인 1,089명). 한국인은 해기사(사관) 968명이 중심이고 부원은 121명뿐 — 갑판 노동은 사실상 전부 외국인(인도네시아 3,469명)이 맡는 구조다. 노동 리스크 논의는 이 구조 위에서 읽어야 한다.',
+      telemetry: { status: 'SYNCED' as const, syncDate: '연보 2024년말' },
+      render: () => <CrewCompositionChart rows={CREW_ROWS} />,
+    },
+    {
       title: '가공장이 통과해야 하는 인증 (제도 분류)',
       caption:
         '규제가 원가로 번역되는 통로 가운데 하나다. 위생 절차가 바닥이고 그 위에 공정 예방체계, 국제 규격, 유통사 요구, 사회적 책임이 얹힌다. 조문이 아니라 「무엇을 보는 제도인가」를 정리한 것이다.',
@@ -416,6 +452,20 @@ export const CATCH_CHART_SLOTS: Record<string, ChartSlot[]> = {
     },
   ],
   x03: [
+    {
+      title: '한국 원양선단 업종별 평균 선령 (년)',
+      caption:
+        '연보 명부 198척의 진수년월로 계산했다(연보 자체 선령 도표와 정합 — 전체의 68%가 31~40년). 참치연승 105척은 평균 34.5년에 15년 이하 신조가 1척뿐이고, 참치선망만 평균 18.0년·신조 16척으로 세대교체가 됐다. 투자가 선망 한 어법에 몰렸고 나머지는 신조 절벽이다.',
+      telemetry: { status: 'SYNCED' as const, syncDate: '연보 2024년말' },
+      render: () => <KoreaFleetAgeChart rows={KOFA_AGE.업종별} />,
+    },
+    {
+      title: '참치선망 척당 생산성 — 회사별 (톤/척)',
+      caption:
+        '2024년 선망 생산(연보 회사별 실적)을 2024년말 명부 척수로 나눴다. 신라교역이 6척으로 76,979톤 — 척당 12,830톤으로 1위다(동원 10,319 · 선망 전체 평균 10,694). 신라 선단의 상대적 젊음(평균 17.2년·신조 4척)과 대형 선형이 만든 차이다. 연중 매각·전배가 있으면 척당 값이 흔들릴 수 있다.',
+      telemetry: { status: 'SYNCED' as const, syncDate: '연보 2024' },
+      render: () => <SeinerProductivityChart rows={KOFA_INSIGHTS.선망생산성.rows} />,
+    },
     {
       title: '한국 원양업계 회사별 수출실적 (천달러)',
       caption:

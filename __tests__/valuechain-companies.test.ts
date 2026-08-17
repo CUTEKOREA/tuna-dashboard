@@ -306,3 +306,24 @@ describe('밸류체인 기업 — 화면 노출', () => {
     }
   });
 });
+
+describe('원양산업 통계연보 파생 인사이트', () => {
+  it('선령·생산성·입어료·선원 수치가 전사 게이트 산출물과 일치한다', async () => {
+    const { getKofaFleetAge, getKofaInsights } = await import('../lib/data/valuechain-companies');
+    const age = getKofaFleetAge();
+    const longline = age.업종별.find((row) => row.업종 === '참치연승')!;
+    expect(longline.평균선령).toBeCloseTo(34.5, 1);
+    expect(longline.신조15년이하).toBe(1);
+    const seiner = age.업종별.find((row) => row.업종 === '참치선망')!;
+    expect(seiner.평균선령).toBeCloseTo(18.0, 1);
+    expect(seiner.신조15년이하).toBe(16);
+
+    const insights = getKofaInsights();
+    const top = insights.선망생산성.rows[0];
+    expect(top.회사, '척당 생산성 1위가 바뀌면 본문 서술도 고쳐야 한다').toBe('신라교역');
+    expect(top.척당톤).toBe(12830);
+    expect(insights.입어료.요약2024.상위2국비중).toBeCloseTo(73.8, 1);
+    expect(insights.선원.외국인비중).toBeCloseTo(80.0, 1);
+  });
+});
+

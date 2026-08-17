@@ -1088,3 +1088,95 @@ export function CarrierOwnerChart({ rows }: { rows: CarrierOwnerRow[] }) {
     </SafeResponsiveContainer>
   );
 }
+
+/* ─── 원양산업 통계연보 파생 — 선령·생산성·입어료·선원 ─────────── */
+
+import type {
+  FleetAgeRow,
+  SeinerProductivityRow,
+  AccessFeeCountryRow,
+} from '@/lib/data/valuechain-companies';
+
+/** 업종별 평균 선령 — 「선망만 세대교체됐다」의 그림. 신조 척수는 캡션이 진다. */
+export function KoreaFleetAgeChart({ rows }: { rows: FleetAgeRow[] }) {
+  const animate = !useReducedMotion();
+  const data = [...rows].sort((a, b) => b.평균선령 - a.평균선령);
+
+  return (
+    <SafeResponsiveContainer width="100%" height={300}>
+      <BarChart data={data} layout="vertical" margin={{ top: 8, right: 40, left: 8, bottom: 8 }}>
+        <CartesianGrid stroke="var(--mu-grid)" strokeDasharray="3 3" horizontal={false} />
+        <XAxis type="number" {...AXIS} label={{ value: '년', position: 'insideBottomRight', fill: 'var(--mu-axis)', offset: -4 }} />
+        <YAxis type="category" dataKey="업종" {...AXIS} width={120} tickFormatter={(v: string) => truncateKoreanLabel(v, 9)} />
+        <Tooltip content={<Tip unit="년" />} />
+        <Bar dataKey="평균선령" name="평균 선령 (년)" radius={[0, 3, 3, 0]} isAnimationActive={animate}>
+          {data.map((row) => (
+            <Cell
+              key={row.업종}
+              fill={row.업종 === '참치선망' ? TUNA_ROLE.highlight : TUNA_ROLE.volume}
+            />
+          ))}
+        </Bar>
+      </BarChart>
+    </SafeResponsiveContainer>
+  );
+}
+
+/** 선망 척당 생산성 — 신라 강조. 생산은 2024년 실적, 척수는 2024년말 명부. */
+export function SeinerProductivityChart({ rows }: { rows: SeinerProductivityRow[] }) {
+  const animate = !useReducedMotion();
+
+  return (
+    <SafeResponsiveContainer width="100%" height={300}>
+      <BarChart data={rows} margin={{ top: 12, right: 16, left: 8, bottom: 8 }}>
+        <CartesianGrid stroke="var(--mu-grid)" strokeDasharray="3 3" vertical={false} />
+        <XAxis dataKey="회사" {...AXIS} tickFormatter={truncateXAxis} interval={0} />
+        <YAxis {...AXIS} tickFormatter={(v: number) => `${(v / 1000).toFixed(0)}천`} />
+        <Tooltip content={<Tip unit="톤/척" />} />
+        <Bar dataKey="척당톤" name="척당 생산 (톤)" radius={[3, 3, 0, 0]} isAnimationActive={animate}>
+          {rows.map((row) => (
+            <Cell key={row.회사} fill={row.회사 === '신라교역' ? TUNA_ROLE.highlight : TUNA_ROLE.volume} />
+          ))}
+        </Bar>
+      </BarChart>
+    </SafeResponsiveContainer>
+  );
+}
+
+/** 2024년 참치선망 입어료 — 국가별. 두 나라에 4분의 3이 걸려 있다. */
+export function AccessFeeChart({ rows }: { rows: AccessFeeCountryRow[] }) {
+  const animate = !useReducedMotion();
+
+  return (
+    <SafeResponsiveContainer width="100%" height={300}>
+      <BarChart data={rows} margin={{ top: 12, right: 16, left: 8, bottom: 8 }}>
+        <CartesianGrid stroke="var(--mu-grid)" strokeDasharray="3 3" vertical={false} />
+        <XAxis dataKey="국가" {...AXIS} tickFormatter={truncateXAxis} interval={0} />
+        <YAxis {...AXIS} tickFormatter={(v: number) => `$${(v / 1e6).toFixed(0)}M`} />
+        <Tooltip content={<Tip unit="달러" />} />
+        <Bar dataKey="입어료" name="입어료 (달러)" fill={TUNA_ROLE.processed} radius={[3, 3, 0, 0]} isAnimationActive={animate} />
+      </BarChart>
+    </SafeResponsiveContainer>
+  );
+}
+
+/** 원양어선 승선원 구성 — 국적·직급이 갈라 놓은 구조를 한 줄로 세운다. */
+export function CrewCompositionChart({ rows }: { rows: { 구분: string; 인원: number }[] }) {
+  const animate = !useReducedMotion();
+
+  return (
+    <SafeResponsiveContainer width="100%" height={300}>
+      <BarChart data={rows} layout="vertical" margin={{ top: 8, right: 40, left: 8, bottom: 8 }}>
+        <CartesianGrid stroke="var(--mu-grid)" strokeDasharray="3 3" horizontal={false} />
+        <XAxis type="number" {...AXIS} />
+        <YAxis type="category" dataKey="구분" {...AXIS} width={130} />
+        <Tooltip content={<Tip unit="명" />} />
+        <Bar dataKey="인원" name="승선원 (명)" radius={[0, 3, 3, 0]} isAnimationActive={animate}>
+          {rows.map((row) => (
+            <Cell key={row.구분} fill={row.구분.startsWith('한국인') ? TUNA_ROLE.highlight : TUNA_ROLE.volume} />
+          ))}
+        </Bar>
+      </BarChart>
+    </SafeResponsiveContainer>
+  );
+}

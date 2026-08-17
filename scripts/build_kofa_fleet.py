@@ -299,9 +299,52 @@ def main() -> None:
             for kind, company, vessel, gt, loa, built, area in R
         ],
     }
+    # ── 선령 집계 — 「선망만 세대교체됐다」의 근거 ──
+    import statistics
+
+    def age_of(built: str) -> int:
+        yy = int(built.split("-")[0])
+        return 2024 - (1900 + yy if yy > 30 else 2000 + yy)
+
+    ages_by_kind: dict[str, list[int]] = {}
+    for kind, company, _v, _gt, _loa, built, _a in R:
+        ages_by_kind.setdefault(kind, []).append(age_of(built))
+    seiner_by_company: dict[str, list[int]] = {}
+    for kind, company, _v, _gt, _loa, built, _a in R:
+        if kind == "참치선망":
+            seiner_by_company.setdefault(company, []).append(age_of(built))
+
+    age_payload = {
+        "_meta": {
+            "생성일": "2026-08-17",
+            "기준": "2024년말 (선령 = 2024 − 진수년)",
+            "출처": "원양산업 통계연보 명부 전사에서 계산 (kofa_fleet_2024_v1.json)",
+            "등급": "A",
+            "주의": "선령은 진수년월 기준 계산값이다. 연보 자체의 선령표(p.18)와 대조해 쓸 것.",
+        },
+        "업종별": [
+            {
+                "업종": kind,
+                "척수": len(vals),
+                "평균선령": round(statistics.mean(vals), 1),
+                "신조15년이하": sum(1 for a in vals if a <= 15),
+                "최소선령": min(vals),
+            }
+            for kind, vals in sorted(ages_by_kind.items(), key=lambda kv: -len(kv[1]))
+        ],
+        "선망회사별": [
+            {"회사": company, "척수": len(vals), "평균선령": round(statistics.mean(vals), 1),
+             "신조15년이하": sum(1 for a in vals if a <= 15)}
+            for company, vals in sorted(seiner_by_company.items(), key=lambda kv: -len(kv[1]))
+        ],
+    }
+    OUT_AGE = OUT.parent / "kofa_fleet_age_v1.json"
+    OUT_AGE.write_text(json.dumps(age_payload, ensure_ascii=False, indent=1), encoding="utf-8")
+
     OUT_DB.write_text(json.dumps(db_payload, ensure_ascii=False, separators=(",", ":")), encoding="utf-8")
     print(f"✅ {OUT} — {len(R)}척 · {total_gt:,.2f}톤")
     print(f"✅ {OUT_DB} (탐색기용)")
+    print(f"✅ {OUT_AGE} (선령 집계)")
     print("   업종별:", counts)
 
 
