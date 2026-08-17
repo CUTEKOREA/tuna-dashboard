@@ -263,3 +263,23 @@
   color: var(--cosmo-ink-2);
 }
 .panofi-root .pf-sec:first-child { margin-top: 4px; }
+
+/* 긴 표를 접었다 펴는 버튼. 알약 버튼과 같은 토큰·같은 리듬을 쓰되
+   행 전체 폭을 차지해 표의 끝이라는 것이 보이게 한다. */
+.panofi-root .pf-more {
+  width: 100%;
+  margin-top: 8px;
+  font: 600 10.5px / 1 var(--cosmo-mono);
+  letter-spacing: 0.05em;
+  color: var(--cosmo-muted);
+  background: transparent;
+  border: 1px dashed var(--pf-hair);
+  border-radius: 6px;
+  padding: 9px 10px;
+  cursor: pointer;
+}
+.panofi-root .pf-more:hover {
+  color: var(--cosmo-ink);
+  background: var(--cosmo-surface-2);
+  border-style: solid;
+}
