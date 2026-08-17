@@ -8,6 +8,7 @@ import {
   ShieldAlert,
   ShieldCheck,
   Tag,
+  Building2,
   TrendingUp,
 } from 'lucide-react';
 
@@ -23,6 +24,7 @@ import { UnloadTab } from './tabs/UnloadTab';
 import { CanneryTab } from './tabs/CanneryTab';
 import { ClaimsTab } from './tabs/ClaimsTab';
 import { LeadingTab } from './tabs/LeadingTab';
+import { ProcessorsTab } from './tabs/ProcessorsTab';
 import { QualityTab } from './tabs/QualityTab';
 
 export type BangkokTabKey =
@@ -32,6 +34,7 @@ export type BangkokTabKey =
   | 'cannery'
   | 'claims'
   | 'leading'
+  | 'processors'
   | 'quality';
 
 export const BANGKOK_TABS: PillTab[] = [
@@ -41,6 +44,7 @@ export const BANGKOK_TABS: PillTab[] = [
   { key: 'cannery', label: '캐너리·재고', icon: <Factory size={15} /> },
   { key: 'claims', label: '품질 클레임', icon: <ShieldAlert size={15} /> },
   { key: 'leading', label: '선행지표', icon: <TrendingUp size={15} /> },
+  { key: 'processors', label: '가공사 조사', icon: <Building2 size={15} /> },
   { key: 'quality', label: '데이터 품질', icon: <ShieldCheck size={15} /> },
 ];
 
@@ -51,6 +55,7 @@ const PANELS: Record<BangkokTabKey, React.ComponentType> = {
   cannery: CanneryTab,
   claims: ClaimsTab,
   leading: LeadingTab,
+  processors: ProcessorsTab,
   quality: QualityTab,
 };
 
