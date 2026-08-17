@@ -15,6 +15,12 @@
 > - 측정 경계: 2026년 1~6월 제품중량. FAO 활어·05단계 1~5월 표와 더하거나 연환산하지 않는다. SECA 발효 미확인.
 > - `npm run verify` 통과: lint 0 errors / 4 warnings · Vitest 806/808(skip 2) · build OK.
 > - 상태: `feat/shrimp-industry-s06` 로컬 반영. 배포는 이 세션에서 이어서 진행.
+> 🚀 **2026-08-17 — 라이브 새우에 6개국 창구(s06) 배포** [Grok]:
+> - 안 보였던 이유: 사이드바 「새우」는 `shrimp-industry`다. 직전 #596은 쓰이지 않는 `ShrimpDashboard`(/shrimp 404)에만 위젯을 넣었다.
+> - PR [#601](https://github.com/CUTEKOREA/tuna-dashboard/pull/601) squash `ef9092d`. Gate `32030360181` 성공 (806/808).
+> - Vercel production `dpl_3sup1AbvR2vKoYoG5mFym1YmFa3v` READY · alias `https://leedonggun.co.kr`.
+> - 확인: 로그인 → 사이드바 새우 → 탭 **06 한국 창구**. 열린 탭은 하드 리프레시.
+> - 측정 경계: 2026년 1~6월 제품중량. FAO 활어·05단계 1~5월과 더하거나 연환산하지 않는다. SECA 발효 미확인.
 
 > 🧩 **2026-08-17 21:35 KST — 참치 대시보드도 공용 골격으로 통합 (다섯 품목 전부 완료)** [CC]:
 > - **참치 934줄 → 654줄.** 오징어(677→394)에 이어 마지막 자체 구현이 사라졌다. 이제 다섯 품목이 모두 `CommodityIndustryDashboard` 를 쓴다 — 단계 내비·조종석 보조 지표 같은 변경이 **한 곳**에서 끝난다.
