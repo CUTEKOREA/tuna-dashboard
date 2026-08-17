@@ -5,9 +5,10 @@ import * as chartFmt from '../lib/chartFormatters';
 import { motion } from 'framer-motion';
 import CountUp from 'react-countup';
 import {
-  PieChart, Pie, Cell, BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer,
+  PieChart, Pie, Cell, BarChart, Bar, XAxis, YAxis, Tooltip,
   Treemap
 } from 'recharts';
+import SafeResponsiveContainer from './SafeResponsiveContainer';
 import { Ship, Globe, Flag, Building2, Link2, Search, Download, ChevronUp, ChevronDown, X, Filter, Database, AlertTriangle } from 'lucide-react';
 import {
   vessels, RFMO_COLORS, TOTAL_VESSELS, MULTI_RFMO_COUNT,
@@ -177,7 +178,7 @@ function RfmoDonut() {
         title="RFMO별 분포"
         desc="출처: 4개 RFMO(지역수산관리기구) 공개 선박 레지스트리 — IMO 검증 통과 선박의 RFMO 등록 수 집계 (다중 등록 선박은 기구별 중복 집계)"
       />
-      <ResponsiveContainer width="100%" height={280}>
+      <SafeResponsiveContainer width="100%" height={280}>
         <PieChart>
           <Pie data={data} cx="50%" cy="50%" innerRadius={65} outerRadius={110}
             paddingAngle={3} dataKey="value" label={renderLabel}
@@ -192,7 +193,7 @@ function RfmoDonut() {
             }}
           />
         </PieChart>
-      </ResponsiveContainer>
+      </SafeResponsiveContainer>
       <div style={{ display: 'flex', justifyContent: 'center', gap: 16, flexWrap: 'wrap', marginTop: 8 }}>
         {data.map(d => (
           <div key={d.name} style={{ display: 'flex', alignItems: 'center', gap: 6, fontSize: 12, color: 'var(--w-slate-400)' }}>
@@ -273,7 +274,7 @@ function CountryBarChart({ onFilter }: { onFilter: (flag: string) => void }) {
         title="국가별 선박 수 (상위 15개국)"
         desc="선적국(Flag State) 기준 보유 선박 수 상위 15개국 집계 — 막대 클릭 시 하단 명부 필터 적용"
       />
-      <ResponsiveContainer width="100%" height={400}>
+      <SafeResponsiveContainer width="100%" height={400}>
         <BarChart data={data} layout="vertical" margin={{ left: 130, right: 20, top: 5, bottom: 5 }}
           onClick={(e: any) => { if (e?.activePayload?.[0]) onFilter(e.activePayload[0].payload.flag); }}>
           <XAxis type="number" tick={{ fill: 'var(--w-slate-500)', fontSize: 11 }} />
@@ -288,7 +289,7 @@ function CountryBarChart({ onFilter }: { onFilter: (flag: string) => void }) {
             ))}
           </Bar>
         </BarChart>
-      </ResponsiveContainer>
+      </SafeResponsiveContainer>
     </div>
   );
 }
@@ -309,10 +310,10 @@ function ContinentTreemap() {
         title="대륙·권역별 분포"
         desc="선적국의 대륙·권역 매핑 기준 선박 수 집계 (인도양·태평양 도서국은 별도 권역 분류)"
       />
-      <ResponsiveContainer width="100%" height={280}>
+      <SafeResponsiveContainer width="100%" height={280}>
         <Treemap data={data} dataKey="size" nameKey="name"
           content={<ContinentTreemapContent />} animationDuration={800} />
-      </ResponsiveContainer>
+      </SafeResponsiveContainer>
     </div>
   );
 }
@@ -348,7 +349,7 @@ function OperatorChart({ onFilter }: { onFilter: (op: string) => void }) {
           운영사 미식별: {naCount}척 ({(naCount / TOTAL_VESSELS * 100).toFixed(1)}%)
         </div>
       )}
-      <ResponsiveContainer width="100%" height={400}>
+      <SafeResponsiveContainer width="100%" height={400}>
         <BarChart data={data} layout="vertical" margin={{ left: 180, right: 20, top: 5, bottom: 5 }}
           onClick={(e: any) => { if (e?.activePayload?.[0]) onFilter(e.activePayload[0].payload.fullName); }}>
           <XAxis type="number" tick={{ fill: 'var(--w-slate-500)', fontSize: 11 }} />
@@ -365,7 +366,7 @@ function OperatorChart({ onFilter }: { onFilter: (op: string) => void }) {
             ))}
           </Bar>
         </BarChart>
-      </ResponsiveContainer>
+      </SafeResponsiveContainer>
     </div>
   );
 }
