@@ -5,6 +5,42 @@
 > - `actionPlan` 을 `string | null` 로 두고 없으면 없는 대로 둔다. 지침을 지어내는 것이 무-창작 원칙 위반이다. Python 쪽은 차단 대신 NOTE 로그만 남긴다.
 > - `daily-briefing.test.ts` 4/4 통과, `tsc --noEmit` 클린.
 > - **다음**: 데일리 기사 파이프라인이 감사 판정을 `state/audit-<날짜>.txt` 에 기록하지 않아 자동배포 게이트가 안 열린다. 기록 의무를 `tuna-briefing-auditor` 정의로 옮겨야 한다.
+> 🚀 **2026-08-18 — OFIS 2026.6 선대 라이브 배포** [Grok]:
+> - PR [#616](https://github.com/CUTEKOREA/tuna-dashboard/pull/616) squash `b7a0020b`. Gate `32071345938` 성공. Freshness `32071345937` 성공. PR 게이트 `32070898536` 성공.
+> - Vercel production `dpl_36VePzwtUofbvNBqSvk56FLcrRD9` READY · alias `https://leedonggun.co.kr` · region `icn1`.
+> - 확인: 사이드바 **선대 현황 및 분석**. 라이브는 소유자 로그인. 열린 탭은 하드 리프레시.
+> - 런타임 error/fatal 최근 30분 0건.
+
+> 마지막 업데이트: 2026-08-18 [Grok]
+
+> 📘 **2026-08-18 — OFIS 월보를 선대 화면에 (0+1+2)** [Grok]:
+> - worktree `ofis-monthly-fleet` · 브랜치 `feat/ofis-monthly-fleet`. 배포는 #616.
+> - 0: `288,742`·`479,000` 옆에 2024 라벨. 선대 업종 KPI도 2024년 생산량.
+> - 1: `lib/data/ofis-monthly.ts` ← `public/data/ofis_monthly_v1.json`. 최신호 2026.6만. STATIC `2026-08-07`.
+> - 2: `/fleet-strategy` 위젯 3개 — 전국 물량 · 선망·연승·참치 단가 · 해역 회전.
+> - 6월 33,045톤 · 1~6월 191,540 · 선망 13,176(−37.7%) · 눈다랑어 7,068.6원/kg. 꽁치 단가 0 없음. 해역 합 33,046≠합계 33,045(원문 1톤).
+> - 상반기 연환산 금지. 2025 회사표·2024 연보와 잇지 않음.
+> - **다음 단계**: 배포는 사용자 요청 시에만. 작성자≠검증자. 연보 재무는 4단계.
+
+> 마지막 업데이트: 2026-08-18 [Grok]
+
+> 🚀 **2026-08-18 — 고등어 05 수입 창구 라이브 배포** [Grok]:
+> - PR [#614](https://github.com/CUTEKOREA/tuna-dashboard/pull/614) squash `4a1cf8fc`. Gate `32064519117` 성공. Freshness `32064519127` 성공.
+> - Vercel production `dpl_Et877ZrTMZ966vsyJLDRMpG9shNs` READY · alias `https://leedonggun.co.kr` · region `icn1`.
+> - 확인: 사이드바 고등어 → **05 수입 창구**. 라이브는 소유자 로그인. 열린 탭은 하드 리프레시.
+> - 측정 경계: 2026년 1~7월 제품중량. 04단계 1~5월 혼합 HSK와 잇거나 연환산하지 않음. 아이슬란드 단가 0 없음.
+
+> 마지막 업데이트: 2026-08-18 [Grok]
+
+> 📘 **2026-08-18 — 고등어 6개국을 시장이해 수입 창구로 적용** [Grok]:
+> - worktree `mackerel-country-series` · 브랜치 `feat/mackerel-country-series`. 배포는 #614.
+> - 라이브 고등어=`mackerel-industry`. 05단계 **수입 창구**. 04 수입(1~5월 혼합 HSK 금액)과 기간·세번을 섞지 않음.
+> - 조사: FAO 2024 Scomber 어획 1위 중국 405,541톤(*japonicus*), 2위 일본 256,000, 3위 노르웨이 250,187(*scombrus*). 한국 창구 1위는 노르웨이 냉동 12,078.7톤(1~7월).
+> - 아이슬란드 어획 89,529톤 · 030354 0. 단가 0 없음. 냉동과 필렛을 섞지 않음.
+> - 인테이크 `lib/data/mackerel-country-series.ts` ← `public/data/mackerel_country_series_v1.json`.
+> - 테스트 72 passed. **다음 단계**: 배포는 사용자 요청 시에만. 작성자≠검증자.
+
+> 마지막 업데이트: 2026-08-18 [Grok]
 
 > 🔗 **2026-08-17 23:40 KST — `/falkland` 하드코딩 제거 + 앞선 판단 정정** [CC]:
 > - `/falkland` 대시보드가 쓰던 하드코딩 선박·회사 데이터를 `lib/data/falkland-squid-vessels.ts` 인테이크로 교체(ADR 0005). **렌더 차이 0줄** — 화면은 그대로다.

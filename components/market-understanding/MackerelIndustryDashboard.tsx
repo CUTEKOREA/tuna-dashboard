@@ -16,12 +16,14 @@ import {
 import { getMackerelCompanyResearch } from '@/lib/data/valuechain-companies';
 
 import { getMackerelIndustryData } from '@/lib/data/commodity-industry';
+import { seriesRoles, seriesUnits, seriesWindows } from '@/lib/data/mackerel-country-series';
 import {
   MACKEREL_BRIEFING_POINTS,
   MACKEREL_NARRATIVES,
   MACKEREL_SOURCE_NOTES,
 } from '@/lib/mackerel-industry-content';
 import { SeriesStats } from './CockpitExtra';
+import styles from './TunaIndustryDashboard.module.css';
 import CommodityIndustryDashboard, {
   type ChartSlot,
   type CommoditySpec,
@@ -30,6 +32,8 @@ import {
   MackerelCatchChart,
   MackerelGradeChart,
   MackerelOriginChart,
+  MackerelSeriesUnitChart,
+  MackerelSeriesWindowsChart,
 } from './CommodityCharts';
 
 const DATA = getMackerelIndustryData();
@@ -47,6 +51,39 @@ const IMPORT_SYNC = {
 };
 
 const MACKEREL_RESEARCH = getMackerelCompanyResearch();
+
+const SERIES_SYNC = { status: 'STATIC' as const, syncDate: '관세청 2026년 1~7월' };
+
+function SeriesRolesTable() {
+  return (
+    <div className={styles.factWrap}>
+      <table className={styles.factTable}>
+        <thead>
+          <tr>
+            <th>국가</th>
+            <th>역할</th>
+            <th>한국 창구</th>
+            <th>근거</th>
+          </tr>
+        </thead>
+        <tbody>
+          {seriesRoles.map((r) => (
+            <tr key={r.name}>
+              <td>{r.name}</td>
+              <td>{r.role}</td>
+              <td>{r.korea}</td>
+              <td>{r.scope}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+      <p className={styles.factNote}>
+        생산 톤은 FishStat 고등어속이고, 수입 창구는 관세청 제품중량이다. 둘을 빼지 않는다.
+        030354 품명에 세 종이 들어 있다.
+      </p>
+    </div>
+  );
+}
 
 export const MACKEREL_CHART_SLOTS: Record<string, ChartSlot[]> = {
   s01: [
@@ -105,6 +142,37 @@ export const MACKEREL_CHART_SLOTS: Record<string, ChartSlot[]> = {
       ),
     },
   ],
+  s05: [
+    {
+      title: '시리즈 6개국 역할',
+      caption:
+        '생산 순위와 수입 창구를 한 칸에 섞지 않았다. 어획 1위 중국과 창구 1위 노르웨이는 종이 다르다.',
+      telemetry: { status: 'STATIC' as const, syncDate: 'FishStat 2024 · 관세청 2026년 1~7월' },
+      span: 'full',
+      render: () => <SeriesRolesTable />,
+    },
+    {
+      title: '수입 창구 물량 (톤)',
+      caption:
+        '청록이 030354 냉동, 호박색이 0304895000 필렛이다. 노르웨이만 강조한 이유는 두 창구가 같이 크기 때문이다. 아이슬란드 0은 어획이 없다는 뜻이 아니라 이 세번 추출에 이름이 없다는 뜻이다. 2026년 1~7월 제품중량이라 위 생산 통계·04단계 1~5월 표와 더할 수 없다.',
+      telemetry: SERIES_SYNC,
+      span: 'full',
+      render: () => <MackerelSeriesWindowsChart />,
+      cockpitExtra: () => (
+        <SeriesStats rows={seriesWindows} labelKey="국가" valueKey="냉동" unit="(톤)" sum />
+      ),
+    },
+    {
+      title: '수입 창구 단가 (달러/톤)',
+      caption:
+        'HS 030354 신고액÷중량만 그린다. 영국 5,375이 가장 높고 일본 662이 가장 낮다. 아이슬란드 단가를 0으로 만들지 않는다. 필렛 단가와 섞지 않는다.',
+      telemetry: SERIES_SYNC,
+      render: () => <MackerelSeriesUnitChart />,
+      cockpitExtra: () => (
+        <SeriesStats rows={seriesUnits} labelKey="국가" valueKey="단가" unit="(달러/톤)" />
+      ),
+    },
+  ],
   x01: [
     {
       title: '종별 보고량 추이 — 망치고등어가 사라진 자리 (톤)',
@@ -121,7 +189,7 @@ const SPEC: CommoditySpec = {
   key: 'mackerel',
   title: '고등어',
   subtitle:
-    '고등어 산업 해부 · 어법이 축이 아닌 품목 — 크기 등급과 원산지가 가르는 밸류체인 4단계와 그것을 관통하는 종의 문제',
+    '고등어 산업 해부 · 어법이 축이 아닌 품목 — 크기 등급·원산지·수입 창구 5단계와 그것을 관통하는 종의 문제',
   accent: '#0e7490',
   primaryKpi: {
     label: '한국 고등어속 어획량',

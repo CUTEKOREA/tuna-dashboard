@@ -38,6 +38,10 @@ import {
   seriesUnits as whelkSeriesUnits,
   seriesWindows as whelkSeriesWindows,
 } from '@/lib/data/whelk-country-series';
+import {
+  seriesUnits as mackerelSeriesUnits,
+  seriesWindows as mackerelSeriesWindows,
+} from '@/lib/data/mackerel-country-series';
 import SafeResponsiveContainer from '../SafeResponsiveContainer';
 import styles from './TunaIndustryDashboard.module.css';
 
@@ -879,6 +883,80 @@ export function WhelkSeriesUnitChart() {
         <Bar dataKey="단가" name="160559 단가 (달러/톤)" isAnimationActive={animate}>
           {whelkSeriesUnits.map((r) => (
             <Cell key={r.국가} fill={r.국가 === '캐나다' ? HIGHLIGHT : BASE} />
+          ))}
+        </Bar>
+      </BarChart>
+    </SafeResponsiveContainer>
+  );
+}
+
+/* ── 6개국 시리즈 한국 창구 (관세청 2026년 1~7월) ────────────────────────
+ *
+ * ⚠ 제품중량이다. 위 FAO 생산 차트·04단계 1~5월 혼합 바구니와 더하지 않는다.
+ */
+
+/** 시리즈 5개국 030354 냉동과 0304895000 필렛. 노르웨이만 강조 — 두 창구가 같이 크다. */
+export function MackerelSeriesWindowsChart() {
+  const animate = !useReducedMotion();
+  const { base: BASE, highlight: HIGHLIGHT } = PALETTE.고등어;
+  const rot = rotated(mackerelSeriesWindows.map((r) => r.국가));
+
+  return (
+    <SafeResponsiveContainer width="100%" height={320}>
+      <BarChart data={mackerelSeriesWindows} margin={{ ...MARGIN, bottom: rot.angle ? 54 : 8 }}>
+        {grid}
+        <XAxis
+          dataKey="국가"
+          {...AXIS}
+          tickFormatter={truncateXAxis}
+          angle={rot.angle}
+          textAnchor={rot.textAnchor as 'end' | 'middle'}
+          height={rot.angle ? 68 : 30}
+          interval={0}
+        />
+        <YAxis {...AXIS} tickFormatter={(v: number) => `${(v / 1000).toFixed(0)}천`} />
+        <Tooltip content={<Tip unit=" 톤" />} />
+        {legend}
+        <Bar dataKey="냉동" name="030354 냉동 (톤)" fill={BASE} isAnimationActive={animate}>
+          {mackerelSeriesWindows.map((r) => (
+            <Cell key={`raw-${r.국가}`} fill={r.국가 === '노르웨이' ? HIGHLIGHT : BASE} />
+          ))}
+        </Bar>
+        <Bar dataKey="필렛" name="0304895000 필렛 (톤)" fill="#f59e0b" isAnimationActive={animate} />
+      </BarChart>
+    </SafeResponsiveContainer>
+  );
+}
+
+/** HS 030354 신고단가. 물량이 있는 네 나라만. 영국만 강조 — 단가가 가장 높다. */
+export function MackerelSeriesUnitChart() {
+  const animate = !useReducedMotion();
+  const { base: BASE, highlight: HIGHLIGHT } = PALETTE.고등어;
+  const rot = rotated(mackerelSeriesUnits.map((r) => r.국가));
+
+  return (
+    <SafeResponsiveContainer width="100%" height={280}>
+      <BarChart data={mackerelSeriesUnits} margin={{ ...MARGIN, bottom: rot.angle ? 54 : 8 }}>
+        {grid}
+        <XAxis
+          dataKey="국가"
+          {...AXIS}
+          tickFormatter={truncateXAxis}
+          angle={rot.angle}
+          textAnchor={rot.textAnchor as 'end' | 'middle'}
+          height={rot.angle ? 68 : 30}
+          interval={0}
+        />
+        <YAxis
+          {...AXIS}
+          tickFormatter={(v: number) => `${(v / 1000).toFixed(0)}천`}
+          domain={[0, 6000]}
+        />
+        <Tooltip content={<Tip unit=" 달러/톤" />} />
+        {legend}
+        <Bar dataKey="단가" name="030354 단가 (달러/톤)" isAnimationActive={animate}>
+          {mackerelSeriesUnits.map((r) => (
+            <Cell key={r.국가} fill={r.국가 === '영국' ? HIGHLIGHT : BASE} />
           ))}
         </Bar>
       </BarChart>

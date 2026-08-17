@@ -1,0 +1,117 @@
+{
+  "_meta": {
+    "title": "원양어업 생산동향",
+    "issuer": "OFIS",
+    "period": "2026-06",
+    "periodLabel": "2026년 6월",
+    "ytdLabel": "2026년 1~6월",
+    "file": "260807_3__OFIS_원양어업생산동향(26_6_).pdf",
+    "published": "2026-08-07",
+    "status": "STATIC",
+    "provisional": true,
+    "unitVolume": "톤",
+    "unitPrice": "원/kg",
+    "sha256_16": "9577144f30658e7d",
+    "measurementBoundary": "OFIS 2026년 6월호 잠정. 초판 월보를 이어 붙이지 않는다. 2026년 1~6월을 연환산하지 않는다. 2025년 회사표(383,130 M/T)·2024년 통계조사(479,398톤)와 빼거나 잇지 않는다. 회사·선박 칸은 없다. 생산 없는 어종의 단가 행을 0으로 만들지 않는다."
+  },
+  "headline": {
+    "avg5yrMonth": 38895,
+    "priorMonth": 41945,
+    "priorYtd": 214623,
+    "month": 33045,
+    "ytd": 191540,
+    "monthYoyPct": -21.2
+  },
+  "tuna": {
+    "total": {
+      "avg5yrMonth": 25827,
+      "priorMonth": 24627,
+      "priorYtd": 129125,
+      "month": 16936,
+      "ytd": 118014,
+      "monthYoyPct": -31.2
+    },
+    "purseSeine": {
+      "avg5yrMonth": 22404,
+      "priorMonth": 21144,
+      "priorYtd": 109818,
+      "month": 13176,
+      "ytd": 97487,
+      "monthYoyPct": -37.7
+    },
+    "longline": {
+      "avg5yrMonth": 3423,
+      "priorMonth": 3483,
+      "priorYtd": 19307,
+      "month": 3760,
+      "ytd": 20527,
+      "monthYoyPct": 8.0
+    }
+  },
+  "species": [
+    { "id": "saury", "label": "꽁치", "avg5yrMonth": 996, "priorMonth": 750, "priorYtd": 750, "month": 0, "ytd": 0, "monthYoyPct": -100.0 },
+    { "id": "cod", "label": "대구", "avg5yrMonth": 398, "priorMonth": 386, "priorYtd": 849, "month": 529, "ytd": 1201, "monthYoyPct": 37.0 },
+    { "id": "pollock", "label": "명태", "avg5yrMonth": 4078, "priorMonth": 6031, "priorYtd": 6061, "month": 5861, "ytd": 6346, "monthYoyPct": -2.8 },
+    { "id": "hake", "label": "민대구류", "avg5yrMonth": 741, "priorMonth": 358, "priorYtd": 2552, "month": 1229, "ytd": 4189, "monthYoyPct": 243.3 },
+    { "id": "toothfish", "label": "이빨고기", "avg5yrMonth": 187, "priorMonth": 155, "priorYtd": 1908, "month": 293, "ytd": 2672, "monthYoyPct": 89.0 },
+    { "id": "krill", "label": "남빙양크릴", "avg5yrMonth": 5995, "priorMonth": 6061, "priorYtd": 24446, "month": 7119, "ytd": 21799, "monthYoyPct": 17.5 },
+    { "id": "squid", "label": "오징어류", "avg5yrMonth": 1226, "priorMonth": 3294, "priorYtd": 47251, "month": 402, "ytd": 35073, "monthYoyPct": -87.8 },
+    { "id": "cuttlefish", "label": "한치류", "avg5yrMonth": 1158, "priorMonth": 9, "priorYtd": 23, "month": 147, "ytd": 363, "monthYoyPct": 1533.3 },
+    { "id": "other", "label": "기타", "avg5yrMonth": 383, "priorMonth": 274, "priorYtd": 1658, "month": 529, "ytd": 1883, "monthYoyPct": 93.1 }
+  ],
+  "oceans": [
+    {
+      "id": "pacific",
+      "label": "태평양",
+      "avg5yrMonth": 29477,
+      "priorMonth": 30991,
+      "priorYtd": 126500,
+      "month": 22571,
+      "ytd": 114166,
+      "monthYoyPct": -27.2
+    },
+    {
+      "id": "atlantic",
+      "label": "대서양",
+      "avg5yrMonth": 3583,
+      "priorMonth": 3990,
+      "priorYtd": 52285,
+      "month": 2389,
+      "ytd": 42617,
+      "monthYoyPct": -40.1
+    },
+    {
+      "id": "indian",
+      "label": "인도양",
+      "avg5yrMonth": 1040,
+      "priorMonth": 903,
+      "priorYtd": 10444,
+      "month": 967,
+      "ytd": 11431,
+      "monthYoyPct": 7.1
+    },
+    {
+      "id": "southern",
+      "label": "남빙양",
+      "avg5yrMonth": 4796,
+      "priorMonth": 6061,
+      "priorYtd": 25395,
+      "month": 7119,
+      "ytd": 23326,
+      "monthYoyPct": 17.5
+    }
+  ],
+  "prices": [
+    { "id": "skipjack", "label": "가다랑어", "prior": 1959.9, "current": 1960.2, "delta": 0.3, "yoyPct": 0.0 },
+    { "id": "southernBluefin", "label": "남방참다랑어", "prior": 17452.2, "current": 17445.9, "delta": -6.3, "yoyPct": 0.0 },
+    { "id": "bigeye", "label": "눈다랑어", "prior": 5358.3, "current": 7068.6, "delta": 1710.4, "yoyPct": 31.9 },
+    { "id": "yellowfin", "label": "황다랑어", "prior": 4657.2, "current": 3606.4, "delta": -1050.8, "yoyPct": -22.6 },
+    { "id": "cod", "label": "대구", "prior": 2271.5, "current": 2271.1, "delta": -0.3, "yoyPct": 0.0 },
+    { "id": "pollock", "label": "명태", "prior": 1611.1, "current": 1611.0, "delta": -0.1, "yoyPct": 0.0 },
+    { "id": "hake", "label": "민대구류", "prior": 1517.9, "current": 1518.3, "delta": 0.5, "yoyPct": 0.0 },
+    { "id": "toothfish", "label": "이빨고기", "prior": 21137.7, "current": 21323.2, "delta": 185.4, "yoyPct": 0.9 },
+    { "id": "krill", "label": "남빙양크릴", "prior": 753.2, "current": 753.2, "delta": 0.0, "yoyPct": 0.0 },
+    { "id": "squid", "label": "오징어류", "prior": 5768.3, "current": 6595.2, "delta": 827.0, "yoyPct": 14.3 },
+    { "id": "cuttlefish", "label": "한치류", "prior": 3644.4, "current": 3780.7, "delta": 135.3, "yoyPct": 3.7 }
+  ]
+}
