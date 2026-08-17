@@ -1,9 +1,8 @@
 /**
- * r5 뉴스 시안 A — 신문 1면형.
- * 리드 기사 초대형 헤드라인 + 첫 문단, 우측 임팩트 넘버 세로 스택,
- * 나머지 기사는 2단 컬럼(제목 + 첫 문장). 접힘 없음 — 6건 전부 펼침 (취향 ⑥).
- * 임팩트 넘버에 증감색을 입히지 않은 것은 의도다 — 'USD 2,200'은 수준값이지 증감분이 아니라
- * 화살표·상승색을 붙이면 없는 주장이 생긴다 (SOUL ④ 숫자 정직).
+ * 오늘의 참치 뉴스 — 신문 1면형. 디자인 랩 5라운드 최종 채택본 (r5-A ★4, 2026-08-17).
+ * 리드 초대형 헤드라인 + 첫 문단, 우측 임팩트 넘버 스택, 나머지 2단 컬럼(제목+첫 문장 상시).
+ * 승격 시 추가: 기사 클릭 = 그 자리 전문 펼침 (시안은 첫 문장뿐이라 전문 접근이 후퇴했었음).
+ * 임팩트 넘버에 증감색 없음은 의도 — 수준값에 상승색을 붙이면 없는 주장이 생긴다 (SOUL ④).
  */
 'use client';
 
@@ -13,7 +12,7 @@ import {
   categorizeBriefingTitle,
   dailyBriefing,
   type BriefingCategory,
-} from '../../../lib/data/daily-briefing';
+} from '../lib/data/daily-briefing';
 
 /* 분류 배지 — 연한 아웃라인 대신 단색 필 + 흰 글자 (취향 ②: 흐릿한 배지 반려) */
 const CATEGORY_COLOR: Record<BriefingCategory, string> = {
@@ -46,6 +45,8 @@ function firstSentence(paragraph: string): string {
 
 export default function NewsFrontPage() {
   const [hover, setHover] = useState<number | null>(null);
+  // 전문 펼침 — -1 = 리드, 0.. = 나머지 기사 인덱스
+  const [open, setOpen] = useState<number | null>(null);
 
   const impacts = buildBriefingImpactNumbers(dailyBriefing);
   const [lead, ...rest] = dailyBriefing.articles;
@@ -94,6 +95,20 @@ export default function NewsFrontPage() {
           }}>
             {lead.paragraphs[0]}
           </p>
+          {open === -1 && lead.paragraphs.slice(1).map((paragraph, i) => (
+            <p key={i} style={{ margin: '10px 0 0', fontSize: '0.95rem', lineHeight: 1.75, color: 'var(--text-main)' }}>
+              {paragraph}
+            </p>
+          ))}
+          {lead.paragraphs.length > 1 && (
+            <button
+              type="button"
+              onClick={() => setOpen(open === -1 ? null : -1)}
+              style={{ marginTop: 10, padding: 0, border: 'none', background: 'none', cursor: 'pointer', fontSize: '0.78rem', fontWeight: 700, color: 'var(--accent-primary, #509ee3)' }}
+            >
+              {open === -1 ? '접기 ↑' : '계속 읽기 ↓'}
+            </button>
+          )}
         </div>
 
         <aside style={{ borderLeft: '1px solid var(--card-border, #e2e4e9)', paddingLeft: 20 }}>
@@ -139,7 +154,9 @@ export default function NewsFrontPage() {
               key={article.titleKo}
               onMouseEnter={() => setHover(index)}
               onMouseLeave={() => setHover(null)}
+              onClick={() => setOpen(open === index ? null : index)}
               style={{
+                cursor: 'pointer',
                 padding: isRight ? '14px 4px 14px 22px' : '14px 22px 14px 4px',
                 borderLeft: isRight ? '1px solid var(--card-border, #e2e4e9)' : 'none',
                 borderBottom: '1px solid var(--card-border, #e2e4e9)',
@@ -159,15 +176,20 @@ export default function NewsFrontPage() {
                 {article.titleKo}
               </h4>
               <p style={{ margin: 0, fontSize: '0.82rem', fontWeight: 400, lineHeight: 1.6, color: 'var(--text-muted)' }}>
-                {firstSentence(article.paragraphs[0])}
+                {open === index ? null : firstSentence(article.paragraphs[0])}
               </p>
+              {open === index && article.paragraphs.map((paragraph, i) => (
+                <p key={i} style={{ margin: i === 0 ? 0 : '8px 0 0', fontSize: '0.85rem', lineHeight: 1.65, color: 'var(--text-main)' }}>
+                  {paragraph}
+                </p>
+              ))}
             </article>
           );
         })}
       </section>
 
       <p style={{ margin: '14px 0 0', fontSize: '0.72rem', fontWeight: 400, color: 'var(--text-muted)' }}>
-        기사 {dailyBriefing.articles.length}건 전부 펼침 — 접힘 없음 · 수치는 기사 원문에서 그대로 뽑았다
+        기사 클릭 = 전문 펼침 · 수치는 기사 원문에서 그대로 뽑았다
       </p>
     </div>
   );
