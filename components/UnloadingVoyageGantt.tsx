@@ -11,7 +11,7 @@ import {
   LineChart, Line, XAxis, YAxis, ReferenceDot,
   Tooltip as RechartsTooltip,
 } from 'recharts';
-import { getVesselStatusKind, type VesselStatusKind } from '../lib/unloading-operations';
+import { avgPerReportDay, getVesselStatusKind, type VesselStatusKind } from '../lib/unloading-operations';
 import { progressPct } from '../lib/metrics';
 
 /* 상태(하역중/대기/완료)는 증감이 아니므로 증감색 토큰을 쓰지 않는다 — 진행 중만 액센트, 나머지 muted */
@@ -212,10 +212,8 @@ export default function UnloadingVoyageGantt({ vesselsById }: {
   const selectedProgressPct = progressPct(selected.actualTotal, selected.reportedTotal);
   const remaining = selected.reportedTotal - selected.actualTotal;
   const reportCount = selected.timeline.length;
-  // 누계가 아닌 일일 보고값의 평균 — 조정분이 끼면 누계÷횟수와 갈라진다
-  const dailyAvg = reportCount > 0
-    ? selected.timeline.reduce((sum, point) => sum + point.dailyAmount, 0) / reportCount
-    : null;
+  // 보고일 전체 기준 (완료 예상 관점 — lib/unloading-operations SSOT 정의)
+  const dailyAvg = avgPerReportDay(selected.timeline);
   const last = series[series.length - 1];
   const asOf = Math.max(...vessels.map((v) => v.endMs));
 
