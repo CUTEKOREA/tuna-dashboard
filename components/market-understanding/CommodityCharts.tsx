@@ -34,6 +34,10 @@ import {
   argentinaRoutes,
 } from '@/lib/data/shrimp-argentina';
 import { seriesUnits, seriesWindows } from '@/lib/data/shrimp-country-series';
+import {
+  seriesUnits as whelkSeriesUnits,
+  seriesWindows as whelkSeriesWindows,
+} from '@/lib/data/whelk-country-series';
 import SafeResponsiveContainer from '../SafeResponsiveContainer';
 import styles from './TunaIndustryDashboard.module.css';
 
@@ -802,6 +806,79 @@ export function ShrimpSeriesUnitChart() {
         <Bar dataKey="단가" name="030617 단가 (달러/kg)" isAnimationActive={animate}>
           {seriesUnits.map((r) => (
             <Cell key={r.국가} fill={r.국가 === '에콰도르' ? HIGHLIGHT : BASE} />
+          ))}
+        </Bar>
+      </BarChart>
+    </SafeResponsiveContainer>
+  );
+}
+
+/* ── 6개국 시리즈 한국 창구 (관세청 HS 1605.59 2026년 1~7월) ────────────
+ *
+ * ⚠ 제품중량이다. 위 FAO 생산 차트·04단계 2024년 연간 표와 더하지 않는다.
+ */
+
+/** 시리즈 5개국 160559. 영국만 강조 — 이미 들어와 있는 본진 창구다. 프랑스 0은 창구 없음. */
+export function WhelkSeriesWindowsChart() {
+  const animate = !useReducedMotion();
+  const { base: BASE, highlight: HIGHLIGHT } = PALETTE.골뱅이;
+  const rot = rotated(whelkSeriesWindows.map((r) => r.국가));
+
+  return (
+    <SafeResponsiveContainer width="100%" height={320}>
+      <BarChart data={whelkSeriesWindows} margin={{ ...MARGIN, bottom: rot.angle ? 54 : 8 }}>
+        {grid}
+        <XAxis
+          dataKey="국가"
+          {...AXIS}
+          tickFormatter={truncateXAxis}
+          angle={rot.angle}
+          textAnchor={rot.textAnchor as 'end' | 'middle'}
+          height={rot.angle ? 68 : 30}
+          interval={0}
+        />
+        <YAxis {...AXIS} tickFormatter={(v: number) => `${v.toLocaleString('ko-KR')}`} />
+        <Tooltip content={<Tip unit=" 톤" />} />
+        {legend}
+        <Bar dataKey="물량" name="160559 조제 (톤)" isAnimationActive={animate}>
+          {whelkSeriesWindows.map((r) => (
+            <Cell key={r.국가} fill={r.국가 === '영국' ? HIGHLIGHT : BASE} />
+          ))}
+        </Bar>
+      </BarChart>
+    </SafeResponsiveContainer>
+  );
+}
+
+/** 160559 신고단가. 물량이 있는 네 나라만. 캐나다만 강조 — 단가가 가장 높다. */
+export function WhelkSeriesUnitChart() {
+  const animate = !useReducedMotion();
+  const { base: BASE, highlight: HIGHLIGHT } = PALETTE.골뱅이;
+  const rot = rotated(whelkSeriesUnits.map((r) => r.국가));
+
+  return (
+    <SafeResponsiveContainer width="100%" height={280}>
+      <BarChart data={whelkSeriesUnits} margin={{ ...MARGIN, bottom: rot.angle ? 54 : 8 }}>
+        {grid}
+        <XAxis
+          dataKey="국가"
+          {...AXIS}
+          tickFormatter={truncateXAxis}
+          angle={rot.angle}
+          textAnchor={rot.textAnchor as 'end' | 'middle'}
+          height={rot.angle ? 68 : 30}
+          interval={0}
+        />
+        <YAxis
+          {...AXIS}
+          tickFormatter={(v: number) => `${(v / 1000).toFixed(0)}천`}
+          domain={[0, 18000]}
+        />
+        <Tooltip content={<Tip unit=" 달러/톤" />} />
+        {legend}
+        <Bar dataKey="단가" name="160559 단가 (달러/톤)" isAnimationActive={animate}>
+          {whelkSeriesUnits.map((r) => (
+            <Cell key={r.국가} fill={r.국가 === '캐나다' ? HIGHLIGHT : BASE} />
           ))}
         </Bar>
       </BarChart>

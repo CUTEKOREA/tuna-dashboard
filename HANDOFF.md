@@ -1,3 +1,12 @@
+> 📘 **2026-08-17 — 골뱅이 6개국 보고서를 시장이해 수입 창구로 재구성** [Grok]:
+> - worktree `whelk-country-series` · 브랜치 `feat/whelk-country-series`. PR #606.
+> - 라이브 골뱅이=`whelk-industry`. 05단계 **수입 창구**. 04 교역(2024 연간)과 기간을 섞지 않음.
+> - 인테이크 `lib/data/whelk-country-series.ts` ← `public/data/whelk_country_series_v1.json`.
+> - 2026년 1~7월 160559: 영 680.3 · 중 473.8 · 캐 114.1 · 아 110.0 · 프 0. 단가는 물량 있는 4개국만.
+> - 테스트: whelk-series-stage + commodity-industry-render + cockpit-extra + architecture-guards 70 passed.
+
+> 마지막 업데이트: 2026-08-17 [Grok]
+
 > 🎣 **2026-08-17 23:00 KST — 원양어업통계조사 18개 표 반영 (오징어 조업실적 조사 결과)** [CC]:
 > - 「회사별·선박별 조업실적을 찾아라」는 오더로 **7갈래 동시 조사**(Grok 4.6 ×4 · Codex ×1 · Claude 서브에이전트 ×2). Claude 2기는 세션 한도로 죽어 **Grok·Codex 로 갈아탔다** — 한 벤더가 막혔다고 「없다」로 끝내지 않는다.
 > - **찾아낸 것**: 해양수산부 원양어업통계조사(통계법 승인 제114048호) — 원양어업 허가 어선 **전수조사**. KOSIS 목록 `123_1449` 에 18개 표. `scripts/fetch_deepsea_fishery_kosis.py` 로 스냅샷.
@@ -10,6 +19,7 @@
 > - **결론: 회사별·선박별은 「없는 자료가 아니라 닫힌 자료」다.** OFIS 조사개요가 「(어선별) 생산실적」을 공표범위로 명시하는데 승인 계정이 필요하고 공개 링크는 404였다(실측). KOSFA 통계연보(회사별 수록)는 **비매품**이라 국립수산과학원 도서실 `P664.059 한17원 2025` 관내 열람뿐 — Grok·Codex 가 독립적으로 같은 결론에 닿았다.
 > - **다음**: ① OFIS 승인 계정 신청 가능 여부 ② 정보공개청구(공표 명시 + 링크 404 가 근거) ③ KOSFA `02-589-1621`·수과원 도서실 `051-720-2826`.
 > - `npm run verify` 통과 (815/817, 경고 4건 = 기준선).
+
 > 🚀 **2026-08-17 — s06 탭명을 수입 창구로 배포** [Grok]:
 > - 04 한국(FAO 국산 생산)과 겹쳐 보여 단계 제목·차트 낫표를 `수입 창구`로 바꿨다.
 > - PR [#604](https://github.com/CUTEKOREA/tuna-dashboard/pull/604) squash `83ec4a4`. Gate `32031842781` 성공.

@@ -17,12 +17,14 @@ import {
 import { getWhelkCompanyResearch } from '@/lib/data/valuechain-companies';
 
 import { getWhelkIndustryData } from '@/lib/data/commodity-industry';
+import { seriesRoles, seriesUnits, seriesWindows } from '@/lib/data/whelk-country-series';
 import {
   WHELK_BRIEFING_POINTS,
   WHELK_NARRATIVES,
   WHELK_SOURCE_NOTES,
 } from '@/lib/whelk-industry-content';
 import { SeriesStats } from './CockpitExtra';
+import styles from './TunaIndustryDashboard.module.css';
 import CommodityIndustryDashboard, {
   type ChartSlot,
   type CommoditySpec,
@@ -32,6 +34,8 @@ import {
   WhelkGroupChart,
   WhelkImportChart,
   WhelkKoreaSeriesChart,
+  WhelkSeriesUnitChart,
+  WhelkSeriesWindowsChart,
 } from './CommodityCharts';
 
 const DATA = getWhelkIndustryData();
@@ -43,6 +47,40 @@ const KCS_SYNC = {
 const KOSIS_SYNC = { status: 'STATIC' as const, syncDate: '2025년까지' };
 
 const WHELK_RESEARCH = getWhelkCompanyResearch();
+
+const SERIES_SYNC = { status: 'STATIC' as const, syncDate: '관세청 2026년 1~7월' };
+
+/** 시리즈 6개국 역할. 차트 없이 표로 그린다 — 서버 렌더에서 수치가 그대로 나와야 한다. */
+function SeriesRolesTable() {
+  return (
+    <div className={styles.factWrap}>
+      <table className={styles.factTable}>
+        <thead>
+          <tr>
+            <th>국가</th>
+            <th>역할</th>
+            <th>한국 창구</th>
+            <th>근거</th>
+          </tr>
+        </thead>
+        <tbody>
+          {seriesRoles.map((r) => (
+            <tr key={r.name}>
+              <td>{r.name}</td>
+              <td>{r.role}</td>
+              <td>{r.korea}</td>
+              <td>{r.scope}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+      <p className={styles.factNote}>
+        생산 톤은 FishStat 참골뱅이·피뿔고둥 그룹이고, 수입 창구는 관세청 제품중량이다. 둘을 빼지
+        않는다. 1605.59는 골뱅이 전용이 아니다.
+      </p>
+    </div>
+  );
+}
 
 export const WHELK_CHART_SLOTS: Record<string, ChartSlot[]> = {
   s01: [
@@ -108,6 +146,37 @@ export const WHELK_CHART_SLOTS: Record<string, ChartSlot[]> = {
       render: () => <WhelkImportChart data={DATA} />,
     },
   ],
+  s05: [
+    {
+      title: '시리즈 6개국 역할',
+      caption:
+        '생산 순위와 수입 창구를 한 칸에 섞지 않았다. 어획 2위 프랑스가 이 세번에 없는 것이 이 표의 요지다.',
+      telemetry: { status: 'STATIC' as const, syncDate: 'FishStat 2024 · 관세청 2026년 1~7월' },
+      span: 'full',
+      render: () => <SeriesRolesTable />,
+    },
+    {
+      title: '수입 창구 물량 (톤)',
+      caption:
+        '막대는 HS 1605.59 2026년 1~7월 제품중량이다. 호박색이 영국 — 이미 들어와 있는 본진이다. 프랑스 0은 어획이 없다는 뜻이 아니라 이 세번 추출에 이름이 없다는 뜻이다. 일곱 달이라 위 생산 통계·04단계 2024년 표와 더할 수 없다.',
+      telemetry: SERIES_SYNC,
+      span: 'full',
+      render: () => <WhelkSeriesWindowsChart />,
+      cockpitExtra: () => (
+        <SeriesStats rows={seriesWindows} labelKey="국가" valueKey="물량" unit="(톤)" sum />
+      ),
+    },
+    {
+      title: '수입 창구 단가 (달러/톤)',
+      caption:
+        '물량이 있는 네 나라만 그린다. 캐나다 16,553이 가장 높고 중국 7,189이 가장 낮다. 프랑스 단가를 0으로 만들지 않는다. 2024년 캐나다 5,340은 소량이라 쓰지 않는다.',
+      telemetry: SERIES_SYNC,
+      render: () => <WhelkSeriesUnitChart />,
+      cockpitExtra: () => (
+        <SeriesStats rows={seriesUnits} labelKey="국가" valueKey="단가" unit="(달러/톤)" />
+      ),
+    },
+  ],
 };
 
 const UK_IMPORT = DATA.한국수입.rows.find((row) => row.국가 === '영국');
@@ -117,7 +186,7 @@ const SPEC: CommoditySpec = {
   key: 'whelk',
   title: '골뱅이',
   subtitle:
-    '골뱅이 산업 해부 · 한 이름에 네 개 과(科)가 섞인 품목 — 종·원물·국내 생산·교역 4단계와 이름 자체의 문제',
+    '골뱅이 산업 해부 · 한 이름에 네 개 과(科)가 섞인 품목 — 종·원물·국내 생산·교역·수입 창구 5단계와 이름 자체의 문제',
   accent: '#b45309',
   primaryKpi: {
     label: '다섯 과(科) 합계 생산량',
