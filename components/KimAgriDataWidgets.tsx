@@ -11,6 +11,7 @@ import { AreaChart, Area, BarChart, Bar, LineChart, Line, ComposedChart, PieChar
 import { Sprout, Globe, Ship, Anchor, Boxes, Utensils, DollarSign, FlaskConical } from 'lucide-react';
 import WidgetCard from './WidgetCard';
 import { truncateXAxis } from '../lib/chart-standards';
+import { pctChange } from '../lib/metrics';
 
 const tip = { background: 'rgba(10, 16, 40, 0.92)', border: '1px solid rgba(132,204,22,0.4)', borderRadius: '8px' };
 
@@ -103,7 +104,7 @@ export function KimExportTrend() {
   if (!d) return <Loading label="수출 추이" />;
   const data = rows(d.annual).map(a => ({ year: a.year, usd: Math.round(a.expUsd / 1e6), ton: a.expTon }));
   const first = data[0], last = data[data.length - 1];
-  const growth = first ? Math.round((last.usd / first.usd - 1) * 100) : 0;
+  const growth = first ? Math.round(pctChange(last.usd, first.usd) ?? 0) : 0;
   return (
     <WidgetCard
       title="마른김 수출 추이 (관세청 KCS, HS 1212.21)"
@@ -196,7 +197,7 @@ export function KimConsumption() {
   if (!d) return <Loading label="1인당 소비" />;
   const data = rows(d.perCapita).map(p => ({ year: p.year, v: p.v }));
   const first = data[0], last = data[data.length - 1];
-  const chg = first ? Math.round((last.v / first.v - 1) * 100) : 0;
+  const chg = first ? Math.round(pctChange(last.v, first.v) ?? 0) : 0;
   return (
     <WidgetCard
       title="한국 1인당 해조류 소비 추이 (FAOSTAT)"

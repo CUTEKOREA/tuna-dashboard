@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import { pctChange } from '../../../../lib/metrics';
 
 export const dynamic = 'force-dynamic';
 
@@ -85,7 +86,7 @@ export async function GET() {
             const cur = parsePrice(it.dpr1);
             const prev = parsePrice(it.dpr2);
             if (cur == null) return null;
-            const change = prev != null && prev > 0 ? ((cur - prev) / prev) * 100 : null;
+            const change = prev != null ? pctChange(cur, prev) : null;
             return {
               date: regDay,
               price: cur,
@@ -101,7 +102,7 @@ export async function GET() {
           const prevPrice = (prices[0] as any).prevPrice as number | null;
           const weekChange =
             prevPrice != null && prevPrice > 0
-              ? (((latestPrice - prevPrice) / prevPrice) * 100).toFixed(1)
+              ? (pctChange(latestPrice, prevPrice) ?? 0).toFixed(1)
               : "0";
 
           return NextResponse.json({
@@ -117,7 +118,7 @@ export async function GET() {
             spread: {
               auctionPrice: 10300,
               wholesalePrice: latestPrice,
-              spreadPct: Math.round((latestPrice / 10300 - 1) * 1000) / 10,
+              spreadPct: Math.round((pctChange(latestPrice, 10300) ?? 0) * 10) / 10,
             },
           });
         }

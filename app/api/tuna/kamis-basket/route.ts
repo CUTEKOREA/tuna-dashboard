@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { requireEnv } from '../../_shared/env';
+import { pctChange } from '../../../../lib/metrics';
 
 export const runtime = "nodejs";
 export const revalidate = 1800; // 30분 캐시 — KAMIS 일 1회 갱신 데이터에 충분
@@ -104,8 +105,8 @@ async function fetchBasketForDay(regday: string): Promise<BasketItem[] | null> {
     if (!row) return null; // 4품목 전부 유효해야 해당 일자 채택
     const price = parsePrice(row.dpr1) as number;
     const prevPrice = parsePrice(row.dpr2);
-    const changePct =
-      prevPrice != null ? Math.round(((price - prevPrice) / prevPrice) * 1000) / 10 : null;
+    const changeRaw = prevPrice != null ? pctChange(price, prevPrice) : null;
+    const changePct = changeRaw == null ? null : Math.round(changeRaw * 10) / 10;
     // kind_name 예: "국산(염장)(1손)" — 말미 단위 괄호 분리
     const kindRaw = String(row.kind_name ?? "").trim();
     const unit = String(row.unit ?? "").trim() || "단위 미상";

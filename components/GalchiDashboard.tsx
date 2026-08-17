@@ -16,6 +16,7 @@ import styles from './MackerelStrategy.module.css'; // Reuse the glassmorphism s
 import WidgetCard from './WidgetCard';
 import { ChartPatternDefs, getA11yBarProps } from './ChartPatterns';
 import { TelemetryBadge } from './TelemetryBadge';
+import { pctChange } from '../lib/metrics';
 
 function parseAnimatedValue(valStr: string) {
   if (!valStr || typeof valStr !== 'string') return null;
@@ -208,8 +209,9 @@ export default function GalchiDashboard() {
   if (liveKcs?.summary?.cifPerKg) {
     const kcsYear = liveKcs.year || "2025";
     const prevYr = liveKcs.yearly?.find((y: any) => y.year === String(Number(kcsYear) - 1));
-    const cifTrend = prevYr?.cifPerKg
-      ? `${liveKcs.summary.cifPerKg >= prevYr.cifPerKg ? "+" : ""}${Math.round((liveKcs.summary.cifPerKg / prevYr.cifPerKg - 1) * 1000) / 10}%`
+    const cifPct = pctChange(liveKcs.summary.cifPerKg, prevYr?.cifPerKg);
+    const cifTrend = cifPct !== null
+      ? `${cifPct >= 0 ? "+" : ""}${Math.round(cifPct * 10) / 10}%`
       : "—";
     kpis.kpi2 = {
       title: "수입 단가(CIF)",

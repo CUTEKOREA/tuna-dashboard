@@ -3,6 +3,7 @@ import React, { useState, useEffect, useRef, useCallback, useMemo } from 'react'
 import styles from './UnloadingTimelineReplay.module.css';
 import { X, Play, Pause, ChevronLeft, ChevronRight, Anchor, Thermometer, BarChart3 } from 'lucide-react';
 import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip as RechartsTooltip, ReferenceLine, ResponsiveContainer, Legend } from 'recharts';
+import { progressPct } from '../lib/metrics';
 
 interface TimelineEntry {
   date: string;
@@ -252,7 +253,9 @@ export default function UnloadingTimelineReplay({
   const isRestDay = entry.dailyAmount === 0 || entry.targetHol === '-';
   const targetHolds = parseTargetHolds(entry);
   const tempRange = parseTemperatures(entry.quality);
-  const progressPercent = reportedTotal > 0 ? Math.min((entry.cumAmount / reportedTotal) * 100, 100) : 0;
+  // 숫자 라벨은 초과 실값, 바 width는 100 클램프 — 바가 가득 차도 숫자는 106%로 남는다.
+  const progressPercent = progressPct(entry.cumAmount, reportedTotal) ?? 0;
+  const progressBarWidth = progressPct(entry.cumAmount, reportedTotal, { clampMax: 100 }) ?? 0;
 
   // Hold structure for the vessel
   const holdStructure = useMemo(() => getHoldStructure(vesselId), [vesselId]);
@@ -405,7 +408,7 @@ export default function UnloadingTimelineReplay({
                     {formatNum(entry.cumAmount)} / {formatNum(reportedTotal)} MT
                   </div>
                   <div className={styles.cumProgressTrack}>
-                    <div className={styles.cumProgressFill} style={{ width: `${progressPercent}%` }} />
+                    <div className={styles.cumProgressFill} style={{ width: `${progressBarWidth}%` }} />
                   </div>
                 </div>
 

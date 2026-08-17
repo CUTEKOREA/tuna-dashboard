@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import { pctChange } from '../../../../lib/metrics';
 
 export const dynamic = 'force-dynamic';
 
@@ -58,7 +59,7 @@ function calcLandingCost(cifUsd: number, usdKrw: number) {
     // 위판가 대비 스프레드
     auctionPriceKrw: 10300,
     spreadKrw: Math.round(10300 - landed),
-    spreadPct: Math.round((10300 / landed - 1) * 1000) / 10,
+    spreadPct: Math.round((pctChange(10300, landed) ?? 0) * 10) / 10,
   };
 }
 

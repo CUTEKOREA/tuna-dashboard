@@ -3,6 +3,7 @@ import fs from 'fs';
 import path from 'path';
 import { getConsignmentFreshness } from '../../../lib/consignment-data';
 import { requireEnv } from '../_shared/env';
+import { pctChange } from '../../../lib/metrics';
 
 export const dynamic = 'force-dynamic';
 export const revalidate = 0;
@@ -255,7 +256,7 @@ export async function GET() {
             importCifUsd: mackerelImportUsd,
             localPriceKrw: mackerelLocal,
             signal: mackerelImportKrw < mackerelLocal ? 'IMPORT' : 'LOCAL_BUY',
-            spreadPercent: Math.round(Math.abs((mackerelImportKrw - mackerelLocal) / mackerelLocal * 100)),
+            spreadPercent: Math.round(Math.abs(pctChange(mackerelImportKrw, mackerelLocal) ?? 0)),
             isLocalLive: !!mackerelLocalPrice,
           },
           squid: {
@@ -263,7 +264,7 @@ export async function GET() {
             importCifUsd: squidImportUsd,
             localPriceKrw: squidLocal,
             signal: squidImportKrw < squidLocal ? 'IMPORT' : 'LOCAL_BUY',
-            spreadPercent: Math.round(Math.abs((squidImportKrw - squidLocal) / squidLocal * 100)),
+            spreadPercent: Math.round(Math.abs(pctChange(squidImportKrw, squidLocal) ?? 0)),
             isLocalLive: !!squidLocalPrice,
           }
         },

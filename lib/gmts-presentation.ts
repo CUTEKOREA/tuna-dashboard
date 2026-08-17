@@ -6,6 +6,7 @@ import type {
   GmtsSource,
   GmtsVesselRecord,
 } from './data/gmts';
+import { pctChange } from './metrics';
 
 export type GmtsMetricTone = 'neutral' | 'positive' | 'warning';
 
@@ -232,8 +233,9 @@ function round(value: number, digits = 2): number {
 }
 
 function percentChange(current: number | null, prior: number | null): number | null {
-  if (current === null || prior === null || prior === 0) return null;
-  return round(((current - prior) / prior) * 100);
+  if (current === null || prior === null) return null;
+  const pct = pctChange(current, prior);
+  return pct === null ? null : round(pct);
 }
 
 function sumNullable(values: Array<number | null>): number | null {

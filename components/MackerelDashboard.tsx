@@ -19,6 +19,7 @@ import { ChartPatternDefs, getA11yBarProps } from './ChartPatterns';
 // 아카이브 기반 위젯 계층 (scripts/mackerel/build.py 산출)
 import MackerelWidgetV2 from './MackerelWidgetV2';
 import { getPillarWidgets, getKpis, widgetCount, type Pillar } from '@/lib/data/mackerel-v2';
+import { pctChange } from '@/lib/metrics';
 
 // 5-Pillar 네비게이터 메타 (Tuna 패턴 + 고등어 시그니처 그라디언트 cyan-700→sky-500)
 const SECTIONS = [
@@ -298,7 +299,7 @@ export default function MackerelDashboard() {
         const euRows = eurostatData.imports;
         const euLast = euRows[euRows.length - 1];
         const euFirst = euRows[0];
-        const euGrowthPct = euFirst?.value > 0 ? Math.round(((euLast.value - euFirst.value) / euFirst.value) * 100) : null;
+        const euGrowthPct = euFirst?.value > 0 ? Math.round(pctChange(euLast.value, euFirst.value) ?? 0) : null;
         json.widgets.push({
           id: 'w_eu_import', title: 'EU-27 고등어 수입 실적 추이',
           subtitle: euLive
