@@ -237,6 +237,18 @@ describe('고등어 — 집계와 본문 대조', () => {
     expect(facts.some((fact) => fact.value.includes(String(coastal?.비중)))).toBe(true);
   });
 
+  it('최소 크기 등급을 빼지 않았다', () => {
+    // 「갈고등어」는 별개 어종이 아니라 고등어 200g 이하 치어의 등급이다.
+    // 빼고 세면 위판 물량의 91%가 사라져 「최하 78%」라는 틀린 그림이 나온다 — 실제로 그랬다.
+    const names = data.위판등급.rows.map((r) => r.등급);
+    expect(names, '갈고등어를 다시 빼면 등급 구성이 통째로 어긋난다').toContain('갈고등어');
+    const smallest = data.위판등급.rows.find((r) => r.등급 === '갈고등어')!;
+    expect(smallest.비중).toBeGreaterThan(80);
+    // 무엇인지 화면에 밝혀야 한다 — 시장 이름이라 그냥 두면 다른 물고기로 읽힌다
+    expect(String((smallest as unknown as { 설명?: string }).설명 ?? '')).toContain('200g');
+    expect(String(data.위판등급._meta.정정)).toContain('크기 등급');
+  });
+
   it('등급 단가와 물량 비중이 본문과 맞는다', () => {
     const grades = data.위판등급.rows;
     expect(grades.length).toBeGreaterThanOrEqual(3);
@@ -252,6 +264,7 @@ describe('고등어 — 집계와 본문 대조', () => {
     // 물량이 가장 많은 등급이 단가는 가장 낮다 — 이 페이지의 핵심 주장이다
     const byVolume = [...grades].sort((a, b) => b.물량 - a.물량);
     expect(byVolume[0].가중평균단가).toBeLessThan(top!.가중평균단가);
+    expect(byVolume[0].등급).toBe('갈고등어');
   });
 
   it('노르웨이 비중이 본문과 맞고 1위다', () => {

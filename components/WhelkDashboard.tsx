@@ -617,7 +617,7 @@ export default function WhelkDashboard() {
   </div>
   <>
             <WidgetCard title="B2C 통조림 브랜드 경쟁력 & 가성비 매핑" icon={Target} iconColor="var(--color-info)" pillar="S4"
-              cardDesc="고형량 vs 100g당 단가 vs 점유율 — ⚠ 원본 대조 미완. 브랜드별 값의 출처를 확인하지 못했다"
+              cardDesc="고형량 vs 100g당 단가 vs 점유율 — ⚠ aT·닐슨은 골뱅이 브랜드 점유율을 공표하지 않는다. 확인된 것은 2013년 언론이 인용한 유동 49.7%·동원 41.2%뿐"
               telemetry={{ status: 'STATIC', syncDate: '2024년 기준' }} chartHeight={300}
               chart={
                 <ScatterChart margin={{ top: 20, right: 30, bottom: 30, left: 30 }}>
@@ -634,7 +634,7 @@ export default function WhelkDashboard() {
               takeaway={{
                 situation: <span>[aT FIS] 유동 골뱅이가 1위를 지키고 있으나, 타 브랜드들이 고형량(살코기 비율)을 늘리거나 가격을 낮추는 방식으로 가성비 경쟁을 치열하게 전개 중입니다.</span>,
                 actionPlan: <span>경쟁사 '동표골뱅이'는 <TermTooltip term="고형량" description="Solid weight. 통조림 내 액상액(조미액)을 제외한 순수 고기 무게." />(147g)과 저렴한 100g당 단가(₩3,600)를 무기로 매니아층 및 B2B 시장의 바닥을 무섭게 잠식하고 있습니다. 1위 브랜드인 유동(130g, ₩4,200)은 강력한 브랜드 헤리티지로 프리미엄 B2C 시장을 철통 수성 중이나, 합리적 소비 트렌드 확산에 따라 가성비 이탈 현상이 관측됩니다. 장기적 성장을 위해서는 프리미엄 라인의 고형량 투명성 강화 캠페인과 더불어, 중저가 원물 믹스를 통한 실속형 '세컨드 브랜드' 출시로 하방 압력을 분산해야 합니다.</span>,
-                source: 'aT FIS 식품산업통계 (2024)',
+                source: '⚠ 출처 정정 — aT 세분시장에는 브랜드 점유율이 없다. 2013년 AC닐슨 인용 보도(유동 49.7%·동원 41.2%)가 확인되는 마지막 공개 수치다',
               }} />
 
             <WidgetCard title="B2C 및 B2B 채널별 매출 분포" icon={Building2} iconColor="var(--color-info)" pillar="S4"
@@ -821,7 +821,7 @@ export default function WhelkDashboard() {
               }} />
 
             <WidgetCard title="카드뮴 생체축적 및 식품안전 규제 진단" icon={FlaskConical} iconColor="var(--color-danger)" pillar="S3"
-              cardDesc="부위별 카드뮴 농도 — ⚠ 문헌값 인용이나 원문 대조 미완. 기준치는 식품공전 값이다"
+              cardDesc="부위별 카드뮴 농도. 기준 2.0 mg/kg 은 식약처 고시(제2026-55호) 연체류 값으로 확인됨 — 부위별 농도는 문헌 인용"
               telemetry={{ status: 'STATIC', syncDate: '2024년 기준' }} chartHeight={300}
               chart={
                 <ComposedChart data={cadmiumData} margin={{ top: 20 }}>
