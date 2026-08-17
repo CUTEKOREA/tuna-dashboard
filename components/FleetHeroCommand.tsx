@@ -12,6 +12,7 @@ import {
   Tooltip as RechartsTooltip,
 } from 'recharts';
 import { purseSeineCatch } from '../lib/fleet-operations-2026-08-09';
+import { pctChange } from '../lib/metrics';
 
 /* 증감 시맨틱 토큰 (globals.css SSOT) — 주식 컨벤션 (상승 빨강·하락 파랑) */
 const UP = 'var(--delta-up, #ef4444)';
@@ -49,10 +50,7 @@ function monthSeries(monthly: number[]) {
    증감은 «완결 월끼리»(6월 대비 7월)만 계산한다 (SOUL ④ 숫자 정직) */
 function monthDeltaPct(monthly: number[]): number | null {
   if (monthly.length < 3) return null;
-  const current = monthly[monthly.length - 2];
-  const previous = monthly[monthly.length - 3];
-  if (previous === 0) return null;
-  return ((current - previous) / previous) * 100;
+  return pctChange(monthly[monthly.length - 2], monthly[monthly.length - 3]);
 }
 
 function deltaView(delta: number | null): { color: string; text: string } {
