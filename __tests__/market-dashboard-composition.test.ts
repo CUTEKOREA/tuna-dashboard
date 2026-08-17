@@ -20,8 +20,9 @@ describe('market dashboard composition', () => {
     expect(source).not.toContain('YF 황다랑어 지역 스프레드');
     // 지휘형 카드 계약: 허브 클릭 전환 + 주식 컨벤션 컬러 + 기준일
     expect(hero).toContain("setSelectedKey(hub.key)");
-    expect(hero).toContain("'#ef4444'");
-    expect(hero).toContain("'#3b82f6'");
+    // 2026-08-17 확산: 리터럴 hex → 전역 증감 토큰 (SSOT)
+    expect(hero).toContain("var(--delta-up");
+    expect(hero).toContain("var(--delta-down");
     expect(hero).toContain('기준일');
     expect(source).not.toContain('SKJ 가다랑어 (방콕)');
     expect(source).not.toContain('YF 황다랑어 (세이셸)');

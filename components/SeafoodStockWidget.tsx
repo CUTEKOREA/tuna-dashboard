@@ -74,7 +74,7 @@ export default function SeafoodStockWidget() {
         {stocks.map((stock, i) => {
           const isUp = stock.change && stock.change > 0;
           const isDown = stock.change && stock.change < 0;
-          const color = isUp ? '#ef4444' : isDown ? '#3b82f6' : '#94a3b8'; // Korean stock market colors: Red for up, Blue for down
+          const color = isUp ? 'var(--delta-up, #ef4444)' : isDown ? 'var(--delta-down, #3b82f6)' : 'var(--delta-flat, #94a3b8)'; // 증감 시맨틱 토큰 (globals.css SSOT)
           const bgGlow = isUp ? 'rgba(239, 68, 68, 0.05)' : isDown ? 'rgba(59, 130, 246, 0.05)' : 'transparent';
           const Icon = isUp ? TrendingUp : isDown ? TrendingDown : Activity;
 

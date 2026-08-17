@@ -350,7 +350,7 @@ export default function MarketDashboard({ heroOnly = false }: { heroOnly?: boole
             {mgoData.price !== null ? `$${mgoData.price.toLocaleString()}` : '—'} <span style={{ fontSize: '1rem', color: 'var(--text-muted)', fontWeight: 400 }}>/ton</span>
           </div>
           {mgoData.change !== null && mgoData.price !== null && (
-            <div style={{ display: 'flex', alignItems: 'center', gap: '6px', marginTop: '8px', fontSize: '0.8rem', color: mgoData.change >= 0 ? 'var(--color-danger)' : 'var(--accent-success)' }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '6px', marginTop: '8px', fontSize: '0.8rem', color: mgoData.change >= 0 ? 'var(--delta-up)' : 'var(--delta-down)' }}>
               {mgoData.change >= 0 ? <TrendingUp size={14} /> : <TrendingDown size={14} />}
               <span>전일 대비 {mgoData.change >= 0 ? '+' : '-'}${Math.abs(mgoData.change).toLocaleString()}</span>
             </div>
@@ -373,7 +373,7 @@ export default function MarketDashboard({ heroOnly = false }: { heroOnly?: boole
             {fxData.usd_krw !== null ? `₩${fxData.usd_krw.toLocaleString()}` : '—'} <span style={{ fontSize: '1rem', color: 'var(--text-muted)', fontWeight: 400 }}>/$</span>
           </div>
           {fxData.change !== null && fxData.usd_krw !== null && (
-            <div style={{ display: 'flex', alignItems: 'center', gap: '6px', marginTop: '8px', fontSize: '0.8rem', color: fxData.change >= 0 ? 'var(--accent-warning)' : 'var(--accent-success)' }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '6px', marginTop: '8px', fontSize: '0.8rem', color: fxData.change >= 0 ? 'var(--delta-up)' : 'var(--delta-down)' }}>
               {fxData.change >= 0 ? <TrendingUp size={14} /> : <TrendingDown size={14} />}
               <span>전일 대비 {fxData.change >= 0 ? '+' : '-'}₩{Math.abs(fxData.change).toLocaleString()}</span>
             </div>

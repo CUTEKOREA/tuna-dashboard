@@ -19,8 +19,9 @@ import {
   type AtunaPriceRow,
 } from '../lib/data/atuna-price-summary';
 
-const UP = '#ef4444';
-const DOWN = '#3b82f6';
+/* 증감 시맨틱 토큰 (globals.css SSOT) — 2026-08-17 주식 컨벤션 채택 */
+const UP = 'var(--delta-up, #ef4444)';
+const DOWN = 'var(--delta-down, #3b82f6)';
 const FLAT = 'var(--text-muted)';
 
 function deltaView(delta: number | null): { color: string; text: string } {
@@ -113,7 +114,7 @@ export default function HeroMarketCommand({ rows }: { rows: AtunaPriceRow[] }) {
           const hubDelta = deltaView(hubDeltaRaw);
           const mini = hubSeries(rows, hub.key, 8);
           const miniColor = hubDeltaRaw === null || Math.abs(hubDeltaRaw) < 0.05
-            ? '#8d93a5'
+            ? 'var(--delta-flat, #8d93a5)'
             : hubDeltaRaw > 0 ? UP : DOWN;
           const isActive = hub.key === selectedKey;
           const isHover = hub.key === hoverKey;
