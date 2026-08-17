@@ -1,0 +1,168 @@
+/* 시안 랭킹 갤러리 — 라이트 토큰만 사용. 시안이 주인공이라 셸은 최대한 조용하게. */
+
+.page {
+  min-height: 100vh;
+  padding: 32px 24px 80px;
+  background: var(--dsc-bg);
+  color: var(--dsc-ink);
+}
+
+.header {
+  max-width: 1180px;
+  margin: 0 auto 24px;
+}
+
+.title {
+  margin: 0;
+  font-size: 2rem;
+  font-weight: var(--dsc-title-weight);
+  letter-spacing: -0.02em;
+}
+
+.criteria {
+  margin: 8px 0 0;
+  font-size: 0.85rem;
+  color: var(--dsc-ink-muted);
+}
+
+.toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  margin-top: 16px;
+}
+
+.toolButton {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 7px 14px;
+  border: 1px solid var(--dsc-surface-border);
+  border-radius: 8px;
+  background: var(--dsc-surface);
+  color: var(--dsc-ink);
+  font-size: 0.85rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.toolButton:hover {
+  border-color: var(--accent-primary);
+}
+
+/* 활성 토글은 틴트가 아니라 단색 필 + 흰 글자 (SOUL 취향 7조 ②) */
+.toolButtonOn {
+  border-color: var(--accent-primary);
+  background: var(--accent-primary);
+  color: #ffffff;
+}
+
+.notice {
+  font-size: 0.8rem;
+  color: var(--dsc-ink-muted);
+}
+
+.card {
+  max-width: 1180px;
+  margin: 0 auto 20px;
+  padding: 20px;
+  border: 1px solid var(--dsc-surface-border);
+  border-radius: 12px;
+  background: var(--dsc-surface);
+  box-shadow: var(--dsc-card-shadow);
+}
+
+.cardHead {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+}
+
+.cardTitle {
+  margin: 0;
+  font-size: 1.05rem;
+  font-weight: 700;
+}
+
+.round {
+  padding: 2px 8px;
+  border: 1px solid var(--dsc-surface-border);
+  border-radius: 999px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--dsc-ink-muted);
+}
+
+.note {
+  margin: 6px 0 14px;
+  font-size: 0.82rem;
+  color: var(--dsc-ink-muted);
+}
+
+/* 시안 렌더 영역 — 회색 지면 위에 얹어 카드 셸과 시안 자체를 눈으로 분리한다 */
+.stage {
+  min-width: 0;
+  padding: 16px;
+  border: 1px solid var(--dsc-surface-border);
+  border-radius: 10px;
+  background: var(--dsc-bg);
+  overflow-x: auto;
+}
+
+.review {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  gap: 12px;
+  margin-top: 14px;
+}
+
+.stars {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+}
+
+.star {
+  display: inline-flex;
+  padding: 4px;
+  border: none;
+  background: none;
+  color: var(--dsc-ink-faint);
+  cursor: pointer;
+}
+
+.star:hover {
+  color: var(--w-amber-500);
+}
+
+.starOn {
+  color: var(--w-amber-500);
+}
+
+.starValue {
+  margin-left: 6px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--dsc-ink-muted);
+  white-space: nowrap;
+}
+
+.comment {
+  flex: 1 1 320px;
+  min-width: 0;
+  padding: 8px 10px;
+  border: 1px solid var(--dsc-surface-border);
+  border-radius: 8px;
+  background: var(--dsc-surface);
+  color: var(--dsc-ink);
+  font: inherit;
+  font-size: 0.85rem;
+  resize: vertical;
+}
+
+.comment:focus-visible {
+  outline: 2px solid var(--accent-primary);
+  outline-offset: 1px;
+}
