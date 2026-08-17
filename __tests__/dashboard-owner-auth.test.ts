@@ -179,12 +179,14 @@ describe('대시보드 단일 구글 계정 보안 경계', () => {
     }, OWNER_EMAIL)).toEqual({ ok: false, status: 403, code: 'google_account_required' });
   });
 
-  it('로그인·콜백·서명 웹훅과 캐시 삭제 서비스워커만 공개 경로로 둔다', () => {
+  it('로그인·콜백·서명 웹훅·cron과 캐시 삭제 서비스워커만 공개 경로로 둔다', () => {
     expect(isPublicDashboardPath('/login')).toBe(true);
     expect(isPublicDashboardPath('/mail/login')).toBe(true);
     expect(isPublicDashboardPath('/auth/start')).toBe(true);
     expect(isPublicDashboardPath('/auth/callback')).toBe(true);
     expect(isPublicDashboardPath('/api/webhooks/unloading')).toBe(true);
+    // 2026-08-17: 주간 브리핑 cron — 라우트 내부 CRON_SECRET 검증으로 fail-closed
+    expect(isPublicDashboardPath('/api/cron/weekly-briefing')).toBe(true);
     expect(isPublicDashboardPath('/sw.js')).toBe(true);
     expect(isPublicDashboardPath('/market')).toBe(false);
     expect(isPublicDashboardPath('/api/unloading-history')).toBe(false);
