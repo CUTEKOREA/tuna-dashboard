@@ -359,6 +359,29 @@ def main() -> None:  # noqa: C901 — 등록부 5개를 그대로 다루는 함�
                 "e": (r.get("Authorisation End Date") or "").strip() or None,
             })
 
+    # ── 한국 선박 소유사 보완 — 원양산업 통계연보 2024년말 명부 대조 ──
+    #
+    # 남태평양 등록부는 소유사를 공개하지 않는다. 한국 선적 51척 중 연보 명부와
+    # 선명·건조년이 맞아떨어지는 조업선은 회사를 채운다 (진수년월·톤수 교차 확인,
+    # 2026-08-17 수기 대조). 세인쉬핑 계열 대형 운반선(SEIN KASAMA 등)과 DHARA·
+    # NOEL·JOCHOH·SOHOH 는 연보(조업선 명부) 밖이라 그대로 빈칸이다.
+    KOFA_OWNER = {
+        "101 HAE RANG": "동신어업", "AGNES 101": "아그네스수산", "AGNES 102": "아그네스수산",
+        "AGNES 103": "아그네스수산", "AGNES 107": "아그네스수산", "AGNES 108": "아그네스수산",
+        "AGNES 109": "정일산업", "AGNES 110": "아그네스수산",
+        "BLUE OCEAN": "티엔에스산업", "GREENSTAR": "티엔에스산업", "KINGSTAR": "티엔에스산업",
+        "SUNSTAR": "티엔에스산업", "CM PARK": "홍진실업", "DREAM PARK": "홍진실업",
+        "NO. 103 BADA": "동원해사랑", "NO. 601 DAGAH": "피에이아이", "NO.103 KUMYANG": "가나마린",
+        "NO.5 DONG IL": "경태", "NO.7 DONG IL": "경태", "NO.7 DAE YANG": "신해피셔리",
+        "No.101 EUN HAE": "선민수산", "No.107 EUN HAE": "선민수산", "No.109 EUN HAE": "선민수산",
+        "No.108 EUN HAE": "현원수산", "No.27 HAE IN": "해인수산", "No.801 SEUNG JIN": "승진수산",
+        "No.805 TONG YOUNG": "동원해사랑", "No.808 TONG YOUNG": "동원해사랑",
+        "SAE IN CHAMPION": "정일산업", "SAE IN LEADER": "정일산업",
+        "SAE IN No.1": "정일산업", "SAE IN No.3": "정일산업", "SAE IN No.5": "정일산업",
+        "SAE IN No.7": "정일산업", "SAE IN No.9": "정일산업",
+        "SKY MAX 101": "씨맥스피셔리", "SEJONG": "동원산업",
+    }
+
     # ── 오징어: SPRFMO (남태평양 공해) ──
     rows_squid: list[dict] = []
     with open(SPRFMO, encoding="utf-8-sig", errors="replace") as handle:
@@ -371,7 +394,10 @@ def main() -> None:  # noqa: C901 — 등록부 5개를 그대로 다루는 함�
                 "t": to_int(r.get("Gross Tonnage")) or to_int(r.get("Gross Register Tonnage")),
                 "y": to_int(r.get("When Built")),
                 "l": to_int(r.get("Length")),
-                "w": None,  # 이 등록부는 소유사를 공개하지 않는다
+                "w": (
+                    f"{KOFA_OWNER[(r.get('Vessel Name') or '').strip()]} — 연보 대조"
+                    if (r.get("Vessel Name") or "").strip() in KOFA_OWNER else None
+                ),  # 등록부는 소유사 미공개 — 한국 조업선만 연보 명부로 보완
                 "p": None,
                 "h": (r.get("Port of Registry") or "").strip() or None,
                 "e": (r.get("Vessel Authorisation End Date") or "").strip() or None,
@@ -414,8 +440,9 @@ def main() -> None:  # noqa: C901 — 등록부 5개를 그대로 다루는 함�
             "키": legend,
             "행수": len(rows_squid),
             "주의": (
-                "이 등록부는 소유사를 공개하지 않는다 — 소유사 열이 전부 빈 것은 결측이 아니라 "
-                "등록부의 한계다. 북태평양(NPFC)·아르헨티나·포클랜드는 국가 관할이라 여기 없다. "
+                "이 등록부는 소유사를 공개하지 않는다. 한국 조업선은 원양산업 통계연보 2024년말 "
+                "명부와 선명·건조년을 대조해 회사를 보완했다(「— 연보 대조」 표기). 나머지 빈칸은 "
+                "결측이 아니라 등록부의 한계다. 북태평양(NPFC)·아르헨티나·포클랜드는 국가 관할이라 여기 없다. "
                 "한국 연근해 개별 선박 명부도 공개 등록부가 없다."
             ),
             "갱신방법": "python3 scripts/build_fleet_db.py",
