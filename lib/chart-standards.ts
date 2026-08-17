@@ -47,6 +47,16 @@ export function getSmartRotation(labels: any[], thresholdLength: number = 7, thr
       bottomMargin: 50
     };
   }
+
+  // 라벨이 짧아도 개수가 많으면 수평으로는 겹친다 (2026-08-17 실측:
+  // 유럽 16개국·한국 선사 20여 곳 축이 서로 뭉개짐). 밀도 기준을 추가한다.
+  if (labels.length >= 10) {
+    return {
+      angle: -45,
+      textAnchor: 'end',
+      bottomMargin: 60
+    };
+  }
   
   return {
     angle: 0,

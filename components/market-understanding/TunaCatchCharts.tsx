@@ -24,7 +24,7 @@ import {
   YAxis,
 } from 'recharts';
 
-import { truncateXAxis } from '@/lib/chart-standards';
+import { getSmartRotation, truncateXAxis } from '@/lib/chart-standards';
 import {
   SKJ_HUBS,
   type PriceTimeline,
@@ -620,11 +620,21 @@ export function OperatorFleetChart({ rows }: { rows: OperatorRow[] }) {
     [rows],
   );
 
+  const rotation = getSmartRotation(data.map((row) => row.회사));
+
   return (
     <SafeResponsiveContainer width="100%" height={300}>
       <BarChart data={data} margin={{ top: 12, right: 16, left: 0, bottom: 8 }}>
         <CartesianGrid stroke="var(--mu-grid)" strokeDasharray="3 3" vertical={false} />
-        <XAxis dataKey="회사" {...AXIS} tickFormatter={truncateXAxis} interval={0} />
+        <XAxis
+          dataKey="회사"
+          {...AXIS}
+          tickFormatter={truncateXAxis}
+          interval={0}
+          angle={rotation.angle}
+          textAnchor={rotation.textAnchor as 'end' | 'middle'}
+          height={rotation.bottomMargin}
+        />
         <YAxis {...AXIS} />
         <Tooltip content={<Tip unit="척" />} />
         <Legend wrapperStyle={{ fontSize: 11, color: 'var(--mu-axis)' }} />
@@ -711,11 +721,21 @@ export function OceanOperatorChart({
   const animate = !useReducedMotion();
   const fills = [TUNA_ROLE.volume, TUNA_ROLE.processed, TUNA_ROLE.highlight];
 
+  const rotation = getSmartRotation(rows.map((row) => row.선사));
+
   return (
     <SafeResponsiveContainer width="100%" height={300}>
       <BarChart data={rows} margin={{ top: 12, right: 16, left: 0, bottom: 8 }}>
         <CartesianGrid stroke="var(--mu-grid)" strokeDasharray="3 3" vertical={false} />
-        <XAxis dataKey="선사" {...AXIS} tickFormatter={truncateXAxis} interval={0} />
+        <XAxis
+          dataKey="선사"
+          {...AXIS}
+          tickFormatter={truncateXAxis}
+          interval={0}
+          angle={rotation.angle}
+          textAnchor={rotation.textAnchor as 'end' | 'middle'}
+          height={rotation.bottomMargin}
+        />
         <YAxis {...AXIS} allowDecimals={false} />
         <Tooltip content={<Tip unit="척" />} />
         <Legend wrapperStyle={{ fontSize: 11, color: 'var(--mu-axis)' }} />
