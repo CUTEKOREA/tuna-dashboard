@@ -52,7 +52,7 @@ export const DASHBOARD_MENU_CONFIGS = [
   { key: 'shrimp-industry', title: '새우', section: 'understanding', accent: 'teal', sidebar: { icon: 'Shrimp' } },
   { key: 'pork', title: '돼지고기', section: 'livestock', accent: 'cyan', sidebar: { icon: 'Hexagon', suffix: 'Pork' } },
   { key: 'cross-intelligence', title: '통합 인텔리전스', section: 'strategy', accent: 'gold', sidebar: { icon: 'BarChart2', suffix: 'Cross' } },
-  { key: 'purse-seiner-db', title: '선망선 DB', section: 'strategy', accent: 'cyan' },
+  { key: 'purse-seiner-db', title: '선단 DB', section: 'strategy', accent: 'cyan' },
 ] as const satisfies readonly DashboardMenuConfigShape[];
 
 export type ActiveMenu = (typeof DASHBOARD_MENU_CONFIGS)[number]['key'];

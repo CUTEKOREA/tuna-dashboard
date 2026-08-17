@@ -16,6 +16,7 @@ import {
   FLAG_EMOJI, type PurseSeinerVessel
 } from '../data/purseSeinerData';
 import TelemetryBadge from './TelemetryBadge';
+import FleetRegistryExplorer from './FleetRegistryExplorer';
 import HeroZone from './v2/HeroZone';
 
 /* ───────── 데이터 기준일 (data/purseSeinerData.ts 최종 검증일) ───────── */
@@ -678,7 +679,12 @@ function VesselTable({ initialRfmo, initialFlag, initialOperator }: {
 }
 
 /* ═══════════════════════ MAIN DASHBOARD ═══════════════════════ */
+/* 2026-08-17 사용자 요청: 선망선(IMO 검증 큐레이션)에 더해, 전 해역 원본 등록부를
+   그대로 탐색하는 탭을 붙인다 — 참치 5개 기구 27,513행 + 오징어 남태평양 2,139행. */
+type DbTab = 'purse' | 'tuna' | 'squid';
+
 export default function PurseSeinerDashboard({ heroOnly = false }: { heroOnly?: boolean }) {
+  const [dbTab, setDbTab] = useState<DbTab>('purse');
   const [tableRfmo, setTableRfmo] = useState('');
   const [tableFlag, setTableFlag] = useState('');
   const [tableOp, setTableOp] = useState('');
@@ -715,9 +721,52 @@ export default function PurseSeinerDashboard({ heroOnly = false }: { heroOnly?: 
     );
   }
 
+  const tabButton = (key: DbTab, label: string) => (
+    <button
+      type="button"
+      onClick={() => setDbTab(key)}
+      style={{
+        padding: '0.5rem 0.9rem',
+        borderRadius: 10,
+        border: '1px solid var(--dsc-surface-border, rgba(128,128,128,0.3))',
+        background: dbTab === key ? 'var(--dsc-surface, rgba(128,128,128,0.12))' : 'transparent',
+        fontWeight: dbTab === key ? 700 : 400,
+        color: 'inherit',
+        cursor: 'pointer',
+        fontSize: '0.85rem',
+      }}
+    >
+      {label}
+    </button>
+  );
+
+  if (dbTab !== 'purse') {
+    return (
+      <div style={pageStyle}>
+        {purseSeinerHero}
+        <div style={{ display: 'flex', gap: '0.5rem', marginBottom: 20, flexWrap: 'wrap' }}>
+          {tabButton('purse', '선망선 (국제해사기구 검증)')}
+          {tabButton('tuna', '참치 등록부 (5개 기구 · 전 해역)')}
+          {tabButton('squid', '오징어 등록부 (남태평양)')}
+        </div>
+        {dbTab === 'tuna' ? (
+          <FleetRegistryExplorer key="tuna" src="/data/tuna_fleet_db_v1.json" title="참치 인가 선박 등록부 — 전 해역" />
+        ) : (
+          <FleetRegistryExplorer key="squid" src="/data/squid_fleet_db_v1.json" title="오징어 인가 선박 등록부 — 남태평양 공해" />
+        )}
+      </div>
+    );
+  }
+
   return (
     <div style={pageStyle}>
       {purseSeinerHero}
+
+      <div style={{ display: 'flex', gap: '0.5rem', marginBottom: 20, flexWrap: 'wrap' }}>
+        {tabButton('purse', '선망선 (국제해사기구 검증)')}
+        {tabButton('tuna', '참치 등록부 (5개 기구 · 전 해역)')}
+        {tabButton('squid', '오징어 등록부 (남태평양)')}
+      </div>
 
       {/* Section 1: KPI Cards */}
       <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap', marginBottom: 24 }}>
