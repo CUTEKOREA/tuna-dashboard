@@ -1,9 +1,9 @@
 {
  "_meta": {
   "entry": "app/page.tsx",
-  "files": 152,
+  "files": 153,
   "widgets": 101,
-  "dataFiles": 59,
+  "dataFiles": 60,
   "generator": "scripts/widget_lineage.py"
  },
  "widgetToData": {
@@ -590,9 +590,11 @@
   },
   "components/market-understanding/SquidCharts.tsx": {
    "dataModules": [
+    "lib/data/deepsea-fishery.ts",
     "lib/data/squid-industry.ts"
    ],
    "dataFiles": [
+    "public/data/deepsea_fishery_v1.json",
     "public/data/squid_fleet_v1.json",
     "public/data/squid_industry_v1.json",
     "public/data/squid_industry_widgets_v1.json",
@@ -602,10 +604,12 @@
   },
   "components/market-understanding/SquidIndustryDashboard.tsx": {
    "dataModules": [
+    "lib/data/deepsea-fishery.ts",
     "lib/data/squid-industry.ts",
     "lib/data/valuechain-companies.ts"
    ],
    "dataFiles": [
+    "public/data/deepsea_fishery_v1.json",
     "public/data/kofa_fleet_age_v1.json",
     "public/data/kofa_insights_v1.json",
     "public/data/kofa_series_v1.json",
@@ -917,6 +921,10 @@
   "public/data/cosmo/trade_stats.json": [
    "components/cosmo/CosmoDashboard.tsx",
    "components/cosmo/tabs/MarketTab.tsx"
+  ],
+  "public/data/deepsea_fishery_v1.json": [
+   "components/market-understanding/SquidCharts.tsx",
+   "components/market-understanding/SquidIndustryDashboard.tsx"
   ],
   "public/data/garlic_usda_widgets.json": [
    "components/PorkDashboard.tsx",
