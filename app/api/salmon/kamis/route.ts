@@ -1,4 +1,5 @@
 import { NextResponse } from 'next/server';
+import { pctChange } from '../../../../lib/metrics';
 
 export const revalidate = 3600; // 1시간 캐시
 
@@ -82,7 +83,7 @@ export async function GET() {
                 const cur = parseKamisPrice(it.dpr1);
                 const prev = parseKamisPrice(it.dpr2);
                 if (cur == null) return null;
-                const change = prev != null && prev > 0 ? ((cur - prev) / prev) * 100 : null;
+                const change = prev != null ? pctChange(cur, prev) : null;
                 return {
                   id: String(it.productno ?? it.item_name ?? '').slice(0, 24),
                   name: (it.item_name ?? it.product_name ?? '').trim(),

@@ -3,6 +3,7 @@ import { useEffect, useMemo, useState } from 'react';
 import { Trophy } from 'lucide-react';
 import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from 'recharts';
 import WidgetCard from './WidgetCard';
+import { pctChange } from '../lib/metrics';
 
 /**
  * A-5 글로벌 참치캔 수출 점유율 레이스 (Pillar S4 판매·수요)
@@ -114,7 +115,7 @@ const TunaExportRaceWidget = () => {
       return 'UN Comtrade 연간 수출액 기준 참치캔(HS 160414) 6개 주요 수출국의 점유율 레이스를 집계합니다. 태국 점유 하락과 에콰도르 상승이 동시에 관측되면 유럽연합(EU)향 무관세 우위에 따른 가공지 재편 신호입니다.';
     }
     const thDrop = first.share.thailand - last.share.thailand;
-    const totalGrowth = ((last.totalUsdM - first.totalUsdM) / first.totalUsdM) * 100;
+    const totalGrowth = pctChange(last.totalUsdM, first.totalUsdM) ?? 0;
     return (
       `${first.year}→${last.year}년 태국 점유율은 ${first.share.thailand.toFixed(1)}%→${last.share.thailand.toFixed(1)}%로 ${thDrop.toFixed(1)}%p 하락한 반면, ` +
       `에콰도르는 ${first.share.ecuador.toFixed(1)}%→${last.share.ecuador.toFixed(1)}%, 중국은 ${first.share.china.toFixed(1)}%→${last.share.china.toFixed(1)}%로 상승 — ` +

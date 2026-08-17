@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server';
 import { HS_CODES } from '../_shared/hs-codes';
 import { optionalEnv } from '../_shared/env';
+import { pctChange } from '../../../lib/metrics';
 
 /**
  * 고등어 실시간 Intelligence Ticker — 통합 BFF
@@ -38,7 +39,7 @@ async function fetchECOS_FX(): Promise<{ rate: number; change: number; isLive: b
       if (rows && rows.length > 0) {
         const latest = parseFloat(rows[rows.length - 1].DATA_VALUE);
         const prev = rows.length > 1 ? parseFloat(rows[rows.length - 2].DATA_VALUE) : latest;
-        const change = prev > 0 ? Math.round(((latest - prev) / prev) * 1000) / 10 : 0;
+        const change = Math.round((pctChange(latest, prev) ?? 0) * 10) / 10;
         return { rate: Math.round(latest * 10) / 10, change, isLive: true };
       }
     }
@@ -69,7 +70,7 @@ async function fetchKAMIS_Mackerel(): Promise<{ wholesale: number; retail: numbe
       if (mackerel) {
         const price = parseInt(mackerel.dpr1?.replace(/,/g, '') || '0');
         const prevPrice = parseInt(mackerel.dpr2?.replace(/,/g, '') || '0');
-        const change = prevPrice > 0 ? Math.round(((price - prevPrice) / prevPrice) * 1000) / 10 : 0;
+        const change = Math.round((pctChange(price, prevPrice) ?? 0) * 10) / 10;
         return { wholesale: price, retail: Math.round(price * 1.84), change, isLive: true };
       }
     }
@@ -199,8 +200,8 @@ export async function GET() {
     // KAMIS 위젯: 유통단계별 마진
     distributionMargin: [
       { stage: '산지(위판)', price: Math.round(kamis.wholesale * 0.6), margin: 0 },
-      { stage: '도매', price: kamis.wholesale, margin: Math.round(((kamis.wholesale - kamis.wholesale * 0.6) / (kamis.wholesale * 0.6)) * 100) },
-      { stage: '소매', price: kamis.retail, margin: Math.round(((kamis.retail - kamis.wholesale) / kamis.wholesale) * 100) },
+      { stage: '도매', price: kamis.wholesale, margin: Math.round(pctChange(kamis.wholesale, kamis.wholesale * 0.6) ?? 0) },
+      { stage: '소매', price: kamis.retail, margin: Math.round(pctChange(kamis.retail, kamis.wholesale) ?? 0) },
     ],
   }, {
     headers: {

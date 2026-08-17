@@ -1,4 +1,5 @@
 import { NextResponse } from 'next/server';
+import { pctChange } from '../../../lib/metrics';
 
 export const dynamic = 'force-dynamic';
 
@@ -101,9 +102,9 @@ export async function GET() {
       const liabBillion = +(totalLiab / 100000000).toFixed(0);
       const eqBillion = +(totalEq / 100000000).toFixed(0);
       
-      const yoyRev = prevRev !== 0 ? ((q1Rev - prevRev) / prevRev) * 100 : 0;
+      const yoyRev = pctChange(q1Rev, prevRev) ?? 0;
       let yoyOp = null;
-      if (prevOp > 0 && q1Op > 0) yoyOp = ((q1Op - prevOp) / prevOp) * 100;
+      if (prevOp > 0 && q1Op > 0) yoyOp = pctChange(q1Op, prevOp);
       else if (prevOp < 0 && q1Op < 0) yoyOp = -((q1Op - prevOp) / Math.abs(prevOp)) * 100;
       else if (prevOp !== 0 && q1Op !== 0) yoyOp = ((q1Op - prevOp) / Math.abs(prevOp)) * 100;
       

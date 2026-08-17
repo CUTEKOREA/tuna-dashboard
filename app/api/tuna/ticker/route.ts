@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server';
 import { requireEnv, optionalEnv } from '../../_shared/env';
+import { pctChange } from '../../../../lib/metrics';
 
 export const runtime = 'nodejs';
 export const revalidate = 300; // 5분 캐시
@@ -246,7 +247,7 @@ async function fetchFREDCPI(): Promise<TickerItem | null> {
     if (obs && obs.length >= 2) {
       const latest = parseFloat(obs[0].value);
       const prev = parseFloat(obs[1].value);
-      const yoy = ((latest - prev) / prev * 100).toFixed(1);
+      const yoy = (pctChange(latest, prev) ?? 0).toFixed(1);
       return {
         id: 'fred_cpi',
         label: 'US CPI',
@@ -272,7 +273,7 @@ async function fetchWTICrude(): Promise<TickerItem | null> {
       const validCloses = closes.filter((c: any) => c !== null);
       const latest = validCloses[validCloses.length - 1];
       const prev = validCloses.length > 1 ? validCloses[validCloses.length - 2] : latest;
-      const change = ((latest - prev) / prev * 100).toFixed(1);
+      const change = (pctChange(latest, prev) ?? 0).toFixed(1);
       return {
         id: 'wti_crude',
         label: 'WTI Crude',

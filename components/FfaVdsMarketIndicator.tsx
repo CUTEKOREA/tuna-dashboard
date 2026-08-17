@@ -17,6 +17,7 @@ import {
 } from 'recharts';
 import WidgetCard from './WidgetCard';
 import { truncateKoreanLabel } from '../lib/chart-standards';
+import { pctChange } from '../lib/metrics';
 import { ChartPatternDefs } from './ChartPatterns';
 
 // ─── VDS 가격 + PNA 수익 시계열 데이터 ────────────────────────────────────
@@ -70,7 +71,7 @@ const vdsPriceChange = latestVds.vdsPrice - prevVds.vdsPrice;
 const vdsPriceChangePct = ((vdsPriceChange / prevVds.vdsPrice) * 100).toFixed(1);
 
 const totalRevenueGrowth = (
-  ((latestVds.pnaRevenue - vdsData[0].pnaRevenue) / vdsData[0].pnaRevenue) * 100
+  pctChange(latestVds.pnaRevenue, vdsData[0].pnaRevenue) ?? 0
 ).toFixed(0);
 
 // ─── 커스텀 툴팁 ────────────────────────────────────────────────────────────
