@@ -21,7 +21,7 @@ import FleetRegistryExplorer from './FleetRegistryExplorer';
 import HeroZone from './v2/HeroZone';
 
 /* ───────── 데이터 기준일 (data/purseSeinerData.ts 최종 검증일) ───────── */
-const DATA_DATE = '2026-05-27';
+const DATA_DATE = '2026-08-17';
 const CONTINENT_TREEMAP_COLORS = ['#3b82f6', '#10b981', '#f59e0b', '#ef4444', '#8b5cf6', '#ec4899', '#06b6d4'];
 const RFMO_MATRIX_COLUMNS = ['WCPFC', 'IOTC', 'IATTC', 'ICCAT'];
 
@@ -30,9 +30,9 @@ export function PurseSeinerHero() {
     <HeroZone
       variant="kpi"
       title="선망선 DB"
-      subtitle={`데이터 기준일 ${DATA_DATE.replace(/-/g, '.')} · 국제해사기구 번호 검증 완료`}
+      subtitle={`데이터 기준일 ${DATA_DATE.replace(/-/g, '.')} · 5개 관리기구 등록부 파생 · 국제해사기구 번호는 등록부 제공분만`}
       primaryKpi={{
-        label: '검증 선박',
+        label: '등록 선망선',
         value: TOTAL_VESSELS,
         unit: '(척)',
       }}
@@ -176,7 +176,7 @@ function RfmoDonut() {
       <WidgetHead
         icon={<Globe size={18} style={{ color: 'var(--w-blue-500)' }} />}
         title="RFMO별 분포"
-        desc="출처: 4개 RFMO(지역수산관리기구) 공개 선박 레지스트리 — IMO 검증 통과 선박의 RFMO 등록 수 집계 (다중 등록 선박은 기구별 중복 집계)"
+        desc="출처: 5개 RFMO(지역수산관리기구) 공개 선박 레지스트리 — 등록 선망선의 기구별 집계 (다중 등록 선박은 기구별 중복 집계)"
       />
       <SafeResponsiveContainer width="100%" height={280}>
         <PieChart>
@@ -520,7 +520,7 @@ function VesselTable({ initialRfmo, initialFlag, initialOperator }: {
       <WidgetHead
         icon={<Search size={18} style={{ color: 'var(--w-cyan-500)' }} />}
         title="전체 선박 검색"
-        desc="IMO 체크디짓 검증 통과 선박 전수 명부 — 선박명·IMO·운영사 검색, RFMO·선적국·운영사 필터, CSV 내려받기 지원"
+        desc="5개 관리기구 등록부에서 파생한 선망선 전수 명부 — 선박명·IMO·운영사 검색, RFMO·선적국·운영사 필터, CSV 내려받기 지원. IMO 는 등록부가 주는 경우에만 있다"
       />
 
       {/* Filter Bar */}
@@ -680,7 +680,7 @@ function VesselTable({ initialRfmo, initialFlag, initialOperator }: {
 }
 
 /* ═══════════════════════ MAIN DASHBOARD ═══════════════════════ */
-/* 2026-08-17 사용자 요청: 선망선(IMO 검증 큐레이션)에 더해, 전 해역 원본 등록부를
+/* 2026-08-17 사용자 요청: 선망선(등록부 파생)에 더해, 전 해역 원본 등록부를
    그대로 탐색하는 탭을 붙인다 — 참치 5개 기구 27,513행 + 오징어 남태평양 2,139행. */
 type DbTab = 'purse' | 'tuna' | 'squid';
 
@@ -746,7 +746,7 @@ export default function PurseSeinerDashboard({ heroOnly = false }: { heroOnly?: 
       <div style={pageStyle}>
         {purseSeinerHero}
         <div style={{ display: 'flex', gap: '0.5rem', marginBottom: 20, flexWrap: 'wrap' }}>
-          {tabButton('purse', '선망선 (국제해사기구 검증)')}
+          {tabButton('purse', '선망선 (등록부 파생 · 2,076척)')}
           {tabButton('tuna', '참치 등록부 (5개 기구 · 전 해역)')}
           {tabButton('squid', '오징어 등록부 (남태평양)')}
         </div>
@@ -764,14 +764,14 @@ export default function PurseSeinerDashboard({ heroOnly = false }: { heroOnly?: 
       {purseSeinerHero}
 
       <div style={{ display: 'flex', gap: '0.5rem', marginBottom: 20, flexWrap: 'wrap' }}>
-        {tabButton('purse', '선망선 (국제해사기구 검증)')}
+        {tabButton('purse', '선망선 (등록부 파생 · 2,076척)')}
         {tabButton('tuna', '참치 등록부 (5개 기구 · 전 해역)')}
         {tabButton('squid', '오징어 등록부 (남태평양)')}
       </div>
 
       {/* Section 1: KPI Cards */}
       <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap', marginBottom: 24 }}>
-        <KpiCard icon={<Ship size={24} />} label="총 선박" value={TOTAL_VESSELS} sub="IMO 검증 완료" />
+        <KpiCard icon={<Ship size={24} />} label="총 선박" value={TOTAL_VESSELS} sub="등록부 파생" />
         <KpiCard icon={<Globe size={24} />} label="RFMO" value={TOTAL_RFMOS} sub="해역 관리 기구" />
         <KpiCard icon={<Flag size={24} />} label="선적국" value={TOTAL_FLAGS} sub="국가" />
         <KpiCard icon={<Building2 size={24} />} label="운영사" value={TOTAL_OPERATORS} sub="식별 완료" />
@@ -805,7 +805,7 @@ export default function PurseSeinerDashboard({ heroOnly = false }: { heroOnly?: 
         background: 'var(--dsc-surface)', border: '1px solid var(--dsc-surface-border)',
         fontSize: 11, color: 'var(--dsc-ink-faint)', textAlign: 'center',
       }}>
-        데이터 출처: RFMO 공개 레지스트리 기반 수집 · IMO 체크디짓 검증 + 등차수열 패턴 탐지 적용 ·
+        데이터 출처: 5개 RFMO 공개 등록부 전사 (scripts/build_purse_seiner_data.py 재현 가능) ·
         검증 통과율: 22.9% (155/678) · 일부 선박의 실존 여부는 추가 교차 검증 필요
       </div>
     </div>

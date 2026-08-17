@@ -66,7 +66,7 @@ const heroOnlyCases: Array<{
     name: '선망선 DB',
     Dashboard: PurseSeinerDashboard as HeroOnlyDashboard,
     heroTitle: '선망선 DB',
-    heroMarker: '검증 선박',
+    heroMarker: '등록 선망선',
     bodyText: 'RFMO별 분포',
   },
 ];

@@ -421,8 +421,10 @@ describe('Deep Sea Command V2 — Phase 3 잔여 페이지', () => {
     );
 
     expect(markup).toContain('선망선 DB');
-    expect(markup).toContain('데이터 기준일 2026.05.27');
-    expect(markup).toContain('검증 선박');
+    // 2026-08-17 재구축: 등록부 파생으로 전환 — 날짜·라벨 계약 갱신
+    expect(markup).toContain('데이터 기준일 2026.08.17');
+    expect(markup).toContain('등록부 파생');
+    expect(markup).toContain('등록 선망선');
     expect(markup).toContain('(척)');
     expect(markup).toContain('선적국');
     expect(markup).toContain('(개국)');
