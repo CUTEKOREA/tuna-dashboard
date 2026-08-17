@@ -1,9 +1,7 @@
-> 🚀 **2026-08-17 — 6개국 보고서를 /shrimp 5기둥에 재구성** [Grok]:
-> - 위젯 21→24. S1 역할 카드, S3 한국 창구 물량(030617/160521), S4 창구 단가.
-> - 수치는 nitemtrade 2026H1 + FishStat 필터 + CNA. 생체중−제품중량 뺄셈 없음.
-> - CNA 유럽 비중 버그 수정: 4.7%(아시아 잔여) → 17.8%. 한국 0.26%를 w11 SIT에 명시.
-> - 종명: 블랙타이거=*P. monodon*, 대하=*P. chinensis*. SECA는 발효 여부 미확인.
-> - 전용 브랜치 `feat/shrimp-country-series` (`origin/main` 기준). `npm run verify` 통과 (796/798).
+> 🚀 **2026-08-17 — /shrimp 6개국 창구 라이브** [Grok]:
+> - PR [#596](https://github.com/CUTEKOREA/tuna-dashboard/pull/596) squash `1b71ccd`. Gate `32028157303` 성공.
+> - Vercel production `dpl_CwEn36myK9JagrEbJeKcMDXTZ15w` READY · alias `https://leedonggun.co.kr`.
+> - 위젯 21→24. CNA 유럽 17.8% · 한국 0.26%. 로그인 뒤에 `/shrimp`에서 확인.
 
 > 마지막 업데이트: 2026-08-17 [Grok]
 
