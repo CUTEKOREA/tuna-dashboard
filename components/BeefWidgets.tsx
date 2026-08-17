@@ -5,6 +5,7 @@ import { Globe, TrendingUp, ShoppingCart, Target, Zap, Shield, Factory, Truck, L
 import WidgetCard from './WidgetCard';
 import * as D from './beefData';
 import { ChartPatternDefs, getA11yBarProps, A11Y_PALETTE } from './ChartPatterns';
+import { pctChange } from '../lib/metrics';
 
 // KCS LIVE hook (W6 한국 수입 파트너)
 function useKcsImports() {
@@ -172,7 +173,7 @@ export function W1_ProductionTrend({ accent }: any) {
   const { productionTrend, isLive, source } = useFaostatProduction();
   const latest = productionTrend[productionTrend.length - 1];
   const first = productionTrend[0];
-  const growth = ((latest.production - first.production) / first.production * 100).toFixed(1);
+  const growth = (pctChange(latest.production, first.production) ?? 0).toFixed(1);
   return <W title="글로벌 소고기 생산량 10년 추이" icon={Globe} accent={accent} pillar="S1"
     status={isLive ? 'LIVE' : 'STATIC'}
     sub="세계 소고기(쇠고기) 생산량(천 톤) 및 글로벌 산지 가격 지수 | FAOSTAT 작물가축통계(QCL) 2015-2024"
@@ -306,7 +307,7 @@ export function W7_KoreaSupply({ accent }: any) {
   const { data, isLive, source } = useKosisSupply();
   const first = data[0];
   const last = data[data.length - 1];
-  const perCapitaDelta = (((last.perCapita - first.perCapita) / first.perCapita) * 100).toFixed(0);
+  const perCapitaDelta = (pctChange(last.perCapita, first.perCapita) ?? 0).toFixed(0);
   const selfDelta = (last.selfRate - first.selfRate).toFixed(1);
   return <W title="한국 소고기 수급 구조 + 1인당 소비량" icon={ShoppingCart} accent={accent} pillar="S4"
     status={isLive ? 'LIVE' : 'STATIC'}

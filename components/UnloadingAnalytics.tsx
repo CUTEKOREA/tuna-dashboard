@@ -8,6 +8,7 @@ import {
 // Pure SVG charts — recharts fails in lazy-loaded tab context
 
 import { getVesselStatusKind } from '../lib/unloading-operations';
+import { pctChange, progressPct } from '../lib/metrics';
 
 // ─── Types ───────────────────────────────────────────────
 
@@ -265,7 +266,7 @@ export default function UnloadingAnalytics({
     : 0;
 
   const comparisonPct = avgDailyAvg > 0 && selectedBenchmark?.comparable
-    ? ((selectedBenchmark.dailyAvg - avgDailyAvg) / avgDailyAvg * 100)
+    ? (pctChange(selectedBenchmark.dailyAvg, avgDailyAvg) ?? 0)
     : 0;
 
   // Daily target guide
@@ -413,9 +414,7 @@ export default function UnloadingAnalytics({
     });
 
     // 2. Surplus alerts
-    const surplusPct = selectedVessel.reportedTotal > 0
-      ? Math.abs(selectedVessel.surplus) / selectedVessel.reportedTotal * 100
-      : 0;
+    const surplusPct = progressPct(Math.abs(selectedVessel.surplus), selectedVessel.reportedTotal) ?? 0;
     if (getAnalyticsStatus(selectedVessel.status).completed && surplusPct > 3) {
       const direction = selectedVessel.surplus > 0 ? '초과' : '부족';
       items.push({

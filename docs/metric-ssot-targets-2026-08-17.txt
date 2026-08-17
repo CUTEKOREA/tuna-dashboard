@@ -1,0 +1,39 @@
+== pctChange 잔존 31건
+  app/api/tuna/kamis-basket/route.ts:108: prevPrice != null ? Math.round(((price - prevPrice) / prevPrice) * 1000) / 10 : null;
+  app/api/tuna/ticker/route.ts:249: const yoy = ((latest - prev) / prev * 100).toFixed(1);
+  app/api/tuna/ticker/route.ts:275: const change = ((latest - prev) / prev * 100).toFixed(1);
+  app/api/dart-insight/route.ts:104: const yoyRev = prevRev !== 0 ? ((q1Rev - prevRev) / prevRev) * 100 : 0;
+  app/api/dart-insight/route.ts:106: if (prevOp > 0 && q1Op > 0) yoyOp = ((q1Op - prevOp) / prevOp) * 100;
+  app/api/mackerel-ticker/route.ts:41: const change = prev > 0 ? Math.round(((latest - prev) / prev) * 1000) / 10 : 0;
+  app/api/mackerel-ticker/route.ts:72: const change = prevPrice > 0 ? Math.round(((price - prevPrice) / prevPrice) * 1000) / 10 : 0;
+  app/api/mackerel-ticker/route.ts:203: { stage: '소매', price: kamis.retail, margin: Math.round(((kamis.retail - kamis.wholesale) / kamis.wholesale) * 100) },
+  app/api/galchi/intel/route.ts:61: spreadPct: Math.round((10300 / landed - 1) * 1000) / 10,
+  app/api/galchi/kamis/route.ts:88: const change = prev != null && prev > 0 ? ((cur - prev) / prev) * 100 : null;
+  app/api/galchi/kamis/route.ts:104: ? (((latestPrice - prevPrice) / prevPrice) * 100).toFixed(1)
+  app/api/galchi/kamis/route.ts:120: spreadPct: Math.round((latestPrice / 10300 - 1) * 1000) / 10,
+  app/api/salmon/kamis/route.ts:85: const change = prev != null && prev > 0 ? ((cur - prev) / prev) * 100 : null;
+  app/api/consignment/route.ts:258: spreadPercent: Math.round(Math.abs((mackerelImportKrw - mackerelLocal) / mackerelLocal * 100)),
+  app/api/consignment/route.ts:266: spreadPercent: Math.round(Math.abs((squidImportKrw - squidLocal) / squidLocal * 100)),
+  components/FieldTools.tsx:973: const roi = ((totalPremiumProfit - certCost) / certCost) * 100;
+  components/FfaVdsMarketIndicator.tsx:73: ((latestVds.pnaRevenue - vdsData[0].pnaRevenue) / vdsData[0].pnaRevenue) * 100
+  components/UnloadingAnalytics.tsx:268: ? ((selectedBenchmark.dailyAvg - avgDailyAvg) / avgDailyAvg * 100)
+  components/SalmonLiveTicker.tsx:29: const pctChange = prev ? ((data.exchangeRate.currentRate - prev) / prev * 100).toFixed(2) : null;
+  components/SalmonLiveTicker.tsx:68: const qtyChange = prev ? ((latest.qty_tonnes - prev.qty_tonnes) / prev.qty_tonnes * 100).toFixed(1) : null;
+  components/MackerelDashboard.tsx:301: const euGrowthPct = euFirst?.value > 0 ? Math.round(((euLast.value - euFirst.value) / euFirst.value) * 100) : null;
+  components/GalchiDashboard.tsx:212: ? `${liveKcs.summary.cifPerKg >= prevYr.cifPerKg ? "+" : ""}${Math.round((liveKcs.summary.cifPerKg / prevYr.cifPerKg - 1
+  components/LiveTicker.tsx:71: const pct = ((price - prevPrice) / prevPrice) * 100;
+  components/BeefWidgets.tsx:175: const growth = ((latest.production - first.production) / first.production * 100).toFixed(1);
+  components/BeefWidgets.tsx:309: const perCapitaDelta = (((last.perCapita - first.perCapita) / first.perCapita) * 100).toFixed(0);
+  components/TunaExportRaceWidget.tsx:117: const totalGrowth = ((last.totalUsdM - first.totalUsdM) / first.totalUsdM) * 100;
+  components/TunaLandingCost.tsx:95: const fxImpact = Math.round((fxRate - 1350) / 1350 * 100 * 10) / 10;
+  components/KimAgriDataWidgets.tsx:106: const growth = first ? Math.round((last.usd / first.usd - 1) * 100) : 0;
+  components/KimAgriDataWidgets.tsx:199: const chg = first ? Math.round((last.v / first.v - 1) * 100) : 0;
+  components/bangkok/tabs/PriceTab.tsx:175: <td>{Math.round((f.value / f.neighborsMedian - 1) * 100)}</td>
+  lib/gmts-presentation.ts:236: return round(((current - prior) / prior) * 100);
+== progress 잔존 6건
+  components/UnloadingAnalytics.tsx:417: ? Math.abs(selectedVessel.surplus) / selectedVessel.reportedTotal * 100
+  components/UnloadingTimelineReplay.tsx:255: const progressPercent = reportedTotal > 0 ? Math.min((entry.cumAmount / reportedTotal) * 100, 100) : 0;
+  components/UnloadingStatus.tsx:93: ? clampHeroValue((vessel.actualTotal / vessel.reportedTotal) * 100, 0, 100)
+  components/UnloadingStatus.tsx:836: ? Math.min((selectedData.actualTotal / selectedData.reportedTotal) * 100, 100)
+  components/UnloadingStatus.tsx:858: const percent = v.reportedTotal > 0 ? Math.min((v.actualTotal / v.reportedTotal) * 100, 100) : 0;
+  components/UnloadingStatus.tsx:1615: progress={selectedData.reportedTotal > 0 ? Math.min((selectedData.actualTotal / selectedData.reportedTotal) * 100, 100) 

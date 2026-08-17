@@ -11,6 +11,7 @@ import {
   bangkokWeeks,
   type BangkokGranularity,
 } from '@/lib/data/bangkok-weekly';
+import { pctChange } from '@/lib/metrics';
 
 /* ── 표기 헬퍼 ─────────────────────────────────────────────────────────── */
 
@@ -172,7 +173,7 @@ export function PriceTab() {
                 <td>{f.date}</td>
                 <td>{f.value.toLocaleString('ko-KR')}</td>
                 <td>{f.neighborsMedian.toLocaleString('ko-KR')}</td>
-                <td>{Math.round((f.value / f.neighborsMedian - 1) * 100)}</td>
+                <td>{Math.round(pctChange(f.value, f.neighborsMedian) ?? 0)}</td>
               </tr>
             ))}
           </Table>

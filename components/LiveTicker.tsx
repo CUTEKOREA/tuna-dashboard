@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import styles from './LiveTicker.module.css';
 import { TrendingUp, TrendingDown, Minus } from 'lucide-react';
+import { pctChange } from '../lib/metrics';
 
 type Trend = 'up' | 'down' | 'neutral';
 
@@ -68,7 +69,7 @@ function buildAtunaItem(
   let trend: Trend | undefined;
   if (rows.length > 1) {
     const prevPrice = rows[rows.length - 2][key] as number;
-    const pct = ((price - prevPrice) / prevPrice) * 100;
+    const pct = pctChange(price, prevPrice) ?? 0;
     diff = `${pct > 0 ? '+' : ''}${pct.toFixed(1)}%`;
     trend = pct > 0 ? 'up' : pct < 0 ? 'down' : 'neutral';
   }

@@ -13,6 +13,7 @@ import {
 import SafeResponsiveContainer from './SafeResponsiveContainer';
 import FleetOperationStatus from './FleetOperationStatus';
 import { ChartPatternDefs } from './ChartPatterns';
+import { pctChange } from '../lib/metrics';
 
 export default function FieldTools() {
   return (
@@ -970,7 +971,7 @@ function EcolabelRoiCalculator() {
   const mscPremiumDollar = basePrice * (mscPremiumPct / 100);
   const totalPremiumProfit = volume * mscPremiumDollar;
   
-  const roi = ((totalPremiumProfit - certCost) / certCost) * 100;
+  const roi = pctChange(totalPremiumProfit, certCost) ?? 0;
 
   return (
     <div className={styles.toolPanel}>

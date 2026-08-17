@@ -5,6 +5,7 @@ import { Calculator, RefreshCcw, ChevronDown } from 'lucide-react';
 import styles from './TunaInsightsDashboard.module.css';
 import TakeawayBox from './TakeawayBox';
 import TelemetryBadge from './TelemetryBadge';
+import { pctChange } from '../lib/metrics';
 
 /* ═══════════════════════════════════════════════════════════════════
    Tuna Landing Cost Simulator (착지원가 실시간 시뮬레이터)
@@ -92,7 +93,7 @@ const TunaLandingCost = React.memo(function TunaLandingCost() {
       const customsFee = Math.round(totalCIF * 0.005);
       const totalLanded = totalCIF + importDuty + customsFee;
       const totalKRW = Math.round(totalLanded * fxRate / 1000);
-      const fxImpact = Math.round((fxRate - 1350) / 1350 * 100 * 10) / 10;
+      const fxImpact = Math.round((pctChange(fxRate, 1350) ?? 0) * 10) / 10;
 
       setResult({
         fobPrice,

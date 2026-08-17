@@ -24,6 +24,7 @@ import {
   getUnloadingEtaLabel,
   getVesselStatusKind,
 } from '../lib/unloading-operations';
+import { progressPct } from '../lib/metrics';
 
 export {
   getUnloadingEtaLabel,
@@ -89,9 +90,8 @@ export function UnloadingHero({
     <div className={styles.heroMissionStrip}>
       {priorityVessels.map(vessel => {
         const statusKind = getVesselStatusKind(vessel.status);
-        const progress = vessel.reportedTotal > 0
-          ? clampHeroValue((vessel.actualTotal / vessel.reportedTotal) * 100, 0, 100)
-          : 0;
+        // 숫자 라벨 전용 — 초과 하역은 그대로 노출(106%는 106%). 하한 0만 유지.
+        const progress = Math.max(0, progressPct(vessel.actualTotal, vessel.reportedTotal) ?? 0);
         return (
           <button
             key={vessel.id}
@@ -832,9 +832,7 @@ export default function UnloadingStatus({ heroOnly = false }: { heroOnly?: boole
     ? selectedTimeline.reduce((sum, entry) => sum + entry.dailyAmount, 0) / selectedTimeline.length
     : 0;
   const selectedRemaining = Math.max(0, selectedData.reportedTotal - selectedData.actualTotal);
-  const selectedProgress = selectedData.reportedTotal > 0
-    ? Math.min((selectedData.actualTotal / selectedData.reportedTotal) * 100, 100)
-    : 0;
+  const selectedProgress = progressPct(selectedData.actualTotal, selectedData.reportedTotal) ?? 0;
   const selectedEstimatedDays = selectedStatusKind === 'progress' && selectedDailyAverage > 0
     ? Math.ceil(selectedRemaining / selectedDailyAverage)
     : 0;
@@ -855,7 +853,9 @@ export default function UnloadingStatus({ heroOnly = false }: { heroOnly?: boole
   const renderVesselCard = (v: typeof vesselsList[number]) => {
     const statusKind = getVesselStatusKind(v.status);
     const isProgress = statusKind === 'progress';
-    const percent = v.reportedTotal > 0 ? Math.min((v.actualTotal / v.reportedTotal) * 100, 100) : 0;
+    // RadialGauge는 호(arc)를 자체 Math.min(_, 100)로 클램프하고 중앙 라벨엔 원값을 찍는다.
+    // 여기서 클램프하면 라벨까지 100%로 뭉개지므로 무클램프로 넘긴다.
+    const percent = progressPct(v.actualTotal, v.reportedTotal) ?? 0;
     const holds = v.holdDataAvailable === false
       ? {}
       : parseVesselHoldData(v.id, v.timeline || [], v.reportedTotal || 0);
@@ -1612,7 +1612,7 @@ export default function UnloadingStatus({ heroOnly = false }: { heroOnly?: boole
                   </h4>
                   <div style={{ display: 'flex', gap: '16px', alignItems: 'center' }}>
                     <RadialGauge 
-                      progress={selectedData.reportedTotal > 0 ? Math.min((selectedData.actualTotal / selectedData.reportedTotal) * 100, 100) : 0} 
+                      progress={selectedProgress}
                       radius={36} 
                       strokeWidth={6} 
                       color="#10b981" 

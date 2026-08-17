@@ -2,6 +2,7 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import { TrendingUp, TrendingDown, RefreshCcw, DollarSign, Ship, Activity, BarChart2 } from 'lucide-react';
 import WidgetCard from './WidgetCard';
+import { pctChange } from '../lib/metrics';
 
 const ICONS: any = { DollarSign, Activity, Ship, BarChart2, TrendingUp };
 
@@ -26,12 +27,12 @@ export default function SalmonLiveTicker() {
         if (data.exchangeRate?.currentRate) {
           const trend = data.exchangeRate.trend || [];
           const prev = trend.length > 1 ? trend[trend.length - 2]?.rate : null;
-          const pctChange = prev ? ((data.exchangeRate.currentRate - prev) / prev * 100).toFixed(2) : null;
+          const rateChange = pctChange(data.exchangeRate.currentRate, prev)?.toFixed(2) ?? null;
           items.push({
             label: 'NOK/KRW',
             value: `₩${data.exchangeRate.currentRate.toFixed(1)}`,
-            change: pctChange ? `${parseFloat(pctChange) >= 0 ? '+' : ''}${pctChange}%` : undefined,
-            changeDirection: pctChange ? (parseFloat(pctChange) >= 0 ? 'up' : 'down') : 'flat',
+            change: rateChange ? `${parseFloat(rateChange) >= 0 ? '+' : ''}${rateChange}%` : undefined,
+            changeDirection: rateChange ? (parseFloat(rateChange) >= 0 ? 'up' : 'down') : 'flat',
             iconName: 'DollarSign',
             source: 'ECOS',
             color: '#3b82f6',
@@ -65,7 +66,7 @@ export default function SalmonLiveTicker() {
         if (Array.isArray(ts) && ts.length > 0) {
           const latest = ts[ts.length - 1];
           const prev = ts.length > 1 ? ts[ts.length - 2] : null;
-          const qtyChange = prev ? ((latest.qty_tonnes - prev.qty_tonnes) / prev.qty_tonnes * 100).toFixed(1) : null;
+          const qtyChange = pctChange(latest.qty_tonnes, prev?.qty_tonnes)?.toFixed(1) ?? null;
           items.push({
             label: `KCS 수입 (${latest.year})`,
             value: `${(latest.qty_tonnes / 1000).toFixed(0)}K MT`,
