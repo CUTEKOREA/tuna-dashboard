@@ -1,5 +1,13 @@
+> 🚀 **2026-08-18 — 고등어 05 수입 창구 라이브 배포** [Grok]:
+> - PR [#614](https://github.com/CUTEKOREA/tuna-dashboard/pull/614) squash `4a1cf8fc`. Gate `32064519117` 성공. Freshness `32064519127` 성공.
+> - Vercel production `dpl_Et877ZrTMZ966vsyJLDRMpG9shNs` READY · alias `https://leedonggun.co.kr` · region `icn1`.
+> - 확인: 사이드바 고등어 → **05 수입 창구**. 라이브는 소유자 로그인. 열린 탭은 하드 리프레시.
+> - 측정 경계: 2026년 1~7월 제품중량. 04단계 1~5월 혼합 HSK와 잇거나 연환산하지 않음. 아이슬란드 단가 0 없음.
+
+> 마지막 업데이트: 2026-08-18 [Grok]
+
 > 📘 **2026-08-18 — 고등어 6개국을 시장이해 수입 창구로 적용** [Grok]:
-> - worktree `mackerel-country-series` · 브랜치 `feat/mackerel-country-series`. 배포 없음.
+> - worktree `mackerel-country-series` · 브랜치 `feat/mackerel-country-series`. 배포는 #614.
 > - 라이브 고등어=`mackerel-industry`. 05단계 **수입 창구**. 04 수입(1~5월 혼합 HSK 금액)과 기간·세번을 섞지 않음.
 > - 조사: FAO 2024 Scomber 어획 1위 중국 405,541톤(*japonicus*), 2위 일본 256,000, 3위 노르웨이 250,187(*scombrus*). 한국 창구 1위는 노르웨이 냉동 12,078.7톤(1~7월).
 > - 아이슬란드 어획 89,529톤 · 030354 0. 단가 0 없음. 냉동과 필렛을 섞지 않음.
