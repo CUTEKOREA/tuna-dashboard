@@ -5,6 +5,7 @@ import { renderToStaticMarkup } from 'react-dom/server';
 import { describe, expect, it } from 'vitest';
 
 import OfisMonthlyPanel from '@/components/OfisMonthlyPanel';
+import PurseSeinerDashboard from '@/components/PurseSeinerDashboard';
 import {
   OFIS_BET_KRW,
   OFIS_LL_MONTH_T,
@@ -77,6 +78,18 @@ describe('OFIS 선대 패널', () => {
     expect(html).toContain('연환산하지 않음');
     expect(html).toContain('단가 0 행을 만들지 않음');
     expect(html).not.toMatch(/LIVE/);
+  });
+
+  it('라이브 선단 DB에 붙고 퇴역한 fleet-strategy에는 없다', () => {
+    const live = renderToStaticMarkup(createElement(PurseSeinerDashboard));
+    const teaser = renderToStaticMarkup(createElement(PurseSeinerDashboard, { heroOnly: true }));
+    const dead = readFileSync(join(ROOT, 'components/FleetStrategyMatrix.tsx'), 'utf8');
+    const page = readFileSync(join(ROOT, 'app/page.tsx'), 'utf8');
+    expect(live).toContain('W-OFIS01');
+    expect(teaser).not.toContain('W-OFIS01');
+    expect(dead).not.toContain('OfisMonthlyPanel');
+    expect(page).toContain("'purse-seiner-db': <PurseSeinerDashboard />");
+    expect(page).not.toContain('FleetStrategyMatrix');
   });
 });
 
