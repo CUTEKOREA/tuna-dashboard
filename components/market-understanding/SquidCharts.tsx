@@ -26,6 +26,11 @@ import {
 
 import { getSmartRotation, truncateXAxis } from '@/lib/chart-standards';
 import {
+  companiesFromVessels,
+  seasonTotals,
+  vesselsByPan,
+} from '@/lib/data/falkland-squid-vessels';
+import {
   squidByArea,
   squidBySizeBand,
   squidGearSeries,
@@ -984,6 +989,94 @@ export function SquidSizeBandChart({ year }: { year: string }) {
         <Tooltip content={<Tip />} />
         {legend}
         <Bar dataKey="생산량" name="생산량 (톤)" fill={SQ_BASE} isAnimationActive={animate} />
+      </ComposedChart>
+    </SafeResponsiveContainer>
+  );
+}
+
+/* ── 포클랜드 선박별 실적 (신라교역 사내 자료) ────────────────────────────── */
+
+/** 선박별 누계 물량. 공개 통계가 닿지 못하는 층위다. */
+export function FalklandVesselChart() {
+  const animate = !useReducedMotion();
+  const rows = useMemo(() => vesselsByPan(), []);
+  const rot = getSmartRotation(rows.map((r) => r.name));
+
+  return (
+    <SafeResponsiveContainer width="100%" height={340}>
+      <ComposedChart data={rows} margin={{ ...MARGIN, bottom: rot.angle ? 60 : 8 }}>
+        {grid}
+        <XAxis
+          dataKey="name"
+          {...AXIS}
+          tickFormatter={truncateXAxis}
+          angle={rot.angle}
+          textAnchor={rot.textAnchor as 'end' | 'middle'}
+          height={rot.angle ? 74 : 30}
+          interval={0}
+        />
+        <YAxis {...AXIS} tickFormatter={(v: number) => `${Math.round(v / 1000)}천`} />
+        <Tooltip content={<Tip />} />
+        {legend}
+        <Bar dataKey="totalPan" name="누계 물량 (판)" fill={SQ_BASE} isAnimationActive={animate} />
+      </ComposedChart>
+    </SafeResponsiveContainer>
+  );
+}
+
+/** 회사별 선단 규모와 물량. 선박에서 다시 세운 값이다(원본 집계에 한 회사가 빠져 있다). */
+export function FalklandCompanyChart() {
+  const animate = !useReducedMotion();
+  const rows = useMemo(() => companiesFromVessels(), []);
+  const rot = getSmartRotation(rows.map((r) => r.name));
+
+  return (
+    <SafeResponsiveContainer width="100%" height={320}>
+      <ComposedChart data={rows} margin={{ ...MARGIN, bottom: rot.angle ? 58 : 8 }}>
+        {grid}
+        <XAxis
+          dataKey="name"
+          {...AXIS}
+          tickFormatter={truncateXAxis}
+          angle={rot.angle}
+          textAnchor={rot.textAnchor as 'end' | 'middle'}
+          height={rot.angle ? 72 : 30}
+          interval={0}
+        />
+        <YAxis yAxisId="left" {...AXIS} tickFormatter={(v: number) => `${Math.round(v / 1000)}천`} />
+        <YAxis yAxisId="right" orientation="right" {...AXIS} allowDecimals={false} />
+        <Tooltip content={<Tip />} />
+        {legend}
+        <Bar yAxisId="left" dataKey="totalPan" name="누계 물량 (판)" fill={SQ_BASE} isAnimationActive={animate} />
+        <Line
+          yAxisId="right"
+          type="monotone"
+          dataKey="vessels"
+          name="보유 척수 (척)"
+          stroke={SQ_MARK}
+          strokeWidth={2}
+          dot={{ r: 3 }}
+          isAnimationActive={animate}
+        />
+      </ComposedChart>
+    </SafeResponsiveContainer>
+  );
+}
+
+/** 어기 월별 선단 합계. 12월에 시작해 이듬해 5월에 끝난다 — 달력 순이 아니다. */
+export function FalklandSeasonChart() {
+  const animate = !useReducedMotion();
+  const rows = useMemo(() => seasonTotals(), []);
+
+  return (
+    <SafeResponsiveContainer width="100%" height={260}>
+      <ComposedChart data={rows} margin={MARGIN}>
+        {grid}
+        <XAxis dataKey="월" {...AXIS} />
+        <YAxis {...AXIS} tickFormatter={(v: number) => `${Math.round(v / 1000)}천`} />
+        <Tooltip content={<Tip />} />
+        {legend}
+        <Bar dataKey="물량" name="선단 합계 (판)" fill={SQ_BASE} isAnimationActive={animate} />
       </ComposedChart>
     </SafeResponsiveContainer>
   );

@@ -203,11 +203,24 @@ describe('시장 이해 > 오징어 — 위젯 큐레이션', () => {
     }
   });
 
-  it('사슬 단계와 횡단 단계가 서술과 짝을 이룬다', () => {
+  /**
+   * 큐레이션 JSON 의 단계는 모두 서술을 가져야 한다 — 위젯만 있고 설명이 없으면
+   * 화면에 제목만 뜬다.
+   *
+   * 반대는 성립하지 않는다. **서술이 정본이고 JSON 은 큐레이션 위젯의 출처일 뿐**이라,
+   * 위젯 없이 차트만 붙는 단계(08 선박별 — 사내 자료)가 있을 수 있다.
+   */
+  it('큐레이션 단계가 모두 서술을 갖는다', () => {
     const chain = getSquidChainStages().map((stage) => stage.key);
     const cross = getSquidCrossStages().map((stage) => stage.key);
-    expect(chain).toEqual(SQUID_CHAIN_NARRATIVES.map((entry) => entry.key));
-    expect(cross).toEqual(SQUID_CROSS_NARRATIVES.map((entry) => entry.key));
+    const narrated = new Set(SQUID_ALL_NARRATIVES.map((entry) => entry.key));
+    for (const key of [...chain, ...cross]) {
+      expect(narrated.has(key), `${key}: 큐레이션 단계인데 서술이 없다`).toBe(true);
+    }
+    // 서술 순서는 사슬 → 횡단이어야 한다. 뒤집히면 탭 순서가 어긋난다.
+    const chainNarr = SQUID_CHAIN_NARRATIVES.map((e) => e.key);
+    expect(chainNarr.slice(0, chain.length)).toEqual(chain);
+    expect(SQUID_CROSS_NARRATIVES.map((e) => e.key)).toEqual(cross);
   });
 });
 
@@ -219,10 +232,11 @@ describe('시장 이해 > 오징어 — 서술', () => {
     const quoted = /「([^」]+)」/g;
 
     for (const narrative of SQUID_ALL_NARRATIVES) {
+      // 큐레이션 위젯이 없는 단계도 있다(08 선박별 — 사내 자료 차트만 붙는다).
+      // 그 경우 차트 슬롯만으로 지목을 확인한다.
       const stage = stages.find((entry) => entry.key === narrative.key);
-      expect(stage, `${narrative.key} 단계가 없다`).toBeDefined();
       const titles = new Set([
-        ...stage!.widgets.map((widget) => widget.title),
+        ...(stage?.widgets ?? []).map((widget) => widget.title),
         ...(SQUID_CHART_SLOTS[narrative.key] ?? []).map((slot) => slot.title),
       ]);
       const text = [...narrative.paragraphs, narrative.lede].join('\n');
