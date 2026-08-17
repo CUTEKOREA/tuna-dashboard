@@ -1,0 +1,1056 @@
+{
+ "_meta": {
+  "entry": "app/page.tsx",
+  "files": 148,
+  "widgets": 100,
+  "dataFiles": 54,
+  "generator": "scripts/widget_lineage.py"
+ },
+ "widgetToData": {
+  "components/AmbientBackground.tsx": {
+   "dataModules": [],
+   "dataFiles": []
+  },
+  "components/CanneryStatusCharts.tsx": {
+   "dataModules": [],
+   "dataFiles": []
+  },
+  "components/CarrierUnloadingStatus.tsx": {
+   "dataModules": [],
+   "dataFiles": []
+  },
+  "components/ChartPatterns.tsx": {
+   "dataModules": [],
+   "dataFiles": []
+  },
+  "components/CommandPalette.tsx": {
+   "dataModules": [],
+   "dataFiles": []
+  },
+  "components/CompanySmtpPanel.tsx": {
+   "dataModules": [],
+   "dataFiles": []
+  },
+  "components/CrossCommodityIntelligenceDashboard.tsx": {
+   "dataModules": [
+    "lib/data/cross-commodity-intelligence.ts"
+   ],
+   "dataFiles": []
+  },
+  "components/FleetAnalysisPanels.tsx": {
+   "dataModules": [],
+   "dataFiles": []
+  },
+  "components/FleetCharts.tsx": {
+   "dataModules": [],
+   "dataFiles": []
+  },
+  "components/FleetCommandCenter.tsx": {
+   "dataModules": [
+    "lib/data/fleet-daily-public.ts"
+   ],
+   "dataFiles": [
+    "lib/data/generated/fleet-daily-public.json"
+   ]
+  },
+  "components/FleetDailyOperations.tsx": {
+   "dataModules": [
+    "lib/data/fleet-daily-public.ts"
+   ],
+   "dataFiles": [
+    "lib/data/generated/fleet-daily-public.json"
+   ]
+  },
+  "components/FleetHeroCommand.tsx": {
+   "dataModules": [],
+   "dataFiles": []
+  },
+  "components/FleetHeroKPI.tsx": {
+   "dataModules": [],
+   "dataFiles": []
+  },
+  "components/FleetRealMap.tsx": {
+   "dataModules": [],
+   "dataFiles": []
+  },
+  "components/FleetRegistryExplorer.tsx": {
+   "dataModules": [],
+   "dataFiles": []
+  },
+  "components/FleetRosterGrid.tsx": {
+   "dataModules": [],
+   "dataFiles": []
+  },
+  "components/FleetStepUpMfa.tsx": {
+   "dataModules": [],
+   "dataFiles": []
+  },
+  "components/HeroMarketCommand.tsx": {
+   "dataModules": [
+    "lib/data/atuna-price-summary.ts"
+   ],
+   "dataFiles": []
+  },
+  "components/KeepAlivePanel.tsx": {
+   "dataModules": [],
+   "dataFiles": []
+  },
+  "components/LiveTicker.tsx": {
+   "dataModules": [],
+   "dataFiles": []
+  },
+  "components/LogisticsDashboard.tsx": {
+   "dataModules": [
+    "lib/data/bangkok-weekly.ts",
+    "lib/data/misc.ts"
+   ],
+   "dataFiles": [
+    "data/mangosteen_kr_export.json",
+    "data/octopus_domestic_resource.json",
+    "data/octopus_global_catch.json",
+    "data/reefer_week27.json",
+    "data/reefer_week29.json",
+    "data/reefer_week30.json",
+    "data/reefer_week31.json",
+    "data/reefer_week32.json",
+    "data/seasia_oem_ma_candidates.json",
+    "data/seasia_oem_vendors.json",
+    "data/shrimp_dashboard.json",
+    "public/data/bangkok_weekly_kpi.json",
+    "public/data/bangkok_weekly_payload.json"
+   ]
+  },
+  "components/LogisticsOperationsPanel.tsx": {
+   "dataModules": [],
+   "dataFiles": []
+  },
+  "components/MailInboxDashboard.tsx": {
+   "dataModules": [],
+   "dataFiles": []
+  },
+  "components/MarketDashboard.tsx": {
+   "dataModules": [
+    "lib/data/atuna-price-summary.ts"
+   ],
+   "dataFiles": [
+    "public/data/tuna_daily_briefing.json"
+   ]
+  },
+  "components/MgoChartModal.tsx": {
+   "dataModules": [],
+   "dataFiles": []
+  },
+  "components/NewsFrontPage.tsx": {
+   "dataModules": [
+    "lib/data/daily-briefing.ts"
+   ],
+   "dataFiles": [
+    "public/data/tuna_daily_briefing.json"
+   ]
+  },
+  "components/PageTransition.tsx": {
+   "dataModules": [],
+   "dataFiles": []
+  },
+  "components/PnaAccessFeeWidgets.tsx": {
+   "dataModules": [],
+   "dataFiles": []
+  },
+  "components/PorkDashboard.tsx": {
+   "dataModules": [],
+   "dataFiles": [
+    "data/beef_usda_widgets.json",
+    "data/chicken_usda_widgets.json",
+    "data/cocoa_usda_widgets.json",
+    "data/pork_usda_widgets.json",
+    "public/data/garlic_usda_widgets.json"
+   ]
+  },
+  "components/PorkEmpiricalInsights.tsx": {
+   "dataModules": [],
+   "dataFiles": []
+  },
+  "components/PorkUsdaWidgets.tsx": {
+   "dataModules": [
+    "lib/data/usda-widgets.ts"
+   ],
+   "dataFiles": [
+    "data/beef_usda_widgets.json",
+    "data/chicken_usda_widgets.json",
+    "data/cocoa_usda_widgets.json",
+    "data/pork_usda_widgets.json",
+    "public/data/garlic_usda_widgets.json"
+   ]
+  },
+  "components/PorkWidgets.tsx": {
+   "dataModules": [],
+   "dataFiles": []
+  },
+  "components/PurseSeinerDashboard.tsx": {
+   "dataModules": [],
+   "dataFiles": [
+    "public/data/tuna_purse_seiners_v1.json"
+   ]
+  },
+  "components/ReeferMovement.tsx": {
+   "dataModules": [
+    "lib/data/misc.ts"
+   ],
+   "dataFiles": [
+    "data/mangosteen_kr_export.json",
+    "data/octopus_domestic_resource.json",
+    "data/octopus_global_catch.json",
+    "data/reefer_week27.json",
+    "data/reefer_week29.json",
+    "data/reefer_week30.json",
+    "data/reefer_week31.json",
+    "data/reefer_week32.json",
+    "data/seasia_oem_ma_candidates.json",
+    "data/seasia_oem_vendors.json",
+    "data/shrimp_dashboard.json"
+   ]
+  },
+  "components/SafeResponsiveContainer.tsx": {
+   "dataModules": [],
+   "dataFiles": []
+  },
+  "components/SeafoodSidebarIcons.tsx": {
+   "dataModules": [],
+   "dataFiles": []
+  },
+  "components/SeafoodStockWidget.tsx": {
+   "dataModules": [],
+   "dataFiles": []
+  },
+  "components/SongkhlaCanneryStatusCharts.tsx": {
+   "dataModules": [],
+   "dataFiles": []
+  },
+  "components/TakeawayBox.tsx": {
+   "dataModules": [],
+   "dataFiles": []
+  },
+  "components/TelemetryBadge.tsx": {
+   "dataModules": [],
+   "dataFiles": []
+  },
+  "components/TermTooltip.tsx": {
+   "dataModules": [],
+   "dataFiles": []
+  },
+  "components/TraderStatus.tsx": {
+   "dataModules": [
+    "lib/data/bangkok-weekly.ts"
+   ],
+   "dataFiles": [
+    "public/data/bangkok_weekly_kpi.json",
+    "public/data/bangkok_weekly_payload.json"
+   ]
+  },
+  "components/UnloadingAnalytics.tsx": {
+   "dataModules": [],
+   "dataFiles": []
+  },
+  "components/UnloadingFieldMode.tsx": {
+   "dataModules": [],
+   "dataFiles": []
+  },
+  "components/UnloadingHistory.tsx": {
+   "dataModules": [],
+   "dataFiles": []
+  },
+  "components/UnloadingHistoryBoundary.tsx": {
+   "dataModules": [],
+   "dataFiles": []
+  },
+  "components/UnloadingReportGenerator.tsx": {
+   "dataModules": [],
+   "dataFiles": []
+  },
+  "components/UnloadingStatus.tsx": {
+   "dataModules": [
+    "lib/data/unloading-static.ts"
+   ],
+   "dataFiles": []
+  },
+  "components/UnloadingTimelineReplay.tsx": {
+   "dataModules": [],
+   "dataFiles": []
+  },
+  "components/UnloadingVoyageGantt.tsx": {
+   "dataModules": [],
+   "dataFiles": []
+  },
+  "components/ValueChainMarginIndex.tsx": {
+   "dataModules": [],
+   "dataFiles": []
+  },
+  "components/VdsStrategyMatrix.tsx": {
+   "dataModules": [],
+   "dataFiles": []
+  },
+  "components/VesselVdsStatus.tsx": {
+   "dataModules": [],
+   "dataFiles": []
+  },
+  "components/WidgetCard.tsx": {
+   "dataModules": [],
+   "dataFiles": []
+  },
+  "components/bangkok/BangkokDashboard.tsx": {
+   "dataModules": [
+    "lib/data/bangkok-weekly.ts"
+   ],
+   "dataFiles": [
+    "public/data/bangkok/seasia_processors.json",
+    "public/data/bangkok_weekly_kpi.json",
+    "public/data/bangkok_weekly_payload.json"
+   ]
+  },
+  "components/bangkok/tabs/CanneryTab.tsx": {
+   "dataModules": [
+    "lib/data/bangkok-weekly.ts"
+   ],
+   "dataFiles": [
+    "public/data/bangkok_weekly_kpi.json",
+    "public/data/bangkok_weekly_payload.json"
+   ]
+  },
+  "components/bangkok/tabs/ClaimsTab.tsx": {
+   "dataModules": [
+    "lib/data/bangkok-weekly.ts"
+   ],
+   "dataFiles": [
+    "public/data/bangkok_weekly_kpi.json",
+    "public/data/bangkok_weekly_payload.json"
+   ]
+  },
+  "components/bangkok/tabs/HomeTab.tsx": {
+   "dataModules": [
+    "lib/data/bangkok-weekly.ts"
+   ],
+   "dataFiles": [
+    "public/data/bangkok_weekly_kpi.json",
+    "public/data/bangkok_weekly_payload.json"
+   ]
+  },
+  "components/bangkok/tabs/LeadingTab.tsx": {
+   "dataModules": [
+    "lib/data/bangkok-weekly.ts"
+   ],
+   "dataFiles": [
+    "public/data/bangkok_weekly_kpi.json",
+    "public/data/bangkok_weekly_payload.json"
+   ]
+  },
+  "components/bangkok/tabs/PriceTab.tsx": {
+   "dataModules": [
+    "lib/data/bangkok-weekly.ts"
+   ],
+   "dataFiles": [
+    "public/data/bangkok_weekly_kpi.json",
+    "public/data/bangkok_weekly_payload.json"
+   ]
+  },
+  "components/bangkok/tabs/ProcessorsTab.tsx": {
+   "dataModules": [
+    "lib/data/seasia-processors.ts"
+   ],
+   "dataFiles": [
+    "public/data/bangkok/seasia_processors.json"
+   ]
+  },
+  "components/bangkok/tabs/QualityTab.tsx": {
+   "dataModules": [
+    "lib/data/bangkok-weekly.ts"
+   ],
+   "dataFiles": [
+    "public/data/bangkok_weekly_kpi.json",
+    "public/data/bangkok_weekly_payload.json"
+   ]
+  },
+  "components/bangkok/tabs/UnloadTab.tsx": {
+   "dataModules": [
+    "lib/data/bangkok-weekly.ts"
+   ],
+   "dataFiles": [
+    "public/data/bangkok_weekly_kpi.json",
+    "public/data/bangkok_weekly_payload.json"
+   ]
+  },
+  "components/cosmo/Chart.tsx": {
+   "dataModules": [],
+   "dataFiles": []
+  },
+  "components/cosmo/CosmoDashboard.tsx": {
+   "dataModules": [
+    "lib/data/cosmo.ts"
+   ],
+   "dataFiles": [
+    "public/data/cosmo/cosmo_2026.json",
+    "public/data/cosmo/cosmo_export.json",
+    "public/data/cosmo/cosmo_history.json",
+    "public/data/cosmo/trade_stats.json"
+   ]
+  },
+  "components/cosmo/CosmoNavigation.tsx": {
+   "dataModules": [],
+   "dataFiles": []
+  },
+  "components/cosmo/Ui.tsx": {
+   "dataModules": [],
+   "dataFiles": []
+  },
+  "components/cosmo/tabs/CashTab.tsx": {
+   "dataModules": [
+    "lib/data/cosmo.ts"
+   ],
+   "dataFiles": [
+    "public/data/cosmo/cosmo_2026.json",
+    "public/data/cosmo/cosmo_export.json",
+    "public/data/cosmo/cosmo_history.json"
+   ]
+  },
+  "components/cosmo/tabs/HistoryTab.tsx": {
+   "dataModules": [
+    "lib/data/cosmo.ts"
+   ],
+   "dataFiles": [
+    "public/data/cosmo/cosmo_2026.json",
+    "public/data/cosmo/cosmo_export.json",
+    "public/data/cosmo/cosmo_history.json"
+   ]
+  },
+  "components/cosmo/tabs/HomeTab.tsx": {
+   "dataModules": [
+    "lib/data/cosmo.ts"
+   ],
+   "dataFiles": [
+    "public/data/cosmo/cosmo_2026.json",
+    "public/data/cosmo/cosmo_export.json",
+    "public/data/cosmo/cosmo_history.json"
+   ]
+  },
+  "components/cosmo/tabs/MarketTab.tsx": {
+   "dataModules": [
+    "lib/data/cosmo-market.ts",
+    "lib/data/cosmo.ts"
+   ],
+   "dataFiles": [
+    "public/data/cosmo/cosmo_2026.json",
+    "public/data/cosmo/cosmo_export.json",
+    "public/data/cosmo/cosmo_history.json",
+    "public/data/cosmo/trade_stats.json"
+   ]
+  },
+  "components/cosmo/tabs/ProductionTab.tsx": {
+   "dataModules": [
+    "lib/data/cosmo.ts"
+   ],
+   "dataFiles": [
+    "public/data/cosmo/cosmo_2026.json",
+    "public/data/cosmo/cosmo_export.json",
+    "public/data/cosmo/cosmo_history.json"
+   ]
+  },
+  "components/cosmo/tabs/ProfitTab.tsx": {
+   "dataModules": [
+    "lib/data/cosmo.ts"
+   ],
+   "dataFiles": [
+    "public/data/cosmo/cosmo_2026.json",
+    "public/data/cosmo/cosmo_export.json",
+    "public/data/cosmo/cosmo_history.json"
+   ]
+  },
+  "components/cosmo/tabs/QualityTab.tsx": {
+   "dataModules": [
+    "lib/data/cosmo.ts"
+   ],
+   "dataFiles": [
+    "public/data/cosmo/cosmo_2026.json",
+    "public/data/cosmo/cosmo_export.json",
+    "public/data/cosmo/cosmo_history.json"
+   ]
+  },
+  "components/cosmo/tabs/SalesTab.tsx": {
+   "dataModules": [
+    "lib/data/cosmo.ts"
+   ],
+   "dataFiles": [
+    "public/data/cosmo/cosmo_2026.json",
+    "public/data/cosmo/cosmo_export.json",
+    "public/data/cosmo/cosmo_history.json"
+   ]
+  },
+  "components/cosmo/tabs/SupplyTab.tsx": {
+   "dataModules": [
+    "lib/data/cosmo.ts"
+   ],
+   "dataFiles": [
+    "public/data/cosmo/cosmo_2026.json",
+    "public/data/cosmo/cosmo_export.json",
+    "public/data/cosmo/cosmo_history.json"
+   ]
+  },
+  "components/gmts/GmtsDashboard.tsx": {
+   "dataModules": [
+    "lib/data/gmts.ts"
+   ],
+   "dataFiles": [
+    "data/gmts_dashboard.json"
+   ]
+  },
+  "components/market-understanding/CommodityCharts.tsx": {
+   "dataModules": [
+    "lib/data/commodity-industry.ts"
+   ],
+   "dataFiles": [
+    "public/data/mackerel_industry_v1.json",
+    "public/data/shrimp_industry_v1.json",
+    "public/data/whelk_industry_v1.json"
+   ]
+  },
+  "components/market-understanding/CommodityIndustryDashboard.tsx": {
+   "dataModules": [],
+   "dataFiles": []
+  },
+  "components/market-understanding/CompanyResearchTables.tsx": {
+   "dataModules": [
+    "lib/data/valuechain-companies.ts"
+   ],
+   "dataFiles": [
+    "public/data/mackerel_company_research_v1.json",
+    "public/data/shrimp_company_research_v1.json",
+    "public/data/squid_company_research_v1.json",
+    "public/data/tuna_carrier_fleet_v1.json",
+    "public/data/tuna_company_research_v1.json",
+    "public/data/tuna_ocean_operators_v1.json",
+    "public/data/whelk_company_research_v1.json"
+   ]
+  },
+  "components/market-understanding/MackerelIndustryDashboard.tsx": {
+   "dataModules": [
+    "lib/data/commodity-industry.ts",
+    "lib/data/valuechain-companies.ts"
+   ],
+   "dataFiles": [
+    "public/data/mackerel_company_research_v1.json",
+    "public/data/mackerel_industry_v1.json",
+    "public/data/shrimp_company_research_v1.json",
+    "public/data/shrimp_industry_v1.json",
+    "public/data/squid_company_research_v1.json",
+    "public/data/tuna_carrier_fleet_v1.json",
+    "public/data/tuna_company_research_v1.json",
+    "public/data/tuna_ocean_operators_v1.json",
+    "public/data/whelk_company_research_v1.json",
+    "public/data/whelk_industry_v1.json"
+   ]
+  },
+  "components/market-understanding/ShrimpIndustryDashboard.tsx": {
+   "dataModules": [
+    "lib/data/commodity-industry.ts",
+    "lib/data/valuechain-companies.ts"
+   ],
+   "dataFiles": [
+    "public/data/mackerel_company_research_v1.json",
+    "public/data/mackerel_industry_v1.json",
+    "public/data/shrimp_company_research_v1.json",
+    "public/data/shrimp_industry_v1.json",
+    "public/data/squid_company_research_v1.json",
+    "public/data/tuna_carrier_fleet_v1.json",
+    "public/data/tuna_company_research_v1.json",
+    "public/data/tuna_ocean_operators_v1.json",
+    "public/data/whelk_company_research_v1.json",
+    "public/data/whelk_industry_v1.json"
+   ]
+  },
+  "components/market-understanding/SquidCharts.tsx": {
+   "dataModules": [
+    "lib/data/squid-industry.ts"
+   ],
+   "dataFiles": [
+    "public/data/squid_fleet_v1.json",
+    "public/data/squid_industry_v1.json",
+    "public/data/squid_industry_widgets_v1.json",
+    "public/data/squid_ocean_fleet_v1.json",
+    "public/data/squid_trade_v1.json"
+   ]
+  },
+  "components/market-understanding/SquidIndustryDashboard.tsx": {
+   "dataModules": [
+    "lib/data/squid-industry.ts",
+    "lib/data/valuechain-companies.ts"
+   ],
+   "dataFiles": [
+    "public/data/mackerel_company_research_v1.json",
+    "public/data/shrimp_company_research_v1.json",
+    "public/data/squid_company_research_v1.json",
+    "public/data/squid_fleet_v1.json",
+    "public/data/squid_industry_v1.json",
+    "public/data/squid_industry_widgets_v1.json",
+    "public/data/squid_ocean_fleet_v1.json",
+    "public/data/squid_trade_v1.json",
+    "public/data/tuna_carrier_fleet_v1.json",
+    "public/data/tuna_company_research_v1.json",
+    "public/data/tuna_ocean_operators_v1.json",
+    "public/data/whelk_company_research_v1.json"
+   ]
+  },
+  "components/market-understanding/SquidWidgetView.tsx": {
+   "dataModules": [
+    "lib/data/squid-industry.ts"
+   ],
+   "dataFiles": [
+    "public/data/squid_fleet_v1.json",
+    "public/data/squid_industry_v1.json",
+    "public/data/squid_industry_widgets_v1.json",
+    "public/data/squid_ocean_fleet_v1.json",
+    "public/data/squid_trade_v1.json"
+   ]
+  },
+  "components/market-understanding/TunaCatchCharts.tsx": {
+   "dataModules": [
+    "lib/data/tuna-industry.ts",
+    "lib/data/valuechain-companies.ts"
+   ],
+   "dataFiles": [
+    "public/data/mackerel_company_research_v1.json",
+    "public/data/shrimp_company_research_v1.json",
+    "public/data/squid_company_research_v1.json",
+    "public/data/tuna_carrier_fleet_v1.json",
+    "public/data/tuna_company_research_v1.json",
+    "public/data/tuna_fleet_v1.json",
+    "public/data/tuna_glossary_v1.json",
+    "public/data/tuna_industry_prices_v1.json",
+    "public/data/tuna_industry_v1.json",
+    "public/data/tuna_industry_widgets_v1.json",
+    "public/data/tuna_ocean_operators_v1.json",
+    "public/data/tuna_trade_v1.json",
+    "public/data/whelk_company_research_v1.json"
+   ]
+  },
+  "components/market-understanding/TunaIndustryChart.tsx": {
+   "dataModules": [
+    "lib/data/tuna-industry.ts"
+   ],
+   "dataFiles": [
+    "public/data/tuna_fleet_v1.json",
+    "public/data/tuna_glossary_v1.json",
+    "public/data/tuna_industry_prices_v1.json",
+    "public/data/tuna_industry_v1.json",
+    "public/data/tuna_industry_widgets_v1.json",
+    "public/data/tuna_trade_v1.json"
+   ]
+  },
+  "components/market-understanding/TunaIndustryDashboard.tsx": {
+   "dataModules": [
+    "lib/data/tuna-industry.ts",
+    "lib/data/valuechain-companies.ts"
+   ],
+   "dataFiles": [
+    "public/data/mackerel_company_research_v1.json",
+    "public/data/shrimp_company_research_v1.json",
+    "public/data/squid_company_research_v1.json",
+    "public/data/tuna_carrier_fleet_v1.json",
+    "public/data/tuna_company_research_v1.json",
+    "public/data/tuna_fleet_v1.json",
+    "public/data/tuna_glossary_v1.json",
+    "public/data/tuna_industry_prices_v1.json",
+    "public/data/tuna_industry_v1.json",
+    "public/data/tuna_industry_widgets_v1.json",
+    "public/data/tuna_ocean_operators_v1.json",
+    "public/data/tuna_trade_v1.json",
+    "public/data/whelk_company_research_v1.json"
+   ]
+  },
+  "components/market-understanding/ValueChainSpine.tsx": {
+   "dataModules": [],
+   "dataFiles": []
+  },
+  "components/market-understanding/WhelkIndustryDashboard.tsx": {
+   "dataModules": [
+    "lib/data/commodity-industry.ts",
+    "lib/data/valuechain-companies.ts"
+   ],
+   "dataFiles": [
+    "public/data/mackerel_company_research_v1.json",
+    "public/data/mackerel_industry_v1.json",
+    "public/data/shrimp_company_research_v1.json",
+    "public/data/shrimp_industry_v1.json",
+    "public/data/squid_company_research_v1.json",
+    "public/data/tuna_carrier_fleet_v1.json",
+    "public/data/tuna_company_research_v1.json",
+    "public/data/tuna_ocean_operators_v1.json",
+    "public/data/whelk_company_research_v1.json",
+    "public/data/whelk_industry_v1.json"
+   ]
+  },
+  "components/panofi/PanofiDashboard.tsx": {
+   "dataModules": [
+    "lib/data/panofi.ts"
+   ],
+   "dataFiles": [
+    "public/data/panofi/ghana_tuna_mirror.json",
+    "public/data/panofi/ghana_tuna_trade.json",
+    "public/data/panofi/panofi_actuals.json",
+    "public/data/panofi/panofi_liquidity.json",
+    "public/data/panofi/panofi_profile.json",
+    "public/data/panofi/panofi_weekly.json"
+   ]
+  },
+  "components/panofi/PanofiTabs.tsx": {
+   "dataModules": [
+    "lib/data/panofi.ts"
+   ],
+   "dataFiles": [
+    "public/data/panofi/ghana_tuna_mirror.json",
+    "public/data/panofi/ghana_tuna_trade.json",
+    "public/data/panofi/panofi_actuals.json",
+    "public/data/panofi/panofi_liquidity.json",
+    "public/data/panofi/panofi_profile.json",
+    "public/data/panofi/panofi_weekly.json"
+   ]
+  },
+  "components/panofi/PanofiUi.tsx": {
+   "dataModules": [],
+   "dataFiles": []
+  },
+  "components/v2/FilterBar.tsx": {
+   "dataModules": [],
+   "dataFiles": []
+  },
+  "components/v2/HeroNowStrip.tsx": {
+   "dataModules": [],
+   "dataFiles": []
+  },
+  "components/v2/HeroZone.tsx": {
+   "dataModules": [],
+   "dataFiles": []
+  },
+  "components/v2/NowCard.tsx": {
+   "dataModules": [],
+   "dataFiles": []
+  },
+  "components/v2/PillTabs.tsx": {
+   "dataModules": [],
+   "dataFiles": []
+  },
+  "components/v2/Skeleton.tsx": {
+   "dataModules": [],
+   "dataFiles": []
+  },
+  "components/v2/VesselTopSVG.tsx": {
+   "dataModules": [],
+   "dataFiles": []
+  }
+ },
+ "dataToWidgets": {
+  "data/beef_usda_widgets.json": [
+   "components/PorkDashboard.tsx",
+   "components/PorkUsdaWidgets.tsx"
+  ],
+  "data/chicken_usda_widgets.json": [
+   "components/PorkDashboard.tsx",
+   "components/PorkUsdaWidgets.tsx"
+  ],
+  "data/cocoa_usda_widgets.json": [
+   "components/PorkDashboard.tsx",
+   "components/PorkUsdaWidgets.tsx"
+  ],
+  "data/gmts_dashboard.json": [
+   "components/gmts/GmtsDashboard.tsx"
+  ],
+  "data/mangosteen_kr_export.json": [
+   "components/LogisticsDashboard.tsx",
+   "components/ReeferMovement.tsx"
+  ],
+  "data/octopus_domestic_resource.json": [
+   "components/LogisticsDashboard.tsx",
+   "components/ReeferMovement.tsx"
+  ],
+  "data/octopus_global_catch.json": [
+   "components/LogisticsDashboard.tsx",
+   "components/ReeferMovement.tsx"
+  ],
+  "data/pork_usda_widgets.json": [
+   "components/PorkDashboard.tsx",
+   "components/PorkUsdaWidgets.tsx"
+  ],
+  "data/reefer_week27.json": [
+   "components/LogisticsDashboard.tsx",
+   "components/ReeferMovement.tsx"
+  ],
+  "data/reefer_week29.json": [
+   "components/LogisticsDashboard.tsx",
+   "components/ReeferMovement.tsx"
+  ],
+  "data/reefer_week30.json": [
+   "components/LogisticsDashboard.tsx",
+   "components/ReeferMovement.tsx"
+  ],
+  "data/reefer_week31.json": [
+   "components/LogisticsDashboard.tsx",
+   "components/ReeferMovement.tsx"
+  ],
+  "data/reefer_week32.json": [
+   "components/LogisticsDashboard.tsx",
+   "components/ReeferMovement.tsx"
+  ],
+  "data/seasia_oem_ma_candidates.json": [
+   "components/LogisticsDashboard.tsx",
+   "components/ReeferMovement.tsx"
+  ],
+  "data/seasia_oem_vendors.json": [
+   "components/LogisticsDashboard.tsx",
+   "components/ReeferMovement.tsx"
+  ],
+  "data/shrimp_dashboard.json": [
+   "components/LogisticsDashboard.tsx",
+   "components/ReeferMovement.tsx"
+  ],
+  "lib/data/generated/fleet-daily-public.json": [
+   "components/FleetCommandCenter.tsx",
+   "components/FleetDailyOperations.tsx"
+  ],
+  "public/data/bangkok/seasia_processors.json": [
+   "components/bangkok/BangkokDashboard.tsx",
+   "components/bangkok/tabs/ProcessorsTab.tsx"
+  ],
+  "public/data/bangkok_weekly_kpi.json": [
+   "components/LogisticsDashboard.tsx",
+   "components/TraderStatus.tsx",
+   "components/bangkok/BangkokDashboard.tsx",
+   "components/bangkok/tabs/CanneryTab.tsx",
+   "components/bangkok/tabs/ClaimsTab.tsx",
+   "components/bangkok/tabs/HomeTab.tsx",
+   "components/bangkok/tabs/LeadingTab.tsx",
+   "components/bangkok/tabs/PriceTab.tsx",
+   "components/bangkok/tabs/QualityTab.tsx",
+   "components/bangkok/tabs/UnloadTab.tsx"
+  ],
+  "public/data/bangkok_weekly_payload.json": [
+   "components/LogisticsDashboard.tsx",
+   "components/TraderStatus.tsx",
+   "components/bangkok/BangkokDashboard.tsx",
+   "components/bangkok/tabs/CanneryTab.tsx",
+   "components/bangkok/tabs/ClaimsTab.tsx",
+   "components/bangkok/tabs/HomeTab.tsx",
+   "components/bangkok/tabs/LeadingTab.tsx",
+   "components/bangkok/tabs/PriceTab.tsx",
+   "components/bangkok/tabs/QualityTab.tsx",
+   "components/bangkok/tabs/UnloadTab.tsx"
+  ],
+  "public/data/cosmo/cosmo_2026.json": [
+   "components/cosmo/CosmoDashboard.tsx",
+   "components/cosmo/tabs/CashTab.tsx",
+   "components/cosmo/tabs/HistoryTab.tsx",
+   "components/cosmo/tabs/HomeTab.tsx",
+   "components/cosmo/tabs/MarketTab.tsx",
+   "components/cosmo/tabs/ProductionTab.tsx",
+   "components/cosmo/tabs/ProfitTab.tsx",
+   "components/cosmo/tabs/QualityTab.tsx",
+   "components/cosmo/tabs/SalesTab.tsx",
+   "components/cosmo/tabs/SupplyTab.tsx"
+  ],
+  "public/data/cosmo/cosmo_export.json": [
+   "components/cosmo/CosmoDashboard.tsx",
+   "components/cosmo/tabs/CashTab.tsx",
+   "components/cosmo/tabs/HistoryTab.tsx",
+   "components/cosmo/tabs/HomeTab.tsx",
+   "components/cosmo/tabs/MarketTab.tsx",
+   "components/cosmo/tabs/ProductionTab.tsx",
+   "components/cosmo/tabs/ProfitTab.tsx",
+   "components/cosmo/tabs/QualityTab.tsx",
+   "components/cosmo/tabs/SalesTab.tsx",
+   "components/cosmo/tabs/SupplyTab.tsx"
+  ],
+  "public/data/cosmo/cosmo_history.json": [
+   "components/cosmo/CosmoDashboard.tsx",
+   "components/cosmo/tabs/CashTab.tsx",
+   "components/cosmo/tabs/HistoryTab.tsx",
+   "components/cosmo/tabs/HomeTab.tsx",
+   "components/cosmo/tabs/MarketTab.tsx",
+   "components/cosmo/tabs/ProductionTab.tsx",
+   "components/cosmo/tabs/ProfitTab.tsx",
+   "components/cosmo/tabs/QualityTab.tsx",
+   "components/cosmo/tabs/SalesTab.tsx",
+   "components/cosmo/tabs/SupplyTab.tsx"
+  ],
+  "public/data/cosmo/trade_stats.json": [
+   "components/cosmo/CosmoDashboard.tsx",
+   "components/cosmo/tabs/MarketTab.tsx"
+  ],
+  "public/data/garlic_usda_widgets.json": [
+   "components/PorkDashboard.tsx",
+   "components/PorkUsdaWidgets.tsx"
+  ],
+  "public/data/mackerel_company_research_v1.json": [
+   "components/market-understanding/CompanyResearchTables.tsx",
+   "components/market-understanding/MackerelIndustryDashboard.tsx",
+   "components/market-understanding/ShrimpIndustryDashboard.tsx",
+   "components/market-understanding/SquidIndustryDashboard.tsx",
+   "components/market-understanding/TunaCatchCharts.tsx",
+   "components/market-understanding/TunaIndustryDashboard.tsx",
+   "components/market-understanding/WhelkIndustryDashboard.tsx"
+  ],
+  "public/data/mackerel_industry_v1.json": [
+   "components/market-understanding/CommodityCharts.tsx",
+   "components/market-understanding/MackerelIndustryDashboard.tsx",
+   "components/market-understanding/ShrimpIndustryDashboard.tsx",
+   "components/market-understanding/WhelkIndustryDashboard.tsx"
+  ],
+  "public/data/panofi/ghana_tuna_mirror.json": [
+   "components/panofi/PanofiDashboard.tsx",
+   "components/panofi/PanofiTabs.tsx"
+  ],
+  "public/data/panofi/ghana_tuna_trade.json": [
+   "components/panofi/PanofiDashboard.tsx",
+   "components/panofi/PanofiTabs.tsx"
+  ],
+  "public/data/panofi/panofi_actuals.json": [
+   "components/panofi/PanofiDashboard.tsx",
+   "components/panofi/PanofiTabs.tsx"
+  ],
+  "public/data/panofi/panofi_liquidity.json": [
+   "components/panofi/PanofiDashboard.tsx",
+   "components/panofi/PanofiTabs.tsx"
+  ],
+  "public/data/panofi/panofi_profile.json": [
+   "components/panofi/PanofiDashboard.tsx",
+   "components/panofi/PanofiTabs.tsx"
+  ],
+  "public/data/panofi/panofi_weekly.json": [
+   "components/panofi/PanofiDashboard.tsx",
+   "components/panofi/PanofiTabs.tsx"
+  ],
+  "public/data/shrimp_company_research_v1.json": [
+   "components/market-understanding/CompanyResearchTables.tsx",
+   "components/market-understanding/MackerelIndustryDashboard.tsx",
+   "components/market-understanding/ShrimpIndustryDashboard.tsx",
+   "components/market-understanding/SquidIndustryDashboard.tsx",
+   "components/market-understanding/TunaCatchCharts.tsx",
+   "components/market-understanding/TunaIndustryDashboard.tsx",
+   "components/market-understanding/WhelkIndustryDashboard.tsx"
+  ],
+  "public/data/shrimp_industry_v1.json": [
+   "components/market-understanding/CommodityCharts.tsx",
+   "components/market-understanding/MackerelIndustryDashboard.tsx",
+   "components/market-understanding/ShrimpIndustryDashboard.tsx",
+   "components/market-understanding/WhelkIndustryDashboard.tsx"
+  ],
+  "public/data/squid_company_research_v1.json": [
+   "components/market-understanding/CompanyResearchTables.tsx",
+   "components/market-understanding/MackerelIndustryDashboard.tsx",
+   "components/market-understanding/ShrimpIndustryDashboard.tsx",
+   "components/market-understanding/SquidIndustryDashboard.tsx",
+   "components/market-understanding/TunaCatchCharts.tsx",
+   "components/market-understanding/TunaIndustryDashboard.tsx",
+   "components/market-understanding/WhelkIndustryDashboard.tsx"
+  ],
+  "public/data/squid_fleet_v1.json": [
+   "components/market-understanding/SquidCharts.tsx",
+   "components/market-understanding/SquidIndustryDashboard.tsx",
+   "components/market-understanding/SquidWidgetView.tsx"
+  ],
+  "public/data/squid_industry_v1.json": [
+   "components/market-understanding/SquidCharts.tsx",
+   "components/market-understanding/SquidIndustryDashboard.tsx",
+   "components/market-understanding/SquidWidgetView.tsx"
+  ],
+  "public/data/squid_industry_widgets_v1.json": [
+   "components/market-understanding/SquidCharts.tsx",
+   "components/market-understanding/SquidIndustryDashboard.tsx",
+   "components/market-understanding/SquidWidgetView.tsx"
+  ],
+  "public/data/squid_ocean_fleet_v1.json": [
+   "components/market-understanding/SquidCharts.tsx",
+   "components/market-understanding/SquidIndustryDashboard.tsx",
+   "components/market-understanding/SquidWidgetView.tsx"
+  ],
+  "public/data/squid_trade_v1.json": [
+   "components/market-understanding/SquidCharts.tsx",
+   "components/market-understanding/SquidIndustryDashboard.tsx",
+   "components/market-understanding/SquidWidgetView.tsx"
+  ],
+  "public/data/tuna_carrier_fleet_v1.json": [
+   "components/market-understanding/CompanyResearchTables.tsx",
+   "components/market-understanding/MackerelIndustryDashboard.tsx",
+   "components/market-understanding/ShrimpIndustryDashboard.tsx",
+   "components/market-understanding/SquidIndustryDashboard.tsx",
+   "components/market-understanding/TunaCatchCharts.tsx",
+   "components/market-understanding/TunaIndustryDashboard.tsx",
+   "components/market-understanding/WhelkIndustryDashboard.tsx"
+  ],
+  "public/data/tuna_company_research_v1.json": [
+   "components/market-understanding/CompanyResearchTables.tsx",
+   "components/market-understanding/MackerelIndustryDashboard.tsx",
+   "components/market-understanding/ShrimpIndustryDashboard.tsx",
+   "components/market-understanding/SquidIndustryDashboard.tsx",
+   "components/market-understanding/TunaCatchCharts.tsx",
+   "components/market-understanding/TunaIndustryDashboard.tsx",
+   "components/market-understanding/WhelkIndustryDashboard.tsx"
+  ],
+  "public/data/tuna_daily_briefing.json": [
+   "components/MarketDashboard.tsx",
+   "components/NewsFrontPage.tsx"
+  ],
+  "public/data/tuna_fleet_v1.json": [
+   "components/market-understanding/TunaCatchCharts.tsx",
+   "components/market-understanding/TunaIndustryChart.tsx",
+   "components/market-understanding/TunaIndustryDashboard.tsx"
+  ],
+  "public/data/tuna_glossary_v1.json": [
+   "components/market-understanding/TunaCatchCharts.tsx",
+   "components/market-understanding/TunaIndustryChart.tsx",
+   "components/market-understanding/TunaIndustryDashboard.tsx"
+  ],
+  "public/data/tuna_industry_prices_v1.json": [
+   "components/market-understanding/TunaCatchCharts.tsx",
+   "components/market-understanding/TunaIndustryChart.tsx",
+   "components/market-understanding/TunaIndustryDashboard.tsx"
+  ],
+  "public/data/tuna_industry_v1.json": [
+   "components/market-understanding/TunaCatchCharts.tsx",
+   "components/market-understanding/TunaIndustryChart.tsx",
+   "components/market-understanding/TunaIndustryDashboard.tsx"
+  ],
+  "public/data/tuna_industry_widgets_v1.json": [
+   "components/market-understanding/TunaCatchCharts.tsx",
+   "components/market-understanding/TunaIndustryChart.tsx",
+   "components/market-understanding/TunaIndustryDashboard.tsx"
+  ],
+  "public/data/tuna_ocean_operators_v1.json": [
+   "components/market-understanding/CompanyResearchTables.tsx",
+   "components/market-understanding/MackerelIndustryDashboard.tsx",
+   "components/market-understanding/ShrimpIndustryDashboard.tsx",
+   "components/market-understanding/SquidIndustryDashboard.tsx",
+   "components/market-understanding/TunaCatchCharts.tsx",
+   "components/market-understanding/TunaIndustryDashboard.tsx",
+   "components/market-understanding/WhelkIndustryDashboard.tsx"
+  ],
+  "public/data/tuna_purse_seiners_v1.json": [
+   "components/PurseSeinerDashboard.tsx"
+  ],
+  "public/data/tuna_trade_v1.json": [
+   "components/market-understanding/TunaCatchCharts.tsx",
+   "components/market-understanding/TunaIndustryChart.tsx",
+   "components/market-understanding/TunaIndustryDashboard.tsx"
+  ],
+  "public/data/whelk_company_research_v1.json": [
+   "components/market-understanding/CompanyResearchTables.tsx",
+   "components/market-understanding/MackerelIndustryDashboard.tsx",
+   "components/market-understanding/ShrimpIndustryDashboard.tsx",
+   "components/market-understanding/SquidIndustryDashboard.tsx",
+   "components/market-understanding/TunaCatchCharts.tsx",
+   "components/market-understanding/TunaIndustryDashboard.tsx",
+   "components/market-understanding/WhelkIndustryDashboard.tsx"
+  ],
+  "public/data/whelk_industry_v1.json": [
+   "components/market-understanding/CommodityCharts.tsx",
+   "components/market-understanding/MackerelIndustryDashboard.tsx",
+   "components/market-understanding/ShrimpIndustryDashboard.tsx",
+   "components/market-understanding/WhelkIndustryDashboard.tsx"
+  ]
+ }
+}
