@@ -477,11 +477,36 @@ export interface StockStatusRow {
   평가연도: string;
 }
 
+/** 인증 제도 한 줄. 조문이 아니라 「어떤 제도가 있고 무엇을 보는가」다. */
+export interface CertificationRow {
+  구분: string;
+  이름: string;
+  약어: string;
+  무엇: string;
+}
+
+/**
+ * 식품안전 기준 한 줄.
+ * ⚠ `구분` 이 규제인지 관측인지 가른다 — 섞어 읽으면 관측값을 기준으로 오해한다.
+ */
+export interface FoodSafetyRow {
+  항목: string;
+  구분: string;
+  값: string;
+  설명: string;
+}
+
 export interface TunaGlossaryData {
   _meta: Record<string, string>;
   약어: GlossaryRow[];
   어종프로필: SpeciesProfile[];
   자원상태: StockStatusRow[];
+  인증: {
+    _meta: Record<string, string>;
+    rows: CertificationRow[];
+    사회책임항목: { 항목: string; 내용: string }[];
+  };
+  식품안전: { _meta: Record<string, string>; rows: FoodSafetyRow[] };
 }
 
 const GLOSSARY = rawGlossary as unknown as TunaGlossaryData;

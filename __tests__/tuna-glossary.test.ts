@@ -70,6 +70,41 @@ describe('자원상태 — 평가에는 시점이 있다', () => {
   });
 });
 
+describe('인증·식품안전 — 성격을 섞지 않았나', () => {
+  it('인증은 층위가 구분돼 있다', () => {
+    const rows = data.인증.rows;
+    expect(rows.length).toBeGreaterThanOrEqual(6);
+    const kinds = new Set(rows.map((r) => r.구분));
+    expect(kinds.size).toBeGreaterThanOrEqual(3);
+    for (const r of rows) {
+      expect(r.이름).toMatch(/[가-힣]/);
+      expect(r.무엇.length).toBeGreaterThan(10);
+    }
+    expect(data.인증.사회책임항목.length).toBe(8);
+  });
+
+  it('식품안전은 규제와 관측을 갈라 놓았다', () => {
+    // 평균 함량을 허용 상한으로 오해하는 것이 이 표의 가장 큰 위험이다
+    const rows = data.식품안전.rows;
+    const kinds = new Set(rows.map((r) => r.구분));
+    expect(kinds.has('규제')).toBe(true);
+    expect(kinds.has('관측')).toBe(true);
+    for (const r of rows) {
+      expect(r.구분, `${r.항목} 의 구분이 비었다`).not.toBe('');
+      expect(r.값).not.toBe('');
+    }
+    expect(String(data.식품안전._meta.주의)).toContain('2차 인용');
+  });
+
+  it('수은 평균과 상한이 서로 다른 구분으로 들어 있다', () => {
+    const hg = data.식품안전.rows.filter((r) => r.항목 === '수은');
+    const avg = hg.find((r) => r.값.includes('0.391'));
+    const cap = hg.find((r) => r.값.includes('1.0 ppm'));
+    expect(avg!.구분).toBe('관측');
+    expect(cap!.구분).toBe('규제');
+  });
+});
+
 describe('화면 노출', () => {
   it('자원상태 표가 01단계에 있다', () => {
     const titles = Object.values(CATCH_CHART_SLOTS).flat().map((s) => s.title);
@@ -87,5 +122,17 @@ describe('화면 노출', () => {
     // 한글이 붙은 약어가 실제로 화면에 나오는지
     expect(html).toContain('중서부태평양수산위원회');
     expect(html).toContain('집어장치');
+  });
+
+  it('인증표와 식품안전표가 각 단계에 있다', () => {
+    const titles = Object.values(CATCH_CHART_SLOTS).flat().map((s) => s.title);
+    expect(titles).toContain('가공장이 통과해야 하는 인증 (제도 분류)');
+    expect(titles).toContain('식품안전 기준과 실제 함량');
+    for (const t of ['가공장이 통과해야 하는 인증 (제도 분류)', '식품안전 기준과 실제 함량']) {
+      const slot = Object.values(CATCH_CHART_SLOTS).flat().find((s) => s.title === t);
+      expect(() =>
+        renderToStaticMarkup(React.createElement(React.Fragment, null, slot!.render())),
+      ).not.toThrow();
+    }
   });
 });

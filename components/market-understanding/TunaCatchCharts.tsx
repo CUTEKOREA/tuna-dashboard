@@ -28,6 +28,8 @@ import { truncateXAxis } from '@/lib/chart-standards';
 import {
   SKJ_HUBS,
   type PriceTimeline,
+  type CertificationRow,
+  type FoodSafetyRow,
   type StockStatusRow,
   type TunaCatchData,
   type TunaFleetData,
@@ -852,6 +854,94 @@ export function StockStatusTable({ rows }: { rows: StockStatusRow[] }) {
               </tr>
             )),
           )}
+        </tbody>
+      </table>
+    </div>
+  );
+}
+
+/**
+ * 인증 제도 — 이름과 성격만 옮긴 분류표.
+ *
+ * 조문이 아니라 「어떤 제도가 있고 무엇을 보는가」다. 수치가 없어 차트로 낼 것이 없고,
+ * 있는 척 그리면 없는 정량성을 만든다.
+ */
+export function CertificationTable({
+  rows,
+  social,
+}: {
+  rows: CertificationRow[];
+  social: { 항목: string; 내용: string }[];
+}) {
+  return (
+    <div className={styles.factWrap}>
+      <table className={styles.factTable}>
+        <caption className={styles.factCaption}>
+          가공장이 통과해야 하는 제도들. 아래로 갈수록 요구가 넓어진다 — 위생 절차가 바닥이고,
+          유통사 규격과 사회적 책임이 그 위에 얹힌다.
+        </caption>
+        <thead>
+          <tr>
+            <th scope="col">구분</th>
+            <th scope="col">제도</th>
+            <th scope="col">약어</th>
+            <th scope="col">무엇을 보는가</th>
+          </tr>
+        </thead>
+        <tbody>
+          {rows.map((row) => (
+            <tr key={row.약어}>
+              <td>{row.구분}</td>
+              <th scope="row">{row.이름}</th>
+              <td className={styles.factValue}>{row.약어}</td>
+              <td>{row.무엇}</td>
+            </tr>
+          ))}
+          {social.map((row) => (
+            <tr key={`sa-${row.항목}`}>
+              <td>사회책임 세부</td>
+              <th scope="row">{row.항목}</th>
+              <td className={styles.factValue}>SA8000</td>
+              <td>{row.내용}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  );
+}
+
+/**
+ * 식품안전 기준.
+ *
+ * ⚠ **규제 기준과 관측값을 한 칸에 섞지 않는다.** 「구분」 열이 그것을 가른다 —
+ *   평균 함량을 허용 상한으로 오해하면 판단이 통째로 뒤집힌다.
+ */
+export function FoodSafetyTable({ rows }: { rows: FoodSafetyRow[] }) {
+  return (
+    <div className={styles.factWrap}>
+      <table className={styles.factTable}>
+        <caption className={styles.factCaption}>
+          규제 기준과 실제 관측값을 「구분」 열로 갈라 두었다. 둘을 섞어 읽으면 평균 함량을
+          허용 상한으로 오해하게 된다. 규제 값은 2차 인용이므로 판단에 쓰려면 규제기관 원문을 확인하라.
+        </caption>
+        <thead>
+          <tr>
+            <th scope="col">항목</th>
+            <th scope="col">구분</th>
+            <th scope="col">값</th>
+            <th scope="col">설명</th>
+          </tr>
+        </thead>
+        <tbody>
+          {rows.map((row, index) => (
+            <tr key={`${row.항목}-${index}`}>
+              <th scope="row">{row.항목}</th>
+              <td>{row.구분}</td>
+              <td className={styles.factValue}>{row.값}</td>
+              <td>{row.설명}</td>
+            </tr>
+          ))}
         </tbody>
       </table>
     </div>

@@ -58,6 +58,8 @@ import {
   OceanOperatorChart,
   OceanTopOwnerChart,
   RetailShareChart,
+  CertificationTable,
+  FoodSafetyTable,
   StockStatusTable,
   OperatorFleetChart,
   CountryRankChart,
@@ -107,6 +109,7 @@ const EXPORT_SYNC = { status: 'STATIC' as const, syncDate: '2024년 실적' };
 const REGISTRY_SYNC = { status: 'STATIC' as const, syncDate: '2026년 8월 등록부' };
 const RETAIL_SYNC = { status: 'STATIC' as const, syncDate: '2026년 6월 공시' };
 const STOCK_SYNC = { status: 'STATIC' as const, syncDate: '2022년 평가' };
+const REF_SYNC = { status: 'STATIC' as const, syncDate: '2026년 8월 수집' };
 const PRICE_SYNC = {
   status: 'SYNCED' as const,
   syncDate: PRICES.points.length > 0 ? String(PRICES.points[PRICES.points.length - 1].월) : '',
@@ -306,11 +309,32 @@ export const CATCH_CHART_SLOTS: Record<string, ChartSlot[]> = {
   ],
   s07: [
     {
+      title: '식품안전 기준과 실제 함량',
+      caption:
+        '소비 단계에서 반복해 나오는 질문이다. ⚠ 규제 기준과 관측값을 「구분」 열로 갈라 두었다 — 평균 함량을 허용 상한으로 오해하면 판단이 통째로 뒤집힌다.',
+      telemetry: REF_SYNC,
+      render: () => <FoodSafetyTable rows={GLOSSARY.식품안전.rows} />,
+    },
+    {
       title: '국내 참치캔 시장 점유율 (%)',
       caption:
         '사슬 끝에서는 한 회사가 시장을 거의 다 갖는다. 2023년 81.7%에서 조금씩 내려와 2026년 상반기 79.2%다. 나머지 20%대를 누가 나누는지는 이 공시로 알 수 없다.',
       telemetry: RETAIL_SYNC,
       render: () => <RetailShareChart rows={COMPANIES.소매.rows} />,
+    },
+  ],
+  x02: [
+    {
+      title: '가공장이 통과해야 하는 인증 (제도 분류)',
+      caption:
+        '규제가 원가로 번역되는 통로 가운데 하나다. 위생 절차가 바닥이고 그 위에 공정 예방체계, 국제 규격, 유통사 요구, 사회적 책임이 얹힌다. 조문이 아니라 「무엇을 보는 제도인가」를 정리한 것이다.',
+      telemetry: REF_SYNC,
+      render: () => (
+        <CertificationTable
+          rows={GLOSSARY.인증.rows}
+          social={GLOSSARY.인증.사회책임항목}
+        />
+      ),
     },
   ],
   x03: [
