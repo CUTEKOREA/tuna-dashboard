@@ -34,6 +34,18 @@ import {
 } from '@/lib/squid-industry-content';
 import { SeriesStats } from './CockpitExtra';
 import {
+  SquidAreaChart,
+  SquidGearProductionChart,
+  SquidSizeBandChart,
+} from './SquidCharts';
+import {
+  deepseaMeta,
+  latestYear,
+  squidByArea,
+  squidBySizeBand,
+  squidGearSeries,
+} from '@/lib/data/deepsea-fishery';
+import {
   AreaRankChart,
   BasketChart,
   CollapseChart,
@@ -112,6 +124,9 @@ function widgetSlots(stageKey: string): ChartSlot[] {
     sourceLine: `출처: ${widget.source ?? '출처 미표기'}`,
   }));
 }
+
+const DW_YEAR = latestYear();
+const DW_SYNC = { status: 'SYNCED' as const, syncDate: `${DW_YEAR}년 확정 · KOSIS` };
 
 const SQUID_BASE_SLOTS: Record<string, ChartSlot[]> = {
   s01: [
@@ -193,6 +208,39 @@ const SQUID_BASE_SLOTS: Record<string, ChartSlot[]> = {
           sum
         />
       ),
+    },
+    {
+      title: '오징어채낚기 업종 생산량 (톤)',
+      caption:
+        '해양수산부 원양어업통계조사 — 원양어업 허가 어선 전수조사다. 2021년 50,947톤에서 2023년 17,112톤까지 내려갔다가 2024년 39,942톤으로 돌아왔다. 원양만 담으므로 이 페이지의 FAO 기준 수치와 더할 수 없다.',
+      telemetry: DW_SYNC,
+      render: () => <SquidGearProductionChart />,
+      cockpitExtra: () => (
+        <SeriesStats rows={squidGearSeries()} labelKey="연도" valueKey="생산량" unit="(톤)" />
+      ),
+      sourceLine: `출처: ${deepseaMeta.출처}`,
+    },
+    {
+      title: '해역별 오징어류 생산량 (톤)',
+      caption:
+        '분홍이 태평양 동남부 — SPRFMO 관할 수역이다. 해역이 계층이라 「대서양」 안에 「서남부」가 들어 있으므로 막대를 더하면 이중계상이 된다.',
+      telemetry: DW_SYNC,
+      render: () => <SquidAreaChart year={DW_YEAR} />,
+      cockpitExtra: () => (
+        <SeriesStats rows={squidByArea(DW_YEAR)} labelKey="해역" valueKey="생산량" unit="(톤)" />
+      ),
+      sourceLine: `출처: ${deepseaMeta.출처}`,
+    },
+    {
+      title: '보유 척수 구간별 오징어류 생산량 (톤)',
+      caption:
+        '회사명은 공표되지 않지만 회사를 보유 척수로 묶은 축이라, 회사별 명부와 맞대면 어느 구간에 어느 회사가 들어가는지는 안다. 구간 안에서 회사별로 쪼개지지는 않는다 — 그건 추정이지 실적이 아니다.',
+      telemetry: DW_SYNC,
+      render: () => <SquidSizeBandChart year={DW_YEAR} />,
+      cockpitExtra: () => (
+        <SeriesStats rows={squidBySizeBand(DW_YEAR)} labelKey="구간" valueKey="생산량" unit="(톤)" sum />
+      ),
+      sourceLine: `출처: ${deepseaMeta.출처}`,
     },
   ],
   s05: [

@@ -25,6 +25,11 @@ import {
 } from 'recharts';
 
 import { getSmartRotation, truncateXAxis } from '@/lib/chart-standards';
+import {
+  squidByArea,
+  squidBySizeBand,
+  squidGearSeries,
+} from '@/lib/data/deepsea-fishery';
 import type {
   SquidCatchData,
   SquidFleetData,
@@ -897,6 +902,89 @@ export function SquidMonthlyCatchChart({ months }: { months: number[] }) {
         <Tooltip formatter={(value) => [`${Number(value ?? 0).toLocaleString()} 톤`, '']} />
         <Bar dataKey="생산" name="생산 (톤)" fill="#7c3aed" radius={[3, 3, 0, 0]} />
       </BarChart>
+    </SafeResponsiveContainer>
+  );
+}
+
+/* 두족류 시그니처(D-04) — 이 파일은 팔레트 상수 없이 색을 직접 쓴다. 관용구를 맞춘다. */
+const SQ_BASE = '#7c3aed';
+const SQ_MARK = '#ec4899';
+
+/* ── 원양어업통계조사 (해양수산부 승인 제114048호) ──────────────────────────
+ *
+ * ⚠ 이 차트들은 **원양어업만** 담는다. 같은 페이지의 FAO 기준 수치와 더할 수 없다.
+ * ⚠ 생산금액 차트는 만들지 않는다 — 2021~2024년 금액이 톤당 6,667천원으로 고정돼
+ *   있어 독립 측정이 아니라 환산값으로 보인다. 단가 선을 그리면 뜻 없는 평선이 된다.
+ */
+
+/** 오징어채낚기 업종 연도별 생산량. 이 업종의 실제 조업 규모다. */
+export function SquidGearProductionChart() {
+  const animate = !useReducedMotion();
+  const rows = useMemo(() => squidGearSeries().map((p) => ({ ...p, 라벨: `${p.연도}년` })), []);
+
+  return (
+    <SafeResponsiveContainer width="100%" height={280}>
+      <ComposedChart data={rows} margin={MARGIN}>
+        {grid}
+        <XAxis dataKey="라벨" {...AXIS} />
+        <YAxis {...AXIS} tickFormatter={(v: number) => `${Math.round(v / 1000)}천`} />
+        <Tooltip content={<Tip />} />
+        {legend}
+        <Bar dataKey="생산량" name="생산량 (톤)" isAnimationActive={animate}>
+          {rows.map((r) => (
+            // 최신 연도만 짚는다. 범례를 늘리지 않고 지금을 가리키는 방법이다.
+            <Cell key={r.연도} fill={r.연도 === rows[rows.length - 1]?.연도 ? SQ_MARK : SQ_BASE} />
+          ))}
+        </Bar>
+      </ComposedChart>
+    </SafeResponsiveContainer>
+  );
+}
+
+/**
+ * 해역별 오징어류 생산량.
+ *
+ * ⚠ 해역이 계층이다 — 「대서양」 안에 「서남부」가 들어 있어 더하면 이중계상이다.
+ *   그래서 합계를 그리지 않고 막대만 나란히 둔다.
+ */
+export function SquidAreaChart({ year }: { year: string }) {
+  const animate = !useReducedMotion();
+  const rows = useMemo(() => squidByArea(year), [year]);
+
+  return (
+    <SafeResponsiveContainer width="100%" height={260}>
+      <ComposedChart data={rows} margin={MARGIN} layout="vertical">
+        <CartesianGrid stroke="var(--mu-grid)" strokeDasharray="3 3" horizontal={false} />
+        <XAxis type="number" {...AXIS} tickFormatter={(v: number) => `${Math.round(v / 1000)}천`} />
+        <YAxis type="category" dataKey="해역" {...AXIS} width={72} />
+        <Tooltip content={<Tip />} />
+        {legend}
+        <Bar dataKey="생산량" name="생산량 (톤)" isAnimationActive={animate}>
+          {rows.map((r) => (
+            // 동남부가 SPRFMO 수역이다 — 다른 자료와 맞대는 칸이라 따로 짚는다.
+            <Cell key={r.해역} fill={r.해역 === '동남부' ? SQ_MARK : SQ_BASE} />
+          ))}
+        </Bar>
+      </ComposedChart>
+    </SafeResponsiveContainer>
+  );
+}
+
+/** 보유 척수 구간별 오징어류 생산량. 회사명은 없지만 회사를 척수로 묶은 축이다. */
+export function SquidSizeBandChart({ year }: { year: string }) {
+  const animate = !useReducedMotion();
+  const rows = useMemo(() => squidBySizeBand(year), [year]);
+
+  return (
+    <SafeResponsiveContainer width="100%" height={260}>
+      <ComposedChart data={rows} margin={MARGIN}>
+        {grid}
+        <XAxis dataKey="구간" {...AXIS} />
+        <YAxis {...AXIS} tickFormatter={(v: number) => `${Math.round(v / 1000)}천`} />
+        <Tooltip content={<Tip />} />
+        {legend}
+        <Bar dataKey="생산량" name="생산량 (톤)" fill={SQ_BASE} isAnimationActive={animate} />
+      </ComposedChart>
     </SafeResponsiveContainer>
   );
 }
