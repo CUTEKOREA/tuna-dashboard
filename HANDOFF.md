@@ -1,7 +1,15 @@
+> 🚀 **2026-08-18 08:45 KST — OFIS 선단 DB 라이브 배포** [Grok]:
+> - PR [#619](https://github.com/CUTEKOREA/tuna-dashboard/pull/619) squash `c94028da`. Gate `32081304299` 성공. Freshness `32081304301` 성공. PR 게이트 `32081008105` 성공.
+> - Vercel production `dpl_GynwJctUvN8pWA2iqVL5ZCkDJGX7` READY · alias `https://leedonggun.co.kr` · region `icn1` · SHA `c94028da`.
+> - 확인: 사이드바 **선단 DB** (`purse-seiner-db`). `/fleet-strategy`는 퇴역 404. 라이브는 소유자 로그인. 열린 탭은 하드 리프레시.
+> - 런타임 error/fatal 최근 30분 0건. 비로그인 라이브는 보안 로그인 벽(200). 위젯 수치 실측은 로그인 후.
+
+> 마지막 업데이트: 2026-08-18 [Grok]
+
 > 📘 **2026-08-18 — OFIS를 라이브 선단 DB로 옮김** [Grok]:
 > - `/fleet-strategy`는 퇴역 404다. 사이드바 실사용은 **선단 DB**(`purse-seiner-db` → `PurseSeinerDashboard`).
 > - `OfisMonthlyPanel`을 히어로 아래(전 탭)에 붙였다. 죽은 `FleetStrategyMatrix`에서는 뺐다.
-> - worktree `ofis-monthly-fleet` · 브랜치 `feat/ofis-on-purse-db`. 배포는 사용자 요청.
+> - worktree `ofis-monthly-fleet` · 브랜치 `feat/ofis-on-purse-db`. 배포는 #619.
 
 > 마지막 업데이트: 2026-08-18 [Grok]
 
