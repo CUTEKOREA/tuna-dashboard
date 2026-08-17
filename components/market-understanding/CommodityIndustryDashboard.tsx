@@ -58,7 +58,7 @@ export interface ChartSlot {
   /** 서술이 「」로 지목하는 이름이다. 바꾸면 참조가 끊긴다(테스트가 잡는다) */
   title: string;
   caption: string;
-  telemetry: { status: 'STATIC' | 'SYNCED' | 'LIVE'; syncDate: string };
+  telemetry: { status: 'STATIC' | 'SYNCED' | 'LIVE'; syncDate?: string };
   render: () => React.ReactNode;
   /**
    * 배치. 표와 수십 년 시계열은 `full`(1열 1개).
@@ -73,6 +73,11 @@ export interface ChartSlot {
    * 노출은 `CockpitOnly` 가 CSS 로 가르므로 여기서 모드를 검사하지 않는다.
    */
   cockpitExtra?: () => React.ReactNode;
+  /**
+   * 차트 아래 붙는 출처 한 줄. 큐레이션 위젯처럼 도형마다 출처가 다른 자료에 쓴다.
+   * 페이지 하단 공통 출처로 뭉뚱그리면 어느 숫자가 어디서 왔는지 사라진다.
+   */
+  sourceLine?: string;
 }
 
 /**
@@ -190,6 +195,9 @@ function ChartFigure({ slot }: { slot: ChartSlot }) {
       </figcaption>
       <div className={styles.chartFrame}>{slot.render()}</div>
       {slot.cockpitExtra?.()}
+      {slot.sourceLine && (
+        <figcaption className={styles.catchSourceLine}>{slot.sourceLine}</figcaption>
+      )}
     </figure>
   );
 }

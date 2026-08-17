@@ -6,13 +6,16 @@
  *  · 위젯마다 측정 게이트(`basis`)를 함께 싣는다 — 이 수치를 무엇과 비교하면 안 되는지
  *  · 시그니처 색이 두족류(purple → pink)다
  *
- * 두 대시보드가 단계 렌더링 코드를 각자 들고 있다. 지금은 둘뿐이라 공용화하지 않았다.
- * 세 번째 품목이 생기면 그때 `StageSection` 을 빼내는 편이 낫다.
+ * 단계 렌더링은 `CommodityIndustryDashboard` 가 갖는다. 원래 이 파일과 참치가 각자 복사본을
+ * 들고 있었고, 「세 번째 품목이 생기면 빼내라」는 메모가 붙어 있었다 — 새우·고등어·골뱅이가
+ * 생겨 조건이 채워졌고, 탭 내비와 조종석 보조 지표를 세 곳에 따로 넣게 되면서 값이 확실해졌다.
+ *
+ * 큐레이션 위젯은 새 개념으로 두지 않고 **차트 슬롯으로 변환**한다. 위젯 figure 가 슬롯
+ * figure 와 다른 점은 끝에 붙는 출처 한 줄뿐이라 `ChartSlot.sourceLine` 으로 흡수했다.
  */
 'use client';
 
-import React, { useCallback, useMemo, useRef } from 'react';
-import { ArrowRight, BookOpen, Waves } from 'lucide-react';
+import React from 'react';
 
 import {
   getSquidCatchData,
@@ -28,16 +31,8 @@ import {
   SQUID_ALL_NARRATIVES,
   SQUID_BRIEFING_POINTS,
   SQUID_SOURCE_NOTES,
-  type SquidFactRow,
-  type SquidStageNarrative,
 } from '@/lib/squid-industry-content';
-import { TelemetryBadge } from '../TelemetryBadge';
-import TermTooltip from '../TermTooltip';
-import HeroZone from '../v2/HeroZone';
-import { HeroNowStrip } from '../v2/HeroNowStrip';
-import PillTabs, { type PillTab } from '../v2/PillTabs';
 import { SeriesStats } from './CockpitExtra';
-import { useStageKey } from './useStageKey';
 import {
   AreaRankChart,
   BasketChart,
@@ -62,13 +57,16 @@ import {
   SquidMonthlyCatchChart,
 } from './SquidCharts';
 import SquidWidgetView from './SquidWidgetView';
+import CommodityIndustryDashboard, {
+  type ChartSlot,
+  type CommoditySpec,
+} from './CommodityIndustryDashboard';
 import {
   TraderTable,
   CanneryCountryTable,
   BrandMarketTable,
 } from './CompanyResearchTables';
 import { getSquidCompanyResearch, getKofaSeries } from '@/lib/data/valuechain-companies';
-import styles from './TunaIndustryDashboard.module.css';
 
 const CATCH = getSquidCatchData();
 const TRADE = getSquidTradeData();
@@ -86,16 +84,6 @@ const FLYING_SQUID_VS_PEAK_PCT = Number(
   ((CATCH.요약.살오징어세계최신 / CATCH.요약.살오징어세계정점) * 100).toFixed(1),
 );
 
-interface ChartSlot {
-  title: string;
-  caption: string;
-  telemetry: { status: 'STATIC' | 'SYNCED' | 'LIVE'; syncDate: string };
-  render: () => React.ReactNode;
-  /** 표·장시계열은 full(1열 1개). 없으면 그래프 기본 — 1열 2개. */
-  span?: 'full' | 'half';
-  /** 조종석 전용 보조 수치. 공용 골격의 같은 이름 규약과 뜻이 같다. */
-  cockpitExtra?: () => React.ReactNode;
-}
 
 /**
  * 단계마다 이 페이지가 직접 그리는 차트. 선별 위젯과 달리 집계 JSON 을 원본으로 쓴다.
@@ -105,7 +93,27 @@ const SQUID_RESEARCH = getSquidCompanyResearch();
 const KOFA_SERIES = getKofaSeries();
 const SQUID_MONTHLY = KOFA_SERIES.월별생산2024.find((row) => row.어종 === '오징어류');
 
-export const SQUID_CHART_SLOTS: Record<string, ChartSlot[]> = {
+/**
+ * 큐레이션 위젯을 차트 슬롯으로 옮긴다.
+ *
+ * 위젯은 차트·표·원문 발췌 세 형태이고 `SquidWidgetView` 가 그것을 가른다. 여기서는
+ * 껍데기만 슬롯 규약에 맞춘다 — 제목·설명·텔레메트리·출처 줄.
+ */
+function widgetSlots(stageKey: string): ChartSlot[] {
+  const stage = ALL_STAGES.find((entry) => entry.key === stageKey);
+  return (stage?.widgets ?? []).map((widget) => ({
+    title: widget.title,
+    caption: widget.thesis ?? widget.cardDesc ?? '',
+    telemetry: {
+      status: 'STATIC' as const,
+      syncDate: widget.dataYear ? `${widget.dataYear}년 자료` : undefined,
+    },
+    render: () => <SquidWidgetView widget={widget} />,
+    sourceLine: `출처: ${widget.source ?? '출처 미표기'}`,
+  }));
+}
+
+const SQUID_BASE_SLOTS: Record<string, ChartSlot[]> = {
   s01: [
     {
       title: '어종별 어획량 구성 (톤)',
@@ -306,372 +314,81 @@ export const SQUID_CHART_SLOTS: Record<string, ChartSlot[]> = {
   ],
 };
 
-function renderEmphasis(text: string): React.ReactNode[] {
-  return text.split(/\*\*(.+?)\*\*/g).map((chunk, index) =>
-    index % 2 === 1 ? (
-      <strong key={index}>{chunk}</strong>
-    ) : (
-      <React.Fragment key={index}>{chunk}</React.Fragment>
-    ),
-  );
-}
+/** 차트 슬롯 + 위젯 슬롯. 위젯이 있는 단계는 차트 뒤에 이어 붙는다(기존 배치 유지). */
+export const SQUID_CHART_SLOTS: Record<string, ChartSlot[]> = Object.fromEntries(
+  ALL_STAGES.map((stage) => [
+    stage.key,
+    [...(SQUID_BASE_SLOTS[stage.key] ?? []), ...widgetSlots(stage.key)],
+  ]),
+);
 
-function FactTable({ rows }: { rows: SquidFactRow[] }) {
-  if (rows.length === 0) return null;
-  return (
-    <>
-      <div className={styles.factWrap}>
-      <table className={styles.factTable}>
-        <caption className={styles.factCaption}>
-          본문에 인용한 수치와 출처. 등급 A는 기관 1차문서·공식 통계 원문 확인, B는 기관 2차 인용, C는 업계 매체다.
-        </caption>
-        <thead>
-          <tr>
-            <th scope="col">항목</th>
-            <th scope="col">값</th>
-            <th scope="col">기준</th>
-            <th scope="col">출처</th>
-            <th scope="col">등급</th>
-          </tr>
-        </thead>
-        <tbody>
-          {rows.map((row, index) => (
-            <tr key={`${row.label}-${index}`}>
-              <th scope="row">
-                {row.label}
-                {row.note ? <span className={styles.factNote}>{row.note}</span> : null}
-              </th>
-              <td className={styles.factValue}>{row.value}</td>
-              <td>{row.asOf}</td>
-              <td>{row.source}</td>
-              <td>
-                <span className={styles.grade} data-grade={row.grade}>
-                  {row.grade}
-                </span>
-              </td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
-      </div>
 
-      {/* 좁은 화면용 — 같은 데이터를 목록으로 낸다.
-          표를 CSS 로 접으면 일부 브라우저에서 표 의미가 깨지므로 마크업을 따로 둔다. */}
-      <ul className={styles.factList}>
-        {rows.map((row, index) => (
-          <li key={`m-${row.label}-${index}`}>
-            <div className={styles.factHead}>
-              <span className={styles.factLabel}>{row.label}</span>
-              <span className={styles.grade} data-grade={row.grade}>
-                신뢰 {row.grade}
-              </span>
-            </div>
-            <p className={styles.factListValue}>{row.value}</p>
-            <p className={styles.factMeta}>
-              {row.asOf} · {row.source}
-            </p>
-            {row.note ? <p className={styles.factListNote}>{row.note}</p> : null}
-          </li>
-        ))}
-      </ul>
-    </>
-  );
-}
-
-function StageSection({
-  stage,
-  narrative,
-  next,
-  onGo,
-  headingRef,
-}: {
-  stage: SquidStage;
-  narrative: SquidStageNarrative;
-  next?: SquidStage;
-  onGo: (key: string) => void;
-  headingRef: React.RefObject<HTMLHeadingElement | null>;
-}) {
-  const charts = SQUID_CHART_SLOTS[stage.key] ?? [];
-  // 2026-08-17 사용자 지시: 차트는 전부 사실표 아래로 — 본문 위 근거 레일 폐지
-  const rest = charts;
-
-  return (
-    <section className={styles.stage} aria-labelledby={`squid-stage-${stage.key}`}>
-      <header className={styles.stageHeader}>
-        <span className={styles.stageNumeral}>{narrative.numeral}</span>
-        <div>
-          <h2
-            id={`squid-stage-${stage.key}`}
-            className={styles.stageTitle}
-            ref={headingRef}
-            tabIndex={-1}
-          >
-            {narrative.title}
-          </h2>
-          <p className={styles.stageQuestion}>{narrative.question}</p>
-        </div>
-      </header>
-
-      <p className={styles.lede}>{renderEmphasis(narrative.lede)}</p>
-
-      {narrative.facts[0] && (
-        <p className={styles.keyFact}>
-          <span className={styles.keyFactValue}>{narrative.facts[0].value}</span>
-          <span className={styles.keyFactLabel}>{narrative.facts[0].label}</span>
-        </p>
-      )}
-
-      <div className={styles.prose}>
-        {narrative.paragraphs.map((paragraph, index) => (
-          <p key={index}>{renderEmphasis(paragraph)}</p>
-        ))}
-      </div>
-
-      {narrative.terms.length > 0 && (
-        <div className={styles.termRow}>
-          <span className={styles.termRowLabel}>용어</span>
-          {narrative.terms.map((term) => (
-            <span key={term.term} className={styles.termChip}>
-              <TermTooltip term={term.term} description={term.description} />
-            </span>
-          ))}
-        </div>
-      )}
-
-      <FactTable rows={narrative.facts} />
-
-      {(rest.length > 0 || stage.widgets.length > 0) && (
-        <div className={styles.stageMore}>
-          <h3 className={styles.stageMoreHeading}>근거</h3>
-          <div
-            className={
-              rest.length + stage.widgets.length >= 2 ? styles.catchGrid : styles.catchStack
-            }
-          >
-            {rest.map((slot) => (
-              <figure
-                key={slot.title}
-                className={styles.catchFigure}
-                data-span={slot.span === 'full' ? 'full' : 'half'}
-              >
-                <figcaption className={styles.catchCaption}>
-                  <div className={styles.catchTitleRow}>
-                    <strong>{slot.title}</strong>
-                    <TelemetryBadge
-                    variant="caption"
-                    status={slot.telemetry.status}
-                    syncDate={slot.telemetry.syncDate}
-                  />
-                  </div>
-                  <span>{slot.caption}</span>
-                </figcaption>
-                <div className={styles.chartFrame}>{slot.render()}</div>
-                {slot.cockpitExtra?.()}
-              </figure>
-            ))}
-            {stage.widgets.map((widget) => (
-              <figure key={widget.id} className={styles.catchFigure} data-span="half">
-                <figcaption className={styles.catchCaption}>
-                  <div className={styles.catchTitleRow}>
-                    <strong>{widget.title}</strong>
-                    <TelemetryBadge
-                      variant="caption"
-                      status="STATIC"
-                      syncDate={widget.dataYear ? `${widget.dataYear}년 자료` : undefined}
-                    />
-                  </div>
-                  <span>{widget.thesis ?? widget.cardDesc ?? ''}</span>
-                </figcaption>
-                <div className={styles.chartFrame}>
-                  <SquidWidgetView widget={widget} />
-                </div>
-                <figcaption className={styles.catchSourceLine}>
-                  출처: {widget.source ?? '출처 미표기'}
-                </figcaption>
-              </figure>
-            ))}
-          </div>
-        </div>
-      )}
-
-      {next && (
-        <button type="button" className={styles.stageNext} onClick={() => onGo(next.key)}>
-          <span className={styles.stageNextLabel}>다음</span>
-          <span className={styles.stageNextTitle}>
-            {getNarrative(next.key)?.numeral ?? ''} {getNarrative(next.key)?.title ?? next.title}
-          </span>
-          <ArrowRight size={15} aria-hidden="true" />
-        </button>
-      )}
-    </section>
-  );
-}
-
-function getNarrative(key: string): SquidStageNarrative | undefined {
-  return SQUID_ALL_NARRATIVES.find((entry) => entry.key === key);
-}
+const SPEC: CommoditySpec = {
+  key: 'squid',
+  title: '오징어',
+  subtitle:
+    '오징어 산업 해부 · 한 해살이 자원이 만드는 시장 — 밸류체인 7단계와 그것을 관통하는 3개 축',
+  accent: '#7c3aed',
+  primaryKpi: {
+    label: '세계 오징어·갑오징어 어획량',
+    value: CATCH.요약.세계어획량,
+    unit: '(톤)',
+    accent: '#7c3aed',
+  },
+  secondaryKpis: [
+    { label: '살오징어 정점 대비', value: FLYING_SQUID_VS_PEAK_PCT, unit: '(%)', decimals: 1 },
+    { label: '한국 어획량', value: CATCH.요약.한국어획량, unit: '(톤)' },
+    { label: '한국 수입량', value: TRADE.요약.수입량, unit: '(톤)' },
+  ],
+  stripItems: [
+    {
+      now: true,
+      eyebrow: '기준',
+      title: '세계 어획량',
+      body: `${CATCH.요약.세계어획량.toLocaleString('ko-KR')} (톤)`,
+    },
+    {
+      eyebrow: '살오징어',
+      title: '정점 대비',
+      body: `${FLYING_SQUID_VS_PEAK_PCT.toLocaleString('ko-KR', { maximumFractionDigits: 1 })} (%)`,
+    },
+    {
+      eyebrow: '한국',
+      title: '국내 어획량',
+      body: `${CATCH.요약.한국어획량.toLocaleString('ko-KR')} (톤)`,
+    },
+  ],
+  // 오징어 브리핑은 원래 단계 귀속 없이 문장만 있었다. 공용 골격은 귀속이 있을 때만
+  // 「N단계에서 보기」 버튼을 내므로, 빈 stage 를 주면 기존 화면 그대로다.
+  briefing: SQUID_BRIEFING_POINTS.map((text) => ({ stage: '', text })),
+  narratives: ALL_STAGES.map(
+    (stage) =>
+      SQUID_ALL_NARRATIVES.find((entry) => entry.key === stage.key) ?? {
+        key: stage.key,
+        numeral: '',
+        title: stage.title,
+        question: '',
+        lede: '',
+        paragraphs: [],
+        facts: [],
+        terms: [],
+      },
+  ),
+  chartSlots: SQUID_CHART_SLOTS,
+  sourceNotes: SQUID_SOURCE_NOTES,
+  sourceMeta: [
+    `어획 집계 · ${CATCH._meta.출처} · 기준 ${CATCH._meta.기준연도}년 · 갱신 ${CATCH._meta.생성일}`,
+    `통관 집계 · ${TRADE._meta.출처}`,
+    `위젯 ${String(WIDGETS_META.선별)}개 (${String(WIDGETS_META.원본)})`,
+  ].join(' · '),
+};
 
 export interface SquidIndustryDashboardProps {
   heroOnly?: boolean;
 }
 
-export default function SquidIndustryDashboard({ heroOnly = false }: SquidIndustryDashboardProps) {
-  const stageKeys = useMemo(() => ALL_STAGES.map((stage) => stage.key), []);
-  const [activeKey, setStage] = useStageKey(stageKeys, CHAIN_STAGES[0]?.key ?? 's01');
-  const headingRef = useRef<HTMLHeadingElement | null>(null);
-
-  const go = useCallback((key: string) => {
-    setStage(key);
-    requestAnimationFrame(() => {
-      const heading = headingRef.current;
-      if (!heading) return;
-      const reduce =
-        typeof window !== 'undefined' &&
-        window.matchMedia?.('(prefers-reduced-motion: reduce)').matches;
-      heading.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'start' });
-      heading.focus({ preventScroll: true });
-    });
-  }, [setStage]);
-
-  const tabs: PillTab[] = useMemo(
-    () =>
-      ALL_STAGES.map((stage) => {
-        const narrative = getNarrative(stage.key);
-        return {
-          key: stage.key,
-          // 탭에는 단계 이름만 싣고 부제(「— …」)는 뺀다. 열 개가 한 줄에 안 들어가고,
-          // 부제를 단 단계 수가 품목마다 달라 탭 폭이 들쭉날쭉해진다. 부제는 바로 아래
-          // 단계 머리글이 전문으로 보여주므로 여기서 빼도 잃는 정보가 없다.
-          label: `${narrative?.numeral ?? ''} ${(narrative?.title ?? stage.title).split(' — ')[0]}`.trim(),
-        };
-      }),
-    [],
-  );
-
-  const activeStage = ALL_STAGES.find((stage) => stage.key === activeKey) ?? ALL_STAGES[0];
-  const activeNarrative = getNarrative(activeStage.key);
-  const nextStage = ALL_STAGES[ALL_STAGES.indexOf(activeStage) + 1];
-
-  const hero = (
-    <HeroZone
-      variant="kpi"
-      title="오징어"
-      subtitle="오징어 산업 해부 · 한 해살이 자원이 만드는 시장 — 밸류체인 7단계와 그것을 관통하는 3개 축"
-      primaryKpi={{
-        label: '세계 오징어·갑오징어 어획량',
-        value: CATCH.요약.세계어획량,
-        unit: '(톤)',
-        accent: '#7c3aed',
-      }}
-      secondaryKpis={[
-        {
-          label: '살오징어 정점 대비',
-          value: FLYING_SQUID_VS_PEAK_PCT,
-          unit: '(%)',
-          decimals: 1,
-        },
-        {
-          label: '한국 어획량',
-          value: CATCH.요약.한국어획량,
-          unit: '(톤)',
-        },
-        {
-          label: '한국 수입량',
-          value: TRADE.요약.수입량,
-          unit: '(톤)',
-        },
-      ]}
-      minHeight={360}
-      strip={(
-        <HeroNowStrip
-          items={[
-            {
-              now: true,
-              eyebrow: '기준',
-              title: '세계 어획량',
-              body: `${CATCH.요약.세계어획량.toLocaleString('ko-KR')} (톤)`,
-            },
-            {
-              eyebrow: '살오징어',
-              title: '정점 대비',
-              body: `${FLYING_SQUID_VS_PEAK_PCT.toLocaleString('ko-KR', { maximumFractionDigits: 1 })} (%)`,
-            },
-            {
-              eyebrow: '한국',
-              title: '국내 어획량',
-              body: `${CATCH.요약.한국어획량.toLocaleString('ko-KR')} (톤)`,
-            },
-          ]}
-        />
-      )}
-    />
-  );
-
-  if (heroOnly) return hero;
-
-  return (
-    <div className={styles.page} data-testid="squid-industry-dashboard" data-commodity="squid">
-      {hero}
-
-      <section className={styles.briefing} aria-labelledby="squid-briefing-heading">
-        <h2 id="squid-briefing-heading" className={styles.briefingHeading}>
-          <BookOpen size={16} aria-hidden="true" />
-          30초 브리핑
-        </h2>
-        <p className={styles.briefingIntro}>
-          아래로 내려가지 않아도 되는 사람을 위한 요약이다. 각 항목은 사슬의 한 단계에서 나온다.
-        </p>
-        <ol className={styles.briefingList}>
-          {SQUID_BRIEFING_POINTS.map((point) => (
-            <li key={point}>
-              <span>{renderEmphasis(point)}</span>
-            </li>
-          ))}
-        </ol>
-      </section>
-
-      <nav className={styles.tabNav} aria-label="밸류체인 단계 이동">
-        <PillTabs
-          tabs={tabs}
-          activeKey={activeKey}
-          onChange={go}
-          ariaLabel="밸류체인 단계"
-          tabIdPrefix="squid-industry-tab"
-          panelIdPrefix="squid-industry-panel"
-          wrap
-        />
-      </nav>
-
-      {activeNarrative ? (
-        <StageSection
-          stage={activeStage}
-          narrative={activeNarrative}
-          next={nextStage}
-          onGo={go}
-          headingRef={headingRef}
-        />
-      ) : (
-        <p className={styles.missing}>이 단계의 서술이 아직 준비되지 않았습니다.</p>
-      )}
-
-      <section className={styles.sources} aria-labelledby="squid-sources-heading">
-        <h2 id="squid-sources-heading" className={styles.sourcesHeading}>
-          <Waves size={16} aria-hidden="true" />
-          출처와 한계
-        </h2>
-        <ul className={styles.sourceList}>
-          {SQUID_SOURCE_NOTES.map((note) => (
-            <li key={note}>{note}</li>
-          ))}
-        </ul>
-        <p className={styles.sourceMeta}>
-          어획 집계 · {CATCH._meta.출처} · 기준 {CATCH._meta.기준연도}년 · 갱신 {CATCH._meta.생성일}
-          {' · '}
-          통관 집계 · {TRADE._meta.출처}
-          {' · '}
-          위젯 {String(WIDGETS_META.선별)}개 ({String(WIDGETS_META.원본)})
-        </p>
-      </section>
-    </div>
-  );
+export default function SquidIndustryDashboard({
+  heroOnly = false,
+}: SquidIndustryDashboardProps) {
+  return <CommodityIndustryDashboard spec={SPEC} heroOnly={heroOnly} />;
 }
