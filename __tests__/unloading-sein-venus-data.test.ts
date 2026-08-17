@@ -306,7 +306,9 @@ describe('SEIN VENUS unloading data', () => {
   });
 
   it('wires the stowage plan and defaults the detail view to the active vessel', () => {
-    const source = readFileSync(join(process.cwd(), 'components/UnloadingStatus.tsx'), 'utf8');
+    // 2026-08-17: 정적 원장이 lib/data/unloading-static.ts로 추출됨 — 원장 검사는 모듈+컴포넌트 결합 소스로
+    const source = readFileSync(join(process.cwd(), 'components/UnloadingStatus.tsx'), 'utf8')
+      + readFileSync(join(process.cwd(), 'lib/data/unloading-static.ts'), 'utf8');
     const analyticsSource = readFileSync(join(process.cwd(), 'components/UnloadingAnalytics.tsx'), 'utf8');
     const replaySource = readFileSync(join(process.cwd(), 'components/UnloadingTimelineReplay.tsx'), 'utf8');
     const apiSource = readFileSync(join(process.cwd(), 'app/api/unloading-db/route.ts'), 'utf8');
@@ -334,7 +336,9 @@ describe('SEIN VENUS unloading data', () => {
   });
 
   it('prioritizes active operations and groups the long detail view by task', () => {
-    const source = readFileSync(join(process.cwd(), 'components/UnloadingStatus.tsx'), 'utf8');
+    // 2026-08-17: 정적 원장이 lib/data/unloading-static.ts로 추출됨 — 원장 검사는 모듈+컴포넌트 결합 소스로
+    const source = readFileSync(join(process.cwd(), 'components/UnloadingStatus.tsx'), 'utf8')
+      + readFileSync(join(process.cwd(), 'lib/data/unloading-static.ts'), 'utf8');
     const pillTabsSource = readFileSync(join(process.cwd(), 'components/v2/PillTabs.tsx'), 'utf8');
 
     expect(source).toContain('오늘의 운영 판단');

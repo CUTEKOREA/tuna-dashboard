@@ -165,7 +165,9 @@ describe('2026 unloading vessel coverage', () => {
     ]);
 
     // staticData 전용 완료 4척 (dinok·hikari·heng-hong-11·liaoyu-reefer-1)과 합쳐 11척.
-    const source = readFileSync(join(process.cwd(), 'components/UnloadingStatus.tsx'), 'utf8');
+    // 2026-08-17: 정적 원장이 lib/data/unloading-static.ts로 추출됨 — 원장 검사는 모듈+컴포넌트 결합 소스로
+    const source = readFileSync(join(process.cwd(), 'components/UnloadingStatus.tsx'), 'utf8')
+      + readFileSync(join(process.cwd(), 'lib/data/unloading-static.ts'), 'utf8');
     for (const staticOnly of ["'dinok':", "'hikari':", "'heng-hong-11':", "'liaoyu-reefer-1':"]) {
       expect(source).toContain(staticOnly);
     }
@@ -201,7 +203,9 @@ describe('2026 unloading vessel coverage', () => {
   });
 
   it('uses annual totals in the KPI and marks unverified hold detail unavailable', () => {
-    const source = readFileSync(join(process.cwd(), 'components/UnloadingStatus.tsx'), 'utf8');
+    // 2026-08-17: 정적 원장이 lib/data/unloading-static.ts로 추출됨 — 원장 검사는 모듈+컴포넌트 결합 소스로
+    const source = readFileSync(join(process.cwd(), 'components/UnloadingStatus.tsx'), 'utf8')
+      + readFileSync(join(process.cwd(), 'lib/data/unloading-static.ts'), 'utf8');
     const apiSource = readFileSync(join(process.cwd(), 'app/api/unloading-db/route.ts'), 'utf8');
 
     expect(source).toContain('annualActualTotal?: number');
