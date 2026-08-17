@@ -132,7 +132,7 @@ function SeriesRolesTable() {
         </tbody>
       </table>
       <p className={styles.factNote}>
-        생산 톤은 FishStat 새우 필터 후 값이고, 한국 창구는 관세청 제품중량이다. 둘을 빼지 않는다.
+        생산 톤은 FishStat 새우 필터 후 값이고, 수입 창구는 관세청 제품중량이다. 둘을 빼지 않는다.
         한–에콰도르 SECA 발효·양허는 미확인이다.
       </p>
     </div>
@@ -254,13 +254,13 @@ export const SHRIMP_CHART_SLOTS: Record<string, ChartSlot[]> = {
     {
       title: '시리즈 6개국 역할',
       caption:
-        '생산 순위와 한국 창구를 한 칸에 섞지 않았다. 같은 원산지라도 세번이 갈리면 창구가 다르다.',
+        '생산 순위와 수입 창구를 한 칸에 섞지 않았다. 같은 원산지라도 세번이 갈리면 창구가 다르다.',
       telemetry: { status: 'STATIC' as const, syncDate: 'FishStat 2024 · 관세청 2026년 1~6월' },
       span: 'full',
       render: () => <SeriesRolesTable />,
     },
     {
-      title: '한국 창구 물량 (톤)',
+      title: '수입 창구 물량 (톤)',
       caption:
         '막대 둘은 세번이 다르다 — 청록이 030617 원물, 호박색이 160521 조제품이다. 베트남만 강조한 이유는 두 창구가 비슷한 무게이기 때문이다. 2026년 1~6월 제품중량이라 위 생산 통계·05단계 1~5월 표와 더할 수 없다.',
       telemetry: SERIES_SYNC,
@@ -271,7 +271,7 @@ export const SHRIMP_CHART_SLOTS: Record<string, ChartSlot[]> = {
       ),
     },
     {
-      title: '한국 창구 단가 (달러/kg)',
+      title: '수입 창구 단가 (달러/kg)',
       caption:
         'HS 030617 신고액÷중량만 그린다. 에콰도르 5.11이 가장 낮고 태국 12.12가 가장 높다. 조제품 단가와 섞지 않는다.',
       telemetry: SERIES_SYNC,
@@ -292,7 +292,7 @@ const SPEC: CommoditySpec = {
   key: 'shrimp',
   title: '새우',
   subtitle:
-    '새우 산업 해부 · 양식이 이긴 유일한 주요 수산 품목 — 역전·종·산지·한국·창구와 바스켓의 문제',
+    '새우 산업 해부 · 양식이 이긴 유일한 주요 수산 품목 — 역전·종·산지·한국·수입 창구와 바스켓의 문제',
   accent: '#0d9488',
   primaryKpi: {
     label: '세계 새우 생산량',
