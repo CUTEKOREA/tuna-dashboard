@@ -8,12 +8,8 @@
 import React, { useEffect, useState } from 'react';
 import TunaDailyBriefingWidget from '../TunaDailyBriefingWidget';
 import FilterBar from '../v2/FilterBar';
-import HeroFull from './r3/HeroFull';
-import HeroHubSpark from './r3/HeroHubSpark';
-import HeroStripStock from './r3/HeroStripStock';
-import HeroKpiStock from './r3/HeroKpiStock';
-import HeroSparkPlus from './r3/HeroSparkPlus';
-import HeroSpread from './r3/HeroSpread';
+import HeroCommand from './r4/HeroCommand';
+import HeroCommandDense from './r4/HeroCommandDense';
 import {
   ATUNA_GRAIN_LABELS,
   ATUNA_PERIOD_LABELS,
@@ -89,56 +85,24 @@ function withRows(Comp: React.ComponentType<{ rows: AtunaPriceRow[] }>) {
   }
   return BoundVariant;
 }
-const R3Full = withRows(HeroFull);
-const R3HubSpark = withRows(HeroHubSpark);
-const R3StripStock = withRows(HeroStripStock);
-const R3KpiStock = withRows(HeroKpiStock);
-const R3SparkPlus = withRows(HeroSparkPlus);
-const R3Spread = withRows(HeroSpread);
+const R4Command = withRows(HeroCommand);
+const R4CommandDense = withRows(HeroCommandDense);
 
-// r2 히어로 3종은 전원 ★3으로 라운드 종료 — 판정(주식 컬러 요청·전 형태 긍정)을 r3 6종이 계승
+// r3 판정: 승자 A(★4). 반복 신호 — hover 수치·허브 클릭 전환·카드 리프트. r4 = 승자 완전체 2안
 export const DESIGN_VARIANTS: DesignVariant[] = [
   {
-    id: 'market-hero-r3a',
-    title: '히어로 r3-A: 풀 하이브리드',
-    round: 3,
-    note: '대형 KPI + 12주 스파크라인 + 8허브 스트립 전부 결합 (B+C). 주식 컬러(상승 빨강·하락 파랑)',
-    render: () => <R3Full />,
+    id: 'market-hero-r4a',
+    title: '히어로 r4-A: 지휘형 (승자 완전체)',
+    round: 4,
+    note: 'r3-A ★4 + 판정 전부: 허브 클릭=상단 전환, 그래프 hover 수치, 카드 리프트, 최고·최저선',
+    render: () => <R4Command />,
   },
   {
-    id: 'market-hero-r3b',
-    title: '히어로 r3-B: 허브별 미니 스파크',
-    round: 3,
-    note: '8허브 카드마다 최신가+증감+8주 미니 추세선. 밀도×추세 조합',
-    render: () => <R3HubSpark />,
-  },
-  {
-    id: 'market-hero-r3c',
-    title: '히어로 r3-C: 밀도형 개량 (r2-B+주식 컬러)',
-    round: 3,
-    note: 'r2-B 그대로 + 상승 빨강·하락 파랑·보합 회색, SKJ/YF 배지 구분',
-    render: () => <R3StripStock />,
-  },
-  {
-    id: 'market-hero-r3d',
-    title: '히어로 r3-D: 현행 KPI형 개량 (r2-A+주식 컬러)',
-    round: 3,
-    note: '현행 구성(주 KPI+보조 3개)에 주식 컬러 ▲▼ 적용',
-    render: () => <R3KpiStock />,
-  },
-  {
-    id: 'market-hero-r3e',
-    title: '히어로 r3-E: 추세형 개량 (r2-C+최고·최저선)',
-    round: 3,
-    note: '스파크라인에 12주 최고·최저 점선과 값, 마지막 점 강조',
-    render: () => <R3SparkPlus />,
-  },
-  {
-    id: 'market-hero-r3f',
-    title: '히어로 r3-F: 스프레드 포커스',
-    round: 3,
-    note: '허브 min~max 가로 스프레드 바 — 어디가 싸고 어디가 비싼지 한 줄',
-    render: () => <R3Spread />,
+    id: 'market-hero-r4b',
+    title: '히어로 r4-B: 지휘형 밀도 변형 (+카드 미니 추세선)',
+    round: 4,
+    note: 'r4-A와 동일 + 허브 카드마다 8주 미니 스파크(r3-B 접목). 정보인가 소음인가를 비교',
+    render: () => <R4CommandDense />,
   },
   // r1 히어로(빈 데이터 시안)는 ★1 «수치 확인이 안됨»으로 라운드 종료 — r2a~c가 대체
   {
