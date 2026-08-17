@@ -62,13 +62,16 @@ SPECIES_KO = {
     "Atlantic Bluefin Tuna": "대서양참다랑어",
     "Pacific Bluefin Tuna": "태평양참다랑어",
     "Southern Bluefin Tuna": "남방참다랑어",
-    "Northern Bluefin Tuna": "북방참다랑어",
+    "Northern Bluefin Tuna": "대서양참다랑어",   # Thunnus thynnus. 원문의 옛 이름이다
     "Atlantic Bonito": "대서양가다랑어",
     "Tongol": "몰다랑어",
     "Longtail Tuna": "몰다랑어",
 }
 
 # 어종 프로필에서 옮길 항목과 한글 이름
+# ⚠ 「Share of all Tuna Caught」는 일부러 뺐다.
+#   원문이 가다랑어 58%·눈다랑어 8% 로 적는데 이 저장소의 FAO 2024 집계는 60.52%·5.58% 다.
+#   낡은 값이고, 어획 수치는 우리가 직접 집계하므로 화면에서는 그쪽을 쓴다.
 FIELD_KO = {
     "English:": "영문명",
     "Latin:": "학명",
@@ -77,7 +80,6 @@ FIELD_KO = {
     "Maturity:": "성숙",
     "Catching Area:": "주요 어장",
     "Catching Methods:": "주요 어법",
-    "Share of all Tuna Caught:": "참치 어획 중 비중",
     "Main Processing Nations:": "주요 가공국",
     "Flags of Main Fleets:": "주요 선적국",
     "Life Cycle:": "생활사",

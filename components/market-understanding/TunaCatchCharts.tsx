@@ -30,6 +30,7 @@ import {
   type PriceTimeline,
   type CertificationRow,
   type FoodSafetyRow,
+  type SpeciesProfile,
   type StockStatusRow,
   type TunaCatchData,
   type TunaFleetData,
@@ -944,6 +945,70 @@ export function FoodSafetyTable({ rows }: { rows: FoodSafetyRow[] }) {
           ))}
         </tbody>
       </table>
+    </div>
+  );
+}
+
+/**
+ * 어종 카드 — 생물학적 성질과 쓰임을 한자리에 놓는다.
+ *
+ * ⚠ **어획 비중은 이 저장소의 FAO 집계를 쓴다.** 참조 자료에도 비중이 적혀 있으나
+ *   가다랑어 58%·눈다랑어 8% 로 낡았다(우리 2024년 집계는 60.52%·5.58%).
+ *   서술 항목만 참조 자료에서 가져오고 수치는 우리 것으로 채운다.
+ */
+export function SpeciesProfileCards({
+  profiles,
+  shares,
+}: {
+  profiles: SpeciesProfile[];
+  shares: { 어종: string; 어획량: number; 비중: number; 주용도: string }[];
+}) {
+  const byName = useMemo(
+    () => Object.fromEntries(shares.map((s) => [s.어종, s])),
+    [shares],
+  );
+  // 어획 비중이 큰 종을 앞에 둔다. 비중이 없는 종(참조 자료에만 있는 것)은 뒤로 보낸다.
+  const ordered = useMemo(
+    () => [...profiles].sort((a, b) => (byName[b.어종]?.비중 ?? -1) - (byName[a.어종]?.비중 ?? -1)),
+    [profiles, byName],
+  );
+
+  const FIELDS: [keyof SpeciesProfile, string][] = [
+    ['일반 크기', '크기'],
+    ['성숙', '성숙'],
+    ['주요 어법', '어법'],
+    ['주요 제품 형태', '제품'],
+    ['주요 시장', '시장'],
+  ];
+
+  return (
+    <div className={styles.speciesGrid}>
+      {ordered.map((p) => {
+        const share = byName[p.어종];
+        return (
+          <article key={p.어종} className={styles.speciesCard}>
+            <div className={styles.speciesHead}>
+              <span className={styles.speciesName}>{p.어종}</span>
+              {share ? (
+                <span className={styles.speciesShare}>
+                  {share.비중}% · {share.어획량.toLocaleString('ko-KR')}톤
+                </span>
+              ) : null}
+            </div>
+            {p.학명 ? <span className={styles.speciesLatin}>{p.학명}</span> : null}
+            <div className={styles.speciesFacts}>
+              {FIELDS.map(([key, label]) =>
+                p[key] ? (
+                  <div key={label}>
+                    <span className={styles.speciesFactLabel}>{label}</span>
+                    <span className={styles.speciesFactValue}>{String(p[key])}</span>
+                  </div>
+                ) : null,
+              )}
+            </div>
+          </article>
+        );
+      })}
     </div>
   );
 }

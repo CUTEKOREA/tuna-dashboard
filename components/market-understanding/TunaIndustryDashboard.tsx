@@ -60,6 +60,7 @@ import {
   RetailShareChart,
   CertificationTable,
   FoodSafetyTable,
+  SpeciesProfileCards,
   StockStatusTable,
   OperatorFleetChart,
   CountryRankChart,
@@ -117,6 +118,18 @@ const PRICE_SYNC = {
 
 export const CATCH_CHART_SLOTS: Record<string, ChartSlot[]> = {
   s01: [
+    {
+      title: '어종 카드 — 무엇이 어떻게 쓰이는가',
+      caption:
+        '크기·성숙·어법·제품 형태를 한자리에 놓았다. 어획 비중과 물량은 이 저장소의 FAO 집계이고, 나머지 서술은 참조 자료에서 가져왔다. 가다랑어가 통조림으로, 눈다랑어가 사시미로 가는 이유가 크기와 성숙 나이에 이미 들어 있다.',
+      telemetry: CATCH_SYNC,
+      render: () => (
+        <SpeciesProfileCards
+          profiles={GLOSSARY.어종프로필}
+          shares={CATCH.어종구성}
+        />
+      ),
+    },
     {
       title: '어종별 계군 상태 (기구 평가)',
       caption:

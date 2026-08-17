@@ -580,7 +580,6 @@
    "성숙": "1 year and around 2 kg Female: 42-50 cm Male: 45-52 cm",
    "주요 어장": "73% Western Pacific Ocean (63% WCPO, 8% SPO, 3% NPO) 7% Eastern Pacific Ocean 11% Indian Ocean 9% Atlantic Ocean",
    "주요 어법": "Mostly purse seining, some pole & line (8%)",
-   "참치 어획 중 비중": "About 58% – 2.784.000 M/T",
    "주요 가공국": "Thailand, Philippines, Indonesia, Ecuador, Ghana, Colombia, Ivory Coast, Senegal, Samoa, Spain, Italy, Papua New Guinea, Seychelles, Vietnam",
    "주요 선적국": "Taiwan, US, China, Japan, Indonesia, Spain",
    "생활사": "About 3 to 4 years",
@@ -596,7 +595,6 @@
    "최대": "Size 200 cm – Weight 175 kgs, Age 8 years",
    "성숙": "Size 105 cm – Weight 15 kgs, Age 2-3 years",
    "주요 어법": "Mostly purse seining, long-lining, pole-and-line",
-   "참치 어획 중 비중": "About 28% – 1.344.000 M/T",
    "생활사": "About 7 years",
    "주요 시장": "Japan, Southern-Europe, United States",
    "주요 제품 형태": "Canned Fresh (whole fish) Frozen pre-cooked Loins Fresh Fillets Raw frozen loins + steaks"
@@ -610,7 +608,6 @@
    "최대": "Size 130 cm – Weight 40 kg – Age 15 years.",
    "성숙": "Size 75-90 cm – Weight 8-15 kg – Age 2-5 years.",
    "주요 어법": "Longlining, Pole-and-line, trolling",
-   "참치 어획 중 비중": "About 5% – 240.000 M/T",
    "생활사": "About 5 years",
    "주요 시장": "United Sates, Canada, Japan, Spain",
    "주요 제품 형태": "Canned (white tuna) Fresh Frozen"
@@ -624,7 +621,6 @@
    "최대": "Size 230 cm – Weight 210 kg – Age 15 years",
    "성숙": "Size 105 cm – Weight 25 kg – Age 3-4 years",
    "주요 어법": "Longlining, Purse seining and Pole-and-line (by-catch)",
-   "참치 어획 중 비중": "About 8% – 384.000 M/T",
    "생활사": "About 7-8",
    "주요 시장": "Japan (sashimi)",
    "주요 제품 형태": "Fresh (whole fish) Fresh Fillets (sashimi)"
@@ -636,13 +632,12 @@
    "학명": "Sarda sarda or sarda spp",
    "일반 크기": "40-50 cm / 2,5 kg",
    "주요 어법": "Mostly purse seining",
-   "참치 어획 중 비중": "Less than 1%",
    "생활사": "About 1-2 years",
    "주요 시장": "Turkey, Greece, Spain, Western-Europe",
    "주요 제품 형태": "Fried Cooked Canned"
   },
   {
-   "어종": "북방참다랑어",
+   "어종": "대서양참다랑어",
    "원문명": "Northern Bluefin Tuna (North-west Pacific + North- East Atlantic + Mediterranean)",
    "영문명": "Northern Bluefin Tuna (North-west Pacific + North- East Atlantic + Mediterranean)",
    "학명": "Thunnus thynnus",
@@ -674,7 +669,6 @@
    "학명": "Thunnus tonggol",
    "일반 크기": "90 cm / 15-20 kg",
    "주요 어법": "Mostly pole and line, Long Lines",
-   "참치 어획 중 비중": "About 4 % or 125.000 M/T",
    "주요 시장": "United Sates, Sweden",
    "주요 제품 형태": "Canned (light tuna) Fresh"
   }
@@ -814,21 +808,21 @@
    "평가연도": "2022"
   },
   {
-   "어종": "북방참다랑어",
+   "어종": "대서양참다랑어",
    "해역": "태평양",
    "기구": "IATTC",
    "상태": "남획 압력 있음",
    "평가연도": "2022"
   },
   {
-   "어종": "북방참다랑어",
+   "어종": "대서양참다랑어",
    "해역": "동대서양·지중해",
    "기구": "ICCAT",
    "상태": "중간",
    "평가연도": "2022"
   },
   {
-   "어종": "북방참다랑어",
+   "어종": "대서양참다랑어",
    "해역": "서대서양",
    "기구": "ICCAT",
    "상태": "중간",

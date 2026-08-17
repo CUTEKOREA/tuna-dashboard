@@ -1329,3 +1329,72 @@
   color: var(--mu-ink-muted);
   font-size: 0.75rem;
 }
+
+/* ─── 어종 카드 ───────────────────────────────────────────────── */
+
+.speciesGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 0.875rem;
+}
+
+.speciesCard {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding: 1rem;
+  background: var(--mu-surface);
+  border: 1px solid var(--mu-line);
+  border-radius: 12px;
+}
+
+.speciesHead {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.5rem;
+}
+
+.speciesName {
+  font-size: 0.9375rem;
+  font-weight: 700;
+  color: var(--mu-ink);
+}
+
+/* 어획 비중은 우리 FAO 집계다. 눈에 띄게 둔다 */
+.speciesShare {
+  font-size: 0.8125rem;
+  font-weight: 700;
+  color: var(--mu-accent);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.speciesLatin {
+  font-size: 0.75rem;
+  font-style: italic;
+  color: var(--mu-ink-muted);
+}
+
+.speciesFacts {
+  display: grid;
+  gap: 0.25rem;
+  margin: 0;
+  font-size: 0.75rem;
+  line-height: 1.55;
+}
+
+.speciesFacts > div {
+  display: flex;
+  gap: 0.4rem;
+}
+
+.speciesFactLabel {
+  flex: 0 0 auto;
+  min-width: 3.5rem;
+  color: var(--mu-ink-muted);
+}
+
+.speciesFactValue {
+  color: var(--mu-ink-soft);
+}

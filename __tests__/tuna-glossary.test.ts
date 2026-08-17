@@ -38,6 +38,23 @@ describe('용어 사전 — 데이터', () => {
     }
   });
 
+  it('낡은 어획 비중을 담지 않았다', () => {
+    // 참조 자료는 가다랑어 58%·눈다랑어 8% 로 적는데 우리 FAO 2024 집계는 60.52%·5.58% 다.
+    // 수치는 우리 집계를 쓰므로 이 필드를 들이면 같은 화면에 두 값이 뜬다.
+    for (const p of data.어종프로필) {
+      expect(p, `${p.어종} 에 낡은 비중이 들어왔다`).not.toHaveProperty('참치 어획 중 비중');
+    }
+  });
+
+  it('어종 이름이 저장소 FAO 집계와 맞물린다', () => {
+    // 참조 자료의 「Northern Bluefin」은 옛 이름이다. 이름이 어긋나면 카드에 수치가 안 붙는다
+    const names = data.어종프로필.map((p) => p.어종);
+    for (const n of ['가다랑어', '황다랑어', '눈다랑어', '날개다랑어', '대서양참다랑어']) {
+      expect(names, `${n} 이 없다 — 이름 대조표를 확인하라`).toContain(n);
+    }
+    expect(names).not.toContain('북방참다랑어');
+  });
+
   it('어종 프로필의 이름이 한글이다', () => {
     expect(data.어종프로필.length).toBeGreaterThanOrEqual(6);
     for (const p of data.어종프로필) {
@@ -128,6 +145,7 @@ describe('화면 노출', () => {
     const titles = Object.values(CATCH_CHART_SLOTS).flat().map((s) => s.title);
     expect(titles).toContain('가공장이 통과해야 하는 인증 (제도 분류)');
     expect(titles).toContain('식품안전 기준과 실제 함량');
+    expect(titles).toContain('어종 카드 — 무엇이 어떻게 쓰이는가');
     for (const t of ['가공장이 통과해야 하는 인증 (제도 분류)', '식품안전 기준과 실제 함량']) {
       const slot = Object.values(CATCH_CHART_SLOTS).flat().find((s) => s.title === t);
       expect(() =>
