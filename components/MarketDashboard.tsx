@@ -1,8 +1,8 @@
 'use client';
 
 import React, { useState, useEffect, useMemo, useRef, useSyncExternalStore } from 'react';
-import { 
-  TrendingUp, TrendingDown, Ship, Anchor, BarChart2,
+import {
+  TrendingUp, TrendingDown, BarChart2,
   Globe, Activity
 } from 'lucide-react';
 import {
@@ -10,8 +10,9 @@ import {
   Tooltip as RechartsTooltip, Legend, Brush
 } from 'recharts';
 import SeafoodStockWidget from './SeafoodStockWidget';
+import HeroMarketCommand from './HeroMarketCommand';
 import TunaDailyBriefingWidget from './TunaDailyBriefingWidget';
-import HeroZone, { type HeroKpi } from './v2/HeroZone';
+import HeroZone from './v2/HeroZone';
 import FilterBar from './v2/FilterBar';
 import { VolumeBarChart, type VolumeBarPoint } from './charts/VolumeBar';
 import {
@@ -117,51 +118,20 @@ const getTodayIsoSnapshot = (): string | null => {
 };
 const getServerTodaySnapshot = (): string | null => null;
 
+/* 디자인 랩 4라운드 채택(r4-B ★4): KPI 나열은 지휘형 카드(HeroMarketCommand)가 대체 —
+   히어로는 페이지 타이틀·기준일만 남긴다 */
 export function MarketHero({ rows }: { rows: AtunaPriceRow[] }) {
   const bangkok = latestTwoForAtunaHub(rows, SKJ_ATUNA_HUBS[0]);
-  const manta = latestTwoForAtunaHub(rows, SKJ_ATUNA_HUBS[1]);
-  const yellowfin = buildAtunaMarketSummaries(rows).yf;
   const bangkokDeltaPct = calcAtunaDeltaPct(bangkok);
-  const bangkokDelta = bangkok.latest && bangkok.prev
-    ? bangkok.latest.price - bangkok.prev.price
-    : null;
-  const secondaryKpis: HeroKpi[] = [];
-
-  if (manta.latest) {
-    secondaryKpis.push({
-      label: '만타 SKJ 현물가',
-      value: manta.latest.price,
-      unit: '($/MT)',
-    });
-  }
-  if (bangkokDelta !== null) {
-    secondaryKpis.push({
-      label: '방콕 주간 변동',
-      value: bangkokDelta,
-      unit: '($/MT)',
-    });
-  }
-  if (yellowfin.latest) {
-    secondaryKpis.push({
-      label: '황다랑어 현물가',
-      value: yellowfin.latest.price,
-      unit: '($/MT)',
-    });
-  }
 
   return (
     <HeroZone
       variant="kpi"
+      minHeight={170}
       title="시장 동향"
       subtitle={bangkok.latest
         ? `방콕 현물가 기준일 ${bangkok.latest.date.replace(/-/g, '.')}${bangkokDeltaPct === null ? '' : ` · 직전 고시 대비 ${fmtPct(bangkokDeltaPct)}`}`
         : '참치 가격 데이터 수신 대기'}
-      primaryKpi={bangkok.latest ? {
-        label: '방콕 SKJ 현물가',
-        value: bangkok.latest.price,
-        unit: '($/MT)',
-      } : undefined}
-      secondaryKpis={secondaryKpis}
     />
   );
 }
@@ -326,11 +296,6 @@ export default function MarketDashboard({ heroOnly = false }: { heroOnly?: boole
   }
 
   const formatHubDate = (d?: string | null) => (d ? d.replace(/-/g, '.') : '');
-  const formatSpreadRange = (summary?: AtunaSpreadSummary | null) => {
-    if (!summary?.spread) return null;
-    const { minPrice, maxPrice, minLabel, maxLabel, count } = summary.spread;
-    return `${count}개 허브 최신 ${minLabel} $${minPrice.toLocaleString()}~${maxLabel} $${maxPrice.toLocaleString()}`;
-  };
 
   // 데이터 기준일이 오늘로부터 며칠 전인지 (클라이언트 마운트 후에만 계산)
   const staleDaysOf = (date?: string | null): number | null => {
@@ -364,61 +329,14 @@ export default function MarketDashboard({ heroOnly = false }: { heroOnly?: boole
     <div className={styles.dashboard}>
       {marketHero}
 
+      {/* 디자인 랩 4라운드 채택본 — 허브 지휘형 시세 카드 (r4-B) */}
+      <HeroMarketCommand rows={priceData} />
+
       {/* Seafood Stock Widget at the top of the market page */}
       <SeafoodStockWidget />
 
       {/* ROW 1: CORE MACRO KPIs */}
       <section className={styles.kpiGrid}>
-        {/* KPI 1 */}
-        <div className={`dsc-card dsc-card--accent ${styles.kpiCard}`}>
-          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '8px', color: 'var(--text-muted)', fontSize: '0.8rem' }}>
-            <span style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
-              <span style={{ fontWeight: 600 }}>SKJ 가다랑어 지역 스프레드</span>
-              {renderStaleBadge(atunaLatest.skj?.latest?.date)}
-            </span>
-            <Ship size={16} color="var(--accent-primary)" />
-          </div>
-          <div style={{ fontSize: '1.85rem', fontWeight: 800, letterSpacing: '-0.03em', fontVariantNumeric: 'tabular-nums', color: 'var(--text-main)' }}>
-            {atunaLatest.skj?.latest ? `$${atunaLatest.skj.latest.price.toLocaleString()}` : '—'} <span style={{ fontSize: '1rem', color: 'var(--text-muted)', fontWeight: 400 }}>/ton</span>
-          </div>
-          {atunaLatest.skj?.deltaPct !== null && atunaLatest.skj?.deltaPct !== undefined && (
-            <div style={{ display: 'flex', alignItems: 'center', gap: '6px', marginTop: '8px', fontSize: '0.8rem', color: atunaLatest.skj.deltaPct >= 0 ? 'var(--accent-warning)' : 'var(--accent-success)' }}>
-              {atunaLatest.skj.deltaPct >= 0 ? <TrendingUp size={14} /> : <TrendingDown size={14} />}
-              <span>{atunaLatest.skj.latest?.label} 직전 고시 대비 {fmtPct(atunaLatest.skj.deltaPct)}</span>
-            </div>
-          )}
-          {atunaLatest.skj?.latest && (
-            <div style={{ marginTop: '4px', fontSize: '0.75rem', lineHeight: 1.45, color: 'var(--text-muted)' }}>
-              Atuna 지역 스프레드 ({formatHubDate(atunaLatest.skj.latest.date)} 기준 · {formatSpreadRange(atunaLatest.skj)})
-            </div>
-          )}
-        </div>
-
-        {/* KPI 2 */}
-        <div className={`dsc-card dsc-card--accent ${styles.kpiCard}`}>
-          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '8px', color: 'var(--text-muted)', fontSize: '0.8rem' }}>
-            <span style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
-              <span style={{ fontWeight: 600 }}>YF 황다랑어 지역 스프레드</span>
-              {renderStaleBadge(atunaLatest.yf?.latest?.date)}
-            </span>
-            <Anchor size={16} color="var(--accent-primary)" />
-          </div>
-          <div style={{ fontSize: '1.85rem', fontWeight: 800, letterSpacing: '-0.03em', fontVariantNumeric: 'tabular-nums', color: 'var(--text-main)' }}>
-            {atunaLatest.yf?.latest ? `$${atunaLatest.yf.latest.price.toLocaleString()}` : '—'} <span style={{ fontSize: '1rem', color: 'var(--text-muted)', fontWeight: 400 }}>/ton</span>
-          </div>
-          {atunaLatest.yf?.deltaPct !== null && atunaLatest.yf?.deltaPct !== undefined && (
-            <div style={{ display: 'flex', alignItems: 'center', gap: '6px', marginTop: '8px', fontSize: '0.8rem', color: atunaLatest.yf.deltaPct >= 0 ? 'var(--accent-warning)' : 'var(--accent-success)' }}>
-              {atunaLatest.yf.deltaPct >= 0 ? <TrendingUp size={14} /> : <TrendingDown size={14} />}
-              <span>{atunaLatest.yf.latest?.label} 직전 고시 대비 {fmtPct(atunaLatest.yf.deltaPct)}</span>
-            </div>
-          )}
-          {atunaLatest.yf?.latest && (
-            <div style={{ marginTop: '4px', fontSize: '0.75rem', lineHeight: 1.45, color: 'var(--text-muted)' }}>
-              Atuna 지역 스프레드 ({formatHubDate(atunaLatest.yf.latest.date)} 기준 · {formatSpreadRange(atunaLatest.yf)})
-            </div>
-          )}
-        </div>
-
         {/* KPI 3 */}
         <div className={`dsc-card dsc-card--accent ${styles.kpiCard}`}>
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '8px', color: 'var(--text-muted)', fontSize: '0.8rem' }}>

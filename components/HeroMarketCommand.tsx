@@ -1,6 +1,7 @@
 /**
- * r4 시안 — 승자 완전체의 밀도 변형. HeroCommand와 동일 + 허브 카드마다 8주 미니 스파크(r3-B 접목).
- * 비교 목적: 카드 안 추세선이 정보를 더하는가, 소음을 더하는가.
+ * 시장 동향 히어로 지휘형 — 디자인 랩 4라운드 최종 채택본 (r4-B ★4, 2026-08-17).
+ * 허브 클릭 = 상단 시세·12주 추이 전환, 그래프 hover 주간 수치, 카드 hover 리프트,
+ * 카드별 8주 미니 스파크. 주식 컨벤션 컬러(상승 빨강·하락 파랑).
  */
 'use client';
 
@@ -16,7 +17,7 @@ import {
   calcAtunaDeltaPct,
   type AtunaHubDefinition,
   type AtunaPriceRow,
-} from '../../../lib/data/atuna-price-summary';
+} from '../lib/data/atuna-price-summary';
 
 const UP = '#ef4444';
 const DOWN = '#3b82f6';
@@ -61,7 +62,7 @@ function CommandTip({ active, payload }: {
   );
 }
 
-export default function HeroCommandDense({ rows }: { rows: AtunaPriceRow[] }) {
+export default function HeroMarketCommand({ rows }: { rows: AtunaPriceRow[] }) {
   const [selectedKey, setSelectedKey] = useState<string>(SKJ_ATUNA_HUBS[0].key);
   const [hoverKey, setHoverKey] = useState<string | null>(null);
 

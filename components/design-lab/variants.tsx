@@ -8,8 +8,7 @@
 import React, { useEffect, useState } from 'react';
 import TunaDailyBriefingWidget from '../TunaDailyBriefingWidget';
 import FilterBar from '../v2/FilterBar';
-import HeroCommand from './r4/HeroCommand';
-import HeroCommandDense from './r4/HeroCommandDense';
+import HeroMarketCommand from '../HeroMarketCommand';
 import {
   ATUNA_GRAIN_LABELS,
   ATUNA_PERIOD_LABELS,
@@ -85,24 +84,16 @@ function withRows(Comp: React.ComponentType<{ rows: AtunaPriceRow[] }>) {
   }
   return BoundVariant;
 }
-const R4Command = withRows(HeroCommand);
-const R4CommandDense = withRows(HeroCommandDense);
+const AdoptedHero = withRows(HeroMarketCommand);
 
-// r3 판정: 승자 A(★4). 반복 신호 — hover 수치·허브 클릭 전환·카드 리프트. r4 = 승자 완전체 2안
+// r4 판정: B ★4 «이게 더 마음에 듦» — 최종 채택, 실페이지(시장 동향) 반영. 라운드 종료
 export const DESIGN_VARIANTS: DesignVariant[] = [
   {
-    id: 'market-hero-r4a',
-    title: '히어로 r4-A: 지휘형 (승자 완전체)',
+    id: 'market-hero-adopted',
+    title: '히어로 최종 채택본 (r4-B · 시장 동향 반영됨)',
     round: 4,
-    note: 'r3-A ★4 + 판정 전부: 허브 클릭=상단 전환, 그래프 hover 수치, 카드 리프트, 최고·최저선',
-    render: () => <R4Command />,
-  },
-  {
-    id: 'market-hero-r4b',
-    title: '히어로 r4-B: 지휘형 밀도 변형 (+카드 미니 추세선)',
-    round: 4,
-    note: 'r4-A와 동일 + 허브 카드마다 8주 미니 스파크(r3-B 접목). 정보인가 소음인가를 비교',
-    render: () => <R4CommandDense />,
+    note: '4라운드 수렴 결과. 실페이지에 반영 — 추가 지적은 여기 코멘트로',
+    render: () => <AdoptedHero />,
   },
   // r1 히어로(빈 데이터 시안)는 ★1 «수치 확인이 안됨»으로 라운드 종료 — r2a~c가 대체
   {
