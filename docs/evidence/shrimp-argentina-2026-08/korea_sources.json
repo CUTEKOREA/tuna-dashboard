@@ -1,0 +1,156 @@
+[
+ {
+  "id": "S1",
+  "title": "FAO FishStat Global Production 2026.1.0",
+  "publisher": "Food and Agriculture Organization of the United Nations",
+  "url": "https://www.fao.org/fishery/static/Data/GlobalProduction_2026.1.0.zip",
+  "local_path": "update_2026-07-06/fishstat/FishStat_2026.1.0_global_production_shrimp.csv",
+  "version": "2026.1.0",
+  "accessed_at": "2026-07-06",
+  "report_basis_date": "2026-08-11",
+  "caveat": "488개 새우·보리새우류 ASFIS 코드 범위. 생산원천별 행을 한 번씩 합산했으며 기존 중복 집계 대시보드는 사용하지 않았다."
+ },
+ {
+  "id": "S2",
+  "title": "아르헨티나 2025 어종·선단별 양륙표",
+  "publisher": "Argentina Secretaría de Agricultura, Ganadería y Pesca",
+  "url": "https://www.magyp.gob.ar/sitio/areas/pesca_maritima/desembarques/lectura.php?imp=1&tabla=especie_flota_2025",
+  "accessed_at": "2026-08-11",
+  "caveat": "국가 양륙통계이며 FAO 연간 생산통계와 발표시점·집계체계가 다를 수 있다."
+ },
+ {
+  "id": "S3",
+  "title": "La pesca argentina alcanzó en 2025 el segundo mejor registro histórico de exportaciones",
+  "publisher": "Argentina.gob.ar",
+  "url": "https://www.argentina.gob.ar/noticias/la-pesca-argentina-alcanzo-en-2025-el-segundo-mejor-registro-historico-de-exportaciones",
+  "accessed_at": "2026-08-11",
+  "caveat": "수출량은 여러 제품형태를 합친 중량으로 양륙량과 직접 차감할 수 없다."
+ },
+ {
+  "id": "S4",
+  "title": "2026 선상동결 통새우 품질 프로토콜",
+  "publisher": "Argentina.gob.ar Normativa Nacional",
+  "url": "https://www.argentina.gob.ar/normativa/nacional/norma-427136/texto",
+  "accessed_at": "2026-08-11",
+  "caveat": "자율 프로토콜에 참여하는 선상동결 통새우 범위이며 아르헨티나산 전체의 공통 법정사양이 아니다."
+ },
+ {
+  "id": "S5A",
+  "title": "MSC Argentine red shrimp coastal trawling fishery in Chubut waters",
+  "publisher": "Marine Stewardship Council",
+  "url": "https://fisheries.msc.org/en/fisheries/argentine-red-shrimp-pleoticus-muelleri-coastal-trawling-fishery-in-waters-of-province-of-chubut/",
+  "accessed_at": "2026-08-11",
+  "caveat": "2025-03-20 인증, UoC-3147. 로트별 선박·고객그룹·CoC 확인이 필요하다."
+ },
+ {
+  "id": "S5B",
+  "title": "MSC Argentine red shrimp offshore bottom trawl fishery in federal waters",
+  "publisher": "Marine Stewardship Council",
+  "url": "https://fisheries.msc.org/en/fisheries/argentine-red-shrimp-pleoticus-muelleri-offshore-bottom-trawl-fishery-in-federal-waters/@@assessments",
+  "accessed_at": "2026-08-11",
+  "caveat": "2026-02-11 인증, UoC-3212. 로트별 선박·고객그룹·CoC 확인이 필요하다."
+ },
+ {
+  "id": "S6",
+  "title": "관세청 2026년 1~5월 HS 030617 품목별 국가별 수입실적",
+  "publisher": "Korea Customs Service",
+  "url": "https://apis.data.go.kr/1220000/nitemtrade/getNitemtradeList",
+  "local_path": "update_2026-07-06/kcs/KCS_2026YTD_HS_shrimp.csv",
+  "accessed_at": "2026-07-06",
+  "report_basis_date": "2026-08-11",
+  "caveat": "종별 코드가 아니다. 상세행 중량합계 27,848,461kg을 사용했으며 총계행은 4kg 작다."
+ },
+ {
+  "id": "S7",
+  "title": "수산생물 수입·수출 검역 안내",
+  "publisher": "국립수산물품질관리원",
+  "url": "https://www.nfqs.go.kr/hpmg/quar/actionImportExportQuarantineForm.do?menuId=M0000192",
+  "accessed_at": "2026-08-11",
+  "caveat": "제품의 열처리·절단·형태에 따라 검역 대상 여부를 선적 전에 재확인한다."
+ },
+ {
+  "id": "S8",
+  "title": "관세청 CLIP 030617 기본세율 요약",
+  "publisher": "Korea Customs Service",
+  "url": "https://unipass.customs.go.kr/clip/hsinfosrch/openULS0201007Q.do?opnMod=P&searchVal=0306171090",
+  "related_source_ids": [
+   "S8A",
+   "S8B"
+  ],
+  "accessed_at": "2026-08-11",
+  "caveat": "본문 요약 마커이며 두 10단위 세번 페이지를 함께 가리킨다."
+ },
+ {
+  "id": "S8A",
+  "title": "관세청 CLIP 0306171090",
+  "publisher": "Korea Customs Service",
+  "url": "https://unipass.customs.go.kr/clip/hsinfosrch/openULS0201007Q.do?opnMod=P&searchVal=0306171090",
+  "accessed_at": "2026-08-11",
+  "caveat": "2026 기본세율 20%. 실제 신고세율과 품목분류는 관세사 확인이 필요하다."
+ },
+ {
+  "id": "S8B",
+  "title": "관세청 CLIP 0306179099",
+  "publisher": "Korea Customs Service",
+  "url": "https://unipass.customs.go.kr/clip/hsinfosrch/openULS0201007Q.do?opnMod=P&searchVal=0306179099",
+  "accessed_at": "2026-08-11",
+  "caveat": "2026 기본세율 20%. 실제 신고세율과 품목분류는 관세사 확인이 필요하다."
+ },
+ {
+  "id": "S9",
+  "title": "우리나라 FTA 추진 현황",
+  "publisher": "산업통상자원부 FTA 포털",
+  "url": "https://www.fta.go.kr/ftamain/kfta/ov/",
+  "accessed_at": "2026-08-11",
+  "caveat": "발효·협상 상태는 바뀔 수 있으므로 견적·신고 시점에 재확인한다."
+ },
+ {
+  "id": "S10",
+  "title": "수입식품 수입신고 관련 조문",
+  "publisher": "국가법령정보센터",
+  "url": "https://www.law.go.kr/LSW/lsLinkCommonInfo.do?ancYnChk=&chrClsCd=010202&lsJoLnkSeq=1020383975",
+  "accessed_at": "2026-08-11",
+  "caveat": "법령은 개정될 수 있으며 수산생물 검역을 대체하지 않는다."
+ },
+ {
+  "id": "S11",
+  "title": "해외제조업소 등록 안내",
+  "publisher": "식품의약품안전처 수입식품정보마루",
+  "url": "https://impfood.mfds.go.kr/CFAAA01F01/%3FcvaaClsNo%3D1471000999101",
+  "accessed_at": "2026-08-11",
+  "caveat": "수입신고 전 실제 제조·가공 업소의 등록정보와 상업서류를 대조한다."
+ },
+ {
+  "id": "S12",
+  "title": "KMI FTA 체결국 수산물 수입동향 가공본",
+  "publisher": "한국해양수산개발원",
+  "local_path": "processed_data/shrimp_fta_quarterly.md",
+  "accessed_at": "2026-05-27",
+  "caveat": "2025년 여러 새우 제품형태 합계이며 HS 030617과 범위가 다르다."
+ },
+ {
+  "id": "S13",
+  "title": "식품첨가물공전 사용기준",
+  "publisher": "식품의약품안전처 식품안전나라",
+  "url": "https://www.foodsafetykorea.go.kr/foodcode/pdf/2/2-5.pdf",
+  "accessed_at": "2026-08-11",
+  "caveat": "새우의 0.10g/kg 기준은 껍질을 벗긴 살 기준이다."
+ },
+ {
+  "id": "S14",
+  "title": "알레르기 표시 관련 식약처 자료",
+  "publisher": "식품의약품안전처 식품안전나라",
+  "url": "https://www.foodsafetykorea.go.kr/portal/board/boardDetail.do?ans_yn=N&atch_file_posbl_yn=Y&bbs_no=bbs820&bbs_type_cd=03&cmt_yn=N&kword_use_yn=N&list_img_use_yn=Y&menu_grp=MENU_NEW05&menu_no=3409&mexxta_use_yn=N&natn_cd_use_yn=N&ntctxt_no=1064525&nticmatr_yn=N&order_type=01&show_cnt=12&start_idx=2&tag_use_yn=N",
+  "accessed_at": "2026-08-11",
+  "caveat": "이산화황으로 10mg/kg 이상 잔류하는 아황산류의 실제 표시 의무는 최신 고시와 제품조건으로 확인한다."
+ },
+ {
+  "id": "S15",
+  "title": "아르헨티나산 수입식품 공개기록 2년분",
+  "publisher": "식품의약품안전처 수입식품정보마루",
+  "local_path": "update_2026-08-11/mfds/수입식품조회20260811.xlsx",
+  "accessed_at": "2026-08-11",
+  "report_basis_date": "2026-08-11",
+  "caveat": "원본에 중량·금액·수입신고번호가 없어 기록수는 실제 수입량·금액·시장점유율이 아니다. 수출국은 가공국으로 단정하지 않는다."
+ }
+]

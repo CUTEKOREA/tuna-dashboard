@@ -28,6 +28,11 @@ import type {
   ShrimpData,
   WhelkData,
 } from '@/lib/data/commodity-industry';
+import {
+  argentinaCatch,
+  argentinaKoreaImports,
+  argentinaRoutes,
+} from '@/lib/data/shrimp-argentina';
 import SafeResponsiveContainer from '../SafeResponsiveContainer';
 import styles from './TunaIndustryDashboard.module.css';
 
@@ -613,6 +618,122 @@ export function ShrimpKoreaChart({ data }: { data: ShrimpData }) {
           ))}
         </Bar>
       </BarChart>
+    </SafeResponsiveContainer>
+  );
+}
+
+/* ── 아르헨티나 홍새우 (사내 조사보고서 2종) ──────────────────────────────
+ *
+ * ⚠ 이 세 차트는 **통관·수출 신고 기준**이라 위 차트들(FAO 생산 통계)과 축을 공유하지
+ *   않는다. 같은 화면에 있다고 더할 수 있는 값이 아니다 — 캡션에도 그렇게 적었다.
+ */
+
+/** 한국 HS 030617 공급국 — 물량 막대에 신고단가 선을 얹는다. */
+export function ShrimpArgentinaKoreaChart() {
+  const animate = !useReducedMotion();
+  const { base: BASE, highlight: HIGHLIGHT } = PALETTE.새우;
+  const rot = rotated(argentinaKoreaImports.map((r) => r.원산지));
+
+  return (
+    <SafeResponsiveContainer width="100%" height={320}>
+      <ComposedChart
+        data={argentinaKoreaImports}
+        margin={{ ...MARGIN, bottom: rot.angle ? 54 : 8 }}
+      >
+        {grid}
+        <XAxis
+          dataKey="원산지"
+          {...AXIS}
+          tickFormatter={truncateXAxis}
+          angle={rot.angle}
+          textAnchor={rot.textAnchor as 'end' | 'middle'}
+          height={rot.angle ? 68 : 30}
+          interval={0}
+        />
+        <YAxis yAxisId="left" {...AXIS} tickFormatter={(v: number) => `${(v / 1000).toFixed(0)}천`} />
+        <YAxis
+          yAxisId="right"
+          orientation="right"
+          {...AXIS}
+          tickFormatter={(v: number) => `$${v}`}
+          domain={[0, 14]}
+        />
+        <Tooltip content={<Tip />} />
+        {legend}
+        <Bar
+          yAxisId="left"
+          dataKey="물량"
+          name="수입량 (톤)"
+          isAnimationActive={animate}
+        >
+          {argentinaKoreaImports.map((r) => (
+            // 아르헨티나만 색을 바꾼다. 범례를 늘리지 않고 한 행을 짚는 방법이다.
+            <Cell key={r.원산지} fill={r.원산지 === '아르헨티나' ? HIGHLIGHT : BASE} />
+          ))}
+        </Bar>
+        <Line
+          yAxisId="right"
+          type="monotone"
+          dataKey="단가"
+          name="평균 신고단가 ($/kg)"
+          stroke="#f59e0b"
+          strokeWidth={2}
+          dot={{ r: 3 }}
+          isAnimationActive={animate}
+        />
+      </ComposedChart>
+    </SafeResponsiveContainer>
+  );
+}
+
+/** 아르헨티나 어획·양륙 추이. 자연산이 직선으로 늘지 않는다는 것을 보이는 차트다. */
+export function ShrimpArgentinaCatchChart() {
+  const animate = !useReducedMotion();
+  const { base: BASE } = PALETTE.새우;
+  const rows = useMemo(
+    () => argentinaCatch.map((r) => ({ ...r, 라벨: `${r.연도}년` })),
+    [],
+  );
+
+  return (
+    <SafeResponsiveContainer width="100%" height={280}>
+      <ComposedChart data={rows} margin={MARGIN}>
+        {grid}
+        <XAxis dataKey="라벨" {...AXIS} />
+        <YAxis {...AXIS} tickFormatter={(v: number) => `${Math.round(v / 1000)}천`} />
+        <Tooltip content={<Tip />} />
+        {legend}
+        <Bar dataKey="어획" name="어획·양륙 (톤)" isAnimationActive={animate}>
+          {rows.map((r) => (
+            // 2025년만 출처가 다르다(정부 양륙). 같은 색으로 그리면 한 계열처럼 읽힌다.
+            <Cell key={r.연도} fill={r.구분 === '정부 양륙' ? '#94a3b8' : BASE} />
+          ))}
+        </Bar>
+      </ComposedChart>
+    </SafeResponsiveContainer>
+  );
+}
+
+/** 가공경로 3국 — 식약처 공개 조회행. 물량이 아니라 기록 빈도다. */
+export function ShrimpArgentinaRouteChart() {
+  const animate = !useReducedMotion();
+  const { base: BASE, highlight: HIGHLIGHT } = PALETTE.새우;
+
+  return (
+    <SafeResponsiveContainer width="100%" height={260}>
+      <ComposedChart data={argentinaRoutes} margin={MARGIN} layout="vertical">
+        <CartesianGrid stroke="var(--mu-grid)" strokeDasharray="3 3" horizontal={false} />
+        <XAxis type="number" {...AXIS} />
+        <YAxis type="category" dataKey="국가" {...AXIS} width={72} />
+        <Tooltip content={<Tip />} />
+        {legend}
+        <Bar dataKey="건수" name="공개 조회행 (건)" isAnimationActive={animate}>
+          {argentinaRoutes.map((r) => (
+            // 베트남 0건은 «없다»가 아니라 «이 자료에서 확인되지 않았다»이다.
+            <Cell key={r.국가} fill={r.검증 === '미입증' ? '#94a3b8' : r.국가 === '태국' ? HIGHLIGHT : BASE} />
+          ))}
+        </Bar>
+      </ComposedChart>
     </SafeResponsiveContainer>
   );
 }

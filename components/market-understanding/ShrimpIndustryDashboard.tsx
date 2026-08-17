@@ -6,6 +6,7 @@
 'use client';
 
 import React from 'react';
+import Link from 'next/link';
 import {
   TraderTable,
   CanneryCountryTable,
@@ -15,15 +16,24 @@ import { getShrimpCompanyResearch } from '@/lib/data/valuechain-companies';
 
 import { getShrimpIndustryData } from '@/lib/data/commodity-industry';
 import {
+  argentinaMeta,
+  argentinaRoutes,
+  PROCESSOR_TAB_MATCH,
+} from '@/lib/data/shrimp-argentina';
+import {
   SHRIMP_BRIEFING_POINTS,
   SHRIMP_NARRATIVES,
   SHRIMP_SOURCE_NOTES,
 } from '@/lib/shrimp-industry-content';
+import styles from './TunaIndustryDashboard.module.css';
 import CommodityIndustryDashboard, {
   type ChartSlot,
   type CommoditySpec,
 } from './CommodityIndustryDashboard';
 import {
+  ShrimpArgentinaCatchChart,
+  ShrimpArgentinaKoreaChart,
+  ShrimpArgentinaRouteChart,
   ShrimpCountryChart,
   ShrimpEnvChart,
   ShrimpKoreaChart,
@@ -35,6 +45,61 @@ const DATA = getShrimpIndustryData();
 const SYNC = { status: 'STATIC' as const, syncDate: `${DATA.요약.기준연도}년 확정` };
 
 const SHRIMP_RESEARCH = getShrimpCompanyResearch();
+
+
+const ARG_SYNC = { status: 'STATIC' as const, syncDate: '2026-08-12 조사' };
+
+/**
+ * 가공경로 표. 태국 공장 넷은 방콕사무소 「가공사 조사」 탭에 프로파일이 있다 —
+ * 등기·캐파·인증·재무를 거기서 본다. 탭은 URL 주소가 없어 페이지까지만 링크하고
+ * 어느 탭인지는 글로 밝힌다.
+ */
+function ArgentinaRouteTable() {
+  return (
+    <div className={styles.factWrap}>
+      <table className={styles.factTable}>
+        <thead>
+          <tr>
+            <th>가공국</th>
+            <th>공개 조회행</th>
+            <th>확인된 해외제조업소</th>
+            <th>이번 전략에서의 역할</th>
+          </tr>
+        </thead>
+        <tbody>
+          {argentinaRoutes.map((r) => (
+            <tr key={r.국가}>
+              <td>{r.국가}</td>
+              <td>
+                {r.건수.toLocaleString('ko-KR')}건
+                {r.검증 === '미입증' && (
+                  <span style={{ marginLeft: 6, opacity: 0.7 }}>— 이 자료에서 확인 없음</span>
+                )}
+              </td>
+              <td>
+                {r.공장.length === 0
+                  ? '–'
+                  : r.공장.map((f, i) => (
+                      <span key={f}>
+                        {i > 0 && ' · '}
+                        {f}
+                        {r.공장건수[i] !== undefined && ` ${r.공장건수[i]}건`}
+                        {PROCESSOR_TAB_MATCH[f] && <sup title="방콕사무소 가공사 조사에 프로파일 있음">▪</sup>}
+                      </span>
+                    ))}
+              </td>
+              <td>{r.역할}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+      <p className={styles.factNote}>
+        {argentinaMeta.recordCaveat} ▪ 표시한 공장은 방콕사무소 「가공사 조사」 탭에 등기·캐파·인증·재무
+        프로파일이 있다 — <Link href="/bangkok-office">방콕사무소로 이동</Link>.
+      </p>
+    </div>
+  );
+}
 
 export const SHRIMP_CHART_SLOTS: Record<string, ChartSlot[]> = {
   s01: [
@@ -83,6 +148,38 @@ export const SHRIMP_CHART_SLOTS: Record<string, ChartSlot[]> = {
         '막대 높이는 규모, 색 구성은 양식과 자연산의 비율, 선은 양식 비중이다. 선이 바닥에 붙은 나라와 천장에 붙은 나라는 사는 물건이 다르다.',
       telemetry: SYNC,
       render: () => <ShrimpCountryChart data={DATA} />,
+    },
+  ],
+  s05: [
+    {
+      title: '한국 HS 030617 공급국 (톤·$/kg)',
+      caption:
+        '막대가 수입량, 선이 평균 신고단가다. 장미색이 아르헨티나 — 물량은 6위인데 단가는 가장 높은 축이다. 통관 신고 기준이라 위 생산 통계와 더할 수 없다.',
+      telemetry: { status: 'STATIC' as const, syncDate: '2026년 1~5월 관세청' },
+      span: 'full',
+      render: () => <ShrimpArgentinaKoreaChart />,
+    },
+    {
+      title: '아르헨티나 어획·양륙 (톤)',
+      caption:
+        '회색 막대는 출처가 다르다 — 2018~2024는 FAO 어획, 2025는 아르헨티나 정부 양륙 집계다. 두 계열을 한 선으로 잇지 않은 이유다.',
+      telemetry: ARG_SYNC,
+      render: () => <ShrimpArgentinaCatchChart />,
+    },
+    {
+      title: '가공경로 3국 공개기록 (건)',
+      caption:
+        '식약처 화면에 나타난 조회행 빈도이지 수입량이 아니다. 회색인 베트남 0건은 「없다」가 아니라 「이 자료에서 확인되지 않았다」이다.',
+      telemetry: ARG_SYNC,
+      render: () => <ShrimpArgentinaRouteChart />,
+    },
+    {
+      title: '가공경로와 공장',
+      caption:
+        '태국은 공장을 고를 수 있고, 인도네시아는 한 공장에 몰려 있으며, 베트남은 이번 원료·목적국 조합이 아직 입증되지 않았다.',
+      telemetry: ARG_SYNC,
+      span: 'full',
+      render: () => <ArgentinaRouteTable />,
     },
   ],
   s04: [
