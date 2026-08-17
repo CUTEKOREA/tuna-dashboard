@@ -236,9 +236,9 @@
   --elev-3: 0 32px 80px -12px rgba(2, 8, 24, 0.88);
   --dsc-font-mono: var(--font-ibm-plex-mono), 'IBM Plex Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
 
-  /* 타이포 계층 (Twisty) — 웨이트 대비 200 vs 700 */
+  /* 타이포 계층 — 타이틀 «두껍게 900»은 양 테마 공통 (2026-08-17 다크 «새우» 얇음 지적, 취향 ②) */
   --dsc-title-size: clamp(2.5rem, 5vw, 4rem);        /* 페이지 타이틀 48-64px */
-  --dsc-title-weight: 250;
+  --dsc-title-weight: 900;
   --dsc-kpi-size: clamp(2.4rem, 4.6vw + 0.9rem, 4.5rem); /* KPI 숫자 — 390px에서 소수점 포함 9자리도 한 줄 유지 */
   --dsc-kpi-weight: 700;
   --dsc-kpi-unit-size: 1.125rem;                     /* 단위 병기 18px */

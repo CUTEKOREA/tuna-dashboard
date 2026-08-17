@@ -197,10 +197,12 @@ export function VolumeBarChart({
           stroke="var(--chart-axis, #8d93a5)"
           strokeDasharray="4 4"
           label={{
+            // 2026-08-17 지적 «단위가 잘 안보임»: 연회색 → 잉크 + 굵게, 막대와 안 겹치는 좌상단
             value: `평균 ${mean.toLocaleString('ko-KR', { maximumFractionDigits: 0 })} ${unit}`,
-            position: 'insideTopRight',
-            fill: 'var(--chart-axis, #8d93a5)',
-            fontSize: 11,
+            position: 'insideTopLeft',
+            fill: 'var(--text-main, #22242b)',
+            fontSize: 12,
+            fontWeight: 700,
           }}
         />
         <Bar
