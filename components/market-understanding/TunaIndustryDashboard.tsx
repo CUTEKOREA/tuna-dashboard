@@ -33,6 +33,8 @@ import {
 import {
   getTunaCompanyData,
   getTunaOceanOperators,
+  getTunaCarrierFleet,
+  getTunaCompanyResearch,
 } from '@/lib/data/valuechain-companies';
 import {
   BRIEFING_POINTS,
@@ -62,6 +64,12 @@ import {
   SpeciesProfileCards,
   StockStatusTable,
   OperatorFleetChart,
+  CarrierFlagChart,
+  CarrierOwnerChart,
+  CarrierProfileTable,
+  TraderTable,
+  CanneryCountryTable,
+  BrandMarketTable,
   CountryRankChart,
   KoreaExportPriceChart,
   KoreaSpeciesChart,
@@ -87,6 +95,8 @@ const FLEET = getTunaFleetData();
 const COMPANIES = getTunaCompanyData();
 const GLOSSARY = getTunaGlossary();
 const OCEAN_OPS = getTunaOceanOperators();
+const CARRIER_FLEET = getTunaCarrierFleet();
+const COMPANY_RESEARCH = getTunaCompanyResearch();
 const CHAIN_STAGES = getChainStages();
 const CROSS_STAGES = getCrossStages();
 const ALL_STAGES: IndustryStage[] = [...CHAIN_STAGES, ...CROSS_STAGES];
@@ -291,6 +301,42 @@ export const CATCH_CHART_SLOTS: Record<string, ChartSlot[]> = {
       ),
     },
   ],
+  s03: [
+    {
+      title: '서·중부태평양 운반선 국적별 (척)',
+      caption:
+        '인가 등록부의 운반선 354척을 깃발국으로 센 실측이다. 파나마·바하마는 소유국이 아니라 편의치적 깃발국이다 — 동태평양 기구는 운반선을 별도 목록으로 관리해 여기 없다.',
+      telemetry: { status: 'SYNCED' as const, syncDate: '2026-08 등록부' },
+      render: () => <CarrierFlagChart rows={CARRIER_FLEET.국적별} />,
+    },
+    {
+      title: '운반선 소유사 상위 (척)',
+      caption:
+        '상위권은 필리핀·인도네시아 어업 그룹의 집단 선망 부속 운반선이다. 국제 환적을 움직이는 대형 리퍼 선사는 선박을 개별 명의로 분산 등록해 이 집계에 이름이 안 보인다 — 아래 보강 표가 그 실세를 담는다. 개인 소유 7척은 익명 처리했다.',
+      telemetry: { status: 'SYNCED' as const, syncDate: '2026-08 등록부' },
+      render: () => <CarrierOwnerChart rows={CARRIER_FLEET.소유사상위} />,
+    },
+    {
+      title: '국제 리퍼·환적 실세 (등록부 밖 보강)',
+      caption: COMPANY_RESEARCH.운반선사보강.요지,
+      telemetry: { status: 'SYNCED' as const, syncDate: '2026-08-17 조사' },
+      render: () => <CarrierProfileTable rows={COMPANY_RESEARCH.운반선사보강.rows} />,
+    },
+    {
+      title: '캐닝용 원어 트레이더 (빅3와 한국의 자리)',
+      caption: COMPANY_RESEARCH.트레이더.구조,
+      telemetry: { status: 'SYNCED' as const, syncDate: '2026-08-17 조사' },
+      render: () => <TraderTable rows={COMPANY_RESEARCH.트레이더.rows} />,
+    },
+  ],
+  s04: [
+    {
+      title: '국가별 캔참치 공장과 주요 기업',
+      caption: COMPANY_RESEARCH.캔공장.요지,
+      telemetry: { status: 'SYNCED' as const, syncDate: '2026-08-17 조사' },
+      render: () => <CanneryCountryTable rows={COMPANY_RESEARCH.캔공장.rows} />,
+    },
+  ],
   s06: [
     {
       title: '품목군별 교역 규모와 단가 (달러/톤)',
@@ -320,6 +366,12 @@ export const CATCH_CHART_SLOTS: Record<string, ChartSlot[]> = {
     },
   ],
   s07: [
+    {
+      title: '국가별 참치캔 브랜드와 점유율 (성격 구분)',
+      caption: COMPANY_RESEARCH.브랜드.요지,
+      telemetry: { status: 'SYNCED' as const, syncDate: '2026-08-17 조사' },
+      render: () => <BrandMarketTable rows={COMPANY_RESEARCH.브랜드.rows} />,
+    },
     {
       title: '식품안전 기준과 실제 함량',
       caption:

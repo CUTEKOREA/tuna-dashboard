@@ -20,6 +20,8 @@
  */
 
 import rawOceanOperators from '../../public/data/tuna_ocean_operators_v1.json';
+import rawCarrierFleet from '../../public/data/tuna_carrier_fleet_v1.json';
+import rawCompanyResearch from '../../public/data/tuna_company_research_v1.json';
 
 export type CompanyGrade = 'A' | 'B' | 'C';
 
@@ -418,4 +420,80 @@ const OCEAN = rawOceanOperators as unknown as TunaOceanOperatorData;
 /** 참치 — 해역별 선사. 해역 간 합산 금지(중복 인가 + 두 기구 누락). */
 export function getTunaOceanOperators(): TunaOceanOperatorData {
   return OCEAN;
+}
+
+/**
+ * 환적 단계의 운반선 선단 (WCPFC 등록부 실측, scripts/build_tuna_carrier_fleet.py).
+ * ⚠ 서·중부태평양 한 기구다 — 동태평양은 운반선을 별도 목록으로 관리해 여기 없다.
+ */
+export interface CarrierFlagRow {
+  국적: string;
+  척수: number;
+}
+
+export interface CarrierOwnerRow {
+  회사: string;
+  척수: number;
+  주국적: string;
+}
+
+export interface TunaCarrierFleetData {
+  _meta: Record<string, unknown>;
+  국적별: CarrierFlagRow[];
+  소유사상위: CarrierOwnerRow[];
+}
+
+export function getTunaCarrierFleet(): TunaCarrierFleetData {
+  return rawCarrierFleet as unknown as TunaCarrierFleetData;
+}
+
+/**
+ * 기업 조사 큐레이션 (트레이더·운반선사 보강·국가별 캔공장·국가별 브랜드).
+ * 기계 집계가 아니라 조사 결과다 — 각 행에 출처와 수치 성격(기관/자사/자칭)을 붙였고,
+ * 찾지 못한 값은 「확인불가/공표 없음」으로 남겼다. 빈칸 자체가 정보다.
+ */
+export interface TraderRow {
+  회사: string;
+  위치: string;
+  내용: string;
+  규모: string;
+  성격: string;
+  출처: string;
+}
+
+export interface CarrierProfileRow {
+  회사: string;
+  유형: string;
+  내용: string;
+  출처: string;
+  성격: string;
+}
+
+export interface CanneryCountryRow {
+  국가: string;
+  공장: string;
+  기업: string;
+  출처: string;
+  등급: string;
+}
+
+export interface BrandMarketRow {
+  시장: string;
+  브랜드: string;
+  소유: string;
+  실적: string;
+  점유율: string;
+  성격: string;
+}
+
+export interface TunaCompanyResearchData {
+  _meta: Record<string, unknown>;
+  트레이더: { 구조: string; rows: TraderRow[] };
+  운반선사보강: { 요지: string; rows: CarrierProfileRow[] };
+  캔공장: { 요지: string; rows: CanneryCountryRow[] };
+  브랜드: { 요지: string; rows: BrandMarketRow[] };
+}
+
+export function getTunaCompanyResearch(): TunaCompanyResearchData {
+  return rawCompanyResearch as unknown as TunaCompanyResearchData;
 }
