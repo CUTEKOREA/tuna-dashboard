@@ -22,6 +22,7 @@ import {
   WHELK_NARRATIVES,
   WHELK_SOURCE_NOTES,
 } from '@/lib/whelk-industry-content';
+import { SeriesStats } from './CockpitExtra';
 import CommodityIndustryDashboard, {
   type ChartSlot,
   type CommoditySpec,
@@ -51,6 +52,9 @@ export const WHELK_CHART_SLOTS: Record<string, ChartSlot[]> = {
         '호박색이 양식, 나머지가 어획이다. 노란 막대가 참골뱅이류 — 한국이 통조림으로 먹는 그 종이고, 양식이 0이라 막대 전체가 자연산이다.',
       telemetry: FAO_SYNC,
       render: () => <WhelkGroupChart data={DATA} />,
+      cockpitExtra: () => (
+        <SeriesStats rows={DATA.종구성} labelKey="그룹" valueKey="생산량" unit="(톤)" sum />
+      ),
     },
   ],
   s02: [
@@ -66,6 +70,9 @@ export const WHELK_CHART_SLOTS: Record<string, ChartSlot[]> = {
       caption: '열 나라를 다 세워도 한국은 나오지 않는다. 어획량이 0이기 때문이다.',
       telemetry: FAO_SYNC,
       render: () => <WhelkBuccinumChart data={DATA} />,
+      cockpitExtra: () => (
+        <SeriesStats rows={DATA.참골뱅이상위국} labelKey="국가" valueKey="어획량" unit="(톤)" sum />
+      ),
     },
   ],
   s03: [

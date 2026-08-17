@@ -65,6 +65,14 @@ export interface ChartSlot {
    * 없으면 그래프 기본값 — 1열에 2개.
    */
   span?: 'full' | 'half';
+  /**
+   * 조종석 모드에서만 차트 아래 붙는 보조 수치 (스펙 cockpit-mode-design §3, 2단계).
+   *
+   * **그 차트가 이미 쓰는 배열에서 세거나 고른 값만** 넣는다. 다른 출처를 끌어오거나
+   * 비율을 새로 계산하면 아무도 검수하지 않는 수치가 화면에 생긴다.
+   * 노출은 `CockpitOnly` 가 CSS 로 가르므로 여기서 모드를 검사하지 않는다.
+   */
+  cockpitExtra?: () => React.ReactNode;
 }
 
 /**
@@ -181,6 +189,7 @@ function ChartFigure({ slot }: { slot: ChartSlot }) {
         <span>{slot.caption}</span>
       </figcaption>
       <div className={styles.chartFrame}>{slot.render()}</div>
+      {slot.cockpitExtra?.()}
     </figure>
   );
 }

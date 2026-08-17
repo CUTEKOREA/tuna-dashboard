@@ -1172,6 +1172,45 @@ img, video, canvas, svg {
   padding: 14px 16px;
 }
 
+/* ── 2단계: 조종석 전용 보조 지표 ──────────────────────────────────────────
+ * 노출을 CSS 로만 가른다. JS 로 분기하면 서버·클라이언트 렌더가 갈리고
+ * 「컴포넌트 분기 금지」(스펙 §2)도 깨진다. 기본 모드에서는 DOM 에 있되 안 보인다. */
+.cockpit-only {
+  display: none;
+}
+
+[data-density='cockpit'] .cockpit-only {
+  display: block;
+}
+
+.cockpit-stats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0 18px;
+  margin: 6px 0 0;
+  padding-top: 6px;
+  border-top: 1px dashed var(--mu-line, rgba(148, 163, 184, 0.3));
+  font-size: 0.72rem;
+  line-height: 1.5;
+  font-variant-numeric: tabular-nums;
+}
+
+.cockpit-stats > div {
+  display: flex;
+  gap: 5px;
+}
+
+.cockpit-stats dt {
+  margin: 0;
+  color: var(--mu-ink-muted, #94a3b8);
+}
+
+.cockpit-stats dd {
+  margin: 0;
+  color: var(--mu-ink, inherit);
+  font-weight: 600;
+}
+
 /* 파노피·코스모 자체 밀도 유지 (스펙 §4 적용 제외) */
 [data-density='cockpit'] .cosmo-root {
   --dsc-card-radius: 12px;

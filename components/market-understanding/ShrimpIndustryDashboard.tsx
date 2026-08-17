@@ -15,6 +15,7 @@ import {
 import { getShrimpCompanyResearch } from '@/lib/data/valuechain-companies';
 
 import { getShrimpIndustryData } from '@/lib/data/commodity-industry';
+import { SeriesStats } from './CockpitExtra';
 import {
   argentinaMeta,
   argentinaRoutes,
@@ -125,6 +126,9 @@ export const SHRIMP_CHART_SLOTS: Record<string, ChartSlot[]> = {
       caption: '장미색이 흰다리새우다. 1위 하나가 나머지 여덟을 합친 것보다 크다.',
       telemetry: SYNC,
       render: () => <ShrimpSpeciesChart data={DATA} />,
+      cockpitExtra: () => (
+        <SeriesStats rows={DATA.종구성} labelKey="종" valueKey="생산량" unit="(톤)" sum />
+      ),
     },
   ],
   s03: [
@@ -148,6 +152,17 @@ export const SHRIMP_CHART_SLOTS: Record<string, ChartSlot[]> = {
         '막대 높이는 규모, 색 구성은 양식과 자연산의 비율, 선은 양식 비중이다. 선이 바닥에 붙은 나라와 천장에 붙은 나라는 사는 물건이 다르다.',
       telemetry: SYNC,
       render: () => <ShrimpCountryChart data={DATA} />,
+      // 차트는 상위 12개국만 그린다. 몇 나라가 잘렸는지는 그래프만 봐서는 알 수 없다.
+      cockpitExtra: () => (
+        <SeriesStats
+          rows={DATA.국가별}
+          labelKey="국가"
+          valueKey="합계"
+          unit="(톤)"
+          shown={12}
+          sum
+        />
+      ),
     },
   ],
   s05: [

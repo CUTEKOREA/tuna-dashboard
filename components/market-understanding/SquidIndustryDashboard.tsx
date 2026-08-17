@@ -36,6 +36,7 @@ import TermTooltip from '../TermTooltip';
 import HeroZone from '../v2/HeroZone';
 import { HeroNowStrip } from '../v2/HeroNowStrip';
 import PillTabs, { type PillTab } from '../v2/PillTabs';
+import { SeriesStats } from './CockpitExtra';
 import { useStageKey } from './useStageKey';
 import {
   AreaRankChart,
@@ -92,6 +93,8 @@ interface ChartSlot {
   render: () => React.ReactNode;
   /** 표·장시계열은 full(1열 1개). 없으면 그래프 기본 — 1열 2개. */
   span?: 'full' | 'half';
+  /** 조종석 전용 보조 수치. 공용 골격의 같은 이름 규약과 뜻이 같다. */
+  cockpitExtra?: () => React.ReactNode;
 }
 
 /**
@@ -110,6 +113,9 @@ export const SQUID_CHART_SLOTS: Record<string, ChartSlot[]> = {
         '같은 갈래는 비슷한 색이다. 오징어는 보라·남색, 갑오징어는 장미, 두족류 미분류는 회색, 그 밖의 종은 호박이다. 이 셋을 더하지 않는다.',
       telemetry: CATCH_SYNC,
       render: () => <SpeciesMixChart data={CATCH} />,
+      cockpitExtra: () => (
+        <SeriesStats rows={CATCH.어종구성} labelKey="어종" valueKey="어획량" unit="(톤)" sum />
+      ),
     },
     {
       title: '무엇을 오징어라 부르는가 (톤)',
@@ -168,6 +174,17 @@ export const SQUID_CHART_SLOTS: Record<string, ChartSlot[]> = {
       caption: '1위 중국은 자국 연안이 아니라 원양에서 대부분을 잡는다. 장미색이 한국이다.',
       telemetry: CATCH_SYNC,
       render: () => <CountryRankChart data={CATCH} />,
+      // 차트는 상위 12개국까지다. 15개 중 3개가 잘렸다는 사실은 그래프에 안 나온다.
+      cockpitExtra: () => (
+        <SeriesStats
+          rows={CATCH.국가순위}
+          labelKey="국가"
+          valueKey="어획량"
+          unit="(톤)"
+          shown={12}
+          sum
+        />
+      ),
     },
   ],
   s05: [
@@ -449,6 +466,7 @@ function StageSection({
                   <span>{slot.caption}</span>
                 </figcaption>
                 <div className={styles.chartFrame}>{slot.render()}</div>
+                {slot.cockpitExtra?.()}
               </figure>
             ))}
             {stage.widgets.map((widget) => (
