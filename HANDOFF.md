@@ -1,3 +1,20 @@
+> ⚓ **2026-08-17 21:40 KST — SEIN VENUS 8/17 일일보고 프로덕션 반영 완료** [Codex]:
+> - PR [#593](https://github.com/CUTEKOREA/tuna-dashboard/pull/593)을 squash merge `3027123`으로 병합했다. 현재 `main`/활성 운영 배포 `ef9092d`가 이 커밋을 조상으로 포함하며, Vercel `dpl_3sup1AbvR2vKoYoG5mFym1YmFa3v`는 `READY`이고 `https://leedonggun.co.kr` alias를 가리킨다.
+> - PR App Quality Gate `32028828639`, merge App Quality Gate `32029195689`, Data Freshness Audit `32029195783`가 모두 성공했다. 후속 운영 배포 `ef9092d`의 App Quality Gate `32030671517`과 Data Freshness Audit `32030671492`도 성공했다.
+> - 보호된 운영 API를 소유자 세션으로 재조회해 `200`, `private, no-store`와 최신 `8/17`, 일일 `312.570`, 누계 `2,325.670`, 잔량 `949.330`, 온도 `[-21,-23] / [-22,-23] / [-22,-23]`, 명일 `8/18 343톤`을 확인했다. 어창별 어종 추정 차단도 유지된다.
+> - 운영 데스크톱 화면은 기준일 `2026.08.17`, 2026 누계 `35,379.190 MT`, 진행률 `71.0%`를 표시한다. 보고서 모달은 세 음수 온도와 `명일(8/18)은 약 343톤 하역 작업 예정입니다.`를 그대로 출력한다.
+> - 운영 페이지를 CDP로 `390×844`에 렌더해 `innerWidth/clientWidth/scrollWidth/bodyScrollWidth = 390/390/390/390`을 확인했고, 복원 후 사용자의 원래 방콕사무소 탭으로 되돌렸다. 활성 배포 최근 30분 Vercel `error=0`, `fatal=0`이다.
+> - 다음: 8/18 일일보고 원본 수신 시 새 실제량으로 갱신한다. 기존 구글 할 일 `SEIN VENUS 312.570 MT`는 중복 생성 없이 유지한다.
+
+> 마지막 업데이트: 2026-08-17 21:40 KST [Codex]
+
+> 🦐 **2026-08-17 — 라이브 새우 페이지에 6개국 창구(s06) 배선** [Grok]:
+> - 사이드바 「새우」는 `shrimp-industry` (`ShrimpIndustryDashboard`)다. 직전 배포는 쓰이지 않는 `ShrimpDashboard`(/shrimp 는 404)에만 위젯을 넣어서 화면에 안 보였다.
+> - 시장 이해 06단계 「한국 창구」를 05와 바스켓 사이에 넣었다. 인테이크 `lib/data/shrimp-country-series.ts` 가 v4 `w_series_*` 를 읽는다(ADR 0005).
+> - 슬롯 3개: 역할 표 · 창구 물량(030617/160521) · 창구 단가(030617). 텔레메트리는 정적 JSON 이라 STATIC.
+> - 측정 경계: 2026년 1~6월 제품중량. FAO 활어·05단계 1~5월 표와 더하거나 연환산하지 않는다. SECA 발효 미확인.
+> - `npm run verify` 통과: lint 0 errors / 4 warnings · Vitest 806/808(skip 2) · build OK.
+> - 상태: `feat/shrimp-industry-s06` 로컬 반영. 배포는 이 세션에서 이어서 진행.
 > 🚀 **2026-08-17 — 라이브 새우에 6개국 창구(s06) 배포** [Grok]:
 > - 안 보였던 이유: 사이드바 「새우」는 `shrimp-industry`다. 직전 #596은 쓰이지 않는 `ShrimpDashboard`(/shrimp 404)에만 위젯을 넣었다.
 > - PR [#601](https://github.com/CUTEKOREA/tuna-dashboard/pull/601) squash `ef9092d`. Gate `32030360181` 성공 (806/808).
