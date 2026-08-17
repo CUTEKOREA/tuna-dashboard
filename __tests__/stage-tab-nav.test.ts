@@ -25,7 +25,7 @@ const DASHBOARDS = [
   ['오징어', SquidIndustryDashboard, 11],
   ['참치', TunaIndustryDashboard, 10],
   ['새우', ShrimpIndustryDashboard, 7],
-  ['고등어', MackerelIndustryDashboard, 5],
+  ['고등어', MackerelIndustryDashboard, 6],
   ['골뱅이', WhelkIndustryDashboard, 6],
 ] as const;
 
