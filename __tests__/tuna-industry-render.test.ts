@@ -1,3 +1,5 @@
+import { readFileSync } from 'node:fs';
+import { join } from 'node:path';
 import React from 'react';
 import { renderToStaticMarkup } from 'react-dom/server';
 import { describe, expect, it } from 'vitest';
@@ -346,6 +348,21 @@ describe('시장 이해 > 참치 — 데이터 인테이크', () => {
         expect(['A', 'B', 'C']).toContain(fact.grade);
       }
     }
+  });
+
+  it('어획 단계 그래프는 좌우 2열이고 승격 위젯과 한 격자를 쓴다', () => {
+    const share = CATCH_CHART_SLOTS.s02.find((s) => s.title === '어종별 어획량 (톤)');
+    const trend = CATCH_CHART_SLOTS.s02.find((s) => s.title === '어종별 어획량 20년 추이 (톤)');
+    const bluefin = CATCH_CHART_SLOTS.s02.find((s) => s.title.startsWith('참다랑어 자연산과 축양'));
+    expect(share?.span).not.toBe('full');
+    expect(trend?.span).not.toBe('full');
+    expect(bluefin?.span).not.toBe('full');
+
+    const source = readFileSync(
+      join(process.cwd(), 'components/market-understanding/TunaIndustryDashboard.tsx'),
+      'utf8',
+    );
+    expect(source).toContain('rest.length + stage.widgets.length');
   });
 });
 

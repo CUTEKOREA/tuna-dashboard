@@ -10,6 +10,8 @@ import HeroMarketCommand from '../HeroMarketCommand';
 import NewsFrontPage from '../NewsFrontPage';
 import FleetHeroCommand from '../FleetHeroCommand';
 import UnloadingHeroCommand from './r6/UnloadingHeroCommand';
+import UnloadingMonthBoard from './r7/UnloadingMonthBoard';
+import UnloadingVoyageGantt from './r7/UnloadingVoyageGantt';
 import FilterBar from '../v2/FilterBar';
 import { type AtunaPriceRow } from '../../lib/data/atuna-price-summary';
 
@@ -78,11 +80,26 @@ export const DESIGN_VARIANTS: DesignVariant[] = [
     note: '실페이지에 히어로 아래 섹션으로 반영 — 추가 지적은 여기 코멘트로',
     render: () => <FleetHeroCommand />,
   },
+  // r7 (2026-08-17): 하역 다변화 — «월 기준» 재해석 2형 + 기존 지휘형(비교 기준선)
   {
-    id: 'unloading-hero-r6b',
-    title: '하역 히어로 r6-개량: 항차 지휘형 (월 기준 정렬)',
-    round: 6,
-    note: 'r6 판정 «하단 정렬은 월 기준» 반영 — 카드가 항차 연월 최신순, 같은 월은 하역중 우선',
+    id: 'unloading-r7a',
+    title: '하역 r7-A: 월별 그룹 보드',
+    round: 7,
+    note: '«월 기준»을 그룹핑으로 해석 — 월 섹션 헤더 아래 그 달 항차 카드. 선택 없음, 훑는 보드',
+    render: () => <UnloadingMonthBoard />,
+  },
+  {
+    id: 'unloading-r7b',
+    title: '하역 r7-B: 항차 기간 바',
+    round: 7,
+    note: '항차를 시간축 가로 바로 — 어느 달에 어떤 배가 걸쳐 있는지. 바 클릭 = 상단 KPI 전환',
+    render: () => <UnloadingVoyageGantt />,
+  },
+  {
+    id: 'unloading-r7c',
+    title: '하역 r7-C: 항차 지휘형 (r6 기준선)',
+    round: 7,
+    note: '기존 지휘형(월 정렬) — 위 두 신형과 비교용 기준선',
     render: () => <UnloadingHeroCommand />,
   },
   // r5 판정: 뉴스 A ★4·필터 B ★4 — 채택, 실페이지 반영. 갤러리는 채택본만 (추가 지적 수집용)
