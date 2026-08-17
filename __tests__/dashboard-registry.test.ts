@@ -655,9 +655,15 @@ describe('cockpit density mode (2026-08-17 스펙)', () => {
     const pageSource = readFileSync(join(process.cwd(), 'app/page.tsx'), 'utf8');
     const globalsSource = readFileSync(join(process.cwd(), 'app/globals.css'), 'utf8');
 
-    expect(pageSource).toContain("localStorage.getItem('cockpit-mode')");
-    expect(pageSource).toContain("setAttribute('data-density'");
+    // 토글 구현이 lib/cockpit-density 로 빠졌다. 페이지에 문자열이 남았는지 보는 대신
+    // «페이지가 그 계약을 쓰고 있는지»를 본다 — 키·속성 이름 자체는
+    // __tests__/cockpit-mode-contract.test.ts 가 리터럴로 못 박는다.
+    expect(pageSource).toContain("from '@/lib/cockpit-density'");
+    expect(pageSource).toContain('applyDensity(');
+    expect(pageSource).toContain('readStoredDensity');
     expect(pageSource).toContain('조종석 모드');
+    // 키·속성 문자열을 페이지에 다시 적으면 두 곳이 갈린다.
+    expect(pageSource).not.toContain("localStorage.getItem('cockpit-mode')");
     expect(globalsSource).toContain("[data-density='cockpit']");
     // 적용 제외 — 파노피·코스모는 자체 밀도 복원
     expect(globalsSource).toContain("[data-density='cockpit'] .cosmo-root");
