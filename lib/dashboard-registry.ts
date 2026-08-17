@@ -52,7 +52,7 @@ export const DASHBOARD_MENU_CONFIGS = [
   { key: 'shrimp-industry', title: '새우', section: 'understanding', accent: 'teal', sidebar: { icon: 'Shrimp' } },
   { key: 'pork', title: '돼지고기', section: 'livestock', accent: 'cyan', sidebar: { icon: 'Hexagon', suffix: 'Pork' } },
   { key: 'cross-intelligence', title: '통합 인텔리전스', section: 'strategy', accent: 'gold', sidebar: { icon: 'BarChart2', suffix: 'Cross' } },
-  { key: 'purse-seiner-db', title: '선단 DB', section: 'strategy', accent: 'cyan' },
+  { key: 'purse-seiner-db', title: '선단 DB', section: 'strategy', accent: 'cyan', sidebar: { icon: 'Ship', suffix: 'FleetDb' } },
 ] as const satisfies readonly DashboardMenuConfigShape[];
 
 export type ActiveMenu = (typeof DASHBOARD_MENU_CONFIGS)[number]['key'];
@@ -192,6 +192,9 @@ const SIDEBAR_SECTION_KEYS: Record<DashboardSection, readonly ActiveMenu[]> = {
   ],
   fishery: [],
   strategy: [
+    // 2026-08-17: 선단 DB 에 전 해역 등록부 탐색기가 실리면서 사이드바로 승격.
+    // cross-intelligence 는 종전대로 명령 팔레트 전용이다.
+    'purse-seiner-db',
   ],
   agriculture: [],
   livestock: ['pork'],

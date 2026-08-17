@@ -591,7 +591,7 @@ describe('dashboard registry', () => {
 
   it('omits sidebar sections after every item in the section is retired', () => {
     expect(SIDEBAR_SECTIONS.map((section) => section.section)).not.toContain('livestock');
-    expect(SIDEBAR_SECTIONS.map((section) => section.section)).not.toContain('strategy');
+    // 2026-08-17: 선단 DB(전 해역 등록부 탐색기)가 실리며 strategy 섹션이 사이드바로 복귀했다
     expect(SIDEBAR_SECTIONS.map((section) => section.section)).not.toContain('agriculture');
     expect(SIDEBAR_SECTIONS.map((section) => section.section)).not.toContain('fishery');
     expect(SIDEBAR_SECTIONS.every((section) => section.items.length > 0)).toBe(true);
@@ -601,16 +601,18 @@ describe('dashboard registry', () => {
     expect(SIDEBAR_SECTIONS.map((section) => section.title)).toEqual([
       '📡 실시간 운영',
       '📚 시장 이해',
+      '🔬 전략 분석',
     ]);
 
     expect(SIDEBAR_SECTIONS.map((section) => section.items.map((item) => item.key))).toEqual([
       ['market', 'fleet', 'unloading', 'logistics', 'panofi', 'cosmo', 'bangkok-office', 'gmts', 'mail'],
       ['tuna-industry', 'squid-industry', 'mackerel-industry', 'whelk-industry', 'shrimp-industry'],
+      // 2026-08-17 사용자 요청: 선단 DB 노출. cross-intelligence 는 종전대로 팔레트 전용
+      ['purse-seiner-db'],
     ]);
 
     const sidebarKeys = SIDEBAR_SECTIONS.flatMap((section) => section.items.map((item) => item.key));
     expect(new Set(sidebarKeys).size).toBe(sidebarKeys.length);
-    expect(sidebarKeys).not.toContain('purse-seiner-db');
     expect(sidebarKeys).not.toContain('bni-global');
     expect(sidebarKeys).not.toContain('cross-intelligence');
 
