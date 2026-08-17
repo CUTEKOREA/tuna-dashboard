@@ -1,0 +1,22 @@
+공개 출처만 대조해 FIVE STARS(Nam Sao)를 법인 단위로 구분하겠습니다. 확인되지 않은 값은 추정하지 않습니다.법인번호 `3100606537`의 **CÔNG TY CỔ PHẦN THỦY SẢN NĂM SAO**(FIVE STARS SEAFOODS JSC, FISSCO)로 특정됐습니다. 등기·인증·재무 페이지를 원문 대조합니다.등기·EU 승인·자본금·상장 여부를 원문에서 추가로 대조합니다. ISOKNA의 칸토 회사 설명은 이 법인과 섞이지 않도록 제외합니다.
+**대상 법인:** CÔNG TY CỔ PHẦN THỦY SẢN NĂM SAO / FIVE STARS SEAFOODS JOINT-STOCK COMPANY (FISSCO). MST·기업번호 **3100606537**. 2010-05-25 설립. 주사무소: Thanh Khê, 옛 Thanh Trạch(Bố Trạch, Quảng Bình) → 현 Bắc Trạch, Quảng Trị. 별개 법인(부동산 Năm Sao Group, Ninh Thuận 종묘 4500470868, Phú Mỹ Five Stars, 烟台五星, Sông Gianh 수산 3100125463)은 제외.
+
+**1) 지배구조·상장**  
+값: 등기번호 3100606537. 법정대표 현재 Dương Hoàng Giang(이사회 의장 겸 사장). 과거·하노이지점(3100606537-001) 대표는 Phạm Ngọc Quang. 납입자본·지분(5% 이상 주주) 확인불가. 상장 확인불가(HOSE·HNX·UPCOM 종목 없음. 민간DB는 ‘미상장’).  
+출처: MaSoThue(3100606537, 갱신 2026-08-14); Thư viện Pháp luật 기업카드; DauThau.Net 기업등록; Doanhnghiep.vn(Cổng ĐKKD·HOSE 대조, 자본·주주 ‘Chưa công bố’, Niêm yết ‘Chưa’)  
+조회일: 2026-08-17
+
+**2) 규모·캐파**  
+값: 일일·연간 처리능력 확인불가. 가공공장 1곳(2010년 Sông Gianh 냉동수출공장 인수, Thanh Khê). 하노이 지점은 사무소(일부 DB 일시정지). 직원 약 350명(2024). 냉동창고 용량 확인불가.  
+출처: Báo Quảng Trị「Kỳ vọng thủy sản xuất khẩu」(2024-02-17); Tuổi Trẻ/Người Lao Động「Chăm chút bữa ăn…」(2024-04-12); Báo Quảng Trị「Giong buồm đón gió」(2019-07-01). ※같은 2024 기사의 20톤/일·400톤 창고는 Thanh Quang사 수치.  
+조회일: 2026-08-17
+
+**3) 인증**  
+값: EU 승인번호 **DL 171**(TRACES 등재, 활동 PP). 대만·한국 수출승인 목록·중국 재중등록(2018)에 DL 171. 성 농업국이 EU·한·중·일 수출코드 보유로 기술. HACCP·BRC·IFS·MSC·ASC·HALAL·FDA 등록번호 확인불가(BRC는 교육만, 인증서 아님).  
+출처: EU TRACES NT VN Fishery Products; VASEP「List … Export to Taiwan」(2026-06-10); 중국 재중수산물등록(2018-03-12); vnsw.gov.vn Korea.xlsx; Báo Quảng Trị(2024-02-17); KNA CERT는 교육 페이지만.  
+조회일: 2026-08-17
+
+**4) 재무**  
+값: 연평균 매출 약 1,800억 VND, 그중 수출 600만~700만 USD(특정 회계연도·감사보고서 아님). 순이익·총자산·회계연도 확인불가.  
+출처: Báo Quảng Trị「Kỳ vọng thủy sản xuất khẩu」(2024-02-17). Doanhnghiep.vn은 BCTC 미제출로 자본·재무 공란.  
+조회일: 2026-08-17

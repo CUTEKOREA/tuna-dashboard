@@ -7,7 +7,31 @@
    "베트남"
   ],
   "registryTotal": 341,
-  "taggedCells": 285
+  "taggedCells": 285,
+  "enrichment": {
+   "by": "Grok 4.6 (ask_grok_verified)",
+   "runOn": "2026-08-17",
+   "companiesQueried": 41,
+   "companiesMatched": 41,
+   "cellsFilled": 137,
+   "cellsUnresolved": 24,
+   "policy": "원본 값과 신뢰도 태그는 그대로 둔다. 보강분은 셀의 enrich 필드에 따로 붙고 화면에서 구분해 보인다. '확인불가'는 값으로 세지 않고 «공개 출처에 없다»는 관측으로 기록한다 — 빈칸을 추정으로 메우지 않기 위한 장치다.",
+   "skipped": [],
+   "truncatedResponses": [],
+   "verifiedUnresolved": [
+    "AN DAI PHAT · 인증",
+    "CHOCKSAMUT MARINE · 재무",
+    "DAEDONG (THAILAND) · 재무",
+    "G.B. GLOBAL · 재무",
+    "HANA FOOD SERVICE · 규모·캐파",
+    "P.T. FOODS PROCESSING · 재무",
+    "RATCHAPAT INTERFOODS · 규모·캐파",
+    "RATCHAPAT INTERFOODS · 재무",
+    "RED SEA INTERNATIONAL · 인증",
+    "SURAT SEAFOODS (SRT Foods) · 재무"
+   ],
+   "verifiedBy": "Codex 적대 검증 2026-08-17 — 경계 156칸 전수, 오분류 10칸 정정 (전부 보강→확인불가 방향. 잘못 버린 칸 0)"
+  }
  },
  "countries": {
   "태국": {
@@ -152,14 +176,28 @@
       "v": "SET 상장(CFRESH) 1993상장·납입자본 927M밧·FreeFloat33%",
       "tags": [
        "확인"
-      ]
+      ],
+      "enrich": {
+       "status": "보강",
+       "value": "`SEAFRESH INDUSTRY PUBLIC COMPANY LIMITED`(บมจ. ซีเฟรชอินดัสตรี), 등기번호 0107537000751. 이사회 의장 Tassanee Youngmeevithya, CEO·부회장(구속권한 이사) Narit Chia-Apar. 수권·납입자본 각 927,099,200바트(보통주 927,099,200주, 액면 1바트). 2026-03-12 지분: Narit 23.26%, Chintat 14.47%, Chankate 14.47%, Tassanee 13.94%, Chartchai Tangsrichaeronporn 4.04%. SET 상장 CFRESH(1993-07-02).",
+       "source": "회사 56-1 One Report 2025 §1.1.5·§1.3.4·§1.4; SET Factsheet; IR 이사회(seafresh.com/investor/board.asp); DataForThai(DBD 개방데이터)",
+       "checkedOn": "2026-08-17",
+       "by": "Grok 4.6"
+      }
      },
      "규모·캐파": {
       "v": "수직계열(양식+사료+가공) · 직원",
       "tags": [
        "확인",
        "불가"
-      ]
+      ],
+      "enrich": {
+       "status": "보강",
+       "value": "일일 처리톤 확인불가. 연간 처리능력 춤폰 공장 약 12,000톤(1일 8시간 조업 기준; 2025 가동률은 ‘수주 대비 적절’만 기재). 태국 가공공장 1곳(춤폰 402 Moo 8, 건물 4동). 직원 1,068명(2025-12-31, 태국 본사+자회사). 냉동창고 용량(m³·보관톤) 확인불가. 영국 자회사 Blue Earth Foods 연 7,500톤은 별도 법인.",
+       "source": "56-1 One Report 2025 §1.2.2.3·§7.5; Sustainability Report 2025 회사개요(직원 1,068)",
+       "checkedOn": "2026-08-17",
+       "by": "Grok 4.6"
+      }
      },
      "품목·가공": {
       "v": "냉동/조리/브레디드/스시 새우·브랜드 Seafresh·Sea Angel",
@@ -172,13 +210,27 @@
       "tags": [
        "확인",
        "불가"
-      ]
+      ],
+      "enrich": {
+       "status": "보강",
+       "value": "HACCP·GMP·Q-Mark(태국 수산국), BRCGS Issue 9·GAA/BAP(LRQA), ASC CoC(SGS), HALAL(태국중앙이슬람위원회), ISO 9001:2015(SGS), ISO 17025:2017(보건부 BLQS), ISO 14001:2015, ISO 45001:2018, TLS 8001. EU 승인번호 1020(춤폰). IFS·MSC(가공장)·FDA 등록번호 확인불가.",
+       "source": "56-1 One Report 2025 Quality Management; SR 2025 인증표; EUR-Lex Decision 94/325/EC; 태국 수산국 FFP 목록(갱신 2026-07-16 스니펫)",
+       "checkedOn": "2026-08-17",
+       "by": "Grok 4.6"
+      }
      },
      "재무": {
       "v": "매출 79억밧(’25)·P/BV 0.41x·3Q24 -128M",
       "tags": [
        "확인"
-      ]
+      ],
+      "enrich": {
+       "status": "보강",
+       "value": "회계연도 2025-01-01~2025-12-31. 연결 매출(Sales) 7,902,932,625바트, 지배주주 순이익 28,791,900바트(연결 당기순이익 84,928,385바트는 비지배지분 포함), 연결 총자산 5,751,873,830바트.",
+       "source": "56-1 One Report 2025 연결손익·재무상태표(2025-12-31); SET Listed Company Snapshot 3M/2026",
+       "checkedOn": "2026-08-17",
+       "by": "Grok 4.6"
+      }
      },
      "한국 거래처(top)": {
       "v": "지엘피글로벌(6)·아이씨인터네셔날(4)·롯데상사(3)",
@@ -208,13 +260,27 @@
       "v": "비상장·대표 J.Kanchitavorakul·자본฿150M",
       "tags": [
        "확인"
-      ]
+      ],
+      "enrich": {
+       "status": "보강",
+       "value": "등기번호 `0745543001201`(구번호 บอจ.สค.2516). 2000-06-05 설립, บริษัทจำกัด·영업중, 비상장. 등록자본 1억 5천만 바트. Managing Director는 Jirachai Kanchitavorakul. 주주는 태국인 7명·투자액 합계 1.5억 바트(100%). 납입자본(ทุนชำระแล้ว) 별도액·개별 지분·등기이사 전원 명단은 확인불가.",
+       "source": "dataforthai·Creden Data(0745543001201), Thai Frozen Foods Association 회원페이지, Tracxn legal entity, SET 검색 무결과",
+       "checkedOn": "2026-08-17",
+       "by": "Grok 4.6"
+      }
      },
      "규모·캐파": {
       "v": "50,000kg/일 ·공장1",
       "tags": [
        "확인"
-      ]
+      ],
+      "enrich": {
+       "status": "보강",
+       "value": "자사 사이트 일일 처리 50,000 kg. 연간 캐파 확인불가. 공개 주소는 사무소·가공 66/19, 냉동 66/8(동일 나디·엑카차이). 직원 수 확인불가. 냉동창고 용량(톤/㎥) 확인불가. ThaiTrade는 서비스면적 28,000㎡만 기재.",
+       "source": "bangkokseafood.co.th, TFFA 회원페이지, 태국 수산국 승인목록(가공 1354·냉동 7007), ThaiTrade 셀러페이지",
+       "checkedOn": "2026-08-17",
+       "by": "Grok 4.6"
+      }
      },
      "품목·가공": {
       "v": "가자미·주꾸미·고등어/대구 필렛(냉동·IQF·조미)",
@@ -226,13 +292,27 @@
       "v": "HACCP· BRC·MSC·ASC ·HALAL·SMETA·Costco",
       "tags": [
        "확인"
-      ]
+      ],
+      "enrich": {
+       "status": "보강",
+       "value": "HACCP·BRC·GMP(TFFA 로고). 수출사업장 1354(가공, 66/19), 냉동 7007(66/8). 선하증권 MSC CoC MSC-C-55436, FDA No. 15928826652, 공장번호 1354. Redica FEI 3010673950(검사 2023-03-30). 자사 사이트 HALAL·ASC·SMETA 표기, ASC 공급자 명단에 상호 존재. IFS·BRC/HALAL/ASC 공식 인증번호는 확인불가.",
+       "source": "TFFA, 대만 FDA 태국 수출사업장 목록 PDF, DoF 승인목록, ImportGenius B/L `OOCOBKK260267500`, Redica site profile, bangkokseafood.co.th, ASC Find a Supplier",
+       "checkedOn": "2026-08-17",
+       "by": "Grok 4.6"
+      }
      },
      "재무": {
       "v": "3개년 (DBD유료)",
       "tags": [
        "불가"
-      ]
+      ],
+      "enrich": {
+       "status": "보강",
+       "value": "최근 매출·순이익·총자산 정확액 확인불가. Tracxn 공개값은 2023-12-31 종료연도 매출 USD 10–50백만 구간뿐. Creden은 BE 2564–2568 재무제출 사실만 표시하고 수치는 비공개.",
+       "source": "Tracxn `BANGKOK SEAFOOD CO., LTD.` legal entity, Creden Data 0745543001201",
+       "checkedOn": "2026-08-17",
+       "by": "Grok 4.6"
+      }
      },
      "한국 거래처(top)": {
       "v": "롯데마트(151) ·이마트(27)·성화유통(24)·은하수산(21)",
@@ -263,13 +343,27 @@
       "v": "Kingfisher Holdings 자회사",
       "tags": [
        "확인"
-      ]
+      ],
+      "enrich": {
+       "status": "보강",
+       "value": "등기 0105516001322(บริษัท เคเอฟฟู้ดส์ จำกัด / KF FOODS LIMITED, 1973-02-05, 유한회사·비상장). 등록자본 3억 밧. 1차지분 태국 주주 4인·3억 밧 100%. 대표자·납입자본(ทุนชำระแล้ว)·개별 지분율 확인불가. 모사이트는 Kingfisher Holdings Ltd.(등기 0105515000918, 별개) 전액출자 자회사라고 기술.",
+       "source": "DBD 오픈데이터 집계(dataforthai·Creden·ConnectBizs), 관보 ราชกิจจานุเบกษา(2560), kingfisher.co.th History.php",
+       "checkedOn": "2026-08-17",
+       "by": "Grok 4.6"
+      }
      },
      "규모·캐파": {
       "v": "냉장창고 32,000t ·신공장’06",
       "tags": [
        "확인"
-      ]
+      ],
+      "enrich": {
+       "status": "보강",
+       "value": "일일·연간 처리능력·직원 수 확인불가. 수산청 승인 가공장은 사무트사콘 1곳(승인 1283). 회사 사이트는 2006년 신공장 3만㎡·냉동창고 3만2천톤, 송클라도 표기하나 송클라는 별개 법인 Kingfisher Holdings 지점(승인 1035).",
+       "source": "kingfisher.co.th FactoryTour_KFfoods.php·Contact.php; 수산청 HACCP 증서(Thailand Number 1283); KF2 GMP 증서(Kingfisher Holdings Songkhla, 1035)",
+       "checkedOn": "2026-08-17",
+       "by": "Grok 4.6"
+      }
      },
      "품목·가공": {
       "v": "흰다리/아르헨티나 새우살(생·자숙)·두족류",
@@ -281,13 +375,27 @@
       "v": "Kingfisher 표준(HACCP 등)",
       "tags": [
        "추정"
-      ]
+      ],
+      "enrich": {
+       "status": "보강",
+       "value": "HACCP 수산청(1283, 2026-05-19~2027-05-18)·축산개발청 Est.314(~2027-03-11). BRCGS FS Issue 9 Grade A+(Intertek, ~2027-05-20). HALAL CICOT A839/2007(2026-03-20~2027-03-19). EU 승인 1283. FDA 시설등록 17662724104(미국 B/L 기재, FDA.gov 원부 미확인). IFS·MSC·ASC 확인불가(MSC는 SEAPAC/Kingfisher Songkhla 명의).",
+       "source": "kingfisher.co.th FoodSafety 원본 증서 PDF; 수산청 수출승인 명단; ImportGenius 선하증권(2026)",
+       "checkedOn": "2026-08-17",
+       "by": "Grok 4.6"
+      }
      },
      "재무": {
       "v": "모그룹 비공개",
       "tags": [
        "불가"
-      ]
+      ],
+      "enrich": {
+       "status": "확인불가",
+       "note": "확인불가",
+       "source": "없음",
+       "checkedOn": "2026-08-17",
+       "by": "Grok 4.6"
+      }
      },
      "한국 거래처(top)": {
       "v": "부일(154, 전량)",
@@ -318,13 +426,27 @@
       "v": "SET 상장(CHOTI) 1992상장·자본75M밧·시총~4.8억밧",
       "tags": [
        "확인"
-      ]
+      ],
+      "enrich": {
+       "status": "보강",
+       "value": "법인 KIANG HUAT SEA GULL TRADING FROZEN FOOD PCL(태 `ห้องเย็นโชติวัฒน์หาดใหญ่` จำกัด(มหาชน)), 등기 0107537002231. SET CHOTI 상장(1992-02-27), 타거래소 없음. 납입자본 75백만바트(보통주 750만주·액면 10). CEO Charoenkuan Chotiwatanapan, MD Chaiwat Laoteppitak. 등기수권이사 Chaiwat·Chareonporn Chotiwattanaphan·Sudarat Laothepphithak Prawat. 지분 Chotiwat Holdings 26.00%, H'NG KIM CHANG & SONS 13.31%; 가문합산 Chotiwatanaphan 26.67%+Laotheppitak 19.77%+H'NG 23.95%=70.39%.",
+       "source": "태국 SEC 회사프로필; SET Factsheet; One Report 2025(56-1); AGM 47/2026 의사록",
+       "checkedOn": "2026-08-17",
+       "by": "Grok 4.6"
+      }
      },
      "규모·캐파": {
       "v": "공장2(핫야이+나몸)· 1만톤/년 ·직원971~3,720",
       "tags": [
        "확인"
-      ]
+      ],
+      "enrich": {
+       "status": "보강",
+       "value": "일일 처리능력 확인불가. 연간(2025 One Report) 본사(나몸) 17,400톤(가동 30.32%), 마하차이 10,500톤(19.20%). 공장 2곳(송클라 나몸 본사 4/2 Moo 3 Asia 43, 사뭇사콘 마하차이 55/83 Moo 6). 직원 1,174명(2025). 모회사 냉동창고 용적(CBM) 확인불가. 자회사 Food Futures 냉장서비스 캐파 6,146톤(가동 81.06%).",
+       "source": "One Report 2025 §생산능력·직원; 회사 사이트 Company Profile",
+       "checkedOn": "2026-08-17",
+       "by": "Grok 4.6"
+      }
      },
      "품목·가공": {
       "v": "새우(생/자숙)·주꾸미·오징어·브랜드 Sea King 등",
@@ -337,13 +459,27 @@
       "tags": [
        "확인",
        "추정"
-      ]
+      ],
+      "enrich": {
+       "status": "보강",
+       "value": "HACCP·GMP(태국 수산국, Thailand No. 1015 나몸, 유효 2026-03-06~2027-03-05). HALAL CICOT 157/1998(2026-03-16~2027-03-15, 브랜드 Sea King). ISO 9001:2015(Intertek 0164531)·ISO 14001:2015(0164533), ~2027-12-31. EU/수산국 승인 1015(본사)·1404(마하차이). BRC·IFS·MSC·ASC·FDA 등록번호 확인불가.",
+       "source": "kst-hatyai.com 인증서 PDF; 태국 수산국 FFP 목록; One Report 2025. 미확인 항목 1차 출처 없음",
+       "checkedOn": "2026-08-17",
+       "by": "Grok 4.6"
+      }
      },
      "재무": {
       "v": "매출 24.3억밧·2025 순손실 -4.28억밧 (부실)",
       "tags": [
        "확인"
-      ]
+      ],
+      "enrich": {
+       "status": "보강",
+       "value": "회계연도 1.1~12.31. FY2025 연결: 매출 2,429.14백만바트, 순손실 428.01백만바트, 총자산 2,125.54백만바트(2025-12-31). Q2/2026(종료 2026-06-30) 순이익 275.997백만바트(심사). Q2 매출·총자산 확인불가.",
+       "source": "One Report 2025 MD&A; AGM 47/2026; SET F45(2026-08-14). Q2 매출·자산은 F45 미공시",
+       "checkedOn": "2026-08-17",
+       "by": "Grok 4.6"
+      }
      },
      "한국 거래처(top)": {
       "v": "일신수산(18)·산호상사(12)·해든아침(11)",
@@ -373,13 +509,27 @@
       "v": "비상장·MD Jitchai Nimitpanya·자본180M밧",
       "tags": [
        "확인"
-      ]
+      ],
+      "enrich": {
+       "status": "보강",
+       "value": "등기번호 `0745543001260`(구번호 บอจ.สค.2521), 2000-06-09 등기·현존. MD นายจิตชัย นิมิตรปัญญา, 이사 นางอัจฉรา นิมิตรปัญญา. 등록자본 1억8천만 바트(자사 사이트는 1억7천만). 지분: จิตชัย+배우자 합산 60%, 잔여 40%·납입자본·등기 단독서명권자 확인불가. 비상장(บริษัทจำกัด).",
+       "source": "DataForThai(DBD Open Data), Creden(0745543001260), TFFA 회원페이지, SCGJWD Form 56-1 One Report 2025 첨부7, Manager Online(2016-08-29), chocksamut.co.th/about",
+       "checkedOn": "2026-08-17",
+       "by": "Grok 4.6"
+      }
      },
      "규모·캐파": {
       "v": "냉동창고 보유·캐파",
       "tags": [
        "불가"
-      ]
+      ],
+      "enrich": {
+       "status": "보강",
+       "value": "일일 처리 약 50톤. 연간 캐파 확인불가. 공장 수 확인불가(공개 공장주소 57/40 Moo 4 1곳, 부지 47,600㎡·섹션 5). 직원 수 확인불가. 냉동창고 약 12,000톤.",
+       "source": "chocksamut.co.th/about, TFFA 회원페이지(사무소·공장 동일주소)",
+       "checkedOn": "2026-08-17",
+       "by": "Grok 4.6"
+      }
      },
      "품목·가공": {
       "v": "아르헨티나 홍새우· 아마에비 사시미 ·surimi·건해산",
@@ -391,13 +541,27 @@
       "v": "HACCP·BRC·EU·HALAL·ISO9001",
       "tags": [
        "확인"
-      ]
+      ],
+      "enrich": {
+       "status": "보강",
+       "value": "HACCP—태국 수산청, 업소번호 1251, 참조 C26/21, 유효 2025-02-07~2026-02-06(조회일 기준 만료, 갱신본 확인불가). ISO 9001:2015—Intertek 24110911002, ~2028-01-07. EU 승인번호 1251(DOF 목록 2026-07-16). GMP·BRC는 TFFA 배지만, 인증서번호·등급·유효기간 확인불가. IFS·MSC·ASC·HALAL 인증서·FDA 등록번호 확인불가.",
+       "source": "회사 HACCP·ISO PDF, TFFA 회원페이지, 태국수산청 EU목록(2026-07-16), 베트남 DARD 목록(2024-06-14), 대만 FDA·호주 승인목록",
+       "checkedOn": "2026-08-17",
+       "by": "Grok 4.6"
+      }
      },
      "재무": {
       "v": "매출 615M밧(FY22)",
       "tags": [
        "확인"
-      ]
+      ],
+      "enrich": {
+       "status": "확인불가",
+       "note": "매출·순이익·총자산 확인불가. 회계연도 확인불가(Creden에 불력 2564–2568 제출 표시만, 금액 비공개).",
+       "source": "없음(Creden·EMIS는 유료 가림. Tracxn FY2022 매출 $10M–50M 구간만 게시, 확정액 아님)",
+       "checkedOn": "2026-08-17",
+       "by": "Grok 4.6"
+      }
      },
      "한국 거래처(top)": {
       "v": "씨케이글로벌(23)·부일(12)·갓텐코리아(1)",
@@ -427,13 +591,27 @@
       "v": "비상장",
       "tags": [
        "불가"
-      ]
+      ],
+      "enrich": {
+       "status": "보강",
+       "value": "등기번호 `0745543001278`(구 `บอจ.สค.2522`), 2000-06-12 설립·영업중 유한회사(`บริษัทจำกัด`). 등록자본 210,100,000바트. 납입자본(`ทุนชำระแล้ว`) 별도 표기·등기상 서명권자 확인불가. 공개 직함: 람문 르억숙쁘라썽(`ละมูล ลือสุขประเสริฐ`) ประธานบริหาร, 추퐁 르억숙쁘라썽(`ชูพงษ์ ลือสุขประเสริฐ`) กรรมการผู้จัดการ. 지분(공개집계) 태국 7명 65%(136,552,800바트)·싱가포르 1곳 35%(73,547,200바트), 명의 확인불가. 회사 사이트는 2011년 기준 태국인 100%라 적어 상충. SET 비상장.",
+       "source": "Data for Thai·Creden Data(0745543001278); TFFA 회원상세; mrgshrimp.com history·mrgteam; แนวหน้า 2026-05-22",
+       "checkedOn": "2026-08-17",
+       "by": "Grok 4.6"
+      }
      },
      "규모·캐파": {
       "v": "",
       "tags": [
        "불가"
-      ]
+      ],
+      "enrich": {
+       "status": "보강",
+       "value": "일일 완제품 약 60톤(컨테이너 4대). 연간 처리능력 확인불가. 가공공장 주소 1곳(57/37 무4 에까차이, 코깜, 므앙사뭇사콘=본사). VAT 지점 00001(99/1 동일 읍면)은 공장 여부 확인불가. 생산현장 직원 3,100명(회사 사이트, 게시연월 불명). 냉동창고 용량 확인불가.",
+       "source": "mrgshrimp.com/history; TFFA 회원상세(사무소=공장 동일 주소); Data for Thai 지점 목록",
+       "checkedOn": "2026-08-17",
+       "by": "Grok 4.6"
+      }
      },
      "품목·가공": {
       "v": "흰다리새우살(생·자숙) 전문",
@@ -445,13 +623,27 @@
       "v": "새우전문→BAP/ASC 개연",
       "tags": [
        "추정"
-      ]
+      ],
+      "enrich": {
+       "status": "보강",
+       "value": "TFFA 회원페이지에 GMP·HACCP·BRC·IFS·MSC·HALAL·BAP 아이콘(2022-09-06 공개). CICOT 할랄 제품 등록 확인. 태국 수산청 수출사업장 번호 1166(호주 2021·베트남 2024-06-14·중국·대만 FDA 목록). EU TRACES에서 `THA1166` 현행 등재·FDA 등록번호·각 인증번호·유효기간 확인불가. ASC는 회사명 농장 목록만 있고 가공공장 CoC 현행 확인불가.",
+       "source": "TFFA 회원상세; CICOT(halal.co.th); 태국 수산청 호주 승인목록 PDF; 베트남 DAH「Thailand Update on 14.06.2024」",
+       "checkedOn": "2026-08-17",
+       "by": "Grok 4.6"
+      }
      },
      "재무": {
       "v": "",
       "tags": [
        "불가"
-      ]
+      ],
+      "enrich": {
+       "status": "보강",
+       "value": "최근 매출·순이익·총자산 금액 확인불가. 결산월 12월 31일. 불-2568(2025) 결산 제출일 2026-05-29. (참고, 최근 아님) 회사 사이트 2010년 매출 5,500백만 바트.",
+       "source": "Creden Data 일반정보(결산월·제출일); mrgshrimp.com/history(2010 매출). DBD 원문 손익·재무상태표는 비공개/유료",
+       "checkedOn": "2026-08-17",
+       "by": "Grok 4.6"
+      }
      },
      "한국 거래처(top)": {
       "v": "에프엘티(41)·하라푸드(38)·카프코(19)·은하수산(10)",
@@ -481,13 +673,27 @@
       "v": "이탈리아 PanaPesca S.p.A. 소유 ·BOI·비상장",
       "tags": [
        "확인"
-      ]
+      ],
+      "enrich": {
+       "status": "보강",
+       "value": "등기 0105543081072(구 1252/2543), 2000-08-29, บริษัทจำกัด·비상장. 등기자본 2억 바트. 납입자본·등기상 이사·현행 지분율 확인불가. 운영대표 Gaurav Sunil Kumar(MD/CEO). 자사·그룹은 PanaPesca 자회사로 공표. 2018 Xenon PE가 지주 100% 및 본 법인 인수 발표, 이후 지분 변동 확인불가.",
+       "source": "DataForThai·Creden(DBD 공개데이터); TFFA 회원페이지; TICC(2025-07-17); Fineurop Soditic·World-MA(2018-12-20); SET 검색 무결과",
+       "checkedOn": "2026-08-17",
+       "by": "Grok 4.6"
+      }
      },
      "규모·캐파": {
       "v": "공장1(10rai)·직원",
       "tags": [
        "불가"
-      ]
+      ],
+      "enrich": {
+       "status": "보강",
+       "value": "일일·연간 처리능력 확인불가. 냉동창고 용량 확인불가. 공개 공장은 Rayong 아마타시티 7/120 1곳(TFFA상 본사=공장 동일). 부지면적 16,000㎡(10라이)만 확인. 직원 확정 수 확인불가(LinkedIn 회사페이지 201–500명 구간만).",
+       "source": "TFFA 회원페이지; FIS company id 86372; LinkedIn Thai Spring Fish Co., Ltd.",
+       "checkedOn": "2026-08-17",
+       "by": "Grok 4.6"
+      }
      },
      "품목·가공": {
       "v": "냉동 조리·반조리(RTE/RTC) 조개·두족류·새우 OEM",
@@ -499,14 +705,28 @@
       "v": "HACCP·BRC·GMP·BOI",
       "tags": [
        "확인"
-      ]
+      ],
+      "enrich": {
+       "status": "보강",
+       "value": "EU 승인번호 1185(DOF FFP, 2026-07-16 목록 등재, 활동 PP). HACCP·GMP는 TFFA·FIS·JobThai가 기재. TFFA(2022)에 BRC·HALAL·BAP 로고. ASC 농장증서 ASC02043(2022-12-06 발급, 2025-06-05부터 유효 표기, 만료일 확인불가). MSC·IFS·현행 BRC 등급·HALAL/BAP 유효기간·FDA 등록번호 확인불가. FDA IA 16-18 Green List(2016-08-23).",
+       "source": "태국수산국 FFP(갱신 16.07.2026); TFFA; JobThai; FIS; ASC 증서 ASC02043; FDA Import Alert 16-18",
+       "checkedOn": "2026-08-17",
+       "by": "Grok 4.6"
+      }
      },
      "재무": {
       "v": "자본200M밧· 자기자본718M밧 ·매출",
       "tags": [
        "불가",
        "확인"
-      ]
+      ],
+      "enrich": {
+       "status": "보강",
+       "value": "최근 매출·순이익·총자산 절대액 확인불가. 결산일(회계연도 종료일) 확인불가. Creden: 자본총계 718,658,746바트(연도 미특정), 제출연 2563–2567, 제조 Large 분류. EMIS: 2024 수치 보유(유료), 매출 +3.91%·순이익 +85.34%·총자산 +10.7%(절대액 비공개).",
+       "source": "Creden 법인 0105543081072; EMIS Thai Spring Fish Company Limited(프로필 갱신 2026-03-31)",
+       "checkedOn": "2026-08-17",
+       "by": "Grok 4.6"
+      }
      },
      "한국 거래처(top)": {
       "v": "롯데상사(62)·은성수산(6)",
@@ -539,13 +759,27 @@
       "v": "가족기업·비상장·자본 40M밧 ·규모 Large",
       "tags": [
        "확인"
-      ]
+      ],
+      "enrich": {
+       "status": "보강",
+       "value": "등기 0845554000277. 2011-01-10 설립(DBD; 1982는 확인불가). 주식회사(비상장). 등록자본 130,000,000 THB. 납입자본·개별 주주명 확인불가. 주주 태국 4인 100%. 등기 대표이사 확인불가. TFFA 기재 MD Kittima Sriprom.",
+       "source": "DataForThai/DBD; ConnectBizs; TFFA 회원페이지",
+       "checkedOn": "2026-08-17",
+       "by": "Grok 4.6"
+      }
      },
      "규모·캐파": {
       "v": "산지인접 공장1·캐파",
       "tags": [
        "불가"
-      ]
+      ],
+      "enrich": {
+       "status": "보강",
+       "value": "본점·공장 동일 1곳(199 Moo 8, Don Sak, Surat Thani 84220). 일일·연간 처리능력, 직원 수, 냉동창고 용량 확인불가.",
+       "source": "DataForThai; TFFA; srtfoods.co.th",
+       "checkedOn": "2026-08-17",
+       "by": "Grok 4.6"
+      }
      },
      "품목·가공": {
       "v": "흰다리새우 raw/cooked 스시·횟감팩",
@@ -557,13 +791,27 @@
       "v": "GMP·HACCP· ISO22000·BRCGS·ISO17025",
       "tags": [
        "확인"
-      ]
+      ],
+      "enrich": {
+       "status": "보강",
+       "value": "자사 게재 사본 — BRCGS Food Safety Issue 8 Grade B, TH22/00000536, Site 10004096, 유효 ~2023-07-07; DOF GMP·HACCP, Thailand Number 1333, 유효 ~2023-07-18. TFFA(2022) GMP·HACCP·EU. 2024–2025 수출목록에 1333. 현행 유효 여부, IFS·MSC·ASC·HALAL·FDA 등록번호 확인불가.",
+       "source": "srtfoods.co.th/company 인증서 이미지; TFFA; 베트남·대만 수입용 태국 수산물 사업장 목록",
+       "checkedOn": "2026-08-17",
+       "by": "Grok 4.6"
+      }
      },
      "재무": {
       "v": "회사가치104M밧·매출",
       "tags": [
        "불가"
-      ]
+      ],
+      "enrich": {
+       "status": "확인불가",
+       "note": "매출·순이익·총자산 확인불가. Creden에 2564–2568 제출 기록만. 회계연도 공개 확정 확인불가.",
+       "source": "Creden Data. 없음(금액)",
+       "checkedOn": "2026-08-17 지앤원인터네셔널·하버마린 거래: 공개 출처 확인불가.",
+       "by": "Grok 4.6"
+      }
      },
      "한국 거래처(top)": {
       "v": "지앤원인터네셔널(66)·하버마린(10)",
@@ -594,13 +842,27 @@
       "v": "비상장·자본70M밧· 대표 최용철(Yong Cheul Choi) ·이메일 @ckseafood.com",
       "tags": [
        "확인"
-      ]
+      ],
+      "enrich": {
+       "status": "보강",
+       "value": "등기번호 `0105535010641`(บริษัท ไฮไท ซีฟู้ด จำกัด / HAITAI SEAFOOD COMPANY LIMITED, 1992-01-22 설립·영업중). 등록자본 70,000,000 THB. 주주 국적 집계=한국인 4명 69,999,700 THB(표기 100.0%)·태국인 3명 300 THB. 대표는 협회·2020년 문서상 Managing Director Yong Cheul Choi(최용철). 형태는 บริษัทจำกัด, SET 검색 무결과→비상장. 납입자본(ทุนชำระแล้ว) 별도 문구·주주 성명·CK Global 법인 지분율은 확인불가.",
+       "source": "DataForThai(DBD Open Data 재게시) 법인 `0105535010641`; 태국냉동식품협회(TFFA) 회원란; 캘리포니아주 검찰 Prop65 통지(2020-04-27); SET 사이트 검색",
+       "checkedOn": "2026-08-17",
+       "by": "Grok 4.6"
+      }
      },
      "규모·캐파": {
       "v": "규모 Large·캐파",
       "tags": [
        "불가"
-      ]
+      ],
+      "enrich": {
+       "status": "보강",
+       "value": "TFFA가 사무소·공장을 같은 주소 1곳만 공개(64/2 Moo 5, Chana-Pattani Rd., Banna, Chana, Songkhla 90130). 일일/연간 처리능력, 직원 수, 냉동창고 용량은 확인불가.",
+       "source": "TFFA 회원 상세. 캐파·인원·창고 수치 공개문 없음",
+       "checkedOn": "2026-08-17",
+       "by": "Grok 4.6"
+      }
      },
      "품목·가공": {
       "v": "북방대합(hokkigai)·연육(surimi)·날치알·오징어·주꾸미",
@@ -612,13 +874,27 @@
       "v": "EU 승인 no.1107 ·HACCP·GMP·ISO9001",
       "tags": [
        "확인"
-      ]
+      ],
+      "enrich": {
+       "status": "보강",
+       "value": "TFFA 회원란에 GMP·HACCP·EU 아이콘(인증번호·유효기한 없음). HALAL=CICOT `43A6360350664`(FROZEN SEASONED ORANGE EBIKO, 유효 2026-09-12, Active). 태국 DoF 시설번호 1107(대만 수출 승인 목록 2022-03-23). FDA Import Alert 16-18 Green List(생새우, 주소 946 Rama IV Rd., Bangkok). BRC·IFS·MSC·ASC와 FDA Food Facility Registration 번호(공개 등록부)는 확인불가.",
+       "source": "TFFA 회원란; THIC 제품 `234413`; 대만 FDA 「List of Thailand fish and Seafood Establishments Approved for Export to Taiwan」(2022-03-23); FDA Import Alert 16-18(게시 2026-03-05)",
+       "checkedOn": "2026-08-17",
+       "by": "Grok 4.6"
+      }
      },
      "재무": {
       "v": "회사가치182M밧·매출",
       "tags": [
        "불가"
-      ]
+      ],
+      "enrich": {
+       "status": "보강",
+       "value": "회계연도가 붙은 최근 매출·순이익·총자산 원문 확인불가. (Tracxn만 2022-12-31 종료연 매출 1천만–5천만 달러 구간 공개. Creden은 2563–2567/2568 제출 사실만 표시, 금액 유료)",
+       "source": "Tracxn legal entity 페이지; Creden `0105535010641`. DBD 원문 재무제표 무료 열람 없음",
+       "checkedOn": "2026-08-17",
+       "by": "Grok 4.6"
+      }
      },
      "한국 거래처(top)": {
       "v": "씨케이글로벌(48, 전량)",
@@ -652,14 +928,28 @@
       "v": "비상장· 자본110M밧·규모 Large ·Pitigroup 계열",
       "tags": [
        "확인"
-      ]
+      ],
+      "enrich": {
+       "status": "보강",
+       "value": "등기번호 `0105545075126`(구번호 `10454501282`). 2002-07-19 등기, 형태 유한회사(บริษัทจำกัด)·비상장. 등록자본 1억1천만 바트. 납입자본(ทุนชำระแล้ว) 확인불가. 공개 MD는 Pak Rosjanasumapong(ภัค โรจนสุมาพงศ์). 등기이사 명부·개별 주주명·지분율 확인불가. 주주는 태국인 4명, 출자액 합계 1억1천만 바트·100%.",
+       "source": "태국 DBD 오픈데이터 재게시(dataforthai.com/0105545075126, data.creden.co/0105545075126). TFFA 회원 상세. SET 검색 결과 없음.",
+       "checkedOn": "2026-08-17",
+       "by": "Grok 4.6"
+      }
      },
      "규모·캐파": {
       "v": "Samut Sakhon+Hua Hin 복수공장 ·직원201–300",
       "tags": [
        "추정",
        "추정"
-      ]
+      ],
+      "enrich": {
+       "status": "보강",
+       "value": "일일·연간 처리능력 확인불가. 공개된 공장 주소 1곳(148 Moo 5, Tha Sai, Mueang Samut Sakhon). 직원 수 확인불가. 냉동창고 용량 확인불가. (`P.T. COLD STORAGE` 등기 `0105544034612`는 별도 법인 — 수치 합산하지 않음.)",
+       "source": "TFFA 회원 상세(사무실=공장 동일 주소). 캐파·인원·냉동용량 공개 수치 없음.",
+       "checkedOn": "2026-08-17",
+       "by": "Grok 4.6"
+      }
      },
      "품목·가공": {
       "v": "냉동 문어· 주꾸미 ·어묵·해산물스낵·브랜드 Bam's/Pego",
@@ -672,13 +962,27 @@
       "tags": [
        "확인",
        "추정"
-      ]
+      ],
+      "enrich": {
+       "status": "보강",
+       "value": "태국 수산청 사업장번호 1348(가공). HACCP·GMP는 TFFA 아이콘·자사/채용 페이지 표기, 인증서 번호·유효기한 확인불가. HALAL은 자사 About Us 표기, CICOT 번호 확인불가. 사우디 SFDA 1348(2021-05-27 등재, 2021-09-09 문서 Active, Octopus/Sepia). 대만 FDA 2022-12-13 목록 1348. 호주 승인목록(2021-01) 1348. EU TRACES 현행·BRC·IFS·MSC·ASC·미국 FDA 등록번호 확인불가. 중국 AQSIQ `9764200002`는 2022 Inactive.",
+       "source": "TFFA 회원 상세. pitisakol.co.th About Us. SFDA Thailand-fish.pdf. 대만 FDA 목록(2022-12-13). agrithai 호주 승인목록(2021-01). GACC.agency AQSIQ 기록.",
+       "checkedOn": "2026-08-17",
+       "by": "Grok 4.6"
+      }
      },
      "재무": {
       "v": "회사가치139M밧·매출",
       "tags": [
        "불가"
-      ]
+      ],
+      "enrich": {
+       "status": "확인불가",
+       "note": "최근 매출·순이익·총자산 확인불가. Creden에 회계연도 2564–2568(2021–2025) 재무제표 제출 기록만 표시되고 수치는 비공개.",
+       "source": "data.creden.co/company/general/0105545075126(수치 페이월). 그 외 공개 원문 없음.",
+       "checkedOn": "2026-08-17",
+       "by": "Grok 4.6"
+      }
      },
      "한국 거래처(top)": {
       "v": "에스글로벌(22)·에스무역(9)·재우물산(3)",
@@ -708,13 +1012,27 @@
       "v": "비상장·자본5M밧·규모 Medium",
       "tags": [
        "확인"
-      ]
+      ],
+      "enrich": {
+       "status": "보강",
+       "value": "등기번호 `0105560117519`(INTER SIAM GROUP COMPANY LIMITED, 2017-07-18 설립). 대표자·지분구조·납입자본(ทุนชำระแล้ว) 확인불가. 등록자본(ทุนจดทะเบียน) 5,000,000바트. 형태 주식회사유한회사(บริษัทจำกัด), SET 해당 상호 없음(비상장).",
+       "source": "태국 상무부 사업개발국(DBD) 법인정보 — DataForThai·Creden 전재(`/company/0105560117519`). SET 검색 무해당.",
+       "checkedOn": "2026-08-17",
+       "by": "Grok 4.6"
+      }
      },
      "규모·캐파": {
       "v": "",
       "tags": [
        "불가"
-      ]
+      ],
+      "enrich": {
+       "status": "보강",
+       "value": "일일/연간 처리능력 확인불가. 공장대장상 1곳(80/4 Moo 2, Phan Thai Norasing, Samut Sakhon). 근로자 84명(남 12·여 72). 냉동창고 용량 확인불가.",
+       "source": "사무트사콘 산업청 공장대장 Data_Fac(허가 `3-6(5)-7/61สค`, 허가 2018-08-23, 조업개시 2019-05-09, 대장상 만료 2024-01-01).",
+       "checkedOn": "2026-08-17",
+       "by": "Grok 4.6"
+      }
      },
      "품목·가공": {
       "v": "냉동 주꾸미·갑오징어·게·틸라피아",
@@ -727,13 +1045,27 @@
       "tags": [
        "불가",
        "추정"
-      ]
+      ],
+      "enrich": {
+       "status": "보강",
+       "value": "HACCP·BRC·IFS·MSC·ASC·HALAL·EU승인번호·FDA등록번호 확인불가. 태국 수산청 사업장번호 1397(가공). 대중 목록(2021) 가공장·연체동물·냉동. 대만 수출 승인 명단(2022-12-13) 등재.",
+       "source": "대만 FDA `List of Thailand fish and Seafood Establishments Approved for Export to Taiwan`(2022-12-13); 태국 농무부(MOAC) 대중 수산물 가공장 명단(2021).",
+       "checkedOn": "2026-08-17",
+       "by": "Grok 4.6"
+      }
      },
      "재무": {
       "v": "회사가치7.2M밧·매출",
       "tags": [
        "불가"
-      ]
+      ],
+      "enrich": {
+       "status": "보강",
+       "value": "최근 매출·순이익·총자산 확인불가. 공개 인용 총수익 191,179,800.12바트(개별 결산기 미기재). 자기자본 6,351,595바트(연도 미기재). 결산 제출연도 불력 2564–2568.",
+       "source": "나레수안대 박사논문(สุทธิดา ฉายศรี, 2568) 부록—DBD 2024-02-02 스냅샷 인용; Creden 법인 `0105560117519`.",
+       "checkedOn": "2026-08-17",
+       "by": "Grok 4.6"
+      }
      },
      "한국 거래처(top)": {
       "v": "상상인터네셔널(8)·상도씨푸드(8)·동강물산(3)",
@@ -763,13 +1095,27 @@
       "v": "비상장",
       "tags": [
        "불가"
-      ]
+      ],
+      "enrich": {
+       "status": "보강",
+       "value": "등기 0755556000135(ANDAMAN JELLYFISH COMPANY LIMITED / บริษัท อันดามัน เจลลี่ฟิช จำกัด). 회사유한(비상장). 등록자본 1,000,000 THB, 설립 2013-03-11, 영업중. 대표자·납입자본·지분구조 확인불가.",
+       "source": "DataForThai·Creden(DBD 개방데이터 인용)",
+       "checkedOn": "2026-08-17",
+       "by": "Grok 4.6"
+      }
      },
      "규모·캐파": {
       "v": "직원 501–1,000",
       "tags": [
        "추정"
-      ]
+      ],
+      "enrich": {
+       "status": "보강",
+       "value": "일일/연간 처리능력·직원 수·냉동창고 용량 확인불가. 등록 가공사업장 1곳(98 Moo 2, Bangjakreng, Samut Songkhram).",
+       "source": "DataForThai 지점(RD VAT 개방데이터), 태국 수산국(DoF) 승인목록",
+       "checkedOn": "2026-08-17",
+       "by": "Grok 4.6"
+      }
      },
      "품목·가공": {
       "v": "염장 해파리(단일품목)",
@@ -781,13 +1127,27 @@
       "v": "",
       "tags": [
        "불가"
-      ]
+      ],
+      "enrich": {
+       "status": "보강",
+       "value": "HACCP·BRC·IFS·MSC·ASC·HALAL·EU승인번호·FDA등록 확인불가. DoF 사업장번호 3171(염장 해파리). GACC-2-1 구(11자리) 76421000153(2021; 제도 2024-09-05 폐지). 18자리 신규·CIFER 제조번호 확인불가.",
+       "source": "DoF 대중국 목록(2024-11-05)·가공/대만 목록(2025-03), TransCustoms GACC-2",
+       "checkedOn": "2026-08-17",
+       "by": "Grok 4.6"
+      }
      },
      "재무": {
       "v": "연매출 ~$5M",
       "tags": [
        "추정"
-      ]
+      ],
+      "enrich": {
+       "status": "보강",
+       "value": "최근 매출·순이익·총자산 절대액 확인불가. 재무제표 제출연도 BE 2564–2568. 결산월 확인불가. EMIS는 2024 매출 +6.74%·총자산 −23.37%·당기순이익 −19.28%만 공개(금액 없음).",
+       "source": "Creden Data, EMIS「Andaman Jellyfish Company Limited」",
+       "checkedOn": "2026-08-17",
+       "by": "Grok 4.6"
+      }
      },
      "한국 거래처(top)": {
       "v": "보성상사(36)·한국해파리(17)·거성제이디(16)",
@@ -819,13 +1179,27 @@
       "tags": [
        "추정",
        "불가"
-      ]
+      ],
+      "enrich": {
+       "status": "보강",
+       "value": "등기번호 `0105543064771`(구호 (3)1225/2543). 등록자본(ทุนจดทะเบียน) 20,000,000 THB. 납입자본·등기이사 명단 확인불가. TFFA는 MD를 KYU TAEK (JIMMY) LIM으로 표기. 국적별 출자만 공개—태국인 3명 14,000,000 THB(70%), 한국인 1명 6,000,000 THB(30%), 개인명 확인불가. 회사형태 บริษัทจำกัด, 비상장.",
+       "source": "DataForThai·Creden(DBD 오픈데이터 재인용), 태국냉동식품협회(TFFA) 회원페이지",
+       "checkedOn": "2026-08-17",
+       "by": "Grok 4.6"
+      }
      },
      "규모·캐파": {
       "v": "",
       "tags": [
        "불가"
-      ]
+      ],
+      "enrich": {
+       "status": "보강",
+       "value": "일일·연간 처리능력, 직원 수, 냉동창고 용량 확인불가. VAT 사업장 3곳—방콕 본사(119 Narathiwat, Yannawa), 라용 지점(20 Moo 5, Klaeng), 라농 지점(69/42 Moo 5, Bang Rin). TFFA 공장주소 `7/88 Moo 2, Mueang Ranong`은 대만 수출승인 목록상 H.K. Marine Frozen Foods Co., Ltd. 주소와 동일. 자체 공장 수 확인불가.",
+       "source": "DataForThai 지점(VAT 오픈데이터), TFFA 회원페이지, 대만 수출승인 목록(7/88 주소)",
+       "checkedOn": "2026-08-17",
+       "by": "Grok 4.6"
+      }
      },
      "품목·가공": {
       "v": "주꾸미·낙지·갑오징어·새우(냉동)",
@@ -837,13 +1211,27 @@
       "v": "",
       "tags": [
        "불가"
-      ]
+      ],
+      "enrich": {
+       "status": "보강",
+       "value": "TFFA 회원페이지에 GMP·HACCP 마크만 게시(인증번호·유효기한·발급기관 확인불가). BRC·IFS·MSC·ASC·HALAL·EU승인번호 확인불가. 2011-06-12 선하증권에 FDA 등록번호 `19934817184` 기재, 현행 FDA 등록 확인불가.",
+       "source": "TFFA 회원페이지, ImportGenius B/L WHLC0351035936. EU·BRC·IFS·MSC·ASC·HALAL 공개목록 없음",
+       "checkedOn": "2026-08-17",
+       "by": "Grok 4.6"
+      }
      },
      "재무": {
       "v": "",
       "tags": [
        "불가"
-      ]
+      ],
+      "enrich": {
+       "status": "확인불가",
+       "note": "최근 매출·순이익·총자산 확인불가. Creden에 불력 2564–2568(2021–2025) 제출 기록만 있고 금액은 비공개.",
+       "source": "Creden Data 회사개요(0105543064771). 금액 원문 없음",
+       "checkedOn": "2026-08-17",
+       "by": "Grok 4.6"
+      }
      },
      "한국 거래처(top)": {
       "v": "태산무역(36)·쿨맨씨푸드(35)·원양글로벌(30)·에이젯(28)",
@@ -876,13 +1264,27 @@
       "v": "비상장",
       "tags": [
        "불가"
-      ]
+      ],
+      "enrich": {
+       "status": "보강",
+       "value": "등기번호 `0105556185921`. 등록자본(ทุนจดทะเบียน) 8,000,000바트. 대표자·납입자본(ทุนชำระแล้ว)·지분구조 확인불가. 상장 아님(형태 บริษัทจำกัด, SET 미등재).",
+       "source": "DataForThai·Creden Data·Companies House Thailand·Tracxn(법인 0105556185921). SET 검색 무결과.",
+       "checkedOn": "2026-08-17",
+       "by": "Grok 4.6"
+      }
      },
      "규모·캐파": {
       "v": "",
       "tags": [
        "불가"
-      ]
+      ],
+      "enrich": {
+       "status": "확인불가",
+       "note": "일일·연간 처리능력, 공장 수, 직원 수, 냉동창고 용량 모두 확인불가. 부가세 등록 사업장은 방콕 본점 1곳(룸피니 플레이스 라마3, 방코렘).",
+       "source": "DataForThai 지점(VAT) 페이지. 캐파·인원·창고 수치를 적은 공개 문서 없음.",
+       "checkedOn": "2026-08-17",
+       "by": "Grok 4.6"
+      }
      },
      "품목·가공": {
       "v": "남방주꾸미·주꾸미(냉장/냉동)",
@@ -894,13 +1296,27 @@
       "v": "",
       "tags": [
        "불가"
-      ]
+      ],
+      "enrich": {
+       "status": "확인불가",
+       "note": "HACCP·BRC·IFS·MSC·ASC·HALAL·EU승인번호·FDA 등록 모두 확인불가.",
+       "source": "없음(fisheries.go.th, fda.moph.go.th, MSC, BRCGS, EU TRACES 웹검색에서 해당 상호 매칭 없음).",
+       "checkedOn": "2026-08-17",
+       "by": "Grok 4.6"
+      }
      },
      "재무": {
       "v": "매출 FY22 ฿239M",
       "tags": [
        "확인"
-      ]
+      ],
+      "enrich": {
+       "status": "보강",
+       "value": "공개된 구체 수치는 2020년만 — 매출 198,367,329.28바트, 순이익 7,199,343.48바트, 총자산 26,293,792.57바트. 2021~2025 제출 사실은 보이나 금액 확인불가.",
+       "source": "Companies House Thailand 회사페이지(2020). Creden Data(제출연도 불력 2564–2568, 손익·자산 금액 비공개).",
+       "checkedOn": "2026-08-17",
+       "by": "Grok 4.6"
+      }
      },
      "한국 거래처(top)": {
       "v": "남선푸드(134)·유니온씨푸드(22)",
@@ -930,13 +1346,27 @@
       "v": "비상장",
       "tags": [
        "불가"
-      ]
+      ],
+      "enrich": {
+       "status": "보강",
+       "value": "등기번호 `0105544043671`(G.B.GLOBAL CO., LTD. / บริษัท จี.บี.โกลบอล จำกัด). 대표자 확인불가. 등록자본(ทุนจดทะเบียน) 19,000,000 THB, 납입자본(ทุนชำระแล้ว) 확인불가. 지분 성명 확인불가·국적만 태국 1인 51%(9,690,000 THB)·한국 1인 49%(9,310,000 THB). 비상장(บริษัทจำกัด, SET 상장 기록 없음).",
+       "source": "DataForThai 회사개요 0105544043671, ConnectBizs 법인카드, Creden Data 일반정보, Tracxn legal entity profile",
+       "checkedOn": "2026-08-17",
+       "by": "Grok 4.6"
+      }
      },
      "규모·캐파": {
       "v": "",
       "tags": [
        "불가"
-      ]
+      ],
+      "enrich": {
+       "status": "확인불가",
+       "note": "일일/연간 처리능력, 공장 수, 직원 수, 냉동창고 용량 모두 확인불가.",
+       "source": "없음",
+       "checkedOn": "2026-08-17",
+       "by": "Grok 4.6"
+      }
      },
      "품목·가공": {
       "v": "낙지·주꾸미(냉장 중심)",
@@ -948,13 +1378,27 @@
       "v": "",
       "tags": [
        "불가"
-      ]
+      ],
+      "enrich": {
+       "status": "확인불가",
+       "note": "HACCP·BRC·IFS·MSC·ASC·HALAL·EU승인번호·FDA 등록 모두 확인불가.",
+       "source": "없음",
+       "checkedOn": "2026-08-17",
+       "by": "Grok 4.6"
+      }
      },
      "재무": {
       "v": "’20–’24 재무신고(비공개)",
       "tags": [
        "추정"
-      ]
+      ],
+      "enrich": {
+       "status": "확인불가",
+       "note": "최근 매출·순이익·총자산 확인불가. (Creden은 BE 2563–2567 제출 사실만 공개, 수치는 비공개)",
+       "source": "없음",
+       "checkedOn": "2026-08-17",
+       "by": "Grok 4.6"
+      }
      },
      "한국 거래처(top)": {
       "v": "해원에스디(135)·남선푸드(90)",
@@ -981,13 +1425,27 @@
       "v": "비상장",
       "tags": [
        "불가"
-      ]
+      ],
+      "enrich": {
+       "status": "보강",
+       "value": "등기번호 `0205549020163`(บริษัท ฟิช-เมเนเจอร์ จำกัด / FISH-MANAGER COMPANY LIMITED). 2006-07-21 설립·영업중·주식회사(บริษัทจำกัด). 등록자본 2,000,000밧, 납입자본 1,261,258밧(등록자본의 63.06%). 지분 태국인 2명 51%(1,020,000밧)·한국인 1명 49%(980,000밧). 주주·대표자 성명 확인불가. 비상장(มหาชน 아님, SET/MAI 검색 무결과).",
+       "source": "Data for Thai 회사·지분 페이지(DBD 공공데이터 인용); Creden Data 일반정보 `0205549020163`; Tracxn 법인프로필; SET 검색",
+       "checkedOn": "2026-08-17",
+       "by": "Grok 4.6"
+      }
      },
      "규모·캐파": {
       "v": "",
       "tags": [
        "불가"
-      ]
+      ],
+      "enrich": {
+       "status": "보강",
+       "value": "일일·연간 처리능력, 직원 수, 냉동창고 용량 확인불가. VAT 등록 사업장은 촌부리 시라차 본사 1곳(194/95-96 หมู่ 11 ต.หนองขาม อ.ศรีราชา จ.ชลบุรี 20230). 등록 업종은 수산물 도매·수출(TSIC 46312). 2017년 KMI가 사뭇송크람에서 가공장 방문 기록은 있으나 현재 공장 수로는 확인불가.",
+       "source": "Data for Thai 본사·지점; Creden Data; KMI 「국외 출장결과 보고서 — 베트남·태국의 새우, 주꾸미 등」(2017.7)",
+       "checkedOn": "2026-08-17",
+       "by": "Grok 4.6"
+      }
      },
      "품목·가공": {
       "v": "주꾸미·낙지(냉장/냉동)",
@@ -999,13 +1457,27 @@
       "v": "",
       "tags": [
        "불가"
-      ]
+      ],
+      "enrich": {
+       "status": "확인불가",
+       "note": "HACCP·BRC·IFS·MSC·ASC·HALAL·EU승인번호·FDA 등록 모두 확인불가.",
+       "source": "없음",
+       "checkedOn": "2026-08-17",
+       "by": "Grok 4.6"
+      }
      },
      "재무": {
       "v": "",
       "tags": [
        "불가"
-      ]
+      ],
+      "enrich": {
+       "status": "확인불가",
+       "note": "최근 매출·순이익·총자산 금액 확인불가.",
+       "source": "없음",
+       "checkedOn": "2026-08-17",
+       "by": "Grok 4.6"
+      }
      },
      "한국 거래처(top)": {
       "v": "롯데마트(285) ·오션푸드시스템(37)·바다향기(21)",
@@ -1035,13 +1507,27 @@
       "v": "비상장·자본5M밧(소규모)",
       "tags": [
        "확인"
-      ]
+      ],
+      "enrich": {
+       "status": "보강",
+       "value": "법인 BEST DEAL SEAFOOD PRODUCT CO., LTD.(บริษัท เบสท์ดีลซีฟู้ดโปรดักท์ จำกัด), 등기 0855539000245. 대표자·납입자본(ทุนชำระแล้ว)·지분구조 확인불가. 형태 유한회사, 비상장. 등기자본 500만 밧(납입 여부는 미확인).",
+       "source": "Data for Thai·Creden Data(DBD 공개데이터 재게시). SET 검색 무적중.",
+       "checkedOn": "2026-08-17",
+       "by": "Grok 4.6"
+      }
      },
      "규모·캐파": {
       "v": "",
       "tags": [
        "불가"
-      ]
+      ],
+      "enrich": {
+       "status": "보강",
+       "value": "일일·연간 처리능력·냉동창고 용량 확인불가. VAT 지점 본사 1곳(54/93 หมู่ 5 บางริ้น, 가공·냉동 동일 주소). 직원은 EMIS 공개면 2024년 7명(현장 인력은 확인불가).",
+       "source": "Data for Thai 지점; 라농 산업청 현장점검(2022-01-10); EMIS 회사 프로필.",
+       "checkedOn": "2026-08-17",
+       "by": "Grok 4.6"
+      }
      },
      "품목·가공": {
       "v": "낙지·갑오징어(냉동)",
@@ -1053,13 +1539,27 @@
       "v": "",
       "tags": [
        "불가"
-      ]
+      ],
+      "enrich": {
+       "status": "보강",
+       "value": "HACCP·BRC·IFS·MSC·ASC·HALAL·EU승인번호·FDA 등록 확인불가. 태국 수산청 가공시설번호 1316. 대만 수출승인 목록(2022-06-02) 등재. 중국 등록은 2022년 말소.",
+       "source": "대만 FDA 《Approved for Export to Taiwan》(2022-06-02); importfood.net 전재 해관총서(2022-09-30).",
+       "checkedOn": "2026-08-17",
+       "by": "Grok 4.6"
+      }
      },
      "재무": {
       "v": "재무",
       "tags": [
        "불가"
-      ]
+      ],
+      "enrich": {
+       "status": "보강",
+       "value": "최근 매출·순이익·총자산 금액 확인불가. 제출연도 표시는 불 2564–2568(2021–2025). EMIS는 2025년 매출 +2.33%·자산 +0.36%만 공개(절대액 없음).",
+       "source": "Creden Data 회사개요; EMIS 프로필(갱신 2026-03-31).",
+       "checkedOn": "2026-08-17",
+       "by": "Grok 4.6"
+      }
      },
      "한국 거래처(top)": {
       "v": "세호수산(31)·상도씨푸드(22)·주인무역(3)",
@@ -1089,13 +1589,27 @@
       "v": "수산 실체",
       "tags": [
        "불가"
-      ]
+      ],
+      "enrich": {
+       "status": "보강",
+       "value": "등기 0105557064906(บริษัท ชนิภัทร จำกัด / CHANIPAT COMPANY LIMITED, 형태 บริษัทจำกัด). 대표자 확인불가. 등록자본 23,000,000밧, 납입자본 9,826,425밧(42.72%). 태국인 주주 4명·지분 100%, 개별 성명·지분율 확인불가. 비상장(SET 상장사 목록에 없음). 별개법인 ชญณิพัฑฒ์ ซีฟู้ดส์(0365568000635)는 미포함.",
+       "source": "DataForThai·ConnectBizs·Creden Data 회사개요(0105557064906, DBD 재공표); SET 상장사 목록(listedCompanies, 기준 17 ส.ค. 2569)",
+       "checkedOn": "2026-08-17",
+       "by": "Grok 4.6"
+      }
      },
      "규모·캐파": {
       "v": "",
       "tags": [
        "불가"
-      ]
+      ],
+      "enrich": {
+       "status": "확인불가",
+       "note": "일일/연간 처리능력 확인불가. 수산 공장 수 확인불가. 직원 수 확인불가. 냉동창고 용량 확인불가.",
+       "source": "없음",
+       "checkedOn": "2026-08-17",
+       "by": "Grok 4.6"
+      }
      },
      "품목·가공": {
       "v": "남방주꾸미·낙지(냉장/냉동)",
@@ -1107,13 +1621,27 @@
       "v": "",
       "tags": [
        "불가"
-      ]
+      ],
+      "enrich": {
+       "status": "확인불가",
+       "note": "HACCP·BRC·IFS·MSC·ASC·HALAL·EU승인번호·FDA 등록 확인불가.",
+       "source": "없음",
+       "checkedOn": "2026-08-17",
+       "by": "Grok 4.6"
+      }
      },
      "재무": {
       "v": "동명법인 자본23M밧",
       "tags": [
        "확인"
-      ]
+      ],
+      "enrich": {
+       "status": "확인불가",
+       "note": "최근 매출 확인불가. 순이익 확인불가. 총자산 확인불가. 회계연도 확인불가.",
+       "source": "없음",
+       "checkedOn": "2026-08-17",
+       "by": "Grok 4.6"
+      }
      },
      "한국 거래처(top)": {
       "v": "해원에스디(84)·씨너지(11)",
@@ -1146,10 +1674,24 @@
       "v": "Thai Union Group(SET:TU) 계열",
       "tags": [
        "확인"
-      ]
+      ],
+      "enrich": {
+       "status": "보강",
+       "value": "(자) Thai Union Seafood Co., Ltd. 등기 0105539133390, 1996-12-06 설립, 공장 송클라(싱하나콘) 비상장. 등록자본 3억 바트. 등기 수권대표 확인불가. 이사 Thiraphong Chansiri(1996–현재). TU가 납입주식 51.0% 직접보유(2024-08 공시). (모) Thai Union Group PCL 등기 0107537000891, SET:TU 1994-11-22 상장. 사장·CEO Thiraphong Chansiri, 이사회 의장(독립) Kirati Assakul. 납입자본 1,063.78백만 바트. 2026-03-04 지분: Chansiri가 17.7%, 자사주 9.4%, Thai NVDR 8.7%, Niruttinanon가 7.8%. 가나 PFC는 Group 자회사(2010 인수).",
+       "source": "DBD 개방데이터(dataforthai/Creden), Thai Union IR Company Profile·Shareholding Structure, SET Factsheet, i-Tail EGM 2024 Enclosure 1, Thai Union 이사회 약력, IntraFish/GFZA",
+       "checkedOn": "2026-08-17",
+       "by": "Grok 4.6"
+      }
      },
      "규모·캐파": {
-      "v": "글로벌 최대급"
+      "v": "글로벌 최대급",
+      "enrich": {
+       "status": "보강",
+       "value": "(자 TUS) 송클라 새우가공 공장 1곳. 일일·연간 처리능력, 직원 수, 냉동창고 용량 확인불가. (모 Group) 연간 생산능력 100만 톤(수산물·펫푸드), 전 세계 제조법인 26곳, 직원 44,000명+. 일일 캐파·그룹 전체 냉동창고 확인불가. 계열 PFC(가나 테마) 냉동창고 8,000톤(2024-07). 2012년 삼뭇사콘 새우공장 일 120톤·직원 2,100명은 Group 본사 공장이지 TUS가 아님.",
+       "source": "Thai Union Our Businesses·Frozen and Culinary·Careers, Ghana Free Zones Authority, GNA/SeafoodSource(2024 냉동창고), SeafoodSource(2012 화재 기사)",
+       "checkedOn": "2026-08-17",
+       "by": "Grok 4.6"
+      }
      },
      "품목·가공": {
       "v": "새우 자숙 횟감팩·연어·홍새우",
@@ -1158,13 +1700,27 @@
       ]
      },
      "인증": {
-      "v": "글로벌 풀인증"
+      "v": "글로벌 풀인증",
+      "enrich": {
+       "status": "보강",
+       "value": "(자 TUS) 태국 DOF·EU 승인목록·대만 FDA·베트남 수출목록 승인번호 1127. TFFA 회원명부(2022 공개)에 GMP·HACCP·BRC·EFSIS·MSC·HALAL·IFS·BAP 표기. 현행 인증서 번호·유효기한, ASC, 미국 FDA 시설등록번호 확인불가. (모 Group) 품질페이지에 인증 이미지 다수(사업장 미특정). Samut Sakhon Group 공장은 2022 FDA HACCP 경고서한(TUS와 별개).",
+       "source": "태국수산국(DOF) EU 승인목록, 대만 FDA 승인목록, 베트남 당국 2024-06-14 목록, TFFA 회원 상세, Thai Union Food Quality and Safety, US FDA Warning Letter 630100(2022-04-20)",
+       "checkedOn": "2026-08-17",
+       "by": "Grok 4.6"
+      }
      },
      "재무": {
       "v": "그룹 FY24 매출 ฿138.4bn·순익 ฿5bn",
       "tags": [
        "확인"
-      ]
+      ],
+      "enrich": {
+       "status": "보강",
+       "value": "(자 TUS, 0105539133390) 최근 매출·순이익·총자산 확인불가. (모 Group 연결, 회계연도 2025-01-01~12-31) 매출 132,719백만 바트, 지배주주순이익 5,508백만 바트, 총자산 158,326백만 바트.",
+       "source": "Thai Union IR Financial Performance(Financial Highlights 2025), SET Factsheet(F/S Year Ended 31 Dec), 2026-02-18 FY2025 실적 보도",
+       "checkedOn": "2026-08-17",
+       "by": "Grok 4.6"
+      }
      },
      "한국 거래처(top)": {
       "v": "지엘피글로벌(58)·우원홀딩스(7)·씨케이글로벌",
@@ -1194,13 +1750,27 @@
       "v": "비상장",
       "tags": [
        "불가"
-      ]
+      ],
+      "enrich": {
+       "status": "보강",
+       "value": "등기번호 `0745557004380`. 상호 บริษัท รัชน์ภัทร อินเตอร์ฟู๊ดส์ จำกัด / RATCHAPAT INTERFOODS COMPANY LIMITED, 형태 บริษัทจำกัด(비상장). 등기자본 1,000,000바트. 대표자·납입자본(ทุนชำระแล้ว)·지분구조 확인불가.",
+       "source": "DataForThai·Creden·Matchlink(DBD/오픈데이터 인용), Tracxn 법인프로필. SET 검색 결과 없음.",
+       "checkedOn": "2026-08-17",
+       "by": "Grok 4.6"
+      }
      },
      "규모·캐파": {
       "v": "",
       "tags": [
        "불가"
-      ]
+      ],
+      "enrich": {
+       "status": "확인불가",
+       "note": "일일/연간 처리능력, 공장 수, 직원 수, 냉동창고 용량 확인불가. VAT상 사업장은 본점 1곳(99 หมู่ 1 ต.นาโคก อ.เมืองสมุทรสาคร). 동일주소 RAPEEPAT INTERFOODS(`0105543044401`)는 별개 법인.",
+       "source": "DataForThai 지점(VAT), Creden 주소. 캐파·인력 공개문서 없음.",
+       "checkedOn": "2026-08-17",
+       "by": "Grok 4.6"
+      }
      },
      "품목·가공": {
       "v": "낙지·주꾸미·백합·갑오징어(냉동)",
@@ -1212,13 +1782,27 @@
       "v": "",
       "tags": [
        "불가"
-      ]
+      ],
+      "enrich": {
+       "status": "확인불가",
+       "note": "HACCP·BRC·IFS·MSC·ASC·HALAL·EU승인번호·FDA 등록 모두 이 등기번호/상호로 확인불가.",
+       "source": "없음. 대만 수출승인 공장목록(대만 FDA 수록본)에는 동일주소 Rapeepat만 있고 Ratchapat는 없음.",
+       "checkedOn": "2026-08-17",
+       "by": "Grok 4.6"
+      }
      },
      "재무": {
       "v": "",
       "tags": [
        "불가"
-      ]
+      ],
+      "enrich": {
+       "status": "확인불가",
+       "note": "최근 매출·순이익·총자산 확인불가. 확정 회계연도 수치 없음. Creden은 BE 2563–2567 제출 사실만 공개.",
+       "source": "없음(Creden/DBD 손익·재무상태표 유료). Tracxn은 FY2022(2022-12-31) 매출 100만~1,000만달러 구간만 표기, 확정액 아님.",
+       "checkedOn": "2026-08-17",
+       "by": "Grok 4.6"
+      }
      },
      "한국 거래처(top)": {
       "v": "아토무역(41)·원양글로벌(21)·대한제당(15)",
@@ -2478,7 +3062,14 @@
       "tags": [
        "확인",
        "불가"
-      ]
+      ],
+      "enrich": {
+       "status": "보강",
+       "value": "일일·연간 처리능력 확인불가. 2024 생산실적 6,408 MT(캐파 아님). 승인공장 DL 194(167/10)·DL 362(동쑤옌 2공장). 공식 사이트는 해산물·새우·BCC-JV 생산단위. 직원 수 확인불가(EMIS만 2023년 400–599명). 냉동창고 1만 팔레트 초과.",
+       "source": "havicovn.com/vi/tong-quan, VASEP 대만수출허용목록(2026-06-10), EMIS 회사프로필(2026-03-24)",
+       "checkedOn": "2026-08-17",
+       "by": "Grok 4.6"
+      }
      },
      "품목·가공": {
       "v": "새우살·문어·주꾸미·오징어(냉동·자숙·횟감)",
@@ -2490,13 +3081,27 @@
       "v": "BRCGS·HACCP·ISO22000/14001· BAP·ASC·MSC ·SEDEX",
       "tags": [
        "확인"
-      ]
+      ],
+      "enrich": {
+       "status": "보강",
+       "value": "회사·VASEP 기재—BRCGS/BRC, HACCP CODEX, ISO 22000, ISO 14001, BAP, ASC, MSC, SEDEX/SMETA, ISO/IEC 17025, HALAL. EU DL 194·DL 362. IFS 확인불가. FDA 등록번호 확인불가(2025 브로슈어만 US FDA 표기). MSC/ASC 인증번호·현행 유효는 디렉터리에서 확인불가.",
+       "source": "havicovn.com 개요·Havico Brochure 2025, VASEP 회원·IUU 목록, 대만수출허용목록 2026-06-10, TRACES NT 검색스니펫(DL 362)",
+       "checkedOn": "2026-08-17",
+       "by": "Grok 4.6"
+      }
      },
      "재무": {
       "v": "매출 2024 $71.49M",
       "tags": [
        "확인"
-      ]
+      ],
+      "enrich": {
+       "status": "보강",
+       "value": "2024 김응아(수출액) 71.49백만 USD. 순이익·총자산 확인불가. 회계연도(결산월) 확인불가(사이트는 ‘2024’만 표기).",
+       "source": "havicovn.com/vi/tong-quan, havicovn.com/havico-overview",
+       "checkedOn": "2026-08-17",
+       "by": "Grok 4.6"
+      }
      },
      "한국 거래처(top)": {
       "v": "해성트레이딩(214) ·다인푸드시스템(161)·산호상사(97)",
@@ -2532,7 +3137,14 @@
       "v": "완제품 12,000t/년 ·그룹 52,000t·~2,000명",
       "tags": [
        "확인"
-      ]
+      ],
+      "enrich": {
+       "status": "보강",
+       "value": "일일 처리능력 확인불가. 연간 캐파 확인불가(Phú Cường 그룹 회원사 페이지는 완제품 12,000톤/년, Yellow Pages Vietnam 2020 갱신본은 3,000톤 이상/년 — 수치 충돌). 공개 주소·EU코드 기준 가공장 1곳(Tắc Cậu 어항공단). 직원 수 확인불가(EMIS 2023=100명 vs Yellow Pages 2020=550명 이상). 냉동창고 용량 확인불가.",
+       "source": "phucuongseafood.com 「Kiên Cường Seafood」; Yellow Pages Vietnam 리스팅(MST 1700443464); EMIS 회사 프로필",
+       "checkedOn": "2026-08-17",
+       "by": "Grok 4.6"
+      }
      },
      "품목·가공": {
       "v": "주꾸미·낙지·갑오징어(냉동)",
@@ -2544,13 +3156,27 @@
       "v": "HACCP·BRC·HALAL",
       "tags": [
        "확인"
-      ]
+      ],
+      "enrich": {
+       "status": "보강",
+       "value": "VASEP 회원 프로필 HACCP·BRC·HALAL. EU 승인번호 DL 409(EU TRACES NT 수산물 가공장 목록에 등재). 대만 FDA·러시아 Rosselkhoznadzor도 DL 409로 동일 상호 등재. IFS·MSC·ASC·FDA 등록번호 확인불가.",
+       "source": "VASEP 회원·공급사 페이지; EU TRACES NT Establishment list (VN/FISHERY_PRODUCTS); 대만 FDA 「베트남 수산물 가공장 대만 수출 승인 목록」; Rosselkhoznadzor 기업등록",
+       "checkedOn": "2026-08-17",
+       "by": "Grok 4.6"
+      }
      },
      "재무": {
       "v": "개별",
       "tags": [
        "불가"
-      ]
+      ],
+      "enrich": {
+       "status": "보강",
+       "value": "최근 매출·순이익·총자산 금액 확인불가. 회계연도 기준 재무제표 원문 없음. (참고·재무제표 아님: VASEP 수산물 수출액 2025년 1–5월 14.961백만 USD. EMIS는 2024년 매출 +15.83%·순이익 +23.52%·총자산 +2.66%만 공개, 절대액은 유료.)",
+       "source": "VASEP 「Doanh nghiệp XK thủy sản Việt Nam 5 tháng đầu năm 2025」(2025-06-20); EMIS 「Kien Cuong Seafood Processing Import-Export Joint Stock Company」(2026-05-12 갱신)",
+       "checkedOn": "2026-08-17",
+       "by": "Grok 4.6"
+      }
      },
      "한국 거래처(top)": {
       "v": "CJ프레시웨이(123) ·아토무역(54)·해든아침(38)",
@@ -2580,13 +3206,27 @@
       "v": "비상장·대표 Tran Hieu Liem",
       "tags": [
        "확인"
-      ]
+      ],
+      "enrich": {
+       "status": "보강",
+       "value": "등기·세번 MST 3500589389(CÔNG TY TNHH THỦY SẢN THANH HÀO). 대표 TRẦN HIẾU LIÊM. 납입자본·등록 지분율 확인불가. 상장 아님(TNHH·Privately Held; HOSE/HNX/UPCOM 없음). 별개번호: 납호세 3502415476(2020-01-07).",
+       "source": "MaSoThue `3500589389`·`3502415476`; DauThau.Net 기업등기; LinkedIn 회사페이지; EMIS 프로필(설립 2003-04-25)",
+       "checkedOn": "2026-08-17",
+       "by": "Grok 4.6"
+      }
      },
      "규모·캐파": {
       "v": "공장 13,000㎡·2,500t/년·300+명",
       "tags": [
        "확인"
-      ]
+      ],
+      "enrich": {
+       "status": "보강",
+       "value": "일일 처리능력·냉동창고 용량 확인불가. 연간 생산 2,500톤·공장면적 13,000㎡는 자사 주장. 공장은 Lộc An 단지 1곳으로만 기술. 직원 수 상충—자사 300+명 / LinkedIn 201–500 / EMIS 2024 53명.",
+       "source": "thanhhaoseafood.com(홈·Giới thiệu); LinkedIn; EMIS(2026-05-12 갱신, 직원 53·2024); DARAVIN(2022, 냉동창고 존재만)",
+       "checkedOn": "2026-08-17",
+       "by": "Grok 4.6"
+      }
      },
      "품목·가공": {
       "v": "오징어·문어·관자·게·새우(냉동·스시슬라이스)",
@@ -2598,13 +3238,27 @@
       "v": "HACCP·BRC·ASC·MSC·IFS·SEDEX·美FDA",
       "tags": [
        "확인"
-      ]
+      ],
+      "enrich": {
+       "status": "보강",
+       "value": "EU 승인번호 DL 687(독립확인). VASEP 기재 HACCP·HALAL·BRC(번호·유효기한 확인불가). 자사 FDA No. 17317734782(선하증권에도 표기, FDA FEI 포털 확인불가). IFS·MSC·ASC·SEDEX 독립 레지스트리 확인불가. FDA Import Alert 99-47 오징어 적색목록(2024-04-02~, 조회일 잔존).",
+       "source": "EC TRACES NT(VN fishery, 2026-08-03 갱신 스니펫); VASEP 회원·공급사 페이지; thanhhaoseafood.com; FDA Import Alert 99-47; 중국 수산물등록목록(WTO센터 PDF, DL 687·유효 2026-11-21)",
+       "checkedOn": "2026-08-17",
+       "by": "Grok 4.6"
+      }
      },
      "재무": {
       "v": "",
       "tags": [
        "불가"
-      ]
+      ],
+      "enrich": {
+       "status": "보강",
+       "value": "최근 매출·순이익·총자산 절대액 확인불가. EMIS 공개분은 회계연도 2024 전년비만: 매출 +17.94%, 총자산 +17.34%, 당기순이익 +103.47%(금액 비공개).",
+       "source": "EMIS «Thanh Hao Seafood Co., Ltd» 프로필(Most recent financial data: 2024, 갱신 2026-05-12)",
+       "checkedOn": "2026-08-17",
+       "by": "Grok 4.6"
+      }
      },
      "한국 거래처(top)": {
       "v": "진젠코리아(26)·코미무역(12)·지앤원(12)",
@@ -2634,13 +3288,27 @@
       "v": "비상장",
       "tags": [
        "불가"
-      ]
+      ],
+      "enrich": {
+       "status": "보강",
+       "value": "등기·세번 3500810424. 법인명 CÔNG TY TNHH THỦY SẢN HÒA THẮNG(HOA THANG SEAFOOD CO., LTD). 형태 TNHH 2인 이상. 대표 Nguyễn Văn Chung(감독). 설립 2007-08-13, 개업 2007-08-15. 납입자본 확인불가. 지분 성명 확인불가(EMIS 공개 티저만 5인 48.11/20.09/15.07/8.83/7.9%). 비상장.",
+       "source": "MaSoThue·Dulieuphapluat·DaiLyChuKySo MST 조회; ASEMCONNECT(VITIC·공상부); EMIS 프로필(2026-05-12 갱신, 성명·자본 유료). HOSE/HNX/UPCOM 등재 없음.",
+       "checkedOn": "2026-08-17",
+       "by": "Grok 4.6"
+      }
      },
      "규모·캐파": {
       "v": "~300명·1,200t/월",
       "tags": [
        "확인"
-      ]
+      ],
+      "enrich": {
+       "status": "보강",
+       "value": "공식 인허가 캐파 확인불가. 자사 About 월 1,200톤·직원 300명 / 홈 일 60톤·라인 2·직원 550명. 옐로페이지 수리미 월 800–900톤·냉동창고 400톤·직원 101–200명(수치 불일치). EMIS 직원 266명(2024). 공개 공장 주소 Lộc An 1곳. 연간 처리능력·공장 수 공식 공시 확인불가.",
+       "source": "hoathangseafood.vn About·홈; Yellow Pages Vietnam(세번 3500810424); EMIS 프로필.",
+       "checkedOn": "2026-08-17",
+       "by": "Grok 4.6"
+      }
      },
      "품목·가공": {
       "v": "주꾸미·낙지(냉동)+고등어필렛",
@@ -2652,13 +3320,27 @@
       "v": "HACCP·ISO22000·HALAL·CODEX",
       "tags": [
        "확인"
-      ]
+      ],
+      "enrich": {
+       "status": "보강",
+       "value": "EU 승인번호 DL 523(VASEP 회원란·TRACES 목록 스니펫·NAFIQAD 증서). NAFIQAD-SRA 식품안전기준 적합 111/2023/QLCL-CNĐK(2023-08-15, 3년, 만료 2026-08-15). VASEP 기재 HACCP·HALAL·ISO 22000:2018·HACCP CODEX. 자사 게시 ISO 22000:2018(AJAEU/22/17220, 만료 2025-02-08), HALAL JAKIM/MUI(HCA 675, 만료 2024-07-19), FDA 제3자증 13102978540(만료 2023-12-31, FDA.gov 미확인). BRC·IFS·MSC·ASC 확인불가. 현재 HACCP/ISO/HALAL/FDA 유효 여부 확인불가.",
+       "source": "VASEP 회원페이지; hoathangseafood.vn Certificates 원문; NAFIQAD-SRA 증서; EC TRACES NT VN fishery 목록 스니펫.",
+       "checkedOn": "2026-08-17",
+       "by": "Grok 4.6"
+      }
      },
      "재무": {
       "v": "",
       "tags": [
        "불가"
-      ]
+      ],
+      "enrich": {
+       "status": "보강",
+       "value": "최근 매출·순이익·총자산 절대액 확인불가. 결산일 12월 31일. EMIS 공개 티저만 2024 매출 +23.11%, 총자산 +24.13%, 순이익 N/A.",
+       "source": "Dulieuphapluat MST(Kết thúc năm tài chính 31/12); EMIS Hoa Thang Seafood Company Limited(2024 데이터, 절대액 유료). 감사보고서·공시 재무제표 없음.",
+       "checkedOn": "2026-08-17",
+       "by": "Grok 4.6"
+      }
      },
      "한국 거래처(top)": {
       "v": "해심트레이딩(45)·재호식품(28)·제이엔씨(19)",
@@ -2688,13 +3370,27 @@
       "v": "비상장·대표 Bui Xuan Hai",
       "tags": [
        "확인"
-      ]
+      ],
+      "enrich": {
+       "status": "보강",
+       "value": "기업번호(MST) 3500669965. 대표 부이쑤언하이(Bùi Xuân Hải, 감독/Giám đốc). 납입자본·출자자 성명·지분율 확인불가. 형태 TNHH(복수의 기업DB가 1인 유한회사로 표기). HOSE·HNX·UPCOM에서 동일 MST·상호 미확인 → 비상장.",
+       "source": "MaSoThue(3500669965), DauThau.info/DauThau.Net, TraTenCongTy, 자사 웹 haiduongseafood.com/about/. 혼동금지: MST 3502216537 비엔자우VN, 1602225933·1801722432 동명 별법인.",
+       "checkedOn": "2026-08-17",
+       "by": "Grok 4.6"
+      }
      },
      "규모·캐파": {
       "v": "~400명·냉동라인4·냉장창고500t·300~500t/월",
       "tags": [
        "확인"
-      ]
+      ],
+      "enrich": {
+       "status": "보강",
+       "value": "일일 처리능력 확인불가. 자사 웹(연도 미기재): 월 400–500톤, 근로 400+QC 30, 냉동창고 5동×100톤. 2017 프로필: 직원 약 300, 직전연도 문어 200톤+기타 130톤. 공장 수는 붕따우 78 Phước Thắng 1곳만 기재. 수치 간 불일치, 독립 검증 확인불가.",
+       "source": "haiduongseafood.com/about/; InvestVietnam「hai-duong-seafood-import-export-company-limited.pdf」(US Trade 2017). Yellow Pages는 직원 101–200으로 또 다름.",
+       "checkedOn": "2026-08-17",
+       "by": "Grok 4.6"
+      }
      },
      "품목·가공": {
       "v": "주꾸미·낙지·갑오징어·오징어·가오리(냉동)",
@@ -2707,13 +3403,27 @@
       "tags": [
        "확인",
        "불가"
-      ]
+      ],
+      "enrich": {
+       "status": "보강",
+       "value": "HACCP·BRC·IFS·MSC·ASC·HALAL·EU승인번호(DL/HK 등)·FDA 등록번호 모두 확인불가. 자사 웹은 HACCP 운용·VINAFOSA 회원만 주장(인증번호·발급기관·유효기한 없음). Yellow Pages의 ISO 9001:2000·QS-9000·SA8000는 인증서 없음. 같은 주소 Á Đông(DL 412)·Tứ Hải(HK 748)와 섞지 말 것.",
+       "source": "자사 웹 about/; Yellow Pages VN 1187902653; EU TRACES·fda.gov·MSC/ASC/BRC 사이트에서 본 법인명·MST 미검색.",
+       "checkedOn": "2026-08-17",
+       "by": "Grok 4.6"
+      }
      },
      "재무": {
       "v": "매출 $10–50M",
       "tags": [
        "추정"
-      ]
+      ],
+      "enrich": {
+       "status": "확인불가",
+       "note": "최근 매출·순이익·총자산·회계연도 확인불가.",
+       "source": "없음(공시 재무제표·세무공시 미발견). Market Inside의 2025.4–2026.3 수출 US$6.9백만은 세관 집계이지 감사 매출이 아님.",
+       "checkedOn": "2026-08-17",
+       "by": "Grok 4.6"
+      }
      },
      "한국 거래처(top)": {
       "v": "해심트레이딩(40)·쓰리케이글로벌(23)·교동물산(13)",
@@ -2744,13 +3454,27 @@
       "v": "Minh Phu(HOSE:MPC 세계1위 새우) 자회사",
       "tags": [
        "확인"
-      ]
+      ],
+      "enrich": {
+       "status": "보강",
+       "value": "등기·세번 6300033769. 법정대표 Lê Văn Quang(HĐQT 의장). 납입(실납입)자본 1조 2,000억 VND(2022.4 유보 증자). 지분 MPC 98.27%(잔여 1.73% 주주 확인불가). 자체 비상장(모회사 MPC만 UPCOM).",
+       "source": "masothue.com·thongtincongty.vn(6300033769); MPC 《Báo cáo thường niên 2023》 자회사표; MPC 2024Q4 별도 BCTC(VCBS); 2025 ĐHĐCĐ 자료(VCBS); VNR500/toptenvietnam 「Chưa niêm yết」",
+       "checkedOn": "2026-08-17",
+       "by": "Grok 4.6"
+      }
      },
      "규모·캐파": {
       "v": "밸류애디드 새우공장1·개별캐파",
       "tags": [
        "불가"
-      ]
+      ],
+      "enrich": {
+       "status": "보강",
+       "value": "일일 캐파·당사 냉동창고 용량 확인불가. 연간 설계: 본공장 36,000톤(같은 페이지 상단 요약은 40,000톤으로 불일치) + 2024.2 가동 인접 튀김옷공장 15,000톤. 공장 송허우 1기 1단지. 직원 약 2,000명(2025.4 성 주석 발언).",
+       "source": "minhphu.com/hoat-dong/; VASEP(2025-05-02, Undercurrent 인용); 《Tạp chí Tài chính doanh nghiệp》(2025-04-16, UBND Hậu Giang 면담)",
+       "checkedOn": "2026-08-17",
+       "by": "Grok 4.6"
+      }
      },
      "품목·가공": {
       "v": "흰다리새우 raw/cooked/스시/템퓨라(자숙 횟감팩)",
@@ -2762,14 +3486,28 @@
       "v": "EU DL734·그룹 BAP·ASC·BRC",
       "tags": [
        "확인"
-      ]
+      ],
+      "enrich": {
+       "status": "보강",
+       "value": "EU 승인번호 DL 734(현행 목록). FDA 등록 존재(2025–2026 갱신문, 등록번호 확인불가). HACCP·BRC·IFS·ASC·HALAL은 모회사 VASEP 프로필(EU코드에 DL 734 포함)의 집단 표기. 공장 단위 유효증서 번호·MSC 확인불가.",
+       "source": "EU TRACES NT Vietnam fishery products; TraceGains 「FDA Registration Renewal 2025-2026, Minh Phu - Hau Giang Seafood Corp」; VASEP 「MINH PHU SEAFOOD CORPORATION」",
+       "checkedOn": "2026-08-17",
+       "by": "Grok 4.6"
+      }
      },
      "재무": {
       "v": "모회사 MPC ’24 순손실(그룹부담) ·개별",
       "tags": [
        "확인",
        "불가"
-      ]
+      ],
+      "enrich": {
+       "status": "보강",
+       "value": "연간 매출·순이익·총자산 확인불가. 공개 단편만: 2025 1분기 수출매출 400만 USD 초과, 생산 4,000톤 초과. 2024 3분기 모회사가 이 회사로부터 배당 2,700억 VND 수령(자회사 당기순이익 아님).",
+       "source": "《Tạp chí Tài chính doanh nghiệp》(2025-04-16); VOV Giao thông(2025-08-16); 《Tạp chí Công Thương》(2024-10-25)",
+       "checkedOn": "2026-08-17",
+       "by": "Grok 4.6"
+      }
      },
      "한국 거래처(top)": {
       "v": "지앤원인터네셔널(30)·이마트(24)·브라보수산(22)",
@@ -2799,13 +3537,27 @@
       "v": "비상장",
       "tags": [
        "불가"
-      ]
+      ],
+      "enrich": {
+       "status": "보강",
+       "value": "MST(기업등록번호) 1702035693. 법정대표 BÙI TRỌNG HIẾU. 2인 이상 유한책임회사(TNHH), 2016-01-25 설립. 납입자본·구성원 성명 확인불가(EMIS 공개요약에 지분 50%/50%만). 비상장.",
+       "source": "MaSoThue 기업조회(1702035693); VASEP 회원페이지「Công ty TNHH Trung Vy Phát」; EMIS 기업프로필. HOSE·HNX·UPCOM에서 동일 MST 상장 기록 없음.",
+       "checkedOn": "2026-08-17",
+       "by": "Grok 4.6"
+      }
      },
      "규모·캐파": {
       "v": "",
       "tags": [
        "불가"
-      ]
+      ],
+      "enrich": {
+       "status": "보강",
+       "value": "일일·연간 처리능력·냉동창고 용량 확인불가. 본사 부지 16,000㎡ 1곳. 까마우 지점 MST 1702035693-001(2025-06-09, 대표 BÙI THỊ THU HOÀI). 직원 수 확인불가(EMIS 공개페이지 2024년 19명 표기; 현원 검증 불가).",
+       "source": "자사 웹 trungvyphatseafood.com; MaSoThue 지점조회(1702035693-001); VASEP「List of VN Establishments Approved Export to Taiwan」(2026-07-29, 본사 DL 1003·지점 TS 1302); EMIS.",
+       "checkedOn": "2026-08-17",
+       "by": "Grok 4.6"
+      }
      },
      "품목·가공": {
       "v": "주꾸미·낙지·갑오징어·민꽃게(냉동)",
@@ -2817,13 +3569,27 @@
       "v": "HACCP·BRC·FDA",
       "tags": [
        "확인"
-      ]
+      ],
+      "enrich": {
+       "status": "보강",
+       "value": "EU 승인번호 DL 1003(본사). VASEP·자사가 HACCP·BRC·FDA 표기(인증서 원본·BRCGS 등재·FDA 등록번호 확인불가). IFS·MSC·ASC·HALAL 확인불가. 까마우 지점 대만목록 번호 TS 1302(EU 승인 여부는 확인불가). FDA Import Alert 16-125 레드리스트(2025-12-01, Scad).",
+       "source": "VASEP 회원정보; EU TRACES NT VN Fishery Products 목록(DL 1003 행); VASEP 대만수출 사업장 목록(2026-07-29); US FDA Import Alert 16-125.",
+       "checkedOn": "2026-08-17",
+       "by": "Grok 4.6"
+      }
      },
      "재무": {
       "v": "",
       "tags": [
        "불가"
-      ]
+      ],
+      "enrich": {
+       "status": "보강",
+       "value": "매출·순이익·총자산 절대금액 확인불가. EMIS가 2024 회계연도 보유를 표기하나 공개값은 증감률만(매출 +153.54%, 순이익 +61.81%, 총자산 +83.79%).",
+       "source": "EMIS「Trung Vy Phat Limited Company」프로필(2026-05-07 갱신). 재무제표 원문 없음.",
+       "checkedOn": "2026-08-17",
+       "by": "Grok 4.6"
+      }
      },
      "한국 거래처(top)": {
       "v": "제이엔씨트레이드(42)·하이무역(19)·창조씨푸드(15)",
@@ -2853,13 +3619,27 @@
       "v": "비상장(1인)·대표 Do Hung Long",
       "tags": [
        "확인"
-      ]
+      ],
+      "enrich": {
+       "status": "보강",
+       "value": "등기/세번 1800688588(GCN ĐKKD 2008-01-08). 대표 ĐỖ HÙNG LONG(감독). 납입·정관자본 확인불가. 형태 TNHH MTV(1인 유한). 출자자·지분율 공시 확인불가(VITIC가 소유자/법정대표 칸에 Đỗ Hùng Long 병기). 비상장.",
+       "source": "MaSoThue; VITIC ASEMCONNECT(Biz_id=21723); DauThau.info; DoanhNghiep.vn(국등기포털 대조, 자본·지분 미공시·미상장)",
+       "checkedOn": "2026-08-17",
+       "by": "Grok 4.6"
+      }
      },
      "규모·캐파": {
       "v": "직원 200+",
       "tags": [
        "확인"
-      ]
+      ],
+      "enrich": {
+       "status": "보강",
+       "value": "일일/연간 처리능력 확인불가. 가동 공장 1곳(짜녹2공단 Lô 2-9A2, 부지 1.2만㎡·가공 5천㎡, 분공장 3). 벤째 지점 MST 1800688588-001은 일시정지. 직원 자사표기 +200명(공식 인원 확인불가). 냉동창고 1,000톤. 설비: IQF 500kg/h×3, 접촉동결 2,000kg/h×5.",
+       "source": "hungphucseafood.com.vn(소개·영문 About); VITIC ASEMCONNECT; MaSoThue·DoanhNghiep.vn(지점)",
+       "checkedOn": "2026-08-17",
+       "by": "Grok 4.6"
+      }
      },
      "품목·가공": {
       "v": "팡가시우스 메기 필렛 +두족류·새우(냉동·RTE)",
@@ -2872,13 +3652,27 @@
       "tags": [
        "확인",
        "불가"
-      ]
+      ],
+      "enrich": {
+       "status": "보강",
+       "value": "EU승인 DL 815(Workshop I). 대만 수출목록 DL 815(HS 0303·0304·0307·0511). 한국 수출시설 목록 DL 815(vnsw). 2022-03 중국해관이 DL 815 수입신고 1주 정지(당시 등록 확인). HACCP·BRC·IFS·MSC·ASC·HALAL·현행 FDA등록번호 확인불가.",
+       "source": "자사 About; EU TRACES NT VN/FISHERY_PRODUCTS(크롤 2026-08-16, 표기 2026-02-25); 대만FDA 목록 PDF; vnsw.gov.vn Korea.xlsx; 중국식품토축진출입상회(해관총서 2022-03-30)",
+       "checkedOn": "2026-08-17",
+       "by": "Grok 4.6"
+      }
      },
      "재무": {
       "v": "",
       "tags": [
        "불가"
-      ]
+      ],
+      "enrich": {
+       "status": "보강",
+       "value": "최근 매출·순이익·총자산 확인불가. 회계연도 종료 12/31(세무등록). 공시 BCTC 없음.",
+       "source": "DuLieuPhapLuat.vn(MST 1800688588, 동기 2026-06-18); DoanhNghiep.vn(자본·BCTC 미공시). HOSE/HNX 재무공시 없음",
+       "checkedOn": "2026-08-17",
+       "by": "Grok 4.6"
+      }
      },
      "한국 거래처(top)": {
       "v": "비엠케이트레이드(45)·산호상사(24)·건아씨엔푸드(18)",
@@ -2905,13 +3699,27 @@
       "v": "비상장",
       "tags": [
        "불가"
-      ]
+      ],
+      "enrich": {
+       "status": "보강",
+       "value": "등기번호 MST 3500661010. 대표 PHẠM THỊ THU HIỀN. 국내 TNHH 2인 이상(외국인투자 아님). 설립 2004-06-16(등기)·세무개시 2004-06-24. 납입자본 확인불가. 지분 성명 확인불가(EMIS에 70%/30%만 노출). 비상장.",
+       "source": "MaSoThue `3500661010`; DauThau.Net 기업프로필; EMIS Phu Quy Company Limited(갱신 2026-05-12).",
+       "checkedOn": "2026-08-17",
+       "by": "Grok 4.6"
+      }
      },
      "규모·캐파": {
       "v": "",
       "tags": [
        "불가"
-      ]
+      ],
+      "enrich": {
+       "status": "보강",
+       "value": "직원 110명(2024). 가공장 1곳—「Nhà máy chế biến Hải sản đông lạnh xuất khẩu」, 97 Phước Thắng(지점 MST 3500661010-001 동일주소). 일일/연간 처리능력 확인불가. 냉동창고 용량 확인불가.",
+       "source": "EMIS 동 프로필; VASEP 대만수출승인목록 Ver.20260610; MaSoThue 지점 `3500661010-001`.",
+       "checkedOn": "2026-08-17",
+       "by": "Grok 4.6"
+      }
      },
      "품목·가공": {
       "v": "주꾸미·낙지·갑오징어·가오리(냉동)",
@@ -2923,13 +3731,27 @@
       "v": "대한수출=DL 보유",
       "tags": [
        "추정"
-      ]
+      ],
+      "enrich": {
+       "status": "보강",
+       "value": "사업장코드 DL 352. 대만 수출승인 현행(목록 2026-06-10). 한국 수출목록 등재 이력(2023-06-19) 및 2026 대한 선적 실적. HACCP·BRC·IFS·MSC·ASC·HALAL·FDA 등록 확인불가. EU TRACES 현행 승인 확인불가. 중국 GACC는 집계사이트상 Inactive(2022)이나 공식 현행 확인불가.",
+       "source": "VASEP PDF `2026-06-10-DANH-SACH-...-DAI-LOAN`; 대만 FDA 과거 목록; Scribd 2023-06-19 대한수출목록; TAAMs 2026 대한수출; gacc.agency.",
+       "checkedOn": "2026-08-17",
+       "by": "Grok 4.6"
+      }
      },
      "재무": {
       "v": "",
       "tags": [
        "불가"
-      ]
+      ],
+      "enrich": {
+       "status": "보강",
+       "value": "매출 절대액 확인불가. 순이익 확인불가(EMIS도 N/A). 총자산 절대액 확인불가. 공개된 것은 2024년 매출 +15.62%·총자산 +22.87%(절대액 유료). 회계연도 2024.",
+       "source": "EMIS Phu Quy Company Limited — Most recent financial data: 2024(갱신 2026-05-12).",
+       "checkedOn": "2026-08-17",
+       "by": "Grok 4.6"
+      }
      },
      "한국 거래처(top)": {
       "v": "씨위드(183) ·다혜무역(50)·H&홀푸드(49)",
@@ -2959,13 +3781,27 @@
       "v": "비상장",
       "tags": [
        "불가"
-      ]
+      ],
+      "enrich": {
+       "status": "보강",
+       "value": "기업등록·세번 0304994988(활동). 상호 Công ty CP XNK Thủy sản Hợp Tấn / HOP TAN SEAFOOD IMPORT-EXPORT CORPORATION. 법률대표·감독 Đoàn Văn Thành. 납입자본 확인불가. 지분 성명 확인불가(EMIS 미리보기에 27.73%·24.09%×3만 노출). 비상장.",
+       "source": "국세청 미러 MaSoThue 0304994988(2026-08-14 갱신); Thongtincongty; Fast500 「Chưa niêm yết」; EMIS 회사 프로필(2026-05-12 갱신). HOSE/HNX/UPCOM 검색 무.",
+       "checkedOn": "2026-08-17",
+       "by": "Grok 4.6"
+      }
      },
      "규모·캐파": {
       "v": "",
       "tags": [
        "불가"
-      ]
+      ],
+      "enrich": {
+       "status": "보강",
+       "value": "일일·연간 처리능력·냉동창고 용량 확인불가. 사업장 2곳—본사 Lô 19 Đường số 8, KCN Tân Tạo, P. Tân Tạo, HCMC(DL 312); 지점 Lagi 0304994988-001, Lô B2·B3·B14·B15 Cảng cá Lagi(2016-02-02, DL 934). 직원 수 확인불가(EMIS 55명·2023 vs 시공사 소개 250명+·2009, 불일치).",
+       "source": "MaSoThue 본사·지점; VASEP 전재 한국 승인목록 Total(787) 행 187·611; Saree 공사소개(2009, 비공식).",
+       "checkedOn": "2026-08-17",
+       "by": "Grok 4.6"
+      }
      },
      "품목·가공": {
       "v": "주꾸미·낙지·갑오징어·왕우렁이·해물믹스(냉동)",
@@ -2977,13 +3813,27 @@
       "v": "DL 보유",
       "tags": [
        "추정"
-      ]
+      ],
+      "enrich": {
+       "status": "보강",
+       "value": "HACCP·BRC·IFS·MSC·ASC·HALAL·FDA 등록번호 확인불가. 한국 승인 DL 312(본사, PP, Frozen/Chilled)·DL 934(Lagi, PP, Frozen). 영국(GB) 수산물 Section VIII는 DL 312만(요청 2025-09-22). EU TRACES 현행 등재 확인불가. 대만 목록·베트남 수출인증프로그램에 DL 312·934 등재.",
+       "source": "VASEP 「Danh sách DN chế biến…」(2025-10-03) 전재 한국시트(갱신 2025-09-08, 효력 2025-10-17)·수출인증시트(2025-10-15)·대만 PDF Ver.20260610·영국 GB 시트. BRC/MSC/ASC/FDA 디렉터리 무.",
+       "checkedOn": "2026-08-17",
+       "by": "Grok 4.6"
+      }
      },
      "재무": {
       "v": "",
       "tags": [
        "불가"
-      ]
+      ],
+      "enrich": {
+       "status": "보강",
+       "value": "최근 매출·순이익·총자산 절대액 확인불가. EMIS 공개 요약은 2024 증감만 표시(매출 −7.1%, 당기순이익 +54.1%, 총자산 −12.94%). 재무제표 원문 없음.",
+       "source": "EMIS 「Hop Tan Seafood Import-Export Corporation」(프로필 갱신 2026-05-12, Most recent financial data: 2024). 절대액은 유료 차단.",
+       "checkedOn": "2026-08-17",
+       "by": "Grok 4.6"
+      }
      },
      "한국 거래처(top)": {
       "v": "건민에프엔씨(139)·재호식품(100)·해원에스디(91)",
@@ -3013,13 +3863,27 @@
       "v": "비상장",
       "tags": [
        "불가"
-      ]
+      ],
+      "enrich": {
+       "status": "보강",
+       "value": "등기·세금번호 1701560403. 대표 응우옌 투 투이(Nguyễn Thu Thùy). 2인 이상 유한회사(TNHH), 허가일 2011-08-25, 비상장. 납입자본 확인불가. 출자자 성명·등기 확정 지분 확인불가(EMIS 공개화면에 60%·40%만 표시). HOSE AAM(CTCP Thủy sản Mekong, MST 1800448811, 껀터)은 별개 법인.",
+       "source": "Infocom 기업프로필; hosocongty.vn; DailyChuKySo; EMIS「Mekong Seafoods Company Limited」; HSX AAM",
+       "checkedOn": "2026-08-17",
+       "by": "Grok 4.6"
+      }
      },
      "규모·캐파": {
       "v": "",
       "tags": [
        "불가"
-      ]
+      ],
+      "enrich": {
+       "status": "보강",
+       "value": "일일·연간 처리능력 확인불가. 직원 수 확인불가. 냉동창고 용량 확인불가. 등기 사업장 3곳: 본사(락자/현 An Giang) + 지점1 1701560403-001(218A ấp Tân Điền, 2018-08-15) + 지점2 1701560403-002(174 ấp Tân Điền, 2023-02-27).",
+       "source": "DauThau.Net 등기 프로필; Infocom; MaSoThue 지점 페이지",
+       "checkedOn": "2026-08-17",
+       "by": "Grok 4.6"
+      }
      },
      "품목·가공": {
       "v": "주꾸미·갑오징어·낙지(냉동)",
@@ -3031,13 +3895,27 @@
       "v": "",
       "tags": [
        "불가"
-      ]
+      ],
+      "enrich": {
+       "status": "보강",
+       "value": "지점 EU 승인번호 DL 913(218A Tân Điền). 대만 수출 허가 목록에도 DL 913. HACCP·BRC·IFS·MSC·ASC·HALAL·FDA 등록번호 확인불가. 한국 2025-09 전체 목록(787개) 원문 확인불가(2020–2023 한·베 수출사업장 목록에는 DL 913 등재).",
+       "source": "EU TRACES NT Fishery Products; VASEP 2026-07-29 수산물기업목록; VASEP 2026-06-10 대만수출목록; VASEP/Scribd 한국수출목록(2020–2023)",
+       "checkedOn": "2026-08-17",
+       "by": "Grok 4.6"
+      }
      },
      "재무": {
       "v": "",
       "tags": [
        "불가"
-      ]
+      ],
+      "enrich": {
+       "status": "보강",
+       "value": "최근 매출·순이익·총자산 금액 확인불가. EMIS만 2024 회계연도 증감률 공개(매출 −2.81%, 순이익 −52.22%, 총자산 −21.48%).",
+       "source": "EMIS「Mekong Seafoods Company Limited」프로필(2026-05-12 갱신)",
+       "checkedOn": "2026-08-17",
+       "by": "Grok 4.6"
+      }
      },
      "한국 거래처(top)": {
       "v": "씨위드(42)·지에스코퍼레이션(35)·아토코리아(19)",
@@ -3068,13 +3946,27 @@
       "v": "UPCoM 상장(APT)·거래제한/경고 (부실)",
       "tags": [
        "확인"
-      ]
+      ],
+      "enrich": {
+       "status": "보강",
+       "value": "기업·세번 0300523755(구 GCNĐKKD 4103005759, 2025-08-08 제13차 변경). 법정대표 Đỗ Ngọc Nga(총감). 납입자본(주주출자) 880억동. 지분(2026-03-25) Somo VN 41.09%·SATRA 30.00%·기타 428명 28.82%·내부 2명 0.088%. UPCOM 상장(APT, 2019-06-07), 거래제한·경고 유지, 2026-01-01부터 공개회사 요건 미충족 통보.",
+       "source": "MaSoThue 0300523755; APT 《Báo cáo thường niên 2025》·감사 BCTC(31/12/2025); CafeF/HNX APT 공시.",
+       "checkedOn": "2026-08-17",
+       "by": "Grok 4.6"
+      }
      },
      "규모·캐파": {
       "v": "",
       "tags": [
        "불가"
-      ]
+      ],
+      "enrich": {
+       "status": "보강",
+       "value": "연간 가공 2만~3만톤(수출 약 60%). 일일 처리능력 확인불가. 공장 수 공식 집계 확인불가(2025 연차 자회사 없음; 자사 웹은 Tân Tạo Lô 4-6-8 단지·Hung Phu 157 등 복수 사업장명). 직원 232명(2025-12-31). 냉동창고 용량 2025 연차 미기재; 자사 소개(연도 미상) 콜드센터 1,500톤.",
+       "source": "APT 《Báo cáo thường niên 2025》 p.4·p.19; apt.com.vn About/Branch/APT Co. 소개.",
+       "checkedOn": "2026-08-17",
+       "by": "Grok 4.6"
+      }
      },
      "품목·가공": {
       "v": "틸라피아·메기·다품종 24유형(냉동)",
@@ -3086,13 +3978,27 @@
       "v": "HACCP·HALAL·BRCGS·VietGAP",
       "tags": [
        "확인"
-      ]
+      ],
+      "enrich": {
+       "status": "보강",
+       "value": "2025 연차 HACCP·BRCGs, EU코드 DL 364·DL 769·HK 156·DL 878, VietGAP(2023–2025). HALAL·ISO는 자사/VASEP 표기(현행 인증서 확인불가). MSC·ASC·IFS 확인불가. FDA 식품시설 현행 등록번호 확인불가(2011 B/L에 15816799296; Hung Thinh 지점은 FDA Import Alert 16-81 적색명단).",
+       "source": "APT BCTN 2025; VASEP 회원프로필; EU TRACES VN 수산물 목록 스니펫; FDA IA 16-81(2026-08-13); ImportGenius B/L CMDUVN1365041(2011).",
+       "checkedOn": "2026-08-17",
+       "by": "Grok 4.6"
+      }
      },
      "재무": {
       "v": "상장이나 부실·거래제한",
       "tags": [
        "확인"
-      ]
+      ],
+      "enrich": {
+       "status": "보강",
+       "value": "FY2025(1/1–12/31) 순매출 265,231,068,912동, 당기순손실 1,152,794,123,823동, 총자산 195,136,806,434동. FY2024 순매출 250,471,154,980동, 당기순손실 201,409,502,625동, 총자산 175,914,239,911동. 감사의견 한정(AASC, 2026-03-30).",
+       "source": "APT 감사 BCTC 2025(Bảng CĐKT·KQKD, 날인 MST 0300523755).",
+       "checkedOn": "2026-08-17",
+       "by": "Grok 4.6"
+      }
      },
      "한국 거래처(top)": {
       "v": "꿈꾸는사람들(160)·제이아이에프(31)·스마일마트(9)",
@@ -3122,13 +4028,27 @@
       "v": "비상장",
       "tags": [
        "추정"
-      ]
+      ],
+      "enrich": {
+       "status": "보강",
+       "value": "등기번호(MST) `1702279555`. 대표 응우옌반디엔(Nguyễn Văn Diễn). 정관자본(vốn điều lệ) 9,600,000,000 VND·납입 실적 확인불가. 형태 TNHH 2인 이상, 지분 성명 확인불가(EMIS 공개 요약만 60%/40%). 비상장.",
+       "source": "masothue.com `1702279555`; InfoDoanhNghiep; DauThau.Net; TraCuuThongTinDoanhNghiep.net; EMIS Huy Giang 프로필(2026-05-07).",
+       "checkedOn": "2026-08-17",
+       "by": "Grok 4.6"
+      }
      },
      "규모·캐파": {
       "v": "",
       "tags": [
        "불가"
-      ]
+      ],
+      "enrich": {
+       "status": "보강",
+       "value": "일일·연간 처리능력 확인불가. 공장 수 확인불가. 직원 수 EMIS 표기 2024년 4명(현장 인원 공시 없음). 냉동창고 용량 확인불가.",
+       "source": "EMIS Huy Giang Company Limited 프로필(2026-05-07). DauThau.Net은 직원 수 미기재.",
+       "checkedOn": "2026-08-17",
+       "by": "Grok 4.6"
+      }
      },
      "품목·가공": {
       "v": "낙지·갑오징어·주꾸미(냉동)",
@@ -3141,13 +4061,27 @@
       "tags": [
        "추정",
        "불가"
-      ]
+      ],
+      "enrich": {
+       "status": "보강",
+       "value": "시설번호 TS 1067(EU TRACES·대만 수출허가 목록). HACCP·BRC·IFS·MSC·ASC·HALAL·FDA 등록번호 확인불가.",
+       "source": "EC TRACES NT(VN/FISHERY_PRODUCTS); VASEP 대만수출허가목록 Ver.20260610·20260729; 한국 소매 표시(쿠팡 등 TS 1067).",
+       "checkedOn": "2026-08-17",
+       "by": "Grok 4.6"
+      }
      },
      "재무": {
       "v": "",
       "tags": [
        "불가"
-      ]
+      ],
+      "enrich": {
+       "status": "보강",
+       "value": "매출·순이익·총자산 절대액 확인불가. EMIS는 2024년 증감률만 공개(매출 +2257.14%, 총자산 +719.48%). 회계연도 확인불가(EMIS 최신 표시연도 2024).",
+       "source": "EMIS Huy Giang Company Limited 프로필(업데이트 2026-05-07). 공개 재무제표 없음.",
+       "checkedOn": "2026-08-17",
+       "by": "Grok 4.6"
+      }
      },
      "한국 거래처(top)": {
       "v": "오션스코리아(80) ·뉴지트레이딩(24)·지에스코퍼레이션(10)",
@@ -3177,13 +4111,27 @@
       "v": "비상장",
       "tags": [
        "불가"
-      ]
+      ],
+      "enrich": {
+       "status": "보강",
+       "value": "MST 1702114289(2018-01-04 설립, TNHH 2인 이상, 비상장). 현 법정대표 Trần Đức Hoàng. 정관자본 50억 VND. 지분은 EMIS가 80%/20%만 표시(주주명 없음). 납입 완료액 확인불가. 2018년 스냅샷 대표는 Nguyễn Thị Bích Hằng. 동주소 폐업법인 1701894131(TNHH MTV Hoàng Hải Long K G, 2013, 대표 Nguyễn Ngọc Điệp)과 별개.",
+       "source": "MaSoThue 1702114289·1701894131; DauThau.Net 기업프로필(자본 50억, 2025-08-10 갱신); Infocom(2025-11-15); EMIS 기업개요(2026-05-12)",
+       "checkedOn": "2026-08-17",
+       "by": "Grok 4.6"
+      }
      },
      "규모·캐파": {
       "v": "",
       "tags": [
        "불가"
-      ]
+      ],
+      "enrich": {
+       "status": "보강",
+       "value": "일일/연간 처리능력, 공장 수, 냉동창고 용량 확인불가. 직원 101명(2024). 노조 설립 시 가입 46명(2024-11-20, 전체 인원과 동일 여부는 확인불가).",
+       "source": "EMIS 기업개요(2026-05-12); Báo Lao Động「Kiên Giang có thêm 1 Công đoàn cơ sở công ty thủy sản」(2024-11-20)",
+       "checkedOn": "2026-08-17",
+       "by": "Grok 4.6"
+      }
      },
      "품목·가공": {
       "v": "주꾸미·낙지·갑오징어·가오리(냉동)",
@@ -3195,13 +4143,27 @@
       "v": "",
       "tags": [
        "불가"
-      ]
+      ],
+      "enrich": {
+       "status": "보강",
+       "value": "베트남 승인번호 TS 1290, 한국 수출 적격 목록 등재(냉동·PP). 수출인증 프로그램 참여 목록에도 TS 1290. HACCP·BRC·IFS·MSC·ASC·HALAL·EU승인번호·FDA 등록 확인불가. 대만 수출 목록(2026-06-10)에 없음.",
+       "source": "VASEP「Thị trường Hàn Quốc」스프레드시트(2025-09-08, 효력 2025-10-17); VASEP 수출인증 프로그램 목록; VASEP 대만 수출 목록 PDF(2026-06-10)",
+       "checkedOn": "2026-08-17",
+       "by": "Grok 4.6"
+      }
      },
      "재무": {
       "v": "",
       "tags": [
        "불가"
-      ]
+      ],
+      "enrich": {
+       "status": "보강",
+       "value": "매출·순이익·총자산 절대액 확인불가. EMIS가 회계연도 2024 증감만 공개: 매출 +31.18%, 순이익 +26.67%, 총자산 −23.57%.",
+       "source": "EMIS「Hoang Hai Long Seafood Company Limited」프로필(2026-05-12 갱신, most recent financial data: 2024)",
+       "checkedOn": "2026-08-17",
+       "by": "Grok 4.6"
+      }
      },
      "한국 거래처(top)": {
       "v": "해심트레이딩(71)·오케이씨푸드(45)·신해물산(42)",
@@ -3231,13 +4193,27 @@
       "v": "비상장·대표 (masothue)",
       "tags": [
        "확인"
-      ]
+      ],
+      "enrich": {
+       "status": "보강",
+       "value": "등기·세번 3502216537. 상호 CÔNG TY TNHH BIỂN GIÀU VN / SEA WEALTH VN CO.,LTD. 대표 Bùi Xuân Hải. GCN ĐKKD 2013-03-07. 형태 TNHH(비상장). 납입자본·지분비율 확인불가. 자사웹 2002/2005와 등기 상충. 동일주소 별법인 3500669965(Hải Dương, 2004-09-29)과 혼동 금지.",
+       "source": "MaSoThue「3502216537 - CÔNG TY TNHH BIỂN GIÀU VN」; Infocom 동명 페이지; Dữ liệu Pháp luật 동명 페이지",
+       "checkedOn": "2026-08-17",
+       "by": "Grok 4.6"
+      }
      },
      "규모·캐파": {
       "v": "직원 150·1,800~2,400t/년(자사)",
       "tags": [
        "추정"
-      ]
+      ],
+      "enrich": {
+       "status": "보강",
+       "value": "일일 처리능력·냉동창고 용량 확인불가. 자사 소개: 직원 150명, 부지 1만㎡, 작업장 2(냉동·건조), 연 1,800–2,400톤. 호주 지사 사이트는 연 1,200–1,500톤으로 상충. 독립 검증된 공장 수·캐파 없음.",
+       "source": "seawealthvn.com/gioi-thieu.html; seawealth.com.au/about",
+       "checkedOn": "2026-08-17",
+       "by": "Grok 4.6"
+      }
      },
      "품목·가공": {
       "v": "화살오징어·낙지·갑오징어·자숙낙지(냉동·건조)",
@@ -3250,13 +4226,27 @@
       "tags": [
        "불가",
        "추정"
-      ]
+      ],
+      "enrich": {
+       "status": "보강",
+       "value": "HACCP·BRC·IFS·MSC·ASC·HALAL·EU승인번호·FDA등록번호 확인불가. 대만 수출 가공장 TS 805·TS 807(동일 상호·주소). FDA Import Alert 16-74 Red List(멸치, 2021-09-20; 알림 현행 2026-08-05). 구중국 AQSIQ 9704181074는 2022 Inactive.",
+       "source": "VASEP「List of VN Establishments Approved Export to Taiwan」Ver.20260610; FDA Import Alert 16-74; GACC.agency AQSIQ 요약",
+       "checkedOn": "2026-08-17",
+       "by": "Grok 4.6"
+      }
      },
      "재무": {
       "v": "매출 $16–22M(자사)",
       "tags": [
        "추정"
-      ]
+      ],
+      "enrich": {
+       "status": "보강",
+       "value": "최근 매출·순이익·총자산·회계연도 확인불가. 자사 홈페이지는 연매출 1,600만–2,200만 USD라 하나 연도·감사보고서 없음(지사 사이트 1,000만 USD+와 상충).",
+       "source": "없음(감사재무). 홍보 수치만 seawealthvn.com/gioi-thieu.html",
+       "checkedOn": "2026-08-17",
+       "by": "Grok 4.6"
+      }
      },
      "한국 거래처(top)": {
       "v": "이랜드팜앤푸드(36)·프레시하다(34)·씨웰스(12)",
@@ -3286,13 +4276,27 @@
       "v": "비상장",
       "tags": [
        "불가"
-      ]
+      ],
+      "enrich": {
+       "status": "보강",
+       "value": "등기·세번호 3500383405(세번호 부여 2000-04-19). 대표 마이티년(Mai Thị Nhân). 형태 TNHH 2인 이상 → 비상장. 납입자본·주주 성명 확인불가. EMIS는 지분 51%/49%만 표시(성명 비공개).",
+       "source": "masothue.com·thongtincongty.vn(국세 미러, 갱신 2026-08-14); EMIS 회사개요(갱신 2026-05-12)",
+       "checkedOn": "2026-08-17",
+       "by": "Grok 4.6"
+      }
      },
      "규모·캐파": {
       "v": "",
       "tags": [
        "불가"
-      ]
+      ],
+      "enrich": {
+       "status": "보강",
+       "value": "일일·연간 처리능력·냉동창고 용량 확인불가. 본사 가공장 1곳(1589 30/4) 확인. 세무 지점 2곳(3500383405-001 가공소, -002 지점 II) — 가동 여부 확인불가. 현원 확인불가(옐로페이지 2020 자기신고 201–300명). 대표 인터뷰: 과거 수출 약 1,500톤, 2024 수주 약 800톤(캐파 아님).",
+       "source": "masothue 지점 페이지; Yellow Pages VN(2020-10-27); Báo Công Thương/Báo Quảng Ninh(2024-04-18)",
+       "checkedOn": "2026-08-17",
+       "by": "Grok 4.6"
+      }
      },
      "품목·가공": {
       "v": "냉동 낙지·오징어·갑오징어·조개",
@@ -3304,13 +4308,27 @@
       "v": "NAFIQAD DL266",
       "tags": [
        "확인"
-      ]
+      ],
+      "enrich": {
+       "status": "보강",
+       "value": "EU 승인번호 DL 266(TRACES·대만 수출목록 현행 등재). HACCP·GMP·BRC는 자사 홍보만, 인증번호·유효기간 확인불가. IFS·MSC·HALAL·FDA 등록번호 확인불가. ASC는 별도 법인 푸옥하이수산 JSC(3502207733) Ngoc Tung Farm.",
+       "source": "EU TRACES NT VN Fishery Products(스니펫 2026-08-03); VASEP 대만목록 Ver.20260610; Yellow Pages VN; ASC find-a-farm/농장목록",
+       "checkedOn": "2026-08-17",
+       "by": "Grok 4.6"
+      }
      },
      "재무": {
       "v": "",
       "tags": [
        "불가"
-      ]
+      ],
+      "enrich": {
+       "status": "보강",
+       "value": "최근 매출·순이익·총자산 절대액 확인불가. EMIS가 2024 재무 보유를 표기하나 공개값은 전년비만(매출 −7.83%, 총자산 −9.97%, 순이익 N/A).",
+       "source": "EMIS — Ngoc Tung Limited Liability Company(갱신 2026-05-12, 절대액 유료)",
+       "checkedOn": "2026-08-17",
+       "by": "Grok 4.6"
+      }
      },
      "한국 거래처(top)": {
       "v": "아토무역(21)·태산무역(15)·유니온씨푸드(12)",
@@ -3340,13 +4358,27 @@
       "v": "비상장 JSC",
       "tags": [
        "추정"
-      ]
+      ],
+      "enrich": {
+       "status": "보강",
+       "value": "기업번호(MST) `3502259273`(NBRS `0010972264`). 상호 콩띠꼬판하이산빈즈엉 / BINH DUONG SEAFOOD JSC. 대표 쩐하이즈엉(TRẦN HẢI DƯƠNG). 비상장 주식회사에 해당하나 HOSE·HNX·UPCOM 종목코드는 확인불가. 정관자본(vốn điều lệ) 10억 VND(입찰·기업정보 디렉터리). 지분구조·납입자본 확인불가.",
+       "source": "MaSoThue 기업개요(2026-08-17 갱신); Companies House Vietnam; DauThau.Net 기업등록정보. CafeF·Vietstock에서 해당 상호 종목 없음.",
+       "checkedOn": "2026-08-17",
+       "by": "Grok 4.6"
+      }
      },
      "규모·캐파": {
       "v": "2,000t/년",
       "tags": [
        "확인"
-      ]
+      ],
+      "enrich": {
+       "status": "보강",
+       "value": "일일·연간 처리능력, 직원 수, 냉동창고 용량 확인불가. 공개 목록상 사업장 코드 2개(본공장 DL 566, 분공장 2 TS 696)가 동일 주소 `22/36 Chi Lang`(구 붕따우 12방, 현 Phuoc Thang)에 등재.",
+       "source": "VASEP「2026-06-10 대만 수출 허가 수산물 기업 목록」PDF; 베트남 국가단일창구(VNSW) `Korea.xlsx`. DauThau.Net 직원 수 공란(`--`).",
+       "checkedOn": "2026-08-17",
+       "by": "Grok 4.6"
+      }
      },
      "품목·가공": {
       "v": "주꾸미·낙지·새우·건갑오징어(냉동)",
@@ -3359,13 +4391,27 @@
       "tags": [
        "확인",
        "불가"
-      ]
+      ],
+      "enrich": {
+       "status": "보강",
+       "value": "HACCP·BRC·IFS·MSC·ASC·HALAL 인증서, EU TRACES 승인번호, FDA 등록번호 확인불가. NAFIQAD 사업장번호 DL 566·TS 696으로 한국·대만 수출 지정 목록에 등재.",
+       "source": "VASEP 대만 수출 목록(2026-06-10); 대만 FDA 베트남 수산물 사업장 목록; VNSW `Korea.xlsx`. EU TRACES·FDA 공개검색에서 해당 법인명·번호 미확인.",
+       "checkedOn": "2026-08-17",
+       "by": "Grok 4.6"
+      }
      },
      "재무": {
       "v": "",
       "tags": [
        "불가"
-      ]
+      ],
+      "enrich": {
+       "status": "확인불가",
+       "note": "확인불가",
+       "source": "없음",
+       "checkedOn": "2026-08-17",
+       "by": "Grok 4.6"
+      }
      },
      "한국 거래처(top)": {
       "v": "동강물산(45)·제이와이트레이딩(34)·써밋글로벌(25)",
@@ -3395,14 +4441,28 @@
       "v": "비상장 JSC",
       "tags": [
        "확인"
-      ]
+      ],
+      "enrich": {
+       "status": "보강",
+       "value": "등기번호 3100606537. 법정대표 현재 Dương Hoàng Giang(이사회 의장 겸 사장). 과거·하노이지점(3100606537-001) 대표는 Phạm Ngọc Quang. 납입자본·지분(5% 이상 주주) 확인불가. 상장 확인불가(HOSE·HNX·UPCOM 종목 없음. 민간DB는 ‘미상장’).",
+       "source": "MaSoThue(3100606537, 갱신 2026-08-14); Thư viện Pháp luật 기업카드; DauThau.Net 기업등록; Doanhnghiep.vn(Cổng ĐKKD·HOSE 대조, 자본·주주 ‘Chưa công bố’, Niêm yết ‘Chưa’)",
+       "checkedOn": "2026-08-17",
+       "by": "Grok 4.6"
+      }
      },
      "규모·캐파": {
       "v": "(원료 인니·일본 수입)",
       "tags": [
        "불가",
        "확인"
-      ]
+      ],
+      "enrich": {
+       "status": "보강",
+       "value": "일일·연간 처리능력 확인불가. 가공공장 1곳(2010년 Sông Gianh 냉동수출공장 인수, Thanh Khê). 하노이 지점은 사무소(일부 DB 일시정지). 직원 약 350명(2024). 냉동창고 용량 확인불가.",
+       "source": "Báo Quảng Trị「Kỳ vọng thủy sản xuất khẩu」(2024-02-17); Tuổi Trẻ/Người Lao Động「Chăm chút bữa ăn…」(2024-04-12); Báo Quảng Trị「Giong buồm đón gió」(2019-07-01). ※같은 2024 기사의 20톤/일·400톤 창고는 Thanh Quang사 수치.",
+       "checkedOn": "2026-08-17",
+       "by": "Grok 4.6"
+      }
      },
      "품목·가공": {
       "v": "갑오징어·한치·오징어·고등어필렛(냉동·횟감)",
@@ -3415,13 +4475,27 @@
       "tags": [
        "추정",
        "추정"
-      ]
+      ],
+      "enrich": {
+       "status": "보강",
+       "value": "EU 승인번호 DL 171(TRACES 등재, 활동 PP). 대만·한국 수출승인 목록·중국 재중등록(2018)에 DL 171. 성 농업국이 EU·한·중·일 수출코드 보유로 기술. HACCP·BRC·IFS·MSC·ASC·HALAL·FDA 등록번호 확인불가(BRC는 교육만, 인증서 아님).",
+       "source": "EU TRACES NT VN Fishery Products; VASEP「List … Export to Taiwan」(2026-06-10); 중국 재중수산물등록(2018-03-12); vnsw.gov.vn Korea.xlsx; Báo Quảng Trị(2024-02-17); KNA CERT는 교육 페이지만.",
+       "checkedOn": "2026-08-17",
+       "by": "Grok 4.6"
+      }
      },
      "재무": {
       "v": "",
       "tags": [
        "불가"
-      ]
+      ],
+      "enrich": {
+       "status": "보강",
+       "value": "연평균 매출 약 1,800억 VND, 그중 수출 600만~700만 USD(특정 회계연도·감사보고서 아님). 순이익·총자산·회계연도 확인불가.",
+       "source": "Báo Quảng Trị「Kỳ vọng thủy sản xuất khẩu」(2024-02-17). Doanhnghiep.vn은 BCTC 미제출로 자본·재무 공란.",
+       "checkedOn": "2026-08-17",
+       "by": "Grok 4.6"
+      }
      },
      "한국 거래처(top)": {
       "v": "산호상사(101) ·진젠코리아(35)·아이씨코퍼레이션(10)",
@@ -3458,7 +4532,14 @@
       "v": "",
       "tags": [
        "불가"
-      ]
+      ],
+      "enrich": {
+       "status": "확인불가",
+       "note": "확인불가. 자사 사이트는 ‘현대적 공장’만 표기. 일일/연간 처리능력·공장 수·직원 수·냉동창고 용량 수치 없음. DauThau.Net 직원 수 난은 공란(--)이며 Freshdi도 직원·연매출 ‘Not specified’.",
+       "source": "andaiphat.vn 소개·연락 페이지; DauThau.Net 기업 프로필; Freshdi 공급자 프로필",
+       "checkedOn": "2026-08-17",
+       "by": "Grok 4.6"
+      }
      },
      "품목·가공": {
       "v": "낙지·주꾸미·갑오징어(냉동)",
@@ -3470,13 +4551,27 @@
       "v": "",
       "tags": [
        "불가"
-      ]
+      ],
+      "enrich": {
+       "status": "확인불가",
+       "note": "확인불가. 이 법인(1702287997) 명의 HACCP·BRC·IFS·MSC·ASC·HALAL·EU승인번호·FDA 등록을 공식 목록에서 찾지 못함. 자사 사이트는 한·일·중·EU 공급만 주장(인증서·승인번호 없음). 베트남 수산물가공장 종합목록(한국 위생증명용)에도 해당 상호 없음.",
+       "source": "andaiphat.vn; 베트남 국가단일창구(VNSW) `Korea.xlsx` 「DANH SÁCH TỔNG HỢP CÁC CƠ SỞ CHẾ BIẾN THỦY SẢN」; EU TRACES·VASEP 공개 목록 검색(상호 미검출)",
+       "checkedOn": "2026-08-17",
+       "by": "Grok 4.6"
+      }
      },
      "재무": {
       "v": "",
       "tags": [
        "불가"
-      ]
+      ],
+      "enrich": {
+       "status": "확인불가",
+       "note": "확인불가. 최근 매출·순이익·총자산과 회계연도를 담은 공시 재무제표·연차보고를 찾지 못함.",
+       "source": "없음",
+       "checkedOn": "2026-08-17",
+       "by": "Grok 4.6"
+      }
      },
      "한국 거래처(top)": {
       "v": "동민무역(31)·블루칩글로벌(27)·와이낫트레이딩(23)",
@@ -3506,13 +4601,27 @@
       "v": "비상장(1인)",
       "tags": [
        "불가"
-      ]
+      ],
+      "enrich": {
+       "status": "보강",
+       "value": "기업번호(MST) 1702165269. 대표 Đoàn Thị Phương Kiều. 정관자본(vốn điều lệ) 50억 VND. 1인유한회사(TNHH MTV)—출자자 실명·납입완료액 확인불가. 비상장.",
+       "source": "MaSoThue 기업조회 1702165269; DauThau.Net 기업등록정보(정관자본); EMIS 기업개요(지분 100%만 공개)",
+       "checkedOn": "2026-08-17",
+       "by": "Grok 4.6"
+      }
      },
      "규모·캐파": {
       "v": "",
       "tags": [
        "불가"
-      ]
+      ],
+      "enrich": {
+       "status": "보강",
+       "value": "일일/연간 처리능력·냉동창고 용량 확인불가. 가공주소 1곳(빈안 4249번지). 까마우 지점(1702165269-001)은 식품도매. 직원 20명(2024, EMIS 요약).",
+       "source": "MaSoThue 본사·지점; EMIS 기업개요(2026-05-12). 공식 사이트는 WAF로 원문 미확인.",
+       "checkedOn": "2026-08-17",
+       "by": "Grok 4.6"
+      }
      },
      "품목·가공": {
       "v": "냉동 낙지·오징어·갑오징어·어류 다품목",
@@ -3525,13 +4634,27 @@
       "tags": [
        "불가",
        "확인"
-      ]
+      ],
+      "enrich": {
+       "status": "보강",
+       "value": "EU 승인번호 DL 923. HACCP·BRC·IFS·MSC·ASC·HALAL·미국 FDA 등록번호 확인불가. 한국·대만 수출시설 목록에 DL 923으로 등재.",
+       "source": "EC TRACES NT(베트남 수산시설); VASEP 대만수출시설목록(2026-06-10); vnsw.gov.vn Korea.xlsx",
+       "checkedOn": "2026-08-17",
+       "by": "Grok 4.6"
+      }
      },
      "재무": {
       "v": "",
       "tags": [
        "불가"
-      ]
+      ],
+      "enrich": {
+       "status": "보강",
+       "value": "매출·순이익·총자산 금액 확인불가. 회계연도 종료 12/31. EMIS가 2024 결산 존재만 공개(매출 −2.71%, 순이익 +66.54%, 총자산 +67.2%—금액 유료).",
+       "source": "DuLieuPhapLuat MST 1702165269; EMIS 기업개요(2026-05-12)",
+       "checkedOn": "2026-08-17",
+       "by": "Grok 4.6"
+      }
      },
      "한국 거래처(top)": {
       "v": "재호식품(20)·비젼유통(20)·재우물산(19)",
@@ -3561,13 +4684,27 @@
       "v": "세번 미확인",
       "tags": [
        "불가"
-      ]
+      ],
+      "enrich": {
+       "status": "보강",
+       "value": "등기·세금번호(MST) 0310515672. 상호 CÔNG TY TNHH QUỐC TẾ HỒNG HẢI / RED SEA INTERNATIONAL COMPANY LIMITED. 대표 즈엉 비엣 응이아(Dương Việt Nghĩa). 사원 2인 이상 TNHH·100% 민간자본. 납입자본액·사원별 지분 확인불가. 비상장(해당 MST로 HOSE/HNX/UPCOM 미확인). 별개: 0106793616 CTCP RED SEA VIỆT NAM(하노이), 0315690678 XNK QT Hồng Hải, 사우디 Tadawul 4230.",
+       "source": "DoanhNghiep.Biz 등기 전재(2025-11-12 갱신), InfoDoanhNghiep, DauThau.Net, hosocongty.vn",
+       "checkedOn": "2026-08-17",
+       "by": "Grok 4.6"
+      }
      },
      "규모·캐파": {
       "v": "",
       "tags": [
        "불가"
-      ]
+      ],
+      "enrich": {
+       "status": "보강",
+       "value": "일일/연간 처리능력, 공장 수, 냉동창고 용량 확인불가. 세무 등록주소는 호치민 7군 사무실(109 Nguyễn Thị Xiếu 4층). 현재 공식 직원 수 확인불가(2차DB 불일치: InfoDoanhNghiep 2022년 전재 5명 / EMIS 공개 스니펫 2023년 70명).",
+       "source": "InfoDoanhNghiep, EMIS 공개 회사개요, Panjiva. 공식 공장·캐파 문서 없음",
+       "checkedOn": "2026-08-17",
+       "by": "Grok 4.6"
+      }
      },
      "품목·가공": {
       "v": "흰다리새우살·두족류·틸라피아(냉동)",
@@ -3579,13 +4716,27 @@
       "v": "",
       "tags": [
        "불가"
-      ]
+      ],
+      "enrich": {
+       "status": "확인불가",
+       "note": "HACCP·BRC·IFS·MSC·ASC·HALAL·EU승인번호·FDA 등록 확인불가. B2B 디렉터리 자가표기는 공식 등록으로 보지 않음.",
+       "source": "없음(EU 승인업소·VASEP·NAFIQAD/MARD 공개목록에서 해당 상호·MST 미확인)",
+       "checkedOn": "2026-08-17",
+       "by": "Grok 4.6"
+      }
      },
      "재무": {
       "v": "",
       "tags": [
        "불가"
-      ]
+      ],
+      "enrich": {
+       "status": "보강",
+       "value": "최근 매출·순이익·총자산 절댓값 확인불가. EMIS 공개 스니펫은 2023년 매출 −45.24%, 총자산 −8.89%만 공개(절댓값 비공개, 순이익 N/A).",
+       "source": "EMIS 공개 프로필. 공시 재무제표 없음",
+       "checkedOn": "2026-08-17",
+       "by": "Grok 4.6"
+      }
      },
      "한국 거래처(top)": {
       "v": "다인푸드시스템(101) ·아이씨인터네셔날(12)·해영엠에프(9)",

@@ -1,0 +1,21 @@
+공개 출처만으로 HUNG PHUC를 대조하겠습니다. 비슷한 상호는 등기번호로 구분하고, 확인되지 않은 항목은 추정하지 않습니다.법인 식별은 `CÔNG TY TNHH MTV HÙNG PHÚC`(MST 1800688588)로 맞춰 두고, 등기·인증·재무 원문을 열어 대조합니다.등기·EU승인·인증 원문을 더 열어 자본금·승인번호 충돌을 가립니다.사회보험 점검 PDF와 공식 사업자 포털에서 자본금·인원·승인번호를 대조합니다.**대상 법인:** CÔNG TY TNHH MỘT THÀNH VIÊN HÙNG PHÚC (HUNG PHUC ONE MEMBER LIMITED COMPANY). **혼동 금지:** Hung Phuc Thinh Food JSC(안장, DL 33)·CÔNG TY TNHH THỰC PHẨM HÙNG PHÚC(MST 1300666843)·An Khang(DL 397).
+
+**1) 지배구조·상장**  
+값: 등기/세번 **1800688588**(GCN ĐKKD 2008-01-08). 대표 **ĐỖ HÙNG LONG**(감독). 납입·정관자본 **확인불가**. 형태 TNHH MTV(1인 유한). 출자자·지분율 공시 **확인불가**(VITIC가 소유자/법정대표 칸에 Đỗ Hùng Long 병기). **비상장**.  
+출처: MaSoThue; VITIC ASEMCONNECT(Biz_id=21723); DauThau.info; DoanhNghiep.vn(국등기포털 대조, 자본·지분 미공시·미상장)  
+조회일: 2026-08-17
+
+**2) 규모·캐파**  
+값: 일일/연간 처리능력 **확인불가**. 가동 공장 1곳(짜녹2공단 Lô 2-9A2, 부지 1.2만㎡·가공 5천㎡, 분공장 3). 벤째 지점 MST 1800688588-001은 **일시정지**. 직원 자사표기 **+200명**(공식 인원 **확인불가**). 냉동창고 **1,000톤**. 설비: IQF 500kg/h×3, 접촉동결 2,000kg/h×5.  
+출처: hungphucseafood.com.vn(소개·영문 About); VITIC ASEMCONNECT; MaSoThue·DoanhNghiep.vn(지점)  
+조회일: 2026-08-17
+
+**3) 인증**  
+값: EU승인 **DL 815**(Workshop I). 대만 수출목록 DL 815(HS 0303·0304·0307·0511). 한국 수출시설 목록 DL 815(vnsw). 2022-03 중국해관이 DL 815 수입신고 **1주 정지**(당시 등록 확인). HACCP·BRC·IFS·MSC·ASC·HALAL·현행 FDA등록번호 **확인불가**.  
+출처: 자사 About; EU TRACES NT VN/FISHERY_PRODUCTS(크롤 2026-08-16, 표기 2026-02-25); 대만FDA 목록 PDF; vnsw.gov.vn Korea.xlsx; 중국식품토축진출입상회(해관총서 2022-03-30)  
+조회일: 2026-08-17
+
+**4) 재무**  
+값: 최근 매출·순이익·총자산 **확인불가**. 회계연도 종료 **12/31**(세무등록). 공시 BCTC 없음.  
+출처: DuLieuPhapLuat.vn(MST 1800688588, 동기 2026-06-18); DoanhNghiep.vn(자본·BCTC 미공시). HOSE/HNX 재무공시 없음  
+조회일: 2026-08-17

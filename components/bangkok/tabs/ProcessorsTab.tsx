@@ -6,6 +6,8 @@ import { Grid, Panel, Pills, Sec, Stat, Stats, Table } from '../../panofi/Panofi
 import {
   companyName,
   headsOf,
+  enrichCounts,
+  enrichment,
   registrySorted,
   reportFor,
   seasiaCountries,
@@ -52,6 +54,27 @@ function CellView({ c }: { c: Cell | undefined }) {
           {t}
         </span>
       ))}
+      {/* 보강분은 원본 아래 줄로 내려 시각적으로 가른다. 같은 줄에 이어붙이면
+          조사자가 확인한 값과 나중에 찾은 값이 한 문장처럼 읽힌다. */}
+      {c.enrich && (
+        <div
+          className="pf-note"
+          style={{
+            marginTop: 5,
+            paddingLeft: 8,
+            borderLeft: `2px solid ${c.enrich.status === '보강'
+              ? 'var(--cosmo-s1)' : 'var(--cosmo-line)'}`,
+          }}
+        >
+          <span className="pf-stat-k" style={{ marginRight: 6 }}>
+            {c.enrich.status === '보강' ? '보강' : '공개 출처 없음'} · {c.enrich.by}
+          </span>
+          {c.enrich.status === '보강' ? c.enrich.value : c.enrich.note}
+          <span className="pf-stat-k" style={{ display: 'block', marginTop: 3 }}>
+            출처 {c.enrich.source || '없음'} · 조회 {c.enrich.checkedOn}
+          </span>
+        </div>
+      )}
     </>
   );
 }
@@ -87,6 +110,8 @@ export function ProcessorsTab() {
   const sum = summaryFor(country);
   const tags = tagCounts(country);
   const registry = useMemo(() => registrySorted(country), [country]);
+  const enr = enrichCounts(country);
+  const enrMeta = enrichment();
 
   if (!rep || !sum) {
     return <div className="pf-note">조사 자료를 불러오지 못했다.</div>;
@@ -110,7 +135,34 @@ export function ProcessorsTab() {
           unit="건"
           d={top ? companyName(top) : '–'}
         />
+        {enrMeta && (
+          <Stat
+            k="보강된 칸"
+            v={String(enr.filled)}
+            unit="칸"
+            tone="up"
+            d={`공개 출처에 없음 ${enr.unresolved}칸`}
+          />
+        )}
       </Stats>
+
+      {enrMeta && (
+        <Grid>
+          <Panel
+            span={12}
+            title="보강 이력"
+            unit={`${enrMeta.by} · ${enrMeta.runOn}`}
+            note={enrMeta.policy}
+            src={`조회 ${enrMeta.companiesQueried}개사 · 매칭 ${enrMeta.companiesMatched}개사 · 보강 ${enrMeta.cellsFilled}칸 · 공개 출처에 없다고 확인된 칸 ${enrMeta.cellsUnresolved}`}
+          >
+            <div className="pf-note">
+              원본 보고서가 「불가」로 남긴 칸을 공개 출처로 다시 찾았다. <b>찾은 값은 원본을 덮지 않고
+              아래 줄에 따로 붙는다</b> — 조사자가 확인하지 못했다는 사실 자체가 기록이기 때문이다.
+              공개 출처에도 없으면 「공개 출처 없음」으로 남기고 추정으로 메우지 않는다.
+            </div>
+          </Panel>
+        </Grid>
+      )}
 
       <Sec>주목 상위 후보</Sec>
       <Grid>

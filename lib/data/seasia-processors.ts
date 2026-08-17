@@ -10,11 +10,23 @@ import raw from '@/public/data/bangkok/seasia_processors.json';
  * 태그(확인·추정·불가)와 등급 배지를 값과 분리해 실었다. 재발명하지 않고 그대로 쓴다.
  */
 
+/** Grok 보강분. 원본 값을 덮지 않고 셀에 얹힌다 — 조사자가 「불가」로 남긴 판단과
+ *  나중에 찾아낸 값은 다른 것이라 섞으면 원본이 무엇을 확인했는지가 사라진다. */
+export type Enrichment = {
+  status: '보강' | '확인불가';
+  value?: string;
+  note?: string;
+  source: string;
+  checkedOn: string;
+  by: string;
+};
+
 export type Cell = {
   v: string;
   tags?: string[];
   grade?: string | string[];
   sub?: string[];
+  enrich?: Enrichment;
 };
 
 export type Row = Record<string, Cell>;
@@ -36,6 +48,16 @@ export const seasia = raw as unknown as {
     countries: string[];
     registryTotal: number;
     taggedCells: number;
+    enrichment?: {
+      by: string;
+      runOn: string;
+      companiesQueried: number;
+      companiesMatched: number;
+      cellsFilled: number;
+      cellsUnresolved: number;
+      policy: string;
+      skipped: string[];
+    };
   };
   countries: Record<string, CountryReport>;
 };
@@ -93,6 +115,22 @@ export function summaryFor(country: string) {
     sourceFile: rep.sourceFile,
     sha256: rep.sha256,
   };
+}
+
+export const enrichment = () => seasia.meta.enrichment;
+
+/** 보강 현황 — 국가별로 채워진 칸과 공개 출처에 없다고 확인된 칸을 센다. */
+export function enrichCounts(country: string) {
+  const rep = reportFor(country);
+  let filled = 0;
+  let unresolved = 0;
+  for (const row of rep?.profiles ?? []) {
+    for (const c of Object.values(row)) {
+      if (c.enrich?.status === '보강') filled += 1;
+      else if (c.enrich?.status === '확인불가') unresolved += 1;
+    }
+  }
+  return { filled, unresolved };
 }
 
 /** 신뢰도 태그 분포. 어느 칸이 확인이고 어느 칸이 추정인지 화면에 밝히기 위한 집계. */

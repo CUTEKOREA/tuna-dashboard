@@ -1,0 +1,48 @@
+공개 출처만 대조해 확인된 사실만 남기겠습니다. 유사 상호와 섞이지 않게 등기·공장 주소부터 조회합니다.동명이 법인이 둘로 보입니다. Don Sak 공장(SRT Foods)과 Phunphin의 Surat Seafoods를 등기번호로 분리해 각각 확인합니다.
+Don Sak 공장과 스시 가공은 SRT Foods(0845554000277)에 맞고, Samut Prakan·1982는 Surat Seafoods(0115525000759)입니다. 두 법인을 분리해 각각 공개 출처를 더 조회합니다.Surapon 연차보고서와 EU·인증 목록에서 지분·캐파·승인번호를 대조합니다.공식 목록·연차보고서 PDF를 내려 인증번호와 지분을 확인합니다.공개 등기상 **별개 법인 2곳**. 요청 단서(상호·Samut Prakan·1982)는 A, (SRT Foods·Don Sak 공장)은 B. 섞지 않음.
+
+**A. SURAT SEAFOODS COMPANY LIMITED (สุราษฎร์ซีฟู้ดส์) — Phunphin 공장. Don Sak 아님.**
+
+**1) 지배구조·상장**
+- 값: 등기 **0115525000759**. 1982-12-17 설립, 주식회사(비상장). 등록자본 **40,000,000 THB**. 납입자본 확인불가. 주주 태국 5인 100%. 모 **Surapon Foods PCL(SSF, SET 상장)** 지분 **94.94%**(2019 AR). 최신 지분율 확인불가. 등기 대표이사 확인불가. TFFA 기재 MD **Jittakorn Chairach**.
+- 출처: DataForThai/DBD Open Data; Surapon AR 2562; TFFA 회원페이지
+- 조회일: 2026-08-17
+
+**2) 규모·캐파**
+- 값: 공개 공장 **1곳**(21 Charoenlap Rd., Tha Kham, Phunphin, Surat Thani 84130). 본점 등기 247 Moo 1 Thepharak, Samut Prakan 10270. 일일·연간 처리능력, 직원 수, 냉동창고 용량 **확인불가**.
+- 출처: TFFA 회원페이지; DataForThai; suratseafoods.com
+- 조회일: 2026-08-17
+
+**3) 인증**
+- 값: 자사 웹·TFFA — **GMP, HACCP, BRCGS**(자사 웹은 ISO 22000·ISO/IEC 17025도 주장). 수출목록 승인번호 **1010**. FDA Import Alert 16-18 **Green List**(생새우 DWPE 제외, 갱신 표기 2023-07-27). 인증서 번호·현행 유효기한, IFS·MSC·ASC·HALAL·FDA FEI **확인불가**.
+- 출처: suratseafoods.com; TFFA; 대만FDA·DOF 대만수출 승인목록; FDA IA 16-18
+- 조회일: 2026-08-17
+
+**4) 재무**
+- 값: 개별 매출·순이익·총자산 **확인불가**. SSF 연결 공시만: FY2567(2024-12-31) 이 자회사 매출이 FY2566 대비 **+123.2백만 THB**(절대액 아님). Creden에 2564–2568 제출 기록.
+- 출처: SET/SEC 공시 Admin.004/2568(2025-02-26); Creden Data
+- 조회일: 2026-08-17
+
+**B. SRT FOODS COMPANY LIMITED (เอส อาร์ ที ฟู้ดส์) — Don Sak. 1982 법인이 아님.**
+
+**1) 지배구조·상장**
+- 값: 등기 **0845554000277**. 2011-01-10 설립(DBD; 1982는 확인불가). 주식회사(비상장). 등록자본 **130,000,000 THB**. 납입자본·개별 주주명 확인불가. 주주 태국 4인 100%. 등기 대표이사 확인불가. TFFA 기재 MD **Kittima Sriprom**.
+- 출처: DataForThai/DBD; ConnectBizs; TFFA 회원페이지
+- 조회일: 2026-08-17
+
+**2) 규모·캐파**
+- 값: 본점·공장 동일 **1곳**(199 Moo 8, Don Sak, Surat Thani 84220). 일일·연간 처리능력, 직원 수, 냉동창고 용량 **확인불가**.
+- 출처: DataForThai; TFFA; srtfoods.co.th
+- 조회일: 2026-08-17
+
+**3) 인증**
+- 값: 자사 게재 사본 — **BRCGS** Food Safety Issue 8 Grade B, TH22/00000536, Site 10004096, 유효 **~2023-07-07**; DOF **GMP·HACCP**, Thailand Number **1333**, 유효 **~2023-07-18**. TFFA(2022) GMP·HACCP·EU. 2024–2025 수출목록에 **1333**. 현행 유효 여부, IFS·MSC·ASC·HALAL·FDA 등록번호 **확인불가**.
+- 출처: srtfoods.co.th/company 인증서 이미지; TFFA; 베트남·대만 수입용 태국 수산물 사업장 목록
+- 조회일: 2026-08-17
+
+**4) 재무**
+- 값: 매출·순이익·총자산 **확인불가**. Creden에 2564–2568 제출 기록만. 회계연도 공개 확정 **확인불가**.
+- 출처: Creden Data. 없음(금액)
+- 조회일: 2026-08-17
+
+지앤원인터네셔널·하버마린 거래: 공개 출처 **확인불가**.
