@@ -653,22 +653,22 @@ function VesselTable({ initialRfmo, initialFlag, initialOperator }: {
           marginTop: 16, fontSize: 13, color: 'var(--w-slate-400)',
         }}>
           <button onClick={() => setPage(1)} disabled={page === 1}
-            style={{ padding: '4px 10px', borderRadius: 6, border: '1px solid rgba(255,255,255,0.1)', background: 'transparent', color: page === 1 ? '#334155' : 'var(--w-slate-400)', cursor: page === 1 ? 'default' : 'pointer' }}>
+            style={{ padding: '4px 10px', borderRadius: 6, border: '1px solid var(--card-border)', background: 'transparent', color: page === 1 ? 'var(--w-slate-400)' : 'var(--w-slate-200)', cursor: page === 1 ? 'default' : 'pointer' }}>
             ≪
           </button>
           <button onClick={() => setPage(p => Math.max(1, p - 1))} disabled={page === 1}
-            style={{ padding: '4px 10px', borderRadius: 6, border: '1px solid rgba(255,255,255,0.1)', background: 'transparent', color: page === 1 ? '#334155' : 'var(--w-slate-400)', cursor: page === 1 ? 'default' : 'pointer' }}>
+            style={{ padding: '4px 10px', borderRadius: 6, border: '1px solid var(--card-border)', background: 'transparent', color: page === 1 ? 'var(--w-slate-400)' : 'var(--w-slate-200)', cursor: page === 1 ? 'default' : 'pointer' }}>
             ‹
           </button>
           <span style={{ minWidth: 80, textAlign: 'center' }}>
             <strong style={{ color: 'var(--w-slate-200)' }}>{page}</strong> / {totalPages}
           </span>
           <button onClick={() => setPage(p => Math.min(totalPages, p + 1))} disabled={page === totalPages}
-            style={{ padding: '4px 10px', borderRadius: 6, border: '1px solid rgba(255,255,255,0.1)', background: 'transparent', color: page === totalPages ? '#334155' : 'var(--w-slate-400)', cursor: page === totalPages ? 'default' : 'pointer' }}>
+            style={{ padding: '4px 10px', borderRadius: 6, border: '1px solid var(--card-border)', background: 'transparent', color: page === totalPages ? 'var(--w-slate-400)' : 'var(--w-slate-200)', cursor: page === totalPages ? 'default' : 'pointer' }}>
             ›
           </button>
           <button onClick={() => setPage(totalPages)} disabled={page === totalPages}
-            style={{ padding: '4px 10px', borderRadius: 6, border: '1px solid rgba(255,255,255,0.1)', background: 'transparent', color: page === totalPages ? '#334155' : 'var(--w-slate-400)', cursor: page === totalPages ? 'default' : 'pointer' }}>
+            style={{ padding: '4px 10px', borderRadius: 6, border: '1px solid var(--card-border)', background: 'transparent', color: page === totalPages ? 'var(--w-slate-400)' : 'var(--w-slate-200)', cursor: page === totalPages ? 'default' : 'pointer' }}>
             ≫
           </button>
         </div>
