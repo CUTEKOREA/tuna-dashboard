@@ -21,6 +21,7 @@ import {
   argentinaRoutes,
   PROCESSOR_TAB_MATCH,
 } from '@/lib/data/shrimp-argentina';
+import { seriesRoles, seriesUnits, seriesWindows } from '@/lib/data/shrimp-country-series';
 import {
   SHRIMP_BRIEFING_POINTS,
   SHRIMP_NARRATIVES,
@@ -35,6 +36,8 @@ import {
   ShrimpArgentinaCatchChart,
   ShrimpArgentinaKoreaChart,
   ShrimpArgentinaRouteChart,
+  ShrimpSeriesUnitChart,
+  ShrimpSeriesWindowsChart,
   ShrimpCountryChart,
   ShrimpEnvChart,
   ShrimpKoreaChart,
@@ -97,6 +100,40 @@ function ArgentinaRouteTable() {
       <p className={styles.factNote}>
         {argentinaMeta.recordCaveat} ▪ 표시한 공장은 방콕사무소 「가공사 조사」 탭에 등기·캐파·인증·재무
         프로파일이 있다 — <Link href="/bangkok-office">방콕사무소로 이동</Link>.
+      </p>
+    </div>
+  );
+}
+
+const SERIES_SYNC = { status: 'STATIC' as const, syncDate: '관세청 2026년 1~6월' };
+
+/** 시리즈 6개국 역할. 차트 없이 표로 그린다 — 서버 렌더에서 수치가 그대로 나와야 한다. */
+function SeriesRolesTable() {
+  return (
+    <div className={styles.factWrap}>
+      <table className={styles.factTable}>
+        <thead>
+          <tr>
+            <th>국가</th>
+            <th>역할</th>
+            <th>한국 창구</th>
+            <th>근거</th>
+          </tr>
+        </thead>
+        <tbody>
+          {seriesRoles.map((r) => (
+            <tr key={r.name}>
+              <td>{r.name}</td>
+              <td>{r.role}</td>
+              <td>{r.korea}</td>
+              <td>{r.scope}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+      <p className={styles.factNote}>
+        생산 톤은 FishStat 새우 필터 후 값이고, 한국 창구는 관세청 제품중량이다. 둘을 빼지 않는다.
+        한–에콰도르 SECA 발효·양허는 미확인이다.
       </p>
     </div>
   );
@@ -213,13 +250,49 @@ export const SHRIMP_CHART_SLOTS: Record<string, ChartSlot[]> = {
       render: () => <ShrimpKoreaChart data={DATA} />,
     },
   ],
+  s06: [
+    {
+      title: '시리즈 6개국 역할',
+      caption:
+        '생산 순위와 한국 창구를 한 칸에 섞지 않았다. 같은 원산지라도 세번이 갈리면 창구가 다르다.',
+      telemetry: { status: 'STATIC' as const, syncDate: 'FishStat 2024 · 관세청 2026년 1~6월' },
+      span: 'full',
+      render: () => <SeriesRolesTable />,
+    },
+    {
+      title: '한국 창구 물량 (톤)',
+      caption:
+        '막대 둘은 세번이 다르다 — 청록이 030617 원물, 호박색이 160521 조제품이다. 베트남만 강조한 이유는 두 창구가 비슷한 무게이기 때문이다. 2026년 1~6월 제품중량이라 위 생산 통계·05단계 1~5월 표와 더할 수 없다.',
+      telemetry: SERIES_SYNC,
+      span: 'full',
+      render: () => <ShrimpSeriesWindowsChart />,
+      cockpitExtra: () => (
+        <SeriesStats rows={seriesWindows} labelKey="국가" valueKey="원물" unit="(톤)" sum />
+      ),
+    },
+    {
+      title: '한국 창구 단가 (달러/kg)',
+      caption:
+        'HS 030617 신고액÷중량만 그린다. 에콰도르 5.11이 가장 낮고 태국 12.12가 가장 높다. 조제품 단가와 섞지 않는다.',
+      telemetry: SERIES_SYNC,
+      render: () => <ShrimpSeriesUnitChart />,
+      cockpitExtra: () => (
+        <SeriesStats
+          rows={seriesUnits}
+          labelKey="국가"
+          valueKey="단가"
+          unit="(달러/kg)"
+        />
+      ),
+    },
+  ],
 };
 
 const SPEC: CommoditySpec = {
   key: 'shrimp',
   title: '새우',
   subtitle:
-    '새우 산업 해부 · 양식이 이긴 유일한 주요 수산 품목 — 역전·종·산지·한국 4단계와 「새우」라는 바스켓의 문제',
+    '새우 산업 해부 · 양식이 이긴 유일한 주요 수산 품목 — 역전·종·산지·한국·창구와 바스켓의 문제',
   accent: '#0d9488',
   primaryKpi: {
     label: '세계 새우 생산량',

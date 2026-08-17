@@ -26,7 +26,7 @@ const STAGE = SHRIMP_NARRATIVES.find((n) => n.key === 's05');
 describe('새우 05단계 — 아르헨티나', () => {
   it('단계가 04와 바스켓 사이에 놓인다', () => {
     const keys = SHRIMP_NARRATIVES.map((n) => n.key);
-    expect(keys).toEqual(['s01', 's02', 's03', 's04', 's05', 'x01']);
+    expect(keys).toEqual(['s01', 's02', 's03', 's04', 's05', 's06', 'x01']);
   });
 
   it('브리핑에 이 단계 항목이 있다', () => {
