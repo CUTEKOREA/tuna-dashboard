@@ -5,7 +5,7 @@ import dynamic from 'next/dynamic';
 import Image from 'next/image';
 import Link from 'next/link';
 import styles from './page.module.css';
-import { Anchor, Ship, LogOut, Gauge, BarChart2, Navigation, Factory, Waves, Fish, Hexagon, Mail, Menu, X, Snowflake, Shrimp, Droplets, FishSymbol, Shell, TestTube } from 'lucide-react';
+import { Anchor, Ship, LogOut, Gauge, Moon, BarChart2, Navigation, Factory, Waves, Fish, Hexagon, Mail, Menu, X, Snowflake, Shrimp, Droplets, FishSymbol, Shell, TestTube } from 'lucide-react';
 import { supabase } from '../lib/supabase';
 import { usePathname, useRouter } from 'next/navigation';
 import {
@@ -114,6 +114,16 @@ export default function Home() {
     document.documentElement.setAttribute('data-density', cockpitMode ? 'cockpit' : 'default');
     window.localStorage.setItem('cockpit-mode', cockpitMode ? 'on' : 'off');
   }, [cockpitMode]);
+
+  // 다크 모드 — 결정 ①(라이트 기본, 다크는 토글 보존). data-v3='light' 스코프를 떼면
+  // :root의 기존 다크 토큰으로 복귀한다. 별도 다크 팔레트를 새로 만들지 않는다.
+  const [darkMode, setDarkMode] = useState(() => {
+    if (typeof window === 'undefined') return false;
+    return window.localStorage.getItem('theme-mode') === 'dark';
+  });
+  useEffect(() => {
+    window.localStorage.setItem('theme-mode', darkMode ? 'dark' : 'light');
+  }, [darkMode]);
 
   const navigateToMenu = React.useCallback((menu: ActiveMenu) => {
     router.replace(`/${menu}`, { scroll: false });
@@ -273,7 +283,7 @@ export default function Home() {
     'shrimp-industry': <ShrimpIndustryDashboard />,
   };
   return (
-    <div className={styles.appWrapper} data-v3="light">
+    <div className={styles.appWrapper} data-v3={darkMode ? undefined : 'light'}>
       {!INSTITUTIONAL_MENU_KEYS.has(activeMenu) && (
         <AmbientBackground accent={ambientAccent} />
       )}
@@ -367,6 +377,26 @@ export default function Home() {
             <Gauge size={13} /> 조종석 모드
           </span>
           <span style={{ fontSize: 11, fontWeight: 400 }}>{cockpitMode ? '켜짐' : '꺼짐'}</span>
+        </button>
+
+        <button
+          type="button"
+          onClick={() => setDarkMode((prev) => !prev)}
+          aria-pressed={darkMode}
+          title="다크 모드 — 이전 다크 팔레트로 전환"
+          style={{
+            display: 'flex', alignItems: 'center', justifyContent: 'space-between',
+            padding: '8px 12px', margin: '4px 0',
+            border: '1px solid ' + (darkMode ? 'rgba(80, 158, 227, 0.5)' : 'var(--dsc-surface-border, #e2e4e9)'),
+            borderRadius: 8, background: darkMode ? 'rgba(80, 158, 227, 0.10)' : 'transparent',
+            color: darkMode ? '#1c6bb0' : 'var(--text-tertiary)',
+            fontSize: 12, fontWeight: 700, cursor: 'pointer', width: '100%',
+          }}
+        >
+          <span style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
+            <Moon size={13} /> 다크 모드
+          </span>
+          <span style={{ fontSize: 11, fontWeight: 400 }}>{darkMode ? '켜짐' : '꺼짐'}</span>
         </button>
 
         <button

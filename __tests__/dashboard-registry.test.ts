@@ -664,3 +664,15 @@ describe('cockpit density mode (2026-08-17 스펙)', () => {
     expect(cockpitBlock).not.toContain('--dsc-kpi-size');
   });
 });
+
+describe('dark mode toggle (2026-08-17, 결정 ① «다크는 토글 보존»)', () => {
+  it("토글이 data-v3='light' 스코프 탈부착으로 구현된다 (별도 다크 팔레트 신설 금지)", () => {
+    const pageSource = readFileSync(join(process.cwd(), 'app/page.tsx'), 'utf8');
+
+    expect(pageSource).toContain("localStorage.getItem('theme-mode')");
+    expect(pageSource).toContain('다크 모드');
+    // 다크 = light 스코프 제거 → :root 기존 다크 토큰 복귀. 무조건 light 고정으로 회귀하면 실패.
+    expect(pageSource).toContain("data-v3={darkMode ? undefined : 'light'}");
+    expect(pageSource).not.toContain('data-v3="light"');
+  });
+});
