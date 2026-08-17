@@ -34,10 +34,19 @@ import {
 } from '@/lib/squid-industry-content';
 import { SeriesStats } from './CockpitExtra';
 import {
+  FalklandCompanyChart,
+  FalklandSeasonChart,
+  FalklandVesselChart,
   SquidAreaChart,
   SquidGearProductionChart,
   SquidSizeBandChart,
 } from './SquidCharts';
+import {
+  companiesFromVessels,
+  falklandMeta,
+  seasonTotals,
+  vesselsByPan,
+} from '@/lib/data/falkland-squid-vessels';
 import {
   deepseaMeta,
   latestYear,
@@ -128,7 +137,46 @@ function widgetSlots(stageKey: string): ChartSlot[] {
 const DW_YEAR = latestYear();
 const DW_SYNC = { status: 'SYNCED' as const, syncDate: `${DW_YEAR}년 확정 · KOSIS` };
 
+const FK_SYNC = { status: 'STATIC' as const, syncDate: `${falklandMeta.기간} 실적` };
+
 const SQUID_BASE_SLOTS: Record<string, ChartSlot[]> = {
+  s08: [
+    {
+      title: '선박별 누계 물량 (판)',
+      caption:
+        '30척이 한 어기에 올린 물량이다. 1위 601다가호 51,074판과 최하위 102AG 25,791판 사이가 두 배다. 공개 통계로는 이 층위가 나오지 않는다.',
+      telemetry: FK_SYNC,
+      span: 'full' as const,
+      render: () => <FalklandVesselChart />,
+      cockpitExtra: () => (
+        <SeriesStats rows={vesselsByPan()} labelKey="name" valueKey="totalPan" unit="(판)" sum />
+      ),
+      sourceLine: `출처: ${falklandMeta.출처}`,
+    },
+    {
+      title: '회사별 선단 규모와 물량',
+      caption:
+        '막대가 물량, 선이 보유 척수다. 둘이 나란히 가지 않는다 — 배를 많이 가진 회사가 반드시 많이 잡지 않는다. 원본 회사 집계에 한 회사가 빠져 있어 선박에서 다시 세웠다.',
+      telemetry: FK_SYNC,
+      render: () => <FalklandCompanyChart />,
+      cockpitExtra: () => (
+        <SeriesStats rows={companiesFromVessels()} labelKey="name" valueKey="totalPan" unit="(판)" sum />
+      ),
+      sourceLine: `출처: ${falklandMeta.출처}`,
+    },
+    {
+      title: '어기 월별 선단 합계 (판)',
+      caption:
+        '12월에 시작해 이듬해 5월에 끝난다 — 달력 순이 아니다. 3~4월이 정점이고 5월에 급락하는 것은 어기 막바지에 배들이 빠지기 때문이다.',
+      telemetry: FK_SYNC,
+      render: () => <FalklandSeasonChart />,
+      cockpitExtra: () => (
+        <SeriesStats rows={seasonTotals()} labelKey="월" valueKey="물량" unit="(판)" sum />
+      ),
+      sourceLine: `출처: ${falklandMeta.출처}`,
+    },
+  ],
+
   s01: [
     {
       title: '어종별 어획량 구성 (톤)',
@@ -364,9 +412,11 @@ const SQUID_BASE_SLOTS: Record<string, ChartSlot[]> = {
 
 /** 차트 슬롯 + 위젯 슬롯. 위젯이 있는 단계는 차트 뒤에 이어 붙는다(기존 배치 유지). */
 export const SQUID_CHART_SLOTS: Record<string, ChartSlot[]> = Object.fromEntries(
-  ALL_STAGES.map((stage) => [
-    stage.key,
-    [...(SQUID_BASE_SLOTS[stage.key] ?? []), ...widgetSlots(stage.key)],
+  // 단계 목록과 같은 정본을 쓴다. `ALL_STAGES`(위젯 JSON)로 돌면 위젯이 없는 단계의
+  // 차트가 통째로 빠진다 — 08 선박별이 그렇게 조용히 비었다.
+  [...new Set([...Object.keys(SQUID_BASE_SLOTS), ...ALL_STAGES.map((s) => s.key)])].map((key) => [
+    key,
+    [...(SQUID_BASE_SLOTS[key] ?? []), ...widgetSlots(key)],
   ]),
 );
 
@@ -409,9 +459,15 @@ const SPEC: CommoditySpec = {
   // 오징어 브리핑은 원래 단계 귀속 없이 문장만 있었다. 공용 골격은 귀속이 있을 때만
   // 「N단계에서 보기」 버튼을 내므로, 빈 stage 를 주면 기존 화면 그대로다.
   briefing: SQUID_BRIEFING_POINTS.map((text) => ({ stage: '', text })),
-  narratives: ALL_STAGES.map(
-    (stage) =>
-      SQUID_ALL_NARRATIVES.find((entry) => entry.key === stage.key) ?? {
+  // 위젯 JSON(ALL_STAGES)이 아니라 **서술**이 단계 목록을 정한다.
+  //
+  // 원래는 JSON 을 기준으로 삼았는데, 그러면 큐레이션 위젯이 없는 단계는 서술을 써도
+  // 화면에 안 나온다. 08(선박별)이 그런 경우다 — 위젯 없이 사내 자료 차트만 붙는다.
+  // JSON 에만 있고 서술이 없는 단계는 제목만이라도 남기므로 양쪽을 합친다.
+  narratives: [
+    ...SQUID_ALL_NARRATIVES,
+    ...ALL_STAGES.filter((stage) => !SQUID_ALL_NARRATIVES.some((n) => n.key === stage.key)).map(
+      (stage) => ({
         key: stage.key,
         numeral: '',
         title: stage.title,
@@ -420,8 +476,9 @@ const SPEC: CommoditySpec = {
         paragraphs: [],
         facts: [],
         terms: [],
-      },
-  ),
+      }),
+    ),
+  ],
   chartSlots: SQUID_CHART_SLOTS,
   sourceNotes: SQUID_SOURCE_NOTES,
   sourceMeta: [

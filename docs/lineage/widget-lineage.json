@@ -1,9 +1,9 @@
 {
  "_meta": {
   "entry": "app/page.tsx",
-  "files": 153,
+  "files": 155,
   "widgets": 101,
-  "dataFiles": 60,
+  "dataFiles": 62,
   "generator": "scripts/widget_lineage.py"
  },
  "widgetToData": {
@@ -509,13 +509,15 @@
    "dataModules": [
     "lib/data/commodity-industry.ts",
     "lib/data/shrimp-argentina.ts",
-    "lib/data/shrimp-country-series.ts"
+    "lib/data/shrimp-country-series.ts",
+    "lib/data/whelk-country-series.ts"
    ],
    "dataFiles": [
     "public/data/mackerel_industry_v1.json",
     "public/data/shrimp_argentina.json",
     "public/data/shrimp_industry_v1.json",
     "public/data/shrimp_real_data_v4.json",
+    "public/data/whelk_country_series_v1.json",
     "public/data/whelk_industry_v1.json"
    ]
   },
@@ -560,6 +562,7 @@
     "public/data/tuna_company_research_v1.json",
     "public/data/tuna_ocean_operators_v1.json",
     "public/data/whelk_company_research_v1.json",
+    "public/data/whelk_country_series_v1.json",
     "public/data/whelk_industry_v1.json"
    ]
   },
@@ -585,16 +588,19 @@
     "public/data/tuna_company_research_v1.json",
     "public/data/tuna_ocean_operators_v1.json",
     "public/data/whelk_company_research_v1.json",
+    "public/data/whelk_country_series_v1.json",
     "public/data/whelk_industry_v1.json"
    ]
   },
   "components/market-understanding/SquidCharts.tsx": {
    "dataModules": [
     "lib/data/deepsea-fishery.ts",
+    "lib/data/falkland-squid-vessels.ts",
     "lib/data/squid-industry.ts"
    ],
    "dataFiles": [
     "public/data/deepsea_fishery_v1.json",
+    "public/data/falkland_squid_vessels_v1.json",
     "public/data/squid_fleet_v1.json",
     "public/data/squid_industry_v1.json",
     "public/data/squid_industry_widgets_v1.json",
@@ -605,11 +611,13 @@
   "components/market-understanding/SquidIndustryDashboard.tsx": {
    "dataModules": [
     "lib/data/deepsea-fishery.ts",
+    "lib/data/falkland-squid-vessels.ts",
     "lib/data/squid-industry.ts",
     "lib/data/valuechain-companies.ts"
    ],
    "dataFiles": [
     "public/data/deepsea_fishery_v1.json",
+    "public/data/falkland_squid_vessels_v1.json",
     "public/data/kofa_fleet_age_v1.json",
     "public/data/kofa_insights_v1.json",
     "public/data/kofa_series_v1.json",
@@ -707,7 +715,8 @@
   "components/market-understanding/WhelkIndustryDashboard.tsx": {
    "dataModules": [
     "lib/data/commodity-industry.ts",
-    "lib/data/valuechain-companies.ts"
+    "lib/data/valuechain-companies.ts",
+    "lib/data/whelk-country-series.ts"
    ],
    "dataFiles": [
     "public/data/kofa_fleet_age_v1.json",
@@ -724,6 +733,7 @@
     "public/data/tuna_company_research_v1.json",
     "public/data/tuna_ocean_operators_v1.json",
     "public/data/whelk_company_research_v1.json",
+    "public/data/whelk_country_series_v1.json",
     "public/data/whelk_industry_v1.json"
    ]
   },
@@ -923,6 +933,10 @@
    "components/cosmo/tabs/MarketTab.tsx"
   ],
   "public/data/deepsea_fishery_v1.json": [
+   "components/market-understanding/SquidCharts.tsx",
+   "components/market-understanding/SquidIndustryDashboard.tsx"
+  ],
+  "public/data/falkland_squid_vessels_v1.json": [
    "components/market-understanding/SquidCharts.tsx",
    "components/market-understanding/SquidIndustryDashboard.tsx"
   ],
@@ -1128,6 +1142,12 @@
    "components/market-understanding/SquidIndustryDashboard.tsx",
    "components/market-understanding/TunaCatchCharts.tsx",
    "components/market-understanding/TunaIndustryDashboard.tsx",
+   "components/market-understanding/WhelkIndustryDashboard.tsx"
+  ],
+  "public/data/whelk_country_series_v1.json": [
+   "components/market-understanding/CommodityCharts.tsx",
+   "components/market-understanding/MackerelIndustryDashboard.tsx",
+   "components/market-understanding/ShrimpIndustryDashboard.tsx",
    "components/market-understanding/WhelkIndustryDashboard.tsx"
   ],
   "public/data/whelk_industry_v1.json": [
