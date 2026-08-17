@@ -331,7 +331,9 @@ async function runHappyPath(browser) {
     /ISA:\s+110\.950 MT/,
     /일일\s+하역량:\s+312\.570 MT/,
     /하 역 누 계:\s+2325\.670 MT/,
-    /명일\(8\/18\)은 약 ###톤 하역 작업 예정입니다/,
+    /-21\.0℃ ~ -23\.0℃/,
+    /-22\.0℃ ~ -23\.0℃/,
+    /명일\(8\/18\)은 약 343톤 하역 작업 예정입니다/,
   ]) {
     assert.match(generatedReport, pattern);
   }

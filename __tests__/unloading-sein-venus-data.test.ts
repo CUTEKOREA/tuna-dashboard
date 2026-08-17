@@ -160,15 +160,15 @@ describe('SEIN VENUS unloading data', () => {
     expect(allocationLoads.filter((load) => load.hatch.startsWith('#2-')).reduce((sum, load) => sum + load.amount, 0)).toBeCloseTo(201.62, 6);
     expect(allocationLoads.filter((load) => load.hatch.startsWith('#4-')).reduce((sum, load) => sum + load.amount, 0)).toBeCloseTo(110.95, 6);
     expect(latest.observations).toEqual([
-      { source_vessel: 'N/STAR', hatch: '#2-C', temperatures_c: [-21, 23] },
-      { source_vessel: 'S/SPR', hatch: '#4-C', temperatures_c: [-22, 23] },
-      { source_vessel: 'N/SUN', hatch: '#4-C', temperatures_c: [-22, 23] },
+      { source_vessel: 'N/STAR', hatch: '#2-C', temperatures_c: [-21, -23] },
+      { source_vessel: 'S/SPR', hatch: '#4-C', temperatures_c: [-22, -23] },
+      { source_vessel: 'N/SUN', hatch: '#4-C', temperatures_c: [-22, -23] },
     ]);
     expect(latest.quality_notes).not.toContain('300톤');
     expect(latest.next_day).toEqual({
       kind: 'work',
       date: '8/18',
-      planned_mt: null,
+      planned_mt: 343,
     });
     expect(latest.source_sha256).toBe('e613b9c30622067e4c1115ae4a5233d8da7654871c95ab9ace9f8e4796c584a1');
     expect(latest.source_workbook_sha256).toBe('60e054c9f9ea485c5c0f833e3a89c969598aac355c550b3a2e6d753dc751d84b');
@@ -274,7 +274,7 @@ describe('SEIN VENUS unloading data', () => {
       date: '8/18',
       reason: null,
       resumeDate: null,
-      plannedMt: null,
+      plannedMt: '343',
     });
     expect(latest.allocations).toHaveLength(2);
     expect(latest.observations).toHaveLength(3);
@@ -316,9 +316,9 @@ describe('SEIN VENUS unloading data', () => {
     expect(markup).toContain('S/SPR:#4-C');
     expect(markup).toContain('N/SUN:#4-C');
     expect(markup).toContain('N/STAR(#2-C)');
-    expect(markup).toContain('-21.0℃ ~ 23.0℃');
-    expect(markup).toContain('-22.0℃ ~ 23.0℃');
-    expect(markup).toContain('명일(8/18)은 약 ###톤 하역 작업 예정입니다.');
+    expect(markup).toContain('-21.0℃ ~ -23.0℃');
+    expect(markup).toContain('-22.0℃ ~ -23.0℃');
+    expect(markup).toContain('명일(8/18)은 약 343톤 하역 작업 예정입니다.');
     expect(markup).not.toContain('300톤');
     expect(markup).not.toContain('* SJ:                312.570 MT');
   });
