@@ -15,6 +15,7 @@ import rawCatch from '../../public/data/tuna_industry_v1.json';
 import rawTrade from '../../public/data/tuna_trade_v1.json';
 import rawFleet from '../../public/data/tuna_fleet_v1.json';
 import rawWidgets from '../../public/data/tuna_industry_widgets_v1.json';
+import rawGlossary from '../../public/data/tuna_glossary_v1.json';
 
 // ─── 어획 집계 ──────────────────────────────────────────────────────────────
 
@@ -432,4 +433,60 @@ const FLEET = rawFleet as unknown as TunaFleetData;
 /** 어법·선단 구조. 「참치 어선 몇 척」이라는 합산을 막는 자료다. */
 export function getTunaFleetData(): TunaFleetData {
   return FLEET;
+}
+
+// ─── 용어·어종 참조 ────────────────────────────────────────────────────────
+
+/**
+ * 약어 한 줄. 한글이 비어 있으면 아직 옮기지 않은 것이다 —
+ * 화면에서는 한글이 있는 것만 쓰고, 없는 것은 영문 그대로 두되 사전에는 남긴다.
+ */
+export interface GlossaryRow {
+  약어: string;
+  영문: string;
+  한글: string;
+}
+
+/** 어종 프로필. 항목이 어종마다 달라 선택적으로 담긴다. */
+export interface SpeciesProfile {
+  어종: string;
+  원문명: string;
+  학명?: string;
+  '일반 크기'?: string;
+  최대?: string;
+  성숙?: string;
+  '주요 어장'?: string;
+  '주요 어법'?: string;
+  '참치 어획 중 비중'?: string;
+  '주요 가공국'?: string;
+  '주요 선적국'?: string;
+  생활사?: string;
+  '주요 시장'?: string;
+  '주요 제품 형태'?: string;
+}
+
+/**
+ * 기구가 평가한 계군 상태.
+ * ⚠ 오늘 상태가 아니라 **그 해에 그렇게 평가했다**는 뜻이다. 평가연도를 함께 낸다.
+ */
+export interface StockStatusRow {
+  어종: string;
+  해역: string;
+  기구: string;
+  상태: string;
+  평가연도: string;
+}
+
+export interface TunaGlossaryData {
+  _meta: Record<string, string>;
+  약어: GlossaryRow[];
+  어종프로필: SpeciesProfile[];
+  자원상태: StockStatusRow[];
+}
+
+const GLOSSARY = rawGlossary as unknown as TunaGlossaryData;
+
+/** 참치 — 약어·어종 프로필·자원상태. 수치가 아니라 용어와 분류다. */
+export function getTunaGlossary(): TunaGlossaryData {
+  return GLOSSARY;
 }

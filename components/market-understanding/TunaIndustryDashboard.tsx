@@ -25,6 +25,7 @@ import {
   getTunaCatchData,
   getTunaIndustryWidgetsMeta,
   getTunaFleetData,
+  getTunaGlossary,
   getTunaTradeData,
   SKJ_HUBS,
   type IndustryStage,
@@ -57,6 +58,7 @@ import {
   OceanOperatorChart,
   OceanTopOwnerChart,
   RetailShareChart,
+  StockStatusTable,
   OperatorFleetChart,
   CountryRankChart,
   KoreaExportPriceChart,
@@ -81,6 +83,7 @@ const PRICES = getSkjPriceTimeline();
 const TRADE = getTunaTradeData();
 const FLEET = getTunaFleetData();
 const COMPANIES = getTunaCompanyData();
+const GLOSSARY = getTunaGlossary();
 const OCEAN_OPS = getTunaOceanOperators();
 const CHAIN_STAGES = getChainStages();
 const CROSS_STAGES = getCrossStages();
@@ -103,6 +106,7 @@ const OPERATOR_SYNC = { status: 'STATIC' as const, syncDate: '2026년 6월 공�
 const EXPORT_SYNC = { status: 'STATIC' as const, syncDate: '2024년 실적' };
 const REGISTRY_SYNC = { status: 'STATIC' as const, syncDate: '2026년 8월 등록부' };
 const RETAIL_SYNC = { status: 'STATIC' as const, syncDate: '2026년 6월 공시' };
+const STOCK_SYNC = { status: 'STATIC' as const, syncDate: '2022년 평가' };
 const PRICE_SYNC = {
   status: 'SYNCED' as const,
   syncDate: PRICES.points.length > 0 ? String(PRICES.points[PRICES.points.length - 1].월) : '',
@@ -110,6 +114,13 @@ const PRICE_SYNC = {
 
 export const CATCH_CHART_SLOTS: Record<string, ChartSlot[]> = {
   s01: [
+    {
+      title: '어종별 계군 상태 (기구 평가)',
+      caption:
+        '어획량은 얼마나 잡았는지를 말할 뿐 자원이 버티는지를 말하지 않는다. 그 판단은 해역을 관리하는 기구가 따로 한다. ⚠ 평가에는 시점이 있다 — 원문 수록은 2022년 평가이고, 오늘 상태가 아니라 그 해의 판정이다.',
+      telemetry: STOCK_SYNC,
+      render: () => <StockStatusTable rows={GLOSSARY.자원상태} />,
+    },
     {
       title: '관할 기구별 어획량 (톤)',
       caption:
@@ -720,6 +731,30 @@ export default function TunaIndustryDashboard({ heroOnly = false }: TunaIndustry
       ) : (
         <p className={styles.missing}>이 단계의 서술이 아직 준비되지 않았습니다.</p>
       )}
+
+      {/* 용어 사전 — 이 페이지의 약어를 한자리에 모은다.
+          위젯 라벨의 용어가 표류하지 않게 하는 것이 이 절의 목적이다. */}
+      <section className={styles.glossary} aria-labelledby="glossary-heading">
+        <h2 id="glossary-heading" className={styles.glossaryHeading}>
+          <BookOpen size={16} aria-hidden="true" />
+          용어 사전
+        </h2>
+        <p className={styles.glossaryIntro}>
+          참치 업계에서 쓰는 약어 {GLOSSARY.약어.length}개다. 한글이 있는 것은 이 페이지가 쓰는 표기이고,
+          없는 것은 아직 옮기지 않아 영문 그대로 둔 것이다.
+        </p>
+        <ul className={styles.glossaryList}>
+          {GLOSSARY.약어.map((row) => (
+            <li key={row.약어} className={styles.glossaryItem}>
+              <span className={styles.glossaryAbbr}>{row.약어}</span>
+              <span>
+                {row.한글 ? <span className={styles.glossaryKo}>{row.한글} </span> : null}
+                <span className={styles.glossaryEn}>{row.영문}</span>
+              </span>
+            </li>
+          ))}
+        </ul>
+      </section>
 
       <section className={styles.sources} aria-labelledby="sources-heading">
         <h2 id="sources-heading" className={styles.sourcesHeading}>

@@ -1265,3 +1265,67 @@
     color: var(--mu-ink-soft);
   }
 }
+
+/* ─── 용어 사전 ───────────────────────────────────────────────── */
+
+.glossary {
+  background: var(--mu-surface);
+  border: 1px solid var(--mu-line);
+  border-radius: 16px;
+  padding: 1.5rem;
+}
+
+.glossaryHeading {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin: 0 0 0.35rem;
+  font-size: 1.0625rem;
+  font-weight: 700;
+  color: var(--mu-ink);
+}
+
+.glossaryIntro {
+  margin: 0 0 1rem;
+  font-size: 0.8125rem;
+  color: var(--mu-ink-muted);
+}
+
+/* 약어는 많고 짧다. 여러 단으로 흘려 세로 길이를 줄인다. */
+.glossaryList {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 0.5rem 1.25rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  max-height: 22rem;
+  overflow-y: auto;
+}
+
+.glossaryItem {
+  display: flex;
+  gap: 0.5rem;
+  align-items: baseline;
+  font-size: 0.8125rem;
+  line-height: 1.6;
+  padding-bottom: 0.25rem;
+  border-bottom: 1px solid var(--mu-line);
+}
+
+.glossaryAbbr {
+  flex: 0 0 auto;
+  min-width: 4.5rem;
+  font-weight: 700;
+  color: var(--mu-accent);
+  font-variant-numeric: tabular-nums;
+}
+
+.glossaryKo {
+  color: var(--mu-ink);
+}
+
+.glossaryEn {
+  color: var(--mu-ink-muted);
+  font-size: 0.75rem;
+}

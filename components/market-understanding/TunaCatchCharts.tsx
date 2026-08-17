@@ -28,6 +28,7 @@ import { truncateXAxis } from '@/lib/chart-standards';
 import {
   SKJ_HUBS,
   type PriceTimeline,
+  type StockStatusRow,
   type TunaCatchData,
   type TunaFleetData,
   type TunaTradeData,
@@ -798,5 +799,61 @@ export function OceanTopOwnerChart({
         </Bar>
       </BarChart>
     </SafeResponsiveContainer>
+  );
+}
+
+/**
+ * 어종별 자원상태 — 기구가 평가한 계군 상태.
+ *
+ * ⚠ **오늘 상태가 아니다.** 평가에는 시점이 있고 원문은 2022년 평가를 싣는다.
+ *   막대가 아니라 표로 내는 이유가 있다 — 「양호」는 세는 값이 아니라 판정이라
+ *   개수를 세어 크기로 보여주면 없는 정량성을 만든다.
+ */
+export function StockStatusTable({ rows }: { rows: StockStatusRow[] }) {
+  const grouped = useMemo(() => {
+    const map = new Map<string, StockStatusRow[]>();
+    for (const row of rows) {
+      const list = map.get(row.어종) ?? [];
+      list.push(row);
+      map.set(row.어종, list);
+    }
+    return [...map.entries()];
+  }, [rows]);
+
+  return (
+    <div className={styles.factWrap}>
+      <table className={styles.factTable}>
+        <caption className={styles.factCaption}>
+          해역을 관리하는 기구가 평가한 계군 상태다. 평가연도를 함께 적었다 — 오늘 상태가 아니라
+          그 해에 그렇게 평가했다는 뜻이다.
+        </caption>
+        <thead>
+          <tr>
+            <th scope="col">어종</th>
+            <th scope="col">해역</th>
+            <th scope="col">관리 기구</th>
+            <th scope="col">상태</th>
+            <th scope="col">평가연도</th>
+          </tr>
+        </thead>
+        <tbody>
+          {grouped.map(([species, list]) =>
+            list.map((row, index) => (
+              <tr key={`${species}-${row.해역}-${index}`}>
+                {index === 0 ? (
+                  <th scope="row" rowSpan={list.length}>
+                    {species}
+                  </th>
+                ) : null}
+                <td>{row.해역}</td>
+                <td>{row.기구}</td>
+                <td className={styles.factValue}>{row.상태}</td>
+                <td>{row.평가연도}</td>
+              </tr>
+            )),
+          )}
+        </tbody>
+      </table>
+    </div>
   );
 }

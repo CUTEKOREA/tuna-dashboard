@@ -1,0 +1,859 @@
+{
+ "_meta": {
+  "생성일": "2026-08-17",
+  "출처": "Atuna 참조 페이지",
+  "등급": "B",
+  "수치제외": "어획·교역 수치는 이 자료에서 가져오지 않는다. 쓸 수 없어서가 아니라 **원문이 출처를 FAO FishStat 2026 이라고 스스로 밝히고 이 저장소가 그 원본을 직접 집계하기 때문**이다. 재인용하면 한 다리 건넌 값이 될 뿐이다. 여기서 가져오는 것은 다른 데 흩어져 있어 모으기 번거로운 용어·분류다.",
+  "자원상태주의": "자원상태는 기구가 평가한 것이고 평가 시점이 있다(수록 연도 2022). 오늘 상태가 아니라 **그 해에 그렇게 평가했다**는 뜻이다. 화면에 연도를 함께 낸다.",
+  "갱신방법": "python3 scripts/build_tuna_glossary.py"
+ },
+ "약어": [
+  {
+   "약어": "AIDCP",
+   "영문": "Agreement on the International Dolphin Conservation Program",
+   "한글": "국제돌고래보존계획 협정"
+  },
+  {
+   "약어": "AIS",
+   "영문": "Automatic Identification System",
+   "한글": "선박자동식별장치"
+  },
+  {
+   "약어": "ANABAC",
+   "영문": "Spanish National Association of Purse Seine Owners",
+   "한글": ""
+  },
+  {
+   "약어": "ANFACO",
+   "영문": "National Association of Manufacturers of Canned Fish and Seafood",
+   "한글": ""
+  },
+  {
+   "약어": "AO",
+   "영문": "Atlantic Ocean",
+   "한글": "대서양"
+  },
+  {
+   "약어": "AP2HI",
+   "영문": "Asosiasi Perikanan Pole and Line dan Handline Indonesia",
+   "한글": ""
+  },
+  {
+   "약어": "ASG",
+   "영문": "American Samoa Government",
+   "한글": ""
+  },
+  {
+   "약어": "ATPA",
+   "영문": "Andean Trade Preference Act",
+   "한글": ""
+  },
+  {
+   "약어": "ATPDEA",
+   "영문": "Andean Trade Promotion and Drug Eradication Act",
+   "한글": ""
+  },
+  {
+   "약어": "ATQ",
+   "영문": "Autonomous Tariff Quota",
+   "한글": ""
+  },
+  {
+   "약어": "ATUNEC",
+   "영문": "Ecuadorian Tuna Boatowners Association",
+   "한글": ""
+  },
+  {
+   "약어": "BET",
+   "영문": "Bigeye Tuna",
+   "한글": "눈다랑어"
+  },
+  {
+   "약어": "BFAR",
+   "영문": "Bureau of Fisheries and Aquatic Resources",
+   "한글": ""
+  },
+  {
+   "약어": "BKK",
+   "영문": "Bangkok",
+   "한글": ""
+  },
+  {
+   "약어": "CAB",
+   "영문": "Conformity Assessment Body",
+   "한글": ""
+  },
+  {
+   "약어": "CANAINPESCA",
+   "영문": "The National Chamber of the Mexican Fishing Industry",
+   "한글": ""
+  },
+  {
+   "약어": "CCFAC",
+   "영문": "Codex Committee on Food Additives and Contaminants",
+   "한글": ""
+  },
+  {
+   "약어": "CCSBT",
+   "영문": "Commission for the Conservation of Southern Bluefin Tuna",
+   "한글": "남방참다랑어보존위원회"
+  },
+  {
+   "약어": "CDS",
+   "영문": "Catch Documentation Scheme",
+   "한글": "어획증명제도"
+  },
+  {
+   "약어": "CEPESCA",
+   "영문": "Spanish Fishing Confederation",
+   "한글": ""
+  },
+  {
+   "약어": "CFP",
+   "영문": "Common Fisheries Policy",
+   "한글": "유럽연합 공동어업정책"
+  },
+  {
+   "약어": "CFR",
+   "영문": "Cost and Freight",
+   "한글": "운임·보험료 포함 인도"
+  },
+  {
+   "약어": "CFTO",
+   "영문": "Compagnie Francaise du Thon Oceanique",
+   "한글": ""
+  },
+  {
+   "약어": "CITES",
+   "영문": "Convention of International Trade in Endangered Species",
+   "한글": "멸종위기종 국제거래협약"
+  },
+  {
+   "약어": "CMM",
+   "영문": "Conservation and Management Measure",
+   "한글": "보존관리조치"
+  },
+  {
+   "약어": "CNMI",
+   "영문": "Commonwealth of the Northern Mariana Islands",
+   "한글": ""
+  },
+  {
+   "약어": "CODEMAR",
+   "영문": "Mexican Coalition in Defense of the Seas",
+   "한글": ""
+  },
+  {
+   "약어": "CONAPESCA",
+   "영문": "Mexico’s National Commission of Aquaculture and Fisheries",
+   "한글": ""
+  },
+  {
+   "약어": "CPUE",
+   "영문": "Catch per Unit Effort",
+   "한글": ""
+  },
+  {
+   "약어": "CoC",
+   "영문": "Chain of Custody",
+   "한글": ""
+  },
+  {
+   "약어": "DWFN",
+   "영문": "Distant Water Fishing Nations",
+   "한글": ""
+  },
+  {
+   "약어": "EEZ",
+   "영문": "Exclusive Economic Zone",
+   "한글": "배타적경제수역"
+  },
+  {
+   "약어": "EII",
+   "영문": "Earth Island Institute",
+   "한글": ""
+  },
+  {
+   "약어": "EPO",
+   "영문": "Eastern Pacific Ocean",
+   "한글": "동부태평양"
+  },
+  {
+   "약어": "FAD",
+   "영문": "Fish Aggregating Device",
+   "한글": "집어장치"
+  },
+  {
+   "약어": "FAO",
+   "영문": "Food and Agriculture Organization (UNations) Italy (Fishery) or USA",
+   "한글": "국제연합 식량농업기구"
+  },
+  {
+   "약어": "FCR",
+   "영문": "Feed Conversion Ratio",
+   "한글": ""
+  },
+  {
+   "약어": "FDA",
+   "영문": "Food and Drug Administration",
+   "한글": ""
+  },
+  {
+   "약어": "FFA",
+   "영문": "Forum Fisheries Agency",
+   "한글": ""
+  },
+  {
+   "약어": "FIP",
+   "영문": "Fisheries Improvement Project",
+   "한글": "어업개선사업"
+  },
+  {
+   "약어": "FOC",
+   "영문": "Flags of Convenience",
+   "한글": ""
+  },
+  {
+   "약어": "FSM",
+   "영문": "Federated States of Micronesia",
+   "한글": ""
+  },
+  {
+   "약어": "FTA",
+   "영문": "Free Trade Agreement",
+   "한글": ""
+  },
+  {
+   "약어": "FTBOA",
+   "영문": "Fiji Tuna Boatowners Association",
+   "한글": ""
+  },
+  {
+   "약어": "GFW",
+   "영문": "Global Fishing Watch",
+   "한글": ""
+  },
+  {
+   "약어": "GP",
+   "영문": "Greenpeace",
+   "한글": ""
+  },
+  {
+   "약어": "HACCP",
+   "영문": "Hazard Analysis and Critical Control Points",
+   "한글": ""
+  },
+  {
+   "약어": "HCR",
+   "영문": "Harvest Control Rules",
+   "한글": ""
+  },
+  {
+   "약어": "IATTC",
+   "영문": "Inter-American Tropical Tuna Commission",
+   "한글": "미주열대참치위원회"
+  },
+  {
+   "약어": "ICCAT",
+   "영문": "International Commission for the Conservation of Atlantic Tunas",
+   "한글": "대서양참치보존위원회"
+  },
+  {
+   "약어": "IO",
+   "영문": "Indian Ocean",
+   "한글": "인도양"
+  },
+  {
+   "약어": "IOTC",
+   "영문": "Indian Ocean Tuna Commission",
+   "한글": "인도양참치위원회"
+  },
+  {
+   "약어": "IPNLF",
+   "영문": "The International Pole and Line Foundation",
+   "한글": ""
+  },
+  {
+   "약어": "IPO",
+   "영문": "Initial Public Offering",
+   "한글": ""
+  },
+  {
+   "약어": "ISO",
+   "영문": "International Organization for Standardization",
+   "한글": ""
+  },
+  {
+   "약어": "ISSA",
+   "영문": "International Seafood Sustainability Association",
+   "한글": ""
+  },
+  {
+   "약어": "ISSF",
+   "영문": "International Seafood Sustainability Foundation",
+   "한글": "국제수산지속가능성재단"
+  },
+  {
+   "약어": "IUCN",
+   "영문": "International Union for Conservation of Nature",
+   "한글": ""
+  },
+  {
+   "약어": "IUU",
+   "영문": "Illegal, Unregulated and Unreported (IUU) fishing",
+   "한글": "불법·비보고·비규제 어업"
+  },
+  {
+   "약어": "MCS",
+   "영문": "Monitoring, Control & Surveillance",
+   "한글": "감시·통제·감독"
+  },
+  {
+   "약어": "MPA",
+   "영문": "Marine Protected Areas",
+   "한글": ""
+  },
+  {
+   "약어": "MSC",
+   "영문": "Marine Stewardship Council",
+   "한글": "해양관리협의회"
+  },
+  {
+   "약어": "MSY",
+   "영문": "Maximum Sustainable Yield",
+   "한글": "최대지속생산량"
+  },
+  {
+   "약어": "MT",
+   "영문": "Metric Tons",
+   "한글": "미터톤"
+  },
+  {
+   "약어": "MoU",
+   "영문": "Memorandum of Understanding",
+   "한글": ""
+  },
+  {
+   "약어": "NAFO",
+   "영문": "Northwest Atlantic Fisheries Organization",
+   "한글": ""
+  },
+  {
+   "약어": "NAFTA",
+   "영문": "North American Free Trade Agreement",
+   "한글": ""
+  },
+  {
+   "약어": "NFA",
+   "영문": "National Fisheries Authority (PNG)",
+   "한글": ""
+  },
+  {
+   "약어": "NFD",
+   "영문": "National Fisheries Development",
+   "한글": ""
+  },
+  {
+   "약어": "NGO",
+   "영문": "Non-Governmental Organization",
+   "한글": "비정부기구"
+  },
+  {
+   "약어": "NMFS",
+   "영문": "National Marine Fisheries Service",
+   "한글": ""
+  },
+  {
+   "약어": "NOAA",
+   "영문": "National Oceanic and Atmospheric Administration",
+   "한글": ""
+  },
+  {
+   "약어": "OFCF",
+   "영문": "Overseas Fishery Cooperation Foundation",
+   "한글": ""
+  },
+  {
+   "약어": "OPAGAC",
+   "영문": "Spanish Tuna Purse Seine Association",
+   "한글": ""
+  },
+  {
+   "약어": "OPRT",
+   "영문": "Organization for the Promotion of Responsible Tuna Fisheries",
+   "한글": ""
+  },
+  {
+   "약어": "P&P",
+   "영문": "Parlevliet & Van de Plas",
+   "한글": ""
+  },
+  {
+   "약어": "PMIZ",
+   "영문": "Pacific Marine Industrial Zone",
+   "한글": ""
+  },
+  {
+   "약어": "PNA",
+   "영문": "Parties to the Nauru Agreement",
+   "한글": "나우루협정 당사국"
+  },
+  {
+   "약어": "PNG",
+   "영문": "Papua New Guinea",
+   "한글": ""
+  },
+  {
+   "약어": "PVR",
+   "영문": "ProActive Vessel Register",
+   "한글": ""
+  },
+  {
+   "약어": "RFMO",
+   "영문": "Regional Fishery Management Organisation",
+   "한글": "지역수산관리기구"
+  },
+  {
+   "약어": "RMI",
+   "영문": "The Marshall Islands",
+   "한글": ""
+  },
+  {
+   "약어": "ROP",
+   "영문": "Regional Observer Program",
+   "한글": ""
+  },
+  {
+   "약어": "SBT",
+   "영문": "Southern Bluefin Tuna",
+   "한글": "남방참다랑어"
+  },
+  {
+   "약어": "SFPA",
+   "영문": "Sustainable Fisheries Partnership Agreement",
+   "한글": ""
+  },
+  {
+   "약어": "SIDS",
+   "영문": "Small Island Developing State",
+   "한글": "군소도서개발국"
+  },
+  {
+   "약어": "SKJ",
+   "영문": "Skipjack Tuna",
+   "한글": "가다랑어"
+  },
+  {
+   "약어": "SPC",
+   "영문": "Secretariat of the Pacific Community",
+   "한글": ""
+  },
+  {
+   "약어": "TAC",
+   "영문": "Total Allowable Catch",
+   "한글": "총허용어획량"
+  },
+  {
+   "약어": "TAE",
+   "영문": "Total Allowable Effort",
+   "한글": ""
+  },
+  {
+   "약어": "TMI",
+   "영문": "Tri Marine International",
+   "한글": ""
+  },
+  {
+   "약어": "TTIA",
+   "영문": "Thai Tuna Industry Association",
+   "한글": ""
+  },
+  {
+   "약어": "TU",
+   "영문": "Thai Union",
+   "한글": ""
+  },
+  {
+   "약어": "TUF",
+   "영문": "Thai Union Frozen Products",
+   "한글": ""
+  },
+  {
+   "약어": "ULT",
+   "영문": "Ultra-low Temperature",
+   "한글": ""
+  },
+  {
+   "약어": "USMLT",
+   "영문": "US Multilateral Treaty",
+   "한글": ""
+  },
+  {
+   "약어": "UoC",
+   "영문": "Unit of Certification",
+   "한글": ""
+  },
+  {
+   "약어": "VASEP",
+   "영문": "Vietnam Association of Seafood Exporters and Producers",
+   "한글": ""
+  },
+  {
+   "약어": "VDS",
+   "영문": "Vessel Day Scheme of the PNA",
+   "한글": "조업일수제도"
+  },
+  {
+   "약어": "VMS",
+   "영문": "Vessel Monitoring System",
+   "한글": "선박모니터링시스템"
+  },
+  {
+   "약어": "WCPFC",
+   "영문": "Western and Central Pacific Fisheries Commission",
+   "한글": "중서부태평양수산위원회"
+  },
+  {
+   "약어": "WCPO",
+   "영문": "Western Central Pacific Ocean",
+   "한글": "서·중부태평양"
+  },
+  {
+   "약어": "WFOA",
+   "영문": "The Western Fishboat Owners Association",
+   "한글": ""
+  },
+  {
+   "약어": "WHO",
+   "영문": "World Health Organization",
+   "한글": ""
+  },
+  {
+   "약어": "WPFMC",
+   "영문": "Western Pacific Fisheries Management Council",
+   "한글": ""
+  },
+  {
+   "약어": "WPO",
+   "영문": "Western Pacific Ocean",
+   "한글": ""
+  },
+  {
+   "약어": "WTO",
+   "영문": "World Trade Organization",
+   "한글": "세계무역기구"
+  },
+  {
+   "약어": "WTPO",
+   "영문": "World Tuna Purse Seine Organisation",
+   "한글": ""
+  },
+  {
+   "약어": "WWF",
+   "영문": "World Wildlife Fund",
+   "한글": ""
+  },
+  {
+   "약어": "Wespac",
+   "영문": "Western Pacific Regional Fishery Management Council",
+   "한글": ""
+  },
+  {
+   "약어": "YFT",
+   "영문": "Yellowfin Tuna",
+   "한글": "황다랑어"
+  },
+  {
+   "약어": "YoY",
+   "영문": "Year on Year",
+   "한글": ""
+  }
+ ],
+ "어종프로필": [
+  {
+   "어종": "가다랑어",
+   "원문명": "Skipjack Tuna (stripe-bellied Bonito)",
+   "영문명": "Skipjack Tuna (stripe-bellied Bonito)",
+   "학명": "Katsuwonus pelamis",
+   "일반 크기": "40-80 cm / 2.5 kg",
+   "최대": "Size 110 cm – Weight 30 kg – Age 15 years",
+   "성숙": "1 year and around 2 kg Female: 42-50 cm Male: 45-52 cm",
+   "주요 어장": "73% Western Pacific Ocean (63% WCPO, 8% SPO, 3% NPO) 7% Eastern Pacific Ocean 11% Indian Ocean 9% Atlantic Ocean",
+   "주요 어법": "Mostly purse seining, some pole & line (8%)",
+   "참치 어획 중 비중": "About 58% – 2.784.000 M/T",
+   "주요 가공국": "Thailand, Philippines, Indonesia, Ecuador, Ghana, Colombia, Ivory Coast, Senegal, Samoa, Spain, Italy, Papua New Guinea, Seychelles, Vietnam",
+   "주요 선적국": "Taiwan, US, China, Japan, Indonesia, Spain",
+   "생활사": "About 3 to 4 years",
+   "주요 시장": "Europe, United States, Arab World, Japan",
+   "주요 제품 형태": "Canned (90%), Pouched, Dried (Katsuobushi), Fillet (Tataki)"
+  },
+  {
+   "어종": "황다랑어",
+   "원문명": "Yellowfin Tuna",
+   "영문명": "Yellowfin Tuna",
+   "학명": "Thunnus albacares",
+   "일반 크기": "40-150 cm / 1,3-70 kgs",
+   "최대": "Size 200 cm – Weight 175 kgs, Age 8 years",
+   "성숙": "Size 105 cm – Weight 15 kgs, Age 2-3 years",
+   "주요 어법": "Mostly purse seining, long-lining, pole-and-line",
+   "참치 어획 중 비중": "About 28% – 1.344.000 M/T",
+   "생활사": "About 7 years",
+   "주요 시장": "Japan, Southern-Europe, United States",
+   "주요 제품 형태": "Canned Fresh (whole fish) Frozen pre-cooked Loins Fresh Fillets Raw frozen loins + steaks"
+  },
+  {
+   "어종": "날개다랑어",
+   "원문명": "Albacore Tuna (long finned tuna)",
+   "영문명": "Albacore Tuna (long finned tuna)",
+   "학명": "Thunnus alalunga",
+   "일반 크기": "40-100 cm / 4.5 – 11 kg",
+   "최대": "Size 130 cm – Weight 40 kg – Age 15 years.",
+   "성숙": "Size 75-90 cm – Weight 8-15 kg – Age 2-5 years.",
+   "주요 어법": "Longlining, Pole-and-line, trolling",
+   "참치 어획 중 비중": "About 5% – 240.000 M/T",
+   "생활사": "About 5 years",
+   "주요 시장": "United Sates, Canada, Japan, Spain",
+   "주요 제품 형태": "Canned (white tuna) Fresh Frozen"
+  },
+  {
+   "어종": "눈다랑어",
+   "원문명": "Bigeye Tuna",
+   "영문명": "Bigeye Tuna",
+   "학명": "Thunnus obesus",
+   "일반 크기": "40-180 cm / 1,4-130 kg",
+   "최대": "Size 230 cm – Weight 210 kg – Age 15 years",
+   "성숙": "Size 105 cm – Weight 25 kg – Age 3-4 years",
+   "주요 어법": "Longlining, Purse seining and Pole-and-line (by-catch)",
+   "참치 어획 중 비중": "About 8% – 384.000 M/T",
+   "생활사": "About 7-8",
+   "주요 시장": "Japan (sashimi)",
+   "주요 제품 형태": "Fresh (whole fish) Fresh Fillets (sashimi)"
+  },
+  {
+   "어종": "대서양가다랑어",
+   "원문명": "Atlantic Bonito",
+   "영문명": "Atlantic Bonito",
+   "학명": "Sarda sarda or sarda spp",
+   "일반 크기": "40-50 cm / 2,5 kg",
+   "주요 어법": "Mostly purse seining",
+   "참치 어획 중 비중": "Less than 1%",
+   "생활사": "About 1-2 years",
+   "주요 시장": "Turkey, Greece, Spain, Western-Europe",
+   "주요 제품 형태": "Fried Cooked Canned"
+  },
+  {
+   "어종": "북방참다랑어",
+   "원문명": "Northern Bluefin Tuna (North-west Pacific + North- East Atlantic + Mediterranean)",
+   "영문명": "Northern Bluefin Tuna (North-west Pacific + North- East Atlantic + Mediterranean)",
+   "학명": "Thunnus thynnus",
+   "일반 크기": "80-200 cm",
+   "최대": "Size 300 cm – Weight 650 kg – Age 25 years",
+   "성숙": "Size 110-190 cm – Weight 30-120 kg – Age 4-11 years",
+   "주요 어법": "Purse seiner and Longliner",
+   "생활사": "Up to 25 years",
+   "주요 시장": "Japan",
+   "주요 제품 형태": "Canned (light tuna) Fresh, super frozen (Sashimi)"
+  },
+  {
+   "어종": "남방참다랑어",
+   "원문명": "Southern Bluefin Tuna (Southern Pacific, Atlantic Ocean, Indian Ocean)",
+   "영문명": "Southern Bluefin Tuna (Southern Pacific, Atlantic Ocean, Indian Ocean)",
+   "학명": "Thunnus maccoyii",
+   "일반 크기": "150 cm",
+   "최대": "Size 200 cm – Weight 200 kg – Age up to 40 years",
+   "성숙": "Size 110-190 cm – Weight 30-120 kg – Age 4-11 years",
+   "주요 어법": "Pole and Line, surface trolling and long-line fishing",
+   "생활사": "At least 12 years",
+   "주요 시장": "Japan",
+   "주요 제품 형태": "Fresh (Sashimi), super frozen"
+  },
+  {
+   "어종": "몰다랑어",
+   "원문명": "Tongol (longtail tuna)",
+   "영문명": "Tongol (longtail tuna)",
+   "학명": "Thunnus tonggol",
+   "일반 크기": "90 cm / 15-20 kg",
+   "주요 어법": "Mostly pole and line, Long Lines",
+   "참치 어획 중 비중": "About 4 % or 125.000 M/T",
+   "주요 시장": "United Sates, Sweden",
+   "주요 제품 형태": "Canned (light tuna) Fresh"
+  }
+ ],
+ "자원상태": [
+  {
+   "어종": "가다랑어",
+   "해역": "인도양",
+   "기구": "IOTC",
+   "상태": "양호",
+   "평가연도": "2022"
+  },
+  {
+   "어종": "가다랑어",
+   "해역": "동부태평양",
+   "기구": "IATTC",
+   "상태": "양호",
+   "평가연도": "2022"
+  },
+  {
+   "어종": "가다랑어",
+   "해역": "서·중부태평양",
+   "기구": "WCPFC",
+   "상태": "양호",
+   "평가연도": "2022"
+  },
+  {
+   "어종": "가다랑어",
+   "해역": "동대서양",
+   "기구": "ICCAT",
+   "상태": "양호",
+   "평가연도": "2022"
+  },
+  {
+   "어종": "가다랑어",
+   "해역": "서대서양",
+   "기구": "ICCAT",
+   "상태": "양호",
+   "평가연도": "2022"
+  },
+  {
+   "어종": "황다랑어",
+   "해역": "대서양",
+   "기구": "ICCAT",
+   "상태": "양호",
+   "평가연도": "2022"
+  },
+  {
+   "어종": "황다랑어",
+   "해역": "인도양",
+   "기구": "IOTC",
+   "상태": "남획 압력 있음",
+   "평가연도": "2022"
+  },
+  {
+   "어종": "황다랑어",
+   "해역": "동부태평양",
+   "기구": "IATTC",
+   "상태": "양호",
+   "평가연도": "2022"
+  },
+  {
+   "어종": "황다랑어",
+   "해역": "서·중부태평양",
+   "기구": "WCPFC",
+   "상태": "양호",
+   "평가연도": "2022"
+  },
+  {
+   "어종": "날개다랑어",
+   "해역": "북태평양",
+   "기구": "IATTC, WCPFC",
+   "상태": "양호",
+   "평가연도": "2022"
+  },
+  {
+   "어종": "날개다랑어",
+   "해역": "남태평양",
+   "기구": "IATTC, WCPFC",
+   "상태": "양호",
+   "평가연도": "2022"
+  },
+  {
+   "어종": "날개다랑어",
+   "해역": "지중해",
+   "기구": "ICCAT",
+   "상태": "남획 압력 있음",
+   "평가연도": "2022"
+  },
+  {
+   "어종": "날개다랑어",
+   "해역": "인도양",
+   "기구": "IOTC",
+   "상태": "양호",
+   "평가연도": "2022"
+  },
+  {
+   "어종": "날개다랑어",
+   "해역": "북대서양",
+   "기구": "ICCAT",
+   "상태": "양호",
+   "평가연도": "2022"
+  },
+  {
+   "어종": "날개다랑어",
+   "해역": "남대서양",
+   "기구": "ICCAT",
+   "상태": "양호",
+   "평가연도": "2022"
+  },
+  {
+   "어종": "눈다랑어",
+   "해역": "동부태평양",
+   "기구": "IATTC",
+   "상태": "중간",
+   "평가연도": "2022"
+  },
+  {
+   "어종": "눈다랑어",
+   "해역": "서·중부태평양",
+   "기구": "WCPFC",
+   "상태": "양호",
+   "평가연도": "2022"
+  },
+  {
+   "어종": "눈다랑어",
+   "해역": "인도양",
+   "기구": "IOTC",
+   "상태": "양호",
+   "평가연도": "2022"
+  },
+  {
+   "어종": "눈다랑어",
+   "해역": "대서양",
+   "기구": "ICCAT",
+   "상태": "중간",
+   "평가연도": "2022"
+  },
+  {
+   "어종": "북방참다랑어",
+   "해역": "태평양",
+   "기구": "IATTC",
+   "상태": "남획 압력 있음",
+   "평가연도": "2022"
+  },
+  {
+   "어종": "북방참다랑어",
+   "해역": "동대서양·지중해",
+   "기구": "ICCAT",
+   "상태": "중간",
+   "평가연도": "2022"
+  },
+  {
+   "어종": "북방참다랑어",
+   "해역": "서대서양",
+   "기구": "ICCAT",
+   "상태": "중간",
+   "평가연도": "2022"
+  },
+  {
+   "어종": "남방참다랑어",
+   "해역": "태평양",
+   "기구": "IATTC",
+   "상태": "남획 압력 있음",
+   "평가연도": "2022"
+  },
+  {
+   "어종": "남방참다랑어",
+   "해역": "동대서양·지중해",
+   "기구": "ICCAT",
+   "상태": "중간",
+   "평가연도": "2022"
+  },
+  {
+   "어종": "남방참다랑어",
+   "해역": "서대서양",
+   "기구": "ICCAT",
+   "상태": "중간",
+   "평가연도": "2022"
+  }
+ ]
+}
