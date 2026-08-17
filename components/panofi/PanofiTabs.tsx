@@ -377,6 +377,10 @@ export function PriceTab() {
             {m.volumeTest.finding} {m.volumeTest.decisiveCase} 이탈이 불가능한 이유는 대안 채널의 흡수 상한이다 —
             SCODI는 {m.absorptionLimits.SCODI}, 코스모는 {m.absorptionLimits.코스모}, 로컬은 {m.absorptionLimits.로컬마켓}.
           </Callout>
+          {/* 근거 바로 아래에 둔다. 교란을 각주로 밀면 판정만 읽고 넘어간다. */}
+          <Callout kind="warn" label="아직 제거하지 못한 교란">
+            {m.seasonalConfound.detail} {m.seasonalConfound.howToSettle}
+          </Callout>
           <Callout kind="info" label="프레임">{m.verdictNote}</Callout>
         </Panel>
       </Grid>

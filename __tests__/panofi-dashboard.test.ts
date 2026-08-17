@@ -344,3 +344,26 @@ describe('가나 가공공장 구성', () => {
     expect(industry.cannersNote).toContain('이치반');
   });
 })
+
+describe('PFC 판정의 무게', () => {
+  it('판정문이 수요독점을 확정하지 않는다', () => {
+    // 적대 검증에서 계절 교란이 드러났다. 확정 표현으로 되돌아가면 근거보다 센 주장이 된다.
+    const v = pfc.measured.verdict;
+    expect(v).toContain('일치하는');
+    expect(v).toContain('확정하지');
+  });
+
+  it('계절 교란을 데이터로 들고 있다', () => {
+    const sc = pfc.measured.seasonalConfound;
+    expect(sc.wideGapWeeksInClosedSeason).toBeGreaterThan(0);
+    expect(sc.wideGapMonths.length).toBeGreaterThan(0);
+    expect(sc.narrowGapMonths.length).toBeGreaterThan(0);
+    // 두 구간의 월 집합이 실제로 갈려야 교란이라 부를 수 있다.
+    const overlap = sc.wideGapMonths.filter((m) => sc.narrowGapMonths.includes(m));
+    expect(overlap.length).toBeLessThan(sc.wideGapMonths.length);
+  });
+
+  it('판정 조정 이력을 지우지 않는다', () => {
+    expect(pfc.measured.verdictNote).toContain('두 번');
+  });
+});
