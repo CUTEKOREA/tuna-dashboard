@@ -1,4 +1,4 @@
-import { NextResponse } from 'next/server';
+import { NextResponse, type NextRequest } from 'next/server';
 import fs from 'node:fs/promises';
 import path from 'node:path';
 import { authorizeDashboardRequest } from '@/lib/auth/request-auth';
@@ -48,8 +48,8 @@ function staleDaysFrom(dataAsOf: string): number {
  *   - 신라교역 내부 매입가 시스템 연동 (preferred)
  *   - FAO GLOBEFISH 월간 보고서 PDF 파싱
  */
-export async function GET() {
-  const access = await authorizeDashboardRequest();
+export async function GET(request: NextRequest) {
+  const access = await authorizeDashboardRequest(request);
   if (!access.ok) {
     return NextResponse.json(
       {

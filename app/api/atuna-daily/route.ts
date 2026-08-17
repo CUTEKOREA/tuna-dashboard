@@ -1,4 +1,4 @@
-import { NextResponse } from 'next/server';
+import { NextResponse, type NextRequest } from 'next/server';
 import fs from 'fs';
 import path from 'path';
 import { authorizeDashboardRequest } from '@/lib/auth/request-auth';
@@ -54,8 +54,8 @@ function l12(available: string[]) {
   return { isLive: false as const, dataAsOf, staleDays };
 }
 
-export async function GET(request: Request) {
-  const access = await authorizeDashboardRequest();
+export async function GET(request: NextRequest) {
+  const access = await authorizeDashboardRequest(request);
   if (!access.ok) {
     return NextResponse.json(
       {
