@@ -646,3 +646,21 @@ describe('dashboard registry', () => {
     expect(DASHBOARD_PANEL_ORDER).not.toContain('bni-global');
   });
 });
+
+describe('cockpit density mode (2026-08-17 스펙)', () => {
+  it('전역 토글이 data-density 계약과 토큰 블록으로 구현된다 (컴포넌트 분기 금지)', () => {
+    const pageSource = readFileSync(join(process.cwd(), 'app/page.tsx'), 'utf8');
+    const globalsSource = readFileSync(join(process.cwd(), 'app/globals.css'), 'utf8');
+
+    expect(pageSource).toContain("localStorage.getItem('cockpit-mode')");
+    expect(pageSource).toContain("setAttribute('data-density'");
+    expect(pageSource).toContain('조종석 모드');
+    expect(globalsSource).toContain("[data-density='cockpit']");
+    // 적용 제외 — 파노피·코스모는 자체 밀도 복원
+    expect(globalsSource).toContain("[data-density='cockpit'] .cosmo-root");
+    // 히어로 정체성 유지 — cockpit 블록이 히어로 타이틀·KPI 크기 토큰을 건드리지 않는다
+    const cockpitBlock = globalsSource.slice(globalsSource.indexOf("[data-density='cockpit']"));
+    expect(cockpitBlock).not.toContain('--dsc-title-size');
+    expect(cockpitBlock).not.toContain('--dsc-kpi-size');
+  });
+});
