@@ -122,6 +122,32 @@ describe('인증·식품안전 — 성격을 섞지 않았나', () => {
   });
 });
 
+describe('출처 성격을 밝혔나', () => {
+  it('셀레늄 지표에 해석 주의가 붙어 있다', () => {
+    // 같은 자료에 업계 매체의 재해석이 실려 있다. 지표값과 해석을 나눠 읽어야 한다
+    const sel = data.식품안전.rows.filter((r) => r.항목 === '셀레늄');
+    expect(sel.length).toBeGreaterThanOrEqual(3);
+    const caveat = sel.find((r) => r.구분 === '해석 주의');
+    expect(caveat, '셀레늄에 해석 주의 행이 없다').toBeDefined();
+    expect(caveat!.설명).toContain('합의된 결론이 아니');
+  });
+
+  it('본문이 지표와 해석을 갈라 적었다', () => {
+    const s07 = ALL_NARRATIVES.find((n) => n.key === 's07');
+    const text = [s07!.lede, ...s07!.paragraphs].join('\n');
+    expect(text).toContain('건강편익값');
+    expect(text).toContain('학계에서 합의된 결론이 아니');
+  });
+
+  it('업계가 만든 기구라는 사실을 밝혔다', () => {
+    // 이 페이지의 선단 수치 출처가 업계 연합이라는 점을 숨기지 않는다
+    const x02 = ALL_NARRATIVES.find((n) => n.key === 'x02');
+    const text = [x02!.lede, ...x02!.paragraphs].join('\n');
+    expect(text).toContain('업계 기업과 과학자');
+    expect(text).toContain('누가 세었는지');
+  });
+});
+
 describe('화면 노출', () => {
   it('자원상태 표가 01단계에 있다', () => {
     const titles = Object.values(CATCH_CHART_SLOTS).flat().map((s) => s.title);
