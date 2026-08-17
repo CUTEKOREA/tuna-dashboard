@@ -170,6 +170,34 @@ describe('해역별 선사 — 데이터', () => {
   });
 });
 
+describe('해외 소매 — 확인 못 한 것을 확인 못 했다고 적었나', () => {
+  const overseas = getTunaCompanyData().해외소매;
+
+  it('확인불가 줄이 지워지지 않았다', () => {
+    // 이 표의 쓸모는 빈칸을 매체 추정으로 메우지 않은 데 있다
+    const unknown = overseas.rows.filter((r) => r.값.includes('확인불가'));
+    expect(unknown.length).toBeGreaterThanOrEqual(2);
+    expect(String(overseas._meta.확인불가)).toContain('확인되지 않았다');
+  });
+
+  it('행마다 시장·기준시점·출처·등급이 있다', () => {
+    for (const row of overseas.rows) {
+      expect(row.시장).not.toBe('');
+      expect(row.기준시점).not.toBe('');
+      expect(row.출처).not.toBe('');
+      expect(['A', 'B', 'C']).toContain(row.등급);
+    }
+  });
+
+  it('자사 공표값은 A등급으로 올리지 않는다', () => {
+    // 회사가 스스로 적은 점유율은 기관 통계가 아니다
+    const selfReported = overseas.rows.filter((r) => /회사 웹사이트|자사/.test(r.출처));
+    for (const row of selfReported) {
+      expect(row.등급, `${row.브랜드} 는 자사 공표라 A등급일 수 없다`).not.toBe('A');
+    }
+  });
+});
+
 describe('소매 단계 — 데이터', () => {
   const retail = getTunaCompanyData().소매;
 
@@ -198,6 +226,9 @@ describe('밸류체인 기업 — 화면 노출', () => {
     expect(titles).toContain('서·중부태평양 인가 선박 상위 선사 (척)');
     expect(titles).toContain('동부태평양 인가 선박 상위 선사 (척)');
     expect(titles).toContain('국내 참치캔 시장 점유율 (%)');
+    expect(titles).toContain('인도양 인가 선박 상위 선사 (척)');
+    expect(titles).toContain('대서양 인가 선박 상위 선사 (척)');
+    expect(titles).toContain('남방참다랑어 인가 선박 상위 선사 (척)');
   });
 
   it('오징어 차트에 선사별 선단이 있다', () => {

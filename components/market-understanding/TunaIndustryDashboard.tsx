@@ -188,6 +188,29 @@ export const CATCH_CHART_SLOTS: Record<string, ChartSlot[]> = {
       ),
     },
     {
+      title: '인도양 인가 선박 상위 선사 (척)',
+      caption:
+        '4,202척의 소유사를 세어 상위 10곳을 뽑았다. 인도네시아 회사들이 상위를 채운다. 한국 선사는 8척뿐이라 이 표에 들지 못한다. 개인 소유가 6.45%다.',
+      telemetry: REGISTRY_SYNC,
+      render: () => <OceanTopOwnerChart rows={OCEAN_OPS.해역['인도양'].상위선사} area="인도양" />,
+    },
+    {
+      title: '대서양 인가 선박 상위 선사 (척)',
+      caption:
+        '7,110척 중 소유사 이름이 적힌 행만 세었다(48.4%). 1위가 25척으로 1%도 안 될 만큼 흩어져 있다 — 다섯 해역 가운데 가장 파편화됐다.',
+      telemetry: REGISTRY_SYNC,
+      render: () => <OceanTopOwnerChart rows={OCEAN_OPS.해역['대서양'].상위선사} area="대서양" />,
+    },
+    {
+      title: '남방참다랑어 인가 선박 상위 선사 (척)',
+      caption:
+        '862척으로 다섯 해역 중 가장 작지만 **집중도는 가장 높다** — 상위 5곳이 17.52%다. 어종 하나를 관리하는 좁은 승인 목록이라 참여자가 적다.',
+      telemetry: REGISTRY_SYNC,
+      render: () => (
+        <OceanTopOwnerChart rows={OCEAN_OPS.해역['남방참다랑어'].상위선사} area="남방참다랑어" />
+      ),
+    },
+    {
       title: '선적국별 선망선과 어창용적 (척·㎥)',
       caption:
         '막대는 척수, 선은 어창용적이다. 분홍이 한국 — 척수는 5위인데 용적은 3위다. 배가 크다는 뜻이고, 척수만 세면 과소평가된다.',

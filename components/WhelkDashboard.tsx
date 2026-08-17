@@ -476,7 +476,7 @@ export default function WhelkDashboard() {
               }} />
 
             <WidgetCard title="영국산 원물 월별 수입 계절성" icon={Snowflake} iconColor="var(--color-info)" pillar="S3"
-              cardDesc="월별 수입액·물량 추이 — 5~8월 성수기 집중, Reefer 운임 급등"
+              cardDesc="월별 수입액·물량 — ⚠ 원본 대조 미완. 월별 통관 원자료를 아직 확보하지 못했다"
               telemetry={{ status: metaStatus, syncDate: metaSyncDate || 'KCS 2026-05-15' }} chartHeight={300}
               chart={
                 <ComposedChart data={seasonalityData}>
@@ -518,7 +518,7 @@ export default function WhelkDashboard() {
               }} />
 
             <WidgetCard title="골뱅이 가공원물 투입량 YoY (HS160559)" icon={Factory} iconColor="var(--color-info)" pillar="S2"
-              cardDesc="KCS HS160559 통관 — 가공원물 물량·금액·시사단가 YoY"
+              cardDesc="관세청 HS160559 통관 — 원본과 대조 완료(2023 68.98 · 2024 58.50백만달러)"
               telemetry={{ status: metaStatus, syncDate: metaSyncDate || 'KCS 2024 연간' }} chartHeight={300}
               chart={
                 <ComposedChart data={feedstockYoyData}>
@@ -567,7 +567,7 @@ export default function WhelkDashboard() {
   </div>
   <>
             <WidgetCard title="국가별 원물 수율 기반 총사용원가 비교" icon={Scale} iconColor="var(--color-info)" pillar="S3"
-              cardDesc="단가 vs 살수율 — 저수율 함정 회피 총사용원가(TCU) 분석"
+              cardDesc="단가 vs 살수율 — 총사용원가(TCU) 자체 모델. 수율·부대비 가정이 들어간 계산값이다"
               telemetry={{ status: 'STATIC', syncDate: '2024년 기준' }} chartHeight={300}
               chart={
                 <ComposedChart data={yieldArbitrageData} layout="vertical" margin={{ left: 40 }}>
@@ -587,7 +587,7 @@ export default function WhelkDashboard() {
               }} />
 
             <WidgetCard title="영국산 수입 통관 원가 폭포수 구조" icon={DollarSign} iconColor="var(--color-info)" pillar="S3"
-              cardDesc="FOB → CIF → 관세 → 내륙 통관 단계별 — 한-영 FTA 무관세 방어"
+              cardDesc="FOB → CIF → 관세 → 내륙 통관 단계별 — 자체 원가 분해 모델. 단계별 비율은 가정이다"
               telemetry={{ status: metaStatus, syncDate: metaSyncDate || 'KCS 2026-05-15' }} chartHeight={300}
               chart={
                 <BarChart data={waterfallData} margin={{ top: 20 }}>
@@ -617,7 +617,7 @@ export default function WhelkDashboard() {
   </div>
   <>
             <WidgetCard title="B2C 통조림 브랜드 경쟁력 & 가성비 매핑" icon={Target} iconColor="var(--color-info)" pillar="S4"
-              cardDesc="고형량 vs 100g당 단가 vs 점유율 — 브랜드 가성비 매트릭스"
+              cardDesc="고형량 vs 100g당 단가 vs 점유율 — ⚠ 원본 대조 미완. 브랜드별 값의 출처를 확인하지 못했다"
               telemetry={{ status: 'STATIC', syncDate: '2024년 기준' }} chartHeight={300}
               chart={
                 <ScatterChart margin={{ top: 20, right: 30, bottom: 30, left: 30 }}>
@@ -638,7 +638,7 @@ export default function WhelkDashboard() {
               }} />
 
             <WidgetCard title="B2C 및 B2B 채널별 매출 분포" icon={Building2} iconColor="var(--color-info)" pillar="S4"
-              cardDesc="대형마트·e커머스·편의점·B2B 식자재 채널별 점유율 변화"
+              cardDesc="채널별 점유율 — ⚠ 원본 대조 미완. 인용한 통계의 원문을 확인하지 못했다"
               telemetry={{ status: 'STATIC', syncDate: '2024년 기준' }} chartHeight={300}
               chart={
                 <PieChart>
@@ -656,7 +656,7 @@ export default function WhelkDashboard() {
           </>
 
             <WidgetCard title="미국 캔 르네상스 — 골뱅이 수출 신시장 기회" icon={ShoppingBag} iconColor="var(--color-success)" pillar="S4"
-              cardDesc="Z세대 '틴 캔 르네상스' 트렌드 + K-Food 골뱅이 침투 잠재력"
+              cardDesc="Z세대 '틴 캔 르네상스' + K-Food 침투 잠재력 — 시장 규모는 인용, 침투율은 자체 가정이다"
               telemetry={{ status: 'STATIC', syncDate: 'KMI 2026.05' }} chartHeight={300}
               chart={
                 <ComposedChart data={usCannedMarketData}>
@@ -679,7 +679,7 @@ export default function WhelkDashboard() {
               }} />
 
             <WidgetCard title="헬시플레저 시대 — 골뱅이 영양 경쟁력 벤치마크" icon={Activity} iconColor="var(--color-success)" pillar="S4"
-              cardDesc="단백질·지방·철분 벤치마크 — 닭가슴살·참치캔·새우 대비"
+              cardDesc="영양 성분 벤치마크 — ⚠ 식품성분표 인용이나 판(版) 대조 미완"
               telemetry={{ status: 'STATIC', syncDate: 'KFDA 2024 기준' }} chartHeight={300}
               chart={
                 <BarChart data={nutritionBenchmarkData} margin={{ top: 20 }}>
@@ -732,7 +732,7 @@ export default function WhelkDashboard() {
               }} />
 
             <WidgetCard title="환율 1,500원 비상 경보 시스템" icon={AlertTriangle} iconColor="#dc2626" pillar="S3"
-              cardDesc="USD/KRW 구간별 자동 경보 + 단계별 대응 매뉴얼"
+              cardDesc="USD/KRW 구간별 경보 — 구간과 대응은 사내 운영 기준이다. 시장 관측값이 아니다"
               telemetry={{ status: 'STATIC', syncDate: '2026-05-30 (환율 임계값 정의)' }}
               customBody={
                 <div data-mobile-stack style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '0.75rem' }}>
@@ -756,7 +756,7 @@ export default function WhelkDashboard() {
                 source: '한국은행 실시간 환율',
               }} />
             <WidgetCard title="환율 및 수입 단가 복합 변동성" icon={DollarSign} iconColor="var(--color-info)" pillar="S3"
-              cardDesc="분기별 USD 단가 vs USD/KRW 환율 — 이중 타격(Double Whammy) 분석"
+              cardDesc="분기별 USD 단가 vs 원달러 환율 — 환율은 실측, 단가는 통관 집계다. 상관은 자체 해석이다"
               telemetry={{ status: metaStatus, syncDate: metaSyncDate || 'KCS/한국은행 2026-05-15' }} chartHeight={300}
               chart={
                 <ComposedChart data={fxCorrelationData}>
@@ -778,7 +778,7 @@ export default function WhelkDashboard() {
               }} />
 
             <WidgetCard title="영국 현지 어획 규제 리스크 진단" icon={Shield} iconColor="var(--color-info)" pillar="S3"
-              cardDesc="MCRS·쿼터제·IFCA 규제 — 영국 자원 보호주의 정책 위협 측정"
+              cardDesc="MCRS·쿼터제·IFCA 규제 — 자체 위협도 점수(0~100). 측정값이 아니라 판단이다"
               telemetry={{ status: 'STATIC', syncDate: '2024년 기준' }} chartHeight={300}
               chart={
                 <RadarChart data={ukRegulatoryRadar} cx="50%" cy="50%" outerRadius="70%">
@@ -799,7 +799,7 @@ export default function WhelkDashboard() {
         {/* Pillar 5 continued: 구조적 위협 & 기회 — 동일 Pillar 내 하위 블록 */}
   <>
             <WidgetCard title="패류 자원별 양식 가능성 및 공급 탄력성" icon={ShieldAlert} iconColor="var(--color-danger)" pillar="S1"
-              cardDesc="골뱅이 vs 바지락·동죽·연어 — 해적생물 분류로 양식 영구 불가"
+              cardDesc="골뱅이 vs 바지락·동죽·연어 — 자체 평가 지수(0~100). 양식 가능성·공급 탄력성 판단이다"
               telemetry={{ status: 'STATIC', syncDate: '2024년 기준' }} chartHeight={300}
               chart={
                 <BarChart data={aquacultureData} margin={{ top: 10 }}>
@@ -821,7 +821,7 @@ export default function WhelkDashboard() {
               }} />
 
             <WidgetCard title="카드뮴 생체축적 및 식품안전 규제 진단" icon={FlaskConical} iconColor="var(--color-danger)" pillar="S3"
-              cardDesc="부위별 카드뮴 농도 — 내장 제거율 불량 시 통관 반려 리스크"
+              cardDesc="부위별 카드뮴 농도 — ⚠ 문헌값 인용이나 원문 대조 미완. 기준치는 식품공전 값이다"
               telemetry={{ status: 'STATIC', syncDate: '2024년 기준' }} chartHeight={300}
               chart={
                 <ComposedChart data={cadmiumData} margin={{ top: 20 }}>
@@ -844,7 +844,7 @@ export default function WhelkDashboard() {
               }} />
 
             <WidgetCard title="1인 가구 혼술 트렌드 및 채널 수입량 변동" icon={ShoppingBag} iconColor="var(--color-success)" pillar="S4"
-              cardDesc="냉동 자숙 골뱅이육 수입 +105% — 혼술 이코노미 구조적 전환"
+              cardDesc="월별 수입량 변동 — ⚠ 원본 대조 미완. 월별 통관 원자료를 확보하지 못했다"
               telemetry={{ status: metaStatus, syncDate: metaSyncDate || 'KCS 월별 통관 2026-05-15' }} chartHeight={300}
               chart={
                 <ComposedChart data={importSurgeData}>
@@ -872,7 +872,7 @@ export default function WhelkDashboard() {
               }} />
 
             <WidgetCard title="원물 부산물(패각/내장) 업사이클링 순환 가치" icon={Recycle} iconColor="var(--color-success)" pillar="S5"
-              cardDesc="가공 후 78% 폐기물 → 해양 콜라겐·바이오 세라믹 재자원화"
+              cardDesc="가공 후 부산물 재자원화 — 수율 비율은 문헌 기반 추정이고 단가는 자체 가정이다"
               telemetry={{ status: 'STATIC', syncDate: '2024년 기준' }} chartHeight={300}
               chart={
                 <BarChart data={byproductData} layout="vertical" margin={{ left: 30 }}>
@@ -893,7 +893,7 @@ export default function WhelkDashboard() {
               }} />
 
             <WidgetCard title="B2C 통조림 규격별 고형량(살코기) 투명성 비율" icon={Package} iconColor="var(--color-warning)" pillar="S4"
-              cardDesc="300g 캔의 실제 살코기 40~50% — 투명성 마케팅 차별화"
+              cardDesc="300g 캔 고형량 비율 — ⚠ 표시사항 기반이나 제품별 실측 대조 미완"
               telemetry={{ status: 'STATIC', syncDate: '2024년 기준' }} chartHeight={300}
               chart={
                 <BarChart data={solidContentData} margin={{ top: 20 }}>
@@ -974,7 +974,7 @@ export default function WhelkDashboard() {
 
             {/* W24: PFAS 식품안전 매트릭스 */}
             <WidgetCard title="PFAS(과불화화합물) 차세대 식품안전 리스크" icon={FlaskConical} iconColor="var(--color-warning)" pillar="S3"
-              cardDesc="EU/미국 PFAS(영원한 화학물질) 규제가 수산물 수입에 미치는 영향 — 어종별 비교"
+              cardDesc="EU·미국 PFAS 규제 — 어종별 농도는 문헌값, 위험 등급은 자체 판단이다"
               telemetry={{ status: 'STATIC', syncDate: 'KFAS 2024' }} chartHeight={280}
               chart={
                 <BarChart data={pfasRiskData} layout="vertical" margin={{ left: 40 }}>
@@ -996,7 +996,7 @@ export default function WhelkDashboard() {
 
             {/* W28: 할랄 해양콜라겐 시장 */}
             <WidgetCard title="할랄 인증 해양콜라겐 — 글로벌 시장 기회" icon={Globe} iconColor="var(--color-success)" pillar="S4"
-              cardDesc="골뱅이 부산물 해양 콜라겐의 할랄/코셔 인증 기반 수출 시장 규모·지역별 성장 잠재력"
+              cardDesc="해양 콜라겐 할랄 시장 — 지역별 규모·성장률은 외부 전망치 인용이다. 골뱅이 몫은 산출되지 않았다"
               telemetry={{ status: 'STATIC', syncDate: 'KMI 2026.04' }} chartHeight={280}
               chart={
                 <BarChart data={halalCollagenData} margin={{ top: 20 }}>

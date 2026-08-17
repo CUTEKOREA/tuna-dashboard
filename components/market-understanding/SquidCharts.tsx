@@ -25,7 +25,12 @@ import {
 } from 'recharts';
 
 import { getSmartRotation, truncateXAxis } from '@/lib/chart-standards';
-import type { SquidCatchData, SquidFleetData, SquidTradeData } from '@/lib/data/squid-industry';
+import type {
+  SquidCatchData,
+  SquidFleetData,
+  SquidOceanFleetData,
+  SquidTradeData,
+} from '@/lib/data/squid-industry';
 import {
   SQUID_ROLE,
   colorForBasket,
@@ -799,6 +804,56 @@ export function CompanyFleetChart({ data }: { data: SquidFleetData }) {
           stroke={SQUID_ROLE.highlight}
           strokeWidth={2.2}
           dot={{ r: 3 }}
+          isAnimationActive={animate}
+        />
+      </ComposedChart>
+    </SafeResponsiveContainer>
+  );
+}
+
+/**
+ * 남태평양 공해 채낚기 선단 — 척수와 척당 크기를 함께 본다.
+ *
+ * ⚠ 이 그림에는 **선사가 없다.** 남태평양 공해 관리기구가 소유사를 공개하지 않기 때문이다.
+ *   참치 페이지가 해역마다 선사를 세울 수 있는 것과 달라, 오징어는 선적국이 한계다.
+ */
+export function OceanJiggerChart({ data }: { data: SquidOceanFleetData }) {
+  const animate = useAnim();
+  const rows = useMemo(() => data.채낚기톤급.filter((r) => r.척수 >= 5), [data]);
+
+  return (
+    <SafeResponsiveContainer width="100%" height={300}>
+      <ComposedChart data={rows} margin={MARGIN}>
+        {grid}
+        <XAxis dataKey="선적" {...AXIS} tickFormatter={truncateXAxis} interval={0} />
+        <YAxis yAxisId="left" {...AXIS} allowDecimals={false} />
+        <YAxis
+          yAxisId="right"
+          orientation="right"
+          {...AXIS}
+          tickFormatter={(v: number) => `${Math.round(v)}t`}
+        />
+        <Tooltip content={<Tip />} />
+        <Legend wrapperStyle={{ fontSize: 11, color: 'var(--mu-axis)' }} />
+        <Bar
+          yAxisId="left"
+          dataKey="척수"
+          name="채낚기 척수 (척)"
+          radius={[3, 3, 0, 0]}
+          isAnimationActive={animate}
+        >
+          {rows.map((r) => (
+            <Cell key={r.선적} fill={r.선적 === '대한민국' ? SQUID_ROLE.highlight : SQUID_ROLE.volume} />
+          ))}
+        </Bar>
+        <Line
+          yAxisId="right"
+          type="monotone"
+          dataKey="평균톤수"
+          name="척당 평균 톤수 (톤)"
+          stroke={SQUID_ROLE.processed}
+          strokeWidth={2.4}
+          dot={{ r: 4 }}
           isAnimationActive={animate}
         />
       </ComposedChart>

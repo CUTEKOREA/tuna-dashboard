@@ -17,6 +17,7 @@
  *   두 수치를 직접 빼거나 나누지 마라.
  */
 import rawCatch from '../../public/data/squid_industry_v1.json';
+import rawOceanFleet from '../../public/data/squid_ocean_fleet_v1.json';
 import rawTrade from '../../public/data/squid_trade_v1.json';
 import rawFleet from '../../public/data/squid_fleet_v1.json';
 import rawWidgets from '../../public/data/squid_industry_widgets_v1.json';
@@ -372,4 +373,40 @@ export function getSquidFleetData(): SquidFleetData {
 /** 살오징어 붕괴 시계열. 이 페이지의 중심 서사가 쓴다. */
 export function getSquidCollapse(): CollapsePoint[] {
   return CATCH.살오징어붕괴;
+}
+
+// ─── 남태평양 공해 인가 선단 ────────────────────────────────────────────────
+
+/**
+ * 오징어 주 어장의 인가 선단. `scripts/build_squid_ocean_fleet.py` 산출물이다.
+ *
+ * ⚠ 참치와 달리 **선사 이름이 없다.** 남태평양 공해 관리기구는 소유사를 공개하지 않아
+ *   목록에도 선박 상세에도 항목이 없다. 그래서 이 품목은 선적국까지가 한계다.
+ */
+export interface OceanFlagRow {
+  선적: string;
+  척수: number;
+  비중?: number;
+}
+
+export interface OceanSizeRow {
+  선적: string;
+  척수: number;
+  평균톤수: number;
+  합계톤수: number;
+}
+
+export interface SquidOceanFleetData {
+  _meta: Record<string, unknown>;
+  전체선적: OceanFlagRow[];
+  채낚기선적: OceanFlagRow[];
+  채낚기톤급: OceanSizeRow[];
+  선종구성: { 선종: string; 척수: number }[];
+}
+
+const OCEAN_FLEET = rawOceanFleet as unknown as SquidOceanFleetData;
+
+/** 오징어 — 남태평양 공해 인가 선단. 선사가 아니라 선적국 단위다. */
+export function getSquidOceanFleet(): SquidOceanFleetData {
+  return OCEAN_FLEET;
 }

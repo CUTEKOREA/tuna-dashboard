@@ -19,6 +19,7 @@ import {
   getSquidChainStages,
   getSquidCrossStages,
   getSquidFleetData,
+  getSquidOceanFleet,
   getSquidTradeData,
   getSquidWidgetsMeta,
   type SquidStage,
@@ -43,6 +44,7 @@ import {
   CollapseChart,
   CoastalGearChart,
   CompanyFleetChart,
+  OceanJiggerChart,
   CountryCompareChart,
   DistantGearChart,
   NationFleetChart,
@@ -63,6 +65,7 @@ import styles from './TunaIndustryDashboard.module.css';
 const CATCH = getSquidCatchData();
 const TRADE = getSquidTradeData();
 const FLEET = getSquidFleetData();
+const OCEAN_FLEET = getSquidOceanFleet();
 const CHAIN_STAGES = getSquidChainStages();
 const CROSS_STAGES = getSquidCrossStages();
 const ALL_STAGES: SquidStage[] = [...CHAIN_STAGES, ...CROSS_STAGES];
@@ -132,6 +135,13 @@ export const SQUID_CHART_SLOTS: Record<string, ChartSlot[]> = {
         '막대는 보유 척수, 선은 선단 합계 톤수다. 열 개 회사가 스무 척을 나눠 갖는데 여섯 척을 가진 곳과 한 척뿐인 곳이 섞여 있다 — 「오징어 선사」를 한 덩어리로 부르면 이 차이가 사라진다.',
       telemetry: FLEET_SYNC,
       render: () => <CompanyFleetChart data={FLEET} />,
+    },
+    {
+      title: '남태평양 공해 채낚기 선단 (척·톤)',
+      caption:
+        '막대는 척수, 선은 척당 평균 톤수다. 페루 1,013척은 평균 25톤짜리 소형선이고 중국 609척은 평균 948톤이다 — 같은 「채낚기」라도 배가 40배 다르다. 장미색이 한국(30척·평균 917톤)이다. ⚠ 이 등록부는 소유사를 공개하지 않아 선사 단위로는 갈 수 없다.',
+      telemetry: { status: 'STATIC' as const, syncDate: '2026년 8월 등록부' },
+      render: () => <OceanJiggerChart data={OCEAN_FLEET} />,
     },
     {
       title: '어획 상위 12개국 (톤)',
