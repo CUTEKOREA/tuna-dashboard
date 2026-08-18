@@ -1,3 +1,12 @@
+> 🦑 **2026-08-18 23:20 KST — 오징어 페루 RM00269 반영 (조사·탐사 인가 ≠ 상업 재개)** [Claude Code]:
+> - `monitoring_calendar` 의 SQ-MGT-PRODUCE `next_check` 가 오늘이라 점검 수행. **RM 00269-2026-PRODUCE(2026-08-17)** 수집 — IMARPE 「Operación Calamar Gigante V」 8/23~8/29 + 탐사조업 8/30~9/26, 최대 30척·선창 ≤32.6㎥·과학옵서버 승선. **상업 재개 아님**: 원문에 `reanudar|reiniciar|levantar la suspensión|habilitar la actividad extractiva` 0건. 추출기가 이 문구를 발견하면 예외를 던져 분류가 조용히 뒤집히지 못하게 했다.
+> - 신호등 페루는 **`중단·제한` 유지**, 기준일만 07-24 → **08-17**. 사유에 인가 사실과 "상업 재개 공문은 아님" 을 같은 문장에 담았다. 타임라인 행은 `effort_limit` 이며 **톤수를 붙이지 않았다** — 붙이면 쿼터로 오독된다.
+> - RM 00266-2026(엘니뇨 기회자원 특별체제, ~2027-04-30)도 함께 수집. `pota`·`calamar gigante`·`Dosidicus` 언급 0회로 **오징어 무관** — 배제 근거로 원장에 남겼다.
+> - 아카이브 원장 갱신: `external_sources_manifest.csv` +2건(총 120, SHA-256·크기·발간일), `monitoring_calendar` latest_verified/next_check(→2026-08-24).
+> - **아카이브가 자라며 깨진 것 3건 동반 수정**: ① governance 가 출처 원장 36행·감시 15행을 *정확히* 강제해 실제 증가(44·20)에 빌드가 죽었다 → 하한 + G-001~011 존재 확인으로 교체 ② 감시 상태 `partial`(중국 해관 2025만 확보) 이 스키마에서 거부됨 → 등재 ③ 아르헨티나 도시에가 `08_국가별_조달/` 로 재편돼 경로 갱신(**유실 아님**).
+> - 테스트 고정 빌드일이 7곳에 흩어져 8/17 문서가 들어오자 G-012 검사가 오작동 → `BUILT_AT` 상수 하나로 통합.
+> - 검증: 빌더 21/21, 검증기 self-test 20/20, 프론트 squid 관련 전량 통과, 게이트 39위젯 위반 0. 남은 실패 3건(`mail-company-smtp`×2, `weekly-briefing-cron`)은 **원격 main 에서도 동일** — `nodemailer` 미설치·`CRON_SECRET` 환경 문제로 이 변경과 무관.
+
 > 🚀 **2026-08-18 23:01 KST — SEIN VENUS 8/18 하역 일일보고 라이브 배포** [Codex]:
 > - `M/V SEIN VENUS`의 8/18 작업(08:10~15:40)을 반영했다. 일일 339.730 MT, 누계 2,665.400 MT, 잔량 609.600 MT이며 TUM 186.650 MT·GFF 153.080 MT로 구조화했다.
 > - 일일 어종 합계는 SJ 170.850 MT·YF 168.880 MT, 누적은 SJ 2,166.120 MT·YF 499.280 MT다. 어창별 어종 분해는 원자료에 없어 표시하지 않는다.
