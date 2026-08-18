@@ -1,3 +1,11 @@
+> 🎨 **2026-08-18 — 오징어에 선단 DB 팔레트 적용** [Grok]:
+> - worktree `squid-palette` · `feat/squid-palette`. 사용자 배포 요청.
+> - 종·바스켓·한국 강조는 `squid-chart-colors` 유지. 페이지 액센트 `#7c3aed` 유지.
+> - 이름 없는 순위 막대 = `CHART_RANK`. 수입 형태 구성 = `shareColor`. 이중축 둘째 축(단가·점유·평균) = `CHART_RANK`.
+> - 해역 정체성: 남서대서양/뉴질랜드/페루 = `HUB_ID`. 동남부 마크 = `SQUID_ROLE.highlight`.
+>
+> 마지막 업데이트: 2026-08-18 [Grok]
+
 > 🚀 **2026-08-18 14:11 KST — 선단 DB 가로막대 좌측 여백 라이브 배포** [Grok]:
 > - PR [#631](https://github.com/CUTEKOREA/tuna-dashboard/pull/631) squash `e6fe7c10`. PR 게이트 `32101407941` 성공. main Gate `32101668850` 성공. Freshness `32101668857` 성공.
 > - Vercel production `dpl_7ZcF9S7R7frgdjKAUxBEM3z7G58P` READY · alias `https://leedonggun.co.kr` · region `icn1` · SHA `e6fe7c10`.

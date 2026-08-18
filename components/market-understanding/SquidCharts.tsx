@@ -4,7 +4,8 @@
  * 선별 위젯(`SquidWidgetView`)이 원본 위젯을 그대로 보여주는 자리라면, 여기는 이 페이지가
  * 스스로 집계한 수치를 그리는 자리다. FAO 어획 2024년과 관세청 통관 2020~2024년이 원본이다.
  *
- * 색은 `lib/squid-chart-colors` 한곳. 종 이름이면 고정, 역할이면 물량/강조/가공.
+ * 색: 종·바스켓·한국 강조는 `lib/squid-chart-colors`.
+ * 이름 없는 순위 막대·이중축 둘째 축·해역 정체성은 `lib/chart-palette`.
  */
 'use client';
 
@@ -24,6 +25,7 @@ import {
   YAxis,
 } from 'recharts';
 
+import { CHART_RANK, HUB_ID, shareColor } from '@/lib/chart-palette';
 import { getSmartRotation, truncateXAxis } from '@/lib/chart-standards';
 import {
   companiesFromVessels,
@@ -230,7 +232,7 @@ export function AreaRankChart({ data }: { data: SquidCatchData }) {
         <Bar
           dataKey="어획량"
           name="어획량 (톤)"
-          fill={SQUID_ROLE.volume}
+          fill={CHART_RANK}
           radius={[3, 3, 0, 0]}
           isAnimationActive={animate}
         />
@@ -273,7 +275,7 @@ export function KoreaTrendChart({ data }: { data: SquidCatchData }) {
           type="monotone"
           dataKey="세계점유율"
           name="세계 점유율 (%)"
-          stroke={SQUID_ROLE.highlight}
+          stroke={CHART_RANK}
           strokeWidth={2.2}
           dot={false}
           isAnimationActive={animate}
@@ -324,7 +326,7 @@ export function ImportOriginChart({ data }: { data: SquidTradeData }) {
           type="monotone"
           dataKey="단가"
           name="수입단가 (달러/톤)"
-          stroke={SQUID_ROLE.highlight}
+          stroke={CHART_RANK}
           strokeWidth={2.2}
           dot={{ r: 3 }}
           isAnimationActive={animate}
@@ -364,7 +366,7 @@ export function ImportTrendChart({ data }: { data: SquidTradeData }) {
           type="monotone"
           dataKey="수입단가"
           name="수입단가 (달러/톤)"
-          stroke={SQUID_ROLE.highlight}
+          stroke={CHART_RANK}
           strokeWidth={2.4}
           dot={{ r: 3 }}
           isAnimationActive={animate}
@@ -404,7 +406,7 @@ export function StagePriceChart({ data }: { data: SquidTradeData }) {
           type="monotone"
           dataKey="단가"
           name="수입단가 (달러/톤)"
-          stroke={SQUID_ROLE.highlight}
+          stroke={CHART_RANK}
           strokeWidth={2.4}
           dot={{ r: 4 }}
           isAnimationActive={animate}
@@ -518,16 +520,7 @@ export function ImportFormChart({ data }: { data: SquidTradeData }) {
         <Tooltip content={<Tip unit=" 톤" />} />
         <Bar dataKey="수입량" name="수입량 (톤)" radius={[0, 3, 3, 0]} isAnimationActive={animate}>
           {data.품목단계.map((row, index) => (
-            <Cell
-              key={index}
-              fill={
-                row.구분 === '원물'
-                  ? SQUID_ROLE.volume
-                  : row.구분 === '완제품'
-                    ? SQUID_ROLE.highlight
-                    : SQUID_ROLE.processed
-              }
-            />
+            <Cell key={index} fill={shareColor(index)} />
           ))}
         </Bar>
       </BarChart>
@@ -584,7 +577,7 @@ export function CountryCompareChart({ data }: { data: SquidTradeData }) {
         <Bar
           dataKey="수출액"
           name="수출액 (백만 달러)"
-          fill={SQUID_ROLE.highlight}
+          fill={CHART_RANK}
           radius={[3, 3, 0, 0]}
           isAnimationActive={animate}
         />
@@ -679,7 +672,7 @@ export function CoastalGearChart({ data }: { data: SquidFleetData }) {
           type="monotone"
           dataKey="척당배분량"
           name="척당 배분량 (톤)"
-          stroke={SQUID_ROLE.highlight}
+          stroke={CHART_RANK}
           strokeWidth={2.4}
           dot={{ r: 4 }}
           isAnimationActive={animate}
@@ -751,7 +744,7 @@ export function NationFleetChart({ data }: { data: SquidFleetData }) {
           type="monotone"
           dataKey="평균톤수"
           name="평균 톤수 (톤)"
-          stroke={SQUID_ROLE.highlight}
+          stroke={CHART_RANK}
           strokeWidth={2.4}
           dot={{ r: 4 }}
           connectNulls={false}
@@ -811,7 +804,7 @@ export function CompanyFleetChart({ data }: { data: SquidFleetData }) {
           type="monotone"
           dataKey="합계톤수"
           name="선단 합계 톤수 (톤)"
-          stroke={SQUID_ROLE.highlight}
+          stroke={CHART_RANK}
           strokeWidth={2.2}
           dot={{ r: 3 }}
           isAnimationActive={animate}
@@ -861,7 +854,7 @@ export function OceanJiggerChart({ data }: { data: SquidOceanFleetData }) {
           type="monotone"
           dataKey="평균톤수"
           name="척당 평균 톤수 (톤)"
-          stroke={SQUID_ROLE.processed}
+          stroke={CHART_RANK}
           strokeWidth={2.4}
           dot={{ r: 4 }}
           isAnimationActive={animate}
@@ -886,9 +879,9 @@ export function SquidYearbookPriceChart({ rows }: {
           tickFormatter={(v: number) => `${(v / 1000).toFixed(0)}천`} />
         <Tooltip formatter={(value) => [`${Number(value ?? 0).toLocaleString()} 원/kg`, '']} />
         <Legend wrapperStyle={{ fontSize: 11 }} />
-        <Line type="monotone" dataKey="남서대서양" name="남서대서양 (원/kg)" stroke="#7c3aed" strokeWidth={2} dot={{ r: 2 }} connectNulls={false} />
-        <Line type="monotone" dataKey="뉴질랜드" name="뉴질랜드 (원/kg)" stroke="#0ea5e9" strokeWidth={2} dot={{ r: 2 }} connectNulls={false} />
-        <Line type="monotone" dataKey="페루" name="페루 (원/kg)" stroke="#f59e0b" strokeWidth={2} dot={{ r: 2 }} connectNulls={false} />
+        <Line type="monotone" dataKey="남서대서양" name="남서대서양 (원/kg)" stroke={HUB_ID.bkk} strokeWidth={2} dot={{ r: 2 }} connectNulls={false} />
+        <Line type="monotone" dataKey="뉴질랜드" name="뉴질랜드 (원/kg)" stroke={HUB_ID.mnt} strokeWidth={2} dot={{ r: 2 }} connectNulls={false} />
+        <Line type="monotone" dataKey="페루" name="페루 (원/kg)" stroke={HUB_ID.sey} strokeWidth={2} dot={{ r: 2 }} connectNulls={false} />
       </LineChart>
     </SafeResponsiveContainer>
   );
@@ -905,15 +898,11 @@ export function SquidMonthlyCatchChart({ months }: { months: number[] }) {
         <YAxis stroke="var(--mu-axis)" tick={{ fill: 'var(--mu-axis)', fontSize: 11 }}
           tickFormatter={(v: number) => `${(v / 1000).toFixed(0)}천`} />
         <Tooltip formatter={(value) => [`${Number(value ?? 0).toLocaleString()} 톤`, '']} />
-        <Bar dataKey="생산" name="생산 (톤)" fill="#7c3aed" radius={[3, 3, 0, 0]} />
+        <Bar dataKey="생산" name="생산 (톤)" fill={CHART_RANK} radius={[3, 3, 0, 0]} />
       </BarChart>
     </SafeResponsiveContainer>
   );
 }
-
-/* 두족류 시그니처(D-04) — 이 파일은 팔레트 상수 없이 색을 직접 쓴다. 관용구를 맞춘다. */
-const SQ_BASE = '#7c3aed';
-const SQ_MARK = '#ec4899';
 
 /* ── 원양어업통계조사 (해양수산부 승인 제114048호) ──────────────────────────
  *
@@ -935,12 +924,7 @@ export function SquidGearProductionChart() {
         <YAxis {...AXIS} tickFormatter={(v: number) => `${Math.round(v / 1000)}천`} />
         <Tooltip content={<Tip />} />
         {legend}
-        <Bar dataKey="생산량" name="생산량 (톤)" isAnimationActive={animate}>
-          {rows.map((r) => (
-            // 최신 연도만 짚는다. 범례를 늘리지 않고 지금을 가리키는 방법이다.
-            <Cell key={r.연도} fill={r.연도 === rows[rows.length - 1]?.연도 ? SQ_MARK : SQ_BASE} />
-          ))}
-        </Bar>
+        <Bar dataKey="생산량" name="생산량 (톤)" fill={CHART_RANK} isAnimationActive={animate} />
       </ComposedChart>
     </SafeResponsiveContainer>
   );
@@ -967,7 +951,7 @@ export function SquidAreaChart({ year }: { year: string }) {
         <Bar dataKey="생산량" name="생산량 (톤)" isAnimationActive={animate}>
           {rows.map((r) => (
             // 동남부가 SPRFMO 수역이다 — 다른 자료와 맞대는 칸이라 따로 짚는다.
-            <Cell key={r.해역} fill={r.해역 === '동남부' ? SQ_MARK : SQ_BASE} />
+            <Cell key={r.해역} fill={r.해역 === '동남부' ? SQUID_ROLE.highlight : CHART_RANK} />
           ))}
         </Bar>
       </ComposedChart>
@@ -988,7 +972,7 @@ export function SquidSizeBandChart({ year }: { year: string }) {
         <YAxis {...AXIS} tickFormatter={(v: number) => `${Math.round(v / 1000)}천`} />
         <Tooltip content={<Tip />} />
         {legend}
-        <Bar dataKey="생산량" name="생산량 (톤)" fill={SQ_BASE} isAnimationActive={animate} />
+        <Bar dataKey="생산량" name="생산량 (톤)" fill={CHART_RANK} isAnimationActive={animate} />
       </ComposedChart>
     </SafeResponsiveContainer>
   );
@@ -1018,7 +1002,7 @@ export function FalklandVesselChart() {
         <YAxis {...AXIS} tickFormatter={(v: number) => `${Math.round(v / 1000)}천`} />
         <Tooltip content={<Tip />} />
         {legend}
-        <Bar dataKey="totalPan" name="누계 물량 (판)" fill={SQ_BASE} isAnimationActive={animate} />
+        <Bar dataKey="totalPan" name="누계 물량 (판)" fill={CHART_RANK} isAnimationActive={animate} />
       </ComposedChart>
     </SafeResponsiveContainer>
   );
@@ -1047,13 +1031,13 @@ export function FalklandCompanyChart() {
         <YAxis yAxisId="right" orientation="right" {...AXIS} allowDecimals={false} />
         <Tooltip content={<Tip />} />
         {legend}
-        <Bar yAxisId="left" dataKey="totalPan" name="누계 물량 (판)" fill={SQ_BASE} isAnimationActive={animate} />
+        <Bar yAxisId="left" dataKey="totalPan" name="누계 물량 (판)" fill={SQUID_ROLE.volume} isAnimationActive={animate} />
         <Line
           yAxisId="right"
           type="monotone"
           dataKey="vessels"
           name="보유 척수 (척)"
-          stroke={SQ_MARK}
+          stroke={CHART_RANK}
           strokeWidth={2}
           dot={{ r: 3 }}
           isAnimationActive={animate}
@@ -1076,7 +1060,7 @@ export function FalklandSeasonChart() {
         <YAxis {...AXIS} tickFormatter={(v: number) => `${Math.round(v / 1000)}천`} />
         <Tooltip content={<Tip />} />
         {legend}
-        <Bar dataKey="물량" name="선단 합계 (판)" fill={SQ_BASE} isAnimationActive={animate} />
+        <Bar dataKey="물량" name="선단 합계 (판)" fill={CHART_RANK} isAnimationActive={animate} />
       </ComposedChart>
     </SafeResponsiveContainer>
   );

@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest';
 import { colorForAtunaHub, colorForHold, HOLD_ID, HUB_ID, NEWS_CATEGORY_ID, shareColor } from '@/lib/chart-palette';
 
-describe('chart-palette (선단 DB 4겹, 시장 동향 파일럿)', () => {
+describe('chart-palette (선단 DB 4겹)', () => {
   it('keeps the same port the same color on skipjack and yellowfin', () => {
     expect(colorForAtunaHub('skj_abj')).toBe(HUB_ID.abj);
     expect(colorForAtunaHub('yf_abj')).toBe(HUB_ID.abj);
