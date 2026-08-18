@@ -140,4 +140,11 @@ describe('고등어 05단계 — 수입 창구', () => {
     expect(caps).toMatch(/제품중량|세번/);
     expect(caps).toMatch(/더할 수 없다|만들지 않는다/);
   });
+
+  it('물량·단가 차트는 전폭이 아니라 한 줄에 좌우로 앉는다', () => {
+    const volume = MACKEREL_CHART_SLOTS.s05.find((s) => s.title.startsWith('수입 창구 물량'));
+    const unit = MACKEREL_CHART_SLOTS.s05.find((s) => s.title.startsWith('수입 창구 단가'));
+    expect(volume?.span).not.toBe('full');
+    expect(unit?.span).not.toBe('full');
+  });
 });

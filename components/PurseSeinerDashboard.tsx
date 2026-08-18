@@ -234,7 +234,7 @@ function RfmoDonut() {
             {data.map((d, i) => <Cell key={i} fill={d.color} stroke="transparent" />)}
           </Pie>
           <Tooltip
-            contentStyle={{ background: 'var(--w-navy-900)', border: '1px solid #334155', borderRadius: 8, fontSize: 13 }}
+            contentStyle={{ background: 'var(--chart-tooltip-bg)', border: '1px solid var(--chart-tooltip-border)', color: 'var(--text-primary)', borderRadius: 8, fontSize: 13 }}
             formatter={(v: unknown, name: unknown) => {
               const label = chartFmt.toChartText(name);
               return [`${chartFmt.toChartNumber(v)}척`, RFMO_NAMES_KO[label] || label];
@@ -276,7 +276,7 @@ function RfmoCards({ onFilter }: { onFilter: (rfmo: string) => void }) {
                 whileHover={{ scale: 1.02 }}
                 onClick={() => onFilter(rfmo)}
                 style={{
-                  background: 'rgba(255,255,255,0.03)', borderRadius: 12,
+                  background: 'var(--surface-2)', borderRadius: 12,
                   padding: '12px 16px', cursor: 'pointer',
                   border: `1px solid ${RFMO_COLORS[rfmo]}33`,
                   transition: 'all .2s',
@@ -328,7 +328,7 @@ function CountryBarChart({ onFilter }: { onFilter: (flag: string) => void }) {
           <XAxis type="number" tick={{ fill: 'var(--w-slate-500)', fontSize: 11 }} />
           <YAxis type="category" dataKey="name" tick={{ fill: 'var(--w-slate-400)', fontSize: 12 }} width={120} />
           <Tooltip
-            contentStyle={{ background: 'var(--w-navy-900)', border: '1px solid #334155', borderRadius: 8, fontSize: 13 }}
+            contentStyle={{ background: 'var(--chart-tooltip-bg)', border: '1px solid var(--chart-tooltip-border)', color: 'var(--text-primary)', borderRadius: 8, fontSize: 13 }}
             formatter={(v: unknown) => [`${v}척`, '선박 수']}
           />
           <Bar dataKey="count" radius={[0, 6, 6, 0]} cursor="pointer">
@@ -403,7 +403,7 @@ function OperatorChart({ onFilter }: { onFilter: (op: string) => void }) {
           <XAxis type="number" tick={{ fill: 'var(--w-slate-500)', fontSize: 11 }} />
           <YAxis type="category" dataKey="name" tick={{ fill: 'var(--w-slate-400)', fontSize: 11 }} width={170} />
           <Tooltip
-            contentStyle={{ background: 'var(--w-navy-900)', border: '1px solid #334155', borderRadius: 8, fontSize: 13 }}
+            contentStyle={{ background: 'var(--chart-tooltip-bg)', border: '1px solid var(--chart-tooltip-border)', color: 'var(--text-primary)', borderRadius: 8, fontSize: 13 }}
             formatter={(v: unknown, _: unknown, props: any) => [
               `${v}척 | RFMO: ${props.payload.rfmos}`, '선박 수'
             ]}
@@ -574,8 +574,8 @@ function VesselTable({ initialRfmo, initialFlag, initialOperator }: {
       {/* Filter Bar */}
       <div style={{
         display: 'flex', gap: 8, flexWrap: 'wrap', marginBottom: 12,
-        padding: '12px 16px', background: 'rgba(255,255,255,0.02)',
-        borderRadius: 12, border: '1px solid rgba(140,170,255,0.12)',
+        padding: '12px 16px', background: 'var(--surface-2)',
+        borderRadius: 12, border: '1px solid var(--dsc-surface-border)',
       }}>
         <div style={{ position: 'relative', flex: '1 1 200px' }}>
           <Search size={14} style={{ position: 'absolute', left: 10, top: 9, color: 'var(--w-slate-500)' }} />
@@ -584,23 +584,23 @@ function VesselTable({ initialRfmo, initialFlag, initialOperator }: {
             value={search} onChange={e => { setSearch(e.target.value); setPage(1); }}
             style={{
               width: '100%', padding: '7px 10px 7px 30px', borderRadius: 8,
-              border: '1px solid rgba(255,255,255,0.1)', background: 'rgba(140,170,255,0.10)',
-              color: 'var(--w-slate-200)', fontSize: 13, outline: 'none',
+              border: '1px solid var(--dsc-surface-border)', background: 'var(--dsc-bg-deep)',
+              color: 'var(--dsc-ink)', fontSize: 13, outline: 'none',
             }}
           />
         </div>
         <select value={rfmoFilter} onChange={e => { setRfmoFilter(e.target.value); setPage(1); }}
-          style={{ padding: '7px 10px', borderRadius: 8, border: '1px solid rgba(255,255,255,0.1)', background: 'var(--w-navy-900)', color: 'var(--w-slate-200)', fontSize: 12, cursor: 'pointer' }}>
+          style={{ padding: '7px 10px', borderRadius: 8, border: '1px solid var(--dsc-surface-border)', background: 'var(--dsc-surface)', color: 'var(--dsc-ink)', fontSize: 12, cursor: 'pointer' }}>
           <option value="">전체 RFMO</option>
           {['WCPFC', 'IOTC', 'IATTC', 'ICCAT'].map(r => <option key={r} value={r}>{r}</option>)}
         </select>
         <select value={flagFilter} onChange={e => { setFlagFilter(e.target.value); setPage(1); }}
-          style={{ padding: '7px 10px', borderRadius: 8, border: '1px solid rgba(255,255,255,0.1)', background: 'var(--w-navy-900)', color: 'var(--w-slate-200)', fontSize: 12, cursor: 'pointer', maxWidth: 150 }}>
+          style={{ padding: '7px 10px', borderRadius: 8, border: '1px solid var(--dsc-surface-border)', background: 'var(--dsc-surface)', color: 'var(--dsc-ink)', fontSize: 12, cursor: 'pointer', maxWidth: 150 }}>
           <option value="">전체 국가</option>
           {allFlags.map(f => <option key={f} value={f}>{FLAG_EMOJI[f] || ''} {flagKo(f)}</option>)}
         </select>
         <select value={opFilter} onChange={e => { setOpFilter(e.target.value); setPage(1); }}
-          style={{ padding: '7px 10px', borderRadius: 8, border: '1px solid rgba(255,255,255,0.1)', background: 'var(--w-navy-900)', color: 'var(--w-slate-200)', fontSize: 12, cursor: 'pointer', maxWidth: 180 }}>
+          style={{ padding: '7px 10px', borderRadius: 8, border: '1px solid var(--dsc-surface-border)', background: 'var(--dsc-surface)', color: 'var(--dsc-ink)', fontSize: 12, cursor: 'pointer', maxWidth: 180 }}>
           <option value="">전체 운영사</option>
           {allOps.map(o => <option key={o} value={o}>{o}</option>)}
         </select>
@@ -608,7 +608,7 @@ function VesselTable({ initialRfmo, initialFlag, initialOperator }: {
           <button onClick={resetFilters}
             style={{
               padding: '7px 14px', borderRadius: 8, border: '1px solid rgba(var(--w-red-500-rgb), 0.3)',
-              background: 'rgba(var(--w-red-500-rgb), 0.1)', color: '#f87171', fontSize: 12, cursor: 'pointer',
+              background: 'rgba(var(--w-red-500-rgb), 0.1)', color: 'var(--color-danger)', fontSize: 12, cursor: 'pointer',
               display: 'flex', alignItems: 'center', gap: 4,
             }}>
             <X size={12} /> 초기화
@@ -635,7 +635,7 @@ function VesselTable({ initialRfmo, initialFlag, initialOperator }: {
       <div style={{ overflowX: 'auto' }}>
         <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: 13 }}>
           <thead>
-            <tr style={{ borderBottom: '1px solid rgba(255,255,255,0.1)' }}>
+            <tr style={{ borderBottom: '1px solid var(--dsc-surface-border)' }}>
               <th style={{ padding: '10px 8px', color: 'var(--w-slate-500)', textAlign: 'left', fontSize: 11, fontWeight: 600 }}>#</th>
               {[
                 { key: 'name', label: '선박명', w: 200 },
@@ -665,19 +665,19 @@ function VesselTable({ initialRfmo, initialFlag, initialOperator }: {
                 initial={{ opacity: 0 }} animate={{ opacity: 1 }}
                 transition={{ delay: i * 0.015 }}
                 style={{
-                  borderBottom: '1px solid rgba(255,255,255,0.04)',
+                  borderBottom: '1px solid var(--dsc-surface-border)',
                   transition: 'background .15s',
                 }}
-                onMouseEnter={e => (e.currentTarget.style.background = 'rgba(255,255,255,0.03)')}
+                onMouseEnter={e => (e.currentTarget.style.background = 'var(--hover-bg)')}
                 onMouseLeave={e => (e.currentTarget.style.background = 'transparent')}
               >
-                <td style={{ padding: '8px', color: '#475569', fontSize: 11 }}>{(page - 1) * pageSize + i + 1}</td>
+                <td style={{ padding: '8px', color: 'var(--text-dim)', fontSize: 11 }}>{(page - 1) * pageSize + i + 1}</td>
                 <td style={{ padding: '8px', color: 'var(--w-slate-200)', fontWeight: 500 }}>{v.name}</td>
                 <td style={{ padding: '8px', color: 'var(--w-slate-400)', fontFamily: 'monospace', fontSize: 12 }}>{v.imo}</td>
-                <td style={{ padding: '8px', color: v.operator === 'N/A' ? '#475569' : 'var(--w-slate-300)', fontStyle: v.operator === 'N/A' ? 'italic' : 'normal' }}>
+                <td style={{ padding: '8px', color: v.operator === 'N/A' ? 'var(--text-dim)' : 'var(--w-slate-300)', fontStyle: v.operator === 'N/A' ? 'italic' : 'normal' }}>
                   {v.operator === 'N/A' ? '미식별' : v.operator}
                 </td>
-                <td style={{ padding: '8px', color: v.gt ? 'var(--w-slate-200)' : '#475569', textAlign: 'right' }}>
+                <td style={{ padding: '8px', color: v.gt ? 'var(--w-slate-200)' : 'var(--text-dim)', textAlign: 'right' }}>
                   {v.gt ? v.gt.toLocaleString() : '—'}
                 </td>
                 <td style={{ padding: '8px', color: 'var(--w-slate-300)', fontSize: 12 }}>

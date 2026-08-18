@@ -156,7 +156,6 @@ export const MACKEREL_CHART_SLOTS: Record<string, ChartSlot[]> = {
       caption:
         '청록이 030354 냉동, 호박색이 0304895000 필렛이다. 노르웨이만 강조한 이유는 두 창구가 같이 크기 때문이다. 아이슬란드 0은 어획이 없다는 뜻이 아니라 이 세번 추출에 이름이 없다는 뜻이다. 2026년 1~7월 제품중량이라 위 생산 통계·04단계 1~5월 표와 더할 수 없다.',
       telemetry: SERIES_SYNC,
-      span: 'full',
       render: () => <MackerelSeriesWindowsChart />,
       cockpitExtra: () => (
         <SeriesStats rows={seriesWindows} labelKey="국가" valueKey="냉동" unit="(톤)" sum />

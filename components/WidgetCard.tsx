@@ -124,10 +124,12 @@ function KpiPanel({ items }: { items: KpiItem[] }) {
       {items.map((item, i) => (
         <div key={i} className={styles.kpiBox} style={item.trendColor ? { borderLeftColor: item.trendColor } : undefined}>
           <div className={styles.kpiLabel}>{item.label}</div>
-          <div className={styles.kpiValue} style={item.trendColor ? { color: item.trendColor } : undefined}>
-            {item.value}
-          </div>
-          {item.sub && <div className={styles.kpiSub}>{item.sub}</div>}
+          <div className={styles.kpiValue}>{item.value}</div>
+          {item.sub && (
+            <div className={styles.kpiSub} style={item.trendColor ? { color: item.trendColor } : undefined}>
+              {item.sub}
+            </div>
+          )}
         </div>
       ))}
     </div>

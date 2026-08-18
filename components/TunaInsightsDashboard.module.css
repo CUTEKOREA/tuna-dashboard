@@ -107,7 +107,7 @@
 }
 
 .cardDesc {
-  color: #cbd5e1;
+  color: var(--text-secondary);
   font-size: 0.9rem;
   margin: 0;
   line-height: 1.6;
@@ -128,10 +128,10 @@
 .chartContainer {
   height: 400px;
   width: 100%;
-  background: rgba(0, 0, 0, 0.2);
+  background: transparent;
   border-radius: 1rem;
   padding: 0.75rem 0.5rem 0.5rem 0;
-  border: 1px dashed rgba(148, 163, 184, 0.1);
+  border: none;
   overflow: visible;
 }
 
@@ -143,15 +143,16 @@
 
 .kpiBox {
   flex: 1;
-  background: rgba(0, 0, 0, 0.2);
-  border-left: 4px solid #38bdf8;
+  background: var(--surface-2);
+  border: 1px solid var(--card-border);
+  border-left: 4px solid var(--accent-primary);
   padding: 1.25rem;
   border-radius: 0.5rem;
 }
 
 .kpiLabel {
   font-size: 0.8rem;
-  color: #94a3b8;
+  color: var(--text-tertiary);
   text-transform: uppercase;
   font-weight: 600;
   letter-spacing: 0.05em;
@@ -161,13 +162,13 @@
 .kpiValue {
   font-size: 1.75rem;
   font-weight: 700;
-  color: #fff;
+  color: var(--text-primary);
   font-variant-numeric: tabular-nums;
 }
 
 .kpiSub {
   font-size: 0.8rem;
-  color: #10b981;
+  color: var(--text-secondary);
   display: flex;
   align-items: center;
   gap: 0.25rem;
@@ -180,7 +181,7 @@
 
 .analysisBlock {
   margin-top: auto;
-  background: rgba(255, 255, 255, 0.03);
+  background: var(--surface-2);
   padding: 1.25rem;
   border-radius: 0.75rem;
 }
@@ -188,7 +189,7 @@
 .analysisTitle {
   font-size: 0.85rem;
   font-weight: 600;
-  color: #f1f5f9;
+  color: var(--text-primary);
   margin-bottom: 0.5rem;
   display: flex;
   align-items: center;
@@ -197,7 +198,7 @@
 
 .analysisText {
   font-size: 0.85rem;
-  color: #94a3b8;
+  color: var(--text-secondary);
   line-height: 1.5;
 }
 
