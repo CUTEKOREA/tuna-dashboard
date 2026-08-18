@@ -389,6 +389,16 @@ describe('dashboard registry', () => {
     expect(gmtsDashboard).not.toContain('#509ee3');
     expect(gmtsStyles).not.toContain('#509ee3');
     expect(gmtsStyles).toContain('--gmts-accent: var(--accent-primary, #3b82f6)');
+    const tunaColors = readFileSync(join(process.cwd(), 'lib/tuna-chart-colors.ts'), 'utf8');
+    const tunaCatch = readFileSync(join(process.cwd(), 'components/market-understanding/TunaCatchCharts.tsx'), 'utf8');
+    const tunaDash = readFileSync(join(process.cwd(), 'components/market-understanding/TunaIndustryDashboard.tsx'), 'utf8');
+    expect(tunaColors).toContain("from '@/lib/chart-palette'");
+    expect(tunaColors).toContain('HUB_ID.bkk');
+    expect(tunaColors).toContain('RFMO_ID.WCPFC');
+    expect(tunaCatch).not.toContain('#0e7490');
+    expect(tunaCatch).not.toContain('#e11d48');
+    expect(tunaDash).toContain('TUNA_ACCENT');
+    expect(tunaDash).not.toContain('#0e7490');
     expect(globalsSource).toContain('--w-sky-400: #38bdf8;');
     expect(globalsSource).toContain('--w-emerald-500: #10b981;');
   });

@@ -2,6 +2,7 @@ import { readFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { describe, expect, it } from 'vitest';
 
+import { HUB_ID, RFMO_ID } from '../lib/chart-palette';
 import {
   TUNA_FALLBACK_COLORS,
   TUNA_ROLE,
@@ -58,6 +59,19 @@ describe('참치 차트 색', () => {
     expect(new Set(rfmos).size).toBe(5);
     expect(colorForRfmo('WCPFC')).not.toBe(colorForRfmo('ICCAT'));
     expect(colorForRfmo('IATTC')).not.toBe(TUNA_ROLE.processed);
+  });
+
+  it('항구·기구는 선단 DB 정체성 집과 같다', () => {
+    expect(colorForHub('방콕')).toBe(HUB_ID.bkk);
+    expect(colorForHub('만타')).toBe(HUB_ID.mnt);
+    expect(colorForHub('세이셸')).toBe(HUB_ID.sey);
+    expect(colorForHub('아비장')).toBe(HUB_ID.abj);
+    expect(colorForHub('비고')).toBe(HUB_ID.vig);
+    expect(colorForRfmo('WCPFC')).toBe(RFMO_ID.WCPFC);
+    expect(colorForRfmo('IOTC')).toBe(RFMO_ID.IOTC);
+    expect(colorForRfmo('IATTC')).toBe(RFMO_ID.IATTC);
+    expect(colorForRfmo('ICCAT')).toBe(RFMO_ID.ICCAT);
+    expect(TUNA_ROLE.volume).toBe(HUB_ID.bkk);
   });
 
   it('고정색이 흰 지면에서 그래픽 대비 3:1을 넘는다', () => {

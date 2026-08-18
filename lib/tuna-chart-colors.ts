@@ -1,51 +1,54 @@
 /**
  * 참치 차트 시리즈 색 — 집계 차트와 위젯이 같은 종·같은 나라를 같은 색으로 그린다.
  *
- * 오징어 보라(#7c3aed)는 쓰지 않는다. 참치 집은 청록·호박·장미다.
+ * 항구·기구는 lib/chart-palette 정체성 집을 쓴다. 오징어 보라(#7c3aed)는 쓰지 않는다.
  */
 
+import { HUB_ID, RFMO_ID } from '@/lib/chart-palette';
+
 export const TUNA_ROLE = {
-  volume: '#0e7490',
+  volume: HUB_ID.bkk,
   highlight: '#be123c',
-  processed: '#b45309',
+  processed: '#c2410c',
   muted: '#94a3b8',
 } as const;
 
 const SPECIES_COLOR: Record<string, string> = {
   가다랑어: TUNA_ROLE.volume,
-  황다랑어: '#0284c7',
+  황다랑어: '#059669',
   눈다랑어: TUNA_ROLE.processed,
-  날개다랑어: '#155e75',
-  대서양참다랑어: '#e11d48',
-  남방참다랑어: '#9f1239',
+  날개다랑어: '#0369a1',
+  대서양참다랑어: RFMO_ID.ICCAT,
+  남방참다랑어: RFMO_ID.CCSBT,
   태평양참다랑어: TUNA_ROLE.highlight,
   참다랑어: TUNA_ROLE.highlight,
 };
 
 const RFMO_COLOR: Record<string, string> = {
-  WCPFC: '#0e7490',
-  IOTC: '#1d4ed8',
-  IATTC: '#15803d',
-  ICCAT: '#334155',
+  WCPFC: RFMO_ID.WCPFC,
+  IOTC: RFMO_ID.IOTC,
+  IATTC: RFMO_ID.IATTC,
+  ICCAT: RFMO_ID.ICCAT,
+  CCSBT: RFMO_ID.CCSBT,
   CCAMLR: '#64748b',
   미분류: TUNA_ROLE.muted,
 };
 
 const HUB_COLOR: Record<string, string> = {
-  방콕: TUNA_ROLE.volume,
-  만타: TUNA_ROLE.processed,
-  세이셸: '#0284c7',
-  아비장: '#0f766e',
-  비고: TUNA_ROLE.highlight,
+  방콕: HUB_ID.bkk,
+  만타: HUB_ID.mnt,
+  세이셸: HUB_ID.sey,
+  아비장: HUB_ID.abj,
+  비고: HUB_ID.vig,
 };
 
 const FALLBACK = [
   TUNA_ROLE.volume,
-  '#0284c7',
+  SPECIES_COLOR.황다랑어,
   TUNA_ROLE.processed,
-  '#155e75',
+  SPECIES_COLOR.날개다랑어,
   TUNA_ROLE.highlight,
-  '#0f766e',
+  HUB_ID.abj,
   '#64748b',
   '#c2410c',
 ] as const;

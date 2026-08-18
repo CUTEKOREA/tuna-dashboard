@@ -18,13 +18,13 @@
   --mu-surface: rgba(20, 28, 52, 0.55);
   --mu-surface-2: rgba(20, 28, 52, 0.3);
   --mu-line: rgba(140, 170, 255, 0.16);
-  --mu-accent: #38bdf8;
-  --mu-accent-deep: #0e7490;
-  --mu-canned: #0ea5e9;
-  --mu-sashimi: #e11d48;
+  --mu-accent: #60a5fa;
+  --mu-accent-deep: #3b82f6;
+  --mu-canned: #3b82f6;
+  --mu-sashimi: #be123c;
   --mu-axis: #94a3b8;
   --mu-grid: rgba(148, 163, 184, 0.22);
-  --mu-hover: rgba(56, 189, 248, 0.08);
+  --mu-hover: rgba(59, 130, 246, 0.10);
   /* 출처 신뢰도 배지 — 다크 지면에서 읽히는 밝은 값 */
   --mu-grade-a-bg: rgba(16, 185, 129, 0.18);
   --mu-grade-a-ink: #6ee7b7;
@@ -46,13 +46,13 @@
   --mu-surface: #ffffff;
   --mu-surface-2: #f1f2f4;
   --mu-line: #e2e4e9;
-  --mu-accent: #0284c7;
-  --mu-accent-deep: #0e7490;
-  --mu-canned: #0284c7;
+  --mu-accent: #3b82f6;
+  --mu-accent-deep: #1d4ed8;
+  --mu-canned: #3b82f6;
   --mu-sashimi: #be123c;
   --mu-axis: #8d93a5;
   --mu-grid: rgba(141, 147, 165, 0.28);
-  --mu-hover: rgba(2, 132, 199, 0.07);
+  --mu-hover: rgba(59, 130, 246, 0.08);
   /* 라이트 지면에서는 같은 배지를 어둡게 뒤집는다 */
   --mu-grade-a-bg: rgba(5, 150, 105, 0.14);
   --mu-grade-a-ink: #047857;

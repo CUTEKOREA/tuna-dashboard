@@ -44,6 +44,9 @@ import {
   getNarrative,
   SOURCE_NOTES,
 } from '@/lib/tuna-industry-content';
+import { TUNA_ROLE } from '@/lib/tuna-chart-colors';
+
+const TUNA_ACCENT = TUNA_ROLE.volume;
 import {
   AreaRankChart,
   BluefinSourceChart,
@@ -582,12 +585,12 @@ const SPEC: CommoditySpec = {
   key: 'tuna',
   title: '참치',
   subtitle: '참치 산업 해부 · 바다에서 식탁까지 — 밸류체인 7단계와 그것을 관통하는 3개 축',
-  accent: '#0e7490',
+  accent: TUNA_ACCENT,
   primaryKpi: {
     label: '세계 주요 상업 참치 어획량',
     value: CATCH.요약.세계어획량,
     unit: '(톤)',
-    accent: '#0e7490',
+    accent: TUNA_ACCENT,
   },
   secondaryKpis: [
     { label: '서·중부태평양 비중', value: CATCH.요약.최대해역비중 ?? 0, unit: '(%)', decimals: 2 },
