@@ -39,6 +39,7 @@ import HeroZone from '../v2/HeroZone';
 import { HeroNowStrip } from '../v2/HeroNowStrip';
 import PillTabs, { type PillTab } from '../v2/PillTabs';
 import styles from './GmtsDashboard.module.css';
+import { C } from './palette';
 
 const GMTS_DATA = getGmtsDashboard();
 const GMTS_VIEW = buildGmtsPresentation(GMTS_DATA);
@@ -407,7 +408,7 @@ export function PortFlowChart({ width, height }: ChartSizeProps) {
         type="monotone"
         dataKey="activeDeclaredCount"
         name="하역 중 선언"
-        stroke="var(--chart-s3)"
+        stroke={C.active}
         strokeWidth={2}
         dot={false}
         connectNulls={false}
@@ -417,7 +418,7 @@ export function PortFlowChart({ width, height }: ChartSizeProps) {
         type="monotone"
         dataKey="completedDeclaredCount"
         name="하역 완료 선언"
-        stroke="var(--chart-s1)"
+        stroke={C.completed}
         strokeWidth={2}
         dot={false}
         connectNulls={false}
@@ -427,7 +428,7 @@ export function PortFlowChart({ width, height }: ChartSizeProps) {
         type="monotone"
         dataKey="incomingDeclaredCount"
         name="입항 예정 선언"
-        stroke="var(--chart-s8)"
+        stroke={C.incoming}
         strokeWidth={2}
         dot={false}
         connectNulls={false}
@@ -549,7 +550,7 @@ function PortPanel() {
         id="gmts-port-flow"
         title="주간 선박 흐름"
         icon={Anchor}
-        iconColor="#509ee3"
+        iconColor={C.icon}
         pillar="S3"
         unit="(척)"
         cardDesc={`${GMTS_VIEW.sourceSummary.reportCount}건 GMTS 주간보고의 원문 선언 건수 추세와 관찰 선박 행 수를 분리 비교`}
@@ -567,7 +568,7 @@ function PortPanel() {
         id="gmts-vessel-pipeline"
         title="최신 선박 파이프라인"
         icon={Ship}
-        iconColor="#509ee3"
+        iconColor={C.icon}
         termTooltip={{
           term: 'Gensan',
           description: '원문의 제너럴산토스 표시명입니다. 전체 화물과 명시 배정량을 분리합니다.',
@@ -646,7 +647,7 @@ export function CanneryUtilizationChart({ width, height }: ChartSizeProps) {
         type="monotone"
         dataKey="productionUtilizationPct"
         name="생산 가동률"
-        stroke="var(--chart-s1)"
+        stroke={C.production}
         strokeWidth={2.5}
         dot={false}
         connectNulls={false}
@@ -656,7 +657,7 @@ export function CanneryUtilizationChart({ width, height }: ChartSizeProps) {
         type="monotone"
         dataKey="storageUtilizationPct"
         name="창고 이용률"
-        stroke="var(--chart-s8)"
+        stroke={C.storage}
         strokeWidth={2.5}
         dot={false}
         connectNulls={false}
@@ -735,7 +736,7 @@ function CanneryPanel() {
         id="gmts-cannery-utilization"
         title="생산·창고 이용률"
         icon={Warehouse}
-        iconColor="#509ee3"
+        iconColor={C.icon}
         pillar="S2"
         unit="(%, MT)"
         cardDesc={`${GMTS_VIEW.sourceSummary.reportCount}건 GMTS 주간보고의 생산 가동률과 냉동창고 이용률 주간 비교`}
@@ -753,7 +754,7 @@ function CanneryPanel() {
         id="gmts-cannery-pressure"
         title="공장별 원어 압력"
         icon={Factory}
-        iconColor="#509ee3"
+        iconColor={C.icon}
         pillar="S2"
         unit="(MT·%·일)"
         cardDesc="최신 보고의 7개 공장 생산·재고·처리일수 원문 대조"
@@ -825,7 +826,7 @@ export function PriceTrendChart({ width, height }: ChartSizeProps) {
         type="monotone"
         dataKey="nonGspAmount"
         name="비특혜 가격"
-        stroke="var(--chart-s1)"
+        stroke={C.nonGsp}
         strokeWidth={2.5}
         dot={false}
         connectNulls={false}
@@ -835,7 +836,7 @@ export function PriceTrendChart({ width, height }: ChartSizeProps) {
         type="monotone"
         dataKey="gspAmount"
         name="특혜 가격"
-        stroke="var(--chart-s8)"
+        stroke={C.gsp}
         strokeWidth={2.5}
         dot={false}
         connectNulls={false}
@@ -922,14 +923,14 @@ export function MonthlyVolumeChart({ width, height }: ChartSizeProps) {
       <Bar
         dataKey="currentValue"
         name={currentName}
-        fill="var(--chart-s1)"
+        fill={C.currentYear}
         radius={[4, 4, 0, 0]}
         isAnimationActive={false}
       />
       <Bar
         dataKey="priorValue"
         name={priorName}
-        fill="var(--chart-s8)"
+        fill={C.priorYear}
         radius={[4, 4, 0, 0]}
         isAnimationActive={false}
       />
@@ -939,7 +940,7 @@ export function MonthlyVolumeChart({ width, height }: ChartSizeProps) {
           x={row.month}
           y={row.currentValue ?? 0}
           r={5}
-          fill="var(--chart-s3)"
+          fill={C.revision}
           stroke="var(--dsc-surface)"
           label={{ value: '수정', position: 'top', fill: 'var(--dsc-ink)', fontSize: 10 }}
         />
@@ -981,7 +982,7 @@ function PriceVolumePanel() {
         id="gmts-price-trend"
         title="GSP·Non-GSP 가격 추세"
         icon={TrendingUp}
-        iconColor="#509ee3"
+        iconColor={C.icon}
         termTooltip={{
           term: 'GSP·Non-GSP',
           description: '원문의 가격 제도 구분 약어입니다. 풀네임과 가격 분모를 추정하지 않습니다.',
@@ -1003,7 +1004,7 @@ function PriceVolumePanel() {
         id="gmts-monthly-volume"
         title="Gensan 월별 반입량"
         icon={Warehouse}
-        iconColor="#509ee3"
+        iconColor={C.icon}
         termTooltip={{
           term: 'Gensan',
           description: '원문의 제너럴산토스 표시명입니다. 반입량 단위는 원문에 기재되지 않았습니다.',
