@@ -16,6 +16,21 @@ export default function Home() {
   const lossMonths = monthlySeries.filter((m) => n(m.net) < 0).length
   const last = weeklySeries[weeklySeries.length - 1]
 
+  // 서사도 파생으로 — GP 마이너스 달, 매출 최고월을 데이터에서 직접 뽑는다 (인덱스·개월 수 하드코딩 제거)
+  const gpNegMonths = monthlySeries.filter((m) => m.gp != null && n(m.gp) < 0).map((m) => m.month)
+  const peakMonth = monthlySeries.reduce((a, m) => (n(m.revenue) > n(a.revenue) ? m : a), monthlySeries[0])
+
+  // 수주잔량 계단 점프 — 주간 증가폭 상위 2개 주차 (7·28주차 하드코딩 제거)
+  const backlogJumpWeeks = weeklySeries
+    .map((s, i) => ({ week: s.week, d: i > 0 ? n(s.backlogUsd) - n(weeklySeries[i - 1].backlogUsd) : 0 }))
+    .sort((a, b) => b.d - a.d).slice(0, 2).map((j) => j.week).sort((a, b) => a - b)
+  const posSales = weeklySeries.map((s) => n(s.salesWeek)).filter((v) => v > 0)
+  const salesSwing = posSales.length ? Math.max(...posSales) / Math.min(...posSales) : null
+
+  // ponytail: $1M 초과 유출입만 «크게»로 센다 — 서사용 임계, 자금 보드가 전체를 보여준다
+  const cashInMonths = profitCash.rows.filter((r) => r.cash > 1e6).map((r) => r.month)
+  const cashOutMonths = profitCash.rows.filter((r) => r.cash < -1e6).map((r) => r.month)
+
   // 수주잔량 소진 주수 — 최근 4주 평균 주간 선적 FCL 로 나눈다(주간값 진폭이 커 단일 주는 못 쓴다)
   const fclWeeks = weeks.slice(-4).map((w) =>
     w.sales.filter((s) => s.unit === 'Fcl').reduce((a, s) => a + n(s.weekQty), 0))
@@ -102,8 +117,8 @@ export default function Home() {
       <div className="grid g2">
         <Card
           title="월별 손익"
-          sub="매출은 유지되는데 순손익은 6개월 내내 음(−). 4월·6월은 매출총이익도 마이너스."
-          note={<>1~{latestMonth.month}월 누적 매출 <b>{musd(latestMonth.revenueYtd)}</b>, 누적 순손실 <b>{musd(latestMonth.netYtd)}</b>. 5월은 매출 최고({musd(monthlySeries[4]?.revenue)})인데도 순손실 — <b>규모가 아니라 마진 구조</b>의 문제.</>}
+          sub={`순손익은 ${lossMonths}/${monthlySeries.length}개월 적자.${gpNegMonths.length ? ` 매출총이익도 ${gpNegMonths.join('·')}월은 마이너스` : ''}${n(latestMonth.gp) > 0 ? ` — ${latestMonth.month}월은 플러스로 회복.` : ''}`}
+          note={<>1~{latestMonth.month}월 누적 매출 <b>{musd(latestMonth.revenueYtd)}</b>, 누적 순손실 <b>{musd(latestMonth.netYtd)}</b>. {peakMonth.month}월은 매출 최고({musd(peakMonth.revenue)})인데도 순손실 — <b>규모가 아니라 마진 구조</b>의 문제.</>}
         >
           <Legend items={[
             { name: '매출총이익', color: 'var(--cosmo-s4)', box: true },
@@ -124,7 +139,7 @@ export default function Home() {
         <Card
           title="누적 판매 vs 수주잔량"
           sub="선적(회계) 기준 누적 판매액과 미선적 수주잔량 금액. 단위 백만 USD."
-          note={<>수주잔량은 7주차·28주차에 계단식으로 점프해 현재 <b>{musd(last.backlogUsd)}</b>. 주간 판매액은 선적 타이밍 때문에 최대 25배까지 흔들려, 추세는 4주 이동평균으로 봅니다(판매·수주 보드).</>}
+          note={<>수주잔량은 {backlogJumpWeeks.map((w) => `${w}주차`).join('·')}에 계단식으로 점프해 현재 <b>{musd(last.backlogUsd)}</b>. 주간 판매액은 선적 타이밍 때문에 최대 {salesSwing ? Math.round(salesSwing) : '—'}배까지 흔들려, 추세는 4주 이동평균으로 봅니다(판매·수주 보드).</>}
         >
           <Legend items={[
             { name: '누적 판매액', color: 'var(--cosmo-s1)' },
@@ -195,7 +210,7 @@ export default function Home() {
             영업 현금이 아니라 <b>매입채무·차입 등 외부 조달</b>에서 왔다는 뜻입니다.
             같은 기간 재고가 {musd(profitCash.invStart)} → {musd(profitCash.invEnd)}
             ({musd(profitCash.invDelta)}) 늘어, 조달한 자금이 재고로 묶인 구조입니다.
-            월별로는 3·5월에 현금이 크게 들어오고 4·6월에 나가는 진폭이 손익보다 훨씬 큰데,
+            월별로는 {cashInMonths.join('·')}월에 현금이 크게 들어오고 {cashOutMonths.join('·')}월에 나가는 진폭이 손익보다 훨씬 큰데,
             이는 선적·결제 타이밍이 월 경계와 어긋나기 때문입니다.
             {!profitCash.coverage && ' 일부 주차는 외부 유출입 값이 없어 합계에서 빠졌습니다.'}</>}
         >
@@ -250,12 +265,16 @@ export default function Home() {
           <b>원어처리량은 계획 대비 {pct((n(cbu?.cumRawMt) - n(cbu?.planRawMt)) / n(cbu?.planRawMt), 1)}</b> 부족합니다.
           그 대부분이 <b>일 처리량 저하</b>에서 나옵니다. 고정비는 그대로인 채 처리량이 줄면 단위 원가가 오르고,
           실제로 손익은 <b>{lossMonths}개월 연속 적자</b>입니다.
+          {n(latestMonth.gp) > 0 && (
+            <> {latestMonth.month}월 들어 매출총이익은 플러스로 돌아섰지만,
+              판관비·이자를 덮기에는 못 미쳐 적자가 이어졌습니다.</>
+          )}
           {breakevenMargin && (
             <> 수주 쪽을 보면 견적 <b>물량가중 마진이 {pct(quoteStats.weightedMargin, 2)}</b>인데,
               판관비율 {pct(breakevenMargin.sgaRate, 2)} + 이자비율 {pct(breakevenMargin.interestRate, 2)} =
               {' '}<b>{pct(breakevenMargin.required, 1)}</b>를 넘겨야 손익분기입니다.
               판관비·이자는 <b>금액이 고정</b>({musd(breakevenMargin.fixedUsd)})이라 매출이 늘면 필요 마진율은 내려갑니다 —
-              지금 마진을 유지한 채 흑자로 가려면 반기 매출이 <b>{musd(breakevenMargin.breakevenRevenueAt(n(quoteStats.weightedMargin)))}</b>
+              지금 마진을 유지한 채 흑자로 가려면 1~{latestMonth.month}월 매출이 <b>{musd(breakevenMargin.breakevenRevenueAt(n(quoteStats.weightedMargin)))}</b>
               (현재의 {((n(breakevenMargin.breakevenRevenueAt(n(quoteStats.weightedMargin))) / n(breakevenMargin.revenueYtd))).toFixed(1)}배)이어야 합니다.
               <b>도달 불가가 아니라 현 매출 규모에서 불가</b>이며, 판가 전가·단위원가 인하·규모 중 무엇으로 갈지가 결정 사항입니다.</>
           )}

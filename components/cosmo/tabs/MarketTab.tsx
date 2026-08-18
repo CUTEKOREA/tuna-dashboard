@@ -1,7 +1,7 @@
 'use client'
 import Chart, { Legend } from '../Chart'
 import { PageHead, Card, Kpi, Callout, SecHead } from '../Ui'
-import { musd, num, pct, n } from '@/lib/data/cosmo'
+import { musd, num, pct, n, latest, latestMonth } from '@/lib/data/cosmo'
 import {
   exportMeta, totals, concentration, byMarket, byBuyer, byInvoiceParty,
   bySpecGroup, byMedia, marketSpecCross, specGroups, buyerBand,
@@ -476,7 +476,9 @@ export default function Market() {
           <br />
           <b>② 연환산은 단순 배수</b>입니다. 1~5월 실적 × {ANNUALIZE.toFixed(1)}로, 계절성을 보정하지 않았습니다.
           <br />
-          <b>③ 기준연도 {benchYear}</b> 수입통계와 <b>2026년 1~5월</b> 실적을 대면 것이라 시점이 어긋납니다.
+          <b>③ 시점이 서로 어긋납니다.</b> 수입통계는 기준연도 {benchYear}, 수출 원장은 <b>2026년 1~5월</b>에서
+          멈춰 있는데, 손익은 {latestMonth.month}월·운영 주간은 {latest.week}주차까지 와 있습니다.
+          이 보드의 단가·점유율은 5월까지의 이야기입니다.
           <br />
           <b>④ 단가 비교는 믹스 차이를 포함</b>합니다. 우리 제품 구성(규격·사양)이 시장 평균 구성과 다르므로
           격차 전부가 가격 문제는 아닙니다.

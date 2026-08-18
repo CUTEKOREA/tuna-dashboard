@@ -59,6 +59,8 @@ export type Month = {
   revenue_cannery: number | null; revenue_fishmeal: number | null
   revenue_cbu: number | null; revenue_fbu: number | null
   net_cbu: number | null; net_fbu: number | null
+  /** 부문별 영업손익 — 7월 보고서부터 공시 (이전 월은 null) */
+  op_cannery?: number | null; op_fishmeal?: number | null; op_fbu?: number | null
   costLines: Record<string, number>
   fishPriceSJ?: number | null; fishPriceYF?: number | null; forex?: number | null
 }
@@ -239,6 +241,7 @@ export const monthlySeries = monthly.map((m) => {
     netMargin: m.revenue && m.net != null ? m.net / m.revenue : null,
     cannery: m.revenue_cannery, fishmeal: m.revenue_fishmeal,
     cbu: m.revenue_cbu, fbu: m.revenue_fbu,
+    opCannery: m.op_cannery ?? null, opFishmeal: m.op_fishmeal ?? null, opFbu: m.op_fbu ?? null,
     fish, material, labor, energy, other,
     fishPriceSJ: m.fishPriceSJ ?? null,
     forex: m.forex ?? null,
@@ -357,7 +360,8 @@ export const gapValuation = (() => {
 /** 2026 상반기 실적을 전년 **확정 결산**과 같은 통화로 댄다.
  *  연환산은 계절성을 보정하지 않으므로 '진행률'과 '연환산' 둘 다 낸다. */
 export const annualCompare = (() => {
-  const prior = annualUsd[0]
+  // '전년' = 확정 결산의 마지막 해. [0]은 최초 해(2023)라 전년이 아니다.
+  const prior = annualUsd.at(-1)
   const m = monthly[monthly.length - 1]
   if (!prior?.revenue || !m) return null
   const months = monthly.length

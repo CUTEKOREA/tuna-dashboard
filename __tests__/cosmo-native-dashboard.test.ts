@@ -66,3 +66,25 @@ describe('COSMO native dashboard', () => {
     );
   });
 });
+
+describe('cosmo monthly data integrity (2026-08-18 회귀 가드)', () => {
+  it('월별 손익 레코드는 핵심 필드가 전부 채워져 있어야 한다 — Drive 부분 읽기 회귀 차단', async () => {
+    const raw = await import('../public/data/cosmo/cosmo_2026.json');
+    const monthly = (raw.default ?? raw).monthly as Record<string, unknown>[];
+    expect(monthly.length).toBeGreaterThanOrEqual(7);
+    for (const m of monthly) {
+      for (const key of ['revenue', 'gp', 'op', 'net', 'sga', 'fishPriceSJ', 'forex']) {
+        expect(m[key], `month ${m.month} ${key}`).toBeTypeOf('number');
+      }
+      expect(Object.keys((m.costLines as object) ?? {}).length, `month ${m.month} costLines`).toBeGreaterThan(0);
+    }
+    // 부문 영업손익 합 = 전체 (캐너리+피시밀+FBU, CBU는 캐너리+피시밀 소계라 제외)
+    for (const m of monthly) {
+      const parts = ['op_cannery', 'op_fishmeal', 'op_fbu'].map((k) => m[k] as number | null);
+      if (parts.every((v) => typeof v === 'number')) {
+        const sum = (parts as number[]).reduce((a, b) => a + b, 0);
+        expect(Math.abs(sum - (m.op as number)), `month ${m.month} 부문 합 검산`).toBeLessThan(1);
+      }
+    }
+  });
+});
