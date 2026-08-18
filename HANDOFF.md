@@ -1,3 +1,10 @@
+> 🎨 **2026-08-18 — 파노피에 선단 DB 팔레트 적용** [Grok]:
+> - worktree `panofi-palette` · `feat/panofi-palette`. 사용자 배포 요청.
+> - 채널·항구 = `PANOFI_ID`. 이름 없는 단일 막대 = `CHART_RANK`. 원가 3분류 = `shareColor`.
+> - 증감은 `--delta-up/down`. 격자·축은 코스모 셸 유지. `/cosmo` 미개입.
+>
+> 마지막 업데이트: 2026-08-18 [Grok]
+
 > 🚀 **2026-08-18 15:57 KST — 선단 운영 선단 DB 팔레트 라이브 배포** [Grok]:
 > - PR [#643](https://github.com/CUTEKOREA/tuna-dashboard/pull/643) squash `608c62af`. PR Gate `32108540814` 성공. main Gate `32108783597` 성공. Freshness `32108783543` 성공.
 > - Vercel production `dpl_5u6ptAyaox5wWYKqdqx9besSDmTu` READY · alias `https://leedonggun.co.kr` · region `icn1` · SHA `608c62af`.

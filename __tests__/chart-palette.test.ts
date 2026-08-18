@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { CHART_RANK, colorForAtunaHub, colorForHold, HOLD_ID, HUB_ID, NEWS_CATEGORY_ID, shareColor, VDS_ID } from '@/lib/chart-palette';
+import { CHART_RANK, colorForAtunaHub, colorForHold, HOLD_ID, HUB_ID, NEWS_CATEGORY_ID, PANOFI_ID, shareColor, VDS_ID } from '@/lib/chart-palette';
 
 describe('chart-palette (선단 DB 4겹)', () => {
   it('keeps the same port the same color on skipjack and yellowfin', () => {
@@ -35,6 +35,15 @@ describe('chart-palette (선단 DB 4겹)', () => {
     expect(colorForHold(HOLD_ID.length)).toBe(HOLD_ID[0]);
     expect(HOLD_ID).not.toContain('#509ee3');
     expect(HOLD_ID).not.toContain('#9a3412');
+  });
+
+  it('keeps panofi channel colors in the identity set', () => {
+    expect(PANOFI_ID.cosmo).toBe(HUB_ID.bkk);
+    expect(PANOFI_ID.pfc).toBe(HUB_ID.vig);
+    expect(PANOFI_ID.scodi).toBe(HUB_ID.mnt);
+    expect(PANOFI_ID.scasa).toBe(HUB_ID.sey);
+    expect(PANOFI_ID.abidjan).toBe(HUB_ID.abj);
+    expect(PANOFI_ID.tema).toBe('#06b6d4');
   });
 
   it('keeps VDS and rank colors in the same identity set', () => {

@@ -60,6 +60,7 @@ import {
   vesselFullPnl,
   weeks,
 } from '@/lib/data/panofi';
+import { CHART_RANK, HUB_ID, PANOFI_ID, shareColor } from '@/lib/chart-palette';
 
 /* --------------------------------------------------------------- 표기 헬퍼 */
 
@@ -82,9 +83,15 @@ const S = (key: string, name: string, color: string, extra: Partial<Serie> = {})
 
 /** 색은 실체를 따라간다 — 계열이 줄어도 남은 계열의 색이 바뀌지 않게 고정 배정한다. */
 const C = {
-  s1: 'var(--cosmo-s1)', s2: 'var(--cosmo-s2)', s3: 'var(--cosmo-s3)',
-  s4: 'var(--cosmo-s4)', s5: 'var(--cosmo-s5)',
-  sign: ['var(--cosmo-ok)', 'var(--cosmo-bad)'] as [string, string],
+  s1: HUB_ID.bkk,
+  s2: HUB_ID.abj,
+  s3: HUB_ID.sey,
+  s4: HUB_ID.mnt,
+  s5: HUB_ID.vig,
+  rank: CHART_RANK,
+  mix: [shareColor(0), shareColor(1), shareColor(2)] as const,
+  sign: ['#ef4444', '#3b82f6'] as [string, string],
+  danger: '#ef4444',
 };
 
 const SRC = {
@@ -178,7 +185,7 @@ export function FleetTab() {
           <Chart
             data={fleetMargins.map((v) => ({ label: v.name, 직접마진: v.marginMusd }))}
             x="label" height={250} horizontal labelWidth={92}
-            series={[S('직접마진', '직접마진', C.s1, { type: 'bar', signColor: C.sign })]}
+            series={[S('직접마진', '직접마진', C.rank, { type: 'bar', signColor: C.sign })]}
             zeroLine yFmt={musd}
           />
         </Panel>
@@ -193,7 +200,7 @@ export function FleetTab() {
           <Chart
             data={vesselFullPnl.map((v) => ({ label: v.name, 세전이익: Math.round((v.세전이익 ?? 0) / 1000) }))}
             x="label" height={250} horizontal labelWidth={92}
-            series={[S('세전이익', '세전이익', C.s1, { type: 'bar', signColor: C.sign })]}
+            series={[S('세전이익', '세전이익', C.rank, { type: 'bar', signColor: C.sign })]}
             zeroLine yFmt={kusd}
           />
         </Panel>
@@ -241,7 +248,7 @@ export function FleetTab() {
         >
           <Chart
             data={catchBySpecies} x="label" height={220}
-            series={[S('생산량', '생산량', C.s1, { type: 'bar' })]}
+            series={[S('생산량', '생산량', C.rank, { type: 'bar' })]}
             yFmt={ton}
           />
         </Panel>
@@ -255,16 +262,16 @@ export function FleetTab() {
           <Chart
             data={vesselCostGroups} x="label" height={220}
             series={[
-              S('재료비', '재료비', C.s1, { type: 'bar', stackId: 'c' }),
-              S('노무비', '노무비', C.s2, { type: 'bar', stackId: 'c' }),
-              S('경비', '경비', C.s3, { type: 'bar', stackId: 'c' }),
+              S('재료비', '재료비', C.mix[0], { type: 'bar', stackId: 'c' }),
+              S('노무비', '노무비', C.mix[1], { type: 'bar', stackId: 'c' }),
+              S('경비', '경비', C.mix[2], { type: 'bar', stackId: 'c' }),
             ]}
             yFmt={kusd}
           />
           <Legend items={[
-            { name: '재료비 (유류·윤활유)', color: C.s1, box: true },
-            { name: '노무비 (선원)', color: C.s2, box: true },
-            { name: '경비 (선용품·어구·수선·입어료·항만)', color: C.s3, box: true },
+            { name: '재료비 (유류·윤활유)', color: C.mix[0], box: true },
+            { name: '노무비 (선원)', color: C.mix[1], box: true },
+            { name: '경비 (선용품·어구·수선·입어료·항만)', color: C.mix[2], box: true },
           ]} />
         </Panel>
       </Grid>
@@ -289,7 +296,7 @@ export function FleetTab() {
         <Panel span={3} title="역내 입항 물량" unit="톤 · 세네갈·EU 선단" src={SRC.weekly}>
           <Chart
             data={regionalLandingSeries} x="label" height={200} xInterval={6}
-            series={[S('입항톤수', '입항 물량', C.s1, { type: 'bar' })]}
+            series={[S('입항톤수', '입항 물량', C.rank, { type: 'bar' })]}
             yFmt={ton}
           />
         </Panel>
@@ -300,7 +307,7 @@ export function FleetTab() {
         >
           <Chart
             data={regionalLandingSeries} x="label" height={200} xInterval={6}
-            series={[S('척수', '척수', C.s4, { type: 'line' })]}
+            series={[S('척수', '척수', C.rank, { type: 'line' })]}
             yFmt={(v) => `${v}척`}
           />
         </Panel>
@@ -333,21 +340,21 @@ export function PriceTab() {
           <Chart
             data={priceSeries} x="label" height={280} xInterval={4}
             series={[
-              S('코스모', '코스모 (관계사)', C.s1, { type: 'line' }),
-              S('PFC', 'PFC (연간계약)', C.s2, { type: 'line' }),
-              S('SCODI', 'SCODI (시장연동)', C.s3, { type: 'line' }),
-              S('아비장로컬', '아비장 로컬', C.s4, { type: 'line' }),
-              S('테마로컬', '테마 로컬', C.s5, { type: 'line' }),
+              S('코스모', '코스모 (관계사)', PANOFI_ID.cosmo, { type: 'line' }),
+              S('PFC', 'PFC (연간계약)', PANOFI_ID.pfc, { type: 'line' }),
+              S('SCODI', 'SCODI (시장연동)', PANOFI_ID.scodi, { type: 'line' }),
+              S('아비장로컬', '아비장 로컬', PANOFI_ID.abidjan, { type: 'line' }),
+              S('테마로컬', '테마 로컬', PANOFI_ID.tema, { type: 'line' }),
             ]}
-            refLines={[{ y: ytd.ledgerBepUsdPerT, label: `원장 BEP ${usd(ytd.ledgerBepUsdPerT)}`, color: 'var(--cosmo-bad)' }]}
+            refLines={[{ y: ytd.ledgerBepUsdPerT, label: `원장 BEP ${usd(ytd.ledgerBepUsdPerT)}`, color: C.danger }]}
             yFmt={usd}
           />
           <Legend items={[
-            { name: '코스모 (관계사)', color: C.s1 },
-            { name: 'PFC (연간계약)', color: C.s2 },
-            { name: 'SCODI (시장연동)', color: C.s3 },
-            { name: '아비장 로컬', color: C.s4 },
-            { name: '테마 로컬', color: C.s5 },
+            { name: '코스모 (관계사)', color: PANOFI_ID.cosmo },
+            { name: 'PFC (연간계약)', color: PANOFI_ID.pfc },
+            { name: 'SCODI (시장연동)', color: PANOFI_ID.scodi },
+            { name: '아비장 로컬', color: PANOFI_ID.abidjan },
+            { name: '테마 로컬', color: PANOFI_ID.tema },
           ]} />
         </Panel>
       </Grid>
@@ -362,16 +369,16 @@ export function PriceTab() {
           <Chart
             data={processingSeries} x="label" height={230} xInterval={4}
             series={[
-              S('PFC', 'PFC', C.s2, { type: 'line' }),
-              S('코스모', '코스모', C.s1, { type: 'line' }),
-              S('SCODI', 'SCODI', C.s3, { type: 'line' }),
-              S('SCASA', 'SCASA', C.s4, { type: 'line' }),
+              S('PFC', 'PFC', PANOFI_ID.pfc, { type: 'line' }),
+              S('코스모', '코스모', PANOFI_ID.cosmo, { type: 'line' }),
+              S('SCODI', 'SCODI', PANOFI_ID.scodi, { type: 'line' }),
+              S('SCASA', 'SCASA', PANOFI_ID.scasa, { type: 'line' }),
             ]}
             yFmt={ton}
           />
           <Legend items={[
-            { name: 'PFC', color: C.s2 }, { name: '코스모', color: C.s1 },
-            { name: 'SCODI', color: C.s3 }, { name: 'SCASA', color: C.s4 },
+            { name: 'PFC', color: PANOFI_ID.pfc }, { name: '코스모', color: PANOFI_ID.cosmo },
+            { name: 'SCODI', color: PANOFI_ID.scodi }, { name: 'SCASA', color: PANOFI_ID.scasa },
           ]} />
           <Callout kind="warn" label="판정">{m.verdict}</Callout>
           <Callout kind="info" label="근거">
@@ -409,7 +416,7 @@ export function PriceTab() {
         >
           <Chart
             data={bangkokSeries} x="label" height={200}
-            series={[S('방콕', '방콕 가다랑어', C.s1, { type: 'bar' })]}
+            series={[S('방콕', '방콕 가다랑어', HUB_ID.bkk, { type: 'bar' })]}
             yFmt={usd}
           />
         </Panel>
@@ -449,7 +456,7 @@ export function ProfitTab() {
         >
           <Chart
             data={costBars} x="label" height={300} horizontal labelWidth={104}
-            series={[S('비중', '매출 대비 비중', C.s1, { type: 'bar' })]}
+            series={[S('비중', '매출 대비 비중', C.rank, { type: 'bar' })]}
             yFmt={pct}
           />
         </Panel>
@@ -461,7 +468,7 @@ export function ProfitTab() {
         >
           <Chart
             data={sensitivityBars} x="label" height={300} horizontal labelWidth={118}
-            series={[S('영향', '손익 영향', C.s1, { type: 'bar' })]}
+            series={[S('영향', '손익 영향', C.rank, { type: 'bar' })]}
             yFmt={man}
           />
         </Panel>
@@ -472,7 +479,7 @@ export function ProfitTab() {
         {/* 물량과 단가는 단위가 다르다. 이중축 대신 두 패널로 나눈다. */}
         <Panel span={6} title="월별 판매량" unit="톤 · 판매기준" src={`${SRC.ledger} 실적 시트 월별 현황`}>
           <Chart data={monthlySeries} x="label" height={200}
-            series={[S('판매량', '판매량', C.s1, { type: 'bar' })]} yFmt={ton} />
+            series={[S('판매량', '판매량', C.rank, { type: 'bar' })]} yFmt={ton} />
         </Panel>
         <Panel span={6} title="월별 평균단가" unit="달러/톤" note={actuals.meta.caveat} src={`${SRC.ledger} 실적 시트`}>
           <Chart data={monthlySeries} x="label" height={200}
@@ -485,7 +492,7 @@ export function ProfitTab() {
           src={`${SRC.ledger} 실적 시트 연도별 현황 — 판매기준`}
         >
           <Chart data={annualVolumeSeries} x="label" height={200}
-            series={[S('판매량', '판매량', C.s1, { type: 'bar' })]} yFmt={ton} />
+            series={[S('판매량', '판매량', C.rank, { type: 'bar' })]} yFmt={ton} />
         </Panel>
         <Panel
           span={6} title="연도별 평균단가와 원가율" unit="달러/톤 · %"
@@ -495,8 +502,8 @@ export function ProfitTab() {
           <Chart data={annualVolumeSeries} x="label" height={180}
             series={[S('평균단가', '평균단가', C.s3, { type: 'line' })]} yFmt={usd} />
           <Chart data={annualVolumeSeries} x="label" height={130}
-            series={[S('원가율', '원가율', C.s2, { type: 'line' })]} yFmt={pct} />
-          <Legend items={[{ name: '평균단가 (달러/톤)', color: C.s3 }, { name: '원가율 (%)', color: C.s2 }]} />
+            series={[S('원가율', '원가율', C.rank, { type: 'line' })]} yFmt={pct} />
+          <Legend items={[{ name: '평균단가 (달러/톤)', color: C.s3 }, { name: '원가율 (%)', color: C.rank }]} />
         </Panel>
       </Grid>
     </>
@@ -569,7 +576,7 @@ export function CashTab() {
           src={SRC.weekly}
         >
           <Chart data={receivableSeries} x="label" height={210} xInterval={4}
-            series={[S('미수금', '아비장 미수금', C.s3, { type: 'area' })]} yFmt={kusd} />
+            series={[S('미수금', '아비장 미수금', PANOFI_ID.abidjan, { type: 'area' })]} yFmt={kusd} />
         </Panel>
 
         <Panel
@@ -579,15 +586,15 @@ export function CashTab() {
         >
           <Chart data={fuelSeries} x="label" height={210} xInterval={4}
             series={[
-              S('아비장', '아비장 (트럭)', C.s1, { type: 'line' }),
-              S('테마', '테마 (트럭)', C.s2, { type: 'line' }),
-              S('다카르', '다카르 (트럭)', C.s3, { type: 'line' }),
-              S('탱커', '양상 (탱커선)', C.s4, { type: 'line' }),
+              S('아비장', '아비장 (트럭)', PANOFI_ID.abidjan, { type: 'line' }),
+              S('테마', '테마 (트럭)', PANOFI_ID.tema, { type: 'line' }),
+              S('다카르', '다카르 (트럭)', PANOFI_ID.dakar, { type: 'line' }),
+              S('탱커', '양상 (탱커선)', PANOFI_ID.tanker, { type: 'line' }),
             ]}
             yFmt={usd} />
           <Legend items={[
-            { name: '아비장', color: C.s1 }, { name: '테마', color: C.s2 },
-            { name: '다카르', color: C.s3 }, { name: '양상 (탱커선)', color: C.s4 },
+            { name: '아비장', color: PANOFI_ID.abidjan }, { name: '테마', color: PANOFI_ID.tema },
+            { name: '다카르', color: PANOFI_ID.dakar }, { name: '양상 (탱커선)', color: PANOFI_ID.tanker },
           ]} />
         </Panel>
 
@@ -687,7 +694,7 @@ export function IndustryTab() {
       <Grid>
         <Panel span={6} title="밸류 사다리" unit={industry.valueLadder.unit} note={industry.valueLadder.note} src={SRC.nlm}>
           <Chart data={valueLadder} x="label" height={210} horizontal labelWidth={118}
-            series={[S('단가', '단가', C.s1, { type: 'bar' })]}
+            series={[S('단가', '단가', C.rank, { type: 'bar' })]}
             yFmt={(v) => `${v.toLocaleString('en-US')}유로`} />
         </Panel>
 
@@ -721,7 +728,7 @@ export function IndustryTab() {
           src={industry.exports.topMarketsBasis}
         >
           <Chart data={exportMarkets} x="label" height={230} horizontal labelWidth={86}
-            series={[S('금액', '수출액', C.s1, { type: 'bar' })]} yFmt={musd} />
+            series={[S('금액', '수출액', C.rank, { type: 'bar' })]} yFmt={musd} />
         </Panel>
         <Panel
           span={6} title="Comtrade 실측 vs 외부 조사" unit="백만 달러 · 2025년 통조림 수출"
@@ -835,7 +842,7 @@ export function TradeTab() {
             src={SRC.comtrade}
           >
             <Chart data={exportByForm} x="label" height={230} horizontal labelWidth={96}
-              series={[S('단가', '수출 단가', C.s1, { type: 'bar' })]} yFmt={usd} />
+              series={[S('단가', '수출 단가', C.rank, { type: 'bar' })]} yFmt={usd} />
           </Panel>
         )}
       </Grid>
@@ -861,7 +868,7 @@ export function TradeTab() {
           src={SRC.comtrade}
         >
           <Chart data={exportBySpecies} x="label" height={210}
-            series={[S('금액', '수출액', C.s1, { type: 'bar' })]} yFmt={musd} />
+            series={[S('금액', '수출액', C.rank, { type: 'bar' })]} yFmt={musd} />
         </Panel>
 
         <Panel
@@ -870,7 +877,7 @@ export function TradeTab() {
           src={SRC.comtrade}
         >
           <Chart data={exportByPartner} x="label" height={260} horizontal labelWidth={86}
-            series={[S('금액', '수출액', C.s1, { type: 'bar' })]} yFmt={musd} />
+            series={[S('금액', '수출액', C.rank, { type: 'bar' })]} yFmt={musd} />
         </Panel>
 
         <Panel
@@ -879,7 +886,7 @@ export function TradeTab() {
           src={SRC.comtrade}
         >
           <Chart data={importByPartner} x="label" height={260} horizontal labelWidth={86}
-            series={[S('금액', '수입액', C.s3, { type: 'bar' })]} yFmt={musd} />
+            series={[S('금액', '수입액', C.rank, { type: 'bar' })]} yFmt={musd} />
         </Panel>
       </Grid>
 

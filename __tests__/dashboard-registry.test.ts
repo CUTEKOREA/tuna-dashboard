@@ -354,6 +354,11 @@ describe('dashboard registry', () => {
     expect(cannerySource).toContain('fill={CHART_RANK}');
     expect(cannerySource).toContain('fill={HUB_ID.bkk}');
     expect(reeferSource).toContain('shareColor');
+    const panofiTabs = readFileSync(join(process.cwd(), 'components/panofi/PanofiTabs.tsx'), 'utf8');
+    expect(panofiTabs).toContain("from '@/lib/chart-palette'");
+    expect(panofiTabs).toContain('PANOFI_ID.cosmo');
+    expect(panofiTabs).toContain('CHART_RANK');
+    expect(panofiTabs).not.toContain('--cosmo-s1');
     expect(globalsSource).toContain('--w-sky-400: #38bdf8;');
     expect(globalsSource).toContain('--w-emerald-500: #10b981;');
   });
