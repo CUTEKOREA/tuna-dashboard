@@ -1,4 +1,5 @@
 'use client'
+import { C } from '../palette'
 import Chart, { Legend } from '../Chart'
 import { PageHead, Card, Kpi, Callout, SecHead } from '../Ui'
 import type { Week, ProdUnit } from '@/lib/data/cosmo'
@@ -115,14 +116,14 @@ export default function History() {
             영업이 개선돼도 순이익으로 남는 몫이 얇은 구조가 계속됩니다.</>}
         >
           <Legend items={[
-            { name: '영업손익', color: 'var(--cosmo-s1)', box: true },
-            { name: '순손익', color: 'var(--cosmo-s4)', box: true },
+            { name: '영업손익', color: C.s1, box: true },
+            { name: '순손익', color: C.s4, box: true },
           ]} />
           <Chart
             data={U} x="label" height={250} zeroLine yFmt={m0} xInterval={0}
             series={[
-              { key: 'op', name: '영업손익', color: 'var(--cosmo-s1)', type: 'bar', fmt: m2 },
-              { key: 'net', name: '순손익', color: 'var(--cosmo-s4)', type: 'bar', fmt: m2 },
+              { key: 'op', name: '영업손익', color: C.s1, type: 'bar', fmt: m2 },
+              { key: 'net', name: '순손익', color: C.s4, type: 'bar', fmt: m2 },
             ]}
           />
         </Card>
@@ -137,10 +138,10 @@ export default function History() {
             매출이 정점 대비 내려온 상태에서 순손익만 간신히 흑자로 돌아섰으니,
             최근 개선은 <b>규모가 아니라 마진</b>에서 나온 것입니다.</>}
         >
-          <Legend items={[{ name: '매출', color: 'var(--cosmo-s5)', box: true }]} />
+          <Legend items={[{ name: '매출', color: C.rank, box: true }]} />
           <Chart
             data={U} x="label" height={250} yFmt={m0} xInterval={0}
-            series={[{ key: 'revenue', name: '매출', color: 'var(--cosmo-s5)', type: 'bar', fmt: m2 }]}
+            series={[{ key: 'revenue', name: '매출', color: C.rank, type: 'bar', fmt: m2 }]}
           />
         </Card>
       </div>
@@ -156,13 +157,13 @@ export default function History() {
             지금 수준은 그보다 {num(n(lastProd.daily) - now.daily, 1)} 낮습니다.</>}
         >
           <Legend items={[
-            { name: '연간 일처리량', color: 'var(--cosmo-s1)', box: true },
+            { name: '연간 일처리량', color: C.rank, box: true },
             { name: `2026 ${latest.week}주 누적 ${num(now.daily, 1)}`, color: 'var(--cosmo-accent)', dash: true },
           ]} />
           <Chart
             data={P} x="label" height={250} yFmt={(v) => num(v, 0)}
             refLines={[{ y: now.daily, color: 'var(--cosmo-accent)' }]}
-            series={[{ key: 'daily', name: '일처리량', color: 'var(--cosmo-s1)', type: 'bar', fmt: mtd }]}
+            series={[{ key: 'daily', name: '일처리량', color: C.rank, type: 'bar', fmt: mtd }]}
           />
         </Card>
 
@@ -175,13 +176,13 @@ export default function History() {
             일처리량과 수율이 <b>동시에</b> 과거 구간을 밑돌고 있어, 생산일수를 늘려도 회복되지 않는 자리입니다.</>}
         >
           <Legend items={[
-            { name: '연간 수율', color: 'var(--cosmo-s4)' },
+            { name: '연간 수율', color: C.rank },
             { name: `2026 ${latest.week}주 누적 ${pct(now.yield, 2)}`, color: 'var(--cosmo-accent)', dash: true },
           ]} />
           <Chart
             data={P} x="label" height={250} domain={[yLo, yHi]} yFmt={(v) => pct(v, 1)}
             refLines={[{ y: now.yield, color: 'var(--cosmo-accent)' }]}
-            series={[{ key: 'yield', name: '수율', color: 'var(--cosmo-s4)', fmt: (v) => pct(v, 2) }]}
+            series={[{ key: 'yield', name: '수율', color: C.rank, fmt: (v) => pct(v, 2) }]}
           />
         </Card>
       </div>

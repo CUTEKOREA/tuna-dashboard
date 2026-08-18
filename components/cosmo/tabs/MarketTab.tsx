@@ -1,4 +1,5 @@
 'use client'
+import { C, SERIES } from '../palette'
 import Chart, { Legend } from '../Chart'
 import { PageHead, Card, Kpi, Callout, SecHead } from '../Ui'
 import { musd, num, pct, n, latest, latestMonth } from '@/lib/data/cosmo'
@@ -15,7 +16,7 @@ const m2 = (v: number) => '$' + (v / 1e6).toFixed(2) + 'M'
 const kg2 = (v: number) => '$' + v.toFixed(2) + '/kg'
 const k1 = (v: number) => '$' + (v / 1000).toFixed(1) + '천'
 const p1 = (v: number) => (v * 100).toFixed(1) + '%'
-const S = ['var(--cosmo-s1)', 'var(--cosmo-s2)', 'var(--cosmo-s3)', 'var(--cosmo-s4)', 'var(--cosmo-s5)']
+const S = SERIES
 
 export default function Market() {
   const top = byMarket.slice(0, 8)
@@ -99,16 +100,16 @@ export default function Market() {
             가나 평균과 비교해도 대부분 아래라 <b>산지 요인이 아니라 우리 판가</b>의 문제로 읽힙니다.</>}
         >
           <Legend items={[
-            { name: 'COSMO', color: 'var(--cosmo-s2)', box: true },
-            { name: '시장 평균', color: 'var(--cosmo-s1)', box: true },
-            { name: '가나 평균', color: 'var(--cosmo-s3)', box: true },
+            { name: 'COSMO', color: C.cosmo, box: true },
+            { name: '시장 평균', color: C.s4, box: true },
+            { name: '가나 평균', color: C.s3, box: true },
           ]} />
           <Chart
             data={posRows} x="label" height={270} yFmt={(v) => '$' + v.toFixed(0)}
             series={[
-              { key: 'cosmo', name: 'COSMO', color: 'var(--cosmo-s2)', type: 'bar', fmt: kg2 },
-              { key: 'market', name: '시장 평균', color: 'var(--cosmo-s1)', type: 'bar', fmt: kg2 },
-              { key: 'ghana', name: '가나 평균', color: 'var(--cosmo-s3)', type: 'bar', fmt: kg2 },
+              { key: 'cosmo', name: 'COSMO', color: C.cosmo, type: 'bar', fmt: kg2 },
+              { key: 'market', name: '시장 평균', color: C.s4, type: 'bar', fmt: kg2 },
+              { key: 'ghana', name: '가나 평균', color: C.s3, type: 'bar', fmt: kg2 },
             ]}
           />
         </Card>
@@ -125,8 +126,8 @@ export default function Market() {
           <Chart
             data={gapRows} x="label" height={270} zeroLine yFmt={(v) => (v * 100).toFixed(0) + '%'}
             series={[{
-              key: 'gap', name: '시장 평균 대비', color: 'var(--cosmo-bad)', type: 'bar', fmt: p1,
-              signColor: ['var(--cosmo-ok)', 'var(--cosmo-bad)'],
+              key: 'gap', name: '시장 평균 대비', color: C.danger, type: 'bar', fmt: p1,
+              signColor: C.sign,
             }]}
           />
         </Card>
@@ -145,7 +146,7 @@ export default function Market() {
           <Chart
             data={top.map((m) => ({ label: m.key, amountUsd: m.amountUsd }))}
             x="label" height={250} yFmt={m1} xInterval={0}
-            series={[{ key: 'amountUsd', name: '매출', color: 'var(--cosmo-s1)', type: 'bar', fmt: m2 }]}
+            series={[{ key: 'amountUsd', name: '매출', color: C.rank, type: 'bar', fmt: m2 }]}
           />
         </Card>
 
@@ -247,8 +248,8 @@ export default function Market() {
               <b>물량은 비슷한데 단가가 내려간</b> 구조입니다.</>}
           >
             <Legend items={[
-              { name: `${exportYoY.years.join('·')} 비중`, color: 'var(--cosmo-s3)', box: true },
-              { name: '2026 비중', color: 'var(--cosmo-s1)', box: true },
+              { name: `${exportYoY.years.join('·')} 비중`, color: C.s3, box: true },
+              { name: '2026 비중', color: C.s1, box: true },
             ]} />
             <Chart
               data={exportYoY.markets.slice(0, 8).map((m) => ({
@@ -256,8 +257,8 @@ export default function Market() {
               }))}
               x="label" height={250} yFmt={(v) => (v * 100).toFixed(0) + '%'} xInterval={0}
               series={[
-                { key: 'prior', name: `${exportYoY.years.join('·')}`, color: 'var(--cosmo-s3)', type: 'bar', fmt: p1 },
-                { key: 'now', name: '2026', color: 'var(--cosmo-s1)', type: 'bar', fmt: p1 },
+                { key: 'prior', name: `${exportYoY.years.join('·')}`, color: C.s3, type: 'bar', fmt: p1 },
+                { key: 'now', name: '2026', color: C.s1, type: 'bar', fmt: p1 },
               ]}
             />
           </Card>

@@ -1,9 +1,10 @@
 'use client'
+import { SERIES } from '../palette'
 import Chart, { Legend } from '../Chart'
 import { PageHead, Card, Kpi, Callout, SecHead } from '../Ui'
 import { checks, weeks, meta, usd, num, pct, latest, latestMonth, pastWeeks } from '@/lib/data/cosmo'
 
-const SERIES_COLORS = ['var(--cosmo-s1)', 'var(--cosmo-s2)', 'var(--cosmo-s3)', 'var(--cosmo-s4)', 'var(--cosmo-s5)']
+const SERIES_COLORS = SERIES
 const isMt = (name: string) => name.includes('생산')
 const k = (v: number) => (Math.abs(v) >= 1000 ? (v / 1000).toFixed(0) + 'k' : num(v, 0))
 

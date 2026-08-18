@@ -1,4 +1,5 @@
 'use client'
+import { C } from '../palette'
 import Chart, { Legend } from '../Chart'
 import { PageHead, Card, Kpi, Callout, SecHead } from '../Ui'
 import {
@@ -156,16 +157,16 @@ export default function Production() {
             두 항의 합과 실제 갭의 잔차는 {num(gRes, 1)}MT 로 반올림 수준입니다.</>}
         >
           <Legend items={[
-            { name: '생산일수 기여', color: 'var(--cosmo-s1)', box: true },
-            { name: '일 처리량 기여', color: 'var(--cosmo-s3)', box: true },
-            { name: '총 갭', color: 'var(--cosmo-bad)', box: true },
+            { name: '생산일수 기여', color: C.s1, box: true },
+            { name: '일 처리량 기여', color: C.s3, box: true },
+            { name: '총 갭', color: C.danger, box: true },
           ]} />
           <Chart
             data={gapRows} x="label" height={250} zeroLine yFmt={(v) => num(v, 0)}
             series={[
-              { key: 'byDays', name: '생산일수 기여', color: 'var(--cosmo-s1)', type: 'bar', stackId: 'g', fmt: mt },
-              { key: 'byRate', name: '일 처리량 기여', color: 'var(--cosmo-s3)', type: 'bar', stackId: 'g', fmt: mt },
-              { key: 'total', name: '총 갭', color: 'var(--cosmo-bad)', type: 'bar', stackId: 'g', fmt: mt },
+              { key: 'byDays', name: '생산일수 기여', color: C.s1, type: 'bar', stackId: 'g', fmt: mt },
+              { key: 'byRate', name: '일 처리량 기여', color: C.s3, type: 'bar', stackId: 'g', fmt: mt },
+              { key: 'total', name: '총 갭', color: C.danger, type: 'bar', stackId: 'g', fmt: mt },
             ]}
           />
         </Card>
@@ -232,17 +233,17 @@ export default function Production() {
               바로 이어져 보이지만, 누계에는 반영돼 있습니다({missWk}주 실적 역산 약 {mt(missMt)}).</>}</>}
         >
           <Legend items={[
-            { name: '실적', color: 'var(--cosmo-s1)' },
-            { name: '계획', color: 'var(--cosmo-s2)', dash: true },
-            { name: '갭 (우축)', color: 'var(--cosmo-bad)', box: true },
+            { name: '실적', color: C.s1 },
+            { name: '계획', color: C.s2, dash: true },
+            { name: '갭 (우축)', color: C.danger, box: true },
           ]} />
           <Chart
             data={prod} x="label" height={250} xInterval={3}
             yFmt={mtk} y2Fmt={mtk}
             series={[
-              { key: 'cbuRawCum', name: '실적', color: 'var(--cosmo-s1)', fmt: mt },
-              { key: 'cbuPlanCum', name: '계획', color: 'var(--cosmo-s2)', dash: true, fmt: mt },
-              { key: 'cbuGap', name: '갭', color: 'var(--cosmo-bad)', type: 'area', axis: 'right', fmt: mt },
+              { key: 'cbuRawCum', name: '실적', color: C.s1, fmt: mt },
+              { key: 'cbuPlanCum', name: '계획', color: C.s2, dash: true, fmt: mt },
+              { key: 'cbuGap', name: '갭', color: C.danger, type: 'area', axis: 'right', fmt: mt },
             ]}
           />
         </Card>
@@ -255,11 +256,11 @@ export default function Production() {
               {' '}{missWk}주 실적이 함께 반영된 착시)</>}, 나머지는 모두 확대입니다.
             {' '}0선 위로 올라온 주는 없어, 만회가 아니라 <b>누적 손실로 굳어지는 형태</b>입니다.</>}
         >
-          <Legend items={[{ name: '누적 갭 (실적−계획)', color: 'var(--cosmo-bad)', box: true }]} />
+          <Legend items={[{ name: '누적 갭 (실적−계획)', color: C.danger, box: true }]} />
           <Chart
             data={prod} x="label" height={250} xInterval={3} zeroLine yFmt={mtk}
             series={[
-              { key: 'cbuGap', name: '누적 갭', color: 'var(--cosmo-bad)', type: 'area', fmt: mt },
+              { key: 'cbuGap', name: '누적 갭', color: C.danger, type: 'area', fmt: mt },
             ]}
           />
         </Card>
@@ -276,16 +277,16 @@ export default function Production() {
             계획선이 완만히 내려가는 것은 계획 자체가 누적 기준으로 재계산되기 때문입니다.</>}
         >
           <Legend items={[
-            { name: '누적 일처리량', color: 'var(--cosmo-s1)' },
-            { name: '계획', color: 'var(--cosmo-s2)', dash: true },
-            { name: '주간 일처리량', color: 'var(--cosmo-s5)' },
+            { name: '누적 일처리량', color: C.s1 },
+            { name: '계획', color: C.s2, dash: true },
+            { name: '주간 일처리량', color: C.s5 },
           ]} />
           <Chart
             data={prod} x="label" height={250} xInterval={3} yFmt={(v) => v.toFixed(0)}
             series={[
-              { key: 'cbuWeekDaily', name: '주간 일처리량', color: 'var(--cosmo-s5)', fmt: dly },
-              { key: 'cbuDaily', name: '누적 일처리량', color: 'var(--cosmo-s1)', fmt: dly },
-              { key: 'cbuDailyPlan', name: '계획', color: 'var(--cosmo-s2)', dash: true, fmt: dly },
+              { key: 'cbuWeekDaily', name: '주간 일처리량', color: C.s5, fmt: dly },
+              { key: 'cbuDaily', name: '누적 일처리량', color: C.s1, fmt: dly },
+              { key: 'cbuDailyPlan', name: '계획', color: C.s2, dash: true, fmt: dly },
             ]}
           />
         </Card>
@@ -303,17 +304,17 @@ export default function Production() {
                 : ''}.</>}</>}
         >
           <Legend items={[
-            { name: '주간 수율', color: 'var(--cosmo-s3)' },
-            { name: '누적 수율', color: 'var(--cosmo-s1)' },
-            { name: '계획 수율', color: 'var(--cosmo-s2)', dash: true },
+            { name: '주간 수율', color: C.s3 },
+            { name: '누적 수율', color: C.s1 },
+            { name: '계획 수율', color: C.s2, dash: true },
           ]} />
           <Chart
             data={prod} x="label" height={250} xInterval={3} yFmt={(v) => pct(v, 1)}
             domain={tightDomain(prod.flatMap((r) => [r.cbuYieldWeek, r.cbuYieldCum, r.cbuYieldPlan]), 0.15)}
             series={[
-              { key: 'cbuYieldWeek', name: '주간 수율', color: 'var(--cosmo-s3)', fmt: (v) => pct(v, 2) },
-              { key: 'cbuYieldCum', name: '누적 수율', color: 'var(--cosmo-s1)', fmt: (v) => pct(v, 2) },
-              { key: 'cbuYieldPlan', name: '계획 수율', color: 'var(--cosmo-s2)', dash: true, fmt: (v) => pct(v, 2) },
+              { key: 'cbuYieldWeek', name: '주간 수율', color: C.s3, fmt: (v) => pct(v, 2) },
+              { key: 'cbuYieldCum', name: '누적 수율', color: C.s1, fmt: (v) => pct(v, 2) },
+              { key: 'cbuYieldPlan', name: '계획 수율', color: C.s2, dash: true, fmt: (v) => pct(v, 2) },
             ]}
           />
         </Card>
@@ -332,14 +333,14 @@ export default function Production() {
             FBU는 전체의 {pct(n(fbu?.cumRawMt) / Math.max(1, n(cbu?.cumRawMt) + n(fbu?.cumRawMt)), 1)} 규모입니다.</>}
         >
           <Legend items={[
-            { name: 'CBU', color: 'var(--cosmo-s1)', box: true },
-            { name: 'FBU', color: 'var(--cosmo-s4)', box: true },
+            { name: 'CBU', color: C.s1, box: true },
+            { name: 'FBU', color: C.s4, box: true },
           ]} />
           <Chart
             data={prod} x="label" height={250} xInterval={3} yFmt={(v) => v.toFixed(0)}
             series={[
-              { key: 'cbuRawWeek', name: 'CBU', color: 'var(--cosmo-s1)', type: 'bar', stackId: 'raw', fmt: mt },
-              { key: 'fbuRawWeek', name: 'FBU', color: 'var(--cosmo-s4)', type: 'bar', stackId: 'raw', fmt: mt },
+              { key: 'cbuRawWeek', name: 'CBU', color: C.s1, type: 'bar', stackId: 'raw', fmt: mt },
+              { key: 'fbuRawWeek', name: 'FBU', color: C.s4, type: 'bar', stackId: 'raw', fmt: mt },
             ]}
           />
         </Card>
@@ -403,8 +404,8 @@ export default function Production() {
               MT당 원가의 월별 편차가 큰 것은 월 경계가 주 단위로 근사되기 때문이라 중앙값을 썼습니다.</>}
           >
             <Legend items={[
-              { name: '총원가 기준 (상한)', color: 'var(--cosmo-s2)', box: true },
-              { name: '매출 기준', color: 'var(--cosmo-s1)', box: true },
+              { name: '총원가 기준 (상한)', color: C.s2, box: true },
+              { name: '매출 기준', color: C.s1, box: true },
             ]} />
             <Chart
               horizontal labelWidth={104}
@@ -414,8 +415,8 @@ export default function Production() {
               ]}
               x="label" height={150} yFmt={(v) => '$' + (v / 1e6).toFixed(1) + 'M'}
               series={[
-                { key: 'v', name: '총원가 기준', color: 'var(--cosmo-s2)', type: 'bar', fmt: musdFmt },
-                { key: 'w', name: '매출 기준', color: 'var(--cosmo-s1)', type: 'bar', fmt: musdFmt },
+                { key: 'v', name: '총원가 기준', color: C.s2, type: 'bar', fmt: musdFmt },
+                { key: 'w', name: '매출 기준', color: C.s1, type: 'bar', fmt: musdFmt },
               ]}
             />
           </Card>

@@ -1,4 +1,5 @@
 'use client'
+import { C } from '../palette'
 import Chart, { Legend } from '../Chart'
 import { PageHead, Card, Kpi, Callout, SecHead } from '../Ui'
 import {
@@ -150,13 +151,13 @@ export default function Cash() {
             잔액 수준보다 주간 진폭이 큰 구조라 특정 주의 잔액만으로 판단하기 어렵습니다.</>}
         >
           <Legend items={[
-            { name: '현금잔액', color: 'var(--cosmo-s4)', box: true },
+            { name: '현금잔액', color: C.rank, box: true },
             { name: `연초 ${musd(opening)}`, color: 'var(--cosmo-muted)', dash: true },
           ]} />
           <Chart
             data={rows} x="label" height={250} yFmt={m1} xInterval={3}
             refLines={opening != null ? [{ y: opening, color: 'var(--cosmo-muted)' }] : undefined}
-            series={[{ key: 'cashUsd', name: '현금잔액', color: 'var(--cosmo-s4)', type: 'area', fmt: m2 }]}
+            series={[{ key: 'cashUsd', name: '현금잔액', color: C.rank, type: 'area', fmt: m2 }]}
           />
         </Card>
 
@@ -170,14 +171,14 @@ export default function Cash() {
             원본에 외부 입출금 항목이 비어 있어 총액에서 계좌간 이동을 차감해 산출했습니다.</>}
         >
           <Legend items={[
-            { name: '순유입', color: 'var(--cosmo-ok)', box: true },
-            { name: '순유출', color: 'var(--cosmo-bad)', box: true },
+            { name: '순유입', color: C.sign[0], box: true },
+            { name: '순유출', color: C.sign[1], box: true },
           ]} />
           <Chart
             data={rows} x="label" height={250} yFmt={m1} xInterval={3} zeroLine
             series={[{
-              key: 'cashNet', name: '순현금흐름', color: 'var(--cosmo-s1)', type: 'bar',
-              signColor: ['var(--cosmo-ok)', 'var(--cosmo-bad)'], fmt: m2,
+              key: 'cashNet', name: '순현금흐름', color: C.s1, type: 'bar',
+              signColor: C.sign, fmt: m2,
             }]}
           />
         </Card>
@@ -195,10 +196,10 @@ export default function Cash() {
               : <> 결측 주차는 없으므로 이 차이는 계좌간 이동·환산 차이에서 옵니다 —
                   누적 순현금흐름은 <b>외부 유출입만</b> 더한 값이라 잔액 변동과 정확히 일치하지 않습니다.</>}</>}
         >
-          <Legend items={[{ name: '누적 순현금흐름', color: 'var(--cosmo-s1)' }]} />
+          <Legend items={[{ name: '누적 순현금흐름', color: C.rank }]} />
           <Chart
             data={rows} x="label" height={250} yFmt={m1} xInterval={3} zeroLine
-            series={[{ key: 'cashNetCum', name: '누적 순현금흐름', color: 'var(--cosmo-s1)', fmt: m2 }]}
+            series={[{ key: 'cashNetCum', name: '누적 순현금흐름', color: C.rank, fmt: m2 }]}
           />
         </Card>
 
@@ -210,10 +211,10 @@ export default function Cash() {
             <b>환율 노출은 사실상 GHC 하나</b>입니다. EUR·GBP·JPY는 합쳐도
             {' '}{musd(nonUsd - ghcUsd)} 수준이라 환위험 관점에서는 무시할 만합니다.</>}
         >
-          <Legend items={[{ name: '기말 잔액 (USD 환산)', color: 'var(--cosmo-s5)', box: true }]} />
+          <Legend items={[{ name: '기말 잔액 (USD 환산)', color: C.rank, box: true }]} />
           <Chart
             data={ccyRows} x="ccy" height={250} yFmt={m1} xInterval={0}
-            series={[{ key: 'end', name: '기말 잔액', color: 'var(--cosmo-s5)', type: 'bar', fmt: (v) => usd(v, 0) }]}
+            series={[{ key: 'end', name: '기말 잔액', color: C.rank, type: 'bar', fmt: (v) => usd(v, 0) }]}
           />
         </Card>
       </div>
@@ -230,15 +231,15 @@ export default function Cash() {
             GHC 잔액이 기간 중 {k0(ghcMin)}~{k0(ghcMax)} 사이를 오가 노출 규모도 주마다 크게 변합니다.</>}
         >
           <Legend items={[
-            { name: 'GHC/USD 환율', color: 'var(--cosmo-s2)' },
-            { name: 'GHC 보유 (USD 환산)', color: 'var(--cosmo-s3)', box: true },
+            { name: 'GHC/USD 환율', color: C.s2 },
+            { name: 'GHC 보유 (USD 환산)', color: C.s3, box: true },
           ]} />
           <Chart
             data={rows} x="label" height={250} xInterval={3}
             yFmt={r2} y2Fmt={k0} domain={tightDomain(rows.map((r) => r.ghcRate))}
             series={[
-              { key: 'ghcUsd', name: 'GHC 보유', color: 'var(--cosmo-s3)', type: 'bar', axis: 'right', fmt: (v) => usd(v, 0) },
-              { key: 'ghcRate', name: 'GHC/USD', color: 'var(--cosmo-s2)', fmt: (v) => v.toFixed(3) },
+              { key: 'ghcUsd', name: 'GHC 보유', color: C.s3, type: 'bar', axis: 'right', fmt: (v) => usd(v, 0) },
+              { key: 'ghcRate', name: 'GHC/USD', color: C.s2, fmt: (v) => v.toFixed(3) },
             ]}
           />
         </Card>
@@ -267,7 +268,7 @@ export default function Cash() {
                     <td><span className="tag">{c.ccy}</span></td>
                     <td className="n">{usd(c.begin, 0)}</td>
                     <td className="n">{usd(c.end, 0)}</td>
-                    <td className="n" style={{ color: c.delta >= 0 ? 'var(--cosmo-ok)' : 'var(--cosmo-bad)' }}>{usd(c.delta, 0)}</td>
+                    <td className="n" style={{ color: c.delta >= 0 ? C.sign[0] : C.sign[1] }}>{usd(c.delta, 0)}</td>
                     <td className="n">{pct(c.share, 1)}</td>
                   </tr>
                 ))}
