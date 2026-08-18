@@ -20,6 +20,9 @@ import {
   companiesByMonth,
   companiesFromVessels,
   idleVessels,
+  isFocusCompany,
+  focusCompanyTag,
+  focusSummaries,
   falklandMeta,
   falklandVessels,
   fleetTotals,
@@ -28,6 +31,7 @@ import {
   panFor,
   SEASON_MONTHS,
   seasonTotals,
+  vesselAxisLabel,
   vesselsByMonth,
   vesselsByPan,
 } from '@/lib/data/falkland-squid-vessels';
@@ -116,6 +120,29 @@ describe('포클랜드 선박별 실적', () => {
     expect(companiesByMonth('all').reduce((n, c) => n + c.vessels, 0)).toBe(falklandVessels.length);
   });
 
+  it('선민수산과 현원수산이 강조 대상이다', () => {
+    expect(isFocusCompany('선민수산')).toBe(true);
+    expect(isFocusCompany('현원수산')).toBe(true);
+    expect(isFocusCompany('정일산업')).toBe(false);
+    expect(focusCompanyTag('선민수산')).toBe('선민');
+    const focus = focusSummaries('all');
+    expect(focus.map((row) => row.name)).toEqual(['선민수산', '현원수산']);
+    const sunmin = focus.find((row) => row.name === '선민수산');
+    const hyunwon = focus.find((row) => row.name === '현원수산');
+    expect(sunmin?.vessels).toBe(4);
+    expect(sunmin?.pan).toBe(35226 + 34868 + 30645 + 27786);
+    expect(hyunwon?.vessels).toBe(1);
+    expect(hyunwon?.pan).toBe(0);
+  });
+
+  it('이름이 겹치는 108은해는 축에 회사가 붙는다', () => {
+    const twins = falklandVessels.filter((v) => v.name === '108은해');
+    expect(twins).toHaveLength(2);
+    const labels = twins.map((v) => vesselAxisLabel(v));
+    expect(labels).toEqual(expect.arrayContaining(['108은해(선민)', '108은해(현원)']));
+    expect(new Set(labels).size).toBe(2);
+  });
+
   it('선박 차트에 어기 월 칩이 있다', () => {
     const html = renderToStaticMarkup(
       React.createElement(FalklandMonthProvider, null, React.createElement(FalklandVesselChart)),
@@ -124,5 +151,10 @@ describe('포클랜드 선박별 실적', () => {
     expect(html).toContain('12월');
     expect(html).toContain('5월');
     expect(html).toContain('aria-pressed');
+    expect(html).toContain('선민수산');
+    expect(html).toContain('현원수산');
+    expect(html).toContain('휴어');
+    expect(html).toContain('강조 회사');
+    expect(html).toContain('0판');
   });
 });

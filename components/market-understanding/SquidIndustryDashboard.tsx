@@ -168,7 +168,7 @@ const SQUID_BASE_SLOTS: Record<string, ChartSlot[]> = {
     {
       title: '선박별 누계 물량 (판)',
       caption:
-        '30척이 한 어기에 올린 물량이다. 1위 601다가호 51,074판과 최하위 102AG 25,791판 사이가 두 배다. 공개 통계로는 이 층위가 나오지 않는다.',
+        '30척이 한 어기에 올린 물량이다. 진한 장미색이 선민수산·현원수산 소속이다. 1위 601다가호 51,074판과 최하위 실적선 사이가 두 배다.',
       telemetry: FK_SYNC,
       span: 'full' as const,
       render: () => <FalklandVesselChart />,
@@ -178,7 +178,7 @@ const SQUID_BASE_SLOTS: Record<string, ChartSlot[]> = {
     {
       title: '회사별 선단 규모와 물량',
       caption:
-        '막대가 물량, 선이 보유 척수다. 둘이 나란히 가지 않는다 — 배를 많이 가진 회사가 반드시 많이 잡지 않는다. 원본 회사 집계에 한 회사가 빠져 있어 선박에서 다시 세웠다.',
+        '막대가 물량, 선이 보유 척수다. 진한 장미색이 선민수산·현원수산이다. 현원수산은 0판이라 막대가 없어도 칩과 축에 남아 있다.',
       telemetry: FK_SYNC,
       render: () => <FalklandCompanyChart />,
       cockpitExtra: () => <FalklandCompanyStats />,
