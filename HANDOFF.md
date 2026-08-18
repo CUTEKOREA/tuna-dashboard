@@ -1,3 +1,11 @@
+> 🚀 **2026-08-18 18:15 KST — 참치 시장이해 선단 DB 팔레트 라이브 배포** [Grok]:
+> - PR [#661](https://github.com/CUTEKOREA/tuna-dashboard/pull/661) squash `a5007352`. PR Gate `32119827623` 성공. main Gate `32120160138` 성공. Freshness `32120159995` 성공.
+> - Vercel production `dpl_63QteeCXnMLUUinBc3ynBAHvrRsF` READY · alias `https://leedonggun.co.kr` · region `icn1` · SHA `a5007352`.
+> - 라이브 `/tuna-industry` 자원·해역: WCPFC `#3b82f6` · IOTC `#10b981` · IATTC `#f59e0b` · ICCAT `#ef4444`. 가로 넘침 0.
+> - 이번 배포 런타임 error/fatal 0건. 열린 탭은 하드 리프레시.
+>
+> 마지막 업데이트: 2026-08-18 18:15 KST [Grok]
+
 > 🎨 **2026-08-18 — 참치 시장이해에 선단 DB 팔레트 적용** [Grok]:
 > - worktree `tuna-industry-palette` · `feat/tuna-industry-palette`. 사용자 배포 요청.
 > - 항구 = `HUB_ID`, 기구 = `RFMO_ID`. 종 집은 `tuna-chart-colors` 유지. 한국 강조는 대비 3:1 장미.
