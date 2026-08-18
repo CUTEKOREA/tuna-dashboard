@@ -96,11 +96,11 @@ describe('SEIN VENUS unloading data', () => {
     });
   });
 
-  it('matches the eight daily reports through August 17 without duplicating the date', () => {
+  it('matches the nine daily reports through August 18 without duplicating the date', () => {
     const db = loadDb();
     const reports = db.unloading_reports.filter((item) => item.vessel_id === 'sein-venus');
 
-    expect(reports.map((item) => item.report_date)).toEqual(['8/7', '8/8', '8/10', '8/11', '8/13', '8/14', '8/15', '8/17']);
+    expect(reports.map((item) => item.report_date)).toEqual(['8/7', '8/8', '8/10', '8/11', '8/13', '8/14', '8/15', '8/17', '8/18']);
     expect(reports.map((item) => item.work_time)).toEqual([
       '10:10 ~ 19:00',
       '08:10 ~ 13:00',
@@ -110,9 +110,10 @@ describe('SEIN VENUS unloading data', () => {
       '08:00 ~ 18:00',
       '08:10 ~ 17:00',
       '08:10 ~ 16:30',
+      '08:10 ~ 15:40',
     ]);
-    expect(reports.map((item) => item.daily_amount)).toEqual([174.64, 109.07, 331.47, 462.81, 159.59, 424.78, 350.74, 312.57]);
-    expect(reports.map((item) => item.cumulative_amount)).toEqual([174.64, 283.71, 615.18, 1077.99, 1237.58, 1662.36, 2013.1, 2325.67]);
+    expect(reports.map((item) => item.daily_amount)).toEqual([174.64, 109.07, 331.47, 462.81, 159.59, 424.78, 350.74, 312.57, 339.73]);
+    expect(reports.map((item) => item.cumulative_amount)).toEqual([174.64, 283.71, 615.18, 1077.99, 1237.58, 1662.36, 2013.1, 2325.67, 2665.4]);
     expect(reports.map((item) => item.species_amounts)).toEqual([
       { SJ: 150.34, YF: 24.3 },
       { SJ: 104.17, YF: 4.9 },
@@ -122,58 +123,61 @@ describe('SEIN VENUS unloading data', () => {
       { SJ: 368.08, YF: 56.7 },
       { SJ: 318.14, YF: 32.6 },
       { SJ: 279.77, YF: 32.8 },
+      { SJ: 170.85, YF: 168.88 },
     ]);
     for (const report of reports) {
       expect(report.species_amounts!.SJ + report.species_amounts!.YF).toBeCloseTo(report.daily_amount, 6);
     }
-    expect(reports.reduce((sum, item) => sum + item.daily_amount, 0)).toBeCloseTo(2325.67, 6);
-    expect(reports.at(-1)!.cumulative_amount - reports.at(-2)!.cumulative_amount).toBeCloseTo(312.57, 6);
-    expect(3275 - reports.at(-1)!.cumulative_amount).toBeCloseTo(949.33, 6);
+    expect(reports.reduce((sum, item) => sum + item.daily_amount, 0)).toBeCloseTo(2665.4, 6);
+    expect(reports.at(-1)!.cumulative_amount - reports.at(-2)!.cumulative_amount).toBeCloseTo(339.73, 6);
+    expect(3275 - reports.at(-1)!.cumulative_amount).toBeCloseTo(609.6, 6);
 
     const latest = reports.at(-1)!;
-    expect(latest.target_holds).toBe('N/STAR(#2-C:201.620), S/SPR(#4-C:97.500), N/SUN(#4-C:13.450)');
-    expect(latest.consignee).toBe('TUM · ISA');
-    expect(latest.remaining_amount).toBeCloseTo(949.33, 6);
-    expect(latest.adjusted_remaining_amount).toBeCloseTo(970.85, 6);
-    expect(latest.daily_adjustment_amount).toBeCloseTo(22.25, 6);
-    expect(latest.cumulative_adjustment_amount).toBeCloseTo(21.52, 6);
+    expect(latest.target_holds).toBe('N/STAR(#2-C:130.880), N/SUN(#3-C:55.770,#4-C:153.080)');
+    expect(latest.consignee).toBe('TUM · GFF');
+    expect(latest.remaining_amount).toBeCloseTo(609.6, 6);
+    expect(latest.adjusted_remaining_amount).toBeCloseTo(635.69, 6);
+    expect(latest.daily_adjustment_amount).toBeCloseTo(4.57, 6);
+    expect(latest.cumulative_adjustment_amount).toBeCloseTo(26.09, 6);
     expect(latest.allocations).toEqual([
       {
         consignee: 'TUM',
-        amount: 201.62,
+        amount: 186.65,
         loads: [
-          { source_vessel: 'N/STAR', hatch: '#2-C', amount: 201.62 },
+          { source_vessel: 'N/STAR', hatch: '#2-C', amount: 130.88 },
+          { source_vessel: 'N/SUN', hatch: '#3-C', amount: 55.77 },
         ],
       },
       {
-        consignee: 'ISA',
-        amount: 110.95,
+        consignee: 'GFF',
+        amount: 153.08,
         loads: [
-          { source_vessel: 'S/SPR', hatch: '#4-C', amount: 97.5 },
-          { source_vessel: 'N/SUN', hatch: '#4-C', amount: 13.45 },
+          { source_vessel: 'N/SUN', hatch: '#4-C', amount: 153.08 },
         ],
       },
     ]);
     const allocationLoads = latest.allocations!.flatMap((allocation) => allocation.loads);
-    expect(latest.allocations!.reduce((sum, allocation) => sum + allocation.amount, 0)).toBeCloseTo(312.57, 6);
-    expect(allocationLoads.reduce((sum, load) => sum + load.amount, 0)).toBeCloseTo(312.57, 6);
-    expect(allocationLoads.filter((load) => load.hatch.startsWith('#2-')).reduce((sum, load) => sum + load.amount, 0)).toBeCloseTo(201.62, 6);
-    expect(allocationLoads.filter((load) => load.hatch.startsWith('#4-')).reduce((sum, load) => sum + load.amount, 0)).toBeCloseTo(110.95, 6);
+    expect(latest.allocations!.reduce((sum, allocation) => sum + allocation.amount, 0)).toBeCloseTo(339.73, 6);
+    expect(allocationLoads.reduce((sum, load) => sum + load.amount, 0)).toBeCloseTo(339.73, 6);
+    expect(allocationLoads.filter((load) => load.hatch.startsWith('#2-')).reduce((sum, load) => sum + load.amount, 0)).toBeCloseTo(130.88, 6);
+    expect(allocationLoads.filter((load) => load.hatch.startsWith('#3-')).reduce((sum, load) => sum + load.amount, 0)).toBeCloseTo(55.77, 6);
+    expect(allocationLoads.filter((load) => load.hatch.startsWith('#4-')).reduce((sum, load) => sum + load.amount, 0)).toBeCloseTo(153.08, 6);
     expect(latest.observations).toEqual([
-      { source_vessel: 'N/STAR', hatch: '#2-C', temperatures_c: [-21, -23] },
-      { source_vessel: 'S/SPR', hatch: '#4-C', temperatures_c: [-22, -23] },
+      { source_vessel: 'N/STAR', hatch: '#2-C', temperatures_c: [-22, -23] },
+      { source_vessel: 'N/SUN', hatch: '#3-C', temperatures_c: [-22, -23] },
       { source_vessel: 'N/SUN', hatch: '#4-C', temperatures_c: [-22, -23] },
     ]);
     expect(latest.quality_notes).not.toContain('300톤');
     expect(latest.next_day).toEqual({
       kind: 'work',
-      date: '8/18',
-      planned_mt: 343,
+      date: '8/19',
+      planned_mt: 280,
     });
-    expect(latest.source_sha256).toBe('e613b9c30622067e4c1115ae4a5233d8da7654871c95ab9ace9f8e4796c584a1');
-    expect(latest.source_workbook_sha256).toBe('60e054c9f9ea485c5c0f833e3a89c969598aac355c550b3a2e6d753dc751d84b');
-    expect(latest.status_workbook_sha256).toBe('bcd1d07d745d75a93f9c17512159e01c1b95acaed6d7bc8e08875aa60d2af22e');
-    expect(latest.species_amounts).toEqual({ SJ: 279.77, YF: 32.8 });
+    expect(latest.source_sha256).toBe('aafd0069803c8a2d115c33a490e5f04f85261c10886ec309c3bc2360da58ee59');
+    expect(latest.source_workbook_sha256).toBe('669a59d177710d341604a174288a0c0cec777e5c1f1b6c81393d6a6203fc78c3');
+    expect(latest.status_workbook_sha256).toBe('f3da391273b36b06cfa77bf24e552e7dfed1629090867ab17afea8ec449a5ba7');
+    expect(latest.species_amounts).toEqual({ SJ: 170.85, YF: 168.88 });
+    expect(reports.filter((item) => item.report_date === '8/18')).toHaveLength(1);
     expect(reports.filter((item) => item.report_date === '8/17')).toHaveLength(1);
     expect(reports.filter((item) => item.report_date === '8/15')).toHaveLength(1);
     expect(reports.filter((item) => item.report_date === '8/14')).toHaveLength(1);
@@ -219,7 +223,7 @@ describe('SEIN VENUS unloading data', () => {
     expect(reports[2].quality_notes).toContain('8/11 약 420톤');
   });
 
-  it('uses the workbook-confirmed August 17 species split without inventing hold-level species', () => {
+  it('uses the workbook-confirmed August 18 species split without inventing hold-level species', () => {
     const db = loadDb();
     const vessel = db.unloading_vessels.find((item) => item.vessel_id === 'sein-venus')!;
     const species = db.unloading_species.filter((item) => item.vessel_id === 'sein-venus');
@@ -230,58 +234,58 @@ describe('SEIN VENUS unloading data', () => {
         species_id: 'SJ',
         species_name: '가다랑어·눈다랑어 합산',
         reported_amount: 2844,
-        actual_amount: 1995.27,
+        actual_amount: 2166.12,
       }),
       expect.objectContaining({
         species_id: 'YF',
         species_name: '황다랑어',
         reported_amount: 431,
-        actual_amount: 330.4,
+        actual_amount: 499.28,
       }),
     ]);
     expect(species.reduce((sum, item) => sum + item.reported_amount, 0)).toBe(3275);
-    expect(species.reduce((sum, item) => sum + item.actual_amount, 0)).toBeCloseTo(2325.67, 6);
+    expect(species.reduce((sum, item) => sum + item.actual_amount, 0)).toBeCloseTo(2665.4, 6);
     expect(vessel.unclassified_actual_amount).toBe(0);
-    expect(vessel.species_breakdown_as_of).toBe('2026-08-17');
+    expect(vessel.species_breakdown_as_of).toBe('2026-08-18');
     expect(vessel.species_breakdown_note).toContain('일일 결과보고 XLS');
-    expect(vessel.species_breakdown_note).toContain('8/17');
+    expect(vessel.species_breakdown_note).toContain('8/18');
     expect(vessel.hold_species_breakdown_available).toBe(false);
-    expect(latestReport.species_amounts).toEqual({ SJ: 279.77, YF: 32.8 });
+    expect(latestReport.species_amounts).toEqual({ SJ: 170.85, YF: 168.88 });
     expect(species.reduce((sum, item) => sum + item.actual_amount, 0)).toBeCloseTo(latestReport.cumulative_amount, 6);
   });
 
-  it('returns the structured August 17 facts through the current API', async () => {
+  it('returns the structured August 18 facts through the current API', async () => {
     const response = await getUnloadingData();
     const payload = await response.json();
     const vessel = payload.data['sein-venus'];
     const latest = vessel.timeline.at(-1);
 
-    expect(vessel.actualTotal).toBeCloseTo(2325.67, 6);
+    expect(vessel.actualTotal).toBeCloseTo(2665.4, 6);
     expect(vessel.unclassifiedActual).toBe(0);
-    expect(vessel.speciesBreakdownAsOf).toBe('2026-08-17');
+    expect(vessel.speciesBreakdownAsOf).toBe('2026-08-18');
     expect(vessel.holdSpeciesBreakdownAvailable).toBe(false);
     expect(vessel.species).toEqual([
-      expect.objectContaining({ id: 'SJ', actual: 1995.27 }),
-      expect.objectContaining({ id: 'YF', actual: 330.4 }),
+      expect.objectContaining({ id: 'SJ', actual: 2166.12 }),
+      expect.objectContaining({ id: 'YF', actual: 499.28 }),
     ]);
-    expect(latest.date).toBe('8/17');
-    expect(latest.remainingAmount).toBeCloseTo(949.33, 6);
-    expect(latest.adjustedRemainingAmount).toBeCloseTo(970.85, 6);
-    expect(latest.dailyAdjustmentAmount).toBeCloseTo(22.25, 6);
-    expect(latest.cumulativeAdjustmentAmount).toBeCloseTo(21.52, 6);
+    expect(latest.date).toBe('8/18');
+    expect(latest.remainingAmount).toBeCloseTo(609.6, 6);
+    expect(latest.adjustedRemainingAmount).toBeCloseTo(635.69, 6);
+    expect(latest.dailyAdjustmentAmount).toBeCloseTo(4.57, 6);
+    expect(latest.cumulativeAdjustmentAmount).toBeCloseTo(26.09, 6);
     expect(latest.nextDay).toEqual({
       kind: 'work',
-      date: '8/18',
+      date: '8/19',
       reason: null,
       resumeDate: null,
-      plannedMt: '343',
+      plannedMt: '280',
     });
     expect(latest.allocations).toHaveLength(2);
     expect(latest.observations).toHaveLength(3);
-    expect(latest.speciesAmounts).toEqual({ SJ: 279.77, YF: 32.8 });
+    expect(latest.speciesAmounts).toEqual({ SJ: 170.85, YF: 168.88 });
   });
 
-  it('builds the replay series from exact daily workbook species amounts through August 17', async () => {
+  it('builds the replay series from exact daily workbook species amounts through August 18', async () => {
     const response = await getUnloadingData();
     const payload = await response.json();
     const vessel = payload.data['sein-venus'];
@@ -295,10 +299,11 @@ describe('SEIN VENUS unloading data', () => {
       { date: '8/14', SJ: 1397.36, YF: 265 },
       { date: '8/15', SJ: 1715.5, YF: 297.6 },
       { date: '8/17', SJ: 1995.27, YF: 330.4 },
+      { date: '8/18', SJ: 2166.12, YF: 499.28 },
     ]);
   });
 
-  it('renders the August 17 office report from structured consignee and observation facts', async () => {
+  it('renders the August 18 office report from structured consignee and observation facts', async () => {
     const response = await getUnloadingData();
     const payload = await response.json();
     const vessel = payload.data['sein-venus'];
@@ -309,18 +314,17 @@ describe('SEIN VENUS unloading data', () => {
     }));
 
     expect(markup).toContain('TUM:');
-    expect(markup).toContain('201.620 MT');
-    expect(markup).toContain('ISA:');
-    expect(markup).toContain('110.950 MT');
+    expect(markup).toContain('186.650 MT');
+    expect(markup).toContain('GFF:');
+    expect(markup).toContain('153.080 MT');
     expect(markup).toContain('N/STAR:#2-C');
-    expect(markup).toContain('S/SPR:#4-C');
+    expect(markup).toContain('N/SUN:#3-C');
     expect(markup).toContain('N/SUN:#4-C');
     expect(markup).toContain('N/STAR(#2-C)');
-    expect(markup).toContain('-21.0℃ ~ -23.0℃');
     expect(markup).toContain('-22.0℃ ~ -23.0℃');
-    expect(markup).toContain('명일(8/18)은 약 343톤 하역 작업 예정입니다.');
+    expect(markup).toContain('명일(8/19)은 약 280톤 하역 작업 예정입니다.');
     expect(markup).not.toContain('300톤');
-    expect(markup).not.toContain('* SJ:                312.570 MT');
+    expect(markup).not.toContain('* SJ:                339.730 MT');
   });
 
   it('wires the stowage plan and defaults the detail view to the active vessel', () => {
