@@ -1,3 +1,13 @@
+> 📘 **2026-08-18 14:36 KST — `/panofi` 2026년 7월 추정실적 원장 반영** [Grok]:
+> - worktree `panofi-jul-actuals` · `data/panofi-jul-actuals`. 배포는 #635.
+> - 원장 `2. 추정실적 (2026년 7월).xlsx` SHA `d6838996…`. 1~6월 월별 셀은 수정 없음. 7월 한 달만 추가.
+> - 히어로 시계는 원장 Ⅶ행: 생산 29,487톤 · 판매 24,286톤 · 순손익 −5.62백만 · BEP $1,558. 전략보고 H1(22,526 · −6.99백만 · $1,473)은 빈티지로 분리.
+> - 영업이익 누계 +80만(부호 반전). 세전 흑자 디스커버러·퀸. 마스터만 적자 확대. 어종 합−생산 차 2,762톤은 맞추지 않음.
+> - 7개월 연환산 없음. 유동성(7월 pptx)은 이번 범위 밖.
+> - 작성=Grok. 검증은 다른 에이전트.
+
+> 마지막 업데이트: 2026-08-18 [Grok]
+
 > 🚀 **2026-08-18 14:48 KST — 오징어 포클랜드 월 필터 라이브 배포** [Grok]:
 > - PR [#636](https://github.com/CUTEKOREA/tuna-dashboard/pull/636) squash `bb983740`. PR Gate `32103777659` 성공. main Gate `32104019599` 성공. Freshness `32104019559` 성공.
 > - Vercel production `dpl_9Fxj86U5j2Rt1Xg99SGALwsSAKPa` READY · alias `https://leedonggun.co.kr` · region `icn1` · SHA `bb983740`.
@@ -11,7 +21,6 @@
 > - 원본에 선박마다 12~5월 판수가 있다. 08단계 선박·회사 차트가 같은 달을 본다.
 > - 기본은 어기 전체. 월별 kg 는 없어서 환산하지 않는다.
 >
-> 마지막 업데이트: 2026-08-18 [Grok]
 
 > 🚀 **2026-08-18 14:28 KST — 오징어 선단 DB 팔레트 라이브 배포** [Grok]:
 > - PR [#633](https://github.com/CUTEKOREA/tuna-dashboard/pull/633) squash `23e2c441`. PR Gate `32102462105` 성공. main Gate `32102711118` 성공. Freshness `32102711113` 성공.

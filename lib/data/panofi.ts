@@ -141,17 +141,12 @@ export const fleetTotals = {
 
 /* -------------------------------------------------------------- 실적·시나리오 */
 
-/** 연도별 실적(백만불). 2026 은 상반기 누계다 — 축 라벨에 반드시 표기한다. */
-export const annualSeries = profile.performance.annual.map((a) => ({
-  label: a.half ? `${a.year} 상반기` : String(a.year),
-  year: a.year,
-  매출: a.revenueMusd,
-  영업이익: a.operatingMusd,
-  순이익: a.netMusd,
-  isPartial: Boolean(a.half),
-}));
+/** 전략보고 연도 실적. 2026 H1 은 빈티지로만 남기고 화면 축은 원장 YTD 를 쓴다. */
+const strategyAnnual = profile.performance.annual.filter((a) => a.year !== 2026);
 
+/** 전략보고 2026 상반기 빈티지. 히어로·개관 KPI 에 쓰지 않는다. */
 export const h1 = profile.performance.h1_2026;
+/** 전략보고 H1 손익분기. 원장 누계 BEP 와 병기한다. */
 export const bep = profile.performance.bep;
 export const scenarios = profile.h2Scenarios;
 export const sensitivity = profile.sensitivity;
@@ -327,6 +322,72 @@ export const tradeLadderGap = (() => {
 /* --------------------------------------------------- 추정실적 xlsx (월별·척별) */
 
 export const actuals = actualsRaw;
+
+function yoyPct(now: number | null | undefined, prior: number | null | undefined): number | null {
+  if (now == null || prior == null || prior === 0) return null;
+  return Math.round(((now - prior) / Math.abs(prior)) * 1000) / 10;
+}
+
+/**
+ * 원장 좌측 누계 블록. 히어로·개관·손익 탭의 단일 시계.
+ * 전략보고 h1_2026(-6.99백만, 22,526톤)과 섞지 않는다.
+ */
+export const ytd = (() => {
+  const s = actuals.summary.sales;
+  const prior = actuals.summary.prior;
+  const months = actuals.summary.months ?? actuals.monthly.length;
+  const pretaxProfit = actuals.byVessel.vessels.filter((v) => (v.세전이익 ?? 0) > 0);
+  return {
+    label: `2026년 1~${months}월`,
+    months,
+    periodLabel: actuals.summary.periodLabel,
+    priorPeriodLabel: actuals.summary.priorPeriodLabel,
+    productionT: Math.round(s.생산수량MT ?? 0),
+    productionTRaw: s.생산수량MT,
+    salesT: Math.round(s.수량MT ?? 0),
+    salesTRaw: s.수량MT,
+    priceUsdPerT: Math.round(s.평균단가 ?? 0),
+    revenueKusd: Math.round((s.매출액 ?? 0) / 1000),
+    grossProfitKusd: Math.round((s.매출총이익 ?? 0) / 1000),
+    operatingKusd: Math.round((s.영업이익 ?? 0) / 1000),
+    netKusd: Math.round((s.당기순이익 ?? 0) / 1000),
+    taxKusd: Math.round((s.법인세비용 ?? 0) / 1000),
+    financeKusd: Math.round((s.금융비용 ?? 0) / 1000),
+    costRatioPct: s.원가율 == null ? null : Math.round(s.원가율 * 1000) / 10,
+    costRatioPrevPct: prior.원가율 == null ? null : Math.round(prior.원가율 * 1000) / 10,
+    inventoryT: Math.round(s.기말재고MT ?? 0),
+    inventoryKusd: Math.round((s.기말재고액 ?? 0) / 1000),
+    ledgerBepUsdPerT: Math.round(s.bep어가 ?? 0),
+    strategyBepUsdPerT: bep.priceUsdPerT,
+    salesYoyPct: yoyPct(s.수량MT, prior.수량MT),
+    productionYoyPct: yoyPct(s.생산수량MT, prior.생산수량MT),
+    revenueYoyPct: yoyPct(s.매출액, prior.매출액),
+    grossProfitYoyPct: yoyPct(s.매출총이익, prior.매출총이익),
+    lastMonth: actuals.monthly[actuals.monthly.length - 1] ?? null,
+    pretaxProfitNames: pretaxProfit.map((v) => v.name),
+    catchMixGapT: Math.round((s.생산수량MT ?? 0) - actuals.meta.catchMixTotalMT),
+  };
+})();
+
+/** 연도별 실적(백만불). 2026 은 원장 누계이며 축 라벨에 기간을 박는다. */
+export const annualSeries = [
+  ...strategyAnnual.map((a) => ({
+    label: a.half ? `${a.year} 상반기` : String(a.year),
+    year: a.year,
+    매출: a.revenueMusd,
+    영업이익: a.operatingMusd,
+    순이익: a.netMusd,
+    isPartial: Boolean(a.half),
+  })),
+  {
+    label: `2026 1~${ytd.months}월`,
+    year: 2026,
+    매출: Math.round((actuals.summary.sales.매출액 ?? 0) / 1e6),
+    영업이익: Math.round(((actuals.summary.sales.영업이익 ?? 0) / 1e6) * 100) / 100,
+    순이익: Math.round(((actuals.summary.sales.당기순이익 ?? 0) / 1e6) * 100) / 100,
+    isPartial: true,
+  },
+];
 
 /** 월별 손익(천 달러). 원가 배분 변동성이 커서 추세로만 읽고 판단은 누계로 한다. */
 export const monthlySeries = actuals.monthly.map((m) => ({
