@@ -405,6 +405,28 @@ describe('dashboard registry', () => {
     expect(squidDash).toContain('SQUID_ROLE.volume');
     expect(squidDash).not.toContain('#7c3aed');
     expect(squidColors).not.toContain('#0f766e');
+    const mackerelColors = readFileSync(join(process.cwd(), 'lib/mackerel-chart-colors.ts'), 'utf8');
+    const mackerelDash = readFileSync(
+      join(process.cwd(), 'components/market-understanding/MackerelIndustryDashboard.tsx'),
+      'utf8',
+    );
+    const commodityCharts = readFileSync(
+      join(process.cwd(), 'components/market-understanding/CommodityCharts.tsx'),
+      'utf8',
+    );
+    const industryCss = readFileSync(
+      join(process.cwd(), 'components/market-understanding/TunaIndustryDashboard.module.css'),
+      'utf8',
+    );
+    expect(mackerelColors).toContain("from '@/lib/chart-palette'");
+    expect(mackerelColors).toContain('HUB_ID.sey');
+    expect(mackerelDash).toContain('MACKEREL_ACCENT');
+    expect(mackerelDash).not.toContain('#0e7490');
+    expect(commodityCharts).toContain('MACKEREL_ROLE');
+    expect(commodityCharts).not.toMatch(/고등어: \{ base: '#0e7490'/);
+    expect(commodityCharts).not.toContain('#e11d48');
+    expect(industryCss).toContain('--mu-accent: #0369a1');
+    expect(industryCss).not.toMatch(/data-commodity='mackerel'\] \{[^}]*#0e7490/);
     expect(globalsSource).toContain('--w-sky-400: #38bdf8;');
     expect(globalsSource).toContain('--w-emerald-500: #10b981;');
   });

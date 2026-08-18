@@ -75,15 +75,15 @@
 }
 
 .page[data-commodity='mackerel'] {
-  --mu-accent: #38bdf8;
-  --mu-accent-deep: #0e7490;
-  --mu-hover: rgba(14, 116, 144, 0.1);
+  --mu-accent: #0369a1;
+  --mu-accent-deep: #075985;
+  --mu-hover: rgba(3, 105, 161, 0.1);
 }
 
 :global([data-v3='light']) .page[data-commodity='mackerel'] {
-  --mu-accent: #0e7490;
-  --mu-accent-deep: #155e75;
-  --mu-hover: rgba(14, 116, 144, 0.08);
+  --mu-accent: #0369a1;
+  --mu-accent-deep: #075985;
+  --mu-hover: rgba(3, 105, 161, 0.08);
 }
 
 .page[data-commodity='whelk'] {

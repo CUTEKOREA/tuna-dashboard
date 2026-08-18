@@ -17,6 +17,7 @@ import { getMackerelCompanyResearch } from '@/lib/data/valuechain-companies';
 
 import { getMackerelIndustryData } from '@/lib/data/commodity-industry';
 import { seriesRoles, seriesUnits, seriesWindows } from '@/lib/data/mackerel-country-series';
+import { MACKEREL_ACCENT } from '@/lib/mackerel-chart-colors';
 import {
   MACKEREL_BRIEFING_POINTS,
   MACKEREL_NARRATIVES,
@@ -154,7 +155,7 @@ export const MACKEREL_CHART_SLOTS: Record<string, ChartSlot[]> = {
     {
       title: '수입 창구 물량 (톤)',
       caption:
-        '청록이 030354 냉동, 호박색이 0304895000 필렛이다. 노르웨이만 강조한 이유는 두 창구가 같이 크기 때문이다. 아이슬란드 0은 어획이 없다는 뜻이 아니라 이 세번 추출에 이름이 없다는 뜻이다. 2026년 1~7월 제품중량이라 위 생산 통계·04단계 1~5월 표와 더할 수 없다.',
+        '남색이 030354 냉동, 호박색이 0304895000 필렛이다. 노르웨이만 강조한 이유는 두 창구가 같이 크기 때문이다. 아이슬란드 0은 어획이 없다는 뜻이 아니라 이 세번 추출에 이름이 없다는 뜻이다. 2026년 1~7월 제품중량이라 위 생산 통계·04단계 1~5월 표와 더할 수 없다.',
       telemetry: SERIES_SYNC,
       render: () => <MackerelSeriesWindowsChart />,
       cockpitExtra: () => (
@@ -189,12 +190,12 @@ const SPEC: CommoditySpec = {
   title: '고등어',
   subtitle:
     '고등어 산업 해부 · 어법이 축이 아닌 품목 — 크기 등급·원산지·수입 창구 5단계와 그것을 관통하는 종의 문제',
-  accent: '#0e7490',
+  accent: MACKEREL_ACCENT,
   primaryKpi: {
     label: '한국 고등어속 어획량',
     value: Number(DATA.한국어획._meta.합계 ?? 0),
     unit: '(톤)',
-    accent: '#0e7490',
+    accent: MACKEREL_ACCENT,
   },
   secondaryKpis: [
     {
