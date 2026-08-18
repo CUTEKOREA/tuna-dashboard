@@ -48,6 +48,79 @@ export type Serie = {
   signColor?: [string, string]
 }
 
+const TICK_SIZE = 10
+
+function num(v: unknown): number {
+  return typeof v === 'number' && Number.isFinite(v) ? v : 0
+}
+
+/** 틱 문자열 폭. Recharts 3 는 이 폭이 YAxis.width 를 넘으면 왼쪽이 잘린다. */
+export function measureTickPx(label: string, fontSize = TICK_SIZE, pad = 12): number {
+  let w = 0
+  for (const ch of label) {
+    const code = ch.codePointAt(0) ?? 0
+    if (code >= 0x1F300) w += fontSize * 1.2
+    else if (code >= 0x2E80) w += fontSize
+    else w += fontSize * 0.72
+  }
+  return Math.ceil(w + pad)
+}
+
+function numericExtent(
+  data: Record<string, unknown>[],
+  series: Serie[],
+  side: 'left' | 'right',
+): { min: number; max: number } {
+  const cols = series.filter((s) => (s.axis ?? 'left') === side)
+  const stacks = new Map<string, string[]>()
+  const singles: string[] = []
+  for (const s of cols) {
+    if (s.stackId) {
+      const keys = stacks.get(s.stackId) ?? []
+      keys.push(s.key)
+      stacks.set(s.stackId, keys)
+    } else {
+      singles.push(s.key)
+    }
+  }
+  let min = 0
+  let max = 0
+  for (const row of data) {
+    for (const keys of stacks.values()) {
+      const sum = keys.reduce((n, key) => n + num(row[key]), 0)
+      min = Math.min(min, sum)
+      max = Math.max(max, sum)
+    }
+    for (const key of singles) {
+      const value = num(row[key])
+      min = Math.min(min, value)
+      max = Math.max(max, value)
+    }
+  }
+  return { min, max }
+}
+
+function niceCeil(n: number): number {
+  const abs = Math.abs(n)
+  if (abs === 0) return 0
+  const exp = 10 ** Math.floor(Math.log10(abs))
+  return Math.sign(n) * Math.ceil(abs / exp) * exp
+}
+
+/** 포맷된 틱이 들어가도록 Y축 폭을 잰다. 고정 58px 는 `20,000천불` 을 자른다. */
+export function yAxisWidthForFmt(
+  data: Record<string, unknown>[],
+  series: Serie[],
+  fmt?: (v: number) => string,
+  side: 'left' | 'right' = 'left',
+): number {
+  const { min, max } = numericExtent(data, series, side)
+  const values = [min, 0, max, niceCeil(max), niceCeil(min)]
+  const samples = values.map((v) => (fmt ? fmt(v) : String(Math.round(v))))
+  const widest = Math.max(...samples.map((label) => measureTickPx(label)))
+  return Math.min(96, Math.max(56, widest))
+}
+
 type Props = {
   data: Record<string, unknown>[]
   x: string
@@ -94,8 +167,10 @@ export default function Chart({
 }: Props) {
   const tok = useTokens()
   const c = (v: string) => tok[v] ?? v
-  const TICK = { fontSize: 10, fontFamily: 'var(--cosmo-mono)', fill: c('var(--cosmo-muted)') }
+  const TICK = { fontSize: TICK_SIZE, fontFamily: 'var(--cosmo-mono)', fill: c('var(--cosmo-muted)') }
   const hasRight = series.some((s) => s.axis === 'right')
+  const leftWidth = yAxisWidthForFmt(data, series, yFmt, 'left')
+  const rightWidth = hasRight ? yAxisWidthForFmt(data, series, y2Fmt, 'right') : 54
   return (
     <div className="chart" style={{ height }}>
       <ResponsiveContainer
@@ -117,13 +192,13 @@ export default function Chart({
             <>
               <XAxis dataKey={x} tick={TICK} tickLine={false} axisLine={{ stroke: c('var(--cosmo-line)') }}
                 interval={xInterval ?? 'preserveStartEnd'} minTickGap={12} />
-              <YAxis yAxisId="left" tick={TICK} tickLine={false} axisLine={false} width={58}
+              <YAxis yAxisId="left" tick={TICK} tickLine={false} axisLine={false} width={leftWidth}
                 tickFormatter={yFmt} domain={domain}
                 label={yLabel ? { value: yLabel, position: 'insideTopLeft', offset: -2, style: TICK } : undefined} />
             </>
           )}
           {!horizontal && hasRight && (
-            <YAxis yAxisId="right" orientation="right" tick={TICK} tickLine={false} axisLine={false} width={54}
+            <YAxis yAxisId="right" orientation="right" tick={TICK} tickLine={false} axisLine={false} width={rightWidth}
               tickFormatter={y2Fmt}
               label={y2Label ? { value: y2Label, position: 'insideTopRight', offset: -2, style: TICK } : undefined} />
           )}

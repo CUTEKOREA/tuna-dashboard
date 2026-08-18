@@ -4,6 +4,13 @@
 > - **대형 함정 2건 기록**: ①Google Drive 스트리밍 파일을 생성기가 직접 읽으면 부분 읽기로 1~6월 null·SJ 시리즈가 전년 열로 오염되는 회귀 발생 — **생성기는 반드시 로컬 사본(--src)으로**. 반증 리뷰가 P0로 적발, 월별 무결성 가드(non-null+부문 합 검산) 신설. ②원본 월별 xlsx는 수식 아닌 값 파일 — openpyxl 시트 이식 안전. 원본에는 7월 시트 추가만 됨(무손상), 백업 scratchpad에 보존.
 > - 반영 절차 확립: 7월 파일 시트 이식 → 로컬 사본에서 `extract_cosmo --src` → JSON 3종 복사 → month 레코드 독립 대조 → verify. 8월분도 동일.
 
+> 📘 **2026-08-18 16:28 KST — `/panofi` 차트 왼쪽 Y축이 잘리던 것** [Grok]:
+> - 같은 브랜치 `fix/panofi-verdict-md`. 배포 전.
+> - Recharts 3 는 YAxis.width 밖으로 틱이 나가면 잘린다. 고정 58px 는 `8,000천불`·`20,000천불` 을 못 담았다.
+> - `yAxisWidthForFmt` 가 포맷된 틱 폭으로 축을 잰다. 로컬 선단·조업 1440: `8,000천불` 전부 보임.
+
+> 마지막 업데이트: 2026-08-18 16:28 KST [Grok]
+
 > 📘 **2026-08-18 15:49 KST — `/panofi` 판정문 `**굵게**` 가 별표로 보이던 것** [Grok]:
 > - worktree `squid-focus-companies` · `fix/panofi-verdict-md`. 배포 전.
 > - PFC 판정 JSON 의 `**일치하는 행동**` 은 굵게 쓰려던 마크다운인데 Callout 이 문자열을 그대로 그렸다.
