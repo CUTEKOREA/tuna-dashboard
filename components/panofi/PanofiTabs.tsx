@@ -25,6 +25,7 @@ import {
   fuelSeries,
   h1,
   headline,
+  ytd,
   importByPartner,
   industry,
   kpiSignals,
@@ -89,7 +90,7 @@ const C = {
 const SRC = {
   strategy: '「파노피 2026 상반기 평가·하반기 전략」(2026-07-29)',
   weekly: `「PANOFI 주간동향」 ${headline.weekCount}주 (${headline.rangeStart}~${headline.rangeEnd})`,
-  ledger: '「2. 추정실적 (2026년 6월).xlsx」 원장',
+  ledger: `「2. 추정실적 (2026년 ${ytd.months}월).xlsx」 원장`,
   board: '「PANOFI 월간보고」 pptx 5건 (1·2·4·5·7월)',
   comtrade: 'UN Comtrade public preview · 가나(reporter 288) 보고 기준',
   nlm: 'NotebookLM 「가나 중심 서아프리카 참치 비즈니스 분석」(소스 82건, 등급 B)',
@@ -103,10 +104,10 @@ export function HomeTab() {
     <>
       <Stats>
         <Stat k="가동 선망선" v={String(fleetTotals.activeCount)} unit="척" d={`총 ${num(fleetTotals.totalGt)} G/T`} />
-        <Stat k="상반기 생산" v={num(h1.productionT)} unit="톤" d={`전년비 ${h1.productionYoyPct}%`} tone="down" />
-        <Stat k="상반기 판매" v={num(h1.salesT)} unit="톤" d={`실현 어가 ${usd(h1.priceUsdPerT)}/톤`} tone="down" />
-        <Stat k="손익분기 어가" v={usd(bep.priceUsdPerT)} unit="/톤" d={`실현 대비 ${usd(h1.priceUsdPerT - bep.priceUsdPerT)}`} tone="down" />
-        <Stat k="상반기 순손익" v={kusd(h1.netKusd)} tone="down" d="총이익 소멸 + 이자 + 세무추징" />
+        <Stat k={`${ytd.label} 생산`} v={num(ytd.productionT)} unit="톤" d={`전년동기 ${ytd.productionYoyPct}%`} tone="down" />
+        <Stat k={`${ytd.label} 판매`} v={num(ytd.salesT)} unit="톤" d={`실현 어가 ${usd(ytd.priceUsdPerT)}/톤`} tone="down" />
+        <Stat k="원장 손익분기" v={usd(ytd.ledgerBepUsdPerT)} unit="/톤" d={`실현 대비 ${usd(ytd.priceUsdPerT - ytd.ledgerBepUsdPerT)} · 전략보고 H1 ${usd(ytd.strategyBepUsdPerT)}`} tone="down" />
+        <Stat k={`${ytd.label} 순손익`} v={kusd(ytd.netKusd)} tone="down" d="원장 Ⅶ행 · 이자·법인세 추징" />
         <Stat k="자금 과부족" v={kusd(receivables.cashShortfallKusd)} tone="down" d="코스모 합산 시 그룹 -3,000만불" />
       </Stats>
 
@@ -115,8 +116,8 @@ export function HomeTab() {
         <Panel
           span={12}
           title="매출과 손익"
-          unit="백만 달러 · 2026은 상반기 누계"
-          note="2025년은 영업이익 1,291만불로 기록 해였으나 금융비용 -676만불과 법인세로 순이익이 0 부근이었다. 영업으로 벌어 이자·세금으로 소진하는 구조가 만성이며 2026년엔 영업까지 적자로 꺾였다."
+          unit={`백만 달러 · 2026은 ${ytd.label} 누계`}
+          note={`2025년은 영업이익 1,291만불로 기록 해였으나 금융비용 -676만불과 법인세로 순이익이 0 부근이었다. ${ytd.label} 영업이익은 ${kusd(ytd.operatingKusd)}로 흑자이나 이자 ${kusd(ytd.financeKusd)}와 법인세 ${kusd(ytd.taxKusd)}가 순손익을 ${kusd(ytd.netKusd)}로 밀어냈다. 전략보고가 적은 상반기 순손익 ${kusd(h1.netKusd)}은 추징을 합친 H1 빈티지라 원장 Ⅶ행과 섞지 않는다.`}
           src={SRC.strategy}
         >
           <Chart
@@ -186,7 +187,7 @@ export function FleetTab() {
           span={6}
           title="세전이익 — 공통비 배부 후"
           unit="천 달러"
-          note="배부 전후로 순위가 뒤집히는 배가 있다. 어느 배를 줄일지 판단할 때는 반드시 배부 후를 본다. 상반기에는 일곱 척 모두 세전 적자다."
+          note={`배부 전후로 순위가 뒤집히는 배가 있다. 어느 배를 줄일지 판단할 때는 반드시 배부 후를 본다. ${ytd.label} 세전 흑자는 ${ytd.pretaxProfitNames.join('·') || '없다'}.`}
           src={`${SRC.ledger} 실적(생산) 시트`}
         >
           <Chart
@@ -201,10 +202,10 @@ export function FleetTab() {
           span={12}
           title="순위 역전"
           unit="직접마진 순위 대비 완전손익 순위"
-          note={`개별 총톤수는 회사 공개자료(sla.co.kr)와 ICCAT 등록부가 일치하는 값이며 7척 합 ${num(fleetTotals.totalGt)} G/T 다. 상반기 생산은 원장 실적(생산) 시트 기준으로 누계 ${orNA(actuals.byVessel.totals.생산량MT, (n) => num(Math.round(n)))}톤과 맞는다 — 전략보고의 어종·사이즈 배분 합계 ${num(actuals.meta.catchMixTotalMT)}톤과는 잡어·미배분만큼 벌어져 억지로 맞추지 않았다. 주간동향 원문에는 자사선 조업량이 없어(입출항·상태만 기재) 척별 생산은 원장에서만 온다.`}
+          note={`개별 총톤수는 회사 공개자료(sla.co.kr)와 ICCAT 등록부가 일치하는 값이며 7척 합 ${num(fleetTotals.totalGt)} G/T 다. ${ytd.label} 생산은 원장 실적(생산) 시트 기준으로 누계 ${orNA(actuals.byVessel.totals.생산량MT, (n) => num(Math.round(n)))}톤과 맞는다 — 어종·사이즈 배분 합계 ${num(actuals.meta.catchMixTotalMT)}톤과는 ${num(ytd.catchMixGapT)}톤 벌어져 억지로 맞추지 않았다. 주간동향 원문에는 자사선 조업량이 없어(입출항·상태만 기재) 척별 생산은 원장에서만 온다.`}
           src={`${SRC.strategy} §5-1 + ${SRC.ledger} + 선박 등록 제원(sla.co.kr·ICCAT)`}
         >
-          <Table head={['선박', '총톤수 (G/T)', '상반기 생산 (톤)', '직접마진 순위', '완전손익 순위', '변동', '세전이익 (달러)']}>
+          <Table head={['선박', '총톤수 (G/T)', `${ytd.label} 생산 (톤)`, '직접마진 순위', '완전손익 순위', '변동', '세전이익 (달러)']}>
             {marginRankShift.map((r) => (
               <tr key={r.name}>
                 <td>{r.name}</td>
@@ -235,7 +236,7 @@ export function FleetTab() {
           span={6}
           title="어종별 생산"
           unit="톤"
-          note={`가다랑어가 ${catchBySpecies[0]?.비중}%로 주력이며 통조림 원료로 나간다. 어종·사이즈 원장 합계 ${num(actuals.meta.catchMixTotalMT)}톤은 총 생산 ${num(h1.productionT)}톤과 약 1,966톤 차이가 난다 — 잡어·미배분으로 보이며 원본 차이라 맞추지 않았다.`}
+          note={`가다랑어가 ${catchBySpecies[0]?.비중}%로 주력이며 통조림 원료로 나간다. 어종·사이즈 원장 합계 ${num(actuals.meta.catchMixTotalMT)}톤은 총 생산 ${num(ytd.productionT)}톤과 ${num(ytd.catchMixGapT)}톤 차이가 난다 — 잡어·미배분으로 보이며 원본 차이라 맞추지 않았다.`}
           src={`${SRC.ledger} 매출단가 시트`}
         >
           <Chart
@@ -319,14 +320,14 @@ export function PriceTab() {
         <Stat k="코스모 (테마)" v={orNA(latest.prices.cosmoTema, usd)} unit="/톤" d={`변동 ${m.priceChangeCount.코스모}회`} />
         <Stat k="SCODI (아비장)" v={orNA(latest.prices.scodiAbidjan, usd)} unit="/톤" d={`변동 ${m.priceChangeCount.SCODI}회`} />
         <Stat k="PFC 격차" v={usd(m.currentGapUsdPerT)} unit="/톤" tone="down" d={`31주 평균 ${usd(m.gapVsCosmoUsdPerT.mean)}`} />
-        <Stat k="손익분기 어가" v={usd(bep.priceUsdPerT)} unit="/톤" />
+        <Stat k="원장 손익분기" v={usd(ytd.ledgerBepUsdPerT)} unit="/톤" d={`전략보고 H1 ${usd(bep.priceUsdPerT)}`} />
       </Stats>
 
       <Sec>채널별 어가</Sec>
       <Grid>
         <Panel
           span={12} title="채널별 어가 31주" unit="달러/톤"
-          note={`손익분기 어가 ${usd(bep.priceUsdPerT)}를 넘는 채널이 최근에야 생겼다. 로컬 마켓은 즉시 현금이지만 분기점을 크게 밑돌아 저가 사이즈 소진용으로만 쓴다.`}
+          note={`원장 ${ytd.label} 손익분기 ${usd(ytd.ledgerBepUsdPerT)}를 넘는 채널이 최근에야 생겼다. 전략보고 H1 분기점은 ${usd(bep.priceUsdPerT)}였다. 로컬 마켓은 즉시 현금이지만 분기점을 크게 밑돌아 저가 사이즈 소진용으로만 쓴다.`}
           src={SRC.weekly}
         >
           <Chart
@@ -338,7 +339,7 @@ export function PriceTab() {
               S('아비장로컬', '아비장 로컬', C.s4, { type: 'line' }),
               S('테마로컬', '테마 로컬', C.s5, { type: 'line' }),
             ]}
-            refLines={[{ y: bep.priceUsdPerT, label: `손익분기 ${usd(bep.priceUsdPerT)}`, color: 'var(--cosmo-bad)' }]}
+            refLines={[{ y: ytd.ledgerBepUsdPerT, label: `원장 BEP ${usd(ytd.ledgerBepUsdPerT)}`, color: 'var(--cosmo-bad)' }]}
             yFmt={usd}
           />
           <Legend items={[
@@ -423,12 +424,21 @@ export function ProfitTab() {
   return (
     <>
       <Stats>
-        <Stat k="매출액" v={kusd(h1.revenueKusd)} d={`전년비 ${h1.revenueYoyPct}%`} tone="down" />
-        <Stat k="매출총이익" v={kusd(h1.grossProfitKusd)} d={`전년비 ${h1.grossProfitYoyPct}%`} tone="down" />
-        <Stat k="영업이익" v={kusd(h1.operatingKusd)} tone="down" />
-        <Stat k="당기순이익" v={kusd(h1.netKusd)} tone="down" />
-        <Stat k="원가율" v={pct(h1.costRatioPct)} tone="down" d={`전년 ${pct(h1.costRatioPrevPct)}`} />
+        <Stat k="매출액" v={kusd(ytd.revenueKusd)} d={`전년동기 ${ytd.revenueYoyPct}%`} tone="down" />
+        <Stat k="매출총이익" v={kusd(ytd.grossProfitKusd)} d={`전년동기 ${ytd.grossProfitYoyPct}%`} tone="down" />
+        <Stat k="영업이익" v={kusd(ytd.operatingKusd)} tone={ytd.operatingKusd >= 0 ? 'up' : 'down'} />
+        <Stat k="당기순이익" v={kusd(ytd.netKusd)} tone="down" d="원장 Ⅶ행" />
+        <Stat k="원가율" v={pct(ytd.costRatioPct ?? 0)} tone="down" d={`전년동기 ${pct(ytd.costRatioPrevPct ?? 0)}`} />
       </Stats>
+      {ytd.lastMonth ? (
+        <Callout kind="info" label={`${ytd.lastMonth.month} 한 달`}>
+          판매 {num(Math.round(ytd.lastMonth.수량MT ?? 0))}톤 · 단가 {usd(Math.round(ytd.lastMonth.평균단가 ?? 0))}
+          · 영업이익 {kusd(Math.round((ytd.lastMonth.영업이익 ?? 0) / 1000))}
+          · 당기순이익 {kusd(Math.round((ytd.lastMonth.당기순이익 ?? 0) / 1000))}.
+          누계 생산 {num(ytd.productionT)}톤 vs 판매 {num(ytd.salesT)}톤, 기말재고 {num(ytd.inventoryT)}톤.
+          7개월을 연환산하지 않는다.
+        </Callout>
+      ) : null}
 
       <Sec>비용 구조와 민감도</Sec>
       <Grid>
@@ -639,7 +649,7 @@ export function StrategyTab() {
           <Callout kind="info" label="읽는 법">
             기준 실행 시 하반기 +301만불로 연간 -398만불을 방어한다. 2025년 하반기 어획의 71%면 충분한 목표다.
             상향이면 연간 손익분기 부근까지 회복하고, 하방이어도 하반기 자체는 균형이다 —
-            연간 성적은 이미 상반기 -699만불로 깔렸고 하반기는 몇 만불을 회복하느냐의 게임이다.
+            연간 성적은 원장 ${ytd.label} 순손익 ${kusd(ytd.netKusd)}로 깔렸다. 전략보고가 적은 상반기 -699만불은 추징 합산 H1 빈티지다.
           </Callout>
         </Panel>
       </Grid>

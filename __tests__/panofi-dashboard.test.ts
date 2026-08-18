@@ -22,6 +22,7 @@ import {
   tradeYear,
   tradeLadderGap,
   actuals,
+  ytd,
   vesselFullPnl,
   marginRankShift,
   catchBySpecies,
@@ -75,9 +76,11 @@ describe('파노피 데이터 인테이크', () => {
     expect(profileRaw.fleet.purseSeiners.map((v) => v.code)).not.toContain('VOLTA');
   });
 
-  it('상반기 실적 수치가 원본과 일치한다', () => {
+  it('전략보고 상반기 빈티지는 프로필과 같고 히어로 시계와 섞지 않는다', () => {
     expect(h1.productionT).toBe(profileRaw.performance.h1_2026.productionT);
     expect(h1.netKusd).toBe(profileRaw.performance.h1_2026.netKusd);
+    expect(h1.productionT).not.toBe(ytd.productionT);
+    expect(h1.netKusd).not.toBe(ytd.netKusd);
   });
 });
 
@@ -174,9 +177,12 @@ describe('파노피 대시보드 렌더', () => {
   });
 
   it('손익분기 어가와 가동 선단을 헤드라인에 노출한다', () => {
-    expect(markup).toContain('손익분기 어가');
+    expect(markup).toContain('원장 손익분기');
     expect(markup).toContain('가동 선망선');
+    expect(markup).toContain('2026년 1~7월');
+    expect(markup).not.toContain('상반기 생산');
     expect(bep.priceUsdPerT).toBe(1473);
+    expect(ytd.ledgerBepUsdPerT).toBe(1558);
   });
 });
 
@@ -237,10 +243,22 @@ describe('추정실적 원장 (월별·척별)', () => {
     expect(total).toBeLessThan(101);
   });
 
-  it('월별 원장은 6개월치이고 누계와 판매량이 맞는다', () => {
-    expect(monthlySeries).toHaveLength(6);
+  it('월별 원장은 7개월치이고 누계 판매량과 맞는다', () => {
+    expect(monthlySeries).toHaveLength(7);
+    expect(ytd.months).toBe(7);
     const sum = monthlySeries.reduce((s, m) => s + (Number(m.판매량) || 0), 0);
-    expect(Math.abs(sum - h1.salesT)).toBeLessThan(1);
+    expect(Math.abs(sum - (ytd.salesTRaw ?? 0))).toBeLessThan(1);
+  });
+
+  it('1~7월 누계가 원장 인쇄 셀과 맞는다', () => {
+    expect(actuals.meta.sha256).toBe('d6838996b35b100ac9cf0ff18fad4ca3c139d32b1b907641be5045c33e399e2a');
+    expect(ytd.salesT).toBe(24286);
+    expect(ytd.productionT).toBe(29487);
+    expect(ytd.netKusd).toBe(-5619);
+    expect(ytd.operatingKusd).toBe(798);
+    expect(ytd.ledgerBepUsdPerT).toBe(1558);
+    expect(ytd.pretaxProfitNames).toEqual(expect.arrayContaining(['디스커버러', '퀸']));
+    expect(ytd.pretaxProfitNames).toHaveLength(2);
   });
 });
 

@@ -13,7 +13,7 @@ import {
   WalletCards,
 } from 'lucide-react';
 
-import { headline, h1, company } from '@/lib/data/panofi';
+import { headline, ytd, company } from '@/lib/data/panofi';
 import HeroZone, { type HeroKpi } from '../v2/HeroZone';
 import { HeroNowStrip } from '../v2/HeroNowStrip';
 import PillTabs, { type PillTab } from '../v2/PillTabs';
@@ -72,15 +72,15 @@ const PANELS: Record<PanofiTabKey, React.ComponentType> = {
  */
 const heroKpis: { primary: HeroKpi; secondary: HeroKpi[] } = {
   primary: {
-    label: '상반기 생산',
-    value: h1.productionT,
+    label: `${ytd.label} 생산`,
+    value: ytd.productionT,
     unit: '(톤)',
     decimals: 0,
   },
   secondary: [
     { label: '가동 선망선', value: headline.activeVessels, unit: '(척)', decimals: 0 },
-    { label: '상반기 순손익', value: h1.netKusd / 1000, unit: '(백만 달러)', decimals: 2 },
-    { label: '손익분기 어가', value: headline.bepPriceUsdPerT, unit: '(달러/톤)', decimals: 0 },
+    { label: `${ytd.label} 순손익`, value: ytd.netKusd / 1000, unit: '(백만 달러)', decimals: 2 },
+    { label: '원장 손익분기', value: ytd.ledgerBepUsdPerT, unit: '(달러/톤)', decimals: 0 },
   ],
 };
 
@@ -106,9 +106,9 @@ export default function PanofiDashboard({ heroOnly = false }: { heroOnly?: boole
             items={[
               {
                 now: true,
-                eyebrow: '상반기',
+                eyebrow: ytd.label,
                 title: '생산',
-                body: `${h1.productionT.toLocaleString('ko-KR')} (톤)`,
+                body: `${ytd.productionT.toLocaleString('ko-KR')} (톤)`,
               },
               {
                 eyebrow: '선단',
@@ -117,8 +117,8 @@ export default function PanofiDashboard({ heroOnly = false }: { heroOnly?: boole
               },
               {
                 eyebrow: '원가',
-                title: '손익분기 어가',
-                body: `${headline.bepPriceUsdPerT.toLocaleString('ko-KR')} (달러/톤)`,
+                title: '원장 손익분기',
+                body: `${ytd.ledgerBepUsdPerT.toLocaleString('ko-KR')} (달러/톤)`,
               },
             ]}
           />

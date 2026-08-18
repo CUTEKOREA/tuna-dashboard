@@ -1,23 +1,26 @@
 #!/usr/bin/env python3
 """파노피 추정실적 xlsx -> public/data/panofi/panofi_actuals.json
 
-원자료: PANOFI 실적/2. 추정실적 (2026년 6월).xlsx (22시트)
-6월 파일 하나가 1~6월 누적을 모두 담으므로 월별 6개 파일을 다 열지 않는다.
+최신 「2. 추정실적 (2026년 N월).xlsx」 한 장이 1~N월 누계를 담는다.
+월별 파일을 잇거나 부분연을 연환산하지 않는다.
 
-뽑는 것 4가지:
-  1) 월별 손익 (실적 시트 N~Y열)      — 1~6월 12개 계정
-  2) 연도별 손익 (실적 시트 N~T열)     — 2020~2026
-  3) 척별 손익·원가 (실적(생산) 시트)   — 7척 × 40여 계정, 재료비·노무비·경비 3분류
-  4) 척별×어종×사이즈 생산량 (매출단가) — 황다랑어·가다랑어·눈다랑어·잡어
+뽑는 것:
+  0) 실적 시트 좌측 누계 블록(판매/생산) + 전년 동기 블록 + 원장 BEP
+  1) 월별 손익 (실적 시트 N열부터)
+  2) 연도별 손익 (실적 시트 연도 블록)
+  3) 척별 손익·원가 (실적(생산))
+  4) 척별×어종×사이즈 생산량 (매출단가)
 
-주의: 이 파일은 작성자 주석대로 «사실상 연 결산»이라 월별 원가 배분의 변동성이 크다.
-5월은 판매 342톤에 매출원가가 음수로 잡힌다 — 이월 정산의 결과지 실제 마이너스 원가가
-아니다. 월별 손익은 참고로만 쓰고 판단은 누계로 한다(전략보고 §2 유의사항과 동일).
+작성자 주석대로 사실상 연 결산이라 월별 원가 배분 변동성이 크다.
+5월 매출원가 음수는 이월 정산이지 실제 마이너스 원가가 아니다.
 """
 from __future__ import annotations
 
 import json
+import os
+import re
 import sys
+import unicodedata
 from hashlib import sha256
 from pathlib import Path
 
@@ -27,11 +30,13 @@ except ImportError:  # pragma: no cover
     print("openpyxl 필요: pip install openpyxl", file=sys.stderr)
     raise SystemExit(2)
 
-SRC = Path.home() / (
-    "my-project/11_Panofi_Cosmo_GGL /11. PANOFI/Panofi/PANOFI 실적/"
-    "2. 추정실적 (2026년 6월).xlsx"
-)
 OUT = Path(__file__).resolve().parents[1] / "public/data/panofi/panofi_actuals.json"
+
+DRIVE_PANOFI = Path.home() / (
+    "Library/CloudStorage/GoogleDrive-cutekorea@gmail.com/내 드라이브/"
+    "신라그룹/11_Panofi_Cosmo_GGL /11. PANOFI/Panofi"
+)
+LEGACY_PANOFI = Path.home() / "my-project/11_Panofi_Cosmo_GGL /11. PANOFI/Panofi"
 
 VESSELS = ["P/MAS", "P/DIS", "P/FORE", "P/PATH", "P/COMM", "P/QUE", "P/GRA"]
 VESSEL_KO = {
@@ -41,11 +46,43 @@ VESSEL_KO = {
 SPECIES_KO = {"YF": "황다랑어", "SJ": "가다랑어", "BE": "눈다랑어", "잡어": "잡어"}
 
 
+def nfc(s: str) -> str:
+    return unicodedata.normalize("NFC", s)
+
+
 def num(v):
     """숫자만 통과시킨다. 엑셀 문자열·수식잔재는 None 으로 떨군다."""
     if isinstance(v, (int, float)) and not isinstance(v, bool):
         return round(float(v), 2)
     return None
+
+
+def find_src() -> Path:
+    env = os.environ.get("PANOFI_ACTUALS_XLSX")
+    if env:
+        p = Path(env)
+        if not p.exists():
+            raise FileNotFoundError(p)
+        return p
+
+    cands: list[tuple[int, Path]] = []
+    for root in (DRIVE_PANOFI, LEGACY_PANOFI):
+        if not root.exists():
+            continue
+        for p in root.rglob("*.xlsx"):
+            name = nfc(p.name)
+            if name.startswith("~$"):
+                continue
+            if "추정실적" not in name:
+                continue
+            m = re.search(r"2026년\s*(\d+)월", name)
+            if not m:
+                continue
+            cands.append((int(m.group(1)), p))
+    if not cands:
+        raise FileNotFoundError("2026 추정실적 xlsx 없음")
+    cands.sort(key=lambda x: x[0])
+    return cands[-1][1]
 
 
 def monthly(ws) -> list[dict]:
@@ -88,10 +125,57 @@ def annual(ws) -> list[dict]:
     return out
 
 
+def ledger_side(ws, qty_row: int) -> dict:
+    """판매기준(B) / 생산기준(C) 한 블록. qty_row 는 수량 행."""
+    def col(c, off):
+        return num(ws.cell(row=qty_row + off, column=c).value)
+
+    return {
+        "수량MT": col(2, 0),
+        "평균단가": col(2, 1),
+        "매출액": col(2, 2),
+        "매출원가": col(2, 3),
+        "원가율": col(2, 4),
+        "기초재고액": col(2, 5),
+        "당기생산액": col(2, 6),
+        "당기판매액": col(2, 8),
+        "기말재고액": col(2, 9),
+        "기말재고MT": col(4, 9),
+        "매출총이익": col(2, 10),
+        "판매관리비": col(2, 11),
+        "영업이익": col(2, 12),
+        "기타수익비용": col(2, 13),
+        "금융비용": col(2, 14),
+        "법인세비용": col(2, 16),
+        "당기순이익": col(2, 17),
+        "bep어가": col(2, 19),
+        "생산수량MT": col(3, 0),
+        "생산평균단가": col(3, 1),
+        "생산매출액": col(3, 2),
+        "생산제조원가": col(3, 3),
+        "생산원가율": col(3, 4),
+        "생산영업이익": col(3, 12),
+        "생산당기순이익": col(3, 17),
+        "생산bep어가": col(3, 19),
+    }
+
+
+def summary(ws) -> dict:
+    """좌측 올해 누계(2행 표지)와 전년 동기(28행 표지)."""
+    now_title = ws.cell(row=2, column=1).value
+    prior_title = ws.cell(row=28, column=1).value
+    months = num(ws.cell(row=2, column=7).value)
+    return {
+        "periodLabel": str(now_title) if now_title else None,
+        "months": int(months) if months else None,
+        "sales": ledger_side(ws, 5),
+        "priorPeriodLabel": str(prior_title) if prior_title else None,
+        "prior": ledger_side(ws, 31),
+    }
+
+
 def by_vessel(ws) -> dict:
     """실적(생산) 시트. 척은 E~K열(5~11), 합계 L열(12)."""
-    # r4 는 헤더(P/MAS…), 데이터는 r5 부터다. 여기서 한 행 밀리면 전 척이 None 이 되고
-    # 아래 vesselProductionDrift 자기점검이 합계 0 으로 잡아낸다.
     summary_rows = {
         5: "생산량MT", 6: "생산매출액", 7: "제조원가", 8: "생산총이익",
         9: "판매비및관리비", 10: "영업이익", 11: "기타수익비용", 12: "세전이익",
@@ -135,7 +219,7 @@ def by_vessel(ws) -> dict:
 
 
 def catch_mix(ws) -> list[dict]:
-    """매출단가 시트 r5~r30. 어종(B열) x 사이즈(D열) x 척(G~M열, 6~13) x 합계(N=14)."""
+    """매출단가 시트 r5~r30. 어종(C열) x 사이즈(D열) x 척(G~M열) x 합계(N=14)."""
     rows = []
     species = None
     for ri in range(5, 32):
@@ -165,19 +249,21 @@ def catch_mix(ws) -> list[dict]:
 
 
 def main() -> int:
-    if not SRC.exists():
-        print(f"원자료 없음: {SRC}", file=sys.stderr)
+    try:
+        src = find_src()
+    except FileNotFoundError as exc:
+        print(f"원자료 없음: {exc}", file=sys.stderr)
         return 1
 
-    wb = openpyxl.load_workbook(SRC, data_only=True)
+    wb = openpyxl.load_workbook(src, data_only=True)
     ws_act, ws_prod, ws_price = wb["실적"], wb["실적(생산)"], wb["매출단가"]
 
     months = monthly(ws_act)
     years = annual(ws_act)
     vessels = by_vessel(ws_prod)
     mix = catch_mix(ws_price)
+    ytd = summary(ws_act)
 
-    # 자기점검 — 척별 생산량 합이 누계 생산량과 맞는지. 어긋나면 열 매핑이 밀린 것이다.
     v_sum = sum(v["생산량MT"] or 0 for v in vessels["vessels"])
     v_tot = vessels["totals"]["생산량MT"] or 0
     drift = round(v_sum - v_tot, 1)
@@ -185,19 +271,26 @@ def main() -> int:
 
     mix_sum = round(sum(r["totalMT"] for r in mix), 1)
     print(f"어종·사이즈 생산량 합 {mix_sum:,.1f}톤 · {len(mix)}행", file=sys.stderr)
-    print(f"월별 {len(months)}개월 · 연도별 {len(years)}개년 · 척 {len(vessels['vessels'])}", file=sys.stderr)
+    print(
+        f"월별 {len(months)}개월 · 연도별 {len(years)}개년 · 척 {len(vessels['vessels'])} · {ytd['periodLabel']}",
+        file=sys.stderr,
+    )
 
+    month_n = ytd["months"] or len(months)
     payload = {
         "meta": {
-            "source": SRC.name,
-            "sha256": sha256(SRC.read_bytes()).hexdigest(),
-            "basis": "2026년 6월 누계 (판매기준·생산기준 병기)",
+            "source": nfc(src.name),
+            "sha256": sha256(src.read_bytes()).hexdigest(),
+            "basis": f"2026년 1~{month_n}월 누계 (판매기준·생산기준 병기)",
+            "syncDate": "2026-08-17",
             "caveat": "작성자 주석대로 사실상 연 결산이라 월별 원가 배분 변동성이 크다. "
                       "5월은 판매 342톤에 매출원가가 음수로 잡히는데 이월 정산의 결과지 "
-                      "실제 마이너스 원가가 아니다. 월별은 참고로만 보고 판단은 누계로 한다.",
+                      "실제 마이너스 원가가 아니다. 월별은 참고로만 보고 판단은 누계로 한다. "
+                      "부분연을 연환산하지 않는다.",
             "vesselProductionDrift": drift,
             "catchMixTotalMT": mix_sum,
         },
+        "summary": ytd,
         "monthly": months,
         "annual": years,
         "byVessel": vessels,
