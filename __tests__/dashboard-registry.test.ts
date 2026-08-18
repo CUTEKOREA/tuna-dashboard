@@ -399,6 +399,12 @@ describe('dashboard registry', () => {
     expect(tunaCatch).not.toContain('#e11d48');
     expect(tunaDash).toContain('TUNA_ACCENT');
     expect(tunaDash).not.toContain('#0e7490');
+    const squidDash = readFileSync(join(process.cwd(), 'components/market-understanding/SquidIndustryDashboard.tsx'), 'utf8');
+    const squidColors = readFileSync(join(process.cwd(), 'lib/squid-chart-colors.ts'), 'utf8');
+    expect(squidDash).toContain('SQUID_ACCENT');
+    expect(squidDash).toContain('SQUID_ROLE.volume');
+    expect(squidDash).not.toContain('#7c3aed');
+    expect(squidColors).not.toContain('#0f766e');
     expect(globalsSource).toContain('--w-sky-400: #38bdf8;');
     expect(globalsSource).toContain('--w-emerald-500: #10b981;');
   });

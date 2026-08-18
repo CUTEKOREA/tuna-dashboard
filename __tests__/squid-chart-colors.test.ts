@@ -93,6 +93,6 @@ describe('오징어 차트 색', () => {
     expect(charts).not.toMatch(/SQUID_COLORS/);
     expect(widgets).not.toMatch(/SERIES_COLORS/);
     expect(widgets).not.toMatch(/#0ea5e9/);
-    expect(charts).not.toMatch(/#7c3aed|#0ea5e9|#ec4899/);
+    expect(charts).not.toMatch(/#7c3aed|#0ea5e9|#ec4899|#9f1239|#0f766e/);
   });
 });

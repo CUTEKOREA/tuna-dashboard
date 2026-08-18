@@ -50,7 +50,7 @@ const FALLBACK = [
   '#3730a3',
   SQUID_ROLE.processed,
   '#7c3aed',
-  '#0f766e',
+  '#5b21b6',
   '#64748b',
   '#9f1239',
 ] as const;
