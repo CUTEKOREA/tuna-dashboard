@@ -13,16 +13,10 @@ import {
   dailyBriefing,
   type BriefingCategory,
 } from '../lib/data/daily-briefing';
+import { NEWS_CATEGORY_ID } from '@/lib/chart-palette';
 
-/* 분류 배지 — 연한 아웃라인 대신 단색 필 + 흰 글자 (취향 ②: 흐릿한 배지 반려) */
-const CATEGORY_COLOR: Record<BriefingCategory, string> = {
-  시장: '#1c6bb0',
-  규제: '#5b5c94',
-  원료가: '#b45309',
-  무역: '#4f7526',
-  조업: '#0e7490',
-  뉴스: '#5a6072',
-};
+/* 분류 배지 — 선단 DB 정체성 겹(C). 연한 아웃라인 대신 단색 필 + 흰 글자 */
+const CATEGORY_COLOR: Record<BriefingCategory, string> = NEWS_CATEGORY_ID;
 
 function Badge({ title }: { title: string }) {
   const category = categorizeBriefingTitle(title);

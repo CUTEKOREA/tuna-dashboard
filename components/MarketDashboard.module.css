@@ -16,6 +16,18 @@
   overflow: hidden;
 }
 
+.kpiIconWell {
+  display: inline-flex;
+  width: 32px;
+  height: 32px;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 auto;
+  border-radius: 50%;
+  background: #1e3a5f;
+  color: #ffffff;
+}
+
 .kpiCard:hover {
   border-color: color-mix(in srgb, var(--accent-primary) 30%, var(--dsc-surface-border));
   box-shadow: var(--dsc-card-shadow);

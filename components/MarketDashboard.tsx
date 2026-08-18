@@ -27,6 +27,7 @@ import {
   filterAtunaHistory,
   latestTwoForAtunaHub,
 } from '../lib/data/atuna-price-summary';
+import { HUB_ID } from '@/lib/chart-palette';
 import styles from './MarketDashboard.module.css';
 
 const PERIOD_KEYS: AtunaPeriodKey[] = ['3m', '6m', '1y', 'all'];
@@ -41,14 +42,8 @@ type HubSeriesKey = (typeof HUB_SERIES_KEYS)[number];
 const isHubSeriesKey = (v: unknown): v is HubSeriesKey =>
   typeof v === 'string' && (HUB_SERIES_KEYS as readonly string[]).includes(v);
 
-/** 항구 색은 가다랑어·황다랑어가 같다. 노란 세선은 흰 지면에서 안 읽힌다. */
-const MARKET_HUB = {
-  bkk: '#509ee3',
-  mnt: '#3f6212',
-  sey: '#b45309',
-  abj: '#5b4b8a',
-  vig: '#9a3412',
-} as const;
+/** 항구 색은 가다랑어·황다랑어가 같다. 선단 DB 정체성 겹(C) — 세선이 흰 지면에서 읽히게 채도를 유지. */
+const MARKET_HUB = HUB_ID;
 
 /* 필터 상태 URL 동기화 (?period=&grain=&hide=) — 공유 링크가 같은 화면을 연다 (스펙 §4-1, P2) */
 interface MarketChartFilter {
@@ -336,7 +331,9 @@ export default function MarketDashboard({ heroOnly = false }: { heroOnly?: boole
               <span style={{ fontWeight: 600 }}>싱가포르 MGO 유가{mgoData.isEstimate ? ' (Brent 환산추정)' : ''}</span>
               {renderStaleBadge(mgoData.date)}
             </span>
-            <Activity size={16} color="var(--accent-primary)" />
+            <span className={styles.kpiIconWell} aria-hidden>
+              <Activity size={16} />
+            </span>
           </div>
           <div style={{ fontSize: '1.85rem', fontWeight: 800, letterSpacing: '-0.03em', fontVariantNumeric: 'tabular-nums', color: 'var(--text-main)' }}>
             {mgoData.price !== null ? `$${mgoData.price.toLocaleString()}` : '—'} <span style={{ fontSize: '1rem', color: 'var(--text-muted)', fontWeight: 400 }}>/ton</span>
@@ -359,7 +356,9 @@ export default function MarketDashboard({ heroOnly = false }: { heroOnly?: boole
               <span style={{ fontWeight: 600 }}>달러·원 환율</span>
               {renderStaleBadge(fxData.date)}
             </span>
-            <Globe size={16} color="var(--accent-primary)" />
+            <span className={styles.kpiIconWell} aria-hidden>
+              <Globe size={16} />
+            </span>
           </div>
           <div style={{ fontSize: '1.85rem', fontWeight: 800, letterSpacing: '-0.03em', fontVariantNumeric: 'tabular-nums', color: 'var(--text-main)' }}>
             {fxData.usd_krw !== null ? `₩${fxData.usd_krw.toLocaleString()}` : '—'} <span style={{ fontSize: '1rem', color: 'var(--text-muted)', fontWeight: 400 }}>/$</span>
@@ -418,7 +417,7 @@ export default function MarketDashboard({ heroOnly = false }: { heroOnly?: boole
                 <YAxis yAxisId="left" stroke="#8d93a5" fontSize={12} domain={['auto', 'auto']} tickFormatter={(v) => `$${v}`} />
                 <RechartsTooltip content={<MarketChartTip />} />
                 <Legend iconType="plainline" iconSize={16} wrapperStyle={{ fontSize: '12px', paddingTop: '10px', letterSpacing: '0.01em' }} onClick={toggleHubSeries} formatter={legendFormatter} />
-                <Brush dataKey="date" height={22} travellerWidth={8} stroke="var(--chart-s1, #509ee3)" fill="rgba(80, 158, 227, 0.06)" tickFormatter={() => ''} />
+                <Brush dataKey="date" height={22} travellerWidth={8} stroke={MARKET_HUB.bkk} fill="rgba(59, 130, 246, 0.08)" tickFormatter={() => ''} />
 
                 <Line yAxisId="left" type="monotone" dataKey="skj_bkk" name="방콕" hide={chartFilter.hidden.includes('skj_bkk')} stroke={MARKET_HUB.bkk} strokeWidth={2.5} dot={false} activeDot={{ r: 6, fill: MARKET_HUB.bkk, strokeWidth: 0 }} connectNulls={true} />
                 <Line yAxisId="left" type="monotone" dataKey="skj_mnt" name="만타" hide={chartFilter.hidden.includes('skj_mnt')} stroke={MARKET_HUB.mnt} strokeWidth={2} dot={false} connectNulls={true} />
@@ -441,7 +440,7 @@ export default function MarketDashboard({ heroOnly = false }: { heroOnly?: boole
                 <YAxis yAxisId="left" stroke="#8d93a5" fontSize={12} domain={['auto', 'auto']} tickFormatter={(v) => `$${v}`} />
                 <RechartsTooltip content={<MarketChartTip />} />
                 <Legend iconType="plainline" iconSize={16} wrapperStyle={{ fontSize: '12px', paddingTop: '10px', letterSpacing: '0.01em' }} onClick={toggleHubSeries} formatter={legendFormatter} />
-                <Brush dataKey="date" height={22} travellerWidth={8} stroke="var(--chart-s1, #509ee3)" fill="rgba(80, 158, 227, 0.06)" tickFormatter={() => ''} />
+                <Brush dataKey="date" height={22} travellerWidth={8} stroke={MARKET_HUB.bkk} fill="rgba(59, 130, 246, 0.08)" tickFormatter={() => ''} />
 
                 <Line yAxisId="left" type="monotone" dataKey="yf_abj" name="아비장" hide={chartFilter.hidden.includes('yf_abj')} stroke={MARKET_HUB.abj} strokeWidth={2.5} dot={false} activeDot={{ r: 6, fill: MARKET_HUB.abj, strokeWidth: 0 }} connectNulls={true} />
                 <Line yAxisId="left" type="monotone" dataKey="yf_sey" name="세이셸" hide={chartFilter.hidden.includes('yf_sey')} stroke={MARKET_HUB.sey} strokeWidth={2} dot={false} strokeDasharray="3 3" connectNulls={true} />
