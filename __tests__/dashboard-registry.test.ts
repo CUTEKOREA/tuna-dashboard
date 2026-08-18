@@ -323,9 +323,12 @@ describe('dashboard registry', () => {
       expect(rule).toContain('var(--dsc-card-radius)');
     }
 
-    // 항구 색은 가다랑어·황다랑어가 같고, 흰 지면에서 세선이 읽히게 둔다.
-    for (const chartColor of ['#509ee3', '#3f6212', '#b45309', '#5b4b8a', '#9a3412']) {
-      expect(marketSource).toContain(chartColor);
+    // 항구 색은 가다랑어·황다랑어가 같고, 선단 DB 정체성 겹에서 온다.
+    expect(marketSource).toContain("from '@/lib/chart-palette'");
+    expect(marketSource).toContain('const MARKET_HUB = HUB_ID');
+    const paletteSource = readFileSync(join(process.cwd(), 'lib/chart-palette.ts'), 'utf8');
+    for (const chartColor of ['#3b82f6', '#10b981', '#f59e0b', '#8b5cf6', '#e879a8']) {
+      expect(paletteSource).toContain(chartColor);
     }
     expect(marketSource).not.toContain('url(#mktGrad');
     expect(unloadingSource).toContain('fill="var(--w-sky-400)"');

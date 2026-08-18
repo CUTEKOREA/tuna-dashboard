@@ -8,6 +8,14 @@
 >
 > 마지막 업데이트: 2026-08-18 12:57 KST [Codex]
 
+> 🎨 **2026-08-18 — 선단 DB 색 조합을 시장 동향만 파일럿 적용** [Grok]:
+> - worktree `market-palette` · `feat/market-palette-pilot`. 사용자 배포 요청. PR 진행.
+> - `lib/chart-palette.ts` 신설. 연결은 MarketDashboard 허브 선·HeroMarketCommand·뉴스 분류 칩·MGO/환율 아이콘 웰.
+> - 전역 `--chart-s1..s8`·참치/오징어 색 모듈은 그대로. 증감은 `--delta-up/down` 유지.
+> - 로컬 검증: 허브 선 hex 일치, 만타 클릭 시 초록, 뉴스 펼침, 390px overflow 0.
+>
+> 마지막 업데이트: 2026-08-18 [Grok]
+
 > 🚀 **2026-08-18 — 선단 DB OFIS 6월 위젯 3개 삭제 라이브 배포** [Grok]:
 > - PR [#623](https://github.com/CUTEKOREA/tuna-dashboard/pull/623) squash `94797807`. PR Gate `32091403644` 성공. main Gate `32091657846` 성공. Freshness `32091657842` 성공.
 > - Vercel production `dpl_J97Qio6yZxVpWsiqq3bYn6czrBfa` READY · alias `https://leedonggun.co.kr` · region `icn1` · SHA `94797807`.
