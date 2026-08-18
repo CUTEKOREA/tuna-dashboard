@@ -442,6 +442,21 @@ describe('dashboard registry', () => {
     expect(commodityCharts).not.toContain('#fbbf24');
     expect(industryCss).toContain('--mu-accent: #92400e');
     expect(industryCss).not.toMatch(/data-commodity='whelk'\] \{[^}]*#f59e0b/);
+    const shrimpColors = readFileSync(join(process.cwd(), 'lib/shrimp-chart-colors.ts'), 'utf8');
+    const shrimpDash = readFileSync(
+      join(process.cwd(), 'components/market-understanding/ShrimpIndustryDashboard.tsx'),
+      'utf8',
+    );
+    expect(shrimpColors).toContain("from '@/lib/chart-palette'");
+    expect(shrimpColors).toContain('HUB_ID.sey');
+    expect(shrimpDash).toContain('SHRIMP_ACCENT');
+    expect(shrimpDash).not.toContain('#0d9488');
+    expect(commodityCharts).toContain('SHRIMP_ROLE');
+    expect(commodityCharts).not.toMatch(/새우: \{ base: '#0d9488'/);
+    expect(commodityCharts).not.toContain('#34d399');
+    expect(commodityCharts).not.toContain('#f43f5e');
+    expect(industryCss).toContain('--mu-accent: #0f766e');
+    expect(industryCss).not.toMatch(/data-commodity='shrimp'\] \{[^}]*#2dd4bf/);
     expect(globalsSource).toContain('--w-sky-400: #38bdf8;');
     expect(globalsSource).toContain('--w-emerald-500: #10b981;');
   });

@@ -24,6 +24,7 @@ import {
 
 import { CHART_RANK } from '@/lib/chart-palette';
 import { MACKEREL_ROLE } from '@/lib/mackerel-chart-colors';
+import { SHRIMP_ROLE } from '@/lib/shrimp-chart-colors';
 import { WHELK_ROLE } from '@/lib/whelk-chart-colors';
 import { getSmartRotation, truncateXAxis } from '@/lib/chart-standards';
 import type {
@@ -63,7 +64,11 @@ const PALETTE = {
     highlight: WHELK_ROLE.highlight,
     second: WHELK_ROLE.second,
   },
-  새우: { base: '#0d9488', highlight: '#f43f5e', second: '#34d399' },
+  새우: {
+    base: SHRIMP_ROLE.volume,
+    highlight: SHRIMP_ROLE.highlight,
+    second: SHRIMP_ROLE.second,
+  },
 } as const;
 
 const MARGIN = { top: 12, right: 16, left: 0, bottom: 8 };
@@ -695,7 +700,7 @@ export function ShrimpArgentinaKoreaChart() {
           type="monotone"
           dataKey="단가"
           name="평균 신고단가 ($/kg)"
-          stroke="#f59e0b"
+          stroke={PALETTE.새우.second}
           strokeWidth={2}
           dot={{ r: 3 }}
           isAnimationActive={animate}
@@ -789,7 +794,12 @@ export function ShrimpSeriesWindowsChart() {
             <Cell key={`raw-${r.국가}`} fill={r.국가 === '베트남' ? HIGHLIGHT : BASE} />
           ))}
         </Bar>
-        <Bar dataKey="조제품" name="160521 조제품 (톤)" fill="#f59e0b" isAnimationActive={animate} />
+        <Bar
+          dataKey="조제품"
+          name="160521 조제품 (톤)"
+          fill={PALETTE.새우.second}
+          isAnimationActive={animate}
+        />
       </BarChart>
     </SafeResponsiveContainer>
   );

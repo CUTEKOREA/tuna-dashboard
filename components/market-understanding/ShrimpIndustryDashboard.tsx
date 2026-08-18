@@ -15,6 +15,7 @@ import {
 import { getShrimpCompanyResearch } from '@/lib/data/valuechain-companies';
 
 import { getShrimpIndustryData } from '@/lib/data/commodity-industry';
+import { SHRIMP_ACCENT } from '@/lib/shrimp-chart-colors';
 import { SeriesStats } from './CockpitExtra';
 import {
   argentinaMeta,
@@ -144,7 +145,7 @@ export const SHRIMP_CHART_SLOTS: Record<string, ChartSlot[]> = {
     {
       title: '양식과 자연산 75년 (톤·%)',
       caption:
-        '연두색이 양식, 청록색이 자연산이다. 선은 양식 비중으로 2010년에 50%를 넘는다. 자연산 막대가 줄어든 것이 아니라 양식이 그 위에 쌓였다.',
+        '호박색이 양식, 청록색이 자연산이다. 선은 양식 비중으로 2010년에 50%를 넘는다. 자연산 막대가 줄어든 것이 아니라 양식이 그 위에 쌓였다.',
       telemetry: SYNC,
       span: 'full',
       render: () => <ShrimpTrendChart data={DATA} />,
@@ -293,12 +294,12 @@ const SPEC: CommoditySpec = {
   title: '새우',
   subtitle:
     '새우 산업 해부 · 양식이 이긴 유일한 주요 수산 품목 — 역전·종·산지·한국·수입 창구와 바스켓의 문제',
-  accent: '#0d9488',
+  accent: SHRIMP_ACCENT,
   primaryKpi: {
     label: '세계 새우 생산량',
     value: DATA.요약.세계생산,
     unit: '(톤)',
-    accent: '#0d9488',
+    accent: SHRIMP_ACCENT,
   },
   secondaryKpis: [
     { label: '양식 비중', value: DATA.요약.양식비중, unit: '(%)', decimals: 1 },
