@@ -22,6 +22,7 @@ import {
   exportBySpecies,
   fleetMargins,
   fleetTotals,
+  fs2025,
   fuelSeries,
   h1,
   headline,
@@ -98,6 +99,7 @@ const SRC = {
   strategy: '「파노피 2026 상반기 평가·하반기 전략」(2026-07-29)',
   weekly: `「PANOFI 주간동향」 ${headline.weekCount}주 (${headline.rangeStart}~${headline.rangeEnd})`,
   ledger: `「2. 추정실적 (2026년 ${ytd.months}월).xlsx」 원장`,
+  fs: '「Financial Statements(2025.12.31)」 신라교역 회계팀 확정 결산 xlsx — 세디 장부의 달러 환산, 분해는 시트 자체 각주',
   board: '「PANOFI 월간보고」 pptx 5건 (1·2·4·5·7월)',
   comtrade: 'UN Comtrade public preview · 가나(reporter 288) 보고 기준',
   nlm: 'NotebookLM 「가나 중심 서아프리카 참치 비즈니스 분석」(소스 82건, 등급 B)',
@@ -124,8 +126,8 @@ export function HomeTab() {
           span={12}
           title="매출과 손익"
           unit={`백만 달러 · 2026은 ${ytd.label} 누계`}
-          note={`2025년은 영업이익 1,291만불로 기록 해였으나 금융비용 -676만불과 법인세로 순이익이 0 부근이었다. ${ytd.label} 영업이익은 ${kusd(ytd.operatingKusd)}로 흑자이나 이자 ${kusd(ytd.financeKusd)}와 법인세 ${kusd(ytd.taxKusd)}가 순손익을 ${kusd(ytd.netKusd)}로 밀어냈다. 전략보고가 적은 상반기 순손익 ${kusd(h1.netKusd)}은 추징을 합친 H1 빈티지라 원장 Ⅶ행과 섞지 않는다.`}
-          src={SRC.strategy}
+          note={`2025년은 영업이익 1,291만불로 기록 해였으나 금융비용 -676만불과 법인세로 순이익이 0 부근이었다. ${ytd.label} 영업이익은 ${kusd(ytd.operatingKusd)}로 흑자이나 이자 ${kusd(ytd.financeKusd)}와 법인세 ${kusd(ytd.taxKusd)}가 순손익을 ${kusd(ytd.netKusd)}로 밀어냈다. 전략보고가 적은 상반기 순손익 ${kusd(h1.netKusd)}은 추징을 합친 H1 빈티지라 원장 Ⅶ행과 섞지 않는다. 회계 확정 결산(세디 장부의 달러 환산 — 이 차트의 전략보고 축과 다른 세 번째 축)은 2025 순이익을 +2,298만불로 집계하나 이는 세디 절상 환산이익이 만든 값이며 외환 제외 실질은 -249만불이다.`}
+          src={`${SRC.strategy} · 2025 확정치 참조는 ${SRC.fs}`}
         >
           <Chart
             data={annualSeries}
@@ -447,6 +449,37 @@ export function ProfitTab() {
         </Callout>
       ) : null}
 
+      <Sec>2025 확정 결산</Sec>
+      <Grid>
+        <Panel
+          span={12}
+          title="2025 확정 결산 — 회계팀 재무제표"
+          unit="백만 달러 · 세디 장부의 달러 환산 축"
+          note={`매출 ${man(fs2025.breakdown.revenue)}은 원장 8,376만불(판매기준)·전략보고 8,400만불과 축이 다르다 — 회계 결산은 세디 장부를 달러로 환산한 세 번째 축이라 억지로 맞추지 않았다. 영업이익 ${man(fs2025.breakdown.op)}(+7.2%)는 전략보고 축의 기록 경신과 방향이 같지만(회계 축 시계열은 2개년뿐) 이자 ${man(fs2025.breakdown.interest)}이 여전히 잠식하고, 기타 대손상각 ${man(fs2025.breakdown.badDebt)}이 새로 얹혔다.`}
+          src={SRC.fs}
+        >
+          <Table head={['구분', '2024', '2025', '전년비']}>
+            {fs2025.isRows.map((r) => (
+              <tr key={r.item}>
+                <td>{r.item}</td>
+                <td className={(r.y2024 ?? 0) >= 0 ? '' : 'down'}>{num(r.y2024)}</td>
+                <td className={r.y2025 >= 0 ? 'up' : 'down'}><b>{num(r.y2025)}</b></td>
+                <td>{r.yoyPct === null ? '흑자 전환' : `${r.yoyPct >= 0 ? '+' : ''}${r.yoyPct}%`}</td>
+              </tr>
+            ))}
+          </Table>
+          <Callout kind="warn" label={`순이익 +${man(fs2025.breakdown.net)}의 실체`}>
+            흑자 전환의 실체는 외환손익 +{man(fs2025.breakdown.fxTotal)}이다 — 세디 절상으로 기말환율이
+            {' '}{fs2025.fx.close2024}에서 {fs2025.fx.close2025}(세디/달러)로 내려가 외화부채의 세디 환산액이
+            급감했고, 환산이익만 +{man(fs2025.breakdown.fxTranslationGain)}이다. 외환을 제외한 실질은
+            {' '}{man(fs2025.breakdown.netExFx)}로 전년 +{man(fs2025.breakdown.netExFxPrev)}에서 적자 전환이며,
+            유형자산처분이익까지 빼면 {man(fs2025.breakdown.netExFxExDisposal)}, 척당
+            {' '}{kusd(fs2025.breakdown.perVesselKusd)}(전년 +{kusd(fs2025.breakdown.perVesselPrevKusd)})이다.
+            이 분해는 추정이 아니라 회계팀 시트 자체 각주다.
+          </Callout>
+        </Panel>
+      </Grid>
+
       <Sec>비용 구조와 민감도</Sec>
       <Grid>
         <Panel
@@ -526,6 +559,35 @@ export function CashTab() {
           </>
         )}
       </Stats>
+
+      <Sec>2025년말 재무상태</Sec>
+      <Grid>
+        <Panel
+          span={12}
+          title="재무상태표 (2025-12-31)"
+          unit="백만 달러 · 회계팀 확정 결산"
+          note="부채 111.2백만불이 자산 73.5백만불을 넘는 완전자본잠식 -37.7백만불이다. 전년 -46.5백만불에서 8.7백만불 개선됐지만 이는 사실상 세디 절상 환산이익의 성격이라 체질 개선이 아니다. 순이익 +23.0백만불인데 개선이 8.7백만불에 그친 것은 기초 음(-)자본을 낮아진 기말환율로 재환산한 -18.9백만불이 상쇄했기 때문이다(배당·오류 아님). 부채 쪽은 장기외화미지급금이 41.4백만불에서 17.7백만불로 급감하고 미지급금 29.2백만불이 새로 계상됐다 — 상환인지 유동 재분류인지 원본에 설명이 없어 «구성 변화»로만 적는다. 단기차입금은 여전히 41.8백만불 남아 있다."
+          src={`${SRC.fs} · 세디 환율 실측은 ${SRC.weekly}`}
+        >
+          <Table head={['항목', '2024', '2025']}>
+            {fs2025.bsRows.map((r) => (
+              <tr key={r.item}>
+                <td>{r.item}</td>
+                {/* 미지급금의 전년 null 은 결측이 아니라 미계상이다 — '자료 없음'으로 뭉개지 않는다. */}
+                <td className={(r.y2024 ?? 0) >= 0 ? '' : 'down'}>{r.y2024 === null ? '— 미계상' : num(r.y2024)}</td>
+                <td className={r.y2025 >= 0 ? '' : 'down'}><b>{num(r.y2025)}</b></td>
+              </tr>
+            ))}
+          </Table>
+          <Callout kind="warn" label="2026년 역회전 리스크">
+            2025년 자본 개선과 순이익 흑자는 기말환율 {fs2025.fx.close2024} → {fs2025.fx.close2025}(세디/달러)
+            절상의 산물이다. 세디는 2026년 들어 다시 절하 중이다 — 주간동향 실측으로
+            {' '}{fs2025.cedi2026.low.rate}({fs2025.cedi2026.low.date})에서
+            {' '}{fs2025.cedi2026.latest.rate}({fs2025.cedi2026.latest.date})까지 밀렸다. 이 추세가 연말까지
+            가면 2025년 환산이익이 2026년 환산손실로 역회전하며, 노출 규모는 외화부채 잔액이다.
+          </Callout>
+        </Panel>
+      </Grid>
 
       <Sec>자금유동성</Sec>
       <Grid>
