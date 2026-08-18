@@ -22,7 +22,9 @@ import {
   YAxis,
 } from 'recharts';
 
+import { CHART_RANK } from '@/lib/chart-palette';
 import { MACKEREL_ROLE } from '@/lib/mackerel-chart-colors';
+import { WHELK_ROLE } from '@/lib/whelk-chart-colors';
 import { getSmartRotation, truncateXAxis } from '@/lib/chart-standards';
 import type {
   MackerelData,
@@ -56,7 +58,11 @@ const PALETTE = {
     highlight: MACKEREL_ROLE.highlight,
     second: MACKEREL_ROLE.second,
   },
-  골뱅이: { base: '#92400e', highlight: '#fbbf24', second: '#d97706' },
+  골뱅이: {
+    base: WHELK_ROLE.volume,
+    highlight: WHELK_ROLE.highlight,
+    second: WHELK_ROLE.second,
+  },
   새우: { base: '#0d9488', highlight: '#f43f5e', second: '#34d399' },
 } as const;
 
@@ -282,7 +288,6 @@ export function WhelkGroupChart({ data }: { data: WhelkData }) {
 /** 참골뱅이 어획 상위국 — 한국이 없다는 것이 이 그림의 요지다. */
 export function WhelkBuccinumChart({ data }: { data: WhelkData }) {
   const animate = !useReducedMotion();
-  const { base: BASE } = PALETTE.골뱅이;
   const rows = data.참골뱅이상위국;
   const rot = rotated(rows.map((r) => r.국가));
 
@@ -304,7 +309,7 @@ export function WhelkBuccinumChart({ data }: { data: WhelkData }) {
         <Bar
           dataKey="어획량"
           name="어획량 (톤)"
-          fill={BASE}
+          fill={CHART_RANK}
           radius={[3, 3, 0, 0]}
           isAnimationActive={animate}
         />

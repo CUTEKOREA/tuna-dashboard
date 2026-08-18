@@ -427,6 +427,21 @@ describe('dashboard registry', () => {
     expect(commodityCharts).not.toContain('#e11d48');
     expect(industryCss).toContain('--mu-accent: #0369a1');
     expect(industryCss).not.toMatch(/data-commodity='mackerel'\] \{[^}]*#0e7490/);
+    const whelkColors = readFileSync(join(process.cwd(), 'lib/whelk-chart-colors.ts'), 'utf8');
+    const whelkDash = readFileSync(
+      join(process.cwd(), 'components/market-understanding/WhelkIndustryDashboard.tsx'),
+      'utf8',
+    );
+    expect(whelkColors).toContain("from '@/lib/chart-palette'");
+    expect(whelkColors).toContain('HUB_ID.sey');
+    expect(whelkDash).toContain('WHELK_ACCENT');
+    expect(whelkDash).not.toContain('#b45309');
+    expect(commodityCharts).toContain('WHELK_ROLE');
+    expect(commodityCharts).toContain('CHART_RANK');
+    expect(commodityCharts).not.toMatch(/골뱅이: \{ base: '#92400e'/);
+    expect(commodityCharts).not.toContain('#fbbf24');
+    expect(industryCss).toContain('--mu-accent: #92400e');
+    expect(industryCss).not.toMatch(/data-commodity='whelk'\] \{[^}]*#f59e0b/);
     expect(globalsSource).toContain('--w-sky-400: #38bdf8;');
     expect(globalsSource).toContain('--w-emerald-500: #10b981;');
   });

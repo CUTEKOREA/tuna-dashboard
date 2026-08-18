@@ -1,3 +1,10 @@
+> 🎨 **2026-08-18 — 골뱅이 시장이해에 선단 DB 팔레트 적용** [Grok]:
+> - worktree `whelk-industry-palette` · `feat/whelk-industry-palette`. 사용자 배포 요청.
+> - 과·창구 집은 `whelk-chart-colors` 유지. 페이지 액센트 = `WHELK_ROLE.volume`.
+> - 노란 `#fbbf24` 잔여 제거. 상위국 단일 막대는 `CHART_RANK`. 새우 팔레트는 미개입.
+>
+> 마지막 업데이트: 2026-08-18 [Grok]
+
 > 🚀 **2026-08-18 19:10 KST — 고등어 시장이해 선단 DB 팔레트 라이브 배포** [Grok]:
 > - PR [#667](https://github.com/CUTEKOREA/tuna-dashboard/pull/667) squash `1124b887`. PR Gate `32124678247` 성공. main Gate `32125020350` 성공. Freshness `32125020599` 성공.
 > - Vercel production `dpl_5k3qLQ2y5ZRtHyo9UbbTN1di6tAr` READY · alias `https://leedonggun.co.kr` · region `icn1` · SHA `1124b887`.
