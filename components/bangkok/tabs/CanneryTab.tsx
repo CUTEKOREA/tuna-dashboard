@@ -16,6 +16,8 @@ import {
   type BangkokGranularity,
   type BangkokWeek,
 } from '@/lib/data/bangkok-weekly';
+import { HOLD_ID } from '@/lib/chart-palette';
+import { C, canneryColor } from '../palette';
 
 /* ── 표기 헬퍼 ─────────────────────────────────────────────────────────── */
 
@@ -24,10 +26,6 @@ const num = (v: number | null) => (v === null ? '–' : v.toLocaleString('ko-KR'
 const S = (key: string, name: string, color: string, extra: Partial<Serie> = {}): Serie => ({
   key, name, color, ...extra,
 });
-
-const C = {
-  s1: 'var(--cosmo-s1)', s2: 'var(--cosmo-s2)', s3: 'var(--cosmo-s3)',
-};
 
 const SRC = `방콕사무소 주간보고 종합분석 (${bangkokWeeklyKpi.period}, ${bangkokWeeklyKpi.weeks}주)`;
 
@@ -127,12 +125,10 @@ function canneryRows(names: readonly string[], g: StockGran): Record<string, unk
   return [...byKey.values()].sort((a, b) => String(a.key).localeCompare(String(b.key)));
 }
 
-/* 색은 5개뿐이라 6번째부터 점선을 겹쳐 10개까지 구분한다. 그 이상은 색이 겹치므로
-   note 에서 툴팁·범례로 읽으라고 경고한다 (다시리즈 라인차트의 물리적 한계). */
-const SERIE_COLORS = [C.s1, C.s2, C.s3, 'var(--cosmo-s4)', 'var(--cosmo-s5)'];
+/* 캐너리 색은 정체성 채도(HOLD_ID). 한 바퀴를 넘기면 점선으로 구분한다. */
 const serieStyle = (i: number) => ({
-  color: SERIE_COLORS[i % SERIE_COLORS.length],
-  dash: Math.floor(i / SERIE_COLORS.length) % 2 === 1,
+  color: canneryColor(i),
+  dash: Math.floor(i / HOLD_ID.length) % 2 === 1,
 });
 
 const CANNERY_GRAN_LABEL: Record<StockGran, string> = {
@@ -182,7 +178,7 @@ export function CanneryTab() {
     (canneryGran === 'weekly'
       ? '무기록 주는 선을 끊는다 (보간하지 않음).'
       : '가동률·재고는 스톡 지표라 합산이 아니라 기간 평균 (0 채움 없음, 관측 없는 기간은 행 생략).') +
-    (picked.length > 5 ? ' 선택이 많으면 색만으로 구분되지 않는다 — 툴팁·범례로 확인한다.' : '');
+    (picked.length > HOLD_ID.length ? ' 선택이 많으면 색만으로 구분되지 않는다 — 툴팁·범례로 확인한다.' : '');
 
   return (
     <>
@@ -200,14 +196,14 @@ export function CanneryTab() {
             height={260}
             xInterval={25}
             series={[
-              S('방콕', '방콕', C.s1),
-              S('송클라', '송클라', C.s2),
+              S('방콕', '방콕', C.bangkok),
+              S('송클라', '송클라', C.songkhla),
             ]}
             yFmt={(v) => `${v}%`}
           />
           <Legend items={[
-            { name: '방콕', color: C.s1 },
-            { name: '송클라', color: C.s2 },
+            { name: '방콕', color: C.bangkok },
+            { name: '송클라', color: C.songkhla },
           ]} />
         </Panel>
       </Grid>
@@ -226,7 +222,7 @@ export function CanneryTab() {
             x="label"
             height={240}
             xInterval={stockView.xInterval}
-            series={[S('재고', '재고', C.s1, { type: 'area' })]}
+            series={[S('재고', '재고', C.bangkok, { type: 'area' })]}
             yFmt={(v) => v.toLocaleString('ko-KR')}
           />
         </Panel>
@@ -243,7 +239,7 @@ export function CanneryTab() {
             x="label"
             height={240}
             xInterval={daysView.xInterval}
-            series={[S('가공일수', '가공가능일수', C.s3)]}
+            series={[S('가공일수', '가공가능일수', C.rank)]}
             yFmt={(v) => `${v}일`}
           />
         </Panel>
@@ -351,7 +347,7 @@ export function CanneryTab() {
             height={280}
             horizontal
             labelWidth={110}
-            series={[S('점유율', '점유율', C.s1, { type: 'bar' })]}
+            series={[S('점유율', '점유율', C.rank, { type: 'bar' })]}
             yFmt={(v) => `${v}%`}
           />
         </Panel>

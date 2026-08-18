@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { CHART_RANK, colorForAtunaHub, colorForHold, HOLD_ID, HUB_ID, NEWS_CATEGORY_ID, PANOFI_ID, shareColor, VDS_ID } from '@/lib/chart-palette';
+import { CHART_RANK, colorForAtunaHub, colorForHold, HOLD_ID, HUB_ID, NEWS_CATEGORY_ID, PANOFI_ID, shareColor, THAI_PORT_ID, TRADER_ID, VDS_ID } from '@/lib/chart-palette';
 
 describe('chart-palette (선단 DB 4겹)', () => {
   it('keeps the same port the same color on skipjack and yellowfin', () => {
@@ -44,6 +44,17 @@ describe('chart-palette (선단 DB 4겹)', () => {
     expect(PANOFI_ID.scasa).toBe(HUB_ID.sey);
     expect(PANOFI_ID.abidjan).toBe(HUB_ID.abj);
     expect(PANOFI_ID.tema).toBe('#06b6d4');
+  });
+
+  it('keeps trader and Thai port colors aligned with logistics', () => {
+    expect(TRADER_ID.FCF).toBe(HUB_ID.bkk);
+    expect(TRADER_ID.ITOCHU).toBe(HUB_ID.abj);
+    expect(TRADER_ID['TRI MARINE']).toBe(HUB_ID.vig);
+    expect(TRADER_ID.DIRECT).toBe(HUB_ID.mnt);
+    expect(TRADER_ID.MALDIVES).toBe(HUB_ID.sey);
+    expect(THAI_PORT_ID.bangkok).toBe(HUB_ID.bkk);
+    expect(THAI_PORT_ID.songkhla).toBe(PANOFI_ID.tema);
+    expect(THAI_PORT_ID.songkhla).not.toBe(THAI_PORT_ID.bangkok);
   });
 
   it('keeps VDS and rank colors in the same identity set', () => {

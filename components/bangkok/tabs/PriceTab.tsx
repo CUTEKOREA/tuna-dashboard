@@ -12,6 +12,7 @@ import {
   type BangkokGranularity,
 } from '@/lib/data/bangkok-weekly';
 import { pctChange } from '@/lib/metrics';
+import { C } from '../palette';
 
 /* ── 표기 헬퍼 ─────────────────────────────────────────────────────────── */
 
@@ -20,10 +21,6 @@ const usd = (v: number) => `$${v.toLocaleString('ko-KR')}`;
 const S = (key: string, name: string, color: string, extra: Partial<Serie> = {}): Serie => ({
   key, name, color, ...extra,
 });
-
-const C = {
-  s1: 'var(--cosmo-s1)', s2: 'var(--cosmo-s2)', s3: 'var(--cosmo-s3)',
-};
 
 const SRC = `방콕사무소 주간보고 종합분석 (${bangkokWeeklyKpi.period}, ${bangkokWeeklyKpi.weeks}주)`;
 
@@ -124,7 +121,7 @@ export function PriceTab() {
           />
           <Chart
             data={trendSeries} x="label" height={280} xInterval={X_INTERVAL[trendGranularity]}
-            series={[S('시세', trendLabel.average, C.s1, { type: 'line' })]}
+            series={[S('시세', trendLabel.average, C.bangkok, { type: 'line' })]}
             yFmt={usd}
           />
         </Panel>
@@ -146,14 +143,14 @@ export function PriceTab() {
           <Chart
             data={rangeSeries} x="label" height={250} xInterval={X_INTERVAL[rangeGranularity]}
             series={[
-              S('평균', rangeLabel.average, C.s1, { type: 'bar' }),
+              S('평균', rangeLabel.average, C.bangkok, { type: 'bar' }),
               S('최고', '최고', C.s2, { type: 'line', dash: true }),
               S('최저', '최저', C.s3, { type: 'line', dash: true }),
             ]}
             yFmt={usd}
           />
           <Legend items={[
-            { name: rangeLabel.average, color: C.s1, box: true },
+            { name: rangeLabel.average, color: C.bangkok, box: true },
             { name: '최고', color: C.s2, dash: true },
             { name: '최저', color: C.s3, dash: true },
           ]} />
@@ -186,7 +183,7 @@ export function PriceTab() {
         >
           <Chart
             data={recentSeries} x="label" height={230} xInterval={3}
-            series={[S('시세', '원어 시세', C.s1, { type: 'line' })]}
+            series={[S('시세', '원어 시세', C.bangkok, { type: 'line' })]}
             yFmt={usd}
           />
         </Panel>

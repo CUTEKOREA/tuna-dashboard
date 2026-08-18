@@ -67,8 +67,7 @@ export default function BangkokDashboard({ heroOnly = false }: { heroOnly?: bool
   const [activeTab, setActiveTab] = useState<BangkokTabKey>('home');
   const ActivePanel = PANELS[activeTab];
 
-  // data-cosmo-dashboard 는 장식이 아니다 — Chart.readTokens() 가 이 속성으로
-  // --cosmo-* 색 토큰 루트를 찾는다 (파노피와 동일 팔레트 공유).
+  // data-cosmo-dashboard 는 격자·축 토큰 루트. 시리즈 색은 chart-palette hex.
   return (
     <div className="cosmo-root panofi-root" data-cosmo-dashboard data-bangkok-dashboard>
       <HeroZone
