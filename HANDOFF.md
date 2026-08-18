@@ -1,3 +1,12 @@
+> 🚀 **2026-08-18 13:54 KST — 하역 현황 선단 DB 팔레트 라이브 배포** [Grok]:
+> - PR [#629](https://github.com/CUTEKOREA/tuna-dashboard/pull/629) squash `abd573c0`. PR Gate `32100130129` 성공. main Gate `32100406446` 성공. Freshness `32100406417` 성공.
+> - Vercel production `dpl_Baq4DCsGp9f3fzW5Ei8VBZHbtbXS` READY · alias `https://leedonggun.co.kr` · region `icn1` · SHA `abd573c0`.
+> - 라이브 `/unloading`(소유자 탭 새로고침): 일일 막대 `#e879a8`, 누적 선 `#10b981`, 간트 진행 `#3b82f6`, ETA 게이지 초록. SEIN VENUS 71.0% · 2,325.67/3,275 MT. 가로 넘침 0.
+> - 이번 배포 런타임 error/fatal 0건. (직전 배포 `dpl_DR4GQwkprW1VRjJ4MKdcTWo6FH9d`의 인증 refresh 토큰 오류는 이번 변경과 무관)
+> - `/fleet` 팔레트는 로컬 `feat/fleet-palette`에만 있음. 이번 배포 범위 밖.
+>
+> 마지막 업데이트: 2026-08-18 13:54 KST [Grok]
+
 > 🚀 **2026-08-18 13:18 KST — 해양수산본부 8/18 일일보고 `/fleet` 라이브 배포** [Codex]:
 > - PR [#627](https://github.com/CUTEKOREA/tuna-dashboard/pull/627)을 squash merge `af471ee2`로 병합했다. PR App Quality Gate `32097644512`, main App Quality Gate `32097906196`가 모두 성공했다.
 > - Vercel Production deployment `5955934030`이 SHA `af471ee2`로 성공했고 `https://leedonggun.co.kr/fleet`에 반영됐다. 배포 후 15분 Production error/fatal 로그는 각각 0건이다.
