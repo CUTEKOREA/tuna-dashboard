@@ -1,5 +1,13 @@
+> 🚀 **2026-08-18 14:48 KST — 오징어 포클랜드 월 필터 라이브 배포** [Grok]:
+> - PR [#636](https://github.com/CUTEKOREA/tuna-dashboard/pull/636) squash `bb983740`. PR Gate `32103777659` 성공. main Gate `32104019599` 성공. Freshness `32104019559` 성공.
+> - Vercel production `dpl_9Fxj86U5j2Rt1Xg99SGALwsSAKPa` READY · alias `https://leedonggun.co.kr` · region `icn1` · SHA `bb983740`.
+> - 라이브 `/squid-industry` 08 선박별: 4월 칩 on. 순위 601다가호 · 세인3호 · 103금양. 범례 「4월 물량 (판)」. 가로 넘침 0.
+> - 이번 배포 런타임 error/fatal 0건.
+>
+> 마지막 업데이트: 2026-08-18 14:48 KST [Grok]
+
 > 📘 **2026-08-18 — 오징어 포클랜드 선박·회사 월 필터** [Grok]:
-> - worktree `squid-palette` · `feat/squid-falkland-monthly`. **프로덕션 미배포**.
+> - worktree `squid-palette` · `feat/squid-falkland-monthly`. 배포는 #636.
 > - 원본에 선박마다 12~5월 판수가 있다. 08단계 선박·회사 차트가 같은 달을 본다.
 > - 기본은 어기 전체. 월별 kg 는 없어서 환산하지 않는다.
 >
