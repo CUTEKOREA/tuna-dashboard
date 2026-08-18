@@ -326,6 +326,10 @@ describe('dashboard registry', () => {
     // 항구 색은 가다랑어·황다랑어가 같고, 선단 DB 정체성 겹에서 온다.
     expect(marketSource).toContain("from '@/lib/chart-palette'");
     expect(marketSource).toContain('const MARKET_HUB = HUB_ID');
+    expect(fleetSource).toContain('missionIconWell');
+    const heroCommand = readFileSync(join(process.cwd(), 'components/FleetHeroCommand.tsx'), 'utf8');
+    expect(heroCommand).toContain('CHART_RANK');
+    expect(heroCommand).not.toContain('var(--chart-s1');
     const paletteSource = readFileSync(join(process.cwd(), 'lib/chart-palette.ts'), 'utf8');
     for (const chartColor of ['#3b82f6', '#10b981', '#f59e0b', '#8b5cf6', '#e879a8']) {
       expect(paletteSource).toContain(chartColor);

@@ -1,11 +1,11 @@
 /**
  * 선단 DB에서 뽑은 차트 4겹 (2026-08-18 기획).
- * 연결: 시장 동향 · 하역 현황 · 오징어 · 물류·가공. 그 밖은 아직 import 하지 말 것.
+ * 연결: 시장 동향 · 선단 운영 · 하역 현황 · 오징어 · 물류·가공. 그 밖은 아직 import 하지 말 것.
  * 오징어 종·바스켓은 lib/squid-chart-colors 가 정체성 집을 유지한다.
  *
  * A 셸 — 흰 카드·잉크 숫자는 CSS 토큰(--dsc-*)이 담당
  * B 구성 — 파이·트리맵·점유 (파스텔 면색)
- * C 정체성 — 이름 고정 (항구·분류 칩). RFMO 색상환과 같되 기구 이름이 아니다
+ * C 정체성 — 이름 고정 (항구·분류 칩·VDS 항목). RFMO 색상환과 같되 기구 이름이 아니다
  * D 순위 — 단일 시리즈 막대
  */
 
@@ -58,6 +58,14 @@ export const HOLD_ID = [
 export function colorForHold(index: number): string {
   return HOLD_ID[((index % HOLD_ID.length) + HOLD_ID.length) % HOLD_ID.length];
 }
+
+/** VDS 요약 칸 — 배정·소진·잔여·주간. */
+export const VDS_ID = {
+  allocated: '#3b82f6',
+  consumed: '#8b5cf6',
+  remaining: '#10b981',
+  weekly: '#f59e0b',
+} as const;
 
 export const NEWS_CATEGORY_ID = {
   시장: HUB_ID.bkk,

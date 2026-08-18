@@ -26,7 +26,7 @@
 }
 
 .titleIcon {
-  color: #509ee3;
+  color: #3b82f6;
 }
 
 .subtitle {
@@ -37,7 +37,7 @@
 
 /* ─── Year Tabs ───
  * V3 라이트 (2026-08-15): 다크 네이비 트랙 → 라이트 트랙, 비활성 잉크 #5a6072,
- * 활성은 브랜드 블루 필(#509ee3)+흰 글자 */
+ * 활성은 선단 DB 정체성 파랑(#3b82f6)+흰 글자 */
 .yearTabs {
   display: flex;
   gap: 8px;
@@ -64,9 +64,9 @@
 }
 
 .activeYear {
-  background: #509ee3;
+  background: #3b82f6;
   color: #fff;
-  box-shadow: 0 2px 8px rgba(80, 158, 227, 0.3);
+  box-shadow: 0 2px 8px rgba(59, 130, 246, 0.3);
 }
 
 /* ─── Select Dropdown ─── */

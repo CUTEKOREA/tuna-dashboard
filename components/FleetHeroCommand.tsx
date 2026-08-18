@@ -13,6 +13,7 @@ import {
 } from 'recharts';
 import { purseSeineCatch } from '../lib/fleet-operations-2026-08-09';
 import { pctChange } from '../lib/metrics';
+import { CHART_RANK } from '@/lib/chart-palette';
 
 /* 증감 시맨틱 토큰 (globals.css SSOT) — 주식 컨벤션 (상승 빨강·하락 파랑) */
 const UP = 'var(--delta-up, #ef4444)';
@@ -129,7 +130,7 @@ export default function FleetHeroCommand() {
           <XAxis dataKey="month" tick={{ fontSize: 10, fill: 'var(--text-muted)' }} tickLine={false} axisLine={false} />
           <YAxis hide domain={[0, 'auto']} />
           <RechartsTooltip content={<CatchTip />} cursor={{ fill: 'rgba(141, 147, 165, 0.12)' }} />
-          <Bar dataKey="mt" fill="var(--chart-s1, #38bdf8)" radius={[3, 3, 0, 0]} isAnimationActive={false} />
+          <Bar dataKey="mt" fill={CHART_RANK} radius={[3, 3, 0, 0]} isAnimationActive={false} />
         </BarChart>
       </div>
 
@@ -153,8 +154,8 @@ export default function FleetHeroCommand() {
               aria-pressed={isActive}
               style={{
                 textAlign: 'left', cursor: 'pointer', fontFamily: 'inherit',
-                border: '1px solid ' + (isActive ? 'var(--chart-s1, #38bdf8)' : 'var(--card-border, #e2e4e9)'),
-                background: isActive ? 'rgba(56, 189, 248, 0.08)' : 'transparent',
+                border: '1px solid ' + (isActive ? CHART_RANK : 'var(--card-border, #e2e4e9)'),
+                background: isActive ? `${CHART_RANK}14` : 'transparent',
                 borderRadius: 8, padding: '8px 10px',
                 transform: isHover ? 'translateY(-2px)' : 'none',
                 boxShadow: isHover ? '0 6px 16px rgba(16, 24, 40, 0.12)' : 'none',
