@@ -1,3 +1,11 @@
+> 🚀 **2026-08-18 17:23 KST — 방콕사무소 선단 DB 팔레트 라이브 배포** [Grok]:
+> - PR [#653](https://github.com/CUTEKOREA/tuna-dashboard/pull/653) squash `9a03cf3f`. PR Gate `32115405734` 성공. main Gate `32115750944` 성공. Freshness `32115750946` 성공.
+> - Vercel production `dpl_HTLpm2SefXDhg2eYjqdTpoUGonjV` READY · alias `https://leedonggun.co.kr` · region `icn1` · SHA `9a03cf3f`.
+> - 라이브 `/bangkok-office`: 시세 `#3b82f6` · 하역 막대 `#e879a8`. 트레이더 FCF `#3b82f6` · 이토추 `#8b5cf6` · 트라이마린 `#e879a8` · 직거래 `#10b981` · 몰디브 `#f59e0b`. 송클라 `#06b6d4`. 가로 넘침 0.
+> - 이번 배포 런타임 error/fatal 0건. 열린 탭은 하드 리프레시.
+>
+> 마지막 업데이트: 2026-08-18 17:23 KST [Grok]
+
 > 🎨 **2026-08-18 — 방콕사무소에 선단 DB 팔레트 적용** [Grok]:
 > - worktree `bangkok-palette` · `feat/bangkok-palette`. 사용자 배포 요청.
 > - 트레이더 = `TRADER_ID`(물류와 동일). 방콕·송클라 = `THAI_PORT_ID`. 이름 없는 단일 막대 = `CHART_RANK`.
