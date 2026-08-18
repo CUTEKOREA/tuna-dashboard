@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 
-import { measureTickPx, yAxisWidthForFmt, type Serie } from '@/components/cosmo/Chart';
+import { categoryAxisWidth, measureTickPx, yAxisWidthForFmt, type Serie } from '@/components/cosmo/Chart';
 
 const kusd = (v: number) => `${Math.round(v).toLocaleString('en-US')}천불`;
 const stacked: Serie[] = [
@@ -19,12 +19,34 @@ describe('코스모/파노피 차트 Y축 폭', () => {
     const width = yAxisWidthForFmt(rows, stacked, kusd);
     expect(width).toBeGreaterThan(58);
     expect(width).toBeGreaterThanOrEqual(measureTickPx('20,000천불'));
-    expect(width).toBeLessThanOrEqual(96);
+    expect(width).toBeLessThanOrEqual(120);
   });
 
   it('짧은 틱은 좁혀도 최소폭을 지킨다', () => {
     const width = yAxisWidthForFmt([{ 척수: 12 }], [{ key: '척수', name: '척수', color: '#000' }], (v) => `${v}척`);
     expect(width).toBeGreaterThanOrEqual(56);
     expect(width).toBeLessThanOrEqual(72);
+  });
+
+  it('음수 천불 틱도 58보다 넓다', () => {
+    const width = yAxisWidthForFmt(
+      [{ 당년추정: -3200, 전년실적: -1800 }],
+      [
+        { key: '전년실적', name: '전년', color: '#000', type: 'bar' },
+        { key: '당년추정', name: '당년', color: '#000', type: 'bar' },
+      ],
+      kusd,
+    );
+    expect(width).toBeGreaterThan(58);
+    expect(width).toBeGreaterThanOrEqual(measureTickPx('-3,200천불'));
+  });
+
+  it('민감도처럼 긴 가로 라벨은 118보다 넓다', () => {
+    const width = categoryAxisWidth([
+      '어획 ±2,000톤(±5%)',
+      '미수금 대손(아비장+AIRONE)',
+    ]);
+    expect(width).toBeGreaterThan(118);
+    expect(width).toBeLessThanOrEqual(200);
   });
 });

@@ -55,13 +55,13 @@ function num(v: unknown): number {
 }
 
 /** 틱 문자열 폭. Recharts 3 는 이 폭이 YAxis.width 를 넘으면 왼쪽이 잘린다. */
-export function measureTickPx(label: string, fontSize = TICK_SIZE, pad = 12): number {
+export function measureTickPx(label: string, fontSize = TICK_SIZE, pad = 16): number {
   let w = 0
   for (const ch of label) {
     const code = ch.codePointAt(0) ?? 0
     if (code >= 0x1F300) w += fontSize * 1.2
     else if (code >= 0x2E80) w += fontSize
-    else w += fontSize * 0.72
+    else w += fontSize * 0.8
   }
   return Math.ceil(w + pad)
 }
@@ -118,7 +118,13 @@ export function yAxisWidthForFmt(
   const values = [min, 0, max, niceCeil(max), niceCeil(min)]
   const samples = values.map((v) => (fmt ? fmt(v) : String(Math.round(v))))
   const widest = Math.max(...samples.map((label) => measureTickPx(label)))
-  return Math.min(96, Math.max(56, widest))
+  return Math.min(120, Math.max(56, widest + 8))
+}
+
+/** 가로 막대 카테고리 축. 민감도처럼 긴 한글 라벨은 고정 118px 로 잘린다. */
+export function categoryAxisWidth(labels: string[]): number {
+  const widest = labels.reduce((w, label) => Math.max(w, measureTickPx(label, TICK_SIZE, 10)), 0)
+  return Math.min(200, Math.max(72, widest))
 }
 
 type Props = {
@@ -171,6 +177,9 @@ export default function Chart({
   const hasRight = series.some((s) => s.axis === 'right')
   const leftWidth = yAxisWidthForFmt(data, series, yFmt, 'left')
   const rightWidth = hasRight ? yAxisWidthForFmt(data, series, y2Fmt, 'right') : 54
+  const catWidth = horizontal
+    ? Math.max(labelWidth, categoryAxisWidth(data.map((row) => String(row[x] ?? ''))))
+    : labelWidth
   return (
     <div className="chart" style={{ height }}>
       <ResponsiveContainer
@@ -179,19 +188,19 @@ export default function Chart({
         initialDimension={{ width: 320, height }}
       >
         <ComposedChart data={data} layout={horizontal ? 'vertical' : 'horizontal'}
-          margin={{ top: 8, right: horizontal ? 40 : (hasRight ? 6 : 10), bottom: 4, left: 0 }}>
+          margin={{ top: 8, right: horizontal ? 44 : (hasRight ? 16 : 32), bottom: 4, left: 0 }}>
           <CartesianGrid stroke={c('var(--cosmo-grid)')} vertical={!!horizontal} horizontal={!horizontal} />
           {horizontal ? (
             <>
               <XAxis type="number" tick={TICK} tickLine={false} axisLine={{ stroke: c('var(--cosmo-line)') }}
                 tickFormatter={yFmt} domain={domain} />
               <YAxis type="category" dataKey={x} tick={TICK} tickLine={false} axisLine={false}
-                width={labelWidth} interval={0} />
+                width={catWidth} interval={0} />
             </>
           ) : (
             <>
               <XAxis dataKey={x} tick={TICK} tickLine={false} axisLine={{ stroke: c('var(--cosmo-line)') }}
-                interval={xInterval ?? 'preserveStartEnd'} minTickGap={12} />
+                interval={xInterval ?? 'preserveStartEnd'} minTickGap={12} padding={{ right: 8 }} />
               <YAxis yAxisId="left" tick={TICK} tickLine={false} axisLine={false} width={leftWidth}
                 tickFormatter={yFmt} domain={domain}
                 label={yLabel ? { value: yLabel, position: 'insideTopLeft', offset: -2, style: TICK } : undefined} />
