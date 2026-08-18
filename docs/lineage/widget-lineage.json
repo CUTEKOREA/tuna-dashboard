@@ -1,9 +1,9 @@
 {
  "_meta": {
   "entry": "app/page.tsx",
-  "files": 155,
-  "widgets": 101,
-  "dataFiles": 62,
+  "files": 161,
+  "widgets": 102,
+  "dataFiles": 64,
   "generator": "scripts/widget_lineage.py"
  },
  "widgetToData": {
@@ -357,7 +357,9 @@
     "lib/data/seasia-processors.ts"
    ],
    "dataFiles": [
-    "public/data/bangkok/seasia_processors.json"
+    "public/data/bangkok/seasia_processors.json",
+    "public/data/bangkok_weekly_kpi.json",
+    "public/data/bangkok_weekly_payload.json"
    ]
   },
   "components/bangkok/tabs/QualityTab.tsx": {
@@ -508,11 +510,13 @@
   "components/market-understanding/CommodityCharts.tsx": {
    "dataModules": [
     "lib/data/commodity-industry.ts",
+    "lib/data/mackerel-country-series.ts",
     "lib/data/shrimp-argentina.ts",
     "lib/data/shrimp-country-series.ts",
     "lib/data/whelk-country-series.ts"
    ],
    "dataFiles": [
+    "public/data/mackerel_country_series_v1.json",
     "public/data/mackerel_industry_v1.json",
     "public/data/shrimp_argentina.json",
     "public/data/shrimp_industry_v1.json",
@@ -542,9 +546,18 @@
     "public/data/whelk_company_research_v1.json"
    ]
   },
+  "components/market-understanding/FalklandMonthFilter.tsx": {
+   "dataModules": [
+    "lib/data/falkland-squid-vessels.ts"
+   ],
+   "dataFiles": [
+    "public/data/falkland_squid_vessels_v1.json"
+   ]
+  },
   "components/market-understanding/MackerelIndustryDashboard.tsx": {
    "dataModules": [
     "lib/data/commodity-industry.ts",
+    "lib/data/mackerel-country-series.ts",
     "lib/data/valuechain-companies.ts"
    ],
    "dataFiles": [
@@ -552,6 +565,7 @@
     "public/data/kofa_insights_v1.json",
     "public/data/kofa_series_v1.json",
     "public/data/mackerel_company_research_v1.json",
+    "public/data/mackerel_country_series_v1.json",
     "public/data/mackerel_industry_v1.json",
     "public/data/shrimp_argentina.json",
     "public/data/shrimp_company_research_v1.json",
@@ -578,6 +592,7 @@
     "public/data/kofa_insights_v1.json",
     "public/data/kofa_series_v1.json",
     "public/data/mackerel_company_research_v1.json",
+    "public/data/mackerel_country_series_v1.json",
     "public/data/mackerel_industry_v1.json",
     "public/data/shrimp_argentina.json",
     "public/data/shrimp_company_research_v1.json",
@@ -723,6 +738,7 @@
     "public/data/kofa_insights_v1.json",
     "public/data/kofa_series_v1.json",
     "public/data/mackerel_company_research_v1.json",
+    "public/data/mackerel_country_series_v1.json",
     "public/data/mackerel_industry_v1.json",
     "public/data/shrimp_argentina.json",
     "public/data/shrimp_company_research_v1.json",
@@ -745,6 +761,7 @@
     "public/data/panofi/ghana_tuna_mirror.json",
     "public/data/panofi/ghana_tuna_trade.json",
     "public/data/panofi/panofi_actuals.json",
+    "public/data/panofi/panofi_fs_2025.json",
     "public/data/panofi/panofi_liquidity.json",
     "public/data/panofi/panofi_profile.json",
     "public/data/panofi/panofi_weekly.json"
@@ -758,6 +775,7 @@
     "public/data/panofi/ghana_tuna_mirror.json",
     "public/data/panofi/ghana_tuna_trade.json",
     "public/data/panofi/panofi_actuals.json",
+    "public/data/panofi/panofi_fs_2025.json",
     "public/data/panofi/panofi_liquidity.json",
     "public/data/panofi/panofi_profile.json",
     "public/data/panofi/panofi_weekly.json"
@@ -877,6 +895,7 @@
    "components/bangkok/tabs/HomeTab.tsx",
    "components/bangkok/tabs/LeadingTab.tsx",
    "components/bangkok/tabs/PriceTab.tsx",
+   "components/bangkok/tabs/ProcessorsTab.tsx",
    "components/bangkok/tabs/QualityTab.tsx",
    "components/bangkok/tabs/UnloadTab.tsx"
   ],
@@ -889,6 +908,7 @@
    "components/bangkok/tabs/HomeTab.tsx",
    "components/bangkok/tabs/LeadingTab.tsx",
    "components/bangkok/tabs/PriceTab.tsx",
+   "components/bangkok/tabs/ProcessorsTab.tsx",
    "components/bangkok/tabs/QualityTab.tsx",
    "components/bangkok/tabs/UnloadTab.tsx"
   ],
@@ -937,6 +957,7 @@
    "components/market-understanding/SquidIndustryDashboard.tsx"
   ],
   "public/data/falkland_squid_vessels_v1.json": [
+   "components/market-understanding/FalklandMonthFilter.tsx",
    "components/market-understanding/SquidCharts.tsx",
    "components/market-understanding/SquidIndustryDashboard.tsx"
   ],
@@ -980,6 +1001,12 @@
    "components/market-understanding/TunaIndustryDashboard.tsx",
    "components/market-understanding/WhelkIndustryDashboard.tsx"
   ],
+  "public/data/mackerel_country_series_v1.json": [
+   "components/market-understanding/CommodityCharts.tsx",
+   "components/market-understanding/MackerelIndustryDashboard.tsx",
+   "components/market-understanding/ShrimpIndustryDashboard.tsx",
+   "components/market-understanding/WhelkIndustryDashboard.tsx"
+  ],
   "public/data/mackerel_industry_v1.json": [
    "components/market-understanding/CommodityCharts.tsx",
    "components/market-understanding/MackerelIndustryDashboard.tsx",
@@ -995,6 +1022,10 @@
    "components/panofi/PanofiTabs.tsx"
   ],
   "public/data/panofi/panofi_actuals.json": [
+   "components/panofi/PanofiDashboard.tsx",
+   "components/panofi/PanofiTabs.tsx"
+  ],
+  "public/data/panofi/panofi_fs_2025.json": [
    "components/panofi/PanofiDashboard.tsx",
    "components/panofi/PanofiTabs.tsx"
   ],

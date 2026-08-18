@@ -4,6 +4,7 @@ import tradeRaw from '@/public/data/panofi/ghana_tuna_trade.json';
 import actualsRaw from '@/public/data/panofi/panofi_actuals.json';
 import liquidityRaw from '@/public/data/panofi/panofi_liquidity.json';
 import mirrorRaw from '@/public/data/panofi/ghana_tuna_mirror.json';
+import fsRaw from '@/public/data/panofi/panofi_fs_2025.json';
 
 /**
  * 파노피(가나 참치 선망) 데이터 인테이크.
@@ -518,6 +519,78 @@ export const monthlyEstimates = liquidity.estimates
     전년실적: e.netPrevYear ?? null,
     매출추정: e.revenue ?? null,
   }));
+
+/* --------------------------------------------- 2025 확정 결산 (회계팀 재무제표) */
+
+/** 원단위 → 백만불 한 자리. 결산 표는 원단위라 화면 단위로 여기서 접는다. */
+const m1 = (v: number) => Math.round(v / 1e5) / 10;
+/** 원단위 → 만불 정수. 본문 서술 관례(«-676만불»)에 맞춘다. */
+const man1 = (v: number) => Math.round(v / 1e4);
+
+/**
+ * 2025 확정 결산 — 회계팀 재무제표 (세디 장부의 달러 환산).
+ * 판매원장(판매기준)·전략보고와 축이 다르다 — 세 번째 축이며 값을 억지로 맞추지 않는다.
+ * 순이익 분해(외환손익 분리·척당 손익)는 회계팀 시트 자체 각주를 그대로 옮긴 것이다.
+ */
+export const fs2025 = (() => {
+  const inc = fsRaw.income;
+  const pos = fsRaw.position;
+  const row = (item: string, r: { y2025: number; y2024: number | null }) => ({
+    item,
+    y2025: m1(r.y2025),
+    y2024: r.y2024 === null ? null : m1(r.y2024),
+    // 전년이 0 이하면 %가 방향을 잃는다 — null 로 두고 화면에서 «흑자 전환»으로 쓴다.
+    yoyPct:
+      r.y2024 === null || r.y2024 <= 0
+        ? null
+        : Math.round(((r.y2025 - r.y2024) / r.y2024) * 1000) / 10,
+  });
+  const cedi = weeks
+    .map((w) => ({ date: w.reportDate, rate: w.fx.cediPerUsd }))
+    .filter((x): x is { date: string; rate: number } => x.rate !== null);
+  return {
+    asOf: fsRaw._meta.asOf,
+    source: fsRaw._meta.source,
+    basis: fsRaw._meta.basis,
+    fx: fsRaw.fx,
+    /** 손익 요약(백만불). */
+    isRows: [
+      row('매출액', inc.revenue),
+      row('매출총이익', inc.gp),
+      row('영업이익', inc.op),
+      row('당기순이익', inc.net),
+    ],
+    /** 순이익 분해(만불·척당은 천불) — 회계팀 시트 자체 각주. */
+    breakdown: {
+      revenue: man1(inc.revenue.y2025),
+      op: man1(inc.op.y2025),
+      net: man1(inc.net.y2025),
+      fxTotal: man1(inc.fxTotal.y2025),
+      fxTranslationGain: man1(inc.fxTranslationGain.y2025),
+      netExFx: man1(inc.netExFx.y2025),
+      netExFxPrev: man1(inc.netExFx.y2024),
+      netExFxExDisposal: man1(inc.netExFxExDisposal.y2025),
+      interest: man1(inc.interestExpense.y2025),
+      badDebt: man1(inc.badDebt.y2025),
+      perVesselKusd: Math.round(inc.perVessel.y2025 / 1000),
+      perVesselPrevKusd: Math.round(inc.perVessel.y2024 / 1000),
+    },
+    /** 재무상태 요약(백만불). 미지급금은 전년 미계상 — null 이 정직한 값이다. */
+    bsRows: [
+      row('자산총계', pos.totalAssets),
+      row('부채총계', pos.totalLiabilities),
+      row('자본총계', pos.totalEquity),
+      row('단기차입금', pos.shortTermDebt),
+      row('장기외화미지급금', pos.longTermFxPayable),
+      row('미지급금', pos.accruedPayables),
+    ],
+    /** 2026년 세디 재절하 실측(주간동향) — 2025 환산이익의 역회전 노출을 재는 축. */
+    cedi2026: {
+      low: cedi.reduce((a, b) => (b.rate < a.rate ? b : a)),
+      latest: cedi[cedi.length - 1],
+    },
+  };
+})();
 
 /* ------------------------------------------------------- 거울통계 (교차검증) */
 

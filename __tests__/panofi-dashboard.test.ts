@@ -391,3 +391,26 @@ describe('PFC 판정의 무게', () => {
     expect(pfc.measured.verdictNote).toContain('두 번');
   });
 });
+
+describe('panofi 2025 확정 재무제표 무결성 (2026-08-18)', () => {
+  it('회계 결산 JSON의 항등식과 외환 분해가 성립한다', async () => {
+    const raw = await import('../public/data/panofi/panofi_fs_2025.json');
+    // accruedPayables.y2024 는 null(전년 미계상)이라 직접 단언이 안 붙는다 — unknown 경유.
+    const fs = (raw.default ?? raw) as unknown as {
+      income: Record<string, { y2025: number; y2024: number }>;
+      position: Record<string, { y2025: number; y2024: number }>;
+      fx: Record<string, number>;
+    };
+    for (const yr of ['y2025', 'y2024'] as const) {
+      expect(Math.abs(fs.position.totalAssets[yr]
+        - (fs.position.totalLiabilities[yr] + fs.position.totalEquity[yr]))).toBeLessThan(2);
+      expect(Math.abs((fs.income.net[yr] - fs.income.fxTotal[yr]) - fs.income.netExFx[yr])).toBeLessThan(2);
+    }
+    // 화면 서사의 뼈대 수치를 고정 — 조용한 재생성 오염 차단
+    expect(Math.round(fs.income.net.y2025)).toBe(22976779);
+    expect(Math.round(fs.income.netExFx.y2025)).toBe(-2491150);
+    expect(Math.round(fs.position.totalEquity.y2025)).toBe(-37745788);
+    expect(fs.fx.close2025).toBeCloseTo(10.45, 2);
+    expect(fs.fx.close2024).toBeCloseTo(14.7, 1);
+  });
+});
