@@ -1,6 +1,6 @@
 /**
  * 선단 DB에서 뽑은 차트 4겹 (2026-08-18 기획).
- * 연결: 시장 동향 · 선단 운영 · 하역 현황 · 오징어 · 물류·가공. 그 밖은 아직 import 하지 말 것.
+ * 연결: 시장 동향 · 선단 운영 · 하역 현황 · 오징어 · 물류·가공 · 파노피. 그 밖은 아직 import 하지 말 것.
  * 오징어 종·바스켓은 lib/squid-chart-colors 가 정체성 집을 유지한다.
  *
  * A 셸 — 흰 카드·잉크 숫자는 CSS 토큰(--dsc-*)이 담당
@@ -58,6 +58,18 @@ export const HOLD_ID = [
 export function colorForHold(index: number): string {
   return HOLD_ID[((index % HOLD_ID.length) + HOLD_ID.length) % HOLD_ID.length];
 }
+
+/** 파노피 정체성 — 채널·항구. 허브 겹을 쓰되 기구 이름이 아니다. */
+export const PANOFI_ID = {
+  cosmo: HUB_ID.bkk,
+  pfc: HUB_ID.vig,
+  scodi: HUB_ID.mnt,
+  scasa: HUB_ID.sey,
+  abidjan: HUB_ID.abj,
+  tema: '#06b6d4',
+  dakar: '#14b8a6',
+  tanker: '#f97316',
+} as const;
 
 /** VDS 요약 칸 — 배정·소진·잔여·주간. */
 export const VDS_ID = {

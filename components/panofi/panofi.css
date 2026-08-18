@@ -143,8 +143,8 @@
   color: var(--cosmo-muted);
   margin-left: 3px;
 }
-.panofi-root .pf-stat-v.up { color: var(--cosmo-ok); }
-.panofi-root .pf-stat-v.down { color: var(--cosmo-bad); }
+.panofi-root .pf-stat-v.up { color: var(--delta-up); }
+.panofi-root .pf-stat-v.down { color: var(--delta-down); }
 .panofi-root .pf-stat-d {
   font: 500 10.5px / 1.4 var(--cosmo-mono);
   color: var(--cosmo-ink-2);
@@ -240,8 +240,8 @@
   border-top: 1px solid var(--pf-hair);
   font-weight: 700;
 }
-.panofi-root .pf-table td.up { color: var(--cosmo-ok); }
-.panofi-root .pf-table td.down { color: var(--cosmo-bad); }
+.panofi-root .pf-table td.up { color: var(--delta-up); }
+.panofi-root .pf-table td.down { color: var(--delta-down); }
 
 /* ── 섹션 제목 ────────────────────────────────────────────────────────── */
 

@@ -89,9 +89,7 @@ export default function PanofiDashboard({ heroOnly = false }: { heroOnly?: boole
   const ActivePanel = PANELS[activeTab];
 
   // data-cosmo-dashboard 는 장식이 아니다. Chart.readTokens() 가 이 속성으로 루트를
-  // 찾아 --cosmo-* 색 토큰을 읽는다. 없으면 documentElement 로 폴백하는데 거기엔 토큰이
-  // 없어 빈 문자열이 되고, SVG 는 fill 에 빈 값을 받으면 검정으로 떨어진다.
-  // 코스모와 같은 팔레트를 쓰므로 두 속성을 함께 단다.
+  // 찾아 격자·축 --cosmo-* 토큰을 읽는다. 시리즈 색은 chart-palette hex 를 직접 넘긴다.
   return (
     <div className="cosmo-root panofi-root" data-cosmo-dashboard data-panofi-dashboard>
       <HeroZone
