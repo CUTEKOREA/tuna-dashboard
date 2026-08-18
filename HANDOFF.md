@@ -1,3 +1,11 @@
+> 🚀 **2026-08-18 — 시장 동향 선단 DB 팔레트 라이브 배포** [Grok]:
+> - PR [#625](https://github.com/CUTEKOREA/tuna-dashboard/pull/625) squash `40fd7efa`. PR Gate `32096812617` 성공. main Gate `32097094448` 성공. Freshness `32097094436` 성공.
+> - Vercel production `dpl_5urF4MDGuhN3TribjypfRnhkVtBM` READY · alias `https://leedonggun.co.kr` · region `icn1` · SHA `40fd7efa`.
+> - 라이브 `/market`(소유자 탭 새로고침): 허브 선 `#3b82f6/#10b981/#8b5cf6/#f59e0b/#e879a8`, KPI 웰 `rgb(30,58,95)`, 뉴스 칩 조업 분홍·규제 보라·시장 파랑. 증감 스파크는 빨강/파랑 유지.
+> - 배포 후 런타임 error/fatal 0건.
+>
+> 마지막 업데이트: 2026-08-18 [Grok]
+
 > 🎨 **2026-08-18 — 선단 DB 색 조합을 시장 동향만 파일럿 적용** [Grok]:
 > - worktree `market-palette` · `feat/market-palette-pilot`. 사용자 배포 요청. PR 진행.
 > - `lib/chart-palette.ts` 신설. 연결은 MarketDashboard 허브 선·HeroMarketCommand·뉴스 분류 칩·MGO/환율 아이콘 웰.
