@@ -1,3 +1,11 @@
+> 🚀 **2026-08-18 15:04 KST — `/panofi` 7월 추정실적 라이브 배포** [Grok]:
+> - PR [#635](https://github.com/CUTEKOREA/tuna-dashboard/pull/635) squash `7199cdbd`. PR 게이트 `32104845850` 성공. main Gate `32105109594` 성공. Freshness `32105109604` 성공.
+> - Vercel production `dpl_4w3aE6VZ4FqWKrKdjFrHyR8QKCC8` READY · alias `https://leedonggun.co.kr` · region `icn1` · SHA `7199cdbd`.
+> - 확인: 사이드바 **파노피**. 1~7월 생산 29,487톤 · 순손익 −5.62백만 · 원장 BEP $1,558. 라이브는 소유자 로그인. 열린 탭은 하드 리프레시.
+> - 이번 배포 런타임 error/fatal 0건.
+
+> 마지막 업데이트: 2026-08-18 15:04 KST [Grok]
+
 > 📘 **2026-08-18 14:36 KST — `/panofi` 2026년 7월 추정실적 원장 반영** [Grok]:
 > - worktree `panofi-jul-actuals` · `data/panofi-jul-actuals`. 배포는 #635.
 > - 원장 `2. 추정실적 (2026년 7월).xlsx` SHA `d6838996…`. 1~6월 월별 셀은 수정 없음. 7월 한 달만 추가.
