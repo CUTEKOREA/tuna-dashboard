@@ -2,6 +2,7 @@ import { z } from 'zod';
 
 const nullableMt = z.number().finite().nullable();
 const amountNumber = /^\(?([-+]?\d[\d,]*(?:\.\d+)?)/;
+const approximateAmount = /^\(약\s*([-+]?\d[\d,]*(?:\.\d+)?)톤?\)$/;
 const immediatelyParenthetical = /^[-+]?\d[\d,]*(?:\.\d+)?\(([-+]?\d[\d,]*(?:\.\d+)?)\)/;
 
 function assertAmountContract(
@@ -15,16 +16,18 @@ function assertAmountContract(
   const value = row[valueKey];
   const parenthetical = row[parentheticalKey];
   const normalizedRaw = typeof raw === 'string' ? raw.replaceAll(/\s+/g, '') : '';
-  const base = normalizedRaw.match(amountNumber)?.[1];
+  const base = normalizedRaw.match(amountNumber)?.[1] ?? normalizedRaw.match(approximateAmount)?.[1];
   const parsedValue = base === undefined ? null : Number(base.replaceAll(',', ''));
   const parentheticalMatch = normalizedRaw.match(immediatelyParenthetical)?.[1];
   const parsedParenthetical = parentheticalMatch === undefined
     ? null
     : Number(parentheticalMatch.replaceAll(',', ''));
   // 원문 `-`는 0톤. 빈 칸만 미기입(null)으로 남긴다.
-  const invalid = normalizedRaw === '-'
-    ? value !== 0 || parenthetical !== null
-    : parsedValue === null || value !== parsedValue || parenthetical !== parsedParenthetical;
+  const invalid = normalizedRaw === ''
+    ? value !== null || parenthetical !== null
+    : normalizedRaw === '-'
+      ? value !== 0 || parenthetical !== null
+      : parsedValue === null || value !== parsedValue || parenthetical !== parsedParenthetical;
   if (invalid) {
     ctx.addIssue({
       code: 'custom',

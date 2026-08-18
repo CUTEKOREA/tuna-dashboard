@@ -1,3 +1,13 @@
+> ⚓ **2026-08-18 12:57 KST — 해양수산본부 8/18 일일보고 `/fleet` 반영 준비** [Codex]:
+> - Google Drive `해양수산본부 일일업무보고-260818 (화).docx`를 기존 2026-01-16~08-14 이력에 추가해 **136건**으로 동기화했다. 최신 보고일은 `2026-08-18`, 조업 기준일은 `2026-08-17`이다.
+> - 공개 집계: 태평양 일간/월간/연간 `72 / 2,321 / 47,153.8 MT`, 대서양 `175 / 2,940 / 29,665 MT`, 운반선 선적/예상잔량 `11,492.3 / 6,317.7 MT`. 최신 4개 검산은 모두 일치하며 최신 이슈는 0건이다.
+> - 신규 DOCX 한 건을 기존 이력에 합치는 `--additional-report` 계약을 운영자에 추가했다. 혼합 폴더의 무관 DOCX와 계약 범위 이전 문서는 제외하고, 명시 파일 오류·보고일 중복은 fail-closed다.
+> - 새 원문의 `(약 300톤)` 표기를 0이나 미기재로 바꾸지 않고 숫자와 원문 근사 표기를 함께 보존하도록 Python 파서와 TypeScript 계약을 보강했다.
+> - 최신 `main` 병합 후 `npm run verify` 통과: ESLint 0 errors(기존 4 warnings), TypeScript, Python 19건, Vitest 131 files/864 tests, API cache 158/158, build 118 pages, 보호 상세 클라이언트 누출 0, bundle 33 routes.
+> - Production의 `FLEET_DAILY_DETAIL_JSON`은 민감값을 출력하지 않는 stdin 방식으로 새 상세 DTO로 교체했다. **다음:** PR 병합 → Vercel READY → 비인증/소유자 API와 1440px·390px `/fleet` 운영 검증.
+>
+> 마지막 업데이트: 2026-08-18 12:57 KST [Codex]
+
 > 🚀 **2026-08-18 — 시장 동향 선단 DB 팔레트 라이브 배포** [Grok]:
 > - PR [#625](https://github.com/CUTEKOREA/tuna-dashboard/pull/625) squash `40fd7efa`. PR Gate `32096812617` 성공. main Gate `32097094448` 성공. Freshness `32097094436` 성공.
 > - Vercel production `dpl_5urF4MDGuhN3TribjypfRnhkVtBM` READY · alias `https://leedonggun.co.kr` · region `icn1` · SHA `40fd7efa`.
@@ -1288,6 +1298,45 @@ IOTC 연도 누적 파일(최신 연도만 걸러야 함). 한국 선적 표기�
 
 **아직 못 올린 것**: 해역별로 어느 선사가 조업하는지(해역별은 선단 척수·선적국까지만),
 가공 이후 유통·소매 단계 기업.
+## 2026-08-17 — 참치왕국 반복 갱신 운영자를 구현했다 [Codex]
+
+매일·매주 갱신을 한 거대한 생성기로 합치지 않고, 기존 인테이크를 호출하는 조정 계층을 만들었다.
+
+**저장소 구현**
+- `config/dashboard-daily-pages.json`: `/market`, `/fleet`, `/unloading`, `/bangkok-office`, `/gmts`,
+  `/logistics`의 주기·준비기·집중 검증·출력 기준일 매니페스트.
+- `scripts/dashboard_daily_operator.py`: 읽기 전용 `scan`, 로컬 `prepare`, 집중 `verify`, 수동 스킬의
+  `record-stage`, 배포 근거만 남기는 `record-release`. push·PR·Vercel 실행 기능은 없다.
+- 상태는 `artifacts/dashboard-daily-operator/state.json`에 원자적으로 쓰고 Git에서 제외한다.
+  `source_acquired → normalized → rendered → page_prepared → verified → release_approved → deployed → live_verified`
+  순서를 강제한다. 이전 단계부터 다시 작업하면 뒤의 검증·배포 근거를 이력으로 닫아 날짜 간 상태 재사용을 막는다.
+- `scripts/test_dashboard_daily_operator.py` 9개와 `npm run test:daily-operator`를 전체 verify에 연결했다.
+- 운영 문서: `docs/operations/dashboard-daily-operator.md`.
+
+**공용 스킬**
+- 정본: `~/.agents/skills/silla-dashboard-daily-operator`.
+- Claude·Gemini skill 폴더는 정본으로 가는 심볼릭 링크라 복사본 드리프트가 없다.
+- `silla-unloading-daily-report`는 하역 어댑터로 재사용하되, 그 스킬의 예전 기본 배포 문구보다
+  이 저장소의 「현재 요청에서 배포를 명시해야 한다」 규칙이 우선한다.
+
+**활성 데일리 기사 작업기 안전 수정**
+- `$HOME/silla-tuna-daily/run_briefing.sh`는 기존 HTML이 있으면 즉시 종료하던 대신 `/market` 준비부터 재개한다.
+- `reset --hard`, 자동 커밋, 직접 `main` push를 제거했다. 전용 worktree가 dirty면 보존하고 중단하며,
+  자동 실행은 로컬 JSON 생성과 데일리 기사 집중 테스트까지만 수행한다.
+- 운영자 커밋이 main에 들어오기 전에는 기존 sync+집중 테스트 호환 경로를 쓰고, 반영 후에는 운영자 CLI로 자동 전환한다.
+- 2026-08-14 기존 산출물로 재개 경로 실측: dash를 origin/main `a392598`로 fast-forward,
+  헤드라인 6건·기사 6건 변환, Vitest 4/4, Git 변경 0, push·배포 0.
+
+**검증**
+- 운영자 Python 테스트 9/9, 활성 작업기 정책 테스트 4/4, `bash -n` 통과.
+- 스킬 `quick_validate.py`: `Skill is valid!`.
+- `npm run verify` exit 0: ESLint 0 errors(기존 warning 4), TypeScript, Python 9+4,
+  Vitest 110 files / 665 passed / 2 skipped, API cache 157/157, build 117 pages,
+  Fleet client leak, bundle 32 routes.
+
+**현재 경계**
+- 구현 브랜치 `codex/daily-operator-20260817`은 로컬 전용이다. push·PR·프로덕션 배포는 하지 않았다.
+- 다음 배포 요청 때 이 브랜치를 최신 main에 재기준화하고 별도 검증자가 diff를 반증한 뒤 배포한다.
 
 ## 2026-08-17 — 골뱅이 기존 대시보드의 조작된 계열을 바로잡았다 [CC]
 

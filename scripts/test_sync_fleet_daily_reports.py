@@ -86,6 +86,15 @@ def report_tables(*, daily: int, atlantic_daily: int, mismatch: bool = False, in
 
 
 class FleetDailyReportSyncTest(unittest.TestCase):
+    def test_parse_amount_preserves_an_approximate_tonnage(self) -> None:
+        module = load_sync_module()
+
+        amount = module.parse_amount("(약 300톤)")
+
+        self.assertEqual(amount.raw, "(약 300톤)")
+        self.assertEqual(amount.value, 300)
+        self.assertIsNone(amount.parenthetical)
+
     def run_sync(self, source_dir: Path, output: Path, *extra: str) -> subprocess.CompletedProcess[str]:
         return subprocess.run(
             [sys.executable, str(SYNC_SCRIPT), "--source-dir", str(source_dir), "--output", str(output), *extra],
@@ -104,6 +113,63 @@ class FleetDailyReportSyncTest(unittest.TestCase):
 
             with mock.patch.object(module.Path, "home", return_value=home):
                 self.assertEqual(module.default_source_dir(), source_dir)
+
+    def test_iter_reports_ignores_unrelated_docx_in_mixed_source_folder(self) -> None:
+        module = load_sync_module()
+        with tempfile.TemporaryDirectory() as temporary_directory:
+            source_dir = Path(temporary_directory)
+            daily_report = source_dir / "해양수산본부 일일업무보고-260818 (화).docx"
+            unrelated_report = source_dir / "211020_GMTS 주간보고.docx"
+            daily_report.write_bytes(b"daily")
+            unrelated_report.write_bytes(b"weekly")
+
+            reports = module.iter_reports(source_dir)
+
+            self.assertEqual(reports, [("2026-08-18", daily_report)])
+
+    def test_iter_reports_rejects_malformed_daily_report_filename(self) -> None:
+        module = load_sync_module()
+        with tempfile.TemporaryDirectory() as temporary_directory:
+            source_dir = Path(temporary_directory)
+            malformed_report = source_dir / "해양수산본부 일일업무보고-날짜없음.docx"
+            malformed_report.write_bytes(b"daily")
+
+            with self.assertRaises(module.FleetDailySyncError):
+                module.iter_reports(source_dir)
+
+    def test_iter_reports_applies_bounded_2026_coverage_start(self) -> None:
+        module = load_sync_module()
+        with tempfile.TemporaryDirectory() as temporary_directory:
+            source_dir = Path(temporary_directory)
+            archived_report = source_dir / "해양수산본부 일일업무보고-251231 (수).docx"
+            covered_report = source_dir / "해양수산본부 일일업무보고-260116 (금).docx"
+            archived_report.write_bytes(b"old")
+            covered_report.write_bytes(b"covered")
+
+            reports = module.iter_reports(source_dir)
+
+            self.assertEqual(reports, [("2026-01-16", covered_report)])
+
+    def test_iter_reports_merges_explicit_additional_report_with_base_history(self) -> None:
+        module = load_sync_module()
+        with tempfile.TemporaryDirectory() as temporary_directory:
+            temporary = Path(temporary_directory)
+            source_dir = temporary / "history"
+            source_dir.mkdir()
+            history_report = source_dir / "해양수산본부 일일업무보고-260814 (금).docx"
+            additional_report = temporary / "해양수산본부 일일업무보고-260818 (화).docx"
+            history_report.write_bytes(b"history")
+            additional_report.write_bytes(b"new")
+
+            reports = module.iter_reports(source_dir, [additional_report])
+
+            self.assertEqual(
+                reports,
+                [
+                    ("2026-08-14", history_report),
+                    ("2026-08-18", additional_report),
+                ],
+            )
 
     def test_reconciliation_check_ignores_sub_milliton_float_noise(self) -> None:
         module = load_sync_module()
