@@ -1,3 +1,11 @@
+> 🚀 **2026-08-18 16:56 KST — `/panofi` 판정문 굵게·차트 축 잘림 라이브 배포** [Grok]:
+> - PR [#644](https://github.com/CUTEKOREA/tuna-dashboard/pull/644) squash `b1a4c779`. PR Gate `32113271973` 성공. main Gate `32113575179` 성공. Freshness `32113575168` 성공.
+> - Vercel production `dpl_BcfURs4AdmZnijqm6zxfUupXRWoU` READY · alias `https://leedonggun.co.kr` · region `icn1` · SHA `b1a4c779`.
+> - 라이브 `/panofi` 손익·원가: `어획 ±2,000톤(±5%)` · `미수금 대손(아비장+AIRONE)` 전부 보임. 자금·미수금: `10,000천불` · `-9,000천불` · `8/11`. 어가·채널 판정 `일치하는 행동` 굵게, 별표 없음. 런타임 error/fatal 0.
+> - 열린 탭은 하드 리프레시.
+
+> 마지막 업데이트: 2026-08-18 16:56 KST [Grok]
+
 > 🚀 **2026-08-18 16:55 KST — 코스모 선단 DB 팔레트 라이브 배포** [Grok]:
 > - PR [#649](https://github.com/CUTEKOREA/tuna-dashboard/pull/649) squash `c4b3d576`. PR Gate `32113128851` 성공. main Gate `32113454843` 성공. Freshness `32113454833` 성공.
 > - Vercel production `dpl_DC51KxcbPWZ5RHjgTuJefo736LJc` READY · alias `https://leedonggun.co.kr` · region `icn1` · SHA `c4b3d576`.
