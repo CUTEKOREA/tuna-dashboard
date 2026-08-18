@@ -13,10 +13,11 @@ import {
 } from 'recharts';
 import { avgPerReportDay, getVesselStatusKind, type VesselStatusKind } from '../lib/unloading-operations';
 import { progressPct } from '../lib/metrics';
+import { HUB_ID } from '@/lib/chart-palette';
 
 /* 상태(하역중/대기/완료)는 증감이 아니므로 증감색 토큰을 쓰지 않는다 — 진행 중만 액센트, 나머지 muted */
-const ACCENT = 'var(--chart-s1, #509ee3)';
-const ACCENT_SOFT = 'rgba(80, 158, 227, 0.18)';
+const ACCENT = HUB_ID.bkk;
+const ACCENT_SOFT = 'rgba(59, 130, 246, 0.18)';
 const MUTED = 'var(--text-muted)';
 /* 완료 바는 라이트·다크 어디서도 같은 무게로 읽히도록 테마 중립 회색을 쓴다 */
 const DONE_BAR = 'rgba(141, 147, 165, 0.5)';

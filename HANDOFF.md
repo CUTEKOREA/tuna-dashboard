@@ -17,6 +17,14 @@
 >
 > 마지막 업데이트: 2026-08-18 12:57 KST [Codex]
 
+> 🎨 **2026-08-18 — 하역 현황에 선단 DB 팔레트 적용** [Grok]:
+> - worktree `unloading-palette` · `feat/unloading-palette`. **프로덕션 미배포**.
+> - 일일 하역 막대 = `CHART_RANK`. 누적 선 = `HUB_ID.mnt`. 어창 선 = `colorForHold`. 항차 간트 진행 = `HUB_ID.bkk`.
+> - 온도 경고(-18℃·품질 단계)와 현장 사진·타임라인 구조는 유지. 증감 토큰 미사용(상태는 하역중/대기/완료).
+> - **다음 단계**: 로컬 `/unloading` 확인 후 사용자 배포 요청 시에만 PR.
+>
+> 마지막 업데이트: 2026-08-18 [Grok]
+
 > 🚀 **2026-08-18 — 시장 동향 선단 DB 팔레트 라이브 배포** [Grok]:
 > - PR [#625](https://github.com/CUTEKOREA/tuna-dashboard/pull/625) squash `40fd7efa`. PR Gate `32096812617` 성공. main Gate `32097094448` 성공. Freshness `32097094436` 성공.
 > - Vercel production `dpl_5urF4MDGuhN3TribjypfRnhkVtBM` READY · alias `https://leedonggun.co.kr` · region `icn1` · SHA `40fd7efa`.

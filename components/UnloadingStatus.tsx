@@ -26,6 +26,7 @@ import {
   getVesselStatusKind,
 } from '../lib/unloading-operations';
 import { progressPct } from '../lib/metrics';
+import { CHART_RANK, HUB_ID } from '@/lib/chart-palette';
 
 export {
   getUnloadingEtaLabel,
@@ -1570,8 +1571,8 @@ export default function UnloadingStatus({ heroOnly = false }: { heroOnly?: boole
                         formatter={(value: any, name: any) => [`${Number(value).toLocaleString()} MT`, name]}
                       />
                       <Legend iconType="circle" wrapperStyle={{ fontSize: '12px', paddingTop: '8px', paddingBottom: '16px' }} verticalAlign="top" />
-                      <Bar name="일일 하역량" dataKey="일일하역량" fill="var(--w-sky-400)" radius={[4, 4, 0, 0]} maxBarSize={36} />
-                      <Line name="누적 하역량" type="monotone" dataKey="누적하역량" stroke="var(--w-emerald-500)" strokeWidth={2.5} dot={{ r: 3, fill: 'var(--w-emerald-500)', strokeWidth: 0 }} />
+                      <Bar name="일일 하역량" dataKey="일일하역량" fill={CHART_RANK} radius={[4, 4, 0, 0]} maxBarSize={36} />
+                      <Line name="누적 하역량" type="monotone" dataKey="누적하역량" stroke={HUB_ID.mnt} strokeWidth={2.5} dot={{ r: 3, fill: HUB_ID.mnt, strokeWidth: 0 }} />
                     </ComposedChart>
                   </div>
                 </div>
@@ -1617,7 +1618,7 @@ export default function UnloadingStatus({ heroOnly = false }: { heroOnly?: boole
                       progress={selectedProgress}
                       radius={36} 
                       strokeWidth={6} 
-                      color="#10b981" 
+                      color={HUB_ID.mnt} 
                       glow={true} 
                     />
                     <div style={{ flex: 1, display: 'flex', flexDirection: 'column', gap: '8px' }}>
@@ -1714,11 +1715,11 @@ export default function UnloadingStatus({ heroOnly = false }: { heroOnly?: boole
                 let glowClass = '';
                 
                 if (isFirst) {
-                  iconColor = '#38bdf8';
+                  iconColor = HUB_ID.bkk;
                   iconBg = 'rgba(56, 189, 248, 0.15)';
                   glowClass = styles.pulseGlowBlue;
                 } else if (isLast) {
-                  iconColor = '#10b981';
+                  iconColor = HUB_ID.mnt;
                   iconBg = 'rgba(16, 185, 129, 0.15)';
                   glowClass = styles.pulseGlowGreen;
                 }
@@ -1769,12 +1770,12 @@ export default function UnloadingStatus({ heroOnly = false }: { heroOnly?: boole
                       </div>
                       <div className={styles.logText}>
                         <div style={{ marginBottom: '4px', color: 'var(--w-slate-200)', display: 'flex', alignItems: 'center', gap: '6px' }}>
-                          <PackageCheck size={13} color="#38bdf8" />
+                          <PackageCheck size={13} color={HUB_ID.bkk} />
                           <span>어창: <strong>{t.targetHol}</strong></span>
                         </div>
                         {t.allocations && t.allocations.length > 0 ? (
                           <div style={{ marginBottom: '4px', color: 'var(--w-slate-200)', display: 'flex', alignItems: 'flex-start', gap: '6px' }}>
-                            <MapPin size={13} color="#38bdf8" style={{ flexShrink: 0, marginTop: '3px' }} />
+                            <MapPin size={13} color={HUB_ID.bkk} style={{ flexShrink: 0, marginTop: '3px' }} />
                             <div style={{ minWidth: 0 }}>
                               <span style={{ display: 'block', marginBottom: '2px' }}>수하처별 하역량</span>
                               <span style={{ display: 'flex', flexWrap: 'wrap', gap: '4px 10px' }}>
@@ -1789,7 +1790,7 @@ export default function UnloadingStatus({ heroOnly = false }: { heroOnly?: boole
                           </div>
                         ) : t.consignee ? (
                           <div style={{ marginBottom: '4px', color: 'var(--w-slate-200)', display: 'flex', alignItems: 'center', gap: '6px' }}>
-                            <MapPin size={13} color="#38bdf8" />
+                            <MapPin size={13} color={HUB_ID.bkk} />
                             <span>
                               수하처: <strong><TermTooltip term={t.consignee} description="원본 하역 보고서에 기재된 태국 현지 수하처 코드입니다." /></strong>
                             </span>

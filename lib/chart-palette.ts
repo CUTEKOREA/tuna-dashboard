@@ -1,6 +1,6 @@
 /**
  * 선단 DB에서 뽑은 차트 4겹 (2026-08-18 기획).
- * 파일럿은 시장 동향만 연결한다. 다른 페이지는 아직 import 하지 말 것.
+ * 연결: 시장 동향 · 하역 현황. 그 밖은 아직 import 하지 말 것.
  *
  * A 셸 — 흰 카드·잉크 숫자는 CSS 토큰(--dsc-*)이 담당
  * B 구성 — 파이·트리맵·점유 (파스텔 면색)
@@ -37,6 +37,26 @@ export const HUB_ID = {
   abj: '#8b5cf6',
   vig: '#e879a8',
 } as const;
+
+/** 어창·홀 선 — 흰 지면에서 읽히는 정체성 채도. 파스텔 세선은 쓰지 않는다. */
+export const HOLD_ID = [
+  '#3b82f6',
+  '#10b981',
+  '#f59e0b',
+  '#8b5cf6',
+  '#e879a8',
+  '#06b6d4',
+  '#84cc16',
+  '#a78bfa',
+  '#f97316',
+  '#0ea5e9',
+  '#64748b',
+  '#14b8a6',
+] as const;
+
+export function colorForHold(index: number): string {
+  return HOLD_ID[((index % HOLD_ID.length) + HOLD_ID.length) % HOLD_ID.length];
+}
 
 export const NEWS_CATEGORY_ID = {
   시장: HUB_ID.bkk,
