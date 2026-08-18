@@ -17,6 +17,7 @@ import {
   CartesianGrid,
   Cell,
   ComposedChart,
+  LabelList,
   Legend,
   Line,
   LineChart,
@@ -29,10 +30,14 @@ import { CHART_RANK, HUB_ID, shareColor } from '@/lib/chart-palette';
 import { getSmartRotation, truncateXAxis } from '@/lib/chart-standards';
 import {
   companiesByMonth,
+  focusCompanyTag,
+  focusSummaries,
+  isFocusCompany,
   labelForMonth,
   monthFromLabel,
   panFor,
   seasonTotals,
+  vesselAxisLabel,
   vesselsByMonth,
 } from '@/lib/data/falkland-squid-vessels';
 import { FalklandMonthChips, monthBarName, useFalklandMonth } from './FalklandMonthFilter';
@@ -103,6 +108,98 @@ function Tip({
 
 const grid = <CartesianGrid stroke="var(--mu-grid)" strokeDasharray="3 3" vertical={false} />;
 const legend = <Legend wrapperStyle={{ fontSize: 11, color: 'var(--mu-axis)' }} />;
+
+function FocusLegend({ month }: { month: Parameters<typeof focusSummaries>[0] }) {
+  return (
+    <div className={styles.focusLegend} aria-label="강조 회사">
+      {focusSummaries(month).map((row) => {
+        const idle = row.pan === 0;
+        return (
+          <span key={row.name} className={idle ? styles.focusLegendIdle : styles.focusLegendItem}>
+            <i className={styles.focusSwatch} aria-hidden />
+            {row.name} {row.vessels}척 {row.pan.toLocaleString('ko-KR')}판
+            {idle ? ' · 휴어' : ''}
+          </span>
+        );
+      })}
+    </div>
+  );
+}
+
+function makeFocusTick(
+  metaOf: (label: string) => { focus: boolean; idle: boolean },
+  rot: { angle: number; textAnchor: string },
+) {
+  return function FocusTick({
+    x = 0,
+    y = 0,
+    payload,
+  }: {
+    x?: number | string;
+    y?: number | string;
+    payload?: { value?: string | number };
+  }) {
+    const label = String(payload?.value ?? '');
+    const { focus, idle } = metaOf(label);
+    const angle = rot.angle || 0;
+    const px = Number(x) || 0;
+    const py = Number(y) || 0;
+    return (
+      <text
+        x={px}
+        y={py}
+        dy={angle ? 8 : 12}
+        textAnchor={rot.textAnchor as 'end' | 'middle'}
+        transform={angle ? `rotate(${angle},${px},${py})` : undefined}
+        fill={focus ? SQUID_ROLE.highlight : 'var(--mu-axis)'}
+        fontSize={focus ? 12 : 11}
+        fontWeight={focus ? 700 : 400}
+      >
+        {truncateXAxis(label)}
+        {idle ? (
+          <tspan dx="3" fontSize={10} fontWeight={700}>
+            0판
+          </tspan>
+        ) : null}
+      </text>
+    );
+  };
+}
+
+function FocusBarLabel({
+  x = 0,
+  y = 0,
+  width = 0,
+  index = 0,
+  rows,
+}: {
+  x?: number | string;
+  y?: number | string;
+  width?: number | string;
+  index?: number;
+  rows: { company?: string; name?: string; pan?: number; totalPan?: number }[];
+}) {
+  const row = rows[index];
+  if (!row) return null;
+  const company = row.company ?? row.name ?? '';
+  if (!isFocusCompany(company)) return null;
+  const pan = row.pan ?? row.totalPan ?? 0;
+  const tag = focusCompanyTag(company);
+  const left = Number(x) + Number(width) / 2;
+  const top = Number(y) - 4;
+  return (
+    <text
+      x={left}
+      y={Number.isFinite(top) ? top : 12}
+      textAnchor="middle"
+      fill={SQUID_ROLE.highlight}
+      fontSize={10}
+      fontWeight={700}
+    >
+      {pan === 0 ? `${tag} 0판` : tag}
+    </text>
+  );
+}
 
 /** 살오징어 붕괴 — 이 페이지의 중심 서사. 세계와 한국을 한 장에 겹친다. */
 export function CollapseChart({ data }: { data: SquidCatchData }) {
@@ -989,32 +1086,60 @@ export function FalklandVesselChart() {
   const animate = !useReducedMotion();
   const { month } = useFalklandMonth();
   const rows = useMemo(
-    () => vesselsByMonth(month).map((v) => ({ ...v, pan: panFor(v, month) })),
+    () =>
+      vesselsByMonth(month).map((v) => ({
+        ...v,
+        pan: panFor(v, month),
+        label: vesselAxisLabel(v),
+      })),
     [month],
   );
-  const rot = getSmartRotation(rows.map((r) => r.name));
+  const rot = getSmartRotation(rows.map((r) => r.label));
+  const metaByLabel = (label: string) => {
+    const row = rows.find((item) => item.label === label);
+    return {
+      focus: !!row && isFocusCompany(row.company),
+      idle: !!row && isFocusCompany(row.company) && row.pan === 0,
+    };
+  };
 
   return (
     <>
       <FalklandMonthChips />
-      <SafeResponsiveContainer width="100%" height={340}>
-        <ComposedChart data={rows} margin={{ ...MARGIN, bottom: rot.angle ? 60 : 8 }}>
+      <FocusLegend month={month} />
+      <SafeResponsiveContainer width="100%" height={360}>
+        <ComposedChart data={rows} margin={{ ...MARGIN, top: 22, bottom: rot.angle ? 60 : 8 }}>
           {grid}
           <XAxis
-            dataKey="name"
+            dataKey="label"
             {...AXIS}
-            tickFormatter={truncateXAxis}
-            angle={rot.angle}
-            textAnchor={rot.textAnchor as 'end' | 'middle'}
+            tick={makeFocusTick(metaByLabel, rot)}
             height={rot.angle ? 74 : 30}
             interval={0}
           />
           <YAxis {...AXIS} tickFormatter={(v: number) => `${Math.round(v / 1000)}천`} />
           <Tooltip content={<Tip />} />
           {legend}
-          <Bar dataKey="pan" name={monthBarName(month)} fill={CHART_RANK} isAnimationActive={animate} />
+          <Bar dataKey="pan" name={monthBarName(month)} isAnimationActive={animate} radius={[3, 3, 0, 0]}>
+            {rows.map((row) => {
+              const focus = isFocusCompany(row.company);
+              return (
+                <Cell
+                  key={`${row.name}-${row.company}`}
+                  fill={focus ? SQUID_ROLE.highlight : CHART_RANK}
+                  fillOpacity={focus ? 1 : 0.38}
+                  stroke={focus ? '#9f1239' : undefined}
+                  strokeWidth={focus ? 1.2 : 0}
+                />
+              );
+            })}
+            <LabelList dataKey="label" content={(props) => <FocusBarLabel {...props} rows={rows} />} />
+          </Bar>
         </ComposedChart>
       </SafeResponsiveContainer>
+      <p className={styles.catchSourceLine}>
+        진한 장미색과 위 칩이 선민수산·현원수산이다. 108은해는 선민 실적과 현원 0판이 따로 있어 축에 회사를 붙였다.
+      </p>
     </>
   );
 }
@@ -1027,35 +1152,62 @@ export function FalklandCompanyChart() {
   const rot = getSmartRotation(rows.map((r) => r.name));
 
   return (
-    <SafeResponsiveContainer width="100%" height={320}>
-      <ComposedChart data={rows} margin={{ ...MARGIN, bottom: rot.angle ? 58 : 8 }}>
-        {grid}
-        <XAxis
-          dataKey="name"
-          {...AXIS}
-          tickFormatter={truncateXAxis}
-          angle={rot.angle}
-          textAnchor={rot.textAnchor as 'end' | 'middle'}
-          height={rot.angle ? 72 : 30}
-          interval={0}
-        />
-        <YAxis yAxisId="left" {...AXIS} tickFormatter={(v: number) => `${Math.round(v / 1000)}천`} />
-        <YAxis yAxisId="right" orientation="right" {...AXIS} allowDecimals={false} />
-        <Tooltip content={<Tip />} />
-        {legend}
-        <Bar yAxisId="left" dataKey="totalPan" name={monthBarName(month)} fill={SQUID_ROLE.volume} isAnimationActive={animate} />
-        <Line
-          yAxisId="right"
-          type="monotone"
-          dataKey="vessels"
-          name="보유 척수 (척)"
-          stroke={CHART_RANK}
-          strokeWidth={2}
-          dot={{ r: 3 }}
-          isAnimationActive={animate}
-        />
-      </ComposedChart>
-    </SafeResponsiveContainer>
+    <>
+      <FocusLegend month={month} />
+      <SafeResponsiveContainer width="100%" height={340}>
+        <ComposedChart data={rows} margin={{ ...MARGIN, top: 22, bottom: rot.angle ? 58 : 8 }}>
+          {grid}
+          <XAxis
+            dataKey="name"
+            {...AXIS}
+            tick={makeFocusTick((label) => {
+              const row = rows.find((item) => item.name === label);
+              return {
+                focus: isFocusCompany(label),
+                idle: !!row && isFocusCompany(label) && row.totalPan === 0,
+              };
+            }, rot)}
+            height={rot.angle ? 72 : 30}
+            interval={0}
+          />
+          <YAxis yAxisId="left" {...AXIS} tickFormatter={(v: number) => `${Math.round(v / 1000)}천`} />
+          <YAxis yAxisId="right" orientation="right" {...AXIS} allowDecimals={false} />
+          <Tooltip content={<Tip />} />
+          {legend}
+          <Bar yAxisId="left" dataKey="totalPan" name={monthBarName(month)} isAnimationActive={animate} radius={[3, 3, 0, 0]}>
+            {rows.map((row) => {
+              const focus = isFocusCompany(row.name);
+              return (
+                <Cell
+                  key={row.name}
+                  fill={focus ? SQUID_ROLE.highlight : SQUID_ROLE.volume}
+                  fillOpacity={focus ? 1 : 0.42}
+                  stroke={focus ? '#9f1239' : undefined}
+                  strokeWidth={focus ? 1.2 : 0}
+                />
+              );
+            })}
+            <LabelList
+              dataKey="name"
+              content={(props) => <FocusBarLabel {...props} rows={rows} />}
+            />
+          </Bar>
+          <Line
+            yAxisId="right"
+            type="monotone"
+            dataKey="vessels"
+            name="보유 척수 (척)"
+            stroke={CHART_RANK}
+            strokeWidth={2}
+            dot={{ r: 3 }}
+            isAnimationActive={animate}
+          />
+        </ComposedChart>
+      </SafeResponsiveContainer>
+      <p className={styles.catchSourceLine}>
+        진한 장미색과 위 칩이 선민수산·현원수산이다. 현원수산은 0판이라 막대가 없어도 칩·축·「0판」표기에 남아 있다.
+      </p>
+    </>
   );
 }
 

@@ -36,6 +36,18 @@ export type Vessel = {
 
 export type Company = { name: string; totalKg: number; vessels: number };
 
+/** 화면에서 강조하는 회사. 사내 분석 대상(선민)과 0판으로 안 보이던 회사(현원). */
+export const FOCUS_COMPANIES = ['선민수산', '현원수산'] as const;
+
+export function isFocusCompany(name: string): boolean {
+  return (FOCUS_COMPANIES as readonly string[]).includes(name);
+}
+
+/** 축·칩에 쓰는 짧은 이름. 「수산」을 떼면 7자 룰 안에 들어온다. */
+export function focusCompanyTag(name: string): string {
+  return name.replace(/수산$/, '');
+}
+
 const data = raw as unknown as {
   _meta: {
     출처: string;
@@ -54,6 +66,12 @@ const data = raw as unknown as {
 
 export const falklandMeta = data._meta;
 export const falklandVessels = data.vessels;
+
+/** 같은 선명이 두 회사로 있으면 축에 회사를 붙인다. 108은해가 그 경우다. */
+export function vesselAxisLabel(vessel: Vessel, all: readonly Vessel[] = falklandVessels): string {
+  const dup = all.filter((row) => row.name === vessel.name).length > 1;
+  return dup ? `${vessel.name}(${vessel.company.replace(/수산$/, '')})` : vessel.name;
+}
 
 /** 월 순서. 어기가 12월에 시작해 이듬해 5월에 끝나므로 달력 순이 아니다. */
 export const SEASON_MONTHS = ['m12', 'm1', 'm2', 'm3', 'm4', 'm5'] as const;
@@ -133,6 +151,19 @@ export function seasonTotals(): { 월: string; 물량: number }[] {
 /** 한 어기 동안 실적이 없던 배. 선단에 있으나 조업하지 않은 것과 없는 것은 다르다. */
 export function idleVessels(): Vessel[] {
   return data.vessels.filter((v) => v.totalPan === 0);
+}
+
+/** 강조 회사만, FOCUS 순서로. 0판이어도 빠지지 않는다. */
+export function focusSummaries(month: FalklandMonth = 'all'): {
+  name: string;
+  vessels: number;
+  pan: number;
+}[] {
+  const byName = new Map(companiesByMonth(month).map((row) => [row.name, row]));
+  return FOCUS_COMPANIES.map((name) => {
+    const row = byName.get(name);
+    return { name, vessels: row?.vessels ?? 0, pan: row?.totalPan ?? 0 };
+  });
 }
 
 /** 선단 합계. 두 중량을 함께 낸다 — 어느 쪽인지 밝히지 않으면 숫자가 안 맞는다. */

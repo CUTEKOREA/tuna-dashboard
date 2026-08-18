@@ -1114,6 +1114,42 @@
   font-weight: 600;
 }
 
+/* 포클랜드 08 — 선민·현원을 순위 막대 사이에서 바로 찾게 */
+.focusLegend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin: 0 0 0.65rem;
+}
+
+.focusLegendItem,
+.focusLegendIdle {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  min-height: 32px;
+  padding: 0.25rem 0.75rem;
+  border-radius: 999px;
+  border: 1px solid #be185d;
+  background: color-mix(in srgb, #be185d 14%, var(--mu-surface));
+  color: #9f1239;
+  font-size: 0.8125rem;
+  font-weight: 650;
+  line-height: 1.2;
+}
+
+.focusLegendIdle {
+  border-style: dashed;
+}
+
+.focusSwatch {
+  width: 0.65rem;
+  height: 0.65rem;
+  border-radius: 2px;
+  background: #be185d;
+  flex: 0 0 auto;
+}
+
 /* ── 읽기 순서 교정 (2026-08-17) ─────────────────────────────────────
    서술이 본체이고 차트는 근거인데, 시각 무게가 반대였다. 차트는 글래스 카드에
    원색으로 들어가고 서술은 흐린 색 38rem 이라 눈이 차트로 먼저 갔다.
