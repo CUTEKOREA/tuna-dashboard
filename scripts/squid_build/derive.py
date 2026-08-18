@@ -17,6 +17,26 @@ def _has_data(widget: dict) -> bool:
     return bool(data)
 
 
+def _peru_reason(closure, research) -> str:
+    """페루 사유 문자열.
+
+    조사·탐사 인가를 상업 재개로 읽히게 쓰면 조달 판단이 뒤집힌다. 인가 사실은
+    알리되 상업 재개가 아니라는 것을 같은 문장에 박는다.
+    """
+    if not closure:
+        return "중단·재개 공지 미확정"
+    if not research:
+        return "PRODUCE 중단공지 확인"
+    windows = " · ".join(
+        f"{w['kind']} {w['start'][5:]}~{w['end'][5:]}" for w in research["windows"]
+    )
+    return (
+        f"PRODUCE 중단공지 유효. {research['date'][5:]} 조사·탐사 인가({windows}, "
+        f"최대 {research['vessel_limit']}척 ≤{research['hold_capacity_m3_max']}㎥)가 있으나 "
+        "상업 재개 공문은 아님"
+    )
+
+
 def _state_evidence(archive_path: str, derivation: str, evidence_type: str) -> dict:
     return {
         "archive_path": archive_path,
@@ -40,6 +60,17 @@ def _sourcing_signal(document: dict, spec: WidgetSpec, built_on: date) -> dict:
         ),
         None,
     )
+    # RM00269(2026-08-17) 조사·탐사 인가. 중단 상태를 바꾸지는 않지만 기준일은 앞당긴다 —
+    # 3주 묵은 기준일을 그대로 두면 그 사이 아무 일도 없었던 것처럼 보인다.
+    peru_research = next(
+        (
+            event
+            for event in peru.get("data", [])
+            if event.get("quota_semantics") == "effort_limit" and event.get("windows")
+        ),
+        None,
+    )
+
     chile_data = chile.get("data", {}) if _has_data(chile) else {}
     chile_active = bool(chile_data.get("recorded_capture_tonnes", 0) > 0)
     chile_remaining = chile_data.get("quota_minus_recorded_capture_tonnes")
@@ -100,9 +131,13 @@ def _sourcing_signal(document: dict, spec: WidgetSpec, built_on: date) -> dict:
         {
             "origin": "페루 pota",
             "status": "중단·제한" if peru_closure else "데이터공백",
-            "as_of": peru_closure["date"] if peru_closure else None,
+            "as_of": (
+                peru_research["date"] if peru_research
+                else peru_closure["date"] if peru_closure
+                else None
+            ),
             "evidence_widget": "A_peru_pota_timeline",
-            "reason": "PRODUCE 중단공지 확인" if peru_closure else "중단·재개 공지 미확정",
+            "reason": _peru_reason(peru_closure, peru_research),
             "state_evidence": _state_evidence(
                 peru_path,
                 "observed_closure_notice" if peru_closure else "unsupported_notice_gap",

@@ -69,7 +69,7 @@
           "latest_verified": { "type": "string" },
           "next_check": { "type": "string" },
           "status": {
-            "enum": ["active", "active_gap", "pipeline_gap", "coverage_gap", "manual_export_gap", "scheduled"]
+            "enum": ["active", "active_gap", "pipeline_gap", "coverage_gap", "manual_export_gap", "scheduled", "partial"]
           }
         }
       }

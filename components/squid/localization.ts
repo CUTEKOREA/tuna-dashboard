@@ -37,6 +37,13 @@ const WIDGET_TITLE_KO: Record<string, string> = {
 };
 
 const PUBLISHER_KO: Record<string, string> = {
+  'NOAA GARFO': '미국 해양대기청 대서양광역수산국',
+  'IMARPE Peru': '페루 해양연구소',
+  'NPFC / NIFS / JFA': '북태평양수산위원회·국립수산과학원·일본 수산청',
+  'Korea FIRA / MOF': '한국수산자원공단·해양수산부',
+  'aT KAMIS': '농수산식품유통공사 농수산물유통정보',
+  'China Customs / GACC': '중국 해관총서',
+  'European Commission RASFF': '유럽연합 집행위원회 식품사료신속경보',
   FAO: '유엔식량농업기구',
   'Statistics Korea KOSIS': '통계청 국가통계포털',
   'National Institute of Fisheries Science': '국립수산과학원',
@@ -69,6 +76,9 @@ const PUBLISHER_KO: Record<string, string> = {
 };
 
 const FREQUENCY_KO: Record<string, string> = {
+  'event_seasonal': '어기 중 수시',
+  'monthly_in_season': '어기 중 매월',
+  'daily_weekly': '일·주간',
   annual: '연간',
   monthly: '월간',
   weekly: '주간',
@@ -87,6 +97,12 @@ const FREQUENCY_KO: Record<string, string> = {
 };
 
 const SERIES_KO: Record<string, string> = {
+  'Pota certification working group': '대왕오징어 인증 실무협의체',
+  'Illex quota monitor': '일렉스 쿼터 소진 감시',
+  'Dosidicus cruise and situation reports': '대왕오징어 조사항해·상황보고',
+  'Todarodes pacificus (Japanese flying squid / 살오징어)': '살오징어',
+  'HS 0307/1605 squid trade': '품목분류 0307·1605 오징어 교역',
+  'cephalopod import alerts': '두족류 수입 경보',
   'FishStat capture production': '수산통계 어획생산량',
   'DT_1EW0005 fishery production': '국가통계표 어업생산량',
   'Fisheries climate change briefing': '수산업 기후변화 브리핑',

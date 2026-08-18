@@ -26,6 +26,12 @@ from scripts.squid_build.spec import (  # noqa: E402
 from scripts.validate_squid_v5 import parse_edge, validate  # noqa: E402
 
 
+# 결정론을 위해 빌드시각을 고정한다. 아카이브에 더 최신 문서가 들어오면
+# 이 값만 올린다 — 7곳에 흩어져 있던 탓에 2026-08-17 문서가 들어오자
+# G-012 검사가 엉뚱하게 실패했다.
+BUILT_AT = datetime(2026, 8, 18, 9, 0, tzinfo=ZoneInfo("Asia/Seoul"))
+
+
 def _read_csv(path: Path) -> list[dict[str, str]]:
     with path.open(encoding="utf-8-sig", newline="") as handle:
         return list(csv.DictReader(handle))
@@ -176,7 +182,7 @@ def test_report_coverage_uses_observation_period_not_publication_date() -> None:
     """Using a report's release date as its observation end must fail."""
     document = build_document(
         archive_root=DEFAULT_ARCHIVE_ROOT,
-        built_at=datetime(2026, 8, 13, 9, 0, tzinfo=ZoneInfo("Asia/Seoul")),
+        built_at=BUILT_AT,
     )
 
     fta = document["widgets"]["C_fta_import_trend"]["basis"]
@@ -208,7 +214,7 @@ def test_report_coverage_uses_observation_period_not_publication_date() -> None:
 
 def test_every_coverage_end_is_on_or_before_build_day() -> None:
     """A partial month or year that extends past built_at must fail."""
-    built_at = datetime(2026, 8, 13, 9, 0, tzinfo=ZoneInfo("Asia/Seoul"))
+    built_at = BUILT_AT
     document = build_document(archive_root=DEFAULT_ARCHIVE_ROOT, built_at=built_at)
     future = {
         widget_id: basis["coverage_end"]
@@ -230,7 +236,7 @@ def test_translation_number_fidelity() -> None:
 
     document = build_document(
         archive_root=DEFAULT_ARCHIVE_ROOT,
-        built_at=datetime(2026, 8, 13, 9, 0, tzinfo=ZoneInfo("Asia/Seoul")),
+        built_at=BUILT_AT,
     )
     table = _translations()
     checked = 0
@@ -250,6 +256,42 @@ def test_translation_number_fidelity() -> None:
             assert len(row["text_ko"]) >= len(row["text"]) * 0.25, (
                 widget_id, len(row["text"]), len(row["text_ko"]))
     print(f"    (번역 {checked}건 수치 대조)")
+
+
+def test_peru_research_authorisation_is_not_a_reopening() -> None:
+    """RM00269 를 상업 재개로 표기하면 실패한다.
+
+    조사·탐사 인가는 소형선 한정 제한 조업이다. 이걸 재개로 읽으면 조달 판단이
+    정반대로 뒤집히므로, 상태값·사유 문구·의미론을 모두 못박아 둔다.
+    """
+    document = build_document(
+        archive_root=DEFAULT_ARCHIVE_ROOT,
+        built_at=BUILT_AT,
+    )
+    timeline = document["widgets"]["A_peru_pota_timeline"]["data"]
+    research = [e for e in timeline if e.get("quota_semantics") == "effort_limit"]
+    assert len(research) == 1, [e["date"] for e in timeline]
+    event = research[0]
+    assert event["date"] == "2026-08-17"
+    assert "상업 재개 아님" in event["event"]
+    # 어획 쿼터가 아니다 — 톤수를 붙이면 한도로 오독된다.
+    assert "tonnes" not in event
+    assert event["vessel_limit"] == 30
+    assert event["hold_capacity_m3_max"] == 32.6
+    windows = {w["kind"]: (w["start"], w["end"]) for w in event["windows"]}
+    assert windows["IMARPE 자원조사"] == ("2026-08-23", "2026-08-29")
+    assert windows["탐사조업"] == ("2026-08-30", "2026-09-26")
+
+    peru = next(
+        row
+        for row in document["widgets"]["A_sourcing_signal_board"]["data"]
+        if row["origin"].startswith("페루")
+    )
+    assert peru["status"] == "중단·제한", peru["status"]
+    assert peru["as_of"] == "2026-08-17"
+    assert "상업 재개 공문은 아님" in peru["reason"]
+    # 중단이 유효하다는 사실이 사유에서 빠지면 안 된다.
+    assert "중단공지 유효" in peru["reason"]
 
 
 def test_hs_map_preserves_archive_rows() -> None:
@@ -284,7 +326,7 @@ def test_eu_market_prices_and_ladder_are_structured_import_quotes() -> None:
     """Leaving EFPR quotes empty or mixing price stages must fail this test."""
     document = build_document(
         archive_root=DEFAULT_ARCHIVE_ROOT,
-        built_at=datetime(2026, 8, 13, 9, 0, tzinfo=ZoneInfo("Asia/Seoul")),
+        built_at=BUILT_AT,
     )
     assert "B_eu_first_sale_price" not in document["widgets"]
     assert "B_eu_spread" not in document["widgets"]
@@ -362,7 +404,7 @@ def test_sourcing_signal_records_observed_and_schedule_derivations() -> None:
     """Hiding supported states or presenting a schedule as observed must fail."""
     document = build_document(
         archive_root=DEFAULT_ARCHIVE_ROOT,
-        built_at=datetime(2026, 8, 13, 9, 0, tzinfo=ZoneInfo("Asia/Seoul")),
+        built_at=BUILT_AT,
     )
     signal_widget = document["widgets"]["A_sourcing_signal_board"]
     assert "SQ-MGT-ARGENTINA" in signal_widget["basis"]["source_ids"]
@@ -447,7 +489,7 @@ def test_pdf_layout_fallback_preserves_archive_pdf_citation() -> None:
 
     spec = replace(
         _specs_by_id()["A_argentina_illex_gap"],
-        archive_paths=("오징어자료/01_Argentina/INIDEP_Calamar_T2024_Informe_final.pdf",),
+        archive_paths=("00_오징어_관련자료/01_오징어_시장·가격/08_국가별_조달/01_Argentina/INIDEP_Calamar_T2024_Informe_final.pdf",),
     )
     config = {
         "widget_id": spec.widget_id,
@@ -470,7 +512,7 @@ def test_only_four_cards_remain_empty_after_layout_recheck() -> None:
     """Using stale empties or 2024 evidence as a 2026 Argentina state must fail."""
     document = build_document(
         archive_root=DEFAULT_ARCHIVE_ROOT,
-        built_at=datetime(2026, 8, 13, 9, 0, tzinfo=ZoneInfo("Asia/Seoul")),
+        built_at=BUILT_AT,
     )
     empty = {
         widget_id
@@ -548,6 +590,7 @@ def main() -> None:
         test_report_coverage_uses_observation_period_not_publication_date,
         test_every_coverage_end_is_on_or_before_build_day,
         test_translation_number_fidelity,
+        test_peru_research_authorisation_is_not_a_reopening,
         test_hs_map_preserves_archive_rows,
         test_md_configs_cover_work_list_and_isolate_failures,
         test_eu_market_prices_and_ladder_are_structured_import_quotes,

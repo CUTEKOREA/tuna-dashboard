@@ -82,7 +82,15 @@ export interface SquidMonitoring {
   frequency: string;
   latest_verified: string;
   next_check: string;
-  status: 'active' | 'active_gap' | 'pipeline_gap' | 'coverage_gap' | 'manual_export_gap' | 'scheduled';
+  status:
+    | 'active'
+    | 'active_gap'
+    | 'pipeline_gap'
+    | 'coverage_gap'
+    | 'manual_export_gap'
+    | 'scheduled'
+    /** 일부 구간만 확보 (예: 중국 해관 2025 월별 4개 HS 만) */
+    | 'partial';
 }
 
 export interface SquidV5 {

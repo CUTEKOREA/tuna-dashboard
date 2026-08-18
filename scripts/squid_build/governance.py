@@ -224,12 +224,20 @@ def load_governance(
     sources, registry_sources = load_sources(archive_root)
     gates = load_gates(archive_root)
     monitoring = load_monitoring(archive_root)
-    if len(registry_sources) != 36:
-        raise ValueError(f"source_registry.csv must contain 36 rows; got {len(registry_sources)}")
-    if len(gates) != 11:
-        raise ValueError(f"measurement_gate.csv must contain 11 rows; got {len(gates)}")
-    if len(monitoring) != 15:
-        raise ValueError(f"monitoring_calendar.csv must contain 15 rows; got {len(monitoring)}")
+    # 아카이브는 자란다. 정확한 행 수를 강제하면 정상적인 신규 수집이 빌드를 막는다
+    # (2026-08-18 실제로 36→44 로 늘며 실패했다). 줄어드는 쪽만 사고이므로 하한을 본다.
+    if len(registry_sources) < 36:
+        raise ValueError(
+            f"source_registry.csv 가 36행 미만이다({len(registry_sources)}). 원장이 유실됐는지 확인할 것"
+        )
+    required_gates = {f"G-{n:03d}" for n in range(1, 12)}
+    missing_gates = required_gates - {g["gate_id"] for g in gates}
+    if missing_gates:
+        raise ValueError(f"measurement_gate.csv 에 {sorted(missing_gates)} 누락")
+    if len(monitoring) < 15:
+        raise ValueError(
+            f"monitoring_calendar.csv 가 15행 미만이다({len(monitoring)}). 감시 계열이 사라졌는지 확인할 것"
+        )
     widgets = _build_widgets(
         archive_root,
         specs,
