@@ -16,14 +16,15 @@ import {
   type BangkokTrader,
 } from '@/lib/data/bangkok-weekly';
 import { logisticsWeeklyReport } from '@/lib/logistics-weekly-report';
+import { HUB_ID } from '@/lib/chart-palette';
 
-/* 색상은 기존 위젯 그대로 — BANGKOK_TRADERS 와 1:1 */
+/* 트레이더 이름은 정체성. Metabase --chart-s* 를 쓰지 않는다. */
 const TRADER_STYLE: Record<BangkokTrader, { gid: string; color: string }> = {
-  FCF: { gid: 'tFcf', color: 'var(--chart-s1, #509ee3)' },
-  ITOCHU: { gid: 'tIto', color: 'var(--chart-s8, #7172ad)' },
-  'TRI MARINE': { gid: 'tTri', color: 'var(--chart-s5, #ef8c8c)' },
-  DIRECT: { gid: 'tDir', color: 'var(--chart-s2, #88bf4d)' },
-  MALDIVES: { gid: 'tMal', color: 'var(--chart-s7, #f2a86f)' },
+  FCF: { gid: 'tFcf', color: HUB_ID.bkk },
+  ITOCHU: { gid: 'tIto', color: HUB_ID.abj },
+  'TRI MARINE': { gid: 'tTri', color: HUB_ID.vig },
+  DIRECT: { gid: 'tDir', color: HUB_ID.mnt },
+  MALDIVES: { gid: 'tMal', color: HUB_ID.sey },
 };
 
 /** 차트 데이터키 = 화면 라벨 (L-01: 한글 라벨을 그대로 쓴다) */

@@ -7,6 +7,7 @@ import SafeResponsiveContainer from './SafeResponsiveContainer';
 import styles from './ReeferMovement.module.css';
 import TermTooltip from './TermTooltip';
 
+import { shareColor } from '@/lib/chart-palette';
 import { getMiscData } from '@/lib/data/misc';
 import { ChartPatternDefs } from './ChartPatterns';
 
@@ -22,13 +23,7 @@ function formatMt(value: number): string {
   return value.toLocaleString('en-US', { maximumFractionDigits: 3 });
 }
 
-// Color palette for bars
-const BAR_COLORS = [
-  'var(--color-success)', 'var(--color-info)', 'var(--color-warning)', 'var(--color-danger)', '#8b5cf6',
-  '#ec4899', '#14b8a6', '#f97316', '#06b6d4', '#a855f7',
-  '#64748b', '#e11d48', '#84cc16', '#6366f1', '#0ea5e9',
-  '#d946ef', '#f43f5e', '#22d3ee', 'var(--color-warning)', '#fb923c',
-];
+const canneryColor = (index: number) => shareColor(index);
 
 // Legacy table columns
 const COLUMNS = [
@@ -162,7 +157,7 @@ export default function ReeferMovement() {
               <RechartsTooltip content={<CanneryTooltip />} cursor={{ fill: 'rgba(34,36,43,0.04)' }} />
               <Bar dataKey="total" radius={[0, 6, 6, 0]} barSize={22} name="총 물량 (MT)">
                 {canneryAgg.map((_, i) => (
-                  <Cell key={i} fill={BAR_COLORS[i % BAR_COLORS.length]} fillOpacity={0.85} />
+                  <Cell key={i} fill={canneryColor(i)} fillOpacity={0.85} />
                 ))}
               </Bar>
             </BarChart>
@@ -233,7 +228,7 @@ export default function ReeferMovement() {
                       borderRadius: 6, background: 'rgba(140,170,255,0.12)',
                       color: 'var(--w-slate-200)', display: 'inline-flex', alignItems: 'center', gap: 4
                     }}>
-                      <span style={{ color: BAR_COLORS[canneryAgg.findIndex(c => c.name === d.cannery) % BAR_COLORS.length] || 'var(--w-slate-500)' }}>●</span>
+                      <span style={{ color: canneryColor(canneryAgg.findIndex(c => c.name === d.cannery)) || 'var(--w-slate-500)' }}>●</span>
                       {d.cannery}
                       <span style={{ color: 'var(--w-slate-400)', fontWeight: 400 }}>{formatMt(d.amount)}</span>
                     </span>
@@ -247,7 +242,7 @@ export default function ReeferMovement() {
                   {card.deliveries.map((d, i) => {
                     const pct = maxAmt > 0 ? (d.amount / maxAmt) * 100 : 0;
                     const colorIdx = canneryAgg.findIndex(c => c.name === d.cannery);
-                    const color = BAR_COLORS[colorIdx >= 0 ? colorIdx % BAR_COLORS.length : i % BAR_COLORS.length];
+                    const color = canneryColor(colorIdx >= 0 ? colorIdx : i);
                     return (
                       <div key={i} style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 8 }}>
                         <div style={{ width: 50, fontSize: '0.78rem', fontWeight: 700, color: 'var(--w-slate-200)', textAlign: 'right' }}>

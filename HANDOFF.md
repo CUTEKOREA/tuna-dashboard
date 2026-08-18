@@ -1,3 +1,10 @@
+> 🎨 **2026-08-18 — 물류·가공에 선단 DB 팔레트 적용** [Grok]:
+> - worktree `logistics-palette` · `feat/logistics-palette`. 사용자 배포 요청.
+> - 트레이더 5곳 = `HUB_ID`. 공장 일 생산 = `CHART_RANK`. 보관 = `HUB_ID.bkk`. 운반선 공장 배분 = `shareColor`.
+> - 조업지→방콕 항로 지도는 `accent-primary` 유지.
+>
+> 마지막 업데이트: 2026-08-18 [Grok]
+
 > 🚀 **2026-08-18 15:04 KST — `/panofi` 7월 추정실적 라이브 배포** [Grok]:
 > - PR [#635](https://github.com/CUTEKOREA/tuna-dashboard/pull/635) squash `7199cdbd`. PR 게이트 `32104845850` 성공. main Gate `32105109594` 성공. Freshness `32105109604` 성공.
 > - Vercel production `dpl_4w3aE6VZ4FqWKrKdjFrHyR8QKCC8` READY · alias `https://leedonggun.co.kr` · region `icn1` · SHA `7199cdbd`.
