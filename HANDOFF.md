@@ -1,3 +1,9 @@
+> 💰 **2026-08-18 — 코스모 7월 손익 반영 (PR #648 병합·READY)** [CC]:
+> - 7월: 매출 $6.70M · GP +$91K 회복 · OP -$136K · NET -$319K — **7개월 연속 적자**, YTD 순손실 -$1.57M(전년 +$710K). 부문: 캐너리=적자 본체, 피시밀 만성, FBU 유일 흑자.
+> - P0 기존 버그 정정: «전년 확정 결산 대비»가 annualUsd[0]=2023(순손실)과 비교하며 «간신히 흑자» 렌더 → 2025 기준. 신규: 부문별 영업손익 위젯·어가 첫 하락 전환(관측 1개월 명시)·매출 갭 25%=로인·원어판매 소멸·전기료 +43% 경보·GP 회복≠흑자 실증. 하드코딩 문구 파생화.
+> - **대형 함정 2건 기록**: ①Google Drive 스트리밍 파일을 생성기가 직접 읽으면 부분 읽기로 1~6월 null·SJ 시리즈가 전년 열로 오염되는 회귀 발생 — **생성기는 반드시 로컬 사본(--src)으로**. 반증 리뷰가 P0로 적발, 월별 무결성 가드(non-null+부문 합 검산) 신설. ②원본 월별 xlsx는 수식 아닌 값 파일 — openpyxl 시트 이식 안전. 원본에는 7월 시트 추가만 됨(무손상), 백업 scratchpad에 보존.
+> - 반영 절차 확립: 7월 파일 시트 이식 → 로컬 사본에서 `extract_cosmo --src` → JSON 3종 복사 → month 레코드 독립 대조 → verify. 8월분도 동일.
+
 > 🚀 **2026-08-18 16:24 KST — 파노피 선단 DB 팔레트 라이브 배포** [Grok]:
 > - PR [#646](https://github.com/CUTEKOREA/tuna-dashboard/pull/646) squash `6055560b`. PR Gate `32110627225` 성공. main Gate `32110940539` 성공. Freshness `32110940672` 성공.
 > - Vercel production `dpl_649bW4rYNPmYsybnfv8MuCYoMGFL` READY · alias `https://leedonggun.co.kr` · region `icn1` · SHA `6055560b`.
