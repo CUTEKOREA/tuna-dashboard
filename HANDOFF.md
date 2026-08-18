@@ -1,3 +1,11 @@
+> 🚀 **2026-08-18 — 선단 DB OFIS 6월 위젯 3개 삭제 라이브 배포** [Grok]:
+> - PR [#623](https://github.com/CUTEKOREA/tuna-dashboard/pull/623) squash `94797807`. PR Gate `32091403644` 성공. main Gate `32091657846` 성공. Freshness `32091657842` 성공.
+> - Vercel production `dpl_J97Qio6yZxVpWsiqq3bYn6czrBfa` READY · alias `https://leedonggun.co.kr` · region `icn1` · SHA `94797807`.
+> - 라이브 `/purse-seiner-db`(소유자 로그인·새로고침): OFIS 제목·33,045·W-OFIS01 없음. 히어로·등록부 탭 유지.
+> - 배포 후 20분 error/fatal 로그 0건.
+>
+> 마지막 업데이트: 2026-08-18 [Grok]
+
 > 🧹 **2026-08-18 — 선단 DB에서 OFIS 6월 위젯 3개 제거** [Grok]:
 > - `PurseSeinerDashboard`에서 `OfisMonthlyPanel`(전국 원양 물량·선망/연승 단가·해역 회전)을 뺐다. 인테이크·패널 파일은 남김.
 > - 테스트: 선단 DB 마크업에 `W-OFIS01` 없음.
