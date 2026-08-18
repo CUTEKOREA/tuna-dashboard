@@ -73,13 +73,22 @@ export function SignalCard({ label, level, value, note, href }: {
   )
 }
 
+/** JSON 본문의 `**강조**` 를 화면용 <b> 로 바꾼다. 별표가 그대로 보이면 안 된다. */
+export function inlineStars(text: string): ReactNode {
+  const parts = text.split(/(\*\*[^*]+\*\*)/g)
+  return parts.map((part, index) => {
+    const match = /^\*\*([^*]+)\*\*$/.exec(part)
+    return match ? <b key={index}>{match[1]}</b> : part
+  })
+}
+
 export function Callout({ kind = 'info', label, children }: {
   kind?: 'info' | 'warn' | 'bad'; label: string; children: ReactNode
 }) {
   return (
     <div className={`callout ${kind === 'info' ? '' : kind}`}>
       <span className="lab">{label}</span>
-      {children}
+      {typeof children === 'string' ? inlineStars(children) : children}
     </div>
   )
 }

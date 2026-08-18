@@ -2,6 +2,8 @@
 
 import type { ReactNode } from 'react';
 
+import { inlineStars } from '../cosmo/Ui';
+
 /**
  * 파노피 화면 프리미티브. 트레이딩 터미널 밀도로 짠 얇은 껍데기다.
  *
@@ -45,7 +47,7 @@ export function Panel({
         </div>
       )}
       {children}
-      {note && <div className="pf-note">{note}</div>}
+      {note && <div className="pf-note">{typeof note === 'string' ? inlineStars(note) : note}</div>}
       {src && <div className="pf-src">출처 — {src}</div>}
     </section>
   );
