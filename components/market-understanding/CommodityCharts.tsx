@@ -22,6 +22,7 @@ import {
   YAxis,
 } from 'recharts';
 
+import { MACKEREL_ROLE } from '@/lib/mackerel-chart-colors';
 import { getSmartRotation, truncateXAxis } from '@/lib/chart-standards';
 import type {
   MackerelData,
@@ -50,7 +51,11 @@ import styles from './TunaIndustryDashboard.module.css';
  * 나머지 항목은 전부 기본색으로 둔다 — 색이 많아지면 강조가 죽는다.
  */
 const PALETTE = {
-  고등어: { base: '#0e7490', highlight: '#e11d48', second: '#0ea5e9' },
+  고등어: {
+    base: MACKEREL_ROLE.volume,
+    highlight: MACKEREL_ROLE.highlight,
+    second: MACKEREL_ROLE.second,
+  },
   골뱅이: { base: '#92400e', highlight: '#fbbf24', second: '#d97706' },
   새우: { base: '#0d9488', highlight: '#f43f5e', second: '#34d399' },
 } as const;
@@ -922,7 +927,12 @@ export function MackerelSeriesWindowsChart() {
             <Cell key={`raw-${r.국가}`} fill={r.국가 === '노르웨이' ? HIGHLIGHT : BASE} />
           ))}
         </Bar>
-        <Bar dataKey="필렛" name="0304895000 필렛 (톤)" fill="#f59e0b" isAnimationActive={animate} />
+        <Bar
+          dataKey="필렛"
+          name="0304895000 필렛 (톤)"
+          fill={PALETTE.고등어.second}
+          isAnimationActive={animate}
+        />
       </BarChart>
     </SafeResponsiveContainer>
   );

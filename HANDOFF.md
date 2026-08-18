@@ -1,3 +1,10 @@
+> 🎨 **2026-08-18 — 고등어 시장이해에 선단 DB 팔레트 적용** [Grok]:
+> - worktree `mackerel-industry-palette` · `feat/mackerel-industry-palette`. 사용자 배포 요청.
+> - 종·창구 집은 `mackerel-chart-colors` 유지. 페이지 액센트 = `MACKEREL_ROLE.volume`.
+> - 청록·장미 잔여 hex 제거. 필렛은 `HUB_ID.sey`. 골뱅이·새우 팔레트는 미개입.
+>
+> 마지막 업데이트: 2026-08-18 [Grok]
+
 > 🚀 **2026-08-18 18:43 KST — 오징어 시장이해 배색 정리 라이브 배포** [Grok]:
 > - PR [#664](https://github.com/CUTEKOREA/tuna-dashboard/pull/664) squash `2a11fa4f`. PR Gate `32121902732` 성공. main Gate `32122250900` 성공. Freshness `32122250877` 성공.
 > - Vercel production `dpl_FXU9LdfkWXVCNPKQ8DgEvG9QcSab` READY · alias `https://leedonggun.co.kr` · region `icn1` · SHA `2a11fa4f`.
