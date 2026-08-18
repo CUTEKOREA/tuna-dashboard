@@ -1,3 +1,10 @@
+> 📘 **2026-08-18 — 오징어 포클랜드 선박·회사 월 필터** [Grok]:
+> - worktree `squid-palette` · `feat/squid-falkland-monthly`. **프로덕션 미배포**.
+> - 원본에 선박마다 12~5월 판수가 있다. 08단계 선박·회사 차트가 같은 달을 본다.
+> - 기본은 어기 전체. 월별 kg 는 없어서 환산하지 않는다.
+>
+> 마지막 업데이트: 2026-08-18 [Grok]
+
 > 🚀 **2026-08-18 14:28 KST — 오징어 선단 DB 팔레트 라이브 배포** [Grok]:
 > - PR [#633](https://github.com/CUTEKOREA/tuna-dashboard/pull/633) squash `23e2c441`. PR Gate `32102462105` 성공. main Gate `32102711118` 성공. Freshness `32102711113` 성공.
 > - Vercel production `dpl_GjfrxLtNFsCuBEk8RVDJYGxxGbFy` READY · alias `https://leedonggun.co.kr` · region `icn1` · SHA `23e2c441`.

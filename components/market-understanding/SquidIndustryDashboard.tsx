@@ -42,11 +42,35 @@ import {
   SquidSizeBandChart,
 } from './SquidCharts';
 import {
-  companiesFromVessels,
+  companiesByMonth,
   falklandMeta,
+  panFor,
   seasonTotals,
-  vesselsByPan,
+  vesselsByMonth,
 } from '@/lib/data/falkland-squid-vessels';
+import { FalklandMonthProvider, useFalklandMonth } from './FalklandMonthFilter';
+
+function FalklandVesselStats() {
+  const { month } = useFalklandMonth();
+  const rows = vesselsByMonth(month).map((vessel) => ({
+    name: vessel.name,
+    pan: panFor(vessel, month),
+  }));
+  return <SeriesStats rows={rows} labelKey="name" valueKey="pan" unit="(판)" sum />;
+}
+
+function FalklandCompanyStats() {
+  const { month } = useFalklandMonth();
+  return (
+    <SeriesStats
+      rows={companiesByMonth(month)}
+      labelKey="name"
+      valueKey="totalPan"
+      unit="(판)"
+      sum
+    />
+  );
+}
 import {
   deepseaMeta,
   latestYear,
@@ -148,9 +172,7 @@ const SQUID_BASE_SLOTS: Record<string, ChartSlot[]> = {
       telemetry: FK_SYNC,
       span: 'full' as const,
       render: () => <FalklandVesselChart />,
-      cockpitExtra: () => (
-        <SeriesStats rows={vesselsByPan()} labelKey="name" valueKey="totalPan" unit="(판)" sum />
-      ),
+      cockpitExtra: () => <FalklandVesselStats />,
       sourceLine: `출처: ${falklandMeta.출처}`,
     },
     {
@@ -159,9 +181,7 @@ const SQUID_BASE_SLOTS: Record<string, ChartSlot[]> = {
         '막대가 물량, 선이 보유 척수다. 둘이 나란히 가지 않는다 — 배를 많이 가진 회사가 반드시 많이 잡지 않는다. 원본 회사 집계에 한 회사가 빠져 있어 선박에서 다시 세웠다.',
       telemetry: FK_SYNC,
       render: () => <FalklandCompanyChart />,
-      cockpitExtra: () => (
-        <SeriesStats rows={companiesFromVessels()} labelKey="name" valueKey="totalPan" unit="(판)" sum />
-      ),
+      cockpitExtra: () => <FalklandCompanyStats />,
       sourceLine: `출처: ${falklandMeta.출처}`,
     },
     {
@@ -495,5 +515,9 @@ export interface SquidIndustryDashboardProps {
 export default function SquidIndustryDashboard({
   heroOnly = false,
 }: SquidIndustryDashboardProps) {
-  return <CommodityIndustryDashboard spec={SPEC} heroOnly={heroOnly} />;
+  return (
+    <FalklandMonthProvider>
+      <CommodityIndustryDashboard spec={SPEC} heroOnly={heroOnly} />
+    </FalklandMonthProvider>
+  );
 }

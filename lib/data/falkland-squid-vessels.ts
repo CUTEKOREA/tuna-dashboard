@@ -58,10 +58,37 @@ export const falklandVessels = data.vessels;
 /** 월 순서. 어기가 12월에 시작해 이듬해 5월에 끝나므로 달력 순이 아니다. */
 export const SEASON_MONTHS = ['m12', 'm1', 'm2', 'm3', 'm4', 'm5'] as const;
 export const SEASON_LABELS = ['12월', '1월', '2월', '3월', '4월', '5월'] as const;
+export type SeasonMonth = (typeof SEASON_MONTHS)[number];
+export type FalklandMonth = 'all' | SeasonMonth;
+
+export function labelForMonth(month: FalklandMonth): string {
+  if (month === 'all') return '어기 전체';
+  const index = SEASON_MONTHS.indexOf(month);
+  return SEASON_LABELS[index] ?? month;
+}
+
+export function monthFromLabel(label: string): FalklandMonth | undefined {
+  if (label === '어기 전체') return 'all';
+  const index = SEASON_LABELS.indexOf(label as (typeof SEASON_LABELS)[number]);
+  return index >= 0 ? SEASON_MONTHS[index] : undefined;
+}
+
+/** 그 달(또는 어기 전체) 판수. 월별 kg 는 원본에 없다. */
+export function panFor(vessel: Vessel, month: FalklandMonth): number {
+  return month === 'all' ? vessel.totalPan : vessel[month];
+}
 
 /** 선박별 누계(판) 내림차순. 원본 rank 를 믿지 않고 값으로 다시 세운다. */
 export function vesselsByPan(): Vessel[] {
-  return [...data.vessels].sort((a, b) => b.totalPan - a.totalPan);
+  return vesselsByMonth('all');
+}
+
+/** 고른 달의 판수 내림차순. 어기 전체면 누계와 같다. */
+export function vesselsByMonth(month: FalklandMonth): Vessel[] {
+  return [...data.vessels].sort((a, b) => {
+    const delta = panFor(b, month) - panFor(a, month);
+    return delta !== 0 ? delta : a.name.localeCompare(b.name, 'ko');
+  });
 }
 
 /**
@@ -74,17 +101,25 @@ export function vesselsByPan(): Vessel[] {
  * 것은 그 자체로 선단의 상태를 말한다. 회사 수를 셀 때 조용히 사라지면 안 된다.
  */
 export function companiesFromVessels(): (Company & { totalPan: number })[] {
+  return companiesByMonth('all');
+}
+
+/**
+ * 회사별 그 달 판수. 척수는 어기 선단(그 달에 0판이어도 배는 있다).
+ * 월별 kg 는 원본에 없으므로 달을 고르면 totalKg 는 0이다 — 환산하지 않는다.
+ */
+export function companiesByMonth(month: FalklandMonth): (Company & { totalPan: number })[] {
   const acc = new Map<string, { totalKg: number; totalPan: number; vessels: number }>();
   for (const v of data.vessels) {
     const c = acc.get(v.company) ?? { totalKg: 0, totalPan: 0, vessels: 0 };
-    c.totalKg += v.totalKg;
-    c.totalPan += v.totalPan;
+    if (month === 'all') c.totalKg += v.totalKg;
+    c.totalPan += panFor(v, month);
     c.vessels += 1;
     acc.set(v.company, c);
   }
   return [...acc.entries()]
     .map(([name, c]) => ({ name, ...c }))
-    .sort((a, b) => b.totalPan - a.totalPan);
+    .sort((a, b) => b.totalPan - a.totalPan || a.name.localeCompare(b.name, 'ko'));
 }
 
 /** 어기 월별 선단 합계(판). 12월에서 시작한다. */
