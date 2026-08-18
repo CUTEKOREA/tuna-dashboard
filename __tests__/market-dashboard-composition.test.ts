@@ -26,6 +26,10 @@ describe('market dashboard composition', () => {
     expect(hero).toContain('기준일');
     expect(source).not.toContain('SKJ 가다랑어 (방콕)');
     expect(source).not.toContain('YF 황다랑어 (세이셸)');
+    expect(source).toContain("from '@/lib/chart-palette'");
+    expect(source).not.toContain('#509ee3');
+    expect(hero).toContain('colorForAtunaHub');
+    expect(hero).not.toContain('var(--chart-s1');
   });
 
   it('serves news only through the daily briefing widget', () => {

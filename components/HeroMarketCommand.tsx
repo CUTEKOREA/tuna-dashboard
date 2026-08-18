@@ -18,6 +18,7 @@ import {
   type AtunaHubDefinition,
   type AtunaPriceRow,
 } from '../lib/data/atuna-price-summary';
+import { colorForAtunaHub } from '@/lib/chart-palette';
 
 /* 증감 시맨틱 토큰 (globals.css SSOT) — 2026-08-17 주식 컨벤션 채택 */
 const UP = 'var(--delta-up, #ef4444)';
@@ -75,6 +76,7 @@ export default function HeroMarketCommand({ rows }: { rows: AtunaPriceRow[] }) {
   const maxPrice = prices.length ? Math.max(...prices) : null;
   const minPrice = prices.length ? Math.min(...prices) : null;
   const last = series[series.length - 1];
+  const selectedColor = colorForAtunaHub(selected.hub.key);
 
   return (
     <div className="dsc-card" style={{ padding: '20px 22px' }}>
@@ -101,8 +103,8 @@ export default function HeroMarketCommand({ rows }: { rows: AtunaPriceRow[] }) {
             <RechartsTooltip content={<CommandTip />} cursor={{ stroke: 'var(--text-muted)', strokeDasharray: '3 3' }} />
             <ReferenceLine y={maxPrice} stroke="#8d93a5" strokeDasharray="4 4" label={{ value: `최고 $${maxPrice.toLocaleString()}`, position: 'right', fontSize: 10, fill: 'var(--text-muted)' }} />
             <ReferenceLine y={minPrice} stroke="#8d93a5" strokeDasharray="4 4" label={{ value: `최저 $${minPrice.toLocaleString()}`, position: 'right', fontSize: 10, fill: 'var(--text-muted)' }} />
-            <Line type="monotone" dataKey="price" stroke="var(--chart-s1, #509ee3)" strokeWidth={2.5} dot={false} isAnimationActive={false} />
-            {last && <ReferenceDot x={last.date} y={last.price} r={4} fill="var(--chart-s1, #509ee3)" stroke="#ffffff" strokeWidth={1.5} />}
+            <Line type="monotone" dataKey="price" stroke={selectedColor} strokeWidth={2.5} dot={false} isAnimationActive={false} />
+            {last && <ReferenceDot x={last.date} y={last.price} r={4} fill={selectedColor} stroke="#ffffff" strokeWidth={1.5} />}
           </LineChart>
         )}
       </div>
@@ -118,6 +120,7 @@ export default function HeroMarketCommand({ rows }: { rows: AtunaPriceRow[] }) {
             : hubDeltaRaw > 0 ? UP : DOWN;
           const isActive = hub.key === selectedKey;
           const isHover = hub.key === hoverKey;
+          const hubColor = colorForAtunaHub(hub.key);
           return (
             <button
               key={hub.key}
@@ -128,8 +131,8 @@ export default function HeroMarketCommand({ rows }: { rows: AtunaPriceRow[] }) {
               aria-pressed={isActive}
               style={{
                 textAlign: 'left', cursor: 'pointer', fontFamily: 'inherit',
-                border: '1px solid ' + (isActive ? 'var(--chart-s1, #509ee3)' : 'var(--card-border, #e2e4e9)'),
-                background: isActive ? 'rgba(80, 158, 227, 0.08)' : 'transparent',
+                border: '1px solid ' + (isActive ? hubColor : 'var(--card-border, #e2e4e9)'),
+                background: isActive ? `${hubColor}14` : 'transparent',
                 borderRadius: 8, padding: '8px 10px',
                 transform: isHover ? 'translateY(-2px)' : 'none',
                 boxShadow: isHover ? '0 6px 16px rgba(16, 24, 40, 0.12)' : 'none',
