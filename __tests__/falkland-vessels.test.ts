@@ -9,16 +9,26 @@
  *   2. 원본 회사 집계에 현원수산이 빠져 있었다.
  * 둘 다 섞어 쓰면 합계가 맞지 않으므로 테스트로 못 박는다.
  */
+import React from 'react';
+import { renderToStaticMarkup } from 'react-dom/server';
 import { describe, expect, it } from 'vitest';
 
+import { FalklandMonthProvider } from '@/components/market-understanding/FalklandMonthFilter';
+import { FalklandVesselChart } from '@/components/market-understanding/SquidCharts';
+
 import {
+  companiesByMonth,
   companiesFromVessels,
   idleVessels,
   falklandMeta,
   falklandVessels,
   fleetTotals,
+  labelForMonth,
+  monthFromLabel,
+  panFor,
   SEASON_MONTHS,
   seasonTotals,
+  vesselsByMonth,
   vesselsByPan,
 } from '@/lib/data/falkland-squid-vessels';
 
@@ -87,5 +97,32 @@ describe('포클랜드 선박별 실적', () => {
   it('측정 경계를 데이터가 들고 있다', () => {
     expect(falklandMeta.측정경계).toMatch(/직접 견줄 수 없다/);
     expect(falklandMeta.단위).toMatch(/실중량/);
+  });
+
+  it('달을 고르면 그 달 판수로 다시 세고 어기 전체와 같다', () => {
+    expect(labelForMonth('all')).toBe('어기 전체');
+    expect(monthFromLabel('4월')).toBe('m4');
+    const april = vesselsByMonth('m4');
+    const first = april[0];
+    expect(first.name).toBe('601다가호');
+    expect(panFor(first, 'm4')).toBe(20465);
+    expect(april.reduce((n, v) => n + panFor(v, 'm4'), 0)).toBe(
+      seasonTotals().find((row) => row.월 === '4월')?.물량,
+    );
+    expect(vesselsByMonth('all').map((v) => v.totalPan)).toEqual(vesselsByPan().map((v) => v.totalPan));
+    expect(companiesByMonth('m4').reduce((n, c) => n + c.totalPan, 0)).toBe(
+      seasonTotals().find((row) => row.월 === '4월')?.물량,
+    );
+    expect(companiesByMonth('all').reduce((n, c) => n + c.vessels, 0)).toBe(falklandVessels.length);
+  });
+
+  it('선박 차트에 어기 월 칩이 있다', () => {
+    const html = renderToStaticMarkup(
+      React.createElement(FalklandMonthProvider, null, React.createElement(FalklandVesselChart)),
+    );
+    expect(html).toContain('어기 전체');
+    expect(html).toContain('12월');
+    expect(html).toContain('5월');
+    expect(html).toContain('aria-pressed');
   });
 });

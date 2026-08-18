@@ -28,10 +28,14 @@ import {
 import { CHART_RANK, HUB_ID, shareColor } from '@/lib/chart-palette';
 import { getSmartRotation, truncateXAxis } from '@/lib/chart-standards';
 import {
-  companiesFromVessels,
+  companiesByMonth,
+  labelForMonth,
+  monthFromLabel,
+  panFor,
   seasonTotals,
-  vesselsByPan,
+  vesselsByMonth,
 } from '@/lib/data/falkland-squid-vessels';
+import { FalklandMonthChips, monthBarName, useFalklandMonth } from './FalklandMonthFilter';
 import {
   squidByArea,
   squidBySizeBand,
@@ -980,38 +984,46 @@ export function SquidSizeBandChart({ year }: { year: string }) {
 
 /* ── 포클랜드 선박별 실적 (신라교역 사내 자료) ────────────────────────────── */
 
-/** 선박별 누계 물량. 공개 통계가 닿지 못하는 층위다. */
+/** 선박별 물량. 기본은 어기 누계, 칩으로 달을 고른다. */
 export function FalklandVesselChart() {
   const animate = !useReducedMotion();
-  const rows = useMemo(() => vesselsByPan(), []);
+  const { month } = useFalklandMonth();
+  const rows = useMemo(
+    () => vesselsByMonth(month).map((v) => ({ ...v, pan: panFor(v, month) })),
+    [month],
+  );
   const rot = getSmartRotation(rows.map((r) => r.name));
 
   return (
-    <SafeResponsiveContainer width="100%" height={340}>
-      <ComposedChart data={rows} margin={{ ...MARGIN, bottom: rot.angle ? 60 : 8 }}>
-        {grid}
-        <XAxis
-          dataKey="name"
-          {...AXIS}
-          tickFormatter={truncateXAxis}
-          angle={rot.angle}
-          textAnchor={rot.textAnchor as 'end' | 'middle'}
-          height={rot.angle ? 74 : 30}
-          interval={0}
-        />
-        <YAxis {...AXIS} tickFormatter={(v: number) => `${Math.round(v / 1000)}천`} />
-        <Tooltip content={<Tip />} />
-        {legend}
-        <Bar dataKey="totalPan" name="누계 물량 (판)" fill={CHART_RANK} isAnimationActive={animate} />
-      </ComposedChart>
-    </SafeResponsiveContainer>
+    <>
+      <FalklandMonthChips />
+      <SafeResponsiveContainer width="100%" height={340}>
+        <ComposedChart data={rows} margin={{ ...MARGIN, bottom: rot.angle ? 60 : 8 }}>
+          {grid}
+          <XAxis
+            dataKey="name"
+            {...AXIS}
+            tickFormatter={truncateXAxis}
+            angle={rot.angle}
+            textAnchor={rot.textAnchor as 'end' | 'middle'}
+            height={rot.angle ? 74 : 30}
+            interval={0}
+          />
+          <YAxis {...AXIS} tickFormatter={(v: number) => `${Math.round(v / 1000)}천`} />
+          <Tooltip content={<Tip />} />
+          {legend}
+          <Bar dataKey="pan" name={monthBarName(month)} fill={CHART_RANK} isAnimationActive={animate} />
+        </ComposedChart>
+      </SafeResponsiveContainer>
+    </>
   );
 }
 
 /** 회사별 선단 규모와 물량. 선박에서 다시 세운 값이다(원본 집계에 한 회사가 빠져 있다). */
 export function FalklandCompanyChart() {
   const animate = !useReducedMotion();
-  const rows = useMemo(() => companiesFromVessels(), []);
+  const { month } = useFalklandMonth();
+  const rows = useMemo(() => companiesByMonth(month), [month]);
   const rot = getSmartRotation(rows.map((r) => r.name));
 
   return (
@@ -1031,7 +1043,7 @@ export function FalklandCompanyChart() {
         <YAxis yAxisId="right" orientation="right" {...AXIS} allowDecimals={false} />
         <Tooltip content={<Tip />} />
         {legend}
-        <Bar yAxisId="left" dataKey="totalPan" name="누계 물량 (판)" fill={SQUID_ROLE.volume} isAnimationActive={animate} />
+        <Bar yAxisId="left" dataKey="totalPan" name={monthBarName(month)} fill={SQUID_ROLE.volume} isAnimationActive={animate} />
         <Line
           yAxisId="right"
           type="monotone"
@@ -1050,7 +1062,9 @@ export function FalklandCompanyChart() {
 /** 어기 월별 선단 합계. 12월에 시작해 이듬해 5월에 끝난다 — 달력 순이 아니다. */
 export function FalklandSeasonChart() {
   const animate = !useReducedMotion();
+  const { month, setMonth } = useFalklandMonth();
   const rows = useMemo(() => seasonTotals(), []);
+  const selectedLabel = labelForMonth(month);
 
   return (
     <SafeResponsiveContainer width="100%" height={260}>
@@ -1060,7 +1074,23 @@ export function FalklandSeasonChart() {
         <YAxis {...AXIS} tickFormatter={(v: number) => `${Math.round(v / 1000)}천`} />
         <Tooltip content={<Tip />} />
         {legend}
-        <Bar dataKey="물량" name="선단 합계 (판)" fill={CHART_RANK} isAnimationActive={animate} />
+        <Bar
+          dataKey="물량"
+          name="선단 합계 (판)"
+          isAnimationActive={animate}
+          cursor="pointer"
+          onClick={(entry) => {
+            const next = monthFromLabel(String(entry?.payload?.월 ?? ''));
+            if (next) setMonth(next);
+          }}
+        >
+          {rows.map((row) => (
+            <Cell
+              key={row.월}
+              fill={month !== 'all' && row.월 === selectedLabel ? SQUID_ROLE.highlight : CHART_RANK}
+            />
+          ))}
+        </Bar>
       </ComposedChart>
     </SafeResponsiveContainer>
   );
