@@ -1,5 +1,13 @@
+> 🚀 **2026-08-18 15:57 KST — 선단 운영 선단 DB 팔레트 라이브 배포** [Grok]:
+> - PR [#643](https://github.com/CUTEKOREA/tuna-dashboard/pull/643) squash `608c62af`. PR Gate `32108540814` 성공. main Gate `32108783597` 성공. Freshness `32108783543` 성공.
+> - Vercel production `dpl_5u6ptAyaox5wWYKqdqx9besSDmTu` READY · alias `https://leedonggun.co.kr` · region `icn1` · SHA `608c62af`.
+> - 라이브 `/fleet`(소유자 탭 새로고침): 히어로·주간 막대 `#e879a8`. 월간 추이 파스텔 8색. VDS 배정 `#3b82f6` · 소진 `#8b5cf6` · 잔여 `#10b981` · 주간 `#f59e0b`. 증감 스파크 빨강/파랑. 선박 지도 타일 유지. 가로 넘침 0.
+> - 이번 배포 런타임 error/fatal 0건.
+>
+> 마지막 업데이트: 2026-08-18 15:57 KST [Grok]
+
 > 🎨 **2026-08-18 — 선단 운영에 선단 DB 팔레트 적용** [Grok]:
-> - worktree `fleet-palette` · `feat/fleet-palette`. 사용자 배포 요청.
+> - worktree `fleet-palette` · `feat/fleet-palette`. 배포는 #643.
 > - 지휘 카드·주간/일어획 막대 = `CHART_RANK` 분홍. 월간 누적 8색 = `shareColor`. VDS 요약 칸 = `VDS_ID`.
 > - 히어로 미션 카드 네이비 아이콘 웰. 선박 지도·사진 미개입. 증감 스파크는 `--delta-up/down` 유지.
 >
