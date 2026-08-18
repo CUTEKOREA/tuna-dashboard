@@ -99,9 +99,9 @@
 }
 
 .page[data-commodity='shrimp'] {
-  --mu-accent: #2dd4bf;
-  --mu-accent-deep: #0d9488;
-  --mu-hover: rgba(13, 148, 136, 0.12);
+  --mu-accent: #0f766e;
+  --mu-accent-deep: #115e59;
+  --mu-hover: rgba(15, 118, 110, 0.12);
 }
 
 :global([data-v3='light']) .page[data-commodity='shrimp'] {
