@@ -5,7 +5,7 @@ import { renderToStaticMarkup } from 'react-dom/server';
 import { describe, expect, it } from 'vitest';
 
 import PanofiDashboard, { PANOFI_TABS } from '../components/panofi/PanofiDashboard';
-import { ProfitTab as PanofiTabsProfit } from '../components/panofi/PanofiTabs';
+import { PriceTab, ProfitTab as PanofiTabsProfit } from '../components/panofi/PanofiTabs';
 import {
   bep,
   dataQuality,
@@ -369,6 +369,12 @@ describe('PFC 판정의 무게', () => {
     const v = pfc.measured.verdict;
     expect(v).toContain('일치하는');
     expect(v).toContain('확정하지');
+  });
+
+  it('판정문의 강조 별표가 화면에 그대로 나오지 않는다', () => {
+    const html = renderToStaticMarkup(React.createElement(PriceTab));
+    expect(html).toContain('<b>일치하는 행동</b>');
+    expect(html).not.toContain('**일치하는 행동**');
   });
 
   it('계절 교란을 데이터로 들고 있다', () => {
