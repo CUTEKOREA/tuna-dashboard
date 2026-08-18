@@ -18,6 +18,7 @@ import { getWhelkCompanyResearch } from '@/lib/data/valuechain-companies';
 
 import { getWhelkIndustryData } from '@/lib/data/commodity-industry';
 import { seriesRoles, seriesUnits, seriesWindows } from '@/lib/data/whelk-country-series';
+import { WHELK_ACCENT } from '@/lib/whelk-chart-colors';
 import {
   WHELK_BRIEFING_POINTS,
   WHELK_NARRATIVES,
@@ -87,7 +88,7 @@ export const WHELK_CHART_SLOTS: Record<string, ChartSlot[]> = {
     {
       title: '과(科)별 생산량 (톤)',
       caption:
-        '호박색이 양식, 나머지가 어획이다. 노란 막대가 참골뱅이류 — 한국이 통조림으로 먹는 그 종이고, 양식이 0이라 막대 전체가 자연산이다.',
+        '호박색이 양식, 나머지가 어획이다. 장미색 막대가 참골뱅이류 — 한국이 통조림으로 먹는 그 종이고, 양식이 0이라 막대 전체가 자연산이다.',
       telemetry: FAO_SYNC,
       render: () => <WhelkGroupChart data={DATA} />,
       cockpitExtra: () => (
@@ -158,7 +159,7 @@ export const WHELK_CHART_SLOTS: Record<string, ChartSlot[]> = {
     {
       title: '수입 창구 물량 (톤)',
       caption:
-        '막대는 HS 1605.59 2026년 1~7월 제품중량이다. 호박색이 영국 — 이미 들어와 있는 본진이다. 프랑스 0은 어획이 없다는 뜻이 아니라 이 세번 추출에 이름이 없다는 뜻이다. 일곱 달이라 위 생산 통계·04단계 2024년 표와 더할 수 없다.',
+        '막대는 HS 1605.59 2026년 1~7월 제품중량이다. 장미색이 영국 — 이미 들어와 있는 본진이다. 프랑스 0은 어획이 없다는 뜻이 아니라 이 세번 추출에 이름이 없다는 뜻이다. 일곱 달이라 위 생산 통계·04단계 2024년 표와 더할 수 없다.',
       telemetry: SERIES_SYNC,
       span: 'full',
       render: () => <WhelkSeriesWindowsChart />,
@@ -187,12 +188,12 @@ const SPEC: CommoditySpec = {
   title: '골뱅이',
   subtitle:
     '골뱅이 산업 해부 · 한 이름에 네 개 과(科)가 섞인 품목 — 종·원물·국내 생산·교역·수입 창구 5단계와 이름 자체의 문제',
-  accent: '#b45309',
+  accent: WHELK_ACCENT,
   primaryKpi: {
     label: '다섯 과(科) 합계 생산량',
     value: DATA.요약.세계생산합계,
     unit: '(톤)',
-    accent: '#b45309',
+    accent: WHELK_ACCENT,
   },
   secondaryKpis: [
     { label: '피뿔고둥류 비중', value: DATA.요약.최대그룹비중, unit: '(%)', decimals: 2 },
