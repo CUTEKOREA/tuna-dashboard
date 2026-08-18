@@ -23,9 +23,15 @@ import {
   YAxis,
 } from 'recharts';
 
+import { CHART_RANK, shareColor } from '@/lib/chart-palette';
 import { getSmartRotation, truncateXAxis } from '@/lib/chart-standards';
 import type { SquidWidget } from '@/lib/data/squid-industry';
-import { colorForSeries, dashForSeries } from '@/lib/squid-chart-colors';
+import {
+  SQUID_BASKET_COLORS,
+  SQUID_SPECIES_COLORS,
+  colorForSeries,
+  dashForSeries,
+} from '@/lib/squid-chart-colors';
 import SafeResponsiveContainer from '../SafeResponsiveContainer';
 import styles from './TunaIndustryDashboard.module.css';
 
@@ -152,6 +158,14 @@ function ChartView({ widget, height }: { widget: SquidWidget; height: number }) 
   const nameOf = (key: string) =>
     widget.series?.find((item) => item.key === key)?.name ?? key;
 
+  const colorOf = (name: string, index: number) => {
+    if (name in SQUID_SPECIES_COLORS || name in SQUID_BASKET_COLORS) {
+      return colorForSeries(name, index);
+    }
+    if (keys.length === 1) return CHART_RANK;
+    return shareColor(index);
+  };
+
   const shared = (
     <>
       <CartesianGrid stroke="var(--mu-grid)" strokeDasharray="3 3" vertical={false} />
@@ -181,7 +195,7 @@ function ChartView({ widget, height }: { widget: SquidWidget; height: number }) 
               type="monotone"
               dataKey={key}
               name={nameOf(key)}
-              stroke={colorForSeries(nameOf(key), index)}
+              stroke={colorOf(nameOf(key), index)}
               strokeDasharray={dashForSeries(nameOf(key))}
               strokeWidth={2}
               dot={false}
@@ -204,7 +218,7 @@ function ChartView({ widget, height }: { widget: SquidWidget; height: number }) 
             dataKey={key}
             name={nameOf(key)}
             stackId={stacked ? 'a' : undefined}
-            fill={colorForSeries(nameOf(key), index)}
+            fill={colorOf(nameOf(key), index)}
             radius={stacked ? undefined : [3, 3, 0, 0]}
             isAnimationActive={animate}
           />

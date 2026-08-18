@@ -86,9 +86,13 @@ describe('오징어 차트 색', () => {
     expect(charts).toContain('colorForSpecies');
     expect(charts).toContain('colorForBasket');
     expect(charts).toContain('colorForSeries');
+    expect(charts).toContain("from '@/lib/chart-palette'");
+    expect(charts).toContain('CHART_RANK');
     expect(widgets).toContain('colorForSeries');
+    expect(widgets).toContain('CHART_RANK');
     expect(charts).not.toMatch(/SQUID_COLORS/);
     expect(widgets).not.toMatch(/SERIES_COLORS/);
     expect(widgets).not.toMatch(/#0ea5e9/);
+    expect(charts).not.toMatch(/#7c3aed|#0ea5e9|#ec4899/);
   });
 });

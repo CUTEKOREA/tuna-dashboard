@@ -334,6 +334,13 @@ describe('dashboard registry', () => {
     expect(unloadingSource).toContain("from '@/lib/chart-palette'");
     expect(unloadingSource).toContain('fill={CHART_RANK}');
     expect(unloadingSource).toContain('stroke={HUB_ID.mnt}');
+    const squidChartsSource = readFileSync(
+      join(process.cwd(), 'components/market-understanding/SquidCharts.tsx'),
+      'utf8',
+    );
+    expect(squidChartsSource).toContain("from '@/lib/chart-palette'");
+    expect(squidChartsSource).toContain('fill={CHART_RANK}');
+    expect(squidChartsSource).toContain('colorForSpecies');
     expect(globalsSource).toContain('--w-sky-400: #38bdf8;');
     expect(globalsSource).toContain('--w-emerald-500: #10b981;');
   });
