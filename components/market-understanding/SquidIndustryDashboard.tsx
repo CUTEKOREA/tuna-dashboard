@@ -32,6 +32,9 @@ import {
   SQUID_BRIEFING_POINTS,
   SQUID_SOURCE_NOTES,
 } from '@/lib/squid-industry-content';
+import { SQUID_ROLE } from '@/lib/squid-chart-colors';
+
+const SQUID_ACCENT = SQUID_ROLE.volume;
 import { SeriesStats } from './CockpitExtra';
 import {
   FalklandCompanyChart,
@@ -446,12 +449,12 @@ const SPEC: CommoditySpec = {
   title: '오징어',
   subtitle:
     '오징어 산업 해부 · 한 해살이 자원이 만드는 시장 — 밸류체인 7단계와 그것을 관통하는 3개 축',
-  accent: '#7c3aed',
+  accent: SQUID_ACCENT,
   primaryKpi: {
     label: '세계 오징어·갑오징어 어획량',
     value: CATCH.요약.세계어획량,
     unit: '(톤)',
-    accent: '#7c3aed',
+    accent: SQUID_ACCENT,
   },
   secondaryKpis: [
     { label: '살오징어 정점 대비', value: FLYING_SQUID_VS_PEAK_PCT, unit: '(%)', decimals: 1 },

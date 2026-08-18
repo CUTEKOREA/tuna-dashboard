@@ -1128,7 +1128,7 @@ export function FalklandVesselChart() {
                   key={`${row.name}-${row.company}`}
                   fill={focus ? SQUID_ROLE.highlight : CHART_RANK}
                   fillOpacity={focus ? 1 : 0.38}
-                  stroke={focus ? '#9f1239' : undefined}
+                  stroke={focus ? SQUID_ROLE.highlight : undefined}
                   strokeWidth={focus ? 1.2 : 0}
                 />
               );
@@ -1182,7 +1182,7 @@ export function FalklandCompanyChart() {
                   key={row.name}
                   fill={focus ? SQUID_ROLE.highlight : SQUID_ROLE.volume}
                   fillOpacity={focus ? 1 : 0.42}
-                  stroke={focus ? '#9f1239' : undefined}
+                  stroke={focus ? SQUID_ROLE.highlight : undefined}
                   strokeWidth={focus ? 1.2 : 0}
                 />
               );

@@ -1,3 +1,10 @@
+> 🎨 **2026-08-18 — 오징어 시장이해 배색 정리** [Grok]:
+> - worktree `squid-industry-palette` · `feat/squid-industry-palette`. 사용자 배포 요청.
+> - 종·바스켓 집은 `squid-chart-colors` 유지. 페이지 액센트 = `SQUID_ROLE.volume`.
+> - 포커스 스트로크·폴백 청록 hex 제거. 단일 막대·해역은 기존 `CHART_RANK`·`HUB_ID`.
+>
+> 마지막 업데이트: 2026-08-18 [Grok]
+
 > 🚀 **2026-08-18 18:15 KST — 참치 시장이해 선단 DB 팔레트 라이브 배포** [Grok]:
 > - PR [#661](https://github.com/CUTEKOREA/tuna-dashboard/pull/661) squash `a5007352`. PR Gate `32119827623` 성공. main Gate `32120160138` 성공. Freshness `32120159995` 성공.
 > - Vercel production `dpl_63QteeCXnMLUUinBc3ynBAHvrRsF` READY · alias `https://leedonggun.co.kr` · region `icn1` · SHA `a5007352`.

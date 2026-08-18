@@ -63,9 +63,9 @@
 }
 
 .page[data-commodity='squid'] {
-  --mu-accent: #7c3aed;
-  --mu-accent-deep: #6d28d9;
-  --mu-hover: rgba(124, 58, 237, 0.10);
+  --mu-accent: #6d28d9;
+  --mu-accent-deep: #5b21b6;
+  --mu-hover: rgba(109, 40, 217, 0.10);
 }
 
 :global([data-v3='light']) .page[data-commodity='squid'] {
