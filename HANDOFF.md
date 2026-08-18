@@ -1,3 +1,11 @@
+> 🚀 **2026-08-18 17:49 KST — GMTS 선단 DB 팔레트 라이브 배포** [Grok]:
+> - PR [#656](https://github.com/CUTEKOREA/tuna-dashboard/pull/656) squash `0e8671ce`. PR Gate `32117660262` 성공. main Gate `32117961335` 성공. Freshness `32117961307` 성공.
+> - Vercel production `dpl_8kaUUDMy9qAwW5ri9J2AqRC7bYax` READY · alias `https://leedonggun.co.kr` · region `icn1` · SHA `0e8671ce`.
+> - 라이브 `/gmts`: 하역 완료 `#3b82f6` · 하역 중 `#f59e0b` · 입항 예정 `#8b5cf6`. 특혜 `#10b981` · 당해 `#3b82f6` · 직전 `#8b5cf6`. 가로 넘침 0.
+> - 이번 배포 런타임 error/fatal 0건. 열린 탭은 하드 리프레시.
+>
+> 마지막 업데이트: 2026-08-18 17:49 KST [Grok]
+
 > 🎨 **2026-08-18 — GMTS에 선단 DB 팔레트 적용** [Grok]:
 > - worktree `gmts-palette` · `feat/gmts-palette`. 사용자 배포 요청.
 > - 선박 흐름·공장·가격·반입 시리즈 = `HUB_ID`. 위젯 아이콘 = `HUB_ID.bkk`. `--chart-s*`·`#509ee3` 제거.
