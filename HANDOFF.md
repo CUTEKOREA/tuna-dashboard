@@ -1,3 +1,11 @@
+> 🚀 **2026-08-18 — 선단 DB 라이트 테마 + 고등어 창구 좌우 배치 라이브 배포** [Grok]:
+> - PR [#621](https://github.com/CUTEKOREA/tuna-dashboard/pull/621) squash `a42aabf8`. PR Gate `32089609975` 성공. main Gate `32089843832` 성공. Freshness `32089843760` 성공.
+> - Vercel production `dpl_43c6Kujuk7EPgAeoZ3Ms4nQfsprf` READY · alias `https://leedonggun.co.kr` · region `icn1` · SHA `a42aabf8`.
+> - 라이브 확인(소유자 로그인): `/purse-seiner-db` OFIS KPI 흰 카드·잉크 숫자·하락 파랑/상승 빨강. `/mackerel-industry` 05단계 물량·단가 좌우(x 292 / 855). 390px overflow 0.
+> - 배포 후 30분 error/fatal 로그 0건. 비로그인 라이브는 보안 로그인 벽(200).
+>
+> 마지막 업데이트: 2026-08-18 [Grok]
+
 > 🖼 **2026-08-18 — 고등어 수입 창구 물량·단가 차트를 좌우 배치** [Grok]:
 > - `MackerelIndustryDashboard` s05 «수입 창구 물량»에서 `span: 'full'`을 뺐다. 단가 차트와 한 줄에 앉는다. 860px 이하는 기존처럼 세로.
 > - worktree `fleet-db-theme`. **프로덕션 미배포**.
