@@ -1,3 +1,11 @@
+> 🚀 **2026-08-18 19:10 KST — 고등어 시장이해 선단 DB 팔레트 라이브 배포** [Grok]:
+> - PR [#667](https://github.com/CUTEKOREA/tuna-dashboard/pull/667) squash `1124b887`. PR Gate `32124678247` 성공. main Gate `32125020350` 성공. Freshness `32125020599` 성공.
+> - Vercel production `dpl_5k3qLQ2y5ZRtHyo9UbbTN1di6tAr` READY · alias `https://leedonggun.co.kr` · region `icn1` · SHA `1124b887`.
+> - 라이브 `/mackerel-industry`: 액센트 `#0369a1`. 자원 `#0369a1`·`#be123c`. 수입 노르웨이 강조 `#be123c`. 창구 필렛 `#f59e0b`. 가로 넘침 0.
+> - 이번 배포 런타임 error/fatal 0건. 열린 탭은 하드 리프레시.
+>
+> 마지막 업데이트: 2026-08-18 19:10 KST [Grok]
+
 > 🎨 **2026-08-18 — 고등어 시장이해에 선단 DB 팔레트 적용** [Grok]:
 > - worktree `mackerel-industry-palette` · `feat/mackerel-industry-palette`. 사용자 배포 요청.
 > - 종·창구 집은 `mackerel-chart-colors` 유지. 페이지 액센트 = `MACKEREL_ROLE.volume`.
