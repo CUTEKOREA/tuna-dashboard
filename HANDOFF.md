@@ -1,3 +1,10 @@
+> 🧹 **2026-08-18 — 선단 DB에서 OFIS 6월 위젯 3개 제거** [Grok]:
+> - `PurseSeinerDashboard`에서 `OfisMonthlyPanel`(전국 원양 물량·선망/연승 단가·해역 회전)을 뺐다. 인테이크·패널 파일은 남김.
+> - 테스트: 선단 DB 마크업에 `W-OFIS01` 없음.
+> - worktree `fleet-db-theme` · 브랜치 `fix/remove-ofis-monthly-widgets`. **프로덕션 미배포**.
+>
+> 마지막 업데이트: 2026-08-18 [Grok]
+
 > 🚀 **2026-08-18 — 선단 DB 라이트 테마 + 고등어 창구 좌우 배치 라이브 배포** [Grok]:
 > - PR [#621](https://github.com/CUTEKOREA/tuna-dashboard/pull/621) squash `a42aabf8`. PR Gate `32089609975` 성공. main Gate `32089843832` 성공. Freshness `32089843760` 성공.
 > - Vercel production `dpl_43c6Kujuk7EPgAeoZ3Ms4nQfsprf` READY · alias `https://leedonggun.co.kr` · region `icn1` · SHA `a42aabf8`.
