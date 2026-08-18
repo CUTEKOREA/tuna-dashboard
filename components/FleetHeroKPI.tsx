@@ -2,7 +2,7 @@
 import React from 'react';
 import { Anchor, Navigation } from 'lucide-react';
 import CountUp from 'react-countup';
-import { purseSeineCatch } from '@/lib/fleet-operations-2026-08-09';
+import { purseSeineCatch } from '@/lib/fleet-operations-2026-08-16';
 import TelemetryBadge from './TelemetryBadge';
 import s from './FleetCommandCenter.module.css';
 
@@ -17,7 +17,7 @@ export default function FleetHeroKPI({ climateRisk, mode = 'daily' }: { climateR
         val2: summary.monthlyTotal, label2: `국적 ${summary.nationalMonthly.toLocaleString()}t + 합작 ${summary.jointMonthly.toLocaleString()}t`,
         val3: summary.annualTotal, label3: `국적 ${summary.nationalAnnual.toLocaleString()}t + 합작 ${summary.jointAnnual.toLocaleString()}t`,
         ratioLeftLabel: '국적 36%', ratioRightLabel: '합작 64%', ratioPercent: summary.nationalWeekly / summary.weeklyTotal * 100,
-        syncDate: '26.08.03~08.09 · 8월 첫째주',
+        syncDate: '26.08.10~08.16 · 8월 둘째주',
       }
     : {
         title: '주간 총 어획량',
@@ -25,7 +25,7 @@ export default function FleetHeroKPI({ climateRisk, mode = 'daily' }: { climateR
         val2: summary.monthlyTotal, label2: `국적 ${summary.nationalMonthly.toLocaleString()}t + 합작 ${summary.jointMonthly.toLocaleString()}t`,
         val3: summary.annualTotal, label3: `국적 ${summary.nationalAnnual.toLocaleString()}t + 합작 ${summary.jointAnnual.toLocaleString()}t`,
         ratioLeftLabel: '국적 36%', ratioRightLabel: '합작 64%', ratioPercent: summary.nationalWeekly / summary.weeklyTotal * 100,
-        syncDate: '26.08.03~08.09 · 8월 첫째주',
+        syncDate: '26.08.10~08.16 · 8월 둘째주',
       };
 
   return (

@@ -8,9 +8,9 @@ import {
   nationalVds,
   pacificDailyReport,
   purseSeineCatch,
-} from '@/lib/fleet-operations-2026-08-09';
+} from '@/lib/fleet-operations-2026-08-16';
 
-describe('2026-08-09 fleet operations sources', () => {
+describe('2026-08-16 fleet operations sources', () => {
   it('reconciles the national VDS report at vessel and area grain', () => {
     expect(nationalVds.asOf).toBe('2026-08-09');
     expect(nationalVds.vessels).toHaveLength(6);
@@ -36,31 +36,31 @@ describe('2026-08-09 fleet operations sources', () => {
     });
   });
 
-  it('preserves the August first-week catch hierarchy and monthly reconciliation', () => {
-    expect(purseSeineCatch.period).toEqual({ from: '2026-08-03', to: '2026-08-09' });
+  it('preserves the August second-week catch hierarchy and monthly reconciliation', () => {
+    expect(purseSeineCatch.period).toEqual({ from: '2026-08-10', to: '2026-08-16' });
     expect(purseSeineCatch.summary).toEqual({
-      nationalWeekly: 218,
-      jointWeekly: 393,
-      weeklyTotal: 611,
-      nationalMonthly: 338,
-      jointMonthly: 982,
-      monthlyTotal: 1_320,
-      nationalAnnual: 26_839,
-      jointAnnual: 19_314,
-      annualTotal: 46_153,
+      nationalWeekly: 478,
+      jointWeekly: 451,
+      weeklyTotal: 929,
+      nationalMonthly: 816,
+      jointMonthly: 1_433,
+      monthlyTotal: 2_249,
+      nationalAnnual: 27_317,
+      jointAnnual: 19_765,
+      annualTotal: 47_082,
     });
     expect(purseSeineCatch.weeklyRanking.slice(0, 2)).toEqual([
-      { rank: 1, captain: '이평규', vessel: 'KONA', catchMt: 183, dailyAverageMt: 26.14 },
-      { rank: 2, captain: '김정훈', vessel: 'MARI', catchMt: 140, dailyAverageMt: 20 },
+      { rank: 1, captain: '강창훈', vessel: 'S/JUP', catchMt: 265, dailyAverageMt: 37.86 },
+      { rank: 2, captain: '김형주', vessel: 'N/SUN', catchMt: 195, dailyAverageMt: 27.86 },
     ]);
-    expect(purseSeineCatch.weeklyRanking.reduce((sum, vessel) => sum + vessel.catchMt, 0)).toBe(611);
+    expect(purseSeineCatch.weeklyRanking.reduce((sum, vessel) => sum + vessel.catchMt, 0)).toBe(929);
     const nationalVessels = new Set(nationalVds.vessels);
-    expect(purseSeineCatch.weeklyRanking.filter((vessel) => nationalVessels.has(vessel.vessel)).reduce((sum, vessel) => sum + vessel.catchMt, 0)).toBe(218);
-    expect(purseSeineCatch.weeklyRanking.filter((vessel) => !nationalVessels.has(vessel.vessel)).reduce((sum, vessel) => sum + vessel.catchMt, 0)).toBe(393);
-    expect(purseSeineCatch.monthlyByVessel.reduce((sum, vessel) => sum + vessel.monthlyMt[7], 0)).toBe(1_320);
-    expect(purseSeineCatch.monthlyByVessel.reduce((sum, vessel) => sum + vessel.totalMt, 0)).toBe(46_153);
-    expect([...purseSeineCatch.seasonRanking].sort((a, b) => a.rank - b.rank)[0]).toMatchObject({ captain: '조태연', vessel: 'N/STAR', dailyCatchMt: 36.4, rank: 1 });
-    expect(purseSeineCatch.seasonRanking.find((row) => row.vessel === 'S/EXP')?.leaderDeltaMt).toBe(-24.58);
+    expect(purseSeineCatch.weeklyRanking.filter((vessel) => nationalVessels.has(vessel.vessel)).reduce((sum, vessel) => sum + vessel.catchMt, 0)).toBe(478);
+    expect(purseSeineCatch.weeklyRanking.filter((vessel) => !nationalVessels.has(vessel.vessel)).reduce((sum, vessel) => sum + vessel.catchMt, 0)).toBe(451);
+    expect(purseSeineCatch.monthlyByVessel.reduce((sum, vessel) => sum + vessel.monthlyMt[7], 0)).toBe(2_249);
+    expect(purseSeineCatch.monthlyByVessel.reduce((sum, vessel) => sum + vessel.totalMt, 0)).toBe(47_082);
+    expect([...purseSeineCatch.seasonRanking].sort((a, b) => a.rank - b.rank)[0]).toMatchObject({ captain: '조태연', vessel: 'N/STAR', dailyCatchMt: 34.3, rank: 1 });
+    expect(purseSeineCatch.seasonRanking.find((row) => row.vessel === 'S/EXP')?.leaderDeltaMt).toBe(-23.71);
   });
 
   it('captures the latest daily report and carrier loading snapshot without mixing dates', () => {

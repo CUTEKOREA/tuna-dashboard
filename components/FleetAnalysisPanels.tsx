@@ -4,7 +4,7 @@ import { ChevronDown, Trophy, BarChart3 } from 'lucide-react';
 import { WeeklyCatchChart, MonthlyCatchChart, CumulativeChart, CumulativeTableData } from './FleetCharts';
 import TakeawayBox from './TakeawayBox';
 import s from './FleetCommandCenter.module.css';
-import { purseSeineCatch } from '@/lib/fleet-operations-2026-08-09';
+import { purseSeineCatch } from '@/lib/fleet-operations-2026-08-16';
 
 const rankData = purseSeineCatch.weeklyRanking.map((item) => ({
   r: item.rank, cap: item.captain, name: item.vessel, weekly: item.catchMt, daily: item.dailyAverageMt,
@@ -33,16 +33,16 @@ export function FleetChartSection() {
           {tabs.map(t => (
             <button key={t.id} className={`${s.chartTab} ${activeTab === t.id ? s.chartTabActive : ''}`} onClick={() => setActiveTab(t.id)}>{t.label}</button>
           ))}
-          <span style={{ fontSize: '0.68rem', color: 'var(--text-muted)', marginLeft: 'auto', alignSelf: 'center' }}>26.08.03~08.09 보고 기준</span>
+          <span style={{ fontSize: '0.68rem', color: 'var(--text-muted)', marginLeft: 'auto', alignSelf: 'center' }}>26.08.10~08.16 보고 기준</span>
         </div>
         {activeTab === 'weekly' && (
           <>
             <WeeklyCatchChart />
             <div style={{ marginTop: 16 }}>
               <TakeawayBox
-                situation={<>KONA(이평규) 183t 주간 1위, MARI(김정훈) 140t 2위. 주간 총 어획량은 611t(국적 218t, 합작 393t)입니다.</>}
-                actionPlan={<>S/PIO·S/JUP은 주간 어획이 없습니다. VDS 잔여와 선박 상태를 함께 확인해 다음 주 배치를 조정하십시오.</>}
-                source="주간 실적 현황 (26.08.03~08.09)"
+                situation={<>S/JUP(강창훈) 265t 주간 1위, N/SUN(김형주) 195t 2위. 주간 총 어획량은 929t(국적 478t, 합작 451t)입니다.</>}
+                actionPlan={<>S/EXP·S/HAR은 주간 어획이 없습니다. 지난주 실적 없던 S/JUP이 265t으로 1위에 올랐으므로, 무실적 두 척도 VDS 잔여와 선박 상태를 확인해 배치를 조정하십시오.</>}
+                source="주간 실적 현황 (26.08.10~08.16)"
               />
             </div>
           </>
@@ -52,9 +52,9 @@ export function FleetChartSection() {
             <MonthlyCatchChart />
             <div style={{ marginTop: 16 }}>
               <TakeawayBox
-                situation={<>8월 누계 1,320t(국적 338t, 합작 982t)입니다. 합작선 비중은 74.4%로 KONA·MARI가 월간 물량을 견인합니다.</>}
-                actionPlan={<>연간 누계 46,153t 중 MARI가 11,385t으로 최대입니다. 합작선 의존과 국적선 생산 회복을 함께 관리하십시오.</>}
-                source="주간 실적 현황 (26.08.03~08.09)"
+                situation={<>8월 누계 2,249t(국적 816t, 합작 1,433t)입니다. 합작선 비중은 63.7%로 MARI·N/STAR가 월간 물량을 견인합니다.</>}
+                actionPlan={<>연간 누계 47,082t 중 S/SPR이 6,634t으로 최대입니다. 합작선 의존과 국적선 생산 회복을 함께 관리하십시오.</>}
+                source="주간 실적 현황 (26.08.10~08.16)"
               />
             </div>
           </>
@@ -64,8 +64,8 @@ export function FleetChartSection() {
             <CumulativeChart />
             <div style={{ marginTop: 16 }}>
               <TakeawayBox
-                situation={<>조태연(N/STAR) 일어획 36.4t으로 현어기 1위, 김효원(S/SPR) 28.0t 2위, 김정훈(MARI) 23.7t 3위입니다.</>}
-                actionPlan={<>선단 평균 20.4t 대비 하위 5척은 원인별로 수역·조업일수·선박 상태를 대조하십시오.</>}
+                situation={<>조태연(N/STAR) 일어획 34.3t으로 현어기 1위, 김효원(S/SPR) 27.5t 2위, 김정훈(MARI) 23.6t 3위입니다.</>}
+                actionPlan={<>선단 평균 20.2t 대비 하위 5척은 원인별로 수역·조업일수·선박 상태를 대조하십시오.</>}
                 source="선장 실적 누계 (현어기) · 2026-08-09"
               />
             </div>
@@ -77,7 +77,7 @@ export function FleetChartSection() {
       <div className={s.rankPanel}>
         <h3 style={{ fontSize: '0.95rem', fontWeight: 700, color: 'var(--text-main)', marginTop: 0, marginBottom: 16, display: 'flex', alignItems: 'center', gap: 8 }}>
           <Trophy size={16} color="#fbbf24" /> 주간 선장실적 (Top 10)
-          <span style={{ fontSize: '0.68rem', color: 'var(--text-muted)', fontWeight: 500, marginLeft: 'auto' }}>8월 첫째주 기준</span>
+          <span style={{ fontSize: '0.68rem', color: 'var(--text-muted)', fontWeight: 500, marginLeft: 'auto' }}>8월 둘째주 기준</span>
         </h3>
         <table className={s.rankTable}>
           <thead>
@@ -147,7 +147,7 @@ export function FleetDetailPanel() {
           <div style={{ marginTop: 16 }}>
             <TakeawayBox
               situation={<>조태연(N/STAR) 어기 46일·일어획 36.4t으로 1위, 김효원(S/SPR) 28.0t으로 2위입니다. 선단 평균은 20.4t입니다.</>}
-              actionPlan={<>MARI(김정훈)는 11,385t 누적, KONA(이평규)는 일어획 19.7t입니다. 순위와 누계 물량을 분리해 평가하십시오.</>}
+              actionPlan={<>MARI(김정훈)는 11,485t 누적으로 최대이나 일어획은 23.6t 3위입니다. 순위와 누계 물량을 분리해 평가하십시오.</>}
               source="선장 실적 누계 (현어기) · 2026-08-09"
             />
           </div>

@@ -4,7 +4,7 @@ import s from './VdsStrategyMatrix.module.css';
 import { Target, Activity, Zap, TrendingUp } from 'lucide-react';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from 'recharts';
 import SafeResponsiveContainer from './SafeResponsiveContainer';
-import { nationalVds } from '@/lib/fleet-operations-2026-08-09';
+import { nationalVds } from '@/lib/fleet-operations-2026-08-16';
 
 // ─── Data ───
 const companies = ['동원산업', '사조산업', '사조씨푸드', '사조오양', '신라교역'];
