@@ -113,7 +113,7 @@
 .cosmo-root .kpi .v { font-family: var(--cosmo-mono); font-variant-numeric: tabular-nums; font-size: 22px; font-weight: 700; letter-spacing: -.03em; }
 .cosmo-root .kpi .v small { font-size: 11px; font-weight: 600; color: var(--cosmo-ink-2); margin-left: 2px; }
 .cosmo-root .kpi .d { font-size: 11.5px; color: var(--cosmo-ink-2); line-height: 1.45; }
-.cosmo-root .up { color: var(--cosmo-ok); } .cosmo-root .down { color: var(--cosmo-bad); } .cosmo-root .flat { color: var(--cosmo-muted); }
+.cosmo-root .up { color: var(--delta-up); } .cosmo-root .down { color: var(--delta-down); } .cosmo-root .flat { color: var(--cosmo-muted); }
 
 /* ---------- signal ---------- */
 .cosmo-root .sig { display: grid; gap: 5px; border-left: 3px solid var(--cosmo-line); padding-left: 12px; }

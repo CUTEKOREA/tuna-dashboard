@@ -1,4 +1,5 @@
 'use client'
+import { C, SERIES } from '../palette'
 import Chart, { Legend } from '../Chart'
 import { PageHead, Card, Kpi, Callout, SecHead } from '../Ui'
 import {
@@ -196,14 +197,14 @@ export default function Sales() {
             {' '}{meta.missingWeeks.join(',')}주차는 원본 결측이라 선이 끊깁니다.</>}
         >
           <Legend items={[
-            { name: '주간 판매액', color: 'var(--cosmo-s1)', box: true },
-            { name: '4주 이동평균', color: 'var(--cosmo-s2)' },
+            { name: '주간 판매액', color: C.s1, box: true },
+            { name: '4주 이동평균', color: C.s2 },
           ]} />
           <Chart
             data={weeklySeries} x="label" height={260} yFmt={m1} xInterval={2}
             series={[
-              { key: 'salesWeek', name: '주간 판매액', color: 'var(--cosmo-s1)', type: 'bar', fmt: m2 },
-              { key: 'salesMA4', name: '4주 이동평균', color: 'var(--cosmo-s2)', fmt: m2 },
+              { key: 'salesWeek', name: '주간 판매액', color: C.s1, type: 'bar', fmt: m2 },
+              { key: 'salesMA4', name: '4주 이동평균', color: C.s2, fmt: m2 },
             ]}
           />
         </Card>
@@ -220,7 +221,7 @@ export default function Sales() {
         >
           <Chart
             data={mixRows} x="label" height={260} yFmt={m1} xInterval={0}
-            series={[{ key: 'cumUsd', name: '누적 매출', color: 'var(--cosmo-s1)', type: 'bar', fmt: m2 }]}
+            series={[{ key: 'cumUsd', name: '누적 매출', color: C.rank, type: 'bar', fmt: m2 }]}
           />
         </Card>
 
@@ -234,14 +235,14 @@ export default function Sales() {
               그대로 남아 있어(누적 판매액보다 큼) 제외했습니다.</>}</>}
         >
           <Legend items={[
-            { name: '수출 누적', color: 'var(--cosmo-s1)', box: true },
-            { name: '내수 누적 (우축)', color: 'var(--cosmo-s3)' },
+            { name: '수출 누적', color: C.s1, box: true },
+            { name: '내수 누적 (우축)', color: C.s3 },
           ]} />
           <Chart
             data={exDom} x="label" height={260} yFmt={m1} y2Fmt={k0} xInterval={2}
             series={[
-              { key: 'exportCum', name: '수출 누적', color: 'var(--cosmo-s1)', type: 'area', fmt: m2 },
-              { key: 'domesticCum', name: '내수 누적', color: 'var(--cosmo-s3)', axis: 'right', fmt: m2 },
+              { key: 'exportCum', name: '수출 누적', color: C.s1, type: 'area', fmt: m2 },
+              { key: 'domesticCum', name: '내수 누적', color: C.s3, axis: 'right', fmt: m2 },
             ]}
           />
         </Card>
@@ -257,11 +258,11 @@ export default function Sales() {
             세 품목 모두 연초 이후 뚜렷한 상승 없이 <b>박스권</b>이라,
             원가가 오르면 단가로 흡수할 여지가 없습니다.</>}
         >
-          <Legend items={priceItems.map((it, i) => ({ name: lbl(it), color: `var(--cosmo-s${i + 1})` }))} />
+          <Legend items={priceItems.map((it, i) => ({ name: lbl(it), color: SERIES[i % SERIES.length] }))} />
           <Chart
             data={priceRows} x="label" height={250} yFmt={k1} xInterval={2} domain={priceDomain}
             series={priceItems.map((it, i) => ({
-              key: it, name: lbl(it), color: `var(--cosmo-s${i + 1})`, fmt: (v: number) => usd(v),
+              key: it, name: lbl(it), color: SERIES[i % SERIES.length], fmt: (v: number) => usd(v),
             }))}
           />
         </Card>
@@ -279,14 +280,14 @@ export default function Sales() {
             잔량에 내재된 단가는 {usd(backlogUnit)}/FCL.</>}
         >
           <Legend items={[
-            { name: '수주잔량 FCL', color: 'var(--cosmo-s1)' },
-            { name: '수주잔량 금액 (우축)', color: 'var(--cosmo-s3)', dash: true },
+            { name: '수주잔량 FCL', color: C.s1 },
+            { name: '수주잔량 금액 (우축)', color: C.s3, dash: true },
           ]} />
           <Chart
             data={weeklySeries} x="label" height={250} yFmt={(v) => num(v, 0)} y2Fmt={m1} xInterval={2}
             series={[
-              { key: 'backlogFcl', name: '수주잔량 FCL', color: 'var(--cosmo-s1)', fmt: fclFmt },
-              { key: 'backlogUsd', name: '수주잔량 금액', color: 'var(--cosmo-s3)', axis: 'right', dash: true, fmt: m2 },
+              { key: 'backlogFcl', name: '수주잔량 FCL', color: C.s1, fmt: fclFmt },
+              { key: 'backlogUsd', name: '수주잔량 금액', color: C.s3, axis: 'right', dash: true, fmt: m2 },
             ]}
           />
         </Card>
@@ -300,14 +301,14 @@ export default function Sales() {
             잔량보다 <b>선적 능력</b>에 좌우됩니다.</>}
         >
           <Legend items={[
-            { name: '주간 선적 FCL', color: 'var(--cosmo-s4)', box: true },
-            { name: '소진 주수 (우축)', color: 'var(--cosmo-s2)' },
+            { name: '주간 선적 FCL', color: C.s4, box: true },
+            { name: '소진 주수 (우축)', color: C.s2 },
           ]} />
           <Chart
             data={burnRows} x="label" height={250} yFmt={(v) => num(v, 0)} y2Fmt={(v) => v.toFixed(0) + '주'} xInterval={2}
             series={[
-              { key: 'fclWeek', name: '주간 선적 FCL', color: 'var(--cosmo-s4)', type: 'bar', fmt: fclFmt },
-              { key: 'coverWeeks', name: '소진 주수', color: 'var(--cosmo-s2)', axis: 'right', fmt: wkFmt },
+              { key: 'fclWeek', name: '주간 선적 FCL', color: C.s4, type: 'bar', fmt: fclFmt },
+              { key: 'coverWeeks', name: '소진 주수', color: C.s2, axis: 'right', fmt: wkFmt },
             ]}
           />
         </Card>
@@ -332,14 +333,14 @@ export default function Sales() {
             상한 {pct(quoteStats.max, 2)}는 손익분기를 넘지만 그런 건이 드뭅니다 — 손익분기 이상 견적은 <b>{aboveBe.count}건 / 물량 {pct(aboveBe.share, 1)}</b>뿐이라 고마진 건으로 저마진을 상쇄할 여지가 없습니다.</>}
         >
           <Legend items={[
-            { name: `마진 ${pct(riskHi, 0)} 미만`, color: 'var(--cosmo-bad)', box: true },
-            { name: `마진 ${pct(riskHi, 0)} 이상`, color: 'var(--cosmo-s1)', box: true },
+            { name: `마진 ${pct(riskHi, 0)} 미만`, color: C.danger, box: true },
+            { name: `마진 ${pct(riskHi, 0)} 이상`, color: C.s1, box: true },
           ]} />
           <Chart
             data={bucketRows} x="label" height={240} yFmt={(v) => num(v, 0)} xInterval={0}
             series={[
-              { key: 'risk', name: `마진 ${pct(riskHi, 0)} 미만`, color: 'var(--cosmo-bad)', type: 'bar', stackId: 'q', fmt: cntFmt },
-              { key: 'safe', name: `마진 ${pct(riskHi, 0)} 이상`, color: 'var(--cosmo-s1)', type: 'bar', stackId: 'q', fmt: cntFmt },
+              { key: 'risk', name: `마진 ${pct(riskHi, 0)} 미만`, color: C.danger, type: 'bar', stackId: 'q', fmt: cntFmt },
+              { key: 'safe', name: `마진 ${pct(riskHi, 0)} 이상`, color: C.s1, type: 'bar', stackId: 'q', fmt: cntFmt },
             ]}
           />
         </Card>

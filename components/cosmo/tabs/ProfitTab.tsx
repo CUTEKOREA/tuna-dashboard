@@ -1,4 +1,5 @@
 'use client'
+import { C } from '../palette'
 import Chart, { Legend } from '../Chart'
 import { PageHead, Card, Kpi, Callout, SecHead } from '../Ui'
 import {
@@ -220,20 +221,20 @@ export default function Profit() {
           note={<>매출은 {maxRevMonth.label} {musd(maxRevMonth.revenue)}까지 오르지만 순이익률은 <b>{lossMonths}개월 모두 음(−)</b>이고, 매출총이익률도 {gpLossMonths}개월은 마이너스입니다. 매출 최고월의 순이익률조차 {pct(maxRevMonth.netMargin, 2)}라 <b>규모로는 해결되지 않는 구조</b>입니다. 매출총이익률과 순이익률의 YTD 격차 <b>{pct(n(gpMarginYtd) - n(netMarginYtd), 2)}</b>는 판관비·금융비용 몫이라, 매출총이익률이 그만큼은 나와야 손익분기입니다.</>}
         >
           <Legend items={[
-            { name: '매출', color: 'var(--cosmo-s1)', box: true },
-            { name: '매출총이익률', color: 'var(--cosmo-s4)' },
-            { name: '순이익률', color: 'var(--cosmo-s2)' },
+            { name: '매출', color: C.s1, box: true },
+            { name: '매출총이익률', color: C.s4 },
+            { name: '순이익률', color: C.s2 },
           ]} />
           <Chart
             data={monthlySeries} x="label" height={250} zeroLine
             yFmt={m1} y2Fmt={p1}
             refLines={[{ y: 0, axis: 'right' },
               ...(breakevenMargin ? [{ y: breakevenMargin.required, axis: 'right' as const,
-                color: 'var(--cosmo-bad)', label: `손익분기 ${pct(breakevenMargin.required, 1)}` }] : [])]}
+                color: C.danger, label: `손익분기 ${pct(breakevenMargin.required, 1)}` }] : [])]}
             series={[
-              { key: 'revenue', name: '매출', color: 'var(--cosmo-s1)', type: 'bar', fmt: m2 },
-              { key: 'gpMargin', name: '매출총이익률', color: 'var(--cosmo-s4)', axis: 'right', fmt: p1 },
-              { key: 'netMargin', name: '순이익률', color: 'var(--cosmo-s2)', axis: 'right', fmt: p1 },
+              { key: 'revenue', name: '매출', color: C.s1, type: 'bar', fmt: m2 },
+              { key: 'gpMargin', name: '매출총이익률', color: C.s4, axis: 'right', fmt: p1 },
+              { key: 'netMargin', name: '순이익률', color: C.s2, axis: 'right', fmt: p1 },
             ]}
           />
         </Card>
@@ -244,18 +245,18 @@ export default function Profit() {
           note={<>매출 = CBU + FBU 이고 CBU = 통조림 + 어분 이라 네 계열을 모두 쌓으면 이중계상됩니다({M.month}월 검산 잔차 {usd(n(M.revenue) - (n(M.revenue_cannery) + n(M.revenue_fishmeal) + n(M.revenue_fbu)))}). 통조림이 매월 매출의 <b>{pct(cannLo, 0)}~{pct(cannHi, 0)}</b>를 차지해 손익은 사실상 통조림 원가가 결정합니다. {M.month}월 기준 어분 {pct(fishmealShare, 1)}, FBU {pct(fbuShare, 1)}로 <b>믹스를 바꿔 적자를 덮을 규모가 아닙니다</b>.</>}
         >
           <Legend items={[
-            { name: '통조림', color: 'var(--cosmo-s1)', box: true },
-            { name: '어분', color: 'var(--cosmo-s3)', box: true },
-            { name: 'FBU', color: 'var(--cosmo-s5)', box: true },
-            { name: 'CBU 소계', color: 'var(--cosmo-s4)' },
+            { name: '통조림', color: C.mix[0], box: true },
+            { name: '어분', color: C.mix[1], box: true },
+            { name: 'FBU', color: C.mix[2], box: true },
+            { name: 'CBU 소계', color: C.s4 },
           ]} />
           <Chart
             data={monthlySeries} x="label" height={250} yFmt={m1}
             series={[
-              { key: 'cannery', name: '통조림', color: 'var(--cosmo-s1)', type: 'bar', stackId: 'rev', fmt: m2 },
-              { key: 'fishmeal', name: '어분', color: 'var(--cosmo-s3)', type: 'bar', stackId: 'rev', fmt: m2 },
-              { key: 'fbu', name: 'FBU', color: 'var(--cosmo-s5)', type: 'bar', stackId: 'rev', fmt: m2 },
-              { key: 'cbu', name: 'CBU 소계', color: 'var(--cosmo-s4)', fmt: m2 },
+              { key: 'cannery', name: '통조림', color: C.mix[0], type: 'bar', stackId: 'rev', fmt: m2 },
+              { key: 'fishmeal', name: '어분', color: C.mix[1], type: 'bar', stackId: 'rev', fmt: m2 },
+              { key: 'fbu', name: 'FBU', color: C.mix[2], type: 'bar', stackId: 'rev', fmt: m2 },
+              { key: 'cbu', name: 'CBU 소계', color: C.s4, fmt: m2 },
             ]}
           />
         </Card>
@@ -292,18 +293,18 @@ export default function Profit() {
           note={<>{M.month}월 원가 계정 합계 <b>{musd(costTotal)}</b> 중 최대 계정 하나가 <b>{pct(topShare, 1)}</b>({costRows[0]?.[0]})입니다. 노무·에너지·기타를 다 합쳐도 재료비에 못 미치므로, <b>원가 절감의 지렛대는 사실상 원어 매입가</b>입니다. 단, 계정 합계와 매출원가는 월별로 최대 <b>{pct(cosGapMax, 1)}</b> 어긋납니다(재고 변동·계정 마감 시점 차이). 이 차트는 수준이 아니라 <b>구성 변화</b>로 읽어야 합니다.</>}
         >
           <Legend items={[
-            { name: '재료비', color: 'var(--cosmo-s1)', box: true },
-            { name: '노무비', color: 'var(--cosmo-s3)', box: true },
-            { name: '에너지', color: 'var(--cosmo-s2)', box: true },
-            { name: '기타', color: 'var(--cosmo-s5)', box: true },
+            { name: '재료비', color: C.mix[0], box: true },
+            { name: '노무비', color: C.mix[1], box: true },
+            { name: '에너지', color: C.mix[2], box: true },
+            { name: '기타', color: C.mix[3], box: true },
           ]} />
           <Chart
             data={monthlySeries} x="label" height={250} yFmt={m1}
             series={[
-              { key: 'material', name: '재료비', color: 'var(--cosmo-s1)', type: 'bar', stackId: 'cost', fmt: m2 },
-              { key: 'labor', name: '노무비', color: 'var(--cosmo-s3)', type: 'bar', stackId: 'cost', fmt: m2 },
-              { key: 'energy', name: '에너지', color: 'var(--cosmo-s2)', type: 'bar', stackId: 'cost', fmt: m2 },
-              { key: 'other', name: '기타', color: 'var(--cosmo-s5)', type: 'bar', stackId: 'cost', fmt: m2 },
+              { key: 'material', name: '재료비', color: C.mix[0], type: 'bar', stackId: 'cost', fmt: m2 },
+              { key: 'labor', name: '노무비', color: C.mix[1], type: 'bar', stackId: 'cost', fmt: m2 },
+              { key: 'energy', name: '에너지', color: C.mix[2], type: 'bar', stackId: 'cost', fmt: m2 },
+              { key: 'other', name: '기타', color: C.mix[3], type: 'bar', stackId: 'cost', fmt: m2 },
             ]}
           />
         </Card>
@@ -314,18 +315,18 @@ export default function Profit() {
           note={<>처리량 최저 {mtLo?.label}({mt(n(mtLo?.rawMt))})의 MT당 에너지+노무비는 <b>{d0(fixLo)}</b>, 최고 {mtHi?.label}({mt(n(mtHi?.rawMt))})은 {d0(fixHi)} — <b>{(fixLo / Math.max(1, fixHi)).toFixed(1)}배</b> 차이입니다. 매입가와 무관한 고정비가 <b>처리량이 줄면 MT당 원가로 전가</b>된다는 뜻입니다. MT당 총원가는 {ucLo?.label} {d0(n(ucLo?.costPerMt))} ~ {ucHi?.label} {d0(n(ucHi?.costPerMt))} 범위인데, 분자인 매출원가는 판매 기준·분모는 처리 기준이라 <b>재고 변동이 큰 달은 총원가 선이 튑니다</b>. 분모는 해당 월에 속한 주차(주차 종료일 기준) 합이라 월 경계가 주 단위로 근사됩니다 — 월별 {wkMin}~{wkMax}주차{wkMin !== wkMax ? `, 결측 ${meta.missingWeeks.join(',') || '없음'}주가 걸린 ${thinMonth?.label}은 ${wkMin}주치만 집계돼 MT당 원가가 과대` : ''}.</>}
         >
           <Legend items={[
-            { name: 'MT당 총원가', color: 'var(--cosmo-s1)' },
-            { name: 'MT당 원어비', color: 'var(--cosmo-s4)' },
-            { name: 'MT당 에너지', color: 'var(--cosmo-s3)' },
-            { name: 'MT당 노무비', color: 'var(--cosmo-s5)' },
+            { name: 'MT당 총원가', color: C.s1 },
+            { name: 'MT당 원어비', color: C.s4 },
+            { name: 'MT당 에너지', color: C.s3 },
+            { name: 'MT당 노무비', color: C.s5 },
           ]} />
           <Chart
             data={monthlyUnitCost} x="label" height={250} yFmt={dk} y2Fmt={d0}
             series={[
-              { key: 'costPerMt', name: 'MT당 총원가', color: 'var(--cosmo-s1)', fmt: d0 },
-              { key: 'fishPerMt', name: 'MT당 원어비', color: 'var(--cosmo-s4)', fmt: d0 },
-              { key: 'energyPerMt', name: 'MT당 에너지', color: 'var(--cosmo-s3)', axis: 'right', fmt: d0 },
-              { key: 'laborPerMt', name: 'MT당 노무비', color: 'var(--cosmo-s5)', axis: 'right', fmt: d0 },
+              { key: 'costPerMt', name: 'MT당 총원가', color: C.s1, fmt: d0 },
+              { key: 'fishPerMt', name: 'MT당 원어비', color: C.s4, fmt: d0 },
+              { key: 'energyPerMt', name: 'MT당 에너지', color: C.s3, axis: 'right', fmt: d0 },
+              { key: 'laborPerMt', name: 'MT당 노무비', color: C.s5, axis: 'right', fmt: d0 },
             ]}
           />
         </Card>
@@ -338,16 +339,16 @@ export default function Profit() {
           note={<>Skipjack 단가는 {sjFirst?.label} {d0(n(sjFirst?.fishPriceSJ))}에서 {sjPrev?.label} {d0(n(sjPrev?.fishPriceSJ))}까지 줄곧 올랐다가, {sjLast?.label} <b>{d0(n(sjLast?.fishPriceSJ))}</b>로 <b>{pct(sjMoM, 1)}</b> 내렸습니다 — 1월 이후 <b>첫 하락 전환</b>입니다. 다만 관측 1개월이라 추세로 단정할 수 없고, 8월 원가 개선의 <b>선행 신호 후보</b>로만 둡니다. 같은 기간 매출총이익률은 {pct(sjFirst?.gpMargin, 2)} → <b>{pct(sjLast?.gpMargin, 2)}</b> — 누적 {pct(sjChange, 1)} 오른 단가를 판가가 따라잡지 못한 구조는 그대로입니다. 월 {sjRows.length}개 관측치라 상관계수를 말할 표본은 아니고, <b>방향</b>만 읽습니다.</>}
         >
           <Legend items={[
-            { name: '원어가 SJ ($/MT)', color: 'var(--cosmo-s3)' },
-            { name: '매출총이익률', color: 'var(--cosmo-s4)' },
+            { name: '원어가 SJ ($/MT)', color: C.s3 },
+            { name: '매출총이익률', color: C.s4 },
           ]} />
           <Chart
             data={monthlySeries} x="label" height={250} yFmt={d0} y2Fmt={p1}
             domain={tightDomain(monthlySeries.map((r) => r.fishPriceSJ))}
             refLines={[{ y: 0, axis: 'right' }]}
             series={[
-              { key: 'fishPriceSJ', name: '원어가 SJ', color: 'var(--cosmo-s3)', fmt: d0 },
-              { key: 'gpMargin', name: '매출총이익률', color: 'var(--cosmo-s4)', axis: 'right', fmt: p1 },
+              { key: 'fishPriceSJ', name: '원어가 SJ', color: C.s3, fmt: d0 },
+              { key: 'gpMargin', name: '매출총이익률', color: C.s4, axis: 'right', fmt: p1 },
             ]}
           />
         </Card>
@@ -358,14 +359,14 @@ export default function Profit() {
           note={<>{M.month}월 순손익은 <b>{musd(M.net)}</b>, 전년 동월은 {musd(M.netPrev)}로 <b>{musd(yoyNet)}</b> 악화됐습니다. 전년에는 흑자였던 달이 {monthlySeries.filter((m) => n(m.netPrev) > 0).length}개인데 2026년은 <b>{lossMonths}개월 전부 적자</b>라, 계절성이 아니라 <b>구조 변화</b>로 보입니다.</>}
         >
           <Legend items={[
-            { name: '2026 순손익', color: 'var(--cosmo-s2)', box: true },
-            { name: '2025 동월', color: 'var(--cosmo-s3)', box: true },
+            { name: '2026 순손익', color: C.s2, box: true },
+            { name: '2025 동월', color: C.s3, box: true },
           ]} />
           <Chart
             data={monthlySeries} x="label" height={250} zeroLine yFmt={m1}
             series={[
-              { key: 'net', name: '2026 순손익', color: 'var(--cosmo-s2)', type: 'bar', fmt: m2 },
-              { key: 'netPrev', name: '2025 동월', color: 'var(--cosmo-s3)', type: 'bar', fmt: m2 },
+              { key: 'net', name: '2026 순손익', color: C.s2, type: 'bar', fmt: m2 },
+              { key: 'netPrev', name: '2025 동월', color: C.s3, type: 'bar', fmt: m2 },
             ]}
           />
         </Card>

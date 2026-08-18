@@ -1,4 +1,5 @@
 'use client'
+import { C } from '../palette'
 import Chart, { Legend } from '../Chart'
 import { PageHead, Card, Kpi, Callout, SecHead } from '../Ui'
 import { weeks, weeklySeries, latest, meta, musd, usd, num, pct, n } from '@/lib/data/cosmo'
@@ -152,16 +153,16 @@ export default function Supply() {
             매입이 없는 주는 주간 단가가 없어 선이 끊깁니다({weeklySeries.length}주 중 {buyWeeks}주만 매입).</>}
         >
           <Legend items={[
-            { name: '누적 평균단가', color: 'var(--cosmo-s1)' },
-            { name: '주간 구매단가', color: 'var(--cosmo-s3)' },
+            { name: '누적 평균단가', color: C.s1 },
+            { name: '주간 구매단가', color: C.s3 },
           ]} />
           <Chart
             data={weeklySeries} x="label" height={250} xInterval={3}
             yFmt={(v) => '$' + Math.round(v).toLocaleString('en-US')}
             domain={tightDomain(weeklySeries.flatMap((s) => [s.purchaseCumUnit, s.purchaseWeekUnit]))}
             series={[
-              { key: 'purchaseCumUnit', name: '누적 평균단가', color: 'var(--cosmo-s1)', fmt: perMt },
-              { key: 'purchaseWeekUnit', name: '주간 구매단가', color: 'var(--cosmo-s3)', fmt: perMt },
+              { key: 'purchaseCumUnit', name: '누적 평균단가', color: C.s1, fmt: perMt },
+              { key: 'purchaseWeekUnit', name: '주간 구매단가', color: C.s3, fmt: perMt },
             ]}
           />
         </Card>
@@ -174,16 +175,16 @@ export default function Supply() {
             누적단가라 평평한 구간은 그 주에 매입이 없었다는 뜻입니다. 물량은 SJ가 대부분이라 전체 평균단가는 SJ 곡선을 따라갑니다.</>}
         >
           <Legend items={[
-            { name: 'SJ', color: 'var(--cosmo-s1)' },
-            { name: 'YF/BE', color: 'var(--cosmo-s4)' },
+            { name: 'SJ', color: C.s1 },
+            { name: 'YF/BE', color: C.s4 },
           ]} />
           <Chart
             data={speciesPrice} x="label" height={250} xInterval={3}
             yFmt={(v) => '$' + Math.round(v).toLocaleString('en-US')}
             domain={tightDomain(speciesPrice.flatMap((r) => [r.sj, r.yb]))}
             series={[
-              { key: 'sj', name: 'SJ', color: 'var(--cosmo-s1)', fmt: perMt },
-              { key: 'yb', name: 'YF/BE', color: 'var(--cosmo-s4)', fmt: perMt },
+              { key: 'sj', name: 'SJ', color: C.s1, fmt: perMt },
+              { key: 'yb', name: 'YF/BE', color: C.s4, fmt: perMt },
             ]}
           />
         </Card>
@@ -197,12 +198,12 @@ export default function Supply() {
             사실상 단일 공급처입니다. 가격 협상력·조달 리스크가 한 곳에 묶여 있고, 위 단가 상승분을 타 공급처로 검증할 기준선이 없습니다.
             비중이 낮았던 구간도 {pct(Math.min(...weeklySeries.map((s) => n(s.panofiShare) || 1)), 2)}가 최저입니다.</>}
         >
-          <Legend items={[{ name: '파노피 비중', color: 'var(--cosmo-s2)', box: true }]} />
+          <Legend items={[{ name: '파노피 비중', color: C.rank, box: true }]} />
           <Chart
             data={weeklySeries} x="label" height={250} xInterval={3}
             yFmt={(v) => pct(v, 1)}
             series={[
-              { key: 'panofiShare', name: '파노피 비중', color: 'var(--cosmo-s2)', type: 'area', fmt: (v) => pct(v, 2) },
+              { key: 'panofiShare', name: '파노피 비중', color: C.rank, type: 'area', fmt: (v) => pct(v, 2) },
             ]}
           />
         </Card>
@@ -216,17 +217,17 @@ export default function Supply() {
             {' '}{covers.filter((s) => n(s.rawCoverDays) < 15).length}개 주가 15일선 아래였고, 대형 매입 한 번으로 30일대를 회복하는 톱니 패턴입니다.</>}
         >
           <Legend items={[
-            { name: '원어재고 (MT, 좌)', color: 'var(--cosmo-s5)', box: true },
-            { name: '소진일수 (일, 우)', color: 'var(--cosmo-s3)' },
-            { name: '15일선', color: 'var(--cosmo-bad)', dash: true },
+            { name: '원어재고 (MT, 좌)', color: C.s5, box: true },
+            { name: '소진일수 (일, 우)', color: C.s3 },
+            { name: '15일선', color: C.danger, dash: true },
           ]} />
           <Chart
             data={weeklySeries} x="label" height={250} xInterval={3}
             yFmt={(v) => (v / 1000).toFixed(1) + 'k'} y2Fmt={(v) => v.toFixed(0) + 'd'}
-            refLines={[{ y: 15, axis: 'right', color: 'var(--cosmo-bad)' }]}
+            refLines={[{ y: 15, axis: 'right', color: C.danger }]}
             series={[
-              { key: 'rawStockMt', name: '원어재고', color: 'var(--cosmo-s5)', type: 'area', fmt: mtF },
-              { key: 'rawCoverDays', name: '소진일수', color: 'var(--cosmo-s3)', axis: 'right', fmt: dayF },
+              { key: 'rawStockMt', name: '원어재고', color: C.s5, type: 'area', fmt: mtF },
+              { key: 'rawCoverDays', name: '소진일수', color: C.s3, axis: 'right', fmt: dayF },
             ]}
           />
         </Card>
@@ -311,17 +312,17 @@ export default function Supply() {
             단, 재고는 원가 평가액이고 잔량은 판매가라 배수 1배가 곧 완전 충당을 뜻하지는 않습니다.</>}
         >
           <Legend items={[
-            { name: '제품재고 (좌)', color: 'var(--cosmo-s4)' },
-            { name: '수주잔량 (좌)', color: 'var(--cosmo-s3)' },
-            { name: '배수 (우)', color: 'var(--cosmo-s2)', dash: true },
+            { name: '제품재고 (좌)', color: C.s4 },
+            { name: '수주잔량 (좌)', color: C.s3 },
+            { name: '배수 (우)', color: C.s2, dash: true },
           ]} />
           <Chart
             data={stockRatio} x="label" height={250} xInterval={3}
             yFmt={m1} y2Fmt={(v) => v.toFixed(1) + 'x'}
             series={[
-              { key: 'productStockUsd', name: '제품재고', color: 'var(--cosmo-s4)', fmt: m2 },
-              { key: 'backlogUsd', name: '수주잔량', color: 'var(--cosmo-s3)', fmt: m2 },
-              { key: 'stockRatio', name: '배수', color: 'var(--cosmo-s2)', axis: 'right', dash: true, fmt: (v) => v.toFixed(2) + '배' },
+              { key: 'productStockUsd', name: '제품재고', color: C.s4, fmt: m2 },
+              { key: 'backlogUsd', name: '수주잔량', color: C.s3, fmt: m2 },
+              { key: 'stockRatio', name: '배수', color: C.s2, axis: 'right', dash: true, fmt: (v) => v.toFixed(2) + '배' },
             ]}
           />
         </Card>
@@ -333,10 +334,10 @@ export default function Supply() {
             {minCover && <> 원어가 바닥났던 {minCover.week}주에는 {musd(minCover.inventoryUsd)}까지 내려갔다가 매입 재개로 되돌아왔습니다.</>}
             {' '}금액은 연초 대비 늘었고 구성도 원어 쪽으로 이동했습니다 — 단가가 {pct(cumRise)} 오른 만큼 같은 MT라도 평가액이 커집니다.</>}
         >
-          <Legend items={[{ name: '총재고 평가액', color: 'var(--cosmo-s5)', box: true }]} />
+          <Legend items={[{ name: '총재고 평가액', color: C.rank, box: true }]} />
           <Chart
             data={weeklySeries} x="label" height={250} xInterval={3} yFmt={m1}
-            series={[{ key: 'inventoryUsd', name: '총재고', color: 'var(--cosmo-s5)', type: 'area', fmt: m2 }]}
+            series={[{ key: 'inventoryUsd', name: '총재고', color: C.rank, type: 'area', fmt: m2 }]}
           />
         </Card>
       </div>

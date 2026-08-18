@@ -1,4 +1,5 @@
 'use client'
+import { C } from '../palette'
 import Chart, { Legend } from '../Chart'
 import { PageHead, Card, Kpi, SignalCard, Callout, SecHead } from '../Ui'
 import {
@@ -121,17 +122,17 @@ export default function Home() {
           note={<>1~{latestMonth.month}월 누적 매출 <b>{musd(latestMonth.revenueYtd)}</b>, 누적 순손실 <b>{musd(latestMonth.netYtd)}</b>. {peakMonth.month}월은 매출 최고({musd(peakMonth.revenue)})인데도 순손실 — <b>규모가 아니라 마진 구조</b>의 문제.</>}
         >
           <Legend items={[
-            { name: '매출총이익', color: 'var(--cosmo-s4)', box: true },
-            { name: '순손익', color: 'var(--cosmo-s2)', box: true },
-            { name: '매출 (오른쪽 축)', color: 'var(--cosmo-s1)' },
+            { name: '매출총이익', color: C.s4, box: true },
+            { name: '순손익', color: C.s2, box: true },
+            { name: '매출 (오른쪽 축)', color: C.s1 },
           ]} />
           <Chart
             data={monthlySeries} x="label" zeroLine height={250}
             yFmt={m1} y2Fmt={m1}
             series={[
-              { key: 'gp', name: '매출총이익', color: 'var(--cosmo-s4)', type: 'bar', fmt: m2 },
-              { key: 'net', name: '순손익', color: 'var(--cosmo-s2)', type: 'bar', fmt: m2 },
-              { key: 'revenue', name: '매출', color: 'var(--cosmo-s1)', axis: 'right', fmt: m2 },
+              { key: 'gp', name: '매출총이익', color: C.s4, type: 'bar', fmt: m2 },
+              { key: 'net', name: '순손익', color: C.s2, type: 'bar', fmt: m2 },
+              { key: 'revenue', name: '매출', color: C.s1, axis: 'right', fmt: m2 },
             ]}
           />
         </Card>
@@ -142,14 +143,14 @@ export default function Home() {
           note={<>수주잔량은 {backlogJumpWeeks.map((w) => `${w}주차`).join('·')}에 계단식으로 점프해 현재 <b>{musd(last.backlogUsd)}</b>. 주간 판매액은 선적 타이밍 때문에 최대 {salesSwing ? Math.round(salesSwing) : '—'}배까지 흔들려, 추세는 4주 이동평균으로 봅니다(판매·수주 보드).</>}
         >
           <Legend items={[
-            { name: '누적 판매액', color: 'var(--cosmo-s1)' },
-            { name: '수주잔량 금액', color: 'var(--cosmo-s3)' },
+            { name: '누적 판매액', color: C.s1 },
+            { name: '수주잔량 금액', color: C.s3 },
           ]} />
           <Chart
             data={weeklySeries} x="label" height={250} yFmt={m1} xInterval={3}
             series={[
-              { key: 'salesCum', name: '누적 판매액', color: 'var(--cosmo-s1)', fmt: m2 },
-              { key: 'backlogUsd', name: '수주잔량', color: 'var(--cosmo-s3)', fmt: m2 },
+              { key: 'salesCum', name: '누적 판매액', color: C.s1, fmt: m2 },
+              { key: 'backlogUsd', name: '수주잔량', color: C.s3, fmt: m2 },
             ]}
           />
         </Card>
@@ -167,14 +168,14 @@ export default function Home() {
           ) : null}
         >
           <Legend items={[
-            { name: '실적', color: 'var(--cosmo-s1)' },
-            { name: '계획', color: 'var(--cosmo-s2)', dash: true },
+            { name: '실적', color: C.s1 },
+            { name: '계획', color: C.s2, dash: true },
           ]} />
           <Chart
             data={weeklySeries} x="label" height={250} yFmt={(v) => (v / 1000).toFixed(0) + 'k'} xInterval={3}
             series={[
-              { key: 'cbuRawCum', name: '실적', color: 'var(--cosmo-s1)', fmt: mt },
-              { key: 'cbuPlanCum', name: '계획', color: 'var(--cosmo-s2)', dash: true, fmt: mt },
+              { key: 'cbuRawCum', name: '실적', color: C.s1, fmt: mt },
+              { key: 'cbuPlanCum', name: '계획', color: C.s2, dash: true, fmt: mt },
             ]}
           />
         </Card>
@@ -185,14 +186,14 @@ export default function Home() {
           note={<>재고 <b>{musd(last.inventoryUsd)}</b> · 현금 <b>{musd(last.cashUsd)}</b>. 재고가 현금의 약 {(n(last.inventoryUsd) / Math.max(1, n(last.cashUsd))).toFixed(1)}배로, 운전자본이 재고에 묶여 있습니다.</>}
         >
           <Legend items={[
-            { name: '총재고', color: 'var(--cosmo-s5)', box: true },
-            { name: '현금잔액', color: 'var(--cosmo-s4)' },
+            { name: '총재고', color: C.s5, box: true },
+            { name: '현금잔액', color: C.s4 },
           ]} />
           <Chart
             data={weeklySeries} x="label" height={250} yFmt={m1} xInterval={3}
             series={[
-              { key: 'inventoryUsd', name: '총재고', color: 'var(--cosmo-s5)', type: 'area', fmt: m2 },
-              { key: 'cashUsd', name: '현금잔액', color: 'var(--cosmo-s4)', fmt: m2 },
+              { key: 'inventoryUsd', name: '총재고', color: C.s5, type: 'area', fmt: m2 },
+              { key: 'cashUsd', name: '현금잔액', color: C.s4, fmt: m2 },
             ]}
           />
         </Card>
@@ -215,14 +216,14 @@ export default function Home() {
             {!profitCash.coverage && ' 일부 주차는 외부 유출입 값이 없어 합계에서 빠졌습니다.'}</>}
         >
           <Legend items={[
-            { name: '순손익', color: 'var(--cosmo-s2)', box: true },
-            { name: '외부 순현금흐름', color: 'var(--cosmo-s1)', box: true },
+            { name: '순손익', color: C.s2, box: true },
+            { name: '외부 순현금흐름', color: C.s1, box: true },
           ]} />
           <Chart
             data={profitCash.rows} x="label" height={250} zeroLine yFmt={m1}
             series={[
-              { key: 'net', name: '순손익', color: 'var(--cosmo-s2)', type: 'bar', fmt: m2 },
-              { key: 'cash', name: '외부 순현금흐름', color: 'var(--cosmo-s1)', type: 'bar', fmt: m2 },
+              { key: 'net', name: '순손익', color: C.s2, type: 'bar', fmt: m2 },
+              { key: 'cash', name: '외부 순현금흐름', color: C.s1, type: 'bar', fmt: m2 },
             ]}
           />
         </Card>
