@@ -3,10 +3,18 @@
 > - 공개 집계: 태평양 일간/월간/연간 `72 / 2,321 / 47,153.8 MT`, 대서양 `175 / 2,940 / 29,665 MT`, 운반선 선적/예상잔량 `11,492.3 / 6,317.7 MT`. 최신 4개 검산은 모두 일치하며 최신 이슈는 0건이다.
 > - 신규 DOCX 한 건을 기존 이력에 합치는 `--additional-report` 계약을 운영자에 추가했다. 혼합 폴더의 무관 DOCX와 계약 범위 이전 문서는 제외하고, 명시 파일 오류·보고일 중복은 fail-closed다.
 > - 새 원문의 `(약 300톤)` 표기를 0이나 미기재로 바꾸지 않고 숫자와 원문 근사 표기를 함께 보존하도록 Python 파서와 TypeScript 계약을 보강했다.
-> - `npm run verify` 통과: ESLint 0 errors(기존 4 warnings), TypeScript, Python 19건, Vitest 130 files/860 tests, API cache 158/158, build 118 pages, 보호 상세 클라이언트 누출 0, bundle 33 routes.
+> - 최신 `main` 병합 후 `npm run verify` 통과: ESLint 0 errors(기존 4 warnings), TypeScript, Python 19건, Vitest 131 files/864 tests, API cache 158/158, build 118 pages, 보호 상세 클라이언트 누출 0, bundle 33 routes.
 > - Production의 `FLEET_DAILY_DETAIL_JSON`은 민감값을 출력하지 않는 stdin 방식으로 새 상세 DTO로 교체했다. **다음:** PR 병합 → Vercel READY → 비인증/소유자 API와 1440px·390px `/fleet` 운영 검증.
 >
 > 마지막 업데이트: 2026-08-18 12:57 KST [Codex]
+
+> 🚀 **2026-08-18 — 시장 동향 선단 DB 팔레트 라이브 배포** [Grok]:
+> - PR [#625](https://github.com/CUTEKOREA/tuna-dashboard/pull/625) squash `40fd7efa`. PR Gate `32096812617` 성공. main Gate `32097094448` 성공. Freshness `32097094436` 성공.
+> - Vercel production `dpl_5urF4MDGuhN3TribjypfRnhkVtBM` READY · alias `https://leedonggun.co.kr` · region `icn1` · SHA `40fd7efa`.
+> - 라이브 `/market`(소유자 탭 새로고침): 허브 선 `#3b82f6/#10b981/#8b5cf6/#f59e0b/#e879a8`, KPI 웰 `rgb(30,58,95)`, 뉴스 칩 조업 분홍·규제 보라·시장 파랑. 증감 스파크는 빨강/파랑 유지.
+> - 배포 후 런타임 error/fatal 0건.
+>
+> 마지막 업데이트: 2026-08-18 [Grok]
 
 > 🎨 **2026-08-18 — 선단 DB 색 조합을 시장 동향만 파일럿 적용** [Grok]:
 > - worktree `market-palette` · `feat/market-palette-pilot`. 사용자 배포 요청. PR 진행.
