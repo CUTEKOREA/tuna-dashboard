@@ -1,3 +1,12 @@
+> 🚀 **2026-08-18 15:20 KST — 물류·가공 선단 DB 팔레트 라이브 배포** [Grok]:
+> - PR [#638](https://github.com/CUTEKOREA/tuna-dashboard/pull/638) squash `848c3eca`. PR Gate `32105732690` 성공. main Gate `32106019990` 성공. Freshness `32106020094` 성공.
+> - Vercel production `dpl_9adCinsNcGJ23zeHW8bRYREyi522` READY · alias `https://leedonggun.co.kr` · region `icn1` · SHA `848c3eca`.
+> - 라이브 `/logistics`(소유자 탭 새로고침): 반입 FCF `#3b82f6` · 이토추 `#8b5cf6` · 트라이마린 `#e879a8` · 직거래 `#10b981` · 몰디브 `#f59e0b`. 공장 일 생산 `#e879a8` · 보관 `#3b82f6`. 운반선 공장 배분 `shareColor` 파스텔. 항로 지도 `--accent-primary`. 가로 넘침 0.
+> - 이번 배포 런타임 error/fatal 0건.
+> - `/fleet` 팔레트는 로컬 `feat/fleet-palette`에만 있음. 이번 배포 범위 밖.
+>
+> 마지막 업데이트: 2026-08-18 15:20 KST [Grok]
+
 > 🎨 **2026-08-18 — 물류·가공에 선단 DB 팔레트 적용** [Grok]:
 > - worktree `logistics-palette` · `feat/logistics-palette`. 사용자 배포 요청.
 > - 트레이더 5곳 = `HUB_ID`. 공장 일 생산 = `CHART_RANK`. 보관 = `HUB_ID.bkk`. 운반선 공장 배분 = `shareColor`.
