@@ -1,3 +1,12 @@
+> 🚀 **2026-08-19 00:25 KST — 2026-08-18 참치 데일리 브리핑 /market 라이브 배포** [CC]:
+> - PR [#678](https://github.com/CUTEKOREA/tuna-dashboard/pull/678) squash `9d9cfe5b`. 변경 파일은 `public/data/tuna_daily_briefing.json` 1개뿐 — main 트리 전체(3,023 blob) 대조로 다른 경로 오염 0건 확인.
+> - 기준일 2026-08-17 → **2026-08-18**, 기사 5건 → **6건**. 감사 `AUDIT_PASS`(P0=0 · P1=0), 로컬 `__tests__/daily-briefing.test.ts` 4 passed.
+> - `app-quality-gate.yml` 은 경로 필터(`public/data/**` 제외)로 미실행. 대신 PR head `2787848d` Vercel Preview 성공, main `9d9cfe5b` Vercel Production 성공을 게이트로 삼았다.
+> - 라이브 `/market` 육안 확인: **기준일 2026.08.18 · 기사 6건 · 파이프라인 동기**. 헤드라인 6건(FFA 장기적 혜택 / 美 참치캔 수입 감소 / 에콰도르 CIA / 대만 선망선 침몰 / 판자넬라 / 불법 참치 거래) 전량 렌더 확인. curl 은 307 이라 판정 불가 — 로그인 세션 브라우저로만 확인한다.
+> - **미결(수동 조치 필요)**: 로컬 워크트리 `~/silla-tuna-daily/dash` 가 아직 병합 전 상태다. 이번 배포는 로컬 git 권한이 없어 GitHub API(blob→tree→commit→ref→PR→merge)로 수행했다. 다음 회차 `prepare_dashboard()` 의 `status --porcelain` 이 dirty 로 걸리므로 **`git -C ~/silla-tuna-daily/dash fetch origin main && git -C ~/silla-tuna-daily/dash checkout -- public/data/tuna_daily_briefing.json && git -C ~/silla-tuna-daily/dash merge --ff-only origin/main`** 을 먼저 돌려야 한다.
+>
+> 마지막 업데이트: 2026-08-19 00:25 KST [CC]
+
 > 🦑 **2026-08-18 23:20 KST — 오징어 페루 RM00269 반영 (조사·탐사 인가 ≠ 상업 재개)** [Claude Code]:
 > - `monitoring_calendar` 의 SQ-MGT-PRODUCE `next_check` 가 오늘이라 점검 수행. **RM 00269-2026-PRODUCE(2026-08-17)** 수집 — IMARPE 「Operación Calamar Gigante V」 8/23~8/29 + 탐사조업 8/30~9/26, 최대 30척·선창 ≤32.6㎥·과학옵서버 승선. **상업 재개 아님**: 원문에 `reanudar|reiniciar|levantar la suspensión|habilitar la actividad extractiva` 0건. 추출기가 이 문구를 발견하면 예외를 던져 분류가 조용히 뒤집히지 못하게 했다.
 > - 신호등 페루는 **`중단·제한` 유지**, 기준일만 07-24 → **08-17**. 사유에 인가 사실과 "상업 재개 공문은 아님" 을 같은 문장에 담았다. 타임라인 행은 `effort_limit` 이며 **톤수를 붙이지 않았다** — 붙이면 쿼터로 오독된다.
