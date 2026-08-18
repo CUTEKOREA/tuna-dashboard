@@ -1,3 +1,16 @@
+> 🖼 **2026-08-18 — 고등어 수입 창구 물량·단가 차트를 좌우 배치** [Grok]:
+> - `MackerelIndustryDashboard` s05 «수입 창구 물량»에서 `span: 'full'`을 뺐다. 단가 차트와 한 줄에 앉는다. 860px 이하는 기존처럼 세로.
+> - worktree `fleet-db-theme`. **프로덕션 미배포**.
+>
+> 마지막 업데이트: 2026-08-18 [Grok]
+
+> 🎨 **2026-08-18 — 선단 DB 라이트 테마 배색을 다른 페이지와 맞춤** [Grok]:
+> - 원인: OFIS KPI/차트가 다크용 `rgba(0,0,0,0.2)`·흰 축·빨강/초록 숫자를 하드코딩해서, `data-v3='light'` 셸에서 회색 칸으로 보임.
+> - KPI 숫자는 `--text-primary`, 증감만 `--delta-up/down`(상승 빨강·하락 파랑). 차트/툴팁은 `--chart-*`.
+> - worktree `fleet-db-theme` · 브랜치 `fix/fleet-db-light-theme`. **프로덕션 미배포**.
+>
+> 마지막 업데이트: 2026-08-18 [Grok]
+
 > 🚀 **2026-08-18 08:45 KST — OFIS 선단 DB 라이브 배포** [Grok]:
 > - PR [#619](https://github.com/CUTEKOREA/tuna-dashboard/pull/619) squash `c94028da`. Gate `32081304299` 성공. Freshness `32081304301` 성공. PR 게이트 `32081008105` 성공.
 > - Vercel production `dpl_GynwJctUvN8pWA2iqVL5ZCkDJGX7` READY · alias `https://leedonggun.co.kr` · region `icn1` · SHA `c94028da`.
