@@ -16,7 +16,7 @@ import {
 import SafeResponsiveContainer from './SafeResponsiveContainer';
 import { useResponsiveChart } from '../lib/useResponsiveChart';
 import { ChartPatternDefs } from './ChartPatterns';
-import { purseSeineCatch } from '@/lib/fleet-operations-2026-08-09';
+import { purseSeineCatch } from '@/lib/fleet-operations-2026-08-16';
 import { CHART_RANK, shareColor } from '@/lib/chart-palette';
 
 const subscribeClientReady = () => () => {};
