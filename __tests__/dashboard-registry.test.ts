@@ -377,6 +377,18 @@ describe('dashboard registry', () => {
     expect(bangkokCannery).toContain('C.bangkok');
     expect(bangkokCannery).toContain('C.songkhla');
     expect(bangkokCannery).not.toContain('--cosmo-s1');
+    const gmtsPalette = readFileSync(join(process.cwd(), 'components/gmts/palette.ts'), 'utf8');
+    const gmtsDashboard = readFileSync(join(process.cwd(), 'components/gmts/GmtsDashboard.tsx'), 'utf8');
+    const gmtsStyles = readFileSync(join(process.cwd(), 'components/gmts/GmtsDashboard.module.css'), 'utf8');
+    expect(gmtsPalette).toContain("from '@/lib/chart-palette'");
+    expect(gmtsPalette).toContain('HUB_ID');
+    expect(gmtsDashboard).toContain('C.completed');
+    expect(gmtsDashboard).toContain('C.currentYear');
+    expect(gmtsDashboard).toContain('iconColor={C.icon}');
+    expect(gmtsDashboard).not.toContain('--chart-s1');
+    expect(gmtsDashboard).not.toContain('#509ee3');
+    expect(gmtsStyles).not.toContain('#509ee3');
+    expect(gmtsStyles).toContain('--gmts-accent: var(--accent-primary, #3b82f6)');
     expect(globalsSource).toContain('--w-sky-400: #38bdf8;');
     expect(globalsSource).toContain('--w-emerald-500: #10b981;');
   });

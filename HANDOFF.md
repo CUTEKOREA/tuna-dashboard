@@ -1,3 +1,10 @@
+> 🎨 **2026-08-18 — GMTS에 선단 DB 팔레트 적용** [Grok]:
+> - worktree `gmts-palette` · `feat/gmts-palette`. 사용자 배포 요청.
+> - 선박 흐름·공장·가격·반입 시리즈 = `HUB_ID`. 위젯 아이콘 = `HUB_ID.bkk`. `--chart-s*`·`#509ee3` 제거.
+> - 경고 칩·툴팁 어두운 면은 유지. 격자·축은 `--chart-grid/axis` 셸 유지.
+>
+> 마지막 업데이트: 2026-08-18 [Grok]
+
 > 🚀 **2026-08-18 17:23 KST — 방콕사무소 선단 DB 팔레트 라이브 배포** [Grok]:
 > - PR [#653](https://github.com/CUTEKOREA/tuna-dashboard/pull/653) squash `9a03cf3f`. PR Gate `32115405734` 성공. main Gate `32115750944` 성공. Freshness `32115750946` 성공.
 > - Vercel production `dpl_HTLpm2SefXDhg2eYjqdTpoUGonjV` READY · alias `https://leedonggun.co.kr` · region `icn1` · SHA `9a03cf3f`.

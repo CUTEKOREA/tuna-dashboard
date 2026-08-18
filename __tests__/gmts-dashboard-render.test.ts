@@ -186,5 +186,8 @@ describe('GMTS dashboard decision surface', () => {
     expect(source).not.toMatch(/(?:from\s+|import\s*\()['"][^'"]+\.json['"]/);
     expect(source).toContain("from '@/lib/data/gmts'");
     expect(source).toContain("from '@/lib/gmts-presentation'");
+    expect(source).toContain("from './palette'");
+    expect(source).not.toContain('--chart-s1');
+    expect(source).not.toContain('#509ee3');
   });
 });

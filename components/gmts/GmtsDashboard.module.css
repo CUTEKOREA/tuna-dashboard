@@ -3,8 +3,8 @@
   min-width: 0;
   color: var(--dsc-ink);
   font-family: var(--font-pretendard), var(--font-geist-sans), 'Apple SD Gothic Neo', sans-serif;
-  --gmts-accent: var(--accent-primary, #509ee3);
-  --gmts-accent-soft: rgba(80, 158, 227, 0.1);
+  --gmts-accent: var(--accent-primary, #3b82f6);
+  --gmts-accent-soft: rgba(59, 130, 246, 0.1);
   --gmts-warning: #b45309;
   --gmts-warning-soft: rgba(217, 119, 6, 0.1);
 }
@@ -254,7 +254,7 @@
 }
 
 .widgetGrid > :global([data-pillar])::before {
-  background: linear-gradient(90deg, #0891b2, #509ee3) !important;
+  background: var(--accent-primary) !important;
 }
 
 .observedContext {
@@ -295,21 +295,21 @@
   gap: 9px;
   min-width: 0;
   padding: 17px 18px;
-  border: 1px solid #b8d9f6;
+  border: 1px solid var(--dsc-surface-border);
   border-left: 4px solid var(--gmts-accent);
   border-radius: 10px;
-  background: #edf6fd;
+  background: var(--dsc-bg-deep);
 }
 
 .canneryKpi > span {
-  color: #405677;
+  color: var(--dsc-ink-muted);
   font-size: 0.76rem;
   font-weight: 700;
 }
 
 .canneryKpi > strong {
   overflow-wrap: anywhere;
-  color: #17233a;
+  color: var(--dsc-ink);
   font-family: var(--dsc-font-mono);
   font-size: clamp(1.15rem, 2.4vw, 1.5rem);
   font-variant-numeric: tabular-nums;
