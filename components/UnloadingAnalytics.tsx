@@ -9,6 +9,7 @@ import {
 
 import { getVesselStatusKind } from '../lib/unloading-operations';
 import { pctChange, progressPct } from '../lib/metrics';
+import { CHART_RANK, colorForHold } from '@/lib/chart-palette';
 
 // ─── Types ───────────────────────────────────────────────
 
@@ -187,22 +188,6 @@ function isInProgress(status: string): boolean {
 function fmt(n: number, decimals = 1): string {
   return n.toLocaleString('ko-KR', { minimumFractionDigits: decimals, maximumFractionDigits: decimals });
 }
-
-// 어창 선 색. 노란·시안 세선은 흰 지면에서 안 읽힌다.
-const HOLD_COLORS = [
-  '#0072B2',
-  '#D55E00',
-  '#009E73',
-  '#CC79A7',
-  '#3685ca',
-  '#5b4b8a',
-  '#be123c',
-  '#0f766e',
-  '#9a3412',
-  '#155e75',
-  '#64748b',
-  '#b45309',
-];
 
 // ─── Component ───────────────────────────────────────────
 
@@ -748,7 +733,7 @@ export default function UnloadingAnalytics({
                 <div className={styles.chartWrap} style={{ width: '100%', overflowX: 'auto' }}>
                   <SvgLineChart
                     data={efficiencyTrend}
-                    lines={[{ key: 'mtPerHr', color: 'var(--chart-s1, #509ee3)', label: '톤/시간' }]}
+                    lines={[{ key: 'mtPerHr', color: CHART_RANK, label: '톤/시간' }]}
                     width={Math.max(efficiencyTrend.length * 50, 600)}
                     height={220}
                     refLine={{
@@ -781,7 +766,7 @@ export default function UnloadingAnalytics({
                     data={tempChartData}
                     lines={holdIds.map((id, i) => ({
                       key: id,
-                      color: HOLD_COLORS[i % HOLD_COLORS.length],
+                      color: colorForHold(i),
                       label: id,
                     }))}
                     width={Math.max(tempChartData.length * 55, 700)}

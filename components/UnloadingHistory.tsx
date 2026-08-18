@@ -33,6 +33,7 @@ import TakeawayBox from './TakeawayBox';
 import TelemetryBadge from './TelemetryBadge';
 import TermTooltip from './TermTooltip';
 import styles from './UnloadingHistory.module.css';
+import { CHART_RANK } from '@/lib/chart-palette';
 
 export const DEFAULT_HISTORY_YEAR: HistoryYear = 2025;
 export const ALL_PORTS = 'ALL';
@@ -453,7 +454,7 @@ export function UnloadingHistoryView({
               labelFormatter={(label) => `${label}년`}
             />
             <Legend />
-            <Bar yAxisId="mt" dataKey="검증 하역량" fill="var(--w-sky-400)" radius={[5, 5, 0, 0]} isAnimationActive={false} />
+            <Bar yAxisId="mt" dataKey="검증 하역량" fill={CHART_RANK} radius={[5, 5, 0, 0]} isAnimationActive={false} />
             <Line yAxisId="count" dataKey="검증 항차" stroke="var(--w-amber-500)" strokeWidth={3} dot={{ fill: 'var(--w-amber-500)', r: 4 }} isAnimationActive={false} />
           </ComposedChart>
         </SafeResponsiveContainer>

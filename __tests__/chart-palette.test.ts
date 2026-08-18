@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { colorForAtunaHub, HUB_ID, NEWS_CATEGORY_ID, shareColor } from '@/lib/chart-palette';
+import { colorForAtunaHub, colorForHold, HOLD_ID, HUB_ID, NEWS_CATEGORY_ID, shareColor } from '@/lib/chart-palette';
 
 describe('chart-palette (선단 DB 4겹, 시장 동향 파일럿)', () => {
   it('keeps the same port the same color on skipjack and yellowfin', () => {
@@ -28,5 +28,12 @@ describe('chart-palette (선단 DB 4겹, 시장 동향 파일럿)', () => {
   it('cycles share pastels without throwing', () => {
     expect(shareColor(0)).toBe('#f4b4c4');
     expect(shareColor(8)).toBe('#f4b4c4');
+  });
+
+  it('cycles hold colors in the identity set, not Metabase browns', () => {
+    expect(colorForHold(0)).toBe(HOLD_ID[0]);
+    expect(colorForHold(HOLD_ID.length)).toBe(HOLD_ID[0]);
+    expect(HOLD_ID).not.toContain('#509ee3');
+    expect(HOLD_ID).not.toContain('#9a3412');
   });
 });

@@ -331,8 +331,9 @@ describe('dashboard registry', () => {
       expect(paletteSource).toContain(chartColor);
     }
     expect(marketSource).not.toContain('url(#mktGrad');
-    expect(unloadingSource).toContain('fill="var(--w-sky-400)"');
-    expect(unloadingSource).toContain('stroke="var(--w-emerald-500)"');
+    expect(unloadingSource).toContain("from '@/lib/chart-palette'");
+    expect(unloadingSource).toContain('fill={CHART_RANK}');
+    expect(unloadingSource).toContain('stroke={HUB_ID.mnt}');
     expect(globalsSource).toContain('--w-sky-400: #38bdf8;');
     expect(globalsSource).toContain('--w-emerald-500: #10b981;');
   });
