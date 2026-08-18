@@ -4,6 +4,7 @@ import { useMemo, useState } from 'react';
 import { AlertTriangle, Ship } from 'lucide-react';
 
 import { kiribatiVds, nationalVds, type VdsArea } from '@/lib/fleet-operations-2026-08-09';
+import { VDS_ID } from '@/lib/chart-palette';
 import TelemetryBadge from './TelemetryBadge';
 import TermTooltip from './TermTooltip';
 import s from './FleetCommandCenter.module.css';
@@ -60,11 +61,10 @@ export default function VesselVdsStatus() {
 
       <div className={s.vdsSummaryGrid}>
         {[
-          /* V3 라이트: 상단 액센트 보더는 Metabase accent 계열 */
-          ['총 배정일', dataset.totals.allocated, '#509ee3'],
-          ['총 소진일', dataset.totals.consumed, '#a989c5'],
-          ['총 잔여일', dataset.totals.remaining, '#88bf4d'],
-          ['주간 소모', dataset.totals.weekly, '#e8b921'],
+          ['총 배정일', dataset.totals.allocated, VDS_ID.allocated],
+          ['총 소진일', dataset.totals.consumed, VDS_ID.consumed],
+          ['총 잔여일', dataset.totals.remaining, VDS_ID.remaining],
+          ['주간 소모', dataset.totals.weekly, VDS_ID.weekly],
         ].map(([label, value, color]) => (
           <article key={String(label)} style={{ borderTopColor: String(color) }}>
             <span>{label}</span><strong>{Number(value).toLocaleString('ko-KR', { maximumFractionDigits: 2 })}일</strong>

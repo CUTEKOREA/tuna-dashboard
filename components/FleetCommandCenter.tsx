@@ -124,7 +124,9 @@ export default function FleetCommandCenter({ heroOnly = false }: { heroOnly?: bo
       strip={<div className={s.missionStrip}>{decisions.map(({ icon: Icon, level, title, detail, tone }) => {
         return (
           <article key={title} className={`${s.missionCard} ${s[`decision_${tone}`]}`} data-now="false">
-            <Icon size={18} aria-hidden="true" />
+            <span className={s.missionIconWell} aria-hidden>
+              <Icon size={16} />
+            </span>
             <div>
               <span className={s.decisionLevel}>{level}</span>
               <strong>{title}</strong>

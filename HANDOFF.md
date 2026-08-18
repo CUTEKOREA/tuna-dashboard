@@ -1,3 +1,10 @@
+> 🎨 **2026-08-18 — 선단 운영에 선단 DB 팔레트 적용** [Grok]:
+> - worktree `fleet-palette` · `feat/fleet-palette`. 사용자 배포 요청.
+> - 지휘 카드·주간/일어획 막대 = `CHART_RANK` 분홍. 월간 누적 8색 = `shareColor`. VDS 요약 칸 = `VDS_ID`.
+> - 히어로 미션 카드 네이비 아이콘 웰. 선박 지도·사진 미개입. 증감 스파크는 `--delta-up/down` 유지.
+>
+> 마지막 업데이트: 2026-08-18 [Grok]
+
 > 🚀 **2026-08-18 15:44 KST — 오징어 08 선민수산·현원수산 강조 라이브 배포** [Grok]:
 > - PR [#641](https://github.com/CUTEKOREA/tuna-dashboard/pull/641) squash `8d0d6e3c`. PR Gate `32107013192` 성공. main Gate `32107924367` 성공. Freshness `32107924386` 성공.
 > - Vercel production `dpl_5XDgLNr7KBSjzn6qXQh5K5eLQ1MS` READY · alias `https://leedonggun.co.kr` · region `icn1` · SHA `8d0d6e3c`.

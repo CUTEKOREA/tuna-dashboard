@@ -17,6 +17,7 @@ import SafeResponsiveContainer from './SafeResponsiveContainer';
 import { useResponsiveChart } from '../lib/useResponsiveChart';
 import { ChartPatternDefs } from './ChartPatterns';
 import { purseSeineCatch } from '@/lib/fleet-operations-2026-08-09';
+import { CHART_RANK, shareColor } from '@/lib/chart-palette';
 
 const subscribeClientReady = () => () => {};
 const getClientReadySnapshot = () => true;
@@ -76,14 +77,14 @@ type MonthlyCatchSeriesConfig = {
 };
 
 const monthlyCatchSeries: MonthlyCatchSeriesConfig[] = [
-  { dataKey: 'month1', name: '1월', color: 'var(--chart-s1)' },
-  { dataKey: 'month2', name: '2월', color: 'var(--chart-s2)' },
-  { dataKey: 'month3', name: '3월', color: 'var(--chart-s3)' },
-  { dataKey: 'month4', name: '4월', color: 'var(--chart-s4)' },
-  { dataKey: 'month5', name: '5월', color: 'var(--chart-s5)', strokeDasharray: '6 3' },
-  { dataKey: 'month6', name: '6월', color: 'var(--chart-s6)', strokeDasharray: '3 3' },
-  { dataKey: 'month7', name: '7월', color: 'var(--chart-s7)', strokeDasharray: '8 3 2 3', radius: [4, 4, 0, 0] },
-  { dataKey: 'month8', name: '8월', color: 'var(--chart-s8)', strokeDasharray: '2 3', radius: [4, 4, 0, 0] },
+  { dataKey: 'month1', name: '1월', color: shareColor(0) },
+  { dataKey: 'month2', name: '2월', color: shareColor(1) },
+  { dataKey: 'month3', name: '3월', color: shareColor(2) },
+  { dataKey: 'month4', name: '4월', color: shareColor(3) },
+  { dataKey: 'month5', name: '5월', color: shareColor(4), strokeDasharray: '6 3' },
+  { dataKey: 'month6', name: '6월', color: shareColor(5), strokeDasharray: '3 3' },
+  { dataKey: 'month7', name: '7월', color: shareColor(6), strokeDasharray: '8 3 2 3', radius: [4, 4, 0, 0] },
+  { dataKey: 'month8', name: '8월', color: shareColor(7), strokeDasharray: '2 3', radius: [4, 4, 0, 0] },
 ];
 
 const cumulativeData = purseSeineCatch.seasonRanking.map((item) => ({
@@ -122,7 +123,7 @@ export function WeeklyCatchChart() {
         <YAxis yAxisId="right" orientation="right" stroke="var(--accent-danger)" axisLine={false} tickLine={false} tick={{ fontSize: rc.tickFontSize }} domain={[0, 30]} width={rc.isMobile ? 25 : 40} hide={rc.isMobile} />
         <Tooltip content={<FleetChartTip />} />
         <Legend wrapperStyle={{ fontSize: rc.legendFontSize }} />
-        <Bar yAxisId="left" dataKey="weekly" name="주간 어획량 (톤)" fill="var(--chart-s1)" radius={[4, 4, 0, 0]} />
+        <Bar yAxisId="left" dataKey="weekly" name="주간 어획량 (톤)" fill={CHART_RANK} radius={[4, 4, 0, 0]} />
         <Line yAxisId="right" type="monotone" dataKey="avg" name="일평균 어획량" stroke="var(--accent-danger)" dot={{ r: rc.isMobile ? 3 : 5, fill: 'var(--accent-danger)' }} strokeWidth={2} />
       </ComposedChart>
     </SafeResponsiveContainer>
@@ -235,8 +236,8 @@ export function CumulativeChart() {
         <YAxis yAxisId="right" orientation="right" stroke="var(--pastel-peach)" axisLine={false} tickLine={false} tick={false} domain={[0, 11]} reversed width={rc.isMobile ? 10 : 20} />
         <Tooltip content={<CustomTooltip />} />
         <Legend wrapperStyle={{ fontSize: rc.legendFontSize }} />
-        <Bar yAxisId="left" dataKey="daily" name="일어획량 (톤)" fill="var(--accent-primary)" radius={[4, 4, 0, 0]} barSize={rc.barSize} />
-        <Scatter yAxisId="right" dataKey="rank" name="순위" fill="var(--pastel-peach)" shape={<CustomRankShape />} />
+        <Bar yAxisId="left" dataKey="daily" name="일어획량 (톤)" fill={CHART_RANK} radius={[4, 4, 0, 0]} barSize={rc.barSize} />
+        <Scatter yAxisId="right" dataKey="rank" name="순위" fill={shareColor(4)} shape={<CustomRankShape />} />
       </ComposedChart>
     </SafeResponsiveContainer>
   );

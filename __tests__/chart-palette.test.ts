@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { colorForAtunaHub, colorForHold, HOLD_ID, HUB_ID, NEWS_CATEGORY_ID, shareColor } from '@/lib/chart-palette';
+import { CHART_RANK, colorForAtunaHub, colorForHold, HOLD_ID, HUB_ID, NEWS_CATEGORY_ID, shareColor, VDS_ID } from '@/lib/chart-palette';
 
 describe('chart-palette (선단 DB 4겹)', () => {
   it('keeps the same port the same color on skipjack and yellowfin', () => {
@@ -35,5 +35,13 @@ describe('chart-palette (선단 DB 4겹)', () => {
     expect(colorForHold(HOLD_ID.length)).toBe(HOLD_ID[0]);
     expect(HOLD_ID).not.toContain('#509ee3');
     expect(HOLD_ID).not.toContain('#9a3412');
+  });
+
+  it('keeps VDS and rank colors in the same identity set', () => {
+    expect(VDS_ID.allocated).toBe(HUB_ID.bkk);
+    expect(VDS_ID.consumed).toBe(HUB_ID.abj);
+    expect(VDS_ID.remaining).toBe(HUB_ID.mnt);
+    expect(VDS_ID.weekly).toBe(HUB_ID.sey);
+    expect(CHART_RANK).toBe(HUB_ID.vig);
   });
 });

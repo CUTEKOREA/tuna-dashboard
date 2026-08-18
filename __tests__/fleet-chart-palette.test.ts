@@ -3,6 +3,7 @@ import { join } from 'node:path';
 import React from 'react';
 import { describe, expect, it } from 'vitest';
 import * as FleetCharts from '../components/FleetCharts';
+import { CHART_SHARE } from '@/lib/chart-palette';
 
 const DARK_BACKGROUND = '#0a0a0b';
 
@@ -68,12 +69,8 @@ describe('V2.5 multi-series chart palette', () => {
       'month7',
       'month8',
     ]);
-    expect(bars.map((bar) => bar.props.fill)).toEqual(
-      Array.from({ length: 8 }, (_, index) => `var(--chart-s${index + 1})`),
-    );
-    expect(bars.map((bar) => bar.props.stroke)).toEqual(
-      Array.from({ length: 8 }, (_, index) => `var(--chart-s${index + 1})`),
-    );
+    expect(bars.map((bar) => bar.props.fill)).toEqual([...CHART_SHARE]);
+    expect(bars.map((bar) => bar.props.stroke)).toEqual([...CHART_SHARE]);
     expect(bars.slice(0, 4).map((bar) => bar.props.strokeDasharray)).toEqual([
       undefined,
       undefined,
