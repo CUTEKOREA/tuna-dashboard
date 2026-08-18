@@ -1,3 +1,11 @@
+> 🚀 **2026-08-18 19:57 KST — 골뱅이 시장이해 선단 DB 팔레트 라이브 배포** [Grok]:
+> - PR [#670](https://github.com/CUTEKOREA/tuna-dashboard/pull/670) squash `782c5628`. PR Gate `32128744790` 성공. main Gate `32129067461` 성공. Freshness `32129067397` 성공.
+> - Vercel production `dpl_CvUfZ6bkncYSb36bBGKpLJ6KXq4s` READY · alias `https://leedonggun.co.kr` · region `icn1` · SHA `782c5628`.
+> - 라이브 `/whelk-industry`: 액센트 `#92400e`. 종 `#92400e`·`#be123c`·`#f59e0b`. 원물 상위국 `#e879a8`. 창구 영국 `#be123c`. 가로 넘침 0.
+> - 이번 배포 런타임 error/fatal 0건. 열린 탭은 하드 리프레시.
+>
+> 마지막 업데이트: 2026-08-18 19:57 KST [Grok]
+
 > 🎨 **2026-08-18 — 골뱅이 시장이해에 선단 DB 팔레트 적용** [Grok]:
 > - worktree `whelk-industry-palette` · `feat/whelk-industry-palette`. 사용자 배포 요청.
 > - 과·창구 집은 `whelk-chart-colors` 유지. 페이지 액센트 = `WHELK_ROLE.volume`.
