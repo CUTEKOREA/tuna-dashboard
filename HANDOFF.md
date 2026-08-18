@@ -1,9 +1,16 @@
+> 🚀 **2026-08-18 15:44 KST — 오징어 08 선민수산·현원수산 강조 라이브 배포** [Grok]:
+> - PR [#641](https://github.com/CUTEKOREA/tuna-dashboard/pull/641) squash `8d0d6e3c`. PR Gate `32107013192` 성공. main Gate `32107924367` 성공. Freshness `32107924386` 성공.
+> - Vercel production `dpl_5XDgLNr7KBSjzn6qXQh5K5eLQ1MS` READY · alias `https://leedonggun.co.kr` · region `icn1` · SHA `8d0d6e3c`.
+> - 라이브 `/squid-industry#s08`(소유자 탭 새로고침): 칩 선민수산 4척 128,525판 · 현원수산 1척 0판 · 휴어. 장미색 막대 5 · 흐린 분홍 25. 가로 넘침 0.
+> - 이번 배포 런타임 error/fatal 0건.
+
+> 마지막 업데이트: 2026-08-18 15:44 KST [Grok]
+
 > 📘 **2026-08-18 15:25 KST — 오징어 08 선민수산·현원수산 강조** [Grok]:
-> - worktree `squid-focus-companies` · `feat/squid-focus-sunmin-hyunwon`. 배포 전.
+> - worktree `squid-focus-companies` · `feat/squid-focus-sunmin-hyunwon`. 배포는 #641.
 > - 포클랜드 선박·회사 차트에서 선민·현원을 진한 장미색(`#be185d`) + 나머지 막대 흐림 + 위 칩으로 구분.
 > - 칩 수치: 선민수산 4척 128,525판 · 현원수산 1척 0판 · 휴어. 0판을 지워서 안 보이게 하지 않음.
 > - 108은해는 선민 실적/현원 0판이 따로라 축에 회사를 붙임. 숫자는 원본 그대로.
-> - 로컬 `/squid-industry#s08` 1440·390 확인. 라이브 배포는 사용자 요청 전 안 함.
 
 > 마지막 업데이트: 2026-08-18 15:25 KST [Grok]
 
