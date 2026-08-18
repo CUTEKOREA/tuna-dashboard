@@ -13,6 +13,7 @@ import {
 import SafeResponsiveContainer from './SafeResponsiveContainer';
 import TermTooltip from './TermTooltip';
 import { ChartPatternDefs } from './ChartPatterns';
+import { CHART_RANK, HUB_ID } from '@/lib/chart-palette';
 import { logisticsWeeklyReport } from '@/lib/logistics-weekly-report';
 
 const songkhlaCanneryData = logisticsWeeklyReport.canneries.songkhla.map((cannery) => ({
@@ -79,9 +80,8 @@ export default function SongkhlaCanneryStatusCharts() {
                   formatter={(value: any) => [`${Number(value).toLocaleString()} 톤`, undefined]}
                 />
                 <Legend wrapperStyle={{ fontSize: '12px', paddingTop: '10px' }} formatter={(value) => <span style={{ color: 'var(--text-muted)' }}>{value}</span>} />
-                <defs><linearGradient id="gradProdG" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stopColor="var(--w-emerald-500)" stopOpacity={0.95} /><stop offset="100%" stopColor="var(--w-emerald-400)" stopOpacity={0.65} /></linearGradient></defs>
                 <Bar dataKey="prodMax" name="최대 가능 생산량" fill="rgba(34,36,43,0.08)" radius={[0, 5, 5, 0]} barSize={12} />
-                <Bar dataKey="prodCurrent" name="일 생산량" fill="url(#gradProdG)" radius={[0, 5, 5, 0]} barSize={12} />
+                <Bar dataKey="prodCurrent" name="일 생산량" fill={CHART_RANK} radius={[0, 5, 5, 0]} barSize={12} />
               </BarChart>
             </SafeResponsiveContainer>
           </div>
@@ -142,9 +142,8 @@ export default function SongkhlaCanneryStatusCharts() {
                   }}
                 />
                 <Legend wrapperStyle={{ fontSize: '12px', paddingTop: '10px' }} formatter={(value) => <span style={{ color: 'var(--text-muted)' }}>{value}</span>} />
-                <defs><linearGradient id="gradStoreG" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stopColor="var(--w-sky-400)" stopOpacity={0.95} /><stop offset="100%" stopColor="#0ea5e9" stopOpacity={0.6} /></linearGradient></defs>
                 <Bar dataKey="storeMax" name="최대 가능 보관량" fill="rgba(34,36,43,0.08)" radius={[0, 5, 5, 0]} barSize={12} />
-                <Bar dataKey="storeCurrent" name="현 보관량" fill="url(#gradStoreG)" radius={[0, 5, 5, 0]} barSize={12} />
+                <Bar dataKey="storeCurrent" name="현 보관량" fill={HUB_ID.bkk} radius={[0, 5, 5, 0]} barSize={12} />
               </BarChart>
             </SafeResponsiveContainer>
           </div>

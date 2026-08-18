@@ -341,6 +341,15 @@ describe('dashboard registry', () => {
     expect(squidChartsSource).toContain("from '@/lib/chart-palette'");
     expect(squidChartsSource).toContain('fill={CHART_RANK}');
     expect(squidChartsSource).toContain('colorForSpecies');
+    const traderSource = readFileSync(join(process.cwd(), 'components/TraderStatus.tsx'), 'utf8');
+    const cannerySource = readFileSync(join(process.cwd(), 'components/CanneryStatusCharts.tsx'), 'utf8');
+    const reeferSource = readFileSync(join(process.cwd(), 'components/ReeferMovement.tsx'), 'utf8');
+    expect(traderSource).toContain("from '@/lib/chart-palette'");
+    expect(traderSource).toContain('HUB_ID.bkk');
+    expect(traderSource).not.toContain('--chart-s1');
+    expect(cannerySource).toContain('fill={CHART_RANK}');
+    expect(cannerySource).toContain('fill={HUB_ID.bkk}');
+    expect(reeferSource).toContain('shareColor');
     expect(globalsSource).toContain('--w-sky-400: #38bdf8;');
     expect(globalsSource).toContain('--w-emerald-500: #10b981;');
   });
