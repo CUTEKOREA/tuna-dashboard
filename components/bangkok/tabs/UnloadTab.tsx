@@ -16,6 +16,7 @@ import {
   bangkokWeeks,
   type BangkokGranularity,
 } from '@/lib/data/bangkok-weekly';
+import { C, TRADER_COLOR } from '../palette';
 
 /* ── 표기 헬퍼 ────────────────────────────────────────────────────────── */
 
@@ -119,18 +120,18 @@ const TRADER_UNIT_OPTIONS = [
 ] as const;
 
 const traderSeries = (pct: boolean): Serie[] =>
-  BANGKOK_TRADERS.map((t, i): Serie => ({
+  BANGKOK_TRADERS.map((t): Serie => ({
     key: TRADER_LABELS[t],
     name: TRADER_LABELS[t],
-    color: `var(--cosmo-s${i + 1})`,
+    color: TRADER_COLOR[t],
     type: 'bar',
     stackId: 'trader',
     fmt: pct ? pctFmt : num,
   }));
 
-const TRADER_LEGEND = BANGKOK_TRADERS.map((t, i) => ({
+const TRADER_LEGEND = BANGKOK_TRADERS.map((t) => ({
   name: TRADER_LABELS[t],
-  color: `var(--cosmo-s${i + 1})`,
+  color: TRADER_COLOR[t],
   box: true,
 }));
 
@@ -184,7 +185,7 @@ export function UnloadTab() {
             x="label"
             height={260}
             xInterval={unloadView.xInterval}
-            series={[{ key: '하역량', name: '하역량', color: 'var(--cosmo-s1)', type: 'bar' }]}
+            series={[{ key: '하역량', name: '하역량', color: C.rank, type: 'bar' }]}
             yFmt={num}
           />
         </Panel>

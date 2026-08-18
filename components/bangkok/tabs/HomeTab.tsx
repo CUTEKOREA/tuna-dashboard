@@ -8,6 +8,7 @@ import {
   bangkokYearly,
   type BangkokWeek,
 } from '@/lib/data/bangkok-weekly';
+import { C } from '../palette';
 
 /* ── 표기 헬퍼 ─────────────────────────────────────────────────────────── */
 
@@ -36,12 +37,12 @@ const latestUnload = latest((w) => w.unloadMt);
 
 const priceRows = bangkokWeeks.map((w) => ({ 주: w.date.slice(2, 7), 시세: w.price }));
 const priceSeries: Serie[] = [
-  { key: '시세', name: '원어 시세', color: 'var(--cosmo-s1)', fmt: (v) => `${num(v)} 달러/톤` },
+  { key: '시세', name: '원어 시세', color: C.bangkok, fmt: (v) => `${num(v)} 달러/톤` },
 ];
 
 const unloadRows = bangkokYearly.map((y) => ({ 연도: String(y.year), 하역: y.unloadTotalMt }));
 const unloadSeries: Serie[] = [
-  { key: '하역', name: '하역 총량', color: 'var(--cosmo-s2)', type: 'bar', fmt: (v) => `${num(v)} MT` },
+  { key: '하역', name: '하역 총량', color: C.rank, type: 'bar', fmt: (v) => `${num(v)} MT` },
 ];
 
 /* ── 개관 탭 ───────────────────────────────────────────────────────────── */

@@ -3,6 +3,7 @@
 import { useMemo, useState } from 'react';
 
 import { Grid, Panel, Pills, Sec, Stat, Stats, Table } from '../../panofi/PanofiUi';
+import { C } from '../palette';
 import {
   companyName,
   headsOf,
@@ -26,7 +27,7 @@ const num = (v: number | null | undefined) =>
 /**
  * 셀 하나를 그린다. 값 뒤에 원본이 붙인 신뢰도 태그와 등급을 작게 단다 —
  * 어느 칸이 확인된 사실이고 어느 칸이 추정인지 표에서 바로 읽혀야 한다.
- * 색은 새로 만들지 않고 기존 토큰(--cosmo-*)만 쓴다. 테마 전환은 그래서 따라온다.
+ * 확인·실측·추정 태그는 운영 칩(--cosmo-ok/warn). 보강 띠만 정체성 색.
  */
 function CellView({ c }: { c: Cell | undefined }) {
   if (!c) return <>–</>;
@@ -63,7 +64,7 @@ function CellView({ c }: { c: Cell | undefined }) {
             marginTop: 5,
             paddingLeft: 8,
             borderLeft: `2px solid ${c.enrich.status === '보강'
-              ? 'var(--cosmo-s1)' : 'var(--cosmo-line)'}`,
+              ? C.bangkok : 'var(--cosmo-line)'}`,
           }}
         >
           <span className="pf-stat-k" style={{ marginRight: 6 }}>

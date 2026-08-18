@@ -8,6 +8,7 @@ import {
   bangkokSeasonality,
   bangkokWeeklyKpi,
 } from '@/lib/data/bangkok-weekly';
+import { C } from '../palette';
 
 const SRC = `방콕사무소 주간보고 종합분석 (${bangkokWeeklyKpi.period}, ${bangkokWeeklyKpi.weeks}주)`;
 
@@ -155,7 +156,7 @@ export function LeadingTab() {
             x="label"
             height={250}
             xInterval={0}
-            series={[{ key: '하역량', name: '하역량 (MT)', color: 'var(--cosmo-s1)', type: 'bar' }]}
+            series={[{ key: '하역량', name: '하역량 (MT)', color: C.rank, type: 'bar' }]}
             yFmt={(v) => v.toLocaleString('ko-KR')}
           />
         </Panel>

@@ -365,6 +365,18 @@ describe('dashboard registry', () => {
     expect(cosmoPalette).toContain('PANOFI_ID.cosmo');
     expect(cosmoMarket).toContain('C.cosmo');
     expect(cosmoMarket).not.toContain('--cosmo-s1');
+    const bangkokPalette = readFileSync(join(process.cwd(), 'components/bangkok/palette.ts'), 'utf8');
+    const bangkokUnload = readFileSync(join(process.cwd(), 'components/bangkok/tabs/UnloadTab.tsx'), 'utf8');
+    const bangkokCannery = readFileSync(join(process.cwd(), 'components/bangkok/tabs/CanneryTab.tsx'), 'utf8');
+    expect(bangkokPalette).toContain("from '@/lib/chart-palette'");
+    expect(bangkokPalette).toContain('TRADER_ID');
+    expect(bangkokPalette).toContain('THAI_PORT_ID');
+    expect(bangkokUnload).toContain('TRADER_COLOR');
+    expect(bangkokUnload).toContain('C.rank');
+    expect(bangkokUnload).not.toContain('--cosmo-s1');
+    expect(bangkokCannery).toContain('C.bangkok');
+    expect(bangkokCannery).toContain('C.songkhla');
+    expect(bangkokCannery).not.toContain('--cosmo-s1');
     expect(globalsSource).toContain('--w-sky-400: #38bdf8;');
     expect(globalsSource).toContain('--w-emerald-500: #10b981;');
   });

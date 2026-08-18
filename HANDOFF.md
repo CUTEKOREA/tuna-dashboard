@@ -1,3 +1,10 @@
+> 🎨 **2026-08-18 — 방콕사무소에 선단 DB 팔레트 적용** [Grok]:
+> - worktree `bangkok-palette` · `feat/bangkok-palette`. 사용자 배포 요청.
+> - 트레이더 = `TRADER_ID`(물류와 동일). 방콕·송클라 = `THAI_PORT_ID`. 이름 없는 단일 막대 = `CHART_RANK`.
+> - 확인·실측·추정 칩은 `--cosmo-ok/warn` 유지. 격자·축은 코스모 셸 유지.
+>
+> 마지막 업데이트: 2026-08-18 [Grok]
+
 > 🚀 **2026-08-18 16:56 KST — `/panofi` 판정문 굵게·차트 축 잘림 라이브 배포** [Grok]:
 > - PR [#644](https://github.com/CUTEKOREA/tuna-dashboard/pull/644) squash `b1a4c779`. PR Gate `32113271973` 성공. main Gate `32113575179` 성공. Freshness `32113575168` 성공.
 > - Vercel production `dpl_BcfURs4AdmZnijqm6zxfUupXRWoU` READY · alias `https://leedonggun.co.kr` · region `icn1` · SHA `b1a4c779`.

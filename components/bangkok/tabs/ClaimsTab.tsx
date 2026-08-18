@@ -3,6 +3,7 @@
 import Chart, { Legend, type Serie } from '../../cosmo/Chart';
 import { Grid, Panel, Sec, Table } from '../../panofi/PanofiUi';
 import { bangkokClaimsYear, bangkokSalt, bangkokWeeklyKpi } from '@/lib/data/bangkok-weekly';
+import { C } from '../palette';
 
 /* ── 표기 헬퍼 ─────────────────────────────────────────────────────────── */
 
@@ -11,12 +12,6 @@ const num = (v: number) => Math.round(v).toLocaleString('ko-KR');
 const S = (key: string, name: string, color: string, extra: Partial<Serie> = {}): Serie => ({
   key, name, color, ...extra,
 });
-
-const C = {
-  s1: 'var(--cosmo-s1)',
-  s2: 'var(--cosmo-s2)',
-  bad: 'var(--cosmo-bad)',
-};
 
 const SRC_BASE = `방콕사무소 주간보고 종합분석 (${bangkokWeeklyKpi.period}, ${bangkokWeeklyKpi.weeks}주)`;
 const SRC_SALT = `하이솔트 원장 「${bangkokSalt.source}」 (${num(bangkokSalt.rows)}건, 최신 ${bangkokSalt.latest})`;
@@ -93,13 +88,13 @@ export function ClaimsTab() {
             height={240}
             series={[
               S('이슈물량', '이슈 물량', C.s1, { type: 'bar', fmt: (v) => `${num(v)}t` }),
-              S('리젝트물량', '리젝트 물량', C.bad, { type: 'bar', fmt: (v) => `${num(v)}t` }),
+              S('리젝트물량', '리젝트 물량', C.danger, { type: 'bar', fmt: (v) => `${num(v)}t` }),
             ]}
             yFmt={num}
           />
           <Legend items={[
             { name: '이슈 물량', color: C.s1, box: true },
-            { name: '리젝트 물량', color: C.bad, box: true },
+            { name: '리젝트 물량', color: C.danger, box: true },
           ]} />
         </Panel>
       </Grid>
