@@ -1,3 +1,12 @@
+> 🚀 **2026-08-18 13:18 KST — 해양수산본부 8/18 일일보고 `/fleet` 라이브 배포** [Codex]:
+> - PR [#627](https://github.com/CUTEKOREA/tuna-dashboard/pull/627)을 squash merge `af471ee2`로 병합했다. PR App Quality Gate `32097644512`, main App Quality Gate `32097906196`가 모두 성공했다.
+> - Vercel Production deployment `5955934030`이 SHA `af471ee2`로 성공했고 `https://leedonggun.co.kr/fleet`에 반영됐다. 배포 후 15분 Production error/fatal 로그는 각각 0건이다.
+> - 비인증 `/api/fleet/daily`는 401 `authentication_required`, `private, no-store`, `Vary: Cookie`; `/fleet`은 `/login?next=%2Ffleet`로 이동한다. 소유자 세션 API는 200이며 보고일 `2026-08-18`, 기준일 `2026-08-17`, 태평양 72 MT, 대서양 175 MT, 운반선 선적 11,492.3 MT, 예상잔량 6,317.7 MT를 반환한다.
+> - 운영 화면은 1440px·390px 모두 최신 KPI와 보호 상세 준비 상태를 표시한다. 문서·본문 가로 넘침 0, 페이지/콘솔/자체 HTTP 오류 0, CacheStorage의 `/api/fleet/` 항목 0건이다. QA 후 임시 탭을 닫고 사용자 원래 `파노피` 탭으로 복원했다.
+> - 일일 운영자 상태는 `live_verified`로 닫았으며 배포 SHA·URL·사용자 승인 근거를 로컬 상태에 기록했다.
+>
+> 마지막 업데이트: 2026-08-18 13:18 KST [Codex]
+
 > ⚓ **2026-08-18 12:57 KST — 해양수산본부 8/18 일일보고 `/fleet` 반영 준비** [Codex]:
 > - Google Drive `해양수산본부 일일업무보고-260818 (화).docx`를 기존 2026-01-16~08-14 이력에 추가해 **136건**으로 동기화했다. 최신 보고일은 `2026-08-18`, 조업 기준일은 `2026-08-17`이다.
 > - 공개 집계: 태평양 일간/월간/연간 `72 / 2,321 / 47,153.8 MT`, 대서양 `175 / 2,940 / 29,665 MT`, 운반선 선적/예상잔량 `11,492.3 / 6,317.7 MT`. 최신 4개 검산은 모두 일치하며 최신 이슈는 0건이다.
