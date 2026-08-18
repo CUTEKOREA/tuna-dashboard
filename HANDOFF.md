@@ -1,8 +1,16 @@
+> 🚀 **2026-08-18 14:11 KST — 선단 DB 가로막대 좌측 여백 라이브 배포** [Grok]:
+> - PR [#631](https://github.com/CUTEKOREA/tuna-dashboard/pull/631) squash `e6fe7c10`. PR 게이트 `32101407941` 성공. main Gate `32101668850` 성공. Freshness `32101668857` 성공.
+> - Vercel production `dpl_7ZcF9S7R7frgdjKAUxBEM3z7G58P` READY · alias `https://leedonggun.co.kr` · region `icn1` · SHA `e6fe7c10`.
+> - 확인: 사이드바 **선단 DB** → 국가별 선박 수 · 주요 운영사. 라이브는 소유자 로그인. 열린 탭은 하드 리프레시.
+> - 이번 배포 런타임 error/fatal 0건. (직전 배포의 인증 refresh 토큰 오류는 이번 변경과 무관)
+
+> 마지막 업데이트: 2026-08-18 14:11 KST [Grok]
+
 > 📘 **2026-08-18 14:00 KST — 선단 DB 가로막대 좌측 여백** [Grok]:
-> - worktree `purse-chart-margin` · `fix/purse-yaxis-margin`. **프로덕션 미배포**.
+> - worktree `purse-chart-margin` · `fix/purse-yaxis-margin`. 배포는 #631.
 > - Recharts 3는 `offset.left = margin.left + YAxis.width`다. 국가 차트는 130+120, 운영사는 180+170을 겹쳐 쓰고 있었다.
 > - 마진은 4px만 두고 라벨 폭은 `yAxisWidthFor`로 잰다. 운영사 축은 한 줄 틱 + 16자 자름. 전체 이름은 툴팁.
-> - 로컬 1440·390: 막대가 라벨 바로 옆에서 시작한다. **다음:** 사용자 배포 요청 시에만 PR 병합.
+> - 로컬 1440·390: 막대가 라벨 바로 옆에서 시작한다.
 
 > 마지막 업데이트: 2026-08-18 [Grok]
 
