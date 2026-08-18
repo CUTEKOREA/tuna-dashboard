@@ -524,8 +524,8 @@ export function OceanFleetChart({ data }: { data: TunaFleetData }) {
         <YAxis stroke="var(--mu-axis)" tick={{ fill: 'var(--mu-axis)', fontSize: 11 }} />
         <Tooltip content={<Tip unit="척" />} />
         <Legend wrapperStyle={{ fontSize: 11, color: 'var(--mu-axis)' }} />
-        <Bar dataKey="허가" name="허가 척수 (척)" fill="#0e7490" radius={[3, 3, 0, 0]} isAnimationActive={animate} />
-        <Bar dataKey="실조업" name="실제 조업 (척)" fill="#f59e0b" radius={[3, 3, 0, 0]} isAnimationActive={animate} />
+        <Bar dataKey="허가" name="허가 척수 (척)" fill={TUNA_ROLE.volume} radius={[3, 3, 0, 0]} isAnimationActive={animate} />
+        <Bar dataKey="실조업" name="실제 조업 (척)" fill={TUNA_ROLE.processed} radius={[3, 3, 0, 0]} isAnimationActive={animate} />
       </BarChart>
     </SafeResponsiveContainer>
   );
@@ -563,7 +563,7 @@ export function FlagFleetChart({ data }: { data: TunaFleetData }) {
         <Legend wrapperStyle={{ fontSize: 11, color: 'var(--mu-axis)' }} />
         <Bar yAxisId="left" dataKey="척수" name="선박 수 (척)" radius={[3, 3, 0, 0]} isAnimationActive={animate}>
           {rows.map((r, i) => (
-            <Cell key={i} fill={r.선적국 === '대한민국' ? '#e11d48' : '#0e7490'} />
+            <Cell key={i} fill={r.선적국 === '대한민국' ? TUNA_ROLE.highlight : TUNA_ROLE.volume} />
           ))}
         </Bar>
         <Line
@@ -571,7 +571,7 @@ export function FlagFleetChart({ data }: { data: TunaFleetData }) {
           type="monotone"
           dataKey="어창용적"
           name="어창용적 (㎥)"
-          stroke="#f59e0b"
+          stroke={TUNA_ROLE.processed}
           strokeWidth={2.2}
           dot={{ r: 3 }}
           isAnimationActive={animate}
@@ -598,8 +598,8 @@ export function KoreaTunaGearChart({ data }: { data: TunaFleetData }) {
         <YAxis stroke="var(--mu-axis)" tick={{ fill: 'var(--mu-axis)', fontSize: 11 }} />
         <Tooltip content={<Tip unit="척" />} />
         <Legend wrapperStyle={{ fontSize: 11, color: 'var(--mu-axis)' }} />
-        <Bar dataKey="노후" name="선령 31년 이상 (척)" stackId="a" fill="#e11d48" isAnimationActive={animate} />
-        <Bar dataKey="신조" name="선령 30년 이하 (척)" stackId="a" fill="#0e7490" radius={[3, 3, 0, 0]} isAnimationActive={animate} />
+        <Bar dataKey="노후" name="선령 31년 이상 (척)" stackId="a" fill={TUNA_ROLE.highlight} isAnimationActive={animate} />
+        <Bar dataKey="신조" name="선령 30년 이하 (척)" stackId="a" fill={TUNA_ROLE.volume} radius={[3, 3, 0, 0]} isAnimationActive={animate} />
       </BarChart>
     </SafeResponsiveContainer>
   );
@@ -1216,7 +1216,7 @@ export function MonthlyCatchChart({ rows }: { rows: MonthlyCatchRow[] }) {
     for (const row of rows) point[row.어종] = row.월별[index];
     return point;
   });
-  const palette = [TUNA_ROLE.volume, TUNA_ROLE.highlight, TUNA_ROLE.processed, '#8b5cf6'];
+  const palette = rows.map((row) => colorForSpecies(row.어종));
 
   return (
     <SafeResponsiveContainer width="100%" height={300}>
@@ -1250,8 +1250,8 @@ export function LonglinePriceChart({ rows }: {
         <YAxis {...AXIS} domain={[3000, 9000]} tickFormatter={(v: number) => `$${(v / 1000).toFixed(0)}k`} />
         <Tooltip content={<Tip unit="달러/톤" />} />
         <Legend wrapperStyle={{ fontSize: 11, color: 'var(--mu-axis)' }} />
-        <Line type="monotone" dataKey="눈다랑어" name="눈다랑어 (달러/톤)" stroke={TUNA_ROLE.highlight} strokeWidth={2} dot={{ r: 2 }} isAnimationActive={animate} />
-        <Line type="monotone" dataKey="황다랑어" name="황다랑어 (달러/톤)" stroke={TUNA_ROLE.volume} strokeWidth={2} dot={{ r: 2 }} isAnimationActive={animate} />
+        <Line type="monotone" dataKey="눈다랑어" name="눈다랑어 (달러/톤)" stroke={colorForSpecies('눈다랑어')} strokeWidth={2} dot={{ r: 2 }} isAnimationActive={animate} />
+        <Line type="monotone" dataKey="황다랑어" name="황다랑어 (달러/톤)" stroke={colorForSpecies('황다랑어')} strokeWidth={2} dot={{ r: 2 }} isAnimationActive={animate} />
       </LineChart>
     </SafeResponsiveContainer>
   );
