@@ -24,6 +24,47 @@ import HeroZone from './v2/HeroZone';
 const DATA_DATE = '2026-08-17';
 const CONTINENT_TREEMAP_COLORS = ['#3b82f6', '#10b981', '#f59e0b', '#ef4444', '#8b5cf6', '#ec4899', '#06b6d4'];
 const RFMO_MATRIX_COLUMNS = ['WCPFC', 'IOTC', 'IATTC', 'ICCAT'];
+/* Recharts 3: offset.left = margin.left + YAxis.width. 라벨 자리는 width만. */
+const V_BAR_MARGIN = { top: 4, right: 12, left: 4, bottom: 4 } as const;
+const OPERATOR_TICK_MAX = 16;
+
+function clipLatin(label: string, max: number): string {
+  return label.length > max ? `${label.slice(0, max)}…` : label;
+}
+
+export function yAxisWidthFor(labels: string[], fontSize: number, pad = 12): number {
+  const maxPx = labels.reduce((widest, label) => {
+    let w = 0;
+    for (const ch of label) {
+      const code = ch.codePointAt(0) ?? 0;
+      if (code >= 0x1F300) w += fontSize * 1.2;
+      else if (code >= 0x2E80) w += fontSize;
+      else w += fontSize * 0.72;
+    }
+    return Math.max(widest, w);
+  }, 0);
+  return Math.min(140, Math.max(64, Math.ceil(maxPx + pad)));
+}
+
+function SingleLineYTick({
+  x = 0,
+  y = 0,
+  payload,
+  fill = 'var(--w-slate-400)',
+  fontSize = 11,
+}: {
+  x?: number | string;
+  y?: number | string;
+  payload?: { value?: string };
+  fill?: string;
+  fontSize?: number;
+}) {
+  return (
+    <text x={x} y={y} dy={4} textAnchor="end" fill={fill} fontSize={fontSize}>
+      {payload?.value ?? ''}
+    </text>
+  );
+}
 
 export function PurseSeinerHero() {
   return (
@@ -322,10 +363,13 @@ function CountryBarChart({ onFilter }: { onFilter: (flag: string) => void }) {
         desc="선적국(Flag State) 기준 보유 선박 수 상위 15개국 집계 — 막대 클릭 시 하단 명부 필터 적용"
       />
       <SafeResponsiveContainer width="100%" height={400}>
-        <BarChart data={data} layout="vertical" margin={{ left: 130, right: 20, top: 5, bottom: 5 }}
+        <BarChart data={data} layout="vertical" margin={V_BAR_MARGIN}
           onClick={(e: any) => { if (e?.activePayload?.[0]) onFilter(e.activePayload[0].payload.flag); }}>
           <XAxis type="number" tick={{ fill: 'var(--w-slate-500)', fontSize: 11 }} />
-          <YAxis type="category" dataKey="name" tick={{ fill: 'var(--w-slate-400)', fontSize: 12 }} width={120} />
+          <YAxis type="category" dataKey="name" interval={0} width={yAxisWidthFor(data.map((d) => d.name), 12)}
+            tick={({ x, y, payload }) => (
+              <SingleLineYTick x={x} y={y} payload={{ value: String(payload?.value ?? '') }} fontSize={12} />
+            )} />
           <Tooltip
             contentStyle={{ background: 'var(--chart-tooltip-bg)', border: '1px solid var(--chart-tooltip-border)', color: 'var(--text-primary)', borderRadius: 8, fontSize: 13 }}
             formatter={(v: unknown) => [`${v}척`, '선박 수']}
@@ -370,7 +414,7 @@ function OperatorChart({ onFilter }: { onFilter: (op: string) => void }) {
   const opStats = useMemo(() => getOperatorStats().slice(0, 15), []);
 
   const data = opStats.map(s => ({
-    name: s.operator.length > 25 ? s.operator.substring(0, 22) + '…' : s.operator,
+    name: clipLatin(s.operator, OPERATOR_TICK_MAX),
     fullName: s.operator,
     count: s.count,
     rfmos: s.rfmos.join(', '),
@@ -397,12 +441,19 @@ function OperatorChart({ onFilter }: { onFilter: (op: string) => void }) {
         </div>
       )}
       <SafeResponsiveContainer width="100%" height={400}>
-        <BarChart data={data} layout="vertical" margin={{ left: 180, right: 20, top: 5, bottom: 5 }}
+        <BarChart data={data} layout="vertical" margin={V_BAR_MARGIN}
           onClick={(e: any) => { if (e?.activePayload?.[0]) onFilter(e.activePayload[0].payload.fullName); }}>
           <XAxis type="number" tick={{ fill: 'var(--w-slate-500)', fontSize: 11 }} />
-          <YAxis type="category" dataKey="name" tick={{ fill: 'var(--w-slate-400)', fontSize: 11 }} width={170} />
+          <YAxis type="category" dataKey="name" interval={0} width={yAxisWidthFor(data.map((d) => d.name), 11)}
+            tick={({ x, y, payload }) => (
+              <SingleLineYTick x={x} y={y} payload={{ value: String(payload?.value ?? '') }} fontSize={11} />
+            )} />
           <Tooltip
             contentStyle={{ background: 'var(--chart-tooltip-bg)', border: '1px solid var(--chart-tooltip-border)', color: 'var(--text-primary)', borderRadius: 8, fontSize: 13 }}
+            labelFormatter={(_, payload) => {
+              const row = Array.isArray(payload) ? payload[0]?.payload : undefined;
+              return row?.fullName ?? '';
+            }}
             formatter={(v: unknown, _: unknown, props: any) => [
               `${v}척 | RFMO: ${props.payload.rfmos}`, '선박 수'
             ]}
