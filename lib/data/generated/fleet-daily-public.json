@@ -1,59 +1,59 @@
 {
   "_meta": {
     "schemaVersion": 1,
-    "reportCount": 135,
+    "reportCount": 136,
     "firstReportDate": "2026-01-16",
-    "latestReportDate": "2026-08-14",
-    "latestAsOf": "2026-08-13",
-    "detailSha256": "bbf130c7718413463d15f1941bfc9af70e3c963c1ac52b707d2be2468ffdca3c"
+    "latestReportDate": "2026-08-18",
+    "latestAsOf": "2026-08-17",
+    "detailSha256": "4ca61c43650959fb3f5d7d2e5e0aa07664e56f7ec95b1abc8af965c0f6dc1159"
   },
   "latest": {
-    "reportDate": "2026-08-14",
-    "asOf": "2026-08-13",
+    "reportDate": "2026-08-18",
+    "asOf": "2026-08-17",
     "pacific": {
-      "asOf": "2026-08-13",
-      "dailyMt": 130,
-      "monthlyMt": 1947,
-      "annualMt": 46779.8
+      "asOf": "2026-08-17",
+      "dailyMt": 72,
+      "monthlyMt": 2321,
+      "annualMt": 47153.8
     },
     "atlantic": {
-      "asOf": "2026-08-13",
-      "dailyMt": 205,
-      "monthlyMt": 2010,
-      "annualMt": 28735
+      "asOf": "2026-08-17",
+      "dailyMt": 175,
+      "monthlyMt": 2940,
+      "annualMt": 29665
     },
     "carrier": {
-      "loadedTotalMt": 9922.3,
-      "expectedRemainingMt": 7887.7
+      "loadedTotalMt": 11492.3,
+      "expectedRemainingMt": 6317.7
     }
   },
   "deltas": {
-    "pacificDailyMt": 45,
-    "atlanticDailyMt": 35,
-    "totalDailyMt": 80
+    "pacificDailyMt": -58,
+    "atlanticDailyMt": -30,
+    "totalDailyMt": -88
   },
   "reconciliation": {
     "pacificDaily": {
-      "reportedMt": 130,
-      "rowsMt": 130,
+      "reportedMt": 72,
+      "rowsMt": 72,
       "matches": true,
       "missingCount": 0
     },
     "atlanticDaily": {
-      "reportedMt": 205,
-      "rowsMt": 205,
+      "reportedMt": 175,
+      "rowsMt": 175,
       "matches": true,
       "missingCount": 0
     },
     "carrierLoaded": {
-      "reportedMt": 9922.3,
-      "rowsMt": 9922.3,
+      "reportedMt": 11492.3,
+      "rowsMt": 11492.3,
       "matches": true,
       "missingCount": 0
     },
     "carrierExpectedRemaining": {
-      "reportedMt": 7887.7,
-      "rowsMt": 7887.7,
+      "reportedMt": 6317.7,
+      "rowsMt": 6317.7,
       "matches": true,
       "missingCount": 0
     },
@@ -63,8 +63,8 @@
   },
   "quality": {
     "counts": {
-      "reconciliationChecks": 540,
-      "reconciliationCompleteChecks": 540,
+      "reconciliationChecks": 544,
+      "reconciliationCompleteChecks": 544,
       "reconciliationUnavailableChecks": 0,
       "reconciliationUnavailableDocuments": 0,
       "reconciliationIssues": 14,

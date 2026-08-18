@@ -85,7 +85,7 @@ function validPayload() {
       longline: {
         vessels: [{
           name: 'TEST LONGLINE',
-          loadedMt: 338.699,
+          loadedMt: 338.699 as number | null,
           loadedMtRaw: '(338.699톤(TEST-A,TEST-B))',
           loadedMtParenthetical: null,
           note: '시험 일정',
@@ -119,6 +119,24 @@ function validPayload() {
 describe('fleet daily full-source contract', () => {
   it('accepts a strict source-faithful payload', () => {
     const payload = validPayload();
+    expect(validateFleetDailySourcePayload(payload)).toEqual(payload);
+  });
+
+  it('preserves an empty amount cell as unreported instead of zero', () => {
+    const payload = validPayload();
+    payload.latest.longline.vessels[0].loadedMt = null;
+    payload.latest.longline.vessels[0].loadedMtRaw = '';
+    payload.latest.longline.vessels[0].loadedMtParenthetical = null;
+
+    expect(validateFleetDailySourcePayload(payload)).toEqual(payload);
+  });
+
+  it('accepts an explicitly approximate source amount without dropping its numeric value', () => {
+    const payload = validPayload();
+    payload.latest.longline.vessels[0].loadedMt = 300;
+    payload.latest.longline.vessels[0].loadedMtRaw = '(약 300톤)';
+    payload.latest.longline.vessels[0].loadedMtParenthetical = null;
+
     expect(validateFleetDailySourcePayload(payload)).toEqual(payload);
   });
 
@@ -174,7 +192,7 @@ describe('fleet daily full-source contract', () => {
   it.runIf(existsSync(PRIVATE_SOURCE))('validates the complete ignored Drive-derived source locally', () => {
     const payload = JSON.parse(readFileSync(PRIVATE_SOURCE, 'utf8'));
     const parsed = validateFleetDailySourcePayload(payload);
-    expect(parsed._meta.reportCount).toBe(135);
-    expect(parsed.quality.reconciliationChecks).toHaveLength(540);
+    expect(parsed._meta.reportCount).toBe(136);
+    expect(parsed.quality.reconciliationChecks).toHaveLength(544);
   });
 });

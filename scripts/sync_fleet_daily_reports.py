@@ -24,6 +24,7 @@ ROOT = Path(__file__).resolve().parents[1]
 DEFAULT_OUTPUT = ROOT / "lib/data/generated/fleet-daily-private.json"
 DEFAULT_PUBLIC_OUTPUT = ROOT / "lib/data/generated/fleet-daily-public.json"
 DEFAULT_DETAIL_OUTPUT = ROOT / "artifacts/fleet-daily-detail.json"
+FLEET_DAILY_COVERAGE_START = "2026-01-16"
 DEFAULT_SOURCE_COMPONENTS = (
     "Library/CloudStorage/GoogleDrive-cutekorea@gmail.com/내 드라이브/11. 태국/"
     "해양수산본부 일일 업무보고"
@@ -77,7 +78,9 @@ def parse_amount(value: str) -> Amount:
     if raw in {"", "-"}:
         return Amount(raw=raw or "-", value=0, parenthetical=None)
     base_match = re.match(r"^\(?([-+]?\d[\d,]*(?:\.\d+)?)", raw)
-    base = float(base_match.group(1).replace(",", "")) if base_match else None
+    approximate_match = re.match(r"^\(약\s*([-+]?\d[\d,]*(?:\.\d+)?)톤?\)$", raw)
+    numeric = base_match.group(1) if base_match else approximate_match.group(1) if approximate_match else None
+    base = float(numeric.replace(",", "")) if numeric else None
     parenthetical_match = re.match(r"^[-+]?\d[\d,]*(?:\.\d+)?\(([-+]?\d[\d,]*(?:\.\d+)?)\)", raw)
     parenthetical = float(parenthetical_match.group(1).replace(",", "")) if parenthetical_match else None
     return Amount(raw=raw, value=display_number(base), parenthetical=display_number(parenthetical))
@@ -113,14 +116,41 @@ def default_source_dir() -> Path:
     return candidates[0]
 
 
-def iter_reports(source_dir: Path) -> list[tuple[str, Path]]:
+def report_entry(candidate: Path, *, required: bool) -> tuple[str, Path] | None:
+    if not candidate.is_file() or candidate.suffix.casefold() != ".docx":
+        if required:
+            raise FleetDailySyncError(f"추가 원문 DOCX를 찾을 수 없습니다: {candidate}")
+        return None
+    compact_name = re.sub(r"\s+", "", nfc(candidate.stem))
+    if "해양수산본부일일업무보고" not in compact_name:
+        if required:
+            raise FleetDailySyncError(f"추가 원문이 해양수산본부 일일업무보고가 아닙니다: {nfc(candidate.name)}")
+        return None
+    report_date = filename_report_date(candidate)
+    if report_date < FLEET_DAILY_COVERAGE_START:
+        if required:
+            raise FleetDailySyncError(
+                f"추가 원문이 공개 범위 시작일({FLEET_DAILY_COVERAGE_START})보다 이전입니다: {report_date}"
+            )
+        return None
+    return report_date, candidate
+
+
+def iter_reports(
+    source_dir: Path,
+    additional_reports: Iterable[Path] = (),
+) -> list[tuple[str, Path]]:
     if not source_dir.is_dir():
         raise FleetDailySyncError(f"원문 폴더를 찾을 수 없습니다: {source_dir}")
     reports: list[tuple[str, Path]] = []
     for candidate in source_dir.iterdir():
-        if not candidate.is_file() or candidate.suffix.casefold() != ".docx":
-            continue
-        reports.append((filename_report_date(candidate), candidate))
+        entry = report_entry(candidate, required=False)
+        if entry is not None:
+            reports.append(entry)
+    for candidate in additional_reports:
+        entry = report_entry(candidate, required=True)
+        if entry is not None:
+            reports.append(entry)
     if not reports:
         raise FleetDailySyncError(f"DOCX 원문이 없습니다: {source_dir}")
     reports.sort(key=lambda item: item[0])
@@ -420,7 +450,10 @@ def compact_summary(report: dict[str, Any]) -> dict[str, Any]:
     }
 
 
-def build_payload(source_dir: Path) -> dict[str, Any]:
+def build_payload(
+    source_dir: Path,
+    additional_reports: Iterable[Path] = (),
+) -> dict[str, Any]:
     parsed: list[dict[str, Any]] = []
     quality = {
         "reconciliationChecks": [],
@@ -428,7 +461,7 @@ def build_payload(source_dir: Path) -> dict[str, Any]:
         "coordinateFormatIssues": [],
         "longlineSectionMissing": [],
     }
-    for report_date, path in iter_reports(source_dir):
+    for report_date, path in iter_reports(source_dir, additional_reports):
         report, issues = parse_report(report_date, path)
         parsed.append(report)
         checks = issues["reconciliationChecks"]
@@ -639,6 +672,13 @@ def atomic_write(path: Path, content: str) -> None:
 def argument_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(description="해양수산본부 일일 DOCX 보고를 fleet intake JSON으로 동기화합니다.")
     parser.add_argument("--source-dir", type=Path, help="DOCX 원문 폴더")
+    parser.add_argument(
+        "--additional-report",
+        type=Path,
+        action="append",
+        default=[],
+        help="기존 이력에 합칠 신규 DOCX 원문(여러 번 지정 가능)",
+    )
     parser.add_argument("--output", type=Path, default=DEFAULT_OUTPUT, help="로컬 전용 원문 파생 JSON 경로")
     parser.add_argument("--public-output", type=Path, help="커밋 가능한 공개 집계 JSON 경로")
     parser.add_argument("--detail-output", type=Path, help="서버 환경변수용 최신 상세 DTO 경로")
@@ -658,7 +698,10 @@ def main(argv: Sequence[str] | None = None) -> int:
         output = args.output.resolve()
         public_output = args.public_output.resolve() if args.public_output else companion_output(output, "public")
         detail_output = args.detail_output.resolve() if args.detail_output else companion_output(output, "detail")
-        payload = build_payload(args.source_dir or default_source_dir())
+        payload = build_payload(
+            args.source_dir or default_source_dir(),
+            args.additional_report,
+        )
         detail_payload = build_detail_payload(payload)
         content = serialized(payload)
         public_content = serialized(build_public_payload(payload, canonical_sha256(detail_payload)))

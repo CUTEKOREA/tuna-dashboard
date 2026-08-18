@@ -254,7 +254,11 @@ def build_prepare_command(page: dict[str, Any], source: Path | None) -> list[str
         raise OperatorError(f"{page['id']}는 수동 갱신 대상입니다: {page.get('note', '')}")
     command = list(page["prepare"])
     if source is not None:
-        source_arg = page.get("sourceArg")
+        source_arg = (
+            page.get("sourceFileArg")
+            if source.suffix.casefold() == ".docx" and page.get("sourceFileArg")
+            else page.get("sourceArg")
+        )
         if not isinstance(source_arg, str):
             raise OperatorError(f"{page['id']}는 명시 원문 경로를 받지 않습니다")
         command.extend([source_arg, str(source)])
