@@ -25,9 +25,10 @@ DEFAULT_OUTPUT = ROOT / "lib/data/generated/fleet-daily-private.json"
 DEFAULT_PUBLIC_OUTPUT = ROOT / "lib/data/generated/fleet-daily-public.json"
 DEFAULT_DETAIL_OUTPUT = ROOT / "artifacts/fleet-daily-detail.json"
 FLEET_DAILY_COVERAGE_START = "2026-01-16"
+# 2026-08-19 사용자 지시: 원문 정본 폴더를 「001. (매일)해양수산본부일일업무보고」로 병합
 DEFAULT_SOURCE_COMPONENTS = (
     "Library/CloudStorage/GoogleDrive-cutekorea@gmail.com/내 드라이브/11. 태국/"
-    "해양수산본부 일일 업무보고"
+    "001. (매일)해양수산본부일일업무보고"
 ).split("/")
 FILENAME_DATE = re.compile(r"일일\s*업무보고\s*-?\s*(\d{6})(?:\D|$)", re.IGNORECASE)
 NUMBER = re.compile(r"[-+]?\d[\d,]*(?:\.\d+)?")
