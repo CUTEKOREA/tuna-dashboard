@@ -108,7 +108,7 @@ class FleetDailyReportSyncTest(unittest.TestCase):
         module = load_sync_module()
         with tempfile.TemporaryDirectory() as temporary_directory:
             home = Path(temporary_directory)
-            source_dir = home / "Library/CloudStorage/GoogleDrive-cutekorea@gmail.com/내 드라이브/11. 태국/해양수산본부 일일 업무보고"
+            source_dir = home / "Library/CloudStorage/GoogleDrive-cutekorea@gmail.com/내 드라이브/11. 태국/001. (매일)해양수산본부일일업무보고"
             source_dir.mkdir(parents=True)
 
             with mock.patch.object(module.Path, "home", return_value=home):
