@@ -436,9 +436,20 @@ function buildInsights(
   premium: GmtsPricePremiumComparison,
 ): GmtsPresentation['insights'] {
   const { latest } = data;
+  const activeRecords = latest.port.active.records;
   const activeStatement = latest.port.active.declaredCount === null
     ? '하역 중 건수는 원문 공란이므로 확정하지 않습니다.'
-    : `하역 중 건수는 ${latest.port.active.declaredCount}척입니다.`;
+    : activeRecords.length > 0
+      ? `하역 중 ${latest.port.active.declaredCount}척은 화물 ${formatDecimal(latestPort.active.totalCargoMt)} MT 중 ${formatDecimal(latestPort.active.totalDischargedMt)} MT를 양하했습니다.`
+      : `하역 중 건수는 ${latest.port.active.declaredCount}척입니다.`;
+  // 초과 양하(양하량 > 표시 총화물)는 원문 수치 그대로 드러낸다 — 해석하지 않는다
+  const overDischarged = [...activeRecords, ...latest.port.completed.records]
+    .filter((record) => record.cargo !== null && record.discharged !== null
+      && record.discharged > record.cargo)
+    .map((record) => `${record.displayName}는 표시 총화물 ${formatDecimal(record.cargo)} MT보다 ${formatDecimal((record.discharged ?? 0) - (record.cargo ?? 0))} MT 초과 양하로 보고되었습니다`);
+  const overDischargedStatement = overDischarged.length > 0
+    ? ` ${overDischarged.join('. ')}.`
+    : '';
   const overdueIncoming = latest.port.incoming.records
     .filter((record) => record.dates.etaStart.value !== null
       && record.dates.etaStart.value < latest.reportDate)
@@ -467,7 +478,7 @@ function buildInsights(
 
   return {
     port: {
-      situation: `${formatReportDate(latest.reportDate)} 보고에서 하역 완료 ${latest.port.completed.recordCount}척은 화물 ${formatDecimal(latestPort.completed.totalCargoMt)} MT 중 ${formatDecimal(latestPort.completed.totalDischargedMt)} MT를 양하했고 SHORT는 ${formatDecimal(latestPort.completed.totalShortMt)} MT입니다. 입항 예정 ${latest.port.incoming.recordCount}척의 표시 총화물은 ${formatDecimal(latestPort.incoming.totalCargoMt)} MT이지만, Gensan 명시 배정량은 ${formatDecimal(latestPort.incoming.gensanAllocationMt)} MT로 분리됩니다. ${activeStatement}`,
+      situation: `${formatReportDate(latest.reportDate)} 보고에서 ${latest.port.completed.recordCount === 0 ? '하역 완료 선박은 없습니다' : `하역 완료 ${latest.port.completed.recordCount}척은 화물 ${formatDecimal(latestPort.completed.totalCargoMt)} MT 중 ${formatDecimal(latestPort.completed.totalDischargedMt)} MT를 양하했고 SHORT는 ${formatDecimal(latestPort.completed.totalShortMt)} MT입니다`}. 입항 예정 ${latest.port.incoming.recordCount}척의 표시 총화물은 ${formatDecimal(latestPort.incoming.totalCargoMt)} MT이지만, Gensan 명시 배정량은 ${formatDecimal(latestPort.incoming.gensanAllocationMt)} MT로 분리됩니다. ${activeStatement}${overDischargedStatement}`,
       action: `${overdueSubject}의 실제 입항·접안 상태를 운영 기록으로 재확인하고, 표시 총화물을 Gensan 반입 예측치로 직접 사용하지 않습니다.`,
     },
     cannery: {
