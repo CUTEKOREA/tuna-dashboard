@@ -1,7 +1,7 @@
 import 'server-only';
 
 import { createServerUserClient, getSupabaseRequestConfig } from '@/lib/auth/supabase-request';
-import { evaluateDashboardOwnerUser } from '@/lib/auth/owner-policy';
+import { dashboardOwnerEmailConfig, evaluateDashboardOwnerUser } from '@/lib/auth/owner-policy';
 import { evaluateFleetAccess, type FleetAccessResult } from './server-auth';
 
 export async function authorizeFleetRequest(): Promise<FleetAccessResult> {
@@ -30,7 +30,7 @@ export async function authorizeFleetRequest(): Promise<FleetAccessResult> {
         providers: user.app_metadata?.providers,
       },
       identities: user.identities?.map((identity) => ({ provider: identity.provider })),
-    }, process.env.DASHBOARD_OWNER_EMAIL);
+    }, dashboardOwnerEmailConfig());
     if (!ownerAccess.ok) {
       if (ownerAccess.status === 401) {
         return { ok: false, status: 401, code: 'authentication_required' };

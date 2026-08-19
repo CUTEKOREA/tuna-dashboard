@@ -2,6 +2,7 @@ import { createServerClient } from '@supabase/ssr';
 import { NextResponse, type NextRequest } from 'next/server';
 import { getSupabaseAuthConfig } from '@/lib/mail/server-env';
 import {
+  dashboardOwnerEmailConfig,
   evaluateDashboardOwnerClaims,
   isPublicDashboardPath,
   normalizeDashboardNextPath,
@@ -120,7 +121,7 @@ export async function updateDashboardOwnerSession(request: NextRequest): Promise
     const { data, error } = await supabase.auth.getClaims();
     access = error || !data?.claims
       ? { ok: false, status: 401, code: 'authentication_required' }
-      : evaluateDashboardOwnerClaims(data.claims, process.env.DASHBOARD_OWNER_EMAIL);
+      : evaluateDashboardOwnerClaims(data.claims, dashboardOwnerEmailConfig());
   } catch {
     access = { ok: false, status: 503, code: 'configuration_required' };
   }

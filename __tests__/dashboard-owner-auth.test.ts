@@ -4,6 +4,7 @@ import { NextRequest } from 'next/server';
 import { unstable_doesMiddlewareMatch } from 'next/experimental/testing/server';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import {
+  dashboardOwnerEmailConfig,
   evaluateDashboardOwnerClaims,
   evaluateDashboardOwnerUser,
   isPublicDashboardPath,
@@ -142,6 +143,53 @@ describe('대시보드 단일 구글 계정 보안 경계', () => {
       amr: undefined,
     }, OWNER_EMAIL)).toEqual({ ok: false, status: 403, code: 'google_account_required' });
     expect(evaluateDashboardOwnerClaims(GOOGLE_CLAIMS, undefined)).toEqual({
+      ok: false,
+      status: 503,
+      code: 'configuration_required',
+    });
+  });
+
+  it('쉼표 목록의 모든 허용 계정을 승인하고 형식 오류는 전체를 잠근다', () => {
+    const LIST = ' owner@example.com, second@example.com ,';
+    expect(evaluateDashboardOwnerClaims(GOOGLE_CLAIMS, LIST)).toEqual({
+      ok: true,
+      email: OWNER_EMAIL,
+      subject: 'owner-user-id',
+    });
+    expect(evaluateDashboardOwnerClaims({
+      ...GOOGLE_CLAIMS,
+      email: 'Second@Example.com',
+    }, LIST)).toEqual({ ok: true, email: 'second@example.com', subject: 'owner-user-id' });
+    expect(evaluateDashboardOwnerClaims({
+      ...GOOGLE_CLAIMS,
+      email: 'third@example.com',
+    }, LIST)).toEqual({ ok: false, status: 403, code: 'owner_required' });
+    // 목록에 형식이 틀린 항목이 하나라도 있으면 전체 잠금 (fail-closed)
+    expect(evaluateDashboardOwnerClaims(GOOGLE_CLAIMS, 'owner@example.com,not-an-email')).toEqual({
+      ok: false,
+      status: 503,
+      code: 'configuration_required',
+    });
+    expect(evaluateDashboardOwnerUser({
+      id: 'owner-user-id',
+      email: 'second@example.com',
+      email_confirmed_at: '2026-08-16T00:00:00Z',
+      app_metadata: { provider: 'google' },
+      identities: [{ provider: 'google' }],
+    }, LIST)).toMatchObject({ ok: true, email: 'second@example.com' });
+  });
+
+  it('추가 허용 목록(DASHBOARD_ALLOWED_EMAILS)은 소유자 변수가 있을 때만 병합된다', () => {
+    vi.stubEnv('DASHBOARD_ALLOWED_EMAILS', 'second@example.com');
+    expect(dashboardOwnerEmailConfig()).toBe(`${OWNER_EMAIL},second@example.com`);
+    expect(evaluateDashboardOwnerClaims({
+      ...GOOGLE_CLAIMS,
+      email: 'second@example.com',
+    }, dashboardOwnerEmailConfig())).toMatchObject({ ok: true, email: 'second@example.com' });
+    // 소유자 변수가 비면 추가 목록만으로는 절대 열리지 않는다
+    vi.stubEnv('DASHBOARD_OWNER_EMAIL', '');
+    expect(dashboardOwnerEmailConfig()).toBeUndefined();
+    expect(evaluateDashboardOwnerClaims(GOOGLE_CLAIMS, dashboardOwnerEmailConfig())).toEqual({
       ok: false,
       status: 503,
       code: 'configuration_required',

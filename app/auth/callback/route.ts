@@ -1,6 +1,7 @@
 import { NextResponse, type NextRequest } from 'next/server';
 import { createDashboardUserClient } from '@/lib/auth/server-supabase';
 import {
+  dashboardOwnerEmailConfig,
   evaluateDashboardOwnerClaims,
   normalizeDashboardNextPath,
   type OwnerAccessCode,
@@ -51,7 +52,7 @@ export async function GET(request: NextRequest) {
     const { data, error: claimsError } = await client.auth.getClaims();
     const access = claimsError || !data?.claims
       ? { ok: false as const, status: 401 as const, code: 'authentication_required' as const }
-      : evaluateDashboardOwnerClaims(data.claims, process.env.DASHBOARD_OWNER_EMAIL);
+      : evaluateDashboardOwnerClaims(data.claims, dashboardOwnerEmailConfig());
 
     if (!access.ok) {
       await client.auth.signOut({ scope: 'local' });

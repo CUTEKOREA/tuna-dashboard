@@ -100,18 +100,34 @@ function hasGoogleIdentity(user: DashboardOwnerUser): boolean {
     && providers.every((provider) => provider === 'google' || provider === 'email');
 }
 
-export function parseDashboardOwnerEmail(value: string | undefined): string | null {
-  const email = normalizeEmail(value);
-  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) return null;
-  return email;
+// 쉼표 구분 복수 이메일 허용 (예: "a@x.com,b@y.com"). 빈 항목은 무시하되
+// 형식이 틀린 항목이 하나라도 있으면 전체를 무효로 본다 — 오타로 몰래 잠기거나
+// 열리는 대신 configuration_required(503)로 fail-closed.
+export function parseDashboardOwnerEmails(value: string | undefined): string[] | null {
+  if (typeof value !== 'string') return null;
+  const entries = value.split(',').map(normalizeEmail).filter((entry) => entry !== '');
+  if (entries.length === 0) return null;
+  const valid = entries.every((entry) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(entry));
+  return valid ? entries : null;
+}
+
+// 운영 소유자(DASHBOARD_OWNER_EMAIL)에 추가 허용 계정(DASHBOARD_ALLOWED_EMAILS,
+// 쉼표 구분)을 병합한 설정 문자열. 소유자 변수가 비어 있으면 추가 목록만으로는
+// 절대 열리지 않는다 (fail-closed) — 소유자 등록이 항상 선행 조건.
+export function dashboardOwnerEmailConfig(): string | undefined {
+  const owner = process.env.DASHBOARD_OWNER_EMAIL;
+  if (typeof owner !== 'string' || owner.trim() === '') return undefined;
+  const extra = process.env.DASHBOARD_ALLOWED_EMAILS;
+  if (typeof extra === 'string' && extra.trim() !== '') return `${owner},${extra}`;
+  return owner;
 }
 
 export function evaluateDashboardOwnerClaims(
   claims: DashboardOwnerClaims | null,
   configuredOwnerEmail: string | undefined,
 ): OwnerAccessResult {
-  const ownerEmail = parseDashboardOwnerEmail(configuredOwnerEmail);
-  if (!ownerEmail) {
+  const ownerEmails = parseDashboardOwnerEmails(configuredOwnerEmail);
+  if (!ownerEmails) {
     return { ok: false, status: 503, code: 'configuration_required' };
   }
   if (
@@ -125,7 +141,7 @@ export function evaluateDashboardOwnerClaims(
   }
 
   const email = normalizeEmail(claims.email);
-  if (email !== ownerEmail) {
+  if (!ownerEmails.includes(email)) {
     return { ok: false, status: 403, code: 'owner_required' };
   }
   if (
@@ -142,8 +158,8 @@ export function evaluateDashboardOwnerUser(
   user: DashboardOwnerUser | null,
   configuredOwnerEmail: string | undefined,
 ): OwnerAccessResult {
-  const ownerEmail = parseDashboardOwnerEmail(configuredOwnerEmail);
-  if (!ownerEmail) {
+  const ownerEmails = parseDashboardOwnerEmails(configuredOwnerEmail);
+  if (!ownerEmails) {
     return { ok: false, status: 503, code: 'configuration_required' };
   }
   if (
@@ -157,7 +173,7 @@ export function evaluateDashboardOwnerUser(
   }
 
   const email = normalizeEmail(user.email);
-  if (email !== ownerEmail) {
+  if (!ownerEmails.includes(email)) {
     return { ok: false, status: 403, code: 'owner_required' };
   }
   if (!hasGoogleIdentity(user)) {
