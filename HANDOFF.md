@@ -20,7 +20,7 @@
 > - 라이브 `/market` 육안 확인: **기준일 2026.08.18 · 기사 6건 · 파이프라인 동기**. 헤드라인 6건(FFA 장기적 혜택 / 美 참치캔 수입 감소 / 에콰도르 CIA / 대만 선망선 침몰 / 판자넬라 / 불법 참치 거래) 전량 렌더 확인. curl 은 307 이라 판정 불가 — 로그인 세션 브라우저로만 확인한다.
 > - **미결(수동 조치 필요)**: 로컬 워크트리 `~/silla-tuna-daily/dash` 가 아직 병합 전 상태다. 이번 배포는 로컬 git 권한이 없어 GitHub API(blob→tree→commit→ref→PR→merge)로 수행했다. 다음 회차 `prepare_dashboard()` 의 `status --porcelain` 이 dirty 로 걸리므로 **`git -C ~/silla-tuna-daily/dash fetch origin main && git -C ~/silla-tuna-daily/dash checkout -- public/data/tuna_daily_briefing.json && git -C ~/silla-tuna-daily/dash merge --ff-only origin/main`** 을 먼저 돌려야 한다.
 >
-> 마지막 업데이트: 2026-08-19 00:25 KST [CC]
+> 마지막 업데이트: 2026-08-19 09:45 KST
 
 > 🦑 **2026-08-18 23:20 KST — 오징어 페루 RM00269 반영 (조사·탐사 인가 ≠ 상업 재개)** [Claude Code]:
 > - `monitoring_calendar` 의 SQ-MGT-PRODUCE `next_check` 가 오늘이라 점검 수행. **RM 00269-2026-PRODUCE(2026-08-17)** 수집 — IMARPE 「Operación Calamar Gigante V」 8/23~8/29 + 탐사조업 8/30~9/26, 최대 30척·선창 ≤32.6㎥·과학옵서버 승선. **상업 재개 아님**: 원문에 `reanudar|reiniciar|levantar la suspensión|habilitar la actividad extractiva` 0건. 추출기가 이 문구를 발견하면 예외를 던져 분류가 조용히 뒤집히지 못하게 했다.
@@ -389,6 +389,12 @@
 > - 배포 후 20분 error/fatal 로그 0건.
 >
 > 마지막 업데이트: 2026-08-18 [Grok]
+
+> 📊 **2026-08-19 09:45 KST — 방콕 주간보고 2026-08-19 반영 (PR #683 · 288주)** [CC]:
+> - **완료된 것**: `/bangkok-office` payload에 08-19 주간보고 1주 추가 — 시세 $1,960 유지 · BKK 재고 110,200MT(-7,200) · 가공일수 43일 · 2026 누적 하역 328,245MT(80척) · 하이솔트 24행 $10,506 · 리젝 6건 333.5MT. KPI·가드 픽스처 갱신, verify GREEN, 반증 검수 8/8 통과, Production 배포 성공.
+> - **주간 파이프라인 복원**: 원본 빌더(292 docx 전수 파서)는 유실 상태였다. `scripts/append_bangkok_week.py` 신설 — 손 전사 week-spec JSON을 받아 Drive 종합분석 HTML의 payload·헤더 KPI를 갱신한다. **핵심 안전장치: 실행마다 기존 데이터로 기존 집계를 재현(7/7 일치)한 뒤에만 재계산 반영, 재현 실패 항목은 미수정+경고.** 역산으로 확정한 공식: corr=지표[t]↔가격[t+lag], 가격측 suspect 제외 / corrYear=unload_mt 선행·가격행 연도 그룹·n<5→None / yearly.unload_total=월 total_calc 합 / stockShare=BKK+SKL 합 분모.
+> - **다음 주 절차**: ① docx에서 week-spec JSON 손 전사(스펙 예시: 이번 주 spec 참조, 규칙 — unload=당주 테이블 합·rej=행별 첫 수량·salt=발표 행수+«REJECT > X»는 X) ② `append_bangkok_week.py --spec … --dry-run` 재현 7/7 확인 ③ 실행 후 `sync_bangkok_report.sh` ④ 진행 연도 가드 픽스처(embedded-operation-pages·bangkok-price-granularity) 갱신.
+> - **의도된 유지**: claimsYear 2026 unique 4필드·highSaltUsd 14.2만은 하이솔트 원장 xlsx(08-12 수정본) 기준 — 신규 원장 수령 시 갱신. mismatch 5건 중 2026년 2건은 이번 주로 해소됨(잔존 3건은 2023·2024·2025 레거시).
 
 > 🧹 **2026-08-18 — 선단 DB에서 OFIS 6월 위젯 3개 제거** [Grok]:
 > - `PurseSeinerDashboard`에서 `OfisMonthlyPanel`(전국 원양 물량·선망/연승 단가·해역 회전)을 뺐다. 인테이크·패널 파일은 남김.
