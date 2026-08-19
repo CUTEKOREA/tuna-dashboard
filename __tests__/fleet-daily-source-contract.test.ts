@@ -192,7 +192,7 @@ describe('fleet daily full-source contract', () => {
   it.runIf(existsSync(PRIVATE_SOURCE))('validates the complete ignored Drive-derived source locally', () => {
     const payload = JSON.parse(readFileSync(PRIVATE_SOURCE, 'utf8'));
     const parsed = validateFleetDailySourcePayload(payload);
-    expect(parsed._meta.reportCount).toBe(136);
-    expect(parsed.quality.reconciliationChecks).toHaveLength(544);
+    expect(parsed._meta.reportCount).toBe(137);
+    expect(parsed.quality.reconciliationChecks).toHaveLength(548);
   });
 });

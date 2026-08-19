@@ -221,13 +221,13 @@ class ArchiveEndToEndTest(unittest.TestCase):
         self.assertEqual(queen_ellice['dates']['etaStart']['value'], '2026-08-11')
         self.assertEqual(queen_ellice['consignees'], ['GENTUNA'])
 
-    def test_archive_has_30_reports_38_pages_and_continuous_report_dates(self) -> None:
+    def test_archive_has_31_reports_39_pages_and_continuous_report_dates(self) -> None:
         expected_dates = [
             (date(2026, 1, 21) + timedelta(days=7 * index)).isoformat()
-            for index in range(30)
+            for index in range(31)
         ]
-        self.assertEqual(self.dashboard["metadata"]["reportCount"], 30)
-        self.assertEqual(self.dashboard["metadata"]["pageCount"], 38)
+        self.assertEqual(self.dashboard["metadata"]["reportCount"], 31)
+        self.assertEqual(self.dashboard["metadata"]["pageCount"], 39)
         self.assertEqual(
             [report["reportDate"] for report in self.dashboard["weekly"]], expected_dates
         )
@@ -260,10 +260,10 @@ class ArchiveEndToEndTest(unittest.TestCase):
 
     def test_latest_source_hash_numeric_anchors_and_blanks_are_source_faithful(self) -> None:
         latest = self.dashboard["latest"]
-        self.assertEqual(latest["reportDate"], "2026-08-12")
+        self.assertEqual(latest["reportDate"], "2026-08-19")
         self.assertEqual(
             latest["source"]["sha256"],
-            "e84ad3bb26ebe05e863467bff3f4507775a8cf4b04adefa8026eb3414e1e5243",
+            "7d52ec98dc203c0bb6f12b25b3748de4599b6579ec6275d281350562a6afbc23",
         )
         self.assertEqual(latest["prices"]["nonGspNonMsc"]["amount"], 1900)
         self.assertEqual(latest["prices"]["gspNonMsc"]["amount"], 2025)
@@ -276,28 +276,29 @@ class ArchiveEndToEndTest(unittest.TestCase):
         total = next(row for row in latest["canneries"] if row["name"] == "Total")
         self.assertEqual(total["currentProductionMt"], 895.0)
         self.assertEqual(total["currentStockMt"], 17550.0)
-        self.assertIsNone(latest["port"]["active"]["declaredCount"])
-        self.assertEqual(latest["port"]["active"]["rawText"], "A. Unloading Vessels :")
+        self.assertEqual(latest["port"]["active"]["declaredCount"], 2)
+        self.assertEqual(latest["port"]["active"]["rawText"], "A. Unloading Vessels :2")
+        self.assertIsNone(latest["port"]["completed"]["declaredCount"])
 
     def test_operational_contract_separates_report_date_from_operational_as_of(self) -> None:
         self.assertEqual(self.dashboard["metadata"]["status"], "STATIC")
         self.assertEqual(self.dashboard["metadata"]["coverageStart"], "2026-01-21")
-        self.assertEqual(self.dashboard["metadata"]["coverageEnd"], "2026-08-12")
+        self.assertEqual(self.dashboard["metadata"]["coverageEnd"], "2026-08-19")
         self.assertTrue(all(item["operationalAsOf"] is None for item in self.dashboard["weekly"]))
         self.assertIsNone(self.dashboard["latest"]["operationalAsOf"])
 
     def test_latest_lanes_keep_declared_and_record_counts_with_source_details(self) -> None:
         latest = self.dashboard["latest"]
-        self.assertEqual(latest["port"]["active"]["recordCount"], 0)
+        active = latest["port"]["active"]
+        self.assertEqual(active["recordCount"], 2)
+        self.assertAlmostEqual(sum(item["cargo"] or 0 for item in active["records"]), 4925.080, places=3)
+        self.assertAlmostEqual(sum(item["discharged"] or 0 for item in active["records"]), 2252.630, places=3)
         completed = latest["port"]["completed"]
-        self.assertEqual(completed["declaredCount"], 2)
-        self.assertEqual(completed["recordCount"], 2)
-        self.assertEqual(sum(item["cargo"] or 0 for item in completed["records"]), 2387.141)
-        self.assertEqual(sum(item["discharged"] or 0 for item in completed["records"]), 2184.110)
-        self.assertAlmostEqual(sum(item["short"] or 0 for item in completed["records"]), 203.031, places=3)
+        self.assertIsNone(completed["declaredCount"])
+        self.assertEqual(completed["recordCount"], 0)
         incoming = latest["port"]["incoming"]
-        self.assertEqual(incoming["recordCount"], 3)
-        self.assertAlmostEqual(sum(item["cargo"] or 0 for item in incoming["records"]), 9919.494, places=3)
+        self.assertEqual(incoming["recordCount"], 2)
+        self.assertAlmostEqual(sum(item["cargo"] or 0 for item in incoming["records"]), 4994.414, places=3)
         queen = next(item for item in incoming["records"] if item["displayName"] == "SEIN QUEEN")
         self.assertEqual(queen["gensanAllocation"], 2092.414)
 
@@ -327,13 +328,13 @@ class ArchiveEndToEndTest(unittest.TestCase):
     def test_quality_flags_are_an_ordered_structured_array(self) -> None:
         flags = self.dashboard["qualityFlags"]
         self.assertIsInstance(flags, list)
-        self.assertEqual(len(flags), 41)
+        self.assertEqual(len(flags), 43)
         self.assertEqual(
             [flag["code"] for flag in flags],
-            ["blank_declared_count"] * 5
+            ["blank_declared_count"] * 6
             + ["price_qualifier"] * 31
             + ["volume_revision"]
-            + ["capacity_exceeded"] * 2
+            + ["capacity_exceeded"] * 3
             + ["price_basis_unit_missing", "volume_unit_missing"],
         )
         self.assertTrue(
@@ -393,15 +394,21 @@ process.stdin.on('end', () => {
     def test_latest_port_structure_and_vessel_columns_are_source_aligned(self) -> None:
         latest = self.dashboard["latest"]
         self.assertEqual(set(latest["port"]), {"active", "completed", "incoming"})
-        amagi = next(item for item in latest["port"]["completed"]["records"] if item["displayName"] == "AMAGI")
-        self.assertEqual(amagi["traders"], ["TPJ", "FFC"])
-        self.assertEqual(amagi["cargo"], 2102.141)
-        self.assertEqual(amagi["discharged"], 1899.280)
-        self.assertEqual(amagi["short"], 202.861)
-        self.assertEqual(amagi["consignees"], ["T/S", "GENTUNA", "SEATRADE"])
+        blazer = next(item for item in latest["port"]["active"]["records"] if item["displayName"] == "SEA BLAZER")
+        self.assertEqual(blazer["traders"], ["TSP", "FCF"])
+        self.assertEqual(blazer["cargo"], 4345.080)
+        self.assertEqual(blazer["discharged"], 1621.330)
+        self.assertIsNone(blazer["short"])
+        self.assertEqual(blazer["consignees"], ["TSP/TS", "FCF/TS", "FOODSPHERE"])
+        ellice = next(item for item in latest["port"]["active"]["records"] if item["displayName"] == "F/V QUEEN ELLICE")
+        self.assertEqual(ellice["traders"], ["ITOCHU"])
+        # 초과 양하(631.300 > 580.000)를 0 이나 short 로 뒤집지 않고 원문 그대로 보존
+        self.assertEqual(ellice["cargo"], 580.000)
+        self.assertEqual(ellice["discharged"], 631.300)
+        self.assertIsNone(ellice["short"])
         queen = next(item for item in latest["port"]["incoming"]["records"] if item["displayName"] == "SEIN QUEEN")
         self.assertEqual(queen["traders"], ["TPJ"])
-        self.assertEqual(queen["etaOrUnloadingDate"], "2026/08/12-13")
+        self.assertEqual(queen["etaOrUnloadingDate"], "2026/08/17(AMEND)")
         self.assertEqual(queen["consignees"], ["GENTUNA"])
         self.assertNotIn("GENTUNA", queen["etaOrUnloadingDate"])
 
@@ -411,18 +418,18 @@ process.stdin.on('end', () => {
         self.assertEqual(set(self.dashboard["latest"]["canneryTotal"]), expected)
 
     def test_latest_vessel_dates_and_raw_values_are_preserved(self) -> None:
-        records = self.dashboard["latest"]["port"]["completed"]["records"]
-        amagi = next(item for item in records if item["displayName"] == "AMAGI")
-        self.assertEqual(amagi["dates"]["arrived"], {"value": "2026-07-23", "rawText": "2026/07/23"})
-        self.assertEqual(amagi["dates"]["unloadingStarted"]["rawText"], "2026/07/25")
-        self.assertEqual(amagi["dates"]["etd"], {"value": "2026-08-07", "rawText": "2026/08/07 MT"})
-        self.assertEqual(amagi["rawFields"]["cargo"], "2,102.141 MT")
-        hikar = next(item for item in records if item["displayName"] == "HIKARI 1")
-        self.assertEqual(hikar["dates"]["unloadingStarted"]["rawText"], "2026/08/06 MT")
+        records = self.dashboard["latest"]["port"]["active"]["records"]
+        blazer = next(item for item in records if item["displayName"] == "SEA BLAZER")
+        self.assertEqual(blazer["dates"]["arrived"], {"value": "2026-08-11", "rawText": "2026/08/11"})
+        self.assertEqual(blazer["dates"]["unloadingStarted"]["rawText"], "2026/08/12")
+        self.assertEqual(blazer["rawFields"]["cargo"], "4,345.080 MT")
+        ellice = next(item for item in records if item["displayName"] == "F/V QUEEN ELLICE")
+        self.assertEqual(ellice["rawFields"]["discharged"], "631.300 MT")
         incoming = self.dashboard["latest"]["port"]["incoming"]["records"]
         queen = next(item for item in incoming if item["displayName"] == "SEIN QUEEN")
-        self.assertEqual(queen["dates"]["etaStart"], {"value": "2026-08-12", "rawText": "2026/08/12-13"})
-        self.assertEqual(queen["dates"]["etaEnd"], {"value": "2026-08-13", "rawText": "2026/08/12-13"})
+        self.assertEqual(queen["dates"]["etaStart"], {"value": "2026-08-17", "rawText": "2026/08/17(AMEND)"})
+        galaxy = next(item for item in incoming if item["displayName"] == "SEIN GALAXY")
+        self.assertEqual(galaxy["dates"]["etaStart"], {"value": None, "rawText": "TBA"})
 
 
 if __name__ == "__main__":

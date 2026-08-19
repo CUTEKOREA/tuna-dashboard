@@ -162,12 +162,12 @@ describe('GMTS dashboard decision surface', () => {
     expect(html).not.toContain('보고서 원문 아카이브');
   });
 
-  it('renders all 30 source reports and the revision and capacity warnings', () => {
+  it('renders all 31 source reports and the revision and capacity warnings', () => {
     const html = renderDashboard('quality');
 
-    expect(html.match(/data-source-report=/g)).toHaveLength(30);
-    expect(html).toContain('30건');
-    expect(html).toContain('38쪽');
+    expect(html.match(/data-source-report=/g)).toHaveLength(31);
+    expect(html).toContain('31건');
+    expect(html).toContain('39쪽');
     expect(html).toContain('원문에서 확인되지 않은 값은 화면에서도 확정하지 않음');
     expect(html).toContain('6,220');
     expect(html).toContain('11,968');

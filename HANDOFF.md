@@ -1,3 +1,11 @@
+> 🐟 **2026-08-19 — GMTS 8/19 주간보고 + 해양수산본부 8/19 일일보고 동시 반영** [CC]:
+> - **GMTS(/gmts):** `build_gmts_dashboard.py` 재실행 — 31번째 보고 수집(2026-08-19). 하역 중 2척(SEA BLAZER 4,345.08t 중 1,621.33t 양하 · QUEEN ELLICE 580t 대비 631.3t **초과 양하 51.3t**), 입항 예정 SEIN QUEEN(젠산 배정 2,092.414t, ETA 8/17 AMEND 경과)·SEIN GALAXY(TBA). 캐너리 895/1,095t(82%)·재고 17,550t(43%)·가격 $1,900/$2,025 유지.
+> - **GMTS 인사이트 파생 로직 2건 개선:** ① 하역 완료 0척인 주에 "완료 0척·미확정 MT" 대신 하역 중 선박의 실제 양하 진행을 서술 ② 초과 양하(양하량>표시 총화물) 자동 감지·명시. 원문 해석은 하지 않는다(초과분을 short로 뒤집지 않음).
+> - **선단(/fleet):** `sync_fleet_daily_reports.py` — 08-18·08-19 일일보고 2건 추가(137건). 최신: 태평양 13t/월 2,334t/연 47,166.8t · 대서양 170t/월 3,110t/연 29,835t · 운반선 적재 11,492.3t/잔량 6,317.7t. **원문 폴더 주의:** 신규 docx가 `001. (매일)해양수산본부일일업무보고` 폴더에 오기 시작 — 기본 폴더(`해양수산본부 일일 업무보고`)엔 08-14까지만 있어 `--additional-report` 로 넘겼다. 다음 회차부터 파일을 기본 폴더로 옮기거나 스크립트 기본 경로 변경 검토.
+> - 선장 실적 SIT 2곳에 「N/STAR 8/19 선장 교대(조태연→이진우)」 주석 추가 — 현어기 1위 표기의 오독 방지.
+> - 계약 테스트 앵커 갱신: GMTS 4파일(31건/39쪽/플래그 43) · fleet-daily 5파일(137건/검산 548회/KPI 183·5,444·77,001.8).
+> - **배포 절차:** 병합 전 Vercel `FLEET_DAILY_DETAIL_JSON` 을 새 상세 DTO(artifacts/fleet-daily-detail.json, sha 1d7a3aba…)로 교체해야 상세 API가 열린다 — 공개 집계 SHA 바인딩.
+
 > 🔑 **2026-08-19 — 대시보드 허용 구글 계정 확장 (단일 소유자 → 목록)** [CC]:
 > - `lib/auth/owner-policy.ts` — `parseDashboardOwnerEmail`(단일) → `parseDashboardOwnerEmails`(쉼표 목록). 빈 항목은 무시하되 **형식이 틀린 항목이 하나라도 있으면 전체 잠금**(configuration_required 503, fail-closed).
 > - 신설 `dashboardOwnerEmailConfig()` — `DASHBOARD_OWNER_EMAIL` + 신규 `DASHBOARD_ALLOWED_EMAILS`(추가 허용 목록, 쉼표 구분)를 병합. **소유자 변수가 비면 추가 목록만으로는 절대 열리지 않는다.** Sensitive 소유자 변수 값을 몰라도 계정을 추가할 수 있게 하려는 설계다.

@@ -64,7 +64,7 @@ export function FleetChartSection() {
             <CumulativeChart />
             <div style={{ marginTop: 16 }}>
               <TakeawayBox
-                situation={<>조태연(N/STAR) 일어획 34.3t으로 현어기 1위, 김효원(S/SPR) 27.5t 2위, 김정훈(MARI) 23.6t 3위입니다.</>}
+                situation={<>조태연(N/STAR) 일어획 34.3t으로 현어기 1위, 김효원(S/SPR) 27.5t 2위, 김정훈(MARI) 23.6t 3위입니다. N/STAR는 8/19 선장 교대(조태연→이진우)로 이후 실적은 신임 선장 몫입니다.</>}
                 actionPlan={<>선단 평균 20.2t 대비 하위 5척은 원인별로 수역·조업일수·선박 상태를 대조하십시오.</>}
                 source="선장 실적 누계 (현어기) · 2026-08-09"
               />
@@ -146,7 +146,7 @@ export function FleetDetailPanel() {
           </div>
           <div style={{ marginTop: 16 }}>
             <TakeawayBox
-              situation={<>조태연(N/STAR) 어기 46일·일어획 36.4t으로 1위, 김효원(S/SPR) 28.0t으로 2위입니다. 선단 평균은 20.4t입니다.</>}
+              situation={<>조태연(N/STAR) 어기 46일·일어획 36.4t으로 1위, 김효원(S/SPR) 28.0t으로 2위입니다. 선단 평균은 20.4t입니다. N/STAR는 8/19 선장 교대(조태연→이진우)가 보고되어 이후 누계는 신임 선장 기준으로 갈립니다.</>}
               actionPlan={<>MARI(김정훈)는 11,485t 누적으로 최대이나 일어획은 23.6t 3위입니다. 순위와 누계 물량을 분리해 평가하십시오.</>}
               source="선장 실적 누계 (현어기) · 2026-08-09"
             />
