@@ -1,3 +1,10 @@
+> 🔑 **2026-08-19 — 대시보드 허용 구글 계정 확장 (단일 소유자 → 목록)** [CC]:
+> - `lib/auth/owner-policy.ts` — `parseDashboardOwnerEmail`(단일) → `parseDashboardOwnerEmails`(쉼표 목록). 빈 항목은 무시하되 **형식이 틀린 항목이 하나라도 있으면 전체 잠금**(configuration_required 503, fail-closed).
+> - 신설 `dashboardOwnerEmailConfig()` — `DASHBOARD_OWNER_EMAIL` + 신규 `DASHBOARD_ALLOWED_EMAILS`(추가 허용 목록, 쉼표 구분)를 병합. **소유자 변수가 비면 추가 목록만으로는 절대 열리지 않는다.** Sensitive 소유자 변수 값을 몰라도 계정을 추가할 수 있게 하려는 설계다.
+> - 호출부 5곳(`app/auth/callback` · `lib/auth/proxy` · `lib/auth/request-auth` · `lib/fleet/request-auth` · `lib/mail/request-auth`) 을 헬퍼 경유로 통일. 구글 provider 강제·AAL2 등 나머지 정책 불변.
+> - 운영: Vercel Production 에 `DASHBOARD_ALLOWED_EMAILS=devjaemo@gmail.com` 등록. 계정 추가/제거는 이 변수만 고치고 재배포하면 된다 — 소유자 변수는 건드리지 않는다.
+> - 테스트: `__tests__/dashboard-owner-auth.test.ts` 에 쉼표 목록 승인·미등재 403·형식오류 전체잠금·소유자 부재 시 추가목록 무효 4계열 추가.
+
 > ⚓ **2026-08-19 — 선단 주간 실적 8월 둘째주(26.08.10~08.16) 갱신** [CC]:
 > - `lib/fleet-operations-2026-08-09.ts` → `-2026-08-16.ts` 로 이름을 옮기고 주간랭킹·월별·현어기누계 세 원자료를 교체. 참조 8개 파일 일괄 수정.
 > - **합계는 손으로 적지 않는다.** 이 모듈은 선박별 원자료에서 주간·월간·연간 9개 수치를 계산한다. 계산 결과가 보고서 이미지 KPI와 **9개 전부 일치**했다 — 옮겨 적기가 정확했다는 증거다.

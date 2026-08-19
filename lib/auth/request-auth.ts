@@ -3,6 +3,7 @@ import type { NextRequest } from 'next/server';
 import { createDashboardUserClient } from './server-supabase';
 import { isLocalDashboardE2ERequest } from './local-e2e-access';
 import {
+  dashboardOwnerEmailConfig,
   evaluateDashboardOwnerClaims,
   type OwnerAccessResult,
 } from './owner-policy';
@@ -25,7 +26,7 @@ export async function authorizeDashboardRequest(
     }
     return evaluateDashboardOwnerClaims(
       data.claims,
-      process.env.DASHBOARD_OWNER_EMAIL,
+      dashboardOwnerEmailConfig(),
     );
   } catch {
     return { ok: false, status: 503, code: 'configuration_required' };

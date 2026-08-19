@@ -1,6 +1,6 @@
 import 'server-only';
 import { createServerUserClient, getSupabaseRequestConfig } from '@/lib/auth/supabase-request';
-import { evaluateDashboardOwnerUser } from '@/lib/auth/owner-policy';
+import { dashboardOwnerEmailConfig, evaluateDashboardOwnerUser } from '@/lib/auth/owner-policy';
 import { evaluateMailAccess, type MailAccessResult } from './server-auth';
 
 export async function createMailUserClient() {
@@ -30,7 +30,7 @@ export async function authorizeMailRequest(requireAal2: boolean): Promise<MailAc
         providers: user.app_metadata?.providers,
       },
       identities: user.identities?.map((identity) => ({ provider: identity.provider })),
-    } : null, process.env.DASHBOARD_OWNER_EMAIL);
+    } : null, dashboardOwnerEmailConfig());
     if (!ownerAccess.ok) {
       return ownerAccess.status === 401
         ? { ok: false, status: 401, code: 'authentication_required' }
