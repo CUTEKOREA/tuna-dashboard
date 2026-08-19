@@ -81,7 +81,8 @@ describe('방콕 원어 시세 입도 전환', () => {
       { period: '2023', priceAvg: 1821, priceMin: 1450, priceMax: 2025 },
       { period: '2024', priceAvg: 1425, priceMin: 1250, priceMax: 1600 },
       { period: '2025', priceAvg: 1598, priceMin: 1480, priceMax: 1770 },
-      { period: '2026', priceAvg: 1796, priceMin: 1500, priceMax: 2050 },
+      // 2026-08-19 주간보고 반영으로 30주 평균 1796→1801 (진행 연도는 매주 갱신됨)
+      { period: '2026', priceAvg: 1801, priceMin: 1500, priceMax: 2050 },
     ]);
   });
 

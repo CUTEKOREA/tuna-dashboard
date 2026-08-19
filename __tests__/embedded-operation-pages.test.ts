@@ -10,11 +10,12 @@ describe('bangkok native dashboard', () => {
 
     expect(intake.bangkokWeeklyKpi).toEqual({
       period: '2020.05~2026.08',
-      weeks: 287,
+      // 2026-08-19 주간보고 반영 (매주 sync로 갱신되는 확정 KPI)
+      weeks: 288,
       latestPrice: 1960,
-      stockMt: 117400,
-      processDays: 44,
-      cumUnloadMt: 326005,
+      stockMt: 110200,
+      processDays: 43,
+      cumUnloadMt: 328245,
       highSaltUsd: 142000,
     });
 
@@ -141,8 +142,8 @@ describe('bangkok native dashboard', () => {
 
     expect(markup).toContain('방콕사무소');
     expect(markup).toContain('data-now="true"');
-    expect(markup).toContain('분석 기간 2020.05~2026.08 · 고유 287주');
-    for (const value of [1960, 117400, 326005, 44]) {
+    expect(markup).toContain('분석 기간 2020.05~2026.08 · 고유 288주');
+    for (const value of [1960, 110200, 328245, 43]) {
       expect(markup).toContain(`data-kpi-value="${value}"`);
     }
     for (const label of [
