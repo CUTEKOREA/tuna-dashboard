@@ -8,7 +8,7 @@
  *
  * 단계 렌더링은 `CommodityIndustryDashboard` 가 갖는다. 원래 이 파일과 참치가 각자 복사본을
  * 들고 있었고, 「세 번째 품목이 생기면 빼내라」는 메모가 붙어 있었다 — 새우·고등어·골뱅이가
- * 생겨 조건이 채워졌고, 탭 내비와 조종석 보조 지표를 세 곳에 따로 넣게 되면서 값이 확실해졌다.
+ * 생겨 조건이 채워졌고, 탭 내비를 세 곳에 따로 넣게 되면서 값이 확실해졌다.
  *
  * 큐레이션 위젯은 새 개념으로 두지 않고 **차트 슬롯으로 변환**한다. 위젯 figure 가 슬롯
  * figure 와 다른 점은 끝에 붙는 출처 한 줄뿐이라 `ChartSlot.sourceLine` 으로 흡수했다.
@@ -35,7 +35,6 @@ import {
 import { SQUID_ROLE } from '@/lib/squid-chart-colors';
 
 const SQUID_ACCENT = SQUID_ROLE.volume;
-import { SeriesStats } from './CockpitExtra';
 import {
   FalklandCompanyChart,
   FalklandSeasonChart,
@@ -45,41 +44,13 @@ import {
   SquidSizeBandChart,
 } from './SquidCharts';
 import {
-  companiesByMonth,
   falklandMeta,
-  panFor,
-  seasonTotals,
-  vesselsByMonth,
 } from '@/lib/data/falkland-squid-vessels';
-import { FalklandMonthProvider, useFalklandMonth } from './FalklandMonthFilter';
+import { FalklandMonthProvider } from './FalklandMonthFilter';
 
-function FalklandVesselStats() {
-  const { month } = useFalklandMonth();
-  const rows = vesselsByMonth(month).map((vessel) => ({
-    name: vessel.name,
-    pan: panFor(vessel, month),
-  }));
-  return <SeriesStats rows={rows} labelKey="name" valueKey="pan" unit="(판)" sum />;
-}
-
-function FalklandCompanyStats() {
-  const { month } = useFalklandMonth();
-  return (
-    <SeriesStats
-      rows={companiesByMonth(month)}
-      labelKey="name"
-      valueKey="totalPan"
-      unit="(판)"
-      sum
-    />
-  );
-}
 import {
   deepseaMeta,
   latestYear,
-  squidByArea,
-  squidBySizeBand,
-  squidGearSeries,
 } from '@/lib/data/deepsea-fishery';
 import {
   AreaRankChart,
@@ -132,7 +103,6 @@ const FLYING_SQUID_VS_PEAK_PCT = Number(
   ((CATCH.요약.살오징어세계최신 / CATCH.요약.살오징어세계정점) * 100).toFixed(1),
 );
 
-
 /**
  * 단계마다 이 페이지가 직접 그리는 차트. 선별 위젯과 달리 집계 JSON 을 원본으로 쓴다.
  * 제목은 서술이 「」로 지목하는 이름이므로 함부로 바꾸면 참조가 끊긴다(테스트가 잡는다).
@@ -175,7 +145,6 @@ const SQUID_BASE_SLOTS: Record<string, ChartSlot[]> = {
       telemetry: FK_SYNC,
       span: 'full' as const,
       render: () => <FalklandVesselChart />,
-      cockpitExtra: () => <FalklandVesselStats />,
       sourceLine: `출처: ${falklandMeta.출처}`,
     },
     {
@@ -184,7 +153,6 @@ const SQUID_BASE_SLOTS: Record<string, ChartSlot[]> = {
         '막대가 물량, 선이 보유 척수다. 진한 장미색이 선민수산·현원수산이다. 현원수산은 0판이라 막대가 없어도 칩과 축에 남아 있다.',
       telemetry: FK_SYNC,
       render: () => <FalklandCompanyChart />,
-      cockpitExtra: () => <FalklandCompanyStats />,
       sourceLine: `출처: ${falklandMeta.출처}`,
     },
     {
@@ -193,9 +161,6 @@ const SQUID_BASE_SLOTS: Record<string, ChartSlot[]> = {
         '12월에 시작해 이듬해 5월에 끝난다 — 달력 순이 아니다. 3~4월이 정점이고 5월에 급락하는 것은 어기 막바지에 배들이 빠지기 때문이다.',
       telemetry: FK_SYNC,
       render: () => <FalklandSeasonChart />,
-      cockpitExtra: () => (
-        <SeriesStats rows={seasonTotals()} labelKey="월" valueKey="물량" unit="(판)" sum />
-      ),
       sourceLine: `출처: ${falklandMeta.출처}`,
     },
   ],
@@ -207,9 +172,6 @@ const SQUID_BASE_SLOTS: Record<string, ChartSlot[]> = {
         '같은 갈래는 비슷한 색이다. 오징어는 보라·남색, 갑오징어는 장미, 두족류 미분류는 회색, 그 밖의 종은 호박이다. 이 셋을 더하지 않는다.',
       telemetry: CATCH_SYNC,
       render: () => <SpeciesMixChart data={CATCH} />,
-      cockpitExtra: () => (
-        <SeriesStats rows={CATCH.어종구성} labelKey="어종" valueKey="어획량" unit="(톤)" sum />
-      ),
     },
     {
       title: '무엇을 오징어라 부르는가 (톤)',
@@ -269,16 +231,6 @@ const SQUID_BASE_SLOTS: Record<string, ChartSlot[]> = {
       telemetry: CATCH_SYNC,
       render: () => <CountryRankChart data={CATCH} />,
       // 차트는 상위 12개국까지다. 15개 중 3개가 잘렸다는 사실은 그래프에 안 나온다.
-      cockpitExtra: () => (
-        <SeriesStats
-          rows={CATCH.국가순위}
-          labelKey="국가"
-          valueKey="어획량"
-          unit="(톤)"
-          shown={12}
-          sum
-        />
-      ),
     },
     {
       title: '오징어채낚기 업종 생산량 (톤)',
@@ -286,9 +238,6 @@ const SQUID_BASE_SLOTS: Record<string, ChartSlot[]> = {
         '해양수산부 원양어업통계조사 — 원양어업 허가 어선 전수조사다. 2021년 50,947톤에서 2023년 17,112톤까지 내려갔다가 2024년 39,942톤으로 돌아왔다. 원양만 담으므로 이 페이지의 FAO 기준 수치와 더할 수 없다.',
       telemetry: DW_SYNC,
       render: () => <SquidGearProductionChart />,
-      cockpitExtra: () => (
-        <SeriesStats rows={squidGearSeries()} labelKey="연도" valueKey="생산량" unit="(톤)" />
-      ),
       sourceLine: `출처: ${deepseaMeta.출처}`,
     },
     {
@@ -297,9 +246,6 @@ const SQUID_BASE_SLOTS: Record<string, ChartSlot[]> = {
         '분홍이 태평양 동남부 — SPRFMO 관할 수역이다. 해역이 계층이라 「대서양」 안에 「서남부」가 들어 있으므로 막대를 더하면 이중계상이 된다.',
       telemetry: DW_SYNC,
       render: () => <SquidAreaChart year={DW_YEAR} />,
-      cockpitExtra: () => (
-        <SeriesStats rows={squidByArea(DW_YEAR)} labelKey="해역" valueKey="생산량" unit="(톤)" />
-      ),
       sourceLine: `출처: ${deepseaMeta.출처}`,
     },
     {
@@ -308,9 +254,6 @@ const SQUID_BASE_SLOTS: Record<string, ChartSlot[]> = {
         '회사명은 공표되지 않지만 회사를 보유 척수로 묶은 축이라, 회사별 명부와 맞대면 어느 구간에 어느 회사가 들어가는지는 안다. 구간 안에서 회사별로 쪼개지지는 않는다 — 그건 추정이지 실적이 아니다.',
       telemetry: DW_SYNC,
       render: () => <SquidSizeBandChart year={DW_YEAR} />,
-      cockpitExtra: () => (
-        <SeriesStats rows={squidBySizeBand(DW_YEAR)} labelKey="구간" valueKey="생산량" unit="(톤)" sum />
-      ),
       sourceLine: `출처: ${deepseaMeta.출처}`,
     },
   ],
@@ -442,7 +385,6 @@ export const SQUID_CHART_SLOTS: Record<string, ChartSlot[]> = Object.fromEntries
     [...(SQUID_BASE_SLOTS[key] ?? []), ...widgetSlots(key)],
   ]),
 );
-
 
 const SPEC: CommoditySpec = {
   key: 'squid',

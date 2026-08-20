@@ -825,6 +825,26 @@
 > - **로컬 E2E 경계 확장**: atuna 라우트의 2차 방어(`authorizeDashboardRequest`)가 E2E 경계를 몰라 로컬 검증이 503 — `request?` 인자로 proxy.ts와 같은 판정 추가. 반증 리뷰 판정: Vercel 무조건 거부 + env 옵트인 + 32자 시크릿 4중 게이트라 **auth 약화 불성립**. 단 리버스 프록시 self-host에 E2E env를 두지 말 것(주석에 기록).
 > - SIT/TAK 동적화는 결정 ②(고정 라벨) 유지로 제외. P2 잔여: 신규 차트형(Treemap 등)은 적합 데이터 사례 나올 때.
 
+## 2026-08-20 — 조종석 모드 철거
+
+- 2026-08-17 스펙 `cockpit-mode-design` 으로 들어왔던 **전역 밀도 토글을 전부 걷어냈다**
+  (소유자 지시). 사이드바 토글 · `lib/cockpit-density.ts` · `ChartSlot.cockpitExtra` ·
+  전용 위젯 `CockpitExtra.tsx`(`CockpitOnly`·`SeriesStats`) · `globals.css` 의
+  `[data-density='cockpit']` 토큰과 `.cockpit-only`·`.cockpit-stats`.
+- 대시보드 5곳에서 슬롯 22개를 뺐다 — 오징어 8 · 고등어 4 · 새우 4 · 골뱅이 4 · 기업해부 2.
+  `scripts/remove_cockpit_mode.py` 로 일괄 처리했다(L-07).
+- **보조 지표는 항상 보이게 하지 않고 지웠다.** 「조종석 전용」으로 만든 것이라 상시 노출로
+  바꾸면 모든 페이지의 밀도가 반대로 올라간다. 요청은 제거였다.
+- 조종석 슬롯에서만 쓰던 인테이크 import 도 함께 정리했다 — 오징어의 `squidByArea` ·
+  `squidBySizeBand` · `squidGearSeries` · 포클랜드 월 필터 통계 헬퍼 2개, 고등어·새우·골뱅이의
+  `seriesUnits`·`seriesWindows`.
+- **부재를 테스트로 고정했다.** `__tests__/dashboard-registry.test.ts` 의 「조종석 모드 제거」
+  블록이 페이지·CSS·골격·대시보드 전 파일에 흔적이 없는지, 삭제한 모듈 두 개가 실제로
+  없는지 본다. 빈자리로 두면 다음에 조용히 되살아난다.
+- 스펙 문서는 지우지 않고 머리에 철거 사실을 적었다. **`SOUL.md` 의 「밀도 철학」은 그대로다** —
+  철거한 것은 전역 토글이지 「페이지마다 어느 밀도에 속하는지 선언한다」는 원칙이 아니다.
+- 삭제된 테스트 3개(`cockpit-exclusions` · `cockpit-extra` · `cockpit-mode-contract`).
+
 ## 2026-08-20 — SEIN VENUS 8/19 일일보고 반영, 앞선 반영 방식 정정
 
 - `/unloading` 화면의 정본은 `public/data/unloading/local_db.json` 이다.

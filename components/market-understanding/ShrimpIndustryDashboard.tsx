@@ -16,13 +16,12 @@ import { getShrimpCompanyResearch } from '@/lib/data/valuechain-companies';
 
 import { getShrimpIndustryData } from '@/lib/data/commodity-industry';
 import { SHRIMP_ACCENT } from '@/lib/shrimp-chart-colors';
-import { SeriesStats } from './CockpitExtra';
 import {
   argentinaMeta,
   argentinaRoutes,
   PROCESSOR_TAB_MATCH,
 } from '@/lib/data/shrimp-argentina';
-import { seriesRoles, seriesUnits, seriesWindows } from '@/lib/data/shrimp-country-series';
+import { seriesRoles } from '@/lib/data/shrimp-country-series';
 import {
   SHRIMP_BRIEFING_POINTS,
   SHRIMP_NARRATIVES,
@@ -50,7 +49,6 @@ const DATA = getShrimpIndustryData();
 const SYNC = { status: 'STATIC' as const, syncDate: `${DATA.요약.기준연도}년 확정` };
 
 const SHRIMP_RESEARCH = getShrimpCompanyResearch();
-
 
 const ARG_SYNC = { status: 'STATIC' as const, syncDate: '2026-08-12 조사' };
 
@@ -164,9 +162,6 @@ export const SHRIMP_CHART_SLOTS: Record<string, ChartSlot[]> = {
       caption: '장미색이 흰다리새우다. 1위 하나가 나머지 여덟을 합친 것보다 크다.',
       telemetry: SYNC,
       render: () => <ShrimpSpeciesChart data={DATA} />,
-      cockpitExtra: () => (
-        <SeriesStats rows={DATA.종구성} labelKey="종" valueKey="생산량" unit="(톤)" sum />
-      ),
     },
   ],
   s03: [
@@ -191,16 +186,6 @@ export const SHRIMP_CHART_SLOTS: Record<string, ChartSlot[]> = {
       telemetry: SYNC,
       render: () => <ShrimpCountryChart data={DATA} />,
       // 차트는 상위 12개국만 그린다. 몇 나라가 잘렸는지는 그래프만 봐서는 알 수 없다.
-      cockpitExtra: () => (
-        <SeriesStats
-          rows={DATA.국가별}
-          labelKey="국가"
-          valueKey="합계"
-          unit="(톤)"
-          shown={12}
-          sum
-        />
-      ),
     },
   ],
   s05: [
@@ -267,9 +252,6 @@ export const SHRIMP_CHART_SLOTS: Record<string, ChartSlot[]> = {
       telemetry: SERIES_SYNC,
       span: 'full',
       render: () => <ShrimpSeriesWindowsChart />,
-      cockpitExtra: () => (
-        <SeriesStats rows={seriesWindows} labelKey="국가" valueKey="원물" unit="(톤)" sum />
-      ),
     },
     {
       title: '수입 창구 단가 (달러/kg)',
@@ -277,14 +259,6 @@ export const SHRIMP_CHART_SLOTS: Record<string, ChartSlot[]> = {
         'HS 030617 신고액÷중량만 그린다. 에콰도르 5.11이 가장 낮고 태국 12.12가 가장 높다. 조제품 단가와 섞지 않는다.',
       telemetry: SERIES_SYNC,
       render: () => <ShrimpSeriesUnitChart />,
-      cockpitExtra: () => (
-        <SeriesStats
-          rows={seriesUnits}
-          labelKey="국가"
-          valueKey="단가"
-          unit="(달러/kg)"
-        />
-      ),
     },
   ],
 };

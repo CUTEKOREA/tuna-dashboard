@@ -1,4 +1,4 @@
-import { existsSync, readFileSync } from 'node:fs';
+import { existsSync, readFileSync, readdirSync } from 'node:fs';
 import { join } from 'node:path';
 import { describe, expect, it } from 'vitest';
 import sitemap from '../app/sitemap';
@@ -778,27 +778,37 @@ describe('dashboard registry', () => {
   });
 });
 
-describe('cockpit density mode (2026-08-17 스펙)', () => {
-  it('전역 토글이 data-density 계약과 토큰 블록으로 구현된다 (컴포넌트 분기 금지)', () => {
+describe('조종석 모드 제거 (2026-08-20 사용자 지시)', () => {
+  it('토글·토큰·전용 위젯이 어디에도 남아 있지 않다', () => {
+    // 2026-08-17 스펙 cockpit-mode-design 으로 들어왔던 전역 밀도 토글을 걷어냈다.
+    // 빈자리로 두면 다음에 조용히 되살아나므로 부재를 고정한다.
     const pageSource = readFileSync(join(process.cwd(), 'app/page.tsx'), 'utf8');
     const globalsSource = readFileSync(join(process.cwd(), 'app/globals.css'), 'utf8');
+    const skeletonSource = readFileSync(
+      join(process.cwd(), 'components/market-understanding/CommodityIndustryDashboard.tsx'),
+      'utf8',
+    );
 
-    // 토글 구현이 lib/cockpit-density 로 빠졌다. 페이지에 문자열이 남았는지 보는 대신
-    // «페이지가 그 계약을 쓰고 있는지»를 본다 — 키·속성 이름 자체는
-    // __tests__/cockpit-mode-contract.test.ts 가 리터럴로 못 박는다.
-    expect(pageSource).toContain("from '@/lib/cockpit-density'");
-    expect(pageSource).toContain('applyDensity(');
-    expect(pageSource).toContain('readStoredDensity');
-    expect(pageSource).toContain('조종석 모드');
-    // 키·속성 문자열을 페이지에 다시 적으면 두 곳이 갈린다.
-    expect(pageSource).not.toContain("localStorage.getItem('cockpit-mode')");
-    expect(globalsSource).toContain("[data-density='cockpit']");
-    // 적용 제외 — 파노피·코스모는 자체 밀도 복원
-    expect(globalsSource).toContain("[data-density='cockpit'] .cosmo-root");
-    // 히어로 정체성 유지 — cockpit 블록이 히어로 타이틀·KPI 크기 토큰을 건드리지 않는다
-    const cockpitBlock = globalsSource.slice(globalsSource.indexOf("[data-density='cockpit']"));
-    expect(cockpitBlock).not.toContain('--dsc-title-size');
-    expect(cockpitBlock).not.toContain('--dsc-kpi-size');
+    expect(pageSource).not.toContain('조종석');
+    expect(pageSource).not.toContain('cockpit');
+    expect(globalsSource).not.toContain('cockpit');
+    expect(globalsSource).not.toContain("data-density");
+    // 슬롯 계약에서도 빠졌다 — 남아 있으면 대시보드가 다시 붙일 수 있다.
+    expect(skeletonSource).not.toContain('cockpitExtra');
+  });
+
+  it('전용 모듈과 위젯 파일이 삭제됐다', () => {
+    expect(existsSync(join(process.cwd(), 'lib/cockpit-density.ts'))).toBe(false);
+    expect(existsSync(join(process.cwd(), 'components/market-understanding/CockpitExtra.tsx'))).toBe(false);
+  });
+
+  it('어느 대시보드도 조종석 슬롯을 넘기지 않는다', () => {
+    const dir = join(process.cwd(), 'components/market-understanding');
+    for (const file of readdirSync(dir).filter((f) => f.endsWith('.tsx'))) {
+      const source = readFileSync(join(dir, file), 'utf8');
+      expect(source, file).not.toContain('cockpitExtra');
+      expect(source, file).not.toContain('CockpitOnly');
+    }
   });
 });
 

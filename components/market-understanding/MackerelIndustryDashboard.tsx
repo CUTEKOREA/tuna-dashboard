@@ -16,14 +16,13 @@ import {
 import { getMackerelCompanyResearch } from '@/lib/data/valuechain-companies';
 
 import { getMackerelIndustryData } from '@/lib/data/commodity-industry';
-import { seriesRoles, seriesUnits, seriesWindows } from '@/lib/data/mackerel-country-series';
+import { seriesRoles } from '@/lib/data/mackerel-country-series';
 import { MACKEREL_ACCENT } from '@/lib/mackerel-chart-colors';
 import {
   MACKEREL_BRIEFING_POINTS,
   MACKEREL_NARRATIVES,
   MACKEREL_SOURCE_NOTES,
 } from '@/lib/mackerel-industry-content';
-import { SeriesStats } from './CockpitExtra';
 import styles from './TunaIndustryDashboard.module.css';
 import CommodityIndustryDashboard, {
   type ChartSlot,
@@ -118,9 +117,6 @@ export const MACKEREL_CHART_SLOTS: Record<string, ChartSlot[]> = {
         '막대는 물량, 선은 물량가중 평균단가다. 단가가 가장 높은 등급의 막대가 가장 낮다는 것이 이 그림의 요지다.',
       telemetry: WIPAN_SYNC,
       render: () => <MackerelGradeChart data={DATA} />,
-      cockpitExtra: () => (
-        <SeriesStats rows={DATA.위판등급.rows} labelKey="등급" valueKey="물량" unit="(톤)" sum />
-      ),
     },
   ],
   s04: [
@@ -138,9 +134,6 @@ export const MACKEREL_CHART_SLOTS: Record<string, ChartSlot[]> = {
       telemetry: IMPORT_SYNC,
       render: () => <MackerelOriginChart data={DATA} />,
       // 단가는 합계가 뜻이 없다. 물량만 더한다.
-      cockpitExtra: () => (
-        <SeriesStats rows={DATA.수입원산지.rows} labelKey="원산지" valueKey="수입량" unit="(톤)" sum />
-      ),
     },
   ],
   s05: [
@@ -158,9 +151,6 @@ export const MACKEREL_CHART_SLOTS: Record<string, ChartSlot[]> = {
         '남색이 030354 냉동, 호박색이 0304895000 필렛이다. 노르웨이만 강조한 이유는 두 창구가 같이 크기 때문이다. 아이슬란드 0은 어획이 없다는 뜻이 아니라 이 세번 추출에 이름이 없다는 뜻이다. 2026년 1~7월 제품중량이라 위 생산 통계·04단계 1~5월 표와 더할 수 없다.',
       telemetry: SERIES_SYNC,
       render: () => <MackerelSeriesWindowsChart />,
-      cockpitExtra: () => (
-        <SeriesStats rows={seriesWindows} labelKey="국가" valueKey="냉동" unit="(톤)" sum />
-      ),
     },
     {
       title: '수입 창구 단가 (달러/톤)',
@@ -168,9 +158,6 @@ export const MACKEREL_CHART_SLOTS: Record<string, ChartSlot[]> = {
         'HS 030354 신고액÷중량만 그린다. 영국 5,375이 가장 높고 일본 662이 가장 낮다. 아이슬란드 단가를 0으로 만들지 않는다. 필렛 단가와 섞지 않는다.',
       telemetry: SERIES_SYNC,
       render: () => <MackerelSeriesUnitChart />,
-      cockpitExtra: () => (
-        <SeriesStats rows={seriesUnits} labelKey="국가" valueKey="단가" unit="(달러/톤)" />
-      ),
     },
   ],
   x01: [
