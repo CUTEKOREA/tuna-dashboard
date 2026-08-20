@@ -177,7 +177,7 @@
   justify-content: space-between;
   background: rgba(0, 0, 0, 0.2);
   border-radius: 8px;
-  padding: 30px 40px;
+  padding: 32px 40px;
   margin-top: 16px;
   position: relative;
   overflow: hidden;
@@ -254,7 +254,7 @@
   font-weight: bold;
   color: #fbbf24;
   background: #0F172A;
-  padding: 4px 10px;
+  padding: 4px 12px;
   border-radius: 8px;
   border: 1px solid rgba(251, 191, 36, 0.3);
   white-space: nowrap;
@@ -279,7 +279,7 @@
   .tradePath {
     width: 3px;
     height: 40px;
-    margin: 10px 0;
+    margin: 12px 0;
     background: linear-gradient(180deg, rgba(56, 189, 248, 0.2), #38bdf8, rgba(52, 211, 153, 0.8));
   }
   .tradePath::after {

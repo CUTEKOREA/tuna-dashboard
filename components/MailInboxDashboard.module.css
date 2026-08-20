@@ -16,7 +16,7 @@
 .header h1 {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 12px;
   margin: 8px 0;
   font-size: clamp(24px, 3vw, 34px);
 }
@@ -39,7 +39,7 @@
 }
 
 .connectionBadge {
-  padding: 10px 14px;
+  padding: 12px 16px;
   border: 1px solid rgba(56, 189, 248, 0.28);
   border-radius: 999px;
   background: rgba(56, 189, 248, 0.08);
@@ -66,7 +66,7 @@
 
 .centerCard h1,
 .centerCard h2 {
-  margin: 14px 0 8px;
+  margin: 16px 0 8px;
 }
 
 .notice,
@@ -97,7 +97,7 @@
   justify-content: center;
   gap: 7px;
   min-height: 40px;
-  padding: 10px 15px;
+  padding: 12px 16px;
   border-radius: 8px;
   border: 1px solid transparent;
   font-weight: 700;
@@ -133,7 +133,7 @@
   width: min(260px, 90%);
   height: auto;
   margin: 20px auto;
-  padding: 10px;
+  padding: 12px;
   background: #fff;
   border-radius: 12px;
 }
@@ -141,7 +141,7 @@
 .verifyRow {
   display: flex;
   justify-content: center;
-  gap: 10px;
+  gap: 12px;
   margin-top: 20px;
 }
 
@@ -152,7 +152,7 @@
   background: var(--dsc-surface, rgba(5, 12, 28, 0.8));
   border: 1px solid var(--dsc-surface-border, var(--card-border));
   border-radius: 8px;
-  padding: 10px 12px;
+  padding: 12px 12px;
 }
 
 .verifyRow input {
@@ -163,7 +163,7 @@
 
 .sendPanel {
   padding: clamp(18px, 3vw, 28px);
-  margin-bottom: 18px;
+  margin-bottom: 20px;
 }
 
 .sendPanelHeader,
@@ -191,7 +191,7 @@
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 16px;
-  margin: 22px 0 16px;
+  margin: 24px 0 16px;
 }
 
 .sendFields label {
@@ -209,7 +209,7 @@
   background: var(--dsc-surface, rgba(5, 12, 28, 0.8));
   border: 1px solid var(--dsc-surface-border, var(--card-border));
   border-radius: 8px;
-  padding: 11px 12px;
+  padding: 12px 12px;
   font: inherit;
   caret-color: var(--accent-primary);
 }
@@ -252,7 +252,7 @@
   align-items: center;
   gap: 8px;
   margin-top: 16px;
-  padding: 10px 12px;
+  padding: 12px 12px;
   border: 1px solid rgba(56, 189, 248, 0.24);
   border-radius: 10px;
   color: var(--accent-primary);
@@ -261,7 +261,7 @@
 }
 
 .messageDetail {
-  margin-bottom: 18px;
+  margin-bottom: 20px;
   padding: 20px;
   border: 1px solid var(--card-border);
   border-radius: 16px;
@@ -306,7 +306,7 @@
 
 .messageBody {
   max-height: 520px;
-  margin: 14px 0 18px;
+  margin: 16px 0 20px;
   padding: 16px;
   overflow: auto;
   border: 1px solid rgba(148, 163, 184, 0.14);
@@ -352,14 +352,14 @@
   align-items: center;
   flex-wrap: wrap;
   gap: 12px;
-  padding: 14px 16px;
+  padding: 16px 16px;
   margin-bottom: 16px;
 }
 
 .unreadMetric {
   display: flex;
   align-items: baseline;
-  gap: 10px;
+  gap: 12px;
   margin-right: auto;
   color: var(--text-tertiary);
 }
@@ -392,7 +392,7 @@
 .mailRow {
   display: grid;
   grid-template-columns: 36px minmax(150px, 1.1fr) minmax(180px, 1.3fr) 150px minmax(220px, 1.8fr) 190px;
-  gap: 14px;
+  gap: 16px;
   align-items: center;
 }
 
@@ -415,7 +415,7 @@
 }
 
 .tableHeader {
-  padding: 12px 18px;
+  padding: 12px 20px;
   color: var(--text-tertiary);
   background: var(--table-th-bg);
   font-size: 11px;
@@ -424,7 +424,7 @@
 
 .mailRow {
   position: relative;
-  padding: 16px 18px;
+  padding: 16px 20px;
   border-top: 1px solid var(--card-border);
   font-size: 13px;
 }

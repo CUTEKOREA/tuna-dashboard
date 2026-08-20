@@ -445,13 +445,13 @@
   background: rgba(6, 182, 212, 0.05);
   border-left: 3px solid var(--color-info);
   border-radius: 0 var(--radius-md) var(--radius-md) 0;
-  padding: var(--space-3) var(--space-4);
+  padding: var(--space-4) var(--space-5);
 }
 .ds-takeaway-box {
   background: rgba(16, 185, 129, 0.06);
   border-left: 3px solid var(--color-success);
   border-radius: 0 var(--radius-md) var(--radius-md) 0;
-  padding: var(--space-3) var(--space-4);
+  padding: var(--space-4) var(--space-5);
 }
 
 /* ===== Section Divider ===== */

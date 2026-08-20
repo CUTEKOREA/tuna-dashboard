@@ -23,7 +23,7 @@
   display: grid;
   width: 54px;
   height: 54px;
-  margin-bottom: 22px;
+  margin-bottom: 24px;
   place-items: center;
   color: var(--accent-primary);
   border: 1px solid rgba(56, 189, 248, 0.28);
@@ -51,7 +51,7 @@
 }
 
 .description {
-  margin: 14px 0 24px;
+  margin: 16px 0 24px;
 }
 
 .form {
@@ -69,7 +69,7 @@
 .form input {
   width: 100%;
   min-height: 46px;
-  padding: 11px 13px;
+  padding: 12px 16px;
   color: var(--text-primary);
   border: 1px solid var(--card-border);
   border-radius: 10px;
@@ -104,8 +104,8 @@
 }
 
 .error {
-  padding: 12px 14px;
-  margin: 0 0 18px;
+  padding: 12px 16px;
+  margin: 0 0 20px;
   color: #fecaca;
   border: 1px solid rgba(239, 68, 68, 0.3);
   border-radius: 10px;
@@ -114,8 +114,8 @@
 }
 
 .boundary {
-  margin: 22px 0 0;
-  padding-top: 18px;
+  margin: 24px 0 0;
+  padding-top: 20px;
   border-top: 1px solid var(--card-border);
   font-size: 12px;
 }

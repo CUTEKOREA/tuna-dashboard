@@ -37,7 +37,7 @@
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  padding: 7px 14px;
+  padding: 7px 16px;
   border: 1px solid var(--dsc-surface-border);
   border-radius: 8px;
   background: var(--dsc-surface);
@@ -76,7 +76,7 @@
 .cardHead {
   display: flex;
   align-items: baseline;
-  gap: 10px;
+  gap: 12px;
 }
 
 .cardTitle {
@@ -95,7 +95,7 @@
 }
 
 .note {
-  margin: 6px 0 14px;
+  margin: 6px 0 16px;
   font-size: 0.82rem;
   color: var(--dsc-ink-muted);
 }
@@ -115,7 +115,7 @@
   flex-wrap: wrap;
   align-items: flex-start;
   gap: 12px;
-  margin-top: 14px;
+  margin-top: 16px;
 }
 
 .stars {
@@ -152,7 +152,7 @@
 .comment {
   flex: 1 1 320px;
   min-width: 0;
-  padding: 8px 10px;
+  padding: 8px 12px;
   border: 1px solid var(--dsc-surface-border);
   border-radius: 8px;
   background: var(--dsc-surface);

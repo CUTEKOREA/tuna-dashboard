@@ -1,6 +1,6 @@
 
 .container {
-  margin-top: 30px;
+  margin-top: 32px;
   background: rgba(0, 0, 0, 0.2);
   border: 1px solid rgba(20, 184, 166, 0.1);
   border-radius: 8px;
@@ -17,7 +17,7 @@
   color: #f8fafc;
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 12px;
 }
 
 .titleGradient {
@@ -36,7 +36,7 @@
 
 .totalBadge {
   margin-left: auto;
-  padding: 4px 10px;
+  padding: 4px 12px;
   background: rgba(20, 184, 166, 0.15);
   color: #2dd4bf;
   border-radius: 8px;
@@ -113,7 +113,7 @@
 
 .detailHeader {
   background: #0F172A;
-  padding: 15px;
+  padding: 16px;
   font-weight: 600;
   color: #e2e8f0;
   border-bottom: 1px solid rgba(140, 170, 255, 0.10);
@@ -150,7 +150,7 @@
 }
 
 .facilityItem {
-  padding: 15px;
+  padding: 16px;
   border-bottom: 1px solid rgba(140, 170, 255, 0.10);
   transition: background-color 0.2s, transform 0.15s;
 }
@@ -229,13 +229,13 @@
 .crossGrid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 10px;
+  gap: 12px;
 }
 
 .crossItem {
   background: rgba(0, 0, 0, 0.25);
   border-radius: 10px;
-  padding: 12px 14px;
+  padding: 12px 16px;
   border-left: 3px solid;
   transition: transform 0.15s;
 }
@@ -375,11 +375,11 @@
     max-height: 300px;
   }
   .detailHeader {
-    padding: 10px 12px;
+    padding: 12px 12px;
     font-size: 0.85rem;
   }
   .facilityItem {
-    padding: 10px 12px;
+    padding: 12px 12px;
   }
   .facName {
     font-size: 0.88rem;
@@ -403,7 +403,7 @@
     gap: 8px;
   }
   .crossItem {
-    padding: 10px 12px;
+    padding: 12px 12px;
   }
   .crossProvince {
     font-size: 0.82rem;

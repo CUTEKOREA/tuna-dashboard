@@ -22,13 +22,13 @@
 .heroContext {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 12px;
   min-width: 0;
   color: var(--dsc-ink-muted);
 }
 
 .tabs {
-  margin: 20px 0 14px;
+  margin: 20px 0 16px;
 }
 
 .panel {
@@ -144,13 +144,13 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 10px;
+  gap: 12px;
   color: var(--dsc-ink-muted);
   font-size: 0.76rem;
 }
 
 .featureMetric > strong {
-  margin-top: 22px;
+  margin-top: 24px;
   color: var(--dsc-ink);
   font-family: var(--dsc-font-mono);
   font-size: clamp(2.4rem, 6vw, 4.2rem);
@@ -160,13 +160,13 @@
 }
 
 .featureMetric > p {
-  margin: 9px 0 0;
+  margin: 12px 0 0;
   color: var(--dsc-ink-muted);
   font-size: 0.8rem;
 }
 
 .featureMetric > small {
-  margin-top: 18px;
+  margin-top: 20px;
   color: var(--gmts-warning);
   font-size: 0.78rem;
   font-weight: 650;
@@ -224,7 +224,7 @@
   display: flex;
   align-items: flex-start;
   gap: 12px;
-  padding: 14px 16px;
+  padding: 16px 16px;
   border: 1px solid rgba(217, 119, 6, 0.3);
   border-radius: 10px;
   background: var(--gmts-warning-soft);
@@ -268,7 +268,7 @@
   display: grid;
   gap: 4px;
   min-width: 0;
-  padding: 11px 12px;
+  padding: 12px 12px;
   border: 1px solid var(--dsc-surface-border);
   border-radius: 8px;
   background: var(--dsc-bg-deep);
@@ -293,7 +293,7 @@
 
 .canneryKpi {
   display: grid;
-  gap: 10px;
+  gap: 12px;
   min-width: 0;
   padding: 20px;
   border: 1px solid var(--dsc-surface-border);
@@ -319,7 +319,7 @@
 .chartTooltip {
   min-width: 210px;
   max-width: min(320px, calc(100vw - 32px));
-  padding: 11px 12px;
+  padding: 12px 12px;
   border: 1px solid #46546a;
   border-radius: 9px;
   background: #172033;
@@ -394,7 +394,7 @@
 }
 
 .dataTable caption {
-  padding: 10px 12px;
+  padding: 12px 12px;
   color: var(--dsc-ink-muted);
   font-size: 0.72rem;
   text-align: left;
@@ -513,7 +513,7 @@
 }
 
 .chipRow > span {
-  padding: 3px 9px;
+  padding: 3px 12px;
   border: 1px solid var(--dsc-surface-border);
   border-radius: 999px;
   background: var(--dsc-bg-deep);
@@ -530,7 +530,7 @@
 .revisionList article,
 .qualityWarnings article {
   min-width: 0;
-  padding: 12px 13px;
+  padding: 12px 16px;
   border: 1px solid rgba(217, 119, 6, 0.3);
   border-radius: 8px;
   background: var(--gmts-warning-soft);
@@ -665,7 +665,7 @@
 }
 
 .emptyState {
-  margin-top: 18px;
+  margin-top: 20px;
 }
 
 .emptyState h2 {
@@ -729,12 +729,12 @@
   .hero > div:first-of-type {
     flex-direction: column !important;
     align-items: stretch !important;
-    padding: 14px 16px !important;
+    padding: 16px 16px !important;
   }
 
   .hero > div:last-of-type {
     gap: 20px !important;
-    padding: 0 16px 22px !important;
+    padding: 0 16px 24px !important;
   }
 
   .sectionHeader,
@@ -782,7 +782,7 @@
   }
 
   .pipelineTable tbody {
-    gap: 10px;
+    gap: 12px;
   }
 
   .pipelineTable tr {
@@ -796,9 +796,9 @@
   .pipelineTable td {
     display: grid;
     grid-template-columns: minmax(100px, 0.7fr) minmax(0, 1fr);
-    gap: 10px;
+    gap: 12px;
     min-width: 0;
-    padding: 9px 10px;
+    padding: 12px 12px;
     white-space: normal;
     overflow-wrap: anywhere;
   }
@@ -823,13 +823,13 @@
 
 @media (max-width: 430px) {
   .panel {
-    padding: 10px;
+    padding: 12px;
   }
 
   .decisionSection,
   .qualitySection,
   .archiveSection {
-    padding: 14px;
+    padding: 16px;
   }
 
   .featureMetric > strong {

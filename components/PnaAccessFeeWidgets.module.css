@@ -12,7 +12,7 @@
   color: var(--text-main);
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 12px;
   margin: 0;
 }
 
@@ -175,7 +175,7 @@
 .unitCostList {
   display: flex;
   flex-direction: column;
-  gap: 14px;
+  gap: 16px;
 }
 
 .unitCostRow {
@@ -233,7 +233,7 @@
 
 .timelineItem {
   position: relative;
-  padding: 10px 0 10px 16px;
+  padding: 12px 0 12px 16px;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -292,7 +292,7 @@
 }
 
 .timelineBadge {
-  padding: 3px 10px;
+  padding: 3px 12px;
   border-radius: 12px;
   font-size: 0.7rem;
   font-weight: 700;
@@ -391,7 +391,7 @@
   background: var(--table-th-bg);
   color: var(--text-muted);
   font-weight: 700;
-  padding: 10px 8px;
+  padding: 12px 8px;
   border-bottom: 1px solid var(--panel-border);
   text-align: center;
   font-size: 0.72rem;
@@ -399,7 +399,7 @@
 }
 
 .supportTable td {
-  padding: 10px 8px;
+  padding: 12px 8px;
   border-bottom: 1px solid rgba(255,255,255,0.03);
   color: var(--text-main);
   text-align: center;

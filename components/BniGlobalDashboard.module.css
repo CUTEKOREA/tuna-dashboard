@@ -1,7 +1,7 @@
 .container {
   display: flex;
   flex-direction: column;
-  gap: 18px;
+  gap: 20px;
   width: 100%;
   padding-bottom: 40px;
 }
@@ -10,8 +10,8 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 18px;
-  padding: 22px;
+  gap: 20px;
+  padding: 24px;
   border: 1px solid rgba(148, 163, 184, 0.18);
   border-radius: 8px;
   background:
@@ -24,7 +24,7 @@
 .headerTitleGroup {
   display: flex;
   align-items: center;
-  gap: 14px;
+  gap: 16px;
   min-width: 0;
 }
 
@@ -91,7 +91,7 @@
   flex-wrap: wrap;
   justify-content: flex-end;
   min-width: 220px;
-  padding: 10px 12px;
+  padding: 12px 12px;
   border: 1px solid rgba(251, 191, 36, 0.22);
   border-radius: 8px;
   background: rgba(15, 23, 42, 0.72);
@@ -107,7 +107,7 @@
 .thesisBand {
   display: grid;
   grid-template-columns: minmax(0, 1fr) 290px;
-  gap: 18px;
+  gap: 20px;
   align-items: stretch;
   padding: 20px;
   border: 1px solid rgba(56, 189, 248, 0.20);
@@ -121,7 +121,7 @@
 }
 
 .thesisBand p {
-  margin: 10px 0 0;
+  margin: 12px 0 0;
   max-width: 980px;
 }
 
@@ -130,7 +130,7 @@
   flex-direction: column;
   justify-content: center;
   gap: 6px;
-  padding: 14px;
+  padding: 16px;
   border-radius: 8px;
   border: 1px solid rgba(16, 185, 129, 0.24);
   background: rgba(6, 78, 59, 0.20);
@@ -150,7 +150,7 @@
 .kpiGrid {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 14px;
+  gap: 16px;
 }
 
 .kpiCard,
@@ -209,7 +209,7 @@
 .panel,
 .insightLab,
 .nextBuild {
-  padding: 18px;
+  padding: 20px;
 }
 
 .sectionHeading {
@@ -226,7 +226,7 @@
 .commodityButtons {
   display: flex;
   flex-direction: column;
-  gap: 9px;
+  gap: 12px;
   margin-top: 16px;
 }
 
@@ -234,10 +234,10 @@
   display: grid;
   grid-template-columns: 18px minmax(0, 1fr) auto;
   align-items: center;
-  gap: 10px;
+  gap: 12px;
   width: 100%;
   min-height: 58px;
-  padding: 10px;
+  padding: 12px;
   border: 1px solid rgba(148, 163, 184, 0.14);
   border-radius: 8px;
   background: rgba(15, 23, 42, 0.50);
@@ -284,7 +284,7 @@
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
-  gap: 14px;
+  gap: 16px;
 }
 
 .riskBadge {
@@ -293,7 +293,7 @@
   justify-content: center;
   min-width: 48px;
   height: 26px;
-  padding: 0 9px;
+  padding: 0 12px;
   border-radius: 8px;
   font-size: 12px;
   font-weight: 800;
@@ -321,7 +321,7 @@
   display: grid;
   grid-template-columns: 100px minmax(0, 1fr);
   align-items: center;
-  gap: 14px;
+  gap: 16px;
   margin-top: 16px;
   padding-top: 16px;
   border-top: 1px solid rgba(148, 163, 184, 0.12);
@@ -367,7 +367,7 @@
 
 .metricBlock {
   min-height: 112px;
-  padding: 14px;
+  padding: 16px;
   background: rgba(2, 6, 23, 0.18);
   border-right: 1px solid rgba(148, 163, 184, 0.10);
 }
@@ -388,7 +388,7 @@
 .narrativeGrid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 14px;
+  gap: 16px;
   margin-top: 16px;
 }
 
@@ -420,14 +420,14 @@
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
-  gap: 14px;
+  gap: 16px;
 }
 
 .insightSummary {
   display: grid;
   gap: 4px;
   min-width: 150px;
-  padding: 10px 12px;
+  padding: 12px 12px;
   border: 1px solid rgba(251, 191, 36, 0.18);
   border-radius: 8px;
   background: rgba(251, 191, 36, 0.08);
@@ -457,7 +457,7 @@
   display: flex;
   min-height: 310px;
   flex-direction: column;
-  padding: 14px;
+  padding: 16px;
   border: 1px solid rgba(148, 163, 184, 0.13);
   border-radius: 8px;
   background:
@@ -472,7 +472,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 10px;
+  gap: 12px;
 }
 
 .insightTop span {
@@ -499,7 +499,7 @@
 }
 
 .insightCard p {
-  margin: 9px 0 0;
+  margin: 12px 0 0;
   color: rgba(226, 232, 240, 0.70);
   font-size: 13px;
   line-height: 1.6;
@@ -508,7 +508,7 @@
 .insightFacts {
   display: grid;
   gap: 8px;
-  margin: 13px 0 0;
+  margin: 16px 0 0;
 }
 
 .insightFacts div {
@@ -577,8 +577,8 @@
 .archiveList,
 .nextList {
   display: grid;
-  gap: 10px;
-  margin-top: 15px;
+  gap: 12px;
+  margin-top: 16px;
 }
 
 .riskList {
@@ -598,7 +598,7 @@
 .riskItem,
 .supplementaryItem,
 .coverageItem {
-  padding: 13px;
+  padding: 16px;
 }
 
 .riskItemTop {
@@ -616,14 +616,14 @@
 }
 
 .riskItem p {
-  margin: 9px 0 0;
+  margin: 12px 0 0;
 }
 
 .affectedList {
   display: flex;
   flex-wrap: wrap;
   gap: 6px;
-  margin: 10px 0;
+  margin: 12px 0;
 }
 
 .affectedList span {
@@ -646,7 +646,7 @@
   display: flex;
   align-items: baseline;
   justify-content: space-between;
-  gap: 10px;
+  gap: 12px;
 }
 
 .supplementaryItem strong {
@@ -665,9 +665,9 @@
 .connectionMatrix {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 10px;
-  margin-top: 14px;
-  padding-top: 14px;
+  gap: 12px;
+  margin-top: 16px;
+  padding-top: 16px;
   border-top: 1px solid rgba(148, 163, 184, 0.12);
 }
 
@@ -675,7 +675,7 @@
   display: flex;
   min-height: 154px;
   flex-direction: column;
-  gap: 9px;
+  gap: 12px;
   padding: 12px;
   border: 1px solid rgba(148, 163, 184, 0.13);
   border-radius: 8px;
@@ -730,7 +730,7 @@
   align-items: center;
   gap: 8px;
   color: var(--text-main);
-  margin-bottom: 9px;
+  margin-bottom: 12px;
 }
 
 .coverageItem span {
@@ -756,9 +756,9 @@
   display: grid;
   grid-template-columns: 16px minmax(0, 1fr) auto;
   align-items: center;
-  gap: 10px;
+  gap: 12px;
   min-height: 54px;
-  padding: 10px;
+  padding: 12px;
 }
 
 .archiveItem strong {
@@ -785,8 +785,8 @@
 .nextItem {
   display: flex;
   align-items: flex-start;
-  gap: 9px;
-  padding: 13px;
+  gap: 12px;
+  padding: 16px;
   color: rgba(226, 232, 240, 0.76);
   font-size: 13px;
   line-height: 1.55;
