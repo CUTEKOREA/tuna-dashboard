@@ -50,6 +50,8 @@ export const DASHBOARD_MENU_CONFIGS = [
   { key: 'mackerel-industry', title: '고등어', section: 'understanding', accent: 'cyan', sidebar: { icon: 'FishSymbol' } },
   { key: 'whelk-industry', title: '골뱅이', section: 'understanding', accent: 'amber', sidebar: { icon: 'Shell' } },
   { key: 'shrimp-industry', title: '새우', section: 'understanding', accent: 'teal', sidebar: { icon: 'Shrimp' } },
+  // 품목이 아니라 회사를 해부한다. 「시장 이해」 끝에 두는 이유는 품목을 먼저 읽고 와야 뜻이 통해서다.
+  { key: 'company-anatomy', title: '기업 해부', section: 'understanding', accent: 'amber', sidebar: { icon: 'Factory', suffix: 'Company' } },
   { key: 'pork', title: '돼지고기', section: 'livestock', accent: 'cyan', sidebar: { icon: 'Hexagon', suffix: 'Pork' } },
   { key: 'cross-intelligence', title: '통합 인텔리전스', section: 'strategy', accent: 'gold', sidebar: { icon: 'BarChart2', suffix: 'Cross' } },
   { key: 'purse-seiner-db', title: '선단 DB', section: 'strategy', accent: 'cyan', sidebar: { icon: 'Ship', suffix: 'FleetDb' } },
@@ -179,6 +181,7 @@ export const DASHBOARD_PANEL_ORDER = [
   'mackerel-industry',
   'whelk-industry',
   'shrimp-industry',
+  'company-anatomy',
 ] as const satisfies readonly ActiveMenu[];
 
 const SIDEBAR_SECTION_KEYS: Record<DashboardSection, readonly ActiveMenu[]> = {
@@ -189,6 +192,7 @@ const SIDEBAR_SECTION_KEYS: Record<DashboardSection, readonly ActiveMenu[]> = {
     'mackerel-industry',
     'whelk-industry',
     'shrimp-industry',
+    'company-anatomy',
   ],
   fishery: [],
   strategy: [

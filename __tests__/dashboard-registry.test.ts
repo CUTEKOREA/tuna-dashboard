@@ -733,7 +733,7 @@ describe('dashboard registry', () => {
 
     expect(SIDEBAR_SECTIONS.map((section) => section.items.map((item) => item.key))).toEqual([
       ['market', 'fleet', 'unloading', 'logistics', 'panofi', 'cosmo', 'bangkok-office', 'gmts', 'mail'],
-      ['tuna-industry', 'squid-industry', 'mackerel-industry', 'whelk-industry', 'shrimp-industry'],
+      ['tuna-industry', 'squid-industry', 'mackerel-industry', 'whelk-industry', 'shrimp-industry', 'company-anatomy'],
       // 2026-08-17 사용자 요청: 선단 DB 노출. cross-intelligence 는 종전대로 팔레트 전용
       ['purse-seiner-db'],
     ]);
@@ -769,6 +769,7 @@ describe('dashboard registry', () => {
       'mackerel-industry',
       'whelk-industry',
       'shrimp-industry',
+      'company-anatomy',
     ]);
     expect(new Set(DASHBOARD_PANEL_ORDER)).toEqual(
       new Set(VALID_MENUS),

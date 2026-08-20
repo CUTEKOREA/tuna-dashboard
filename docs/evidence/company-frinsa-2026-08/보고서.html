@@ -1,0 +1,1187 @@
+<title>프린사 해부</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@200;300;400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&family=Noto+Serif+KR:wght@300;400;500;600&family=Kaushan+Script&display=swap">
+
+<style>
+:root{
+  --paper:#F1F2F0; --paper-2:#E8EAE7; --card:#FBFBFA;
+  --ink:#1A1D21; --ink-2:#434A50; --ink-3:#6E767C;
+  --rule:#D3D7D4; --rule-2:#BEC4C0;
+  --steel:#3E5C6B; --steel-soft:#E1E9EC; --steel-deep:#22333C;
+  --pimenton:#A8442A;
+  --ok:#3D6B4A; --ok-bg:#E3EDE5;
+  --warn:#87671C; --warn-bg:#F1EBD9;
+  --sans:'IBM Plex Sans KR',system-ui,-apple-system,'Malgun Gothic',sans-serif;
+  --serif:'Noto Serif KR',Georgia,'Batang',serif;
+  --mono:'IBM Plex Mono',ui-monospace,SFMono-Regular,Menlo,monospace;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --paper:#13161A; --paper-2:#1B1F24; --card:#1A1E23;
+    --ink:#E7EAE7; --ink-2:#AFB6B9; --ink-3:#848C90;
+    --rule:#2B3136; --rule-2:#3C444A;
+    --steel:#82ABBB; --steel-soft:#1E2A31; --steel-deep:#0E1519;
+    --pimenton:#DB7A57;
+    --ok:#79B189; --ok-bg:#1A2921;
+    --warn:#C7A44E; --warn-bg:#2A2417;
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#13161A; --paper-2:#1B1F24; --card:#1A1E23;
+  --ink:#E7EAE7; --ink-2:#AFB6B9; --ink-3:#848C90;
+  --rule:#2B3136; --rule-2:#3C444A;
+  --steel:#82ABBB; --steel-soft:#1E2A31; --steel-deep:#0E1519;
+  --pimenton:#DB7A57;
+  --ok:#79B189; --ok-bg:#1A2921;
+  --warn:#C7A44E; --warn-bg:#2A2417;
+}
+
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);
+  font-family:var(--serif);font-size:16px;line-height:1.75;-webkit-font-smoothing:antialiased}
+img{max-width:100%;height:auto;display:block}
+.wrap{max-width:78rem;margin:0 auto;padding:0 1.5rem}
+
+/* ===== COVER ===== */
+.cover{position:relative;background:var(--steel-deep);color:#EDF1F2;overflow:hidden;
+  min-height:min(94vh,54rem);display:flex;flex-direction:column}
+.cover-bg{position:absolute;left:0;right:0;bottom:0;height:52%;background-size:cover;
+  background-position:center bottom;opacity:.16;filter:saturate(0) contrast(1.1)}
+.cover-bg::after{content:'';position:absolute;inset:0;
+  background:linear-gradient(to bottom,var(--steel-deep) 0%,rgba(22,38,46,0) 45%)}
+.cover-tint{position:absolute;inset:0;
+  background:linear-gradient(165deg,rgba(14,21,25,.72) 0%,rgba(14,21,25,.86) 55%,rgba(14,21,25,.96) 100%)}
+.cover-in{position:relative;max-width:78rem;margin:0 auto;padding:2.5rem 1.5rem 3rem;
+  width:100%;flex:1;display:flex;flex-direction:column}
+.cover-top{display:flex;justify-content:space-between;align-items:flex-start;gap:2rem;
+  padding-bottom:2rem;border-bottom:1px solid rgba(237,241,242,.22)}
+.cover-logo{width:clamp(7rem,14vw,10.5rem);filter:brightness(0) invert(1);opacity:.95}
+.cover-tag{font-family:var(--mono);font-size:.7rem;letter-spacing:.18em;text-transform:uppercase;
+  color:rgba(237,241,242,.6);text-align:right;line-height:2}
+.cover-mid{flex:1;display:flex;flex-direction:column;justify-content:center;padding:3rem 0 2rem}
+.cover-kick{font-family:var(--mono);font-size:.74rem;letter-spacing:.2em;text-transform:uppercase;
+  color:#C98A6E;margin-bottom:1.5rem}
+.cover h1{font-family:var(--sans);font-weight:200;font-size:clamp(3rem,10vw,7.5rem);line-height:.92;
+  letter-spacing:-.045em;margin:0 0 1.5rem;color:#F4F7F7}
+.cover h1 b{font-weight:600}
+.cover h1 .scr{font-family:'Kaushan Script','Snell Roundhand','Apple Chancery',cursive;
+  font-weight:400;font-size:1.02em;letter-spacing:.005em;padding-right:.06em;
+  display:inline-block;transform:translateY(.03em)}
+.cover-sub{font-family:var(--sans);font-weight:300;font-size:clamp(1rem,2.3vw,1.45rem);
+  line-height:1.55;color:rgba(237,241,242,.82);max-width:44rem;margin:0}
+.cover-shots{display:flex;gap:1.5rem;align-items:flex-end;margin-top:2.5rem;flex-wrap:wrap}
+.cover-shots img{height:clamp(6rem,14vw,10rem);width:auto;
+  filter:drop-shadow(0 18px 32px rgba(0,0,0,.55))}
+.cover-by{display:flex;justify-content:space-between;align-items:flex-end;gap:1.5rem;
+  padding:0 0 1.25rem;margin-bottom:1.25rem;border-bottom:1px solid rgba(237,241,242,.18)}
+.by-l{display:flex;align-items:baseline;gap:.95rem;padding-left:1rem;
+  border-left:3px solid #C98A6E}
+.by-k{font-family:var(--mono);font-size:.7rem;font-weight:600;letter-spacing:.2em;
+  text-transform:uppercase;color:#C98A6E}
+.by-v{font-family:var(--sans);font-weight:700;font-size:1.75rem;letter-spacing:.01em;
+  color:#FFFFFF}
+.by-r{font-family:var(--mono);font-size:.7rem;letter-spacing:.1em;color:rgba(237,241,242,.5)}
+.cover-facts{display:grid;grid-template-columns:repeat(auto-fit,minmax(8rem,1fr));
+  gap:1.75rem 2.5rem;padding-top:2rem;border-top:1px solid rgba(237,241,242,.22)}
+.cf .k{font-family:var(--mono);font-size:.66rem;letter-spacing:.12em;text-transform:uppercase;
+  color:rgba(237,241,242,.5);margin-bottom:.3rem}
+.cf .v{font-family:var(--sans);font-weight:500;font-size:1.5rem;letter-spacing:-.02em;color:#F4F7F7;
+  font-variant-numeric:tabular-nums;line-height:1.1}
+.cf .n{font-family:var(--sans);font-size:.72rem;color:rgba(237,241,242,.55);margin-top:.15rem}
+
+/* ===== LAYOUT ===== */
+.layout{display:grid;grid-template-columns:14rem minmax(0,1fr);gap:3.5rem;align-items:start;
+  padding-top:3.5rem}
+@media(max-width:64rem){.layout{grid-template-columns:1fr;gap:2rem}}
+nav{position:sticky;top:1.5rem;font-family:var(--sans);font-size:.82rem}
+@media(max-width:64rem){nav{position:static;border-bottom:1px solid var(--rule);padding-bottom:1.25rem}}
+nav .nt{font-size:.66rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--ink-3);margin-bottom:.75rem}
+nav ol{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:.05rem}
+@media(max-width:64rem){nav ol{flex-direction:row;flex-wrap:wrap;gap:.4rem 1rem}}
+nav a{display:flex;gap:.6rem;color:var(--ink-2);text-decoration:none;padding:.28rem 0}
+nav a:hover{color:var(--pimenton)}
+nav a:focus-visible{outline:2px solid var(--steel);outline-offset:2px}
+nav .n{font-family:var(--mono);font-size:.68rem;color:var(--ink-3);padding-top:.15rem}
+
+section{margin:0 0 4.5rem;scroll-margin-top:1.5rem}
+h2{font-family:var(--sans);font-weight:600;font-size:1.7rem;letter-spacing:-.022em;
+  margin:0 0 .4rem;padding-top:.45rem;border-top:2px solid var(--ink);text-wrap:balance}
+.h2n{font-family:var(--mono);font-size:.7rem;color:var(--steel);font-weight:500;
+  letter-spacing:.1em;display:block;margin-bottom:.9rem}
+h3{font-family:var(--sans);font-weight:600;font-size:1.06rem;margin:2.6rem 0 .7rem}
+h4{font-family:var(--sans);font-weight:600;font-size:.92rem;margin:1.8rem 0 .5rem;color:var(--ink-2)}
+p{margin:0 0 1.1rem;max-width:44rem}
+.lead{font-size:1.1rem;line-height:1.7;color:var(--ink-2);max-width:44rem}
+strong{font-weight:600;color:var(--ink)}
+.es{font-style:italic}
+code{font-family:var(--mono);font-size:.85em;background:var(--paper-2);padding:.1em .3em;
+  border-radius:2px;color:var(--ink-2);word-break:break-all}
+
+/* ===== BRAND CARDS ===== */
+.brands{display:grid;grid-template-columns:repeat(auto-fit,minmax(15rem,1fr));gap:1.25rem;
+  margin:0 0 2rem}
+.bc{border:1px solid var(--rule);background:var(--card);display:flex;flex-direction:column;
+  overflow:hidden}
+.bc-img{background:var(--paper-2);padding:1.5rem;display:flex;align-items:center;
+  justify-content:center;min-height:9.5rem}
+.bc-img img{max-height:7rem;width:auto}
+.bc-b{padding:1rem 1.15rem 1.25rem}
+.bc-n{font-family:var(--sans);font-weight:600;font-size:1rem;margin:0 0 .15rem}
+.bc-t{font-family:var(--mono);font-size:.66rem;letter-spacing:.08em;text-transform:uppercase;
+  color:var(--steel);margin-bottom:.5rem}
+.bc-d{font-family:var(--sans);font-size:.82rem;line-height:1.6;color:var(--ink-2);margin:0}
+.bc-p{font-family:var(--mono);font-size:.78rem;color:var(--pimenton);margin-top:.6rem;font-weight:500}
+
+/* ===== PRODUCT FIGURE ===== */
+figure{margin:0 0 1.8rem;border:1px solid var(--rule);background:var(--card)}
+figure .fi{background:var(--paper-2);padding:1.75rem;display:flex;justify-content:center}
+figure .fi img{max-height:16rem;width:auto}
+figcaption{padding:.85rem 1.1rem;font-family:var(--sans);font-size:.82rem;line-height:1.6;
+  color:var(--ink-2);border-top:1px solid var(--rule)}
+figcaption b{color:var(--ink)}
+.figrow{display:grid;grid-template-columns:repeat(auto-fit,minmax(13rem,1fr));gap:1.25rem;
+  margin:0 0 1.8rem}
+.figrow figure{margin:0}
+.figrow figure .fi{padding:1.25rem;min-height:11rem;align-items:center}
+.figrow figure .fi img{max-height:9rem}
+
+/* ===== TABLES ===== */
+.tw{overflow-x:auto;margin:0 0 1.6rem;border:1px solid var(--rule)}
+table{border-collapse:collapse;width:100%;font-family:var(--sans);font-size:.85rem;background:var(--card)}
+th{background:var(--paper-2);text-align:left;font-weight:600;font-size:.71rem;letter-spacing:.06em;
+  text-transform:uppercase;color:var(--ink-2);padding:.6rem .8rem;
+  border-bottom:1px solid var(--rule-2);white-space:nowrap}
+td{padding:.55rem .8rem;border-bottom:1px solid var(--rule);color:var(--ink-2);vertical-align:top}
+tr:last-child td{border-bottom:none}
+td.num,th.num{text-align:right;font-family:var(--mono);font-variant-numeric:tabular-nums;white-space:nowrap}
+td b{color:var(--ink);font-weight:600}
+tr.hl td{background:var(--steel-soft)}
+tr.dim td{color:var(--ink-3)}
+
+/* ===== CALLOUT / QUOTE ===== */
+.call{border:1px solid var(--rule-2);background:var(--card);padding:1.15rem 1.3rem;margin:0 0 1.6rem;
+  max-width:46rem}
+.call.hot{border-left:3px solid var(--pimenton)}
+.call.warn{border-left:3px solid var(--warn);background:var(--warn-bg)}
+.call .ct{font-family:var(--sans);font-weight:600;font-size:.82rem;margin:0 0 .5rem;color:var(--ink)}
+.call p{margin:0 0 .6rem;font-size:.89rem;line-height:1.7}
+.call p:last-child{margin-bottom:0}
+blockquote{margin:0 0 1.2rem;padding:.85rem 1.1rem;background:var(--paper-2);
+  border-left:3px solid var(--steel);max-width:46rem;font-size:.9rem;line-height:1.65;color:var(--ink-2)}
+blockquote .who{display:block;margin-top:.5rem;font-family:var(--mono);font-size:.69rem;color:var(--ink-3)}
+
+/* ===== MISC ===== */
+.metrics{display:grid;grid-template-columns:repeat(auto-fit,minmax(9.5rem,1fr));gap:1px;
+  background:var(--rule);border:1px solid var(--rule);margin:0 0 2.2rem}
+.metric{background:var(--card);padding:1.1rem 1.15rem}
+.metric .lab{font-family:var(--sans);font-size:.67rem;font-weight:500;letter-spacing:.08em;
+  text-transform:uppercase;color:var(--ink-3);margin-bottom:.35rem}
+.metric .val{font-family:var(--mono);font-size:1.4rem;font-weight:600;font-variant-numeric:tabular-nums;
+  letter-spacing:-.03em;line-height:1.1;color:var(--ink)}
+.metric .note{font-family:var(--sans);font-size:.71rem;color:var(--ink-3);margin-top:.2rem}
+.metric.hot .val{color:var(--pimenton)}
+.chip{display:inline-flex;font-family:var(--mono);font-size:.64rem;font-weight:600;letter-spacing:.05em;
+  padding:.1rem .4rem;border-radius:2px;vertical-align:.1em;white-space:nowrap}
+.c-src{background:var(--steel-soft);color:var(--steel)}
+.c-doc{background:var(--ok-bg);color:var(--ok)}
+.c-nd{background:var(--warn-bg);color:var(--warn)}
+.certrow{display:flex;gap:1.5rem;align-items:center;flex-wrap:wrap;padding:1rem 0}
+.certrow img{height:3rem;width:auto;opacity:.9}
+footer{border-top:2px solid var(--ink);margin-top:1rem;padding:1.75rem 0 4rem;
+  font-family:var(--sans);font-size:.79rem;color:var(--ink-3);line-height:1.7}
+footer p{max-width:52rem}
+@media(prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+</style>
+
+<!-- ================= COVER ================= -->
+<header class="cover">
+  <div class="cover-bg" style="background-image:url('')"></div>
+  <div class="cover-tint"></div>
+  <div class="cover-in">
+    <div class="cover-top">
+      <img class="cover-logo" src="" alt="Frinsa 로고">
+      <div class="cover-tag">
+        Frinsa del Noroeste, S.A.<br>
+        Ribeira · Galicia · España<br>
+        기업 · 제품 · 유통 프로필
+      </div>
+    </div>
+
+    <div class="cover-mid">
+      <p class="cover-kick">스페인 수산통조림 1위 · 세계 7위 참치 구매사</p>
+      <h1><span class="scr">Frinsa</span> <b>해부</b></h1>
+      <p class="cover-sub">유럽 대형 유통체인의 참치캔을 만드는 회사.
+        정작 캔에는 그 이름이 없다. 브랜드·제품·유통경로로 본 «자체브랜드의 왕».</p>
+      <div class="cover-shots">
+        <img src="" alt="Ribeira 참치캔 라인업">
+        <img src="" alt="Navajas al ajillo">
+        <img src="" alt="SOLO 기능성 라인">
+      </div>
+    </div>
+
+    <div class="cover-by">
+      <div class="by-l">
+        <span class="by-k">작성자</span>
+        <span class="by-v">이동건</span>
+      </div>
+      <div class="by-r">2026년 8월</div>
+    </div>
+
+    <div class="cover-facts">
+      <div class="cf"><div class="k">그룹 매출</div><div class="v">741 M€</div><div class="n">2024 · +4%</div></div>
+      <div class="cf"><div class="k">순이익</div><div class="v">39.1 M€</div><div class="n">갈리시아 3사 1위</div></div>
+      <div class="cf"><div class="k">참치 원어</div><div class="v">13.5만 t</div><div class="n">2024 구매량</div></div>
+      <div class="cf"><div class="k">브랜드</div><div class="v">15+PL</div><div class="n">스페인 6 · 포르투갈 9</div></div>
+      <div class="cf"><div class="k">창업</div><div class="v">1961</div><div class="n">가족 100% 보유</div></div>
+      <div class="cf"><div class="k">해외 매출</div><div class="v">57.6%</div><div class="n">이베리아 밖</div></div>
+    </div>
+  </div>
+</header>
+
+<div class="wrap">
+<div class="layout">
+
+<nav>
+  <div class="nt">목차</div>
+  <ol>
+    <li><a href="#s1"><span class="n">01</span> 회사 개요</a></li>
+    <li><a href="#s2"><span class="n">02</span> 브랜드 체계</a></li>
+    <li><a href="#s3"><span class="n">03</span> 제품 카탈로그</a></li>
+    <li><a href="#s4"><span class="n">04</span> OEM · 자체브랜드</a></li>
+    <li><a href="#s5"><span class="n">05</span> 유통경로</a></li>
+    <li><a href="#s6"><span class="n">06</span> 생산과 조달</a></li>
+    <li><a href="#s7"><span class="n">07</span> 재무와 그룹</a></li>
+    <li><a href="#s8"><span class="n">08</span> 경쟁 구도</a></li>
+    <li><a href="#s9"><span class="n">09</span> 한국 관점</a></li>
+  </ol>
+</nav>
+
+<main>
+<!-- ============ 01 ============ -->
+<section id="s1">
+  <h2><span class="h2n">01 / 회사 개요</span>이름을 팔지 않는 회사</h2>
+
+  <p class="lead">Frinsa del Noroeste는 스페인 갈리시아 Ribeira에 본사를 둔 수산통조림 제조사다.
+    2024년 그룹 매출 <strong>7억 4,100만 유로</strong>로 갈리시아 1위 Jealsa(7억 8,100만)를
+    4,000만 유로 차까지 따라붙었고, <strong>순이익 3,910만 유로는 갈리시아 3사 중 1위</strong>다.
+    그런데 소비자 인지도는 Calvo·Isabel에 못 미친다.</p>
+
+  <p>이유는 사업 구조에 있다. <strong>매출의 중심이 유통업체 자체브랜드(PL) 생산</strong>이기 때문이다.
+    소비자가 Carrefour·Lidl·Alcampo·DIA·El Corte Inglés 매대에서 집어드는 참치캔의 상당수가
+    이 회사 제품이지만, 캔에는 유통사 이름이 찍힌다. 스페인 언론이 붙인 별명이 그대로다 —
+    <strong>«el rey de la marca blanca»(자체브랜드의 왕)</strong>.</p>
+
+  <div class="tw"><table>
+    <thead><tr><th>항목</th><th>내용</th></tr></thead>
+    <tbody>
+      <tr><td>정식 상호</td><td><b>Frinsa del Noroeste, S.A.</b> — 2002년 이전 상호 Frigoríficos del Noroeste, S.A.</td></tr>
+      <tr><td>설립</td><td><b>1961년 9월 27일</b>, Ribeira. 산업용 냉동창고로 출발</td></tr>
+      <tr><td>CIF · 업종</td><td>A15010564 · CNAE 10.22 (수산통조림 제조) — 스페인 업종 매출 1위</td></tr>
+      <tr><td>본사·공장</td><td>Av. Ramiro Carregal Rey 29, Polígono Industrial de Xarás, 15969 Ribeira (A Coruña)</td></tr>
+      <tr><td>지배구조</td><td>가족 100% — 창업자 <b>Ramiro Carregal 64.10%</b> / 아들 <b>Jorge Carregal Varela 35.90%</b></td></tr>
+      <tr><td>경영 체제</td><td><b>이사회 없음.</b> 단독이사(administrador único) 1인 체제, 2017년 부자 승계</td></tr>
+      <tr><td>그룹 인원</td><td>2024년 기말 <b>1,222명</b> · 평균 1,263명 (연결 기준)</td></tr>
+      <tr><td>생산 거점</td><td>Ribeira(스페인) · Póvoa de Varzim(포르투갈, 지분 75%)</td></tr>
+    </tbody>
+  </table></div>
+
+  <p>본사 도로명이 창업자 이름(Avenida Ramiro Carregal Rey)이다. 창업자는 17세에 회계 사원으로
+    시작해 1950년대 포르투갈·벨기에에서 회사 넷을 세운 뒤 1961년 Ribeira에 냉동창고를 차렸다.
+    Bermeo 선단과 계약해 참치 냉동에 뛰어들었고, Las Palmas에 냉동공장을 세워 카나리아 제도에서
+    선원 1,200명·선박 60척 규모를 운용했다. <strong>처음부터 통조림 회사가 아니라 냉동 회사였다.</strong></p>
+
+  <div class="call hot">
+    <p class="ct">숫자를 읽을 때의 전제</p>
+    <p>이 회사 수치는 <strong>그룹 연결</strong>과 <strong>개별법인</strong> 두 계열이 함께 유통된다.
+      2024년 기준 그룹 연결 매출은 741 M€, 개별법인 매출은 625.9 M€로 1억 원 넘게 차이 난다.
+      <strong>어떤 숫자든 어느 기준인지 먼저 확인해야 한다.</strong> 이 보고서는 두 계열을 항상 분리해 표기한다.</p>
+  </div>
+</section>
+
+<!-- ============ 02 ============ -->
+<section id="s2">
+  <h2><span class="h2n">02 / 브랜드 체계</span>여섯 갈래, 그리고 포르투갈의 아홉</h2>
+
+  <p class="lead">자사 브랜드는 <strong>가격대가 아니라 «누구에게, 어느 나라에서 파는가»로 갈린다.</strong>
+    같은 공장에서 나온 참치가 브랜드를 바꿔 달고 스페인 마트, 독일 슈퍼, 영어권 수출 도매,
+    헬스장 진열대로 각각 흩어진다.</p>
+
+  <div class="brands">
+    <div class="bc">
+      <div class="bc-img" style="background:var(--card)"><img src="" alt="Frinsa La Conservera 로고"></div>
+      <div class="bc-b">
+        <div class="bc-t">Premium · DTC</div>
+        <p class="bc-n">Frinsa «La Conservera»</p>
+        <p class="bc-d">갈리시아 리아스산 조개류, 칸타브리아산 bonito·ventresca. 자사몰과 직영매장이 주 채널.</p>
+        <p class="bc-p">3.95 – 60.00 €/캔 · 스페인</p>
+      </div>
+    </div>
+    <div class="bc">
+      <div class="bc-img"><img src="" alt="Ribeira 브랜드"></div>
+      <div class="bc-b">
+        <div class="bc-t">Mass · HORECA</div>
+        <p class="bc-n">Ribeira</p>
+        <p class="bc-d">최광폭 라인. 3연팩부터 3 kg 업소용 캔까지 한 브랜드로 덮는다. 자사몰에는 없고 마트에만 있다.</p>
+        <p class="bc-p">11.72 – 24.94 €/kg · 유럽 전역</p>
+      </div>
+    </div>
+    <div class="bc">
+      <div class="bc-img" style="background:var(--card)"><img src="" alt="Seaside 로고" style="max-height:4rem"></div>
+      <div class="bc-b">
+        <div class="bc-t">Pole &amp; Line · IPNLF</div>
+        <p class="bc-n">Seaside</p>
+        <p class="bc-d">외줄낚시 어획 참치. 캔에 MSC 로고 없이 «Hand caught by pole and line. One by one.»만 쓴다.</p>
+        <p class="bc-p">3×80 g · 독일 유통 확인</p>
+      </div>
+    </div>
+    <div class="bc">
+      <div class="bc-img"><img src="" alt="The Nice Fisherman"></div>
+      <div class="bc-b">
+        <div class="bc-t">MSC · 수출</div>
+        <p class="bc-n">The Nice Fisherman</p>
+        <p class="bc-d">캔에 MSC 블루피시 라벨. 영문 단일 라벨 3×160 g — 영어권·수출 규격이다.</p>
+        <p class="bc-p">MSC-C-51214 · 소매 미검출</p>
+      </div>
+    </div>
+    <div class="bc">
+      <div class="bc-img" style="background:var(--card)"><img src="" alt="Private Label"></div>
+      <div class="bc-b">
+        <div class="bc-t">B2B · 위탁생산</div>
+        <p class="bc-n">Private Label</p>
+        <p class="bc-d">유럽 주요 유통체인 자체브랜드 생산. 회사가 5대 사업축 중 하나로 명시한다.</p>
+        <p class="bc-p">매출 중심축</p>
+      </div>
+    </div>
+    <div class="bc">
+      <div class="bc-img"><img src="" alt="SOLO 기능성 라인"></div>
+      <div class="bc-b">
+        <div class="bc-t">기능성 영양 · 2026 신규</div>
+        <p class="bc-n">SOLO</p>
+        <p class="bc-d">2026년 2월 론칭. Carrefour 독점 입점과 자사 D2C(frinsasolo.com)를 동시에 열었다.</p>
+        <p class="bc-p">1.90 – 7.50 € · 통조림 밖 카테고리</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="call hot">
+    <p class="ct">지속가능 브랜드 둘은 인증 체계가 서로 다르다</p>
+    <p>Seaside와 The Nice Fisherman은 «친환경»으로 묶이지만 <strong>내세우는 근거가 다르다.</strong>
+      Seaside는 IPNLF(국제 외줄낚시재단) 기준의 <strong>어법</strong>을 팔고 — 캔에 MSC 로고가 없다 —
+      The Nice Fisherman은 <strong>MSC 인증 어장</strong>을 판다. 어법 인증과 어장 인증은
+      요구하는 서류도 검증기관도 다르다.</p>
+    <p>Frinsa는 2018년 발리에서 인도네시아 해양수산부–IPNLF 협정에 서명한 14개 바이어 명단에 들어 있다
+      (Sainsbury's · Migros · Tri Marine 등과 함께). MSC 쪽은
+      <strong>2009년부터 17년째 CoC를 유지</strong>한다 — 인증번호 MSC-C-51214, Bureau Veritas 발급.</p>
+  </div>
+
+  <h3>포르투갈 — 브랜드가 셋이 아니라 아홉이다</h3>
+  <p>2019년 인수한 A Poveira는 브랜드 하나가 아니라 <strong>브랜드 포트폴리오</strong>였다.
+    핵심은 각 브랜드에 <strong>채널이 명시적으로 배정돼 있다</strong>는 점이다 —
+    같은 정어리를 근대유통·도매·수출·루소폰 시장에 각각 다른 이름으로 내보낸다.</p>
+  <div class="tw"><table>
+    <thead><tr><th>브랜드</th><th>포지션</th><th>배정된 채널 · 시장</th></tr></thead>
+    <tbody>
+      <tr class="hl"><td><b>Minerva</b> (1942)</td><td>플래그십 프리미엄. 수작업 전통 소구</td><td>D2C apoveira.pt · <b>직영 2매장</b>(포르투 볼량시장 · 공장매장) · <b>Continente 24 SKU</b> · Auchan · 스페인 자사몰</td></tr>
+      <tr><td>Minerva Limited Edition</td><td>한정판 12종. 수상 이력 소구</td><td>D2C · 직영매장 · 선물 수요</td></tr>
+      <tr><td>Minerva Bio</td><td>유기농 9종</td><td>D2C · 스페인 자사몰</td></tr>
+      <tr class="hl"><td><b>Poveira</b></td><td>«포르투갈 최초·유일 100% MSC 인증 원료» 주장</td><td>D2C · 직영매장 <span class="chip c-nd">근대유통 미상장</span> · 캔에 <b>MSC-C-51342</b> 인쇄</td></tr>
+      <tr><td><b>Alva</b></td><td>«포르투갈 선도 브랜드»</td><td><b>근대유통 전용</b> — Continente 판매 확인</td></tr>
+      <tr><td><b>Galeão</b></td><td>—</td><td>포르투갈은 <b>Continente 독점</b>, 국제적으로는 <b>미국</b> 판매</td></tr>
+      <tr><td><b>Ala-arriba</b></td><td>—</td><td>내수 + <b>도매 채널</b>(canal grossista)</td></tr>
+      <tr><td><b>Capitão Poveiro</b></td><td>—</td><td>내수 + <b>루소폰 시장</b>(포르투갈어권·교민 밀집국)</td></tr>
+      <tr><td>Taby · Les célèbres d'Henri IV</td><td>안초비 필레 / 프랑스어 네이밍 정어리</td><td>시장별 전용</td></tr>
+      <tr class="dim"><td><s>La Góndola</s> (1940, 마토지뉴스)</td><td>(구)프리미엄. 어기 최성기 원료만 사용</td><td><b>현재 비활성</b> — 브랜드 페이지 404, 상품 29종 전량 삭제. 현행 «Marcas» 메뉴는 3개뿐</td></tr>
+    </tbody>
+  </table></div>
+  <p style="font-size:.86rem;color:var(--ink-3)">A Poveira 시장 구성: <strong>포르투갈 60% · 오스트리아 10%</strong> ·
+    미국 · 폴란드 · 이탈리아 · 스페인. 포르투갈 60%를 Minerva·Alva·Galeão·Ala-arriba 넷이 채널별로 나눠 맡고,
+    미국은 Galeão가 전담한다. 공장 위생등록 <span class="es">PT C 249 1 P UE</span>, 라운도스 산업단지.</p>
+
+  <div class="call">
+    <p class="ct">브랜드가 겹치지 않도록 설계돼 있다</p>
+    <p><strong>Minerva가 스페인 시장의 저가 진입선 역할을 한다.</strong> 자사몰에서 Frinsa La Conservera는
+      3.95~60 €인데 Minerva는 2.50~5.90 €다. 포르투갈에서 인수한 브랜드가 스페인 DTC의
+      엔트리 가격대를 메우고 있다 — 인수는 품목 다각화(정어리·고등어·대구)만이 아니라
+      <strong>가격대와 채널의 다각화</strong>였다.</p>
+    <p>반대로 <strong>La Góndola의 소멸은 정리의 신호</strong>다. 프리미엄 슬롯이 Minerva Limited Edition과
+      겹치자 29개 SKU를 통째로 내렸다. 회사는 단종을 공지하지 않았다 —
+      브랜드 페이지만 조용히 404가 됐고 이미지 파일은 서버에 그대로 남아 있다.</p>
+  </div>
+</section>
+
+<!-- ============ 03 ============ -->
+<section id="s3">
+  <h2><span class="h2n">03 / 제품 카탈로그</span>실제로 무엇을 파는가</h2>
+
+  <p class="lead">한 공장에서 나온 참치가 <strong>킬로그램당 17 €에서 221 €까지</strong> 갈린다.
+    브랜드가 바뀌고 부위가 바뀌고 채널이 바뀌면서 13배가 벌어진다.
+    Frinsa의 제품 전략은 이 사다리를 어떻게 쌓았는지로 읽는 것이 가장 빠르다.</p>
+
+  <div class="metrics">
+    <div class="metric"><div class="lab">Ribeira 해바라기유</div><div class="val">17.6 €/kg</div><div class="note">3×52 g · Alcampo</div></div>
+    <div class="metric"><div class="lab">자사몰 황다랑어</div><div class="val">21.3 €/kg</div><div class="note">200 g 올리브유 · 자사몰</div></div>
+    <div class="metric"><div class="lab">날개다랑어 뱃살</div><div class="val">99.6 €/kg</div><div class="note">Ventresca 120 g</div></div>
+    <div class="metric hot"><div class="lab">참다랑어 뱃살</div><div class="val">220.8 €/kg</div><div class="note">한정판 120 g</div></div>
+  </div>
+
+  <h3>가격 사다리 — 같은 참치, 다섯 층</h3>
+  <p>부위·어종·브랜드·용기가 층을 만든다. <strong>어종보다 부위가 더 크게 값을 가른다</strong> —
+    같은 날개다랑어라도 몸살(29.75 €/kg)과 뱃살(99.58 €/kg)이 3.3배 차이다.</p>
+  <div class="tw"><table>
+    <thead><tr><th>층</th><th>대표 제품</th><th>규격</th><th class="num">소비자가</th><th class="num">€/kg</th><th>채널</th></tr></thead>
+    <tbody>
+      <tr class="hl"><td><b>5 · 한정판</b></td><td>Ventresca de atún rojo en aceite de oliva<br><span style="font-size:.82em;color:var(--ink-3)">참다랑어 뱃살 · <i>Thunnus thynnus</i></span></td><td>120 g</td><td class="num"><b>26.50 €</b></td><td class="num"><b>220.83</b></td><td>자사몰</td></tr>
+      <tr class="hl"><td><b>4 · 뱃살</b></td><td>Ventresca de Bonito del Norte (올리브유 / AOVE / 자연산)</td><td>120 g</td><td class="num">11.95 €</td><td class="num"><b>99.58</b></td><td>자사몰 · 전문점</td></tr>
+      <tr><td><b>3 · 백참치</b></td><td>Bonito del Norte 몸살 · <i>Thunnus alalunga</i></td><td>111 / 200 g<br>유리병 190–400 g</td><td class="num">3.95–12.50 €</td><td class="num">29.75–39.47</td><td>자사몰 · 전문점</td></tr>
+      <tr><td><b>2 · 황다랑어</b></td><td>Atún claro en aceite de oliva · <i>Thunnus albacares</i></td><td>200 g</td><td class="num">4.25 €</td><td class="num">21.25</td><td>자사몰</td></tr>
+      <tr><td><b>1 · 대중</b></td><td>Ribeira Atún claro (올리브유 / 해바라기유 / 자연산)</td><td>3×52 g</td><td class="num">2.74–2.96 €</td><td class="num">17.56–18.97</td><td><b>대형마트</b></td></tr>
+    </tbody>
+  </table></div>
+  <p style="font-size:.86rem;color:var(--ink-3)">1층은 대형마트 실판매가(Alcampo·DIA), 2–5층은 자사몰 정가.
+    <span class="chip c-doc">원본</span> frinsa.es · <span class="chip c-src">매체</span> 소매 진열가</p>
+
+  <div class="call hot">
+    <p class="ct">사다리 꼭대기는 참치가 아니다</p>
+    <p>자사몰 최고가는 참다랑어 뱃살(220.83 €/kg)이 아니라
+      <strong>갈리시아 리아스산 대합 — 85 g에 60.00 €, 705.88 €/kg</strong>이다.
+      새조개(405.41 €/kg)가 그 다음이다. 스페인 통조림 시장에서 값을 결정하는 것은
+      어종의 희소성이 아니라 <strong>산지 표기와 개수 등급</strong>이다 —
+      대합은 «6/8 uds»(캔당 6~8알), 새조개는 «20/30 uds»처럼 알 크기로 등급이 갈린다.</p>
+  </div>
+
+  <div class="figrow">
+    <figure>
+      <div class="fi"><img src="" alt="Ventresca de atún rojo 한정판 케이스"></div>
+      <figcaption><b>Ventresca de atún rojo</b> · 120 g · 26.50 €<br>
+        참다랑어 뱃살 수작업 통살. <span class="chip c-src">한정판</span></figcaption>
+    </figure>
+    <figure>
+      <div class="fi"><img src="" alt="Ventresca de Bonito del Norte AOVE"></div>
+      <figcaption><b>Ventresca de Bonito del Norte</b> · 120 g · 11.95 €<br>
+        날개다랑어 뱃살. 올리브유·AOVE·자연산 3종</figcaption>
+    </figure>
+    <figure>
+      <div class="fi"><img src="" alt="Bonito del Norte en tarro 190 g AOVE"></div>
+      <figcaption><b>Bonito del Norte en tarro</b> · 190/260/400 g<br>
+        6.95–13.25 € · <b>유리병</b> 규격이 캔보다 비싸다</figcaption>
+    </figure>
+  </div>
+
+  <h3>Frinsa La Conservera — 프리미엄 라인</h3>
+  <p>갈리시아 리아스산 패류와 칸타브리아산 백참치가 축이다. 자사몰 기준 수산통조림 39개 SKU가 유통 중이고,
+    <strong>가격 상단은 참치가 아니라 조개류</strong>가 차지한다.</p>
+  <div class="tw"><table>
+    <thead><tr><th>제품 (원어)</th><th>품목 · 규격</th><th class="num">가격</th><th class="num">€/kg</th></tr></thead>
+    <tbody>
+      <tr class="hl"><td><b>Almejas al natural</b> (Rías Gallegas)</td><td>대합 · 자연산 · 85 g · 6/8 uds</td><td class="num"><b>60.00 €</b></td><td class="num"><b>705.88</b></td></tr>
+      <tr class="hl"><td><b>Berberechos al natural</b> (Rías Gallegas)</td><td>새조개 · 111 g · 20/30 uds</td><td class="num"><b>45.00 €</b></td><td class="num"><b>405.41</b></td></tr>
+      <tr class="hl"><td><b>Ventresca de atún rojo en aceite de oliva</b></td><td>참다랑어 뱃살 · 120 g · 수작업 통살</td><td class="num"><b>26.50 €</b></td><td class="num"><b>220.83</b></td></tr>
+      <tr><td>Mejillones en escabeche</td><td>홍합 에스카베체 · 111 g · 6/8 uds</td><td class="num">14.95 €</td><td class="num">134.68</td></tr>
+      <tr><td>Ventresca de Bonito del Norte (올리브유 / AOVE / 자연산)</td><td>날개다랑어 뱃살 3종 · 120 g</td><td class="num">11.95 €</td><td class="num">99.58</td></tr>
+      <tr><td>Sardinillas de la Ría de Arousa (Xeito)</td><td>아로우사 리아산 소형 정어리 · 120 g</td><td class="num">11.95 €</td><td class="num">99.58</td></tr>
+      <tr><td>Cocochas de Rape (a la gallega / 올리브유)</td><td>아귀 볼살 2종 · 120 g · RR-125</td><td class="num">11.95 €</td><td class="num">99.58</td></tr>
+      <tr><td>Zamburiñas (al ajillo / salsa de vieira)</td><td>새가리비 2종 · 111 g</td><td class="num">11.50 €</td><td class="num">103.60</td></tr>
+      <tr><td>Navajas (al Ajillo / al natural)</td><td>맛조개 2종 · 111 g</td><td class="num">10.50–11.50 €</td><td class="num">94.59–103.60</td></tr>
+      <tr><td>Sardinas con Pimiento de Padrón</td><td>파드론 고추 정어리 · 120 g</td><td class="num">7.50 €</td><td class="num">62.50</td></tr>
+      <tr><td>Bonito del Norte en tarro (AOVE / 올리브유)</td><td>날개다랑어 <b>유리병</b> · 190/260/400 g</td><td class="num">6.95–13.25 €</td><td class="num">31.25–39.47</td></tr>
+      <tr><td>Pulpo en aceite de oliva</td><td>문어 · <i>Octopus vulgaris</i> · 111 g</td><td class="num">6.95 €</td><td class="num">62.61</td></tr>
+      <tr><td>Salmón en AOVE al humo</td><td>훈제 연어 · 120 g (고형 78 g)</td><td class="num">6.25 €</td><td class="num">39.06</td></tr>
+      <tr><td>Chipirones en su tinta</td><td>꼴뚜기 먹물 · 111 g</td><td class="num">6.25 €</td><td class="num">56.31</td></tr>
+      <tr><td>Bacalao al pil pil</td><td>대구 필필 · 120 g</td><td class="num">6.50 €</td><td class="num">58.56</td></tr>
+      <tr><td>Sardinillas en aceite de oliva</td><td>소형 정어리 · 120 g</td><td class="num">5.65 €</td><td class="num">47.08</td></tr>
+      <tr><td>Merluza del Cabo a la gallega</td><td>남방대구 · 120 g (고형 78 g)</td><td class="num">4.50 €</td><td class="num">37.50</td></tr>
+      <tr><td><b>Atún claro en aceite de oliva</b></td><td>황다랑어 올리브유 · 200 g</td><td class="num">4.25 €</td><td class="num">21.25</td></tr>
+      <tr><td>Bonito del Norte (올리브유 / escabeche)</td><td>날개다랑어 2종 · 111 / 200 g</td><td class="num">3.95–5.95 €</td><td class="num">29.75–35.59</td></tr>
+    </tbody>
+  </table></div>
+  <p style="font-size:.86rem;color:var(--ink-3)">캔 단위 외에 <b>caja 12/25입 박스</b> 단위 판매를 병행한다 —
+    예: Bonito escabeche 25캔 88.00 €. 업소·선물 수요를 자사몰에서 직접 받는 구조다.</p>
+
+  <h3>Ribeira — 대중·업소용 물량 라인</h3>
+  <p>Ribeira는 자사몰에서 팔지 않는다. 이 브랜드는 <strong>대형마트 매대와 업소용 대용량</strong>으로만 나간다.
+    회사가 스스로 붙인 규정이 그 이원 구조를 그대로 말한다 —
+    <span class="es">«tanto para el hogar como para el uso profesional en hostelería»</span>
+    (가정용과 업소용을 겸한다), <span class="es">«gran relación calidad precio»</span>(가성비).</p>
+  <div class="tw"><table>
+    <thead><tr><th>제품</th><th>규격</th><th class="num">진열가</th><th class="num">€/kg</th><th>확인 채널</th></tr></thead>
+    <tbody>
+      <tr class="hl"><td><b>Atún claro en aceite de oliva</b></td><td>3×52 g</td><td class="num">2.96 €</td><td class="num">18.97</td><td>Alcampo</td></tr>
+      <tr><td>Atún claro en aceite de girasol</td><td>3×52 g</td><td class="num">2.74 €</td><td class="num">17.56</td><td>Alcampo</td></tr>
+      <tr><td>Atún claro al natural</td><td>3×52 g</td><td class="num">2.80 €</td><td class="num">17.95</td><td>Alcampo</td></tr>
+      <tr><td>Atún claro en escabeche</td><td>3×52 g</td><td class="num">3.89 €</td><td class="num">24.94</td><td>Alcampo</td></tr>
+      <tr><td>Trozos de atún en aceite de girasol</td><td>3×52 g</td><td class="num">2.35 €</td><td class="num">45.19 <span style="font-size:.85em;color:var(--ink-3)">(고형 기준)</span></td><td>DIA</td></tr>
+      <tr><td>Ventresca de atún claro en aceite de oliva</td><td>111 g (고형 73 g)</td><td class="num">3.85 €</td><td class="num">34.68</td><td>DIA · Amazon.es</td></tr>
+      <tr class="hl"><td><b>Atún en aceite de oliva</b> <span class="chip c-src">업소용</span></td><td><b>750 g</b> (고형 650 g)</td><td class="num">8.79 €</td><td class="num">11.72</td><td>Carrefour · DIA</td></tr>
+      <tr><td>Bonito del Norte en escabeche en trozos</td><td>585 g</td><td class="num">15.09 €</td><td class="num">25.79</td><td>Carrefour</td></tr>
+      <tr><td>Bonito del Norte en aceite de girasol</td><td>60 g</td><td class="num">1.00 €</td><td class="num">16.67</td><td>DIA</td></tr>
+      <tr><td>Mejillones de Chile en escabeche 13/18 uds</td><td>111 g (고형 69 g)</td><td class="num">1.72 €</td><td class="num">24.93</td><td>Alcampo · Carrefour</td></tr>
+      <tr><td>Berberechos al natural 60/100</td><td>63 g 고형</td><td class="num">4.45–4.84 €</td><td class="num">70.63–76.83</td><td>Carrefour · Alcampo</td></tr>
+      <tr><td>Sardinillas en aceite de oliva / picante</td><td>60 g</td><td class="num">1.63–1.70 €</td><td class="num">27.17–28.33</td><td>Carrefour</td></tr>
+      <tr><td>Sardinas en aceite de oliva (글루텐프리)</td><td>85 g</td><td class="num">1.67 €</td><td class="num">19.65</td><td>Carrefour</td></tr>
+    </tbody>
+  </table></div>
+
+  <div class="figrow">
+    <figure>
+      <div class="fi"><img src="" alt="Ribeira Atún en aceite de girasol 1000 g"></div>
+      <figcaption><b>Atún en aceite de girasol</b> · <b>1,000 g</b><br>
+        업소용 대용량. 1,730 g·3,000 g 규격도 유럽에서 유통</figcaption>
+    </figure>
+    <figure>
+      <div class="fi"><img src="" alt="Ribeira Atún en aceite de oliva 6x80 g"></div>
+      <figcaption><b>Atún en aceite de oliva</b> · 6×80 g<br>
+        가정용 멀티팩. 이탈리아는 12×70 g 규격</figcaption>
+    </figure>
+    <figure>
+      <div class="fi"><img src="" alt="Ribeira Mejillones 3x80 g"></div>
+      <figcaption><b>Mejillones</b> · 3×80 g<br>
+        홍합 원료는 <b>칠레산</b>으로 표기된다</figcaption>
+    </figure>
+  </div>
+
+  <div class="call">
+    <p class="ct">업소용 규격이 이 브랜드의 진짜 몸통이다</p>
+    <p>Ribeira의 유럽 유통 규격에는 <strong>750 g · 1,000 g · 1,730 g · 3,000 g</strong>이 함께 있다.
+      750 g 캔은 킬로그램당 11.72 €로 <strong>자사몰 최저가 참치(21.25 €/kg)의 절반</strong>이다.
+      가정용 3연팩과 3 kg 캔이 한 브랜드 안에 있는 구성은 소매와 업소를 한 라인으로 덮겠다는 설계다.</p>
+    <p>규격 표기는 국가별로 갈린다 — 이탈리아 12×70 g, 프랑스 «Thon» 279 g·3,000 g,
+      루마니아·이탈리아 «Tuna Salad» 160 g. <strong>같은 브랜드를 시장마다 다시 짠다.</strong></p>
+  </div>
+
+  <h3>Minerva (포르투갈) — 엔트리 라인</h3>
+  <div class="tw"><table>
+    <thead><tr><th>제품 (원어)</th><th>품목 · 규격</th><th class="num">가격</th><th class="num">€/kg</th></tr></thead>
+    <tbody>
+      <tr><td>Bacalao en aceite de oliva y ajo <b>Bio</b></td><td>대구 · <i>Gadus morhua</i> · 유기농 · 120 g</td><td class="num">5.90 €</td><td class="num">49.17</td></tr>
+      <tr><td>Filetes de caballa con AOVE <b>Bio</b> / picantes con encurtidos</td><td>고등어 필레 2종 · 120–125 g</td><td class="num">3.50–3.60 €</td><td class="num">28.80–29.17</td></tr>
+      <tr><td>Sardinas en Aceite de Oliva Virgen Extra</td><td>정어리 EVOO · 125 g</td><td class="num">2.95 €</td><td class="num">24.58</td></tr>
+      <tr class="dim"><td>Sardinas — Bio / escabeche / tomate / limón / picante con encurtidos</td><td>정어리 5종 · 120–125 g</td><td class="num">2.50 €</td><td class="num">20.83</td></tr>
+      <tr class="dim"><td>Patés — atún <b>Bio</b> / sardina / sardina picante / caballa</td><td>파테 4종 · 75 g</td><td class="num">2.50 €</td><td class="num">33.33</td></tr>
+    </tbody>
+  </table></div>
+  <p style="font-size:.86rem;color:var(--ink-3)"><strong>유기농(Bio) 라인이 Minerva에 집중</strong>돼 있다.
+    파테와 정어리·대구 Bio가 전부 이 브랜드다. 스페인 자사 브랜드에는 유기농 라인이 없다.</p>
+
+  <h3>선물세트 — 단가를 끌어올리는 장치</h3>
+  <p>자사몰 최고가 상품군은 개별 캔이 아니라 <strong>선물세트</strong>다. 통조림에 갈리시아 알바리뇨 와인,
+    Nordés 베르무트, Bonilla a la Vista 감자칩, 갈리시아 과자를 조합한다.
+    이 3자 상품들은 «Despensa La Conservera» 태그로 별도 관리된다.</p>
+  <div class="tw"><table>
+    <thead><tr><th>세트</th><th>구성</th><th class="num">세트가</th><th class="num">단품 합</th><th class="num">묶음 프리미엄</th></tr></thead>
+    <tbody>
+      <tr class="hl"><td><b>Estuche VIP Noroeste</b></td><td>최상위 선물 케이스</td><td class="num"><b>152.00 €</b></td><td class="num">106.80 €</td><td class="num"><b>+42%</b></td></tr>
+      <tr><td>Caja Frinsa + albariño espumoso</td><td>통조림 + 스파클링 알바리뇨</td><td class="num">94.00 €</td><td class="num">76.90 €</td><td class="num">+22%</td></tr>
+      <tr><td>Caja de conservas del Cantábrico</td><td>칸타브리아 통조림 세트</td><td class="num">75.00 €</td><td class="num">61.60 €</td><td class="num">+22%</td></tr>
+      <tr><td>Caja Frinsa + Alma Atlántica</td><td>통조림 + 알바리뇨</td><td class="num">75.00 €</td><td class="num">56.35 €</td><td class="num">+33%</td></tr>
+      <tr><td>Estuche VIP Ons / Sálvora</td><td>섬 이름 시리즈</td><td class="num">62.00–68.00 €</td><td class="num">49.70–53.25 €</td><td class="num">+25%</td></tr>
+      <tr><td>Pack aperitivo (patés / Chupadedos / Gallegas de Nata)</td><td>안주 조합 3종</td><td class="num">40.00–47.00 €</td><td class="num">17.80–41.70 €</td><td class="num">+13~130%</td></tr>
+      <tr class="dim"><td>Crea tu propio pack · Tarjeta regalo</td><td>맞춤 구성 · 기프트카드</td><td class="num">5.50 €부터</td><td class="num">—</td><td class="num">—</td></tr>
+    </tbody>
+  </table></div>
+  <p style="font-size:.86rem;color:var(--ink-3)">묶음 프리미엄은 세트가를 구성품 단품가 합계와 대조해 산출했다.
+    <strong>포장과 조합만으로 22~42%를 더 받는다.</strong> 개별 캔을 더 비싸게 파는 대신
+    묶음으로 객단가를 올리는 쪽을 택한 것이다.</p>
+
+  <div class="figrow">
+    <figure>
+      <div class="fi"><img src="" alt="Estuche VIP Noroeste"></div>
+      <figcaption><b>Estuche VIP Noroeste</b> · 152.00 €<br>
+        자사몰 최고가 상품. 단품 합 대비 +42%</figcaption>
+    </figure>
+    <figure>
+      <div class="fi"><img src="" alt="Atún claro en aceite de oliva 200 g"></div>
+      <figcaption><b>Atún claro en aceite de oliva</b> · 200 g · 4.25 €<br>
+        자사몰 최저가 참치. 21.25 €/kg</figcaption>
+    </figure>
+    <figure>
+      <div class="fi"><img src="" alt="Paté de atún Bio Minerva"></div>
+      <figcaption><b>Paté de atún Bio</b> (Minerva) · 75 g · 2.50 €<br>
+        유기농 파테 4종은 전부 포르투갈 브랜드다</figcaption>
+    </figure>
+  </div>
+
+  <h3>SOLO — 통조림을 스포츠영양으로 다시 쓴 라인</h3>
+  <p>2026년 2월 론칭한 SOLO는 <strong>통조림이 아니라 «nutrición funcional»(기능성 영양)</strong>을 표방한다.
+    슬로건은 <span class="es">«Un instante, una lata, pura proteína»</span>(한 순간, 한 캔, 순수 단백질).
+    구성은 단백질 캔 6종 · 탄수 캔 4종 · 둘을 묶은 SOLUTION MIX · 에너지바로,
+    <strong>통조림 업계에서 보기 드물게 혈당지수(GI)를 전면에 표기</strong>한다.</p>
+  <div class="tw"><table>
+    <thead><tr><th>라인</th><th>구성</th><th>규격</th><th class="num">가격</th><th class="num">€/kg</th></tr></thead>
+    <tbody>
+      <tr class="hl"><td><b>PROTEIN</b></td><td>Atún claro · Bonito del Norte · Merluza · Pechuga de pollo · Pechuga de pavo</td><td>160 g (고형 112 g)</td><td class="num">3.50–3.90 €</td><td class="num">21.88–24.38</td></tr>
+      <tr class="hl"><td><b>PROTEIN</b></td><td>Salmón al natural</td><td>160 g</td><td class="num"><b>6.20 €</b></td><td class="num">38.75</td></tr>
+      <tr><td><b>CARBS</b></td><td>붉은퀴노아 · 흰퀴노아 · 곡물&amp;씨앗 믹스 · 야생&amp;바스마티 쌀</td><td>120 g</td><td class="num">1.90 €</td><td class="num">15.83</td></tr>
+      <tr><td><b>SOLUTION MIX</b></td><td>단백질 캔 + 탄수 캔 조합 5종</td><td>160 + 120 g</td><td class="num">4.95–7.50 €</td><td class="num">—</td></tr>
+      <tr><td>에너지바</td><td>사과·시나몬 / 바나나·카카오</td><td>50 g</td><td class="num">2.10 €</td><td class="num">42.00</td></tr>
+      <tr class="dim"><td>DISCOVER PACK</td><td>통조림 10캔 체험 세트</td><td>—</td><td class="num">37.60 €</td><td class="num">—</td></tr>
+      <tr class="dim"><td>머천다이즈</td><td>Chilly's 협업 푸드팟·커틀러리·보틀·캡</td><td>—</td><td class="num">15.00–33.00 €</td><td class="num">—</td></tr>
+    </tbody>
+  </table></div>
+
+  <div class="figrow">
+    <figure>
+      <div class="fi"><img src="" alt="SOLO Atún claro al natural 160 g"></div>
+      <figcaption><b>SOLO Atún claro al natural</b> · 160 g · 3.50 €<br>
+        물 + 소금만. 고형량 112 g</figcaption>
+    </figure>
+    <figure>
+      <div class="fi"><img src="" alt="SOLO Pechuga de pollo al natural"></div>
+      <figcaption><b>SOLO Pechuga de pollo</b> · 160 g · 3.50 €<br>
+        수산이 아닌 <b>가금류</b> 캔. 같은 공장에서 만든다</figcaption>
+    </figure>
+    <figure>
+      <div class="fi"><img src="" alt="SOLO SOLUTION MIX 닭 + 바스마티"></div>
+      <figcaption><b>SOLUTION MIX</b> · 160 + 120 g · 4.95 €<br>
+        단백질 캔 + 탄수 캔 묶음. GI 수치 병기</figcaption>
+    </figure>
+  </div>
+
+  <div class="call hot">
+    <p class="ct">신규 론칭이 아니라 10년 묵힌 라인의 대량소비 전환</p>
+    <p>SOLO는 2016년 «Ribeira Proteína Natural»(참치·연어·닭·칠면조 4종, 160 g, 물+소금)로 시작해
+      헬스장·영양보충제 매장에서 10년을 돌던 라인이다. 규격이 그대로 유지된 채
+      <strong>2026년에 어종 2종(메를루사·백참치)을 더해 6종으로 승격</strong>했다.
+      옛 제품 페이지 <span class="es">frinsa.es/conservas/conservas-proteina/</span>는
+      현재 <strong>frinsasolo.com 스토어로 301 리다이렉트</strong>된다 — 브랜드가 승계됐다는 뜻이다.</p>
+    <p>가격대는 통조림이 아니라 보충제 쪽에 붙였다. SOLO 참치 21.88 €/kg은
+      Mercadona 자체브랜드 참치 워터팩(8.75 €/kg)의 <strong>2.5배</strong>다.</p>
+  </div>
+
+  <h3>접힌 라인 — 무엇이 사라졌는가</h3>
+  <p>확장 시도가 전부 남아 있는 것은 아니다. 세 라인이 정리되거나 흡수됐다.</p>
+  <figure>
+    <div class="fi"><img src="" alt="Ribeira Proteína Natural 연어 캔 (2016)"></div>
+    <figcaption><b>Ribeira Proteína Natural — Salmón al natural</b> · 160 g · 2016년 라인.
+      규격과 내용물(물+소금)이 그대로 SOLO로 넘어갔고, 브랜드 이름만 바뀌었다.</figcaption>
+  </figure>
+  <div class="tw"><table>
+    <thead><tr><th>라인</th><th>기간</th><th>현재 상태</th><th>근거</th></tr></thead>
+    <tbody>
+      <tr class="hl"><td><b>Fiisk</b><br><span style="font-size:.85em;color:var(--ink-3)">완두단백 식물성 참치 대체품 6종</span></td><td>2024-03 →</td><td><b>사실상 소멸</b><br><span class="chip c-nd">단종 미발표</span></td><td>자사몰 검색 0건 · 카테고리 사이트맵 부재 · 전용 도메인 미등록 · 2024년 2건 이후 언론 노출 정지</td></tr>
+      <tr><td><b>Ribeira Proteína Natural</b><br><span style="font-size:.85em;color:var(--ink-3)">고단백 4종, 헬스장 채널</span></td><td>2016-05 → 2026</td><td><b>SOLO로 흡수</b></td><td>제품·서베이 페이지가 frinsasolo.com으로 301 리다이렉트. 2025-04 Salón Gourmets에서 «con la marca Solo»로 공식 개명</td></tr>
+      <tr><td><b>Hacendado 닭고기 통조림</b><br><span style="font-size:.85em;color:var(--ink-3)">Mercadona 최초의 육류 통조림</span></td><td>2022-01 →</td><td><b>온라인 카탈로그에서 사라짐</b><br><span class="chip c-nd">회사 언급 없음</span></td><td>Mercadona 상품 인덱스·수산통조림 카테고리 31품목 전수에 없음. 유사명 제품은 다른 공급사(냉장 델리)</td></tr>
+    </tbody>
+  </table></div>
+  <div class="call warn">
+    <p class="ct">Fiisk의 실패와 SOLO의 성공은 같은 슬롯을 두고 교대했다</p>
+    <p>2024년 3월 식물성 대체품으로 «건강·혁신» 슬롯을 노렸다가, 같은 해 9월 비건 수요가 꺾이자
+      2026년 2월 <strong>동물성 고단백으로 방향을 뒤집었다</strong>. 두 라인은 회사 안에서
+      같은 혁신 계보로 서술된다 — Alimarket은 Fiisk를
+      <span class="es">«tras el desarrollo de Proteína Natural»</span>(프로테이나 나투랄 개발 후속)로 규정했다.</p>
+    <p>다만 <strong>Mercadona 닭고기 라인은 1,000만 € 설비투자가 걸려 있다.</strong> 그 설비가
+      지금 SOLO의 닭·칠면조 캔을 찍고 있는지, 다른 PL 고객에게 돌려졌는지는 회사가 밝히지 않는다.
+      BRC·IFS 인증 범위에 <span class="es">«canned chicken and turkey»</span>가 유지되고 있으므로
+      <strong>가금류 생산 자체는 계속된다.</strong></p>
+  </div>
+</section>
+
+<!-- ============ 04 ============ -->
+<section id="s4">
+  <h2><span class="h2n">04 / OEM · 자체브랜드</span>매출의 중심축</h2>
+
+  <p class="lead">회사는 자신을 <span class="es">«유럽 주요 유통체인 자체브랜드의 공급자»</span>로
+    규정한다. 이 표현은 2019~2024년 비재무정보보고서 6개 연차 전부에 동일하게 등장한다.</p>
+
+  <div class="tw"><table>
+    <thead><tr><th>확인 수준</th><th>내용</th></tr></thead>
+    <tbody>
+      <tr class="hl"><td><span class="chip c-doc">정량</span></td><td>2013년 시점 스페인 PB 수산통조림 시장 <b>금액 65% · 물량 72.7%</b> 점유 (Alimarket)</td></tr>
+      <tr><td><span class="chip c-src">거래처</span></td><td><b>El Corte Inglés · Carrefour · Alcampo · Lidl · DIA</b> — 2013년과 2021~22년 두 시점에서 동일 조합 확인</td></tr>
+      <tr><td><span class="chip c-src">상세</span></td><td>Alcampo는 <b>Auchan 브랜드 참치캔 전 종류</b>를 이 회사가 생산</td></tr>
+      <tr><td><span class="chip c-src">포르투갈</span></td><td>A Poveira 경유 <b>Jerónimo Martins</b>(Pingo Doce·Recheio) 및 Sonae 공급</td></tr>
+      <tr><td><span class="chip c-src">Mercadona</span></td><td>참치는 Conservas Escurís가 공급. <b>Frinsa는 2022년 닭고기 통조림으로 진입</b>(1,000만 € 투자) — 다만 그 제품은 현재 Mercadona 온라인 카탈로그에서 확인되지 않는다</td></tr>
+      <tr class="dim"><td><span class="chip c-nd">비공시</span></td><td><b>PL이 전사 매출의 몇 %인지는 공개하지 않는다.</b> 비재무정보보고서 296쪽 전체에 <code>MDD</code>·<code>marca blanca</code>·<code>marca de distribución</code> 표기가 없다</td></tr>
+    </tbody>
+  </table></div>
+
+  <div class="call">
+    <p class="ct">인증서가 유통 계약을 설명한다</p>
+    <p>BRC·IFS Food 인증 범위에 <span class="es">«canned chicken and turkey / aves de corral»</span>이
+      들어 있다. 참치 회사가 가금류 인증을 갖고 있는 출발점은 <strong>2022년 Mercadona 닭고기 통조림 계약</strong>이고,
+      1,000만 유로 설비투자와 짝을 이룬다. 그 제품이 Mercadona 매대에서 보이지 않는 지금도
+      <strong>가금류 인증은 유지된다</strong> — 같은 설비가 SOLO의 닭·칠면조 캔을 찍고 있다.</p>
+    <p>같은 인증서에 <span class="es">«The outsourced shelling and cooking of mussels»</span>(홍합 외주
+      탈각·조리)와 <span class="es">«Cereal Salads (quinoa, rice)»</span>도 있다.
+      <strong>인증 범위가 이 회사의 실제 사업 범위를 가장 정확히 보여준다.</strong></p>
+  </div>
+
+  <h3>PL 공급관계를 확인하는 실무 방법</h3>
+  <p>스페인 식품에는 <strong>RGSEAA 위생등록번호</strong>가 표기된다. 제품 뒷면 성분표 옆의
+    «Reg. San.» 번호를 보면 실제 제조사를 역추적할 수 있다.</p>
+  <div class="tw"><table>
+    <thead><tr><th>Frinsa 위생등록번호</th><th>출처</th></tr></thead>
+    <tbody>
+      <tr class="hl"><td><code>12.06648/C</code> · <code>40.070781/PO</code> · <code>26.12659/C</code></td><td>IFS Food 인증서 기재분</td></tr>
+    </tbody>
+  </table></div>
+  <p style="font-size:.86rem;color:var(--ink-3)">유통사 자체브랜드 참치캔에서 이 번호가 확인되면
+    공급관계가 확정된다. 온라인 상세페이지의 성분표 이미지로도 추적 가능하다.</p>
+</section>
+
+<!-- ============ 05 ============ -->
+<section id="s5">
+  <h2><span class="h2n">05 / 유통경로</span>매출의 6할이 이베리아 밖</h2>
+
+  <div class="metrics">
+    <div class="metric"><div class="lab">스페인+포르투갈</div><div class="val">314 M€</div><div class="note">2024 · 전년 321에서 감소</div></div>
+    <div class="metric hot"><div class="lab">유럽 나머지</div><div class="val">320.4 M€</div><div class="note">최대 시장 · 증가</div></div>
+    <div class="metric"><div class="lab">그 외 국가</div><div class="val">106 M€</div><div class="note">중동·아시아·미주 · 증가</div></div>
+    <div class="metric"><div class="lab">이베리아 밖 비중</div><div class="val">57.6%</div><div class="note">2024</div></div>
+  </div>
+
+  <p class="lead">이 회사를 «갈리시아 지역 기업»으로 읽으면 실체를 놓친다.
+    <strong>2024년 매출의 57.6%가 이베리아 밖에서 나왔고, 이베리아는 줄고 국제시장만 늘었다.</strong></p>
+
+  <h3>채널 구조</h3>
+  <div class="tw"><table>
+    <thead><tr><th>채널</th><th>내용</th><th>브랜드</th></tr></thead>
+    <tbody>
+      <tr class="hl"><td><b>유통체인 PL</b></td><td>유럽 주요 체인 자체브랜드 위탁생산 — 매출 중심축</td><td>Private Label</td></tr>
+      <tr><td>대형마트 자사브랜드</td><td>Alcampo · Carrefour · DIA 매대에서 실판매 확인</td><td>Ribeira</td></tr>
+      <tr><td>산업 채널 (Industrial)</td><td>B2B 벌크·반가공</td><td>—</td></tr>
+      <tr><td>HORECA</td><td>750 g · 1 kg · 1.73 kg · 3 kg 대용량 캔</td><td>Ribeira</td></tr>
+      <tr><td>수출 도매 · 리테일러 제안</td><td>영문 라벨 3×160 g 규격. 소매 DB에 잡히지 않는다</td><td>The Nice Fisherman</td></tr>
+      <tr><td>이커머스 (자사몰)</td><td>frinsa.es — 익일 배송, <b>WhatsApp 주문</b>, 로열티 «Frinsa+»(Blue/Gold)</td><td>La Conservera · Minerva</td></tr>
+      <tr><td>이커머스 (브랜드 D2C)</td><td><b>frinsasolo.com</b> · <b>apoveira.pt</b> — 브랜드별 독립 몰</td><td>SOLO · Minerva · Poveira</td></tr>
+      <tr><td>3자 전문몰</td><td>Jamonarium 9 SKU · Amazon.es — 12캔 박스 단위 병매</td><td>La Conservera</td></tr>
+      <tr><td>직영 소매</td><td>스페인·프랑스 <b>6곳</b> + 포르투갈 <b>2곳</b>(볼량시장 · 공장매장)</td><td>La Conservera · Minerva</td></tr>
+    </tbody>
+  </table></div>
+  <p style="font-size:.86rem;color:var(--ink-3)">채널별 매출 비중은 공시하지 않는다.
+    비재무정보보고서는 채널을 정성 열거만 한다.</p>
+
+  <h3>브랜드가 채널을 나눈다 — 실측 배치도</h3>
+  <p>브랜드와 채널의 대응은 우연이 아니다. <strong>어느 브랜드가 어느 매대에 있고 어느 매대에 없는지</strong>가
+    일관된 규칙을 그린다.</p>
+  <div class="tw"><table>
+    <thead><tr><th>브랜드</th><th>자사몰</th><th>스페인 마트</th><th>해외 소매</th><th>업소·도매</th><th>라벨 언어</th></tr></thead>
+    <tbody>
+      <tr><td><b>La Conservera</b></td><td>✅ 39 SKU</td><td>—</td><td>Jamonarium 등 전문몰</td><td>caja 12/25입</td><td>스페인어</td></tr>
+      <tr><td><b>Ribeira</b></td><td><b>✗ 0건</b></td><td>✅ Alcampo·Carrefour·DIA</td><td>프랑스·이탈리아·루마니아 규격 별도</td><td>✅ 최대 3 kg</td><td>현지어</td></tr>
+      <tr><td><b>Seaside</b></td><td>✗ 0건</td><td>✗</td><td>✅ <b>독일</b></td><td>3×80 g 슈퍼 규격</td><td><b>영어</b></td></tr>
+      <tr><td><b>The Nice Fisherman</b></td><td>✗ 0건</td><td>✗</td><td><b>어느 소매 DB에도 없음</b></td><td>3×160 g 수출 규격</td><td><b>영어</b></td></tr>
+      <tr><td><b>SOLO</b></td><td>frinsasolo.com</td><td>✅ <b>Carrefour 독점</b></td><td>2026–27 확장 예고</td><td>—</td><td>스페인어·영어</td></tr>
+      <tr><td><b>Minerva</b></td><td>✅ 양쪽 몰</td><td>frinsa.es 경유</td><td>✅ <b>Continente 24 SKU</b>·Auchan</td><td>직영 2매장</td><td>포르투갈어</td></tr>
+      <tr class="dim"><td>Alva · Galeão · Ala-arriba · Capitão Poveiro</td><td>—</td><td>—</td><td>Continente(전용) · <b>미국</b> · 루소폰</td><td>도매 전담</td><td>포르투갈어</td></tr>
+    </tbody>
+  </table></div>
+
+  <div class="call hot">
+    <p class="ct">브랜드 하나는 소비자를 만나지 않는다</p>
+    <p><strong>The Nice Fisherman은 어느 소매 데이터베이스에도 등장하지 않는다.</strong>
+      스페인 자사몰 0건, 영국 가격비교 DB 0건, Open Food Facts 0건, 아마존 0건.
+      그런데 캔 사진에는 MSC 블루피시 라벨이 또렷하고 규격은 3×160 g — 영어권 소매 표준이다.</p>
+    <p>소비자 흔적 없이 완성된 패키지만 존재한다는 것은, 이 브랜드가
+      <strong>매대에 놓이는 상품이 아니라 유통사에게 내미는 제안서</strong>라는 뜻으로 읽힌다.
+      «MSC 인증 참치를 이 디자인으로 공급할 수 있다»를 보여주는 견본에 가깝다.
+      Frinsa UK(Bracknell)와 두바이·싱가포르 무역법인이 그 창구다.</p>
+  </div>
+
+  <h3>직영 소매 — 확장 후 후퇴</h3>
+  <div class="tw"><table>
+    <thead><tr><th>시점</th><th>내용</th></tr></thead>
+    <tbody>
+      <tr><td>2016-01</td><td>빌바오·발렌시아·무르시아 3곳 동시 개장</td></tr>
+      <tr><td>2020-09</td><td>산티아고 데 콤포스텔라 O Toural — 12번째 매장</td></tr>
+      <tr><td>2020-12</td><td><b>파리 Saint-Germain-en-Laye</b> 첫 해외 매장 (프랑스 판매법인 등록주소와 동일)</td></tr>
+      <tr><td>2021-01</td><td>A Coruña 이전·재개장 — 포르투갈 브랜드 Minerva·Góndola 취급 개시</td></tr>
+      <tr><td>2023-08</td><td>미슐랭 셰프 <b>Pepe Solla</b> 협업, 산센쇼 팝업</td></tr>
+      <tr class="hl"><td><b>2026-06</b></td><td><b>8개월 만에 5곳 폐점 → 스페인·프랑스 합쳐 6곳으로 축소</b></td></tr>
+    </tbody>
+  </table></div>
+  <p>2026년에 <strong>직영 소매는 절반 이하로 줄이면서 신규 브랜드 SOLO는 Carrefour 독점 입점과
+    자사 D2C를 동시에 열었다.</strong> 자체 매장으로 프리미엄을 파는 전략에서
+    대형 유통과 온라인 직판으로 방향을 튼 것으로 읽힌다. 소매 후퇴 자체는 B2B·PL 중심 체질과도 부합한다.
+    영문 사이트는 아직 «We have 12 stores»로 남아 있다.</p>
+  <p style="font-size:.86rem;color:var(--ink-3)">포르투갈 쪽은 반대 방향이다 —
+    A Poveira는 포르투 볼량시장 매장(«Minerva Bar» 시음 + 30분 Click&amp;Collect)과 공장매장 2곳을 유지한다.
+    스페인에서 접은 «브랜드 매장» 모델이 포르투갈에서는 관광·선물 수요와 맞물려 남아 있다.</p>
+
+  <div class="call">
+    <p class="ct">PL 공급사가 같은 유통사 매대에 자기 브랜드를 넣었다</p>
+    <p>Frinsa는 이미 Carrefour의 PL 공급사다. 그 상태에서 <strong>SOLO를 Carrefour 독점 NB로 입점</strong>시켰다.
+      한편 Mercadona 쪽은 자체브랜드(Hacendado) 공급으로만 붙어 있다 —
+      <strong>유통사마다 관계의 성격을 다르게 가져가는 이중 트랙</strong>이다.</p>
+    <p>이 구도에서 협상력이 어디로 기우는지는 분명하지 않다. PL 물량이 인질이 될 수도 있고,
+      반대로 «우리 없이는 매대가 빈다»는 지렛대가 될 수도 있다. 회사는 채널별 매출을 공개하지 않으므로
+      바깥에서는 판정할 수 없다.</p>
+  </div>
+
+  <h3>해외 판매망</h3>
+  <div class="tw"><table>
+    <thead><tr><th>국가</th><th>법인</th><th>등기번호</th><th class="num">2024 세전이익</th></tr></thead>
+    <tbody>
+      <tr class="hl"><td><b>싱가포르</b></td><td>Frinsa Singapore Pte. Ltd. — <b>참치 구매본부</b></td><td>2015-08-18 설립</td><td class="num"><b>5,012,317 €</b></td></tr>
+      <tr><td>이탈리아</td><td>Frinsa Italia S.R.L. (Reggio Emilia)</td><td>2015년경</td><td class="num">1,668,674 €</td></tr>
+      <tr><td>영국</td><td>Frinsa UK Limited (Bracknell)</td><td>Companies House 09468957</td><td class="num">991,440 €</td></tr>
+      <tr><td>독일</td><td>Frinsa Deutschland GmbH (Düsseldorf)</td><td>HRB 74917</td><td class="num">397,868 €</td></tr>
+      <tr><td>프랑스</td><td>Frinsa France SARL (Saint-Germain-en-Laye)</td><td>SIREN 810437913</td><td class="num">91,837 €</td></tr>
+      <tr><td>루마니아</td><td>Frinsa East Europe S.R.L. (Bucharest)</td><td>—</td><td class="num">9,729 €</td></tr>
+      <tr><td>폴란드</td><td>Frinsa Polska Sp. z o.o. (<b>Kraków</b>)</td><td>KRS 0000805768</td><td class="num">4,185 €</td></tr>
+      <tr><td>UAE</td><td>Kibu Trading LLC(두바이) + <b>아부다비 지점</b>(2024 신설)</td><td>—</td><td class="num">17,853 €</td></tr>
+      <tr><td colspan="3">마드리드 상업사무소 · <span class="chip c-nd">Frinsa USA는 2023년 청산</span></td><td class="num" style="color:var(--warn)">(7,431,323 €)</td></tr>
+    </tbody>
+  </table></div>
+  <p style="font-size:.86rem;color:var(--ink-3)">법인망과 브랜드 배치가 맞물린다 —
+    독일 법인이 있는 곳에 Seaside가 있고, 영국·두바이·싱가포르 축에 영문 라벨 The Nice Fisherman이 걸린다.
+    <strong>판매법인은 브랜드를 실어 나르는 통로다.</strong></p>
+
+  <div class="call hot">
+    <p class="ct">판매법인이 아니라 구매본부가 두 번째로 돈을 번다</p>
+    <p>싱가포르 법인의 세전이익은 <strong>2019년 247만 € → 2024년 501만 €로 2배</strong>가 됐다.
+      포르투갈(577만 €) 다음이고 이탈리아(167만 €)의 3배다. 이 법인은 판매가 아니라
+      <strong>그룹 참치 구매본부(central de compras)</strong>다.</p>
+    <p>회사는 그 이유를 이렇게 적는다 —
+      <span class="es">«estando el epicentro del mundo del atún en el sudeste asiático»</span>
+      (참치 세계의 진앙이 동남아에 있으므로).</p>
+  </div>
+
+  <p><strong>B2B 전시</strong>: Conxemar(비고), Gulfood 2024(두바이, ICEX 스페인관에서
+    Frinsa·Minerva·Ribeira 전시), Salón Gourmets, Seafood Expo Global 참가 이력이 확인된다.</p>
+</section>
+
+<!-- ============ 06 ============ -->
+<section id="s6">
+  <h2><span class="h2n">06 / 생산과 조달</span>선단 없이 세계 7위로 사들인다</h2>
+
+  <div class="figrow" style="grid-template-columns:1.4fr 1fr">
+    <figure>
+      <div class="fi" style="padding:0"><img src="" alt="Frinsa Ribeira 공장" style="max-height:none;width:100%"></div>
+      <figcaption><b>Ribeira 본사·주력공장</b> — Polígono Industrial de Xarás.
+        2019년까지 그룹의 유일한 생산기지였다.</figcaption>
+    </figure>
+    <figure>
+      <div class="fi"><img src="" alt="Ribeira 브랜드 제품군"></div>
+      <figcaption><b>Ribeira</b> 라인업 — 참치·홍합·꼬막·오징어까지 최광폭 구성</figcaption>
+    </figure>
+  </div>
+
+  <h3>원료 투입 실적</h3>
+  <div class="tw"><table>
+    <thead><tr><th>구분</th><th class="num">2024 구매량</th></tr></thead>
+    <tbody>
+      <tr><td>참치(Túnidos) — 스페인 법인</td><td class="num">105,559 t</td></tr>
+      <tr><td>참치 — 포르투갈 법인</td><td class="num">29,730 t</td></tr>
+      <tr class="hl"><td><b>그룹 참치 원어 합계</b></td><td class="num"><b>135,289 t</b></td></tr>
+      <tr class="hl"><td><b>그룹 수산물 전체</b> (참치+패류+어류+두족류)</td><td class="num"><b>144,696 t</b></td></tr>
+      <tr class="dim"><td>2019~2023 범위</td><td class="num">68,279 ~ 106,046 t</td></tr>
+    </tbody>
+  </table></div>
+
+  <div class="call warn">
+    <p class="ct">널리 인용되는 «연 15만 톤»은 정확한 표현이 아니다</p>
+    <p>회사 원문은 <span class="es">«procesando anualmente más de <b>180 mil</b> toneladas brutas,
+      facturando más de <b>150 mil</b> toneladas brutas»</span>다 —
+      <strong>처리 18만 톤 / 판매 15만 톤으로 별개 수치</strong>인데 이를 «15만 톤 처리»로 뭉쳐
+      인용하는 경우가 많다.</p>
+    <p>실제 구매 기록으로는 <strong>2024년 참치 13.5만 톤 · 수산물 전체 14.5만 톤</strong>이고,
+      2019~2023년은 6.8~10.6만 톤이다. «18만 톤 총중량» 산정 근거는 공개돼 있지 않다.</p>
+  </div>
+
+  <h3>조달 구조 — 선단 소유가 아니라 대량 구매</h3>
+  <p>두 근거가 서로를 뒷받침한다. 스페인 대형 선망선단 협회 <strong>OPAGAC 회원이 아니고</strong>,
+    회사 공시상 <strong>«선박 직접구매»가 1.2%</strong>에 불과하다.
+    실체는 <strong>에콰도르·태평양 원양가공 수출국의 냉동 로인·벌크를 트레이더 경유로 매입</strong>하는 것이다.
+    경쟁사 Nauterra가 어선 8척을 직접 운용하는 것과 정반대 모델이다.</p>
+
+  <div class="tw"><table>
+    <thead><tr><th>2025년 참치 구매 — 어업 출처별</th><th class="num">비중</th><th>공급사 출처별</th><th class="num">비중</th></tr></thead>
+    <tbody>
+      <tr class="hl"><td><b>MSC 인증 어업</b></td><td class="num"><b>68%</b></td><td>ISSF 참여기업</td><td class="num">19%</td></tr>
+      <tr><td>종합 FIP (24개월 내 진전)</td><td class="num">11%</td><td>ISSF Data Check 기업</td><td class="num">9%</td></tr>
+      <tr><td>MSC 심사중 · 개선프로그램</td><td class="num">0%</td><td>선박 직접구매</td><td class="num">1.2%</td></tr>
+      <tr class="hl"><td><b>어디에도 해당 없음</b></td><td class="num"><b>21%</b></td><td><b>어디에도 해당 없음</b></td><td class="num"><b>70.8%</b></td></tr>
+    </tbody>
+  </table></div>
+  <p>회사는 2026년 말까지 «해당없음»을 어업 기준 −10%p, 공급사 기준 −20%p 줄이겠다고 명시했다.
+    투명한 자기 공개이지만, 동시에 <strong>현시점 원료 상당량의 출처 검증이 비어 있다</strong>는 뜻이기도 하다.</p>
+  <p><strong>어법</strong> — 선망 구매 100%가 PVR 등재 선박, 선망 선단 100% 옵서버 승선 요구,
+    연승은 전체의 1% 미만이며 그 100%도 PVR 등재. 비얽힘 FAD 정책 보유 선사에서만 구매하고,
+    상어 지느러미 절단은 2023년부터 «자연부착 양륙» 증빙을 거래조건으로 요구한다.</p>
+  <p style="font-size:.86rem;color:var(--ink-3)">확인된 공급망: 에콰도르 <b>Marbelize · Tecopesca ·
+    Asiservy · Pespesca</b>, 피지 <b>Golden Ocean Fish</b>(연승), 중개 J. Marr (Seafoods) Europe.
+    Pole&amp;Line 어장은 북대서양(스페인·모로코) · 세네갈 · 뉴질랜드 · 북태평양.
+    <b>어종별·해역별 구매 비중은 공시하지 않는다</b> — 비재무정보보고서에 원료는 <code>Túnidos</code>
+    단일 항목으로만 집계된다.</p>
+
+  <h3>생산 설비</h3>
+  <div class="tw"><table>
+    <thead><tr><th>항목</th><th>내용</th></tr></thead>
+    <tbody>
+      <tr><td>공장</td><td>Ribeira(스페인) · Póvoa de Varzim(포르투갈) — 포르투갈 A Poveira는 2023년 매출 85 M€ · 480명 · 일 70만 캔 · 연 1.6억 캔</td></tr>
+      <tr class="hl"><td><b>자체 용기 제조</b></td><td>ISO 14001 인증 범위에 <span class="es">«FABRICACIÓN DE ENVASES»</span> 포함. 캔공장 <b>건조로 12기</b>, 주석판·알루미늄 스크랩 발생 4,131 t(2024), 포장재 구매 20,225,047 kg</td></tr>
+      <tr><td>열병합발전</td><td>Frinsa Cogeneración S.L. — 설비 <b>13,180 kW</b>. <b>2023년부터 사실상 정지</b>(발전량 66,447→117 MWh, −99.8%). 중유에서 천연가스로 전환</td></tr>
+      <tr><td>보일러</td><td>Frinsa 3기(Vulcano 1·2, Clayton) + A Poveira 2기 + La Góndola 1기</td></tr>
+      <tr><td>냉동</td><td>암모니아 냉동설비 · 통합환경허가 <code>AAI 2007/0016_NAA/IPPC_101</code></td></tr>
+      <tr><td>물류</td><td>Silleda(옛 Cometal 공장, 2018/19~2025) → <b>Plisan(Salvaterra de Miño) 이전</b>. 부지 41,000 ㎡, 투자 750만 €</td></tr>
+    </tbody>
+  </table></div>
+  <p style="font-size:.86rem;color:var(--ink-3)">공장 부지면적·라인 수·가동률·냉동창고 용량은 공개하지 않는다.
+    제품 톤당 원단위 지표도 회사가 직접 제시한 사례가 없다.</p>
+
+  <h3>인증</h3>
+  <div class="certrow"><img src="" alt="MSC 인증"></div>
+  <div class="tw"><table>
+    <thead><tr><th>인증</th><th>번호</th><th>등급 · 발급</th><th>유효</th></tr></thead>
+    <tbody>
+      <tr class="hl"><td><b>MSC Chain of Custody</b></td><td><b>MSC-C-51214</b></td><td>Certified · Bureau Veritas · <b>최초 인증 2009-10-26</b></td><td>~2027-10-07</td></tr>
+      <tr><td>BRC Food Safety</td><td>C0082801-BRC7</td><td>Grade B+ (Unannounced) · NSF</td><td>~2027-02-21</td></tr>
+      <tr><td>IFS Food v8</td><td>C0082801/2025</td><td>Foundation 92.68% · NSF</td><td>~2027-03-07</td></tr>
+      <tr><td>ISO 14001:2015</td><td>ES147804-1</td><td>Bureau Veritas · 2001년부터 개별 인증 이력</td><td>~2027-08-29</td></tr>
+      <tr class="hl"><td><b>EII Dolphin Safe</b></td><td>공식 명부 등재</td><td><b>Processor + Trader</b> 두 유형</td><td>2026-08 판</td></tr>
+      <tr><td>ISSF 참여기업</td><td>24개사 중 하나</td><td>티어 «스페인 지역 메이저»</td><td>2025 감사기</td></tr>
+      <tr><td>Friend of the Sea</td><td>—</td><td>skipjack·yellowfin·bigeye·albacore + 고등어·정어리</td><td>~2028-11-12</td></tr>
+      <tr class="dim"><td>IFS Broker v3.2</td><td>C0082801/2025</td><td>Higher 100%</td><td><b>2026-06-01 만료</b> · 갱신본 미공개</td></tr>
+    </tbody>
+  </table></div>
+  <p>회원·소속: IPNLF(외줄낚시재단, 회원 #42) · SFP · Sedex/SMETA · amfori/BSCI · ASC ·
+    UN Global Compact 10대 원칙 준거 · SYNESGY ESG 등급 B(2022) · ANFACO-CECOPESCA 회원.</p>
+  <p style="font-size:.86rem;color:var(--ink-3)">ISSF 24개 참여기업 중 2025 감사기에 17개사가 32개 보존조치를
+    전부 준수했고 1개사에 중대부적합이 있었으나, <strong>개별 기업 결과는 공개되지 않는다.</strong>
+    «참여기업»과 «완전준수 기업»은 다른 표현이다.</p>
+</section>
+
+<!-- ============ 07 ============ -->
+<section id="s7">
+  <h2><span class="h2n">07 / 재무와 그룹</span>매출 3위, 이익 1위</h2>
+
+  <h3>그룹 연결</h3>
+  <div class="tw"><table>
+    <thead><tr><th>회계연도</th><th class="num">매출</th><th class="num">순이익</th><th>비고</th></tr></thead>
+    <tbody>
+      <tr><td>2019</td><td class="num">524 M€</td><td class="num">31.1 M€</td><td>—</td></tr>
+      <tr><td>2020</td><td class="num">588 M€</td><td class="num">33 M€</td><td>사상 처음 Calvo 추월</td></tr>
+      <tr class="dim"><td>2021</td><td class="num">546 M€</td><td class="num">34.1 M€</td><td>코로나 기저 반락 · 배당 22 M€</td></tr>
+      <tr><td>2022</td><td class="num">609.6 M€</td><td class="num">23.7 M€</td><td>인플레로 마진 압박</td></tr>
+      <tr><td>2023</td><td class="num">712.8 M€</td><td class="num">30.1 M€</td><td>+17% · 첫 700 M€ 돌파</td></tr>
+      <tr class="hl"><td><b>2024</b></td><td class="num"><b>741 M€</b></td><td class="num"><b>39.1 M€</b></td><td>+4% · EBIT 55.3 M€ · EBITDA 77 M€+</td></tr>
+      <tr class="dim"><td>2025</td><td class="num">미공표</td><td class="num">미공표</td><td>경쟁사는 공표 완료</td></tr>
+    </tbody>
+  </table></div>
+  <p><strong>5년간 +41%.</strong> 개별법인 기준으로는 2023년 606,027,819 € · 2024년 625,863,433 €이며
+    CNAE 10.22 업종 매출 1위다. 2015년 이후 <strong>누적 배당이 7,000만 유로</strong>를 넘는다 —
+    외부 자본 없이 가문이 100% 보유한 채 회수해 온 구조다.</p>
+
+  <h3>법인별 세전이익 — 이익이 어디서 나오는가</h3>
+  <div class="tw"><table>
+    <thead><tr><th>법인</th><th class="num">2019</th><th class="num">2022</th><th class="num">2023</th><th class="num">2024</th></tr></thead>
+    <tbody>
+      <tr class="hl"><td><b>Frinsa del Noroeste</b> (본체)</td><td class="num">36,721,616</td><td class="num">27,444,446</td><td class="num">39,293,809</td><td class="num"><i>España</i> <b>40,603,727</b></td></tr>
+      <tr class="hl"><td><b>Frinsa Singapore</b> (구매본부)</td><td class="num">2,474,320</td><td class="num">2,396,667</td><td class="num">2,953,280</td><td class="num"><b>5,012,317</b></td></tr>
+      <tr><td>A Poveira (포르투갈)</td><td class="num">(10,883)</td><td class="num">3,071,143</td><td class="num">3,050,780</td><td class="num"><i>Portugal</i> <b>5,774,755</b></td></tr>
+      <tr><td>Frinsa Italia</td><td class="num">582,661</td><td class="num">1,677,040</td><td class="num">917,660</td><td class="num">1,668,674</td></tr>
+      <tr><td>Frinsa UK</td><td class="num">37,565</td><td class="num">(601,387)</td><td class="num">65,057</td><td class="num">991,440</td></tr>
+      <tr><td>Frinsa Deutschland</td><td class="num">941,622</td><td class="num">31,495</td><td class="num">1,428,711</td><td class="num">397,868</td></tr>
+      <tr><td>Frinsa USA</td><td class="num">—</td><td class="num">(743,998)</td><td class="num" style="color:var(--warn)"><b>(7,431,323)</b></td><td class="num">청산</td></tr>
+      <tr><td>Frinsa Cogeneración</td><td class="num">—</td><td class="num">—</td><td class="num" style="color:var(--warn)">(1,048,294)</td><td class="num">(España)</td></tr>
+      <tr><td>Conservas Lago Paganini</td><td class="num">116,359</td><td class="num">3,802</td><td class="num">12,490</td><td class="num">(España)</td></tr>
+      <tr class="hl"><td><b>합계</b></td><td class="num"><b>40,906,214</b></td><td class="num"><b>33,422,785</b></td><td class="num"><b>39,341,990</b></td><td class="num"><b>54,572,385</b></td></tr>
+    </tbody>
+  </table></div>
+  <p><strong>이익의 거의 전부가 Ribeira 본체에서 나온다.</strong> 해외 판매법인은 개별로는
+    100만 유로 안팎이고, 예외가 싱가포르 구매본부와 포르투갈 생산법인이다.
+    2023년 미국 법인 청산으로 <strong>743만 유로 손실</strong>을 냈는데, 그해 그룹 순이익의 4분의 1에 해당한다.</p>
+
+  <h3>그룹 구조</h3>
+  <div class="tw"><table>
+    <thead><tr><th>구분</th><th>법인</th><th>지분·상태</th></tr></thead>
+    <tbody>
+      <tr class="hl"><td>모법인</td><td>Frinsa del Noroeste, S.A. (Ribeira)</td><td>가문 100%</td></tr>
+      <tr><td>포르투갈 생산</td><td>Fábrica de Conservas A Poveira, S.A. (NIPC 500525757)</td><td><b>75%</b> — 2019년 50%(5.6 M€) + 2021년 25%(2.8 M€)</td></tr>
+      <tr class="dim"><td>포르투갈 (소멸)</td><td>La Gondola(NIF 500936838) · Expoconser(503195626)</td><td>2023년 A Poveira에 흡수합병</td></tr>
+      <tr><td>발전</td><td>Frinsa Cogeneración, S.L. (CIF B44742278)</td><td>100% · 2022년 분할 신설</td></tr>
+      <tr><td>지분참여</td><td><b>Conservas Lago Paganini, S.L.</b> (CIF B36167534, Bueu)</td><td>연결 그룹사로 등재 · <b>지분율 비공개</b></td></tr>
+      <tr><td>판매·구매</td><td>싱가포르 · 이탈리아 · 영국 · 독일 · 프랑스 · 루마니아 · 폴란드 · UAE</td><td>8개국</td></tr>
+    </tbody>
+  </table></div>
+  <p style="font-size:.86rem;color:var(--ink-3)">A Poveira 인수 총액은 기업가치 <b>11.2 M€</b> 기준이었고
+    별도로 <b>400만 유로</b> 장기대출을 제공했다. 11.2 M€에 인수한 회사가 2023년 매출 85 M€가 됐다.
+    Lago Paganini는 CNAE 1022로 Frinsa와 동일 업종이며 세전이익 규모는 연 수십만 유로대다.</p>
+</section>
+
+<!-- ============ 08 ============ -->
+<section id="s8">
+  <h2><span class="h2n">08 / 경쟁 구도</span>«1위»는 세 가지 뜻이 있다</h2>
+
+  <p>이 회사를 두고 «업종 1위»·«Jealsa가 1위»·«2020년 Calvo 추월»이 동시에 통용된다.
+    <strong>모순이 아니라 재는 잣대가 다르다.</strong></p>
+  <div class="tw"><table>
+    <thead><tr><th>진술</th><th>기준</th><th>판정</th></tr></thead>
+    <tbody>
+      <tr><td>«Frinsa 업종 1위»</td><td>CNAE 10.22 <b>개별법인</b> 매출</td><td style="color:var(--ok)"><b>참</b></td></tr>
+      <tr><td>«Jealsa가 갈리시아 최대»</td><td><b>그룹 연결</b> 매출</td><td style="color:var(--ok)"><b>참</b></td></tr>
+      <tr><td>«2020년 Calvo 추월»</td><td>2020 그룹 588 vs 578 M€</td><td style="color:var(--ok)"><b>참</b></td></tr>
+    </tbody>
+  </table></div>
+  <p style="font-size:.86rem;color:var(--ink-3)">개별법인 랭킹에서 Frinsa가 1위인 데는 구조적 이유가 있다 —
+    Jealsa는 최소 2개 법인(Jealsa Foods 553.4 M€ + Escuris 526.9 M€)으로 나뉘어 등기돼 있고,
+    Nauterra·Garavilla의 지주법인은 CNAE 6420(지주회사업)이라 업종 랭킹에 잡히지 않는다.</p>
+
+  <h3>갈리시아 3강 (그룹 연결, M€)</h3>
+  <div class="tw"><table>
+    <thead><tr><th>기업</th><th class="num">2020</th><th class="num">2023</th><th class="num">2024</th><th class="num">2025</th></tr></thead>
+    <tbody>
+      <tr><td><b>Jealsa</b> (Rianxeira·Escurís)</td><td class="num">712.8</td><td class="num">778.5</td><td class="num">781</td><td class="num"><b>825</b></td></tr>
+      <tr class="hl"><td><b>Frinsa</b></td><td class="num">588</td><td class="num">712.8</td><td class="num"><b>741</b></td><td class="num" style="color:var(--warn)">미공표</td></tr>
+      <tr><td><b>Nauterra</b> (구 Grupo Calvo)</td><td class="num">578</td><td class="num">697</td><td class="num">727</td><td class="num"><b>765</b></td></tr>
+    </tbody>
+  </table></div>
+  <p>2024년 3사 합산 매출 2,250 M€, 합산 순이익 74.7 M€(+85%), 합산 종업원 약 1만 명.
+    원자재·에너지 가격 하락으로 마진이 회복된 해였다.</p>
+
+  <div class="call hot">
+    <p class="ct">순이익이 3사 합산의 절반을 넘는다</p>
+    <p>39.1 / 74.7 M€. <strong>매출은 3위권인데 이익은 압도적 1위</strong>다.
+      PL 중심이면 저마진일 것이라는 통념과 정반대이며, 이 회사의 가장 특이한 지점이다.</p>
+    <p>인당 매출로 보면 체급 구조가 아예 다르다 — Frinsa 약 <strong>55만 €/인</strong>,
+      Nauterra 약 <strong>14만 €/인</strong>. Nauterra는 자체 선단 8척과 브라질 현지 조직을 안고 있고
+      Frinsa는 가공 단일 거점 + 소규모 판매법인 구조다.
+      <strong>같은 매출대라도 수직통합 정도가 반대다.</strong></p>
+  </div>
+
+  <h3>산업 배경 · 외부 환경</h3>
+  <div class="tw"><table>
+    <thead><tr><th>항목</th><th>내용</th></tr></thead>
+    <tbody>
+      <tr><td>스페인 산업 규모</td><td>ANFACO 회원 251개사, 합산 매출 138.5억 €(2024). 회원사가 업계 매출의 71.6%·고용의 86.1% 차지</td></tr>
+      <tr><td>갈리시아 집중</td><td>ANFACO 회원의 55.4%가 갈리시아. 스페인 수산가공 수출 물량의 <b>75.06%</b></td></tr>
+      <tr><td>참치의 위상</td><td>스페인 참치통조림 생산이 <b>EU 전체의 67% 이상</b>. 2025년 생산 227,102 t (총 통조림 생산의 물량 74%)</td></tr>
+      <tr><td>스페인 소비</td><td>1인당 캔참치 <b>1.95 kg</b>(2024, −4.7%). 가구 총 91,672 t / 924.6 M€ / 평균 10.09 €/kg</td></tr>
+      <tr><td>EU 로인 ATQ</td><td>2025-01-09 1차 배정분 즉시 소진 → 이후 <b>8.04% 관세</b>. 업계 추가부담 연 2천만 €+</td></tr>
+      <tr><td>에콰도르</td><td>2024년 1~11월 EU향 참치통조림 수출 8.65억 달러(금액 +39%). 특혜관세로 점유 확대</td></tr>
+      <tr class="dim"><td>수은 이슈</td><td>2024-11 NGO 조사 → 2025-03 업계 #AtúnSinMitos 대응 → 2025-08 <b>프랑스 7개 도시 학교급식 참치 금지</b></td></tr>
+    </tbody>
+  </table></div>
+  <p style="font-size:.86rem;color:var(--ink-3)">수은 조사 원보고서(BLOOM «TOXIC TUNA», 2024-10)에
+    Frinsa 및 그 브랜드는 <strong>지명되지 않았다.</strong> 다만 조사가 브랜드·소매점·도시만 기록하고
+    제조사·로트번호를 수집하지 않았으므로, 지명 부재가 무관함을 뜻하지는 않는다.
+    <strong>PL 공급사는 조사 설계상 보이지 않는 존재였다.</strong></p>
+
+  <h3>리스크 이력</h3>
+  <div class="tw"><table>
+    <thead><tr><th>시점</th><th>사안</th><th>결과</th></tr></thead>
+    <tbody>
+      <tr class="hl"><td><b>2019-08</b></td><td><b>보툴리누스 중독 4명</b> — 해바라기유 참치 통조림. 제조 Frinsa, 유통 <b>DIA 자체브랜드</b>. AESAN 경보, SCIRI 통보</td><td>회사가 경보 방식에 공개 이의</td></tr>
+      <tr><td>2019~2021</td><td>«Ribeira» 상표 소송 — Braulio Alfageme · Frisla · Ribeira Sacra · La Riviere</td><td><b>알려진 4건 전부 패소</b>. 2021년 대법원 상고 각하</td></tr>
+      <tr><td>2020~2021</td><td>열병합 보수체계 축소(<code>Orden TED/171/2020</code>) 대(對)정부 소송</td><td style="color:var(--ok)"><b>대법원 부분 승소</b> — CO₂ 배출권 산정 쟁점</td></tr>
+      <tr><td>2023-08</td><td>Frinsa USA(플로리다 Lakeland) 2,100만 달러 공장 계획</td><td>건설비 급등으로 중단 → <b>청산, 743만 € 손실</b></td></tr>
+    </tbody>
+  </table></div>
+  <p><strong>PL 공급사의 사고는 유통사 브랜드로 표면화된다.</strong> 2019년 보툴리누스 건에서 소비자에게는
+    DIA 제품으로 보였다. 얼굴이 없다는 것은 방패이면서 동시에 통제력의 부재이기도 하다.
+    상표 소송이 반복 패소한 것은 «Ribeira»가 지명(地名) 유래라 식별력이 약하기 때문으로 보인다 —
+    브랜드 전략상의 구조적 취약점이다.</p>
+</section>
+
+<!-- ============ 09 ============ -->
+<section id="s9">
+  <h2><span class="h2n">09 / 한국 관점</span>경쟁자가 아니라 고객이다</h2>
+
+  <p class="lead">Frinsa는 <strong>자체 선단이 없고</strong> 연 13만 톤 이상을 전량 외부에서 사들이는
+    세계 7~8위 구매사다. 한국 원양업계에는 <strong>경쟁 가공사가 아니라 잠재 원료 고객</strong>이다.</p>
+
+  <h3>접근 창구는 Ribeira가 아니라 싱가포르다</h3>
+  <blockquote>
+    Frinsa, la tercera conservera gallega, <strong>se lleva a Singapur su central de compras de atún</strong>
+    <span class="who">「참치 구매본부를 싱가포르로 이전」 — Economía Digital Galicia</span>
+  </blockquote>
+  <p>그 법인(Frinsa Singapore Pte. Ltd. / KIBU PTE. LTD.)이 <strong>2024년 세전이익 501만 유로</strong>를 냈다.
+    단순 대행 사무소가 아니라 <strong>마진을 취하는 이익센터</strong>다. 협상 상대의 성격이 다르다는 뜻이다.
+    Earth Island Institute Dolphin Safe 명부에 Frinsa가 <strong>Processor와 Trader 두 유형</strong>으로
+    등재된 것도 이 성격과 부합한다.</p>
+
+  <h3>한국의 현재 위치</h3>
+  <div class="tw"><table>
+    <thead><tr><th>한국 → 스페인 냉동참치</th><th class="num">2023</th><th class="num">2024</th><th class="num">2025</th></tr></thead>
+    <tbody>
+      <tr><td>수량 (kg)</td><td class="num">1,976,909</td><td class="num"><b>5,508,610</b></td><td class="num">1,953,993</td></tr>
+      <tr><td>금액 (USD)</td><td class="num">10,329,805</td><td class="num"><b>20,229,994</b></td><td class="num">9,627,560</td></tr>
+    </tbody>
+  </table></div>
+  <p>2023→2024 물량이 <strong>2.8배 급증</strong>했다. 다만 스페인 공급국 순위로는
+    <strong>49개국 중 16위</strong>(2026년 1~5월)로 전체 수입의 2~3% 수준이다.
+    상위권은 프랑스·중국·세이셸·남아공·멕시코·중미 3국·에콰도르·인도네시아다.</p>
+
+  <h3>관세 구조 — 통념과 다르다</h3>
+  <div class="tw"><table>
+    <thead><tr><th>품목</th><th>CN / TARIC</th><th class="num">MFN</th><th>실무 조건</th></tr></thead>
+    <tbody>
+      <tr class="hl"><td><b>캔가공용</b> 냉동 통마리 참치</td><td>0303 42 20 00</td><td class="num"><b>0%</b></td><td>end-use 면세 · <b>원산지 불문</b></td></tr>
+      <tr><td>그 외 용도 통마리 참치</td><td>0303 42 90 00</td><td class="num">22%</td><td>1990년~ ERGA OMNES</td></tr>
+      <tr class="dim"><td><b>냉동 필렛</b></td><td>0304.2</td><td class="num"><b>18%</b></td><td>한-EU FTA 특혜 적용 여부가 손익을 가름</td></tr>
+      <tr><td>로인 · 통조림</td><td>1604</td><td class="num">24%</td><td>ATQ 09.2790 로인 35,000 t 0% (2024~26)</td></tr>
+    </tbody>
+  </table></div>
+
+  <div class="call hot">
+    <p class="ct">«관세에 막혀 못 들어간다»는 사실과 다르다</p>
+    <p>EU는 <strong>원료는 열고 가공품은 막는</strong> 관세 에스컬레이션을 쓴다. TARIC에
+      <span class="es">«Non preferential duty under end-use : 0%»</span>가 2017년부터 유효하다.
+      <strong>캔가공용 통마리 원어는 원산지 불문 무관세</strong>이므로 Frinsa 상대로는
+      <strong>관세 협상 없이 접근 가능한 시장</strong>이다. 한국이 16위인 이유는 관세가 아니라
+      가격 경쟁력·물류·기존 거래관계·인증이다.</p>
+    <p>다만 <strong>2024년 한국의 대스페인 수출은 냉동 참치필렛(HS 030487)이 금액 기준 절반</strong>
+      (1,031만 달러)이다. 필렛은 <strong>MFN 18%</strong> 구간이라 원어와 대우가 다르다.</p>
+  </div>
+
+  <h3>한-EU FTA 원산지 — 한국 선단에 유리하다</h3>
+  <p>완전생산품 규정은 원산지의정서(<code>CELEX 22011A0514(02)</code>) <strong>제4조</strong>에 있다.
+    제3조는 원산지 누적 규정이므로 혼동하기 쉽다.</p>
+  <blockquote>
+    (f) products of sea fishing and other products taken <strong>from the sea outside the territorial
+    sea</strong> of a Party by <strong>its vessels</strong>
+    <span class="who">제4조 제1항 (f)</span>
+  </blockquote>
+  <p>조문이 «공해»가 아니라 <strong>«영해 밖의 바다»</strong>라고만 규정한다.
+    문언상 <strong>제3국 EEZ 조업분도 포함</strong>된다 — 한국 원양선단의 주 조업수역을 감안하면 유리하다.</p>
+  <div class="tw"><table>
+    <thead><tr><th>제4조 제2항 — 「그 선박」 3요건 (누적 충족)</th></tr></thead>
+    <tbody>
+      <tr><td><b>(a)</b> EU 회원국 또는 <b>한국에 등록</b></td></tr>
+      <tr><td><b>(b)</b> EU 회원국 또는 <b>한국 국기 게양</b></td></tr>
+      <tr><td><b>(c)</b> <b>(i)</b> EU·한국 국민이 <b>50% 이상</b> 소유, 또는 <b>(ii)</b> 본점·주된 영업소가 EU·한국에 있고 EU·한국·그 공공기관·그 국민이 <b>50% 이상</b> 소유한 회사</td></tr>
+    </tbody>
+  </table></div>
+  <p><strong>한국 등록·태극기·한국 법인 소유라는 일반적 구조라면 세 요건을 모두 충족한다.</strong>
+    필렛·로인으로 부가가치를 올려도 FTA 특혜로 진입할 수 있다.
+    <span style="color:var(--ink-3)">다만 <strong>편의치적선·합작선은 (c)호에서 걸릴 수 있어</strong>
+    개별 검토가 필요하고, 품목별 원산지기준(부속서 II)의 HS 03류·1604호 해당 행은 별도 확인이 필요하다.</span></p>
+
+  <h3>진입 조건</h3>
+  <p>Frinsa는 MSC·Friend of the Sea·ISSF·IPNLF·Sedex/SMETA·amfori/BSCI를 요구 체계로 둔다.
+    정책문서상 <strong>선망 원료는 100% PVR 등재선, 선망 100% 옵서버 승선, 비얽힘 FAD 정책 보유 선사,
+    지느러미 자연부착 양륙 증빙</strong>이 거래조건이다. 2019년 식품안전 사고 이력이 있어
+    원산지·어법 증빙 요구가 엄격할 것으로 봐야 한다.</p>
+  <p>동시에 <strong>공급사 기준 70.8%가 아직 검증 범주 밖</strong>이고 회사가 이를 2026년까지 20%p
+    줄이겠다고 공표했다 — <strong>인증을 갖춘 신규 공급자에게는 진입 기회</strong>다.</p>
+  <p style="font-size:.86rem;color:var(--ink-3)">유리한 공통 언어가 하나 있다. <strong>StarKist는 ISSF
+    창립사이자 동원산업 100% 자회사</strong>이고 동원F&amp;B도 2012년 가입했다. 한국 기업이 이 준수체계의
+    핵심 플레이어이므로 ISSF 프레임을 공유한다.</p>
+
+  <h3>역방향 — 완제품 경쟁자</h3>
+  <p>스페인 → 한국 참치통조림(HS 160414) 수출이 급증 중이다. 2026년 1월 14 kg → 3월 8,321 kg →
+    4월 42,170 kg → <strong>5월 165,002 kg</strong>. 1~5월 누계 215,508 kg로 <strong>아시아 최대</strong>다
+    (일본 1,600 kg · 싱가포르 2,152 kg · 중국 19,459 kg 대비).</p>
+  <p style="font-size:.86rem;color:var(--ink-3)">국가 총계라 Frinsa 브랜드 여부는 특정할 수 없고 5개월
+    단기라 계절성 가능성도 있다. 다만 스페인 캐너리가 한국 소매시장의 완제품 경쟁자로 부상할 신호로는
+    볼 만하다. <strong>한국 기업과 Frinsa의 직접 거래 기록은 한국·스페인 양쪽 공개자료에서 확인되지 않는다.</strong></p>
+</section>
+
+</main>
+</div>
+
+<footer>
+  <p><strong>프린사 해부</strong> — Frinsa del Noroeste, S.A. / Grupo Frinsa 기업·제품·유통 프로필.
+    2026년 8월 작성.</p>
+  <p>주요 출처: 회사 연결 비재무정보보고서(EINF) 2019~2024 합본 296쪽(PwC 독립검증),
+    BRC·IFS Food·IFS Broker·ISO 14001 인증서 원본, MSC Chain of Custody 등록부,
+    Earth Island Institute Dolphin Safe 공식 명부, Marine Sustainability Policy 2026,
+    EU TARIC, EUR-Lex 한-EU FTA 원산지의정서, 스페인·포르투갈·영국·독일·폴란드 상업등기,
+    ANFACO-CECOPESCA 산업통계, 회사 공식 제품 카탈로그, 갈리시아 경제매체.</p>
+  <p><span class="chip c-doc">원본</span> 등기·인증서·관보·회사 공시 원문 &nbsp;
+     <span class="chip c-src">매체</span> 주요 매체·신용정보DB &nbsp;
+     <span class="chip c-nd">비공시</span> 회사가 공개하지 않는 항목</p>
+</footer>
+</div>

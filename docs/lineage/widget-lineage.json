@@ -1,9 +1,9 @@
 {
  "_meta": {
   "entry": "app/page.tsx",
-  "files": 164,
-  "widgets": 102,
-  "dataFiles": 64,
+  "files": 168,
+  "widgets": 104,
+  "dataFiles": 65,
   "generator": "scripts/widget_lineage.py"
  },
  "widgetToData": {
@@ -529,6 +529,14 @@
    "dataModules": [],
    "dataFiles": []
   },
+  "components/market-understanding/CompanyAnatomyDashboard.tsx": {
+   "dataModules": [
+    "lib/data/company-frinsa.ts"
+   ],
+   "dataFiles": [
+    "public/data/companies/frinsa_v1.json"
+   ]
+  },
   "components/market-understanding/CompanyResearchTables.tsx": {
    "dataModules": [
     "lib/data/valuechain-companies.ts"
@@ -552,6 +560,14 @@
    ],
    "dataFiles": [
     "public/data/falkland_squid_vessels_v1.json"
+   ]
+  },
+  "components/market-understanding/FrinsaCharts.tsx": {
+   "dataModules": [
+    "lib/data/company-frinsa.ts"
+   ],
+   "dataFiles": [
+    "public/data/companies/frinsa_v1.json"
    ]
   },
   "components/market-understanding/MackerelIndustryDashboard.tsx": {
@@ -911,6 +927,10 @@
    "components/bangkok/tabs/ProcessorsTab.tsx",
    "components/bangkok/tabs/QualityTab.tsx",
    "components/bangkok/tabs/UnloadTab.tsx"
+  ],
+  "public/data/companies/frinsa_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx",
+   "components/market-understanding/FrinsaCharts.tsx"
   ],
   "public/data/cosmo/cosmo_2026.json": [
    "components/cosmo/CosmoDashboard.tsx",

@@ -53,6 +53,7 @@ const SquidIndustryDashboard = dynamic(() => import('../components/market-unders
 const MackerelIndustryDashboard = dynamic(() => import('../components/market-understanding/MackerelIndustryDashboard'));
 const WhelkIndustryDashboard = dynamic(() => import('../components/market-understanding/WhelkIndustryDashboard'));
 const ShrimpIndustryDashboard = dynamic(() => import('../components/market-understanding/ShrimpIndustryDashboard'));
+const CompanyAnatomyDashboard = dynamic(() => import('../components/market-understanding/CompanyAnatomyDashboard'));
 
 const INSTITUTIONAL_MENU_KEYS = new Set<ActiveMenu>([
   'market',
@@ -279,6 +280,7 @@ export default function Home() {
     'mackerel-industry': <MackerelIndustryDashboard />,
     'whelk-industry': <WhelkIndustryDashboard />,
     'shrimp-industry': <ShrimpIndustryDashboard />,
+    'company-anatomy': <CompanyAnatomyDashboard />,
   };
   return (
     <div className={styles.appWrapper} data-v3={darkMode ? undefined : 'light'}>
