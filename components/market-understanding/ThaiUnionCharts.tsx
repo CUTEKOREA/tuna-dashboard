@@ -257,3 +257,108 @@ export function TuKoreaExportChart() {
     </SafeResponsiveContainer>
   );
 }
+
+/* ── 확장 차트 (2026-08-20 2차) ── */
+// eslint-disable-next-line import/order -- 확장분 데이터 import (파일 말미 추가)
+import {
+  thaiUnionGhgScopes,
+  thaiUnionJwLadder,
+  thaiUnionMfdsMix,
+  thaiUnionRegions,
+} from '@/lib/data/company-thaiunion';
+
+/** 카테고리별 지역 구성. Frozen·PetCare 의 미국 편중이 관세 리스크의 크기다. */
+export function TuRegionChart() {
+  const animate = !useReducedMotion();
+  return (
+    <SafeResponsiveContainer width="100%" height={300}>
+      <ComposedChart data={thaiUnionRegions} margin={MARGIN}>
+        {grid}
+        <XAxis dataKey="카테고리" {...AXIS} />
+        <YAxis {...AXIS} unit="%" domain={[0, 100]} />
+        <Tooltip content={<Tip />} />
+        {legend}
+        <Bar dataKey="미국" name="미국·북미 (%)" stackId="a" fill={MARK} isAnimationActive={animate} />
+        <Bar dataKey="유럽" name="유럽 (%)" stackId="a" fill={BASE} isAnimationActive={animate} />
+        <Bar dataKey="아시아기타" name="아시아·기타 (%)" stackId="a" fill="#93c5fd" isAnimationActive={animate} />
+      </ComposedChart>
+    </SafeResponsiveContainer>
+  );
+}
+
+/** John West 형태 사다리 (£/kg). Frinsa 의 부위 사다리와 대구를 이루는 «가공 프리미엄». */
+export function TuJwLadderChart() {
+  const animate = !useReducedMotion();
+  const rot = getSmartRotation(thaiUnionJwLadder.map((r) => r.층));
+  return (
+    <SafeResponsiveContainer width="100%" height={300}>
+      <ComposedChart data={thaiUnionJwLadder} margin={{ ...MARGIN, bottom: rot.angle ? 54 : 8 }}>
+        {grid}
+        <XAxis dataKey="층" {...AXIS} tickFormatter={truncateXAxis} angle={rot.angle}
+          textAnchor={rot.textAnchor as 'end' | 'middle'} height={rot.angle ? 68 : 30} interval={0} />
+        <YAxis {...AXIS} />
+        <Tooltip content={<Tip />} />
+        {legend}
+        <Bar dataKey="perKg" name="단가 (£/kg)" isAnimationActive={animate}>
+          {thaiUnionJwLadder.map((r) => (
+            <Cell key={r.층} fill={r.perKg >= 18 ? MARK : BASE} />
+          ))}
+        </Bar>
+      </ComposedChart>
+    </SafeResponsiveContainer>
+  );
+}
+
+/**
+ * GHG Scope 별 배출(tCO2e). 2023년 Scope 3 는 미보고라 비어 있다 — 0 이 아니다.
+ * 이 공백이 «2023 대비 6배 폭증» 오독을 만드는 함정이라, 공백 그대로 그린다.
+ */
+export function TuGhgChart() {
+  const animate = !useReducedMotion();
+  const rows = useMemo(
+    () => thaiUnionGhgScopes.map((r) => ({
+      라벨: `${r.연도}년`,
+      'Scope 1': Math.round(r.s1 / 1000),
+      'Scope 2': Math.round(r.s2 / 1000),
+      'Scope 3': r.s3 === null ? null : Math.round(r.s3 / 1000),
+    })),
+    [],
+  );
+  return (
+    <SafeResponsiveContainer width="100%" height={300}>
+      <ComposedChart data={rows} margin={MARGIN}>
+        {grid}
+        <XAxis dataKey="라벨" {...AXIS} />
+        <YAxis {...AXIS} tickFormatter={(v: number) => `${v.toLocaleString('ko-KR')}천`} />
+        <Tooltip content={<Tip />} />
+        {legend}
+        <Bar dataKey="Scope 1" name="Scope 1 (천 tCO2e)" stackId="g" fill={BASE} isAnimationActive={animate} />
+        <Bar dataKey="Scope 2" name="Scope 2 (천 tCO2e)" stackId="g" fill="#3b82f6" isAnimationActive={animate} />
+        <Bar dataKey="Scope 3" name="Scope 3 (천 tCO2e)" stackId="g" fill="#93c5fd" isAnimationActive={animate} />
+      </ComposedChart>
+    </SafeResponsiveContainer>
+  );
+}
+
+/** 식약처 수입신고 품목 구성 — 한국에 들어오는 실체는 참치가 아니라 새우다. */
+export function TuMfdsChart() {
+  const animate = !useReducedMotion();
+  const rot = getSmartRotation(thaiUnionMfdsMix.map((r) => r.품목));
+  return (
+    <SafeResponsiveContainer width="100%" height={300}>
+      <ComposedChart data={thaiUnionMfdsMix} margin={{ ...MARGIN, bottom: rot.angle ? 54 : 8 }}>
+        {grid}
+        <XAxis dataKey="품목" {...AXIS} tickFormatter={truncateXAxis} angle={rot.angle}
+          textAnchor={rot.textAnchor as 'end' | 'middle'} height={rot.angle ? 68 : 30} interval={0} />
+        <YAxis {...AXIS} />
+        <Tooltip content={<Tip />} />
+        {legend}
+        <Bar dataKey="건수" name="수입신고 (건)" isAnimationActive={animate}>
+          {thaiUnionMfdsMix.map((r) => (
+            <Cell key={r.품목} fill={r.품목.includes('참치') ? MARK : BASE} />
+          ))}
+        </Bar>
+      </ComposedChart>
+    </SafeResponsiveContainer>
+  );
+}

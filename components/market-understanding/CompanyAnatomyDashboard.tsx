@@ -48,10 +48,19 @@ import {
 import {
   latestKoreaExport,
   latestTuFinancial,
+  thaiUnionBalance,
+  thaiUnionBrands,
+  thaiUnionFactories,
+  thaiUnionHistory,
   thaiUnionKoreaImport,
   thaiUnionMeta,
   thaiUnionProfile,
+  thaiUnionRedLobster,
+  thaiUnionRetailPrices,
+  thaiUnionSeachange,
+  thaiUnionShareholders,
   thaiUnionUsTariff,
+  totalBrandSku,
   tunaCapacityMt,
 } from '@/lib/data/company-thaiunion';
 import {
@@ -59,8 +68,12 @@ import {
   TuCapacityChart,
   TuConVsSepChart,
   TuFinancialChart,
+  TuGhgChart,
+  TuJwLadderChart,
   TuKoreaExportChart,
+  TuMfdsChart,
   TuMscTrendChart,
+  TuRegionChart,
   TuSegmentChart,
   TuTc25Chart,
 } from './ThaiUnionCharts';
@@ -435,6 +448,24 @@ function TuUsTariffTable() {
   );
 }
 
+/** 2열 단순 표 공용 렌더러 — Thai Union 확장 표 7종이 공유한다. */
+function TuRows({ head, rows }: { head: string[]; rows: (string | number)[][] }) {
+  return (
+    <div className={styles.factWrap}>
+      <table className={styles.factTable}>
+        <thead>
+          <tr>{head.map((h) => <th key={h}>{h}</th>)}</tr>
+        </thead>
+        <tbody>
+          {rows.map((r, i) => (
+            <tr key={i}>{r.map((c, j) => <td key={j}>{c}</td>)}</tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  );
+}
+
 const TU_CHART_SLOTS: Record<string, ChartSlot[]> = {
   c01: [
     {
@@ -443,6 +474,27 @@ const TU_CHART_SLOTS: Record<string, ChartSlot[]> = {
       telemetry: SYNC,
       render: () => <TuProfileTable />,
       sourceLine: '사내 조사보고서 (2026-08) · 56-1 One Report FY2025',
+    },
+    {
+      title: '주주 구성 (%)',
+      caption: '2대 주주가 자기주식 13.47%다. 미쓰비시UFJ모건스탠리(5.36%)는 지분 확대를 시도한 미쓰비시상사와 별개 주체다.',
+      telemetry: SYNC,
+      render: () => (
+        <TuRows head={['순위', '주주', '지분 (%)']}
+          rows={thaiUnionShareholders.map((r) => [r.순위, r.주주, r.지분.toFixed(2)])} />
+      ),
+      sourceLine: '사내 조사보고서 (2026-08) · One Report p.75',
+    },
+    {
+      title: '연혁 — 두 번의 도약',
+      caption: '1997년 미국, 2010년 유럽. 브랜드를 사 모은 궤적과 Red Lobster·미쓰비시까지.',
+      telemetry: SYNC,
+      render: () => (
+        <TuRows head={['연도', '사건']}
+          rows={thaiUnionHistory.map((r) => [r.연도, r.사건])} />
+      ),
+      span: 'full',
+      sourceLine: '사내 조사보고서 (2026-08) · One Report pp.6-8',
     },
   ],
   c02: [
@@ -460,14 +512,62 @@ const TU_CHART_SLOTS: Record<string, ChartSlot[]> = {
       render: () => <TuBrandShareChart />,
       sourceLine: '사내 조사보고서 (2026-08) · One Report p.33·37',
     },
+    {
+      title: '카테고리별 지역 구성 (%)',
+      caption: '노란 구간이 미국·북미. Frozen 51.2%·PetCare 58.9% — 관세 직격 구간의 크기다.',
+      telemetry: SYNC,
+      render: () => <TuRegionChart />,
+      sourceLine: '사내 조사보고서 (2026-08) · One Report pp.33-37',
+    },
   ],
   c03: [
+    {
+      title: '브랜드 포트폴리오 — 실측 SKU',
+      caption: '공식몰 API·사이트맵 전수(2026-08-20). 라인업이 서로 겹치지 않는다 — 산 것은 상표가 아니라 시장별 소비 문법이다.',
+      telemetry: SYNC,
+      render: () => (
+        <TuRows head={['브랜드', '국가', '인수', 'SKU', '라인업 축']}
+          rows={thaiUnionBrands.map((r) => [r.브랜드, r.국가, r.인수, r.sku ?? '—', r.축])} />
+      ),
+      span: 'full',
+      sourceLine: '사내 조사보고서 04장 (2026-08) · WP REST·Shopify GraphQL·사이트맵·OFF 실측',
+    },
+    {
+      title: 'John West 형태 사다리 (£/kg)',
+      caption: '같은 참치가 형태만으로 2.6배 — 노란 막대가 £18 초과 층. Frinsa 의 부위 사다리와 대구를 이룬다.',
+      telemetry: SYNC,
+      render: () => <TuJwLadderChart />,
+      sourceLine: 'Morrisons 실측 46건 (사내 조사보고서 인용) · 2026-08-20',
+    },
+    {
+      title: '소매 실판매가 표본',
+      caption: '4개국 376건 실측 중 대표 6건. 차단된 소매(Tesco·Carrefour)는 미수집으로 남겼다.',
+      telemetry: SYNC,
+      render: () => (
+        <TuRows head={['브랜드', '제품', '가격', '단가', '소매처']}
+          rows={thaiUnionRetailPrices.map((r) => [r.브랜드, r.제품, r.가격, r.단가, r.소매처])} />
+      ),
+      sourceLine: 'Morrisons·Open Prices·Safeway·Walmart (사내 조사보고서 인용)',
+    },
+  ],
+  c04: [
     {
       title: '그룹 생산능력 (톤/년)',
       caption: '노란 막대가 참치 57만 톤. PetCare 는 공시 내 모순(221k vs 195k)이 있어 서술값이다.',
       telemetry: SYNC,
       render: () => <TuCapacityChart />,
       sourceLine: '사내 조사보고서 (2026-08) · One Report p.46',
+    },
+    {
+      title: '가공 거점',
+      caption: '공장 보유 26개 법인의 대표 소재지. 사뭇사콘은 캔·라벨까지 수직계열화돼 있다.',
+      telemetry: SYNC,
+      render: () => (
+        <TuRows head={['지역', '거점 · 법인', '품목']}
+          rows={thaiUnionFactories.map((r) => [r.지역, r.거점, r.품목])} />
+      ),
+      span: 'full',
+      sourceLine: '사내 조사보고서 (2026-08) · One Report pp.53-79 (BOI 등록 포함)',
     },
     {
       title: '참치 조달 어장 구성 추이 (%)',
@@ -481,11 +581,29 @@ const TU_CHART_SLOTS: Record<string, ChartSlot[]> = {
       caption: '목표는 전부 2025년 100%. 노란 막대가 미달 구간 — 공급자 감사가 87.6%로 가장 남았다.',
       telemetry: SYNC,
       render: () => <TuTc25Chart />,
-      span: 'full',
       sourceLine: '사내 조사보고서 (2026-08) · SeaChange 2024 (Key Traceability 독립검증)',
     },
   ],
-  c04: [
+  c05: [
+    {
+      title: 'GHG Scope 별 배출 (천 tCO2e)',
+      caption: '2023년에 Scope 3 가 없는 것은 미보고라서다 — 0 이 아니다. 이 공백이 «6배 폭증» 오독을 만든다.',
+      telemetry: SYNC,
+      render: () => <TuGhgChart />,
+      sourceLine: '사내 조사보고서 (2026-08) · One Report p.131 (검증 LRQA)',
+    },
+    {
+      title: 'SeaChange 2030 대시보드 (%)',
+      caption: '2030년 100% 목표 대비 FY2024 실적. 참치는 다 왔고 새우사료·대두·닭고기·GDST 는 초입이다.',
+      telemetry: SYNC,
+      render: () => (
+        <TuRows head={['목표', '실적 (%)', '판정']}
+          rows={thaiUnionSeachange.map((r) => [r.목표, r.실적.toFixed(1), r.상태])} />
+      ),
+      sourceLine: '사내 조사보고서 (2026-08) · SeaChange 2024 pp.12-14',
+    },
+  ],
+  c06: [
     {
       title: '매출과 마진 (십억 밧·%)',
       caption: '2023년 매출은 원본 표에 없어 비어 있다 — 0 이 아니다. GPM 은 3년 연속 개선.',
@@ -500,8 +618,29 @@ const TU_CHART_SLOTS: Record<string, ChartSlot[]> = {
       render: () => <TuConVsSepChart />,
       sourceLine: '사내 조사보고서 (2026-08) · 감사 재무제표 p.357 (OCR)',
     },
+    {
+      title: '재무상태 (백만 밧)',
+      caption: '부채는 늘고 자본은 줄었다 — 자기주식 취득 43.1억 밧이 자본 감소의 주범이다.',
+      telemetry: SYNC,
+      render: () => (
+        <TuRows head={['항목', '2025', '2024']}
+          rows={thaiUnionBalance.map((r) => [r.항목,
+            r.y2025.toLocaleString('ko-KR'), r.y2024.toLocaleString('ko-KR')])} />
+      ),
+      sourceLine: '사내 조사보고서 (2026-08) · MD&A',
+    },
+    {
+      title: 'Red Lobster — 4겹',
+      caption: '손상 → 지위 전환 → 잔여 지분 → 소송. 2023년에 끝난 일이 아니다.',
+      telemetry: SYNC,
+      render: () => (
+        <TuRows head={['층', '시점', '내용']}
+          rows={thaiUnionRedLobster.map((r) => [r.층, r.시점, r.내용])} />
+      ),
+      sourceLine: '사내 조사보고서 (2026-08) · One Report pp.6·181-182',
+    },
   ],
-  c05: [
+  c07: [
     {
       title: '한국 → 태국 냉동참치 수출 (톤·백만$)',
       caption: '한국 냉동참치 수출의 54.1%(중량)가 태국행이다. 2025년 감소는 관세 관망의 흔적.',
@@ -528,6 +667,13 @@ const TU_CHART_SLOTS: Record<string, ChartSlot[]> = {
       sourceLine: 'Comtrade + 관세청 FTA포털 (사내 조사보고서 인용)',
     },
     {
+      title: '식약처 수입신고 구성 (건)',
+      caption: '한국에 들어오는 실체는 참치(노랑)가 아니라 새우다. 등록 제조업소 14개소 · 173건.',
+      telemetry: SYNC,
+      render: () => <TuMfdsChart />,
+      sourceLine: '식약처 수입식품 DB 실측 (사내 조사보고서 인용) · 2024-01~2026-08',
+    },
+    {
       title: '미국 실효 관세 (%)',
       caption: '미국이 그룹 매출의 38%다. 회사는 대미 물량의 가나·세이셸 전환을 공시했다.',
       telemetry: SYNC,
@@ -551,7 +697,7 @@ const TU_SPEC: CommoditySpec = {
   secondaryKpis: [
     { label: `${TU_FIN.연도}년 매출총이익률`, value: TU_FIN.gpm, unit: '(%)', decimals: 1 },
     { label: '참치 캐파', value: tunaCapacityMt(), unit: '(톤/년)' },
-    { label: '보유 선단', value: 0, unit: '(척)' },
+    { label: '브랜드 실측 SKU', value: totalBrandSku(), unit: '(개)' },
   ],
   stripItems: [
     {

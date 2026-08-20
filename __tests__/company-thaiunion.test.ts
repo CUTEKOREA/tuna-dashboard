@@ -24,16 +24,24 @@ import {
   thaiUnionSegments,
   thaiUnionTc25,
   thaiUnionUsTariff,
+  totalBrandSku,
+  thaiUnionBalance,
+  thaiUnionGhgScopes,
+  thaiUnionRegions,
+  thaiUnionSeachange,
+  thaiUnionShareholders,
   tunaCapacityMt,
 } from '@/lib/data/company-thaiunion';
 
 /** 대시보드 파일에 실린 슬롯 제목. 컴포넌트를 import 하면 recharts 가 딸려와 느려진다. */
 const SLOT_TITLES: Record<string, string[]> = {
-  c01: ['회사 개요'],
-  c02: ['카테고리별 매출과 마진 (십억 밧·%)', '자사 브랜드 매출 비중 (%)'],
-  c03: ['그룹 생산능력 (톤/년)', '참치 조달 어장 구성 추이 (%)', 'TC25 6대 약속 이행률 (%)'],
-  c04: ['매출과 마진 (십억 밧·%)', '연결 vs 개별 — 순이익 역전 (십억 밧)'],
-  c05: ['한국 → 태국 냉동참치 수출 (톤·백만$)', '참치조제품 대한 수입 (2024)', '미국 실효 관세 (%)'],
+  c01: ['회사 개요', '주주 구성 (%)', '연혁 — 두 번의 도약'],
+  c02: ['카테고리별 매출과 마진 (십억 밧·%)', '자사 브랜드 매출 비중 (%)', '카테고리별 지역 구성 (%)'],
+  c03: ['브랜드 포트폴리오 — 실측 SKU', 'John West 형태 사다리 (£/kg)', '소매 실판매가 표본'],
+  c04: ['그룹 생산능력 (톤/년)', '가공 거점', '참치 조달 어장 구성 추이 (%)', 'TC25 6대 약속 이행률 (%)'],
+  c05: ['GHG Scope 별 배출 (천 tCO2e)', 'SeaChange 2030 대시보드 (%)'],
+  c06: ['매출과 마진 (십억 밧·%)', '연결 vs 개별 — 순이익 역전 (십억 밧)', '재무상태 (백만 밧)', 'Red Lobster — 4겹'],
+  c07: ['한국 → 태국 냉동참치 수출 (톤·백만$)', '참치조제품 대한 수입 (2024)', '식약처 수입신고 구성 (건)', '미국 실효 관세 (%)'],
 };
 
 describe('Thai Union 서술과 차트의 연결', () => {
@@ -129,5 +137,46 @@ describe('Thai Union 인테이크 정합', () => {
   it('미국 관세 표 — 수침 캔참치가 가장 무겁다', () => {
     const ambient = thaiUnionUsTariff.find((r) => r.품목.includes('캔참치'))!;
     expect(ambient.부담).toContain('31.5');
+  });
+
+  it('주주 표 — 자기주식이 2위이고 창업가문 합계가 26.85%다', () => {
+    const self = thaiUnionShareholders.find((r) => r.주주.includes('자기주식'))!;
+    expect(self.순위).toBe(2);
+    expect(self.지분).toBe(13.47);
+  });
+
+  it('GHG — 2023년 Scope 3 는 null (미보고, 추정 금지)', () => {
+    const y23 = thaiUnionGhgScopes.find((r) => r.연도 === 2023)!;
+    expect(y23.s3).toBeNull();
+    const y24 = thaiUnionGhgScopes.find((r) => r.연도 === 2024)!;
+    const y25 = thaiUnionGhgScopes.find((r) => r.연도 === 2025)!;
+    // Scope 3 절대량 증가 — «감축» 헤드라인의 반대 방향 사실
+    expect(y25.s3!).toBeGreaterThan(y24.s3!);
+  });
+
+  it('지역 구성 — 각 카테고리 합이 100% 근처다', () => {
+    for (const r of thaiUnionRegions) {
+      const total = r.미국 + r.유럽 + r.아시아기타;
+      expect(Math.abs(total - 100), r.카테고리).toBeLessThan(0.5);
+    }
+  });
+
+  it('재무상태 — 자본 감소·부채 증가 방향이 맞다', () => {
+    const eq = thaiUnionBalance.find((r) => r.항목 === '총자본')!;
+    const debt = thaiUnionBalance.find((r) => r.항목 === '총부채')!;
+    expect(eq.y2025).toBeLessThan(eq.y2024);
+    expect(debt.y2025).toBeGreaterThan(debt.y2024);
+  });
+
+  it('SeaChange — GDST 0% 가 실재하고 실적은 0~100 범위다', () => {
+    expect(thaiUnionSeachange.some((r) => r.실적 === 0)).toBe(true);
+    for (const r of thaiUnionSeachange) {
+      expect(r.실적).toBeGreaterThanOrEqual(0);
+      expect(r.실적).toBeLessThanOrEqual(100);
+    }
+  });
+
+  it('브랜드 실측 SKU 합계가 454다', () => {
+    expect(totalBrandSku()).toBe(454);
   });
 });

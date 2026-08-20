@@ -28,6 +28,20 @@ export type CapacityRow = { 품목: string; 톤: number };
 export type KoreaExportRow = { 연도: number; 톤: number; usd: number };
 export type KoreaImportRow = { 원산지: string; usd: number; 비중: number; 관세: string };
 export type UsTariffRow = { 품목: string; 부담: string; 비고: string };
+export type ShareholderRow = { 순위: number; 주주: string; 지분: number };
+export type HistoryRow = { 연도: string; 사건: string };
+export type RegionRow = { 카테고리: string; 미국: number; 유럽: number; 아시아기타: number };
+export type BrandRow = { 브랜드: string; 국가: string; 인수: string; sku: number | null; 축: string };
+export type JwLadderRow = { 층: string; 규격: string; 가격: number; perKg: number };
+export type RetailPriceRow = { 브랜드: string; 제품: string; 가격: string; 단가: string; 소매처: string };
+export type CapacityUtilRow = { 유형: string; 캐파: number; 가동률: number };
+export type FactoryRow = { 지역: string; 거점: string; 품목: string };
+export type GhgScopeRow = { 연도: number; s1: number; s2: number; s3: number | null };
+export type SeachangeRow = { 목표: string; 실적: number; 상태: string };
+export type RedLobsterRow = { 층: string; 시점: string; 내용: string };
+export type BalanceRow = { 항목: string; y2025: number; y2024: number };
+export type MfdsMixRow = { 품목: string; 건수: number };
+
 
 const data = raw as unknown as {
   _meta: {
@@ -44,6 +58,19 @@ const data = raw as unknown as {
   koreaExport: KoreaExportRow[];
   koreaImport: KoreaImportRow[];
   usTariff: UsTariffRow[];
+  shareholders: ShareholderRow[];
+  history: HistoryRow[];
+  regions: RegionRow[];
+  brands: BrandRow[];
+  jwLadder: JwLadderRow[];
+  retailPrices: RetailPriceRow[];
+  capacityUtil: CapacityUtilRow[];
+  factories: FactoryRow[];
+  ghgScopes: GhgScopeRow[];
+  seachange: SeachangeRow[];
+  redLobster: RedLobsterRow[];
+  balance: BalanceRow[];
+  mfdsMix: MfdsMixRow[];
 };
 
 export const thaiUnionMeta = data._meta;
@@ -57,6 +84,24 @@ export const thaiUnionCapacity = data.capacity;
 export const thaiUnionKoreaExport = data.koreaExport;
 export const thaiUnionKoreaImport = data.koreaImport;
 export const thaiUnionUsTariff = data.usTariff;
+export const thaiUnionShareholders = data.shareholders;
+export const thaiUnionHistory = data.history;
+export const thaiUnionRegions = data.regions;
+export const thaiUnionBrands = data.brands;
+export const thaiUnionJwLadder = data.jwLadder;
+export const thaiUnionRetailPrices = data.retailPrices;
+export const thaiUnionCapacityUtil = data.capacityUtil;
+export const thaiUnionFactories = data.factories;
+export const thaiUnionGhgScopes = data.ghgScopes;
+export const thaiUnionSeachange = data.seachange;
+export const thaiUnionRedLobster = data.redLobster;
+export const thaiUnionBalance = data.balance;
+export const thaiUnionMfdsMix = data.mfdsMix;
+
+/** 브랜드 실측 SKU 합계 — «최대한 많은 정보» 지시의 커버리지 지표. */
+export function totalBrandSku(): number {
+  return data.brands.reduce((a, r) => a + (r.sku ?? 0), 0);
+}
 
 /** 최신 확정 회계연도(2025). 연결 기준이다. */
 export function latestTuFinancial(): FinancialRow {
