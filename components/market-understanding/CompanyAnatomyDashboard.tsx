@@ -3,8 +3,8 @@
  *
  * 골격은 `CommodityIndustryDashboard` 가 갖고 있다. 여기는 회사 선택과 차트 배치만 정한다.
  *
- * 지금 실린 회사는 Frinsa 하나다. 회사가 늘 때를 대비해 상단에 회사 Pills 를 두되,
- * **한 곳뿐일 때는 그리지 않는다** — 고를 것이 없는 선택지는 화면만 먹는다.
+ * 실린 회사는 Frinsa·Thai Union 둘이다. 진입은 갤러리(타로카드)가 맡고,
+ * 회사가 늘면 `COMPANY_CARDS` 와 `SPECS` 에 한 짝씩 추가한다.
  */
 'use client';
 
@@ -35,6 +35,30 @@ import {
   FrinsaSourcingChart,
   FrinsaSustainabilityChart,
 } from './FrinsaCharts';
+import {
+  THAIUNION_BRIEFING,
+  THAIUNION_NARRATIVES,
+  THAIUNION_SOURCE_NOTES,
+} from '@/lib/company-thaiunion-content';
+import {
+  latestKoreaExport,
+  latestTuFinancial,
+  thaiUnionKoreaImport,
+  thaiUnionMeta,
+  thaiUnionProfile,
+  thaiUnionUsTariff,
+  tunaCapacityMt,
+} from '@/lib/data/company-thaiunion';
+import {
+  TuBrandShareChart,
+  TuCapacityChart,
+  TuConVsSepChart,
+  TuFinancialChart,
+  TuKoreaExportChart,
+  TuMscTrendChart,
+  TuSegmentChart,
+  TuTc25Chart,
+} from './ThaiUnionCharts';
 import CompanyGallery, { type CompanyCard } from './CompanyGallery';
 import galleryStyles from './CompanyGallery.module.css';
 import styles from './TunaIndustryDashboard.module.css';
@@ -223,6 +247,227 @@ const SPEC: CommoditySpec = {
   ].join(' · '),
 };
 
+const TU_ACCENT = '#1e40af';
+const TU_FIN = latestTuFinancial();
+const TU_KE = latestKoreaExport();
+
+/** Thai Union 회사 개요 표. */
+function TuProfileTable() {
+  return (
+    <div className={styles.factWrap}>
+      <table className={styles.factTable}>
+        <thead>
+          <tr>
+            <th>항목</th>
+            <th>내용</th>
+          </tr>
+        </thead>
+        <tbody>
+          {thaiUnionProfile.map(([k, v]) => (
+            <tr key={k}>
+              <td>{k}</td>
+              <td>{v}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  );
+}
+
+/** 참치조제품 대한 수입 — 관세가 지도를 그린다는 것이 요지라 표로 둔다. */
+function TuKoreaImportTable() {
+  return (
+    <div className={styles.factWrap}>
+      <table className={styles.factTable}>
+        <thead>
+          <tr>
+            <th>원산지</th>
+            <th>2024 수입액</th>
+            <th>비중</th>
+            <th>관세</th>
+          </tr>
+        </thead>
+        <tbody>
+          {thaiUnionKoreaImport.map((r) => (
+            <tr key={r.원산지}>
+              <td>{r.원산지}</td>
+              <td>{`$${r.usd.toLocaleString('ko-KR')}`}</td>
+              <td>{`${r.비중}%`}</td>
+              <td>{r.관세}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  );
+}
+
+/** 미국 실효 관세 — 품목별 부담이 요지라 표로 둔다. */
+function TuUsTariffTable() {
+  return (
+    <div className={styles.factWrap}>
+      <table className={styles.factTable}>
+        <thead>
+          <tr>
+            <th>품목</th>
+            <th>실효 부담</th>
+            <th>비고</th>
+          </tr>
+        </thead>
+        <tbody>
+          {thaiUnionUsTariff.map((r) => (
+            <tr key={r.품목}>
+              <td>{r.품목}</td>
+              <td>{r.부담}</td>
+              <td>{r.비고}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  );
+}
+
+const TU_CHART_SLOTS: Record<string, ChartSlot[]> = {
+  c01: [
+    {
+      title: '회사 개요',
+      caption: '설립·상장·지배구조 등 조사보고서 01장 요약.',
+      telemetry: SYNC,
+      render: () => <TuProfileTable />,
+      sourceLine: '사내 조사보고서 (2026-08) · 56-1 One Report FY2025',
+    },
+  ],
+  c02: [
+    {
+      title: '카테고리별 매출과 마진 (십억 밧·%)',
+      caption: 'FY2025 연결. 유일하게 성장한 PetCare 가 마진도 가장 높다.',
+      telemetry: SYNC,
+      render: () => <TuSegmentChart />,
+      sourceLine: '사내 조사보고서 (2026-08) · One Report MD&A',
+    },
+    {
+      title: '자사 브랜드 매출 비중 (%)',
+      caption: '노란 막대가 PetCare — 98.8%가 고객 브랜드·PL 이다. 한 회사 안의 두 모델.',
+      telemetry: SYNC,
+      render: () => <TuBrandShareChart />,
+      sourceLine: '사내 조사보고서 (2026-08) · One Report p.33·37',
+    },
+  ],
+  c03: [
+    {
+      title: '그룹 생산능력 (톤/년)',
+      caption: '노란 막대가 참치 57만 톤. PetCare 는 공시 내 모순(221k vs 195k)이 있어 서술값이다.',
+      telemetry: SYNC,
+      render: () => <TuCapacityChart />,
+      sourceLine: '사내 조사보고서 (2026-08) · One Report p.46',
+    },
+    {
+      title: '참치 조달 어장 구성 추이 (%)',
+      caption: 'MSC 인증이 2년 만에 31→71.4%. FIP 물량이 인증으로 «졸업»하며 옮겨 갔다.',
+      telemetry: SYNC,
+      render: () => <TuMscTrendChart />,
+      sourceLine: '사내 조사보고서 (2026-08) · SeaChange 2024 Table 1',
+    },
+    {
+      title: 'TC25 6대 약속 이행률 (%)',
+      caption: '목표는 전부 2025년 100%. 노란 막대가 미달 구간 — 공급자 감사가 87.6%로 가장 남았다.',
+      telemetry: SYNC,
+      render: () => <TuTc25Chart />,
+      span: 'full',
+      sourceLine: '사내 조사보고서 (2026-08) · SeaChange 2024 (Key Traceability 독립검증)',
+    },
+  ],
+  c04: [
+    {
+      title: '매출과 마진 (십억 밧·%)',
+      caption: '2023년 매출은 원본 표에 없어 비어 있다 — 0 이 아니다. GPM 은 3년 연속 개선.',
+      telemetry: SYNC,
+      render: () => <TuFinancialChart />,
+      sourceLine: '사내 조사보고서 (2026-08) · 감사 재무제표 OCR',
+    },
+    {
+      title: '연결 vs 개별 — 순이익 역전 (십억 밧)',
+      caption: '갈색(개별)이 남색(연결)보다 긴 줄이 이 회사의 함정이다. 모회사 배당수익 125.1억 밧.',
+      telemetry: SYNC,
+      render: () => <TuConVsSepChart />,
+      sourceLine: '사내 조사보고서 (2026-08) · 감사 재무제표 p.357 (OCR)',
+    },
+  ],
+  c05: [
+    {
+      title: '한국 → 태국 냉동참치 수출 (톤·백만$)',
+      caption: '한국 냉동참치 수출의 54.1%(중량)가 태국행이다. 2025년 감소는 관세 관망의 흔적.',
+      telemetry: SYNC,
+      render: () => <TuKoreaExportChart />,
+      cockpitExtra: () => (
+        <SeriesStats
+          rows={[
+            { 라벨: '2024년', 값: 107151 },
+            { 라벨: '2025년', 값: 86514 },
+          ]}
+          labelKey="라벨"
+          valueKey="값"
+          unit="톤"
+        />
+      ),
+      sourceLine: 'UN Comtrade 한국 신고 (사내 조사보고서 인용)',
+    },
+    {
+      title: '참치조제품 대한 수입 (2024)',
+      caption: '베트남 74.3% vs 태국 12.8% — 관세(0% vs 20%)가 그린 지도다.',
+      telemetry: SYNC,
+      render: () => <TuKoreaImportTable />,
+      sourceLine: 'Comtrade + 관세청 FTA포털 (사내 조사보고서 인용)',
+    },
+    {
+      title: '미국 실효 관세 (%)',
+      caption: '미국이 그룹 매출의 38%다. 회사는 대미 물량의 가나·세이셸 전환을 공시했다.',
+      telemetry: SYNC,
+      render: () => <TuUsTariffTable />,
+      sourceLine: 'One Report pp.97-98 (사내 조사보고서 인용) · 2025-08-01 확정',
+    },
+  ],
+};
+
+const TU_SPEC: CommoditySpec = {
+  key: 'company-anatomy-thaiunion',
+  title: '기업 해부 — Thai Union Group',
+  subtitle: '세계 최대 참치 가공사. 한국 냉동참치 수출의 절반이 이 회사의 앞마당으로 간다.',
+  accent: TU_ACCENT,
+  primaryKpi: {
+    label: `${TU_FIN.연도}년 연결 매출`,
+    value: TU_FIN.매출 ?? 0,
+    unit: '(백만 밧)',
+    accent: TU_ACCENT,
+  },
+  secondaryKpis: [
+    { label: `${TU_FIN.연도}년 매출총이익률`, value: TU_FIN.gpm, unit: '(%)', decimals: 1 },
+    { label: '참치 캐파', value: tunaCapacityMt(), unit: '(톤/년)' },
+    { label: '보유 선단', value: 0, unit: '(척)' },
+  ],
+  stripItems: [
+    {
+      now: true,
+      eyebrow: '규모',
+      title: `${TU_FIN.연도}년 연결 매출`,
+      body: `${(TU_FIN.매출 ?? 0).toLocaleString('ko-KR')} (백만 밧)`,
+    },
+    { eyebrow: '한국 접점', title: `한국→태국 수출 (${TU_KE.연도})`, body: `${Math.round(TU_KE.톤).toLocaleString('ko-KR')} (톤)` },
+    { eyebrow: '관세', title: '수침 캔참치 대미 부담', body: '31.5 (%)' },
+  ],
+  briefing: THAIUNION_BRIEFING,
+  narratives: THAIUNION_NARRATIVES,
+  chartSlots: TU_CHART_SLOTS,
+  sourceNotes: THAIUNION_SOURCE_NOTES,
+  sourceMeta: [
+    `${thaiUnionMeta.회사} · ${thaiUnionMeta.국가} · ${thaiUnionMeta.업종}`,
+    `출처 ${thaiUnionMeta.출처}`,
+    `갱신 ${thaiUnionMeta.갱신방법}`,
+  ].join(' · '),
+};
+
 /** 선택 갤러리 카드 목록. 회사가 늘면 여기에 한 장씩 추가한다. */
 const COMPANY_CARDS: CompanyCard[] = [
   {
@@ -240,6 +485,24 @@ const COMPANY_CARDS: CompanyCard[] = [
     stats: [
       { label: `${FIN.연도}년 매출`, value: `${FIN.매출.toLocaleString('ko-KR')} M€` },
       { label: '참치 원어 구매', value: `${tunaPurchasedMt().toLocaleString('ko-KR')} 톤` },
+      { label: '보유 선단', value: '0 척' },
+    ],
+  },
+  {
+    key: 'thaiunion',
+    numeral: 'Ⅱ',
+    name: 'Thai Union Group',
+    country: '태국 · 사뭇사콘',
+    tagline: 'John West 도 Chicken of the Sea 도 이 회사 것이다. 한국 참치 수출의 절반이 이곳으로 간다.',
+    // 태국 국기(트라이롱) 연상 — 빨강·하양·남색(2배폭)·하양·빨강 가로 밴드
+    flagCss: [
+      'radial-gradient(circle at 50% 30%, rgba(255, 255, 255, 0.14), transparent 55%)',
+      'linear-gradient(180deg, #a51931 0%, #a51931 16.6%, #f4f5f0 16.6%, #f4f5f0 33.3%, #2d2a4a 33.3%, #2d2a4a 66.6%, #f4f5f0 66.6%, #f4f5f0 83.3%, #a51931 83.3%, #a51931 100%)',
+    ].join(', '),
+    backInk: '#f4f5f0',
+    stats: [
+      { label: `${TU_FIN.연도}년 연결 매출`, value: `${((TU_FIN.매출 ?? 0) / 1000).toFixed(0)}십억 밧` },
+      { label: '참치 캐파', value: `${tunaCapacityMt().toLocaleString('ko-KR')} 톤/년` },
       { label: '보유 선단', value: '0 척' },
     ],
   },
@@ -261,6 +524,8 @@ export default function CompanyAnatomyDashboard({
     return <CompanyGallery companies={COMPANY_CARDS} onSelect={setSelected} />;
   }
 
+  const spec = selected === 'thaiunion' ? TU_SPEC : SPEC;
+
   return (
     <div className={galleryStyles.wrap}>
       <button
@@ -270,7 +535,7 @@ export default function CompanyAnatomyDashboard({
       >
         ← 회사 선택
       </button>
-      <CommodityIndustryDashboard spec={SPEC} />
+      <CommodityIndustryDashboard spec={spec} />
     </div>
   );
 }
