@@ -3,7 +3,7 @@
  *
  * 골격은 `CommodityIndustryDashboard` 가 갖고 있다. 여기는 회사 선택과 차트 배치만 정한다.
  *
- * 실린 회사는 Frinsa·Thai Union 둘이다. 진입은 갤러리(타로카드)가 맡고,
+ * 실린 회사는 Frinsa·Thai Union·Albacora 셋이다. 진입은 갤러리(타로카드)가 맡고,
  * 회사가 늘면 `COMPANY_CARDS` 와 `SPECS` 에 한 짝씩 추가한다.
  */
 'use client';
@@ -77,6 +77,48 @@ import {
   TuSegmentChart,
   TuTc25Chart,
 } from './ThaiUnionCharts';
+import {
+  ALBACORA_BRIEFING,
+  ALBACORA_NARRATIVES,
+  ALBACORA_SOURCE_NOTES,
+} from '@/lib/company-albacora-content';
+import {
+  ALBACORA_CLAIMED_VESSELS,
+  albacoraAffiliates,
+  albacoraBrands,
+  albacoraCerts,
+  albacoraCompare,
+  albacoraFinancials,
+  albacoraFleet,
+  albacoraHistory,
+  albacoraLimits,
+  albacoraMeta,
+  albacoraMonitoring,
+  albacoraMscUnits,
+  albacoraOpenQuestions,
+  albacoraOverlap,
+  albacoraPlants,
+  albacoraProfile,
+  albacoraRisks,
+  albacoraSuccession,
+  albacoraSustain,
+  albacoraTradeThreat,
+  ecuadorRevenueShare,
+  fleetGtTotal,
+  latestCatch,
+  plantRevenueTotal,
+} from '@/lib/data/company-albacora';
+import {
+  AlbCamposPriceChart,
+  AlbCatchChart,
+  AlbFlagChart,
+  AlbFleetGtChart,
+  AlbPlantChart,
+  AlbSacYieldChart,
+  AlbSafetyChart,
+  AlbSalesDestChart,
+  AlbSiaTonnageChart,
+} from './AlbacoraCharts';
 import CompanyGallery, { type CompanyCard } from './CompanyGallery';
 import galleryStyles from './CompanyGallery.module.css';
 import styles from './TunaIndustryDashboard.module.css';
@@ -720,6 +762,315 @@ const TU_SPEC: CommoditySpec = {
   ].join(' · '),
 };
 
+const ALB_ACCENT = '#1f5d4c';
+const ALB_CATCH = latestCatch();
+
+const ALB_CHART_SLOTS: Record<string, ChartSlot[]> = {
+  c01: [
+    {
+      title: '회사 개요',
+      caption: '설립·본사·자본금 등 조사보고서 01절 요약. 비상장 가족기업이라 등기·EINF 가 1차 출처다.',
+      telemetry: SYNC,
+      render: () => (
+        <TuRows head={['항목', '내용']} rows={albacoraProfile.map(([k, v]) => [k, v])} />
+      ),
+      span: 'full',
+      sourceLine: '사내 조사보고서 (2026-08) · 스페인 상업등기 · EINF 2025',
+    },
+    {
+      title: '3사 좌표 — 사는 회사와 잡는 회사',
+      caption: '선단 0척 둘과 선망 18척 하나. 규모를 재는 축부터 다르고, 한국 선단에게의 자리도 갈린다.',
+      telemetry: SYNC,
+      render: () => (
+        <TuRows head={['항목', 'Frinsa', 'Thai Union', 'Albacora']}
+          rows={albacoraCompare.map((r) => [r.항목, r.frinsa, r.thaiunion, r.albacora])} />
+      ),
+      span: 'full',
+      sourceLine: '사내 조사보고서 3건 대조 (Frinsa 2026-08 · Thai Union 2026-08 · Albacora 2026-08)',
+    },
+    {
+      title: '연혁 — 배 네 척에서 시작했다',
+      caption: '1962년 선상 냉동 신조선 4척이 출발점이다. 잡은 자리에서 얼려 자기 공장으로 보내는 구조가 여기서 나왔다.',
+      telemetry: SYNC,
+      render: () => (
+        <TuRows head={['연도', '사건']} rows={albacoraHistory.map((r) => [r.연도, r.사건])} />
+      ),
+      span: 'full',
+      sourceLine: '사내 조사보고서 (2026-08) · BORME · 회사 dossier',
+    },
+    {
+      title: '연간 어획량 (톤)',
+      caption: '2024년 207천 톤 → 2025년 약 200천 톤. 프린사가 한 해 사들이는 원어(13.5만 톤)보다 많다.',
+      telemetry: SYNC,
+      render: () => <AlbCatchChart />,
+      sourceLine: 'EINF 2025 (사내 조사보고서 인용)',
+    },
+  ],
+  c02: [
+    {
+      title: '승계 — 3년 사이의 네 번',
+      caption: '별세 → 딸 회장 → 손자 CEO → 공동 CEO 사임. BORME 공고로 확인되는 변동이다.',
+      telemetry: SYNC,
+      render: () => (
+        <TuRows head={['시점', '변동']} rows={albacoraSuccession.map((r) => [r.시점, r.변동])} />
+      ),
+      span: 'full',
+      sourceLine: '스페인 상업등기 관보(BORME) · EINF 2025 서명',
+    },
+    {
+      title: '계열 · 관계 법인',
+      caption: '부회장 자리의 ALONSO ESCURIS SL 이 Jealsa 창업 가문이다 — 프린사 최대 경쟁사와의 접점.',
+      telemetry: SYNC,
+      render: () => (
+        <TuRows head={['법인', '내용']} rows={albacoraAffiliates.map((r) => [r.법인, r.내용])} />
+      ),
+      span: 'full',
+      sourceLine: '스페인 상업등기 · 신용정보 · 회사 dossier',
+    },
+  ],
+  c03: [
+    {
+      title: '선박별 총톤수 (GT)',
+      caption: '등록부 확인 12척. 상위 3척이 4,400 GT 대로 세계 최대급이고 나머지와 층이 갈린다.',
+      telemetry: SYNC,
+      render: () => <AlbFleetGtChart />,
+      span: 'full',
+      sourceLine: 'WCPFC·IOTC·ICCAT·IATTC 선박등록부 (2026-08-17 수집)',
+    },
+    {
+      title: '기국별 척수와 합계 GT',
+      caption: '스페인 8 · 파나마 2 · 모리셔스 2. 비스페인 4척은 전부 Integral Fishing Services 소유다.',
+      telemetry: SYNC,
+      render: () => <AlbFlagChart />,
+      sourceLine: 'RFMO 4개 선박등록부 (2026-08-17 수집)',
+    },
+    {
+      title: '어획물 판매처 (%)',
+      caption: '인도양 25% 축이 모리셔스 기국 2척과 맞물린다. 스페인 본토는 10%뿐이다.',
+      telemetry: SYNC,
+      render: () => <AlbSalesDestChart />,
+      sourceLine: 'EINF 2025 (회사 자료)',
+    },
+    {
+      title: '선단 명세 — 12척 · 36,404 GT',
+      caption: '회사 공표 18척 중 공적 등록부로 확인되는 분이다. 나머지 6척은 추정하지 않고 비워 뒀다.',
+      telemetry: SYNC,
+      render: () => (
+        <TuRows head={['선명', 'GT', '선적', '등재 기구', '소유사']}
+          rows={albacoraFleet.map((v) => [v.선명, v.gt.toLocaleString('ko-KR'), v.선적, v.기구, v.소유사])} />
+      ),
+      span: 'full',
+      sourceLine: 'WCPFC·IOTC·ICCAT·IATTC 선박등록부 (2026-08-17 수집)',
+    },
+    {
+      title: '감시 체계',
+      caption: '타이유니온이 공급자에게 요구하는 조건을 자기 선단으로 이미 충족한다. REM 은 2014년부터다.',
+      telemetry: SYNC,
+      render: () => (
+        <TuRows head={['장치', '내용']} rows={albacoraMonitoring.map((r) => [r.장치, r.내용])} />
+      ),
+      span: 'full',
+      sourceLine: 'EINF 2025 (회사 명시 — 자기주장 포함)',
+    },
+  ],
+  c04: [
+    {
+      title: '가공 3사 매출과 인력',
+      caption: '에콰도르 한 곳이 매출 74% · 인력 92%다. 스페인 두 공장이 줄 때 Posorja 는 늘었다.',
+      telemetry: SYNC,
+      render: () => <AlbPlantChart />,
+      span: 'full',
+      sourceLine: 'EINF 2025 (사내 조사보고서 인용)',
+    },
+    {
+      title: 'SIA 베르메오 — 투입 톤수와 전년비',
+      caption: '매출은 2.7% 줄었는데 실물 투입은 44% 빠졌다. EMAS 는 법정 공개 문서라 물량이 그대로 실린다.',
+      telemetry: SYNC,
+      render: () => <AlbSiaTonnageChart />,
+      sourceLine: 'EMAS 환경선언 (SIA 베르메오)',
+    },
+    {
+      title: 'SAC 갈리시아 — 원료·제품과 수율',
+      caption: '2021년 정점 후 2023년 원료가 44% 감소했다. 물량이 적을 때 수율이 올라간다.',
+      telemetry: SYNC,
+      render: () => <AlbSacYieldChart />,
+      sourceLine: 'EMAS 환경선언 (SAC 갈리시아)',
+    },
+    {
+      title: '공장별 품목과 주시장',
+      caption: 'SAE 포소르하만 對EU(UE-626)와 對미주(BASC) 양방향이다. 사실상 수직통합의 허브다.',
+      telemetry: SYNC,
+      render: () => (
+        <TuRows head={['플랜트', '직원', '2025 매출 (M€)', '품목', '주시장']}
+          rows={albacoraPlants.map((p) => [p.플랜트, p.직원.toLocaleString('ko-KR'), p.y2025.toFixed(1), p.품목, p.주시장])} />
+      ),
+      span: 'full',
+      sourceLine: 'EINF 2025 · Salica 인증서 원문',
+    },
+  ],
+  c05: [
+    {
+      title: 'Campos 가격 사다리 (EUR)',
+      caption: '프린사가 부위로 갈렸다면 이쪽은 인증(APR·MSC)과 대용량으로 갈린다. 최고가도 업소·수출 규격이다.',
+      telemetry: SYNC,
+      render: () => <AlbCamposPriceChart />,
+      span: 'full',
+      sourceLine: 'clubcampos.com 실측 (2026-08) · 단일가 16 SKU',
+    },
+    {
+      title: '브랜드',
+      caption: '축은 CAMPOS 하나다. 1921년 창립이고 1990년 합병 때 Salica 가 승계했다.',
+      telemetry: SYNC,
+      render: () => (
+        <TuRows head={['브랜드', '성격']} rows={albacoraBrands.map((r) => [r.브랜드, r.성격])} />
+      ),
+      span: 'full',
+      sourceLine: 'APR 인증서 · clubcampos.com',
+    },
+    {
+      title: '플랜트별 인증 현황',
+      caption: '3사 전부 MSC CoC·APR·BRC·IFS 를 갖췄다. SIA 의 MSC CoC 게시본은 2025-10-27 만료다.',
+      telemetry: SYNC,
+      render: () => (
+        <TuRows head={['플랜트', 'MSC CoC', 'APR', 'BRC', 'IFS']}
+          rows={albacoraCerts.map((r) => [r.플랜트, r.msc, r.apr, r.brc, r.ifs])} />
+      ),
+      span: 'full',
+      sourceLine: 'Salica 게시 인증서 원문 17건',
+    },
+    {
+      title: '어업 인증 유닛별 상태',
+      caption: '인증 이름 자체가 «대서양·인도양»이다. 동태평양 유닛은 철회됐고 에콰도르 원료가 그 밖에 있다.',
+      telemetry: SYNC,
+      render: () => (
+        <TuRows head={['유닛', '상태']} rows={albacoraMscUnits.map((r) => [r.유닛, r.상태])} />
+      ),
+      sourceLine: 'MSC-F-31556/31558 (Bureau Veritas · AGAC)',
+    },
+    {
+      title: '그룹 지속가능 체계',
+      caption: 'APR 그룹 100% · ISSF PVR/VOSI · 2025년부터 전 선박 Dolphin Safe.',
+      telemetry: SYNC,
+      render: () => (
+        <TuRows head={['항목', '내용']} rows={albacoraSustain.map((r) => [r.항목, r.내용])} />
+      ),
+      sourceLine: 'EINF 2025 · ISSF · Earth Island Institute',
+    },
+  ],
+  c06: [
+    {
+      title: '재무 개요 — 확인된 것만',
+      caption: '비상장이라 절대액이 없다. «EBITDA −65%»는 개별법인 방향치이지 규모가 아니다.',
+      telemetry: SYNC,
+      render: () => (
+        <TuRows head={['항목', '값', '출처·기준', '등급']}
+          rows={albacoraFinancials.map((r) => [r.항목, r.값, r.기준, r.등급])} />
+      ),
+      span: 'full',
+      sourceLine: 'EINF 2025 · CEO 발언(EFEAgro 2024-04) · 신용정보 방향치',
+    },
+    {
+      title: '산업안전 지표',
+      caption: '사고 109건(여 29 · 남 80). 스페인 INSHT 기준이라 타이유니온 LTIFR 과 직접 비교되지 않는다.',
+      telemetry: SYNC,
+      render: () => <AlbSafetyChart />,
+      sourceLine: 'EINF 2025 (INSHT 산정 기준)',
+    },
+    {
+      title: '리스크 이력',
+      caption: '투자중재 패소·선박 폭발·ERTE 장기화·Atunlo 파산 연쇄. 매각설은 보도된 바 없다.',
+      telemetry: SYNC,
+      render: () => (
+        <TuRows head={['시점', '건', '내용']} rows={albacoraRisks.map((r) => [r.시점, r.건, r.내용])} />
+      ),
+      span: 'full',
+      sourceLine: 'PCA/UNCITRAL 판정 · 언론 · 등기',
+    },
+  ],
+  c07: [
+    {
+      title: '통상 위협 — 세 회사의 방향이 다르다',
+      caption: '태국은 미국 관세를, 스페인은 아세안 개방을 두려워한다. 한국 선단은 그 사이에 있다.',
+      telemetry: SYNC,
+      render: () => (
+        <TuRows head={['회사', '가장 큰 통상 위협', '대응']}
+          rows={albacoraTradeThreat.map((r) => [r.회사, r.위협, r.대응])} />
+      ),
+      span: 'full',
+      sourceLine: 'Albacora EINF 2025 회장 서한 · Thai Union One Report FY2025',
+    },
+    {
+      title: '겹치는 지점 넷',
+      caption: '어법·어장·인증 문턱·수직통합. 판매처만 갈린다 — 알바코라는 인도양, 한국은 방콕이다.',
+      telemetry: SYNC,
+      render: () => (
+        <TuRows head={['#', '축', '내용']}
+          rows={albacoraOverlap.map((r) => [r.번호, r.축, r.내용])} />
+      ),
+      span: 'full',
+      sourceLine: '사내 조사보고서 3건 대조 · Comtrade',
+    },
+    {
+      title: '남은 물음',
+      caption: '경쟁 강도를 정량화하려면 이 넷이 필요하다. 이 문서로는 답하지 못했다.',
+      telemetry: SYNC,
+      render: () => (
+        <TuRows head={['물음', '왜 중요한가']}
+          rows={albacoraOpenQuestions.map((r) => [r.물음, r.왜])} />
+      ),
+      span: 'full',
+      sourceLine: '사내 조사보고서 (2026-08) 07절',
+    },
+    {
+      title: '자료의 한계',
+      caption: '비상장 가족기업이라 공개 범위가 제한된다. 무엇이 없는지를 밝혀 두는 자리다.',
+      telemetry: SYNC,
+      render: () => (
+        <TuRows head={['항목', '상태']} rows={albacoraLimits.map((r) => [r.항목, r.상태])} />
+      ),
+      span: 'full',
+      sourceLine: '사내 조사보고서 (2026-08) 07절',
+    },
+  ],
+};
+
+const ALB_SPEC: CommoditySpec = {
+  key: 'company-anatomy-albacora',
+  title: '기업 해부 — Albacora, S.A.',
+  subtitle: '스페인 최대 참치 선망선사. 앞의 두 회사와 달리 거래 상대가 아니라 한국 선단의 직접 경쟁자다.',
+  accent: ALB_ACCENT,
+  primaryKpi: {
+    label: `${ALB_CATCH.연도}년 어획량`,
+    value: ALB_CATCH.톤,
+    unit: '(톤)',
+    accent: ALB_ACCENT,
+  },
+  secondaryKpis: [
+    { label: '선단 (회사 공표)', value: ALBACORA_CLAIMED_VESSELS, unit: '(척)' },
+    { label: '등록부 확인 선단', value: fleetGtTotal(), unit: '(GT · 12척)' },
+    { label: '가공 3사 매출', value: plantRevenueTotal(), unit: '(M€)', decimals: 1 },
+  ],
+  stripItems: [
+    {
+      now: true,
+      eyebrow: '규모',
+      title: `${ALB_CATCH.연도}년 어획량`,
+      body: `${ALB_CATCH.톤.toLocaleString('ko-KR')} (톤)`,
+    },
+    { eyebrow: '무게중심', title: '에콰도르 매출 비중', body: `${ecuadorRevenueShare()} (%)` },
+    { eyebrow: '숨은 신호', title: 'SIA 실물 투입 (2023)', body: '−44 (%)' },
+  ],
+  briefing: ALBACORA_BRIEFING,
+  narratives: ALBACORA_NARRATIVES,
+  chartSlots: ALB_CHART_SLOTS,
+  sourceNotes: ALBACORA_SOURCE_NOTES,
+  sourceMeta: [
+    `${albacoraMeta.회사} · ${albacoraMeta.국가} · ${albacoraMeta.업종}`,
+    `출처 ${albacoraMeta.출처}`,
+    `갱신 ${albacoraMeta.갱신방법}`,
+  ].join(' · '),
+};
+
 /** 선택 갤러리 카드 목록. 회사가 늘면 여기에 한 장씩 추가한다. */
 const COMPANY_CARDS: CompanyCard[] = [
   {
@@ -758,6 +1109,28 @@ const COMPANY_CARDS: CompanyCard[] = [
       { label: '보유 선단', value: '0 척' },
     ],
   },
+  {
+    key: 'albacora',
+    numeral: 'Ⅲ',
+    name: 'Albacora, S.A.',
+    country: '스페인 · 바스크 베르메오',
+    tagline: '앞의 둘은 사는 회사였다. 이쪽은 잡는 회사다 — 선망 18척으로 한 해 20만 톤.',
+    // 바스크 이쿠리냐 연상 — 짙은 초록 바탕에 흰 십자와 붉은 사선
+    flagCss: [
+      'radial-gradient(circle at 50% 30%, rgba(255, 255, 255, 0.12), transparent 55%)',
+      'linear-gradient(45deg, transparent 46%, #a32a2a 46%, #a32a2a 54%, transparent 54%)',
+      'linear-gradient(-45deg, transparent 46%, #a32a2a 46%, #a32a2a 54%, transparent 54%)',
+      'linear-gradient(0deg, transparent 46%, #f4f5f0 46%, #f4f5f0 54%, transparent 54%)',
+      'linear-gradient(90deg, transparent 46%, #f4f5f0 46%, #f4f5f0 54%, transparent 54%)',
+      'linear-gradient(180deg, #1f5d4c 0%, #164438 100%)',
+    ].join(', '),
+    backInk: '#f4f5f0',
+    stats: [
+      { label: `${ALB_CATCH.연도}년 어획량`, value: `${(ALB_CATCH.톤 / 1000).toFixed(0)}천 톤` },
+      { label: '등록부 확인 선단', value: `${fleetGtTotal().toLocaleString('ko-KR')} GT` },
+      { label: '보유 선단', value: `${ALBACORA_CLAIMED_VESSELS} 척` },
+    ],
+  },
 ];
 
 export interface CompanyAnatomyDashboardProps {
@@ -776,7 +1149,12 @@ export default function CompanyAnatomyDashboard({
     return <CompanyGallery companies={COMPANY_CARDS} onSelect={setSelected} />;
   }
 
-  const spec = selected === 'thaiunion' ? TU_SPEC : SPEC;
+  const SPECS: Record<string, CommoditySpec> = {
+    frinsa: SPEC,
+    thaiunion: TU_SPEC,
+    albacora: ALB_SPEC,
+  };
+  const spec = SPECS[selected] ?? SPEC;
 
   return (
     <div className={galleryStyles.wrap}>
