@@ -55,12 +55,16 @@
       "name": "M/V HIKARI 1",
       "location": "방콕, 태국",
       "buyer": "FCF CO.,LTD",
-      "status": "하역대기",
+      "status": "하역중",
       "reported_total": 2929,
-      "date_range": "2026.07.20 선적계획 확정 · 하역실적 대기",
+      "date_range": "2026.08.20 ~ 진행중",
       "mother_vessel": "S/SPR 670 · MOAKONA 314 · MOAMARI 940 · NAOERO STAR 1,005 MT",
+      "hold_species_breakdown_available": false,
+      "unclassified_actual_amount": 0,
+      "species_breakdown_as_of": "2026-08-20",
+      "species_breakdown_note": "8/20 일일 결과보고 XLS에서 어종별 일일·누적 물량을 확인했고 일일하역량 현황 XLSX로 교차 확인했습니다. N/STAR의 어종 물량은 #1-A·#3-A 합계라 개별 어창별 어종 분해는 제공되지 않습니다.",
       "created_at": "2026-08-12T16:35:00+09:00",
-      "updated_at": "2026-08-12T16:35:00+09:00"
+      "updated_at": "2026-08-20T19:01:00+09:00"
     },
     {
       "vessel_id": "sein-phoenix-2025-12",
@@ -1257,6 +1261,84 @@
       "created_at": "2026-08-12T16:35:00+09:00"
     },
     {
+      "id": "hikari-bangkok-2026-07-8-20",
+      "vessel_id": "hikari-bangkok-2026-07",
+      "report_year": 2026,
+      "report_date": "8/20",
+      "work_time": "10:00 ~ 15:20",
+      "target_holds": "N/STAR(#3-A:104.240,#1-A:69.800), MOAMARI(#4-A:123.020)",
+      "consignee": "MMP · GFF",
+      "allocations": [
+        {
+          "consignee": "MMP",
+          "amount": 174.04,
+          "loads": [
+            {
+              "source_vessel": "N/STAR",
+              "hatch": "#3-A",
+              "amount": 104.24
+            },
+            {
+              "source_vessel": "N/STAR",
+              "hatch": "#1-A",
+              "amount": 69.8
+            }
+          ]
+        },
+        {
+          "consignee": "GFF",
+          "amount": 123.02,
+          "loads": [
+            {
+              "source_vessel": "MOAMARI",
+              "hatch": "#4-A",
+              "amount": 123.02
+            }
+          ]
+        }
+      ],
+      "observations": [
+        {
+          "source_vessel": "N/STAR",
+          "hatch": "#3-A",
+          "temperatures_c": [
+            -22.0
+          ]
+        },
+        {
+          "source_vessel": "N/STAR",
+          "hatch": "#1-A",
+          "temperatures_c": [
+            -20.0
+          ]
+        },
+        {
+          "source_vessel": "MOAMARI",
+          "hatch": "#4-A",
+          "temperatures_c": [
+            -20.0
+          ]
+        }
+      ],
+      "daily_amount": 297.06,
+      "cumulative_amount": 297.06,
+      "species_amounts": {
+        "SJ": 146.14,
+        "YF": 150.92
+      },
+      "remaining_amount": 2631.94,
+      "next_day": {
+        "kind": "work",
+        "date": "8/21",
+        "planned_mt": 490
+      },
+      "quality_notes": "N/STAR(#3-A) - 어창 개방 측정온도는 -22.0℃ 입니다. N/STAR(#1-A) - 어창 개방 측정온도는 -20.0℃ 입니다. MOAMARI(#4-A) - 어창 개방 측정온도는 -20.0℃ 입니다. #3-A 차량 대기 13:00~13:20·14:10~14:40, #4-A 차량 대기 13:00~13:20.",
+      "source_sha256": "f991a53cbd4846d8487a17a28a54de419877b7e0f3665d2d9b3f88b31f065746",
+      "source_workbook_sha256": "794353927cc51bf5bd1181fc031c5fc0f7b49e0f5f71a49fb9a36653ab510cf2",
+      "status_workbook_sha256": "0c7363f7e4a0835655e7c06d7099ff54e342f27585a83b15121de4539a1a920d",
+      "created_at": "2026-08-20T19:01:00+09:00"
+    },
+    {
       "id": "sein-phoenix-2025-12-12-18",
       "vessel_id": "sein-phoenix-2025-12",
       "report_year": 2025,
@@ -1920,16 +2002,16 @@
       "species_id": "SJ",
       "species_name": "가다랑어",
       "reported_amount": 2515,
-      "actual_amount": 0,
-      "updated_at": "2026-08-12T16:35:00+09:00"
+      "actual_amount": 146.14,
+      "updated_at": "2026-08-20T19:01:00+09:00"
     },
     {
       "vessel_id": "hikari-bangkok-2026-07",
       "species_id": "YF",
       "species_name": "황다랑어",
       "reported_amount": 358,
-      "actual_amount": 0,
-      "updated_at": "2026-08-12T16:35:00+09:00"
+      "actual_amount": 150.92,
+      "updated_at": "2026-08-20T19:01:00+09:00"
     },
     {
       "vessel_id": "hikari-bangkok-2026-07",
@@ -1937,7 +2019,7 @@
       "species_name": "눈다랑어",
       "reported_amount": 56,
       "actual_amount": 0,
-      "updated_at": "2026-08-12T16:35:00+09:00"
+      "updated_at": "2026-08-20T19:01:00+09:00"
     },
     {
       "vessel_id": "sein-phoenix-2025-12",

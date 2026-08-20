@@ -21,14 +21,14 @@ async function loadHikari() {
   return payload.data['hikari-bangkok-2026-07'];
 }
 
-describe('HIKARI 1 Bangkok unloading plan', () => {
+describe('HIKARI 1 Bangkok unloading plan and daily report', () => {
   it('uses a voyage-specific ID so the completed Gensan HIKARI voyage is not overwritten', async () => {
     const response = await GET();
     const payload = await response.json();
 
     expect(payload.data['hikari-bangkok-2026-07']).toMatchObject({
       name: 'M/V HIKARI 1',
-      status: '하역대기',
+      status: '하역중',
       reportedTotal: 2929,
     });
   });
@@ -40,49 +40,98 @@ describe('HIKARI 1 Bangkok unloading plan', () => {
       name: 'M/V HIKARI 1',
       location: '방콕, 태국',
       buyer: 'FCF CO.,LTD',
-      status: '하역대기',
+      status: '하역중',
       reportedTotal: 2929,
-      actualTotal: 0,
-      surplus: -2929,
+      actualTotal: 297.06,
+      surplus: -2631.94,
     });
-    expect(vessel.timeline.at(-1).quality).toContain('정격 3,700 MT');
-    expect(vessel.timeline.at(-1).quality).toContain('총 적재 3,214 MT');
-    expect(vessel.timeline.at(-1).quality).toContain('FCF 방콕 하역대상 2,929 MT');
-    expect(vessel.timeline.at(-1).quality).toContain('#2-A 별도 배정 285 MT');
+    const loadingPlan = vessel.timeline.find((entry: { date: string }) => entry.date === '7/17~7/20');
+    expect(loadingPlan.quality).toContain('정격 3,700 MT');
+    expect(loadingPlan.quality).toContain('총 적재 3,214 MT');
+    expect(loadingPlan.quality).toContain('FCF 방콕 하역대상 2,929 MT');
+    expect(loadingPlan.quality).toContain('#2-A 별도 배정 285 MT');
   });
 
   it('publishes loading records without turning them into discharge results', async () => {
     const vessel = await loadHikari();
 
-    expect(vessel.timeline.map((entry: { date: string }) => entry.date)).toEqual([
+    const loadingRecords = vessel.timeline.filter((entry: { date: string }) => entry.date.startsWith('7/'));
+    expect(loadingRecords.map((entry: { date: string }) => entry.date)).toEqual([
       '7/2~7/4',
       '7/14~7/15',
       '7/17~7/19',
       '7/17~7/20',
     ]);
-    expect(vessel.timeline.every((entry: { dailyAmount: number }) => entry.dailyAmount === 0)).toBe(true);
-    expect(vessel.timeline.every((entry: { cumAmount: number }) => entry.cumAmount === 0)).toBe(true);
-    expect(vessel.timeline[0].quality).toContain('FCF 670 MT');
-    expect(vessel.timeline[0].quality).toContain('황다랑어 96 MT 별도 배정');
-    expect(vessel.timeline[1].quality).toContain('FCF 314 MT');
-    expect(vessel.timeline[1].quality).toContain('황다랑어 114 MT 별도 배정');
-    expect(vessel.timeline[2].quality).toContain('940 MT 전량 FCF');
-    expect(vessel.timeline[3].quality).toContain('1,005 MT 전량 FCF');
+    expect(loadingRecords.every((entry: { dailyAmount: number }) => entry.dailyAmount === 0)).toBe(true);
+    expect(loadingRecords.every((entry: { cumAmount: number }) => entry.cumAmount === 0)).toBe(true);
+    expect(loadingRecords[0].quality).toContain('FCF 670 MT');
+    expect(loadingRecords[0].quality).toContain('황다랑어 96 MT 별도 배정');
+    expect(loadingRecords[1].quality).toContain('FCF 314 MT');
+    expect(loadingRecords[1].quality).toContain('황다랑어 114 MT 별도 배정');
+    expect(loadingRecords[2].quality).toContain('940 MT 전량 FCF');
+    expect(loadingRecords[3].quality).toContain('1,005 MT 전량 FCF');
+  });
+
+  it('publishes the structured August 20 discharge without duplicating the date', async () => {
+    const vessel = await loadHikari();
+    const dischargeReports = vessel.timeline.filter((entry: { dailyAmount: number }) => entry.dailyAmount > 0);
+
+    expect(dischargeReports).toHaveLength(1);
+    expect(dischargeReports[0]).toMatchObject({
+      date: '8/20',
+      time: '10:00 ~ 15:20',
+      targetHol: 'N/STAR(#3-A:104.240,#1-A:69.800), MOAMARI(#4-A:123.020)',
+      consignee: 'MMP · GFF',
+      dailyAmount: 297.06,
+      cumAmount: 297.06,
+      remainingAmount: 2631.94,
+      speciesAmounts: { SJ: 146.14, YF: 150.92 },
+      nextDay: {
+        kind: 'work',
+        date: '8/21',
+        reason: null,
+        resumeDate: null,
+        plannedMt: '490',
+      },
+    });
+    expect(dischargeReports[0].allocations).toEqual([
+      {
+        consignee: 'MMP',
+        amount: 174.04,
+        loads: [
+          { sourceVessel: 'N/STAR', hatch: '#3-A', amount: 104.24 },
+          { sourceVessel: 'N/STAR', hatch: '#1-A', amount: 69.8 },
+        ],
+      },
+      {
+        consignee: 'GFF',
+        amount: 123.02,
+        loads: [
+          { sourceVessel: 'MOAMARI', hatch: '#4-A', amount: 123.02 },
+        ],
+      },
+    ]);
+    expect(dischargeReports[0].observations).toEqual([
+      { sourceVessel: 'N/STAR', hatch: '#3-A', temperaturesC: [-22] },
+      { sourceVessel: 'N/STAR', hatch: '#1-A', temperaturesC: [-20] },
+      { sourceVessel: 'MOAMARI', hatch: '#4-A', temperaturesC: [-20] },
+    ]);
   });
 
   it('matches the FCF breakdown by species and source vessel', async () => {
     const vessel = await loadHikari();
 
     expect(vessel.species).toEqual([
-      expect.objectContaining({ id: 'SJ', name: '가다랑어', reported: 2515, actual: 0 }),
-      expect.objectContaining({ id: 'YF', name: '황다랑어', reported: 358, actual: 0 }),
+      expect.objectContaining({ id: 'SJ', name: '가다랑어', reported: 2515, actual: 146.14 }),
+      expect.objectContaining({ id: 'YF', name: '황다랑어', reported: 358, actual: 150.92 }),
       expect.objectContaining({ id: 'BE', name: '눈다랑어', reported: 56, actual: 0 }),
     ]);
     expect(vessel.species.reduce((sum: number, item: { reported: number }) => sum + item.reported, 0)).toBe(2929);
+    expect(vessel.species.reduce((sum: number, item: { actual: number }) => sum + item.actual, 0)).toBeCloseTo(297.06, 6);
     expect(vessel.motherVessel).toBe('S/SPR 670 · MOAKONA 314 · MOAMARI 940 · NAOERO STAR 1,005 MT');
   });
 
-  it('maps only the FCF target to holds and leaves missing discharge temperatures unknown', async () => {
+  it('maps only the FCF target to holds and applies observed discharge temperatures', async () => {
     const vessel = await loadHikari();
     const holds = parseVesselHoldData('hikari-bangkok-2026-07', vessel.timeline, vessel.reportedTotal);
 
@@ -105,14 +154,17 @@ describe('HIKARI 1 Bangkok unloading plan', () => {
     expect(holds['#4-A'].shippers).toEqual(['MOAMARI']);
     expect(holds['#2-B'].shippers).toEqual(['SHILLA SPRINTER']);
     expect(holds['#1-A'].shippers).toEqual(['NAOERO STAR']);
-    expect(Object.values(holds).every((hold) => hold.lastTemperature === null)).toBe(true);
+    expect(holds['#3-A'].lastTemperature).toBe(-22);
+    expect(holds['#1-A'].lastTemperature).toBe(-20);
+    expect(holds['#4-A'].lastTemperature).toBe(-20);
+    expect(holds['#2-B'].lastTemperature).toBeNull();
   });
 
-  it('shows an awaiting vessel as pending instead of completed or zero-day work', () => {
+  it('shows the vessel as active after the first discharge', () => {
     expect(getVesselStatusKind('하역대기')).toBe('waiting');
     expect(getVesselStatusKind('하역중')).toBe('progress');
     expect(getVesselStatusKind('하역완료')).toBe('completed');
-    expect(getUnloadingEtaLabel('하역대기', 2929, 0)).toBe('하역 실적 대기');
+    expect(getUnloadingEtaLabel('하역중', 2631.94, 9)).toBe('+9일 필요');
     expect(getAnalyticsStatus('하역대기')).toEqual({
       kind: 'waiting',
       label: '하역대기',
