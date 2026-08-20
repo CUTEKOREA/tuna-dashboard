@@ -240,7 +240,7 @@ const CHART_SLOTS: Record<string, ChartSlot[]> = {
   c01: [
     {
       title: '회사 개요',
-      caption: '법인 정체성·지배구조 — 등기·EINF 로 확정된 항목만 싣는다.',
+      caption: '법인 정체성과 지배구조. 등기·EINF로 확정된 항목만 싣는다.',
       telemetry: SYNC,
       render: () => <ProfileTable />,
       span: 'full',
@@ -250,11 +250,11 @@ const CHART_SLOTS: Record<string, ChartSlot[]> = {
   c02: [
     {
       title: 'FY2024 국가별 세전이익 (M€)',
-      caption: '상위 6개국. 노란 막대가 싱가포르 구매본부다 — 판매법인이 아닌데 그룹 2위권이다.',
+      caption: '상위 6개국. 노란 막대가 싱가포르 구매본부다. 판매법인이 아닌데 그룹 2위권이다.',
       telemetry: SYNC,
       render: () => <FrinsaBaiChart />,
       span: 'full',
-      sourceLine: '회사 EINF «국가별 세전이익» — 국가 합계와 산술 일치 검증',
+      sourceLine: '회사 EINF ‘국가별 세전이익’ (국가 합계와 산술 일치 검증)',
     },
   ],
   c03: [
@@ -278,7 +278,7 @@ const CHART_SLOTS: Record<string, ChartSlot[]> = {
   c04: [
     {
       title: '열병합 발전량 (MWh)',
-      caption: '2023년부터 사실상 정지(−99.8%). 0 이 아니라 254·117 MWh 다.',
+      caption: '2023년부터 사실상 정지(−99.8%). 0이 아니라 254·117 MWh 다.',
       telemetry: SYNC,
       render: () => <FrinsaCogenChart />,
       sourceLine: '회사 EINF 에너지 표 (2022~2024)',
@@ -290,14 +290,14 @@ const CHART_SLOTS: Record<string, ChartSlot[]> = {
       caption: '법인별 구매량. 「그룹 합계」는 두 법인의 합이라 이중계상을 피해 뺐다.',
       telemetry: SYNC,
       render: () => <FrinsaSourcingChart />,
-      sourceLine: '회사 EINF — SAP 구매등록 (2024)',
+      sourceLine: '회사 EINF · SAP 구매등록 (2024)',
     },
     {
       title: '2025년 참치 구매 출처 (%)',
       caption: '어업 기준. MSC 인증이 68%다.',
       telemetry: SYNC,
       render: () => <FrinsaSustainabilityChart axis="어업 출처" />,
-      sourceLine: 'Frinsa Marine Sustainability Policy 2026 (2025년 실적, 자사 공시 — 원문 전 항목 대조 일치)',
+      sourceLine: 'Frinsa Marine Sustainability Policy 2026 (2025년 실적, 자사 공시, 원문 전 항목 대조 일치)',
     },
     {
       title: '2025년 공급사 참여 (%)',
@@ -308,7 +308,7 @@ const CHART_SLOTS: Record<string, ChartSlot[]> = {
     },
     {
       title: '인증 현황',
-      caption: '원본 인증서로 확정된 것만 싣는다. IFS Broker 는 만료본까지만 확인됐다.',
+      caption: '원본 인증서로 확정된 것만 싣는다. IFS Broker는 만료본까지만 확인됐다.',
       telemetry: SYNC,
       render: () => <CertTable />,
       sourceLine: '인증서 원본 4종 (NSF·Bureau Veritas) · MSC 등록부 · EII 명부 CSV · ISSF 준수보고서',
@@ -324,16 +324,16 @@ const CHART_SLOTS: Record<string, ChartSlot[]> = {
     },
     {
       title: 'FY2024 지역별 매출 (M€)',
-      caption: '이베리아 밖(노란 막대)이 57.6%다. 합 740.4 가 보도치 741 과 정합한다.',
+      caption: '이베리아 밖(노란 막대)이 57.6%다. 합 740.4가 보도치 741 과 정합한다.',
       telemetry: SYNC,
       render: () => <FrinsaRegionalChart />,
-      sourceLine: '조사 아카이브 §3 — 지역분해 3표 검증 (합계·보도치 산술 정합)',
+      sourceLine: '조사 아카이브 §3 · 지역분해 3표 검증 (합계·보도치 산술 정합)',
     },
   ],
   c07: [
     {
       title: '갈리시아 3강 매출 (M€)',
-      caption: '2025년 Frinsa 는 미공표라 막대가 없다 — 0 이 아니다.',
+      caption: '2025년 Frinsa는 미공표라 막대가 없다. 0이 아니다.',
       telemetry: SYNC,
       render: () => <FrinsaGaliciaChart />,
       span: 'full',
@@ -358,7 +358,7 @@ const CHART_SLOTS: Record<string, ChartSlot[]> = {
           unit="톤"
         />
       ),
-      sourceLine: 'UN Comtrade (스페인 신고·총계행) — 2025년은 미완연도',
+      sourceLine: 'UN Comtrade (스페인 신고·총계행). 2025년은 미완연도',
     },
     {
       title: 'EU 수입관세 (%)',
@@ -372,7 +372,7 @@ const CHART_SLOTS: Record<string, ChartSlot[]> = {
 
 const SPEC: CommoditySpec = {
   key: 'company-anatomy',
-  title: '기업 해부 — Frinsa del Noroeste',
+  title: '기업 해부: Frinsa del Noroeste',
   subtitle: '스페인 갈리시아 캔참치 가공사. 선단 0척으로 한 해 참치 원어 135,289톤(회사 EINF SAP 집계)을 사들인다.',
   accent: ACCENT,
   primaryKpi: {
@@ -528,7 +528,7 @@ const TU_CHART_SLOTS: Record<string, ChartSlot[]> = {
       sourceLine: '사내 조사보고서 (2026-08) · One Report p.75',
     },
     {
-      title: '연혁 — 두 번의 도약',
+      title: '연혁: 두 번의 도약',
       caption: '1997년 미국, 2010년 유럽. 브랜드를 사 모은 궤적과 Red Lobster·미쓰비시까지.',
       telemetry: SYNC,
       render: () => (
@@ -542,21 +542,21 @@ const TU_CHART_SLOTS: Record<string, ChartSlot[]> = {
   c02: [
     {
       title: '카테고리별 매출과 마진 (십억 밧·%)',
-      caption: 'FY2025 연결. 유일하게 성장한 PetCare 가 마진도 가장 높다.',
+      caption: 'FY2025 연결. 유일하게 성장한 PetCare가 마진도 가장 높다.',
       telemetry: SYNC,
       render: () => <TuSegmentChart />,
       sourceLine: '사내 조사보고서 (2026-08) · One Report MD&A',
     },
     {
       title: '자사 브랜드 매출 비중 (%)',
-      caption: '노란 막대가 PetCare — 98.8%가 고객 브랜드·PL 이다. 한 회사 안의 두 모델.',
+      caption: '노란 막대가 PetCare 다. 98.8%가 고객 브랜드·PL 이다. 한 회사 안의 두 모델.',
       telemetry: SYNC,
       render: () => <TuBrandShareChart />,
       sourceLine: '사내 조사보고서 (2026-08) · One Report p.33·37',
     },
     {
       title: '카테고리별 지역 구성 (%)',
-      caption: '노란 구간이 미국·북미. Frozen 51.2%·PetCare 58.9% — 관세 직격 구간의 크기다.',
+      caption: '노란 구간이 미국·북미. Frozen 51.2%·PetCare 58.9%. 관세 직격 구간의 크기다.',
       telemetry: SYNC,
       render: () => <TuRegionChart />,
       sourceLine: '사내 조사보고서 (2026-08) · One Report pp.33-37',
@@ -564,8 +564,8 @@ const TU_CHART_SLOTS: Record<string, ChartSlot[]> = {
   ],
   c03: [
     {
-      title: '브랜드 포트폴리오 — 실측 SKU',
-      caption: '공식몰 API·사이트맵 전수(2026-08-20). 라인업이 서로 겹치지 않는다 — 산 것은 상표가 아니라 시장별 소비 문법이다.',
+      title: '브랜드 포트폴리오: 실측 SKU',
+      caption: '공식몰 API·사이트맵 전수(2026-08-20). 라인업이 서로 겹치지 않는다. 산 것은 상표가 아니라 시장별 소비 문법이다.',
       telemetry: SYNC,
       render: () => (
         <TuRows head={['브랜드', '국가', '인수', 'SKU', '라인업 축']}
@@ -576,7 +576,7 @@ const TU_CHART_SLOTS: Record<string, ChartSlot[]> = {
     },
     {
       title: 'John West 형태 사다리 (£/kg)',
-      caption: '같은 참치가 형태만으로 2.6배 — 노란 막대가 £18 초과 층. Frinsa 의 부위 사다리와 대구를 이룬다.',
+      caption: '같은 참치가 형태만으로 2.6배가 된다. 노란 막대가 £18 초과 층이다. Frinsa의 부위 사다리와 대구를 이룬다.',
       telemetry: SYNC,
       render: () => <TuJwLadderChart />,
       sourceLine: 'Morrisons 실측 46건 (사내 조사보고서 인용) · 2026-08-20',
@@ -595,7 +595,7 @@ const TU_CHART_SLOTS: Record<string, ChartSlot[]> = {
   c04: [
     {
       title: '그룹 생산능력 (톤/년)',
-      caption: '노란 막대가 참치 57만 톤. PetCare 는 공시 내 모순(221k vs 195k)이 있어 서술값이다.',
+      caption: '노란 막대가 참치 57만 톤. PetCare는 공시 내 모순(221k vs 195k)이 있어 서술값이다.',
       telemetry: SYNC,
       render: () => <TuCapacityChart />,
       sourceLine: '사내 조사보고서 (2026-08) · One Report p.46',
@@ -613,14 +613,14 @@ const TU_CHART_SLOTS: Record<string, ChartSlot[]> = {
     },
     {
       title: '참치 조달 어장 구성 추이 (%)',
-      caption: 'MSC 인증이 2년 만에 31→71.4%. FIP 물량이 인증으로 «졸업»하며 옮겨 갔다.',
+      caption: 'MSC 인증이 2년 만에 31→71.4%. FIP 물량이 인증으로 ‘졸업’하며 옮겨 갔다.',
       telemetry: SYNC,
       render: () => <TuMscTrendChart />,
       sourceLine: '사내 조사보고서 (2026-08) · SeaChange 2024 Table 1',
     },
     {
       title: 'TC25 6대 약속 이행률 (%)',
-      caption: '목표는 전부 2025년 100%. 노란 막대가 미달 구간 — 공급자 감사가 87.6%로 가장 남았다.',
+      caption: '목표는 전부 2025년 100%. 노란 막대가 미달 구간이다. 공급자 감사가 87.6%로 가장 남았다.',
       telemetry: SYNC,
       render: () => <TuTc25Chart />,
       sourceLine: '사내 조사보고서 (2026-08) · SeaChange 2024 (Key Traceability 독립검증)',
@@ -629,14 +629,14 @@ const TU_CHART_SLOTS: Record<string, ChartSlot[]> = {
   c05: [
     {
       title: 'GHG Scope 별 배출 (천 tCO2e)',
-      caption: '2023년에 Scope 3 가 없는 것은 미보고라서다 — 0 이 아니다. 이 공백이 «6배 폭증» 오독을 만든다.',
+      caption: '2023년에 Scope 3가 없는 것은 미보고라서다. 0이 아니다. 이 공백이 ‘6배 폭증’ 오독을 만든다.',
       telemetry: SYNC,
       render: () => <TuGhgChart />,
       sourceLine: '사내 조사보고서 (2026-08) · One Report p.131 (검증 LRQA)',
     },
     {
       title: 'SeaChange 2030 대시보드 (%)',
-      caption: '2030년 100% 목표 대비 FY2024 실적. 참치는 다 왔고 새우사료·대두·닭고기·GDST 는 초입이다.',
+      caption: '2030년 100% 목표 대비 FY2024 실적. 참치는 다 왔고 새우사료·대두·닭고기·GDST는 초입이다.',
       telemetry: SYNC,
       render: () => (
         <TuRows head={['목표', '실적 (%)', '판정']}
@@ -648,13 +648,13 @@ const TU_CHART_SLOTS: Record<string, ChartSlot[]> = {
   c06: [
     {
       title: '매출과 마진 (십억 밧·%)',
-      caption: '2023년 매출은 원본 표에 없어 비어 있다 — 0 이 아니다. GPM 은 3년 연속 개선.',
+      caption: '2023년 매출은 원본 표에 없어 비어 있다. 0이 아니다. GPM은 3년 연속 개선.',
       telemetry: SYNC,
       render: () => <TuFinancialChart />,
       sourceLine: '사내 조사보고서 (2026-08) · 감사 재무제표 OCR',
     },
     {
-      title: '연결 vs 개별 — 순이익 역전 (십억 밧)',
+      title: '연결 vs 개별: 순이익 역전 (십억 밧)',
       caption: '갈색(개별)이 남색(연결)보다 긴 줄이 이 회사의 함정이다. 모회사 배당수익 125.1억 밧.',
       telemetry: SYNC,
       render: () => <TuConVsSepChart />,
@@ -662,7 +662,7 @@ const TU_CHART_SLOTS: Record<string, ChartSlot[]> = {
     },
     {
       title: '재무상태 (백만 밧)',
-      caption: '부채는 늘고 자본은 줄었다 — 자기주식 취득 43.1억 밧이 자본 감소의 주범이다.',
+      caption: '부채는 늘고 자본은 줄었다. 자기주식 취득 43.1억 밧이 자본 감소의 주범이다.',
       telemetry: SYNC,
       render: () => (
         <TuRows head={['항목', '2025', '2024']}
@@ -672,7 +672,7 @@ const TU_CHART_SLOTS: Record<string, ChartSlot[]> = {
       sourceLine: '사내 조사보고서 (2026-08) · MD&A',
     },
     {
-      title: 'Red Lobster — 4겹',
+      title: 'Red Lobster: 4겹',
       caption: '손상 → 지위 전환 → 잔여 지분 → 소송. 2023년에 끝난 일이 아니다.',
       telemetry: SYNC,
       render: () => (
@@ -703,7 +703,7 @@ const TU_CHART_SLOTS: Record<string, ChartSlot[]> = {
     },
     {
       title: '참치조제품 대한 수입 (2024)',
-      caption: '베트남 74.3% vs 태국 12.8% — 관세(0% vs 20%)가 그린 지도다.',
+      caption: '베트남 74.3% vs 태국 12.8%. 관세(0% vs 20%)가 그린 지도다.',
       telemetry: SYNC,
       render: () => <TuKoreaImportTable />,
       sourceLine: 'Comtrade + 관세청 FTA포털 (사내 조사보고서 인용)',
@@ -727,7 +727,7 @@ const TU_CHART_SLOTS: Record<string, ChartSlot[]> = {
 
 const TU_SPEC: CommoditySpec = {
   key: 'company-anatomy-thaiunion',
-  title: '기업 해부 — Thai Union Group',
+  title: '기업 해부: Thai Union Group',
   subtitle: '세계 최대 참치 가공사. 한국 냉동참치 수출의 절반이 이 회사의 앞마당으로 간다.',
   accent: TU_ACCENT,
   primaryKpi: {
@@ -769,7 +769,7 @@ const ALB_CHART_SLOTS: Record<string, ChartSlot[]> = {
   c01: [
     {
       title: '회사 개요',
-      caption: '설립·본사·자본금 등 조사보고서 01절 요약. 비상장 가족기업이라 등기·EINF 가 1차 출처다.',
+      caption: '설립·본사·자본금 등 조사보고서 01절 요약. 비상장 가족기업이라 등기·EINF가 1차 출처다.',
       telemetry: SYNC,
       render: () => (
         <TuRows head={['항목', '내용']} rows={albacoraProfile.map(([k, v]) => [k, v])} />
@@ -778,7 +778,7 @@ const ALB_CHART_SLOTS: Record<string, ChartSlot[]> = {
       sourceLine: '사내 조사보고서 (2026-08) · 스페인 상업등기 · EINF 2025',
     },
     {
-      title: '3사 좌표 — 사는 회사와 잡는 회사',
+      title: '3사 좌표: 사는 회사와 잡는 회사',
       caption: '선단 0척 둘과 선망 18척 하나. 규모를 재는 축부터 다르고, 한국 선단에게의 자리도 갈린다.',
       telemetry: SYNC,
       render: () => (
@@ -789,7 +789,7 @@ const ALB_CHART_SLOTS: Record<string, ChartSlot[]> = {
       sourceLine: '사내 조사보고서 3건 대조 (Frinsa 2026-08 · Thai Union 2026-08 · Albacora 2026-08)',
     },
     {
-      title: '연혁 — 배 네 척에서 시작했다',
+      title: '연혁: 배 네 척에서 시작했다',
       caption: '1962년 선상 냉동 신조선 4척이 출발점이다. 잡은 자리에서 얼려 자기 공장으로 보내는 구조가 여기서 나왔다.',
       telemetry: SYNC,
       render: () => (
@@ -808,7 +808,7 @@ const ALB_CHART_SLOTS: Record<string, ChartSlot[]> = {
   ],
   c02: [
     {
-      title: '승계 — 3년 사이의 네 번',
+      title: '승계: 3년 사이의 네 번',
       caption: '별세 → 딸 회장 → 손자 CEO → 공동 CEO 사임. BORME 공고로 확인되는 변동이다.',
       telemetry: SYNC,
       render: () => (
@@ -819,7 +819,7 @@ const ALB_CHART_SLOTS: Record<string, ChartSlot[]> = {
     },
     {
       title: '계열 · 관계 법인',
-      caption: '부회장 자리의 ALONSO ESCURIS SL 이 Jealsa 창업 가문이다 — 프린사 최대 경쟁사와의 접점.',
+      caption: '부회장 자리의 ALONSO ESCURIS SL이 Jealsa 창업 가문이다. 프린사 최대 경쟁사와의 접점.',
       telemetry: SYNC,
       render: () => (
         <TuRows head={['법인', '내용']} rows={albacoraAffiliates.map((r) => [r.법인, r.내용])} />
@@ -852,7 +852,7 @@ const ALB_CHART_SLOTS: Record<string, ChartSlot[]> = {
       sourceLine: 'EINF 2025 (회사 자료)',
     },
     {
-      title: '선단 명세 — 12척 · 36,404 GT',
+      title: '선단 명세: 12척 · 36,404 GT',
       caption: '회사 공표 18척 중 공적 등록부로 확인되는 분이다. 나머지 6척은 추정하지 않고 비워 뒀다.',
       telemetry: SYNC,
       render: () => (
@@ -864,33 +864,33 @@ const ALB_CHART_SLOTS: Record<string, ChartSlot[]> = {
     },
     {
       title: '감시 체계',
-      caption: '타이유니온이 공급자에게 요구하는 조건을 자기 선단으로 이미 충족한다. REM 은 2014년부터다.',
+      caption: '타이유니온이 공급자에게 요구하는 조건을 자기 선단으로 이미 충족한다. REM은 2014년부터다.',
       telemetry: SYNC,
       render: () => (
         <TuRows head={['장치', '내용']} rows={albacoraMonitoring.map((r) => [r.장치, r.내용])} />
       ),
       span: 'full',
-      sourceLine: 'EINF 2025 (회사 명시 — 자기주장 포함)',
+      sourceLine: 'EINF 2025 (회사 명시, 자기주장 포함)',
     },
   ],
   c04: [
     {
       title: '가공 3사 매출과 인력',
-      caption: '에콰도르 한 곳이 매출 74% · 인력 92%다. 스페인 두 공장이 줄 때 Posorja 는 늘었다.',
+      caption: '에콰도르 한 곳이 매출 74% · 인력 92%다. 스페인 두 공장이 줄 때 Posorja는 늘었다.',
       telemetry: SYNC,
       render: () => <AlbPlantChart />,
       span: 'full',
       sourceLine: 'EINF 2025 (사내 조사보고서 인용)',
     },
     {
-      title: 'SIA 베르메오 — 투입 톤수와 전년비',
-      caption: '매출은 2.7% 줄었는데 실물 투입은 44% 빠졌다. EMAS 는 법정 공개 문서라 물량이 그대로 실린다.',
+      title: 'SIA 베르메오: 투입 톤수와 전년비',
+      caption: '매출은 2.7% 줄었는데 실물 투입은 44% 빠졌다. EMAS는 법정 공개 문서라 물량이 그대로 실린다.',
       telemetry: SYNC,
       render: () => <AlbSiaTonnageChart />,
       sourceLine: 'EMAS 환경선언 (SIA 베르메오)',
     },
     {
-      title: 'SAC 갈리시아 — 원료·제품과 수율',
+      title: 'SAC 갈리시아: 원료·제품과 수율',
       caption: '2021년 정점 후 2023년 원료가 44% 감소했다. 물량이 적을 때 수율이 올라간다.',
       telemetry: SYNC,
       render: () => <AlbSacYieldChart />,
@@ -919,7 +919,7 @@ const ALB_CHART_SLOTS: Record<string, ChartSlot[]> = {
     },
     {
       title: '브랜드',
-      caption: '축은 CAMPOS 하나다. 1921년 창립이고 1990년 합병 때 Salica 가 승계했다.',
+      caption: '축은 CAMPOS 하나다. 1921년 창립이고 1990년 합병 때 Salica가 승계했다.',
       telemetry: SYNC,
       render: () => (
         <TuRows head={['브랜드', '성격']} rows={albacoraBrands.map((r) => [r.브랜드, r.성격])} />
@@ -929,7 +929,7 @@ const ALB_CHART_SLOTS: Record<string, ChartSlot[]> = {
     },
     {
       title: '플랜트별 인증 현황',
-      caption: '3사 전부 MSC CoC·APR·BRC·IFS 를 갖췄다. SIA 의 MSC CoC 게시본은 2025-10-27 만료다.',
+      caption: '3사 전부 MSC CoC·APR·BRC·IFS를 갖췄다. SIA의 MSC CoC 게시본은 2025-10-27 만료다.',
       telemetry: SYNC,
       render: () => (
         <TuRows head={['플랜트', 'MSC CoC', 'APR', 'BRC', 'IFS']}
@@ -940,7 +940,7 @@ const ALB_CHART_SLOTS: Record<string, ChartSlot[]> = {
     },
     {
       title: '어업 인증 유닛별 상태',
-      caption: '인증 이름 자체가 «대서양·인도양»이다. 동태평양 유닛은 철회됐고 에콰도르 원료가 그 밖에 있다.',
+      caption: '인증 이름 자체가 ‘대서양·인도양’이다. 동태평양 유닛은 철회됐고 에콰도르 원료가 그 밖에 있다.',
       telemetry: SYNC,
       render: () => (
         <TuRows head={['유닛', '상태']} rows={albacoraMscUnits.map((r) => [r.유닛, r.상태])} />
@@ -959,8 +959,8 @@ const ALB_CHART_SLOTS: Record<string, ChartSlot[]> = {
   ],
   c06: [
     {
-      title: '재무 개요 — 확인된 것만',
-      caption: '비상장이라 절대액이 없다. «EBITDA −65%»는 개별법인 방향치이지 규모가 아니다.',
+      title: '재무 개요: 확인된 것만',
+      caption: '비상장이라 절대액이 없다. ‘EBITDA −65%’는 개별법인 방향치이지 규모가 아니다.',
       telemetry: SYNC,
       render: () => (
         <TuRows head={['항목', '값', '출처·기준', '등급']}
@@ -989,7 +989,7 @@ const ALB_CHART_SLOTS: Record<string, ChartSlot[]> = {
   ],
   c07: [
     {
-      title: '통상 위협 — 세 회사의 방향이 다르다',
+      title: '통상 위협: 세 회사의 방향이 다르다',
       caption: '태국은 미국 관세를, 스페인은 아세안 개방을 두려워한다. 한국 선단은 그 사이에 있다.',
       telemetry: SYNC,
       render: () => (
@@ -1001,7 +1001,7 @@ const ALB_CHART_SLOTS: Record<string, ChartSlot[]> = {
     },
     {
       title: '겹치는 지점 넷',
-      caption: '어법·어장·인증 문턱·수직통합. 판매처만 갈린다 — 알바코라는 인도양, 한국은 방콕이다.',
+      caption: '어법·어장·인증 문턱·수직통합. 판매처만 갈린다. 알바코라는 인도양, 한국은 방콕이다.',
       telemetry: SYNC,
       render: () => (
         <TuRows head={['#', '축', '내용']}
@@ -1036,7 +1036,7 @@ const ALB_CHART_SLOTS: Record<string, ChartSlot[]> = {
 
 const ALB_SPEC: CommoditySpec = {
   key: 'company-anatomy-albacora',
-  title: '기업 해부 — Albacora, S.A.',
+  title: '기업 해부: Albacora, S.A.',
   subtitle: '스페인 최대 참치 선망선사. 앞의 두 회사와 달리 거래 상대가 아니라 한국 선단의 직접 경쟁자다.',
   accent: ALB_ACCENT,
   primaryKpi: {
@@ -1114,7 +1114,7 @@ const COMPANY_CARDS: CompanyCard[] = [
     numeral: 'Ⅲ',
     name: 'Albacora, S.A.',
     country: '스페인 · 바스크 베르메오',
-    tagline: '앞의 둘은 사는 회사였다. 이쪽은 잡는 회사다 — 선망 18척으로 한 해 20만 톤.',
+    tagline: '앞의 둘은 사는 회사였다. 이쪽은 잡는 회사다. 선망 18척으로 한 해 20만 톤.',
     // 바스크 이쿠리냐 연상 — 짙은 초록 바탕에 흰 십자와 붉은 사선
     flagCss: [
       'radial-gradient(circle at 50% 30%, rgba(255, 255, 255, 0.12), transparent 55%)',
