@@ -37,6 +37,18 @@
   --cg-gold: #b8860b;
 }
 
+.head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 1rem 1.5rem;
+}
+
+.headText {
+  min-width: 0;
+}
+
 .head h1 {
   margin: 0 0 0.35rem;
   font-size: 1.65rem;
@@ -47,6 +59,61 @@
   margin: 0;
   color: var(--cg-ink-muted);
   font-size: 0.92rem;
+}
+
+/* ── 정렬 ── */
+
+.sortBox {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.4rem;
+  max-width: 30rem;
+}
+
+.sortRow {
+  display: flex;
+  gap: 0.25rem;
+  padding: 0.22rem;
+  border: 1px solid var(--cg-line);
+  border-radius: 999px;
+  background: var(--cg-surface);
+}
+
+.sortBtn {
+  border: 0;
+  border-radius: 999px;
+  padding: 0.34rem 0.85rem;
+  font: inherit;
+  font-size: 0.84rem;
+  font-weight: 600;
+  color: var(--cg-ink-muted);
+  background: none;
+  cursor: pointer;
+  transition: color 0.15s ease, background 0.15s ease;
+}
+
+.sortBtn:hover {
+  color: var(--cg-ink);
+}
+
+.sortBtn:focus-visible {
+  outline: 2px solid var(--cg-gold);
+  outline-offset: 2px;
+}
+
+.sortOn,
+.sortOn:hover {
+  color: var(--cg-ink);
+  background: var(--cg-accent-soft);
+}
+
+.sortNote {
+  margin: 0;
+  font-size: 0.78rem;
+  line-height: 1.45;
+  color: var(--cg-ink-muted);
+  text-align: right;
 }
 
 .deck {
@@ -129,6 +196,37 @@
   opacity: 0.9;
   border-radius: 10px;
   pointer-events: none;
+}
+
+.back > .backPlate {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.42rem;
+  width: calc(100% - 30px);
+  padding: 0.7rem 0.6rem 0.6rem;
+  border-radius: 9px;
+  border: 1px solid rgba(217, 164, 65, 0.45);
+}
+
+.backScale {
+  display: flex;
+  flex-direction: column;
+  gap: 0.12rem;
+  font-size: 0.78rem;
+  font-weight: 600;
+  line-height: 1.35;
+  opacity: 0.92;
+}
+
+.backScale em {
+  font-style: normal;
+  font-size: 0.68rem;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  opacity: 0.72;
 }
 
 .backNumeral {

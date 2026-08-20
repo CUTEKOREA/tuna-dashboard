@@ -1,7 +1,7 @@
 {
  "_meta": {
   "entry": "app/page.tsx",
-  "files": 179,
+  "files": 180,
   "widgets": 107,
   "dataFiles": 70,
   "generator": "scripts/widget_lineage.py"
@@ -559,7 +559,9 @@
    ]
   },
   "components/market-understanding/CompanyGallery.tsx": {
-   "dataModules": [],
+   "dataModules": [
+    "lib/data/company-scale.ts"
+   ],
    "dataFiles": []
   },
   "components/market-understanding/CompanyResearchTables.tsx": {
