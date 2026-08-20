@@ -134,3 +134,24 @@ describe('daily tuna briefing widget', () => {
   });
 
 });
+
+describe('기사 인포그래픽 이미지', () => {
+  // 이미지는 옵셔널이다 — 그날 매칭되는 그림이 없는 기사가 정상적으로 존재한다.
+  // 다만 붙어 있다면 아래 두 가지는 반드시 참이어야 한다.
+  const withImage = dailyBriefing.articles.filter((a) => a.image);
+
+  it('이미지 경로는 그 회차 폴더의 webp 를 가리킨다', () => {
+    for (const article of withImage) {
+      expect(article.image).toMatch(
+        new RegExp(`^/data/briefing/${dailyBriefing.date}/.+\\.webp$`),
+      );
+    }
+  });
+
+  it('같은 그림이 두 기사에 붙지 않는다', () => {
+    // 한 그림이 두 기사에 붙으면 둘 중 하나는 그 기사의 그림이 아니다.
+    // 독자에게는 근거로 보이므로 무-창작 위반이 된다.
+    const paths = withImage.map((a) => a.image);
+    expect(new Set(paths).size).toBe(paths.length);
+  });
+});
