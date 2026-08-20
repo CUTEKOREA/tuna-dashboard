@@ -108,6 +108,47 @@ import {
   latestCatch,
   plantRevenueTotal,
 } from '@/lib/data/company-albacora';
+
+import {
+  FCF_BRIEFING,
+  FCF_NARRATIVES,
+  FCF_SOURCE_NOTES,
+} from '@/lib/company-fcf-content';
+import {
+  fcfCompare,
+  fcfGear,
+  fcfGroup,
+  fcfMeta,
+  fcfOwnership,
+  fcfProfile,
+  fcfSillaDependency,
+  fcfSpecies,
+  fcfStats,
+  kwangyangShare,
+  sillaLatest,
+  sillaPeak,
+} from '@/lib/data/company-fcf';
+import {
+  ITOCHU_BRIEFING,
+  ITOCHU_NARRATIVES,
+  ITOCHU_SOURCE_NOTES,
+} from '@/lib/company-itochu-content';
+import {
+  fleetTotal,
+  itochuAti,
+  itochuCompare,
+  itochuFleet,
+  itochuFoodDivisions,
+  itochuKorea,
+  itochuMeta,
+  itochuProfile,
+  itochuSegments,
+  itochuSiVessels,
+  itochuStats,
+  sajoShare,
+  sajoVessels,
+  siGtTotal,
+} from '@/lib/data/company-itochu';
 import {
   AlbCamposPriceChart,
   AlbCatchChart,
@@ -1071,6 +1112,272 @@ const ALB_SPEC: CommoditySpec = {
   ].join(' · '),
 };
 
+
+/* ================= FCF ================= */
+
+const FCF_ACCENT = '#c0202e';
+const FCF_SILLA_PEAK = sillaPeak();
+const FCF_SILLA_NOW = sillaLatest();
+
+const FCF_CHART_SLOTS: Record<string, ChartSlot[]> = {
+  c01: [
+    {
+      title: '회사 개요',
+      caption: '설립·본사·자본 등 조사보고서 01절 요약. 2002년 발행정지라 등기와 지속가능보고서가 1차 출처다.',
+      telemetry: SYNC,
+      render: () => <TuRows head={['항목', '내용']} rows={fcfProfile.map(([k, v]) => [k, v])} />,
+      span: 'full',
+      sourceLine: '사내 조사보고서 (2026-08) · 대만 상공등기 · 회사 지속가능보고서 2025',
+    },
+    {
+      title: '4사 좌표: 사고 잡고 대는 회사',
+      caption: '앞의 셋과 이 회사의 자리가 갈리는 지점. 신라교역에게의 무게가 다르다.',
+      telemetry: SYNC,
+      render: () => (
+        <TuRows head={['항목', 'Frinsa', 'Albacora', 'FCF']}
+          rows={fcfCompare.map((r) => [r.항목, r.frinsa, r.albacora, r.fcf])} />
+      ),
+      span: 'full',
+      sourceLine: '사내 조사보고서 4건 대조 (2026-08)',
+    },
+  ],
+  c02: [
+    {
+      title: '지분 구성: 이름과 실권',
+      caption: '상호는 창업 張씨 가문의 것인데 이사회 지분은 光陽 계열이 더 많다.',
+      telemetry: SYNC,
+      render: () => (
+        <TuRows head={['법인', '지분 (%)', '대표']}
+          rows={fcfOwnership.map((r) => [r.법인, r.지분.toFixed(2), r.대표])} />
+      ),
+      span: 'full',
+      sourceLine: '대만 상공등기 董監事 자료 (2026-08)',
+    },
+  ],
+  c03: [
+    {
+      title: '어종별 조달 구성 (2024년 물량)',
+      caption: '가다랑어가 61.6에서 70.5로 올랐다. 통조림용 선망이 본체라는 뜻이다.',
+      telemetry: SYNC,
+      render: () => (
+        <TuRows head={['어종', '비중 (%)', '비고']}
+          rows={fcfSpecies.map((r) => [r.어종, r.비중.toFixed(1), r.비고])} />
+      ),
+      sourceLine: '회사 지속가능보고서 2025',
+    },
+    {
+      title: '어법별 구성',
+      caption: '선망은 통조림용, 연승은 사시미다. 한국 선망선이 잡는 것과 같은 물건이 90%다.',
+      telemetry: SYNC,
+      render: () => (
+        <TuRows head={['어법', '비중 (%)', '용도']}
+          rows={fcfGear.map((r) => [r.어법, String(r.비중), r.용도])} />
+      ),
+      sourceLine: '회사 지속가능보고서 2025',
+    },
+  ],
+  c04: [
+    {
+      title: '그룹 구성',
+      caption: '2020년 Bumble Bee 인수로 원료에서 브랜드까지 한 그룹에 들어왔다.',
+      telemetry: SYNC,
+      render: () => (
+        <TuRows head={['국가', '법인', '분류', '비고']}
+          rows={fcfGroup.map((r) => [r.국가, r.법인, r.분류, r.비고])} />
+      ),
+      span: 'full',
+      sourceLine: '회사 공식 거점 목록 · 인수 공시',
+    },
+  ],
+  c06: [
+    {
+      title: '신라교역 매출 중 FCF 비중',
+      caption: '6년 내내 30%대 후반에서 40%대다. FY2024 금액은 2,296억원이다.',
+      telemetry: SYNC,
+      render: () => (
+        <TuRows head={['연도', '비중 (%)']}
+          rows={fcfSillaDependency.map((r) => [r.연도, r.비중.toFixed(1)])} />
+      ),
+      span: 'full',
+      sourceLine: '신라교역 사업보고서 「주요 고객에 대한 정보」',
+    },
+  ],
+};
+
+const FCF_SPEC: CommoditySpec = {
+  key: 'company-anatomy-fcf',
+  title: '기업 해부: FCF Co., Ltd.',
+  subtitle: '대만 최대 참치 트레이더. 자사 어선 0척인데 신라교역 매출의 40%를 사가는 단일 최대 고객이다.',
+  accent: FCF_ACCENT,
+  primaryKpi: {
+    label: `신라교역 의존도 (${FCF_SILLA_PEAK.연도})`,
+    value: FCF_SILLA_PEAK.비중,
+    unit: '(%)',
+    decimals: 1,
+    accent: FCF_ACCENT,
+  },
+  secondaryKpis: [
+    { label: '자사 보유 어선', value: fcfStats.자사선, unit: '(척)' },
+    { label: '협력 공급 어선', value: fcfStats.협력선, unit: '(척 초과)' },
+    { label: '그룹 인력', value: fcfStats.인력, unit: '(명)' },
+  ],
+  stripItems: [
+    {
+      now: true,
+      eyebrow: '최대 고객',
+      title: `신라교역 의존도 (${FCF_SILLA_NOW.연도})`,
+      body: `${FCF_SILLA_NOW.비중.toFixed(1)} (%)`,
+    },
+    { eyebrow: '본체', title: '선망 원어 비중', body: '90 (%)' },
+    { eyebrow: '실권', title: '光陽 계열 지분', body: `${kwangyangShare().toFixed(2)} (%)` },
+  ],
+  briefing: FCF_BRIEFING,
+  narratives: FCF_NARRATIVES,
+  chartSlots: FCF_CHART_SLOTS,
+  sourceNotes: FCF_SOURCE_NOTES,
+  sourceMeta: [
+    `${fcfMeta.회사} · ${fcfMeta.국가} · ${fcfMeta.업종}`,
+    `출처 ${fcfMeta.출처}`,
+    `갱신 ${fcfMeta.갱신방법}`,
+  ].join(' · '),
+};
+
+/* ================= ITOCHU ================= */
+
+const ITC_ACCENT = '#bc002d';
+
+const ITC_CHART_SLOTS: Record<string, ChartSlot[]> = {
+  c01: [
+    {
+      title: '회사 개요',
+      caption: '창업·상장·지배구조 등 조사보고서 01절 요약. 법정 공시가 1차 출처다.',
+      telemetry: SYNC,
+      render: () => <TuRows head={['항목', '내용']} rows={itochuProfile.map(([k, v]) => [k, v])} />,
+      span: 'full',
+      sourceLine: '유가증권보고서 제102기 (2026-06-12 제출) · 공식 회사개요',
+    },
+    {
+      title: '5사 좌표: 참치가 본업인 회사와 아닌 회사',
+      caption: '앞의 넷은 참치가 본업이었다. 이 회사는 참치가 부(部)의 절반이다.',
+      telemetry: SYNC,
+      render: () => (
+        <TuRows head={['항목', 'Frinsa', 'Albacora', 'FCF', 'ITOCHU']}
+          rows={itochuCompare.map((r) => [r.항목, r.frinsa, r.albacora, r.fcf, r.itochu])} />
+      ),
+      span: 'full',
+      sourceLine: '사내 조사보고서 5건 대조 (2026-08)',
+    },
+  ],
+  c03: [
+    {
+      title: '인증 선단 구성',
+      caption: '두 어업 25척의 기국별 구성. 대만이 최다이고 사조그룹 계열이 그 다음이다.',
+      telemetry: SYNC,
+      render: () => (
+        <TuRows head={['기국', '척수', '비중 (%)', '선주']}
+          rows={itochuFleet.map((r) => [r.기국, r.척수, String(r.비중), r.선주])} />
+      ),
+      span: 'full',
+      sourceLine: 'MSC 선박목록 · 공개인증보고서 (SCS Global Services 제출분)',
+    },
+    {
+      title: 'SI 어업 선박 명세',
+      caption: '6척 전부 한국 선적이고 주 양륙항이 모두 타라와다. SI는 SaJo Industries의 약칭이다.',
+      telemetry: SYNC,
+      render: () => (
+        <TuRows head={['선명', '선사', 'IMO', 'GT']}
+          rows={itochuSiVessels.map((r) => [r.선명, r.선사, r.imo, r.gt.toLocaleString('ko-KR')])} />
+      ),
+      span: 'full',
+      sourceLine: 'MSC-F-31555 Vessel List (2022-07-07 최종갱신)',
+    },
+  ],
+  c04: [
+    {
+      title: 'ATI 개요',
+      caption: '유일한 참치 가공 자산이다. 제조는 하고로모가 맡고 브랜드도 하고로모 것이다.',
+      telemetry: SYNC,
+      render: () => (
+        <TuRows head={['항목', '내용']} rows={itochuAti.map((r) => [r.항목, r.값])} />
+      ),
+      span: 'full',
+      sourceLine: 'はごろもフーズ 유가증권보고서 제97기 · WCPFC 과학위원회 정보문서',
+    },
+  ],
+  c05: [
+    {
+      title: '세그먼트별 순이익 (억엔)',
+      caption: '食料는 8개 중 4위다. 그런데 그 아래로 수산 숫자가 없다.',
+      telemetry: SYNC,
+      render: () => (
+        <TuRows head={['세그먼트', 'FY2024', 'FY2025']}
+          rows={itochuSegments.map((r) => [r.세그먼트, r.fy2024.toLocaleString('ko-KR'), r.fy2025.toLocaleString('ko-KR')])} />
+      ),
+      sourceLine: '유가증권보고서 제102기',
+    },
+    {
+      title: '食料 3부문 (억엔)',
+      caption: '참치가 속한 生鮮食品 부문만 역성장했다. 공시는 여기서 끝난다.',
+      telemetry: SYNC,
+      render: () => (
+        <TuRows head={['부문', 'FY2024', 'FY2025']}
+          rows={itochuFoodDivisions.map((r) => [r.부문, String(r.fy2024), String(r.fy2025)])} />
+      ),
+      sourceLine: '유가증권보고서 제102기 · 경영계획 설명자료',
+    },
+  ],
+  c06: [
+    {
+      title: '한국 지표',
+      caption: '거래는 이미 있는데 파는 어종이 다르다. 그 간극이 이 표에 있다.',
+      telemetry: SYNC,
+      render: () => (
+        <TuRows head={['항목', '값', '기준']}
+          rows={itochuKorea.map((r) => [r.항목, r.값, r.기준])} />
+      ),
+      span: 'full',
+      sourceLine: 'MSC 선박목록 · UN Comtrade(일본 신고) · 財務省 실행관세율표 · DART 감사보고서',
+    },
+  ],
+};
+
+const ITC_SPEC: CommoditySpec = {
+  key: 'company-anatomy-itochu',
+  title: '기업 해부: ITOCHU Corporation',
+  subtitle: '일본 5대 상사 중 순이익 1위. 참치는 부(部)의 절반인데, 인증 선단 25척 중 11척이 사조그룹이다.',
+  accent: ITC_ACCENT,
+  primaryKpi: {
+    label: '인증 선단 중 사조그룹',
+    value: sajoVessels(),
+    unit: `(척 · ${fleetTotal()}척 중)`,
+    accent: ITC_ACCENT,
+  },
+  secondaryKpis: [
+    { label: '사조 비중', value: sajoShare(), unit: '(%)', decimals: 1 },
+    { label: '食料 세그먼트', value: itochuStats.식료_억엔, unit: '(억엔)' },
+    { label: '生鮮食品 부문', value: itochuStats.생선식품_억엔, unit: '(억엔)' },
+  ],
+  stripItems: [
+    {
+      now: true,
+      eyebrow: '접점',
+      title: '인증 선단 중 사조그룹',
+      body: `${sajoVessels()} / ${fleetTotal()} (척)`,
+    },
+    { eyebrow: '규모 상한', title: '生鮮食品 부문 순이익', body: `${itochuStats.생선식품_억엔} (억엔)` },
+    { eyebrow: '부재', title: '수산 실적 공시', body: '0 (건)' },
+  ],
+  briefing: ITOCHU_BRIEFING,
+  narratives: ITOCHU_NARRATIVES,
+  chartSlots: ITC_CHART_SLOTS,
+  sourceNotes: ITOCHU_SOURCE_NOTES,
+  sourceMeta: [
+    `${itochuMeta.회사} · ${itochuMeta.국가} · ${itochuMeta.업종}`,
+    `출처 ${itochuMeta.출처}`,
+    `갱신 ${itochuMeta.갱신방법}`,
+  ].join(' · '),
+};
+
 /** 선택 갤러리 카드 목록. 회사가 늘면 여기에 한 장씩 추가한다. */
 const COMPANY_CARDS: CompanyCard[] = [
   {
@@ -1131,6 +1438,45 @@ const COMPANY_CARDS: CompanyCard[] = [
       { label: '보유 선단', value: `${ALBACORA_CLAIMED_VESSELS} 척` },
     ],
   },
+  {
+    key: 'fcf',
+    numeral: 'Ⅳ',
+    name: 'FCF Co., Ltd.',
+    country: '대만 · 가오슝',
+    tagline: '배는 한 척도 없다. 그런데 신라교역 매출의 40%를 사가는 단일 최대 고객이다.',
+    // 대만 청천백일만지홍 연상 — 붉은 바탕 좌상단에 남색 사각과 흰 태양
+    flagCss: [
+      'radial-gradient(circle at 50% 30%, rgba(255, 255, 255, 0.14), transparent 55%)',
+      'radial-gradient(circle at 25% 25%, #f4f5f0 0 7%, transparent 7.4%)',
+      'radial-gradient(circle at 25% 25%, #1b3c8f 0 17%, transparent 17.4%)',
+      'linear-gradient(180deg, #c0202e 0%, #a81a26 100%)',
+    ].join(', '),
+    backInk: '#f4f5f0',
+    stats: [
+      { label: `신라교역 의존 (${FCF_SILLA_PEAK.연도})`, value: `${FCF_SILLA_PEAK.비중.toFixed(1)} %` },
+      { label: '자사 보유 어선', value: `${fcfStats.자사선} 척` },
+      { label: '협력 공급 어선', value: `${fcfStats.협력선}척+` },
+    ],
+  },
+  {
+    key: 'itochu',
+    numeral: 'Ⅴ',
+    name: 'ITOCHU Corporation',
+    country: '일본 · 오사카 · 도쿄',
+    tagline: '참치는 부(部)의 절반이다. 그런데 인증 선단 25척 중 11척이 사조그룹이다.',
+    // 일본 히노마루 연상 — 흰 바탕 가운데 붉은 원
+    flagCss: [
+      'radial-gradient(circle at 50% 28%, rgba(255, 255, 255, 0.9), transparent 55%)',
+      'radial-gradient(circle at 50% 45%, #bc002d 0 22%, transparent 22.5%)',
+      'linear-gradient(180deg, #f4f5f0 0%, #e6eaec 100%)',
+    ].join(', '),
+    backInk: '#1b2733',
+    stats: [
+      { label: '인증 선단 중 사조', value: `${sajoVessels()} / ${fleetTotal()} 척` },
+      { label: '食料 세그먼트', value: `${itochuStats.식료_억엔.toLocaleString('ko-KR')} 억엔` },
+      { label: '수산 실적 공시', value: '0 건' },
+    ],
+  },
 ];
 
 export interface CompanyAnatomyDashboardProps {
@@ -1153,6 +1499,8 @@ export default function CompanyAnatomyDashboard({
     frinsa: SPEC,
     thaiunion: TU_SPEC,
     albacora: ALB_SPEC,
+    fcf: FCF_SPEC,
+    itochu: ITC_SPEC,
   };
   const spec = SPECS[selected] ?? SPEC;
 
