@@ -19,6 +19,10 @@ export interface CompanyCard {
   country: string;
   tagline: string;
   stats: { label: string; value: string }[];
+  /** 뒷면 배경 — 그 나라 국기를 연상시키는 CSS 그라데이션 (회사별) */
+  flagCss: string;
+  /** 뒷면 회사명·테두리 잉크 — 국기 밴드 위에서 읽히는 색 */
+  backInk: string;
 }
 
 interface CompanyGalleryProps {
@@ -61,10 +65,14 @@ export default function CompanyGallery({ companies, onSelect }: CompanyGalleryPr
             aria-label={`${c.name} 해부 보기`}
           >
             <span className={styles.cardInner}>
-              <span className={`${styles.face} ${styles.back}`} aria-hidden="true">
+              <span
+                className={`${styles.face} ${styles.back}`}
+                aria-hidden="true"
+                style={{ background: c.flagCss, color: c.backInk }}
+              >
                 <span className={styles.backFrame} />
-                <span className={styles.backEmblem}>🐟</span>
                 <span className={styles.backNumeral}>{c.numeral}</span>
+                <span className={styles.backName}>{c.name}</span>
                 <span className={styles.backLabel}>기업 해부</span>
               </span>
               <span className={`${styles.face} ${styles.front}`}>

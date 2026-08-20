@@ -110,43 +110,47 @@
   flex-direction: column;
 }
 
-/* 뒷면 — 문양. 기본으로 보이는 면 */
+/* 뒷면 — 그 나라 국기 연상 배경(회사별 인라인)이 기본으로 보이는 면 */
 .back {
   border: 1px solid var(--cg-gold);
-  background:
-    radial-gradient(circle at 50% 32%, rgba(217, 164, 65, 0.22), transparent 46%),
-    repeating-conic-gradient(from 0deg at 50% 50%, transparent 0deg 10deg, rgba(217, 164, 65, 0.05) 10deg 20deg),
-    linear-gradient(160deg, var(--cg-back-a), var(--cg-back-b));
   align-items: center;
   justify-content: center;
-  gap: 0.7rem;
-  color: var(--cg-gold);
+  gap: 0.6rem;
+  padding: 1rem;
+  text-align: center;
 }
 
 .backFrame {
   position: absolute;
   inset: 9px;
-  border: 1px solid rgba(217, 164, 65, 0.5);
+  border: 1px double var(--cg-gold);
+  border-width: 3px;
+  border-style: double;
+  opacity: 0.9;
   border-radius: 10px;
   pointer-events: none;
-}
-
-.backEmblem {
-  font-size: 2.2rem;
-  line-height: 1;
 }
 
 .backNumeral {
   font-size: 0.95rem;
   letter-spacing: 0.35em;
   text-indent: 0.35em;
+  opacity: 0.85;
+}
+
+.backName {
+  font-size: 1.22rem;
+  font-weight: 800;
+  letter-spacing: -0.01em;
+  line-height: 1.3;
+  word-break: keep-all;
 }
 
 .backLabel {
-  font-size: 0.78rem;
+  font-size: 0.76rem;
   letter-spacing: 0.22em;
   text-indent: 0.22em;
-  color: rgba(217, 164, 65, 0.85);
+  opacity: 0.8;
 }
 
 /* 앞면 — 회사 요약. flip 후 공개 */
