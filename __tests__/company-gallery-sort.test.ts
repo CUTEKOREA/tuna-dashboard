@@ -9,6 +9,8 @@ import { describe, expect, it } from 'vitest';
 import {
   COMPANY_SCALE,
   FX,
+  TIE_RATIO,
+  nearTieWith,
   revenueUsdM,
   scaleLabel,
   scaleOf,
@@ -53,6 +55,8 @@ const CARDS: CompanyCard[] = [
   { key: 'albacora', numeral: 'Ⅲ', name: 'Albacora, S.A.', country: '스페인 · 바스크 베르메오', tagline: '', stats: [], flagCss: '', backInk: '#f4f5f0' },
   { key: 'fcf', numeral: 'Ⅳ', name: 'FCF Co., Ltd.', country: '대만 · 가오슝', tagline: '', stats: [], flagCss: '', backInk: '#f4f5f0' },
   { key: 'itochu', numeral: 'Ⅴ', name: 'ITOCHU Corporation', country: '일본 · 오사카 · 도쿄', tagline: '', stats: [], flagCss: '', backInk: '#1b2733' },
+  { key: 'bolton', numeral: 'Ⅵ', name: 'Bolton Group', country: '이탈리아 · 밀라노', tagline: '', stats: [], flagCss: '', backInk: '#f4f5f0' },
+  { key: 'jais', numeral: 'Ⅶ', name: 'JAIS S.R.L.', country: '이탈리아 · 밀라노', tagline: '', stats: [], flagCss: '', backInk: '#1f2a24' },
 ];
 
 describe('규모 축 데이터', () => {
@@ -65,6 +69,8 @@ describe('규모 축 데이터', () => {
     // 알바코라는 CEO 발언, FCF 는 비상장이라 회장 발언이 전부다. A 로 올리면 거짓말이 된다.
     expect(scaleOf('albacora')?.등급).toBe('C');
     expect(scaleOf('fcf')?.등급).toBe('C');
+    expect(scaleOf('bolton')?.등급).toBe('A');
+    expect(scaleOf('jais')?.등급).toBe('A');
     expect(scaleOf('itochu')?.등급).toBe('A');
     expect(scaleOf('thaiunion')?.등급).toBe('A');
     expect(scaleOf('frinsa')?.등급).toBe('A');
@@ -86,22 +92,41 @@ describe('매출순 정렬', () => {
   const order = sortCompanies(CARDS, 'revenue').map((c) => c.key);
 
   it('큰 회사가 앞이다', () => {
-    expect(order).toEqual(['itochu', 'thaiunion', 'fcf', 'frinsa', 'albacora']);
+    expect(order).toEqual([
+      'itochu', 'bolton', 'thaiunion', 'fcf', 'frinsa', 'albacora', 'jais',
+    ]);
   });
 
-  it('이웃한 두 회사 격차가 1.4배 이상이라 환율이 흔들려도 순서가 안 바뀐다', () => {
+  it('간격이 좁은 쌍은 반드시 동률로 표시된다', () => {
+    // 환율이 흔들리면 뒤집히는 순위를 단정하지 않기 위한 규율이다.
+    // 간격이 1.4배를 넘거나, 넘지 못하면 동률 판정에 잡히거나 — 둘 중 하나여야 한다.
     for (let i = 0; i < order.length - 1; i += 1) {
-      const ratio = revenueUsdM(order[i]) / revenueUsdM(order[i + 1]);
-      expect(ratio, `${order[i]} vs ${order[i + 1]}`).toBeGreaterThan(1.4);
+      const [a, b] = [order[i], order[i + 1]];
+      const ratio = revenueUsdM(a) / revenueUsdM(b);
+      if (ratio > 1.4) continue;
+      expect(nearTieWith(a, order), `${a} vs ${b} 간격 ${ratio.toFixed(2)}배`).toContain(b);
     }
+  });
+
+  it('Bolton 과 Thai Union 이 그 쌍이다', () => {
+    // 3% 차이는 유로·밧 환율이 한 달에도 오가는 폭이다. 순위를 단정할 수 없다.
+    const ratio = revenueUsdM('bolton') / revenueUsdM('thaiunion');
+    expect(ratio).toBeGreaterThan(1);
+    expect(ratio).toBeLessThan(TIE_RATIO);
+    expect(nearTieWith('bolton', ['thaiunion'])).toEqual(['thaiunion']);
+  });
+
+  it('동률이 아닌 쌍은 동률 표시가 붙지 않는다', () => {
+    expect(nearTieWith('itochu', order)).toEqual([]);
+    expect(nearTieWith('jais', order)).toEqual([]);
   });
 });
 
 describe('국가순 정렬', () => {
   it('가나다순이고 같은 나라는 수록순을 지킨다', () => {
-    // 대만 · 스페인(프린사·알바코라) · 일본 · 태국
+    // 대만 · 스페인(프린사·알바코라) · 이탈리아(볼튼·자이스) · 일본 · 태국
     expect(sortCompanies(CARDS, 'country').map((c) => c.key))
-      .toEqual(['fcf', 'frinsa', 'albacora', 'itochu', 'thaiunion']);
+      .toEqual(['fcf', 'frinsa', 'albacora', 'bolton', 'jais', 'itochu', 'thaiunion']);
   });
 
   it('국가는 소재지 앞부분만 뽑는다', () => {
@@ -132,6 +157,8 @@ describe('뒷면 명판 대비', () => {
     ['frinsa', '#4a2f00', '#e0b400'], // 로히괄다 노란 밴드
     ['thaiunion', '#f4f5f0', '#f4f5f0'], // 트라이롱 흰 밴드
     ['fcf', '#f4f5f0', '#1b3c8f'], // 청천백일 남색 사각
+    ['bolton', '#f4f5f0', '#f4f5f0'], // 트리콜로레 흰 밴드
+    ['jais', '#1f2a24', '#fbfbf8'], // 여백 카드 — 밝은 바탕에 어두운 잉크
   ];
 
   it.each(최악배경)('%s — 최악 배경에서도 WCAG AAA(7:1)를 넘는다', (_l, ink, flag) => {

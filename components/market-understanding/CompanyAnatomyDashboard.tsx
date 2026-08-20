@@ -149,6 +149,51 @@ import {
   siGtTotal,
 } from '@/lib/data/company-itochu';
 import {
+  BOLTON_BRIEFING,
+  BOLTON_NARRATIVES,
+  BOLTON_SOURCE_NOTES,
+} from '@/lib/company-bolton-content';
+import {
+  activeOwnVessels,
+  boltonCategories,
+  boltonCompare,
+  boltonFinancials,
+  boltonGear,
+  boltonKorea,
+  boltonMeta,
+  boltonOwnFleet,
+  boltonProfile,
+  boltonRegions,
+  boltonSourcing,
+  boltonSpecies,
+  boltonStats,
+  boltonVesselList,
+  koreaSharePeak,
+  latestVesselList,
+  nonTunaShare,
+} from '@/lib/data/company-bolton';
+import {
+  JAIS_BRIEFING,
+  JAIS_NARRATIVES,
+  JAIS_SOURCE_NOTES,
+} from '@/lib/company-jais-content';
+import {
+  jaisAxes,
+  jaisCompare,
+  jaisFinancials,
+  jaisFos,
+  jaisKorea,
+  jaisMeta,
+  jaisPanofi,
+  jaisProfile,
+  jaisRegistries,
+  jaisStats,
+  lossStreak,
+  marginBand,
+  ownedAssets,
+  revenuePeak,
+} from '@/lib/data/company-jais';
+import {
   AlbCamposPriceChart,
   AlbCatchChart,
   AlbFlagChart,
@@ -1354,6 +1399,334 @@ const ITC_SPEC: CommoditySpec = {
   ].join(' · '),
 };
 
+/* ================= Bolton ================= */
+
+const BOL_ACCENT = '#0b6b4f';
+
+const nf = (n: number) => n.toLocaleString('ko-KR');
+
+const BOL_CHART_SLOTS: Record<string, ChartSlot[]> = {
+  c01: [
+    {
+      title: '법인 개요',
+      caption: '비상장 가족기업이라 등기와 발표문이 1차 출처다. 연결재무제표는 공표되지 않는다.',
+      telemetry: SYNC,
+      render: () => <TuRows head={['항목', '내용']} rows={boltonProfile.map(([k, v]) => [k, v])} />,
+      span: 'full',
+      sourceLine: '사내 조사보고서 (2026-08) · 이탈리아 등기 · Sustainability Report 2025',
+    },
+    {
+      title: '카테고리 구성 (M€)',
+      caption: '참치를 포함한 Food가 3분의 2다. 나머지 3분의 1이 원어 사이클 밖에 있다.',
+      telemetry: SYNC,
+      render: () => (
+        <TuRows head={['카테고리', '2024', '2025', '비중 (%)', '브랜드']}
+          rows={boltonCategories.map((r) => [r.카테고리, nf(r.y2024), nf(r.y2025), r.비중.toFixed(1), r.브랜드])} />
+      ),
+      span: 'full',
+      sourceLine: 'Sustainability Report 2025 — 순매출 기준',
+    },
+    {
+      title: '앞의 회사들과의 좌표',
+      caption: '통합 방향이 반대다. 브랜드에서 시작해 상류로 올라갔다.',
+      telemetry: SYNC,
+      render: () => (
+        <TuRows head={['항목', 'Thai Union', 'FCF', 'ITOCHU', 'Bolton']}
+          rows={boltonCompare.map((r) => [r.항목, r.thaiunion, r.fcf, r.itochu, r.bolton])} />
+      ),
+      span: 'full',
+      sourceLine: '사내 조사보고서 6건 대조 (2026-08)',
+    },
+  ],
+  c02: [
+    {
+      title: '연결 손익 (M€)',
+      caption: '매출은 발표문, 이익은 등기 기탁분의 언론 인용이다. 2023년 이후 EBITDA는 확인되지 않는다.',
+      telemetry: SYNC,
+      render: () => (
+        <TuRows head={['연도', '연결 순매출', 'EBITDA', '순이익']}
+          rows={boltonFinancials.map((r) => [
+            r.연도, r.매출,
+            r.ebitda === null ? '미확인' : r.ebitda.toFixed(1),
+            r.순이익 === null ? '미확인' : r.순이익.toFixed(1),
+          ])} />
+      ),
+      span: 'full',
+      sourceLine: '회사 발표문 + 등기 기탁분 언론 인용 (B급)',
+    },
+  ],
+  c03: [
+    {
+      title: '지역별 매출 비중 (%)',
+      caption: '이탈리아가 6년 사이 39.5%에서 28.6%로 내려왔다. 그 자리를 남미와 기타 유럽이 채웠다.',
+      telemetry: SYNC,
+      render: () => (
+        <TuRows head={['지역', '2019', '2022', '2024', '2025']}
+          rows={boltonRegions.map((r) => [
+            r.지역,
+            r.y2019 === null ? '—' : r.y2019.toFixed(1),
+            r.y2022 === null ? '—' : r.y2022.toFixed(1),
+            r.y2024.toFixed(1), r.y2025.toFixed(1),
+          ])} />
+      ),
+      span: 'full',
+      sourceLine: 'Sustainability Report 2019 · 2022 · 2024 · 2025',
+    },
+  ],
+  c04: [
+    {
+      title: '자사 선단 — 등록부별',
+      caption: '조달 선박명단 399척과 혼동하면 안 된다. 자사 보유는 이것뿐이고 ICCAT 3척은 전부 비활성이다.',
+      telemetry: SYNC,
+      render: () => (
+        <TuRows head={['등록부', '척수', '상태', '내역']}
+          rows={boltonOwnFleet.map((r) => [r.등록부, r.척수, r.상태, r.내역])} />
+      ),
+      span: 'full',
+      sourceLine: 'IATTC · ICCAT 어선등록부 (2026-08 조회)',
+    },
+  ],
+  c05: [
+    {
+      title: '조달량 시계열 (t)',
+      caption: '2024년 +26% 안에 Tri Marine 트레이딩 증가 +144,000 t 이 섞여 있다.',
+      telemetry: SYNC,
+      render: () => (
+        <TuRows head={['연도', '조달량 (t)', '전년비 (%)']}
+          rows={boltonSourcing.map((r) => [r.연도, nf(r.톤), r.전년비 === null ? '—' : r.전년비.toFixed(1)])} />
+      ),
+      sourceLine: 'Sustainability Report 2022~2025',
+    },
+    {
+      title: '어종 구성 (t)',
+      caption: '가다랑어가 79%에서 62%로 내려앉고 황다랑어가 두 배가 됐다.',
+      telemetry: SYNC,
+      render: () => (
+        <TuRows head={['어종', '2024', '2025', '비중 (%)', '증감 (%)']}
+          rows={boltonSpecies.map((r) => [r.어종, nf(r.y2024), nf(r.y2025), r.비중.toFixed(1), r.증감])} />
+      ),
+      sourceLine: 'Sustainability Report 2025',
+    },
+    {
+      title: '어법 구성 (t)',
+      caption: '선망이 92%다. 나머지 셋을 합쳐도 8%에 못 미친다.',
+      telemetry: SYNC,
+      render: () => (
+        <TuRows head={['어법', '2024', '2025', '비중 (%)']}
+          rows={boltonGear.map((r) => [r.어법, nf(r.y2024), nf(r.y2025), r.비중.toFixed(1)])} />
+      ),
+      span: 'full',
+      sourceLine: 'Sustainability Report 2025',
+    },
+  ],
+  c06: [
+    {
+      title: '공개 선박명단 속 한국 (척)',
+      caption: '총 척수는 줄고 한국 비중은 올라갔다. 2024년에 신라교역 두 척이 돌아왔다.',
+      telemetry: SYNC,
+      render: () => (
+        <TuRows head={['명단 연도', '총 척수', '한국 국적선', '비중 (%)', '어법 구성']}
+          rows={boltonVesselList.map((r) => [r.연도, r.총척수, r.한국선, r.비중.toFixed(1), r.구성])} />
+      ),
+      span: 'full',
+      sourceLine: 'Bolton 공개 선박명단 2021~2024년판',
+    },
+    {
+      title: '한국 지표',
+      caption: '공시로는 잡히지 않고 명단과 품목대에서 잡힌다.',
+      telemetry: SYNC,
+      render: () => (
+        <TuRows head={['항목', '값', '기준']} rows={boltonKorea.map((r) => [r.항목, r.값, r.기준])} />
+      ),
+      span: 'full',
+      sourceLine: 'Bolton 공개 선박명단 · 조달 어업 목록 · UN Comtrade · DART',
+    },
+  ],
+};
+
+const BOL_SPEC: CommoditySpec = {
+  key: 'company-anatomy-bolton',
+  title: '기업 해부: Bolton Group',
+  subtitle: 'Rio Mare를 가진 유럽 캔참치의 대표 브랜드군인데, 같은 그룹 안에 UHU 접착제와 세제가 있다. 참치 사이클 밖이 32.7%다.',
+  accent: BOL_ACCENT,
+  primaryKpi: {
+    label: '2025년 순매출',
+    value: boltonStats.매출_백만유로,
+    unit: '(M€)',
+    accent: BOL_ACCENT,
+  },
+  secondaryKpis: [
+    { label: '참치 조달', value: boltonStats.조달_톤, unit: '(t)' },
+    { label: '참치 사이클 밖', value: nonTunaShare(), unit: '(%)', decimals: 1 },
+    { label: '브랜드', value: boltonStats.브랜드수, unit: '(개)' },
+  ],
+  stripItems: [
+    {
+      now: true,
+      eyebrow: '접점',
+      title: `명단 속 한국 국적선 (${latestVesselList().연도})`,
+      body: `${latestVesselList().한국선} / ${latestVesselList().총척수} (척)`,
+    },
+    { eyebrow: '본체', title: '선망 비중', body: `${boltonStats.선망_비중.toFixed(0)} (%)` },
+    { eyebrow: '자사 자산', title: '활성 등록 자사선', body: `${activeOwnVessels()} (척)` },
+  ],
+  briefing: BOLTON_BRIEFING,
+  narratives: BOLTON_NARRATIVES,
+  chartSlots: BOL_CHART_SLOTS,
+  sourceNotes: BOLTON_SOURCE_NOTES,
+  sourceMeta: [
+    `${boltonMeta.회사} · ${boltonMeta.국가} · ${boltonMeta.업종}`,
+    `출처 ${boltonMeta.출처}`,
+    `갱신 ${boltonMeta.갱신방법}`,
+  ].join(' · '),
+};
+
+/* ================= JAIS ================= */
+
+const JAI_ACCENT = '#1b5e9c';
+
+const eur = (n: number) => `€${n.toLocaleString('ko-KR')}`;
+
+const JAI_CHART_SLOTS: Record<string, ChartSlot[]> = {
+  c01: [
+    {
+      title: '법인 개요',
+      caption: '동일성은 이름이 아니라 납세번호 위에 서 있다. 상호는 두 번 바뀌었다.',
+      telemetry: SYNC,
+      render: () => <TuRows head={['항목', '내용']} rows={jaisProfile.map(([k, v]) => [k, v])} />,
+      span: 'full',
+      sourceLine: '사내 조사보고서 (2026-08) · 이탈리아 등기 · EU VAT · GLEIF',
+    },
+  ],
+  c02: [
+    {
+      title: '7개년 재무 정본',
+      caption: '매출은 두 배로 튀는데 순마진은 여섯 해가 ±0.35% 안이다. 2025년은 추정치다.',
+      telemetry: SYNC,
+      render: () => (
+        <TuRows head={['회계연도', '매출 (€)', '전년비 (%)', '순손익 (€)', '순마진 (%)', '종업원']}
+          rows={jaisFinancials.map((r) => [
+            r.연도, eur(r.매출),
+            r.전년비 === null ? '—' : r.전년비.toFixed(1),
+            eur(r.순손익), r.순마진.toFixed(2),
+            r.종업원 === null ? '—' : r.종업원,
+          ])} />
+      ),
+      span: 'full',
+      sourceLine: '이탈리아 등기 기탁 재무제표 — 2025년은 「약」 표기 추정치',
+    },
+  ],
+  c03: [
+    {
+      title: '네 명부가 따로 확인한 것',
+      caption: '「가공 없는 순수 중개」는 한 출처의 주장이 아니라 네 갈래 원본이 독립적으로 말한 사실이다.',
+      telemetry: SYNC,
+      render: () => (
+        <TuRows head={['근거', '표기', '뜻', '기준']}
+          rows={jaisRegistries.map((r) => [r.근거, r.표기, r.뜻, r.기준])} />
+      ),
+      span: 'full',
+      sourceLine: '이탈리아 보건부 · Friend of the Sea · MSC · 돌핀세이프',
+    },
+    {
+      title: '명부에서 지워지는 과정 (등재행)',
+      caption: '이 조사에서 가장 단단한 산출물이다. 같은 판에서 FCF는 34행 전부 유효였다.',
+      telemetry: SYNC,
+      render: () => (
+        <TuRows head={['명부 판', '등재행', '총 행수', '내역']}
+          rows={jaisFos.map((r) => [r.판, r.등재행, r.총행수 === null ? '—' : nf(r.총행수), r.내역])} />
+      ),
+      span: 'full',
+      sourceLine: 'Friend of the Sea 승인선박 명부 2018~2025년 판별',
+    },
+  ],
+  c04: [
+    {
+      title: '두 축',
+      caption: '2018~2020년, 대만 태평양 선단과 가나 대서양 선단이 한 판매권 아래 동시에 있었다.',
+      telemetry: SYNC,
+      render: () => (
+        <TuRows head={['축', '기간', '규모', '현재', '근거']}
+          rows={jaisAxes.map((r) => [r.축, r.기간, r.규모, r.현재, r.근거])} />
+      ),
+      span: 'full',
+      sourceLine: 'FoS 승인선박 명부 · 인증기관 기업 페이지 · ICCAT 어선등록부',
+    },
+    {
+      title: '앞의 여섯 회사와 정반대 축',
+      caption: '그 회사들은 무엇을 지배하는가로 설명됐다. 이 회사는 아무것도 소유하지 않는다.',
+      telemetry: SYNC,
+      render: () => (
+        <TuRows head={['축', '앞의 여섯 회사', 'JAIS']}
+          rows={jaisCompare.map((r) => [r.항목, r.others, r.jais])} />
+      ),
+      span: 'full',
+      sourceLine: '사내 조사보고서 7건 대조 (2026-08)',
+    },
+  ],
+  c05: [
+    {
+      title: 'Panofi — 지분보다 채권이 크다',
+      caption: '신라교역 지분은 45%에 장부가액 0인데, 수취채권과 담보가 실질 지배를 만든다.',
+      telemetry: SYNC,
+      render: () => (
+        <TuRows head={['항목', '값', '기준']} rows={jaisPanofi.map((r) => [r.항목, r.값, r.기준])} />
+      ),
+      span: 'full',
+      sourceLine: 'DART 감사보고서 FY2025 · ICCAT 어선등록부',
+    },
+  ],
+  c06: [
+    {
+      title: '한국 지표',
+      caption: '공시에는 0건인데 품목대에서는 한국이 이탈리아 수입 1위다.',
+      telemetry: SYNC,
+      render: () => (
+        <TuRows head={['항목', '값', '기준']} rows={jaisKorea.map((r) => [r.항목, r.값, r.기준])} />
+      ),
+      span: 'full',
+      sourceLine: 'UN Comtrade HS 0304.87 · 1604.14 · DART 전수',
+    },
+  ],
+};
+
+const JAI_SPEC: CommoditySpec = {
+  key: 'company-anatomy-jais',
+  title: '기업 해부: JAIS S.R.L.',
+  subtitle: '공장도 배도 승인시설도 자회사도 없다. 여덟 명이 연 €3,400만~€5,200만어치 참치를 넘기며 ±0.3%를 남겨 온 60년 된 중개상이다.',
+  accent: JAI_ACCENT,
+  primaryKpi: {
+    label: '2024년 매출',
+    value: jaisStats.매출_만유로,
+    unit: '(만 €)',
+    accent: JAI_ACCENT,
+  },
+  secondaryKpis: [
+    { label: '종업원', value: jaisStats.종업원, unit: '(명)' },
+    { label: '총자산', value: jaisStats.총자산_만유로, unit: '(만 €)' },
+    { label: '공장 · 선박 · 자회사', value: ownedAssets(), unit: '(개)' },
+  ],
+  stripItems: [
+    {
+      now: true,
+      eyebrow: '지워진 자리',
+      title: 'FoS 명부 등재행',
+      body: `${jaisStats.fos_최대} → ${jaisStats.fos_현재} (행)`,
+    },
+    { eyebrow: '구조', title: '순마진 최대 진폭', body: `${marginBand().toFixed(2)} (%)` },
+    { eyebrow: '지금', title: '연속 적자', body: `${lossStreak()} (년)` },
+  ],
+  briefing: JAIS_BRIEFING,
+  narratives: JAIS_NARRATIVES,
+  chartSlots: JAI_CHART_SLOTS,
+  sourceNotes: JAIS_SOURCE_NOTES,
+  sourceMeta: [
+    `${jaisMeta.회사} · ${jaisMeta.국가} · ${jaisMeta.업종}`,
+    `출처 ${jaisMeta.출처}`,
+    `갱신 ${jaisMeta.갱신방법}`,
+  ].join(' · '),
+};
+
 /** 선택 갤러리 카드 목록. 회사가 늘면 여기에 한 장씩 추가한다. */
 const COMPANY_CARDS: CompanyCard[] = [
   {
@@ -1453,6 +1826,44 @@ const COMPANY_CARDS: CompanyCard[] = [
       { label: '수산 실적 공시', value: '0 건' },
     ],
   },
+  {
+    key: 'bolton',
+    numeral: 'Ⅵ',
+    name: 'Bolton Group',
+    country: '이탈리아 · 밀라노',
+    tagline: 'Rio Mare 옆에 UHU 접착제와 WC Net 세제가 있다. 참치 사이클 밖이 매출의 3분의 1이다.',
+    // 이탈리아 트리콜로레 연상 — 초록·하양·빨강 세로 밴드
+    flagCss: [
+      'radial-gradient(circle at 50% 30%, rgba(255, 255, 255, 0.12), transparent 55%)',
+      'linear-gradient(90deg, #0b6b4f 0%, #0b6b4f 33.3%, #f4f5f0 33.3%, #f4f5f0 66.6%, #b3222c 66.6%, #b3222c 100%)',
+    ].join(', '),
+    backInk: '#f4f5f0',
+    stats: [
+      { label: '2025년 순매출', value: `${boltonStats.매출_백만유로.toLocaleString('ko-KR')} M€` },
+      { label: '참치 조달', value: `${boltonStats.조달_톤.toLocaleString('ko-KR')} 톤` },
+      { label: '명단 속 한국선', value: `${latestVesselList().한국선} / ${latestVesselList().총척수} 척` },
+    ],
+  },
+  {
+    key: 'jais',
+    numeral: 'Ⅶ',
+    name: 'JAIS S.R.L.',
+    country: '이탈리아 · 밀라노',
+    tagline: '공장도 배도 자회사도 없다. 여덟 명이 남의 명부에 한 줄로만 존재해 온 중개 노드다.',
+    // 볼튼과 같은 나라라 트리콜로레를 그대로 쓰면 두 장이 안 갈린다. 이 회사는 소유한 것이
+    // 없고 남의 명부에 한 줄로만 존재하므로, 국기를 그 한 줄로 줄여 여백 위에 얹는다.
+    flagCss: [
+      'linear-gradient(180deg, transparent 46.5%, #0b6b4f 46.5%, #0b6b4f 48%, transparent 48%)',
+      'linear-gradient(180deg, transparent 51.5%, #b3222c 51.5%, #b3222c 53%, transparent 53%)',
+      'linear-gradient(180deg, #fbfbf8 0%, #eceee9 100%)',
+    ].join(', '),
+    backInk: '#1f2a24',
+    stats: [
+      { label: '2024년 매출', value: `${jaisStats.매출_만유로.toLocaleString('ko-KR')} 만 €` },
+      { label: '종업원', value: `${jaisStats.종업원} 명` },
+      { label: '공장 · 선박 · 자회사', value: `${ownedAssets()} 개` },
+    ],
+  },
 ];
 
 export interface CompanyAnatomyDashboardProps {
@@ -1476,6 +1887,8 @@ export default function CompanyAnatomyDashboard({
     albacora: ALB_SPEC,
     fcf: FCF_SPEC,
     itochu: ITC_SPEC,
+    bolton: BOL_SPEC,
+    jais: JAI_SPEC,
   };
   const spec = SPECS[selected] ?? SPEC;
 

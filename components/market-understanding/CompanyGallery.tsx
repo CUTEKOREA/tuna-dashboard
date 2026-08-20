@@ -13,7 +13,7 @@
 
 import React, { useMemo, useRef, useState } from 'react';
 
-import { revenueUsdM, scaleLabel, scaleOf } from '@/lib/data/company-scale';
+import { nearTieWith, revenueUsdM, scaleLabel, scaleOf } from '@/lib/data/company-scale';
 
 import styles from './CompanyGallery.module.css';
 
@@ -46,7 +46,7 @@ const SORTS: { key: SortKey; label: string; note: string }[] = [
   {
     key: 'revenue',
     label: '매출순',
-    note: '통화가 회사마다 달라 USD 로 환산해 세운다. 표기는 공시 원통화 그대로다.',
+    note: '통화가 회사마다 달라 USD 로 환산해 세운다. 표기는 공시 원통화 그대로이고, 환율 오차 안에 붙은 쌍은 「≈동률」로 둔다.',
   },
   { key: 'country', label: '국가순', note: '본사 소재국 가나다순. 같은 나라는 수록순으로 둔다.' },
 ];
@@ -127,6 +127,9 @@ export default function CompanyGallery({ companies, onSelect }: CompanyGalleryPr
       <div className={styles.deck}>
         {ordered.map((c) => {
           const scale = scaleOf(c.key);
+          const tied = sort === 'revenue'
+            ? nearTieWith(c.key, companies.map((x) => x.key))
+            : [];
           return (
             <button
               key={c.key}
@@ -151,7 +154,10 @@ export default function CompanyGallery({ companies, onSelect }: CompanyGalleryPr
                     {sort === 'revenue' && scale ? (
                       <span className={styles.backScale}>
                         {scaleLabel(c.key)}
-                        <em>{`${scale.기준} · 등급 ${scale.등급}`}</em>
+                        <em>
+                          {`${scale.기준} · 등급 ${scale.등급}`}
+                          {tied.length ? ' · ≈동률' : ''}
+                        </em>
                       </span>
                     ) : null}
                     {sort === 'country' ? (

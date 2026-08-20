@@ -1,9 +1,9 @@
 {
  "_meta": {
   "entry": "app/page.tsx",
-  "files": 180,
+  "files": 184,
   "widgets": 107,
-  "dataFiles": 70,
+  "dataFiles": 72,
   "generator": "scripts/widget_lineage.py"
  },
  "widgetToData": {
@@ -545,16 +545,20 @@
   "components/market-understanding/CompanyAnatomyDashboard.tsx": {
    "dataModules": [
     "lib/data/company-albacora.ts",
+    "lib/data/company-bolton.ts",
     "lib/data/company-fcf.ts",
     "lib/data/company-frinsa.ts",
     "lib/data/company-itochu.ts",
+    "lib/data/company-jais.ts",
     "lib/data/company-thaiunion.ts"
    ],
    "dataFiles": [
     "public/data/companies/albacora_v1.json",
+    "public/data/companies/bolton_v1.json",
     "public/data/companies/fcf_v1.json",
     "public/data/companies/frinsa_v1.json",
     "public/data/companies/itochu_v1.json",
+    "public/data/companies/jais_v1.json",
     "public/data/companies/thaiunion_v1.json"
    ]
   },
@@ -967,6 +971,9 @@
    "components/market-understanding/AlbacoraCharts.tsx",
    "components/market-understanding/CompanyAnatomyDashboard.tsx"
   ],
+  "public/data/companies/bolton_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
   "public/data/companies/fcf_v1.json": [
    "components/market-understanding/CompanyAnatomyDashboard.tsx"
   ],
@@ -975,6 +982,9 @@
    "components/market-understanding/FrinsaCharts.tsx"
   ],
   "public/data/companies/itochu_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/jais_v1.json": [
    "components/market-understanding/CompanyAnatomyDashboard.tsx"
   ],
   "public/data/companies/thaiunion_v1.json": [

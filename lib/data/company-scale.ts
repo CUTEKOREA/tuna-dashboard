@@ -7,6 +7,10 @@
  *
  * 기준연도가 회사마다 다르고(2023~FY2025) 둘은 경영진 발언이 근거다. 등급을 달아
  * 둔 이유이며, 화면에도 그대로 나간다.
+ *
+ * ⚠ **순위가 항상 결정되는 것은 아니다.** Bolton(≈US$4.14B)과 Thai Union(≈US$4.03B)은
+ *   3% 차이인데 이건 유로·밧 환율이 한 달에도 오가는 폭이다. 그런 쌍은 순서를 단정하지 않고
+ *   화면에 「≈동률」로 표시한다 — 정렬은 결정적이어야 하지만 표시는 정직해야 한다.
  */
 
 /** 환율 — 두 독립 출처가 소수 셋째 자리까지 일치한 날의 값이다. */
@@ -75,6 +79,24 @@ export const COMPANY_SCALE: CompanyScale[] = [
     근거: '비상장 — 매출 공시 없음',
   },
   {
+    key: 'bolton',
+    통화: 'EUR',
+    금액: 3541,
+    표기: '3,541 M€',
+    기준: '2025',
+    등급: 'A',
+    근거: '카테고리별 순매출 공표 — 연결재무제표는 비공표',
+  },
+  {
+    key: 'jais',
+    통화: 'EUR',
+    금액: 39.284392,
+    표기: '€3,928만',
+    기준: '2024',
+    등급: 'A',
+    근거: '등기 기탁 재무제표',
+  },
+  {
     key: 'itochu',
     통화: 'JPY',
     금액: 14823100,
@@ -103,4 +125,20 @@ export function scaleLabel(key: string): string {
   if (!s) return '';
   const b = revenueUsdM(key) / 1000;
   return `${s.표기} · ≈US$${b < 10 ? b.toFixed(2) : b.toFixed(1)}B`;
+}
+
+/** 순위를 단정할 수 없다고 보는 간격. 환율이 한 달에 움직이는 폭보다 좁으면 동률로 둔다. */
+export const TIE_RATIO = 1.1;
+
+/** 이 회사가 바로 앞·뒤 회사와 환율 오차 안에서 붙어 있는가. */
+export function nearTieWith(key: string, others: string[]): string[] {
+  const v = revenueUsdM(key);
+  if (!v) return [];
+  return others.filter((k) => {
+    if (k === key) return false;
+    const w = revenueUsdM(k);
+    if (!w) return false;
+    const ratio = v > w ? v / w : w / v;
+    return ratio < TIE_RATIO;
+  });
 }
