@@ -1,8 +1,8 @@
 {
  "_meta": {
   "entry": "app/page.tsx",
-  "files": 170,
-  "widgets": 105,
+  "files": 171,
+  "widgets": 106,
   "dataFiles": 66,
   "generator": "scripts/widget_lineage.py"
  },
@@ -545,6 +545,10 @@
    "dataFiles": [
     "public/data/companies/frinsa_v1.json"
    ]
+  },
+  "components/market-understanding/CompanyGallery.tsx": {
+   "dataModules": [],
+   "dataFiles": []
   },
   "components/market-understanding/CompanyResearchTables.tsx": {
    "dataModules": [

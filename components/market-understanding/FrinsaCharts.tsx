@@ -22,9 +22,12 @@ import {
 
 import { getSmartRotation, truncateXAxis } from '@/lib/chart-standards';
 import {
+  frinsaBai2024,
+  frinsaCogen,
   frinsaGalicia,
   frinsaKoreaExport,
   frinsaPriceLadder,
+  frinsaRegional2024,
   frinsaSourcing,
   marginSeries,
   sustainabilityBy,
@@ -183,6 +186,76 @@ export function FrinsaKoreaExportChart() {
         {legend}
         <Bar yAxisId="left" dataKey="톤" name="수출량 (톤)" fill={BASE} isAnimationActive={animate} />
         <Line yAxisId="right" type="monotone" dataKey="백만달러" name="수출액 (백만$)" stroke={MARK} strokeWidth={2} dot={{ r: 4 }} isAnimationActive={animate} />
+      </ComposedChart>
+    </SafeResponsiveContainer>
+  );
+}
+
+/** FY2024 지역별 매출 분해. 이베리아 밖이 57.6% — 「갈리시아 지역 기업」 통념을 깨는 표다. */
+export function FrinsaRegionalChart() {
+  const animate = !useReducedMotion();
+  const rows = useMemo(() => frinsaRegional2024, []);
+  return (
+    <SafeResponsiveContainer width="100%" height={250}>
+      <ComposedChart data={rows} margin={MARGIN} layout="vertical">
+        <CartesianGrid stroke="var(--mu-grid)" strokeDasharray="3 3" horizontal={false} />
+        <XAxis type="number" {...AXIS} />
+        <YAxis type="category" dataKey="시장" {...AXIS} width={160} />
+        <Tooltip content={<Tip />} />
+        {legend}
+        <Bar dataKey="매출" name="매출 (M€)" isAnimationActive={animate}>
+          {rows.map((r) => (
+            <Cell key={r.시장} fill={r.시장.includes('이베리아') ? BASE : MARK} />
+          ))}
+        </Bar>
+      </ComposedChart>
+    </SafeResponsiveContainer>
+  );
+}
+
+/** FY2024 국가별 세전이익(EINF). 싱가포르 구매본부가 그룹 2위권 이익원이다. */
+export function FrinsaBaiChart() {
+  const animate = !useReducedMotion();
+  // 스페인이 40.6 M€ 로 압도적이라 상위 6개국만 그린다 — 아래 4국 합계는 12만 € 규모다.
+  const rows = useMemo(
+    () => frinsaBai2024.slice(0, 6).map((r) => ({
+      국가: r.국가.split(' (')[0],
+      백만유로: Number((r.세전이익 / 1_000_000).toFixed(2)),
+      본부: r.국가.includes('싱가포르'),
+    })),
+    [],
+  );
+  return (
+    <SafeResponsiveContainer width="100%" height={280}>
+      <ComposedChart data={rows} margin={MARGIN} layout="vertical">
+        <CartesianGrid stroke="var(--mu-grid)" strokeDasharray="3 3" horizontal={false} />
+        <XAxis type="number" {...AXIS} />
+        <YAxis type="category" dataKey="국가" {...AXIS} width={90} />
+        <Tooltip content={<Tip />} />
+        {legend}
+        <Bar dataKey="백만유로" name="세전이익 (M€)" isAnimationActive={animate}>
+          {rows.map((r) => (
+            <Cell key={r.국가} fill={r.본부 ? MARK : BASE} />
+          ))}
+        </Bar>
+      </ComposedChart>
+    </SafeResponsiveContainer>
+  );
+}
+
+/** 열병합발전소 발전량. 2023년부터 사실상 정지(−99.8%)했다 — 0 이 아니라 254·117 MWh 다. */
+export function FrinsaCogenChart() {
+  const animate = !useReducedMotion();
+  const rows = useMemo(() => frinsaCogen.map((r) => ({ 라벨: `${r.연도}년`, 발전량: r.발전MWh })), []);
+  return (
+    <SafeResponsiveContainer width="100%" height={250}>
+      <ComposedChart data={rows} margin={MARGIN}>
+        {grid}
+        <XAxis dataKey="라벨" {...AXIS} />
+        <YAxis {...AXIS} tickFormatter={(v: number) => v.toLocaleString('ko-KR')} />
+        <Tooltip content={<Tip />} />
+        {legend}
+        <Bar dataKey="발전량" name="발전량 (MWh)" fill={BASE} isAnimationActive={animate} />
       </ComposedChart>
     </SafeResponsiveContainer>
   );
