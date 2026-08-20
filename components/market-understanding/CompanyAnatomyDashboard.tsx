@@ -8,7 +8,7 @@
  */
 'use client';
 
-import React from 'react';
+import React, { useState } from 'react';
 
 import {
   FRINSA_BRIEFING,
@@ -35,6 +35,8 @@ import {
   FrinsaSourcingChart,
   FrinsaSustainabilityChart,
 } from './FrinsaCharts';
+import CompanyGallery, { type CompanyCard } from './CompanyGallery';
+import galleryStyles from './CompanyGallery.module.css';
 import styles from './TunaIndustryDashboard.module.css';
 
 const ACCENT = '#c2410c';
@@ -221,6 +223,22 @@ const SPEC: CommoditySpec = {
   ].join(' · '),
 };
 
+/** 선택 갤러리 카드 목록. 회사가 늘면 여기에 한 장씩 추가한다. */
+const COMPANY_CARDS: CompanyCard[] = [
+  {
+    key: 'frinsa',
+    numeral: 'Ⅰ',
+    name: 'Frinsa del Noroeste',
+    country: '스페인 · 갈리시아',
+    tagline: '이름을 팔지 않는 회사. 선단 0척으로 한 해 참치 원어 13만 톤을 사들인다.',
+    stats: [
+      { label: `${FIN.연도}년 매출`, value: `${FIN.매출.toLocaleString('ko-KR')} M€` },
+      { label: '참치 원어 구매', value: `${tunaPurchasedMt().toLocaleString('ko-KR')} 톤` },
+      { label: '보유 선단', value: '0 척' },
+    ],
+  },
+];
+
 export interface CompanyAnatomyDashboardProps {
   heroOnly?: boolean;
 }
@@ -228,5 +246,25 @@ export interface CompanyAnatomyDashboardProps {
 export default function CompanyAnatomyDashboard({
   heroOnly = false,
 }: CompanyAnatomyDashboardProps) {
-  return <CommodityIndustryDashboard spec={SPEC} heroOnly={heroOnly} />;
+  const [selected, setSelected] = useState<string | null>(null);
+
+  // 조종석 히어로 스트립 등 요약 전용 호출은 갤러리를 거치지 않는다
+  if (heroOnly) return <CommodityIndustryDashboard spec={SPEC} heroOnly />;
+
+  if (selected === null) {
+    return <CompanyGallery companies={COMPANY_CARDS} onSelect={setSelected} />;
+  }
+
+  return (
+    <div className={galleryStyles.wrap}>
+      <button
+        type="button"
+        className={galleryStyles.backBtn}
+        onClick={() => setSelected(null)}
+      >
+        ← 회사 선택
+      </button>
+      <CommodityIndustryDashboard spec={SPEC} />
+    </div>
+  );
 }

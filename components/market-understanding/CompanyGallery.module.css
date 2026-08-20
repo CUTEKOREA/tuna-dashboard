@@ -1,0 +1,258 @@
+/* 「기업 해부」 회사 선택 갤러리 — 타로카드 공개 효과.
+ *
+ * 색은 지역 토큰(--cg-*)으로 받는다. 기본값은 다크 셸, [data-v3='light'] 에서 뒤집힌다.
+ * flip 은 perspective + rotateY 180° — 뒷면이 기본이고 클릭하면 앞면이 공개된다.
+ */
+
+.wrap {
+  --cg-ink: #f1f5f9;
+  --cg-ink-soft: #cbd5e1;
+  --cg-ink-muted: #94a3b8;
+  --cg-surface: rgba(20, 28, 52, 0.55);
+  --cg-line: rgba(140, 170, 255, 0.16);
+  --cg-accent: #c2410c;
+  --cg-accent-soft: rgba(194, 65, 12, 0.35);
+  --cg-back-a: #101a33;
+  --cg-back-b: #1c2a4d;
+  --cg-gold: #d9a441;
+
+  word-break: keep-all;
+  overflow-wrap: break-word;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  color: var(--cg-ink);
+}
+
+:global([data-v3='light']) .wrap {
+  --cg-ink: #0f172a;
+  --cg-ink-soft: #334155;
+  --cg-ink-muted: #64748b;
+  --cg-surface: #ffffff;
+  --cg-line: rgba(15, 23, 42, 0.12);
+  --cg-accent: #c2410c;
+  --cg-accent-soft: rgba(194, 65, 12, 0.25);
+  --cg-back-a: #16223f;
+  --cg-back-b: #24345c;
+  --cg-gold: #b8860b;
+}
+
+.head h1 {
+  margin: 0 0 0.35rem;
+  font-size: 1.65rem;
+  letter-spacing: -0.02em;
+}
+
+.head p {
+  margin: 0;
+  color: var(--cg-ink-muted);
+  font-size: 0.92rem;
+}
+
+.deck {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+}
+
+/* ── 카드 ── */
+
+.card {
+  width: 240px;
+  aspect-ratio: 1 / 1.55;
+  perspective: 1200px;
+  background: none;
+  border: 0;
+  padding: 0;
+  cursor: pointer;
+  text-align: inherit;
+  color: inherit;
+  font: inherit;
+}
+
+.cardInner {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+  transition: transform 0.8s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+
+/* filter/drop-shadow 는 preserve-3d 를 평탄화해 backface 가 비쳐 보인다 — box-shadow 를 face 에 둔다 */
+.card:hover .cardInner {
+  transform: translateY(-6px) rotateZ(-1deg);
+}
+
+.card.flipped .cardInner,
+.card.flipped:hover .cardInner {
+  transform: rotateY(180deg);
+}
+
+.card:hover .face,
+.card.flipped .face {
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.35);
+}
+
+.face,
+.face > span {
+  display: block;
+}
+
+.face {
+  position: absolute;
+  inset: 0;
+  border-radius: 14px;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+/* 뒷면 — 문양. 기본으로 보이는 면 */
+.back {
+  border: 1px solid var(--cg-gold);
+  background:
+    radial-gradient(circle at 50% 32%, rgba(217, 164, 65, 0.22), transparent 46%),
+    repeating-conic-gradient(from 0deg at 50% 50%, transparent 0deg 10deg, rgba(217, 164, 65, 0.05) 10deg 20deg),
+    linear-gradient(160deg, var(--cg-back-a), var(--cg-back-b));
+  align-items: center;
+  justify-content: center;
+  gap: 0.7rem;
+  color: var(--cg-gold);
+}
+
+.backFrame {
+  position: absolute;
+  inset: 9px;
+  border: 1px solid rgba(217, 164, 65, 0.5);
+  border-radius: 10px;
+  pointer-events: none;
+}
+
+.backEmblem {
+  font-size: 2.2rem;
+  line-height: 1;
+}
+
+.backNumeral {
+  font-size: 0.95rem;
+  letter-spacing: 0.35em;
+  text-indent: 0.35em;
+}
+
+.backLabel {
+  font-size: 0.78rem;
+  letter-spacing: 0.22em;
+  text-indent: 0.22em;
+  color: rgba(217, 164, 65, 0.85);
+}
+
+/* 앞면 — 회사 요약. flip 후 공개 */
+.front {
+  transform: rotateY(180deg);
+  border: 1px solid var(--cg-line);
+  background: var(--cg-surface);
+  padding: 1rem 1.05rem;
+  gap: 0.55rem;
+  justify-content: flex-start;
+}
+
+.front::before {
+  content: '';
+  position: absolute;
+  inset: 0 0 auto;
+  height: 4px;
+  background: linear-gradient(90deg, var(--cg-accent), var(--cg-accent-soft));
+}
+
+.frontCountry {
+  font-size: 0.72rem;
+  letter-spacing: 0.12em;
+  color: var(--cg-ink-muted);
+  margin-top: 0.3rem;
+}
+
+.frontName {
+  font-size: 1.08rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  line-height: 1.25;
+}
+
+.frontTagline {
+  font-size: 0.8rem;
+  color: var(--cg-ink-soft);
+  line-height: 1.45;
+  flex: 1;
+}
+
+.frontStats {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  border-top: 1px solid var(--cg-line);
+  padding-top: 0.6rem;
+  font-size: 0.78rem;
+}
+
+.frontStats div {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.5rem;
+}
+
+.frontStats dt {
+  color: var(--cg-ink-muted);
+}
+
+.frontStats dd {
+  margin: 0;
+  font-variant-numeric: tabular-nums;
+  font-weight: 600;
+}
+
+.frontCta {
+  margin-top: 0.55rem;
+  align-self: stretch;
+  text-align: center;
+  border-radius: 8px;
+  padding: 0.5rem 0;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: #fff;
+  background: var(--cg-accent);
+}
+
+/* 복귀 버튼 (상세 화면 상단) */
+.backBtn {
+  align-self: flex-start;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  border: 1px solid var(--cg-line);
+  border-radius: 999px;
+  background: var(--cg-surface);
+  color: var(--cg-ink-soft);
+  font-size: 0.82rem;
+  padding: 0.4rem 0.95rem;
+  cursor: pointer;
+}
+
+.backBtn:hover {
+  color: var(--cg-ink);
+  border-color: var(--cg-accent-soft);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cardInner,
+  .card:hover .cardInner {
+    transition: none;
+    transform: none;
+  }
+
+  .card.flipped .cardInner {
+    transition: none;
+  }
+}
