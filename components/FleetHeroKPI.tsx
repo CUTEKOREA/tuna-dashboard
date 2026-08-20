@@ -2,7 +2,11 @@
 import React from 'react';
 import { Anchor, Navigation } from 'lucide-react';
 import CountUp from 'react-countup';
-import { purseSeineCatch } from '@/lib/fleet-operations-2026-08-16';
+import {
+  atlanticDailyReport,
+  pacificDailyReport,
+  purseSeineCatch,
+} from '@/lib/fleet-operations-2026-08-16';
 import TelemetryBadge from './TelemetryBadge';
 import s from './FleetCommandCenter.module.css';
 
@@ -10,22 +14,39 @@ export default function FleetHeroKPI({ climateRisk, mode = 'daily' }: { climateR
   const isWeekly = mode === 'weekly';
   const summary = purseSeineCatch.summary;
 
+  // 일일 KPI 는 일일보고(태평양·대서양 선망)에서, 주간 KPI 는 주간 실적에서 온다.
+  // 한때 일일 분기가 주간 분기의 복사본이라 「일일 운영」 탭이 주간 수치를 보여줬다 —
+  // 자료가 있는데 화면이 안 쓰고 있었다.
+  const pac = pacificDailyReport;
+  const atl = atlanticDailyReport;
+  const dailyTotal = pac.dailyCatchMt + atl.dailyCatchMt;
+  const dailyMonthly = pac.monthlyCatchMt + atl.monthlyCatchMt;
+  const dailyAnnual = pac.annualCatchMt + atl.annualCatchMt;
+  const pct = (part: number, whole: number) => (whole > 0 ? Math.round((part / whole) * 100) : 0);
+  const mt = (v: number) => v.toLocaleString('ko-KR');
+
   const kpiData = isWeekly
     ? {
         title: '주간 총 어획량',
         val1: summary.weeklyTotal, label1: `국적 ${summary.nationalWeekly}t + 합작 ${summary.jointWeekly}t`,
-        val2: summary.monthlyTotal, label2: `국적 ${summary.nationalMonthly.toLocaleString()}t + 합작 ${summary.jointMonthly.toLocaleString()}t`,
-        val3: summary.annualTotal, label3: `국적 ${summary.nationalAnnual.toLocaleString()}t + 합작 ${summary.jointAnnual.toLocaleString()}t`,
-        ratioLeftLabel: '국적 36%', ratioRightLabel: '합작 64%', ratioPercent: summary.nationalWeekly / summary.weeklyTotal * 100,
+        val2: summary.monthlyTotal, label2: `국적 ${mt(summary.nationalMonthly)}t + 합작 ${mt(summary.jointMonthly)}t`,
+        val3: summary.annualTotal, label3: `국적 ${mt(summary.nationalAnnual)}t + 합작 ${mt(summary.jointAnnual)}t`,
+        ratioLeftLabel: `국적 ${pct(summary.nationalWeekly, summary.weeklyTotal)}%`,
+        ratioRightLabel: `합작 ${pct(summary.jointWeekly, summary.weeklyTotal)}%`,
+        ratioPercent: (summary.nationalWeekly / summary.weeklyTotal) * 100,
         syncDate: '26.08.10~08.16 · 8월 둘째주',
+        badgeDate: purseSeineCatch.period.to,
       }
     : {
-        title: '주간 총 어획량',
-        val1: summary.weeklyTotal, label1: `국적 ${summary.nationalWeekly}t + 합작 ${summary.jointWeekly}t`,
-        val2: summary.monthlyTotal, label2: `국적 ${summary.nationalMonthly.toLocaleString()}t + 합작 ${summary.jointMonthly.toLocaleString()}t`,
-        val3: summary.annualTotal, label3: `국적 ${summary.nationalAnnual.toLocaleString()}t + 합작 ${summary.jointAnnual.toLocaleString()}t`,
-        ratioLeftLabel: '국적 36%', ratioRightLabel: '합작 64%', ratioPercent: summary.nationalWeekly / summary.weeklyTotal * 100,
-        syncDate: '26.08.10~08.16 · 8월 둘째주',
+        title: '일일 총 어획량',
+        val1: dailyTotal, label1: `태평양 ${mt(pac.dailyCatchMt)}t + 대서양 ${mt(atl.dailyCatchMt)}t`,
+        val2: dailyMonthly, label2: `태평양 ${mt(pac.monthlyCatchMt)}t + 대서양 ${mt(atl.monthlyCatchMt)}t`,
+        val3: dailyAnnual, label3: `태평양 ${mt(pac.annualCatchMt)}t + 대서양 ${mt(atl.annualCatchMt)}t`,
+        ratioLeftLabel: `태평양 ${pct(pac.dailyCatchMt, dailyTotal)}%`,
+        ratioRightLabel: `대서양 ${pct(atl.dailyCatchMt, dailyTotal)}%`,
+        ratioPercent: dailyTotal > 0 ? (pac.dailyCatchMt / dailyTotal) * 100 : 0,
+        syncDate: `${pac.asOf.slice(2).replace(/-/g, '.')} 기준 · ${pac.source.split('-').pop()}`,
+        badgeDate: pac.asOf,
       };
 
   return (
@@ -35,7 +56,7 @@ export default function FleetHeroKPI({ climateRisk, mode = 'daily' }: { climateR
           <Anchor size={20} /> 선단 운영 커맨드 센터
           <span style={{ fontSize: '0.75rem', color: 'var(--text-muted)', fontWeight: 500 }}>{kpiData.syncDate}</span>
         </h2>
-        <TelemetryBadge status="STATIC" syncDate="2026-08-09" label="첨부 원문" />
+        <TelemetryBadge status="STATIC" syncDate={kpiData.badgeDate} label="첨부 원문" />
       </div>
 
       <div className={s.kpiRow}>

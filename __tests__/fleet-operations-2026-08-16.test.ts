@@ -64,29 +64,26 @@ describe('2026-08-16 fleet operations sources', () => {
   });
 
   it('captures the latest daily report and carrier loading snapshot without mixing dates', () => {
-    expect(longlineDailyReport).toEqual({
-      asOf: '2026-08-12',
-      source: '해양수산본부 일일 업무보고-260812',
-      vessels: [{ name: 'TAIHO MARU', loadedMt: 338.699, loadPlan: 'P-501, P-505', note: '8/12 부산 입항, 8/21·24~25 하역 예정' }],
-    });
-    expect(pacificDailyReport).toMatchObject({ asOf: '2026-08-11', dailyCatchMt: 176, monthlyCatchMt: 1_732, annualCatchMt: 46_564.8 });
+    expect(longlineDailyReport.asOf).toBe('2026-08-19');
+    expect(longlineDailyReport.vessels.map((vessel) => vessel.name)).toEqual(['TAIHO MARU', 'P-501', 'SY 56']);
+    expect(pacificDailyReport).toMatchObject({ asOf: '2026-08-19', dailyCatchMt: 50, monthlyCatchMt: 2_384, annualCatchMt: 47_216.8 });
     expect(pacificDailyReport.vessels.map((vessel) => vessel.name)).toEqual([
       'S/EXP', 'S/PIO', 'S/CHA', 'S/HAR', 'S/JUP', 'S/SPR', 'MOAMARI', 'MOAKONA', 'NAOERO SUN', 'NAOERO STAR',
     ]);
+    // 어획이 있는 배만 추린다. 보고서에서 «-» 인 칸을 0 으로 옮겼는지 여기서 드러난다.
     expect(pacificDailyReport.vessels.filter((vessel) => vessel.catchMt > 0).map(({ name, catchMt }) => ({ name, catchMt }))).toEqual([
-      { name: 'S/PIO', catchMt: 26 },
-      { name: 'S/JUP', catchMt: 65 },
-      { name: 'NAOERO STAR', catchMt: 85 },
+      { name: 'NAOERO SUN', catchMt: 50 },
     ]);
-    expect(pacificDailyReport.vessels.reduce((sum, vessel) => sum + vessel.catchMt, 0)).toBe(176);
-    expect(atlanticDailyReport.asOf).toBe('2026-08-11');
-    expect(atlanticDailyReport).toMatchObject({ dailyCatchMt: 220, monthlyCatchMt: 1_635, annualCatchMt: 28_360 });
-    expect(atlanticDailyReport.vessels.reduce((sum, vessel) => sum + vessel.catchMt, 0)).toBe(220);
-    expect(carrierLoads.asOf).toBe('2026-08-12');
-    expect(carrierLoads.loadedTotalMt).toBeCloseTo(9_922.3, 1);
-    expect(carrierLoads.expectedRemainingMt).toBeCloseTo(7_887.7, 1);
-    expect(carrierLoads.vessels.reduce((sum, vessel) => sum + vessel.loadedMt, 0)).toBeCloseTo(9_922.3, 1);
-    expect(carrierLoads.vessels.reduce((sum, vessel) => sum + vessel.expectedRemainingMt, 0)).toBeCloseTo(7_887.7, 1);
+    // 선박별 합이 보고서가 선언한 일간 총계와 맞아야 한다 — 옮겨 적기의 검산이다.
+    expect(pacificDailyReport.vessels.reduce((sum, vessel) => sum + vessel.catchMt, 0)).toBe(50);
+    expect(atlanticDailyReport.asOf).toBe('2026-08-19');
+    expect(atlanticDailyReport).toMatchObject({ dailyCatchMt: 315, monthlyCatchMt: 3_425, annualCatchMt: 30_150 });
+    expect(atlanticDailyReport.vessels.reduce((sum, vessel) => sum + vessel.catchMt, 0)).toBe(315);
+    expect(carrierLoads.asOf).toBe('2026-08-19');
+    expect(carrierLoads.loadedTotalMt).toBeCloseTo(11_492.3, 1);
+    expect(carrierLoads.expectedRemainingMt).toBeCloseTo(6_317.7, 1);
+    expect(carrierLoads.vessels.reduce((sum, vessel) => sum + vessel.loadedMt, 0)).toBeCloseTo(11_492.3, 1);
+    expect(carrierLoads.vessels.reduce((sum, vessel) => sum + vessel.expectedRemainingMt, 0)).toBeCloseTo(6_317.7, 1);
     expect(carrierLoads.vessels.filter((vessel) => !vessel.name.includes('컨테이너'))).toHaveLength(6);
     expect(carrierLoads.vessels.find((vessel) => vessel.name === 'HIKARI 1')?.loadedMt).toBeCloseTo(2_929.17, 2);
   });
