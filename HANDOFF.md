@@ -421,6 +421,13 @@
 >
 > 마지막 업데이트: 2026-08-18 [Grok]
 
+> 🃏 **2026-08-20 16:00 KST — 기업 해부 진입을 타로카드 회사 선택 갤러리로 (PR #699)** [CC]:
+> - 소유자 지시: «기업해부 클릭시 회사 선택 페이지 먼저 — 여러 회사 추가 예정, 타로카드 열어보는 효과».
+> - `CompanyGallery.tsx`+`.module.css` 신설, `CompanyAnatomyDashboard`는 useState 선택 상태로 갤러리(null)↔상세 전환. 카드 뒷면(문양·로마숫자) 기본 → 클릭 rotateY 180° 공개 → 1.4s 후 자동 진입. 상세 상단 «← 회사 선택». heroOnly(조종석)는 갤러리 우회. 회사 추가는 `COMPANY_CARDS` 배열에 1장씩.
+> - **함정 2건**: ① span 자식들은 display:block 명시 필요(버튼 안 inline이라 높이 0) ② `filter: drop-shadow`는 transform-style: preserve-3d를 평탄화해 backface-visibility가 무시됨 — box-shadow로 대체.
+> - **gh 인증 함정**: 셸에 무효 `GH_TOKEN`/`GITHUB_TOKEN` env가 keyring 계정을 가림 — `env -u GH_TOKEN -u GITHUB_TOKEN gh …`로 우회.
+> - verify GREEN(937 테스트), E2E 스크린샷 4상태(갤러리·flip·상세·다크) 확인, Production 배포 성공.
+
 > 📊 **2026-08-19 09:45 KST — 방콕 주간보고 2026-08-19 반영 (PR #683 · 288주)** [CC]:
 > - **완료된 것**: `/bangkok-office` payload에 08-19 주간보고 1주 추가 — 시세 $1,960 유지 · BKK 재고 110,200MT(-7,200) · 가공일수 43일 · 2026 누적 하역 328,245MT(80척) · 하이솔트 24행 $10,506 · 리젝 6건 333.5MT. KPI·가드 픽스처 갱신, verify GREEN, 반증 검수 8/8 통과, Production 배포 성공.
 > - **주간 파이프라인 복원**: 원본 빌더(292 docx 전수 파서)는 유실 상태였다. `scripts/append_bangkok_week.py` 신설 — 손 전사 week-spec JSON을 받아 Drive 종합분석 HTML의 payload·헤더 KPI를 갱신한다. **핵심 안전장치: 실행마다 기존 데이터로 기존 집계를 재현(7/7 일치)한 뒤에만 재계산 반영, 재현 실패 항목은 미수정+경고.** 역산으로 확정한 공식: corr=지표[t]↔가격[t+lag], 가격측 suspect 제외 / corrYear=unload_mt 선행·가격행 연도 그룹·n<5→None / yearly.unload_total=월 total_calc 합 / stockShare=BKK+SKL 합 분모.
