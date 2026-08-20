@@ -1,0 +1,666 @@
+{
+ "_meta": {
+  "선박": "M/V SEIN VENUS",
+  "하역지": "BANGKOK, THAILAND",
+  "선석": "41",
+  "입항일": "2026-08-06",
+  "판매처": "FCF CO.,LTD",
+  "출처": "신라교역 방콕사무소 일일 하역결과보고 (.xls) · 일일하역량 현황 (.xlsx) · 하역 업무 보고 (.txt)",
+  "등급": "A",
+  "기준일": "2026-08-19",
+  "진행상태": "하역 진행 중 — 누계를 최종 실적으로 쓰지 않는다",
+  "주의": "하역사(THAICEN) 수기 일일보고서는 칸별 BALANCE 가 자기 CARGO PLAN − 누계와 맞지 않고(#3 은 부호까지 어긋남) 수기라 판독도 불확실하다. 선석·입항일 외에는 쓰지 않았다.",
+  "무하역일": "하역 기록이 없는 날: 8/9(일) · 8/12(수) · 8/16(일). 원자료에 해당 일자 시트가 없다 — 0 톤 하역이 아니라 기록 없음이다. 일요일 두 날은 휴무로 보이나 원자료가 사유를 적지 않았다.",
+  "결측": "작업시간·어창온도는 업무보고 문서가 있는 3일치(8/14 · 8/18 · 8/19)만 있다. 나머지 날은 원자료에 없어 비워 둔다.",
+  "갱신방법": "python3 scripts/build_unloading_sein_venus.py <폴더>"
+ },
+ "요약": {
+  "본선보고총량": 3275.0,
+  "하역누계": 2943.27,
+  "잔량": 331.73,
+  "하역일수": 10,
+  "진척률": 89.9,
+  "어종": {
+   "YF": {
+    "보고": 431.0,
+    "누계": 513.98,
+    "차이": 82.98
+   },
+   "SJ": {
+    "보고": 2844.0,
+    "누계": 2429.29,
+    "차이": -414.71
+   }
+  }
+ },
+ "원선별": [
+  {
+   "원선": "S/SPR",
+   "보고": 260.0,
+   "누계": 243.85,
+   "잔량": 16.15,
+   "완료": true
+  },
+  {
+   "원선": "S/PIO",
+   "보고": 925.0,
+   "누계": 549.17,
+   "잔량": 375.83,
+   "완료": false
+  },
+  {
+   "원선": "N/STAR",
+   "보고": 1060.0,
+   "누계": 1079.11,
+   "잔량": -19.11,
+   "완료": true
+  },
+  {
+   "원선": "N/SUN",
+   "보고": 1030.0,
+   "누계": 1071.14,
+   "잔량": -41.14,
+   "완료": true
+  }
+ ],
+ "무하역일": [
+  {
+   "date": "2026-08-09",
+   "label": "8/9",
+   "weekday": "일"
+  },
+  {
+   "date": "2026-08-12",
+   "label": "8/12",
+   "weekday": "수"
+  },
+  {
+   "date": "2026-08-16",
+   "label": "8/16",
+   "weekday": "일"
+  }
+ ],
+ "하역처계획": [
+  {
+   "consignee": "TUM",
+   "sourceVessel": "N/STAR",
+   "plannedMt": 560.0
+  },
+  {
+   "consignee": "TUM",
+   "sourceVessel": "N/SUN",
+   "plannedMt": 387.0
+  },
+  {
+   "consignee": "ISA",
+   "sourceVessel": "S/SPR",
+   "plannedMt": 260.0
+  },
+  {
+   "consignee": "ISA",
+   "sourceVessel": "N/SUN",
+   "plannedMt": 500.0
+  },
+  {
+   "consignee": "GPZ",
+   "sourceVessel": "S/PIO",
+   "plannedMt": 925.0
+  },
+  {
+   "consignee": "MMP",
+   "sourceVessel": "N/STAR",
+   "plannedMt": 400.0
+  },
+  {
+   "consignee": "PTY",
+   "sourceVessel": "N/STAR",
+   "plannedMt": 100.0
+  },
+  {
+   "consignee": "GFF",
+   "sourceVessel": "N/SUN",
+   "plannedMt": 143.0
+  }
+ ],
+ "일자별": [
+  {
+   "date": "2026-08-07",
+   "label": "8/7",
+   "weekday": "금",
+   "daily": 174.64,
+   "cumulative": 174.64,
+   "species": {
+    "YF": 24.3,
+    "SJ": 150.34
+   },
+   "원선": [
+    {
+     "원선": "N/SUN",
+     "어창": [
+      "#3-B"
+     ],
+     "하역량": 174.64,
+     "완료": false
+    }
+   ],
+   "하역처": [
+    {
+     "consignee": "ISA",
+     "sourceVessel": "N/SUN",
+     "amountMt": 174.64
+    }
+   ],
+   "예정량": 183.0,
+   "workingHours": null,
+   "temperatures": [],
+   "nextDayPlanMt": null
+  },
+  {
+   "date": "2026-08-08",
+   "label": "8/8",
+   "weekday": "토",
+   "daily": 109.07,
+   "cumulative": 283.71,
+   "species": {
+    "YF": 4.9,
+    "SJ": 104.17
+   },
+   "원선": [
+    {
+     "원선": "S/PIO",
+     "어창": [
+      "#2-A"
+     ],
+     "하역량": 109.07,
+     "완료": false
+    }
+   ],
+   "하역처": [
+    {
+     "consignee": "GPZ",
+     "sourceVessel": "S/PIO",
+     "amountMt": 109.07
+    }
+   ],
+   "예정량": 150.0,
+   "workingHours": null,
+   "temperatures": [],
+   "nextDayPlanMt": null
+  },
+  {
+   "date": "2026-08-10",
+   "label": "8/10",
+   "weekday": "월",
+   "daily": 331.47,
+   "cumulative": 615.18,
+   "species": {
+    "YF": 59.2,
+    "SJ": 272.27
+   },
+   "원선": [
+    {
+     "원선": "S/PIO",
+     "어창": [
+      "#1-A"
+     ],
+     "하역량": 169.33,
+     "완료": false
+    },
+    {
+     "원선": "N/STAR",
+     "어창": [
+      "#2-A"
+     ],
+     "하역량": 162.14,
+     "완료": false
+    }
+   ],
+   "하역처": [
+    {
+     "consignee": "GPZ",
+     "sourceVessel": "S/PIO",
+     "amountMt": 169.33
+    },
+    {
+     "consignee": "MMP",
+     "sourceVessel": "N/STAR",
+     "amountMt": 162.14
+    }
+   ],
+   "예정량": 310.0,
+   "workingHours": null,
+   "temperatures": [],
+   "nextDayPlanMt": null
+  },
+  {
+   "date": "2026-08-11",
+   "label": "8/11",
+   "weekday": "화",
+   "daily": 462.81,
+   "cumulative": 1077.99,
+   "species": {
+    "YF": 85.2,
+    "SJ": 377.61
+   },
+   "원선": [
+    {
+     "원선": "S/PIO",
+     "어창": [
+      "#1-A",
+      "#1-B"
+     ],
+     "하역량": 121.84,
+     "완료": false
+    },
+    {
+     "원선": "N/STAR",
+     "어창": [
+      "#2-A"
+     ],
+     "하역량": 143.64,
+     "완료": false
+    },
+    {
+     "원선": "N/SUN",
+     "어창": [
+      "#3-B"
+     ],
+     "하역량": 197.33,
+     "완료": false
+    }
+   ],
+   "하역처": [
+    {
+     "consignee": "ISA",
+     "sourceVessel": "N/SUN",
+     "amountMt": 197.33
+    },
+    {
+     "consignee": "GPZ",
+     "sourceVessel": "S/PIO",
+     "amountMt": 121.84
+    },
+    {
+     "consignee": "PTY",
+     "sourceVessel": "N/STAR",
+     "amountMt": 143.64
+    }
+   ],
+   "예정량": 420.0,
+   "workingHours": null,
+   "temperatures": [],
+   "nextDayPlanMt": null
+  },
+  {
+   "date": "2026-08-13",
+   "label": "8/13",
+   "weekday": "목",
+   "daily": 159.59,
+   "cumulative": 1237.58,
+   "species": {
+    "YF": 34.7,
+    "SJ": 124.89
+   },
+   "원선": [
+    {
+     "원선": "N/STAR",
+     "어창": [
+      "#2-B"
+     ],
+     "하역량": 159.59,
+     "완료": false
+    }
+   ],
+   "하역처": [
+    {
+     "consignee": "MMP",
+     "sourceVessel": "N/STAR",
+     "amountMt": 159.59
+    }
+   ],
+   "예정량": 150.0,
+   "workingHours": null,
+   "temperatures": [],
+   "nextDayPlanMt": null
+  },
+  {
+   "date": "2026-08-14",
+   "label": "8/14",
+   "weekday": "금",
+   "daily": 424.78,
+   "cumulative": 1662.36,
+   "species": {
+    "YF": 56.7,
+    "SJ": 368.08
+   },
+   "원선": [
+    {
+     "원선": "S/SPR",
+     "어창": [
+      "#4-B",
+      "#4-C"
+     ],
+     "하역량": 58.3,
+     "완료": false
+    },
+    {
+     "원선": "N/STAR",
+     "어창": [
+      "#2-B"
+     ],
+     "하역량": 78.65,
+     "완료": false
+    },
+    {
+     "원선": "N/SUN",
+     "어창": [
+      "#3-B",
+      "#3-C"
+     ],
+     "하역량": 287.83,
+     "완료": false
+    }
+   ],
+   "하역처": [
+    {
+     "consignee": "TUM",
+     "sourceVessel": "N/SUN",
+     "amountMt": 203.2
+    },
+    {
+     "consignee": "ISA",
+     "sourceVessel": "S/SPR",
+     "amountMt": 58.3
+    },
+    {
+     "consignee": "ISA",
+     "sourceVessel": "N/SUN",
+     "amountMt": 84.63
+    },
+    {
+     "consignee": "MMP",
+     "sourceVessel": "N/STAR",
+     "amountMt": 78.65
+    }
+   ],
+   "예정량": 400.0,
+   "workingHours": "08:00 ~ 18:00",
+   "temperatures": [
+    {
+     "target": "N/STAR(#2-B)",
+     "range": "-22.0℃ ~ -23.0℃"
+    },
+    {
+     "target": "N/SUN(#3-B)",
+     "range": "-21.0℃ ~ -22.0℃"
+    },
+    {
+     "target": "N/SUN(#3-C)",
+     "range": "-22.0℃ ~ -23.0℃"
+    },
+    {
+     "target": "S/SPR(#4-B)",
+     "range": "-21.0℃ ~ -22.0℃"
+    },
+    {
+     "target": "S/SPR(#4-C)",
+     "range": "-22.0℃ ~ -23.0℃"
+    }
+   ],
+   "nextDayPlanMt": 350
+  },
+  {
+   "date": "2026-08-15",
+   "label": "8/15",
+   "weekday": "토",
+   "daily": 350.74,
+   "cumulative": 2013.1,
+   "species": {
+    "YF": 32.6,
+    "SJ": 318.14
+   },
+   "원선": [
+    {
+     "원선": "S/SPR",
+     "어창": [
+      "#4-C"
+     ],
+     "하역량": 88.05,
+     "완료": false
+    },
+    {
+     "원선": "N/STAR",
+     "어창": [
+      "#2-B",
+      "#2-C"
+     ],
+     "하역량": 202.59,
+     "완료": false
+    },
+    {
+     "원선": "N/SUN",
+     "어창": [
+      "#3-C"
+     ],
+     "하역량": 60.1,
+     "완료": false
+    }
+   ],
+   "하역처": [
+    {
+     "consignee": "TUM",
+     "sourceVessel": "N/STAR",
+     "amountMt": 202.59
+    },
+    {
+     "consignee": "ISA",
+     "sourceVessel": "S/SPR",
+     "amountMt": 88.05
+    },
+    {
+     "consignee": "ISA",
+     "sourceVessel": "N/SUN",
+     "amountMt": 60.1
+    }
+   ],
+   "예정량": 350.0,
+   "workingHours": null,
+   "temperatures": [],
+   "nextDayPlanMt": null
+  },
+  {
+   "date": "2026-08-17",
+   "label": "8/17",
+   "weekday": "월",
+   "daily": 312.57,
+   "cumulative": 2325.67,
+   "species": {
+    "YF": 32.8,
+    "SJ": 279.77
+   },
+   "원선": [
+    {
+     "원선": "S/SPR",
+     "어창": [
+      "#4-C"
+     ],
+     "하역량": 97.5,
+     "완료": true
+    },
+    {
+     "원선": "N/STAR",
+     "어창": [
+      "#2-C"
+     ],
+     "하역량": 201.62,
+     "완료": false
+    },
+    {
+     "원선": "N/SUN",
+     "어창": [
+      "#4-C"
+     ],
+     "하역량": 13.45,
+     "완료": false
+    }
+   ],
+   "하역처": [
+    {
+     "consignee": "TUM",
+     "sourceVessel": "N/STAR",
+     "amountMt": 201.62
+    },
+    {
+     "consignee": "ISA",
+     "sourceVessel": "S/SPR",
+     "amountMt": 97.5
+    },
+    {
+     "consignee": "ISA",
+     "sourceVessel": "N/SUN",
+     "amountMt": 13.45
+    }
+   ],
+   "예정량": 300.0,
+   "workingHours": null,
+   "temperatures": [],
+   "nextDayPlanMt": null
+  },
+  {
+   "date": "2026-08-18",
+   "label": "8/18",
+   "weekday": "화",
+   "daily": 339.73,
+   "cumulative": 2665.4,
+   "species": {
+    "YF": 168.88,
+    "SJ": 170.85
+   },
+   "원선": [
+    {
+     "원선": "S/SPR",
+     "어창": [],
+     "하역량": 0.0,
+     "완료": true
+    },
+    {
+     "원선": "N/STAR",
+     "어창": [
+      "#2-C"
+     ],
+     "하역량": 130.88,
+     "완료": true
+    },
+    {
+     "원선": "N/SUN",
+     "어창": [
+      "#3-C",
+      "#4-C"
+     ],
+     "하역량": 208.85,
+     "완료": false
+    }
+   ],
+   "하역처": [
+    {
+     "consignee": "TUM",
+     "sourceVessel": "N/STAR",
+     "amountMt": 130.88
+    },
+    {
+     "consignee": "TUM",
+     "sourceVessel": "N/SUN",
+     "amountMt": 55.77
+    },
+    {
+     "consignee": "GFF",
+     "sourceVessel": "N/SUN",
+     "amountMt": 153.08
+    }
+   ],
+   "예정량": 343.0,
+   "workingHours": "08:10 ~ 15:40",
+   "temperatures": [
+    {
+     "target": "N/STAR(#2-C)",
+     "range": "-22.0℃ ~ -23.0℃"
+    },
+    {
+     "target": "N/SUN(#3-C)",
+     "range": "-22.0℃ ~ -23.0℃"
+    },
+    {
+     "target": "N/SUN(#4-C)",
+     "range": "-22.0℃ ~ -23.0℃"
+    }
+   ],
+   "nextDayPlanMt": 280
+  },
+  {
+   "date": "2026-08-19",
+   "label": "8/19",
+   "weekday": "수",
+   "daily": 277.87,
+   "cumulative": 2943.27,
+   "species": {
+    "YF": 14.7,
+    "SJ": 263.17
+   },
+   "원선": [
+    {
+     "원선": "S/SPR",
+     "어창": [],
+     "하역량": 0.0,
+     "완료": true
+    },
+    {
+     "원선": "S/PIO",
+     "어창": [
+      "#1-B"
+     ],
+     "하역량": 148.93,
+     "완료": false
+    },
+    {
+     "원선": "N/STAR",
+     "어창": [],
+     "하역량": 0.0,
+     "완료": true
+    },
+    {
+     "원선": "N/SUN",
+     "어창": [
+      "#3-C"
+     ],
+     "하역량": 128.94,
+     "완료": true
+    }
+   ],
+   "하역처": [
+    {
+     "consignee": "TUM",
+     "sourceVessel": "N/SUN",
+     "amountMt": 128.94
+    },
+    {
+     "consignee": "GPZ",
+     "sourceVessel": "S/PIO",
+     "amountMt": 148.93
+    }
+   ],
+   "예정량": 280.0,
+   "workingHours": "08:10 ~ 13:40",
+   "temperatures": [
+    {
+     "target": "S/PIO(#1-B)",
+     "range": "-20.0℃ ~ -21.0℃"
+    },
+    {
+     "target": "N/SUN(#3-C)",
+     "range": "-22.0℃ ~ -23.0℃"
+    }
+   ],
+   "nextDayPlanMt": null
+  }
+ ]
+}
