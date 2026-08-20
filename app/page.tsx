@@ -5,7 +5,7 @@ import dynamic from 'next/dynamic';
 import Image from 'next/image';
 import Link from 'next/link';
 import styles from './page.module.css';
-import { Anchor, Ship, LogOut, Gauge, Moon, Printer, BarChart2, Navigation, Factory, Waves, Fish, Hexagon, Mail, Menu, X, Snowflake, Shrimp, Droplets, FishSymbol, Shell, TestTube } from 'lucide-react';
+import { Anchor, Ship, LogOut, Moon, Printer, BarChart2, Navigation, Factory, Waves, Fish, Hexagon, Mail, Menu, X, Snowflake, Shrimp, Droplets, FishSymbol, Shell, TestTube } from 'lucide-react';
 import { supabase } from '../lib/supabase';
 import { usePathname, useRouter } from 'next/navigation';
 import {
@@ -27,7 +27,6 @@ import CommandPalette from '../components/CommandPalette';
 import KeepAlivePanel from '../components/KeepAlivePanel';
 
 import { LongArmOctopusIcon } from '../components/SeafoodSidebarIcons';
-import { applyDensity, readStoredDensity } from '@/lib/cockpit-density';
 
 // ─── Dynamic imports (loaded on-demand per page) ───
 const MgoChartModal = dynamic(() => import('../components/MgoChartModal'));
@@ -107,12 +106,6 @@ export default function Home() {
   // Mobile sidebar state
   const [isMobileSidebarOpen, setIsMobileSidebarOpen] = useState(false);
 
-  // 조종석 모드 — 전역 밀도 토글 (2026-08-17 스펙). 토큰 계층으로만 동작.
-  // 키·속성 이름은 lib/cockpit-density 가 갖는다. 여기 문자열을 다시 적으면 두 곳이 갈린다.
-  const [cockpitMode, setCockpitMode] = useState(readStoredDensity);
-  useEffect(() => {
-    applyDensity(cockpitMode);
-  }, [cockpitMode]);
 
   // 다크 모드 — 결정 ①(라이트 기본, 다크는 토글 보존). data-v3='light' 스코프를 떼면
   // :root의 기존 다크 토큰으로 복귀한다. 별도 다크 팔레트를 새로 만들지 않는다.
@@ -358,26 +351,6 @@ export default function Home() {
 
 
         {/* «⌘ 빠른 검색» 버튼 제거 (2026-08-15 사용자 지시) — Cmd+K 단축키·CommandPalette는 유지 */}
-
-        <button
-          type="button"
-          onClick={() => setCockpitMode((prev) => !prev)}
-          aria-pressed={cockpitMode}
-          title="조종석 모드 — 카드 밀도를 압축해 한 화면에 더 많이"
-          style={{
-            display: 'flex', alignItems: 'center', justifyContent: 'space-between',
-            padding: '8px 12px', margin: '4px 0',
-            border: '1px solid ' + (cockpitMode ? 'rgba(80, 158, 227, 0.5)' : 'var(--dsc-surface-border, #e2e4e9)'),
-            borderRadius: 8, background: cockpitMode ? 'rgba(80, 158, 227, 0.10)' : 'transparent',
-            color: cockpitMode ? '#1c6bb0' : 'var(--text-tertiary)',
-            fontSize: 12, fontWeight: 700, cursor: 'pointer', width: '100%',
-          }}
-        >
-          <span style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
-            <Gauge size={13} /> 조종석 모드
-          </span>
-          <span style={{ fontSize: 11, fontWeight: 400 }}>{cockpitMode ? '켜짐' : '꺼짐'}</span>
-        </button>
 
         <button
           type="button"

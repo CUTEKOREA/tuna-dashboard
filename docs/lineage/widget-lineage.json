@@ -1,8 +1,8 @@
 {
  "_meta": {
   "entry": "app/page.tsx",
-  "files": 181,
-  "widgets": 108,
+  "files": 179,
+  "widgets": 107,
   "dataFiles": 70,
   "generator": "scripts/widget_lineage.py"
  },
@@ -519,10 +519,6 @@
    "dataFiles": [
     "public/data/companies/albacora_v1.json"
    ]
-  },
-  "components/market-understanding/CockpitExtra.tsx": {
-   "dataModules": [],
-   "dataFiles": []
   },
   "components/market-understanding/CommodityCharts.tsx": {
    "dataModules": [

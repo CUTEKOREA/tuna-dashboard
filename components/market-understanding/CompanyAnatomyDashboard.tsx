@@ -24,7 +24,6 @@ import {
   latestFinancial,
   tunaPurchasedMt,
 } from '@/lib/data/company-frinsa';
-import { SeriesStats } from './CockpitExtra';
 import CommodityIndustryDashboard, {
   type ChartSlot,
   type CommoditySpec,
@@ -387,18 +386,6 @@ const CHART_SLOTS: Record<string, ChartSlot[]> = {
       caption: 'UN Comtrade 스페인 신고 기준. 2025년은 미완연도다. 물량과 금액이 함께 튀었다가 함께 내려왔다.',
       telemetry: SYNC,
       render: () => <FrinsaKoreaExportChart />,
-      cockpitExtra: () => (
-        <SeriesStats
-          rows={[
-            { 라벨: '2023년', 값: 1977 },
-            { 라벨: '2024년', 값: 5509 },
-            { 라벨: '2025년', 값: 1954 },
-          ]}
-          labelKey="라벨"
-          valueKey="값"
-          unit="톤"
-        />
-      ),
       sourceLine: 'UN Comtrade (스페인 신고·총계행). 2025년은 미완연도',
     },
     {
@@ -729,17 +716,6 @@ const TU_CHART_SLOTS: Record<string, ChartSlot[]> = {
       caption: '한국 냉동참치 수출의 54.1%(중량)가 태국행이다. 2025년 감소는 관세 관망의 흔적.',
       telemetry: SYNC,
       render: () => <TuKoreaExportChart />,
-      cockpitExtra: () => (
-        <SeriesStats
-          rows={[
-            { 라벨: '2024년', 값: 107151 },
-            { 라벨: '2025년', 값: 86514 },
-          ]}
-          labelKey="라벨"
-          valueKey="값"
-          unit="톤"
-        />
-      ),
       sourceLine: 'UN Comtrade 한국 신고 (사내 조사보고서 인용)',
     },
     {
@@ -1488,7 +1464,6 @@ export default function CompanyAnatomyDashboard({
 }: CompanyAnatomyDashboardProps) {
   const [selected, setSelected] = useState<string | null>(null);
 
-  // 조종석 히어로 스트립 등 요약 전용 호출은 갤러리를 거치지 않는다
   if (heroOnly) return <CommodityIndustryDashboard spec={SPEC} heroOnly />;
 
   if (selected === null) {

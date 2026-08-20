@@ -1,3 +1,20 @@
+> 🚀 **2026-08-20 20:55 KST — SEIN VENUS·HIKARI 1 8/20 하역 일일보고 라이브 배포 완료** [Codex]:
+> - 전용 worktree `/private/tmp/tuna-unloading-0820` (`codex/unloading-sein-venus-20260820`)에서 원본 3종을 교차 확인했다. SHA-256: 일보 JPG `48c3f306…a7db2`, 일일 결과 XLS `1afe7469…68c1`, 일일 현황 XLSX `45b95797…81ac`.
+> - 검산: 전일 `2,943.270 + 147.490 = 3,090.760 MT`, `3,275 - 3,090.760 = 184.240 MT`. 당일 수하처 GPZ `147.490 MT`, `S/PIO:#1-B`, 08:10~13:40, -20.0~-21.0℃. 어종은 XLS 근거로 SJ `133.190`·YF `14.300 MT`; 어창별 어종은 추정하지 않았다.
+> - TTA 비고의 당일 보정 `+26.660 MT`, 누적 보정 `+55.760 MT`, 산술 잔량에 누적 보정을 더한 실재고 잔량 `240.000 MT`를 구조화했다. 사용자 입력 명일 계획은 8/21 약 `150톤`이다.
+> - Google Tasks: 기존 8/20 `SEIN VENUS ###톤` 1건을 `SEIN VENUS 147.490 MT`로 수정. 목록 `내 할 일 목록`, 2026-08-20 종일, 미완료 상태를 재확인했다.
+> - Google Drive 같은 원본 폴더에 `20260820 SEIN VENUS (BKK) 하역 업무 보고.txt`를 저장했다. 렌더러 출력과 diff 0, SHA-256 `3b2b697b…cb579`.
+> - HIKARI 1은 원본 3종(JPG `f991a53c…65746`, 결과 XLS `79435392…10cf2`, 현황 XLSX `0c7363f7…a920d`)을 추가 대조했다. 8/20 첫 하역 `297.060 MT`, 누계 동일, 잔량 `2,631.940 MT`; MMP `174.040`(N/STAR #3-A·#1-A)·GFF `123.020 MT`(MOAMARI #4-A), YF `150.920`·SJ `146.140 MT`, 10:00~15:20, -22.0/-20.0℃다. N/STAR 어종은 두 어창 합계라 어창별로 추정하지 않았다.
+> - HIKARI 1의 명일 예정량은 사용자 입력으로 8/21 약 `490톤`을 적용했다. Tasks는 `HIKARI 1 297.060 MT`(8/20·내 할 일 목록·미완료)로 수정 후 재확인했고, Drive에 `20260820 HIKARI 1 (BKK) 하역 업무 보고.txt`(렌더러 diff 0, SHA-256 `f958c933…b556b2`)를 저장했다.
+> - RED→GREEN: SEIN VENUS 8/20 누락은 5건 실패→8/8, HIKARI 1 첫 하역 누락은 5건 실패→8/8, HIKARI 명일 490톤 변경은 1건 실패→8/8을 확인했다. `npm run verify` 통과(ESLint 0 errors·기존 warnings 5, Vitest 960 passed/2 skipped, API cache 158/158, Next 118페이지, 누출·번들 게이트).
+> - 하역 이력 E2E의 과거 통합값 `35,719 MT`가 PR gate에서 실패한 것을 재현하고 최신 두 선박 반영값 `36,441 MT` 및 SEIN 8/20 상세로 갱신했다. E2E desktop/mobile/keyboard/open-tab/API/chunk failure isolation 통과.
+> - 로컬 production API·보호 화면 검증: SEIN VENUS와 HIKARI 1의 수하처·어창·온도·어종·명일 150/490톤, 통합 현재 누계 `3,387.820 MT`, 화면 반올림 연간 누적 `36,441 MT` 일치. 1440×1000·390×844에서 overflow/page/console/local request/HTTP errors 모두 0.
+> - PR [#709](https://github.com/CUTEKOREA/tuna-dashboard/pull/709) squash `2e6999d1`. PR App Quality Gate `32362458633`, main gate `32362850251` 성공. Data Freshness Audit은 이번 데이터·테스트 경로에서 비트리거가 정상이다.
+> - Vercel Production `dpl_FRn4agHJiQtAwuXyVi5ANGVAVf9A` READY, `https://leedonggun.co.kr` alias·`icn1` 연결. 운영 API 200에서 두 선박 원장값·명일 150/490톤을 확인했고 운영 1440×1000·390×844 화면도 overflow/page/console/local request/HTTP errors 0. 최근 2시간 error 로그 0건.
+> - **다음 단계**: 8/21 원본 일보 수신 시 각 선박의 명일 계획과 당일 실적을 다시 분리해 같은 절차로 갱신한다.
+>
+> 마지막 업데이트: 2026-08-20 20:55 KST [Codex]
+
 > 🏭 **2026-08-20 — Thai Union 페이지를 조사 아카이브 전체 반영으로 확장 (5→7단계)** [CC]:
 > - «대시보드에 보고서 정보를 최대한» 지시 — Frinsa 8단계 재구성(#705)과 짝. 브랜드·제품(03)과 지속가능성(05)을 독립 단계로 신설.
 > - 신규 데이터 13표(주주·연혁·지역구성·브랜드 SKU·JW 형태사다리·소매가·가동률·공장 26법인·GHG Scope·SeaChange·Red Lobster 4겹·재무상태·MFDS 구성) + 차트 4종(지역·JW사다리·GHG·MFDS) + 표 7종.
@@ -824,6 +841,26 @@
 > - unloading: 연도별 검증 실적 차트 클릭 → 기존 연도 탭·항차 표 드릴. **주차 축·주차별 항차 데이터는 저장소에 없음** (정찰 실측 — bangkok payload는 집계뿐, 98항차 검증 이력은 연도 키). 주차 모달은 데이터 생기기 전까지 금지, 스펙에 기록.
 > - **로컬 E2E 경계 확장**: atuna 라우트의 2차 방어(`authorizeDashboardRequest`)가 E2E 경계를 몰라 로컬 검증이 503 — `request?` 인자로 proxy.ts와 같은 판정 추가. 반증 리뷰 판정: Vercel 무조건 거부 + env 옵트인 + 32자 시크릿 4중 게이트라 **auth 약화 불성립**. 단 리버스 프록시 self-host에 E2E env를 두지 말 것(주석에 기록).
 > - SIT/TAK 동적화는 결정 ②(고정 라벨) 유지로 제외. P2 잔여: 신규 차트형(Treemap 등)은 적합 데이터 사례 나올 때.
+
+## 2026-08-20 — 조종석 모드 철거
+
+- 2026-08-17 스펙 `cockpit-mode-design` 으로 들어왔던 **전역 밀도 토글을 전부 걷어냈다**
+  (소유자 지시). 사이드바 토글 · `lib/cockpit-density.ts` · `ChartSlot.cockpitExtra` ·
+  전용 위젯 `CockpitExtra.tsx`(`CockpitOnly`·`SeriesStats`) · `globals.css` 의
+  `[data-density='cockpit']` 토큰과 `.cockpit-only`·`.cockpit-stats`.
+- 대시보드 5곳에서 슬롯 22개를 뺐다 — 오징어 8 · 고등어 4 · 새우 4 · 골뱅이 4 · 기업해부 2.
+  `scripts/remove_cockpit_mode.py` 로 일괄 처리했다(L-07).
+- **보조 지표는 항상 보이게 하지 않고 지웠다.** 「조종석 전용」으로 만든 것이라 상시 노출로
+  바꾸면 모든 페이지의 밀도가 반대로 올라간다. 요청은 제거였다.
+- 조종석 슬롯에서만 쓰던 인테이크 import 도 함께 정리했다 — 오징어의 `squidByArea` ·
+  `squidBySizeBand` · `squidGearSeries` · 포클랜드 월 필터 통계 헬퍼 2개, 고등어·새우·골뱅이의
+  `seriesUnits`·`seriesWindows`.
+- **부재를 테스트로 고정했다.** `__tests__/dashboard-registry.test.ts` 의 「조종석 모드 제거」
+  블록이 페이지·CSS·골격·대시보드 전 파일에 흔적이 없는지, 삭제한 모듈 두 개가 실제로
+  없는지 본다. 빈자리로 두면 다음에 조용히 되살아난다.
+- 스펙 문서는 지우지 않고 머리에 철거 사실을 적었다. **`SOUL.md` 의 「밀도 철학」은 그대로다** —
+  철거한 것은 전역 토글이지 「페이지마다 어느 밀도에 속하는지 선언한다」는 원칙이 아니다.
+- 삭제된 테스트 3개(`cockpit-exclusions` · `cockpit-extra` · `cockpit-mode-contract`).
 
 ## 2026-08-20 — SEIN VENUS 8/19 일일보고 반영, 앞선 반영 방식 정정
 
