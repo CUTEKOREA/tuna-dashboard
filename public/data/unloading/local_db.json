@@ -45,10 +45,10 @@
       "mother_vessel": "S/SPR · S/PIO · N/STAR · N/SUN",
       "hold_species_breakdown_available": false,
       "unclassified_actual_amount": 0,
-      "species_breakdown_as_of": "2026-08-19",
-      "species_breakdown_note": "8/19 일일 결과보고 XLS에서 어종별 일일·누적 물량을 확인했고 일일하역량 현황 XLSX로 교차 확인했습니다. 개별 어창별 어종 분해는 제공되지 않습니다. 원선 3척(N/STAR, N/SUN, S/SPR) 하역완료.",
+      "species_breakdown_as_of": "2026-08-20",
+      "species_breakdown_note": "8/20 일일 결과보고 XLS에서 어종별 일일·누적 물량을 확인했고 일일하역량 현황 XLSX로 교차 확인했습니다. 개별 어창별 어종 분해는 제공되지 않습니다. 원선 3척(N/STAR, N/SUN, S/SPR) 하역완료.",
       "created_at": "2026-08-12T15:34:21+09:00",
-      "updated_at": "2026-08-19T22:00:00+09:00"
+      "updated_at": "2026-08-20T18:17:27+09:00"
     },
     {
       "vessel_id": "hikari-bangkok-2026-07",
@@ -1789,6 +1789,58 @@
       "source_workbook_sha256": "b003b00a3e5124210f2c62c219033250610ed9caef2bc4132a3f38d53c22f357",
       "status_workbook_sha256": "85194881524a8a195faec039f33fb7c7aae79ae3757390379d0e5416cb54a96b",
       "created_at": "2026-08-19T22:00:00+09:00"
+    },
+    {
+      "id": "sein-venus-8-20",
+      "vessel_id": "sein-venus",
+      "report_year": 2026,
+      "report_date": "8/20",
+      "work_time": "08:10 ~ 13:40",
+      "target_holds": "S/PIO(#1-B:147.490)",
+      "consignee": "GPZ",
+      "allocations": [
+        {
+          "consignee": "GPZ",
+          "amount": 147.49,
+          "loads": [
+            {
+              "source_vessel": "S/PIO",
+              "hatch": "#1-B",
+              "amount": 147.49
+            }
+          ]
+        }
+      ],
+      "observations": [
+        {
+          "source_vessel": "S/PIO",
+          "hatch": "#1-B",
+          "temperatures_c": [
+            -20.0,
+            -21.0
+          ]
+        }
+      ],
+      "daily_amount": 147.49,
+      "cumulative_amount": 3090.76,
+      "species_amounts": {
+        "SJ": 133.19,
+        "YF": 14.3
+      },
+      "remaining_amount": 184.24,
+      "daily_adjustment_amount": 26.66,
+      "cumulative_adjustment_amount": 55.76,
+      "adjusted_remaining_amount": 240,
+      "next_day": {
+        "kind": "work",
+        "date": "8/21",
+        "planned_mt": 150
+      },
+      "quality_notes": "S/PIO(#1-B) - 어창 개방 측정온도는 -20.0℃ ~ -21.0℃ 입니다.",
+      "source_sha256": "48c3f3068a470408dd4db398029bdf4697b0b7cb1c4a7861030f7d1b113a7db2",
+      "source_workbook_sha256": "1afe7469fa889c584d9ef39b8215c62de3a6db05c3ea3475d38485cb7b6368c1",
+      "status_workbook_sha256": "45b95797988b0d1de4b7d183e464894a753f19f3ecb74036996ce6a64a3c81ac",
+      "created_at": "2026-08-20T18:17:27+09:00"
     }
   ],
   "unloading_species": [
@@ -1852,16 +1904,16 @@
       "species_id": "SJ",
       "species_name": "가다랑어·눈다랑어 합산",
       "reported_amount": 2844,
-      "actual_amount": 2429.29,
-      "updated_at": "2026-08-19T22:00:00+09:00"
+      "actual_amount": 2562.48,
+      "updated_at": "2026-08-20T18:17:27+09:00"
     },
     {
       "vessel_id": "sein-venus",
       "species_id": "YF",
       "species_name": "황다랑어",
       "reported_amount": 431,
-      "actual_amount": 513.98,
-      "updated_at": "2026-08-19T22:00:00+09:00"
+      "actual_amount": 528.28,
+      "updated_at": "2026-08-20T18:17:27+09:00"
     },
     {
       "vessel_id": "hikari-bangkok-2026-07",

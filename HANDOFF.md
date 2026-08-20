@@ -1,3 +1,14 @@
+> ⚓ **2026-08-20 18:29 KST — SEIN VENUS 8/20 하역 일일보고 반영·Google Tasks 동기화 (배포 진행 중)** [Codex]:
+> - 전용 worktree `/private/tmp/tuna-unloading-0820` (`codex/unloading-sein-venus-20260820`)에서 원본 3종을 교차 확인했다. SHA-256: 일보 JPG `48c3f306…a7db2`, 일일 결과 XLS `1afe7469…68c1`, 일일 현황 XLSX `45b95797…81ac`.
+> - 검산: 전일 `2,943.270 + 147.490 = 3,090.760 MT`, `3,275 - 3,090.760 = 184.240 MT`. 당일 수하처 GPZ `147.490 MT`, `S/PIO:#1-B`, 08:10~13:40, -20.0~-21.0℃. 어종은 XLS 근거로 SJ `133.190`·YF `14.300 MT`; 어창별 어종은 추정하지 않았다.
+> - TTA 비고의 당일 보정 `+26.660 MT`, 누적 보정 `+55.760 MT`, 산술 잔량에 누적 보정을 더한 실재고 잔량 `240.000 MT`를 구조화했다. 사용자 입력 명일 계획은 8/21 약 `150톤`이다.
+> - Google Tasks: 기존 8/20 `SEIN VENUS ###톤` 1건을 `SEIN VENUS 147.490 MT`로 수정. 목록 `내 할 일 목록`, 2026-08-20 종일, 미완료 상태를 재확인했다.
+> - RED→GREEN: 대상 테스트는 8/20 누락으로 5건 실패 후 8/8 통과. `npm run verify` 통과(ESLint 0 errors·기존 warnings 5, Vitest 959 passed/2 skipped, API cache 158/158, Next 118페이지, 누출·번들 게이트).
+> - 로컬 production API·보호 화면 검증: API 수치와 보고서 모달의 GPZ·어창·온도·명일 150톤 일치. 1440×1000·390×844에서 overflow/page/console/local request/HTTP errors 모두 0.
+> - **다음 단계**: 커밋·PR 품질 게이트·main 순차 병합·Vercel Production READY 후 운영 API·1440px·390px·오류 로그를 재검증한다.
+>
+> 마지막 업데이트: 2026-08-20 18:29 KST [Codex]
+
 > 🏭 **2026-08-20 — Thai Union 페이지를 조사 아카이브 전체 반영으로 확장 (5→7단계)** [CC]:
 > - «대시보드에 보고서 정보를 최대한» 지시 — Frinsa 8단계 재구성(#705)과 짝. 브랜드·제품(03)과 지속가능성(05)을 독립 단계로 신설.
 > - 신규 데이터 13표(주주·연혁·지역구성·브랜드 SKU·JW 형태사다리·소매가·가동률·공장 26법인·GHG Scope·SeaChange·Red Lobster 4겹·재무상태·MFDS 구성) + 차트 4종(지역·JW사다리·GHG·MFDS) + 표 7종.
