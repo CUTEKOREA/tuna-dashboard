@@ -14,11 +14,14 @@ import {
   FRINSA_SOURCE_NOTES,
 } from '@/lib/company-frinsa-content';
 import {
+  frinsaBai2024,
+  frinsaBai2024Total,
+  frinsaCerts,
   frinsaFinancials,
   frinsaGalicia,
   frinsaKoreaExport,
   frinsaPriceLadder,
-  frinsaSubsidiaries,
+  frinsaRegional2024,
   frinsaTariff,
   latestFinancial,
   marginSeries,
@@ -29,10 +32,13 @@ import {
 /** 대시보드 파일에 실린 슬롯 제목. 컴포넌트를 import 하면 recharts 가 딸려와 느려진다. */
 const SLOT_TITLES: Record<string, string[]> = {
   c01: ['회사 개요'],
-  c02: ['가격 사다리 (€/kg)'],
-  c03: ['참치 원어 구매량 (톤)', '2025년 참치 구매 출처 (%)', '2025년 공급사 참여 (%)'],
-  c04: ['매출과 순이익률 (M€·%)', '갈리시아 3강 매출 (M€)'],
-  c05: ['한국 → 스페인 냉동참치 수출 (톤·백만$)', 'EU 수입관세 (%)'],
+  c02: ['FY2024 국가별 세전이익 (M€)'],
+  c03: ['가격 사다리 (€/kg)', '브랜드 포트폴리오'],
+  c04: ['열병합 발전량 (MWh)'],
+  c05: ['참치 원어 구매량 (톤)', '2025년 참치 구매 출처 (%)', '2025년 공급사 참여 (%)', '인증 현황'],
+  c06: ['매출과 순이익률 (M€·%)', 'FY2024 지역별 매출 (M€)'],
+  c07: ['갈리시아 3강 매출 (M€)'],
+  c08: ['한국 → 스페인 냉동참치 수출 (톤·백만$)', 'EU 수입관세 (%)'],
 };
 
 describe('Frinsa 서술과 차트의 연결', () => {
@@ -133,10 +139,29 @@ describe('Frinsa 수치', () => {
     expect(zero[0].조건).toContain('end-use');
   });
 
-  it('싱가포르 법인이 해외 법인 중 세전이익 1위다', () => {
-    const top = [...frinsaSubsidiaries].sort((a, b) => b.세전이익 - a.세전이익)[0];
-    expect(top.국가).toContain('싱가포르');
-    expect(top.세전이익).toBe(5012317);
+  it('싱가포르가 스페인 다음 세전이익 2위권이다 — 그리고 국가별 합이 EINF 합계와 맞는다', () => {
+    const sorted = [...frinsaBai2024].sort((a, b) => b.세전이익 - a.세전이익);
+    expect(sorted[0].국가).toContain('스페인');
+    // 포르투갈(생산법인)과 싱가포르(구매본부)가 2·3위 — 판매법인이 아니라는 것이 요지다.
+    expect(sorted.slice(1, 3).map((r) => r.국가).join(' ')).toContain('싱가포르');
+    expect(frinsaBai2024.find((r) => r.국가.includes('싱가포르'))?.세전이익).toBe(5012317);
+    const sum = frinsaBai2024.reduce((a, r) => a + r.세전이익, 0);
+    expect(sum).toBe(frinsaBai2024Total);
+  });
+
+  it('FY2024 지역분해는 보도치 741 과 정합하고, 이베리아 밖이 절반을 넘는다', () => {
+    const total = frinsaRegional2024.reduce((a, r) => a + r.매출, 0);
+    expect(total).toBeCloseTo(740.4, 1);
+    const nonIberia = frinsaRegional2024
+      .filter((r) => !r.시장.includes('이베리아'))
+      .reduce((a, r) => a + r.매출, 0);
+    expect(nonIberia / total).toBeGreaterThan(0.5);
+  });
+
+  it('IFS Broker 는 현재형으로 표기하지 않는다 — 만료가 명시돼 있다', () => {
+    const broker = frinsaCerts.find((r) => r.인증.includes('IFS Broker'));
+    expect(broker?.상태).toContain('만료');
+    expect(broker?.유효).toContain('갱신본 미확보');
   });
 
   it('순이익률은 매출과 순이익에서만 나온다', () => {
@@ -150,8 +175,8 @@ describe('Frinsa 수치', () => {
 describe('출처 표기', () => {
   it('출처 한계를 숨기지 않는다', () => {
     const notes = FRINSA_SOURCE_NOTES.join('\n');
-    expect(notes).toMatch(/확인불가|추정/);
-    expect(notes).toMatch(/미공표/);
+    expect(notes).toMatch(/미확인|추정/);
+    expect(notes).toMatch(/2025 회계연도/);
   });
 
   it('모든 근거 줄에 출처와 등급이 있다', () => {
