@@ -279,22 +279,23 @@ async function runHappyPath(browser) {
   await waitForText(page, '[data-testid="history-kpi-actual"]', /76,050\.239 MT/);
 
   const body = await page.evaluate(() => document.body.innerText);
-  assert.match(body, /35,719\s+MT/);
+  assert.match(body, /36,441\s+MT/);
   assert.match(body, /완료 선박:\s*11\s*척/);
   assert.doesNotMatch(body, /어종 분해 미확인/);
 
   await page.click('#unloading-tab-timeline');
-  await page.waitForSelector('[data-testid="timeline-node-8-18"]');
+  await page.waitForSelector('[data-testid="timeline-node-8-20"]');
   const latestReport = await page.$eval(
-    '[data-testid="timeline-node-8-18"]',
+    '[data-testid="timeline-node-8-20"]',
     (node) => node.innerText,
   );
   for (const pattern of [
-    /8\/18/,
-    /08:10 ~ 15:40/,
-    /\+339\.730 MT/,
-    /TUM\s+186\.650 MT/,
-    /GFF\s+153\.080 MT/,
+    /8\/20/,
+    /08:10 ~ 13:40/,
+    /\+147\.490 MT/,
+    /GPZ\s+147\.490 MT/,
+    /S\/PIO\(#1-B\)/,
+    /-20\.0℃ ~ -21\.0℃/,
   ]) {
     assert.match(latestReport, pattern);
   }
@@ -326,19 +327,16 @@ async function runHappyPath(browser) {
     (node) => node.innerText,
   );
   for (const pattern of [
-    /금일\(8\/19\)/,
-    /TUM:\s+128\.940 MT/,
-    /GPZ:\s+148\.930 MT/,
-    /일일\s+하역량:\s+277\.870 MT/,
-    /하 역 누 계:\s+2943\.270 MT/,
+    /금일\(8\/20\)/,
+    /GPZ:\s+147\.490 MT/,
+    /일일\s+하역량:\s+147\.490 MT/,
+    /하 역 누 계:\s+3090\.760 MT/,
     /-20\.0℃ ~ -21\.0℃/,
-    /-22\.0℃ ~ -23\.0℃/,
-    // 8/19 업무보고는 명일 계획을 적지 않았다. 지어내지 않고 ### 자리표시자로 둔다.
-    /명일\(8\/20\)은 약 ###톤 하역 작업 예정입니다/,
+    /명일\(8\/21\)은 약 150톤 하역 작업 예정입니다/,
   ]) {
     assert.match(generatedReport, pattern);
   }
-  assert.doesNotMatch(generatedReport, /\* SJ:\s+277\.870 MT/);
+  assert.doesNotMatch(generatedReport, /\* SJ:\s+147\.490 MT/);
   assert.doesNotMatch(generatedReport, /343톤/);
   await page.click('[role="dialog"][aria-label="일일 보고서 자동 생성"] button[aria-label="닫기"]');
 
@@ -404,7 +402,7 @@ async function runFailureIsolation(browser) {
   await waitForText(page, '[data-testid="unloading-history-section"]', /과거 이력을 불러오지 못했습니다/);
   const body = await page.evaluate(() => document.body.innerText);
   assert.match(body, /다시 시도/);
-  assert.match(body, /35,719\s+MT/);
+  assert.match(body, /36,441\s+MT/);
   assert.match(body, /완료 선박:\s*11\s*척/);
   assert.equal(pageErrors.length, 0, pageErrors.join('\n'));
   assert.equal(consoleErrors.length, 0, consoleErrors.join('\n'));
@@ -467,7 +465,7 @@ async function runChunkFailureIsolation(browser) {
   );
   const body = await page.evaluate(() => document.body.innerText);
   assert.match(body, /다시 시도/);
-  assert.match(body, /35,719\s+MT/);
+  assert.match(body, /36,441\s+MT/);
   assert.match(body, /완료 선박:\s*11\s*척/);
   assert.equal(getBlockedAppRequestCount(), 1);
   await Promise.all([
@@ -477,7 +475,7 @@ async function runChunkFailureIsolation(browser) {
   await page.waitForSelector('[data-testid="unloading-history-panel"]');
   await waitForText(page, '[data-testid="history-kpi-actual"]', /76,050\.239 MT/);
   const recoveredBody = await page.evaluate(() => document.body.innerText);
-  assert.match(recoveredBody, /35,719\s+MT/);
+  assert.match(recoveredBody, /36,441\s+MT/);
   assert.match(recoveredBody, /완료 선박:\s*11\s*척/);
   assert.equal(getBlockedAppRequestCount(), 1);
   assert.equal(pageErrors.length, 0, pageErrors.join('\n'));
