@@ -1,4 +1,4 @@
-> ⚓ **2026-08-20 19:55 KST — SEIN VENUS·HIKARI 1 8/20 하역 일일보고 반영·Google Tasks 동기화 (배포 진행 중)** [Codex]:
+> 🚀 **2026-08-20 20:55 KST — SEIN VENUS·HIKARI 1 8/20 하역 일일보고 라이브 배포 완료** [Codex]:
 > - 전용 worktree `/private/tmp/tuna-unloading-0820` (`codex/unloading-sein-venus-20260820`)에서 원본 3종을 교차 확인했다. SHA-256: 일보 JPG `48c3f306…a7db2`, 일일 결과 XLS `1afe7469…68c1`, 일일 현황 XLSX `45b95797…81ac`.
 > - 검산: 전일 `2,943.270 + 147.490 = 3,090.760 MT`, `3,275 - 3,090.760 = 184.240 MT`. 당일 수하처 GPZ `147.490 MT`, `S/PIO:#1-B`, 08:10~13:40, -20.0~-21.0℃. 어종은 XLS 근거로 SJ `133.190`·YF `14.300 MT`; 어창별 어종은 추정하지 않았다.
 > - TTA 비고의 당일 보정 `+26.660 MT`, 누적 보정 `+55.760 MT`, 산술 잔량에 누적 보정을 더한 실재고 잔량 `240.000 MT`를 구조화했다. 사용자 입력 명일 계획은 8/21 약 `150톤`이다.
@@ -9,9 +9,11 @@
 > - RED→GREEN: SEIN VENUS 8/20 누락은 5건 실패→8/8, HIKARI 1 첫 하역 누락은 5건 실패→8/8, HIKARI 명일 490톤 변경은 1건 실패→8/8을 확인했다. `npm run verify` 통과(ESLint 0 errors·기존 warnings 5, Vitest 960 passed/2 skipped, API cache 158/158, Next 118페이지, 누출·번들 게이트).
 > - 하역 이력 E2E의 과거 통합값 `35,719 MT`가 PR gate에서 실패한 것을 재현하고 최신 두 선박 반영값 `36,441 MT` 및 SEIN 8/20 상세로 갱신했다. E2E desktop/mobile/keyboard/open-tab/API/chunk failure isolation 통과.
 > - 로컬 production API·보호 화면 검증: SEIN VENUS와 HIKARI 1의 수하처·어창·온도·어종·명일 150/490톤, 통합 현재 누계 `3,387.820 MT`, 화면 반올림 연간 누적 `36,441 MT` 일치. 1440×1000·390×844에서 overflow/page/console/local request/HTTP errors 모두 0.
-> - **다음 단계**: 커밋·PR 품질 게이트·main 순차 병합·Vercel Production READY 후 운영 API·1440px·390px·오류 로그를 재검증한다.
+> - PR [#709](https://github.com/CUTEKOREA/tuna-dashboard/pull/709) squash `2e6999d1`. PR App Quality Gate `32362458633`, main gate `32362850251` 성공. Data Freshness Audit은 이번 데이터·테스트 경로에서 비트리거가 정상이다.
+> - Vercel Production `dpl_FRn4agHJiQtAwuXyVi5ANGVAVf9A` READY, `https://leedonggun.co.kr` alias·`icn1` 연결. 운영 API 200에서 두 선박 원장값·명일 150/490톤을 확인했고 운영 1440×1000·390×844 화면도 overflow/page/console/local request/HTTP errors 0. 최근 2시간 error 로그 0건.
+> - **다음 단계**: 8/21 원본 일보 수신 시 각 선박의 명일 계획과 당일 실적을 다시 분리해 같은 절차로 갱신한다.
 >
-> 마지막 업데이트: 2026-08-20 19:55 KST [Codex]
+> 마지막 업데이트: 2026-08-20 20:55 KST [Codex]
 
 > 🏭 **2026-08-20 — Thai Union 페이지를 조사 아카이브 전체 반영으로 확장 (5→7단계)** [CC]:
 > - «대시보드에 보고서 정보를 최대한» 지시 — Frinsa 8단계 재구성(#705)과 짝. 브랜드·제품(03)과 지속가능성(05)을 독립 단계로 신설.
