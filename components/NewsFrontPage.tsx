@@ -41,8 +41,6 @@ export default function NewsFrontPage() {
   const [hover, setHover] = useState<number | null>(null);
   // 전문 펼침 — -1 = 리드, 0.. = 나머지 기사 인덱스
   const [open, setOpen] = useState<number | null>(null);
-  // 확대해서 볼 인포그래픽. null 이면 닫힘.
-  const [zoom, setZoom] = useState<{ src: string; alt: string } | null>(null);
 
   const impacts = buildBriefingImpactNumbers(dailyBriefing);
   const [lead, ...rest] = dailyBriefing.articles;
@@ -96,17 +94,6 @@ export default function NewsFrontPage() {
               {paragraph}
             </p>
           ))}
-          {lead.image && (
-            <button
-              type="button"
-              onClick={() => setZoom({ src: lead.image!, alt: lead.titleKo })}
-              title="클릭하면 크게 봅니다"
-              style={{ display: 'block', marginTop: 14, padding: 0, border: '1px solid var(--card-border, #e2e4e9)', borderRadius: 8, background: 'none', cursor: 'zoom-in', overflow: 'hidden', lineHeight: 0 }}
-            >
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src={lead.image} alt={lead.titleKo} loading="lazy" style={{ width: 150, height: 'auto', display: 'block' }} />
-            </button>
-          )}
           {lead.paragraphs.length > 1 && (
             <button
               type="button"
@@ -176,27 +163,12 @@ export default function NewsFrontPage() {
               <div style={{ marginBottom: 6 }}>
                 <Badge title={article.titleKo} />
               </div>
-              <div style={{ display: 'flex', gap: 10, alignItems: 'flex-start' }}>
-                <h4 style={{
-                  margin: '0 0 5px', fontSize: '1rem', fontWeight: 700, lineHeight: 1.35,
-                  letterSpacing: '-0.01em', color: 'var(--text-main)', flex: 1,
-                }}>
-                  {article.titleKo}
-                </h4>
-                {article.image && (
-                  <span
-                    role="button"
-                    tabIndex={0}
-                    title="클릭하면 크게 봅니다"
-                    onClick={(e) => { e.stopPropagation(); setZoom({ src: article.image!, alt: article.titleKo }); }}
-                    onKeyDown={(e) => { if (e.key === 'Enter') { e.stopPropagation(); setZoom({ src: article.image!, alt: article.titleKo }); } }}
-                    style={{ flexShrink: 0, border: '1px solid var(--card-border, #e2e4e9)', borderRadius: 6, overflow: 'hidden', cursor: 'zoom-in', lineHeight: 0 }}
-                  >
-                    {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img src={article.image} alt={article.titleKo} loading="lazy" style={{ width: 54, height: 'auto', display: 'block' }} />
-                  </span>
-                )}
-              </div>
+              <h4 style={{
+                margin: '0 0 5px', fontSize: '1rem', fontWeight: 700, lineHeight: 1.35,
+                letterSpacing: '-0.01em', color: 'var(--text-main)',
+              }}>
+                {article.titleKo}
+              </h4>
               <p style={{ margin: 0, fontSize: '0.82rem', fontWeight: 400, lineHeight: 1.6, color: 'var(--text-muted)' }}>
                 {open === index ? null : firstSentence(article.paragraphs[0])}
               </p>
@@ -211,29 +183,8 @@ export default function NewsFrontPage() {
       </section>
 
       <p style={{ margin: '14px 0 0', fontSize: '0.72rem', fontWeight: 400, color: 'var(--text-muted)' }}>
-        기사 클릭 = 전문 펼침 · 그림 클릭 = 크게 보기 · 수치는 기사 원문에서 그대로 뽑았다
+        기사 클릭 = 전문 펼침 · 수치는 기사 원문에서 그대로 뽑았다
       </p>
-
-      {zoom && (
-        <div
-          role="dialog"
-          aria-modal="true"
-          aria-label={zoom.alt}
-          onClick={() => setZoom(null)}
-          style={{
-            position: 'fixed', inset: 0, zIndex: 1000,
-            background: 'rgba(0,0,0,0.78)', display: 'flex',
-            alignItems: 'center', justifyContent: 'center', padding: 24, cursor: 'zoom-out',
-          }}
-        >
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
-            src={zoom.src}
-            alt={zoom.alt}
-            style={{ maxWidth: '92vw', maxHeight: '92vh', width: 'auto', height: 'auto', objectFit: 'contain', borderRadius: 8 }}
-          />
-        </div>
-      )}
     </div>
   );
 }

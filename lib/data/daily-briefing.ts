@@ -8,8 +8,6 @@ export type DailyBriefingArticle = {
   readonly titleKo: string;
   readonly titleEn?: string;
   readonly paragraphs: readonly string[];
-  /** 그 기사에서 만든 인포그래픽 경로. 매칭이 확실한 기사에만 붙는다 — 없는 날이 정상이다. */
-  readonly image?: string;
 };
 
 export type DailyBriefing = {
@@ -72,9 +70,6 @@ export function parseDailyBriefing(value: unknown): DailyBriefing {
     const titleEn = record.titleEn === undefined
       ? undefined
       : stringAt(record.titleEn, `articles[${index}].titleEn`);
-    const image = record.image === undefined
-      ? undefined
-      : stringAt(record.image, `articles[${index}].image`);
     const paragraphs = arrayAt(
       record.paragraphs,
       `articles[${index}].paragraphs`,
@@ -90,7 +85,6 @@ export function parseDailyBriefing(value: unknown): DailyBriefing {
     return {
       titleKo: stringAt(record.titleKo, `articles[${index}].titleKo`),
       ...(titleEn ? { titleEn } : {}),
-      ...(image ? { image } : {}),
       paragraphs,
     };
   });
