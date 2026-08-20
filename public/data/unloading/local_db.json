@@ -45,10 +45,10 @@
       "mother_vessel": "S/SPR · S/PIO · N/STAR · N/SUN",
       "hold_species_breakdown_available": false,
       "unclassified_actual_amount": 0,
-      "species_breakdown_as_of": "2026-08-18",
-      "species_breakdown_note": "8/18 일일 결과보고 XLS에서 어종별 일일·누적 물량을 확인했고 일일하역량 현황 XLSX로 교차 확인했습니다. 개별 어창별 어종 분해는 제공되지 않습니다.",
+      "species_breakdown_as_of": "2026-08-19",
+      "species_breakdown_note": "8/19 일일 결과보고 XLS에서 어종별 일일·누적 물량을 확인했고 일일하역량 현황 XLSX로 교차 확인했습니다. 개별 어창별 어종 분해는 제공되지 않습니다. 원선 3척(N/STAR, N/SUN, S/SPR) 하역완료.",
       "created_at": "2026-08-12T15:34:21+09:00",
-      "updated_at": "2026-08-18T22:45:00+09:00"
+      "updated_at": "2026-08-19T22:00:00+09:00"
     },
     {
       "vessel_id": "hikari-bangkok-2026-07",
@@ -769,7 +769,10 @@
       "target_holds": "N/SUN(#3-B:174.640)",
       "daily_amount": 174.64,
       "cumulative_amount": 174.64,
-      "species_amounts": { "SJ": 150.34, "YF": 24.3 },
+      "species_amounts": {
+        "SJ": 150.34,
+        "YF": 24.3
+      },
       "quality_notes": "N/SUN(#3-B) - 어창 개방 측정온도는 -21.0℃ ~ -23.0℃ 입니다. 8/8 약 160톤 하역 예정입니다.",
       "created_at": "2026-08-12T15:34:21+09:00"
     },
@@ -781,7 +784,10 @@
       "target_holds": "S/PIO(#2-A:109.070)",
       "daily_amount": 109.07,
       "cumulative_amount": 283.71,
-      "species_amounts": { "SJ": 104.17, "YF": 4.9 },
+      "species_amounts": {
+        "SJ": 104.17,
+        "YF": 4.9
+      },
       "quality_notes": "S/PIO(#2-A) - 어창 개방 측정온도는 -22.0℃ ~ -23.0℃ 입니다. 8/9 공휴일로 하역 작업이 없으며, 8/10 약 310톤 하역 예정입니다.",
       "created_at": "2026-08-12T15:34:21+09:00"
     },
@@ -793,7 +799,10 @@
       "target_holds": "S/PIO(#1-A:169.330), N/STAR(#2-A:162.140)",
       "daily_amount": 331.47,
       "cumulative_amount": 615.18,
-      "species_amounts": { "SJ": 272.27, "YF": 59.2 },
+      "species_amounts": {
+        "SJ": 272.27,
+        "YF": 59.2
+      },
       "quality_notes": "S/PIO(#1-A) - 어창 개방 측정온도는 -19.0℃ ~ -20.0℃ 입니다. N/STAR(#2-A) - 어창 개방 측정온도는 -22.0℃ ~ -23.0℃ 입니다. 8/11 약 420톤 하역 예정입니다.",
       "created_at": "2026-08-12T15:34:21+09:00"
     },
@@ -805,7 +814,10 @@
       "target_holds": "S/PIO(#1-A:80.670,#1-B:41.170), N/STAR(#2-A:143.640), N/SUN(#3-B:197.330)",
       "daily_amount": 462.81,
       "cumulative_amount": 1077.99,
-      "species_amounts": { "SJ": 377.61, "YF": 85.2 },
+      "species_amounts": {
+        "SJ": 377.61,
+        "YF": 85.2
+      },
       "quality_notes": "S/PIO(#1-A,#1-B) - 어창 개방 측정온도는 -18.0℃ ~ -19.0℃ 입니다. N/STAR(#2-A) - 어창 개방 측정온도는 -19.0℃ ~ -20.0℃ 입니다. N/SUN(#3-B) - 어창 개방 측정온도는 -22.0℃ ~ -23.0℃ 입니다. 8/12 공휴일로 하역 작업이 없으며, 8/13 약 150톤 하역 예정입니다.",
       "created_at": "2026-08-12T15:34:21+09:00"
     },
@@ -818,7 +830,10 @@
       "consignee": "MMP",
       "daily_amount": 159.59,
       "cumulative_amount": 1237.58,
-      "species_amounts": { "SJ": 124.89, "YF": 34.7 },
+      "species_amounts": {
+        "SJ": 124.89,
+        "YF": 34.7
+      },
       "quality_notes": "N/STAR(#2-B) - 어창 개방 측정온도는 -22.0℃ ~ -23.0℃ 입니다. 8/14 약 400톤 하역 예정입니다.",
       "created_at": "2026-08-14T06:21:36+09:00"
     },
@@ -879,32 +894,50 @@
         {
           "source_vessel": "N/STAR",
           "hatch": "#2-B",
-          "temperatures_c": [-22, -23]
+          "temperatures_c": [
+            -22,
+            -23
+          ]
         },
         {
           "source_vessel": "N/SUN",
           "hatch": "#3-B",
-          "temperatures_c": [-21, -22]
+          "temperatures_c": [
+            -21,
+            -22
+          ]
         },
         {
           "source_vessel": "N/SUN",
           "hatch": "#3-C",
-          "temperatures_c": [-22, -23]
+          "temperatures_c": [
+            -22,
+            -23
+          ]
         },
         {
           "source_vessel": "S/SPR",
           "hatch": "#4-B",
-          "temperatures_c": [-21, -22]
+          "temperatures_c": [
+            -21,
+            -22
+          ]
         },
         {
           "source_vessel": "S/SPR",
           "hatch": "#4-C",
-          "temperatures_c": [-22, -23]
+          "temperatures_c": [
+            -22,
+            -23
+          ]
         }
       ],
       "daily_amount": 424.78,
       "cumulative_amount": 1662.36,
-      "species_amounts": { "SJ": 368.08, "YF": 56.7 },
+      "species_amounts": {
+        "SJ": 368.08,
+        "YF": 56.7
+      },
       "remaining_amount": 1612.64,
       "quality_notes": "N/STAR(#2-B) - 어창 개방 측정온도는 -22.0℃ ~ -23.0℃ 입니다. N/SUN(#3-B) - 어창 개방 측정온도는 -21.0℃ ~ -22.0℃ 입니다. N/SUN(#3-C) - 어창 개방 측정온도는 -22.0℃ ~ -23.0℃ 입니다. S/SPR(#4-B) - 어창 개방 측정온도는 -21.0℃ ~ -22.0℃ 입니다. S/SPR(#4-C) - 어창 개방 측정온도는 -22.0℃ ~ -23.0℃ 입니다.",
       "source_sha256": "2c1a9f4b28f5a6a555b8329d3926fcb9eec0c1cf465deeed778919c7be3af76a",
@@ -958,27 +991,42 @@
         {
           "source_vessel": "N/STAR",
           "hatch": "#2-B",
-          "temperatures_c": [-22, -23]
+          "temperatures_c": [
+            -22,
+            -23
+          ]
         },
         {
           "source_vessel": "N/STAR",
           "hatch": "#2-C",
-          "temperatures_c": [-22, -23]
+          "temperatures_c": [
+            -22,
+            -23
+          ]
         },
         {
           "source_vessel": "N/SUN",
           "hatch": "#3-C",
-          "temperatures_c": [-21, -22]
+          "temperatures_c": [
+            -21,
+            -22
+          ]
         },
         {
           "source_vessel": "S/SPR",
           "hatch": "#4-C",
-          "temperatures_c": [-21, -22]
+          "temperatures_c": [
+            -21,
+            -22
+          ]
         }
       ],
       "daily_amount": 350.74,
       "cumulative_amount": 2013.1,
-      "species_amounts": { "SJ": 318.14, "YF": 32.6 },
+      "species_amounts": {
+        "SJ": 318.14,
+        "YF": 32.6
+      },
       "remaining_amount": 1261.9,
       "daily_adjustment_amount": -21.16,
       "cumulative_adjustment_amount": -0.73,
@@ -1037,22 +1085,34 @@
         {
           "source_vessel": "N/STAR",
           "hatch": "#2-C",
-          "temperatures_c": [-21, -23]
+          "temperatures_c": [
+            -21,
+            -23
+          ]
         },
         {
           "source_vessel": "S/SPR",
           "hatch": "#4-C",
-          "temperatures_c": [-22, -23]
+          "temperatures_c": [
+            -22,
+            -23
+          ]
         },
         {
           "source_vessel": "N/SUN",
           "hatch": "#4-C",
-          "temperatures_c": [-22, -23]
+          "temperatures_c": [
+            -22,
+            -23
+          ]
         }
       ],
       "daily_amount": 312.57,
       "cumulative_amount": 2325.67,
-      "species_amounts": { "SJ": 279.77, "YF": 32.8 },
+      "species_amounts": {
+        "SJ": 279.77,
+        "YF": 32.8
+      },
       "remaining_amount": 949.33,
       "daily_adjustment_amount": 22.25,
       "cumulative_adjustment_amount": 21.52,
@@ -1109,22 +1169,34 @@
         {
           "source_vessel": "N/STAR",
           "hatch": "#2-C",
-          "temperatures_c": [-22, -23]
+          "temperatures_c": [
+            -22,
+            -23
+          ]
         },
         {
           "source_vessel": "N/SUN",
           "hatch": "#3-C",
-          "temperatures_c": [-22, -23]
+          "temperatures_c": [
+            -22,
+            -23
+          ]
         },
         {
           "source_vessel": "N/SUN",
           "hatch": "#4-C",
-          "temperatures_c": [-22, -23]
+          "temperatures_c": [
+            -22,
+            -23
+          ]
         }
       ],
       "daily_amount": 339.73,
       "cumulative_amount": 2665.4,
-      "species_amounts": { "SJ": 170.85, "YF": 168.88 },
+      "species_amounts": {
+        "SJ": 170.85,
+        "YF": 168.88
+      },
       "remaining_amount": 609.6,
       "daily_adjustment_amount": 4.57,
       "cumulative_adjustment_amount": 26.09,
@@ -1645,6 +1717,78 @@
       "daily_amount": 101.65,
       "cumulative_amount": 204.3,
       "quality_notes": "08:20 ~ 11:20 작업. S/HAR(#3-A) 개방 온도 -20.0℃ ~ -21.0℃, 외관·색택 양호."
+    },
+    {
+      "id": "sein-venus-8-19",
+      "vessel_id": "sein-venus",
+      "report_year": 2026,
+      "report_date": "8/19",
+      "work_time": "08:10 ~ 13:40",
+      "target_holds": "S/PIO(#1-B:148.930), N/SUN(#3-C:128.940)",
+      "consignee": "TUM · GPZ",
+      "allocations": [
+        {
+          "consignee": "TUM",
+          "amount": 128.94,
+          "loads": [
+            {
+              "source_vessel": "N/SUN",
+              "hatch": "#3-C",
+              "amount": 128.94
+            }
+          ]
+        },
+        {
+          "consignee": "GPZ",
+          "amount": 148.93,
+          "loads": [
+            {
+              "source_vessel": "S/PIO",
+              "hatch": "#1-B",
+              "amount": 148.93
+            }
+          ]
+        }
+      ],
+      "observations": [
+        {
+          "source_vessel": "S/PIO",
+          "hatch": "#1-B",
+          "temperatures_c": [
+            -20.0,
+            -21.0
+          ]
+        },
+        {
+          "source_vessel": "N/SUN",
+          "hatch": "#3-C",
+          "temperatures_c": [
+            -22.0,
+            -23.0
+          ]
+        }
+      ],
+      "daily_amount": 277.87,
+      "cumulative_amount": 2943.27,
+      "species_amounts": {
+        "SJ": 263.17,
+        "YF": 14.7
+      },
+      "remaining_amount": 331.73,
+      "daily_adjustment_amount": 3.01,
+      "cumulative_adjustment_amount": 29.1,
+      "adjusted_remaining_amount": 360.83,
+      "next_day": {
+        "kind": "work",
+        "date": "8/20",
+        "planned_mt": null,
+        "reason": "원자료에 명일 하역 계획이 기재되지 않았습니다"
+      },
+      "quality_notes": "S/PIO(#1-B) - 어창 개방 측정온도는 -20.0℃ ~ -21.0℃ 입니다. N/SUN(#3-C) - 어창 개방 측정온도는 -22.0℃ ~ -23.0℃ 입니다.",
+      "source_sha256": "987ec215d04c977a9a46cd5724b5192dc7de8f7de5f5a9b85095d27a9cbfebcb",
+      "source_workbook_sha256": "b003b00a3e5124210f2c62c219033250610ed9caef2bc4132a3f38d53c22f357",
+      "status_workbook_sha256": "85194881524a8a195faec039f33fb7c7aae79ae3757390379d0e5416cb54a96b",
+      "created_at": "2026-08-19T22:00:00+09:00"
     }
   ],
   "unloading_species": [
@@ -1708,16 +1852,16 @@
       "species_id": "SJ",
       "species_name": "가다랑어·눈다랑어 합산",
       "reported_amount": 2844,
-      "actual_amount": 2166.12,
-      "updated_at": "2026-08-18T22:45:00+09:00"
+      "actual_amount": 2429.29,
+      "updated_at": "2026-08-19T22:00:00+09:00"
     },
     {
       "vessel_id": "sein-venus",
       "species_id": "YF",
       "species_name": "황다랑어",
       "reported_amount": 431,
-      "actual_amount": 499.28,
-      "updated_at": "2026-08-18T22:45:00+09:00"
+      "actual_amount": 513.98,
+      "updated_at": "2026-08-19T22:00:00+09:00"
     },
     {
       "vessel_id": "hikari-bangkok-2026-07",

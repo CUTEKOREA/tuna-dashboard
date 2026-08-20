@@ -326,17 +326,19 @@ async function runHappyPath(browser) {
     (node) => node.innerText,
   );
   for (const pattern of [
-    /금일\(8\/18\)/,
-    /TUM:\s+186\.650 MT/,
-    /GFF:\s+153\.080 MT/,
-    /일일\s+하역량:\s+339\.730 MT/,
-    /하 역 누 계:\s+2665\.400 MT/,
+    /금일\(8\/19\)/,
+    /TUM:\s+128\.940 MT/,
+    /GPZ:\s+148\.930 MT/,
+    /일일\s+하역량:\s+277\.870 MT/,
+    /하 역 누 계:\s+2943\.270 MT/,
+    /-20\.0℃ ~ -21\.0℃/,
     /-22\.0℃ ~ -23\.0℃/,
-    /명일\(8\/19\)은 약 280톤 하역 작업 예정입니다/,
+    // 8/19 업무보고는 명일 계획을 적지 않았다. 지어내지 않고 ### 자리표시자로 둔다.
+    /명일\(8\/20\)은 약 ###톤 하역 작업 예정입니다/,
   ]) {
     assert.match(generatedReport, pattern);
   }
-  assert.doesNotMatch(generatedReport, /\* SJ:\s+339\.730 MT/);
+  assert.doesNotMatch(generatedReport, /\* SJ:\s+277\.870 MT/);
   assert.doesNotMatch(generatedReport, /343톤/);
   await page.click('[role="dialog"][aria-label="일일 보고서 자동 생성"] button[aria-label="닫기"]');
 

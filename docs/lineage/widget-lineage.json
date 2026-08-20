@@ -3,7 +3,7 @@
   "entry": "app/page.tsx",
   "files": 174,
   "widgets": 107,
-  "dataFiles": 68,
+  "dataFiles": 67,
   "generator": "scripts/widget_lineage.py"
  },
  "widgetToData": {
@@ -280,9 +280,7 @@
    "dataModules": [
     "lib/data/unloading-static.ts"
    ],
-   "dataFiles": [
-    "public/data/unloading/sein_venus_2026_08.json"
-   ]
+   "dataFiles": []
   },
   "components/UnloadingTimelineReplay.tsx": {
    "dataModules": [],
@@ -1218,9 +1216,6 @@
    "components/market-understanding/TunaCatchCharts.tsx",
    "components/market-understanding/TunaIndustryChart.tsx",
    "components/market-understanding/TunaIndustryDashboard.tsx"
-  ],
-  "public/data/unloading/sein_venus_2026_08.json": [
-   "components/UnloadingStatus.tsx"
   ],
   "public/data/whelk_company_research_v1.json": [
    "components/market-understanding/CompanyResearchTables.tsx",
