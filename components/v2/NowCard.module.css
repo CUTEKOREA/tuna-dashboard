@@ -4,7 +4,7 @@
   align-items: flex-start;
   gap: 4px;
   min-width: 0;
-  padding: 14px;
+  padding: 16px;
   border: 1px solid var(--dsc-surface-border);
   border-radius: var(--dsc-card-radius);
   background: var(--dsc-surface);

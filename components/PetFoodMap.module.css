@@ -191,7 +191,7 @@
   background: #0F172A;
   color: #38bdf8;
   border: none;
-  padding: 8px 14px;
+  padding: 8px 16px;
   border-radius: 8px;
   cursor: pointer;
   display: flex;
@@ -234,7 +234,7 @@
 .badge {
   background: rgba(56, 189, 248, 0.2);
   color: #7dd3fc;
-  padding: 3px 10px;
+  padding: 3px 12px;
   border-radius: 8px;
   font-size: 0.75rem;
   font-weight: 700;

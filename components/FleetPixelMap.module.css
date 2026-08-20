@@ -56,7 +56,7 @@
   z-index: 10;
   width: 44px;
   height: 44px;
-  padding: 13px;
+  padding: 16px;
   border: 0;
   background: transparent;
   color: inherit;
@@ -150,7 +150,7 @@
   background: rgba(20, 28, 52, 0.95);
   border: 1px solid rgba(255,255,255,0.15);
   color: white;
-  padding: 10px;
+  padding: 12px;
   border-radius: 8px;
   font-size: 11px;
   pointer-events: none;
@@ -230,7 +230,7 @@
   backdrop-filter: blur(8px);
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 12px;
   z-index: 5;
   box-shadow: 0 4px 20px rgba(0,0,0,0.4);
 }

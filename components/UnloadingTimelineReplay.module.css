@@ -75,7 +75,7 @@
   font-weight: 800;
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 12px;
   background: linear-gradient(135deg, #f1f5f9, #38bdf8);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -238,7 +238,7 @@
 .hatchColumns {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 10px;
+  gap: 12px;
 }
 
 .hatchColumn {
@@ -262,7 +262,7 @@
   background: rgba(20, 28, 52, 0.5);
   border: 1px solid rgba(140, 170, 255, 0.12);
   border-radius: 10px;
-  padding: 10px 8px;
+  padding: 12px 8px;
   position: relative;
   overflow: hidden;
   min-height: 70px;
@@ -321,7 +321,7 @@
   padding: 24px;
   display: flex;
   flex-direction: column;
-  gap: 18px;
+  gap: 20px;
 }
 
 .summaryDate {
@@ -383,7 +383,7 @@
   color: #38bdf8;
   background: rgba(56, 189, 248, 0.1);
   border: 1px solid rgba(56, 189, 248, 0.25);
-  padding: 3px 10px;
+  padding: 3px 12px;
   border-radius: 8px;
 }
 

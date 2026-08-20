@@ -6,7 +6,7 @@
 }
 
 .pill {
-  padding: 7px 14px;
+  padding: 7px 16px;
   border: 1px solid var(--dsc-surface-border);
   border-radius: 999px;
   background: var(--dsc-surface);

@@ -227,7 +227,7 @@
 
   .insightGrid {
     grid-template-columns: 1fr 1fr;
-    gap: 10px;
+    gap: 12px;
   }
 
   .insightValue {
@@ -237,7 +237,7 @@
   .processFlow {
     flex-direction: column;
     gap: 12px;
-    padding: 14px;
+    padding: 16px;
   }
 
   .processArrow {
@@ -256,8 +256,8 @@
 
   .actionBanner {
     flex-direction: column;
-    padding: 14px;
-    gap: 10px;
+    padding: 16px;
+    gap: 12px;
   }
 
   .card {
@@ -267,7 +267,7 @@
 
   .cardTitle {
     font-size: 0.95rem;
-    margin-bottom: 14px;
+    margin-bottom: 16px;
   }
 }
 
@@ -291,7 +291,7 @@
   }
 
   .processFlow {
-    padding: 10px;
+    padding: 12px;
   }
 
   .card {
