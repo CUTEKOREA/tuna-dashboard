@@ -1,9 +1,9 @@
 {
  "_meta": {
   "entry": "app/page.tsx",
-  "files": 171,
-  "widgets": 106,
-  "dataFiles": 66,
+  "files": 174,
+  "widgets": 107,
+  "dataFiles": 68,
   "generator": "scripts/widget_lineage.py"
  },
  "widgetToData": {
@@ -280,7 +280,9 @@
    "dataModules": [
     "lib/data/unloading-static.ts"
    ],
-   "dataFiles": []
+   "dataFiles": [
+    "public/data/unloading/sein_venus_2026_08.json"
+   ]
   },
   "components/UnloadingTimelineReplay.tsx": {
    "dataModules": [],
@@ -540,10 +542,12 @@
   },
   "components/market-understanding/CompanyAnatomyDashboard.tsx": {
    "dataModules": [
-    "lib/data/company-frinsa.ts"
+    "lib/data/company-frinsa.ts",
+    "lib/data/company-thaiunion.ts"
    ],
    "dataFiles": [
-    "public/data/companies/frinsa_v1.json"
+    "public/data/companies/frinsa_v1.json",
+    "public/data/companies/thaiunion_v1.json"
    ]
   },
   "components/market-understanding/CompanyGallery.tsx": {
@@ -689,6 +693,14 @@
     "public/data/squid_industry_widgets_v1.json",
     "public/data/squid_ocean_fleet_v1.json",
     "public/data/squid_trade_v1.json"
+   ]
+  },
+  "components/market-understanding/ThaiUnionCharts.tsx": {
+   "dataModules": [
+    "lib/data/company-thaiunion.ts"
+   ],
+   "dataFiles": [
+    "public/data/companies/thaiunion_v1.json"
    ]
   },
   "components/market-understanding/TunaCatchCharts.tsx": {
@@ -944,6 +956,10 @@
   "public/data/companies/frinsa_v1.json": [
    "components/market-understanding/CompanyAnatomyDashboard.tsx",
    "components/market-understanding/FrinsaCharts.tsx"
+  ],
+  "public/data/companies/thaiunion_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx",
+   "components/market-understanding/ThaiUnionCharts.tsx"
   ],
   "public/data/cosmo/cosmo_2026.json": [
    "components/cosmo/CosmoDashboard.tsx",
@@ -1202,6 +1218,9 @@
    "components/market-understanding/TunaCatchCharts.tsx",
    "components/market-understanding/TunaIndustryChart.tsx",
    "components/market-understanding/TunaIndustryDashboard.tsx"
+  ],
+  "public/data/unloading/sein_venus_2026_08.json": [
+   "components/UnloadingStatus.tsx"
   ],
   "public/data/whelk_company_research_v1.json": [
    "components/market-understanding/CompanyResearchTables.tsx",

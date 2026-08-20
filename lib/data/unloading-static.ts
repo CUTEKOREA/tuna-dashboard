@@ -2,7 +2,12 @@
  * 하역 항차 정적 원장 — DB(/api/unloading-db)에 없는 완료 항차 포함 전체 스냅샷.
  * 2026-08-17 UnloadingStatus 내장 상수에서 추출 (SSOT, ADR 0005 방향) —
  * 화면·갤러리가 같은 병합(정적 ∪ DB)을 쓰게 한다. 내용 무변.
+ *
+ * 2026-08-20 SEIN VENUS 항차 추가. 앞의 항차들과 달리 **손으로 적지 않고
+ * 생성물을 읽는다** — 원자료가 10일치 시트라 옮겨 적으면 어디선가 자릿수가 틀린다.
+ * `scripts/build_unloading_sein_venus.py` 가 자기점검 6개를 통과해야만 JSON 을 쓴다.
  */
+import seinVenusRaw from '@/public/data/unloading/sein_venus_2026_08.json';
 
 export type UnloadingLoad = {
   sourceVessel: string;
@@ -71,6 +76,124 @@ export type UnloadingVesselData = {
   finalReport?: unknown;
 };
 ;
+
+
+/* ── SEIN VENUS (2026-08 방콕, 진행 중) ────────────────────────────────
+ *
+ * ⚠ **진행 중인 항차다.** 다른 항차의 `surplus` 는 하역이 끝난 뒤의 과부족이지만,
+ *   여기서는 아직 안 내린 물량이 섞여 있다. 그래서 `status` 를 「하역중」으로 두고
+ *   `surplus` 를 과부족으로 읽지 못하게 한다 — 끝나야 나오는 수치다.
+ *
+ * ⚠ **어종 구성이 본선보고와 어긋난다.** 합계는 89.9% 진행인데 황다랑어는 이미
+ *   보고량을 82.98톤 넘겼고 가다랑어는 414.71톤 모자란다. 합계만 보면 안 보인다.
+ */
+type SeinVenusRaw = {
+  _meta: Record<string, string>;
+  요약: {
+    본선보고총량: number; 하역누계: number; 잔량: number; 하역일수: number; 진척률: number;
+    어종: Record<'YF' | 'SJ', { 보고: number; 누계: number; 차이: number }>;
+  };
+  원선별: { 원선: string; 보고: number; 누계: number; 잔량: number; 완료: boolean }[];
+  무하역일: { date: string; label: string; weekday: string }[];
+  하역처계획: { consignee: string; sourceVessel: string; plannedMt: number }[];
+  일자별: {
+    date: string; label: string; weekday: string; daily: number; cumulative: number;
+    species: { YF: number; SJ: number };
+    원선: { 원선: string; 어창: string[]; 하역량: number; 완료: boolean }[];
+    하역처: { consignee: string; sourceVessel: string; amountMt: number }[];
+    예정량: number | null;
+    workingHours: string | null;
+    temperatures: { target: string; range: string }[];
+    nextDayPlanMt: number | null;
+  }[];
+};
+
+export const seinVenus = seinVenusRaw as unknown as SeinVenusRaw;
+
+const SPECIES_KO: Record<'SJ' | 'YF', string> = { SJ: 'Skipjack', YF: 'Yellowfin' };
+
+function seinVenusTimeline(): UnloadingTimelineEntry[] {
+  const rows: UnloadingTimelineEntry[] = seinVenus.일자별.map((d) => {
+    // 하역처별로 묶는다. 어창은 그 원선이 그날 쓴 것을 붙인다 —
+    // 원선 하나가 어창 둘을 썼으면 배분액을 어창별로 쪼갤 근거가 원자료에 없다.
+    const hatchOf = new Map(d.원선.map((v) => [v.원선, v.어창.join(',') || '-']));
+    const byConsignee = new Map<string, UnloadingLoad[]>();
+    for (const a of d.하역처) {
+      const list = byConsignee.get(a.consignee) ?? [];
+      list.push({ sourceVessel: a.sourceVessel, hatch: hatchOf.get(a.sourceVessel) ?? '-', amount: a.amountMt });
+      byConsignee.set(a.consignee, list);
+    }
+    const allocations: UnloadingAllocation[] = [...byConsignee].map(([consignee, loads]) => ({
+      consignee,
+      amount: Number(loads.reduce((t, l) => t + l.amount, 0).toFixed(3)),
+      loads,
+    }));
+    // 작업시간·온도는 업무보고 문서가 있는 날만 있다. 없는 날을 그럴듯하게 채우지 않는다.
+    const done = d.원선.filter((v) => v.완료).map((v) => v.원선);
+    const quality = [
+      d.temperatures.length > 0
+        ? d.temperatures.map((t) => `${t.target} 어창 개방 측정온도 ${t.range}.`).join(' ')
+        : '작업시간·어창온도는 이날 업무보고 문서가 없어 기록이 없습니다.',
+      done.length > 0 ? `${done.join(', ')} 하역완료.` : '',
+      d.nextDayPlanMt ? `명일 약 ${d.nextDayPlanMt}톤 하역 예정.` : '',
+      d.예정량 != null
+        ? `예정 ${d.예정량.toLocaleString('ko-KR')}톤 대비 ${d.daily >= d.예정량 ? '+' : ''}${Number((d.daily - d.예정량).toFixed(3)).toLocaleString('ko-KR')}톤.`
+        : '',
+    ].filter(Boolean).join(' ');
+    return {
+      date: d.label,
+      time: d.workingHours ?? '-',
+      targetHol: d.원선
+        .filter((v) => v.어창.length > 0)
+        .map((v) => `${v.원선}(${v.어창.join(',')})`)
+        .join(', ') || '-',
+      allocations: allocations.length ? allocations : undefined,
+      observations: d.temperatures.length
+        ? d.temperatures.map((t) => {
+            const m = /^([A-Z/]+)\((#[\dA-Z-]+)\)$/.exec(t.target);
+            const nums = t.range.match(/-?[\d.]+/g) ?? [];
+            return {
+              sourceVessel: m?.[1] ?? t.target,
+              hatch: m?.[2] ?? '-',
+              temperaturesC: nums.map(Number),
+            };
+          })
+        : undefined,
+      dailyAmount: d.daily,
+      cumAmount: d.cumulative,
+      speciesAmounts: d.species,
+      remainingAmount: Number((seinVenus.요약.본선보고총량 - d.cumulative).toFixed(3)),
+      quality,
+    };
+  });
+  // 기록이 없는 날을 0 톤 하역으로 끼워 넣지 않는다 — 그날 일했는데 못 실은 것과 다르다.
+  return rows;
+}
+
+const SEIN_VENUS: UnloadingVesselData = {
+  name: seinVenus._meta.선박,
+  dateRange: `${seinVenus.일자별[0].date.replace(/-/g, '.')} ~ 하역중`,
+  location: seinVenus._meta.하역지,
+  buyer: seinVenus._meta.판매처,
+  motherVessel: seinVenus.원선별.map((v) => v.원선).join(', '),
+  status: `하역중 (${seinVenus.요약.진척률}%)`,
+  reportedTotal: seinVenus.요약.본선보고총량,
+  actualTotal: seinVenus.요약.하역누계,
+  holdDataAvailable: true,
+  // 진행 중이라 과부족이 확정되지 않았다. 0 이 아니라 「아직 모른다」는 뜻이다.
+  surplus: 0,
+  speciesBreakdownAsOf: seinVenus._meta.기준일,
+  speciesBreakdownNote:
+    '하역 진행 중입니다. 어종별 과부족은 잔여 물량이 모두 내려야 확정됩니다.',
+  species: (['SJ', 'YF'] as const).map((id) => ({
+    id,
+    name: SPECIES_KO[id],
+    reported: seinVenus.요약.어종[id].보고,
+    actual: seinVenus.요약.어종[id].누계,
+    surplus: seinVenus.요약.어종[id].차이,
+  })),
+  timeline: seinVenusTimeline(),
+};
 
 export const UNLOADING_STATIC_VESSELS: Record<string, UnloadingVesselData> = {
   'sein-phoenix': {
@@ -370,6 +493,6 @@ export const UNLOADING_STATIC_VESSELS: Record<string, UnloadingVesselData> = {
         insight: "FREESCHOOL MSC 규격 대량 강등 발생(-704톤). 하역/선별 과정에서의 MSC 인증 유지 및 품질 관리 프로세스 점검 요망."
       }
     }
-  }
+  },
+  'sein-venus': SEIN_VENUS,
 };
-
