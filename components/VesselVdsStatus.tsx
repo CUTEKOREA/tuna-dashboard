@@ -47,7 +47,8 @@ export default function VesselVdsStatus() {
             배정일·소진일·잔여일·주간소모 · <TermTooltip term="VDS" description="태평양 도서국이 자국 배타적경제수역에서 선박 1척의 하루 조업을 허가하는 권리입니다." />
           </p>
         </div>
-        <TelemetryBadge status="STATIC" syncDate="2026-08-09" label="첨부 원문" />
+        {/* 두 선단의 원문 기준일이 다르다. 고정값을 박으면 한쪽이 거짓이 된다. */}
+        <TelemetryBadge status="STATIC" syncDate={dataset.asOf} label="첨부 원문" />
       </div>
 
       <div className={s.vdsFleetTabs} role="tablist" aria-label="선단 구분">

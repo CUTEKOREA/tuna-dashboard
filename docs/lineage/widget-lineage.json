@@ -1,9 +1,9 @@
 {
  "_meta": {
   "entry": "app/page.tsx",
-  "files": 168,
-  "widgets": 104,
-  "dataFiles": 65,
+  "files": 170,
+  "widgets": 105,
+  "dataFiles": 66,
   "generator": "scripts/widget_lineage.py"
  },
  "widgetToData": {
@@ -36,6 +36,14 @@
     "lib/data/cross-commodity-intelligence.ts"
    ],
    "dataFiles": []
+  },
+  "components/FfaGoodStandingPanel.tsx": {
+   "dataModules": [
+    "lib/data/ffa-vrst.ts"
+   ],
+   "dataFiles": [
+    "public/data/ffa_vrst_v1.json"
+   ]
   },
   "components/FleetAnalysisPanels.tsx": {
    "dataModules": [],
@@ -189,6 +197,7 @@
   "components/PurseSeinerDashboard.tsx": {
    "dataModules": [],
    "dataFiles": [
+    "public/data/ffa_vrst_v1.json",
     "public/data/tuna_purse_seiners_v1.json"
    ]
   },
@@ -980,6 +989,10 @@
    "components/market-understanding/FalklandMonthFilter.tsx",
    "components/market-understanding/SquidCharts.tsx",
    "components/market-understanding/SquidIndustryDashboard.tsx"
+  ],
+  "public/data/ffa_vrst_v1.json": [
+   "components/FfaGoodStandingPanel.tsx",
+   "components/PurseSeinerDashboard.tsx"
   ],
   "public/data/garlic_usda_widgets.json": [
    "components/PorkDashboard.tsx",

@@ -107,8 +107,8 @@ export const nationalVds = {
 };
 
 export const kiribatiVds = {
-  asOf: '2026-08-09',
-  source: 'KFC 태평양 선망 VDS 현황_2026.08.09.pdf',
+  asOf: '2026-08-17',
+  source: 'KFC 태평양 선망 VDS 현황_2026.08.17.pdf',
   vessels: ['MOAMARI', 'MOAKONA', 'NAOERO SUN', 'NAOERO STAR'],
   areas: [
     area('미크로네시아 협정', [
@@ -116,11 +116,11 @@ export const kiribatiVds = {
       { vessel: 'MOAKONA', allocated: 9.5, consumed: 7.6, remaining: 1.9, weekly: 0 },
     ], { allocated: 19, consumed: 12.8, remaining: 6.2, weekly: 0 }),
     area('키리바시', [
-      { vessel: 'MOAMARI', allocated: 95.25, consumed: 95.3, remaining: -0.05, weekly: 7 },
-      { vessel: 'MOAKONA', allocated: 95.25, consumed: 80.6, remaining: 14.65, weekly: 7 },
-      { vessel: 'NAOERO SUN', allocated: 95.25, consumed: 65.8, remaining: 29.45, weekly: 2.6 },
-      { vessel: 'NAOERO STAR', allocated: 95.25, consumed: 89.9, remaining: 5.35, weekly: 3.7 },
-    ], { allocated: 381, consumed: 331.6, remaining: 49.4, weekly: 20.3 }),
+      { vessel: 'MOAMARI', allocated: 95.25, consumed: 99.8, remaining: -4.55, weekly: 4.5 },
+      { vessel: 'MOAKONA', allocated: 95.25, consumed: 87.1, remaining: 8.15, weekly: 6.5 },
+      { vessel: 'NAOERO SUN', allocated: 95.25, consumed: 68.1, remaining: 27.15, weekly: 2.3 },
+      { vessel: 'NAOERO STAR', allocated: 95.25, consumed: 92.2, remaining: 3.05, weekly: 2.3 },
+    ], { allocated: 381, consumed: 347.2, remaining: 33.8, weekly: 15.6 }),
     area('미크로네시아 양자', [
       { vessel: 'MOAMARI', allocated: 8.75, consumed: 4, remaining: 4.75, weekly: 0 },
       { vessel: 'MOAKONA', allocated: 8.75, consumed: 3.5, remaining: 5.25, weekly: 0 },
@@ -151,15 +151,18 @@ export const kiribatiVds = {
       { vessel: 'NAOERO SUN', allocated: 18.75, consumed: 8, remaining: 10.75, weekly: 0 },
       { vessel: 'NAOERO STAR', allocated: 18.75, consumed: 24.2, remaining: -5.45, weekly: 0 },
     ], { allocated: 75, consumed: 59.7, remaining: 15.3, weekly: 0 }),
+    // 공해는 원문이 「소진일수에서 제외」라 적었다. 총계 750일에 들어가지 않는다 —
+    // 더하면 배정일이 965일로 불어난다.
     area('공해', [
-      { vessel: 'MOAMARI', allocated: 47, consumed: 47, remaining: 0, weekly: 0 },
+      { vessel: 'MOAMARI', allocated: 50, consumed: 50, remaining: 0, weekly: 3 },
       { vessel: 'MOAKONA', allocated: 51, consumed: 51, remaining: 0, weekly: 0 },
-      { vessel: 'NAOERO SUN', allocated: 62, consumed: 62, remaining: 0, weekly: 5 },
-      { vessel: 'NAOERO STAR', allocated: 44, consumed: 44, remaining: 0, weekly: 1 },
-    ], { allocated: 204, consumed: 204, remaining: 0, weekly: 6 }, '소진일수에서 제외', false),
+      { vessel: 'NAOERO SUN', allocated: 66.19, consumed: 66.19, remaining: 0, weekly: 4.19 },
+      { vessel: 'NAOERO STAR', allocated: 48, consumed: 48, remaining: 0, weekly: 4 },
+    ], { allocated: 215.19, consumed: 215.19, remaining: 0, weekly: 11.19 }, '소진일수에서 제외', false),
   ],
-  totals: { allocated: 750, consumed: 521.8, remaining: 228.2, weekly: 20.3 },
+  totals: { allocated: 750, consumed: 537.4, remaining: 212.6, weekly: 15.6 },
 };
+
 
 const monthlyRows = [
   ['S/EXP', [927, 875, 465, 679, 319, 185, 484, 5]],

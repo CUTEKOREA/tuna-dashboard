@@ -18,6 +18,7 @@ import {
 } from '../data/purseSeinerData';
 import TelemetryBadge from './TelemetryBadge';
 import FleetRegistryExplorer from './FleetRegistryExplorer';
+import FfaGoodStandingPanel from './FfaGoodStandingPanel';
 import HeroZone from './v2/HeroZone';
 
 /* ───────── 데이터 기준일 (data/purseSeinerData.ts 최종 검증일) ───────── */
@@ -780,7 +781,7 @@ function VesselTable({ initialRfmo, initialFlag, initialOperator }: {
 /* ═══════════════════════ MAIN DASHBOARD ═══════════════════════ */
 /* 2026-08-17 사용자 요청: 선망선(등록부 파생)에 더해, 전 해역 원본 등록부를
    그대로 탐색하는 탭을 붙인다 — 참치 5개 기구 27,513행 + 오징어 남태평양 2,139행. */
-type DbTab = 'purse' | 'tuna' | 'squid' | 'kofa';
+type DbTab = 'purse' | 'tuna' | 'squid' | 'kofa' | 'ffa';
 
 export default function PurseSeinerDashboard({ heroOnly = false }: { heroOnly?: boolean }) {
   const [dbTab, setDbTab] = useState<DbTab>('purse');
@@ -848,8 +849,11 @@ export default function PurseSeinerDashboard({ heroOnly = false }: { heroOnly?: 
           {tabButton('tuna', '참치 등록부 (5개 기구 · 전 해역)')}
           {tabButton('squid', '오징어 등록부 (남태평양+북태평양)')}
           {tabButton('kofa', '한국 원양선단 (협회 연보 2024)')}
+          {tabButton('ffa', 'FFA 조업허가·위치보고 (820척)')}
         </div>
-        {dbTab === 'tuna' ? (
+        {dbTab === 'ffa' ? (
+          <FfaGoodStandingPanel />
+        ) : dbTab === 'tuna' ? (
           <FleetRegistryExplorer key="tuna" src="/data/tuna_fleet_db_v1.json" title="참치 인가 선박 등록부 — 전 해역" />
         ) : dbTab === 'squid' ? (
           <FleetRegistryExplorer key="squid" src="/data/squid_fleet_db_v1.json" title="오징어 인가 선박 등록부 — 남태평양 공해 + 북태평양(NPFC)" />
@@ -869,6 +873,7 @@ export default function PurseSeinerDashboard({ heroOnly = false }: { heroOnly?: 
         {tabButton('tuna', '참치 등록부 (5개 기구 · 전 해역)')}
         {tabButton('squid', '오징어 등록부 (남태평양+북태평양)')}
         {tabButton('kofa', '한국 원양선단 (협회 연보 2024)')}
+        {tabButton('ffa', 'FFA 조업허가·위치보고 (820척)')}
       </div>
 
       {/* Section 1: KPI Cards */}

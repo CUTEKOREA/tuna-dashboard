@@ -25,14 +25,14 @@ describe('2026-08-16 fleet operations sources', () => {
   });
 
   it('keeps Kiribati VDS as a separate four-vessel population', () => {
-    expect(kiribatiVds.asOf).toBe('2026-08-09');
+    expect(kiribatiVds.asOf).toBe('2026-08-17');
     expect(kiribatiVds.vessels).toEqual(['MOAMARI', 'MOAKONA', 'NAOERO SUN', 'NAOERO STAR']);
-    expect(kiribatiVds.totals).toEqual({ allocated: 750, consumed: 521.8, remaining: 228.2, weekly: 20.3 });
+    expect(kiribatiVds.totals).toEqual({ allocated: 750, consumed: 537.4, remaining: 212.6, weekly: 15.6 });
     expect(kiribatiVds.areas.find((area) => area.area === '키리바시')?.totals).toEqual({
       allocated: 381,
-      consumed: 331.6,
-      remaining: 49.4,
-      weekly: 20.3,
+      consumed: 347.2,
+      remaining: 33.8,
+      weekly: 15.6,
     });
   });
 
