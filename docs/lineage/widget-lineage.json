@@ -1,9 +1,9 @@
 {
  "_meta": {
   "entry": "app/page.tsx",
-  "files": 185,
+  "files": 186,
   "widgets": 107,
-  "dataFiles": 79,
+  "dataFiles": 80,
   "generator": "scripts/widget_lineage.py"
  },
  "widgetToData": {
@@ -551,6 +551,7 @@
     "lib/data/company-itochu.ts",
     "lib/data/company-jais.ts",
     "lib/data/company-report-tables.ts",
+    "lib/data/company-thaiunion-skus.ts",
     "lib/data/company-thaiunion.ts"
    ],
    "dataFiles": [
@@ -566,6 +567,7 @@
     "public/data/companies/itochu_v1.json",
     "public/data/companies/jais_tables_v1.json",
     "public/data/companies/jais_v1.json",
+    "public/data/companies/thaiunion_skus_v1.json",
     "public/data/companies/thaiunion_tables_v1.json",
     "public/data/companies/thaiunion_v1.json"
    ]
@@ -1011,6 +1013,9 @@
    "components/market-understanding/CompanyAnatomyDashboard.tsx"
   ],
   "public/data/companies/jais_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/thaiunion_skus_v1.json": [
    "components/market-understanding/CompanyAnatomyDashboard.tsx"
   ],
   "public/data/companies/thaiunion_tables_v1.json": [

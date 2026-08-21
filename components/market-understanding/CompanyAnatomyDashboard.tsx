@@ -207,6 +207,18 @@ import {
 import CompanyGallery, { type CompanyCard } from './CompanyGallery';
 import galleryStyles from './CompanyGallery.module.css';
 import {
+  byGrade,
+  fillRate,
+  pricesOf,
+  skusOf,
+  skuTotal,
+  speciesMix,
+  tuBrands,
+  tuPrices,
+  tuSkuMeta,
+  tunaSkus,
+} from '@/lib/data/company-thaiunion-skus';
+import {
   type ReportTable,
   tablesForStage,
 } from '@/lib/data/company-report-tables';
@@ -763,6 +775,151 @@ const TU_CHART_SLOTS: Record<string, ChartSlot[]> = {
           rows={thaiUnionRetailPrices.map((r) => [r.브랜드, r.제품, r.가격, r.단가, r.소매처])} />
       ),
       sourceLine: 'Morrisons·Open Prices·Safeway·Walmart (사내 조사보고서 인용)',
+    },
+    {
+      title: '브랜드별 SKU 수와 자료 등급',
+      caption: '아홉 브랜드 467개. 여섯 곳은 회사 공개 카탈로그이고 셋은 전용 사이트가 없거나 막혀 Open Food Facts 로 받았다.',
+      telemetry: SYNC,
+      render: () => (
+        <TuRows head={['브랜드', '국가', 'SKU', '등급', '자료']}
+          rows={tuBrands.map((b) => [b.브랜드, b.국가, b.수, b.등급, b.출처])} />
+      ),
+      span: 'full',
+      sourceLine: tuSkuMeta.출처,
+    },
+    {
+      title: '어종 구성 (SKU)',
+      caption: '참치가 절반이 안 된다. 연어·정어리·고등어가 나머지를 채운다 — 브랜드를 사 모은 결과다.',
+      telemetry: SYNC,
+      render: () => (
+        <TuRows head={['어종', 'SKU']}
+          rows={speciesMix().map((r) => [r.어종, r.수])} />
+      ),
+      sourceLine: '어종이 적힌 442건 기준. 나머지 25건은 원자료에 어종 표기가 없다',
+    },
+    {
+      title: '자료가 채우지 못한 칸',
+      caption: '없는 값을 만들어 넣지 않았다. 「—」는 곧 출처에 없다는 뜻이다.',
+      telemetry: SYNC,
+      render: () => (
+        <TuRows head={['항목', '채워진 SKU', '비율 (%)']}
+          rows={[
+            ['어종', `${Math.round(fillRate('어종') * skuTotal() / 100)} / ${skuTotal()}`, fillRate('어종').toFixed(1)],
+            ['규격', `${Math.round(fillRate('규격') * skuTotal() / 100)} / ${skuTotal()}`, fillRate('규격').toFixed(1)],
+            ['인증', `${Math.round(fillRate('인증') * skuTotal() / 100)} / ${skuTotal()}`, fillRate('인증').toFixed(1)],
+          ]} />
+      ),
+      sourceLine: tuSkuMeta.한계,
+    },
+    {
+      title: 'John West',
+      caption: '영국 국민 브랜드. 87개 중 참치가 48개다.',
+      telemetry: SYNC,
+      render: () => (
+        <TuRows head={['제품명', '어종', '규격', '인증']}
+          rows={skusOf('John West').map((s) => [s.제품명, s.어종, s.규격, s.인증])} />
+      ),
+      span: 'full',
+      sourceLine: '공식 브랜드 카탈로그 · WP API 분류',
+    },
+    {
+      title: 'Chicken of the Sea',
+      caption: '미국. 참치 22개에 게·연어·정어리가 붙는다.',
+      telemetry: SYNC,
+      render: () => (
+        <TuRows head={['제품명', '어종', '규격', '인증']}
+          rows={skusOf('Chicken of the Sea').map((s) => [s.제품명, s.어종, s.규격, s.인증])} />
+      ),
+      span: 'full',
+      sourceLine: '공식 브랜드 카탈로그',
+    },
+    {
+      title: 'Petit Navire',
+      caption: '프랑스 1위. 참치 38개로 이 그룹에서 참치 비중이 가장 높다.',
+      telemetry: SYNC,
+      render: () => (
+        <TuRows head={['제품명', '어종', '규격', '인증']}
+          rows={skusOf('Petit Navire').map((s) => [s.제품명, s.어종, s.규격, s.인증])} />
+      ),
+      span: 'full',
+      sourceLine: '공식 제품 카탈로그',
+    },
+    {
+      title: 'Rügen Fisch',
+      caption: '독일. 참치가 0이고 청어·고등어다. 학명까지 표기한다.',
+      telemetry: SYNC,
+      render: () => (
+        <TuRows head={['제품명', '어종', '규격', '인증']}
+          rows={skusOf('Rügen Fisch').map((s) => [s.제품명, s.어종, s.규격, s.인증])} />
+      ),
+      span: 'full',
+      sourceLine: '공식 제품 카탈로그',
+    },
+    {
+      title: 'Hawesta',
+      caption: '독일에서 참치를 맡은 쪽. 12개가 참치다.',
+      telemetry: SYNC,
+      render: () => (
+        <TuRows head={['제품명', '어종', '규격', '인증']}
+          rows={skusOf('Hawesta').map((s) => [s.제품명, s.어종, s.규격, s.인증])} />
+      ),
+      span: 'full',
+      sourceLine: '공식 제품 카탈로그',
+    },
+    {
+      title: 'King Oscar',
+      caption: '노르웨이. 브리슬링 정어리가 중심이고 GTIN 이 붙는다.',
+      telemetry: SYNC,
+      render: () => (
+        <TuRows head={['제품명', '어종', '규격', '인증']}
+          rows={skusOf('King Oscar').map((s) => [s.제품명, s.어종, s.규격, s.인증])} />
+      ),
+      span: 'full',
+      sourceLine: '공식 제품 카탈로그(Shopify Storefront)',
+    },
+    {
+      title: 'Mareblu',
+      caption: '이탈리아. 전용 사이트가 403 이라 Open Food Facts 로 받았다.',
+      telemetry: SYNC,
+      render: () => (
+        <TuRows head={['제품명', '어종', '규격', '인증']}
+          rows={skusOf('Mareblu').map((s) => [s.제품명, s.어종, s.규격, s.인증])} />
+      ),
+      span: 'full',
+      sourceLine: 'Open Food Facts — 등급 B',
+    },
+    {
+      title: 'Parmentier',
+      caption: 'Petit Navire 의 모태 공장. 정어리 전용 라인이다.',
+      telemetry: SYNC,
+      render: () => (
+        <TuRows head={['제품명', '어종', '규격', '인증']}
+          rows={skusOf('Parmentier').map((s) => [s.제품명, s.어종, s.규격, s.인증])} />
+      ),
+      span: 'full',
+      sourceLine: 'Open Food Facts — 등급 B',
+    },
+    {
+      title: 'Sealect',
+      caption: '태국 내수 브랜드. 사이트가 구 사명에 멈춰 있다.',
+      telemetry: SYNC,
+      render: () => (
+        <TuRows head={['제품명', '어종', '규격', '인증']}
+          rows={skusOf('Sealect').map((s) => [s.제품명, s.어종, s.규격, s.인증])} />
+      ),
+      span: 'full',
+      sourceLine: 'Open Food Facts — 등급 B',
+    },
+    {
+      title: '소매 실판매가 (186건)',
+      caption: '전부 소매처와 기준일이 붙어 있다. 영국은 Morrisons 만 서버사이드로 가격을 내보내 그쪽에서만 뚫렸다.',
+      telemetry: SYNC,
+      render: () => (
+        <TuRows head={['브랜드', '제품 · 규격', '가격', '소매처', '국가', '기준일']}
+          rows={tuPrices.map((p) => [p.브랜드, `${p.제품명} · ${p.규격}`, p.가격, p.소매처, p.국가, p.기준일])} />
+      ),
+      span: 'full',
+      sourceLine: 'Open Prices 123건 + Morrisons JSON-LD 실측 63건',
     },
   ],
   c04: [
