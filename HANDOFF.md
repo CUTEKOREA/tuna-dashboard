@@ -1,3 +1,13 @@
+> ✍️ **2026-08-21 16:30 KST — 시장 이해 5개 어종 페이지 서술 윤문(humanize-korean v1.5)** [CC]:
+> - 격리 worktree `/private/tmp/ca-report`, 최신 `origin/main`(`9947d0f0`)에서 새 브랜치 `feat/humanize-market-understanding`를 끊었다. 대상은 `lib/{tuna,squid,shrimp,whelk,mackerel}-industry-content.ts`의 `StageNarrative` 산문(`lede`·`paragraphs`)뿐이고 수치·표·fact·용어 정의는 건드리지 않았다.
+> - 추출 309블록 47,607자 → run_id 5개. 새우·고등어·골뱅이는 fast(monolith 단일 호출), 참치 17,748자·오징어 13,159자는 8,000자 초과라 strict(5인 파이프라인)로 자동 승급했고 각각 3청크·2청크로 나눠 돌렸다.
+> - 탐지 참치 176건·오징어 145건, 최다 유형은 양쪽 모두 C-11(연결어미 뒤 쉼표) 각 50건이었다. 그다음이 C-8(「A가 아니라 B」 대구)·I-3(~다는 뜻이다)·A-15(추상 주어)다.
+> - 기계 검증(`_workspace/_verify3.py`): 블록 집합 일치 + **블록 내 신규 토큰 등장 0·소실 0**(같은 블록 안에서 기존 토큰 반복은 허용) + 굵게·낫표 개수 + em대시 추이. 전건 통과.
+> - **기계 통과 뒤 fidelity 감사에서 의미 훼손 42건이 나왔다**(참치 14·오징어 17·새우 3·고등어 4·골뱅이 4) — 전부 롤백했다. 유형 셋: ① 「A가 아니라 B」를 풀면서 A항을 삭제 ② 금지형·의무형을 서술형으로 약화 ③ 「~라는 뜻이다」 일괄 삭제로 추론이 사실 단정이 됨. 숫자를 하나도 바꾸지 않고 일어나서 토큰 대조로는 안 잡힌다.
+> - 되돌려 쓰기(`_workspace/_apply.py`)는 원문 리터럴이 파일에 **정확히 1회**일 때만 치환하고 기본이 드라이런이다. 최종 **172블록 반영**, 5파일 172 insertions / 172 deletions.
+> - 검증: ESLint 0 errors·기존 warnings 12(내가 만진 5파일엔 0), `tsc --noEmit` 신규 오류 0, Vitest 145 files 1,105 passed / 2 skipped.
+> - **다음 단계**: PR gate → main 병합 → Vercel Production → `/tuna-industry` 등 5개 페이지 라이브 확인.
+
 > 🚀 **2026-08-21 16:33 KST — SEIN VENUS 8/21 하역 일일보고 라이브 배포 완료** [Codex]:
 > - 전용 worktree `/private/tmp/tuna-unloading-0821` (`codex/unloading-sein-venus-20260821`)에서 원본 3종을 교차 확인했다. SHA-256: JPG `931ebf66…e36037b`, 결과 XLS `30a0f429…ad654e`, 현황 XLSX `ac332bc9…1827bf`.
 > - 검산: `3,090.760 + 148.800 = 3,239.560 MT`, `3,275 - 3,239.560 = 35.440 MT`. GPZ `148.800 MT`는 S/PIO #1-B `5.770` + #1-C `143.030 MT`; 온도는 각각 -18.0~-19.0℃, -20.0~-21.0℃다.
