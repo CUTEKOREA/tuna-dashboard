@@ -40,7 +40,7 @@ class Table:
         return {
             "title": self.title(),
             "head": self.head,
-            "num": self.num,
+            "num": self._num_fit(),
             "rows": self.rows,
             "sid": self.sid,
             "section": self.section,
@@ -48,6 +48,22 @@ class Table:
             **({"note": self.note} if self.note else {}),
         }
 
+
+
+    # 숫자 열은 화면에서 줄바꿈을 막는다(자릿수를 맞추려는 것이다). 그런데 값에
+    # 단위·기준·출처가 함께 들어간 긴 칸이 섞이면 그 열이 화면 밖으로 밀려 나간다.
+    # 공장 상세표의 「규모」·「인력」이 그렇다. 긴 칸이 있는 열은 숫자 열에서 뺀다.
+    _NUM_MAX = 28
+
+    def _num_fit(self) -> list[bool]:
+        out = list(self.num)
+        for j, is_num in enumerate(out):
+            if not is_num:
+                continue
+            longest = max((len(r[j]) for r in self.rows if j < len(r)), default=0)
+            if longest > self._NUM_MAX:
+                out[j] = False
+        return out
 
 # 등급 칩은 셀 안에서 「A」「B」 한 글자로 남아 숫자와 붙어 읽힌다. 텍스트로 풀지 않고 뗀다.
 _CHIP = re.compile(r'<span class="chip[^"]*"[^>]*>.*?</span>', re.S)
