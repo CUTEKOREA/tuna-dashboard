@@ -11,6 +11,7 @@ import tempfile
 import unicodedata
 import unittest
 import zipfile
+from datetime import date, timedelta
 from pathlib import Path
 from unittest import mock
 from xml.sax.saxutils import escape
@@ -170,6 +171,170 @@ class FleetDailyReportSyncTest(unittest.TestCase):
                     ("2026-08-18", additional_report),
                 ],
             )
+
+    def test_incremental_public_payload_advances_without_reopening_history(self) -> None:
+        module = load_sync_module()
+        previous_public = {
+            "_meta": {
+                "schemaVersion": 1,
+                "reportCount": 2,
+                "firstReportDate": "2026-08-13",
+                "latestReportDate": "2026-08-14",
+                "latestAsOf": "2026-08-13",
+                "detailSha256": "a" * 64,
+            },
+            "latest": {
+                "reportDate": "2026-08-14",
+                "asOf": "2026-08-13",
+                "pacific": {"asOf": "2026-08-13", "dailyMt": 85, "monthlyMt": 100, "annualMt": 1000},
+                "atlantic": {"asOf": "2026-08-13", "dailyMt": 170, "monthlyMt": 200, "annualMt": 2000},
+                "carrier": {"loadedTotalMt": 600, "expectedRemainingMt": 400},
+            },
+            "deltas": {"pacificDailyMt": 0, "atlanticDailyMt": 0, "totalDailyMt": 0},
+            "reconciliation": {},
+            "quality": {
+                "counts": {
+                    "reconciliationChecks": 8,
+                    "reconciliationCompleteChecks": 8,
+                    "reconciliationUnavailableChecks": 0,
+                    "reconciliationUnavailableDocuments": 0,
+                    "reconciliationIssues": 0,
+                    "reconciliationDocuments": 0,
+                    "reconciliationPartialDifferences": 0,
+                    "reconciliationPartialDifferenceDocuments": 0,
+                    "duplicateVesselRows": 0,
+                    "coordinateFormatIssues": 0,
+                    "longlineSectionMissing": 0,
+                },
+                "incompletePartialDifferences": 0,
+                "incompletePartialDifferenceDocuments": 0,
+            },
+        }
+        report = {
+            "reportDate": "2026-08-15",
+            "asOf": "2026-08-14",
+            "pacific": {"asOf": "2026-08-14", "dailyMt": 100, "monthlyMt": 200, "annualMt": 1100, "vessels": []},
+            "atlantic": {"asOf": "2026-08-14", "dailyMt": 160, "monthlyMt": 300, "annualMt": 2160, "vessels": []},
+            "carrier": {
+                "loadedTotalMt": 700,
+                "loadedTotalMtRaw": "700",
+                "loadedTotalParentheticalMt": None,
+                "expectedRemainingMt": 300,
+                "expectedRemainingMtRaw": "300",
+                "expectedRemainingParentheticalMt": None,
+                "vessels": [],
+            },
+            "longline": {"vessels": []},
+        }
+        issues = {
+            "reconciliationChecks": [
+                module.reconciliation_check("2026-08-15", "pacific.dailyMt", 100, [100]),
+                module.reconciliation_check("2026-08-15", "atlantic.dailyMt", 160, [160]),
+                module.reconciliation_check("2026-08-15", "carrier.loadedMt", 700, [700]),
+                module.reconciliation_check("2026-08-15", "carrier.expectedRemainingMt", 300, [300]),
+            ],
+            "duplicateVessel": [],
+            "coordinate": [],
+            "longlineMissing": [],
+        }
+
+        result = module.build_incremental_public_payload(previous_public, report, issues, "b" * 64)
+
+        self.assertEqual(result["_meta"], {
+            "schemaVersion": 1,
+            "reportCount": 3,
+            "firstReportDate": "2026-08-13",
+            "latestReportDate": "2026-08-15",
+            "latestAsOf": "2026-08-14",
+            "detailSha256": "b" * 64,
+        })
+        self.assertEqual(result["deltas"], {
+            "pacificDailyMt": 15,
+            "atlanticDailyMt": -10,
+            "totalDailyMt": 5,
+        })
+        self.assertEqual(result["quality"]["counts"]["reconciliationChecks"], 12)
+        self.assertEqual(result["quality"]["counts"]["reconciliationCompleteChecks"], 12)
+        self.assertTrue(result["reconciliation"]["valid"])
+
+        stale = {**report, "reportDate": "2026-08-14"}
+        with self.assertRaises(module.FleetDailySyncError):
+            module.build_incremental_public_payload(previous_public, stale, issues, "b" * 64)
+
+    def test_latest_report_cli_updates_public_and_detail_without_rebuilding_private_history(self) -> None:
+        with tempfile.TemporaryDirectory() as temporary_directory:
+            temporary = Path(temporary_directory)
+            previous_public = json.loads(
+                (ROOT / "lib/data/generated/fleet-daily-public.json").read_text(encoding="utf-8")
+            )
+            previous_count = previous_public["_meta"]["reportCount"]
+            report_date = date.fromisoformat(previous_public["_meta"]["latestReportDate"]) + timedelta(days=1)
+            as_of = report_date - timedelta(days=1)
+            report_path = temporary / f"해양수산본부 일일업무보고-{report_date:%y%m%d} (테스트).docx"
+            tables = report_tables(daily=100, atlantic_daily=160)
+            write_docx(
+                report_path,
+                [
+                    f"BB. 태평양 선망 : {as_of.month}/{as_of.day} (일간: 100톤 / 월간 누계: 2,500톤 / 연간 누계: 50,000톤)",
+                    tables[0],
+                    "운반선 선적 현황",
+                    tables[1],
+                    f"CC. 대서양 선망 : {as_of.month}/{as_of.day} (일간: 160톤 / 월간 누계: 3,500톤 / 연간 누계: 30,000톤)",
+                    tables[2],
+                    "AA. 연승",
+                    tables[3],
+                ],
+            )
+            public_output = temporary / "fleet-daily-public.json"
+            detail_output = temporary / "fleet-daily-detail.json"
+            private_output = temporary / "fleet-daily-private.json"
+            public_output.write_text(json.dumps(previous_public, ensure_ascii=False), encoding="utf-8")
+
+            result = subprocess.run(
+                [
+                    sys.executable,
+                    str(SYNC_SCRIPT),
+                    "--latest-report",
+                    str(report_path),
+                    "--output",
+                    str(private_output),
+                    "--public-output",
+                    str(public_output),
+                    "--detail-output",
+                    str(detail_output),
+                ],
+                cwd=ROOT,
+                check=False,
+                capture_output=True,
+                text=True,
+            )
+
+            self.assertEqual(result.returncode, 0, result.stderr)
+            self.assertFalse(private_output.exists())
+            updated_public = json.loads(public_output.read_text(encoding="utf-8"))
+            updated_detail = json.loads(detail_output.read_text(encoding="utf-8"))
+            self.assertEqual(updated_public["_meta"]["reportCount"], previous_count + 1)
+            self.assertEqual(updated_public["_meta"]["latestReportDate"], report_date.isoformat())
+            self.assertEqual(updated_detail["reportDate"], report_date.isoformat())
+
+            stale_result = subprocess.run(
+                [
+                    sys.executable,
+                    str(SYNC_SCRIPT),
+                    "--latest-report",
+                    str(report_path),
+                    "--public-output",
+                    str(public_output),
+                    "--detail-output",
+                    str(detail_output),
+                ],
+                cwd=ROOT,
+                check=False,
+                capture_output=True,
+                text=True,
+            )
+            self.assertEqual(stale_result.returncode, 1)
+            self.assertIn("기존 최신일", stale_result.stderr)
 
     def test_reconciliation_check_ignores_sub_milliton_float_noise(self) -> None:
         module = load_sync_module()
