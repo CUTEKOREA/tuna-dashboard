@@ -244,13 +244,6 @@
   word-break: keep-all;
 }
 
-.backLabel {
-  font-size: 0.76rem;
-  letter-spacing: 0.22em;
-  text-indent: 0.22em;
-  opacity: 0.8;
-}
-
 /* 앞면 — 회사 요약. flip 후 공개 */
 .front {
   transform: rotateY(180deg);

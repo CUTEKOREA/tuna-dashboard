@@ -163,7 +163,6 @@ export default function CompanyGallery({ companies, onSelect }: CompanyGalleryPr
                     {sort === 'country' ? (
                       <span className={styles.backScale}>{c.country}</span>
                     ) : null}
-                    <span className={styles.backLabel}>기업 해부</span>
                   </span>
                 </span>
                 <span className={`${styles.face} ${styles.front}`}>
