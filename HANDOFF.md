@@ -1,3 +1,10 @@
+> 🚀 **2026-08-21 20:14 KST — 해양수산본부 8/21 일일보고 `/fleet` 라이브 배포** [Codex]:
+> - PR [#726](https://github.com/CUTEKOREA/tuna-dashboard/pull/726)을 squash merge `35f85205`로 병합했다. PR App Quality Gate `32469945387`, main gate `32470279289`가 모두 성공했다.
+> - Vercel Production `dpl_D6gyXr3U7Juc8F9Ggqr4Cu9GtoP4`(GitHub deployment `6019355361`)가 READY이고 `https://leedonggun.co.kr/fleet` alias에 연결됐다. 최근 15분 error/fatal 로그는 각각 0건이다.
+> - 비인증 `/api/fleet/daily`는 401 `authentication_required`, `private, no-store`, `Vary: Cookie`; `/fleet`은 로그인으로 이동한다. 소유자 API는 200이며 보고일 `2026-08-21`, 기준일 `2026-08-20`, 태평양 33 MT, 대서양 320 MT, 운반선 선적/예상잔량 11,492.3/6,317.7 MT를 반환한다.
+> - 운영 화면은 일간/월간/연간 합계 `353 / 6,162 / 77,719.8 MT`와 최신 검산 일치를 표시한다. 1440×1000·390×844에서 문서/본문 overflow 0, page/console/local HTTP errors 0, CacheStorage `/api/fleet/` 0건이다.
+> - 운영자 상태는 `live_verified`로 닫았고 배포 SHA·URL·사용자 승인 근거를 로컬 상태에 기록했다. 다음 회차부터 정확한 신규 DOCX를 `prepare --page fleet-daily --source <파일>`로 넘기면 증분 모드가 전체 클라우드 원문을 다시 내려받지 않는다.
+>
 > ⚓ **2026-08-21 18:39 KST — 해양수산본부 8/21 일일보고 `/fleet` 반영 준비** [Codex]:
 > - 원문 `해양수산본부 일일업무보고-260821 (금).docx`(167,779 bytes, SHA-256 `cc282e9b…10e65`)를 Google Drive 정본 폴더에서 확인했고 DOCX ZIP 무결성을 통과했다.
 > - 공개 집계는 보고일 `2026-08-21`, 조업 기준일 `2026-08-20`, 전체 138건이다. 태평양 일간/월간/연간 `33 / 2,417 / 47,249.8 MT`, 대서양 `320 / 3,745 / 30,470 MT`, 운반선 선적/예상잔량 `11,492.3 / 6,317.7 MT`, 전일 일간 합계 대비 `+170 MT`다.
