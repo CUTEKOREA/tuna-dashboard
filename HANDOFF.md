@@ -1,3 +1,13 @@
+> 📇 **2026-08-21 12:58 KST — 기업 해부 3사에 최신 조사 결과 반영** [CC]:
+> - 격리 worktree `/private/tmp/ca-report` (`feat/company-report-sync`, origin/main 기준)에서 작업했다. 다른 세션이 편집 중인 더러운 트리를 피하려고 별도 브랜치를 끊었다.
+> - **FCF**: 회사 지도에만 있던 두 법인이 현지 등기로 잡혔다 — 파나마 THALASSIC TUNA TEAM, S.A.(Folio 155755828, 2024-08-21 등기, IATTC 4,794척 전수에 명의 선박 0척)와 PNG MAJESTIC SEAFOOD CORPORATION(1-67560, 2009-04-24 등록, 라에 Portion 640 Busu Road, 참치 조업·가공 겸업). 04단계의 「두 법인의 설립연도·지분·기능은 공개되지 않는다」를 정정했다.
+> - **FCF facts 3건 신설**: 지배사슬 각 단 완전소유(Akhmad v. Bumble Bee Foods, S.D. Cal. Dkt.22-1 각주1 — A급), Besford Limited 세이셸 IBC(파산법원 19-12502 Doc 31-2 첨부 에스크로 약정), Bumble Bee Holding Company 1 델라웨어 7692191(2019-11-07 설립). 「100% 자회사」는 인수 fact의 note에서 빼고 A급 근거가 붙은 별도 fact로 옮겼다.
+> - **FCF 문단 추가**: 북미 계열 신설법인 승계 구조 — 2019-11-07 델라웨어 BB Holding Co.1, 11-10 BC Clover Leaf 3사, 11-13 델라웨어 Tonos US LLC 설립 후 11-21 파산보호 신청, 클로징일 2020-01-31에 Tonos가 Bumble Bee Foods, LLC로 개명.
+> - **JAIS**: MSC 유통과정관리 인증번호 MSC-C-55356 fact 추가(등록명 JAIS S.R.L.). **Bolton**: 탄소발자국 중 Tri Marine 72.9% fact 추가.
+> - 대시보드 7개 회사 파일을 정정 대상 10종(Jerry=周昌毅 동일인, 모회사 CEO 겸직, 이탈리아 HS0303 33%, Bolton 220척·가동 11척, AGCM C11761 등)으로 전수 스캔했다. **되살아난 오류 0건** — JAIS의 「Jais, S.P.A.」와 Panofi 판매권 2건은 각각 「현존하지 않는 상호」·과거형 서술이라 오탐이다.
+> - 검증: `company-fcf`/`jais`/`bolton`/`report-tables` 테스트 **95건 통과**, 전체 vitest 1,075 passed. 실패 3건은 `nodemailer` 미설치로 인한 **기존 실패**이며 stash 대조로 내 변경과 무관함을 확인했다. tsc 신규 오류 0.
+> - **다음 단계**: 배포는 사용자 요청 시에만. 원본 보고서는 Drive `02_참치_가공·유통·기업/{대만/FCF, 이탈리아/JAIS, 이탈리아/Bolton}/03_통합`에 있고 FCF는 A4 33쪽 합본이 정본이다.
+>
 > 🚀 **2026-08-21 09:10 KST — Atuna 8/20 가격 배포 실패 복구·라이브 반영** [Codex]:
 > - PR [#714](https://github.com/CUTEKOREA/tuna-dashboard/pull/714)을 squash merge `d9b596df`로 병합했다. PR App Quality Gate `32430813386`, main gate `32431092111`이 모두 성공했다.
 > - Vercel Production `dpl_6f2VCgMhLTkjkW8HsQErofRToBFS`(GitHub deployment `6012889083`)가 READY이고 `https://leedonggun.co.kr` alias에 연결됐다. 최근 15분 error/fatal 로그는 각각 0건이다.
@@ -29,6 +39,45 @@
 > - **다음 단계**: 8/21 원본 일보 수신 시 각 선박의 명일 계획과 당일 실적을 다시 분리해 같은 절차로 갱신한다.
 >
 > 마지막 업데이트: 2026-08-20 20:55 KST [Codex]
+
+> 🔧 **2026-08-21 — 세로 병합 칸이 행마다 되풀이되던 것을 고쳤다** [CC]:
+> - 라이브 확인에서 잡았다. 보고서 원문이 `rowspan` 으로 묶은 칸을 추출기가 펴면서 **같은 문장을
+>   행마다 복제**했다. 공장표의 「법인」 칸에 「한 법인이 이 두 줄과 아래 Plisan·Silleda까지 담는다」가
+>   두 번씩 찍혀 표가 읽히지 않았다.
+> - `_grid` 의 carry 가 계속 행에 값을 넣는 대신 **빈 칸을 넣는다.** 원문 표의 병합 모양 그대로다.
+>   `NarrowList` 는 빈 칸을 이미 건너뛴다. 다만 **첫 열은 좁은 화면 목록의 제목**이라 남긴다.
+> - 영향 17줄(bolton 8·frinsa 4·itochu 2·thaiunion 2·fcf 1). Vitest 1,086 통과, `next build` 성공.
+
+> 🔧 **2026-08-21 — 공장 상세표의 오른쪽 두 열이 화면 밖으로 밀린 것을 고쳤다** [CC]:
+> - 라이브 확인에서 잡았다. 숫자 열은 `.factNum { white-space: nowrap }` 이라 자릿수가 맞는데,
+>   공장표의 「규모」·「인력」은 값에 단위·기준·출처가 같이 들어가 200자짜리 칸이 생긴다.
+>   그 열이 통째로 오른쪽으로 밀려 잘려 보였다.
+> - `report_tables.py` 의 `as_json` 이 열별 최장 길이를 재서 **28자를 넘으면 num 을 내린다.**
+>   그 열은 왼쪽 정렬로 줄바꿈한다. 짧은 숫자 열은 그대로 nowrap 이다.
+> - 영향은 공장 상세표 여섯 개 열뿐(15줄). Vitest 1,086 통과, `next build` 성공.
+> - **교훈: Preview 로는 못 잡는다.** 이 리포는 Preview 에 인증 env 가 없어 화면이 안 뜬다.
+>   Production 배포 뒤 Aside 로 실제 화면을 봐야 이런 것이 보인다.
+
+> 🏭 **2026-08-21 — 기업 해부 일곱 편에 공장별 상세를 싣는다** [CC]:
+> - 사용자 지시(«각 공장들에 대한 정보를 더 자세하게 — 생산품목, 규모, 직원수»)로 조사보고서 다섯 편
+>   (Frinsa·ThaiUnion·ITOCHU·Albacora·FCF)의 가공 절을 **거점·법인·생산 품목·규모·인력** 다섯 축
+>   공장별 표로 다시 썼다. Bolton 보고서가 먼저 잡은 틀을 따랐다. Drive 발행본 갱신 완료
+>   (Frinsa 26→33쪽 · TU 29→35 · ITOCHU 23→25 · Albacora 18→22 · FCF 23→33).
+> - **대시보드는 새 컴포넌트 없이 반영된다.** `build_report_tables.py` 가 보고서 원문에서 표를 그대로
+>   읽으므로 `docs/evidence/*/보고서.html` 을 갈아끼우고 재생성하면 끝난다. 공장 상세표 7개 수록
+>   (thaiunion 20행·bolton 11·fcf 8·frinsa 7·albacora 3·itochu 2+2).
+> - 낡은 제외 선언 둘(thaiunion `s5|지역 | 거점`, itochu `s3|항목 | 내용`)이 아무 표에도 안 걸려 빌드가
+>   죽었다 — 그 자리가 공장표로 바뀐 것이다. 해제했다.
+> - **표 단위 단계 예외 `move` 를 스크립트에 추가.** frinsa 06절이 화면에서 04 생산·05 조달로 갈리는데
+>   배치가 절 단위라 공장표가 조달 쪽에 붙었다. 이동 선언도 1:1 검사를 건다.
+> - fcf 에 `s3b`(그룹 법인) 매핑 추가. 다른 세션이 절을 하나 넣어 번호가 밀렸고, 매핑이 없으면 그 절
+>   표가 화면에서 사라진다. **동시 편집 주의** — FCF·Bolton Drive 파일이 내 쓰기 뒤에 다시 바뀌어
+>   있었고, 확인해 보니 공장 절을 보존한 채 그 위에 작업한 것이라 그쪽 최신본을 당겨왔다.
+> - frinsa·thaiunion 단계 제목 15개를 em대시 → 쌍점. 나머지 다섯 편은 이미 쌍점이었다.
+> - 수치는 채굴·조사·적대적 검증 3단(에이전트 25기)을 거쳤다. **기각 25건은 싣지 않았다** —
+>   Connors Bros.「약 150명」은 원문이 「최대 450명 중 20% 이상」이라 90명이고, South Seas Tuna
+>   「200 t/일」은 PNG 전국 생산의 절반이 되어 성립하지 않는다.
+> - Vitest 1,086 통과, `next build` 컴파일 성공. 로컬 화면 확인은 인증 게이트(503)로 못 했다.
 
 > 🏭 **2026-08-20 — Thai Union 페이지를 조사 아카이브 전체 반영으로 확장 (5→7단계)** [CC]:
 > - «대시보드에 보고서 정보를 최대한» 지시 — Frinsa 8단계 재구성(#705)과 짝. 브랜드·제품(03)과 지속가능성(05)을 독립 단계로 신설.

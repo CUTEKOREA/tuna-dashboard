@@ -15,7 +15,7 @@ import type {
 const S01: StageNarrative = {
   key: 'c01',
   numeral: '01',
-  title: '정체성 — 이름을 팔지 않는 가족기업',
+  title: '정체성: 이름을 팔지 않는 가족기업',
   question: '선단도 없고 이름도 안 알려진 회사가 왜 중요한가',
   lede: '1961년 냉동창고로 출발해 부자(父子) 두 사람이 100% 쥔 비상장사다. 어선은 한 척도 없는데 한 해 참치 원어 135,289톤을 사들인다.',
   paragraphs: [
@@ -37,7 +37,7 @@ const S01: StageNarrative = {
 const S02: StageNarrative = {
   key: 'c02',
   numeral: '02',
-  title: '그룹 구조 — 이익은 Ribeira 와 싱가포르에서 난다',
+  title: '그룹 구조: 이익은 Ribeira 와 싱가포르에서 난다',
   question: '13개 법인 중 어디가 돈을 버는가',
   lede: '생산은 스페인·포르투갈 2곳, 판매법인은 유럽 8개국. 그런데 그룹 2위권 이익원은 판매법인이 아니라 싱가포르 구매본부다.',
   paragraphs: [
@@ -60,7 +60,7 @@ const S02: StageNarrative = {
 const S03: StageNarrative = {
   key: 'c03',
   numeral: '03',
-  title: '제품·브랜드 — 같은 참치, 다섯 층',
+  title: '제품·브랜드: 같은 참치, 다섯 층',
   question: '한 공장에서 나온 참치가 왜 열 배 넘게 값이 갈리는가',
   lede: '자사몰 한정판이 kg당 220유로, 마트 대중품이 19유로다. 브랜드가 층과 채널을 가른다.',
   paragraphs: [
@@ -83,7 +83,7 @@ const S03: StageNarrative = {
 const S04: StageNarrative = {
   key: 'c04',
   numeral: '04',
-  title: '생산 — 캔까지 직접 만들고, 발전소는 세웠다',
+  title: '생산: 캔까지 직접 만들고, 발전소는 세웠다',
   question: 'Ribeira 공장에서 실제로 무슨 일이 벌어지는가',
   lede: '회사 자기신고로 연 18만 톤 처리·캔 5.4억 개. 캔(용기)도 자체 제조하고, 열병합발전소는 2023년부터 사실상 멈췄다.',
   paragraphs: [
@@ -105,7 +105,7 @@ const S04: StageNarrative = {
 const S05: StageNarrative = {
   key: 'c05',
   numeral: '05',
-  title: '조달·인증 — 세계에서 사들이고, 검증은 절반',
+  title: '조달·인증: 세계에서 사들이고, 검증은 절반',
   question: '배가 없는 회사가 어떻게 물량을 확보하고, 그 원료는 얼마나 검증되는가',
   lede: '그룹이 한 해 사들이는 참치가 135,289톤(회사 SAP 집계)이다. 공급사 기준으로는 70.8%가 아직 검증 범주 밖이다.',
   paragraphs: [
@@ -130,7 +130,7 @@ const S05: StageNarrative = {
 const S06: StageNarrative = {
   key: 'c06',
   numeral: '06',
-  title: '재무 — 매출의 6할이 이베리아 밖',
+  title: '재무: 매출의 6할이 이베리아 밖',
   question: '이 회사는 어디서 벌고, 왜 2025년 실적을 안 밝히는가',
   lede: '2019년 524에서 2024년 741 M€. 그리고 FY2024 지역분해가 처음 나왔다 — 이베리아 밖이 57.6%다.',
   paragraphs: [
@@ -150,7 +150,7 @@ const S06: StageNarrative = {
 const S07: StageNarrative = {
   key: 'c07',
   numeral: '07',
-  title: '경쟁 — 매출 3위, 이익 1위',
+  title: '경쟁: 매출 3위, 이익 1위',
   question: '갈리시아에서 「1위」는 누구인가',
   lede: '"1위"라는 말이 세 가지 뜻으로 쓰인다 — 셋 다 참이다. 잣대가 다를 뿐이다.',
   paragraphs: [
@@ -172,7 +172,7 @@ const S07: StageNarrative = {
 const S08: StageNarrative = {
   key: 'c08',
   numeral: '08',
-  title: '한국 관점 — 경쟁자가 아니라 고객이다',
+  title: '한국 관점: 경쟁자가 아니라 고객이다',
   question: '한국 선단은 이 회사와 무엇을 할 수 있는가',
   lede: '한국은 2024년 스페인에 냉동참치 5,509톤을 팔았다가 2025년 1,954톤으로 줄었다. 관세 구조가 통념과 다르다.',
   paragraphs: [

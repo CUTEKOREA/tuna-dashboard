@@ -40,6 +40,8 @@ SPECS: dict[str, dict] = {
         "stages": {"s1": "c01", "s2": "c02", "s3": "c03", "s4": "c03",
                    "s5": "c06", "s6": "c05", "s7": "c06", "s8": "c07", "s9": "c08"},
         "drop": ["s1|항목 | 내용", "s2|브랜드 | 포지션", "s6|인증 | 번호", "s9|품목 | CN"],
+        # 06절은 화면에서 04 생산과 05 조달·인증으로 갈린다. 공장 상세표는 생산 쪽이다.
+        "move": {"s6|거점 | 법인 | 생산 품목": "c04"},
     },
     "thaiunion": {
         "src": "docs/evidence/company-thaiunion-2026-08/보고서.html",
@@ -48,7 +50,7 @@ SPECS: dict[str, dict] = {
         "stages": {"s1": "c01", "s2": "c02", "s3": "c03", "s4": "c04",
                    "s5": "c04", "s6": "c06", "s7": "c06", "s8": "c05", "s9": "c07"},
         "drop": ["s1|항목 | 내용", "s1|연도 | 사건", "s1|순위 | 주주",
-                 "s3|브랜드 | 본거지", "s4|브랜드 실판매가", "s5|지역 | 거점",
+                 "s3|브랜드 | 본거지", "s4|브랜드 실판매가",
                  "s6|항목 (백만 밧)", "s7|층 | 시점", "s7|품목 | 실효",
                  "s8|목표 (2030년", "s9|HS | 어종"],
     },
@@ -66,7 +68,9 @@ SPECS: dict[str, dict] = {
         "src": "docs/evidence/company-fcf-2026-08/보고서.html",
         # 07절 「독립 트레이더는 멸종했다」는 시장 구조라 03 사업구조 쪽이 맞다.
         # 리스크만 05에 남겨야 한 단계에 여덟 개가 쌓이지 않는다.
-        "stages": {"s1": "c01", "s2": "c02", "s3": "c03", "s4": "c04", "s5": "c04",
+        # s3b 「그룹 법인 — 열다섯 나라에 서고 다섯만 보고한다」는 공시 경계라 02 지배구조 쪽이다.
+        "stages": {"s1": "c01", "s2": "c02", "s3": "c03", "s3b": "c02",
+                   "s4": "c04", "s5": "c04",
                    "s6": "c05", "s7": "c03", "s8": "c06", "s9": "c06",
                    "s10": "c06", "s11": "c06"},
         "drop": ["s1|국가 | 법인"],
@@ -75,7 +79,7 @@ SPECS: dict[str, dict] = {
         "src": "docs/evidence/company-itochu-2026-08/보고서.html",
         "stages": {"s1": "c01", "s2": "c02", "s3": "c04", "s4": "c03", "s5": "c04",
                    "s6": "c06", "s7": "c05", "s8": "c05", "s9": "c06"},
-        "drop": ["s1|항목 | 내용", "s3|항목 | 내용", "s4|기국 | 척수", "s4|# | 선명",
+        "drop": ["s1|항목 | 내용", "s4|기국 | 척수", "s4|# | 선명",
                  "s7|세그먼트 | FY2024", "s7|구분 | FY2024"],
     },
     "bolton": {
@@ -102,6 +106,7 @@ def build(key: str, spec: dict) -> tuple[int, int, int]:
 
     per_section: dict[str, int] = {}
     hits: dict[str, int] = {d: 0 for d in spec["drop"]}
+    moves: dict[str, int] = {}
     kept, dropped = [], 0
     for t in ts.all:
         per_section[t.sid] = per_section.get(t.sid, 0) + 1
@@ -113,6 +118,12 @@ def build(key: str, spec: dict) -> tuple[int, int, int]:
                 hits[d] += 1
                 matched = d
         stage = spec["stages"].get(t.sid)
+        # 한 절이 화면에서 두 단계로 갈리는 경우가 있다. 표 하나만 다른 단계로 보낸다.
+        for m, dest in spec.get("move", {}).items():
+            msid, mfrag = m.split("|", 1)
+            if t.sid == msid and mfrag in sig:
+                stage = dest
+                moves[m] = moves.get(m, 0) + 1
         if matched or stage is None or not t.rows:
             dropped += 1
             continue
@@ -124,6 +135,11 @@ def build(key: str, spec: dict) -> tuple[int, int, int]:
     bad = {d: n for d, n in hits.items() if n != 1}
     if bad:
         raise SystemExit(f"{key}: 제외 선언이 표와 1:1로 안 맞는다 — {bad}")
+
+    # 이동 선언도 정확히 한 표에 걸려야 한다.
+    badm = {m: moves.get(m, 0) for m in spec.get("move", {}) if moves.get(m, 0) != 1}
+    if badm:
+        raise SystemExit(f"{key}: 이동 선언이 표와 1:1로 안 맞는다 — {badm}")
 
     expect = spec.get("expect")
     if expect and expect != per_section:
