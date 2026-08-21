@@ -1,26 +1,26 @@
 {
   "_meta": {
     "schemaVersion": 1,
-    "reportCount": 137,
+    "reportCount": 138,
     "firstReportDate": "2026-01-16",
-    "latestReportDate": "2026-08-19",
-    "latestAsOf": "2026-08-18",
-    "detailSha256": "1d7a3aba18b15b4b0daaa35835b2946bc179afe24211b0729430c8e2369f2688"
+    "latestReportDate": "2026-08-21",
+    "latestAsOf": "2026-08-20",
+    "detailSha256": "5212c6e7f5d73f761801e2e72d2b893374aa967124f05932279b95f5e8a020ba"
   },
   "latest": {
-    "reportDate": "2026-08-19",
-    "asOf": "2026-08-18",
+    "reportDate": "2026-08-21",
+    "asOf": "2026-08-20",
     "pacific": {
-      "asOf": "2026-08-18",
-      "dailyMt": 13,
-      "monthlyMt": 2334,
-      "annualMt": 47166.8
+      "asOf": "2026-08-20",
+      "dailyMt": 33,
+      "monthlyMt": 2417,
+      "annualMt": 47249.8
     },
     "atlantic": {
-      "asOf": "2026-08-18",
-      "dailyMt": 170,
-      "monthlyMt": 3110,
-      "annualMt": 29835
+      "asOf": "2026-08-20",
+      "dailyMt": 320,
+      "monthlyMt": 3745,
+      "annualMt": 30470
     },
     "carrier": {
       "loadedTotalMt": 11492.3,
@@ -28,20 +28,20 @@
     }
   },
   "deltas": {
-    "pacificDailyMt": -59,
-    "atlanticDailyMt": -5,
-    "totalDailyMt": -64
+    "pacificDailyMt": 20,
+    "atlanticDailyMt": 150,
+    "totalDailyMt": 170
   },
   "reconciliation": {
     "pacificDaily": {
-      "reportedMt": 13,
-      "rowsMt": 13,
+      "reportedMt": 33,
+      "rowsMt": 33,
       "matches": true,
       "missingCount": 0
     },
     "atlanticDaily": {
-      "reportedMt": 170,
-      "rowsMt": 170,
+      "reportedMt": 320,
+      "rowsMt": 320,
       "matches": true,
       "missingCount": 0
     },
@@ -63,8 +63,8 @@
   },
   "quality": {
     "counts": {
-      "reconciliationChecks": 548,
-      "reconciliationCompleteChecks": 548,
+      "reconciliationChecks": 552,
+      "reconciliationCompleteChecks": 552,
       "reconciliationUnavailableChecks": 0,
       "reconciliationUnavailableDocuments": 0,
       "reconciliationIssues": 14,

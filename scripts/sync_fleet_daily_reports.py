@@ -592,6 +592,73 @@ def build_public_payload(payload: dict[str, Any], detail_sha256: str) -> dict[st
     }
 
 
+def build_incremental_public_payload(
+    previous_public: dict[str, Any],
+    report: dict[str, Any],
+    issues: dict[str, list[Any]],
+    detail_sha256: str,
+) -> dict[str, Any]:
+    try:
+        previous_meta = previous_public["_meta"]
+        previous_latest = previous_public["latest"]
+        previous_quality = previous_public["quality"]
+        counts = dict(previous_quality["counts"])
+        previous_date = previous_meta["latestReportDate"]
+    except (KeyError, TypeError) as error:
+        raise FleetDailySyncError("기존 공개 집계 JSON 계약이 올바르지 않습니다") from error
+
+    if report["reportDate"] <= previous_date:
+        raise FleetDailySyncError(
+            f"증분 원문 보고일은 기존 최신일({previous_date})보다 뒤여야 합니다: {report['reportDate']}"
+        )
+
+    checks = issues["reconciliationChecks"]
+    complete_statuses = {"completeMatch", "completeMismatch"}
+    issue_statuses = {"completeMismatch", "knownRowsExceedReported"}
+    partial_statuses = {*issue_statuses, "incompletePartialDifference"}
+    unavailable_count = sum(check["status"] not in complete_statuses for check in checks)
+    issue_count = sum(check["status"] in issue_statuses for check in checks)
+    partial_count = sum(check["status"] in partial_statuses for check in checks)
+    incomplete_count = sum(check["status"] == "incompletePartialDifference" for check in checks)
+
+    counts["reconciliationChecks"] += len(checks)
+    counts["reconciliationCompleteChecks"] += len(checks) - unavailable_count
+    counts["reconciliationUnavailableChecks"] += unavailable_count
+    counts["reconciliationUnavailableDocuments"] += int(unavailable_count > 0)
+    counts["reconciliationIssues"] += issue_count
+    counts["reconciliationDocuments"] += int(issue_count > 0)
+    counts["reconciliationPartialDifferences"] += partial_count
+    counts["reconciliationPartialDifferenceDocuments"] += int(partial_count > 0)
+    counts["duplicateVesselRows"] += len(issues["duplicateVessel"])
+    counts["coordinateFormatIssues"] += len(issues["coordinate"])
+    counts["longlineSectionMissing"] += len(issues["longlineMissing"])
+
+    incremental_payload = {
+        "_meta": {
+            "schemaVersion": 1,
+            "reportCount": previous_meta["reportCount"] + 1,
+            "firstReportDate": previous_meta["firstReportDate"],
+            "latestReportDate": report["reportDate"],
+            "latestAsOf": report["asOf"],
+        },
+        "latest": report,
+        "previous": previous_latest,
+        "quality": {
+            "reconciliationChecks": checks,
+            "counts": counts,
+        },
+    }
+    public_payload = build_public_payload(incremental_payload, detail_sha256)
+    public_payload["quality"] = {
+        "counts": counts,
+        "incompletePartialDifferences": previous_quality["incompletePartialDifferences"] + incomplete_count,
+        "incompletePartialDifferenceDocuments": (
+            previous_quality["incompletePartialDifferenceDocuments"] + int(incomplete_count > 0)
+        ),
+    }
+    return public_payload
+
+
 def parse_carrier_display_name(name: str) -> tuple[str, int | None]:
     match = re.match(r"^(.*?)\s*\(([\d,]+)\)(.*)$", name)
     if not match:
@@ -680,6 +747,11 @@ def argument_parser() -> argparse.ArgumentParser:
         default=[],
         help="기존 이력에 합칠 신규 DOCX 원문(여러 번 지정 가능)",
     )
+    parser.add_argument(
+        "--latest-report",
+        type=Path,
+        help="현재 공개 누계에 증분 반영할 최신 DOCX 원문 한 건",
+    )
     parser.add_argument("--output", type=Path, default=DEFAULT_OUTPUT, help="로컬 전용 원문 파생 JSON 경로")
     parser.add_argument("--public-output", type=Path, help="커밋 가능한 공개 집계 JSON 경로")
     parser.add_argument("--detail-output", type=Path, help="서버 환경변수용 최신 상세 DTO 경로")
@@ -699,6 +771,25 @@ def main(argv: Sequence[str] | None = None) -> int:
         output = args.output.resolve()
         public_output = args.public_output.resolve() if args.public_output else companion_output(output, "public")
         detail_output = args.detail_output.resolve() if args.detail_output else companion_output(output, "detail")
+        if args.latest_report:
+            if args.source_dir or args.additional_report or args.check:
+                raise FleetDailySyncError("--latest-report는 --source-dir, --additional-report, --check와 함께 쓸 수 없습니다")
+            entry = report_entry(args.latest_report, required=True)
+            if entry is None:
+                raise FleetDailySyncError("최신 원문 DOCX를 읽을 수 없습니다")
+            report, issues = parse_report(*entry)
+            previous_public = json.loads(public_output.read_text(encoding="utf-8"))
+            detail_payload = build_detail_payload({"latest": report})
+            public_payload = build_incremental_public_payload(
+                previous_public,
+                report,
+                issues,
+                canonical_sha256(detail_payload),
+            )
+            atomic_write(public_output, serialized(public_payload))
+            atomic_write(detail_output, serialized(detail_payload))
+            print(f"fleet daily 증분 동기화 완료: {public_output} ({public_payload['_meta']['reportCount']}건)")
+            return 0
         payload = build_payload(
             args.source_dir or default_source_dir(),
             args.additional_report,
@@ -723,7 +814,7 @@ def main(argv: Sequence[str] | None = None) -> int:
         atomic_write(detail_output, detail_content)
         print(f"fleet daily 동기화 완료: {public_output} ({payload['_meta']['reportCount']}건)")
         return 0
-    except (FleetDailySyncError, OSError) as error:
+    except (FleetDailySyncError, OSError, json.JSONDecodeError) as error:
         print(f"fleet daily 동기화 실패: {error}", file=sys.stderr)
         return 1
 
