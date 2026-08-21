@@ -1,3 +1,13 @@
+> 📇 **2026-08-21 12:58 KST — 기업 해부 3사에 최신 조사 결과 반영** [CC]:
+> - 격리 worktree `/private/tmp/ca-report` (`feat/company-report-sync`, origin/main 기준)에서 작업했다. 다른 세션이 편집 중인 더러운 트리를 피하려고 별도 브랜치를 끊었다.
+> - **FCF**: 회사 지도에만 있던 두 법인이 현지 등기로 잡혔다 — 파나마 THALASSIC TUNA TEAM, S.A.(Folio 155755828, 2024-08-21 등기, IATTC 4,794척 전수에 명의 선박 0척)와 PNG MAJESTIC SEAFOOD CORPORATION(1-67560, 2009-04-24 등록, 라에 Portion 640 Busu Road, 참치 조업·가공 겸업). 04단계의 「두 법인의 설립연도·지분·기능은 공개되지 않는다」를 정정했다.
+> - **FCF facts 3건 신설**: 지배사슬 각 단 완전소유(Akhmad v. Bumble Bee Foods, S.D. Cal. Dkt.22-1 각주1 — A급), Besford Limited 세이셸 IBC(파산법원 19-12502 Doc 31-2 첨부 에스크로 약정), Bumble Bee Holding Company 1 델라웨어 7692191(2019-11-07 설립). 「100% 자회사」는 인수 fact의 note에서 빼고 A급 근거가 붙은 별도 fact로 옮겼다.
+> - **FCF 문단 추가**: 북미 계열 신설법인 승계 구조 — 2019-11-07 델라웨어 BB Holding Co.1, 11-10 BC Clover Leaf 3사, 11-13 델라웨어 Tonos US LLC 설립 후 11-21 파산보호 신청, 클로징일 2020-01-31에 Tonos가 Bumble Bee Foods, LLC로 개명.
+> - **JAIS**: MSC 유통과정관리 인증번호 MSC-C-55356 fact 추가(등록명 JAIS S.R.L.). **Bolton**: 탄소발자국 중 Tri Marine 72.9% fact 추가.
+> - 대시보드 7개 회사 파일을 정정 대상 10종(Jerry=周昌毅 동일인, 모회사 CEO 겸직, 이탈리아 HS0303 33%, Bolton 220척·가동 11척, AGCM C11761 등)으로 전수 스캔했다. **되살아난 오류 0건** — JAIS의 「Jais, S.P.A.」와 Panofi 판매권 2건은 각각 「현존하지 않는 상호」·과거형 서술이라 오탐이다.
+> - 검증: `company-fcf`/`jais`/`bolton`/`report-tables` 테스트 **95건 통과**, 전체 vitest 1,075 passed. 실패 3건은 `nodemailer` 미설치로 인한 **기존 실패**이며 stash 대조로 내 변경과 무관함을 확인했다. tsc 신규 오류 0.
+> - **다음 단계**: 배포는 사용자 요청 시에만. 원본 보고서는 Drive `02_참치_가공·유통·기업/{대만/FCF, 이탈리아/JAIS, 이탈리아/Bolton}/03_통합`에 있고 FCF는 A4 33쪽 합본이 정본이다.
+>
 > 🚀 **2026-08-21 09:10 KST — Atuna 8/20 가격 배포 실패 복구·라이브 반영** [Codex]:
 > - PR [#714](https://github.com/CUTEKOREA/tuna-dashboard/pull/714)을 squash merge `d9b596df`로 병합했다. PR App Quality Gate `32430813386`, main gate `32431092111`이 모두 성공했다.
 > - Vercel Production `dpl_6f2VCgMhLTkjkW8HsQErofRToBFS`(GitHub deployment `6012889083`)가 READY이고 `https://leedonggun.co.kr` alias에 연결됐다. 최근 15분 error/fatal 로그는 각각 0건이다.

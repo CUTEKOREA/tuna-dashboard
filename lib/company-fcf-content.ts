@@ -93,10 +93,14 @@ const S04: StageNarrative = {
   paragraphs: [
     '「그룹 구성」에서 보듯 FCF는 대만 본사 아래에 **미국 Bumble Bee Seafood·ANOVA, 캐나다 Clover Leaf Seafood, 파나마 Thalassic Tuna Team**을 자회사로 두고, 일본 시미즈의 FCN International과 싱가포르 FCS Trading Fishery를 지사로 둔다. Bumble Bee는 중간지주 4개를 거치는 구조다.',
     '**이 인수가 공급자에게 갖는 뜻은 분명하다.** 원료를 파는 쪽에서 보면, 사가는 상대가 이제 **최종 브랜드까지 쥔 사업자**다. 원료 가격과 완제품 마진이 한 그룹 안에서 정산되므로 원료 단가를 올릴 유인이 그만큼 줄어든다.',
-    '파푸아뉴기니 가공 자산과 가나 Cosmo는 자회사와 구분된 범주로 묶인다. 두 법인의 설립연도·지분·기능은 공개되지 않는다.',
+    '파푸아뉴기니 가공 자산과 가나 Cosmo는 자회사와 구분된 범주로 묶인다. 회사 지도에만 있던 두 법인은 이후 현지 등기로 실체가 잡혔다 — 파나마 **THALASSIC TUNA TEAM, S.A.**(2024-08-21 등기, 명의 선박 0척)와 파푸아뉴기니 **MAJESTIC SEAFOOD CORPORATION**(2009 등록, 라에 Busu Road, 참치 조업·가공 겸업). 다만 지분과 기능은 어느 쪽도 공개되지 않는다.',
+    '**북미 계열은 껍데기를 갈아 끼워 만들어졌다.** 2019년 11월 7일 델라웨어에 Bumble Bee Holding Company 1, 10일 브리티시컬럼비아에 Clover Leaf 세 법인, 13일 델라웨어에 Tonos US LLC를 세우고 21일에 파산보호를 신청했다. 클로징일인 2020년 1월 31일에 Tonos US LLC가 **Bumble Bee Foods, LLC**로 개명했다. 구법인의 채무를 신법인의 영업에서 떼어내는 구조다.',
   ],
   facts: [
-    { label: 'Bumble Bee 인수', value: 'US$9.3억', asOf: '2020년', source: '인수 공시 · 업계 매체', grade: 'B', note: '파산 경매 취득 · 100% 자회사' },
+    { label: 'Bumble Bee 인수', value: 'US$9.3억', asOf: '2020년', source: '인수 공시 · 업계 매체', grade: 'B', note: '파산 경매 취득' },
+    { label: '지배사슬 지분', value: '각 단 완전소유', asOf: '2025-06', source: 'Akhmad v. Bumble Bee Foods (S.D. Cal.) Dkt. 22-1 각주1', grade: 'A', note: 'FCF가 공시한 적은 없는 값 — 피고 진술로 특정' },
+    { label: 'Besford Limited', value: '세이셸 IBC', asOf: '2019-11', source: '파산법원 19-12502 인수계약 첨부 에스크로 약정', grade: 'A', note: '2010년 소수지분 투자 때부터 쓰인 기존 비히클' },
+    { label: 'Bumble Bee Holding Company 1', value: '델라웨어 7692191', asOf: '2019-11-07 설립', source: '델라웨어 등기', grade: 'A', note: '접미사 없는 상호가 정본' },
     { label: '보고경계', value: '5개사', asOf: '2024년', source: '회사 지속가능보고서', grade: 'A', note: 'PNG·가나 법인은 이 경계 밖' },
   ],
   terms: [

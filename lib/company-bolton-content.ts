@@ -29,6 +29,7 @@ const S01: StageNarrative = {
     { label: '2025년 순매출', value: '3,541 M€', asOf: 'FY2025', source: 'Sustainability Report 2025', grade: 'A', note: '2024년 3,528 M€ 대비 +0.4%' },
     { label: 'Food 비중', value: '67.3%', asOf: 'FY2025', source: '동상', grade: 'A', note: '캔참치·수산캔·육류캔·소스 합계' },
     { label: '참치 사이클 밖', value: '32.7%', asOf: 'FY2025', source: '동상', grade: 'A', note: '접착제·홈케어·퍼스널케어·뷰티' },
+    { label: '탄소발자국 중 Tri Marine', value: '72.9%', asOf: 'FY2025', source: 'Sustainability Report 2025 p.56', grade: 'A', note: '매출로는 Food 한 칸에 묻히는 사업이 배출로는 그룹을 대표한다' },
     { label: '브랜드 수', value: '63개', asOf: 'FY2025', source: '동상', grade: 'A', note: '5개 카테고리 합계' },
     { label: '상장', value: '비상장 가족기업', asOf: '2026-08', source: '이탈리아 등기', grade: 'A', note: '연결재무제표를 공표하지 않는다' },
   ],
