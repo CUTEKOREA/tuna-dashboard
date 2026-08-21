@@ -42,8 +42,8 @@ describe('HIKARI 1 Bangkok unloading plan and daily report', () => {
       buyer: 'FCF CO.,LTD',
       status: '하역중',
       reportedTotal: 2929,
-      actualTotal: 297.06,
-      surplus: -2631.94,
+      actualTotal: 803.04,
+      surplus: -2125.96,
     });
     const loadingPlan = vessel.timeline.find((entry: { date: string }) => entry.date === '7/17~7/20');
     expect(loadingPlan.quality).toContain('정격 3,700 MT');
@@ -72,12 +72,13 @@ describe('HIKARI 1 Bangkok unloading plan and daily report', () => {
     expect(loadingRecords[3].quality).toContain('1,005 MT 전량 FCF');
   });
 
-  it('publishes the structured August 20 discharge without duplicating the date', async () => {
+  it('keeps the structured August 20 discharge when the next report is added', async () => {
     const vessel = await loadHikari();
     const dischargeReports = vessel.timeline.filter((entry: { dailyAmount: number }) => entry.dailyAmount > 0);
+    const report = dischargeReports.find((entry: { date: string }) => entry.date === '8/20');
 
-    expect(dischargeReports).toHaveLength(1);
-    expect(dischargeReports[0]).toMatchObject({
+    expect(dischargeReports).toHaveLength(2);
+    expect(report).toMatchObject({
       date: '8/20',
       time: '10:00 ~ 15:20',
       targetHol: 'N/STAR(#3-A:104.240,#1-A:69.800), MOAMARI(#4-A:123.020)',
@@ -94,7 +95,7 @@ describe('HIKARI 1 Bangkok unloading plan and daily report', () => {
         plannedMt: '490',
       },
     });
-    expect(dischargeReports[0].allocations).toEqual([
+    expect(report?.allocations).toEqual([
       {
         consignee: 'MMP',
         amount: 174.04,
@@ -111,23 +112,89 @@ describe('HIKARI 1 Bangkok unloading plan and daily report', () => {
         ],
       },
     ]);
-    expect(dischargeReports[0].observations).toEqual([
+    expect(report?.observations).toEqual([
       { sourceVessel: 'N/STAR', hatch: '#3-A', temperaturesC: [-22] },
       { sourceVessel: 'N/STAR', hatch: '#1-A', temperaturesC: [-20] },
       { sourceVessel: 'MOAMARI', hatch: '#4-A', temperaturesC: [-20] },
     ]);
   });
 
+  it('publishes the source-backed August 21 discharge and the user-provided August 22 plan', async () => {
+    const vessel = await loadHikari();
+    const reports = vessel.timeline.filter((entry: { date: string }) => entry.date === '8/21');
+
+    expect(reports).toHaveLength(1);
+    expect(reports[0]).toMatchObject({
+      date: '8/21',
+      time: '08:10 ~ 15:00',
+      targetHol: 'N/STAR(#1-A:143.330), S/SPR(#2-B:132.550), N/STAR(#3-A:62.690,#3-B:60.820), MOAMARI(#4-A:4.990,#4-B:101.600)',
+      consignee: 'MMP · AAI · TUM · RMK',
+      dailyAmount: 505.98,
+      cumAmount: 803.04,
+      remainingAmount: 2125.96,
+      speciesAmounts: { SJ: 460.28, YF: 45.7 },
+      nextDay: {
+        kind: 'work',
+        date: '8/22',
+        reason: null,
+        resumeDate: null,
+        plannedMt: '570',
+      },
+    });
+    expect(reports[0].allocations).toEqual([
+      {
+        consignee: 'MMP',
+        amount: 143.33,
+        loads: [{ sourceVessel: 'N/STAR', hatch: '#1-A', amount: 143.33 }],
+      },
+      {
+        consignee: 'AAI',
+        amount: 132.55,
+        loads: [{ sourceVessel: 'S/SPR', hatch: '#2-B', amount: 132.55 }],
+      },
+      {
+        consignee: 'TUM',
+        amount: 123.51,
+        loads: [
+          { sourceVessel: 'N/STAR', hatch: '#3-A', amount: 62.69 },
+          { sourceVessel: 'N/STAR', hatch: '#3-B', amount: 60.82 },
+        ],
+      },
+      {
+        consignee: 'RMK',
+        amount: 106.59,
+        loads: [
+          { sourceVessel: 'MOAMARI', hatch: '#4-A', amount: 4.99 },
+          { sourceVessel: 'MOAMARI', hatch: '#4-B', amount: 101.6 },
+        ],
+      },
+    ]);
+    expect(reports[0].observations).toEqual([
+      { sourceVessel: 'N/STAR', hatch: '#1-A', temperaturesC: [-22, -23] },
+      { sourceVessel: 'S/SPR', hatch: '#2-B', temperaturesC: [-23] },
+      { sourceVessel: 'N/STAR', hatch: '#3-A', temperaturesC: [-19, -21] },
+      { sourceVessel: 'N/STAR', hatch: '#3-B', temperaturesC: [-23, -24] },
+      { sourceVessel: 'MOAMARI', hatch: '#4-A', temperaturesC: [-21] },
+      { sourceVessel: 'MOAMARI', hatch: '#4-B', temperaturesC: [-23, -24] },
+    ]);
+    expect(reports[0].quality).toContain('#4-B 차량 대기 12:00~13:00');
+    expect(reports[0].quality).toContain('#1-A 차량 대기 10:30~11:00·11:30~13:00');
+    expect(reports[0].quality).toContain('TUM/H1A1+1B1(N.STAR) 180 MT 08:00');
+    expect(reports[0].quality).toContain('AAI/H2B1(S.SPRINTER) 120 MT 08:00');
+    expect(reports[0].quality).toContain('CMC/H3B1(N.STAR) 120 MT 08:00(BKK)');
+    expect(reports[0].quality).toContain('ISA/H4B1(N.STAR) 150 MT 08:00');
+  });
+
   it('matches the FCF breakdown by species and source vessel', async () => {
     const vessel = await loadHikari();
 
     expect(vessel.species).toEqual([
-      expect.objectContaining({ id: 'SJ', name: '가다랑어', reported: 2515, actual: 146.14 }),
-      expect.objectContaining({ id: 'YF', name: '황다랑어', reported: 358, actual: 150.92 }),
+      expect.objectContaining({ id: 'SJ', name: '가다랑어', reported: 2515, actual: 606.42 }),
+      expect.objectContaining({ id: 'YF', name: '황다랑어', reported: 358, actual: 196.62 }),
       expect.objectContaining({ id: 'BE', name: '눈다랑어', reported: 56, actual: 0 }),
     ]);
     expect(vessel.species.reduce((sum: number, item: { reported: number }) => sum + item.reported, 0)).toBe(2929);
-    expect(vessel.species.reduce((sum: number, item: { actual: number }) => sum + item.actual, 0)).toBeCloseTo(297.06, 6);
+    expect(vessel.species.reduce((sum: number, item: { actual: number }) => sum + item.actual, 0)).toBeCloseTo(803.04, 6);
     expect(vessel.motherVessel).toBe('S/SPR 670 · MOAKONA 314 · MOAMARI 940 · NAOERO STAR 1,005 MT');
   });
 
@@ -154,10 +221,12 @@ describe('HIKARI 1 Bangkok unloading plan and daily report', () => {
     expect(holds['#4-A'].shippers).toEqual(['MOAMARI']);
     expect(holds['#2-B'].shippers).toEqual(['SHILLA SPRINTER']);
     expect(holds['#1-A'].shippers).toEqual(['NAOERO STAR']);
-    expect(holds['#3-A'].lastTemperature).toBe(-22);
-    expect(holds['#1-A'].lastTemperature).toBe(-20);
-    expect(holds['#4-A'].lastTemperature).toBe(-20);
-    expect(holds['#2-B'].lastTemperature).toBeNull();
+    expect(holds['#1-A'].lastTemperature).toBe(-23);
+    expect(holds['#2-B'].lastTemperature).toBe(-23);
+    expect(holds['#3-A'].lastTemperature).toBe(-20);
+    expect(holds['#3-B'].lastTemperature).toBe(-24);
+    expect(holds['#4-A'].lastTemperature).toBe(-21);
+    expect(holds['#4-B'].lastTemperature).toBe(-24);
   });
 
   it('shows the vessel as active after the first discharge', () => {
