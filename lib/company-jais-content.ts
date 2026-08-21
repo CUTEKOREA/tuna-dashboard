@@ -74,6 +74,7 @@ const S03: StageNarrative = {
   facts: [
     { label: '보건부 승인시설', value: '46,937행 중 0건', asOf: '2026-04-24 갱신', source: '이탈리아 보건부 명부', grade: 'A', note: '가공시설을 갖지 않는다' },
     { label: 'Friend of the Sea', value: 'Broker/Trader', asOf: '2021-04-05 생성분', source: 'FoS 승인고객 목록', grade: 'A', note: '제3자 선박 기반 중개' },
+    { label: 'MSC 유통과정관리', value: 'MSC-C-55356', asOf: '2026-08-20 조회', source: 'MSC 인증 데이터베이스', grade: 'A', note: '등록명 JAIS S.R.L. · 주업 Trading Fish' },
     { label: 'MSC CoC', value: 'Main Activity: Trading Fish', asOf: '2026-08-20 조회', source: 'MSC 인증 데이터베이스', grade: 'A', note: '매매만 한다' },
     { label: 'FoS 등재행', value: '43 → 0', asOf: '2018 → 2023-11 이후', source: 'FoS 승인선박 명부 판별', grade: 'A', note: '네 판 연속 0행' },
     { label: '같은 판의 FCF', value: '34행 전부 유효', asOf: '2023-11 이후', source: '동상', grade: 'A', note: '명부가 축소된 것이 아니다' },
