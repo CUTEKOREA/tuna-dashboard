@@ -107,8 +107,8 @@ h2{font-family:var(--disp);font-weight:700;font-size:1.75rem;letter-spacing:-.02
   letter-spacing:.1em;display:block;margin-bottom:.9rem}
 h3{font-family:var(--disp);font-weight:700;font-size:1.1rem;margin:2.6rem 0 .7rem}
 h4{font-family:var(--sans);font-weight:600;font-size:.92rem;margin:1.8rem 0 .5rem;color:var(--ink-2)}
-p{margin:0 0 1.1rem;max-width:44rem}
-.lead{font-size:1.1rem;line-height:1.7;color:var(--ink-2);max-width:44rem}
+p{margin:0 0 1.1rem;max-width:none}
+.lead{font-size:1.1rem;line-height:1.7;color:var(--ink-2);max-width:none}
 strong{font-weight:600;color:var(--ink)}
 .es{font-style:italic}
 code{font-family:var(--mono);font-size:.85em;background:var(--paper-2);padding:.1em .3em;
@@ -149,22 +149,30 @@ th{background:var(--paper-2);text-align:left;font-weight:600;font-size:.71rem;le
   text-transform:uppercase;color:var(--ink-2);padding:.6rem .8rem;
   border-bottom:1px solid var(--rule-2);white-space:nowrap}
 td{padding:.55rem .8rem;border-bottom:1px solid var(--rule);color:var(--ink-2);vertical-align:top}
+/* 브라우저 기본값은 한글을 글자 단위로 끊는다 — 좁은 칸에서 낱말이 갈라진다.
+   한국어 조판의 기본은 띄어쓰기에서만 끊는 것이다. */
+main th,main td{word-break:keep-all}
+
 tr:last-child td{border-bottom:none}
 td.num,th.num{text-align:right;font-family:var(--mono);font-variant-numeric:tabular-nums;white-space:nowrap}
+/* .num 은 숫자를 안 끊으려고 nowrap 이다. 그런데 같은 칸에 붙는 주석 줄까지
+   붙들려 표가 컨테이너를 밀어냈다 — 숫자와 칩은 그대로 두고 주석만 접는다. */
+td.num span:not(.chip):not(.basis){white-space:normal;word-break:keep-all}
+
 td b{color:var(--ink);font-weight:600}
 tr.hl td{background:var(--indigo-soft)}
 tr.dim td{color:var(--ink-3)}
 
 /* ===== CALLOUT / QUOTE ===== */
 .call{border:1px solid var(--rule-2);background:var(--card);padding:1.15rem 1.3rem;margin:0 0 1.6rem;
-  max-width:46rem}
+  max-width:none}
 .call.hot{border-left:3px solid var(--brass)}
 .call.warn{border-left:3px solid var(--warn);background:var(--warn-bg)}
 .call .ct{font-family:var(--disp);font-weight:700;font-size:.82rem;margin:0 0 .5rem;color:var(--ink)}
 .call p{margin:0 0 .6rem;font-size:.89rem;line-height:1.7}
 .call p:last-child{margin-bottom:0}
 blockquote{margin:0 0 1.2rem;padding:.85rem 1.1rem;background:var(--paper-2);
-  border-left:3px solid var(--indigo);max-width:46rem;font-size:.9rem;line-height:1.65;color:var(--ink-2)}
+  border-left:3px solid var(--indigo);max-width:none;font-size:.9rem;line-height:1.65;color:var(--ink-2)}
 blockquote .who{display:block;margin-top:.5rem;font-family:var(--mono);font-size:.69rem;color:var(--ink-3)}
 
 /* ===== MISC ===== */
@@ -186,7 +194,7 @@ blockquote .who{display:block;margin-top:.5rem;font-family:var(--mono);font-size
 .certrow img{height:3rem;width:auto;opacity:.9}
 footer{border-top:2px solid var(--ink);margin-top:1rem;padding:1.75rem 0 4rem;
   font-family:var(--sans);font-size:.79rem;color:var(--ink-3);line-height:1.7}
-footer p{max-width:52rem}
+footer p{max-width:none}
 @media(prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
 
 /* ===== 연결 / 개별 이중기준 표 ===== */
@@ -1516,15 +1524,12 @@ th.grp{color:var(--indigo)}
     2025년은 잠정치일 수 있다. 태국 신고 기준 한국산 비중 약 14.8%는 분할자료에 기반해 상한 추정일 수 있다.</p>
 
   <div class="call hot">
-    <p class="ct">한국 기업 공시와 사내 거래자료가 보여주는 접점</p>
+    <p class="ct">한국 기업 공시가 보여주는 접점</p>
     <p><strong>동원산업 FY2025 사업보고서</strong>는 이렇게 적는다. "통조림용 참치의 경우 국내 및  <b>태국</b>, 미국, 중남미, 유럽 등의 거래처에 국제 시세로 현금 판매".
       어획물 매출 중 수출(태국·베트남 등)이 <strong>37.03%</strong>.</p>
     <p><strong>신라교역 FY2025 사업보고서</strong>는 이렇게 적는다. "미국과 태국 간 상호관세 협상 이후…  <b>참치 가공업체들은 매입을 일시적으로 보류</b>하며 시장 상황을 관망".
       태국을 <strong>가격형성 시장</strong>으로 기술한다.
       앞서 본 타이유니온 매입 −25%와 같은 사건을 반대편에서 보고 있다.</p>
-    <p><strong>신라 내부 거래자료에는 2026년 TUM·TUG 송장과 TUG 하역·사이징 보고가 기록돼 있다.</strong>
-      동원·사조의 개별 계약 상대방과 물량은 공시에 공개되지 않으며,
-      사조는 현행 PVR에 대형 선망선 7척이 등재돼 있다. <span class="chip c-nd">일부 비공시</span></p>
   </div>
 
   <h3>미국 시장: 담합 사건의 비대칭 결말</h3>
@@ -1655,8 +1660,8 @@ th.grp{color:var(--indigo)}
      Thai Union Group Public Company Limited (SET: TU) 기업·시장·공급망 리포트. 2026년 8월 발행.</p>
   <p><b>자료 기준과 해석 범위.</b> 주요 출처는 <b>Form 56-1 One Report FY2025</b>(478쪽, 회계연도 종료 2025-12-31),
      SeaChange 지속가능성보고서 2023·2024, 분기 실적발표·MD&amp;A, TTIA 태국 참치 수출입 통계,
-     ISSF PVR(2026-08-20), 태국 관세청·수산청, 미 DOJ, DART와 신라 내부 거래자료다.
-     내부 자료의 민감정보와 금액은 공개 대상이 아니다. 쪽수는 PDF 인쇄쪽 기준이다.</p>
+     ISSF PVR(2026-08-20), 태국 관세청·수산청, 미 DOJ, DART다.
+     쪽수는 PDF 인쇄쪽 기준이다.</p>
   <p><b>수치에는 기준이 따라붙는다.</b> 타이유니온은 연결과 개별의 순이익이 역전되며(개별 102.6억 &gt; 연결 56.5억),
      연결 안에서도 당기순이익과 지배주주 귀속 순이익이 10.4억 밧 차이 난다.</p>
   <p><span class="chip c-doc">원본</span> 감사 재무제표·공시 원문 &nbsp;
