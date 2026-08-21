@@ -96,7 +96,10 @@ def _grid(trs: list[str], ncols: int) -> list[list[str]]:
         row: list[str | None] = [None] * ncols
         for col, (txt, left) in list(carry.items()):
             if col < ncols:
-                row[col] = txt
+                # 원문에서 세로로 병합된 칸이다. 값은 첫 행에만 있고 아래는 비어 보인다.
+                # 여기서 값을 복제하면 같은 문장이 행마다 되풀이돼 표가 읽히지 않는다.
+                # 다만 첫 열은 좁은 화면 목록에서 그 행의 제목으로 쓰이므로 남긴다.
+                row[col] = txt if col == 0 else ""
             if left <= 1:
                 del carry[col]
             else:
