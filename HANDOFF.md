@@ -1,3 +1,14 @@
+> 🧪 **2026-08-21 20:12 KST — HIKARI 1 8/21 하역 일일보고 로컬 검증 완료** [Codex]:
+> - 전용 worktree `/private/tmp/tuna-unloading-hikari-0821` (`codex/unloading-hikari-20260821`)에서 원본 3종을 교차 확인했다. SHA-256: JPG `a45de424…360bc`, 결과 XLS `530591db…d2c3d`, 현황 XLSX `268e9833…ca8aa`.
+> - 검산: `297.060 + 505.980 = 803.040 MT`, `2,929 - 803.040 = 2,125.960 MT`. 당일 MMP `143.330`, AAI `132.550`, TUM `123.510`, RMK `106.590 MT`; 어창 6곳·온도 `-19~-24℃`·차량대기 3구간을 원문대로 보존했다.
+> - XLS 어종은 SJ 일일 `460.280`·누계 `606.420`, YF 일일 `45.700`·누계 `196.620 MT`. 어창별 어종은 추정하지 않았다. 사용자 입력 8/22 계획 4건 합계 `570 MT`와 원문 토큰을 명일 계획·작업 기록에만 반영했다.
+> - Google Tasks: 기존 8/21 `HIKARI 1 ###톤`을 `HIKARI 1 505.980 MT`로 수정하고 `내 할 일 목록`·오늘·미완료·중복 없음 확인. Drive에 `20260821 HIKARI 1 (BKK) 하역 업무 보고.txt` 저장, 렌더러 diff 0, SHA-256 `8947cc14…f474b`.
+> - RED→GREEN: HIKARI 계약 5건 실패 후 9/9 통과, 연간 통합 E2E `36,590 → 37,096 MT` 실패 후 desktop/mobile/keyboard/open-tab/API/chunk isolation 통과. `npm run verify` 최종 통과(ESLint 0 errors·기존 warnings 12, Vitest 1,106 passed/2 skipped, API cache 158/158, Next 118페이지, 누출·번들 게이트).
+> - 로컬 production API·보호 화면: HIKARI 누계 `803.040`, 현재 두 선박 누계 `4,042.600`, 연간 통합 `37,096.120 MT`. 1440×1000·390×844에서 overflow/page/console/local request/HTTP errors 모두 0. 독립 반증 검토도 원본·산술·해시·멱등·입력 경계 전체 PASS.
+> - **다음 단계**: PR gate → main 병합 → Vercel Production → 운영 API·보호 화면·로그 확인.
+>
+> 마지막 업데이트: 2026-08-21 20:12 KST [Codex]
+
 > ✍️ **2026-08-21 16:30 KST — 시장 이해 5개 어종 페이지 서술 윤문(humanize-korean v1.5)** [CC]:
 > - 격리 worktree `/private/tmp/ca-report`, 최신 `origin/main`(`9947d0f0`)에서 새 브랜치 `feat/humanize-market-understanding`를 끊었다. 대상은 `lib/{tuna,squid,shrimp,whelk,mackerel}-industry-content.ts`의 `StageNarrative` 산문(`lede`·`paragraphs`)뿐이고 수치·표·fact·용어 정의는 건드리지 않았다.
 > - 추출 309블록 47,607자 → run_id 5개. 새우·고등어·골뱅이는 fast(monolith 단일 호출), 참치 17,748자·오징어 13,159자는 8,000자 초과라 strict(5인 파이프라인)로 자동 승급했고 각각 3청크·2청크로 나눠 돌렸다.
