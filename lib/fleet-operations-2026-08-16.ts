@@ -274,7 +274,7 @@ export const atlanticDailyReport = {
   monthlyCatchMt: 3_425,
   annualCatchMt: 30_150,
   vessels: [
-    { name: 'P/MAS', position: 'S0050 W01404 (H)', catchMt: 65, loadedMt: 750, note: '8/23 15:00 TEMA 입항, 하역 후 8/26 출항 예정' },
+    { name: 'P/MAS', position: 'S0050 W01404 (H)', catchMt: 65, loadedMt: 750, note: '' },
     { name: 'P/DIS', position: 'S0106 W00910 (H)', catchMt: 30, loadedMt: 640, note: '' },
     { name: 'P/FORE', position: 'S0459 W01203 (H)', catchMt: 70, loadedMt: 260, note: '' },
     { name: 'P/PATH', position: 'S0230 W02300 (H)', catchMt: 0, loadedMt: 385, note: '' },

@@ -93,7 +93,7 @@ class DashboardDailyOperatorTest(unittest.TestCase):
         self.assertEqual(command[-2:], ["--input", str(source)])
         self.assertIsInstance(command, list)
 
-    def test_fleet_file_is_added_to_default_history_instead_of_replacing_it(self) -> None:
+    def test_fleet_file_uses_incremental_latest_report_mode(self) -> None:
         module = load_operator_module()
         registry = module.load_registry(REGISTRY_PATH)
         fleet = module.get_page(registry, "fleet-daily")
@@ -103,7 +103,7 @@ class DashboardDailyOperatorTest(unittest.TestCase):
 
             command = module.build_prepare_command(fleet, source)
 
-        self.assertEqual(command[-2:], ["--additional-report", str(source)])
+        self.assertEqual(command[-2:], ["--latest-report", str(source)])
 
     def test_state_resumes_from_prepared_page_and_rejects_skipped_stage(self) -> None:
         module = load_operator_module()

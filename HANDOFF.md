@@ -1,3 +1,13 @@
+> ⚓ **2026-08-21 18:39 KST — 해양수산본부 8/21 일일보고 `/fleet` 반영 준비** [Codex]:
+> - 원문 `해양수산본부 일일업무보고-260821 (금).docx`(167,779 bytes, SHA-256 `cc282e9b…10e65`)를 Google Drive 정본 폴더에서 확인했고 DOCX ZIP 무결성을 통과했다.
+> - 공개 집계는 보고일 `2026-08-21`, 조업 기준일 `2026-08-20`, 전체 138건이다. 태평양 일간/월간/연간 `33 / 2,417 / 47,249.8 MT`, 대서양 `320 / 3,745 / 30,470 MT`, 운반선 선적/예상잔량 `11,492.3 / 6,317.7 MT`, 전일 일간 합계 대비 `+170 MT`다.
+> - 최신 4개 행 검산은 모두 일치하고 최신 이슈 0건이다. 누계 검산은 552회이며 기존 과거 이슈 수는 변하지 않았다. 공개 JSON에는 선박명·좌표·비고·적재계획이 없고 보호 상세 SHA 바인딩이 일치한다.
+> - Google Drive 자리표시자 때문에 전체 폴더 재검산이 `260121` 다운로드에서 멈춰, 새 DOCX 한 건과 기존 공개 누계를 합치는 `--latest-report` 증분 모드를 TDD로 추가했다. 이전/같은 보고일은 fail-closed이며 전체 재빌드 경로는 보존한다. 운영자 파일 입력도 `--latest-report`로 연결했다.
+> - 실제 상세 누출 게이트가 새 대서양 비고와 `lib/fleet-operations-2026-08-16.ts`의 P/MAS 정적 비고 중복 1건을 잡았다. 정적 비고를 비우고 원문 비고는 인증 상세 API에만 남겼다. 재빌드 후 실제 보호 토큰 36개 누출 0건이다.
+> - RED: 운영자 인자와 증분 빌더/CLI 미구현 실패를 각각 확인. GREEN: Python 21건, focused Vitest 8 files/45 passed/1 skipped, diff-check 통과. 운영자 상태는 `verified`다.
+> - `npm run verify` 통과: ESLint 0 errors(기존 warnings 12), TypeScript, Python 21건, Vitest 145 files/1,106 passed/1 skipped, API cache 158/158, Next 118페이지, 실제 보호 토큰 36개 누출 0, bundle 33 routes.
+> - **다음:** 전체 `npm run verify` → Production 보호 상세 env 교체 → PR/Vercel Preview → main 병합 → 인증 API와 1440px·390px `/fleet` 라이브 검증.
+>
 > ✍️ **2026-08-21 16:30 KST — 시장 이해 5개 어종 페이지 서술 윤문(humanize-korean v1.5)** [CC]:
 > - 격리 worktree `/private/tmp/ca-report`, 최신 `origin/main`(`9947d0f0`)에서 새 브랜치 `feat/humanize-market-understanding`를 끊었다. 대상은 `lib/{tuna,squid,shrimp,whelk,mackerel}-industry-content.ts`의 `StageNarrative` 산문(`lede`·`paragraphs`)뿐이고 수치·표·fact·용어 정의는 건드리지 않았다.
 > - 추출 309블록 47,607자 → run_id 5개. 새우·고등어·골뱅이는 fast(monolith 단일 호출), 참치 17,748자·오징어 13,159자는 8,000자 초과라 strict(5인 파이프라인)로 자동 승급했고 각각 3청크·2청크로 나눠 돌렸다.

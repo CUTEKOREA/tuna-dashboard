@@ -22,7 +22,7 @@
       "adapter": "command",
       "prepare": ["python3", "scripts/sync_fleet_daily_reports.py"],
       "sourceArg": "--source-dir",
-      "sourceFileArg": "--additional-report",
+      "sourceFileArg": "--latest-report",
       "verify": ["python3", "scripts/test_sync_fleet_daily_reports.py"],
       "outputs": ["lib/data/generated/fleet-daily-public.json"],
       "dateOutput": "lib/data/generated/fleet-daily-public.json",
