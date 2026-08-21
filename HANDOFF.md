@@ -1,3 +1,10 @@
+> 🛠️ **2026-08-21 08:52 KST — Atuna 8/20 배포 실패 원인 제거** [Codex]:
+> - 수동 Production prebuilt 배포 `dpl_A1tPT79EodoJJFspahcyLyJXTbAh`와 `dpl_BLmv2n1CkcafJsSsit8oq57Xo3SW`는 `.vercel/output` 배치 중 `/vercel/path0/data/carrot/scripts/agri_collector.py`를 다시 찾다가 실패했다. 운영 alias는 직전 READY `dpl_86t6wC9GSVPbxnHoJWL1kg2nhVqu`를 계속 가리켜 서비스 중단은 없었다.
+> - 실패 산출물은 최신 `main`이 아니라 2026-08-17 기준으로 갈라진 `codex/fleet-production-2025`의 prebuilt 재배포에서 만들어졌다. `/vercel/path0`에서 생성된 trace의 절대 원본경로를 재사용한 것이 직접 원인이며, 뒤이은 `de038a26`은 오프라인 당근 수집 스크립트를 강제 tracing했지만 같은 문제를 해결하지 못했다.
+> - 해결 브랜치는 최신 `main` 격리 worktree `codex/atuna-0820-deploy-fix`에서 시작했다. 실제 배포 목적이던 Atuna 최신 관측만 반영하고 오래된 브랜치·prebuilt 산출물·당근 tracing 변경은 가져오지 않았다.
+> - 최신 `main`의 로컬 전체 빌드는 통과했다. 배포는 실패한 `.vercel/output`을 재사용하지 않고 Git 연동 PR이 Vercel에서 새 산출물을 만들도록 한다.
+> - **다음:** 전체 `npm run verify` → PR/Vercel Preview → main 병합 → Production alias와 `/market` 전체 기간·최신값 검증.
+>
 > 🚀 **2026-08-20 20:55 KST — SEIN VENUS·HIKARI 1 8/20 하역 일일보고 라이브 배포 완료** [Codex]:
 > - 전용 worktree `/private/tmp/tuna-unloading-0820` (`codex/unloading-sein-venus-20260820`)에서 원본 3종을 교차 확인했다. SHA-256: 일보 JPG `48c3f306…a7db2`, 일일 결과 XLS `1afe7469…68c1`, 일일 현황 XLSX `45b95797…81ac`.
 > - 검산: 전일 `2,943.270 + 147.490 = 3,090.760 MT`, `3,275 - 3,090.760 = 184.240 MT`. 당일 수하처 GPZ `147.490 MT`, `S/PIO:#1-B`, 08:10~13:40, -20.0~-21.0℃. 어종은 XLS 근거로 SJ `133.190`·YF `14.300 MT`; 어창별 어종은 추정하지 않았다.
