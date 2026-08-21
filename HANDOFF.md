@@ -1,3 +1,11 @@
+> 🚀 **2026-08-21 09:10 KST — Atuna 8/20 가격 배포 실패 복구·라이브 반영** [Codex]:
+> - PR [#714](https://github.com/CUTEKOREA/tuna-dashboard/pull/714)을 squash merge `d9b596df`로 병합했다. PR App Quality Gate `32430813386`, main gate `32431092111`이 모두 성공했다.
+> - Vercel Production `dpl_6f2VCgMhLTkjkW8HsQErofRToBFS`(GitHub deployment `6012889083`)가 READY이고 `https://leedonggun.co.kr` alias에 연결됐다. 최근 15분 error/fatal 로그는 각각 0건이다.
+> - 실패 원인은 `/vercel/path0`에서 생성된 오래된 `.vercel/output`을 수동 `--prebuilt` 재배포해 절대 원본경로를 다시 찾은 것이다. 2026-08-17 기준 구브랜치의 후속 tracing 커밋 `de038a26`은 main에 넣지 않았다. 최신 main Git 연동 새 빌드로 복구했다.
+> - 로그인 운영 API는 200, `private, no-store`, `Vary: Cookie`, `restricted:false`, 전체 743행(`1994-01-01~2026-08-20`)이다. 8개 허브 최신값이 원장과 모두 일치한다.
+> - `/market`은 전체·주간, 2022~2026 차트, SKJ 방콕 `2026.08.20 / $2,000`을 표시한다. 1440px·390px 문서/본문/차트 패널 overflow 0, page/console/local HTTP errors 0, Atuna CacheStorage 0건이다.
+> - 재발 방지: Vercel 대시보드의 실패 prebuilt **Redeploy**를 사용하지 않는다. 최신 main에서 PR을 만들고 Git 연동 Preview READY 후 Production으로 병합한다.
+>
 > 🛠️ **2026-08-21 08:52 KST — Atuna 8/20 배포 실패 원인 제거** [Codex]:
 > - 수동 Production prebuilt 배포 `dpl_A1tPT79EodoJJFspahcyLyJXTbAh`와 `dpl_BLmv2n1CkcafJsSsit8oq57Xo3SW`는 `.vercel/output` 배치 중 `/vercel/path0/data/carrot/scripts/agri_collector.py`를 다시 찾다가 실패했다. 운영 alias는 직전 READY `dpl_86t6wC9GSVPbxnHoJWL1kg2nhVqu`를 계속 가리켜 서비스 중단은 없었다.
 > - 실패 산출물은 최신 `main`이 아니라 2026-08-17 기준으로 갈라진 `codex/fleet-production-2025`의 prebuilt 재배포에서 만들어졌다. `/vercel/path0`에서 생성된 trace의 절대 원본경로를 재사용한 것이 직접 원인이며, 뒤이은 `de038a26`은 오프라인 당근 수집 스크립트를 강제 tracing했지만 같은 문제를 해결하지 못했다.
