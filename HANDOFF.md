@@ -1,3 +1,16 @@
+> ⚓ **2026-08-21 15:56 KST — SEIN VENUS 8/21 하역 일일보고 반영·Tasks·TXT 동기화 (배포 진행 중)** [Codex]:
+> - 전용 worktree `/private/tmp/tuna-unloading-0821` (`codex/unloading-sein-venus-20260821`)에서 원본 3종을 교차 확인했다. SHA-256: JPG `931ebf66…e36037b`, 결과 XLS `30a0f429…ad654e`, 현황 XLSX `ac332bc9…1827bf`.
+> - 검산: `3,090.760 + 148.800 = 3,239.560 MT`, `3,275 - 3,239.560 = 35.440 MT`. GPZ `148.800 MT`는 S/PIO #1-B `5.770` + #1-C `143.030 MT`; 온도는 각각 -18.0~-19.0℃, -20.0~-21.0℃다.
+> - XLS 어종은 SJ `143.600`·YF `5.200 MT`, 누계 SJ `2,706.080`·YF `533.480 MT`. 당일 보정 `+5.770`, 누적 보정 `+61.530`, 산술 잔량에 누적 보정을 더한 실재고 잔량 `96.970 MT`다. 어창별 어종은 추정하지 않았다.
+> - 사용자 명일 입력을 8/22 약 `100톤`으로 적용하고 원문 계획 `GPZ/H1C1(S.PIONEER) 100 MT, 08:00`을 작업 기록에 보존했다.
+> - Google Tasks: 기존 8/21 `SEIN VENUS ###톤` 1건을 `SEIN VENUS 148.800 MT`로 수정. 목록 `내 할 일 목록`, 2026-08-21 종일, 미완료 상태를 재확인했다.
+> - Google Drive 같은 원본 폴더에 `20260821 SEIN VENUS (BKK) 하역 업무 보고.txt`를 저장했다. 렌더러 출력과 diff 0, SHA-256 `f772f3ea…63dcbf`.
+> - RED→GREEN: 8/21 누락으로 대상 테스트 5건 실패 후 8/8 통과. `npm run verify` 통과(ESLint 0 errors·기존 warnings 12, Vitest 1,105 passed/2 skipped, API cache 158/158, Next 118페이지, 누출·번들 게이트). 하역 이력 E2E는 통합 `36,590 MT`·8/21 상세로 갱신 후 desktop/mobile/keyboard/open-tab/API/chunk failure isolation 통과.
+> - 로컬 production API·보호 화면: 기준일 2026.08.21, SEIN 누계 `3,239.560`, HIKARI 포함 현재 누계 `3,536.620`, 화면 반올림 연간 누적 `36,590 MT` 일치. 1440×1000·390×844에서 overflow/page/console/local request/HTTP errors 모두 0.
+> - **다음 단계**: 독립 반증 완료 후 커밋·PR gate·main 순차 병합·Vercel Production READY·운영 API/UI/error 로그를 재검증한다.
+>
+> 마지막 업데이트: 2026-08-21 15:56 KST [Codex]
+
 > 📇 **2026-08-21 12:58 KST — 기업 해부 3사에 최신 조사 결과 반영** [CC]:
 > - 격리 worktree `/private/tmp/ca-report` (`feat/company-report-sync`, origin/main 기준)에서 작업했다. 다른 세션이 편집 중인 더러운 트리를 피하려고 별도 브랜치를 끊었다.
 > - **FCF**: 회사 지도에만 있던 두 법인이 현지 등기로 잡혔다 — 파나마 THALASSIC TUNA TEAM, S.A.(Folio 155755828, 2024-08-21 등기, IATTC 4,794척 전수에 명의 선박 0척)와 PNG MAJESTIC SEAFOOD CORPORATION(1-67560, 2009-04-24 등록, 라에 Portion 640 Busu Road, 참치 조업·가공 겸업). 04단계의 「두 법인의 설립연도·지분·기능은 공개되지 않는다」를 정정했다.
