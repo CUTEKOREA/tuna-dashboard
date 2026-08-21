@@ -1,0 +1,376 @@
+{
+ "_meta": {
+  "출처": "docs/evidence/company-albacora-2026-08/보고서.html",
+  "생성": "python3 scripts/build_report_tables.py",
+  "설명": "조사보고서 표를 원문에서 그대로 읽는다. 손으로 옮기지 않는다."
+ },
+ "sections": {
+  "s1": 3,
+  "s2": 3,
+  "s3": 4,
+  "s4": 3,
+  "s5": 5,
+  "s6": 3,
+  "s7": 4
+ },
+ "tables": [
+  {
+   "title": "그룹 구조 — 3사업부",
+   "head": [
+    "사업부",
+    "역할",
+    "거점"
+   ],
+   "num": [
+    false,
+    false,
+    false
+   ],
+   "rows": [
+    [
+     "Albacora, S.A.",
+     "선단 · 운반 · 보관",
+     "베르메오"
+    ],
+    [
+     "Salica Industria Alimentaria",
+     "캔",
+     "베르메오 + 포소르하"
+    ],
+    [
+     "Salica Alimentos Congelados",
+     "냉동",
+     "갈리시아"
+    ]
+   ],
+   "sid": "s2",
+   "section": "02 / 지배구조승계 3년 · 그리고 경쟁사 가문",
+   "note": "Salica del Ecuador는 독립 3사가 아니라 SIA 캔사업부 산하다. 회사 공식 dossier의 편제가 위와 같다.",
+   "stage": "c02"
+  },
+  {
+   "title": "어획 규모와 판매처",
+   "head": [
+    "항목",
+    "2025",
+    "2024"
+   ],
+   "num": [
+    false,
+    true,
+    true
+   ],
+   "rows": [
+    [
+     "어획량",
+     "약 200천 톤",
+     "207천 톤"
+    ]
+   ],
+   "sid": "s3",
+   "section": "03 / 선단세계 최대급 선망선을 굴린다",
+   "note": "어종은 가다랑어(Katsuwonus pelamis) · 황다랑어(Thunnus albacares) · 눈다랑어(Thunnus obesus)에 소량 알바코어. 회사는 «참다랑어(Thunnus thynnus)는 잡지 않는다»고 명시한다 — 자원 논란이 가장 큰 어종을 아예 빼는 것이 이 회사의 포지셔닝이다.",
+   "stage": "c03"
+  },
+  {
+   "title": "어획 규모와 판매처",
+   "head": [
+    "판매처",
+    "비중",
+    "비고"
+   ],
+   "num": [
+    false,
+    true,
+    false
+   ],
+   "rows": [
+    [
+     "에콰도르 · 과테말라",
+     "30%",
+     "자사 Posorja 공장이 있는 축"
+    ],
+    [
+     "세이셸 · 모리셔스 · 마다가스카르",
+     "25%",
+     "인도양 양륙 거점"
+    ],
+    [
+     "스페인",
+     "10%",
+     "자사 베르메오·갈리시아 공장"
+    ],
+    [
+     "기타",
+     "35%",
+     "회사 미명시"
+    ]
+   ],
+   "sid": "s3",
+   "section": "03 / 선단세계 최대급 선망선을 굴린다",
+   "note": "어종은 가다랑어(Katsuwonus pelamis) · 황다랑어(Thunnus albacares) · 눈다랑어(Thunnus obesus)에 소량 알바코어. 회사는 «참다랑어(Thunnus thynnus)는 잡지 않는다»고 명시한다 — 자원 논란이 가장 큰 어종을 아예 빼는 것이 이 회사의 포지셔닝이다.",
+   "stage": "c03"
+  },
+  {
+   "title": "SIA 베르메오 · SAC 갈리시아",
+   "head": [
+    "",
+    "SIA 베르메오",
+    "SAC 갈리시아",
+    "SAE 포소르하"
+   ],
+   "num": [
+    false,
+    false,
+    false,
+    false
+   ],
+   "rows": [
+    [
+     "위치",
+     "Pol. Ind. Landabaso, 48370 Bermeo (Bizkaia)",
+     "Pol. Ind. A Tomada, 15940 A Pobra do Caramiñal (A Coruña)",
+     "Sector Guarillo Grande, Posorja (Guayas) · EC090156"
+    ],
+    [
+     "품목",
+     "캔 (bonito del norte · atún claro), 유리병(외주), 홍합(외주 라벨링)",
+     "냉동 필레·로인·ventresca·타코·다이스, 빵가루·버거·미트볼",
+     "자숙·생냉동 로인, 캔, 파우치, 통냉동 원어 벌크, (미주용) 훈제·샐러드·정어리"
+    ],
+    [
+     "직원",
+     "138",
+     "68",
+     "2,358"
+    ],
+    [
+     "2025 매출",
+     "65.8 M€",
+     "15.7 M€",
+     "233.3 M€"
+    ],
+    [
+     "2024 매출",
+     "67.6",
+     "14.2",
+     "223.8"
+    ],
+    [
+     "주시장",
+     "스페인·독일·이탈리아",
+     "스페인·이탈리아",
+     "스페인·에콰도르·아르헨티나·칠레·독일"
+    ],
+    [
+     "설립",
+     "1990 (Campos+Astorquiza 합병)",
+     "1999 · 2004 신공장 5,500㎡",
+     "2001 · 자체 항만"
+    ]
+   ],
+   "sid": "s4",
+   "section": "04 / 가공 · Salica몸통은 에콰도르에 있다",
+   "note": "매출이 가린 것을 환경선언이 드러낸다",
+   "stage": "c04"
+  },
+  {
+   "title": "SIA 베르메오 — 정육 참치 투입량",
+   "head": [
+    "",
+    "2022",
+    "2023",
+    "2024"
+   ],
+   "num": [
+    false,
+    true,
+    true,
+    true
+   ],
+   "rows": [
+    [
+     "투입 톤수",
+     "2,508 t",
+     "1,395 t",
+     "1,459 t"
+    ],
+    [
+     "전년비",
+     "—",
+     "−44%",
+     "+4.6%"
+    ]
+   ],
+   "sid": "s4",
+   "section": "04 / 가공 · Salica몸통은 에콰도르에 있다",
+   "note": "공시 매출과 실물 물량이 어긋난다",
+   "stage": "c04"
+  },
+  {
+   "title": "SAC 갈리시아 — 원료 → 제품",
+   "head": [
+    "연도",
+    "원료",
+    "제품",
+    "수율"
+   ],
+   "num": [
+    true,
+    true,
+    true,
+    true
+   ],
+   "rows": [
+    [
+     "2020",
+     "4,039 t",
+     "2,905 t",
+     "71.9%"
+    ],
+    [
+     "2021",
+     "6,335 t",
+     "4,015 t",
+     "63.4%"
+    ],
+    [
+     "2022",
+     "5,965 t",
+     "3,833 t",
+     "64.3%"
+    ],
+    [
+     "2023",
+     "3,582 t",
+     "2,602 t",
+     "72.6%"
+    ]
+   ],
+   "sid": "s4",
+   "section": "04 / 가공 · Salica몸통은 에콰도르에 있다",
+   "note": "2021년 정점 후 2023년에 원료 투입이 44% 감소했다 — SIA와 같은 폭이다. 수율은 63~73% 범위에서 움직이는데, 물량이 많을 때 수율이 떨어지고 적을 때 올라간다. 고부가 품목 비중이 물량에 반비례한다는 뜻으로 읽힌다.",
+   "stage": "c04"
+  },
+  {
+   "title": "Campos 자사몰 라인업 — 26 SKU",
+   "head": [
+    "제품",
+    "가격 (EUR)"
+   ],
+   "num": [
+    false,
+    true
+   ],
+   "rows": [
+    [
+     "Atún Claro APR al Natural / Girasol 160g",
+     "2.20"
+    ],
+    [
+     "Atún Claro APR Escabeche 160g",
+     "2.59"
+    ],
+    [
+     "Atún Claro APR Aceite Oliva 150g",
+     "3.20"
+    ],
+    [
+     "Atún Claro APR AOVE 3×65g",
+     "3.80"
+    ],
+    [
+     "Atún Claro Oliva 180g / 750g",
+     "4.99 / 12.99"
+    ],
+    [
+     "Atún Claro Girasol 1900g",
+     "29.50"
+    ],
+    [
+     "Atún Claro Escabeche 1900g",
+     "23.50"
+    ],
+    [
+     "Bonito Oliva 70g / 110g / 150g",
+     "1.70 / 3.20 / 3.99"
+    ],
+    [
+     "Bonito Escabeche 160g / 266g",
+     "3.99 / 6.69"
+    ],
+    [
+     "Bonito MSC Oliva 1850g",
+     "49.99"
+    ],
+    [
+     "Bonito MSC Escabeche 1900g",
+     "33.99"
+    ],
+    [
+     "Bonito MSC en salsa 1900g",
+     "30.00"
+    ],
+    [
+     "Mejillón Escabeche 115g×6 (12/16 · 8/12)",
+     "5.70 / 8.99"
+    ],
+    [
+     "Cesta Gourmet Aritzatxu (선물세트)",
+     "21.60"
+    ],
+    [
+     "Bonito De Campaña 2024 Oliva 314g 한정판",
+     "7.99"
+    ],
+    [
+     "Sardinillas Oliva 115g",
+     "3.00"
+    ]
+   ],
+   "sid": "s5",
+   "section": "05 / 브랜드 · 인증1921년 브랜드와 인증서 17장",
+   "note": "카탈로그 전체(사이트맵 49 슬러그)에는 냉동 tataki 340g · filete 250g · empanados 320g · burguers 160g · albóndigas 220g · filetes de bonito MSC 200g · ventresca 200g 등이 더 있다.",
+   "stage": "c05"
+  },
+  {
+   "title": "안전 — 사고 109건",
+   "head": [
+    "항목",
+    "여성",
+    "남성"
+   ],
+   "num": [
+    false,
+    true,
+    true
+   ],
+   "rows": [
+    [
+     "재해 빈도율",
+     "14.15",
+     "14.41"
+    ],
+    [
+     "재해 중대도",
+     "0.53",
+     "1.00"
+    ],
+    [
+     "사고 건수",
+     "29",
+     "80"
+    ],
+    [
+     "직업병",
+     "0",
+     "0"
+    ]
+   ],
+   "sid": "s6",
+   "section": "06 / 재무 · 리스크매출은 가렸고 사고는 드러났다",
+   "note": "결근 192,386시간. 산정은 스페인 INSHT 공식 기준이다. 타이유니온이 LTIFR 0.29(목표 0.15)로 «악화»를 공시한 것과 지표 체계가 달라 직접 비교는 성립하지 않는다. 다만 사고 109건은 선단업의 재해 노출이 가공업과 다른 층위임을 보여준다.",
+   "stage": "c06"
+  }
+ ]
+}

@@ -1,9 +1,9 @@
 {
  "_meta": {
   "entry": "app/page.tsx",
-  "files": 184,
+  "files": 185,
   "widgets": 107,
-  "dataFiles": 72,
+  "dataFiles": 79,
   "generator": "scripts/widget_lineage.py"
  },
  "widgetToData": {
@@ -550,15 +550,23 @@
     "lib/data/company-frinsa.ts",
     "lib/data/company-itochu.ts",
     "lib/data/company-jais.ts",
+    "lib/data/company-report-tables.ts",
     "lib/data/company-thaiunion.ts"
    ],
    "dataFiles": [
+    "public/data/companies/albacora_tables_v1.json",
     "public/data/companies/albacora_v1.json",
+    "public/data/companies/bolton_tables_v1.json",
     "public/data/companies/bolton_v1.json",
+    "public/data/companies/fcf_tables_v1.json",
     "public/data/companies/fcf_v1.json",
+    "public/data/companies/frinsa_tables_v1.json",
     "public/data/companies/frinsa_v1.json",
+    "public/data/companies/itochu_tables_v1.json",
     "public/data/companies/itochu_v1.json",
+    "public/data/companies/jais_tables_v1.json",
     "public/data/companies/jais_v1.json",
+    "public/data/companies/thaiunion_tables_v1.json",
     "public/data/companies/thaiunion_v1.json"
    ]
   },
@@ -967,24 +975,45 @@
    "components/bangkok/tabs/QualityTab.tsx",
    "components/bangkok/tabs/UnloadTab.tsx"
   ],
+  "public/data/companies/albacora_tables_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
   "public/data/companies/albacora_v1.json": [
    "components/market-understanding/AlbacoraCharts.tsx",
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/bolton_tables_v1.json": [
    "components/market-understanding/CompanyAnatomyDashboard.tsx"
   ],
   "public/data/companies/bolton_v1.json": [
    "components/market-understanding/CompanyAnatomyDashboard.tsx"
   ],
+  "public/data/companies/fcf_tables_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
   "public/data/companies/fcf_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/frinsa_tables_v1.json": [
    "components/market-understanding/CompanyAnatomyDashboard.tsx"
   ],
   "public/data/companies/frinsa_v1.json": [
    "components/market-understanding/CompanyAnatomyDashboard.tsx",
    "components/market-understanding/FrinsaCharts.tsx"
   ],
+  "public/data/companies/itochu_tables_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
   "public/data/companies/itochu_v1.json": [
    "components/market-understanding/CompanyAnatomyDashboard.tsx"
   ],
+  "public/data/companies/jais_tables_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
   "public/data/companies/jais_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/thaiunion_tables_v1.json": [
    "components/market-understanding/CompanyAnatomyDashboard.tsx"
   ],
   "public/data/companies/thaiunion_v1.json": [

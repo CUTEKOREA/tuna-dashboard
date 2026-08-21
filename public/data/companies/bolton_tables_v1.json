@@ -1,0 +1,1050 @@
+{
+ "_meta": {
+  "출처": "docs/evidence/company-bolton-2026-08/보고서.html",
+  "생성": "python3 scripts/build_report_tables.py",
+  "설명": "조사보고서 표를 원문에서 그대로 읽는다. 손으로 옮기지 않는다."
+ },
+ "sections": {
+  "s1": 3,
+  "s2": 3,
+  "s3": 4,
+  "s4": 4,
+  "s5": 3,
+  "s6": 6,
+  "s7": 3,
+  "s8": 4,
+  "s9": 5
+ },
+ "tables": [
+  {
+   "title": "Thai Union · FCF",
+   "head": [
+    "",
+    "Thai Union",
+    "FCF",
+    "Bolton"
+   ],
+   "num": [
+    false,
+    false,
+    false,
+    false
+   ],
+   "rows": [
+    [
+     "출발점",
+     "태국 캔 수출 공장",
+     "대만 원료 트레이더",
+     "유럽 소비재 브랜드"
+    ],
+    [
+     "수직통합 방향",
+     "브랜드 인수(수평)",
+     "상류 → 하류",
+     "하류 → 상류"
+    ],
+    [
+     "상장",
+     "SET 상장",
+     "비상장(공개발행 정지)",
+     "비상장 가족"
+    ],
+    [
+     "참치 외 사업",
+     "펫케어·수산 소재",
+     "벙커링·선용품",
+     "접착제·세제·화장품 32.7%"
+    ],
+    [
+     "신라교역에게",
+     "최대 시장",
+     "매출 32~46% 단일 최대 고객",
+     "고객이자 관문"
+    ]
+   ],
+   "sid": "s1",
+   "section": "01 / 회사 개요참치 옆에 접착제와 세제가 있다",
+   "stage": "c01"
+  },
+  {
+   "title": "연혁: 유통에서 시작해 브랜드를 모았다",
+   "head": [
+    "연도",
+    "사건"
+   ],
+   "num": [
+    false,
+    false
+   ],
+   "rows": [
+    [
+     "1949",
+     "Joseph Nissim이 밀라노에 Exportex 설립. 영미 브랜드의 유럽 유통이 출발점이다"
+    ],
+    [
+     "1965",
+     "Cermenate 공장 개설, Rio Mare 출시"
+    ],
+    [
+     "1978",
+     "Exportex와 계열사를 묶어 Bolton Group 출범"
+    ],
+    [
+     "1983",
+     "Manetti & Roberts 인수, 퍼스널케어 진입 (Borotalco · Neutro Roberts)"
+    ],
+    [
+     "1989",
+     "UHU 인수. 첫 국제 인수이자 접착제 진입"
+    ],
+    [
+     "1993",
+     "Collistar 인수, 뷰티 진입"
+    ],
+    [
+     "1999",
+     "Saupiquet(프랑스) 인수. 선단과 공장이 함께 넘어왔다"
+    ],
+    [
+     "2012-04",
+     "Luis Calvo Sanz 지분 40% €125백만에 취득. 경쟁사 지분을 든다"
+    ],
+    [
+     "2012-12",
+     "Simmenthal 인수. Manzotin 매각을 조건으로 승인됐다"
+    ],
+    [
+     "2013-12",
+     "Tri Marine 공동지배 49% EU 승인"
+    ],
+    [
+     "2015-07",
+     "Grupo Conservas Garavilla(Isabel · Cuca · Massó) 100% 취득"
+    ],
+    [
+     "2019-07",
+     "Tri Marine 잔여 51% 취득. 원료 트레이딩을 통째로 가졌다"
+    ],
+    [
+     "2021",
+     "Wild Planet Foods(미국) · Madel(이탈리아 Winni's) 인수"
+    ],
+    [
+     "2025-01",
+     "Repair Care(네덜란드) 인수, 북미 리전 신설"
+    ],
+    [
+     "2026-03",
+     "Somatoline 매각"
+    ]
+   ],
+   "sid": "s1",
+   "section": "01 / 회사 개요참치 옆에 접착제와 세제가 있다",
+   "note": "창업자 Joseph Nissim은 1919년 그리스 테살로니키의 유대인 가정에서 태어나 1941년 나치 박해를 피해 탈출했고, 영국군 그리스여단으로 엘알라메인에 참전한 뒤 1949년 밀라노에서 회사를 세웠다. 2019년 3월 100세로 별세했다.",
+   "stage": "c01"
+  },
+  {
+   "title": "지배 사슬",
+   "head": [
+    "층",
+    "주체",
+    "성격"
+   ],
+   "num": [
+    false,
+    false,
+    false
+   ],
+   "rows": [
+    [
+     "1",
+     "Nissim 가문 (자연인)",
+     "법인 모회사 없음. GLEIF 보고예외 사유 NATURAL_PERSONS"
+    ],
+    [
+     "2",
+     "Factor Holding S.r.l. · CF 07224860960 · 2010-11-29",
+     "회사가 명기한 최상위 지배기업(UPE). 자본금 €17,416,405 · 직원 16명"
+    ],
+    [
+     "3",
+     "Bolton Group S.r.l. · CF 05983890152",
+     "산업지주. Factor Holding 지분 100%, 1인 사원(socio unico)"
+    ],
+    [
+     "4",
+     "Bolton Food S.p.A. 외 사업회사",
+     "이탈리아 식품 · 프랑스 · 스페인 · Tri Marine"
+    ]
+   ],
+   "sid": "s2",
+   "section": "02 / 지배구조지주 위에 지주가 있다",
+   "note": "옛 지주가 이름을 바꿔 가문 금고가 됐다",
+   "stage": "c02"
+  },
+  {
+   "title": "이사회",
+   "head": [
+    "직위",
+    "이름"
+   ],
+   "num": [
+    false,
+    false
+   ],
+   "rows": [
+    [
+     "회장",
+     "Marina Nissim · 창업자의 딸, 2세 경영"
+    ],
+    [
+     "그룹 CEO",
+     "Roberto Leopardi · 2024-01-10 취임"
+    ],
+    [
+     "부회장 · Group Chief Impact Officer",
+     "Leone Manfredini"
+    ],
+    [
+     "이사",
+     "Salomone(Soly) Benveniste · Guy Noordink · Sami Kahale"
+    ]
+   ],
+   "sid": "s2",
+   "section": "02 / 지배구조지주 위에 지주가 있다",
+   "note": "Factor Holding의 개별 사원 성명과 지분율은 공개돼 있지 않다. GLEIF 보고예외가 확정하는 것은 자연인이 보유한다는 사실까지다.",
+   "stage": "c02"
+  },
+  {
+   "title": "그룹이 발표하는 매출",
+   "head": [
+    "FY",
+    "회사 표기",
+    "카테고리 합계",
+    "전년비",
+    "Food 카테고리"
+   ],
+   "num": [
+    false,
+    false,
+    true,
+    true,
+    false
+   ],
+   "rows": [
+    [
+     "2022",
+     "\"+3.2 Billion Euros\"",
+     "3,269 M€",
+     "—",
+     "Food 1,337 + Tuna Supply 906"
+    ],
+    [
+     "2023",
+     "\"More than €3.2 Billion\"",
+     "3,267 M€",
+     "—",
+     "2,200"
+    ],
+    [
+     "2024",
+     "\"More than €3.5 Billion\"",
+     "3,528 M€",
+     "+8.1%",
+     "2,409"
+    ],
+    [
+     "2025",
+     "\"More than €3.5 Billion\"",
+     "3,541 M€",
+     "+0.4%",
+     "2,382 (−1.1%)"
+    ]
+   ],
+   "sid": "s3",
+   "section": "03 / 재무발표와 기탁분에서만 나오는 숫자",
+   "note": "2022년까지는 브랜드 Food와 Tuna Supply를 나눠 적었고 2023년부터 하나의 Food로 합쳤다. 두 해를 잇대려면 2022년 1,337 + 906 = 2,243을 2023년 2,200과 견줘야 하고, 그러면 −1.9%다.",
+   "stage": "c02"
+  },
+  {
+   "title": "이탈리아 식품 법인은 매출이 4분의 1 가까이 줄었다",
+   "head": [
+    "FY",
+    "매출",
+    "손익",
+    "인건비",
+    "직원"
+   ],
+   "num": [
+    false,
+    true,
+    true,
+    true,
+    true
+   ],
+   "rows": [
+    [
+     "2022",
+     "€967,566,619",
+     "−€15,644,736",
+     "—",
+     "—"
+    ],
+    [
+     "2023",
+     "€949,650,521",
+     "+€26,914,683",
+     "€52,360,416",
+     "—"
+    ],
+    [
+     "2024",
+     "€737,464,138 (−22.4%)",
+     "+€31,059,747",
+     "€54,367,389",
+     "918 (평균)"
+    ],
+    [
+     "2025",
+     "€734,199,847 (−0.4%)",
+     "+€7,428,069 (−76%)",
+     "€53,934,809",
+     "938"
+    ]
+   ],
+   "sid": "s3",
+   "section": "03 / 재무발표와 기탁분에서만 나오는 숫자",
+   "note": "Bolton Food S.p.A.는 그룹의 이탈리아 식품 사업회사다. 2023년 €949.7백만이던 매출이 이듬해 €737.5백만이 됐다. 그런데 같은 해 순이익은 €26.9백만에서 €31.1백만으로 늘었고, 인건비도 €52.4백만에서 €54.4백만으로 함께 늘었다.",
+   "stage": "c02"
+  },
+  {
+   "title": "국경 밖 사업회사",
+   "head": [
+    "법인",
+    "기준",
+    "매출",
+    "손익",
+    "직원"
+   ],
+   "num": [
+    false,
+    false,
+    true,
+    true,
+    true
+   ],
+   "rows": [
+    [
+     "Bolton Food (프랑스, 구 Saupiquet) · SIREN 855802484 · Courbevoie",
+     "FY2024",
+     "€134,308,712",
+     "−€29,907,018",
+     "250~499"
+    ],
+    [
+     "Bolton Food S.L. · NIF B36325108 · O Grove",
+     "2024",
+     "전년비 −14.62% ·",
+     "",
+     "342"
+    ],
+    [
+     "Grupo Conservas Garavilla S.L. · NIF B95617643 · Bilbao",
+     "2024",
+     "전년비 −25.58% ·",
+     "",
+     "32"
+    ]
+   ],
+   "sid": "s3",
+   "section": "03 / 재무발표와 기탁분에서만 나오는 숫자",
+   "note": "프랑스 법인의 FY2024는 Quimper 공장이 2024-12-20 최종 생산으로 문을 닫은 회계연도다(SR2024 각주는 \"ceased operations in January 2025\"로 적는다). 폐쇄 규모는 155명이었다.",
+   "stage": "c02"
+  },
+  {
+   "title": "브랜드",
+   "head": [
+    "카테고리",
+    "회사가 공개한 브랜드"
+   ],
+   "num": [
+    false,
+    false
+   ],
+   "rows": [
+    [
+     "Food",
+     "Rio Mare · Wild Planet · Saupiquet · Isabel · Cuca · Massó · Simmenthal · Palmera · Prima · SolTuna 외"
+    ],
+    [
+     "Home Care",
+     "WC Net · Smac · Winni's · Carolin · Omino Bianco · Citrosil HP · Deox · Dubro · Sipuro · Vetril 외"
+    ],
+    [
+     "Adhesives",
+     "UHU · Bison · Griffon · Bostik · Unipak · Repair Care"
+    ],
+    [
+     "Personal Care",
+     "Borotalco · Chilly · Neutro Roberts · Acqua alle Rose · Omia · Sanogyl"
+    ],
+    [
+     "Beauty",
+     "Collistar · Cavaillès · Botot"
+    ]
+   ],
+   "sid": "s4",
+   "section": "04 / 사업구조와 브랜드참치 사이클 밖의 3분의 1",
+   "note": "브랜드별 주 시장이 문서로 남아 있는 쪽은 Food뿐이다. Rio Mare는 이탈리아 핵심에 수출이 붙고, Saupiquet은 \"particolarmente noto in Francia e Germania\"(AGCM C11589), Palmera는 이탈리아와 유럽, Isabel과 Cuca, Massó는 스페인·포르투갈·프랑스, Prima 소스·식초는 스페인, Wild Planet은 미국, SolTuna와 Solomon Blue는 솔로몬제도다.",
+   "stage": "c03"
+  },
+  {
+   "title": "경쟁사 지분을 들고 경쟁한다",
+   "head": [
+    "층위",
+    "판정"
+   ],
+   "num": [
+    false,
+    false
+   ],
+   "rows": [
+    [
+     "경쟁법상",
+     "주주간계약의 거부권이 공동지배(controllo congiunto)를 이룬다고 이탈리아 경쟁당국이 판정했다"
+    ],
+    [
+     "회계상",
+     "연결하지 않는다. 회사 보고서가 지분 해당분만 반영한다고 적는다"
+    ],
+    [
+     "매대",
+     "이탈리아 캔참치 진열대에서 Rio Mare(Bolton)와 Nostromo(Nauterra)가 직접 맞선다"
+    ],
+    [
+     "규모",
+     "Nauterra 2024년 매출 €727백만(+4.4%) · EBITDA €63.9백만 · 105,857 t"
+    ]
+   ],
+   "sid": "s4",
+   "section": "04 / 사업구조와 브랜드참치 사이클 밖의 3분의 1",
+   "note": "경쟁사 목록에 Nauterra를 그냥 올리면 사실관계가 틀린다. 같은 선반에서 싸우는 상대이면서 Bolton이 40%를 쥔 회사다. 이 이중성이 2012년부터 14년째 이어진다.",
+   "stage": "c03"
+  },
+  {
+   "title": "2013년 결정문이 남긴 숫자",
+   "head": [
+    "지표 (2012년 · 가액 기준)",
+    "Tri Marine",
+    "FCF",
+    "Itochu",
+    "Bolton"
+   ],
+   "num": [
+    false,
+    false,
+    false,
+    false,
+    false
+   ],
+   "rows": [
+    [
+     "세계 참치 로인 공급",
+     "[30-40]%",
+     "[20-30]%",
+     "[0-5]%",
+     "[0-5]%"
+    ],
+    [
+     "EEA 로인 공급",
+     "[40-50]%",
+     "집행위 표현으로 \"현재 EEA 최대 로인 공급자일 수 있다\"",
+     "",
+     ""
+    ],
+    [
+     "세계 라운드 참치 트레이딩",
+     "[20-30]%",
+     "[20-30]%",
+     "[5-10]%",
+     "[0-5]%"
+    ],
+    [
+     "그중 Tri Marine 자사 생산 로인",
+     "세계 로인 물량의 [5-10]%뿐. 나머지는 남의 물건을 사서 판 것이다",
+     "",
+     "",
+     ""
+    ],
+    [
+     "Tri Marine 로인 판매 중 Bolton행",
+     "[50-60]%",
+     "",
+     "",
+     ""
+    ],
+    [
+     "Bolton 로인 외부조달 중 Tri Marine분",
+     "[60-70]%",
+     "",
+     "",
+     ""
+    ]
+   ],
+   "sid": "s5",
+   "section": "05 / Tri Marine30년 전에 시작된 인수",
+   "note": "M.7010 §§43·49·54·55·60·63·66 및 각주45. 구간은 결정문의 공개 형식 그대로이고 점추정치는 결정문에 없다.",
+   "stage": "c04"
+  },
+  {
+   "title": "상류가 거꾸로 넘어갔다",
+   "head": [
+    "수직통합의 무게",
+    "값",
+    "단서"
+   ],
+   "num": [
+    false,
+    false,
+    false
+   ],
+   "rows": [
+    [
+     "2025년 그룹 탄소발자국 중 Tri Marine",
+     "72.9%",
+     "Food 12.9 · Home/Personal Care/Beauty 10.1 · Adhesives 3.1 · International 1.0"
+    ],
+    [
+     "연간 참치 거래량 (회사 상시 문구)",
+     "50만 t 초과",
+     "bolton.com, 연도 표기 없음"
+    ],
+    [
+     "그룹이 시장에 낸 물량 (SR2022)",
+     "60만 t 초과",
+     "앞 항목과 집계 기준이 같은지는 공개되지 않는다"
+    ],
+    [
+     "브랜드 원료 직접 조달 비율",
+     "90% 초과",
+     "Rio Mare · Isabel · Saupiquet · Cuca · Palmera"
+    ]
+   ],
+   "sid": "s5",
+   "section": "05 / Tri Marine30년 전에 시작된 인수",
+   "note": "50만 톤과 60만 톤은 둘 다 회사 표기이며 기준일과 집계 범위가 다를 수 있다. 두 수치를 나란히 놓고 증감으로 읽어서는 안 된다. 탄소발자국 배출의 86%는 Food 카테고리 활동에서 나오고 대부분 선단과 공장의 화석연료다.",
+   "stage": "c04"
+  },
+  {
+   "title": "해역 재배분",
+   "head": [
+    "해역",
+    "2024",
+    "2025",
+    "증감"
+   ],
+   "num": [
+    false,
+    true,
+    true,
+    true
+   ],
+   "rows": [
+    [
+     "East Pacific",
+     "272,542",
+     "350,956",
+     "+29%"
+    ],
+    [
+     "West Pacific",
+     "357,477",
+     "314,167",
+     "−12%"
+    ],
+    [
+     "Pacific(북태평양·양쪽 면허선)",
+     "35,306",
+     "11,735",
+     "−67%"
+    ],
+    [
+     "Indian",
+     "21,146",
+     "32,475",
+     "+54%"
+    ],
+    [
+     "Atlantic",
+     "21,857",
+     "30,977",
+     "+42%"
+    ]
+   ],
+   "sid": "s6",
+   "section": "06 / 조달 실적74만 톤 안에 장부 정리가 섞여 있다",
+   "note": "2025년 구성은 태평양 91%, 인도양 5%, 대서양 4%다. 세 해역 비중은 2024년과 크게 다르지 않고, 바뀐 것은 태평양 안쪽의 동서 배분이다. 동태평양이 78,414톤 늘고 서태평양이 43,310톤 줄었으며 양쪽 면허선을 담던 Pacific 칸은 35,306톤에서 11,735톤으로 3분의 1 수준으로 줄었다.",
+   "stage": "c05"
+  },
+  {
+   "title": "자원등급과 IOTC 재분류",
+   "head": [
+    "자원등급(ISSF 기준)",
+    "2024",
+    "2025"
+   ],
+   "num": [
+    false,
+    true,
+    true
+   ],
+   "rows": [
+    [
+     "Green",
+     "701,422 (99%)",
+     "729,290 (98.5%)"
+    ],
+    [
+     "Yellow",
+     "623",
+     "9,581 (1.3%)"
+    ],
+    [
+     "Red",
+     "6,283 (1%)",
+     "1,439 (0.2%)"
+    ]
+   ],
+   "sid": "s6",
+   "section": "06 / 조달 실적74만 톤 안에 장부 정리가 섞여 있다",
+   "note": "Yellow가 623톤에서 9,581톤으로 열다섯 배 넘게 늘었다. IOTC가 인도양 황다랑어 자원을 yellow로 재분류하면서 같은 물량이 등급표에서 한 칸 옆으로 옮겨 앉았다. 조달처가 바뀐 자리는 없다. Red 1,439톤은 주로 인도양 눈다랑어다.",
+   "stage": "c05"
+  },
+  {
+   "title": "인증 표가 가장 크게 흔들렸다",
+   "head": [
+    "인증 구분(t)",
+    "2024",
+    "2025"
+   ],
+   "num": [
+    false,
+    true,
+    true
+   ],
+   "rows": [
+    [
+     "MSC certification",
+     "566,739 (80.0%)",
+     "588,226 (79.5%)"
+    ],
+    [
+     "MSC full assessment",
+     "6,172",
+     "16,452"
+    ],
+    [
+     "CCFIP",
+     "484 (0.07%)",
+     "17,565"
+    ],
+    [
+     "Green/Yellow Seafood Watch",
+     "10,665",
+     "103,646"
+    ],
+    [
+     "FIP",
+     "71,011 (10.0%)",
+     "1,536"
+    ],
+    [
+     "No Certification",
+     "53,257 (7.5%)",
+     "12,885 (1.7%)"
+    ]
+   ],
+   "sid": "s6",
+   "section": "06 / 조달 실적74만 톤 안에 장부 정리가 섞여 있다",
+   "note": "회사가 짚은 재분류 두 건",
+   "stage": "c05"
+  },
+  {
+   "title": "수산 가공 거점 열 곳",
+   "head": [
+    "거점",
+    "법인",
+    "생산 품목",
+    "규모",
+    "인력"
+   ],
+   "num": [
+    false,
+    false,
+    false,
+    true,
+    true
+   ],
+   "rows": [
+    [
+     "Noro · 솔로몬제도",
+     "SolTuna",
+     "미주·EU향 냉동 로인, 역내·국내향 통조림. 브랜드 Solomon Blue · SolTuna. · 원료는 NFD 선단이 대고 날개다랑어만 현지 면허 외국적 연승선에서 받는다",
+     "25,000~30,000 t · 솔로몬 연간 어획의 1/3 · 증설 계획 일 90→150 t",
+     "1,800명+ · 60%+ 여성 · 국내 최대 민간 고용주"
+    ],
+    [
+     "Manta · 에콰도르",
+     "Conservas Isabel · Ecuatoriana",
+     "통조림. Isabel 브랜드 계열",
+     "· 배출 15,211 tCO2e · 수산 거점 중 2위",
+     "3,533명 · 에콰도르 두 공장 합계 · 그룹 국가별 1위"
+    ],
+    [
+     "Manta · 에콰도르",
+     "Seafman C.A.",
+     "프리쿡 냉동 로인 + 통조림. 유럽향이 주력이고 미주·중남미 병행. · 원료는 동태평양이며 공급자는 TUNACONS·OPAGAC 개선프로그램 참여사다",
+     "· 배출 9,465 tCO2e",
+     "3,533명 · 에콰도르 두 공장 합계 · 그룹 국가별 1위"
+    ],
+    [
+     "Cermenate · 이탈리아",
+     "Bolton Food S.p.A.",
+     "Rio Mare 본거지. 1965년 개설이자 그룹 최대 식품공장이고 EU 배출권거래제 대상이다",
+     "· 배출 14,787 tCO2e",
+     "938명 · Bolton Food S.p.A. 법인 · 이탈리아 5개 공장 1,765명"
+    ],
+    [
+     "Aprilia · 이탈리아",
+     "Bolton Food S.p.A.",
+     "수산 캔 라인",
+     "",
+     "938명 · Bolton Food S.p.A. 법인 · 이탈리아 5개 공장 1,765명"
+    ],
+    [
+     "Barranquilla · 콜롬비아",
+     "GRALCO",
+     "절반은 유럽·미국향 프리쿡 냉동 로인, 절반은 완제품. 어유·어분 부산물도 낸다. · 자체 브랜드 Alamar는 콜롬비아 소비 2위 참치 브랜드다",
+     "· 배출 6,105 tCO2e",
+     "· 2020년 여성 64%"
+    ],
+    [
+     "Agadir · 모로코",
+     "Société Nouvelle · Cosarno",
+     "참치 통조림",
+     "그룹의 약 6% · 배출 4,167 tCO2e",
+     "400명+ · 현장직 90% · 현장직 여성 71%"
+    ],
+    [
+     "O Grove · 스페인",
+     "Grupo Conservas · Garavilla",
+     "Isabel · Cuca · Massó 계열 통조림. 2020년 그룹 판매 6.6만 t, 품목 800종 이상, 20개국",
+     "· 배출 2,522 tCO2e",
+     "342명 · Bolton Food S.L. 법인 2024 · 본점은 O Grove다 · Garavilla 지주 별도 32명"
+    ],
+    [
+     "Cabo de Cruz · 스페인",
+     "Grupo Conservas · Garavilla",
+     "Isabel · Cuca · Massó 계열 통조림. 2020년 그룹 판매 6.6만 t, 품목 800종 이상, 20개국",
+     "",
+     "342명 · Bolton Food S.L. 법인 2024 · 본점은 O Grove다 · Garavilla 지주 별도 32명"
+    ],
+    [
+     "Las Ventas · de Retamosa · 스페인",
+     "Grupo Conservas · Garavilla",
+     "Isabel · Cuca · Massó 계열 통조림. 2020년 그룹 판매 6.6만 t, 품목 800종 이상, 20개국",
+     "",
+     "342명 · Bolton Food S.L. 법인 2024 · 본점은 O Grove다 · Garavilla 지주 별도 32명"
+    ],
+    [
+     "Quimper · 프랑스",
+     "Bolton Food France · (구 Saupiquet)",
+     "2025년 1월 조업 중단. 생산의 90%가 고등어였다",
+     "배출 2,851 tCO2e · 그룹 내 최저 가동률",
+     "155명 · 폐쇄로 소멸"
+    ]
+   ],
+   "sid": "s7",
+   "section": "07 / 선단과 가공거점작은 선단, 관세 지도를 따라 앉은 공장",
+   "note": "생산능력을 공개하는 곳은 두 곳뿐이다. SolTuna의 연 2.5만~3만 t과 Agadir의 그룹 대비 약 6%다. 나머지 여덟 곳은 수치가 없어 배출량으로 상대 규모만 가늠된다. 인력도 공장 단위가 아니라 법인이나 국가 단위로만 나온다. 법인 하나가 공장 여럿을 담는 곳은 배분을 알 수 없다.",
+   "stage": "c04"
+  },
+  {
+   "title": "참치와 무관한 일곱 곳",
+   "head": [
+    "카테고리",
+    "공장"
+   ],
+   "num": [
+    false,
+    false
+   ],
+   "rows": [
+    [
+     "접착제",
+     "Bühl(독일) · Goes(네덜란드) · Waalwijk(네덜란드) · Galten(덴마크)"
+    ],
+    [
+     "홈케어",
+     "Nova Milanese(이탈리아) · Cotignola(이탈리아)"
+    ],
+    [
+     "퍼스널케어",
+     "Calenzano(이탈리아)"
+    ]
+   ],
+   "sid": "s7",
+   "section": "07 / 선단과 가공거점작은 선단, 관세 지도를 따라 앉은 공장",
+   "note": "17개소는 2025년 목록이고 SR2024는 16개소였다. 차이는 연도이지 집계 기준이 아니다. 수산 가공 10개소는 2024년 기준이다. 그룹 임직원은 2024년 11,182명에서 2025년 10,675명으로 줄었다.",
+   "stage": "c04"
+  },
+  {
+   "title": "브랜드 기준으로 내려가면 숫자가 갈린다",
+   "head": [
+    "ISSF CM 2.5 공시",
+    "2024년분",
+    "2025년분"
+   ],
+   "num": [
+    false,
+    true,
+    true
+   ],
+   "rows": [
+    [
+     "MSC",
+     "53.4%",
+     "84.3%"
+    ],
+    [
+     "MSC full assessment",
+     "4.2%",
+     "0.3%"
+    ],
+    [
+     "MSC ITM",
+     "—",
+     "0.2%"
+    ],
+    [
+     "Comprehensive FIP",
+     "42.0%",
+     "14.0%"
+    ],
+    [
+     "None of the above",
+     "0.4%",
+     "1.2%"
+    ],
+    [
+     "공급자 중 ISSF 참여사",
+     "98.6%",
+     "100%"
+    ],
+    [
+     "공급자 중 선박 직접",
+     "—",
+     "0%"
+    ]
+   ],
+   "sid": "s8",
+   "section": "08 / 인증과 노동많이 공개해서 많이 걸린다",
+   "note": "분모는 Rio Mare · Palmera · Saupiquet · Pêcheurs de France 4개 브랜드, 단위는 round ton equivalents다. 그룹 전체 조달 기준 MSC 80.0%(2024)와 이 표의 53.4%(2024)는 세는 범위가 다른 수치다.",
+   "stage": "c05"
+  },
+  {
+   "title": "생분해성 FAD 100%에 붙는 단서 셋",
+   "head": [
+    "단서",
+    "내용"
+   ],
+   "num": [
+    false,
+    false
+   ],
+   "rows": [
+    [
+     "Scope가 Tri Marine 한정",
+     "목표표 Scope 열이 지정한 대상은 Tri Marine 한 곳이다. 나머지 선단은 이 100% 밖에 있다"
+    ],
+    [
+     "본문은 진행형",
+     "같은 SR2024 본문 표현은 \"while biodegradable designs are proven and fully implemented\""
+    ],
+    [
+     "제3자 감사 항목이 다르다",
+     "AZTI 연례 감사가 확인한 항목은 비얽힘(non-entangling)이고 생분해성은 그 범위 밖이다. 게다가 그 감사조차 \"applicable only to our Atunera Dularra and Conservas Isabel Ecuatoriana fleets\"여서 NFD 선단은 대상에 없다"
+    ]
+   ],
+   "sid": "s8",
+   "section": "08 / 인증과 노동많이 공개해서 많이 걸린다",
+   "note": "어법 쪽에서는 핵심 한 칸이 비어 있다. 2025년 조달의 92%가 선망인데, 그 안에서 free-school과 FAD-set이 각각 얼마인지는 공개되지 않는다. SR2024 238쪽 어디에도 그 분해가 없다. FAD-free 조달 비중을 묻는 질문은 여기서 멈춘다.",
+   "stage": "c05"
+  },
+  {
+   "title": "Oxfam 인권영향평가",
+   "head": [
+    "평가",
+    "대상",
+    "actual 영향으로 판정된 항목"
+   ],
+   "num": [
+    false,
+    false,
+    false
+   ],
+   "rows": [
+    [
+     "에콰도르 · 2021~2022 조사 · 2025-06-23 공개",
+     "자사 공장과 공급업체",
+     "업계 전반의 성희롱 · 면접 노동자 87%가 월 실수령액이 기본적 필요를 못 채운다고 응답 · 96%가 노조 비조합원 · 공급업체 보건안전"
+    ],
+    [
+     "모로코 · 2024 완료 · 2025-06-22 공개",
+     "자사 공장 Nouvelle Cosarno · 노동자 400명 이상, 현장직의 71%가 여성",
+     "91%가 월급이 기본적 필요를 못 채운다고 응답 · 67%가 존중받지 못한다고 응답하며 반장의 고성과 모욕을 보고 · 성희롱이 \"including at the Cosarno plant\" · 계약조건을 이해한다는 응답은 7.75%"
+    ]
+   ],
+   "sid": "s8",
+   "section": "08 / 인증과 노동많이 공개해서 많이 걸린다",
+   "note": "모로코 보고서에는 회사 자신의 규정을 겨눈 문장도 있다. 하루 8시간에서 10시간 사이 구간에 할증수당이 붙지 않는데 모로코 법으로는 적법하다. 보고서는 여기에 \"it does not align with Bolton Group's own Human Rights Policy, which commits to paying overtime at a minimum rate of 125%\"라고 적었다.",
+   "stage": "c05"
+  },
+  {
+   "title": "누구 배인가",
+   "head": [
+    "선명",
+    "선주"
+   ],
+   "num": [
+    false,
+    false
+   ],
+   "rows": [
+    [
+     "SHILLA EXPLORER · SHILLA JUPITER",
+     "신라교역 · 사업보고서의 \"참치선망선 6척 보유\"와 ISSF PVR 등재, Friend of the Sea 인증이 서로 맞는다"
+    ],
+    [
+     "SAJO COLUMBIA",
+     "사조 계열"
+    ],
+    [
+     "OCEAN ACE",
+     "동원산업"
+    ],
+    [
+     "ADRIA · BLUE OCEAN · BONAMI · HANARA · JANG BO GO · JUBILEE · MIRAERO · OCEAN MASTER · SEGYERO · TERAAKA",
+     "선주가 공개되지 않는다"
+    ]
+   ],
+   "sid": "s9",
+   "section": "09 / 한국 관점명단에 오른 한국 배 14척",
+   "note": "14척 전원이 국적 SOUTH KOREA · 어법 PS(선망) · 30GT 초과로 기재돼 있다. 선주가 붙는 배는 셋이고 나머지 11척은 선주가 공개되지 않는다. 그중 OCEAN ACE 한 척만 2차 자료가 동원산업으로 적는다. 한국 참치선망 총선복이 2024년 말 27척이니, 밀라노 명단의 14척은 국내 선복의 절반을 넘는 셈이다.",
+   "stage": "c06"
+  },
+  {
+   "title": "동원산업은 이름으로 올라 있다",
+   "head": [
+    "해역",
+    "어종",
+    "등급",
+    "어업 항목명(원문)"
+   ],
+   "num": [
+    false,
+    false,
+    false,
+    false
+   ],
+   "rows": [
+    [
+     "중서부태평양",
+     "YFT · SKJ",
+     "MSC",
+     "Dongwon Pacific purse seine yellowfin, bigeye and skipjack fishery (2건)"
+    ],
+    [
+     "인도양",
+     "YFT · SKJ",
+     "CC FIP",
+     "Indian Ocean tuna – purse seine (Dongwon Industries)"
+    ]
+   ],
+   "sid": "s9",
+   "section": "09 / 한국 관점명단에 오른 한국 배 14척",
+   "note": "대조 인증서는 MSC-F-31441 \"Dongwon Pacific Ocean Tuna purse seine and longline fishery\"로, 인증 2019-10-18 · 만료 2030-04-17 · 인증기관 Control Union (UK) Limited다. 목록에 오른다는 것은 그 어업의 어획물이 Bolton 공급망에 들어온다는 뜻이다. 물량은 적혀 있지 않다.",
+   "stage": "c06"
+  },
+  {
+   "title": "무역통계의 세 층위",
+   "head": [
+    "흐름",
+    "2024년",
+    "성격"
+   ],
+   "num": [
+    false,
+    false,
+    false
+   ],
+   "rows": [
+    [
+     "한국 → 이탈리아 · HS 030487 냉동 참치필레",
+     "2,507 t / US$30.7백만 · 이탈리아 수입의 금액 36.7% · 중량 33.5%로 1위",
+     "횟감급. 2025년 2,571 t / US$34.0백만(약 US$13.2/kg)"
+    ],
+    [
+     "한국 → 스페인 · HS 030342 냉동 황다랑어",
+     "3,743 t / US$9.02백만(약 US$2.41/kg)",
+     "캔 원료급 원어가 가는 쪽"
+    ],
+    [
+     "한국 HS 030343 냉동 가다랑어 · 총수출",
+     "160,164 t / US$190.7백만",
+     "스페인행 1,534 t, 약 1%. 주류는 여전히 방콕이다"
+    ]
+   ],
+   "sid": "s9",
+   "section": "09 / 한국 관점명단에 오른 한국 배 14척",
+   "note": "이탈리아의 대한국 HS160414(조제·자숙 참치) 수입은 2024년 23.8 t이었고 2025년에는 0이다. 단가가 kg당 13달러대인 물량은 Bolton의 캔 밸류체인에 속하지 않는다. \"한국이 이탈리아 최대 공급국\"이라는 문장은 HS030487 한 줄 안에서만 성립한다.",
+   "stage": "c06"
+  },
+  {
+   "title": "남은 물음",
+   "head": [
+    "물음",
+    "어디를 봐야 하나"
+   ],
+   "num": [
+    false,
+    false
+   ],
+   "rows": [
+    [
+     "한국 14척 중 11척의 선주",
+     "명단 PDF에 선주 컬럼이 없고 ISSF PVR에도 선주 필드가 없다. WCPFC RFV의 IMO 조회, 해수부·KOSFA 원양어선 명부, MSC 인증보고서 부속 선박목록"
+    ],
+    [
+     "배별 중개 트레이더 · Tri Marine 경유 여부",
+     "Bolton이 거래처명을 공시하지 않는다. ISSF 공시로는 참여사 100%까지만 좁혀진다"
+    ],
+    [
+     "COSMO SEAFOODS가 OEM 생산하는 \"유럽 유명 브랜드\" 실명",
+     "신라홀딩스 소개문은 브랜드를 익명으로 둔다. 가나 캔 수출의 도착국 구성은 영국·독일이 앞선다"
+    ],
+    [
+     "동원산업의 유럽 캔 고객",
+     "Bolton 어업 목록은 어업까지만 특정하고 DART 주요매출처 기재는 동원에프앤비에서 멈춘다"
+    ],
+    [
+     "한국 내 Rio Mare 수입원",
+     "2017년 론칭 배포사 이후의 변동이 공개돼 있지 않다"
+    ]
+   ],
+   "sid": "s9",
+   "section": "09 / 한국 관점명단에 오른 한국 배 14척",
+   "stage": "c06"
+  }
+ ]
+}

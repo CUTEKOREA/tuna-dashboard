@@ -206,6 +206,10 @@ import {
 } from './AlbacoraCharts';
 import CompanyGallery, { type CompanyCard } from './CompanyGallery';
 import galleryStyles from './CompanyGallery.module.css';
+import {
+  type ReportTable,
+  tablesForStage,
+} from '@/lib/data/company-report-tables';
 import styles from './TunaIndustryDashboard.module.css';
 
 const ACCENT = '#c2410c';
@@ -472,7 +476,7 @@ const SPEC: CommoditySpec = {
   ],
   briefing: FRINSA_BRIEFING,
   narratives: FRINSA_NARRATIVES,
-  chartSlots: CHART_SLOTS,
+  chartSlots: withReport('frinsa', CHART_SLOTS),
   sourceNotes: FRINSA_SOURCE_NOTES,
   sourceMeta: [
     `${frinsaMeta.회사} · ${frinsaMeta.국가} · ${frinsaMeta.업종}`,
@@ -564,21 +568,117 @@ function TuUsTariffTable() {
 }
 
 /** 2열 단순 표 공용 렌더러 — Thai Union 확장 표 7종이 공유한다. */
+/**
+ * 좁은 화면용 목록. `.factWrap` 은 720px 이하에서 숨으므로 이 짝이 없으면
+ * 휴대폰에서 표가 통째로 사라진다. 표를 CSS 로 접으면 일부 브라우저에서 표 의미가
+ * 깨지므로(기존 주석 참조) 같은 데이터를 마크업 둘로 낸다.
+ */
+function NarrowList({ head, rows }: { head: string[]; rows: (string | number)[][] }) {
+  return (
+    <ul className={styles.factList}>
+      {rows.map((r, i) => (
+        <li key={i}>
+          <div className={styles.factHead}>
+            <span className={styles.factLabel}>{r[0]}</span>
+          </div>
+          {r.slice(1).map((c, j) => (
+            c === '' || c === undefined ? null : (
+              <p key={j} className={styles.factMeta}>
+                {head[j + 1] ? `${head[j + 1]} · ` : ''}{c}
+              </p>
+            )
+          ))}
+        </li>
+      ))}
+    </ul>
+  );
+}
+
 function TuRows({ head, rows }: { head: string[]; rows: (string | number)[][] }) {
   return (
+    <>
+      <div className={styles.factWrap}>
+        <table className={styles.factTable}>
+          <thead>
+            <tr>{head.map((h) => <th key={h}>{h}</th>)}</tr>
+          </thead>
+          <tbody>
+            {rows.map((r, i) => (
+              <tr key={i}>{r.map((c, j) => <td key={j}>{c}</td>)}</tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+      <NarrowList head={head} rows={rows} />
+    </>
+  );
+}
+
+/**
+ * 조사보고서 표를 원문 그대로 그린다.
+ *
+ * 값을 옮겨 적지 않으므로 여기서 할 일은 두 가지뿐이다 — 원문이 우측정렬로 표시한
+ * 열을 그대로 우측정렬하고, 빈 칸(병합됐던 자리)을 「」가 아니라 「—」로 채우지 않는 것.
+ * 원문이 비워 둔 칸을 채우면 없는 값을 만들어 내는 셈이다.
+ */
+function RepTable({ t }: { t: ReportTable }) {
+  return (
+    <>
     <div className={styles.factWrap}>
       <table className={styles.factTable}>
+        {t.caption ? <caption className={styles.factCaption}>{t.caption}</caption> : null}
         <thead>
-          <tr>{head.map((h) => <th key={h}>{h}</th>)}</tr>
+          <tr>
+            {t.head.map((h, i) => (
+              <th key={i} className={t.num[i] ? styles.factNum : undefined}>{h}</th>
+            ))}
+          </tr>
         </thead>
         <tbody>
-          {rows.map((r, i) => (
-            <tr key={i}>{r.map((c, j) => <td key={j}>{c}</td>)}</tr>
+          {t.rows.map((r, i) => (
+            <tr key={i}>
+              {r.map((c, j) => (
+                <td key={j} className={t.num[j] ? styles.factNum : undefined}>{c}</td>
+              ))}
+            </tr>
           ))}
         </tbody>
       </table>
     </div>
+    <NarrowList head={t.head} rows={t.rows} />
+    </>
   );
+}
+
+/** 보고서 표를 그 단계의 슬롯으로 바꾼다. 제목·설명·출처가 전부 원문에서 온다. */
+function repSlots(company: string, stage: string): ChartSlot[] {
+  return tablesForStage(company, stage).map((t) => ({
+    title: t.title,
+    caption: t.note ?? '',
+    telemetry: SYNC,
+    render: () => <RepTable t={t} />,
+    span: 'full' as const,
+    sourceLine: `사내 조사보고서 ${t.section}`,
+  }));
+}
+
+/**
+ * 손으로 만든 슬롯 뒤에 보고서 나머지 표를 붙인다.
+ *
+ * 순서가 중요하다. 앞에 오는 것은 「무엇을 보라」를 쓴 슬롯이고, 뒤는 근거다.
+ * 뒤집으면 화면이 자료집이 되고 읽는 순서가 사라진다.
+ */
+function withReport(
+  company: string,
+  curated: Record<string, ChartSlot[]>,
+): Record<string, ChartSlot[]> {
+  const stages = new Set([...Object.keys(curated), ...['c01', 'c02', 'c03', 'c04', 'c05', 'c06', 'c07', 'c08']]);
+  const out: Record<string, ChartSlot[]> = {};
+  for (const st of stages) {
+    const merged = [...(curated[st] ?? []), ...repSlots(company, st)];
+    if (merged.length) out[st] = merged;
+  }
+  return out;
 }
 
 const TU_CHART_SLOTS: Record<string, ChartSlot[]> = {
@@ -815,7 +915,7 @@ const TU_SPEC: CommoditySpec = {
   ],
   briefing: THAIUNION_BRIEFING,
   narratives: THAIUNION_NARRATIVES,
-  chartSlots: TU_CHART_SLOTS,
+  chartSlots: withReport('thaiunion', TU_CHART_SLOTS),
   sourceNotes: THAIUNION_SOURCE_NOTES,
   sourceMeta: [
     `${thaiUnionMeta.회사} · ${thaiUnionMeta.국가} · ${thaiUnionMeta.업종}`,
@@ -1124,7 +1224,7 @@ const ALB_SPEC: CommoditySpec = {
   ],
   briefing: ALBACORA_BRIEFING,
   narratives: ALBACORA_NARRATIVES,
-  chartSlots: ALB_CHART_SLOTS,
+  chartSlots: withReport('albacora', ALB_CHART_SLOTS),
   sourceNotes: ALBACORA_SOURCE_NOTES,
   sourceMeta: [
     `${albacoraMeta.회사} · ${albacoraMeta.국가} · ${albacoraMeta.업종}`,
@@ -1254,7 +1354,7 @@ const FCF_SPEC: CommoditySpec = {
   ],
   briefing: FCF_BRIEFING,
   narratives: FCF_NARRATIVES,
-  chartSlots: FCF_CHART_SLOTS,
+  chartSlots: withReport('fcf', FCF_CHART_SLOTS),
   sourceNotes: FCF_SOURCE_NOTES,
   sourceMeta: [
     `${fcfMeta.회사} · ${fcfMeta.국가} · ${fcfMeta.업종}`,
@@ -1390,7 +1490,7 @@ const ITC_SPEC: CommoditySpec = {
   ],
   briefing: ITOCHU_BRIEFING,
   narratives: ITOCHU_NARRATIVES,
-  chartSlots: ITC_CHART_SLOTS,
+  chartSlots: withReport('itochu', ITC_CHART_SLOTS),
   sourceNotes: ITOCHU_SOURCE_NOTES,
   sourceMeta: [
     `${itochuMeta.회사} · ${itochuMeta.국가} · ${itochuMeta.업종}`,
@@ -1572,7 +1672,7 @@ const BOL_SPEC: CommoditySpec = {
   ],
   briefing: BOLTON_BRIEFING,
   narratives: BOLTON_NARRATIVES,
-  chartSlots: BOL_CHART_SLOTS,
+  chartSlots: withReport('bolton', BOL_CHART_SLOTS),
   sourceNotes: BOLTON_SOURCE_NOTES,
   sourceMeta: [
     `${boltonMeta.회사} · ${boltonMeta.국가} · ${boltonMeta.업종}`,
@@ -1718,7 +1818,7 @@ const JAI_SPEC: CommoditySpec = {
   ],
   briefing: JAIS_BRIEFING,
   narratives: JAIS_NARRATIVES,
-  chartSlots: JAI_CHART_SLOTS,
+  chartSlots: withReport('jais', JAI_CHART_SLOTS),
   sourceNotes: JAIS_SOURCE_NOTES,
   sourceMeta: [
     `${jaisMeta.회사} · ${jaisMeta.국가} · ${jaisMeta.업종}`,

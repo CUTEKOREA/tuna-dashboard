@@ -1,7 +1,7 @@
 # 위젯 리니지 — 데이터 파일별 영향 범위
 
 > `python3 scripts/widget_lineage.py`로 재생성. 손으로 고치지 말 것.
-> 진입점 app/page.tsx · closure 184파일 · 위젯 107개 · 데이터 파일 72개.
+> 진입점 app/page.tsx · closure 185파일 · 위젯 107개 · 데이터 파일 79개.
 > 데이터 파일 필드를 바꾸기 전에 여기서 영향 위젯을 확인한다 (파손 진단 1단계).
 
 ## data/beef_usda_widgets.json
@@ -101,24 +101,45 @@
 - components/bangkok/tabs/QualityTab.tsx
 - components/bangkok/tabs/UnloadTab.tsx
 
+## public/data/companies/albacora_tables_v1.json
+- components/market-understanding/CompanyAnatomyDashboard.tsx
+
 ## public/data/companies/albacora_v1.json
 - components/market-understanding/AlbacoraCharts.tsx
+- components/market-understanding/CompanyAnatomyDashboard.tsx
+
+## public/data/companies/bolton_tables_v1.json
 - components/market-understanding/CompanyAnatomyDashboard.tsx
 
 ## public/data/companies/bolton_v1.json
 - components/market-understanding/CompanyAnatomyDashboard.tsx
 
+## public/data/companies/fcf_tables_v1.json
+- components/market-understanding/CompanyAnatomyDashboard.tsx
+
 ## public/data/companies/fcf_v1.json
+- components/market-understanding/CompanyAnatomyDashboard.tsx
+
+## public/data/companies/frinsa_tables_v1.json
 - components/market-understanding/CompanyAnatomyDashboard.tsx
 
 ## public/data/companies/frinsa_v1.json
 - components/market-understanding/CompanyAnatomyDashboard.tsx
 - components/market-understanding/FrinsaCharts.tsx
 
+## public/data/companies/itochu_tables_v1.json
+- components/market-understanding/CompanyAnatomyDashboard.tsx
+
 ## public/data/companies/itochu_v1.json
 - components/market-understanding/CompanyAnatomyDashboard.tsx
 
+## public/data/companies/jais_tables_v1.json
+- components/market-understanding/CompanyAnatomyDashboard.tsx
+
 ## public/data/companies/jais_v1.json
+- components/market-understanding/CompanyAnatomyDashboard.tsx
+
+## public/data/companies/thaiunion_tables_v1.json
 - components/market-understanding/CompanyAnatomyDashboard.tsx
 
 ## public/data/companies/thaiunion_v1.json

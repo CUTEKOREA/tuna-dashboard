@@ -683,6 +683,13 @@
   min-width: 12rem;
 }
 
+/* 원문 표가 우측정렬로 표시한 숫자 열. 그 표시를 옮겨야 자릿수가 화면에서도 맞는다. */
+.factTable th.factNum,
+.factTable td.factNum {
+  text-align: right;
+  white-space: nowrap;
+}
+
 .factNote {
   display: block;
   margin-top: 0.25rem;
