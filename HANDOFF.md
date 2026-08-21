@@ -8,7 +8,7 @@
 > - 검증: ESLint 0 errors·기존 warnings 12(내가 만진 5파일엔 0), `tsc --noEmit` 신규 오류 0, Vitest 145 files 1,105 passed / 2 skipped.
 > - **다음 단계**: PR gate → main 병합 → Vercel Production → `/tuna-industry` 등 5개 페이지 라이브 확인.
 
-> ⚓ **2026-08-21 15:56 KST — SEIN VENUS 8/21 하역 일일보고 반영·Tasks·TXT 동기화 (배포 진행 중)** [Codex]:
+> 🚀 **2026-08-21 16:33 KST — SEIN VENUS 8/21 하역 일일보고 라이브 배포 완료** [Codex]:
 > - 전용 worktree `/private/tmp/tuna-unloading-0821` (`codex/unloading-sein-venus-20260821`)에서 원본 3종을 교차 확인했다. SHA-256: JPG `931ebf66…e36037b`, 결과 XLS `30a0f429…ad654e`, 현황 XLSX `ac332bc9…1827bf`.
 > - 검산: `3,090.760 + 148.800 = 3,239.560 MT`, `3,275 - 3,239.560 = 35.440 MT`. GPZ `148.800 MT`는 S/PIO #1-B `5.770` + #1-C `143.030 MT`; 온도는 각각 -18.0~-19.0℃, -20.0~-21.0℃다.
 > - XLS 어종은 SJ `143.600`·YF `5.200 MT`, 누계 SJ `2,706.080`·YF `533.480 MT`. 당일 보정 `+5.770`, 누적 보정 `+61.530`, 산술 잔량에 누적 보정을 더한 실재고 잔량 `96.970 MT`다. 어창별 어종은 추정하지 않았다.
@@ -17,9 +17,11 @@
 > - Google Drive 같은 원본 폴더에 `20260821 SEIN VENUS (BKK) 하역 업무 보고.txt`를 저장했다. 렌더러 출력과 diff 0, SHA-256 `f772f3ea…63dcbf`.
 > - RED→GREEN: 8/21 누락으로 대상 테스트 5건 실패 후 8/8 통과. `npm run verify` 통과(ESLint 0 errors·기존 warnings 12, Vitest 1,105 passed/2 skipped, API cache 158/158, Next 118페이지, 누출·번들 게이트). 하역 이력 E2E는 통합 `36,590 MT`·8/21 상세로 갱신 후 desktop/mobile/keyboard/open-tab/API/chunk failure isolation 통과.
 > - 로컬 production API·보호 화면: 기준일 2026.08.21, SEIN 누계 `3,239.560`, HIKARI 포함 현재 누계 `3,536.620`, 화면 반올림 연간 누적 `36,590 MT` 일치. 1440×1000·390×844에서 overflow/page/console/local request/HTTP errors 모두 0.
-> - **다음 단계**: 독립 반증 완료 후 커밋·PR gate·main 순차 병합·Vercel Production READY·운영 API/UI/error 로그를 재검증한다.
+> - PR [#723](https://github.com/CUTEKOREA/tuna-dashboard/pull/723) squash `9947d0f0`. PR App Quality Gate `32457710540`, main gate `32458577905` 성공. Data Freshness Audit은 이번 데이터·테스트 경로에서 비트리거가 정상이다.
+> - Vercel Production `dpl_2XdcWtZeJ8xZMPJxuKRKnYMzeLtL` READY, `https://leedonggun.co.kr` alias·`icn1` 연결. 운영 API 200과 1440×1000·390×844 화면에서 8/21 수치·명일 100톤·세부계획을 확인했고 overflow/page/console/request/HTTP errors 모두 0. 최근 2시간 error 로그 0건.
+> - **다음 단계**: 8/22 원본 일보 수신 시 완료 여부와 최종 증감을 원본 기준으로 판정한다.
 >
-> 마지막 업데이트: 2026-08-21 15:56 KST [Codex]
+> 마지막 업데이트: 2026-08-21 16:33 KST [Codex]
 
 > 📇 **2026-08-21 12:58 KST — 기업 해부 3사에 최신 조사 결과 반영** [CC]:
 > - 격리 worktree `/private/tmp/ca-report` (`feat/company-report-sync`, origin/main 기준)에서 작업했다. 다른 세션이 편집 중인 더러운 트리를 피하려고 별도 브랜치를 끊었다.
