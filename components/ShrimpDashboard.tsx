@@ -89,23 +89,23 @@ type PillarDef = {
 };
 
 const PILLARS: readonly PillarDef[] = [
-  { id: 'S1', num: '❶', label: '원료 수급', title: '🦐 제1기둥 — 원료 수급',
+  { id: 'S1', num: '❶', label: '원료 수급', title: '🦐 제1기둥 · 원료 수급',
     desc: '글로벌 양식·어획 동향, 시리즈 6개국 역할, 질병 리스크', color: '#10b981', icon: Anchor,
     widgets: ['w01_paradigm_shift', 'w02_top10_by_source', 'w03_species_concentration', 'w_series_country_roles', 'w04_argentina_landings', 'w50_kfas_bft_pathogen'],
     customInject: [] },
-  { id: 'S2', num: '❷', label: '가공·생산', title: '🏭 제2기둥 — 가공·생산',
+  { id: 'S2', num: '❷', label: '가공·생산', title: '🏭 제2기둥 · 가공·생산',
     desc: '가공 유형별 생산, 가공 전환·마진, 한국 수입 가공품 구조', color: '#14b8a6', icon: Factory,
     widgets: ['w03_processing', 'w_proc1_type_production', 'w08_processing_reversal', 'w09_feed_vs_processing_margin'],
     customInject: [] },
-  { id: 'S3', num: '❸', label: '물류·통관', title: '🚢 제3기둥 — 물류·통관',
+  { id: 'S3', num: '❸', label: '물류·통관', title: '🚢 제3기둥 · 물류·통관',
     desc: '글로벌 수출 경쟁, 에콰도르 동향, 재가공 허브, 한국 수입 단계·시리즈 창구', color: '#0d9488', icon: Ship,
     widgets: ['w10_world_exporters', 'w11_ecuador_monthly', 'w12_reprocessing_hubs', 'w13_kr_import_by_stage', 'w_series_kr_windows'],
     customInject: [ShrimpFTAQuarterly] },
-  { id: 'S4', num: '❹', label: '판매·수요', title: '📈 제4기둥 — 판매·수요',
+  { id: 'S4', num: '❹', label: '판매·수요', title: '📈 제4기둥 · 판매·수요',
     desc: '수입 시장 단가 트렌드, 원산지별 가격 구조, 시리즈 창구 단가', color: '#5eead4', icon: DollarSign,
     widgets: ['w14_top_import_markets', 'w15_pinksheet_nominal', 'w16_spain_exw_ladder', 'w_kr_shrimp_origin_price', 'w_series_kr_unit', 'w_proc2_kr_import_type'],
     customInject: [] },
-  { id: 'S5', num: '❺', label: 'ESG·지속가능성', title: '🌱 제5기둥 — ESG·지속가능성',
+  { id: 'S5', num: '❺', label: 'ESG·지속가능성', title: '🌱 제5기둥 · ESG·지속가능성',
     desc: '양식 인증·추적성, 지속가능성 컴플라이언스', color: '#99f6e4', icon: ShieldCheck,
     widgets: ['w_india_shaphari', 'w_vn_traceability_risk', 'w21_cert_landscape'],
     customInject: [] },
@@ -418,7 +418,7 @@ export default function ShrimpDashboard() {
               <h1 style={{ margin: 0, fontSize: '1.5rem', fontWeight: 700, letterSpacing: '-0.5px', color: 'var(--text-primary)' }}>
                 새우 전략 인텔리전스
               </h1>
-              <p style={{ margin: 0, fontSize: '0.88rem', color: 'var(--text-secondary)' }}>6개국 산업 보고서를 5기둥에 재구성 — {displayWidgets?.length ?? 0}개 위젯 · {kpiKeys.length}개 핵심지표</p>
+              <p style={{ margin: 0, fontSize: '0.88rem', color: 'var(--text-secondary)' }}>6개국 산업 보고서를 5기둥에 재구성. {displayWidgets?.length ?? 0}개 위젯 · {kpiKeys.length}개 핵심지표</p>
             </div>
           </div>
           {/* 데이터 빈티지 배지 — 정적 스냅샷 기준 연도만 정직 표기 (L-09) */}
@@ -496,7 +496,7 @@ export default function ShrimpDashboard() {
           marginBottom: '6px',
         }}>
           <span style={{ fontSize: '0.7rem', color: 'rgba(var(--w-slate-400-rgb), 0.7)', fontWeight: 600, letterSpacing: '0.08em', textTransform: 'uppercase' }}>
-            밸류체인 네비게이터 — 아래 단계를 클릭하여 탐색하세요
+            밸류체인 네비게이터. 아래 단계를 클릭해 탐색하세요
           </span>
         </div>
         <div data-mobile-stack style={{ display: 'grid', gridTemplateColumns: 'repeat(5, 1fr)', gap: '4px' }}>
@@ -611,7 +611,7 @@ export default function ShrimpDashboard() {
     const honestStatus: 'LIVE' | 'SYNCED' | 'STATIC' = rawTelemetry === 'SYNCED' ? 'SYNCED' : 'STATIC';
     // 패턴 E: 일괄 fallback 문자열 금지 — syncDate 부재 시 배지가 날짜를 생략(정직)
     const honestSyncDate = w.syncDate;
-    const cardDesc = [w.unit ? `단위: ${w.unit}` : '', w.subtitle || ''].filter(Boolean).join(' — ');
+    const cardDesc = [w.unit ? `단위: ${w.unit}` : '', w.subtitle || ''].filter(Boolean).join(' · ');
 
     // chartType 'none': 차트 없이 customBody 배열만 목록으로 렌더 (ShrimpFTAQuarterly와 같은 패턴)
     const isChartless = (w.chartType || '').toLowerCase() === 'none';

@@ -1,6 +1,6 @@
 source,file,id,title,pillar,tier,axis1,axis2,axis3,axis4,avg,grade
 JSON,public/data/shrimp_real_data_v4.json,w01_paradigm_shift,양식과 자연산의 교차 (톤),S1,FAO FishStat,95,85,95,100,93.8,A
-JSON,public/data/shrimp_real_data_v4.json,w02_top10_by_source,상위 10개국 생산 — 양식과 자연산 (톤),S1,FAO FishStat,95,85,95,100,93.8,A
+JSON,public/data/shrimp_real_data_v4.json,w02_top10_by_source,상위 10개국 생산: 양식과 자연산 (톤),S1,FAO FishStat,95,85,95,100,93.8,A
 JSON,public/data/shrimp_real_data_v4.json,w03_species_concentration,종별 생산 집중도 (%),S1,FAO FishStat,95,85,95,100,93.8,A
 JSON,public/data/shrimp_real_data_v4.json,w_series_country_roles,시리즈 6개국 역할,S1,FAO FishStat,95,100,85,100,95.0,A
 JSON,public/data/shrimp_real_data_v4.json,w04_argentina_landings,아르헨티나 붉은새우 월별 양륙 (톤),S1,SAGyP,90,100,95,100,96.2,A
@@ -12,15 +12,19 @@ JSON,public/data/shrimp_real_data_v4.json,w09_feed_vs_processing_margin,사료�
 JSON,public/data/shrimp_real_data_v4.json,w10_world_exporters,세계 수출국 3개년 물량 (천 톤),S3,FAO GLOBEFISH,92,92,85,100,92.2,A
 JSON,public/data/shrimp_real_data_v4.json,w11_ecuador_monthly,에콰도르 월별 수출량과 단가 (백만 파운드 · 달러/파운드),S3,미분류,70,100,85,100,88.8,A
 JSON,public/data/shrimp_real_data_v4.json,w12_reprocessing_hubs,재가공 허브의 원료 수입 (톤),S3,INFOFISH,82,92,85,100,89.8,A
-JSON,public/data/shrimp_real_data_v4.json,w13_kr_import_by_stage,한국 수입 — 냉동과 조제 (백만 달러),S3,미분류,70,100,95,100,91.2,A
+JSON,public/data/shrimp_real_data_v4.json,w13_kr_import_by_stage,한국 수입: 냉동과 조제 (백만 달러),S3,미분류,70,100,95,100,91.2,A
 JSON,public/data/shrimp_real_data_v4.json,w_series_kr_windows,한국 창구 물량 (톤),S3,관세청,95,100,85,100,95.0,A
 JSON,public/data/shrimp_real_data_v4.json,w14_top_import_markets,3대 수입시장 규모 (천 톤),S4,FAO GLOBEFISH,92,92,85,100,92.2,A
 JSON,public/data/shrimp_real_data_v4.json,w15_pinksheet_nominal,국제 새우 명목가격 1960~2023 (달러/kg),S4,World Bank,88,78,95,100,90.2,A
-JSON,public/data/shrimp_real_data_v4.json,w16_spain_exw_ladder,규격별 호가 — 스페인 출고가 (유로/kg),S4,FAO GLOBEFISH,92,100,85,100,94.2,A
+JSON,public/data/shrimp_real_data_v4.json,w16_spain_exw_ladder,규격별 호가: 스페인 출고가 (유로/kg),S4,FAO GLOBEFISH,92,100,85,100,94.2,A
 JSON,public/data/shrimp_real_data_v4.json,w_kr_shrimp_origin_price,한국 수입 원산지별 새우 단가 추이 (USD/kg),S4,KMI,80,100,75,95,87.5,A
 JSON,public/data/shrimp_real_data_v4.json,w_series_kr_unit,한국 창구 단가 (달러/kg),S4,관세청,95,100,85,100,95.0,A
 JSON,public/data/shrimp_real_data_v4.json,w_proc2_kr_import_type,한국 수입 가공형태별 구성 (2026년 1분기),S4,KMI,80,100,75,95,87.5,A
 JSON,public/data/shrimp_real_data_v4.json,w_india_shaphari,인도 무항생제(SHAPHARI) 인증 농장 현황,S5,MPEDA,90,100,75,95,90.0,A
 JSON,public/data/shrimp_real_data_v4.json,w_vn_traceability_risk,베트남 새우 공급망 이력추적 단절 리스크,S5,Seafood Watch,80,100,75,95,87.5,A
 JSON,public/data/shrimp_real_data_v4.json,w21_cert_landscape,인증·표준 지형,S5,MPEDA,90,100,85,100,93.8,A
+JSON,public/data/shrimp_real_data_v4.json,w30_two_ledgers,두 공식 원장의 가공 지역 (%),S2,미분류,70,85,85,100,85.0,A
+JSON,public/data/shrimp_real_data_v4.json,w31_mof_processing_value,새우 가공 생산량과 생산액 (톤 · 억 원),S2,미분류,70,85,85,100,85.0,A
+JSON,public/data/shrimp_real_data_v4.json,w32_listed_disclosure_gap,상장사 공시 「새우」와 직수입 신고 (회 · 건),S3,미분류,70,92,85,100,86.8,A
+JSON,public/data/shrimp_real_data_v4.json,w33_species_from_ingredients,수입 신고 종별 구성 (%),S4,미분류,70,100,85,100,88.8,A
 TSX,components/ShrimpFTAQuarterly.tsx,-,FTA 새우 분기별 수입 동향 (KMI 21개 분기),S3,KMI,80,100,85,100,91.3,A

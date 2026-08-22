@@ -1,3 +1,19 @@
+> 🦐 **2026-08-22 22:10 KST — `/shrimp` 보고서 발견 4건 위젯화 + 위젯 산문 윤문** [Claude]:
+> - 「한국 새우 산업 해부」 보고서(15절·A4 25쪽, 감사 9회 끝에 P0 0건)에서 연 발견을 대시보드에 얹었다. **F 섹션을 쓰지 않았다** — 오징어의 F 섹션은 pillar 없는 81위젯 구조를 전제하는데 새우는 5-Pillar 로 재편했고 룰북 6장이 예외 없는 MUST 다. 기존 S1~S4 안에 넣었다. 위젯 24 → **28**.
+>   - `w30_two_ledgers` — 두 정부 부처가 같은 품목을 세는데 **1위 시도가 뒤집힌다.** 해수부 수산물가공업통계는 부산 71.0%, 식약처 생산실적은 충남 28.7%·부산 10.3%. 각자 자기 신고를 받은 대상만 세기 때문이다.
+>   - `w31_mof_processing_value` — 식약처 원장에 없는 **생산액**이 해수부 지정통계(KOSIS DT_MLTM_5002733)에 있다. 5개년 수량·생산액·단가.
+>   - `w32_listed_disclosure_gap` — 상장사 15곳 사업보고서의 「새우」 빈도 × 직수입 신고. **동원산업 0회 / 140건, 이마트 0회 / 271건.** 반대로 롯데웰푸드는 14회 / 0건.
+>   - `w33_species_from_ingredients` — 관세 세번은 종을 안 세지만 수입신고 원장의 「원재료」 칸은 센다. 22,292건 중 **18,059건(81.0%)** 종 판정. 단 신고 건수이지 물량·금액이 아니다.
+> - **윤문 — 레거시 v3 위젯이 컨설팅 덱 문체였다.** 「전략:」·「현황:」·「위젯 설명:」 라벨 접두어, 「하십시오」 권고체, ▸ 불릿, CAPEX·ROI·Zero-Volatility·「올인」·「공산품 찍어내듯」. 신규 위젯의 보고서 문체와 섞여 그 불일치 자체가 AI 티였다. 37단위를 윤문했고 전 패턴 0건.
+> - **fidelity 는 기계로 걸었다.** 수치·대문자 약어 집합을 윤문 전후로 대조해 불일치 시 재주입 중단. 실제로 두 번 잡혔다 — FAOSTAT 행 이름 `Totals` 소실, `w_kr_shrimp_origin_price` 의 스프레드 축소 문장(1.5→1.2 USD/kg) 통째 누락. 둘 다 복원했다.
+> - **엠대시**: 사용자 눈에 보이는 문자열에서 0건(위젯 JSON 전 필드 + 컴포넌트 라벨·헤더·cardDesc 구분자). 코드 주석 11건은 화면에 안 나오므로 그대로 뒀다.
+> - ⚠️ **배포 함정**: 로컬 브랜치 `codex/fleet-production-2025` 가 origin/main 보다 **563 커밋 뒤**였다. 로컬 `ShrimpDashboard.tsx` 를 그대로 얹었다면 main 의 CSS 변수 전환과 D-05 축 라벨 회전 로직이 통째로 사라졌을 것이다(diff 68줄). origin/main 워크트리에서 **내 편집 8줄만 다시 적용**해 diff 8줄로 줄였다.
+> - 게이트: `npm run verify` 통과(33 라우트), O-04 4축 **90.5 (A 28 / B 1)**, LIVE 배지 0(L-09), 미분류·출처 누락 0.
+> - 산출물은 Drive `01_수산물(Seafood)/shrimp/8_한국_새우_산업_해부/` 에 95건 이전(0바이트 0건). 오버레이 스크립트 `scripts/shrimp_overlay_report.py` 는 멱등이다.
+> - **다음 단계**: 미해결 3건 — 새우 기본세율 20%·FTA 양허 1차 출처 대조(현재 2차 인용), KMI 바스켓(91.5천톤)과 보고서 바스켓(104,977톤)의 13,477톤 차, GLOBEFISH 가 이미 공표한 2025년 한국 수입 109,020톤 반영 여부.
+>
+> 마지막 업데이트: 2026-08-22 22:10 KST [Claude]
+
 > 🚀 **2026-08-22 21:19 KST — HIKARI 1 8/22 하역 일일보고 라이브 배포 완료** [Codex]:
 > - PR [#738](https://github.com/CUTEKOREA/tuna-dashboard/pull/738)을 Preview/App/Vercel 3/3 checks 성공 뒤 squash merge했다. main commit은 `107e80aa207f5224292e7ca6d2307971bb232b1e`, PR App Quality Gate는 `32572064752`, main gate는 `32572261095`이며 둘 다 전체 verify와 하역 브라우저 acceptance를 통과했다.
 > - Vercel Production `dpl_4JMtkDszrYLRNUB7cpEdE2yUP2qe`(GitHub deployment `6036618222`)가 READY이며 `https://leedonggun.co.kr` alias·`icn1`에 연결됐다. GitHub Production deployment SHA도 main commit과 일치한다.
