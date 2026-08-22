@@ -254,6 +254,40 @@ def widgets():
                     coverage_start="1998-01", coverage_end="2026-06",
                     source_ids=["SQ-COOP-FIPS"], blocked_use=["지역 합을 어획량으로 읽기"]))
 
+    # F17 aT 지역별 가격 — 전국 평균이 접는 축
+    at = load("at_kamis_widgets.json")
+    W["F_kamis_region_2025"] = dict(
+        section="F", title="2025년 지역별 오징어 가격 — 마른오징어는 수원과 강릉이 35.7% 벌어진다",
+        chartType="table", data=at["region_2025"], xAxis="지역", series=["2025_연평균"],
+        methodology=at["note"] + " 관측월 열을 함께 싣는다 — 열두 달이 채워진 계열만 지역 비교가 선다.",
+        basis=basis(market_stage="wholesale", aggregation="mean_within_stage", currency="KRW",
+                    nominal_real="nominal", coverage_start="2025-01", coverage_end="2025-12",
+                    source_ids=["SQ-PRC-KAMIS"],
+                    blocked_use=["관측월이 다른 지역을 같은 연평균으로 비교", "도매 원/kg 과 소매 원/마리를 나눠 마진 계산"]))
+
+    # F18 일별 경락 — 월별이 멈춘 자리와 시장 간 격차
+    W["F_kamis_daily_monthly"] = dict(
+        section="F", title=f"경락가격 일별 집계 {at['daily_span'][0]}~{at['daily_span'][1]} — 월별이 멈춘 자리를 잇는다",
+        chartType="line", data=at["daily_monthly"], xAxis="ym", series=["avg", "spread_pct"],
+        methodology=(f"거래일 {at['daily_days']}일의 월평균과 최저 대비 최고 스프레드 중앙값. "
+                     "월별 계열은 연근해냉동이 2025-09, 생선이 2026-03 에서 멈추지만 일별은 2026-08-21 까지 이어진다. "
+                     "일별 평균은 품종 합산이라 품종별 월별 계열과 수준이 다르다."),
+        basis=basis(market_stage="wholesale", aggregation="mean_within_stage", currency="KRW",
+                    nominal_real="nominal", coverage_start="2022-12", coverage_end="2026-07",
+                    source_ids=["SQ-PRC-KAMIS"],
+                    blocked_use=["품종별 월별 계열과 한 선으로 잇기", "스프레드를 특정 시장 간 격차로 지목"]))
+
+    # F19 원산지 프리미엄 — 2025-08 부터만 갈린다
+    W["F_kamis_origin_premium"] = dict(
+        section="F", title="연근해와 원양의 도매가 차이 — 서울 253일 기준 34%", chartType="table",
+        data=at["origin_premium"], xAxis="지역", series=["프리미엄_%"],
+        methodology=("경락 표의 지역 행 라벨이 2025-08 부터 연근해(냉동)·원양(냉동)으로 갈렸다. "
+                     "그전은 「냉동」 한 칸이라 비교 구간이 없다. 관측일이 30일 안팎인 지역은 같은 폭으로 읽을 수 없다."),
+        basis=basis(market_stage="wholesale", aggregation="mean_within_stage", currency="KRW",
+                    nominal_real="nominal", coverage_start="2025-08", coverage_end="2026-07",
+                    source_ids=["SQ-PRC-KAMIS"],
+                    blocked_use=["관측일이 적은 지역의 프리미엄을 전국값으로 확대", "2025-08 이전 구간과 연결"]))
+
     # F9 수입명의 × 가공업 겹침
     W["F_overlap_by_type"] = dict(
         section="F", title="수입 유형별 가공업 보유 — 603 명의 중 117", chartType="bar", data=ov["by_type"],
