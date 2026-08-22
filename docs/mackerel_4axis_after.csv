@@ -8,9 +8,11 @@ s1_nsc_weekly,S1,노르웨이 주간 수출 물량·단가,NORWEGIAN_SEAFOOD_EXP
 s1_stock_status,S1,자원평가 상태 스코어카드 (ICES·NPFC),ICES_ATLANTIC_MACKEREL,manual_extract,B,2024-2026,95,95,70,100,90.0,A
 s1_tac_quota,S1,TAC·쿼터 변동과 물량 전망,ICES_ATLANTIC_MACKEREL,manual_extract,B,2025-2026,95,95,70,100,90.0,A
 s2_aquaculture,S2,양식 전환 가능성,FAO_FISHSTAT_GLOBAL_PRODUCTION,script,A,2005-2024,95,70,95,100,90.0,A
+s2_domestic_processors,S2,신고만 늘어난 국내 고등어 가공,MFDS_PRODUCTION_I0300,script,A,2016-2025,95,80,95,100,92.5,A
 s2_fishmeal,S2,어분 전환 물량과 사료 전환율,FAO_FISHSTAT_TRADE_PP,script,A,2010-2024,95,70,95,100,90.0,A
 s2_form_price_ladder,S2,가공단계별 단가 사다리,FAO_FISHSTAT_TRADE,script,A,2024,95,70,95,100,90.0,A
 s2_hmr_valueadd,S2,가공형태 전환 부가가치 추이,FAO_FISHSTAT_TRADE,script,A,2013-2024,95,70,95,100,90.0,A
+s2_mackerel_share_of_processing,S2,고등어가 주재료인 몫,MFDS_ITEM_REPORT_C002,script,A,2016-2025,95,80,95,100,92.5,A
 s2_processing_hubs,S2,글로벌 가공 허브 이동,FAO_FISHSTAT_TRADE_PP,script,A,2010-2024,95,70,95,100,90.0,A
 s2_triangle_reexport,S2,삼각 가공 재수출 밸류체인,FAO_FISHSTAT_TRADE_PARTNERS,script,A,2019-2024,95,70,95,100,90.0,A
 s2_us_market,S2,미국 시장 수입 동향,USDA_GATS_US_IMPORTS,script,A,202501-202606,95,55,95,100,86.2,A
@@ -18,6 +20,7 @@ s3_africa_volume_price,S3,아프리카 수출 물량·단가,FAO_FISHSTAT_TRADE_
 s3_comtrade_matrix,S3,글로벌 교역 매트릭스 (HS6 5종),UN_COMTRADE_HS,script,A,2025,95,80,95,100,92.5,A
 s3_export_destinations,S3,한국 수출 목적지 구조 변화,FAO_FISHSTAT_TRADE_PARTNERS,script,A,2019-2024,95,70,95,100,90.0,A
 s3_fta_quarterly,S3,FTA 체결국 수입 물량·금액 추이,KMI_FISHERIES_OUTLOOK,manual_extract,B,분기,80,55,70,100,76.2,B
+s3_kcs_2026_origin,S3,무너지는 원산지 의존 구조 (관세청 2026),KCS_NITEMTRADE,script,A,2026-01~2026-08,95,95,95,100,96.2,A
 s3_kcs_monthly,S3,관세청 HS10별 월별 수입 실적 (2026),KCS_NITEMTRADE,script,A,2026.01~2026.05,95,95,95,100,96.2,A
 s3_korea_trade_balance,S3,한국 수출입 물량·단가·무역수지,FAO_FISHSTAT_TRADE,script,A,2019-2024,95,70,95,100,90.0,A
 s3_mfds_safety,S3,수입식품 신고 이력 (국가별),MFDS_IMPORTED_FOOD,script,A,2025,95,80,95,100,92.5,A
