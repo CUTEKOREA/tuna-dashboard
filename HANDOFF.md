@@ -5791,4 +5791,5 @@ python3 scripts/check_s_grade.py components/TunaDashboard.tsx components/TunaExt
 - **UI**: `SectionF.tsx`(generic 폴백), `SECTION_META.F`, `types.ts` section 유니온, `FIELD_KO` 28개 라벨(한국어 키의 라틴 혼입은 괄호 병기).
 - **건드리지 않은 것**: 메인 작업트리의 미커밋 변경(메뉴 제거·새우 데이터)은 다른 작업자 몫이라 워크트리 `feat/squid-report-sync` 에서 분리 작업했다. 기존 B 섹션 수입단가 위젯(HS6·갑오징어 포함)은 그대로 두고 F1 을 별도 축으로 둔다.
 - **main 재기반(2026-08-22)**: `origin/main`(#728) 위에 체리픽. 그 사이 main 에 들어온 G-013(HS 기반 위젯은 `basis.hs_codes` 필수)에 맞춰 F1 수입단가 위젯에 `hs_codes ["030742","030743","160554"]` 를 달았다(0307.49 는 분리불가라 제외). 재오버레이 후 위젯 48·위반 0, vitest 39/39.
-- **다음 단계**: 독립 리뷰 → main 병합 → 배포(사용자 지시 시). 빌더의 36행 고정은 `source_registry.csv` 변경 주체와 맞춰 풀어야 한다.
+- **배포(2026-08-22)**: `squid/f-section-deploy` 를 main 에 fast-forward(`15798446`). pre-push 빌드 게이트 60s 통과. Vercel production `dpl_6ohR8wX2AjQWWKVMdjXyJssfxDHv` READY. `/squid` 는 로그인 벽(307 → /login) 뒤라 curl 로는 본문 확인 불가 — Vercel 배포 상태로 확인했다. `gh` 토큰 만료(401)로 PR 은 생략, 직접 ff-push.
+- **다음 단계**: 라이브 로그인 후 /squid 6부 390px QA. 빌더의 36행 고정은 `source_registry.csv` 변경 주체와 맞춰 풀어야 한다.
