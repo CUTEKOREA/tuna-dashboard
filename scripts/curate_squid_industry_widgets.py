@@ -221,6 +221,11 @@ TITLE_OVERRIDES = {
 # ── 라벨 한글화 ──────────────────────────────────────────────────────
 # 학명·영문 라벨이 화면에 그대로 나가면 L-01 위반이다. 셀 값 단위로 갈아끼운다.
 CELL_FIXES = {
+    # 측정 기준(basis) 값 — 화면에 그대로 나가므로 한글로 옮긴다 (2026-08-22 라이브에서 sum_within_stage 노출 발견)
+    "sum_within_stage": "단계 내 합산",
+    "mean_within_stage": "단계 내 평균",
+    "nominal": "명목",
+    "real": "실질",
     # 학명
     "Todarodes pacificus": "살오징어",
     "Illex argentinus": "아르헨티나오징어",

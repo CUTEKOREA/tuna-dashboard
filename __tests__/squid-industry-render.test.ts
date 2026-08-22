@@ -177,6 +177,21 @@ describe('시장 이해 > 오징어 — 위젯 큐레이션', () => {
     expect(offenders.slice(0, 12), `영문 잔존: ${offenders.slice(0, 12).join(' / ')}`).toHaveLength(0);
   });
 
+  it('측정 기준의 값도 한글이다 (라이브에서 sum_within_stage 가 노출됐다)', () => {
+    const offenders: string[] = [];
+    for (const stage of getSquidStages()) {
+      for (const widget of stage.widgets) {
+        for (const [key, value] of Object.entries(widget.basis ?? {})) {
+          if (typeof value !== 'string') continue;
+          for (const token of value.match(/[A-Za-z]{3,}/g) ?? []) {
+            offenders.push(`${widget.id}.${key}: ${token}`);
+          }
+        }
+      }
+    }
+    expect(offenders, `측정 기준 영문 잔존: ${offenders.join(' / ')}`).toHaveLength(0);
+  });
+
   it('방법론 캡션과 측정 기준에 원본 영문 키가 남지 않는다', () => {
     // 캡션은 화면에 그대로 나간다. 학명 열 이름·활중량 코드를 그대로 쓰면 L-01.
     for (const stage of getSquidStages()) {
