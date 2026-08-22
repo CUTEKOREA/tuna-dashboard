@@ -9,8 +9,8 @@ grade 규칙
   B = PDF/MD 수동 추출 → method=manual_extract
 """
 from build import C, builder, r1
-from scope import (ARCHIVE, FIPS_COOP_CSV, FIPS_PROD_JSON, KAMIS_JSON,
-                   MFDS_C002_CSV, MFDS_I0300_CSV)
+from scope import (AFRICA, ARCHIVE, COMTRADE_CSV, FIPS_COOP_CSV, FIPS_PROD_JSON,
+                   KAMIS_JSON, KCS_MACKEREL_HS, MFDS_C002_CSV, MFDS_I0300_CSV)
 
 ICES_MD = ARCHIVE / "01_자연산_어획·자원/ices/2026-08-12_full/ICES_Atlantic_mackerel_advice_2026.md"
 NPFC_MD = ARCHIVE / "01_자연산_어획·자원/npfc/2026-08-12_full/NPFC_TWG_CMSA11_report_2025.md"
@@ -316,8 +316,8 @@ def s3_kcs_2026_origin():
     """관세청 2026 통관 실적 — FAO(2024) 보다 최신이며 원산지 구조가 뒤집혔다."""
     import csv as _csv
     from collections import defaultdict as _dd
-    from scope import (ARCHIVE, FIPS_COOP_CSV, FIPS_PROD_JSON, KAMIS_JSON,
-                   MFDS_C002_CSV, MFDS_I0300_CSV)
+    from scope import (AFRICA, ARCHIVE, COMTRADE_CSV, FIPS_COOP_CSV, FIPS_PROD_JSON,
+                   KAMIS_JSON, KCS_MACKEREL_HS, MFDS_C002_CSV, MFDS_I0300_CSV)
 
     src = next((ARCHIVE / "10_원본데이터셋/kcs").rglob("*nitemtrade*.csv"))
     imp, exp = _dd(float), _dd(float)
@@ -642,4 +642,70 @@ def s4_retail_origin_spread():
                       note="소매 염장 국산·수입산 두 계열. KAMIS 원문이 단위를 「환산」으로만 적고 "
                            "기준 중량을 밝히지 않아 kg 환산은 미확정이다. 같은 소매 계열이라 두 값의 "
                            "배수는 유효하지만 도매(10kg·20kg)와는 견주지 않는다."),
+    }
+
+
+# ── UN Comtrade 2025 연장 ─────────────────────────────────────────────────
+# FAO 빈티지가 2024년까지라 그 뒤가 비어 있었다. Comtrade 로 2025년을 잇는다.
+# 2024년을 같은 HS 세 코드로 집계하면 FAO 표가 소수점까지 재현돼 이어 읽을 근거가 된다.
+
+def _comtrade_kr():
+    import collections
+    import csv
+    hs = {c.lstrip("0") for c in KCS_MACKEREL_HS}
+    agg = collections.defaultdict(lambda: [0.0, 0.0])
+    partner = collections.defaultdict(float)
+    for r in csv.DictReader(COMTRADE_CSV.open(encoding="utf-8-sig")):
+        if r["reporterISO"] != "KOR" or r["cmdCode"] not in hs:
+            continue
+        wgt, val = float(r["netWgt"] or 0), float(r["primaryValue"] or 0)
+        if r["partnerDesc"] == "World":
+            a = agg[(r["refYear"], r["flowCode"])]
+            a[0] += wgt
+            a[1] += val
+        elif r["flowCode"] == "X" and r["refYear"] == "2025" and int(r["partnerCode"]) in AFRICA:
+            partner[r["partnerDesc"]] += wgt
+    return agg, partner
+
+
+@builder("s3_trade_comtrade_2025")
+def s3_trade_comtrade_2025():
+    agg, afr = _comtrade_kr()
+    years = sorted({k[0] for k in agg})
+    data = []
+    for y in years:
+        m = agg.get((y, "M"), [0.0, 0.0])
+        x = agg.get((y, "X"), [0.0, 0.0])
+        if not (m[0] and x[0]):
+            continue
+        mu, xu = m[1] / m[0], x[1] / x[0]
+        data.append({"year": y, "수입": round(m[0] / 1000), "수출": round(x[0] / 1000),
+                     "배수": r1(x[0] / m[0]), "단가역조": r1(mu - xu)})
+    last, prev = data[-1], data[-2]
+    up = r1(100 * (last["수출"] - prev["수출"]) / prev["수출"])
+    afr_t = round(sum(afr.values()) / 1000)
+    return {
+        "title": "수출이 수입의 2.7배가 됐다",
+        "subtitle": f"UN Comtrade 한국 신고, HS 030244·030354·160415. FAO 확정 통계가 2024년까지라 "
+                    f"그 뒤를 이었다. {last['year']}년 수출 {last['수출']:,}톤으로 전년 대비 {up}% 늘어 "
+                    f"배수가 {last['배수']}배다.",
+        "chartType": "Composed", "xKey": "year",
+        "bars": [{"key": "수입", "color": C["sky"]}, {"key": "수출", "color": C["amber"]}],
+        "lines": [{"key": "배수", "color": C["rose"], "yAxisId": "right"}],
+        "data": data, "unit": "톤 / 배",
+        "sit": f"{last['year']}년 수입 {last['수입']:,}톤, 수출 {last['수출']:,}톤이다. "
+               f"단가 역조는 {prev['단가역조']}달러에서 {last['단가역조']}달러로 벌어졌다. "
+               f"수출 가운데 아프리카가 {afr_t:,}톤이며 2024년 대비 76.8퍼센트 반등해 최고치다. "
+               f"2024년의 감소는 추세 전환이 아니라 한 해 조정이었다.",
+        "strat": "두 시장이 갈라지는 방향이 2024년 한 해로 끝나지 않았다. 들여오는 대형어와 내보내는 "
+                 "소형어를 같은 수급표에 넣으면 이 구조가 안 보인다. 아프리카 벌크는 회수 조건이 "
+                 "물량보다 앞선다. FAO 확정 통계와는 집계 기관이 달라 한 선으로 잇지 않는다.",
+        "_kpi": {"title": f"수출 / 수입 배수 ({last['year']})", "value": f"{last['배수']}배",
+                 "trend": f"수출 전년 대비 {up}%",
+                 "desc": "UN Comtrade. FAO 2024년 1.99배에서 이어진다"},
+        "_prov": dict(source_id="UN_COMTRADE_HS", period=f"{data[0]['year']}-{last['year']}",
+                      inputs=[COMTRADE_CSV], grade="A",
+                      note="신고국 기준이며 상대국 신고와 대조하지 않았다. 2024년을 이 자료로 집계하면 "
+                           "FAO 표(수입 39,454t·수출 78,714t)가 재현되므로 이어 읽을 근거로 삼았다. "
+                           "아프리카는 FAO 국가그룹 기준 30개국이다."),
     }

@@ -27,6 +27,7 @@ s3_kcs_monthly,S3,관세청 HS10별 월별 수입 실적 (2026),KCS_NITEMTRADE,s
 s3_korea_trade_balance,S3,한국 수출입 물량·단가·무역수지,FAO_FISHSTAT_TRADE,script,A,2019-2024,95,70,95,100,90.0,A
 s3_mfds_safety,S3,수입식품 신고 이력 (국가별),MFDS_IMPORTED_FOOD,script,A,2025,95,80,95,100,92.5,A
 s3_netherlands_hub,S3,네덜란드 가공·중계 허브,EUMOFA_MARKET,script,B,2019-2024,95,70,95,100,90.0,A
+s3_trade_comtrade_2025,S3,수출이 수입의 2.7배가 됐다,UN_COMTRADE_HS,script,A,2021-2025,95,80,95,100,92.5,A
 s4_eu_retail_inflation,S4,EU 산지 1차 판매가 (고등어),EUMOFA_MARKET,manual_extract,B,2025-01 / 2026-01,95,95,70,100,90.0,A
 s4_globefish_brief,S4,소형부어류 수급 브리핑,FAO_GLOBEFISH_SMALL_PELAGICS,manual_extract,B,2026-05,95,95,70,100,90.0,A
 s4_korea_retail,S4,국내 생산량·소비자가격 (월간),KMI_FISHDATA_PRICE,manual_extract,B,2026-04~2026-05,80,95,70,100,86.2,A
