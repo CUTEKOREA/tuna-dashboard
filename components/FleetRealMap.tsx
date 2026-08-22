@@ -2,10 +2,11 @@
 
 import React, { useMemo } from 'react';
 import L from 'leaflet';
-import { MapContainer, Marker, TileLayer, Tooltip, useMap } from 'react-leaflet';
+import { CircleMarker, MapContainer, Marker, TileLayer, Tooltip, useMap } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 import type { FleetDailyDetailPayload } from '@/lib/contracts/fleet-daily-api';
 import { buildFleetRoster, formatFleetDailyNote } from '@/lib/fleet-daily-presentation';
+import { getFleetLoadSignalStyle, resolveFleetLoadSignal } from '@/lib/fleet-map-load-signal';
 import { parseFleetPosition, toPacificLng } from '@/lib/fleet-map-coords';
 
 type FleetKind = 'pacific' | 'carrier' | 'atlantic';
@@ -89,6 +90,7 @@ function FleetMapPanel({
     () => L.latLngBounds(ships.map((ship) => [ship.lat, ship.lng] as [number, number])).pad(0.35),
     [ships],
   );
+  const hasLoadSignals = ships.some((ship) => resolveFleetLoadSignal(ship.loadedMt, ship.capacityMt) !== null);
 
   return (
     <section style={{ display: 'flex', flexDirection: 'column', gap: '12px', minWidth: 0 }}>
@@ -108,6 +110,7 @@ function FleetMapPanel({
         <MapContainer
           bounds={bounds}
           boundsOptions={{ maxZoom: 4 }}
+          preferCanvas
           scrollWheelZoom={false}
           style={{ height: '100%', width: '100%', zIndex: 1, background: '#dbeafe' }}
         >
@@ -119,38 +122,61 @@ function FleetMapPanel({
           />
           {ships.map((ship) => {
             const status = STATUS_VIEW[ship.status] ?? STATUS_VIEW.reported;
+            const loadSignal = resolveFleetLoadSignal(ship.loadedMt, ship.capacityMt);
+            const signalStyle = loadSignal ? getFleetLoadSignalStyle(loadSignal.level) : null;
             return (
-              <Marker
-                key={ship.name}
-                position={[ship.lat, ship.lng]}
-                icon={shipIcon(ship.kind, ship.status)}
-                title={`${ship.name} · ${status.text}`}
-                alt={`${ship.name} 선박 위치`}
-                riseOnHover
-              >
-                <Tooltip direction="top" opacity={1}>
-                  <div style={{ minWidth: '150px', maxWidth: '240px' }}>
-                    <div style={{ fontWeight: 700, fontSize: '13px', color: FLEET_STYLE[ship.kind].color }}>
-                      {ship.displayName} <span style={{ fontWeight: 400, color: '#94a3b8' }}>({FLEET_STYLE[ship.kind].label})</span>
-                    </div>
-                    <div style={{ marginTop: '4px', fontSize: '11px', color: '#e2e8f0' }}>위치 {ship.location ?? '미보고'}</div>
-                    <div style={{ fontSize: '11px', color: '#e2e8f0' }}>
-                      상태 {status.text} {status.icon}
-                    </div>
-                    <div style={{ fontSize: '11px', color: '#e2e8f0' }}>
-                      적재량 {(ship.loadedMt ?? 0).toLocaleString()} / {ship.capacityMt?.toLocaleString() ?? '미보고'} (MT)
-                    </div>
-                    {ship.catchMt !== undefined ? (
-                      <div style={{ fontSize: '11px', color: '#e2e8f0' }}>일간 어획 {(ship.catchMt ?? 0).toLocaleString()} (MT)</div>
-                    ) : null}
-                    {ship.note ? (
-                      <div style={{ marginTop: '4px', fontSize: '10px', lineHeight: 1.4, color: '#fcd34d', wordBreak: 'keep-all' }}>
-                        {formatFleetDailyNote(ship.note)}
+              <React.Fragment key={ship.name}>
+                {loadSignal && signalStyle ? (
+                  <CircleMarker
+                    center={[ship.lat, ship.lng]}
+                    interactive={false}
+                    pathOptions={{
+                      color: signalStyle.color,
+                      dashArray: signalStyle.dashArray,
+                      fillColor: signalStyle.color,
+                      fillOpacity: signalStyle.fillOpacity,
+                      opacity: 0.9,
+                      weight: signalStyle.weight,
+                    }}
+                    radius={signalStyle.radius}
+                  />
+                ) : null}
+                <Marker
+                  position={[ship.lat, ship.lng]}
+                  icon={shipIcon(ship.kind, ship.status)}
+                  title={`${ship.name} · ${status.text}`}
+                  alt={`${ship.name} 선박 위치`}
+                  riseOnHover
+                >
+                  <Tooltip direction="top" opacity={1}>
+                    <div style={{ minWidth: '150px', maxWidth: '240px' }}>
+                      <div style={{ fontWeight: 700, fontSize: '13px', color: FLEET_STYLE[ship.kind].color }}>
+                        {ship.displayName} <span style={{ fontWeight: 400, color: '#94a3b8' }}>({FLEET_STYLE[ship.kind].label})</span>
                       </div>
-                    ) : null}
-                  </div>
-                </Tooltip>
-              </Marker>
+                      <div style={{ marginTop: '4px', fontSize: '11px', color: '#e2e8f0' }}>위치 {ship.location ?? '미보고'}</div>
+                      <div style={{ fontSize: '11px', color: '#e2e8f0' }}>
+                        상태 {status.text} {status.icon}
+                      </div>
+                      <div style={{ fontSize: '11px', color: '#e2e8f0' }}>
+                        적재량 {(ship.loadedMt ?? 0).toLocaleString()} / {ship.capacityMt?.toLocaleString() ?? '미보고'} (MT)
+                      </div>
+                      {loadSignal ? (
+                        <div style={{ fontSize: '11px', fontWeight: 700, color: signalStyle?.color }}>
+                          적재 신호 {loadSignal.label} · {loadSignal.ratioPct}%
+                        </div>
+                      ) : null}
+                      {ship.catchMt !== undefined ? (
+                        <div style={{ fontSize: '11px', color: '#e2e8f0' }}>일간 어획 {(ship.catchMt ?? 0).toLocaleString()} (MT)</div>
+                      ) : null}
+                      {ship.note ? (
+                        <div style={{ marginTop: '4px', fontSize: '10px', lineHeight: 1.4, color: '#fcd34d', wordBreak: 'keep-all' }}>
+                          {formatFleetDailyNote(ship.note)}
+                        </div>
+                      ) : null}
+                    </div>
+                  </Tooltip>
+                </Marker>
+              </React.Fragment>
             );
           })}
         </MapContainer>
@@ -189,6 +215,18 @@ function FleetMapPanel({
             </span>
           ))}
           <span style={{ borderTop: '1px solid rgba(15,23,42,0.1)', paddingTop: '6px' }}>📍 보고 위치</span>
+          {hasLoadSignals ? (
+            <>
+              <span style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                <span style={{ width: '16px', height: '16px', borderRadius: '50%', border: '2px dashed #f59e0b' }} />
+                고적재 75% 이상
+              </span>
+              <span style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                <span style={{ width: '18px', height: '18px', borderRadius: '50%', border: '3px dotted #ef4444' }} />
+                만재 임박 90% 이상
+              </span>
+            </>
+          ) : null}
         </div>
       </div>
     </section>
