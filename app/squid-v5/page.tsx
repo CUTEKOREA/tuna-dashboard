@@ -18,6 +18,7 @@ const SECTIONS: Record<string, string> = {
   C: '무역 흐름',
   D: '규제·리스크',
   E: '근거·거버넌스',
+  F: '국내 산업',
 };
 
 const SIGNAL_COLOR: Record<string, string> = {
