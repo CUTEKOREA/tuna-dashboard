@@ -5939,3 +5939,4 @@ python3 scripts/check_s_grade.py components/TunaDashboard.tsx components/TunaExt
 - 2026-08-22 윤문: 시장 이해 > 오징어 페이지 전체(서술·사실 비고·용어·요약·위젯 주장/현황/실행지침 417단위)에 humanize-korean strict. 138단위 변경, 과윤문 14건 원문 복귀, 산문 엠대시 정리(차트 제목 참조 1곳 제외). 기록 `/tmp/kr_squid/humanize_dash/_workspace/2026-08-22-001/`.
 - 2026-08-22 라이브 검수: 시장 이해 > 오징어 18탭 정상, 09~15 본문·위젯 렌더 확인. 측정 기준 값(`sum_within_stage`·`mean_within_stage` 등)이 화면에 영문으로 노출돼 CELL_FIXES 에 한글 매핑 추가 + 회귀 테스트(`측정 기준의 값도 한글이다`) 신설.
 - 2026-08-22 후속: 페이지 부제가 「밸류체인 7단계」로 남아 있어 「사슬 15단계와 그것을 관통하는 3개 축」으로 정정(커밋 e2f11636).
+- 2026-08-22 수협계통판매(1998~2026) 확보: `fips.go.kr/biz/S020601/fileDownload` 로 550개 xls 전량(보안문자 없음, URL 은 드롭다운에 없는 1998도 받음). Drive `02_출처원본/수협계통판매_1998_2026/`(raw+한글헤더 csv+MANIFEST+README, 47MB). 위젯 `F_coop_sales_annual`·`F_coop_sales_region` 신설, 시장 이해 09 산지 단계에 배치. 핵심: 위판 원장은 계통판매의 66.6~81.6%만 담고 결손이 부산에 몰린다(2025 계통 7,705t 대 원장 1,211t).

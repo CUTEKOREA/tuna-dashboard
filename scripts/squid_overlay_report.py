@@ -40,6 +40,11 @@ SOURCES = [
      "landing_url": "https://impfood.mfds.go.kr/CFCCC01F01",
      "archive_subdir": REL, "latest_verified": "2026-07",
      "note": "2025-08~2026-07 신고명의 608(정규화 603). 건수만 있고 물량·금액은 없다 — 물량은 관세청 과세정보로 봉인(관세법 제116조)"},
+    {"source_id": "SQ-COOP-FIPS", "publisher": "해양수산부", "series": "수산정보포털 수협계통판매통계정보",
+     "priority": "P1", "grade": "A", "frequency": "monthly",
+     "landing_url": "https://www.fips.go.kr/p/S020601/",
+     "archive_subdir": REL, "latest_verified": "2026-06",
+     "note": "계통판매 = 수협 위판. 항목 10종 × 1998~2026, 보안문자 없음. 원장(수산물유통종합정보)은 이 계열의 66~82%만 담는다"},
     {"source_id": "SQ-TAR-KCS-RATE", "publisher": "관세청", "series": "관세법령정보포털 품목별 세율표·조정관세 규정",
      "priority": "P1", "grade": "A", "frequency": "annual",
      "landing_url": "https://unipass.customs.go.kr/clip/index.do",
@@ -222,6 +227,32 @@ def widgets():
         basis=basis(market_stage="first_sale", aggregation="sum_within_stage", currency="KRW",
                     coverage_start="2023-01", coverage_end="2025-12", source_ids=["SQ-PRC-MOF-AUCTION"],
                     blocked_use=["어선 소유자 식별", "선단·선사 귀속 추정", "2024 급감을 개별 어선 사정으로 해석"]))
+
+    # F16 계통판매 — 위판의 더 넓은 계열(1998~2026)과 원장이 덮는 몫
+    cs = load("coop_sales_squid.json")
+    W["F_coop_sales_annual"] = dict(
+        section="F", title="오징어류 수협 계통판매 1998~2026 — 원장은 이 계열의 66~82%만 담는다", chartType="line",
+        data=cs["annual"], xAxis="year", series=["weight_t", "ledger_t"],
+        methodology=f"{cs['source']}. {cs['species']}. {cs['coverage']}. {cs['note']}",
+        basis=basis(market_stage="first_sale", aggregation="sum_within_stage", currency="KRW",
+                    taxon_scope="cephalopods_nei", taxon_note="계통 「오징어류」는 살오징어 단일종이 아니다",
+                    coverage_start="1998-01", coverage_end="2026-06",
+                    source_ids=["SQ-COOP-FIPS", "SQ-PRC-MOF-AUCTION"],
+                    blocked_use=["원장과 계통을 더하거나 빼서 총량 만들기", "2026년 하반기 0 을 실적 0 으로 읽기",
+                                 "계통 오징어류를 살오징어 어획량으로 읽기"]))
+
+    W["F_coop_sales_region"] = dict(
+        section="F", title="지역별 오징어류 계통판매 — 부산이 1999년 109,014t 에서 2025년 7,705t", chartType="table",
+        data=[{"지역": k, **{f"{y}_t": (cs["region"].get(y, {}).get(k, {}) or {}).get("weight_t")
+                             for y in ("1999", "2010", "2023", "2024", "2025")}}
+              for k in sorted(cs["region"]["2025"], key=lambda x: -cs["region"]["2025"][x]["weight_t"])],
+        xAxis="지역", series=["2025_t"],
+        methodology="항목 9 지역별 조합별 월별 계통 판매고에서 오징어류 행만. 원장 대조에서 부산만 15.7%(원장 1,211t)이고 다른 지역은 86~95%다.",
+        basis=basis(market_stage="first_sale", aggregation="sum_within_stage", currency="KRW",
+                    taxon_scope="cephalopods_nei",
+                    taxon_note="계통 「오징어류」 집계. 살오징어 단일종이 아니고 갑오징어류는 별도 행이다",
+                    coverage_start="1998-01", coverage_end="2026-06",
+                    source_ids=["SQ-COOP-FIPS"], blocked_use=["지역 합을 어획량으로 읽기"]))
 
     # F9 수입명의 × 가공업 겹침
     W["F_overlap_by_type"] = dict(

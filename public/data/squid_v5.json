@@ -630,6 +630,18 @@
    "archive_subdir": "8_한국_오징어_산업_해부/02_출처원본",
    "latest_verified": "2026-06-29",
    "note": "별표 26·27 냉동·냉장오징어 4개 코드 지정(~2029-04-30). 제2조 7호: 제조공장은 소매업자 → 신고의무 없음. 공표 규정 없음"
+  },
+  {
+   "source_id": "SQ-COOP-FIPS",
+   "publisher": "해양수산부",
+   "series": "수산정보포털 수협계통판매통계정보",
+   "priority": "P1",
+   "grade": "A",
+   "frequency": "monthly",
+   "landing_url": "https://www.fips.go.kr/p/S020601/",
+   "archive_subdir": "8_한국_오징어_산업_해부/02_출처원본",
+   "latest_verified": "2026-06",
+   "note": "계통판매 = 수협 위판. 항목 10종 × 1998~2026, 보안문자 없음. 원장(수산물유통종합정보)은 이 계열의 66~82%만 담는다"
   }
  ],
  "gates": [
@@ -13238,6 +13250,389 @@
     "coverage_end": "2025-12",
     "source_ids": [
      "SQ-PRC-MOF-AUCTION"
+    ]
+   }
+  },
+  "F_coop_sales_annual": {
+   "section": "F",
+   "title": "오징어류 수협 계통판매 1998~2026 — 원장은 이 계열의 66~82%만 담는다",
+   "chartType": "line",
+   "data": [
+    {
+     "year": 1998,
+     "weight_t": 159552.7,
+     "amount_krw": 279046781931,
+     "unit_krw_per_kg": 1749,
+     "months": 12
+    },
+    {
+     "year": 1999,
+     "weight_t": 240853.1,
+     "amount_krw": 342320800701,
+     "unit_krw_per_kg": 1421,
+     "months": 12
+    },
+    {
+     "year": 2000,
+     "weight_t": 224122.7,
+     "amount_krw": 275699972661,
+     "unit_krw_per_kg": 1230,
+     "months": 12
+    },
+    {
+     "year": 2001,
+     "weight_t": 222139.2,
+     "amount_krw": 279789520163,
+     "unit_krw_per_kg": 1260,
+     "months": 12
+    },
+    {
+     "year": 2002,
+     "weight_t": 225839.3,
+     "amount_krw": 301524377864,
+     "unit_krw_per_kg": 1335,
+     "months": 12
+    },
+    {
+     "year": 2003,
+     "weight_t": 231556.6,
+     "amount_krw": 371056179394,
+     "unit_krw_per_kg": 1602,
+     "months": 12
+    },
+    {
+     "year": 2004,
+     "weight_t": 211756.1,
+     "amount_krw": 441181459183,
+     "unit_krw_per_kg": 2083,
+     "months": 12
+    },
+    {
+     "year": 2005,
+     "weight_t": 187183.1,
+     "amount_krw": 399042001700,
+     "unit_krw_per_kg": 2132,
+     "months": 12
+    },
+    {
+     "year": 2006,
+     "weight_t": 196172.6,
+     "amount_krw": 344338108120,
+     "unit_krw_per_kg": 1755,
+     "months": 12
+    },
+    {
+     "year": 2007,
+     "weight_t": 172288.4,
+     "amount_krw": 256709932801,
+     "unit_krw_per_kg": 1490,
+     "months": 12
+    },
+    {
+     "year": 2008,
+     "weight_t": 184829.8,
+     "amount_krw": 280001231350,
+     "unit_krw_per_kg": 1515,
+     "months": 12
+    },
+    {
+     "year": 2009,
+     "weight_t": 216487.4,
+     "amount_krw": 443186018983,
+     "unit_krw_per_kg": 2047,
+     "months": 12
+    },
+    {
+     "year": 2010,
+     "weight_t": 158600.3,
+     "amount_krw": 565499130069,
+     "unit_krw_per_kg": 3566,
+     "months": 12
+    },
+    {
+     "year": 2011,
+     "weight_t": 171225.3,
+     "amount_krw": 691457419414,
+     "unit_krw_per_kg": 4038,
+     "months": 12
+    },
+    {
+     "year": 2012,
+     "weight_t": 180923.4,
+     "amount_krw": 546817232767,
+     "unit_krw_per_kg": 3022,
+     "months": 12
+    },
+    {
+     "year": 2013,
+     "weight_t": 154297.7,
+     "amount_krw": 450029028066,
+     "unit_krw_per_kg": 2917,
+     "months": 12
+    },
+    {
+     "year": 2014,
+     "weight_t": 163879.4,
+     "amount_krw": 444627056839,
+     "unit_krw_per_kg": 2713,
+     "months": 12
+    },
+    {
+     "year": 2015,
+     "weight_t": 155598.9,
+     "amount_krw": 412635248701,
+     "unit_krw_per_kg": 2652,
+     "months": 12
+    },
+    {
+     "year": 2016,
+     "weight_t": 121573.2,
+     "amount_krw": 482732072908,
+     "unit_krw_per_kg": 3971,
+     "months": 12
+    },
+    {
+     "year": 2017,
+     "weight_t": 77851.4,
+     "amount_krw": 439438204171,
+     "unit_krw_per_kg": 5645,
+     "months": 12
+    },
+    {
+     "year": 2018,
+     "weight_t": 38182.7,
+     "amount_krw": 316350751497,
+     "unit_krw_per_kg": 8285,
+     "months": 12
+    },
+    {
+     "year": 2019,
+     "weight_t": 47492.5,
+     "amount_krw": 353950611719,
+     "unit_krw_per_kg": 7453,
+     "months": 12
+    },
+    {
+     "year": 2020,
+     "weight_t": 53650.1,
+     "amount_krw": 476572486751,
+     "unit_krw_per_kg": 8883,
+     "months": 12
+    },
+    {
+     "year": 2021,
+     "weight_t": 56807.4,
+     "amount_krw": 435668736660,
+     "unit_krw_per_kg": 7669,
+     "months": 12,
+     "ledger_t": 37850.5,
+     "ledger_coverage_pct": 66.6
+    },
+    {
+     "year": 2022,
+     "weight_t": 35274.4,
+     "amount_krw": 295437117438,
+     "unit_krw_per_kg": 8375,
+     "months": 12,
+     "ledger_t": 23485.1,
+     "ledger_coverage_pct": 66.6
+    },
+    {
+     "year": 2023,
+     "weight_t": 22391.1,
+     "amount_krw": 246591523948,
+     "unit_krw_per_kg": 11013,
+     "months": 12,
+     "ledger_t": 16612.1,
+     "ledger_coverage_pct": 74.2
+    },
+    {
+     "year": 2024,
+     "weight_t": 13199.0,
+     "amount_krw": 190747309238,
+     "unit_krw_per_kg": 14452,
+     "months": 12,
+     "ledger_t": 10767.8,
+     "ledger_coverage_pct": 81.6
+    },
+    {
+     "year": 2025,
+     "weight_t": 30176.3,
+     "amount_krw": 335981562199,
+     "unit_krw_per_kg": 11134,
+     "months": 12,
+     "ledger_t": 20911.3,
+     "ledger_coverage_pct": 69.3
+    },
+    {
+     "year": 2026,
+     "weight_t": 2734.1,
+     "amount_krw": 46190300811,
+     "unit_krw_per_kg": 16894,
+     "months": 6
+    }
+   ],
+   "xAxis": "year",
+   "series": [
+    "weight_t",
+    "ledger_t"
+   ],
+   "methodology": "해양수산부 수산정보포털 수협계통판매통계정보(S020601) 항목 5·7·8·9. 오징어류(Squid) — 살오징어 단일종이 아니다. 갑오징어류는 별도 행이라 제외. 1998~2026(2026년은 6월까지 공표). 지역별도 1998~2026 전량. 계통판매 = 수협 위판. 해양수산부 수산물유통종합정보 위판 원장은 이 계열의 66~82%만 담고, 결손은 부산에 몰린다(2025년 부산 계통 7,705t 대 원장 1,211t).",
+   "basis": {
+    "species": [
+     "Todarodes pacificus",
+     "Illex argentinus",
+     "Dosidicus gigas",
+     "Doryteuthis gahi"
+    ],
+    "taxon_scope": "cephalopods_nei",
+    "weight_basis": "product_weight",
+    "market_stage": "first_sale",
+    "aggregation": "sum_within_stage",
+    "quota_semantics": "n/a",
+    "metrics": [
+     "level"
+    ],
+    "claim_type": "descriptive",
+    "currency": "KRW",
+    "currency_converted": false,
+    "fx_date": null,
+    "nominal_real": "nominal",
+    "published_at": "2026-08-22",
+    "retrieved_at": "2026-08-22",
+    "archive_path": "8_한국_오징어_산업_해부/02_출처원본/spine.json;8_한국_오징어_산업_해부/02_출처원본/top100_final.json;8_한국_오징어_산업_해부/02_출처원본/kamis_squid.json;8_한국_오징어_산업_해부/02_출처원본/processing_summary.json;8_한국_오징어_산업_해부/02_출처원본/auction_summary.json;8_한국_오징어_산업_해부/02_출처원본/overlap_by_type.json",
+    "source_grade": "A",
+    "restrictions": [],
+    "blocked_use": [
+     "원장과 계통을 더하거나 빼서 총량 만들기",
+     "2026년 하반기 0 을 실적 0 으로 읽기",
+     "계통 오징어류를 살오징어 어획량으로 읽기"
+    ],
+    "taxon_note": "계통 「오징어류」는 살오징어 단일종이 아니다",
+    "coverage_start": "1998-01",
+    "coverage_end": "2026-06",
+    "source_ids": [
+     "SQ-COOP-FIPS",
+     "SQ-PRC-MOF-AUCTION"
+    ]
+   }
+  },
+  "F_coop_sales_region": {
+   "section": "F",
+   "title": "지역별 오징어류 계통판매 — 부산이 1999년 109,014t 에서 2025년 7,705t",
+   "chartType": "table",
+   "data": [
+    {
+     "지역": "부산",
+     "1999_t": 109013.9,
+     "2010_t": 58300.3,
+     "2023_t": 4672.3,
+     "2024_t": 1960.0,
+     "2025_t": 7705.2
+    },
+    {
+     "지역": "경남",
+     "1999_t": 19817.9,
+     "2010_t": 11982.6,
+     "2023_t": 4895.3,
+     "2024_t": 2793.8,
+     "2025_t": 4902.2
+    },
+    {
+     "지역": "전남",
+     "1999_t": 1499.4,
+     "2010_t": 2121.5,
+     "2023_t": 2831.1,
+     "2024_t": 1401.8,
+     "2025_t": 3926.3
+    },
+    {
+     "지역": "충청",
+     "1999_t": 2520.5,
+     "2010_t": 261.4,
+     "2023_t": 4347.8,
+     "2024_t": 2285.8,
+     "2025_t": 3812.9
+    },
+    {
+     "지역": "경북",
+     "1999_t": 77161.9,
+     "2010_t": 66179.9,
+     "2023_t": 2657.1,
+     "2024_t": 2854.7,
+     "2025_t": 3031.6
+    },
+    {
+     "지역": "전북",
+     "1999_t": 1304.6,
+     "2010_t": 867.4,
+     "2023_t": 1225.8,
+     "2024_t": 521.0,
+     "2025_t": 2904.4
+    },
+    {
+     "지역": "강원",
+     "1999_t": 27829.5,
+     "2010_t": 16621.6,
+     "2023_t": 1438.8,
+     "2024_t": 903.2,
+     "2025_t": 2721.0
+    },
+    {
+     "지역": "제주",
+     "1999_t": 1236.3,
+     "2010_t": 1398.9,
+     "2023_t": 233.1,
+     "2024_t": 436.6,
+     "2025_t": 1150.1
+    },
+    {
+     "지역": "경인",
+     "1999_t": 469.1,
+     "2010_t": 261.4,
+     "2023_t": 89.8,
+     "2024_t": 42.1,
+     "2025_t": 22.7
+    }
+   ],
+   "xAxis": "지역",
+   "series": [
+    "2025_t"
+   ],
+   "methodology": "항목 9 지역별 조합별 월별 계통 판매고에서 오징어류 행만. 원장 대조에서 부산만 15.7%(원장 1,211t)이고 다른 지역은 86~95%다.",
+   "basis": {
+    "species": [
+     "Todarodes pacificus",
+     "Illex argentinus",
+     "Dosidicus gigas",
+     "Doryteuthis gahi"
+    ],
+    "taxon_scope": "cephalopods_nei",
+    "weight_basis": "product_weight",
+    "market_stage": "first_sale",
+    "aggregation": "sum_within_stage",
+    "quota_semantics": "n/a",
+    "metrics": [
+     "level"
+    ],
+    "claim_type": "descriptive",
+    "currency": "KRW",
+    "currency_converted": false,
+    "fx_date": null,
+    "nominal_real": "nominal",
+    "published_at": "2026-08-22",
+    "retrieved_at": "2026-08-22",
+    "archive_path": "8_한국_오징어_산업_해부/02_출처원본/spine.json;8_한국_오징어_산업_해부/02_출처원본/top100_final.json;8_한국_오징어_산업_해부/02_출처원본/kamis_squid.json;8_한국_오징어_산업_해부/02_출처원본/processing_summary.json;8_한국_오징어_산업_해부/02_출처원본/auction_summary.json;8_한국_오징어_산업_해부/02_출처원본/overlap_by_type.json",
+    "source_grade": "A",
+    "restrictions": [],
+    "blocked_use": [
+     "지역 합을 어획량으로 읽기"
+    ],
+    "taxon_note": "계통 「오징어류」 집계. 살오징어 단일종이 아니고 갑오징어류는 별도 행이다",
+    "coverage_start": "1998-01",
+    "coverage_end": "2026-06",
+    "source_ids": [
+     "SQ-COOP-FIPS"
     ]
    }
   }
