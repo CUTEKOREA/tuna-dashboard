@@ -191,6 +191,27 @@ def widgets():
                     coverage_start="2025-01", coverage_end="2025-12", source_ids=["SQ-REG-MOF-TRACE", "SQ-TRD-KCS"],
                     hs_codes=["030742", "030743", "160554"], blocked_use=["신고 의무를 공표·공개로 표현"]))
 
+    # F13 산지 — 2025 어업별 위판·어선 집중도
+    vg = load("vessel_gear_2025.json")
+    sh = vg["share_top_n_pct"]
+    W["F_vessel_gear_2025"] = dict(
+        section="F", title="2025년 어업별 오징어 위판 — 저인망 27척이 채낚기 213척보다 많이 판다", chartType="table",
+        data=vg["gear"], xAxis="어업", series=["중량_t", "금액_억"],
+        methodology=f"{vg['source']}. 위판 어선 {vg['vessels']:,}척, 금액 점유 상위 10척 {sh['10']}% · 100척 {sh['100']}% · 500척 {sh['500']}%. {vg['note']}",
+        basis=basis(market_stage="first_sale", aggregation="sum_within_stage", currency="KRW",
+                    coverage_start="2025-01", coverage_end="2025-12", source_ids=["SQ-PRC-MOF-AUCTION"],
+                    blocked_use=["어선 소유자·매수자 식별", "원장 단위(kg) 공식 정의로 표현"]))
+
+    # F14 산지 — 2025 금액 상위 20척
+    vt = load("vessel_top20_2025.json")
+    W["F_vessel_top20_2025"] = dict(
+        section="F", title="2025년 오징어 위판 금액 상위 20척 — 전부 쌍끌이 저인망", chartType="table",
+        data=vt["top20"], xAxis="어선명", series=["금액_억"],
+        methodology="어선번호 기준 합산. 어선명은 원장 공개 열이며 소유자·선원 정보는 수집하지 않는다. 1위 제11동일호 304t·28.7억.",
+        basis=basis(market_stage="first_sale", aggregation="sum_within_stage", currency="KRW",
+                    coverage_start="2025-01", coverage_end="2025-12", source_ids=["SQ-PRC-MOF-AUCTION"],
+                    blocked_use=["어선 소유자 식별", "선단·선사 귀속 추정"]))
+
     # F9 수입명의 × 가공업 겹침
     W["F_overlap_by_type"] = dict(
         section="F", title="수입 유형별 가공업 보유 — 603 명의 중 117", chartType="bar", data=ov["by_type"],

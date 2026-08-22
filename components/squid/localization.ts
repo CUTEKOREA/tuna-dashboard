@@ -164,6 +164,7 @@ const FIELD_KO: Record<string, string> = {
   condition: '어종 상태',
   import_type: '수입 유형',
   with_processing: '가공업 보유',
+  '중량_t': '중량(t)', '금액_억': '금액(억원)', '주위판장': '주 위판장', '척수': '척수', '단가': '단가(원/kg)',
   hsk: '품목번호', item: '품목', basic_pct: '기본세율(%)', adjustment_pct: '조정관세(%)', fta_peru_pct: '페루 협정세율(%)',
   fta_chile_pct: '칠레 협정세율(%)', fta_china_pct: '중국 협정세율(%)', fta_vietnam_pct: '베트남 협정세율(%)', fta_asean_pct: '아세안(%)', rcep_pct: 'RCEP(%)',
   food_type: '품목유형', production_krw_thousand: '생산액(천원)', domestic_sales_krw_thousand: '국내판매액(천원)', table: '원문 표',
