@@ -1,4 +1,4 @@
-> 🧪 **2026-08-22 16:18 KST — SEIN VENUS 8/22 하역 종료 로컬 검증 완료** [Codex]:
+> 🚀 **2026-08-22 16:36 KST — SEIN VENUS 8/22 하역 종료 라이브 배포 완료** [Codex]:
 > - 전용 worktree `/private/tmp/tuna-unloading-sein-0822` (`codex/unloading-sein-20260822`)에서 원본 3종을 교차 확인했다. SHA-256: JPG `957c3826…13b50`, 결과 XLS `1cabdba0…a38e9`, 현황 XLSX `ce23e5d9…9e714`.
 > - 종료 검산: `3,239.560 + 89.520 = 3,329.080 MT`; 보고량 `3,275 MT` 대비 `+54.080 MT`. 당일 GPZ `89.520 MT`, S/PIO #1-C, 08:20~10:40, -21.0~-22.0℃. 당일 보정 `-7.450`, 누적 보정 `+54.080`, `-54.080 + 54.080 = 실제 잔량 0 MT`다.
 > - XLS 어종은 당일 SJ `87.820`·YF `1.700`, 최종 누계 SJ `2,793.900`·YF `535.180 MT`. 어창별 어종은 추정하지 않았다. 선박 상태는 완료, 기간은 `2026.08.07 ~ 2026.08.22`, `next_day`는 없다.
@@ -7,9 +7,12 @@
 > - 로컬 production API·보호 화면: 기준일 8/22, 연간 `37,185.640 MT`, 완료 12척, 현재 하역 HIKARI 1척. 1440×1000·390×844에서 overflow/page/console/request/HTTP errors 모두 0. 독립 반증 검토도 형식 수정 후 PASS.
 > - 사용자 승인으로 선행 `/squid` 게이트도 복구했다. stale 404 테스트를 현행 라우트 계약으로 수정하고, `next/dynamic({ ssr:false })`로 6부 대시보드를 지연 로딩해 first-load를 `1.64 MB → 667 KB`로 낮췄다. 데스크톱 기능·오류 0, 기존 모바일 overflow `217px`는 별도 UI 범위로 측정만 보존했다.
 > - `npm run verify` 통과: ESLint 0 errors(기존 warnings 12), Python 21건, Vitest 145 files/1,107 passed/2 skipped, API cache 158/158, Next 118페이지, 누출·번들 33 routes. 하역 E2E도 재통과했다.
-> - **다음 단계**: PR gate → main 병합 → Vercel Production → 운영 API·보호 화면·로그 확인.
+> - PR [#730](https://github.com/CUTEKOREA/tuna-dashboard/pull/730) squash `0933faa8`. PR App Quality Gate `32559347172`, main gate `32559512592`, Data Freshness Audit `32559512486` 모두 성공했다.
+> - Vercel Production `dpl_6uqPcTvjarfyQrPQVQwN1W7AnjT9`(GitHub deployment `6034453623`) READY, `https://leedonggun.co.kr` alias·`icn1` 연결. 운영 API는 200·`private, no-store`로 8/22 종료 원장과 일치했다.
+> - 운영 보호 화면 1440×1000·390×844 직접 검사에서 overflow/page/console/request/HTTP errors 모두 0. 자동보고 canonical 종료 문구와 명일 입력 제거를 확인했다. 최근 1시간 Vercel error/fatal 로그 0건. 검사용 임시 인증 쿠키는 즉시 삭제했다.
+> - **다음 단계**: SEIN VENUS 항차는 종료. 이후 하역 일보는 진행 중인 HIKARI 1만 원본 기준으로 갱신한다.
 >
-> 마지막 업데이트: 2026-08-22 16:18 KST [Codex]
+> 마지막 업데이트: 2026-08-22 16:36 KST [Codex]
 
 > 🧪 **2026-08-21 20:12 KST — HIKARI 1 8/21 하역 일일보고 로컬 검증 완료** [Codex]:
 > - 전용 worktree `/private/tmp/tuna-unloading-hikari-0821` (`codex/unloading-hikari-20260821`)에서 원본 3종을 교차 확인했다. SHA-256: JPG `a45de424…360bc`, 결과 XLS `530591db…d2c3d`, 현황 XLSX `268e9833…ca8aa`.
