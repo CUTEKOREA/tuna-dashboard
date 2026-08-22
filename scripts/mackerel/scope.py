@@ -91,3 +91,6 @@ MFDS_C002_CSV = MFDS_ROSTER / "mfds_c002_mackerel_scoped.csv"
 # 수산정보포털 (2026-08-22 수집). 계통판매 = 수협 위판, 어업생산통계 = 품종별 생산.
 FIPS_COOP_CSV = ARCHIVE / "03_무역·가격/fips_coop_sales/2026-08-22/mackerel_coop_sales_monthly.csv"
 FIPS_PROD_JSON = ARCHIVE / "01_자연산_어획·자원/fips_production/2026-08-22/mackerel_production_monthly.json"
+
+# aT KAMIS 고등어 가격 (2026-08-22 수집). 계열마다 단위가 다르다 — JSON 의 「단위」를 보고 쓴다.
+KAMIS_JSON = ARCHIVE / "03_무역·가격/kamis/2026-08-22/kamis_mackerel.json"

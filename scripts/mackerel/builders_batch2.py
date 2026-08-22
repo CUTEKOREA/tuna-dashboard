@@ -9,7 +9,8 @@ grade 규칙
   B = PDF/MD 수동 추출 → method=manual_extract
 """
 from build import C, builder, r1
-from scope import ARCHIVE, FIPS_COOP_CSV, FIPS_PROD_JSON, MFDS_C002_CSV, MFDS_I0300_CSV
+from scope import (ARCHIVE, FIPS_COOP_CSV, FIPS_PROD_JSON, KAMIS_JSON,
+                   MFDS_C002_CSV, MFDS_I0300_CSV)
 
 ICES_MD = ARCHIVE / "01_자연산_어획·자원/ices/2026-08-12_full/ICES_Atlantic_mackerel_advice_2026.md"
 NPFC_MD = ARCHIVE / "01_자연산_어획·자원/npfc/2026-08-12_full/NPFC_TWG_CMSA11_report_2025.md"
@@ -315,7 +316,8 @@ def s3_kcs_2026_origin():
     """관세청 2026 통관 실적 — FAO(2024) 보다 최신이며 원산지 구조가 뒤집혔다."""
     import csv as _csv
     from collections import defaultdict as _dd
-    from scope import ARCHIVE, FIPS_COOP_CSV, FIPS_PROD_JSON, MFDS_C002_CSV, MFDS_I0300_CSV
+    from scope import (ARCHIVE, FIPS_COOP_CSV, FIPS_PROD_JSON, KAMIS_JSON,
+                   MFDS_C002_CSV, MFDS_I0300_CSV)
 
     src = next((ARCHIVE / "10_원본데이터셋/kcs").rglob("*nitemtrade*.csv"))
     imp, exp = _dd(float), _dd(float)
@@ -590,4 +592,54 @@ def s1_coop_landings_price():
                       note="단가는 고등어류 단독 기준이다(망치고등어는 따로 움직인다). 원자료는 kg·원이며 여기서 톤·원/kg 으로 환산했다. 어종 라벨이 「고등어류」와 "
                            "「망치고등어」로 갈려 있어 통계청 「고등어류」(둘의 합)와 범위가 다르다. "
                            "2026년은 6월까지. 조합·지역 단위로도 갈리지만 어선별은 없다."),
+    }
+
+
+# ── 소매 원산지별 가격 (aT KAMIS) ─────────────────────────────────────────
+# 2026-08-22 신규. 05절의 노르웨이 의존과 10절의 값 사슬을 잇는 축이 여기서 나온다.
+# 계열마다 단위가 다르다 — 도매 10kg·20kg, 소매 「환산」. 같은 소매 계열끼리만 견준다.
+
+@builder("s4_retail_origin_spread")
+def s4_retail_origin_spread():
+    import json
+    src = json.loads(KAMIS_JSON.read_text(encoding="utf-8"))["계열"]
+    dom, imp = src["소매_국산(염장)"], src["소매_수입산(염장)"]
+    im = {(r["연도"], r["월"]): r["값"] for r in imp["월별"]}
+
+    data = []
+    for r in dom["월별"]:
+        k = (r["연도"], r["월"])
+        if k not in im:
+            continue
+        data.append({"month": f"{r['연도']}-{r['월']:02d}",
+                     "국산": round(r["값"]), "수입산": round(im[k]),
+                     "배수": r1(im[k] / r["값"])})
+    last = data[-1]
+    avg = r1(sum(d["배수"] for d in data) / len(data))
+    return {
+        "title": "소매에서 국산이 더 싸다",
+        "subtitle": f"aT KAMIS 염장 고등어 월값. 국산과 수입산을 나눠 공표한다. "
+                    f"{last['month']} 기준 수입산이 국산의 {last['배수']}배이며, "
+                    f"동시 관측 {len(data)}개월 평균은 {avg}배다.",
+        "chartType": "Composed", "xKey": "month",
+        "bars": [{"key": "국산", "color": C["sky"]},
+                 {"key": "수입산", "color": C["amber"]}],
+        "lines": [{"key": "배수", "color": C["rose"], "yAxisId": "right"}],
+        "data": data, "unit": "원 / 배",
+        "sit": f"국산은 2025년 6,761원까지 올랐다가 2026년 6천원 아래로 내려왔고, 수입산은 같은 기간 "
+               f"계속 올라 {last['수입산']:,}원이다. 격차가 좁혀지지 않고 벌어진다. "
+               f"수입이 노르웨이산 대형어에 88퍼센트 묶여 있고 그 규격이 국내 소형어와 다른 시장에 "
+               f"놓이기 때문이다.",
+        "strat": "「수입산이 싸다」는 통념이 이 품목에는 적용되지 않는다. 국산 대체를 검토할 때 "
+                 "단가 우위를 전제로 깔지 말고 규격부터 맞춘다. 두 계열은 같은 소매 염장이라 "
+                 "서로 견줄 수 있으나, 도매와는 단위가 달라 배수로 견주지 못한다.",
+        "_kpi": {"title": f"수입산 / 국산 소매 배수 ({last['month']})",
+                 "value": f"{last['배수']}배", "trend": f"{len(data)}개월 평균 {avg}배",
+                 "desc": "KAMIS 염장 고등어. 같은 소매 계열끼리만 비교한다"},
+        "_prov": dict(source_id="KAMIS_MACKEREL_PRICE",
+                      period=f"{data[0]['month']}~{last['month']}",
+                      inputs=[KAMIS_JSON], grade="A",
+                      note="소매 염장 국산·수입산 두 계열. KAMIS 원문이 단위를 「환산」으로만 적고 "
+                           "기준 중량을 밝히지 않아 kg 환산은 미확정이다. 같은 소매 계열이라 두 값의 "
+                           "배수는 유효하지만 도매(10kg·20kg)와는 견주지 않는다."),
     }
