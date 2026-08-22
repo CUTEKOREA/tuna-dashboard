@@ -9467,18 +9467,18 @@
      "per_site_t": 93.1
     },
     {
-     "sido": "경상",
-     "production_t": 8545.2,
-     "share_pct": 20.6,
-     "sites": 173,
-     "per_site_t": 49.4
-    },
-    {
      "sido": "강원",
      "production_t": 7480.6,
      "share_pct": 18.0,
      "sites": 111,
      "per_site_t": 67.4
+    },
+    {
+     "sido": "경남",
+     "production_t": 5786.2,
+     "share_pct": 13.9,
+     "sites": 90,
+     "per_site_t": 64.3
     },
     {
      "sido": "경기",
@@ -9488,7 +9488,14 @@
      "per_site_t": 12.1
     },
     {
-     "sido": "전남",
+     "sido": "경북",
+     "production_t": 2759.0,
+     "share_pct": 6.6,
+     "sites": 83,
+     "per_site_t": 33.2
+    },
+    {
+     "sido": "전남·광주",
      "production_t": 2648.1,
      "share_pct": 6.4,
      "sites": 80,
@@ -9502,18 +9509,25 @@
      "per_site_t": 26.0
     },
     {
-     "sido": "충청",
-     "production_t": 1616.8,
-     "share_pct": 3.9,
-     "sites": 115,
-     "per_site_t": 14.1
-    },
-    {
      "sido": "전북",
      "production_t": 1249.4,
      "share_pct": 3.0,
      "sites": 71,
      "per_site_t": 17.6
+    },
+    {
+     "sido": "충남",
+     "production_t": 833.8,
+     "share_pct": 2.0,
+     "sites": 65,
+     "per_site_t": 12.8
+    },
+    {
+     "sido": "충북",
+     "production_t": 783.0,
+     "share_pct": 1.9,
+     "sites": 50,
+     "per_site_t": 15.7
     },
     {
      "sido": "대전",
@@ -11512,7 +11526,8 @@
      "fta_china_pct": 22,
      "fta_vietnam_pct": 21.6,
      "fta_asean_pct": 21.6,
-     "rcep_pct": 20
+     "rcep_pct": null,
+     "note_rcep": "미양허"
     }
    ],
    "xAxis": "hsk",
@@ -11520,7 +11535,7 @@
     "adjustment_pct",
     "fta_peru_pct"
    ],
-   "methodology": "유통비용표(해수부 2024 실태조사)의 22% 는 기본세율이 아니라 조정관세. 협정세율은 선택 적용이라 페루·칠레산은 0%. 관세청 세율표 조회값 그대로.",
+   "methodology": "유통비용표(해수부 2024 실태조사)의 22% 는 기본세율이 아니라 조정관세. 협정세율은 선택 적용이라 페루·칠레산은 0%. 0307.43-2010 의 역내포괄적경제동반자협정은 미양허(빈칸). 관세청 세율표 조회값 그대로.",
    "basis": {
     "species": [
      "Todarodes pacificus",
