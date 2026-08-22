@@ -49,7 +49,7 @@ describe('whelk hypothesis isolation', () => {
     expect(markup).not.toContain('<details open=""');
     expect(markup).toContain('가설·시나리오 (실측 데이터 없음) · 2개');
     expect(count(markup, /data-whelk-hypothesis-card="true"/g)).toBe(2);
-    expect(count(markup, /실측 데이터 없음 — 가설/g)).toBe(2);
+    expect(count(markup, /실측 데이터 없음: 가설/g)).toBe(2);
     expect(markup).toContain('공백 사유: 브랜드 점유율 1차 출처 미보유');
     expect(markup).toContain('공백 사유: 채널 매출 통계 미보유');
   });

@@ -105,7 +105,7 @@ export function WhelkHypothesisCard({ reason, children }: { reason: string; chil
     <div data-whelk-hypothesis-card="true" style={{ minWidth: 0 }}>
       <div style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', gap: '8px', marginBottom: '8px' }}>
         <span style={{ borderRadius: '999px', background: 'rgba(245, 158, 11, 0.18)', border: '1px solid rgba(245, 158, 11, 0.42)', color: '#fbbf24', padding: '4px 9px', fontSize: '0.72rem', fontWeight: 800 }}>
-          실측 데이터 없음 — 가설
+          실측 데이터 없음: 가설
         </span>
         <span style={{ color: '#cbd5e1', fontSize: '0.75rem', lineHeight: 1.45 }}>
           공백 사유: {reason}
@@ -354,7 +354,7 @@ export function WhelkCoverageGapNote({ dataset }: { dataset: WhelkV2Dataset }) {
   if (!gap) return null;
   return (
     <div data-whelk-coverage-gap="true" style={{ ...V2_INFO_PANEL, marginTop: '12px', borderColor: 'rgba(148, 163, 184, 0.3)', background: 'rgba(148, 163, 184, 0.08)' }}>
-      <strong style={{ color: '#e2e8f0', fontSize: '0.8rem' }}>대시보드 아카이브 공백 — {gap.missing.join('·')}년 원자료 미반영</strong>
+      <strong style={{ color: '#e2e8f0', fontSize: '0.8rem' }}>대시보드 아카이브 공백: {gap.missing.join('·')}년 원자료 미반영</strong>
       <p style={{ margin: '6px 0 0', color: '#cbd5e1', fontSize: '0.72rem', lineHeight: 1.5 }}>
         현재 빌더 아카이브 보유 구간은 {gap.available.join(' · ')}이며 대상은 {gap.series}입니다. {gap.impact}
       </p>
@@ -383,7 +383,7 @@ function WhelkBasketPanel({ basket, subtitle, children }: { basket: WhelkV2Baske
 function shipmentNote(row: any) {
   const months = (row.shipment_months_2026 || []).map(formatMonth).join('·');
   if (!Number(row.shipment_count_2026)) return '2026년 1~5월 해당 관측 창 통관 실적 없음';
-  return `선적 ${formatNumber(row.shipment_count_2026)}건(${months}) — 안정 파이프라인 아님`;
+  return `선적 ${formatNumber(row.shipment_count_2026)}건(${months}): 안정 파이프라인 아님`;
 }
 
 // 표본이 희박한 원산지(선적 몇 건 / 통관 0건)를 점유율 숫자와 같은 카드에서 못 박는다.
@@ -506,8 +506,8 @@ export function WhelkV2Widgets({ dataset, activePart }: { dataset: WhelkV2Datase
           iconColor="#fbbf24"
           pillar={globalCapture.section}
           cardDesc={speciesResolutionReady
-            ? `유엔 식량농업기구 ${globalCapture.basis.coverage_end}년 ${globalCaptureRows.length}개 상위국 집계 — 한국 ${formatNumber(korea?.rank)}위(지배 종군 ${speciesScientificLabel(koreaDominant!, korea!)}, ${formatPercent(koreaDominant?.share_pct, 3)}), 세계 합계 ${formatNumber(globalCapture.world_total_tonnes)}톤`
-            : `유엔 식량농업기구 ${globalCapture.basis.coverage_end}년 국가별 어획 집계 — 종 구성 자료를 불러오지 못했습니다`}
+            ? `유엔 식량농업기구 ${globalCapture.basis.coverage_end}년 ${globalCaptureRows.length}개 상위국 집계: 한국 ${formatNumber(korea?.rank)}위(지배 종군 ${speciesScientificLabel(koreaDominant!, korea!)}, ${formatPercent(koreaDominant?.share_pct, 3)}), 세계 합계 ${formatNumber(globalCapture.world_total_tonnes)}톤`
+            : `유엔 식량농업기구 ${globalCapture.basis.coverage_end}년 국가별 어획 집계: 종 구성 자료를 불러오지 못했다`}
           unit={formatWidgetUnit(globalCapture.unit)}
           telemetry={widgetTelemetry(globalCapture)}
           chartHeight={360}
@@ -536,7 +536,7 @@ export function WhelkV2Widgets({ dataset, activePart }: { dataset: WhelkV2Datase
           ) : undefined}
           customBody={speciesResolutionReady ? (
             <div data-whelk-species-resolution-notice="true" style={{ ...V2_INFO_PANEL, marginTop: '12px', borderColor: 'rgba(239, 68, 68, 0.34)', background: 'rgba(127, 29, 29, 0.1)' }}>
-              <strong style={{ color: '#fca5a5', fontSize: '0.84rem' }}>종 해상도 고지 — 이 순위표의 국가는 같은 종 기준이 아닙니다</strong>
+              <strong style={{ color: '#fca5a5', fontSize: '0.84rem' }}>종 해상도 고지: 이 순위표의 국가는 같은 종 기준이 아닙니다</strong>
               <div style={{ display: 'flex', flexDirection: 'column', gap: '5px', marginTop: '8px', color: '#e2e8f0', fontSize: '0.76rem', lineHeight: 1.55 }}>
                 <div>
                   {koreaEntirelyUnresolved ? '한국 수치는 전량 종 미상' : '한국 수치의 지배 종군은 종 미상'}(<i>{speciesScientificLabel(koreaDominant!, korea!)}</i>)이며 {formatNumber(koreaDominant?.tonnes, 3)}톤·{formatPercent(koreaDominant?.share_pct, 3)}입니다. 영국은 <i>{speciesScientificLabel(ukDominant!, uk!)}</i> {formatPercent(ukDominant?.share_pct, 3)}로 종이 확정됐습니다.
@@ -602,7 +602,7 @@ export function WhelkV2Widgets({ dataset, activePart }: { dataset: WhelkV2Datase
           icon={TrendingUp}
           iconColor="#f59e0b"
           pillar={koreaTimeline.section}
-          cardDesc={`유엔 식량농업기구 한국 관측 ${koreaTimeline.data[0]?.year}~${latestKorea?.year}년 합산 — 최고점 ${record?.year}년 ${formatNumber(record?.tonnes_live_weight)}톤`}
+          cardDesc={`유엔 식량농업기구 한국 관측 ${koreaTimeline.data[0]?.year}~${latestKorea?.year}년 합산: 최고점 ${record?.year}년 ${formatNumber(record?.tonnes_live_weight)}톤`}
           unit={formatWidgetUnit(koreaTimeline.unit)}
           telemetry={widgetTelemetry(koreaTimeline)}
           chartHeight={320}
@@ -638,7 +638,7 @@ export function WhelkV2Widgets({ dataset, activePart }: { dataset: WhelkV2Datase
           icon={Ship}
           iconColor="#d97706"
           pillar={ukLink.section}
-          cardDesc={`영국 어획 확정계열과 한국의 영국산 조제 연체동물 수입액을 별도 축으로 병기 — 어획 최고 ${ukPeak?.period}년 ${formatNumber(ukPeak?.uk_capture_tonnes_live_weight)}톤`}
+          cardDesc={`영국 어획 확정계열과 한국의 영국산 조제 연체동물 수입액을 별도 축으로 나란히 놓는다. 어획 최고는 ${ukPeak?.period}년 ${formatNumber(ukPeak?.uk_capture_tonnes_live_weight)}톤이다`}
           unit={formatWidgetUnit(ukLink.unit)}
           telemetry={widgetTelemetry(ukLink)}
           chartHeight={320}
@@ -668,7 +668,7 @@ export function WhelkV2Widgets({ dataset, activePart }: { dataset: WhelkV2Datase
           icon={ShieldAlert}
           iconColor="#ef4444"
           pillar={aquaculture.section}
-          cardDesc={`유엔 식량농업기구 ${aquaculture.basis.coverage_end}년 종별 양식 집계 — 라파나류 ${formatNumber(rapana?.tonnes_live_weight)}톤, 부키눔류 관측 ${formatNumber(buccinum?.tonnes_live_weight)}톤`}
+          cardDesc={`유엔 식량농업기구 ${aquaculture.basis.coverage_end}년 종별 양식 집계: 라파나류 ${formatNumber(rapana?.tonnes_live_weight)}톤, 부키눔류 관측 ${formatNumber(buccinum?.tonnes_live_weight)}톤`}
           unit={formatWidgetUnit(aquaculture.unit)}
           telemetry={widgetTelemetry(aquaculture)}
           chartHeight={300}
@@ -685,7 +685,7 @@ export function WhelkV2Widgets({ dataset, activePart }: { dataset: WhelkV2Datase
             </BarChart>
           }
           takeaway={{
-            situation: <span><TermTooltip term="라파나류" description="피뿔고둥 계열을 포함하는 종군으로 중국 양식 생산의 대부분을 차지합니다." /> 양식은 {formatNumber(rapana?.tonnes_live_weight)}톤으로 전체 {formatPercent(rapana?.share_pct, 3)}를 차지하지만, <TermTooltip term="부키눔류" description="북해산 물레고둥 계열을 포함하는 종군입니다." />는 보관된 양식 자료에서 관측량이 {formatNumber(buccinum?.tonnes_live_weight)}톤입니다.</span>,
+            situation: <span><TermTooltip term="라파나류" description="피뿔고둥 계열을 포함하는 종군으로 중국 양식 생산의 대부분을 차지한다." /> 양식은 {formatNumber(rapana?.tonnes_live_weight)}톤으로 전체 {formatPercent(rapana?.share_pct, 3)}를 차지하지만, <TermTooltip term="부키눔류" description="북해산 물레고둥 계열을 포함하는 종군이다." />는 보관된 양식 자료에서 관측량이 {formatNumber(buccinum?.tonnes_live_weight)}톤입니다.</span>,
             actionPlan: <span>“골뱅이 양식 불가”를 전체 복족류에 적용하지 말고, 북해산 종과 중국산 라파나류를 분리해 원가·품질·조달 안정성을 평가해야 합니다.</span>,
             source: sourceLabel(aquaculture),
           }}
@@ -697,7 +697,7 @@ export function WhelkV2Widgets({ dataset, activePart }: { dataset: WhelkV2Datase
           icon={Dna}
           iconColor="#b45309"
           pillar={speciesNotice.section}
-          cardDesc={`유엔 식량농업기구 종 코드 ${formatNumber(speciesNotice.data.length)}종의 ${speciesNotice.basis.coverage_start}~${speciesNotice.basis.coverage_end}년 어획 합산 범위를 공개`}
+          cardDesc={`유엔 식량농업기구 종 코드 ${formatNumber(speciesNotice.data.length)}종의 ${speciesNotice.basis.coverage_start}~${speciesNotice.basis.coverage_end}년 어획 합산 범위를 공개한다`}
           unit={formatWidgetUnit(speciesNotice.unit)}
           telemetry={widgetTelemetry(speciesNotice)}
           customBody={
@@ -787,8 +787,8 @@ export function WhelkV2Widgets({ dataset, activePart }: { dataset: WhelkV2Datase
           icon={ChartPie}
           iconColor="#fbbf24"
           pillar={portfolio.section}
-          termTooltip={{ term: 'HSK8', description: '국제 공통 6자리 분류 아래에 관세청이 두는 한국 고유 세분류 8자리 코드입니다.' }}
-          cardDesc={`같은 1~5월 창을 바구니별로 분해 — ${northBasket?.label} 안의 영국·아일랜드 합산 ${formatPercent(combinedRow?.share_within_basket_2024_pct)}→${formatPercent(combinedRow?.share_within_basket_2026_pct)} 하락은 캐나다 ${formatNumber(canadaObservedMonthCount)}개월 관측을 포함할 때만 성립합니다. 캐나다를 제외하면 ${formatPercent(northShareExcludingCanada)}이며, 두 바구니를 합친 분모로는 원산지 점유율을 서술하지 않습니다(G-006)`}
+          termTooltip={{ term: 'HSK8', description: '국제 공통 6자리 분류 아래에 관세청이 두는 한국 고유 세분류 8자리 코드다.' }}
+          cardDesc={`같은 1~5월 창을 바구니별로 분해한다. ${northBasket?.label} 안의 영국·아일랜드 합산 ${formatPercent(combinedRow?.share_within_basket_2024_pct)}→${formatPercent(combinedRow?.share_within_basket_2026_pct)} 하락은 캐나다 ${formatNumber(canadaObservedMonthCount)}개월 관측을 포함할 때만 성립한다. 캐나다를 제외하면 ${formatPercent(northShareExcludingCanada)}이며, 두 바구니를 합친 분모로는 원산지 점유율을 서술하지 않는다(G-006)`}
           unit={formatWidgetUnit(portfolio.unit)}
           telemetry={widgetTelemetry(portfolio)}
           customBody={
@@ -798,7 +798,7 @@ export function WhelkV2Widgets({ dataset, activePart }: { dataset: WhelkV2Datase
                   <WhelkBasketPanel
                     key={basket.hsk8}
                     basket={basket}
-                    subtitle={`기간 총액 $${formatNumber(basket.import_usd_2024_jan_may)} → $${formatNumber(basket.import_usd_2026_jan_may)} (${formatPercent(basket.change_pct)}) · 점유율 분모는 이 바구니 총액`}
+                    subtitle={`기간 총액 $${formatNumber(basket.import_usd_2024_jan_may)} → $${formatNumber(basket.import_usd_2026_jan_may)} (${formatPercent(basket.change_pct)}) · 점유율 분모는 이 바구니 총액이다`}
                   >
                     <SafeResponsiveContainer width="100%" height={230}>
                       <BarChart data={basketRows(basket.hsk8)} margin={{ top: 8, right: 10, left: 0, bottom: 8 }}>
@@ -818,7 +818,7 @@ export function WhelkV2Widgets({ dataset, activePart }: { dataset: WhelkV2Datase
 
               {excludedBaskets.length ? (
                 <div style={{ color: '#94a3b8', fontSize: '0.72rem', lineHeight: 1.45 }}>
-                  차트 제외 바구니: {excludedBaskets.map((basket) => `${basket.label} — ${basket.excluded_reason}`).join(' · ')}
+                  차트 제외 바구니: {excludedBaskets.map((basket) => `${basket.label}: ${basket.excluded_reason}`).join(' · ')}
                 </div>
               ) : null}
 
@@ -826,7 +826,7 @@ export function WhelkV2Widgets({ dataset, activePart }: { dataset: WhelkV2Datase
 
               {windowSensitivity ? (
                 <div data-whelk-window-bias="true" style={{ ...V2_INFO_PANEL, borderColor: 'rgba(56, 189, 248, 0.26)', background: 'rgba(56, 189, 248, 0.06)' }}>
-                  <strong style={{ color: '#7dd3fc', fontSize: '0.8rem' }}>관측 창 편향 — 같은 2024년도 창에 따라 결론이 갈립니다</strong>
+                  <strong style={{ color: '#7dd3fc', fontSize: '0.8rem' }}>관측 창 편향: 같은 2024년도 창에 따라 결론이 갈립니다</strong>
                   <div data-mobile-stack style={{ display: 'grid', gridTemplateColumns: 'repeat(2, minmax(0, 1fr))', gap: '8px', marginTop: '8px' }}>
                     {chartedBaskets.map((basket) => (
                       <div key={basket.hsk8} style={{ background: 'rgba(15, 23, 42, 0.5)', borderRadius: '6px', padding: '8px 10px', minWidth: 0 }}>
@@ -857,7 +857,7 @@ export function WhelkV2Widgets({ dataset, activePart }: { dataset: WhelkV2Datase
           icon={Activity}
           iconColor="#d97706"
           pillar={monthly.section}
-          cardDesc={`관세청 ${formatMonth(monthly.data[0]?.month)}~${formatMonth(latestMonth?.month)} 월별 원계열 — 누적 수입액 $${formatNumber(monthlyTotal)}. 바구니 ${formatNumber(Object.keys(monthly.hsk8_monthly ?? {}).length)}개를 합친 규모 계열이며 원산지 점유율 분모로 쓰지 않습니다(G-006)`}
+          cardDesc={`관세청 ${formatMonth(monthly.data[0]?.month)}~${formatMonth(latestMonth?.month)} 월별 원계열: 누적 수입액 $${formatNumber(monthlyTotal)}. 바구니 ${formatNumber(Object.keys(monthly.hsk8_monthly ?? {}).length)}개를 합친 규모 계열이며 원산지 점유율 분모로 쓰지 않는다(G-006)`}
           unit={formatWidgetUnit(monthly.unit)}
           telemetry={widgetTelemetry(monthly)}
           chartHeight={320}
@@ -887,8 +887,8 @@ export function WhelkV2Widgets({ dataset, activePart }: { dataset: WhelkV2Datase
           icon={Scale}
           iconColor="#f59e0b"
           pillar={cifLadder.section}
-          termTooltip={{ term: 'CIF', description: '운임과 보험료를 포함한 수입 도착가 기준 단가입니다.' }}
-          cardDesc={`바구니별 수입액÷중량 가중 단가 — 같은 중국도 ${northBasket?.label} ${formatUsdPerKg(chinaNorthCif?.unit_price_2026_jan_may_usd_per_kg)}, ${otherBasket?.label} ${formatUsdPerKg(chinaOtherCif?.unit_price_2026_jan_may_usd_per_kg)}로 갈려 바구니를 섞은 단일 단가를 만들지 않습니다(G-006). 순위는 바구니 내부 물량 하한 통과분만`}
+          termTooltip={{ term: 'CIF', description: '운임과 보험료를 포함한 수입 도착가 기준 단가다.' }}
+          cardDesc={`바구니별 수입액÷중량 가중 단가: 같은 중국도 ${northBasket?.label} ${formatUsdPerKg(chinaNorthCif?.unit_price_2026_jan_may_usd_per_kg)}, ${otherBasket?.label} ${formatUsdPerKg(chinaOtherCif?.unit_price_2026_jan_may_usd_per_kg)}로 갈려 바구니를 섞은 단일 단가를 만들지 않는다(G-006). 순위는 바구니 내부 물량 하한을 통과한 원산지만 쓴다`}
           unit={formatWidgetUnit(cifLadder.unit)}
           telemetry={widgetTelemetry(cifLadder)}
           customBody={
@@ -949,8 +949,8 @@ export function WhelkV2Widgets({ dataset, activePart }: { dataset: WhelkV2Datase
             icon={Snowflake}
             iconColor="#7dd3fc"
             pillar={frozenMix.section}
-            termTooltip={{ term: 'HS 0307.92', description: '냉동 상태의 기타 연체동물을 담는 국제 공통 6자리 분류입니다. 바다고둥의 광의 대리지표로 씁니다.' }}
-            cardDesc={`관세청 ${frozenPeriod} 냉동 HS 0307.92 전체 $${formatNumber(frozenMix.scale_context?.frozen_030792_import_usd)}는 조제·보존의 ${formatNumber(frozenMix.scale_context?.frozen_to_prepared_ratio, 2)}배지만, 조개관자 ${formatPercent(frozenMix.scale_context?.scallop_share_pct)}를 제외하면 ${formatNumber(frozenMix.scale_context?.frozen_excluding_scallop_to_prepared_ratio, 2)}배입니다. 2024·2025 냉동 원자료 미반영으로 횡단면만 표시`}
+            termTooltip={{ term: 'HS 0307.92', description: '냉동 상태의 기타 연체동물을 담는 국제 공통 6자리 분류다. 바다고둥의 광의 대리지표로 쓴다.' }}
+            cardDesc={`관세청 ${frozenPeriod} 냉동 HS 0307.92 전체 $${formatNumber(frozenMix.scale_context?.frozen_030792_import_usd)}는 조제·보존의 ${formatNumber(frozenMix.scale_context?.frozen_to_prepared_ratio, 2)}배지만, 조개관자 ${formatPercent(frozenMix.scale_context?.scallop_share_pct)}를 제외하면 ${formatNumber(frozenMix.scale_context?.frozen_excluding_scallop_to_prepared_ratio, 2)}배다. 2024·2025 냉동 원자료를 반영하지 않아 횡단면만 보여준다`}
             unit={formatWidgetUnit(frozenMix.unit)}
             telemetry={widgetTelemetry(frozenMix)}
             chartHeight={320}
@@ -989,7 +989,7 @@ export function WhelkV2Widgets({ dataset, activePart }: { dataset: WhelkV2Datase
                 </div>
 
                 <div data-whelk-hsk10-breakdown="true" style={{ ...V2_INFO_PANEL }}>
-                  <strong style={{ color: '#7dd3fc', fontSize: '0.8rem' }}>HSK10 세번 분해 — 0307.92 안에도 골뱅이가 아닌 품목이 섞여 있습니다</strong>
+                  <strong style={{ color: '#7dd3fc', fontSize: '0.8rem' }}>HSK10 세번 분해: 0307.92 안에도 골뱅이가 아닌 품목이 섞여 있습니다</strong>
                   <div style={{ display: 'flex', flexDirection: 'column', gap: '4px', marginTop: '7px' }}>
                     {(frozenMix.hsk10_breakdown ?? []).map((row) => (
                       <div key={row.hsk10} style={{ display: 'flex', justifyContent: 'space-between', gap: '10px', color: '#cbd5e1', fontSize: '0.72rem' }}>
@@ -1045,8 +1045,8 @@ export function WhelkV2Widgets({ dataset, activePart }: { dataset: WhelkV2Datase
           icon={Package}
           iconColor="#b45309"
           pillar={hsGuide.section}
-          termTooltip={{ term: 'HS', description: '국제 거래 품목을 공통 기준으로 분류하는 통일상품명 및 부호체계입니다.' }}
-          cardDesc={`관세청 분류표와 실제 관측 ${formatNumber(hsGuide.data.length)}개 ${formatNumber(hsCodeLength)}자리 코드 연결 — 조제·보존 대리지표 ${preparedCode?.hs6}의 ${formatNumber(hskCodeLength)}자리 세부코드 ${formatNumber(preparedCode?.hsk10_observed?.length)}개`}
+          termTooltip={{ term: 'HS', description: '국제 거래 품목을 공통 기준으로 분류하는 통일상품명 및 부호체계다.' }}
+          cardDesc={`관세청 분류표와 실제 관측 ${formatNumber(hsGuide.data.length)}개 ${formatNumber(hsCodeLength)}자리 코드 연결: 조제·보존 대리지표 ${preparedCode?.hs6}의 ${formatNumber(hskCodeLength)}자리 세부코드 ${formatNumber(preparedCode?.hsk10_observed?.length)}개`}
           telemetry={widgetTelemetry(hsGuide)}
           customBody={
             <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
@@ -1189,7 +1189,7 @@ export default function WhelkDashboard() {
               <h1 style={{ margin: 0, fontSize: '1.5rem', fontWeight: 700, letterSpacing: '-0.5px', color: 'var(--text-primary)' }}>
                 골뱅이 전략 인텔리전스
               </h1>
-              <p style={{ margin: 0, fontSize: '0.88rem', color: 'var(--text-secondary)' }}>골뱅이 전략 커맨드 센터 — {INLINE_WIDGET_COUNT - RETIRED_HS6_WIDGET_COUNT + kfasWidgets.length - HYPOTHESIS_WIDGET_COUNT}개 위젯 · 가설 {HYPOTHESIS_WIDGET_COUNT}개 별도 · 5-Pillar 프레임워크</p>
+              <p style={{ margin: 0, fontSize: '0.88rem', color: 'var(--text-secondary)' }}>골뱅이 전략 커맨드 센터: {INLINE_WIDGET_COUNT - RETIRED_HS6_WIDGET_COUNT + kfasWidgets.length - HYPOTHESIS_WIDGET_COUNT}개 위젯 · 가설 {HYPOTHESIS_WIDGET_COUNT}개 별도 · 5-Pillar 프레임워크</p>
             </div>
           </div>
           <div className="ds-card" style={{fontSize: '0.88rem', padding: '8px 16px', 
@@ -1286,7 +1286,7 @@ export default function WhelkDashboard() {
           borderBottom: '1px solid rgba(140,170,255,0.10)',
           marginBottom: '6px' }}>
           <span style={{ fontSize: '0.7rem', color: 'rgba(148,163,184,0.7)', fontWeight: 600, letterSpacing: '0.08em', textTransform: 'uppercase' }}>
-            밸류체인 네비게이터 — 아래 단계를 클릭하여 탐색하세요
+            밸류체인 네비게이터: 아래 단계를 클릭하여 탐색하세요
           </span>
         </div>
         <div data-mobile-stack style={{ display: 'grid', gridTemplateColumns: 'repeat(5, 1fr)', gap: '4px' }}>
@@ -1383,7 +1383,7 @@ export default function WhelkDashboard() {
               }
               takeaway={{
                 situation: <span>[DFO Canada] 바닷물 온도가 높아지면서 캐나다 해역의 골뱅이가 사라지고 있으며, 이로 인해 전 세계 바이어들이 유일한 대안인 영국으로 몰려 경쟁이 치열해지고 있습니다.</span>,
-                actionPlan: <span>캐나다 해역 어획량이 수온 상승 등 해양 생태계 변화로 인해 과거 10년간 74%나 급감하며 사실상 산업 붕괴(Collapse) 수준에 도달했습니다. 이는 글로벌 수급 밸런스를 붕괴시키며, 유일한 고품질 대체재인 영국산 원물에 대한 전 세계 바이어들의 패닉 바잉(Panic Buying)과 가격 폭등을 촉발할 가능성이 농후합니다. 경영진은 이를 구조적 위기로 인식하고, 즉각적인 <TermTooltip term="장기 공급계약(LTC)" description="Long-Term Contract. 시장 가격 변동성에 대비하여 원물 공급자에게 고정 가격 혹은 최소 보장 물량을 담보받는 장기 선도 계약." /> 체결 및 선급금 지급을 통해서라도 영국 해역 내 확고한 물량 락인을 최우선으로 확보해야 합니다.</span>,
+                actionPlan: <span>캐나다 해역 어획량이 수온 상승 등 해양 생태계 변화로 인해 과거 10년간 74%나 급감하며 사실상 산업 붕괴(Collapse) 수준에 도달했습니다. 이는 글로벌 수급 밸런스를 붕괴시키며, 유일한 고품질 대체재인 영국산 원물에 대한 전 세계 바이어들의 패닉 바잉(Panic Buying)과 가격 폭등을 촉발할 가능성이 농후합니다. 경영진은 이를 구조적 위기로 인식하고, 즉각적인 <TermTooltip term="장기 공급계약(LTC)" description="Long-Term Contract. 시장 가격이 흔들릴 때에 대비해 원물 공급자에게 고정 가격 혹은 최소 보장 물량을 담보받는 장기 선도 계약." /> 체결 및 선급금 지급을 통해서라도 영국 해역 내 확고한 물량 락인을 최우선으로 확보해야 합니다.</span>,
                 source: 'DFO Canada / UK MMO (2024 1H)',
               }} />
             
@@ -1416,7 +1416,7 @@ export default function WhelkDashboard() {
               }} />
 
             <WidgetCard title="포스트 영국(Post-UK) 시대 대비 신규 어장 스코어카드" icon={Navigation} iconColor="var(--color-info)" pillar="S1"
-              cardDesc="대체 어장 4축 평가 — 어획 추세·FTA 혜택·물류 효율"
+              cardDesc="대체 어장 4축 평가: 어획 추세·FTA 혜택·물류 효율"
               telemetry={{ status: 'STATIC', syncDate: '2026 분석' }} chartHeight={300}
               chart={
                 <BarChart data={postUkScorecardData} layout="vertical" margin={{ left: 30 }}>
@@ -1447,7 +1447,7 @@ export default function WhelkDashboard() {
   <>
             <WhelkRetiredHs6WidgetGate>
             <WidgetCard title="국내 수입산 골뱅이 국가별 점유율" icon={ChartPie} iconColor="var(--color-info)" pillar="S3"
-              cardDesc="KCS HS160559 2024년 연간 수입금액($M) 기준 국가별 점유율(총 $58.5M, 기타 포함) — 영국·아일랜드 합산 65% 단일 해역 리스크"
+              cardDesc="KCS HS160559 2024년 연간 수입금액($M) 기준 국가별 점유율(총 $58.5M, 기타 포함): 영국·아일랜드 합산 65% 단일 해역 리스크"
               telemetry={{ status: metaStatus, syncDate: metaSyncDate || 'KCS 2026-05-15' }} chartHeight={300}
               chart={
                 <PieChart>
@@ -1466,7 +1466,7 @@ export default function WhelkDashboard() {
             </WhelkRetiredHs6WidgetGate>
 
             <WidgetCard title="영국산 HSK8 월별 수입 실측 (2024)" icon={Snowflake} iconColor="var(--color-info)" pillar="S3"
-              cardDesc="관세청 HSK8 16055910 안의 영국산 2024년 월별 상세행 — 수입액·중량 관측값만 표시하며 소비·운임 원인을 추정하지 않음"
+              cardDesc="관세청 HSK8 16055910 안의 영국산 2024년 월별 상세행: 수입액과 중량 관측값만 표시하고 소비나 운임 원인은 추정하지 않는다"
               telemetry={{ status: ukMonthly2024Rows.length ? 'SYNCED' : 'STATIC', syncDate: ukMonthly2024Rows.length ? '관세청 2024.01~12' : '아카이브 미반영' }} chartHeight={300}
               chart={
                 <ComposedChart data={ukMonthly2024Data}>
@@ -1491,7 +1491,7 @@ export default function WhelkDashboard() {
             <WhelkHypothesisSection count={1}>
               <WhelkHypothesisCard reason="내부 기획안, 외부 검증 자료 없음">
             <WidgetCard title="SG 2026 밸류업 × 골뱅이 HMR 신제품 로드맵" icon={Package} iconColor="var(--color-success)" pillar="S2"
-              cardDesc="실측 데이터 없음 — 내부 기획안이며 외부 검증 자료를 보유하지 않음"
+              cardDesc="실측 데이터가 없다. 내부 기획안이며 외부 검증 자료를 갖고 있지 않다"
               telemetry={{ status: 'STATIC', syncDate: 'SG 내부기획 2026 Q2' }} chartHeight={300}
               chart={
                 <BarChart data={sgValueUpData} layout="vertical" margin={{ left: 50 }}>
@@ -1514,7 +1514,7 @@ export default function WhelkDashboard() {
             </WhelkHypothesisSection>
 
             <WidgetCard title="조제·보존 골뱅이 수입 규모 (HS 1605.59 합계)" icon={Factory} iconColor="var(--color-info)" pillar="S2"
-              cardDesc="KCS HS 1605.59 두 HSK8 바구니 합산 규모 — 물량·금액·시사단가만 표시하며 원산지 점유율 분모로 사용 금지"
+              cardDesc="KCS HS 1605.59 두 HSK8 바구니 합산 규모: 물량·금액·시사단가만 표시하며 원산지 점유율 분모로 사용 금지"
               telemetry={{ status: metaStatus, syncDate: metaSyncDate || 'KCS 2024 연간' }} chartHeight={300}
               chart={
                 <ComposedChart data={feedstockYoyData}>
@@ -1536,8 +1536,8 @@ export default function WhelkDashboard() {
               }} />
 
             <WhelkRetiredHs6WidgetGate>
-            <WidgetCard title="원산지별 CIF 단가 격차 — 대체재 탄력성" icon={Package} iconColor="var(--color-warning)" pillar="S4"
-              cardDesc="KCS HS160559 원산지별 CIF($/kg) — 북해 vs 저단가 대체재"
+            <WidgetCard title="원산지별 CIF 단가 격차: 대체재 탄력성" icon={Package} iconColor="var(--color-warning)" pillar="S4"
+              cardDesc="KCS HS160559 원산지별 CIF($/kg): 북해 vs 저단가 대체재"
               telemetry={{ status: metaStatus, syncDate: metaSyncDate || 'KCS 2024 연간' }} chartHeight={300}
               chart={
                 <BarChart data={originCifGapData} layout="vertical" margin={{ left: 20 }}>
@@ -1568,7 +1568,7 @@ export default function WhelkDashboard() {
             <WhelkHypothesisSection count={2}>
               <WhelkHypothesisCard reason="원산지별 살수율 수치 출처 미보유">
             <WidgetCard title="국가별 원물 수율 기반 총사용원가 비교" icon={Scale} iconColor="var(--color-info)" pillar="S3"
-              cardDesc="실측 데이터 없음 — 원산지별 살수율 수치 출처를 보유하지 않음"
+              cardDesc="실측 데이터가 없다. 원산지별 살수율 수치 출처를 갖고 있지 않다"
               telemetry={{ status: 'STATIC', syncDate: '2024년 기준' }} chartHeight={300}
               chart={
                 <ComposedChart data={yieldArbitrageData} layout="vertical" margin={{ left: 40 }}>
@@ -1590,7 +1590,7 @@ export default function WhelkDashboard() {
 
               <WhelkHypothesisCard reason="부위별 카드뮴 수치 원자료 미보유">
             <WidgetCard title="카드뮴 생체축적 및 식품안전 규제 진단" icon={FlaskConical} iconColor="var(--color-danger)" pillar="S3"
-              cardDesc="실측 데이터 없음 — 부위별 카드뮴 수치 원자료를 보유하지 않음"
+              cardDesc="실측 데이터가 없다. 부위별 카드뮴 수치 원자료를 갖고 있지 않다"
               telemetry={{ status: 'STATIC', syncDate: '2024년 기준' }} chartHeight={300}
               chart={
                 <ComposedChart data={cadmiumData} margin={{ top: 20 }}>
@@ -1608,14 +1608,14 @@ export default function WhelkDashboard() {
               }
               takeaway={{
                 situation: <span>[식약처/EFSA] 골뱅이 내장에는 카드뮴이 식약처 기준치를 초과하여 쌓이므로, 가공 시 내장을 완벽하게 제거하지 않으면 통관에 실패할 수 있습니다.</span>,
-                actionPlan: <span>골뱅이의 간췌장(내장) 부위에는 카드뮴이 근육 대비 20~100배 농축(5.5mg/kg)되어 식약처 기준(2.0mg/kg)을 크게 초과합니다. 해외 가공 공장에서 <TermTooltip term="내장 제거 완전성" description="Evisceration Rate. 가공 과정에서 간췌장(내장)이 완전히 제거된 비율. 미달 시 중금속 기준 초과로 수입 통관 부적합 판정의 직접적 원인." /> 이 미달될 경우, 한 번의 식약처 부적합 판정으로 수억 원대 물량이 전량 폐기·반송됩니다. QC팀은 분기별 원산지 공장 방문 검수와 제3자 검사기관(SGS, Intertek) 인증을 의무화하고, 내장 제거율을 핵심 KPI로 관리해야 합니다.</span>,
+                actionPlan: <span>골뱅이의 간췌장(내장) 부위에는 카드뮴이 근육 대비 20~100배 농축(5.5mg/kg)되어 식약처 기준(2.0mg/kg)을 크게 초과합니다. 해외 가공 공장에서 <TermTooltip term="내장 제거 완전성" description="Evisceration Rate. 가공 과정에서 간췌장(내장)이 완전히 제거된 비율. 미달 시 중금속 기준 초과로 수입 통관 부적합 판정의 직접적 원인이 된다." /> 이 미달될 경우, 한 번의 식약처 부적합 판정으로 수억 원대 물량이 전량 폐기·반송됩니다. QC팀은 분기별 원산지 공장 방문 검수와 제3자 검사기관(SGS, Intertek) 인증을 의무화하고, 내장 제거율을 핵심 KPI로 관리해야 합니다.</span>,
                 source: '식약처 / EFSA',
               }} />
               </WhelkHypothesisCard>
             </WhelkHypothesisSection>
 
             <WidgetCard title="영국산 수입 통관 원가 폭포수 구조" icon={DollarSign} iconColor="var(--color-info)" pillar="S3"
-              cardDesc="FOB → CIF → 관세 → 내륙 통관 단계별 — 한-영 FTA 무관세 방어"
+              cardDesc="FOB → CIF → 관세 → 내륙 통관 단계별: 한-영 FTA 무관세 방어"
               telemetry={{ status: metaStatus, syncDate: metaSyncDate || 'KCS 2026-05-15' }} chartHeight={300}
               chart={
                 <BarChart data={waterfallData} margin={{ top: 20 }}>
@@ -1648,7 +1648,7 @@ export default function WhelkDashboard() {
             <WhelkHypothesisSection count={4}>
               <WhelkHypothesisCard reason="브랜드 점유율 1차 출처 미보유">
             <WidgetCard title="B2C 통조림 브랜드 경쟁력 & 가성비 매핑" icon={Target} iconColor="var(--color-info)" pillar="S4"
-              cardDesc="실측 데이터 없음 — 브랜드 점유율 1차 출처를 보유하지 않음"
+              cardDesc="실측 데이터가 없다. 브랜드 점유율 1차 출처를 갖고 있지 않다"
               telemetry={{ status: 'STATIC', syncDate: '2024년 기준' }} chartHeight={300}
               chart={
                 <ScatterChart margin={{ top: 20, right: 30, bottom: 30, left: 30 }}>
@@ -1671,7 +1671,7 @@ export default function WhelkDashboard() {
 
               <WhelkHypothesisCard reason="채널 매출 통계 미보유">
             <WidgetCard title="B2C 및 B2B 채널별 매출 분포" icon={Building2} iconColor="var(--color-info)" pillar="S4"
-              cardDesc="실측 데이터 없음 — 채널별 매출 통계를 보유하지 않음"
+              cardDesc="실측 데이터가 없다. 채널별 매출 통계를 갖고 있지 않다"
               telemetry={{ status: 'STATIC', syncDate: '2024년 기준' }} chartHeight={300}
               chart={
                 <PieChart>
@@ -1688,8 +1688,8 @@ export default function WhelkDashboard() {
               }} />
               </WhelkHypothesisCard>
               <WhelkHypothesisCard reason="트렌드 서술, 수치 근거 없음">
-            <WidgetCard title="미국 캔 르네상스 — 골뱅이 수출 신시장 기회" icon={ShoppingBag} iconColor="var(--color-success)" pillar="S4"
-              cardDesc="실측 데이터 없음 — 트렌드 서술을 뒷받침할 수치 근거가 없음"
+            <WidgetCard title="미국 캔 르네상스: 골뱅이 수출 신시장 기회" icon={ShoppingBag} iconColor="var(--color-success)" pillar="S4"
+              cardDesc="실측 데이터가 없다. 트렌드 서술을 뒷받침할 수치 근거도 없다"
               telemetry={{ status: 'STATIC', syncDate: 'KMI 2026.05' }} chartHeight={300}
               chart={
                 <ComposedChart data={usCannedMarketData}>
@@ -1713,8 +1713,8 @@ export default function WhelkDashboard() {
               </WhelkHypothesisCard>
 
               <WhelkHypothesisCard reason="KFDA 원자료 아카이브 미보유">
-            <WidgetCard title="헬시플레저 시대 — 골뱅이 영양 경쟁력 벤치마크" icon={Activity} iconColor="var(--color-success)" pillar="S4"
-              cardDesc="실측 데이터 없음 — 식품의약품안전처 원자료 아카이브를 보유하지 않음"
+            <WidgetCard title="헬시플레저 시대: 골뱅이 영양 경쟁력 벤치마크" icon={Activity} iconColor="var(--color-success)" pillar="S4"
+              cardDesc="실측 데이터가 없다. 식품의약품안전처 원자료 아카이브를 갖고 있지 않다"
               telemetry={{ status: 'STATIC', syncDate: 'KFDA 2024 기준' }} chartHeight={300}
               chart={
                 <BarChart data={nutritionBenchmarkData} margin={{ top: 20 }}>
@@ -1791,7 +1791,7 @@ export default function WhelkDashboard() {
                 source: '한국은행 실시간 환율',
               }} />
             <WidgetCard title="환율 및 수입 단가 복합 변동성" icon={DollarSign} iconColor="var(--color-info)" pillar="S3"
-              cardDesc="분기별 USD 단가 vs USD/KRW 환율 — 이중 타격(Double Whammy) 분석"
+              cardDesc="분기별 USD 단가 vs USD/KRW 환율: 이중 타격(Double Whammy) 분석"
               telemetry={{ status: metaStatus, syncDate: metaSyncDate || 'KCS/한국은행 2026-05-15' }} chartHeight={300}
               chart={
                 <ComposedChart data={fxCorrelationData}>
@@ -1808,12 +1808,12 @@ export default function WhelkDashboard() {
               }
               takeaway={{
                 situation: <span>[KCS+BOK] 수입 단가(달러) 자체는 안정적이어도 환율이 오르면 실제 기업이 지불해야 하는 원화 결제액이 크게 늘어나 수익성이 악화됩니다.</span>,
-                actionPlan: <span>2023년 1분기부터 2024년 4분기 시계열 분석 결과, 거시 경제의 최악의 시나리오인 'Double Whammy(이중 타격)' 현상이 확인됩니다. 영국산 원물 USD 단가가 $11.82에서 $12.75(+7.9%)로 인상된 것에 더해, 동기간 USD/KRW 환율마저 1,264원에서 1,400원(+10.8%)으로 수직 상승했습니다. 이로 인해 국내 수입사가 체감하는 원화 환산 매입 원가는 무려 20% 가까이 폭등했습니다. 재무 라인은 즉각 비상 경영 체제로 돌입하여 능동적인 <TermTooltip term="FX Forward 헤지" description="환변동 위험을 방어하기 위해 미래 특정 시점의 환율을 현재 시점에 사전 고정시키는 선도 계약." /> 및 통화 분산 스왑을 가동, 판관비 및 이익률 훼손을 방어하는 최후의 보루 역할을 수행해야 합니다.</span>,
+                actionPlan: <span>2023년 1분기부터 2024년 4분기 시계열 분석 결과, 거시 경제의 최악의 시나리오인 'Double Whammy(이중 타격)' 현상이 확인됩니다. 영국산 원물 USD 단가가 $11.82에서 $12.75(+7.9%)로 인상된 것에 더해, 동기간 USD/KRW 환율마저 1,264원에서 1,400원(+10.8%)으로 수직 상승했습니다. 이로 인해 국내 수입사가 체감하는 원화 환산 매입 원가는 무려 20% 가까이 폭등했습니다. 재무 라인은 즉각 비상 경영 체제로 돌입하여 능동적인 <TermTooltip term="FX Forward 헤지" description="환율이 흔들릴 위험을 막으려고 미래 특정 시점의 환율을 지금 미리 고정해 두는 선도 계약." /> 및 통화 분산 스왑을 가동, 판관비 및 이익률 훼손을 방어하는 최후의 보루 역할을 수행해야 합니다.</span>,
                 source: 'KCS / 한국은행',
               }} />
 
             <WidgetCard title="영국 현지 어획 규제 리스크 진단" icon={Shield} iconColor="var(--color-info)" pillar="S3"
-              cardDesc="MCRS·쿼터제·IFCA 규제 — 영국 자원 보호주의 정책 위협 측정"
+              cardDesc="MCRS·쿼터제·IFCA 규제: 영국 자원 보호주의 정책 위협 측정"
               telemetry={{ status: 'STATIC', syncDate: '2024년 기준' }} chartHeight={300}
               chart={
                 <RadarChart data={ukRegulatoryRadar} cx="50%" cy="50%" outerRadius="70%">
@@ -1834,7 +1834,7 @@ export default function WhelkDashboard() {
         {/* Pillar 5 continued: 구조적 위협 & 기회 — 동일 Pillar 내 하위 블록 */}
   <>
             <WidgetCard title="1인 가구 혼술 트렌드 및 채널 수입량 변동" icon={ShoppingBag} iconColor="var(--color-success)" pillar="S4"
-              cardDesc="냉동 자숙 골뱅이육 수입 +105% — 혼술 이코노미 구조적 전환"
+              cardDesc="냉동 자숙 골뱅이육 수입 +105%: 혼술 이코노미 구조적 전환"
               telemetry={{ status: metaStatus, syncDate: metaSyncDate || 'KCS 월별 통관 2026-05-15' }} chartHeight={300}
               chart={
                 <ComposedChart data={importSurgeData}>
@@ -1857,7 +1857,7 @@ export default function WhelkDashboard() {
               }
               takeaway={{
                 situation: <span>[KCS/FishFocus] 1인 가구의 '혼술' 트렌드가 유행을 넘어 구조적 소비로 굳어지며, 냉동 조미 골뱅이의 수입량이 2배 넘게 급증했습니다.</span>,
-                actionPlan: <span>2025년 2월 기준 냉동 자숙 골뱅이육 수입이 170톤(전년 동기 대비 +105%), 1~2월 누적 수입액 USD 4.95M(+84%)을 기록하며 역대 최고치를 경신했습니다. 이는 <TermTooltip term="혼술 이코노미" description="1인 가구와 홈술(집에서 마시는 술) 문화가 만든 소비 경제. 편의점 안주, 소포장 HMR 등 새로운 수요 창출의 원동력." /> 가 일시적 유행이 아닌 비가역적(Irreversible) 소비 구조 전환임을 입증합니다. 마케팅팀은 150g 소포장 '혼술 에디션'과 에어프라이어용 '마늘버터 골뱅이 키트' 등 채널 맞춤형 SKU를 Q3 성수기 전 선제 출시해야 합니다.</span>,
+                actionPlan: <span>2025년 2월 기준 냉동 자숙 골뱅이육 수입이 170톤(전년 동기 대비 +105%), 1~2월 누적 수입액 USD 4.95M(+84%)을 기록하며 역대 최고치를 경신했습니다. 이는 <TermTooltip term="혼술 이코노미" description="1인 가구가 늘고 집에서 술을 마시는 홈술 문화가 퍼지면서 생긴 소비 경제. 편의점 안주와 소포장 HMR 같은 새 수요가 여기서 나왔다." /> 가 일시적 유행이 아닌 비가역적(Irreversible) 소비 구조 전환임을 입증합니다. 마케팅팀은 150g 소포장 '혼술 에디션'과 에어프라이어용 '마늘버터 골뱅이 키트' 등 채널 맞춤형 SKU를 Q3 성수기 전 선제 출시해야 합니다.</span>,
                 source: 'KCS / FishFocus UK',
               }} />
 
@@ -1878,12 +1878,12 @@ export default function WhelkDashboard() {
               }
               takeaway={{
                 situation: <span>[MDPI] 원물을 가공할 때 버려지는 78%의 껍데기와 내장에서 고부가가치의 '해양 콜라겐'을 추출할 수 있어 새로운 수익 창출이 가능합니다.</span>,
-                actionPlan: <span>골뱅이 원물의 78%는 껍질·내장·체액으로 폐기되지만, 이 부산물에서 <TermTooltip term="해양 콜라겐 펩타이드" description="Marine Collagen Peptide. 수산 부산물에서 효소 분해로 추출하는 저분자 단백질. 광우병 위험 없이 피부·관절 건강에 효과적이며, 할랄/코셔 인증이 용이." /> 를 추출할 수 있습니다. 아태 지역 해양 콜라겐 시장 규모는 $980M이며, 소·돼지 대비 종교적 제약이 없어 할랄/코셔 시장 진출이 용이합니다. 또한 껍질(CaCO₃)은 칼슘 보충제와 바이오 세라믹 원료로 활용 가능합니다. R&D 부서는 국내 바이오 스타트업과의 공동 연구 MOU를 통해 부산물 수익화 파이프라인을 구축해야 합니다.</span>,
+                actionPlan: <span>골뱅이 원물의 78%는 껍질·내장·체액으로 폐기되지만, 이 부산물에서 <TermTooltip term="해양 콜라겐 펩타이드" description="Marine Collagen Peptide. 수산 부산물에서 효소 분해로 추출하는 저분자 단백질. 광우병 위험 없이 피부와 관절 건강에 좋고 할랄/코셔 인증도 받기 쉽다." /> 를 추출할 수 있습니다. 아태 지역 해양 콜라겐 시장 규모는 $980M이며, 소·돼지 대비 종교적 제약이 없어 할랄/코셔 시장 진출이 용이합니다. 또한 껍질(CaCO₃)은 칼슘 보충제와 바이오 세라믹 원료로 활용 가능합니다. R&D 부서는 국내 바이오 스타트업과의 공동 연구 MOU를 통해 부산물 수익화 파이프라인을 구축해야 합니다.</span>,
                 source: 'MDPI / ResearchGate',
               }} />
 
             <WidgetCard title="B2C 통조림 규격별 고형량(살코기) 투명성 비율" icon={Package} iconColor="var(--color-warning)" pillar="S4"
-              cardDesc="300g 캔의 실제 살코기 40~50% — 투명성 마케팅 차별화"
+              cardDesc="300g 캔의 실제 살코기 40~50%: 투명성 마케팅 차별화"
               telemetry={{ status: 'STATIC', syncDate: '2024년 기준' }} chartHeight={300}
               chart={
                 <BarChart data={solidContentData} margin={{ top: 20 }}>
@@ -1904,7 +1904,7 @@ export default function WhelkDashboard() {
               }} />
 
             <WidgetCard title="해수온 상승에 따른 조업지 이탈 기후 리스크" icon={Thermometer} iconColor="var(--color-danger)" pillar="S1"
-              cardDesc="북대서양 해수면 온도(SST) + 영국·캐나다 어획량 — 포스트 영국(Post-UK) 대비"
+              cardDesc="북대서양 해수면 온도(SST) + 영국·캐나다 어획량: 포스트 영국(Post-UK) 대비"
               telemetry={{ status: 'STATIC', syncDate: '2026 기후 시뮬레이션' }} chartHeight={300}
               chart={
                 <ComposedChart data={climateRiskData}>
@@ -1932,7 +1932,7 @@ export default function WhelkDashboard() {
               }
               takeaway={{
                 situation: <span>[IPCC/FAOSTAT] 바닷물 온도가 높아지면 찬물에 사는 골뱅이가 서식지를 떠나버립니다. 캐나다에서는 이미 수온 상승으로 어획량이 크게 줄어들었습니다.</span>,
-                actionPlan: <span>골뱅이 공급망의 진짜 적은 경쟁사가 아니라 '기후변화'입니다. 냉수성 저서생물인 B. undatum은 <TermTooltip term="SST" description="Sea Surface Temperature. 해수면 온도. 북대서양 수온이 15°C를 넘으면 골뱅이의 서식지 이탈과 산란율 급감이 시작됨." /> 15°C를 넘으면 서식지를 이탈하며, 이미 캐나다에서 이 시나리오가 현실화되어 어획량이 -74% 붕괴했습니다. IPCC 예측에 따르면 현재 한국 수입의 52%를 차지하는 영국 북해도 수온이 2035년까지 1.5~2°C 상승할 전망이며, 이는 10년 내 영국산 물량이 연간 10~15%씩 자연 감소할 수 있음을 의미합니다. 전략기획실은 '포스트-영국(Post-UK)' 시대를 대비하여 아이슬란드·노르웨이 등 고위도 신규 어장 개척과 흑해(튀르키예) R. venosa의 총사용원가(TCU) 기반 경제성 재평가를 즉각 병행해야 합니다.</span>,
+                actionPlan: <span>골뱅이 공급망의 진짜 적은 경쟁사가 아니라 '기후변화'입니다. 냉수성 저서생물인 B. undatum은 <TermTooltip term="SST" description="Sea Surface Temperature. 해수면 온도. 북대서양 수온이 15°C를 넘으면 골뱅이의 서식지 이탈과 산란율 급감이 시작된다." /> 15°C를 넘으면 서식지를 이탈하며, 이미 캐나다에서 이 시나리오가 현실화되어 어획량이 -74% 붕괴했습니다. IPCC 예측에 따르면 현재 한국 수입의 52%를 차지하는 영국 북해도 수온이 2035년까지 1.5~2°C 상승할 전망이며, 이는 10년 내 영국산 물량이 연간 10~15%씩 자연 감소할 수 있음을 의미합니다. 전략기획실은 '포스트-영국(Post-UK)' 시대를 대비하여 아이슬란드·노르웨이 등 고위도 신규 어장 개척과 흑해(튀르키예) R. venosa의 총사용원가(TCU) 기반 경제성 재평가를 즉각 병행해야 합니다.</span>,
                 source: 'IPCC / FAOSTAT',
               }} />
           </>
@@ -1941,7 +1941,7 @@ export default function WhelkDashboard() {
               <WhelkHypothesisCard reason="EU 포장 규제 수치 원자료 미보유">
             {/* W23: EU 포장규제 리스크 */}
             <WidgetCard title="EU PPWR 포장규제 컴플라이언스 리스크" icon={Recycle} iconColor="var(--color-warning)" pillar="S5"
-              cardDesc="실측 데이터 없음 — EU 포장 규제 수치 원자료를 보유하지 않음"
+              cardDesc="실측 데이터가 없다. EU 포장 규제 수치 원자료를 갖고 있지 않다"
               telemetry={{ status: 'STATIC', syncDate: 'KMI 2026.03' }}
               customBody={
                 <div data-mobile-stack style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '0.5rem' }}>
@@ -1968,7 +1968,7 @@ export default function WhelkDashboard() {
               <WhelkHypothesisCard reason="골뱅이 PFAS 수치 원자료 미보유">
             {/* W24: PFAS 식품안전 매트릭스 */}
             <WidgetCard title="PFAS(과불화화합물) 차세대 식품안전 리스크" icon={FlaskConical} iconColor="var(--color-warning)" pillar="S5"
-              cardDesc="실측 데이터 없음 — 골뱅이 PFAS 수치 원자료를 보유하지 않음"
+              cardDesc="실측 데이터가 없다. 골뱅이 PFAS 수치 원자료를 갖고 있지 않다"
               telemetry={{ status: 'STATIC', syncDate: 'KFAS 2024' }} chartHeight={280}
               chart={
                 <BarChart data={pfasRiskData} layout="vertical" margin={{ left: 40 }}>
@@ -1991,8 +1991,8 @@ export default function WhelkDashboard() {
 
               <WhelkHypothesisCard reason="시장 규모·성장률 원자료 미보유">
             {/* W28: 할랄 해양콜라겐 시장 */}
-            <WidgetCard title="할랄 인증 해양콜라겐 — 글로벌 시장 기회" icon={Globe} iconColor="var(--color-success)" pillar="S5"
-              cardDesc="실측 데이터 없음 — 시장 규모와 성장률 원자료를 보유하지 않음"
+            <WidgetCard title="할랄 인증 해양콜라겐: 글로벌 시장 기회" icon={Globe} iconColor="var(--color-success)" pillar="S5"
+              cardDesc="실측 데이터가 없다. 시장 규모와 성장률 원자료를 갖고 있지 않다"
               telemetry={{ status: 'STATIC', syncDate: 'KMI 2026.04' }} chartHeight={280}
               chart={
                 <BarChart data={halalCollagenData} margin={{ top: 20 }}>

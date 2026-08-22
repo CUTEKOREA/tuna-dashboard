@@ -29,7 +29,7 @@ describe('whelk v2 S3 widgets', () => {
     expect(markup).toContain('97.3%');
     expect(markup).toContain('75.8%');
     expect(markup).toContain('19.9%');
-    expect(markup).toContain('두 바구니를 합친 분모로는 원산지 점유율을 서술하지 않습니다');
+    expect(markup).toContain('두 바구니를 합친 분모로는 원산지 점유율을 서술하지 않는다');
   });
 
   it('qualifies the lower UK-Ireland share with the two-month Canada observation', () => {
@@ -46,13 +46,13 @@ describe('whelk v2 S3 widgets', () => {
 
   it('annotates thin-evidence origins with shipment counts', () => {
     expect(markup).toContain('data-whelk-thin-evidence="true"');
-    expect(markup).toContain('선적 2건(2026.02·2026.04) — 안정 파이프라인 아님');
+    expect(markup).toContain('선적 2건(2026.02·2026.04): 안정 파이프라인 아님');
     expect(markup).toContain('해당 관측 창 통관 실적 없음');
   });
 
   it('discloses the dashboard archive gap and the window bias', () => {
     expect(markup).toContain('data-whelk-coverage-gap="true"');
-    expect(markup).toContain('대시보드 아카이브 공백 — 2025년 원자료 미반영');
+    expect(markup).toContain('대시보드 아카이브 공백: 2025년 원자료 미반영');
     expect(markup).not.toContain('2025년 원자료 없음');
     expect(markup).toContain('data-whelk-window-bias="true"');
     expect(markup).toContain('1~5월 창 49.5% · 연간 창 68.5%');
@@ -123,7 +123,7 @@ describe('whelk retired HS6 widgets', () => {
       'utf8',
     );
     expect(source).toMatch(/<WhelkRetiredHs6WidgetGate>\s*<WidgetCard title="국내 수입산 골뱅이 국가별 점유율"/);
-    expect(source).toMatch(/<WhelkRetiredHs6WidgetGate>\s*<WidgetCard title="원산지별 CIF 단가 격차 — 대체재 탄력성"/);
+    expect(source).toMatch(/<WhelkRetiredHs6WidgetGate>\s*<WidgetCard title="원산지별 CIF 단가 격차: 대체재 탄력성"/);
   });
 
   it('replaces the unverified seasonality fixture with archived UK HSK8 rows', () => {
