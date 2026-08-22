@@ -157,10 +157,10 @@
     "series": "FishStat Global Production",
     "source_id": "FAO_FISHSTAT_GLOBAL_PRODUCTION"
   },
-  "sit": "2024년 양식 비중은 0.01%다. 고등어는 사실상 100% 자연산 어종이며 양식 전환은 아직 통계에 잡히는 규모가 아니다.",
+  "sit": "2024년 양식 비중은 0.01%다. 고등어는 사실상 100% 자연산 어종이다. 양식 전환은 아직 통계에 잡힐 규모에 못 미친다.",
   "stacked": true,
-  "strat": "'양식 블루오션' 서사는 데이터가 받쳐주지 않는다. 공급 리스크는 양식으로 헤지할 수 없고 원산지 다변화와 재고 정책으로만 관리된다.",
-  "subtitle": "FAO FishStat Global Production — Scomber 속 자연산 대 해면양식. 2024년 양식 비중 0.01%.",
+  "strat": "「양식 블루오션」 서사는 데이터에 근거가 없다. 공급 리스크는 양식으로 헤지할 수 없다. 원산지 다변화와 재고 정책으로만 관리된다.",
+  "subtitle": "FAO FishStat Global Production 기준 Scomber 속 자연산 대 해면양식. 2024년 양식 비중 0.01%.",
   "title": "양식 전환 가능성",
   "unit": "톤 / %",
   "xKey": "year"
