@@ -42,8 +42,8 @@ describe('HIKARI 1 Bangkok unloading plan and daily report', () => {
       buyer: 'FCF CO.,LTD',
       status: '하역중',
       reportedTotal: 2929,
-      actualTotal: 803.04,
-      surplus: -2125.96,
+      actualTotal: 1404.46,
+      surplus: -1524.54,
     });
     const loadingPlan = vessel.timeline.find((entry: { date: string }) => entry.date === '7/17~7/20');
     expect(loadingPlan.quality).toContain('정격 3,700 MT');
@@ -77,7 +77,7 @@ describe('HIKARI 1 Bangkok unloading plan and daily report', () => {
     const dischargeReports = vessel.timeline.filter((entry: { dailyAmount: number }) => entry.dailyAmount > 0);
     const report = dischargeReports.find((entry: { date: string }) => entry.date === '8/20');
 
-    expect(dischargeReports).toHaveLength(2);
+    expect(dischargeReports).toHaveLength(3);
     expect(report).toMatchObject({
       date: '8/20',
       time: '10:00 ~ 15:20',
@@ -185,16 +185,77 @@ describe('HIKARI 1 Bangkok unloading plan and daily report', () => {
     expect(reports[0].quality).toContain('ISA/H4B1(N.STAR) 150 MT 08:00');
   });
 
+  it('publishes the source-backed August 22 discharge and the user-provided August 23 plan', async () => {
+    const vessel = await loadHikari();
+    const reports = vessel.timeline.filter((entry: { date: string }) => entry.date === '8/22');
+
+    expect(reports).toHaveLength(1);
+    expect(reports[0]).toMatchObject({
+      date: '8/22',
+      time: '08:10 ~ 16:50',
+      targetHol: 'N/STAR(#1-A:78.540,#1-B:108.800), S/SPR(#2-B:154.610), N/STAR(#3-B:104.020), MOAMARI(#4-B:155.450)',
+      consignee: 'TUM · AAI · CMC · ISA',
+      dailyAmount: 601.42,
+      cumAmount: 1404.46,
+      remainingAmount: 1524.54,
+      speciesAmounts: { SJ: 550.02, YF: 51.4 },
+      nextDay: {
+        kind: 'work',
+        date: '8/23',
+        reason: null,
+        resumeDate: null,
+        plannedMt: '87',
+      },
+    });
+    expect(reports[0].allocations).toEqual([
+      {
+        consignee: 'TUM',
+        amount: 187.34,
+        loads: [
+          { sourceVessel: 'N/STAR', hatch: '#1-A', amount: 78.54 },
+          { sourceVessel: 'N/STAR', hatch: '#1-B', amount: 108.8 },
+        ],
+      },
+      {
+        consignee: 'AAI',
+        amount: 154.61,
+        loads: [{ sourceVessel: 'S/SPR', hatch: '#2-B', amount: 154.61 }],
+      },
+      {
+        consignee: 'CMC',
+        amount: 104.02,
+        loads: [{ sourceVessel: 'N/STAR', hatch: '#3-B', amount: 104.02 }],
+      },
+      {
+        consignee: 'ISA',
+        amount: 155.45,
+        loads: [{ sourceVessel: 'MOAMARI', hatch: '#4-B', amount: 155.45 }],
+      },
+    ]);
+    expect(reports[0].observations).toEqual([
+      { sourceVessel: 'N/STAR', hatch: '#1-A', temperaturesC: [-22] },
+      { sourceVessel: 'N/STAR', hatch: '#1-B', temperaturesC: [-23] },
+      { sourceVessel: 'S/SPR', hatch: '#2-B', temperaturesC: [-22, -23] },
+      { sourceVessel: 'N/STAR', hatch: '#3-B', temperaturesC: [-22, -23] },
+      { sourceVessel: 'MOAMARI', hatch: '#4-B', temperaturesC: [-19, -24] },
+    ]);
+    expect(reports[0].quality).toContain('원문 온도 표기는 #2-B·#3-B ‘-22,23’ 및 #4-B ‘-19,24’(단위: ℃)');
+    expect(reports[0].quality).toContain('#3-B CMC 차량 대기 10:10~11:20');
+    expect(reports[0].quality).toContain('AAI 차량 수리 15:20~16:50(70-7297)');
+    expect(reports[0].quality).toContain('우천 13:00~14:00');
+    expect(reports[0].quality).toContain('CMC/H3B1(N.STAR) 87 MT 08:00 (GO TO SONGKHLA)');
+  });
+
   it('matches the FCF breakdown by species and source vessel', async () => {
     const vessel = await loadHikari();
 
     expect(vessel.species).toEqual([
-      expect.objectContaining({ id: 'SJ', name: '가다랑어', reported: 2515, actual: 606.42 }),
-      expect.objectContaining({ id: 'YF', name: '황다랑어', reported: 358, actual: 196.62 }),
+      expect.objectContaining({ id: 'SJ', name: '가다랑어', reported: 2515, actual: 1156.44 }),
+      expect.objectContaining({ id: 'YF', name: '황다랑어', reported: 358, actual: 248.02 }),
       expect.objectContaining({ id: 'BE', name: '눈다랑어', reported: 56, actual: 0 }),
     ]);
     expect(vessel.species.reduce((sum: number, item: { reported: number }) => sum + item.reported, 0)).toBe(2929);
-    expect(vessel.species.reduce((sum: number, item: { actual: number }) => sum + item.actual, 0)).toBeCloseTo(803.04, 6);
+    expect(vessel.species.reduce((sum: number, item: { actual: number }) => sum + item.actual, 0)).toBeCloseTo(1404.46, 6);
     expect(vessel.motherVessel).toBe('S/SPR 670 · MOAKONA 314 · MOAMARI 940 · NAOERO STAR 1,005 MT');
   });
 
@@ -221,12 +282,13 @@ describe('HIKARI 1 Bangkok unloading plan and daily report', () => {
     expect(holds['#4-A'].shippers).toEqual(['MOAMARI']);
     expect(holds['#2-B'].shippers).toEqual(['SHILLA SPRINTER']);
     expect(holds['#1-A'].shippers).toEqual(['NAOERO STAR']);
-    expect(holds['#1-A'].lastTemperature).toBe(-23);
+    expect(holds['#1-A'].lastTemperature).toBe(-22);
+    expect(holds['#1-B'].lastTemperature).toBe(-23);
     expect(holds['#2-B'].lastTemperature).toBe(-23);
     expect(holds['#3-A'].lastTemperature).toBe(-20);
-    expect(holds['#3-B'].lastTemperature).toBe(-24);
+    expect(holds['#3-B'].lastTemperature).toBe(-23);
     expect(holds['#4-A'].lastTemperature).toBe(-21);
-    expect(holds['#4-B'].lastTemperature).toBe(-24);
+    expect(holds['#4-B'].lastTemperature).toBe(-22);
   });
 
   it('shows the vessel as active after the first discharge', () => {
