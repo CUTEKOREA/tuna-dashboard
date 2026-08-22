@@ -1,4 +1,15 @@
-import SquidDashboard from '@/components/SquidDashboard';
+'use client';
+
+import dynamic from 'next/dynamic';
+
+const SquidDashboard = dynamic(() => import('@/components/SquidDashboard'), {
+  ssr: false,
+  loading: () => (
+    <main style={{ minHeight: '100vh', display: 'grid', placeItems: 'center' }}>
+      <p>오징어 대시보드 불러오는 중...</p>
+    </main>
+  ),
+});
 
 /**
  * /squid — 오징어 조달 인텔리전스 v5 (A~F 6부).
