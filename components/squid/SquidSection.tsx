@@ -19,10 +19,11 @@ export const SECTION_META: Record<string, { orderLabel: string; label: string; d
   C: { orderLabel: '3부', label: '무역 흐름', desc: '품목분류 · 수입 월별 · 자료 범위 한계', color: '#d946ef' },
   D: { orderLabel: '4부', label: '규제·위험', desc: '불법어업 · 준수 · 수입요건 · 노동', color: '#ec4899' },
   E: { orderLabel: '5부', label: '근거·관리', desc: '출처 원장 · 측정 기준 · 갱신 일정', color: '#f43f5e' },
+  F: { orderLabel: '6부', label: '국내 산업', desc: '수입단가 · 산지·도소매가 · 가공 규모·업체 · 두 명부의 겹침', color: '#fb7185' },
 };
 
 export interface SquidSectionProps {
-  section: 'A' | 'B' | 'C' | 'D' | 'E';
+  section: 'A' | 'B' | 'C' | 'D' | 'E' | 'F';
   doc: SquidV5;
   /** 위젯별 전용 본문. 반환값이 없으면 기본 렌더러가 쓰인다. */
   render?: (id: string, widget: SquidWidget, sources: SquidSource[]) => React.ReactNode | undefined;

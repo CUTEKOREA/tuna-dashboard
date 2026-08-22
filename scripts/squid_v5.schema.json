@@ -78,7 +78,7 @@
     "widgets": {
       "type": "object",
       "minProperties": 1,
-      "propertyNames": { "pattern": "^[A-E]_[a-z0-9_]+$" },
+      "propertyNames": { "pattern": "^[A-F]_[a-z0-9_]+$" },
       "additionalProperties": { "$ref": "#/$defs/widget" }
     }
   },
@@ -88,7 +88,7 @@
       "type": "object",
       "required": ["section", "title", "chartType", "data", "basis"],
       "properties": {
-        "section": { "enum": ["A", "B", "C", "D", "E"] },
+        "section": { "enum": ["A", "B", "C", "D", "E", "F"] },
         "title": { "type": "string", "minLength": 2 },
         "subtitle": { "type": "string" },
         "chartType": {

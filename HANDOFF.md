@@ -5783,3 +5783,12 @@ python3 scripts/check_s_grade.py components/TunaDashboard.tsx components/TunaExt
 - **완료된 것**: 공장 배분 열에 DIA·SEAP를 반영하고 OTHER를 사용자 노출 `부두`로 한글화했다. 접안일은 현재 예정으로 단정하지 않고 `보고서 기재 접안일`로 표시한다. 선박 보고자료는 현재 운항 상태가 아니라는 경고와 기본 접힘을 유지한다.
 - **데이터 무결성**: `data/reefer_week31.json` SHA-256 `c97b21bc910625dd14a6bd2cab664ab5508fc6b3090edb549048a1d0214ef030`. `/data/` ignore 규칙을 명시적으로 우회해 Git 추적하고 원격 빌드 누락을 방지했다.
 - **다음 단계**: 전체 테스트·타입·린트·빌드·번들·독립 리뷰 후 main fast-forward 배포 및 라이브 390px QA.
+
+## 2026-08-22 (CC) — 오징어 대시보드 6부 「국내 산업」 F 섹션 추가
+- **완료된 것**: 통합보고서 `agri_data/…/squid/8_한국_오징어_산업_해부` 의 수치를 `/squid` 에 F 섹션 위젯 9개로 얹었다. 10자리 squid-only 수입단가 연간(2020~2026 YTD 3.067 USD/kg), KAMIS 도매(원/kg)·소매(원/마리) 공표 연평균 분리, 산지 위판 연간·상태별, 가공 규모 2020~2025·2025 시도별, 상위 100개사, 직수입 33곳, 수입유형별 가공업 보유 117/603. 출처 5건 신규(식약처 C002·KAMIS·해수부 위판·수입식품정보마루·DART).
+- **방식**: 빌더(`scripts.squid_build`)는 39개 계약을 고정하고, Drive `source_registry.csv` 가 36→44행으로 바뀌어 현재 빌더 자체가 실패한다. 그래서 커밋된 JSON 위에 `scripts/squid_overlay_report.py` 가 F 위젯을 덧붙이고 같은 검증기(`validate_squid_v5`)를 통과해야만 쓴다. 원자료는 Drive `02_출처원본` 에서만 읽는다. `python3 -m scripts.squid_overlay_report --inout public/data/squid_v5.json`.
+- **게이트**: 스키마 section enum·위젯 id 패턴에 F 추가. G-008 때문에 도매/소매를 위젯으로 분리, G-011 이 KAMIS coverage_end 2026-08 > published 를 잡아 2026-07 로 고쳤다. 검증 결과 위젯 48개·게이트 위반 0. `vitest` 한글 UI 8/8·레지스트리 9/9, `tsc` 0.
+- **UI**: `SectionF.tsx`(generic 폴백), `SECTION_META.F`, `types.ts` section 유니온, `FIELD_KO` 28개 라벨(한국어 키의 라틴 혼입은 괄호 병기).
+- **건드리지 않은 것**: 메인 작업트리의 미커밋 변경(메뉴 제거·새우 데이터)은 다른 작업자 몫이라 워크트리 `feat/squid-report-sync` 에서 분리 작업했다. 기존 B 섹션 수입단가 위젯(HS6·갑오징어 포함)은 그대로 두고 F1 을 별도 축으로 둔다.
+- **main 재기반(2026-08-22)**: `origin/main`(#728) 위에 체리픽. 그 사이 main 에 들어온 G-013(HS 기반 위젯은 `basis.hs_codes` 필수)에 맞춰 F1 수입단가 위젯에 `hs_codes ["030742","030743","160554"]` 를 달았다(0307.49 는 분리불가라 제외). 재오버레이 후 위젯 48·위반 0, vitest 39/39.
+- **다음 단계**: 독립 리뷰 → main 병합 → 배포(사용자 지시 시). 빌더의 36행 고정은 `source_registry.csv` 변경 주체와 맞춰 풀어야 한다.

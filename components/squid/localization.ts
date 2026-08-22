@@ -144,6 +144,29 @@ const SERIES_KO: Record<string, string> = {
 };
 
 const FIELD_KO: Record<string, string> = {
+  // F 섹션(국내 산업) 표 머리글 — 영문 키
+  unit_price_usd_kg: '단가(USD/kg)',
+  krw: '원',
+  sites: '업소',
+  items: '품목',
+  production_t: '생산량(t)',
+  capacity_t: '생산능력(t)',
+  utilization_pct: '가동률(%)',
+  zero_output_pct: '무생산 품목(%)',
+  sido: '시도',
+  share_pct: '비중(%)',
+  per_site_t: '업소당(t)',
+  lots: '위판 건수',
+  weight_t: '위판중량(t)',
+  amount_krw: '위판금액(원)',
+  unit_krw_per_kg: '위판단가(원/kg)',
+  condition: '어종 상태',
+  import_type: '수입 유형',
+  with_processing: '가공업 보유',
+  importers: '수입 명의',
+  // F 섹션 — 한국어 키에 라틴 문자가 섞인 것만 괄호 병기로 바꾼다
+  '생산량_t': '생산량(t)', '점유율_%': '점유율(%)', '가동률_%': '가동률(%)', 'HACCP품목수': '인증 품목(HACCP)',
+  'DART확인': '공시 확인(DART)', '수출등록_국가수': '수출등록 국가수',
   // E 섹션(근거·거버넌스) 표 머리글
   source_id: '출처 코드',
   publisher: '발행처',

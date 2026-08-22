@@ -17,13 +17,14 @@ import SectionB from './squid/SectionB';
 import SectionC from './squid/SectionC';
 import SectionD from './squid/SectionD';
 import SectionE from './squid/SectionE';
+import SectionF from './squid/SectionF';
 import { SECTION_META } from './squid/SquidSection';
 import { koreanUiText } from './squid/localization';
 import { getSquidV5 } from '../lib/data/squid-v5';
 
 const doc = getSquidV5();
 
-const SECTION_ORDER = ['A', 'B', 'C', 'D', 'E'] as const;
+const SECTION_ORDER = ['A', 'B', 'C', 'D', 'E', 'F'] as const;
 
 function SectionNav() {
   return (
@@ -109,6 +110,7 @@ export default function SquidDashboard() {
         <SectionC doc={doc} />
         <SectionD doc={doc} />
         <SectionE doc={doc} />
+        <SectionF doc={doc} />
       </div>
     </main>
   );

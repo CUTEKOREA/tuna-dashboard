@@ -41,7 +41,7 @@ export interface WidgetBasis {
 }
 
 export interface SquidWidget {
-  section: 'A' | 'B' | 'C' | 'D' | 'E';
+  section: 'A' | 'B' | 'C' | 'D' | 'E' | 'F';
   title: string;
   subtitle?: string;
   chartType: string;
