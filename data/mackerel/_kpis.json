@@ -27,11 +27,11 @@
     "widgetId": "s1_nsc_weekly"
   },
   "kpi4": {
-    "desc": "어획÷(어획+수입). 공식 산식은 수출 차감이라 값이 다르다",
+    "desc": "어획÷(어획+수입). 국산 팔고 노르웨이산 사 먹는 구조",
     "grade": "A",
     "source_id": "FAO_FISHSTAT_GLOBAL_PRODUCTION",
-    "title": "국내 조달 비율 (2024)",
-    "trend": "공식 자급률 145.6%",
+    "title": "한국 자급률 (2024)",
+    "trend": "수출 78,714톤 > 수입 39,454톤",
     "value": "76.1%",
     "widgetId": "s1_korea_production"
   },
@@ -49,8 +49,8 @@
     "grade": "A",
     "source_id": "FAO_FISHSTAT_TRADE_PARTNERS",
     "title": "아프리카 수출 YoY (2024)",
-    "trend": "누적 +137.1% (CAGR +18.8%)",
-    "value": "-16.9%",
+    "trend": "누적 +140.6% (CAGR +19.2%)",
+    "value": "-22.3%",
     "widgetId": "s3_africa_volume_price"
   }
 }

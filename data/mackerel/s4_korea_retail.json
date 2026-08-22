@@ -18,7 +18,7 @@
   ],
   "id": "s4_korea_retail",
   "provenance": {
-    "extract_date": "2026-08-12",
+    "extract_date": "2026-08-18",
     "grade": "B",
     "input_files": [
       "03_무역·가격/kmi_fishdata/2026-08-12_full/KMI_popular_fish_June_2026.md"
