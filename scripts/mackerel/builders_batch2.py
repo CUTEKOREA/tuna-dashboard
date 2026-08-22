@@ -9,7 +9,7 @@ grade 규칙
   B = PDF/MD 수동 추출 → method=manual_extract
 """
 from build import C, builder, r1
-from scope import ARCHIVE
+from scope import ARCHIVE, MFDS_C002_CSV, MFDS_I0300_CSV
 
 ICES_MD = ARCHIVE / "01_자연산_어획·자원/ices/2026-08-12_full/ICES_Atlantic_mackerel_advice_2026.md"
 NPFC_MD = ARCHIVE / "01_자연산_어획·자원/npfc/2026-08-12_full/NPFC_TWG_CMSA11_report_2025.md"
@@ -318,7 +318,7 @@ def s3_kcs_2026_origin():
     """관세청 2026 통관 실적 — FAO(2024) 보다 최신이며 원산지 구조가 뒤집혔다."""
     import csv as _csv
     from collections import defaultdict as _dd
-    from scope import ARCHIVE
+    from scope import ARCHIVE, MFDS_C002_CSV, MFDS_I0300_CSV
 
     src = next((ARCHIVE / "10_원본데이터셋/kcs").rglob("*nitemtrade*.csv"))
     imp, exp = _dd(float), _dd(float)
@@ -356,4 +356,140 @@ def s3_kcs_2026_origin():
                       inputs=[src], grade="A",
                       note="관세청 품목별 수출입실적, 2026-08-16 아카이브 수집본. HS 030354 냉동 단일 코드이며 "
                            "FAO Scomber 속 전체와 범위가 다르다. 총계행·국가 미상 행은 제외했다."),
+    }
+
+
+# ── 국내 가공 명부 (식약처 생산실적 × 품목제조보고) ──────────────────────────
+# 2026-08-22 신규. 공표 집계표에는 업체 수 열이 없으나 업소별 개별 레코드는 열려 있다.
+# 라벨 주의: BSSH_NM 은 법인이 아니라 업소명이고, 신고 업소와 생산 업소는 다르다.
+
+def _roster():
+    """생산실적을 연도별로 접는다. 신고와 생산을 따로 센다."""
+    import collections
+    import csv
+    rows = list(csv.DictReader(MFDS_I0300_CSV.open(encoding="utf-8-sig")))
+    out = collections.defaultdict(lambda: {"신고업소": set(), "생산업소": set(),
+                                           "사업장": set(), "신고품목": 0,
+                                           "생산품목": 0, "생산량": 0.0})
+    for r in rows:
+        y = r["EVL_YR"]
+        q = float(str(r["PRDCTN_QY"] or 0).replace(",", "") or 0)
+        d = out[y]
+        d["신고업소"].add(r["BSSH_NM"])
+        d["사업장"].add(r["LCNS_NO"])
+        d["신고품목"] += 1
+        d["생산량"] += q
+        if q > 0:
+            d["생산업소"].add(r["BSSH_NM"])
+            d["생산품목"] += 1
+    return out
+
+
+@builder("s2_domestic_processors")
+def s2_domestic_processors():
+    ros = _roster()
+    years = sorted(ros)
+    data = [{"year": y,
+             "신고 업소": len(ros[y]["신고업소"]),
+             "생산 업소": len(ros[y]["생산업소"]),
+             "생산량": round(ros[y]["생산량"] / 1000)} for y in years]
+    last, first = data[-1], data[0]
+    gap = last["신고 업소"] - last["생산 업소"]
+    return {
+        "title": "국내 고등어 가공 — 늘어난 것은 신고뿐이다",
+        "subtitle": f"식약처 생산실적 업소별 레코드. 제품명에 「고등어」가 적힌 품목 기준. "
+                    f"{last['year']}년 신고 {last['신고 업소']}곳 가운데 실제 생산은 "
+                    f"{last['생산 업소']}곳이고, 나머지 {gap}곳은 생산량 0으로 신고했다.",
+        "chartType": "Composed", "xKey": "year",
+        "bars": [{"key": "신고 업소", "color": C["slate"]},
+                 {"key": "생산 업소", "color": C["sky"]}],
+        "lines": [{"key": "생산량", "color": C["amber"], "yAxisId": "right"}],
+        "data": data, "unit": "곳 / 톤",
+        "sit": f"신고 업소는 {first['year']}년 {first['신고 업소']}곳에서 {last['year']}년 "
+               f"{last['신고 업소']}곳으로 늘었다. 그런데 실제로 생산량을 적어 낸 곳은 "
+               f"{first['생산 업소']}곳에서 {last['생산 업소']}곳으로, "
+               f"10년 내내 같은 구간에서 움직이지 않았다. 증가분은 전부 생산량 0 신고다.",
+        "strat": "「가공업체가 늘고 있다」는 읽기는 신고 건수를 본 것이다. 생산 능력은 그대로다. "
+                 "위탁 가공처를 찾을 때 신고 명부의 규모를 그대로 믿으면 안 된다. "
+                 "업소는 법인이 아니라 신고 명의이며 한 법인의 공장이 따로 잡힌다.",
+        "_kpi": {"title": f"고등어 가공 생산 업소 ({last['year']})",
+                 "value": f"{last['생산 업소']}곳",
+                 "trend": f"신고 {last['신고 업소']}곳 중",
+                 "desc": "식약처 생산실적. 신고만 하고 생산 0인 곳을 뺀 수"},
+        "_prov": dict(source_id="MFDS_PRODUCTION_I0300",
+                      period=f"{years[0]}-{years[-1]}",
+                      inputs=[MFDS_I0300_CSV], grade="A",
+                      note="제품명에 「고등어」가 적힌 품목. 제품명에 없어도 품목보고번호가 "
+                           "품목제조보고의 고등어 원재료에 걸리면 포함했다. "
+                           "포장재(신고 식품유형이 폴리에틸렌·PP·PET) 14행과 「고등어빵」 6행은 뺐다. "
+                           "BSSH_NM 은 업소명이라 법인 수가 아니다. 어종을 제품명에 적을 의무가 "
+                           "없어 이 명부는 하한이다."),
+    }
+
+
+@builder("s2_mackerel_share_of_processing")
+def s2_mackerel_share_of_processing():
+    """품목제조보고를 품목보고번호로 이어 고등어가 주재료인 몫만 가른다.
+
+    공표 집계는 「기타 수산물가공품(어류)」 같은 품목유형 합계라 어종이 안 갈린다.
+    원재료 순번 1이면 함량 1위이므로 그 품목은 배분 없이 읽을 수 있다. 다만 생산량은
+    완제품 중량이지 고등어 투입량이 아니다 — 상한이다.
+    """
+    import collections
+    import csv
+    made = list(csv.DictReader(MFDS_C002_CSV.open(encoding="utf-8-sig")))
+    pos = {}
+    for r in made:
+        names = [x.strip() for x in (r.get("RAWMTRL_NM") or "").split(",")]
+        ords = [x.strip() for x in (r.get("RAWMTRL_ORDNO") or "").split(",")]
+        i = next((i for i, n in enumerate(names) if "고등어" in n), None)
+        if i is not None:
+            pos[r["PRDLST_REPORT_NO"]] = ords[i] if i < len(ords) else str(i + 1)
+
+    rows = list(csv.DictReader(MFDS_I0300_CSV.open(encoding="utf-8-sig")))
+    agg = collections.defaultdict(lambda: {"주재료": 0.0, "부재료": 0.0, "미연결": 0.0})
+    for r in rows:
+        q = float(str(r["PRDCTN_QY"] or 0).replace(",", "") or 0)
+        p = pos.get(r["PRDLST_REPORT_NO"])
+        key = "미연결" if p is None else "주재료" if p == "1" else "부재료"
+        agg[r["EVL_YR"]][key] += q
+
+    years = sorted(agg)
+    data = []
+    for y in years:
+        a = agg[y]
+        tot = a["주재료"] + a["부재료"] + a["미연결"]
+        data.append({"year": y,
+                     "주재료": round(a["주재료"] / 1000),
+                     "부재료": round(a["부재료"] / 1000),
+                     "원재료 미연결": round(a["미연결"] / 1000),
+                     "미연결 비중": r1(100 * a["미연결"] / tot) if tot else 0})
+    last = data[-1]
+    share = r1(100 * agg[years[-1]]["주재료"] /
+               sum(agg[years[-1]][k] for k in ("주재료", "부재료", "미연결")))
+    return {
+        "title": "고등어가 주재료인 몫",
+        "subtitle": f"품목제조보고와 생산실적을 품목보고번호로 연결. 원재료 순번 1이면 함량 1위다. "
+                    f"{last['year']}년 주재료 품목 생산이 {last['주재료']:,}톤으로 그해 "
+                    f"고등어 표기 품목 전체의 {share}%다.",
+        "chartType": "Composed", "stacked": True, "xKey": "year",
+        "bars": [{"key": "주재료", "color": C["sky"]},
+                 {"key": "부재료", "color": C["slate"]},
+                 {"key": "원재료 미연결", "color": C["amber"]}],
+        "lines": [{"key": "미연결 비중", "color": C["rose"], "yAxisId": "right"}],
+        "data": data, "unit": "톤 / %",
+        "sit": f"{last['year']}년 주재료 몫은 {last['주재료']:,}톤이다. 이 값은 완제품 중량이고 "
+               f"고등어 투입량이 아니다. 함량이 공개되지 않아 고등어 몫의 상한으로만 읽힌다. "
+               f"자반고등어는 대부분이 고등어지만 고등어김치조림은 그렇지 않은데 둘 다 순번 1로 잡힌다.",
+        "strat": "공표 집계표는 「기타 수산물가공품(어류)」까지만 갈라서 어종을 못 본다. "
+                 "이 연결은 그 벽을 우회하지만 대신 함량이라는 새 벽을 만난다. "
+                 "연도 비교는 원재료 미연결이 5% 아래로 내려온 2023년부터만 유효하다. "
+                 "품목제조보고가 현행 등록분이라 그 이전은 폐지 품목이 빠져 있다.",
+        "_prov": dict(source_id="MFDS_ITEM_REPORT_C002",
+                      period=f"{years[0]}-{years[-1]}",
+                      inputs=[MFDS_C002_CSV, MFDS_I0300_CSV], grade="A",
+                      note="원재료 순번 1 = 함량 1위. 「고등어살」·「대서양고등어」·「고등어포」도 "
+                           "포함해 세며, 정확히 「고등어」로만 적힌 것은 품목제조보고 2,335건 중 63.8%다. "
+                           "「원재료 미연결」은 생산실적에는 있으나 품목제조보고에 짝이 없는 품목으로, "
+                           "폐지분과 원재료 표기 불일치가 섞여 있다."),
     }
