@@ -1,3 +1,14 @@
+> 🧪 **2026-08-22 21:01 KST — HIKARI 1 8/22 하역 일일보고 로컬 검증 완료** [Codex]:
+> - 전용 worktree `/private/tmp/tuna-unloading-hikari-0822`(`codex/unloading-hikari-20260822`)에서 원본 3종을 교차 확인했다. SHA-256: JPG `1755015c…917dd`, 결과 XLS `fbd21293…13c9d`, 현황 XLSX `aaeedeb6…8916`.
+> - 검산: `803.040 + 601.420 = 1,404.460 MT`, `2,929 - 1,404.460 = 1,524.540 MT`. 당일 TUM `187.340`, AAI `154.610`, CMC `104.020`, ISA `155.450 MT`; 원선·어창 5곳, 08:10~16:50, 원문 온도 표기와 차량대기·수리·우천 비고를 보존했다.
+> - XLS 어종은 SJ 일일 `550.020`·누계 `1,156.440`, YF 일일 `51.400`·누계 `248.020 MT`. 어창별 어종은 추정하지 않았다. 사용자 입력 8/23 `CMC/H3B1(N.STAR) 87 MT 08:00 (GO TO SONGKHLA)`를 명일 계획·작업 기록에만 반영했다.
+> - Google Tasks: 기존 8/22 `HIKARI 1 ###톤`을 `HIKARI 1 601.420 MT`로 수정하고 `내 할 일 목록`·오늘·미완료·중복 없음 확인. Drive에 `20260822 HIKARI 1 (BKK) 하역 업무 보고.txt` 저장, 렌더러 diff 0, SHA-256 `35731a3b…c62c`.
+> - RED→GREEN: HIKARI 계약 5건 실패 후 10/10 통과, 연간 통합 E2E `37,186 → 37,787 MT` 실패 후 desktop/mobile/keyboard/open-tab/API/chunk isolation 통과. `npm run verify` 최종 통과(ESLint 0 errors·기존 warnings 12, Python 21건, Vitest 1,114 passed/2 skipped, API cache 158/158, Next 118페이지, 누출·번들 게이트).
+> - 로컬 production API·보호 화면: 기준일 8/22, HIKARI 누계 `1,404.460`, 잔량 `1,524.540`, 연간 통합 `37,787.060 MT`, 완료 12척, 현재 하역 HIKARI 1척. 1440×1000·390×844에서 overflow/page/console errors 모두 0. 독립 반증 검토도 원본·산술·해시·중복/고아·이전 보고 보존·Tasks/Drive 경계 전체 PASS.
+> - **다음 단계**: PR gate → main 병합 → Vercel Production → 운영 API·보호 화면·로그 확인.
+>
+> 마지막 업데이트: 2026-08-22 21:01 KST [Codex]
+
 > 🏭 **2026-08-22 20:40 KST — `/mackerel` 국내 가공 명부 위젯 2건 신설** [Claude + Codex]:
 > - 보고서 09절이 「고등어 가공업체가 몇 곳인가에는 현행 공개 통계로 답할 수 없다」고 적고 있었다. **틀렸다.** 식약처 공표 집계표에 업체 수 열이 없는 것과 자료가 없는 것은 다른 말인데 같은 것으로 읽었다. 같은 기관이 업소별 개별 레코드를 공개API 로 연다 — 생산실적(I0300)·품목제조보고(C002).
 > - 신규 수집 후 `source_registry.csv` 69 → **71행** 등재, `monitoring_calendar.md` 등재, 수집 영수증 SHA-256. 아카이브 `06_식품안전·검역·통관/mfds/production_roster/2026-08-22/`.
