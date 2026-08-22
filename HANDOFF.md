@@ -1,3 +1,12 @@
+> 🗺️ **2026-08-22 17:07 KST — `/fleet` 운반선 적재 신호 로컬 검증 완료** [Codex]:
+> - 최신 `origin/main` 전용 worktree `/private/tmp/tuna-fleet-visual-0822`(`codex/fleet-visual-layer-20260822`)에서 작업했다. 라이브 화면은 폐기된 `FleetPixelMap`이 아니라 Leaflet `FleetRealMap`을 사용하므로 실제 컴포넌트에만 반영했다.
+> - 보고 적재량·선복량이 모두 있는 운반선만 적재율을 계산한다. `75%` 이상은 `고적재`, `90%` 이상은 `만재 임박`으로 표시하고, 용량 미보고·0·음수 입력은 fail-closed한다. 위치 이력이 없어 항로선은 추정이 되므로 추가하지 않았다.
+> - Leaflet `preferCanvas`의 비대화형 `CircleMarker`로 신호 원만 Canvas에 그리고 기존 DOM 마커·툴팁을 유지했다. 색상 외에도 반경·점선 패턴을 달리하며, 툴팁과 범례에 신호명·임계값·실제 적재율 숫자를 표시한다.
+> - RED는 신호 모듈 부재와 시각 패턴 함수 부재로 확인했고, GREEN은 신규 5/5·Fleet focused 40/40이다. 전체 `npm run verify` 통과: ESLint 0 errors(기존 warnings 12), Python 21건, Vitest 146 files·1,112 passed/2 skipped, API cache 158/158, Next 118페이지, 보호 데이터 누출·bundle 33 routes 통과.
+> - 로컬 production `/fleet` 공개 진입은 브라우저 콘솔·페이지 오류 0이지만 격리 환경에 운영 인증 설정이 없어 지도까지는 열지 못했다. 다음 단계는 PR Preview gate 후 main 병합·Vercel Production·로그인된 운영 화면 데스크톱/모바일 실검증이다.
+>
+> 마지막 업데이트: 2026-08-22 17:07 KST [Codex]
+
 > 🚀 **2026-08-22 16:36 KST — SEIN VENUS 8/22 하역 종료 라이브 배포 완료** [Codex]:
 > - 전용 worktree `/private/tmp/tuna-unloading-sein-0822` (`codex/unloading-sein-20260822`)에서 원본 3종을 교차 확인했다. SHA-256: JPG `957c3826…13b50`, 결과 XLS `1cabdba0…a38e9`, 현황 XLSX `ce23e5d9…9e714`.
 > - 종료 검산: `3,239.560 + 89.520 = 3,329.080 MT`; 보고량 `3,275 MT` 대비 `+54.080 MT`. 당일 GPZ `89.520 MT`, S/PIO #1-C, 08:20~10:40, -21.0~-22.0℃. 당일 보정 `-7.450`, 누적 보정 `+54.080`, `-54.080 + 54.080 = 실제 잔량 0 MT`다.
