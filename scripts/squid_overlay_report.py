@@ -40,6 +40,16 @@ SOURCES = [
      "landing_url": "https://impfood.mfds.go.kr/CFCCC01F01",
      "archive_subdir": REL, "latest_verified": "2026-07",
      "note": "2025-08~2026-07 신고명의 608(정규화 603). 건수만 있고 물량·금액은 없다 — 물량은 관세청 과세정보로 봉인(관세법 제116조)"},
+    {"source_id": "SQ-TAR-KCS-RATE", "publisher": "관세청", "series": "관세법령정보포털 품목별 세율표·조정관세 규정",
+     "priority": "P1", "grade": "A", "frequency": "annual",
+     "landing_url": "https://unipass.customs.go.kr/clip/index.do",
+     "archive_subdir": REL, "latest_verified": "2026",
+     "note": "냉동오징어 22% 는 관세법 §69 조정관세. 기본세율 20%(2090)·10%(2010). 협정세율은 선택 적용 — 페루·칠레 0%"},
+    {"source_id": "SQ-REG-MOF-TRACE", "publisher": "해양수산부", "series": "수입수산물 유통이력 관리에 관한 고시 제2026-60호",
+     "priority": "P1", "grade": "A", "frequency": "irregular",
+     "landing_url": "https://www.law.go.kr/행정규칙/수입수산물유통이력관리에관한고시",
+     "archive_subdir": REL, "latest_verified": "2026-06-29",
+     "note": "별표 26·27 냉동·냉장오징어 4개 코드 지정(~2029-04-30). 제2조 7호: 제조공장은 소매업자 → 신고의무 없음. 공표 규정 없음"},
     {"source_id": "SQ-FIN-DART", "publisher": "금융감독원", "series": "전자공시 사업보고서·감사보고서",
      "priority": "P1", "grade": "A", "frequency": "annual",
      "landing_url": "https://opendart.fss.or.kr/",
@@ -91,7 +101,7 @@ def widgets():
         section="F", title="도매 물오징어 연평균 — 원/kg", chartType="line",
         data=[{**r, "series": "생선 中"} for r in annual("도매 물오징어 생선")]
              + [{**r, "series": "연근해 냉동"} for r in annual("도매 물오징어 연근해냉동")],
-        xAxis="year", series=["krw"], methodology="KAMIS 월간 조회표의 「연평균」 행. 2026년은 조사 시점까지 부분연도",
+        xAxis="year", series=["krw"], methodology="KAMIS 월간 조회표의 「연평균」 행. 2026년은 조사 시점까지 부분연도. 연근해 냉동 계열은 2025-09 이 마지막 관측으로 이후 결측",
         basis=basis(species=["Todarodes pacificus"], market_stage="wholesale", aggregation="mean_within_stage",
                     currency="KRW", coverage_start="2023-01", coverage_end="2026-07", source_ids=["SQ-PRC-KAMIS"],
                     blocked_use=["소매(원/마리)와 나누어 마진 산출"]))
@@ -140,14 +150,46 @@ def widgets():
                     source_ids=["SQ-PROC-MFDS-C002", "SQ-REG-MFDS-IMPFOOD", "SQ-FIN-DART"],
                     taxon_note="원재료명 「오징어」 문자열 기준", blocked_use=["점유율을 매출 점유율로 표현", "가동률 100%를 실적으로 표현(능력=생산 신고 11곳)"]))
     imp = [t for t in top if t.get("수입겸업") == "예"]
+    ic = {r["순위"]: r for r in load("importers_country.json")["rows"]}
+    for t in imp:
+        r = ic.get(t["순위"], {}); t["주제조국"] = r.get("주제조국"); t["주제조국_비중_%"] = r.get("주제조국_비중_%")
     W["F_direct_importers"] = dict(
         section="F", title="직접 수입하는 가공사 33곳 — 신고건·유형·소재지", chartType="table",
-        data=[{k: t.get(k) for k in ["순위", "업체", "시도", "생산량_t", "수입신고건", "수입유형", "HACCP품목수", "수출등록_국가수"]} for t in imp],
+        data=[{k: t.get(k) for k in ["순위", "업체", "시도", "생산량_t", "수입신고건", "수입유형", "주제조국", "주제조국_비중_%", "HACCP품목수", "수출등록_국가수"]} for t in imp],
         xAxis="순위", series=["수입신고건"],
-        methodology="생산 상위 100 × 수입식품정보마루 신고명의(정규화) 교집합. 신고건은 2025-08~2026-07 창. 14곳이 강릉",
+        methodology="생산 상위 100 × 수입식품정보마루 신고명의(정규화) 교집합. 신고건은 2025-08~2026-07 창. 14곳이 강릉. 제조국은 33곳 합산 페루 83% — 원장 전체 35% 와 대비",
         basis=basis(taxon_scope="incl_cuttlefish", coverage_start="2025-08", coverage_end="2026-07",
                     source_ids=["SQ-PROC-MFDS-C002", "SQ-REG-MFDS-IMPFOOD"], taxon_note="원재료명 「오징어」 문자열 기준",
                     blocked_use=["신고건수를 수입 물량으로 표현"]))
+
+    # F10 관세 실행세율 — 유통비용표의 22% 가 어디서 왔는지
+    tr = load("tariff_rates.json")
+    W["F_tariff_rates"] = dict(
+        section="F", title="냉동오징어 관세 — 기본·조정·협정세율 (2025~2026)", chartType="table", data=tr["rows"],
+        xAxis="hsk", series=["adjustment_pct", "fta_peru_pct"], methodology=tr["note"] + " 관세청 세율표 조회값 그대로.",
+        basis=basis(market_stage="n/a", claim_type="legal", coverage_start="2025-01", coverage_end="2026-07",
+                    source_ids=["SQ-TAR-KCS-RATE"], hs_codes=["030743"], currency="n/a",
+                    blocked_use=["22% 를 평균 실행세율로 표현", "협정세율 적용률(원산지증명 제출 비율) 추정"]))
+
+    # F11 품목유형별 생산액·국내판매액 — 오징어만의 값이 아니다
+    ps2 = load("processing_sales.json")
+    W["F_processing_sales"] = dict(
+        section="F", title="가공식품 품목유형별 생산액·국내판매액 (천원, 2022~2025)", chartType="table", data=ps2["rows"],
+        xAxis="year", series=["domestic_sales_krw_thousand"], methodology=ps2["note"],
+        basis=basis(taxon_scope="incl_cuttlefish", market_stage="n/a", coverage_start="2022-01", coverage_end="2025-12",
+                    source_ids=["SQ-PROC-MFDS-C002"], currency="KRW",
+                    taxon_note="품목유형 단위(기타 수산물가공품·조미건어포·양념젓갈·건어포·조림류). 오징어 외 어종 포함",
+                    blocked_use=["오징어 가공품 시장 규모로 표현", "업체별 매출로 분해"]))
+
+    # F12 유통이력 고시가 덮는 범위
+    cv = load("traceability_coverage.json")
+    W["F_traceability_coverage"] = dict(
+        section="F", title="유통이력 고시(2026-06-29)가 덮는 오징어 수입 — 금액 65.1% · 물량 77.3%", chartType="card",
+        data=[{k: cv[k] for k in ("year", "covered_usd", "total_usd", "coverage_usd_pct", "covered_kg", "total_kg", "coverage_kg_pct")}],
+        xAxis="year", series=["coverage_usd_pct"], methodology=cv["note"],
+        basis=basis(market_stage="import_unit", aggregation="sum_within_stage", claim_type="legal", currency="USD",
+                    coverage_start="2025-01", coverage_end="2025-12", source_ids=["SQ-REG-MOF-TRACE", "SQ-TRD-KCS"],
+                    hs_codes=["030742", "030743", "160554"], blocked_use=["신고 의무를 공표·공개로 표현"]))
 
     # F9 수입명의 × 가공업 겹침
     W["F_overlap_by_type"] = dict(

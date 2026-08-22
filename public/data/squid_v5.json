@@ -606,6 +606,30 @@
    "archive_subdir": "8_한국_오징어_산업_해부/02_출처원본",
    "latest_verified": "FY2025",
    "note": "가공 상위 100 중 18곳만 재무 공시. 동명 별개 법인 8건은 소재지·업종으로 걸렀다"
+  },
+  {
+   "source_id": "SQ-TAR-KCS-RATE",
+   "publisher": "관세청",
+   "series": "관세법령정보포털 품목별 세율표·조정관세 규정",
+   "priority": "P1",
+   "grade": "A",
+   "frequency": "annual",
+   "landing_url": "https://unipass.customs.go.kr/clip/index.do",
+   "archive_subdir": "8_한국_오징어_산업_해부/02_출처원본",
+   "latest_verified": "2026",
+   "note": "냉동오징어 22% 는 관세법 §69 조정관세. 기본세율 20%(2090)·10%(2010). 협정세율은 선택 적용 — 페루·칠레 0%"
+  },
+  {
+   "source_id": "SQ-REG-MOF-TRACE",
+   "publisher": "해양수산부",
+   "series": "수입수산물 유통이력 관리에 관한 고시 제2026-60호",
+   "priority": "P1",
+   "grade": "A",
+   "frequency": "irregular",
+   "landing_url": "https://www.law.go.kr/행정규칙/수입수산물유통이력관리에관한고시",
+   "archive_subdir": "8_한국_오징어_산업_해부/02_출처원본",
+   "latest_verified": "2026-06-29",
+   "note": "별표 26·27 냉동·냉장오징어 4개 코드 지정(~2029-04-30). 제2조 7호: 제조공장은 소매업자 → 신고의무 없음. 공표 규정 없음"
   }
  ],
  "gates": [
@@ -9105,7 +9129,7 @@
    "series": [
     "krw"
    ],
-   "methodology": "KAMIS 월간 조회표의 「연평균」 행. 2026년은 조사 시점까지 부분연도",
+   "methodology": "KAMIS 월간 조회표의 「연평균」 행. 2026년은 조사 시점까지 부분연도. 연근해 냉동 계열은 2025-09 이 마지막 관측으로 이후 결측",
    "basis": {
     "species": [
      "Todarodes pacificus"
@@ -10936,6 +10960,8 @@
      "생산량_t": 984.5,
      "수입신고건": 11,
      "수입유형": "원물전업",
+     "주제조국": "아르헨티나",
+     "주제조국_비중_%": 100.0,
      "HACCP품목수": 3,
      "수출등록_국가수": 2
     },
@@ -10946,6 +10972,8 @@
      "생산량_t": 646.0,
      "수입신고건": 2,
      "수입유형": "원물전업",
+     "주제조국": "페루",
+     "주제조국_비중_%": 100.0,
      "HACCP품목수": 0,
      "수출등록_국가수": null
     },
@@ -10956,6 +10984,8 @@
      "생산량_t": 595.5,
      "수입신고건": 9,
      "수입유형": "원물전업",
+     "주제조국": "페루",
+     "주제조국_비중_%": 44.4,
      "HACCP품목수": 0,
      "수출등록_국가수": null
     },
@@ -10966,6 +10996,8 @@
      "생산량_t": 574.5,
      "수입신고건": 48,
      "수입유형": "원물중심",
+     "주제조국": "페루",
+     "주제조국_비중_%": 100.0,
      "HACCP품목수": 4,
      "수출등록_국가수": 4
     },
@@ -10976,6 +11008,8 @@
      "생산량_t": 423.8,
      "수입신고건": 41,
      "수입유형": "원물전업",
+     "주제조국": "페루",
+     "주제조국_비중_%": 92.1,
      "HACCP품목수": 23,
      "수출등록_국가수": 3
     },
@@ -10986,6 +11020,8 @@
      "생산량_t": 413.8,
      "수입신고건": 4,
      "수입유형": "원물전업",
+     "주제조국": "페루",
+     "주제조국_비중_%": 75.0,
      "HACCP품목수": 0,
      "수출등록_국가수": null
     },
@@ -10996,6 +11032,8 @@
      "생산량_t": 403.7,
      "수입신고건": 20,
      "수입유형": "원물전업",
+     "주제조국": "페루",
+     "주제조국_비중_%": 60.0,
      "HACCP품목수": 0,
      "수출등록_국가수": null
     },
@@ -11006,6 +11044,8 @@
      "생산량_t": 396.4,
      "수입신고건": 42,
      "수입유형": "원물전업",
+     "주제조국": "페루",
+     "주제조국_비중_%": 73.7,
      "HACCP품목수": 22,
      "수출등록_국가수": 1
     },
@@ -11016,6 +11056,8 @@
      "생산량_t": 353.3,
      "수입신고건": 17,
      "수입유형": "원물전업",
+     "주제조국": "페루",
+     "주제조국_비중_%": 100.0,
      "HACCP품목수": 0,
      "수출등록_국가수": null
     },
@@ -11026,6 +11068,8 @@
      "생산량_t": 344.8,
      "수입신고건": 11,
      "수입유형": "원물전업",
+     "주제조국": "페루",
+     "주제조국_비중_%": 100.0,
      "HACCP품목수": 0,
      "수출등록_국가수": null
     },
@@ -11036,6 +11080,8 @@
      "생산량_t": 344.0,
      "수입신고건": 9,
      "수입유형": "원물전업",
+     "주제조국": "페루",
+     "주제조국_비중_%": 77.8,
      "HACCP품목수": 93,
      "수출등록_국가수": 2
     },
@@ -11046,6 +11092,8 @@
      "생산량_t": 329.2,
      "수입신고건": 30,
      "수입유형": "원물전업",
+     "주제조국": "페루",
+     "주제조국_비중_%": 100.0,
      "HACCP품목수": 43,
      "수출등록_국가수": 3
     },
@@ -11056,6 +11104,8 @@
      "생산량_t": 324.4,
      "수입신고건": 9,
      "수입유형": "원물전업",
+     "주제조국": "중국",
+     "주제조국_비중_%": 100.0,
      "HACCP품목수": 0,
      "수출등록_국가수": 2
     },
@@ -11066,6 +11116,8 @@
      "생산량_t": 324.3,
      "수입신고건": 2,
      "수입유형": "원물전업",
+     "주제조국": "페루",
+     "주제조국_비중_%": 100.0,
      "HACCP품목수": 135,
      "수출등록_국가수": null
     },
@@ -11076,6 +11128,8 @@
      "생산량_t": 283.4,
      "수입신고건": 27,
      "수입유형": "원물전업",
+     "주제조국": "페루",
+     "주제조국_비중_%": 96.3,
      "HACCP품목수": 0,
      "수출등록_국가수": null
     },
@@ -11086,6 +11140,8 @@
      "생산량_t": 215.1,
      "수입신고건": 35,
      "수입유형": "원물전업",
+     "주제조국": "페루",
+     "주제조국_비중_%": 91.2,
      "HACCP품목수": 0,
      "수출등록_국가수": null
     },
@@ -11096,6 +11152,8 @@
      "생산량_t": 214.2,
      "수입신고건": 9,
      "수입유형": "원물중심",
+     "주제조국": "페루",
+     "주제조국_비중_%": 66.7,
      "HACCP품목수": 0,
      "수출등록_국가수": null
     },
@@ -11106,6 +11164,8 @@
      "생산량_t": 208.4,
      "수입신고건": 20,
      "수입유형": "원물전업",
+     "주제조국": "페루",
+     "주제조국_비중_%": 100.0,
      "HACCP품목수": 0,
      "수출등록_국가수": null
     },
@@ -11116,6 +11176,8 @@
      "생산량_t": 198.2,
      "수입신고건": 13,
      "수입유형": "원물전업",
+     "주제조국": "페루",
+     "주제조국_비중_%": 100.0,
      "HACCP품목수": 0,
      "수출등록_국가수": null
     },
@@ -11126,6 +11188,8 @@
      "생산량_t": 176.6,
      "수입신고건": 42,
      "수입유형": "원물중심",
+     "주제조국": "페루",
+     "주제조국_비중_%": 95.2,
      "HACCP품목수": 146,
      "수출등록_국가수": 2
     },
@@ -11136,6 +11200,8 @@
      "생산량_t": 166.4,
      "수입신고건": 1,
      "수입유형": "원물전업",
+     "주제조국": "중국",
+     "주제조국_비중_%": 100.0,
      "HACCP품목수": 0,
      "수출등록_국가수": null
     },
@@ -11146,6 +11212,8 @@
      "생산량_t": 138.4,
      "수입신고건": 17,
      "수입유형": "원물전업",
+     "주제조국": "페루",
+     "주제조국_비중_%": 100.0,
      "HACCP품목수": 10,
      "수출등록_국가수": null
     },
@@ -11156,6 +11224,8 @@
      "생산량_t": 115.6,
      "수입신고건": 9,
      "수입유형": "원물전업",
+     "주제조국": "중국",
+     "주제조국_비중_%": 77.8,
      "HACCP품목수": 0,
      "수출등록_국가수": null
     },
@@ -11166,6 +11236,8 @@
      "생산량_t": 115.4,
      "수입신고건": 2,
      "수입유형": "원물전업",
+     "주제조국": "페루",
+     "주제조국_비중_%": 100.0,
      "HACCP품목수": 0,
      "수출등록_국가수": null
     },
@@ -11176,6 +11248,8 @@
      "생산량_t": 109.6,
      "수입신고건": 5,
      "수입유형": "원물전업",
+     "주제조국": "페루",
+     "주제조국_비중_%": 100.0,
      "HACCP품목수": 0,
      "수출등록_국가수": null
     },
@@ -11186,6 +11260,8 @@
      "생산량_t": 109.1,
      "수입신고건": 3,
      "수입유형": "원물전업",
+     "주제조국": "칠레",
+     "주제조국_비중_%": 66.7,
      "HACCP품목수": 0,
      "수출등록_국가수": null
     },
@@ -11196,6 +11272,8 @@
      "생산량_t": 107.8,
      "수입신고건": 15,
      "수입유형": "원물전업",
+     "주제조국": "페루",
+     "주제조국_비중_%": 100.0,
      "HACCP품목수": 0,
      "수출등록_국가수": null
     },
@@ -11206,6 +11284,8 @@
      "생산량_t": 103.0,
      "수입신고건": 4,
      "수입유형": "조제품전업",
+     "주제조국": "베트남",
+     "주제조국_비중_%": 100.0,
      "HACCP품목수": 36,
      "수출등록_국가수": 7
     },
@@ -11216,6 +11296,8 @@
      "생산량_t": 102.8,
      "수입신고건": 9,
      "수입유형": "원물전업",
+     "주제조국": "중국",
+     "주제조국_비중_%": 100.0,
      "HACCP품목수": 0,
      "수출등록_국가수": null
     },
@@ -11226,6 +11308,8 @@
      "생산량_t": 101.2,
      "수입신고건": 2,
      "수입유형": "원물전업",
+     "주제조국": "중국",
+     "주제조국_비중_%": 100.0,
      "HACCP품목수": 0,
      "수출등록_국가수": 2
     },
@@ -11236,6 +11320,8 @@
      "생산량_t": 96.2,
      "수입신고건": 26,
      "수입유형": "원물전업",
+     "주제조국": "페루",
+     "주제조국_비중_%": 100.0,
      "HACCP품목수": 8,
      "수출등록_국가수": null
     },
@@ -11246,6 +11332,8 @@
      "생산량_t": 95.8,
      "수입신고건": 14,
      "수입유형": "원물전업",
+     "주제조국": "페루",
+     "주제조국_비중_%": 85.7,
      "HACCP품목수": 18,
      "수출등록_국가수": null
     },
@@ -11256,6 +11344,8 @@
      "생산량_t": 89.5,
      "수입신고건": 1,
      "수입유형": "원물전업",
+     "주제조국": "페루",
+     "주제조국_비중_%": 100.0,
      "HACCP품목수": 0,
      "수출등록_국가수": null
     }
@@ -11264,7 +11354,7 @@
    "series": [
     "수입신고건"
    ],
-   "methodology": "생산 상위 100 × 수입식품정보마루 신고명의(정규화) 교집합. 신고건은 2025-08~2026-07 창. 14곳이 강릉",
+   "methodology": "생산 상위 100 × 수입식품정보마루 신고명의(정규화) 교집합. 신고건은 2025-08~2026-07 창. 14곳이 강릉. 제조국은 33곳 합산 페루 83% — 원장 전체 35% 와 대비",
    "basis": {
     "species": [
      "Todarodes pacificus",
@@ -11378,6 +11468,345 @@
      "SQ-PROC-MFDS-C002"
     ],
     "taxon_note": "원재료명·품목명 「오징어」 문자열 기준"
+   }
+  },
+  "F_tariff_rates": {
+   "section": "F",
+   "title": "냉동오징어 관세 — 기본·조정·협정세율 (2025~2026)",
+   "chartType": "table",
+   "data": [
+    {
+     "hsk": "0307.43-2090",
+     "item": "냉동 기타 오징어(주력)",
+     "year": 2025,
+     "basic_pct": 20,
+     "adjustment_pct": 22,
+     "fta_peru_pct": 0,
+     "fta_chile_pct": 0,
+     "fta_china_pct": 9,
+     "fta_vietnam_pct": 0,
+     "fta_asean_pct": 5,
+     "rcep_pct": 20
+    },
+    {
+     "hsk": "0307.43-2090",
+     "item": "냉동 기타 오징어(주력)",
+     "year": 2026,
+     "basic_pct": 20,
+     "adjustment_pct": 22,
+     "fta_peru_pct": 0,
+     "fta_chile_pct": 0,
+     "fta_china_pct": 8,
+     "fta_vietnam_pct": 0,
+     "fta_asean_pct": 5,
+     "rcep_pct": 20
+    },
+    {
+     "hsk": "0307.43-2010",
+     "item": "냉동 오징어",
+     "year": 2026,
+     "basic_pct": 10,
+     "adjustment_pct": 22,
+     "fta_peru_pct": 0,
+     "fta_chile_pct": 0,
+     "fta_china_pct": 22,
+     "fta_vietnam_pct": 21.6,
+     "fta_asean_pct": 21.6,
+     "rcep_pct": 20
+    }
+   ],
+   "xAxis": "hsk",
+   "series": [
+    "adjustment_pct",
+    "fta_peru_pct"
+   ],
+   "methodology": "유통비용표(해수부 2024 실태조사)의 22% 는 기본세율이 아니라 조정관세. 협정세율은 선택 적용이라 페루·칠레산은 0%. 관세청 세율표 조회값 그대로.",
+   "basis": {
+    "species": [
+     "Todarodes pacificus",
+     "Illex argentinus",
+     "Dosidicus gigas",
+     "Doryteuthis gahi"
+    ],
+    "taxon_scope": "squid_only",
+    "weight_basis": "product_weight",
+    "market_stage": "n/a",
+    "aggregation": "none",
+    "quota_semantics": "n/a",
+    "metrics": [
+     "level"
+    ],
+    "claim_type": "legal",
+    "currency": "n/a",
+    "currency_converted": false,
+    "fx_date": null,
+    "nominal_real": "nominal",
+    "published_at": "2026-08-22",
+    "retrieved_at": "2026-08-22",
+    "archive_path": "8_한국_오징어_산업_해부/02_출처원본/spine.json;8_한국_오징어_산업_해부/02_출처원본/top100_final.json;8_한국_오징어_산업_해부/02_출처원본/kamis_squid.json;8_한국_오징어_산업_해부/02_출처원본/processing_summary.json;8_한국_오징어_산업_해부/02_출처원본/auction_summary.json;8_한국_오징어_산업_해부/02_출처원본/overlap_by_type.json",
+    "source_grade": "A",
+    "restrictions": [],
+    "blocked_use": [
+     "22% 를 평균 실행세율로 표현",
+     "협정세율 적용률(원산지증명 제출 비율) 추정"
+    ],
+    "coverage_start": "2025-01",
+    "coverage_end": "2026-07",
+    "source_ids": [
+     "SQ-TAR-KCS-RATE"
+    ],
+    "hs_codes": [
+     "030743"
+    ]
+   }
+  },
+  "F_processing_sales": {
+   "section": "F",
+   "title": "가공식품 품목유형별 생산액·국내판매액 (천원, 2022~2025)",
+   "chartType": "table",
+   "data": [
+    {
+     "year": 2022,
+     "food_type": "기타 수산물가공품",
+     "production_krw_thousand": 2932128696,
+     "domestic_sales_krw_thousand": 3235786003,
+     "table": "4-2-19, 3-7"
+    },
+    {
+     "year": 2022,
+     "food_type": "조미건어포",
+     "production_krw_thousand": 446118995,
+     "domestic_sales_krw_thousand": 495128665,
+     "table": "4-2-19"
+    },
+    {
+     "year": 2022,
+     "food_type": "양념젓갈",
+     "production_krw_thousand": 213487619,
+     "domestic_sales_krw_thousand": 240504512,
+     "table": "4-2-19"
+    },
+    {
+     "year": 2022,
+     "food_type": "건어포",
+     "production_krw_thousand": 90831250,
+     "domestic_sales_krw_thousand": 107072821,
+     "table": "4-2-19"
+    },
+    {
+     "year": 2022,
+     "food_type": "조림류",
+     "production_krw_thousand": 269991683,
+     "domestic_sales_krw_thousand": 319647868,
+     "table": "4-2-14"
+    },
+    {
+     "year": 2023,
+     "food_type": "기타 수산물가공품",
+     "production_krw_thousand": 3099523622,
+     "domestic_sales_krw_thousand": 3261958153,
+     "table": "4-2-19, 3-7"
+    },
+    {
+     "year": 2023,
+     "food_type": "조미건어포",
+     "production_krw_thousand": 456208016,
+     "domestic_sales_krw_thousand": 500324945,
+     "table": "4-2-19"
+    },
+    {
+     "year": 2023,
+     "food_type": "양념젓갈",
+     "production_krw_thousand": 226907111,
+     "domestic_sales_krw_thousand": 250219907,
+     "table": "4-2-19"
+    },
+    {
+     "year": 2023,
+     "food_type": "건어포",
+     "production_krw_thousand": 100827142,
+     "domestic_sales_krw_thousand": 112766909,
+     "table": "4-2-19"
+    },
+    {
+     "year": 2023,
+     "food_type": "조림류",
+     "production_krw_thousand": 285830467,
+     "domestic_sales_krw_thousand": 352794488,
+     "table": "4-2-14"
+    },
+    {
+     "year": 2024,
+     "food_type": "기타 수산물가공품",
+     "production_krw_thousand": 3247674662,
+     "domestic_sales_krw_thousand": 3428306376,
+     "table": "4-2-19, 3-7"
+    },
+    {
+     "year": 2024,
+     "food_type": "조미건어포",
+     "production_krw_thousand": 447475327,
+     "domestic_sales_krw_thousand": 502712503,
+     "table": "4-2-19"
+    },
+    {
+     "year": 2024,
+     "food_type": "양념젓갈",
+     "production_krw_thousand": 267250034,
+     "domestic_sales_krw_thousand": 279573233,
+     "table": "4-2-19"
+    },
+    {
+     "year": 2024,
+     "food_type": "건어포",
+     "production_krw_thousand": 96532844,
+     "domestic_sales_krw_thousand": 111403888,
+     "table": "4-2-19"
+    },
+    {
+     "year": 2024,
+     "food_type": "조림류",
+     "production_krw_thousand": 331828688,
+     "domestic_sales_krw_thousand": 375516844,
+     "table": "4-2-14"
+    },
+    {
+     "year": 2025,
+     "food_type": "기타 수산물가공품",
+     "production_krw_thousand": 3270548931,
+     "domestic_sales_krw_thousand": 3482733724,
+     "table": "4-2-19, 3-7"
+    },
+    {
+     "year": 2025,
+     "food_type": "조미건어포",
+     "production_krw_thousand": 416264104,
+     "domestic_sales_krw_thousand": 476077718,
+     "table": "4-2-19"
+    },
+    {
+     "year": 2025,
+     "food_type": "양념젓갈",
+     "production_krw_thousand": 228085710,
+     "domestic_sales_krw_thousand": 251983309,
+     "table": "4-2-19"
+    },
+    {
+     "year": 2025,
+     "food_type": "건어포",
+     "production_krw_thousand": 90578258,
+     "domestic_sales_krw_thousand": 101974151,
+     "table": "4-2-19"
+    },
+    {
+     "year": 2025,
+     "food_type": "조림류",
+     "production_krw_thousand": 344489545,
+     "domestic_sales_krw_thousand": 395215506,
+     "table": "4-2-14"
+    }
+   ],
+   "xAxis": "year",
+   "series": [
+    "domestic_sales_krw_thousand"
+   ],
+   "methodology": "품목유형 단위라 오징어만의 값이 아니다. 생산액=제조원가, 국내판매액=제조원가+이윤. 기타 수산물가공품 생산액은 어류·연체류·조미가공품·기타 4행 합산.",
+   "basis": {
+    "species": [
+     "Todarodes pacificus",
+     "Illex argentinus",
+     "Dosidicus gigas",
+     "Doryteuthis gahi"
+    ],
+    "taxon_scope": "incl_cuttlefish",
+    "weight_basis": "product_weight",
+    "market_stage": "n/a",
+    "aggregation": "none",
+    "quota_semantics": "n/a",
+    "metrics": [
+     "level"
+    ],
+    "claim_type": "descriptive",
+    "currency": "KRW",
+    "currency_converted": false,
+    "fx_date": null,
+    "nominal_real": "nominal",
+    "published_at": "2026-08-22",
+    "retrieved_at": "2026-08-22",
+    "archive_path": "8_한국_오징어_산업_해부/02_출처원본/spine.json;8_한국_오징어_산업_해부/02_출처원본/top100_final.json;8_한국_오징어_산업_해부/02_출처원본/kamis_squid.json;8_한국_오징어_산업_해부/02_출처원본/processing_summary.json;8_한국_오징어_산업_해부/02_출처원본/auction_summary.json;8_한국_오징어_산업_해부/02_출처원본/overlap_by_type.json",
+    "source_grade": "A",
+    "restrictions": [],
+    "blocked_use": [
+     "오징어 가공품 시장 규모로 표현",
+     "업체별 매출로 분해"
+    ],
+    "coverage_start": "2022-01",
+    "coverage_end": "2025-12",
+    "source_ids": [
+     "SQ-PROC-MFDS-C002"
+    ],
+    "taxon_note": "품목유형 단위(기타 수산물가공품·조미건어포·양념젓갈·건어포·조림류). 오징어 외 어종 포함"
+   }
+  },
+  "F_traceability_coverage": {
+   "section": "F",
+   "title": "유통이력 고시(2026-06-29)가 덮는 오징어 수입 — 금액 65.1% · 물량 77.3%",
+   "chartType": "card",
+   "data": [
+    {
+     "year": 2025,
+     "covered_usd": 437944857,
+     "total_usd": 672612910,
+     "coverage_usd_pct": 65.1,
+     "covered_kg": 127342711,
+     "total_kg": 164675983,
+     "coverage_kg_pct": 77.3
+    }
+   ],
+   "xAxis": "year",
+   "series": [
+    "coverage_usd_pct"
+   ],
+   "methodology": "조제품(1605.54)은 대상 밖. 고시 제2조 7호가 제조공장을 소매업자로 보아 신고의무에서 제외 — 이력은 공장 문 앞에서 끝난다. 지정기한 2029-04-30.",
+   "basis": {
+    "species": [
+     "Todarodes pacificus",
+     "Illex argentinus",
+     "Dosidicus gigas",
+     "Doryteuthis gahi"
+    ],
+    "taxon_scope": "squid_only",
+    "weight_basis": "product_weight",
+    "market_stage": "import_unit",
+    "aggregation": "sum_within_stage",
+    "quota_semantics": "n/a",
+    "metrics": [
+     "level"
+    ],
+    "claim_type": "legal",
+    "currency": "USD",
+    "currency_converted": false,
+    "fx_date": null,
+    "nominal_real": "nominal",
+    "published_at": "2026-08-22",
+    "retrieved_at": "2026-08-22",
+    "archive_path": "8_한국_오징어_산업_해부/02_출처원본/spine.json;8_한국_오징어_산업_해부/02_출처원본/top100_final.json;8_한국_오징어_산업_해부/02_출처원본/kamis_squid.json;8_한국_오징어_산업_해부/02_출처원본/processing_summary.json;8_한국_오징어_산업_해부/02_출처원본/auction_summary.json;8_한국_오징어_산업_해부/02_출처원본/overlap_by_type.json",
+    "source_grade": "A",
+    "restrictions": [],
+    "blocked_use": [
+     "신고 의무를 공표·공개로 표현"
+    ],
+    "coverage_start": "2025-01",
+    "coverage_end": "2025-12",
+    "source_ids": [
+     "SQ-REG-MOF-TRACE",
+     "SQ-TRD-KCS"
+    ],
+    "hs_codes": [
+     "030742",
+     "030743",
+     "160554"
+    ]
    }
   }
  }

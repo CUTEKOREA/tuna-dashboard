@@ -5794,3 +5794,9 @@ python3 scripts/check_s_grade.py components/TunaDashboard.tsx components/TunaExt
 - **배포(2026-08-22)**: `squid/f-section-deploy` 를 main 에 fast-forward(`15798446`). pre-push 빌드 게이트 60s 통과. Vercel production `dpl_6ohR8wX2AjQWWKVMdjXyJssfxDHv` READY. `/squid` 는 로그인 벽(307 → /login) 뒤라 curl 로는 본문 확인 불가 — Vercel 배포 상태로 확인했다. `gh` 토큰 만료(401)로 PR 은 생략, 직접 ff-push.
 - **정정(2026-08-22)**: 배포 직후 `/squid` 가 404 였다 — #332 「archived seafood menus 퇴역」으로 `app/squid/page.tsx` 가 `notFound()` 만 돌려주고 있었고, F 섹션을 얹은 `SquidDashboard` 를 그리는 라우트가 main 에 없었다. 살아 있던 건 `/squid-v5` 미리보기(표만)뿐. `app/squid/page.tsx` 를 `SquidDashboard` 렌더로 되살리고 `/squid-v5` 섹션 라벨에 F 를 추가했다. 사이드바(dashboard-registry) 등록은 하지 않았다 — URL 직접 접근만 연다.
 - **다음 단계**: 라이브 로그인 후 /squid 6부 390px QA. 빌더의 36행 고정은 `source_registry.csv` 변경 주체와 맞춰 풀어야 한다.
+
+## 2026-08-22 — 오징어 F 섹션 정정 반영 (보고서 8_ 재점검분)
+- 위젯 +3: `F_tariff_rates`(기본 20%·조정관세 22%·페루/칠레 0%), `F_processing_sales`(식약처 품목유형별 국내판매액, 천원·오징어 외 어종 포함), `F_traceability_coverage`(고시 2026-60호 4코드 = 2025 수입 금액 65.1%·물량 77.3%, 국가행 합산).
+- `F_direct_importers` 에 주제조국·비중 열 — 33곳 합산 페루 83%. `F_kamis_*` 방법론에 연근해냉동 2025-09 단절 명기.
+- 출처 +2: SQ-TAR-KCS-RATE, SQ-REG-MOF-TRACE (빈도 irregular → '비정기' 라벨 추가). 위젯 51·출처 52·게이트 위반 0.
+- 원본 JSON 은 Drive `8_한국_오징어_산업_해부/02_출처원본/` (tariff_rates·processing_sales·traceability_coverage·importers_country).
