@@ -54,7 +54,7 @@ def build():
         'sit': (f"해수부 원장에서는 부산이 {pick(sido_mof,'부산광역시',y24['q'])}%로 압도하는데, "
                 f"식약처 원장에서는 충남이 {pick(sido_mfds,'충청남도',tot_mfds)}%로 앞서고 부산은 "
                 f"{pick(sido_mfds,'부산광역시',tot_mfds)}%로 내려간다. 두 부처가 각자 신고를 받은 "
-                '대상만 세기 때문이다 — 해수부는 수산물가공업 신고 사업장, 식약처는 식품제조가공업의 품목제조보고다.'),
+                '대상만 세기 때문이다. 해수부는 수산물가공업 신고 사업장을, 식약처는 식품제조가공업의 품목제조보고를 센다.'),
         'strat': '어느 쪽이 틀린 것이 아니라 제도가 대상을 나눠 갖고 있다. 한 원장만 보면 지역 구조를 반대로 읽는다.',
         'xKey': '시도',
         'bars': [{'key': '해수부', 'name': '해수부 수산물가공업통계', 'color': '#38bdf8'},
@@ -105,7 +105,7 @@ def build():
                         '이마트 0회 · 271건 / 롯데웰푸드 14회 · 0건'),
         'sit': ('새우를 독립 품목으로 금액까지 공시하는 상장사는 없다. 동원산업은 사업보고서에 '
                 '「새우」가 0회지만 신고 140건을 냈고, 이마트는 0회에 271건으로 가장 많다. '
-                '반대로 롯데웰푸드는 14회 나오지만 직수입은 0건이다 — 국내 유통 단계에서 받는다.'),
+                '반대로 롯데웰푸드는 14회 나오지만 직수입은 0건이다. 국내 유통 단계에서 받는다는 뜻이다.'),
         'strat': '공시만으로 조달 구조를 읽으면 반대로 읽는다. 위생 신고 원장을 겹쳐야 실제 경로가 보인다.',
         'xKey': '회사',
         'bars': [{'key': '직수입 신고', 'name': '직수입 신고(건)', 'color': '#38bdf8'},
@@ -127,13 +127,67 @@ def build():
                         ' · '.join(f'{k} {v:,}' for k, v in spec['species'][:4])),
         'sit': (f"2023년 이후 신고 {spec['total_rows']:,}건 가운데 {tot_s:,}건, "
                 f"{spec['rate']*100:.1f}%의 종이 갈린다. 흰다리새우가 "
-                f"{spec['species'][0][1]/tot_s*100:.1f}%다. **신고 건수이지 물량이나 금액이 아니다** "
-                '— 원장에 중량 칸이 없어 물량으로 옮길 방법이 없다.'),
+                f"{spec['species'][0][1]/tot_s*100:.1f}%다. **신고 건수이지 물량이나 금액이 아니다.** "
+                '원장에 중량 칸이 없어 물량으로 옮길 방법이 없다.'),
         'strat': '종 × 금액은 여전히 만들어지지 않는다. 종을 아는 원장에는 금액이 없고 금액을 아는 원장에는 종이 없다.',
         'xKey': '종',
         'data': [{'종': k, 'value': round(v / tot_s * 100, 1)}
                  for k, v in spec['species'] if v / tot_s >= 0.001],
         'unit': '%', 'yUnit': '%',
+    })
+
+    # ── S1 · 위판을 거치는 몫 ───────────────────────────────────
+    fips = load('fips_coop_sales_shrimp.json')
+    A = fips['annual']
+    coop = {y: sum((A[s][y]['qty_kg'] or 0) for s in A) / 1000 for y in ('2023', '2024', '2025')}
+    kosis = {'2024': 34588, '2025': 33640}
+    W.append({
+        'id': 'w34_coop_sales_share',
+        'title': '국내 생산 중 수협 위판 비중 (톤)',
+        'subtitle': '잡거나 기른 새우 가운데 계통판매를 거치는 몫',
+        'chartType': 'bar', 'pillar': 'S1', 'telemetry': 'SYNCED',
+        'syncDate': '수산정보포털 수협계통판매통계 2025년 · 통계청 어업생산동향 2025년',
+        'source': '수산정보포털 수협계통판매통계정보(연도별 어종별), 통계청 어업생산동향조사',
+        'sourceQuote': ' · '.join(f"{y} 계통 {coop[y]:,.0f}t" for y in coop) +
+                       f" · 2025 총생산 {kosis['2025']:,}t → {coop['2025']/kosis['2025']*100:.1f}%",
+        'sit': (f"2025년 국내 생산 {kosis['2025']:,}톤 가운데 수협 계통판매는 {coop['2025']:,.0f}톤, "
+                f"{coop['2025']/kosis['2025']*100:.1f}%다. 양식 흰다리새우 7,901톤은 위판 명부에 "
+                f"애초에 없고, 자연산 25,739톤 중 5,964톤(23.2%)도 위판장을 거치지 않는다. "
+                "노량진 경매에는 3년 7개월 동안 40건만 올라왔다."),
+        'strat': '새우는 위판장도 경매장도 거의 거치지 않고 움직인다. 산지 값은 계통판매 단가가 공개 자료의 전부다.',
+        'xKey': '연도',
+        'bars': [{'key': '계통판매', 'name': '수협 계통판매(톤)', 'color': '#38bdf8'},
+                 {'key': '총생산', 'name': '국내 총생산(톤)', 'color': '#f59e0b'}],
+        'data': [{'연도': y, '계통판매': round(coop[y]), '총생산': kosis.get(y)} for y in ('2024', '2025')],
+        'unit': '톤', 'yUnit': '톤',
+    })
+
+    # ── S4 · 도매가 16개월 ──────────────────────────────────────
+    import collections, statistics as st
+    kam = load('kamis_shrimp_series.json')
+    wm = collections.defaultdict(list)
+    for r in kam['series']['흰다리새우_수입_도매']:
+        if r['price'] > 0:
+            wm[r['date'][:7]].append(r['price'])
+    months = sorted(wm)
+    ser = {m: round(st.mean(wm[m])) for m in months}
+    lo, hi = min(ser, key=ser.get), max(ser, key=ser.get)
+    W.append({
+        'id': 'w35_wholesale_monthly',
+        'title': '흰다리새우(수입) 도매가 월평균 (원/kg)',
+        'subtitle': f'{months[0]}부터 {months[-1]}까지, 폭 {ser[hi]/ser[lo]-1:.1%}',
+        'chartType': 'line', 'pillar': 'S4', 'telemetry': 'SYNCED',
+        'syncDate': f'KAMIS {months[-1]}',
+        'source': 'KAMIS(aT) periodProductList 수산물 654/01 도매 kg환산, 서울 평균',
+        'sourceQuote': f"최저 {lo} {ser[lo]:,}원 · 최고 {hi} {ser[hi]:,}원 · 2026-08 {ser[months[-1]]:,}원",
+        'sit': (f"16개월 동안 도매가가 {ser[lo]:,}원에서 {ser[hi]:,}원 사이에 머문다. 폭이 "
+                f"{ser[hi]/ser[lo]-1:.1%}다. 같은 달끼리 놓을 수 있는 2026년 1~5월의 수입 CIF도 "
+                "킬로그램당 6.33~6.56달러로 좁은 띠 안에 있다. 이 창 안에서는 두 값이 같이 조용했다."),
+        'strat': '다섯 달로는 수입 단가와 도매가의 관계를 단정할 수 없다. 품목코드 654/01이 새우다. 640은 마른오징어라 8배 어긋난다.',
+        'xAxis': '월',
+        'series': [{'dataKey': '도매가', 'name': '도매 월평균(원/kg)', 'color': '#38bdf8', 'type': 'line'}],
+        'data': [{'월': m, '도매가': ser[m]} for m in months],
+        'unit': '원/kg', 'yUnit': '원/kg',
     })
     return W
 

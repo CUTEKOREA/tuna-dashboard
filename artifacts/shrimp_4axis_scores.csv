@@ -27,4 +27,6 @@ JSON,public/data/shrimp_real_data_v4.json,w30_two_ledgers,두 공식 원장의 �
 JSON,public/data/shrimp_real_data_v4.json,w31_mof_processing_value,새우 가공 생산량과 생산액 (톤 · 억 원),S2,미분류,70,85,85,100,85.0,A
 JSON,public/data/shrimp_real_data_v4.json,w32_listed_disclosure_gap,상장사 공시 「새우」와 직수입 신고 (회 · 건),S3,미분류,70,92,85,100,86.8,A
 JSON,public/data/shrimp_real_data_v4.json,w33_species_from_ingredients,수입 신고 종별 구성 (%),S4,미분류,70,100,85,100,88.8,A
+JSON,public/data/shrimp_real_data_v4.json,w34_coop_sales_share,국내 생산 중 수협 위판 비중 (톤),S1,미분류,70,92,85,100,86.8,A
+JSON,public/data/shrimp_real_data_v4.json,w35_wholesale_monthly,흰다리새우(수입) 도매가 월평균 (원/kg),S4,미분류,70,100,85,100,88.8,A
 TSX,components/ShrimpFTAQuarterly.tsx,-,FTA 새우 분기별 수입 동향 (KMI 21개 분기),S3,KMI,80,100,85,100,91.3,A
