@@ -38,17 +38,18 @@
       "vessel_id": "sein-venus",
       "name": "M/V SEIN VENUS",
       "location": "방콕, 태국",
+      "port_code": "BKK",
       "buyer": "FCF CO.,LTD",
-      "status": "하역중",
+      "status": "하역완료 (Completed)",
       "reported_total": 3275,
-      "date_range": "2026.08.07 ~ 진행중",
+      "date_range": "2026.08.07 ~ 2026.08.22",
       "mother_vessel": "S/SPR · S/PIO · N/STAR · N/SUN",
       "hold_species_breakdown_available": false,
       "unclassified_actual_amount": 0,
-      "species_breakdown_as_of": "2026-08-21",
-      "species_breakdown_note": "8/21 일일 결과보고 XLS에서 어종별 일일·누적 물량을 확인했고 일일하역량 현황 XLSX로 교차 확인했습니다. 개별 어창별 어종 분해는 제공되지 않습니다. 원선 3척(N/STAR, N/SUN, S/SPR) 하역완료.",
+      "species_breakdown_as_of": "2026-08-22",
+      "species_breakdown_note": "8/22 일일 결과보고 XLS에서 어종별 일일·누적 물량을 확인했고 일일하역량 현황 XLSX로 교차 확인했습니다. 개별 어창별 어종 분해는 제공되지 않습니다. 원선 4척(N/STAR, N/SUN, S/SPR, S/PIO) 하역완료.",
       "created_at": "2026-08-12T15:34:21+09:00",
-      "updated_at": "2026-08-21T15:43:45+09:00"
+      "updated_at": "2026-08-22T15:52:00+09:00"
     },
     {
       "vessel_id": "hikari-bangkok-2026-07",
@@ -2118,6 +2119,53 @@
       "source_workbook_sha256": "30a0f429a1472a796501416ad5cdc29b0bc328a98af3ae00b389a5c069ad654e",
       "status_workbook_sha256": "ac332bc9a1062a6e36357633f497e3c5e157e87855b0986a00d431f5741827bf",
       "created_at": "2026-08-21T15:43:45+09:00"
+    },
+    {
+      "id": "sein-venus-8-22",
+      "vessel_id": "sein-venus",
+      "report_year": 2026,
+      "report_date": "8/22",
+      "work_time": "08:20 ~ 10:40",
+      "target_holds": "S/PIO(#1-C:89.520)",
+      "consignee": "GPZ",
+      "allocations": [
+        {
+          "consignee": "GPZ",
+          "amount": 89.52,
+          "loads": [
+            {
+              "source_vessel": "S/PIO",
+              "hatch": "#1-C",
+              "amount": 89.52
+            }
+          ]
+        }
+      ],
+      "observations": [
+        {
+          "source_vessel": "S/PIO",
+          "hatch": "#1-C",
+          "temperatures_c": [
+            -21.0,
+            -22.0
+          ]
+        }
+      ],
+      "daily_amount": 89.52,
+      "cumulative_amount": 3329.08,
+      "species_amounts": {
+        "SJ": 87.82,
+        "YF": 1.7
+      },
+      "remaining_amount": -54.08,
+      "daily_adjustment_amount": -7.45,
+      "cumulative_adjustment_amount": 54.08,
+      "adjusted_remaining_amount": 0,
+      "quality_notes": "S/PIO(#1-C) - 어창 개방 측정온도는 -21.0℃ ~ -22.0℃ 입니다. 당일 보정 -7.450 MT, 누적 보정 +54.080 MT, 실제 잔량 0 MT.",
+      "source_sha256": "957c3826b8639aec801567e1ca413a04dbc6164429039749722fe7beea313b50",
+      "source_workbook_sha256": "1cabdba041e2781bdc44dac75f1583c96ffc5aa572453200742d7c10bf0a38e9",
+      "status_workbook_sha256": "ce23e5d9ed8536cf669a00c8eddd03a64fea60b68b097be898fda1a69cf9e714",
+      "created_at": "2026-08-22T15:52:00+09:00"
     }
   ],
   "unloading_species": [
@@ -2181,16 +2229,16 @@
       "species_id": "SJ",
       "species_name": "가다랑어·눈다랑어 합산",
       "reported_amount": 2844,
-      "actual_amount": 2706.08,
-      "updated_at": "2026-08-21T15:43:45+09:00"
+      "actual_amount": 2793.9,
+      "updated_at": "2026-08-22T15:52:00+09:00"
     },
     {
       "vessel_id": "sein-venus",
       "species_id": "YF",
       "species_name": "황다랑어",
       "reported_amount": 431,
-      "actual_amount": 533.48,
-      "updated_at": "2026-08-21T15:43:45+09:00"
+      "actual_amount": 535.18,
+      "updated_at": "2026-08-22T15:52:00+09:00"
     },
     {
       "vessel_id": "hikari-bangkok-2026-07",

@@ -54,6 +54,7 @@ interface SpeciesEntry {
 
 interface VesselData {
   name: string;
+  portCode?: string | null;
   reportedTotal: number;
   actualTotal: number;
   surplus: number;
@@ -161,7 +162,16 @@ function shortVesselName(name: string): string {
 
 /** Format number with 3 decimal places */
 function fmt(n: number): string {
-  return n.toFixed(3);
+  return n.toLocaleString('en-US', {
+    minimumFractionDigits: 3,
+    maximumFractionDigits: 3,
+  });
+}
+
+function fmtCargo(n: number): string {
+  return Number.isInteger(n)
+    ? n.toLocaleString('en-US', { maximumFractionDigits: 0 })
+    : fmt(n);
 }
 
 // ─── Component ───────────────────────────────────────────────────────────────
@@ -268,6 +278,7 @@ export default function UnloadingReportGenerator({ vesselData, onClose }: Report
     } = derived;
     const vName = vesselData.name;
     const shortName = shortVesselName(vName);
+    const completionVesselName = `${shortName}${vesselData.portCode ? `(${vesselData.portCode})` : ''}`;
     const date = entry.date;
 
     const lines: string[] = [];
@@ -314,10 +325,10 @@ export default function UnloadingReportGenerator({ vesselData, onClose }: Report
     lines.push(`하 역 누 계:             ${fmt(cumulative)} MT`);
 
     if (isCompleted && cumulative >= vesselData.reportedTotal) {
-      lines.push(`증      감:  +           ${fmt(Math.abs(surplus))} MT (총 적재량 : ${fmt(vesselData.reportedTotal)} MT)`);
+      lines.push(`증      감:  +           ${fmt(Math.abs(surplus))} MT (총 적재량 : ${fmtCargo(vesselData.reportedTotal)} MT)`);
     } else {
       const sign = remaining >= 0 ? '-' : '+';
-      lines.push(`잔      량:  ${sign}        ${fmt(Math.abs(remaining))} MT (총 적재량 : ${fmt(vesselData.reportedTotal)} MT)`);
+      lines.push(`잔      량:  ${sign}        ${fmt(Math.abs(remaining))} MT (총 적재량 : ${fmtCargo(vesselData.reportedTotal)} MT)`);
     }
 
     lines.push('');
@@ -365,7 +376,7 @@ export default function UnloadingReportGenerator({ vesselData, onClose }: Report
 
     // §5
     if (isCompleted && cumulative >= vesselData.reportedTotal) {
-      lines.push(`5. 운반선 ${vName}에서 보고량(${fmt(vesselData.reportedTotal)}톤) 대비 ${fmt(Math.abs(surplus))}톤 증가한 ${fmt(vesselData.actualTotal)}톤 하역 종료하였습니다.`);
+      lines.push(`5. 운반선 ${completionVesselName}에서 보고량(${fmtCargo(vesselData.reportedTotal)}톤) 대비 ${fmt(Math.abs(surplus))}톤 증가한 ${fmt(vesselData.actualTotal)}톤 하역 종료하였습니다.`);
     } else if (nextDay?.kind === 'no_work') {
       const reason = nextDay.reason || '휴무';
       const resumeDate = nextDay.resumeDate || '';
@@ -562,16 +573,18 @@ export default function UnloadingReportGenerator({ vesselData, onClose }: Report
                   onChange={e => setOverrides(prev => ({ ...prev, tempMax: e.target.value }))}
                 />
               </div>
-              <div className={styles.fieldGroupFull}>
-                <label className={styles.fieldLabel}>명일 하역 예정량 (톤)</label>
-                <input
-                  className={styles.fieldInput}
-                  type="text"
-                  placeholder={derived?.nextDayPlan || '300'}
-                  value={overrides.nextDayPlan}
-                  onChange={e => setOverrides(prev => ({ ...prev, nextDayPlan: e.target.value }))}
-                />
-              </div>
+              {!derived?.isCompleted && (
+                <div className={styles.fieldGroupFull}>
+                  <label className={styles.fieldLabel}>명일 하역 예정량 (톤)</label>
+                  <input
+                    className={styles.fieldInput}
+                    type="text"
+                    placeholder={derived?.nextDayPlan || '300'}
+                    value={overrides.nextDayPlan}
+                    onChange={e => setOverrides(prev => ({ ...prev, nextDayPlan: e.target.value }))}
+                  />
+                </div>
+              )}
             </div>
           </div>
 
@@ -580,7 +593,7 @@ export default function UnloadingReportGenerator({ vesselData, onClose }: Report
             <div className={styles.infoCard}>
               <strong>자동 파싱 결과</strong><br />
               일일: {fmt(entry.dailyAmount)} MT · 누계: {fmt(entry.cumAmount)} MT<br />
-              잔량: {fmt(vesselData.reportedTotal - entry.cumAmount)} MT / 총 {fmt(vesselData.reportedTotal)} MT
+              잔량: {fmt(vesselData.reportedTotal - entry.cumAmount)} MT / 총 {fmtCargo(vesselData.reportedTotal)} MT
             </div>
           )}
 

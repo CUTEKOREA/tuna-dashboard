@@ -104,11 +104,21 @@ describe('dashboard registry', () => {
   });
 
   it('retires archived seafood dashboards with explicit 404 boundaries', () => {
-    for (const slug of ['value-chain', 'octopus', 'squid', 'pollock', 'mackerel', 'flatfish'] as const) {
+    for (const slug of ['value-chain', 'octopus', 'pollock', 'mackerel', 'flatfish'] as const) {
       const routeSource = readFileSync(join(process.cwd(), `app/${slug}/page.tsx`), 'utf8');
       expect(routeSource).toContain('notFound()');
       expect(isActiveMenu(slug)).toBe(false);
     }
+  });
+
+  it('keeps the revived squid route off the sidebar and lazy-loads its heavy dashboard', () => {
+    const routeSource = readFileSync(join(process.cwd(), 'app/squid/page.tsx'), 'utf8');
+
+    expect(routeSource).toContain("'use client'");
+    expect(routeSource).toContain("dynamic(() => import('@/components/SquidDashboard')");
+    expect(routeSource).toContain('ssr: false');
+    expect(routeSource).not.toContain('notFound()');
+    expect(isActiveMenu('squid')).toBe(false);
   });
 
   it('routes hydration-sensitive dashboards through the client-only category page', () => {

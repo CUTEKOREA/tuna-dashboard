@@ -142,9 +142,9 @@ describe('2026 unloading vessel coverage', () => {
     }
   });
 
-  it('exposes all 11 completed 2026 vessels (Bangkok 10 + Gensan 1) after the client merge', async () => {
-    // 히어로 KPI(완료 11척)와 완료 선박 목록이 같은 completedVessels 배열을 쓰므로,
-    // 병합 결과가 11척이면 목록에도 11척이 전부 노출된다 (2026-08-15 4척 축소 사고 가드).
+  it('exposes all 12 completed 2026 vessels (Bangkok 11 + Gensan 1) after the client merge', async () => {
+    // 히어로 KPI와 완료 선박 목록이 같은 completedVessels 배열을 쓰므로,
+    // SEIN VENUS 종료 뒤 병합 결과 12척이 목록에도 전부 노출되어야 한다.
     const { getVesselStatusKind } = await import('../lib/unloading-operations');
     const { GET } = await import('../app/api/unloading-db/route');
 
@@ -160,11 +160,12 @@ describe('2026 unloading vessel coverage', () => {
       'salt-lake-2026-01',
       'sein-phoenix',
       'sein-phoenix-2025-12',
+      'sein-venus',
       'shin-fuji',
       'volta-victory-2026-01',
     ]);
 
-    // staticData 전용 완료 4척 (dinok·hikari·heng-hong-11·liaoyu-reefer-1)과 합쳐 11척.
+    // staticData 전용 완료 4척 (dinok·hikari·heng-hong-11·liaoyu-reefer-1)과 합쳐 12척.
     // 2026-08-17: 정적 원장이 lib/data/unloading-static.ts로 추출됨 — 원장 검사는 모듈+컴포넌트 결합 소스로
     const source = readFileSync(join(process.cwd(), 'components/UnloadingStatus.tsx'), 'utf8')
       + readFileSync(join(process.cwd(), 'lib/data/unloading-static.ts'), 'utf8');
@@ -172,10 +173,10 @@ describe('2026 unloading vessel coverage', () => {
       expect(source).toContain(staticOnly);
     }
     const mergedCompleted = dbCompleted.length + 4;
-    expect(mergedCompleted).toBe(11);
+    expect(mergedCompleted).toBe(12);
 
     const bangkok = dbCompleted.filter(([, v]) => /BANGKOK|방콕/i.test(v.location)).length + 3;
-    expect(bangkok).toBe(10); // 젠산은 static hikari 1척뿐
+    expect(bangkok).toBe(11); // 젠산은 static hikari 1척뿐
   });
 
   it('prefers the committed local_db.json even when Supabase env keys are present', async () => {

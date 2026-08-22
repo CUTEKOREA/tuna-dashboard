@@ -76,6 +76,7 @@ export async function GET() {
     vessels.forEach((v: any) => {
       mergedData[v.vessel_id] = {
         name: v.name,
+        portCode: v.port_code || null,
         dateRange: v.date_range,
         location: v.location,
         buyer: v.buyer,
