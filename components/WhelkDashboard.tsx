@@ -1491,7 +1491,7 @@ export default function WhelkDashboard() {
             <WhelkHypothesisSection count={1}>
               <WhelkHypothesisCard reason="내부 기획안, 외부 검증 자료 없음">
             <WidgetCard title="SG 2026 밸류업 × 골뱅이 HMR 신제품 로드맵" icon={Package} iconColor="var(--color-success)" pillar="S2"
-              cardDesc="실측 데이터가 없다. 내부 기획안이며 외부 검증 자료를 갖고 있지 않다"
+              cardDesc="실측 데이터가 없다. 내부 기획안이며 외부 검증 자료를 보유하지 않는다"
               telemetry={{ status: 'STATIC', syncDate: 'SG 내부기획 2026 Q2' }} chartHeight={300}
               chart={
                 <BarChart data={sgValueUpData} layout="vertical" margin={{ left: 50 }}>
@@ -1568,7 +1568,7 @@ export default function WhelkDashboard() {
             <WhelkHypothesisSection count={2}>
               <WhelkHypothesisCard reason="원산지별 살수율 수치 출처 미보유">
             <WidgetCard title="국가별 원물 수율 기반 총사용원가 비교" icon={Scale} iconColor="var(--color-info)" pillar="S3"
-              cardDesc="실측 데이터가 없다. 원산지별 살수율 수치 출처를 갖고 있지 않다"
+              cardDesc="실측 데이터가 없다. 원산지별 살수율 수치 출처를 보유하지 않는다"
               telemetry={{ status: 'STATIC', syncDate: '2024년 기준' }} chartHeight={300}
               chart={
                 <ComposedChart data={yieldArbitrageData} layout="vertical" margin={{ left: 40 }}>
@@ -1590,7 +1590,7 @@ export default function WhelkDashboard() {
 
               <WhelkHypothesisCard reason="부위별 카드뮴 수치 원자료 미보유">
             <WidgetCard title="카드뮴 생체축적 및 식품안전 규제 진단" icon={FlaskConical} iconColor="var(--color-danger)" pillar="S3"
-              cardDesc="실측 데이터가 없다. 부위별 카드뮴 수치 원자료를 갖고 있지 않다"
+              cardDesc="실측 데이터가 없다. 부위별 카드뮴 수치 원자료를 보유하지 않는다"
               telemetry={{ status: 'STATIC', syncDate: '2024년 기준' }} chartHeight={300}
               chart={
                 <ComposedChart data={cadmiumData} margin={{ top: 20 }}>
@@ -1648,7 +1648,7 @@ export default function WhelkDashboard() {
             <WhelkHypothesisSection count={4}>
               <WhelkHypothesisCard reason="브랜드 점유율 1차 출처 미보유">
             <WidgetCard title="B2C 통조림 브랜드 경쟁력 & 가성비 매핑" icon={Target} iconColor="var(--color-info)" pillar="S4"
-              cardDesc="실측 데이터가 없다. 브랜드 점유율 1차 출처를 갖고 있지 않다"
+              cardDesc="실측 데이터가 없다. 브랜드 점유율 1차 출처를 보유하지 않는다"
               telemetry={{ status: 'STATIC', syncDate: '2024년 기준' }} chartHeight={300}
               chart={
                 <ScatterChart margin={{ top: 20, right: 30, bottom: 30, left: 30 }}>
@@ -1671,7 +1671,7 @@ export default function WhelkDashboard() {
 
               <WhelkHypothesisCard reason="채널 매출 통계 미보유">
             <WidgetCard title="B2C 및 B2B 채널별 매출 분포" icon={Building2} iconColor="var(--color-info)" pillar="S4"
-              cardDesc="실측 데이터가 없다. 채널별 매출 통계를 갖고 있지 않다"
+              cardDesc="실측 데이터가 없다. 채널별 매출 통계를 보유하지 않는다"
               telemetry={{ status: 'STATIC', syncDate: '2024년 기준' }} chartHeight={300}
               chart={
                 <PieChart>
@@ -1714,7 +1714,7 @@ export default function WhelkDashboard() {
 
               <WhelkHypothesisCard reason="KFDA 원자료 아카이브 미보유">
             <WidgetCard title="헬시플레저 시대: 골뱅이 영양 경쟁력 벤치마크" icon={Activity} iconColor="var(--color-success)" pillar="S4"
-              cardDesc="실측 데이터가 없다. 식품의약품안전처 원자료 아카이브를 갖고 있지 않다"
+              cardDesc="실측 데이터가 없다. 식품의약품안전처 원자료 아카이브를 보유하지 않는다"
               telemetry={{ status: 'STATIC', syncDate: 'KFDA 2024 기준' }} chartHeight={300}
               chart={
                 <BarChart data={nutritionBenchmarkData} margin={{ top: 20 }}>
@@ -1941,7 +1941,7 @@ export default function WhelkDashboard() {
               <WhelkHypothesisCard reason="EU 포장 규제 수치 원자료 미보유">
             {/* W23: EU 포장규제 리스크 */}
             <WidgetCard title="EU PPWR 포장규제 컴플라이언스 리스크" icon={Recycle} iconColor="var(--color-warning)" pillar="S5"
-              cardDesc="실측 데이터가 없다. EU 포장 규제 수치 원자료를 갖고 있지 않다"
+              cardDesc="실측 데이터가 없다. EU 포장 규제 수치 원자료를 보유하지 않는다"
               telemetry={{ status: 'STATIC', syncDate: 'KMI 2026.03' }}
               customBody={
                 <div data-mobile-stack style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '0.5rem' }}>
@@ -1968,7 +1968,7 @@ export default function WhelkDashboard() {
               <WhelkHypothesisCard reason="골뱅이 PFAS 수치 원자료 미보유">
             {/* W24: PFAS 식품안전 매트릭스 */}
             <WidgetCard title="PFAS(과불화화합물) 차세대 식품안전 리스크" icon={FlaskConical} iconColor="var(--color-warning)" pillar="S5"
-              cardDesc="실측 데이터가 없다. 골뱅이 PFAS 수치 원자료를 갖고 있지 않다"
+              cardDesc="실측 데이터가 없다. 골뱅이 PFAS 수치 원자료를 보유하지 않는다"
               telemetry={{ status: 'STATIC', syncDate: 'KFAS 2024' }} chartHeight={280}
               chart={
                 <BarChart data={pfasRiskData} layout="vertical" margin={{ left: 40 }}>
@@ -1992,7 +1992,7 @@ export default function WhelkDashboard() {
               <WhelkHypothesisCard reason="시장 규모·성장률 원자료 미보유">
             {/* W28: 할랄 해양콜라겐 시장 */}
             <WidgetCard title="할랄 인증 해양콜라겐: 글로벌 시장 기회" icon={Globe} iconColor="var(--color-success)" pillar="S5"
-              cardDesc="실측 데이터가 없다. 시장 규모와 성장률 원자료를 갖고 있지 않다"
+              cardDesc="실측 데이터가 없다. 시장 규모와 성장률 원자료를 보유하지 않는다"
               telemetry={{ status: 'STATIC', syncDate: 'KMI 2026.04' }} chartHeight={280}
               chart={
                 <BarChart data={halalCollagenData} margin={{ top: 20 }}>
