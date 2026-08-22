@@ -279,26 +279,26 @@ async function runHappyPath(browser) {
   await waitForText(page, '[data-testid="history-kpi-actual"]', /76,050\.239 MT/);
 
   const body = await page.evaluate(() => document.body.innerText);
-  assert.match(body, /37,096\s+MT/);
-  assert.match(body, /완료 선박:\s*11\s*척/);
+  assert.match(body, /37,186\s+MT/);
+  assert.match(body, /완료 선박:\s*12\s*척/);
   assert.doesNotMatch(body, /어종 분해 미확인/);
 
   await page.click('#unloading-tab-timeline');
-  await page.waitForSelector('[data-testid="timeline-node-8-21"]');
+  await page.waitForSelector('[data-testid="timeline-node-8-22"]');
   const latestReport = await page.$eval(
-    '[data-testid="timeline-node-8-21"]',
+    '[data-testid="timeline-node-8-22"]',
     (node) => node.innerText,
   );
   for (const pattern of [
-    /8\/21/,
-    /08:10 ~ 12:00/,
-    /\+148\.800 MT/,
-    /GPZ\s+148\.800 MT/,
-    /S\/PIO\(#1-B\)/,
-    /-18\.0℃ ~ -19\.0℃/,
+    /8\/22/,
+    /08:20 ~ 10:40/,
+    /\+89\.520 MT/,
+    /GPZ\s+89\.520 MT/,
     /S\/PIO\(#1-C\)/,
-    /-20\.0℃ ~ -21\.0℃/,
-    /GPZ\/H1C1\(S\.PIONEER\) 100 MT, 08:00/,
+    /-21\.0℃ ~ -22\.0℃/,
+    /당일 보정 -7\.450 MT/,
+    /누적 보정 \+54\.080 MT/,
+    /실제 잔량 0 MT/,
   ]) {
     assert.match(latestReport, pattern);
   }
@@ -330,18 +330,18 @@ async function runHappyPath(browser) {
     (node) => node.innerText,
   );
   for (const pattern of [
-    /금일\(8\/21\)/,
-    /GPZ:\s+148\.800 MT/,
-    /일일\s+하역량:\s+148\.800 MT/,
-    /하 역 누 계:\s+3239\.560 MT/,
-    /-18\.0℃ ~ -19\.0℃/,
-    /-20\.0℃ ~ -21\.0℃/,
-    /명일\(8\/22\)은 약 100톤 하역 작업 예정입니다/,
+    /금일\(8\/22\)/,
+    /GPZ:\s+89\.520 MT/,
+    /일일\s+하역량:\s+89\.520 MT/,
+    /하 역 누 계:\s+3,329\.080 MT/,
+    /증\s+감:\s+\+\s+54\.080 MT/,
+    /-21\.0℃ ~ -22\.0℃/,
+    /운반선 SEIN VENUS\(BKK\)에서 보고량\(3,275톤\) 대비 54\.080톤 증가한 3,329\.080톤 하역 종료하였습니다/,
   ]) {
     assert.match(generatedReport, pattern);
   }
-  assert.doesNotMatch(generatedReport, /\* SJ:\s+148\.800 MT/);
-  assert.doesNotMatch(generatedReport, /343톤/);
+  assert.doesNotMatch(generatedReport, /\* SJ:\s+89\.520 MT/);
+  assert.doesNotMatch(generatedReport, /명일 하역 예정량/);
   await page.click('[role="dialog"][aria-label="일일 보고서 자동 생성"] button[aria-label="닫기"]');
 
   await page.click('[data-testid="history-year-2021"]');
@@ -406,8 +406,8 @@ async function runFailureIsolation(browser) {
   await waitForText(page, '[data-testid="unloading-history-section"]', /과거 이력을 불러오지 못했습니다/);
   const body = await page.evaluate(() => document.body.innerText);
   assert.match(body, /다시 시도/);
-  assert.match(body, /37,096\s+MT/);
-  assert.match(body, /완료 선박:\s*11\s*척/);
+  assert.match(body, /37,186\s+MT/);
+  assert.match(body, /완료 선박:\s*12\s*척/);
   assert.equal(pageErrors.length, 0, pageErrors.join('\n'));
   assert.equal(consoleErrors.length, 0, consoleErrors.join('\n'));
   assert.equal(networkErrors.length, 0, networkErrors.join('\n'));
@@ -469,8 +469,8 @@ async function runChunkFailureIsolation(browser) {
   );
   const body = await page.evaluate(() => document.body.innerText);
   assert.match(body, /다시 시도/);
-  assert.match(body, /37,096\s+MT/);
-  assert.match(body, /완료 선박:\s*11\s*척/);
+  assert.match(body, /37,186\s+MT/);
+  assert.match(body, /완료 선박:\s*12\s*척/);
   assert.equal(getBlockedAppRequestCount(), 1);
   await Promise.all([
     page.waitForNavigation({ waitUntil: 'networkidle0' }),
@@ -479,8 +479,8 @@ async function runChunkFailureIsolation(browser) {
   await page.waitForSelector('[data-testid="unloading-history-panel"]');
   await waitForText(page, '[data-testid="history-kpi-actual"]', /76,050\.239 MT/);
   const recoveredBody = await page.evaluate(() => document.body.innerText);
-  assert.match(recoveredBody, /37,096\s+MT/);
-  assert.match(recoveredBody, /완료 선박:\s*11\s*척/);
+  assert.match(recoveredBody, /37,186\s+MT/);
+  assert.match(recoveredBody, /완료 선박:\s*12\s*척/);
   assert.equal(getBlockedAppRequestCount(), 1);
   assert.equal(pageErrors.length, 0, pageErrors.join('\n'));
   assert.equal(consoleErrors.length, 0, consoleErrors.join('\n'));

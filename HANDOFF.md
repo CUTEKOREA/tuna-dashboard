@@ -1,3 +1,15 @@
+> ⛔ **2026-08-22 16:08 KST — SEIN VENUS 8/22 하역 종료 로컬 반영 완료, 배포 게이트 대기** [Codex]:
+> - 전용 worktree `/private/tmp/tuna-unloading-sein-0822` (`codex/unloading-sein-20260822`)에서 원본 3종을 교차 확인했다. SHA-256: JPG `957c3826…13b50`, 결과 XLS `1cabdba0…a38e9`, 현황 XLSX `ce23e5d9…9e714`.
+> - 종료 검산: `3,239.560 + 89.520 = 3,329.080 MT`; 보고량 `3,275 MT` 대비 `+54.080 MT`. 당일 GPZ `89.520 MT`, S/PIO #1-C, 08:20~10:40, -21.0~-22.0℃. 당일 보정 `-7.450`, 누적 보정 `+54.080`, `-54.080 + 54.080 = 실제 잔량 0 MT`다.
+> - XLS 어종은 당일 SJ `87.820`·YF `1.700`, 최종 누계 SJ `2,793.900`·YF `535.180 MT`. 어창별 어종은 추정하지 않았다. 선박 상태는 완료, 기간은 `2026.08.07 ~ 2026.08.22`, `next_day`는 없다.
+> - Google Tasks: 기존 8/22 `SEIN VENUS ###톤`을 `SEIN VENUS 89.520 MT`로 수정하고 `내 할 일 목록`·오늘·미완료·중복 없음 확인. Drive에 `20260822 SEIN VENUS (BKK) 하역 업무 보고.txt` 저장, 렌더러 diff 0, SHA-256 `7ded1cf1…7cb12`.
+> - 대시보드 자동보고 완료 문구를 정본과 동일한 `보고량(3,275톤) ... 3,329.080톤`으로 맞추고 완료 상태에서는 명일 예정량 입력을 숨겼다. RED 6건→대상 3파일 48/48 GREEN, 하역 E2E PASS.
+> - 로컬 production API·보호 화면: 기준일 8/22, 연간 `37,185.640 MT`, 완료 12척, 현재 하역 HIKARI 1척. 1440×1000·390×844에서 overflow/page/console/request/HTTP errors 모두 0. 독립 반증 검토도 형식 수정 후 PASS.
+> - **배포 차단(선행 main 결함)**: `origin/main` SHA `a1b10c0f`의 App Quality Gate [#32556116049](https://github.com/CUTEKOREA/tuna-dashboard/actions/runs/32556116049)가 `/squid` 복원 뒤 구 404 테스트 미갱신으로 이미 실패했다. 테스트를 바로잡으면 다음 게이트에서 `/squid` first-load `1.64 MB > 1.30 MB`가 재현된다. 하역 변경은 `/squid` 파일·번들에 닿지 않는다.
+> - **다음 단계**: `/squid` 번들 최적화 또는 예산 결정을 별도 승인/상류 수정으로 닫은 뒤 전체 `npm run verify` → PR → Production → 운영 API·화면·로그 확인.
+>
+> 마지막 업데이트: 2026-08-22 16:08 KST [Codex]
+
 > 🧪 **2026-08-21 20:12 KST — HIKARI 1 8/21 하역 일일보고 로컬 검증 완료** [Codex]:
 > - 전용 worktree `/private/tmp/tuna-unloading-hikari-0821` (`codex/unloading-hikari-20260821`)에서 원본 3종을 교차 확인했다. SHA-256: JPG `a45de424…360bc`, 결과 XLS `530591db…d2c3d`, 현황 XLSX `268e9833…ca8aa`.
 > - 검산: `297.060 + 505.980 = 803.040 MT`, `2,929 - 803.040 = 2,125.960 MT`. 당일 MMP `143.330`, AAI `132.550`, TUM `123.510`, RMK `106.590 MT`; 어창 6곳·온도 `-19~-24℃`·차량대기 3구간을 원문대로 보존했다.
