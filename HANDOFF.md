@@ -1,8 +1,18 @@
+> 🚀 **2026-08-22 17:55 KST — `/fleet` 운반선 적재 신호 라이브 배포·실검증 완료** [Codex]:
+> - PR [#733](https://github.com/CUTEKOREA/tuna-dashboard/pull/733)을 3/3 checks 성공 뒤 squash merge했다. main commit은 `a33e423c1c03f99ccb893bc24a2c617ab3cf391e`이며 제목 끝 `[Codex]`를 유지했다.
+> - Vercel Production deployment `2Xcxo46uHJjaFmwnDtvRHok1Hykk`가 `Ready`, 함수 region `ICN1`, `https://leedonggun.co.kr` alias 연결 상태다. 최근 약 30분 runtime log의 `error`·`fatal` 필터는 각각 0건이다.
+> - 로그인 운영 `/fleet`의 `선박·수역`에서 실제 지도 2개, DOM 선박 마커 23개, Leaflet Canvas 1개, `고적재 75% 이상`·`만재 임박 90% 이상` 범례를 확인했다. HIKARI 1 마커는 키보드 포커스가 되고 툴팁에 `2,929.17 / 3,700 (MT)`·`고적재 79.1%`가 표시됐다.
+> - 데스크톱 1440×900과 모바일 390×844에서 문서·본문 overflow 0, console/page/Next error 0이다. 모바일에서도 지도 2개·마커 23개·Canvas 1개·두 범례가 유지됐다.
+> - 후속 영상 `Hnm18BesInM`의 Unlazy v2는 대시보드 기능으로 적용하지 않고 설치도 보류했다. 이 저장소의 worktree·`npm run verify`·작성자≠검증자·HANDOFF와 중복되며, 명령 기반 gate ledger·최종 수치 재측정만 30분 이상 대형 작업의 별도 파일럿 후보로 남긴다.
+> - **다음 단계**: 항로선은 위치 이력·출발지·목적지 계약이 생긴 뒤에만 별도 기획한다. 현재 보고 좌표만으로 항로를 추정하지 않는다.
+>
+> 마지막 업데이트: 2026-08-22 17:55 KST [Codex]
+
 > 🗺️ **2026-08-22 17:07 KST — `/fleet` 운반선 적재 신호 로컬 검증 완료** [Codex]:
 > - 최신 `origin/main` 전용 worktree `/private/tmp/tuna-fleet-visual-0822`(`codex/fleet-visual-layer-20260822`)에서 작업했다. 라이브 화면은 폐기된 `FleetPixelMap`이 아니라 Leaflet `FleetRealMap`을 사용하므로 실제 컴포넌트에만 반영했다.
 > - 보고 적재량·선복량이 모두 있는 운반선만 적재율을 계산한다. `75%` 이상은 `고적재`, `90%` 이상은 `만재 임박`으로 표시하고, 용량 미보고·0·음수 입력은 fail-closed한다. 위치 이력이 없어 항로선은 추정이 되므로 추가하지 않았다.
 > - Leaflet `preferCanvas`의 비대화형 `CircleMarker`로 신호 원만 Canvas에 그리고 기존 DOM 마커·툴팁을 유지했다. 색상 외에도 반경·점선 패턴을 달리하며, 툴팁과 범례에 신호명·임계값·실제 적재율 숫자를 표시한다.
-> - RED는 신호 모듈 부재와 시각 패턴 함수 부재로 확인했고, GREEN은 신규 5/5·Fleet focused 40/40이다. 전체 `npm run verify` 통과: ESLint 0 errors(기존 warnings 12), Python 21건, Vitest 146 files·1,112 passed/2 skipped, API cache 158/158, Next 118페이지, 보호 데이터 누출·bundle 33 routes 통과.
+> - RED는 신호 모듈 부재와 시각 패턴 함수 부재로 확인했고, GREEN은 신규 6/6·Fleet focused 40/40이다. 전체 `npm run verify` 통과: ESLint 0 errors(기존 warnings 12), Python 21건, Vitest 146 files·1,113 passed/2 skipped, API cache 158/158, Next 118페이지, 보호 데이터 누출·bundle 33 routes 통과.
 > - 로컬 production `/fleet` 공개 진입은 브라우저 콘솔·페이지 오류 0이지만 격리 환경에 운영 인증 설정이 없어 지도까지는 열지 못했다. 다음 단계는 PR Preview gate 후 main 병합·Vercel Production·로그인된 운영 화면 데스크톱/모바일 실검증이다.
 >
 > 마지막 업데이트: 2026-08-22 17:07 KST [Codex]
