@@ -87,3 +87,7 @@ KCS_MACKEREL_HS = ("030244", "030354", "160415")
 MFDS_ROSTER = ARCHIVE / "06_식품안전·검역·통관/mfds/production_roster/2026-08-22"
 MFDS_I0300_CSV = MFDS_ROSTER / "mfds_i0300_mackerel_scoped.csv"
 MFDS_C002_CSV = MFDS_ROSTER / "mfds_c002_mackerel_scoped.csv"
+
+# 수산정보포털 (2026-08-22 수집). 계통판매 = 수협 위판, 어업생산통계 = 품종별 생산.
+FIPS_COOP_CSV = ARCHIVE / "03_무역·가격/fips_coop_sales/2026-08-22/mackerel_coop_sales_monthly.csv"
+FIPS_PROD_JSON = ARCHIVE / "01_자연산_어획·자원/fips_production/2026-08-22/mackerel_production_monthly.json"

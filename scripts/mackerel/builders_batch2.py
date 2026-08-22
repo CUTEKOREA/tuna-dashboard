@@ -9,7 +9,7 @@ grade 규칙
   B = PDF/MD 수동 추출 → method=manual_extract
 """
 from build import C, builder, r1
-from scope import ARCHIVE, MFDS_C002_CSV, MFDS_I0300_CSV
+from scope import ARCHIVE, FIPS_COOP_CSV, FIPS_PROD_JSON, MFDS_C002_CSV, MFDS_I0300_CSV
 
 ICES_MD = ARCHIVE / "01_자연산_어획·자원/ices/2026-08-12_full/ICES_Atlantic_mackerel_advice_2026.md"
 NPFC_MD = ARCHIVE / "01_자연산_어획·자원/npfc/2026-08-12_full/NPFC_TWG_CMSA11_report_2025.md"
@@ -315,7 +315,7 @@ def s3_kcs_2026_origin():
     """관세청 2026 통관 실적 — FAO(2024) 보다 최신이며 원산지 구조가 뒤집혔다."""
     import csv as _csv
     from collections import defaultdict as _dd
-    from scope import ARCHIVE, MFDS_C002_CSV, MFDS_I0300_CSV
+    from scope import ARCHIVE, FIPS_COOP_CSV, FIPS_PROD_JSON, MFDS_C002_CSV, MFDS_I0300_CSV
 
     src = next((ARCHIVE / "10_원본데이터셋/kcs").rglob("*nitemtrade*.csv"))
     imp, exp = _dd(float), _dd(float)
@@ -484,4 +484,110 @@ def s2_mackerel_share_of_processing():
                            "포함해 세며, 정확히 「고등어」로만 적힌 것은 품목제조보고 2,335건 중 63.8%다. "
                            "「원재료 미연결」은 생산실적에는 있으나 품목제조보고에 짝이 없는 품목으로, "
                            "폐지분과 원재료 표기 불일치가 섞여 있다."),
+    }
+
+
+# ── 위판·품종별 생산 (수산정보포털) ────────────────────────────────────────
+# 2026-08-22 신규. 공공데이터포털 건별 위판은 보안문자로 막혔으나 발행 기관이 같은 자료를
+# 계통판매 실적으로 열어 두었다. 품종별 생산은 FAO 제출값과 직접 대조된다.
+
+def _fips_prod():
+    """품종별 생산을 연도·어종으로 접는다. 단위 톤."""
+    import collections
+    import json
+    d = collections.defaultdict(lambda: collections.defaultdict(float))
+    for r in json.loads(FIPS_PROD_JSON.read_text(encoding="utf-8"))["행"]:
+        d[r["연도"]][r["어종"]] += r["생산량_t"]
+    return d
+
+
+def _fips_coop():
+    """계통판매를 연도·어종으로 접는다. 원자료는 kg·원."""
+    import collections
+    import csv
+    d = collections.defaultdict(lambda: collections.defaultdict(lambda: [0.0, 0.0]))
+    for r in csv.DictReader(FIPS_COOP_CSV.open(encoding="utf-8-sig")):
+        c = d[int(r["연도"])][r["어종"]]
+        c[0] += int(r["수량_kg"]) / 1000
+        c[1] += int(r["금액_원"])
+    return d
+
+
+@builder("s1_species_production_gap")
+def s1_species_production_gap():
+    """국내 품종별 생산과 FAO 제출값의 차이. 망치고등어가 통째로 빠져 있다."""
+    prod = _fips_prod()
+    years = sorted(y for y in prod if y >= 2015)
+    data = []
+    for y in years:
+        p = prod[y]
+        data.append({"year": str(y),
+                     "고등어": round(p.get("고등어", 0)),
+                     "망치고등어": round(p.get("망치고등어", 0)),
+                     "원양": round(p.get("고등어류_원양", 0))})
+    last = data[-1]
+    m24 = round(prod[2024].get("망치고등어", 0))
+    return {
+        "title": "국내 품종별 생산과 FAO 제출값",
+        "subtitle": f"수산정보포털 어업생산통계 품종별. 국내 통계는 고등어와 망치고등어를 따로 세지만 "
+                    f"FAO 제출본에는 망치고등어 행이 없다. 2024년 기준 {m24:,}톤이 빠진다.",
+        "chartType": "Composed", "stacked": True, "xKey": "year",
+        "bars": [{"key": "고등어", "color": C["sky"]},
+                 {"key": "망치고등어", "color": C["amber"]},
+                 {"key": "원양", "color": C["slate"]}],
+        "data": data, "unit": "톤",
+        "sit": f"2024년 국내 생산은 연근해 고등어 125,135톤, 망치고등어 {m24:,}톤, 원양 520톤이다. "
+               f"FAO 한국 제출본은 북서태평양 124,928.012톤과 남동태평양 519.760톤 두 행뿐이다. "
+               f"원양 520톤과 남동태평양 519.760톤이 사실상 같은 값이라 범위 대응은 맞는다. "
+               f"남는 것이 망치고등어이고, 그 행이 아예 없다.",
+        "strat": "국제 비교에 쓰이는 한국 어획량은 국내 공표값보다 작다. 점유율·자급률·1인당 소비량을 "
+                 "FAO 기준으로 계산하면 분모가 달라진다. 두 숫자를 같은 표에 넣기 전에 어느 쪽 정의인지 "
+                 "먼저 적는다. 누락 원인이 송신인지 코드 매핑인지는 이 자료로 갈리지 않는다.",
+        "_kpi": {"title": "FAO 제출에서 빠진 몫 (2024)", "value": f"{m24:,}톤",
+                 "trend": "망치고등어 전량",
+                 "desc": "국내 통계 「고등어류」는 두 어종 합, FAO 제출은 한 어종"},
+        "_prov": dict(source_id="FIPS_PRODUCTION_SPECIES", period=f"{years[0]}-{years[-1]}",
+                      inputs=[FIPS_PROD_JSON], grade="A",
+                      note="어종 코드 110015 고등어·110016 망치고등어·310040 고등어류[원양]. 단위 톤. "
+                           "2026년은 6월까지다. FAO 대조값은 FishStat 원자료에서 읽었다."),
+    }
+
+
+@builder("s1_coop_landings_price")
+def s1_coop_landings_price():
+    """수협 계통판매 = 위판. 산지 물량과 단가가 여기서 나온다."""
+    coop = _fips_coop()
+    years = sorted(y for y in coop if y >= 2015)
+    data = []
+    for y in years:
+        a = coop[y].get("고등어류", [0.0, 0.0])
+        b = coop[y].get("망치고등어", [0.0, 0.0])
+        # 단가는 고등어류 단독이다. 망치고등어와 섞으면 06절 표와 다른 값이 된다.
+        data.append({"year": str(y), "고등어류": round(a[0]), "망치고등어": round(b[0]),
+                     "단가": r1(a[1] / (a[0] * 1000)) if a[0] else 0})
+    last, base = data[-1], next(d for d in data if d["year"] == "2023")
+    up = r1(100 * (last["단가"] - base["단가"]) / base["단가"])
+    return {
+        "title": "위판 물량과 산지 단가",
+        "subtitle": f"수산정보포털 수협 계통판매 실적. 계통판매가 곧 위판이다. "
+                    f"{last['year']}년은 6월까지이며 단가는 {last['단가']:,}원/kg으로 2023년 대비 {up}% 높다.",
+        "chartType": "Composed", "stacked": True, "xKey": "year",
+        "bars": [{"key": "고등어류", "color": C["sky"]},
+                 {"key": "망치고등어", "color": C["amber"]}],
+        "lines": [{"key": "단가", "color": C["rose"], "yAxisId": "right"}],
+        "data": data, "unit": "톤 / 원/kg",
+        "sit": f"산지 단가가 2023년 {base['단가']:,}원/kg에서 {last['year']}년 상반기 "
+               f"{last['단가']:,}원/kg으로 올랐다. 같은 기간 위판 물량은 어종에 따라 갈린다. "
+               f"2025년 고등어류 계통판매 198,627톤 가운데 150,124톤, 75.6퍼센트가 부산지역이다.",
+        "strat": "산지 단가는 수입 단가와 규격이 다르므로 같은 표에 넣지 않는다. 국내 원물 조달 협상의 "
+                 "기준선으로 쓴다. 부산 집중이 75퍼센트를 넘어 그 지역 조업·위판 차질이 곧 전국 물량 "
+                 "차질이 된다. 조합 단위까지는 갈리지만 어선별은 이 자료에 없다.",
+        "_kpi": {"title": f"위판 단가 ({last['year']} 상반기)", "value": f"{last['단가']:,}원/kg",
+                 "trend": f"2023년 대비 {up}%",
+                 "desc": "수협 계통판매 실적. 산지 기준이라 수입 단가와 규격이 다르다"},
+        "_prov": dict(source_id="FIPS_COOP_SALES", period=f"{years[0]}-{years[-1]}",
+                      inputs=[FIPS_COOP_CSV], grade="A",
+                      note="단가는 고등어류 단독 기준이다(망치고등어는 따로 움직인다). 원자료는 kg·원이며 여기서 톤·원/kg 으로 환산했다. 어종 라벨이 「고등어류」와 "
+                           "「망치고등어」로 갈려 있어 통계청 「고등어류」(둘의 합)와 범위가 다르다. "
+                           "2026년은 6월까지. 조합·지역 단위로도 갈리지만 어선별은 없다."),
     }

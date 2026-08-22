@@ -1,10 +1,12 @@
 ﻿id,pillar,title,source_id,method,prov_grade,period,axis1,axis2,axis3,axis4,avg,grade
 s1_capture_country,S1,주요 어획국 점유율·집중도,FAO_FISHSTAT_CAPTURE,script,A,2010-2024,95,70,95,100,90.0,A
 s1_capture_species,S1,고등어 어종별 글로벌 어획량 추이,FAO_FISHSTAT_CAPTURE,script,A,2005-2024,95,70,95,100,90.0,A
+s1_coop_landings_price,S1,위판 물량과 산지 단가,FIPS_COOP_SALES,script,A,2015-2026,95,95,95,100,96.2,A
 s1_import_origin_mix,S1,수입 원산지 구성과 집중 리스크,KCS_NITEMTRADE,script,A,2019-2024,95,70,95,100,90.0,A
 s1_import_origin_price,S1,원산지별 수입단가 비교,FAO_FISHSTAT_TRADE,script,A,2019-2024,95,70,95,100,90.0,A
 s1_korea_production,S1,한국 생산량·자급률,FAO_FISHSTAT_GLOBAL_PRODUCTION,script,A,2019-2024,95,70,95,100,90.0,A
 s1_nsc_weekly,S1,노르웨이 주간 수출 물량·단가,NORWEGIAN_SEAFOOD_EXPORTS,script,A,2026-W32,80,95,95,100,92.5,A
+s1_species_production_gap,S1,국내 품종별 생산과 FAO 제출값,FIPS_PRODUCTION_SPECIES,script,A,2015-2026,95,95,95,100,96.2,A
 s1_stock_status,S1,자원평가 상태 스코어카드 (ICES·NPFC),ICES_ATLANTIC_MACKEREL,manual_extract,B,2024-2026,95,95,70,100,90.0,A
 s1_tac_quota,S1,TAC·쿼터 변동과 물량 전망,ICES_ATLANTIC_MACKEREL,manual_extract,B,2025-2026,95,95,70,100,90.0,A
 s2_aquaculture,S2,양식 전환 가능성,FAO_FISHSTAT_GLOBAL_PRODUCTION,script,A,2005-2024,95,70,95,100,90.0,A
