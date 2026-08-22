@@ -5800,3 +5800,4 @@ python3 scripts/check_s_grade.py components/TunaDashboard.tsx components/TunaExt
 - `F_direct_importers` 에 주제조국·비중 열 — 33곳 합산 페루 83%. `F_kamis_*` 방법론에 연근해냉동 2025-09 단절 명기.
 - 출처 +2: SQ-TAR-KCS-RATE, SQ-REG-MOF-TRACE (빈도 irregular → '비정기' 라벨 추가). 위젯 51·출처 52·게이트 위반 0.
 - 원본 JSON 은 Drive `8_한국_오징어_산업_해부/02_출처원본/` (tariff_rates·processing_sales·traceability_coverage·importers_country).
+- 배포: Vercel dpl_CaDXMhBnXmk8qfJ3JcJVy5J1cZck READY (main b2c5cc78, 2026-08-22) — leedonggun.co.kr/squid 에 F 섹션 12개 위젯 반영.
