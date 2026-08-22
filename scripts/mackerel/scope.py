@@ -82,3 +82,8 @@ HS6_SCOPE = ("030244", "030245", "030354", "030355", "160415")
 KCS_HS_CSV = ARCHIVE / "10_원본데이터셋/legacy_updates/update_2026-07-06/kcs/KCS_2026YTD_HS_mackerel.csv"
 # 관세청 추출본에 포함된 030489(기타 어류 필렛)는 고등어 전용이 아니라 제외한다.
 KCS_MACKEREL_HS = ("030244", "030354", "160415")
+
+# 식약처 국내 생산 명부 (2026-08-22 수집). 제품명에 「고등어」가 적힌 품목 + 원재료로 구제한 분.
+MFDS_ROSTER = ARCHIVE / "06_식품안전·검역·통관/mfds/production_roster/2026-08-22"
+MFDS_I0300_CSV = MFDS_ROSTER / "mfds_i0300_mackerel_scoped.csv"
+MFDS_C002_CSV = MFDS_ROSTER / "mfds_c002_mackerel_scoped.csv"
