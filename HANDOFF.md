@@ -5802,3 +5802,4 @@ python3 scripts/check_s_grade.py components/TunaDashboard.tsx components/TunaExt
 - 원본 JSON 은 Drive `8_한국_오징어_산업_해부/02_출처원본/` (tariff_rates·processing_sales·traceability_coverage·importers_country).
 - 배포: Vercel dpl_CaDXMhBnXmk8qfJ3JcJVy5J1cZck READY (main b2c5cc78, 2026-08-22) — leedonggun.co.kr/squid 에 F 섹션 12개 위젯 반영.
 - 2026-08-22 추가: `F_vessel_gear_2025`(어업별 척수·중량·금액·단가, 상위 N척 점유) · `F_vessel_top20_2025`(금액 상위 20척, 전부 쌍끌이 저인망). 원본 `02_출처원본/vessel_gear_2025.json`·`vessel_top20_2025.json`. 어선명은 원장 공개 열, 소유자·매수자 미수집. 위젯 53.
+- 2026-08-22 추가: `F_vessel_top50_3yr`(2023~2025 금액 합계 상위 50척, 연도별 중량·금액). 원본 `02_출처원본/vessel_top50_3yr.json`. 위젯 54.

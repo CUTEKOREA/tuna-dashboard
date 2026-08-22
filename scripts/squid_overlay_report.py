@@ -212,6 +212,17 @@ def widgets():
                     coverage_start="2025-01", coverage_end="2025-12", source_ids=["SQ-PRC-MOF-AUCTION"],
                     blocked_use=["어선 소유자 식별", "선단·선사 귀속 추정"]))
 
+    # F15 산지 — 3개년 금액 합계 상위 50척
+    v50 = load("vessel_top50_3yr.json")
+    sh50 = v50["top50_share_of_year_value_pct"]
+    W["F_vessel_top50_3yr"] = dict(
+        section="F", title="오징어 위판 상위 50척 3개년 실적 (2023~2025, 금액 합계순)", chartType="table",
+        data=v50["rows"], xAxis="어선명", series=["2023_억", "2024_억", "2025_억"],
+        methodology=f"{v50['rank_basis']}. 상위 50척의 연도별 금액 점유 2023 {sh50['2023']}% · 2024 {sh50['2024']}% · 2025 {sh50['2025']}%. 어업 구성 저인망 25·채낚기 22·기타 3. {v50['note']}",
+        basis=basis(market_stage="first_sale", aggregation="sum_within_stage", currency="KRW",
+                    coverage_start="2023-01", coverage_end="2025-12", source_ids=["SQ-PRC-MOF-AUCTION"],
+                    blocked_use=["어선 소유자 식별", "선단·선사 귀속 추정", "2024 급감을 개별 어선 사정으로 해석"]))
+
     # F9 수입명의 × 가공업 겹침
     W["F_overlap_by_type"] = dict(
         section="F", title="수입 유형별 가공업 보유 — 603 명의 중 117", chartType="bar", data=ov["by_type"],
