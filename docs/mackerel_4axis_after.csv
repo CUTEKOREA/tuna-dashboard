@@ -1,4 +1,5 @@
 ﻿id,pillar,title,source_id,method,prov_grade,period,axis1,axis2,axis3,axis4,avg,grade
+s1_auction_grade_spread,S1,산지에서 대형어가 사라진다,BCFM_AUCTION_DAILY,script,A,2023-2025,95,80,95,100,92.5,A
 s1_capture_country,S1,주요 어획국 점유율·집중도,FAO_FISHSTAT_CAPTURE,script,A,2010-2024,95,70,95,100,90.0,A
 s1_capture_species,S1,고등어 어종별 글로벌 어획량 추이,FAO_FISHSTAT_CAPTURE,script,A,2005-2024,95,70,95,100,90.0,A
 s1_coop_landings_price,S1,위판 물량과 산지 단가,FIPS_COOP_SALES,script,A,2015-2026,95,95,95,100,96.2,A

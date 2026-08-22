@@ -94,3 +94,6 @@ FIPS_PROD_JSON = ARCHIVE / "01_자연산_어획·자원/fips_production/2026-08-
 
 # aT KAMIS 고등어 가격 (2026-08-22 수집). 계열마다 단위가 다르다 — JSON 의 「단위」를 보고 쓴다.
 KAMIS_JSON = ARCHIVE / "03_무역·가격/kamis/2026-08-22/kamis_mackerel.json"
+
+# 부산공동어시장 일자별 경매 (2026-08-23 수집). 규격별. 등급 체계가 2026-07-01 에 바뀌어 두 체계를 잇지 않는다.
+BCFM_JSON = ARCHIVE / "03_무역·가격/bcfm_auction/2026-08-23/bcfm_mackerel_daily.json"

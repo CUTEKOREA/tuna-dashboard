@@ -9,8 +9,9 @@ grade 규칙
   B = PDF/MD 수동 추출 → method=manual_extract
 """
 from build import C, builder, r1
-from scope import (AFRICA, ARCHIVE, COMTRADE_CSV, FIPS_COOP_CSV, FIPS_PROD_JSON,
-                   KAMIS_JSON, KCS_MACKEREL_HS, MFDS_C002_CSV, MFDS_I0300_CSV)
+from scope import (AFRICA, ARCHIVE, BCFM_JSON, COMTRADE_CSV, FIPS_COOP_CSV,
+                   FIPS_PROD_JSON, KAMIS_JSON, KCS_MACKEREL_HS, MFDS_C002_CSV,
+                   MFDS_I0300_CSV)
 
 ICES_MD = ARCHIVE / "01_자연산_어획·자원/ices/2026-08-12_full/ICES_Atlantic_mackerel_advice_2026.md"
 NPFC_MD = ARCHIVE / "01_자연산_어획·자원/npfc/2026-08-12_full/NPFC_TWG_CMSA11_report_2025.md"
@@ -316,8 +317,9 @@ def s3_kcs_2026_origin():
     """관세청 2026 통관 실적 — FAO(2024) 보다 최신이며 원산지 구조가 뒤집혔다."""
     import csv as _csv
     from collections import defaultdict as _dd
-    from scope import (AFRICA, ARCHIVE, COMTRADE_CSV, FIPS_COOP_CSV, FIPS_PROD_JSON,
-                   KAMIS_JSON, KCS_MACKEREL_HS, MFDS_C002_CSV, MFDS_I0300_CSV)
+    from scope import (AFRICA, ARCHIVE, BCFM_JSON, COMTRADE_CSV, FIPS_COOP_CSV,
+                   FIPS_PROD_JSON, KAMIS_JSON, KCS_MACKEREL_HS, MFDS_C002_CSV,
+                   MFDS_I0300_CSV)
 
     src = next((ARCHIVE / "10_원본데이터셋/kcs").rglob("*nitemtrade*.csv"))
     imp, exp = _dd(float), _dd(float)
@@ -708,4 +710,68 @@ def s3_trade_comtrade_2025():
                       note="신고국 기준이며 상대국 신고와 대조하지 않았다. 2024년을 이 자료로 집계하면 "
                            "FAO 표(수입 39,454t·수출 78,714t)가 재현되므로 이어 읽을 근거로 삼았다. "
                            "아프리카는 FAO 국가그룹 기준 30개국이다."),
+    }
+
+
+# ── 산지 경매 규격별 단가 (부산공동어시장) ────────────────────────────────
+# 2026-08-23 신규. 보고서 중심 논지(모자란 것은 총량이 아니라 규격)의 시계열 근거다.
+# 등급 체계가 2026-07-01 에 상·중·하 → 대·중·소로 바뀌었다. 두 체계는 같은 구분이 아니라
+# 2025 년 상급 89t 옆에 2026 년 대급 1,637t 을 놓으면 18 배 늘었다는 헛것이 나온다. 구 체계만 싣는다.
+
+@builder("s1_auction_grade_spread")
+def s1_auction_grade_spread():
+    import collections
+    import json
+    rows = json.loads(BCFM_JSON.read_text(encoding="utf-8"))["행"]
+    OLD = {"고등어(상)(26.1.1~26.6.30)": "상", "고등어(중)(26.1.1~26.6.30)": "중",
+           "고등어(하)(26.1.1~26.6.30)": "하"}
+    agg = collections.defaultdict(lambda: collections.defaultdict(lambda: [0.0, 0.0]))
+    for r in rows:
+        if r["수입산"] or r["어종"] not in OLD:
+            continue
+        a = agg[r["일자"][:4]][OLD[r["어종"]]]
+        a[0] += r["무게_kg"]
+        a[1] += r["금액_원"]
+    years = [y for y in sorted(agg) if y <= "2025"]       # 2026 은 반년치 + 체계 전환이라 뺀다
+    data = []
+    for y in years:
+        g = agg[y]
+        d = {"year": y}
+        for k in ("상", "중", "하"):
+            q, v = g[k]
+            d[f"{k}급 물량"] = round(q / 1000)
+            d[f"{k}급 단가"] = round(v / q) if q else 0
+        d["상/하 배수"] = r1(d["상급 단가"] / d["하급 단가"]) if d["하급 단가"] else 0
+        data.append(d)
+    first, last = data[0], data[-1]
+    drop = r1(100 * (first["상급 물량"] - last["상급 물량"]) / first["상급 물량"])
+    rise = r1(100 * (last["상급 단가"] - first["상급 단가"]) / first["상급 단가"])
+    return {
+        "title": "산지에서 대형어가 사라진다",
+        "subtitle": f"부산공동어시장 경매 실적, 고등어 상·중·하 규격별. {first['year']}~{last['year']}년. "
+                    f"상급 물량이 {first['상급 물량']}톤에서 {last['상급 물량']}톤으로 {drop}% 줄고 "
+                    f"단가는 {rise}% 올랐다.",
+        "chartType": "Composed", "stacked": True, "xKey": "year",
+        "bars": [{"key": "상급 물량", "color": C["rose"]},
+                 {"key": "중급 물량", "color": C["amber"]},
+                 {"key": "하급 물량", "color": C["sky"]}],
+        "lines": [{"key": "상급 단가", "color": C["rose"], "yAxisId": "right"},
+                  {"key": "하급 단가", "color": C["sky"], "yAxisId": "right"}],
+        "data": data, "unit": "톤 / 원/kg",
+        "sit": f"{last['year']}년 상급은 {last['상급 물량']}톤, {last['상급 단가']:,}원/kg이다. "
+               f"하급은 {last['하급 물량']:,}톤, {last['하급 단가']:,}원/kg으로 상급이 {last['상/하 배수']}배다. "
+               f"국내에서 잡히는 것 가운데 식탁용 대형어 몫이 줄고 그 자리를 노르웨이산이 메운다. "
+               f"수입 단가 역조와 노르웨이 의존이 산지 경매장에서 같은 모양으로 보인다.",
+        "strat": "「국산 고등어가 부족하다」는 말은 총량이 아니라 규격 이야기다. 소형어는 남아돌아 "
+                 "아프리카로 나가고 대형어는 모자라 들여온다. 국산 대체를 검토할 때 톤수가 아니라 "
+                 "규격 구성을 본다. 이 자료는 어시장 한 곳이라 전국 규격 구성으로 읽지 않는다.",
+        "_kpi": {"title": f"상급 물량 감소 ({first['year']}→{last['year']})", "value": f"−{drop}%",
+                 "trend": f"상급 단가 +{rise}%",
+                 "desc": "부산공동어시장 경매. 상급 = 2026년 6월까지의 구 등급 체계"},
+        "_prov": dict(source_id="BCFM_AUCTION_DAILY", period=f"{first['year']}-{last['year']}",
+                      inputs=[BCFM_JSON], grade="A",
+                      note="구 등급 체계(상·중·하)만 실었다. 2026-07-01 에 대·중·소로 바뀌었고 두 체계는 "
+                           "같은 구분이 아니라 잇지 않는다. 갈고등어(Decapterus)·고등어잡어 제외, 수입산 "
+                           "제외. 한 표에 구·신 품목코드 블록이 겹치는 날이 이틀 있으나 라벨로 갈랐다. "
+                           "부산공동어시장 한 곳이며 전국 규격 구성이 아니다."),
     }
