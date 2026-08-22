@@ -58,7 +58,7 @@
   ],
   "id": "s3_comtrade_matrix",
   "provenance": {
-    "extract_date": "2026-08-12",
+    "extract_date": "2026-08-16",
     "grade": "A",
     "input_files": [
       "10_원본데이터셋/collections/2026-08-12/api_extracts/un_comtrade/mackerel_trade_comtrade.csv"

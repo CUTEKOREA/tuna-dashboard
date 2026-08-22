@@ -152,52 +152,36 @@ def s1_capture_country():
 
 @builder("s1_korea_production")
 def s1_korea_production():
-    """국내 조달 비율 = 어획 / (어획 + 수입).
-
-    해양수산부 고시 제3조의 공식 자급률은 분모가 국내소비량(생산+수입−수출)이라 별개 지표다.
-    순수출 품목이 100%를 넘는 것은 공식 통계에서도 정상 보고값이므로(해수부 조사 2022년 김 223.2%·굴 171.5%),
-    두 값을 함께 낸다.
-    """
+    """자급률 정의 확정: A = 어획 / (어획 + 수입). 수출 차감 방식(B)은 100%를 넘어 지표로 못 쓴다."""
     cap = capture()
     data = []
     for y in trade_years():
         c = sum(v for k, v in cap.items() if k[0] == KOREA and k[2] == y)
         imp = sum(flow_by_partner(FLOW_IMPORT, KOREA, Q, y).values())
         exp = sum(flow_by_partner(FLOW_EXPORT, KOREA, Q, y).values())
-        supply = c + imp - exp
         data.append({"year": str(y), "어획": round(c), "수입": round(imp), "수출": round(exp),
-                     "국내조달비율": r1(100 * c / (c + imp)) if c + imp else 0,
-                     "공식자급률": r1(100 * c / supply) if supply > 0 else None})
+                     "자급률": r1(100 * c / (c + imp)) if c + imp else 0})
     last = data[-1]
     return {
         "title": "한국 생산량·자급률",
-        "subtitle": f"국내 조달 비율 = 어획 ÷ (어획 + 수입) = {last['year']}년 {last['국내조달비율']}%. "
-                    f"해양수산부 고시 기준 공식 자급률(분모 = 생산+수입−수출)은 {last['공식자급률']}%다. "
-                    f"수출({last['수출']:,}톤)이 수입({last['수입']:,}톤)의 약 2배여서 두 값이 크게 갈린다.",
+        "subtitle": f"자급률 = 어획 ÷ (어획 + 수입). {last['year']}년 {last['자급률']}%. "
+                    f"수출({last['수출']:,}톤)이 수입({last['수입']:,}톤)의 2배라 '수출 차감' 정의는 100%를 넘어 지표로 쓸 수 없다.",
         "chartType": "Composed", "xKey": "year",
         "bars": [{"key": "어획", "color": C["sky"]}, {"key": "수입", "color": C["amber"]},
                  {"key": "수출", "color": C["emerald"]}],
-        "lines": [{"key": "국내조달비율", "color": C["rose"], "yAxisId": "right"},
-                  {"key": "공식자급률", "color": C["violet"], "yAxisId": "right"}],
+        "lines": [{"key": "자급률", "color": C["rose"], "yAxisId": "right"}],
         "data": data, "unit": "톤 / %",
-        "sit": f"{last['year']}년 국내 조달 비율은 {last['국내조달비율']}%, 공식 자급률은 {last['공식자급률']}%다. "
-               f"공식 산식은 수출을 차감하므로 순수출 품목에서 100%를 넘는 것이 정상이다"
-               f"(해수부 조사 2022년 김 223.2%·굴 171.5%가 그대로 공표된다). "
+        "sit": f"{last['year']}년 자급률은 {last['자급률']}%로 국내 조달이 우위다. "
                f"한국은 고등어를 수입량의 약 2배 수출한다 — 국산을 팔고 노르웨이산을 사 먹는 구조다.",
-        "strat": "물량만 보면 부족하지 않다. 어느 분모를 써도 '자급률 위기'는 성립하지 않는다. "
-                 "실제 리스크는 총량이 아니라 규격이다 — 식탁용 대형어는 노르웨이 의존이 그대로 남는다. "
-                 "수입 단가와 수출 단가의 스프레드가 관리 대상이다.",
-        "_kpi": {"title": f"국내 조달 비율 ({last['year']})", "value": f"{last['국내조달비율']}%",
-                 "trend": f"공식 자급률 {last['공식자급률']}%",
-                 "desc": "어획÷(어획+수입). 공식 산식은 수출 차감이라 값이 다르다"},
+        "strat": "'자급률 위기'는 사실과 다르다. 실제 리스크는 자급률이 아니라 "
+                 "수입 단가(노르웨이 의존)와 수출 단가(아프리카 벌크) 사이의 스프레드다.",
+        "_kpi": {"title": f"한국 자급률 ({last['year']})", "value": f"{last['자급률']}%",
+                 "trend": f"수출 {last['수출']:,}톤 > 수입 {last['수입']:,}톤",
+                 "desc": "어획÷(어획+수입). 국산 팔고 노르웨이산 사 먹는 구조"},
         "_prov": dict(source_id="FAO_FISHSTAT_GLOBAL_PRODUCTION",
                       period=f"{data[0]['year']}-{data[-1]['year']}",
                       inputs=[CAPTURE_CSV, PARTNERS_CSV], grade="A",
-                      note="자급률 정의 확정(2026-08-13, 3원 교차검증). 국내 조달 비율 = 어획÷(어획+수입), "
-                           "공식 자급률(해수부 고시 제3조)은 분모가 국내소비량(생산+수입+재고−이월−수출)이라 별도 계열로 병기한다. "
-                           "어획은 FAO capture(Scomber 속) 125,448톤이며, 통계청 어업생산동향조사 고등어류는 "
-                           "2024년 134,606톤(확정치)으로 9,158톤(7.3%) 많다 — KOSIS 고등어류가 고등어와 망치고등어를 "
-                           "합산하기 때문이다. 따라서 이 값을 KOSIS 공식 자급률과 직접 비교하면 안 된다."),
+                      note="자급률 정의 A 확정(2026-08-13). 어획은 FAO capture Scomber 속이라 통계청 '고등어류'와 범위가 다를 수 있다."),
     }
 
 
@@ -222,8 +206,7 @@ def s1_import_origin_mix():
     return {
         "title": "수입 원산지 구성과 집중 리스크",
         "subtitle": f"FAO 양자교역 실측 — {latest}년 노르웨이 비중 물량 {r1(nor_q)}% / 금액 {r1(nor_v)}%. "
-                    f"분모는 Scomber 속 HS(030244·030354·160415) 한국 신고 수입이다"
-                    f"(상위 3국 합이 아니다). 전갱이(030355)를 포함하면 비중은 83.2%로 내려간다.",
+                    f"분모는 한국 전체 수입이다(상위 3국 합이 아니다).",
         "chartType": "Area", "stacked": True, "xKey": "year",
         "areas": [{"key": COUNTRY.get(c, str(c)), "color": col} for c, col in
                   zip(top, [C["sky"], C["amber"], C["emerald"], C["violet"], C["slate"]])],
@@ -336,16 +319,14 @@ def s3_africa_volume_price():
     return {
         "title": "아프리카 수출 물량·단가",
         "subtitle": f"{years[0]}→{years[-1]} 누적 {r1(cum):+}% (CAGR {r1(cagr):+}%/년). "
-                    f"단 {years[-1]}년 YoY {data[-1]['YoY']:+}%로 꺾였다. "
-                    f"집계 대상은 가나·나이지리아·코트디부아르·카메룬·콩고민주·모로코·모리타니 7개국이다.",
+                    f"단 {years[-1]}년 YoY {data[-1]['YoY']:+}%로 꺾였다.",
         "chartType": "Composed", "stacked": True, "xKey": "year",
         "bars": [{"key": "가나", "color": C["emerald"]}, {"key": "나이지리아", "color": C["sky"]},
                  {"key": "기타아프리카", "color": C["slate"]}],
         "lines": [{"key": "수출단가", "color": C["amber"], "yAxisId": "right"}],
         "data": data, "unit": "톤 / USD/kg",
         "sit": f"아프리카향은 {years[0]}~{years[-1]} 누적 {r1(cum):+}% 늘었으나 "
-               f"{years[-1]}년 {data[-1]['YoY']:+}%로 역성장했다. 가나·나이지리아 2개국이 물량의 대부분이다. "
-               f"UN Comtrade 기준 2025년 같은 7개국은 94,065톤으로 반등해, 2024년 감소는 보고 지연이 아니라 실제 조정이다.",
+               f"{years[-1]}년 {data[-1]['YoY']:+}%로 역성장했다. 가나·나이지리아 2개국이 물량의 대부분이다.",
         "strat": "성장 서사로 다루면 안 되는 시점이다. 2개국 집중이라 현지 통화·통관 리스크가 "
                  "곧 물량 리스크다. 단가는 벌크 수준이므로 물량 확보보다 회수 조건이 우선이다.",
         "_kpi": {"title": f"아프리카 수출 YoY ({years[-1]})", "value": f"{data[-1]['YoY']:+}%",

@@ -74,7 +74,7 @@
     }
   ],
   "provenance": {
-    "extract_date": "2026-08-12",
+    "extract_date": "2026-08-16",
     "grade": "A",
     "input_files": [
       "11_분석·가공데이터/collections/2026-08-12/fao_filtered/mackerel_trade_partners.csv"

@@ -42,7 +42,7 @@
     }
   ],
   "provenance": {
-    "extract_date": "2026-08-12",
+    "extract_date": "2026-08-16",
     "grade": "A",
     "input_files": [
       "10_원본데이터셋/legacy_updates/update_2026-07-06/kcs/KCS_2026YTD_HS_mackerel.csv"

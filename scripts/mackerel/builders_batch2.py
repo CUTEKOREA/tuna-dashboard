@@ -37,8 +37,7 @@ def s1_tac_quota():
     return {
         "title": "TAC·쿼터 변동과 물량 전망",
         "subtitle": f"ICES 2025-09-30 권고(대서양고등어, 아해역 1–8·14). 2026년 권고 {advice_2026:,}톤 — "
-                    f"2025년 권고 {advice_2025:,}톤 대비 {r1(cut)}%. 2025년 실제 어획은 권고를 {r1(over)}% 초과했다. "
-                    f"국제 합의 TAC는 존재하지 않으며, 연안국이 각자 쿼터를 정한다.",
+                    f"2025년 권고 {advice_2025:,}톤 대비 {r1(cut)}%. 2025년 실제 어획은 권고를 {r1(over)}% 초과했다.",
         "chartType": "Bar", "xKey": "구분",
         "bars": [{"key": "톤", "color": C["rose"]}],
         "data": data, "unit": "톤",
@@ -63,7 +62,7 @@ def s1_tac_quota():
 def s1_stock_status():
     # ICES_MD:63 SSB / :187 MSY Btrigger / :61 F / NPFC_MD:1150-1152 어획·한도
     ssb, btrigger, f_current = 2740823, 4119337, 0.29
-    npfc_2018, npfc_2024, npfc_limit = 516000, 128586, 66740
+    npfc_2018, npfc_2024, npfc_limit = 516000, 128586, 47940   # CMM 2026-07(2026-06-01 발효)
     data = [
         {"지표": "대서양 SSB", "현재": round(100 * ssb / btrigger), "기준선": 100},
         {"지표": "태평양 어획(2024)", "현재": round(100 * npfc_2024 / npfc_2018), "기준선": 100},
@@ -71,7 +70,7 @@ def s1_stock_status():
     return {
         "title": "자원평가 상태 스코어카드 (ICES·NPFC)",
         "subtitle": f"대서양: SSB {ssb:,}톤 = MSY Btrigger({btrigger:,}톤)의 {round(100 * ssb / btrigger)}%, Blim 미만. "
-                    f"태평양: 어획 {npfc_2018:,}톤(2018)→{npfc_2024:,}톤(2024), NPFC 2025 어획한도 {npfc_limit:,}톤.",
+                    f"태평양: 어획 {npfc_2018:,}톤(2018)→{npfc_2024:,}톤(2024), NPFC 2026 어획한도 {npfc_limit:,}톤.",
         "chartType": "Bar", "xKey": "지표",
         "bars": [{"key": "현재", "color": C["rose"]}, {"key": "기준선", "color": C["slate"]}],
         "data": data, "unit": "% (기준=100)",
@@ -83,7 +82,8 @@ def s1_stock_status():
         "_prov": dict(source_id="ICES_ATLANTIC_MACKEREL", period="2024-2026",
                       inputs=[ICES_MD, NPFC_MD], method="manual_extract", grade="B",
                       note="ICES: SSB 2,740,823톤(표1 2025 전망), MSY Btrigger 4,119,337톤(표4), Fages4-8=0.29(표1). "
-                           "NPFC: 516,000mt(2018)→128,586mt(2024), CMM 2025-07 어획한도 66,740mt. "
+                           "NPFC: 516,000mt(2018)→128,586mt(2024). 어획한도는 CMM 2026-07(2026-06-01 발효) 2026년 47,940mt·2027년 42,300mt. "
+                           "이는 제11항 제외분이며 EU 3,060mt 을 더하면 51,000mt. 이전 CMM 2025-07 의 66,740mt 을 대체한다. "
                            "두 자원은 종·해역이 달라 직접 비교가 아니라 각자의 기준선 대비 위치로만 읽어야 한다."),
     }
 
@@ -310,4 +310,50 @@ def s3_kcs_monthly():
                       inputs=[KCS_HS_CSV], grade="A",
                       note="2026-07-06 수집본. 관세청 API가 현재 서비스키 없이 401이라 자동 갱신 불가 — "
                            "키 확보 전까지 이 스냅샷이 최신이다. 범용 HS 030489는 고등어 전용이 아니라 제외."),
+    }
+
+
+@builder("s3_kcs_2026_origin")
+def s3_kcs_2026_origin():
+    """관세청 2026 통관 실적 — FAO(2024) 보다 최신이며 원산지 구조가 뒤집혔다."""
+    import csv as _csv
+    from collections import defaultdict as _dd
+    from scope import ARCHIVE
+
+    src = next((ARCHIVE / "10_원본데이터셋/kcs").rglob("*nitemtrade*.csv"))
+    imp, exp = _dd(float), _dd(float)
+    with src.open(encoding="utf-8-sig") as fh:
+        for r in _csv.DictReader(fh):
+            if not (r.get("hs_query") or "").startswith("030354"):
+                continue
+            c = r.get("statCdCntnKor1") or ""
+            if r.get("year") == "총계" or c in ("", "-", "총계"):
+                continue
+            imp[c] += float(r.get("impWgt") or 0)
+            exp[c] += float(r.get("expWgt") or 0)
+
+    ti, te = sum(imp.values()), sum(exp.values())
+    top = sorted(imp.items(), key=lambda kv: -kv[1])[:5]
+    data = [{"원산지": k, "수입량": round(v / 1000), "비중": r1(100 * v / ti)} for k, v in top]
+    nor = 100 * imp.get("노르웨이", 0) / ti
+    return {
+        "title": "관세청 2026 원산지 구조 — 의존이 무너지는 중",
+        "subtitle": f"관세청 통관 실적 HS 030354, 2026-01~08. 수입 {ti / 1000:,.0f}톤 중 노르웨이 {r1(nor)}%. "
+                    f"FAO 2024년 88.1%에서 크게 내렸다.",
+        "chartType": "Bar", "xKey": "원산지",
+        "bars": [{"key": "수입량", "color": C["sky"]}],
+        "data": data, "unit": "톤",
+        "sit": f"2026년 1~8월 냉동 고등어 수입에서 노르웨이 비중이 {r1(nor)}%다. "
+               f"2019~2024년 내내 오르던 의존도가 처음으로 크게 꺾였고 영국·중국이 그 자리를 메웠다. "
+               f"같은 기간 수출은 {te / 1000:,.0f}톤으로 2024년 연간 수출을 이미 넘었다.",
+        "strat": "연간 확정 통계만 보면 이 전환을 놓친다. 통관 실적은 FAO 보다 1~2년 앞서므로 "
+                 "원산지 전략 점검은 이쪽을 기준으로 한다. 다만 범위가 냉동 단일 코드라 "
+                 "Scomber 속 전체를 다루는 FAO 수치와 같은 표에 넣지 않는다.",
+        "_kpi": {"title": "노르웨이 의존 (2026.1~8)", "value": f"{r1(nor)}%",
+                 "trend": "FAO 2024년 88.1% 대비 하락",
+                 "desc": "관세청 통관 실적 HS 030354. FAO 보다 최신"},
+        "_prov": dict(source_id="KCS_NITEMTRADE", period="2026-01~2026-08",
+                      inputs=[src], grade="A",
+                      note="관세청 품목별 수출입실적, 2026-08-16 아카이브 수집본. HS 030354 냉동 단일 코드이며 "
+                           "FAO Scomber 속 전체와 범위가 다르다. 총계행·국가 미상 행은 제외했다."),
     }
