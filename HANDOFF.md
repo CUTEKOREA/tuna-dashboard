@@ -1,3 +1,12 @@
+> 🚀 **2026-08-23 16:18 KST — HIKARI 1 8/23 하역 일일보고 라이브 배포 완료** [Codex]:
+> - PR [#746](https://github.com/CUTEKOREA/tuna-dashboard/pull/746)을 Preview/App/Vercel 3/3 checks 성공 뒤 squash merge했다. main commit은 `f30a3167b30b086d9885efa5b9d05b15414b4a27`, PR App Quality Gate는 `32624594773`, main gate는 `32624785764`이며 둘 다 전체 verify와 하역 브라우저 acceptance를 통과했다.
+> - Vercel Production `dpl_HzRbBzErhBqBByHZbj1fe8UxaLEF`(GitHub deployment `6045452278`)가 READY이며 `https://leedonggun.co.kr` alias·`icn1`에 연결됐다. GitHub Production deployment SHA도 main commit과 일치한다.
+> - 운영 인증 API는 200·`private, no-store`로 HIKARI 당일 `90.420`, 누계 `1,494.880`, 잔량 `1,434.120 MT`, 8/24 예정 `390 MT`를 반환한다. 비인증 API는 401 `authentication_required`·`Vary: Cookie`, 비인증 `/unloading`은 로그인으로 307 이동한다.
+> - 운영 보호 화면 1440×1000·390×844에서 HIKARI 최종 보고 8/23, 통합 `37,877 MT`, 완료 12척, CMC/N.STAR #3-B·원문 온도 `-22,24℃`·온도 이상 1개 어창·명일 390톤과 자동보고를 확인했다. overflow/page/console errors 모두 0이며 최근 1시간 Vercel error/fatal 로그도 0건이다.
+> - **다음 단계**: 8/24 HIKARI 1 하역 원본 수신 시 같은 멱등 절차로 갱신한다.
+>
+> 마지막 업데이트: 2026-08-23 16:18 KST [Codex]
+
 > 🧪 **2026-08-23 15:55 KST — HIKARI 1 8/23 하역 일일보고 로컬 검증 완료** [Codex]:
 > - 최신 `origin/main` 전용 worktree `/private/tmp/tuna-unloading-hikari-0823`(`codex/unloading-hikari-20260823`)에서 원본 3종을 교차 확인했다. SHA-256: JPG `1a0dff71…49212`, 결과 XLS `9d18f8ee…7f242`, 현황 XLSX `fc065b7c…2a523`.
 > - 검산: `1,404.460 + 90.420 = 1,494.880 MT`, `2,929 - 1,494.880 = 1,434.120 MT`. 당일 CMC `90.420 MT`, N/STAR #3-B, 08:20~11:50, 냉동차량 7대다.
