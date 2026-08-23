@@ -62,10 +62,10 @@
       "mother_vessel": "S/SPR 670 · MOAKONA 314 · MOAMARI 940 · NAOERO STAR 1,005 MT",
       "hold_species_breakdown_available": false,
       "unclassified_actual_amount": 0,
-      "species_breakdown_as_of": "2026-08-22",
-      "species_breakdown_note": "8/22 일일 결과보고 XLS에서 어종별 일일·누적 물량을 확인했고 일일하역량 현황 XLSX로 교차 확인했습니다. 원선별 어종 물량은 여러 어창 합계라 개별 어창별 어종 분해는 제공되지 않습니다.",
+      "species_breakdown_as_of": "2026-08-23",
+      "species_breakdown_note": "8/23 일일 결과보고 XLS에서 어종별 일일·누적 물량을 확인했고 일일하역량 현황 XLSX로 교차 확인했습니다. XLS의 SJ 보고량 2,571 MT는 적재계획의 SJ 2,515 MT와 BE 56 MT를 합친 기준이며, 실제 하역량은 SJ·YF 두 항목만 제공합니다. 개별 어창별 어종 분해는 제공되지 않습니다.",
       "created_at": "2026-08-12T16:35:00+09:00",
-      "updated_at": "2026-08-22T20:55:00+09:00"
+      "updated_at": "2026-08-23T15:51:00+09:00"
     },
     {
       "vessel_id": "sein-phoenix-2025-12",
@@ -1587,6 +1587,55 @@
       "created_at": "2026-08-22T20:55:00+09:00"
     },
     {
+      "id": "hikari-bangkok-2026-07-8-23",
+      "vessel_id": "hikari-bangkok-2026-07",
+      "report_year": 2026,
+      "report_date": "8/23",
+      "work_time": "08:20 ~ 11:50",
+      "target_holds": "N/STAR(#3-B:90.420)",
+      "consignee": "CMC",
+      "allocations": [
+        {
+          "consignee": "CMC",
+          "amount": 90.42,
+          "loads": [
+            {
+              "source_vessel": "N/STAR",
+              "hatch": "#3-B",
+              "amount": 90.42
+            }
+          ]
+        }
+      ],
+      "observations": [
+        {
+          "source_vessel": "N/STAR",
+          "hatch": "#3-B",
+          "temperatures_c": [
+            -22.0,
+            24.0
+          ]
+        }
+      ],
+      "daily_amount": 90.42,
+      "cumulative_amount": 1494.88,
+      "species_amounts": {
+        "SJ": 83.62,
+        "YF": 6.8
+      },
+      "remaining_amount": 1434.12,
+      "next_day": {
+        "kind": "work",
+        "date": "8/24",
+        "planned_mt": 390
+      },
+      "quality_notes": "N/STAR(#3-B) 08:20~11:50 - 어창 개방 측정온도는 -22.0℃ ~ 24.0℃ 입니다. 원문 온도 표기는 -22,24℃입니다. REEFER TRUCK 7대(#1~#7) 합계 90.420 MT. 8/24 AAI/H2B1(S.SPRINTER) 120 MT 08:00, CMC/H3B1(N.STAR) 120 MT 08:00(GO TO SONGKHLA 1 TRUCK), ISA/H4B1(N.STAR) 150 MT 08:00 작업 예정입니다.",
+      "source_sha256": "1a0dff719d2969f00008fd9a958d47c6ae752cace3e1a2fd9383326441c49212",
+      "source_workbook_sha256": "9d18f8ee5ad09023ac67172b0aa59c3a40177b03d259ad5e2b883475fdc7f242",
+      "status_workbook_sha256": "fc065b7c185994143d8dab9b624349da19e7718d7f59b939ad6cd1ec2fe2a523",
+      "created_at": "2026-08-23T15:51:00+09:00"
+    },
+    {
       "id": "sein-phoenix-2025-12-12-18",
       "vessel_id": "sein-phoenix-2025-12",
       "report_year": 2025,
@@ -2362,16 +2411,16 @@
       "species_id": "SJ",
       "species_name": "가다랑어",
       "reported_amount": 2515,
-      "actual_amount": 1156.44,
-      "updated_at": "2026-08-22T20:55:00+09:00"
+      "actual_amount": 1240.06,
+      "updated_at": "2026-08-23T15:51:00+09:00"
     },
     {
       "vessel_id": "hikari-bangkok-2026-07",
       "species_id": "YF",
       "species_name": "황다랑어",
       "reported_amount": 358,
-      "actual_amount": 248.02,
-      "updated_at": "2026-08-22T20:55:00+09:00"
+      "actual_amount": 254.82,
+      "updated_at": "2026-08-23T15:51:00+09:00"
     },
     {
       "vessel_id": "hikari-bangkok-2026-07",
@@ -2379,7 +2428,7 @@
       "species_name": "눈다랑어",
       "reported_amount": 56,
       "actual_amount": 0,
-      "updated_at": "2026-08-22T20:55:00+09:00"
+      "updated_at": "2026-08-23T15:51:00+09:00"
     },
     {
       "vessel_id": "sein-phoenix-2025-12",
