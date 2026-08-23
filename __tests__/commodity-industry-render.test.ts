@@ -24,6 +24,9 @@ import ShrimpIndustryDashboard, {
 import WhelkIndustryDashboard, {
   WHELK_CHART_SLOTS,
 } from '../components/market-understanding/WhelkIndustryDashboard';
+import PollockIndustryDashboard, {
+  POLLOCK_CHART_SLOTS,
+} from '../components/market-understanding/PollockIndustryDashboard';
 import type {
   BriefingPoint,
   ChartSlot,
@@ -31,6 +34,7 @@ import type {
 } from '../components/market-understanding/CommodityIndustryDashboard';
 import {
   getMackerelIndustryData,
+  getPollockIndustryData,
   getShrimpIndustryData,
   getWhelkIndustryData,
 } from '../lib/data/commodity-industry';
@@ -49,6 +53,11 @@ import {
   WHELK_NARRATIVES,
   WHELK_SOURCE_NOTES,
 } from '../lib/whelk-industry-content';
+import {
+  POLLOCK_BRIEFING_POINTS,
+  POLLOCK_NARRATIVES,
+  POLLOCK_SOURCE_NOTES,
+} from '../lib/pollock-industry-content';
 
 interface Page {
   이름: string;
@@ -83,6 +92,14 @@ const PAGES: Page[] = [
     briefing: SHRIMP_BRIEFING_POINTS,
     notes: SHRIMP_SOURCE_NOTES,
     render: () => React.createElement(ShrimpIndustryDashboard),
+  },
+  {
+    이름: '명태',
+    narratives: POLLOCK_NARRATIVES,
+    slots: POLLOCK_CHART_SLOTS,
+    briefing: POLLOCK_BRIEFING_POINTS,
+    notes: POLLOCK_SOURCE_NOTES,
+    render: () => React.createElement(PollockIndustryDashboard),
   },
 ];
 
@@ -171,7 +188,7 @@ describe('시장 이해 3품목 — 렌더', () => {
     const html = renderToStaticMarkup(page.render());
     expect(html).toContain('30초 브리핑');
     expect(html).toContain('출처와 한계');
-    expect(html).toMatch(/data-commodity="(mackerel|whelk|shrimp)"/);
+    expect(html).toMatch(/data-commodity="(mackerel|whelk|shrimp|pollock)"/);
   });
 
   it('새우 01단계는 차트 둘을 근거 블록에 둔다', () => {
@@ -224,6 +241,7 @@ describe('시장 이해 3품목 — 렌더', () => {
     expect(css).toContain("data-commodity='mackerel'");
     expect(css).toContain("data-commodity='whelk'");
     expect(css).toContain("data-commodity='shrimp'");
+    expect(css).toContain("data-commodity='pollock'");
   });
 
   it('캡션 설명은 세로 flex-basis 로 부풀지 않는다', () => {
@@ -404,5 +422,63 @@ describe('새우 — 집계와 본문 대조', () => {
     expect(data.요약.한국양식비중!).toBeLessThan(data.요약.양식비중);
     expect(data.한국종구성[0].종).toBe('젓새우');
     expect(text).toContain(String(data.요약.한국양식비중));
+  });
+});
+
+describe('명태 — 집계와 본문 대조', () => {
+  const data = getPollockIndustryData();
+  const text = POLLOCK_NARRATIVES.flatMap((s) => [s.lede, ...s.paragraphs]).join('\n');
+  const facts = POLLOCK_NARRATIVES.flatMap((s) => s.facts);
+
+  it('원본이 낡으면 알 수 있게 기준연도가 2024년 이상이다', () => {
+    expect(Number(data.세계어획._meta.기준연도)).toBeGreaterThanOrEqual(2024);
+    expect(Number(data.수입세번._meta.기준연도)).toBeGreaterThanOrEqual(2025);
+  });
+
+  it('세계 어획 합계·러미 비중·한국 순위가 본문과 맞는다', () => {
+    const latest = data.세계어획.시계열[data.세계어획.시계열.length - 1];
+    expect(Number(latest.연도)).toBe(2024);
+    expect(Number(latest.세계)).toBe(Number(data.세계어획._meta.세계합계));
+    expect(text).toContain(Number(data.세계어획._meta.세계합계).toLocaleString('en-US'));
+    expect(text).toContain(String(data.세계어획._meta.러미비중));
+    expect(data.세계어획.국가[0].국가).toBe('러시아');
+    expect(data.세계어획.국가.findIndex((r) => r.국가 === '한국')).toBe(4);
+    expect(facts.some((f) => f.value.includes(String(data.세계어획._meta.한국비중)))).toBe(true);
+  });
+
+  it('할당과 어획이 붙어 있고 2026년 할당이 처음 줄었다', () => {
+    const rows = data.원양할당.rows;
+    const y24 = rows.find((r) => r.연도 === 2024)!;
+    const y26 = rows.find((r) => r.연도 === 2026)!;
+    expect(y24.할당 - y24.어획).toBeLessThanOrEqual(1);
+    expect(y26.할당).toBeLessThan(Math.min(...rows.filter((r) => r.연도 < 2026).map((r) => r.할당)));
+    expect(text).toContain(y26.할당.toLocaleString('en-US'));
+    expect(text).toContain(String(y26.입어료));
+  });
+
+  it('수입 합계·러시아 비중·동태 물량이 본문과 맞는다', () => {
+    const latest = data.수입세번.rows.find((r) => r.연도 === 2025)!;
+    expect(text).toContain(String(latest.합계금액));
+    expect(text).toContain(Number(latest.합계물량).toLocaleString('en-US'));
+    expect(text).toContain(Number(latest.동태_물량).toLocaleString('en-US'));
+    const russia = data.수입원산지.rows[0];
+    expect(russia.원산지).toBe('러시아');
+    expect(text).toContain(String(russia.비중));
+    expect(facts.some((f) => f.value.includes(String(russia.비중)))).toBe(true);
+  });
+
+  it('가공 합계와 업체 수, 어묵이 따로 세어져 있다', () => {
+    const meta = data.가공품목._meta as { 합계: Record<string, number>; 업체: number; 어묵: Record<string, number> };
+    expect(text).toContain(meta.합계['2025'].toLocaleString('en-US'));
+    expect(text).toContain(meta.업체.toLocaleString('en-US'));
+    expect(text).toContain(meta.어묵['2025'].toLocaleString('en-US'));
+    const sum = data.가공품목.rows.reduce((s, r) => s + Number(r['2025']), 0);
+    expect(Math.abs(sum - meta.합계['2025'])).toBeLessThanOrEqual(2);
+  });
+
+  it('재고 마지막 달이 본문의 7월 값과 맞는다', () => {
+    const last = data.재고.rows[data.재고.rows.length - 1];
+    expect(last.월).toBe('2026-07');
+    expect(text).toContain(last.재고.toLocaleString('en-US'));
   });
 });
