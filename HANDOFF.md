@@ -1,3 +1,16 @@
+> 🧪 **2026-08-23 15:55 KST — HIKARI 1 8/23 하역 일일보고 로컬 검증 완료** [Codex]:
+> - 최신 `origin/main` 전용 worktree `/private/tmp/tuna-unloading-hikari-0823`(`codex/unloading-hikari-20260823`)에서 원본 3종을 교차 확인했다. SHA-256: JPG `1a0dff71…49212`, 결과 XLS `9d18f8ee…7f242`, 현황 XLSX `fc065b7c…2a523`.
+> - 검산: `1,404.460 + 90.420 = 1,494.880 MT`, `2,929 - 1,494.880 = 1,434.120 MT`. 당일 CMC `90.420 MT`, N/STAR #3-B, 08:20~11:50, 냉동차량 7대다.
+> - 온도는 JPG 원문에 `-22,24℃`로 인쇄돼 있다. 두 번째 값에 마이너스를 추정하지 않고 구조화 값 `-22.0℃ ~ 24.0℃`과 원문 표기를 함께 보존해 온도 이상 1개 어창으로 드러냈다.
+> - XLS 어종은 당일 SJ `83.620`·YF `6.800`, 누계 SJ `1,240.060`·YF `254.820 MT`. XLS의 SJ 보고량 `2,571 MT`는 적재계획 SJ `2,515`+BE `56 MT` 합계 기준임을 note에 명시했고, 개별 어창별 어종은 추정하지 않았다.
+> - 사용자 입력 8/24 계획은 AAI `120`, CMC `120`, ISA `150 MT`, 합계 `390 MT`로 원문 토큰과 함께 명일 계획에 반영했다. Google Tasks는 `내 할 일 목록`에 오늘 기한·미완료 `HIKARI 1 90.420 MT`를 생성 후 재확인했다.
+> - Drive에 `20260823 HIKARI 1 (BKK) 하역 업무 보고.txt` 저장, 렌더러 diff 0, SHA-256 `8ca01678…65494`.
+> - RED→GREEN: HIKARI 계약 5건 실패 후 11/11 통과, 연간 통합 E2E `37,787 → 37,877 MT` 실패 후 desktop/mobile/keyboard/open-tab/API/chunk isolation 통과. `npm run verify` 통과(ESLint 0 errors·기존 warnings 12, Python 21건, Vitest 1,130 passed/2 skipped, API cache 158/158, Next 118페이지, 누출·번들 게이트).
+> - 로컬 보호 API·화면: 기준일 8/23, HIKARI 누계 `1,494.880`, 잔량 `1,434.120`, 연간 통합 `37,877.480 MT`, 완료 12척. 1440×1000·390×844에서 자동보고·온도 이상·명일 390톤을 확인했고 overflow/page/console errors 모두 0. 독립 반증 검토도 원본·산술·해시·부호·source bucket·중복/고아·이전 보고 보존 전체 PASS.
+> - **다음 단계**: PR gate → main 병합 → Vercel Production → 운영 API·보호 화면·로그 확인.
+>
+> 마지막 업데이트: 2026-08-23 15:55 KST [Codex]
+
 > 🦐 **2026-08-23 03:40 KST — `/shrimp` 위판·시세 위젯 2건 추가, 보고서 11차 감사 「발행 가능」** [Claude]:
 > - 원자료 4종 신규: 수협계통판매통계(1998~2026, 새우 6종) · KAMIS 도소매 16개월 · 노량진 경락시세 1,331일 전수 · 식약처 I0300 2023·2024. 보고서 05·06·10·12·13절 반영, 표 26→33, 30쪽.
 > - 위젯 `w34_coop_sales_share`(국내 생산 중 위판 비중) · `w35_wholesale_monthly`(도매가 16개월). 28→**30**, 4축 **90.4 (A 30 / B 1)**, LIVE 0.
