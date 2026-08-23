@@ -53,6 +53,7 @@ const MackerelIndustryDashboard = dynamic(() => import('../components/market-und
 const WhelkIndustryDashboard = dynamic(() => import('../components/market-understanding/WhelkIndustryDashboard'));
 const ShrimpIndustryDashboard = dynamic(() => import('../components/market-understanding/ShrimpIndustryDashboard'));
 const PollockIndustryDashboard = dynamic(() => import('../components/market-understanding/PollockIndustryDashboard'));
+const TunaAnatomyDashboard = dynamic(() => import('../components/market-understanding/TunaAnatomyDashboard'));
 const CompanyAnatomyDashboard = dynamic(() => import('../components/market-understanding/CompanyAnatomyDashboard'));
 
 const INSTITUTIONAL_MENU_KEYS = new Set<ActiveMenu>([
@@ -275,6 +276,7 @@ export default function Home() {
     'whelk-industry': <WhelkIndustryDashboard />,
     'shrimp-industry': <ShrimpIndustryDashboard />,
     'pollock-industry': <PollockIndustryDashboard />,
+    'tuna-anatomy': <TunaAnatomyDashboard />,
     'company-anatomy': <CompanyAnatomyDashboard />,
   };
   return (

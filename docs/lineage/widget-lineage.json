@@ -1,9 +1,9 @@
 {
  "_meta": {
   "entry": "app/page.tsx",
-  "files": 190,
-  "widgets": 108,
-  "dataFiles": 81,
+  "files": 193,
+  "widgets": 109,
+  "dataFiles": 82,
   "generator": "scripts/widget_lineage.py"
  },
  "widgetToData": {
@@ -535,6 +535,7 @@
     "public/data/shrimp_argentina.json",
     "public/data/shrimp_industry_v1.json",
     "public/data/shrimp_real_data_v4.json",
+    "public/data/tuna_anatomy_v1.json",
     "public/data/whelk_country_series_v1.json",
     "public/data/whelk_industry_v1.json"
    ]
@@ -631,6 +632,7 @@
     "public/data/shrimp_industry_v1.json",
     "public/data/shrimp_real_data_v4.json",
     "public/data/squid_company_research_v1.json",
+    "public/data/tuna_anatomy_v1.json",
     "public/data/tuna_carrier_fleet_v1.json",
     "public/data/tuna_company_research_v1.json",
     "public/data/tuna_ocean_operators_v1.json",
@@ -650,6 +652,7 @@
     "public/data/shrimp_argentina.json",
     "public/data/shrimp_industry_v1.json",
     "public/data/shrimp_real_data_v4.json",
+    "public/data/tuna_anatomy_v1.json",
     "public/data/whelk_country_series_v1.json",
     "public/data/whelk_industry_v1.json"
    ]
@@ -674,6 +677,7 @@
     "public/data/shrimp_industry_v1.json",
     "public/data/shrimp_real_data_v4.json",
     "public/data/squid_company_research_v1.json",
+    "public/data/tuna_anatomy_v1.json",
     "public/data/tuna_carrier_fleet_v1.json",
     "public/data/tuna_company_research_v1.json",
     "public/data/tuna_ocean_operators_v1.json",
@@ -743,6 +747,22 @@
    ],
    "dataFiles": [
     "public/data/companies/thaiunion_v1.json"
+   ]
+  },
+  "components/market-understanding/TunaAnatomyDashboard.tsx": {
+   "dataModules": [
+    "lib/data/commodity-industry.ts"
+   ],
+   "dataFiles": [
+    "public/data/mackerel_country_series_v1.json",
+    "public/data/mackerel_industry_v1.json",
+    "public/data/pollock_industry_v1.json",
+    "public/data/shrimp_argentina.json",
+    "public/data/shrimp_industry_v1.json",
+    "public/data/shrimp_real_data_v4.json",
+    "public/data/tuna_anatomy_v1.json",
+    "public/data/whelk_country_series_v1.json",
+    "public/data/whelk_industry_v1.json"
    ]
   },
   "components/market-understanding/TunaCatchCharts.tsx": {
@@ -829,6 +849,7 @@
     "public/data/shrimp_industry_v1.json",
     "public/data/shrimp_real_data_v4.json",
     "public/data/squid_company_research_v1.json",
+    "public/data/tuna_anatomy_v1.json",
     "public/data/tuna_carrier_fleet_v1.json",
     "public/data/tuna_company_research_v1.json",
     "public/data/tuna_ocean_operators_v1.json",
@@ -1142,6 +1163,7 @@
    "components/market-understanding/MackerelIndustryDashboard.tsx",
    "components/market-understanding/PollockIndustryDashboard.tsx",
    "components/market-understanding/ShrimpIndustryDashboard.tsx",
+   "components/market-understanding/TunaAnatomyDashboard.tsx",
    "components/market-understanding/WhelkIndustryDashboard.tsx"
   ],
   "public/data/mackerel_industry_v1.json": [
@@ -1149,6 +1171,7 @@
    "components/market-understanding/MackerelIndustryDashboard.tsx",
    "components/market-understanding/PollockIndustryDashboard.tsx",
    "components/market-understanding/ShrimpIndustryDashboard.tsx",
+   "components/market-understanding/TunaAnatomyDashboard.tsx",
    "components/market-understanding/WhelkIndustryDashboard.tsx"
   ],
   "public/data/panofi/ghana_tuna_mirror.json": [
@@ -1184,6 +1207,7 @@
    "components/market-understanding/MackerelIndustryDashboard.tsx",
    "components/market-understanding/PollockIndustryDashboard.tsx",
    "components/market-understanding/ShrimpIndustryDashboard.tsx",
+   "components/market-understanding/TunaAnatomyDashboard.tsx",
    "components/market-understanding/WhelkIndustryDashboard.tsx"
   ],
   "public/data/shrimp_argentina.json": [
@@ -1191,6 +1215,7 @@
    "components/market-understanding/MackerelIndustryDashboard.tsx",
    "components/market-understanding/PollockIndustryDashboard.tsx",
    "components/market-understanding/ShrimpIndustryDashboard.tsx",
+   "components/market-understanding/TunaAnatomyDashboard.tsx",
    "components/market-understanding/WhelkIndustryDashboard.tsx"
   ],
   "public/data/shrimp_company_research_v1.json": [
@@ -1207,6 +1232,7 @@
    "components/market-understanding/MackerelIndustryDashboard.tsx",
    "components/market-understanding/PollockIndustryDashboard.tsx",
    "components/market-understanding/ShrimpIndustryDashboard.tsx",
+   "components/market-understanding/TunaAnatomyDashboard.tsx",
    "components/market-understanding/WhelkIndustryDashboard.tsx"
   ],
   "public/data/shrimp_real_data_v4.json": [
@@ -1214,6 +1240,7 @@
    "components/market-understanding/MackerelIndustryDashboard.tsx",
    "components/market-understanding/PollockIndustryDashboard.tsx",
    "components/market-understanding/ShrimpIndustryDashboard.tsx",
+   "components/market-understanding/TunaAnatomyDashboard.tsx",
    "components/market-understanding/WhelkIndustryDashboard.tsx"
   ],
   "public/data/squid_company_research_v1.json": [
@@ -1249,6 +1276,14 @@
    "components/market-understanding/SquidCharts.tsx",
    "components/market-understanding/SquidIndustryDashboard.tsx",
    "components/market-understanding/SquidWidgetView.tsx"
+  ],
+  "public/data/tuna_anatomy_v1.json": [
+   "components/market-understanding/CommodityCharts.tsx",
+   "components/market-understanding/MackerelIndustryDashboard.tsx",
+   "components/market-understanding/PollockIndustryDashboard.tsx",
+   "components/market-understanding/ShrimpIndustryDashboard.tsx",
+   "components/market-understanding/TunaAnatomyDashboard.tsx",
+   "components/market-understanding/WhelkIndustryDashboard.tsx"
   ],
   "public/data/tuna_carrier_fleet_v1.json": [
    "components/market-understanding/CompanyResearchTables.tsx",
@@ -1328,6 +1363,7 @@
    "components/market-understanding/MackerelIndustryDashboard.tsx",
    "components/market-understanding/PollockIndustryDashboard.tsx",
    "components/market-understanding/ShrimpIndustryDashboard.tsx",
+   "components/market-understanding/TunaAnatomyDashboard.tsx",
    "components/market-understanding/WhelkIndustryDashboard.tsx"
   ],
   "public/data/whelk_industry_v1.json": [
@@ -1335,6 +1371,7 @@
    "components/market-understanding/MackerelIndustryDashboard.tsx",
    "components/market-understanding/PollockIndustryDashboard.tsx",
    "components/market-understanding/ShrimpIndustryDashboard.tsx",
+   "components/market-understanding/TunaAnatomyDashboard.tsx",
    "components/market-understanding/WhelkIndustryDashboard.tsx"
   ]
  }

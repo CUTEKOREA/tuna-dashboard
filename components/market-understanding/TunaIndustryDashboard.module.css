@@ -122,6 +122,18 @@
   --mu-hover: rgba(15, 118, 110, 0.08);
 }
 
+.page[data-commodity='tuna-anatomy'] {
+  --mu-accent: #0c4a6e;
+  --mu-accent-deep: #082f49;
+  --mu-hover: rgba(12, 74, 110, 0.12);
+}
+
+:global([data-v3='light']) .page[data-commodity='tuna-anatomy'] {
+  --mu-accent: #0c4a6e;
+  --mu-accent-deep: #082f49;
+  --mu-hover: rgba(12, 74, 110, 0.08);
+}
+
 /* ─── 30초 브리핑 ─────────────────────────────────────────────── */
 
 .briefing {

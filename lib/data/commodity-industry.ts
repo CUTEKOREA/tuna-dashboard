@@ -16,6 +16,7 @@ import rawMackerel from '../../public/data/mackerel_industry_v1.json';
 import rawShrimp from '../../public/data/shrimp_industry_v1.json';
 import rawWhelk from '../../public/data/whelk_industry_v1.json';
 import rawPollock from '../../public/data/pollock_industry_v1.json';
+import rawTunaAnatomy from '../../public/data/tuna_anatomy_v1.json';
 
 interface Sectioned<T> {
   _meta: Record<string, unknown>;
@@ -239,4 +240,78 @@ export interface PollockData {
 
 export function getPollockIndustryData(): PollockData {
   return rawPollock as unknown as PollockData;
+}
+
+// ─── 참치 해부 ─────────────────────────────────────────────────────────────
+//
+// 축은 **잡아서 남에게 파는 생선**이다. 원양 선단·환적·수출 척추·판매 상대·국내 캔·수입·값·재무.
+// 정적 산출물이므로 텔레메트리는 STATIC 으로만 표기한다(L-09).
+
+/** 연도별 한 점. 한글 키 + 숫자 값. */
+export type TunaAnatomyPoint = Record<string, string | number | null>;
+
+export interface TunaAnatomyCountryRow {
+  국가: string;
+  어획량: number;
+  비중: number;
+}
+
+export interface TunaAnatomyCompanyRow {
+  회사: string;
+  선망2024: number;
+  연승2024: number;
+  선망2025: number;
+  연승2025: number;
+}
+
+export interface TunaAnatomyFleetRow {
+  회사: string;
+  척수: number;
+  선망: number;
+  연승: number;
+  총톤수: number;
+  평균선령: number;
+  '20년초과': number;
+}
+
+export interface TunaAnatomyPartnerBlock {
+  연도: number;
+  rows: { 국가: string; 톤: number; 비중: string | null; 단가: number | null }[];
+  대만: number;
+}
+
+export interface TunaAnatomyFinanceRow {
+  회사: string;
+  매출2024: number;
+  영업이익2024: number;
+  영업이익률2024: string;
+  매출2023: number;
+  영업이익2023: number;
+  매출2025H1: number;
+  영업이익2025H1: number;
+  기준: string;
+}
+
+export interface TunaAnatomyFcfRow {
+  연도: number;
+  FCF: number;
+  연결매출: number;
+  비중: string;
+}
+
+export interface TunaAnatomyData {
+  _meta: Record<string, unknown>;
+  세계어획: { _meta: Record<string, unknown>; 시계열: TunaAnatomyPoint[]; 국가: TunaAnatomyCountryRow[]; 한국어종2024: Record<string, number | null>; 한국해역2024: Record<string, number> };
+  한국생산: { _meta: Record<string, unknown>; 연도별: TunaAnatomyPoint[]; 월별: TunaAnatomyPoint[] };
+  선사: Sectioned<TunaAnatomyCompanyRow>;
+  선단: { _meta: Record<string, unknown>; rows: TunaAnatomyFleetRow[]; 선령분포: TunaAnatomyPoint[] };
+  교역: { _meta: Record<string, unknown>; 연도별: TunaAnatomyPoint[]; 원어수출상대: TunaAnatomyPartnerBlock[]; 캔세번분해: TunaAnatomyPoint[]; 필레수입2025: TunaAnatomyPoint[] };
+  캔: { _meta: Record<string, unknown>; 연도별: TunaAnatomyPoint[]; 공장별: TunaAnatomyPoint[] };
+  가격: { _meta: Record<string, unknown>; 방콕: TunaAnatomyPoint[]; 원화단가: TunaAnatomyPoint[] };
+  재무: { _meta: Record<string, unknown>; rows: TunaAnatomyFinanceRow[]; FCF: TunaAnatomyFcfRow[] };
+  환적: { _meta: Record<string, unknown>; PNA월별: TunaAnatomyPoint[] };
+}
+
+export function getTunaAnatomyData(): TunaAnatomyData {
+  return rawTunaAnatomy as unknown as TunaAnatomyData;
 }

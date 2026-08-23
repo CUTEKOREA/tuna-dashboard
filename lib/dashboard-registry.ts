@@ -51,6 +51,8 @@ export const DASHBOARD_MENU_CONFIGS = [
   { key: 'whelk-industry', title: '골뱅이', section: 'understanding', accent: 'amber', sidebar: { icon: 'Shell' } },
   { key: 'shrimp-industry', title: '새우', section: 'understanding', accent: 'teal', sidebar: { icon: 'Shrimp' } },
   { key: 'pollock-industry', title: '명태', section: 'understanding', accent: 'teal', sidebar: { icon: 'Snowflake' } },
+  // 같은 참치를 한국 쪽에서 본다. 「참치」는 세계 밸류체인, 「참치 해부」는 한국 원양·환적·판매 상대·캔.
+  { key: 'tuna-anatomy', title: '참치 해부', section: 'understanding', accent: 'cyan', sidebar: { icon: 'Ship' } },
   // 품목이 아니라 회사를 해부한다. 경쟁·조달 판단에 쓰는 자료라 「전략 분석」에 둔다.
   { key: 'company-anatomy', title: '기업 해부', section: 'strategy', accent: 'amber', sidebar: { icon: 'Factory', suffix: 'Company' } },
   { key: 'pork', title: '돼지고기', section: 'livestock', accent: 'cyan', sidebar: { icon: 'Hexagon', suffix: 'Pork' } },
@@ -183,6 +185,7 @@ export const DASHBOARD_PANEL_ORDER = [
   'whelk-industry',
   'shrimp-industry',
   'pollock-industry',
+  'tuna-anatomy',
   'company-anatomy',
 ] as const satisfies readonly ActiveMenu[];
 
@@ -195,6 +198,7 @@ const SIDEBAR_SECTION_KEYS: Record<DashboardSection, readonly ActiveMenu[]> = {
     'whelk-industry',
     'shrimp-industry',
     'pollock-industry',
+    'tuna-anatomy',
   ],
   fishery: [],
   strategy: [

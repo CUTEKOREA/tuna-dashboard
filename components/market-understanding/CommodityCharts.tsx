@@ -27,10 +27,12 @@ import { MACKEREL_ROLE } from '@/lib/mackerel-chart-colors';
 import { SHRIMP_ROLE } from '@/lib/shrimp-chart-colors';
 import { WHELK_ROLE } from '@/lib/whelk-chart-colors';
 import { POLLOCK_ROLE } from '@/lib/pollock-chart-colors';
+import { TUNA_ANATOMY_ROLE } from '@/lib/tuna-anatomy-chart-colors';
 import { getSmartRotation, truncateXAxis } from '@/lib/chart-standards';
 import type {
   MackerelData,
   PollockData,
+  TunaAnatomyData,
   ShrimpData,
   WhelkData,
 } from '@/lib/data/commodity-industry';
@@ -75,6 +77,11 @@ const PALETTE = {
     base: POLLOCK_ROLE.volume,
     highlight: POLLOCK_ROLE.highlight,
     second: POLLOCK_ROLE.second,
+  },
+  참치해부: {
+    base: TUNA_ANATOMY_ROLE.volume,
+    highlight: TUNA_ANATOMY_ROLE.highlight,
+    second: TUNA_ANATOMY_ROLE.second,
   },
 } as const;
 
@@ -1121,6 +1128,299 @@ export function PollockStockChart({ data }: { data: PollockData }) {
         <Bar dataKey="수입" name="월 수입 (톤)" fill={BASE} fillOpacity={0.4} isAnimationActive={animate} />
         <Line type="monotone" dataKey="재고" name="월말 재고 (톤)" stroke={HIGHLIGHT} strokeWidth={2.2} dot={false} isAnimationActive={animate} />
       </ComposedChart>
+    </SafeResponsiveContainer>
+  );
+}
+
+
+// ─── 참치 해부 ─────────────────────────────────────────────────────────────
+
+export function TunaAnatomyWorldChart({ data }: { data: TunaAnatomyData }) {
+  const animate = !useReducedMotion();
+  const { base: BASE, highlight: HIGHLIGHT } = PALETTE.참치해부;
+  return (
+    <SafeResponsiveContainer width="100%" height={300}>
+      <ComposedChart data={data.세계어획.시계열} margin={MARGIN}>
+        {grid}
+        <XAxis dataKey="연도" {...AXIS} interval="preserveStartEnd" minTickGap={24} />
+        <YAxis yAxisId="t" {...AXIS} tickFormatter={(v: number) => `${Math.round(v / 1000)}천`} />
+        <YAxis yAxisId="pct" orientation="right" {...AXIS} domain={[0, 10]} tickFormatter={(v: number) => `${v}%`} />
+        <Tooltip content={<Tip />} />
+        {legend}
+        <Bar yAxisId="t" dataKey="한국" name="한국 어획 (톤)" fill={BASE} isAnimationActive={animate} />
+        <Line yAxisId="pct" type="monotone" dataKey="점유" name="세계 점유 (%)" stroke={HIGHLIGHT} strokeWidth={2} dot={false} isAnimationActive={animate} />
+      </ComposedChart>
+    </SafeResponsiveContainer>
+  );
+}
+
+export function TunaAnatomyCountryChart({ data }: { data: TunaAnatomyData }) {
+  const animate = !useReducedMotion();
+  const { base: BASE, highlight: HIGHLIGHT } = PALETTE.참치해부;
+  const rows = data.세계어획.국가;
+  return (
+    <SafeResponsiveContainer width="100%" height={320}>
+      <BarChart data={rows} margin={MARGIN} layout="vertical">
+        {grid}
+        <XAxis type="number" {...AXIS} tickFormatter={(v: number) => `${Math.round(v / 1000)}천`} />
+        <YAxis type="category" dataKey="국가" {...AXIS} width={92} />
+        <Tooltip content={<Tip unit=" 톤" />} />
+        <Bar dataKey="어획량" name="어획량 (톤)" isAnimationActive={animate}>
+          {rows.map((r) => (
+            <Cell key={r.국가} fill={r.국가 === '한국' ? HIGHLIGHT : BASE} />
+          ))}
+        </Bar>
+      </BarChart>
+    </SafeResponsiveContainer>
+  );
+}
+
+export function TunaAnatomyProductionChart({ data }: { data: TunaAnatomyData }) {
+  const animate = !useReducedMotion();
+  const { base: BASE, second: SECOND } = PALETTE.참치해부;
+  const rows = data.한국생산.연도별.map((r) => ({ ...r, 연도: String(r.연도) }));
+  return (
+    <SafeResponsiveContainer width="100%" height={280}>
+      <BarChart data={rows} margin={MARGIN}>
+        {grid}
+        <XAxis dataKey="연도" {...AXIS} />
+        <YAxis {...AXIS} tickFormatter={(v: number) => `${Math.round(v / 1000)}천`} />
+        <Tooltip content={<Tip unit=" 톤" />} />
+        {legend}
+        <Bar dataKey="선망" name="참치선망 (톤)" fill={BASE} isAnimationActive={animate} />
+        <Bar dataKey="연승" name="참치연승 (톤)" fill={SECOND} isAnimationActive={animate} />
+      </BarChart>
+    </SafeResponsiveContainer>
+  );
+}
+
+export function TunaAnatomyCompanyChart({ data }: { data: TunaAnatomyData }) {
+  const animate = !useReducedMotion();
+  const { base: BASE, highlight: HIGHLIGHT } = PALETTE.참치해부;
+  const rows = data.선사.rows.filter((r) => r.선망2024 > 0 || r.선망2025 > 0);
+  return (
+    <SafeResponsiveContainer width="100%" height={260}>
+      <BarChart data={rows} margin={MARGIN}>
+        {grid}
+        <XAxis dataKey="회사" {...AXIS} />
+        <YAxis {...AXIS} tickFormatter={(v: number) => `${Math.round(v / 1000)}천`} />
+        <Tooltip content={<Tip unit=" 톤" />} />
+        {legend}
+        <Bar dataKey="선망2024" name="2024 선망 (톤)" fill={BASE} isAnimationActive={animate} />
+        <Bar dataKey="선망2025" name="2025 선망 (톤)" fill={HIGHLIGHT} isAnimationActive={animate} />
+      </BarChart>
+    </SafeResponsiveContainer>
+  );
+}
+
+export function TunaAnatomyFleetAgeChart({ data }: { data: TunaAnatomyData }) {
+  const animate = !useReducedMotion();
+  const { base: BASE, second: SECOND } = PALETTE.참치해부;
+  return (
+    <SafeResponsiveContainer width="100%" height={260}>
+      <BarChart data={data.선단.선령분포} margin={MARGIN}>
+        {grid}
+        <XAxis dataKey="구간" {...AXIS} />
+        <YAxis {...AXIS} />
+        <Tooltip content={<Tip unit=" 척" />} />
+        {legend}
+        <Bar dataKey="선망" name="선망선 (척)" fill={BASE} isAnimationActive={animate} />
+        <Bar dataKey="연승" name="연승선 (척)" fill={SECOND} isAnimationActive={animate} />
+      </BarChart>
+    </SafeResponsiveContainer>
+  );
+}
+
+export function TunaAnatomyTransshipChart({ data }: { data: TunaAnatomyData }) {
+  const animate = !useReducedMotion();
+  const { base: BASE } = PALETTE.참치해부;
+  return (
+    <SafeResponsiveContainer width="100%" height={260}>
+      <BarChart data={data.환적.PNA월별} margin={MARGIN}>
+        {grid}
+        <XAxis dataKey="월" {...AXIS} interval={0} angle={-45} textAnchor="end" height={56} tick={{ fill: 'var(--mu-axis)', fontSize: 10 }} />
+        <YAxis {...AXIS} tickFormatter={(v: number) => `${Math.round(v / 1000)}천`} />
+        <Tooltip content={<Tip unit=" 톤" />} />
+        <Bar dataKey="환적" name="PNA 수역 선망 환적 (톤)" fill={BASE} isAnimationActive={animate} />
+      </BarChart>
+    </SafeResponsiveContainer>
+  );
+}
+
+export function TunaAnatomyExportChainChart({ data }: { data: TunaAnatomyData }) {
+  const animate = !useReducedMotion();
+  const { base: BASE, highlight: HIGHLIGHT, second: SECOND } = PALETTE.참치해부;
+  const rows = data.교역.연도별.map((r) => ({ ...r, 연도: String(r.연도) }));
+  return (
+    <SafeResponsiveContainer width="100%" height={280}>
+      <BarChart data={rows} margin={MARGIN}>
+        {grid}
+        <XAxis dataKey="연도" {...AXIS} />
+        <YAxis {...AXIS} tickFormatter={(v: number) => `${Math.round(v / 1000)}천`} />
+        <Tooltip content={<Tip unit=" 톤" />} />
+        {legend}
+        <Bar dataKey="원어수출" name="냉동 통마리 수출 (톤)" fill={BASE} isAnimationActive={animate} />
+        <Bar dataKey="필레수출" name="필레 수출 (톤)" fill={SECOND} isAnimationActive={animate} />
+        <Bar dataKey="캔수출" name="캔 수출 (톤)" fill={HIGHLIGHT} isAnimationActive={animate} />
+      </BarChart>
+    </SafeResponsiveContainer>
+  );
+}
+
+export function TunaAnatomyPartnerChart({ data }: { data: TunaAnatomyData }) {
+  const animate = !useReducedMotion();
+  const { base: BASE, highlight: HIGHLIGHT } = PALETTE.참치해부;
+  const b24 = data.교역.원어수출상대.find((b) => b.연도 === 2024);
+  const b25 = data.교역.원어수출상대.find((b) => b.연도 === 2025);
+  const names = Array.from(new Set([...(b24?.rows ?? []).map((r) => r.국가), ...(b25?.rows ?? []).map((r) => r.국가)])).slice(0, 9);
+  const rows = names.map((n) => ({ 국가: n, '2024': b24?.rows.find((r) => r.국가 === n)?.톤 ?? 0, '2025': b25?.rows.find((r) => r.국가 === n)?.톤 ?? 0 }));
+  return (
+    <SafeResponsiveContainer width="100%" height={280}>
+      <BarChart data={rows} margin={MARGIN} layout="vertical">
+        {grid}
+        <XAxis type="number" {...AXIS} tickFormatter={(v: number) => `${Math.round(v / 1000)}천`} />
+        <YAxis type="category" dataKey="국가" {...AXIS} width={88} />
+        <Tooltip content={<Tip unit=" 톤" />} />
+        {legend}
+        <Bar dataKey="2024" name="2024 (톤)" fill={BASE} isAnimationActive={animate} />
+        <Bar dataKey="2025" name="2025 (톤)" fill={HIGHLIGHT} isAnimationActive={animate} />
+      </BarChart>
+    </SafeResponsiveContainer>
+  );
+}
+
+export function TunaAnatomyFcfChart({ data }: { data: TunaAnatomyData }) {
+  const animate = !useReducedMotion();
+  const { base: BASE, highlight: HIGHLIGHT } = PALETTE.참치해부;
+  const rows = data.재무.FCF.map((r) => ({ ...r, 연도: String(r.연도), 비중값: parseFloat(r.비중) }));
+  return (
+    <SafeResponsiveContainer width="100%" height={280}>
+      <ComposedChart data={rows} margin={MARGIN}>
+        {grid}
+        <XAxis dataKey="연도" {...AXIS} />
+        <YAxis yAxisId="krw" {...AXIS} tickFormatter={(v: number) => `${v.toLocaleString('ko-KR')}`} />
+        <YAxis yAxisId="pct" orientation="right" {...AXIS} domain={[0, 60]} tickFormatter={(v: number) => `${v}%`} />
+        <Tooltip content={<Tip />} />
+        {legend}
+        <Bar yAxisId="krw" dataKey="연결매출" name="연결 매출 (억원)" fill={BASE} fillOpacity={0.35} isAnimationActive={animate} />
+        <Bar yAxisId="krw" dataKey="FCF" name="FCF 매출 (억원)" fill={BASE} isAnimationActive={animate} />
+        <Line yAxisId="pct" type="monotone" dataKey="비중값" name="FCF 비중 (%)" stroke={HIGHLIGHT} strokeWidth={2} dot isAnimationActive={animate} />
+      </ComposedChart>
+    </SafeResponsiveContainer>
+  );
+}
+
+export function TunaAnatomyCanBrandChart({ data }: { data: TunaAnatomyData }) {
+  const animate = !useReducedMotion();
+  const { base: BASE, highlight: HIGHLIGHT, second: SECOND } = PALETTE.참치해부;
+  const rows = data.캔.연도별.map((r) => ({ ...r, 연도: String(r.연도) }));
+  return (
+    <SafeResponsiveContainer width="100%" height={280}>
+      <BarChart data={rows} margin={MARGIN}>
+        {grid}
+        <XAxis dataKey="연도" {...AXIS} />
+        <YAxis {...AXIS} tickFormatter={(v: number) => `${Math.round(v / 1000)}천`} />
+        <Tooltip content={<Tip unit=" 톤" />} />
+        {legend}
+        <Bar dataKey="동원" name="동원 (톤)" stackId="b" fill={BASE} isAnimationActive={animate} />
+        <Bar dataKey="사조" name="사조 (톤)" stackId="b" fill={SECOND} isAnimationActive={animate} />
+        <Bar dataKey="오뚜기" name="오뚜기 (톤)" stackId="b" fill={HIGHLIGHT} isAnimationActive={animate} />
+        <Bar dataKey="그 밖" name="그 밖 (톤)" stackId="b" fill="var(--mu-axis)" isAnimationActive={animate} />
+      </BarChart>
+    </SafeResponsiveContainer>
+  );
+}
+
+export function TunaAnatomyImportChainChart({ data }: { data: TunaAnatomyData }) {
+  const animate = !useReducedMotion();
+  const { base: BASE, highlight: HIGHLIGHT, second: SECOND } = PALETTE.참치해부;
+  const rows = data.교역.연도별.map((r) => ({ ...r, 연도: String(r.연도) }));
+  return (
+    <SafeResponsiveContainer width="100%" height={280}>
+      <BarChart data={rows} margin={MARGIN}>
+        {grid}
+        <XAxis dataKey="연도" {...AXIS} />
+        <YAxis {...AXIS} tickFormatter={(v: number) => `${Math.round(v / 1000)}천`} />
+        <Tooltip content={<Tip unit=" 톤" />} />
+        {legend}
+        <Bar dataKey="원어수입" name="냉동 통마리 수입 (톤)" fill={BASE} isAnimationActive={animate} />
+        <Bar dataKey="필레수입" name="필레 수입 (톤)" fill={SECOND} isAnimationActive={animate} />
+        <Bar dataKey="캔수입" name="캔·조제품 수입 (톤)" fill={HIGHLIGHT} isAnimationActive={animate} />
+      </BarChart>
+    </SafeResponsiveContainer>
+  );
+}
+
+export function TunaAnatomyCanSplitChart({ data }: { data: TunaAnatomyData }) {
+  const animate = !useReducedMotion();
+  const { base: BASE, highlight: HIGHLIGHT } = PALETTE.참치해부;
+  const rows = data.교역.캔세번분해.map((r) => ({ ...r, 연도: String(r.연도) }));
+  return (
+    <SafeResponsiveContainer width="100%" height={260}>
+      <BarChart data={rows} margin={MARGIN}>
+        {grid}
+        <XAxis dataKey="연도" {...AXIS} />
+        <YAxis {...AXIS} tickFormatter={(v: number) => `${Math.round(v / 1000)}천`} />
+        <Tooltip content={<Tip unit=" 톤" />} />
+        {legend}
+        <Bar dataKey="캔" name="밀폐용기 캔 (-10xx, 톤)" stackId="c" fill={BASE} isAnimationActive={animate} />
+        <Bar dataKey="기타조제품" name="밀폐용기 아닌 조제품 (-9000, 톤)" stackId="c" fill={HIGHLIGHT} isAnimationActive={animate} />
+      </BarChart>
+    </SafeResponsiveContainer>
+  );
+}
+
+export function TunaAnatomyFinanceChart({ data }: { data: TunaAnatomyData }) {
+  const animate = !useReducedMotion();
+  const { base: BASE, highlight: HIGHLIGHT } = PALETTE.참치해부;
+  const rows = data.재무.rows.filter((r) => r.회사 !== '동원산업' && r.회사 !== '동원F&B' && r.회사 !== '오뚜기' && r.회사 !== '사조대림');
+  return (
+    <SafeResponsiveContainer width="100%" height={280}>
+      <ComposedChart data={rows} margin={MARGIN}>
+        {grid}
+        <XAxis dataKey="회사" {...AXIS} />
+        <YAxis yAxisId="rev" {...AXIS} tickFormatter={(v: number) => `${v.toLocaleString('ko-KR')}`} />
+        <YAxis yAxisId="op" orientation="right" {...AXIS} />
+        <Tooltip content={<Tip unit=" 억원" />} />
+        {legend}
+        <Bar yAxisId="rev" dataKey="매출2024" name="2024 매출 (억원)" fill={BASE} fillOpacity={0.5} isAnimationActive={animate} />
+        <Bar yAxisId="op" dataKey="영업이익2024" name="2024 영업이익 (억원)" fill={HIGHLIGHT} isAnimationActive={animate} />
+      </ComposedChart>
+    </SafeResponsiveContainer>
+  );
+}
+
+export function TunaAnatomyBangkokChart({ data }: { data: TunaAnatomyData }) {
+  const animate = !useReducedMotion();
+  const { highlight: HIGHLIGHT } = PALETTE.참치해부;
+  return (
+    <SafeResponsiveContainer width="100%" height={260}>
+      <LineChart data={data.가격.방콕} margin={MARGIN}>
+        {grid}
+        <XAxis dataKey="월" {...AXIS} interval={2} angle={-45} textAnchor="end" height={56} tick={{ fill: 'var(--mu-axis)', fontSize: 10 }} />
+        <YAxis {...AXIS} domain={[1000, 2000]} />
+        <Tooltip content={<Tip unit=" 달러/톤" />} />
+        <Line type="monotone" dataKey="방콕" name="방콕 가다랑어 (달러/톤)" stroke={HIGHLIGHT} strokeWidth={2.2} dot isAnimationActive={animate} />
+      </LineChart>
+    </SafeResponsiveContainer>
+  );
+}
+
+export function TunaAnatomyUnitPriceChart({ data }: { data: TunaAnatomyData }) {
+  const animate = !useReducedMotion();
+  const { base: BASE, highlight: HIGHLIGHT, second: SECOND } = PALETTE.참치해부;
+  return (
+    <SafeResponsiveContainer width="100%" height={260}>
+      <LineChart data={data.가격.원화단가} margin={MARGIN}>
+        {grid}
+        <XAxis dataKey="월" {...AXIS} interval={2} angle={-45} textAnchor="end" height={56} tick={{ fill: 'var(--mu-axis)', fontSize: 10 }} />
+        <YAxis {...AXIS} tickFormatter={(v: number) => `${v.toLocaleString('ko-KR')}`} />
+        <Tooltip content={<Tip unit=" 원/kg" />} />
+        {legend}
+        <Line type="monotone" dataKey="가다랑어" name="가다랑어 (원/kg)" stroke={BASE} strokeWidth={2} dot={false} isAnimationActive={animate} />
+        <Line type="monotone" dataKey="황다랑어" name="황다랑어 (원/kg)" stroke={SECOND} strokeWidth={2} dot={false} isAnimationActive={animate} />
+        <Line type="monotone" dataKey="눈다랑어" name="눈다랑어 (원/kg)" stroke={HIGHLIGHT} strokeWidth={2} dot={false} isAnimationActive={animate} />
+      </LineChart>
     </SafeResponsiveContainer>
   );
 }

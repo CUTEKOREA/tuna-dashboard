@@ -27,6 +27,7 @@ import WhelkIndustryDashboard, {
 import PollockIndustryDashboard, {
   POLLOCK_CHART_SLOTS,
 } from '../components/market-understanding/PollockIndustryDashboard';
+import TunaAnatomyDashboard, { TUNA_ANATOMY_CHART_SLOTS } from '../components/market-understanding/TunaAnatomyDashboard';
 import type {
   BriefingPoint,
   ChartSlot,
@@ -58,6 +59,11 @@ import {
   POLLOCK_NARRATIVES,
   POLLOCK_SOURCE_NOTES,
 } from '../lib/pollock-industry-content';
+import {
+  TUNA_ANATOMY_BRIEFING_POINTS,
+  TUNA_ANATOMY_NARRATIVES,
+  TUNA_ANATOMY_SOURCE_NOTES,
+} from '../lib/tuna-anatomy-content';
 
 interface Page {
   이름: string;
@@ -100,6 +106,14 @@ const PAGES: Page[] = [
     briefing: POLLOCK_BRIEFING_POINTS,
     notes: POLLOCK_SOURCE_NOTES,
     render: () => React.createElement(PollockIndustryDashboard),
+  },
+  {
+    이름: '참치 해부',
+    narratives: TUNA_ANATOMY_NARRATIVES,
+    slots: TUNA_ANATOMY_CHART_SLOTS,
+    briefing: TUNA_ANATOMY_BRIEFING_POINTS,
+    notes: TUNA_ANATOMY_SOURCE_NOTES,
+    render: () => React.createElement(TunaAnatomyDashboard),
   },
 ];
 
@@ -188,7 +202,7 @@ describe('시장 이해 3품목 — 렌더', () => {
     const html = renderToStaticMarkup(page.render());
     expect(html).toContain('30초 브리핑');
     expect(html).toContain('출처와 한계');
-    expect(html).toMatch(/data-commodity="(mackerel|whelk|shrimp|pollock)"/);
+    expect(html).toMatch(/data-commodity="(mackerel|whelk|shrimp|pollock|tuna-anatomy)"/);
   });
 
   it('새우 01단계는 차트 둘을 근거 블록에 둔다', () => {
@@ -242,6 +256,7 @@ describe('시장 이해 3품목 — 렌더', () => {
     expect(css).toContain("data-commodity='whelk'");
     expect(css).toContain("data-commodity='shrimp'");
     expect(css).toContain("data-commodity='pollock'");
+    expect(css).toContain("data-commodity='tuna-anatomy'");
   });
 
   it('캡션 설명은 세로 flex-basis 로 부풀지 않는다', () => {
