@@ -1,3 +1,13 @@
+> 🐟 **2026-08-23 20:10 KST — 「참치 해부」 페이지 추가 (시장 이해, key `tuna-anatomy`) — 로컬 검증 완료, 미배포** [Claude]:
+> - 보고서 「한국 참치 산업 해부」(Drive `tuna/8_한국_참치_산업_해부/`, 15절+부록, 문체·사실 감사·Grok 반증·Codex 검산 반영본)의 15절을 단계 15개로 옮겼다. 기존 「참치」(세계 밸류체인 7단계)는 그대로 두고 한국 렌즈 페이지를 따로 세웠다 — 명태(#744)와 같은 골격(`CommodityIndustryDashboard`).
+> - `scripts/build_tuna_anatomy_data.py` → `public/data/tuna_anatomy_v1.json`(34KB): FAO 7종 어획 1970~2024·상위 12개국, OFIS 선망·연승 2019~2025, 협회 회사별 2024·2025(**2025년 표를 2024년으로 읽었던 오인 정정 반영**), 선단 선령 분포, 관세청 3사슬 2019~2026.07 + 1604.14 10자리 캔/로인 분해, 식약처 I0300 브랜드별 캔, 방콕 가다랑어 월별·원화 단가, DART 10사·신라 FCF 7년, PNA 환적 월별. 입력은 Drive `02_출처원본`, 폴백 `/tmp/kr_tuna/src`.
+> - 차트 14개, 브리핑 8줄, 출처 주의 6줄. 낫표 참조 가드·차트 개별 렌더·STATIC 텔레메트리 테스트 통과. tsc 0 · vitest 146 files / 1,138 passed · lineage 재생성(widgets 109).
+> - 브랜치 `tuna/anatomy`(worktree `/tmp/ca6`) commit `eea37a29`. **push·배포는 사용자 「배포」 명시 후.**
+> - 보고서 쪽 남은 것: humanize-korean strict 윤문(진행 중, `/tmp/kr_tuna/_workspace/2026-08-23-001`) → 재주입 → 관문 → Drive 재발행; 표지 사진(Grok Imagine 수동). 정보공개청구 7건 접수(해수부 17401770·17401775·17401777 / 식약처 17401988 / 관세청 17401994 / 국가데이터처 17401992 / aT 17401995).
+> - **다음 단계**: 「배포」 지시 시 `git push origin tuna/anatomy:main`(pre-push 빌드 게이트) → Vercel READY → 라이브 `/`에서 사이드바 「참치 해부」 확인.
+>
+> 마지막 업데이트: 2026-08-23 20:10 KST [Claude]
+
 > 🚀 **2026-08-23 16:18 KST — HIKARI 1 8/23 하역 일일보고 라이브 배포 완료** [Codex]:
 > - PR [#746](https://github.com/CUTEKOREA/tuna-dashboard/pull/746)을 Preview/App/Vercel 3/3 checks 성공 뒤 squash merge했다. main commit은 `f30a3167b30b086d9885efa5b9d05b15414b4a27`, PR App Quality Gate는 `32624594773`, main gate는 `32624785764`이며 둘 다 전체 verify와 하역 브라우저 acceptance를 통과했다.
 > - Vercel Production `dpl_HzRbBzErhBqBByHZbj1fe8UxaLEF`(GitHub deployment `6045452278`)가 READY이며 `https://leedonggun.co.kr` alias·`icn1`에 연결됐다. GitHub Production deployment SHA도 main commit과 일치한다.
