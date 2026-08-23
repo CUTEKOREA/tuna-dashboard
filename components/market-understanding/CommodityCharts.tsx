@@ -26,9 +26,11 @@ import { CHART_RANK } from '@/lib/chart-palette';
 import { MACKEREL_ROLE } from '@/lib/mackerel-chart-colors';
 import { SHRIMP_ROLE } from '@/lib/shrimp-chart-colors';
 import { WHELK_ROLE } from '@/lib/whelk-chart-colors';
+import { POLLOCK_ROLE } from '@/lib/pollock-chart-colors';
 import { getSmartRotation, truncateXAxis } from '@/lib/chart-standards';
 import type {
   MackerelData,
+  PollockData,
   ShrimpData,
   WhelkData,
 } from '@/lib/data/commodity-industry';
@@ -68,6 +70,11 @@ const PALETTE = {
     base: SHRIMP_ROLE.volume,
     highlight: SHRIMP_ROLE.highlight,
     second: SHRIMP_ROLE.second,
+  },
+  명태: {
+    base: POLLOCK_ROLE.volume,
+    highlight: POLLOCK_ROLE.highlight,
+    second: POLLOCK_ROLE.second,
   },
 } as const;
 
@@ -985,6 +992,135 @@ export function MackerelSeriesUnitChart() {
           ))}
         </Bar>
       </BarChart>
+    </SafeResponsiveContainer>
+  );
+}
+
+// ─── 명태 ──────────────────────────────────────────────────────────────────
+
+/** 세계 어획 — 러시아·미국 두 줄이 전부이고 한국은 바닥에 붙어 있다. */
+export function PollockWorldChart({ data }: { data: PollockData }) {
+  const animate = !useReducedMotion();
+  const { base: BASE, highlight: HIGHLIGHT, second: SECOND } = PALETTE.명태;
+  return (
+    <SafeResponsiveContainer width="100%" height={300}>
+      <LineChart data={data.세계어획.시계열} margin={MARGIN}>
+        {grid}
+        <XAxis dataKey="연도" {...AXIS} interval="preserveStartEnd" minTickGap={24} />
+        <YAxis {...AXIS} tickFormatter={(v: number) => `${Math.round(v / 1e6 * 10) / 10}백만`} />
+        <Tooltip content={<Tip unit=" 톤" />} />
+        {legend}
+        <Line type="monotone" dataKey="세계" name="세계 (톤)" stroke={BASE} strokeWidth={2.4} dot={false} isAnimationActive={animate} />
+        <Line type="monotone" dataKey="러시아" name="러시아 (톤)" stroke={HIGHLIGHT} strokeWidth={2} dot={false} isAnimationActive={animate} />
+        <Line type="monotone" dataKey="미국" name="미국 (톤)" stroke={SECOND} strokeWidth={2} dot={false} isAnimationActive={animate} />
+        <Line type="monotone" dataKey="한국" name="한국 (톤)" stroke="var(--mu-axis)" strokeWidth={1.6} dot={false} isAnimationActive={animate} />
+      </LineChart>
+    </SafeResponsiveContainer>
+  );
+}
+
+/** 한·러 할당과 실제 어획 — 받은 만큼 다 잡는다. */
+export function PollockQuotaChart({ data }: { data: PollockData }) {
+  const animate = !useReducedMotion();
+  const { base: BASE, highlight: HIGHLIGHT } = PALETTE.명태;
+  const rows = data.원양할당.rows.map((r) => ({ ...r, 연도: String(r.연도) }));
+  return (
+    <SafeResponsiveContainer width="100%" height={280}>
+      <ComposedChart data={rows} margin={MARGIN}>
+        {grid}
+        <XAxis dataKey="연도" {...AXIS} />
+        <YAxis yAxisId="t" {...AXIS} tickFormatter={(v: number) => `${Math.round(v / 1000)}천`} />
+        <YAxis yAxisId="usd" orientation="right" {...AXIS} domain={[300, 450]} />
+        <Tooltip content={<Tip />} />
+        {legend}
+        <Bar yAxisId="t" dataKey="할당" name="할당 (톤)" fill={BASE} fillOpacity={0.35} isAnimationActive={animate} />
+        <Bar yAxisId="t" dataKey="어획" name="어획 (톤)" fill={BASE} isAnimationActive={animate} />
+        <Line yAxisId="usd" type="monotone" dataKey="입어료" name="입어료 (달러/톤)" stroke={HIGHLIGHT} strokeWidth={2} dot isAnimationActive={animate} />
+      </ComposedChart>
+    </SafeResponsiveContainer>
+  );
+}
+
+/** 전용 세번별 수입 물량 — 동태가 줄고 연육이 는다. */
+export function PollockImportMixChart({ data }: { data: PollockData }) {
+  const animate = !useReducedMotion();
+  const { base: BASE, highlight: HIGHLIGHT, second: SECOND } = PALETTE.명태;
+  const rows = data.수입세번.rows.map((r) => ({ ...r, 연도: String(r.연도) }));
+  return (
+    <SafeResponsiveContainer width="100%" height={280}>
+      <BarChart data={rows} margin={MARGIN}>
+        {grid}
+        <XAxis dataKey="연도" {...AXIS} />
+        <YAxis {...AXIS} tickFormatter={(v: number) => `${Math.round(v / 1000)}천`} />
+        <Tooltip content={<Tip unit=" 톤" />} />
+        {legend}
+        <Bar dataKey="동태_물량" name="동태" stackId="a" fill={HIGHLIGHT} isAnimationActive={animate} />
+        <Bar dataKey="연육_물량" name="연육" stackId="a" fill={SECOND} isAnimationActive={animate} />
+        <Bar dataKey="필렛_물량" name="필렛" stackId="a" fill={BASE} isAnimationActive={animate} />
+        <Bar dataKey="명란_물량" name="명란" stackId="a" fill={BASE} fillOpacity={0.6} isAnimationActive={animate} />
+        <Bar dataKey="북어_물량" name="북어" stackId="a" fill={BASE} fillOpacity={0.35} isAnimationActive={animate} />
+      </BarChart>
+    </SafeResponsiveContainer>
+  );
+}
+
+/** 수입 원산지 — 러시아 하나가 8할이다. */
+export function PollockOriginChart({ data }: { data: PollockData }) {
+  const animate = !useReducedMotion();
+  const { base: BASE, highlight: HIGHLIGHT } = PALETTE.명태;
+  const rows = data.수입원산지.rows;
+  return (
+    <SafeResponsiveContainer width="100%" height={260}>
+      <BarChart data={rows} margin={MARGIN} layout="vertical">
+        {grid}
+        <XAxis type="number" {...AXIS} tickFormatter={(v: number) => `${v}%`} />
+        <YAxis type="category" dataKey="원산지" {...AXIS} width={64} />
+        <Tooltip content={<Tip unit="%" />} />
+        <Bar dataKey="비중" name="수입액 비중 (%)" isAnimationActive={animate}>
+          {rows.map((r) => (
+            <Cell key={r.원산지} fill={r.원산지 === '러시아' ? HIGHLIGHT : BASE} />
+          ))}
+        </Bar>
+      </BarChart>
+    </SafeResponsiveContainer>
+  );
+}
+
+/** 가공 품목별 생산량 — 명란젓·코다리·황태가 본체이고 연육은 거의 수입이다. */
+export function PollockProcessingChart({ data }: { data: PollockData }) {
+  const animate = !useReducedMotion();
+  const { base: BASE, highlight: HIGHLIGHT, second: SECOND } = PALETTE.명태;
+  return (
+    <SafeResponsiveContainer width="100%" height={280}>
+      <BarChart data={data.가공품목.rows} margin={MARGIN}>
+        {grid}
+        <XAxis dataKey="품목" {...AXIS} />
+        <YAxis {...AXIS} tickFormatter={(v: number) => `${Math.round(v / 1000)}천`} />
+        <Tooltip content={<Tip unit=" 톤" />} />
+        {legend}
+        <Bar dataKey="2023" name="2023 (톤)" fill={BASE} fillOpacity={0.45} isAnimationActive={animate} />
+        <Bar dataKey="2024" name="2024 (톤)" fill={SECOND} isAnimationActive={animate} />
+        <Bar dataKey="2025" name="2025 (톤)" fill={HIGHLIGHT} isAnimationActive={animate} />
+      </BarChart>
+    </SafeResponsiveContainer>
+  );
+}
+
+/** 월말 재고와 수입 — 2026년 여름의 급감이 보인다. */
+export function PollockStockChart({ data }: { data: PollockData }) {
+  const animate = !useReducedMotion();
+  const { base: BASE, highlight: HIGHLIGHT } = PALETTE.명태;
+  return (
+    <SafeResponsiveContainer width="100%" height={280}>
+      <ComposedChart data={data.재고.rows} margin={MARGIN}>
+        {grid}
+        <XAxis dataKey="월" {...AXIS} interval="preserveStartEnd" minTickGap={28} />
+        <YAxis {...AXIS} tickFormatter={(v: number) => `${Math.round(v / 1000)}천`} />
+        <Tooltip content={<Tip unit=" 톤" />} />
+        {legend}
+        <Bar dataKey="수입" name="월 수입 (톤)" fill={BASE} fillOpacity={0.4} isAnimationActive={animate} />
+        <Line type="monotone" dataKey="재고" name="월말 재고 (톤)" stroke={HIGHLIGHT} strokeWidth={2.2} dot={false} isAnimationActive={animate} />
+      </ComposedChart>
     </SafeResponsiveContainer>
   );
 }

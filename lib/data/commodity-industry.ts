@@ -15,6 +15,7 @@
 import rawMackerel from '../../public/data/mackerel_industry_v1.json';
 import rawShrimp from '../../public/data/shrimp_industry_v1.json';
 import rawWhelk from '../../public/data/whelk_industry_v1.json';
+import rawPollock from '../../public/data/pollock_industry_v1.json';
 
 interface Sectioned<T> {
   _meta: Record<string, unknown>;
@@ -185,4 +186,57 @@ export function getWhelkIndustryData(): WhelkData {
 /** 새우 — 양식 대 자연산이 축이다. */
 export function getShrimpIndustryData(): ShrimpData {
   return SHRIMP;
+}
+
+// ─── 명태 ──────────────────────────────────────────────────────────────────
+// 축은 「잡지 않고 먹는 생선」 — 원양 할당 한 장과 수입 제품 구성이다.
+
+export type PollockWorldPoint = Record<string, string | number>;
+
+export interface PollockWorldCountryRow {
+  국가: string;
+  어획량: number;
+  비중: number;
+}
+
+export interface PollockQuotaRow {
+  연도: number;
+  할당: number;
+  어획: number;
+  입어료: number;
+  비고?: string;
+}
+
+/** 전용 세번 연도별 — 2026 은 1~7월 누계라 연도 칸이 문자열이다 */
+export type PollockImportRow = Record<string, string | number>;
+
+export interface PollockOriginRow {
+  원산지: string;
+  수입액: number;
+  수입량: number;
+  비중: number;
+  단가: number;
+}
+
+export type PollockProcessingRow = Record<string, string | number>;
+
+export interface PollockStockRow {
+  월: string;
+  재고: number;
+  수입: number | null;
+  소비: number | null;
+}
+
+export interface PollockData {
+  _meta: Record<string, unknown>;
+  세계어획: { _meta: Record<string, unknown>; 시계열: PollockWorldPoint[]; 국가: PollockWorldCountryRow[] };
+  원양할당: Sectioned<PollockQuotaRow>;
+  수입세번: Sectioned<PollockImportRow>;
+  수입원산지: Sectioned<PollockOriginRow>;
+  가공품목: Sectioned<PollockProcessingRow>;
+  재고: Sectioned<PollockStockRow>;
+}
+
+export function getPollockIndustryData(): PollockData {
+  return rawPollock as unknown as PollockData;
 }

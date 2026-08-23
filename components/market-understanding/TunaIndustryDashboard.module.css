@@ -110,6 +110,18 @@
   --mu-hover: rgba(15, 118, 110, 0.08);
 }
 
+.page[data-commodity='pollock'] {
+  --mu-accent: #0f766e;
+  --mu-accent-deep: #115e59;
+  --mu-hover: rgba(15, 118, 110, 0.1);
+}
+
+:global([data-v3='light']) .page[data-commodity='pollock'] {
+  --mu-accent: #0f766e;
+  --mu-accent-deep: #115e59;
+  --mu-hover: rgba(15, 118, 110, 0.08);
+}
+
 /* ─── 30초 브리핑 ─────────────────────────────────────────────── */
 
 .briefing {
