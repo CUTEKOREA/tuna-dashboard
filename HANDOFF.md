@@ -1,3 +1,10 @@
+> 🐟 **2026-08-23 21:05 KST — 「참치 해부」 라이브 배포 완료** [Claude]:
+> - 사용자 「배포」 지시 후 `git push origin tuna/anatomy:main` → `ffac3424..69367755`. pre-push C-4 data import 175건 추적 확인·L-03 빌드 게이트 69초 통과. Vercel production deployment `FkmFsXgMTRqeBhYPGmt5v7HQFYpA` → GitHub commit status `success`.
+> - 라이브 확인(Aside, 로그인 세션): 사이드바 「시장 이해 › 참치 해부」 노출, KPI 332,602/5.63/199,711/80,374 표시, 30초 브리핑 8항, 단계 탭 15개, 02단계 차트 SVG 1·도형 59·캡션 「한국 참치 어획 1970~2024와 세계 점유 (톤·%)」 렌더. 콘솔 오류 패턴(오류/Error/undefined/NaN) 0.
+> - 함정 기록: `GH_TOKEN`·`GITHUB_TOKEN` 환경변수가 만료 토큰이라 keyring 로그인을 가려 첫 push 가 `Invalid username or token`으로 실패 → `env -u GH_TOKEN -u GITHUB_TOKEN git push` 로 통과. 셸 프로필의 두 변수를 지우거나 갱신할 것.
+>
+> 마지막 업데이트: 2026-08-23 21:05 KST [Claude]
+
 > 🐟 **2026-08-23 20:10 KST — 「참치 해부」 페이지 추가 (시장 이해, key `tuna-anatomy`) — 로컬 검증 완료, 미배포** [Claude]:
 > - 보고서 「한국 참치 산업 해부」(Drive `tuna/8_한국_참치_산업_해부/`, 15절+부록, 문체·사실 감사·Grok 반증·Codex 검산 반영본)의 15절을 단계 15개로 옮겼다. 기존 「참치」(세계 밸류체인 7단계)는 그대로 두고 한국 렌즈 페이지를 따로 세웠다 — 명태(#744)와 같은 골격(`CommodityIndustryDashboard`).
 > - `scripts/build_tuna_anatomy_data.py` → `public/data/tuna_anatomy_v1.json`(34KB): FAO 7종 어획 1970~2024·상위 12개국, OFIS 선망·연승 2019~2025, 협회 회사별 2024·2025(**2025년 표를 2024년으로 읽었던 오인 정정 반영**), 선단 선령 분포, 관세청 3사슬 2019~2026.07 + 1604.14 10자리 캔/로인 분해, 식약처 I0300 브랜드별 캔, 방콕 가다랑어 월별·원화 단가, DART 10사·신라 FCF 7년, PNA 환적 월별. 입력은 Drive `02_출처원본`, 폴백 `/tmp/kr_tuna/src`.
