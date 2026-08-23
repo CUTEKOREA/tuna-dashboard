@@ -7848,6 +7848,11 @@
      "narrativeFilled": true
     }
    ]
+  },
+  {
+   "key": "x04",
+   "title": "인수 이후의 플레이",
+   "widgets": []
   }
  ]
 }

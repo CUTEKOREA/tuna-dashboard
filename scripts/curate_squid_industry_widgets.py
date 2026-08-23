@@ -171,6 +171,8 @@ STAGES: list[dict] = [
         # 같은 근거가 두 논지를 받친다. _meta 의 「선별」은 게재 수(중복 포함)다.
         "widgets": ["C_import_concentration", "E_gate_status_board", "E_source_registry"],
     },
+    # 배포본 전용 시나리오 단계. 위젯 없이 서술만 붙는다 — 사슬·횡단 순서 검사를 위해 자리를 둔다.
+    {"key": "x04", "title": "인수 이후의 플레이", "pillar": "S4", "widgets": []},
 ]
 
 # ── 제목 손질 ────────────────────────────────────────────────────────

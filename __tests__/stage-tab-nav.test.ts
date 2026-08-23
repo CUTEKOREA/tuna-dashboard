@@ -21,8 +21,8 @@ import TunaIndustryDashboard from '@/components/market-understanding/TunaIndustr
 import WhelkIndustryDashboard from '@/components/market-understanding/WhelkIndustryDashboard';
 
 const DASHBOARDS = [
-  // 08 선박별(사내 자료) + 최종 보고서 이식 09~15 가 붙어 18단계다.
-  ['오징어', SquidIndustryDashboard, 18],
+  // 08 선박별(사내 자료) + 보고서 이식 09~15 + 배포본 전용 D 가 붙어 19단계다.
+  ['오징어', SquidIndustryDashboard, 19],
   ['참치', TunaIndustryDashboard, 10],
   ['새우', ShrimpIndustryDashboard, 7],
   ['고등어', MackerelIndustryDashboard, 6],
