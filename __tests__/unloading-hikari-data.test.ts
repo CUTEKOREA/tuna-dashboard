@@ -284,7 +284,7 @@ describe('HIKARI 1 Bangkok unloading plan and daily report', () => {
     expect(reports[0].quality).toContain('ISA/H4B1(N.STAR) 150 MT 08:00');
   });
 
-  it('publishes the source-backed August 24 discharge without inventing an August 25 plan', async () => {
+  it('publishes the source-backed August 24 discharge and the user-provided August 25 plan', async () => {
     const vessel = await loadHikari();
     const reports = vessel.timeline.filter((entry: { date: string }) => entry.date === '8/24');
 
@@ -303,7 +303,7 @@ describe('HIKARI 1 Bangkok unloading plan and daily report', () => {
         date: '8/25',
         reason: null,
         resumeDate: null,
-        plannedMt: null,
+        plannedMt: '400',
       },
     });
     expect(reports[0].allocations).toEqual([
@@ -335,6 +335,9 @@ describe('HIKARI 1 Bangkok unloading plan and daily report', () => {
     expect(reports[0].quality).toContain('원문 온도 표기는 #2-B ‘-21,22’ 및 #4-B ‘-23,23’(단위: ℃)');
     expect(reports[0].quality).toContain('REEFER TRUCK #1 12.910 MT');
     expect(reports[0].quality).toContain('TOTAL 26 TRUCKS');
+    expect(reports[0].quality).toContain('CMC/H1B1(N.STAR) 100 MT 08:00');
+    expect(reports[0].quality).toContain('GPZ/H2C1(S.SPRINTER) 150 MT 08:00');
+    expect(reports[0].quality).toContain('ISA/H4B1->3C1(MOAKONA+MOAMARI) 150 MT 08:00');
   });
 
   it('matches the FCF breakdown by species and source vessel', async () => {

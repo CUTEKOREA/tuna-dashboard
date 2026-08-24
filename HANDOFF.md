@@ -3,10 +3,10 @@
 > - 검산: `1,494.880 + 394.480 = 1,889.360 MT`, `2,929 - 1,889.360 = 1,039.640 MT`. 당일 CMC `116.230`, AAI `144.140`, ISA `134.110 MT`; N/STAR #3-B, S/SPR #2-B/#2-C, MOAMARI #4-B, 08:10~13:50, 총 26대다.
 > - 온도는 JPG 원문 부호를 그대로 보존했다. #3-B `-21℃`, #2-B `-21,22℃`, #2-C `-21℃`, #4-B `-23,23℃`이며 구조화 값은 각각 `[-21]`, `[-21,+22]`, `[-21]`, `[-23,+23]`이다. 화면에는 온도 이상 2개 어창으로 드러난다.
 > - XLS 어종은 당일 SJ `362.680`·YF `31.800`, 누계 SJ `1,602.740`·YF `286.620 MT`. XLS의 SJ 보고량 `2,571 MT`는 적재계획 SJ `2,515`+BE `56 MT` 합계 기준임을 note에 유지했고, 개별 어창별 어종은 추정하지 않았다.
-> - 명일 예정량은 사용자가 제공하지 않아 보고서는 `약 ###톤`, DB는 `planned_mt: null`로 반영했다. Google Tasks는 오늘 자리표시자 `HIKARI 1 ###톤` 1건을 `HIKARI 1 394.480 MT`로 수정하고 `내 할 일 목록`·오늘·미완료 상태를 재확인했다.
-> - Drive에 `20260824 HIKARI 1 (BKK) 하역 업무 보고.txt` 저장, 렌더러 diff 0, SHA-256 `a16d4c18…447b8`.
-> - RED→GREEN: HIKARI 계약 5건 실패 후 12/12 통과, 연간 통합 E2E `37,877 → 38,272 MT` 실패 후 desktop/mobile/keyboard/open-tab/API/chunk isolation 통과. `npm run verify` 통과(ESLint 0 errors·기존 warnings 12, Python 21건, Vitest 1,139 passed/2 skipped, API cache 158/158, Next 118페이지, 누출·번들 게이트).
-> - 로컬 보호 API·화면: 기준일 8/24, HIKARI 누계 `1,889.360`, 잔량 `1,039.640`, 연간 통합 `38,271.960 MT`, 완료 12척. 1440×1000·390×844에서 자동보고·온도 이상·명일 ###톤을 확인했고 overflow/page/console errors 모두 0. 독립 반증 검토도 원본·산술·해시·부호·source category·명일 null 경계·중복/고아·기존 보고 보존 전체 PASS.
+> - 최초 명일 예정량 미제공으로 `###/null` 처리했으나 사용자가 뒤이어 8/25 계획 CMC `100`·GPZ `150`·ISA `150 MT`를 제공해 합계 `400 MT`로 정정했다. 원문 토큰 3줄을 quality에 보존했다. Google Tasks는 오늘 자리표시자 `HIKARI 1 ###톤` 1건을 `HIKARI 1 394.480 MT`로 수정하고 `내 할 일 목록`·오늘·미완료 상태를 재확인했다.
+> - Drive에 `20260824 HIKARI 1 (BKK) 하역 업무 보고.txt` 저장, 렌더러 diff 0, 최종 SHA-256 `a259d888…040c6`.
+> - RED→GREEN: HIKARI 일보 계약 5건 실패→12/12, 명일 400톤 보완 1건 실패→12/12, 연간 통합 E2E `37,877 → 38,272 MT` 실패 후 desktop/mobile/keyboard/open-tab/API/chunk isolation 통과. `npm run verify` 통과(ESLint 0 errors·기존 warnings 12, Python 21건, Vitest 1,139 passed/2 skipped, API cache 158/158, Next 118페이지, 누출·번들 게이트).
+> - 로컬 보호 API·화면: 기준일 8/24, HIKARI 누계 `1,889.360`, 잔량 `1,039.640`, 연간 통합 `38,271.960 MT`, 완료 12척. 1440×1000·390×844에서 자동보고·온도 이상·명일 400톤을 확인했고 overflow/page/console errors 모두 0. 독립 반증 검토도 원본·산술·해시·부호·source category·명일 400톤·중복/고아·기존 보고 보존 전체 PASS.
 > - **다음 단계**: PR gate → main 병합 → Vercel Production → 운영 API·보호 화면·로그 확인.
 >
 > 마지막 업데이트: 2026-08-24 18:17 KST [Codex]
