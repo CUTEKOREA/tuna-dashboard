@@ -1,3 +1,13 @@
+> 📰 **2026-08-25 06:34 KST — 2026-08-24 참치 데일리 브리핑 라이브 배포 완료** [Claude/tuna-dashboard-publisher]:
+> - 게이트 3종 확인: 감사 `AUDIT_PASS`, 로컬 계약 테스트 `__tests__/daily-briefing.test.ts` 4/4 통과, 변경분은 `public/data/tuna_daily_briefing.json` 단일 파일(+50/-79). `lib/data/daily-briefing.ts`는 무변경(로더가 JSON을 직접 import).
+> - 브랜치 `briefing/2026-08-24` → PR [#752](https://github.com/CUTEKOREA/tuna-dashboard/pull/752) squash 병합. 브랜치 커밋 `6d1aa395`, main squash 커밋 `5d783141e4d2420369cc6fe05e3aa96772870bed`. 원격 브랜치 삭제 완료.
+> - pre-push 게이트 통과(C-4 data import integrity 175건 추적, L-03 `npm run build` 51s). PR Vercel Preview `success`, main Vercel Production `success`.
+> - 라이브 육안 확인(Aside 인증 브라우저, `https://leedonggun.co.kr/market` ROW4): **"오늘의 참치 뉴스 / 기준일 2026.08.24 · 기사 5건 · 파이프라인 동기"**. 리드 기사 "NGO 4곳, IATTC에 열대성 참치 관리절차 채택 촉구", 오늘의 수치 `550톤`·`400톤`·`14%`, 서브 카드 4건(동원F&B BTS 진 캠페인 / 베네수엘라 550톤 수크레항 하역 / 몰디브·튀르키예 PTA 400톤 / 미국 파우치 참치 수입 14% 감소) 모두 렌더 확인. curl은 로그인 게이트로 307이라 사용 불가.
+> - 워크트리 `~/silla-tuna-daily/dash` 정리 완료: PR MERGED + 브리핑 JSON이 `origin/main`과 동일함을 확인한 뒤 `git reset --hard origin/main`. 현재 clean.
+> - **다음 단계**: 8/25 회차는 `prepare_dashboard()`부터 동일 절차로 진행한다.
+>
+> 마지막 업데이트: 2026-08-25 06:34 KST [Claude/tuna-dashboard-publisher]
+
 > 🚀 **2026-08-24 18:50 KST — HIKARI 1 8/24 하역 일일보고·8/25 계획 라이브 배포 완료** [Codex]:
 > - 일보 PR [#749](https://github.com/CUTEKOREA/tuna-dashboard/pull/749) 병합 뒤 사용자 후속 명일 계획을 정정 PR [#750](https://github.com/CUTEKOREA/tuna-dashboard/pull/750)으로 반영했다. 최종 main commit은 `d6e68d765fd7dc9fb23b7b247a8eb29999f17457`; PR gates `32711448897`·`32712752061`, 최종 main gate `32713058989`가 전체 verify와 하역 브라우저 acceptance를 통과했다.
 > - Vercel Production `dpl_7wcSoe7pRFwmfK1sk2Hu69KzC2ru`(GitHub deployment `6060238185`)가 READY이며 `https://leedonggun.co.kr` alias·`icn1`에 연결됐다. GitHub Production deployment SHA도 최종 main commit과 일치한다.
