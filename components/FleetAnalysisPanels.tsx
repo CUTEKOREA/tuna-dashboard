@@ -4,12 +4,14 @@ import { ChevronDown, Trophy, BarChart3 } from 'lucide-react';
 import { WeeklyCatchChart, MonthlyCatchChart, CumulativeChart, CumulativeTableData } from './FleetCharts';
 import TakeawayBox from './TakeawayBox';
 import s from './FleetCommandCenter.module.css';
-import { purseSeineCatch } from '@/lib/fleet-operations-2026-08-16';
+import { purseSeineCatch } from '@/lib/fleet-operations-2026-08-23';
 
 const rankData = purseSeineCatch.weeklyRanking.map((item) => ({
   r: item.rank, cap: item.captain, name: item.vessel, weekly: item.catchMt, daily: item.dailyAverageMt,
   badge: item.rank === 1 ? 'gold' : item.rank === 2 ? 'silver' : item.rank === 3 ? 'bronze' : '',
 }));
+const weeklyPeriod = `${purseSeineCatch.period.from.slice(2).replaceAll('-', '.')}~${purseSeineCatch.period.to.slice(5).replace('-', '.')}`;
+const weeklyLabel = purseSeineCatch.source.split(' - ').at(-1) ?? '주간 실적';
 
 const tabs = [
   { id: 'weekly', label: '주간 어획' },
@@ -33,16 +35,16 @@ export function FleetChartSection() {
           {tabs.map(t => (
             <button key={t.id} className={`${s.chartTab} ${activeTab === t.id ? s.chartTabActive : ''}`} onClick={() => setActiveTab(t.id)}>{t.label}</button>
           ))}
-          <span style={{ fontSize: '0.68rem', color: 'var(--text-muted)', marginLeft: 'auto', alignSelf: 'center' }}>26.08.10~08.16 보고 기준</span>
+          <span style={{ fontSize: '0.68rem', color: 'var(--text-muted)', marginLeft: 'auto', alignSelf: 'center' }}>{weeklyPeriod} 보고 기준</span>
         </div>
         {activeTab === 'weekly' && (
           <>
             <WeeklyCatchChart />
             <div style={{ marginTop: 16 }}>
               <TakeawayBox
-                situation={<>S/JUP(강창훈) 265t 주간 1위, N/SUN(김형주) 195t 2위. 주간 총 어획량은 929t(국적 478t, 합작 451t)입니다.</>}
-                actionPlan={<>S/EXP·S/HAR은 주간 어획이 없습니다. 지난주 실적 없던 S/JUP이 265t으로 1위에 올랐으므로, 무실적 두 척도 VDS 잔여와 선박 상태를 확인해 배치를 조정하십시오.</>}
-                source="주간 실적 현황 (26.08.10~08.16)"
+                situation={<>N/SUN(김형주) 130t 주간 1위, S/SPR(김효원) 107t 2위. 주간 총 어획량은 419t(국적 258t, 합작 161t)입니다.</>}
+                actionPlan={<>S/PIO·S/CHA·MARI는 주간 어획이 없습니다. N/SUN·S/SPR·S/EXP 상위 3척과 무실적 3척의 수역·조업일수·선박 상태를 대조해 배치를 조정하십시오.</>}
+                source={purseSeineCatch.source}
               />
             </div>
           </>
@@ -52,9 +54,9 @@ export function FleetChartSection() {
             <MonthlyCatchChart />
             <div style={{ marginTop: 16 }}>
               <TakeawayBox
-                situation={<>8월 누계 2,249t(국적 816t, 합작 1,433t)입니다. 합작선 비중은 63.7%로 MARI·N/STAR가 월간 물량을 견인합니다.</>}
-                actionPlan={<>연간 누계 47,082t 중 S/SPR이 6,634t으로 최대입니다. 합작선 의존과 국적선 생산 회복을 함께 관리하십시오.</>}
-                source="주간 실적 현황 (26.08.10~08.16)"
+                situation={<>8월 누계 2,668t(국적 1,074t, 합작 1,594t)입니다. 합작선 비중은 59.7%로 MARI·N/SUN·N/STAR가 월간 물량을 견인합니다.</>}
+                actionPlan={<>연간 누계 47,501t 중 S/SPR이 6,741t으로 최대입니다. 합작선 의존과 국적선 생산 회복을 함께 관리하십시오.</>}
+                source={purseSeineCatch.source}
               />
             </div>
           </>
@@ -64,9 +66,9 @@ export function FleetChartSection() {
             <CumulativeChart />
             <div style={{ marginTop: 16 }}>
               <TakeawayBox
-                situation={<>조태연(N/STAR) 일어획 34.3t으로 현어기 1위, 김효원(S/SPR) 27.5t 2위, 김정훈(MARI) 23.6t 3위입니다. N/STAR는 8/19 선장 교대(조태연→이진우)로 이후 실적은 신임 선장 몫입니다.</>}
-                actionPlan={<>선단 평균 20.2t 대비 하위 5척은 원인별로 수역·조업일수·선박 상태를 대조하십시오.</>}
-                source="선장 실적 누계 (현어기) · 2026-08-09"
+                situation={<>김효원(S/SPR) 일어획 27.3t으로 현어기 1위, 김정훈(MARI) 23.3t 2위, 김승현(S/PIO) 19.5t 3위입니다. N/STAR는 이진우 선장 승선 후 5일·15t을 조업했습니다.</>}
+                actionPlan={<>선단 평균 19.4t 대비 하위 5척은 원인별로 수역·조업일수·선박 상태를 대조하십시오.</>}
+                source={`선장 실적 누계 (현어기) · ${purseSeineCatch.period.to}`}
               />
             </div>
           </>
@@ -77,7 +79,7 @@ export function FleetChartSection() {
       <div className={s.rankPanel}>
         <h3 style={{ fontSize: '0.95rem', fontWeight: 700, color: 'var(--text-main)', marginTop: 0, marginBottom: 16, display: 'flex', alignItems: 'center', gap: 8 }}>
           <Trophy size={16} color="#fbbf24" /> 주간 선장실적 (Top 10)
-          <span style={{ fontSize: '0.68rem', color: 'var(--text-muted)', fontWeight: 500, marginLeft: 'auto' }}>8월 둘째주 기준</span>
+          <span style={{ fontSize: '0.68rem', color: 'var(--text-muted)', fontWeight: 500, marginLeft: 'auto' }}>{weeklyLabel} 기준</span>
         </h3>
         <table className={s.rankTable}>
           <thead>
@@ -114,7 +116,7 @@ export function FleetDetailPanel() {
         <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
           <BarChart3 size={18} color="var(--accent-primary)" />
           <span style={{ fontWeight: 700, color: 'var(--text-main)' }}>선장 현어기 누적 실적 상세</span>
-          <span style={{ fontSize: '0.75rem', color: 'var(--text-muted)' }}>({data.length}명) · 26.08.09 보고 기준</span>
+          <span style={{ fontSize: '0.75rem', color: 'var(--text-muted)' }}>({data.length}명) · {purseSeineCatch.period.to.slice(2).replaceAll('-', '.')} 보고 기준</span>
         </div>
         <ChevronDown size={18} className={`${s.expandChevron} ${isOpen ? s.expandChevronOpen : ''}`} color="var(--text-muted)" />
       </div>
@@ -146,9 +148,9 @@ export function FleetDetailPanel() {
           </div>
           <div style={{ marginTop: 16 }}>
             <TakeawayBox
-              situation={<>조태연(N/STAR) 어기 46일·일어획 36.4t으로 1위, 김효원(S/SPR) 28.0t으로 2위입니다. 선단 평균은 20.4t입니다. N/STAR는 8/19 선장 교대(조태연→이진우)가 보고되어 이후 누계는 신임 선장 기준으로 갈립니다.</>}
-              actionPlan={<>MARI(김정훈)는 11,485t 누적으로 최대이나 일어획은 23.6t 3위입니다. 순위와 누계 물량을 분리해 평가하십시오.</>}
-              source="선장 실적 누계 (현어기) · 2026-08-09"
+              situation={<>김효원(S/SPR) 어기 331일·일어획 27.3t으로 1위, 김정훈(MARI) 23.3t으로 2위입니다. 선단 평균은 19.4t입니다. N/STAR는 이진우 선장 승선 후 5일·15t으로 집계됩니다.</>}
+              actionPlan={<>MARI(김정훈)는 11,485t 누적으로 최대이나 일어획은 23.3t 2위입니다. 순위와 누계 물량을 분리해 평가하십시오.</>}
+              source={`선장 실적 누계 (현어기) · ${purseSeineCatch.period.to}`}
             />
           </div>
         </div>

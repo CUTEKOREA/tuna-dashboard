@@ -16,7 +16,7 @@ import {
 import SafeResponsiveContainer from './SafeResponsiveContainer';
 import { useResponsiveChart } from '../lib/useResponsiveChart';
 import { ChartPatternDefs } from './ChartPatterns';
-import { purseSeineCatch } from '@/lib/fleet-operations-2026-08-16';
+import { purseSeineCatch } from '@/lib/fleet-operations-2026-08-23';
 import { CHART_RANK, shareColor } from '@/lib/chart-palette';
 
 const subscribeClientReady = () => () => {};
@@ -95,7 +95,7 @@ const cumulativeData = purseSeineCatch.seasonRanking.map((item) => ({
   days: item.seasonDays,
   catchTotal: item.catchMt,
   daily: item.dailyCatchMt,
-  diff: item.leaderDeltaMt.toFixed(2),
+  diff: Object.is(item.leaderDeltaMt, -0) ? '-0.00' : item.leaderDeltaMt.toFixed(2),
   avgDiff: `${item.averageDeltaMt >= 0 ? '+' : ''}${item.averageDeltaMt.toFixed(2)}`,
 }));
 
