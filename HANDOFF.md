@@ -2,10 +2,10 @@
 > - 원문 3종을 직접 확인했다. DOCX `해양수산본부 일일업무보고-260824 (월).docx`는 167,247 bytes, SHA-256 `a0fe6821…71146b5`이며 ZIP 무결성을 통과했다. 국적선·KFC VDS PDF는 각각 SHA-256 `5adb3456…f9d88b`, `268e1032…aa4aa4`다.
 > - 공개 집계는 보고일 `2026-08-24`, 조업 기준일 `2026-08-23`, 전체 139건이다. 태평양 일간/월간/연간 `36 / 2,668 / 47,500.8 MT`, 대서양 `280 / 4,505 / 31,230 MT`, 운반선 선적/예상잔량 `8,763.3 / 5,771.7 MT`, 일간 합계 `316 MT`·전일 대비 `-37 MT`다. 최신 4개 행 검산은 모두 일치하고 최신 이슈 0건이다.
 > - 국적선 VDS는 총 배정/소진/잔여/주간 소모 `1,447 / 1,023.8 / 423.2 / 27.9일`, KFC는 `750 / 543 / 207 / 6.5일`로 갱신했다. 공해는 원문대로 총계에서 제외했다. KFC 원문 내부의 `키리바시 행 합 352.8 ≠ 인쇄 소계 352.7일`, `수역 소계 합 542.9 ≠ 인쇄 총계 543.0일`을 보정하지 않고 `rowSums`와 인쇄 합계로 함께 보존했다.
-> - 검증: 운영자·Python 21건, Fleet 집중 Vitest 40 passed/1 skipped, VDS 전용 11/11, 전체 Vitest 146 files·1,140 passed/1 skipped, API 캐시 158/158, Next 118페이지, 실제 보호 상세 33개 누출 0, bundle 33 routes를 통과했다. `/private/tmp`에서는 변경 없는 `origin/main`도 Turbopack이 대기 상태에 빠졌지만, 표준 비중첩 Orca 경로에서는 같은 코드가 4.9초에 컴파일됐다. 임시 경로 실행환경 문제이며 소스 수정은 하지 않았다.
-> - **다음 단계**: 최신 `origin/main` 통합 후 전체 게이트 재확인 → Production `FLEET_DAILY_DETAIL_JSON` 교체 → PR → main 병합 → Vercel Production → 로그인 운영 `/fleet` 데스크톱·390px·VDS 탭 실검증.
+> - 최신 `origin/main`의 HIKARI·시장 브리핑 3개 커밋을 merge로 통합하고 `npm run verify` 전체를 다시 통과했다. ESLint 오류 0(기존 경고 12), Python 21건, Vitest 146 files·1,140 passed/1 skipped, API 캐시 158/158, Next 118페이지, 실제 보호 상세 33개 누출 0, bundle 33 routes다. `/private/tmp`에서는 변경 없는 main도 Turbopack이 대기 상태에 빠졌지만, 표준 비중첩 Orca 경로에서는 최종 통합 코드가 9.2초에 컴파일됐다. 임시 경로 실행환경 문제이며 소스 수정은 하지 않았다.
+> - **다음 단계**: Production `FLEET_DAILY_DETAIL_JSON` 교체 → PR → main 병합 → Vercel Production → 로그인 운영 `/fleet` 데스크톱·390px·VDS 탭 실검증.
 >
-> 마지막 업데이트: 2026-08-25 08:04 KST [Codex]
+> 마지막 업데이트: 2026-08-25 08:21 KST [Codex]
 
 > 📰 **2026-08-25 06:34 KST — 2026-08-24 참치 데일리 브리핑 라이브 배포 완료** [Claude/tuna-dashboard-publisher]:
 > - 게이트 3종 확인: 감사 `AUDIT_PASS`, 로컬 계약 테스트 `__tests__/daily-briefing.test.ts` 4/4 통과, 변경분은 `public/data/tuna_daily_briefing.json` 단일 파일(+50/-79). `lib/data/daily-briefing.ts`는 무변경(로더가 JSON을 직접 import).
