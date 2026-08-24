@@ -6,13 +6,15 @@ import {
   atlanticDailyReport,
   pacificDailyReport,
   purseSeineCatch,
-} from '@/lib/fleet-operations-2026-08-16';
+} from '@/lib/fleet-operations-2026-08-23';
 import TelemetryBadge from './TelemetryBadge';
 import s from './FleetCommandCenter.module.css';
 
 export default function FleetHeroKPI({ climateRisk, mode = 'daily' }: { climateRisk?: any; mode?: 'daily' | 'weekly' }) {
   const isWeekly = mode === 'weekly';
   const summary = purseSeineCatch.summary;
+  const weeklyPeriod = `${purseSeineCatch.period.from.slice(2).replaceAll('-', '.')}~${purseSeineCatch.period.to.slice(5).replace('-', '.')}`;
+  const weeklyLabel = purseSeineCatch.source.split(' - ').at(-1) ?? '주간 실적';
 
   // 일일 KPI 는 일일보고(태평양·대서양 선망)에서, 주간 KPI 는 주간 실적에서 온다.
   // 한때 일일 분기가 주간 분기의 복사본이라 「일일 운영」 탭이 주간 수치를 보여줬다 —
@@ -34,7 +36,7 @@ export default function FleetHeroKPI({ climateRisk, mode = 'daily' }: { climateR
         ratioLeftLabel: `국적 ${pct(summary.nationalWeekly, summary.weeklyTotal)}%`,
         ratioRightLabel: `합작 ${pct(summary.jointWeekly, summary.weeklyTotal)}%`,
         ratioPercent: (summary.nationalWeekly / summary.weeklyTotal) * 100,
-        syncDate: '26.08.10~08.16 · 8월 둘째주',
+        syncDate: `${weeklyPeriod} · ${weeklyLabel}`,
         badgeDate: purseSeineCatch.period.to,
       }
     : {
@@ -67,12 +69,12 @@ export default function FleetHeroKPI({ climateRisk, mode = 'daily' }: { climateR
         </div>
         <div className={s.kpiCard}>
           <div className={s.kpiLabel}>{'📅'} 월간 총 어획량</div>
-          <div className={s.kpiValue}><CountUp end={kpiData.val2} duration={2} separator="," /><span className={s.kpiUnit}>MT</span></div>
+          <div className={s.kpiValue} data-kpi-value={kpiData.val2}><CountUp end={kpiData.val2} duration={2} separator="," /><span className={s.kpiUnit}>MT</span></div>
           <div style={{ fontSize: '0.72rem', color: 'var(--text-muted)', marginTop: 4 }}>{kpiData.label2}</div>
         </div>
         <div className={s.kpiCard}>
           <div className={s.kpiLabel}>{'📈'} 연간 총 어획량</div>
-          <div className={s.kpiValue}><CountUp end={kpiData.val3} duration={2.5} separator="," /><span className={s.kpiUnit}>MT</span></div>
+          <div className={s.kpiValue} data-kpi-value={kpiData.val3}><CountUp end={kpiData.val3} duration={2.5} separator="," /><span className={s.kpiUnit}>MT</span></div>
           <div style={{ fontSize: '0.72rem', color: 'var(--text-muted)', marginTop: 4 }}>{kpiData.label3}</div>
         </div>
       </div>

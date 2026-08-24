@@ -11,7 +11,7 @@ import {
   BarChart, Bar, LineChart, Line, XAxis, YAxis,
   Tooltip as RechartsTooltip,
 } from 'recharts';
-import { purseSeineCatch } from '../lib/fleet-operations-2026-08-16';
+import { purseSeineCatch } from '../lib/fleet-operations-2026-08-23';
 import { pctChange } from '../lib/metrics';
 import { CHART_RANK } from '@/lib/chart-palette';
 
@@ -22,7 +22,7 @@ const FLAT = 'var(--text-muted)';
 
 const MONTH_LABELS = ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월'];
 
-/** 기준일 — «주간 랭킹 기준 2026.08.10~08.16» */
+/** 기준일 — 주간 랭킹 정본에서 파생 */
 const PERIOD_TEXT =
   `${purseSeineCatch.period.from.replace(/-/g, '.')}~${purseSeineCatch.period.to.slice(5).replace('-', '.')}`;
 

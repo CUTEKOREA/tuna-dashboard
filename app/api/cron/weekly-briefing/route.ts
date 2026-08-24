@@ -11,7 +11,7 @@ import {
 } from '@/lib/data/atuna-price-summary';
 import { UNLOADING_STATIC_VESSELS, type UnloadingVesselData } from '@/lib/data/unloading-static';
 import { getVesselStatusKind, avgPerReportDay } from '@/lib/unloading-operations';
-import { purseSeineCatch } from '@/lib/fleet-operations-2026-08-16';
+import { purseSeineCatch } from '@/lib/fleet-operations-2026-08-23';
 import { dailyBriefing } from '@/lib/data/daily-briefing';
 import { progressPct } from '@/lib/metrics';
 import { getCompanySmtpConfig } from '@/lib/mail/server-env';

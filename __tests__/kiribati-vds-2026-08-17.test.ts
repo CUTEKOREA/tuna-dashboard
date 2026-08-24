@@ -6,7 +6,7 @@
  */
 import { describe, expect, it } from 'vitest';
 
-import { kiribatiVds } from '@/lib/fleet-operations-2026-08-16';
+import { kiribatiVds } from '@/lib/fleet-operations-2026-08-23';
 
 const round = (n: number) => Math.round(n * 100) / 100;
 
