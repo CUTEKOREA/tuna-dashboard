@@ -36,7 +36,15 @@ describe('FleetCommandCenter daily operations', () => {
   it('keeps the weekly performance and VDS contracts while withholding the latest roster', () => {
     const markup = renderToStaticMarkup(React.createElement(FleetCommandCenter));
 
-    expect(markup).toContain('929');
+    expect(markup).toContain('26.08.17~08.23');
+    expect(markup).toContain('data-kpi-value="419"');
+    expect(markup).toContain('data-kpi-value="2668"');
+    expect(markup).toContain('data-kpi-value="47501"');
+    expect(markup).toContain('N/SUN(김형주) 130t 주간 1위');
+    expect(markup).toContain('김효원(S/SPR)');
+    expect(markup).toContain('-0.00');
+    expect(markup).not.toContain('26.08.10~08.16');
+    expect(markup).not.toContain('929t');
     expect(markup).toContain('VDS');
     expect(markup).not.toContain('data-carrier-entity=');
     expect(markup).not.toContain('보고 당시 비고:');

@@ -18,7 +18,7 @@
 
 ## 시안 1 — FleetHeroCommand.tsx (선단 운영 번안)
 
-- 소스: `import { purseSeineCatch } from '../../../lib/fleet-operations-2026-08-16'` 단독.
+- 소스: `import { purseSeineCatch } from '../../../lib/fleet-operations-2026-08-23'` 단독.
   (히어로의 공개 집계 소스와 기준일·선박명 표기가 달라 섞으면 부정직 — 이 시안은
   «선망선 어획 지휘» 단일 관점으로 감.)
 - 카드축: `purseSeineCatch.monthlyByVessel` 10척 — 라벨=선박 코드, 값=`totalMt`(연간 누계),

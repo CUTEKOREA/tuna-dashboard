@@ -3,7 +3,7 @@
 import { useMemo, useState } from 'react';
 import { AlertTriangle, Ship } from 'lucide-react';
 
-import { kiribatiVds, nationalVds, type VdsArea } from '@/lib/fleet-operations-2026-08-16';
+import { kiribatiVds, nationalVds, type VdsArea } from '@/lib/fleet-operations-2026-08-23';
 import { VDS_ID } from '@/lib/chart-palette';
 import TelemetryBadge from './TelemetryBadge';
 import TermTooltip from './TermTooltip';

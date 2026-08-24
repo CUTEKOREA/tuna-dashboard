@@ -7,6 +7,26 @@
 >
 > 마지막 업데이트: 2026-08-25 08:21 KST [Codex]
 
+> 🚀 **2026-08-25 08:37 KST — `/fleet` 8월 셋째주 실적 라이브 배포 완료·일일상세 경고** [Codex]:
+> - PR [#754](https://github.com/CUTEKOREA/tuna-dashboard/pull/754)을 Preview/App/Vercel 3/3 checks 성공 뒤 squash 병합했다. main commit은 `c4c58dd6a8fa5fc6dd04134120245025937eea57`, PR gate는 `32789134846`, main gate는 `32789473053`이며 전체 verify와 브라우저 acceptance를 통과했다.
+> - Vercel Production `dpl_Em5xz4L6zczmcmvWpQrF85YGay9a`(GitHub deployment `6073375107`)가 READY이며 `https://leedonggun.co.kr` alias·`icn1`에 연결됐다. 배포 SHA도 main commit과 일치한다.
+> - 운영 인증 화면 2384px·390×844에서 2026-08-17~08-23 셋째주 KPI **419 / 2,668 / 47,501 MT**, Top 10, 현어기 표, 김효원 `-0.00`을 확인했다. 전역 overflow 0, console error 0이며 비인증 `/fleet`은 307 로그인, 비인증 `/api/fleet/daily`는 401 `authentication_required`·`private, no-store`다.
+> - **별도 기존 경고**: 인증 `/api/fleet/daily`는 503 `fleet_data_unavailable`이고 화면은 「선박 상세 데이터가 공개 집계와 맞지 않습니다」를 표시한다. 이번 주간 diff는 일일보고 suffix 4,088 bytes와 보호 API/상세 로더를 변경하지 않았으므로 주간 배포 회귀는 아니다. Vercel error/fatal 로그는 0건이나 QA가 만든 동일 503 요청 3건이 5xx 로그에 남았다.
+> - 운영자 상태는 주간 화면 배포 증거까지 `fleet-daily: deployed`로 기록했고, 보호 일일상세가 실패하므로 `live_verified`는 의도적으로 기록하지 않았다.
+> - **다음 단계**: 최신 8/21 일일 원문으로 `FLEET_DAILY_DETAIL_JSON`을 공개 집계 SHA `5212c6e7…20ba`와 다시 동기화한 뒤 인증 API 200·보호 화면·로그를 별도 검증한다.
+>
+> 마지막 업데이트: 2026-08-25 08:37 KST [Codex]
+
+> 📊 **2026-08-25 08:22 KST — `/fleet` 8월 셋째주 실적 로컬 검증 완료** [Codex]:
+> - 사용자 제공 이미지 4장을 독립 이중 판독해 2026-08-17~08-23 주간 실적을 `lib/fleet-operations-2026-08-23.ts` 정본에 반영했다. KPI는 주간 **419 MT**(국적 258·합작 161), 8월 **2,668 MT**(1,074·1,594), 연간 **47,501 MT**(27,575·19,926)다.
+> - 선박 10척의 1~8월 배열·주간 순위·현어기 누계를 원문과 대조했다. 주간 1위 N/SUN 김형주 130 MT, 현어기 1위 S/SPR 김효원 27.3 MT/일이며 원문 `-0.00` 표기와 N/STAR 이진우 선장 5일·15 MT를 보존했다. 달력연도 누계와 현어기 누계는 서로 다른 기준으로 분리했다.
+> - RED→GREEN: 새 기간 계약과 화면 계약 실패를 확인한 뒤 집중 테스트 14/14를 통과했다. `npm run verify`도 통과했다(ESLint 0 errors·기존 warnings 12, Python 21건, Vitest 1,139 passed/2 skipped, API cache 158/158, Next 118페이지, 선단 클라이언트 누출·번들 게이트 통과).
+> - 로컬 보호 화면을 1440×1000·390×844에서 확인했다. 주간/월간/연간 KPI, Top 10, 현어기 표와 `-0.00`이 렌더됐고 전역 overflow 0, 콘솔 오류 0이다. 독립 반증도 원본 수치·stale 문자열·일일보고 byte 보존·보호 API 무변경을 확인해 PASS했다.
+> - 일일 DOCX 파이프라인·`/api/fleet/daily`·보호 상세 로더는 변경하지 않았다. 운영자 상태는 `fleet-daily: verified`이며, 사용자 URL 지정 요청을 라이브 반영 승인으로 해석했다.
+> - **다음 단계**: PR gate → main squash 병합 → Vercel Production → 인증/비인증 경계·운영 데스크톱/390px·로그 검증.
+>
+> 마지막 업데이트: 2026-08-25 08:22 KST [Codex]
+
 > 📰 **2026-08-25 06:34 KST — 2026-08-24 참치 데일리 브리핑 라이브 배포 완료** [Claude/tuna-dashboard-publisher]:
 > - 게이트 3종 확인: 감사 `AUDIT_PASS`, 로컬 계약 테스트 `__tests__/daily-briefing.test.ts` 4/4 통과, 변경분은 `public/data/tuna_daily_briefing.json` 단일 파일(+50/-79). `lib/data/daily-briefing.ts`는 무변경(로더가 JSON을 직접 import).
 > - 브랜치 `briefing/2026-08-24` → PR [#752](https://github.com/CUTEKOREA/tuna-dashboard/pull/752) squash 병합. 브랜치 커밋 `6d1aa395`, main squash 커밋 `5d783141e4d2420369cc6fe05e3aa96772870bed`. 원격 브랜치 삭제 완료.
