@@ -40,6 +40,16 @@ SOURCES = [
      "landing_url": "https://impfood.mfds.go.kr/CFCCC01F01",
      "archive_subdir": REL, "latest_verified": "2026-07",
      "note": "2025-08~2026-07 신고명의 608(정규화 603). 건수만 있고 물량·금액은 없다 — 물량은 관세청 과세정보로 봉인(관세법 제116조)"},
+    {"source_id": "SQ-FIN-CRETOP", "publisher": "한국평가데이터", "series": "크레탑 기업 재무제표 보고서",
+     "priority": "P2", "grade": "B", "frequency": "annual",
+     "landing_url": "https://www.cretop.com",
+     "archive_subdir": REL, "latest_verified": "2026-08-24",
+     "note": "표준재무제표증명·기업 제시 자료. 전자공시 미등재 법인의 재무가 여기서 열린다. 감사보고서 원문과 등급이 다르다"},
+    {"source_id": "SQ-CATCH-MOF-DWF", "publisher": "해양수산부", "series": "수산정보포털 원양어업통계 품종별 현황",
+     "priority": "P1", "grade": "A", "frequency": "annual",
+     "landing_url": "https://www.fips.go.kr/p/S020404/",
+     "archive_subdir": REL, "latest_verified": "2025",
+     "note": "「오징어류」 한 칸으로만 집계된다. FAO 어획통계보다 한 해 빠르지만 종·세부해역 분해가 없다"},
     {"source_id": "SQ-COOP-FIPS", "publisher": "해양수산부", "series": "수산정보포털 수협계통판매통계정보",
      "priority": "P1", "grade": "A", "frequency": "monthly",
      "landing_url": "https://www.fips.go.kr/p/S020601/",
@@ -287,6 +297,42 @@ def widgets():
                     nominal_real="nominal", coverage_start="2025-08", coverage_end="2026-07",
                     source_ids=["SQ-PRC-KAMIS"],
                     blocked_use=["관측일이 적은 지역의 프리미엄을 전국값으로 확대", "2025-08 이전 구간과 연결"]))
+
+    # F20 가공 상위 100 재무 — 전자공시 15 + 신용조사 75
+    pf = load("processing_financials.json")
+    W["F_processing_financials"] = dict(
+        section="F", title="가공 상위 100개사의 재무 90곳 — 생산량의 88.3%", chartType="table",
+        data=pf, xAxis="업체", series=["매출_백만"],
+        methodology=("금융감독원 전자공시 15곳 + 한국평가데이터 크레탑 75곳. 결산 연도가 회사마다 다르므로 "
+                     "같은 해를 비교하는 표가 아니다. 전자공시분은 자본총계를 싣지 않아 빈칸이다. 단위 백만원."),
+        basis=basis(market_stage="n/a", claim_type="descriptive", currency="KRW", nominal_real="nominal",
+                    coverage_start="2006-01", coverage_end="2025-12", source_ids=["SQ-FIN-DART", "SQ-FIN-CRETOP"],
+                    source_grade="B",
+                    blocked_use=["결산 연도가 다른 회사를 같은 해로 비교", "매출을 오징어 매출로 읽기",
+                                 "90곳 합계를 오징어 가공 시장 규모로 표현"]))
+
+    # F21 원양 비등재 법인 재무
+    dsf = load("deepsea_financials.json")
+    W["F_deepsea_financials"] = dict(
+        section="F", title="전자공시 밖 원양 법인 11곳 — 해창수산 377억이 최상위", chartType="table",
+        data=dsf, xAxis="회사", series=["매출_백만"],
+        methodology=("한국평가데이터 크레탑 표준재무제표증명 등. 외부감사 대상이 아니어서 전자공시에 없을 뿐 "
+                     "재무 자체는 남는다. 결산 연도가 2014~2025로 흩어져 있고 자료가 멈춘 시점 자체가 정보다. 단위 백만원."),
+        basis=basis(market_stage="n/a", claim_type="descriptive", currency="KRW", nominal_real="nominal",
+                    coverage_start="2014-01", coverage_end="2025-12", source_ids=["SQ-FIN-CRETOP"],
+                    source_grade="B",
+                    blocked_use=["결산 연도가 다른 회사를 같은 해로 비교", "감사보고서 수치와 한 표에 섞기"]))
+
+    # F22 원양 오징어류 어획 — FAO 보다 한 해 빠르다
+    dsc = load("deepsea_squid_catch.json")
+    W["F_deepsea_catch"] = dict(
+        section="F", title="원양 오징어류 어획 2021~2025 — 2025년 52,122톤", chartType="line",
+        data=dsc["rows"], xAxis="year", series=["weight_t", "unit_krw_per_kg"],
+        methodology=dsc["note"] + " 어획통계(FAO)의 종별·해역별 분해와 다른 계열이다.",
+        basis=basis(market_stage="n/a", aggregation="sum_within_stage", currency="KRW", nominal_real="nominal",
+                    taxon_scope="cephalopods_nei", taxon_note="원양어업 「오징어류」 집계로 종이 갈리지 않는다",
+                    coverage_start="2021-01", coverage_end="2025-12", source_ids=["SQ-CATCH-MOF-DWF"],
+                    blocked_use=["FAO 종별 어획량과 한 표에 놓기", "남서대서양 몫으로 분해"]))
 
     # F9 수입명의 × 가공업 겹침
     W["F_overlap_by_type"] = dict(
