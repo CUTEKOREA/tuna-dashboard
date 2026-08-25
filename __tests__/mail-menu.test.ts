@@ -1,15 +1,20 @@
 import { existsSync, readFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { describe, expect, it } from 'vitest';
+import { HIDDEN_DASHBOARD_MENU_KEYS, SIDEBAR_SECTIONS } from '../lib/dashboard-registry';
 
 describe('관리자 메일 메뉴 계약', () => {
-  it('메일 메뉴와 패널을 레지스트리·대시보드 렌더 순서에 연결한다', () => {
+  it('메일 기능을 공용 사이드바에서 숨기고 보호된 직접 경로는 보존한다', () => {
     const registry = readFileSync(join(process.cwd(), 'lib/dashboard-registry.ts'), 'utf8');
     const page = readFileSync(join(process.cwd(), 'app/page.tsx'), 'utf8');
+    const visibleSidebarKeys = SIDEBAR_SECTIONS.flatMap((section) => (
+      section.items.map((item) => item.key)
+    ));
 
+    expect(HIDDEN_DASHBOARD_MENU_KEYS.has('mail')).toBe(true);
+    expect(visibleSidebarKeys).not.toContain('mail');
     expect(registry).toContain("key: 'mail'");
     expect(registry).toContain("title: '메일'");
-    expect(registry).toContain("sidebar: { icon: 'Mail' }");
     expect(page).toContain("const MailInboxDashboard = dynamic(() => import('../components/MailInboxDashboard'))");
     expect(page).toContain('mail: mailAdminVisible ? <MailInboxDashboard /> : null');
   });

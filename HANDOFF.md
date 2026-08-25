@@ -1,3 +1,19 @@
+> 🙈 **2026-08-25 23:39 KST — 메일 기능 메뉴 비노출 로컬 적용 완료** [Codex]:
+> - 사용자 승인 범위에 따라 기존 `HIDDEN_DASHBOARD_MENU_KEYS`에 `mail`을 추가했다. 데스크톱·모바일 공용 사이드바와 명령 팔레트에서 메일 진입점은 보이지 않으며, 보호된 직접 `/mail` 경로·메일 API·저장 데이터·주간 자동발송은 삭제하거나 변경하지 않았다.
+> - RED 단계에서 숨김 집합과 실제 사이드바에 `mail`이 남아 집중 테스트 2건이 실패하는 것을 확인했다. 최소 구현 후 집중 회귀 39/39와 전체 `npm run verify`를 통과했다(147 files, 1,146 passed/2 skipped, API cache 158/158, Next 118페이지, client leak·bundle 통과).
+> - 로컬 Production `/market`을 1440×1100·390×844에서 확인했다. 두 화면 모두 메일 버튼 0건, GMTS 버튼 유지, 모바일 문서 폭 `390/390`으로 overflow 0, console/page error 0이다.
+> - **다음 단계**: 사용자가 `배포`를 명시하면 PR gate → main 병합 → Production READY → 인증 화면 데스크톱·390px 및 로그를 검증한다.
+>
+> 마지막 업데이트: 2026-08-25 23:39 KST [Codex]
+
+> 🚀 **2026-08-25 23:39 KST — HIKARI 1 8/25 하역 보고 라이브 배포 완료** [Codex]:
+> - PR [#771](https://github.com/CUTEKOREA/tuna-dashboard/pull/771)은 첫 App Quality Gate에서 과거 연간 누계 `38,272 MT` 하드코딩을 발견해 정본 `38,706 MT`로 갱신한 뒤 Preview·재실행 gate를 통과하고 squash 병합됐다. main commit `5748393232c80a753545b68be2a8400a9f360dca`, main gate `32853265064`가 성공했다.
+> - Vercel Production `dpl_FTrCa4aednZWUN9Ua6AeZn8ffEXG`(GitHub deployment `6084156151`)은 READY이며 `leedonggun.co.kr`·`icn1`·병합 SHA에 연결됐다.
+> - 인증 운영 API는 200·`private, no-store`로 8/25 일일 `434.280`, 누계 `2,323.640`, 잔량 `605.360 MT`, 명일 `250 MT`와 어창·온도·수하처를 반환한다. 비인증 API/페이지는 401/307 `authentication_required`·`private, no-store`다.
+> - 운영 `/unloading`의 HIKARI 작업 기록을 데스크톱·390×844에서 확인했다. 8/25 `08:10~13:30`, CMC `96.300`, GPZ `185.720`, ISA `152.260 MT`, 27대, 원문 온도 부호와 8/26 계획이 모두 표시되며 모바일 overflow 0, console/page error 0이다. 새 배포 최근 30분 error/fatal/5xx 로그는 모두 0건이다.
+>
+> 마지막 업데이트: 2026-08-25 23:39 KST [Codex]
+
 > 🧪 **2026-08-25 21:57 KST — HIKARI 1 8/25 하역 일일보고·8/26 계획 로컬 반영 완료** [Codex]:
 > - 원본 3종을 교차 확인했다. SHA-256: JPG `762f8802…3910`, 결과 XLS `111cd3f4…3017`, 현황 XLSX `08832ece…3935`.
 > - 검산: `1,889.360 + 434.280 = 2,323.640 MT`, `2,929 - 2,323.640 = 605.360 MT`. 당일 CMC `96.300`, GPZ `185.720`, ISA `152.260 MT`; SJ `411.380`·YF `22.900 MT`, 누계 SJ `2,014.120`·YF `309.520 MT`, 총 27대다.

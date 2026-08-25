@@ -63,7 +63,7 @@ export const DASHBOARD_MENU_CONFIGS = [
 export type ActiveMenu = (typeof DASHBOARD_MENU_CONFIGS)[number]['key'];
 export type DashboardMenuConfig = Omit<DashboardMenuConfigShape, 'key'> & { key: ActiveMenu };
 
-export const HIDDEN_DASHBOARD_MENU_KEYS = new Set<ActiveMenu>(['pork']);
+export const HIDDEN_DASHBOARD_MENU_KEYS = new Set<ActiveMenu>(['pork', 'mail']);
 
 export interface SidebarMenuItem {
   key: ActiveMenu;
