@@ -325,8 +325,8 @@ describe('Deep Sea Command V2 — Phase 2 운영 페이지', () => {
     expect(markup.match(/data-week31-carrier-marker="true"/g)?.length).toBe(4);
     expect(markup.match(/data-marker-tone="data"/g)?.length).toBe(4);
     expect(markup).not.toContain('#f59e0b');
-    expect(markup).toContain('2026-08-05 주간 보고에는 방콕 하역선 3척 13,764MT가 기록됐으며, 이 중 8월 누계는 2척 8,891MT입니다.');
-    expect(markup).toContain('SEIN VENUS와 HENG HONG 9의 예정일이 도래했으므로 실제 입항·접안 여부를 확인합니다.');
+    expect(markup).toContain('입항 재확인 2척 후속 확인 완료');
+    expect(markup).not.toContain('SEIN VENUS와 HENG HONG 9의 예정일이 도래했으므로 실제 입항·접안 여부를 확인합니다.');
   });
 
   it('시장 히어로가 타이틀·기준일만 남긴다 — KPI는 지휘형 카드가 대체 (2026-08-17 채택)', async () => {

@@ -1,3 +1,13 @@
+> 🚢 **2026-08-25 14:22 KST — `/logistics` TRI MARINE 정정·입항 후속 확인 로컬 반영 완료** [Codex]:
+> - 원인은 계산 오류가 아니라 정정된 원천과 기존 경고 문구 사이의 상태 표류였다. `public/data/bangkok_weekly_payload.json`의 TRI MARINE 2026 누계 `56,463MT`, `public/data/unloading/local_db.json`의 SEIN VENUS `2026-08-22 하역완료`, 31·32주차 운반선 배분표의 HENG HONG 9 `2026-08-06` 보고를 교차 확인했다.
+> - 2026-08-05 정적 스냅샷 총계 `317,175MT`는 그대로 보존했다. TRI MARINE은 `56,463MT · 월별 합계 일치`로 정정 상태를 표시하고, 기존 `46,463MT/10,000MT 상충` 경고를 제거했다.
+> - 입항 예정 2척은 예정일을 보존한 채 후속 근거를 추가했다. SEIN VENUS는 `하역 완료 확인 · 8월 22일 · 하역 원장 2026.08.07~08.22`, HENG HONG 9는 `입항·배분 보고 확인 · 8월 6일 · 31·32주차 운반선 배분 보고`로 표시한다. 히어로의 빨간 「입항 상태 재확인」 경고도 완료 상태 문구로 전환했다.
+> - RED 5건을 확인한 뒤 집중 회귀 64/64 통과. `npm run verify` 통과(ESLint 오류 0·기존 경고 12, Python 21건, Vitest 147 files·1,143 passed/2 skipped, API cache 158/158, Next 118페이지, client leak·bundle 통과).
+> - 로컬 Production `/logistics`를 1440×1100·390×844에서 확인했다. 문서/본문 폭은 각각 `1440/1440`, `390/390`으로 가로 넘침 0, 정정·입항 완료 문구와 두 후속 근거 모두 렌더, console/page error 0이다. 운영자 상태는 `logistics-weekly: verified`다.
+> - **다음 단계**: 사용자가 `배포`를 명시하면 최신 main 통합 → PR gate → main 병합 → Vercel READY → 인증 운영 `/logistics` 데스크톱·390px·로그 라이브 검증을 수행한다.
+>
+> 마지막 업데이트: 2026-08-25 14:22 KST [Codex]
+
 > 🎴 **2026-08-25 — 기업 해부 카드 뒷면을 나라 단위로 묶었다** [CC]:
 > - 사용자 지적(«같은 국가끼리는 하나의 디자인에 업체명만 다르게»). 회사마다 문양을 따로 두었더니
 >   스페인이 로히괄다(Frinsa)·이쿠리냐(Albacora)로, 이탈리아가 트리콜로레(Bolton)·축약형(JAIS)으로

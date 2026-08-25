@@ -14,6 +14,9 @@ const currentUnloading = logisticsWeeklyReport.unloading.vessels.map((vessel) =>
 const incomingVessels = logisticsWeeklyReport.unloading.incoming.map((vessel) => ({
   name: vessel.name,
   date: vessel.estimatedArrival.replace('2026-08-', '8월 ').replace(/^8월 0/, '8월 ') + '일',
+  confirmationStatus: vessel.confirmationStatus,
+  confirmationDate: vessel.confirmationDate.replace('2026-08-', '8월 ').replace(/^8월 0/, '8월 ') + '일',
+  confirmationEvidence: vessel.confirmationEvidence,
 }));
 
 export default function CarrierUnloadingStatus() {
@@ -69,7 +72,7 @@ export default function CarrierUnloadingStatus() {
       <div>
         <h3 style={{ fontSize: '15px', fontWeight: 'bold', margin: '0 0 12px 0', color: 'var(--text-main)', display: 'flex', alignItems: 'center', gap: '6px' }}>
           <Ship size={16} color="var(--color-info)" />
-          보고 당시 입항 예정 운반선 (방콕 · 2026년 8월 5일 기준)
+          입항 예정 후속 확인 (방콕)
         </h3>
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '12px' }}>
           {incomingVessels.map((v, idx) => (
@@ -84,11 +87,13 @@ export default function CarrierUnloadingStatus() {
               }}>
               <span style={{ fontSize: '14px', fontWeight: 'bold', color: 'var(--text-main)' }}>{v.name}</span>
               <span style={{ fontSize: '12px', color: 'var(--text-muted)' }}>보고 당시 도착 예정: {v.date}</span>
+              <strong style={{ fontSize: '12px', color: 'var(--color-success)' }}>{v.confirmationStatus} · {v.confirmationDate}</strong>
+              <span style={{ fontSize: '11px', color: 'var(--text-muted)' }}>{v.confirmationEvidence}</span>
             </div>
           ))}
         </div>
         <p style={{ fontSize: '11px', color: 'var(--text-muted)', margin: '10px 0 0', lineHeight: 1.5 }}>
-          * 2026년 8월 5일 주간 보고 시점의 예정 정보이며, 현재 입항 여부는 별도 확인이 필요합니다.
+          * 8월 5일 보고의 예정일은 보존하고, 하역 원장과 31·32주차 운반선 배분 보고로 확인한 후속 상태를 함께 표시합니다.
         </p>
       </div>
     </div>

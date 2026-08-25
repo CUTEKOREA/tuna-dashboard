@@ -322,7 +322,8 @@ describe('dashboard registry', () => {
 
     expect(logisticsSource).not.toContain('<linearGradient');
     expect(logisticsSource).not.toContain('route-marker-glow');
-    expect(logisticsSource).toContain('warning={{');
+    expect(logisticsSource).not.toContain('warning={{');
+    expect(logisticsSource).toContain('입항 재확인 2척 후속 확인 완료');
     expect(logisticsStyles).not.toContain('linear-gradient');
     expect(cssRule(logisticsStyles, '.dashboard')).toContain('var(--dsc-bg)');
     for (const selector of ['.priceSummary', '.historyNotice']) {
