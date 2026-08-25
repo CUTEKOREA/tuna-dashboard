@@ -31,7 +31,7 @@
     ],
     [
       "구 상호",
-      "Bolton Alimentari S.p.A."
+      "Bolton Alimentari S.p.A. — Bolton Food S.p.A. 의 이전 상호 (개칭 시점 미확인)"
     ],
     [
       "회장",
@@ -333,16 +333,22 @@
   ],
   "ownFleet": [
     {
+      "등록부": "WCPFC RFV",
+      "척수": 10,
+      "상태": "활성 · 계열 소유",
+      "내역": "NFD 6(Tri Marine 계열 · MSC 2025-07 부속서로 Solomon Amber·Diamond 추가돼 선망 7척) · Atunera Dularra 2 · Conservas Isabel Ecuatoriana 2"
+    },
+    {
       "등록부": "IATTC",
       "척수": 4,
-      "상태": "활성",
-      "내역": "Aurora B 1,777 t · Rosita C 1,500 t · Charo 1,600 t · San Andres 1,583 t"
+      "상태": "활성 · 계열 소유",
+      "내역": "Aurora B 1,777 t · Rosita C 1,500 t (선주 Atunera Dularra SL → Grupo Conservas Garavilla → Bolton) · Charo 1,600 t · San Andres 1,583 t (Conservas Isabel Ecuatoriana) — 적재능력"
     },
     {
       "등록부": "ICCAT",
       "척수": 3,
-      "상태": "전부 비활성",
-      "내역": "Via Avenir · Via Mistral · Via Alizé"
+      "상태": "비활성 · Via Alizé는 2025-04 중남미 매각 보도",
+      "내역": "Via Avenir · Via Mistral · Via Alizé (구 Saupiquet 선대)"
     }
   ],
   "korea": [
@@ -382,6 +388,7 @@
     "한국선": 14,
     "한국선_비중": 3.5,
     "자사선_iattc": 4,
+    "자사선_wcpfc": 10,
     "선망_비중": 92.0,
     "green_비중": 98.5
   }

@@ -60,7 +60,7 @@ const data = raw as unknown as {
   stats: {
     매출_백만유로: number; 조달_톤: number; food_비중: number; 비참치_비중: number;
     브랜드수: number; 명단선박: number; 한국선: number; 한국선_비중: number;
-    자사선_iattc: number; 선망_비중: number; green_비중: number;
+    자사선_iattc: number; 자사선_wcpfc: number; 선망_비중: number; green_비중: number;
   };
 };
 
@@ -91,7 +91,7 @@ export function nonTunaShare(): number {
 /** 자사 보유 선박 — 활성 등록부만. 조달 선단 399척과 혼동하지 않는다. */
 export function activeOwnVessels(): number {
   return data.ownFleet
-    .filter((r) => r.상태 === '활성')
+    .filter((r) => r.상태.startsWith('활성'))
     .reduce((a, r) => a + r.척수, 0);
 }
 

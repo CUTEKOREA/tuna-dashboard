@@ -1,3 +1,17 @@
+> 🔍 **2026-08-25 14:30 KST — 「기업 해부」 7개사 전수 검수·정정, 아카이브 원본까지 반영** [Claude]:
+> - Frinsa·Thai Union·Albacora·FCF·ITOCHU·Bolton·JAIS 를 4축(A 기계대조=Codex / B 외부반증=Grok / C 서술논리=Claude / D vitest)으로 훑었다. **P0 24건·P1 30건 이상 정정.** Drive 아카이브 7곳(통합프로필·채굴노트)에 정정 이력 표를 붙였고, 보고서 HTML(Albacora·FCF 각 2부)·빌드 스크립트 6종·content.ts 7종·JSON 7종·테스트 가드 6곳을 고쳤다.
+> - **아카이브에서 시작해 대시보드로 번진 오류가 P0 의 다수였다.** Albacora 가공 3사 합계가 「약 250 M€」인데 EINF 공장별 표를 더하면 **314.8 M€**(같은 문장의 「에콰도르 74%」가 314.8 기준이라 자기모순). 선단은 웹사이트 18척을 옮겨 썼는데 **EINF 2025 원문은 23척**(용선 4 포함). ALBACORA CUATRO 는 「폭발」이 아니라 **암모니아 누출**(CIAIM-07/2024 는 폭발을 부정). SIA 매출 −2.7% 와 물량 −44% 는 **기간이 달라**(2024→2025 vs 2022→2023) 단가로 환산할 수 없다.
+> - **결론이 뒤집힌 것 둘.** ① 「Salica del Ecuador 의 동태평양 원료는 MSC 밖」 — 별도 인증 「AGAC … Pacific Ocean」이 **Certified(~2027-03-15)**이고 UoC-3870·3871·3872 가 **FAO 77·87 을 전부 덮는다**. 철회된 건 four-oceans 인증서 *안의* 태평양 유닛뿐이다. ② AURORA B·ROSITA C 귀속 — 등록 선주 Atunera Dularra SL 의 **모회사가 Grupo Conservas Garavilla(Bolton 100%)** 라 **Bolton 그룹 선박이 맞고**, 알바코라 선단표가 겹쳐 세고 있었다. 중간에 내린 「Bolton 과다 계상」 판정은 철회했다.
+> - **관세 체제가 6개월 전에 바뀐 걸 두 페이지가 놓치고 있었다.** 2025년 미국 상호관세는 **2026-02-20 연방대법원 판결로 실효·환급**됐고 2026-07-24 **Section 301 강제노동 관세**가 대체했다(FCF 보고서 본문엔 이미 있었다). Thai Union·Albacora 의 「미국 관세 31.5%」현재형 서술을 시계열로 고쳤다.
+> - **없던 리스크를 넣었다** — FCF 05단계에 CBP 강제노동 WRO 4건(Da Wang 2022-01-28 인정·현재 유효)과 **Akhmad v. Bumble Bee Foods(3:25-cv-00583)** 2026-06-12 본안 진행. 신라교역 최대 고객의 공급망 리스크인데 표에만 있고 서술엔 없었다.
+> - **오탐도 걸러 기록했다.** Grok 반증 중 12건 기각 — 한국이토추 87.1%·하고로모 62.08억엔·파미마 +144억엔·TU 캐파 100만 t·PetCare +2.8%·SBTi Scope 1-3 등은 로컬 아카이브 1차 원문(DART 감사보고서·유보·One Report)에 그대로 있었고 Grok 은 접근이 막혔던 것이다. SI 6척 「한국 선적」도 아카이브가 기국/양륙항을 분리 기재한 걸 오독한 것.
+> - **최신화**: Thai Union FY2026 2분기(2026-08-03 공시 · GPM 21.4% 사상 최고 · EPS 0.33밧 · 중간배당 0.40밧 · 가이던스 상향) 06단계 추가. ITOCHU 인증 선단 25→**26척**(2025-02). Bolton 2019년 인수는 「잔여 51%」가 아니라 **참치 공급망 100% + 미국기국선 carve-out**.
+> - 게이트: `npm run build` ✓ Compiled successfully, Vitest **146 files · 1,129 passed / 2 skipped**, 빌드 스크립트 7종 문자열 대조 전량 통과.
+> - **다음 단계**: AGAC Pacific 선박목록(2026-08-04판)에 알바코라 선박 확인 — A-5 의 마지막 칸. Albacora EINF 23척 명세(등록부 미포착 11척). ITOCHU 26번째 선박 기국·선주. FCF 신라교역 의존도 분모 정본화(46.3 / 48.79 / 50.07 병존).
+> - 감사 문서: `docs/2026-08-25_company_anatomy_audit.md`
+>
+> 마지막 업데이트: 2026-08-25 14:30 KST [Claude]
+
 > 🚢 **2026-08-25 14:22 KST — `/logistics` TRI MARINE 정정·입항 후속 확인 로컬 반영 완료** [Codex]:
 > - 원인은 계산 오류가 아니라 정정된 원천과 기존 경고 문구 사이의 상태 표류였다. `public/data/bangkok_weekly_payload.json`의 TRI MARINE 2026 누계 `56,463MT`, `public/data/unloading/local_db.json`의 SEIN VENUS `2026-08-22 하역완료`, 31·32주차 운반선 배분표의 HENG HONG 9 `2026-08-06` 보고를 교차 확인했다.
 > - 2026-08-05 정적 스냅샷 총계 `317,175MT`는 그대로 보존했다. TRI MARINE은 `56,463MT · 월별 합계 일치`로 정정 상태를 표시하고, 기존 `46,463MT/10,000MT 상충` 경고를 제거했다.
