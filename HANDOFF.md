@@ -1,3 +1,14 @@
+> 🚀 **2026-08-25 10:16 KST — 해양수산본부 8/25 일일보고 `/fleet` 라이브 배포 완료** [Codex]:
+> - PR [#761](https://github.com/CUTEKOREA/tuna-dashboard/pull/761)을 Preview/App/Vercel 3/3 성공 뒤 squash 병합했다. main commit은 `30306cb1c5560f773e2927804204987cbf08614f`, PR gate `32795929940`, main gate `32796207284`가 전체 verify와 하역 이력 브라우저 acceptance를 통과했다.
+> - Vercel Production `dpl_4nRYULxaK3c6Rwhm5NgzHy5BYZdt`(GitHub deployment `6074409490`)가 READY이며 `leedonggun.co.kr` alias·`icn1`에 연결됐다. Production `FLEET_DAILY_DETAIL_JSON`은 8/25 공개 SHA와 일치하는 보호 DTO로 Sensitive/Secret 교체했다.
+> - 운영 인증 API는 200·`private, no-store`로 보고일 8/25·기준일 8/24, 상세 행 수 태평양/대서양/운반선/연승 `10/7/6/2`를 반환한다. 공개 KPI는 일간/월간/연간 `555 / 7,728 / 79,285.8 MT`, 운반선 선적/예상잔량 `8,763.3 / 5,771.7 MT`다.
+> - 운영 화면은 최신 보호 상태·예정과 검산 4건 일치를 표시한다. 1440px·390×844에서 문서/본문 overflow 0, console error 0, CacheStorage `/api/fleet/` 0건이다. 비인증 페이지/API는 307/401 `authentication_required`·`private, no-store`다.
+> - 새 Production 최근 15분 error/fatal/5xx 로그는 모두 0건이고 운영자 상태는 `fleet-daily: live_verified`로 닫았다.
+> - 메일 메뉴 숨김은 별도 설계 승인 대기 상태라 이번 데이터 배포에 포함하지 않았다.
+> - **다음 단계**: 8/26 신규 일일보고 수신 시 같은 증분 절차를 사용한다. 메일 메뉴는 기능·직접 `/mail`을 보존하고 내비게이션에서만 숨기는 안을 사용자 승인 후 별도 처리한다.
+>
+> 마지막 업데이트: 2026-08-25 10:16 KST [Codex]
+
 > ⚓ **2026-08-25 09:53 KST — 해양수산본부 8/25 일일보고 `/fleet` 로컬 반영 완료·미배포** [Codex]:
 > - 원문 `해양수산본부 일일업무보고-260825 (화).docx`는 167,417 bytes, SHA-256 `33b4436f…c96f1`이며 DOCX ZIP 무결성을 통과했다. 정확한 단일 파일을 운영자 `--latest-report` 증분 모드로 처리했다.
 > - 공개 집계는 보고일 `2026-08-25`, 조업 기준일 `2026-08-24`, 전체 140건이다. 태평양 일간/월간/연간 `120 / 2,788 / 47,620.8 MT`, 대서양 `435 / 4,940 / 31,665 MT`, 총 일간/월간/연간 `555 / 7,728 / 79,285.8 MT`다. 운반선 선적/예상잔량은 `8,763.3 / 5,771.7 MT`다.
