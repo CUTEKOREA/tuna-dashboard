@@ -40,13 +40,8 @@ export async function authorizeFleetRequest(): Promise<FleetAccessResult> {
       }
       return { ok: false, status: 403, code: 'fleet_access_required' };
     }
-    const { data: aalData, error: aalError } = await client.auth.mfa.getAuthenticatorAssuranceLevel();
-    if (aalError) {
-      return { ok: false, status: 503, code: 'fleet_auth_unavailable' };
-    }
     return evaluateFleetAccess(
       user,
-      aalData.currentLevel,
       new Set([ownerAccess.email]),
     );
   } catch {

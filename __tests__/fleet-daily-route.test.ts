@@ -29,7 +29,6 @@ beforeEach(() => {
     ok: true,
     userId: 'fleet-user-1',
     email: 'operator@example.com',
-    aal: 'aal2',
   });
   mocks.getDetail.mockReturnValue(DETAIL);
 });
@@ -38,7 +37,6 @@ describe('/api/fleet/daily GET', () => {
   it.each([
     [401, 'authentication_required'],
     [403, 'fleet_access_required'],
-    [403, 'mfa_required'],
   ] as const)('returns %s %s without loading private data', async (status, code) => {
     mocks.authorize.mockResolvedValue({ ok: false, status, code });
 
@@ -51,7 +49,7 @@ describe('/api/fleet/daily GET', () => {
     expect(mocks.getDetail).not.toHaveBeenCalled();
   });
 
-  it('returns only the minimized detail DTO to an allowlisted AAL2 user', async () => {
+  it('returns only the minimized detail DTO to an allowlisted Google user', async () => {
     const response = await GET();
 
     expect(response.status).toBe(200);

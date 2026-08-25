@@ -64,7 +64,7 @@ const DETAIL: FleetDailyDetailPayload = {
 describe('fleet protected daily detail rendering', () => {
   it('renders minimized detail only after an authorized state is supplied', () => {
     const operations = renderToStaticMarkup(
-      React.createElement(FleetDailyOperations, { detailState: { status: 'ready', detail: DETAIL }, onRetry: () => undefined }),
+      React.createElement(FleetDailyOperations, { detailState: { status: 'ready', detail: DETAIL } }),
     );
     const roster = renderToStaticMarkup(React.createElement(FleetRosterGrid, { detail: DETAIL }));
 

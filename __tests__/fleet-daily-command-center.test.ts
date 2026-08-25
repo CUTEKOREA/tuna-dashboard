@@ -3,6 +3,7 @@ import { renderToStaticMarkup } from 'react-dom/server';
 import { describe, expect, it } from 'vitest';
 
 import FleetCommandCenter from '@/components/FleetCommandCenter';
+import FleetDailyOperations from '@/components/FleetDailyOperations';
 
 describe('FleetCommandCenter daily operations', () => {
   it('renders the latest daily report as the hero KPI source', () => {
@@ -48,5 +49,15 @@ describe('FleetCommandCenter daily operations', () => {
     expect(markup).toContain('VDS');
     expect(markup).not.toContain('data-carrier-entity=');
     expect(markup).not.toContain('보고 당시 비고:');
+  });
+
+  it('does not render an authentication-code form for a legacy MFA response', () => {
+    const markup = renderToStaticMarkup(React.createElement(FleetDailyOperations, {
+      detailState: { status: 'denied', code: 'mfa_required' },
+    }));
+
+    expect(markup).not.toContain('인증 앱 코드');
+    expect(markup).not.toContain('2단계 인증');
+    expect(markup).toContain('로그인 세션을 다시 확인해주세요.');
   });
 });

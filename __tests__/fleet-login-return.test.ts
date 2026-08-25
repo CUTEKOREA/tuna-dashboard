@@ -18,11 +18,13 @@ describe('protected dashboard login return path', () => {
     expect(resolveProtectedReturnPath('/fleet')).toBe('/fleet');
   });
 
-  it('keeps fleet MFA on the fleet page and returns from mail to fleet', () => {
+  it('removes fleet step-up MFA while preserving the mail return path', () => {
     const fleet = readFileSync(join(process.cwd(), 'components/FleetCommandCenter.tsx'), 'utf8');
+    const operations = readFileSync(join(process.cwd(), 'components/FleetDailyOperations.tsx'), 'utf8');
     const mail = readFileSync(join(process.cwd(), 'components/MailInboxDashboard.tsx'), 'utf8');
     expect(fleet).not.toContain("href: '/mail'");
-    expect(fleet).toContain('FleetStepUpMfa');
+    expect(fleet).not.toContain('FleetStepUpMfa');
+    expect(operations).not.toContain('FleetStepUpMfa');
     expect(mail).toContain("if (next === '/fleet')");
     expect(mail).toContain("window.location.assign('/fleet')");
   });
@@ -31,6 +33,6 @@ describe('protected dashboard login return path', () => {
     expect(fleetDetailGateMessage({ status: 'error', code: 'fleet_data_unavailable' }))
       .toBe('선박 상세 데이터가 공개 집계와 맞지 않습니다.');
     expect(fleetDetailGateMessage({ status: 'denied', code: 'mfa_required' }))
-      .toBe('선박 상세는 2단계 인증 후 표시됩니다.');
+      .toBe('로그인 세션을 다시 확인해주세요.');
   });
 });
