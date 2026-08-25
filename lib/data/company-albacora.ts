@@ -102,7 +102,7 @@ export const albacoraOpenQuestions = data.openQuestions;
 export const albacoraLimits = data.limits;
 
 /** 회사가 공표하는 선단 규모. 등록부 확인분(12척)과 구분해 쓴다. */
-export const ALBACORA_CLAIMED_VESSELS = 18;
+export const ALBACORA_CLAIMED_VESSELS = 23;   // EINF 2025 «23 barcos … 4 de ellos en régimen de fletamento»
 
 /** 등록부로 확인된 선단 합계 톤수(GT). 회사 공표 18척 중 12척분이다. */
 export function fleetGtTotal(): number {

@@ -11,7 +11,8 @@
 ⚠ **조달량 74만 톤은 Bolton Food 원료 + Tri Marine 트레이딩의 합**이다. 브랜드가 쓴 양이 아니다.
    2024년 +26% 급증분의 상당액이 Tri Marine 트레이딩 증가(+144,000 t)다.
 ⚠ 선단은 **연도와 등록부를 반드시 붙인다.** 공개 선박명단 399척(2024)은 자사선이 아니라
-   조달 선단이고, 자사 보유는 IATTC 4척 · ICCAT 3척(전부 비활성)이다.
+   조달 선단이고, 계열 소유는 WCPFC 10척 · IATTC 4척이다. AURORA B·ROSITA C 의 등록 선주는
+   Atunera Dularra SL 이고 그 모회사가 Grupo Conservas Garavilla(Bolton 100%)라 그룹 선박이 맞다.
 """
 from __future__ import annotations
 
@@ -39,7 +40,7 @@ PROFILE = [
     ["이탈리아 식품", "Bolton Food S.p.A. · CF 00197980139 · 1951년 · Cermenate (CO)"],
     ["본점", "Via G.B. Pirelli 19, 20124 Milano"],
     ["자본금", "€20,000,000 전액납입 · 등기 직원 149명"],
-    ["구 상호", "Bolton Alimentari S.p.A."],
+    ["구 상호", "Bolton Alimentari S.p.A. — Bolton Food S.p.A. 의 이전 상호 (개칭 시점 미확인)"],
     ["회장", "Marina Nissim — 창업자 Joseph Nissim의 딸"],
     ["그룹 CEO", "Roberto Leopardi · 2024-01-10 취임"],
     ["상장", "비상장 가족기업 — 공시는 발표문과 등기 기탁분뿐"],
@@ -120,8 +121,9 @@ FINANCIALS = [
 
 # 07절 — 자사 선단. 조달 선단 399척과 혼동하면 안 된다
 OWN_FLEET = [
-    {"등록부": "IATTC", "척수": 4, "상태": "활성", "내역": "Aurora B 1,777 t · Rosita C 1,500 t · Charo 1,600 t · San Andres 1,583 t"},
-    {"등록부": "ICCAT", "척수": 3, "상태": "전부 비활성", "내역": "Via Avenir · Via Mistral · Via Alizé"},
+    {"등록부": "WCPFC RFV", "척수": 10, "상태": "활성 · 계열 소유", "내역": "NFD 6(Tri Marine 계열 · MSC 2025-07 부속서로 Solomon Amber·Diamond 추가돼 선망 7척) · Atunera Dularra 2 · Conservas Isabel Ecuatoriana 2"},
+    {"등록부": "IATTC", "척수": 4, "상태": "활성 · 계열 소유", "내역": "Aurora B 1,777 t · Rosita C 1,500 t (선주 Atunera Dularra SL → Grupo Conservas Garavilla → Bolton) · Charo 1,600 t · San Andres 1,583 t (Conservas Isabel Ecuatoriana) — 적재능력"},
+    {"등록부": "ICCAT", "척수": 3, "상태": "비활성 · Via Alizé는 2025-04 중남미 매각 보도", "내역": "Via Avenir · Via Mistral · Via Alizé (구 Saupiquet 선대)"},
 ]
 
 # 09절 — 한국 접점
@@ -143,6 +145,7 @@ STATS = {
     "한국선": 14,
     "한국선_비중": 3.5,
     "자사선_iattc": 4,
+    "자사선_wcpfc": 10,
     "선망_비중": 92.0,
     "green_비중": 98.5,
 }

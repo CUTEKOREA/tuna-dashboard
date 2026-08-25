@@ -40,10 +40,10 @@ describe('Albacora 인테이크', () => {
     expect(fleetGtTotal()).toBe(36404);
   });
 
-  it('회사 공표 18척과 등록부 확인 12척을 구분해 둔다', () => {
-    // 6척 차이를 추정으로 메우면 안 된다 — 이 간극 자체가 보고할 사실이다
-    expect(ALBACORA_CLAIMED_VESSELS).toBe(18);
-    expect(ALBACORA_CLAIMED_VESSELS - albacoraFleet.length).toBe(6);
+  it('EINF 23척과 등록부 확인 12척을 구분해 둔다', () => {
+    // 11척 차이를 추정으로 메우면 안 된다 — 이 간극 자체가 보고할 사실이다
+    expect(ALBACORA_CLAIMED_VESSELS).toBe(23);
+    expect(ALBACORA_CLAIMED_VESSELS - albacoraFleet.length).toBe(11);
   });
 
   it('기국이 스페인 8 · 파나마 2 · 모리셔스 2 로 갈려 있다', () => {
@@ -105,7 +105,7 @@ describe('Albacora 인테이크', () => {
   it('자료의 한계에 매출 시계열 비공개가 남아 있다', () => {
     // 이 줄이 사라지면 «절대액이 없다»는 경계가 화면에서 지워진 것이다
     expect(albacoraLimits.some((l) => l.항목.includes('매출 시계열'))).toBe(true);
-    expect(albacoraMeta.출처한계).toContain('매출 절대액이 공개되지 않는다');
+    expect(albacoraMeta.출처한계).toContain('그룹 연결 매출 절대액이 공개되지 않는다');
   });
 
   it('측정경계가 EMAS 물량의 적용 범위를 못박는다', () => {

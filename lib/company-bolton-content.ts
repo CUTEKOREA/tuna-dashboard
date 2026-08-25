@@ -19,18 +19,18 @@ const S01: StageNarrative = {
   numeral: '01',
   title: '개요: 참치 옆에 접착제와 세제가 있다',
   question: '캔참치 회사인가, 소비재 그룹인가',
-  lede: 'Rio Mare·Isabel·Saupiquet를 가진 유럽 캔참치의 대표 브랜드군인데, 같은 그룹 안에 UHU 접착제와 WC Net 세제와 Borotalco가 있다. 2025년 순매출 3,541 M€ 중 참치를 포함한 Food는 67.3%다.',
+  lede: 'Rio Mare·Isabel·Saupiquet를 가진 유럽 캔참치의 대표 브랜드군인데, 같은 그룹 안에 UHU 접착제와 WC Net 세제와 Borotalco가 있다. 2025년 순매출 3,541 M€ 중 Food가 67.3%이고, 참치는 그 안에 있다.',
   paragraphs: [
-    '앞의 다섯 회사는 참치의 위치가 달랐다. 프린사는 사고 알바코라는 잡았다. FCF는 댔고 타이유니온은 브랜드를 사 모았다. 이토추는 참치가 부(部)의 절반이었다. **볼튼은 참치가 그룹의 3분의 2**다 — 본업이되 전부는 아니다.',
+    '앞의 다섯 회사는 참치의 위치가 달랐다. 프린사는 사고 알바코라는 잡았다. FCF는 댔고 타이유니온은 브랜드를 사 모았다. 이토추는 참치가 부(部)의 절반이었다. **볼튼은 Food가 그룹의 3분의 2**다 — 참치가 그 몸통이되 같은 칸에 육류캔·소스가 함께 들어 있고, **참치 단독 매출은 공개되지 않는다**.',
     '그 나머지 3분의 1이 이 회사를 읽는 열쇠다. **접착제·홈케어·퍼스널케어·뷰티가 1,159 M€, 32.7%**를 차지한다. 원어값이 튀는 해에도 그룹 손익이 덜 흔들리는 이유이고, 참치 사업을 원가 사이클과 따로 놓고 볼 수 없는 이유이기도 하다.',
     '통합 방향도 반대다. **하류에서 상류로 올라갔다.** 1999년 Saupiquet를 사면서 선단과 공장이 함께 넘어왔고, 2013년과 2019년 두 번에 걸쳐 Tri Marine을 가져왔다. 브랜드가 원료를 사러 올라간 형태다.',
   ],
   facts: [
-    { label: '2025년 순매출', value: '3,541 M€', asOf: 'FY2025', source: 'Sustainability Report 2025', grade: 'A', note: '2024년 3,528 M€ 대비 +0.4%' },
-    { label: 'Food 비중', value: '67.3%', asOf: 'FY2025', source: '동상', grade: 'A', note: '캔참치·수산캔·육류캔·소스 합계' },
-    { label: '참치 사이클 밖', value: '32.7%', asOf: 'FY2025', source: '동상', grade: 'A', note: '접착제·홈케어·퍼스널케어·뷰티' },
+    { label: '2025년 순매출', value: '3,541 M€', asOf: 'FY2025', source: 'Sustainability Report 2025 (자기신고 · 카테고리 합)', grade: 'B', note: '2024년 3,528 M€ 대비 +0.4% · 연결재무제표는 미공표' },
+    { label: 'Food 비중', value: '67.3%', asOf: 'FY2025', source: '회사 Sustainability Report (자기신고)', grade: 'B', note: '캔참치·수산캔·육류캔·소스 합계 — 참치 단독은 미공개' },
+    { label: '참치 사이클 밖', value: '32.7%', asOf: 'FY2025', source: '동상 (자기신고에서 산출)', grade: 'B', note: '접착제·홈케어·퍼스널케어·뷰티' },
     { label: '탄소발자국 중 Tri Marine', value: '72.9%', asOf: 'FY2025', source: 'Sustainability Report 2025 p.56', grade: 'A', note: '매출로는 Food 한 칸에 묻히는 사업이 배출로는 그룹을 대표한다' },
-    { label: '브랜드 수', value: '63개', asOf: 'FY2025', source: '동상', grade: 'A', note: '5개 카테고리 합계' },
+    { label: '브랜드 수', value: '63개', asOf: 'FY2025', source: '동상 (카테고리별 합산)', grade: 'B', note: '회사 표기는 「over 60」' },
     { label: '상장', value: '비상장 가족기업', asOf: '2026-08', source: '이탈리아 등기', grade: 'A', note: '연결재무제표를 공표하지 않는다' },
   ],
   terms: [
@@ -46,14 +46,14 @@ const S02: StageNarrative = {
   lede: '산업지주 Bolton Group S.r.l. 위에 가족지주 Factor Holding S.r.l.이 100% 사원으로 서 있다. 두 법인이 같은 밀라노 주소를 쓴다.',
   paragraphs: [
     '층은 셋이다. 최상위에 **Factor Holding S.r.l.**(2010-11-29 설립), 그 아래 산업지주 **Bolton Group S.r.l.**, 다시 그 아래 Bolton Food S.p.A.를 비롯한 사업회사들이다. 산업지주의 1인 사원(socio unico)이 가족지주이므로 지분 구조에 외부가 없다.',
-    '회장은 **Marina Nissim** — 창업자 Joseph Nissim의 딸이다. 그룹 CEO는 2024년 1월 취임한 **Roberto Leopardi**다. 2016~17년 재편에서 상호가 Bolton Alimentari S.p.A.에서 지금 형태로 갈렸다.',
+    '회장은 **Marina Nissim** — 창업자 Joseph Nissim의 딸이다. 그룹 CEO는 2024년 1월 취임한 **Roberto Leopardi**다. 2016~17년 재편에서 갈린 것은 **Bolton Group Services**와 구 Bolton Group(→Factor Holding)이다. Bolton Alimentari S.p.A.는 **Bolton Food S.p.A.의 이전 상호**이고, 개칭 시점은 확인되지 않았다.',
     '비상장이라 **연결재무제표가 공표되지 않는다.** 이 페이지의 매출은 회사 발표문에서, 손익은 등기 기탁분을 인용한 언론에서 온다 — 등급이 갈리는 이유이고, 2023년 이후 EBITDA·EBIT가 「미확인」으로 남는 이유다.',
   ],
   facts: [
     { label: '산업지주', value: 'CF 05983890152', asOf: '2026-08', source: '이탈리아 등기 · REA MI 1055773', grade: 'A', note: 'Bolton Group S.r.l.' },
     { label: '최상위 가족지주', value: 'CF 07224860960', asOf: '2010-11-29 설립', source: '동상', grade: 'A', note: 'Factor Holding S.r.l. — 산업지주 지분 100%' },
     { label: '이탈리아 식품', value: 'CF 00197980139', asOf: '1951년', source: '동상', grade: 'A', note: 'Bolton Food S.p.A. · Cermenate (CO)' },
-    { label: '자본금', value: '€20,000,000', asOf: '2026-08', source: '등기', grade: 'A', note: '전액납입 · 등기 직원 149명' },
+    { label: '자본금', value: '€20,000,000', asOf: '2026-08', source: '등기 파생 상용 DB', grade: 'B', note: '전액납입 · 등기 직원 149명' },
     { label: '회장 · CEO', value: 'Marina Nissim · Roberto Leopardi', asOf: '2024-01-10 취임', source: '회사 발표', grade: 'B', note: '창업자 Joseph Nissim의 딸' },
   ],
   terms: [
@@ -92,12 +92,12 @@ const S04: StageNarrative = {
   lede: '2013년과 2019년 두 단계로 나눠 가져왔다. 1단계는 EU 기업결합 무이의 결정을 받았고, 2단계는 공개된 신고 기록이 없다.',
   paragraphs: [
     '1단계는 2013년 12월이다. Umbrella Agreement와 SPA 3건을 묶어 신고했고 EU가 **Art. 6(1)(b) 무이의**로 승인했다. 대상은 Tri-Marine Holdings Coöperatief U.A.(네덜란드)와 미국 지주들이었고, Renato Curto가 직·간접 다수지분을 유지했다.',
-    '2단계는 2019년 7월이다. 트레이딩 사업과 NFD 선단, 콜롬비아·에콰도르·솔로몬제도 가공공장이 넘어왔다. **미국 국적 선망선 11척은 넘어가지 않았다.** 이 거래에는 EU 기업결합 사건 번호가 없다 — 신고 기준에 걸리지 않았거나 비공시다.',
+    '2단계는 2019년 7월이다. 트레이딩 사업과 NFD 선단, 콜롬비아·에콰도르·솔로몬제도 가공공장이 넘어왔다. 회사 보도자료는 **참치 공급망 100%**라 적고 **미국 국적 선망선 11척과 소형 부어류 사업은 Curto 측에 남겼다**(carve-out) — 그래서 「잔여 51%로 완전자회사」라는 요약은 정확하지 않다. 이 2단계에는 공개된 EU 기업결합 사건 번호가 없다 — 신고 기준에 걸리지 않았거나 비공시다(1단계 M.7010 과 구분해야 한다).',
     '2013년 결정문이 남긴 숫자가 이 인수의 의미를 말한다. 세계 라운드 참치 트레이딩에서 **Tri Marine과 FCF가 각각 20~30%**, 이토추가 5~10%, 볼튼 자신은 0~5%였다. 브랜드 회사가 자기 원료 조달의 상류를 통째로 사 온 것이다.',
   ],
   facts: [
     { label: '1단계', value: '2013-12-09 무이의', asOf: '2013', source: 'EU 기업결합 결정문', grade: 'A', note: 'Art. 6(1)(b) · 2013-11-04 신고' },
-    { label: '2단계', value: '2019-07 · 신고 기록 없음', asOf: '2019', source: '조사보고서 5절', grade: 'A', note: 'EU 기업결합 사건 없음 — 비공시' },
+    { label: '2단계', value: '2019-07 · 참치 공급망 100%', asOf: '2019', source: 'Tri Marine 보도자료 2019-07-06', grade: 'B', note: '미국기국 선대·소형 부어류는 carve-out · 2019년분 EU 사건번호는 공개 검색으로 미확인' },
     { label: '2012년 트레이딩 점유', value: 'Tri Marine 20~30%', asOf: '2012', source: 'EU 결정문', grade: 'A', note: 'FCF 20~30% · 이토추 5~10% · 볼튼 0~5%' },
     { label: '연간 참치 거래량', value: '50만 t 초과', asOf: '연도 표기 없음', source: 'bolton.com 상시 문구', grade: 'C', note: '집계 기준이 조달량과 같은지는 공개되지 않는다' },
     { label: '브랜드 원료 직접 조달', value: '90% 초과', asOf: 'SR2022', source: '회사 발표', grade: 'B', note: 'Rio Mare · Isabel · Saupiquet · Cuca · Palmera' },
@@ -115,15 +115,15 @@ const S05: StageNarrative = {
   lede: '2025년 740,310 t. 2023년 562,270 t에서 두 해 만에 32% 늘었다. 다만 이 숫자는 브랜드가 쓴 양이 아니다.',
   paragraphs: [
     '증가분의 성격을 회사 스스로 밝힌다. 2024년 +26% 가운데 **Tri Marine 트레이딩 증가가 +144,000 t**이다. 조달량은 Bolton Food 원료와 Tri Marine이 사고판 물량의 합이므로, 늘었다고 브랜드가 그만큼 더 팔았다는 뜻이 아니다.',
-    '어종 구성이 2025년에 크게 갈렸다. **가다랑어가 79%에서 62%로 내려앉고 황다랑어가 16%에서 29%로 두 배**가 됐다. 눈다랑어는 +138%, 손낚시 어법은 +133%다. 어법 자체는 여전히 **선망이 92%**로 압도적이다.',
-    '자원 등급은 ISSF 기준으로 **Green 98.5%**, Red 0.2%다. 인증 구간에서는 MSC full assessment가 6,172 t에서 16,452 t으로, CCFIP가 484 t에서 17,565 t으로 늘었고 FIP는 71,011 t에서 1,536 t으로 줄었다 — 개선프로그램에서 정식 인증 쪽으로 옮겨간 모양새다.',
+    '어종 구성이 2025년에 크게 갈렸다. **가다랑어가 79%에서 62%로 내려앉고 황다랑어가 16%에서 29%로 1.8배**가 됐다(물량으로는 112,940 → 215,556 t, 1.9배). 눈다랑어는 +138%, 손낚시 어법은 +133%다. 어법 자체는 여전히 **선망이 압도적**이다 — 회사 조달표로는 679,800 t(91.8%)이고 WWF 공동보고서는 대형선망 93%로 적어 집계 기준이 조금 다르다.',
+    '자원 등급은 회사 KPI 기준 **건강한 자원 98.5%**(2024년 99%)다 — ISSF 색상등급과 같은 잣대라고 적힌 출처는 없으니 그대로 옮기면 안 된다. 인증 구간에서는 MSC full assessment가 6,172 t에서 16,452 t으로, CCFIP가 484 t에서 17,565 t으로 늘었고 FIP는 71,011 t에서 1,536 t으로 줄었다 — 개선프로그램에서 정식 인증 쪽으로 옮겨간 모양새다.',
   ],
   facts: [
     { label: '2025년 조달량', value: '740,310 t', asOf: 'FY2025', source: 'Sustainability Report 2025', grade: 'A', note: '2024년 708,328 t 대비 +5%' },
     { label: '가다랑어', value: '462,406 t · 62%', asOf: 'FY2025', source: '동상', grade: 'A', note: '2024년 79%에서 내려왔다 (−17%)' },
     { label: '황다랑어', value: '215,556 t · 29%', asOf: 'FY2025', source: '동상', grade: 'A', note: '전년비 +91%' },
-    { label: '선망 비중', value: '92%', asOf: 'FY2025', source: '동상', grade: 'A', note: '679,800 t' },
-    { label: 'ISSF Green', value: '98.5%', asOf: 'FY2025', source: '동상', grade: 'A', note: '729,290 t · Red 0.2%' },
+    { label: '선망 비중', value: '91.8% (679,800 t)', asOf: 'FY2025', source: '회사 조달표 (자기신고)', grade: 'B', note: 'WWF 공동보고서는 대형선망 93%로 집계' },
+    { label: '건강한 자원 비중', value: '98.5%', asOf: 'FY2025', source: '회사 지속가능 KPI (자기신고)', grade: 'B', note: '2024년 99% · ISSF 색상등급과 동일 잣대인지는 미확인' },
   ],
   terms: [
     { term: 'CCFIP', description: 'Comprehensive FIP. 개선 계획이 전 항목을 덮는 어업개선프로젝트로, 부분 FIP보다 요건이 무겁다.' },
@@ -169,5 +169,5 @@ export const BOLTON_SOURCE_NOTES: string[] = [
   '비상장 가족기업이라 연결재무제표를 공표하지 않는다. 매출은 회사 발표문, 손익은 등기 기탁분의 언론 인용이다 — 2023년 이후 EBITDA·EBIT는 확인되지 않는다.',
   '조달 740,310 t 은 Bolton Food 원료와 Tri Marine 트레이딩의 합이다. 브랜드가 쓴 양으로 읽으면 안 된다.',
   '참치 단독 매출은 공개되지 않는다. 최소 공개 단위가 Food 카테고리 2,382 M€이고 그 안에 수산캔·육류캔·소스가 함께 들어 있다.',
-  '선단은 연도와 등록부를 붙여야 한다. 공개 선박명단 399척은 조달 선단이고, 자사 보유는 IATTC 4척이며 ICCAT 3척은 전부 비활성이다.',
+  '선단은 연도와 등록부를 붙여야 한다. 공개 선박명단 399척은 조달 선단이고, **계열 소유는 WCPFC 10척 · IATTC 4척**이며 ICCAT 3척은 비활성이다(Via Alizé는 2025-04 중남미 매각 보도). AURORA B·ROSITA C 의 **등록 선주는 Atunera Dularra SL(빌바오)이고 그 모회사가 Grupo Conservas Garavilla — Bolton 100% 자회사**라 그룹 선박이 맞다. 알바코라 조사가 같은 배를 자기 선단표에 넣은 것이 겹침의 원인이다.',
 ];

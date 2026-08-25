@@ -75,14 +75,14 @@ describe('Bolton 조달', () => {
 });
 
 describe('Bolton 선단 — 조달과 보유를 섞지 않는다', () => {
-  it('자사 활성 선박은 IATTC 4척뿐이다', () => {
-    expect(activeOwnVessels()).toBe(boltonStats.자사선_iattc);
-    expect(activeOwnVessels()).toBe(4);
+  it('계열 소유 활성 선박은 WCPFC 10 + IATTC 4 = 14척이다', () => {
+    expect(boltonStats.자사선_wcpfc + boltonStats.자사선_iattc).toBe(14);
+    expect(activeOwnVessels()).toBe(14);
   });
 
   it('ICCAT 3척은 전부 비활성이라 세지 않는다', () => {
     const iccat = boltonOwnFleet.find((r) => r.등록부 === 'ICCAT');
-    expect(iccat?.상태).toBe('전부 비활성');
+    expect(iccat?.상태).toContain('비활성');
     expect(activeOwnVessels()).toBeLessThan(
       boltonOwnFleet.reduce((a, r) => a + r.척수, 0),
     );
@@ -90,7 +90,7 @@ describe('Bolton 선단 — 조달과 보유를 섞지 않는다', () => {
 
   it('조달 선박명단은 자사 선단과 자릿수가 다르다', () => {
     expect(latestVesselList().총척수).toBe(boltonStats.명단선박);
-    expect(latestVesselList().총척수).toBeGreaterThan(activeOwnVessels() * 50);
+    expect(latestVesselList().총척수).toBeGreaterThan(activeOwnVessels() * 20);
   });
 });
 
