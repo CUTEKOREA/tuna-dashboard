@@ -1,3 +1,12 @@
+> 🚀 **2026-08-26 00:42 KST — `/fleet` 선단 상세 2단계 인증 제거 라이브 배포 완료** [Codex]:
+> - PR [#774](https://github.com/CUTEKOREA/tuna-dashboard/pull/774)은 App Quality Gate `32866013807`·Vercel Preview를 통과하고 squash 병합됐다. main commit `f774ccdc75fcd5f3454609874759b223e4fb134f`, main gate `32866493880`과 Data Freshness Audit `32866493883`이 성공했다.
+> - Vercel Production `dpl_51gzYXawipiUdW8L8SEfKvYyABgx`(GitHub deployment `6086575916`)는 READY이며 `leedonggun.co.kr`·`icn1`·병합 SHA에 연결됐다.
+> - 기존 AAL1 로그인 세션에서 `/api/fleet/daily`는 200·`private, no-store`로 보고일/기준일 `2026-08-25/08-24`, 상세 행 `10/7/6/2`를 반환했다. 오늘의 운영 상태·예정과 선박·수역 지도·전체 상세가 표시되며 인증 앱 코드·2단계 인증 문구·6자리 입력창은 모두 0건이다.
+> - 데스크톱과 390×844 모바일에서 상세 렌더, 모바일 문서 폭 `390/390`, console/page error 0을 확인했다. CacheStorage의 `/api/fleet/` 항목은 0건이다.
+> - 비인증 `/api/fleet/daily`와 `/fleet`은 각각 401 `authentication_required`와 307 로그인 전환을 유지하며 모두 `private, no-store`·`Vary: Cookie`다. 새 Production 최근 30분 error/fatal/5xx 로그는 모두 0건이다. 메일 MFA는 변경하지 않았다.
+>
+> 마지막 업데이트: 2026-08-26 00:42 KST [Codex]
+
 > 🔓 **2026-08-26 00:26 KST — `/fleet` 선단 상세 2단계 인증 제거 로컬 완료·배포 진행** [Codex]:
 > - 사용자 승인 범위대로 허용된 구글 계정 로그인과 서버 이메일 허용목록은 유지하고, `/api/fleet/daily`의 Supabase AAL2 조회·`mfa_required` 거부만 제거했다. 비로그인 `401 authentication_required`, 미허용 계정 `403 fleet_access_required`, 설정 오류 `503` 경계와 `private, no-store` 응답은 유지한다.
 > - `/fleet`의 오늘의 운영·선박 상세 경로에서 `FleetStepUpMfa` 연결과 인증 앱 코드 입력을 제거했다. 메일 화면·메일 API의 MFA 구현은 변경하지 않았다. 구버전 API의 `mfa_required` 응답은 배포 전환 호환을 위해 안전한 로그인 재확인 문구로만 처리한다.
