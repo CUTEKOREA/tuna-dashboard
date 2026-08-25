@@ -1,3 +1,17 @@
+> 🧪 **2026-08-25 21:57 KST — HIKARI 1 8/25 하역 일일보고·8/26 계획 로컬 반영 완료** [Codex]:
+> - 원본 3종을 교차 확인했다. SHA-256: JPG `762f8802…3910`, 결과 XLS `111cd3f4…3017`, 현황 XLSX `08832ece…3935`.
+> - 검산: `1,889.360 + 434.280 = 2,323.640 MT`, `2,929 - 2,323.640 = 605.360 MT`. 당일 CMC `96.300`, GPZ `185.720`, ISA `152.260 MT`; SJ `411.380`·YF `22.900 MT`, 누계 SJ `2,014.120`·YF `309.520 MT`, 총 27대다.
+> - 작업은 08:10~13:30. N/STAR #1-B `-20℃`, S/SPR #2-C `-21℃`, MOAMARI #3-C 원문 `-20,24℃`, MOAKONA #4-C 원문 `-20,21℃`를 부호 그대로 보존했다. 8/26 사용자 계획은 GPZ 100·ISA 150, 합계 `250 MT`다.
+> - 고정 한글 보고서 렌더러·문법·golden fixture 무차이를 확인했다. 설치 스킬에는 과거 메모리의 `quick_validate.py`가 현재 없어 해당 보조 검사만 실행 불가했으며, 렌더러 본체 검산은 통과했다.
+> - Drive 원본 폴더에 `20260825 HIKARI 1 (BKK) 하역 업무 보고.txt`를 저장했고 렌더러 출력과 diff 0을 확인했다. SHA-256 `c452aaf9…7beb`, 1,189 bytes다.
+> - Google Tasks `내 할 일 목록`에서 8/25 후보는 `HIKARI 1 ###톤` 1건뿐이었다. 제목만 `HIKARI 1 434.280 MT`로 수정하고 기한 오늘·미완료·중복 없음까지 다시 읽어 확인했다.
+> - RED 5건 확인 후 집중 HIKARI 계약 13/13, 전체 `npm run verify` 통과(147 files, 1,146 passed/2 skipped, API cache 158/158, Next 118페이지, client leak·bundle 통과).
+> - PR 첫 App Quality Gate의 별도 하역 브라우저 acceptance는 이전 연간 누계 `38,272 MT`를 하드코딩해 실패했다. 현재 정본 `38,706 MT`로 4개 기대값을 갱신했고, 로컬 `test:e2e:unloading-history`의 desktop/mobile/keyboard/open-tab/API/chunk failure isolation 전체 PASS를 확인했다.
+> - 로컬 보호 API는 200·`private, no-store`로 8/25 행과 누계·잔량·명일 계획을 반환했다. 1440×1100·390×844 HIKARI 작업 기록 탭에서 동일 값·어창·온도·계획을 확인했고 overflow 0, console/page/request error 0이다. 2026 통합 누계는 `38,706.240 MT`다.
+> - **다음 단계**: 사용자가 `배포`를 명시하면 PR gate → main 병합 → Production READY → 운영 API·1440/390px·로그를 검증한다.
+>
+> 마지막 업데이트: 2026-08-25 21:57 KST [Codex]
+
 > 🚀 **2026-08-25 21:05 KST — `mslkim8@gmail.com` Google 로그인 허용·라이브 배포 완료** [Codex]:
 > - 기존 Production `DASHBOARD_ALLOWED_EMAILS`는 Vercel Sensitive라 값을 읽거나 덮어쓰지 않았다. 새 서버 변수 `DASHBOARD_ALLOWED_EMAILS_APPEND`에 `mslkim8@gmail.com`을 추가했다. Production·Preview는 Sensitive/Secret, Development는 이메일 값만 담은 Config이며 기존 Production 목록은 그대로 존재한다.
 > - 인증 정책은 소유자·기존 목록·append 목록을 합친 뒤 기존 파서로 일괄 검증한다. append 항목이 잘못돼도 `configuration_required`로 fail-closed하며, 소유자 변수가 없으면 추가 목록만으로 열리지 않는다.
