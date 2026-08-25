@@ -6,6 +6,7 @@
 > - Drive 원본 폴더에 `20260825 HIKARI 1 (BKK) 하역 업무 보고.txt`를 저장했고 렌더러 출력과 diff 0을 확인했다. SHA-256 `c452aaf9…7beb`, 1,189 bytes다.
 > - Google Tasks `내 할 일 목록`에서 8/25 후보는 `HIKARI 1 ###톤` 1건뿐이었다. 제목만 `HIKARI 1 434.280 MT`로 수정하고 기한 오늘·미완료·중복 없음까지 다시 읽어 확인했다.
 > - RED 5건 확인 후 집중 HIKARI 계약 13/13, 전체 `npm run verify` 통과(147 files, 1,146 passed/2 skipped, API cache 158/158, Next 118페이지, client leak·bundle 통과).
+> - PR 첫 App Quality Gate의 별도 하역 브라우저 acceptance는 이전 연간 누계 `38,272 MT`를 하드코딩해 실패했다. 현재 정본 `38,706 MT`로 4개 기대값을 갱신했고, 로컬 `test:e2e:unloading-history`의 desktop/mobile/keyboard/open-tab/API/chunk failure isolation 전체 PASS를 확인했다.
 > - 로컬 보호 API는 200·`private, no-store`로 8/25 행과 누계·잔량·명일 계획을 반환했다. 1440×1100·390×844 HIKARI 작업 기록 탭에서 동일 값·어창·온도·계획을 확인했고 overflow 0, console/page/request error 0이다. 2026 통합 누계는 `38,706.240 MT`다.
 > - **다음 단계**: 사용자가 `배포`를 명시하면 PR gate → main 병합 → Production READY → 운영 API·1440/390px·로그를 검증한다.
 >
