@@ -1,3 +1,11 @@
+> 🔐 **2026-08-25 20:48 KST — Google 로그인 추가 허용 계정 보존형 구현 완료·환경 반영 전** [Codex]:
+> - 사용자는 `mslkim8@gmail.com` 추가와 Production·Preview·Development 반영을 승인했다. 기존 Vercel `DASHBOARD_ALLOWED_EMAILS`는 Sensitive라 현재 값을 읽을 수 없어 덮어쓰지 않았다.
+> - `DASHBOARD_ALLOWED_EMAILS_APPEND`를 기존 소유자·추가 목록 뒤에 병합하도록 서버 인증 정책을 확장했다. 결합된 목록은 기존 파서가 한 번에 검증하므로 어느 항목이든 형식이 틀리면 `configuration_required`로 fail-closed한다.
+> - RED: append 목록이 무시돼 대상 계정이 거부되고 잘못된 append가 기존 소유자를 통과시키는 2건 실패를 확인했다. GREEN: `dashboard-owner-auth` 20/20 통과.
+> - **다음 단계**: 전체 게이트 → PR 병합 → 새 Sensitive 환경변수를 세 환경에 설정 → Production 재배포 → 기존 계정·신규 계정 인증 경계와 로그 확인.
+>
+> 마지막 업데이트: 2026-08-25 20:48 KST [Codex]
+
 > 🚀 **2026-08-25 15:09 KST — `/logistics` TRI MARINE 정정·입항 후속 확인 라이브 배포 완료** [Codex]:
 > - PR [#766](https://github.com/CUTEKOREA/tuna-dashboard/pull/766)은 첫 병합 시 최신 main의 기업 해부 감사와 HANDOFF 충돌이 발생해 강제 병합하지 않았다. 양쪽 기록을 보존해 최신 main을 통합한 뒤 PR App Quality Gate `32814608435`·Vercel Preview 3종을 다시 통과하고 squash 병합했다. 최종 main commit은 `ad71a141aa43b91b18ff679c5bd90ac8df5c3e82`다.
 > - main App Quality Gate `32814877114`와 Data Freshness Audit `32814877137`이 성공했다. Vercel Production `dpl_Ff5QvXa3kCgg7cHZcV1uZKRpwCJQ`(GitHub deployment `6077431658`)는 READY이며 `leedonggun.co.kr` alias·`icn1`·main SHA에 연결됐다.
