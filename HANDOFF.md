@@ -1,3 +1,13 @@
+> 🚀 **2026-08-25 21:05 KST — `mslkim8@gmail.com` Google 로그인 허용·라이브 배포 완료** [Codex]:
+> - 기존 Production `DASHBOARD_ALLOWED_EMAILS`는 Vercel Sensitive라 값을 읽거나 덮어쓰지 않았다. 새 서버 변수 `DASHBOARD_ALLOWED_EMAILS_APPEND`에 `mslkim8@gmail.com`을 추가했다. Production·Preview는 Sensitive/Secret, Development는 이메일 값만 담은 Config이며 기존 Production 목록은 그대로 존재한다.
+> - 인증 정책은 소유자·기존 목록·append 목록을 합친 뒤 기존 파서로 일괄 검증한다. append 항목이 잘못돼도 `configuration_required`로 fail-closed하며, 소유자 변수가 없으면 추가 목록만으로 열리지 않는다.
+> - RED 2건(append 무시·형식 오류 미반영) 확인 후 집중 인증 테스트 20/20, 전체 `npm run verify` 통과(147 files, 1,145 passed/2 skipped, API cache 158/158, Next 118페이지, client leak·bundle 통과).
+> - PR [#769](https://github.com/CUTEKOREA/tuna-dashboard/pull/769)은 App Quality Gate `32844638464`·Vercel Preview를 통과하고 squash 병합됐다. main commit `01e2b672fc48666bc8df3800a7797c45fbc439cf`, main gate `32845020512`, Production `dpl_GMggySZP1ZvDje1QSNbCb8cLap3L`(GitHub deployment `6082625945`)은 READY이며 `leedonggun.co.kr`·`icn1`에 연결됐다.
+> - 기존 소유자 로그인 세션은 라이브 보호 화면과 「보안 로그아웃」까지 정상 접근했다. 비인증 `/logistics`는 307 로그인·`private, no-store`·`Vary: Cookie`, 새 배포 최근 30분 error/fatal/5xx는 모두 0건이다.
+> - 신규 계정 실제 Google 로그인은 해당 계정을 대신 인증하지 않았다. 사용자는 `mslkim8@gmail.com`으로 첫 로그인해 확인하면 된다.
+>
+> 마지막 업데이트: 2026-08-25 21:05 KST [Codex]
+
 > 🔐 **2026-08-25 20:48 KST — Google 로그인 추가 허용 계정 보존형 구현 완료·환경 반영 전** [Codex]:
 > - 사용자는 `mslkim8@gmail.com` 추가와 Production·Preview·Development 반영을 승인했다. 기존 Vercel `DASHBOARD_ALLOWED_EMAILS`는 Sensitive라 현재 값을 읽을 수 없어 덮어쓰지 않았다.
 > - `DASHBOARD_ALLOWED_EMAILS_APPEND`를 기존 소유자·추가 목록 뒤에 병합하도록 서버 인증 정책을 확장했다. 결합된 목록은 기존 파서가 한 번에 검증하므로 어느 항목이든 형식이 틀리면 `configuration_required`로 fail-closed한다.
