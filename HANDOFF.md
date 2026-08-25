@@ -1,3 +1,13 @@
+> 🎴 **2026-08-25 — 기업 해부 카드 뒷면을 나라 단위로 묶었다** [CC]:
+> - 사용자 지적(«같은 국가끼리는 하나의 디자인에 업체명만 다르게»). 회사마다 문양을 따로 두었더니
+>   스페인이 로히괄다(Frinsa)·이쿠리냐(Albacora)로, 이탈리아가 트리콜로레(Bolton)·축약형(JAIS)으로
+>   갈려 일곱 장이 전부 다른 그림이 됐다. **나라당 한 벌**로 통일했다.
+> - `CompanyAnatomyDashboard` 에 `FLAG` 맵(스페인·태국·대만·일본·이탈리아 5벌)을 두고 카드는
+>   `...FLAG.스페인` 으로 가져다 쓴다. **회사가 늘면 그 나라 항목이 없을 때만 한 줄 더한다.**
+> - 규칙이 다시 깨지는 것을 `__tests__/company-card-flag.test.ts` 가 잡는다 — 같은 나라는 문양·잉크
+>   동일, 다른 나라는 문양 비중복, 일곱 장이 다섯 나라. `COMPANY_CARDS` 를 export 로 열었다.
+> - Vitest 1,142 통과, `next build` 성공.
+
 > 🚀 **2026-08-25 10:16 KST — 해양수산본부 8/25 일일보고 `/fleet` 라이브 배포 완료** [Codex]:
 > - PR [#761](https://github.com/CUTEKOREA/tuna-dashboard/pull/761)을 Preview/App/Vercel 3/3 성공 뒤 squash 병합했다. main commit은 `30306cb1c5560f773e2927804204987cbf08614f`, PR gate `32795929940`, main gate `32796207284`가 전체 verify와 하역 이력 브라우저 acceptance를 통과했다.
 > - Vercel Production `dpl_4nRYULxaK3c6Rwhm5NgzHy5BYZdt`(GitHub deployment `6074409490`)가 READY이며 `leedonggun.co.kr` alias·`icn1`에 연결됐다. Production `FLEET_DAILY_DETAIL_JSON`은 8/25 공개 SHA와 일치하는 보호 DTO로 Sensitive/Secret 교체했다.
