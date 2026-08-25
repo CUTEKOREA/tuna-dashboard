@@ -12,27 +12,40 @@ import {
 
 describe('2026-08-23 fleet operations sources', () => {
   it('reconciles the national VDS report at vessel and area grain', () => {
-    expect(nationalVds.asOf).toBe('2026-08-09');
+    expect(nationalVds.asOf).toBe('2026-08-23');
     expect(nationalVds.vessels).toHaveLength(6);
     expect(nationalVds.areas).toHaveLength(8);
-    expect(nationalVds.totals).toEqual({ allocated: 1_417, consumed: 965, remaining: 452, weekly: 18.8 });
+    expect(nationalVds.totals).toEqual({ allocated: 1_447, consumed: 1_023.8, remaining: 423.2, weekly: 27.9 });
 
     const kiribati = nationalVds.areas.find((area) => area.area === '키리바시');
-    expect(kiribati?.totals).toEqual({ allocated: 734, consumed: 686.4, remaining: 47.6, weekly: 18.2 });
-    expect(kiribati?.rowSums.weekly).toBeCloseTo(18.4, 2);
+    expect(kiribati?.totals).toEqual({ allocated: 764, consumed: 739.2, remaining: 24.8, weekly: 21.9 });
+    expect(kiribati?.rowSums.allocated).toBeCloseTo(763.98, 2);
+    expect(kiribati?.rowSums.weekly).toBeCloseTo(21.9, 2);
     expect(nationalVds.areas.find((area) => area.area === '동부 공해')?.includedInGrandTotal).toBe(false);
-    expect(nationalVds.areas.flatMap((item) => item.rows).filter((row) => row.remaining < 0)).toHaveLength(10);
+    expect(nationalVds.areas.flatMap((item) => item.rows).filter((row) => row.remaining < 0)).toHaveLength(9);
   });
 
   it('keeps Kiribati VDS as a separate four-vessel population', () => {
-    expect(kiribatiVds.asOf).toBe('2026-08-17');
+    expect(kiribatiVds.asOf).toBe('2026-08-23');
     expect(kiribatiVds.vessels).toEqual(['MOAMARI', 'MOAKONA', 'NAOERO SUN', 'NAOERO STAR']);
-    expect(kiribatiVds.totals).toEqual({ allocated: 750, consumed: 537.4, remaining: 212.6, weekly: 15.6 });
+    expect(kiribatiVds.totals).toEqual({ allocated: 750, consumed: 543, remaining: 207, weekly: 6.5 });
     expect(kiribatiVds.areas.find((area) => area.area === '키리바시')?.totals).toEqual({
       allocated: 381,
-      consumed: 347.2,
-      remaining: 33.8,
-      weekly: 15.6,
+      consumed: 352.7,
+      remaining: 28.2,
+      weekly: 6.5,
+    });
+    expect(kiribatiVds.areas.find((area) => area.area === '파푸아뉴기니 양자')?.totals).toEqual({
+      allocated: 108,
+      consumed: 39.7,
+      remaining: 68.3,
+      weekly: 0,
+    });
+    expect(kiribatiVds.areas.find((area) => area.area === '투발루 양자')?.totals).toEqual({
+      allocated: 95,
+      consumed: 59.7,
+      remaining: 35.3,
+      weekly: 0,
     });
   });
 

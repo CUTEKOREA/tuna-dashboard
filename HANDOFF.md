@@ -1,3 +1,13 @@
+> ⚓ **2026-08-24 22:20 KST — 해양수산본부 8/24 일일보고·VDS 8/23 `/fleet` 반영 준비** [Codex]:
+> - 원문 3종을 직접 확인했다. DOCX `해양수산본부 일일업무보고-260824 (월).docx`는 167,247 bytes, SHA-256 `a0fe6821…71146b5`이며 ZIP 무결성을 통과했다. 국적선·KFC VDS PDF는 각각 SHA-256 `5adb3456…f9d88b`, `268e1032…aa4aa4`다.
+> - 공개 집계는 보고일 `2026-08-24`, 조업 기준일 `2026-08-23`, 전체 139건이다. 태평양 일간/월간/연간 `36 / 2,668 / 47,500.8 MT`, 대서양 `280 / 4,505 / 31,230 MT`, 운반선 선적/예상잔량 `8,763.3 / 5,771.7 MT`, 일간 합계 `316 MT`·전일 대비 `-37 MT`다. 최신 4개 행 검산은 모두 일치하고 최신 이슈 0건이다.
+> - 국적선 VDS는 총 배정/소진/잔여/주간 소모 `1,447 / 1,023.8 / 423.2 / 27.9일`, KFC는 `750 / 543 / 207 / 6.5일`로 갱신했다. 공해는 원문대로 총계에서 제외했다. KFC 원문 내부의 `키리바시 행 합 352.8 ≠ 인쇄 소계 352.7일`, `수역 소계 합 542.9 ≠ 인쇄 총계 543.0일`을 보정하지 않고 `rowSums`와 인쇄 합계로 함께 보존했다.
+> - 최신 `origin/main`의 주간 PR #754·배포기록 #758까지 merge했다. 주간 정본 `lib/fleet-operations-2026-08-23.ts`의 KPI `419 / 2,668 / 47,501 MT`와 우리 일일·VDS 갱신을 함께 보존했다. 최종 `npm run verify` 통과: ESLint 오류 0(기존 경고 12), Python 21건, Vitest 146 files·1,140 passed/1 skipped, API 캐시 158/158, Next 118페이지, 실제 보호 상세 33개 누출 0, bundle 33 routes. `/private/tmp` Turbopack 정체는 표준 비중첩 경로에서 재현되지 않아 소스 수정 없이 종료했다.
+> - Production `FLEET_DAILY_DETAIL_JSON`은 새 공개 SHA에 맞는 8/24 보호 상세로 교체했다. PR #756의 첫 Preview는 성공했으며, 이후 main 진입분을 통합했으므로 브랜치 갱신과 필수 게이트를 다시 확인한다.
+> - **다음 단계**: PR #756 브랜치 갱신 → 필수 게이트 → main 병합 → Vercel Production → 로그인 운영 `/fleet` 데스크톱·390px·VDS 탭 실검증.
+>
+> 마지막 업데이트: 2026-08-25 08:57 KST [Codex]
+
 > 🚀 **2026-08-25 08:37 KST — `/fleet` 8월 셋째주 실적 라이브 배포 완료·일일상세 경고** [Codex]:
 > - PR [#754](https://github.com/CUTEKOREA/tuna-dashboard/pull/754)을 Preview/App/Vercel 3/3 checks 성공 뒤 squash 병합했다. main commit은 `c4c58dd6a8fa5fc6dd04134120245025937eea57`, PR gate는 `32789134846`, main gate는 `32789473053`이며 전체 verify와 브라우저 acceptance를 통과했다.
 > - Vercel Production `dpl_Em5xz4L6zczmcmvWpQrF85YGay9a`(GitHub deployment `6073375107`)가 READY이며 `https://leedonggun.co.kr` alias·`icn1`에 연결됐다. 배포 SHA도 main commit과 일치한다.
