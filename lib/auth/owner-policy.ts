@@ -112,13 +112,17 @@ export function parseDashboardOwnerEmails(value: string | undefined): string[] |
 }
 
 // 운영 소유자(DASHBOARD_OWNER_EMAIL)에 추가 허용 계정(DASHBOARD_ALLOWED_EMAILS,
-// 쉼표 구분)을 병합한 설정 문자열. 소유자 변수가 비어 있으면 추가 목록만으로는
-// 절대 열리지 않는다 (fail-closed) — 소유자 등록이 항상 선행 조건.
+// DASHBOARD_ALLOWED_EMAILS_APPEND, 쉼표 구분)을 병합한 설정 문자열. 소유자 변수가
+// 비어 있으면 추가 목록만으로는 절대 열리지 않는다 (fail-closed) — 소유자 등록이
+// 항상 선행 조건.
 export function dashboardOwnerEmailConfig(): string | undefined {
   const owner = process.env.DASHBOARD_OWNER_EMAIL;
   if (typeof owner !== 'string' || owner.trim() === '') return undefined;
-  const extra = process.env.DASHBOARD_ALLOWED_EMAILS;
-  if (typeof extra === 'string' && extra.trim() !== '') return `${owner},${extra}`;
+  const extra = [
+    process.env.DASHBOARD_ALLOWED_EMAILS,
+    process.env.DASHBOARD_ALLOWED_EMAILS_APPEND,
+  ].filter((value): value is string => typeof value === 'string' && value.trim() !== '');
+  if (extra.length > 0) return `${owner},${extra.join(',')}`;
   return owner;
 }
 

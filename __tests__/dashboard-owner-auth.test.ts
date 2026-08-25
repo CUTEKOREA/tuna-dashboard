@@ -196,6 +196,35 @@ describe('대시보드 단일 구글 계정 보안 경계', () => {
     });
   });
 
+  it('append 허용 목록을 기존 추가 목록 뒤에 병합한다', () => {
+    vi.stubEnv('DASHBOARD_ALLOWED_EMAILS', 'second@example.com');
+    vi.stubEnv('DASHBOARD_ALLOWED_EMAILS_APPEND', 'mslkim8@gmail.com');
+
+    expect(dashboardOwnerEmailConfig()).toBe(
+      `${OWNER_EMAIL},second@example.com,mslkim8@gmail.com`,
+    );
+    expect(evaluateDashboardOwnerClaims({
+      ...GOOGLE_CLAIMS,
+      email: 'mslkim8@gmail.com',
+    }, dashboardOwnerEmailConfig())).toMatchObject({
+      ok: true,
+      email: 'mslkim8@gmail.com',
+    });
+  });
+
+  it('append 허용 목록의 형식 오류도 전체 인증을 잠근다', () => {
+    vi.stubEnv('DASHBOARD_ALLOWED_EMAILS_APPEND', 'not-an-email');
+
+    expect(evaluateDashboardOwnerClaims(
+      GOOGLE_CLAIMS,
+      dashboardOwnerEmailConfig(),
+    )).toEqual({
+      ok: false,
+      status: 503,
+      code: 'configuration_required',
+    });
+  });
+
   it('메일의 최신 사용자 조회에서도 확인된 구글 소유자만 승인한다', () => {
     expect(evaluateDashboardOwnerUser({
       id: 'owner-user-id',
