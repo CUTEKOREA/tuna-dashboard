@@ -1,3 +1,12 @@
+> 🚀 **2026-08-26 00:01 KST — 메일 기능 메뉴 비노출 라이브 배포 완료** [Codex]:
+> - PR [#772](https://github.com/CUTEKOREA/tuna-dashboard/pull/772)은 App Quality Gate `32861691228`·Vercel Preview를 통과하고 squash 병합됐다. main commit `1f24e0bcb1d54264449a9ff60fca23f867516d20`, main gate `32862267913`이 전체 verify와 하역 이력 브라우저 acceptance를 통과했다.
+> - Vercel Production `dpl_4QjwF9qgU7uGXo1jC1eTuA8om4Dx`(GitHub deployment `6085811668`)는 READY이며 `leedonggun.co.kr`·`icn1`·병합 SHA에 연결됐다.
+> - 로그인된 운영 `/fleet`에서 데스크톱·390×844 모두 메일 버튼 0건, GMTS 버튼 유지 1건을 확인했다. 모바일 문서 폭은 `390/390`으로 overflow 0, console/page error 0이다.
+> - 직접 `/mail`과 `/api/mail/status`는 삭제되지 않았다. 비인증 요청은 각각 307 로그인 전환과 401 `authentication_required`를 반환하며 둘 다 `private, no-store`·`Vary: Cookie`다. 새 배포 최근 30분 error/fatal/5xx 로그는 모두 0건이다.
+> - **다음 단계**: 선단 상세 2단계 인증 해제는 별도 승인 설계로 남아 있으며 이번 메뉴 비노출 배포에는 포함하지 않았다.
+>
+> 마지막 업데이트: 2026-08-26 00:01 KST [Codex]
+
 > 🙈 **2026-08-25 23:39 KST — 메일 기능 메뉴 비노출 로컬 적용 완료** [Codex]:
 > - 사용자 승인 범위에 따라 기존 `HIDDEN_DASHBOARD_MENU_KEYS`에 `mail`을 추가했다. 데스크톱·모바일 공용 사이드바와 명령 팔레트에서 메일 진입점은 보이지 않으며, 보호된 직접 `/mail` 경로·메일 API·저장 데이터·주간 자동발송은 삭제하거나 변경하지 않았다.
 > - RED 단계에서 숨김 집합과 실제 사이드바에 `mail`이 남아 집중 테스트 2건이 실패하는 것을 확인했다. 최소 구현 후 집중 회귀 39/39와 전체 `npm run verify`를 통과했다(147 files, 1,146 passed/2 skipped, API cache 158/158, Next 118페이지, client leak·bundle 통과).
