@@ -1984,20 +1984,71 @@ const JAI_SPEC: CommoditySpec = {
   ].join(' · '),
 };
 
+/**
+ * 카드 뒷면 문양은 **회사가 아니라 나라**로 정한다.
+ *
+ * 처음에는 회사마다 다르게 뒀다. 스페인이 갈리시아(로히괄다)와 바스크(이쿠리냐)로,
+ * 이탈리아가 트리콜로레와 그 축약형으로 갈리자 일곱 장이 전부 다른 그림이 됐고,
+ * 고르는 사람이 나라를 읽지 못했다. 나라당 한 벌만 둔다. 같은 나라 카드는 문양이
+ * 같고 회사명으로 갈린다.
+ *
+ * 회사가 늘면 그 나라 항목이 없을 때만 여기에 한 줄 더한다.
+ */
+const FLAG: Record<string, { flagCss: string; backInk: string }> = {
+  // 로히괄다 — 빨강·노랑·빨강 가로 밴드에 새틴 광
+  스페인: {
+    flagCss: [
+      'radial-gradient(circle at 50% 30%, rgba(255, 255, 255, 0.14), transparent 55%)',
+      'linear-gradient(180deg, #9d1017 0%, #9d1017 24%, #e0b400 24%, #e0b400 76%, #9d1017 76%, #9d1017 100%)',
+    ].join(', '),
+    backInk: '#4a2f00',
+  },
+  // 트라이롱 — 빨강·하양·남색(2배폭)·하양·빨강 가로 밴드
+  태국: {
+    flagCss: [
+      'radial-gradient(circle at 50% 30%, rgba(255, 255, 255, 0.14), transparent 55%)',
+      'linear-gradient(180deg, #a51931 0%, #a51931 16.6%, #f4f5f0 16.6%, #f4f5f0 33.3%, #2d2a4a 33.3%, #2d2a4a 66.6%, #f4f5f0 66.6%, #f4f5f0 83.3%, #a51931 83.3%, #a51931 100%)',
+    ].join(', '),
+    backInk: '#f4f5f0',
+  },
+  // 청천백일만지홍 — 붉은 바탕 좌상단에 남색 사각과 흰 태양
+  대만: {
+    flagCss: [
+      'radial-gradient(circle at 50% 30%, rgba(255, 255, 255, 0.14), transparent 55%)',
+      'radial-gradient(circle at 25% 25%, #f4f5f0 0 7%, transparent 7.4%)',
+      'radial-gradient(circle at 25% 25%, #1b3c8f 0 17%, transparent 17.4%)',
+      'linear-gradient(180deg, #c0202e 0%, #a81a26 100%)',
+    ].join(', '),
+    backInk: '#f4f5f0',
+  },
+  // 히노마루 — 흰 바탕 가운데 붉은 원
+  일본: {
+    flagCss: [
+      'radial-gradient(circle at 50% 28%, rgba(255, 255, 255, 0.9), transparent 55%)',
+      'radial-gradient(circle at 50% 45%, #bc002d 0 22%, transparent 22.5%)',
+      'linear-gradient(180deg, #f4f5f0 0%, #e6eaec 100%)',
+    ].join(', '),
+    backInk: '#1b2733',
+  },
+  // 트리콜로레 — 초록·하양·빨강 세로 밴드
+  이탈리아: {
+    flagCss: [
+      'radial-gradient(circle at 50% 30%, rgba(255, 255, 255, 0.12), transparent 55%)',
+      'linear-gradient(90deg, #0b6b4f 0%, #0b6b4f 33.3%, #f4f5f0 33.3%, #f4f5f0 66.6%, #b3222c 66.6%, #b3222c 100%)',
+    ].join(', '),
+    backInk: '#f4f5f0',
+  },
+};
+
 /** 선택 갤러리 카드 목록. 회사가 늘면 여기에 한 장씩 추가한다. */
-const COMPANY_CARDS: CompanyCard[] = [
+export const COMPANY_CARDS: CompanyCard[] = [
   {
     key: 'frinsa',
     numeral: 'Ⅰ',
     name: 'Frinsa del Noroeste',
     country: '스페인 · 갈리시아',
     tagline: '이름을 팔지 않는 회사. 선단 0척으로 한 해 참치 원어 13만 톤을 사들인다.',
-    // 스페인 국기(로히괄다) 연상 — 빨강·노랑·빨강 가로 밴드에 새틴 광
-    flagCss: [
-      'radial-gradient(circle at 50% 30%, rgba(255, 255, 255, 0.14), transparent 55%)',
-      'linear-gradient(180deg, #9d1017 0%, #9d1017 24%, #e0b400 24%, #e0b400 76%, #9d1017 76%, #9d1017 100%)',
-    ].join(', '),
-    backInk: '#4a2f00',
+    ...FLAG.스페인,
     stats: [
       { label: `${FIN.연도}년 매출`, value: `${FIN.매출.toLocaleString('ko-KR')} M€` },
       { label: '참치 원어 구매', value: `${tunaPurchasedMt().toLocaleString('ko-KR')} 톤` },
@@ -2010,12 +2061,7 @@ const COMPANY_CARDS: CompanyCard[] = [
     name: 'Thai Union Group',
     country: '태국 · 사뭇사콘',
     tagline: 'John West 도 Chicken of the Sea 도 이 회사 것이다. 한국 참치 수출의 절반이 이곳으로 간다.',
-    // 태국 국기(트라이롱) 연상 — 빨강·하양·남색(2배폭)·하양·빨강 가로 밴드
-    flagCss: [
-      'radial-gradient(circle at 50% 30%, rgba(255, 255, 255, 0.14), transparent 55%)',
-      'linear-gradient(180deg, #a51931 0%, #a51931 16.6%, #f4f5f0 16.6%, #f4f5f0 33.3%, #2d2a4a 33.3%, #2d2a4a 66.6%, #f4f5f0 66.6%, #f4f5f0 83.3%, #a51931 83.3%, #a51931 100%)',
-    ].join(', '),
-    backInk: '#f4f5f0',
+    ...FLAG.태국,
     stats: [
       { label: `${TU_FIN.연도}년 연결 매출`, value: `${((TU_FIN.매출 ?? 0) / 1000).toFixed(0)}십억 밧` },
       { label: '참치 캐파', value: `${tunaCapacityMt().toLocaleString('ko-KR')} 톤/년` },
@@ -2028,16 +2074,7 @@ const COMPANY_CARDS: CompanyCard[] = [
     name: 'Albacora, S.A.',
     country: '스페인 · 바스크 베르메오',
     tagline: '앞의 둘은 사는 회사였다. 이쪽은 잡는 회사다. 선망 18척으로 한 해 20만 톤.',
-    // 바스크 이쿠리냐 연상 — 짙은 초록 바탕에 흰 십자와 붉은 사선
-    flagCss: [
-      'radial-gradient(circle at 50% 30%, rgba(255, 255, 255, 0.12), transparent 55%)',
-      'linear-gradient(45deg, transparent 46%, #a32a2a 46%, #a32a2a 54%, transparent 54%)',
-      'linear-gradient(-45deg, transparent 46%, #a32a2a 46%, #a32a2a 54%, transparent 54%)',
-      'linear-gradient(0deg, transparent 46%, #f4f5f0 46%, #f4f5f0 54%, transparent 54%)',
-      'linear-gradient(90deg, transparent 46%, #f4f5f0 46%, #f4f5f0 54%, transparent 54%)',
-      'linear-gradient(180deg, #1f5d4c 0%, #164438 100%)',
-    ].join(', '),
-    backInk: '#f4f5f0',
+    ...FLAG.스페인,
     stats: [
       { label: `${ALB_CATCH.연도}년 어획량`, value: `${(ALB_CATCH.톤 / 1000).toFixed(0)}천 톤` },
       { label: '등록부 확인 선단', value: `${fleetGtTotal().toLocaleString('ko-KR')} GT` },
@@ -2050,14 +2087,7 @@ const COMPANY_CARDS: CompanyCard[] = [
     name: 'FCF Co., Ltd.',
     country: '대만 · 가오슝',
     tagline: '배는 한 척도 없다. 그런데 신라교역 매출의 40%를 사가는 단일 최대 고객이다.',
-    // 대만 청천백일만지홍 연상 — 붉은 바탕 좌상단에 남색 사각과 흰 태양
-    flagCss: [
-      'radial-gradient(circle at 50% 30%, rgba(255, 255, 255, 0.14), transparent 55%)',
-      'radial-gradient(circle at 25% 25%, #f4f5f0 0 7%, transparent 7.4%)',
-      'radial-gradient(circle at 25% 25%, #1b3c8f 0 17%, transparent 17.4%)',
-      'linear-gradient(180deg, #c0202e 0%, #a81a26 100%)',
-    ].join(', '),
-    backInk: '#f4f5f0',
+    ...FLAG.대만,
     stats: [
       { label: `신라교역 의존 (${FCF_SILLA_PEAK.연도})`, value: `${FCF_SILLA_PEAK.비중.toFixed(1)} %` },
       { label: '자사 보유 어선', value: `${fcfStats.자사선} 척` },
@@ -2070,13 +2100,7 @@ const COMPANY_CARDS: CompanyCard[] = [
     name: 'ITOCHU Corporation',
     country: '일본 · 오사카 · 도쿄',
     tagline: '참치는 부(部)의 절반이다. 그런데 인증 선단 25척 중 11척이 사조그룹이다.',
-    // 일본 히노마루 연상 — 흰 바탕 가운데 붉은 원
-    flagCss: [
-      'radial-gradient(circle at 50% 28%, rgba(255, 255, 255, 0.9), transparent 55%)',
-      'radial-gradient(circle at 50% 45%, #bc002d 0 22%, transparent 22.5%)',
-      'linear-gradient(180deg, #f4f5f0 0%, #e6eaec 100%)',
-    ].join(', '),
-    backInk: '#1b2733',
+    ...FLAG.일본,
     stats: [
       { label: '인증 선단 중 사조', value: `${sajoVessels()} / ${fleetTotal()} 척` },
       { label: '食料 세그먼트', value: `${itochuStats.식료_억엔.toLocaleString('ko-KR')} 억엔` },
@@ -2089,12 +2113,7 @@ const COMPANY_CARDS: CompanyCard[] = [
     name: 'Bolton Group',
     country: '이탈리아 · 밀라노',
     tagline: 'Rio Mare 옆에 UHU 접착제와 WC Net 세제가 있다. 참치 사이클 밖이 매출의 3분의 1이다.',
-    // 이탈리아 트리콜로레 연상 — 초록·하양·빨강 세로 밴드
-    flagCss: [
-      'radial-gradient(circle at 50% 30%, rgba(255, 255, 255, 0.12), transparent 55%)',
-      'linear-gradient(90deg, #0b6b4f 0%, #0b6b4f 33.3%, #f4f5f0 33.3%, #f4f5f0 66.6%, #b3222c 66.6%, #b3222c 100%)',
-    ].join(', '),
-    backInk: '#f4f5f0',
+    ...FLAG.이탈리아,
     stats: [
       { label: '2025년 순매출', value: `${boltonStats.매출_백만유로.toLocaleString('ko-KR')} M€` },
       { label: '참치 조달', value: `${boltonStats.조달_톤.toLocaleString('ko-KR')} 톤` },
@@ -2107,14 +2126,7 @@ const COMPANY_CARDS: CompanyCard[] = [
     name: 'JAIS S.R.L.',
     country: '이탈리아 · 밀라노',
     tagline: '공장도 배도 자회사도 없다. 여덟 명이 남의 명부에 한 줄로만 존재해 온 중개 노드다.',
-    // 볼튼과 같은 나라라 트리콜로레를 그대로 쓰면 두 장이 안 갈린다. 이 회사는 소유한 것이
-    // 없고 남의 명부에 한 줄로만 존재하므로, 국기를 그 한 줄로 줄여 여백 위에 얹는다.
-    flagCss: [
-      'linear-gradient(180deg, transparent 46.5%, #0b6b4f 46.5%, #0b6b4f 48%, transparent 48%)',
-      'linear-gradient(180deg, transparent 51.5%, #b3222c 51.5%, #b3222c 53%, transparent 53%)',
-      'linear-gradient(180deg, #fbfbf8 0%, #eceee9 100%)',
-    ].join(', '),
-    backInk: '#1f2a24',
+    ...FLAG.이탈리아,
     stats: [
       { label: '2024년 매출', value: `${jaisStats.매출_만유로.toLocaleString('ko-KR')} 만 €` },
       { label: '종업원', value: `${jaisStats.종업원} 명` },
