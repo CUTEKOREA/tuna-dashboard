@@ -4,7 +4,6 @@ const mocks = vi.hoisted(() => ({
   getConfig: vi.fn(),
   createClient: vi.fn(),
   getUser: vi.fn(),
-  getAal: vi.fn(),
 }));
 
 vi.mock('server-only', () => ({}));
@@ -33,11 +32,9 @@ beforeEach(() => {
     },
     error: null,
   });
-  mocks.getAal.mockResolvedValue({ data: { currentLevel: 'aal2' }, error: null });
   mocks.createClient.mockResolvedValue({
     auth: {
       getUser: mocks.getUser,
-      mfa: { getAuthenticatorAssuranceLevel: mocks.getAal },
     },
   });
 });
@@ -59,12 +56,11 @@ describe('fleet request authorization integration', () => {
     expect(mocks.createClient).not.toHaveBeenCalled();
   });
 
-  it('allows only the confirmed Google dashboard owner with AAL2', async () => {
+  it('allows only the confirmed Google dashboard owner without an MFA API', async () => {
     await expect(authorizeFleetRequest()).resolves.toEqual({
       ok: true,
       userId: 'fleet-user-1',
       email: 'operator@example.com',
-      aal: 'aal2',
     });
 
     mocks.getUser.mockResolvedValue({
@@ -104,7 +100,6 @@ describe('fleet request authorization integration', () => {
       ok: true,
       userId: 'fleet-user-1',
       email: 'operator@example.com',
-      aal: 'aal2',
     });
   });
 
@@ -147,16 +142,6 @@ describe('fleet request authorization integration', () => {
       ok: false,
       status: 403,
       code: 'fleet_access_required',
-    });
-  });
-
-  it('requires AAL2 after the dashboard owner check succeeds', async () => {
-    mocks.getAal.mockResolvedValue({ data: { currentLevel: 'aal1' }, error: null });
-
-    await expect(authorizeFleetRequest()).resolves.toEqual({
-      ok: false,
-      status: 403,
-      code: 'mfa_required',
     });
   });
 });

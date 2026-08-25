@@ -13,7 +13,6 @@ import {
 import { fleetDetailGateMessage } from '@/lib/fleet-daily-gate';
 import { formatFleetDailyDelta, formatReportedMt } from '@/lib/fleet-daily-presentation';
 import FleetDailyOperations from './FleetDailyOperations';
-import FleetStepUpMfa from './FleetStepUpMfa';
 import FleetHeroKPI from './FleetHeroKPI';
 import FleetRosterGrid from './FleetRosterGrid';
 import { FleetChartSection, FleetDetailPanel } from './FleetAnalysisPanels';
@@ -74,7 +73,6 @@ function VesselDetailBoundary({ state, onRetry }: { state: FleetDailyDetailState
     <section className={s.protectedDetailGate} aria-live="polite">
       <LockKeyhole size={24} aria-hidden="true" />
       <div><strong>선박 상세 보호</strong><p>{fleetDetailGateMessage(state)}</p></div>
-      {state.status === 'denied' && state.code === 'mfa_required' ? <FleetStepUpMfa onVerified={onRetry} /> : null}
       {action ? <a href={action.href}>{action.label}</a> : null}
       {state.status === 'error' ? <button type="button" onClick={onRetry}><RotateCcw size={15} aria-hidden="true" />다시 확인</button> : null}
     </section>
@@ -146,7 +144,7 @@ export default function FleetCommandCenter({ heroOnly = false }: { heroOnly?: bo
       {/* 디자인 랩 r6 채택본 — 선망선 어획 지휘형 (히어로 KPI는 공개 집계, 이 카드는 주간 랭킹 소스) */}
       <FleetHeroCommand />
       <PillTabs className={s.taskTabs} tabs={taskTabs.map((tab) => ({ key: tab.id, label: tab.label }))} activeKey={activeTab} onChange={(key) => setActiveTab(key as FleetTaskTab)} ariaLabel="선단 업무 보기" tabIdPrefix="fleet-tab" panelIdPrefix="fleet-panel" />
-      <section id="fleet-panel-operations" role="tabpanel" aria-labelledby="fleet-tab-operations" className={s.tabPanel} hidden={activeTab !== 'operations'}><FleetDailyOperations detailState={detailState} onRetry={() => { setDetailState({ status: 'loading' }); setRetryCount((value) => value + 1); }} /></section>
+      <section id="fleet-panel-operations" role="tabpanel" aria-labelledby="fleet-tab-operations" className={s.tabPanel} hidden={activeTab !== 'operations'}><FleetDailyOperations detailState={detailState} /></section>
       <section id="fleet-panel-vessels" role="tabpanel" aria-labelledby="fleet-tab-vessels" className={s.tabPanel} hidden={activeTab !== 'vessels'}><VesselDetailBoundary state={detailState} onRetry={() => { setDetailState({ status: 'loading' }); setRetryCount((value) => value + 1); }} /></section>
       <section id="fleet-panel-performance" role="tabpanel" aria-labelledby="fleet-tab-performance" className={s.tabPanel} hidden={activeTab !== 'performance'}><FleetHeroKPI mode="weekly" /><FleetChartSection /><FleetDetailPanel /></section>
       <section id="fleet-panel-access" role="tabpanel" aria-labelledby="fleet-tab-access" className={s.tabPanel} hidden={activeTab !== 'access'}><div className={s.accessAlert}><AlertTriangle size={18} aria-hidden="true" /><div><strong>국적선과 키리바시 선박을 분리 집계</strong><p>국적선 6척과 키리바시 선박 4척은 별도 모집단입니다. 음수 잔여는 원문을 그대로 표시했습니다.</p></div></div><VesselVdsStatus /><VdsStrategyMatrix /><PnaAccessFeeWidgets /></section>

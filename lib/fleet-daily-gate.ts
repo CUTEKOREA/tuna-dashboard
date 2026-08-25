@@ -5,7 +5,7 @@ export function fleetDetailGateMessage(state: FleetDailyDetailState): string {
   if (state.code === 'authentication_required') {
     return '최신 좌표·비고·일정·적재 상세를 보려면 서버 로그인이 필요합니다.';
   }
-  if (state.code === 'mfa_required') return '선박 상세는 2단계 인증 후 표시됩니다.';
+  if (state.code === 'mfa_required') return '로그인 세션을 다시 확인해주세요.';
   if (state.code === 'fleet_access_required') return '이 계정에는 선단 상세 권한이 없습니다.';
   if (state.code === 'fleet_auth_unavailable') return '권한 확인 서버를 사용할 수 없습니다.';
   if (state.code === 'fleet_data_unavailable') return '선박 상세 데이터가 공개 집계와 맞지 않습니다.';

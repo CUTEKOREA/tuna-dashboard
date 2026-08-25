@@ -9,14 +9,13 @@ export interface FleetServerUser {
 type FleetAccessDenied = {
   ok: false;
   status: 401 | 403 | 503;
-  code: 'authentication_required' | 'fleet_access_required' | 'mfa_required' | 'fleet_auth_unavailable';
+  code: 'authentication_required' | 'fleet_access_required' | 'fleet_auth_unavailable';
 };
 
 type FleetAccessGranted = {
   ok: true;
   userId: string;
   email: string;
-  aal: 'aal2';
 };
 
 export type FleetAccessResult = FleetAccessDenied | FleetAccessGranted;
@@ -41,7 +40,6 @@ export function buildFleetEffectiveAllowlist(
 
 export function evaluateFleetAccess(
   user: FleetServerUser | null,
-  aal: string | null,
   allowlist: ReadonlySet<string>,
 ): FleetAccessResult {
   if (!user) {
@@ -52,9 +50,5 @@ export function evaluateFleetAccess(
   if (!email || !user.email_confirmed_at || !allowlist.has(email)) {
     return { ok: false, status: 403, code: 'fleet_access_required' };
   }
-  if (aal !== 'aal2') {
-    return { ok: false, status: 403, code: 'mfa_required' };
-  }
-
-  return { ok: true, userId: user.id, email, aal: 'aal2' };
+  return { ok: true, userId: user.id, email };
 }

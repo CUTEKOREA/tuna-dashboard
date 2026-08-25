@@ -1,3 +1,12 @@
+> 🔓 **2026-08-26 00:26 KST — `/fleet` 선단 상세 2단계 인증 제거 로컬 완료·배포 진행** [Codex]:
+> - 사용자 승인 범위대로 허용된 구글 계정 로그인과 서버 이메일 허용목록은 유지하고, `/api/fleet/daily`의 Supabase AAL2 조회·`mfa_required` 거부만 제거했다. 비로그인 `401 authentication_required`, 미허용 계정 `403 fleet_access_required`, 설정 오류 `503` 경계와 `private, no-store` 응답은 유지한다.
+> - `/fleet`의 오늘의 운영·선박 상세 경로에서 `FleetStepUpMfa` 연결과 인증 앱 코드 입력을 제거했다. 메일 화면·메일 API의 MFA 구현은 변경하지 않았다. 구버전 API의 `mfa_required` 응답은 배포 전환 호환을 위해 안전한 로그인 재확인 문구로만 처리한다.
+> - RED 단계에서 AAL1 거부·MFA API 의존·인증 코드 UI 7건 실패를 확인했다. GREEN 후 fleet 회귀 18파일 90 passed/2 skipped, 전체 `npm run verify` 통과(147 files, 1,145 passed/2 skipped, API cache 158/158, Next 118페이지, client leak·bundle 통과).
+> - 클라이언트 closure에서 `FleetStepUpMfa.tsx`가 빠져 리니지는 193→192파일, 109→108위젯으로 감소했다. 파일 자체와 메일 MFA는 보존했다.
+> - **다음 단계**: PR gate → main 병합 → Production READY → 로그인 AAL1 세션의 API 200·상세 표시, 비로그인 401/307, 1440/390px·CacheStorage·Vercel 로그를 검증한다.
+>
+> 마지막 업데이트: 2026-08-26 00:26 KST [Codex]
+
 > 🚀 **2026-08-26 00:01 KST — 메일 기능 메뉴 비노출 라이브 배포 완료** [Codex]:
 > - PR [#772](https://github.com/CUTEKOREA/tuna-dashboard/pull/772)은 App Quality Gate `32861691228`·Vercel Preview를 통과하고 squash 병합됐다. main commit `1f24e0bcb1d54264449a9ff60fca23f867516d20`, main gate `32862267913`이 전체 verify와 하역 이력 브라우저 acceptance를 통과했다.
 > - Vercel Production `dpl_4QjwF9qgU7uGXo1jC1eTuA8om4Dx`(GitHub deployment `6085811668`)는 READY이며 `leedonggun.co.kr`·`icn1`·병합 SHA에 연결됐다.
