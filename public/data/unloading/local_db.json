@@ -62,10 +62,10 @@
       "mother_vessel": "S/SPR 670 · MOAKONA 314 · MOAMARI 940 · NAOERO STAR 1,005 MT",
       "hold_species_breakdown_available": false,
       "unclassified_actual_amount": 0,
-      "species_breakdown_as_of": "2026-08-24",
-      "species_breakdown_note": "8/24 일일 결과보고 XLS에서 어종별 일일·누적 물량을 확인했고 일일하역량 현황 XLSX로 교차 확인했습니다. XLS의 SJ 보고량 2,571 MT는 적재계획의 SJ 2,515 MT와 BE 56 MT를 합친 기준이며, 실제 하역량은 SJ·YF 두 항목만 제공합니다. 개별 어창별 어종 분해는 제공되지 않습니다.",
+      "species_breakdown_as_of": "2026-08-25",
+      "species_breakdown_note": "8/25 일일 결과보고 XLS에서 어종별 일일·누적 물량을 확인했고 일일하역량 현황 XLSX로 교차 확인했습니다. XLS의 SJ 보고량 2,571 MT는 적재계획의 SJ 2,515 MT와 BE 56 MT를 합친 기준이며, 실제 하역량은 SJ·YF 두 항목만 제공합니다. 개별 어창별 어종 분해는 제공되지 않습니다.",
       "created_at": "2026-08-12T16:35:00+09:00",
-      "updated_at": "2026-08-24T18:13:00+09:00"
+      "updated_at": "2026-08-25T21:36:00+09:00"
     },
     {
       "vessel_id": "sein-phoenix-2025-12",
@@ -1734,6 +1734,104 @@
       "created_at": "2026-08-24T18:13:00+09:00"
     },
     {
+      "id": "hikari-bangkok-2026-07-8-25",
+      "vessel_id": "hikari-bangkok-2026-07",
+      "report_year": 2026,
+      "report_date": "8/25",
+      "work_time": "08:10 ~ 13:30",
+      "target_holds": "N/STAR(#1-B:96.300), S/SPR(#2-C:185.720), MOAMARI(#3-C:74.670), MOAKONA(#4-C:77.590)",
+      "consignee": "CMC · GPZ · ISA",
+      "allocations": [
+        {
+          "consignee": "CMC",
+          "amount": 96.3,
+          "loads": [
+            {
+              "source_vessel": "N/STAR",
+              "hatch": "#1-B",
+              "amount": 96.3
+            }
+          ]
+        },
+        {
+          "consignee": "GPZ",
+          "amount": 185.72,
+          "loads": [
+            {
+              "source_vessel": "S/SPR",
+              "hatch": "#2-C",
+              "amount": 185.72
+            }
+          ]
+        },
+        {
+          "consignee": "ISA",
+          "amount": 152.26,
+          "loads": [
+            {
+              "source_vessel": "MOAMARI",
+              "hatch": "#3-C",
+              "amount": 74.67
+            },
+            {
+              "source_vessel": "MOAKONA",
+              "hatch": "#4-C",
+              "amount": 77.59
+            }
+          ]
+        }
+      ],
+      "observations": [
+        {
+          "source_vessel": "N/STAR",
+          "hatch": "#1-B",
+          "temperatures_c": [
+            -20.0
+          ]
+        },
+        {
+          "source_vessel": "S/SPR",
+          "hatch": "#2-C",
+          "temperatures_c": [
+            -21.0
+          ]
+        },
+        {
+          "source_vessel": "MOAMARI",
+          "hatch": "#3-C",
+          "temperatures_c": [
+            -20.0,
+            24.0
+          ]
+        },
+        {
+          "source_vessel": "MOAKONA",
+          "hatch": "#4-C",
+          "temperatures_c": [
+            -20.0,
+            21.0
+          ]
+        }
+      ],
+      "daily_amount": 434.28,
+      "cumulative_amount": 2323.64,
+      "species_amounts": {
+        "SJ": 411.38,
+        "YF": 22.9
+      },
+      "remaining_amount": 605.36,
+      "next_day": {
+        "kind": "work",
+        "date": "8/26",
+        "planned_mt": 250
+      },
+      "quality_notes": "N/STAR(#1-B) 08:10~10:40 - 어창 개방 측정온도는 -20.0℃ 입니다. S/SPR(#2-C) 08:10~13:30 - 어창 개방 측정온도는 -21.0℃ 입니다. MOAMARI(#3-C) 08:20~13:10 - 어창 개방 측정온도는 -20.0℃ ~ 24.0℃ 입니다. MOAKONA(#4-C) 08:10~11:10 - 어창 개방 측정온도는 -20.0℃ ~ 21.0℃ 입니다. 원문 온도 표기는 #3-C ‘-20,24’ 및 #4-C ‘-20,21’(단위: ℃)입니다. TOTAL 27 TRUCKS. 8/26 GPZ/H2C1(S.SPRINTER) 100 MT 08:00, ISA/H3C1(MOAMARI) 150 MT 08:00 작업 예정입니다.",
+      "source_sha256": "762f880298659c2892815701f296c7f3d5022eca347eb8d0510316b87e703910",
+      "source_workbook_sha256": "111cd3f4cc2f08541fe65406a97d8acb8ea491d43f5621fb192c86ff61f73017",
+      "status_workbook_sha256": "08832eced6cf7d4e2679896e7a55035698b3366ee676af664e9259998b233935",
+      "created_at": "2026-08-25T21:36:00+09:00"
+    },
+    {
       "id": "sein-phoenix-2025-12-12-18",
       "vessel_id": "sein-phoenix-2025-12",
       "report_year": 2025,
@@ -2509,16 +2607,16 @@
       "species_id": "SJ",
       "species_name": "가다랑어",
       "reported_amount": 2515,
-      "actual_amount": 1602.74,
-      "updated_at": "2026-08-24T18:13:00+09:00"
+      "actual_amount": 2014.12,
+      "updated_at": "2026-08-25T21:36:00+09:00"
     },
     {
       "vessel_id": "hikari-bangkok-2026-07",
       "species_id": "YF",
       "species_name": "황다랑어",
       "reported_amount": 358,
-      "actual_amount": 286.62,
-      "updated_at": "2026-08-24T18:13:00+09:00"
+      "actual_amount": 309.52,
+      "updated_at": "2026-08-25T21:36:00+09:00"
     },
     {
       "vessel_id": "hikari-bangkok-2026-07",
@@ -2526,7 +2624,7 @@
       "species_name": "눈다랑어",
       "reported_amount": 56,
       "actual_amount": 0,
-      "updated_at": "2026-08-24T18:13:00+09:00"
+      "updated_at": "2026-08-25T21:36:00+09:00"
     },
     {
       "vessel_id": "sein-phoenix-2025-12",
