@@ -65,7 +65,7 @@ const diff2026 = total2026 - prev2026;
 const RECONCILE_NOTE =
   `기록 있는 달만 합산하고 0으로 채우지 않습니다. 2026년 누계는 ${total2026.toLocaleString()}MT로, ` +
   `기존 2026-08-05 보고 기준 검산값 ${prev2026.toLocaleString()}MT와 ${Math.abs(diff2026).toLocaleString()}MT 차이가 있습니다 ` +
-  `(2026-08 물량이 후속 보고에서 갱신). 원문 트라이마린 누계 46,463MT와 월별 합산 56,463MT의 10,000MT 차이도 월별 합산값을 적용했습니다.`;
+  `(2026-08 물량이 후속 보고에서 갱신). 원문 트라이마린 누계도 56,463MT로 정정돼 월별 합산과 일치합니다.`;
 
 const VIEWS = {
   monthly: {

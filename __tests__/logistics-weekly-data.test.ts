@@ -30,8 +30,9 @@ describe('2026-08-05 Bangkok Office weekly logistics report', () => {
     });
     expect(monthlyTotal).toBe(317175);
     expect(traderTotal).toBe(317175);
-    expect(logisticsWeeklyReport.traderReceipts.reconciliationNote).toContain('원문 TRI MARINE 누계 46,463MT');
-    expect(logisticsWeeklyReport.traderReceipts.reconciliationNote).toContain('월별 검산값 56,463MT');
+    expect(logisticsWeeklyReport.traderReceipts.reconciliationNote).toBe(
+      'TRI MARINE 누계 56,463MT 정정 확인. 월별 합계와 일치.',
+    );
   });
 
   it('matches cannery production and inventory totals', () => {
@@ -46,6 +47,22 @@ describe('2026-08-05 Bangkok Office weekly logistics report', () => {
     expect(sum(logisticsWeeklyReport.unloading.vessels, (vessel) => vessel.amount)).toBe(13764);
     expect(logisticsWeeklyReport.unloading.currentTotal).toEqual({ vessels: 3, amount: 13764 });
     expect(logisticsWeeklyReport.unloading.monthToDate).toEqual({ vessels: 2, amount: 8891 });
+    expect(logisticsWeeklyReport.unloading.incoming).toEqual([
+      {
+        name: 'SEIN VENUS',
+        estimatedArrival: '2026-08-05',
+        confirmationStatus: '하역 완료 확인',
+        confirmationDate: '2026-08-22',
+        confirmationEvidence: '하역 원장 2026.08.07~08.22',
+      },
+      {
+        name: 'HENG HONG 9',
+        estimatedArrival: '2026-08-06',
+        confirmationStatus: '입항·배분 보고 확인',
+        confirmationDate: '2026-08-06',
+        confirmationEvidence: '31·32주차 운반선 배분 보고',
+      },
+    ]);
   });
 
   it('retains market and quality signals without presenting them as live data', () => {

@@ -259,6 +259,7 @@
 .priorityUrgent { color: #fecaca; background: rgba(239, 68, 68, 0.15); }
 .priorityWatch { color: #fde68a; background: rgba(245, 158, 11, 0.13); }
 .priorityConflict { color: var(--accent-primary); background: var(--dsc-surface); }
+.priorityResolved { color: #a7f3d0; background: rgba(16, 185, 129, 0.14); }
 
 .evidence {
   margin: 5px 0 0;
@@ -366,3 +367,4 @@
  * 파스텔 텍스트(#fecaca·#fde68a)는 다크 전제 — 라이트에서 잉크 대비값으로 교체. */
 [data-v3='light'] .priorityUrgent { color: #b91c1c; background: rgba(227, 89, 94, 0.12); }
 [data-v3='light'] .priorityWatch { color: #92400e; background: rgba(232, 185, 33, 0.16); }
+[data-v3='light'] .priorityResolved { color: #047857; background: rgba(16, 185, 129, 0.12); }

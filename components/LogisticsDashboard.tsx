@@ -29,8 +29,8 @@ const tabs: Array<{ id: LogisticsTab; label: string; description: string }> = [
 ];
 
 const reeferWeek31 = getMiscData('reeferWeek31');
-const carrierSituation = '2026-08-05 주간 보고에는 방콕 하역선 3척 13,764MT가 기록됐으며, 이 중 8월 누계는 2척 8,891MT입니다.';
-const carrierAction = 'SEIN VENUS와 HENG HONG 9의 예정일이 도래했으므로 실제 입항·접안 여부를 확인합니다.';
+const carrierSituation = '8월 5일 입항 예정이던 SEIN VENUS는 하역 원장에서 8월 22일 하역 완료가 확인됐고, HENG HONG 9는 31·32주차 운반선 배분 보고에서 8월 6일 입항·배분이 확인됐습니다.';
+const carrierAction = '두 선박의 예정 상태 경고를 해제하고, 보고 당시 예정일과 후속 확인 근거를 함께 보존합니다.';
 
 const week31DeliveryTotal = (row: (typeof reeferWeek31)[number]) => Object.entries(row.deliveries)
   .filter(([destination]) => destination !== 'OTHER' && destination !== 'SHIP')
@@ -98,7 +98,7 @@ export function LogisticsHero() {
       className={styles.logisticsHero}
       variant="map"
       title="물류·가공"
-      subtitle="조업지(태평양 어장)→하역지(방콕) 정적 항로도 · 31주차 운반선 보고 기준"
+      subtitle="조업지(태평양 어장)→하역지(방콕) 정적 항로도 · 31주차 운반선 보고 기준 · 입항 재확인 2척 후속 확인 완료"
       background={<FishingGroundToBangkokRouteMap />}
       primaryKpi={{ label: '주간 하역 합계', value: week31Total, unit: '(MT)', decimals: 3 }}
       secondaryKpis={[
@@ -106,11 +106,6 @@ export function LogisticsHero() {
         { label: '현재 하역 보고', value: logisticsWeeklyReport.unloading.currentTotal.amount, unit: '(MT)' },
         { label: '원어 협의 시장가', value: logisticsWeeklyReport.market.rawMaterialPriceUsdPerMt, unit: '($/MT)' },
       ]}
-      warning={{
-        title: '입항 상태 재확인',
-        lines: [carrierSituation],
-        recommend: carrierAction,
-      }}
     />
   );
 }
@@ -280,7 +275,7 @@ export default function LogisticsDashboard({ heroOnly = false }: { heroOnly?: bo
             takeaway={{
               situation: carrierSituation,
               actionPlan: carrierAction,
-              source: '방콕 사무소 주간보고 (2026-08-05)',
+              source: '방콕 사무소 주간보고 (2026-08-05) · 하역 원장 · 31·32주차 운반선 배분 보고',
             }}
           />
 

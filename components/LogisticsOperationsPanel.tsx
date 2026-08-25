@@ -4,7 +4,7 @@ import { AlertTriangle, Anchor, CheckCircle2, Database, Factory, Ship } from 'lu
 import { logisticsWeeklyReport } from '@/lib/logistics-weekly-report';
 import styles from './LogisticsCommandCenter.module.css';
 
-type Priority = '즉시 확인' | '금주 확인' | '정보 상충';
+type Priority = '즉시 확인' | '금주 확인' | '정보 상충' | '확인 완료';
 
 type DecisionItem = {
   priority: Priority;
@@ -23,10 +23,10 @@ const decisions: DecisionItem[] = [
     icon: Factory,
   },
   {
-    priority: '정보 상충',
-    title: 'TRI MARINE 누계 상충',
-    evidence: '원문 46,463MT · 월별 검산 56,463MT · 차이 10,000MT',
-    action: '방콕 사무소에 누계 원문 정정을 요청합니다.',
+    priority: '확인 완료',
+    title: 'TRI MARINE 누계 정정 반영',
+    evidence: '누계 56,463MT · 월별 합계 일치',
+    action: '10,000MT 상충 경고를 해제하고 정정 누계를 적용했습니다.',
     icon: Database,
   },
   {
@@ -37,10 +37,10 @@ const decisions: DecisionItem[] = [
     icon: Factory,
   },
   {
-    priority: '즉시 확인',
-    title: '입항 상태 재확인',
-    evidence: 'SEIN VENUS 8월 5일 · HENG HONG 9 8월 6일 도착 예정',
-    action: '실제 입항·접안·하역 개시 여부를 갱신합니다.',
+    priority: '확인 완료',
+    title: '입항 상태 확인 완료',
+    evidence: 'SEIN VENUS 하역완료(8/22) · HENG HONG 9 배분 보고 확인(8/6)',
+    action: '예정 상태 경고를 해제하고 후속 보고 상태로 전환합니다.',
     icon: Anchor,
   },
 ];
@@ -49,6 +49,7 @@ const priorityClass: Record<Priority, string> = {
   '즉시 확인': styles.priorityUrgent,
   '금주 확인': styles.priorityWatch,
   '정보 상충': styles.priorityConflict,
+  '확인 완료': styles.priorityResolved,
 };
 
 export default function LogisticsOperationsPanel() {
@@ -58,8 +59,8 @@ export default function LogisticsOperationsPanel() {
         <div className={styles.sectionHeading}>
           <AlertTriangle size={20} aria-hidden="true" />
           <div>
-            <h2 id="operations-signal-title">운영 예외 관제판</h2>
-            <p>정상 항목보다 확인과 조치가 필요한 예외를 먼저 표시합니다.</p>
+            <h2 id="operations-signal-title">운영 확인 관제판</h2>
+            <p>조치가 필요한 예외와 후속 확인이 끝난 항목을 함께 표시합니다.</p>
           </div>
         </div>
 
@@ -97,7 +98,7 @@ export default function LogisticsOperationsPanel() {
           <Database size={18} aria-hidden="true" />
           <span>트레이더 검산 누계</span>
           <strong>{logisticsWeeklyReport.traderReceipts.total.toLocaleString()}MT</strong>
-          <small>TRI MARINE 10,000MT 상충 공개</small>
+          <small>TRI MARINE 56,463MT 정정 반영</small>
         </article>
         <article>
           <Database size={18} aria-hidden="true" />

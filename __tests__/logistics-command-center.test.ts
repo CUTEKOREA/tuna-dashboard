@@ -1,11 +1,16 @@
 import { readFileSync } from 'node:fs';
 import { join } from 'node:path';
+import React from 'react';
+import { renderToStaticMarkup } from 'react-dom/server';
 import { describe, expect, it } from 'vitest';
+import CarrierUnloadingStatus from '@/components/CarrierUnloadingStatus';
+import { LogisticsHero } from '@/components/LogisticsDashboard';
+import LogisticsOperationsPanel from '@/components/LogisticsOperationsPanel';
 
 const root = process.cwd();
 const dashboardSource = readFileSync(join(root, 'components/LogisticsDashboard.tsx'), 'utf8');
-const operationsSource = readFileSync(join(root, 'components/LogisticsOperationsPanel.tsx'), 'utf8');
 const pillTabsSource = readFileSync(join(root, 'components/v2/PillTabs.tsx'), 'utf8');
+const traderSource = readFileSync(join(root, 'components/TraderStatus.tsx'), 'utf8');
 
 describe('logistics decision workspace', () => {
   it('provides four keyboard-accessible work tabs through the shared pill shell', () => {
@@ -23,15 +28,35 @@ describe('logistics decision workspace', () => {
     expect(pillTabsSource).toContain("event.key === 'Home'");
   });
 
-  it('puts exception-led decisions on the default operations tab', () => {
+  it('puts open exceptions and completed corrections on the default operations tab', () => {
+    const markup = renderToStaticMarkup(React.createElement(LogisticsOperationsPanel));
+
     expect(dashboardSource).toContain("useState<LogisticsTab>('operations')");
-    expect(operationsSource).toContain('운영 예외 관제판');
-    expect(operationsSource).toContain('THAI UNION 창고 포화');
-    expect(operationsSource).toContain('TRI MARINE 누계 상충');
-    expect(operationsSource).toContain('송클라 저가동');
-    expect(operationsSource).toContain('입항 상태 재확인');
-    expect(operationsSource).toContain('즉시 확인');
-    expect(operationsSource).toContain('금주 확인');
+    expect(markup).toContain('운영 확인 관제판');
+    expect(markup).toContain('THAI UNION 창고 포화');
+    expect(markup).toContain('TRI MARINE 누계 정정 반영');
+    expect(markup).toContain('누계 56,463MT · 월별 합계 일치');
+    expect(markup).toContain('송클라 저가동');
+    expect(markup).toContain('입항 상태 확인 완료');
+    expect(markup).toContain('SEIN VENUS 하역완료(8/22) · HENG HONG 9 배분 보고 확인(8/6)');
+    expect(markup).toContain('확인 완료');
+    expect(markup).not.toContain('TRI MARINE 누계 상충');
+    expect(markup).not.toContain('입항 상태 재확인');
+    expect(traderSource).toContain('원문 트라이마린 누계도 56,463MT로 정정돼 월별 합산과 일치합니다.');
+    expect(traderSource).not.toContain('원문 트라이마린 누계 46,463MT');
+  });
+
+  it('renders the reported ETAs with their source-backed follow-up results', () => {
+    const heroMarkup = renderToStaticMarkup(React.createElement(LogisticsHero));
+    const carrierMarkup = renderToStaticMarkup(React.createElement(CarrierUnloadingStatus));
+
+    expect(heroMarkup).toContain('입항 재확인 2척 후속 확인 완료');
+    expect(heroMarkup).not.toContain('입항 상태 재확인');
+    expect(carrierMarkup).toContain('입항 예정 후속 확인');
+    expect(carrierMarkup).toContain('하역 완료 확인');
+    expect(carrierMarkup).toContain('입항·배분 보고 확인');
+    expect(carrierMarkup).toContain('하역 원장 2026.08.07~08.22');
+    expect(carrierMarkup).toContain('31·32주차 운반선 배분 보고');
   });
 
   it('keeps static vessel report details collapsed by default', () => {

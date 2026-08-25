@@ -59,7 +59,7 @@ export const logisticsWeeklyReport = {
       { key: 'Maldives', label: '몰디브', total: 0 },
     ],
     total: 317175,
-    reconciliationNote: '원문 TRI MARINE 누계 46,463MT는 월별 합계와 10,000MT 차이. 월별 검산값 56,463MT를 적용.',
+    reconciliationNote: 'TRI MARINE 누계 56,463MT 정정 확인. 월별 합계와 일치.',
   },
   canneries: {
     bangkok: bangkokCanneries,
@@ -74,8 +74,20 @@ export const logisticsWeeklyReport = {
     currentTotal: { vessels: 3, amount: 13764 },
     monthToDate: { vessels: 2, amount: 8891 },
     incoming: [
-      { name: 'SEIN VENUS', estimatedArrival: '2026-08-05' },
-      { name: 'HENG HONG 9', estimatedArrival: '2026-08-06' },
+      {
+        name: 'SEIN VENUS',
+        estimatedArrival: '2026-08-05',
+        confirmationStatus: '하역 완료 확인',
+        confirmationDate: '2026-08-22',
+        confirmationEvidence: '하역 원장 2026.08.07~08.22',
+      },
+      {
+        name: 'HENG HONG 9',
+        estimatedArrival: '2026-08-06',
+        confirmationStatus: '입항·배분 보고 확인',
+        confirmationDate: '2026-08-06',
+        confirmationEvidence: '31·32주차 운반선 배분 보고',
+      },
     ],
   },
   market: {
