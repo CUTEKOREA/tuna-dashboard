@@ -1,26 +1,26 @@
 {
   "_meta": {
     "schemaVersion": 1,
-    "reportCount": 139,
+    "reportCount": 140,
     "firstReportDate": "2026-01-16",
-    "latestReportDate": "2026-08-24",
-    "latestAsOf": "2026-08-23",
-    "detailSha256": "0c87da40d8a8a934d2236b0dbc91ba190248c4d41aa50f5b1106e6f930fa043b"
+    "latestReportDate": "2026-08-25",
+    "latestAsOf": "2026-08-24",
+    "detailSha256": "802127ca925e7f722136bae0485828d367edc6585904930663ecbfddf42575fd"
   },
   "latest": {
-    "reportDate": "2026-08-24",
-    "asOf": "2026-08-23",
+    "reportDate": "2026-08-25",
+    "asOf": "2026-08-24",
     "pacific": {
-      "asOf": "2026-08-23",
-      "dailyMt": 36,
-      "monthlyMt": 2668,
-      "annualMt": 47500.8
+      "asOf": "2026-08-24",
+      "dailyMt": 120,
+      "monthlyMt": 2788,
+      "annualMt": 47620.8
     },
     "atlantic": {
-      "asOf": "2026-08-23",
-      "dailyMt": 280,
-      "monthlyMt": 4505,
-      "annualMt": 31230
+      "asOf": "2026-08-24",
+      "dailyMt": 435,
+      "monthlyMt": 4940,
+      "annualMt": 31665
     },
     "carrier": {
       "loadedTotalMt": 8763.3,
@@ -28,20 +28,20 @@
     }
   },
   "deltas": {
-    "pacificDailyMt": 3,
-    "atlanticDailyMt": -40,
-    "totalDailyMt": -37
+    "pacificDailyMt": 84,
+    "atlanticDailyMt": 155,
+    "totalDailyMt": 239
   },
   "reconciliation": {
     "pacificDaily": {
-      "reportedMt": 36,
-      "rowsMt": 36,
+      "reportedMt": 120,
+      "rowsMt": 120,
       "matches": true,
       "missingCount": 0
     },
     "atlanticDaily": {
-      "reportedMt": 280,
-      "rowsMt": 280,
+      "reportedMt": 435,
+      "rowsMt": 435,
       "matches": true,
       "missingCount": 0
     },
@@ -63,8 +63,8 @@
   },
   "quality": {
     "counts": {
-      "reconciliationChecks": 556,
-      "reconciliationCompleteChecks": 556,
+      "reconciliationChecks": 560,
+      "reconciliationCompleteChecks": 560,
       "reconciliationUnavailableChecks": 0,
       "reconciliationUnavailableDocuments": 0,
       "reconciliationIssues": 14,
