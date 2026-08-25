@@ -1,3 +1,13 @@
+> 🚀 **2026-08-25 15:09 KST — `/logistics` TRI MARINE 정정·입항 후속 확인 라이브 배포 완료** [Codex]:
+> - PR [#766](https://github.com/CUTEKOREA/tuna-dashboard/pull/766)은 첫 병합 시 최신 main의 기업 해부 감사와 HANDOFF 충돌이 발생해 강제 병합하지 않았다. 양쪽 기록을 보존해 최신 main을 통합한 뒤 PR App Quality Gate `32814608435`·Vercel Preview 3종을 다시 통과하고 squash 병합했다. 최종 main commit은 `ad71a141aa43b91b18ff679c5bd90ac8df5c3e82`다.
+> - main App Quality Gate `32814877114`와 Data Freshness Audit `32814877137`이 성공했다. Vercel Production `dpl_Ff5QvXa3kCgg7cHZcV1uZKRpwCJQ`(GitHub deployment `6077431658`)는 READY이며 `leedonggun.co.kr` alias·`icn1`·main SHA에 연결됐다.
+> - 인증 운영 `/logistics` 1440×1100에서 TRI MARINE `56,463MT · 월별 합계 일치`, SEIN VENUS `8/22 하역완료`, HENG HONG 9 `8/6 배분 보고 확인`, 두 후속 근거와 트레이더 정정 주석을 확인했다. 기존 `46,463MT/10,000MT 상충`·「입항 상태 재확인」 문구는 없다.
+> - 1440px과 390×844에서 문서/본문 폭은 각각 `1440/1440`, `390/390`으로 overflow 0, console/page/HTTP error 0이다. 비인증 `/logistics`는 307 `/login?next=%2Flogistics`, `private, no-store`, `Vary: Cookie`다.
+> - 새 Production 배포 이벤트 최근 100건의 error/fatal/5xx는 모두 0건이다. 운영자 상태는 `logistics-weekly: live_verified`로 닫았다.
+> - **다음 단계**: 다음 방콕 주간보고 또는 하역 원장 정정 시 같은 교차 근거 절차로 갱신한다.
+>
+> 마지막 업데이트: 2026-08-25 15:09 KST [Codex]
+
 > 🔍 **2026-08-25 14:30 KST — 「기업 해부」 7개사 전수 검수·정정, 아카이브 원본까지 반영** [Claude]:
 > - Frinsa·Thai Union·Albacora·FCF·ITOCHU·Bolton·JAIS 를 4축(A 기계대조=Codex / B 외부반증=Grok / C 서술논리=Claude / D vitest)으로 훑었다. **P0 24건·P1 30건 이상 정정.** Drive 아카이브 7곳(통합프로필·채굴노트)에 정정 이력 표를 붙였고, 보고서 HTML(Albacora·FCF 각 2부)·빌드 스크립트 6종·content.ts 7종·JSON 7종·테스트 가드 6곳을 고쳤다.
 > - **아카이브에서 시작해 대시보드로 번진 오류가 P0 의 다수였다.** Albacora 가공 3사 합계가 「약 250 M€」인데 EINF 공장별 표를 더하면 **314.8 M€**(같은 문장의 「에콰도르 74%」가 314.8 기준이라 자기모순). 선단은 웹사이트 18척을 옮겨 썼는데 **EINF 2025 원문은 23척**(용선 4 포함). ALBACORA CUATRO 는 「폭발」이 아니라 **암모니아 누출**(CIAIM-07/2024 는 폭발을 부정). SIA 매출 −2.7% 와 물량 −44% 는 **기간이 달라**(2024→2025 vs 2022→2023) 단가로 환산할 수 없다.
