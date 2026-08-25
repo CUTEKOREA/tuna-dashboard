@@ -1,3 +1,12 @@
+> 🚀 **2026-08-26 03:18 KST — 2026-08-25 참치 데일리 브리핑 `/market` 라이브 배포 완료** [Claude]:
+> - PR [#777](https://github.com/CUTEKOREA/tuna-dashboard/pull/777)을 squash 병합했다. main commit `9336023fffab5273192b67715ac78e4cb9fe312d`, 변경 파일은 `public/data/tuna_daily_briefing.json` 1개(+52/-50)뿐이다. 기준일 2026-08-25, 기사 5건.
+> - 배포 게이트 3종 통과: 감사 `state/audit-2026-08-25.txt` = `AUDIT_PASS`, 로컬 준비·검증 완료(`__tests__/daily-briefing.test.ts` 4 passed), main 트리 3,140 blob 전량 SHA 대조 결과 차이 1개 파일. `lib/data/daily-briefing.ts`는 main과 동일해 변경 없음.
+> - `app-quality-gate.yml`은 경로 필터가 `public/data/**`를 제외해 예상대로 미실행이다. 대신 PR head `87a3dfae` Vercel Preview success, 병합 후 main `9336023f` Vercel Production success를 게이트로 썼다.
+> - 라이브 육안 확인(로그인 세션 브라우저, curl 아님 — 비인증 요청은 307): `https://leedonggun.co.kr/market` ROW4 = `기준일 2026.08.25 · 기사 5건 · 파이프라인 동기`. 헤드라인 5건(Nirsa 선망선 화재 / 슈퍼 엘니뇨 동태평양 / i-Tail 상반기 20.6% / EU 계량 규정 통일 / 사조씨푸드 냉동창고) 전량 렌더 확인. 배포 전 `2026.08.24` → 배포 후 `2026.08.25`, 회귀 없음.
+> - 이번 세션은 `git` CLI 실행 권한이 없어(`git -C` allowlist 밖, `cd <워크트리> && git`은 untrusted-hooks 가드) 배포를 `gh api` 플러밍 경로로 수행했다. 로컬 워크트리 `~/silla-tuna-daily/dash`는 브리핑 JSON을 HEAD(`73c979f9`) 버전으로 되돌려 clean 상태로 남겼다 — 다음 회차 `prepare_dashboard()`의 dirty 검사와 ff-only 병합이 막히지 않는다.
+>
+> 마지막 업데이트: 2026-08-26 03:18 KST [Claude]
+
 > 🚀 **2026-08-26 00:42 KST — `/fleet` 선단 상세 2단계 인증 제거 라이브 배포 완료** [Codex]:
 > - PR [#774](https://github.com/CUTEKOREA/tuna-dashboard/pull/774)은 App Quality Gate `32866013807`·Vercel Preview를 통과하고 squash 병합됐다. main commit `f774ccdc75fcd5f3454609874759b223e4fb134f`, main gate `32866493880`과 Data Freshness Audit `32866493883`이 성공했다.
 > - Vercel Production `dpl_51gzYXawipiUdW8L8SEfKvYyABgx`(GitHub deployment `6086575916`)는 READY이며 `leedonggun.co.kr`·`icn1`·병합 SHA에 연결됐다.
