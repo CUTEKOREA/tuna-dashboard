@@ -541,7 +541,6 @@ describe('dashboard registry', () => {
       'cosmo',
       'bangkok-office',
       'gmts',
-      'mail',
     ]);
     expect(PROTECTED_OPERATION_MENU_KEYS).toContain('bangkok-office');
     expect(PROTECTED_OPERATION_MENU_KEYS).not.toContain('cosmo');
@@ -550,7 +549,7 @@ describe('dashboard registry', () => {
     expect(PUBLIC_DASHBOARD_ROUTES).not.toContain('bangkok-office');
   });
 
-  it('places the protected GMTS route between Bangkok office and mail without changing shortcuts', () => {
+  it('places the protected GMTS route after Bangkok office while keeping mail hidden', () => {
     const gmts = DASHBOARD_MENU_CONFIGS.find((menu) => menu.key === 'gmts');
     const operationSection = SIDEBAR_SECTIONS.find((section) => section.section === 'operation');
     const operationItems = operationSection?.items.map((item) => item.key) ?? [];
@@ -581,18 +580,15 @@ describe('dashboard registry', () => {
       'cosmo',
       'bangkok-office',
       'gmts',
-      'mail',
     ]);
     expect(operationItems.filter((key) => key === 'gmts')).toHaveLength(1);
-    expect(operationItems.slice(gmtsSidebarIndex - 1, gmtsSidebarIndex + 2)).toEqual([
+    expect(operationItems.slice(gmtsSidebarIndex - 1, gmtsSidebarIndex + 1)).toEqual([
       'bangkok-office',
       'gmts',
-      'mail',
     ]);
-    expect(operationLabels.slice(gmtsSidebarIndex - 1, gmtsSidebarIndex + 2)).toEqual([
+    expect(operationLabels.slice(gmtsSidebarIndex - 1, gmtsSidebarIndex + 1)).toEqual([
       '방콕사무소',
       'GMTS',
-      '메일',
     ]);
     expect(PROTECTED_OPERATION_MENU_KEYS).toEqual([
       'fleet',
@@ -743,7 +739,7 @@ describe('dashboard registry', () => {
     ]);
 
     expect(SIDEBAR_SECTIONS.map((section) => section.items.map((item) => item.key))).toEqual([
-      ['market', 'fleet', 'unloading', 'logistics', 'panofi', 'cosmo', 'bangkok-office', 'gmts', 'mail'],
+      ['market', 'fleet', 'unloading', 'logistics', 'panofi', 'cosmo', 'bangkok-office', 'gmts'],
       ['tuna-industry', 'squid-industry', 'mackerel-industry', 'whelk-industry', 'shrimp-industry', 'pollock-industry', 'tuna-anatomy'],
       // 2026-08-17 사용자 요청: 선단 DB 노출. cross-intelligence 는 종전대로 팔레트 전용
       ['purse-seiner-db', 'company-anatomy'],
