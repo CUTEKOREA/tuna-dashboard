@@ -1,3 +1,13 @@
+> 🚀 **2026-08-26 14:10 KST — 방콕 주간보고 2026-08-26 라이브 배포 (PR #793 · 289주)** [CC]:
+> - PR [#793](https://github.com/CUTEKOREA/tuna-dashboard/pull/793) squash `213ed3c2`. PR 게이트 `lint typecheck test build` 성공·Vercel Preview 성공, main App Quality Gate `32932315863` 성공, Vercel Production READY(5분 전 배포, GitHub deployment SHA `213ed3c2`).
+> - 반영 값: 시세 $2,030(전주 $1,960) · 방콕 재고 104,500MT(-5,700) · 가동률 51% · 가공일수 49일 · 당주 하역 4척 13,048MT · 8월 누적 7척 25,214MT · 2026 누계 333,498MT(82척) · High Rejection 6건 351.2MT · High Salt 24행 $4,012. series 288→289주.
+> - 라이브 확인(소유자 로그인 세션, curl은 307 로그인 벽): `/bangkok-office` `data-kpi-value` = 2030 / 104500 / 333498 / 49, 헤더 «분석 기간 2020.05~2026.08 · 고유 289주», 개관 탭 최근 하역 13,048MT·기준일 2026-08-26. 문서 폭 1,143px ≤ 뷰포트 1,152px로 가로 오버플로 없음. **390px 실측은 이번 회차 미수행**(REPL에 뷰포트/CDP 제어 없음, 데이터 전용 변경이라 레이아웃 위험 낮음).
+> - **버그 수정 동반**: `append_bangkok_week.py`가 헤더 시세 치환에서 `$`를 정규식 치환용으로 이스케이프해 지난주 실행이 `\$1,960`(백슬래시 리터럴)을 보고서에 박아 넣었고, 이번 주 패턴이 그 때문에 불일치했다. 치환을 콜러블로 바꿔 값이 리터럴로 들어가게 고쳤다 — 헤더는 `$2,030`으로 정상 복구.
+> - 절차: docx 손 전사 week-spec → `append_bangkok_week.py --dry-run` reproduce **7/7 일치** → 실행 → `sync_bangkok_report.sh` → 가드 픽스처 2종(`embedded-operation-pages`·`bangkok-price-granularity`) 갱신 → `npm run verify` GREEN. 운영자 상태 `live_verified`.
+> - 주의: 워크트리에 `node_modules` 심볼릭 링크를 걸면 Turbopack이 `Symlink … points out of the filesystem root`로 빌드 실패한다. `cp -al`(하드링크 복사)로 우회했다.
+>
+> 마지막 업데이트: 2026-08-26 14:10 KST [CC]
+
 > 🚀 **2026-08-26 13:35 KST — `/cosmo` 7월 업무보고(월간) 신규 정보 반영 라이브 배포 완료** [CC]:
 > - 원자료: `cosmo 주간보고/COSMO 월간보고/COSMO 월간보고 (8월).pptx` — 표지 제목은 **「COSMO 7월 업무보고」(2026-08-25 작성)**. SHA-256 `107b9ccac5e2e554d7c741af3fe21fe8dbe7d665b7a28664e69a437b1097c78d`, `unzip -t` 무결성 통과. 같이 추가된 `(6월).pptx`는 5월 업무보고 과거분 보관용이라 반영하지 않았다.
 > - 손익·YoY·누적·부문 수치는 pptx가 기존 `cosmo_2026.json` monthly(7월, PR #648)와 전부 일치 — 중복 반영하지 않았다(만불 반올림 수준 확인: 누적 매출 3,857만불=YTD $38.57M, 순이익 -157만불=-$1.57M, 7월 순익 -32만불=-$319K, 누적 가공 14,403톤=월별 실적 합). **월간보고에만 있는 신규 정보만** `lib/data/cosmo-monthly-report.ts` 계약(source 메타 포함)으로 추가: 유동성(1.1→7/31: 현금 337→493·매출채권 207→883·매입채무 1,105→1,942·현금부족 -562→-566 만불), 재고자산 1,971→1,784, PANOFI 어대금 1,864만불(7/31), 원어재고 8/21 4,042톤(SJ 3,396·YF 26·믹스 620), 생산계획 개정(8월 2,730→2,310MT·연간 29,000→26,118MT·9월 21일×110톤), 수주단가 인상 $46.0→$49.5($2kg 기준), 9~10월 업무 3건. 연초 현금부족 -562는 행 계산 -561과 1 차이 — 원문 인쇄값 유지, 계약 주석에 공개.
