@@ -89,7 +89,7 @@ export async function GET(request: NextRequest) {
     }
 
     return NextResponse.json({
-      source: 'data/atuna_prices.json (manual sync — Atuna paywall, 라우트 경유 전용)',
+      source: 'data/atuna_prices.json (manual sync - Atuna paywall, 라우트 경유 전용)',
       latestDate,
       hubLabels: HUB_LABELS,
       latestByHub,

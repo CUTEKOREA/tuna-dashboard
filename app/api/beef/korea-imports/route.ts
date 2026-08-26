@@ -108,9 +108,9 @@ export async function GET() {
   if (live && live.length >= 3) {
     data = live;
     isLive = true;
-    source = `UN Comtrade Public Preview — 한국 수입 (reporter=410, HS 0201+0202, ${year})`;
+    source = `UN Comtrade Public Preview - 한국 수입 (reporter=410, HS 0201+0202, ${year})`;
   } else {
-    source = `UN Comtrade 응답 부족 — 정적 미러 (${year})`;
+    source = `UN Comtrade 응답 부족 - 정적 미러 (${year})`;
   }
 
   return NextResponse.json({

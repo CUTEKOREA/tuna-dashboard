@@ -34,7 +34,7 @@ const data = legacy as unknown as {
   _정정?: { 내용: string[]; 범위밖: string };
 };
 
-describe('골뱅이 기존 대시보드 — 정정된 계열', () => {
+describe('골뱅이 기존 대시보드 - 정정된 계열', () => {
   it('정정 기록이 남아 있다', () => {
     expect(data._정정).toBeDefined();
     expect(data._정정!.내용.length).toBeGreaterThanOrEqual(5);
@@ -178,7 +178,7 @@ describe('골뱅이 기존 대시보드 — 정정된 계열', () => {
     expect(rows['갑각류']).toBeCloseTo(0.63, 2);
     const names = data.pfasRiskData.map((r) => r.species);
     for (const fake of ['골뱅이(복족류)', '담치', '굴']) {
-      expect(names, `${fake} — 논문에 없는 시료가 되돌아왔다`).not.toContain(fake);
+      expect(names, `${fake} - 논문에 없는 시료가 되돌아왔다`).not.toContain(fake);
     }
     for (const r of data.pfasRiskData) {
       expect(r, '가짜 기준(limit)이 되돌아왔다').not.toHaveProperty('limit');

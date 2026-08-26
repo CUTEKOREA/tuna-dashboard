@@ -144,7 +144,7 @@ export function InsightDiseaseRadar({ accent = '#ef4444' }: any) {
       takeaway={{
         situation: "미국/호주는 질병 리스크 최저(5~10% 자체추정)이나 발생 시 한국 수입 차질이 우려되는 주 의존 공급국. 브라질은 BSE 발생 이력으로 대한(對韓) 수출 의존도 낮음.",
         actionPlan: "북미/오세아니아 BSE 발생 시 남미(아르헨/우루과이) 가공육 및 부분육 라인으로 전환하는 비상 조달 매뉴얼을 선제 수립 권고. WOAH 공식 공고 기준으로 트리거 조건을 사전 정의할 것.",
-        source: "WOAH (World Organisation for Animal Health) 공개 보고 기반 자체추정 — illustrative"
+        source: "WOAH (World Organisation for Animal Health) 공개 보고 기반 자체추정 - illustrative"
       }}
       chart={
         <RadarChart cx="50%" cy="50%" outerRadius="70%" data={diseaseRadarData}>

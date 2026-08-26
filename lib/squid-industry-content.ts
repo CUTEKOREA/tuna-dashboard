@@ -58,7 +58,7 @@ export interface SquidStageNarrative {
 const STAGE_01: SquidStageNarrative = {
   key: 's01',
   numeral: '01',
-  title: '자원 — 한 해살이 생물',
+  title: '자원 - 한 해살이 생물',
   question: '오징어 자원은 왜 해마다 이렇게 흔들리는가',
   lede: '오징어는 대개 한 해를 살고 산란한 뒤 죽는다. 자원은 해마다 처음부터 다시 만들어진다.',
   paragraphs: [
@@ -109,7 +109,7 @@ const STAGE_01: SquidStageNarrative = {
 const STAGE_02: SquidStageNarrative = {
   key: 's02',
   numeral: '02',
-  title: '어장 — 다섯 곳이 세계를 먹인다',
+  title: '어장 - 다섯 곳이 세계를 먹인다',
   question: '오징어는 지금 어디서 잡히는가',
   lede: '세계 어획의 90%가 다섯 해역에서 나온다. 그중 셋이 남미 앞바다다.',
   paragraphs: [
@@ -153,7 +153,7 @@ const STAGE_02: SquidStageNarrative = {
 const STAGE_03: SquidStageNarrative = {
   key: 's03',
   numeral: '03',
-  title: '어법 — 무엇으로 잡느냐가 사업을 가른다',
+  title: '어법 - 무엇으로 잡느냐가 사업을 가른다',
   question: '같은 오징어인데 왜 배도 회사도 다른가',
   lede: '오징어는 어법마다 잡는 종·어장·배·사업이 다르다. “오징어 어선 몇 척”이라고 더한 숫자는 아무 뜻이 없다.',
   paragraphs: [
@@ -574,7 +574,7 @@ const CROSS_A: SquidStageNarrative = {
   question: '살오징어는 어디로 갔는가',
   lede: '한국 살오징어는 1996년 25만 톤에서 2024년 1.4만 톤이 됐다. 정점의 5.4%다.',
   paragraphs: [
-    '이 페이지에서 가장 큰 숫자의 변화는 살오징어다. 세계 어획량은 1968년 758,600톤에서 2024년 33,502톤으로 **정점의 4.4%**가 됐고 한국은 1996년 252,618톤에서 2024년 13,546톤으로 **정점의 5.4%**가 됐다. 「살오징어 어획량 — 세계와 한국 (톤)」이 그 궤적이다.',
+    '이 페이지에서 가장 큰 숫자의 변화는 살오징어다. 세계 어획량은 1968년 758,600톤에서 2024년 33,502톤으로 **정점의 4.4%**가 됐고 한국은 1996년 252,618톤에서 2024년 13,546톤으로 **정점의 5.4%**가 됐다. 「살오징어 어획량 - 세계와 한국 (톤)」이 그 궤적이다.',
     '세계 총량은 유지됐다. 오징어 전체 어획량은 여전히 315만 톤이다. 살오징어가 빠진 자리를 남미의 대왕오징어와 아르헨티나오징어가 채웠다. **자리가 옮겨갔다. 자원이 사라진 것은 아니다.**',
     '원인의 순서는 1차 출처에 나온다. 일본 수산연구·교육기구는 자원평가서에서 **산란장 수온을 1순위로 지목하고 어획압을 동시 작용 요인으로 병기한다.** 2015·2016 두 어기 연속으로 2~3월 산란장 수온 환경이 부적합했고 어획압도 높았던 것이 겹쳐 자원이 크게 줄었다는 진단이다.',
     '그 전까지 온난화는 **호재**였다. 1988년 무렵 북서태평양이 한랭기에서 온난기로 넘어간 뒤 1990년부터 2014년 어기까지 친어량이 높게 유지됐다. 온난화가 늘 나쁘기만 한 것은 아니다. 다만 **어느 지점을 넘으면 방향이 뒤집힌다.**',
@@ -802,7 +802,7 @@ const CROSS_C: SquidStageNarrative = {
 const STAGE_08: SquidStageNarrative = {
   key: 's08',
   numeral: '08',
-  title: '선박별 — 누가 얼마나 잡았나',
+  title: '선박별 - 누가 얼마나 잡았나',
   question: '공개 통계가 멈추는 곳에서 무엇이 보이는가',
   lede: '포클랜드 수역 한 어기, 30척·14개사의 배별 실적이다. 공개 통계로는 이 층위가 나오지 않는다.',
   paragraphs: [
@@ -868,7 +868,7 @@ const STAGE_08: SquidStageNarrative = {
 const STAGE_09: SquidStageNarrative = {
   key: 's09',
   numeral: '09',
-  title: '산지 — 위판 원장 5개년',
+  title: '산지 - 위판 원장 5개년',
   question: '산지 위판장에서 오징어는 누가 팔고 누가 사며 값은 어디서 갈리는가',
   lede: '배가 잡아 온 오징어가 처음 값이 매겨지는 자리가 산지 위판장이다. 해양수산부 원장에 2021년부터 2025년까지 687,625행이 쌓여 있다.',
   paragraphs: [
@@ -901,7 +901,7 @@ const STAGE_09: SquidStageNarrative = {
 const STAGE_10: SquidStageNarrative = {
   key: 's10',
   numeral: '10',
-  title: '조달선과 수입 주체 — 누가 어디서 들여오는가',
+  title: '조달선과 수입 주체 - 누가 어디서 들여오는가',
   question: '한국 오징어는 어느 나라에서, 누구의 명의로 들어오는가',
   lede: '한국이 오징어를 사 오는 곳은 고정된 적이 없다. 5년 사이 아르헨티나가 3분의 1로 줄고 중국이 2024년에 절반을 넘겼다가 이듬해 3분의 1로 내려앉았으며, 그 자리를 페루가 채웠다.',
   paragraphs: [
@@ -934,7 +934,7 @@ const STAGE_10: SquidStageNarrative = {
 const STAGE_11: SquidStageNarrative = {
   key: 's11',
   numeral: '11',
-  title: '원양 — 스무 개 법인과 네 겹의 소유 구조',
+  title: '원양 - 스무 개 법인과 네 겹의 소유 구조',
   question: '등록부의 선주와 실제 조업하는 선사가 다른 것은 무엇을 뜻하는가',
   lede: '수입이 시장의 한쪽이라면 다른 한쪽은 원양이다. 이 층은 비상장이라 재무가 닫혀 있다고 알려져 있으나, 절반은 외부감사 대상이어서 매출·자산·주주구성·선박 장부가·리스계약까지 공개된다.',
   paragraphs: [
@@ -967,7 +967,7 @@ const STAGE_11: SquidStageNarrative = {
 const STAGE_12: SquidStageNarrative = {
   key: 's12',
   numeral: '12',
-  title: '가공 — 규모·지역·업체',
+  title: '가공 - 규모·지역·업체',
   question: '가공 설비는 느는데 생산은 왜 줄고 누가 어디서 얼마나 만드는가',
   lede: '오징어를 주원료로 쓰는 가공업소는 2025년 1,253곳, 생산량은 41,559톤이다. 업소와 품목은 6년 내내 늘고 설비는 2020년의 1.4배가 됐는데 생산량은 꺾였다. 상위 100개사가 80.1%를 덮지만 1위 점유가 4.65%라 시장을 쥔 곳은 없다.',
   paragraphs: [
@@ -1000,7 +1000,7 @@ const STAGE_12: SquidStageNarrative = {
 const STAGE_13: SquidStageNarrative = {
   key: 's13',
   numeral: '13',
-  title: '연결과 재무 — 겹치는 명의와 보이지 않는 돈',
+  title: '연결과 재무 - 겹치는 명의와 보이지 않는 돈',
   question: '원료를 직접 들여오는 가공사는 어디에 모여 있고 그들이 오징어로 얼마를 버는지는 왜 어느 공시에서도 보이지 않는가',
   lede: '수입신고 원장의 608개 명의 가운데 117곳은 가공업체 명부에도 있고 생산 상위 100개사 중 33곳이 직접 수입한다. 그런데 이 산업의 돈은 두 층에서 각각 다른 이유로 안 보인다. 상장사는 오징어를 품목으로 쪼개지 않고 가공사는 애초에 공시 대상이 아니다.',
   paragraphs: [
@@ -1033,7 +1033,7 @@ const STAGE_13: SquidStageNarrative = {
 const STAGE_14: SquidStageNarrative = {
   key: 's14',
   numeral: '14',
-  title: '값 — 산지에서 소비자까지',
+  title: '값 - 산지에서 소비자까지',
   question: '수입원가 4,848.4원이 소매 13,072.8원이 되는 사이에 누가 얼마를 가져가는가',
   lede: '수입 오징어의 단계별 원가와 마진을 금액으로 공표한 정부 자료는 하나뿐이다. 해양수산부 실태조사의 수입 냉동 오징어 유통비용 표이며 부산에서 가락시장까지의 대표 경로를 실거래가로 추적한 값이고 기준연도는 2023년이다.',
   paragraphs: [
@@ -1066,7 +1066,7 @@ const STAGE_14: SquidStageNarrative = {
 const STAGE_15: SquidStageNarrative = {
   key: 's15',
   numeral: '15',
-  title: '제도와 남은 물음 — 어디서 칸이 비는가',
+  title: '제도와 남은 물음 - 어디서 칸이 비는가',
   question: '업체별 오징어 물량은 왜 어느 제도에서도 보이지 않는가',
   lede: '어느 회사가 오징어를 얼마나 다루는가, 이 한 칸을 다섯 개의 제도가 각각 다른 방식으로 비운다. 자료가 흩어져서가 아니다.',
   paragraphs: [
@@ -1101,7 +1101,7 @@ const STAGE_15: SquidStageNarrative = {
 const CROSS_D: SquidStageNarrative = {
   key: 'x04',
   numeral: 'D',
-  title: '인수 이후의 플레이 — 원양과 가공을 어떻게 잇는가',
+  title: '인수 이후의 플레이 - 원양과 가공을 어떻게 잇는가',
   question: '선민수산과 현원수산을 품에 넣었다면 다음 수는 무엇인가',
   lede: '신라교역이 선민수산과 현원수산을 인수한다. 인수는 사내에서 확정한 사항이고 공개 자료에는 아직 근거가 없어 이 전제에는 출처 등급이 붙지 않는다. 그 위에 얹은 판단의 재료는 모두 앞 단계에서 검증된 수치다.',
   paragraphs: [

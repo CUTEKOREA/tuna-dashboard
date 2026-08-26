@@ -2,8 +2,8 @@
   "_meta": {
     "회사": "Bolton Group (Bolton Group S.r.l.)",
     "국가": "이탈리아 (밀라노)",
-    "업종": "소비재 그룹 — 참치는 Food 카테고리, 그 밖에 접착제·세제·화장품",
-    "출처": "Bolton 조사 아카이브 (agri_data …/이탈리아/Bolton, 2026-08) — Sustainability Report 2025 + 공개 선박명단 + 등기 기탁분",
+    "업종": "소비재 그룹 - 참치는 Food 카테고리, 그 밖에 접착제·세제·화장품",
+    "출처": "Bolton 조사 아카이브 (agri_data …/이탈리아/Bolton, 2026-08) - Sustainability Report 2025 + 공개 선박명단 + 등기 기탁분",
     "출처한계": "비상장이라 연결재무제표를 공표하지 않는다. 매출은 발표문, 손익은 등기 기탁분의 언론 인용이다.",
     "측정경계": "조달 740,310 t 은 Bolton Food 원료와 Tri Marine 트레이딩의 합이다. 브랜드가 쓴 양이 아니다.",
     "갱신방법": "python3 scripts/build_company_bolton.py"
@@ -31,11 +31,11 @@
     ],
     [
       "구 상호",
-      "Bolton Alimentari S.p.A. — Bolton Food S.p.A. 의 이전 상호 (개칭 시점 미확인)"
+      "Bolton Alimentari S.p.A. - Bolton Food S.p.A. 의 이전 상호 (개칭 시점 미확인)"
     ],
     [
       "회장",
-      "Marina Nissim — 창업자 Joseph Nissim의 딸"
+      "Marina Nissim - 창업자 Joseph Nissim의 딸"
     ],
     [
       "그룹 CEO",
@@ -43,7 +43,7 @@
     ],
     [
       "상장",
-      "비상장 가족기업 — 공시는 발표문과 등기 기탁분뿐"
+      "비상장 가족기업 - 공시는 발표문과 등기 기탁분뿐"
     ]
   ],
   "compare": [
@@ -342,7 +342,7 @@
       "등록부": "IATTC",
       "척수": 4,
       "상태": "활성 · 계열 소유",
-      "내역": "Aurora B 1,777 t · Rosita C 1,500 t (선주 Atunera Dularra SL → Grupo Conservas Garavilla → Bolton) · Charo 1,600 t · San Andres 1,583 t (Conservas Isabel Ecuatoriana) — 적재능력"
+      "내역": "Aurora B 1,777 t · Rosita C 1,500 t (선주 Atunera Dularra SL → Grupo Conservas Garavilla → Bolton) · Charo 1,600 t · San Andres 1,583 t (Conservas Isabel Ecuatoriana) - 적재능력"
     },
     {
       "등록부": "ICCAT",

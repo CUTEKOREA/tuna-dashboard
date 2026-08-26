@@ -135,7 +135,7 @@ export function InsightPillarTwo() {
 export function InsightVietnamOEM() {
   return (
     <WidgetCard
-      title="베트남 OEM 역전 — 황다랑어 가공 생태계 장악"
+      title="베트남 OEM 역전 - 황다랑어 가공 생태계 장악"
       icon={Factory}
       iconColor="#06b6d4"
       pillar="S2"
@@ -173,7 +173,7 @@ export function InsightVietnamOEM() {
 <ol style="margin: 4px 0 0 18px; padding: 0;">
 <li style="margin-bottom: 8px;"><strong>지분-공급권 교환 즉시 가동</strong>: Tan Phat Foods 등 BRC/IFS 인증 보유 현지 최상위 가공사 5~7곳에 소수 지분 15~25%를 <strong>원물(황다랑어) 5년 장기 공급권과 교환</strong>. 현금 부담 최소화, 가공사 측 공급 안정화.</li>
 <li style="margin-bottom: 8px;"><strong>MMPA 준수 개조 컨설팅</strong>: 한국 어선의 MMPA 적합 조업 노하우를 베트남 가공사에 라이센싱. 라이센스 수수료 + 지분 배당 이중 회수.</li>
-<li><strong>"베트남 OEM 플랫폼" 진화</strong>: 5년 후 베트남 가공 역량의 25~30%를 통합 — 단순 OEM 외주가 아닌 브랜드·연구개발·물류 통합 플랫폼. EU·일본·동남아 수출의 중간 가공 거점으로 활용. 글로벌 산업 금융 자문사와 협력해 특수목적법인(SPV) 구조로 본사 재무 부담 분리.</li>
+<li><strong>"베트남 OEM 플랫폼" 진화</strong>: 5년 후 베트남 가공 역량의 25~30%를 통합 - 단순 OEM 외주가 아닌 브랜드·연구개발·물류 통합 플랫폼. EU·일본·동남아 수출의 중간 가공 거점으로 활용. 글로벌 산업 금융 자문사와 협력해 특수목적법인(SPV) 구조로 본사 재무 부담 분리.</li>
 </ol>
 </div>`,
         source: 'ILO Global Wage Report (2025) · 관세청 KCS VKFTA',

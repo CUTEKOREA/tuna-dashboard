@@ -54,7 +54,7 @@ const STOCK_GRAN_OPTIONS = [
 const X_INTERVAL: Record<StockGran, number> = { weekly: 51, monthly: 5, quarterly: 1, yearly: 0 };
 
 const AVG_NOTE =
-  '기간 평균 — 재고·가공가능일수는 스톡 지표라 합산이 아니라 평균으로 집계한다. 기록 있는 주만 평균 (0 채움 없음), 관측 주가 없는 기간은 행을 생략한다.';
+  '기간 평균 - 재고·가공가능일수는 스톡 지표라 합산이 아니라 평균으로 집계한다. 기록 있는 주만 평균 (0 채움 없음), 관측 주가 없는 기간은 행을 생략한다.';
 
 type StockView = { rows: Record<string, unknown>[]; xInterval: number; note?: string };
 
@@ -178,7 +178,7 @@ export function CanneryTab() {
     (canneryGran === 'weekly'
       ? '무기록 주는 선을 끊는다 (보간하지 않음).'
       : '가동률·재고는 스톡 지표라 합산이 아니라 기간 평균 (0 채움 없음, 관측 없는 기간은 행 생략).') +
-    (picked.length > HOLD_ID.length ? ' 선택이 많으면 색만으로 구분되지 않는다 — 툴팁·범례로 확인한다.' : '');
+    (picked.length > HOLD_ID.length ? ' 선택이 많으면 색만으로 구분되지 않는다 - 툴팁·범례로 확인한다.' : '');
 
   return (
     <>
@@ -338,7 +338,7 @@ export function CanneryTab() {
           span={12}
           title="재고 점유"
           unit="(%)"
-          note={`전체 ${bangkokStockShare.length}개 캐너리 중 상위 10 — 총재고 대비 비중`}
+          note={`전체 ${bangkokStockShare.length}개 캐너리 중 상위 10 - 총재고 대비 비중`}
           src={SRC}
         >
           <Chart

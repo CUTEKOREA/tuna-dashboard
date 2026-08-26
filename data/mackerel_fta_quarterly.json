@@ -1,5 +1,5 @@
 {
- "source": "KMI 한국해양수산개발원 — FTA 체결국 수산물 수입동향 2021Q4~2026Q1 (21개 분기, 약 96MB 원본 PDF)",
+ "source": "KMI 한국해양수산개발원 - FTA 체결국 수산물 수입동향 2021Q4~2026Q1 (21개 분기, 약 96MB 원본 PDF)",
  "indexPath": "agri_data/공통(General)/kmi_fta_quarterly/INDEX.md",
  "extractedAt": "2026-05-27",
  "yearly": [
@@ -130,5 +130,5 @@
   "ukValueShare2026": 12.1,
   "chinaValueShare2026": 8.0
  },
- "scopeNote": "yearly=對FTA표(주요 품목 표, 후속호 T+1 수정치 — w_fta_import_trend와 동일 시리즈) / quarter2025=對세계 품목별 박스 누적(21.3·36.1·47.3·61.7천톤, $60.4·106.5·146.0·201.1M 명문, 분기값은 누적 차분) / originShift 물량=국가별(스코프 불변), facts 비중=수입액 기준(KMI 26Q1 명문)"
+ "scopeNote": "yearly=對FTA표(주요 품목 표, 후속호 T+1 수정치 - w_fta_import_trend와 동일 시리즈) / quarter2025=對세계 품목별 박스 누적(21.3·36.1·47.3·61.7천톤, $60.4·106.5·146.0·201.1M 명문, 분기값은 누적 차분) / originShift 물량=국가별(스코프 불변), facts 비중=수입액 기준(KMI 26Q1 명문)"
 }

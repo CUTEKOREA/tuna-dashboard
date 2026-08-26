@@ -168,7 +168,7 @@ export default function ShrimpDashboard() {
     const unmapped = (data.widgets as any[]).filter(w => !mapped.has(w.id));
     if (unmapped.length > 0) {
       console.warn(
-        `[ShrimpDashboard] PILLARS 미매핑 위젯 ${unmapped.length}건: ${unmapped.map(w => w.id).join(', ')} — PILLARS 배열에 추가 필요`
+        `[ShrimpDashboard] PILLARS 미매핑 위젯 ${unmapped.length}건: ${unmapped.map(w => w.id).join(', ')} - PILLARS 배열에 추가 필요`
       );
     }
   }, [data]);

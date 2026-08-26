@@ -79,7 +79,7 @@ export default function MscProductVolumeGrowth() {
       icon={LineIcon}
       iconColor="#f59e0b"
       pillar="S4"
-      cardDesc="전 세계 MSC 라벨 소비자 제품 판매량(천 MT) 16년 추이 — 카테고리별 분해"
+      cardDesc="전 세계 MSC 라벨 소비자 제품 판매량(천 MT) 16년 추이 - 카테고리별 분해"
       unit="천 MT"
       telemetry={{ status: 'STATIC', syncDate: '2024-25' }}
       chartHeight={320}

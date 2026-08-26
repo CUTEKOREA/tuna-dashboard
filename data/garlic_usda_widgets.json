@@ -9,7 +9,7 @@
     {
       "id": "w_kr_garlic_production_8y",
       "title": "한국 마늘 생산·재배 시계열",
-      "subtitle": "KREI 양념채소 — 8년 추이",
+      "subtitle": "KREI 양념채소 - 8년 추이",
       "cardDesc": "한국 마늘 생산량·재배면적·자급률 8년 추이. 2023 생산 312K톤·자급률 86.6% 회복.",
       "chartType": "Composed",
       "pillar": "S1",
@@ -39,7 +39,7 @@
     },
     {
       "id": "w_global_garlic_china_dominance",
-      "title": "글로벌 마늘 공급 — 중국 84%",
+      "title": "글로벌 마늘 공급 - 중국 84%",
       "subtitle": "WSC China Garlic Crop Report",
       "cardDesc": "글로벌 생마늘 800만톤 中 중국 84%·건조마늘 86%. 단일 국가 압도 점유 = 공급망 핵심 리스크.",
       "chartType": "Pie",
@@ -63,7 +63,7 @@
     {
       "id": "w_kr_garlic_wholesale_price",
       "title": "한국 깐마늘 도매가 월별",
-      "subtitle": "KREI 양념채소 06호 — 김장철 상승",
+      "subtitle": "KREI 양념채소 06호 - 김장철 상승",
       "cardDesc": "한국 깐마늘 도매가 6개월 시계열. 9월 7,700원/kg (+8.9%), 김장철 10월 7,900원 전망.",
       "chartType": "Composed",
       "pillar": "S4",
@@ -93,7 +93,7 @@
     {
       "id": "w_kr_garlic_import_form",
       "title": "한국 마늘 수입 형태별",
-      "subtitle": "KREI 양념채소 07호 — 냉동마늘 압도",
+      "subtitle": "KREI 양념채소 07호 - 냉동마늘 압도",
       "cardDesc": "한국 마늘 수입 형태별 비중. 냉동마늘이 70%+로 외식업체·가공식품 핵심.",
       "chartType": "Bar",
       "pillar": "S3",
@@ -118,8 +118,8 @@
     {
       "id": "w_kr_garlic_price_gap_tariff",
       "title": "한국 vs 수입 마늘 가격·관세",
-      "subtitle": "KREI 양념채소 06호 — 관세 360%",
-      "cardDesc": "국내 7,700원/kg vs 수입 마늘 도매 7,100원/kg. TRQ 외 관세 360% 적용, 국내 보호. [비교 목적 illustrative — 가격(₩/kg)·관세율(%) 혼단위 차트]",
+      "subtitle": "KREI 양념채소 06호 - 관세 360%",
+      "cardDesc": "국내 7,700원/kg vs 수입 마늘 도매 7,100원/kg. TRQ 외 관세 360% 적용, 국내 보호. [비교 목적 illustrative - 가격(₩/kg)·관세율(%) 혼단위 차트]",
       "chartType": "Bar",
       "pillar": "S4",
       "xKey": "category",

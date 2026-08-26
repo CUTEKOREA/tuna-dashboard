@@ -83,7 +83,7 @@ export default function TunaCatchBySpeciesLive() {
 <ol style="margin: 4px 0 0 18px; padding: 0;">
 <li style="margin-bottom: 8px;"><strong>황다랑어 비중 30% → 35%+ 확대</strong>: IATTC·WCPFC 황다랑어 쿼터 선도 매입 + 황다랑어 어획권 보유 선사와 5년 장기 공급 계약.</li>
 <li style="margin-bottom: 8px;"><strong>'어종 포트폴리오 샤프지수' KPI</strong>: 본사 리스크 부서가 매 분기 어종 비중을 현대 포트폴리오 이론 기반 동적 재조정.</li>
-<li><strong>차세대 어종(날개다랑어·청새치) 선제 진입</strong>: 기후변화로 서식 위도 상승 시 신규 어장 출현 — 미리 어업 라이선스 선도 매입.</li>
+<li><strong>차세대 어종(날개다랑어·청새치) 선제 진입</strong>: 기후변화로 서식 위도 상승 시 신규 어장 출현 - 미리 어업 라이선스 선도 매입.</li>
 </ol>
 </div>`,
         source: 'FAO FishStat Capture Statistics 2015-2022 (Q_tlw, 자료수집 매뉴얼 v28.4 §2 FishStat 3 zip)'

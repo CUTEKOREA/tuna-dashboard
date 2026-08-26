@@ -29,7 +29,7 @@ export default function SalmonInsightDoubleMateriality() {
       icon={ShieldCheck}
       iconColor="var(--color-success)"
       pillar="S5"
-      cardDesc="EU CSRD 이중 중대성 프레임워크 기반 ESG 이슈 배치 — 좌표는 자체 추정/시나리오(illustrative), 1차 공시 수치 아님"
+      cardDesc="EU CSRD 이중 중대성 프레임워크 기반 ESG 이슈 배치 - 좌표는 자체 추정/시나리오(illustrative), 1차 공시 수치 아님"
       telemetry={{ status: 'STATIC', syncDate: '2026-05-29' }}
       chartHeight={250}
       chart={

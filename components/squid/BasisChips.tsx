@@ -193,7 +193,7 @@ export const BasisChips: React.FC<BasisChipsProps> = ({ basis, sources = [], now
           icon={GRADE_MARK[basis.source_grade] ?? '🅰'}
           label={publishers.join('·')}
           color={basis.source_grade === 'C' ? '#f59e0b' : '#94a3b8'}
-          title={basis.source_grade === 'C' ? 'C등급 — 보조검증 필요' : `출처 등급 ${basis.source_grade}`}
+          title={basis.source_grade === 'C' ? 'C등급 - 보조검증 필요' : `출처 등급 ${basis.source_grade}`}
           onClick={() => setOpen((v) => !v)}
         />
       </div>
@@ -226,7 +226,7 @@ export const BasisChips: React.FC<BasisChipsProps> = ({ basis, sources = [], now
                   rel="noopener noreferrer"
                   style={{ color: 'var(--w-sky-400)' }}
                 >
-                  {squidPublisherLabel(s.publisher)} — {koreanUiText(s.series ?? `출처 ${index + 1}`)}
+                  {squidPublisherLabel(s.publisher)} - {koreanUiText(s.series ?? `출처 ${index + 1}`)}
                 </a>
                 <span style={{ color: 'var(--w-slate-500)' }}>
                   {' '}(우선순위 {s.priority.replace('P', '')}·{s.grade === 'A' ? '1' : s.grade === 'B' ? '2' : '3'}등급·{squidFrequencyLabel(s.frequency)})

@@ -42,7 +42,7 @@ const YEARLY_ACTUAL = [
 const FALLBACK_DATA = {
   source: "관세청 HSK 0303.89-2000 냉동 갈치 (2025 연간 실수집 스냅샷 · HSK 검증 완료 2026-06-11)",
   isLive: false,
-  hskVerified: "0303892000 — 관세청 품목명 '갈치' 확인 (2026-06-11, 구 0303899060=아귀 폐기)",
+  hskVerified: "0303892000 - 관세청 품목명 '갈치' 확인 (2026-06-11, 구 0303899060=아귀 폐기)",
   lastUpdated: "2026-06-11",
   year: "2025",
   summary: {
@@ -122,7 +122,7 @@ export async function GET(request: Request) {
     return NextResponse.json({
       source: `관세청 nitemtrade 실시간 HSK 0303.89-2000 냉동 갈치 (${year}${month ? "-" + month : ""}, ${items.length}건 · HSK 검증 완료)`,
       isLive: true,
-      hskVerified: "0303892000 — 관세청 품목명 '갈치' 확인 (2026-06-11)",
+      hskVerified: "0303892000 - 관세청 품목명 '갈치' 확인 (2026-06-11)",
       lastUpdated: new Date().toISOString(),
       year,
       summary: {

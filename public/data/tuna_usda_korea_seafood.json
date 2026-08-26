@@ -35,7 +35,7 @@
     {
       "id": "w_kr_us_seafood_share",
       "title": "미국산 수산물 한국 점유율",
-      "subtitle": "USDA GAIN — 미국 6위 (3.3% 점유)",
+      "subtitle": "USDA GAIN - 미국 6위 (3.3% 점유)",
       "cardDesc": "USDA Seoul ATO 보고서. 미국 수산물 한국 수입액 $182M, 시장 점유 3.3% (2024).",
       "chartType": "Composed",
       "pillar": "S4",
@@ -61,7 +61,7 @@
     {
       "id": "w_kr_us_seafood_items",
       "title": "미국산 한국 수입 Top 품목",
-      "subtitle": "USDA GAIN KS2025-0046 — 명태 연육 압도",
+      "subtitle": "USDA GAIN KS2025-0046 - 명태 연육 압도",
       "cardDesc": "2024년 미국산 한국 수입 Top 3 품목. 알래스카 명태 연육 $45.3M로 25% 비중.",
       "chartType": "Bar",
       "pillar": "S4",
@@ -86,7 +86,7 @@
     {
       "id": "w_idn_halal_seafood",
       "title": "인도네시아 가공 수산물 할랄",
-      "subtitle": "USDA GAIN ID2026-0023 — 2026.5.6 신규 의무화",
+      "subtitle": "USDA GAIN ID2026-0023 - 2026.5.6 신규 의무화",
       "cardDesc": "USDA Jakarta ATO 보고서. 가공 해산물 면제→필수, 2026.5.6 WTO 통보.",
       "chartType": "Bar",
       "pillar": "S3",
@@ -111,7 +111,7 @@
     {
       "id": "w_es_seafood_top_importers",
       "title": "스페인 수산물 수입국 Top",
-      "subtitle": "USDA GAIN SP2026-0004 — 세계 4위 수입국",
+      "subtitle": "USDA GAIN SP2026-0004 - 세계 4위 수입국",
       "cardDesc": "스페인 2025년 총 수입 $108억 (세계 4위). EU 39억 1위, 모로코 12억 2위, 미국 0.08억 23위.",
       "chartType": "Bar",
       "pillar": "S4",

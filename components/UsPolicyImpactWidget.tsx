@@ -32,7 +32,7 @@ const UsPolicyImpactWidget = () => {
       icon={ShieldAlert}
       iconColor="#f59e0b"
       pillar="S5"
-      cardDesc="미국 인구조사국(US Census Bureau) + USITC 데이터 — 위구르강제노동방지법(UFLPA, 2022-06 발효) 전후 중국·베트남·인도네시아의 미국 참치캔 수출액 월별 추적"
+      cardDesc="미국 인구조사국(US Census Bureau) + USITC 데이터 - 위구르강제노동방지법(UFLPA, 2022-06 발효) 전후 중국·베트남·인도네시아의 미국 참치캔 수출액 월별 추적"
       unit="(단위: $M)"
       telemetry={{ status: META.status, syncDate: end }}
       chartHeight={320}

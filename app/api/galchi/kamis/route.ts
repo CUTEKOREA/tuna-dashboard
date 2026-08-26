@@ -34,7 +34,7 @@ const FALLBACK = {
     auctionPrice: 10300,
     wholesalePrice: 28500,
     spreadPct: 176.7,
-    interpretation: "위판가 대비 도매가 2.77배 — 중간 유통 마진 과다"
+    interpretation: "위판가 대비 도매가 2.77배 - 중간 유통 마진 과다"
   }
 };
 

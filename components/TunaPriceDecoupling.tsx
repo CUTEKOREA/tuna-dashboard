@@ -43,7 +43,7 @@ export default function TunaPriceDecoupling() {
       icon={TrendingUp}
       iconColor="#38bdf8"
       pillar="S4"
-      cardDesc="원어 가다랑어 국제 시세(USD/톤, 좌Y) vs 국내 참치 통조림 150g 소매 납품가(₩/캔, 우Y) — 원어 30% 폭락에도 견고한 소매가 디커플링"
+      cardDesc="원어 가다랑어 국제 시세(USD/톤, 좌Y) vs 국내 참치 통조림 150g 소매 납품가(₩/캔, 우Y) - 원어 30% 폭락에도 견고한 소매가 디커플링"
       unit="(단위: USD/t · ₩/캔)"
       telemetry={{ status: 'STATIC', syncDate: '2023.04~2024.03' }}
       chartHeight={250}
@@ -79,7 +79,7 @@ export default function TunaPriceDecoupling() {
 <ol style="margin: 4px 0 0 18px; padding: 0;">
 <li style="margin-bottom: 8px;"><strong>대형 유통 PB 브랜드와 장기 납품 고정가 계약</strong>: 코스트코·이마트·롯데마트 자체브랜드 라인과 3~5년 고정가 계약 락업. 변동성 헷지 + 매출 가시성 확보.</li>
 <li style="margin-bottom: 8px;"><strong>위탁생산(OEM/ODM) 고마진 가공식품 직접 침투</strong>: 단순 통조림이 아닌 간편가정식(HMR)·즉석식품·반려동물 식품으로 제품군 확장. 마진 구조 개선 여지 업계추정 2배 이상(illustrative).</li>
-<li><strong>소비자 직접 채널로 전방 통합</strong>: 자체 브랜드 출시 + 직접판매(DTC) 온라인 채널(아마존·11번가) 가동. 5년 내 매출의 일정 비중을 직접 채널로 이동해 유통 마진 직접 회수 — 구체 목표치는 내부 사업계획에서 확정 필요.</li>
+<li><strong>소비자 직접 채널로 전방 통합</strong>: 자체 브랜드 출시 + 직접판매(DTC) 온라인 채널(아마존·11번가) 가동. 5년 내 매출의 일정 비중을 직접 채널로 이동해 유통 마진 직접 회수 - 구체 목표치는 내부 사업계획에서 확정 필요.</li>
 </ol>
 </div>`,
         source: 'ISSF·WCPFC 어획통계(업계추정 기반) + 한국소비자원 가격정보 (2023.04~2024.03)',

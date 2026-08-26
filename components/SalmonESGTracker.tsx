@@ -28,31 +28,31 @@ export default function SalmonESGTracker() {
       situation: `<div>
 <p>노르웨이 평균 ESG 점수 <strong>${avgScore}/100</strong>. 글로벌 양식 연어 ESG의 골드 스탠다드.</p>
 <p>강점: <strong>강제노동 리스크 95점(최저) + Barentswatch 통합 추적 시스템이 EU TRACES와 연동되어 이력 추적성 90점</strong>. SIMP·EU 강제노동규제 면제 zone.</p>
-<p>약점: 해상 양식 환경 영향 72점 — RAS(순환여과) 전환이 35%에 머물러 개선 여지.</p>
+<p>약점: 해상 양식 환경 영향 72점 - RAS(순환여과) 전환이 35%에 머물러 개선 여지.</p>
 </div>`,
       actionPlan: `<div>
 <p><strong>재정의</strong>: 노르웨이는 단순 vendor가 아닌 <strong>"ESG entry license 자산"</strong>. 비중 확대로 SIMP/CBAM 위험 자동 헷지.</p>
-<p><strong>3단계</strong>: ① 단기 노르웨이산 비중 확대 — SIMP·EU 강제노동규제 리스크 헷지 ② 중기 RAS 생산자(Salmar·Mowi RAS 라인) 직거래 라인 확보 ③ ESG 프리미엄 +12~18%p 마진 흡수.</p>
+<p><strong>3단계</strong>: ① 단기 노르웨이산 비중 확대 - SIMP·EU 강제노동규제 리스크 헷지 ② 중기 RAS 생산자(Salmar·Mowi RAS 라인) 직거래 라인 확보 ③ ESG 프리미엄 +12~18%p 마진 흡수.</p>
 </div>`,
     },
     '칠레': {
       situation: `<div>
 <p>칠레 평균 ESG 점수 <strong>${avgScore}/100</strong>. 노르웨이 다음 vendor지만 환경 risk 큼.</p>
-<p>분야별: 강제노동 85점(양호) · 환경 영향 58점(약점) — <strong>SRS 감염·항생제 사용·FCR 1.40 열위 누적</strong> · 이력 추적 75점(Sernapesca 인증 + SIMP 대응 진행 중).</p>
+<p>분야별: 강제노동 85점(양호) · 환경 영향 58점(약점) - <strong>SRS 감염·항생제 사용·FCR 1.40 열위 누적</strong> · 이력 추적 75점(Sernapesca 인증 + SIMP 대응 진행 중).</p>
 </div>`,
       actionPlan: `<div>
 <p><strong>재정의</strong>: 칠레는 <strong>"가격 메리트 + 환경 ESG 리스크" trade-off vendor</strong>. 채널별 선택적 활용이 본질.</p>
-<p><strong>3단계</strong>: ① SRS 발병기 직전 선구매로 가격 메리트 ② B2C 채널(대형마트 PB) 노출 축소 — ESG 우려 회피 ③ 가공·외식 채널 중심 우회 판매.</p>
+<p><strong>3단계</strong>: ① SRS 발병기 직전 선구매로 가격 메리트 ② B2C 채널(대형마트 PB) 노출 축소 - ESG 우려 회피 ③ 가공·외식 채널 중심 우회 판매.</p>
 </div>`,
     },
     '러시아': {
       situation: `<div>
 <p>러시아 평균 ESG 점수 <strong>${avgScore}/100</strong>. 모든 분야 적색 신호.</p>
-<p>위험: <strong>OFAC/EU 제재 대상국 지위 — 강제노동 40·환경 45·이력추적 30 전 부문 적색</strong>. 제3국 우회 수출 의심 → SIMP·EU CBAM 위반 시 거래정지 리스크 직접 노출.</p>
+<p>위험: <strong>OFAC/EU 제재 대상국 지위 - 강제노동 40·환경 45·이력추적 30 전 부문 적색</strong>. 제3국 우회 수출 의심 → SIMP·EU CBAM 위반 시 거래정지 리스크 직접 노출.</p>
 </div>`,
       actionPlan: `<div>
 <p><strong>재정의</strong>: 러시아 직간접 노출은 단순 risk가 아닌 <strong>"즉시 채널 추방 trigger"</strong>.</p>
-<p><strong>3단계</strong>: ① 러시아산 직·간접 조달 즉시 중단 ② 공급사 KYC 강화 ③ C/O 원산지 재검증 프로세스 — 제3국 우회 노출까지 사전 차단.</p>
+<p><strong>3단계</strong>: ① 러시아산 직·간접 조달 즉시 중단 ② 공급사 KYC 강화 ③ C/O 원산지 재검증 프로세스 - 제3국 우회 노출까지 사전 차단.</p>
 </div>`,
     },
   };
@@ -124,7 +124,7 @@ export default function SalmonESGTracker() {
       icon={Leaf}
       iconColor="#10b981"
       pillar="S5"
-      cardDesc="원산지(노르웨이·칠레·러시아)별 강제노동·환경·이력추적 3축 ESG 점수 비교 — 점수는 정성 지표 기반 자체 추정(illustrative), 1차 출처 미연동"
+      cardDesc="원산지(노르웨이·칠레·러시아)별 강제노동·환경·이력추적 3축 ESG 점수 비교 - 점수는 정성 지표 기반 자체 추정(illustrative), 1차 출처 미연동"
       telemetry={{ status: 'STATIC', syncDate: '2026-06-05' }}
       customBody={body}
       takeaway={{

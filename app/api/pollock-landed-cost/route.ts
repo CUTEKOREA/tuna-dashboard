@@ -52,7 +52,7 @@ const POLLOCK_LANDED_COST = {
     total_krw_kg: 2883,
     margin_vs_domestic: 18.5,
     risk_factors: ['제재 리스크', '급속 냉동 품질 편차', '원산지 증명 필수'],
-    advantage: '최저 FOB — 가격 경쟁력 최상',
+    advantage: '최저 FOB - 가격 경쟁력 최상',
   },
 
   // Route 2: China Processing Relay
@@ -74,7 +74,7 @@ const POLLOCK_LANDED_COST = {
     total_krw_kg: 3851,
     margin_vs_domestic: 8.2,
     risk_factors: ['원산지 세탁 적발', '이중 냉동 품질 저하', '강제노동 리스크'],
-    advantage: '가공 완제품 — 추가 가공비 불필요',
+    advantage: '가공 완제품 - 추가 가공비 불필요',
   },
 
   // Route 3: US Alaska MSC
@@ -124,7 +124,7 @@ const POLLOCK_LANDED_COST = {
   alert_rules: {
     switch_trigger: '러시아 직수입-중국 우회 갭이 ₩500/kg 미만으로 축소 시 러시아 직수입 강화 Alert',
     margin_floor: '모든 경로 착지원가 ₩4,000/kg 초과 시 대체 어종(실꼬리돔) 블렌딩 트리거',
-    esg_override: '바이어가 MSC/ESG 인증 요구 시 미국 경로 자동 전환 — 마진 하락 감수',
+    esg_override: '바이어가 MSC/ESG 인증 요구 시 미국 경로 자동 전환 - 마진 하락 감수',
   },
 };
 
@@ -170,7 +170,7 @@ export async function POST(request: NextRequest) {
 export async function GET() {
   return NextResponse.json({
     status: 'active',
-    description: '명태 착지원가 시뮬레이터 — 3경로 실시간 비교 (러시아/중국/미국)',
+    description: '명태 착지원가 시뮬레이터 - 3경로 실시간 비교 (러시아/중국/미국)',
     routes: POLLOCK_LANDED_COST.route_comparison,
     cheapest_route: '러시아 직수입 (₩2,883/kg)',
     safest_route: '미국 MSC (₩4,582/kg)',

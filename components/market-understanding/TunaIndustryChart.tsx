@@ -56,7 +56,7 @@ interface ChartTooltipProps {
 function formatValue(value: TooltipEntry['value']): string {
   if (typeof value === 'number') return Math.round(value).toLocaleString('ko-KR');
   if (Array.isArray(value)) return value.map((v) => String(v)).join(' ~ ');
-  return value === undefined || value === null ? '—' : String(value);
+  return value === undefined || value === null ? '-' : String(value);
 }
 
 function ChartTooltip({ active, label, payload, unit }: ChartTooltipProps) {

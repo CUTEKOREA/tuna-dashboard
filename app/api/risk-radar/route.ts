@@ -21,7 +21,7 @@ async function fetchMFDSRejections(itemName: string) {
     const encodedItem = encodeURIComponent(itemName);
     const url = `https://apis.data.go.kr/1471000/FoodFlshdImprtRejectInfoService/getFoodFlshdImprtRejectInfoList?serviceKey=${apiKey}&prdlst_nm=${encodedItem}&numOfRows=20&type=json`;
     const res = await fetch(url, { signal: AbortSignal.timeout(8000) });
-    if (!res.ok) return { count: null, items: [], source: 'MFDS_UNAVAILABLE(업스트림 500 — 키 재발급 필요)', available: false };
+    if (!res.ok) return { count: null, items: [], source: 'MFDS_UNAVAILABLE(업스트림 500 - 키 재발급 필요)', available: false };
 
     const data = await res.json();
     const totalCount = data?.body?.totalCount || 0;

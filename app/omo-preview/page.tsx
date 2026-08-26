@@ -39,7 +39,7 @@ export default function OmoPreviewPage() {
 
         <section style={{ marginBottom: '40px' }}>
           <h2 style={{ color: '#f8fafc', fontSize: '1.4rem', fontWeight: 600, marginBottom: '8px' }}>
-            Stage 2.2 Live 위젯 — Atuna 가격 + FishStat 어획량
+            Stage 2.2 Live 위젯 - Atuna 가격 + FishStat 어획량
           </h2>
           <p style={{ color: '#94a3b8', fontSize: '0.9rem', marginBottom: '16px' }}>
             왼쪽: Stage 2.1 BarChart (Atuna 5 항구 단가) · 오른쪽: Stage 2.2 LineChart (FishStat 3 어종 8년 어획량). 둘 다 Claude Code 수집 매뉴얼 → OMO Sisyphus 무인 생성.
@@ -59,7 +59,7 @@ export default function OmoPreviewPage() {
 
         <section style={{ marginBottom: '40px' }}>
           <h2 style={{ color: '#f8fafc', fontSize: '1.4rem', fontWeight: 600, marginBottom: '8px' }}>
-            Stage 2.1 비교 — Mock vs Live (참조용)
+            Stage 2.1 비교 - Mock vs Live (참조용)
           </h2>
           <p style={{ color: '#94a3b8', fontSize: '0.9rem', marginBottom: '16px' }}>
             왼쪽: Stage 0 OMO 자체 mock 데이터 · 오른쪽: Stage 2.1 Claude Code 매뉴얼이 수집한 Atuna 실데이터 (USD/MT, SYNCED)
@@ -78,7 +78,7 @@ export default function OmoPreviewPage() {
 
         <section>
           <h2 style={{ color: '#f8fafc', fontSize: '1.4rem', fontWeight: 600, marginBottom: '16px' }}>
-            Stage 1 — 5개 위젯 (mock)
+            Stage 1 - 5개 위젯 (mock)
           </h2>
           <div data-mobile-stack
             style={{

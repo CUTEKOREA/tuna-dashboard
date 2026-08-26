@@ -104,14 +104,14 @@ export default function Home() {
             d={`중앙값 ${pct(quoteStats.median, 2)} · 손익분기 미달 물량 ${pct(quoteStats.below3FclShare, 0)}`} />
         </Card>
         <Card>
-          <Kpi k="자재 최단 소진" v={materialBurn.shortest?.weeksLeft?.toFixed(1) ?? '—'} unit=" 주"
+          <Kpi k="자재 최단 소진" v={materialBurn.shortest?.weeksLeft?.toFixed(1) ?? '-'} unit=" 주"
             tone={n(materialBurn.shortest?.weeksLeft) < 4 ? 'down' : 'flat'}
             d={materialBurn.shortest
               ? `${materialBurn.shortest.group}·${materialBurn.shortest.item} · 4주 미만 ${materialBurn.under4}종`
-              : '—'} />
+              : '-'} />
         </Card>
         <Card>
-          <Kpi k="수주잔량 소진" v={backlogWeeks == null ? '—' : backlogWeeks.toFixed(1)} unit=" 주"
+          <Kpi k="수주잔량 소진" v={backlogWeeks == null ? '-' : backlogWeeks.toFixed(1)} unit=" 주"
             d={`최근 4주 평균 선적 ${num(avgFclWeek, 1)} FCL/주 기준`} />
         </Card>
       </div>
@@ -120,8 +120,8 @@ export default function Home() {
       <div className="grid g2">
         <Card
           title="월별 손익"
-          sub={`순손익은 ${lossMonths}/${monthlySeries.length}개월 적자.${gpNegMonths.length ? ` 매출총이익도 ${gpNegMonths.join('·')}월은 마이너스` : ''}${n(latestMonth.gp) > 0 ? ` — ${latestMonth.month}월은 플러스로 회복.` : ''}`}
-          note={<>1~{latestMonth.month}월 누적 매출 <b>{musd(latestMonth.revenueYtd)}</b>, 누적 순손실 <b>{musd(latestMonth.netYtd)}</b>. {peakMonth.month}월은 매출 최고({musd(peakMonth.revenue)})인데도 순손실 — <b>규모가 아니라 마진 구조</b>의 문제.</>}
+          sub={`순손익은 ${lossMonths}/${monthlySeries.length}개월 적자.${gpNegMonths.length ? ` 매출총이익도 ${gpNegMonths.join('·')}월은 마이너스` : ''}${n(latestMonth.gp) > 0 ? ` - ${latestMonth.month}월은 플러스로 회복.` : ''}`}
+          note={<>1~{latestMonth.month}월 누적 매출 <b>{musd(latestMonth.revenueYtd)}</b>, 누적 순손실 <b>{musd(latestMonth.netYtd)}</b>. {peakMonth.month}월은 매출 최고({musd(peakMonth.revenue)})인데도 순손실 - <b>규모가 아니라 마진 구조</b>의 문제.</>}
         >
           <Legend items={[
             { name: '매출총이익', color: C.s4, box: true },
@@ -142,7 +142,7 @@ export default function Home() {
         <Card
           title="누적 판매 vs 수주잔량"
           sub="선적(회계) 기준 누적 판매액과 미선적 수주잔량 금액. 단위 백만 USD."
-          note={<>수주잔량은 {backlogJumpWeeks.map((w) => `${w}주차`).join('·')}에 계단식으로 점프해 현재 <b>{musd(last.backlogUsd)}</b>. 주간 판매액은 선적 타이밍 때문에 최대 {salesSwing ? Math.round(salesSwing) : '—'}배까지 흔들려, 추세는 4주 이동평균으로 봅니다(판매·수주 보드).</>}
+          note={<>수주잔량은 {backlogJumpWeeks.map((w) => `${w}주차`).join('·')}에 계단식으로 점프해 현재 <b>{musd(last.backlogUsd)}</b>. 주간 판매액은 선적 타이밍 때문에 최대 {salesSwing ? Math.round(salesSwing) : '-'}배까지 흔들려, 추세는 4주 이동평균으로 봅니다(판매·수주 보드).</>}
         >
           <Legend items={[
             { name: '누적 판매액', color: C.s1 },
@@ -160,12 +160,12 @@ export default function Home() {
 
       <div className="grid g2" style={{ marginTop: 14 }}>
         <Card
-          title="누적 원어처리량 — 실적 vs 계획"
-          sub={`CBU 기준. 주간 전환 ${gapSteps}회 중 ${gapNarrow}회만 축소 — 사실상 단조 확대.`}
+          title="누적 원어처리량 - 실적 vs 계획"
+          sub={`CBU 기준. 주간 전환 ${gapSteps}회 중 ${gapNarrow}회만 축소 - 사실상 단조 확대.`}
           note={gap ? (
             <>격차 <b>{num(gap.total, 0)}MT</b> 중 생산일수 기여 {num(gap.byDays, 0)}MT
               ({Math.round((gap.byDays / gap.total) * 100)}%), <b>일 처리량 기여 {num(gap.byRate, 0)}MT
-              ({Math.round((gap.byRate / gap.total) * 100)}%)</b> — 주원인은 처리 속도이고 생산일수도 함께 부족합니다.
+              ({Math.round((gap.byRate / gap.total) * 100)}%)</b> - 주원인은 처리 속도이고 생산일수도 함께 부족합니다.
               두 요인의 곱이라 교차항 배분에 따라 속도 비중은 81~83% 범위에서 움직입니다(생산 보드에서 분해식 확인).</>
           ) : null}
         >
@@ -209,7 +209,7 @@ export default function Home() {
           note={<>1~{profitCash.rows.length}월 누적으로 순손익 <b>{musd(profitCash.netSum)}</b>,
             외부 순현금 <b>{musd(profitCash.cashSum)}</b>로 방향은 같습니다.
             그런데 <b>현금잔액은 {musd(profitCash.cashStart)} → {musd(profitCash.cashEnd)}
-            ({musd(profitCash.cashDelta)}) 늘었습니다</b> — 적자인데 잔액이 는 것은
+            ({musd(profitCash.cashDelta)}) 늘었습니다</b> - 적자인데 잔액이 는 것은
             영업 현금이 아니라 <b>매입채무·차입 등 외부 조달</b>에서 왔다는 뜻입니다.
             같은 기간 재고가 {musd(profitCash.invStart)} → {musd(profitCash.invEnd)}
             ({musd(profitCash.invDelta)}) 늘어, 조달한 자금이 재고로 묶인 구조입니다.
@@ -235,7 +235,7 @@ export default function Home() {
           sub="적자에도 현금이 는 이유를 재고·운전자본에서 찾는다."
           note={<>연초 대비 현금 <b>{musd(profitCash.cashDelta)}</b>, 재고 <b>{musd(profitCash.invDelta)}</b>.
             둘을 더하면 {musd(profitCash.cashDelta + profitCash.invDelta)}로,
-            같은 기간 누적 순손실 {musd(profitCash.netSum)}보다 큽니다 —
+            같은 기간 누적 순손실 {musd(profitCash.netSum)}보다 큽니다 -
             <b>손실을 내면서 동시에 자산을 늘린 만큼이 외부 조달</b>입니다.
             재고는 장부가라 그대로 현금화되지 않으므로, 이 구조가 길어지면
             상환 부담이 손익보다 먼저 문제가 됩니다(자금 보드).</>}
@@ -251,10 +251,10 @@ export default function Home() {
                   <td className="n">{musd(profitCash.invEnd)}</td>
                   <td className="n down">{musd(profitCash.invDelta)}</td></tr>
                 <tr><td>누적 순손익 <span className="tag">1~{profitCash.rows.length}월</span></td>
-                  <td className="n">—</td><td className="n">{musd(profitCash.netSum)}</td>
+                  <td className="n">-</td><td className="n">{musd(profitCash.netSum)}</td>
                   <td className="n down">{musd(profitCash.netSum)}</td></tr>
                 <tr className="bad"><td><b>외부 조달 추정</b> <span className="tag">현금증가+재고증가−손실</span></td>
-                  <td className="n">—</td><td className="n">—</td>
+                  <td className="n">-</td><td className="n">-</td>
                   <td className="n">{musd(profitCash.cashDelta + profitCash.invDelta - profitCash.netSum)}</td></tr>
               </tbody>
             </table>
@@ -266,7 +266,7 @@ export default function Home() {
       <div className="grid g2">
         <Card
           title="운전자본 스냅샷"
-          sub={`월간 업무보고의 유동성·재고자산 — 연초(1.1) 대비 ${mr.liquidity.asOf} 잔액. 단위 만불.`}
+          sub={`월간 업무보고의 유동성·재고자산 - 연초(1.1) 대비 ${mr.liquidity.asOf} 잔액. 단위 만불.`}
           note={<>매입채무 <b>{f(mr.liquidity.ap.end)}만불</b>이 매출채권 {f(mr.liquidity.ar.end)}만불의
             {' '}<b>{(mr.liquidity.ap.end / mr.liquidity.ar.end).toFixed(1)}배</b>입니다. 표 밖에 PANOFI 어대금 잔액
             {' '}<b>{f(mr.panofiPayable.usd10k)}만불</b>({mr.panofiPayable.asOf})이 따로 있어, 실제 지급 부담은 표보다 큽니다.
@@ -294,7 +294,7 @@ export default function Home() {
 
         <Card
           title="생산계획 개정과 수주 단가"
-          sub="월간 업무보고에만 있는 선행 정보 — 연간 계획 하향과 인상 수주."
+          sub="월간 업무보고에만 있는 선행 정보 - 연간 계획 하향과 인상 수주."
           note={<>수주는 어가 상승분을 반영해 <b>${mr.orderPrice.fromUsd.toFixed(1)} → ${mr.orderPrice.toUsd.toFixed(1)}</b>
             ({mr.orderPrice.basis})로 인상된 단가로 진행 중이며, 물량보다 단가·수익성을 우선해 리테일 Tender 참여는
             당분간 자제한다고 밝혔습니다. 9~10월 예정: {mr.agenda.map((a, i) => <span key={i}>{i > 0 && ' · '}{a}</span>)}.</>}
@@ -309,7 +309,7 @@ export default function Home() {
                 <tr className="warn"><td>연간 원어 처리 (MT)</td><td className="n">{f(mr.productionPlan.annualPlanMt)}</td>
                   <td className="n">{f(mr.productionPlan.annualRevisedMt)}</td>
                   <td className="n">{f(mr.productionPlan.annualRevisedMt - mr.productionPlan.annualPlanMt)}</td></tr>
-                <tr><td>9월 계획 (MT)</td><td className="n">—</td>
+                <tr><td>9월 계획 (MT)</td><td className="n">-</td>
                   <td className="n">{f(mr.productionPlan.september.totalMt)}</td>
                   <td className="n">{mr.productionPlan.september.days}일 × {mr.productionPlan.september.dailyMt}톤</td></tr>
               </tbody>
@@ -332,7 +332,7 @@ export default function Home() {
             <> 수주 쪽을 보면 견적 <b>물량가중 마진이 {pct(quoteStats.weightedMargin, 2)}</b>인데,
               판관비율 {pct(breakevenMargin.sgaRate, 2)} + 이자비율 {pct(breakevenMargin.interestRate, 2)} =
               {' '}<b>{pct(breakevenMargin.required, 1)}</b>를 넘겨야 손익분기입니다.
-              판관비·이자는 <b>금액이 고정</b>({musd(breakevenMargin.fixedUsd)})이라 매출이 늘면 필요 마진율은 내려갑니다 —
+              판관비·이자는 <b>금액이 고정</b>({musd(breakevenMargin.fixedUsd)})이라 매출이 늘면 필요 마진율은 내려갑니다 -
               지금 마진을 유지한 채 흑자로 가려면 1~{latestMonth.month}월 매출이 <b>{musd(breakevenMargin.breakevenRevenueAt(n(quoteStats.weightedMargin)))}</b>
               (현재의 {((n(breakevenMargin.breakevenRevenueAt(n(quoteStats.weightedMargin))) / n(breakevenMargin.revenueYtd))).toFixed(1)}배)이어야 합니다.
               <b>도달 불가가 아니라 현 매출 규모에서 불가</b>이며, 판가 전가·단위원가 인하·규모 중 무엇으로 갈지가 결정 사항입니다.</>

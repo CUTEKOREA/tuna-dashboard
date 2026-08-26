@@ -1,7 +1,7 @@
 {
   "_meta": {
     "version": "v1",
-    "source": "Librarian (Gemini 2.5 Flash) PDF 추출 — 2026-05-29",
+    "source": "Librarian (Gemini 2.5 Flash) PDF 추출 - 2026-05-29",
     "reports": [
       "IATTC No.22 2024 자원평가",
       "WCPFC Tuna Fishery Yearbook 2025 (TFY 2025)",
@@ -39,8 +39,8 @@
     {
       "id": "w_wcpfc_species_5y",
       "title": "WCPFC 참치 어종별 어획량 5년 추이",
-      "subtitle": "TFY 2025 — 2020~2024 4종 (가다랑어·황다랑어·눈다랑어·날개다랑어)",
-      "cardDesc": "TFY 2025 p.133 — WCPFC 4종 총 어획량 5년 시계열. 2024년 사상 최고 3.06M톤 달성.",
+      "subtitle": "TFY 2025 - 2020~2024 4종 (가다랑어·황다랑어·눈다랑어·날개다랑어)",
+      "cardDesc": "TFY 2025 p.133 - WCPFC 4종 총 어획량 5년 시계열. 2024년 사상 최고 3.06M톤 달성.",
       "chartType": "Composed",
       "pillar": "S1",
       "xKey": "year",
@@ -67,8 +67,8 @@
     {
       "id": "w_wcpfc_country_2024",
       "title": "WCPFC 주요 어업국 선망 어획량",
-      "subtitle": "TFY 2025 — 2024 PNG·한국·대만·FSM·미국 5개국",
-      "cardDesc": "TFY 2025 p.143 — 한국 276,961톤으로 PNG 다음 2위. Skipjack 집중도 비교.",
+      "subtitle": "TFY 2025 - 2024 PNG·한국·대만·FSM·미국 5개국",
+      "cardDesc": "TFY 2025 p.143 - 한국 276,961톤으로 PNG 다음 2위. Skipjack 집중도 비교.",
       "chartType": "Bar",
       "pillar": "S1",
       "xKey": "country",
@@ -94,8 +94,8 @@
     {
       "id": "w_iattc_stock_status",
       "title": "IATTC 동태평양 4종 자원 상태",
-      "subtitle": "IATTC No.22 2024 — YFT/SKJ/BFT/ALB 평가 결과",
-      "cardDesc": "IATTC 2024 — 4종 모두 sustainable. BFT 2021 재건 목표 달성, 2023년 3월 조기 어업종료.",
+      "subtitle": "IATTC No.22 2024 - YFT/SKJ/BFT/ALB 평가 결과",
+      "cardDesc": "IATTC 2024 - 4종 모두 sustainable. BFT 2021 재건 목표 달성, 2023년 3월 조기 어업종료.",
       "chartType": "Bar",
       "pillar": "S5",
       "xKey": "species",
@@ -118,8 +118,8 @@
     {
       "id": "w_iotc_gear_mix",
       "title": "인도양 열대 참치 어업 유형별 비중",
-      "subtitle": "IOTC 2024 — 2019-2023 5년 평균",
-      "cardDesc": "IOTC 2024 — 선망 45.1% 압도, 자망·미끼·연승 순. 한국 원양 진출 후보 분석.",
+      "subtitle": "IOTC 2024 - 2019-2023 5년 평균",
+      "cardDesc": "IOTC 2024 - 선망 45.1% 압도, 자망·미끼·연승 순. 한국 원양 진출 후보 분석.",
       "chartType": "Pie",
       "pillar": "S1",
       "xKey": "gear",
@@ -141,8 +141,8 @@
     {
       "id": "w_wcpfc_billfish_5y",
       "title": "WCPFC 연승 빌피쉬 혼획량 5년 추이",
-      "subtitle": "TFY 2025 — Blue Marlin·Swordfish·Striped/Black Marlin",
-      "cardDesc": "TFY 2025 p.159 — 빌피쉬 혼획 동향. 2024 Blue Marlin 12,534톤 급증 (+39%).",
+      "subtitle": "TFY 2025 - Blue Marlin·Swordfish·Striped/Black Marlin",
+      "cardDesc": "TFY 2025 p.159 - 빌피쉬 혼획 동향. 2024 Blue Marlin 12,534톤 급증 (+39%).",
       "chartType": "Composed",
       "pillar": "S5",
       "xKey": "year",

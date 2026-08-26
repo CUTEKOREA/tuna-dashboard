@@ -37,8 +37,8 @@ export function WidgetRoeMarginSpread() {
         source: 'FIS 명란젓 시장 동향 + 자체추정 (마진 수치 채널별 추정)',
         situation: `<div>
 <p>"명란(Roe)"이란 명태의 알. 명태 전체 포트폴리오(필레·수리미·로) 중 가장 부가가치 높은 부위로, 한국 시장에서 핵심 밥도둑 반찬으로 자리매김.</p>
-<p>채널별 마진 추정: <strong>벌크 B2B 납품(식당 도매상) 마진 약 8%</strong> vs <strong>고부가 선물세트·저염 명란 브랜드 D2C 마진 약 55%</strong> — 약 6.9배 격차 추정. 같은 어란을 어떤 채널로 어떤 SKU로 파느냐가 마진을 결정.</p>
-<p>왜 이 격차? ① 한국 명란 시장은 사실상 한·일 양국 demand가 글로벌의 95%+ — 뚜렷한 demand pool ② D2C 채널은 중간 유통 마진 300~500bp 직접 회수 ③ 선물세트·저염 SKU는 가격 민감도 낮은 luxury segment ④ 명란은 vegetarian 대체 불가능한 차별화 성분(콜레스테롤·EPA).</p>
+<p>채널별 마진 추정: <strong>벌크 B2B 납품(식당 도매상) 마진 약 8%</strong> vs <strong>고부가 선물세트·저염 명란 브랜드 D2C 마진 약 55%</strong> - 약 6.9배 격차 추정. 같은 어란을 어떤 채널로 어떤 SKU로 파느냐가 마진을 결정.</p>
+<p>왜 이 격차? ① 한국 명란 시장은 사실상 한·일 양국 demand가 글로벌의 95%+ - 뚜렷한 demand pool ② D2C 채널은 중간 유통 마진 300~500bp 직접 회수 ③ 선물세트·저염 SKU는 가격 민감도 낮은 luxury segment ④ 명란은 vegetarian 대체 불가능한 차별화 성분(콜레스테롤·EPA).</p>
 </div>`,
         actionPlan: `<div>
 <p><strong>재정의</strong>: 명란은 단순 명태 부산물이 아닌 <strong>"한국 향식 luxury food brand의 단독 SKU 후보"</strong>. 어란 매출 portfolio를 B2B 80% → D2C 50%로 재배치하면 EBITDA +12~18%p.</p>
@@ -89,8 +89,8 @@ export function WidgetPriceTransferResistance() {
         source: '자체추정 (SKU별 가격탄력성 시뮬레이션)',
         situation: `<div>
 <p>"가격 전가 저항선(Price Pass-through Resistance)"이란 매입원가 상승을 소비자가에 얼마나 전가할 수 있는지의 한계. 동일 원물(명태)이라도 SKU에 따라 차이가 큽니다.</p>
-<p>시뮬레이션 기반 추정: <strong>벌크 통마리/동태</strong> — 시장 판매가 +20% 인상 시 수요 -40~50% (소비자가 오징어·돼지고기로 이탈 추정). <strong>프랜차이즈 피쉬버거 필레·영유아 순살 패키지</strong> — 가격 +25% 인상해도 이탈 10% 미만 추정.</p>
-<p>왜 격차? 벌크 동태는 대체재(다른 단백질) 많고 소비자 정보 비대칭 낮음. 반면 가공 필레·영유아 SKU는 ① 가공·위생 신뢰 ② B2B 계약 락업 (피쉬버거 프랜차이즈) ③ 영유아 카테고리는 가격 무탄력 — switching cost 매우 높음.</p>
+<p>시뮬레이션 기반 추정: <strong>벌크 통마리/동태</strong> - 시장 판매가 +20% 인상 시 수요 -40~50% (소비자가 오징어·돼지고기로 이탈 추정). <strong>프랜차이즈 피쉬버거 필레·영유아 순살 패키지</strong> - 가격 +25% 인상해도 이탈 10% 미만 추정.</p>
+<p>왜 격차? 벌크 동태는 대체재(다른 단백질) 많고 소비자 정보 비대칭 낮음. 반면 가공 필레·영유아 SKU는 ① 가공·위생 신뢰 ② B2B 계약 락업 (피쉬버거 프랜차이즈) ③ 영유아 카테고리는 가격 무탄력 - switching cost 매우 높음.</p>
 </div>`,
         actionPlan: `<div>
 <p><strong>재정의</strong>: KPI를 <strong>"벌크 톤수"에서 "가공 RTC 마진 수성률"</strong>로 전환. 명태 P&amp;L의 본질은 volume이 아닌 price elasticity 낮은 SKU에 capacity 집중.</p>
@@ -193,7 +193,7 @@ export function WidgetFactoryAutomation() {
         source: '업계추정 (BCG 제조업 자동화 지표 참조 + 자체 CAPEX 시뮬레이션)',
         situation: `<div>
 <p>전통적으로 명태 가공은 <strong>중국 다롄·칭다오</strong>의 저임 노동력에 의존했습니다. 그러나 두 변수의 X자 교차로 인해 게임이 바뀌고 있습니다.</p>
-<p>변수 1: <strong>중국 임가공비 폭증</strong> — 다롄·칭다오 시급 5년간 +85%, 동시에 젊은 숙련공이 어류 가공 기피로 구인난 심화. 변수 2: <strong>AI 비전 자동화 단가 하락</strong> — Pin-bone removal 머신·자동 필레팅 머신 도입 단가가 규모의 경제로 -40~50%.</p>
+<p>변수 1: <strong>중국 임가공비 폭증</strong> - 다롄·칭다오 시급 5년간 +85%, 동시에 젊은 숙련공이 어류 가공 기피로 구인난 심화. 변수 2: <strong>AI 비전 자동화 단가 하락</strong> - Pin-bone removal 머신·자동 필레팅 머신 도입 단가가 규모의 경제로 -40~50%.</p>
 <p>크로스오버 시점: <strong>2026년</strong>. 이 시점부터 로봇 공정의 비용 효율이 중국 수작업을 완전히 압도. 메뚜기 전략(중국 → 베트남 → 인도네시아로 저임 거점 이동)은 사실상 끝.</p>
 </div>`,
         actionPlan: `<div>
@@ -254,7 +254,7 @@ export const WidgetReeferCapacity = () => {
 <ol style="margin: 4px 0 0 18px; padding: 0;">
 <li style="margin-bottom: 8px;"><strong>JIT(Just-in-Time) 가공 원칙</strong>: 원물 매입 → 가공 → 출하 cycle을 30일 이내로 단축. 재고 회전율 +2배.</li>
 <li style="margin-bottom: 8px;"><strong>비수기 자사 콜드체인 창고 슬롯 장기 매입</strong>: 1~3월 비수기에 부산·인천 reefer 슬롯 12개월 forward 락업. 평시 단가의 70%로 확보.</li>
-<li><strong>"Cold storage SaaS arbitrage"</strong>: 우리가 확보한 잉여 slot을 mid-tier 수산사에 sub-lease — 보관료 매출로 EBITDA +3~5%p 추가. JP Morgan Cold Chain Finance와 partnership.</li>
+<li><strong>"Cold storage SaaS arbitrage"</strong>: 우리가 확보한 잉여 slot을 mid-tier 수산사에 sub-lease - 보관료 매출로 EBITDA +3~5%p 추가. JP Morgan Cold Chain Finance와 partnership.</li>
 </ol>
 </div>`,
       }}
@@ -296,8 +296,8 @@ export const WidgetCrewShortage = () => {
       takeaway={{
         source: '업계추정 (BIMCO/ITF 선원 수급 보고서 참조)',
         situation: `<div>
-<p>북태평양 혹한기 명태 조업은 극한 환경 노동 — 영하 30℃ + 풍랑 + 한 번 출항 시 3~6개월. 젊은 인력이 절대적으로 기피하는 직종.</p>
-<p>고령화 현실: <strong>한국 원양 선원 평균 연령 56세</strong>로 초고령화. 신규 진입 거의 0, 은퇴 가속. 동시에 외인 선원(인도네시아·필리핀·베트남) 프리미엄 임금 매해 두 자릿수 폭등 — 5년간 +85%.</p>
+<p>북태평양 혹한기 명태 조업은 극한 환경 노동 - 영하 30℃ + 풍랑 + 한 번 출항 시 3~6개월. 젊은 인력이 절대적으로 기피하는 직종.</p>
+<p>고령화 현실: <strong>한국 원양 선원 평균 연령 56세</strong>로 초고령화. 신규 진입 거의 0, 은퇴 가속. 동시에 외인 선원(인도네시아·필리핀·베트남) 프리미엄 임금 매해 두 자릿수 폭등 - 5년간 +85%.</p>
 <p>결과: "물고기가 있어도 배트맨(선원)이 없어 조업 포기" 사태 빈발. 향후 5년 한국 원양 선단의 가동률 -20~30% 잠재 위험.</p>
 </div>`,
         actionPlan: `<div>
@@ -497,7 +497,7 @@ export const WidgetVesselCapex = () => (
       source: 'KR 내구연한 수칙·해양수산부 보조금 정책 + 업계추정 (노후 선단 비율)',
       situation: `<div>
 <p>"선령(Vessel Age)"이란 선박이 건조된 후 경과 연수. 한국 명태 원양 선단의 평균 선령이 위험 수준.</p>
-<p>업계 추정: <strong>선령 25년 초과 노후 선단 비율 60%+ 추정</strong>. 25년 초과 시 유지보수율(OPEX) 한계점 돌파 — 매년 보수 비용이 기하급수적으로 증가. 30년 도달 시 사실상 운영 불가능.</p>
+<p>업계 추정: <strong>선령 25년 초과 노후 선단 비율 60%+ 추정</strong>. 25년 초과 시 유지보수율(OPEX) 한계점 돌파 - 매년 보수 비용이 기하급수적으로 증가. 30년 도달 시 사실상 운영 불가능.</p>
 <p>의미: 향후 5년 노후 선단 대량 폐선 시점 도래. 신조선 발주 비용 척당 $30~50M, IMO 2030 탄소 규제 충족하려면 수소/하이브리드 추진 추가 capex $5~10M. 기습적 capex 타격 예상.</p>
 </div>`,
       actionPlan: `<div>
@@ -550,7 +550,7 @@ export const WidgetRobotTCO = () => (
 </div>`,
       actionPlan: `<div>
 <p><strong>재정의</strong>: 로봇 자동화 capex $150K는 두려워할 비용이 아닌 <strong>"5년 후 경쟁사 진입 차단의 strategic moat"</strong>. 단기 ROI보다 5년 후 경쟁 우위가 본질.</p>
-<p><strong>실행</strong>: ① BAADER/Marel 자동 절단기 즉시 도입 ($150K/라인) ② 위생 리스크 zero 달성 — 식약처 HACCP 자동 통과 ③ 인당 생산 효율 +300% — 동일 인력으로 capacity 4배 ④ 향후 5년 동안 경쟁사 진입 차단 + 마진 +5~8%p 회수.</p>
+<p><strong>실행</strong>: ① BAADER/Marel 자동 절단기 즉시 도입 ($150K/라인) ② 위생 리스크 zero 달성 - 식약처 HACCP 자동 통과 ③ 인당 생산 효율 +300% - 동일 인력으로 capacity 4배 ④ 향후 5년 동안 경쟁사 진입 차단 + 마진 +5~8%p 회수.</p>
 </div>`,
     }}
   />
@@ -594,7 +594,7 @@ export const WidgetAirVsOcean = () => (
 </div>`,
       actionPlan: `<div>
 <p><strong>재정의</strong>: 모달 쉬프트는 단순 운임 절감이 아닌 <strong>"product grade별 dynamic logistics routing"</strong>. 등급별 logistics matrix 자동화.</p>
-<p><strong>실행</strong>: ① <strong>S-Class(명란/생물)는 Sea&amp;Air 복합 또는 100% 항공</strong> — 20일 내 뉴욕·도쿄·두바이 직판. 프리미엄 하이엔드 시장 ASP +40~60% ② A-Class(필레)는 해운 fast track (30일 내) ③ B-Class(통조림·수리미)는 일반 해운. AI 기반 grade별 routing 자동화 — JP Morgan Logistics Tech Desk와 partnership으로 SaaS 라이센싱.</p>
+<p><strong>실행</strong>: ① <strong>S-Class(명란/생물)는 Sea&amp;Air 복합 또는 100% 항공</strong> - 20일 내 뉴욕·도쿄·두바이 직판. 프리미엄 하이엔드 시장 ASP +40~60% ② A-Class(필레)는 해운 fast track (30일 내) ③ B-Class(통조림·수리미)는 일반 해운. AI 기반 grade별 routing 자동화 - JP Morgan Logistics Tech Desk와 partnership으로 SaaS 라이센싱.</p>
 </div>`,
     }}
   />

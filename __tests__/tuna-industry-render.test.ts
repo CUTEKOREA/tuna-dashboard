@@ -16,7 +16,7 @@ import {
 } from '../lib/data/tuna-industry';
 import { ALL_NARRATIVES, CHAIN_NARRATIVES, CROSS_NARRATIVES } from '../lib/tuna-industry-content';
 
-describe('시장 이해 > 참치 — 데이터 인테이크', () => {
+describe('시장 이해 > 참치 - 데이터 인테이크', () => {
   it('FishStat 집계가 주요 상업어종 7종을 담고 합계가 어종 합과 맞는다', () => {
     const data = getTunaCatchData();
 
@@ -80,7 +80,7 @@ describe('시장 이해 > 참치 — 데이터 인테이크', () => {
     }
   });
 
-  it('시리즈 스키마가 정규화돼 있다 — key 누락·중복이 없다', () => {
+  it('시리즈 스키마가 정규화돼 있다 - key 누락·중복이 없다', () => {
     // 원본 93위젯은 `dataKey`+`stroke` 세대와 `key`+`color` 세대가 섞여 있다.
     // 큐레이션에서 정규화하지 않으면 렌더러가 같은 key(undefined)를 반복 받아
     // React 가 "unique key prop" 경고를 내고 시리즈가 겹쳐 그려진다.
@@ -109,7 +109,7 @@ describe('시장 이해 > 참치 — 데이터 인테이크', () => {
     }
   });
 
-  it('차트에 노출되는 문자열이 한글이다 — 약어·단위·고유명사만 예외 (L-01)', () => {
+  it('차트에 노출되는 문자열이 한글이다 - 약어·단위·고유명사만 예외 (L-01)', () => {
     // 원본 93위젯 중 일부는 시리즈 name 이 비어 있어 렌더러가 영문 dataKey 를 그대로
     // 범례에 노출한다. 큐레이션이 한글 표시명을 주지 않으면 화면에 영문이 남는다.
     // 축 라벨(데이터 셀)도 같은 이유로 검사한다.
@@ -176,7 +176,7 @@ describe('시장 이해 > 참치 — 데이터 인테이크', () => {
     const data = getTunaCatchData();
     expect(
       data.요약.기준연도,
-      'FAO 어획통계 기준연도가 2024년보다 낮다 — 낡은 추출본으로 집계했을 가능성',
+      'FAO 어획통계 기준연도가 2024년보다 낮다 - 낡은 추출본으로 집계했을 가능성',
     ).toBeGreaterThanOrEqual(2024);
 
     // 참다랑어 축양 계열도 같은 릴리스에서 나와야 한다.
@@ -253,13 +253,13 @@ describe('시장 이해 > 참치 — 데이터 인테이크', () => {
     expect(quoted).toContain(`${summary.세계어획량.toLocaleString('en-US')} 톤`);
     expect(containsAny(pct(summary.최대해역비중 ?? 0)), '최대해역 비중이 본문과 다르다').toBe(true);
     expect(quoted).toContain(
-      `${summary.한국어획량?.toLocaleString('en-US')} 톤 — 세계 ${summary.한국순위}위`,
+      `${summary.한국어획량?.toLocaleString('en-US')} 톤 - 세계 ${summary.한국순위}위`,
     );
     for (const [name, row] of Object.entries(species)) {
       if (row.비중 < 1) continue; // 참다랑어 3종은 아래에서 합산으로 검사한다
       expect(
         containsAny(pct(row.비중)),
-        `${name} 비중 ${row.비중}% 가 본문에 없다 — 집계를 다시 돌린 뒤 서술이 안 따라온 것이다`,
+        `${name} 비중 ${row.비중}% 가 본문에 없다 - 집계를 다시 돌린 뒤 서술이 안 따라온 것이다`,
       ).toBe(true);
     }
     expect(containsAny(pct(bluefinShare)), '참다랑어 3종 합계 비중이 본문과 다르다').toBe(true);
@@ -281,7 +281,7 @@ describe('시장 이해 > 참치 — 데이터 인테이크', () => {
     for (const group of trade.품목군구성) {
       expect(
         quoted.includes(num(group.단가)),
-        `${group.구분} 단가 ${num(group.단가)} 가 본문에 없다 — 집계를 다시 돌린 뒤 서술이 안 따라온 것이다`,
+        `${group.구분} 단가 ${num(group.단가)} 가 본문에 없다 - 집계를 다시 돌린 뒤 서술이 안 따라온 것이다`,
       ).toBe(true);
     }
 
@@ -366,7 +366,7 @@ describe('시장 이해 > 참치 — 데이터 인테이크', () => {
   });
 });
 
-describe('시장 이해 > 참치 — 렌더', () => {
+describe('시장 이해 > 참치 - 렌더', () => {
   it('첫 단계와 30초 브리핑, 분기도, 출처 고지를 함께 렌더한다', () => {
     const markup = renderToStaticMarkup(React.createElement(TunaIndustryDashboard));
 

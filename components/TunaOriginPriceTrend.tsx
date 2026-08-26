@@ -50,7 +50,7 @@ const TunaOriginPriceTrend = () => (
     icon={MapPin}
     iconColor="#22d3ee"
     pillar="S1"
-    cardDesc="WCPFC·IATTC 2025 Q3 공개 자료 기반 자체추정 — 5대 해역별 산지 단가 (Stage 0 illustrative)"
+    cardDesc="WCPFC·IATTC 2025 Q3 공개 자료 기반 자체추정 - 5대 해역별 산지 단가 (Stage 0 illustrative)"
     unit="(원/kg)"
     telemetry={{ status: 'STATIC', syncDate: '2026-05-21' }}
     termTooltip={{
@@ -92,7 +92,7 @@ const TunaOriginPriceTrend = () => (
 <p><strong>재정의</strong>: 해역간 가격 분산은 단순 정보가 아닌 <strong>차익 거래 신호</strong>. 본사 매매 담당이 매주 5대 해역 가격을 모니터링하여 매입 포트폴리오를 동적 리밸런싱.</p>
 <p><strong>3단계</strong>:</p>
 <ol style="margin: 4px 0 0 18px; padding: 0;">
-<li style="margin-bottom: 8px;"><strong>지중해 상승 원인 30일 내 재검증</strong>: 일시적 환율 효과 vs 항만 비용 구조 변화 — 환율이면 헷지, 구조면 거점 재배치.</li>
+<li style="margin-bottom: 8px;"><strong>지중해 상승 원인 30일 내 재검증</strong>: 일시적 환율 효과 vs 항만 비용 구조 변화 - 환율이면 헷지, 구조면 거점 재배치.</li>
 <li style="margin-bottom: 8px;"><strong>인도양 약세 활용 4분기 비축 확대</strong>: 인도양 6개월 선도매입 확정. 예상 마진 갭 +2.1pp 회수.</li>
 <li><strong>산지가 차익 거래북 구축</strong>: 5대 해역 롱-숏 자동 거래. ICE·SGX와 장외스왑(OTC)으로 페이퍼 헤지 결합.</li>
 </ol>

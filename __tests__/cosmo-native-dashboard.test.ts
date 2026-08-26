@@ -68,7 +68,7 @@ describe('COSMO native dashboard', () => {
 });
 
 describe('cosmo monthly data integrity (2026-08-18 회귀 가드)', () => {
-  it('월별 손익 레코드는 핵심 필드가 전부 채워져 있어야 한다 — Drive 부분 읽기 회귀 차단', async () => {
+  it('월별 손익 레코드는 핵심 필드가 전부 채워져 있어야 한다 - Drive 부분 읽기 회귀 차단', async () => {
     const raw = await import('../public/data/cosmo/cosmo_2026.json');
     const monthly = (raw.default ?? raw).monthly as Record<string, unknown>[];
     expect(monthly.length).toBeGreaterThanOrEqual(7);

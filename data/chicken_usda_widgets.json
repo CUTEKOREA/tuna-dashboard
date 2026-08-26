@@ -9,7 +9,7 @@
     {
       "id": "w_brazil_chicken_production_7y",
       "title": "브라질 닭고기 생산 7년",
-      "subtitle": "USDA GAIN BR2026-0012 — 세계 1위",
+      "subtitle": "USDA GAIN BR2026-0012 - 세계 1위",
       "cardDesc": "MY 2020~2026 브라질 닭고기 생산. 2026 15.7M MT 사상 최고, 세계 수출 35%+ 점유.",
       "chartType": "Composed",
       "pillar": "S1",
@@ -39,7 +39,7 @@
     {
       "id": "w_kr_chicken_balance",
       "title": "한국 닭고기 생산·수입 추이",
-      "subtitle": "USDA GAIN KS2025-0036 — 수입 +9% 가속",
+      "subtitle": "USDA GAIN KS2025-0036 - 수입 +9% 가속",
       "cardDesc": "한국 닭고기 생산·수입 3년 (2024-2026E). 생산 정체 + 수입 +9% 증가.",
       "chartType": "Composed",
       "pillar": "S1",
@@ -65,8 +65,8 @@
     {
       "id": "w_kr_chicken_import_origin",
       "title": "한국 닭고기 수입국 2024",
-      "subtitle": "USDA GAIN KS2025-0036 — 브라질 72% 위험",
-      "cardDesc": "2024년 한국 닭고기 전 제품(원물+열처리 가공품) 수입의 72%가 브라질 — 원물 기준은 84%. HPAI 시 공급망 교란 직격.",
+      "subtitle": "USDA GAIN KS2025-0036 - 브라질 72% 위험",
+      "cardDesc": "2024년 한국 닭고기 전 제품(원물+열처리 가공품) 수입의 72%가 브라질 - 원물 기준은 84%. HPAI 시 공급망 교란 직격.",
       "chartType": "Bar",
       "pillar": "S4",
       "xKey": "country",
@@ -90,7 +90,7 @@
     {
       "id": "w_kr_chicken_price_gap",
       "title": "한국 vs 수입 닭고기 가격",
-      "subtitle": "USDA GAIN KS2025-0036 — 국내 +151% 프리미엄",
+      "subtitle": "USDA GAIN KS2025-0036 - 국내 +151% 프리미엄",
       "cardDesc": "2025 H1 평균. 국내 냉장 ₩7,176/kg vs 수입(브라질 냉동) ₩2,860/kg, 수입 대비 국내가 +151% 프리미엄.",
       "chartType": "Bar",
       "pillar": "S4",
@@ -114,7 +114,7 @@
     {
       "id": "w_china_chicken_export_price",
       "title": "중국 닭고기 수출 단가",
-      "subtitle": "USDA GAIN CH2026-0031 — 5년 -35%",
+      "subtitle": "USDA GAIN CH2026-0031 - 5년 -35%",
       "cardDesc": "중국 닭고기 수출 단가 5년 시계열. 2020 $3.4K → 2025 $2.2K (-35%).",
       "chartType": "Bar",
       "pillar": "S4",

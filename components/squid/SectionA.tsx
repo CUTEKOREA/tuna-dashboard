@@ -163,7 +163,7 @@ const QuotaGauge: React.FC<{ data: Record<string, any> }> = ({ data }) => {
           </div>
         </div>
         <div style={{ flex: '1 1 160px', minWidth: 0, display: 'flex', flexDirection: 'column', justifyContent: 'center', gap: 6, padding: '6px 10px', borderRadius: 10, background: 'rgba(var(--w-emerald-500-rgb), 0.06)', border: '1px solid rgba(var(--w-emerald-500-rgb), 0.25)' }}>
-          <div style={{ fontSize: '0.66rem', color: 'var(--w-slate-400)' }}>잔여 쿼터 — 조달 가능량</div>
+          <div style={{ fontSize: '0.66rem', color: 'var(--w-slate-400)' }}>잔여 쿼터 - 조달 가능량</div>
           <div style={{ fontSize: '1.7rem', fontWeight: 800, color: 'var(--w-emerald-500)', lineHeight: 1.1 }}>
             {fmtT(data.quota_minus_recorded_capture_tonnes)} <span style={{ fontSize: '0.8rem', fontWeight: 600 }}>톤</span>
           </div>
@@ -227,7 +227,7 @@ const ProdTooltip: React.FC<any> = ({ active, payload, label }) => {
             <span style={{ width: 8, height: 8, borderRadius: 2, background: p.stroke, flexShrink: 0 }} />
             <span style={{ whiteSpace: 'nowrap' }}>{m?.ko ?? p.dataKey}</span>
             <span style={{ marginLeft: 'auto', fontWeight: 600, whiteSpace: 'nowrap' }}>
-                  {p.value == null ? '—' : `${fmtT(p.value)}톤`}
+                  {p.value == null ? '-' : `${fmtT(p.value)}톤`}
             </span>
           </div>
         );
@@ -387,7 +387,7 @@ const PeruTimeline: React.FC<{ data: any[] }> = ({ data }) => {
               </div>
             )}
             {e.quota_semantics === 'closure_notice' && (
-              <div style={{ marginTop: 5, fontSize: '0.75rem', color: '#f43f5e', fontWeight: 700 }}>조업 중단 — 톤수 미기재</div>
+              <div style={{ marginTop: 5, fontSize: '0.75rem', color: '#f43f5e', fontWeight: 700 }}>조업 중단 - 톤수 미기재</div>
             )}
 
             {typeof e.progress_pct === 'number' && (

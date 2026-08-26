@@ -13,7 +13,7 @@ const TARIFFS_BASE = "https://api.tariffs.io/v1/calculate";
 const FALLBACK = {
   source: "관세청 HSK 0303.89-2000 월별 실측 CIF (2025) + MFN 10% + 통관비 (환율 1,380원 가정)",
   isLive: false,
-  hskVerified: "0303892000 — 관세청 품목명 '갈치' 확인 (2026-06-11)",
+  hskVerified: "0303892000 - 관세청 품목명 '갈치' 확인 (2026-06-11)",
   data: [
     { month: "1월", "중국산 착지원가": 8528, "세네갈산 착지원가": 6348 },
     { month: "2월", "중국산 착지원가": 8772, "세네갈산 착지원가": 6561 },

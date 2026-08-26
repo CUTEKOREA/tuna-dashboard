@@ -48,7 +48,7 @@ const labels = [
     full: '양식관리협의회',
     metric: '양식 전용',
     metricNote: '자연산 참치는 비해당',
-    sub: '양식(farmed) 수산물 대상 — 참치캔 원물과 무관',
+    sub: '양식(farmed) 수산물 대상 - 참치캔 원물과 무관',
     scope: '양식',
     color: '#64748b',
     icon: Fish,
@@ -64,7 +64,7 @@ export default function MscEcolabelRegistryScale() {
       icon={BadgeCheck}
       iconColor="#10b981"
       pillar="S5"
-      cardDesc="MSC·Friend of the Sea·Dolphin Safe·ASC의 공식 등록부 실측 규모 — 라벨별 단위·보증 강도 비교"
+      cardDesc="MSC·Friend of the Sea·Dolphin Safe·ASC의 공식 등록부 실측 규모 - 라벨별 단위·보증 강도 비교"
       telemetry={{ status: 'STATIC', syncDate: '2026-05' }}
       customBody={
         <div style={{ display: 'flex', flexDirection: 'column', gap: '12px', width: '100%' }}>

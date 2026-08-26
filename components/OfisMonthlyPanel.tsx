@@ -80,7 +80,7 @@ export default function OfisMonthlyPanel() {
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', gap: 16, flexWrap: 'wrap', marginBottom: 16 }}>
         <div>
           <h3 id="ofis-monthly-title" style={{ margin: '0 0 6px', color: 'var(--text-primary)', fontSize: '1.35rem', fontWeight: 700 }}>
-            OFIS 전국 원양 생산 — {ofisMeta.periodLabel}
+            OFIS 전국 원양 생산 - {ofisMeta.periodLabel}
           </h3>
           <p style={{ margin: 0, color: 'var(--text-secondary)', fontSize: '0.84rem' }}>
             {ofisMeta.ytdLabel} 누계 · 잠정 · 회사 칸 없음 · 2025 회사표·2024 연보와 잇지 않음
@@ -135,7 +135,7 @@ export default function OfisMonthlyPanel() {
           iconColor="var(--chart-s3)"
           pillar="S1"
           unit="(원/kg)"
-          cardDesc={`${ofisMeta.file} 어가. 6월 꽁치는 실적 없음 — 단가 0 행을 만들지 않음.`}
+          cardDesc={`${ofisMeta.file} 어가. 6월 꽁치는 실적 없음 - 단가 0 행을 만들지 않음.`}
           telemetry={{ status: 'STATIC', syncDate: ofisMeta.published, label: 'OFIS 월보' }}
           kpiPanel={[
             { label: '가다랑어', value: `${fmt(skipjack?.current ?? 0)} 원/kg`, sub: `전년 6월 ${fmtPct(skipjack?.yoyPct ?? 0)}`, trendColor: deltaColor(skipjack?.yoyPct ?? 0) },

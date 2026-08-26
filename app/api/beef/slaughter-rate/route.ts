@@ -145,10 +145,10 @@ export async function GET() {
       isLive = true;
       source = 'USDA NASS QuickStats API (미국 LIVE) + MLA 호주 정적';
     } else {
-      source = 'USDA NASS API 응답 부족 — 정적 미러 사용';
+      source = 'USDA NASS API 응답 부족 - 정적 미러 사용';
     }
   } else {
-    source = 'NASS_API_KEY 미설정 — 정적 미러 (등록: https://quickstats.nass.usda.gov/api)';
+    source = 'NASS_API_KEY 미설정 - 정적 미러 (등록: https://quickstats.nass.usda.gov/api)';
   }
 
   return NextResponse.json({

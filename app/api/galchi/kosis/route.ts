@@ -35,7 +35,7 @@ export async function GET() {
   return NextResponse.json({
     ...FALLBACK,
     source: health.ok
-      ? `KOSIS Open API (키 정상 — CPI 시계열 실매핑 전, 로컬 표본 표시)`
+      ? `KOSIS Open API (키 정상 - CPI 시계열 실매핑 전, 로컬 표본 표시)`
       : "KOSIS Open API (healthcheck 실패, 로컬 표본 표시)",
     // L-09 정직 라벨: healthcheck 200은 데이터 연동이 아니다.
     // 표시 데이터가 하드코딩 표본인 동안 isLive는 CPI 실매핑 완료 전까지 false 고정.

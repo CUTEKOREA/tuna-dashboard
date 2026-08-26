@@ -233,13 +233,13 @@ export default function SalmonLiveTicker() {
       takeaway={{
         situation: `<div>
 <p>"매크로·무역 인디케이터 Live Ticker"는 본업 P&amp;L에 직접 영향을 미치는 ${tickers.length}개 실시간 변수의 통합 dashboard.</p>
-<p>현 상태: 직전 갱신 ${lastUpdate || '대기 중'} — 상승 ${upCount}건, 하락 ${downCount}건. <strong>NOK/KRW 환율 + Fed Rate가 단기 착지원가 결정 변수</strong>, KCS·KAMIS 단가가 도매·소매 마진 압력 실시간 반영.</p>
+<p>현 상태: 직전 갱신 ${lastUpdate || '대기 중'} - 상승 ${upCount}건, 하락 ${downCount}건. <strong>NOK/KRW 환율 + Fed Rate가 단기 착지원가 결정 변수</strong>, KCS·KAMIS 단가가 도매·소매 마진 압력 실시간 반영.</p>
 </div>`,
         actionPlan: `<div>
 <p><strong>재정의</strong>: Live Ticker는 정보가 아닌 <strong>"systematic trigger system"</strong>.</p>
-<p><strong>3단계</strong>: ① NOK/KRW 환율 변동 ±2% 초과 시 자동 헤지 알림 → 트레이딩 데스크 ② KAMIS 소매가가 KCS 단가 대비 +25% 격차 2주 연속 시 PB 단가 재협상 트리거 ③ JP Morgan FX/Commodity Quant Desk와 ML 모델 collab — backtest sharpe 2.0+.</p>
+<p><strong>3단계</strong>: ① NOK/KRW 환율 변동 ±2% 초과 시 자동 헤지 알림 → 트레이딩 데스크 ② KAMIS 소매가가 KCS 단가 대비 +25% 격차 2주 연속 시 PB 단가 재협상 트리거 ③ JP Morgan FX/Commodity Quant Desk와 ML 모델 collab - backtest sharpe 2.0+.</p>
 </div>`,
-        source: "ECOS · FRED · KCS · KAMIS — 한기욱(KMI 2024) 단기 전망모형",
+        source: "ECOS · FRED · KCS · KAMIS - 한기욱(KMI 2024) 단기 전망모형",
       }}
     />
   );

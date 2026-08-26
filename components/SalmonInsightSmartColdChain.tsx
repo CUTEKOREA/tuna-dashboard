@@ -14,7 +14,7 @@ export default function SalmonInsightSmartColdChain() {
       icon={Truck}
       iconColor="#ec4899"
       pillar="S3"
-      cardDesc="항공 운임 변동성을 회피하기 위한 해상 운송(Sea Freight) 전환 및 탄소 발자국 감축 효과 — 운송비·탄소지수는 자체 추정 시나리오(illustrative)"
+      cardDesc="항공 운임 변동성을 회피하기 위한 해상 운송(Sea Freight) 전환 및 탄소 발자국 감축 효과 - 운송비·탄소지수는 자체 추정 시나리오(illustrative)"
       telemetry={{ status: 'STATIC', syncDate: '2026-05-29' }}
       chartHeight={250}
       chart={

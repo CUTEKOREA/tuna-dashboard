@@ -117,7 +117,7 @@ function FleetMapPanel({
           <MapSizeGuard bounds={bounds} />
           <TileLayer
             url="https://server.arcgisonline.com/ArcGIS/rest/services/Ocean/World_Ocean_Base/MapServer/tile/{z}/{y}/{x}"
-            attribution="지도 타일 &copy; Esri — GEBCO · NOAA · National Geographic · Garmin 등 출처 포함"
+            attribution="지도 타일 &copy; Esri - GEBCO · NOAA · National Geographic · Garmin 등 출처 포함"
             maxZoom={13}
           />
           {ships.map((ship) => {

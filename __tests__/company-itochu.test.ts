@@ -35,7 +35,7 @@ describe('ITOCHU 인테이크', () => {
     expect(fleetTotal()).toBe(itochuStats.인증선단);
   });
 
-  it('사조그룹이 11척으로 44%다 — 이 화면의 핵심', () => {
+  it('사조그룹이 11척으로 44%다 - 이 화면의 핵심', () => {
     expect(sajoVessels()).toBe(11);
     expect(sajoVessels()).toBe(itochuStats.사조선단);
     expect(sajoShare()).toBe(44);
@@ -63,7 +63,7 @@ describe('ITOCHU 인테이크', () => {
     expect(foodRank()).toBe(4);
   });
 
-  it('生鮮食品 부문만 역성장했다 — 참치가 속한 부문', () => {
+  it('生鮮食品 부문만 역성장했다 - 참치가 속한 부문', () => {
     const fresh = itochuFoodDivisions.find((r) => r.부문 === '生鮮食品');
     expect(fresh?.fy2025).toBe(166);
     expect(fresh!.fy2025).toBeLessThan(fresh!.fy2024);
@@ -71,7 +71,7 @@ describe('ITOCHU 인테이크', () => {
     for (const r of others) expect(r.fy2025).toBeGreaterThanOrEqual(r.fy2024 - 2);
   });
 
-  it('부문 합과 세그먼트 값의 차이는 1억엔 이내다 — 회사 공시의 반올림', () => {
+  it('부문 합과 세그먼트 값의 차이는 1억엔 이내다 - 회사 공시의 반올림', () => {
     const sum = itochuFoodDivisions.reduce((a, r) => a + r.fy2025, 0);
     expect(Math.abs(sum - itochuStats.식료_억엔)).toBeLessThanOrEqual(1);
   });

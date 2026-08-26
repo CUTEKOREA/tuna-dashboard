@@ -46,7 +46,7 @@ const PRICE_FORECAST = {
       { period: '2026-Q4', predicted: 1800, lower_95: 1650, upper_95: 1950, driver: '인도양 공급 회복 + WCPO 어획 회복' },
       { period: '2027-Q1', predicted: 1700, lower_95: 1550, upper_95: 1850, driver: '평시 회귀, 가공업체 매입 재개' },
     ],
-    trend: 'PEAKED — DESCENDING',
+    trend: 'PEAKED - DESCENDING',
     risk_alert: '2026-Q2 호르무즈 봉쇄 진행 중. 1,950~2,050 박스권 6~8주 지속 가능성. 박스 하단 분할 매입 권고.',
   },
 
@@ -69,7 +69,7 @@ const PRICE_FORECAST = {
       { period: '2027-Q1', predicted: 2500, lower_95: 2350, upper_95: 2700, driver: '평시 박스권 회귀' },
     ],
     trend: 'STABLE',
-    risk_alert: 'IOTC 쿼터 감축(2026 단계 시행)과 호르무즈 충격이 누적 — 분기 단위 모니터링.',
+    risk_alert: 'IOTC 쿼터 감축(2026 단계 시행)과 호르무즈 충격이 누적 - 분기 단위 모니터링.',
   },
 
   // ENSO correlation analysis (Atuna 실측과의 시점 정렬)
@@ -147,7 +147,7 @@ export async function POST(request: NextRequest) {
 export async function GET() {
   return NextResponse.json({
     status: 'active',
-    description: '참치 AI 가격 예측 엔진 — VAR 모형 + ENSO 상관분석',
+    description: '참치 AI 가격 예측 엔진 - VAR 모형 + ENSO 상관분석',
     model: PRICE_FORECAST.model_info.type,
     skipjack_trend: PRICE_FORECAST.skipjack.trend,
     yellowfin_trend: PRICE_FORECAST.yellowfin.trend,

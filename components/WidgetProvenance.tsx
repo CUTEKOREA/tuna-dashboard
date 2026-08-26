@@ -34,9 +34,9 @@ const GRADE_COLORS: Record<ProvenanceData['grade'], string> = {
 };
 
 const GRADE_MEANINGS: Record<ProvenanceData['grade'], string> = {
-  A: 'A — 1차출처를 스크립트로 기계 추출. 재실행하면 같은 값이 나온다.',
-  B: 'B — 1차출처지만 PDF 등에서 수동 추출. 재현에 사람 손이 필요하다.',
-  C: 'C — 추정·시뮬레이션 또는 2차출처. 가정이 바뀌면 값이 바뀐다.',
+  A: 'A - 1차출처를 스크립트로 기계 추출. 재실행하면 같은 값이 나온다.',
+  B: 'B - 1차출처지만 PDF 등에서 수동 추출. 재현에 사람 손이 필요하다.',
+  C: 'C - 추정·시뮬레이션 또는 2차출처. 가정이 바뀌면 값이 바뀐다.',
 };
 
 function labelChip(text: string, color: string): React.ReactNode {

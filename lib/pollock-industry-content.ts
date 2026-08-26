@@ -26,7 +26,7 @@ import type {
 const STAGE_01: StageNarrative = {
   key: 's01',
   numeral: '01',
-  title: '자원 — 잡히지 않는 생선',
+  title: '자원 - 잡히지 않는 생선',
   question: '한국 바다의 명태는 어디로 갔고, 세계 명태는 누가 잡는가',
   lede: '동해 명태는 1986년 46,890톤을 정점으로 2007년 35톤이 됐고 2019년부터 연중 포획 금지다. 세계 명태 3,573,446톤의 93.8%를 러시아와 미국이 잡는다.',
   paragraphs: [
@@ -52,7 +52,7 @@ const STAGE_01: StageNarrative = {
 const STAGE_02: StageNarrative = {
   key: 's02',
   numeral: '02',
-  title: '원양 — 세 척의 배와 한 장의 할당표',
+  title: '원양 - 세 척의 배와 한 장의 할당표',
   question: '한국 명태 생산의 100%인 원양은 어떻게 정해지는가',
   lede: '한국이 잡는 명태는 북양트롤 허가 어선 3척이 러시아 수역에서 잡는 2만 톤대 후반이 전부다. 상한은 해마다 한·러 어업위원회가 정하는 할당이고, 2026년에 26,200톤으로 처음 줄었다.',
   paragraphs: [
@@ -77,7 +77,7 @@ const STAGE_02: StageNarrative = {
 const STAGE_03: StageNarrative = {
   key: 's03',
   numeral: '03',
-  title: '수입 — 러시아가 원물, 미국이 연육',
+  title: '수입 - 러시아가 원물, 미국이 연육',
   question: '한국은 명태를 어디서 어떤 형태로 들여오는가',
   lede: '2025년 명태 전용 세번 수입은 426.9백만 달러·195,963톤이다. 러시아 79.8%, 미국 15.3%로 둘이 95.1%다. 러시아는 동태·명란·북어·필렛을, 미국은 연육을 판다.',
   paragraphs: [
@@ -102,7 +102,7 @@ const STAGE_03: StageNarrative = {
 const STAGE_04: StageNarrative = {
   key: 's04',
   numeral: '04',
-  title: '가공 — 1,740곳이 만드는 한 해 3만 톤',
+  title: '가공 - 1,740곳이 만드는 한 해 3만 톤',
   question: '들여온 명태는 누가 무엇으로 만드는가',
   lede: '식약처 생산실적에서 명태를 원료로 적은 품목의 2025년 생산은 30,879톤, 신고 업체 1,740곳이다. 수입 명의 313곳과 겹치는 곳은 42곳뿐이고, 명란젓·코다리·황태가 본체이며 연육은 거의 수입이다.',
   paragraphs: [
@@ -127,7 +127,7 @@ const STAGE_04: StageNarrative = {
 const STAGE_05: StageNarrative = {
   key: 's05',
   numeral: '05',
-  title: '값과 재고 — 배에서 1,512원, 식탁에서 3,879원',
+  title: '값과 재고 - 배에서 1,512원, 식탁에서 3,879원',
   question: '명태 한 킬로그램의 값은 어디서 어떻게 붙는가',
   lede: '원양 생산단가 1,512원/kg, 수입 단가 1.10달러/kg, 도매 2,051원/kg, 소매 한 마리 3,879원이다. 2017년 조사에서 냉동 명태의 유통비용율은 66.3%였고, 2026년 여름 재고는 평년의 절반 아래로 떨어졌다.',
   paragraphs: [
@@ -153,7 +153,7 @@ const STAGE_05: StageNarrative = {
 const CROSS_A: StageNarrative = {
   key: 'x01',
   numeral: 'A',
-  title: '제도 — 같은 명태를 세 장부가 다르게 부른다',
+  title: '제도 - 같은 명태를 세 장부가 다르게 부른다',
   question: '관세청·식약처·시장은 명태를 어떻게 세는가',
   lede: '관세청 세번은 명태를 여덟 줄로 정확히 가르지만 어묵과 명란젓에는 어종이 없다. 식약처는 열두 유형으로 적고 어묵의 원재료 어종 칸이 없다. 시장은 북어·황태·먹태·코다리·노가리를 따로 값 매기는데 세번은 한 줄이다.',
   paragraphs: [

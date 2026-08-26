@@ -2,7 +2,7 @@
  "_meta": {
   "생성일": "2026-08-16",
   "기준연도": 2024,
-  "바스켓": "FAO ISSCFC 참치류 — 참치·가다랑어·새치류를 한 묶음으로 분류한다. 어떤 코드는 이름 자체가 'Tunas, bonitos, billfishes'라 참치만 떼어낼 수 없다. 어획 집계(주요 상업어종 7종)와 바스켓이 다르므로 두 숫자를 나란히 놓을 때 밝힐 것.",
+  "바스켓": "FAO ISSCFC 참치류 - 참치·가다랑어·새치류를 한 묶음으로 분류한다. 어떤 코드는 이름 자체가 'Tunas, bonitos, billfishes'라 참치만 떼어낼 수 없다. 어획 집계(주요 상업어종 7종)와 바스켓이 다르므로 두 숫자를 나란히 놓을 때 밝힐 것.",
   "단위": "금액 백만 USD · 물량 톤 · 단가 USD/톤",
   "출처": "FAO FishStat 무역통계 FI_Trade_2026.1.0 (TRADE_QUANTITY.csv · TRADE_VALUE.csv, 1976–2024)",
   "출처URL": "https://www.fao.org/fishery/static/Data/",

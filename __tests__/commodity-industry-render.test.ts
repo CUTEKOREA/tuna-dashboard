@@ -117,8 +117,8 @@ const PAGES: Page[] = [
   },
 ];
 
-describe('시장 이해 3품목 — 서술 골격', () => {
-  it.each(PAGES)('$이름 — 단계마다 서술과 근거가 다 채워져 있다', (page) => {
+describe('시장 이해 3품목 - 서술 골격', () => {
+  it.each(PAGES)('$이름 - 단계마다 서술과 근거가 다 채워져 있다', (page) => {
     expect(page.narratives.length).toBeGreaterThanOrEqual(4);
     for (const stage of page.narratives) {
       expect(stage.key).toMatch(/^[sx]\d\d$/);
@@ -138,12 +138,12 @@ describe('시장 이해 3품목 — 서술 골격', () => {
     }
   });
 
-  it.each(PAGES)('$이름 — 단계 키가 겹치지 않는다', (page) => {
+  it.each(PAGES)('$이름 - 단계 키가 겹치지 않는다', (page) => {
     const keys = page.narratives.map((stage) => stage.key);
     expect(new Set(keys).size).toBe(keys.length);
   });
 
-  it.each(PAGES)('$이름 — 브리핑과 출처 주의가 비어 있지 않다', (page) => {
+  it.each(PAGES)('$이름 - 브리핑과 출처 주의가 비어 있지 않다', (page) => {
     expect(page.briefing.length).toBeGreaterThanOrEqual(4);
     expect(page.notes.length).toBeGreaterThanOrEqual(4);
     const stageKeys = new Set(page.narratives.map((stage) => stage.key));
@@ -159,8 +159,8 @@ describe('시장 이해 3품목 — 서술 골격', () => {
   });
 });
 
-describe('시장 이해 3품목 — 차트 참조 무결성', () => {
-  it.each(PAGES)('$이름 — 본문이 지목한 낫표 이름이 실제 차트 제목이다', (page) => {
+describe('시장 이해 3품목 - 차트 참조 무결성', () => {
+  it.each(PAGES)('$이름 - 본문이 지목한 낫표 이름이 실제 차트 제목이다', (page) => {
     const titles = new Set(
       Object.values(page.slots).flatMap((slots) => slots.map((slot) => slot.title)),
     );
@@ -176,14 +176,14 @@ describe('시장 이해 3품목 — 차트 참조 무결성', () => {
     }
   });
 
-  it.each(PAGES)('$이름 — 차트 슬롯이 실재하는 단계에만 달려 있다', (page) => {
+  it.each(PAGES)('$이름 - 차트 슬롯이 실재하는 단계에만 달려 있다', (page) => {
     const keys = new Set(page.narratives.map((stage) => stage.key));
     for (const key of Object.keys(page.slots)) {
       expect(keys.has(key), `${page.이름}: ${key} 단계가 없는데 차트가 달렸다`).toBe(true);
     }
   });
 
-  it.each(PAGES)('$이름 — 차트마다 제목·설명·텔레메트리가 있다', (page) => {
+  it.each(PAGES)('$이름 - 차트마다 제목·설명·텔레메트리가 있다', (page) => {
     for (const slots of Object.values(page.slots)) {
       for (const slot of slots) {
         expect(slot.title).toMatch(/[가-힣]/);
@@ -197,8 +197,8 @@ describe('시장 이해 3품목 — 차트 참조 무결성', () => {
   });
 });
 
-describe('시장 이해 3품목 — 렌더', () => {
-  it.each(PAGES)('$이름 — 대시보드가 렌더된다', (page) => {
+describe('시장 이해 3품목 - 렌더', () => {
+  it.each(PAGES)('$이름 - 대시보드가 렌더된다', (page) => {
     const html = renderToStaticMarkup(page.render());
     expect(html).toContain('30초 브리핑');
     expect(html).toContain('출처와 한계');
@@ -237,7 +237,7 @@ describe('시장 이해 3품목 — 렌더', () => {
 
   // 오징어에서 겪은 사고를 그대로 막는 검사다.
   // 대시보드를 한 번 렌더하면 첫 단계만 그려지므로 나머지 단계의 크래시를 못 본다.
-  it.each(PAGES)('$이름 — 모든 단계의 모든 차트가 개별로 렌더된다', (page) => {
+  it.each(PAGES)('$이름 - 모든 단계의 모든 차트가 개별로 렌더된다', (page) => {
     for (const [key, slots] of Object.entries(page.slots)) {
       for (const slot of slots) {
         expect(() => renderToStaticMarkup(React.createElement(React.Fragment, null, slot.render())))
@@ -271,7 +271,7 @@ describe('시장 이해 3품목 — 렌더', () => {
   });
 });
 
-describe('고등어 — 집계와 본문 대조', () => {
+describe('고등어 - 집계와 본문 대조', () => {
   const data = getMackerelIndustryData();
   const text = MACKEREL_NARRATIVES.flatMap((s) => [s.lede, ...s.paragraphs]).join('\n');
   const facts = MACKEREL_NARRATIVES.flatMap((s) => s.facts);
@@ -330,7 +330,7 @@ describe('고등어 — 집계와 본문 대조', () => {
   });
 });
 
-describe('골뱅이 — 집계와 본문 대조', () => {
+describe('골뱅이 - 집계와 본문 대조', () => {
   const data = getWhelkIndustryData();
   const text = WHELK_NARRATIVES.flatMap((s) => [s.lede, ...s.paragraphs]).join('\n');
 
@@ -380,7 +380,7 @@ describe('골뱅이 — 집계와 본문 대조', () => {
   });
 });
 
-describe('새우 — 집계와 본문 대조', () => {
+describe('새우 - 집계와 본문 대조', () => {
   const data = getShrimpIndustryData();
   const text = SHRIMP_NARRATIVES.flatMap((s) => [s.lede, ...s.paragraphs]).join('\n');
   const facts = SHRIMP_NARRATIVES.flatMap((s) => s.facts);
@@ -440,7 +440,7 @@ describe('새우 — 집계와 본문 대조', () => {
   });
 });
 
-describe('명태 — 집계와 본문 대조', () => {
+describe('명태 - 집계와 본문 대조', () => {
   const data = getPollockIndustryData();
   const text = POLLOCK_NARRATIVES.flatMap((s) => [s.lede, ...s.paragraphs]).join('\n');
   const facts = POLLOCK_NARRATIVES.flatMap((s) => s.facts);

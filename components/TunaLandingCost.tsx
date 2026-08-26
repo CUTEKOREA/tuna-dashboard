@@ -261,7 +261,7 @@ const TunaLandingCost = React.memo(function TunaLandingCost() {
       <div style={{ padding: '0 20px 20px 20px', marginTop: 'auto' }}>
         <TakeawayBox
           situation={result
-            ? `[착지원가] ${origin.flag} ${origin.name}산 ${product.name} → 한국 도착가 $${result.totalCIF.toLocaleString()}/MT (₩${result.totalKRW.toLocaleString()}K). ${result.ftaApplied ? `${result.ftaName} FTA 적용으로 관세 0% 확보.` : `MFN ${result.tariffRate} 관세 적용 — FTA 전환 시 $${result.importDuty}/MT 절감 가능.`}`
+            ? `[착지원가] ${origin.flag} ${origin.name}산 ${product.name} → 한국 도착가 $${result.totalCIF.toLocaleString()}/MT (₩${result.totalKRW.toLocaleString()}K). ${result.ftaApplied ? `${result.ftaName} FTA 적용으로 관세 0% 확보.` : `MFN ${result.tariffRate} 관세 적용 - FTA 전환 시 $${result.importDuty}/MT 절감 가능.`}`
             : '[착지원가 시뮬레이터] 원산지·품목·물량을 선택 후 시뮬레이션 실행'}
           actionPlan={result
             ? `[원가 최적화] 해상운임 $${result.oceanFreight}/MT는 WTI $${liveData?.wti.toFixed(0)} 기준. 환율 ₩${result.fxRate} 기준 원화 환산 시 ${result.fxImpact >= 0 ? '불리' : '유리'}한 환경. ${volume}MT 기준 총 발주액 $${(result.totalCIF * volume).toLocaleString()}.`

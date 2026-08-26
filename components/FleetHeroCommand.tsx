@@ -117,7 +117,7 @@ export default function FleetHeroCommand() {
             <div>
               <div style={{ fontSize: '0.7rem', fontWeight: 700, color: 'var(--text-muted)' }}>시즌 일평균</div>
               <div style={{ fontSize: '1.05rem', fontWeight: 800, fontVariantNumeric: 'tabular-nums', color: 'var(--text-main)' }}>
-                {season ? season.dailyCatchMt.toLocaleString() : '—'}
+                {season ? season.dailyCatchMt.toLocaleString() : '-'}
                 <span style={{ fontSize: '0.7rem', fontWeight: 400, color: 'var(--text-muted)', marginLeft: 3 }}>(MT/일)</span>
               </div>
             </div>

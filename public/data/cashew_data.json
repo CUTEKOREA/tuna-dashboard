@@ -373,7 +373,7 @@
     {
       "id": "w03",
       "title": "Top 10 캐슈넛 생산국 (2024) [📊 Data Pipeline Verified]",
-      "subtitle": "상위 10개국 중 6개가 아프리카 — 원물 공급의 대륙 편중",
+      "subtitle": "상위 10개국 중 6개가 아프리카 - 원물 공급의 대륙 편중",
       "chartType": "Bar",
       "xKey": "name",
       "bars": [
@@ -529,7 +529,7 @@
     {
       "id": "w05",
       "title": "베트남(Vietnam)의 RCN 수입 원산지 포트폴리오 (2023) [📊 Data Pipeline Verified]",
-      "subtitle": "코트디부아르(Côte d'Ivoire) 단일 의존도 39% — 공급 집중 리스크",
+      "subtitle": "코트디부아르(Côte d'Ivoire) 단일 의존도 39% - 공급 집중 리스크",
       "chartType": "Pie",
       "data": [
         {
@@ -576,7 +576,7 @@
     {
       "id": "w32",
       "title": "농업 가치 생산성: 헥타르당 매출액(Value per Hectare) 랭킹 [📊 Data Pipeline Verified]",
-      "subtitle": "면적 대비 극단적 수익성 격차 — 저평가된 아프리카 농지 인수의 당위성 (단위: USD/ha)",
+      "subtitle": "면적 대비 극단적 수익성 격차 - 저평가된 아프리카 농지 인수의 당위성 (단위: USD/ha)",
       "chartType": "Bar",
       "xKey": "country",
       "bars": [
@@ -777,7 +777,7 @@
     {
       "id": "w07",
       "title": "주요국 생산자가격(Producer Price) 비교 [📊 Data Pipeline Verified]",
-      "subtitle": "같은 원물인데 산지와 가공지의 4배 가격차 — 기회의 스프레드",
+      "subtitle": "같은 원물인데 산지와 가공지의 4배 가격차 - 기회의 스프레드",
       "chartType": "Line",
       "xKey": "year",
       "lines": [
@@ -1011,7 +1011,7 @@
     },
     {
       "id": "w09",
-      "title": "총생산가치(GPV) Top 10 — 누가 돈을 버는가 [📊 Data Pipeline Verified]",
+      "title": "총생산가치(GPV) Top 10 - 누가 돈을 버는가 [📊 Data Pipeline Verified]",
       "subtitle": "생산량 1위 코트디부아르(Côte d'Ivoire)가 가치 3위인 저부가가치 구조의 역설",
       "chartType": "Bar",
       "xKey": "name",
@@ -1074,7 +1074,7 @@
     },
     {
       "id": "w10",
-      "title": "국가별 수율(Yield) 격차 — 농업 생산성의 극단적 불균형 [📊 Data Pipeline Verified]",
+      "title": "국가별 수율(Yield) 격차 - 농업 생산성의 극단적 불균형 [📊 Data Pipeline Verified]",
       "subtitle": "콜롬비아 720kg/ha vs 아프리카 200kg/ha 미만의 3배 이상 차이",
       "chartType": "Bar",
       "xKey": "name",
@@ -1209,7 +1209,7 @@
     {
       "id": "w13",
       "title": "수매가 및 마진 방어선 분석 (Spread)",
-      "subtitle": "글로벌 도매 시세 vs 아프리카 최저 수매가(Minimum Producer Price) (E 표기 연도는 작성 시점 추정치 — 실측 미반영)",
+      "subtitle": "글로벌 도매 시세 vs 아프리카 최저 수매가(Minimum Producer Price) (E 표기 연도는 작성 시점 추정치 - 실측 미반영)",
       "chartType": "Area",
       "xKey": "year",
       "areas": [
@@ -1309,7 +1309,7 @@
     {
       "id": "w35",
       "title": "구조적 손실률(Post-Harvest Loss) 트래커: 손실/가공 비율 [📊 Data Pipeline Verified]",
-      "subtitle": "아프리카의 버려지는 원물 비율 — 스마트 사일로 인프라 투자의 당위성 (%)",
+      "subtitle": "아프리카의 버려지는 원물 비율 - 스마트 사일로 인프라 투자의 당위성 (%)",
       "chartType": "Area",
       "xKey": "country",
       "areas": [
@@ -1404,7 +1404,7 @@
     },
     {
       "id": "w16",
-      "title": "제로 웨이스트 수익화 — 버려지는 70%의 경제학 [📊 Data Pipeline Verified]",
+      "title": "제로 웨이스트 수익화 - 버려지는 70%의 경제학 [📊 Data Pipeline Verified]",
       "subtitle": "CNSL·바이오매스·캐슈사과 부산물 매출 vs 설비 투자 회수",
       "chartType": "Composed",
       "xKey": "category",
@@ -1512,7 +1512,7 @@
     },
     {
       "id": "w18",
-      "title": "스마트 팩토리 ROI — AI 선별기 + IoT 예지정비 [📊 Data Pipeline Verified]",
+      "title": "스마트 팩토리 ROI - AI 선별기 + IoT 예지정비 [📊 Data Pipeline Verified]",
       "subtitle": "수작업 공장(기준 100) 대비 자동화 공장의 항목별 개선 효과",
       "chartType": "Radar",
       "xKey": "metric",
@@ -1570,7 +1570,7 @@
     },
     {
       "id": "w19",
-      "title": "물류 코스트 히트맵 — 직항 vs 베트남(Vietnam) 경유",
+      "title": "물류 코스트 히트맵 - 직항 vs 베트남(Vietnam) 경유",
       "subtitle": "서아프리카 → 한국/유럽/미국(USA) 해운비 및 리드타임 비교",
       "chartType": "Composed",
       "xKey": "route",
@@ -1636,7 +1636,7 @@
     {
       "id": "w20",
       "title": "글로벌 캐슈넛 수요 트렌드 (2020–2030E) [📊 Data Pipeline Verified]",
-      "subtitle": "건강 스낵·캐슈밀크·비건 치즈 — $8.2B에서 $12.7B 시장으로 (E 표기 연도는 작성 시점 추정치 — 실측 미반영)",
+      "subtitle": "건강 스낵·캐슈밀크·비건 치즈 - $8.2B에서 $12.7B 시장으로 (E 표기 연도는 작성 시점 추정치 - 실측 미반영)",
       "chartType": "Area",
       "xKey": "year",
       "areas": [
@@ -2394,7 +2394,7 @@
     {
       "id": "w11",
       "title": "글로벌 공급망 전환 레이더 (베트남(Vietnam) vs 서아프리카) [📊 Data Pipeline Verified]",
-      "subtitle": "베트남(Vietnam) 원물 수입 정체 및 아프리카 현지 가공 캐파 증가 트렌드 (E 표기 연도는 작성 시점 추정치 — 실측 미반영)",
+      "subtitle": "베트남(Vietnam) 원물 수입 정체 및 아프리카 현지 가공 캐파 증가 트렌드 (E 표기 연도는 작성 시점 추정치 - 실측 미반영)",
       "chartType": "Composed",
       "xKey": "year",
       "bars": [

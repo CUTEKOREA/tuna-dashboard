@@ -46,7 +46,7 @@ export const cosmoMonthlyReport = {
   /** 9~10월 주요 업무 — 원문 요지 */
   agenda: [
     'BRC/IFS Unannounced Audit 실시 예정 (8월 말~9월 초)',
-    '필리핀 직원 채용(8/10 업무 시작) — 9월부터 2nd Shift 가동',
+    '필리핀 직원 채용(8/10 업무 시작) - 9월부터 2nd Shift 가동',
     '대만 SK은행 3년 약정 대출 갱신 완료 (기존 동일 조건)',
   ],
 } as const

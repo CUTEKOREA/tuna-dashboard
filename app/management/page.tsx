@@ -383,7 +383,7 @@ export default function ManagementDashboard() {
             {significant.map((item, idx) => (
               <div key={idx} style={{ marginBottom: idx === significant.length - 1 ? 0 : '16px' }}>
                 <div style={{ color: theme.navy, fontWeight: 700, marginTop: '8px', marginBottom: '4px', fontSize: '15px' }}>
-                  {idx + 1}. {item.name} — 가치 창출 평가
+                  {idx + 1}. {item.name} - 가치 창출 평가
                 </div>
                 {item.remarks.split('\n').map((line: string, lIdx: number) => (
                   <div key={lIdx} style={{ paddingLeft: '8px', borderLeft: `2px solid ${theme.border}`, marginLeft: '4px', marginBottom: '4px' }}>

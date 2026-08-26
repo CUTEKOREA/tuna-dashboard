@@ -79,9 +79,9 @@ export const WitsTariffWidget = React.memo(function WitsTariffWidget() {
 <p><strong>재정의</strong>: FTA 관세 차익은 단순 cost saving이 아닌 <strong>"한국 vendor만의 regulatory moat"</strong>. 가격 협상 시 6%p 자유도를 무기로 활용하면 마진 +4~5%p 추가 회수.</p>
 <p><strong>실행</strong>:</p>
 <ol style="margin: 4px 0 0 18px; padding: 0;">
-<li style="margin-bottom: 8px;"><strong>AKFTA 원산지 증명서 발급 100% 자동화</strong> — 태국·인도네시아 원료 + 한국 가공 → 미국 수출 시 단가 +5%p 회수.</li>
-<li style="margin-bottom: 8px;"><strong>KORUS FTA 6%p 경쟁우위 활용</strong> — 미국 수입사(Costco·Sam's Club·BJ's) 협상 시 가격 우위로 long-term contract 락업.</li>
-<li><strong>"FTA arbitrage trading desk" 신설</strong> — RCEP·AKFTA·KORUS·CPTPP 4개 FTA 활용한 원산지 우회·관세 차익 trading을 본사 trade compliance KPI로 부여. JP Morgan Trade Finance와 협력해 ASEAN sourcing finance 패키지 운영.</li>
+<li style="margin-bottom: 8px;"><strong>AKFTA 원산지 증명서 발급 100% 자동화</strong> - 태국·인도네시아 원료 + 한국 가공 → 미국 수출 시 단가 +5%p 회수.</li>
+<li style="margin-bottom: 8px;"><strong>KORUS FTA 6%p 경쟁우위 활용</strong> - 미국 수입사(Costco·Sam's Club·BJ's) 협상 시 가격 우위로 long-term contract 락업.</li>
+<li><strong>"FTA arbitrage trading desk" 신설</strong> - RCEP·AKFTA·KORUS·CPTPP 4개 FTA 활용한 원산지 우회·관세 차익 trading을 본사 trade compliance KPI로 부여. JP Morgan Trade Finance와 협력해 ASEAN sourcing finance 패키지 운영.</li>
 </ol>
 </div>`,
         source: `World Bank WITS API · ${isLive ? 'LIVE' : 'Fallback DB'} · Reliability: ${data?.meta?.reliability?.grade || 'A'}`,
@@ -138,7 +138,7 @@ export const OecBenchmarkWidget = React.memo(function OecBenchmarkWidget() {
       takeaway={{
         situation: `<div>
 <p>OEC(Observatory of Economic Complexity)는 MIT가 운영하는 글로벌 무역 시각화 플랫폼으로, 모든 상품·국가·연도별 교역량을 추적합니다. 참치 조제품(HS 1604.14)의 글로벌 시장 지도가 한눈에 보입니다.</p>
-<p>2024 글로벌 참치 조제품 교역 규모: <strong>약 $${data?.globalTradeValueM ? (data.globalTradeValueM / 1000).toFixed(1) : '19.8'}B (약 27조원)</strong>. 의외로 작은 시장 — 글로벌 식품 전체의 0.1% 미만이지만, 우리에게는 본업.</p>
+<p>2024 글로벌 참치 조제품 교역 규모: <strong>약 $${data?.globalTradeValueM ? (data.globalTradeValueM / 1000).toFixed(1) : '19.8'}B (약 27조원)</strong>. 의외로 작은 시장 - 글로벌 식품 전체의 0.1% 미만이지만, 우리에게는 본업.</p>
 <p>구도:</p>
 <ul style="margin: 4px 0 0 18px; padding: 0;">
 <li><strong>수출 1위 태국 22.8%</strong> (글로벌 가공 허브 뚜렷한 점유)</li>
@@ -153,7 +153,7 @@ export const OecBenchmarkWidget = React.memo(function OecBenchmarkWidget() {
 <p><strong>3단계</strong>:</p>
 <ol style="margin: 4px 0 0 18px; padding: 0;">
 <li style="margin-bottom: 8px;"><strong>태국 원료 의존도 분산</strong>: 에콰도르(EU 무관세) 30% + 인도네시아(AKFTA 0%) 30% + 태국 40%로 재배치. 단일 거점 risk 회피.</li>
-<li style="margin-bottom: 8px;"><strong>미국·EU·일본 3대 소비 시장 프리미엄 가공품 수출 파이프라인 구축</strong> — 단순 통조림이 아닌 레토르트 파우치·사시미급 냉동·간편식 즉석조리(HMR) 같은 고부가 SKU로 차별화.</li>
+<li style="margin-bottom: 8px;"><strong>미국·EU·일본 3대 소비 시장 프리미엄 가공품 수출 파이프라인 구축</strong> - 단순 통조림이 아닌 레토르트 파우치·사시미급 냉동·간편식 즉석조리(HMR) 같은 고부가 SKU로 차별화.</li>
 <li><strong>밸류체인 상위 이동</strong>: 한국이 가공·브랜드를 잡고 동남아 OEM이 backend로 빠지는 <strong>"K-brand globalization"</strong> 모델. 본사 점유율 글로벌 5~8% 도달 시 sole price-maker.</li>
 </ol>
 </div>`,
@@ -221,7 +221,7 @@ export const WitsTradeFlowWidget = React.memo(function WitsTradeFlowWidget() {
 <p><strong>3단계</strong>:</p>
 <ol style="margin: 4px 0 0 18px; padding: 0;">
 <li style="margin-bottom: 8px;"><strong>공급 다변화</strong>: 인도네시아·에콰도르 신규 공급선 확보로 태국 의존도 완화. 4-거점(태국·인도네시아·에콰도르·인도) 분산으로 단일거점 의존 리스크 회피.</li>
-<li style="margin-bottom: 8px;"><strong>장기 선도매입 + 가격 밴드 계약 패키지</strong> — 5년 고정가 계약에 하한·상한 밴드(price collar)를 결합. 매입가 변동성 ±15% 범위로 고정. 본사 트레이딩 데스크가 매 분기 시가 재평가(mark-to-market) 수행.</li>
+<li style="margin-bottom: 8px;"><strong>장기 선도매입 + 가격 밴드 계약 패키지</strong> - 5년 고정가 계약에 하한·상한 밴드(price collar)를 결합. 매입가 변동성 ±15% 범위로 고정. 본사 트레이딩 데스크가 매 분기 시가 재평가(mark-to-market) 수행.</li>
 <li><strong>한국 어획 역량 자체 확보</strong>: 한국 원양 황다랑어 어선 5~10척 신규 건조 또는 인수 (척당 $25~40M). 자체 어획 비중을 5% → 15~20%로 확대하면 가격 협상력 강화 + 시장 가격 방향성 지표로 활용 가능. 동시에 ICCAT·WCPFC 황다랑어 쿼터 선물 매입 병행.</li>
 </ol>
 </div>`,

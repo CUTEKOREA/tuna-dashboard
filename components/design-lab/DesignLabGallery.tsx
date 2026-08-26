@@ -83,7 +83,7 @@ export default function DesignLabGallery() {
       await navigator.clipboard.writeText(JSON.stringify(payload, null, 2));
       setNotice('평가 JSON을 클립보드에 복사했습니다.');
     } catch {
-      setNotice('클립보드 접근이 막혔습니다 — 브라우저 권한을 확인하세요.');
+      setNotice('클립보드 접근이 막혔습니다 - 브라우저 권한을 확인하세요.');
     }
   };
 
@@ -103,7 +103,7 @@ export default function DesignLabGallery() {
       <header className={styles.header}>
         <h1 className={styles.title}>디자인 랩</h1>
         <p className={styles.criteria}>
-          평가 순서 — ① 5초 안에 오늘의 숫자가 읽히는가 → ② 취향 7조 위반이 있는가 →
+          평가 순서 - ① 5초 안에 오늘의 숫자가 읽히는가 → ② 취향 7조 위반이 있는가 →
           ③ 후진 부분이 어디인가 → ④ 이유를 한 문장으로 남긴다
         </p>
         <div className={styles.toolbar}>
@@ -148,7 +148,7 @@ export default function DesignLabGallery() {
                 className={styles.comment}
                 value={rating?.comment ?? ''}
                 onChange={(event) => update(variant.id, { comment: event.target.value })}
-                placeholder="왜 좋은지/나쁜지 한 문장 — 5초 가독성·취향 7조 위반·후진 부분"
+                placeholder="왜 좋은지/나쁜지 한 문장 - 5초 가독성·취향 7조 위반·후진 부분"
                 rows={2}
                 aria-label={`${variant.title} 코멘트`}
               />

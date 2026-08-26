@@ -266,7 +266,7 @@ export default function TunaRanching() {
         <div className={insightsStyles.insightCard}>
           <div className={insightsStyles.cardHeader}>
             <h3 className={insightsStyles.cardTitle}>
-              <Globe size={20} color="#38bdf8"/> 블루핀 도피회유 현상 분석 — 자원 회복의 메커니즘
+              <Globe size={20} color="#38bdf8"/> 블루핀 도피회유 현상 분석 - 자원 회복의 메커니즘
               <TelemetryBadge status="synced" syncDate="2026.01" />
             </h3>
             <p className={insightsStyles.cardDesc}>ICCAT 쿼터 감축이 촉발한 지중해 어린 개체의 북대서양 도피 및 산란장 복귀를 통한 자원 회복 구조.</p>
@@ -311,7 +311,7 @@ export default function TunaRanching() {
         <div className={insightsStyles.insightCard}>
           <div className={insightsStyles.cardHeader}>
             <h3 className={insightsStyles.cardTitle}>
-              <Target size={20} color="#ec4899"/> 대서양 쿼터 과점 구조 분석 — 연안 축양장 수용률
+              <Target size={20} color="#ec4899"/> 대서양 쿼터 과점 구조 분석 - 연안 축양장 수용률
               <TelemetryBadge status="synced" syncDate="2026.01" />
             </h3>
             <p className={insightsStyles.cardDesc}>전체 할당량의 약 50%가 지중해 연안 축양장에 집중되며, 소수 대형 법인이 쿼터 및 유통망을 지배하는 구조 파악.</p>
@@ -435,7 +435,7 @@ export default function TunaRanching() {
         <div className={insightsStyles.insightCard} style={{ gridColumn: '1 / -1' }}>
           <div className={insightsStyles.cardHeader}>
             <h3 className={insightsStyles.cardTitle}>
-              <Thermometer size={20} color="#a78bfa"/> 참다랑어 자연폐사율 역설 — 클수록 더 위험
+              <Thermometer size={20} color="#a78bfa"/> 참다랑어 자연폐사율 역설 - 클수록 더 위험
               <TelemetryBadge status="synced" syncDate="2026.01" />
             </h3>
             <p className={insightsStyles.cardDesc}>음향 태그 모델링 기반: 일반 예상과 달리, 참다랑어는 연령·크기 증가 시 자연폐사율이 감소하지 않고 유지 또는 증가. 3대 산란장(멕시코만·지중해·슬로프 해) 타임라인 포함.</p>
@@ -478,7 +478,7 @@ export default function TunaRanching() {
               <Globe size={20} color="#10b981"/> 글로벌 참치 자원 건전성 스코어보드
               <TelemetryBadge status={data?.isLive ? 'live' : (data ? 'synced' : 'static')} syncDate="2026.01" />
             </h3>
-            <p className={insightsStyles.cardDesc}>ISSF Status of the Stocks 2026-01 (최신판) 기준. <strong>어획량 가중 평균 97%</strong>가 건전 자원에서 공급 / <strong>stock 23개 중 74%</strong>가 건전 abundance — 2024년 글로벌 어획량 580만톤(가다랑어 58%·황다랑어 30%·눈다랑어 7%·날개다랑어 4%·참다랑어 1%).</p>
+            <p className={insightsStyles.cardDesc}>ISSF Status of the Stocks 2026-01 (최신판) 기준. <strong>어획량 가중 평균 97%</strong>가 건전 자원에서 공급 / <strong>stock 23개 중 74%</strong>가 건전 abundance - 2024년 글로벌 어획량 580만톤(가다랑어 58%·황다랑어 30%·눈다랑어 7%·날개다랑어 4%·참다랑어 1%).</p>
           </div>
           <div className={insightsStyles.cardBody}>
             <div data-mobile-stack style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '12px', marginBottom: '15px' }}>
@@ -500,7 +500,7 @@ export default function TunaRanching() {
                   <CartesianGrid strokeDasharray="3 3" horizontal={false} stroke="rgba(140,170,255,0.12)" />
                   <XAxis type="number" domain={[0, 100]} stroke="var(--w-slate-400)" tick={{ fill: 'var(--w-slate-400)', fontSize: 11 }} tickFormatter={(val) => `${val}점`} />
                   <YAxis type="category" dataKey="ocean" stroke="var(--w-slate-400)" tick={{ fill: 'var(--w-slate-400)', fontSize: 10 }} width={110} tickFormatter={truncateXAxis} />
-                  <Tooltip contentStyle={{ backgroundColor: 'rgba(20, 28, 52, 0.9)', border: 'none', borderRadius: '8px' }} formatter={(value: any, name: any, props: any) => [`${value}점 (${props.payload.species} — ${props.payload.status})`, '건전성 점수']} />
+                  <Tooltip contentStyle={{ backgroundColor: 'rgba(20, 28, 52, 0.9)', border: 'none', borderRadius: '8px' }} formatter={(value: any, name: any, props: any) => [`${value}점 (${props.payload.species} - ${props.payload.status})`, '건전성 점수']} />
                   <Legend verticalAlign="top" height={36} />
                   <Bar dataKey="score" name="건전성 점수" radius={[0, 4, 4, 0]}>
                     {issfScorecard.map((entry: any, index: number) => (
@@ -536,7 +536,7 @@ export default function TunaRanching() {
               <div className={insightsStyles.kpiBox} style={{ borderLeftColor: 'var(--w-red-500)' }}>
                 <div className={insightsStyles.kpiLabel}>2010 최저점</div>
                 <div className={insightsStyles.kpiValue}>3.3%</div>
-                <div className={insightsStyles.kpiSub}>역사적 최저 — 긴급 관리</div>
+                <div className={insightsStyles.kpiSub}>역사적 최저 - 긴급 관리</div>
               </div>
               <div className={insightsStyles.kpiBox} style={{ borderLeftColor: 'var(--w-sky-400)' }}>
                 <div className={insightsStyles.kpiLabel}>2024 현재</div>
@@ -561,7 +561,7 @@ export default function TunaRanching() {
                   <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="rgba(140,170,255,0.12)" />
                   <XAxis dataKey="year" stroke="var(--w-slate-400)" tick={{ fill: 'var(--w-slate-400)', fontSize: 11 }} />
                   <YAxis stroke="var(--w-slate-400)" tick={{ fill: 'var(--w-slate-400)', fontSize: 11 }} tickFormatter={(val) => `${val}%`} domain={[0, 30]} />
-                  <Tooltip contentStyle={{ backgroundColor: 'rgba(20, 28, 52, 0.9)', border: 'none', borderRadius: '8px' }} formatter={(value: any, name: any, props: any) => [`${value}% — ${props.payload.note}`, '산란자원량 비율']} />
+                  <Tooltip contentStyle={{ backgroundColor: 'rgba(20, 28, 52, 0.9)', border: 'none', borderRadius: '8px' }} formatter={(value: any, name: any, props: any) => [`${value}% - ${props.payload.note}`, '산란자원량 비율']} />
                   <Legend verticalAlign="top" height={36} />
                   <Area type="monotone" dataKey="ssbRatio" name="산란자원량 비율 (%)" stroke="var(--w-sky-400)" strokeWidth={3} fill="url(#bftRecoveryGrad)" dot={{ r: 5, fill: 'var(--w-sky-400)', stroke: '#0a0f1f', strokeWidth: 2 }} />
                 </AreaChart>
@@ -605,12 +605,12 @@ export default function TunaRanching() {
             <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '10px' }}>
               <div style={{ width: '32px', height: '32px', borderRadius: '8px', background: 'rgba(var(--w-blue-500-rgb), 0.15)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '1.1rem' }}>📋</div>
               <div>
-                <div style={{ fontSize: '0.72rem', color: 'var(--color-info)', fontWeight: 600, letterSpacing: '0.5px' }}>근거 #1 — 관세 혁명</div>
+                <div style={{ fontSize: '0.72rem', color: 'var(--color-info)', fontWeight: 600, letterSpacing: '0.5px' }}>근거 #1 - 관세 혁명</div>
                 <div style={{ fontSize: '0.95rem', color: 'var(--w-slate-200)', fontWeight: 700 }}>한-UAE CEPA 2026.5.1 발효</div>
               </div>
             </div>
             <ul style={{ margin: 0, paddingLeft: '1rem', color: 'var(--w-slate-300)', fontSize: '0.82rem', lineHeight: 1.7 }}>
-              <li>한-UAE CEPA <strong style={{ color: '#60a5fa' }}>2026년 5월 1일 발효</strong> — 91.2% 품목 관세 철폐</li>
+              <li>한-UAE CEPA <strong style={{ color: '#60a5fa' }}>2026년 5월 1일 발효</strong> - 91.2% 품목 관세 철폐</li>
               <li>수산물(HS 03장) 기존 UAE 관세 <strong>5%</strong> → 단계적 <strong style={{ color: 'var(--w-emerald-400)' }}>0%</strong> 전환</li>
               <li>일본·스페인 등 경쟁 수출국 대비 <strong style={{ color: 'var(--color-warning)' }}>관세 우위 선점</strong> (일본-UAE FTA 미체결)</li>
               <li>원산지 기준: 한국 내 충분한 가공(실질적 변형) 시 "Made in Korea" 인정</li>
@@ -625,7 +625,7 @@ export default function TunaRanching() {
             <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '10px' }}>
               <div style={{ width: '32px', height: '32px', borderRadius: '8px', background: 'rgba(var(--w-emerald-500-rgb), 0.15)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '1.1rem' }}>🏙️</div>
               <div>
-                <div style={{ fontSize: '0.72rem', color: 'var(--color-success)', fontWeight: 600, letterSpacing: '0.5px' }}>근거 #2 — 시장 폭발</div>
+                <div style={{ fontSize: '0.72rem', color: 'var(--color-success)', fontWeight: 600, letterSpacing: '0.5px' }}>근거 #2 - 시장 폭발</div>
                 <div style={{ fontSize: '0.95rem', color: 'var(--w-slate-200)', fontWeight: 700 }}>두바이 수산물 일 600톤 거래</div>
               </div>
             </div>
@@ -645,7 +645,7 @@ export default function TunaRanching() {
             <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '10px' }}>
               <div style={{ width: '32px', height: '32px', borderRadius: '8px', background: 'rgba(var(--w-pink-500-rgb), 0.15)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '1.1rem' }}>🏭</div>
               <div>
-                <div style={{ fontSize: '0.72rem', color: 'var(--w-pink-500)', fontWeight: 600, letterSpacing: '0.5px' }}>근거 #3 — 가공 허브</div>
+                <div style={{ fontSize: '0.72rem', color: 'var(--w-pink-500)', fontWeight: 600, letterSpacing: '0.5px' }}>근거 #3 - 가공 허브</div>
                 <div style={{ fontSize: '0.95rem', color: 'var(--w-slate-200)', fontWeight: 700 }}>한국 수산 가공 세계적 인프라</div>
               </div>
             </div>
@@ -666,13 +666,13 @@ export default function TunaRanching() {
             <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '10px' }}>
               <div style={{ width: '32px', height: '32px', borderRadius: '8px', background: 'rgba(var(--w-amber-500-rgb), 0.15)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '1.1rem' }}>💰</div>
               <div>
-                <div style={{ fontSize: '0.72rem', color: 'var(--color-warning)', fontWeight: 600, letterSpacing: '0.5px' }}>근거 #4 — 부가가치 점프</div>
+                <div style={{ fontSize: '0.72rem', color: 'var(--color-warning)', fontWeight: 600, letterSpacing: '0.5px' }}>근거 #4 - 부가가치 점프</div>
                 <div style={{ fontSize: '0.95rem', color: 'var(--w-slate-200)', fontWeight: 700 }}>가공 후 단가 2~3배 상승</div>
               </div>
             </div>
             <ul style={{ margin: 0, paddingLeft: '1rem', color: 'var(--w-slate-300)', fontSize: '0.82rem', lineHeight: 1.7 }}>
               <li>원어(라운드) 수입가 <strong>$14~18/kg</strong> → 이케지메 Loin 가공 후 <strong style={{ color: 'var(--w-amber-400)' }}>$35~50/kg</strong></li>
-              <li>두바이 프리미엄 수입단가 <strong style={{ color: 'var(--w-amber-400)' }}>$42~48/kg</strong> (위젯 간 편차 — IMARC 중동 수산물 보고서로 단일화 필요)</li>
+              <li>두바이 프리미엄 수입단가 <strong style={{ color: 'var(--w-amber-400)' }}>$42~48/kg</strong> (위젯 간 편차 - IMARC 중동 수산물 보고서로 단일화 필요)</li>
               <li>양식 참치 단가가 야생 어획 대비 <strong>+31.9% 프리미엄</strong> (2024 기준)</li>
               <li>한국 가공을 통한 부가가치 마진: <strong style={{ color: 'var(--w-amber-400)' }}>kg당 $15~25 순이익 구간</strong></li>
             </ul>
@@ -686,7 +686,7 @@ export default function TunaRanching() {
             <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '10px' }}>
               <div style={{ width: '32px', height: '32px', borderRadius: '8px', background: 'rgba(var(--w-violet-500-rgb), 0.15)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '1.1rem' }}>🎯</div>
               <div>
-                <div style={{ fontSize: '0.72rem', color: 'var(--w-violet-500)', fontWeight: 600, letterSpacing: '0.5px' }}>근거 #5 — 경쟁 공백</div>
+                <div style={{ fontSize: '0.72rem', color: 'var(--w-violet-500)', fontWeight: 600, letterSpacing: '0.5px' }}>근거 #5 - 경쟁 공백</div>
                 <div style={{ fontSize: '0.95rem', color: 'var(--w-slate-200)', fontWeight: 700 }}>일본 독점 공급 구조의 빈틈</div>
               </div>
             </div>
@@ -694,7 +694,7 @@ export default function TunaRanching() {
               <li>두바이 고급 참치 공급은 현재 <strong>일본 츠키지/토요스 경유</strong>에 90% 편중</li>
               <li>일본-UAE간 FTA/CEPA <strong style={{ color: '#a78bfa' }}>미체결</strong> → 관세 5% 유지</li>
               <li>한국 경유 시 CEPA로 <strong style={{ color: 'var(--w-emerald-400)' }}>0% 관세</strong> + 항공 직납 시 <strong>배송 리드타임 50% 단축</strong></li>
-              <li>인천→두바이 항공편 <strong>주 28편+</strong> (에미레이트, 대한항공 등) — 물류 안정성 확보</li>
+              <li>인천→두바이 항공편 <strong>주 28편+</strong> (에미레이트, 대한항공 등) - 물류 안정성 확보</li>
             </ul>
             <div style={{ marginTop: '10px', padding: '8px 10px', background: 'rgba(var(--w-violet-500-rgb), 0.08)', borderRadius: '8px', fontSize: '0.78rem', color: '#c4b5fd' }}>
               📌 출처: WTO Tariff Database, 인천공항 노선 현황 (2026)
@@ -706,12 +706,12 @@ export default function TunaRanching() {
             <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '10px' }}>
               <div style={{ width: '32px', height: '32px', borderRadius: '8px', background: 'rgba(20,184,166,0.15)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '1.1rem' }}>🌿</div>
               <div>
-                <div style={{ fontSize: '0.72rem', color: '#14b8a6', fontWeight: 600, letterSpacing: '0.5px' }}>근거 #6 — 인증 경쟁력</div>
+                <div style={{ fontSize: '0.72rem', color: '#14b8a6', fontWeight: 600, letterSpacing: '0.5px' }}>근거 #6 - 인증 경쟁력</div>
                 <div style={{ fontSize: '0.95rem', color: 'var(--w-slate-200)', fontWeight: 700 }}>할랄·MSC·HACCP 3중 인증</div>
               </div>
             </div>
             <ul style={{ margin: 0, paddingLeft: '1rem', color: 'var(--w-slate-300)', fontSize: '0.82rem', lineHeight: 1.7 }}>
-              <li>수산물은 자체로 <strong style={{ color: '#2dd4bf' }}>할랄(Halal) 적합</strong> — 별도 도축 인증 불필요</li>
+              <li>수산물은 자체로 <strong style={{ color: '#2dd4bf' }}>할랄(Halal) 적합</strong> - 별도 도축 인증 불필요</li>
               <li>한국 원양업체 다수 <strong>MSC(해양관리위원회) 인증</strong> 보유 → ESG 소비 트렌드 부합</li>
               <li>HACCP + ISO 22000 + EU 수출 위생인증 <strong>동시 보유</strong> 업체 다수</li>
               <li>두바이 고급 호텔 바이어의 <strong>#1 구매 기준: 지속가능성 인증</strong></li>
@@ -726,14 +726,14 @@ export default function TunaRanching() {
             <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '10px' }}>
               <div style={{ width: '32px', height: '32px', borderRadius: '8px', background: 'rgba(var(--w-red-500-rgb), 0.15)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '1.1rem' }}>🔗</div>
               <div>
-                <div style={{ fontSize: '0.72rem', color: 'var(--color-danger)', fontWeight: 600, letterSpacing: '0.5px' }}>근거 #7 — 확장성</div>
+                <div style={{ fontSize: '0.72rem', color: 'var(--color-danger)', fontWeight: 600, letterSpacing: '0.5px' }}>근거 #7 - 확장성</div>
                 <div style={{ fontSize: '0.95rem', color: 'var(--w-slate-200)', fontWeight: 700 }}>두바이 → GCC 전역 재수출 허브</div>
               </div>
             </div>
             <ul style={{ margin: 0, paddingLeft: '1rem', color: 'var(--w-slate-300)', fontSize: '0.82rem', lineHeight: 1.7 }}>
-              <li>두바이는 GCC 6개국 <strong style={{ color: '#fca5a5' }}>재수출 허브</strong> — 사우디·카타르·쿠웨이트·바레인·오만 동시 커버</li>
-              <li>사우디 콜드체인 시장 <strong>USD 3.5B → 15.9B</strong> (2025→2034, CAGR 18.31%, 2026-2034 기준) — Vision 2030 인프라 투자 기반 성장 (IMARC 직접 확인)</li>
-              <li>카타르 참치 시장 2028년 <strong style={{ color: '#fca5a5' }}>18.35% 성장 정점</strong> — Qatar Airways 기내식 시장</li>
+              <li>두바이는 GCC 6개국 <strong style={{ color: '#fca5a5' }}>재수출 허브</strong> - 사우디·카타르·쿠웨이트·바레인·오만 동시 커버</li>
+              <li>사우디 콜드체인 시장 <strong>USD 3.5B → 15.9B</strong> (2025→2034, CAGR 18.31%, 2026-2034 기준) - Vision 2030 인프라 투자 기반 성장 (IMARC 직접 확인)</li>
+              <li>카타르 참치 시장 2028년 <strong style={{ color: '#fca5a5' }}>18.35% 성장 정점</strong> - Qatar Airways 기내식 시장</li>
               <li>두바이 거점 확보 → <strong>중동 GCC 수산물 시장</strong> 접근 채널 단계적 확보 (헤게모니가 아닌 접근 단계)</li>
             </ul>
             <div style={{ marginTop: '10px', padding: '8px 10px', background: 'rgba(var(--w-red-500-rgb), 0.08)', borderRadius: '8px', fontSize: '0.78rem', color: '#fca5a5' }}>

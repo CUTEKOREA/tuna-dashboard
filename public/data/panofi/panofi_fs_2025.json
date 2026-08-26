@@ -2,10 +2,10 @@
  "_meta": {
   "source": "Financial Statements(2025.12.31)_260119 - 신라교역 회계팀.xlsx",
   "asOf": "2025-12-31",
-  "basis": "회계 확정 결산 (GHC 장부 → USD 환산) — 판매원장·전략보고와 축이 다르다",
+  "basis": "회계 확정 결산 (GHC 장부 → USD 환산) - 판매원장·전략보고와 축이 다르다",
   "generator": "scripts/extract_panofi_fs.py",
   "sourceDefects": [
-   "FP D15 비유동자산 USD 보고값 50,292,441.42 ≠ GHC 환산 23,048,393.36 (구성 합 일치) — 환산 열 오기로 판단, 파생값 채택"
+   "FP D15 비유동자산 USD 보고값 50,292,441.42 ≠ GHC 환산 23,048,393.36 (구성 합 일치) - 환산 열 오기로 판단, 파생값 채택"
   ]
  },
  "fx": {

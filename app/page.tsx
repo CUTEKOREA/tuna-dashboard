@@ -360,7 +360,7 @@ export default function Home() {
           type="button"
           onClick={() => setDarkMode((prev) => !prev)}
           aria-pressed={darkMode}
-          title="다크 모드 — 이전 다크 팔레트로 전환"
+          title="다크 모드 - 이전 다크 팔레트로 전환"
           style={{
             display: 'flex', alignItems: 'center', justifyContent: 'space-between',
             padding: '8px 12px', margin: '4px 0',
@@ -379,7 +379,7 @@ export default function Home() {
         <button
           type="button"
           onClick={() => window.print()}
-          title="현재 화면을 브라우저 인쇄로 PDF 저장 — 아침 스냅샷 공유용 (P3-7 1단계)"
+          title="현재 화면을 브라우저 인쇄로 PDF 저장 - 아침 스냅샷 공유용 (P3-7 1단계)"
           style={{
             display: 'flex', alignItems: 'center', justifyContent: 'space-between',
             padding: '8px 12px', margin: '4px 0',

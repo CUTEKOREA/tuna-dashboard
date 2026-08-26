@@ -143,7 +143,7 @@ export default function MscGlobalEngagementKpi() {
       icon={TrendingUp}
       iconColor="#10b981"
       pillar="S5"
-      cardDesc="MSC 연례보고서 2024-25판(2025-03-31 기준) 참여율·어획량·판매량 핵심 KPI — 참여=인증+심사+개선+정지"
+      cardDesc="MSC 연례보고서 2024-25판(2025-03-31 기준) 참여율·어획량·판매량 핵심 KPI - 참여=인증+심사+개선+정지"
       telemetry={{ status: 'STATIC', syncDate: '2024-25' }}
       customBody={<div>{kpiGrid}{growthTrajectory}</div>}
       takeaway={{

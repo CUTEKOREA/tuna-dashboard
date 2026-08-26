@@ -22,18 +22,18 @@ export default function SasJpImportYen() {
     <WidgetCard
       id="W-SAS55"
       title="엔저가 가른 일본 참치 수입 (買い負け)"
-      description="물량 정체·금액 상승 — 엔저로 일본이 '사들이기 경쟁'서 밀려"
+      description="물량 정체·금액 상승 - 엔저로 일본이 '사들이기 경쟁'서 밀려"
       pillar="S4"
       telemetry={{ status: 'STATIC', syncDate: '2025-12-31' }}
-      cardDesc="엔저·일본 수산물 수입 물량/금액 디커플링·지중해 블루핀(BFT) 도매가 — 일본 수산청 수산백서(거시 수입통계)·SeafoodSource(도매가)"
+      cardDesc="엔저·일본 수산물 수입 물량/금액 디커플링·지중해 블루핀(BFT) 도매가 - 일본 수산청 수산백서(거시 수입통계)·SeafoodSource(도매가)"
       takeaway={{
         situation: "엔저가 일본 참치 수입 구조를 갈랐습니다. 일본 수산물 수입은 물량이 약 220만 톤으로 정체된 반면 금액은 +2.2%로 ¥2.1조까지 올라(상위 3대 품목에 가다랑어·참치 포함) '물량은 그대로인데 비싸게 산다'는 디커플링이 나타났습니다. USD/JPY가 2024년 7월 161엔대(약 37년 반 최저)까지 치솟았다가 2025년 150엔대 중반으로 일부 회복됐으나, 엔저로 일본이 글로벌 사들이기 경쟁에서 밀리는 '買い負け(가이마케)' 현상이 지속됩니다. 일본 의존도 80~90%인 지중해 양식 블루핀(동대서양·지중해 BFT TAC 2024년 40,570톤·실어획 39,426톤, EU 蓄養(축양) 능력 2024년 27,900톤→2025년 51,143톤) 도매가도 2024년 저점 ¥1,500/kg에서 2025년 ¥1,900~1,950/kg으로 회복했습니다.",
         actionPlan: "엔저는 한국 수출자에게 양날의 검입니다. ① 엔저로 일본의 구매력이 약해져 對일본 수출 단가가 압박받으므로, 일본 단일 의존을 줄이고 달러 결제 시장(미국·중동)으로 다변화하십시오. ② 반대로 엔저가 회복(엔강세)되면 일본의 사들이기 경쟁력이 살아나므로 환율 시나리오별 對일본 출하 비중을 동적으로 조정하고, 지중해 BFT 도매가 회복(¥1,950) 구간에 맞춰 고가 출하 타이밍을 포착하십시오.",
-        source: "일본 수산청 수산백서(일본 수산물 수입 물량 정체·금액 +2.2%·¥2.1조 — Nippon.com 보도 경유) / USD/JPY 161.6(2024.7 37년 반 최저, 외환시장 시세) / ICCAT SCRS '13.6 BFT Executive Summary'(2024-2025) — 동대서양·지중해 BFT TAC 2024년 40,570t·실어획 39,426t, EU 蓄養 능력 2024년 27,900t(20개소)→2025년 51,143t(25개소), 일본向 80~90%(2차 보강) / SeafoodSource(지중해 BFT 도매 ¥1,500→¥1,900~1,950 — 2차 보도, 엔화 환산 단가는 ICCAT 1차 검증 범위 외)",
+        source: "일본 수산청 수산백서(일본 수산물 수입 물량 정체·금액 +2.2%·¥2.1조 - Nippon.com 보도 경유) / USD/JPY 161.6(2024.7 37년 반 최저, 외환시장 시세) / ICCAT SCRS '13.6 BFT Executive Summary'(2024-2025) - 동대서양·지중해 BFT TAC 2024년 40,570t·실어획 39,426t, EU 蓄養 능력 2024년 27,900t(20개소)→2025년 51,143t(25개소), 일본向 80~90%(2차 보강) / SeafoodSource(지중해 BFT 도매 ¥1,500→¥1,900~1,950 - 2차 보도, 엔화 환산 단가는 ICCAT 1차 검증 범위 외)",
       }}
       customBody={
         <div style={{ display: 'flex', flexDirection: 'column', gap: '12px', width: '100%' }}>
-          <div style={{ fontSize: '0.66rem', color: 'var(--w-slate-400)', fontWeight: 600, textAlign: 'center' }}>USD/JPY 환율 — 2024.7 161엔(37년 최저)</div>
+          <div style={{ fontSize: '0.66rem', color: 'var(--w-slate-400)', fontWeight: 600, textAlign: 'center' }}>USD/JPY 환율 - 2024.7 161엔(37년 최저)</div>
           <div style={{ height: '155px', width: '100%' }}>
             <SafeResponsiveContainer width="100%" height="100%">
               <AreaChart data={YEN} margin={{ top: 12, right: 16, left: 0, bottom: 0 }}>

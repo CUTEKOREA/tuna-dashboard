@@ -86,7 +86,7 @@ export default function HeroMarketCommand({ rows }: { rows: AtunaPriceRow[] }) {
             {selected.kind === 'SKJ' ? '가다랑어' : '황다랑어'} {selected.hub.label} 현물가
           </div>
           <div style={{ fontSize: '2.6rem', fontWeight: 900, letterSpacing: '-0.03em', fontVariantNumeric: 'tabular-nums', color: 'var(--text-main)' }}>
-            {pair.latest ? `$${pair.latest.price.toLocaleString()}` : '—'}
+            {pair.latest ? `$${pair.latest.price.toLocaleString()}` : '-'}
             <span style={{ fontSize: '0.9rem', fontWeight: 400, color: 'var(--text-muted)', marginLeft: 6 }}>($/MT)</span>
           </div>
           <div style={{ fontSize: '0.8rem', fontWeight: 700, color: delta.color }}>직전 고시 대비 {delta.text}</div>
@@ -143,7 +143,7 @@ export default function HeroMarketCommand({ rows }: { rows: AtunaPriceRow[] }) {
               <span>
                 <span style={{ display: 'block', fontSize: '0.7rem', fontWeight: 700, color: 'var(--text-muted)' }}>{kind} {hub.label}</span>
                 <span style={{ display: 'block', fontSize: '1.05rem', fontWeight: 800, fontVariantNumeric: 'tabular-nums', color: 'var(--text-main)' }}>
-                  {hubPair.latest ? `$${hubPair.latest.price.toLocaleString()}` : '—'}
+                  {hubPair.latest ? `$${hubPair.latest.price.toLocaleString()}` : '-'}
                 </span>
                 <span style={{ display: 'block', fontSize: '0.7rem', fontWeight: 700, color: hubDelta.color }}>{hubDelta.text}</span>
               </span>

@@ -94,7 +94,7 @@ const TunaOriginPriceTrendLive = () => {
 <li><strong>서인도양(Seychelles)</strong>: 1,500 USD/MT</li>
 <li><strong>서아프리카(Abidjan)</strong>: <strong>1,220 USD/MT</strong> (최저)</li>
 </ul>
-<p>동·서태평양 vs 서아프리카 가격 격차 약 <strong>60% 프리미엄</strong>. 이유: ① 어획 비용 차이 ② 물류 거리 ③ 가공 인프라 성숙도. 서아프리카는 원물 자체는 싸지만 EU·아시아 항구까지 물류비를 더하면 실제 도착가는 다를 수 있음 — 따로 시뮬레이션 필요.</p>
+<p>동·서태평양 vs 서아프리카 가격 격차 약 <strong>60% 프리미엄</strong>. 이유: ① 어획 비용 차이 ② 물류 거리 ③ 가공 인프라 성숙도. 서아프리카는 원물 자체는 싸지만 EU·아시아 항구까지 물류비를 더하면 실제 도착가는 다를 수 있음 - 따로 시뮬레이션 필요.</p>
 </div>`,
         actionPlan: `<div>
 <p><strong>재정의</strong>: 5개 항구 가격 격차는 단순 비교가 아닌 <strong>"global arbitrage map"</strong>. 어디서 사고 어디서 가공·판매하느냐의 routing 결정이 마진을 좌우.</p>

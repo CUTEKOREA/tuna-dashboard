@@ -97,7 +97,7 @@ function RowsTable({ rows, limit }: { rows: Row[]; limit?: number }) {
   );
 }
 
-const SRC = '신라교역 사내 조사보고서 — 15_수산물_가공공장';
+const SRC = '신라교역 사내 조사보고서 - 15_수산물_가공공장';
 
 export function ProcessorsTab() {
   const options = useMemo(
@@ -158,7 +158,7 @@ export function ProcessorsTab() {
           >
             <div className="pf-note">
               원본 보고서가 「불가」로 남긴 칸을 공개 출처로 다시 찾았다. <b>찾은 값은 원본을 덮지 않고
-              아래 줄에 따로 붙는다</b> — 조사자가 확인하지 못했다는 사실 자체가 기록이기 때문이다.
+              아래 줄에 따로 붙는다</b> - 조사자가 확인하지 못했다는 사실 자체가 기록이기 때문이다.
               공개 출처에도 없으면 「공개 출처 없음」으로 남기고 추정으로 메우지 않는다.
             </div>
           </Panel>
@@ -197,7 +197,7 @@ export function ProcessorsTab() {
           span={12}
           title={`${country} 가공사 비교표`}
           unit={`${sum.profiles}개사 · 소재·지배구조·캐파·품목·인증·재무`}
-          note={`칸마다 붙은 표시는 원본이 매긴 신뢰도다 — ${Object.entries(tags)
+          note={`칸마다 붙은 표시는 원본이 매긴 신뢰도다 - ${Object.entries(tags)
             .map(([k, v]) => `${k} ${v}`)
             .join(' · ')}. 「불가」는 자료를 못 구했다는 뜻이지 값이 0이라는 뜻이 아니다.`}
           src={src}

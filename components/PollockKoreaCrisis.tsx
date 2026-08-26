@@ -17,7 +17,7 @@ export default function PollockKoreaCrisis() {
 
   return (
     <WidgetCard
-      title="대한민국의 국민 생선 모순 — 식량 안보 붕괴와 극단적 편중"
+      title="대한민국의 국민 생선 모순 - 식량 안보 붕괴와 극단적 편중"
       icon={ShieldAlert}
       iconColor="#ef4444"
       pillar="S1"

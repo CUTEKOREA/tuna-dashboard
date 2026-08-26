@@ -53,7 +53,7 @@ const KPI_THEMES = [
 
 const CASSAVA_KPIS: Record<string, any> = {
   k1: { title: '글로벌 가공 시장 (2026)', value: '$107.3B', trend: '📈', desc: '34년 $1,657억 구조적 메가트렌드 진입' },
-  k2: { title: '한중 메콩 2국 의존도', value: '99.9%', trend: '⚠️', desc: '공급선 다변화 필수 — 단일 산지 집중 리스크' },
+  k2: { title: '한중 메콩 2국 의존도', value: '99.9%', trend: '⚠️', desc: '공급선 다변화 필수 - 단일 산지 집중 리스크' },
   k3: { title: '바이오플라스틱 프리미엄', value: '25x', trend: '🚀', desc: '칩($250) vs 완제품($6,400)' },
   k4: { title: '제약용 붕해제 영업이익률', value: '90%+', trend: '💊', desc: '파마슈티컬 B2B 밸류체인 내 구조적 초과 마진' },
   k5: { title: '가나 밀 수입 대체 시장', value: '$400M', trend: '📉', desc: 'HQCF 혼합 의무화 수혜 기대' },
@@ -123,7 +123,7 @@ export default function CassavaDashboard() {
         return (
           <div style={{ height:'100%', display:'flex', flexDirection:'column', alignItems:'center', justifyContent:'center', gap:'8px', color:'var(--w-slate-400)', textAlign:'center', padding:'0 1rem' }}>
             <EyeOff size={22} color="#64748b" />
-            <strong style={{ color:'var(--w-slate-300)', fontSize:'0.85rem' }}>위젯 보류 — 무역 흐름 실측 데이터 미연동</strong>
+            <strong style={{ color:'var(--w-slate-300)', fontSize:'0.85rem' }}>위젯 보류 - 무역 흐름 실측 데이터 미연동</strong>
             <span style={{ fontSize:'0.75rem' }}>UN Comtrade 실측 집계 연동 후 표시됩니다.</span>
           </div>
         );
@@ -340,7 +340,7 @@ export default function CassavaDashboard() {
       {/* ═══ 5-Pillar 밸류체인 네비게이터 ═══ */}
       <div style={{ background: 'linear-gradient(180deg, rgba(20, 28, 52, 0.5), rgba(20, 28, 52, 0.2))', border: '1px solid rgba(255,255,255,0.04)', borderRadius: '16px', padding: '6px', marginBottom: '2rem', boxShadow: '0 4px 30px rgba(0,0,0,0.3), inset 0 1px 0 rgba(140,170,255,0.10)' }}>
         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '6px', padding: '4px 0 8px', borderBottom: '1px solid rgba(140,170,255,0.10)', marginBottom: '6px' }}>
-          <span style={{ fontSize: '0.7rem', color: 'rgba(var(--w-slate-400-rgb), 0.7)', fontWeight: 600, letterSpacing: '0.08em', textTransform: 'uppercase' }}>밸류체인 네비게이터 — 아래 단계를 클릭하여 탐색하세요</span>
+          <span style={{ fontSize: '0.7rem', color: 'rgba(var(--w-slate-400-rgb), 0.7)', fontWeight: 600, letterSpacing: '0.08em', textTransform: 'uppercase' }}>밸류체인 네비게이터 - 아래 단계를 클릭하여 탐색하세요</span>
         </div>
         <div data-mobile-stack style={{ display: 'grid', gridTemplateColumns: 'repeat(5, 1fr)', gap: '4px' }}>
           {SECTIONS.map((s, idx) => {

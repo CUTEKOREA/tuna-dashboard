@@ -1,5 +1,5 @@
 {
-  "source": "FAO FishStat — Capture Production, ASFIS species codes OCT/OCC/OCM/OCN/OCZ (문어류 통합, Octopus nei + species-specific)",
+  "source": "FAO FishStat - Capture Production, ASFIS species codes OCT/OCC/OCM/OCN/OCZ (문어류 통합, Octopus nei + species-specific)",
   "filtered": "2010~2022, 누적 어획량 기준 상위 7개 생산국 (단위: 톤 live weight)",
   "extractedAt": "2026-05-27",
   "countries": {

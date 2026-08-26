@@ -113,7 +113,7 @@ export const TUNA_ANATOMY_CHART_SLOTS: Record<string, ChartSlot[]> = {
   s07: [
     {
       title: '냉동 참치 수출 상대국 2024·2025 (톤)',
-      caption: '태국이 절반 넘게 가져간다. 2025년에 총량이 줄면서 태국 비중은 63.7%로 올랐다. 대만은 두 해 모두 0톤이다 — FCF 매입분은 방콕 인도로 태국행이 된다.',
+      caption: '태국이 절반 넘게 가져간다. 2025년에 총량이 줄면서 태국 비중은 63.7%로 올랐다. 대만은 두 해 모두 0톤이다 - FCF 매입분은 방콕 인도로 태국행이 된다.',
       telemetry: KCS_SYNC,
       render: () => <TunaAnatomyPartnerChart data={DATA} />,
     },
@@ -142,7 +142,7 @@ export const TUNA_ANATOMY_CHART_SLOTS: Record<string, ChartSlot[]> = {
     },
     {
       title: '캔·조제품 세번 분해 2022~2025 (톤)',
-      caption: '1604.14를 10자리로 가르면 밀폐용기 캔보다 밀폐용기에 들지 않은 조제품(-9000)이 더 크다. 2024년 4,352톤 가운데 베트남산이 4,111톤 — 자숙 로인이다.',
+      caption: '1604.14를 10자리로 가르면 밀폐용기 캔보다 밀폐용기에 들지 않은 조제품(-9000)이 더 크다. 2024년 4,352톤 가운데 베트남산이 4,111톤 - 자숙 로인이다.',
       telemetry: { status: 'STATIC' as const, syncDate: '2025년 연간 (10자리 스냅샷)' },
       render: () => <TunaAnatomyCanSplitChart data={DATA} />,
     },
@@ -176,7 +176,7 @@ const SPEC: CommoditySpec = {
   key: 'tuna-anatomy',
   title: '참치 해부',
   subtitle:
-    '한국 참치 산업 해부 · 잡아서 남에게 파는 생선 — 원양 선단·환적·판매 상대·해외 가공·국내 캔·수입·값·제도 15단계',
+    '한국 참치 산업 해부 · 잡아서 남에게 파는 생선 - 원양 선단·환적·판매 상대·해외 가공·국내 캔·수입·값·제도 15단계',
   accent: TUNA_ANATOMY_ACCENT,
   primaryKpi: {
     label: '한국 참치 어획 (FAO 7종)',

@@ -52,7 +52,7 @@ export default function SasUsSupplierOrigin() {
       icon={Ship}
       iconColor="#38bdf8"
       pillar="S3"
-      cardDesc="UN Comtrade 2024 — 미국 비통조림 참치 수입의 공급국별 금액($M)·세그먼트 집중도"
+      cardDesc="UN Comtrade 2024 - 미국 비통조림 참치 수입의 공급국별 금액($M)·세그먼트 집중도"
       telemetry={{ status: 'STATIC', syncDate: '2024' }}
       takeaway={{
         situation: '2024년 미국 비통조림 참치 수입은 인도네시아($207M)·베트남($189M)이 주도하며, 냉동 필렛($487M 라인)에서 이 두 나라가 72%를 점유합니다. 신선 프리미엄(참다랑어)은 멕시코·스페인(지중해 축양)이 92%를 독점하는 별도 구조입니다. 한국은 상위 공급국에 없습니다.',

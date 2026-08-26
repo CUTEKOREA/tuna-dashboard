@@ -48,7 +48,7 @@ export function ClaimsTab() {
           span={6}
           title="클레임 제기액 vs 확정액"
           unit="천 달러"
-          note={`주간보고 발표 건수 누계 ${num(saltPublished)}건은 주간 누적 중복 포함이라 원장 ${num(bangkokSalt.rows)}건과 다르다 — 건수·금액은 원장 기준으로 읽는다.`}
+          note={`주간보고 발표 건수 누계 ${num(saltPublished)}건은 주간 누적 중복 포함이라 원장 ${num(bangkokSalt.rows)}건과 다르다 - 건수·금액은 원장 기준으로 읽는다.`}
           src={`${SRC_BASE} · ${SRC_SALT}`}
         >
           <Chart
@@ -143,7 +143,7 @@ export function ClaimsTab() {
         <Panel
           span={12}
           title="정산 상태 요약"
-          note={`원장 ${num(bangkokSalt.rows)}건 전량 분류 — 상태 합계 ${num(settleTotal)}건.`}
+          note={`원장 ${num(bangkokSalt.rows)}건 전량 분류 - 상태 합계 ${num(settleTotal)}건.`}
           src={SRC_SALT}
         >
           <Table head={['정산 상태', '건수 (건)', '비중 (%)']}>

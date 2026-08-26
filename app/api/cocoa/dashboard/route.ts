@@ -10,7 +10,7 @@ export async function GET() {
     isLive: false,
     status: 'STATIC',
     source:
-      '위젯별 정적 스냅샷 — USDA GAIN(코트디부아르·가나·콜롬비아 2025)·Cocoa Barometer·ICCO 실측 앵커 + 시나리오 추정. 실시간 피드 미연동.',
+      '위젯별 정적 스냅샷 - USDA GAIN(코트디부아르·가나·콜롬비아 2025)·Cocoa Barometer·ICCO 실측 앵커 + 시나리오 추정. 실시간 피드 미연동.',
     syncDate: '2026-05-31',
     data: getCocoaDashboardData(),
   });

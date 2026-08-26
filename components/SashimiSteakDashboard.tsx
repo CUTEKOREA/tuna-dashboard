@@ -156,7 +156,7 @@ export default function SashimiSteakDashboard() {
                 사시미/스테이크 시장 분석
               </h1>
               <p style={{ margin: 0, fontSize: '0.88rem', color: 'var(--text-secondary)' }}>
-                한국·미국·EU·영국·태국·일본·중동·중국 — 9개 섹션 · 68개 위젯
+                한국·미국·EU·영국·태국·일본·중동·중국 - 9개 섹션 · 68개 위젯
               </p>
             </div>
           </div>
@@ -188,7 +188,7 @@ export default function SashimiSteakDashboard() {
           padding: '4px 0 8px', borderBottom: '1px solid rgba(140,170,255,0.10)', marginBottom: '6px',
         }}>
           <span style={{ fontSize: '0.7rem', color: 'rgba(var(--w-slate-400-rgb), 0.7)', fontWeight: 600, letterSpacing: '0.08em', textTransform: 'uppercase' }}>
-            사시미/스테이크 전략 네비게이터 — 9개 섹션을 클릭하여 탐색하세요
+            사시미/스테이크 전략 네비게이터 - 9개 섹션을 클릭하여 탐색하세요
           </span>
         </div>
         <div data-mobile-stack style={{ display: 'grid', gridTemplateColumns: 'repeat(9, 1fr)', gap: '4px' }}>
@@ -258,7 +258,7 @@ export default function SashimiSteakDashboard() {
         {/* ═══ 🇰🇷 한국 시장 ═══ */}
         {activeSection === 'korea' && (
           <section>
-            <SectionHeader color="#f59e0b" emoji="🇰🇷" title="한국 시장 — 원양 강국의 사시미 생태계" desc="세계 6위 생산국, 일본 의존 80%, 7대 기업, 외식 양극화, 지중해 BFT 수입" />
+            <SectionHeader color="#f59e0b" emoji="🇰🇷" title="한국 시장 - 원양 강국의 사시미 생태계" desc="세계 6위 생산국, 일본 의존 80%, 7대 기업, 외식 양극화, 지중해 BFT 수입" />
             <div data-mobile-stack style={GRID_2}>
               <ErrorBoundary fallbackTitle="SasKoreaProductionStructure"><SasKoreaProductionStructure /></ErrorBoundary>
               <ErrorBoundary fallbackTitle="SasKoreaJapanDependency"><SasKoreaJapanDependency /></ErrorBoundary>
@@ -308,7 +308,7 @@ export default function SashimiSteakDashboard() {
         {/* ═══ 미국 시장 ═══ */}
         {activeSection === 'us' && (
           <section>
-            <SectionHeader color="#10b981" emoji="🇺🇸" title="미국 시장 딥다이브" desc="세계 1위 소비 시장 — 양극화·포케 + 규제 3중관문·2025 관세·유통 마진·경쟁 지도·수요 드라이버" />
+            <SectionHeader color="#10b981" emoji="🇺🇸" title="미국 시장 딥다이브" desc="세계 1위 소비 시장 - 양극화·포케 + 규제 3중관문·2025 관세·유통 마진·경쟁 지도·수요 드라이버" />
             <div data-mobile-stack style={GRID_2}>
               <ErrorBoundary fallbackTitle="SasSupplyChainSplit"><SasSupplyChainSplit /></ErrorBoundary>
               <ErrorBoundary fallbackTitle="SasCoTreatmentImpact"><SasCoTreatmentImpact /></ErrorBoundary>
@@ -335,7 +335,7 @@ export default function SashimiSteakDashboard() {
         {/* ═══ 🇬🇧🇹🇭 영국/태국 ═══ */}
         {activeSection === 'ukth' && (
           <section>
-            <SectionHeader color="#22d3ee" emoji="🇬🇧🇹🇭" title="영국 & 태국 — FTA 우위 + 세계 최대 가공 허브" desc="영국 수입 공급국·채널 + 태국 원료조달·ESG + 한국 두 경로(원물 vs 직수출)" />
+            <SectionHeader color="#22d3ee" emoji="🇬🇧🇹🇭" title="영국 & 태국 - FTA 우위 + 세계 최대 가공 허브" desc="영국 수입 공급국·채널 + 태국 원료조달·ESG + 한국 두 경로(원물 vs 직수출)" />
             <div data-mobile-stack style={GRID_2}>
               <ErrorBoundary fallbackTitle="SasUkMarket"><SasUkMarket /></ErrorBoundary>
               <ErrorBoundary fallbackTitle="SasThailandHub"><SasThailandHub /></ErrorBoundary>
@@ -357,7 +357,7 @@ export default function SashimiSteakDashboard() {
         {/* ═══ 유럽 시장 ═══ */}
         {activeSection === 'eu' && (
           <section>
-            <SectionHeader color="#a78bfa" emoji="🇪🇺" title="유럽 시장 — 참다랑어 생산 허브 + 규제·관세·가공·자원" desc="지중해 블루핀 축양 + CATCH 규제·관세 우회로·스페인 가공·MSC·IOTC 원양선단·완전양식" />
+            <SectionHeader color="#a78bfa" emoji="🇪🇺" title="유럽 시장 - 참다랑어 생산 허브 + 규제·관세·가공·자원" desc="지중해 블루핀 축양 + CATCH 규제·관세 우회로·스페인 가공·MSC·IOTC 원양선단·완전양식" />
             <div data-mobile-stack style={GRID_2}>
               <ErrorBoundary fallbackTitle="SasBluefinRanchingEconomics"><SasBluefinRanchingEconomics /></ErrorBoundary>
               <ErrorBoundary fallbackTitle="SasEuQuotaProduction"><SasEuQuotaProduction /></ErrorBoundary>
@@ -391,7 +391,7 @@ export default function SashimiSteakDashboard() {
         {/* ═══ 🇯🇵 일본 시장 ═══ */}
         {activeSection === 'japan' && (
           <section>
-            <SectionHeader color="#ef4444" emoji="🇯🇵" title="일본 시장 — 도요스 경매 & 구조적 수요 감소" desc="세계 최대 사시미 시장의 경매 구조, 장기 수요 감소, 쿼터 압박" />
+            <SectionHeader color="#ef4444" emoji="🇯🇵" title="일본 시장 - 도요스 경매 & 구조적 수요 감소" desc="세계 최대 사시미 시장의 경매 구조, 장기 수요 감소, 쿼터 압박" />
             <div data-mobile-stack style={GRID_2}>
               <ErrorBoundary fallbackTitle="SasToyosuAuction"><SasToyosuAuction /></ErrorBoundary>
               <ErrorBoundary fallbackTitle="SasJapanDemandDecline"><SasJapanDemandDecline /></ErrorBoundary>
@@ -432,7 +432,7 @@ export default function SashimiSteakDashboard() {
         {/* ═══ 수출 전략 ═══ */}
         {activeSection === 'export' && (
           <section>
-            <SectionHeader color="#f472b6" emoji="🎯" title="수출 파트너 전략 & 진입요건" desc="미국·영국·일본 — 실명 파트너 57개사 + 시장별 진입 체크리스트" />
+            <SectionHeader color="#f472b6" emoji="🎯" title="수출 파트너 전략 & 진입요건" desc="미국·영국·일본 - 실명 파트너 57개사 + 시장별 진입 체크리스트" />
             <div data-mobile-stack style={GRID_2}>
               <ErrorBoundary fallbackTitle="SasExportPartnerStrategy"><SasExportPartnerStrategy /></ErrorBoundary>
               <ErrorBoundary fallbackTitle="SasExportChecklist"><SasExportChecklist /></ErrorBoundary>

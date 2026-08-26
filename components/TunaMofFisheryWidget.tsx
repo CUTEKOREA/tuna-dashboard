@@ -48,7 +48,7 @@ export function MofFishMarketWidget() {
       icon={Building2}
       iconColor="#0ea5e9"
       pillar="S3"
-      cardDesc="해양수산부 수산정보포털(FIS) 위판장 통계 양식 기반 업계 추정치(자체 구성, API 미연동) — 국내 5대 위판장 냉동 눈다랑어 거래량·평균 단가 비교"
+      cardDesc="해양수산부 수산정보포털(FIS) 위판장 통계 양식 기반 업계 추정치(자체 구성, API 미연동) - 국내 5대 위판장 냉동 눈다랑어 거래량·평균 단가 비교"
       unit="(단위: MT / ₩/kg)"
       telemetry={{ status: 'STATIC', syncDate: '2026 업계 추정' }}
       chartHeight={280}
@@ -68,7 +68,7 @@ export function MofFishMarketWidget() {
       takeaway={{
         situation: `<div>
 <p><strong>눈다랑어(Bigeye)</strong>는 참치 중 사시미·횟감용 최고급 어종으로, 한국 내수에서 kg당 가격이 가다랑어의 5~8배. 한국에서 거래되는 모든 냉동 눈다랑어는 위탁판매(consignment) 방식으로 5개 주요 위판장에서 거래됩니다.</p>
-<p>2026년 기준 추정 분포(자체추정 — FIS API 미연동, 업계추정치 적용):</p>
+<p>2026년 기준 추정 분포(자체추정 - FIS API 미연동, 업계추정치 적용):</p>
 <ul style="margin: 4px 0 0 18px; padding: 0;">
 <li><strong>부산공동어시장</strong>: 12,450 MT (43% 집중, 평균가 ₩8,200/kg)</li>
 <li><strong>제주 한림</strong>: 3,200 MT (11%, 평균가 <strong>₩9,100/kg 전국 최고가</strong>)</li>
@@ -83,7 +83,7 @@ export function MofFishMarketWidget() {
 <ol style="margin: 4px 0 0 18px; padding: 0;">
 <li style="margin-bottom: 8px;"><strong>부산 범용 물량 B2B 가공용 고정 단가 계약</strong>: 동원·사조 가공 라인과 3~5년 fixed price supply, 가격 변동 완전 헷지.</li>
 <li style="margin-bottom: 8px;"><strong>제주 한림 프리미엄 눈다랑어 100% 직거래 전환</strong>: 일본 도쿄 토요스 + 한국 오마카세(미쉐린 가야·정식당·강민철레스토랑) 직거래 채널. 중간 마진 200~400bp 회수.</li>
-<li><strong>"Landing port arbitrage logistics"</strong>: 어선 양륙 결정을 실시간 가격 시그널 기반 dynamic routing — 제주 한림 capacity 여유 + 가격 premium 시 자동 한림 양륙. AI logistics platform 자체 개발 — 5년 후 사조·동원 SaaS 라이센싱.</li>
+<li><strong>"Landing port arbitrage logistics"</strong>: 어선 양륙 결정을 실시간 가격 시그널 기반 dynamic routing - 제주 한림 capacity 여유 + 가격 premium 시 자동 한림 양륙. AI logistics platform 자체 개발 - 5년 후 사조·동원 SaaS 라이센싱.</li>
 </ol>
 </div>`,
         source: '해양수산부 수산정보포털(FIS) 위판장 통계 양식 기반 업계 추정치 (2026, 자체 구성)',
@@ -124,7 +124,7 @@ export function MofTradeBalanceWidget() {
 <p>월별 패턴:</p>
 <ul style="margin: 4px 0 0 18px; padding: 0;">
 <li><strong>12월 수입 $210M으로 연중 최대</strong> (연말 가공·소비 재고 확보)</li>
-<li>수출은 월 <strong>$42~55M 수준</strong>으로 횡보 — 가공품·원어 직수출 모두 미약</li>
+<li>수출은 월 <strong>$42~55M 수준</strong>으로 횡보 - 가공품·원어 직수출 모두 미약</li>
 <li>적자 폭은 -$147M으로 연 약 -$1.8B (약 -2.4조원) 무역적자 누적</li>
 </ul>
 <p>왜 이런 구조? ① 한국 어획 capacity가 국내 소비량 충당 불가 (자급률 약 25%) ② 수출 측은 단순 원어 직수출에 머물며 가공·브랜드 부가가치 부재 ③ 통조림 수출은 글로벌 경쟁(태국·에콰도르)에서 가격 열위.</p>
@@ -136,7 +136,7 @@ export function MofTradeBalanceWidget() {
 <ol style="margin: 4px 0 0 18px; padding: 0;">
 <li style="margin-bottom: 8px;"><strong>가공 참치캔 자체 브랜드(프리미엄 라인) 수출</strong>: 단순 OEM이 아닌 <strong>"K-Tuna Premium"</strong> brand로 미국 Whole Foods·일본 이세탄·중동 Carrefour 동시 launch. 톤당 부가가치 +$800.</li>
 <li style="margin-bottom: 8px;"><strong>중동·아프리카 신시장 수출 확대</strong>: 두바이·리야드·라고스 신흥시장에 connected logistics network 구축. 수출액 현재 $50M → <strong>$80M 목표</strong> (3년 +60%).</li>
-<li><strong>원양산 원어 직수출 비중 확대</strong>: 한국 원양 선단의 어획물을 일본·중동 high-grade 시장에 직수출 — 기존 부산 어시장 거래 우회. 5년 내 수출액 $150M+ 도달, 무역수지 -$147M → -$50M 개선 잠재력.</li>
+<li><strong>원양산 원어 직수출 비중 확대</strong>: 한국 원양 선단의 어획물을 일본·중동 high-grade 시장에 직수출 - 기존 부산 어시장 거래 우회. 5년 내 수출액 $150M+ 도달, 무역수지 -$147M → -$50M 개선 잠재력.</li>
 </ol>
 </div>`,
         source: '관세청 수출입 무역통계 · 해양수산부',
@@ -154,7 +154,7 @@ export function MofShippingCostWidget() {
       icon={Ship}
       iconColor="#8b5cf6"
       pillar="S3"
-      cardDesc="KMI 해운지수·해운조합 컨테이너 운임 참고 자체 추정치(2026 초, API 미연동) — 주요 수출입 노선(부산→방콕·LA·로테르담 등) 20ft/40ft 운임 비교"
+      cardDesc="KMI 해운지수·해운조합 컨테이너 운임 참고 자체 추정치(2026 초, API 미연동) - 주요 수출입 노선(부산→방콕·LA·로테르담 등) 20ft/40ft 운임 비교"
       unit="(단위: USD/컨테이너)"
       telemetry={{ status: 'STATIC', syncDate: '2026 초 추정' }}
       customBody={
@@ -174,15 +174,15 @@ export function MofShippingCostWidget() {
 <p>해상운임은 글로벌 수산 무역 cost의 8~15%를 차지하는 핵심 변수. 노선별 추이를 보면 향후 6~12개월 우리 채널 전략이 결정됩니다.</p>
 <p>2026년 초 기준 노선별 운임 (20ft 컨테이너, 자체 추정):</p>
 <ul style="margin: 4px 0 0 18px; padding: 0;">
-<li><strong>부산→LA</strong>: <strong>$2,200 (+15% YoY)</strong> — 홍해 분쟁 여파로 지속 상승</li>
-<li><strong>부산→오사카</strong>: $620 (+1%) — 아시아 노선 상대적 안정</li>
-<li><strong>부산→로테르담</strong>: <strong>$1,900 (-3%)</strong> — 소폭 하락 추세</li>
+<li><strong>부산→LA</strong>: <strong>$2,200 (+15% YoY)</strong> - 홍해 분쟁 여파로 지속 상승</li>
+<li><strong>부산→오사카</strong>: $620 (+1%) - 아시아 노선 상대적 안정</li>
+<li><strong>부산→로테르담</strong>: <strong>$1,900 (-3%)</strong> - 소폭 하락 추세</li>
 </ul>
 <p>패턴 해석:</p>
 <ul style="margin: 4px 0 0 18px; padding: 0;">
-<li>북미 노선(LA·NY): 홍해·수에즈 우회로 운임 상승 — 미국 수출 가격 경쟁력 약화</li>
-<li>아시아 노선(오사카·홍콩): 단거리 안정 — 일본·동남아 채널이 sweet spot</li>
-<li>EU 노선(로테르담·함부르크): 운임 하락 추세 — EU 수출 확대 윈도우 열림</li>
+<li>북미 노선(LA·NY): 홍해·수에즈 우회로 운임 상승 - 미국 수출 가격 경쟁력 약화</li>
+<li>아시아 노선(오사카·홍콩): 단거리 안정 - 일본·동남아 채널이 sweet spot</li>
+<li>EU 노선(로테르담·함부르크): 운임 하락 추세 - EU 수출 확대 윈도우 열림</li>
 </ul>
 <p>의미: 단기 채널 우선순위가 미국 → EU + 일본 + 동남아로 자동 재배치 필요. 운임 시그널이 곧 마진 시그널.</p>
 </div>`,

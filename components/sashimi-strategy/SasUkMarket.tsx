@@ -33,7 +33,7 @@ export default function SasUkMarket() {
   return (
     <WidgetCard
       id="W-SAS26"
-      title="🇬🇧 영국 — MSC 주도 참치 시장 & FTA 우위"
+      title="🇬🇧 영국 - MSC 주도 참치 시장 & FTA 우위"
       icon={ShoppingBag}
       iconColor="#38bdf8"
       pillar="S1"

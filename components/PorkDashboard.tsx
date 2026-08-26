@@ -14,17 +14,17 @@ const KPIS = [
   { title: '한국 1인당 소비량', value: '41.4kg', trend: '📈', desc: '10년간 +34% 폭증', telemetry: 'synced', syncDate: 'FBS 22Y' },
   { title: '한국 총 수입량 (2024)', value: '594천톤', trend: '🚢', desc: '$22.1억 · 미국+스페인 양강', telemetry: 'synced', syncDate: 'Comtrade 24Y' },
   { title: 'ASF 최대 충격폭', value: '-20.9%', trend: '⚠️', desc: '2019 중국 생산량 급감', telemetry: 'synced', syncDate: 'QCL' },
-  { title: '돈육 탄소 배출', value: '12.3kg', trend: '🌱', desc: 'CO2e/kg — 수산물 대비 6배', telemetry: 'synced', syncDate: 'FAO' },
+  { title: '돈육 탄소 배출', value: '12.3kg', trend: '🌱', desc: 'CO2e/kg - 수산물 대비 6배', telemetry: 'synced', syncDate: 'FAO' },
   { title: '한국 돈육 자급률', value: '66%', trend: '🎯', desc: '34% 구조적 수입 의존', telemetry: 'synced', syncDate: 'PSD' },
 ] as const;
 
 // 5-Pillar 네비게이터 메타 (돼지 시그니처 — pink/rose 톤)
 const PILLARS = [
-  { id: 'P1', num: '❶', label: '원료 수급', title: '🐷 Pillar I — 원료 수급', desc: '글로벌 생산량 모니터링 및 ASF 질병 헤징 전략', color: '#f43f5e', widgets: ['W1', 'W5', 'W6', 'W9'] },
-  { id: 'P2', num: '❷', label: '가공·생산', title: '🏭 Pillar II — 가공 및 생산', desc: '사료가 연동 마진 관리 및 단백질 포트폴리오 최적화', color: '#ec4899', widgets: ['W2', 'W10'] },
-  { id: 'P3', num: '❸', label: '물류·통관', title: '🚢 Pillar III — 물류 및 통관', desc: '대륙간 무역 단가 스프레드 및 수입 파트너 다변화', color: '#8b5cf6', widgets: ['W3', 'W8'] },
-  { id: 'P4', num: '❹', label: '판매·수요', title: '📈 Pillar IV — 판매 및 수요', desc: '한국 수급 구조 분석 및 자급률 갭 공략', color: '#f97316', widgets: ['W7', 'W11'] },
-  { id: 'P5', num: '❺', label: 'ESG·지속가능성', title: '🌱 Pillar V — ESG 및 지속가능성', desc: '탄소 배출 비교 및 그린 프리미엄 전략', color: '#10b981', widgets: ['W4'] },
+  { id: 'P1', num: '❶', label: '원료 수급', title: '🐷 Pillar I - 원료 수급', desc: '글로벌 생산량 모니터링 및 ASF 질병 헤징 전략', color: '#f43f5e', widgets: ['W1', 'W5', 'W6', 'W9'] },
+  { id: 'P2', num: '❷', label: '가공·생산', title: '🏭 Pillar II - 가공 및 생산', desc: '사료가 연동 마진 관리 및 단백질 포트폴리오 최적화', color: '#ec4899', widgets: ['W2', 'W10'] },
+  { id: 'P3', num: '❸', label: '물류·통관', title: '🚢 Pillar III - 물류 및 통관', desc: '대륙간 무역 단가 스프레드 및 수입 파트너 다변화', color: '#8b5cf6', widgets: ['W3', 'W8'] },
+  { id: 'P4', num: '❹', label: '판매·수요', title: '📈 Pillar IV - 판매 및 수요', desc: '한국 수급 구조 분석 및 자급률 갭 공략', color: '#f97316', widgets: ['W7', 'W11'] },
+  { id: 'P5', num: '❺', label: 'ESG·지속가능성', title: '🌱 Pillar V - ESG 및 지속가능성', desc: '탄소 배출 비교 및 그린 프리미엄 전략', color: '#10b981', widgets: ['W4'] },
 ] as const;
 
 type PorkPillarId = (typeof PILLARS)[number]['id'];

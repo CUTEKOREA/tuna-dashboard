@@ -47,7 +47,7 @@ type ApiData = {
 const MAX_TIMELINE = 8;
 
 const fmtShares = (n: number | null): string => {
-  if (n === null) return '—';
+  if (n === null) return '-';
   const sign = n > 0 ? '+' : '';
   return `${sign}${n.toLocaleString()}`;
 };
@@ -328,7 +328,7 @@ const TunaInsiderSignalWidget = () => {
         description:
           '금융감독원 전자공시시스템(Data Analysis, Retrieval and Transfer System). 임원·주요주주 소유보고와 5% 대량보유 보고가 게시되는 법정 공시 채널.',
       }}
-      cardDesc="금융감독원 전자공시(DART) 임원·주요주주 소유보고 + 5% 대량보유 보고 — 참치 4사 최근 180일 실시간 집계"
+      cardDesc="금융감독원 전자공시(DART) 임원·주요주주 소유보고 + 5% 대량보유 보고 - 참치 4사 최근 180일 실시간 집계"
       unit="(단위: 주)"
       telemetry={{ status: isLive ? 'LIVE' : 'STATIC', syncDate }}
       chartHeight={showChart ? 130 : 0}

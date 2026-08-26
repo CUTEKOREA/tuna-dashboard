@@ -33,7 +33,7 @@ export default function SasSashimiPriceLadder() {
       description="미국 도매 수입 단가 기준 3단계 계층 구조"
       pillar="S5"
       telemetry={{ status: 'STATIC', syncDate: '2025-26' }}
-      cardDesc="US Census 2024 도매 수입단가 — 냉동 사쿠 $11·생물 황다랑어 $13·참다랑어 $26+/kg 3단 계층"
+      cardDesc="US Census 2024 도매 수입단가 - 냉동 사쿠 $11·생물 황다랑어 $13·참다랑어 $26+/kg 3단 계층"
       takeaway={{ 
         situation: "냉동 Saku(포케용)가 1단($11/kg), 생물 Yellowfin이 2단($13/kg), 프리미엄 생물 Bluefin이 3단($26/kg+)을 형성하는 완벽한 계단식 가격 구조를 보입니다.", 
         actionPlan: "Yellowfin(황다랑어)의 경우 품질 관리를 통해 냉동 Saku 가격대를 벗어나 생물 등급의 2단 사다리로 진입하는 것이 수익성 개선의 핵심입니다.", 

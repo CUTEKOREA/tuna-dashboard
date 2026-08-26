@@ -48,7 +48,7 @@ export function Panel({
       )}
       {children}
       {note && <div className="pf-note">{typeof note === 'string' ? inlineStars(note) : note}</div>}
-      {src && <div className="pf-src">출처 — {src}</div>}
+      {src && <div className="pf-src">출처 - {src}</div>}
     </section>
   );
 }

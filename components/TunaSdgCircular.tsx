@@ -59,7 +59,7 @@ export default function TunaSdgCircular({ sdgData }: SdgCircularProps) {
       pillar="S5"
       cardDesc="참치액젓 부산물 자원화 → UN SDG 12.3·14.4·2.4·8.4 기여도 정량화. ESG 보고서·바이어 브랜딩 소재"
       telemetry={{ status: 'STATIC', syncDate: 'FAO SOFIA 2022' }}
-      termTooltip={{ term: 'SDG 12.3', description: 'UN 지속가능발전목표 12.3 — 2030년까지 소매·소비자 식량 폐기물을 절반으로 줄이고 생산·공급망 식량 손실을 감소. 참치 부산물 100% 자원화는 이 목표의 핵심 실행 수단.' }}
+      termTooltip={{ term: 'SDG 12.3', description: 'UN 지속가능발전목표 12.3 - 2030년까지 소매·소비자 식량 폐기물을 절반으로 줄이고 생산·공급망 식량 손실을 감소. 참치 부산물 100% 자원화는 이 목표의 핵심 실행 수단.' }}
       kpiPanel={[
         { label: '글로벌 수산물 손실·폐기', value: `${d.global_waste_pct}%`, trendColor: '#ef4444' },
         { label: '참치 부산물 비율', value: `${d.tuna_byproduct_pct}%`, trendColor: '#f59e0b' },
@@ -80,9 +80,9 @@ export default function TunaSdgCircular({ sdgData }: SdgCircularProps) {
       takeaway={{
         situation: `<div>
 <p>"순환경제(Circular Economy)"란 자원을 한 번 쓰고 버리지 않고 재활용·재가공해 다시 가치 창출하는 경제 모델. SDG 12.3(식품 폐기 절반 감축)의 핵심 instrument.</p>
-<p>FAO 데이터: 전 세계 수산물의 <strong>30~35%가 보존 인프라 부족·폐기로 손실</strong>. 참치 원물 <strong>약 50%가 부산물</strong>(내장 12~18%·뼈 9~15%·머리 9~12%·자숙액)로 버려짐. 그러나 글로벌 어분 27%·어유 48%는 이미 부산물 기반 — 즉 어분·어유 시장은 사실상 부산물 시장.</p>
+<p>FAO 데이터: 전 세계 수산물의 <strong>30~35%가 보존 인프라 부족·폐기로 손실</strong>. 참치 원물 <strong>약 50%가 부산물</strong>(내장 12~18%·뼈 9~15%·머리 9~12%·자숙액)로 버려짐. 그러나 글로벌 어분 27%·어유 48%는 이미 부산물 기반 - 즉 어분·어유 시장은 사실상 부산물 시장.</p>
 <p>고부가가치 전환 잠재력(업계추정·illustrative): 액젓($4~6K/톤) · 펩타이드($80~120/kg) · 콜라겐($15~25/kg). 폐기물 대비 고부가 원료 전환 시 수십 배 이상 밸류업 가능(자체추정).</p>
-<p>EU CFP(Common Fisheries Policy) 하역 의무화 발효 중 — 부산물 자원화가 단순 비즈니스 기회가 아닌 <strong>규제적 의무</strong>로 전환되는 시점.</p>
+<p>EU CFP(Common Fisheries Policy) 하역 의무화 발효 중 - 부산물 자원화가 단순 비즈니스 기회가 아닌 <strong>규제적 의무</strong>로 전환되는 시점.</p>
 </div>`,
         actionPlan: `<div>
 <p><strong>재정의</strong>: 순환경제는 단순 ESG 보고서가 아닌 <strong>"규제 강화 시점에 first-mover 우위를 self-create하는 instrument"</strong>. SDG 12.3 기여도가 ASP 프리미엄으로 직접 회수.</p>

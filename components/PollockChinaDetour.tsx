@@ -21,7 +21,7 @@ export default function PollockChinaDetour() {
       icon={Target}
       iconColor="#f59e0b"
       pillar="S3"
-      cardDesc="러시아 → 중국 명태 원물(H&G) 수입량 vs 중국 → 서방 명태 필레 수출량의 연도별 추적 — 우회 가공 경로 가시화"
+      cardDesc="러시아 → 중국 명태 원물(H&G) 수입량 vs 중국 → 서방 명태 필레 수출량의 연도별 추적 - 우회 가공 경로 가시화"
       telemetry={{ status: 'STATIC', syncDate: '2024-12' }}
       chartHeight={260}
       chart={

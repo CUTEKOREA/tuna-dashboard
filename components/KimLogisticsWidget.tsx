@@ -47,7 +47,7 @@ export default function KimLogisticsWidget() {
         icon={Ship}
         iconColor="#4d7c0f"
         pillar="S3"
-        cardDesc={`마른김(HS 1212.21) 월별 수출 통관 물량(톤)·금액(천 USD) — ${data.hsCode || ''}`}
+        cardDesc={`마른김(HS 1212.21) 월별 수출 통관 물량(톤)·금액(천 USD) - ${data.hsCode || ''}`}
         telemetry={{ status: isLive ? 'LIVE' : 'STATIC', syncDate: isLive ? '실시간' : 'KATI 2024' }}
         chart={
           <ComposedChart data={monthly} margin={{ top: 10, right: 10, left: -8, bottom: 0 }}>
@@ -72,7 +72,7 @@ export default function KimLogisticsWidget() {
         icon={Ship}
         iconColor="#4d7c0f"
         pillar="S3"
-        cardDesc="마른김(원초 김) 수출 통관 물량 기준 주요 대상국 비중(%) — 중국·일본 등 아시아 가공국 중심"
+        cardDesc="마른김(원초 김) 수출 통관 물량 기준 주요 대상국 비중(%) - 중국·일본 등 아시아 가공국 중심"
         telemetry={{ status: destIsLive ? 'LIVE' : 'STATIC', syncDate: destIsLive ? '실시간' : '관세청 2026-06' }}
         chart={
           <BarChart data={dest} layout="vertical" margin={{ top: 10, right: 24, left: 14, bottom: 0 }}>
@@ -87,7 +87,7 @@ export default function KimLogisticsWidget() {
         }
         takeaway={{
           situation: `<div><p>마른김(원초 김) 수출 대상국은 ${dest[0] ? `${dest[0].name}(${dest[0].value}%)` : ''}·${dest[1] ? `${dest[1].name}(${dest[1].value}%)` : ''}${dest[2] ? `·${dest[2].name}(${dest[2].value}%)` : ''} 등 <strong>아시아 가공·소비국이 상위권</strong>. 원초(가공 전 김)는 현지 가공·재유통 채널로 흐르는 특성이라, 미국 등 소비시장 직판 비중이 낮은 조미김과 채널이 갈린다. (단가는 약 $25~33/kg)</p></div>`,
-          actionPlan: `<div><p><strong>재정의</strong>: 원초 수출은 "현지 가공업체에 원물 공급"하는 B2B 구조 — 단가 협상력이 낮은 구간.</p><p><strong>3단계</strong>: ① 상위국(${dest[0]?.name || '중국'}·${dest[1]?.name || '러시아'}) 편중 리스크 분산 ② 원초 직수출 대신 국내 조미김 가공 전환으로 부가가치 내재화 ③ 원물 약세기 선매입으로 가공 원가 헤지.</p></div>`,
+          actionPlan: `<div><p><strong>재정의</strong>: 원초 수출은 "현지 가공업체에 원물 공급"하는 B2B 구조 - 단가 협상력이 낮은 구간.</p><p><strong>3단계</strong>: ① 상위국(${dest[0]?.name || '중국'}·${dest[1]?.name || '러시아'}) 편중 리스크 분산 ② 원초 직수출 대신 국내 조미김 가공 전환으로 부가가치 내재화 ③ 원물 약세기 선매입으로 가공 원가 헤지.</p></div>`,
           source: destIsLive ? '관세청 KCS OpenAPI 수출통관 (실시간, HS 1212.21.1x)' : '관세청 2026-06 실수집 (대상국 비중 fallback)',
         }}
       />

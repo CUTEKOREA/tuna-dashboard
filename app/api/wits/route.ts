@@ -313,7 +313,7 @@ export async function GET() {
     service: 'WITS API Pipeline',
     version: '1.0.0',
     status: 'operational',
-    description: 'World Bank WITS — Tariff & Trade Flow Data Integration',
+    description: 'World Bank WITS - Tariff & Trade Flow Data Integration',
     architecture: 'Live API First, Local JSON Fallback',
     availableIndicators: Object.entries(INDICATORS).map(([k, v]) => ({ name: k, code: v })),
     availableCommodities: Object.entries(WITS_COMMODITY_HS_MAP).map(([name, data]) => ({
@@ -326,9 +326,9 @@ export async function GET() {
       POST: {
         path: '/api/wits',
         body: {
-          commodity: 'string — 품목명 (참치, 갈치, 새우 등) 또는 HS6 코드',
-          reporter: 'string — 보고국 (한국, 미국, 일본 등)',
-          years: 'string[] — 조회 연도 (default: [2020-2024])',
+          commodity: 'string - 품목명 (참치, 갈치, 새우 등) 또는 HS6 코드',
+          reporter: 'string - 보고국 (한국, 미국, 일본 등)',
+          years: 'string[] - 조회 연도 (default: [2020-2024])',
         },
         response: 'tariff + tradeFlow + metadata',
       },

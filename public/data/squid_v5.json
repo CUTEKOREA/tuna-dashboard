@@ -593,7 +593,7 @@
    "landing_url": "https://impfood.mfds.go.kr/CFCCC01F01",
    "archive_subdir": "8_한국_오징어_산업_해부/02_출처원본",
    "latest_verified": "2026-07",
-   "note": "2025-08~2026-07 신고명의 608(정규화 603). 건수만 있고 물량·금액은 없다 — 물량은 관세청 과세정보로 봉인(관세법 제116조)"
+   "note": "2025-08~2026-07 신고명의 608(정규화 603). 건수만 있고 물량·금액은 없다 - 물량은 관세청 과세정보로 봉인(관세법 제116조)"
   },
   {
    "source_id": "SQ-FIN-DART",
@@ -617,7 +617,7 @@
    "landing_url": "https://unipass.customs.go.kr/clip/index.do",
    "archive_subdir": "8_한국_오징어_산업_해부/02_출처원본",
    "latest_verified": "2026",
-   "note": "냉동오징어 22% 는 관세법 §69 조정관세. 기본세율 20%(2090)·10%(2010). 협정세율은 선택 적용 — 페루·칠레 0%"
+   "note": "냉동오징어 22% 는 관세법 §69 조정관세. 기본세율 20%(2090)·10%(2010). 협정세율은 선택 적용 - 페루·칠레 0%"
   },
   {
    "source_id": "SQ-REG-MOF-TRACE",
@@ -1017,7 +1017,7 @@
   },
   "A_peru_pota_timeline": {
    "section": "A",
-   "title": "페루 pota — LMCTP·누적하역·중단공지 타임라인",
+   "title": "페루 pota - LMCTP·누적하역·중단공지 타임라인",
    "chartType": "timeline",
    "data": [
     {
@@ -1074,7 +1074,7 @@
      "source_path": "00_오징어_관련자료/01_오징어_시장·가격/02_쿼터·어장/20260817-PRODUCE-RM00269_2026_IMARPE_Operacion_Calamar_Gigante_V.pdf"
     }
    ],
-   "methodology": "PRODUCE 4개 문서에서 법정한도·누적하역·중단공지·조사탐사인가를 분리 추출하고 사건일 오름차순 정렬. 2026-08-17 RM00269 는 IMARPE 조사와 탐사조업 인가이며 상업 재개가 아니다 — 원문에 재개 문구가 없음을 추출 단계에서 확인한다",
+   "methodology": "PRODUCE 4개 문서에서 법정한도·누적하역·중단공지·조사탐사인가를 분리 추출하고 사건일 오름차순 정렬. 2026-08-17 RM00269 는 IMARPE 조사와 탐사조업 인가이며 상업 재개가 아니다 - 원문에 재개 문구가 없음을 추출 단계에서 확인한다",
    "basis": {
     "species": [
      "Dosidicus gigas"
@@ -1118,7 +1118,7 @@
   },
   "A_chile_jibia_quota": {
    "section": "A",
-   "title": "칠레 jibia — 쿼터 소진율",
+   "title": "칠레 jibia - 쿼터 소진율",
    "chartType": "gauge",
    "data": {
     "as_of": "2026-08-06",
@@ -1191,7 +1191,7 @@
   },
   "A_falkland_loligo_season": {
    "section": "A",
-   "title": "포클랜드 Loligo — 어기 캘린더·어기전 자원량",
+   "title": "포클랜드 Loligo - 어기 캘린더·어기전 자원량",
    "chartType": "card",
    "data": [
     {
@@ -1331,7 +1331,7 @@
   },
   "A_argentina_illex_gap": {
    "section": "A",
-   "title": "아르헨티나 Illex — 어기 타임라인 및 2026 데이터 공백",
+   "title": "아르헨티나 Illex - 어기 타임라인 및 2026 데이터 공백",
    "chartType": "card",
    "data": [],
    "methodology": "INIDEP 지정 PDF를 pdftotext -layout으로 재추출했으나 2024 어기 자료뿐이며, 프로그램 HTML에도 2026 주간공보가 없어 2026 어획 실적을 확정하지 못함. 어기 상태는 신호판에서 별도 법령 근거로 파생",
@@ -1372,7 +1372,7 @@
   },
   "A_korea_tac": {
    "section": "A",
-   "title": "한국 TAC 적용 업종 확대 — 살오징어 포함",
+   "title": "한국 TAC 적용 업종 확대 - 살오징어 포함",
    "chartType": "table",
    "data": [
     {
@@ -1514,7 +1514,7 @@
   },
   "A_sprfmo_cmm18_effort": {
    "section": "A",
-   "title": "SPRFMO CMM18 — 선박수 상한 (effort 기반)",
+   "title": "SPRFMO CMM18 - 선박수 상한 (effort 기반)",
    "chartType": "bar",
    "data": [
     {
@@ -2602,7 +2602,7 @@
   },
   "B_kmi_consumer_price": {
    "section": "B",
-   "title": "오징어 소비자가 — 원양 냉동 中 1마리",
+   "title": "오징어 소비자가 - 원양 냉동 中 1마리",
    "chartType": "bar",
    "data": {
     "product": {
@@ -2689,7 +2689,7 @@
   },
   "B_eu_market_prices": {
    "section": "B",
-   "title": "유럽 시장 오징어 거래가격 — 종·규격별",
+   "title": "유럽 시장 오징어 거래가격 - 종·규격별",
    "chartType": "table",
    "data": [
     {
@@ -7283,7 +7283,7 @@
     {
      "kind": "source_excerpt",
      "source_path": "00_오징어_관련자료/01_오징어_시장·가격/07_지속가능성·IUU·노동/20260220-SPRFMO-Final_Compliance_Report_2024-2025.md",
-     "text": "The main reasons for failing to meet the 2% standard are as follows:  Firstly, the round-trip travel time between the port and fishing grounds for observers takes about 90 days, which reduces the time they actually working on fishing vessels;  Secondly, certain unforeseen incidents have resulted in lower observed fishing days—for instance, an observer developed a sudden illness and had to terminate the observation mission early, thus he only working on the Priority fishing vessel for one month; Non-Compliant China Compliant  Thirdly, uncertainties in estimating the next year’s total fishing days and the observer deployment process, such as the departure time of observers from the port and the transit time from carrier vessels to target fishing vessels after arriving at the fishing grounds, have led to deviations in the estimated number of deployed observers and their observation days.",
+     "text": "The main reasons for failing to meet the 2% standard are as follows:  Firstly, the round-trip travel time between the port and fishing grounds for observers takes about 90 days, which reduces the time they actually working on fishing vessels;  Secondly, certain unforeseen incidents have resulted in lower observed fishing days-for instance, an observer developed a sudden illness and had to terminate the observation mission early, thus he only working on the Priority fishing vessel for one month; Non-Compliant China Compliant  Thirdly, uncertainties in estimating the next year’s total fishing days and the observer deployment process, such as the departure time of observers from the port and the transit time from carrier vessels to target fishing vessels after arriving at the fishing grounds, have led to deviations in the estimated number of deployed observers and their observation days.",
      "text_ko": "2% 기준을 충족하지 못한 주된 이유는 다음과 같다.  첫째, 옵서버가 항만과 어장 사이를 왕복하는 데 약 90일이 걸려 실제 어선에서 근무하는 시간이 줄어든다.  둘째, 일부 예기치 못한 사건으로 관찰 대상 조업일수가 감소했다. 예를 들어 한 옵서버가 갑자기 병에 걸려 관찰 임무를 조기에 종료해야 했고, 그 결과 어선에서 한 달만 근무했다.  셋째, 다음 해 총 조업일수 추정과 옵서버 배치 과정의 불확실성, 예컨대 옵서버의 출항 시점과 어장 도착 후 운반선에서 대상 어선으로 이동하는 데 걸리는 시간 때문에 배치 옵서버 수와 관찰일수의 추정치에 편차가 발생했다. 회원국/협력 비체약 당사자(CNCP): 중국. 이전 준수 상태: 준수(Compliant). 현재 준수 상태: 우선순위 비준수(Priority Non-Compliant)."
     },
     {
@@ -7374,7 +7374,7 @@
     {
      "kind": "source_excerpt",
      "source_path": "00_오징어_관련자료/01_오징어_시장·가격/07_지속가능성·IUU·노동/20260812-NOAA-Seafood_Import_Monitoring_Program.html",
-     "text": "One of five videos in a 5-part Seafood Import Monitoring Program series covering wild capture, pen-matured harvest—or “ranching”—involves capturing live wild fish and transferring them to aquaculture for feeding and growth until re-harvest.",
+     "text": "One of five videos in a 5-part Seafood Import Monitoring Program series covering wild capture, pen-matured harvest-or “ranching”-involves capturing live wild fish and transferring them to aquaculture for feeding and growth until re-harvest.",
      "text_ko": "수산물 수입 모니터링 프로그램(Seafood Import Monitoring Program) 5부작 시리즈의 다섯 영상 중 한 편으로 자연산 어획을 다룬다. 축양 뒤 어획, 즉 ‘랜칭(ranching)’은 살아 있는 자연산 어류를 포획해 양식시설로 옮긴 뒤 다시 어획할 때까지 먹이를 주고 성장시키는 방식이다."
     },
     {
@@ -7454,7 +7454,7 @@
   },
   "D_ejf_risk_map": {
    "section": "D",
-   "title": "EJF 글로벌 스퀴드 리포트 2026 — 리스크 지도",
+   "title": "EJF 글로벌 스퀴드 리포트 2026 - 리스크 지도",
    "chartType": "table",
    "data": [
     {
@@ -7502,13 +7502,13 @@
     {
      "kind": "source_excerpt",
      "source_path": "00_오징어_관련자료/01_오징어_시장·가격/07_지속가능성·IUU·노동/20260604-EJF-Global_Squid_Report_2026.md",
-     "text": "17 Cause for concern across three of The world's three most commercially significant squid fisheries — the NWIO, SWA and SEP — are the world’s most important squid each grappling with a distinct set of challenges as fisheries industrial fishing operations have expanded rapidly while regulation has failed to keep pace. EJF's recent investigations have additionally documented persistent forced labour, destructive fishing practices and deliberate opacity across all three. Argentine shortfin squid made up approximately 77% of all seafood species Southwest Atlantic: A FAO paper published in the run-up to a FAO Committee on Fisheries (COFI) (by tonnage) caught through unregulated Subcommittee meeting in Reykjavik, Iceland in fishing between 2014 and 2023.76 February 2026 found the Argentine shortfin squid (contributing 16% of the world’s squid catches) to be by far the most fished seafood species “outside the competence of an RFMO or arrangement” - otherwise known as unregulated fishing.77 The main FAO fishing area for the species - FAO 41 - is also highly significant, contributing 94.6% of estimated unregulated global",
+     "text": "17 Cause for concern across three of The world's three most commercially significant squid fisheries - the NWIO, SWA and SEP - are the world’s most important squid each grappling with a distinct set of challenges as fisheries industrial fishing operations have expanded rapidly while regulation has failed to keep pace. EJF's recent investigations have additionally documented persistent forced labour, destructive fishing practices and deliberate opacity across all three. Argentine shortfin squid made up approximately 77% of all seafood species Southwest Atlantic: A FAO paper published in the run-up to a FAO Committee on Fisheries (COFI) (by tonnage) caught through unregulated Subcommittee meeting in Reykjavik, Iceland in fishing between 2014 and 2023.76 February 2026 found the Argentine shortfin squid (contributing 16% of the world’s squid catches) to be by far the most fished seafood species “outside the competence of an RFMO or arrangement” - otherwise known as unregulated fishing.77 The main FAO fishing area for the species - FAO 41 - is also highly significant, contributing 94.6% of estimated unregulated global",
      "text_ko": "17 세계에서 가장 중요한 오징어 어업 세 곳 전반의 우려 사유. 세계에서 상업적으로 가장 중요한 오징어 어업 세 곳인 북서인도양(NWIO), 남서대서양(SWA), 남동태평양(SEP)은 산업적 어업 활동이 빠르게 확대되는 동안 규제가 그 속도를 따라가지 못해 각각 서로 다른 과제에 직면해 있다. 환경정의재단(EJF)의 최근 조사에서는 세 곳 모두에서 지속적인 강제노동, 파괴적 어업관행, 의도적인 불투명성도 기록했다. 아르헨티나오징어(Illex argentinus)는 2014년부터 2023.76까지 비규제 어업으로 잡힌 모든 수산물 종 가운데 중량 기준 약 77%를 차지했다. 남서대서양: 2026년 이월 아이슬란드 레이캬비크에서 열린 유엔식량농업기구(FAO) 수산위원회(COFI) 소위원회 회의를 앞두고 발행된 FAO 논문은 세계 오징어 어획량의 16%를 차지하는 아르헨티나오징어가 ‘지역수산관리기구 또는 협정의 권한 밖’, 즉 비규제 어업에서 단연 가장 많이 어획된 수산물 종이라고 밝혔다.77 이 종의 주요 FAO 어업구역인 FAO 41도 매우 중요하며, 추정된 세계 비규제(estimated unregulated global)의 94.6%"
     },
     {
      "kind": "source_excerpt",
      "source_path": "00_오징어_관련자료/01_오징어_시장·가격/07_지속가능성·IUU·노동/20260604-EJF-Global_Squid_Report_2026.md",
-     "text": "\"developing deep-sea aquaculture and modern distant- water fisheries\" within a dedicated marine economy In July 2024, Taiwan's Ministry of Agriculture released chapter.115 However, neither the publicly released a four-year plan to eliminate IUU fishing, centred on Plan outline nor MARA's February 2026 fisheries increasing monitoring capacity and strengthening work deployment meeting names squid specifically, traceability for key species including squid.121 In July and neither contains numerical effort caps, subsidy 2025, the Taiwanese government also endorsed the phase-outs, or quantified IUU-fishing reduction Global Charter for Fisheries Transparency, signalling a targets for the DWF fleet.116 The 15th Plan is, on current willingness to engage with civil society on sustainable evidence, an enabling and continuity document rather fisheries reform.122 These are welcome steps, and than a reform document — leaving the substantive Taiwan's trajectory stands in contrast to China's pattern regulation of China's DWF squid fleet to the same of regulatory non-engagement.",
+     "text": "\"developing deep-sea aquaculture and modern distant- water fisheries\" within a dedicated marine economy In July 2024, Taiwan's Ministry of Agriculture released chapter.115 However, neither the publicly released a four-year plan to eliminate IUU fishing, centred on Plan outline nor MARA's February 2026 fisheries increasing monitoring capacity and strengthening work deployment meeting names squid specifically, traceability for key species including squid.121 In July and neither contains numerical effort caps, subsidy 2025, the Taiwanese government also endorsed the phase-outs, or quantified IUU-fishing reduction Global Charter for Fisheries Transparency, signalling a targets for the DWF fleet.116 The 15th Plan is, on current willingness to engage with civil society on sustainable evidence, an enabling and continuity document rather fisheries reform.122 These are welcome steps, and than a reform document - leaving the substantive Taiwan's trajectory stands in contrast to China's pattern regulation of China's DWF squid fleet to the same of regulatory non-engagement.",
      "text_ko": "전용 해양경제 장에서 ‘심해 양식과 현대적 원양어업 개발’.115 그러나 공개된 계획 개요와 중국 농업농촌부(MARA)의 2026년 이월 어업 업무 배치 회의 어느 쪽도 오징어를 구체적으로 언급하지 않으며, 어느 쪽에도 원양어업(DWF) 선단의 수치화된 어획노력 상한, 보조금 단계적 폐지 또는 정량화된 불법·비보고·비규제(IUU) 어업 감축 목표가 없다.116 현재 증거에 따르면 제15차 계획은 개혁 문서가 아니라 기반 조성 및 연속성 문서이며, 중국 원양 오징어선단의 실질적 규제를 동일한\n2024년 칠월 대만 농업부(Taiwan's Ministry of Agriculture)는 모니터링 역량 확대와 오징어를 포함한 주요 어종의 추적성 강화를 중심으로 하는 IUU 어업 근절 사 개년 계획을 발표했다.121 2025년 칠월 대만 정부는 세계 수산투명성 헌장(Global Charter for Fisheries Transparency)도 지지해 지속가능한 수산개혁에서 시민사회와 협력할 의지를 나타냈다.122 이는 환영할 조치이며, 대만의 행보는 중국의 규제 비관여 양상과 대조된다."
     },
     {
@@ -7526,7 +7526,7 @@
     {
      "kind": "source_excerpt",
      "source_path": "00_오징어_관련자료/01_오징어_시장·가격/07_지속가능성·IUU·노동/20260604-EJF-Global_Squid_Report_2026.md",
-     "text": "This report presents the first comparative, interview- All three fisheries are dominated by Chinese-flagged based analysis of conditions across three of the world's DWF vessels. 70% of the 249 vessels in our study most commercially significant DWF squid fisheries were flagged to China, 16% to Taiwan and 14% to — the SWA, SEP and NWIO. Earlier EJF investigations South Korea. Korean and Taiwanese operations were have examined the SWA and SEP fleets separately;176/177 concentrated almost entirely in the SWA.",
+     "text": "This report presents the first comparative, interview- All three fisheries are dominated by Chinese-flagged based analysis of conditions across three of the world's DWF vessels. 70% of the 249 vessels in our study most commercially significant DWF squid fisheries were flagged to China, 16% to Taiwan and 14% to - the SWA, SEP and NWIO. Earlier EJF investigations South Korea. Korean and Taiwanese operations were have examined the SWA and SEP fleets separately;176/177 concentrated almost entirely in the SWA.",
      "text_ko": "이 보고서는 세계에서 상업적으로 가장 중요한 원양 오징어 어업 세 곳, 즉 남서대서양(SWA)·남동태평양(SEP)·북서인도양(NWIO)의 노동조건을 면담에 근거해 비교한 최초의 분석을 제시한다. 세 어업 모두 중국 기국 원양어선이 지배한다. 연구대상 선박 249척 가운데 70%는 중국, 16%는 대만, 14%는 대한민국 기국이었다. 환경정의재단(EJF)의 앞선 조사들은 SWA와 SEP 선단을 각각 검토했으며,176/177 대한민국과 대만의 조업은 거의 전부 SWA에 집중돼 있었다."
     },
     {
@@ -9026,7 +9026,7 @@
   },
   "F_import_unit_annual": {
    "section": "F",
-   "title": "수입단가 연간 — 10자리 오징어만 (2020~2026 YTD)",
+   "title": "수입단가 연간 - 10자리 오징어만 (2020~2026 YTD)",
    "chartType": "line",
    "data": [
     {
@@ -9122,7 +9122,7 @@
   },
   "F_kamis_wholesale": {
    "section": "F",
-   "title": "도매 물오징어 연평균 — 원/kg",
+   "title": "도매 물오징어 연평균 - 원/kg",
    "chartType": "line",
    "data": [
     {
@@ -9200,7 +9200,7 @@
   },
   "F_kamis_retail": {
    "section": "F",
-   "title": "소매 물오징어 연평균 — 원/마리",
+   "title": "소매 물오징어 연평균 - 원/마리",
    "chartType": "line",
    "data": [
     {
@@ -9305,7 +9305,7 @@
   },
   "F_auction_annual": {
    "section": "F",
-   "title": "산지 위판 연간 — 중량·금액·단가 (2021~2025)",
+   "title": "산지 위판 연간 - 중량·금액·단가 (2021~2025)",
    "chartType": "bar",
    "data": [
     {
@@ -9389,7 +9389,7 @@
   },
   "F_processing_scale": {
    "section": "F",
-   "title": "오징어 주원료 가공 — 업소·품목·생산량·가동률 (2020~2025)",
+   "title": "오징어 주원료 가공 - 업소·품목·생산량·가동률 (2020~2025)",
    "chartType": "bar",
    "data": [
     {
@@ -11000,7 +11000,7 @@
   },
   "F_direct_importers": {
    "section": "F",
-   "title": "직접 수입하는 가공사 33곳 — 신고건·유형·소재지",
+   "title": "직접 수입하는 가공사 33곳 - 신고건·유형·소재지",
    "chartType": "table",
    "data": [
     {
@@ -11404,7 +11404,7 @@
    "series": [
     "수입신고건"
    ],
-   "methodology": "생산 상위 100 × 수입식품정보마루 신고명의(정규화) 교집합. 신고건은 2025-08~2026-07 창. 14곳이 강릉. 제조국은 33곳 합산 페루 83% — 원장 전체 35% 와 대비",
+   "methodology": "생산 상위 100 × 수입식품정보마루 신고명의(정규화) 교집합. 신고건은 2025-08~2026-07 창. 14곳이 강릉. 제조국은 33곳 합산 페루 83% - 원장 전체 35% 와 대비",
    "basis": {
     "species": [
      "Todarodes pacificus",
@@ -11444,7 +11444,7 @@
   },
   "F_overlap_by_type": {
    "section": "F",
-   "title": "수입 유형별 가공업 보유 — 603 명의 중 117",
+   "title": "수입 유형별 가공업 보유 - 603 명의 중 117",
    "chartType": "bar",
    "data": [
     {
@@ -11522,7 +11522,7 @@
   },
   "F_tariff_rates": {
    "section": "F",
-   "title": "냉동오징어 관세 — 기본·조정·협정세율 (2025~2026)",
+   "title": "냉동오징어 관세 - 기본·조정·협정세율 (2025~2026)",
    "chartType": "table",
    "data": [
     {
@@ -11801,7 +11801,7 @@
   },
   "F_traceability_coverage": {
    "section": "F",
-   "title": "유통이력 고시(2026-06-29)가 덮는 오징어 수입 — 금액 65.1% · 물량 77.3%",
+   "title": "유통이력 고시(2026-06-29)가 덮는 오징어 수입 - 금액 65.1% · 물량 77.3%",
    "chartType": "card",
    "data": [
     {
@@ -11818,7 +11818,7 @@
    "series": [
     "coverage_usd_pct"
    ],
-   "methodology": "조제품(1605.54)은 대상 밖. 고시 제2조 7호가 제조공장을 소매업자로 보아 신고의무에서 제외 — 이력은 공장 문 앞에서 끝난다. 지정기한 2029-04-30.",
+   "methodology": "조제품(1605.54)은 대상 밖. 고시 제2조 7호가 제조공장을 소매업자로 보아 신고의무에서 제외 - 이력은 공장 문 앞에서 끝난다. 지정기한 2029-04-30.",
    "basis": {
     "species": [
      "Todarodes pacificus",
@@ -11862,7 +11862,7 @@
   },
   "F_vessel_gear_2025": {
    "section": "F",
-   "title": "2025년 어업별 오징어 위판 — 저인망 27척이 채낚기 213척보다 많이 판다",
+   "title": "2025년 어업별 오징어 위판 - 저인망 27척이 채낚기 213척보다 많이 판다",
    "chartType": "table",
    "data": [
     {
@@ -12302,7 +12302,7 @@
   },
   "F_vessel_top20_2025": {
    "section": "F",
-   "title": "2025년 오징어 위판 금액 상위 20척 — 전부 쌍끌이 저인망",
+   "title": "2025년 오징어 위판 금액 상위 20척 - 전부 쌍끌이 저인망",
    "chartType": "table",
    "data": [
     {
@@ -13279,7 +13279,7 @@
   },
   "F_coop_sales_annual": {
    "section": "F",
-   "title": "오징어류 수협 계통판매 1998~2026 — 원장은 이 계열의 66~82%만 담는다",
+   "title": "오징어류 수협 계통판매 1998~2026 - 원장은 이 계열의 66~82%만 담는다",
    "chartType": "line",
    "data": [
     {
@@ -13501,7 +13501,7 @@
     "weight_t",
     "ledger_t"
    ],
-   "methodology": "해양수산부 수산정보포털 수협계통판매통계정보(S020601) 항목 5·7·8·9. 오징어류(Squid) — 살오징어 단일종이 아니다. 갑오징어류는 별도 행이라 제외. 1998~2026(2026년은 6월까지 공표). 지역별도 1998~2026 전량. 계통판매 = 수협 위판. 해양수산부 수산물유통종합정보 위판 원장은 이 계열의 66~82%만 담고, 결손은 부산에 몰린다(2025년 부산 계통 7,705t 대 원장 1,211t).",
+   "methodology": "해양수산부 수산정보포털 수협계통판매통계정보(S020601) 항목 5·7·8·9. 오징어류(Squid) - 살오징어 단일종이 아니다. 갑오징어류는 별도 행이라 제외. 1998~2026(2026년은 6월까지 공표). 지역별도 1998~2026 전량. 계통판매 = 수협 위판. 해양수산부 수산물유통종합정보 위판 원장은 이 계열의 66~82%만 담고, 결손은 부산에 몰린다(2025년 부산 계통 7,705t 대 원장 1,211t).",
    "basis": {
     "species": [
      "Todarodes pacificus",
@@ -13543,7 +13543,7 @@
   },
   "F_coop_sales_region": {
    "section": "F",
-   "title": "지역별 오징어류 계통판매 — 부산이 1999년 109,014t 에서 2025년 7,705t",
+   "title": "지역별 오징어류 계통판매 - 부산이 1999년 109,014t 에서 2025년 7,705t",
    "chartType": "table",
    "data": [
     {
@@ -13662,7 +13662,7 @@
   },
   "F_kamis_region_2025": {
    "section": "F",
-   "title": "2025년 지역별 오징어 가격 — 마른오징어는 수원과 강릉이 35.7% 벌어진다",
+   "title": "2025년 지역별 오징어 가격 - 마른오징어는 수원과 강릉이 35.7% 벌어진다",
    "chartType": "table",
    "data": [
     {
@@ -14230,7 +14230,7 @@
    "series": [
     "2025_연평균"
    ],
-   "methodology": "도매 원/kg · 소매 물오징어 원/마리 · 마른오징어 원/10마리. 단위가 달라 나누면 마진이 아니다. 소매 물오징어 지역 계열은 조사 월수가 지역마다 달라(2025 강릉 1개월) 얇은 관측을 연평균으로 쓰면 안 된다. 일별 평균은 품종 합산이라 품종별 월별 계열과 수준이 다르다. 원산지 구분은 2025-08 부터만 있다. 관측월 열을 함께 싣는다 — 열두 달이 채워진 계열만 지역 비교가 선다.",
+   "methodology": "도매 원/kg · 소매 물오징어 원/마리 · 마른오징어 원/10마리. 단위가 달라 나누면 마진이 아니다. 소매 물오징어 지역 계열은 조사 월수가 지역마다 달라(2025 강릉 1개월) 얇은 관측을 연평균으로 쓰면 안 된다. 일별 평균은 품종 합산이라 품종별 월별 계열과 수준이 다르다. 원산지 구분은 2025-08 부터만 있다. 관측월 열을 함께 싣는다 - 열두 달이 채워진 계열만 지역 비교가 선다.",
    "basis": {
     "species": [
      "Todarodes pacificus",
@@ -14269,7 +14269,7 @@
   },
   "F_kamis_daily_monthly": {
    "section": "F",
-   "title": "경락가격 일별 집계 2022-12-30~2026-08-21 — 월별이 멈춘 자리를 잇는다",
+   "title": "경락가격 일별 집계 2022-12-30~2026-08-21 - 월별이 멈춘 자리를 잇는다",
    "chartType": "line",
    "data": [
     {
@@ -14587,7 +14587,7 @@
   },
   "F_kamis_origin_premium": {
    "section": "F",
-   "title": "연근해와 원양의 도매가 차이 — 서울 253일 기준 34%",
+   "title": "연근해와 원양의 도매가 차이 - 서울 253일 기준 34%",
    "chartType": "table",
    "data": [
     {
@@ -14674,7 +14674,7 @@
   },
   "F_processing_financials": {
    "section": "F",
-   "title": "가공 상위 100개사의 재무 90곳 — 생산량의 88.3%",
+   "title": "가공 상위 100개사의 재무 90곳 - 생산량의 88.3%",
    "chartType": "table",
    "data": [
     {
@@ -15713,7 +15713,7 @@
   },
   "F_deepsea_financials": {
    "section": "F",
-   "title": "전자공시 밖 원양 법인 11곳 — 해창수산 377억이 최상위",
+   "title": "전자공시 밖 원양 법인 11곳 - 해창수산 377억이 최상위",
    "chartType": "table",
    "data": [
     {
@@ -15870,7 +15870,7 @@
   },
   "F_deepsea_catch": {
    "section": "F",
-   "title": "원양 오징어류 어획 2021~2025 — 2025년 52,122톤",
+   "title": "원양 오징어류 어획 2021~2025 - 2025년 52,122톤",
    "chartType": "line",
    "data": [
     {

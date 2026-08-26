@@ -161,7 +161,7 @@ export default function TunaAtuna8YPrice() {
   const lastYf = stats.lastYf ?? 0;
   const sit = `Atuna.com 로컬 CSV 기반 8년 시계열 (2017-06 ~ ${stats.lastMonth}). 최신 ${stats.lastMonth}: 가다랑어 $${lastSkj}/톤·황다랑어 $${lastYf}/톤(업계 추정, SKJ × 1.58 적용). 8년 평균은 SKJ $${stats.skjAvg}·YFT $${stats.yfAvg}(illustrative). SKJ 실거래 변동폭 $${stats.skjMin}~$${stats.skjMax}.`;
 
-  const strat = `Skipjack은 ${lastSkj > stats.skjAvg ? '평균 상회' : '평균 하회'} 구간 — ${lastSkj > stats.skjAvg ? '재고 소진 + Forward 매도' : '저점 매입 + 통조림 라인 풀가동'}. Yellowfin 프리미엄 격차(현재 $${lastYf - lastSkj}/톤)를 활용한 사시미·필렛 mix 비중 조정. 항만별 차익(아비장-방콕 스프레드) 모니터링하여 글로벌 조달 라우팅 최적화.`;
+  const strat = `Skipjack은 ${lastSkj > stats.skjAvg ? '평균 상회' : '평균 하회'} 구간 - ${lastSkj > stats.skjAvg ? '재고 소진 + Forward 매도' : '저점 매입 + 통조림 라인 풀가동'}. Yellowfin 프리미엄 격차(현재 $${lastYf - lastSkj}/톤)를 활용한 사시미·필렛 mix 비중 조정. 항만별 차익(아비장-방콕 스프레드) 모니터링하여 글로벌 조달 라우팅 최적화.`;
 
   return (
     <WidgetCard
@@ -169,7 +169,7 @@ export default function TunaAtuna8YPrice() {
       icon={IconChart}
       iconColor="#0ea5e9"
       pillar="S4"
-      cardDesc="로컬 CSV (skjbkk.csv) 월별 파싱 — 방콕 기준 가다랑어 최근 8년 월별 거래가(최신 2026-05). YFT는 SKJ 대비 58% 역사적 프리미엄 적용 추정치."
+      cardDesc="로컬 CSV (skjbkk.csv) 월별 파싱 - 방콕 기준 가다랑어 최근 8년 월별 거래가(최신 2026-05). YFT는 SKJ 대비 58% 역사적 프리미엄 적용 추정치."
       telemetry={{ status: data.length > 0 ? 'SYNCED' : 'STATIC', syncDate: data.length > 0 ? stats.lastMonth : undefined }}
       customBody={buttons}
       chart={loading ? <div style={{ color: 'var(--w-slate-500)', textAlign: 'center', marginTop: '100px' }}>데이터 로딩 중...</div> : chart}

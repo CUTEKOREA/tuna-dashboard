@@ -36,7 +36,7 @@ export default function GensanVesselStatus() {
             <TermTooltip term="Gensan Fish Port Complex (GSFPC) Status" description="필리핀 제너럴 산토스 항구의 원어 하역 완료 및 입항 예정 선박 현황입니다." />
           </h2>
           <p style={{ fontSize: '13px', color: 'var(--text-muted)', margin: 0 }}>
-            주간 보고 (GMTS 작성) | 기준일 2026/05/06 — 보고 시점 고정 자료
+            주간 보고 (GMTS 작성) | 기준일 2026/05/06 - 보고 시점 고정 자료
           </p>
         </div>
         <div style={{ padding: '8px 16px', background: 'rgba(var(--w-blue-500-rgb), 0.1)', border: '1px solid rgba(var(--w-blue-500-rgb), 0.3)', borderRadius: '8px', color: '#60a5fa', fontSize: '13px', fontWeight: 'bold', display: 'flex', flexDirection: 'column', alignItems: 'flex-end' }}>

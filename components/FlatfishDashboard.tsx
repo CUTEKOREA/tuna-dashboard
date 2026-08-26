@@ -61,35 +61,35 @@ const KPI_THEMES = [
 const PILLARS = [
   {
     id: 'P1', num: '❶', label: '원료 수급',
-    title: '🌊 Pillar I — 원료 수급 (Raw Material)',
+    title: '🌊 Pillar I - 원료 수급 (Raw Material)',
     desc: '한·러·미 의존 5년 궤적, 어종 분해 (참·돌·물·기름·문치), 양식 vs 어획 이중 트랙, TAC 신규 편입',
     color: '#1e3a8a',
     widgets: ['F01_global_catch', 'F02_korea_dependency', 'F03_aquaculture_vs_wild', 'F04_tac_species']
   },
   {
     id: 'P2', num: '❷', label: '가공·생산',
-    title: '🏭 Pillar II — 가공 · 생산 (Processing)',
+    title: '🏭 Pillar II - 가공 · 생산 (Processing)',
     desc: '냉동 99.9% 원물 구조, 넙치 양식 FCR·폐사율, 부산물 콜라겐 K-뷰티, 양식·야생 이중 채널',
     color: '#1d4ed8',
     widgets: ['F05_form_structure', 'F06_aqua_kpi', 'F07_collagen_upcycle', 'F08_dual_track']
   },
   {
     id: 'P3', num: '❸', label: '물류·통관',
-    title: '🚢 Pillar III — 물류 · 통관 (Logistics & Trade)',
+    title: '🚢 Pillar III - 물류 · 통관 (Logistics & Trade)',
     desc: '한-미 FTA E유형 2026년 0% 도달, 미국 알래스카 사이클, 2026 1Q 세네갈·일본 신규, OFAC 사각지대',
     color: '#3b82f6',
     widgets: ['F09_hsk_fta', 'F10_usa_alaska_cycle', 'F11_newcomers_2026', 'F12_busan_coldchain', 'F13_ofac_loophole']
   },
   {
     id: 'P4', num: '❹', label: '판매·수요',
-    title: '📈 Pillar IV — 판매 · 수요 (Sales)',
+    title: '📈 Pillar IV - 판매 · 수요 (Sales)',
     desc: '對러시아 단가 +36.4% spike, 액-물량 디커플링, 명태 교차탄력성, 횟감·구이 채널 분리',
     color: '#0ea5e9',
     widgets: ['F14_kamis_price', 'F15_russia_price_spike', 'F16_value_volume_decouple', 'F17_pollock_elasticity', 'F18_channel_split']
   },
   {
     id: 'P5', num: '❺', label: 'ESG·지속가능성',
-    title: '🌱 Pillar V — ESG · 지속가능성',
+    title: '🌱 Pillar V - ESG · 지속가능성',
     desc: 'MSC 양극화 (Greenland·Alaska·한국 넙치), OFAC 차등 제재, NAFO IUU 리스크, SG 2026 밸류업',
     color: '#0369a1',
     widgets: ['F19_msc_polarization', 'F20_ofac_differential', 'F21_nafo_iuu', 'F22_sg_valueup']
@@ -220,7 +220,7 @@ export default function FlatfishDashboard() {
     const IconComp = WIDGET_ICONS[w.id] || Fish;
     const unit = WIDGET_UNITS[w.id] ? `단위: ${WIDGET_UNITS[w.id]}` : '';
     const subtitle = w.subtitle || '';
-    const cardDesc = [unit, subtitle].filter(Boolean).join(' — ');
+    const cardDesc = [unit, subtitle].filter(Boolean).join(' - ');
     const liveStatus: 'LIVE' | 'SYNCED' | 'STATIC' = w.isLive ? 'LIVE' : (w.syncDate ? 'SYNCED' : 'STATIC');
     return (
       <WidgetCard key={w.id}
@@ -250,7 +250,7 @@ export default function FlatfishDashboard() {
               <h1 style={{ margin: 0, fontSize: '1.6rem', fontWeight: 800, letterSpacing: '-0.5px', background: 'linear-gradient(135deg, var(--w-blue-500), var(--w-slate-400))', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>
                 가자미 전략 인텔리전스
               </h1>
-              <p style={{ margin: 0, fontSize: '0.8rem', color: 'var(--w-slate-500)' }}>가자미 전략 커맨드센터 — 위젯 {widgets.length}개 · KPI {kpiKeys.length}개 · KMI 21Q + KFAS + NAFO</p>
+              <p style={{ margin: 0, fontSize: '0.8rem', color: 'var(--w-slate-500)' }}>가자미 전략 커맨드센터 - 위젯 {widgets.length}개 · KPI {kpiKeys.length}개 · KMI 21Q + KFAS + NAFO</p>
             </div>
           </div>
           <div style={{ fontSize: '0.8rem', padding: '0.5rem 1rem', background: 'rgba(0,0,0,0.2)', border: '1px solid rgba(30,58,138,0.3)', borderRadius: '8px', color: 'var(--w-slate-400)', fontWeight: 500 }}>
@@ -288,7 +288,7 @@ export default function FlatfishDashboard() {
       <div style={{ background: 'linear-gradient(180deg, rgba(20, 28, 52, 0.5), rgba(20, 28, 52, 0.2))', border: '1px solid rgba(255,255,255,0.04)', borderRadius: '16px', padding: '6px', marginBottom: '2rem', boxShadow: '0 4px 30px rgba(0,0,0,0.3), inset 0 1px 0 rgba(140,170,255,0.10)' }}>
         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '6px', padding: '4px 0 8px', borderBottom: '1px solid rgba(140,170,255,0.10)', marginBottom: '6px' }}>
           <span style={{ fontSize: '0.7rem', color: 'rgba(var(--w-slate-400-rgb), 0.7)', fontWeight: 600, letterSpacing: '0.08em', textTransform: 'uppercase' }}>
-            밸류체인 네비게이터 — 아래 단계를 클릭하여 탐색하세요
+            밸류체인 네비게이터 - 아래 단계를 클릭하여 탐색하세요
           </span>
         </div>
         <div data-mobile-stack style={{ display: 'grid', gridTemplateColumns: 'repeat(5, 1fr)', gap: '4px' }}>

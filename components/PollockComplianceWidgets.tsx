@@ -14,7 +14,7 @@ export function Widget13_Decoupling() {
       iconColor="var(--color-danger)"
       pillar="S3"
       telemetry={{ status: 'STATIC', syncDate: '2026-05-29' }}
-      cardDesc="OFAC 제재 후 분기별 가격 추이 — 자체추정(산업 인터뷰 기반), 참고용"
+      cardDesc="OFAC 제재 후 분기별 가격 추이 - 자체추정(산업 인터뷰 기반), 참고용"
       chart={
 <LineChart data={data}>
             <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" vertical={false} />
@@ -45,7 +45,7 @@ export function Widget14_MscRatio() {
       iconColor="var(--color-success)"
       pillar="S3"
       telemetry={{ status: 'STATIC', syncDate: '2026-05-29' }}
-      cardDesc="MSC 연간 보고서 기반 명태 인증 물량 비율 추이 — 자체추정, 공식 MSC 공표치 확인 필요"
+      cardDesc="MSC 연간 보고서 기반 명태 인증 물량 비율 추이 - 자체추정, 공식 MSC 공표치 확인 필요"
       chart={
 <AreaChart data={data}>
             <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" vertical={false} />

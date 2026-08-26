@@ -61,7 +61,7 @@ describe('포클랜드 선박별 실적', () => {
    */
   it('명목 환산중량과 실측중량이 서로 다르다', () => {
     const off = falklandVessels.filter((v) => v.totalKg !== v.totalPan * 20);
-    expect(off.length, '환산과 실측이 전부 같아졌다 — 한쪽으로 덮어썼는지 확인하라').toBeGreaterThan(0);
+    expect(off.length, '환산과 실측이 전부 같아졌다 - 한쪽으로 덮어썼는지 확인하라').toBeGreaterThan(0);
     const t = fleetTotals();
     expect(t.환산톤).not.toBe(t.실측톤);
   });

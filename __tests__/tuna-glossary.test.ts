@@ -19,7 +19,7 @@ import { ALL_NARRATIVES } from '../lib/tuna-industry-content';
 
 const data = getTunaGlossary();
 
-describe('용어 사전 — 데이터', () => {
+describe('용어 사전 - 데이터', () => {
   it('약어가 충분히 있고 중복되지 않는다', () => {
     expect(data.약어.length).toBeGreaterThanOrEqual(100);
     const keys = data.약어.map((r) => r.약어);
@@ -50,7 +50,7 @@ describe('용어 사전 — 데이터', () => {
     // 참조 자료의 「Northern Bluefin」은 옛 이름이다. 이름이 어긋나면 카드에 수치가 안 붙는다
     const names = data.어종프로필.map((p) => p.어종);
     for (const n of ['가다랑어', '황다랑어', '눈다랑어', '날개다랑어', '대서양참다랑어']) {
-      expect(names, `${n} 이 없다 — 이름 대조표를 확인하라`).toContain(n);
+      expect(names, `${n} 이 없다 - 이름 대조표를 확인하라`).toContain(n);
     }
     expect(names).not.toContain('북방참다랑어');
   });
@@ -64,7 +64,7 @@ describe('용어 사전 — 데이터', () => {
   });
 });
 
-describe('자원상태 — 평가에는 시점이 있다', () => {
+describe('자원상태 - 평가에는 시점이 있다', () => {
   it('행마다 평가연도가 있다', () => {
     expect(data.자원상태.length).toBeGreaterThanOrEqual(20);
     for (const row of data.자원상태) {
@@ -87,7 +87,7 @@ describe('자원상태 — 평가에는 시점이 있다', () => {
   });
 });
 
-describe('인증·식품안전 — 성격을 섞지 않았나', () => {
+describe('인증·식품안전 - 성격을 섞지 않았나', () => {
   it('인증은 층위가 구분돼 있다', () => {
     const rows = data.인증.rows;
     expect(rows.length).toBeGreaterThanOrEqual(6);
@@ -171,7 +171,7 @@ describe('화면 노출', () => {
     const titles = Object.values(CATCH_CHART_SLOTS).flat().map((s) => s.title);
     expect(titles).toContain('가공장이 통과해야 하는 인증 (제도 분류)');
     expect(titles).toContain('식품안전 기준과 실제 함량');
-    expect(titles).toContain('어종 카드 — 무엇이 어떻게 쓰이는가');
+    expect(titles).toContain('어종 카드 - 무엇이 어떻게 쓰이는가');
     for (const t of ['가공장이 통과해야 하는 인증 (제도 분류)', '식품안전 기준과 실제 함량']) {
       const slot = Object.values(CATCH_CHART_SLOTS).flat().find((s) => s.title === t);
       expect(() =>

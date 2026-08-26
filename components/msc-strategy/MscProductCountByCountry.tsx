@@ -70,7 +70,7 @@ export default function MscProductCountByCountry() {
       icon={Boxes}
       iconColor="#38bdf8"
       pillar="S4"
-      cardDesc="판매 중인 MSC 라벨 소비자 제품 수(SKU) — 2024/25 기준, 2009/10 대비 성장 배수 병기"
+      cardDesc="판매 중인 MSC 라벨 소비자 제품 수(SKU) - 2024/25 기준, 2009/10 대비 성장 배수 병기"
       unit="개"
       telemetry={{ status: 'STATIC', syncDate: '2024-25' }}
       customBody={
@@ -97,7 +97,7 @@ export default function MscProductCountByCountry() {
           }}>
             <Zap size={16} color={ITALY} style={{ flexShrink: 0 }} />
             <span style={{ fontSize: '0.72rem', color: 'var(--w-slate-300)' }}>
-              <b style={{ color: ITALY }}>이탈리아 10개→1,105개 (110배)</b> · 프랑스 17배 · 벨기에 24배 — 남유럽·신흥 시장이 MSC 매대를 빠르게 확장 중
+              <b style={{ color: ITALY }}>이탈리아 10개→1,105개 (110배)</b> · 프랑스 17배 · 벨기에 24배 - 남유럽·신흥 시장이 MSC 매대를 빠르게 확장 중
             </span>
           </div>
         </div>

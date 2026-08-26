@@ -79,7 +79,7 @@ export function PolicyRiskScorecard() {
       customBody={Body}
       takeaway={{
         situation: `<div>
-<p>참치 산업의 6대 정책 리스크를 0~100 점수화한 종합 레이더. 현재 종합 점수 <strong>74점(B+)</strong>로 상승 추세 — 향후 24~36개월 내 정책 리스크가 본업 EBITDA의 8~15%를 잠식할 수 있음을 시그널.</p>
+<p>참치 산업의 6대 정책 리스크를 0~100 점수화한 종합 레이더. 현재 종합 점수 <strong>74점(B+)</strong>로 상승 추세 - 향후 24~36개월 내 정책 리스크가 본업 EBITDA의 8~15%를 잠식할 수 있음을 시그널.</p>
 <p>핵심 2 리스크:</p>
 <ul style="margin: 4px 0 0 18px; padding: 0;">
 <li><strong>미국 상호관세 (92점)</strong>: USTR이 한국 가공품 HSK 1604.14에 MFN 12.5~35% 추가 부과 시 한국 수출 연 약 <strong>$280M 차익 손실</strong> 추정.</li>
@@ -96,7 +96,7 @@ export function PolicyRiskScorecard() {
 <li><strong>EU CBAM 대비 탄소 인벤토리</strong>: Scope 1·2·3 탄소 배출 정량화. EU CBAM 2027 발효 전 carbon offset 선매수.</li>
 </ol>
 </div>`,
-        source: '추정치 — 박혜진(2024-06) 「신통상규범 확대에 따른 수산분야 영향 및 대응방안」 국정연 · WTO Tariff Schedule · WITS API',
+        source: '추정치 - 박혜진(2024-06) 「신통상규범 확대에 따른 수산분야 영향 및 대응방안」 국정연 · WTO Tariff Schedule · WITS API',
       }}
     />
   );
@@ -158,18 +158,18 @@ export function FtaTariffOptimizer() {
 <li><strong>Korea→ASEAN</strong>: AKFTA/RCEP로 MFN 5~20% → 0%</li>
 </ul>
 <p>차익 계산: 한국 대미 수출액 × MFN 12.5% (또는 in oil 35%) = 연간 <strong>$12M+ 절감 효과</strong> 추정. 단순 비용 절감이 아닌 <strong>경쟁사 대비 가격 협상 자유도</strong>로 작용해 추가 마진 +5~8%p 회수.</p>
-<p>한 가지 더: FTA는 원산지 증명서(C/O) 발급해야 적용. 업계추정: 한국 수산 업체 평균 FTA 적용률 70~80% — 20~30%는 MFN 관세를 그대로 내고 있음. 이 갭이 즉시 회수 가능한 숨겨진 마진.</p>
+<p>한 가지 더: FTA는 원산지 증명서(C/O) 발급해야 적용. 업계추정: 한국 수산 업체 평균 FTA 적용률 70~80% - 20~30%는 MFN 관세를 그대로 내고 있음. 이 갭이 즉시 회수 가능한 숨겨진 마진.</p>
 </div>`,
         actionPlan: `<div>
 <p><strong>재정의</strong>: FTA 관세차익은 단순 비용 절감이 아닌 <strong>"한국 수출업체만의 규제 해자(경쟁 장벽)"</strong>. 우리는 단순 구매자가 아닌 관세 차익 거래자(Trade Arbitrageur)로 포지셔닝.</p>
 <p><strong>3단계</strong>:</p>
 <ol style="margin: 4px 0 0 18px; padding: 0;">
 <li style="margin-bottom: 8px;"><strong>원산지 증명서 자동화 시스템</strong>: FTA 특혜관세 적용률 70% → 95%+ 달성. 즉시 회수되는 연 $5~8M 숨겨진 마진.</li>
-<li style="margin-bottom: 8px;"><strong>한-ASEAN FTA 활용 태국 경유 가공 루트</strong>: 한국 원물 → 태국 가공(AKFTA) → EU 수출(EU-Thai FTA 일부 적용) — 단가 추가 -8~12% 절감.</li>
+<li style="margin-bottom: 8px;"><strong>한-ASEAN FTA 활용 태국 경유 가공 루트</strong>: 한국 원물 → 태국 가공(AKFTA) → EU 수출(EU-Thai FTA 일부 적용) - 단가 추가 -8~12% 절감.</li>
 <li><strong>WITS API 실시간 모니터링</strong>: 관세 변동 즉시 대응 프로토콜 자동화. 본사 무역 데스크가 7개 FTA를 매주 모니터링 후 거래 장부에 반영. 동시에 FTA 활용 노하우를 다른 한국 수산 업체에 컨설팅 라이센싱.</li>
 </ol>
 </div>`,
-        source: '추정치 — 박혜진(2024-06) 국정연 · KORUS FTA 양허 0% · WITS API',
+        source: '추정치 - 박혜진(2024-06) 국정연 · KORUS FTA 양허 0% · WITS API',
       }}
     />
   );

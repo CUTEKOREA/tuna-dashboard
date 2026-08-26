@@ -15,7 +15,7 @@ export default function PollockPremiumSpread() {
       icon={Diamond}
       iconColor="#3b82f6"
       pillar="S4"
-      cardDesc="명태 단가 — 미국 싱글 프로즌 vs 중국·러시아 더블 프로즌의 연도별 스프레드 비교"
+      cardDesc="명태 단가 - 미국 싱글 프로즌 vs 중국·러시아 더블 프로즌의 연도별 스프레드 비교"
       telemetry={{ status: 'STATIC', syncDate: 'UN Comtrade 2023' }}
       chartHeight={260}
       chart={

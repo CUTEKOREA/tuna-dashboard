@@ -207,7 +207,7 @@ export default function UnloadingVoyageGantt({ vesselsById }: {
     return { label: ms === null ? point.date : ymd(ms), cum: point.cumAmount, daily: point.dailyAmount };
   }) : []), [selected]);
 
-  if (failed) return <p style={{ color: MUTED, fontSize: 13 }}>하역 데이터 수신 실패 — 시안 평가 불가 (새로고침으로 재시도)</p>;
+  if (failed) return <p style={{ color: MUTED, fontSize: 13 }}>하역 데이터 수신 실패 - 시안 평가 불가 (새로고침으로 재시도)</p>;
   if (!vessels || !selected || !axis) return <p style={{ color: MUTED, fontSize: 13 }}>하역 데이터 수신 중…</p>;
 
   const selectedProgressPct = progressPct(selected.actualTotal, selected.reportedTotal);
@@ -233,10 +233,10 @@ export default function UnloadingVoyageGantt({ vesselsById }: {
             <span style={{ fontSize: '0.9rem', fontWeight: 400, color: MUTED, marginLeft: 6 }}>(MT)</span>
           </div>
           <div style={{ fontSize: '0.8rem', fontWeight: 700, color: selected.kind === 'progress' ? ACCENT : MUTED }}>
-            신고량 {mt(selected.reportedTotal)} (MT) 대비 진행률 {selectedProgressPct === null ? '—' : `${selectedProgressPct.toFixed(1)}%`}
+            신고량 {mt(selected.reportedTotal)} (MT) 대비 진행률 {selectedProgressPct === null ? '-' : `${selectedProgressPct.toFixed(1)}%`}
           </div>
           <div style={{ display: 'flex', gap: 18, marginTop: 10 }}>
-            <Stat label="일평균 (MT/일)" value={dailyAvg === null ? '—' : mt(dailyAvg)} />
+            <Stat label="일평균 (MT/일)" value={dailyAvg === null ? '-' : mt(dailyAvg)} />
             <Stat label={remaining >= 0 ? '잔여 (MT)' : '신고 초과 (MT)'} value={mt(Math.abs(remaining))} />
             <Stat label="보고 횟수 (회)" value={reportCount.toLocaleString('ko-KR')} />
           </div>
@@ -253,7 +253,7 @@ export default function UnloadingVoyageGantt({ vesselsById }: {
             {last && <ReferenceDot x={last.label} y={last.cum} r={4} fill={ACCENT} stroke="#ffffff" strokeWidth={1.5} />}
           </LineChart>
         ) : (
-          <p style={{ fontSize: '0.75rem', color: MUTED, margin: 0 }}>일일 보고 2건 미만 — 누적 추이 표시 불가</p>
+          <p style={{ fontSize: '0.75rem', color: MUTED, margin: 0 }}>일일 보고 2건 미만 - 누적 추이 표시 불가</p>
         )}
       </div>
 
@@ -357,7 +357,7 @@ export default function UnloadingVoyageGantt({ vesselsById }: {
                   {mt(vessel.actualTotal)}
                 </span>
                 <span style={{ display: 'block', fontSize: '0.64rem', fontWeight: 700, fontVariantNumeric: 'tabular-nums', color: isProgress ? ACCENT : MUTED }}>
-                  {pct === null ? '—' : `${pct.toFixed(1)}%`}
+                  {pct === null ? '-' : `${pct.toFixed(1)}%`}
                 </span>
               </span>
             </button>

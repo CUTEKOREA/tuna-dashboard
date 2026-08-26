@@ -114,7 +114,7 @@ export default function UnloadingFieldMode({ vessels, onClose }: FieldModeProps)
   // Last timeline entry
   const lastEntry = selectedVessel?.timeline?.[selectedVessel.timeline.length - 1];
   const lastTemp = lastEntry ? parseLastTemp(lastEntry.quality) : { min: null, max: null };
-  const lastDate = lastEntry?.date || '—';
+  const lastDate = lastEntry?.date || '-';
 
   // Today's entry (if exists)
   const todayMonthDay = `${today.getMonth() + 1}/${today.getDate()}`;
@@ -142,7 +142,7 @@ export default function UnloadingFieldMode({ vessels, onClose }: FieldModeProps)
     ];
 
     if (formTempMin || formTempMax) {
-      reportLines.push(`🌡️ 어창 온도: ${formTempMin || '—'}℃ ~ ${formTempMax || '—'}℃`);
+      reportLines.push(`🌡️ 어창 온도: ${formTempMin || '-'}℃ ~ ${formTempMax || '-'}℃`);
     }
 
     if (formNotes) {
@@ -262,7 +262,7 @@ export default function UnloadingFieldMode({ vessels, onClose }: FieldModeProps)
               <div className={styles.summaryItem}>
                 <div className={styles.summaryItemLabel}>작업 어창</div>
                 <div className={styles.summaryItemValue} style={{ fontSize: '0.85rem' }}>
-                  {todayEntry.targetHol === '-' ? '—' : todayEntry.targetHol}
+                  {todayEntry.targetHol === '-' ? '-' : todayEntry.targetHol}
                 </div>
               </div>
             </div>

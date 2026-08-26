@@ -222,8 +222,8 @@ export interface PriceHub {
 
 /** 가다랑어 고시 항구 5곳. */
 export const SKJ_HUBS: PriceHub[] = [
-  { key: 'skj_bkk', label: '방콕', serves: '태국 캐너리 — 업계 벤치마크' },
-  { key: 'skj_mnt', label: '만타', serves: '에콰도르 캐너리 — 동태평양 어획' },
+  { key: 'skj_bkk', label: '방콕', serves: '태국 캐너리 - 업계 벤치마크' },
+  { key: 'skj_mnt', label: '만타', serves: '에콰도르 캐너리 - 동태평양 어획' },
   { key: 'skj_sey', label: '세이셸', serves: '인도양 어획 · 유럽향' },
   { key: 'skj_abj', label: '아비장', serves: '서아프리카 · 유럽 캐너리향' },
   { key: 'skj_vig', label: '비고', serves: '스페인 캐너리 도착가' },

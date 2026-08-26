@@ -21,10 +21,10 @@ import {
 const STAGE = WHELK_NARRATIVES.find((n) => n.key === 's05');
 const ROOT = join(__dirname, '..');
 
-describe('골뱅이 05단계 — 수입 창구', () => {
+describe('골뱅이 05단계 - 수입 창구', () => {
   it('탭 이름은 04 교역과 겹치지 않게 수입 창구다', () => {
-    expect(STAGE?.title.split(' — ')[0]).toBe('수입 창구');
-    expect(WHELK_NARRATIVES.find((n) => n.key === 's04')?.title.split(' — ')[0]).not.toBe(
+    expect(STAGE?.title.split(' - ')[0]).toBe('수입 창구');
+    expect(WHELK_NARRATIVES.find((n) => n.key === 's04')?.title.split(' - ')[0]).not.toBe(
       '수입 창구',
     );
   });

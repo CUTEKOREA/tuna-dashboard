@@ -26,7 +26,7 @@ const FRED_KEY = process.env.FRED_API_KEY || '';
 // ⚠️ 시점 갱신 2026-05-20: 기존 데이터는 2024-Q1~2026-Q1 시점. 실측 wiring 미완 — 시나리오 추정치 보존.
 const POLLOCK_FORECAST = {
   model_info: {
-    type: 'STATIC 시나리오 — VAR 모형 학습 결과 + 산업 헤드라인',
+    type: 'STATIC 시나리오 - VAR 모형 학습 결과 + 산업 헤드라인',
     basis: '(기본 2024-08) 수산물 무역 단기 전망모형 + (일반 2025-14) AI 무역전망 고도화',
     variables: ['russia_pollock_fob', 'mgo_price', 'bering_sst_anomaly', 'krw_usd', 'china_dalian_utilization'],
     training_period: '2016-Q1 to 2025-Q1',
@@ -53,7 +53,7 @@ const POLLOCK_FORECAST = {
       { period: '2026-Q1', predicted: 1550, lower_95: 1320, upper_95: 1780, driver: '중국 춘절 수요 + 쿼터 추가 감축 예상' },
     ],
     trend: 'UPWARD',
-    risk_alert: '2025 Q3 최고점 시나리오 (STATIC 추정) — Atuna 실측 wiring 후 재검증 필요',
+    risk_alert: '2025 Q3 최고점 시나리오 (STATIC 추정) - Atuna 실측 wiring 후 재검증 필요',
   },
 
   // Pollock Surimi (명태 수리미/연육)
@@ -74,7 +74,7 @@ const POLLOCK_FORECAST = {
       { period: '2026-Q1', predicted: 3400, lower_95: 3050, upper_95: 3750, driver: '중국 어묵 내수 성장 지속' },
     ],
     trend: 'STRUCTURAL_UPWARD',
-    risk_alert: '수리미 구조적 상승 추세 — 대체 어종 블렌딩 비율 최적화 필요',
+    risk_alert: '수리미 구조적 상승 추세 - 대체 어종 블렌딩 비율 최적화 필요',
   },
 
   // Pollock Roe (명란)
@@ -95,7 +95,7 @@ const POLLOCK_FORECAST = {
       { period: '2026-Q1', predicted: 10800, lower_95: 9400, upper_95: 12200, driver: '프리미엄 저염 명란 트렌드' },
     ],
     trend: 'PREMIUM_GROWTH',
-    risk_alert: 'D2C 프리미엄 명란 마진 55% — B2B 벌크 매각 대비 7배 수익',
+    risk_alert: 'D2C 프리미엄 명란 마진 55% - B2B 벌크 매각 대비 7배 수익',
   },
 
   // SST-Price Correlation (해수면 온도 ↔ 가격)
@@ -171,7 +171,7 @@ export async function POST(request: NextRequest) {
 export async function GET() {
   return NextResponse.json({
     status: 'active',
-    description: '명태 AI 가격 예측 엔진 — VAR 5변수 모형 (통명태/수리미/명란)',
+    description: '명태 AI 가격 예측 엔진 - VAR 5변수 모형 (통명태/수리미/명란)',
     model: POLLOCK_FORECAST.model_info.type,
     frozen_whole_trend: POLLOCK_FORECAST.frozen_whole.trend,
     surimi_trend: POLLOCK_FORECAST.surimi.trend,

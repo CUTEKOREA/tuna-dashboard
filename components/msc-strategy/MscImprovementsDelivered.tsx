@@ -115,7 +115,7 @@ export default function MscImprovementsDelivered() {
           }}>
             <TrendingUp size={16} color="#10b981" style={{ flexShrink: 0 }} />
             <span style={{ fontSize: '0.72rem', color: 'var(--w-slate-300)' }}>
-              최근 3년 개선의 <b style={{ color: 'var(--w-sky-400)' }}>31%(175건)</b>가 멸종위기종·혼획 저감 — 단순 '라벨'이 아닌 실측 보존 성과
+              최근 3년 개선의 <b style={{ color: 'var(--w-sky-400)' }}>31%(175건)</b>가 멸종위기종·혼획 저감 - 단순 '라벨'이 아닌 실측 보존 성과
             </span>
           </div>
         </div>

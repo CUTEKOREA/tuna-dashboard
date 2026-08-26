@@ -61,7 +61,7 @@ describe('logistics decision workspace', () => {
 
   it('keeps static vessel report details collapsed by default', () => {
     expect(dashboardSource).toContain('<details');
-    expect(dashboardSource).toContain('보고 시점 자료 — 현재 운항 상태가 아닙니다');
+    expect(dashboardSource).toContain('보고 시점 자료 - 현재 운항 상태가 아닙니다');
     expect(dashboardSource).toContain('냉동 운반선 보고자료 펼치기');
   });
 

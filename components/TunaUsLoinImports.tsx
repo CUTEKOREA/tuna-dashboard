@@ -27,7 +27,7 @@ export default function TunaUsLoinImports() {
       icon={Landmark}
       iconColor="#38bdf8"
       pillar="S3"
-      cardDesc="FFA Markets Study 2025 p.88 표 6 — 미국의 1604.1440 관세 우회(Tariff-hopping)용 전가열 로인 수입액 트렌드 및 대중국 고율 관세 타격 분석"
+      cardDesc="FFA Markets Study 2025 p.88 표 6 - 미국의 1604.1440 관세 우회(Tariff-hopping)용 전가열 로인 수입액 트렌드 및 대중국 고율 관세 타격 분석"
       unit="(단위: 백만 USD)"
       telemetry={{ status: 'SYNCED', syncDate: '2026-05-30' }}
       kpiPanel={[

@@ -87,14 +87,14 @@ export const WHELK_CHART_SLOTS: Record<string, ChartSlot[]> = {
     {
       title: '과(科)별 생산량 (톤)',
       caption:
-        '호박색이 양식, 나머지가 어획이다. 장미색 막대가 참골뱅이류 — 한국이 통조림으로 먹는 그 종이고, 양식이 0이라 막대 전체가 자연산이다.',
+        '호박색이 양식, 나머지가 어획이다. 장미색 막대가 참골뱅이류 - 한국이 통조림으로 먹는 그 종이고, 양식이 0이라 막대 전체가 자연산이다.',
       telemetry: FAO_SYNC,
       render: () => <WhelkGroupChart data={DATA} />,
     },
   ],
   s02: [
     {
-      title: '공급 기업 — 누가 잡고 누가 파는가',
+      title: '공급 기업 - 누가 잡고 누가 파는가',
       caption: WHELK_RESEARCH.공급.요지,
       telemetry: { status: 'STATIC' as const, syncDate: '2026-08-17 조사' },
       span: 'full',
@@ -109,7 +109,7 @@ export const WHELK_CHART_SLOTS: Record<string, ChartSlot[]> = {
   ],
   s03: [
     {
-      title: '국내 생산 통계 — 코드가 바뀐 자리 (톤)',
+      title: '국내 생산 통계 - 코드가 바뀐 자리 (톤)',
       caption:
         '두 선이 2009년과 2010년 사이에서 끊긴다. 통계 코드가 바뀐 자리라 잇지 않았다. 점선인 소라는 다른 종이므로 합산 대상이 아니다.',
       telemetry: KOSIS_SYNC,
@@ -152,7 +152,7 @@ export const WHELK_CHART_SLOTS: Record<string, ChartSlot[]> = {
     {
       title: '수입 창구 물량 (톤)',
       caption:
-        '막대는 HS 1605.59 2026년 1~7월 제품중량이다. 장미색이 영국 — 이미 들어와 있는 본진이다. 프랑스 0은 어획이 없다는 뜻이 아니라 이 세번 추출에 이름이 없다는 뜻이다. 일곱 달이라 위 생산 통계·04단계 2024년 표와 더할 수 없다.',
+        '막대는 HS 1605.59 2026년 1~7월 제품중량이다. 장미색이 영국 - 이미 들어와 있는 본진이다. 프랑스 0은 어획이 없다는 뜻이 아니라 이 세번 추출에 이름이 없다는 뜻이다. 일곱 달이라 위 생산 통계·04단계 2024년 표와 더할 수 없다.',
       telemetry: SERIES_SYNC,
       span: 'full',
       render: () => <WhelkSeriesWindowsChart />,
@@ -174,7 +174,7 @@ const SPEC: CommoditySpec = {
   key: 'whelk',
   title: '골뱅이',
   subtitle:
-    '골뱅이 산업 해부 · 한 이름에 네 개 과(科)가 섞인 품목 — 종·원물·국내 생산·교역·수입 창구 5단계와 이름 자체의 문제',
+    '골뱅이 산업 해부 · 한 이름에 네 개 과(科)가 섞인 품목 - 종·원물·국내 생산·교역·수입 창구 5단계와 이름 자체의 문제',
   accent: WHELK_ACCENT,
   primaryKpi: {
     label: '다섯 과(科) 합계 생산량',

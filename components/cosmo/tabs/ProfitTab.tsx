@@ -107,10 +107,10 @@ export default function Profit() {
     <>
       <PageHead
         title="손익 · 원가"
-        lead={`매출은 ${monthlySeries.length}개월 내내 나오는데 순손익은 ${lossMonths}개월 모두 음(−)입니다. 규모가 아니라 원가 구조를 봅니다 — 어느 계정이, 그리고 처리량 대비 단위 원가가 어디서 무너지는지. 손익은 ${M.month}월(${lastProfitWeek}주차)까지, 운영은 ${latest.week}주차까지라 두 축 사이에 ${lagWeeks}주 시차가 있습니다.`}
+        lead={`매출은 ${monthlySeries.length}개월 내내 나오는데 순손익은 ${lossMonths}개월 모두 음(−)입니다. 규모가 아니라 원가 구조를 봅니다 - 어느 계정이, 그리고 처리량 대비 단위 원가가 어디서 무너지는지. 손익은 ${M.month}월(${lastProfitWeek}주차)까지, 운영은 ${latest.week}주차까지라 두 축 사이에 ${lagWeeks}주 시차가 있습니다.`}
         meta={[
           `손익 1~${M.month}월 (회계 인식)`,
-          `운영 ~${latest.week}주차 (${latest.periodEnd ?? '—'})`,
+          `운영 ~${latest.week}주차 (${latest.periodEnd ?? '-'})`,
           `원가 계정 ${costRows.length}개`,
           `결측 주차 ${meta.missingWeeks.join(',') || '없음'}`,
         ]}
@@ -139,7 +139,7 @@ export default function Profit() {
         </Card>
         <Card>
           <Kpi k="순이익률 (YTD)" v={pct(netMarginYtd, 2)} tone={n(netMarginYtd) < 0 ? 'down' : 'up'}
-            d={`매출총이익률과 ${pct(n(gpMarginYtd) - n(netMarginYtd), 2)} 차이 — 판관비·금융비용`} />
+            d={`매출총이익률과 ${pct(n(gpMarginYtd) - n(netMarginYtd), 2)} 차이 - 판관비·금융비용`} />
         </Card>
         <Card>
           <Kpi k={`전년 동월 대비 순손익 (${M.month}월)`} v={musd(yoyNet)} tone={yoyNet < 0 ? 'down' : 'up'}
@@ -162,17 +162,17 @@ export default function Profit() {
               note={<>매출 진행률 <b>{pct(annualCompare.revenueProgress, 1)}</b>는
                 {annualCompare.months}/12 = {pct(annualCompare.months / 12, 0)} 기준에
                 {' '}{n(annualCompare.revenueProgress) < annualCompare.months / 12 ? <b>미달</b> : '부합'}합니다.
-                문제는 속도가 아니라 마진입니다 — <b>매출총이익률 {pct(annualCompare.priorGpRate, 2)}
+                문제는 속도가 아니라 마진입니다 - <b>매출총이익률 {pct(annualCompare.priorGpRate, 2)}
                 → {pct(annualCompare.gpRate, 2)}</b>로 절반 아래로 내려앉았고,
                 순이익률은 {pct(annualCompare.priorNetRate, 2)} → <b>{pct(annualCompare.netRate, 2)}</b>입니다.
                 {annualCompare.year}년은 순이익 {musd(annualCompare.priorNet)}로 <b>간신히 흑자</b>였는데,
                 그 얇은 마진이 올해 사라진 구조입니다.
-                매출 갭도 전부 시황 탓은 아닙니다 — 전년 동기 대비 부족분 {musd(revGapYoY)} 중
+                매출 갭도 전부 시황 탓은 아닙니다 - 전년 동기 대비 부족분 {musd(revGapYoY)} 중
                 약 <b>25%</b>는 로인(Precooked Loin) 판매 소멸 $1.03M과 원어 판매 소멸 $0.36M,
                 즉 <b>사업 구조 축소분</b>입니다(로인 물량의 이치반 FBU 흡수 맥락).
                 <br />단순 연환산({annualCompare.months}개월 × {(12 / annualCompare.months).toFixed(1)})으로는
                 매출 {musd(annualCompare.revenueAnnualized)}({pct(annualCompare.revenueYoY, 1)}),
-                순손익 {musd(annualCompare.netAnnualized)}입니다 —
+                순손익 {musd(annualCompare.netAnnualized)}입니다 -
                 <b>계절성을 보정하지 않은 단순 배수</b>라 하반기 성수기를 반영하지 못합니다. 방향만 보십시오.</>}
             >
               <div className="tw">
@@ -188,7 +188,7 @@ export default function Profit() {
                       <td className="n">{musd(annualCompare.priorRevenue)}</td>
                       <td className="n">{musd(annualCompare.revenueYtd)}</td>
                       <td className="n">{pct(annualCompare.revenueProgress, 1)}</td>
-                      <td className="n">—</td>
+                      <td className="n">-</td>
                     </tr>
                     <tr className="warn">
                       <td>매출총이익</td>
@@ -201,7 +201,7 @@ export default function Profit() {
                       <td>순손익</td>
                       <td className="n">{musd(annualCompare.priorNet)}</td>
                       <td className="n">{musd(annualCompare.netYtd)}</td>
-                      <td className="n">—</td>
+                      <td className="n">-</td>
                       <td className="n">{pct(annualCompare.priorNetRate, 2)} → <b>{pct(annualCompare.netRate, 2)}</b></td>
                     </tr>
                   </tbody>
@@ -264,7 +264,7 @@ export default function Profit() {
         <Card
           span={2}
           title="사업부별 영업손익"
-          sub={`월별 영업손익을 통조림 · 어분 · FBU로 분해했다. 0선 기준. 부문별 공시는 ${opSeg.at(0)?.label ?? '—'}부터라 관측 ${opSeg.length}개월이다.`}
+          sub={`월별 영업손익을 통조림 · 어분 · FBU로 분해했다. 0선 기준. 부문별 공시는 ${opSeg.at(0)?.label ?? '-'}부터라 관측 ${opSeg.length}개월이다.`}
           note={<>{M.month}월 영업손익 {dk(n(M.op))}의 본체는 통조림 <b>{dk(n(M.op_cannery))}</b>입니다.
             어분도 {dk(n(M.op_fishmeal))}로 만성 적자 흐름이고, <b>FBU {dk(n(M.op_fbu))}만 유일한
             흑자</b>입니다(부문 합산 검산 잔차 {usd(opSegResidual)}). 다만 부문별 영업손익은 관측
@@ -288,7 +288,7 @@ export default function Profit() {
 
       <div className="grid g2" style={{ marginTop: 14 }}>
         <Card
-          title="원가 구조 — 재료 · 노무 · 에너지 · 기타"
+          title="원가 구조 - 재료 · 노무 · 에너지 · 기타"
           sub="월별 원가 계정을 네 묶음으로 쌓았다. 재료비가 원가의 대부분을 차지한다."
           note={<>{M.month}월 원가 계정 합계 <b>{musd(costTotal)}</b> 중 최대 계정 하나가 <b>{pct(topShare, 1)}</b>({costRows[0]?.[0]})입니다. 노무·에너지·기타를 다 합쳐도 재료비에 못 미치므로, <b>원가 절감의 지렛대는 사실상 원어 매입가</b>입니다. 단, 계정 합계와 매출원가는 월별로 최대 <b>{pct(cosGapMax, 1)}</b> 어긋납니다(재고 변동·계정 마감 시점 차이). 이 차트는 수준이 아니라 <b>구성 변화</b>로 읽어야 합니다.</>}
         >
@@ -312,7 +312,7 @@ export default function Profit() {
         <Card
           title="원어 1MT당 원가"
           sub="매출원가 ÷ 해당 월 원어처리량(CBU+FBU). 총원가·원어비는 왼쪽 축, 에너지·노무비는 오른쪽 축."
-          note={<>처리량 최저 {mtLo?.label}({mt(n(mtLo?.rawMt))})의 MT당 에너지+노무비는 <b>{d0(fixLo)}</b>, 최고 {mtHi?.label}({mt(n(mtHi?.rawMt))})은 {d0(fixHi)} — <b>{(fixLo / Math.max(1, fixHi)).toFixed(1)}배</b> 차이입니다. 매입가와 무관한 고정비가 <b>처리량이 줄면 MT당 원가로 전가</b>된다는 뜻입니다. MT당 총원가는 {ucLo?.label} {d0(n(ucLo?.costPerMt))} ~ {ucHi?.label} {d0(n(ucHi?.costPerMt))} 범위인데, 분자인 매출원가는 판매 기준·분모는 처리 기준이라 <b>재고 변동이 큰 달은 총원가 선이 튑니다</b>. 분모는 해당 월에 속한 주차(주차 종료일 기준) 합이라 월 경계가 주 단위로 근사됩니다 — 월별 {wkMin}~{wkMax}주차{wkMin !== wkMax ? `, 결측 ${meta.missingWeeks.join(',') || '없음'}주가 걸린 ${thinMonth?.label}은 ${wkMin}주치만 집계돼 MT당 원가가 과대` : ''}.</>}
+          note={<>처리량 최저 {mtLo?.label}({mt(n(mtLo?.rawMt))})의 MT당 에너지+노무비는 <b>{d0(fixLo)}</b>, 최고 {mtHi?.label}({mt(n(mtHi?.rawMt))})은 {d0(fixHi)} - <b>{(fixLo / Math.max(1, fixHi)).toFixed(1)}배</b> 차이입니다. 매입가와 무관한 고정비가 <b>처리량이 줄면 MT당 원가로 전가</b>된다는 뜻입니다. MT당 총원가는 {ucLo?.label} {d0(n(ucLo?.costPerMt))} ~ {ucHi?.label} {d0(n(ucHi?.costPerMt))} 범위인데, 분자인 매출원가는 판매 기준·분모는 처리 기준이라 <b>재고 변동이 큰 달은 총원가 선이 튑니다</b>. 분모는 해당 월에 속한 주차(주차 종료일 기준) 합이라 월 경계가 주 단위로 근사됩니다 - 월별 {wkMin}~{wkMax}주차{wkMin !== wkMax ? `, 결측 ${meta.missingWeeks.join(',') || '없음'}주가 걸린 ${thinMonth?.label}은 ${wkMin}주치만 집계돼 MT당 원가가 과대` : ''}.</>}
         >
           <Legend items={[
             { name: 'MT당 총원가', color: C.s1 },
@@ -336,7 +336,7 @@ export default function Profit() {
         <Card
           title="원어가(Skipjack) vs 매출총이익률"
           sub="원어 매입단가(왼쪽 축 $/MT)와 매출총이익률(오른쪽 축 %). 축이 다르므로 방향만 본다. 단가 축은 변동 폭이 좁아 0 이 아니라 데이터 범위에서 시작한다."
-          note={<>Skipjack 단가는 {sjFirst?.label} {d0(n(sjFirst?.fishPriceSJ))}에서 {sjPrev?.label} {d0(n(sjPrev?.fishPriceSJ))}까지 줄곧 올랐다가, {sjLast?.label} <b>{d0(n(sjLast?.fishPriceSJ))}</b>로 <b>{pct(sjMoM, 1)}</b> 내렸습니다 — 1월 이후 <b>첫 하락 전환</b>입니다. 다만 관측 1개월이라 추세로 단정할 수 없고, 8월 원가 개선의 <b>선행 신호 후보</b>로만 둡니다. 같은 기간 매출총이익률은 {pct(sjFirst?.gpMargin, 2)} → <b>{pct(sjLast?.gpMargin, 2)}</b> — 누적 {pct(sjChange, 1)} 오른 단가를 판가가 따라잡지 못한 구조는 그대로입니다. 월 {sjRows.length}개 관측치라 상관계수를 말할 표본은 아니고, <b>방향</b>만 읽습니다.</>}
+          note={<>Skipjack 단가는 {sjFirst?.label} {d0(n(sjFirst?.fishPriceSJ))}에서 {sjPrev?.label} {d0(n(sjPrev?.fishPriceSJ))}까지 줄곧 올랐다가, {sjLast?.label} <b>{d0(n(sjLast?.fishPriceSJ))}</b>로 <b>{pct(sjMoM, 1)}</b> 내렸습니다 - 1월 이후 <b>첫 하락 전환</b>입니다. 다만 관측 1개월이라 추세로 단정할 수 없고, 8월 원가 개선의 <b>선행 신호 후보</b>로만 둡니다. 같은 기간 매출총이익률은 {pct(sjFirst?.gpMargin, 2)} → <b>{pct(sjLast?.gpMargin, 2)}</b> - 누적 {pct(sjChange, 1)} 오른 단가를 판가가 따라잡지 못한 구조는 그대로입니다. 월 {sjRows.length}개 관측치라 상관계수를 말할 표본은 아니고, <b>방향</b>만 읽습니다.</>}
         >
           <Legend items={[
             { name: '원어가 SJ ($/MT)', color: C.s3 },
@@ -377,7 +377,7 @@ export default function Profit() {
         <Card
           title={`${M.month}월 원가 계정 ${costRows.length}개`}
           sub="금액 내림차순. 구성비는 계정 합계 대비 비중."
-          note={<>계정 합계 <b>{musd(costTotal)}</b> vs 매출원가 {musd(M.cos)} — 차이 <b>{usd(n(M.cos) - costTotal)}</b>({pct(div(n(M.cos) - costTotal, n(M.cos)), 1)}). 계정은 발생 기준, 매출원가는 재고 변동을 반영해 서로 맞지 않습니다. 상위 {Math.min(TOP, costRows.length)}개 계정({costRows.slice(0, TOP).map(([k]) => k).join(', ')})이 합계의 <b>{pct(div(costRows.slice(0, TOP).reduce((a, [, v]) => a + n(v), 0), costTotal), 1)}</b>를 차지합니다. 에너지 쪽에선 전기료(Electricity)가 도드라집니다 — YTD <b>{musd(elecYtd)}</b>로 전년 동기 $0.73M 대비 <b>+43%</b>인데, 처리량이 줄어든 해에 늘었다는 것은 물량이 아니라 <b>단가가 오르고 있다는 신호</b>입니다.</>}
+          note={<>계정 합계 <b>{musd(costTotal)}</b> vs 매출원가 {musd(M.cos)} - 차이 <b>{usd(n(M.cos) - costTotal)}</b>({pct(div(n(M.cos) - costTotal, n(M.cos)), 1)}). 계정은 발생 기준, 매출원가는 재고 변동을 반영해 서로 맞지 않습니다. 상위 {Math.min(TOP, costRows.length)}개 계정({costRows.slice(0, TOP).map(([k]) => k).join(', ')})이 합계의 <b>{pct(div(costRows.slice(0, TOP).reduce((a, [, v]) => a + n(v), 0), costTotal), 1)}</b>를 차지합니다. 에너지 쪽에선 전기료(Electricity)가 도드라집니다 - YTD <b>{musd(elecYtd)}</b>로 전년 동기 $0.73M 대비 <b>+43%</b>인데, 처리량이 줄어든 해에 늘었다는 것은 물량이 아니라 <b>단가가 오르고 있다는 신호</b>입니다.</>}
         >
           <div className="tw" style={{ marginBottom: 0 }}>
             <table>
@@ -417,7 +417,7 @@ export default function Profit() {
           누적 이자비용만 <b>{musd(interestYtd)}</b>로 매출총이익 {musd(M.gpYtd)}를 이미 {pct(div(Math.abs(interestYtd), n(M.gpYtd)), 0)} 잠식합니다.
           매출총이익률과 순이익률의 격차 {pct(n(gpMarginYtd) - n(netMarginYtd), 2)}가 고정적으로 붙으므로,
           매출총이익률이 그 수준을 넘지 못하는 한 매출이 늘어도 적자입니다.
-          {M.month}월이 그 실증입니다 — 매출총이익이 <b>{dk(n(M.gp))}</b>로 회복됐는데도
+          {M.month}월이 그 실증입니다 - 매출총이익이 <b>{dk(n(M.gp))}</b>로 회복됐는데도
           월 판관비 {dk(n(M.sga))}와 이자 {dk(Math.abs(n(M.interest)))}의 고정 부담이 이를 잠식해
           영업손익 {dk(n(M.op))}, 순손실 {dk(Math.abs(n(M.net)))}입니다.
           매출총이익률이 손익분기 <b>{pct(breakevenMargin?.required, 1)}</b>에 닿기 전까지,

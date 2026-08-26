@@ -147,7 +147,7 @@ describe('widget render snapshots', () => {
         icon,
         iconColor: color,
         pillar: pillar as Pillar,
-        cardDesc: `${PILLAR_LABELS[pillar as Pillar]} 대표 지표 — 스냅샷 렌더 회귀 확인용`,
+        cardDesc: `${PILLAR_LABELS[pillar as Pillar]} 대표 지표 - 스냅샷 렌더 회귀 확인용`,
         telemetry: { status: status as TelemetryStatus, syncDate: status === 'LIVE' ? '실시간' : '2026-Q2' },
         kpiPanel: [
           { label: '지수', value: 70 + index, sub: '전월 대비 +2p', trendColor: color },

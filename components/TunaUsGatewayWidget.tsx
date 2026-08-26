@@ -128,7 +128,7 @@ const TunaUsGatewayWidget = () => {
         loading ? (
           <StateBox>미국 인구조사국 데이터 불러오는 중…</StateBox>
         ) : error ? (
-          <StateBox color="#f87171">데이터 로드 실패: {error} — 잠시 후 새로고침 해주세요.</StateBox>
+          <StateBox color="#f87171">데이터 로드 실패: {error} - 잠시 후 새로고침 해주세요.</StateBox>
         ) : isEmpty ? (
           <StateBox>표시할 수입 통계가 없습니다. (최근 4개월 미공표)</StateBox>
         ) : (

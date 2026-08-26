@@ -52,7 +52,7 @@ const STAGE_01: StageNarrative = {
 const STAGE_02: StageNarrative = {
   key: 's02',
   numeral: '02',
-  title: '왜 이 구조가 됐나 — 연근해에 참치가 없다',
+  title: '왜 이 구조가 됐나 - 연근해에 참치가 없다',
   question: '한국 참치 산업은 언제, 어떤 모습으로 만들어졌는가',
   lede: '2024년 한국 어선이 잡은 참치 332,602톤은 전부 원양어선이 잡았다. 1960년대 연승으로 시작해 1990년대에 선망 가다랑어가 6할을 넘겼고, 2019년 370,208톤이 정점이다.',
   paragraphs: [
@@ -76,7 +76,7 @@ const STAGE_02: StageNarrative = {
 const STAGE_03: StageNarrative = {
   key: 's03',
   numeral: '03',
-  title: '세계 — 다섯 어종, 세 바다, 두 산업',
+  title: '세계 - 다섯 어종, 세 바다, 두 산업',
   question: '세계 참치는 누가 어디서 잡고, 어디로 팔리는가',
   lede: '세계 참치 어획은 2024년 5,908,078톤으로 역대 최고다. 10분의 9가 가다랑어와 황다랑어이고 절반이 중서부태평양에서 나오며, 원료 교역은 방콕에 모인다.',
   paragraphs: [
@@ -101,7 +101,7 @@ const STAGE_03: StageNarrative = {
 const STAGE_04: StageNarrative = {
   key: 's04',
   numeral: '04',
-  title: '한국 원양 — 선망과 연승',
+  title: '한국 원양 - 선망과 연승',
   question: '누가 얼마나 잡고, 배는 얼마나 낡았는가',
   lede: '2024년 참치선망 288,742톤·참치연승 46,619톤. 물량은 선망이 87%지만 연승이 금액의 35%를 번다. 2025년 선망은 26.8% 줄었고, 연승선 105척은 평균 36.5년이다.',
   paragraphs: [
@@ -127,7 +127,7 @@ const STAGE_04: StageNarrative = {
 const STAGE_05: StageNarrative = {
   key: 's05',
   numeral: '05',
-  title: '어디서 잡나 — WCPFC·VDS·입어료',
+  title: '어디서 잡나 - WCPFC·VDS·입어료',
   question: '한국 선망이 잡을 수 있는 양은 누가 정하는가',
   lede: '한국 선망에는 어획 톤 한도가 없다. 대신 공해 조업일수 207일과 대형 선망선 28척, 집어장치 금어 1.5개월이 WCPFC의 규칙이고, 도서국 수역은 PNA 선박일수제의 45,033일을 나라마다 산다.',
   paragraphs: [
@@ -153,7 +153,7 @@ const STAGE_05: StageNarrative = {
 const STAGE_06: StageNarrative = {
   key: 's06',
   numeral: '06',
-  title: '환적과 양륙 — 배에서 배로',
+  title: '환적과 양륙 - 배에서 배로',
   question: '잡은 참치는 어디서 누구에게 넘어가는가',
   lede: '2024년 중서부태평양 선망 어획 276,640톤 가운데 269,800톤이 항내 환적으로 운반선에 넘어갔다. 운반선이 가는 곳은 관세청 수출 통계에 나온다. 태국 53.7%, 대만 0.',
   paragraphs: [
@@ -171,14 +171,14 @@ const STAGE_06: StageNarrative = {
     { label: '대만행 냉동 참치', value: '0 톤', asOf: '2023~2025년', source: '관세청 수출입무역통계', grade: 'A', note: 'FCF 매입분은 방콕 인도로 태국행에 잡힌다' },
   ],
   terms: [
-    { term: '내국물품', description: '관세법 제2조 제5호 — 우리나라 선박이 공해(외국 영해가 아닌 경제수역 포함)에서 잡은 수산물을 포함한다. 외국으로 반출하면 수출' },
+    { term: '내국물품', description: '관세법 제2조 제5호 - 우리나라 선박이 공해(외국 영해가 아닌 경제수역 포함)에서 잡은 수산물을 포함한다. 외국으로 반출하면 수출' },
   ],
 };
 
 const STAGE_07: StageNarrative = {
   key: 's07',
   numeral: '07',
-  title: '누구에게 파나 — 방콕·가나·FCF',
+  title: '누구에게 파나 - 방콕·가나·FCF',
   question: '한국 선망 가다랑어를 사는 회사는 누구인가',
   lede: '고객은 나라가 아니라 회사다. FCF는 신라교역 매출의 4할, 타이유니온은 방콕의 첫 고객, 볼튼 명단에는 한국 선망선 14척, 이토추의 MSC 선단에는 사조 계열 11척이 있다.',
   paragraphs: [
@@ -197,14 +197,14 @@ const STAGE_07: StageNarrative = {
   ],
   terms: [
     { term: '고객 A', description: '신라교역이 2023년 보고서부터 쓰는 익명 표기. 전기 수치 대조로 F.C.F임이 확인된다' },
-    { term: 'MSC', description: '해양관리협의회 지속가능 어업 인증. 인증 보유자(client)가 어선 소유자와 다를 수 있다 — 이토추가 사조 선단의 인증을 쥔 구조' },
+    { term: 'MSC', description: '해양관리협의회 지속가능 어업 인증. 인증 보유자(client)가 어선 소유자와 다를 수 있다 - 이토추가 사조 선단의 인증을 쥔 구조' },
   ],
 };
 
 const STAGE_08: StageNarrative = {
   key: 's08',
   numeral: '08',
-  title: '해외 가공 — 한국 자본의 캐너리',
+  title: '해외 가공 - 한국 자본의 캐너리',
   question: '한국 자본의 참치 캔 공장은 어디에 있는가',
   lede: '동원은 사모아·에콰도르·세네갈에, 신라는 가나 COSMO에 공장을 가졌고 사조는 해외 캐너리가 없다. 한국 선망이 가장 많이 잡는 바다의 캔 공장은 한국 자본이 아니다.',
   paragraphs: [
@@ -229,7 +229,7 @@ const STAGE_08: StageNarrative = {
 const STAGE_09: StageNarrative = {
   key: 's09',
   numeral: '09',
-  title: '국내 가공 — 캔 세 회사',
+  title: '국내 가공 - 캔 세 회사',
   question: '한국 안에서는 누가 참치를 캔에 넣는가',
   lede: '2024년 국내 참치 캔·조리 생산 80,374톤은 동원 38,135톤, 오뚜기 22,937톤, 사조 17,784톤이다. 브랜드와 공장은 다르다. 동원 캔의 45%는 삼진물산·신진물산이 만든다.',
   paragraphs: [
@@ -254,7 +254,7 @@ const STAGE_09: StageNarrative = {
 const STAGE_10: StageNarrative = {
   key: 's10',
   numeral: '10',
-  title: '수입 — 사시미와 완제품',
+  title: '수입 - 사시미와 완제품',
   question: '한국이 들여오는 참치는 무엇이고 누가 들여오는가',
   lede: '2025년 수입은 냉동 통마리 10,083톤, 필레 7,718톤, 캔·조제품 5,962톤이고 돈은 필레 1억 5,030만 달러에 있다. 수입신고의 7할이 참다랑어, 캔·조제품의 8할이 베트남산인데 그 4분의 3은 자숙 로인이다.',
   paragraphs: [
@@ -279,7 +279,7 @@ const STAGE_10: StageNarrative = {
 const STAGE_11: StageNarrative = {
   key: 's11',
   numeral: '11',
-  title: '연결 — 선사 × 캐너리 × 브랜드',
+  title: '연결 - 선사 × 캐너리 × 브랜드',
   question: '배를 가진 회사와 캔을 파는 회사는 어떻게 이어지는가',
   lede: '배를 가진 회사가 셋, 배 없이 캔을 파는 회사가 하나다. 동원은 잡고 만들고 팔고, 사조는 밖으로도 팔며, 신라의 공장은 가나에 있고, 오뚜기는 베트남 로인으로 캔을 만든다.',
   paragraphs: [
@@ -303,7 +303,7 @@ const STAGE_11: StageNarrative = {
 const STAGE_12: StageNarrative = {
   key: 's12',
   numeral: '12',
-  title: '재무 — 원양 선사와 캔 회사',
+  title: '재무 - 원양 선사와 캔 회사',
   question: '참치는 어느 회사의 장부에서 얼마나 큰가',
   lede: '참치 실적이 있는 선사 14곳 가운데 사업보고서를 내는 곳은 일곱이고 캔 회사 셋을 더하면 열이다. 동원산업 연결 매출에서 수산은 3.6%, 사조산업은 41.2%, 신라교역은 33.0%가 원양이다.',
   paragraphs: [
@@ -328,7 +328,7 @@ const STAGE_12: StageNarrative = {
 const STAGE_13: StageNarrative = {
   key: 's13',
   numeral: '13',
-  title: '값 — 방콕 가다랑어에서 소매 캔까지',
+  title: '값 - 방콕 가다랑어에서 소매 캔까지',
   question: '참치 값은 어디서 정해지고 어디서 끝나는가',
   lede: '가다랑어 값은 방콕의 달러에서 시작해 캔의 원화로 끝난다. 방콕은 2024년 8월 1,250달러에서 2026년 3월 2,000달러로 움직였지만 한국 선단의 원화 생산단가는 1,910~1,965원에 평평하고, 캔 단가는 35% 올랐다.',
   paragraphs: [
@@ -353,7 +353,7 @@ const STAGE_13: StageNarrative = {
 const STAGE_14: StageNarrative = {
   key: 's14',
   numeral: '14',
-  title: '제도 — 통계에 없는 참치',
+  title: '제도 - 통계에 없는 참치',
   question: '네 기관의 장부를 맞대면 어디가 비는가',
   lede: '해양수산부·협회가 어획을, 관세청이 수출입을, 식약처가 가공과 수입신고를, WCPFC가 협약수역을 센다. 네 장부는 서로 맞춰 보라고 만든 것이 아니어서 맞대면 칸이 빈다. 비는 자리는 네 곳이다.',
   paragraphs: [

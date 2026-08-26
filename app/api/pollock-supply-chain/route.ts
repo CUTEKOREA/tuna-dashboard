@@ -35,7 +35,7 @@ const POLLOCK_SUPPLY_CHAIN = {
       { year: '2024', hhi: 6950, russia_pct: 45, china_pct: 44, us_pct: 6, other_pct: 5 },
       { year: '2025E', hhi: 7100, russia_pct: 42, china_pct: 48, us_pct: 5, other_pct: 5 },
     ],
-    alert: 'HHI 7,000 돌파 — 극단적 양두독점(러시아+중국 90%). 공급 쇼크 시 대체 소싱 불가 위험.',
+    alert: 'HHI 7,000 돌파 - 극단적 양두독점(러시아+중국 90%). 공급 쇼크 시 대체 소싱 불가 위험.',
   },
 
   // 글로벌 명태 Supply Flow (원물 → 가공 → 최종 소비)
@@ -151,7 +151,7 @@ export async function POST(request: NextRequest) {
 export async function GET() {
   return NextResponse.json({
     status: 'active',
-    description: '명태 글로벌 공급망 인텔리전스 — 집중도(HHI)/플로우/대체소싱/대체어종',
+    description: '명태 글로벌 공급망 인텔리전스 - 집중도(HHI)/플로우/대체소싱/대체어종',
     current_hhi: POLLOCK_SUPPLY_CHAIN.concentration_index.trend.at(-1)?.hhi,
     alert: POLLOCK_SUPPLY_CHAIN.concentration_index.alert,
     alternative_options: POLLOCK_SUPPLY_CHAIN.alternative_sourcing.options.length,

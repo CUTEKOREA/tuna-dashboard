@@ -45,7 +45,7 @@ const EXCERPT_CAP = 6;
 type Row = Record<string, string | number | null>;
 
 function formatCell(value: unknown): string {
-  if (value === null || value === undefined || value === '') return '—';
+  if (value === null || value === undefined || value === '') return '-';
   // 원본 위젯의 셀에 객체·배열이 들어 있는 경우가 있다(예: 중단 조치 목록).
   // 그대로 React 자식으로 넘기면 페이지 전체가 죽으므로 여기서 문자열로 눕힌다.
   // 큐레이션에서 펴는 것이 정석이지만, 방어는 렌더에도 둔다 — 한 셀 때문에 화면이 사라지면 안 된다.

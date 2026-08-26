@@ -99,7 +99,7 @@ export const bangkokWeeks: readonly BangkokWeek[] = rawPayload.series.map((r) =>
 
 if (bangkokWeeks.length !== bangkokWeeklyKpi.weeks) {
   throw new Error(
-    `payload 주차 수(${bangkokWeeks.length})와 KPI weeks(${bangkokWeeklyKpi.weeks})가 다릅니다 — 두 산출물의 원본 세대가 어긋났습니다.`,
+    `payload 주차 수(${bangkokWeeks.length})와 KPI weeks(${bangkokWeeklyKpi.weeks})가 다릅니다 - 두 산출물의 원본 세대가 어긋났습니다.`,
   );
 }
 

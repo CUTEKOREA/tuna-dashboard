@@ -135,7 +135,7 @@ export default function WhelkDashboard() {
               <h1 style={{ margin: 0, fontSize: '1.5rem', fontWeight: 700, letterSpacing: '-0.5px', color: 'var(--text-primary)' }}>
                 골뱅이 전략 인텔리전스
               </h1>
-              <p style={{ margin: 0, fontSize: '0.88rem', color: 'var(--text-secondary)' }}>골뱅이 전략 커맨드 센터 — {INLINE_WIDGET_COUNT + kfasWidgets.length}개 위젯 · 5-Pillar 프레임워크</p>
+              <p style={{ margin: 0, fontSize: '0.88rem', color: 'var(--text-secondary)' }}>골뱅이 전략 커맨드 센터 - {INLINE_WIDGET_COUNT + kfasWidgets.length}개 위젯 · 5-Pillar 프레임워크</p>
             </div>
           </div>
           <div className="ds-card" style={{fontSize: '0.88rem', padding: '8px 16px', 
@@ -232,7 +232,7 @@ export default function WhelkDashboard() {
           borderBottom: '1px solid rgba(140,170,255,0.10)',
           marginBottom: '6px' }}>
           <span style={{ fontSize: '0.7rem', color: 'rgba(var(--w-slate-400-rgb), 0.7)', fontWeight: 600, letterSpacing: '0.08em', textTransform: 'uppercase' }}>
-            밸류체인 네비게이터 — 아래 단계를 클릭하여 탐색하세요
+            밸류체인 네비게이터 - 아래 단계를 클릭하여 탐색하세요
           </span>
         </div>
         <div data-mobile-stack style={{ display: 'grid', gridTemplateColumns: 'repeat(5, 1fr)', gap: '4px' }}>
@@ -313,7 +313,7 @@ export default function WhelkDashboard() {
   </div>
   <>
             <WidgetCard title="참골뱅이 어획 상위국" icon={Globe} iconColor="var(--color-info)" pillar="S1"
-              cardDesc="통조림 원료인 물레고둥과(Buccinum)만 세었다 — 과(科)가 다른 종을 더하지 않는다"
+              cardDesc="통조림 원료인 물레고둥과(Buccinum)만 세었다 - 과(科)가 다른 종을 더하지 않는다"
               telemetry={{ status: 'STATIC', syncDate: '2024년 확정' }} chartHeight={300}
               chart={
                 <BarChart data={globalCaptureData} layout="vertical" margin={{ left: 20 }}>
@@ -331,8 +331,8 @@ export default function WhelkDashboard() {
               }
               takeaway={{
                 situation: <span>[FAO FishStat 2026.1.0] 2024년 참골뱅이 어획 35,744톤 가운데 영국 16,511톤·프랑스 7,696톤·캐나다 5,410톤·아일랜드 4,590톤이 94.5%를 차지합니다. 통조림 원료가 북대서양 네 나라에 몰려 있습니다.</span>,
-                actionPlan: <span>이 순위에 <strong>한국은 없습니다 — 참골뱅이 어획이 0</strong>입니다. 한국이 국제 통계에 종을 나눠 보고하지 않기 때문이기도 하고(전 연도 고둥류 미분류), 통조림 원료를 전량 수입하는 구조이기도 합니다. 프리미엄 B2C 라인의 원물인 <TermTooltip term="B. undatum" description="북대서양 찬 바다의 물레고둥(백골뱅이). 수율이 높고 육질이 부드러워 한국 B2C 통조림 1위 원물." /> 은 대체 산지가 사실상 위 네 나라뿐이므로, 조달 파트는 영국 편중을 아일랜드·캐나다로 나누는 다년 선도 계약을 우선 검토해야 합니다.</span>,
-                source: 'FAO FishStat 2026.1.0 — 물레고둥과(Buccinum) 어획 (2024)',
+                actionPlan: <span>이 순위에 <strong>한국은 없습니다 - 참골뱅이 어획이 0</strong>입니다. 한국이 국제 통계에 종을 나눠 보고하지 않기 때문이기도 하고(전 연도 고둥류 미분류), 통조림 원료를 전량 수입하는 구조이기도 합니다. 프리미엄 B2C 라인의 원물인 <TermTooltip term="B. undatum" description="북대서양 찬 바다의 물레고둥(백골뱅이). 수율이 높고 육질이 부드러워 한국 B2C 통조림 1위 원물." /> 은 대체 산지가 사실상 위 네 나라뿐이므로, 조달 파트는 영국 편중을 아일랜드·캐나다로 나누는 다년 선도 계약을 우선 검토해야 합니다.</span>,
+                source: 'FAO FishStat 2026.1.0 - 물레고둥과(Buccinum) 어획 (2024)',
               }} />
 
             <WidgetCard title="캐나다·영국 참골뱅이 어획 (2016~2024)" icon={TrendingUp} iconColor="var(--color-info)" pillar="S1"
@@ -351,8 +351,8 @@ export default function WhelkDashboard() {
               }
               takeaway={{
                 situation: <span>[FAO FishStat 2026.1.0] 캐나다 참골뱅이 어획은 2016년 3,592톤에서 2022년 1,847톤까지 줄었다가 <strong>2024년 5,410톤으로 되올라왔습니다.</strong> 영국은 같은 기간 20,366 → 14,298 → 16,511톤으로 오르내립니다. 두 나라 모두 <strong>추세라 부를 만한 방향이 없습니다.</strong></span>,
-                actionPlan: <span>이전 판에서는 캐나다를 2008년 7,219톤에서 2022년 1,847톤으로 그리며 &ldquo;10년간 74% 붕괴&rdquo;라고 했는데, <strong>그 두 값은 다른 과(科)입니다.</strong> 2008·2013년 수치는 미국고둥류(<TermTooltip term="Busycon" description="물레고둥붙이과(Melongenidae). 북미 대서양 연안의 고둥으로, 물레고둥과(Buccinidae)의 참골뱅이와 다른 과다." />)이고 2016년부터가 참골뱅이입니다. 캐나다의 보고 코드가 바뀐 것을 어획 붕괴로 읽은 것입니다. 과가 다른 계열을 이으면 안 됩니다 — 국내 통계의 골뱅이(130303)와 고둥류(130311)를 잇지 않는 것과 같은 이유입니다. 조달 판단은 &ldquo;캐나다가 사라졌다&rdquo;가 아니라 <strong>&ldquo;두 산지 모두 해마다 크게 흔들린다&rdquo;</strong>에서 출발해야 하고, 그렇다면 필요한 것은 패닉 바잉이 아니라 복수 산지 계약입니다.</span>,
-                source: 'FAO FishStat 2026.1.0 — 물레고둥과(Buccinum) 어획, 2016~2024',
+                actionPlan: <span>이전 판에서는 캐나다를 2008년 7,219톤에서 2022년 1,847톤으로 그리며 &ldquo;10년간 74% 붕괴&rdquo;라고 했는데, <strong>그 두 값은 다른 과(科)입니다.</strong> 2008·2013년 수치는 미국고둥류(<TermTooltip term="Busycon" description="물레고둥붙이과(Melongenidae). 북미 대서양 연안의 고둥으로, 물레고둥과(Buccinidae)의 참골뱅이와 다른 과다." />)이고 2016년부터가 참골뱅이입니다. 캐나다의 보고 코드가 바뀐 것을 어획 붕괴로 읽은 것입니다. 과가 다른 계열을 이으면 안 됩니다 - 국내 통계의 골뱅이(130303)와 고둥류(130311)를 잇지 않는 것과 같은 이유입니다. 조달 판단은 &ldquo;캐나다가 사라졌다&rdquo;가 아니라 <strong>&ldquo;두 산지 모두 해마다 크게 흔들린다&rdquo;</strong>에서 출발해야 하고, 그렇다면 필요한 것은 패닉 바잉이 아니라 복수 산지 계약입니다.</span>,
+                source: 'FAO FishStat 2026.1.0 - 물레고둥과(Buccinum) 어획, 2016~2024',
               }} />
             
             <WidgetCard title="한국 연안 고둥류 어획 생산량" icon={Activity} iconColor="var(--color-info)" pillar="S1"
@@ -375,7 +375,7 @@ export default function WhelkDashboard() {
               }
               takeaway={{
                 situation: <span>[국가통계포털] 한국 연안 고둥류 어획은 2019년 10,190톤을 정점으로 2024년 9,670톤, 2025년 9,171톤입니다. 15년째 9,000~10,000톤 구간에서 크게 벗어나지 않습니다.</span>,
-                actionPlan: <span>이 물량이 무슨 종인지는 통계에 없습니다 — 국내 항목명이 &ldquo;고둥류&rdquo;이고 국제 보고도 전 연도 미분류입니다. 국산 원물은 주로 <TermTooltip term="활·신선" description="가공하지 않은 살아 있는 상태. 2024년 활·신선 고둥류가 중국에 1,101만 달러, 소라가 일본에 319만 달러 나갔다." /> 형태로 일본·중국에 나가고, 통조림 원료는 조제저장품으로 영국에서 들어옵니다. 한 품목의 두 사슬이 반대로 흐르는 구조입니다. 국산 전환을 검토하려면 <strong>종 판별이 선행 과제</strong>이며, 그 전까지 원가 개선의 여지는 환헤지와 통관 효율에 한정됩니다.</span>,
+                actionPlan: <span>이 물량이 무슨 종인지는 통계에 없습니다 - 국내 항목명이 &ldquo;고둥류&rdquo;이고 국제 보고도 전 연도 미분류입니다. 국산 원물은 주로 <TermTooltip term="활·신선" description="가공하지 않은 살아 있는 상태. 2024년 활·신선 고둥류가 중국에 1,101만 달러, 소라가 일본에 319만 달러 나갔다." /> 형태로 일본·중국에 나가고, 통조림 원료는 조제저장품으로 영국에서 들어옵니다. 한 품목의 두 사슬이 반대로 흐르는 구조입니다. 국산 전환을 검토하려면 <strong>종 판별이 선행 과제</strong>이며, 그 전까지 원가 개선의 여지는 환헤지와 통관 효율에 한정됩니다.</span>,
                 source: '국가통계포털 어업생산동향조사 고둥류(130311), 2010~2025',
               }} />
 
@@ -408,7 +408,7 @@ export default function WhelkDashboard() {
               }} />
 
             <WidgetCard title="포스트 영국(Post-UK) 시대 대비 신규 어장 스코어카드" icon={Navigation} iconColor="var(--color-info)" pillar="S1"
-              cardDesc="대체 어장 4축 — 자체 점수 + 개략 수온. 측정 시계열이 아니라 탐색용 판단이다"
+              cardDesc="대체 어장 4축 - 자체 점수 + 개략 수온. 측정 시계열이 아니라 탐색용 판단이다"
               telemetry={{ status: 'STATIC', syncDate: '2026 분석' }} chartHeight={300}
               chart={
                 <BarChart data={postUkScorecardData} layout="vertical" margin={{ left: 30 }}>
@@ -429,7 +429,7 @@ export default function WhelkDashboard() {
                 source: 'FAOSTAT + ICES (2026 분석)',
               }} />
 
-            <WidgetCard title="원료 산지 — 한국이 들어가지 못하는 순위" icon={Navigation} iconColor="var(--color-info)" pillar="S1"
+            <WidgetCard title="원료 산지 - 한국이 들어가지 못하는 순위" icon={Navigation} iconColor="var(--color-info)" pillar="S1"
               cardDesc="참골뱅이(Buccinum) 어획 상위국. 한국은 이 종을 보고하지 않아 순위에 없다"
               telemetry={{ status: 'STATIC', syncDate: '2024년 확정' }} chartHeight={300}
               chart={
@@ -446,7 +446,7 @@ export default function WhelkDashboard() {
               }
               takeaway={{
                 situation: <span>[FAO FishStat 2026.1.0] 2024년 참골뱅이 어획 상위는 영국 16,511톤·프랑스 7,696톤·캐나다 5,410톤·아일랜드 4,590톤이고 <strong>한국은 0톤</strong>입니다. 한국의 고둥류 어획 9,670톤은 종을 나누지 않은 미분류 값이라 이 순위에 넣을 수 없습니다.</span>,
-                actionPlan: <span>이전 판에서는 다른 나라의 종코드 7개 합산값과 한국의 미분류 단일 코드를 나란히 세워 &ldquo;한국 세계 5위&rdquo;로 표기했는데, 과(科)가 다른 종을 더한 값이라 성립하지 않습니다. 원본 설명서도 이 합산을 명시적으로 금지합니다. 실무적으로 남는 사실은 하나입니다 — <strong>통조림 원료는 국내에서 조달되지 않습니다.</strong> 국내 어획을 가공용으로 돌리는 안을 검토하려면 먼저 그 9,670톤이 무슨 종인지부터 확인해야 하고, 그 자료가 현재 없습니다.</span>,
+                actionPlan: <span>이전 판에서는 다른 나라의 종코드 7개 합산값과 한국의 미분류 단일 코드를 나란히 세워 &ldquo;한국 세계 5위&rdquo;로 표기했는데, 과(科)가 다른 종을 더한 값이라 성립하지 않습니다. 원본 설명서도 이 합산을 명시적으로 금지합니다. 실무적으로 남는 사실은 하나입니다 - <strong>통조림 원료는 국내에서 조달되지 않습니다.</strong> 국내 어획을 가공용으로 돌리는 안을 검토하려면 먼저 그 9,670톤이 무슨 종인지부터 확인해야 하고, 그 자료가 현재 없습니다.</span>,
                 source: 'FAO FishStat 2026.1.0 + 국가통계포털 어업생산동향조사 (2024)',
               }} />
           </>
@@ -458,7 +458,7 @@ export default function WhelkDashboard() {
   </div>
   <>
             <WidgetCard title="국내 수입산 골뱅이 국가별 점유율" icon={ChartPie} iconColor="var(--color-info)" pillar="S3"
-              cardDesc="KCS HS160559 2024년 연간 수입금액($M) 기준 국가별 점유율(총 $58.5M, 기타 포함) — 영국·아일랜드 합산 65% 단일 해역 리스크"
+              cardDesc="KCS HS160559 2024년 연간 수입금액($M) 기준 국가별 점유율(총 $58.5M, 기타 포함) - 영국·아일랜드 합산 65% 단일 해역 리스크"
               telemetry={{ status: metaStatus, syncDate: metaSyncDate || 'KCS 2026-05-15' }} chartHeight={300}
               chart={
                 <PieChart>
@@ -476,7 +476,7 @@ export default function WhelkDashboard() {
               }} />
 
             <WidgetCard title="영국산 원물 월별 수입 계절성" icon={Snowflake} iconColor="var(--color-info)" pillar="S3"
-              cardDesc="2024년 영국산(HS 160559) 월별 수입액·물량 — 관세청 품목별 국가별 수출입실적 API 실측"
+              cardDesc="2024년 영국산(HS 160559) 월별 수입액·물량 - 관세청 품목별 국가별 수출입실적 API 실측"
               telemetry={{ status: metaStatus, syncDate: 'KCS 2026-08-17' }} chartHeight={300}
               chart={
                 <ComposedChart data={seasonalityData}>
@@ -497,7 +497,7 @@ export default function WhelkDashboard() {
           </>
 
             <WidgetCard title="SG 2026 밸류업 × 골뱅이 HMR 신제품 로드맵" icon={Package} iconColor="var(--color-success)" pillar="S2"
-              cardDesc="HMR 6종 개발 진행률 — 혼술 에디션·에어프라이어 키트 26Q3 출시"
+              cardDesc="HMR 6종 개발 진행률 - 혼술 에디션·에어프라이어 키트 26Q3 출시"
               telemetry={{ status: 'STATIC', syncDate: 'SG 내부기획 2026 Q2' }} chartHeight={300}
               chart={
                 <BarChart data={sgValueUpData} layout="vertical" margin={{ left: 50 }}>
@@ -518,7 +518,7 @@ export default function WhelkDashboard() {
               }} />
 
             <WidgetCard title="골뱅이 가공원물 투입량 YoY (HS160559)" icon={Factory} iconColor="var(--color-info)" pillar="S2"
-              cardDesc="관세청 HS160559 통관 — 원본과 대조 완료(2023 68.98 · 2024 58.50백만달러)"
+              cardDesc="관세청 HS160559 통관 - 원본과 대조 완료(2023 68.98 · 2024 58.50백만달러)"
               telemetry={{ status: metaStatus, syncDate: metaSyncDate || 'KCS 2024 연간' }} chartHeight={300}
               chart={
                 <ComposedChart data={feedstockYoyData}>
@@ -539,8 +539,8 @@ export default function WhelkDashboard() {
                 source: 'KCS 관세청 HS160559 통관 (2023·2024)',
               }} />
 
-            <WidgetCard title="원산지별 CIF 단가 격차 — 대체재 탄력성" icon={Package} iconColor="var(--color-warning)" pillar="S4"
-              cardDesc="KCS HS160559 원산지별 CIF($/kg) — 2024 통관 원본 재계산과 5개국 전부 일치 확인(2026-08-17)"
+            <WidgetCard title="원산지별 CIF 단가 격차 - 대체재 탄력성" icon={Package} iconColor="var(--color-warning)" pillar="S4"
+              cardDesc="KCS HS160559 원산지별 CIF($/kg) - 2024 통관 원본 재계산과 5개국 전부 일치 확인(2026-08-17)"
               telemetry={{ status: metaStatus, syncDate: metaSyncDate || 'KCS 2024 연간' }} chartHeight={300}
               chart={
                 <BarChart data={originCifGapData} layout="vertical" margin={{ left: 20 }}>
@@ -567,7 +567,7 @@ export default function WhelkDashboard() {
   </div>
   <>
             <WidgetCard title="국가별 원물 수율 기반 총사용원가 비교" icon={Scale} iconColor="var(--color-info)" pillar="S3"
-              cardDesc="단가 vs 살수율 — 총사용원가(TCU) 자체 모델. 수율·부대비 가정이 들어간 계산값이다"
+              cardDesc="단가 vs 살수율 - 총사용원가(TCU) 자체 모델. 수율·부대비 가정이 들어간 계산값이다"
               telemetry={{ status: 'STATIC', syncDate: '2024년 기준' }} chartHeight={300}
               chart={
                 <ComposedChart data={yieldArbitrageData} layout="vertical" margin={{ left: 40 }}>
@@ -587,7 +587,7 @@ export default function WhelkDashboard() {
               }} />
 
             <WidgetCard title="영국산 수입 통관 원가 폭포수 구조" icon={DollarSign} iconColor="var(--color-info)" pillar="S3"
-              cardDesc="FOB → CIF → 관세 → 내륙 통관 단계별 — 자체 원가 분해 모델. 단계별 비율은 가정이다"
+              cardDesc="FOB → CIF → 관세 → 내륙 통관 단계별 - 자체 원가 분해 모델. 단계별 비율은 가정이다"
               telemetry={{ status: metaStatus, syncDate: metaSyncDate || 'KCS 2026-05-15' }} chartHeight={300}
               chart={
                 <BarChart data={waterfallData} margin={{ top: 20 }}>
@@ -617,7 +617,7 @@ export default function WhelkDashboard() {
   </div>
   <>
             <WidgetCard title="B2C 통조림 브랜드 경쟁력 & 가성비 매핑" icon={Target} iconColor="var(--color-info)" pillar="S4"
-              cardDesc="고형량 vs 100g당 단가 vs 점유율 — ⚠ aT·닐슨은 골뱅이 브랜드 점유율을 공표하지 않는다. 확인된 것은 2013년 언론이 인용한 유동 49.7%·동원 41.2%뿐"
+              cardDesc="고형량 vs 100g당 단가 vs 점유율 - ⚠ aT·닐슨은 골뱅이 브랜드 점유율을 공표하지 않는다. 확인된 것은 2013년 언론이 인용한 유동 49.7%·동원 41.2%뿐"
               telemetry={{ status: 'STATIC', syncDate: '2024년 기준' }} chartHeight={300}
               chart={
                 <ScatterChart margin={{ top: 20, right: 30, bottom: 30, left: 30 }}>
@@ -634,11 +634,11 @@ export default function WhelkDashboard() {
               takeaway={{
                 situation: <span>[업계 보도] 유동 골뱅이가 1위를 지키고 있으나, 타 브랜드들이 고형량(살코기 비율)을 늘리거나 가격을 낮추는 방식으로 가성비 경쟁을 치열하게 전개 중입니다.</span>,
                 actionPlan: <span>경쟁사 '동표골뱅이'는 <TermTooltip term="고형량" description="Solid weight. 통조림 내 액상액(조미액)을 제외한 순수 고기 무게." />(147g)과 저렴한 100g당 단가(₩3,600)를 무기로 매니아층 및 B2B 시장의 바닥을 무섭게 잠식하고 있습니다. 1위 브랜드인 유동(130g, ₩4,200)은 강력한 브랜드 헤리티지로 프리미엄 B2C 시장을 철통 수성 중이나, 합리적 소비 트렌드 확산에 따라 가성비 이탈 현상이 관측됩니다. 장기적 성장을 위해서는 프리미엄 라인의 고형량 투명성 강화 캠페인과 더불어, 중저가 원물 믹스를 통한 실속형 '세컨드 브랜드' 출시로 하방 압력을 분산해야 합니다.</span>,
-                source: '⚠ 출처 정정 — aT 세분시장에는 브랜드 점유율이 없다. 2013년 AC닐슨 인용 보도(유동 49.7%·동원 41.2%)가 확인되는 마지막 공개 수치다',
+                source: '⚠ 출처 정정 - aT 세분시장에는 브랜드 점유율이 없다. 2013년 AC닐슨 인용 보도(유동 49.7%·동원 41.2%)가 확인되는 마지막 공개 수치다',
               }} />
 
             <WidgetCard title="B2C 및 B2B 채널별 매출 분포" icon={Building2} iconColor="var(--color-info)" pillar="S4"
-              cardDesc="채널별 점유율 — 자체 추정. 골뱅이 단독 채널 통계는 공표된 것이 없음을 확인했다(2026-08-17)"
+              cardDesc="채널별 점유율 - 자체 추정. 골뱅이 단독 채널 통계는 공표된 것이 없음을 확인했다(2026-08-17)"
               telemetry={{ status: 'STATIC', syncDate: '2024년 기준' }} chartHeight={300}
               chart={
                 <PieChart>
@@ -651,12 +651,12 @@ export default function WhelkDashboard() {
               takeaway={{
                 situation: <span>[자체 추정] 대형마트 중심 판매가 둔화되고 이커머스·B2B 식자재 채널이 성장한다는 업계 정성 평가를 비율로 옮긴 추정 분포입니다. 골뱅이 단독 채널 통계는 공표된 적이 없습니다.</span>,
                 actionPlan: <span>과거 시장을 지배하던 대형마트 및 SSM 중심 체제(추정 62.3%)가 허물어지며 유통 구조의 파편화가 진행 중입니다. 쿠팡을 위시한 e커머스(11.8%)의 묶음 배송과 1인 가구 홈술족을 겨냥한 편의점(6.4%) 매출이 폭발적으로 성장하고 있습니다. 무엇보다 외식 물가 상승으로 인한 호프/주점용 프랜차이즈 납품 시장, 즉 B2B 식자재(19.5%) 채널이 강력한 '현금창출원(Cash Cow)'로 부상했습니다. 기존 300~400g 캔 규격의 틀을 깨고 <TermTooltip term="SKU 다변화" description="Stock Keeping Unit. 150g 소포장(CVS용), 1kg 대용량 벌크 파우치(B2B용) 등 포장 규격의 세분화 전략." />(150g 파우치, 1kg 벌크 등)를 통한 전방위 채널 침투 전략을 수립해야 합니다.</span>,
-                source: '자체 추정 — aT 소매 POS는 골뱅이를 「수산물캔」에 합산하고 온라인·B2B 채널은 패널에 없다',
+                source: '자체 추정 - aT 소매 POS는 골뱅이를 「수산물캔」에 합산하고 온라인·B2B 채널은 패널에 없다',
               }} />
           </>
 
-            <WidgetCard title="미국 캔 르네상스 — 골뱅이 수출 신시장 기회" icon={ShoppingBag} iconColor="var(--color-success)" pillar="S4"
-              cardDesc="Z세대 '틴 캔 르네상스' + K-Food 침투 잠재력 — 시장 규모는 인용, 침투율은 자체 가정이다"
+            <WidgetCard title="미국 캔 르네상스 - 골뱅이 수출 신시장 기회" icon={ShoppingBag} iconColor="var(--color-success)" pillar="S4"
+              cardDesc="Z세대 '틴 캔 르네상스' + K-Food 침투 잠재력 - 시장 규모는 인용, 침투율은 자체 가정이다"
               telemetry={{ status: 'STATIC', syncDate: 'KMI 2026.05' }} chartHeight={300}
               chart={
                 <ComposedChart data={usCannedMarketData}>
@@ -678,8 +678,8 @@ export default function WhelkDashboard() {
                 source: 'KMI 카드뉴스 (2026.05)',
               }} />
 
-            <WidgetCard title="헬시플레저 시대 — 골뱅이 영양 경쟁력 벤치마크" icon={Activity} iconColor="var(--color-success)" pillar="S4"
-              cardDesc="100g당 실측 — 국가표준식품성분표 10판. 골뱅이캔=「큰구슬우렁이」 통조림 고형물, 참치캔=유지 담금, 새우=보리새우 삶은것, 소등심=한우 생것"
+            <WidgetCard title="헬시플레저 시대 - 골뱅이 영양 경쟁력 벤치마크" icon={Activity} iconColor="var(--color-success)" pillar="S4"
+              cardDesc="100g당 실측 - 국가표준식품성분표 10판. 골뱅이캔=「큰구슬우렁이」 통조림 고형물, 참치캔=유지 담금, 새우=보리새우 삶은것, 소등심=한우 생것"
               telemetry={{ status: 'STATIC', syncDate: '국가표준식품성분표 10판 (2026-08-17 대조)' }} chartHeight={300}
               chart={
                 <BarChart data={nutritionBenchmarkData} margin={{ top: 20 }}>
@@ -695,8 +695,8 @@ export default function WhelkDashboard() {
                 </BarChart>
               }
               takeaway={{
-                situation: <span>[국가표준식품성분표] 골뱅이캔은 100g당 109kcal·단백질 19.3g·지방 0.83g — 참치캔(유지 10.6g)이나 소등심(26.3g)의 10분의 1 이하인 저지방 고단백 안주입니다.</span>,
-                actionPlan: <span>성분표 실측 기준 골뱅이캔의 무기는 칼로리가 아니라 지방입니다 — 단백질은 닭가슴살(23.0g)·삶은새우(28.2g)에 못 미치고 칼로리(109kcal)도 닭가슴살(106kcal)과 비슷하지만, 지방 0.83g은 안주 경쟁군에서 가장 낮은 축입니다. 철분 0.95mg은 닭가슴살(0.28mg)의 3.4배이나 소등심(2.24mg)보다 낮으므로 「철분 슈퍼푸드」 소구는 쓰지 않습니다. 마케팅팀은 '저지방 고단백 안주' 포지셔닝으로 좁혀 소구하고, 패키지 수치 표기는 성분표 값(109kcal·단백질 19.3g)만 사용해야 합니다.</span>,
+                situation: <span>[국가표준식품성분표] 골뱅이캔은 100g당 109kcal·단백질 19.3g·지방 0.83g - 참치캔(유지 10.6g)이나 소등심(26.3g)의 10분의 1 이하인 저지방 고단백 안주입니다.</span>,
+                actionPlan: <span>성분표 실측 기준 골뱅이캔의 무기는 칼로리가 아니라 지방입니다 - 단백질은 닭가슴살(23.0g)·삶은새우(28.2g)에 못 미치고 칼로리(109kcal)도 닭가슴살(106kcal)과 비슷하지만, 지방 0.83g은 안주 경쟁군에서 가장 낮은 축입니다. 철분 0.95mg은 닭가슴살(0.28mg)의 3.4배이나 소등심(2.24mg)보다 낮으므로 「철분 슈퍼푸드」 소구는 쓰지 않습니다. 마케팅팀은 '저지방 고단백 안주' 포지셔닝으로 좁혀 소구하고, 패키지 수치 표기는 성분표 값(109kcal·단백질 19.3g)만 사용해야 합니다.</span>,
                 source: '국가표준식품성분표 제10개정판 (DB 10.4, 2026)',
               }} />
       </>)}
@@ -726,13 +726,13 @@ export default function WhelkDashboard() {
                 </BarChart>
               }
               takeaway={{
-                situation: <span>[FAO FishStat 2026.1.0] 흑해 피뿔고둥은 튀르키예가 가장 크지만 <strong>안정적이지 않습니다</strong> — 2019년 11,646톤에서 2021년 7,008톤으로 떨어졌다가 2023년 9,869톤, 2024년 6,962톤입니다. 연도 간 최대 1.7배가 벌어집니다.</span>,
+                situation: <span>[FAO FishStat 2026.1.0] 흑해 피뿔고둥은 튀르키예가 가장 크지만 <strong>안정적이지 않습니다</strong> - 2019년 11,646톤에서 2021년 7,008톤으로 떨어졌다가 2023년 9,869톤, 2024년 6,962톤입니다. 연도 간 최대 1.7배가 벌어집니다.</span>,
                 actionPlan: <span>이 수역에서 가장 큰 변화는 <strong>우크라이나가 사라진 것</strong>입니다. 2019년 11,203톤으로 튀르키예에 버금갔는데 <strong>2022년부터 보고가 0</strong>입니다. 루마니아도 2018년 7,330톤에서 2024년 2,068톤으로 <strong>−72%</strong>, 불가리아는 3,515 → 2,297톤으로 −35%입니다. 흑해 전체 공급이 2019년 정점의 절반 아래로 내려앉았고, 남은 물량이 튀르키예에 쏠렸습니다. 이전 판은 세 나라를 실제의 절반~8분의 1로 적고 튀르키예를 &ldquo;안정적&rdquo;이라 했는데 둘 다 사실과 다릅니다. 조달팀은 흑해를 <strong>영국산의 대체가 아니라 그 자체로 불안정한 축</strong>으로 놓고, 튀르키예 단일 계약에 물량을 몰지 말아야 합니다.</span>,
-                source: 'FAO FishStat 2026.1.0 — 뿔소라과(Rapana) 어획, 2018~2024',
+                source: 'FAO FishStat 2026.1.0 - 뿔소라과(Rapana) 어획, 2018~2024',
               }} />
 
             <WidgetCard title="환율 1,500원 비상 경보 시스템" icon={AlertTriangle} iconColor="#dc2626" pillar="S3"
-              cardDesc="USD/KRW 구간별 경보 — 구간과 대응은 사내 운영 기준이다. 시장 관측값이 아니다"
+              cardDesc="USD/KRW 구간별 경보 - 구간과 대응은 사내 운영 기준이다. 시장 관측값이 아니다"
               telemetry={{ status: 'STATIC', syncDate: '2026-05-30 (환율 임계값 정의)' }}
               customBody={
                 <div data-mobile-stack style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '0.75rem' }}>
@@ -756,7 +756,7 @@ export default function WhelkDashboard() {
                 source: '한국은행 실시간 환율',
               }} />
             <WidgetCard title="환율 및 수입 단가 복합 변동성" icon={DollarSign} iconColor="var(--color-info)" pillar="S3"
-              cardDesc="영국산 CIF 단가(관세청 재계산) vs 원달러 분기 평균(시장환율 근사) — 상관 해석은 자체 판단"
+              cardDesc="영국산 CIF 단가(관세청 재계산) vs 원달러 분기 평균(시장환율 근사) - 상관 해석은 자체 판단"
               telemetry={{ status: metaStatus, syncDate: 'KCS·시장환율 2026-08-17' }} chartHeight={300}
               chart={
                 <ComposedChart data={fxCorrelationData}>
@@ -773,12 +773,12 @@ export default function WhelkDashboard() {
               }
               takeaway={{
                 situation: <span>[KCS+BOK] 수입 단가(달러) 자체는 안정적이어도 환율이 오르면 실제 기업이 지불해야 하는 원화 결제액이 크게 늘어나 수익성이 악화됩니다.</span>,
-                actionPlan: <span>2023년 1분기부터 2026년 2분기까지 실측 결과 'Double Whammy(이중 타격)'가 확인됩니다. 영국산 원물 USD 단가가 $10.29에서 $14.68(+42.7%)로 오르는 동안 USD/KRW 분기 평균 환율도 1,275원에서 1,501원(+17.7%)으로 올라, 원화 환산 매입 원가는 약 +68% 뛰었습니다. 다만 단가는 25Q1·25Q4에 두 차례 내려왔고 환율도 25Q1 급등(1,449원) 후 되돌림이 있었습니다 — 단조 상승이 아니라 출렁이며 오르는 곡선입니다. 재무 라인은 즉각 비상 경영 체제로 돌입하여 능동적인 <TermTooltip term="FX Forward 헤지" description="환변동 위험을 방어하기 위해 미래 특정 시점의 환율을 현재 시점에 사전 고정시키는 선도 계약." /> 및 통화 분산 스왑을 가동, 판관비 및 이익률 훼손을 방어하는 최후의 보루 역할을 수행해야 합니다.</span>,
+                actionPlan: <span>2023년 1분기부터 2026년 2분기까지 실측 결과 'Double Whammy(이중 타격)'가 확인됩니다. 영국산 원물 USD 단가가 $10.29에서 $14.68(+42.7%)로 오르는 동안 USD/KRW 분기 평균 환율도 1,275원에서 1,501원(+17.7%)으로 올라, 원화 환산 매입 원가는 약 +68% 뛰었습니다. 다만 단가는 25Q1·25Q4에 두 차례 내려왔고 환율도 25Q1 급등(1,449원) 후 되돌림이 있었습니다 - 단조 상승이 아니라 출렁이며 오르는 곡선입니다. 재무 라인은 즉각 비상 경영 체제로 돌입하여 능동적인 <TermTooltip term="FX Forward 헤지" description="환변동 위험을 방어하기 위해 미래 특정 시점의 환율을 현재 시점에 사전 고정시키는 선도 계약." /> 및 통화 분산 스왑을 가동, 판관비 및 이익률 훼손을 방어하는 최후의 보루 역할을 수행해야 합니다.</span>,
                 source: '관세청 품목별 국가별 수출입실적 재계산 + 일별 시장환율 분기 평균 (2026-08-17)',
               }} />
 
             <WidgetCard title="영국 현지 어획 규제 리스크 진단" icon={Shield} iconColor="var(--color-info)" pillar="S3"
-              cardDesc="MCRS·쿼터제·IFCA 규제 — 자체 위협도 점수(0~100). 측정값이 아니라 판단이다"
+              cardDesc="MCRS·쿼터제·IFCA 규제 - 자체 위협도 점수(0~100). 측정값이 아니라 판단이다"
               telemetry={{ status: 'STATIC', syncDate: '2024년 기준' }} chartHeight={300}
               chart={
                 <RadarChart data={ukRegulatoryRadar} cx="50%" cy="50%" outerRadius="70%">
@@ -799,7 +799,7 @@ export default function WhelkDashboard() {
         {/* Pillar 5 continued: 구조적 위협 & 기회 — 동일 Pillar 내 하위 블록 */}
   <>
             <WidgetCard title="패류 자원별 양식 가능성 및 공급 탄력성" icon={ShieldAlert} iconColor="var(--color-danger)" pillar="S1"
-              cardDesc="골뱅이 vs 바지락·동죽·연어 — 자체 평가 지수(0~100). 양식 가능성·공급 탄력성 판단이다"
+              cardDesc="골뱅이 vs 바지락·동죽·연어 - 자체 평가 지수(0~100). 양식 가능성·공급 탄력성 판단이다"
               telemetry={{ status: 'STATIC', syncDate: '2024년 기준' }} chartHeight={300}
               chart={
                 <BarChart data={aquacultureData} margin={{ top: 10 }}>
@@ -821,7 +821,7 @@ export default function WhelkDashboard() {
               }} />
 
             <WidgetCard title="카드뮴 생체축적 및 식품안전 규제 진단" icon={FlaskConical} iconColor="var(--color-danger)" pillar="S3"
-              cardDesc="부위별 카드뮴 농도. 기준 2.0 mg/kg 은 식약처 고시(제2026-55호) 연체류 값으로 확인됨 — 부위별 농도는 문헌 인용"
+              cardDesc="부위별 카드뮴 농도. 기준 2.0 mg/kg 은 식약처 고시(제2026-55호) 연체류 값으로 확인됨 - 부위별 농도는 문헌 인용"
               telemetry={{ status: 'STATIC', syncDate: '2024년 기준' }} chartHeight={300}
               chart={
                 <ComposedChart data={cadmiumData} margin={{ top: 20 }}>
@@ -844,7 +844,7 @@ export default function WhelkDashboard() {
               }} />
 
             <WidgetCard title="1인 가구 혼술 트렌드 및 채널 수입량 변동" icon={ShoppingBag} iconColor="var(--color-success)" pillar="S4"
-              cardDesc="영국산(HS 160559) 월별 수입량 — 관세청 품목별 국가별 수출입실적 API 실측"
+              cardDesc="영국산(HS 160559) 월별 수입량 - 관세청 품목별 국가별 수출입실적 API 실측"
               telemetry={{ status: metaStatus, syncDate: 'KCS 2026-08-17' }} chartHeight={300}
               chart={
                 <ComposedChart data={importSurgeData}>
@@ -872,7 +872,7 @@ export default function WhelkDashboard() {
               }} />
 
             <WidgetCard title="원물 부산물(패각/내장) 업사이클링 순환 가치" icon={Recycle} iconColor="var(--color-success)" pillar="S5"
-              cardDesc="가공 후 부산물 재자원화 — 수율 비율은 문헌 기반 추정이고 단가는 자체 가정이다"
+              cardDesc="가공 후 부산물 재자원화 - 수율 비율은 문헌 기반 추정이고 단가는 자체 가정이다"
               telemetry={{ status: 'STATIC', syncDate: '2024년 기준' }} chartHeight={300}
               chart={
                 <BarChart data={byproductData} layout="vertical" margin={{ left: 30 }}>
@@ -893,7 +893,7 @@ export default function WhelkDashboard() {
               }} />
 
             <WidgetCard title="B2C 통조림 규격별 고형량(살코기) 투명성 비율" icon={Package} iconColor="var(--color-warning)" pillar="S4"
-              cardDesc="300g 캔 고형량 비율 — ⚠ 표시사항 기반이나 제품별 실측 대조 미완"
+              cardDesc="300g 캔 고형량 비율 - ⚠ 표시사항 기반이나 제품별 실측 대조 미완"
               telemetry={{ status: 'STATIC', syncDate: '2024년 기준' }} chartHeight={300}
               chart={
                 <BarChart data={solidContentData} margin={{ top: 20 }}>
@@ -942,14 +942,14 @@ export default function WhelkDashboard() {
               }
               takeaway={{
                 situation: <span>[FAO FishStat 2026.1.0] 영국 참골뱅이 어획은 2005년 11,463톤에서 <strong>2020년 21,280톤까지 늘었다가</strong> 2024년 16,511톤입니다. 캐나다는 2016년에 보고 과(科)가 바뀌어 그 전후를 이을 수 없고, 참골뱅이 기준으로는 2020년 2,336 → 2024년 5,410톤으로 <strong>늘었습니다.</strong></span>,
-                actionPlan: <span>이전 판은 이 자리에 <strong>수온 곡선과 2035년까지의 어획 전망</strong>을 그리고 &ldquo;기후로 캐나다가 붕괴했고 영국도 연 10~15% 줄어든다&rdquo;고 했습니다. 그 수온 값은 0.6도씩 균등하게 오르는 합성 계열이었고, 어획 곡선도 실측과 달랐습니다 — 영국을 평평하게, 캐나다를 매끄러운 감소로 그렸는데 <strong>실제 자료에는 그런 추세가 없습니다.</strong> 수온 계열과 전망치를 걷어내고 실측만 남겼습니다. 남는 사실은 &ldquo;기후로 한 산지가 사라진다&rdquo;가 아니라 <strong>&ldquo;두 산지 모두 해마다 크게 흔들리고 방향이 일정하지 않다&rdquo;</strong>입니다. 조달 판단은 단일 대체 산지 확보가 아니라 <strong>복수 산지·복수 계약</strong>에서 출발해야 하고, 기후 영향을 논하려면 실측 수온 자료를 따로 확보해야 합니다.</span>,
-                source: 'FAO FishStat 2026.1.0 — 물레고둥과·물레고둥붙이과 어획, 2005~2024',
+                actionPlan: <span>이전 판은 이 자리에 <strong>수온 곡선과 2035년까지의 어획 전망</strong>을 그리고 &ldquo;기후로 캐나다가 붕괴했고 영국도 연 10~15% 줄어든다&rdquo;고 했습니다. 그 수온 값은 0.6도씩 균등하게 오르는 합성 계열이었고, 어획 곡선도 실측과 달랐습니다 - 영국을 평평하게, 캐나다를 매끄러운 감소로 그렸는데 <strong>실제 자료에는 그런 추세가 없습니다.</strong> 수온 계열과 전망치를 걷어내고 실측만 남겼습니다. 남는 사실은 &ldquo;기후로 한 산지가 사라진다&rdquo;가 아니라 <strong>&ldquo;두 산지 모두 해마다 크게 흔들리고 방향이 일정하지 않다&rdquo;</strong>입니다. 조달 판단은 단일 대체 산지 확보가 아니라 <strong>복수 산지·복수 계약</strong>에서 출발해야 하고, 기후 영향을 논하려면 실측 수온 자료를 따로 확보해야 합니다.</span>,
+                source: 'FAO FishStat 2026.1.0 - 물레고둥과·물레고둥붙이과 어획, 2005~2024',
               }} />
           </>
 
             {/* W23: EU 포장규제 리스크 */}
             <WidgetCard title="EU PPWR 포장규제 컴플라이언스 리스크" icon={Recycle} iconColor="var(--color-warning)" pillar="S5"
-              cardDesc="EU 포장폐기물규정(PPWR) 리스크 6축 — 자체 위협도 점수(0~100). 측정값이 아니라 판단이다"
+              cardDesc="EU 포장폐기물규정(PPWR) 리스크 6축 - 자체 위협도 점수(0~100). 측정값이 아니라 판단이다"
               telemetry={{ status: 'STATIC', syncDate: 'KMI 2026.03' }}
               customBody={
                 <div data-mobile-stack style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '0.5rem' }}>
@@ -974,7 +974,7 @@ export default function WhelkDashboard() {
 
             {/* W24: PFAS 식품안전 매트릭스 */}
             <WidgetCard title="PFAS(과불화화합물) 차세대 식품안전 리스크" icon={FlaskConical} iconColor="var(--color-warning)" pillar="S3"
-              cardDesc="군산연안 분류군별 실측(한국수산과학회지 2022) vs EU 기준 — 골뱅이(복족류)는 실측도 규제 카테고리도 없다"
+              cardDesc="군산연안 분류군별 실측(한국수산과학회지 2022) vs EU 기준 - 골뱅이(복족류)는 실측도 규제 카테고리도 없다"
               telemetry={{ status: 'STATIC', syncDate: '수과원 연구 2022 (2026-08-17 원문 대조)' }} chartHeight={280}
               chart={
                 <BarChart data={pfasRiskData} layout="vertical" margin={{ left: 40, right: 20 }}>
@@ -991,14 +991,14 @@ export default function WhelkDashboard() {
                 </BarChart>
               }
               takeaway={{
-                situation: <span>[수과원 군산연안 연구] 국내 실측에서 전 분류군이 EU 기준을 크게 밑돌고(최고 갑각류 0.63 vs 기준 3.0 ng/g), 이매패류는 오히려 최저(0.03)입니다. 정작 문제는 수치가 아니라 공백입니다 — 골뱅이(복족류)는 국내 실측 자료가 없고 EU 기준에도 카테고리가 없습니다.</span>,
+                situation: <span>[수과원 군산연안 연구] 국내 실측에서 전 분류군이 EU 기준을 크게 밑돌고(최고 갑각류 0.63 vs 기준 3.0 ng/g), 이매패류는 오히려 최저(0.03)입니다. 정작 문제는 수치가 아니라 공백입니다 - 골뱅이(복족류)는 국내 실측 자료가 없고 EU 기준에도 카테고리가 없습니다.</span>,
                 actionPlan: <span>PFAS는 '영원한 화학물질(Forever Chemicals)'로 불리며, EU는 2023년부터 수산물에 기준치를 적용하고 2022~2025년 모니터링을 권고(2022/1431)하고 있습니다. 골뱅이는 기준 카테고리가 없어 지금은 통관 장벽이 아니지만, 복족류로 규제가 확장되는 순간 우리는 제시할 자체 실측 데이터가 없습니다. 품질관리팀은 원산지별(영국/아일랜드/튀르키예) PFAS 실측 프로파일을 선제 확보해 규제 신설 시 즉시 대응 가능한 상태를 만들어야 합니다. 한국 식약처도 아직 수산물 PFAS 기준이 없어 국내 규제 신설 동향 모니터링이 함께 필요합니다.</span>,
                 source: '한국수산과학회지 55(5) 이봉민 외(2022) 원문 대조 + EU Reg 2023/915',
               }} />
 
             {/* W28: 할랄 해양콜라겐 시장 */}
-            <WidgetCard title="할랄 인증 해양콜라겐 — 글로벌 시장 기회" icon={Globe} iconColor="var(--color-success)" pillar="S4"
-              cardDesc="해양 콜라겐 할랄 시장 — 지역별 규모·성장률은 외부 전망치 인용이다. 골뱅이 몫은 산출되지 않았다"
+            <WidgetCard title="할랄 인증 해양콜라겐 - 글로벌 시장 기회" icon={Globe} iconColor="var(--color-success)" pillar="S4"
+              cardDesc="해양 콜라겐 할랄 시장 - 지역별 규모·성장률은 외부 전망치 인용이다. 골뱅이 몫은 산출되지 않았다"
               telemetry={{ status: 'STATIC', syncDate: 'KMI 2026.04' }} chartHeight={280}
               chart={
                 <BarChart data={halalCollagenData} margin={{ top: 20 }}>

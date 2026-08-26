@@ -20,7 +20,7 @@ export function WidgetRussiaHegemony() {
       icon={Anchor}
       iconColor="#f87171"
       pillar="S2"
-      cardDesc="러시아 명태 가공 vs 전세계 기타 국가 가공량 — 러시아 단일 67% 점유의 글로벌 가공 패권 추적"
+      cardDesc="러시아 명태 가공 vs 전세계 기타 국가 가공량 - 러시아 단일 67% 점유의 글로벌 가공 패권 추적"
       telemetry={{ status: 'STATIC', syncDate: '글로벌 가공 통계 2024' }}
       chartHeight={260}
       chart={
@@ -46,7 +46,7 @@ export function WidgetRussiaHegemony() {
       }
       takeaway={{
         situation: '서방의 러시아산 제재에도 불구하고, 전체 글로벌 명태 가공 물량(111만 톤) 중 75만 톤(약 67%)을 러시아 단일 국가가 독점 생산하며 생태계 장악.',
-        actionPlan: '서방 보이콧 무력화 — 러시아 공장형 트롤선이 밸류체인 최상단 지배. 무리한 탈러시아화는 매입원가 상승을 유발, 우회로(중국 필레 가공)를 통한 전략적 락인이 불가피.',
+        actionPlan: '서방 보이콧 무력화 - 러시아 공장형 트롤선이 밸류체인 최상단 지배. 무리한 탈러시아화는 매입원가 상승을 유발, 우회로(중국 필레 가공)를 통한 전략적 락인이 불가피.',
         source: 'FAO FishStat · UN Comtrade 가공 통계 (2024)',
       }}
     />

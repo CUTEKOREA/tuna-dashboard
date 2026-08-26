@@ -30,7 +30,7 @@ export default function MscCanadaGrowthCase() {
       icon={Rocket}
       iconColor="#10b981"
       pillar="S2"
-      cardDesc="2년 만에 582% 성장한 캐나다의 MSC 참치 시장 — 리테일러 주도 전환의 교과서"
+      cardDesc="2년 만에 582% 성장한 캐나다의 MSC 참치 시장 - 리테일러 주도 전환의 교과서"
       telemetry={{ status: 'STATIC', syncDate: '2024' }}
       takeaway={{
         situation: "캐나다는 2년 만에 MSC 참치 판매량이 582% 폭발 성장하여 연간 9,350만 캔을 달성했습니다. MSC 라벨 참치가 캐나다 전체 MSC 수산물의 60%를 차지하며, 주요 브랜드(Clover Leaf, Ocean's, Walmart PB)가 경쟁적으로 전환했습니다.",

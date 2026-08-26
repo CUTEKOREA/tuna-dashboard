@@ -47,7 +47,7 @@ export function OctopusChannelMarginMatrix() {
       icon={TrendingUp}
       iconColor="#4f46e5"
       pillar="S2"
-      cardDesc="활(외식) vs 자숙(B2C) vs 냉동(B2B) 채널별 그램당 매출·원가·마진 — KMI 활·신선·냉장 29.8% 데이터 + 노량진·BBQ 외식 단가 기반 추정"
+      cardDesc="활(외식) vs 자숙(B2C) vs 냉동(B2B) 채널별 그램당 매출·원가·마진 - KMI 활·신선·냉장 29.8% 데이터 + 노량진·BBQ 외식 단가 기반 추정"
       unit="(단위: 원/kg, %)"
       telemetry={{ status: 'STATIC', syncDate: '2026-04' }}
       chartHeight={320}
@@ -88,7 +88,7 @@ export function OctopusColdChainYield() {
       icon={Snowflake}
       iconColor="#6366f1"
       pillar="S2"
-      cardDesc="항공 활낙지(생존율 87%) vs 해상 개스압포장(신선도 92%) vs 해상 냉동(12개월 저장) 톤당 운송원가·폐기 손실·도착 순원가 비교 — 자체추정 + Krungsri 보고서(2024)"
+      cardDesc="항공 활낙지(생존율 87%) vs 해상 개스압포장(신선도 92%) vs 해상 냉동(12개월 저장) 톤당 운송원가·폐기 손실·도착 순원가 비교 - 자체추정 + Krungsri 보고서(2024)"
       unit="(단위: 시간, %, 원/kg)"
       telemetry={{ status: 'STATIC', syncDate: '2026-04' }}
       chartHeight={320}
@@ -139,7 +139,7 @@ export function OctopusPriceTransmission() {
       icon={Receipt}
       iconColor="#a78bfa"
       pillar="S4"
-      cardDesc="KAMIS 가락시장 ㎏당 활낙지 도매가 + 낙지전문점 1인분(낙지볶음) 소매가 — 도매가 인상이 소매가에 전가되는 비율 추적"
+      cardDesc="KAMIS 가락시장 ㎏당 활낙지 도매가 + 낙지전문점 1인분(낙지볶음) 소매가 - 도매가 인상이 소매가에 전가되는 비율 추적"
       unit="(단위: 원/kg, 원/인분, %)"
       telemetry={{ status: 'STATIC', syncDate: '2026-02' }}
       chartHeight={320}
@@ -186,7 +186,7 @@ export function OctopusCephalopodElasticity() {
       icon={GitBranch}
       iconColor="#8b5cf6"
       pillar="S4"
-      cardDesc="3종 두족류 ㎏당 도매가 동행성 — 낙지 ㎏당 20,000원 돌파 시 주꾸미/문어로의 메뉴 전환 속도 추적 (가락시장 + 노량진)"
+      cardDesc="3종 두족류 ㎏당 도매가 동행성 - 낙지 ㎏당 20,000원 돌파 시 주꾸미/문어로의 메뉴 전환 속도 추적 (가락시장 + 노량진)"
       unit="(단위: 원/kg)"
       telemetry={{ status: 'STATIC', syncDate: '2026-01' }}
       chartHeight={320}
@@ -273,7 +273,7 @@ export function OctopusTacCountdown() {
       icon={AlarmClock}
       iconColor="#ef4444"
       pillar="S5"
-      cardDesc="제4차 수산자원관리기본계획(2026~2030) 낙지 직접 TAC 지정 ETA — 모니터링 → 후보 → 시범 → 본격 4단계 진척"
+      cardDesc="제4차 수산자원관리기본계획(2026~2030) 낙지 직접 TAC 지정 ETA - 모니터링 → 후보 → 시범 → 본격 4단계 진척"
       unit="(단위: 연도)"
       telemetry={{ status: 'STATIC', syncDate: '2026-04 해수부 고시' }}
       chartHeight={320}
@@ -316,7 +316,7 @@ export function OctopusFtaTariffMatrix() {
       icon={Scale}
       iconColor="#8b5cf6"
       pillar="S3"
-      cardDesc="0307.51(활)·0307.52(신선)·0307.59(냉동)·1605.55(조제) × MFN·KVFTA·RCEP·CPTPP 4단 매트릭스 — HS 0307.5x·1605.55는 문어류 공통 코드(낙지 단독 아님), 최적 관세 0% 경로 시각화"
+      cardDesc="0307.51(활)·0307.52(신선)·0307.59(냉동)·1605.55(조제) × MFN·KVFTA·RCEP·CPTPP 4단 매트릭스 - HS 0307.5x·1605.55는 문어류 공통 코드(낙지 단독 아님), 최적 관세 0% 경로 시각화"
       unit="(단위: %)"
       telemetry={{ status: 'STATIC', syncDate: '2026-04 KCS' }}
       chartHeight={320}
@@ -363,7 +363,7 @@ export function OctopusSstCorrelation() {
       icon={Thermometer}
       iconColor="#ef4444"
       pillar="S1"
-      cardDesc={`NOAA 서해 SST 연평균(℃) × 한국 문어류(낙지 포함) 어획(천 톤) 산점도, 2010~2025 — 어획은 문어류 합산 집계(낙지 단독 아님), Pearson 상관계수 r = ${r}`}
+      cardDesc={`NOAA 서해 SST 연평균(℃) × 한국 문어류(낙지 포함) 어획(천 톤) 산점도, 2010~2025 - 어획은 문어류 합산 집계(낙지 단독 아님), Pearson 상관계수 r = ${r}`}
       unit="(단위: ℃, 천 톤)"
       telemetry={{ status: 'STATIC', syncDate: '2026-03' }}
       chartHeight={320}

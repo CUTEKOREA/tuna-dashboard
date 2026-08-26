@@ -161,7 +161,7 @@ describe('뒷면 명판 대비', () => {
     ['jais', '#1f2a24', '#fbfbf8'], // 여백 카드 — 밝은 바탕에 어두운 잉크
   ];
 
-  it.each(최악배경)('%s — 최악 배경에서도 WCAG AAA(7:1)를 넘는다', (_l, ink, flag) => {
+  it.each(최악배경)('%s - 최악 배경에서도 WCAG AAA(7:1)를 넘는다', (_l, ink, flag) => {
     expect(contrastOverFlag(ink, flag)).toBeGreaterThan(7);
   });
 

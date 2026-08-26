@@ -55,7 +55,7 @@ describe('원양어업통계조사 인테이크', () => {
   });
 
   /** 해역은 계층이라 합이 전체를 넘는다. 더하면 안 된다는 것을 숫자로 붙든다. */
-  it('해역 막대를 더하면 전체를 넘는다 — 계층이라 합산 금지', () => {
+  it('해역 막대를 더하면 전체를 넘는다 - 계층이라 합산 금지', () => {
     const y = latestYear();
     const sum = squidByArea(y).reduce((n, a) => n + a.생산량, 0);
     const total = squidAllGearTotal(y);
@@ -74,13 +74,13 @@ describe('원양어업통계조사 인테이크', () => {
    * 생산금액은 단가 정보를 담고 있지 않다. 이 검사가 실패하면 KOSIS 가 산출 방식을
    * 바꿨다는 뜻이고, 그때는 단가 차트를 만들 수 있는지 다시 판단해야 한다.
    */
-  it('생산금액이 고정 환산단가로 산출돼 있다 — 단가 차트를 만들면 안 된다', () => {
+  it('생산금액이 고정 환산단가로 산출돼 있다 - 단가 차트를 만들면 안 된다', () => {
     const unit = squidGearSeries()
       .filter((p) => p.연도 >= '2021' && p.생산량 > 0)
       .map((p) => (p.생산금액 * 1000) / p.생산량);
     expect(unit.length).toBeGreaterThanOrEqual(3);
     const spread = Math.max(...unit) - Math.min(...unit);
-    expect(spread, `단가 편차 ${spread.toFixed(1)}천원/톤 — 독립 측정으로 바뀌었을 수 있다`).toBeLessThan(5);
+    expect(spread, `단가 편차 ${spread.toFixed(1)}천원/톤 - 독립 측정으로 바뀌었을 수 있다`).toBeLessThan(5);
   });
 
   it('측정 경계와 단위 한계를 데이터가 들고 있다', () => {

@@ -1642,8 +1642,8 @@
     },
     {
       "id": "w15_canning_factory",
-      "title": "[가공 허브] 가공 톤수 1위 스페인 vs 통조림 수출 1위 태국 — 두 패권의 분리",
-      "subtitle": "참치 가공 '생산량(톤)'은 스페인(14.4%)이 선두, 가공품 '수출' 패권은 여전히 태국 — 한국은 2013년 대비 반토막",
+      "title": "[가공 허브] 가공 톤수 1위 스페인 vs 통조림 수출 1위 태국 - 두 패권의 분리",
+      "subtitle": "참치 가공 '생산량(톤)'은 스페인(14.4%)이 선두, 가공품 '수출' 패권은 여전히 태국 - 한국은 2013년 대비 반토막",
       "chartType": "composed",
       "xAxis": "year",
       "bars": [
@@ -1836,7 +1836,7 @@
     },
     {
       "id": "w17_korea_margin",
-      "title": "[단가 한계] 원어 수출의 역설 — 글로벌 평균을 밑도는 K-참치 수출 단가",
+      "title": "[단가 한계] 원어 수출의 역설 - 글로벌 평균을 밑도는 K-참치 수출 단가",
       "subtitle": "저가 가다랑어(Skipjack) 원어 위주의 수출 구조가 낳은 구조적 단가 디스카운트 현상",
       "chartType": "area",
       "xAxis": "year",
@@ -2033,7 +2033,7 @@
     },
     {
       "id": "w20_thailand_paradox",
-      "title": "[밸류체인 역설] 태국의 딜레마 — 무조업국가 최고 수출액 달성",
+      "title": "[밸류체인 역설] 태국의 딜레마 - 무조업국가 최고 수출액 달성",
       "subtitle": "전 세계 원어를 수입하여 통조림으로 변환, 재수출하는 '글로벌 가공 허브' 모델",
       "chartType": "Composed",
       "xKey": "year",
@@ -2298,7 +2298,7 @@
     },
     {
       "id": "w24_bluefin_ranch",
-      "title": "[양식의 미래] 참다랑어 축양(Ranching) — 수산업의 마지막 프론티어",
+      "title": "[양식의 미래] 참다랑어 축양(Ranching) - 수산업의 마지막 프론티어",
       "subtitle": "일본·몰타·스페인·호주·크로아티아가 주도하는 초고가 참다랑어 가두리 양식 + 모로코의 쿼터 잠재력",
       "chartType": "Area",
       "xKey": "year",
@@ -3317,7 +3317,7 @@
       "chartType": "bar",
       "xAxis": "country",
       "unit": "EUR/개(캔)",
-      "source": "EUMOFA(EU 수산물시장관측소) Daily Online Retail Prices — 2026년 1~2월 실측 집계, 2026-05 접근",
+      "source": "EUMOFA(EU 수산물시장관측소) Daily Online Retail Prices - 2026년 1~2월 실측 집계, 2026-05 접근",
       "logic": "EUMOFA가 EU 16개국 대표 마트의 온라인 매대 가격을 일 단위로 수집·공시하는 원본(2026년 1~2월, 캔 참치 10,648건)을 국가별 개당 평균가(EUR/개)로 집계하여 대륙 내 가격 차익 스펙트럼을 그립니다. 이전 버전의 2024년 추정치를 2026년 실측치로 갱신했습니다.",
       "desc_tooltip": "같은 유럽연합(EU) 내에서도 국가별로 참치 캔 소매가가 약 3.8배 차이납니다(그리스 €8.01 vs 스웨덴 €2.09). 이 가격 격차는 곧 차익거래(Arbitrage) 기회입니다.",
       "bars": [
@@ -3398,7 +3398,7 @@
       "reliability": 100,
       "sit": "EUMOFA 실측 기준 서·남유럽(그리스 €8.01) 대비 북유럽(스웨덴 €2.09) 소매가가 약 3.8배 벌어지는 심각한 시장 비대칭(Asymmetry) 존재. 크로스보더 차익거래 가능성 내재.",
       "strat": "낡은 단일 판가 정책(One-price Policy) 폐기. EUMOFA 일 단위 소매가 피드에 연동된 프라이싱 엔진으로 권역별 구매력(GDP)·경쟁사 매대가에 맞춘 동적 타겟 프라이싱(Dynamic Pricing) 실행.",
-      "methodology": "출처: EUMOFA(EU 수산물시장관측소) Daily Online Retail Prices. 원본 파일 2026_Daily-online retail prices.csv(2026년 1~2월). 집계: PRODUCT='Canned tuna' 행의 'PRICE PER UNIT (EUR)'를 국가별 산술평균(개당, n=10,648). 단위는 개당가(EUR/개) — 원본에 캔 참치 kg당가(PRICE PER KG)는 미수록.",
+      "methodology": "출처: EUMOFA(EU 수산물시장관측소) Daily Online Retail Prices. 원본 파일 2026_Daily-online retail prices.csv(2026년 1~2월). 집계: PRODUCT='Canned tuna' 행의 'PRICE PER UNIT (EUR)'를 국가별 산술평균(개당, n=10,648). 단위는 개당가(EUR/개) - 원본에 캔 참치 kg당가(PRICE PER KG)는 미수록.",
       "telemetry": "SYNCED",
       "syncDate": "2026-05"
     },
@@ -5078,7 +5078,7 @@
     },
     {
       "id": "w69_china_consumption",
-      "title": "[수요 대폭발] 중국 13억 시장 해부 — 참치 소비 파라다임 전환",
+      "title": "[수요 대폭발] 중국 13억 시장 해부 - 참치 소비 파라다임 전환",
       "subtitle": "중국 소비자의 참치 소비 행동 동인 분석: 78,760개 일식 레스토랑과 2,616톤 프리미엄 수입",
       "unit": "톤 / 개소",
       "chartType": "composed",
@@ -5659,7 +5659,7 @@
           "color": "#10b981"
         }
       ],
-      "situation": "스페인 선대 CGP(2014) 도입 후 대서양 상어 혼획물의 최대 75%가 생존 방류됨. 그러나 빌피시(새치류)는 2021~22년 70%가 죽은 채로 투기(Dead discard) — 어종별 편차가 심각.",
+      "situation": "스페인 선대 CGP(2014) 도입 후 대서양 상어 혼획물의 최대 75%가 생존 방류됨. 그러나 빌피시(새치류)는 2021~22년 70%가 죽은 채로 투기(Dead discard) - 어종별 편차가 심각.",
       "takeaway": "CGP의 '어종 선택적 실패'를 인지하고, 빌피시 전용 방류 프로토콜(예: 신속 훅 제거 도구)을 개발해야 함. ESG 보고 시 '전체 혼획 생존율'이 아닌 '어종별 생존율'을 공시해야 실사 리스크 회피.",
       "source": "Marine Policy 2025 (Bycatch trend and its fate of Spanish-owned tuna purse seiners)",
       "methodology": "2014년 CGP 도입 전/후 대서양·인도양 스페인 선대의 어종별 생존 방류율 비교.",
@@ -5726,7 +5726,7 @@
     },
     {
       "id": "w92_ems_blind_spot",
-      "title": "[시스템 결함] EMS(전자모니터링) 구조적 사각지대 — 최대 81% 과소 기록",
+      "title": "[시스템 결함] EMS(전자모니터링) 구조적 사각지대 - 최대 81% 과소 기록",
       "subtitle": "브레일링 4~6톤 고속 적재 시 ETP종 혼획 탐지 실패율",
       "chartType": "bar",
       "xKey": "ETP Species",
@@ -5893,7 +5893,7 @@
       "id": "w98_byproduct_rd_pipeline",
       "title": "부산물 바이오 업사이클링 R&D",
       "category": "part2",
-      "subtitle": "NTIS 검색 28건 중 핵심 5개 사업 예산(억원) — 2025~2026 정부 R&D 실데이터",
+      "subtitle": "NTIS 검색 28건 중 핵심 5개 사업 예산(억원) - 2025~2026 정부 R&D 실데이터",
       "sit": "참치·다랑어 부산물 고부가화에 국가 R&D 자금이 2025년 집중 투입됨. 동원에프앤비의 경남 수산부산물 재활용 규제자유특구 사업이 단년 39.7억원(2025)에 더해 2025~2026 다년 27.8억원 추가 확보로 최대 규모. 한국생산기술연구원의 부위별 자동분리·AI인식 공정 사업 33.3억원(2025~2026), 국립수산과학원의 품질·히스타민 관리 7.5억원(2025)이 후속. 효능 측면에서 황다랑어 알 효소 가수분해물은 항산화(DPPH) 85%·혈압강하(ACE 저해) 82%, 통조림 자숙 부산물 히스타민 45mg/kg으로 EU 기준을 77% 하회(KFAS 실증).",
       "strat": "단순 어업 프레임을 폐기하고 정부 매칭펀드를 지렛대로 '마린 바이오·코스메슈티컬' 밸류에이션 리레이팅을 추진할 것. 동원 규제자유특구(67.9억원 규모)와 생산기술연구원 자동분리 라인(33.3억원)에 전략적 컨소시엄 지분을 확보해 노후 사료 팩토리를 정밀 추출 설비로 전환하는 CAPEX 의사결정을 즉시 승인하라.",
       "data": [
@@ -6096,7 +6096,7 @@
       "methodology": "5개 RFMO(IOTC·IATTC·CCSBT)의 최신 자원평가 보고서에서 어종별 현재 어획사망률 대비 MSY 수준 어획사망률 비율(F/FMSY, 일부는 FBMSY proxy)을 추출. 동태평양 눈다랑어는 42~136% 추정 구간의 중앙값(약 0.89), 동태평양 황다랑어는 '동적 MSY 수준 근접' 결론을 1.0으로 대표값 처리. 1=MSY 임계선, >1 남획.",
       "unit": "F/FMSY (배)",
       "desc_tooltip": "어획압(F/FMSY)이 1을 넘으면 남획(빨강), 1 미만이면 자원 양호(녹색)입니다. RFMO 최신 자원평가 기준 어종별 자원 상태를 한눈에 비교합니다.",
-      "source": "IOTC-2024-SC27-ES04(인도양 황다랑어, 2024) / IATTC No.22-2024 EPO 자원평가(눈·황다랑어·황새치, 2023년 자료) / CCSBT ESC28 남방참다랑어 자원평가(2023) — 기준 2026-05-30",
+      "source": "IOTC-2024-SC27-ES04(인도양 황다랑어, 2024) / IATTC No.22-2024 EPO 자원평가(눈·황다랑어·황새치, 2023년 자료) / CCSBT ESC28 남방참다랑어 자원평가(2023) - 기준 2026-05-30",
       "subtitle": "어종별 어획사망률 대비 MSY 비율 (F/FMSY, 최신 RFMO 자원평가)",
       "reliability": 95,
       "logic": "RFMO별 1차 자원평가 보고서의 F/FMSY(또는 FBMSY proxy) 점추정치를 어종별로 정렬하여 1(MSY 임계선)을 기준으로 남획(>1, 빨강)·양호(<1, 녹색)를 신호등화. 원물 조달·쿼터 리스크 우선순위 산정의 1차 입력값으로 활용.",
@@ -6269,7 +6269,7 @@
     {
       "id": "w106_kr_frozen_canned_gap",
       "title": "한국 냉동 원물(0303) vs 통조림(160414) 단가 갭",
-      "subtitle": "관세청 통관 5년 — 가공 부가가치 입증(냉동 원물 대비 통조림 프리미엄)",
+      "subtitle": "관세청 통관 5년 - 가공 부가가치 입증(냉동 원물 대비 통조림 프리미엄)",
       "category": "part3",
       "chartType": "composed",
       "xAxis": "Year",
@@ -6326,7 +6326,7 @@
     {
       "id": "w107_rfmo_kobe_radar",
       "title": "5대 RFMO 어획강도 신호등 레이더 (F/FMSY)",
-      "subtitle": "IOTC·IATTC·WCPFC·CCSBT·ICCAT 자원평가 — 전 해역 F/FMSY<1(과도어획 없음)",
+      "subtitle": "IOTC·IATTC·WCPFC·CCSBT·ICCAT 자원평가 - 전 해역 F/FMSY<1(과도어획 없음)",
       "category": "part1",
       "chartType": "radar",
       "format": "new",

@@ -47,7 +47,7 @@ export default function SasGlobalHotspots() {
       icon={MapPin}
       iconColor="#10b981"
       pillar="S1"
-      cardDesc="미국 포케·EU 슈퍼마켓 스시·중국 신흥·일본 경매 — 4대 시장 성장 동력"
+      cardDesc="미국 포케·EU 슈퍼마켓 스시·중국 신흥·일본 경매 - 4대 시장 성장 동력"
       telemetry={{ status: 'STATIC', syncDate: '2024' }}
       takeaway={{
         situation: "미국은 스시 레스토랑($33.2B)과 포케 전문점($2B, CAGR 22.3%)이 사시미급 참치 소비를 견인합니다. EU는 슈퍼마켓 스시(KellyDeli €453.7M)가 성장 채널이나 신선 수입은 -32.4% 감소했습니다. 중국은 몰타 BFT의 신규 수출 대상으로 부상 중이며, Balfegó는 매출의 15%를 중국에서 확보했습니다.",

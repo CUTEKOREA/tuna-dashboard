@@ -163,7 +163,7 @@ describe('dashboard registry', () => {
     }
     expect(commandSource).toContain('<HeroZone');
     expect(commandSource).toContain('variant="vessel"');
-    // 2026-08-15 사용자 지시: 선박 사진 배경 제거 — 배경 슬롯 자체가 없어야 한다
+    // 2026-08-15 사용자 지시: 선박 사진 배경 제거 - 배경 슬롯 자체가 없어야 한다
     expect(commandSource).not.toContain('background={heroBackground}');
     expect(commandSource).toContain('<PillTabs');
     expect(commandSource).toContain('role="tabpanel"');
@@ -191,7 +191,7 @@ describe('dashboard registry', () => {
     expect(mapSource).toContain('width:44px;height:44px');
     expect(mapSource).toContain('alt={`${ship.name} 선박 위치`}');
     expect(commandSource).toContain("import('./FleetRealMap')");
-    expect(commandSource).toContain('ssr: false'); // leaflet은 window 의존 — SSR 금지
+    expect(commandSource).toContain('ssr: false'); // leaflet은 window 의존 - SSR 금지
     // 보고 원문의 도·분 표기가 위경도로 정확히 환산되는지 (S/PIO 8/9 위치)
     expect(parseFleetPosition('N0351 W16734 (H)')).toEqual([3.85, -167 - 34 / 60]);
     expect(parseFleetPosition('S0112 W01020 (H)')).toEqual([-1.2, -10 - 20 / 60]);
@@ -241,7 +241,7 @@ describe('dashboard registry', () => {
     const fleetHeroSource = readFileSync(join(root, 'components/FleetHeroKPI.tsx'), 'utf8');
     const fleetStyles = readFileSync(join(root, 'components/FleetCommandCenter.module.css'), 'utf8');
     const unloadingSource = readFileSync(join(root, 'components/UnloadingStatus.tsx'), 'utf8');
-    // V3 라이트 오버라이드 구간은 flat 계약 대상이 아니다 (사진 블렌드용 페이드는 장식 그라디언트가 아님) —
+    // V3 라이트 오버라이드 구간은 flat 계약 대상이 아니다 (사진 블렌드용 페이드는 장식 그라디언트가 아님) -
     // 다크 정본 구간만 검사한다.
     const unloadingStyles = readFileSync(join(root, 'components/UnloadingStatus.module.css'), 'utf8')
       .split("[data-v3='light']")[0];
@@ -265,7 +265,7 @@ describe('dashboard registry', () => {
       expect(rule).not.toBe('');
     }
     expect(cssRule(marketStyles, '.dashboard')).toContain('var(--dsc-bg)');
-    // 2026-08-17 디자인 랩 채택: SKJ/YF 스프레드 KPI 2장은 지휘형 카드(HeroMarketCommand)로 대체 — 잔여 2장(MGO·환율)
+    // 2026-08-17 디자인 랩 채택: SKJ/YF 스프레드 KPI 2장은 지휘형 카드(HeroMarketCommand)로 대체 - 잔여 2장(MGO·환율)
     expect(marketSource.match(/dsc-card dsc-card--accent/g)).toHaveLength(2);
     expect(cssRule(marketStyles, '.kpiCard::before')).toBe('');
     expect(cssRule(globalsSource, '.dsc-card')).toContain('background: var(--dsc-surface)');
@@ -287,7 +287,7 @@ describe('dashboard registry', () => {
       expect(cssRule(fleetStyles, selector)).toContain('var(--dsc-');
     }
     expect(fleetSource).not.toContain("tone: 'warning'");
-    // 계약의 핵심은 «액센트 hex 하드코딩 금지» — 2026-08-15 히어로 정리로 fleet의
+    // 계약의 핵심은 «액센트 hex 하드코딩 금지» - 2026-08-15 히어로 정리로 fleet의
     // 인라인 액센트 사용처 자체가 사라져 사용 강제는 제거한다.
     expect(fleetSource).not.toMatch(/accent:\s*['"]#/);
     expect(fleetHeroSource).not.toContain('linear-gradient');
@@ -544,7 +544,7 @@ describe('dashboard registry', () => {
     ]);
     expect(PROTECTED_OPERATION_MENU_KEYS).toContain('bangkok-office');
     expect(PROTECTED_OPERATION_MENU_KEYS).not.toContain('cosmo');
-    // 전 메뉴 세션 잠금(V2 §5-6) 이후 공개 사이트맵 라우트는 없다 — cosmo 포함 전부 잠금 뒤.
+    // 전 메뉴 세션 잠금(V2 §5-6) 이후 공개 사이트맵 라우트는 없다 - cosmo 포함 전부 잠금 뒤.
     expect(PUBLIC_DASHBOARD_ROUTES).not.toContain('cosmo');
     expect(PUBLIC_DASHBOARD_ROUTES).not.toContain('bangkok-office');
   });

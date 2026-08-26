@@ -59,7 +59,7 @@ export default function TunaPngHubStrategy() {
 <ol style="margin: 4px 0 0 18px; padding: 0;">
 <li style="margin-bottom: 8px;"><strong>"산지 1차 가공 → 국내 고도화" 글로벌 분업 모델</strong>: PNG에서 1차 자숙·로인(살코기) 가공, 한국에서 최종 통조림 제조·연구개발. 한라식품 등 국내 중소 경쟁사 대비 매입원가 진입장벽 -25%p 수준 구축(업계 추정).</li>
 <li style="margin-bottom: 8px;"><strong>PNG 허브를 동남아·호주 직수출 전초 기지로 격상</strong>: 현재 한국 수출 전용 → 호주·뉴질랜드·인도네시아 직수출 확대.</li>
-<li><strong>WCPO 주권 지분 파트너십</strong>: PNG 국부펀드와 유한책임 파트너 구조 — 앵커 출자자로 3,000~5,000만 달러 투입, 펀드가 PNG 인프라 재투자. 배당으로 매입원가 회수 + ESG 자산화.</li>
+<li><strong>WCPO 주권 지분 파트너십</strong>: PNG 국부펀드와 유한책임 파트너 구조 - 앵커 출자자로 3,000~5,000만 달러 투입, 펀드가 PNG 인프라 재투자. 배당으로 매입원가 회수 + ESG 자산화.</li>
 </ol>
 </div>`,
         source: '자체추정/업계추정 (동원산업 공개자료 기반)',

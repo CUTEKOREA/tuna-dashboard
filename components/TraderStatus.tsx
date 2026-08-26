@@ -72,7 +72,7 @@ const VIEWS = {
     rows: monthlyRows,
     xInterval: 2,
     totalLabel: `최근 ${MONTHLY_WINDOW}개월 누계`,
-    note: `전체 ${bangkokTraderMonthly.length}개월(${FULL_RANGE}) 중 최근 ${MONTHLY_WINDOW}개월만 표시합니다 — 전 기간은 분기별·연도별 뷰에서 봅니다. ${RECONCILE_NOTE}`,
+    note: `전체 ${bangkokTraderMonthly.length}개월(${FULL_RANGE}) 중 최근 ${MONTHLY_WINDOW}개월만 표시합니다 - 전 기간은 분기별·연도별 뷰에서 봅니다. ${RECONCILE_NOTE}`,
   },
   quarterly: {
     rows: aggRows('quarterly'),
@@ -132,7 +132,7 @@ export default function TraderStatus() {
             <TermTooltip term={`트레이더별 반입 현황 (${FIRST_MONTH.slice(0, 4)}~${LAST_MONTH.slice(0, 4)})`} description="월별·분기별·연도별 트레이더별 반입 물량(MT) 추이" />
           </h2>
           <p style={{ fontSize: '13px', color: 'var(--text-muted)', margin: 0 }}>
-            {FULL_RANGE} 트레이더별 반입 실적 (MT) — 방콕사무소 주간보고 종합분석
+            {FULL_RANGE} 트레이더별 반입 실적 (MT) - 방콕사무소 주간보고 종합분석
           </p>
         </div>
 

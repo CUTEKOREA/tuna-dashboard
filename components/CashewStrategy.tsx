@@ -101,16 +101,16 @@ const WIDGET_UNITS: Record<string, string> = {
 // JSON의 sources 배열을 사용자 노출 한글 라벨로 변환. '[LIVE]' 접두는 해당 라이브 연동이 부재하므로 제거(L-09).
 const SOURCE_LABELS: Record<string, string> = {
   'FAOSTAT_Data_Domain_TCL_2024.csv': 'FAOSTAT TCL(무역 도메인) 2024 데이터셋',
-  'Cashew_Market_Intelligence_Overview.md': '내부 리서치 노트(캐슈 시장 개요) — 원출처 재확인 필요',
-  'nanoPix_Optical_Sorter_Technical_Spec_v2.md': '내부 기술 노트(광학 선별기 사양 v2) — 원출처 재확인 필요',
-  'Global_Plant_Based_Milk_Market_Trends_2024.md': '내부 리서치 노트(식물성 대체유 동향 2024) — 원출처 재확인 필요',
-  'Cashew_Nut_LCA_Carbon_Footprint_Report_2023.md': '내부 리서치 노트(캐슈 LCA 탄소발자국 2023) — 원출처 재확인 필요',
-  'KCS_API': '관세청(KCS) 통계 인용(정적 스냅샷) — 원출처 재확인 필요',
-  'KCS API (관세청)': '관세청(KCS) 통계 인용(정적 스냅샷) — 원출처 재확인 필요',
-  'DART_API': 'DART 공시 인용(정적 스냅샷) — 원출처 재확인 필요',
-  'DART API (금융감독원)': 'DART 공시 인용(정적 스냅샷) — 원출처 재확인 필요',
-  'MFDS API (식약처 수입식품검역)': '식약처 수입식품검역 통계 인용(정적 스냅샷) — 원출처 재확인 필요',
-  'JRC_EFI_API': 'EU JRC/EFI 자료 인용(정적 스냅샷) — 원출처 재확인 필요',
+  'Cashew_Market_Intelligence_Overview.md': '내부 리서치 노트(캐슈 시장 개요) - 원출처 재확인 필요',
+  'nanoPix_Optical_Sorter_Technical_Spec_v2.md': '내부 기술 노트(광학 선별기 사양 v2) - 원출처 재확인 필요',
+  'Global_Plant_Based_Milk_Market_Trends_2024.md': '내부 리서치 노트(식물성 대체유 동향 2024) - 원출처 재확인 필요',
+  'Cashew_Nut_LCA_Carbon_Footprint_Report_2023.md': '내부 리서치 노트(캐슈 LCA 탄소발자국 2023) - 원출처 재확인 필요',
+  'KCS_API': '관세청(KCS) 통계 인용(정적 스냅샷) - 원출처 재확인 필요',
+  'KCS API (관세청)': '관세청(KCS) 통계 인용(정적 스냅샷) - 원출처 재확인 필요',
+  'DART_API': 'DART 공시 인용(정적 스냅샷) - 원출처 재확인 필요',
+  'DART API (금융감독원)': 'DART 공시 인용(정적 스냅샷) - 원출처 재확인 필요',
+  'MFDS API (식약처 수입식품검역)': '식약처 수입식품검역 통계 인용(정적 스냅샷) - 원출처 재확인 필요',
+  'JRC_EFI_API': 'EU JRC/EFI 자료 인용(정적 스냅샷) - 원출처 재확인 필요',
 };
 
 const formatWidgetSource = (w: any): string => {
@@ -118,7 +118,7 @@ const formatWidgetSource = (w: any): string => {
   if (!raw.length) return w.source || '출처 재확인 필요';
   const labels = raw.map((s) => {
     const clean = String(s).replace(/^\[LIVE\]\s*/, '').trim();
-    return SOURCE_LABELS[clean] || `${clean} — 출처 재확인 필요`;
+    return SOURCE_LABELS[clean] || `${clean} - 출처 재확인 필요`;
   });
   return Array.from(new Set(labels)).join(' · ');
 };
@@ -394,7 +394,7 @@ export default function CashewStrategy() {
       {/* ═══ 5-Pillar 밸류체인 네비게이터 ═══ */}
       <div style={{ background: 'linear-gradient(180deg, rgba(20, 28, 52, 0.5), rgba(20, 28, 52, 0.2))', border: '1px solid rgba(255,255,255,0.04)', borderRadius: '16px', padding: '6px', marginBottom: '2rem', marginTop: '2rem', boxShadow: '0 4px 30px rgba(0,0,0,0.3), inset 0 1px 0 rgba(140,170,255,0.10)' }}>
         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '6px', padding: '4px 0 8px', borderBottom: '1px solid rgba(140,170,255,0.10)', marginBottom: '6px' }}>
-          <span style={{ fontSize: '0.7rem', color: 'rgba(var(--w-slate-400-rgb), 0.7)', fontWeight: 600, letterSpacing: '0.08em', textTransform: 'uppercase' }}>밸류체인 네비게이터 — 아래 단계를 클릭하여 탐색하세요</span>
+          <span style={{ fontSize: '0.7rem', color: 'rgba(var(--w-slate-400-rgb), 0.7)', fontWeight: 600, letterSpacing: '0.08em', textTransform: 'uppercase' }}>밸류체인 네비게이터 - 아래 단계를 클릭하여 탐색하세요</span>
         </div>
         <div data-mobile-stack style={{ display: 'grid', gridTemplateColumns: 'repeat(5, 1fr)', gap: '4px' }}>
           {SECTIONS.map((s, idx) => {
@@ -444,20 +444,20 @@ export default function CashewStrategy() {
               situation: (
                 <div>
                   <p>"RCN(Raw Cashew Nuts, 미가공 원물 캐슈)"이란 껍질·CNSL(외피 액체)이 그대로 붙은 1차 농산물 형태의 캐슈넛. 베트남은 글로벌 캐슈넛 가공 점유율 65%로 뚜렷한 1위이나 자체 산지 부족 → RCN을 서아프리카·인도에서 수입해 가공·수출하는 trader-processor 모델. 산지(supply)에서 가공국까지의 마진 의존도가 vendor P&L의 main driver.</p>
-                  <p>실측(UN Comtrade): <strong>2023년 베트남 RCN(원물) 수입 237만톤 vs 커널 수출 48만톤 — 약 4.9배 격차. 커널 1톤에 RCN 약 4톤이 필요한 구조라 산지 원물가가 가공국 마진을 직접 좌우. 코트디부아르 단가 상승 시 베트남 trader 마진이 자동 압축되는 sandwich 함정</strong>.</p>
+                  <p>실측(UN Comtrade): <strong>2023년 베트남 RCN(원물) 수입 237만톤 vs 커널 수출 48만톤 - 약 4.9배 격차. 커널 1톤에 RCN 약 4톤이 필요한 구조라 산지 원물가가 가공국 마진을 직접 좌우. 코트디부아르 단가 상승 시 베트남 trader 마진이 자동 압축되는 sandwich 함정</strong>.</p>
                 </div>
               ),
               actionPlan: (
                 <div>
                   <p><strong>재정의</strong>: 베트남 가공 의존은 "globally proven sourcing path"가 아닌 <strong>"산지 → 베트남 → 한국 3단계 가치사슬에서 우리가 가장 약한 middle player에 베팅한 sub-optimal strategy"</strong>. RCN 산지 직접 통제만이 영구 cost moat.</p>
-                  <p><strong>3단계</strong>: ① 코트디부아르·가나·탄자니아 RCN 산지 contract farming 또는 직매입 5년 LTA 체결 — 베트남 trader 중간 마진 +22%p 회피 ② 서아프리카 현지에 1차 가공(껍질 제거·sorting) 거점 신설 (capex $8~12M) — Origin Grinding 원산지 가공 trend lock-in ③ 한국 평택·인천에 2차 가공·소포장 라인 — "산지 직 → 한국 도착" 단축 supply chain으로 베트남 sandwich risk 영구 차단, valuation +1.8x.</p>
+                  <p><strong>3단계</strong>: ① 코트디부아르·가나·탄자니아 RCN 산지 contract farming 또는 직매입 5년 LTA 체결 - 베트남 trader 중간 마진 +22%p 회피 ② 서아프리카 현지에 1차 가공(껍질 제거·sorting) 거점 신설 (capex $8~12M) - Origin Grinding 원산지 가공 trend lock-in ③ 한국 평택·인천에 2차 가공·소포장 라인 - "산지 직 → 한국 도착" 단축 supply chain으로 베트남 sandwich risk 영구 차단, valuation +1.8x.</p>
                 </div>
               ),
               source: "UN Comtrade HS0801.31(RCN 수입)·0801.32(커널 수출) 실측 2021–23 + ACA 아프리카 캐슈 연맹"
             })}
             {sec.id === 'S2' && d_africa_processing && renderCashewWidget({
               icon: Factory, title: "서아프리카 현지 가공 비율 및 B2B 직공급 전환율",
-              subtitle: "현지 가공률 상승과 직공급 전환 궤적 (추정 — 실측 시계열 출처 없음)",
+              subtitle: "현지 가공률 상승과 직공급 전환 궤적 (추정 - 실측 시계열 출처 없음)",
               iconColor: "var(--color-info)", pillar: "S2", telemetryStatus: data?._metadata?.status === 'LIVE' ? 'LIVE' : data?._metadata?.status === 'SYNCED' ? 'SYNCED' : 'STATIC',
               syncDate: data?._metadata?.syncDate,
               chart: (
@@ -481,10 +481,10 @@ export default function CashewStrategy() {
               actionPlan: (
                 <div>
                   <p><strong>재정의</strong>: 서아프리카 Origin Grinding 정책은 risk가 아닌 <strong>"베트남 sandwich 함정에서 빠져나와 산지 직접 통제 vendor로 카테고리 점프할 마지막 윈도우"</strong>. 5년 후에는 이 옵션 자체 사라짐.</p>
-                  <p><strong>3단계</strong>: ① 코트디부아르·가나·탄자니아 현지 가공공장 5~10곳 매핑 → 우량 자산 2~3곳 majority M&A 또는 long-term JV (capex $25~40M) ② 한국 제과 3사(롯데웰푸드·오리온·해태) + B2B 베이커리(파리바게뜨·뚜레쥬르) + 마트 PB 5사에 "서아프리카 직접 가공 캐슈" 5년 LTA — 베트남 trader 우회로 단가 -22%p 절감 + ESG·트레이서빌리티 inclusive ③ "K-Cashew Origin Champion" 포지셔닝 → exit 시 PE 5x → 11x 리레이팅, EV +120% premium.</p>
+                  <p><strong>3단계</strong>: ① 코트디부아르·가나·탄자니아 현지 가공공장 5~10곳 매핑 → 우량 자산 2~3곳 majority M&A 또는 long-term JV (capex $25~40M) ② 한국 제과 3사(롯데웰푸드·오리온·해태) + B2B 베이커리(파리바게뜨·뚜레쥬르) + 마트 PB 5사에 "서아프리카 직접 가공 캐슈" 5년 LTA - 베트남 trader 우회로 단가 -22%p 절감 + ESG·트레이서빌리티 inclusive ③ "K-Cashew Origin Champion" 포지셔닝 → exit 시 PE 5x → 11x 리레이팅, EV +120% premium.</p>
                 </div>
               ),
-              source: "검증된 앵커: 코트디부아르 가공 커넬 = 캐슈 수출액 약 30%(Ecofin 2024). 분기 가공률·직공급 시계열은 단일 권위 출처 부재 — 예시 추정(실측 아님)"
+              source: "검증된 앵커: 코트디부아르 가공 커넬 = 캐슈 수출액 약 30%(Ecofin 2024). 분기 가공률·직공급 시계열은 단일 권위 출처 부재 - 예시 추정(실측 아님)"
             })}
             {sec.id === 'S3' && d_macro_sensitivity && renderCashewWidget({
               icon: Activity, title: "거시 지표 민감도 분석 (What-If 시뮬레이터)",
@@ -507,14 +507,14 @@ export default function CashewStrategy() {
               ),
               situation: (
                 <div>
-                  <p>"SCFI(Shanghai Containerized Freight Index, 상하이 컨테이너 운임 지수)"는 글로벌 해상 운임의 weekly benchmark — 인도·서아프리카·동남아 캐슈 운송 단가가 모두 이 지수에 sync. 원달러 환율은 vendor의 수출 매출 환산 결정 → 두 지표가 동시 움직이면 마진은 ±18%p 폭으로 출렁임. "복합 변동성"이 캐슈 vendor의 main risk.</p>
-                  <p>시나리오 가정(실측 아님): <strong>2026 인도 수확기 진입 → SCFI +12% 급등 → 운임 cost -2.8%p 마진 압축. 동기 원달러 ₩1,365 → ₩1,422 (+4.2%) → 수출 매출 환산 +5.8%p alpha. net 효과 +3.0%p — hedging 안 한 vendor는 완전 운 좋아야 살아남는 구조</strong>.</p>
+                  <p>"SCFI(Shanghai Containerized Freight Index, 상하이 컨테이너 운임 지수)"는 글로벌 해상 운임의 weekly benchmark - 인도·서아프리카·동남아 캐슈 운송 단가가 모두 이 지수에 sync. 원달러 환율은 vendor의 수출 매출 환산 결정 → 두 지표가 동시 움직이면 마진은 ±18%p 폭으로 출렁임. "복합 변동성"이 캐슈 vendor의 main risk.</p>
+                  <p>시나리오 가정(실측 아님): <strong>2026 인도 수확기 진입 → SCFI +12% 급등 → 운임 cost -2.8%p 마진 압축. 동기 원달러 ₩1,365 → ₩1,422 (+4.2%) → 수출 매출 환산 +5.8%p alpha. net 효과 +3.0%p - hedging 안 한 vendor는 완전 운 좋아야 살아남는 구조</strong>.</p>
                 </div>
               ),
               actionPlan: (
                 <div>
                   <p><strong>재정의</strong>: 운임·환율 hedging은 "재무 부서 cost"가 아닌 <strong>"vendor의 분기 P&L 변동성을 ±18% → ±3%로 압축하는 alpha generator"</strong>. hedging 능력이 곧 valuation premium.</p>
-                  <p><strong>3단계</strong>: ① 주요 선사 5개와 6~12개월 단위 FRA(Forward Rate Agreement) 체결 — SCFI 변동 -15%p lock-in ② 한국은행·KB·신한과 NDF 3·6·12개월 layered hedging — 환변동 ±2%p 이내 안정 ③ <strong>환율 수혜 윈도우(원달러 ₩1,400+ 국면)</strong>에 EU·미국·일본 프리미엄 인증 (Organic·Fair Trade·Halal) 캐슈 선출하 집중 — 환차익을 매출 alpha로 전환, 분기당 +6~10%p 추가 마진.</p>
+                  <p><strong>3단계</strong>: ① 주요 선사 5개와 6~12개월 단위 FRA(Forward Rate Agreement) 체결 - SCFI 변동 -15%p lock-in ② 한국은행·KB·신한과 NDF 3·6·12개월 layered hedging - 환변동 ±2%p 이내 안정 ③ <strong>환율 수혜 윈도우(원달러 ₩1,400+ 국면)</strong>에 EU·미국·일본 프리미엄 인증 (Organic·Fair Trade·Halal) 캐슈 선출하 집중 - 환차익을 매출 alpha로 전환, 분기당 +6~10%p 추가 마진.</p>
                 </div>
               ),
               source: "시나리오 민감도 모델(실측 아님). 방향성 앵커: 컨테이너 운임 +24% YoY(Trading Economics 2026-05)·원물가 +18% 마진침식(CPT Corp 2024). impact%는 모델 가정"
@@ -535,7 +535,7 @@ export default function CashewStrategy() {
               ),
               situation: (
                 <div>
-                  <p>"CNSL(Cashew Nut Shell Liquid, 캐슈넛 외피 액체)"이란 캐슈넛 껍질을 압착·증류해 얻는 갈색 점성 액체. 주성분 카르다놀(cardanol)·아나카르드산(anacardic acid)이 페놀 수지·산업용 레진·자동차 브레이크 라이닝·차세대 바이오 항공유 raw로 재평가 — petrochemical 대체재로 글로벌 친환경 산업의 raw 부족 시대에 단가 +1200~1800% 점프.</p>
+                  <p>"CNSL(Cashew Nut Shell Liquid, 캐슈넛 외피 액체)"이란 캐슈넛 껍질을 압착·증류해 얻는 갈색 점성 액체. 주성분 카르다놀(cardanol)·아나카르드산(anacardic acid)이 페놀 수지·산업용 레진·자동차 브레이크 라이닝·차세대 바이오 항공유 raw로 재평가 - petrochemical 대체재로 글로벌 친환경 산업의 raw 부족 시대에 단가 +1200~1800% 점프.</p>
                   <p>추정(실측 아님): <strong>현행 CNSL 폐기/저가 매각 -$0.12/kg → 정제 후 산업용 레진 raw $1.65/kg (13.7배) → 바이오 항공유 정제 raw $2.40/kg (20배). 100톤 가공 vendor 부산물 매출 연 $165,000~$240,000 자동 발생 + 탄소배출권(K-ETS) 평균 12 tCO₂e 감축</strong>.</p>
                 </div>
               ),
@@ -545,7 +545,7 @@ export default function CashewStrategy() {
                   <p><strong>3단계</strong>: ① 단기(6개월): 베트남·서아프리카 가공장에서 발생하는 CNSL을 산업용 레진 vendor(코오롱인더·LG화학·BASF·DuPont) raw 납품 ② 중기(12~18개월): CNSL 정제 R&D 자체 라인 신설 (capex $5~8M) → 바이오 항공유(SAF, Sustainable Aviation Fuel) raw 시장 진입 ③ 장기(24개월+): 자체 K-CNSL 브랜드 + USDA Bio-based + EU CO₂ Reduction 2중 인증 → 글로벌 친환경 raw vendor 카테고리 점프, valuation PE 5x → 13x.</p>
                 </div>
               ),
-              source: "CNSL 용도별 비중 추정(실측 아님) — 연료 ~20%만 Business Research Insights 일치, 단일 일관 출처 없음·'단순 폐기' 비중은 잔차 추정"
+              source: "CNSL 용도별 비중 추정(실측 아님) - 연료 ~20%만 Business Research Insights 일치, 단일 일관 출처 없음·'단순 폐기' 비중은 잔차 추정"
             })}
             {widgets.slice(sec.start, sec.end).map((w:any, wi:number) => {
               const Icon = WIDGET_ICONS[w.id] || Hexagon;

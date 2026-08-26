@@ -61,7 +61,7 @@ async function fetchFaostatWorldTrend(): Promise<{ trend: typeof FALLBACK_TREND,
       ...f,
       production: Math.round(byYear[f.year] || f.production),
     }));
-    return { trend, src: 'FAOSTAT QCL Item 867 (Meat, cattle) — World' };
+    return { trend, src: 'FAOSTAT QCL Item 867 (Meat, cattle) - World' };
   } catch {
     return null;
   }
@@ -89,7 +89,7 @@ async function fetchFaostatTop5(): Promise<{ top5: typeof FALLBACK_TOP5, src: st
         pct: Number(((production / worldTotal) * 100).toFixed(1)),
       };
     }).sort((a, b) => b.production - a.production);
-    return { top5, src: 'FAOSTAT QCL Item 867 (Meat, cattle) — Top 5' };
+    return { top5, src: 'FAOSTAT QCL Item 867 (Meat, cattle) - Top 5' };
   } catch {
     return null;
   }

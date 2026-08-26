@@ -265,7 +265,7 @@ function RfmoDonut() {
       <WidgetHead
         icon={<Globe size={18} style={{ color: 'var(--w-blue-500)' }} />}
         title="RFMO별 분포"
-        desc="출처: 5개 RFMO(지역수산관리기구) 공개 선박 레지스트리 — 등록 선망선의 기구별 집계 (다중 등록 선박은 기구별 중복 집계)"
+        desc="출처: 5개 RFMO(지역수산관리기구) 공개 선박 레지스트리 - 등록 선망선의 기구별 집계 (다중 등록 선박은 기구별 중복 집계)"
       />
       <SafeResponsiveContainer width="100%" height={280}>
         <PieChart>
@@ -304,7 +304,7 @@ function RfmoCards({ onFilter }: { onFilter: (rfmo: string) => void }) {
       <WidgetHead
         icon={<Database size={18} style={{ color: 'var(--w-emerald-500)' }} />}
         title="RFMO 상세"
-        desc="RFMO별 선박 수·상위 선적국·주요 운영사 집계 — 카드 클릭 시 하단 명부 필터 적용"
+        desc="RFMO별 선박 수·상위 선적국·주요 운영사 집계 - 카드 클릭 시 하단 명부 필터 적용"
       />
       <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
         {Object.entries(rfmoStats)
@@ -361,7 +361,7 @@ function CountryBarChart({ onFilter }: { onFilter: (flag: string) => void }) {
       <WidgetHead
         icon={<Flag size={18} style={{ color: 'var(--w-amber-500)' }} />}
         title="국가별 선박 수 (상위 15개국)"
-        desc="선적국(Flag State) 기준 보유 선박 수 상위 15개국 집계 — 막대 클릭 시 하단 명부 필터 적용"
+        desc="선적국(Flag State) 기준 보유 선박 수 상위 15개국 집계 - 막대 클릭 시 하단 명부 필터 적용"
       />
       <SafeResponsiveContainer width="100%" height={400}>
         <BarChart data={data} layout="vertical" margin={V_BAR_MARGIN}
@@ -428,7 +428,7 @@ function OperatorChart({ onFilter }: { onFilter: (op: string) => void }) {
       <WidgetHead
         icon={<Building2 size={18} style={{ color: 'var(--w-pink-500)' }} />}
         title="주요 운영사 (상위 15개사)"
-        desc="운영사 식별 선박만 집계(미식별 제외) — 운영사명은 레지스트리 원문 표기, 막대 클릭 시 하단 명부 필터 적용"
+        desc="운영사 식별 선박만 집계(미식별 제외) - 운영사명은 레지스트리 원문 표기, 막대 클릭 시 하단 명부 필터 적용"
       />
       {naCount > 0 && (
         <div style={{
@@ -491,7 +491,7 @@ function OperatorRfmoMatrix() {
       <WidgetHead
         icon={<Link2 size={18} style={{ color: 'var(--w-cyan-500)' }} />}
         title="운영사 × RFMO 매트릭스"
-        desc="상위 12개 운영사의 RFMO별 등록 선박 수 교차 집계 — 다중 해역 조업 운영사 식별용"
+        desc="상위 12개 운영사의 RFMO별 등록 선박 수 교차 집계 - 다중 해역 조업 운영사 식별용"
       />
       <div style={{ overflowX: 'auto' }}>
         <table style={{ width: '100%', borderCollapse: 'separate', borderSpacing: 3, fontSize: 12 }}>
@@ -519,7 +519,7 @@ function OperatorRfmoMatrix() {
                       color: val > 0 ? 'var(--w-slate-200)' : '#475569',
                       fontWeight: val > 0 ? 600 : 400,
                     }}>
-                      {val || '—'}
+                      {val || '-'}
                     </td>
                   );
                 })}
@@ -619,7 +619,7 @@ function VesselTable({ initialRfmo, initialFlag, initialOperator }: {
       <WidgetHead
         icon={<Search size={18} style={{ color: 'var(--w-cyan-500)' }} />}
         title="전체 선박 검색"
-        desc="5개 관리기구 등록부에서 파생한 선망선 전수 명부 — 선박명·IMO·운영사 검색, RFMO·선적국·운영사 필터, CSV 내려받기 지원. IMO 는 등록부가 주는 경우에만 있다"
+        desc="5개 관리기구 등록부에서 파생한 선망선 전수 명부 - 선박명·IMO·운영사 검색, RFMO·선적국·운영사 필터, CSV 내려받기 지원. IMO 는 등록부가 주는 경우에만 있다"
       />
 
       {/* Filter Bar */}
@@ -729,7 +729,7 @@ function VesselTable({ initialRfmo, initialFlag, initialOperator }: {
                   {v.operator === 'N/A' ? '미식별' : v.operator}
                 </td>
                 <td style={{ padding: '8px', color: v.gt ? 'var(--w-slate-200)' : 'var(--text-dim)', textAlign: 'right' }}>
-                  {v.gt ? v.gt.toLocaleString() : '—'}
+                  {v.gt ? v.gt.toLocaleString() : '-'}
                 </td>
                 <td style={{ padding: '8px', color: 'var(--w-slate-300)', fontSize: 12 }}>
                   {FLAG_EMOJI[v.flag] || ''} {flagKo(v.flag)}
@@ -854,11 +854,11 @@ export default function PurseSeinerDashboard({ heroOnly = false }: { heroOnly?: 
         {dbTab === 'ffa' ? (
           <FfaGoodStandingPanel />
         ) : dbTab === 'tuna' ? (
-          <FleetRegistryExplorer key="tuna" src="/data/tuna_fleet_db_v1.json" title="참치 인가 선박 등록부 — 전 해역" />
+          <FleetRegistryExplorer key="tuna" src="/data/tuna_fleet_db_v1.json" title="참치 인가 선박 등록부 - 전 해역" />
         ) : dbTab === 'squid' ? (
-          <FleetRegistryExplorer key="squid" src="/data/squid_fleet_db_v1.json" title="오징어 인가 선박 등록부 — 남태평양 공해 + 북태평양(NPFC)" />
+          <FleetRegistryExplorer key="squid" src="/data/squid_fleet_db_v1.json" title="오징어 인가 선박 등록부 - 남태평양 공해 + 북태평양(NPFC)" />
         ) : (
-          <FleetRegistryExplorer key="kofa" src="/data/kofa_fleet_db_v1.json" title="한국 원양선단 명부 — 원양산업 통계연보 (2024년말, 198척)" />
+          <FleetRegistryExplorer key="kofa" src="/data/kofa_fleet_db_v1.json" title="한국 원양선단 명부 - 원양산업 통계연보 (2024년말, 198척)" />
         )}
       </div>
     );

@@ -42,7 +42,7 @@ export default function TunaEsgRiskRadar() {
       icon={ShieldCheck}
       iconColor="#f59e0b"
       pillar="S5"
-      cardDesc="강제노동·IUU·생태계 파괴·남획 4지표를 인도네시아 vs WCPFC/PNA 기준선 비교 — ILO 보고서 기반 100점 스케일"
+      cardDesc="강제노동·IUU·생태계 파괴·남획 4지표를 인도네시아 vs WCPFC/PNA 기준선 비교 - ILO 보고서 기반 100점 스케일"
       telemetry={{ status: 'STATIC', syncDate: 'ISSF 2026 State of Global Tuna Sustainability' }}
       chartHeight={280}
       chart={
@@ -61,9 +61,9 @@ export default function TunaEsgRiskRadar() {
 <p>"ESG 리스크"란 환경(E)·사회(S)·거버넌스(G) 차원의 비즈니스 리스크. 수산업에서 가장 큰 ESG 리스크는 <strong>IUU(불법·비보고·비규제) 어업과 강제 노동</strong>.</p>
 <p>국가별 ESG 리스크 격차 (ILO 보고서 기준):</p>
 <ul style="margin: 4px 0 0 18px; padding: 0;">
-<li><strong>인도네시아 원양 어업 강제노동 위험도 85점/100</strong> — 매우 높음</li>
-<li>WCPFC/PNA 관리 구역(태평양) <strong>35점</strong> — 낮음</li>
-<li>한국·일본 원양 <strong>15~25점 추정</strong> — 매우 낮음 (업계 추정치, 미검증)</li>
+<li><strong>인도네시아 원양 어업 강제노동 위험도 85점/100</strong> - 매우 높음</li>
+<li>WCPFC/PNA 관리 구역(태평양) <strong>35점</strong> - 낮음</li>
+<li>한국·일본 원양 <strong>15~25점 추정</strong> - 매우 낮음 (업계 추정치, 미검증)</li>
 </ul>
 <p>실질 영향: 서구권 EU CSDDD + 미국 UFLPA 시행으로 인도네시아산 참치는 향후 5년 EU·미국 시장 진입 차질 가시화. 인도네시아 의존 공급업체는 사실상 채널 잃음. 반면 태평양 원양(한국·WCPFC) 어획물은 자동 지속가능 공급자 지위.</p>
 </div>`,
@@ -73,7 +73,7 @@ export default function TunaEsgRiskRadar() {
 <ol style="margin: 4px 0 0 18px; padding: 0;">
 <li style="margin-bottom: 8px;"><strong>"청정 공급망 프리미엄" 마케팅</strong>: 신라교역 태평양 원양 어획물에 ILO 35점·ESG 인증 라벨. EU·미국 소매 채널에 +12~20% 프리미엄(illustrative).</li>
 <li style="margin-bottom: 8px;"><strong>인도네시아 공급업체 ESG 실사 강화</strong>: 분기별 재평가, ESG 미달 공급업체 자동 블랙리스트. 공급망 정화로 우리 신뢰도 차별화.</li>
-<li><strong>"ESG 차익거래"</strong>: 인도네시아 부실 공급업체의 정상화 비용을 우리가 자본 공급 + 우리 ESG 표준 통합 — 지분 인수 후 5년 후 ESG 평가 기반 밸류에이션으로 매각. 글로벌 ESG 펀드와 파트너십 검토.</li>
+<li><strong>"ESG 차익거래"</strong>: 인도네시아 부실 공급업체의 정상화 비용을 우리가 자본 공급 + 우리 ESG 표준 통합 - 지분 인수 후 5년 후 ESG 평가 기반 밸류에이션으로 매각. 글로벌 ESG 펀드와 파트너십 검토.</li>
 </ol>
 </div>`,
         source: '국제 노동 기구(ILO) · 인도네시아 해양수산부 · 업계 추정',

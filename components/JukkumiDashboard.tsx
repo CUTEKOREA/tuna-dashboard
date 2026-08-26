@@ -30,11 +30,11 @@ const EXTRA_BY_PILLAR: Record<string, React.FC[]> = {
 /* ─── 5-Part Section Definitions ─── */
 // 5-Pillar 네비게이터 메타 (Squid 패턴 + 주꾸미 시그니처 그라디언트 purple → pink 두족류 일관)
 const SECTIONS = [
-  { id: 'S1', num: '❶', label: '원료 수급', title: '🌊 Part I — 원료 수급', desc: '글로벌 주꾸미 원물 소싱 현황 및 연안 자원량 지수', color: '#8b5cf6' },
-  { id: 'S2', num: '❷', label: '가공·생산', title: '🏭 Part II — 가공 및 생산', desc: 'HMR(가정간편식) 가공 수율 및 제조 원가율 추이', color: '#a855f7' },
-  { id: 'S3', num: '❸', label: '물류·통관', title: '⚓ Part III — 물류 및 통관', desc: 'FTA 체결국발 물류 원가 및 통관 리스크 지수', color: '#d946ef' },
-  { id: 'S4', num: '❹', label: '판매·수요', title: '📊 Part IV — 판매 및 수요', desc: '유통 채널별 주꾸미 판매 단가 및 탄력성 지수', color: '#ec4899' },
-  { id: 'S5', num: '❺', label: 'ESG·지속가능성', title: '🛡️ Part V — ESG 및 지속가능성', desc: '콜드체인 병원성 리스크 및 보건 안전 지수', color: '#f43f5e' }
+  { id: 'S1', num: '❶', label: '원료 수급', title: '🌊 Part I - 원료 수급', desc: '글로벌 주꾸미 원물 소싱 현황 및 연안 자원량 지수', color: '#8b5cf6' },
+  { id: 'S2', num: '❷', label: '가공·생산', title: '🏭 Part II - 가공 및 생산', desc: 'HMR(가정간편식) 가공 수율 및 제조 원가율 추이', color: '#a855f7' },
+  { id: 'S3', num: '❸', label: '물류·통관', title: '⚓ Part III - 물류 및 통관', desc: 'FTA 체결국발 물류 원가 및 통관 리스크 지수', color: '#d946ef' },
+  { id: 'S4', num: '❹', label: '판매·수요', title: '📊 Part IV - 판매 및 수요', desc: '유통 채널별 주꾸미 판매 단가 및 탄력성 지수', color: '#ec4899' },
+  { id: 'S5', num: '❺', label: 'ESG·지속가능성', title: '🛡️ Part V - ESG 및 지속가능성', desc: '콜드체인 병원성 리스크 및 보건 안전 지수', color: '#f43f5e' }
 ];
 
 const PILLAR_WIDGET_IDS: Record<string, string[]> = {
@@ -280,7 +280,7 @@ export default function JukkumiDashboard() {
               <h1 style={{ margin: 0, fontSize: '1.5rem', fontWeight: 700, letterSpacing: '-0.5px', color: 'var(--text-primary)' }}>
                 주꾸미 전략 인텔리전스
               </h1>
-              <p style={{ margin: 0, fontSize: '0.88rem', color: 'var(--text-secondary)' }}>주꾸미 커맨드 센터 — 총 {totalWidgetCount}개 위젯 · {kpiKeys.length}개 핵심지표</p>
+              <p style={{ margin: 0, fontSize: '0.88rem', color: 'var(--text-secondary)' }}>주꾸미 커맨드 센터 - 총 {totalWidgetCount}개 위젯 · {kpiKeys.length}개 핵심지표</p>
             </div>
           </div>
         </div>
@@ -337,7 +337,7 @@ export default function JukkumiDashboard() {
           marginBottom: '6px',
         }}>
           <span style={{ fontSize: '0.7rem', color: 'rgba(var(--w-slate-400-rgb), 0.7)', fontWeight: 600, letterSpacing: '0.08em', textTransform: 'uppercase' }}>
-            밸류체인 네비게이터 — 아래 단계를 클릭하여 탐색하세요
+            밸류체인 네비게이터 - 아래 단계를 클릭하여 탐색하세요
           </span>
         </div>
         <div data-mobile-stack style={{ display: 'grid', gridTemplateColumns: 'repeat(5, 1fr)', gap: '4px' }}>

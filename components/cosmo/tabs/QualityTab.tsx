@@ -25,7 +25,7 @@ const ISSUES = [
   },
   {
     area: '머리글 표기',
-    issue: "머리글에 자간 공백이 들어감 — '구 분', '판 매', '누 적'.",
+    issue: "머리글에 자간 공백이 들어감 - '구 분', '판 매', '누 적'.",
     fix: '비교 전에 모든 공백을 제거한 문자열로 정규화한 뒤 머리행을 판정.',
   },
   {
@@ -36,7 +36,7 @@ const ISSUES = [
   {
     area: '결측 주차',
     issue: meta.missingWeeks.length
-      ? `원본 파일이 없는 주차 — 2026 ${meta.missingWeeks.join(', ')}주차, 2025 52주차.`
+      ? `원본 파일이 없는 주차 - 2026 ${meta.missingWeeks.join(', ')}주차, 2025 52주차.`
       : '2026년은 원본이 모두 확보돼 결측이 없다(16주차 후속 반영). 2025년은 52주차가 없다.',
     fix: '보간하지 않고 결측으로 표시. 직전 주를 참조하는 연결 검산(이월·브릿지)은 해당 주차를 검산에서 제외. 원본이 뒤늦게 들어오면 재추출만으로 자동 해소된다.',
   },
@@ -121,7 +121,7 @@ export default function Quality() {
             tone="flat"
             d={meta.missingWeeks.length
               ? `직전 주 결측(${meta.missingWeeks.join(',')}주차)으로 연결 검산 불가`
-              : '결측 없음 — 전 구간 연결 검산 성립'} />
+              : '결측 없음 - 전 구간 연결 검산 성립'} />
         </Card>
         <Card>
           <Kpi k="결측 주차" v={meta.missingWeeks.length ? meta.missingWeeks.join(', ') : '없음'} unit={meta.missingWeeks.length ? '주차' : undefined}
@@ -142,7 +142,7 @@ export default function Quality() {
         title={`허용 잔차를 넘은 ${fails.length}건`}
         sub="전체 검산 중 판정이 이상인 건만 추렸습니다. 아래 전체 표에도 같은 행이 붉게 표시됩니다."
         note={<>이상 {fails.length}건은 {failWeeks.length}개 주차에 흩어져 있고, 가장 큰 잔차는
-          <b> {worst ? `${worst.week}주차 ${worst.name} ${resid(worst.name, worst.residual)}` : '—'}</b>입니다.
+          <b> {worst ? `${worst.week}주차 ${worst.name} ${resid(worst.name, worst.residual)}` : '-'}</b>입니다.
           {byName.filter((b) => b.fail > 0).map((b) => `${b.name} ${b.fail}건`).join(', ')} 순으로,
           <b> 원본 표 안에서 기초·이월값이 앞뒤 주차와 맞지 않는 유형</b>에 몰려 있습니다.
           이 건들은 값을 고치지 않고 원본 그대로 두었으므로, 해당 주차의 재고·판매 누적값은 주간값과 어긋날 수 있습니다.</>}
@@ -163,7 +163,7 @@ export default function Quality() {
                   <td>{c.week}주</td>
                   <td>{c.name}</td>
                   <td className="n">{resid(c.name, c.residual)}</td>
-                  <td>{c.note || '—'}</td>
+                  <td>{c.note || '-'}</td>
                 </tr>
               ))}
             </tbody>
@@ -200,7 +200,7 @@ export default function Quality() {
                   <td className="n">{num(b.total)}</td>
                   <td className="n">{num(b.fail)}</td>
                   <td className="n">{pct(b.fail / b.total, 1)}</td>
-                  <td className="n">{b.skip ? num(b.skip) : '—'}</td>
+                  <td className="n">{b.skip ? num(b.skip) : '-'}</td>
                   <td className="n">{resid(b.name, b.max)}</td>
                 </tr>
               ))}
@@ -230,7 +230,7 @@ export default function Quality() {
 
         <Card
           title="생산 브릿지 잔차 (MT)"
-          sub="CBU·FBU 누적 브릿지 — 전주누적 + 금주 − 금주누적."
+          sub="CBU·FBU 누적 브릿지 - 전주누적 + 금주 − 금주누적."
           note={<>대부분 0에 붙어 있습니다. {(() => {
             const f = fails.filter((c) => isMt(c.name))
             return f.length
@@ -280,7 +280,7 @@ export default function Quality() {
                       {!c.ok ? '이상' : c.gap ? '제외' : '정상'}
                     </span>
                   </td>
-                  <td>{c.note || '—'}</td>
+                  <td>{c.note || '-'}</td>
                 </tr>
               ))}
             </tbody>
@@ -293,7 +293,7 @@ export default function Quality() {
         title="구조적 한계 4종"
         sub="데이터가 없어서 못 하는 것과, 데이터가 틀려서 못 하는 것은 다르다. 아래는 전자다."
         note={<>이 표의 항목은 <b>고치는 게 아니라 채워 넣어야</b> 해소된다. 특히 <b>판매 계획</b>은 원본의
-          계획대비 칸이 {meta.weekCount}주 내내 0이라, 판매·수주 보드에는 계획 대비 개념이 아예 없다 —
+          계획대비 칸이 {meta.weekCount}주 내내 0이라, 판매·수주 보드에는 계획 대비 개념이 아예 없다 -
           없는 것을 못 봤다고 오해하지 않도록 각 보드 상단에도 표기한다.</>}
       >
         <div className="tw">
@@ -377,7 +377,7 @@ export default function Quality() {
         sub="주차별 원본 파일명과 SHA-256 해시 앞 16자. 해시가 같으면 같은 파일에서 읽은 값입니다."
         note={<>모든 수치는 이 파일들에서 <b>읽기 전용으로 추출했으며 원본은 수정하지 않았습니다</b>.
           해시를 함께 남긴 이유는 원본이 나중에 갱신되면 이 대시보드의 수치와 어긋날 수 있기 때문입니다.
-          {meta.missingWeeks.join(',')}주차는 목록에 없습니다 — 파일 자체가 없습니다.
+          {meta.missingWeeks.join(',')}주차는 목록에 없습니다 - 파일 자체가 없습니다.
           추출 시각은 {generated}, 원본 위치는 {meta.sourceDir} 입니다.</>}
       >
         <div className="tw">
@@ -396,7 +396,7 @@ export default function Quality() {
                   <td className="n">{w.week}주</td>
                   <td>{w.source}</td>
                   <td className="n">{w.sha256.slice(0, 16)}</td>
-                  <td className="n">{w.periodStart ?? '—'} ~ {w.periodEnd ?? '—'}</td>
+                  <td className="n">{w.periodStart ?? '-'} ~ {w.periodEnd ?? '-'}</td>
                 </tr>
               ))}
             </tbody>

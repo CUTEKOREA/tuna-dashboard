@@ -1,3 +1,12 @@
+> ➖ **2026-08-26 — 앰대시(—) 전면 제거 (L-07 일괄)** [CC]:
+> - 사용자 지시 «대시보드에서 앰대시 사용 금지». `scripts/fix_emdash.py` 신설(문자열 인식 렉서 — 주석 안 —는 보존, 문자열·JSX 텍스트·JSON만 치환).
+> - 치환: ts/tsx 2,336건 + 테스트 141건 + data/public JSON 2,634건 = 총 5,111건 / 468파일. 스냅샷 `vitest -u` 재생성.
+> - 유입로 차단: `scripts/sync_daily_briefing.py` normalize_text에 — → - 정규화 추가 (게시판 원문에서 매일 재유입되던 경로).
+> - 잔여 — 는 코드 주석뿐(주석 밖 잔여 0 검증). en dash(–) 48건은 지시 범위 밖이라 유지. `npm run verify` 전체 통과.
+> - ⚠ 다른 sync 파이프라인(gmts·atuna 등)이 향후 원문 —를 새로 들여올 수 있음 — 발견 시 같은 정규화를 해당 스크립트에 추가.
+
+> 마지막 업데이트: 2026-08-26 [CC]
+
 > 🔤 **2026-08-26 — 본문 서체 Pretendard 전역화** [CC]:
 > - main엔 이미 Pretendard self-host(next/font, `--font-pretendard`)가 V3 Metabase 존에 부분 적용돼 있었음. `app/globals.css`에 `--font-sans` SSOT 변수를 신설해 **body 전역이 Pretendard를 쓰도록** 전환 (죽은 'Sora' 스택 제거 — V3 Phase 0에서 Google Fonts @import가 이미 제거돼 본문이 시스템 폰트로 새고 있었음).
 > - 부수 수정: `.leaflet-tooltip`이 참조하던 `--font-sans`가 미정의 변수였던 것 해소.

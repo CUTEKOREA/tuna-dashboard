@@ -232,13 +232,13 @@ export default function FleetRegistryExplorer({ src, title }: { src: string; tit
                 <td style={cellStyle}>{row.n}</td>
                 <td style={cellStyle}>{row.f}</td>
                 <td style={cellStyle}>{row.g}</td>
-                <td style={{ ...cellStyle, textAlign: 'right', fontVariantNumeric: 'tabular-nums' }}>{row.t?.toLocaleString() ?? '—'}</td>
-                <td style={{ ...cellStyle, textAlign: 'right' }}>{row.l ?? '—'}</td>
-                <td style={{ ...cellStyle, textAlign: 'right' }}>{row.y ?? '—'}</td>
-                <td style={{ ...cellStyle, whiteSpace: 'normal', minWidth: '12rem' }}>{row.w ?? '—'}</td>
-                <td style={{ ...cellStyle, whiteSpace: 'normal', minWidth: '10rem' }}>{row.p ?? '—'}</td>
-                <td style={cellStyle}>{row.h ?? '—'}</td>
-                <td style={cellStyle}>{row.e ?? '—'}</td>
+                <td style={{ ...cellStyle, textAlign: 'right', fontVariantNumeric: 'tabular-nums' }}>{row.t?.toLocaleString() ?? '-'}</td>
+                <td style={{ ...cellStyle, textAlign: 'right' }}>{row.l ?? '-'}</td>
+                <td style={{ ...cellStyle, textAlign: 'right' }}>{row.y ?? '-'}</td>
+                <td style={{ ...cellStyle, whiteSpace: 'normal', minWidth: '12rem' }}>{row.w ?? '-'}</td>
+                <td style={{ ...cellStyle, whiteSpace: 'normal', minWidth: '10rem' }}>{row.p ?? '-'}</td>
+                <td style={cellStyle}>{row.h ?? '-'}</td>
+                <td style={cellStyle}>{row.e ?? '-'}</td>
               </tr>
             ))}
           </tbody>

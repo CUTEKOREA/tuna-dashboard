@@ -16,7 +16,7 @@ export default function SalmonInsightMarginSqueeze() {
       icon={Factory}
       iconColor="var(--color-success)"
       pillar="S2"
-      cardDesc="EU 훈제 연어 생산량(천 톤) vs 단가(EUR/kg) 및 폴란드 점유율 추이 — 자체 추정 시나리오(illustrative)"
+      cardDesc="EU 훈제 연어 생산량(천 톤) vs 단가(EUR/kg) 및 폴란드 점유율 추이 - 자체 추정 시나리오(illustrative)"
       telemetry={{ status: 'STATIC', syncDate: '2026-05-29' }}
       chartHeight={250}
       chart={
@@ -44,7 +44,7 @@ export default function SalmonInsightMarginSqueeze() {
 </div>`,
         actionPlan: `<div>
 <p><strong>재정의</strong>: 고정가 계약의 한계가 커지는 국면. <strong>"매입원가 연동(Index-linked) 가격 + 거점 분산"</strong>이 핵심.</p>
-<p><strong>3단계</strong>: ① 장기 고정가 계약 대폭 축소 ② 매입원가 연동형 유연 계약(Index-linked) 즉각 도입 — 비용 상승분 바이어 전가 ③ 폴란드 집중 리스크 분산 — 동유럽(체코·헝가리) 가공 허브 다변화.</p>
+<p><strong>3단계</strong>: ① 장기 고정가 계약 대폭 축소 ② 매입원가 연동형 유연 계약(Index-linked) 즉각 도입 - 비용 상승분 바이어 전가 ③ 폴란드 집중 리스크 분산 - 동유럽(체코·헝가리) 가공 허브 다변화.</p>
 </div>`,
         source: "자체 추정 시나리오(illustrative) · EUMOFA/Eurostat PRODCOM 공개 통계 기반 가공"
       }}

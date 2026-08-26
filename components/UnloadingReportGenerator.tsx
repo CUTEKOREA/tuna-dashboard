@@ -519,7 +519,7 @@ export default function UnloadingReportGenerator({ vesselData, onClose }: Report
               >
                 {workDates.map(t => (
                   <option key={t.date} value={t.date}>
-                    {t.date} — {fmt(t.dailyAmount)} MT
+                    {t.date} - {fmt(t.dailyAmount)} MT
                   </option>
                 ))}
               </select>

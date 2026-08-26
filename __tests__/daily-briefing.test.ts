@@ -77,7 +77,7 @@ describe('daily tuna briefing sync', () => {
     expect(briefing.digest.length).toBeGreaterThanOrEqual(3);
     expect(briefing.articles.length).toBeGreaterThanOrEqual(3);
     expect(briefing.digest[0].title).toBe(
-      '동원그룹 상반기 매출 5조 1,000억원, 9.1% 증가 — 수산 부문이 견인',
+      '동원그룹 상반기 매출 5조 1,000억원, 9.1% 증가 - 수산 부문이 견인',
     );
     expect(briefing.articles[0]).toEqual({
       titleKo: '동원그룹 상반기 매출 증가, 수산 부문이 견인',

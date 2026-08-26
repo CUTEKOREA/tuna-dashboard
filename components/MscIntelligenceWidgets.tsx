@@ -69,11 +69,11 @@ export function MscGlobalTunaGrowthTracker() {
       <div className={styles.cardHeader}>
         <h3 className={styles.cardTitle}>
           <TrendingUp size={20} style={{ color: 'var(--w-sky-400)' }} />
-          MSC 인증 참치 — 글로벌 성장 궤적
+          MSC 인증 참치 - 글로벌 성장 궤적
           <TelemetryBadge status="STATIC" syncDate="2025-26" />
         </h3>
         <p className={styles.cardDesc}>
-          MSC 연감 2025-26판·연례보고서 부속 데이터 기준 3개년 성장 추이 — 전 세계 참치 어획의 51.7%가 MSC 인증(참여 기준 59%).
+          MSC 연감 2025-26판·연례보고서 부속 데이터 기준 3개년 성장 추이 - 전 세계 참치 어획의 51.7%가 MSC 인증(참여 기준 59%).
         </p>
       </div>
 
@@ -464,7 +464,7 @@ export function MscTunaStockHealthGauge() {
         </div>
 
         <TakeawayBox
-          situation="23개 주요 상업 참치 자원 중 12개(52.2%)만 MSC 기준 건전 — 2024년 11개에서 1개 증가. 그러나 완전한 수확 통제 규칙(HCR)을 이행한 자원은 7개(30.4%)에 불과. 자원 건전성과 관리 이행 사이 22%p 격차는 규제 진공 상태를 의미."
+          situation="23개 주요 상업 참치 자원 중 12개(52.2%)만 MSC 기준 건전 - 2024년 11개에서 1개 증가. 그러나 완전한 수확 통제 규칙(HCR)을 이행한 자원은 7개(30.4%)에 불과. 자원 건전성과 관리 이행 사이 22%p 격차는 규제 진공 상태를 의미."
           actionPlan="RFMO 차원의 급격한 어획 규제 도입 리스크 존재. 특히 WCPFC/IOTC에서 사전합의 수확전략(pre-agreed harvest strategy) 미이행 자원에 대한 규제 강화가 예상되며, 이는 VDS 비용 상승과 조업일수 축소로 직결. 원료 확보 전략에 규제 시나리오를 반영해야 함."
           source="MSC Preserving Ocean Life Biodiversity Report 2025, MSC Tuna Yearbook 2026"
         />
@@ -545,7 +545,7 @@ export function MscConsumerInsightsRadar() {
 
         <TakeawayBox
           situation="MZ세대(30세 미만) 83%가 지속가능 어류를 적극 선택하며, 영국 소비자 53%가 MSC 인증 제품에 프리미엄 지불 의향. 2025년 헤도닉 가격 모델에서 MSC 프리미엄 +44.6%, 이중 라벨(MSC+Dolphin-Safe) +81.3% 확인. 불황에도 MSC 수요는 구조적으로 유지."
-          actionPlan="MSC 프리미엄(+10~14%, EU 시장)은 인증 비용 대비 충분한 ROI 창출. 한국 참치 통조림의 유럽 수출 시 MSC+Dolphin-Safe 이중 라벨 전략으로 최대 81% 프리미엄 확보 가능. 다만 PB(자체브랜드) 시장에서의 가격 경쟁도 동시 심화 — 프리미엄 인증 + 가격 경쟁력의 이중 전략 필요."
+          actionPlan="MSC 프리미엄(+10~14%, EU 시장)은 인증 비용 대비 충분한 ROI 창출. 한국 참치 통조림의 유럽 수출 시 MSC+Dolphin-Safe 이중 라벨 전략으로 최대 81% 프리미엄 확보 가능. 다만 PB(자체브랜드) 시장에서의 가격 경쟁도 동시 심화 - 프리미엄 인증 + 가격 경쟁력의 이중 전략 필요."
           source="MSC Annual Report 2023-2024, Banguning Asgha et al. 2025 (Hedonic Price Model), GlobeScan/YouGov 2024"
         />
       </div>

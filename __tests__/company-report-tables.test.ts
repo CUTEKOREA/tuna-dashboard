@@ -36,7 +36,7 @@ describe('인테이크 구성', () => {
 });
 
 describe('표가 표로 남아 있는가', () => {
-  it.each(회사)('%s — 모든 행의 열 수가 헤더와 같다', (c) => {
+  it.each(회사)('%s - 모든 행의 열 수가 헤더와 같다', (c) => {
     for (const t of reportTables(c)) {
       for (const r of t.rows) {
         expect(r.length, `${t.sid} ${t.title}`).toBe(t.head.length);
@@ -44,13 +44,13 @@ describe('표가 표로 남아 있는가', () => {
     }
   });
 
-  it.each(회사)('%s — num 표시가 열 수와 맞는다', (c) => {
+  it.each(회사)('%s - num 표시가 열 수와 맞는다', (c) => {
     for (const t of reportTables(c)) {
       expect(t.num.length, `${t.sid} ${t.title}`).toBe(t.head.length);
     }
   });
 
-  it.each(회사)('%s — 빈 표가 없다', (c) => {
+  it.each(회사)('%s - 빈 표가 없다', (c) => {
     // 보고서에는 1열짜리 체크리스트 표도 있다(한-EU FTA 「그 선박」 3요건).
     // 열이 하나여도 표는 표다 — 막을 것은 빈 표이지 좁은 표가 아니다.
     for (const t of reportTables(c)) {
@@ -59,7 +59,7 @@ describe('표가 표로 남아 있는가', () => {
     }
   });
 
-  it.each(회사)('%s — 제목이 비지 않는다', (c) => {
+  it.each(회사)('%s - 제목이 비지 않는다', (c) => {
     for (const t of reportTables(c)) {
       expect(t.title.trim(), `${t.sid}`).not.toBe('');
     }
@@ -67,13 +67,13 @@ describe('표가 표로 남아 있는가', () => {
 });
 
 describe('단계 배치', () => {
-  it.each(회사)('%s — 모든 표가 c0N 단계에 붙는다', (c) => {
+  it.each(회사)('%s - 모든 표가 c0N 단계에 붙는다', (c) => {
     for (const t of reportTables(c)) {
       expect(t.stage, `${t.sid} ${t.title}`).toMatch(/^c0[1-8]$/);
     }
   });
 
-  it.each(회사)('%s — 한 단계에 몰리지 않는다', (c) => {
+  it.each(회사)('%s - 한 단계에 몰리지 않는다', (c) => {
     // 절→단계 배치가 무너지면 표가 한 단계에 쌓이고 화면이 자료집이 된다.
     // 다만 JAIS 처럼 표 대부분이 손 슬롯으로 이미 나간 회사는 남는 표가 한둘뿐이라
     // 분산을 물을 수 없다. 표가 여섯 개를 넘을 때만 잰다.
@@ -107,7 +107,7 @@ describe('원문 표시 보존', () => {
     expect(있음).toBe(true);
   });
 
-  it('절 표시가 붙어 있다 — 어느 절에서 왔는지가 출처다', () => {
+  it('절 표시가 붙어 있다 - 어느 절에서 왔는지가 출처다', () => {
     for (const c of 회사) {
       for (const t of reportTables(c)) {
         expect(t.sid, `${c} ${t.title}`).toMatch(/^s[0-9a-z]+$/);

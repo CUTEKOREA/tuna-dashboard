@@ -31,7 +31,7 @@ export function SkipjackForecastWidget() {
       icon={TrendingUp}
       iconColor="#FCD535"
       pillar="S1"
-      cardDesc="Atuna skjbkk 분기 평균(실측) + 단기 시나리오 forecast — 호르무즈·WCPO·가공업체 저항 3요인 통합"
+      cardDesc="Atuna skjbkk 분기 평균(실측) + 단기 시나리오 forecast - 호르무즈·WCPO·가공업체 저항 3요인 통합"
       unit="(단위: USD/MT)"
       telemetry={{ status: data ? 'SYNCED' : 'STATIC', syncDate: '/api/tuna-forecast' }}
       customBody={
@@ -69,27 +69,27 @@ export function SkipjackForecastWidget() {
         situation: `<div>
 <p><strong>Atuna 방콕 가다랑어 산지가격(skjbkk)</strong>은 글로벌 가다랑어 가격의 사실상 benchmark. 모든 가공사의 매입 의사결정 기준점.</p>
 <p>6분기 실측(분기 평균 FOB Bangkok): $1,650 → $1,510 → $1,565 → $1,609 → $1,662 → <strong>$2,008</strong>(2026-Q2 정점).</p>
-<p><strong>⚡ 2026-05-22 현장 인텔리전스 — Q2 정점 통과, 하락 가속 진행 중</strong>:</p>
+<p><strong>⚡ 2026-05-22 현장 인텔리전스 - Q2 정점 통과, 하락 가속 진행 중</strong>:</p>
 <ul style="margin: 4px 0 0 18px; padding: 0;">
 <li><strong>Atuna 현물가</strong>: 이미 <strong>$1,850 이하</strong>로 하락 (Q2 평균 $2,008 대비 -8%)</li>
-<li><strong>대형 캐너리 오퍼</strong>: SV·TU(Thai Union)가 <strong>$1,700 초반</strong> 호가 — 매입자 협상력 우위 전환</li>
-<li><strong>"$1,800 밑으로 빠지는 건 기정 사실"</strong> — 트레이더 컨센서스</li>
+<li><strong>대형 캐너리 오퍼</strong>: SV·TU(Thai Union)가 <strong>$1,700 초반</strong> 호가 - 매입자 협상력 우위 전환</li>
+<li><strong>"$1,800 밑으로 빠지는 건 기정 사실"</strong> - 트레이더 컨센서스</li>
 <li><strong>공급 증가</strong>: 13척 하역 중 + 13척 대기 중 (방콕 항만 적체)</li>
-<li><strong>WCPO 어획 회복</strong>: 대만 240톤/척/주(FSM·Marshall·Phoenix), 중국 180톤/척/주(솔로몬·타라와), 필리핀 30~40톤/척/일 — Q1 -22% 충격 빠른 회복</li>
+<li><strong>WCPO 어획 회복</strong>: 대만 240톤/척/주(FSM·Marshall·Phoenix), 중국 180톤/척/주(솔로몬·타라와), 필리핀 30~40톤/척/일 - Q1 -22% 충격 빠른 회복</li>
 <li><strong>origin별 spread</strong>: PNG $1,650+, 필리핀 gSP $1,925/NON $1,820, 남미 $1,950~2,000 origin</li>
-<li><strong>남미 흡수 trend</strong>: 동태평양·대서양·인도양 운반선이 다수 남미로 — 방콕 $1,700 진입 시 남미로 더 많이 이동 예상</li>
-<li><strong>인도양</strong>: 세이셸 남동쪽 20~40톤/척/일, 유럽선 다수 체항 중 — 시즌 종료 시그널</li>
+<li><strong>남미 흡수 trend</strong>: 동태평양·대서양·인도양 운반선이 다수 남미로 - 방콕 $1,700 진입 시 남미로 더 많이 이동 예상</li>
+<li><strong>인도양</strong>: 세이셸 남동쪽 20~40톤/척/일, 유럽선 다수 체항 중 - 시즌 종료 시그널</li>
 </ul>
 <p><strong>시나리오 재정렬</strong>: 이전 forecast(Q3 $1,950)는 이미 outdated. 새 시나리오 <strong>2026-Q3 $1,700~$1,800 박스권</strong> (캐너리 오퍼가 사실상 floor) → 2026-Q4 $1,650~$1,750 → 2027-Q1 $1,600~$1,700 평시 회귀.</p>
 </div>`,
         actionPlan: `<div>
-<p><strong>재정의</strong>: 게임이 바뀌었다. Q2 정점에서 매도자 우위였던 시장이 <strong>2주 만에 매입자 우위로 전환</strong>(공급 증가 + 캐너리 매입 소극화). 본사 매입 데스크는 수동 대응에서 <strong>공격적 매입 모드</strong>로 즉시 전환 — 가격 추가 하락 전에 1700 박스권 적극 매수.</p>
+<p><strong>재정의</strong>: 게임이 바뀌었다. Q2 정점에서 매도자 우위였던 시장이 <strong>2주 만에 매입자 우위로 전환</strong>(공급 증가 + 캐너리 매입 소극화). 본사 매입 데스크는 수동 대응에서 <strong>공격적 매입 모드</strong>로 즉시 전환 - 가격 추가 하락 전에 1700 박스권 적극 매수.</p>
 <p><strong>4단계 즉시 실행</strong>:</p>
 <ol style="margin: 4px 0 0 18px; padding: 0;">
-<li style="margin-bottom: 8px;"><strong>1순위 — "캐너리 floor 매입" 즉시 가동 ($1,700~$1,800)</strong>: SV·TU 오퍼 $1,700 초반을 floor reference로 활용. <strong>$1,750 이하 100% 적극 매수, $1,800 이상은 단순 보충용 소량 매수</strong>. 향후 4~6주에 걸쳐 분할 매입 — 평균 매입가 $1,720 타게팅 (Q2 정점 $2,008 대비 -14%, 이전 forecast $1,950 대비 -12%). 1개월 안에 90일치 안전 재고 풀로딩.</li>
-<li style="margin-bottom: 8px;"><strong>2순위 — Origin arbitrage triangulation</strong>: ① <strong>PNG $1,650+</strong>이 최저가 — 동원 PNG 허브(RD Tuna Canners) 활용해 산지 직매입 가속 ② <strong>남미 $1,950~$2,000</strong>은 +$250~300 프리미엄 — origin spread arbitrage 기회. 동태평양 운반선이 남미로 향하는 흐름을 우리 logistics로 가로채기 ③ <strong>필리핀 NON $1,820</strong>은 mid-tier, AKFTA 무관세 + 한국 근거리 활용해 통조림 라인 보충.</li>
-<li style="margin-bottom: 8px;"><strong>3순위 — 12개월 forward 락업 즉시</strong>: Q3 박스권 $1,700~$1,800 진입 즉시 <strong>$1,750 fixed price 12개월 forward 계약</strong> 체결. 매입의 50%를 forward로 락업, 나머지 50%는 spot으로 유연 운용. 카운터파티: PNA 직접 어선 + 동원 RD + 태국 mid-tier 가공사 3축. 평시 단가 락업으로 2027 사이클 매입원가 visibility 12개월+ 확보.</li>
-<li><strong>4순위 — Paper hedge로 추가 하락 보호</strong>: 만약 가격이 $1,650 밑으로 추가 하락 시 우리 forward $1,750 계약이 mark-to-market loss. 이를 hedge하기 위해 <strong>JP Morgan Commodity Desk와 OTC put option</strong> 매입 — strike $1,700, 6개월 만기, 프리미엄 ~$30/MT. 매입 50%에 대해 downside protection 확보, upside는 open. 동시에 인도양 라이센스(평시 EUR 80~120/톤)는 시즌 종료 시점에 spot 매도 — 보유 비용 0으로 옵션 가치만 회수.</li>
+<li style="margin-bottom: 8px;"><strong>1순위 - "캐너리 floor 매입" 즉시 가동 ($1,700~$1,800)</strong>: SV·TU 오퍼 $1,700 초반을 floor reference로 활용. <strong>$1,750 이하 100% 적극 매수, $1,800 이상은 단순 보충용 소량 매수</strong>. 향후 4~6주에 걸쳐 분할 매입 - 평균 매입가 $1,720 타게팅 (Q2 정점 $2,008 대비 -14%, 이전 forecast $1,950 대비 -12%). 1개월 안에 90일치 안전 재고 풀로딩.</li>
+<li style="margin-bottom: 8px;"><strong>2순위 - Origin arbitrage triangulation</strong>: ① <strong>PNG $1,650+</strong>이 최저가 - 동원 PNG 허브(RD Tuna Canners) 활용해 산지 직매입 가속 ② <strong>남미 $1,950~$2,000</strong>은 +$250~300 프리미엄 - origin spread arbitrage 기회. 동태평양 운반선이 남미로 향하는 흐름을 우리 logistics로 가로채기 ③ <strong>필리핀 NON $1,820</strong>은 mid-tier, AKFTA 무관세 + 한국 근거리 활용해 통조림 라인 보충.</li>
+<li style="margin-bottom: 8px;"><strong>3순위 - 12개월 forward 락업 즉시</strong>: Q3 박스권 $1,700~$1,800 진입 즉시 <strong>$1,750 fixed price 12개월 forward 계약</strong> 체결. 매입의 50%를 forward로 락업, 나머지 50%는 spot으로 유연 운용. 카운터파티: PNA 직접 어선 + 동원 RD + 태국 mid-tier 가공사 3축. 평시 단가 락업으로 2027 사이클 매입원가 visibility 12개월+ 확보.</li>
+<li><strong>4순위 - Paper hedge로 추가 하락 보호</strong>: 만약 가격이 $1,650 밑으로 추가 하락 시 우리 forward $1,750 계약이 mark-to-market loss. 이를 hedge하기 위해 <strong>JP Morgan Commodity Desk와 OTC put option</strong> 매입 - strike $1,700, 6개월 만기, 프리미엄 ~$30/MT. 매입 50%에 대해 downside protection 확보, upside는 open. 동시에 인도양 라이센스(평시 EUR 80~120/톤)는 시즌 종료 시점에 spot 매도 - 보유 비용 0으로 옵션 가치만 회수.</li>
 </ol>
 <p><strong>경계 시그널</strong>: ① 캐너리 오퍼가 $1,650 밑으로 추가 하락 시 → 가격 자유 낙하 진입, 매입 일시 정지 + spot 모니터링 ② 호르무즈 재봉쇄 또는 신규 ENSO 충격 발생 시 → forward 락업분이 알파, 즉시 추가 forward 매수 가속.</p>
 </div>`,
@@ -119,7 +119,7 @@ export function EnsoCorrelationWidget() {
       icon={Thermometer}
       iconColor="#06b6d4"
       pillar="S1"
-      cardDesc="NOAA ENSO Index와 가다랑어·황다랑어 어획량의 5단계 위상별 상관 — La Niña/El Niño/Neutral 별 가격 영향"
+      cardDesc="NOAA ENSO Index와 가다랑어·황다랑어 어획량의 5단계 위상별 상관 - La Niña/El Niño/Neutral 별 가격 영향"
       unit="(단위: 어획량 변동 %)"
       telemetry={{ status: data ? 'SYNCED' : 'STATIC', syncDate: 'NOAA ENSO Index · /api/tuna-forecast' }}
       kpiPanel={[
@@ -143,7 +143,7 @@ export function EnsoCorrelationWidget() {
 <p><strong>ENSO(El Niño-Southern Oscillation)</strong>는 태평양 적도 수온 변화 주기. <strong>엘니뇨(El Niño)</strong>는 평균보다 따뜻해지고 <strong>라니냐(La Niña)</strong>는 차가워지는 현상, 그 중간이 <strong>Neutral</strong>. NOAA가 매월 ONI(Oceanic Niño Index)로 측정·공시.</p>
 <p>참치 어획과 ENSO의 관계: 가다랑어는 따뜻한 표층수에 모이는 어종. 라니냐 → Neutral 전환기에 가다랑어가 더 깊은 수심으로 분산되며 어획 효율(CPUE) 일시 하락. 과거 10년 데이터: <strong>La Niña→Neutral 전환기에 WCPO 가다랑어 -5~-8% 감소 + 산지가격 +10~12% 상승</strong> 패턴 반복.</p>
 <p>현재 상황: <strong>2025 후반 약 La Niña → 2026 초 Neutral로 이미 전환 완료</strong>(NOAA 기준). 즉 ENSO 충격은 이미 가격에 반영된 상태.</p>
-<p>중요한 caveat: <strong>2026 Q2 현재 가격 변동성의 1차 변수는 ENSO가 아닌 호르무즈 봉쇄 외생 MGO 충격</strong>. ENSO 시그널만 보고 매입 결정하면 호르무즈 변수를 놓침 — 두 변수 동시 모니터링 필수.</p>
+<p>중요한 caveat: <strong>2026 Q2 현재 가격 변동성의 1차 변수는 ENSO가 아닌 호르무즈 봉쇄 외생 MGO 충격</strong>. ENSO 시그널만 보고 매입 결정하면 호르무즈 변수를 놓침 - 두 변수 동시 모니터링 필수.</p>
 </div>`,
         actionPlan: `<div>
 <p><strong>재정의</strong>: ENSO 분석은 중장기(6~24개월) 어장 시그널이며 단기 매입은 호르무즈 변수가 주도적. <strong>"시계열 구간별 변수 분리 매입 전략"</strong>으로 두 신호를 독립적으로 활용.</p>
@@ -206,7 +206,7 @@ export function LandingCostSensitivity() {
 <p><strong>재정의</strong>: 착지원가는 단순 회계 변수가 아닌 <strong>"3중 외생 충격에 노출된 파생 포지션"</strong>. 본사 리스크 데스크가 매주 환율·관세·운임을 종합 모니터링해 자동 헷지 발동.</p>
 <p><strong>3중 방어 전략</strong>:</p>
 <ol style="margin: 4px 0 0 18px; padding: 0;">
-<li style="margin-bottom: 8px;"><strong>환율 헷지</strong>: 3개월 선물환 계약으로 <strong>₩1,400 이하 락인</strong>. 매입 물량의 70% 헷지, 30% 현물 노출 — 환율 변동성 ±10% 한도 내로 제한.</li>
+<li style="margin-bottom: 8px;"><strong>환율 헷지</strong>: 3개월 선물환 계약으로 <strong>₩1,400 이하 락인</strong>. 매입 물량의 70% 헷지, 30% 현물 노출 - 환율 변동성 ±10% 한도 내로 제한.</li>
 <li style="margin-bottom: 8px;"><strong>FTA 우회</strong>: 한-ASEAN FTA로 <strong>태국 경유 관세 0%</strong> 활용. 미국 301 관세 시나리오 발동 시 즉시 supply route를 한국 직수출 → 태국→미국으로 자동 우회. 관세 부담 0.</li>
 <li><strong>ECOS/KCS API 실시간 모니터링 자동화 프로토콜</strong>: 한국은행 ECOS + 관세청 KCS API로 환율·관세 변동을 실시간 감지. 임계치 돌파 시 본사 리스크 데스크에 자동 경보 + 헷지 수단 자동 발동. JP Morgan FX·관세 데스크와 결합해 24시간 모니터링.</li>
 </ol>

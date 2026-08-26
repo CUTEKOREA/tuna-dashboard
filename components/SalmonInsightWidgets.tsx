@@ -192,7 +192,7 @@ export default function SalmonInsightWidgets() {
         takeaway={{
           situation: w.situation,
           actionPlan: w.takeaway,
-          source: w.source || 'FAOSTAT (FishStatJ) — 최신 관측연도 2022',
+          source: w.source || 'FAOSTAT (FishStatJ) - 최신 관측연도 2022',
         }}
       />
     );

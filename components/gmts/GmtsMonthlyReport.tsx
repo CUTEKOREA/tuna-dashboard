@@ -66,7 +66,7 @@ function formatDisplayDate(value: string): string {
 }
 
 function formatAmount(value: number | null): string {
-  if (value === null) return '—';
+  if (value === null) return '-';
   const text = Math.abs(value).toLocaleString('ko-KR');
   return value < 0 ? `(${text})` : text;
 }
@@ -111,7 +111,7 @@ function TrendTooltip({ active, label, payload }: {
         {payload.map((entry) => (
           <div key={String(entry.name)}>
             <dt>{entry.name}</dt>
-            <dd>{typeof entry.value === 'number' ? entry.value.toLocaleString('ko-KR') : '—'}</dd>
+            <dd>{typeof entry.value === 'number' ? entry.value.toLocaleString('ko-KR') : '-'}</dd>
           </div>
         ))}
       </dl>

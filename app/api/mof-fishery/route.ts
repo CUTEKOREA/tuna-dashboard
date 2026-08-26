@@ -34,7 +34,7 @@ const ENDPOINTS: Record<string, ApiEndpoint> = {
       const items = data?.response?.body?.items?.item || data?.items || [];
       return {
         title: '위판장별 참치 위탁판매 현황',
-        source: 'LIVE API — 해양수산부 위판장 API',
+        source: 'LIVE API - 해양수산부 위판장 API',
         data: Array.isArray(items) ? items.slice(0, 20).map((item: any) => ({
           market: item.whtplNm || item.market_name || 'N/A',
           species: item.mprcStlNm || item.species || 'N/A',
@@ -55,7 +55,7 @@ const ENDPOINTS: Record<string, ApiEndpoint> = {
       const items = data?.response?.body?.items?.item || data?.items || [];
       return {
         title: '참치 품목별 수출입 현황',
-        source: 'LIVE API — 해양수산부 수출입 API',
+        source: 'LIVE API - 해양수산부 수출입 API',
         data: Array.isArray(items) ? items.filter((item: any) => {
           const name = (item.prdlstNm || item.item_name || '').toLowerCase();
           return name.includes('참치') || name.includes('tuna') || name.includes('다랑어');
@@ -80,7 +80,7 @@ const ENDPOINTS: Record<string, ApiEndpoint> = {
       const items = data?.response?.body?.items?.item || data?.items || [];
       return {
         title: '참치 어업생산 통계',
-        source: 'LIVE API — 해양수산부 어업생산통계 API',
+        source: 'LIVE API - 해양수산부 어업생산통계 API',
         data: Array.isArray(items) ? items.filter((item: any) => {
           const name = (item.mprcStlNm || item.species || '').toLowerCase();
           return name.includes('참치') || name.includes('tuna') || name.includes('다랑어');
@@ -103,7 +103,7 @@ const ENDPOINTS: Record<string, ApiEndpoint> = {
       const items = data?.response?.body?.items?.item || data?.items || [];
       return {
         title: '참치 해상 운송비용 추적',
-        source: 'LIVE API — 관세청 해상운송비 API',
+        source: 'LIVE API - 관세청 해상운송비 API',
         data: Array.isArray(items) ? items.slice(0, 15).map((item: any) => ({
           route: `${item.ldprNm || item.load_port || 'N/A'} → ${item.dsprNm || item.discharge_port || 'N/A'}`,
           freight_usd: Number(item.frtAmt || 0),
@@ -119,7 +119,7 @@ const ENDPOINTS: Record<string, ApiEndpoint> = {
 const FALLBACK_DATA = {
   consignment_sales: {
     title: '위판장별 참치 위탁판매 현황',
-    source: 'Static Fallback — 2025 해수부 통계',
+    source: 'Static Fallback - 2025 해수부 통계',
     data: [
       { market: '부산공동어시장', species: '참다랑어', volume_kg: 245000, amount_won: 12500000000, unit_price: 51020, date: '2025-04' },
       { market: '제주한림', species: '황다랑어', volume_kg: 89000, amount_won: 3200000000, unit_price: 35955, date: '2025-04' },
@@ -129,7 +129,7 @@ const FALLBACK_DATA = {
   },
   trade_by_item: {
     title: '참치 품목별 수출입 현황',
-    source: 'Static Fallback — 2024 해수부 통계',
+    source: 'Static Fallback - 2024 해수부 통계',
     data: [
       { item_name: '냉동 가다랑어', export_volume: 12500, export_amount: 28750000, import_volume: 185000, import_amount: 425500000, year: '2024', month: '12' },
       { item_name: '냉동 황다랑어', export_volume: 3200, export_amount: 19200000, import_volume: 45000, import_amount: 270000000, year: '2024', month: '12' },
@@ -138,7 +138,7 @@ const FALLBACK_DATA = {
   },
   fishery_production: {
     title: '참치 어업생산 통계',
-    source: 'Static Fallback — 2024 해수부 통계',
+    source: 'Static Fallback - 2024 해수부 통계',
     data: [
       { species: '가다랑어', production_mt: 198500, value_million_won: 297750, fishery_type: '원양어업(선망)', year: '2024' },
       { species: '황다랑어', production_mt: 45200, value_million_won: 271200, fishery_type: '원양어업(연승)', year: '2024' },
@@ -148,7 +148,7 @@ const FALLBACK_DATA = {
   },
   shipping_cost: {
     title: '참치 해상 운송비용 추적',
-    source: 'Static Fallback — 2025 관세청 추정',
+    source: 'Static Fallback - 2025 관세청 추정',
     data: [
       { route: 'Bangkok → Busan', freight_usd: 2850, container_type: '40RF(냉동)', period: '2025-04' },
       { route: 'General Santos → Busan', freight_usd: 1950, container_type: '40RF(냉동)', period: '2025-04' },
@@ -238,7 +238,7 @@ export async function POST(request: NextRequest) {
 export async function GET() {
   return NextResponse.json({
     status: 'active',
-    description: '해양수산부 공공데이터 통합 API — 참치 특화',
+    description: '해양수산부 공공데이터 통합 API - 참치 특화',
     available_endpoints: Object.keys(ENDPOINTS),
     policy_basis: '(일반 2025-01) 해양수산 공공데이터 플랫폼 활용 제고 방안 연구',
     usage: 'POST with { "endpoint": "consignment_sales" } or { "endpoints": ["trade_by_item", "shipping_cost"] }',

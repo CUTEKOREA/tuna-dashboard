@@ -39,7 +39,7 @@ const TunaKoreaPosition = () => (
     icon={Anchor}
     iconColor="#38bdf8"
     pillar="S3"
-    cardDesc="FAO FishStatJ에서 참다랑어 양식 Top 10국 → 한국 수입 물량·금액 이중 Y축. 물량 정체에도 수입액 견고 — 한국 \'프리미엄 오마카세 성지\' 증거"
+    cardDesc="FAO FishStatJ에서 참다랑어 양식 Top 10국 → 한국 수입 물량·금액 이중 Y축. 물량 정체에도 수입액 견고 - 한국 \'프리미엄 오마카세 성지\' 증거"
     telemetry={{ status: 'STATIC', syncDate: '2024' }}
     chartHeight={350}
     chart={

@@ -53,7 +53,7 @@ export default function SalmonInsightSmolt() {
 </div>`,
         actionPlan: `<div>
 <p><strong>재정의</strong>: 전통 해상 가두리 양식은 한계에 직면. <strong>"RAS 포스트 스몰트 + 심해 잠수식 가두리"</strong>로의 전환이 핵심 흐름.</p>
-<p><strong>3단계</strong>: ① 육상 RAS 포스트 스몰트 설비 capex 가속 — 초기 생존율 극대화 ② 바다이 차단 심해 잠수식 가두리 (SalMar Ocean Farm 1) 투자 ③ Mowi·Salmar·Grieg 같은 leader와 minority equity partnership — 차세대 양식 IP 라이센싱.</p>
+<p><strong>3단계</strong>: ① 육상 RAS 포스트 스몰트 설비 capex 가속 - 초기 생존율 극대화 ② 바다이 차단 심해 잠수식 가두리 (SalMar Ocean Farm 1) 투자 ③ Mowi·Salmar·Grieg 같은 leader와 minority equity partnership - 차세대 양식 IP 라이센싱.</p>
 </div>`,
         source: "Mowi ASA Annual Report 2024 · Grieg Seafood Q4-2024 IR (정성 동향) · 비중/폐사율 수치는 자체 추정(illustrative)"
       }}

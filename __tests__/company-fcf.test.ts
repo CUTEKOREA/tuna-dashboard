@@ -29,7 +29,7 @@ import {
 } from '@/lib/data/company-fcf';
 
 describe('FCF 인테이크', () => {
-  it('자사 어선은 0척이다 — 이 회사 성격의 출발점', () => {
+  it('자사 어선은 0척이다 - 이 회사 성격의 출발점', () => {
     expect(fcfStats.자사선).toBe(0);
     expect(fcfStats.협력선).toBe(600);
   });
@@ -47,7 +47,7 @@ describe('FCF 인테이크', () => {
     expect(peak.비중).toBe(fcfStats.silla_max);
   });
 
-  it('의존도는 6년 내내 30%를 넘는다 — 한 거래처 편중이 상시적이다', () => {
+  it('의존도는 6년 내내 30%를 넘는다 - 한 거래처 편중이 상시적이다', () => {
     for (const r of fcfSillaDependency) expect(r.비중).toBeGreaterThan(30);
   });
 
@@ -56,7 +56,7 @@ describe('FCF 인테이크', () => {
     expect(Math.abs(sum - 100)).toBeLessThan(0.1);
   });
 
-  it('선망이 90%다 — 통조림용이 본체', () => {
+  it('선망이 90%다 - 통조림용이 본체', () => {
     const seine = fcfGear.find((r) => r.어법 === '선망');
     expect(seine?.비중).toBe(90);
     expect(fcfGear.reduce((a, r) => a + r.비중, 0)).toBe(100);

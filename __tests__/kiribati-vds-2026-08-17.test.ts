@@ -56,7 +56,7 @@ describe('키리코레 VDS 2026-08-23', () => {
     ]);
   });
 
-  it('소모는 키리바시에 몰려 있다 — 총 잔여로 읽으면 안 된다', () => {
+  it('소모는 키리바시에 몰려 있다 - 총 잔여로 읽으면 안 된다', () => {
     const kiribati = kiribatiVds.areas.find((a) => a.area === '키리바시')!;
     // 주간 소모 전량이 키리바시에서 난다.
     expect(kiribati.totals.weekly).toBe(kiribatiVds.totals.weekly);

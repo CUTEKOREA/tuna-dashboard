@@ -23,15 +23,15 @@ import { pctChange } from '@/lib/metrics';
 
 // 5-Pillar 네비게이터 메타 (Tuna 패턴 + 고등어 시그니처 그라디언트 cyan-700→sky-500)
 const SECTIONS = [
-  { id: 'S1', num: '❶', label: '원료 수급', title: '🐟 Part I — 원료 수급 (Raw Material)',
+  { id: 'S1', num: '❶', label: '원료 수급', title: '🐟 Part I - 원료 수급 (Raw Material)',
     desc: '글로벌 어획량, 자원평가, 어종 분포, 쿼터 관리 및 생태계 모니터링', color: '#0e7490', icon: Fish },
-  { id: 'S2', num: '❷', label: '가공·생산', title: '🏭 Part II — 가공·생산 (Processing & Production)',
+  { id: 'S2', num: '❷', label: '가공·생산', title: '🏭 Part II - 가공·생산 (Processing & Production)',
     desc: '가공 허브 패권, 부가가치 분석, HMR 전환, 기술 혁신 및 부산물 활용', color: '#0891b2', icon: Factory },
-  { id: 'S3', num: '❸', label: '물류·통관', title: '🚢 Part III — 물류·통관 (Logistics & Customs)',
+  { id: 'S3', num: '❸', label: '물류·통관', title: '🚢 Part III - 물류·통관 (Logistics & Customs)',
     desc: '수출입 통관, 관세·FTA 분석, 착지원가, 차익거래, 해상운임 및 콜드체인', color: '#0ea5e9', icon: Ship },
-  { id: 'S4', num: '❹', label: '판매·수요', title: '📈 Part IV — 판매·수요 (Sales & Demand)',
+  { id: 'S4', num: '❹', label: '판매·수요', title: '📈 Part IV - 판매·수요 (Sales & Demand)',
     desc: '소비 트렌드, 유통 마진, 가격 분해, D2C·HMR 시장, 스태그플레이션 대응', color: '#38bdf8', icon: TrendingUp },
-  { id: 'S5', num: '❺', label: 'ESG·지속가능성', title: '🌱 Part V — ESG·지속가능성 (Sustainability)',
+  { id: 'S5', num: '❺', label: 'ESG·지속가능성', title: '🌱 Part V - ESG·지속가능성 (Sustainability)',
     desc: '제재·컴플라이언스, MSC 인증, 탄소 발자국, 선원 인권, IUU 감시 및 정책 대응', color: '#7dd3fc', icon: ShieldCheck },
 ] as const;
 
@@ -328,7 +328,7 @@ export default function MackerelDashboard() {
         // 패턴 K 정직화: OSH 식품 섹터 표본은 참치·새우 등 일반 수산가공사 — '고등어 시설'로 표기하지 않는다
         json.widgets.push({
           id: 'w_osh_facilities', title: '글로벌 수산식품 가공 시설 분포 (OSH 등록)',
-          subtitle: 'Open Supply Hub 식품 섹터 등록 시설 국가별 비중 — 참치·새우 등 포함, 고등어 전용 아님',
+          subtitle: 'Open Supply Hub 식품 섹터 등록 시설 국가별 비중 - 참치·새우 등 포함, 고등어 전용 아님',
           chartType: 'Pie', xKey: 'name', pieDataKey: 'value', data: oData,
           isLive: oshLive,
           sit: `OSH 플랫폼 식품(Food) 섹터에 등록된 수산식품 가공·취급 시설 ${oshData.meta?.count || oshData.facilities.length}개소의 국가별 분포입니다. 표본에는 참치·새우 등 일반 수산가공사가 포함되며, OSH는 고등어 전용 시설 필터를 제공하지 않습니다. 중국·태국·베트남 등 아시아권이 1차 가공 허브로 기능하고 있습니다.`,
@@ -415,7 +415,7 @@ export default function MackerelDashboard() {
           ],
           badges: ['Verified'],
           isLive: tariffsLive,
-          sit: `노르웨이(${td.origin}) 발 한국(${td.destination}) 도착 냉동고등어(HS ${td.hsCode})의 기본 MFN 관세는 ${td.mfnDuty}%이며, 한-EFTA 0%는 TRQ 500톤 한정 — 초과 물량은 기본세율 10%입니다 (KMI 2026Q1 명문).`,
+          sit: `노르웨이(${td.origin}) 발 한국(${td.destination}) 도착 냉동고등어(HS ${td.hsCode})의 기본 MFN 관세는 ${td.mfnDuty}%이며, 한-EFTA 0%는 TRQ 500톤 한정 - 초과 물량은 기본세율 10%입니다 (KMI 2026Q1 명문).`,
           strat: 'FTA 100% 활용을 위해 노르웨이 수출업체의 원산지 증명서(C/O) 발급을 계약서에 명문화하고 추적해야 합니다.',
           source: tariffsLive ? 'Tariffs API (라이브 조회)' : 'Tariffs 큐레이션 관세 모델 (정적 폴백)',
           unit: '%'
@@ -449,7 +449,7 @@ export default function MackerelDashboard() {
       // ═══ ImportYeti & Veridion 기반 신규 위젯 (Phase 3) ═══
       if (supplierData && supplierData.data) {
         json.widgets.push({
-          id: 'w_import_yeti_suppliers', title: '노르웨이 대체 공급망 — 한국 수입 공급국 (2024)',
+          id: 'w_import_yeti_suppliers', title: '노르웨이 대체 공급망 - 한국 수입 공급국 (2024)',
           subtitle: 'UN Comtrade 한국 냉동고등어(HS 030354) 수입액 기준 공급국 집중도',
           chartType: 'Bar', xKey: 'origin',
           bars: [{ key: 'valueUsdM', name: '한국 수입액 ($M)', color: '#3b82f6' }],
@@ -650,7 +650,7 @@ export default function MackerelDashboard() {
               <h1 style={{ margin: 0, fontSize: '1.5rem', fontWeight: 700, letterSpacing: '-0.5px', color: 'var(--text-primary)' }}>
                 고등어 전략 인텔리전스
               </h1>
-              <p style={{ margin: 0, fontSize: '0.88rem', color: 'var(--text-secondary)' }}>Mackerel Strategic Command Center — {renderedWidgetCount} 위젯 · {kpiKeys.length} KPI</p>
+              <p style={{ margin: 0, fontSize: '0.88rem', color: 'var(--text-secondary)' }}>Mackerel Strategic Command Center - {renderedWidgetCount} 위젯 · {kpiKeys.length} KPI</p>
             </div>
           </div>
           <div className="ds-card" style={{fontSize: '0.88rem', padding: '8px 16px', 
@@ -753,7 +753,7 @@ export default function MackerelDashboard() {
           marginBottom: '6px',
         }}>
           <span style={{ fontSize: '0.7rem', color: 'rgba(var(--w-slate-400-rgb), 0.7)', fontWeight: 600, letterSpacing: '0.08em', textTransform: 'uppercase' }}>
-            밸류체인 네비게이터 — 아래 단계를 클릭하여 탐색하세요
+            밸류체인 네비게이터 - 아래 단계를 클릭하여 탐색하세요
           </span>
         </div>
         <div data-mobile-stack style={{ display: 'grid', gridTemplateColumns: 'repeat(5, 1fr)', gap: '4px' }}>
@@ -885,7 +885,7 @@ export default function MackerelDashboard() {
     ].filter(Boolean).join(' · ');
 
     const cardDescParts = [w.subtitle, badgeSuffix].filter(Boolean);
-    const cardDesc = cardDescParts.join(' — ') || '고등어 인텔리전스 위젯';
+    const cardDesc = cardDescParts.join(' - ') || '고등어 인텔리전스 위젯';
 
     // 라우트 isLive:false(폴백) 응답은 STATIC으로 강등. 주입부가 명시한 telemetryStatus는 존중.
     const telemetryStatus: 'LIVE' | 'SYNCED' | 'STATIC' = isLive

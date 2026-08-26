@@ -102,7 +102,7 @@ export async function GET(request: Request) {
     macroRisk,
     // Comtrade 글로벌 포지셔닝 (fallback — 등록 후 라이브 전환)
     globalPosition: {
-      source: "UN Comtrade HS 030389 (2023, fallback) · 한국 행은 관세청 HSK 0303.89-2000 실측(2024) — 타국은 광역 HS6 집계라 갈치 외 어종 포함",
+      source: "UN Comtrade HS 030389 (2023, fallback) · 한국 행은 관세청 HSK 0303.89-2000 실측(2024) - 타국은 광역 HS6 집계라 갈치 외 어종 포함",
       isLive: false,
       topImporters: [
         { rank: 1, country: "한국", volume: 13430, value: 43176 },

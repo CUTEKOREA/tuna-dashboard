@@ -73,7 +73,7 @@ export default function MscFaoAreaPenetration() {
       icon={Map}
       iconColor="#38bdf8"
       pillar="S5"
-      cardDesc="FAO 19개 대해역별 'MSC 인증 어획량 ÷ 총 어획량' 비율 — 참치 주력 어장(주황) 강조"
+      cardDesc="FAO 19개 대해역별 'MSC 인증 어획량 ÷ 총 어획량' 비율 - 참치 주력 어장(주황) 강조"
       unit="%"
       telemetry={{ status: 'STATIC', syncDate: '2024-25' }}
       chartHeight={440}

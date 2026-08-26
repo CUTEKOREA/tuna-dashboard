@@ -7,12 +7,12 @@ import WidgetCard from '../WidgetCard';
 import SafeResponsiveContainer from '../SafeResponsiveContainer';
 
 const conditionData = [
-  { name: 'PI 1.2.1 — 수확전략 (Harvest Strategy)', count: 42, color: '#ef4444' },
-  { name: 'PI 1.2.2 — 수확통제규칙 (HCR)', count: 38, color: '#ef4444' },
-  { name: 'PI 2.3 — ETP종 혼획 관리', count: 31, color: '#f59e0b' },
-  { name: 'PI 2.1 — 주요 어종 영향', count: 22, color: '#f59e0b' },
-  { name: 'PI 3.2.3 — 모니터링·통제·감시', count: 18, color: '#38bdf8' },
-  { name: 'PI 2.5 — 생태계 영향', count: 14, color: '#38bdf8' },
+  { name: 'PI 1.2.1 - 수확전략 (Harvest Strategy)', count: 42, color: '#ef4444' },
+  { name: 'PI 1.2.2 - 수확통제규칙 (HCR)', count: 38, color: '#ef4444' },
+  { name: 'PI 2.3 - ETP종 혼획 관리', count: 31, color: '#f59e0b' },
+  { name: 'PI 2.1 - 주요 어종 영향', count: 22, color: '#f59e0b' },
+  { name: 'PI 3.2.3 - 모니터링·통제·감시', count: 18, color: '#38bdf8' },
+  { name: 'PI 2.5 - 생태계 영향', count: 14, color: '#38bdf8' },
 ];
 
 const tooltipStyle = {
@@ -97,7 +97,7 @@ export default function MscOpenConditions() {
         >
           <span style={{ width: 8, height: 8, borderRadius: 2, background: 'var(--w-red-500)', display: 'inline-block' }} />
           <span style={{ fontSize: '0.75rem', fontWeight: 600, color: '#f87171' }}>
-            P1 수확전략·HCR — 총 80건
+            P1 수확전략·HCR - 총 80건
           </span>
         </div>
         <div
@@ -113,7 +113,7 @@ export default function MscOpenConditions() {
         >
           <span style={{ width: 8, height: 8, borderRadius: 2, background: 'var(--w-amber-500)', display: 'inline-block' }} />
           <span style={{ fontSize: '0.75rem', fontWeight: 600, color: 'var(--w-amber-400)' }}>
-            P2 생태·혼획 — 총 53건
+            P2 생태·혼획 - 총 53건
           </span>
         </div>
         <div
@@ -129,7 +129,7 @@ export default function MscOpenConditions() {
         >
           <span style={{ width: 8, height: 8, borderRadius: 2, background: 'var(--w-sky-400)', display: 'inline-block' }} />
           <span style={{ fontSize: '0.75rem', fontWeight: 600, color: '#7dd3fc' }}>
-            P3 거버넌스 — 총 32건
+            P3 거버넌스 - 총 32건
           </span>
         </div>
       </div>

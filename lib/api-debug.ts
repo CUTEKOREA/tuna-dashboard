@@ -38,17 +38,17 @@ export function logApiAttempt(endpoint: string, meta: Record<string, any> = {}) 
 
 export function logApiSuccess(endpoint: string, summary: string) {
   if (process.env.API_DEBUG === '1') {
-    console.log(`${tag} ✓ SUCCESS ${endpoint} — ${summary}`);
+    console.log(`${tag} ✓ SUCCESS ${endpoint} - ${summary}`);
   }
 }
 
 export function logApiFail(endpoint: string, reason: string, evidence?: string) {
   // 실패는 항상 error (Vercel logs에서 항시 가시화)
   const evShort = evidence ? evidence.replace(/\s+/g, ' ').slice(0, 300) : '';
-  console.error(`${tag} ✗ FAIL ${endpoint} — ${reason}${evShort ? ` | evidence: ${evShort}` : ''}`);
+  console.error(`${tag} ✗ FAIL ${endpoint} - ${reason}${evShort ? ` | evidence: ${evShort}` : ''}`);
 }
 
 export function logSchemaIssue(endpoint: string, expected: string, actual: any) {
   const actualStr = typeof actual === 'string' ? actual : JSON.stringify(actual);
-  console.error(`${tag} ⚠ SCHEMA ${endpoint} — expected: ${expected} | actual: ${actualStr.slice(0, 200)}`);
+  console.error(`${tag} ⚠ SCHEMA ${endpoint} - expected: ${expected} | actual: ${actualStr.slice(0, 200)}`);
 }
