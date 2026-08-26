@@ -32,8 +32,8 @@ describe('부산 입출항선 데이터 계약 (busan_port_calls.json)', () => {
     expect(serialized).not.toMatch(/"(prev_capt|next_capt|capt|captain)"/);
   });
 
-  it('앰대시(—)는 데이터에 없다 (2026-08-26 사용자 지시)', () => {
-    expect(JSON.stringify(data)).not.toContain('—');
+  it('앰대시는 데이터에 없다 (2026-08-26 사용자 지시)', () => {
+    expect(JSON.stringify(data)).not.toContain('\u2014');
   });
 
   it('월별 시계열은 12개월이고 전년 병기를 포함한다', () => {

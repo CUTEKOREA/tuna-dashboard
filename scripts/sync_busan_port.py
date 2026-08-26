@@ -110,7 +110,7 @@ def main() -> int:
                 "open": bool(c.get("open")),
                 "own": bool(c.get("own")),
                 "change": bool(c.get("change")),
-                "note": (c.get("note") or "").replace("—", "-"),
+                "note": (c.get("note") or "").replace("\u2014", "-"),
             }
             run["days"] = days_of(run, asof)
             run["carry"] = bool(c["arrive"] and int(c["arrive"][:4]) < y)
