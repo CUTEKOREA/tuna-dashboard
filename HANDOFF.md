@@ -1,3 +1,23 @@
+> 🚀 **2026-08-26 10:12 KST — `/gmts` 월간보고 탭 라이브 배포 완료** [CC]:
+> - PR [#779](https://github.com/CUTEKOREA/tuna-dashboard/pull/779)를 squash 병합했다. main commit `67b3e2f777a2645cfe1b88d42572738710b9aaca`. PR 게이트: App Quality Gate run `32917060188` success + Vercel Preview success. 병합 후 main 게이트: App Quality Gate success + Data Freshness Audit success.
+> - Vercel Production: GitHub deployment `6095024443` state=success, env=Production, ref=병합 SHA (`tuna-dashboard-fyswodraq-…vercel.app`).
+> - 라이브 실측(로그인 세션 브라우저, 비인증 curl은 307→/login 정상): `https://leedonggun.co.kr/gmts` 월간보고 탭 렌더 — 어획량·어가 차트, 「2026년 1~7월 손익」 3사 표(GMTS 매출 4,969,573 실측), 「2026년 7월말 채권/채무 내역」(KFC 잔액 -41,002,295 실측), 비고(정부기여금 $3,233,333), 업무 동향 5건, 출처 pptx 5건, 품질 플래그 「원문 확인 필요」 노출. 병합 셀 잔존값(122,052 등) 비노출 확인. 문서 overflow 0.
+> - 390px는 라이브 same-origin iframe으로 검증 — scrollW 375/375 overflow 0, monthly 탭 활성, 손익 섹션 렌더.
+> - Vercel 런타임 error 로그는 MCP·CLI 모두 403/미인증이라 직접 조회하지 못했다. 대체 증거: deployment success + 라이브 렌더 정상 + Next 에러 오버레이 0.
+>
+> 마지막 업데이트: 2026-08-26 10:12 KST [CC]
+
+> ✅ **2026-08-26 09:40 KST — `/gmts` 월간보고 탭 신설 (2·4·5·6·8월 pptx 5건 반영, 로컬 완료)** [CC]:
+> - 원자료: Google Drive `신라그룹/GMTS/GMTS Weekly Report/GMTS 월간보고 (N월).pptx` 5건 (2·4·5·6·8월, 전부 2026-08-26 오전 업로드). SHA-256 — 2월 `2775bc54ccd6…`, 4월 `642836a1ed28…`, 5월 `bdcd9e18f002…`, 6월 `b81b29f51c5e…`, 8월 `8a65fe2ebd78…` (전체 해시는 `data/gmts_monthly.json` sources에 보존). `unzip -t` 무결성 5/5 통과.
+> - 신규 파이프라인: `scripts/build_gmts_monthly.py`(stdlib 전용, pptx ZIP+XML 직접 파싱) → `data/gmts_monthly.json` → `lib/data/gmts-monthly.ts` → `components/gmts/GmtsMonthlyReport.tsx` → GmtsDashboard 6번째 탭 `월간보고`. npm 스크립트 `sync:gmts-monthly`·`test:gmts-monthly-sync` 추가.
+> - 구조 판단 근거: 손익 슬라이드 3표는 x좌표 정렬로 GMTS·KFC·NFDC에 매핑(라벨 x좌표로 검증), 자금 슬라이드 4표는 y좌표 정렬. 어획량 차트는 barChart, 어가 차트는 lineChart로 판별 — 최신(8월) 보고의 차트가 2025 전체+2026 1~7월 시계열을 담고 있어 trend는 최신 보고에서만 취한다. 자금 「채 무」 gridSpan 헤더 행의 hMerge 잔존값(122,052/26,529,930/12,239,382 — 전월 동일한 비표시 셀)은 파싱에서 제외하고 render 테스트로 비노출을 고정했다.
+> - 원문 충실: 5월 NFDC 손익 2건(영업이익 98,367 vs 합산 98,357, 법인세차감전 -883,824 vs -883,814)은 원문 표기 유지 + `PROFIT_IDENTITY_MISMATCH` 플래그로 화면 공개. 2월 KFC `(9,29,959)` 원문 오타는 콤마 제거 파싱으로 -929,959 흡수(합산 일치 확인).
+> - RED→GREEN: 데이터 부재 상태에서 `gmts-monthly-data.test.ts` 실패 확인 후 생성·통과. Python `test_build_gmts_monthly.py` 5건 OK. `npm run verify` 통과: ESLint 0 errors(기존 warnings 12), Vitest 149 files/1,155 passed/2 skipped, Next 118페이지, 리니지 194파일·109위젯·데이터 83개로 재생성, 번들 33 routes OK.
+> - 브라우저 검증: 로컬 Production을 `DASHBOARD_E2E_MODE=local`+헤더 주입 프록시로 열어 1440px에서 월간보고 탭 클릭 — 어획량·어가 차트, 3사 손익 표(2025·2026 양열), 자금 표, 비고, 월별 업무동향 5건, 출처 매니페스트, 품질 플래그 전부 실측. 390px는 same-origin iframe 뷰포트로 검증 — 문서 overflow 0, 1열 카드 전환, 표 내부 스크롤 정상. `.dataTable` 760px 강제폭이 손익 3열 표를 자르는 문제는 `.compactTable`(min-width 0, 숫자 우측정렬) 추가로 해결.
+> - 상태: 전용 worktree `cc/gmts-monthly-20260826`에 로컬 반영. **프로덕션 미배포**(이번 사용자 메시지에 배포 요청 없음). 주간 PDF는 8/19가 최신 그대로 — 8/26치 주간보고는 폴더에 아직 없다.
+>
+> 마지막 업데이트: 2026-08-26 09:40 KST [CC]
+
 > ✅ **2026-08-26 08:50 KST — `/panofi` 8월 주간동향·월간보고 원자료 대조·로컬 반영** [CC]:
 > - 원자료 4건(모두 `unzip -t` 무결성 통과, Google Drive 신라그룹/11_Panofi_Cosmo_GGL /11. PANOFI/Panofi/):
 >   `PANOFI 주간동향20260818.docx` SHA-256 `7f177a1ae541cc381fe8c328c622cf2fa1d1ad41c2d6c14486d239a643836d75`,
