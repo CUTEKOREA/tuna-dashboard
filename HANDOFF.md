@@ -1,10 +1,10 @@
-> ✅ **2026-08-26 09:45 KST — `/cosmo` 7월 업무보고(월간) 신규 정보 반영 — 로컬 완료** [CC]:
+> 🚀 **2026-08-26 13:35 KST — `/cosmo` 7월 업무보고(월간) 신규 정보 반영 라이브 배포 완료** [CC]:
 > - 원자료: `cosmo 주간보고/COSMO 월간보고/COSMO 월간보고 (8월).pptx` — 표지 제목은 **「COSMO 7월 업무보고」(2026-08-25 작성)**. SHA-256 `107b9ccac5e2e554d7c741af3fe21fe8dbe7d665b7a28664e69a437b1097c78d`, `unzip -t` 무결성 통과. 같이 추가된 `(6월).pptx`는 5월 업무보고 과거분 보관용이라 반영하지 않았다.
 > - 손익·YoY·누적·부문 수치는 pptx가 기존 `cosmo_2026.json` monthly(7월, PR #648)와 전부 일치 — 중복 반영하지 않았다(만불 반올림 수준 확인: 누적 매출 3,857만불=YTD $38.57M, 순이익 -157만불=-$1.57M, 7월 순익 -32만불=-$319K, 누적 가공 14,403톤=월별 실적 합). **월간보고에만 있는 신규 정보만** `lib/data/cosmo-monthly-report.ts` 계약(source 메타 포함)으로 추가: 유동성(1.1→7/31: 현금 337→493·매출채권 207→883·매입채무 1,105→1,942·현금부족 -562→-566 만불), 재고자산 1,971→1,784, PANOFI 어대금 1,864만불(7/31), 원어재고 8/21 4,042톤(SJ 3,396·YF 26·믹스 620), 생산계획 개정(8월 2,730→2,310MT·연간 29,000→26,118MT·9월 21일×110톤), 수주단가 인상 $46.0→$49.5($2kg 기준), 9~10월 업무 3건. 연초 현금부족 -562는 행 계산 -561과 1 차이 — 원문 인쇄값 유지, 계약 주석에 공개.
 > - 화면: HomeTab(경영요약)에 「7월 업무보고 (2026-08-25)」 섹션 2카드(운전자본 스냅샷 / 생산계획 개정과 수주 단가). `__tests__/cosmo-monthly-report.test.ts` 6건 — 계약 부재 상태 RED 확인 후 GREEN, 원문 수치 하드코딩 대조 + 합계 검산 + render 문구 고정.
 > - `npm run verify` 통과: ESLint 0 errors(기존 warnings 3) · TypeScript · Vitest 148 files 1,151 passed/2 skipped · 정적 페이지 15 · bundle budget 33 routes OK. 브라우저 실측(프로덕션 빌드, E2E 로컬 우회): 데스크톱 1440 + 390px 모두 핵심 수치 렌더·가로 overflow 0·console error 0.
 > - **함정 기록**: 로컬 검증 시 `.env.local`을 main worktree에서 복사하면 `VERCEL=1`이 딸려와 `isLocalDashboardE2ERequest`가 무조건 거부한다(503 «접속 보안 설정…»). VERCEL/VERCEL_ENV 줄을 지워야 `DASHBOARD_E2E_MODE=local`+시크릿 헤더 우회가 동작한다.
-> - 상태: 전용 worktree `feat/cosmo-aug-report`에 로컬 반영. **프로덕션 미배포**(이번 사용자 메시지에 배포 요청 없음).
+> - 배포: PR [#790](https://github.com/CUTEKOREA/tuna-dashboard/pull/790) squash 병합, main `bb0f75f5`. PR Gate `32926817103`(lint typecheck test build) 성공, main App Quality Gate·Data Freshness Audit 성공. Vercel production `dpl_F8Cht9KBDxMQMwYudw7tJsxG7jPt` READY · alias `https://leedonggun.co.kr`. 라이브 실측: 데스크톱+390px 핵심 수치 8종 렌더·overflow 0·console error 0·런타임 error/fatal 로그 0건. 최초 PR은 main 선행으로 CONFLICTING이라 Gate가 아예 안 돌았다(merge ref 생성 불가) — rebase 후 force-with-lease로 해소.
 
 > 🚀 **2026-08-26 12:20 KST — `/panofi` ↔ `/fleet` 대서양 선망 조업 연동 라이브 배포 완료** [CC]:
 > - PR [#786](https://github.com/CUTEKOREA/tuna-dashboard/pull/786)을 squash 병합했다. main commit `2b51dc53`. PR 게이트: lint typecheck test build pass + Vercel Preview pass. 병합 중 GitHub 502→«Merge already in progress» 지연이 있었고 재시도로 완료했다.
