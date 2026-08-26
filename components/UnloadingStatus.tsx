@@ -26,6 +26,7 @@ import {
   getVesselStatusKind,
 } from '../lib/unloading-operations';
 import { progressPct } from '../lib/metrics';
+import { calcDemurrage, demurrageRisk, DEMURRAGE_DAILY_BASIS_MT, type DemurrageResult } from '../lib/demurrage';
 import { CHART_RANK, HUB_ID } from '@/lib/chart-palette';
 
 export {
@@ -825,6 +826,23 @@ export default function UnloadingStatus({ heroOnly = false }: { heroOnly?: boole
       (acc, cur) => (cur && (!acc || cur.sortKey > acc.sortKey) ? cur : acc),
       null
     )?.label || null;
+  // 체선료 추정 (2026-08-27 소유자 산식: 전체물량/220 - 사용일수, 일요일·태국 공휴일 제외).
+  // 입항일 필드가 아직 없어 하역 개시일 기준으로 계산한다 (입항 대기 미반영 - 화면에 명시).
+  const demurrageRows = activeVessels
+    .map((v) => {
+      const range = String(v.dateRange || '').match(/(20\d{2})\.(\d{2})\.(\d{2})/);
+      const latest = vesselLatestReport(v);
+      const md = latest?.label.match(/(\d{1,2})\/(\d{1,2})/);
+      if (!range || !md || !v.reportedTotal) return null;
+      const startIso = `${range[1]}-${range[2]}-${range[3]}`;
+      const baseIso = `${range[1]}-${String(md[1]).padStart(2, '0')}-${String(md[2]).padStart(2, '0')}`;
+      const calc = calcDemurrage({ cargoMt: v.reportedTotal, startDate: startIso, baseDate: baseIso });
+      return { vessel: v, calc };
+    })
+    .filter((row): row is { vessel: (typeof activeVessels)[number]; calc: DemurrageResult } => row !== null)
+    .sort((a, b) => a.calc.balanceDays - b.calc.balanceDays);
+  const worstDemurrage = demurrageRows[0] ?? null;
+
   const earliestStart = vesselsList
     .map(v => v.annualStartDate || (String(v.dateRange || '').match(/20\d{2}\.\d{2}\.\d{2}/) || [])[0])
     .filter(Boolean)
@@ -1011,12 +1029,40 @@ export default function UnloadingStatus({ heroOnly = false }: { heroOnly?: boole
           <div className={styles.execCardTitle}>
             <AlertCircle size={16} /> 항만 체선 위험 <BaseDateTag date={globalBaseDate} />
           </div>
-          <div className={styles.execCardValue} style={{ color: 'var(--color-danger)' }}>
-            High <span style={{ fontSize: '1rem', fontWeight: 'normal', color: 'var(--text-muted)' }}>(방콕)</span>
-          </div>
-          <div className={styles.execCardTakeaway}>
-            <TermTooltip term="체선료(Demurrage)" description="선박이 정해진 정박 기간을 초과하여 항구에 머물 때 발생하는 지연 배상금입니다." /> 리스크 증가: <strong>예상 지연 3~4일</strong> ({globalBaseDate ? `${globalBaseDate} 하역 보고 기준` : '최근 하역 보고 기준'})
-          </div>
+          {worstDemurrage ? (() => {
+            const { vessel, calc } = worstDemurrage;
+            const risk = demurrageRisk(calc.balanceDays);
+            const riskColor = risk === 'High' ? 'var(--color-danger)' : risk === 'Medium' ? 'var(--color-warning)' : 'var(--color-success)';
+            const port = /방콕|BANGKOK/i.test(vessel.location) ? '방콕' : /젠산|GENSAN/i.test(vessel.location) ? '젠산' : vessel.location;
+            const excluded = [
+              calc.excludedSundays ? `일요일 ${calc.excludedSundays}` : null,
+              calc.excludedHolidays ? `공휴일 ${calc.excludedHolidays}` : null,
+            ].filter(Boolean).join('·');
+            return (
+              <>
+                <div className={styles.execCardValue} style={{ color: riskColor }}>
+                  {risk} <span style={{ fontSize: '1rem', fontWeight: 'normal', color: 'var(--text-muted)' }}>({port})</span>
+                </div>
+                <div className={styles.execCardTakeaway}>
+                  <TermTooltip term="체선료(Demurrage)" description={`허용 정박일수(전체물량 / ${DEMURRAGE_DAILY_BASIS_MT}MT)에서 사용 일수(일요일·태국 공휴일 제외)를 뺀 값이 음수면 초과일수당 $10,000로 1차 책정 후 운반선사와 최종 조율합니다.`} />{' '}
+                  허용 <strong>{calc.allowedDays}일</strong>({formatNum(vessel.reportedTotal)}MT/{DEMURRAGE_DAILY_BASIS_MT}) - 사용 <strong>{calc.usedDays}일</strong>{excluded ? ` (${excluded} 제외)` : ''} ={' '}
+                  {calc.balanceDays < 0 ? (
+                    <strong>초과 {Math.abs(calc.balanceDays)}일 · 추정 ${'{'}(calc.estimateUsd ?? 0).toLocaleString('en-US'){'}'} (조율 전)</strong>
+                  ) : (
+                    <strong>여유 {calc.balanceDays}일</strong>
+                  )}
+                  <span style={{ display: 'block', fontSize: '0.72rem', marginTop: '2px', color: 'var(--text-dim)' }}>
+                    {vessel.name} · 하역 개시일 기준 (입항 대기 미반영 - 입항일 확보 시 자동 정밀화)
+                  </span>
+                </div>
+              </>
+            );
+          })() : (
+            <>
+              <div className={styles.execCardValue} style={{ color: 'var(--text-muted)' }}>해당 없음</div>
+              <div className={styles.execCardTakeaway}>진행 중 항차가 없어 체선 계산 대상이 없습니다.</div>
+            </>
+          )}
         </div>
 
         <div className={`${styles.execCard} ${styles.glassPanel}`}>
