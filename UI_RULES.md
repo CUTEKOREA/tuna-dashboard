@@ -12,6 +12,7 @@
 - **테두리(Border):** 굵은 선 대신 빛 반사를 모방한 얇은 테두리(`border: 1px solid rgba(255, 255, 255, 0.05)`)를 사용합니다.
 
 ### 1-2. 타이포그래피 및 텍스트 그라데이션
+- **전역 서체:** 본문 한글·라틴 = **Pretendard** (next/font self-host, `layout.tsx`의 `--font-pretendard` — V2.5 «외부 CDN 금지» 준수). 정본 스택은 `app/globals.css`의 `--font-sans` 단일 변수이며, 컴포넌트에서 font-family를 직접 하드코딩하지 말고 이 변수를 참조합니다. (2026-08-26 전역화)
 - **텍스트 그라데이션:** 섹션 대제목과 핵심 키워드에는 화려하고 세련된 느낌을 주는 선형 그라데이션 텍스트를 적용합니다. 
   - *Code:* `background: linear-gradient(135deg, #e2e8f0, #38bdf8); -webkit-background-clip: text; color: transparent;`
 - **색상 팔레트:** 일반 채도의 원색을 촌스럽게 쓰지 않습니다. Tailwind 기본 프리미엄 색상을 지향합니다.

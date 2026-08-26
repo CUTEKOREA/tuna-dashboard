@@ -1,3 +1,11 @@
+> 🔤 **2026-08-26 — 본문 서체 Pretendard 전역화** [CC]:
+> - main엔 이미 Pretendard self-host(next/font, `--font-pretendard`)가 V3 Metabase 존에 부분 적용돼 있었음. `app/globals.css`에 `--font-sans` SSOT 변수를 신설해 **body 전역이 Pretendard를 쓰도록** 전환 (죽은 'Sora' 스택 제거 — V3 Phase 0에서 Google Fonts @import가 이미 제거돼 본문이 시스템 폰트로 새고 있었음).
+> - 부수 수정: `.leaflet-tooltip`이 참조하던 `--font-sans`가 미정의 변수였던 것 해소.
+> - `UI_RULES.md` 1-2절에 서체 규정 추가(하드코딩 금지, `--font-sans` 참조).
+> - `npm run build` 통과 후 사용자 지시로 라이브 배포.
+
+> 마지막 업데이트: 2026-08-26 [CC]
+
 > 🚀 **2026-08-26 14:20 KST — `/gmts` 8/26 주간보고 라이브 배포 (PR #795 · 32번째 보고)** [CC]:
 > - 원자료: `GMTS Weekly Report 20260826.pdf` (1쪽, SHA-256 `344eb16cfbc5bf75c73431c2b2a6829b99037d440295fa092a442239bbc631b4`). `npm run sync:gmts` 재생성 — 32 reports, coverage 2026-01-21~2026-08-26.
 > - 핵심 수치: 어가 Non-GSP $2,100 / GSP $2,150(프리미엄 $50·2.38%). 하역 중 2척(SEA BLAZER 4,345.080/3,407.790 · SEIN QUEEN 2,092.414/740.680), 완료 1척(QUEEN ELLICE 580.000→670.230, 초과 90.230 원문 그대로), 입항 예정 3척은 TBA·EMPTY라 화물 공란 유지(합계 0으로 만들지 않음). 반입량 2026은 7월까지 그대로(누계 63,736), 품질 플래그 44건.

@@ -2,6 +2,9 @@
  * 폰트는 next/font self-host(layout.tsx)가 정본. 인라인 'Inter'/'Sora' 선언은 시스템 스택으로 폴백. */
 
 :root {
+  /* 전역 서체 SSOT (2026-08-26 [CC]): 한글·라틴 본문 = Pretendard(next/font self-host, layout.tsx).
+   * V2.5 «외부 CDN 금지» 준수 — @import 없음. 변수 미주입 컨텍스트는 시스템 한글로 폴백. */
+  --font-sans: var(--font-pretendard, 'Pretendard Variable'), -apple-system, BlinkMacSystemFont, 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif;
   /* 증감 시맨틱 — 주식 컨벤션(상승 빨강·하락 파랑), 2026-08-17 소유자 채택. 양 테마 동일 */
   --delta-up: #ef4444;
   --delta-down: #3b82f6;
@@ -671,7 +674,7 @@ body {
   background-image: var(--bg-abyss);
   background-attachment: fixed;
   color: var(--text-main);
-  font-family: 'Sora', 'Plus Jakarta Sans', 'Outfit', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-family: var(--font-sans);
   min-height: 100vh;
   overflow-x: hidden;
   transition: background-color 0.3s ease, color 0.3s ease;
