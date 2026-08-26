@@ -6,7 +6,9 @@ import {
   signals, weeklySeries, monthlySeries, latest, latestMonth, meta,
   gapDecomposition, musd, num, pct, n, quoteStats, breakevenMargin, materialBurn, weeks, profitCash,
 } from '@/lib/data/cosmo'
+import { cosmoMonthlyReport as mr } from '@/lib/data/cosmo-monthly-report'
 
+const f = (v: number) => v.toLocaleString('en-US')
 const m1 = (v: number) => (v / 1e6).toFixed(1) + 'M'
 const m2 = (v: number) => '$' + (v / 1e6).toFixed(2) + 'M'
 const mt = (v: number) => v.toLocaleString('en-US', { maximumFractionDigits: 0 }) + ' MT'
@@ -254,6 +256,62 @@ export default function Home() {
                 <tr className="bad"><td><b>외부 조달 추정</b> <span className="tag">현금증가+재고증가−손실</span></td>
                   <td className="n">—</td><td className="n">—</td>
                   <td className="n">{musd(profitCash.cashDelta + profitCash.invDelta - profitCash.netSum)}</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </Card>
+      </div>
+
+      <SecHead>7월 업무보고 (2026-08-25)</SecHead>
+      <div className="grid g2">
+        <Card
+          title="운전자본 스냅샷"
+          sub={`월간 업무보고의 유동성·재고자산 — 연초(1.1) 대비 ${mr.liquidity.asOf} 잔액. 단위 만불.`}
+          note={<>매입채무 <b>{f(mr.liquidity.ap.end)}만불</b>이 매출채권 {f(mr.liquidity.ar.end)}만불의
+            {' '}<b>{(mr.liquidity.ap.end / mr.liquidity.ar.end).toFixed(1)}배</b>입니다. 표 밖에 PANOFI 어대금 잔액
+            {' '}<b>{f(mr.panofiPayable.usd10k)}만불</b>({mr.panofiPayable.asOf})이 따로 있어, 실제 지급 부담은 표보다 큽니다.
+            원어재고는 {mr.rawStock.asOf} 기준 <b>{f(mr.rawStock.sjMt + mr.rawStock.yfMt + mr.rawStock.mixMt)}톤</b>
+            (SJ {f(mr.rawStock.sjMt)}·YF {mr.rawStock.yfMt}·믹스 {mr.rawStock.mixMt}).</>}
+        >
+          <div className="tw">
+            <table>
+              <thead><tr><th>구분</th><th className="n">연초</th><th className="n">{mr.liquidity.asOf}</th><th className="n">증감</th></tr></thead>
+              <tbody>
+                <tr><td>현금</td><td className="n">{f(mr.liquidity.cash.begin)}</td><td className="n">{f(mr.liquidity.cash.end)}</td>
+                  <td className="n">+{f(mr.liquidity.cash.end - mr.liquidity.cash.begin)}</td></tr>
+                <tr><td>매출채권</td><td className="n">{f(mr.liquidity.ar.begin)}</td><td className="n">{f(mr.liquidity.ar.end)}</td>
+                  <td className="n">+{f(mr.liquidity.ar.end - mr.liquidity.ar.begin)}</td></tr>
+                <tr className="warn"><td>매입채무</td><td className="n">{f(mr.liquidity.ap.begin)}</td><td className="n">{f(mr.liquidity.ap.end)}</td>
+                  <td className="n">+{f(mr.liquidity.ap.end - mr.liquidity.ap.begin)}</td></tr>
+                <tr className="bad"><td>현금부족</td><td className="n">{f(mr.liquidity.shortfall.begin)}</td><td className="n">{f(mr.liquidity.shortfall.end)}</td>
+                  <td className="n">{f(mr.liquidity.shortfall.end - mr.liquidity.shortfall.begin)}</td></tr>
+                <tr><td>재고자산 합계</td><td className="n">{f(mr.inventory.total.begin)}</td><td className="n">{f(mr.inventory.total.end)}</td>
+                  <td className="n">{f(mr.inventory.total.end - mr.inventory.total.begin)}</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </Card>
+
+        <Card
+          title="생산계획 개정과 수주 단가"
+          sub="월간 업무보고에만 있는 선행 정보 — 연간 계획 하향과 인상 수주."
+          note={<>수주는 어가 상승분을 반영해 <b>${mr.orderPrice.fromUsd.toFixed(1)} → ${mr.orderPrice.toUsd.toFixed(1)}</b>
+            ({mr.orderPrice.basis})로 인상된 단가로 진행 중이며, 물량보다 단가·수익성을 우선해 리테일 Tender 참여는
+            당분간 자제한다고 밝혔습니다. 9~10월 예정: {mr.agenda.map((a, i) => <span key={i}>{i > 0 && ' · '}{a}</span>)}.</>}
+        >
+          <div className="tw">
+            <table>
+              <thead><tr><th>구분</th><th className="n">계획</th><th className="n">변경</th><th className="n">차이</th></tr></thead>
+              <tbody>
+                <tr><td>8월 원어 처리 (MT)</td><td className="n">{f(mr.productionPlan.augustPlanMt)}</td>
+                  <td className="n">{f(mr.productionPlan.augustRevisedMt)}</td>
+                  <td className="n">{f(mr.productionPlan.augustRevisedMt - mr.productionPlan.augustPlanMt)}</td></tr>
+                <tr className="warn"><td>연간 원어 처리 (MT)</td><td className="n">{f(mr.productionPlan.annualPlanMt)}</td>
+                  <td className="n">{f(mr.productionPlan.annualRevisedMt)}</td>
+                  <td className="n">{f(mr.productionPlan.annualRevisedMt - mr.productionPlan.annualPlanMt)}</td></tr>
+                <tr><td>9월 계획 (MT)</td><td className="n">—</td>
+                  <td className="n">{f(mr.productionPlan.september.totalMt)}</td>
+                  <td className="n">{mr.productionPlan.september.days}일 × {mr.productionPlan.september.dailyMt}톤</td></tr>
               </tbody>
             </table>
           </div>

@@ -1,7 +1,7 @@
 {
  "_meta": {
   "entry": "app/page.tsx",
-  "files": 194,
+  "files": 195,
   "widgets": 109,
   "dataFiles": 83,
   "generator": "scripts/widget_lineage.py"
@@ -430,6 +430,7 @@
   },
   "components/cosmo/tabs/HomeTab.tsx": {
    "dataModules": [
+    "lib/data/cosmo-monthly-report.ts",
     "lib/data/cosmo.ts"
    ],
    "dataFiles": [
