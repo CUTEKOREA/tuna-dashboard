@@ -617,7 +617,7 @@ const SPEC: CommoditySpec = {
   ],
   // 참치 브리핑은 «결론 + 부연» 두 층이다. headline 이 굵은 앞줄을 그대로 살린다.
   briefing: BRIEFING_POINTS.map((point) => ({
-    stage: '',
+    stage: point.stage,
     headline: point.headline,
     text: point.detail,
   })),
