@@ -223,7 +223,7 @@ export function BuySignalDashboard() {
               <div>
                 <div className={styles.factorName}>{f.name}</div>
                 <div className={styles.factorBar}>
-                  <div className={styles.factorFill} style={{ width: `${f.score}%`, background: f.color }} />
+                  <div className={styles.factorFill} style={{ transform: `scaleX(${f.score / 100})`, background: f.color }} />
                 </div>
               </div>
               <div style={{ textAlign: 'right' }}>
@@ -380,7 +380,7 @@ function VDSBurnTracker() {
                 <div className={styles.burnPercent} style={{ color: isOverBurn ? 'var(--color-danger)' : z.color }}>{pct}% 소진</div>
               </div>
               <div className={styles.burnBarTrack}>
-                <div className={styles.burnBarFill} style={{ width: `${pct}%`, background: isOverBurn ? `linear-gradient(90deg, ${z.color}, var(--w-red-500))` : z.color }} />
+                <div className={styles.burnBarFill} style={{ transform: `scaleX(${pct / 100})`, background: isOverBurn ? `linear-gradient(90deg, ${z.color}, var(--w-red-500))` : z.color }} />
               </div>
               <div className={styles.burnStats}>
                 <span>사용: {z.used.toFixed(1)}일 / 배정: {z.total}일</span>

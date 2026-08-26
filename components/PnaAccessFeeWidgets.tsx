@@ -232,7 +232,7 @@ function UnitCostComparison() {
                 <div
                   className={s.unitCostBarFill}
                   style={{
-                    width: `${(z.unitCost / maxCost) * 100}%`,
+                    transform: `scaleX(${z.unitCost / maxCost})`,
                     background: isMax
                       ? 'linear-gradient(90deg, var(--w-red-500), #f87171)'
                       : `linear-gradient(90deg, ${z.color}, ${z.color}66)`,

@@ -189,7 +189,7 @@ export default function VdsStrategyMatrix() {
                     <div 
                       className={s.barFill} 
                       style={{ 
-                        width: `${Math.min(100, (item.consumed / item.total) * 100)}%`,
+                        transform: `scaleX(${Math.min(1, item.consumed / item.total)})`,
                         background: getBarColor(item.remaining)
                       }} 
                     />

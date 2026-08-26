@@ -281,8 +281,10 @@
 
 .crossBarFill {
   height: 100%;
+  width: 100%;
+  transform-origin: left;
   border-radius: 2px;
-  transition: width 0.8s ease;
+  transition: transform 0.8s ease;
 }
 
 .strategyGrid {

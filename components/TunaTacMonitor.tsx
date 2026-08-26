@@ -57,7 +57,7 @@ export default function TunaTacMonitor({ tacData, forecastData }: TacMonitorProp
             <div style={{ fontSize: '0.7rem', color: 'var(--w-slate-400)', marginBottom: '4px' }}>{t.rfmo} · {t.species}</div>
             <div style={{ fontSize: '1.1rem', fontWeight: 700, color: pctColor }}>{t.pct.toFixed(1)}%</div>
             <div style={{ width: '100%', height: '6px', background: 'rgba(20, 28, 52, 0.9)', borderRadius: '3px', marginTop: '6px', overflow: 'hidden' }}>
-              <div style={{ width: `${Math.min(t.pct, 100)}%`, height: '100%', borderRadius: '3px', background: pctColor, transition: 'width 0.6s ease' }} />
+              <div style={{ width: '100%', transform: `scaleX(${(Math.min(t.pct, 100)) / 100})`, transformOrigin: 'left', height: '100%', borderRadius: '3px', background: pctColor, transition: 'transform 0.6s ease' }} />
             </div>
             <div style={{ fontSize: '0.65rem', color: 'var(--w-slate-500)', marginTop: '4px' }}>{t.consumed.toLocaleString()} / {t.tac.toLocaleString()} MT</div>
           </div>

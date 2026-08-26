@@ -358,7 +358,7 @@ export default function UnloadingTimelineReplay({
                           <div
                             className={styles.holdFillBar}
                             style={{
-                              width: `${fillPercent}%`,
+                              transform: `scaleX(${fillPercent / 100})`,
                               backgroundColor: cumData.cumDischarge > 0 ? tempColor : 'var(--dsc-surface-border)',
                             }}
                           />
@@ -408,7 +408,7 @@ export default function UnloadingTimelineReplay({
                     {formatNum(entry.cumAmount)} / {formatNum(reportedTotal)} MT
                   </div>
                   <div className={styles.cumProgressTrack}>
-                    <div className={styles.cumProgressFill} style={{ width: `${progressBarWidth}%` }} />
+                    <div className={styles.cumProgressFill} style={{ transform: `scaleX(${progressBarWidth / 100})` }} />
                   </div>
                 </div>
 

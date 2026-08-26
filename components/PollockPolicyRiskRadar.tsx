@@ -183,7 +183,7 @@ export function PollockRiskScorecard() {
                 <div key={key} style={{ display: 'flex', alignItems: 'center', gap: '8px', fontSize: '0.7rem' }}>
                   <span style={{ width: '90px', color: 'var(--text-secondary)', textAlign: 'right' }}>{key.replace(/_/g, ' ')}</span>
                   <div style={{ flex: 1, background: 'rgba(140,170,255,0.10)', borderRadius: '4px', height: '12px', overflow: 'hidden' }}>
-                    <div style={{ width: `${val as number}%`, height: '100%', background: (val as number) >= 90 ? 'var(--w-red-500)' : (val as number) >= 75 ? 'var(--w-amber-500)' : '#22c55e', borderRadius: '4px', transition: 'width 0.5s' }} />
+                    <div style={{ width: '100%', transform: `scaleX(${(val as number) / 100})`, transformOrigin: 'left', height: '100%', background: (val as number) >= 90 ? 'var(--w-red-500)' : (val as number) >= 75 ? 'var(--w-amber-500)' : '#22c55e', borderRadius: '4px', transition: 'transform 0.5s' }} />
                   </div>
                   <span style={{ fontWeight: 700, fontFamily: 'monospace', color: (val as number) >= 90 ? 'var(--w-red-500)' : 'var(--w-amber-500)', width: '30px' }}>{val as number}</span>
                 </div>

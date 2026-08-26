@@ -447,10 +447,10 @@ const SEAsiaOEMDashboard = React.memo(function SEAsiaOEMDashboard() {
                       }}>
                         <div style={{
                           height: '100%',
-                          width: `${Math.min((vendor.capacityMT / maxCapacity) * 100, 100)}%`,
+                          width: '100%', transform: `scaleX(${(Math.min((vendor.capacityMT / maxCapacity) * 100, 100)) / 100})`, transformOrigin: 'left',
                           borderRadius: '2px',
                           background: 'linear-gradient(90deg, var(--w-cyan-500), var(--w-violet-500))',
-                          transition: 'width 0.6s ease',
+                          transition: 'transform 0.6s ease',
                         }} />
                       </div>
                     )}

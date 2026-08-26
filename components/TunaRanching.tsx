@@ -211,7 +211,7 @@ export default function TunaRanching() {
                 <span style={{ fontSize: '0.85rem', color: 'var(--color-danger)', fontWeight: 'bold' }}>{quotaExhaustion.euExhaustionRate}%</span>
               </div>
               <div style={{ width: '100%', height: '8px', background: 'rgba(255,255,255,0.1)', borderRadius: '4px', overflow: 'hidden' }}>
-                <div style={{ width: `${quotaExhaustion.euExhaustionRate}%`, height: '100%', background: 'var(--color-danger)', transition: 'width 1s ease' }} />
+                <div style={{ width: '100%', transform: `scaleX(${(quotaExhaustion.euExhaustionRate) / 100})`, transformOrigin: 'left', height: '100%', background: 'var(--color-danger)', transition: 'transform 1s ease' }} />
               </div>
               <p style={{ margin: '8px 0 0 0', fontSize: '0.75rem', color: '#fca5a5' }}>
                 {quotaExhaustion.alertMessage}
@@ -979,7 +979,7 @@ export default function TunaRanching() {
                 <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
                   <span style={{ fontSize: '0.72rem', color: 'var(--w-slate-500)' }}>매력도</span>
                   <div style={{ flex: 1, height: '6px', borderRadius: '3px', background: 'rgba(255,255,255,0.08)', overflow: 'hidden' }}>
-                    <div style={{ width: `${cp.score}%`, height: '100%', borderRadius: '3px', background: cp.score >= 85 ? 'var(--color-success)' : cp.score >= 75 ? 'var(--color-warning)' : 'var(--color-danger)', transition: 'width 0.6s ease' }} />
+                    <div style={{ width: '100%', transform: `scaleX(${(cp.score) / 100})`, transformOrigin: 'left', height: '100%', borderRadius: '3px', background: cp.score >= 85 ? 'var(--color-success)' : cp.score >= 75 ? 'var(--color-warning)' : 'var(--color-danger)', transition: 'transform 0.6s ease' }} />
                   </div>
                   <span style={{ fontSize: '0.75rem', color: 'var(--w-slate-400)', fontWeight: 600 }}>{cp.score}</span>
                 </div>
@@ -1071,7 +1071,7 @@ export default function TunaRanching() {
                   <div key={i} style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
                     <span style={{ width: '120px', fontSize: '0.8rem', color: 'var(--w-slate-200)', flexShrink: 0 }}>{d.segment}</span>
                     <div style={{ flex: 1, height: '20px', borderRadius: '6px', background: 'rgba(140,170,255,0.12)', overflow: 'hidden', position: 'relative' }}>
-                      <div style={{ width: `${d.share}%`, height: '100%', borderRadius: '6px', background: d.color, transition: 'width 0.8s ease' }} />
+                      <div style={{ width: '100%', transform: `scaleX(${(d.share) / 100})`, transformOrigin: 'left', height: '100%', borderRadius: '6px', background: d.color, transition: 'transform 0.8s ease' }} />
                     </div>
                     <span style={{ width: '40px', fontSize: '0.82rem', color: d.color, fontWeight: 700, textAlign: 'right' }}>{d.share}%</span>
                   </div>

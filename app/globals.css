@@ -280,7 +280,7 @@
 }
 
 .dsc-card--accent {
-  border-left: 3px solid var(--dsc-card-accent, var(--accent-primary));
+  border-color: color-mix(in srgb, var(--dsc-card-accent, var(--accent-primary)) 45%, var(--dsc-surface-border));
 }
 
 .ds-card {
@@ -397,7 +397,7 @@
 
 /* ===== KPI Number (Tabular Numerals) ===== */
 .ds-kpi {
-  font-family: 'Inter', monospace;
+  font-family: var(--dsc-font-mono);
   font-weight: var(--weight-bold);
   font-variant-numeric: tabular-nums;
   letter-spacing: -0.02em;
@@ -446,14 +446,14 @@
 /* ===== Insight Situation / Takeaway boxes ===== */
 .ds-situation-box {
   background: rgba(6, 182, 212, 0.05);
-  border-left: 3px solid var(--color-info);
-  border-radius: 0 var(--radius-md) var(--radius-md) 0;
+  border: 1px solid color-mix(in srgb, var(--color-info) 32%, transparent);
+  border-radius: var(--radius-md);
   padding: var(--space-4) var(--space-5);
 }
 .ds-takeaway-box {
   background: rgba(16, 185, 129, 0.06);
-  border-left: 3px solid var(--color-success);
-  border-radius: 0 var(--radius-md) var(--radius-md) 0;
+  border: 1px solid color-mix(in srgb, var(--color-success) 32%, transparent);
+  border-radius: var(--radius-md);
   padding: var(--space-4) var(--space-5);
 }
 

@@ -205,8 +205,8 @@ export default function FishingDaysStatus() {
                           style={{
                             height: '100%',
                             backgroundColor: getProgressColor(row.rate),
-                            width: `${Math.min(row.rate, 100)}%`,
-                            transition: 'width 0.5s ease'
+                            width: '100%', transform: `scaleX(${(Math.min(row.rate, 100)) / 100})`, transformOrigin: 'left',
+                            transition: 'transform 0.5s ease'
                           }}
                         />
                       </div>

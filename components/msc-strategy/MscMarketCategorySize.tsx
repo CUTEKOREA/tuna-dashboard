@@ -157,13 +157,13 @@ export default function MscMarketCategorySize() {
                 <div style={{ flex: 1, height: 24, background: 'rgba(255,255,255,0.02)', borderRadius: 6, overflow: 'hidden', position: 'relative' }}>
                   <div
                     style={{
-                      width: `${barWidthPct}%`,
+                      width: '100%', transform: `scaleX(${(barWidthPct) / 100})`, transformOrigin: 'left',
                       height: '100%',
                       background: isTop
                         ? 'linear-gradient(90deg, rgba(var(--w-sky-400-rgb), 0.3), rgba(var(--w-sky-400-rgb), 0.6))'
                         : 'linear-gradient(90deg, rgba(var(--w-slate-400-rgb), 0.1), rgba(var(--w-slate-400-rgb), 0.25))',
                       borderRadius: 6,
-                      transition: 'width 0.3s ease',
+                      transition: 'transform 0.3s ease',
                     }}
                   />
                 </div>

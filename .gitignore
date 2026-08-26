@@ -112,3 +112,5 @@ pnpm-workspace.yaml
 
 # 조사용 원본 PDF(93MB). 근거는 docs/evidence 의 텍스트로 남긴다 (L-08)
 seafresh-docs/
+.impeccable/*
+!.impeccable/config.json
