@@ -51,8 +51,8 @@ describe('GMTS dashboard decision surface', () => {
     expect(html).toContain('데이터 품질');
     expect(html).toContain('2026년 1~7월');
     expect(html).toContain('63,736');
-    expect(html).toContain('$1,900');
-    expect(html).toContain('$2,025');
+    expect(html).toContain('$2,100');
+    expect(html).toContain('$2,150');
     expect(html).toContain('원문 분모 미기재');
     expect(html).toContain('원문 단위 미기재');
     expect(html).not.toContain('$/MT');
@@ -162,12 +162,12 @@ describe('GMTS dashboard decision surface', () => {
     expect(html).not.toContain('보고서 원문 아카이브');
   });
 
-  it('renders all 31 source reports and the revision and capacity warnings', () => {
+  it('renders all 32 source reports and the revision and capacity warnings', () => {
     const html = renderDashboard('quality');
 
-    expect(html.match(/data-source-report=/g)).toHaveLength(31);
-    expect(html).toContain('31건');
-    expect(html).toContain('39쪽');
+    expect(html.match(/data-source-report=/g)).toHaveLength(32);
+    expect(html).toContain('32건');
+    expect(html).toContain('40쪽');
     expect(html).toContain('원문에서 확인되지 않은 값은 화면에서도 확정하지 않음');
     expect(html).toContain('6,220');
     expect(html).toContain('11,968');
