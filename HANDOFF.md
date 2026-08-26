@@ -1,3 +1,10 @@
+> 🚀 **2026-08-26 12:20 KST — `/panofi` ↔ `/fleet` 대서양 선망 조업 연동 라이브 배포 완료** [CC]:
+> - PR [#786](https://github.com/CUTEKOREA/tuna-dashboard/pull/786)을 squash 병합했다. main commit `2b51dc53`. PR 게이트: lint typecheck test build pass + Vercel Preview pass. 병합 중 GitHub 502→«Merge already in progress» 지연이 있었고 재시도로 완료했다.
+> - Vercel Production: GitHub deployment `6095712445` state=success, sha `2b51dc53`.
+> - 라이브 실측(Aside 로그인 세션): /panofi 선단·조업 탭(라벨 완전일치 클릭, URL 유지 확인) — «오늘의 조업» 일간 190 · 월간 5,130 · 연간 31,855 · 2026-08-25 기준 · 출처줄 노출, overflow 0.
+>
+> 마지막 업데이트: 2026-08-26 12:20 KST [CC]
+
 > ✅ **2026-08-26 11:55 KST — `/panofi` ↔ `/fleet` 대서양 선망 조업 연동 (로컬 완료)** [CC]:
 > - 근거: 파노피 선망 7척(P/MAS·P/DIS·P/FORE·P/PATH·P/COM·P/QUEEN·P/GRACE) = `/fleet` 일일 업무보고의 «대서양 선망»
 >   (`lib/fleet-operations-2026-08-23.ts` 명부로 확인). 주간동향(주 1회, 상태 문장)에 없는 일간 어획 수치가 파노피에 부재했다.
