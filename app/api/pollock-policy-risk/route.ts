@@ -215,7 +215,7 @@ export async function POST(request: NextRequest) {
 export async function GET() {
   return NextResponse.json({
     status: 'active',
-    description: '명태 정책 리스크 인텔리전스 — 국정연 6건 보고서 기반 6대 리스크 정량화',
+    description: '명태 정책 리스크 인텔리전스 - 국정연 6건 보고서 기반 6대 리스크 정량화',
     composite_risk_score: POLLOCK_POLICY_RISK_MATRIX.composite_risk_score,
     risks_monitored: POLLOCK_POLICY_RISK_MATRIX.trade_policy_risks.length,
     fta_routes_tracked: POLLOCK_POLICY_RISK_MATRIX.fta_tariff_matrix.length,

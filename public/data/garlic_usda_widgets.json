@@ -9,7 +9,7 @@
     {
       "id": "w_kr_garlic_production_8y",
       "title": "한국 마늘 생산·재배 시계열",
-      "subtitle": "FAOSTAT QCL — 8년 추이",
+      "subtitle": "FAOSTAT QCL - 8년 추이",
       "cardDesc": "FAOSTAT QCL 한국 마늘 생산량(천톤)·재배면적(천ha) 8년 추이 (2017~2024).",
       "chartType": "Composed",
       "pillar": "S1",
@@ -33,13 +33,13 @@
       "unit": "천톤 / 천ha",
       "sit": "한국 마늘 생산은 2019년 388K톤 정점 후 2022년 273K톤(-30%)까지 감소, 2023년 318K톤 반등 뒤 2024년 285K톤으로 다시 하락하는 변동성 구조. 재배면적은 2018년 28.4K ha → 2024년 23.3K ha로 -18% 축소. 농가 고령화·인건비 부담이 면적 감소의 주동인.",
       "strat": "재배면적 장기 축소세 = 수입 의존도 자연 증가. 신라교역·CJ 등 가공식품 기업은 국내·수입 균형 조달 전략 필수. 생산량이 273~388K톤으로 ±20% 진폭이 큰 만큼 흉작 연도 대비 6개월 비축·단가 +5~10% 상승 헤지 필요.",
-      "source": "FAOSTAT QCL — 한국(Republic of Korea) 마늘 생산량(Element 5510)·재배면적(5312) (2017~2024)",
+      "source": "FAOSTAT QCL - 한국(Republic of Korea) 마늘 생산량(Element 5510)·재배면적(5312) (2017~2024)",
       "telemetry": "SYNCED",
       "syncDate": "2026-06-06"
     },
     {
       "id": "w_global_garlic_china_dominance",
-      "title": "글로벌 마늘 공급 — 중국 84%",
+      "title": "글로벌 마늘 공급 - 중국 84%",
       "subtitle": "WSC China Garlic Crop Report",
       "cardDesc": "글로벌 생마늘 800만톤 中 중국 84%·건조마늘 86%. 단일 국가 압도 점유 = 공급망 핵심 리스크.",
       "chartType": "Pie",
@@ -63,7 +63,7 @@
     {
       "id": "w_kr_garlic_wholesale_price",
       "title": "한국 깐마늘 도매가 월별",
-      "subtitle": "KREI 양념채소 06호 — 김장철 상승",
+      "subtitle": "KREI 양념채소 06호 - 김장철 상승",
       "cardDesc": "한국 깐마늘 도매가 6개월 시계열. 9월 7,700원/kg (+8.9%), 김장철 10월 7,900원 전망.",
       "chartType": "Composed",
       "pillar": "S4",
@@ -93,7 +93,7 @@
     {
       "id": "w_kr_garlic_import_form",
       "title": "한국 마늘 수입 형태별",
-      "subtitle": "KREI 양념채소 07호 — 냉동마늘 압도",
+      "subtitle": "KREI 양념채소 07호 - 냉동마늘 압도",
       "cardDesc": "한국 마늘 수입 형태별 비중. 냉동마늘이 70%+로 외식업체·가공식품 핵심.",
       "chartType": "Bar",
       "pillar": "S3",
@@ -118,7 +118,7 @@
     {
       "id": "w_kr_garlic_price_gap_tariff",
       "title": "한국 vs 수입 마늘 가격·관세",
-      "subtitle": "KREI 양념채소 06호 — 관세 360%",
+      "subtitle": "KREI 양념채소 06호 - 관세 360%",
       "cardDesc": "국내 7,700원/kg vs 수입 마늘 도매 7,100원/kg. TRQ 외 관세 360% 적용, 국내 보호.",
       "chartType": "Bar",
       "pillar": "S4",

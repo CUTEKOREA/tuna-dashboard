@@ -26,7 +26,7 @@ export function TraderTable({ rows }: { rows: TraderRow[] }) {
       <table className={styles.factTable}>
         <caption className={styles.factCaption}>
           캐닝용 원어 트레이딩의 주요 회사. 「빅3」 합산 수치는 2011~2015년 기준이고 최신
-          공표치는 3사 모두 없다 — 빈칸 자체가 이 시장의 불투명성이다.
+          공표치는 3사 모두 없다 - 빈칸 자체가 이 시장의 불투명성이다.
         </caption>
         <thead>
           <tr>
@@ -45,7 +45,7 @@ export function TraderTable({ rows }: { rows: TraderRow[] }) {
               <td>{row.위치}</td>
               <td>
                 {row.규모}
-                <span className={styles.factNote}>{row.성격} — {row.출처}</span>
+                <span className={styles.factNote}>{row.성격} - {row.출처}</span>
               </td>
             </tr>
           ))}
@@ -61,7 +61,7 @@ export function CarrierProfileTable({ rows }: { rows: CarrierProfileRow[] }) {
     <div className={styles.factWrap}>
       <table className={styles.factTable}>
         <caption className={styles.factCaption}>
-          등록부 소유사 상위와 실제 국제 리퍼 업계는 다르다 — 대형 리퍼 선사는 선박을
+          등록부 소유사 상위와 실제 국제 리퍼 업계는 다르다 - 대형 리퍼 선사는 선박을
           개별 명의로 분산 등록해 집계에 이름이 안 보인다. 그 실세를 여기서 보강한다.
         </caption>
         <thead>
@@ -94,7 +94,7 @@ export function CanneryCountryTable({ rows }: { rows: CanneryCountryRow[] }) {
     <div className={styles.factWrap}>
       <table className={styles.factTable}>
         <caption className={styles.factCaption}>
-          국가별 캔참치 공장을 한 기준으로 세는 통계는 없다 — 행마다 무엇을 센 것인지
+          국가별 캔참치 공장을 한 기준으로 세는 통계는 없다 - 행마다 무엇을 센 것인지
           (협회 공표·EU 승인 등재·정부 언급)를 적었다. 등급 A는 기관 공표, B는 협회·목록
           기반, C는 언론·자사뿐.
         </caption>

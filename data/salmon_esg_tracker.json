@@ -8,7 +8,7 @@
       },
       {
         "category": "환경 영향", "score": 72, "maxScore": 100, "status": "medium", "iconName": "Thermometer",
-        "details": ["RAS(순환여과) 전환율 35%", "해상 양식장 해저 오염 모니터링", "사료 전환율(FCR) 1.15 — 업계 최고"],
+        "details": ["RAS(순환여과) 전환율 35%", "해상 양식장 해저 오염 모니터링", "사료 전환율(FCR) 1.15 - 업계 최고"],
         "research": "「수산물 업사이클링 생태계 조성 방안」(이남수, 2025)"
       },
       {
@@ -24,7 +24,7 @@
       },
       {
         "category": "환경 영향", "score": 58, "maxScore": 100, "status": "high", "iconName": "Thermometer",
-        "details": ["SRS 감염 빈발 → 항생제 사용량 高", "해양 적조 리스크 (2016 대규모 폐사)", "FCR 1.40 — 노르웨이 대비 열위"]
+        "details": ["SRS 감염 빈발 → 항생제 사용량 高", "해양 적조 리스크 (2016 대규모 폐사)", "FCR 1.40 - 노르웨이 대비 열위"]
       },
       {
         "category": "이력 추적성", "score": 75, "maxScore": 100, "status": "medium", "iconName": "Shield",

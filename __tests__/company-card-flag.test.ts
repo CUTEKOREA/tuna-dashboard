@@ -20,8 +20,8 @@ describe('기업 해부 카드 뒷면', () => {
         byCountry.set(k, { flagCss: c.flagCss, backInk: c.backInk });
         continue;
       }
-      expect(c.flagCss, `${k} — ${c.name} 문양이 같은 나라 다른 카드와 다르다`).toBe(seen.flagCss);
-      expect(c.backInk, `${k} — ${c.name} 잉크가 같은 나라 다른 카드와 다르다`).toBe(seen.backInk);
+      expect(c.flagCss, `${k} - ${c.name} 문양이 같은 나라 다른 카드와 다르다`).toBe(seen.flagCss);
+      expect(c.backInk, `${k} - ${c.name} 잉크가 같은 나라 다른 카드와 다르다`).toBe(seen.backInk);
     }
   });
 

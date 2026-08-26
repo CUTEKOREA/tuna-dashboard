@@ -36,7 +36,7 @@ const speciesData = [
   {
     name: '가다랑어 (Skipjack)', nameEn: 'Skipjack',
     krPrice: '1,910', usPrice: '$1.5-2.5', jpPrice: '¥1-1.5K',
-    use: '캔/가쓰오부시', grade: '—',
+    use: '캔/가쓰오부시', grade: '-',
     mercury: '낮음', stock: '건전', gear: '선망',
     color: '#38bdf8', barWidth: 22,
   },
@@ -50,7 +50,7 @@ export default function SasSpeciesPriceTier() {
       icon={Layers}
       iconColor="#f59e0b"
       pillar="S1"
-      cardDesc="5대 참치 어종의 가격·용도·자원 상태 — 사시미급 프리미엄 구조 분석"
+      cardDesc="5대 참치 어종의 가격·용도·자원 상태 - 사시미급 프리미엄 구조 분석"
       telemetry={{ status: 'STATIC', syncDate: '2024' }}
       takeaway={{
         situation: "사시미 참치는 SBT(17,447원/kg) > BFT(수입 $18.79/kg) > 눈다랑어(7,093) > 황다랑어(3,761) > 가다랑어(1,910)의 명확한 5단계 가격 위계를 보입니다. 연승(사시미) vs 선망(캔) 어법에 따라 3.3배 가격 차이가 발생합니다.",

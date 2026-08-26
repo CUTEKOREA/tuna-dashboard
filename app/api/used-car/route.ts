@@ -54,7 +54,7 @@ export async function GET() {
         isLive: false,
         dataAsOf: DATA_AS_OF,
         source:
-          '정적 스냅샷 — Jiji 가나 스크래핑(2026-04-27) · 포워더 운임 견적(2026.04) · GlobalPetrolPrices 유가(2026.04) · 시장조사 보고서(2025)',
+          '정적 스냅샷 - Jiji 가나 스크래핑(2026-04-27) · 포워더 운임 견적(2026.04) · GlobalPetrolPrices 유가(2026.04) · 시장조사 보고서(2025)',
       },
     };
 

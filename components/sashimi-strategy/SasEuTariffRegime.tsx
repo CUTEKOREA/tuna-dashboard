@@ -23,14 +23,14 @@ export default function SasEuTariffRegime() {
   return (
     <WidgetCard
       id="W-SAS41"
-      title="EU 참치 관세 체제 — 24% 장벽과 무관세 우회로"
+      title="EU 참치 관세 체제 - 24% 장벽과 무관세 우회로"
       description="명목 24%이나 ATQ·EPA·FTA 무관세 우회로가 시장을 가른다"
       pillar="S3"
       telemetry={{ status: 'STATIC', syncDate: '2026-06-05' }}
-      cardDesc="EU 참치 수입 채널별 실효 관세 — EU 이사회 Reg.2023/2720·TARIC·Access2Markets"
+      cardDesc="EU 참치 수입 채널별 실효 관세 - EU 이사회 Reg.2023/2720·TARIC·Access2Markets"
       takeaway={{
         situation: "EU의 참치 수입 관세는 단일 숫자가 아니라 '체제'입니다. 명목상 캔참치 MFN(최혜국대우 일반세율)은 24%로 수산물 최고이지만, 실제 시장은 무관세 우회로로 갈립니다. 가공원료용 냉동 로인은 자율관세쿼터(ATQ, Reg 2023/2720)로 연 35,000톤까지 0%(중국·동남아가 연초 조기 소진), 베트남은 EVFTA(EU-베트남 FTA)로 캔 TRQ(관세율쿼터) 11,500톤 0%, 태평양 PNG·피지는 EPA(경제동반자협정) 글로벌소싱 데로게이션으로 어획지 불문 0%, 한국은 한-EU FTA로 0%입니다(EU측은 수산물 전 품목을 5년 내 철폐 완료, 한국 수출 수산물은 품목수 72.6%·수출액 95%가 즉시~3년 내 철폐). 즉 24%를 온전히 무는 공급자는 협정·쿼터 어디에도 못 든 일부(2015년 GSP(일반특혜관세) 잃은 태국 등, SasThaiSourcing 참조)뿐입니다.",
-        actionPlan: "한국 공급자의 핵심 무기는 둘입니다. ① 완제품 캔/파우치는 한-EU FTA로 이미 0%이므로 24%를 무는 비특혜국 대비 가격 우위 — EU 직판 라인을 우선 키우십시오. ② 그러나 로인 ATQ(35,000t)와 EVFTA·EPA 무관세가 EU 가공 원료시장을 잠식하므로, 한국이 '원료 로인 공급자'로 들어가면 중국·PNG와 무관세 레드오션 단가 경쟁에 노출됩니다. 따라서 무관세 원료가 아니라 FTA 0%를 살린 고부가 완제품·신선 사시미 직판에 자본을 집중하십시오.",
+        actionPlan: "한국 공급자의 핵심 무기는 둘입니다. ① 완제품 캔/파우치는 한-EU FTA로 이미 0%이므로 24%를 무는 비특혜국 대비 가격 우위 - EU 직판 라인을 우선 키우십시오. ② 그러나 로인 ATQ(35,000t)와 EVFTA·EPA 무관세가 EU 가공 원료시장을 잠식하므로, 한국이 '원료 로인 공급자'로 들어가면 중국·PNG와 무관세 레드오션 단가 경쟁에 노출됩니다. 따라서 무관세 원료가 아니라 FTA 0%를 살린 고부가 완제품·신선 사시미 직판에 자본을 집중하십시오.",
         source: "EU 이사회 Reg.2023/2720(로인 ATQ 35,000t) / TARIC·Europarl E-002775/2023(MFN 24%) / Access2Markets(EVFTA TRQ 11,500t)·한-EU FTA 상세설명자료(수산물 EU측 5년 내 전 품목 철폐; 98.7%는 전 품목 집계치) / CFFA(Pacific EPA 글로벌소싱)",
       }}
       customBody={

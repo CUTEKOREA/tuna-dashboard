@@ -108,7 +108,7 @@ export default function Sales() {
           `견적 ${quoteStats.total}건 · 마진값 있는 건 ${quoteStats.withMargin}건`,
           `판매 품목 ${items.length}종`,
           '선적 기준 (회계 인식과 다름)',
-          '판매 계획 없음 — 원본 계획대비 칸이 전 주차 0',
+          '판매 계획 없음 - 원본 계획대비 칸이 전 주차 0',
         ]}
       />
 
@@ -125,7 +125,7 @@ export default function Sales() {
         </Card>
         <Card>
           <Kpi k="4주 이동평균" v={musd(ma4(last))}
-            d={`주간값 진폭 최대 ${swing.toFixed(0)}배 — 추세는 이 선으로`} />
+            d={`주간값 진폭 최대 ${swing.toFixed(0)}배 - 추세는 이 선으로`} />
         </Card>
         <Card>
           <Kpi k="수주잔량" v={num(last.backlogFcl, 0)} unit=" FCL"
@@ -143,7 +143,7 @@ export default function Sales() {
         </Card>
       </div>
 
-      <SecHead id="sec-repricing">재가격 대상 — 먼저 볼 것</SecHead>
+      <SecHead id="sec-repricing">재가격 대상 - 먼저 볼 것</SecHead>
       <div style={{ marginTop: 14 }}>
         <Card
           title={`저마진 견적 하위 ${worst.length}건`}
@@ -190,7 +190,7 @@ export default function Sales() {
           title="주간 판매액과 4주 이동평균"
           sub="막대는 주간 실적, 선은 4주 이동평균. 선적 타이밍 때문에 주간값 자체로는 추세를 읽을 수 없다."
           note={<>최대 <b>{musd(peak.salesWeek)}</b>({peak.label}) 대 최소 {musd(trough.salesWeek)}({trough.label})
-            — <b>{swing.toFixed(0)}배 차이</b>. 이동평균은 {musd(ma4(last))} 수준에서 크게 벗어나지 않아,
+            - <b>{swing.toFixed(0)}배 차이</b>. 이동평균은 {musd(ma4(last))} 수준에서 크게 벗어나지 않아,
             판매 규모 자체는 흔들려도 평균 물량은 유지되고 있습니다.
             {rawCarry && <> 1주차 누적은 원본이 전년 이월분을 포함한 {musd(rawCarry.salesCumUsdRaw)}
               이라 주간값으로 재계산해 넣었습니다(원본은 salesCumUsdRaw 필드에 보존).</>}
@@ -325,12 +325,12 @@ export default function Sales() {
             <b> {riskCount}건({pct(riskCount / quoteStats.withMargin, 0)})</b>, 그중 역마진이 {quoteStats.negative}건.
             {breakevenMargin && <>경고색 기준은 임의의 3%가 아니라 <b>손익분기 마진
               {' '}{pct(breakevenMargin.required, 1)}</b>(판관 {pct(breakevenMargin.sgaRate, 2)} + 이자
-              {' '}{pct(breakevenMargin.interestRate, 2)})입니다 — 이 선을 넘어야 영업외비용까지 덮습니다.
+              {' '}{pct(breakevenMargin.interestRate, 2)})입니다 - 이 선을 넘어야 영업외비용까지 덮습니다.
               구간 경계상 {pct(riskHi, 0)} 미만까지 칠했습니다. </>}
-            건수보다 물량이 실질에 가깝습니다 — <b>물량가중 마진 {pct(quoteStats.weightedMargin, 2)}</b>,
+            건수보다 물량이 실질에 가깝습니다 - <b>물량가중 마진 {pct(quoteStats.weightedMargin, 2)}</b>,
             손익분기 미달 물량이 {pct(quoteStats.below3FclShare, 0)}로 건수 기준
             {' '}{pct(quoteStats.below3 / quoteStats.withMargin, 0)}보다 나쁩니다.
-            상한 {pct(quoteStats.max, 2)}는 손익분기를 넘지만 그런 건이 드뭅니다 — 손익분기 이상 견적은 <b>{aboveBe.count}건 / 물량 {pct(aboveBe.share, 1)}</b>뿐이라 고마진 건으로 저마진을 상쇄할 여지가 없습니다.</>}
+            상한 {pct(quoteStats.max, 2)}는 손익분기를 넘지만 그런 건이 드뭅니다 - 손익분기 이상 견적은 <b>{aboveBe.count}건 / 물량 {pct(aboveBe.share, 1)}</b>뿐이라 고마진 건으로 저마진을 상쇄할 여지가 없습니다.</>}
         >
           <Legend items={[
             { name: `마진 ${pct(riskHi, 0)} 미만`, color: C.danger, box: true },
@@ -354,7 +354,7 @@ export default function Sales() {
           잔량 내재 단가는 {usd(backlogUnit)}/FCL로 지금 팔리는 수준과 크게 다르지 않습니다.
           여기에 신규 견적의 <b>물량가중 마진이 {pct(quoteStats.weightedMargin, 2)}</b>, 최고치도 {pct(quoteStats.max, 2)}에 그칩니다.
           {breakevenMargin && <>손익분기에 필요한 {pct(breakevenMargin.required, 1)}에 못 미치는 물량이 {pct(quoteStats.below3FclShare, 0)}입니다. </>}
-          수주가 늘면 적자 폭은 줄지만(현 판가도 공헌이익은 양(+)), <b>이 판가 수준으로는 흑자 전환에 이르지 못합니다</b> —
+          수주가 늘면 적자 폭은 줄지만(현 판가도 공헌이익은 양(+)), <b>이 판가 수준으로는 흑자 전환에 이르지 못합니다</b> -
           판가 전가나 단위원가 인하가 함께 가야 합니다.
           이 숫자들은 선적 기준이라 회계 인식(손익 보드)과는 시점 차이가 있습니다.
         </Callout>

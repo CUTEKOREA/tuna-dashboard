@@ -67,9 +67,9 @@ export function EmergingMarketsHeatmap() {
 <p>"글로벌 사우스(Global South)"란 아프리카·동남아·중동·남미 신흥국 묶음. 선진국 시장이 정체된 반면 글로벌 사우스 참치 시장은 고성장세를 보이고 있음. 총 기회 규모 <strong>약 $1.9B</strong>(국정연·UN Comtrade 추산, 2023).</p>
 <p>핵심 시장 매트릭스:</p>
 <ul style="margin: 4px 0 0 18px; padding: 0;">
-<li><strong>나이지리아 $597M, 5년 +23%</strong> — 인구 2.2억, 중산층 형성기, 통조림 수요 증가</li>
-<li><strong>인도네시아 $352M, +18%</strong> — 무슬림 인구 2.7억, 할랄 인증 및 가격 민감 시장</li>
-<li><strong>UAE 할랄 프리미엄 $180M</strong> — kg당 단가 일반 시장 대비 +30~40% 마진 우위(업계 추정)</li>
+<li><strong>나이지리아 $597M, 5년 +23%</strong> - 인구 2.2억, 중산층 형성기, 통조림 수요 증가</li>
+<li><strong>인도네시아 $352M, +18%</strong> - 무슬림 인구 2.7억, 할랄 인증 및 가격 민감 시장</li>
+<li><strong>UAE 할랄 프리미엄 $180M</strong> - kg당 단가 일반 시장 대비 +30~40% 마진 우위(업계 추정)</li>
 </ul>
 <p>시사점: 글로벌 사우스는 ① 통조림 물량 성장 ② 할랄 프리미엄 시장 ③ 현지 가공 거점 후보 세 가지 경로를 동시에 활용 가능한 복합 기회 시장.</p>
 </div>`,
@@ -77,9 +77,9 @@ export function EmergingMarketsHeatmap() {
 <p><strong>전략 방향</strong>: 글로벌 사우스를 단순 신규 시장이 아닌 중장기 한국 참치 브랜드의 글로벌 성장 거점으로 접근. 시장별 차별화 전략으로 단계적 진입 검토.</p>
 <p><strong>3단계 진입 방안</strong>:</p>
 <ol style="margin: 4px 0 0 18px; padding: 0;">
-<li style="margin-bottom: 8px;"><strong>나이지리아 — 현지 캔 브랜드 라이센싱</strong>: 현지 1차 유통사 소수 지분 5~10% 취득 + 브랜드 라이센싱 구조 검토. 3년 내 점유율 5% 목표.</li>
-<li style="margin-bottom: 8px;"><strong>UAE — 할랄 인증 + 프리미엄 라인</strong>: JAKIM/MUI 할랄 인증 획득 + 두바이·아부다비 호스피탈리티 직접 채널. kg당 $2 추가 마진 가능성.</li>
-<li><strong>베트남 — OEM 가공 거점</strong>: 현지 인건비 차익 활용 + 미국·EU 무관세 혜택 결합. 글로벌 사우스 역내 유통 거점으로 활용 가능.</li>
+<li style="margin-bottom: 8px;"><strong>나이지리아 - 현지 캔 브랜드 라이센싱</strong>: 현지 1차 유통사 소수 지분 5~10% 취득 + 브랜드 라이센싱 구조 검토. 3년 내 점유율 5% 목표.</li>
+<li style="margin-bottom: 8px;"><strong>UAE - 할랄 인증 + 프리미엄 라인</strong>: JAKIM/MUI 할랄 인증 획득 + 두바이·아부다비 호스피탈리티 직접 채널. kg당 $2 추가 마진 가능성.</li>
+<li><strong>베트남 - OEM 가공 거점</strong>: 현지 인건비 차익 활용 + 미국·EU 무관세 혜택 결합. 글로벌 사우스 역내 유통 거점으로 활용 가능.</li>
 </ol>
 </div>`,
         source: '국정연 아프리카 수산협력(2023-05) · 할랄 수출전략(2023-09) · UN Comtrade',

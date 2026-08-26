@@ -124,7 +124,7 @@ export default function PacificEezStrategicWidget() {
       icon={Waves}
       iconColor="#3b82f6"
       pillar="S1"
-      cardDesc="WCPFC 과학위원회 + PNA 조업일수제도(VDS) — 8개국 합산 EEZ 1,430만 km² 거점별 입어 전략"
+      cardDesc="WCPFC 과학위원회 + PNA 조업일수제도(VDS) - 8개국 합산 EEZ 1,430만 km² 거점별 입어 전략"
       unit="km², USD"
       telemetry={{ status: 'STATIC', syncDate: 'WCPFC CMM 2025-02 (2026-02 발효)' }}
       customBody={body}

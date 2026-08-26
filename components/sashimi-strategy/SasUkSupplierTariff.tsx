@@ -26,7 +26,7 @@ export default function SasUkSupplierTariff() {
       description="무관세 특혜국 장악 vs 태국 MFN 20% 핸디캡 (HS1604, 2024)"
       pillar="S3"
       telemetry={{ status: 'STATIC', syncDate: '2024' }}
-      cardDesc="영국 가공참치 수입 공급국별 점유율(금액 기준)·적용 관세 — HMRC UK Trade Info 재가공(IndexBox 2024) + 영국 공식 trade-tariff"
+      cardDesc="영국 가공참치 수입 공급국별 점유율(금액 기준)·적용 관세 - HMRC UK Trade Info 재가공(IndexBox 2024) + 영국 공식 trade-tariff"
       takeaway={{
         situation: "영국 가공참치(HS1604) 수입은 무관세 특혜국이 장악합니다. 2024년 에콰도르가 금액 기준 31%($168M, DCTS 특혜 0%)로 1위, UK-ESA EPA로 무관세인 세이셸·모리셔스가 합산 26%를 점유합니다(EPA 캔 무관세 쿼터는 2024년 10,000t으로 증액). 반면 글로벌 캔참치 1위 수출국 태국은 영국과 FTA가 없어 UK Global Tariff 20% 확정세율을 부담합니다. 영국 캔참치 수입 총규모는 물량 약 102K톤, 금액 약 $542M(에콰도르 $168M÷금액점유 31% 환산, +16% YoY)입니다. 즉 '저원가 가공 태국 vs 무관세 특혜국'의 관세 비대칭이 공급국 순위를 결정합니다.",
         actionPlan: "한국산 완제품의 영국 진입은 '태국 대체 + 품질 차별화'입니다. ① 한국은 FTA로 완제품 0%라 태국의 20%p 관세차를 정량 무기로 쓸 수 있으나, 무관세 동급인 에콰도르·EPA 특혜국과는 관세 차별화가 불가능하므로 MSC·스시그레이드·트레이서빌리티로 포지셔닝하십시오. ② 영국 CPTPP 발효(2024.12)로 베트남산 관세 인하 일정을 모니터링해 5년 내 공급국 재편 리스크를 선반영하고, EPA 데로게이션 쿼터 소진 동향을 한국산 진입 창구로 활용하십시오.",

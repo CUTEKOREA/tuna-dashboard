@@ -1,8 +1,8 @@
 {
-  "source": "KMI 한국해양수산개발원 — FTA 체결국 수산물 수입동향 2021 Q4 ~ 2026 Q1 (21개 분기 원본 PDF)",
+  "source": "KMI 한국해양수산개발원 - FTA 체결국 수산물 수입동향 2021 Q4 ~ 2026 Q1 (21개 분기 원본 PDF)",
   "indexPath": "agri_data/공통(General)/kmi_fta_quarterly/INDEX.md",
   "extractedAt": "2026-05-27",
-  "note": "2025 Q3·Q4·2026 Q1 보고서에서 골뱅이가 주요 품목 narrative에서 제외됨 — H2 데이터는 향후 KMI 발표 시 보강 필요. 2025년부터 KMI 통계명이 '골뱅이' → '고둥'으로 재분류됨.",
+  "note": "2025 Q3·Q4·2026 Q1 보고서에서 골뱅이가 주요 품목 narrative에서 제외됨 - H2 데이터는 향후 KMI 발표 시 보강 필요. 2025년부터 KMI 통계명이 '골뱅이' → '고둥'으로 재분류됨.",
   "yearly": [
     { "year": "2020", "volume": 5.92, "value": 67.6, "note": "팬데믹 직전 베이스라인" },
     { "year": "2021", "volume": 5.18, "value": 60.3, "note": "−12.5% 감소세 시작" },

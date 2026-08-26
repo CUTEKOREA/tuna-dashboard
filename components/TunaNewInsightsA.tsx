@@ -37,7 +37,7 @@ const eu18Data = [
 export function InsightNauruSwitch() {
   return (
     <WidgetCard
-      title="나우루 스위치 — 중국 캐너리 온쇼어링"
+      title="나우루 스위치 - 중국 캐너리 온쇼어링"
       icon={Globe}
       iconColor="#ef4444"
       pillar="S2"
@@ -75,7 +75,7 @@ export function InsightNauruSwitch() {
 <ol style="margin: 4px 0 0 18px; padding: 0;">
 <li style="margin-bottom: 8px;"><strong>에콰도르 가공 자산 기업가치 재산정</strong>: 중국 메가 캐너리 본격 가동(2027~) 시 IRR 하락 시나리오 재무제표에 반영. 현재 보유 소수 지분은 5년 후 매각 또는 포지션 재편 결정.</li>
 <li style="margin-bottom: 8px;"><strong>PNG·솔로몬 제도 EU-RoO 특혜 가공 거점 선제 확보</strong>: PNG 마당·솔로몬 노로 중견 가공사 2곳 소수 지분 5~10% 인수 ($8~15M). 향후 5년 가치 3~5배 배수 확장 잠재력.</li>
-<li><strong>대만 선단 어획능력 흡수</strong>: PNA 입어권을 잃은 대만 선단 중 재정위기 5~7척 인수 ($10~15M/척). 한국 깃발 변경 후 한국 WCPO 쿼터에 편입 — 한국 어획능력 즉시 +20% 확대.</li>
+<li><strong>대만 선단 어획능력 흡수</strong>: PNA 입어권을 잃은 대만 선단 중 재정위기 5~7척 인수 ($10~15M/척). 한국 깃발 변경 후 한국 WCPO 쿼터에 편입 - 한국 어획능력 즉시 +20% 확대.</li>
 </ol>
 </div>`,
         source: 'KMI 해외시장분석 · 글로벌 수산 무역 동향 (2024)',
@@ -87,7 +87,7 @@ export function InsightNauruSwitch() {
 export function InsightIOCollapse() {
   return (
     <WidgetCard
-      title="인도양 공급 붕괴 — 라스트 리조트의 임계점"
+      title="인도양 공급 붕괴 - 라스트 리조트의 임계점"
       icon={Anchor}
       iconColor="#f97316"
       pillar="S1"
@@ -125,16 +125,16 @@ export function InsightIOCollapse() {
 <li><strong>MGO 폭등</strong>: 호르무즈 위기로 톤당 $2,100 돌파. IO 어선은 거리가 멀어 연료비 비중 가장 큼 (어획 원가의 75%+).</li>
 <li><strong>어획 자체 급감</strong>: IOTC 쿼터 압박 + 자망 어업 제재로 IO 어획 capacity 자체 축소.</li>
 </ul>
-<p>구체 사례: <strong>프랑스 Sapmer €18.3M 순손실</strong>, 복수 선단이 조업 중단 검토 중. 동시에 태국 가공사들의 IO 긴급 수입은 <strong>2026년 Q1 +106% 전년 대비 급증</strong> — 수요는 폭증하는데 공급은 무너지는 이중 압박.</p>
+<p>구체 사례: <strong>프랑스 Sapmer €18.3M 순손실</strong>, 복수 선단이 조업 중단 검토 중. 동시에 태국 가공사들의 IO 긴급 수입은 <strong>2026년 Q1 +106% 전년 대비 급증</strong> - 수요는 폭증하는데 공급은 무너지는 이중 압박.</p>
 <p>의미: WCPO·IO 두 어장 동시 붕괴는 글로벌 참치 공급망이 30년 이래 최악 상황. 향후 12~18개월 가격 +30~50% 추가 상승 가능. <strong>"라스트 리조트의 임계점"</strong> 도달.</p>
 </div>`,
         actionPlan: `<div>
 <p><strong>재정의</strong>: 인도양 공급 붕괴는 "블랙스완(예측 불가)"이 아닌 <strong>"그레이 코뿔소(예측 가능했지만 무시된 위협)"</strong>. 이미 신호는 다 보였으나 대응 안 한 공급사가 죽는다. 우리는 미리 헷지 + 대체 거점으로 생존.</p>
 <p><strong>3단계</strong>:</p>
 <ol style="margin: 4px 0 0 18px; padding: 0;">
-<li style="margin-bottom: 8px;"><strong>6개월 선물 계약</strong>: 매입원가 $1,800/t 이하 락인 — 현 시장가 $1,975 대비 -9%, 6개월 후 예상 $2,300 대비 -22%. 글로벌 상품 선물 브로커 경유.</li>
+<li style="margin-bottom: 8px;"><strong>6개월 선물 계약</strong>: 매입원가 $1,800/t 이하 락인 - 현 시장가 $1,975 대비 -9%, 6개월 후 예상 $2,300 대비 -22%. 글로벌 상품 선물 브로커 경유.</li>
 <li style="margin-bottom: 8px;"><strong>서아프리카(가나 테마 허브) 대체 소싱 파이프라인</strong>: IO 의존도 현재 38% → 25% 이하로 분산. 가나 테마 가공사 소수 지분 5~10% 선제 확보로 예비 처리 능력 락업.</li>
-<li><strong>위기 차익 매입</strong>: 인도양 재정위기 선단(Sapmer 등) 자산 인수 — 정상 시장가 대비 -40~60% 헐값. 향후 2~3년 가격 회복 시 기업가치 2~3배 회복. 사모펀드 공동투자 구조로 자본 부담 분산.</li>
+<li><strong>위기 차익 매입</strong>: 인도양 재정위기 선단(Sapmer 등) 자산 인수 - 정상 시장가 대비 -40~60% 헐값. 향후 2~3년 가격 회복 시 기업가치 2~3배 회복. 사모펀드 공동투자 구조로 자본 부담 분산.</li>
 </ol>
 </div>`,
         source: 'FAO Globefish Market Report · IOTC 조업 동향 (2024)',
@@ -146,7 +146,7 @@ export function InsightIOCollapse() {
 export function InsightEU18C() {
   return (
     <WidgetCard
-      title="EU -18℃ 규제 무기화 — €200M 가격 갭"
+      title="EU -18℃ 규제 무기화 - €200M 가격 갭"
       icon={Shield}
       iconColor="#8b5cf6"
       pillar="S5"
@@ -180,7 +180,7 @@ export function InsightEU18C() {
 <li>피해자: 동남아·아프리카 중소형 선단 (설비 투자 부담으로 냉동 시설 개조 어려움)</li>
 </ul>
 <p>의미: 한 줄로 EU 시장의 40%를 자국 선단에 사실상 배정한 보호주의 조치. 향후 3~5년 EU 참치 로인 가격이 톤당 <strong>€300~500 추가 프리미엄</strong> 발생. 규정 충족 선단은 사실상 EU 시장 독점 지위.</p>
-<p>한국 영향: 한국 선단은 대부분 -18℃ 설비 보유 또는 개조 가능. EU 시장의 4%p 점유율 추가 확보 기회 — 동남아 경쟁사가 빠지는 자리.</p>
+<p>한국 영향: 한국 선단은 대부분 -18℃ 설비 보유 또는 개조 가능. EU 시장의 4%p 점유율 추가 확보 기회 - 동남아 경쟁사가 빠지는 자리.</p>
 </div>`,
         actionPlan: `<div>
 <p><strong>재정의</strong>: EU -18℃ 규제는 위생이 아닌 <strong>"보호주의적 규제 쐐기"</strong>. 규정 충족 공급사에게 향후 3~5년 €300~500/톤 구조적 프리미엄을 보장하는 정부 보조금 성격. 이 쐐기에 의식적으로 베팅해야 한다.</p>

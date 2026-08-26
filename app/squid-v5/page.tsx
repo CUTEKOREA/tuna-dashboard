@@ -62,7 +62,7 @@ function DataPeek({ data }: { data: any }) {
               <tr key={i}>
                 {cols.map((c) => {
                   const v = r?.[c];
-                  const text = v === null || v === undefined ? '—'
+                  const text = v === null || v === undefined ? '-'
                     : typeof v === 'object' ? JSON.stringify(v)
                       : String(v);
                   return (

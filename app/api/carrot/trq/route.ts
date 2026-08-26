@@ -17,10 +17,10 @@ export async function GET() {
 
     if (exhaustionRate_percent >= 95) {
       alertLevel = "CRITICAL";
-      alertMessage = "TRQ 쿼터 소진 임박 — 베트남(VKFTA 0%) 전환 검토 필요.";
+      alertMessage = "TRQ 쿼터 소진 임박 - 베트남(VKFTA 0%) 전환 검토 필요.";
     } else if (exhaustionRate_percent >= 80) {
       alertLevel = "WARNING";
-      alertMessage = `TRQ 소진율 ${exhaustionRate_percent}% — 30% 쿼터 외 관세 적용 위험.`;
+      alertMessage = `TRQ 소진율 ${exhaustionRate_percent}% - 30% 쿼터 외 관세 적용 위험.`;
     }
 
     const response = {

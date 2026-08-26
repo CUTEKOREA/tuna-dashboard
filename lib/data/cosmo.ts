@@ -128,15 +128,15 @@ export const latestMonth = monthly[monthly.length - 1]
 
 export const n = (v: number | null | undefined) => (v == null || Number.isNaN(v) ? 0 : v)
 export const usd = (v: number | null | undefined, d = 0) =>
-  v == null ? '—' : '$' + v.toLocaleString('en-US', { minimumFractionDigits: d, maximumFractionDigits: d })
+  v == null ? '-' : '$' + v.toLocaleString('en-US', { minimumFractionDigits: d, maximumFractionDigits: d })
 export const musd = (v: number | null | undefined, d = 2) =>
-  v == null ? '—' : '$' + (v / 1e6).toLocaleString('en-US', { minimumFractionDigits: d, maximumFractionDigits: d }) + 'M'
+  v == null ? '-' : '$' + (v / 1e6).toLocaleString('en-US', { minimumFractionDigits: d, maximumFractionDigits: d }) + 'M'
 export const num = (v: number | null | undefined, d = 0) =>
-  v == null ? '—' : v.toLocaleString('en-US', { minimumFractionDigits: d, maximumFractionDigits: d })
+  v == null ? '-' : v.toLocaleString('en-US', { minimumFractionDigits: d, maximumFractionDigits: d })
 export const pct = (v: number | null | undefined, d = 1) =>
-  v == null ? '—' : (v * 100).toFixed(d) + '%'
+  v == null ? '-' : (v * 100).toFixed(d) + '%'
 export const eok = (v: number | null | undefined, d = 1) =>
-  v == null ? '—' : (v / 1e8).toFixed(d) + '억'
+  v == null ? '-' : (v / 1e8).toFixed(d) + '억'
 
 /** 4주 이동평균 — 주간 판매액처럼 선적 타이밍에 크게 흔들리는 계열용 */
 export function movingAvg(values: (number | null)[], window = 4) {
@@ -581,7 +581,7 @@ export const signals: Signal[] = (() => {
   out.push({
     key: 'supply', label: '공급 잔여 (원어·자재 중 단축)',
     level: binding == null ? 'warn' : binding < 1 ? 'bad' : binding < 3 ? 'warn' : 'ok',
-    value: binding == null ? '—'
+    value: binding == null ? '-'
       : binding === matWeeks ? `${matWeeks.toFixed(1)}주` : `${cover!.toFixed(0)}일`,
     note: matWeeks != null && shortName
       ? `최단 ${shortName} ${matWeeks.toFixed(1)}주 · 원어 ${cover?.toFixed(0)}일 · 4주 미만 자재 ${materialBurn.under4}종`

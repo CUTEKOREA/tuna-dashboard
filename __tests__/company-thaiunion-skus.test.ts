@@ -70,7 +70,7 @@ describe('출처 등급을 섞지 않는다', () => {
 });
 
 describe('없는 값을 만들지 않는다', () => {
-  it('빈 칸은 「—」로 남는다', () => {
+  it('빈 칸은 「-」로 남는다', () => {
     // 채워진 비율이 100%가 되면 어딘가에서 값을 지어낸 것이다.
     expect(fillRate('어종')).toBeLessThan(100);
     expect(fillRate('규격')).toBeLessThan(100);
@@ -96,7 +96,7 @@ describe('없는 값을 만들지 않는다', () => {
 });
 
 describe('어종', () => {
-  it('참치가 절반을 넘지 않는다 — 브랜드를 사 모은 결과다', () => {
+  it('참치가 절반을 넘지 않는다 - 브랜드를 사 모은 결과다', () => {
     expect(tunaSkus()).toBeGreaterThan(150);
     expect(tunaSkus() / skuTotal()).toBeLessThan(0.5);
   });
@@ -110,7 +110,7 @@ describe('어종', () => {
 
   it('구성 합이 어종이 적힌 SKU 수 이상이다', () => {
     // 한 SKU 가 어종을 둘 달면 양쪽에 센다. 그래서 같지 않고 크거나 같다.
-    const 있음 = tuSkus.filter((s) => s.어종 !== '—').length;
+    const 있음 = tuSkus.filter((s) => s.어종 !== '-').length;
     const 합 = speciesMix().reduce((a, r) => a + r.수, 0);
     expect(합).toBeGreaterThanOrEqual(있음);
     expect(합 - 있음).toBeLessThan(5);
@@ -127,7 +127,7 @@ describe('소매가', () => {
   it('모든 행에 소매처와 기준일이 붙어 있다', () => {
     for (const p of tuPrices) {
       expect(p.소매처.trim(), p.제품명).not.toBe('');
-      expect(p.기준일, p.제품명).toMatch(/\d{4}-\d{2}-\d{2}|—/);
+      expect(p.기준일, p.제품명).toMatch(/\d{4}-\d{2}-\d{2}|-/);
     }
   });
 

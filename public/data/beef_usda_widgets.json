@@ -29,7 +29,7 @@
     {
       "id": "w_china_trq_2026",
       "title": "중국 Beef TRQ 2026 국가별",
-      "subtitle": "USDA GAIN CH2026-0001 — 총 268.8만 MT",
+      "subtitle": "USDA GAIN CH2026-0001 - 총 268.8만 MT",
       "cardDesc": "중국 세이프가드 결과 2026년 적용 국가별 TRQ. 브라질 41% 압도, 미국 6% 164K MT.",
       "chartType": "Bar",
       "pillar": "S1",
@@ -56,7 +56,7 @@
     {
       "id": "w_us_korea_beef_timeline",
       "title": "미국→한국 Beef 월별 수입",
-      "subtitle": "USDA FAS ESR 1701 — 한국 세계 1위",
+      "subtitle": "USDA FAS ESR 1701 - 한국 세계 1위",
       "cardDesc": "USDA FAS 주간 Export Sales Reporting 월 집계. 한국이 3년 누적 715,878톤으로 일본 추월.",
       "chartType": "Composed",
       "pillar": "S4",
@@ -96,7 +96,7 @@
     {
       "id": "w_us_beef_top5_importers",
       "title": "미국 Beef 상위 수입국 3년",
-      "subtitle": "USDA FAS ESR 1701 — 한국 세계 1위",
+      "subtitle": "USDA FAS ESR 1701 - 한국 세계 1위",
       "cardDesc": "USDA FAS ESR 주간 데이터 3년 누적 (2023-01 ~ 2026-05). 한국 716K톤으로 일본 추월.",
       "chartType": "Bar",
       "pillar": "S4",
@@ -123,7 +123,7 @@
     {
       "id": "w_us_china_registration",
       "title": "미국 Beef 중국 등록 갱신",
-      "subtitle": "USDA GAIN CH2025-0056 — 59% 만료",
+      "subtitle": "USDA GAIN CH2025-0056 - 59% 만료",
       "cardDesc": "미국 대중국 수출 등록 시설 654개 중 386개 만료. 2024 수출 $16억 위협.",
       "chartType": "Bar",
       "pillar": "S3",
@@ -139,7 +139,7 @@
         { "status": "유제품 갱신", "facilities": 14 }
       ],
       "unit": "시설 수",
-      "sit": "중국 GACC가 미국 Beef 등록 654개 中 386개(59%)를 5년 갱신 보류, '기한 만료'로 처리. 2024 미국→중국 Beef $16억 수출 위협. 반면 Pork 365·가금육 210·유제품 14개는 정상 갱신 — Beef만 표적.",
+      "sit": "중국 GACC가 미국 Beef 등록 654개 中 386개(59%)를 5년 갱신 보류, '기한 만료'로 처리. 2024 미국→중국 Beef $16억 수출 위협. 반면 Pork 365·가금육 210·유제품 14개는 정상 갱신 - Beef만 표적.",
       "strat": "중국 정치적 표적 = 미국 Beef. 한국·일본 시장 진출 강화 신호. 신라교역은 미국 Beef 중국 우회 거래 차단 + 한국 수입선 안정 확보. 호주·뉴질랜드 대체 공급선 비교 분석.",
       "source": "USDA GAIN CH2025-0056 (2025.3.18)",
       "telemetry": "SYNCED",
@@ -148,7 +148,7 @@
     {
       "id": "w_us_china_meat_2024",
       "title": "미국→중국 농축산 2024",
-      "subtitle": "USDA GAIN — Beef·Pork·유제품·가금육",
+      "subtitle": "USDA GAIN - Beef·Pork·유제품·가금육",
       "cardDesc": "2024년 미국 대중국 농축산 수출 총 $38억. Beef 1위 $16억, Pork $11억.",
       "chartType": "Bar",
       "pillar": "S4",

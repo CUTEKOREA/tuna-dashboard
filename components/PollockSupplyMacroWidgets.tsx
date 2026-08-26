@@ -86,7 +86,7 @@ export const WidgetOriginWashAlert = () => (
       </ScatterChart>
     }
     takeaway={{
-      source: '자체추정 — 한국 관세청 원산지 단속 사례 기반 업계추정 리스크 지수',
+      source: '자체추정 - 한국 관세청 원산지 단속 사례 기반 업계추정 리스크 지수',
       situation: `<div>
 <p>"더블프로즌(Double-frozen)"이란 원물을 1차 냉동 → 운송 → 가공 → 재냉동하는 가공 방식. 명태 산업에서 표준이었으나 현재 규제 압박 임계점.</p>
 <p>전통 루트: 러시아산 명태 원물 → 중국 다롄 가공 → 더블프로즌 한국 수입. 한국 식품가 한 단가의 60%가 이 루트.</p>
@@ -155,7 +155,7 @@ export const WidgetBunkerArbitrage = () => (
 <ol style="margin: 4px 0 0 18px; padding: 0;">
 <li style="margin-bottom: 8px;"><strong>FOB 조건 인수 + 운임 전가 파생 계약</strong>: 한국 측 cost를 FOB 인수가만 고정. 유류비·운임은 100% 현지 파트너 부담.</li>
 <li style="margin-bottom: 8px;"><strong>JV contract amendment 즉시</strong>: 기존 5:5 → "FOB 7:3 + 간접비 0:10" 구조로 재협상. 거부 시 JV 청산 + 직매입 전환.</li>
-<li><strong>"FX·운임·MGO Triple hedge derivative" 패키지</strong>: JP Morgan Commodity Desk와 OTC swap 결합 — 환율·운임·유류비 3개 변수 동시 hedge. 합작선사 운영 변동성 ±10% 박스 락업.</li>
+<li><strong>"FX·운임·MGO Triple hedge derivative" 패키지</strong>: JP Morgan Commodity Desk와 OTC swap 결합 - 환율·운임·유류비 3개 변수 동시 hedge. 합작선사 운영 변동성 ±10% 박스 락업.</li>
 </ol>
 </div>`,
     }}
@@ -295,7 +295,7 @@ export const WidgetIUUShadowIndex = () => (
       </ComposedChart>
     }
     takeaway={{
-      source: '업계추정 — MRAG·FAO IUU 보고서 기반 재구성 (2023~2025 추정치)',
+      source: '업계추정 - MRAG·FAO IUU 보고서 기반 재구성 (2023~2025 추정치)',
       situation: `<div>
 <p>"섀도우 플릿(Shadow Fleet)"이란 공식 등록·규제망을 우회하는 불법 어선. TAC 축소 시점에 역으로 IUU(불법·비보고·비규제) 물량이 암시장에 쏟아지는 역설적 현상.</p>
 <p>2025~2026 업계추정: 베링해·러시아 TAC 축소 압박 하에 <strong>섀도우 플릿 IUU 덤핑 물량 증가 추세</strong> (정확한 규모는 추정치). 블랙마켓 가격은 정상가 대비 대폭 할인 수준으로 알려져 있으며, 일부 한국 mid-tier 업체의 유혹 가능성 상존.</p>
@@ -395,7 +395,7 @@ export const WidgetCBPDetentionRisk = () => (
       </ComposedChart>
     }
     takeaway={{
-      source: '자체추정 — 미국 CBP/UFLPA 공개 단속 통계 기반 업계추정 (2024~2025)',
+      source: '자체추정 - 미국 CBP/UFLPA 공개 단속 통계 기반 업계추정 (2024~2025)',
       situation: `<div>
 <p>"통관 억류 리스크"란 미국 항구에서 우리 화물이 압류되거나 영구 차단되는 확률. 미국 시장 진입의 가장 큰 hidden cost.</p>
 <p>현재: <strong>미국 관세국경보호청(CBP)의 대러제재 + 강제노동방지법(UFLPA) 실사 강화로 중국/러시아 발 화물 단속 강도 급상승</strong> (업계추정 고리스크 구간). 한 번 압류되면 거래선 제외 가능성 12~36개월.</p>
@@ -407,7 +407,7 @@ export const WidgetCBPDetentionRisk = () => (
 <ol style="margin: 4px 0 0 18px; padding: 0;">
 <li style="margin-bottom: 8px;"><strong>다롄 발 가공품 입항 비중 30% 이하 축소</strong>: 즉시 발주 중단 + 베트남 하이퐁/인도네시아로 100% rerouting.</li>
 <li style="margin-bottom: 8px;"><strong>"CBP-compliant supply chain" 인증 자체 발행</strong>: 우리 가공·물류의 모든 단계를 블록체인 이력 추적. CBP audit 100% 통과 인증.</li>
-<li><strong>"Compliance-as-a-Service"</strong>: 우리 CBP-compliant 시스템을 mid-tier 수산사에 SaaS 라이센싱 — 연 $300~700K/고객.</li>
+<li><strong>"Compliance-as-a-Service"</strong>: 우리 CBP-compliant 시스템을 mid-tier 수산사에 SaaS 라이센싱 - 연 $300~700K/고객.</li>
 </ol>
 </div>`,
     }}
@@ -443,7 +443,7 @@ export const WidgetEEZConflict = () => (
       </AreaChart>
     }
     takeaway={{
-      source: '자체추정 — ITLOS 판례 및 공개 어선 나포 사례 기반 업계추정 (확인 통계 부재)',
+      source: '자체추정 - ITLOS 판례 및 공개 어선 나포 사례 기반 업계추정 (확인 통계 부재)',
       situation: `<div>
 <p>"EEZ(Exclusive Economic Zone, 배타적경제수역)"란 연안국이 200해리까지 어업·자원 권리를 가진 해역. 평소 외교적으로 조정되지만 지정학 긴장 시 군사 도발화.</p>
 <p>현재: <strong>환동해(한·일·러) EEZ 경계 통제가 군사 도발 수준으로 격상</strong>. 한·일, 한·러, 일·러 간 어선 나포/억류 빈도 증가 추세. 2024년 이후 러시아 EEZ 내 한국 어선 나포 건수 업계추정 증가 (확인된 공식 통계 부재).</p>

@@ -122,10 +122,10 @@ export async function GET() {
       isLive = true;
       source = `KOSIS API (DT_1EO211 한육우 사육두수 LIVE, ${live.length} years, 수입/소비/자급률은 fallback)`;
     } else {
-      source = 'KOSIS 응답 schema 불일치 — 정적 미러';
+      source = 'KOSIS 응답 schema 불일치 - 정적 미러';
     }
   } else {
-    source = 'KOSIS_API_KEY 미설정 — 정적 미러';
+    source = 'KOSIS_API_KEY 미설정 - 정적 미러';
   }
 
   return NextResponse.json({

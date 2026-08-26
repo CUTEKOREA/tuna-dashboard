@@ -47,7 +47,7 @@ export function IotcTropicalTunaStockStatus() {
       icon={Activity}
       iconColor="#22d3ee"
       pillar="S1"
-      cardDesc="IOTC 과학위원회 SC28(2025.12) 자원평가 — 4종별 산란자원비(SB/SBMSY)와 어획강도비(F/FMSY). 기준선 1.0: 자원비는 위, 어획비는 아래일수록 건전."
+      cardDesc="IOTC 과학위원회 SC28(2025.12) 자원평가 - 4종별 산란자원비(SB/SBMSY)와 어획강도비(F/FMSY). 기준선 1.0: 자원비는 위, 어획비는 아래일수록 건전."
       termTooltip={{ term: 'SB/SBMSY · F/FMSY', description: 'SB/SBMSY=현재 산란자원량÷최대지속생산 자원량(≥1 건전). F/FMSY=현재 어획강도÷MSY 어획강도(≤1 남획 아님). IOTC Kobe 판정 2축.' }}
       telemetry={{ status: 'STATIC', syncDate: 'IOTC SC28 (2025-12)' }}
       kpiPanel={[
@@ -76,7 +76,7 @@ export function IotcTropicalTunaStockStatus() {
       takeaway={{
         situation: `<div>
 <p>IOTC 과학위원회가 2025년 12월 확정한 최신 자원평가에서 인도양 <strong>열대참치 4종 모두 남획 상태가 아님(F/FMSY ≤ 1)</strong>으로 판정됐습니다. 다만 종별 여유도는 크게 갈립니다.</p>
-<p>캔 원료인 <strong>가다랑어는 가장 건전</strong>합니다 — 산란자원비 2.30배, 어획강도비 0.49배로 자원·어획 양면 모두 여유. 2024년 어획량 62.5만톤으로 4종 중 최대.</p>
+<p>캔 원료인 <strong>가다랑어는 가장 건전</strong>합니다 - 산란자원비 2.30배, 어획강도비 0.49배로 자원·어획 양면 모두 여유. 2024년 어획량 62.5만톤으로 4종 중 최대.</p>
 <p>반면 사시미 원료인 <strong>눈다랑어는 어획강도비 0.94배, 산란자원비 0.98배로 남획 임계에 가장 근접</strong>했습니다. 날개다랑어도 어획강도비 0.97배로 여유가 얇습니다. 두 종은 F가 조금만 더 오르면 남획 구간에 진입합니다.</p>
 </div>`,
         actionPlan: `<div>
@@ -145,7 +145,7 @@ export function AldfgGhostGearReadiness() {
       icon={Waves}
       iconColor="#2dd4bf"
       pillar="S5"
-      cardDesc="ISSF 2025-07 유실어구(ALDFG) 관리계획 지침 — 참치 선망의 부유물집어장치(FAD)와 MSC 인증 요건에 직결되는 대응계획(POA) 구조. 정성 프레임워크(정량 지표 없음)."
+      cardDesc="ISSF 2025-07 유실어구(ALDFG) 관리계획 지침 - 참치 선망의 부유물집어장치(FAD)와 MSC 인증 요건에 직결되는 대응계획(POA) 구조. 정성 프레임워크(정량 지표 없음)."
       termTooltip={{ term: 'ALDFG · FAD · POA', description: 'ALDFG=유기·유실·폐기 어구(Abandoned, Lost and Discarded Fishing Gear). FAD=부유물집어장치. POA=대응계획(Plan of Action). 지침 근거: ISSF 2025-07.' }}
       telemetry={{ status: 'STATIC', syncDate: 'ISSF 2025-07' }}
       customBody={<AldfgBody />}

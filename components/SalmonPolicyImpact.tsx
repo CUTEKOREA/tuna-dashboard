@@ -101,12 +101,12 @@ export default function SalmonPolicyImpact() {
       icon={Building2}
       iconColor="#f59e0b"
       pillar="S3"
-      cardDesc="FTA·SIMP·제재 정책 변화 4종 시나리오별 착지원가·물량·소매가 임팩트 (자체 추정 what-if 시나리오, illustrative — 노출된 산출 모델 없음)"
+      cardDesc="FTA·SIMP·제재 정책 변화 4종 시나리오별 착지원가·물량·소매가 임팩트 (자체 추정 what-if 시나리오, illustrative - 노출된 산출 모델 없음)"
       telemetry={{ status: 'STATIC', syncDate: '2026-05-21' }}
       customBody={body}
       takeaway={{
         situation: `<div>
-<p>"정책 충격 시나리오 시뮬레이션" — 글로벌 정책 이벤트가 한국 연어 시장에 미칠 방향성을 가늠하는 <strong>자체 추정 what-if 시나리오(illustrative)</strong>입니다. 아래 임팩트 수치는 노출된 계량 모델 산출값이 아닌 시나리오 가정치이므로 의사결정 보조 참고용입니다.</p>
+<p>"정책 충격 시나리오 시뮬레이션" - 글로벌 정책 이벤트가 한국 연어 시장에 미칠 방향성을 가늠하는 <strong>자체 추정 what-if 시나리오(illustrative)</strong>입니다. 아래 임팩트 수치는 노출된 계량 모델 산출값이 아닌 시나리오 가정치이므로 의사결정 보조 참고용입니다.</p>
 <p>선택 시나리오 <strong>"${scenario.title}"</strong> 기준:</p>
 <ul style="margin: 4px 0 0 18px; padding: 0;">
 <li>착지원가 <strong>${scenario.impacts.landedCost.pct > 0 ? '+' : ''}${scenario.impacts.landedCost.pct}%</strong></li>

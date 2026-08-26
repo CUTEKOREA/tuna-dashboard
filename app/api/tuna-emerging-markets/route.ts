@@ -95,7 +95,7 @@ export async function POST(request: NextRequest) {
         timestamp: new Date().toISOString(),
         total_markets_tracked: 11,
         total_opportunity_usd_m: EMERGING_MARKETS.composite_score.total_opportunity_usd_m,
-        data_status: 'SYNCED 정기 갱신 스냅샷 — 11개국 opportunity_usd_m은 국정연 보고서 추정치. 실시간 단가는 country_code 파라미터로 Comtrade enrichment 시도',
+        data_status: 'SYNCED 정기 갱신 스냅샷 - 11개국 opportunity_usd_m은 국정연 보고서 추정치. 실시간 단가는 country_code 파라미터로 Comtrade enrichment 시도',
         last_sync: '2026-05-20',
       },
       ...EMERGING_MARKETS,
@@ -108,7 +108,7 @@ export async function POST(request: NextRequest) {
 export async function GET() {
   return NextResponse.json({
     status: 'active',
-    description: '참치 신흥시장 기회 인텔리전스 — 아프리카/중동/ASEAN',
+    description: '참치 신흥시장 기회 인텔리전스 - 아프리카/중동/ASEAN',
     total_opportunity_usd_m: EMERGING_MARKETS.composite_score.total_opportunity_usd_m,
     markets_tracked: 11,
     top_market: '나이지리아 ($597M 잠재시장)',

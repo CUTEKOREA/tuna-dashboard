@@ -175,11 +175,11 @@ const KPI_THEMES = [
 ];
 
 const SECTIONS = [
-  { id: "S1", num: "❶", label: "원료 수급", title: "🐟 Part I — 원료 수급 (Raw Material)", desc: "기후(ENSO) 상관 분석, IOTC/WCPFC 어획량, 수역별 할당량 및 조업 효율 분석", color: "#38bdf8" },
-  { id: "S2", num: "❷", label: "가공·생산", title: "🏭 Part II — 가공·생산 (Processing & Production)", desc: "참치 부산물(자숙액) 업사이클링 마진, 수율 및 인건비, 펫케어 가공 라인 분석", color: "#3b82f6" },
-  { id: "S3", num: "❸", label: "물류·통관", title: "🚢 Part III — 물류·통관 (Logistics & Customs)", desc: "글로벌 무역 흐름, 착지원가 시뮬레이션, 관세 최적화 및 해상운임 분석", color: "#38bdf8" },
-  { id: "S4", num: "❹", label: "판매·수요", title: "📈 Part IV — 판매·수요 (Sales & Demand)", desc: "브랜드별 점유율 역전 마진 분석, 간장 대체 카니발리제이션 속도, 소비 동향 분석", color: "#3b82f6" },
-  { id: "S5", num: "❺", label: "ESG·지속가능성", title: "🌱 Part V — ESG·지속가능성 (ESG & Sustainability)", desc: "규제 장벽 대응, MSC 인증 프리미엄, 글로벌 최저한세 리스크, 육상양식 도입 분석", color: "#38bdf8" },
+  { id: "S1", num: "❶", label: "원료 수급", title: "🐟 Part I - 원료 수급 (Raw Material)", desc: "기후(ENSO) 상관 분석, IOTC/WCPFC 어획량, 수역별 할당량 및 조업 효율 분석", color: "#38bdf8" },
+  { id: "S2", num: "❷", label: "가공·생산", title: "🏭 Part II - 가공·생산 (Processing & Production)", desc: "참치 부산물(자숙액) 업사이클링 마진, 수율 및 인건비, 펫케어 가공 라인 분석", color: "#3b82f6" },
+  { id: "S3", num: "❸", label: "물류·통관", title: "🚢 Part III - 물류·통관 (Logistics & Customs)", desc: "글로벌 무역 흐름, 착지원가 시뮬레이션, 관세 최적화 및 해상운임 분석", color: "#38bdf8" },
+  { id: "S4", num: "❹", label: "판매·수요", title: "📈 Part IV - 판매·수요 (Sales & Demand)", desc: "브랜드별 점유율 역전 마진 분석, 간장 대체 카니발리제이션 속도, 소비 동향 분석", color: "#3b82f6" },
+  { id: "S5", num: "❺", label: "ESG·지속가능성", title: "🌱 Part V - ESG·지속가능성 (ESG & Sustainability)", desc: "규제 장벽 대응, MSC 인증 프리미엄, 글로벌 최저한세 리스크, 육상양식 도입 분석", color: "#38bdf8" },
 ];
 
 const WIDGET_ICONS: Record<string, any> = {
@@ -522,7 +522,7 @@ const TunaDashboard = React.memo(function TunaDashboard() {
               <h1 style={{ margin: 0, fontSize: '1.5rem', fontWeight: 700, letterSpacing: '-0.5px', color: 'var(--text-primary)' }}>
                 참치 (Tuna) 글로벌 인텔리전스
               </h1>
-              <p style={{ margin: 0, fontSize: '0.88rem', color: 'var(--text-secondary)' }}>참치 전략 커맨드 센터 — 데이터 위젯 {widgets?.length || 0}개 + 전용 인사이트 위젯 · KPI {kpiKeys.length || 0}개</p>
+              <p style={{ margin: 0, fontSize: '0.88rem', color: 'var(--text-secondary)' }}>참치 전략 커맨드 센터 - 데이터 위젯 {widgets?.length || 0}개 + 전용 인사이트 위젯 · KPI {kpiKeys.length || 0}개</p>
             </div>
           </div>
           <div className="ds-card" style={{fontSize: '0.88rem', padding: '8px 16px', 
@@ -612,7 +612,7 @@ const TunaDashboard = React.memo(function TunaDashboard() {
           marginBottom: '6px',
         }}>
           <span style={{ fontSize: '0.7rem', color: 'rgba(var(--w-slate-400-rgb), 0.7)', fontWeight: 600, letterSpacing: '0.08em', textTransform: 'uppercase' }}>
-            밸류체인 네비게이터 — 아래 단계를 클릭하여 탐색하세요
+            밸류체인 네비게이터 - 아래 단계를 클릭하여 탐색하세요
           </span>
         </div>
         <div data-mobile-stack style={{ display: 'grid', gridTemplateColumns: 'repeat(5, 1fr)', gap: '4px' }}>
@@ -721,7 +721,7 @@ const TunaDashboard = React.memo(function TunaDashboard() {
             <div style={{ marginBottom: '2rem', paddingBottom: '2rem', borderBottom: '1px dashed rgba(255,255,255,0.1)' }}>
               <div style={{ marginBottom: '1rem', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
                 <span style={{ fontSize: '0.8rem', fontWeight: 700, color: '#22d3ee', background: 'rgba(34,211,238,0.1)', padding: '3px 10px', borderRadius: '6px' }}>FFA/SPC</span>
-                <span style={{ fontSize: '0.78rem', color: 'var(--w-slate-400)' }}>공식 수급 인텔리전스 — 2024 WCPFC 통계 기반</span>
+                <span style={{ fontSize: '0.78rem', color: 'var(--w-slate-400)' }}>공식 수급 인텔리전스 - 2024 WCPFC 통계 기반</span>
               </div>
               <div data-mobile-stack style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '1.5rem' }}>
                 <FfaWcpoSupplyDashboard />
@@ -857,7 +857,7 @@ const TunaDashboard = React.memo(function TunaDashboard() {
               <div style={{ marginBottom: '1.5rem', display: 'flex', alignItems: 'center', gap: '0.8rem' }}>
                 <div style={{ width: '4px', height: '28px', background: 'var(--w-blue-500)', borderRadius: '2px' }} />
                 <div>
-                  <h2 style={{ margin: 0, fontSize: '1.15rem', fontWeight: 700, color: 'var(--text-primary)' }}>🐾 파생 사업 — 프리미엄 펫케어 시장</h2>
+                  <h2 style={{ margin: 0, fontSize: '1.15rem', fontWeight: 700, color: 'var(--text-primary)' }}>🐾 파생 사업 - 프리미엄 펫케어 시장</h2>
                   <p style={{ margin: 0, fontSize: '0.75rem', color: 'var(--text-secondary)' }}>참치 부산물 기반 고부가가치 펫푸드 시장 진입 전략 및 유통망 구조 분석</p>
                 </div>
               </div>

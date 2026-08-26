@@ -8,7 +8,7 @@ const countries = [
     flag: '🇺🇸', name: '미국', role: '사시미 소비(수입)',
     trade2024: '수입 $829M', rawMaterial: '80-85% 수입',
     bluefin: '수입 $147M (MX/ES)', keyCompany: 'True World Foods',
-    japanDep: '—', keyRisk: 'CO 처리, 2025 관세',
+    japanDep: '-', keyRisk: 'CO 처리, 2025 관세',
     color: '#10b981',
   },
   {

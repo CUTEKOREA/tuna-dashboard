@@ -26,11 +26,11 @@ export default function SasUsCompetitorMap() {
       description="일본·대만계 장악 구조와 한국의 생물 사시미 공백"
       pillar="S4"
       telemetry={{ status: 'STATIC', syncDate: '2026-06-05' }}
-      cardDesc="미국 참치 수입·유통 주요 그룹 지배력 — TWF·FCF·동원 공개 2차 매체 종합(1차 교차검증 미실시)"
+      cardDesc="미국 참치 수입·유통 주요 그룹 지배력 - TWF·FCF·동원 공개 2차 매체 종합(1차 교차검증 미실시)"
       takeaway={{
         situation: "미국 사시미 유통은 일본·대만계가 장악합니다. True World Foods(일본계)는 글로벌 23개 물류센터(미국·캐나다·런던·마드리드 합산)·8,200개 레스토랑 배송망으로 생물 사시미 공급 1위이며 도쿄 도요스 최대 참치수출상이 원천입니다. FCF(대만)는 연매출 약 17억달러(2020 추정)로 Bumble Bee를 9.28억달러(2020)에 인수해 원물 조달부터 브랜드까지 수직계열화했습니다. 한국 동원은 StarKist로 미국 캔참치 47.5%(2022, 시장조사 2차 기준; 동원 IR 공식 약 46%)를 점유하지만 상온 캔 중심이라 생물·사시미 유통 채널은 사실상 공백입니다.",
-        actionPlan: "한국의 공백은 곧 진입 공간입니다. ① 캔(동원/StarKist)이 이미 확보한 미국 유통·B2B 신뢰를 레버리지해 -60℃ 사쿠/사시미급 콜드체인 유통으로 카테고리를 확장 — 캔 강자가 생물로 넘어가는 인접 확장입니다. ② True World가 쥔 8,200개 레스토랑 채널에 직접 경쟁하기보다, 포케·그로서리(코스트코 등) 리테일 사쿠 채널로 우회 진입해 일본계가 약한 소매 사쿠 세그먼트를 선점하십시오.",
-        source: "공개 2차 매체 종합(1차 교차검증 미실시) — True World Foods 공식·Wikipedia·SeafoodSource(글로벌 23센터·8,200레스토랑·TWF 연매출 5억달러+ 2020) / Undercurrent·Food Dive(FCF 연매출 약 17억달러 2020 추정·Bumble Bee 9.28억달러 2020) / 시장조사 2차(StarKist 47.5% 2022; 동원 IR 공식 약 46%)",
+        actionPlan: "한국의 공백은 곧 진입 공간입니다. ① 캔(동원/StarKist)이 이미 확보한 미국 유통·B2B 신뢰를 레버리지해 -60℃ 사쿠/사시미급 콜드체인 유통으로 카테고리를 확장 - 캔 강자가 생물로 넘어가는 인접 확장입니다. ② True World가 쥔 8,200개 레스토랑 채널에 직접 경쟁하기보다, 포케·그로서리(코스트코 등) 리테일 사쿠 채널로 우회 진입해 일본계가 약한 소매 사쿠 세그먼트를 선점하십시오.",
+        source: "공개 2차 매체 종합(1차 교차검증 미실시) - True World Foods 공식·Wikipedia·SeafoodSource(글로벌 23센터·8,200레스토랑·TWF 연매출 5억달러+ 2020) / Undercurrent·Food Dive(FCF 연매출 약 17억달러 2020 추정·Bumble Bee 9.28억달러 2020) / 시장조사 2차(StarKist 47.5% 2022; 동원 IR 공식 약 46%)",
       }}
       customBody={
         <div style={{ display: 'flex', flexDirection: 'column', gap: '10px', width: '100%' }}>

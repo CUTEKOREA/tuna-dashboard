@@ -410,7 +410,7 @@ export function EuroRetailMatrixWidget() {
       <div style={{ background: 'rgba(30,41,59,0.4)', padding: '14px', borderRadius: '12px', border: '1px solid rgba(51,65,85,0.3)', display: 'flex', gap: '12px', alignItems: 'flex-start', position: 'relative', zIndex: 2 }}>
         <span style={{ fontSize: '1.2rem' }}>💡</span>
         <div style={{ fontSize: '0.75rem', color: 'var(--w-slate-300)', lineHeight: 1.7, fontWeight: 500 }}>
-          독일·영국은 이미 <strong style={{ color: COLORS.accent.emerald }}>MSC 포화 시장</strong> — 인증 없이 매대 진입 불가. 이탈리아(+10.3%)·중앙유럽(+9.7%)은 고성장 구간으로 <strong style={{ color: COLORS.accent.blue }}>전략적 시장 진입 적기</strong>입니다.
+          독일·영국은 이미 <strong style={{ color: COLORS.accent.emerald }}>MSC 포화 시장</strong> - 인증 없이 매대 진입 불가. 이탈리아(+10.3%)·중앙유럽(+9.7%)은 고성장 구간으로 <strong style={{ color: COLORS.accent.blue }}>전략적 시장 진입 적기</strong>입니다.
         </div>
       </div>
     </div>

@@ -73,7 +73,7 @@ export function QualityTab() {
           span={4}
           title="표기 정정 요약"
           unit="(건)"
-          note={`원문 표기 오류를 유형별로 정정한 내역 — 총 ${num(correctionTotal)}건.`}
+          note={`원문 표기 오류를 유형별로 정정한 내역 - 총 ${num(correctionTotal)}건.`}
           src={SRC}
         >
           <Table head={['유형', '건수']}>
@@ -90,7 +90,7 @@ export function QualityTab() {
           span={8}
           title="중복 보고"
           unit={`${num(bangkokDupes.length)}건`}
-          note="같은 주차에 파일이 두 개인 경우 — 채택 파일 한 개만 시계열에 반영했다."
+          note="같은 주차에 파일이 두 개인 경우 - 채택 파일 한 개만 시계열에 반영했다."
           src={SRC}
         >
           <Table head={['보고일', '채택 파일', '제외 파일']}>
@@ -108,7 +108,7 @@ export function QualityTab() {
           span={6}
           title="시세 이상치 의심"
           unit="(달러/톤)"
-          note="이웃 주차 중앙값 대비 급변한 시세 — 정정하지 않고 의심 플래그만 남겼다."
+          note="이웃 주차 중앙값 대비 급변한 시세 - 정정하지 않고 의심 플래그만 남겼다."
           src={SRC}
         >
           <Table head={['보고일', '보고 시세', '이웃 중앙값']}>

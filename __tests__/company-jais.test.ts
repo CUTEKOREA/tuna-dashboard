@@ -23,7 +23,7 @@ import {
   revenuePeak,
 } from '@/lib/data/company-jais';
 
-describe('JAIS 규모 — 아무것도 소유하지 않는다', () => {
+describe('JAIS 규모 - 아무것도 소유하지 않는다', () => {
   it('공장·선박·자회사가 전부 0이다', () => {
     expect(ownedAssets()).toBe(0);
     expect(jaisStats.공장).toBe(0);
@@ -38,7 +38,7 @@ describe('JAIS 규모 — 아무것도 소유하지 않는다', () => {
   });
 });
 
-describe('JAIS 재무 — 매출은 튀는데 마진은 안 움직인다', () => {
+describe('JAIS 재무 - 매출은 튀는데 마진은 안 움직인다', () => {
   it('순마진이 손익/매출과 맞는다', () => {
     for (const r of jaisFinancials) {
       const calc = Math.round((r.순손익 / r.매출) * 10000) / 100;
@@ -73,7 +73,7 @@ describe('JAIS 재무 — 매출은 튀는데 마진은 안 움직인다', () =>
   });
 });
 
-describe('JAIS 명부 — 이 조사의 핵심 산출물', () => {
+describe('JAIS 명부 - 이 조사의 핵심 산출물', () => {
   it('등재행이 43에서 0으로 갔다', () => {
     expect(jaisFos[0].등재행).toBe(jaisStats.fos_최대);
     expect(jaisFos[jaisFos.length - 1].등재행).toBe(jaisStats.fos_현재);
@@ -99,7 +99,7 @@ describe('JAIS 명부 — 이 조사의 핵심 산출물', () => {
   });
 });
 
-describe('JAIS 정직성 문구 — 미끄러지면 안 되는 자리', () => {
+describe('JAIS 정직성 문구 - 미끄러지면 안 되는 자리', () => {
   it('등재행을 거래 실적으로 읽지 말라는 경고가 남아 있다', () => {
     expect(jaisMeta.측정경계).toContain('거래 실적이 아니다');
   });

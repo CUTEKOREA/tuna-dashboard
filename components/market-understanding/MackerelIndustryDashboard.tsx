@@ -121,7 +121,7 @@ export const MACKEREL_CHART_SLOTS: Record<string, ChartSlot[]> = {
   ],
   s04: [
     {
-      title: '공급 기업 — 누가 잡고 누가 파는가',
+      title: '공급 기업 - 누가 잡고 누가 파는가',
       caption: MACKEREL_RESEARCH.공급.요지,
       telemetry: { status: 'STATIC' as const, syncDate: '2026-08-17 조사' },
       span: 'full',
@@ -162,9 +162,9 @@ export const MACKEREL_CHART_SLOTS: Record<string, ChartSlot[]> = {
   ],
   x01: [
     {
-      title: '종별 보고량 추이 — 망치고등어가 사라진 자리 (톤)',
+      title: '종별 보고량 추이 - 망치고등어가 사라진 자리 (톤)',
       caption:
-        '01단계와 같은 자료를 종에 초점을 두고 다시 본다. 2016년 22,244톤이던 망치고등어가 이듬해 0이 되고 그대로 유지된다 — 부산 위판장에는 계속 올라오는데도 그렇다.',
+        '01단계와 같은 자료를 종에 초점을 두고 다시 본다. 2016년 22,244톤이던 망치고등어가 이듬해 0이 되고 그대로 유지된다 - 부산 위판장에는 계속 올라오는데도 그렇다.',
       telemetry: CATCH_SYNC,
       span: 'full',
       render: () => <MackerelCatchChart data={DATA} />,
@@ -176,7 +176,7 @@ const SPEC: CommoditySpec = {
   key: 'mackerel',
   title: '고등어',
   subtitle:
-    '고등어 산업 해부 · 어법이 축이 아닌 품목 — 크기 등급·원산지·수입 창구 5단계와 그것을 관통하는 종의 문제',
+    '고등어 산업 해부 · 어법이 축이 아닌 품목 - 크기 등급·원산지·수입 창구 5단계와 그것을 관통하는 종의 문제',
   accent: MACKEREL_ACCENT,
   primaryKpi: {
     label: '한국 고등어속 어획량',

@@ -130,7 +130,7 @@ function VolumeTip({
         fontFamily: 'var(--font-pretendard), var(--font-geist-sans), sans-serif',
       }}
     >
-      {typeof value === 'number' ? `${value.toLocaleString('ko-KR')} ${unit}` : '—'}
+      {typeof value === 'number' ? `${value.toLocaleString('ko-KR')} ${unit}` : '-'}
     </div>
   );
 }

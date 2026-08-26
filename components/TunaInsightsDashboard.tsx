@@ -136,7 +136,7 @@ export default function TunaInsightsDashboard() {
         icon={ArrowRightLeft}
         iconColor="#38bdf8"
         pillar="S4"
-        cardDesc="원어 매입가(태국)와 2차 가공 수출가(EU/미주) 사이의 마진 스플릿 추적 — 스프레드 락인 구간 발굴"
+        cardDesc="원어 매입가(태국)와 2차 가공 수출가(EU/미주) 사이의 마진 스플릿 추적 - 스프레드 락인 구간 발굴"
         telemetry={{ status: 'STATIC', syncDate: '참고용 (Reference Only)' }}
         termTooltip={{ term: '차익거래 마진', description: '원어 매입가와 2차 가공 수출가 사이의 마진 스플릿을 추적하여 가장 유리한 스프레드 구간을 발굴하는 차트입니다.' }}
         kpiPanel={[{ label: '현재 스프레드 ($/MT)', value: '$3,450', sub: '▲ 12.4% vs 2022' }]}
@@ -160,12 +160,12 @@ export default function TunaInsightsDashboard() {
 <p>이는 무엇을 뜻하나? 이제 참치 차익거래의 마진은 해운비 차이가 아니라, <strong>공장에서 만드는 부가가치 자체에 락인(고정)</strong>되어 있다는 신호입니다. 즉, 단순히 원물을 트럭째 사다 파는 트레이더는 마진을 못 가져가고, <strong>가공 공장만 마진을 가져갑니다</strong>.</p>
 </div>`,
           actionPlan: `<div>
-<p><strong>재정의</strong>: 참치 차익거래는 더 이상 "지역간 가격차 사업"이 아니다. <strong>"EU 무관세 인증서의 차익(Regulatory Spread)"</strong>이다. 에콰도르 0% 관세 vs 태국 24% 관세 — 이 <strong>24%가 곧 마진</strong>이며, 이 갭은 ICCAT/IOTC 쿼터 + EUDR 산림벌채 인증 + Dolphin-Safe 라벨이라는 <strong>3중 인증 락업</strong>으로 보호된다. 우리가 트레이드하는 것은 참치가 아니라 <strong>"인증된 단백질 commodity의 통관 권리"</strong>다.</p>
+<p><strong>재정의</strong>: 참치 차익거래는 더 이상 "지역간 가격차 사업"이 아니다. <strong>"EU 무관세 인증서의 차익(Regulatory Spread)"</strong>이다. 에콰도르 0% 관세 vs 태국 24% 관세 - 이 <strong>24%가 곧 마진</strong>이며, 이 갭은 ICCAT/IOTC 쿼터 + EUDR 산림벌채 인증 + Dolphin-Safe 라벨이라는 <strong>3중 인증 락업</strong>으로 보호된다. 우리가 트레이드하는 것은 참치가 아니라 <strong>"인증된 단백질 commodity의 통관 권리"</strong>다.</p>
 <p><strong>3단계 실행</strong>:</p>
 <ol style="margin: 4px 0 0 18px; padding: 0;">
-<li style="margin-bottom: 8px;"><strong>단기 (90일)</strong>: 원물 트레이딩 데스크 손익을 가공 톨링 데스크 손익과 <strong>분리 P&amp;L</strong>로 재구조화. 원물 데스크는 <em>수익 센터</em>에서 <em>조달 비용 센터</em>로 강등 — 자본 회수 KPI를 ROIC에서 <em>공급 안정도(인증 원어 확보율)</em>로 전환.</li>
+<li style="margin-bottom: 8px;"><strong>단기 (90일)</strong>: 원물 트레이딩 데스크 손익을 가공 톨링 데스크 손익과 <strong>분리 P&amp;L</strong>로 재구조화. 원물 데스크는 <em>수익 센터</em>에서 <em>조달 비용 센터</em>로 강등 - 자본 회수 KPI를 ROIC에서 <em>공급 안정도(인증 원어 확보율)</em>로 전환.</li>
 <li style="margin-bottom: 8px;"><strong>중기 (6~18개월)</strong>: 에콰도르 톨링 1순위 후보 2곳(Salica de Ecuador, Conservas Isabel)과 <strong>5년 Take-or-Pay 계약</strong> + 매입가를 SKIPJACK Bangkok benchmark에 인덱싱. 단순 계약이 아니라 <strong>"인증 라이센스 사용권"을 자산화</strong>하여 trade-finance 파이낸싱 구조에 SPV로 분리해 본사 BS off-balance 처리.</li>
-<li><strong>장기 (3~5년)</strong>: 참치를 <strong>ICE 또는 CME에 상장 가능한 referenceable commodity</strong>로 재포지셔닝. 현재 글로벌 참치는 OTC physical market뿐 — first-mover로 <strong>Atuna Index를 IFRS fair-value pricing benchmark로 격상</strong>시키면, 우리는 단순 가공사가 아닌 <strong>price-maker</strong>가 된다. JP Morgan Commodity Desk의 Coffee/Cocoa 모델 차용: 물리적 hedging 90%만 보유하고 paper market 10%로 가격을 컨트롤. 통조림 마진(3~5%) 대비 <strong>재무 마진(8~15%) 추가 레이어</strong>를 만드는 2-tier value-stack 전략이다.</li>
+<li><strong>장기 (3~5년)</strong>: 참치를 <strong>ICE 또는 CME에 상장 가능한 referenceable commodity</strong>로 재포지셔닝. 현재 글로벌 참치는 OTC physical market뿐 - first-mover로 <strong>Atuna Index를 IFRS fair-value pricing benchmark로 격상</strong>시키면, 우리는 단순 가공사가 아닌 <strong>price-maker</strong>가 된다. JP Morgan Commodity Desk의 Coffee/Cocoa 모델 차용: 물리적 hedging 90%만 보유하고 paper market 10%로 가격을 컨트롤. 통조림 마진(3~5%) 대비 <strong>재무 마진(8~15%) 추가 레이어</strong>를 만드는 2-tier value-stack 전략이다.</li>
 </ol>
 </div>`,
           source: '내부 매입가 vs 수출가 모델링 (2019-2023)',
@@ -207,7 +207,7 @@ export default function TunaInsightsDashboard() {
 <ol style="margin: 4px 0 0 18px; padding: 0;">
 <li style="margin-bottom: 8px;"><strong>단기 (90일~6개월)</strong>: "지정학 헷지 포트폴리오" 구축. 단일 허브 의존 금지. <strong>에콰도르 1차(EU 채널 60%) + 베트남 2차(미국 채널 30%) + 멕시코 3차(USMCA 채널 10%)</strong>로 분산. 각 거점이 서로 다른 통화(USD/VND/MXN)·관세 체계·기후 리스크에 노출되도록 설계하여 <strong>3-currency, 3-tariff, 3-climate hedge</strong>를 자연 형성. 본사 FX 데스크는 이 3축을 정량 모델링하여 분기 리밸런싱.</li>
 <li style="margin-bottom: 8px;"><strong>중기 (12~24개월)</strong>: 공장 자체를 자산화. 에콰도르 mid-tier 가공사(Salica de Ecuador, NIRSA) 중 1곳을 <strong>Carlyle/KKR South America Fund와 co-invest 인수</strong>. 인수가의 70%는 본사가, 30%는 PE가 부담하되, 5년 후 PE exit 시 IRR 18% 이상 보장 조건의 <strong>secondary buyback option</strong>을 본사가 보유. 이 구조는 본사 BS에 가공 공장이 <em>자산이 아닌 라이센스 사용권</em>으로 잡혀 ROIC 왜곡을 방지하면서, PE 자본을 활용해 단독 인수 대비 자본효율 2.3배 개선.</li>
-<li><strong>장기 (3~7년)</strong>: 차세대 허브 선점. 현재 부상 중인 <strong>코트디부아르(Castelli, SCODI)</strong>가 5~7년 후 에콰도르 위치를 대체할 가능성에 베팅. EU EBA(Everything But Arms) 무관세 + 서아프리카 nearshore 어장 + 프랑스어권 EU 마케팅 우위. 현재 코트디부아르 가공사 minority equity 5~10%를 헐값(EBITDA 4~5배)에 선매수하여 5년 후 가치 재평가 시 6~10배 multiple expansion 포착. 동시에 본사는 <strong>"hub-as-a-service" 모델</strong>로 진화 — 우리가 가공하는 것이 아니라, 우리가 보유한 인증 패키지로 다른 브랜드(월마트 PB, ALDI PB)를 위탁가공하는 platform business. Thai Union의 PetCare 부문이 grocery에서 platform으로 전환한 사례 차용.</li>
+<li><strong>장기 (3~7년)</strong>: 차세대 허브 선점. 현재 부상 중인 <strong>코트디부아르(Castelli, SCODI)</strong>가 5~7년 후 에콰도르 위치를 대체할 가능성에 베팅. EU EBA(Everything But Arms) 무관세 + 서아프리카 nearshore 어장 + 프랑스어권 EU 마케팅 우위. 현재 코트디부아르 가공사 minority equity 5~10%를 헐값(EBITDA 4~5배)에 선매수하여 5년 후 가치 재평가 시 6~10배 multiple expansion 포착. 동시에 본사는 <strong>"hub-as-a-service" 모델</strong>로 진화 - 우리가 가공하는 것이 아니라, 우리가 보유한 인증 패키지로 다른 브랜드(월마트 PB, ALDI PB)를 위탁가공하는 platform business. Thai Union의 PetCare 부문이 grocery에서 platform으로 전환한 사례 차용.</li>
 </ol>
 </div>`,
           source: 'EUMOFA 2024 · USTR Reciprocal Tariff 2025-07-31',
@@ -219,7 +219,7 @@ export default function TunaInsightsDashboard() {
         icon={Crosshair}
         iconColor="#38bdf8"
         pillar="S4"
-        cardDesc="1인당 GDP $3,000~5,000 진입 국가의 통조림 참치 수요 CAGR — 나이지리아·이집트·콜롬비아 등 신흥 4개국 진입 우선순위 평가"
+        cardDesc="1인당 GDP $3,000~5,000 진입 국가의 통조림 참치 수요 CAGR - 나이지리아·이집트·콜롬비아 등 신흥 4개국 진입 우선순위 평가"
         telemetry={{ status: 'STATIC', syncDate: '참고용 (Reference Only)' }}
         termTooltip={{ term: '신흥 블랙홀', description: 'CAGR이 15% 이상 급상승하는 국가를 수직 막대로 정렬하여, 통조림 소비가 폭발하는 차기 중진국 타겟 시장을 식별합니다.' }}
         kpiPanel={[{ label: '최대 신흥 시장', value: '나이지리아', sub: '+22.1% 연평균 성장' }]}
@@ -246,8 +246,8 @@ export default function TunaInsightsDashboard() {
 <p><strong>3단계 실행</strong>:</p>
 <ol style="margin: 4px 0 0 18px; padding: 0;">
 <li style="margin-bottom: 8px;"><strong>단기 (6~12개월)</strong>: 직접 수출 금지. <strong>"First-vendor minority stake"</strong> 전략. 현지 1차 통조림 벤더(나이지리아 Cosharis Food, 콜롬비아 Atunes Van Camps, 이집트 Edita Food) 중 EBITDA 5~7배 헐값에 거래되는 곳의 minority equity 5~10%를 인수. 그 회사 통조림 제조 라인의 OEM 공급권을 우리가 갖고, 매출 인식은 그 회사가 한다. 정치적 리스크는 <strong>World Bank IFC의 MIGA 정치보험 + US EXIM Bank trade finance</strong>로 50% 이전. 자본 노출 분당 IRR 28% 이상 보장.</li>
-<li style="margin-bottom: 8px;"><strong>중기 (12~36개월)</strong>: 코트디부아르 가공 hub와 연계. 코트디부아르 가공 파우치 통조림을 ECOWAS 무관세로 나이지리아·세네갈로 직수출. 이 경로는 기존 태국→유럽→나이지리아 우회 대비 <strong>운임 -60%, 관세 -100%, 리드타임 -45일</strong>. 동시에 "현지 가공·현지 판매(localization-as-arbitrage)" 모델로 ESG 보고서에 social impact 가산점 — Carlyle ESG Fund 자본 유치 추가 카드.</li>
-<li><strong>장기 (3~7년)</strong>: <strong>"ASP price-maker" 포지션 락인</strong>. 신흥국 통조림은 사실상 commodity여서 차별화 여지가 작지만, 파우치 패키징(retort pouch)은 다르다. 파우치는 캔 대비 ① 패키징 단가 -30% ② 운송비 -50% ③ 소비자 가격 -15%인데, 마진은 동일. 선제적으로 파우치 라인 capex(공장당 $8~15M)를 깔면 후발사들이 5년간 못 따라온다. 그 5년 동안 30~40% 시장 점유 락업. 추가로 GDP $3K-5K 트리거에 베팅하는 <strong>"Frontier Protein Index ETF"</strong>를 본사 자산운용 자회사가 출시 — 본업 P&amp;L 외 자산운용 수수료 수익으로 second income stream. JP Morgan Emerging Markets Frontier Fund의 reverse engineering.</li>
+<li style="margin-bottom: 8px;"><strong>중기 (12~36개월)</strong>: 코트디부아르 가공 hub와 연계. 코트디부아르 가공 파우치 통조림을 ECOWAS 무관세로 나이지리아·세네갈로 직수출. 이 경로는 기존 태국→유럽→나이지리아 우회 대비 <strong>운임 -60%, 관세 -100%, 리드타임 -45일</strong>. 동시에 "현지 가공·현지 판매(localization-as-arbitrage)" 모델로 ESG 보고서에 social impact 가산점 - Carlyle ESG Fund 자본 유치 추가 카드.</li>
+<li><strong>장기 (3~7년)</strong>: <strong>"ASP price-maker" 포지션 락인</strong>. 신흥국 통조림은 사실상 commodity여서 차별화 여지가 작지만, 파우치 패키징(retort pouch)은 다르다. 파우치는 캔 대비 ① 패키징 단가 -30% ② 운송비 -50% ③ 소비자 가격 -15%인데, 마진은 동일. 선제적으로 파우치 라인 capex(공장당 $8~15M)를 깔면 후발사들이 5년간 못 따라온다. 그 5년 동안 30~40% 시장 점유 락업. 추가로 GDP $3K-5K 트리거에 베팅하는 <strong>"Frontier Protein Index ETF"</strong>를 본사 자산운용 자회사가 출시 - 본업 P&amp;L 외 자산운용 수수료 수익으로 second income stream. JP Morgan Emerging Markets Frontier Fund의 reverse engineering.</li>
 </ol>
 </div>`,
           source: 'OEC·UN Comtrade 신흥국 통조림 수입 추세 (2019-2024)',
@@ -263,7 +263,7 @@ export default function TunaInsightsDashboard() {
         icon={Anchor}
         iconColor="#3b82f6"
         pillar="S1"
-        cardDesc="FAO FishStat Capture v25 — WCPO vs 대서양 어획량 30년 추세와 ENSO 충격 시점의 시소 패턴 추적"
+        cardDesc="FAO FishStat Capture v25 - WCPO vs 대서양 어획량 30년 추세와 ENSO 충격 시점의 시소 패턴 추적"
         telemetry={{ status: 'STATIC', syncDate: '참고용 (Reference Only)' }}
         termTooltip={{ term: '제로섬 헷지', description: '태평양과 대서양의 어획량을 면적 겹침(Stack)으로 나타내어, 엘니뇨 등 기상 이변 시 시소 게임처럼 서로 보완되는 헷징 효과를 증명합니다.' }}
         kpiPanel={[{ label: '대서양 보완 비율', value: '+42%', sub: '태평양 충격기 (자체추정)', trendColor: '#3b82f6' }]}
@@ -300,9 +300,9 @@ export default function TunaInsightsDashboard() {
 <p><strong>재정의</strong>: WCPO 단일 어장 의존은 <strong>"기후 베타(climate beta)"</strong>에 100% 노출된 단일 자산 포지션이다. 4대 어장 분산은 단순 risk hedge가 아니라 <strong>"기후 시계열에 대한 옵션 포트폴리오"</strong>로 재구조화해야 한다. 각 어장은 서로 다른 ENSO·IOD·AMO 사이클에 노출되어 있어, 4개를 적절히 보유하면 어획량의 sharpe ratio가 단일 어장 대비 2.1배 개선된다.</p>
 <p><strong>3단계 실행</strong>:</p>
 <ol style="margin: 4px 0 0 18px; padding: 0;">
-<li style="margin-bottom: 8px;"><strong>단기 (90일)</strong>: NOAA ENSO Index 0.5°C 돌파 시점에 자동으로 발동되는 <strong>"기후 헷지 발주 매뉴얼"</strong> 본사 통합 운영규정에 명문화. WCPO 선단 25~30%를 인도양 IOTC 라이센스 보유 거점(세이셸·모리셔스)으로 30일 내 재배치. 인도양 라이센스는 평시에 EUR 80~120/톤이나 ENSO 충격기에는 EUR 250+/톤으로 4배 폭등 — <strong>평시 long position을 미리 확보</strong>하여 라이센스 자체에서 spot trading 차익 발생.</li>
+<li style="margin-bottom: 8px;"><strong>단기 (90일)</strong>: NOAA ENSO Index 0.5°C 돌파 시점에 자동으로 발동되는 <strong>"기후 헷지 발주 매뉴얼"</strong> 본사 통합 운영규정에 명문화. WCPO 선단 25~30%를 인도양 IOTC 라이센스 보유 거점(세이셸·모리셔스)으로 30일 내 재배치. 인도양 라이센스는 평시에 EUR 80~120/톤이나 ENSO 충격기에는 EUR 250+/톤으로 4배 폭등 - <strong>평시 long position을 미리 확보</strong>하여 라이센스 자체에서 spot trading 차익 발생.</li>
 <li style="margin-bottom: 8px;"><strong>중기 (6~24개월)</strong>: <strong>4대 어장 quota portfolio fund</strong> 조성. WCPO·EPO·IO·AO 각각의 PNA·IATTC·IOTC·ICCAT 쿼터를 ICE Brent의 calendar spread 구조처럼 분기 forward로 매입. 어선이 아닌 쿼터 자체를 자산으로 보유하여, 어획이 없는 분기에는 쿼터를 spot 시장에 매각하는 dual-monetization. 이 구조는 어획 P&amp;L과 쿼터 P&amp;L을 분리해 본사 BS에서 quota는 intangible asset, 어획은 inventory로 분리 인식.</li>
-<li><strong>장기 (3~10년)</strong>: <strong>"Climate-resilient species transition"</strong>. 가다랑어(skipjack) 의존도 70%를 50%로 낮추고, 황다랑어(yellowfin) 30% + 백다랑어(albacore) 20%로 균형. 황다랑어는 더 깊은 수심에서도 어획 가능해 ENSO 내성이 높고, 백다랑어는 한대성으로 기후변화 시 위도 상승하면 신규 어장(베링해 일부, 북대서양) 출현. 동시에 RAS(Recirculating Aquaculture System) 기반 육상 양식 참치 minority equity 5~7%를 호주 Cleanseas Tuna 등에 선매수 — 4대 어장 동시 붕괴 시 양식이 backup option이 된다.</li>
+<li><strong>장기 (3~10년)</strong>: <strong>"Climate-resilient species transition"</strong>. 가다랑어(skipjack) 의존도 70%를 50%로 낮추고, 황다랑어(yellowfin) 30% + 백다랑어(albacore) 20%로 균형. 황다랑어는 더 깊은 수심에서도 어획 가능해 ENSO 내성이 높고, 백다랑어는 한대성으로 기후변화 시 위도 상승하면 신규 어장(베링해 일부, 북대서양) 출현. 동시에 RAS(Recirculating Aquaculture System) 기반 육상 양식 참치 minority equity 5~7%를 호주 Cleanseas Tuna 등에 선매수 - 4대 어장 동시 붕괴 시 양식이 backup option이 된다.</li>
 </ol>
 </div>`,
           source: 'FAO FishStat Capture v25 · Atuna May 2026 (Q1 WCPO Supply Drop)',
@@ -314,10 +314,10 @@ export default function TunaInsightsDashboard() {
         icon={Map}
         iconColor="#3b82f6"
         pillar="S1"
-        cardDesc="참치 vs 고등어 가격 지수의 역상관(-0.78) 추적 — 흉어 사이클에서 펠라직 어종이 자연 헷지 역할"
+        cardDesc="참치 vs 고등어 가격 지수의 역상관(-0.78) 추적 - 흉어 사이클에서 펠라직 어종이 자연 헷지 역할"
         telemetry={{ status: 'STATIC', syncDate: '참고용 (Reference Only)' }}
         termTooltip={{ term: '펠라직 헷징', description: '참치 어획량이 무너질 때 고등어 등 펠라직 어종 수요가 급상승하는 역상관관계 라인을 통해 리스크 상쇄 포인트를 시각화합니다.' }}
-        kpiPanel={[{ label: '상관계수 (참치-고등어)', value: '-0.78', sub: '강한 음의 상관 — 내부 추정 (차트는 예시)', trendColor: '#3b82f6' }]}
+        kpiPanel={[{ label: '상관계수 (참치-고등어)', value: '-0.78', sub: '강한 음의 상관 - 내부 추정 (차트는 예시)', trendColor: '#3b82f6' }]}
         chartHeight={280}
         chart={
           <LineChart data={mockHedgingMatrix} margin={{ top: 20, right: 30, left: 20, bottom: 5 }}>
@@ -333,7 +333,7 @@ export default function TunaInsightsDashboard() {
         takeaway={{
           situation: `<div>
 <p>참치 흉어가 오면 소비자가 그 자리에 무엇을 사는지가 핵심입니다. 차트는 그 답을 보여줍니다: <strong>고등어(Mackerel)</strong>입니다. 참치 가격 지수와 고등어 가격 지수의 상관계수는 <strong>-0.78</strong>, 즉 참치가 떨어지면 고등어가 같은 비율로 올라가는 강한 음의 상관관계.</p>
-<p>이유는 명확합니다. 참치·고등어·갈치·꽁치는 모두 "펠라직(Pelagic) 어종" — 표층에서 떼지어 헤엄치는 같은 카테고리입니다. 영양 성분(오메가-3, DHA, 단백질)과 조리 패턴이 유사해 마트의 통조림·생선 매대에서 직접적 substitution이 발생합니다.</p>
+<p>이유는 명확합니다. 참치·고등어·갈치·꽁치는 모두 "펠라직(Pelagic) 어종" - 표층에서 떼지어 헤엄치는 같은 카테고리입니다. 영양 성분(오메가-3, DHA, 단백질)과 조리 패턴이 유사해 마트의 통조림·생선 매대에서 직접적 substitution이 발생합니다.</p>
 <p><strong>흉어 사이클의 수치</strong>: 참치 어획이 20% 이상 무너지는 해에 펠라직 단가는 평균 <strong>+35~50% 점프</strong>합니다. 2010년·2015년·2023년 모두 동일 패턴이 관측되었습니다. 이는 단순 추세가 아니라 단백질 카테고리 내 가격 탄력성의 구조적 성질입니다.</p>
 <p>다만 헷지의 한계: 펠라직 어종 간에도 어장이 겹쳐서, 같은 ENSO 사이클이 참치·고등어를 동시 타격할 가능성이 30~40%. 완벽한 헷지는 아니지만 -0.78 상관관계는 자연 발생하는 가장 강한 수산 헷지 도구.</p>
 </div>`,
@@ -341,8 +341,8 @@ export default function TunaInsightsDashboard() {
 <p><strong>재정의</strong>: 참치 단일 어종 의존도 80%+ 포트폴리오는 흉어 사이클마다 마진 -10%p 이상 노출되는 <strong>"undiversified single-stock"</strong> 구조다. 우리는 더 이상 "참치 회사"가 아니라 <strong>"펠라직 단백질 포트폴리오 운용사(pelagic protein portfolio manager)"</strong>로 정체성을 재정의해야 한다. 운용 KPI는 어획량(volume)이 아닌 portfolio sharpe ratio.</p>
 <p><strong>3단계 실행</strong>:</p>
 <ol style="margin: 4px 0 0 18px; padding: 0;">
-<li style="margin-bottom: 8px;"><strong>단기 (6개월)</strong>: 펠라직 트레이딩 데스크 신설. <strong>스칸디나비아 고등어 쿼터(노르웨이·아이슬란드 NEAFC) + 동남아 갈치·꽁치(베트남·필리핀)</strong> 데스크를 본사 트레이딩 부문에 통합. 펠라직 비중을 20% 이상으로 확대. 동시에 본사 risk 부서가 <strong>"펠라직 헷지 비율 KPI"</strong>를 신설 — 매 분기 펠라직/참치 노출 비율이 0.25 이하면 자동 alert.</li>
-<li style="margin-bottom: 8px;"><strong>중기 (12~24개월)</strong>: <strong>"Pelagic Composite Index"</strong> 자체 발행. 우리 트레이딩 데이터 + 노르웨이 NSC + 일본 도쿄어시장 + 베트남 VASEP 가격을 가중평균하여 일별 발표. 이 인덱스를 ICE 또는 SGX에 over-the-counter swap contract로 상장 — JP Morgan Cross-Commodity Desk 같은 카운터파티에 익스포저 헷지 상품으로 판매. 본업 P&amp;L 외 인덱스 라이센스 수수료(연 $5~15M) 추가 수익원.</li>
+<li style="margin-bottom: 8px;"><strong>단기 (6개월)</strong>: 펠라직 트레이딩 데스크 신설. <strong>스칸디나비아 고등어 쿼터(노르웨이·아이슬란드 NEAFC) + 동남아 갈치·꽁치(베트남·필리핀)</strong> 데스크를 본사 트레이딩 부문에 통합. 펠라직 비중을 20% 이상으로 확대. 동시에 본사 risk 부서가 <strong>"펠라직 헷지 비율 KPI"</strong>를 신설 - 매 분기 펠라직/참치 노출 비율이 0.25 이하면 자동 alert.</li>
+<li style="margin-bottom: 8px;"><strong>중기 (12~24개월)</strong>: <strong>"Pelagic Composite Index"</strong> 자체 발행. 우리 트레이딩 데이터 + 노르웨이 NSC + 일본 도쿄어시장 + 베트남 VASEP 가격을 가중평균하여 일별 발표. 이 인덱스를 ICE 또는 SGX에 over-the-counter swap contract로 상장 - JP Morgan Cross-Commodity Desk 같은 카운터파티에 익스포저 헷지 상품으로 판매. 본업 P&amp;L 외 인덱스 라이센스 수수료(연 $5~15M) 추가 수익원.</li>
 <li><strong>장기 (3~5년)</strong>: <strong>"Substitution Arbitrage Trading Book"</strong> 운영. 참치/고등어 가격 스프레드가 historical mean ±2σ를 벗어날 때 자동으로 long-short 포지션 진입. 예: 참치 폭락 + 고등어 미반응 시 → 고등어 long, 참치 short (forward contract 기반). 이 전략의 백테스트 sharpe ratio는 1.8~2.4(2015~2024). 본사가 first-mover로 진입하면 후발사는 진입할수록 우리 알파를 강화한다.</li>
 </ol>
 </div>`,
@@ -359,7 +359,7 @@ export default function TunaInsightsDashboard() {
         icon={TrendingUp}
         iconColor="#38bdf8"
         pillar="S4"
-        cardDesc="2015년 야생 어획 vs 양식 단가 크로스오버 이후 양식 프리미엄 +31.9% 구조화 추적 — 일본 외식·중동 럭셔리 채널 선호 전환"
+        cardDesc="2015년 야생 어획 vs 양식 단가 크로스오버 이후 양식 프리미엄 +31.9% 구조화 추적 - 일본 외식·중동 럭셔리 채널 선호 전환"
         telemetry={{ status: 'STATIC', syncDate: '참고용 (Reference Only)' }}
         termTooltip={{ term: '크로스오버', description: '야생 어획 단가 상승률보다 양식 단가의 프리미엄이 뚫고 올라가는 \'크로스오버\' 시점을 궤적으로 보여주어 투자 전환기를 분석합니다.' }}
         kpiPanel={[{ label: '양식 프리미엄', value: '+31.9%', sub: '자연산 대비 (2024년)', trendColor: '#38bdf8' }]}
@@ -378,17 +378,17 @@ export default function TunaInsightsDashboard() {
         takeaway={{
           situation: `<div>
 <p>인류 역사상 처음으로 <strong>양식 참치가 자연산보다 비싸진</strong> 사건이 2015년에 일어났습니다. 차트의 두 선이 교차한 그 순간을 "크로스오버(Crossover)"라 부르고, 이후 양식 프리미엄은 <strong>+31.9%</strong>로 안정 유지 중입니다.</p>
-<p>왜 양식이 더 비싸졌나? 3가지 요인: ① <strong>품질 균일성</strong> — 자연산은 한 마리마다 지방률·살색·체급이 들쭉날쭉하지만 양식은 95% 이상 균일 ② <strong>지방률 정밀 통제</strong> — 사료 조합으로 토로(O-toro) 지방률을 32~38%로 정확히 매칭 가능 ③ <strong>연중 공급</strong> — 자연산은 계절·날씨 의존이지만 양식은 매일 출하 가능.</p>
+<p>왜 양식이 더 비싸졌나? 3가지 요인: ① <strong>품질 균일성</strong> - 자연산은 한 마리마다 지방률·살색·체급이 들쭉날쭉하지만 양식은 95% 이상 균일 ② <strong>지방률 정밀 통제</strong> - 사료 조합으로 토로(O-toro) 지방률을 32~38%로 정확히 매칭 가능 ③ <strong>연중 공급</strong> - 자연산은 계절·날씨 의존이지만 양식은 매일 출하 가능.</p>
 <p>채널 선호도 역전: <strong>일본 미슐랭 스시 오마카세</strong>의 70%가 이미 양식 참다랑어 사용 중이고, 중동(두바이·도하) 럭셔리 호텔의 100%가 양식 전용 계약. 자연산은 도쿄 토요스 경매에서만 의미 있고, B2C 프리미엄 시장은 양식이 표준.</p>
-<p>"패러다임 전환은 사이클이 아닌 구조" — 이는 ENSO·기후 같은 일시 변동이 아니라, 일단 양식 기술이 자연산을 추월한 후로는 영구히 되돌릴 수 없는 일방향 전환임을 의미합니다. 어획에 투자된 자본은 5~7년 내 stranded asset 가능성.</p>
+<p>"패러다임 전환은 사이클이 아닌 구조" - 이는 ENSO·기후 같은 일시 변동이 아니라, 일단 양식 기술이 자연산을 추월한 후로는 영구히 되돌릴 수 없는 일방향 전환임을 의미합니다. 어획에 투자된 자본은 5~7년 내 stranded asset 가능성.</p>
 </div>`,
           actionPlan: `<div>
 <p><strong>재정의</strong>: 우리는 더 이상 "어획 회사"가 아니다. <strong>"protein production company"</strong>로 정체성 재정의. 어획 vs 양식은 cost-out 수단의 선택지일 뿐, 본질은 채널에 적합한 단백질을 가장 효율적으로 produce·deliver하는 것. 어획에만 묶인 mental model은 Kodak이 디지털 카메라를 거부한 사례와 동일.</p>
 <p><strong>3단계 실행</strong>:</p>
 <ol style="margin: 4px 0 0 18px; padding: 0;">
 <li style="margin-bottom: 8px;"><strong>단기 (즉시)</strong>: <strong>원양 신규 선망어선 건조 CAPEX 100% 동결</strong>. 1척 신규 건조비 $25~40M을 양식 인프라 secondary 시장 자본으로 전환. 지중해 unicorn급 양식사(Balfegó, Caladeros del Mediterráneo) 또는 호주 Cleanseas Tuna의 minority equity 5~10% 인수. Greenfield 양식장 건설은 6~8년 + 환경허가 4~7년이라 secondary 시장이 IRR 2~3배 우위.</li>
-<li style="margin-bottom: 8px;"><strong>중기 (12~36개월)</strong>: <strong>"Premium-grade aquaculture quota fund"</strong> 조성. 지중해(ICCAT) 양식 쿼터 + 호주(SBT) 쿼터 + 멕시코(BFT) 쿼터를 forward 계약으로 통합 운용. 쿼터당 평균 EUR 30~50K/톤이 향후 5년 EUR 80~120K/톤으로 multiple expansion 예상. JP Morgan Natural Resources Fund의 carbon credit portfolio 운영 방식 차용 — 쿼터를 commodity가 아닌 <strong>scarce regulatory asset</strong>으로 재분류해 sovereign wealth fund(GIC·ADIA)에 LP 자본 유치.</li>
-<li><strong>장기 (3~7년)</strong>: <strong>"육상 RAS + 세포 배양 hybrid"</strong> 기술 베팅. Recirculating Aquaculture System(육상 폐쇄 양식)과 cell-cultivated tuna(BlueNalu·Wildtype) 양쪽에 각각 $5~10M CVC 투자. 둘 다 단위 원가가 자연산 대비 50~100x이지만, 5~10년 내 50%까지 하락 가능. 동시에 두 기술이 결합되면 <strong>"customizable tuna sashimi"</strong> (지방률·체급·color를 고객사 요구대로 produce)가 가능 — Tesla가 옵션 패키지로 차를 파는 것처럼 참치도 SKU 기반 자동차 비즈니스가 된다. 이는 마진 30~40%의 luxury food platform.</li>
+<li style="margin-bottom: 8px;"><strong>중기 (12~36개월)</strong>: <strong>"Premium-grade aquaculture quota fund"</strong> 조성. 지중해(ICCAT) 양식 쿼터 + 호주(SBT) 쿼터 + 멕시코(BFT) 쿼터를 forward 계약으로 통합 운용. 쿼터당 평균 EUR 30~50K/톤이 향후 5년 EUR 80~120K/톤으로 multiple expansion 예상. JP Morgan Natural Resources Fund의 carbon credit portfolio 운영 방식 차용 - 쿼터를 commodity가 아닌 <strong>scarce regulatory asset</strong>으로 재분류해 sovereign wealth fund(GIC·ADIA)에 LP 자본 유치.</li>
+<li><strong>장기 (3~7년)</strong>: <strong>"육상 RAS + 세포 배양 hybrid"</strong> 기술 베팅. Recirculating Aquaculture System(육상 폐쇄 양식)과 cell-cultivated tuna(BlueNalu·Wildtype) 양쪽에 각각 $5~10M CVC 투자. 둘 다 단위 원가가 자연산 대비 50~100x이지만, 5~10년 내 50%까지 하락 가능. 동시에 두 기술이 결합되면 <strong>"customizable tuna sashimi"</strong> (지방률·체급·color를 고객사 요구대로 produce)가 가능 - Tesla가 옵션 패키지로 차를 파는 것처럼 참치도 SKU 기반 자동차 비즈니스가 된다. 이는 마진 30~40%의 luxury food platform.</li>
 </ol>
 </div>`,
           source: 'KMI 수산경제 · USDA 양식 단가 비교 (2005-2024)',
@@ -400,7 +400,7 @@ export default function TunaInsightsDashboard() {
         icon={Map}
         iconColor="#38bdf8"
         pillar="S4"
-        cardDesc="국가별 신선 참치 수입 단가 히트맵 — 일본($28/kg) 정체 동안 두바이($42)·홍콩($38) 캐치업 가시화"
+        cardDesc="국가별 신선 참치 수입 단가 히트맵 - 일본($28/kg) 정체 동안 두바이($42)·홍콩($38) 캐치업 가시화"
         telemetry={{ status: 'STATIC', syncDate: '참고용 (Reference Only)' }}
         termTooltip={{ term: '럭셔리 미식 단가', description: '국가별 수입 단가를 히트맵형 바 차트로 배열하여, 하이엔드 신선 참치를 가장 비싸게 소비하는 럭셔리 마켓의 코어를 노출합니다.' }}
         kpiPanel={[{ label: '#1 프리미엄 시장', value: '아랍에미리트 (두바이)', sub: '$42.00 / kg', trendColor: '#3b82f6' }]}
@@ -430,7 +430,7 @@ export default function TunaInsightsDashboard() {
 <p><strong>재정의</strong>: 럭셔리 참치는 더 이상 "B2B 트레이딩"이 아니다. <strong>"premium hospitality concierge sourcing service"</strong>다. 우리가 파는 것은 참치가 아니라, <strong>"7성급 호텔 셰프가 새벽 4시에 받아야 할 24개 SKU의 콜드체인 서비스 패키지"</strong>다. JD.com이 luxury watch 직배송으로 시장을 바꾼 사례와 동일 구조.</p>
 <p><strong>3단계 실행</strong>:</p>
 <ol style="margin: 4px 0 0 18px; padding: 0;">
-<li style="margin-bottom: 8px;"><strong>단기 (90일~6개월)</strong>: <strong>도쿄 토요스 경매 우회</strong>. 자체 항공 콜드체인 라인 신설 — 시드니/멜버른(호주 SBT 양식) → 두바이 24시간 직배, 지중해(BFT 양식) → 리야드 36시간 직배. 첫 고객사로 두바이 Atlantis The Palm, Burj Al Arab, 리야드 Ritz-Carlton의 Executive Chef와 12개월 exclusive supply 계약 체결. 중간 마진 200~400bp가 우리 P&amp;L에 직접 회수되며, 셰프의 SKU specification을 우리가 정의(spec maker advantage).</li>
+<li style="margin-bottom: 8px;"><strong>단기 (90일~6개월)</strong>: <strong>도쿄 토요스 경매 우회</strong>. 자체 항공 콜드체인 라인 신설 - 시드니/멜버른(호주 SBT 양식) → 두바이 24시간 직배, 지중해(BFT 양식) → 리야드 36시간 직배. 첫 고객사로 두바이 Atlantis The Palm, Burj Al Arab, 리야드 Ritz-Carlton의 Executive Chef와 12개월 exclusive supply 계약 체결. 중간 마진 200~400bp가 우리 P&amp;L에 직접 회수되며, 셰프의 SKU specification을 우리가 정의(spec maker advantage).</li>
 <li style="margin-bottom: 8px;"><strong>중기 (12~24개월)</strong>: <strong>"Tuna concierge tech platform"</strong> 출시. 셰프가 모바일 앱으로 <strong>O-toro 지방률 33%, 체급 4.2kg, 산지 호바트 양식장 #3, 도착 2026-Q3-Aug-15 04:00</strong> 같은 spec을 직접 발주하면, 우리 양식장에서 maturity 매칭 → 도축 → 항공 운송이 자동 orchestration되는 SaaS. 셰프 입장에서는 5분 발주, 24시간 후 receiving. 이 platform fee 5% + 원물 margin 25% = 통합 마진 30%. 동시에 글로벌 7성급 호텔 200곳에 standard pricing benchmark 제시하여 industry rate-setter 포지션.</li>
 <li><strong>장기 (3~5년)</strong>: <strong>"Tokenized luxury tuna futures"</strong>. 호주 SBT 양식 쿼터를 blockchain 기반 fractional ownership token으로 발행. 패밀리오피스·HNW investor가 token 1개당 5kg 분량의 forward delivery 권리를 1년 forward로 매수. 가격은 매일 호바트·시드니·두바이 wholesale rate를 oracle로 가져와 mark-to-market. 토큰 보유자는 (a) 실물 receive 또는 (b) 만기 secondary 시장 매도 선택 가능. 이는 와인 en primeur 모델 차용. 토큰 1개 평균 가격 $5K~15K, 발행 규모 연 5,000~15,000 토큰 → 본업 외 $25~225M trading book 매출. 거래소: SGX 또는 Dubai Multi Commodities Centre(DMCC)와 파트너십.</li>
 </ol>
@@ -450,7 +450,7 @@ export default function TunaInsightsDashboard() {
         icon={Briefcase}
         iconColor="#3b82f6"
         pillar="S1"
-        cardDesc="글로벌 참치 수출 시장의 허핀달-허쉬만(HHI) 지수 추세 — 2,500 초과 시 Danger Zone, 매입 협상력 약화 신호"
+        cardDesc="글로벌 참치 수출 시장의 허핀달-허쉬만(HHI) 지수 추세 - 2,500 초과 시 Danger Zone, 매입 협상력 약화 신호"
         telemetry={{ status: 'STATIC', syncDate: '참고용 (Reference Only)' }}
         termTooltip={{ term: 'HHI 지수', description: '특정 상위 국가로 참치물 통제권이 집중되는 정도를 허핀달-허쉬만(HHI) 지수를 차용하여 바이어의 구매 리스크를 산출합니다.' }}
         kpiPanel={[{ label: '현재 HHI 지수', value: '2,950', sub: '위험 구역 (>2500)', trendColor: '#38bdf8' }]}
@@ -476,7 +476,7 @@ export default function TunaInsightsDashboard() {
 <p><strong>재정의</strong>: PNA가 OPEC처럼 cartel pricing power를 행사하는 시대에 대응하려면, 우리는 단순 buyer가 아닌 <strong>"strategic partner with equity exposure"</strong>로 전환해야 한다. 쿼터를 사는 게 아니라, <strong>쿼터를 발행하는 sovereign과 equity-level partnership</strong>을 맺어 매입원가를 dividend로 회수하는 구조.</p>
 <p><strong>3단계 실행</strong>:</p>
 <ol style="margin: 4px 0 0 18px; padding: 0;">
-<li style="margin-bottom: 8px;"><strong>단기 (90일)</strong>: 스팟 단기 매입 비중을 30% 이하로 강제 축소. 70%를 핵심 선단·쿼터 보유자와의 <strong>3~5년 forward 계약 + price collar option</strong>으로 락인. price collar는 매입가 상한(cap) + 하한(floor)을 동시 설정하여 양방향 변동성 차단 — 옵션 프리미엄은 ENSO·관세 변동의 implicit cost 헷지로 정당화. 본사 risk 부서가 매월 forward coverage ratio를 CFO 직보.</li>
+<li style="margin-bottom: 8px;"><strong>단기 (90일)</strong>: 스팟 단기 매입 비중을 30% 이하로 강제 축소. 70%를 핵심 선단·쿼터 보유자와의 <strong>3~5년 forward 계약 + price collar option</strong>으로 락인. price collar는 매입가 상한(cap) + 하한(floor)을 동시 설정하여 양방향 변동성 차단 - 옵션 프리미엄은 ENSO·관세 변동의 implicit cost 헷지로 정당화. 본사 risk 부서가 매월 forward coverage ratio를 CFO 직보.</li>
 <li style="margin-bottom: 8px;"><strong>중기 (12~24개월)</strong>: <strong>"PNA Sovereign Partnership Fund"</strong> 조성. 키리바시·투발루 등 PNA 회원국의 sovereign development fund에 본사가 anchor LP로 $50~150M 출자. 그 fund는 현지 항만·콜드체인 인프라에 재투자하며, 본사는 LP 자격으로 ① PNA 쿼터 우선 매입권(first refusal right) + ② 라이센스 가격 인상 시 dividend로 회수 + ③ ESG impact reporting의 "tier-1 sustainable partner" 인증을 동시 확보. World Bank IFC·Asian Development Bank가 co-investor로 참여하도록 구조화하면 sovereign risk -60%.</li>
 <li><strong>장기 (3~7년)</strong>: <strong>"Quota securitization platform"</strong>. PNA·IATTC·ICCAT·IOTC 4개 RFMO의 쿼터를 통합한 <strong>"Global Tuna Quota Index Note (GTQN)"</strong> 발행. 우리가 sole structuring agent. 각 RFMO 쿼터를 underlying asset으로 5년·10년 만기 note를 institutional investor에게 판매. 우리는 origination fee 1.5~2.5% + ongoing management fee 50~80bp 수익. 동시에 우리가 보유한 forward 계약을 GTQN에 packaging하여 BS off-balance + 자본효율 3배 개선. JP Morgan·Goldman Sachs Commodities desk가 distribution partner. 이는 단순 헷지가 아닌 <strong>quota market의 마켓메이커 전환</strong>.</li>
 </ol>
@@ -490,7 +490,7 @@ export default function TunaInsightsDashboard() {
         icon={ThermometerSun}
         iconColor="#3b82f6"
         pillar="S1"
-        cardDesc="해수온 상승에 따른 한대성 참다랑어 vs 온수성 가다랑어 점유율의 30년 역전 침식 추적 — 2035 projection 88%"
+        cardDesc="해수온 상승에 따른 한대성 참다랑어 vs 온수성 가다랑어 점유율의 30년 역전 침식 추적 - 2035 projection 88%"
         telemetry={{ status: 'STATIC', syncDate: '참고용 (Reference Only)' }}
         termTooltip={{ term: '기후 쇼크', description: '지난 30년간 해수온 상승에 따라 블루핀(한대성)과 스킵잭(열대성)의 서식/어획 비중이 어떻게 역전 침식되어 왔는지 매핑합니다.' }}
         kpiPanel={[{ label: '2035년 예상 변화', value: '88%', sub: '온수성 어종 우세', trendColor: '#3b82f6' }]}
@@ -518,8 +518,8 @@ export default function TunaInsightsDashboard() {
 <p><strong>3단계 실행</strong>:</p>
 <ol style="margin: 4px 0 0 18px; padding: 0;">
 <li style="margin-bottom: 8px;"><strong>단기 (즉시)</strong>: 신규 참치선망어선 capex 의사결정 게이트 강화. 모든 신규 건조는 <strong>IPCC RCP4.5 + RCP8.5 두 시나리오 IRR 통과 의무</strong>. 한대성 어장 가정 설계는 폐기. 모든 신규 선박은 <strong>적도 표층수 + 열대 종 다축 어획</strong>에 최적화. 기존 한대성 선단 30~50척은 5~7년 잔존가를 보수적 30~50% 감액 적용하여 BS 손상차손 사전 계상. 동시에 IFRS 17 회계 처리로 향후 stranded asset 충당금을 매 분기 적립.</li>
-<li style="margin-bottom: 8px;"><strong>중기 (12~36개월)</strong>: <strong>"Climate alpha portfolio"</strong> 구축. 우리 어종 노출을 ① 열대성 가다랑어 50%(climate beta +1.2) ② 황다랑어 25%(climate beta +0.7) ③ 백다랑어 15%(climate beta -0.5, hedge) ④ 참다랑어 10%(luxury premium beta +0.2)로 분산. 각 어종의 climate beta는 IPCC 시나리오와 어종별 historical CPUE의 회귀분석으로 산출. 동시에 NOAA·EU Copernicus 위성 데이터를 본사 trading floor에 직결하여 <strong>"climate satellite trading desk"</strong> 운영 — 어획 시즌 전 위성 수온/플랑크톤 데이터 기반 어장 선택.</li>
-<li><strong>장기 (5~10년)</strong>: <strong>"Climate-resilient species exchange"</strong> 운영권 확보. 어종간 자산을 swap 거래할 수 있는 OTC 플랫폼을 우리가 발행. 예: 한대성 백다랑어 쿼터 100톤 ↔ 열대성 가다랑어 쿼터 70톤(climate-adjusted ratio). 우리가 sole exchange operator로 0.3~0.5% transaction fee. 동시에 <strong>parametric climate insurance</strong> 발행 — 어장 수온이 일정 threshold 초과 시 자동 payout. AXA Climate·Munich Re와 partnership으로 reinsurance backing. 이는 ICCAT 등 RFMO regulator가 향후 의무화할 가능성 높은 instrument의 first-mover.</li>
+<li style="margin-bottom: 8px;"><strong>중기 (12~36개월)</strong>: <strong>"Climate alpha portfolio"</strong> 구축. 우리 어종 노출을 ① 열대성 가다랑어 50%(climate beta +1.2) ② 황다랑어 25%(climate beta +0.7) ③ 백다랑어 15%(climate beta -0.5, hedge) ④ 참다랑어 10%(luxury premium beta +0.2)로 분산. 각 어종의 climate beta는 IPCC 시나리오와 어종별 historical CPUE의 회귀분석으로 산출. 동시에 NOAA·EU Copernicus 위성 데이터를 본사 trading floor에 직결하여 <strong>"climate satellite trading desk"</strong> 운영 - 어획 시즌 전 위성 수온/플랑크톤 데이터 기반 어장 선택.</li>
+<li><strong>장기 (5~10년)</strong>: <strong>"Climate-resilient species exchange"</strong> 운영권 확보. 어종간 자산을 swap 거래할 수 있는 OTC 플랫폼을 우리가 발행. 예: 한대성 백다랑어 쿼터 100톤 ↔ 열대성 가다랑어 쿼터 70톤(climate-adjusted ratio). 우리가 sole exchange operator로 0.3~0.5% transaction fee. 동시에 <strong>parametric climate insurance</strong> 발행 - 어장 수온이 일정 threshold 초과 시 자동 payout. AXA Climate·Munich Re와 partnership으로 reinsurance backing. 이는 ICCAT 등 RFMO regulator가 향후 의무화할 가능성 높은 instrument의 first-mover.</li>
 </ol>
 </div>`,
           source: 'NOAA OISST · IPCC AR6 해양 시나리오',
@@ -535,7 +535,7 @@ export default function TunaInsightsDashboard() {
         icon={Cpu}
         iconColor="#38bdf8"
         pillar="S2"
-        cardDesc="3D 소나 + AI FAD 결합 선단의 CPUE +15% / MGO 효율 -28% 추세 — 호르무즈 외생 충격을 제외한 평시 효율 변화"
+        cardDesc="3D 소나 + AI FAD 결합 선단의 CPUE +15% / MGO 효율 -28% 추세 - 호르무즈 외생 충격을 제외한 평시 효율 변화"
         telemetry={{ status: 'STATIC', syncDate: '참고용 (Reference Only)' }}
         termTooltip={{ term: '정밀 조업', description: 'AI 음향 부표 및 3D 소나를 활용한 타겟 어종 정확도 향상을 통해 선박 경유(MGO) 비용을 획기적으로 감축하는 기술 전환 지표입니다.' }}
         kpiPanel={[{ label: '연료비 절감', value: '-28%', sub: '2018년 대비', trendColor: '#38bdf8' }]}
@@ -554,7 +554,7 @@ export default function TunaInsightsDashboard() {
         takeaway={{
           situation: `<div>
 <p>"정밀 조업(Precision Fishing)"이란 기존의 무작위 어획이 아닌 <strong>AI·소나·위성 데이터로 어획 효율을 최적화</strong>한 차세대 조업 방식입니다.</p>
-<p>핵심 기술 2가지: ① <strong>3D 소나</strong> — 기존 2D 소나는 어군 위치만 알 수 있었지만 3D는 어군의 종·크기·수심까지 식별 ② <strong>AI FAD(Fish Aggregating Device)</strong> — 부표에 위성·소나·AI 칩을 결합해 어군 집결을 자동 감지하고 모선에 좌표 송신.</p>
+<p>핵심 기술 2가지: ① <strong>3D 소나</strong> - 기존 2D 소나는 어군 위치만 알 수 있었지만 3D는 어군의 종·크기·수심까지 식별 ② <strong>AI FAD(Fish Aggregating Device)</strong> - 부표에 위성·소나·AI 칩을 결합해 어군 집결을 자동 감지하고 모선에 좌표 송신.</p>
 <p>실제 효과(평시 2018~2024 데이터): <strong>CPUE(단위 노력당 어획량) +15% 향상, MGO(선박 경유) 소비 -28% 감소</strong>. 즉 같은 양의 연료로 15% 더 많이 잡고, 같은 양을 잡을 때 28% 적은 연료를 소비. 톤당 원가는 -22% 절감.</p>
 <p><strong>2026 Q2 현재 상황</strong>: 호르무즈 봉쇄 위기로 MGO 가격이 평시 대비 +65% 폭등 중이라 평시 효율 trend가 일시적으로 가려져 있습니다. 호르무즈 정상화 시(아마 6~12개월) 정밀 조업 채택 선단과 미채택 선단의 OPEX 갭이 다시 벌어지며 미채택 선단의 경쟁력 붕괴가 가시화됩니다.</p>
 <p>한 가지 더: 정밀 조업은 단순 비용 절감이 아니라 <strong>IMO 2030 탄소 규제(Scope 3 어선 배출 +40% 감축 의무)</strong> 대응의 사실상 유일한 경로입니다. 미장착 선단은 2028~2030년 규제 페널티로 운항 자체가 어려워집니다.</p>
@@ -564,8 +564,8 @@ export default function TunaInsightsDashboard() {
 <p><strong>3단계 실행</strong>:</p>
 <ol style="margin: 4px 0 0 18px; padding: 0;">
 <li style="margin-bottom: 8px;"><strong>단기 (12~18개월)</strong>: 구형 아날로그 선단 전체에 <strong>"Digital Retrofit Bundle"</strong> 일괄 발주. Furuno(일본) + Marport(아이슬란드) + KISTERS(독일) 3사 통합 패키지로 선당 capex $1.2~1.8M. 100척 선단 기준 총 $120~180M, 회수 기간 24~36개월(MGO 절감 + Scope 3 페널티 회피). 자본은 EBRD Green Maritime Loan 또는 KfW IPEX 환경금융으로 5% 금리 조달하여 본사 cash 부담 최소화.</li>
-<li style="margin-bottom: 8px;"><strong>중기 (24~48개월)</strong>: <strong>"Data exhaust monetization"</strong>. 정밀 조업으로 수집되는 데이터(어군 위치·수온·플랑크톤·해류)를 <strong>"Tuna Stock Intelligence Service"</strong>로 SaaS화하여 PNA·ICCAT·IOTC 등 RFMO 규제기관에 라이센싱 — 연 $15~30M 매출. 동시에 reinsurance(Munich Re·Swiss Re)에 parametric climate insurance underwriting data로 판매 — 연 $5~15M. 본업(어획) 외 데이터 매출이 5년 내 EBITDA 8~12% 기여. NVIDIA·Palantir와 partnership으로 ML 모델 라이센싱.</li>
-<li><strong>장기 (5~10년)</strong>: <strong>"Autonomous fleet conversion"</strong>. AI + satellite + autonomous navigation 결합으로 무인 어선 운영. 인건비 30~40% 절감(선원 비용이 OPEX의 25~35%), 운항 시간 24/7 가능, IUU 리스크 0(인간 개입 없음 → 자동 보고). 1차 pilot은 일본 Mitsui OSK + Kongsberg Maritime(노르웨이)과 공동 개발 무인 선망어선 5척, 2030년 commissioning. 동시에 무인 어선 IP를 GE/Siemens급 industrial OEM에 라이센싱 — 우리가 어획자에서 <strong>maritime industrial tech licensor</strong>로 정체성 전환. EV/EBITDA 8x에서 25x로 multiple expansion 정당화.</li>
+<li style="margin-bottom: 8px;"><strong>중기 (24~48개월)</strong>: <strong>"Data exhaust monetization"</strong>. 정밀 조업으로 수집되는 데이터(어군 위치·수온·플랑크톤·해류)를 <strong>"Tuna Stock Intelligence Service"</strong>로 SaaS화하여 PNA·ICCAT·IOTC 등 RFMO 규제기관에 라이센싱 - 연 $15~30M 매출. 동시에 reinsurance(Munich Re·Swiss Re)에 parametric climate insurance underwriting data로 판매 - 연 $5~15M. 본업(어획) 외 데이터 매출이 5년 내 EBITDA 8~12% 기여. NVIDIA·Palantir와 partnership으로 ML 모델 라이센싱.</li>
+<li><strong>장기 (5~10년)</strong>: <strong>"Autonomous fleet conversion"</strong>. AI + satellite + autonomous navigation 결합으로 무인 어선 운영. 인건비 30~40% 절감(선원 비용이 OPEX의 25~35%), 운항 시간 24/7 가능, IUU 리스크 0(인간 개입 없음 → 자동 보고). 1차 pilot은 일본 Mitsui OSK + Kongsberg Maritime(노르웨이)과 공동 개발 무인 선망어선 5척, 2030년 commissioning. 동시에 무인 어선 IP를 GE/Siemens급 industrial OEM에 라이센싱 - 우리가 어획자에서 <strong>maritime industrial tech licensor</strong>로 정체성 전환. EV/EBITDA 8x에서 25x로 multiple expansion 정당화.</li>
 </ol>
 </div>`,
           source: 'KMI 정밀 조업 사례 분석 · 업계추정 (선박연료 가격·효율 지수, 2018-2024)',
@@ -599,16 +599,16 @@ export default function TunaInsightsDashboard() {
 <p>"관세 회피(Tariff Hopping)"란 한 나라가 관세를 매기면 그 나라를 피해 다른 나라로 공장을 옮기는 글로벌 무역의 오래된 게임입니다. 차트는 미국 USTR이 2025년 7월 31일 발효한 상호관세(Reciprocal Tariff) 충격에 대한 동남아 가공 거점의 대응을 추적합니다.</p>
 <p>관세 부담: <strong>태국 19%, 베트남 20%, 에콰도르 15%, 멕시코(USMCA) 0%</strong>. 통조림 1캔 단가 $1.20 기준 관세가 $0.20~0.24 추가되면 소매 마진(8~12%)이 완전히 잠식되는 수준.</p>
 <p><strong>2026년 5월 반전</strong>: 미국 국제무역법원(USCIT)이 기존 10% 글로벌 상호관세를 <strong>불법으로 판결(strike down)</strong>했습니다. 트럼프 행정부의 IEEPA(국제비상경제권법) 발동이 의회 권한 침해라는 이유. 동남아 가공사들은 일시 마진 압박 해소.</p>
-<p>그러나 여전한 불확실성: ① <strong>항소심(Federal Circuit) 결과 미정</strong>(6~12개월 소요) — 항소심에서 뒤집힐 경우 다시 관세 부담 ② <strong>기납부 관세 환급(CAPE 시스템) 절차적 모호함</strong> — 환급 서류 미비 시 자금 회수 18개월+ 지연 ③ <strong>트럼프 행정부의 IEEPA 우회 입법 추진</strong> — 동일 효과의 새 관세를 다른 법적 근거로 부과 가능.</p>
+<p>그러나 여전한 불확실성: ① <strong>항소심(Federal Circuit) 결과 미정</strong>(6~12개월 소요) - 항소심에서 뒤집힐 경우 다시 관세 부담 ② <strong>기납부 관세 환급(CAPE 시스템) 절차적 모호함</strong> - 환급 서류 미비 시 자금 회수 18개월+ 지연 ③ <strong>트럼프 행정부의 IEEPA 우회 입법 추진</strong> - 동일 효과의 새 관세를 다른 법적 근거로 부과 가능.</p>
 <p>실질적 의미: 단기 호재이지만 중기 visibility는 제로. <strong>의사결정의 visibility가 무너진 상태에서 capex 집행은 가장 큰 리스크</strong>가 됩니다.</p>
 </div>`,
           actionPlan: `<div>
 <p><strong>재정의</strong>: 관세 변동성은 더 이상 macroeconomic noise가 아닌 <strong>"tradeable volatility instrument"</strong>다. 우리는 관세를 헷지하는 게 아니라 <strong>관세 변동성 자체에 long volatility 포지션</strong>을 취해 양방향 수익을 만든다. 본사 trading desk는 tariff-implied option pricing을 분기마다 mark-to-market.</p>
 <p><strong>3단계 실행</strong>:</p>
 <ol style="margin: 4px 0 0 18px; padding: 0;">
-<li style="margin-bottom: 8px;"><strong>단기 (즉시)</strong>: 관세 strike down 호재를 활용해 <strong>태국·베트남 발주 물량 정상화 + 기납부 관세 환급 청구 패키지 즉시 가동</strong>. 통관 파트너(C.H. Robinson, Kuehne+Nagel)와 환급 서류 사전 정비, 환급금 회수 기간을 18개월에서 6개월로 단축 목표. 동시에 <strong>"tariff scenario book"</strong> 운영 — 항소심 4가지 시나리오(① 완전 인용 ② 부분 인용 ③ 기각 + 신규 입법 ④ 기각 + 신규 입법 무산) 각각의 P&amp;L 영향을 미리 계산하여 시나리오별 헷지 instrument(USD/THB FX option, USDA·CFR 보험 등) 사전 체결.</li>
-<li style="margin-bottom: 8px;"><strong>중기 (12~24개월)</strong>: <strong>"Geopolitical hedge factory portfolio"</strong>. 단일 거점 의존 금지. 태국 1차(EU 30%, 일본 25%) + 베트남 2차(미국 25%) + 에콰도르 3차(EU 15%) + 멕시코 USMCA 4차(미국 백업 5%) 4-거점 분산. 각 거점이 다른 관세 체계·다른 통화·다른 FTA 우산에 노출되어 자연 헷지 형성. 동시에 멕시코 USMCA 거점은 <strong>"contingent capacity"</strong>로 운영 — 평시에는 25% 가동, 미국 관세 충격 시 100% 자동 ramp-up. CapEx는 평시 40% 수준만 투입하고 contingent CapEx는 EXIM Bank standby facility로 조달.</li>
-<li><strong>장기 (3~7년)</strong>: <strong>"Tariff arbitrage trading book"</strong>. 우리가 보유한 4-거점 capacity를 fluid asset으로 운영 — 매 분기 관세 차이에 따라 production을 자동 reallocation하는 ML 알고리즘 개발. 동시에 시장에 <strong>"Trade Policy Volatility Index"</strong>를 자체 발행하여 ICE에 OTC swap으로 상장. JP Morgan·Goldman Cross-Asset Macro Desk가 distribution. 이 instrument는 macro hedge fund(Bridgewater·Citadel)의 trade war hedge 수요와 직결되며, 우리는 sole reference issuer로 평생 transaction fee 수익. 단순 가공사에서 <strong>"trade policy market maker"</strong>로 진화.</li>
+<li style="margin-bottom: 8px;"><strong>단기 (즉시)</strong>: 관세 strike down 호재를 활용해 <strong>태국·베트남 발주 물량 정상화 + 기납부 관세 환급 청구 패키지 즉시 가동</strong>. 통관 파트너(C.H. Robinson, Kuehne+Nagel)와 환급 서류 사전 정비, 환급금 회수 기간을 18개월에서 6개월로 단축 목표. 동시에 <strong>"tariff scenario book"</strong> 운영 - 항소심 4가지 시나리오(① 완전 인용 ② 부분 인용 ③ 기각 + 신규 입법 ④ 기각 + 신규 입법 무산) 각각의 P&amp;L 영향을 미리 계산하여 시나리오별 헷지 instrument(USD/THB FX option, USDA·CFR 보험 등) 사전 체결.</li>
+<li style="margin-bottom: 8px;"><strong>중기 (12~24개월)</strong>: <strong>"Geopolitical hedge factory portfolio"</strong>. 단일 거점 의존 금지. 태국 1차(EU 30%, 일본 25%) + 베트남 2차(미국 25%) + 에콰도르 3차(EU 15%) + 멕시코 USMCA 4차(미국 백업 5%) 4-거점 분산. 각 거점이 다른 관세 체계·다른 통화·다른 FTA 우산에 노출되어 자연 헷지 형성. 동시에 멕시코 USMCA 거점은 <strong>"contingent capacity"</strong>로 운영 - 평시에는 25% 가동, 미국 관세 충격 시 100% 자동 ramp-up. CapEx는 평시 40% 수준만 투입하고 contingent CapEx는 EXIM Bank standby facility로 조달.</li>
+<li><strong>장기 (3~7년)</strong>: <strong>"Tariff arbitrage trading book"</strong>. 우리가 보유한 4-거점 capacity를 fluid asset으로 운영 - 매 분기 관세 차이에 따라 production을 자동 reallocation하는 ML 알고리즘 개발. 동시에 시장에 <strong>"Trade Policy Volatility Index"</strong>를 자체 발행하여 ICE에 OTC swap으로 상장. JP Morgan·Goldman Cross-Asset Macro Desk가 distribution. 이 instrument는 macro hedge fund(Bridgewater·Citadel)의 trade war hedge 수요와 직결되며, 우리는 sole reference issuer로 평생 transaction fee 수익. 단순 가공사에서 <strong>"trade policy market maker"</strong>로 진화.</li>
 </ol>
 </div>`,
           source: 'Atuna May 2026 (US Court Tariff Strike Down) · USTR Reciprocal Tariff',
@@ -620,7 +620,7 @@ export default function TunaInsightsDashboard() {
         icon={Leaf}
         iconColor="#38bdf8"
         pillar="S5"
-        cardDesc="Fisheries Research 2025 Hedonic pricing — 일반 캔 vs MSC 단일 vs MSC+Dolphin-Safe 이중 인증의 소매가 지수 비교"
+        cardDesc="Fisheries Research 2025 Hedonic pricing - 일반 캔 vs MSC 단일 vs MSC+Dolphin-Safe 이중 인증의 소매가 지수 비교"
         telemetry={{ status: 'STATIC', syncDate: '참고용 (Reference Only)' }}
         termTooltip={{ term: '듀얼 라벨', description: 'MSC 지속가능성 인증과 돌고래 안전(Dolphin-safe) 인증의 듀얼 라벨 획득 시 최종 소비재 시장에서 입증되는 추가 판가 마진율입니다.' }}
         kpiPanel={[{ label: '최대 소매 프리미엄', value: '+81.3%', sub: '이중 인증 제품 (MSC + Dolphin-Safe)', trendColor: '#3b82f6' }]}
@@ -651,8 +651,8 @@ export default function TunaInsightsDashboard() {
 <p><strong>3단계 실행</strong>:</p>
 <ol style="margin: 4px 0 0 18px; padding: 0;">
 <li style="margin-bottom: 8px;"><strong>단기 (12개월)</strong>: 전 선단 + 가공 라인 <strong>MSC Chain of Custody(MSC-COC) 인증 획득·갱신</strong> 2~3년 내 100% 완료. 인증 컨설팅 비용은 선당 평균 $200~400K, 가공 라인당 $500K~1M. 동시에 <strong>Dolphin-Safe + Friend of the Sea + ASC(Aquaculture Stewardship Council)</strong> 3중 인증 패키지 표준화. 인증 비용을 단순 비용이 아닌 <strong>"intangible asset(license fee, 5년 amortization)"</strong>로 BS 계상하여 EBITDA depression 회피.</li>
-<li style="margin-bottom: 8px;"><strong>중기 (18~36개월)</strong>: <strong>"Premium-grade certification stack"</strong> 차별화. 단순 MSC+Dolphin-Safe를 넘어 ① B Corp ② Carbon Trust Standard ③ EU EUDR-ready ④ Fair Trade USA ⑤ Marine Trust 5중 인증 스택을 단일 SKU에 통합. 이 5중 인증 제품 라인을 <strong>"Stewardship Premium Line"</strong>으로 별도 브랜딩 — Whole Foods·Erewhon(LA)·Sainsbury's Taste the Difference 같은 ultra-premium 채널 전용 supply. 일반 라인 대비 +120~150% 프리미엄, 마진 35~45%.</li>
-<li><strong>장기 (3~7년)</strong>: <strong>"Certification-as-a-Service" 플랫폼화</strong>. 우리가 보유한 5중 인증 시스템을 동남아·라틴아메리카 mid-tier 가공사 100~200곳에 SaaS 라이센싱 — 연 $300~800K/고객 + 인증 transaction fee. MSC·Friend of the Sea와 master partnership 체결하여 우리가 글로벌 인증 acceleration의 single platform이 된다. 동시에 우리가 발행하는 traceability data를 IFRS S2(기후 공시) 보고서에 incorporate할 수 있도록 PwC·EY와 audit standard 협업. 5년 내 우리는 글로벌 sustainable seafood market의 <strong>de facto certification rails</strong>가 되며, 본업 가공 마진 외 platform fee로 EBITDA +15~25%p 추가. JP Morgan ESG Index Provider 라이센싱 사례 reverse engineering.</li>
+<li style="margin-bottom: 8px;"><strong>중기 (18~36개월)</strong>: <strong>"Premium-grade certification stack"</strong> 차별화. 단순 MSC+Dolphin-Safe를 넘어 ① B Corp ② Carbon Trust Standard ③ EU EUDR-ready ④ Fair Trade USA ⑤ Marine Trust 5중 인증 스택을 단일 SKU에 통합. 이 5중 인증 제품 라인을 <strong>"Stewardship Premium Line"</strong>으로 별도 브랜딩 - Whole Foods·Erewhon(LA)·Sainsbury's Taste the Difference 같은 ultra-premium 채널 전용 supply. 일반 라인 대비 +120~150% 프리미엄, 마진 35~45%.</li>
+<li><strong>장기 (3~7년)</strong>: <strong>"Certification-as-a-Service" 플랫폼화</strong>. 우리가 보유한 5중 인증 시스템을 동남아·라틴아메리카 mid-tier 가공사 100~200곳에 SaaS 라이센싱 - 연 $300~800K/고객 + 인증 transaction fee. MSC·Friend of the Sea와 master partnership 체결하여 우리가 글로벌 인증 acceleration의 single platform이 된다. 동시에 우리가 발행하는 traceability data를 IFRS S2(기후 공시) 보고서에 incorporate할 수 있도록 PwC·EY와 audit standard 협업. 5년 내 우리는 글로벌 sustainable seafood market의 <strong>de facto certification rails</strong>가 되며, 본업 가공 마진 외 platform fee로 EBITDA +15~25%p 추가. JP Morgan ESG Index Provider 라이센싱 사례 reverse engineering.</li>
 </ol>
 </div>`,
           source: 'Fisheries Research 2025 · MSC Chain of Custody',
@@ -683,16 +683,16 @@ export default function TunaInsightsDashboard() {
         takeaway={{
           situation: `<div>
 <p>참치 1마리를 가공하면 식용 가능한 살(loin)은 약 <strong>45~55%</strong>뿐이고, 나머지 <strong>45~55%</strong>는 머리·뼈·내장·껍질 등 부산물입니다. 전통적으로 이 부산물은 어분(fishmeal)·어유(fish oil)·동물사료로 헐값에 처분되어 왔습니다(톤당 $200~400).</p>
-<p>"업사이클링"이란 이 부산물을 <strong>고부가가치 제품</strong>으로 재가공하는 전략입니다. 대표적 3가지: ① <strong>프리미엄 펫푸드(고양이·강아지)</strong> — 인간식과 동일 등급 원료로 고급화, 시장가 톤당 $4,000~6,000 ② <strong>해양 콜라겐(피부 미용 보조제)</strong> — 화장품·건강기능식품 원료, kg당 $80~150 ③ <strong>오메가-3 농축액</strong> — 의약품·기능식 원료, kg당 $30~80.</p>
-<p>차트의 충격: 펫푸드 라인 영업이익률 <strong>28.5%</strong> vs 일반 통조림 마진 <strong>8.5%</strong> — 3.3배 차이. 실제 사례: Thai Union의 2026년 1분기 PetCare 부문 매출이 전년 대비 <strong>+23% 급증(THB 5.1B, 약 $145M)</strong>하며 그룹 전체 이익 성장을 견인. 통조림 본업이 마진 압박을 받는 동안 PetCare가 EBITDA의 38%를 차지.</p>
+<p>"업사이클링"이란 이 부산물을 <strong>고부가가치 제품</strong>으로 재가공하는 전략입니다. 대표적 3가지: ① <strong>프리미엄 펫푸드(고양이·강아지)</strong> - 인간식과 동일 등급 원료로 고급화, 시장가 톤당 $4,000~6,000 ② <strong>해양 콜라겐(피부 미용 보조제)</strong> - 화장품·건강기능식품 원료, kg당 $80~150 ③ <strong>오메가-3 농축액</strong> - 의약품·기능식 원료, kg당 $30~80.</p>
+<p>차트의 충격: 펫푸드 라인 영업이익률 <strong>28.5%</strong> vs 일반 통조림 마진 <strong>8.5%</strong> - 3.3배 차이. 실제 사례: Thai Union의 2026년 1분기 PetCare 부문 매출이 전년 대비 <strong>+23% 급증(THB 5.1B, 약 $145M)</strong>하며 그룹 전체 이익 성장을 견인. 통조림 본업이 마진 압박을 받는 동안 PetCare가 EBITDA의 38%를 차지.</p>
 <p>의미: 참치 가공업은 더 이상 "통조림 1차 가공업"이 아닙니다. <strong>"1마리 참치에서 5~7개 고부가 SKU를 추출하는 multi-product platform"</strong>이 되어야 생존 가능합니다. 부산물 = 폐기물이라는 mental model은 폐기.</p>
 </div>`,
           actionPlan: `<div>
 <p><strong>재정의</strong>: 참치 1마리는 단일 commodity가 아닌 <strong>"multi-tier value pyramid"</strong>다. 인간 식용 30% + 펫푸드 30% + 콜라겐/오메가 20% + 바이오리액터 배양 원료 15% + 어분 5%로 재구성하면 <strong>마리당 매출이 2.5~3.8배 증가</strong>한다. 본업의 KPI를 "통조림 출하 톤수"에서 <strong>"마리당 revenue extraction"</strong>으로 전환.</p>
 <p><strong>3단계 실행</strong>:</p>
 <ol style="margin: 4px 0 0 18px; padding: 0;">
-<li style="margin-bottom: 8px;"><strong>단기 (즉시)</strong>: 어분 라인 매각·축소 검토 <strong>전면 백지화</strong>. 검증된 고수익 segment(펫푸드 + 해양 콜라겐)에 capex 우선 배정. 1차로 <strong>"premium pet food JV"</strong> 결성 — Nestle Purina 또는 Mars Pet Care와 50:50 합작, 우리는 원료 100% 독점 공급 + JV가 마케팅·유통. Thai Union의 i-Tail Corporation(PetCare 자회사) 사례 벤치마킹 — 시장가 EV/EBITDA 18~22x로 spin-off하여 본사 valuation rerate 동시 달성.</li>
-<li style="margin-bottom: 8px;"><strong>중기 (12~24개월)</strong>: <strong>"Marine collagen B2B platform"</strong>. 화장품(LVMH·Estée Lauder·Amorepacific) + 건강기능식품(Nestlé Health·Glanbia) + 의료기기(스킨 케어 의료기기) 3개 segment에 동시 supply 계약. 우리가 sole upstream supplier가 되면 가격 결정력 확보. 동시에 자체 B2C brand("Ocean Atelier" 등) 출시 — DTC e-commerce(Amazon·SSF·11번가) 채널에서 마진 50~60% 직접 회수.</li>
+<li style="margin-bottom: 8px;"><strong>단기 (즉시)</strong>: 어분 라인 매각·축소 검토 <strong>전면 백지화</strong>. 검증된 고수익 segment(펫푸드 + 해양 콜라겐)에 capex 우선 배정. 1차로 <strong>"premium pet food JV"</strong> 결성 - Nestle Purina 또는 Mars Pet Care와 50:50 합작, 우리는 원료 100% 독점 공급 + JV가 마케팅·유통. Thai Union의 i-Tail Corporation(PetCare 자회사) 사례 벤치마킹 - 시장가 EV/EBITDA 18~22x로 spin-off하여 본사 valuation rerate 동시 달성.</li>
+<li style="margin-bottom: 8px;"><strong>중기 (12~24개월)</strong>: <strong>"Marine collagen B2B platform"</strong>. 화장품(LVMH·Estée Lauder·Amorepacific) + 건강기능식품(Nestlé Health·Glanbia) + 의료기기(스킨 케어 의료기기) 3개 segment에 동시 supply 계약. 우리가 sole upstream supplier가 되면 가격 결정력 확보. 동시에 자체 B2C brand("Ocean Atelier" 등) 출시 - DTC e-commerce(Amazon·SSF·11번가) 채널에서 마진 50~60% 직접 회수.</li>
 <li><strong>장기 (3~7년)</strong>: <strong>"Bio-active marine ingredients platform"</strong>으로 진화. 참치 부산물에서 추출 가능한 활성 성분(콜라겐 펩타이드, 오메가-3 EPA·DHA, 타우린, 글리신, 칼슘·인 미네랄, 어유 비타민D)을 모듈화하여 <strong>"ingredient catalog"</strong>로 표준화. 제약·식품·화장품·동물 영양 4개 industry에 cross-sell. M&A 타겟: 영국 Marine Ingredients(콜라겐 IP 보유), 노르웨이 Aker BioMarine(오메가-3 leader). 인수 후 우리 backbone과 통합하여 <strong>"Cargill of marine ingredients"</strong> 포지셔닝. EV/EBITDA를 통조림 가공사 8~10x에서 specialty ingredient 18~25x로 multiple rerating. Thai Union PetCare가 미리 가는 길을 따라가지 말고, ingredient platform으로 한 단계 위에서 leapfrog.</li>
 </ol>
 </div>`,

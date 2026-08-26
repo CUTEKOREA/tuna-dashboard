@@ -734,7 +734,7 @@ const SEAsiaOEMDashboard = React.memo(function SEAsiaOEMDashboard() {
 
             {selectedVendor.reviewFlag && (
               <div style={{ background: 'rgba(var(--w-amber-500-rgb), 0.07)', border: '1px solid rgba(var(--w-amber-500-rgb), 0.3)', padding: '0.75rem 1rem', borderRadius: '8px', margin: '0 0 1.2rem 0', fontSize: '0.82rem', color: 'var(--w-amber-400)', lineHeight: 1.55 }}>
-                ⚠️ <strong>재확인 필요</strong> — {selectedVendor.reviewFlag}
+                ⚠️ <strong>재확인 필요</strong> - {selectedVendor.reviewFlag}
               </div>
             )}
 
@@ -889,7 +889,7 @@ const SEAsiaOEMDashboard = React.memo(function SEAsiaOEMDashboard() {
                       {/* ── Section divider ── */}
                       <div style={{ height: '1px', background: 'linear-gradient(90deg, transparent, rgba(140,170,255,0.12), transparent)', margin: '0 0 0.75rem 0' }} />
                       <h4 style={{ fontSize: '0.9rem', color: 'var(--w-slate-200)', marginBottom: '0.6rem', display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
-                        <ShieldCheck size={15} color="#38BDF8" /> 인증 현황 (출처 검증 결과 — 녹색: 코드 확인 · 황색: 번호 미확인)
+                        <ShieldCheck size={15} color="#38BDF8" /> 인증 현황 (출처 검증 결과 - 녹색: 코드 확인 · 황색: 번호 미확인)
                       </h4>
                       <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
                         {certs.map((c: any, idx: number) => (
@@ -902,7 +902,7 @@ const SEAsiaOEMDashboard = React.memo(function SEAsiaOEMDashboard() {
                             }} />
                             <span>
                               <strong style={{ color: 'var(--w-slate-200)' }}>{c.standard}{c.code ? ` (${c.code})` : ''}</strong>
-                              {c.note && <span style={{ color: 'var(--w-slate-400)' }}> — {c.note}</span>}
+                              {c.note && <span style={{ color: 'var(--w-slate-400)' }}> - {c.note}</span>}
                             </span>
                           </div>
                         ))}

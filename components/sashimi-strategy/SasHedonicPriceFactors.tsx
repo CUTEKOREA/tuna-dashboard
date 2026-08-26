@@ -20,7 +20,7 @@ export default function SasHedonicPriceFactors() {
       description="하와이 경매 단가 기준, 속성별 가격 프리미엄/할인 ($/lb)"
       pillar="S5"
       telemetry={{ status: 'STATIC', syncDate: '2025-26' }}
-      cardDesc="호놀룰루 경매 쾌락적(Hedonic) 가격모델 — 눈다랑어 +$0.79·딥셋 +$0.62·조업일 1일당 -$0.14/lb"
+      cardDesc="호놀룰루 경매 쾌락적(Hedonic) 가격모델 - 눈다랑어 +$0.79·딥셋 +$0.62·조업일 1일당 -$0.14/lb"
       takeaway={{ 
         situation: "하와이 경매 데이터를 분석한 쾌락적 모델에 따르면, 빅아이(Bigeye)는 황다랑어 대비 0.79$/lb의 프리미엄을, 심해조업(Deep-set)은 0.62$/lb의 프리미엄을 받습니다. 반면 조업일수가 1일 늘어날 때마다 선도 저하로 0.14$/lb의 페널티가 발생합니다.", 
         actionPlan: "선상 빙장(Iced) 기간을 최소화하는 쾌속 조업(Short-trip) 선단과의 계약이 단가 방어에 절대적이며, Shallow-set 보다는 Deep-set 어법 원물 확보에 주력해야 합니다.", 

@@ -19,7 +19,7 @@ describe('Fleet Now strip', () => {
   });
 });
 
-describe('Deep Sea Command V2 — HeroZone', () => {
+describe('Deep Sea Command V2 - HeroZone', () => {
   it('kpi 유형: 타이틀·주인공 KPI·단위·보조 KPI를 렌더한다 (W-02 단위 병기)', () => {
     const markup = renderToStaticMarkup(
       React.createElement(HeroZone, {
@@ -99,7 +99,7 @@ describe('Deep Sea Command V2 — HeroZone', () => {
   });
 });
 
-describe('Deep Sea Command V2.5 — StatRow', () => {
+describe('Deep Sea Command V2.5 - StatRow', () => {
   it('HeroKpi 4개를 저대비 4-up 보조 KPI 목록으로 렌더한다', async () => {
     const statRowModule = await import('../components/v2/StatRow').catch(() => null);
 
@@ -132,7 +132,7 @@ describe('Deep Sea Command V2.5 — StatRow', () => {
   });
 });
 
-describe('Deep Sea Command V2.5 — LiveTicker', () => {
+describe('Deep Sea Command V2.5 - LiveTicker', () => {
   it('시세 라벨·변동값은 산세리프를 유지하고 value 숫자 run에만 모노를 적용한다', async () => {
     const tickerModule = await import('../components/LiveTicker');
     const TickerQuote = (tickerModule as Record<string, unknown>).TickerQuote;
@@ -163,7 +163,7 @@ describe('Deep Sea Command V2.5 — LiveTicker', () => {
   });
 });
 
-describe('Deep Sea Command V2.5 — TelemetryBadge', () => {
+describe('Deep Sea Command V2.5 - TelemetryBadge', () => {
   it('LIVE만 액센트를 쓰고 SYNCED·STATIC은 slate 중립 톤을 쓴다', () => {
     const liveMarkup = renderToStaticMarkup(
       React.createElement(TelemetryBadge, { status: 'LIVE' }),
@@ -216,7 +216,7 @@ describe('Deep Sea Command V2.5 — TelemetryBadge', () => {
   });
 });
 
-describe('Deep Sea Command V2 — VesselTopSVG', () => {
+describe('Deep Sea Command V2 - VesselTopSVG', () => {
   it('데이터 intensity가 있는 해치만 발광 필터를 받는다 (장식 발광 금지, V2 §5)', async () => {
     const { default: VesselTopSVG } = await import('../components/v2/VesselTopSVG');
     const markup = renderToStaticMarkup(
@@ -236,7 +236,7 @@ describe('Deep Sea Command V2 — VesselTopSVG', () => {
   });
 });
 
-describe('Deep Sea Command V2 — Fleet pilot', () => {
+describe('Deep Sea Command V2 - Fleet pilot', () => {
   it('실제 선단 대시보드가 최신 일일보고 히어로와 데이터 기반 KPI를 렌더한다', () => {
     const markup = renderToStaticMarkup(React.createElement(FleetCommandCenter));
 
@@ -248,7 +248,7 @@ describe('Deep Sea Command V2 — Fleet pilot', () => {
   });
 });
 
-describe('Deep Sea Command V2 — Phase 2 운영 페이지', () => {
+describe('Deep Sea Command V2 - Phase 2 운영 페이지', () => {
   it('하역 히어로가 현재 하역률을 8개 운반선 해치에 배분하고 진행·대기 선박을 표시한다', async () => {
     const unloadingModule = await import('../components/UnloadingStatus');
     const UnloadingHero = (unloadingModule as Record<string, unknown>).UnloadingHero;
@@ -329,7 +329,7 @@ describe('Deep Sea Command V2 — Phase 2 운영 페이지', () => {
     expect(markup).not.toContain('SEIN VENUS와 HENG HONG 9의 예정일이 도래했으므로 실제 입항·접안 여부를 확인합니다.');
   });
 
-  it('시장 히어로가 타이틀·기준일만 남긴다 — KPI는 지휘형 카드가 대체 (2026-08-17 채택)', async () => {
+  it('시장 히어로가 타이틀·기준일만 남긴다 - KPI는 지휘형 카드가 대체 (2026-08-17 채택)', async () => {
     const marketModule = await import('../components/MarketDashboard');
     const MarketHero = (marketModule as Record<string, unknown>).MarketHero;
 
@@ -353,7 +353,7 @@ describe('Deep Sea Command V2 — Phase 2 운영 페이지', () => {
   });
 });
 
-describe('Deep Sea Command V2 — Phase 3 잔여 페이지', () => {
+describe('Deep Sea Command V2 - Phase 3 잔여 페이지', () => {
   it('돼지고기 히어로가 기존 생산 데이터의 기준일·핵심 KPI·단위를 렌더한다', async () => {
     const porkModule = await import('../components/PorkDashboard');
     const PorkHero = (porkModule as Record<string, unknown>).PorkHero;
@@ -433,7 +433,7 @@ describe('Deep Sea Command V2 — Phase 3 잔여 페이지', () => {
   });
 });
 
-describe('Deep Sea Command V2 — PillTabs', () => {
+describe('Deep Sea Command V2 - PillTabs', () => {
   it('탭 라벨과 활성 상태, 선택적 패널 ARIA 연결을 렌더한다', () => {
     const markup = renderToStaticMarkup(
       React.createElement(PillTabs, {

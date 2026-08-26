@@ -67,7 +67,7 @@ function readUnloadingVessels(): Record<string, UnloadingVesselData> {
   return merged;
 }
 
-const pct = (value: number | null) => (value === null ? '—' : `${value >= 0 ? '+' : ''}${value.toFixed(1)}%`);
+const pct = (value: number | null) => (value === null ? '-' : `${value >= 0 ? '+' : ''}${value.toFixed(1)}%`);
 const mt = (value: number) => value.toLocaleString('ko-KR', { maximumFractionDigits: 1 });
 
 function buildBriefingText(): { subject: string; text: string } {
@@ -77,7 +77,7 @@ function buildBriefingText(): { subject: string; text: string } {
   const rows = readAtunaRows();
   const bkk = latestTwoForAtunaHub(rows, SKJ_ATUNA_HUBS[0]);
   const asOf = bkk.latest?.date ?? '미상';
-  lines.push('■ 참치 시세 — Atuna 지역 스프레드 (기준일 ' + asOf.replace(/-/g, '.') + ')');
+  lines.push('■ 참치 시세 - Atuna 지역 스프레드 (기준일 ' + asOf.replace(/-/g, '.') + ')');
   for (const { hub, kind } of [
     ...SKJ_ATUNA_HUBS.map((hub) => ({ hub, kind: 'SKJ' })),
     ...YF_ATUNA_HUBS.map((hub) => ({ hub, kind: 'YF' })),
@@ -95,12 +95,12 @@ function buildBriefingText(): { subject: string; text: string } {
   const waiting = vessels.filter((v) => getVesselStatusKind(v.status) === 'waiting');
   const completed = vessels.filter((v) => getVesselStatusKind(v.status) === 'completed');
   lines.push('');
-  lines.push(`■ 하역 현황 — 항차 ${vessels.length}척 (하역중 ${progress.length} · 대기 ${waiting.length} · 완료 ${completed.length})`);
+  lines.push(`■ 하역 현황 - 항차 ${vessels.length}척 (하역중 ${progress.length} · 대기 ${waiting.length} · 완료 ${completed.length})`);
   for (const v of progress) {
     const p = progressPct(v.actualTotal, v.reportedTotal);
     const avg = avgPerReportDay(v.timeline);
     lines.push(
-      `  ${v.name}: 실적 ${mt(v.actualTotal)} MT / 신고 ${mt(v.reportedTotal)} MT (진행률 ${p === null ? '—' : `${p.toFixed(1)}%`}, 일평균 ${avg === null ? '—' : mt(avg)} MT)`,
+      `  ${v.name}: 실적 ${mt(v.actualTotal)} MT / 신고 ${mt(v.reportedTotal)} MT (진행률 ${p === null ? '-' : `${p.toFixed(1)}%`}, 일평균 ${avg === null ? '-' : mt(avg)} MT)`,
     );
   }
   for (const v of waiting) {
@@ -113,7 +113,7 @@ function buildBriefingText(): { subject: string; text: string } {
     .sort((a, b) => b.totalMt - a.totalMt)
     .slice(0, 3);
   lines.push('');
-  lines.push(`■ 선망선 어획 — 연간 누계 상위 3척 (주간 랭킹 기준 ${period.from}~${period.to})`);
+  lines.push(`■ 선망선 어획 - 연간 누계 상위 3척 (주간 랭킹 기준 ${period.from}~${period.to})`);
   for (const row of top) {
     lines.push(`  ${row.vessel}: ${mt(row.totalMt)} MT`);
   }
@@ -127,7 +127,7 @@ function buildBriefingText(): { subject: string; text: string } {
 
   lines.push('');
   lines.push('전체 화면·차트: https://leedonggun.co.kr/market (로그인 후 사이드바 «PDF 내보내기»로 저장 가능)');
-  lines.push('이 메일은 매주 월요일 08:00 자동 발송됩니다 — 참치왕국 주간 브리핑.');
+  lines.push('이 메일은 매주 월요일 08:00 자동 발송됩니다 - 참치왕국 주간 브리핑.');
 
   const today = new Date().toISOString().slice(0, 10).replace(/-/g, '.');
   return {
@@ -153,7 +153,7 @@ export async function GET(request: Request) {
     smtpConfig = getCompanySmtpConfig();
   } catch {
     return NextResponse.json(
-      { error: '회사 SMTP 환경변수 미설정 — 발송 불가 (정직 표기)', sent: false },
+      { error: '회사 SMTP 환경변수 미설정 - 발송 불가 (정직 표기)', sent: false },
       { status: 503, headers: { 'Cache-Control': 'no-store' } },
     );
   }

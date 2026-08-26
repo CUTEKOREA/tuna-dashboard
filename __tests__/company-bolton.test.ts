@@ -74,7 +74,7 @@ describe('Bolton 조달', () => {
   });
 });
 
-describe('Bolton 선단 — 조달과 보유를 섞지 않는다', () => {
+describe('Bolton 선단 - 조달과 보유를 섞지 않는다', () => {
   it('계열 소유 활성 선박은 WCPFC 10 + IATTC 4 = 14척이다', () => {
     expect(boltonStats.자사선_wcpfc + boltonStats.자사선_iattc).toBe(14);
     expect(activeOwnVessels()).toBe(14);

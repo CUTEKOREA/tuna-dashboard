@@ -93,12 +93,12 @@ export async function GET() {
     ];
 
     const mangosteenKpis = {
-      k1: { title: '태국 수출 패권도 (한국)', value: '96.5~98.7%', trend: '👑', desc: '한국 수입 내 태국산 점유율 — 사실상 독점 (KCS/KATI)', source: '[VERIFIED] KCS + NotebookLM 279소스' },
+      k1: { title: '태국 수출 패권도 (한국)', value: '96.5~98.7%', trend: '👑', desc: '한국 수입 내 태국산 점유율 - 사실상 독점 (KCS/KATI)', source: '[VERIFIED] KCS + NotebookLM 279소스' },
       k2: { title: '기후-수율 타격 (라니냐)', value: '75%', trend: '🌧️', desc: '강우량 증가로 인한 VHT 통과 수율 급락치', source: '[BASELINE] NOAA ONI + Packhouse 추정' },
       k3: { title: '물류 전환 원가 절감', value: '-46.3%', trend: '📉', desc: '항공 -> 해상+MAP 포장 전환 시 절감액', source: '[BASELINE] SCFI / IATA 추정' },
       k4: { title: '아비트리지 임계점', value: '8.5만원', trend: '🍎', desc: '사과 도매가 돌파 시 망고스틴 수입량 폭증', source: '[BASELINE] KAMIS 추정' },
       k5: { title: 'B2B 가공품 안정 마진', value: '22.8%', trend: '🧊', desc: '관세/기후 무관 IQF 냉동 고정 마진 (KCS)', source: '[BASELINE] KCS 추정' },
-      k6: { title: '프리미엄 재수출 단가', value: '$12.4/kg', trend: '🚀', desc: '몽골향 재수출 단가 — 2026-03 단월 실측 (연간 물량 1톤 미만)', source: '[VERIFIED] KCS 수출 실적 (HS 0804)' },
+      k6: { title: '프리미엄 재수출 단가', value: '$12.4/kg', trend: '🚀', desc: '몽골향 재수출 단가 - 2026-03 단월 실측 (연간 물량 1톤 미만)', source: '[VERIFIED] KCS 수출 실적 (HS 0804)' },
     };
 
     const response = {

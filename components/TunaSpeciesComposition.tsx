@@ -107,7 +107,7 @@ const TunaSpeciesComposition = () => (
 <p><strong>3단계</strong>:</p>
 <ol style="margin: 4px 0 0 18px; padding: 0;">
 <li style="margin-bottom: 8px;"><strong>황다랑어 신규 어획권 확보</strong>: IATTC·WCPFC 황다랑어 쿼터 forward 매입. 비중 21.7% → 30%로 단계적 확대.</li>
-<li style="margin-bottom: 8px;"><strong>날개다랑어 차세대 진입</strong>: 북태평양 날개다랑어 어장 라이센스 선매수 — 기후 변화에 따른 회유 패턴 변화를 선제 대응.</li>
+<li style="margin-bottom: 8px;"><strong>날개다랑어 차세대 진입</strong>: 북태평양 날개다랑어 어장 라이센스 선매수 - 기후 변화에 따른 회유 패턴 변화를 선제 대응.</li>
 <li><strong>어종 포트폴리오 리밸런싱</strong>: 4어종을 공급 변동성 기반으로 분기 단위 조정. 리스크 분산 효과 모니터링.</li>
 </ol>
 </div>`,

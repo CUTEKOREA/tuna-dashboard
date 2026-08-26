@@ -24,7 +24,7 @@ export default function SalmonInsightGlobalSupplyPrice({ simulationFactors = { n
   return (
     <WidgetCard
       title="[판매] 공급 변동성과 스팟 가격(Spot Price) 역상관관계"
-      cardDesc="글로벌 연어 공급 증감률과 스팟 가격(EUR/kg) 변동성 — 자체 추정 시나리오(illustrative), 시뮬레이션 가중 적용"
+      cardDesc="글로벌 연어 공급 증감률과 스팟 가격(EUR/kg) 변동성 - 자체 추정 시나리오(illustrative), 시뮬레이션 가중 적용"
       icon={DollarSign}
       iconColor="#f97316"
       pillar="S4"
@@ -54,9 +54,9 @@ export default function SalmonInsightGlobalSupplyPrice({ simulationFactors = { n
 </div>`,
         actionPlan: `<div>
 <p><strong>재정의</strong>: 공급 과잉 가격 폭락 시대 종료. <strong>"단순 트레이딩 → Value-add 가공"</strong>이 본질.</p>
-<p><strong>3단계</strong>: ① 단순 트레이딩 마진 포기 ② 부가가치 가공 라인 capex ③ 원물 단가 상승분 소비자 판매가 전가 — Index-linked pricing 도입.</p>
+<p><strong>3단계</strong>: ① 단순 트레이딩 마진 포기 ② 부가가치 가공 라인 capex ③ 원물 단가 상승분 소비자 판매가 전가 - Index-linked pricing 도입.</p>
 </div>`,
-        source: "자체 추정 시나리오(illustrative) — 정적 데이터(STATIC), 실시간 API 미연동. 스팟 가격은 시뮬레이션 가중으로 변형되어 Nasdaq 살몬 지수 원지수와 직접 대조 불가."
+        source: "자체 추정 시나리오(illustrative) - 정적 데이터(STATIC), 실시간 API 미연동. 스팟 가격은 시뮬레이션 가중으로 변형되어 Nasdaq 살몬 지수 원지수와 직접 대조 불가."
       }}
     />
   );

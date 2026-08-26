@@ -125,7 +125,7 @@ export default function SalmonInsightTradeDown() {
       iconColor="#f97316"
       pillar="S4"
       cardDesc={activeTab === 'kr'
-        ? 'KAMIS 수산물 도매 단가(연어·광어·닭) 추적 — API 키 미설정 시 검증 캐시 폴백'
+        ? 'KAMIS 수산물 도매 단가(연어·광어·닭) 추적 - API 키 미설정 시 검증 캐시 폴백'
         : 'EU 주요국 가정용 신선 연어 소비량(톤) vs 지출액 디커플링 추적(정적 스냅샷)'}
       telemetry={telemetry}
       customBody={<>{tabs}{chartArea}</>}

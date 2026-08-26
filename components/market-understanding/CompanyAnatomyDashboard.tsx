@@ -754,7 +754,7 @@ const TU_CHART_SLOTS: Record<string, ChartSlot[]> = {
       telemetry: SYNC,
       render: () => (
         <TuRows head={['브랜드', '국가', '인수', 'SKU', '라인업 축']}
-          rows={thaiUnionBrands.map((r) => [r.브랜드, r.국가, r.인수, r.sku ?? '—', r.축])} />
+          rows={thaiUnionBrands.map((r) => [r.브랜드, r.국가, r.인수, r.sku ?? '-', r.축])} />
       ),
       span: 'full',
       sourceLine: '사내 조사보고서 04장 (2026-08) · WP REST·Shopify GraphQL·사이트맵·OFF 실측',
@@ -789,7 +789,7 @@ const TU_CHART_SLOTS: Record<string, ChartSlot[]> = {
     },
     {
       title: '어종 구성 (SKU)',
-      caption: '참치가 절반이 안 된다. 연어·정어리·고등어가 나머지를 채운다 — 브랜드를 사 모은 결과다.',
+      caption: '참치가 절반이 안 된다. 연어·정어리·고등어가 나머지를 채운다 - 브랜드를 사 모은 결과다.',
       telemetry: SYNC,
       render: () => (
         <TuRows head={['어종', 'SKU']}
@@ -799,7 +799,7 @@ const TU_CHART_SLOTS: Record<string, ChartSlot[]> = {
     },
     {
       title: '자료가 채우지 못한 칸',
-      caption: '없는 값을 만들어 넣지 않았다. 「—」는 곧 출처에 없다는 뜻이다.',
+      caption: '없는 값을 만들어 넣지 않았다. 「-」는 곧 출처에 없다는 뜻이다.',
       telemetry: SYNC,
       render: () => (
         <TuRows head={['항목', '채워진 SKU', '비율 (%)']}
@@ -886,7 +886,7 @@ const TU_CHART_SLOTS: Record<string, ChartSlot[]> = {
           rows={skusOf('Mareblu').map((s) => [s.제품명, s.어종, s.규격, s.인증])} />
       ),
       span: 'full',
-      sourceLine: 'Open Food Facts — 등급 B',
+      sourceLine: 'Open Food Facts - 등급 B',
     },
     {
       title: 'Parmentier',
@@ -897,7 +897,7 @@ const TU_CHART_SLOTS: Record<string, ChartSlot[]> = {
           rows={skusOf('Parmentier').map((s) => [s.제품명, s.어종, s.규격, s.인증])} />
       ),
       span: 'full',
-      sourceLine: 'Open Food Facts — 등급 B',
+      sourceLine: 'Open Food Facts - 등급 B',
     },
     {
       title: 'Sealect',
@@ -908,7 +908,7 @@ const TU_CHART_SLOTS: Record<string, ChartSlot[]> = {
           rows={skusOf('Sealect').map((s) => [s.제품명, s.어종, s.규격, s.인증])} />
       ),
       span: 'full',
-      sourceLine: 'Open Food Facts — 등급 B',
+      sourceLine: 'Open Food Facts - 등급 B',
     },
     {
       title: '소매 실판매가 (186건)',
@@ -1681,7 +1681,7 @@ const BOL_CHART_SLOTS: Record<string, ChartSlot[]> = {
           rows={boltonCategories.map((r) => [r.카테고리, nf(r.y2024), nf(r.y2025), r.비중.toFixed(1), r.브랜드])} />
       ),
       span: 'full',
-      sourceLine: 'Sustainability Report 2025 — 순매출 기준',
+      sourceLine: 'Sustainability Report 2025 - 순매출 기준',
     },
     {
       title: '앞의 회사들과의 좌표',
@@ -1721,8 +1721,8 @@ const BOL_CHART_SLOTS: Record<string, ChartSlot[]> = {
         <TuRows head={['지역', '2019', '2022', '2024', '2025']}
           rows={boltonRegions.map((r) => [
             r.지역,
-            r.y2019 === null ? '—' : r.y2019.toFixed(1),
-            r.y2022 === null ? '—' : r.y2022.toFixed(1),
+            r.y2019 === null ? '-' : r.y2019.toFixed(1),
+            r.y2022 === null ? '-' : r.y2022.toFixed(1),
             r.y2024.toFixed(1), r.y2025.toFixed(1),
           ])} />
       ),
@@ -1732,7 +1732,7 @@ const BOL_CHART_SLOTS: Record<string, ChartSlot[]> = {
   ],
   c04: [
     {
-      title: '자사 선단 — 등록부별',
+      title: '자사 선단 - 등록부별',
       caption: '조달 선박명단 399척과 혼동하면 안 된다. 자사 보유는 이것뿐이고 ICCAT 3척은 전부 비활성이다.',
       telemetry: SYNC,
       render: () => (
@@ -1750,7 +1750,7 @@ const BOL_CHART_SLOTS: Record<string, ChartSlot[]> = {
       telemetry: SYNC,
       render: () => (
         <TuRows head={['연도', '조달량 (t)', '전년비 (%)']}
-          rows={boltonSourcing.map((r) => [r.연도, nf(r.톤), r.전년비 === null ? '—' : r.전년비.toFixed(1)])} />
+          rows={boltonSourcing.map((r) => [r.연도, nf(r.톤), r.전년비 === null ? '-' : r.전년비.toFixed(1)])} />
       ),
       sourceLine: 'Sustainability Report 2022~2025',
     },
@@ -1864,13 +1864,13 @@ const JAI_CHART_SLOTS: Record<string, ChartSlot[]> = {
         <TuRows head={['회계연도', '매출 (€)', '전년비 (%)', '순손익 (€)', '순마진 (%)', '종업원']}
           rows={jaisFinancials.map((r) => [
             r.연도, eur(r.매출),
-            r.전년비 === null ? '—' : r.전년비.toFixed(1),
+            r.전년비 === null ? '-' : r.전년비.toFixed(1),
             eur(r.순손익), r.순마진.toFixed(2),
-            r.종업원 === null ? '—' : r.종업원,
+            r.종업원 === null ? '-' : r.종업원,
           ])} />
       ),
       span: 'full',
-      sourceLine: '이탈리아 등기 기탁 재무제표 — 2025년은 「약」 표기 추정치',
+      sourceLine: '이탈리아 등기 기탁 재무제표 - 2025년은 「약」 표기 추정치',
     },
   ],
   c03: [
@@ -1891,7 +1891,7 @@ const JAI_CHART_SLOTS: Record<string, ChartSlot[]> = {
       telemetry: SYNC,
       render: () => (
         <TuRows head={['명부 판', '등재행', '총 행수', '내역']}
-          rows={jaisFos.map((r) => [r.판, r.등재행, r.총행수 === null ? '—' : nf(r.총행수), r.내역])} />
+          rows={jaisFos.map((r) => [r.판, r.등재행, r.총행수 === null ? '-' : nf(r.총행수), r.내역])} />
       ),
       span: 'full',
       sourceLine: 'Friend of the Sea 승인선박 명부 2018~2025년 판별',
@@ -1923,7 +1923,7 @@ const JAI_CHART_SLOTS: Record<string, ChartSlot[]> = {
   ],
   c05: [
     {
-      title: 'Panofi — 지분보다 채권이 크다',
+      title: 'Panofi - 지분보다 채권이 크다',
       caption: '신라교역 지분은 45%에 장부가액 0인데, 수취채권과 담보가 실질 지배를 만든다.',
       telemetry: SYNC,
       render: () => (

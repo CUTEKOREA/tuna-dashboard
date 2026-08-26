@@ -144,16 +144,16 @@ export async function GET() {
       return {
         title: '참치 조제품 평균 수입 단가 (USD/Ton)',
         value: `$${liveTrade.latestImpUnit.toLocaleString()}`,
-        trend: prev === null ? '—' : liveTrade.latestImpUnit >= prev ? '▲ 전월比' : '▼ 전월比',
+        trend: prev === null ? '-' : liveTrade.latestImpUnit >= prev ? '▲ 전월比' : '▼ 전월比',
         desc: `관세청 KCS nitemtrade HS 160414 통관 실측 (${liveTrade.period}) [🟢 LIVE KCS API]`,
         telemetry: 'live',
         isLive: true
       };
     })() : {
       title: '참치 조제품 평균 수입 단가 (USD/Ton)',
-      value: '$—',
-      trend: '—',
-      desc: '관세청 KCS nitemtrade 조회 실패 — 값 미표시 (허수 방지)',
+      value: '$-',
+      trend: '-',
+      desc: '관세청 KCS nitemtrade 조회 실패 - 값 미표시 (허수 방지)',
       telemetry: 'static',
       syncDate: new Date().toISOString().slice(0, 10),
       isLive: false
@@ -169,9 +169,9 @@ export async function GET() {
       isLive: true
     } : {
       title: '참치 조제품 연간 누적 수입액 (HS 160414)',
-      value: '$—',
-      trend: '—',
-      desc: '관세청 KCS nitemtrade 조회 실패 — 값 미표시 (허수 방지)',
+      value: '$-',
+      trend: '-',
+      desc: '관세청 KCS nitemtrade 조회 실패 - 값 미표시 (허수 방지)',
       telemetry: 'static',
       syncDate: new Date().toISOString().slice(0, 10),
       isLive: false
@@ -201,10 +201,10 @@ export async function GET() {
       syncDate: w01IsLive ? new Date().toISOString().slice(0, 10) : '2026-04 기준(자체 구성)',
       source: w01IsLive
         ? `관세청 KCS nitemtrade HS 160414 월별 통관 실측 (${liveTrade!.period}) [🟢 LIVE]`
-        : '관세청 통관 기반 자체 구성 (2026.01~04) · KCS 조회 실패 — 정적 표시',
+        : '관세청 통관 기반 자체 구성 (2026.01~04) · KCS 조회 실패 - 정적 표시',
       situation: '[단가 스프레드 확대] 관세청 실측 통관 데이터 분석 결과, 참치 원어 수입 단가는 글로벌 조업량 한계로 인해 점진적 상승세를 보이고 있으나, 고부가가치 가공품의 수출 단가가 더 가파르게 상승하며 마진 스프레드가 확대되고 있습니다.',
       takeaway: '[가공 마진 락인] 원어 확보 경쟁 심화에 대비해 장기 공급망을 구축하고, 캔/파우치 등 프리미엄 가공품 수출 비중을 늘려 글로벌 수출 시장의 단가 상승 랠리(Rally)를 극대화해야 합니다.',
-      methodology: 'KCS nitemtrade HS 160414 월별 합산 — 단가 = 금액(USD) ÷ 중량(kg) × 1000 (USD/Ton). 조회 실패 시 직전 자체 구성값 표시',
+      methodology: 'KCS nitemtrade HS 160414 월별 합산 - 단가 = 금액(USD) ÷ 중량(kg) × 1000 (USD/Ton). 조회 실패 시 직전 자체 구성값 표시',
       data: w01IsLive
         ? liveTrade!.monthly.map(r => ({
             Month: `${parseInt(r.month.slice(5), 10)}월`,

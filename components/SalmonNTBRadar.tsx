@@ -134,7 +134,7 @@ export default function SalmonNTBRadar() {
 </div>`,
         actionPlan: `<div>
 <p><strong>재정의</strong>: NTB는 단순 규제 정보가 아닌 <strong>"vendor whitelist 등재 instrument"</strong>.</p>
-<p><strong>3단계</strong>: ① 미국 SIMP 시행 D-30 노르웨이·칠레 1차 가공사 디지털 이력추적 인증 완료 ② 러시아 제3국 우회 의심 거래선 즉시 차단 ③ 한-EFTA C/O 발급 요건 엄격화 대응 — 노르웨이 신선 원산지 증명 프로세스 사전 정비.</p>
+<p><strong>3단계</strong>: ① 미국 SIMP 시행 D-30 노르웨이·칠레 1차 가공사 디지털 이력추적 인증 완료 ② 러시아 제3국 우회 의심 거래선 즉시 차단 ③ 한-EFTA C/O 발급 요건 엄격화 대응 - 노르웨이 신선 원산지 증명 프로세스 사전 정비.</p>
 </div>`,
         source: "WITS NTM · OFAC SDN · MFDS · 박혜진(2023, 2025) · 이정미(2025) · KMI(2026)",
       }}

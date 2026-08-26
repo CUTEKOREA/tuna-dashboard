@@ -40,7 +40,7 @@ const TunaImportBlackhole = () => (
     icon={Anchor}
     iconColor="#ef4444"
     pillar="S4"
-    cardDesc="FAO FishStatJ 양자 무역 데이터로 세계 10대 참다랑어 양식국 발 \'양식 오리진\' 수입 물량을 합산 — 2019~2023 일본 블랙홀 구조 분석"
+    cardDesc="FAO FishStatJ 양자 무역 데이터로 세계 10대 참다랑어 양식국 발 \'양식 오리진\' 수입 물량을 합산 - 2019~2023 일본 블랙홀 구조 분석"
     telemetry={{ status: 'STATIC', syncDate: '2023-12-31' }}
     chartHeight={380}
     chart={

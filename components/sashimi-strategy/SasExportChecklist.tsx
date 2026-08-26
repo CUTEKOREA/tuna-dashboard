@@ -45,11 +45,11 @@ export default function SasExportChecklist() {
   return (
     <WidgetCard
       id="W-SAS24"
-      title="수출 진입요건 체크리스트 — 시장별 비교"
+      title="수출 진입요건 체크리스트 - 시장별 비교"
       icon={ClipboardCheck}
       iconColor="#22d3ee"
       pillar="S2"
-      cardDesc="미국(SIMP)·영국(IUU/FTA)·일본(-60℃) — 시장별 필수 인증·규제·문서 매트릭스"
+      cardDesc="미국(SIMP)·영국(IUU/FTA)·일본(-60℃) - 시장별 필수 인증·규제·문서 매트릭스"
       telemetry={{ status: 'STATIC', syncDate: '2025' }}
       takeaway={{
         situation: "3대 수출 시장의 진입요건은 명확히 다릅니다. 미국은 SIMP(어획 추적) + FDA CO 라벨이 핵심이며, 영국은 IUU Catch Certificate + EHC(위생증명) + Korea-UK FTA 원산지증명이 필수입니다. 일본은 -60℃ 콜드체인과 히스타민 HACCP가 거래 전제이며, 수은규제는 마구로類에 면제됩니다.",
@@ -76,9 +76,9 @@ export default function SasExportChecklist() {
                     fontSize: '0.68rem',
                   }}>
                     <span style={{ color: 'var(--w-slate-200)', fontWeight: 500 }}>{item.req}</span>
-                    <span style={{ textAlign: 'center' }}>{item.us ? '🇺🇸 ✓' : '—'}</span>
-                    <span style={{ textAlign: 'center' }}>{item.uk ? '🇬🇧 ✓' : '—'}</span>
-                    <span style={{ textAlign: 'center' }}>{item.jp ? '🇯🇵 ✓' : '—'}</span>
+                    <span style={{ textAlign: 'center' }}>{item.us ? '🇺🇸 ✓' : '-'}</span>
+                    <span style={{ textAlign: 'center' }}>{item.uk ? '🇬🇧 ✓' : '-'}</span>
+                    <span style={{ textAlign: 'center' }}>{item.jp ? '🇯🇵 ✓' : '-'}</span>
                     <span style={{ color: 'var(--w-slate-500)', fontSize: '0.6rem' }}>{item.note}</span>
                   </div>
                 ))}

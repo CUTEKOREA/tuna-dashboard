@@ -91,7 +91,7 @@ export default function FfaGoodStandingPanel() {
         <div>
           <h2 style={{ fontSize: '1.15rem', fontWeight: 800, margin: '0 0 4px' }}>
             <Ship size={19} style={{ verticalAlign: -3, marginRight: 6 }} aria-hidden="true" />
-            FFA 조업허가 선단과 위치보고 — {ffaMeta.기간}
+            FFA 조업허가 선단과 위치보고 - {ffaMeta.기간}
           </h2>
           <p style={{ ...desc, marginBottom: 0, maxWidth: 780 }}>
             <TermTooltip term="FFA" description="태평양도서국포럼수산기구. 회원국 수역에서 조업할 자격(Good Standing)을 관리합니다." />
@@ -115,7 +115,7 @@ export default function FfaGoodStandingPanel() {
         <h3 style={h3}>정상 표기인데 보고가 모자란 선박 ({active.length}척)</h3>
         <p style={desc}>
           FFA 는 장비 상태를 정상(ACTIVE)으로 표기했지만, 실제 일별 보고건수의 중앙값이 같은 선종의
-          표준 주기에 못 미치는 배입니다. 선종 표준은 다른 배들의 최빈 주기로 잡았습니다 —
+          표준 주기에 못 미치는 배입니다. 선종 표준은 다른 배들의 최빈 주기로 잡았습니다 -
           {ffaTypeNorms.filter((n) => n.표준주기 > 0).map((n) => `${n.선종} ${n.표준주기}건/일`).join(' · ')}.
         </p>
         <div style={{ overflowX: 'auto' }}>
@@ -198,7 +198,7 @@ export default function FfaGoodStandingPanel() {
         <h3 style={h3}>FFA 가 미보고로 표기한 선박 ({ffaNotReporting.length}척)</h3>
         <p style={desc}>
           결손일은 자체 주기에 못 미친 날이며, 무보고일보다 적게 세지 않습니다.
-          적용일은 등록일 이후의 날만 셉니다 — 기간 중에 등록한 배가 등록 전 날짜까지 결손으로 잡히지 않도록.
+          적용일은 등록일 이후의 날만 셉니다 - 기간 중에 등록한 배가 등록 전 날짜까지 결손으로 잡히지 않도록.
         </p>
         <div style={{ overflowX: 'auto', maxHeight: 420 }}>
           <table style={{ width: '100%', borderCollapse: 'collapse' }}>

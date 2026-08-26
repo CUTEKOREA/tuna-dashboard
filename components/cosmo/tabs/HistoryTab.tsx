@@ -62,11 +62,11 @@ export default function History() {
     <>
       <PageHead
         title={`장기 추이 (${U[0].year}~${last.year})`}
-        lead={`이 보드는 참조용입니다. 지금 수준이 지난 ${U.length}개년 안에서 어디쯤인지 대보는 화면입니다. 금액은 모두 USD 기준입니다 — ${U[0].year}~${settled[0].year - 1}년은 연도별 집계(만불), ${settled[0].year}년부터는 결산 확정치이며, 겹치는 구간에서 두 출처가 이어지는지 확인했습니다.`}
+        lead={`이 보드는 참조용입니다. 지금 수준이 지난 ${U.length}개년 안에서 어디쯤인지 대보는 화면입니다. 금액은 모두 USD 기준입니다 - ${U[0].year}~${settled[0].year - 1}년은 연도별 집계(만불), ${settled[0].year}년부터는 결산 확정치이며, 겹치는 구간에서 두 출처가 이어지는지 확인했습니다.`}
         meta={[
           `손익 ${U[0].year}~${last.year} (${U.length}개년, USD)`,
           `생산 ${P[0].year}~${lastProd.year} (${P.length}개년)`,
-          `2025 주간 ${yoy.weeks2025Count}주 확보 — 동일 구간(1~${yoy.upTo}주) 대조`,
+          `2025 주간 ${yoy.weeks2025Count}주 확보 - 동일 구간(1~${yoy.upTo}주) 대조`,
           `대비 기준 2026 ${latest.week}주차 누적`,
         ]}
       />
@@ -85,7 +85,7 @@ export default function History() {
         <Card>
           <Kpi k={`${last.year} 순손익`} v={musd(last.net)}
             tone={n(last.net) >= 0 ? 'up' : 'down'}
-            d={`${U.length}개년 중 적자 ${lossYears}개년 · 영업이익의 ${kept != null ? pct(kept, 0) : '—'}만 순이익으로 남음`} />
+            d={`${U.length}개년 중 적자 ${lossYears}개년 · 영업이익의 ${kept != null ? pct(kept, 0) : '-'}만 순이익으로 남음`} />
         </Card>
         <Card>
           <Kpi k={`${lastProd.year} CBU 원어처리량`} v={num(lastProd.cbuRawMt, 0)} unit=" MT"
@@ -112,7 +112,7 @@ export default function History() {
             흑자로 돌아선 것은 {U.filter((a) => n(a.net) > 0).map((a) => a.year).join('·')}년뿐이고
             그마저 {musd(U.filter((a) => n(a.net) > 0)[0]?.net)} 수준으로 얇습니다.
             {last.year}년 영업손익 <b>{musd(last.op)}</b> 중 순손익으로 남은 것은 {musd(last.net)}
-            ({kept != null ? pct(kept, 0) : '—'})로, 나머지는 금융·영업외 비용이 가져갔습니다.
+            ({kept != null ? pct(kept, 0) : '-'})로, 나머지는 금융·영업외 비용이 가져갔습니다.
             영업이 개선돼도 순이익으로 남는 몫이 얇은 구조가 계속됩니다.</>}
         >
           <Legend items={[
@@ -149,11 +149,11 @@ export default function History() {
       <SecHead>연간 생산성 vs 2026 현재</SecHead>
       <div className="grid g2">
         <Card
-          title="일처리량 — 연도별 vs 2026 누적"
+          title="일처리량 - 연도별 vs 2026 누적"
           sub="CBU 기준. 가로 점선이 2026년 현재 누적 일처리량."
           note={<>2026 누적 일처리량 <b>{num(now.daily, 1)} MT/일</b>은 {P.length}개년 중
             <b> {P.filter((a) => n(a.daily) > now.daily).length}개년이 현재보다 높고</b>,
-            가장 최근 확정치인 {lastProd.year}년은 <b>{num(lastProd.daily, 1)} MT/일</b>로 {P.length}개년 최고입니다 —
+            가장 최근 확정치인 {lastProd.year}년은 <b>{num(lastProd.daily, 1)} MT/일</b>로 {P.length}개년 최고입니다 -
             지금 수준은 그보다 {num(n(lastProd.daily) - now.daily, 1)} 낮습니다.</>}
         >
           <Legend items={[
@@ -168,7 +168,7 @@ export default function History() {
         </Card>
 
         <Card
-          title="수율 — 연도별 vs 2026 누적"
+          title="수율 - 연도별 vs 2026 누적"
           sub={`CBU 기준. 연도 간 차이가 1%p 미만이라 축을 ${pct(yLo, 1)}부터 잘라 선으로 그렸습니다.`}
           note={<>2026 누적 수율 <b>{pct(now.yield, 2)}</b>는 {P.length}개년 중 가장 낮은
             {P.reduce((lo, a) => (n(a.yield) < n(lo.yield) ? a : lo)).year}년 {pct(P.reduce((lo, a) => (n(a.yield) < n(lo.yield) ? a : lo)).yield, 2)}보다도
@@ -192,7 +192,7 @@ export default function History() {
         <Card
           title={`${U[0].year}~${last.year} 연간 지표`}
           sub={`금액은 USD, 생산은 CBU 기준. ${settled[0].year}년부터는 결산 확정치.`}
-          note={<>금액은 모두 <b>USD</b>입니다 — {U[0].year}~{settled[0].year - 1}년은 연도별 집계(만불 환산),
+          note={<>금액은 모두 <b>USD</b>입니다 - {U[0].year}~{settled[0].year - 1}년은 연도별 집계(만불 환산),
             {settled[0].year}년부터는 결산 확정치입니다. 두 출처가 겹치는 구간에서 값이 이어지는지 확인했습니다.
             생산 지표가 빈 해는 그 해 집계가 원본에 없는 경우입니다.
             영업손익이 흑자인 해는 {U.filter((a) => n(a.op) > 0).map((a) => a.year).join('·') || '없음'},
@@ -221,7 +221,7 @@ export default function History() {
                     <td className="n">{musd(a.revenue)}</td>
                     <td className="n">{musd(a.op)}</td>
                     <td className={`n ${n(a.net) < 0 ? 'down' : 'up'}`}>{musd(a.net)}</td>
-                    <td className="n"><span className="tag">{a.basis ?? '—'}</span></td>
+                    <td className="n"><span className="tag">{a.basis ?? '-'}</span></td>
                     <td className="n">{num(a.cbuRawMt, 0)} MT</td>
                     <td className="n">{num(a.days, 0)}일</td>
                     <td className="n">{num(a.daily, 1)}</td>
@@ -234,14 +234,14 @@ export default function History() {
           </div>
         </Card>
         <Card
-          title={`2025 vs 2026 — 같은 1~${yoy.upTo}주 구간`}
+          title={`2025 vs 2026 - 같은 1~${yoy.upTo}주 구간`}
           sub="같은 주간보고 양식에서 읽은 CBU 주간값. 일처리량은 Σ원어÷Σ생산일, 수율은 원어량 가중. 미가동 주 제외."
-          note={<>2025년 전주차가 확보돼 <b>같은 1~{yoy.upTo}주 구간</b>으로 비교합니다 — 계절성이 통제된 값입니다.
+          note={<>2025년 전주차가 확보돼 <b>같은 1~{yoy.upTo}주 구간</b>으로 비교합니다 - 계절성이 통제된 값입니다.
             일처리량 <b>{p25n(yoy.daily2025)} → {p25n(yoy.daily2026)} ({yoy.dailyDelta.toFixed(1)} MT/일)</b>,
             수율 {pct(yoy.yield2025, 2)} → {pct(yoy.yield2026, 2)}({(yoy.yieldDelta * 100).toFixed(2)}%p),
             원어처리량 {num(yoy.rawMt2025, 0)} → {num(yoy.rawMt2026, 0)}MT.
             같은 시점 누적 판매액도 {musd(yoy.salesCum2025)} → {musd(yoy.salesCum2026)}
-            ({yoy.salesYoY != null ? pct(yoy.salesYoY, 1) : '—'})입니다.
+            ({yoy.salesYoY != null ? pct(yoy.salesYoY, 1) : '-'})입니다.
             <br />이전에는 2025 표본이 연말 13주뿐이라 일처리량이 2026 쪽이 높게 나왔는데,
             <b>그건 비교 구간이 어긋나서 생긴 착시</b>였습니다. 전주차로 맞추니 방향이 뒤집힙니다.
             2025년 결측은 {yoy.missing2025.map((w) => `W${w}`).join('·') || '없음'}입니다.</>}
@@ -280,7 +280,7 @@ export default function History() {
           {P.length}개년 최고였습니다. 2026년 {latest.week}주차 누적은
           <b> 일처리량 {num(now.daily, 1)}({pct((now.daily - n(lastProd.daily)) / n(lastProd.daily), 1)})</b>,
           <b>수율 {pct(now.yield, 2)}({((now.yield - n(lastProd.yield)) * 100).toFixed(2)}%p)</b>로
-          그 기준선 아래에 있습니다 — 추세 하락이 아니라 <b>최고점에서의 급락</b>입니다.
+          그 기준선 아래에 있습니다 - 추세 하락이 아니라 <b>최고점에서의 급락</b>입니다.
           손익 쪽을 보면 {U.length}개년 중 순손익 흑자는
           {U.filter((a) => n(a.net) > 0).map((a) => a.year).join('·') || '없음'}뿐이고 규모도 {musd(last.net)} 수준입니다.
           영업손익이 개선돼도 순손익으로 남는 몫이 얇은 구조에서 생산성까지 밀리면 흑자 유지가 어렵습니다.

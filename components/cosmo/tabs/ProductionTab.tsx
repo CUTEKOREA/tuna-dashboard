@@ -11,8 +11,8 @@ const mt = (v: number) => v.toLocaleString('en-US', { maximumFractionDigits: 0 }
 const mtk = (v: number) => (v / 1000).toFixed(0) + 'k'
 const dly = (v: number) => v.toFixed(1) + ' MT/일'
 const day = (v: number) => v.toFixed(1) + '일'
-const pp = (v: number | null | undefined) => (v == null ? '—' : (v * 100).toFixed(2) + '%p')
-const usdFmt = (v: number | null | undefined) => (v == null ? '—' : '$' + num(v, 0))
+const pp = (v: number | null | undefined) => (v == null ? '-' : (v * 100).toFixed(2) + '%p')
+const usdFmt = (v: number | null | undefined) => (v == null ? '-' : '$' + num(v, 0))
 const musdFmt = (v: number) => '$' + (v / 1e6).toFixed(2) + 'M'
 
 /** 값 폭이 좁은 계열은 0 기준 축에서 한 선으로 뭉갠다 — 데이터 범위 ±pad 로 자른 축 */
@@ -94,7 +94,7 @@ export default function Production() {
   ]
 
   /* FBU 는 원본에 계획이 없다. 전부 '—' 인 계획·갭 열은 카드 폭만 넘치게 하므로 값이 있을 때만 낸다 */
-  const hasFbuPlan = cmpRows.some((r) => r.fp !== '—' || r.fg !== '—')
+  const hasFbuPlan = cmpRows.some((r) => r.fp !== '-' || r.fg !== '-')
 
   const lastAnnual = annual[annual.length - 1]
 
@@ -110,18 +110,18 @@ export default function Production() {
       d: (yoy.days2026 - yoy.days2025 >= 0 ? '+' : '') + (yoy.days2026 - yoy.days2025).toFixed(1) + '일',
       neg: yoy.days2026 < yoy.days2025 },
     { k: '누적 판매액', sub: `${yoy.upTo}주차 시점`, a: musd(yoy.salesCum2025), b: musd(yoy.salesCum2026),
-      d: yoy.salesYoY != null ? pct(yoy.salesYoY, 1) : '—', neg: (yoy.salesYoY ?? 0) < 0 },
+      d: yoy.salesYoY != null ? pct(yoy.salesYoY, 1) : '-', neg: (yoy.salesYoY ?? 0) < 0 },
   ]
 
   return (
     <>
       <PageHead
         title="생산"
-        lead={`계획 대비 ${mt(Math.abs(gTot))} 부족이 어디서 왔는지 — 공장을 덜 돌려서인지, 돌아가는 동안 덜 처리해서인지 — 를 분해합니다. 별도 표기가 없으면 CBU(캔) 라인 기준입니다.`}
+        lead={`계획 대비 ${mt(Math.abs(gTot))} 부족이 어디서 왔는지 - 공장을 덜 돌려서인지, 돌아가는 동안 덜 처리해서인지 - 를 분해합니다. 별도 표기가 없으면 CBU(캔) 라인 기준입니다.`}
         meta={[
           `주간 ${meta.weekRange[0]}~${meta.weekRange[1]}주 (${meta.weekCount}주, 결측 ${meta.missingWeeks.join(',') || '없음'})`,
           `CBU 누적 ${num(cbu?.cumRawMt, 0)}MT / 계획 ${num(cbu?.planRawMt, 0)}MT`,
-          `비교군 2025 전체 ${yoy.weeks2025Count}주 — 동일 구간(1~${yoy.upTo}주) 대조`,
+          `비교군 2025 전체 ${yoy.weeks2025Count}주 - 동일 구간(1~${yoy.upTo}주) 대조`,
         ]}
       />
 
@@ -172,11 +172,11 @@ export default function Production() {
         </Card>
 
         <Card
-          title="기여도 — MT와 비중"
+          title="기여도 - MT와 비중"
           sub="비중은 총 갭 대비. 계획 대비 비율은 참고값이다."
           note={<>부족분 {mt(Math.abs(gTot))} 중 <b>{pct(share(gRate), 1)}가 일 처리량 저하</b>,
             생산일수는 {pct(share(gDays), 1)}입니다. 날짜를 다 채웠어도 갭의 대부분은 남습니다.
-            <br />두 가지 단서 — ① 처리량은 <b>일수 × 속도의 곱</b>이라 교차항을 어느 쪽에 붙이느냐로 비중이 달라집니다.
+            <br />두 가지 단서 - ① 처리량은 <b>일수 × 속도의 곱</b>이라 교차항을 어느 쪽에 붙이느냐로 비중이 달라집니다.
             위 식은 교차항을 속도에 귀속시킨 경로이고, 반대 경로에서는 속도 비중이 약 83%가 됩니다. 어느 경로든 주원인은 속도입니다.
             ② 계획 대비 비율(생산일수 {pct(pctDays, 1)}, 일 처리량 {pct(pctRate, 1)})은 곱셈 관계라
             더해도 총 갭 비율과 일치하지 않습니다. 합산하지 말고 각각으로 읽으십시오.</>}
@@ -207,8 +207,8 @@ export default function Production() {
                 <tr>
                   <td>잔차 (반올림)</td>
                   <td className="n">{num(gRes, 1)} MT</td>
-                  <td className="n">—</td>
-                  <td className="n">—</td>
+                  <td className="n">-</td>
+                  <td className="n">-</td>
                 </tr>
                 <tr>
                   <td><b>총 갭</b></td>
@@ -225,7 +225,7 @@ export default function Production() {
       <SecHead>계획 대비 추이</SecHead>
       <div className="grid g2">
         <Card
-          title="누적 원어처리량 — 실적 vs 계획"
+          title="누적 원어처리량 - 실적 vs 계획"
           sub="왼쪽 축은 누적 처리량, 오른쪽 축은 갭(실적−계획)."
           note={<>{latest.week}주 현재 실적 <b>{mt(n(cbu?.cumRawMt))}</b>, 계획 {mt(n(cbu?.planRawMt))}.
             두 선은 초반부터 벌어지기 시작해 한 번도 다시 붙지 않습니다.
@@ -300,7 +300,7 @@ export default function Production() {
             {partial.length > 0 && <> 주간 수율이 튀는 {partial.map((p) => p.label).join('·')}는 생산일이
               각각 {partial.map((p) => day(n(p.cbuWeekDays))).join('·')}뿐인 부분 가동 주로,
               투입과 산출의 시차가 비율에 그대로 얹힙니다{topYield && n(topYield.cbuWeekDays) < 3
-                ? ` — 주간 최고치 ${pct(topYield.cbuYieldWeek, 2)}도 이 구간에서 나왔습니다`
+                ? ` - 주간 최고치 ${pct(topYield.cbuYieldWeek, 2)}도 이 구간에서 나왔습니다`
                 : ''}.</>}</>}
         >
           <Legend items={[
@@ -323,7 +323,7 @@ export default function Production() {
       <SecHead>주간 처리량과 유닛 비교</SecHead>
       <div className="grid g2">
         <Card
-          title="주간 원어처리량 — CBU + FBU"
+          title="주간 원어처리량 - CBU + FBU"
           sub="두 라인의 주간 투입량을 쌓아 총 처리 규모를 본다."
           note={<>정상 주에는 CBU가 500MT 안팎으로 붙어 있고 FBU가 그 위에 얹힙니다.
             {partial.length > 0 && <> 눈에 띄게 낮은 {partial.map((p) => p.label).join('·')}는
@@ -346,7 +346,7 @@ export default function Production() {
         </Card>
 
         <Card
-          title={`CBU vs FBU — ${latest.week}주 기준`}
+          title={`CBU vs FBU - ${latest.week}주 기준`}
           sub="주간·누적 실적과 계획·갭. FBU는 원본에 계획이 없어 갭을 산출할 수 없다."
           note={<>FBU는 누적 생산일 {day(n(fbu?.cumDays))}로 CBU의 {pct(n(fbu?.cumDays) / Math.max(1, n(cbu?.cumDays)), 0)}만
             돌았고 일처리량도 {dly(n(fbu?.cumDaily))} 수준입니다. 수율은 FBU가 <b>{pct(fbu?.cumYield, 2)}</b>로
@@ -398,7 +398,7 @@ export default function Production() {
               매출 기준은 <b>{musd(gapValuation.revBasis)}</b>
               (부족 원어를 수율 {pct(gapValuation.yieldRate, 2)}로 완제품 {num(gapValuation.fgKg / 1000, 0)}톤으로 바꿔
               실현 단가 ${gapValuation.usdPerKg?.toFixed(2)}/kg 로 판다고 가정)입니다.
-              <br /><b>실제 손익 영향은 이 사이 어딘가</b>입니다 — 추가 물량에는 변동비만 더 들지
+              <br /><b>실제 손익 영향은 이 사이 어딘가</b>입니다 - 추가 물량에는 변동비만 더 들지
               고정비는 이미 발생했기 때문에 총원가 기준은 상한, 매출 기준은 매출 증가분일 뿐 이익이 아닙니다.
               어느 쪽으로 보든 <b>연간 설비·인력 투자와 비교할 만한 크기</b>라는 것이 요점입니다.
               MT당 원가의 월별 편차가 큰 것은 월 경계가 주 단위로 근사되기 때문이라 중앙값을 썼습니다.</>}
@@ -465,7 +465,7 @@ export default function Production() {
                   <td>집계에 쓴 가동주 <span className="tag">0일 주 제외</span></td>
                   <td className="n">{yoy.sampleWeeks2025}주 / {day(yoy.days2025)}</td>
                   <td className="n">{yoy.sampleWeeks2026}주 / {day(yoy.days2026)}</td>
-                  <td className="n">—</td>
+                  <td className="n">-</td>
                 </tr>
               </tbody>
             </table>

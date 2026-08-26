@@ -26,11 +26,11 @@ const TOTAL_WIDGET_COUNT = Object.values(EXTRA_BY_PILLAR).reduce((n, arr) => n +
 /* ─── 5-Part Section Definitions ─── */
 // 5-Pillar 네비게이터 메타 (낙지 시그니처 — 두족류 공용 purple→pink 대신 indigo→violet 차별화 톤)
 const SECTIONS = [
-  { id: 'S1', num: '❶', label: '원료 수급', title: '🐙 Part I — 원료 수급', desc: '글로벌 낙지 어획량 추이 및 주요 산지 공급 현황', color: '#4f46e5' },
-  { id: 'S2', num: '❷', label: '가공·생산', title: '🐙 Part II — 가공 및 생산', desc: '국내 낙지 자원 절벽 및 연안 자원량 회복 지표', color: '#6366f1' },
-  { id: 'S3', num: '❸', label: '물류·통관', title: '🐙 Part III — 물류 및 통관', desc: 'FTA 수입 동향 및 분기별 통관 단가 변화', color: '#8b5cf6' },
-  { id: 'S4', num: '❹', label: '판매·수요', title: '🐙 Part IV — 판매 및 수요', desc: '산낙지 외식 수요 및 유통 채널별 단가 탄력성', color: '#a78bfa' },
-  { id: 'S5', num: '❺', label: 'ESG·지속가능성', title: '🐙 Part V — ESG 및 지속가능성', desc: '자원관리 TAC 규제 및 지속가능 어업 인증 지표', color: '#c4b5fd' }
+  { id: 'S1', num: '❶', label: '원료 수급', title: '🐙 Part I - 원료 수급', desc: '글로벌 낙지 어획량 추이 및 주요 산지 공급 현황', color: '#4f46e5' },
+  { id: 'S2', num: '❷', label: '가공·생산', title: '🐙 Part II - 가공 및 생산', desc: '국내 낙지 자원 절벽 및 연안 자원량 회복 지표', color: '#6366f1' },
+  { id: 'S3', num: '❸', label: '물류·통관', title: '🐙 Part III - 물류 및 통관', desc: 'FTA 수입 동향 및 분기별 통관 단가 변화', color: '#8b5cf6' },
+  { id: 'S4', num: '❹', label: '판매·수요', title: '🐙 Part IV - 판매 및 수요', desc: '산낙지 외식 수요 및 유통 채널별 단가 탄력성', color: '#a78bfa' },
+  { id: 'S5', num: '❺', label: 'ESG·지속가능성', title: '🐙 Part V - ESG 및 지속가능성', desc: '자원관리 TAC 규제 및 지속가능 어업 인증 지표', color: '#c4b5fd' }
 ];
 
 export default function OctopusDashboard() {
@@ -54,7 +54,7 @@ export default function OctopusDashboard() {
               <h1 style={{ margin: 0, fontSize: '1.5rem', fontWeight: 700, letterSpacing: '-0.5px', color: 'var(--text-primary)' }}>
                 낙지 전략 인텔리전스
               </h1>
-              <p style={{ margin: 0, fontSize: '0.88rem', color: 'var(--text-secondary)' }}>낙지 커맨드 센터 — 총 {TOTAL_WIDGET_COUNT}개 위젯 · 5단계 밸류체인</p>
+              <p style={{ margin: 0, fontSize: '0.88rem', color: 'var(--text-secondary)' }}>낙지 커맨드 센터 - 총 {TOTAL_WIDGET_COUNT}개 위젯 · 5단계 밸류체인</p>
             </div>
           </div>
         </div>
@@ -76,7 +76,7 @@ export default function OctopusDashboard() {
           marginBottom: '6px',
         }}>
           <span style={{ fontSize: '0.7rem', color: 'rgba(var(--w-slate-400-rgb), 0.7)', fontWeight: 600, letterSpacing: '0.08em', textTransform: 'uppercase' }}>
-            밸류체인 네비게이터 — 아래 단계를 클릭하여 탐색하세요
+            밸류체인 네비게이터 - 아래 단계를 클릭하여 탐색하세요
           </span>
         </div>
         <div data-mobile-stack style={{ display: 'grid', gridTemplateColumns: 'repeat(5, 1fr)', gap: '4px' }}>

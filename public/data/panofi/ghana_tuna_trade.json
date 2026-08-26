@@ -76,7 +76,7 @@
   "note": "preview 엔드포인트는 국가·품목 설명이 null 로 와서 코드만 신뢰한다. 이름은 partnerAreas 레퍼런스와 자체 한글 사전으로 붙였다.",
   "unmappedPartners": [],
   "truncatedQueries": [],
-  "caveat": "가나가 UN Comtrade 에 보고한 값이다. 미보고·과소보고가 있으면 실제 교역과 벌어진다 — 상대국 거울통계와 교차하지 않았다."
+  "caveat": "가나가 UN Comtrade 에 보고한 값이다. 미보고·과소보고가 있으면 실제 교역과 벌어진다 - 상대국 거울통계와 교차하지 않았다."
  },
  "totals": {
   "2021": {

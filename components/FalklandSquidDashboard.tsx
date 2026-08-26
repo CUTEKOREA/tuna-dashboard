@@ -57,7 +57,7 @@ export default function FalklandSquidDashboard() {
       <div className="ds-grid-2">
         {/* Widget 1: Monthly Catch Trend */}
         <WidgetCard title="월별 전체 어획량 추이" icon={TrendingUp} iconColor="var(--color-primary)" pillar="S1"
-          cardDesc="단위: 톤 (Ton) — 일일·월별 누계 어획량"
+          cardDesc="단위: 톤 (Ton) - 일일·월별 누계 어획량"
           telemetry={{ status: 'STATIC', syncDate: '2026 포클랜드 채낚기' }} chartHeight={300}
           chart={
             <AreaChart data={monthlyData} margin={{ top: 20, right: 30, left: 20, bottom: 5 }}>
@@ -86,7 +86,7 @@ export default function FalklandSquidDashboard() {
 
         {/* Widget 2: Company Performance */}
         <WidgetCard title="업체별 누계 실적 및 보유 선박 수" icon={Ship} iconColor="var(--color-secondary)" pillar="S2"
-          cardDesc="단위: 톤 (Ton) — 업체별 어획·선박 효율"
+          cardDesc="단위: 톤 (Ton) - 업체별 어획·선박 효율"
           telemetry={{ status: 'STATIC', syncDate: '2026 포클랜드 채낚기' }} chartHeight={300}
           chart={
             <ComposedChart data={companyData.slice(0, 8)} margin={{ top: 20, right: 30, left: 20, bottom: 5 }}>
@@ -213,7 +213,7 @@ export default function FalklandSquidDashboard() {
                               <div style={{ fontWeight: 700, color: 'var(--w-amber-400)', fontSize: 13 }}>{vessel.age}</div>
                               <div style={{ fontSize: 9, color: '#475569' }}>{vessel.launch}</div>
                             </>
-                          ) : <span style={{ color: '#334155' }}>—</span>}
+                          ) : <span style={{ color: '#334155' }}>-</span>}
                         </td>
                         <td style={{ padding: '12px 10px', textAlign: 'center' }}>
                           {vessel.status === "교체시급" ? (
@@ -224,7 +224,7 @@ export default function FalklandSquidDashboard() {
                             <span style={{ display: 'inline-flex', alignItems: 'center', gap: 5, padding: '4px 10px', borderRadius: 999, fontSize: 10, fontWeight: 700, background: 'rgba(var(--w-emerald-500-rgb), 0.12)', color: 'var(--w-emerald-400)', border: '1px solid rgba(var(--w-emerald-500-rgb), 0.25)' }}>
                               <span style={{ width: 6, height: 6, borderRadius: '50%', background: 'var(--w-emerald-500)' }}></span>건전
                             </span>
-                          ) : <span style={{ color: '#334155' }}>—</span>}
+                          ) : <span style={{ color: '#334155' }}>-</span>}
                         </td>
                       </tr>
                     );

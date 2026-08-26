@@ -336,7 +336,7 @@ export default function MarketDashboard({ heroOnly = false }: { heroOnly?: boole
             </span>
           </div>
           <div style={{ fontSize: '1.85rem', fontWeight: 800, letterSpacing: '-0.03em', fontVariantNumeric: 'tabular-nums', color: 'var(--text-main)' }}>
-            {mgoData.price !== null ? `$${mgoData.price.toLocaleString()}` : '—'} <span style={{ fontSize: '1rem', color: 'var(--text-muted)', fontWeight: 400 }}>/ton</span>
+            {mgoData.price !== null ? `$${mgoData.price.toLocaleString()}` : '-'} <span style={{ fontSize: '1rem', color: 'var(--text-muted)', fontWeight: 400 }}>/ton</span>
           </div>
           {mgoData.change !== null && mgoData.price !== null && (
             <div style={{ display: 'flex', alignItems: 'center', gap: '6px', marginTop: '8px', fontSize: '0.8rem', color: mgoData.change >= 0 ? 'var(--delta-up)' : 'var(--delta-down)' }}>
@@ -361,7 +361,7 @@ export default function MarketDashboard({ heroOnly = false }: { heroOnly?: boole
             </span>
           </div>
           <div style={{ fontSize: '1.85rem', fontWeight: 800, letterSpacing: '-0.03em', fontVariantNumeric: 'tabular-nums', color: 'var(--text-main)' }}>
-            {fxData.usd_krw !== null ? `₩${fxData.usd_krw.toLocaleString()}` : '—'} <span style={{ fontSize: '1rem', color: 'var(--text-muted)', fontWeight: 400 }}>/$</span>
+            {fxData.usd_krw !== null ? `₩${fxData.usd_krw.toLocaleString()}` : '-'} <span style={{ fontSize: '1rem', color: 'var(--text-muted)', fontWeight: 400 }}>/$</span>
           </div>
           {fxData.change !== null && fxData.usd_krw !== null && (
             <div style={{ display: 'flex', alignItems: 'center', gap: '6px', marginTop: '8px', fontSize: '0.8rem', color: fxData.change >= 0 ? 'var(--delta-up)' : 'var(--delta-down)' }}>

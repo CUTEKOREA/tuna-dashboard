@@ -32,7 +32,7 @@ const partnerRadarData = [
 export function InsightKoreaSpecialLine() {
   return (
     <WidgetCard
-      title="Insight D. 코리아 스페셜 라인 — 맞춤형 대형 정육 라인"
+      title="Insight D. 코리아 스페셜 라인 - 맞춤형 대형 정육 라인"
       icon={Factory}
       iconColor="#f59e0b"
       pillar="S2"
@@ -68,7 +68,7 @@ export function InsightKoreaSpecialLine() {
 </div>`,
         actionPlan: `<div>
 <p><strong>재정의</strong>: 사이즈 갭은 한계점이 아닌 <strong>"GFPT·Betagro와 한국 공급사가 독점 공유할 듀얼 라인 연구개발 협업 기회"</strong>. 다른 한국 공급사는 진입 불가능한 진입 장벽.</p>
-<p><strong>3단계</strong>: ① GFPT/Betagro에 사육기간 연장형 2.5kg+ 라인 신설 — 독점 스펙 계약 즉시 체결 ② 일본향 소형 + 한국향 대형 듀얼 라인 — 양 시장 동시 공략으로 생산 효율 극대화 ③ 코리아 스페셜 순살 수율 74% + 잔뼈 zero → "1인분당 원가단위" 프레임워크로 프랜차이즈 본사 영업 — 브라질산 대비 우위 정량 입증.</p>
+<p><strong>3단계</strong>: ① GFPT/Betagro에 사육기간 연장형 2.5kg+ 라인 신설 - 독점 스펙 계약 즉시 체결 ② 일본향 소형 + 한국향 대형 듀얼 라인 - 양 시장 동시 공략으로 생산 효율 극대화 ③ 코리아 스페셜 순살 수율 74% + 잔뼈 zero → "1인분당 원가단위" 프레임워크로 프랜차이즈 본사 영업 - 브라질산 대비 우위 정량 입증.</p>
 </div>`,
         source: 'GFPT Annual Report 2023 (도계 15→30만 마리 증설) · Thai DLD 2023 가공수율 보고서',
       }}
@@ -79,7 +79,7 @@ export function InsightKoreaSpecialLine() {
 export function InsightRiskNexus() {
   return (
     <WidgetCard
-      title="Insight E. 리스크 상관관계 넥서스 — 태국 vs 브라질 6축"
+      title="Insight E. 리스크 상관관계 넥서스 - 태국 vs 브라질 6축"
       icon={AlertTriangle}
       iconColor="#ef4444"
       pillar="S3"
@@ -102,12 +102,12 @@ export function InsightRiskNexus() {
       ]}
       takeaway={{
         situation: `<div>
-<p>"리스크 넥서스(Risk Nexus)"란 단일 조달처의 6축 리스크(환율·사료·운임·HPAI·덤핑·관세)를 동시 비교해 공급사 포트폴리오 분산 결정을 내리는 프레임워크. 한 축만 봐서는 비교 무의미 — 6축 동시 분석이 본질.</p>
-<p>자체평가(6축 점수는 추정): <strong>태국 vs 브라질 6축 비교 결과 — 태국 열위는 "환율(KRW/THB) + 중국산 덤핑(13~14% 저가)" 2개뿐. 해상운임(태국 10~14일 vs 브라질 56일), HPAI(태국 19년 청정 vs 브라질 2025 발발), CBOT $4.15(2025E) 저점 등 4축에서 뚜렷한 우위</strong>. 6축 가중 합산 시 태국 우위 명확.</p>
+<p>"리스크 넥서스(Risk Nexus)"란 단일 조달처의 6축 리스크(환율·사료·운임·HPAI·덤핑·관세)를 동시 비교해 공급사 포트폴리오 분산 결정을 내리는 프레임워크. 한 축만 봐서는 비교 무의미 - 6축 동시 분석이 본질.</p>
+<p>자체평가(6축 점수는 추정): <strong>태국 vs 브라질 6축 비교 결과 - 태국 열위는 "환율(KRW/THB) + 중국산 덤핑(13~14% 저가)" 2개뿐. 해상운임(태국 10~14일 vs 브라질 56일), HPAI(태국 19년 청정 vs 브라질 2025 발발), CBOT $4.15(2025E) 저점 등 4축에서 뚜렷한 우위</strong>. 6축 가중 합산 시 태국 우위 명확.</p>
 </div>`,
         actionPlan: `<div>
 <p><strong>재정의</strong>: 중국산 덤핑은 위협이 아닌 <strong>"중국 식품 위생 부적격 이슈를 역이용해 '안전한 프리미엄' 브랜딩 고착 기회"</strong>. 태국 구획화(Compartmentalization)는 공급망 보험.</p>
-<p><strong>3단계</strong>: ① 환율 — USD 선물환 분기별 리밸런싱으로 헷지 ② CBOT 저점($4.15) 즉시 고정가 장기공급계약 체결 ③ 중국산 덤핑 → 중국 위생 부적격 매월 모니터링 보고서 발행 — "한국 안전 프리미엄" 브랜드 고착화. 태국 램차방→부산 10일 직항 최적화로 한국 시장 결품 zero.</p>
+<p><strong>3단계</strong>: ① 환율 - USD 선물환 분기별 리밸런싱으로 헷지 ② CBOT 저점($4.15) 즉시 고정가 장기공급계약 체결 ③ 중국산 덤핑 → 중국 위생 부적격 매월 모니터링 보고서 발행 - "한국 안전 프리미엄" 브랜드 고착화. 태국 램차방→부산 10일 직항 최적화로 한국 시장 결품 zero.</p>
 </div>`,
         source: 'OIE WAHIS · CBOT 선물 데이터 · BDI 해상운임 지수 · KCS HS 0207 수입통계',
       }}
@@ -118,7 +118,7 @@ export function InsightRiskNexus() {
 export function InsightPartnerMatch() {
   return (
     <WidgetCard
-      title="Insight F. 태국 3대 파트너사 전략 매칭 — CP·Betagro·GFPT"
+      title="Insight F. 태국 3대 파트너사 전략 매칭 - CP·Betagro·GFPT"
       icon={Building2}
       iconColor="#8b5cf6"
       pillar="S2"
@@ -143,11 +143,11 @@ export function InsightPartnerMatch() {
       takeaway={{
         situation: `<div>
 <p>"파트너 포트폴리오 매칭"이란 단일 공급사 의존 대신 채널별 최적 공급사를 매칭해 리스크를 횡적 분산하는 조달 전략. CP·Betagro·GFPT 3사는 각각 채널 특화 강점이 다른 상호보완 포지션.</p>
-<p>추정(업계 기준): <strong>CP Foods (생산능력 95) = 세계 최대 + 가격경쟁력 / Betagro (품질·위생 95 + ESG 95) = 무항생제 프리미엄 / GFPT (맞춤 유연성 95 + 도계 15→30만/일 2배 증설) = 프랜차이즈 맞춤 연구개발 최적</strong>. 3사 모두 고유 경쟁우위 보유 — 1개사 의존은 자본 배분 오류.</p>
+<p>추정(업계 기준): <strong>CP Foods (생산능력 95) = 세계 최대 + 가격경쟁력 / Betagro (품질·위생 95 + ESG 95) = 무항생제 프리미엄 / GFPT (맞춤 유연성 95 + 도계 15→30만/일 2배 증설) = 프랜차이즈 맞춤 연구개발 최적</strong>. 3사 모두 고유 경쟁우위 보유 - 1개사 의존은 자본 배분 오류.</p>
 </div>`,
         actionPlan: `<div>
 <p><strong>재정의</strong>: 3사 분산은 단순 리스크 헷지가 아닌 <strong>"채널별 공급사 강점을 1:1 매칭해 한국 시장 전 채널 동시 장악할 포트폴리오 전략"</strong>.</p>
-<p><strong>3단계</strong>: ① GFPT = 프랜차이즈 맞춤 코리아 스페셜 라인 연구개발 파트너 — 순살 스펙 최적화 독점 ② Betagro = 편의점 가정간편식(HMR) 프리미엄 — 무항생제 "윤리적 치킨" ESG 브랜딩 ③ CP Foods = 볼륨 백본 — 식자재마트·급식 대량 납품 기반. 단일 공급사 50%+ 의존 금지 → 3사 분산으로 한국 시장 공급사 고착화.</p>
+<p><strong>3단계</strong>: ① GFPT = 프랜차이즈 맞춤 코리아 스페셜 라인 연구개발 파트너 - 순살 스펙 최적화 독점 ② Betagro = 편의점 가정간편식(HMR) 프리미엄 - 무항생제 "윤리적 치킨" ESG 브랜딩 ③ CP Foods = 볼륨 백본 - 식자재마트·급식 대량 납품 기반. 단일 공급사 50%+ 의존 금지 → 3사 분산으로 한국 시장 공급사 고착화.</p>
 </div>`,
         source: 'GFPT Annual Report 2023 · Betagro IR 2023 · CP Foods 2023 Value Chain Analysis',
       }}

@@ -55,12 +55,12 @@ export default function SasEuImportSegmentation() {
   return (
     <WidgetCard
       id="W-SAS32"
-      title="EU 수입 세분 — 단가가 용도를 말한다"
+      title="EU 수입 세분 - 단가가 용도를 말한다"
       description="2024년 EU 참치 수입, 품목별 단가(€/kg)"
       icon={Layers}
       iconColor="#10b981"
       pillar="S4"
-      cardDesc="Eurostat Comext 2024 — 신선/냉동·어종별 수입 단가로 진짜 사시미 vs 가공로인 vs 축양원어 식별"
+      cardDesc="Eurostat Comext 2024 - 신선/냉동·어종별 수입 단가로 진짜 사시미 vs 가공로인 vs 축양원어 식별"
       telemetry={{ status: 'STATIC', syncDate: '2024' }}
       takeaway={{
         situation: '2024년 EU 참치 수입은 단가로 용도가 갈립니다. 신선 황다랑어(12.6€/kg)·눈다랑어(9.99€/kg)만 진짜 소매 사시미이고, 신선 참다랑어는 6.71€/kg로 낮아 소매 컷이 아니라 축양 이송용 통마리입니다. 금액 최대인 냉동필렛(402M€)·냉동 황다랑어(182M€)는 대부분 캔·가공 로인입니다.',

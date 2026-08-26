@@ -164,7 +164,7 @@ export function InsightHogCornRatio({ accent = '#ec4899' }: any) {
       takeaway={{
         situation: "2024-Q3 기준 옥수수 선물 가격 하락(CBOT 185달러/톤)으로 돈가-옥수수 비율(Hog-Corn Ratio)이 12.5(2023-Q1)에서 19.8로 호전됐습니다. 당시 농가의 양돈 사육 유인을 강하게 자극하는 수준이었습니다.",
         actionPlan: "이 마진 개선 구간에서 글로벌 농가는 모돈(어미돼지) 증식 사이클로 전환하는 패턴을 보였습니다. 증식 후 6~9개월 뒤 공급 확대(시장 가격 하락)가 따라오는 구조이므로, 유사 국면 재현 시 장기 선도 계약보다 스팟(Spot) 비중 확대가 유효합니다.",
-        source: "CBOT Corn Futures, CME Lean Hog — 자체구성 (2024-Q3 동결 데이터)"
+        source: "CBOT Corn Futures, CME Lean Hog - 자체구성 (2024-Q3 동결 데이터)"
       }}
       chart={
         <ComposedChart data={hogCornData} margin={{ top: 10, right: 10, left: -20, bottom: 0 }}>

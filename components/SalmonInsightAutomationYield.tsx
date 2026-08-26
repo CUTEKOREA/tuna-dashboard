@@ -14,7 +14,7 @@ export default function SalmonInsightAutomationYield() {
       icon={Factory}
       iconColor="var(--color-warning)"
       pillar="S2"
-      cardDesc="자동화 수율·인건비·CAPEX 지수는 업계 통념 기반 자체 추정 시나리오(illustrative) — 특정 1차 출처 미연동"
+      cardDesc="자동화 수율·인건비·CAPEX 지수는 업계 통념 기반 자체 추정 시나리오(illustrative) - 특정 1차 출처 미연동"
       telemetry={{ status: 'STATIC', syncDate: '2026-05-29' }}
       chartHeight={250}
       chart={
@@ -44,7 +44,7 @@ export default function SalmonInsightAutomationYield() {
 <p><strong>재정의</strong>: 자동화는 단순 cost 절감이 아닌 <strong>"향후 5년 vendor 생존 instrument"</strong>.</p>
 <p><strong>3단계</strong>: ① 모듈형 가공 자동화(필렛팅·트림 통합) 단계적 도입 ② 수율 개선 및 수작업 의존도 축소 목표 설정(개선폭은 자체 추정) ③ IoT 예지보전으로 다운타임 저감.</p>
 </div>`,
-        source: "자체 추정 시나리오 (illustrative) — 가공 자동화 수율·CAPEX 통념 기반, 검증된 1차 출처 미연동"
+        source: "자체 추정 시나리오 (illustrative) - 가공 자동화 수율·CAPEX 통념 기반, 검증된 1차 출처 미연동"
       }}
     />
   );

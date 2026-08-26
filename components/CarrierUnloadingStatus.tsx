@@ -34,7 +34,7 @@ export default function CarrierUnloadingStatus() {
           운반선 하역 현황
         </h2>
         <p style={{ fontSize: '13px', color: 'var(--text-muted)', margin: 0 }}>
-          태국 방콕(BANGKOK) 양륙 운반선 현황 — 2026-08-05 주간 보고 기준 (정적 데이터)
+          태국 방콕(BANGKOK) 양륙 운반선 현황 - 2026-08-05 주간 보고 기준 (정적 데이터)
         </p>
       </div>
 

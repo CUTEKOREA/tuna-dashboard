@@ -53,7 +53,7 @@ const SPECIES_KO: Record<string, string> = {
   'Loligo gahi': '포클랜드 로리고',
   'Illex argentinus': '아르헨티나 일렉스',
 };
-const spKo = (s: string | null | undefined) => (s ? SPECIES_KO[s] ?? squidSpeciesLabel(s) : '—');
+const spKo = (s: string | null | undefined) => (s ? SPECIES_KO[s] ?? squidSpeciesLabel(s) : '-');
 
 const FORM_KO: Record<string, string> = {
   Whole: '원물',
@@ -64,7 +64,7 @@ const FORM_KO: Record<string, string> = {
   'Tubes, skin-on': '튜브(껍질)',
   'Tubes, skinless': '튜브(무껍질)',
 };
-const formKo = (s: string | null | undefined) => (s ? FORM_KO[s] ?? squidValueLabel(s) : '—');
+const formKo = (s: string | null | undefined) => (s ? FORM_KO[s] ?? squidValueLabel(s) : '-');
 
 const ORIGIN_KO: Record<string, string> = {
   Croatia: '크로아티아',
@@ -81,7 +81,7 @@ const ORIGIN_KO: Record<string, string> = {
   'United States': '미국',
   India: '인도',
 };
-const originKo = (s: string | null | undefined) => (s ? ORIGIN_KO[s] ?? squidValueLabel(s) : '—');
+const originKo = (s: string | null | undefined) => (s ? ORIGIN_KO[s] ?? squidValueLabel(s) : '-');
 
 const REF_KO: Record<string, string> = {
   wholesale: '도매',
@@ -108,7 +108,7 @@ const WEIGHT_KO: Record<string, string> = {
   live_weight: '생중량',
   product_weight: '제품중량',
   net_weight: '순중량',
-  'n/a': '—',
+  'n/a': '-',
 };
 
 const STAGE_KO: Record<string, string> = {
@@ -117,7 +117,7 @@ const STAGE_KO: Record<string, string> = {
   import_unit: '수입단가',
   export_unit: '수출단가',
   first_sale: '1차판매가',
-  'n/a': '—',
+  'n/a': '-',
 };
 
 const STATUS_KO: Record<string, string> = {
@@ -182,9 +182,9 @@ const LadderTooltip: React.FC<{ active?: boolean; payload?: any[] }> = ({ active
     <div style={tooltipStyle}>
       <div style={{ fontWeight: 700, color: 'var(--w-slate-200)' }}>{r.label}</div>
       <div style={{ color: C.faint }}>{r.scientific_name} · {formKo(r.product_form)}</div>
-      <div>EUR {r.price_eur_per_kg != null ? fmt(r.price_eur_per_kg) : '—'}/kg</div>
-      <div>USD {r.price_usd_per_kg != null ? fmt(r.price_usd_per_kg) : '—'}/kg</div>
-      <div>인코텀즈 {r.incoterm ?? '—'} · 원산지 {originKo(r.origin)}</div>
+      <div>EUR {r.price_eur_per_kg != null ? fmt(r.price_eur_per_kg) : '-'}/kg</div>
+      <div>USD {r.price_usd_per_kg != null ? fmt(r.price_usd_per_kg) : '-'}/kg</div>
+      <div>인코텀즈 {r.incoterm ?? '-'} · 원산지 {originKo(r.origin)}</div>
       {r.reference_area && (
         <div style={{ color: C.faint }}>참조시장 {REF_KO[r.reference_area] ?? r.reference_area}</div>
       )}
@@ -354,16 +354,16 @@ const EuPriceTable: React.FC<{ rows: EuRow[] }> = ({ rows }) => {
                 <tr key={i}>
                   <td style={td} title={r.scientific_name}>{spKo(r.scientific_name)}</td>
                   <td style={td}>{formKo(r.product_form)}</td>
-                  <td style={td}>{r.size_grade ? squidValueLabel(r.size_grade) : '—'}</td>
-                  <td style={td}>{r.incoterm ? squidValueLabel(r.incoterm) : '—'}</td>
+                  <td style={td}>{r.size_grade ? squidValueLabel(r.size_grade) : '-'}</td>
+                  <td style={td}>{r.incoterm ? squidValueLabel(r.incoterm) : '-'}</td>
                   <td style={td}>{originKo(r.origin)}</td>
                   <td style={{ ...td, textAlign: 'right' }}>
-                    {r.price_eur_per_kg != null ? fmt(r.price_eur_per_kg) : '—'}
+                    {r.price_eur_per_kg != null ? fmt(r.price_eur_per_kg) : '-'}
                   </td>
                   <td style={{ ...td, textAlign: 'right' }}>
-                    {r.price_usd_per_kg != null ? fmt(r.price_usd_per_kg) : '—'}
+                    {r.price_usd_per_kg != null ? fmt(r.price_usd_per_kg) : '-'}
                   </td>
-                  <td style={{ ...td, color: t?.color ?? C.axis }}>{t ? t.mark : '—'}</td>
+                  <td style={{ ...td, color: t?.color ?? C.axis }}>{t ? t.mark : '-'}</td>
                 </tr>
               );
             })}
@@ -662,7 +662,7 @@ const StageBoard: React.FC<{ rows: StageRow[] }> = ({ rows }) => (
                   wordBreak: 'keep-all',
                 }}
               >
-                {r.available ? `단일 대표값 없음 — ${squidUnitLabel(r.unit)} 혼재` : '관측값 없음'}
+                {r.available ? `단일 대표값 없음 - ${squidUnitLabel(r.unit)} 혼재` : '관측값 없음'}
               </div>
             )}
             <div style={{ marginTop: 8, fontSize: '0.6rem', color: C.axis, lineHeight: 1.5 }}>

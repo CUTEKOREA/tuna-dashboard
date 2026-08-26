@@ -55,7 +55,7 @@ export default function SasUsSushiPokeMarket() {
       icon={Utensils}
       iconColor="#10b981"
       pillar="S4"
-      cardDesc="GMInsights·IBISWorld 무료 헤드라인 — 스시급 수산물 시장·채널 분할·포케 열풍 지표"
+      cardDesc="GMInsights·IBISWorld 무료 헤드라인 - 스시급 수산물 시장·채널 분할·포케 열풍 지표"
       telemetry={{ status: 'STATIC', syncDate: '2024-25' }}
       takeaway={{
         situation: '미국 스시급 수산물 시장은 $2.1B(글로벌 $10.1B), 참치가 단일 어종 1위(42.1%)입니다. 글로벌 채널은 외식 59%($6.0B)·소매직판 41%($4.1B)로 외식 비중이 높고, 포케 전문점은 점포 수가 연 22.3%씩 폭증(3,108개)하며 가정용 DIY 포케로 소매까지 확장 중입니다.',

@@ -12,7 +12,7 @@ export default function SasTriadDynamics() {
       description="세계 3대 사시미 시장의 구조적 역할 및 성장/쇠퇴 역학"
       pillar="S5"
       telemetry={{ status: 'STATIC', syncDate: '2025-26' }}
-      cardDesc="US Census·UN Comtrade(HS0302-0304)·GLOBEFISH·MAFF — 미국 수입 $829M(2위)·EU 축양 허브·일본 소비 -51%"
+      cardDesc="US Census·UN Comtrade(HS0302-0304)·GLOBEFISH·MAFF - 미국 수입 $829M(2위)·EU 축양 허브·일본 소비 -51%"
       takeaway={{ 
         situation: "미국은 수입 주도의 폭발적 성장, EU는 블루핀 축양 수출 허브, 일본은 인구구조 변화로 인한 구조적 수요 감소장으로 재편되었습니다.", 
         actionPlan: "쇠퇴하는 일본 대신, 프리미엄 단가가 형성된 미국 B2C 채널과 EU 축양 밸류체인 진입에 자원을 집중해야 합니다.", 

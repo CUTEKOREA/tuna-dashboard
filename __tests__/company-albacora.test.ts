@@ -73,7 +73,7 @@ describe('Albacora 인테이크', () => {
     expect(albacoraSiaTonnage.map((r) => r.톤)).toEqual([2508, 1395, 1459]);
   });
 
-  it('SAC 수율이 물량에 반비례한다 — 최다 물량 해의 수율이 가장 낮다', () => {
+  it('SAC 수율이 물량에 반비례한다 - 최다 물량 해의 수율이 가장 낮다', () => {
     const peak = [...albacoraSacYield].sort((a, b) => b.원료 - a.원료)[0];
     const worst = [...albacoraSacYield].sort((a, b) => a.수율 - b.수율)[0];
     expect(peak.연도).toBe(worst.연도);
@@ -89,7 +89,7 @@ describe('Albacora 인테이크', () => {
     expect(albacoraCerts.every((c) => /MSC-C-\d+/.test(c.msc))).toBe(true);
   });
 
-  it('Campos 최고가는 MSC 대용량이다 — 프린사식 부위 프리미엄이 아니다', () => {
+  it('Campos 최고가는 MSC 대용량이다 - 프린사식 부위 프리미엄이 아니다', () => {
     const top = [...albacoraCamposPrices].sort((a, b) => b.가격 - a.가격)[0];
     expect(top.가격).toBe(49.99);
     expect(top.축).toBe('MSC 대용량');

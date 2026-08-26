@@ -42,7 +42,7 @@ export default function SasQuotaVolatility() {
       description="ICCAT 기준 미국(서부) vs EU(동부/지중해) 참다랑어 할당량"
       pillar="S5"
       telemetry={{ status: 'STATIC', syncDate: '2025-26' }}
-      cardDesc="ICCAT 2024 쿼터 리포트 — 서대서양 BFT 1,341톤(압박) vs EU 지중해 21,503톤(회복) 16배 양극화"
+      cardDesc="ICCAT 2024 쿼터 리포트 - 서대서양 BFT 1,341톤(압박) vs EU 지중해 21,503톤(회복) 16배 양극화"
       takeaway={{ 
         situation: "미국 연안의 서대서양 참다랑어는 자원 고갈 우려로 쿼터가 1,341톤에 묶여 조업 압박이 거센 반면, EU 지중해산은 자원 회복 판정을 받아 21,503톤으로 쿼터가 대폭 증대되었습니다.", 
         actionPlan: "미국 내수산 블루핀의 공급 불안정성을 보완하기 위해, EU산 쿼터 증대 물량(Farmed)을 적극적으로 수입하여 라인업을 이원화(국내산 자연산 + EU산 축양) 해야 합니다.", 

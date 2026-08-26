@@ -223,7 +223,7 @@ export default function ResearchLabDashboard() {
       </h2>
       <p style={{margin:'0 0 1.2rem',fontSize:'0.75rem',color:'var(--text-secondary)'}}>
         출처: 자체 구축 학술·특허 아카이브 {archiveCount}건 (기준일 {archiveDate})
-        {liveCount > 0 && ` + CrossRef 라이브 수집 ${liveCount}건 — 라이브 수집분의 TRL·상업성 점수는 미평가`}
+        {liveCount > 0 && ` + CrossRef 라이브 수집 ${liveCount}건 - 라이브 수집분의 TRL·상업성 점수는 미평가`}
       </p>
 
       {/* Pillar Tabs */}
@@ -335,7 +335,7 @@ export default function ResearchLabDashboard() {
             <TelemetryBadge status="STATIC" syncDate={archiveDate} />
           </div>
           <p style={{margin:'4px 0 1rem',fontSize:'0.72rem',color:'var(--text-secondary)'}}>
-            출처: 자체 학술·특허 아카이브 — 수록분 TRL 평가치 집계 (라이브 수집 논문 제외)
+            출처: 자체 학술·특허 아카이브 - 수록분 TRL 평가치 집계 (라이브 수집 논문 제외)
           </p>
           <div style={{height:250}}>
             <SafeResponsiveContainer width="100%" height="100%">
@@ -362,7 +362,7 @@ export default function ResearchLabDashboard() {
             <TelemetryBadge status="STATIC" syncDate={archiveDate} />
           </div>
           <p style={{margin:'4px 0 1rem',fontSize:'0.72rem',color:'var(--text-secondary)'}}>
-            출처: 자체 학술·특허 아카이브 — 수록분 대상 어종 분류 집계 (라이브 수집 논문 제외)
+            출처: 자체 학술·특허 아카이브 - 수록분 대상 어종 분류 집계 (라이브 수집 논문 제외)
           </p>
           <div style={{height:250}}>
             <SafeResponsiveContainer width="100%" height="100%">

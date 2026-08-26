@@ -25,9 +25,9 @@ const POLICY_RISK_MATRIX = {
       severity: 92,
       probability: 85,
       impact_usd_millions: 280,
-      impact_note: '박혜진(2024-06) 국정연 보고서 추정 — 한국 대미 참치 가공품 수출액 × MFN 12.5%/35%(in oil) 차익 적용. 위젯 표시 $280M와 정렬.',
+      impact_note: '박혜진(2024-06) 국정연 보고서 추정 - 한국 대미 참치 가공품 수출액 × MFN 12.5%/35%(in oil) 차익 적용. 위젯 표시 $280M와 정렬.',
       affected_hs: ['1604142000', '0303412000', '0303422000'],
-      source: '(일반 2024-06) 신통상규범 확대에 따른 수산분야 영향 및 대응방안 — 박혜진 / (수시 2025-15) 미 상호주의 대응 연구',
+      source: '(일반 2024-06) 신통상규범 확대에 따른 수산분야 영향 및 대응방안 - 박혜진 / (수시 2025-15) 미 상호주의 대응 연구',
       mitigation: 'KORUS FTA 0% 활용 + 에콰도르/멕시코 경유 관세 우회(Tariff Hopping) 전략',
       timeline: '2025-07-31 발효 (태국 19%·베트남 20%·에콰도르 15%), 2026-05 미 법원 판결로 지위 유동적',
       api_monitor: 'US Census API + Tariffs API',
@@ -160,7 +160,7 @@ export async function POST(request: NextRequest) {
         timestamp: new Date().toISOString(),
         reports_analyzed: 8,
         risk_model: 'Severity × Probability weighted composite',
-        data_status: 'STATIC — impact_usd_millions은 박혜진(2024-06) 등 국정연 보고서 추정치. 실시간 산출 아님.',
+        data_status: 'STATIC - impact_usd_millions은 박혜진(2024-06) 등 국정연 보고서 추정치. 실시간 산출 아님.',
       },
       ...POLICY_RISK_MATRIX,
     });
@@ -172,7 +172,7 @@ export async function POST(request: NextRequest) {
 export async function GET() {
   return NextResponse.json({
     status: 'active',
-    description: '참치 정책 리스크 인텔리전스 — 국정연 보고서 기반',
+    description: '참치 정책 리스크 인텔리전스 - 국정연 보고서 기반',
     composite_risk_score: POLICY_RISK_MATRIX.composite_risk_score,
     risks_monitored: POLICY_RISK_MATRIX.trade_policy_risks.length,
     fta_routes_tracked: POLICY_RISK_MATRIX.fta_tariff_matrix.length,

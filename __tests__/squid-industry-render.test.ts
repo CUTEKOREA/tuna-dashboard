@@ -19,7 +19,7 @@ import {
   SQUID_CROSS_NARRATIVES,
 } from '../lib/squid-industry-content';
 
-describe('시장 이해 > 오징어 — 데이터 인테이크', () => {
+describe('시장 이해 > 오징어 - 데이터 인테이크', () => {
   it('어종 합계가 세계 합계와 맞고 바스켓이 셋으로 갈려 있다', () => {
     const data = getSquidCatchData();
 
@@ -95,7 +95,7 @@ describe('시장 이해 > 오징어 — 데이터 인테이크', () => {
   });
 });
 
-describe('시장 이해 > 오징어 — 위젯 큐레이션', () => {
+describe('시장 이해 > 오징어 - 위젯 큐레이션', () => {
   it('모든 위젯이 현황·실행지침을 갖춘다 (W-04)', () => {
     // 반쪽 카드가 나오는 것을 막는다. 참치에서 사용자가 지적했던 결함이다.
     const missing: string[] = [];
@@ -239,7 +239,7 @@ describe('시장 이해 > 오징어 — 위젯 큐레이션', () => {
   });
 });
 
-describe('시장 이해 > 오징어 — 서술', () => {
+describe('시장 이해 > 오징어 - 서술', () => {
   it('서술이 「」로 지목한 위젯·차트가 그 단계에 실제로 있다', () => {
     // 큐레이션에서 위젯을 옮기거나 제목을 바꾸면 지목이 허공을 가리키는데,
     // 화면에서는 조용히 사라져 눈에 띄지 않는다. 여기서 잡는다.
@@ -305,7 +305,7 @@ describe('시장 이해 > 오징어 — 서술', () => {
   });
 });
 
-describe('시장 이해 > 오징어 — 렌더', () => {
+describe('시장 이해 > 오징어 - 렌더', () => {
   it('대시보드가 서버에서 그려진다', () => {
     const markup = renderToStaticMarkup(React.createElement(SquidIndustryDashboard));
     expect(markup).toContain('squid-industry-dashboard');
@@ -346,7 +346,7 @@ describe('시장 이해 > 오징어 — 렌더', () => {
           );
           if (markup.length < 20) broken.push(`${stage.key}/${widget.id} (빈 출력)`);
         } catch (error) {
-          broken.push(`${stage.key}/${widget.id} — ${(error as Error).message.slice(0, 80)}`);
+          broken.push(`${stage.key}/${widget.id} - ${(error as Error).message.slice(0, 80)}`);
         }
       }
     }

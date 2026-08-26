@@ -242,14 +242,14 @@ export async function GET() {
         isMgoLive: mgoStatus === 'online',
         mgoBasis: mgoStatus === 'online'
           ? '브렌트유 선물 × 7.45(배럴→톤) × 1.18(MGO 정제 프리미엄) 프록시 산식'
-          : '시세 조회 실패 — 고정 기준치 $2,050/MT 표시 중',
+          : '시세 조회 실패 - 고정 기준치 $2,050/MT 표시 중',
         seaTemperatureAnomaly: sstAnomaly ?? 0,
         isSstLive: sstAnomaly !== null,
         fishingRiskScore: fishingRiskScore,
-        fishingRiskBasis: '자체 산식: MGO 비용 압력(최대 50점) + ONI 수온 편차(최대 50점) 합산 — 실측 출어 통계 아님',
+        fishingRiskBasis: '자체 산식: MGO 비용 압력(최대 50점) + ONI 수온 편차(최대 50점) 합산 - 실측 출어 통계 아님',
         latestAuctionMonth: latestMonth || 'N/A',
         arbitrage: {
-          basis: `수입단가 = CIF 고정 기준치(고등어 $${mackerelImportUsd}/kg EUMOFA 노르웨이산 · 오징어 $${squidImportUsd}/kg UN Comtrade 페루산) × 환율 — CIF는 실시간 시세 아님`,
+          basis: `수입단가 = CIF 고정 기준치(고등어 $${mackerelImportUsd}/kg EUMOFA 노르웨이산 · 오징어 $${squidImportUsd}/kg UN Comtrade 페루산) × 환율 - CIF는 실시간 시세 아님`,
           isImportLive: false,
           mackerel: {
             importPriceKrw: mackerelImportKrw,
@@ -274,7 +274,7 @@ export async function GET() {
           marginSpread: marginSpread,
           retailMultiplier: retailMultiplier,
           isRetailEstimate: true,
-          retailBasis: `추정 소매가 = 산지 위판가 × ${retailMultiplier} (aT 유통단계별 통계 기반 추정 계수) — aT 실측 소매가 아님`,
+          retailBasis: `추정 소매가 = 산지 위판가 × ${retailMultiplier} (aT 유통단계별 통계 기반 추정 계수) - aT 실측 소매가 아님`,
           status: marginSpread > 0 ? 'PROFITABLE' : 'NEGATIVE',
           dataSource: latestMonth ? `${latestMonth} 위판 실측 기반` : 'fallback'
         }

@@ -74,10 +74,10 @@ export function LandedCostCalculator() {
   const marginStatus = parseFloat(marginPct) >= 10 ? 'positive' : parseFloat(marginPct) >= 5 ? 'warning' : 'negative';
 
   const insight = parseFloat(marginPct) >= 10
-    ? '현재 마진이 10% 이상 — 매입 적정 구간입니다. 추가 물량 확보를 검토하세요.'
+    ? '현재 마진이 10% 이상 - 매입 적정 구간입니다. 추가 물량 확보를 검토하세요.'
     : parseFloat(marginPct) >= 5
-    ? '마진 5~10% 경계 구간 — 원어가 하락 추이 확인 후 매입을 권장합니다.'
-    : '마진 5% 미만 — 적자 위험 구간입니다. 납품가 재협상 또는 매입 보류를 권고합니다.';
+    ? '마진 5~10% 경계 구간 - 원어가 하락 추이 확인 후 매입을 권장합니다.'
+    : '마진 5% 미만 - 적자 위험 구간입니다. 납품가 재협상 또는 매입 보류를 권고합니다.';
 
   return (
     <div className={styles.toolPanel}>
@@ -388,11 +388,11 @@ function VDSBurnTracker() {
               </div>
               {isOverBurn ? (
                 <div className={styles.burnAlert} style={{ background: 'rgba(var(--w-red-500-rgb), 0.08)', color: '#fca5a5', border: '1px solid rgba(var(--w-red-500-rgb), 0.15)' }}>
-                  ⚠️ 과소진 경보 — 현재 속도면 <strong>{exhaustStr}</strong>에 쿼터 고갈 예상
+                  ⚠️ 과소진 경보 - 현재 속도면 <strong>{exhaustStr}</strong>에 쿼터 고갈 예상
                 </div>
               ) : (
                 <div className={styles.burnAlert} style={{ background: 'rgba(var(--w-emerald-500-rgb), 0.06)', color: '#6ee7b7', border: '1px solid rgba(var(--w-emerald-500-rgb), 0.1)' }}>
-                  ✅ 정상 범위 — 연말까지 {remaining.toFixed(1)}일 잔여
+                  ✅ 정상 범위 - 연말까지 {remaining.toFixed(1)}일 잔여
                 </div>
               )}
             </div>

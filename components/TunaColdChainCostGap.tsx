@@ -114,7 +114,7 @@ const TunaColdChainCostGap = () => (
 <ol style="margin: 4px 0 0 18px; padding: 0;">
 <li style="margin-bottom: 8px;"><strong>Q4 MAP 시범 운영</strong>: 부산→LA 노선 컨테이너 10대 파일럿. 해상 손실율 1.8% → 0.7% 목표치 검증.</li>
 <li style="margin-bottom: 8px;"><strong>Q1 2026 전사 전환 로드맵</strong>: 항공 의존 30% → 10%로 축소. 연간 운송비 절감 목표는 파일럿 결과 확정 후 산정.</li>
-<li><strong>MAP 패키징 기술 외부화</strong>: 자사 MAP 솔루션을 동남아·중남미 수산 협력사에 제공 — 수익 규모는 협력사 규모·계약 구조에 따라 결정되며 별도 검토 필요.</li>
+<li><strong>MAP 패키징 기술 외부화</strong>: 자사 MAP 솔루션을 동남아·중남미 수산 협력사에 제공 - 수익 규모는 협력사 규모·계약 구조에 따라 결정되며 별도 검토 필요.</li>
 </ol>
 </div>`,
       source: 'KMI 2025 Q3 해상물류통계 + 항공운임 자체조사 (Stage 1 mock)',

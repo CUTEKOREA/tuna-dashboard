@@ -71,7 +71,7 @@ export async function GET() {
           price: mgoPrice,
           change: change,
           date: toDotDate(dataAsOf),
-          source: 'Brent 선물(BZ=F, Yahoo Finance) 환산 추정 — MGO 실호가 아님',
+          source: 'Brent 선물(BZ=F, Yahoo Finance) 환산 추정 - MGO 실호가 아님',
           status: 'live',
           // L-12 표준 필드
           isLive: true,
@@ -111,7 +111,7 @@ export async function GET() {
           price: mgoPrice,
           change: 0,
           date: toDotDate(dataAsOf),
-          source: 'Brent(exchangerate.host) 환산 추정 — MGO 실호가 아님',
+          source: 'Brent(exchangerate.host) 환산 추정 - MGO 실호가 아님',
           status: 'live',
           // L-12 표준 필드
           isLive: true,
@@ -142,6 +142,6 @@ export async function GET() {
     // A-4 정직 표기 필드 — 라이브 Brent 없음
     brent: null,
     isEstimate: true,
-    method: `${ESTIMATE_METHOD} — 하드코딩 캐시`,
+    method: `${ESTIMATE_METHOD} - 하드코딩 캐시`,
   });
 }

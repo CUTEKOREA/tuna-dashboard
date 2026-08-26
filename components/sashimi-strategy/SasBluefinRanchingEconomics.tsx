@@ -12,7 +12,7 @@ export default function SasBluefinRanchingEconomics() {
       description="저가 활어 매입 → 축양(Fattening) → 고부가 수출의 차익 거래 모델"
       pillar="S5"
       telemetry={{ status: 'STATIC', syncDate: '2025-26' }}
-      cardDesc="Eurostat 2023·EUMOFA BFT — 지중해 활어 €6.7/kg→축양→일본 수출 €13.3/kg 마진 2배 구조"
+      cardDesc="Eurostat 2023·EUMOFA BFT - 지중해 활어 €6.7/kg→축양→일본 수출 €13.3/kg 마진 2배 구조"
       takeaway={{ 
         situation: "EU(특히 스페인/크로아티아 등 지중해 연안)의 참다랑어 축양업은 통째로 생체를 저가(€6.7/kg)에 매입하여 6~8개월간 사육한 뒤, €13.3/kg의 초저온 고부가가치 상품으로 일본 등에 수출하는 확실한 마진 구조를 가집니다.", 
         actionPlan: "단순 원물 포획(Wild Catch)보다, EU 축양장과의 장기 수매(Off-take) 계약을 체결하거나 지분 투자를 통해 부가가치 창출 단계(Fattening)의 이익을 공유하는 구조를 만들어야 합니다.", 

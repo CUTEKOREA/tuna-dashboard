@@ -46,7 +46,7 @@ const KPI_THEMES = [
 ];
 
 const CHICKEN_KPIS: Record<string, any> = {
-  k1: { title: '태국산 가공육 전환율 (현재/목표)', value: '13%→25%', trend: '📈', desc: '자사 소싱 전략 지표 (수입 점유율 통계 아님) — B2B 프랜차이즈 스펙인 적용', telemetry: 'static', syncDate: '전략 목표' },
+  k1: { title: '태국산 가공육 전환율 (현재/목표)', value: '13%→25%', trend: '📈', desc: '자사 소싱 전략 지표 (수입 점유율 통계 아님) - B2B 프랜차이즈 스펙인 적용', telemetry: 'static', syncDate: '전략 목표' },
   k2: { title: '한국 총 수입량 (2023 역대최대)', value: '23.5만톤', trend: '💰', desc: '관세 할당(TRQ) 최적화 효과', telemetry: 'static', syncDate: 'KITA 2023' },
   k3: { title: '태국 선도 계약 마진 스프레드', value: '+22.4%', trend: '🛡️', desc: '중매인 마진(4.3%) 완전 회피', telemetry: 'static', syncDate: '추정 (선도계약)' },
   k4: { title: '고부가가치(가공육) 수입 비중', value: '64.5%', trend: '🍗', desc: '글로벌 1위 허브 태국 독점', telemetry: 'static', syncDate: 'FAO 23Y' },
@@ -71,21 +71,21 @@ const ENHANCED_INSIGHTS: Record<string, {sit: string, strat: string}> = {
   "w_chicken_trade_shift": {
     sit: `<div>
 <p>"HPAI 청정국 지위"란 OIE/WOAH가 인증하는 sanitary 등급. 청정국은 EU·일본·한국 등 prime market 수출 권한 확보, 발병국은 즉시 100% 수입 차단.</p>
-<p>현황: <strong>브라질 = HPAI 발병 위험 + 단순 냉동육 위주. 태국 = HPAI 19년 청정 + 고부가 가공육(순살·꼬치) 수출 70%+</strong>. 두 origin은 동일 commodity가 아닌 완전히 다른 위험·부가가치 등급 — 분리 운영 필수.</p>
+<p>현황: <strong>브라질 = HPAI 발병 위험 + 단순 냉동육 위주. 태국 = HPAI 19년 청정 + 고부가 가공육(순살·꼬치) 수출 70%+</strong>. 두 origin은 동일 commodity가 아닌 완전히 다른 위험·부가가치 등급 - 분리 운영 필수.</p>
 </div>`,
     strat: `<div>
 <p><strong>재정의</strong>: 브라질→태국 전환은 단순 sourcing 다변화가 아닌 <strong>"국내 중간 벤더 마진(4.3%) 회피 + HPAI 위험 zero화의 dual instrument"</strong>.</p>
-<p><strong>3단계</strong>: ① GFPT·Betagro LTA(장기계약) 즉시 체결 — 마진 스프레드 20~30% 확보 ② 여름철 복날 쇼티지 시즌 3개월 전 비축 ③ 중간 벤더 우회 직납 구조로 4.3% 마진 내재화.</p>
+<p><strong>3단계</strong>: ① GFPT·Betagro LTA(장기계약) 즉시 체결 - 마진 스프레드 20~30% 확보 ② 여름철 복날 쇼티지 시즌 3개월 전 비축 ③ 중간 벤더 우회 직납 구조로 4.3% 마진 내재화.</p>
 </div>`
   },
   "w_chicken_feed_cost": {
     sit: `<div>
-<p>"CBOT 옥수수 선물"이란 시카고상품거래소에서 거래되는 글로벌 사료 곡물 벤치마크. 닭 사육 원가의 60~70%가 사료 — 옥수수 단가 변동이 곧 닭 마진 변동.</p>
-<p>전망(2025E 추정 포함): <strong>CBOT 옥수수 $4.15(2025E)로 전년 대비 하락세 전망 — 사료비 저점 구간. 단, 브라질 HPAI 확산으로 글로벌 사육두수 감축 + 곡물 수요 감소 동시 진행</strong>. 단기 lock-in 윈도우 1~2분기 한정.</p>
+<p>"CBOT 옥수수 선물"이란 시카고상품거래소에서 거래되는 글로벌 사료 곡물 벤치마크. 닭 사육 원가의 60~70%가 사료 - 옥수수 단가 변동이 곧 닭 마진 변동.</p>
+<p>전망(2025E 추정 포함): <strong>CBOT 옥수수 $4.15(2025E)로 전년 대비 하락세 전망 - 사료비 저점 구간. 단, 브라질 HPAI 확산으로 글로벌 사육두수 감축 + 곡물 수요 감소 동시 진행</strong>. 단기 lock-in 윈도우 1~2분기 한정.</p>
 </div>`,
     strat: `<div>
 <p><strong>재정의</strong>: 곡물가 하락은 단순 원가 절감이 아닌 <strong>"사료비를 12개월 고정하여 마진 변동성을 상당 폭 제어할 수 있는 계약 타이밍 기회"</strong>.</p>
-<p><strong>3단계</strong>: ① CBOT 옥수수 forward 선매수 — 12개월 사료비 lock-in ② B2B 프랜차이즈 연간 공급 물량 고정 — 원가 변동성 완충 ③ 사료비 반등 시나리오 대비 태국 공급사와 장기 고정가 계약(LTA) 병행 검토.</p>
+<p><strong>3단계</strong>: ① CBOT 옥수수 forward 선매수 - 12개월 사료비 lock-in ② B2B 프랜차이즈 연간 공급 물량 고정 - 원가 변동성 완충 ③ 사료비 반등 시나리오 대비 태국 공급사와 장기 고정가 계약(LTA) 병행 검토.</p>
 </div>`
   },
   // archived 2026-05-24 — w_chicken_eudr_esg (forensic grade C, _archive/api/chicken/eudr-esg/)
@@ -96,22 +96,22 @@ const ENHANCED_INSIGHTS: Record<string, {sit: string, strat: string}> = {
 </div>`,
     strat: `<div>
 <p><strong>재정의</strong>: 리드타임 격차는 단순 물류 advantage가 아닌 <strong>"HPAI 사이클 시즌마다 프리미엄 가격을 강제 수취할 systematic arbitrage instrument"</strong>.</p>
-<p><strong>3단계</strong>: ① 부산 냉동창고 B2B 직배송망 선제 구축 — 24시간 출고 capa ② 프랜차이즈 긴급 발주 라인 셋업 — premium price 30%+ ③ 태국 램차방→부산 10일 직항 lock — 브라질 발병 시즌마다 손실 없는 가격 결정권 확보.</p>
+<p><strong>3단계</strong>: ① 부산 냉동창고 B2B 직배송망 선제 구축 - 24시간 출고 capa ② 프랜차이즈 긴급 발주 라인 셋업 - premium price 30%+ ③ 태국 램차방→부산 10일 직항 lock - 브라질 발병 시즌마다 손실 없는 가격 결정권 확보.</p>
 </div>`
   }
 };
 
 // 5-Pillar 네비게이터 메타 (닭고기 시그니처 그라디언트 — 룰북 D-04 amber→orange→red)
 const PILLARS = [
-  { id: "P1", num: "❶", label: "원료 수급", title: "🐟 Pillar I — 원료 수급", desc: "미국 및 중국 내수 장악 및 사료비 연동 헷징 전략", color: "#f59e0b",
+  { id: "P1", num: "❶", label: "원료 수급", title: "🐟 Pillar I - 원료 수급", desc: "미국 및 중국 내수 장악 및 사료비 연동 헷징 전략", color: "#f59e0b",
     widgets: ["w_chicken_global_production", "w_chicken_feed_cost", "w_chicken_fx_simulator"] },
-  { id: "P2", num: "❷", label: "가공·생산", title: "🏭 Pillar II — 가공 및 생산", desc: "단순 원물에서 고부가 가공육으로의 밸류체인 전환", color: "#d97706",
+  { id: "P2", num: "❷", label: "가공·생산", title: "🏭 Pillar II - 가공 및 생산", desc: "단순 원물에서 고부가 가공육으로의 밸류체인 전환", color: "#d97706",
     widgets: ["w_chicken_trade_shift"] },
-  { id: "P3", num: "❸", label: "물류·통관", title: "🚢 Pillar III — 물류 및 통관", desc: "도착 리드타임 활용 시간 차익거래 및 B2B 직송망", color: "#ea580c",
+  { id: "P3", num: "❸", label: "물류·통관", title: "🚢 Pillar III - 물류 및 통관", desc: "도착 리드타임 활용 시간 차익거래 및 B2B 직송망", color: "#ea580c",
     widgets: ["w_chicken_arbitrage"] },
-  { id: "P4", num: "❹", label: "판매·수요", title: "📈 Pillar IV — 판매 및 수요", desc: "프랜차이즈 직거래 스펙인을 통한 유통 마진 극대화", color: "#f97316",
+  { id: "P4", num: "❹", label: "판매·수요", title: "📈 Pillar IV - 판매 및 수요", desc: "프랜차이즈 직거래 스펙인을 통한 유통 마진 극대화", color: "#f97316",
     widgets: ["w_chicken_global_export", "w_chicken_protein_spread", "w_chicken_season_balance"] },
-  { id: "P5", num: "❺", label: "ESG·지속가능성", title: "🌱 ❺ ESG 및 지속가능성", desc: "EUDR 반사이익 및 청정 프리미엄 (재구성 중 — MSCI ESG·WOAH WAHIS 실측 연동 예정)", color: "#b45309",
+  { id: "P5", num: "❺", label: "ESG·지속가능성", title: "🌱 ❺ ESG 및 지속가능성", desc: "EUDR 반사이익 및 청정 프리미엄 (재구성 중 - MSCI ESG·WOAH WAHIS 실측 연동 예정)", color: "#b45309",
     widgets: [] } // archived 2026-05-24: w_chicken_eudr_esg, w_chicken_risk_radar (forensic grade C)
 ];
 
@@ -158,12 +158,12 @@ export default function ChickenDashboard() {
           telemetryStatus: 'static',
           syncDate: 'FAOSTAT·KCS 스냅샷',
           sit: `<div>
-<p>"대체 단백질 가격 스프레드(Substitute Protein Spread)"란 어종·축종 간 가격 elasticity의 cross-section. 수산물 단가 급등 시 소비자는 자동으로 닭고기로 substitution — 닭고기는 수산물 단가의 mirror image instrument.</p>
+<p>"대체 단백질 가격 스프레드(Substitute Protein Spread)"란 어종·축종 간 가격 elasticity의 cross-section. 수산물 단가 급등 시 소비자는 자동으로 닭고기로 substitution - 닭고기는 수산물 단가의 mirror image instrument.</p>
 <p>업계추정: <strong>오징어·새우 어획량 감소로 수산 단백질 단가 상승 국면에서 닭고기 대체 수요가 증가하는 경향이 관측됨. 대체 수요 전환 시 5~8% 추가 마진 확보 가능성 있음</strong>. 단, 수산 단가와 닭고기 수요 간 교차탄력성은 품목별·시기별 편차가 크므로 실측 확인 필요.</p>
 </div>`,
           strat: `<div>
 <p><strong>재정의</strong>: 대체재 상승은 외부 변수가 아닌 <strong>"수산 위기를 닭고기 마진 확장으로 자동 변환할 substitution arbitrage 시그널"</strong>.</p>
-<p><strong>3단계</strong>: ① 수산 단가 지수 +15% 돌파 즉시 프랜차이즈 직납 단가 5~8% 선제 상향 ② 수산 헤지펀드 short 포지션 대비 닭고기 long 포지션 비중 확대 ③ "치킨이 대안" 마케팅 캠페인 동시 launch — 소비자 substitution 가속.</p>
+<p><strong>3단계</strong>: ① 수산 단가 지수 +15% 돌파 즉시 프랜차이즈 직납 단가 5~8% 선제 상향 ② 수산 헤지펀드 short 포지션 대비 닭고기 long 포지션 비중 확대 ③ "치킨이 대안" 마케팅 캠페인 동시 launch - 소비자 substitution 가속.</p>
 </div>`,
           source: 'FAOSTAT · KCS Export',
           areas: [{key: 'seafoodIndex', color: '#38bdf8', name: '수산물 단가지수'}],
@@ -191,7 +191,7 @@ export default function ChickenDashboard() {
 </div>`,
           strat: `<div>
 <p><strong>재정의</strong>: 삼복은 단순 성수기가 아닌 <strong>"비축 → 방출 타이밍 1주 차이가 연간 P&L 20%를 좌우하는 high-stakes operations 게임"</strong>.</p>
-<p><strong>3단계</strong>: ① 초복 2주 전부터 자체 비축 물량 집중 방출 — 도매 단가 변동성 흡수 ② AI 기반 일별 출하 알고리즘 도입 — 인간 직관 의존 제거 ③ 중복·말복 spot price spike 직전 forward 단가 lock-in으로 P&L 변동성 헷지.</p>
+<p><strong>3단계</strong>: ① 초복 2주 전부터 자체 비축 물량 집중 방출 - 도매 단가 변동성 흡수 ② AI 기반 일별 출하 알고리즘 도입 - 인간 직관 의존 제거 ③ 중복·말복 spot price spike 직전 forward 단가 lock-in으로 P&L 변동성 헷지.</p>
 </div>`,
           source: 'KAMIS · KCS',
           bars: [
@@ -216,7 +216,7 @@ export default function ChickenDashboard() {
           telemetryStatus: 'static',
           syncDate: 'What-If 시나리오',
           sit: `<div>
-<p>"What-if 시뮬레이션"이란 환율을 외생 변수로 두고 사료비·생산량 변동을 시나리오별로 정량 예측하는 risk model. 영세 농가는 환율 50원 변동에도 줄도산 가능 — 본질적으로 currency-sensitive 산업.</p>
+<p>"What-if 시뮬레이션"이란 환율을 외생 변수로 두고 사료비·생산량 변동을 시나리오별로 정량 예측하는 risk model. 영세 농가는 환율 50원 변동에도 줄도산 가능 - 본질적으로 currency-sensitive 산업.</p>
 <p>시나리오(What-If): <strong>원/달러 환율 1,400원 돌파 시 수입 사료비 폭등 → 영세 농가 줄도산 + 국내 생산량 10% 감소 우려. Bull(1,400) 시나리오에서 원가 +12.8%, Extreme(1,450)에서 +18.5%</strong>. 환율은 한국 닭고기 산업의 single biggest external risk.</p>
 </div>`,
           strat: `<div>
@@ -410,7 +410,7 @@ export default function ChickenDashboard() {
       {/* ═══ 5-Pillar 밸류체인 네비게이터 ═══ */}
       <div style={{ background: 'linear-gradient(180deg, rgba(20, 28, 52, 0.5), rgba(20, 28, 52, 0.2))', border: '1px solid rgba(255,255,255,0.04)', borderRadius: '16px', padding: '6px', marginBottom: '2rem', boxShadow: '0 4px 30px rgba(0,0,0,0.3), inset 0 1px 0 rgba(140,170,255,0.10)' }}>
         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '6px', padding: '4px 0 8px', borderBottom: '1px solid rgba(140,170,255,0.10)', marginBottom: '6px' }}>
-          <span style={{ fontSize: '0.7rem', color: 'rgba(var(--w-slate-400-rgb), 0.7)', fontWeight: 600, letterSpacing: '0.08em', textTransform: 'uppercase' }}>밸류체인 네비게이터 — 아래 단계를 클릭하여 탐색하세요</span>
+          <span style={{ fontSize: '0.7rem', color: 'rgba(var(--w-slate-400-rgb), 0.7)', fontWeight: 600, letterSpacing: '0.08em', textTransform: 'uppercase' }}>밸류체인 네비게이터 - 아래 단계를 클릭하여 탐색하세요</span>
         </div>
         <div data-mobile-stack style={{ display: 'grid', gridTemplateColumns: 'repeat(5, 1fr)', gap: '4px' }}>
           {PILLARS.map((s, idx) => {

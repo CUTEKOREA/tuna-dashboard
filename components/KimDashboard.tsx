@@ -35,11 +35,11 @@ const KPIS = [
 ];
 
 const PILLARS = [
-  { id: 'P1', label: '원료 수급', title: '🌱 Pillar I — 원료 수급', desc: '김 양식 생산량 추이·산지', color: KIM_FROM },
-  { id: 'P2', label: '가공·생산', title: '🏭 Pillar II — 가공·생산', desc: '김플레이션·가공 부가가치', color: '#65a30d' },
-  { id: 'P3', label: '물류·통관', title: '🚢 Pillar III — 물류·통관', desc: '관세청 KCS 마른김·조미김 수출 통관·대상국·단가 (LIVE)', color: '#4d7c0f' },
-  { id: 'P4', label: '판매·수요', title: '📈 Pillar IV — 판매·수요', desc: '수출 실적·주요국·글로벌 시장', color: '#a3e635' },
-  { id: 'P5', label: 'ESG', title: '🌍 Pillar V — ESG·지속가능성', desc: '기후(수온)·황백화 리스크', color: '#15803d' },
+  { id: 'P1', label: '원료 수급', title: '🌱 Pillar I - 원료 수급', desc: '김 양식 생산량 추이·산지', color: KIM_FROM },
+  { id: 'P2', label: '가공·생산', title: '🏭 Pillar II - 가공·생산', desc: '김플레이션·가공 부가가치', color: '#65a30d' },
+  { id: 'P3', label: '물류·통관', title: '🚢 Pillar III - 물류·통관', desc: '관세청 KCS 마른김·조미김 수출 통관·대상국·단가 (LIVE)', color: '#4d7c0f' },
+  { id: 'P4', label: '판매·수요', title: '📈 Pillar IV - 판매·수요', desc: '수출 실적·주요국·글로벌 시장', color: '#a3e635' },
+  { id: 'P5', label: 'ESG', title: '🌍 Pillar V - ESG·지속가능성', desc: '기후(수온)·황백화 리스크', color: '#15803d' },
 ];
 
 // ── 검증 실데이터 (생산·수출 국가별은 agri_data 실데이터 위젯으로 분리: KimAgriDataWidgets) ──
@@ -65,8 +65,8 @@ export default function KimDashboard() {
     <div style={{ padding: '0 1.5rem 3rem', color: 'var(--w-slate-50)', minHeight: '100vh', fontFamily: "'Plus Jakarta Sans','Inter',sans-serif" }}>
       {/* ═══ 데이터 출처 배너 (실데이터 v1) ═══ */}
       <div style={{ margin: '1rem 0 1.5rem', padding: '12px 16px', background: 'rgba(132,204,22,0.08)', border: '1px solid rgba(132,204,22,0.3)', borderLeft: `3px solid ${KIM_TO}`, borderRadius: '8px', fontSize: '0.82rem', color: '#d9f99d', lineHeight: 1.55 }}>
-        ✅ <strong style={{ color: KIM_TO }}>실데이터 v1</strong> — 통계청·관세청/KATI·해양수산부·국립수산과학원·Grand View Research 검증 수치 반영(적대 출처검증 통과). 위젯 telemetry SYNCED + 실출처 표기.
-        <span style={{ color: 'var(--w-slate-400)' }}> P3(물류·통관)은 관세청 KCS OpenAPI <strong style={{ color: KIM_TO }}>LIVE 연동</strong> — 마른김(HS 1212.21)·조미김(HS 2008.99.50.10) 분리 집계 + 대상국 비중·원초 vs 가공 단가. 실패 시 관세청 실수집 fallback.</span>
+        ✅ <strong style={{ color: KIM_TO }}>실데이터 v1</strong> - 통계청·관세청/KATI·해양수산부·국립수산과학원·Grand View Research 검증 수치 반영(적대 출처검증 통과). 위젯 telemetry SYNCED + 실출처 표기.
+        <span style={{ color: 'var(--w-slate-400)' }}> P3(물류·통관)은 관세청 KCS OpenAPI <strong style={{ color: KIM_TO }}>LIVE 연동</strong> - 마른김(HS 1212.21)·조미김(HS 2008.99.50.10) 분리 집계 + 대상국 비중·원초 vs 가공 단가. 실패 시 관세청 실수집 fallback.</span>
       </div>
 
       {/* ═══ Header ═══ */}
@@ -135,9 +135,9 @@ export default function KimDashboard() {
             {sec.id === 'P2' && (
               <>
               <WidgetCard
-                title="김플레이션 — 마른김 소매가 급등"
+                title="김플레이션 - 마른김 소매가 급등"
                 icon={Factory} iconColor="#65a30d" pillar="S2"
-                cardDesc="마른김 소매가(원/10장) 추이 — 13개월 연속 상승, 2026.1 역대 최고 1,555원(+41.8%)"
+                cardDesc="마른김 소매가(원/10장) 추이 - 13개월 연속 상승, 2026.1 역대 최고 1,555원(+41.8%)"
                 telemetry={{ status: 'SYNCED', syncDate: 'aT 2026.01' }}
                 chart={
                   <LineChart data={priceData} margin={{ top: 10, right: 20, left: 0, bottom: 0 }}>
@@ -149,7 +149,7 @@ export default function KimDashboard() {
                   </LineChart>
                 }
                 takeaway={{
-                  situation: '<div><p>"김플레이션" — 마른김 소매가 2024년 평균 1,271원 → 2026.1 <strong>1,555원/10장 역대 최고(+41.8%)</strong>, 도매는 속당 1만원 돌파(+80%). 조미김은 마른김 대비 2~4배. 정부 할당관세(700톤, 관세 20%→면제)로 대응.</p><p>역설: 같은 시기 <strong>원초(물김) 위판가는 763원/kg(2025.1)로 전년 1,604원의 절반</strong> — 산지 약세 vs 소비자가 급등 괴리.</p></div>',
+                  situation: '<div><p>"김플레이션" - 마른김 소매가 2024년 평균 1,271원 → 2026.1 <strong>1,555원/10장 역대 최고(+41.8%)</strong>, 도매는 속당 1만원 돌파(+80%). 조미김은 마른김 대비 2~4배. 정부 할당관세(700톤, 관세 20%→면제)로 대응.</p><p>역설: 같은 시기 <strong>원초(물김) 위판가는 763원/kg(2025.1)로 전년 1,604원의 절반</strong> - 산지 약세 vs 소비자가 급등 괴리.</p></div>',
                   actionPlan: '<div><p><strong>재정의</strong>: 산지-소매 가격 괴리는 "가공·유통 단계 마진 재배분" 기회.</p><p><strong>3단계</strong>: ① 원초 약세기 선매입·계약재배 ② 조미김 2차 가공 내재화로 2~4배 부가가치 ③ 직거래로 유통 마진 압축.</p></div>',
                   source: 'aT 한국농수산식품유통공사(KAMIS) · 해양수산부 · 수협중앙회',
                 }}
@@ -163,7 +163,7 @@ export default function KimDashboard() {
                 <WidgetCard
                   title="김 수출액 추이 ($648M→$1,133M)"
                   icon={Ship} iconColor="#a3e635" pillar="S4"
-                  cardDesc="연간 김 수출액(백만 USD) — 2025년 11.3억 달러 역대최고(+13.7%), 수산식품 수출 1위"
+                  cardDesc="연간 김 수출액(백만 USD) - 2025년 11.3억 달러 역대최고(+13.7%), 수산식품 수출 1위"
                   telemetry={{ status: 'SYNCED', syncDate: 'KATI 2025' }}
                   chart={
                     <AreaChart data={exportData} margin={{ top: 10, right: 20, left: -5, bottom: 0 }}>
@@ -177,7 +177,7 @@ export default function KimDashboard() {
                   }
                   takeaway={{
                     situation: '<div><p>김 수출액은 4년 만에 $648M(2022)→<strong>$1,133M(2025, +13.7% 역대최고)</strong>. 2024년 $997M으로 <strong>수산식품 수출 1위</strong>(2위 참치 $589M의 1.7배), 전체 수산식품 수출의 약 1/3. 124개국 수출, 조미김이 67%.</p></div>',
-                    actionPlan: '<div><p><strong>재정의</strong>: 김은 "수산물"이 아닌 K-푸드 대표 가공 수출재 — 단가·브랜드 게임.</p><p><strong>3단계</strong>: ① 조미김 고부가 비중 확대 ② 124개국 채널 중 상위4국(61%) 외 신흥국 발굴 ③ 원물 부족분 안정 조달로 수출 capa 방어.</p></div>',
+                    actionPlan: '<div><p><strong>재정의</strong>: 김은 "수산물"이 아닌 K-푸드 대표 가공 수출재 - 단가·브랜드 게임.</p><p><strong>3단계</strong>: ① 조미김 고부가 비중 확대 ② 124개국 채널 중 상위4국(61%) 외 신흥국 발굴 ③ 원물 부족분 안정 조달로 수출 capa 방어.</p></div>',
                     source: '관세청 · KATI/aT · 해양수산부 보도자료(2025·2026)',
                   }}
                 />
@@ -191,9 +191,9 @@ export default function KimDashboard() {
             {sec.id === 'P5' && (
               <>
               <WidgetCard
-                title="기후 리스크 — 표층수온 상승·황백화"
+                title="기후 리스크 - 표층수온 상승·황백화"
                 icon={ThermometerSun} iconColor="#f59e0b" pillar="S5"
-                cardDesc="한국 해역 표층수온 상승폭 vs 세계 평균(℃, 1968–2022) — 황백화 확산의 근본 동인"
+                cardDesc="한국 해역 표층수온 상승폭 vs 세계 평균(℃, 1968–2022) - 황백화 확산의 근본 동인"
                 telemetry={{ status: 'SYNCED', syncDate: '수과원 2022' }}
                 chart={
                   <BarChart data={[{ k: '세계 평균', v: 0.52 }, { k: '한국 해역', v: 1.36 }]} layout="vertical" margin={{ top: 10, right: 30, left: 20, bottom: 0 }}>
@@ -207,8 +207,8 @@ export default function KimDashboard() {
                   </BarChart>
                 }
                 takeaway={{
-                  situation: '<div><p>한국 해역 표층수온은 1968–2022년 <strong>+1.36℃</strong> 상승 — 세계 평균(+0.52℃)의 <strong>2.6배</strong>. 이로 인한 황백화(갯병)로 충남 서천 양식장 <strong>3,156ha(95%)</strong> 피해, 전남 작황 평년比 −15%. 생산 정점 대비 −15.6%의 근본 동인.</p></div>',
-                  actionPlan: '<div><p><strong>재정의</strong>: 황백화는 일시 재해가 아닌 "상시 기후 리스크" — 양식 자체의 적응 설계 필요.</p><p><strong>3단계</strong>: ① 고수온 내성 품종 R&D·보급 ② 양식 시기·수심 조정 + 외해 양식 ③ 기후보험·재해 헤지 + 황백화 조기경보 모니터링.</p></div>',
+                  situation: '<div><p>한국 해역 표층수온은 1968–2022년 <strong>+1.36℃</strong> 상승 - 세계 평균(+0.52℃)의 <strong>2.6배</strong>. 이로 인한 황백화(갯병)로 충남 서천 양식장 <strong>3,156ha(95%)</strong> 피해, 전남 작황 평년比 −15%. 생산 정점 대비 −15.6%의 근본 동인.</p></div>',
+                  actionPlan: '<div><p><strong>재정의</strong>: 황백화는 일시 재해가 아닌 "상시 기후 리스크" - 양식 자체의 적응 설계 필요.</p><p><strong>3단계</strong>: ① 고수온 내성 품종 R&D·보급 ② 양식 시기·수심 조정 + 외해 양식 ③ 기후보험·재해 헤지 + 황백화 조기경보 모니터링.</p></div>',
                   source: '국립수산과학원(표층수온 1968–2022) · 해양수산부(황백화 피해)',
                 }}
               />

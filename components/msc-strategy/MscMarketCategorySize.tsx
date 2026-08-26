@@ -236,7 +236,7 @@ export default function MscMarketCategorySize() {
       iconColor="#38bdf8"
       pillar="S5"
       telemetry={{ status: 'STATIC', syncDate: '2024-25' }}
-      cardDesc="MSC 연례보고서 2024-25 부속 데이터(liveproductvolume, 전 어종) 기준 — 참치 단독 라벨 판매량은 별도(2024/25 약 30만 톤)"
+      cardDesc="MSC 연례보고서 2024-25 부속 데이터(liveproductvolume, 전 어종) 기준 - 참치 단독 라벨 판매량은 별도(2024/25 약 30만 톤)"
       customBody={body}
       takeaway={{
         situation: "MSC 라벨 제품 시장(전 어종, 2024/25 총 138.5만 톤)은 냉동(50.7만 톤)이 최대 카테고리이나, 캔/통조림(33.5만 톤, +24.2%)과 펫푸드(12.0만 톤, +29.3%)가 성장을 주도합니다. 참치 단독 라벨 판매량은 2024/25 약 30만 톤(연감 2025)에서 2025/26 40만 톤+(연감 2025-26)로 증가했습니다.",

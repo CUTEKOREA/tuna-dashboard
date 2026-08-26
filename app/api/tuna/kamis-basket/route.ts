@@ -44,7 +44,7 @@ interface BasketItem {
 // 2026-07-03 실호출 실측값 기반 정직 fallback (L-09/L-12)
 const FALLBACK = {
   isLive: false,
-  source: "KAMIS 부류 600 소매가 — 2026-07-03 실측 스냅샷 (fallback)",
+  source: "KAMIS 부류 600 소매가 - 2026-07-03 실측 스냅샷 (fallback)",
   baseDate: "2026-07-03",
   lastUpdated: "2026-07-03",
   items: [

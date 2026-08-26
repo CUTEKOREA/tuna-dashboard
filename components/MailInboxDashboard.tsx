@@ -810,7 +810,7 @@ export default function MailInboxDashboard() {
           <div className={styles.toolbar}>
             <div className={styles.unreadMetric}>
               <span>안 읽은 메일</span>
-              <strong>{inbox?.unreadCount ?? '—'}</strong>
+              <strong>{inbox?.unreadCount ?? '-'}</strong>
             </div>
             <span className={styles.selectionCount}>선택 {selectedTrashIds.length} / {MAX_BULK_TRASH_SELECTION}건</span>
             <button

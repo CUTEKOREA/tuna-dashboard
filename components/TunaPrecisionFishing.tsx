@@ -73,7 +73,7 @@ export default function TunaPrecisionFishing() {
 <ol style="margin: 4px 0 0 18px; padding: 0;">
 <li style="margin-bottom: 8px;"><strong>"하드웨어 → 소프트웨어·센서" 투자 전환</strong>: 선박 건조 capex 동결, 그 자본을 무인 어군 드론 + AI 3D 소나로 전환.</li>
 <li style="margin-bottom: 8px;"><strong>"Pinpoint Harvest 프로토콜"</strong>: 어군 사전 식별 → 조업 결정의 모든 단계를 ML 모델에 의탁. 선장 직관 의존도 단계적 제로화.</li>
-<li><strong>"Climate-resilient fleet conversion"</strong>: 5년 내 한국 선단 100% 정밀 조업 전환. 동시에 우리 정밀 조업 IP를 PNA·IOTC 회원국 어선에 라이센싱 — 본업 외 IP 수익원.</li>
+<li><strong>"Climate-resilient fleet conversion"</strong>: 5년 내 한국 선단 100% 정밀 조업 전환. 동시에 우리 정밀 조업 IP를 PNA·IOTC 회원국 어선에 라이센싱 - 본업 외 IP 수익원.</li>
 </ol>
 </div>`,
         source: 'ISSF Technical Report 2024 · SPC 어군 탐지 기술 평가 · FFA 스마트 FAD 파일럿 결과',

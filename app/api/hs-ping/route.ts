@@ -24,14 +24,14 @@ const SUPPORTED_COUNTRIES = [
 // Curated fallback: Silla Co. pre-classified products
 const HS_FALLBACK: Record<string, { hsCode: string; description: string; confidence: number; country: string; chapter: string; notes: string }[]> = {
   'frozen yellowfin tuna': [
-    { hsCode: '0303.42.00', description: 'Yellowfin tunas (Thunnus albacares), frozen', confidence: 0.98, country: 'US', chapter: '03 — Fish', notes: 'Excl. fillets (0304), livers/roes (0302.91)' },
+    { hsCode: '0303.42.00', description: 'Yellowfin tunas (Thunnus albacares), frozen', confidence: 0.98, country: 'US', chapter: '03 - Fish', notes: 'Excl. fillets (0304), livers/roes (0302.91)' },
     { hsCode: '0303.42', description: 'Yellowfin tunas, frozen (6-digit)', confidence: 0.97, country: 'KR', chapter: '03', notes: 'MFN 10%, AKFTA 0%' },
   ],
   'frozen skipjack tuna': [
-    { hsCode: '0303.43.00', description: 'Skipjack/stripe-bellied bonito (Katsuwonus pelamis), frozen', confidence: 0.97, country: 'US', chapter: '03 — Fish', notes: 'Primary canning species' },
+    { hsCode: '0303.43.00', description: 'Skipjack/stripe-bellied bonito (Katsuwonus pelamis), frozen', confidence: 0.97, country: 'US', chapter: '03 - Fish', notes: 'Primary canning species' },
   ],
   'canned tuna': [
-    { hsCode: '1604.14.10', description: 'Tunas, in airtight containers', confidence: 0.95, country: 'US', chapter: '16 — Prep. of meat/fish', notes: 'Includes albacore and yellowfin' },
+    { hsCode: '1604.14.10', description: 'Tunas, in airtight containers', confidence: 0.95, country: 'US', chapter: '16 - Prep. of meat/fish', notes: 'Includes albacore and yellowfin' },
     { hsCode: '1604.14.22', description: 'Tunas, in oil, airtight containers', confidence: 0.93, country: 'US', chapter: '16', notes: 'Oil-packed variants' },
   ],
   'frozen hairtail': [
@@ -59,13 +59,13 @@ const HS_FALLBACK: Record<string, { hsCode: string; description: string; confide
     { hsCode: '0307.43.00', description: 'Squid (Ommastrephes spp., Loligo spp.), frozen', confidence: 0.95, country: 'US', chapter: '03', notes: 'Includes Illex, Dosidicus' },
   ],
   'fresh garlic': [
-    { hsCode: '0703.20.00', description: 'Garlic, fresh or chilled', confidence: 0.99, country: 'US', chapter: '07 — Vegetables', notes: 'KR: 360% MFN tariff' },
+    { hsCode: '0703.20.00', description: 'Garlic, fresh or chilled', confidence: 0.99, country: 'US', chapter: '07 - Vegetables', notes: 'KR: 360% MFN tariff' },
   ],
   'cashew nuts shelled': [
-    { hsCode: '0801.32.00', description: 'Cashew nuts, fresh or dried, shelled', confidence: 0.98, country: 'US', chapter: '08 — Fruits/nuts', notes: 'Largest: Vietnam, India' },
+    { hsCode: '0801.32.00', description: 'Cashew nuts, fresh or dried, shelled', confidence: 0.98, country: 'US', chapter: '08 - Fruits/nuts', notes: 'Largest: Vietnam, India' },
   ],
   'cocoa beans': [
-    { hsCode: '1801.00.00', description: 'Cocoa beans, whole or broken, raw or roasted', confidence: 0.99, country: 'US', chapter: '18 — Cocoa', notes: 'Origin: Ghana, Côte d\'Ivoire' },
+    { hsCode: '1801.00.00', description: 'Cocoa beans, whole or broken, raw or roasted', confidence: 0.99, country: 'US', chapter: '18 - Cocoa', notes: 'Origin: Ghana, Côte d\'Ivoire' },
   ],
   'cassava dried': [
     { hsCode: '0714.10.20', description: 'Cassava (manioc), dried (chips/pellets)', confidence: 0.96, country: 'US', chapter: '07', notes: 'Tapioca starch under 1108.14' },

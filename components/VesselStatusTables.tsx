@@ -32,7 +32,7 @@ export function AtlanticSeinersTable() {
   return (
     <div className={styles.tableContainer} style={{ marginBottom: '2rem' }}>
       <div style={{ padding: '12px 16px', background: 'rgba(255,255,255,0.02)', borderBottom: '1px solid rgba(140,170,255,0.10)', fontSize: '13px', color: 'var(--text-muted)' }}>
-        <strong style={{ color: 'var(--text-main)' }}>BB. 대서양 선망 : 6/10</strong> (일간: 145톤 / 월간 누계: 1,110톤 / 연간 누계: 15,895톤) — 일일 업무보고 26.06.10 기준
+        <strong style={{ color: 'var(--text-main)' }}>BB. 대서양 선망 : 6/10</strong> (일간: 145톤 / 월간 누계: 1,110톤 / 연간 누계: 15,895톤) - 일일 업무보고 26.06.10 기준
       </div>
       <table className={styles.table}>
         <thead>
@@ -60,7 +60,7 @@ export function LonglinersTable() {
   return (
     <div className={styles.tableContainer} style={{ marginBottom: '2rem' }}>
       <div style={{ padding: '12px 16px', background: 'rgba(255,255,255,0.02)', borderBottom: '1px solid rgba(140,170,255,0.10)', fontSize: '13px', color: 'var(--text-muted)' }}>
-        <strong style={{ color: 'var(--text-main)' }}>AA. 연승</strong> — 6/2 보고 기준 (이후 갱신분 미수신)
+        <strong style={{ color: 'var(--text-main)' }}>AA. 연승</strong> - 6/2 보고 기준 (이후 갱신분 미수신)
       </div>
       <table className={styles.table}>
         <thead>
@@ -88,7 +88,7 @@ export function CarriersTable() {
   return (
     <div className={styles.tableContainer}>
       <div style={{ padding: '12px 16px', background: 'rgba(255,255,255,0.02)', borderBottom: '1px solid rgba(140,170,255,0.10)', fontSize: '13px', color: 'var(--text-muted)', display: 'flex', justifyContent: 'flex-start', gap: '20px' }}>
-        <span>운반선 : 6/10 — 일일 업무보고 26.06.10 기준</span>
+        <span>운반선 : 6/10 - 일일 업무보고 26.06.10 기준</span>
         <span>선적량: <strong>22,539(311)톤</strong></span>
         <span>예상잔량: <strong>2,394톤</strong></span>
       </div>

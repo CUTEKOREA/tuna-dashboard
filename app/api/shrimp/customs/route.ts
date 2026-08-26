@@ -44,7 +44,7 @@ export async function GET() {
           return {
             timestamp: new Date().toISOString(),
             isLive: false,
-            source: '관세청 nitemtrade 응답 없음 — 표시할 실측값 없음',
+            source: '관세청 nitemtrade 응답 없음 - 표시할 실측값 없음',
             scope: { hsk10: HSK_CODES, label: SHRIMP_LABEL },
             liveImportData: [],
             metrics: null,

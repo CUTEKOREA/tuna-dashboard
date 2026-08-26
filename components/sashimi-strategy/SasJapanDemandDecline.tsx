@@ -31,11 +31,11 @@ export default function SasJapanDemandDecline() {
   return (
     <WidgetCard
       id="W-SAS19"
-      title="일본 사시미 수요 장기 감소 — 글로벌 리스크"
+      title="일본 사시미 수요 장기 감소 - 글로벌 리스크"
       icon={TrendingDown}
       iconColor="#ef4444"
       pillar="S1"
-      cardDesc="세계 최대 사시미 시장의 구조적 축소 — 한국·EU 수출 의존국 모두에 영향"
+      cardDesc="세계 최대 사시미 시장의 구조적 축소 - 한국·EU 수출 의존국 모두에 영향"
       telemetry={{ status: 'STATIC', syncDate: '2024' }}
       takeaway={{
         situation: "일본 사시미 소비는 726,000t(2000)에서 359,000t(2022)으로 51% 감소했으며, 2050년에는 ~112,000t으로 현재의 1/3 이하로 축소될 전망입니다. 1인당 수산물 소비도 40.2kg→21.4kg(-47%)으로 하락세가 지속됩니다. 2024년 참치 수입은 $1.588B(-14.2% YoY)로 감소했습니다.",
@@ -91,7 +91,7 @@ export default function SasJapanDemandDecline() {
               fontSize: '0.7rem', color: 'var(--w-slate-400)',
             }}>
               <strong style={{ color: 'var(--w-amber-500)' }}>🇰🇷 한국 영향</strong><br />
-              사시미 80% 수출→일본 — 장기 축소 리스크
+              사시미 80% 수출→일본 - 장기 축소 리스크
             </div>
             <div style={{
               padding: '10px 12px', borderRadius: '8px',
@@ -99,7 +99,7 @@ export default function SasJapanDemandDecline() {
               fontSize: '0.7rem', color: 'var(--w-slate-400)',
             }}>
               <strong style={{ color: '#a78bfa' }}>🇪🇺 EU 영향</strong><br />
-              BFT 90% 수출→일본 — 중국/미국 다변화 중
+              BFT 90% 수출→일본 - 중국/미국 다변화 중
             </div>
           </div>
         </div>

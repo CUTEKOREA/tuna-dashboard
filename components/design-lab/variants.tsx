@@ -47,7 +47,7 @@ function DataGuard({ rows, failed, children }: {
   failed: boolean;
   children: (rows: AtunaPriceRow[]) => React.ReactNode;
 }) {
-  if (failed) return <p style={{ color: 'var(--text-muted)', fontSize: 13 }}>가격 데이터 수신 실패 — 시안 평가 불가 (새로고침으로 재시도)</p>;
+  if (failed) return <p style={{ color: 'var(--text-muted)', fontSize: 13 }}>가격 데이터 수신 실패 - 시안 평가 불가 (새로고침으로 재시도)</p>;
   if (!rows) return <p style={{ color: 'var(--text-muted)', fontSize: 13 }}>가격 데이터 수신 중…</p>;
   return <>{children(rows)}</>;
 }
@@ -68,7 +68,7 @@ export const DESIGN_VARIANTS: DesignVariant[] = [
     id: 'market-hero-adopted',
     title: '히어로 최종 채택본 (r4-B · 시장 동향 반영됨)',
     round: 4,
-    note: '4라운드 수렴 결과. 실페이지에 반영 — 추가 지적은 여기 코멘트로',
+    note: '4라운드 수렴 결과. 실페이지에 반영 - 추가 지적은 여기 코멘트로',
     render: () => <AdoptedHero />,
   },
   // r6 (2026-08-17): 채택된 지휘형 문법의 운영 페이지 번안 — 선단·하역
@@ -76,7 +76,7 @@ export const DESIGN_VARIANTS: DesignVariant[] = [
     id: 'fleet-hero-adopted',
     title: '선단 지휘형 최종 채택본 (r6 ★4 · 선단 운영 반영됨)',
     round: 6,
-    note: '실페이지에 히어로 아래 섹션으로 반영 — 추가 지적은 여기 코멘트로',
+    note: '실페이지에 히어로 아래 섹션으로 반영 - 추가 지적은 여기 코멘트로',
     render: () => <FleetHeroCommand />,
   },
   // r7 판정: B(기간 바) ★4 채택 — 실페이지는 static+DB 병합 13척, 갤러리 미리보기는 DB 9척만 (정직 표기)
@@ -84,7 +84,7 @@ export const DESIGN_VARIANTS: DesignVariant[] = [
     id: 'unloading-adopted',
     title: '하역 최종 채택본 (r7-B 항차 기간 바 · 하역 현황 반영됨)',
     round: 7,
-    note: '정적 원장+DB 병합 13척 전부 — 실페이지와 같은 데이터. 추가 지적은 여기 코멘트로',
+    note: '정적 원장+DB 병합 13척 전부 - 실페이지와 같은 데이터. 추가 지적은 여기 코멘트로',
     render: () => <UnloadingGanttMerged />,
   },
   // r5 판정: 뉴스 A ★4·필터 B ★4 — 채택, 실페이지 반영. 갤러리는 채택본만 (추가 지적 수집용)
@@ -118,7 +118,7 @@ function FilterAdoptedPreview() {
       grainOptions={[{ key: 'week', label: '주간' }, { key: 'month', label: '월간' }]}
       grain={grain}
       onGrainChange={setGrain}
-      scopeNote="시안 미리보기 — 더미 상태"
+      scopeNote="시안 미리보기 - 더미 상태"
     />
   );
 }

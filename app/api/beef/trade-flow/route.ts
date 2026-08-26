@@ -119,9 +119,9 @@ export async function GET() {
   if (live && live.data.length >= 3) {
     data = live.data;
     isLive = true;
-    source = `UN Comtrade Public Preview — HS 0201+0202 ${new Date().getFullYear() - 1} 수출, 1주 캐시`;
+    source = `UN Comtrade Public Preview - HS 0201+0202 ${new Date().getFullYear() - 1} 수출, 1주 캐시`;
   } else {
-    source = 'UN Comtrade Public Preview 실패 — 정적 미러';
+    source = 'UN Comtrade Public Preview 실패 - 정적 미러';
   }
 
   return NextResponse.json({

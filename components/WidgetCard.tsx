@@ -109,7 +109,7 @@ function checkForbidden(text: string | React.ReactNode, field: string, title: st
   for (const pattern of FORBIDDEN_PATTERNS) {
     if (pattern.test(text)) {
       console.error(
-        `[WidgetCard:P-03] 금지 패턴 검출 — ${title} / ${field}: "${pattern.source}". ` +
+        `[WidgetCard:P-03] 금지 패턴 검출 - ${title} / ${field}: "${pattern.source}". ` +
         `컨빅션 태그·과장 수식어는 룰북 P-03 위반. 즉시 정정 필요.`
       );
     }
@@ -164,13 +164,13 @@ export default function WidgetCard(props: WidgetCardProps) {
     checkForbidden(takeaway.situation, 'takeaway.situation', title);
     checkForbidden(takeaway.actionPlan, 'takeaway.actionPlan', title);
     if (!takeaway.source.trim()) {
-      console.error(`[WidgetCard:W-04] ${title} — takeaway.source는 의무`);
+      console.error(`[WidgetCard:W-04] ${title} - takeaway.source는 의무`);
     }
   }
 
   // W-04: cardDesc 의무 (빈 문자열 금지 — prop 자체 생략은 소유자 결정으로 허용)
   if (cardDesc !== undefined && !cardDesc.trim()) {
-    console.error(`[WidgetCard:W-04] ${title} — cardDesc는 의무 (산출 방법론·출처 1줄)`);
+    console.error(`[WidgetCard:W-04] ${title} - cardDesc는 의무 (산출 방법론·출처 1줄)`);
   }
 
   return (

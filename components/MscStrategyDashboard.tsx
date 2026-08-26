@@ -111,7 +111,7 @@ export default function MscStrategyDashboard() {
                 MSC 전략 인텔리전스 센터
               </h1>
               <p style={{ margin: 0, fontSize: '0.88rem', color: 'var(--text-secondary)' }}>
-                24개 글로벌 보고서 + 연례보고서 부속 데이터 기반 — MSC 정의 · 현황 · 시장 · 전망 종합 분석 · 34개 위젯
+                24개 글로벌 보고서 + 연례보고서 부속 데이터 기반 - MSC 정의 · 현황 · 시장 · 전망 종합 분석 · 34개 위젯
               </p>
             </div>
           </div>
@@ -143,7 +143,7 @@ export default function MscStrategyDashboard() {
           padding: '4px 0 8px', borderBottom: '1px solid rgba(140,170,255,0.10)', marginBottom: '6px',
         }}>
           <span style={{ fontSize: '0.7rem', color: 'rgba(var(--w-slate-400-rgb), 0.7)', fontWeight: 600, letterSpacing: '0.08em', textTransform: 'uppercase' }}>
-            MSC 전략 네비게이터 — 7개 섹션을 클릭하여 탐색하세요
+            MSC 전략 네비게이터 - 7개 섹션을 클릭하여 탐색하세요
           </span>
         </div>
         <div data-mobile-stack style={{ display: 'grid', gridTemplateColumns: 'repeat(7, 1fr)', gap: '4px' }}>
@@ -215,7 +215,7 @@ export default function MscStrategyDashboard() {
         {/* ═══════ NEW: MSC 개요 ═══════ */}
         {activeSection === 'intro' && (
           <section>
-            <SectionHeader color="#22d3ee" emoji="📘" title="MSC 인증 프로그램 개요" desc="MSC란 무엇인가 — 정의, 3대 원칙, FIP 비교, 글로벌 참여 현황 KPI" />
+            <SectionHeader color="#22d3ee" emoji="📘" title="MSC 인증 프로그램 개요" desc="MSC란 무엇인가 - 정의, 3대 원칙, FIP 비교, 글로벌 참여 현황 KPI" />
             <div data-mobile-stack style={GRID_2}>
               <ErrorBoundary fallbackTitle="MscProgramOverview"><MscProgramOverview /></ErrorBoundary>
               <ErrorBoundary fallbackTitle="MscVsFipComparison"><MscVsFipComparison /></ErrorBoundary>

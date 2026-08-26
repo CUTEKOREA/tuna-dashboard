@@ -44,7 +44,7 @@ describe('cosmo 7월 업무보고 데이터 계약', () => {
       .toBe(r.inventory.total.begin);
   });
 
-  it('생산계획 변경이 원문과 일치한다 — 8월 2,730→2,310, 연간 29,000→26,118', () => {
+  it('생산계획 변경이 원문과 일치한다 - 8월 2,730→2,310, 연간 29,000→26,118', () => {
     expect(r.productionPlan.augustPlanMt).toBe(2730);
     expect(r.productionPlan.augustRevisedMt).toBe(2310);
     expect(r.productionPlan.annualPlanMt).toBe(29000);

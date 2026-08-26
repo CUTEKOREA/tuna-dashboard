@@ -64,7 +64,7 @@ describe('Frinsa 서술과 차트의 연결', () => {
     for (const b of FRINSA_BRIEFING) expect(keys).toContain(b.stage);
   });
 
-  it('인용은 큰따옴표를 쓴다 — 낫표는 차트 제목 전용이다', () => {
+  it('인용은 큰따옴표를 쓴다 - 낫표는 차트 제목 전용이다', () => {
     const prose = FRINSA_NARRATIVES.flatMap((n) => [n.lede, ...n.paragraphs]).join('\n');
     // 차트 제목을 다 지운 뒤에도 낫표가 남으면 인용에 쓴 것이다.
     const stripped = Object.values(SLOT_TITLES)
@@ -81,7 +81,7 @@ describe('Frinsa 수치', () => {
     expect(latestFinancial().순이익).toBe(39.1);
   });
 
-  it('2025년 매출은 미공표라 값이 없다 — 0 으로 채우지 않는다', () => {
+  it('2025년 매출은 미공표라 값이 없다 - 0 으로 채우지 않는다', () => {
     const frinsa = frinsaGalicia.find((r) => r.기업.startsWith('Frinsa'));
     expect(frinsa?.y2025).toBeNull();
     // 경쟁 2사는 공표했다. 「전부 없음」이 아니라 Frinsa 만 없다는 것이 요지다.
@@ -139,7 +139,7 @@ describe('Frinsa 수치', () => {
     expect(zero[0].조건).toContain('end-use');
   });
 
-  it('싱가포르가 스페인 다음 세전이익 2위권이다 — 그리고 국가별 합이 EINF 합계와 맞는다', () => {
+  it('싱가포르가 스페인 다음 세전이익 2위권이다 - 그리고 국가별 합이 EINF 합계와 맞는다', () => {
     const sorted = [...frinsaBai2024].sort((a, b) => b.세전이익 - a.세전이익);
     expect(sorted[0].국가).toContain('스페인');
     // 포르투갈(생산법인)과 싱가포르(구매본부)가 2·3위 — 판매법인이 아니라는 것이 요지다.
@@ -158,7 +158,7 @@ describe('Frinsa 수치', () => {
     expect(nonIberia / total).toBeGreaterThan(0.5);
   });
 
-  it('IFS Broker 는 현재형으로 표기하지 않는다 — 만료가 명시돼 있다', () => {
+  it('IFS Broker 는 현재형으로 표기하지 않는다 - 만료가 명시돼 있다', () => {
     const broker = frinsaCerts.find((r) => r.인증.includes('IFS Broker'));
     expect(broker?.상태).toContain('만료');
     expect(broker?.유효).toContain('갱신본 미확보');

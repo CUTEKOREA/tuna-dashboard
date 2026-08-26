@@ -379,7 +379,7 @@ export default function SalmonDashboard() {
                 background: SALMON_THEME.gradientText, WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>
                 대서양 연어 전략 인텔리전스
               </h1>
-              <p style={{ margin: 0, fontSize: '0.8rem', color: 'var(--w-slate-500)' }}>V4.2 커맨드 센터 — {widgets.length + INSIGHT_MODULE_COUNT} 위젯 · {SALMON_SECTIONS.length} 필라 · {kpiKeys.length} KPI · API 연동 3종(KCS·KAMIS·Comtrade)</p>
+              <p style={{ margin: 0, fontSize: '0.8rem', color: 'var(--w-slate-500)' }}>V4.2 커맨드 센터 - {widgets.length + INSIGHT_MODULE_COUNT} 위젯 · {SALMON_SECTIONS.length} 필라 · {kpiKeys.length} KPI · API 연동 3종(KCS·KAMIS·Comtrade)</p>
             </div>
           </div>
           <div style={{ 
@@ -459,7 +459,7 @@ export default function SalmonDashboard() {
         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '6px',
           padding: '4px 0 8px', borderBottom: '1px solid rgba(140,170,255,0.10)', marginBottom: '6px' }}>
           <span style={{ fontSize: '0.7rem', color: 'rgba(var(--w-slate-400-rgb), 0.7)', fontWeight: 600, letterSpacing: '0.08em', textTransform: 'uppercase' }}>
-            밸류체인 네비게이터 — 아래 단계를 클릭하여 탐색하세요
+            밸류체인 네비게이터 - 아래 단계를 클릭하여 탐색하세요
           </span>
         </div>
         <div data-mobile-stack style={{ display: 'grid', gridTemplateColumns: 'repeat(5, 1fr)', gap: '4px' }}>
@@ -612,7 +612,7 @@ export default function SalmonDashboard() {
     ].filter(Boolean).join(' · ');
 
     const cardDescParts = [w.subtitle, badgeSuffix].filter(Boolean);
-    const cardDesc = cardDescParts.join(' — ') || '연어 인텔리전스 위젯';
+    const cardDesc = cardDescParts.join(' - ') || '연어 인텔리전스 위젯';
 
     // L-09: 이 위젯들은 정적 JSON(/data/salmon_real_data_v4.json, FAO FishStatJ 1950-2024)을
     // import할 뿐 실시간 fetch 분기가 없다. isLiveApi가 참인 위젯이 실재하지 않으므로

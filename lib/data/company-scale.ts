@@ -16,7 +16,7 @@
 /** 환율 — 두 독립 출처가 소수 셋째 자리까지 일치한 날의 값이다. */
 export const FX = {
   기준일: '2026-08-20',
-  출처: 'ECB 참조환율(EUR·JPY·THB) · exchangerate-api(TWD — ECB 미고시)',
+  출처: 'ECB 참조환율(EUR·JPY·THB) · exchangerate-api(TWD - ECB 미고시)',
   /** 1 통화당 USD */
   usdPer: {
     EUR: 1 / 0.85609,
@@ -67,7 +67,7 @@ export const COMPANY_SCALE: CompanyScale[] = [
     표기: '약 5.0억 €',
     기준: '2023',
     등급: 'C',
-    근거: 'CEO 발언 — 절대액 공시 없음',
+    근거: 'CEO 발언 - 절대액 공시 없음',
   },
   {
     key: 'fcf',
@@ -76,7 +76,7 @@ export const COMPANY_SCALE: CompanyScale[] = [
     표기: '600억 NT$',
     기준: '회장 발언',
     등급: 'C',
-    근거: '비상장 — 매출 공시 없음',
+    근거: '비상장 - 매출 공시 없음',
   },
   {
     key: 'bolton',
@@ -85,7 +85,7 @@ export const COMPANY_SCALE: CompanyScale[] = [
     표기: '3,541 M€',
     기준: '2025',
     등급: 'A',
-    근거: '카테고리별 순매출 공표 — 연결재무제표는 비공표',
+    근거: '카테고리별 순매출 공표 - 연결재무제표는 비공표',
   },
   {
     key: 'jais',

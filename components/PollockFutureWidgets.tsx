@@ -42,7 +42,7 @@ export const WidgetPlantBasedImpact = () => (
 </div>`,
       actionPlan: `<div>
 <p><strong>재정의</strong>: plant-based 위협은 경쟁이 아닌 <strong>"우리가 self-cannibalize할 기회"</strong>.</p>
-<p><strong>3단계</strong>: ① "Wild-Caught 100% MSC" 프리미엄 헤리티지 마케팅 강화 ② 식물성 50% + 명태 50% hybrid SKU launch ③ CVC로 Good Catch·Ordinary Seafood minority equity 인수 — Kodak 폐기, Netflix 채택.</p>
+<p><strong>3단계</strong>: ① "Wild-Caught 100% MSC" 프리미엄 헤리티지 마케팅 강화 ② 식물성 50% + 명태 50% hybrid SKU launch ③ CVC로 Good Catch·Ordinary Seafood minority equity 인수 - Kodak 폐기, Netflix 채택.</p>
 </div>`,
     }}
   />
@@ -85,7 +85,7 @@ export const WidgetCellCultureVC = () => (
 </div>`,
       actionPlan: `<div>
 <p><strong>재정의</strong>: 어획 할당량 자산이 향후 stranded asset 될 위험 vs cultured 시장 leader 지위 확보. <strong>피보팅 timing이 본질</strong>.</p>
-<p><strong>3단계</strong>: ① 어획 할당량 매각 전 cultured 파트너 모색 — BlueNalu·Wildtype Foods 시리즈 B/C 5~10% 인수 ② 본사 가공 라인 30%를 bioreactor retrofit 검토 — 5~10년 후 OEM 위탁생산 가능 ③ "Hybrid SKU" launch — cultured 30% + wild-caught 70% 통조림으로 점진적 self-cannibalize.</p>
+<p><strong>3단계</strong>: ① 어획 할당량 매각 전 cultured 파트너 모색 - BlueNalu·Wildtype Foods 시리즈 B/C 5~10% 인수 ② 본사 가공 라인 30%를 bioreactor retrofit 검토 - 5~10년 후 OEM 위탁생산 가능 ③ "Hybrid SKU" launch - cultured 30% + wild-caught 70% 통조림으로 점진적 self-cannibalize.</p>
 </div>`,
     }}
   />
@@ -121,12 +121,12 @@ export const WidgetPetFoodUpcycling = () => (
       source: 'GAPFA(글로벌 반려동물 식품 연합) 공개 자료 및 업계 추정',
       situation: `<div>
 <p>"펫푸드 업사이클링"이란 명태 부산물(머리·뼈·내장)을 반려동물 전용 영양 오일·sourcing으로 재가공하는 전략. 한국 펫시장 +25% YoY 성장.</p>
-<p>17배 격차: <strong>분쇄 어분 단가 $1.5/kg vs 초유기농 펫푸드 단가 $25/kg(업계 추정)</strong>. 명태 오일로 1차 가공만 해도 $8.5/kg — SKU 전환만으로 5배 단가 상승.</p>
+<p>17배 격차: <strong>분쇄 어분 단가 $1.5/kg vs 초유기농 펫푸드 단가 $25/kg(업계 추정)</strong>. 명태 오일로 1차 가공만 해도 $8.5/kg - SKU 전환만으로 5배 단가 상승.</p>
 <p>의미: 명태 부산물은 더 이상 폐기물이 아닌 <strong>"3분기 후 펫푸드 carry asset"</strong>. 한국·중국·일본 펫시장 동시 진입 가능한 high-margin segment.</p>
 </div>`,
       actionPlan: `<div>
 <p><strong>재정의</strong>: 부산물은 cost center가 아닌 <strong>"premium pet food platform raw material"</strong>.</p>
-<p><strong>3단계</strong>: ① 선상 부산물 100% 회수 + 자체 brand "Mariana Trench Pet Nutrition" 출시 ② 한국 (CJ·하림 펫푸드)·일본 (Mars Petcare Japan)·중국 (애완 ecommerce) 3개국 동시 진출 ③ "Premium Pet Food JV" — Nestlé Purina와 50:50 합작, 우리는 원료 100% 독점 공급 + Thai Union i-Tail Corp 사례 차용.</p>
+<p><strong>3단계</strong>: ① 선상 부산물 100% 회수 + 자체 brand "Mariana Trench Pet Nutrition" 출시 ② 한국 (CJ·하림 펫푸드)·일본 (Mars Petcare Japan)·중국 (애완 ecommerce) 3개국 동시 진출 ③ "Premium Pet Food JV" - Nestlé Purina와 50:50 합작, 우리는 원료 100% 독점 공급 + Thai Union i-Tail Corp 사례 차용.</p>
 </div>`,
     }}
   />
@@ -170,7 +170,7 @@ export const WidgetParasiteAI = () => (
 </div>`,
       actionPlan: `<div>
 <p><strong>재정의</strong>: AI 기생충 검출은 단순 cost 절감이 아닌 <strong>"EU·미국 시장 entry license"</strong>. 미장착 vendor는 향후 channel 추방 위험.</p>
-<p><strong>3단계</strong>: ① 수작업 Candling 100% 폐기 + $50K AI 비전 장비 즉시 도입 (전 라인) ② 검출률 99.9% 달성 후 "EU-ready certified vendor" 자체 라벨 자산화 ③ AI 기술을 SaaS로 mid-tier 가공사 30곳에 라이센싱 — 연 $100~200K/고객 추가 수익원.</p>
+<p><strong>3단계</strong>: ① 수작업 Candling 100% 폐기 + $50K AI 비전 장비 즉시 도입 (전 라인) ② 검출률 99.9% 달성 후 "EU-ready certified vendor" 자체 라벨 자산화 ③ AI 기술을 SaaS로 mid-tier 가공사 30곳에 라이센싱 - 연 $100~200K/고객 추가 수익원.</p>
 </div>`,
     }}
   />
@@ -213,7 +213,7 @@ export const WidgetAlgaeFeed = () => (
 </div>`,
       actionPlan: `<div>
 <p><strong>재정의</strong>: Asparagopsis는 단순 ESG 원료가 아닌 <strong>"CBAM arbitrage instrument"</strong>.</p>
-<p><strong>3단계</strong>: ① Asparagopsis 배합률 높은 차세대 에코 사료 R&amp;D 가속 ② Nestlé Purina·Skretting·Cargill Aqua 3대 사료 회사에 OEM 공급 — 탄소저감 명목 +12% 할증 ③ Asparagopsis 양식 farm minority equity 인수 (호주 Sea Forest 등) — supply 락업 + IP 우위.</p>
+<p><strong>3단계</strong>: ① Asparagopsis 배합률 높은 차세대 에코 사료 R&amp;D 가속 ② Nestlé Purina·Skretting·Cargill Aqua 3대 사료 회사에 OEM 공급 - 탄소저감 명목 +12% 할증 ③ Asparagopsis 양식 farm minority equity 인수 (호주 Sea Forest 등) - supply 락업 + IP 우위.</p>
 </div>`,
     }}
   />
@@ -255,7 +255,7 @@ export const WidgetStarlinkMaritime = () => (
 </div>`,
       actionPlan: `<div>
 <p><strong>재정의</strong>: Starlink는 선원 복지가 아닌 <strong>"fleet operation의 digital transformation infrastructure"</strong>.</p>
-<p><strong>3단계</strong>: ① 전선박 Starlink 의무 장착 — 척당 $5K capex, 회수 3개월 ② "본사 fleet 작전사령부" 구축 — 실시간 기상·어획 데이터 통합 monitoring + 태풍 회피 ML routing ③ 데이터 수익화 — 우리 fleet의 어획·기상 데이터를 NOAA·EU Copernicus·reinsurance에 라이센싱.</p>
+<p><strong>3단계</strong>: ① 전선박 Starlink 의무 장착 - 척당 $5K capex, 회수 3개월 ② "본사 fleet 작전사령부" 구축 - 실시간 기상·어획 데이터 통합 monitoring + 태풍 회피 ML routing ③ 데이터 수익화 - 우리 fleet의 어획·기상 데이터를 NOAA·EU Copernicus·reinsurance에 라이센싱.</p>
 </div>`,
     }}
   />
@@ -299,7 +299,7 @@ export const WidgetRovSonar = () => (
 </div>`,
       actionPlan: `<div>
 <p><strong>재정의</strong>: ROV는 단순 OPEX 절감이 아닌 <strong>"climate beta + ENSO 충격 시 vendor 생존 instrument"</strong>.</p>
-<p><strong>3단계</strong>: ① ROV/AI 소나 척당 capex $50~100K — 회수 6~9개월 ② 본사 fleet 전체 의무 장착 + ML 어군 탐지 모델 자체 개발 ③ Kongsberg·Saab Seaeye와 partnership — ROV 라이센싱 + 데이터 공유. mid-tier 한국 수산사에 SaaS 라이센싱.</p>
+<p><strong>3단계</strong>: ① ROV/AI 소나 척당 capex $50~100K - 회수 6~9개월 ② 본사 fleet 전체 의무 장착 + ML 어군 탐지 모델 자체 개발 ③ Kongsberg·Saab Seaeye와 partnership - ROV 라이센싱 + 데이터 공유. mid-tier 한국 수산사에 SaaS 라이센싱.</p>
 </div>`,
     }}
   />
@@ -343,7 +343,7 @@ export const WidgetMnATargets = () => (
 </div>`,
       actionPlan: `<div>
 <p><strong>재정의</strong>: M&amp;A는 단순 자산 확장이 아닌 <strong>"valuation multiple jump instrument"</strong>.</p>
-<p><strong>3단계</strong>: ① 어선 선단 추가 매입 100% 동결 — 현금 비축 ② 물류 AI·세포 배양·스마트 양식 startup 타겟팅 — 시리즈 B/C 5~10% 인수, $5~20M ticket ③ 본사 portfolio를 "어획 회사 → marine tech platform"으로 재포지셔닝 — EV/EBITDA 8x → 18~22x rerating.</p>
+<p><strong>3단계</strong>: ① 어선 선단 추가 매입 100% 동결 - 현금 비축 ② 물류 AI·세포 배양·스마트 양식 startup 타겟팅 - 시리즈 B/C 5~10% 인수, $5~20M ticket ③ 본사 portfolio를 "어획 회사 → marine tech platform"으로 재포지셔닝 - EV/EBITDA 8x → 18~22x rerating.</p>
 </div>`,
     }}
   />
@@ -381,11 +381,11 @@ export const WidgetRoboticFilletImpact = () => (
       situation: `<div>
 <p>"티핑 포인트(Tipping Point)"란 두 trend line이 교차해 시장 dynamics가 영구적으로 뒤집히는 결정적 변곡점.</p>
 <p>크로스오버: <strong>2025년 전후 인간 노무비 상승 + 로보틱스 감가상각 하락 곡선의 교차 가능성이 업계 전반에서 제기</strong>. 가공 라인에 따라 실제 역전 시점은 상이할 수 있으나 전환 압력은 가속화 추세.</p>
-<p>의미: 2027년까지 가공 인력 100% 무인화 못 한 vendor는 글로벌 Top 5 마진 지배력 상실. 한 번 격차 벌어지면 따라잡기 불가능 — 영구적 산업 reshape.</p>
+<p>의미: 2027년까지 가공 인력 100% 무인화 못 한 vendor는 글로벌 Top 5 마진 지배력 상실. 한 번 격차 벌어지면 따라잡기 불가능 - 영구적 산업 reshape.</p>
 </div>`,
       actionPlan: `<div>
 <p><strong>재정의</strong>: 자동화 capex는 옵션이 아닌 <strong>"향후 5년 industry incumbent 자격 시험"</strong>.</p>
-<p><strong>3단계</strong>: ① 2027년까지 가공 인력 100% 무인 오토 핀본 절단기 override — capex $20~40M ② 본사 한국 hub 자동화율 95%+ 달성 → 글로벌 Top 5 vendor 지위 락업 ③ 자체 자동화 IP를 동남아·라틴아메리카 vendor에 라이센싱 — IP fee 추가 수익원.</p>
+<p><strong>3단계</strong>: ① 2027년까지 가공 인력 100% 무인 오토 핀본 절단기 override - capex $20~40M ② 본사 한국 hub 자동화율 95%+ 달성 → 글로벌 Top 5 vendor 지위 락업 ③ 자체 자동화 IP를 동남아·라틴아메리카 vendor에 라이센싱 - IP fee 추가 수익원.</p>
 </div>`,
     }}
   />
@@ -424,11 +424,11 @@ export const WidgetNonCatchBenchmark = () => (
       situation: `<div>
 <p>"비어획 수익 포트폴리오(Non-Catch Revenue Portfolio)"란 어획 매출 외의 가공·B2C·바이오·헬스케어·라이센싱 수익 비중. 글로벌 선두 수산기업의 valuation 차별화 핵심.</p>
 <p>벤치마크: Mowi(노르웨이)·Thai Union·Maruha Nichiro 등 글로벌 leader는 <strong>어획 비중을 45% 이하로 강제 억제</strong>. 대신 <strong>B2C 가공·헬스케어 바이오매스·페트푸드 platform</strong>에서 영업이익 흡수.</p>
-<p>의미: 한국 수산사 평균 어획 비중 70%+ — 글로벌 leader 대비 -25%p valuation discount의 핵심 원인. 정체성 재정의 없이는 향후 10년 생존 어려움.</p>
+<p>의미: 한국 수산사 평균 어획 비중 70%+ - 글로벌 leader 대비 -25%p valuation discount의 핵심 원인. 정체성 재정의 없이는 향후 10년 생존 어려움.</p>
 </div>`,
       actionPlan: `<div>
 <p><strong>재정의</strong>: 우리 회사 정체성을 <strong>"어업 회사 → 해양 단백질 플랫폼 프로바이더"</strong>로 승격. 이 시각이 향후 10년 생존과 valuation rerate를 좌우.</p>
-<p><strong>3단계</strong>: ① 어획 비중 70% → 45%로 5년 내 강제 감축 ② B2C 가공 + 헬스케어 바이오 + 펫푸드 platform 3축 동시 capex ③ "Marine Protein Platform" rebrand — Mowi·Thai Union i-Tail Corp 모델 차용, EV/EBITDA 8x → 18~22x rerating. JP Morgan Consumer Goods Desk가 advisor.</p>
+<p><strong>3단계</strong>: ① 어획 비중 70% → 45%로 5년 내 강제 감축 ② B2C 가공 + 헬스케어 바이오 + 펫푸드 platform 3축 동시 capex ③ "Marine Protein Platform" rebrand - Mowi·Thai Union i-Tail Corp 모델 차용, EV/EBITDA 8x → 18~22x rerating. JP Morgan Consumer Goods Desk가 advisor.</p>
 </div>`,
     }}
   />

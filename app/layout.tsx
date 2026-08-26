@@ -35,7 +35,7 @@ const robotoMono = Roboto_Mono({
 /* ── SEO Constants ── */
 const SITE_URL = 'https://leedonggun.co.kr';
 const SITE_NAME = '참치왕국 신라교역';
-const SITE_DESCRIPTION = '참치·수산물·농산물 글로벌 공급망 인텔리전스 대시보드 — 실시간 시세, 선단 운영, 시장 동향, 물류 추적을 한눈에. Global Commodity Supply Chain Intelligence by Silla Trading.';
+const SITE_DESCRIPTION = '참치·수산물·농산물 글로벌 공급망 인텔리전스 대시보드 - 실시간 시세, 선단 운영, 시장 동향, 물류 추적을 한눈에. Global Commodity Supply Chain Intelligence by Silla Trading.';
 const OG_IMAGE = `${SITE_URL}/og-image.jpg`;
 
 export const viewport: Viewport = {
@@ -77,7 +77,7 @@ export const metadata: Metadata = {
     locale: 'ko_KR',
     url: SITE_URL,
     siteName: SITE_NAME,
-    title: `${SITE_NAME} — 글로벌 수산·농산물 공급망 인텔리전스`,
+    title: `${SITE_NAME} - 글로벌 수산·농산물 공급망 인텔리전스`,
     description: SITE_DESCRIPTION,
     images: [
       {
@@ -93,7 +93,7 @@ export const metadata: Metadata = {
   /* ── Twitter Card ── */
   twitter: {
     card: 'summary_large_image',
-    title: `${SITE_NAME} — 글로벌 공급망 인텔리전스`,
+    title: `${SITE_NAME} - 글로벌 공급망 인텔리전스`,
     description: SITE_DESCRIPTION,
     images: [OG_IMAGE],
   },

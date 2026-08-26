@@ -22,7 +22,7 @@ export default function PollockValueDecoupling() {
       icon={TrendingUp}
       iconColor="#14b8a6"
       pillar="S4"
-      cardDesc="글로벌 명태 수입 수량(천톤) vs 수입 금액(백만 USD)의 디커플링 추적 — 수리미 등 가공품 부가가치 인플레이션 시그널"
+      cardDesc="글로벌 명태 수입 수량(천톤) vs 수입 금액(백만 USD)의 디커플링 추적 - 수리미 등 가공품 부가가치 인플레이션 시그널"
       telemetry={{ status: 'STATIC', syncDate: 'UN Comtrade 2024' }}
       chartHeight={260}
       chart={

@@ -251,7 +251,7 @@ const CoverageHeatmap: React.FC<{ data: CoverageRow[] }> = ({ data }) => {
               if (!hit) {
                 return (
                   <div key={y} style={{ textAlign: 'center', fontSize: '0.7rem', color: AXIS, padding: '8px 0' }}>
-                    —
+                    -
                   </div>
                 );
               }
@@ -528,7 +528,7 @@ const HsClassificationMap: React.FC<{ data: HsRow[] }> = ({ data }) => {
         );
       })}
       <p style={CAPTION_STYLE}>
-        {cuttleCount}/{data.length}개 품목분류 코드가 갑오징어를 포함 — 페이지 전체 어종 범위 판단의 근거 ·
+        {cuttleCount}/{data.length}개 품목분류 코드가 갑오징어를 포함 - 페이지 전체 어종 범위 판단의 근거 ·
         갑오징어를 빼고 &lsquo;오징어만&rsquo;으로 재명명하는 합산은 금지 (측정 기준 002번)
       </p>
     </div>

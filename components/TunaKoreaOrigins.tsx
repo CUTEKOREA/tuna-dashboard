@@ -56,7 +56,7 @@ const TunaKoreaOrigins = () => (
     icon={Anchor}
     iconColor="#8b5cf6"
     pillar="S3"
-    cardDesc="FAO FishStatJ 한국 참다랑어 수입 5년치를 양식 Top 10 국가 발만 추출 — 튀르키예·스페인 등 지중해 축양이 한국 프리미엄 시장 장악"
+    cardDesc="FAO FishStatJ 한국 참다랑어 수입 5년치를 양식 Top 10 국가 발만 추출 - 튀르키예·스페인 등 지중해 축양이 한국 프리미엄 시장 장악"
     telemetry={{ status: 'STATIC', syncDate: '2026-05-21' }}
     chartHeight={300}
     chart={

@@ -23,7 +23,7 @@ const PRESET_ITEMS: Item[] = [
   { ko: '캐슈넛', en: 'cashew nuts', slug: 'cashew_nuts', category: '농산물', regex: '\\b(cashew)\\w*', pinkSheet: false, psd: true },
   { ko: '카사바', en: 'cassava', slug: 'cassava', category: '농산물', regex: '\\b(cassava|manioc|tapioca|yuca)\\w*', pinkSheet: false, psd: false, notes: '부분일치로 tapioca-of-potatoes 포함될 수 있음' },
   { ko: '망고', en: 'mango', slug: 'mango', category: '농산물', regex: '\\b(mango)\\w*', pinkSheet: false, psd: false },
-  { ko: '망고스틴', en: 'mangosteen', slug: 'mangosteen', category: '농산물', regex: '\\b(mangosteen)\\w*', notes: '단독 코드 없음 — Item 571 묶음 코드(mango+guava+mangosteen)만 존재' },
+  { ko: '망고스틴', en: 'mangosteen', slug: 'mangosteen', category: '농산물', regex: '\\b(mangosteen)\\w*', notes: '단독 코드 없음 - Item 571 묶음 코드(mango+guava+mangosteen)만 존재' },
   { ko: '바나나', en: 'banana', slug: 'banana', category: '농산물', regex: '\\b(banana|plantain|musa)\\w*', pinkSheet: true, psd: false },
   { ko: '옥수수', en: 'maize', slug: 'maize', category: '농산물', regex: '\\b(maize|corn)\\w*', pinkSheet: true, psd: true, notes: 'PSD alldata.zip만 보유 (카테고리 zip 없음)' },
   { ko: '밀', en: 'wheat', slug: 'wheat', category: '농산물', regex: '\\b(wheat)\\w*', pinkSheet: true, psd: true },
@@ -241,7 +241,7 @@ const CATEGORY_RULES: Record<Category, { sections: string[]; sources: string[]; 
   축산물: {
     sections: ['§1.7 FAOSTAT 표준 9 zip', '§2.1 USDA PSD livestock/dairy 우선', '§7.4 WOAH 동물보건'],
     sources: ['FAOSTAT QCL (가축 두수=Element=Stocks)', 'USDA PSD livestock/dairy', 'WOAH', 'USDA NASS', 'IDF'],
-    notes: 'LiveAnimals/Emissions 별도 zip은 404 — 표준 9 zip만 사용 (chicken·beef·eggs로 검증됨)',
+    notes: 'LiveAnimals/Emissions 별도 zip은 404 - 표준 9 zip만 사용 (chicken·beef·eggs로 검증됨)',
   },
   임산물: {
     sections: ['§1.8 Forestry 도메인 (Forestry / Forestry_Trade_Flows)', '§7.4 ITTO·FAO FRA 보조'],
@@ -280,7 +280,7 @@ ls -la`;
 
 function buildPythonHint(item: Item): string {
   const re = item.regex || `\\b(${item.en.split(' ')[0]})\\w*`;
-  return `# FAOSTAT 이름 기반 매칭 (§1.1 — trailing \\b 함정 주의)
+  return `# FAOSTAT 이름 기반 매칭 (§1.1 - trailing \\b 함정 주의)
 import re, csv, zipfile, io
 PAT = re.compile(r"${re}", re.I)
 
@@ -501,7 +501,7 @@ export default function ManualPage() {
             <div style={{ marginBottom: 14 }}>
               <SectionCard
                 title="FAOSTAT 정규식 매칭 패턴"
-                subtitle={`품목 정규식: ${selected.regex || '(자동 생성)'} — trailing \\b 함정 주의 (§1.1)`}
+                subtitle={`품목 정규식: ${selected.regex || '(자동 생성)'} - trailing \\b 함정 주의 (§1.1)`}
                 icon={<Database size={16} color={C.blue} />}
                 accent={C.blue}
               >
@@ -626,10 +626,10 @@ export default function ManualPage() {
             <ul data-mobile-stack style={{ margin: 0, padding: 0, listStyle: 'none', display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 10 }}>
               {[
                 '작업 중간에 사용자 확인 질문 금지 (자동 실행 모드)',
-                '워크스페이스 독립 저장 — _shared/ symlink 금지',
+                '워크스페이스 독립 저장 - _shared/ symlink 금지',
                 'ZIP: 해제 후 원본 삭제 / PDF: pypdf로 MD 변환 후 둘 다 보관',
                 'FAOSTAT API 521/timeout 시 이름 기반 매칭으로 즉시 우회',
-                '정규식 \\b(...)\\w* 필수 — trailing \\b는 복수형 매칭 실패',
+                '정규식 \\b(...)\\w* 필수 - trailing \\b는 복수형 매칭 실패',
                 '가공품 생산은 SCL Production 확인 (QCL 0행이 정상)',
                 'macOS Python SSL 에러 시 curl 다운로드 → Python 파싱',
                 '디스크 <5GB 시 사용자에게 보고 (외장 매체 미사용)',

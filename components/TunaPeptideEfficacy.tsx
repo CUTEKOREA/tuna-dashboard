@@ -54,7 +54,7 @@ export default function TunaPeptideEfficacy() {
 <p>참치 자숙 부산물에서 펩타이드 추출의 2 방식 비교(KFAS 논문 기반 illustrative):</p>
 <ul style="margin: 4px 0 0 18px; padding: 0;">
 <li><strong>전통 열수추출</strong>: 항산화 21.9, ACE 억제 15, 지방세포 억제 10</li>
-<li><strong>효소가수분해(Protease) TPF 방식</strong>: 항산화 <strong>56.7</strong>, ACE 억제 <strong>65</strong>, 지방세포 억제 <strong>75</strong> — 모든 지표 대비 우위(논문 기준치)</li>
+<li><strong>효소가수분해(Protease) TPF 방식</strong>: 항산화 <strong>56.7</strong>, ACE 억제 <strong>65</strong>, 지방세포 억제 <strong>75</strong> - 모든 지표 대비 우위(논문 기준치)</li>
 </ul>
 <p>추가로 HPMC 장용성 코팅 적용 시 소장 흡수율 <strong>85%</strong>까지 상승(논문 기준치). 단순 조미료 원료에서 <strong>"프리미엄 헬스케어 소재(EPP, Enhanced Peptide Premium)"</strong> 카테고리 전환 가능성 확인.</p>
 <p>시사점: 조미료 대비 헬스케어 소재 카테고리 전환 시 단가 상승 여지가 있음(자체추정). 같은 부산물이라도 가공 기술 전환으로 카테고리 이동이 가능함.</p>
@@ -68,7 +68,7 @@ export default function TunaPeptideEfficacy() {
 <li><strong>해양 펩타이드 지식재산(IP) 라이센싱 플랫폼</strong>: 효소 분해·HPMC 코팅 기술을 특허화 후 글로벌 기능성 원료 기업 대상 라이센싱. 전문 재무자문사 검토 권고.</li>
 </ol>
 </div>`,
-        source: 'KFAS 한국수산과학회지 참치 가공부산물 항산화 평가 (2019~2023, DOI 미확인·자체추정 포함) · 수치는 illustrative — 원문 DOI 검증 후 확정 필요',
+        source: 'KFAS 한국수산과학회지 참치 가공부산물 항산화 평가 (2019~2023, DOI 미확인·자체추정 포함) · 수치는 illustrative - 원문 DOI 검증 후 확정 필요',
       }}
     />
   );

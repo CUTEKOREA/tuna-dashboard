@@ -104,7 +104,7 @@ const GALCHI_API_PATHS = [
 const SECTIONS = [
   {
     id: "S1", num: "❶", label: "원료 수급",
-    title: "🐟 Part I — 원물 생산 (Raw Material)",
+    title: "🐟 Part I - 원물 생산 (Raw Material)",
     desc: "글로벌 어획량, 자원평가, 조업 효율, 총허용어획량(TAC) 관리, 기후 리스크 및 KFAS 수산과학 연구",
     ids: ["w_galchi_prod_risk","w_fta_dress_substitute","w14","w15","w16","w19","w03","w04","w29","w11","w12","w13"],
     accent: "#10b981", color: "#10b981",
@@ -113,7 +113,7 @@ const SECTIONS = [
   },
   {
     id: "S2", num: "❷", label: "가공·생산",
-    title: "🏭 Part II — 가공 산업 (Processing)",
+    title: "🏭 Part II - 가공 산업 (Processing)",
     desc: "유통 단계별 마진 구조, 가공 전환 전략 및 B2B 급식 시장 개발",
     ids: ["w_galchi_consumption","w_galchi_sg_valueup","w02","w06","w_galchi_fbs_pelagic"],
     accent: "#14b8a6", color: "#14b8a6",
@@ -122,7 +122,7 @@ const SECTIONS = [
   },
   {
     id: "S3", num: "❸", label: "물류·통관",
-    title: "🚢 Part III — 물류 및 무역 (Logistics & Trade)",
+    title: "🚢 Part III - 물류 및 무역 (Logistics & Trade)",
     desc: "수출입 통관, 관세·FTA 분석, 착지원가, 교역 흐름, 대체 공급망 및 지정학 리스크",
     ids: ["w_fta_supply_pivot","w_fta_oman_dominance","w_fta_ecuador_arb","w05","w17","w20","w23","w24","w25","w08","w09","w28","w_galchi_hs_class","w_galchi_multi_cost","w_oec_galchi_export","w_galchi_kr_import_rank"],
     accent: "#0d9488", color: "#0d9488",
@@ -131,7 +131,7 @@ const SECTIONS = [
   },
   {
     id: "S4", num: "❹", label: "판매·수요",
-    title: "📈 Part IV — 판매 및 수요 (Sales & Demand)",
+    title: "📈 Part IV - 판매 및 수요 (Sales & Demand)",
     desc: "가격 동향, 매입 타이밍, 도매가 스프레드, 소비 트렌드 및 내수 물가 분석",
     ids: ["w01","w07","w18","w22","w_kosis_cpi_spread","w_fta_unit_price","w_galchi_self_sufficiency","w_galchi_protein_cross"],
     accent: "#5eead4", color: "#5eead4",
@@ -140,7 +140,7 @@ const SECTIONS = [
   },
   {
     id: "S5", num: "❺", label: "ESG·지속가능성",
-    title: "🌱 Part V — ESG 및 지속가능성 (Sustainability)",
+    title: "🌱 Part V - ESG 및 지속가능성 (Sustainability)",
     desc: "공급망 노동 리스크, OFAC/EU 제재 검증, 위생·식물위생 조치(SPS) 비관세 장벽, 식품 안전 및 정책 모니터링",
     ids: ["w26","w27","w_wto_sps_radar","w_mfds_safety_radar","w10","w_galchi_no_aqua"],
     accent: "#99f6e4", color: "#99f6e4",
@@ -212,12 +212,12 @@ export default function GalchiDashboard() {
     const cifPct = pctChange(liveKcs.summary.cifPerKg, prevYr?.cifPerKg);
     const cifTrend = cifPct !== null
       ? `${cifPct >= 0 ? "+" : ""}${Math.round(cifPct * 10) / 10}%`
-      : "—";
+      : "-";
     kpis.kpi2 = {
       title: "수입 단가(CIF)",
       value: `$${liveKcs.summary.cifPerKg}`,
       trend: cifTrend,
-      desc: `USD/kg · 관세청 HSK 0303.89-2000 (${kcsYear}) — HSK 검증 완료`,
+      desc: `USD/kg · 관세청 HSK 0303.89-2000 (${kcsYear}) - HSK 검증 완료`,
       telemetry: liveKcs.isLive ? 'live' : 'static',
       syncDate: liveKcs.lastUpdated?.slice(0, 10),
     };
@@ -238,7 +238,7 @@ export default function GalchiDashboard() {
       title: "도매 평균단가(KAMIS)",
       value: `${liveKamis.current.avgPrice.toLocaleString()}`,
       trend: liveKamis.current.weekChange,
-      desc: "aT KAMIS 도매 시세 (원/kg) — 위판(산지 경매) 단가와 구분",
+      desc: "aT KAMIS 도매 시세 (원/kg) - 위판(산지 경매) 단가와 구분",
       telemetry: liveKamis.isLive ? 'live' : 'static',
       syncDate: liveKamis.lastUpdated?.slice(0, 10),
     };
@@ -328,12 +328,12 @@ export default function GalchiDashboard() {
     },
     {
       id: "w_galchi_hs_class",
-      title: "통관 HS 코드 정밀 분류 — 가공 형태별 검증",
-      subtitle: "자체 분류 기준(HS Ping 로컬 DB) — 가공 형태별 분류 정확도 검증. 냉동 갈치 원물의 10자리 HSK는 0303.89-2000으로 확정(관세청 품목명 '갈치' 검증, 2026-06-11).",
+      title: "통관 HS 코드 정밀 분류 - 가공 형태별 검증",
+      subtitle: "자체 분류 기준(HS Ping 로컬 DB) - 가공 형태별 분류 정확도 검증. 냉동 갈치 원물의 10자리 HSK는 0303.89-2000으로 확정(관세청 품목명 '갈치' 검증, 2026-06-11).",
       chartType: "Bar",
       xKey: "form",
       bars: [{ key: "conf", name: "분류 정확도(%)", color: "#38bdf8" }],
-      sit: "수입 가공 형태(통·토막·순살·건염장)에 따라 10자리 HS 코드가 상이하며, 토막과 순살 간 오분류 통관 사고가 지속 발생합니다. 냉동 갈치 원물은 HSK 0303.89-2000으로 확정 — 유사 코드 0303.89-9060(아귀)·0303.89-6000(학꽁치)과의 혼동이 실제 오귀속 사고 사례입니다.",
+      sit: "수입 가공 형태(통·토막·순살·건염장)에 따라 10자리 HS 코드가 상이하며, 토막과 순살 간 오분류 통관 사고가 지속 발생합니다. 냉동 갈치 원물은 HSK 0303.89-2000으로 확정 - 유사 코드 0303.89-9060(아귀)·0303.89-6000(학꽁치)과의 혼동이 실제 오귀속 사고 사례입니다.",
       strat: "①수입 신고 전 자동검증 프로세스 도입, ②오분류 이력 DB화로 반복 실수 차단. 냉동 원물은 0303.89-2000, 신선·냉장은 0302.89-2000을 표준 코드로 고정하고 신규 신고 건은 관세사 이중 검증을 거치십시오.",
       source: "HS Ping 로컬 DB (가공 형태별 HS 코드 내부 매핑표)",
       isLive: liveHsPing?.isLive ?? false,
@@ -342,13 +342,13 @@ export default function GalchiDashboard() {
     },
     {
       id: "w_galchi_multi_cost",
-      title: "착지원가 실시간 스태킹 — 원산지별 MFN 10% 착지원가 시뮬레이션",
+      title: "착지원가 실시간 스태킹 - 원산지별 MFN 10% 착지원가 시뮬레이션",
       subtitle: "관세청 HSK 0303.89-2000 실측 월별 CIF(2025) × 환율 1,380원 가정 + MFN 10% + 통관비 50원/kg 누적 착지원가. 냉동 갈치는 KORUS 등 어떤 FTA TRQ에도 미포함이라 전 공급국에 동일하게 일반 수입관세(MFN) 10%가 적용됩니다.",
       chartType: "Composed",
       xKey: "month",
       bars: [{ key: "세네갈산 착지원가", color: "#8b5cf6" }],
       lines: [{ key: "중국산 착지원가", color: "#f43f5e" }],
-      sit: "갈치는 FTA 특혜관세가 없어 세네갈·중국 모두 동일한 MFN 10%가 적용됩니다. 2025년 실측 CIF 기준 중국산 착지원가는 월 평균 8,000원/kg대, 세네갈산은 5,900원/kg대로 중국산이 일관되게 높습니다 — 과거 '중국산 저가' 가정은 아귀 코드 오귀속의 산물로 폐기.",
+      sit: "갈치는 FTA 특혜관세가 없어 세네갈·중국 모두 동일한 MFN 10%가 적용됩니다. 2025년 실측 CIF 기준 중국산 착지원가는 월 평균 8,000원/kg대, 세네갈산은 5,900원/kg대로 중국산이 일관되게 높습니다 - 과거 '중국산 저가' 가정은 아귀 코드 오귀속의 산물로 폐기.",
       strat: "①세네갈산 CIF 저점 월(5~6월, 10월)에 선적량을 전진 배분, ②중국산은 소량 프리미엄 규격 전용으로 별도 단가 협상, ③환율 변동(USD/KRW) 연동 시뮬레이션으로 최적 계약 시점 포착.",
       source: "관세청 HSK 0303.89-2000 월별 실측 CIF (2025, 검증 완료 2026-06-11) + MFN 10% + 통관비 50원/kg (환율 1,380원 가정)",
       isLive: liveTariffs?.isLive ?? false,
@@ -358,7 +358,7 @@ export default function GalchiDashboard() {
     {
       id: "w_kosis_cpi_spread",
       title: "소비자 물가(CPI) vs 도매가 괴리율 분석",
-      subtitle: "통계청 CPI(KOSIS)와 KAMIS 도매가 스프레드 분석. CPI 상승기에 도매가 전가가 지연되는 '가격 저항' 구간을 식별합니다. (KOSIS API 연결 확인 중 — 현재 로컬 표본 표시)",
+      subtitle: "통계청 CPI(KOSIS)와 KAMIS 도매가 스프레드 분석. CPI 상승기에 도매가 전가가 지연되는 '가격 저항' 구간을 식별합니다. (KOSIS API 연결 확인 중 - 현재 로컬 표본 표시)",
       chartType: "Composed",
       xKey: "month",
       bars: [{ key: "CPI(물가)", color: "#f97316" }],
@@ -373,7 +373,7 @@ export default function GalchiDashboard() {
     {
       id: "w_mfds_safety_radar",
       title: "원산지별 수입 검역·비관세 비용",
-      subtitle: "USDA GAIN 2024 착지원가 — 갈치 수입 시 원산지별 검역·비관세 비용($/MT) 비교.",
+      subtitle: "USDA GAIN 2024 착지원가 - 갈치 수입 시 원산지별 검역·비관세 비용($/MT) 비교.",
       chartType: "Bar",
       xKey: "country",
       bars: [{ key: "검역·비관세비용($/MT)", color: "var(--color-danger)" }],
@@ -386,8 +386,8 @@ export default function GalchiDashboard() {
     },
     {
       id: "w_wto_sps_radar",
-      title: "갈치 수입 관세 구조 — 전 원산지 MFN 10%",
-      subtitle: "갈치(HS 0303)는 한-중·한-아세안 FTA 양허 제외 품목 — 전 공급국 기본관세 10% 동일 적용.",
+      title: "갈치 수입 관세 구조 - 전 원산지 MFN 10%",
+      subtitle: "갈치(HS 0303)는 한-중·한-아세안 FTA 양허 제외 품목 - 전 공급국 기본관세 10% 동일 적용.",
       chartType: "Bar",
       xKey: "country",
       bars: [
@@ -403,7 +403,7 @@ export default function GalchiDashboard() {
     {
       id: "w_oec_galchi_export",
       title: "글로벌 갈치 수출 경쟁 구도",
-      subtitle: "UN Comtrade 글로벌 갈치(HS 030389) 국가별 수출액($M) — 한국의 수출 경쟁 포지션.",
+      subtitle: "UN Comtrade 글로벌 갈치(HS 030389) 국가별 수출액($M) - 한국의 수출 경쟁 포지션.",
       chartType: "Bar",
       xKey: "target",
       bars: [{ key: "수출액($M)", color: "#10b981" }],
@@ -417,7 +417,7 @@ export default function GalchiDashboard() {
     // ─── KMI FTA 분기별 수입동향 인사이트 (2021 Q1 ~ 2026 Q1, 21개 분기 교차분석) ───
     {
       id: "w_fta_supply_pivot",
-      title: "수입국 5년 대전환 — 세네갈→모로코→오만",
+      title: "수입국 5년 대전환 - 세네갈→모로코→오만",
       subtitle: "KMI 「FTA체결국 수산물 수입동향」 2021~2025 연차 데이터. 한국 갈치 수입 1순위 공급국이 5년간 두 차례 교체된 공급망 단극화 궤적을 추적합니다.",
       chartType: "Composed",
       xKey: "year",
@@ -444,7 +444,7 @@ export default function GalchiDashboard() {
     },
     {
       id: "w_fta_oman_dominance",
-      title: "오만 +154% — 2026 1분기 단극화 가속",
+      title: "오만 +154% - 2026 1분기 단극화 가속",
       subtitle: "KMI 「FTA체결국 수산물 수입동향 2026 Q1」. 2025 1분기 대비 2026 1분기 국가별 수입량을 직접 비교하여 단극화 속도를 정량화합니다.",
       chartType: "Bar",
       xKey: "country",
@@ -459,15 +459,15 @@ export default function GalchiDashboard() {
         { country: "일본", "25년 1Q": 0.1, "26년 1Q": 0.2 },
         { country: "중국", "25년 1Q": 0.2, "26년 1Q": 0.2 }
       ],
-      sit: "2026 1분기 갈치 수입은 전년 동기 대비 +52.1%(2.0→3.1천 톤) 회복. 그러나 회복분의 80% 이상이 오만 단일 산지(+154.4%, 0.6→1.5천 톤)에서 나오면서 분기 단위 점유율이 48%까지 직행. 동시에 일본산 +196.8%(0.1→0.2천 톤) — 절대량은 작지만 신선·냉장 채널 침투 신호로 해석.",
+      sit: "2026 1분기 갈치 수입은 전년 동기 대비 +52.1%(2.0→3.1천 톤) 회복. 그러나 회복분의 80% 이상이 오만 단일 산지(+154.4%, 0.6→1.5천 톤)에서 나오면서 분기 단위 점유율이 48%까지 직행. 동시에 일본산 +196.8%(0.1→0.2천 톤) - 절대량은 작지만 신선·냉장 채널 침투 신호로 해석.",
       strat: "①오만 분기 점유율이 40% 이상 유지될 경우 단일 공급원 충격 시 30% 이상 가격 spike에 노출되므로 분기마다 남아공 톤수를 의무적으로 25% 이상 확보하는 헷지룰 도입, ②일본산 +196.8% 신호를 활용해 회전초밥·횟감 채널 ODM 진입(소매가 +40% 프리미엄 포지셔닝), ③오만 단가가 관세청 실측 밴드($3.6~4.0/kg) 상단을 깨고 $4.5/kg를 돌파하는 시점에 자동으로 남아공·세네갈로 비중을 전환하는 동적 소싱 알고리즘 가동(기존 $7 트리거는 KMI 차트 타 계열 오독 잔재로 폐기).",
-      source: "KMI 「FTA체결국 수산물 수입동향 2026 Q1」 — 갈치 국가별 수입량 표 (2026-04 발간)",
+      source: "KMI 「FTA체결국 수산물 수입동향 2026 Q1」 - 갈치 국가별 수입량 표 (2026-04 발간)",
       isLive: false,
       syncDate: "2026-04"
     },
     {
       id: "w_fta_ecuador_arb",
-      title: "에콰도르 경유무역 — 한국→중국 재수출 갈치",
+      title: "에콰도르 경유무역 - 한국→중국 재수출 갈치",
       subtitle: "KMI 2023 Q2~Q4 보고서 본문 인용: \"에콰도르산 갈치는 대부분 우리나라에서 소비되지 않고 중국으로 재수출\". 2021~2025년 에콰도르산 수입량 추이로 환적 물량 규모를 추적합니다.",
       chartType: "Bar",
       xKey: "year",
@@ -487,7 +487,7 @@ export default function GalchiDashboard() {
     },
     {
       id: "w_fta_dress_substitute",
-      title: "드레스 갈치 대체축 — 세네갈→남아공 시프트",
+      title: "드레스 갈치 대체축 - 세네갈→남아공 시프트",
       subtitle: "KMI 2024 Q3·Q4 보고서 본문 인용: \"남아공산은 세네갈산 드레스 갈치를 대체하며 수입 증가\" (2025 Q2는 모로코산 대체로 기술). 드레스(원물 1차처리) 카테고리의 산지 다변화 궤적입니다.",
       chartType: "Composed",
       xKey: "year",
@@ -501,7 +501,7 @@ export default function GalchiDashboard() {
         { year: "2024", "세네갈(드레스 원산지)": 2.3, "남아공(대체재)": 1.9 },
         { year: "2025", "세네갈(드레스 원산지)": 2.8, "남아공(대체재)": 2.5 }
       ],
-      sit: "세네갈 갈치는 2022년 4.3천 톤에서 생산 부진으로 2024년 2.3천 톤(-47%)까지 축소된 후 2025년 2.8천 톤으로 회복(KMI 2025Q4: 전년도 부진했던 세네갈산 생산 회복). 그 공백을 남아공산이 0.9→2.5천 톤(2022→2025, 약 2.8배)으로 메움. 단, 두 산지는 동가가 아님 — 2024년 4분기 단가는 세네갈 $4.2/kg vs 남아공 $2.1/kg(KMI 명문)로 남아공이 약 50% 할인된 저가 대체축.",
+      sit: "세네갈 갈치는 2022년 4.3천 톤에서 생산 부진으로 2024년 2.3천 톤(-47%)까지 축소된 후 2025년 2.8천 톤으로 회복(KMI 2025Q4: 전년도 부진했던 세네갈산 생산 회복). 그 공백을 남아공산이 0.9→2.5천 톤(2022→2025, 약 2.8배)으로 메움. 단, 두 산지는 동가가 아님 - 2024년 4분기 단가는 세네갈 $4.2/kg vs 남아공 $2.1/kg(KMI 명문)로 남아공이 약 50% 할인된 저가 대체축.",
       strat: "①남아공 공급사를 Trusted Vendor 1순위로 등급화하고 사이즈별(500g 이상) 카테고리를 우선 계약 조건에 명시, ②세네갈은 보조 공급선으로 유지하되 어획 부진 재발에 대비한 의무 비축량(3개월 분) 설정, ③드레스 가공 사양을 한국 표준화하여 신규 산지(나미비아·앙골라) 진입 시 교체 비용 최소화.",
       source: "KMI 「FTA체결국 수산물 수입동향」 2024Q3·2024Q4·2025Q4 갈치 본문 + 부록 국가별 표 + 관세청 HSK 0303.89-2000 실측 교차 (2026-06-11)",
       isLive: false,
@@ -530,9 +530,9 @@ export default function GalchiDashboard() {
         { quarter: "25-Q4", "오만": 3.98, "세네갈": 3.55, "모로코": 3.17, "남아공": 2.60 },
         { quarter: "26-Q1", "오만": 4.03, "세네갈": 3.57, "모로코": 3.24, "남아공": 2.62 }
       ],
-      sit: "2024~2026년 9개 분기 동안 4개국 단가는 $2.0~4.2/kg 밴드에서 안정 — 오만이 최고가 산지($3.6~4.0)로 일관되고, 남아공은 $2.0~2.6으로 오만 대비 약 35% 할인 구조가 유지됩니다. 2026년 1분기 오만은 단가 $4.03에 물량 1.5천 톤(전년 동기 +154%)으로 \"가격 안정 속 물량 확대\" 국면 — KMI 원문도 단가 급등이 아닌 \"오만산 조업 원활로 수입 대폭 증가\"로 기술합니다. 과거 표기된 오만 $7.2(25-Q4)·$9.1(26-Q1)은 KMI 원문 차트의 일본·중국 계열을 오만으로 오독한 수치로 확인되어 폐기합니다(KCS 실측 오만 25-Q4 $3.98·26-Q1 $4.03).",
+      sit: "2024~2026년 9개 분기 동안 4개국 단가는 $2.0~4.2/kg 밴드에서 안정 - 오만이 최고가 산지($3.6~4.0)로 일관되고, 남아공은 $2.0~2.6으로 오만 대비 약 35% 할인 구조가 유지됩니다. 2026년 1분기 오만은 단가 $4.03에 물량 1.5천 톤(전년 동기 +154%)으로 \"가격 안정 속 물량 확대\" 국면 - KMI 원문도 단가 급등이 아닌 \"오만산 조업 원활로 수입 대폭 증가\"로 기술합니다. 과거 표기된 오만 $7.2(25-Q4)·$9.1(26-Q1)은 KMI 원문 차트의 일본·중국 계열을 오만으로 오독한 수치로 확인되어 폐기합니다(KCS 실측 오만 25-Q4 $3.98·26-Q1 $4.03).",
       strat: "①남아공($2.62)과 오만($4.03)의 $1.4/kg 격차를 활용해 드레스·B2B 급식 라인은 남아공 비중을 우선 확대, ②오만 단가가 실측 밴드 상단($4.2/kg)을 돌파할 때만 세네갈·남아공 전환 룰을 발동하도록 기존 \"$7 트리거\"를 재캘리브레이션, ③분기별 관세청 실측 CIF를 소싱 KPI로 자동 집계해 외부 보고서 인용 수치와의 괴리를 상시 감시.",
-      source: "관세청 nitemtrade HSK 0303.89-2000 분기 집계 (2026-06-11 실수집) — KMI 「FTA체결국 수산물 수입동향」 2024Q4·2025Q4·2026Q1 냉동 갈치 수입단가 차트와 정합 확인",
+      source: "관세청 nitemtrade HSK 0303.89-2000 분기 집계 (2026-06-11 실수집) - KMI 「FTA체결국 수산물 수입동향」 2024Q4·2025Q4·2026Q1 냉동 갈치 수입단가 차트와 정합 확인",
       isLive: false,
       syncDate: "2026-06"
     }
@@ -635,7 +635,7 @@ export default function GalchiDashboard() {
               <h1 style={{ margin: 0, fontSize: '1.5rem', fontWeight: 700, letterSpacing: '-0.5px', color: 'var(--text-primary)' }}>
                 갈치 전략 인텔리전스
               </h1>
-              <p style={{ margin: 0, fontSize: '0.88rem', color: 'var(--text-secondary)' }}>최고경영진 브리핑 — {totalWidgetCount}개 위젯 · {kpiKeys.length}개 KPI · {GALCHI_API_PATHS.length}개 API 채널</p>
+              <p style={{ margin: 0, fontSize: '0.88rem', color: 'var(--text-secondary)' }}>최고경영진 브리핑 - {totalWidgetCount}개 위젯 · {kpiKeys.length}개 KPI · {GALCHI_API_PATHS.length}개 API 채널</p>
             </div>
           </div>
           <div className="ds-card" style={{fontSize: '0.88rem', padding: '8px 16px', 
@@ -774,7 +774,7 @@ export default function GalchiDashboard() {
           marginBottom: '6px',
         }}>
           <span style={{ fontSize: '0.7rem', color: 'rgba(var(--w-slate-400-rgb), 0.7)', fontWeight: 600, letterSpacing: '0.08em', textTransform: 'uppercase' }}>
-            밸류체인 네비게이터 — 아래 단계를 클릭하여 탐색하세요
+            밸류체인 네비게이터 - 아래 단계를 클릭하여 탐색하세요
           </span>
         </div>
         <div data-mobile-stack style={{ display: 'grid', gridTemplateColumns: 'repeat(5, 1fr)', gap: '4px' }}>

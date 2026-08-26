@@ -306,7 +306,7 @@ export default function KoreaConsignmentDashboard() {
                     </div>
                     <div style={{ fontSize: '0.8rem', color: '#475569', fontWeight: 600, paddingBottom: '4px' }}>대</div>
                     <div style={{ textAlign: 'right' }}>
-                      <div style={{ fontSize: '0.75rem', color: 'var(--w-slate-500)', marginBottom: '2px' }}>국내 도매가 (KAMIS{data._liveIntelligence.metrics.arbitrage.mackerel.isLocalLive ? ' 당일' : ' 조회 실패 — 고정 기준치'})</div>
+                      <div style={{ fontSize: '0.75rem', color: 'var(--w-slate-500)', marginBottom: '2px' }}>국내 도매가 (KAMIS{data._liveIntelligence.metrics.arbitrage.mackerel.isLocalLive ? ' 당일' : ' 조회 실패 - 고정 기준치'})</div>
                       <div style={{ fontSize: '1.15rem', color: 'var(--text-primary)', fontWeight: 700 }}>₩{data._liveIntelligence.metrics.arbitrage.mackerel.localPriceKrw.toLocaleString()}</div>
                     </div>
                   </div>
@@ -326,7 +326,7 @@ export default function KoreaConsignmentDashboard() {
                     </div>
                     <div style={{ fontSize: '0.8rem', color: '#475569', fontWeight: 600, paddingBottom: '4px' }}>대</div>
                     <div style={{ textAlign: 'right' }}>
-                      <div style={{ fontSize: '0.75rem', color: 'var(--w-slate-500)', marginBottom: '2px' }}>국내 도매가 (KAMIS{data._liveIntelligence.metrics.arbitrage.squid.isLocalLive ? ' 당일' : ' 조회 실패 — 고정 기준치'})</div>
+                      <div style={{ fontSize: '0.75rem', color: 'var(--w-slate-500)', marginBottom: '2px' }}>국내 도매가 (KAMIS{data._liveIntelligence.metrics.arbitrage.squid.isLocalLive ? ' 당일' : ' 조회 실패 - 고정 기준치'})</div>
                       <div style={{ fontSize: '1.15rem', color: 'var(--text-primary)', fontWeight: 700 }}>₩{data._liveIntelligence.metrics.arbitrage.squid.localPriceKrw.toLocaleString()}</div>
                     </div>
                   </div>
@@ -342,11 +342,11 @@ export default function KoreaConsignmentDashboard() {
               <div style={{ display: 'flex', flexDirection: 'column', gap: '1.2rem', flex: 1 }}>
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                   <div>
-                    <div style={{ fontSize: '0.75rem', color: 'var(--w-slate-400)', marginBottom: '4px' }}>MGO 선박유 ($/MT) {data._liveIntelligence.metrics.isMgoLive ? '— 브렌트 프록시 환산' : '— 고정 기준치 (조회 실패)'}</div>
+                    <div style={{ fontSize: '0.75rem', color: 'var(--w-slate-400)', marginBottom: '4px' }}>MGO 선박유 ($/MT) {data._liveIntelligence.metrics.isMgoLive ? '- 브렌트 프록시 환산' : '- 고정 기준치 (조회 실패)'}</div>
                     <div style={{ fontSize: '1.3rem', color: 'var(--text-primary)', fontWeight: 700 }}>${data._liveIntelligence.metrics.mgoPrice.toLocaleString()} <span style={{fontSize:'0.8rem', color:'var(--w-slate-500)', fontWeight:400}}>/ MT</span></div>
                   </div>
                   <div style={{ textAlign: 'right' }}>
-                    <div style={{ fontSize: '0.75rem', color: 'var(--w-slate-400)', marginBottom: '4px' }}>NOAA ONI 표층 수온 편차{data._liveIntelligence.metrics.isSstLive === false ? ' — 조회 실패 (0 표시)' : ''}</div>
+                    <div style={{ fontSize: '0.75rem', color: 'var(--w-slate-400)', marginBottom: '4px' }}>NOAA ONI 표층 수온 편차{data._liveIntelligence.metrics.isSstLive === false ? ' - 조회 실패 (0 표시)' : ''}</div>
                     <div style={{ fontSize: '1.3rem', color: data._liveIntelligence.metrics.seaTemperatureAnomaly > 0.5 ? 'var(--color-danger)' : data._liveIntelligence.metrics.seaTemperatureAnomaly > 0 ? 'var(--color-warning)' : 'var(--color-success)', fontWeight: 700 }}>{data._liveIntelligence.metrics.seaTemperatureAnomaly > 0 ? '+' : ''}{data._liveIntelligence.metrics.seaTemperatureAnomaly}°C</div>
                   </div>
                 </div>
@@ -367,7 +367,7 @@ export default function KoreaConsignmentDashboard() {
                         : '조업 환경이 안정적입니다. 국내 위판장 공급 물량은 정상 범위 내에 있으며, 안정적인 소싱이 가능합니다.'}
                   </p>
                   <p style={{ margin: '8px 0 0 0', fontSize: '0.68rem', color: 'var(--w-slate-400)', lineHeight: 1.5 }}>
-                    ※ {data._liveIntelligence.metrics.fishingRiskBasis || '자체 산식 기반 추정 점수 — 실측 출어 통계 아님'}
+                    ※ {data._liveIntelligence.metrics.fishingRiskBasis || '자체 산식 기반 추정 점수 - 실측 출어 통계 아님'}
                   </p>
                 </div>
               </div>
@@ -398,7 +398,7 @@ export default function KoreaConsignmentDashboard() {
                     <span style={{fontSize:'0.9rem', fontWeight:500, color: '#6ee7b7', marginLeft: '4px'}}>/ kg</span>
                   </div>
                   <div style={{ fontSize: '0.72rem', color: '#a7f3d0', lineHeight: 1.5 }}>
-                    {data._liveIntelligence.metrics.retailMarginTracker.retailBasis || '추정 소매가 = 산지 위판가 × 추정 계수 — 실측 소매가 아님'}
+                    {data._liveIntelligence.metrics.retailMarginTracker.retailBasis || '추정 소매가 = 산지 위판가 × 추정 계수 - 실측 소매가 아님'}
                   </div>
                 </div>
               </div>
@@ -413,7 +413,7 @@ export default function KoreaConsignmentDashboard() {
           icon={TrendingUp}
           iconColor="#38bdf8"
           pillar="S4"
-          cardDesc="단위: 원 — 노량진·자갈치 등 위판장 통계 집계"
+          cardDesc="단위: 원 - 노량진·자갈치 등 위판장 통계 집계"
           telemetry={{ status: data ? 'SYNCED' : 'STATIC', syncDate: lastDataMonth }}
           chartHeight={325}
           chart={
@@ -439,7 +439,7 @@ export default function KoreaConsignmentDashboard() {
           icon={Anchor}
           iconColor="#38bdf8"
           pillar="S3"
-          cardDesc="단위: kg — 노량진·자갈치 등 위판장 물량 집계"
+          cardDesc="단위: kg - 노량진·자갈치 등 위판장 물량 집계"
           telemetry={{ status: data ? 'SYNCED' : 'STATIC', syncDate: lastDataMonth }}
           chartHeight={325}
           chart={

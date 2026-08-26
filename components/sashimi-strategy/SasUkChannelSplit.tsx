@@ -27,10 +27,10 @@ export default function SasUkChannelSplit() {
       description="성숙 캔 리테일 코어 vs 고성장 스시·투고 외식축"
       pillar="S4"
       telemetry={{ status: 'STATIC', syncDate: '2024-12' }}
-      cardDesc="영국 스시·투고 체인 매출 + 캔 채널 점유 — The Grocer·Restaurant Online·QSR Media·MSC(2023~2024)"
+      cardDesc="영국 스시·투고 체인 매출 + 캔 채널 점유 - The Grocer·Restaurant Online·QSR Media·MSC(2023~2024)"
       takeaway={{
-        situation: "영국에서 참치는 연어 다음으로 많이 소비되는 2위 수산물(MSC 2023 원문: \"second only to salmon\")로, 두 채널로 갈립니다. ① 캔 리테일 코어 — 상온 수산물 가치의 66%·물량의 71%(MSC 2022.6~2023.6 기준)를 점유하는 성숙 시장입니다. 자체브랜드 캔참치 100% MSC를 달성한 곳은 Waitrose(2012~)·Sainsbury's(2023.5~) 2사뿐이며(MSC 2023 기준), 나머지 대형 리테일러는 미달성 상태로 PB MSC화가 차별화 변수입니다. ② 스시·투고 외식 성장축 — Itsu(그룹 £175.9M, +9%)·YO! Sushi(£138.3M)·Wasabi(£121.6M)가 주도하며, 특히 Itsu 그로서리가 +20%(£57M)로 외식-소매 경계를 허뭅니다. 단 Wasabi 세후이익이 £7.43M→£1.86M로 급감(FY2024, QSR Media·The Grocer)하는 등 외식 수익성 변동성은 큽니다.",
-        actionPlan: "공급 전략을 채널별로 이원화하십시오. ① 리테일 캔은 PB·MSC가 포화된 가격 경쟁 시장이므로, FTA 무관세 우위를 리테일러 PB 원료·완제품 OEM 입찰로 좁혀 진입 — 브랜드 신설보다 PB 공급이 현실적입니다. ② 고성장·고마진은 스시·투고 채널이므로, Itsu·Wasabi·YO! 및 이들의 그로서리 라인에 스시그레이드 냉동 로인·사시미를 B2B 식자재로 직공급하는 것을 1순위로 검토하십시오. 자원은 외식·투고 쪽에 배분하고 리테일은 선별적 PB로 한정하십시오.",
+        situation: "영국에서 참치는 연어 다음으로 많이 소비되는 2위 수산물(MSC 2023 원문: \"second only to salmon\")로, 두 채널로 갈립니다. ① 캔 리테일 코어 - 상온 수산물 가치의 66%·물량의 71%(MSC 2022.6~2023.6 기준)를 점유하는 성숙 시장입니다. 자체브랜드 캔참치 100% MSC를 달성한 곳은 Waitrose(2012~)·Sainsbury's(2023.5~) 2사뿐이며(MSC 2023 기준), 나머지 대형 리테일러는 미달성 상태로 PB MSC화가 차별화 변수입니다. ② 스시·투고 외식 성장축 - Itsu(그룹 £175.9M, +9%)·YO! Sushi(£138.3M)·Wasabi(£121.6M)가 주도하며, 특히 Itsu 그로서리가 +20%(£57M)로 외식-소매 경계를 허뭅니다. 단 Wasabi 세후이익이 £7.43M→£1.86M로 급감(FY2024, QSR Media·The Grocer)하는 등 외식 수익성 변동성은 큽니다.",
+        actionPlan: "공급 전략을 채널별로 이원화하십시오. ① 리테일 캔은 PB·MSC가 포화된 가격 경쟁 시장이므로, FTA 무관세 우위를 리테일러 PB 원료·완제품 OEM 입찰로 좁혀 진입 - 브랜드 신설보다 PB 공급이 현실적입니다. ② 고성장·고마진은 스시·투고 채널이므로, Itsu·Wasabi·YO! 및 이들의 그로서리 라인에 스시그레이드 냉동 로인·사시미를 B2B 식자재로 직공급하는 것을 1순위로 검토하십시오. 자원은 외식·투고 쪽에 배분하고 리테일은 선별적 PB로 한정하십시오.",
         source: "The Grocer·Insider Media(Itsu £175.9M·그로서리 +20%) / Restaurant Online·QSR Media·The Grocer(Wasabi £121.6M·세후이익 £7.43M→£1.86M) / MSC UK Tuna Shopper Report 2023(캔 66%/71%·참치 연어 다음 2위·자체브랜드 100% MSC는 Waitrose·Sainsbury's 2사)",
       }}
       customBody={

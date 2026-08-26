@@ -34,7 +34,7 @@ const TunaCrossroads = () => (
     icon={Anchor}
     iconColor="#8b5cf6"
     pillar="S1"
-    cardDesc="참다랑어 자연 어획량(쿼터로 1980년 이후 정체) vs 축양/양식량(우상향 돌파)을 ComposedChart로 결합 — 출처: FAO FishStatJ"
+    cardDesc="참다랑어 자연 어획량(쿼터로 1980년 이후 정체) vs 축양/양식량(우상향 돌파)을 ComposedChart로 결합 - 출처: FAO FishStatJ"
     telemetry={{ status: 'STATIC', syncDate: '2026-06-05' }}
     chartHeight={350}
     chart={
@@ -61,10 +61,10 @@ const TunaCrossroads = () => (
 <ol style="margin: 4px 0 0 18px; padding: 0;">
 <li style="margin-bottom: 8px;"><strong>원양어선 capex 동결</strong>: 신규 자연산 어선 건조 100% 동결. 그 자본을 양식·축양 인프라로 재배치.</li>
 <li style="margin-bottom: 8px;"><strong>완전양식(Closed-cycle) R&amp;D + 해상 가두리 인프라 capex</strong>: 호주 Cleanseas Tuna·일본 긴키대학·스페인 IEO와 partnership. 5~10년 R&amp;D 투자.</li>
-<li><strong>"Hatchery equity 락업"</strong>: 천연 치어 쿼터 삭감 시 종묘 가격 폭등 — 핵심 hatchery(긴키대학·Balfegó hatchery) JV 또는 지분 투자로 원물 소스 선점. 향후 양식 시장 보틀넥 통제권.</li>
+<li><strong>"Hatchery equity 락업"</strong>: 천연 치어 쿼터 삭감 시 종묘 가격 폭등 - 핵심 hatchery(긴키대학·Balfegó hatchery) JV 또는 지분 투자로 원물 소스 선점. 향후 양식 시장 보틀넥 통제권.</li>
 </ol>
 </div>`,
-      source: 'FAO FishStatJ — Bluefin Tuna Wild Catch vs Aquaculture',
+      source: 'FAO FishStatJ - Bluefin Tuna Wild Catch vs Aquaculture',
     }}
   />
 );

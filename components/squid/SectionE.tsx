@@ -144,7 +144,7 @@ const SourceRegistry: React.FC<{ rows: RegistryRow[] }> = ({ rows }) => {
       </div>
 
       <p style={{ margin: '0 0 8px', fontSize: '0.64rem', color: C.caution, wordBreak: 'keep-all' }}>
-        C등급은 위험 탐색용 — 단독으로 법규나 시장규모를 확정할 수 없다 (게이트 G-010).
+        C등급은 위험 탐색용 - 단독으로 법규나 시장규모를 확정할 수 없다 (게이트 G-010).
       </p>
 
       <div style={{ minWidth: 0, maxHeight: 460, overflowY: 'auto', overflowX: 'auto' }}>
@@ -164,15 +164,15 @@ const SourceRegistry: React.FC<{ rows: RegistryRow[] }> = ({ rows }) => {
                 <tr key={r.source_id} style={isC ? { background: 'rgba(var(--w-amber-500-rgb), 0.05)' } : undefined}>
                   <td style={{ ...TD, whiteSpace: 'nowrap', fontFamily: 'monospace', fontSize: '0.64rem' }}>{r.source_id}</td>
                   <td style={{ ...TD, whiteSpace: 'nowrap' }}>{r.publisher}</td>
-                  <td style={{ ...TD, whiteSpace: 'nowrap' }}>{r.series ?? '—'}</td>
+                  <td style={{ ...TD, whiteSpace: 'nowrap' }}>{r.series ?? '-'}</td>
                   <td style={TD}>
-                    <Badge label={r.grade} color={gradeColor} title={isC ? '위험 탐색용 — 단독 확정 불가' : undefined} />
+                    <Badge label={r.grade} color={gradeColor} title={isC ? '위험 탐색용 - 단독 확정 불가' : undefined} />
                   </td>
                   <td style={TD}>
                     <Badge label={r.priority} color={PRIO_COLOR[r.priority] ?? C.axis} />
                   </td>
                   <td style={{ ...TD, whiteSpace: 'nowrap' }} title={r.frequency}>{freqKo(r.frequency)}</td>
-                  <td style={{ ...TD, whiteSpace: 'nowrap' }}>{r.latest_verified ?? '—'}</td>
+                  <td style={{ ...TD, whiteSpace: 'nowrap' }}>{r.latest_verified ?? '-'}</td>
                   <td style={{ ...TD, whiteSpace: 'nowrap' }}>
                     <a
                       href={r.landing_url}
@@ -184,7 +184,7 @@ const SourceRegistry: React.FC<{ rows: RegistryRow[] }> = ({ rows }) => {
                     </a>
                   </td>
                   <td style={{ ...TD, minWidth: 200, whiteSpace: 'normal', wordBreak: 'keep-all', color: r.note ? C.body : C.axis }}>
-                    {r.note || '—'}
+                    {r.note || '-'}
                   </td>
                 </tr>
               );
@@ -332,7 +332,7 @@ const MonitoringCalendar: React.FC<{ rows: CalendarRow[] }> = ({ rows }) => {
       <div style={{ marginTop: 8, display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: 4 }}>
         {GAP_DESC.map(({ status, desc }) => (
           <div key={status} style={{ fontSize: '0.62rem', color: C.dim, wordBreak: 'keep-all' }}>
-            <span style={{ color: C.caution, fontWeight: 700 }}>{STATUS_META[status].label}</span> — {desc}
+            <span style={{ color: C.caution, fontWeight: 700 }}>{STATUS_META[status].label}</span> - {desc}
           </div>
         ))}
       </div>

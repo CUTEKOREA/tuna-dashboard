@@ -57,7 +57,7 @@ export default function SasMarketKPIs() {
       description="2021-2025 US Census 실측 · 신선 vs 냉동·필렛 분리"
       pillar="S5"
       telemetry={{ status: 'SYNCED', syncDate: '2025' }}
-      cardDesc="US Census HS0302·0303·030487 국가합산 비통조림 참치 수입 — Census 프리페치 동기화"
+      cardDesc="US Census HS0302·0303·030487 국가합산 비통조림 참치 수입 - Census 프리페치 동기화"
       takeaway={{
         situation: "미국 비통조림 참치 수입액은 2022년 사상 최대 $1,083M을 기록한 뒤 2024년 $829M으로 안정세입니다. Fresh(사시미급)는 $319M으로 전체의 38%를 차지하며, 인도네시아($196M, 23.7%)와 베트남($183M, 22.1%)이 양대 공급국으로 전체의 46%를 점유합니다. 어종별로는 냉동 필렛/로인($474M, 57%)이 최대 세그먼트입니다.",
         actionPlan: "한국 공장의 미국 수출 전략: ① 사시미급 Fresh 시장은 고부가 포지셔닝 유효, ② 필렛/로인($474M, 57%)이 최대 세그먼트로 냉동 로인 가공 수출이 핵심, ③ 인니/베트남 대비 품질 차별화(CO처리 미적용 '자연색' 프리미엄) 필요.",

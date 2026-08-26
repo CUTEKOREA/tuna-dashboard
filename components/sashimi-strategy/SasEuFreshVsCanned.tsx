@@ -51,7 +51,7 @@ export default function SasEuFreshVsCanned() {
       icon={ShoppingBasket}
       iconColor="#10b981"
       pillar="S4"
-      cardDesc="FranceAgriMer·MAPA 2024 패널 — 신선/통조림 참치 단가·물량 대비 및 유통채널 프리미엄"
+      cardDesc="FranceAgriMer·MAPA 2024 패널 - 신선/통조림 참치 단가·물량 대비 및 유통채널 프리미엄"
       telemetry={{ status: 'STATIC', syncDate: '2024' }}
       takeaway={{
         situation: '프랑스 가계의 신선 참치 소비는 2,181톤(21.8€/kg)으로 통조림(61,659톤·10.8€/kg) 물량의 28분의 1이지만 단가는 2배입니다. 스페인도 1인당 신선 0.38kg vs 통조림 1.95kg로 신선은 얇은 층이며, EU 전체 참치 1인 소비 2.68kg(수산물 1위)·자급률 35%로 구조적 수입 의존 시장입니다.',
@@ -62,7 +62,7 @@ export default function SasEuFreshVsCanned() {
         <div style={{ display: 'flex', flexDirection: 'column', gap: '14px', width: '100%' }}>
           {/* 단가 비교 바 */}
           <div>
-            <div style={{ fontSize: '0.7rem', color: 'var(--w-slate-400)', marginBottom: '6px', fontWeight: 600 }}>프랑스 가계 단가 — 신선 vs 통조림 (€/kg)</div>
+            <div style={{ fontSize: '0.7rem', color: 'var(--w-slate-400)', marginBottom: '6px', fontWeight: 600 }}>프랑스 가계 단가 - 신선 vs 통조림 (€/kg)</div>
             <div style={{ height: '120px', width: '100%' }}>
               <SafeResponsiveContainer width="100%" height="100%">
                 <BarChart data={priceData} layout="vertical" margin={{ top: 0, right: 56, left: 8, bottom: 0 }}>
@@ -102,7 +102,7 @@ export default function SasEuFreshVsCanned() {
           <div style={{ display: 'flex', alignItems: 'center', gap: '8px', padding: '10px 14px', background: 'rgba(var(--w-emerald-500-rgb), 0.06)', border: '1px solid rgba(var(--w-emerald-500-rgb), 0.18)', borderRadius: '10px' }}>
             <Store size={16} color={FRESH} style={{ flexShrink: 0 }} />
             <span style={{ fontSize: '0.72rem', color: 'var(--w-slate-300)' }}>
-              프랑스 신선참치 채널: 대형마트 <b>75.8%</b> · 생선전문점 8.8% — 전문점 단가 <b style={{ color: FRESH }}>24.6€ vs 마트 20.5€ (+20%)</b>
+              프랑스 신선참치 채널: 대형마트 <b>75.8%</b> · 생선전문점 8.8% - 전문점 단가 <b style={{ color: FRESH }}>24.6€ vs 마트 20.5€ (+20%)</b>
             </span>
           </div>
         </div>

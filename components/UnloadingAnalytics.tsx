@@ -393,7 +393,7 @@ export default function UnloadingAnalytics({
         items.push({
           severity: 'CRITICAL',
           title: `어창 ${holdId} 온도 경고`,
-          description: `현재 온도 ${hold.lastTemperature}℃ — 기준치(-18℃) 초과. 즉시 점검 필요.`,
+          description: `현재 온도 ${hold.lastTemperature}℃ - 기준치(-18℃) 초과. 즉시 점검 필요.`,
           timestamp: now,
           sortOrder: 0,
         });
@@ -422,7 +422,7 @@ export default function UnloadingAnalytics({
         items.push({
           severity: 'WARNING',
           title: '장시간 작업 감지',
-          description: `${lastWorkEntry.date}일 작업시간 ${fmt(lastHours, 1)}시간 — 12시간 초과 근무. 피로도 관리 필요.`,
+          description: `${lastWorkEntry.date}일 작업시간 ${fmt(lastHours, 1)}시간 - 12시간 초과 근무. 피로도 관리 필요.`,
           timestamp: lastWorkEntry.date,
           sortOrder: 1,
         });
@@ -451,7 +451,7 @@ export default function UnloadingAnalytics({
       items.push({
         severity: 'COMPLETED',
         title: '하역 완료',
-        description: `${selectedVessel.name} — 총 ${fmt(selectedVessel.actualTotal, 3)} MT 하역 완료.`,
+        description: `${selectedVessel.name} - 총 ${fmt(selectedVessel.actualTotal, 3)} MT 하역 완료.`,
         timestamp: workEntries.length > 0 ? workEntries[workEntries.length - 1].date : '',
         sortOrder: 3,
       });
@@ -658,10 +658,10 @@ export default function UnloadingAnalytics({
                           {row.isSelected && <span style={{ color: 'var(--w-sky-400)', marginRight: 4 }}>▸</span>}
                           {row.name}
                         </td>
-                        <td>{row.comparable ? `${row.totalDays}일` : '—'}</td>
-                        <td>{row.comparable ? `${row.workDays}일` : '—'}</td>
-                        <td>{row.comparable ? fmt(row.dailyAvg) : '—'}</td>
-                        <td>{row.comparable ? (row.mtPerHr > 0 ? fmt(row.mtPerHr) : '-') : '—'}</td>
+                        <td>{row.comparable ? `${row.totalDays}일` : '-'}</td>
+                        <td>{row.comparable ? `${row.workDays}일` : '-'}</td>
+                        <td>{row.comparable ? fmt(row.dailyAvg) : '-'}</td>
+                        <td>{row.comparable ? (row.mtPerHr > 0 ? fmt(row.mtPerHr) : '-') : '-'}</td>
                         <td>
                           <span className={`${styles.statusBadge} ${
                             row.statusKind === 'progress'

@@ -19,7 +19,7 @@ const REFERENCE_DB: Record<string, any> = {
   'silla': { entity: 'Silla Co., Ltd.', eu: { status: 'clean', detail: 'EU 참조 DB 무매칭' }, riskScore: 98, riskLevel: 'LOW' },
   'sajo': { entity: 'Sajo Industries', eu: { status: 'clean', detail: 'EU 참조 DB 무매칭' }, riskScore: 96, riskLevel: 'LOW' },
   'nirsa': { entity: 'Nirsa S.A.', eu: { status: 'clean', detail: 'EU 참조 DB 무매칭' }, riskScore: 90, riskLevel: 'LOW' },
-  'minh phu': { entity: 'Minh Phu Seafood', eu: { status: 'partial', detail: '유사명 — 수동 검토 권고' }, riskScore: 72, riskLevel: 'MEDIUM' },
+  'minh phu': { entity: 'Minh Phu Seafood', eu: { status: 'partial', detail: '유사명 - 수동 검토 권고' }, riskScore: 72, riskLevel: 'MEDIUM' },
   'dalian ocean': { entity: 'Dalian Ocean Fishing', eu: { status: 'partial', detail: 'IUU 선박 중첩(보도)' }, riskScore: 35, riskLevel: 'HIGH' },
   'pingtan': { entity: 'Pingtan Marine Enterprise', eu: { status: 'partial', detail: 'IUU·강제노동 우려(보도)' }, riskScore: 15, riskLevel: 'HIGH' },
   'norebo': { entity: 'Norebo Holding', eu: { status: 'partial', detail: '러시아 제재 EDD 필요' }, riskScore: 18, riskLevel: 'HIGH' },
@@ -110,10 +110,10 @@ export async function POST(req: Request) {
       });
     }
 
-    // 2차: 폴백 — 참조 DB (정직 STATIC)
+    // 2차: 폴백 - 참조 DB (정직 STATIC)
     const result = ref
-      ? { entity: ref.entity, ofac: { status: 'clean', detail: 'OFAC 실시간 조회 실패 — 참조 DB 기준' }, eu: ref.eu, riskScore: ref.riskScore, riskLevel: ref.riskLevel, isLive: false, source: 'OFAC_REFERENCE_DB' }
-      : { entity, ofac: { status: 'partial', detail: 'OFAC 실시간 조회 실패 — 참조 DB 무매칭' }, eu: { status: 'partial', detail: '참조 DB 무매칭' }, riskScore: 60, riskLevel: 'MEDIUM', isLive: false, source: 'OFAC_REFERENCE_DB' };
+      ? { entity: ref.entity, ofac: { status: 'clean', detail: 'OFAC 실시간 조회 실패 - 참조 DB 기준' }, eu: ref.eu, riskScore: ref.riskScore, riskLevel: ref.riskLevel, isLive: false, source: 'OFAC_REFERENCE_DB' }
+      : { entity, ofac: { status: 'partial', detail: 'OFAC 실시간 조회 실패 - 참조 DB 무매칭' }, eu: { status: 'partial', detail: '참조 DB 무매칭' }, riskScore: 60, riskLevel: 'MEDIUM', isLive: false, source: 'OFAC_REFERENCE_DB' };
 
     return NextResponse.json({
       meta: {

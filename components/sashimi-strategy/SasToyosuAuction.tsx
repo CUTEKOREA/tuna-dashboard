@@ -41,7 +41,7 @@ export default function SasToyosuAuction() {
       icon={Gavel}
       iconColor="#ef4444"
       pillar="S1"
-      cardDesc="세계 최대 수산물 도매시장 — 신년 경매 기네스, 경매 구조, 일본 $1.94B 시장"
+      cardDesc="세계 최대 수산물 도매시장 - 신년 경매 기네스, 경매 구조, 일본 $1.94B 시장"
       telemetry={{ status: 'STATIC', syncDate: '2026' }}
       takeaway={{
         situation: "도요스 시장은 일일 ~200마리의 참다랑어가 경매되며, 5개 공인 도매상→460개 仲卸의 2단계 유통 구조입니다. 2026년 신년 첫 경매에서 243kg 오마 참다랑어가 ¥510.3M($3.2M)에 낙찰되어 기네스 신기록을 세웠습니다(4년간 14배 상승). 일본 참치 시장은 $1.94B(2024) → $2.53B(2033) CAGR 2.98% 성장 전망입니다.",
@@ -77,7 +77,7 @@ export default function SasToyosuAuction() {
             <div style={{
               textAlign: 'center', fontSize: '0.62rem', color: 'var(--w-red-500)', fontWeight: 600, marginTop: '4px',
             }}>
-              🏆 2026년 ¥510.3M ($3.2M) — 기네스 세계신기록 (4년간 14배)
+              🏆 2026년 ¥510.3M ($3.2M) - 기네스 세계신기록 (4년간 14배)
             </div>
           </div>
 

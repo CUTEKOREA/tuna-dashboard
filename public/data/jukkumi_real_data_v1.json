@@ -4,7 +4,7 @@
       "title": "연안 문어류(주꾸미 포함) 어획량",
       "value": "16,069 톤",
       "trend": "연속 하락세",
-      "desc": "FAO FishStat 한국 보고 문어류(OCT) 합산 2022년 확정값 — 주꾸미 단일종 분리 통계 아님 · 출처: FAO FishStat",
+      "desc": "FAO FishStat 한국 보고 문어류(OCT) 합산 2022년 확정값 - 주꾸미 단일종 분리 통계 아님 · 출처: FAO FishStat",
       "telemetry": "synced",
       "syncDate": "2022 확정값(FAO)"
     },
@@ -94,7 +94,7 @@
       "unit": "톤",
       "reliability": 60,
       "isLiveApi": false,
-      "subtitle": "FAO FishStat 한국 보고 문어류(OCT) 합산 어획량 — 주꾸미 단일종 아님. 2020-2022 확정값(셀 단위 검증), 미발표 2023~ 미래값은 추정 금지로 제외. STATIC 스냅샷."
+      "subtitle": "FAO FishStat 한국 보고 문어류(OCT) 합산 어획량 - 주꾸미 단일종 아님. 2020-2022 확정값(셀 단위 검증), 미발표 2023~ 미래값은 추정 금지로 제외. STATIC 스냅샷."
     },
     {
       "id": "w2_korea_imports",
@@ -155,7 +155,7 @@
       ],
       "sit": "1인 가구 증가 및 간편식 트렌드가 주꾸미 시장을 HMR 위주로 재편. 단순 냉동 블록 수요는 역성장 중이나, 주꾸미 볶음 등 밀키트/소포장 가공 수요는 40% YoY 폭증하여 가공 부가가치 집중 현상 심화.",
       "tak": "<ul><li>저수익성의 B2B 대용량 벌크 유통을 축소하고, 고수익 소포장 가공(Value-add) 라인업에 설비 투자를 집중하여 중간 유통 마진을 당사 수익으로 내재화하는 밸류업(Value-up) 전략을 실행할 것을 권장합니다.</li></ul>",
-      "source": "업계추정 (HMR 수율·원가율은 내부 가공 운영 기반 illustrative 수치 — 공개 1차 출처 미검증) | KAMIS 등 공개 지표와 혼용 주의",
+      "source": "업계추정 (HMR 수율·원가율은 내부 가공 운영 기반 illustrative 수치 - 공개 1차 출처 미검증) | KAMIS 등 공개 지표와 혼용 주의",
       "unit": "%, M원",
       "reliability": 98,
       "strat": "원물 단순 도매 비즈니스에서 고부가 HMR 제조 체제로 포트폴리오 리배런싱. 가공 공정 CAPEX 투입을 통해 판가 상승(Price Premium)을 유도하고 마진율을 방어."
@@ -608,7 +608,7 @@
       ],
       "sit": "2026년 1분기 한국 수입 주꾸미 금액 점유율은 베트남 71.0%, 중국 14.3%, 태국 12.8%로 베트남이 1위를 유지(VKFTA 무관세 적용). 물량 기준으로도 베트남이 71%(2026Q1 4.7천톤/총 6.6천톤)를 차지. 베트남 단가는 26년 1~3월 6.5달러/kg로 전년 동기(6.1달러) 대비 6.3% 상승(KMI 명문)했고, 중국산은 연간 4.5~5.2달러대로 단가 격차는 유지.",
       "tak": "<ul><li>베트남 단가가 점진적으로 오르는 만큼, 베트남 현지 가공장(내장 제거·세척)과 [원물 소싱 + 1차 전처리]를 결합한 반제품 직수입 계약으로 단가 상승분을 가공 부가가치로 흡수하고, 중국·태국 2선 조달처와 상시 오프테이크 계약을 병행해 싱글 소싱 리스크를 분산해야 합니다.</li></ul>",
-      "source": "KMI 한국해양수산개발원 — FTA 체결국 수산물 수입동향 2026 Q1 (관세청 HS 030749 원자료 기반, 1차 출처)",
+      "source": "KMI 한국해양수산개발원 - FTA 체결국 수산물 수입동향 2026 Q1 (관세청 HS 030749 원자료 기반, 1차 출처)",
       "unit": "%, $/kg",
       "reliability": 95,
       "isLiveApi": false,
@@ -959,7 +959,7 @@
     {
       "id": "w15_hsk_tariff",
       "title": "HSK 세번별 주꾸미 수입 관세율 및 FTA 절감 매트릭스",
-      "subtitle": "관세청 HSK 10자리 2024 수입실적 — 주꾸미 세번 2개: 신선/냉장 0307512000(2,055.7톤·중국 92.7%) + 냉동 0307523000(28,424.5톤·주력·베트남 82.3%) = 약 30,480톤. 기본세율(MFN)·FTA 특혜세율은 양허 스케줄 기준. 단위: %, 톤",
+      "subtitle": "관세청 HSK 10자리 2024 수입실적 - 주꾸미 세번 2개: 신선/냉장 0307512000(2,055.7톤·중국 92.7%) + 냉동 0307523000(28,424.5톤·주력·베트남 82.3%) = 약 30,480톤. 기본세율(MFN)·FTA 특혜세율은 양허 스케줄 기준. 단위: %, 톤",
       "chartType": "composed",
       "data": [
         {
@@ -1463,7 +1463,7 @@
           "value": 45
         }
       ],
-      "subtitle": " 주의: Amphioctopus fangsiao(주꾸미) 직접 양식 데이터 아님 — 중국 단완낙지 등 두족류 R&D를 참고치로만 사용. 자기포식·단년생 장벽으로 주꾸미 양식 미개발.",
+      "subtitle": " 주의: Amphioctopus fangsiao(주꾸미) 직접 양식 데이터 아님 - 중국 단완낙지 등 두족류 R&D를 참고치로만 사용. 자기포식·단년생 장벽으로 주꾸미 양식 미개발.",
       "source": "ResearchGate Amphioctopus 양식 R&D 논문 + 중국 농업농촌부 두족류 보고서 (참고지표용) (1차 출처) | 2024-2026 갱신 가능"
     },
     {
@@ -1613,7 +1613,7 @@
     },
     {
       "id": "w29_africa_human_rights_risk",
-      "title": "대체재 비상 소싱 리스크 (서아프리카 문어 IUU·자원 과잉이용) — 보조 지표",
+      "title": "대체재 비상 소싱 리스크 (서아프리카 문어 IUU·자원 과잉이용) - 보조 지표",
       "category": "part5",
       "format": "new",
       "chartType": "composed",
@@ -1656,7 +1656,7 @@
       "reliability": 78,
       "isLiveApi": false,
       "telemetry": "static",
-      "source": "SeaBOS Keystone Dialogue, Brief 3: Octopus fisheries of Morocco, Mauritania and Senegal (2024-09) — agri_data/jukkumi/05_Mauritania/SeaBOS_Brief3_Octopus_Morocco_Mauritania_Senegal.pdf (1차 출처)"
+      "source": "SeaBOS Keystone Dialogue, Brief 3: Octopus fisheries of Morocco, Mauritania and Senegal (2024-09) - agri_data/jukkumi/05_Mauritania/SeaBOS_Brief3_Octopus_Morocco_Mauritania_Senegal.pdf (1차 출처)"
     },
     {
       "id": "w30_tac_regulation_map",
@@ -1732,11 +1732,11 @@
     },
     {
       "id": "w34_form_mix_frozen_live",
-      "title": "통관 형태 구성 — 냉동 대 활·신선 (2026Q1)",
+      "title": "통관 형태 구성 - 냉동 대 활·신선 (2026Q1)",
       "pillar": "S3",
       "chartType": "bar",
       "xAxis": "통관형태",
-      "subtitle": "KMI 2026Q1 통관형태 구성비 — 냉동 86.5% 대 활·신선 13.5%",
+      "subtitle": "KMI 2026Q1 통관형태 구성비 - 냉동 86.5% 대 활·신선 13.5%",
       "unit": "%",
       "reliability": 85,
       "isLiveApi": false,
@@ -1764,11 +1764,11 @@
     },
     {
       "id": "w35_import_dependency",
-      "title": "수입 의존도 심화 — 국내생산 급감 대 수입 정체",
+      "title": "수입 의존도 심화 - 국내생산 급감 대 수입 정체",
       "pillar": "S3",
       "chartType": "composed",
       "xAxis": "연도",
-      "subtitle": "KMI — 국내생산(1~11월) -24.7% vs 수입 정체",
+      "subtitle": "KMI - 국내생산(1~11월) -24.7% vs 수입 정체",
       "unit": "천톤",
       "reliability": 85,
       "isLiveApi": false,

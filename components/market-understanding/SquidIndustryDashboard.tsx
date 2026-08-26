@@ -158,7 +158,7 @@ const SQUID_BASE_SLOTS: Record<string, ChartSlot[]> = {
     {
       title: '어기 월별 선단 합계 (판)',
       caption:
-        '12월에 시작해 이듬해 5월에 끝난다 — 달력 순이 아니다. 3~4월이 정점이고 5월에 급락하는 것은 어기 막바지에 배들이 빠지기 때문이다.',
+        '12월에 시작해 이듬해 5월에 끝난다 - 달력 순이 아니다. 3~4월이 정점이고 5월에 급락하는 것은 어기 막바지에 배들이 빠지기 때문이다.',
       telemetry: FK_SYNC,
       render: () => <FalklandSeasonChart />,
       sourceLine: `출처: ${falklandMeta.출처}`,
@@ -183,7 +183,7 @@ const SQUID_BASE_SLOTS: Record<string, ChartSlot[]> = {
   ],
   s02: [
     {
-      title: '공급 기업 — 누가 잡고 누가 파는가',
+      title: '공급 기업 - 누가 잡고 누가 파는가',
       caption: SQUID_RESEARCH.공급.요지,
       telemetry: { status: 'SYNCED' as const, syncDate: '2026-08-17 조사' },
       span: 'full',
@@ -200,7 +200,7 @@ const SQUID_BASE_SLOTS: Record<string, ChartSlot[]> = {
     {
       title: '연근해 업종별 선박 수와 척당 배분량 (척·톤)',
       caption:
-        '막대는 선박 수, 선은 척당 배분량이다. 가장 작은 근해자망 18.6톤과 대형트롤 368.1톤이 20배 벌어진다 — 이 배들을 더해 「오징어 어선」이라 부를 수 없다.',
+        '막대는 선박 수, 선은 척당 배분량이다. 가장 작은 근해자망 18.6톤과 대형트롤 368.1톤이 20배 벌어진다 - 이 배들을 더해 「오징어 어선」이라 부를 수 없다.',
       telemetry: { status: 'STATIC' as const, syncDate: '2025/26 어기' },
       render: () => <CoastalGearChart data={FLEET} />,
     },
@@ -214,14 +214,14 @@ const SQUID_BASE_SLOTS: Record<string, ChartSlot[]> = {
     {
       title: '선사별 채낚기 선단 (척·톤)',
       caption:
-        '막대는 보유 척수, 선은 선단 합계 톤수다. 열 개 회사가 스무 척을 나눠 갖는데 여섯 척을 가진 곳과 한 척뿐인 곳이 섞여 있다 — 「오징어 선사」를 한 덩어리로 부르면 이 차이가 사라진다.',
+        '막대는 보유 척수, 선은 선단 합계 톤수다. 열 개 회사가 스무 척을 나눠 갖는데 여섯 척을 가진 곳과 한 척뿐인 곳이 섞여 있다 - 「오징어 선사」를 한 덩어리로 부르면 이 차이가 사라진다.',
       telemetry: FLEET_SYNC,
       render: () => <CompanyFleetChart data={FLEET} />,
     },
     {
       title: '남태평양 공해 채낚기 선단 (척·톤)',
       caption:
-        '막대는 척수, 선은 척당 평균 톤수다. 페루 1,013척은 평균 25톤짜리 소형선이고 중국 609척은 평균 948톤이다 — 같은 「채낚기」라도 배가 40배 다르다. 장미색이 한국(30척·평균 917톤)이다. ⚠ 이 등록부는 소유사를 공개하지 않아 선사 단위로는 갈 수 없다.',
+        '막대는 척수, 선은 척당 평균 톤수다. 페루 1,013척은 평균 25톤짜리 소형선이고 중국 609척은 평균 948톤이다 - 같은 「채낚기」라도 배가 40배 다르다. 장미색이 한국(30척·평균 917톤)이다. ⚠ 이 등록부는 소유사를 공개하지 않아 선사 단위로는 갈 수 없다.',
       telemetry: { status: 'STATIC' as const, syncDate: '2026년 8월 등록부' },
       render: () => <OceanJiggerChart data={OCEAN_FLEET} />,
     },
@@ -235,7 +235,7 @@ const SQUID_BASE_SLOTS: Record<string, ChartSlot[]> = {
     {
       title: '오징어채낚기 업종 생산량 (톤)',
       caption:
-        '해양수산부 원양어업통계조사 — 원양어업 허가 어선 전수조사다. 2021년 50,947톤에서 2023년 17,112톤까지 내려갔다가 2024년 39,942톤으로 돌아왔다. 원양만 담으므로 이 페이지의 FAO 기준 수치와 더할 수 없다.',
+        '해양수산부 원양어업통계조사 - 원양어업 허가 어선 전수조사다. 2021년 50,947톤에서 2023년 17,112톤까지 내려갔다가 2024년 39,942톤으로 돌아왔다. 원양만 담으므로 이 페이지의 FAO 기준 수치와 더할 수 없다.',
       telemetry: DW_SYNC,
       render: () => <SquidGearProductionChart />,
       sourceLine: `출처: ${deepseaMeta.출처}`,
@@ -243,7 +243,7 @@ const SQUID_BASE_SLOTS: Record<string, ChartSlot[]> = {
     {
       title: '해역별 오징어류 생산량 (톤)',
       caption:
-        '분홍이 태평양 동남부 — SPRFMO 관할 수역이다. 해역이 계층이라 「대서양」 안에 「서남부」가 들어 있으므로 막대를 더하면 이중계상이 된다.',
+        '분홍이 태평양 동남부 - SPRFMO 관할 수역이다. 해역이 계층이라 「대서양」 안에 「서남부」가 들어 있으므로 막대를 더하면 이중계상이 된다.',
       telemetry: DW_SYNC,
       render: () => <SquidAreaChart year={DW_YEAR} />,
       sourceLine: `출처: ${deepseaMeta.출처}`,
@@ -251,7 +251,7 @@ const SQUID_BASE_SLOTS: Record<string, ChartSlot[]> = {
     {
       title: '보유 척수 구간별 오징어류 생산량 (톤)',
       caption:
-        '회사명은 공표되지 않지만 회사를 보유 척수로 묶은 축이라, 회사별 명부와 맞대면 어느 구간에 어느 회사가 들어가는지는 안다. 구간 안에서 회사별로 쪼개지지는 않는다 — 그건 추정이지 실적이 아니다.',
+        '회사명은 공표되지 않지만 회사를 보유 척수로 묶은 축이라, 회사별 명부와 맞대면 어느 구간에 어느 회사가 들어가는지는 안다. 구간 안에서 회사별로 쪼개지지는 않는다 - 그건 추정이지 실적이 아니다.',
       telemetry: DW_SYNC,
       render: () => <SquidSizeBandChart year={DW_YEAR} />,
       sourceLine: `출처: ${deepseaMeta.출처}`,
@@ -268,7 +268,7 @@ const SQUID_BASE_SLOTS: Record<string, ChartSlot[]> = {
     {
       title: '한국 수입의 형태 구성 (톤)',
       caption:
-        '한국이 사 오는 것의 4분의 3이 원물이다. 완제품 비중이 그 다음이고, 건조·염장은 물량으로는 작다 — 단가는 그 반대다.',
+        '한국이 사 오는 것의 4분의 3이 원물이다. 완제품 비중이 그 다음이고, 건조·염장은 물량으로는 작다 - 단가는 그 반대다.',
       telemetry: TRADE_SYNC,
       render: () => <ImportFormChart data={TRADE} />,
     },
@@ -291,9 +291,9 @@ const SQUID_BASE_SLOTS: Record<string, ChartSlot[]> = {
   ],
   s07: [
     {
-      title: '한국 원양 오징어 어가 — 수역별 연평균 (원/kg)',
+      title: '한국 원양 오징어 어가 - 수역별 연평균 (원/kg)',
       caption:
-        '원양산업 통계연보 어가표의 연평균 열(2015~2024). 남서대서양 어가가 2015년 1,555원에서 2024년 6,637원으로 4.3배 뛰었다 — 국내 연근해 흉어와 세계 공급 수축이 원양 원료가에 그대로 얹힌 궤적이다. 결측 연도(조업 없음)는 선이 끊긴다.',
+        '원양산업 통계연보 어가표의 연평균 열(2015~2024). 남서대서양 어가가 2015년 1,555원에서 2024년 6,637원으로 4.3배 뛰었다 - 국내 연근해 흉어와 세계 공급 수축이 원양 원료가에 그대로 얹힌 궤적이다. 결측 연도(조업 없음)는 선이 끊긴다.',
       telemetry: { status: 'STATIC' as const, syncDate: '연보 2015~2024' },
       render: () => <SquidYearbookPriceChart rows={KOFA_SERIES.어가.오징어원kg} />,
     },
@@ -314,7 +314,7 @@ const SQUID_BASE_SLOTS: Record<string, ChartSlot[]> = {
   ],
   x01: [
     {
-      title: '살오징어 어획량 — 세계와 한국 (톤)',
+      title: '살오징어 어획량 - 세계와 한국 (톤)',
       caption:
         '세계는 1968년, 한국은 1996년이 정점이다. 두 선이 함께 내려앉는 동안 오징어 전체 어획량은 유지됐다.',
       telemetry: CATCH_SYNC,
@@ -323,7 +323,7 @@ const SQUID_BASE_SLOTS: Record<string, ChartSlot[]> = {
     },
     {
       title: '주요 어종 어획량 추이 (톤)',
-      caption: '2024년 규모 상위 5종의 자리바꿈이다. 살오징어 붕괴는 위 「살오징어 어획량 — 세계와 한국 (톤)」에 따로 있다.',
+      caption: '2024년 규모 상위 5종의 자리바꿈이다. 살오징어 붕괴는 위 「살오징어 어획량 - 세계와 한국 (톤)」에 따로 있다.',
       telemetry: CATCH_SYNC,
       span: 'full',
       render: () => <SpeciesTimelineChart data={CATCH} />,
@@ -331,9 +331,9 @@ const SQUID_BASE_SLOTS: Record<string, ChartSlot[]> = {
   ],
   x03: [
     {
-      title: '한국 원양 오징어류 월별 생산 — 2024년 (톤)',
+      title: '한국 원양 오징어류 월별 생산 - 2024년 (톤)',
       caption:
-        '연보 월별 실적 전사(계 63,156톤, 검산 일치). 상반기(1~5월)에 물량이 두껍다 — 남서대서양 어기가 상반기에 걸리는 구조라, 국내 재고·가격 판단은 이 리듬 위에서 읽어야 한다.',
+        '연보 월별 실적 전사(계 63,156톤, 검산 일치). 상반기(1~5월)에 물량이 두껍다 - 남서대서양 어기가 상반기에 걸리는 구조라, 국내 재고·가격 판단은 이 리듬 위에서 읽어야 한다.',
       telemetry: { status: 'STATIC' as const, syncDate: '연보 2024' },
       render: () => (SQUID_MONTHLY ? <SquidMonthlyCatchChart months={SQUID_MONTHLY.월별} /> : null),
     },

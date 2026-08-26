@@ -55,7 +55,7 @@ export async function POST(req: Request) {
     if (!hsCode) return NextResponse.json({ error: 'hsCode 필수 (예: 160414)' }, { status: 400 });
 
     const store = await loadPrefetch();
-    if (!store) return NextResponse.json({ error: 'prefetch JSON 미존재 — scripts/fetch_us_census_data.js 먼저 실행' }, { status: 503 });
+    if (!store) return NextResponse.json({ error: 'prefetch JSON 미존재 - scripts/fetch_us_census_data.js 먼저 실행' }, { status: 503 });
 
     const rows: any[] = store[hsCode] || [];
     if (rows.length === 0) {

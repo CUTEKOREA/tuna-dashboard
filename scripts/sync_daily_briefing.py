@@ -80,7 +80,9 @@ class LegacyBriefingParser(HTMLParser):
 
 
 def normalize_text(value: str) -> str:
-    return re.sub(r"\s+", " ", value.replace("\xa0", " ")).strip()
+    # em dash 금지 (2026-08-26 사용자 지시, scripts/fix_emdash.py 와 동일 규칙) —
+    # 원문 게시판 HTML 에 든 — 가 대시보드로 유입되는 것을 소스에서 차단.
+    return re.sub(r"\s+", " ", value.replace("\xa0", " ").replace("—", "-")).strip()
 
 
 def normalize_style(value: str) -> str:

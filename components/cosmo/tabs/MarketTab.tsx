@@ -43,7 +43,7 @@ export default function Market() {
           `바이어 ${exportMeta.buyerCount}곳 · 시장 ${exportMeta.marketCount}개`,
           `수입통계 기준연도 ${benchYear} · 수집 ${tradeMeta.collected}`,
           `원장 ${exportSources.map((x) => `${x.year} ${x.period}`).join(' + ')}`,
-          'CBU 수출만 — 내수·FBU 제외',
+          'CBU 수출만 - 내수·FBU 제외',
         ]}
       />
 
@@ -68,7 +68,7 @@ export default function Market() {
         </Card>
         <Card>
           <Kpi k="최대 바이어" v={pct(concentration.topBuyerShare, 1)}
-            d={concentration.topBuyer ?? '—'} />
+            d={concentration.topBuyer ?? '-'} />
         </Card>
         <Card>
           <Kpi k="시장 집중도" v={num(concentration.marketHHI, 0)} unit=" HHI"
@@ -81,19 +81,19 @@ export default function Market() {
         </Card>
         <Card>
           <Kpi k="신라교역 경유" v={pct(sillaShare, 1)}
-            d="인보이스 상대 기준 — 매출채권의 실질 상대" />
+            d="인보이스 상대 기준 - 매출채권의 실질 상대" />
         </Card>
       </div>
 
       <SecHead>제값을 받고 있는가</SecHead>
       <div className="grid g2">
         <Card
-          title="단가 포지션 — COSMO vs 시장 평균 vs 가나 평균"
+          title="단가 포지션 - COSMO vs 시장 평균 vs 가나 평균"
           sub={`kg당 실현 단가. 시장 평균은 ${benchYear}년 해당국 HS 160414 수입 총액 ÷ 총 물량.`}
           note={<>COSMO 평균 <b>{kg2(n(totals.usdPerKg))}</b>. 수입통계가 확보된 {pricePosition.length}개 시장 중
             <b> {above}곳만 시장 평균 이상</b>입니다. 주력 시장(매출 2% 이상) 가운데 최저는
             <b> {worst.market} {p1(worst.vsMarket)}</b>입니다
-            {tiny.length > 0 && <> — {tiny.map((t) => t.market).join('·')}는 물량이 {num(tiny[0].fcl, 0)} FCL 수준이라
+            {tiny.length > 0 && <> - {tiny.map((t) => t.market).join('·')}는 물량이 {num(tiny[0].fcl, 0)} FCL 수준이라
               단가가 한두 건에 좌우돼 대표값에서 제외했습니다</>}.
             {worst.market}는 시장 단가가 {kg2(worst.marketUsdKg)}로 가장 높은 축인데 우리는 {kg2(worst.cosmoUsdKg)}에
             팔고 있어, 프리미엄 시장에서 저가 포지션을 잡고 있습니다.
@@ -119,7 +119,7 @@ export default function Market() {
           sub="음(−)이면 시장 평균보다 싸게 팔고 있다는 뜻."
           note={<>모든 시장의 격차를 메워 시장 평균 단가까지 올렸다면 같은 물량에서
             <b> 약 {musd(repricingUpside.upsideUsd)}</b>(매출의 {pct(repricingUpside.ratio, 1)})를 더 받았을 계산입니다.
-            <b>다만 이건 이론적 상한</b>입니다 — 판가를 올리면 물량이 그대로 유지되지 않고,
+            <b>다만 이건 이론적 상한</b>입니다 - 판가를 올리면 물량이 그대로 유지되지 않고,
             우리 제품 믹스(규격·사양)가 시장 평균 믹스와 다르기 때문에 격차의 일부는 믹스 차이입니다.
             재가격 여지의 크기를 가늠하는 용도로만 읽어야 합니다.</>}
         >
@@ -154,7 +154,7 @@ export default function Market() {
           title="규격군 × 시장"
           sub="상위 5개 시장의 규격군별 매출. 두 축이 서로 다른 바이어에 걸려 있는지 본다."
           note={<>주력은 <b>{bySpecGroup[0].key} {pct(bySpecGroup[0].share, 1)}</b>입니다.
-            시장과 규격이 서로 다른 조합에 걸려 있으면 한 축이 무너져도 다른 축은 남습니다 —
+            시장과 규격이 서로 다른 조합에 걸려 있으면 한 축이 무너져도 다른 축은 남습니다 -
             현재 {byMarket[0].key}은 소형 리테일에, {byMarket[1].key}은 캐터링에 치우쳐 있어
             충격이 같은 지점에 겹치지는 않습니다.</>}
         >
@@ -175,7 +175,7 @@ export default function Market() {
           sub={`전체 ${exportMeta.buyerCount}곳. 매출 비중과 FCL당 단가.`}
           note={<>Top3가 <b>{pct(concentration.top3BuyerShare, 1)}</b>, 최대 바이어 하나가
             <b> {pct(concentration.topBuyerShare, 1)}</b>입니다. 바이어 HHI {num(concentration.buyerHHI, 0)}는
-            시장 HHI({num(concentration.marketHHI, 0)})보다 낮아 <b>바이어 분산이 시장 분산보다 낫습니다</b> —
+            시장 HHI({num(concentration.marketHHI, 0)})보다 낮아 <b>바이어 분산이 시장 분산보다 낫습니다</b> -
             거래처는 43곳으로 흩어져 있지만 그 43곳이 소수 시장에 몰려 있는 구조입니다.</>}
         >
           <div className="tw">
@@ -191,7 +191,7 @@ export default function Market() {
                     <td className="n">{num(b.fcl, 0)}</td>
                     <td className="n">{musd(b.amountUsd)}</td>
                     <td className="n">{pct(b.share, 1)}</td>
-                    <td className="n">{b.usdPerFcl ? (b.usdPerFcl / 1000).toFixed(1) : '—'}</td>
+                    <td className="n">{b.usdPerFcl ? (b.usdPerFcl / 1000).toFixed(1) : '-'}</td>
                   </tr>
                 ))}
               </tbody>
@@ -200,8 +200,8 @@ export default function Market() {
         </Card>
 
         <Card
-          title="단가 밴드 — 재가격 우선순위"
-          sub="물량 3 FCL 이상 바이어. FCL당 단가 오름차순 — 위쪽이 재가격 1순위."
+          title="단가 밴드 - 재가격 우선순위"
+          sub="물량 3 FCL 이상 바이어. FCL당 단가 오름차순 - 위쪽이 재가격 1순위."
           note={<>평균 {k1(n(totals.usdPerFcl))}/FCL 대비 밴드 폭이 넓습니다
             ({k1(buyerBand[0].usdPerFcl)} ~ {k1(buyerBand[buyerBand.length - 1].usdPerFcl)}).
             같은 공장에서 같은 제품이 나가는데 단가가 이만큼 벌어진다는 건
@@ -234,7 +234,7 @@ export default function Market() {
       {exportYoY && (
         <div className="grid g2">
           <Card
-            title={`시장 구성 — ${exportYoY.years.join('·')}년 대비`}
+            title={`시장 구성 - ${exportYoY.years.join('·')}년 대비`}
             sub="비중(구성비)은 기간 길이와 무관해 그대로 비교한다. 금액은 연환산해야 비교된다."
             note={<>가장 큰 변화는 <b>{exportYoY.markets[0].key} {pct(exportYoY.markets[0].priorShare, 1)}
               → {pct(exportYoY.markets[0].share, 1)}({p1(exportYoY.markets[0].deltaPp)}p)</b>입니다.
@@ -285,19 +285,19 @@ export default function Market() {
                   {exportYoY.buyers.map((b) => (
                     <tr key={b.key} className={Math.abs(b.deltaPp) >= 0.05 ? 'warn' : undefined}>
                       <td className="nowrap">{b.key}{b.isNew && <span className="tag" style={{ marginLeft: 6 }}>신규</span>}</td>
-                      <td className="n">{b.priorShare ? pct(b.priorShare, 1) : '—'}</td>
+                      <td className="n">{b.priorShare ? pct(b.priorShare, 1) : '-'}</td>
                       <td className="n">{pct(b.share, 1)}</td>
                       <td className={`n ${b.deltaPp >= 0 ? 'up' : 'down'}`}>{p1(b.deltaPp)}p</td>
-                      <td className="n">{b.usdPerFcl ? (b.usdPerFcl / 1000).toFixed(1) : '—'}</td>
+                      <td className="n">{b.usdPerFcl ? (b.usdPerFcl / 1000).toFixed(1) : '-'}</td>
                     </tr>
                   ))}
                   {exportYoY.gone.slice(0, 3).map((g) => (
                     <tr key={g.key} className="bad">
                       <td className="nowrap">{g.key} <span className="tag" style={{ marginLeft: 4 }}>이탈</span></td>
                       <td className="n">{pct(g.priorShare, 1)}</td>
-                      <td className="n">—</td>
+                      <td className="n">-</td>
                       <td className="n down">{p1(-g.priorShare)}p</td>
-                      <td className="n">—</td>
+                      <td className="n">-</td>
                     </tr>
                   ))}
                 </tbody>
@@ -310,12 +310,12 @@ export default function Market() {
       <SecHead>전체 시장 대비 우리 자리</SecHead>
       <div className="grid g2">
         <Card
-          title={`가나 점유율 — ${benchYear}년`}
+          title={`가나 점유율 - ${benchYear}년`}
           sub="해당국 참치캔 수입(HS 160414) 총액 중 가나發 비중. 무역통계 내부 값이라 신뢰도가 높다."
           note={<>가나는 {aggregateShare.markets}개 시장 수입 {musd(aggregateShare.marketUsd)} 중
             <b> {musd(aggregateShare.ghanaUsd)}({pct(aggregateShare.ghanaInMarket, 2)})</b>를 공급합니다.
             COSMO 연환산 실적({musd(aggregateShare.cosmoAnnualUsd)})을 대면 <b>가나 물량의 약
-            {' '}{pct(aggregateShare.cosmoInGhana, 0)}</b>가 COSMO 몫입니다 —
+            {' '}{pct(aggregateShare.cosmoInGhana, 0)}</b>가 COSMO 몫입니다 -
             가나에는 다른 참치캔 공장도 있으므로 이 비율이 곧 우리 위상입니다.</>}
         >
           <div className="tw">
@@ -331,7 +331,7 @@ export default function Market() {
                     <td className="n">{musd(g.marketValueUsd)}</td>
                     <td className="n">{musd(g.ghanaValueUsd)}</td>
                     <td className="n">{pct(g.shareValue, 2)}</td>
-                    <td className="n">{g.shareQty != null ? pct(g.shareQty, 2) : '—'}</td>
+                    <td className="n">{g.shareQty != null ? pct(g.shareQty, 2) : '-'}</td>
                   </tr>
                 ))}
               </tbody>
@@ -358,17 +358,17 @@ export default function Market() {
       <div className="grid g2">
         {competitors.slice(0, 4).map((c) => (
           <Card key={c.market}
-            title={`${c.market} — 공급국 Top${c.topN}`}
-            sub={`${benchYear}년 HS 160414 수입. 시장 평균 ${c.marketUsdKg ? kg2(c.marketUsdKg) : '—'}.`}
+            title={`${c.market} - 공급국 Top${c.topN}`}
+            sub={`${benchYear}년 HS 160414 수입. 시장 평균 ${c.marketUsdKg ? kg2(c.marketUsdKg) : '-'}.`}
             note={(() => {
               const gh = c.rows.find((r) => r.isGhana)
               const cheap = c.rows.filter((r) => r.usdPerKg != null && gh?.usdPerKg != null && r.usdPerKg < gh.usdPerKg)
               if (!gh) return <>이 시장의 공급국 {c.supplierCount}곳 집계에 가나가 잡히지 않았습니다.</>
               return (
                 <>가나는 <b>{c.supplierCount}개 공급국 중 {c.ghanaRank}위</b>,
-                  점유 <b>{pct(gh.share, 2)}</b>({musd(gh.valueUsd)}), 단가 {gh.usdPerKg != null ? kg2(gh.usdPerKg) : '—'}
+                  점유 <b>{pct(gh.share, 2)}</b>({musd(gh.valueUsd)}), 단가 {gh.usdPerKg != null ? kg2(gh.usdPerKg) : '-'}
                   {c.marketUsdKg != null && gh.usdPerKg != null &&
-                    <> — 시장 평균 대비 <b>{p1(gh.usdPerKg / c.marketUsdKg - 1)}</b></>}.
+                    <> - 시장 평균 대비 <b>{p1(gh.usdPerKg / c.marketUsdKg - 1)}</b></>}.
                   {c.ghanaOutsideTop && <> Top{c.topN} 밖이라 표 맨 아래에 따로 붙였습니다.</>}
                   {cheap.length > 0
                     ? <> 가나보다 싼 공급국이 <b>{cheap.length}곳</b>({cheap.slice(0, 3).map((r) => r.partner).join('·')})
@@ -390,10 +390,10 @@ export default function Market() {
                       <td className="n"><span className="rank">{r.rank}</span></td>
                       <td className="nowrap">{r.partner}</td>
                       <td className="n">{musd(r.valueUsd)}</td>
-                      <td className="n">{r.share != null ? pct(r.share, 2) : '—'}</td>
-                      <td className="n">{r.usdPerKg != null ? r.usdPerKg.toFixed(2) : '—'}</td>
+                      <td className="n">{r.share != null ? pct(r.share, 2) : '-'}</td>
+                      <td className="n">{r.usdPerKg != null ? r.usdPerKg.toFixed(2) : '-'}</td>
                       <td className="n">{r.usdPerKg != null && c.marketUsdKg
-                        ? p1(r.usdPerKg / c.marketUsdKg - 1) : '—'}</td>
+                        ? p1(r.usdPerKg / c.marketUsdKg - 1) : '-'}</td>
                     </tr>
                   ))}
                 </tbody>
@@ -421,7 +421,7 @@ export default function Market() {
                     <td>{m.key}</td>
                     <td className="n">{num(m.fcl, 0)}</td>
                     <td className="n">{pct(m.share, 1)}</td>
-                    <td className="n">{m.usdPerFcl ? (m.usdPerFcl / 1000).toFixed(1) : '—'}</td>
+                    <td className="n">{m.usdPerFcl ? (m.usdPerFcl / 1000).toFixed(1) : '-'}</td>
                   </tr>
                 ))}
               </tbody>
@@ -469,7 +469,7 @@ export default function Market() {
       </div>
 
       <div style={{ marginTop: 14 }}>
-        <Callout kind="warn" label="이 보드의 한계 — 읽기 전에 알아야 할 것">
+        <Callout kind="warn" label="이 보드의 한계 - 읽기 전에 알아야 할 것">
           <b>① 국가별 COSMO 점유율은 싣지 않았습니다.</b> 원장의 시장은 <b>양륙항</b> 기준이고 무역통계는
           <b> 신고 수입국</b> 기준입니다. Rotterdam·Antwerp로 양륙해 내륙으로 배송되는 물량 때문에
           국가 단위로 나누면 COSMO 물량이 가나 전체 물량을 넘는 곳이 생깁니다(실제로 4개 시장에서 100% 초과).

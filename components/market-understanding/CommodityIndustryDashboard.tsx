@@ -352,7 +352,7 @@ export default function CommodityIndustryDashboard({
     () =>
       spec.narratives.map((narrative) => ({
         key: narrative.key,
-        label: `${narrative.numeral} ${narrative.title.split(' — ')[0]}`,
+        label: `${narrative.numeral} ${narrative.title.split(' - ')[0]}`,
       })),
     [spec.narratives],
   );

@@ -39,7 +39,7 @@ function factsOf(
   return narratives.find((entry) => entry.key === key)?.facts ?? [];
 }
 
-describe('밸류체인 기업 — 데이터', () => {
+describe('밸류체인 기업 - 데이터', () => {
   it('참치 조업 선사에 한국 3사가 다 있다', () => {
     const names = TUNA.조업.rows.map((row) => row.회사);
     for (const name of ['동원산업', '사조산업', '신라교역']) {
@@ -92,7 +92,7 @@ describe('밸류체인 기업 — 데이터', () => {
   });
 });
 
-describe('해역별 선사 — 데이터', () => {
+describe('해역별 선사 - 데이터', () => {
   const ocean = getTunaOceanOperators();
 
   it('세 해역이 다 있고 기구·출처가 붙어 있다', () => {
@@ -110,7 +110,7 @@ describe('해역별 선사 — 데이터', () => {
     }
   });
 
-  it('회사 이름 정규화가 먹었다 — 한 회사가 여러 칸으로 갈리지 않는다', () => {
+  it('회사 이름 정규화가 먹었다 - 한 회사가 여러 칸으로 갈리지 않는다', () => {
     // 원본에 `Dongwon Industires`(오타)·뒤 공백 표기가 섞여 있다
     for (const area of ocean.한국선사해역._meta.해역목록) {
       const names = ocean.해역[area].한국선사.map((row) => row.선사);
@@ -135,7 +135,7 @@ describe('해역별 선사 — 데이터', () => {
     for (const area of ocean.한국선사해역._meta.해역목록) {
       for (const row of ocean.해역[area].한국선사) {
         if (row.선사 === '개인 소유') {
-          expect(row.원표기).toBe('(개인 소유자 — 실명 미기록)');
+          expect(row.원표기).toBe('(개인 소유자 - 실명 미기록)');
         }
       }
     }
@@ -170,7 +170,7 @@ describe('해역별 선사 — 데이터', () => {
   });
 });
 
-describe('해외 소매 — 확인 못 한 것을 확인 못 했다고 적었나', () => {
+describe('해외 소매 - 확인 못 한 것을 확인 못 했다고 적었나', () => {
   const overseas = getTunaCompanyData().해외소매;
 
   it('확인불가 줄이 지워지지 않았다', () => {
@@ -198,7 +198,7 @@ describe('해외 소매 — 확인 못 한 것을 확인 못 했다고 적었나
   });
 });
 
-describe('소매 단계 — 데이터', () => {
+describe('소매 단계 - 데이터', () => {
   const retail = getTunaCompanyData().소매;
 
   it('점유율 시계열이 4개 기간이고 범위가 온전하다', () => {
@@ -215,7 +215,7 @@ describe('소매 단계 — 데이터', () => {
   });
 });
 
-describe('밸류체인 기업 — 화면 노출', () => {
+describe('밸류체인 기업 - 화면 노출', () => {
   it('참치 차트에 선사 선단과 수출실적이 있다', () => {
     const titles = Object.values(CATCH_CHART_SLOTS)
       .flat()

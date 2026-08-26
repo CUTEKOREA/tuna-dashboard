@@ -13,14 +13,14 @@ const fallbackVesselDetails: Record<string, any[]> = {
 };
 
 const matrixData = [
-  { type: '참치 (원양선망)', company: '동원산업(14), 신라교역(6), 사조산업(5) 등 5개사', tonnage: '606 ~ 2,060톤', age: '20.0년', factor: '초저온(-60℃) 급속냉동, 삼대양 광역 조업', risk: '1척 300~500억 CAPEX 및 PNA 쿼터 규제', color: '#38bdf8', vessels: 27, revenue: '5,784억', perVessel: '214억/척', unitPrice: '1,910원/kg', insight: '27척(13.6%)이 전체 매출의 37.9%를 창출. 척당 214억 원 — 원양 최고 효율' },
+  { type: '참치 (원양선망)', company: '동원산업(14), 신라교역(6), 사조산업(5) 등 5개사', tonnage: '606 ~ 2,060톤', age: '20.0년', factor: '초저온(-60℃) 급속냉동, 삼대양 광역 조업', risk: '1척 300~500억 CAPEX 및 PNA 쿼터 규제', color: '#38bdf8', vessels: 27, revenue: '5,784억', perVessel: '214억/척', unitPrice: '1,910원/kg', insight: '27척(13.6%)이 전체 매출의 37.9%를 창출. 척당 214억 원 - 원양 최고 효율' },
   { type: '참치 (원양연승)', company: '사조산업(27), 동원계열(25), 신라교역(9) 등 14개사', tonnage: '199 ~ 488톤', age: '36.5년', factor: '횟감용 고급 참치(초저온) 어획', risk: '68%가 80년대 건조. 초고령화 + 선원난', color: '#60a5fa', vessels: 105, revenue: '3,134억', perVessel: '29.8억/척', unitPrice: '6,722원/kg', insight: '105척(53%)으로 최대 선단이나, 척당 매출은 선망의 1/7. M&A 최우선 타깃' },
-  { type: '명태 (북양트롤)', company: '한성기업(1), 사조오양(1), 남북수산(1)', tonnage: '1,703 ~ 5,549톤', age: '51.7년', factor: '대량 어획 + 선상 가공(F/V)', risk: '70년대 진수. 러시아 지정학 리스크', color: 'var(--color-success)', vessels: 3, revenue: '438억', perVessel: '146억/척', unitPrice: '1,512원/kg', insight: '평균 51.7년 — 원양산업 최고령. 3척이 2.9만 톤(척당 9,666톤) 물량' },
+  { type: '명태 (북양트롤)', company: '한성기업(1), 사조오양(1), 남북수산(1)', tonnage: '1,703 ~ 5,549톤', age: '51.7년', factor: '대량 어획 + 선상 가공(F/V)', risk: '70년대 진수. 러시아 지정학 리스크', color: 'var(--color-success)', vessels: 3, revenue: '438억', perVessel: '146억/척', unitPrice: '1,512원/kg', insight: '평균 51.7년 - 원양산업 최고령. 3척이 2.9만 톤(척당 9,666톤) 물량' },
   { type: '남빙양트롤 (크릴)', company: '동원산업 (1척 독점)', tonnage: '7,765톤 (초대형)', age: '36.0년', factor: '남극크릴 선상 가공 독점. 크릴오일 원료', risk: '단일 선박 리스크. 대체선 건조 시 1,000억+', color: '#fb7185', vessels: 1, revenue: '114억', perVessel: '114억/척', unitPrice: '753원/kg', insight: '단가 753원이나 크릴오일 가공 시 10만원+/kg. 원료→최종재 마진 133배' },
   { type: '대서양트롤', company: '아그네스(2), 정일산업(2), 사조오양(2) 등 7개사', tonnage: '276 ~ 3,012톤', age: '42.4년', factor: '포클랜드·서아프리카 대량 조업', risk: '극단적 양극화 (최신 3년 vs 최고령 56년)', color: '#a78bfa', vessels: 11, revenue: '2,074억', perVessel: '189억/척', unitPrice: '3,293원/kg', insight: '11척이 6.3만 톤 생산. 포클랜드 입어료만 879만 달러(120억)' },
   { type: '오징어 (채낚기)', company: '아그네스수산(6), 정일산업(4) 등 10개사', tonnage: '313 ~ 661톤', age: '38.5년', factor: '태평양/대서양 겸용 교차 조업', risk: '어획량 급감 + 중국 공해 대규모 진출', color: 'var(--color-warning)', vessels: 20, revenue: '3,995억', perVessel: '200억/척', unitPrice: '6,326원/kg', insight: '단가 6,326원은 명태의 4.2배. 척당 200억으로 선망에 버금가는 숨은 캐시카우' },
   { type: '꽁치봉수망 (겸업)', company: '동원해사랑(3), 정일산업(2) 등 13개사', tonnage: '281 ~ 1,037톤', age: '33.3년', factor: '집어등 야간 조업. 오징어 겸업 다수', risk: 'NPFC 쿼터 축소 + 선박 노후화', color: '#fde047', vessels: 18, revenue: '283억', perVessel: '15.7억/척', unitPrice: '4,822원/kg', insight: '13개사·18척으로 가장 영세. 척당 15.7억으로 유가 상승 시 가장 먼저 도태' },
-  { type: '저연승 (이빨고기)', company: '사조대림(2), 홍진실업(1), TNS(1)', tonnage: '423 ~ 684톤', age: '33.5년', factor: 'kg당 21,336원 — 원양 최고 단가 어종', risk: '전 세계 수십 척만 조업 가능한 초희소 쿼터', color: '#fcd34d', vessels: 4, revenue: '827억', perVessel: '207억/척', unitPrice: '21,336원/kg', insight: '4척이 827억. 단가가 명태의 14.1배, 가다랑어의 11.2배. 원양의 에르메스' },
+  { type: '저연승 (이빨고기)', company: '사조대림(2), 홍진실업(1), TNS(1)', tonnage: '423 ~ 684톤', age: '33.5년', factor: 'kg당 21,336원 - 원양 최고 단가 어종', risk: '전 세계 수십 척만 조업 가능한 초희소 쿼터', color: '#fcd34d', vessels: 4, revenue: '827억', perVessel: '207억/척', unitPrice: '21,336원/kg', insight: '4척이 827억. 단가가 명태의 14.1배, 가다랑어의 11.2배. 원양의 에르메스' },
   { type: '통발·저연승 겸업', company: '정일산업(3), TNS(3), 홍진실업(2), 신지수산(1)', tonnage: '60 ~ 836톤', age: '32.8년', factor: '통발+저연승 겸업 조업 유연성', risk: '특수 수역 접근 제한 + 선대 노후화', color: '#f472b6', vessels: 9, revenue: '53억', perVessel: '5.9억/척', unitPrice: '6,443원/kg', insight: '저연승 4척과 합치면 이빨고기 선단 13척이 초고수익 틈새를 지배' }
 ];
 
@@ -116,7 +116,7 @@ export default function FleetStrategyMatrix() {
             <p style={{ color: 'rgba(255,255,255,0.6)', fontSize: '0.85rem', margin: '4px 0 0 0' }}>
               {hasRoster
                 ? `상세 명부 ${details.length}척 · ${companies.length}개사${avgTonnage ? ` · 평균톤수 ${avgTonnage}톤` : ''}`
-                : '상세 선박 명부 미수집 — 아래 지표는 2025 원양산업 통계연보 집계 기준'}
+                : '상세 선박 명부 미수집 - 아래 지표는 2025 원양산업 통계연보 집계 기준'}
             </p>
           </div>
         </div>
@@ -517,12 +517,12 @@ export default function FleetStrategyMatrix() {
       {/* 4. Strategic Insight Widgets — 놀라운 인사이트 3종 */}
       <div style={{ marginBottom: '40px' }}>
         <h4 style={{ display: 'flex', alignItems: 'center', gap: '8px', color: 'var(--w-amber-400)', marginBottom: '20px', fontSize: '1.2rem', fontWeight: 700 }}>
-          <TrendingUp size={20} /> 전략적 인사이트 — "이 데이터를 보면 놀랍습니다"
+          <TrendingUp size={20} /> 전략적 인사이트 - "이 데이터를 보면 놀랍습니다"
         </h4>
 
         {/* Insight 1: 척당 매출 랭킹 */}
         <div style={{ background: 'rgba(0,0,0,0.2)', border: '1px solid rgba(140,170,255,0.10)', borderRadius: '12px', padding: '24px', marginBottom: '20px' }}>
-          <h5 style={{ color: 'var(--w-emerald-400)', marginBottom: '4px', fontSize: '1rem' }}>📊 척당 매출(Revenue/Vessel) 랭킹 — "척수가 아닌 효율이 승부"</h5>
+          <h5 style={{ color: 'var(--w-emerald-400)', marginBottom: '4px', fontSize: '1rem' }}>📊 척당 매출(Revenue/Vessel) 랭킹 - "척수가 아닌 효율이 승부"</h5>
           <p style={{ color: 'rgba(255,255,255,0.5)', fontSize: '0.8rem', marginBottom: '16px' }}>같은 1척이라도 선망은 214억, 꽁치는 15.7억. 14배 격차의 숨겨진 구조</p>
           <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
             {[
@@ -554,7 +554,7 @@ export default function FleetStrategyMatrix() {
 
         {/* Insight 2: 재벌 지배력 분석 */}
         <div style={{ background: 'rgba(0,0,0,0.2)', border: '1px solid rgba(140,170,255,0.10)', borderRadius: '12px', padding: '24px', marginBottom: '20px' }}>
-          <h5 style={{ color: '#60a5fa', marginBottom: '4px', fontSize: '1rem' }}>🏢 3대 그룹 지배력 분석 — "198척 중 103척(52%)을 3개 그룹이 지배"</h5>
+          <h5 style={{ color: '#60a5fa', marginBottom: '4px', fontSize: '1rem' }}>🏢 3대 그룹 지배력 분석 - "198척 중 103척(52%)을 3개 그룹이 지배"</h5>
           <p style={{ color: 'rgba(255,255,255,0.5)', fontSize: '0.8rem', marginBottom: '16px' }}>동원·사조 각 44척, 신라 15척. 나머지 35개사가 95척을 영세 분할</p>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '16px' }}>
             {[
@@ -578,14 +578,14 @@ export default function FleetStrategyMatrix() {
             ))}
           </div>
           <div style={{ marginTop: '12px', padding: '10px', background: 'rgba(96, 165, 250, 0.05)', borderLeft: '3px solid #60a5fa', borderRadius: '4px' }}>
-            <span style={{ fontSize: '0.8rem', color: '#93c5fd' }}><b>핵심:</b> 동원·사조가 각각 44척(22.2%)으로 <b>강한 균형 대치</b>. 신라(15척)는 양강 사이에서 "Quality over Quantity" — 척당 마진 밀도로 승부해야 하는 전략적 포지션.</span>
+            <span style={{ fontSize: '0.8rem', color: '#93c5fd' }}><b>핵심:</b> 동원·사조가 각각 44척(22.2%)으로 <b>강한 균형 대치</b>. 신라(15척)는 양강 사이에서 "Quality over Quantity" - 척당 마진 밀도로 승부해야 하는 전략적 포지션.</span>
           </div>
         </div>
 
         {/* Insight 3: 단가 배수 비교 */}
         <div style={{ background: 'rgba(0,0,0,0.2)', border: '1px solid rgba(140,170,255,0.10)', borderRadius: '12px', padding: '24px', marginBottom: '20px' }}>
-          <h5 style={{ color: '#a78bfa', marginBottom: '4px', fontSize: '1rem' }}>💎 어종별 단가 배수(Price Multiplier) — "같은 바다에서 14배 차이"</h5>
-          <p style={{ color: 'rgba(255,255,255,0.5)', fontSize: '0.8rem', marginBottom: '16px' }}>가다랑어 1,910원/kg 대비 이빨고기 21,336원/kg — 동일 해역에서 11.2배 마진 격차</p>
+          <h5 style={{ color: '#a78bfa', marginBottom: '4px', fontSize: '1rem' }}>💎 어종별 단가 배수(Price Multiplier) - "같은 바다에서 14배 차이"</h5>
+          <p style={{ color: 'rgba(255,255,255,0.5)', fontSize: '0.8rem', marginBottom: '16px' }}>가다랑어 1,910원/kg 대비 이빨고기 21,336원/kg - 동일 해역에서 11.2배 마진 격차</p>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(140px, 1fr))', gap: '12px' }}>
             {[
               { species: '이빨고기', price: 21336, mult: '14.1x', emoji: '💎', vs: 'vs 명태' },
@@ -617,7 +617,7 @@ export default function FleetStrategyMatrix() {
       <div style={{ marginTop: '20px', display: 'flex', flexDirection: 'column', gap: '20px' }}>
         <TakeawayBox
           source="2025 원양산업 통계연보 (업종별 생산금액 및 단가 종합 분석)"
-          situation="2024년 총 1.53조 원(198척·38개사) 중 선망 27척(13.6%)이 5,784억(37.9%)을 창출하여 척당 214억으로 1위. 반면 오징어 채낚기 20척은 3,995억(척당 200억)으로 숨은 캐시카우이며, 이빨고기 저연승 4척은 827억(척당 207억, 단가 21,336원/kg)으로 원양의 에르메스. 연승 105척은 53%의 선대를 보유하나 척당 매출은 29.8억에 불과 — 선망의 1/7 수준."
+          situation="2024년 총 1.53조 원(198척·38개사) 중 선망 27척(13.6%)이 5,784억(37.9%)을 창출하여 척당 214억으로 1위. 반면 오징어 채낚기 20척은 3,995억(척당 200억)으로 숨은 캐시카우이며, 이빨고기 저연승 4척은 827억(척당 207억, 단가 21,336원/kg)으로 원양의 에르메스. 연승 105척은 53%의 선대를 보유하나 척당 매출은 29.8억에 불과 - 선망의 1/7 수준."
           actionPlan="[전략적 포트폴리오 재편] 신라교역(15척)은 선망 6척(22%)으로 규모의 경제를 수성하면서, 연승 105척의 초고령화(평균 36.5년, 68% 80년대 건조)로 발생할 스크랩 M&A 기회를 포착해야 합니다. 이빨고기(21,336원/kg) + 오징어(6,326원/kg) 등 고단가 쿼터 확보가 ROIC 극대화의 핵심. 동원(44척)·사조(44척) 양강 체제에서 15척으로 차별화하려면 '마진 밀도(Revenue/Vessel)' 최적화 전략이 필수."
         />
         

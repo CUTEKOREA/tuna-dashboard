@@ -847,7 +847,7 @@ export function StockStatusTable({ rows }: { rows: StockStatusRow[] }) {
     <div className={styles.factWrap}>
       <table className={styles.factTable}>
         <caption className={styles.factCaption}>
-          해역을 관리하는 기구가 평가한 계군 상태다. 평가연도를 함께 적었다 — 오늘 상태가 아니라
+          해역을 관리하는 기구가 평가한 계군 상태다. 평가연도를 함께 적었다 - 오늘 상태가 아니라
           그 해에 그렇게 평가했다는 뜻이다.
         </caption>
         <thead>
@@ -898,7 +898,7 @@ export function CertificationTable({
     <div className={styles.factWrap}>
       <table className={styles.factTable}>
         <caption className={styles.factCaption}>
-          가공장이 통과해야 하는 제도들. 아래로 갈수록 요구가 넓어진다 — 위생 절차가 바닥이고,
+          가공장이 통과해야 하는 제도들. 아래로 갈수록 요구가 넓어진다 - 위생 절차가 바닥이고,
           유통사 규격과 사회적 책임이 그 위에 얹힌다.
         </caption>
         <thead>

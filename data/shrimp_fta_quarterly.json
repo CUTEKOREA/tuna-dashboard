@@ -1,11 +1,11 @@
 {
-  "source": "KMI 한국해양수산개발원 — FTA 체결국 수산물 수입동향 2021 Q4 ~ 2026 Q1 (21개 분기 원본 PDF)",
+  "source": "KMI 한국해양수산개발원 - FTA 체결국 수산물 수입동향 2021 Q4 ~ 2026 Q1 (21개 분기 원본 PDF)",
   "indexPath": "agri_data/공통(General)/kmi_fta_quarterly/INDEX.md",
   "extractedAt": "2026-05-27",
   "yearly": [
     { "year": "2020", "volume": 68.5, "value": 549.0, "note": "팬데믹 직전 기준" },
     { "year": "2021", "volume": 72.6, "value": 620.0, "note": "리오프닝 +6.0%/+12.9%" },
-    { "year": "2022", "volume": 83.4, "value": 741.9, "note": "가치 정점 — 단가 폭등 사이클" },
+    { "year": "2022", "volume": 83.4, "value": 741.9, "note": "가치 정점 - 단가 폭등 사이클" },
     { "year": "2023", "volume": 78.2, "value": 632.5, "note": "베트남 단가 폭락 −14.8%" },
     { "year": "2024", "volume": 84.8, "value": 635.9, "note": "물량 회복 +8.5%, 가치 정체" },
     { "year": "2025", "volume": 96.1, "value": 761.1, "note": "물량 정점 +5.0%, 가치 +10.6% 동반" }

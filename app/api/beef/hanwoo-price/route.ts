@@ -138,13 +138,13 @@ export async function GET() {
         partialLive = !(seriesLive.usImport && seriesLive.auImport);
         source = `KAMIS API (한우 4304/27 LIVE, kg 환산, ${quarters.length} quarters${importedHasData ? ' + 미국산 LIVE' : ''}, 수입육 시리즈 ${importedHasData ? '부분' : ''}미연동, 1d 캐시)`;
       } else {
-        source = 'KAMIS 한우 응답 부족 — 정적 미러';
+        source = 'KAMIS 한우 응답 부족 - 정적 미러';
       }
     } catch {
-      source = 'KAMIS API 호출 실패 — 정적 미러';
+      source = 'KAMIS API 호출 실패 - 정적 미러';
     }
   } else {
-    source = 'KAMIS_API_KEY 미설정 — 정적 미러';
+    source = 'KAMIS_API_KEY 미설정 - 정적 미러';
   }
 
   return NextResponse.json({

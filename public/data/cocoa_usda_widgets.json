@@ -9,7 +9,7 @@
     {
       "id": "w_civ_production_5y",
       "title": "코트디부아르 코코아 생산 5년",
-      "subtitle": "USDA GAIN IV2025-0001·0015 — 글로벌 1위",
+      "subtitle": "USDA GAIN IV2025-0001·0015 - 글로벌 1위",
       "cardDesc": "MY 2020/21~2024/25 코트디부아르 코코아 생산량. CSSVD 질병으로 24% 급감 후 회복.",
       "chartType": "Composed",
       "pillar": "S1",
@@ -37,7 +37,7 @@
     {
       "id": "w_ghana_production_recovery",
       "title": "가나 코코아 생산 회복",
-      "subtitle": "USDA GAIN GH2025-0008·0048 — +25% 회복",
+      "subtitle": "USDA GAIN GH2025-0008·0048 - +25% 회복",
       "cardDesc": "가나 MY 2020/21 1.04 MMT 최고 → 23/24 531K(-49%) 폭락 후 25/26 750K(+25%) 회복 전망(USDA GAIN 2025 기준 작성).",
       "chartType": "Bar",
       "pillar": "S1",
@@ -54,7 +54,7 @@
         { "year": "2025/26 전망", "production_kt": 750 }
       ],
       "unit": "천MT",
-      "sit": "가나(글로벌 2위) 생산은 2020/21 1,040K MT 최고치 → 2023/24 531K(-49%)로 반토막. 2025/26 750K (+25%) 회복 전망(USDA GAIN 2025 당시 전망) — 기상 개선·정부 지원·나무 관리. 코트디부아르와 동반 회복기 진입.",
+      "sit": "가나(글로벌 2위) 생산은 2020/21 1,040K MT 최고치 → 2023/24 531K(-49%)로 반토막. 2025/26 750K (+25%) 회복 전망(USDA GAIN 2025 당시 전망) - 기상 개선·정부 지원·나무 관리. 코트디부아르와 동반 회복기 진입.",
       "strat": "가나·코트디부아르 동반 회복 = 2026 하반기 코코아 가격 안정 가능성. 단기 헤지 비중 유지 + 직거래 계약 비중 50% 이상 확보. COCOBOD 산지가 $3,100/MT 모니터링.",
       "source": "USDA GAIN GH2025-0008·GH2025-0048",
       "telemetry": "SYNCED",
@@ -63,7 +63,7 @@
     {
       "id": "w_civ_domestic_processing",
       "title": "코트디부아르 국내 가공률 정책",
-      "subtitle": "USDA GAIN IV2025-0015 — 2030 목표 100%",
+      "subtitle": "USDA GAIN IV2025-0015 - 2030 목표 100%",
       "cardDesc": "코트디부아르 정부 코코아 부가가치 정책: 현재 42% → 2027/28 50% → 2030 100% 국내 가공.",
       "chartType": "Bar",
       "pillar": "S2",
@@ -87,7 +87,7 @@
     {
       "id": "w_cocoa_international_price_8y",
       "title": "코코아 국제·국내 가격 8년",
-      "subtitle": "USDA GAIN CO2025-0033 — $2.3 → $9.0/kg (+291%)",
+      "subtitle": "USDA GAIN CO2025-0033 - $2.3 → $9.0/kg (+291%)",
       "cardDesc": "국제 vs 콜롬비아 국내 카카오 가격 8년 시계열 (2018~2025E·2025E는 USDA 2025 당시 추정치). 2024-12 사상 최고 $10,092/MT.",
       "chartType": "Composed",
       "pillar": "S4",
@@ -118,7 +118,7 @@
     {
       "id": "w_ghana_us_export_surge",
       "title": "가나 대미 코코아 수출 +318%",
-      "subtitle": "USDA GAIN GH2025-0048 — CY2025 $5.8억",
+      "subtitle": "USDA GAIN GH2025-0048 - CY2025 $5.8억",
       "cardDesc": "가나의 미국향 코코아 수출이 7개월만에 4.2배 급증(CY2024 연간 vs CY2025 1-7월). 미국 무역적자 $5.2억 핵심.",
       "chartType": "Bar",
       "pillar": "S4",

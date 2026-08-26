@@ -50,7 +50,7 @@ export function InsightKmiBluefinYearly() {
       icon={TrendingDown}
       iconColor="#38bdf8"
       pillar="S4"
-      cardDesc="KMI FTA 체결국 수산물 수입동향 분기보고서 — 참다랑어 연도별 수입량(좌, 톤) + 단가(우, USD/kg). 2026E는 Q1 실적 연환산."
+      cardDesc="KMI FTA 체결국 수산물 수입동향 분기보고서 - 참다랑어 연도별 수입량(좌, 톤) + 단가(우, USD/kg). 2026E는 Q1 실적 연환산."
       telemetry={{ status: 'STATIC', syncDate: '2026 Q1 기준' }}
       termTooltip={{
         term: 'V자 반등',
@@ -111,18 +111,18 @@ export function InsightKmiBluefinYearly() {
             </p>
             <ol style={{ margin: '4px 0 0 18px', padding: 0 }}>
               <li style={{ marginBottom: 8 }}>
-                <strong>단기 (90일)</strong>: 2026년 단가 $25.5/kg는 V자 반등 후 상승 진입 — 지금이 <strong>2026~2027 물량 락인 시점</strong>. 튀르키예·모로코 산 우선, 3분기 물량을 인수의무 계약(take-or-pay)으로 확보.
+                <strong>단기 (90일)</strong>: 2026년 단가 $25.5/kg는 V자 반등 후 상승 진입 - 지금이 <strong>2026~2027 물량 락인 시점</strong>. 튀르키예·모로코 산 우선, 3분기 물량을 인수의무 계약(take-or-pay)으로 확보.
               </li>
               <li style={{ marginBottom: 8 }}>
                 <strong>중기 (12~24개월)</strong>: 단가 변동성 헤지로 <strong>국내 최초 참다랑어 선물·옵션 장외 데스크</strong> 신라교역 내 신설. 방콕 가다랑어 기준가처럼 KMI 분기 데이터를 자체 가격지수로 발행해 시장 기준점 선점.
               </li>
               <li>
-                <strong>장기 (3~5년)</strong>: 통영·욕지 태평양 참다랑어(PBF) 양식 설비 확장 — 2026 Q1 국내 생산이 <strong>+667%(15→114톤)</strong> 폭증 신호. 한국이 일본·호주 의존도를 줄이고 자체 공급 25%까지 끌어올리면 마진 +800bp 흡수.
+                <strong>장기 (3~5년)</strong>: 통영·욕지 태평양 참다랑어(PBF) 양식 설비 확장 - 2026 Q1 국내 생산이 <strong>+667%(15→114톤)</strong> 폭증 신호. 한국이 일본·호주 의존도를 줄이고 자체 공급 25%까지 끌어올리면 마진 +800bp 흡수.
               </li>
             </ol>
           </div>
         ),
-        source: 'KMI 한국해양수산개발원 — FTA 체결국 수산물 수입동향 (2021 Q1~2026 Q1)',
+        source: 'KMI 한국해양수산개발원 - FTA 체결국 수산물 수입동향 (2021 Q1~2026 Q1)',
       }}
     />
   );
@@ -143,11 +143,11 @@ const supplyShiftData = [
 export function InsightKmiBluefinSupplyShift() {
   return (
     <WidgetCard
-      title="공급국 지각변동 — EU → 튀르키예·모로코"
+      title="공급국 지각변동 - EU → 튀르키예·모로코"
       icon={Globe2}
       iconColor="#0e7490"
       pillar="S4"
-      cardDesc="참다랑어 수입 점유율 2024 vs 2025 비교 — 단위 (%, 수입량 기준). EU 3국이 잃은 13.7%p를 튀르키예·모로코가 21.4%p 흡수."
+      cardDesc="참다랑어 수입 점유율 2024 vs 2025 비교 - 단위 (%, 수입량 기준). EU 3국이 잃은 13.7%p를 튀르키예·모로코가 21.4%p 흡수."
       telemetry={{ status: 'STATIC', syncDate: '2025 Q4 누적' }}
       termTooltip={{
         term: '지각변동',
@@ -191,7 +191,7 @@ export function InsightKmiBluefinSupplyShift() {
               한국 참다랑어 수입의 <strong>공급국 구조가 1년 만에 재편</strong>됐습니다. 2024년까지 EU(스페인·프랑스·이탈리아 합산 42.8%)가 주력 공급원이었으나, 2025년 <strong>튀르키예 33.9% + 모로코 18.7% = 52.6%</strong>로 두 신흥국이 EU를 추월.
             </p>
             <p>
-              증가율은 더 극적: <strong>튀르키예 +135.5% / 모로코 +102.7%</strong> (전년 대비 물량). 동시에 EU 3국은 합산 -32%. <strong>대체가 아닌 가격 우위 잠식</strong>입니다 — 튀르키예 산 냉동 피레트 단가 $21.2/kg vs EU 산 $23.3/kg로 EU 산이 10%+ 비싸짐.
+              증가율은 더 극적: <strong>튀르키예 +135.5% / 모로코 +102.7%</strong> (전년 대비 물량). 동시에 EU 3국은 합산 -32%. <strong>대체가 아닌 가격 우위 잠식</strong>입니다 - 튀르키예 산 냉동 피레트 단가 $21.2/kg vs EU 산 $23.3/kg로 EU 산이 10%+ 비싸짐.
             </p>
             <p>
               구조적 배경: ① ICCAT 동지중해 TAC 배정에서 튀르키예 쿼터 신규 확대(2024년 1,022톤 → 2025년 2,470톤), ② 모로코는 축양(ranching) 설비 신증설로 출하 사이클 확보, ③ EU 산은 자국 사시미 내수(스페인·프랑스 외식) 우선 공급으로 한국향 가용량 축소.
@@ -216,7 +216,7 @@ export function InsightKmiBluefinSupplyShift() {
             </ol>
           </div>
         ),
-        source: 'KMI 한국해양수산개발원 — FTA 체결국 수산물 수입동향 (2024 Q4, 2025 Q4 누적)',
+        source: 'KMI 한국해양수산개발원 - FTA 체결국 수산물 수입동향 (2024 Q4, 2025 Q4 누적)',
       }}
     />
   );
@@ -236,7 +236,7 @@ const q1SignalData = [
 export function InsightKmiBluefin2026Signal() {
   return (
     <WidgetCard
-      title="2026 Q1 시그널 — 프랑스 폭증·국내 양식 발진"
+      title="2026 Q1 시그널 - 프랑스 폭증·국내 양식 발진"
       icon={Zap}
       iconColor="#ef4444"
       pillar="S4"
@@ -244,7 +244,7 @@ export function InsightKmiBluefin2026Signal() {
       telemetry={{ status: 'STATIC', syncDate: '2026 Q1 (1~3월)' }}
       termTooltip={{
         term: 'Q1 시그널',
-        description: '한 분기 변화가 직전 연도 트렌드를 깨는 비정상 신호. 2026 Q1은 (1) 프랑스 +240% — EU 비중 회복 가능성, (2) 국내 양식 +667% — 한국 태평양 참다랑어(PBF) 양식 산업 발진, 두 가지가 동시 발생.',
+        description: '한 분기 변화가 직전 연도 트렌드를 깨는 비정상 신호. 2026 Q1은 (1) 프랑스 +240% - EU 비중 회복 가능성, (2) 국내 양식 +667% - 한국 태평양 참다랑어(PBF) 양식 산업 발진, 두 가지가 동시 발생.',
       }}
       kpiPanel={[
         {
@@ -299,7 +299,7 @@ export function InsightKmiBluefin2026Signal() {
                 <strong>단기 (즉시)</strong>: 프랑스 +240% 폭증이 1회성 vs 트렌드인지 <strong>2026 Q2 데이터까지 60일 모니터링 KPI 설정</strong>. 1회성이면 EU 도매가 인하 베팅, 트렌드면 EU 직거래 라인 재가동.
               </li>
               <li style={{ marginBottom: 8 }}>
-                <strong>중기 (6~12개월)</strong>: 국내 양식 +667% 검증 — 통영·욕지 태평양 참다랑어(PBF) 양식 본격 출하 시 <strong>신라교역의 "국내산 사시미용 참다랑어" 프리미엄 채널 신설</strong>. 일본산 의존 호텔·고급 외식(롯데호텔·신라호텔 등)에 단독 직거래 제안.
+                <strong>중기 (6~12개월)</strong>: 국내 양식 +667% 검증 - 통영·욕지 태평양 참다랑어(PBF) 양식 본격 출하 시 <strong>신라교역의 "국내산 사시미용 참다랑어" 프리미엄 채널 신설</strong>. 일본산 의존 호텔·고급 외식(롯데호텔·신라호텔 등)에 단독 직거래 제안.
               </li>
               <li>
                 <strong>장기 (3년)</strong>: 한국이 2030년 태평양 참다랑어(PBF) 양식 자급률 25% 도달 시 <strong>일본·호주·튀르키예·모로코 4국 의존 구조 → 자급 + 1국(튀르키예) 단일 의존으로 단순화</strong>. 신라교역은 통영·욕지 양식사 인수 후 일본 사시미 시장 역수출(업계추정 1인당 소비 0.78kg 수준 활용).
@@ -307,7 +307,7 @@ export function InsightKmiBluefin2026Signal() {
             </ol>
           </div>
         ),
-        source: 'KMI 한국해양수산개발원 — FTA 체결국 수산물 수입동향 (2026 Q1)',
+        source: 'KMI 한국해양수산개발원 - FTA 체결국 수산물 수입동향 (2026 Q1)',
       }}
     />
   );

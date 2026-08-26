@@ -92,7 +92,7 @@ export default function SalmonForecastSimulator() {
         'NOK 강세 지속 → 노르웨이산 가격 상승 압력',
         '한국 연어 소비 증가 추세',
       ],
-      basis: '자체 추정 시나리오(illustrative) — 실측 모델 산출 아님',
+      basis: '자체 추정 시나리오(illustrative) - 실측 모델 산출 아님',
     });
 
     setLoading(false);
@@ -256,7 +256,7 @@ export default function SalmonForecastSimulator() {
       takeaway={{
         situation: `<div>
 <p>착지원가 시뮬레이터는 산지·환율·운임·관세 4개 변수를 결합해 최종 매입원가를 산출하는 도구입니다.</p>
-<p>국가별 비교: <strong>${selected.flag} ${selected.label} — FOB $${selected.fobDefault}/kg, 총 착지원가 ${totalKRW}</strong>.${fc} <strong>칠레·노르웨이 FTA 양허 0% 관세 면제 vs 호주·캐나다·영국 10% 관세 누적</strong>. 3개월 전망 수치는 자체 추정 시나리오(illustrative)입니다.</p>
+<p>국가별 비교: <strong>${selected.flag} ${selected.label} - FOB $${selected.fobDefault}/kg, 총 착지원가 ${totalKRW}</strong>.${fc} <strong>칠레·노르웨이 FTA 양허 0% 관세 면제 vs 호주·캐나다·영국 10% 관세 누적</strong>. 3개월 전망 수치는 자체 추정 시나리오(illustrative)입니다.</p>
 </div>`,
         actionPlan: `<div>
 <p><strong>활용</strong>: 시뮬레이터는 산지·환율·관세 변화에 따른 매입 시점 의사결정 보조 도구.</p>

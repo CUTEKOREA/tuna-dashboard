@@ -104,7 +104,7 @@ const SPEC: CommoditySpec = {
   key: 'pollock',
   title: '명태',
   subtitle:
-    '명태 산업 해부 · 잡지 않고 먹는 생선 — 자원·원양 할당·수입 구성·가공·값과 재고 5단계와 그것을 관통하는 세 장부의 문제',
+    '명태 산업 해부 · 잡지 않고 먹는 생선 - 자원·원양 할당·수입 구성·가공·값과 재고 5단계와 그것을 관통하는 세 장부의 문제',
   accent: POLLOCK_ACCENT,
   primaryKpi: {
     label: '명태 전용 세번 수입액',

@@ -32,11 +32,11 @@ const vmiLockData = [
 export function InsightTimeGapArbitrage() {
   return (
     <WidgetCard
-      title="Insight A. 타임갭 차익거래 — 브라질 HPAI 전환 윈도우"
+      title="Insight A. 타임갭 차익거래 - 브라질 HPAI 전환 윈도우"
       icon={Timer}
       iconColor="#ef4444"
       pillar="S4"
-      cardDesc="브라질 HPAI 수입금지(5~7월) 기간 국내 도매가 +10% 폭등 — 6~12개월 타임갭이 태국산 전환의 핵심 차익거래 윈도우"
+      cardDesc="브라질 HPAI 수입금지(5~7월) 기간 국내 도매가 +10% 폭등 - 6~12개월 타임갭이 태국산 전환의 핵심 차익거래 윈도우"
       telemetry={{ status: 'STATIC', syncDate: '2026-05-21' }}
       chartHeight={320}
       chart={
@@ -68,7 +68,7 @@ export function InsightTimeGapArbitrage() {
 </div>`,
         actionPlan: `<div>
 <p><strong>재정의</strong>: HPAI 수입금지는 원가 위협이 아닌 <strong>"6~12개월 타임갭 차익거래 윈도우"</strong>. 브라질 HPAI 사이클은 매년 반복.</p>
-<p><strong>3단계</strong>: ① GFPT/Betagro 고정가 장기계약 즉시 체결 — Q1 저율관세할당(TRQ) 0% 쿼터 선점 ② 복날 3개월 전 냉동창고 비축 → 공급부족 시 B2B 방출 20~30% 마진 ③ 바이어 설득 기준을 "kg당 단가" → "1인분당 총이용원가"로 전환 — 명목가 비싸도 실질가 동등 입증.</p>
+<p><strong>3단계</strong>: ① GFPT/Betagro 고정가 장기계약 즉시 체결 - Q1 저율관세할당(TRQ) 0% 쿼터 선점 ② 복날 3개월 전 냉동창고 비축 → 공급부족 시 B2B 방출 20~30% 마진 ③ 바이어 설득 기준을 "kg당 단가" → "1인분당 총이용원가"로 전환 - 명목가 비싸도 실질가 동등 입증.</p>
 </div>`,
         source: 'KAMIS 육계 도매가(2025.11) · KCS HS 0207 수입단가 (브라질 0=수입금지)',
       }}
@@ -79,7 +79,7 @@ export function InsightTimeGapArbitrage() {
 export function InsightChannelMatrix() {
   return (
     <WidgetCard
-      title="Insight B. 유통채널별 수익 매트릭스 — 4대 채널 공략 서열"
+      title="Insight B. 유통채널별 수익 매트릭스 - 4대 채널 공략 서열"
       icon={ShoppingCart}
       iconColor="#10b981"
       pillar="S4"
@@ -113,7 +113,7 @@ export function InsightChannelMatrix() {
 </div>`,
         actionPlan: `<div>
 <p><strong>재정의</strong>: 태국산은 단순 원자재가 아닌 <strong>"정밀 가공 역량 + 결품 없는 공급 안정성을 동시 판매하는 이중 가치 제품"</strong>.</p>
-<p><strong>3단계</strong>: ① 프랜차이즈 B2B(맘스터치·BHC·교촌) 순살 장기계약 — 1순위 자원 배분 ② 편의점 HMR(샐러드치킨·꼬치) — 캐시카우 마진 35% 확보 ③ 식자재마트는 물량 기반 채널 (마진 낮으나 가동률 확보) — 대형마트 신선코너는 진입 포기.</p>
+<p><strong>3단계</strong>: ① 프랜차이즈 B2B(맘스터치·BHC·교촌) 순살 장기계약 - 1순위 자원 배분 ② 편의점 HMR(샐러드치킨·꼬치) - 캐시카우 마진 35% 확보 ③ 식자재마트는 물량 기반 채널 (마진 낮으나 가동률 확보) - 대형마트 신선코너는 진입 포기.</p>
 </div>`,
         source: '업계추정(KAMIS·KCS HS0207 참조) · Thai DLD · CP Foods IR 2023',
       }}
@@ -124,7 +124,7 @@ export function InsightChannelMatrix() {
 export function InsightVMILockin() {
   return (
     <WidgetCard
-      title="Insight C. VMI 락인 — 공급 안정성 판매 전략"
+      title="Insight C. VMI 락인 - 공급 안정성 판매 전략"
       icon={Warehouse}
       iconColor="#3b82f6"
       pillar="S3"
@@ -155,12 +155,12 @@ export function InsightVMILockin() {
       ]}
       takeaway={{
         situation: `<div>
-<p>"VMI(벤더재고관리)"란 공급사가 바이어 측 창고 재고를 자체 관리하고 사용한 만큼만 매월 정산하는 공급망 모델. 바이어 입장에서는 결품 제로 + 운전자본 부담 제로 — 한 번 도입하면 공급사 교체 비용이 천문학적.</p>
-<p>자체추정(illustrative): <strong>초기 도입 재계약률 45% → 24개월+ 95% (공급사 종속 완성). 마진율도 8% → 28%로 3.5배 개선 — 시간이 공급사에게 일방적 유리한 구조</strong>. 한국 프랜차이즈 본사의 결품 무관용 문화가 VMI에 최적 조건.</p>
+<p>"VMI(벤더재고관리)"란 공급사가 바이어 측 창고 재고를 자체 관리하고 사용한 만큼만 매월 정산하는 공급망 모델. 바이어 입장에서는 결품 제로 + 운전자본 부담 제로 - 한 번 도입하면 공급사 교체 비용이 천문학적.</p>
+<p>자체추정(illustrative): <strong>초기 도입 재계약률 45% → 24개월+ 95% (공급사 종속 완성). 마진율도 8% → 28%로 3.5배 개선 - 시간이 공급사에게 일방적 유리한 구조</strong>. 한국 프랜차이즈 본사의 결품 무관용 문화가 VMI에 최적 조건.</p>
 </div>`,
         actionPlan: `<div>
 <p><strong>재정의</strong>: VMI는 "납품 방식"이 아닌 <strong>"바이어 공급망 핵심에 공급사를 영구 결합시키는 종속화 수단"</strong>. 한 번 깊이 통합되면 가격 협상력은 공급사 손에.</p>
-<p><strong>3단계</strong>: ① 냉동창고 설비투자 → "가공육 환매조건부" 금융 모델 구축 — 회계상 부외 처리 가능 ② 프랜차이즈 본사에 "주방 로스 절감 + 인건비 절감" 정량 수치로 ROI 제안 ③ 24개월 종속 완성 후 마진율 8% → 28% 3.5배 — "고기를 파는 게 아니라 공급 보증을 판다" 패러다임 전환.</p>
+<p><strong>3단계</strong>: ① 냉동창고 설비투자 → "가공육 환매조건부" 금융 모델 구축 - 회계상 부외 처리 가능 ② 프랜차이즈 본사에 "주방 로스 절감 + 인건비 절감" 정량 수치로 ROI 제안 ③ 24개월 종속 완성 후 마진율 8% → 28% 3.5배 - "고기를 파는 게 아니라 공급 보증을 판다" 패러다임 전환.</p>
 </div>`,
         source: '자체추정(illustrative 모델링) · Thai DLD · CP Foods 2023 Value Chain Analysis',
       }}

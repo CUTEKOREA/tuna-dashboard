@@ -279,7 +279,7 @@ export default function MscStockScorecard() {
       cardDesc="ISSF 기술보고서 기반 참치 자원별 P1 점수·HCR 이행·자원 상태 RAG 히트맵"
       customBody={body}
       takeaway={{
-        situation: "23개 상업 참치 자원 중 12개만 MSC P1(자원 건전성)을 통과합니다. 핵심 실패 원인은 수확통제규칙(HCR) 미이행 — 23개 중 7개만 HCR을 완전 이행했습니다. 인도양(IOTC) 전 어종이 HCR 미비로 취약합니다.",
+        situation: "23개 상업 참치 자원 중 12개만 MSC P1(자원 건전성)을 통과합니다. 핵심 실패 원인은 수확통제규칙(HCR) 미이행 - 23개 중 7개만 HCR을 완전 이행했습니다. 인도양(IOTC) 전 어종이 HCR 미비로 취약합니다.",
         actionPlan: "HCR 미이행 자원(16개)은 RFMO에서 수확전략이 채택되지 않는 한 MSC 인증이 불가능합니다. 한국 선단은 IOTC 의존도를 줄이고 WCPFC 조업 비중을 확대하는 것이 인증 획득의 핵심 전략입니다.",
         source: "ISSF Technical Report 2025-08",
       }}

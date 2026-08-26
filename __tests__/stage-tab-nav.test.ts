@@ -39,7 +39,7 @@ function tabLabels(html: string): string[] {
 
 describe('단계 탭 내비', () => {
   for (const [name, Dashboard, count] of DASHBOARDS) {
-    it(`${name} — 탭 ${count}개가 부제 없이 줄바꿈으로 놓인다`, () => {
+    it(`${name} - 탭 ${count}개가 부제 없이 줄바꿈으로 놓인다`, () => {
       const html = renderToStaticMarkup(React.createElement(Dashboard as never));
       const labels = tabLabels(html);
 
@@ -47,7 +47,7 @@ describe('단계 탭 내비', () => {
 
       // 부제가 붙으면 한 줄에 안 들어가고 탭 폭이 들쭉날쭉해진다.
       for (const label of labels) {
-        expect(label, `부제가 남아 있다: ${label}`).not.toContain(' — ');
+        expect(label, `부제가 남아 있다: ${label}`).not.toContain(' - ');
       }
 
       // 줄바꿈이 꺼지면 가로 스크롤로 되돌아간다.

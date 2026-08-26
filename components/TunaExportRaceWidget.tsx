@@ -118,7 +118,7 @@ const TunaExportRaceWidget = () => {
     const totalGrowth = pctChange(last.totalUsdM, first.totalUsdM) ?? 0;
     return (
       `${first.year}→${last.year}년 태국 점유율은 ${first.share.thailand.toFixed(1)}%→${last.share.thailand.toFixed(1)}%로 ${thDrop.toFixed(1)}%p 하락한 반면, ` +
-      `에콰도르는 ${first.share.ecuador.toFixed(1)}%→${last.share.ecuador.toFixed(1)}%, 중국은 ${first.share.china.toFixed(1)}%→${last.share.china.toFixed(1)}%로 상승 — ` +
+      `에콰도르는 ${first.share.ecuador.toFixed(1)}%→${last.share.ecuador.toFixed(1)}%, 중국은 ${first.share.china.toFixed(1)}%→${last.share.china.toFixed(1)}%로 상승 - ` +
       `가공 허브가 태국 단일 축에서 중남미(유럽연합·미국 무관세 우대)와 중국으로 재편되는 구조 추세입니다. ` +
       `${last.year}년 6개국 합산 수출액은 ${toEokUsd(last.totalUsdM)}억 달러로 ${series.length - 1}년간 ${totalGrowth.toFixed(0)}% 확대됐고, ` +
       `한국은 ${last.share.korea.toFixed(1)}%(${toEokUsd(last.abs.korea)}억 달러) 수준에 정체돼 있습니다. ` +
@@ -192,8 +192,8 @@ const TunaExportRaceWidget = () => {
       icon={Trophy}
       iconColor="#38bdf8"
       pillar="S4"
-      description="기존 미국 수입측 점유율 위젯과 달리 '글로벌 수출측' 재편 지도 — 월별 통계는 공표 지연 17~19개월이라 연간 확정치 기준으로 설계"
-      cardDesc="유엔 무역통계(UN Comtrade) 연간 수출액(HS 160414, 참치 조제품·통조림) 기준 태국·에콰도르·스페인·필리핀·중국·한국 점유율 — 분모는 세계 총계가 아닌 6개국 합(글로벌 캔 수출의 약 70% 커버)"
+      description="기존 미국 수입측 점유율 위젯과 달리 '글로벌 수출측' 재편 지도 - 월별 통계는 공표 지연 17~19개월이라 연간 확정치 기준으로 설계"
+      cardDesc="유엔 무역통계(UN Comtrade) 연간 수출액(HS 160414, 참치 조제품·통조림) 기준 태국·에콰도르·스페인·필리핀·중국·한국 점유율 - 분모는 세계 총계가 아닌 6개국 합(글로벌 캔 수출의 약 70% 커버)"
       unit="(단위: %, 6개국 합=100%)"
       telemetry={telemetry}
       chartHeight={stateBody ? 160 : 320}

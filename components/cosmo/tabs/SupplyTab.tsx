@@ -98,7 +98,7 @@ export default function Supply() {
           `주간 ${meta.weekRange[0]}~${meta.weekRange[1]}주 (결측 ${meta.missingWeeks.join(',') || '없음'})`,
           `매입 발생 ${buyWeeks}/${weeklySeries.length}주`,
           `재고 품목 ${inv.lines.length}종 · ${invGroups.length}군`,
-          `기준 ${latest.periodEnd ?? '—'}`,
+          `기준 ${latest.periodEnd ?? '-'}`,
         ]}
       />
 
@@ -132,7 +132,7 @@ export default function Supply() {
             d={`전주 대비 ${num(n(last.rawStockMt) - n(prev?.rawStockMt), 0)}MT`} />
         </Card>
         <Card>
-          <Kpi k="재고 소진일수" v={last.rawCoverDays == null ? '—' : dayF(last.rawCoverDays)}
+          <Kpi k="재고 소진일수" v={last.rawCoverDays == null ? '-' : dayF(last.rawCoverDays)}
             tone={n(last.rawCoverDays) < 15 ? 'down' : n(last.rawCoverDays) < 25 ? 'flat' : 'up'}
             d={`일 처리량 ${num(latest.production?.CBU?.cumDaily, 0)}MT 기준`} />
         </Card>
@@ -212,8 +212,8 @@ export default function Supply() {
           title="원어재고와 소진일수"
           sub="원어 3품목(SJ·YF/BE·FBU) 재고량과 그 재고로 며칠 돌릴 수 있는지."
           note={<>소진일수 = <b>원어재고 MT ÷ CBU 누적 일 처리량</b>({num(latest.production?.CBU?.cumDaily, 0)}MT/일)이라 가동 속도가 바뀌면 같은 재고도 일수가 달라집니다.
-            현재 {num(last.rawStockMt, 0)}MT · <b>{last.rawCoverDays == null ? '—' : dayF(last.rawCoverDays)}</b>분이지만,
-            {minCover?.week}주에는 <b>{minCover?.rawCoverDays == null ? '—' : dayF(minCover.rawCoverDays)}</b>까지 떨어졌습니다.
+            현재 {num(last.rawStockMt, 0)}MT · <b>{last.rawCoverDays == null ? '-' : dayF(last.rawCoverDays)}</b>분이지만,
+            {minCover?.week}주에는 <b>{minCover?.rawCoverDays == null ? '-' : dayF(minCover.rawCoverDays)}</b>까지 떨어졌습니다.
             {' '}{covers.filter((s) => n(s.rawCoverDays) < 15).length}개 주가 15일선 아래였고, 대형 매입 한 번으로 30일대를 회복하는 톱니 패턴입니다.</>}
         >
           <Legend items={[
@@ -272,9 +272,9 @@ export default function Supply() {
           sub={`잔여 재고 ÷ 최근 ${recent.length}주(${recent[0]?.week}~${latest.week}주) 평균 주간 출고량 = 남은 주수. 4주 미만 적색, 8주 미만 황색.`}
           note={<>4주 안에 바닥나는 품목이 <b>{burnBad.length}개</b>, 8주 안이 {burnWarn.length}개입니다.
             {tightest && <> 가장 급한 건 {tightest.group} {tightest.item}으로 잔여 {num(tightest.endQty, 0)}{tightest.unit}에
-              주간 출고 {num(tightest.avgOut, 0)}{tightest.unit} — <b>{tightest.weeksLeft == null ? '—' : wkF(tightest.weeksLeft)}</b>분입니다.</>}
-            {' '}원어는 {last.rawCoverDays == null ? '—' : dayF(last.rawCoverDays)}분이 남았는데 자재가 먼저 끊기면 그 재고는 제품이 되지 못합니다.
-            최근 {recent.length}주 출고가 0인 품목은 분모가 없어 &lsquo;—&rsquo;로 두었습니다(입고 중단분일 수도, 미사용분일 수도 있어 별도 확인 필요).</>}
+              주간 출고 {num(tightest.avgOut, 0)}{tightest.unit} - <b>{tightest.weeksLeft == null ? '-' : wkF(tightest.weeksLeft)}</b>분입니다.</>}
+            {' '}원어는 {last.rawCoverDays == null ? '-' : dayF(last.rawCoverDays)}분이 남았는데 자재가 먼저 끊기면 그 재고는 제품이 되지 못합니다.
+            최근 {recent.length}주 출고가 0인 품목은 분모가 없어 &lsquo;-&rsquo;로 두었습니다(입고 중단분일 수도, 미사용분일 수도 있어 별도 확인 필요).</>}
         >
           <div className="tw" style={{ marginBottom: 0 }}>
             <table>
@@ -291,8 +291,8 @@ export default function Supply() {
                     <td>{b.group}</td>
                     <td>{b.item}</td>
                     <td className="n">{num(b.endQty, 0)} <small>{b.unit}</small></td>
-                    <td className="n">{b.avgOut > 0 ? num(b.avgOut, 0) : '—'}</td>
-                    <td className="n">{b.weeksLeft == null ? '—' : wkF(b.weeksLeft)}</td>
+                    <td className="n">{b.avgOut > 0 ? num(b.avgOut, 0) : '-'}</td>
+                    <td className="n">{b.weeksLeft == null ? '-' : wkF(b.weeksLeft)}</td>
                     <td className="n">{usd(b.endUsd)}</td>
                   </tr>
                 ))}
@@ -306,9 +306,9 @@ export default function Supply() {
         <Card
           title="제품재고 vs 수주잔량"
           sub="제품(CBU+FBU) 재고 평가액과 미선적 수주잔량 금액, 그리고 그 배수(재고÷잔량)."
-          note={<>현재 제품재고 <b>{musd(last.productStockUsd)}</b>, 수주잔량 <b>{musd(last.backlogUsd)}</b>로 배수는 <b>{ratioLast == null ? '—' : ratioLast.toFixed(2) + '배'}</b>입니다.
+          note={<>현재 제품재고 <b>{musd(last.productStockUsd)}</b>, 수주잔량 <b>{musd(last.backlogUsd)}</b>로 배수는 <b>{ratioLast == null ? '-' : ratioLast.toFixed(2) + '배'}</b>입니다.
             잔량의 {pct(ratioLast, 0)}만 재고로 덮이므로 나머지는 앞으로 생산해야 채웁니다.
-            연초 배수는 {stockRatio[0]?.stockRatio == null ? '—' : stockRatio[0].stockRatio.toFixed(2) + '배'}였고, 수주가 {latest.week}주까지 늘면서 배수는 낮아졌습니다.
+            연초 배수는 {stockRatio[0]?.stockRatio == null ? '-' : stockRatio[0].stockRatio.toFixed(2) + '배'}였고, 수주가 {latest.week}주까지 늘면서 배수는 낮아졌습니다.
             단, 재고는 원가 평가액이고 잔량은 판매가라 배수 1배가 곧 완전 충당을 뜻하지는 않습니다.</>}
         >
           <Legend items={[
@@ -332,7 +332,7 @@ export default function Supply() {
           sub="전 품목군 마감 평가액. 원어 매입 타이밍에 따라 계단식으로 움직입니다."
           note={<>연초 {musd(first.inventoryUsd)}에서 {latest.week}주 <b>{musd(last.inventoryUsd)}</b>({pct(n(last.inventoryUsd) / n(first.inventoryUsd) - 1)}).
             {minCover && <> 원어가 바닥났던 {minCover.week}주에는 {musd(minCover.inventoryUsd)}까지 내려갔다가 매입 재개로 되돌아왔습니다.</>}
-            {' '}금액은 연초 대비 늘었고 구성도 원어 쪽으로 이동했습니다 — 단가가 {pct(cumRise)} 오른 만큼 같은 MT라도 평가액이 커집니다.</>}
+            {' '}금액은 연초 대비 늘었고 구성도 원어 쪽으로 이동했습니다 - 단가가 {pct(cumRise)} 오른 만큼 같은 MT라도 평가액이 커집니다.</>}
         >
           <Legend items={[{ name: '총재고 평가액', color: C.rank, box: true }]} />
           <Chart
@@ -347,10 +347,10 @@ export default function Supply() {
           원어 매입가는 오르는 방향입니다. 누적 평균단가가 {pct(cumRise)} 올랐고, 최근 주간 단가 <b>{usd(lastBuy?.purchaseWeekUnit)}</b>는
           누적평균보다 {pct(n(lastBuy?.purchaseWeekUnit) / n(last.purchaseCumUnit) - 1)} 높아 앞으로 투입될 원어의 원가는 지금 손익에 반영된 것보다 비쌉니다.
           매입의 <b>{pct(last.panofiShare, 2)}</b>가 파노피 한 곳이라 이 가격을 견제할 대안 견적도 없습니다.
-          재고는 두 종류의 위험이 다릅니다. 원어는 {num(last.rawStockMt, 0)}MT · {last.rawCoverDays == null ? '—' : dayF(last.rawCoverDays)}분으로 지금은 여유가 있지만
-          {minCover?.week}주에 {minCover?.rawCoverDays == null ? '—' : dayF(minCover.rawCoverDays)}까지 떨어진 이력이 있어 매입이 한 번 밀리면 즉시 가동이 걸립니다.
-          반면 자재는 이미 걸려 있습니다 — <b>{burnBad.length}개 품목이 4주 미만</b>
-          {tightest && <>, 그중 {tightest.group} {tightest.item}은 {tightest.weeksLeft == null ? '—' : wkF(tightest.weeksLeft)}분</>}.
+          재고는 두 종류의 위험이 다릅니다. 원어는 {num(last.rawStockMt, 0)}MT · {last.rawCoverDays == null ? '-' : dayF(last.rawCoverDays)}분으로 지금은 여유가 있지만
+          {minCover?.week}주에 {minCover?.rawCoverDays == null ? '-' : dayF(minCover.rawCoverDays)}까지 떨어진 이력이 있어 매입이 한 번 밀리면 즉시 가동이 걸립니다.
+          반면 자재는 이미 걸려 있습니다 - <b>{burnBad.length}개 품목이 4주 미만</b>
+          {tightest && <>, 그중 {tightest.group} {tightest.item}은 {tightest.weeksLeft == null ? '-' : wkF(tightest.weeksLeft)}분</>}.
           자재 금액은 총재고의 {pct(matTotal / invTotal, 0)}에 불과하지만, 결품이 나면 원어 {musd(rawGroup?.usd)}와 제품 생산이 함께 멈춥니다.
           발주 우선순위는 금액이 아니라 이 잔여 주수 순서여야 합니다.
         </Callout>

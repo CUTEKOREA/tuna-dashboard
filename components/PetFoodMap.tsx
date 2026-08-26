@@ -288,7 +288,7 @@ export default function PetFoodMap() {
       <div className={styles.headerRow}>
         <h3 className={styles.title}>
           <Map size={20} color="#38bdf8" />
-          전국 반려동물 인프라 매핑 — B2B 유통 거점 분석
+          전국 반려동물 인프라 매핑 - B2B 유통 거점 분석
         </h3>
         <p className={styles.subtitle}>
           전국 {nationalStats.total.toLocaleString()}개 시설의 공간 분포를 분석하여 펫푸드 유통 최적 거점을 도출합니다. 
@@ -404,7 +404,7 @@ export default function PetFoodMap() {
       <div className={styles.strategyGrid}>
         <h3 className={styles.strategyHeader}>
           <Target size={20} color="var(--color-warning)" />
-          펫푸드 B2B 유통 채널 진입 전략 — 시설 데이터 기반 분석
+          펫푸드 B2B 유통 채널 진입 전략 - 시설 데이터 기반 분석
         </h3>
         <div className={styles.strategyCols}>
           {/* Strategy 1: 동물병원 */}
@@ -412,7 +412,7 @@ export default function PetFoodMap() {
             <div className={`${styles.strategyStep} ${styles.stepHospital}`}>1</div>
             <div className={styles.strategyColTitle}>
               <Stethoscope size={16} color="var(--color-danger)" />
-              동물병원 — 처방식 프리미엄 허브
+              동물병원 - 처방식 프리미엄 허브
             </div>
             <div className={`${styles.strategyKpi} ${styles.kpiHospital}`}>
               {nationalStats.hospital.toLocaleString()}개
@@ -436,7 +436,7 @@ export default function PetFoodMap() {
             <div className={`${styles.strategyStep} ${styles.stepPharmacy}`}>2</div>
             <div className={styles.strategyColTitle}>
               <Pill size={16} color="var(--color-success)" />
-              동물약국 — 기능성 영양제 메가 채널
+              동물약국 - 기능성 영양제 메가 채널
             </div>
             <div className={`${styles.strategyKpi} ${styles.kpiPharmacy}`}>
               {nationalStats.pharmacy.toLocaleString()}개
@@ -461,7 +461,7 @@ export default function PetFoodMap() {
             <div className={`${styles.strategyStep} ${styles.stepGrooming}`}>3</div>
             <div className={styles.strategyColTitle}>
               <Scissors size={16} color="var(--color-warning)" />
-              동물미용업 — 충동구매 간식 파이프라인
+              동물미용업 - 충동구매 간식 파이프라인
             </div>
             <div className={`${styles.strategyKpi} ${styles.kpiGrooming}`}>
               {nationalStats.grooming.toLocaleString()}개

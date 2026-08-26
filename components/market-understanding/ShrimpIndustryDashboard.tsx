@@ -76,7 +76,7 @@ function ArgentinaRouteTable() {
               <td>
                 {r.건수.toLocaleString('ko-KR')}건
                 {r.검증 === '미입증' && (
-                  <span style={{ marginLeft: 6, opacity: 0.7 }}>— 이 자료에서 확인 없음</span>
+                  <span style={{ marginLeft: 6, opacity: 0.7 }}>- 이 자료에서 확인 없음</span>
                 )}
               </td>
               <td>
@@ -98,7 +98,7 @@ function ArgentinaRouteTable() {
       </table>
       <p className={styles.factNote}>
         {argentinaMeta.recordCaveat} ▪ 표시한 공장은 방콕사무소 「가공사 조사」 탭에 등기·캐파·인증·재무
-        프로파일이 있다 — <Link href="/bangkok-office">방콕사무소로 이동</Link>.
+        프로파일이 있다 - <Link href="/bangkok-office">방콕사무소로 이동</Link>.
       </p>
     </div>
   );
@@ -151,7 +151,7 @@ export const SHRIMP_CHART_SLOTS: Record<string, ChartSlot[]> = {
     {
       title: '생산 방식별 규모 (톤)',
       caption:
-        '「양식」 한 낱말을 갈랐다. 장미색이 담수 양식 — 강·논에서 기르는 민물새우다. 해산 새우 시장을 말할 때는 이 막대를 빼야 한다.',
+        '「양식」 한 낱말을 갈랐다. 장미색이 담수 양식 - 강·논에서 기르는 민물새우다. 해산 새우 시장을 말할 때는 이 막대를 빼야 한다.',
       telemetry: SYNC,
       render: () => <ShrimpEnvChart data={DATA} />,
     },
@@ -166,7 +166,7 @@ export const SHRIMP_CHART_SLOTS: Record<string, ChartSlot[]> = {
   ],
   s03: [
     {
-      title: '공급 기업 — 누가 잡고 누가 파는가',
+      title: '공급 기업 - 누가 잡고 누가 파는가',
       caption: SHRIMP_RESEARCH.공급.요지,
       telemetry: { status: 'STATIC' as const, syncDate: '2026-08-17 조사' },
       span: 'full',
@@ -192,7 +192,7 @@ export const SHRIMP_CHART_SLOTS: Record<string, ChartSlot[]> = {
     {
       title: '한국 HS 030617 공급국 (톤·$/kg)',
       caption:
-        '막대가 수입량, 선이 평균 신고단가다. 장미색이 아르헨티나 — 물량은 6위인데 단가는 가장 높은 축이다. 통관 신고 기준이라 위 생산 통계와 더할 수 없다.',
+        '막대가 수입량, 선이 평균 신고단가다. 장미색이 아르헨티나 - 물량은 6위인데 단가는 가장 높은 축이다. 통관 신고 기준이라 위 생산 통계와 더할 수 없다.',
       telemetry: { status: 'STATIC' as const, syncDate: '2026년 1~5월 관세청' },
       span: 'full',
       render: () => <ShrimpArgentinaKoreaChart />,
@@ -200,7 +200,7 @@ export const SHRIMP_CHART_SLOTS: Record<string, ChartSlot[]> = {
     {
       title: '아르헨티나 어획·양륙 (톤)',
       caption:
-        '회색 막대는 출처가 다르다 — 2018~2024는 FAO 어획, 2025는 아르헨티나 정부 양륙 집계다. 두 계열을 한 선으로 잇지 않은 이유다.',
+        '회색 막대는 출처가 다르다 - 2018~2024는 FAO 어획, 2025는 아르헨티나 정부 양륙 집계다. 두 계열을 한 선으로 잇지 않은 이유다.',
       telemetry: ARG_SYNC,
       render: () => <ShrimpArgentinaCatchChart />,
     },
@@ -231,7 +231,7 @@ export const SHRIMP_CHART_SLOTS: Record<string, ChartSlot[]> = {
     {
       title: '한국 종별 생산량 (톤)',
       caption:
-        '장미색이 젓새우다. 세계에서 2.69%뿐인 종이 한국에서는 절반이다 — 새우젓이라는 소비 형태가 통계에 그대로 찍혔다.',
+        '장미색이 젓새우다. 세계에서 2.69%뿐인 종이 한국에서는 절반이다 - 새우젓이라는 소비 형태가 통계에 그대로 찍혔다.',
       telemetry: SYNC,
       render: () => <ShrimpKoreaChart data={DATA} />,
     },
@@ -248,7 +248,7 @@ export const SHRIMP_CHART_SLOTS: Record<string, ChartSlot[]> = {
     {
       title: '수입 창구 물량 (톤)',
       caption:
-        '막대 둘은 세번이 다르다 — 청록이 030617 원물, 호박색이 160521 조제품이다. 베트남만 강조한 이유는 두 창구가 비슷한 무게이기 때문이다. 2026년 1~6월 제품중량이라 위 생산 통계·05단계 1~5월 표와 더할 수 없다.',
+        '막대 둘은 세번이 다르다 - 청록이 030617 원물, 호박색이 160521 조제품이다. 베트남만 강조한 이유는 두 창구가 비슷한 무게이기 때문이다. 2026년 1~6월 제품중량이라 위 생산 통계·05단계 1~5월 표와 더할 수 없다.',
       telemetry: SERIES_SYNC,
       span: 'full',
       render: () => <ShrimpSeriesWindowsChart />,
@@ -267,7 +267,7 @@ const SPEC: CommoditySpec = {
   key: 'shrimp',
   title: '새우',
   subtitle:
-    '새우 산업 해부 · 양식이 이긴 유일한 주요 수산 품목 — 역전·종·산지·한국·수입 창구와 바스켓의 문제',
+    '새우 산업 해부 · 양식이 이긴 유일한 주요 수산 품목 - 역전·종·산지·한국·수입 창구와 바스켓의 문제',
   accent: SHRIMP_ACCENT,
   primaryKpi: {
     label: '세계 새우 생산량',

@@ -32,7 +32,7 @@ export default function MscKoreaPositioning() {
       icon={Flag}
       iconColor="#ef4444"
       pillar="S1"
-      cardDesc="5개 RFMO 정회원 × MSC 인증 0건 — 한국 원양 선단의 기회와 갭 분석"
+      cardDesc="5개 RFMO 정회원 × MSC 인증 0건 - 한국 원양 선단의 기회와 갭 분석"
       telemetry={{ status: 'STATIC', syncDate: '2025' }}
       takeaway={{
         situation: "한국은 전 세계에서 극소수의 5개 참치 RFMO 모두 정회원 국가이며, CCSBT 쿼터 7.16%를 보유한 원양 강국입니다. 그러나 MSC 인증 참치 어업은 단 한 건도 없습니다. 반면 에콰도르는 MSC 인증 후 2년 만에 어획량 17배, EU 수출 230% 증가를 달성했습니다.",
@@ -69,7 +69,7 @@ export default function MscKoreaPositioning() {
           {/* Comparison Table */}
           <div>
             <div style={{ fontSize: '0.78rem', fontWeight: 600, color: 'var(--w-slate-400)', marginBottom: '10px' }}>
-              MSC 인증 전후 비교 — 에콰도르 vs 한국
+              MSC 인증 전후 비교 - 에콰도르 vs 한국
             </div>
             <div style={{ borderRadius: '10px', overflow: 'hidden', border: '1px solid rgba(140,170,255,0.12)' }}>
               {/* Header */}
@@ -110,7 +110,7 @@ export default function MscKoreaPositioning() {
                 한국 = 5개 RFMO 모두 정회원, MSC 인증 0건
               </div>
               <div style={{ fontSize: '0.68rem', color: 'var(--w-slate-400)', marginTop: '2px' }}>
-                조업 능력은 최상위급이나, 지속가능성 인증은 공백 — 글로벌 공급망에서의 포지션 위축 리스크
+                조업 능력은 최상위급이나, 지속가능성 인증은 공백 - 글로벌 공급망에서의 포지션 위축 리스크
               </div>
             </div>
           </div>

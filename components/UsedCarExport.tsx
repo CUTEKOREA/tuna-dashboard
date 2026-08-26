@@ -481,7 +481,7 @@ export default function UsedCarExport() {
           <p style={{ margin: '6px 0 0 0', fontSize: '0.78rem', color: 'var(--w-slate-500)' }}>
             참고 원/달러 환율: 1 USD = ₩{Number(fx.usd_krw).toLocaleString()}
             {fx.isLive === true ? ' (환율 API 연동' : ' (캐시 환율'}
-            {fx.dataAsOf ? ` · 기준일 ${fx.dataAsOf})` : ')'} — 위 원화 수치는 2026.4 견적 시점 환산값입니다.
+            {fx.dataAsOf ? ` · 기준일 ${fx.dataAsOf})` : ')'} - 위 원화 수치는 2026.4 견적 시점 환산값입니다.
           </p>
         )}
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '0.75rem', marginBottom: '1rem' }}>
@@ -530,9 +530,9 @@ export default function UsedCarExport() {
             <div style={{ color: 'var(--color-danger)', fontSize: '0.85rem', fontWeight: 600, marginBottom: '6px', display: 'flex', alignItems: 'center', gap: '6px' }}><AlertTriangle size={14}/> Critical Risk Alerts</div>
             <ul style={{ margin: 0, paddingLeft: '1.1rem', color: 'var(--w-slate-400)', fontSize: '0.82rem', display: 'flex', flexDirection: 'column', gap: '6px' }}>
               <li><strong style={{ color: 'var(--color-danger)' }}>가나:</strong> 2012년식 차량 {year50For2012}년 이후 선적 시 50% 페널티 구간 진입</li>
-              <li><strong style={{ color: 'var(--color-danger)' }}>나이지리아:</strong> 2026.7월 Green Tax 시행 — 대배기량 차종 원가 급등</li>
+              <li><strong style={{ color: 'var(--color-danger)' }}>나이지리아:</strong> 2026.7월 Green Tax 시행 - 대배기량 차종 원가 급등</li>
               <li><strong style={{ color: 'var(--color-danger)' }}>환율:</strong> 가나 세디(GHS) 변동성 극심 (10.2~15.5 GHS/USD)</li>
-              <li><strong style={{ color: 'var(--color-danger)' }}>중국:</strong> 저가 중국 중고차 공세 본격화 — 가격 경쟁력 방어 필수</li>
+              <li><strong style={{ color: 'var(--color-danger)' }}>중국:</strong> 저가 중국 중고차 공세 본격화 - 가격 경쟁력 방어 필수</li>
             </ul>
           </div>
         </div>
@@ -556,12 +556,12 @@ export default function UsedCarExport() {
             <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '10px' }}>
               <div style={{ width: '32px', height: '32px', borderRadius: '8px', background: 'rgba(234,179,8,0.15)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '1.1rem' }}>📊</div>
               <div>
-                <div style={{ fontSize: '0.72rem', color: '#eab308', fontWeight: 600, letterSpacing: '0.5px' }}>근거 #1 — 시장</div>
+                <div style={{ fontSize: '0.72rem', color: '#eab308', fontWeight: 600, letterSpacing: '0.5px' }}>근거 #1 - 시장</div>
                 <div style={{ fontSize: '0.95rem', color: 'var(--w-slate-200)', fontWeight: 700 }}>가나 차량 90%+ 수입 중고차</div>
               </div>
             </div>
             <ul style={{ margin: 0, paddingLeft: '1rem', color: 'var(--w-slate-300)', fontSize: '0.82rem', lineHeight: 1.7 }}>
-              <li>가나 자동차 시장의 <strong style={{ color: 'var(--w-amber-400)' }}>90% 이상이 수입 중고차</strong> — 신차 시장 거의 부재</li>
+              <li>가나 자동차 시장의 <strong style={{ color: 'var(--w-amber-400)' }}>90% 이상이 수입 중고차</strong> - 신차 시장 거의 부재</li>
               <li>2024년 한국→가나 차량 수출액 <strong style={{ color: 'var(--w-amber-400)' }}>$4,218만</strong> (약 570억원)</li>
               <li>한국 중고차 수출 2025년 <strong>전년 대비 75% 급증</strong>, 사상 최고 $88.7억 기록</li>
               <li>가나 중산층 확대 + 라이드헤일링(Uber/Bolt) 성장 → 수요 구조적 증가</li>
@@ -576,7 +576,7 @@ export default function UsedCarExport() {
             <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '10px' }}>
               <div style={{ width: '32px', height: '32px', borderRadius: '8px', background: 'rgba(var(--w-blue-500-rgb), 0.15)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '1.1rem' }}>🚗</div>
               <div>
-                <div style={{ fontSize: '0.72rem', color: 'var(--color-info)', fontWeight: 600, letterSpacing: '0.5px' }}>근거 #2 — 브랜드 신뢰</div>
+                <div style={{ fontSize: '0.72rem', color: 'var(--color-info)', fontWeight: 600, letterSpacing: '0.5px' }}>근거 #2 - 브랜드 신뢰</div>
                 <div style={{ fontSize: '0.95rem', color: 'var(--w-slate-200)', fontWeight: 700 }}>현대·기아 가나 국민차 지위</div>
               </div>
             </div>
@@ -596,14 +596,14 @@ export default function UsedCarExport() {
             <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '10px' }}>
               <div style={{ width: '32px', height: '32px', borderRadius: '8px', background: 'rgba(var(--w-emerald-500-rgb), 0.15)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '1.1rem' }}>📋</div>
               <div>
-                <div style={{ fontSize: '0.72rem', color: 'var(--color-success)', fontWeight: 600, letterSpacing: '0.5px' }}>근거 #3 — 규제 적합</div>
+                <div style={{ fontSize: '0.72rem', color: 'var(--color-success)', fontWeight: 600, letterSpacing: '0.5px' }}>근거 #3 - 규제 적합</div>
                 <div style={{ fontSize: '0.95rem', color: 'var(--w-slate-200)', fontWeight: 700 }}>한국차 = 좌핸들 + 10년 규칙 적합</div>
               </div>
             </div>
             <ul style={{ margin: 0, paddingLeft: '1rem', color: 'var(--w-slate-300)', fontSize: '0.82rem', lineHeight: 1.7 }}>
-              <li>가나 수입 필수: <strong style={{ color: 'var(--w-emerald-400)' }}>좌핸들(LHD)</strong> 차량만 허용 — 한국차 100% 적합</li>
+              <li>가나 수입 필수: <strong style={{ color: 'var(--w-emerald-400)' }}>좌핸들(LHD)</strong> 차량만 허용 - 한국차 100% 적합</li>
               <li>연식 제한: 제조일 기준 <strong>10년 이내</strong> ({nowYear}년 기준 {nowYear - 10}년식 이후)</li>
-              <li>배기 기준: <strong>Euro 2 이상</strong> — 한국차 기본 충족</li>
+              <li>배기 기준: <strong>Euro 2 이상</strong> - 한국차 기본 충족</li>
               <li>일본차(우핸들) <strong style={{ color: 'var(--color-danger)' }}>수입 금지</strong> → 한국차에 구조적 우위</li>
             </ul>
             <div style={{ marginTop: '10px', padding: '8px 10px', background: 'rgba(var(--w-emerald-500-rgb), 0.08)', borderRadius: '8px', fontSize: '0.78rem', color: '#6ee7b7' }}>
@@ -616,7 +616,7 @@ export default function UsedCarExport() {
             <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '10px' }}>
               <div style={{ width: '32px', height: '32px', borderRadius: '8px', background: 'rgba(var(--w-pink-500-rgb), 0.15)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '1.1rem' }}>💱</div>
               <div>
-                <div style={{ fontSize: '0.72rem', color: 'var(--w-pink-500)', fontWeight: 600, letterSpacing: '0.5px' }}>근거 #4 — 원화 약세</div>
+                <div style={{ fontSize: '0.72rem', color: 'var(--w-pink-500)', fontWeight: 600, letterSpacing: '0.5px' }}>근거 #4 - 원화 약세</div>
                 <div style={{ fontSize: '0.95rem', color: 'var(--w-slate-200)', fontWeight: 700 }}>원/달러 환율 = 가격 경쟁력</div>
               </div>
             </div>
@@ -624,7 +624,7 @@ export default function UsedCarExport() {
               <li>원화 약세 → 한국 중고차 <strong style={{ color: '#f472b6' }}>달러 기준 가격 경쟁력 극대화</strong></li>
               <li>한국 중고차 수출 75% 급증의 핵심 동인 = <strong>원화 절하</strong></li>
               <li>가나 바이어에게 동급 일본차 대비 <strong>15~25% 저렴한 가격 포지셔닝</strong> 가능</li>
-              <li>자동차는 한국 <strong>중소기업 수출 1위 품목</strong> — 정부 수출지원금 활용 가능</li>
+              <li>자동차는 한국 <strong>중소기업 수출 1위 품목</strong> - 정부 수출지원금 활용 가능</li>
             </ul>
             <div style={{ marginTop: '10px', padding: '8px 10px', background: 'rgba(var(--w-pink-500-rgb), 0.08)', borderRadius: '8px', fontSize: '0.78rem', color: '#f9a8d4' }}>
               📌 출처: InvestKorea, 중소벤처기업부 수출지원 데이터 (2025)
@@ -636,13 +636,13 @@ export default function UsedCarExport() {
             <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '10px' }}>
               <div style={{ width: '32px', height: '32px', borderRadius: '8px', background: 'rgba(var(--w-violet-500-rgb), 0.15)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '1.1rem' }}>🚢</div>
               <div>
-                <div style={{ fontSize: '0.72rem', color: 'var(--w-violet-500)', fontWeight: 600, letterSpacing: '0.5px' }}>근거 #5 — 물류 체계</div>
+                <div style={{ fontSize: '0.72rem', color: 'var(--w-violet-500)', fontWeight: 600, letterSpacing: '0.5px' }}>근거 #5 - 물류 체계</div>
                 <div style={{ fontSize: '0.95rem', color: 'var(--w-slate-200)', fontWeight: 700 }}>인천→테마항 확립된 해운 루트</div>
               </div>
             </div>
             <ul style={{ margin: 0, paddingLeft: '1rem', color: 'var(--w-slate-300)', fontSize: '0.82rem', lineHeight: 1.7 }}>
               <li>인천항→테마항 <strong style={{ color: '#a78bfa' }}>RoRo·컨테이너</strong> 두 가지 방식 선택 가능</li>
-              <li>40ft HC 컨테이너 기준 <strong>4~6대</strong> 동시 적재 — SUV/세단 혼합 가능</li>
+              <li>40ft HC 컨테이너 기준 <strong>4~6대</strong> 동시 적재 - SUV/세단 혼합 가능</li>
               <li>주요 선사: <strong>Maersk, COSCO, MSC</strong> 등 정기 노선 운항</li>
               <li>인천 자동차 수출 전문 포워더·검수·서류 대행 업체 <strong>클러스터 형성</strong></li>
             </ul>
@@ -656,14 +656,14 @@ export default function UsedCarExport() {
             <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '10px' }}>
               <div style={{ width: '32px', height: '32px', borderRadius: '8px', background: 'rgba(20,184,166,0.15)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '1.1rem' }}>🛻</div>
               <div>
-                <div style={{ fontSize: '0.72rem', color: '#14b8a6', fontWeight: 600, letterSpacing: '0.5px' }}>근거 #6 — 상용차 기회</div>
+                <div style={{ fontSize: '0.72rem', color: '#14b8a6', fontWeight: 600, letterSpacing: '0.5px' }}>근거 #6 - 상용차 기회</div>
                 <div style={{ fontSize: '0.95rem', color: 'var(--w-slate-200)', fontWeight: 700 }}>포터II·봉고III 초과 수요</div>
               </div>
             </div>
             <ul style={{ margin: 0, paddingLeft: '1rem', color: 'var(--w-slate-300)', fontSize: '0.82rem', lineHeight: 1.7 }}>
               <li>아프리카·중동 1톤 트럭 시장에서 <strong style={{ color: '#2dd4bf' }}>포터II·봉고III = 표준 상용차</strong></li>
               <li>가나 도시 물류·농산물 운송·소매 배달에 <strong>필수 차종</strong></li>
-              <li>승용차 대비 <strong style={{ color: '#2dd4bf' }}>마진율 30~50% 우위</strong> — 고수익 세그먼트</li>
+              <li>승용차 대비 <strong style={{ color: '#2dd4bf' }}>마진율 30~50% 우위</strong> - 고수익 세그먼트</li>
               <li>한국 내 1톤 트럭 교체 주기 짧아 <strong>양질 매물 풍부</strong></li>
             </ul>
             <div style={{ marginTop: '10px', padding: '8px 10px', background: 'rgba(20,184,166,0.08)', borderRadius: '8px', fontSize: '0.78rem', color: '#5eead4' }}>
@@ -676,7 +676,7 @@ export default function UsedCarExport() {
             <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '10px' }}>
               <div style={{ width: '32px', height: '32px', borderRadius: '8px', background: 'rgba(var(--w-amber-500-rgb), 0.15)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '1.1rem' }}>💰</div>
               <div>
-                <div style={{ fontSize: '0.72rem', color: 'var(--color-warning)', fontWeight: 600, letterSpacing: '0.5px' }}>근거 #7 — 수익 구조</div>
+                <div style={{ fontSize: '0.72rem', color: 'var(--color-warning)', fontWeight: 600, letterSpacing: '0.5px' }}>근거 #7 - 수익 구조</div>
                 <div style={{ fontSize: '0.95rem', color: 'var(--w-slate-200)', fontWeight: 700 }}>대당 $1,500~3,000 순마진</div>
               </div>
             </div>

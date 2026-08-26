@@ -295,9 +295,9 @@ export default function TunaRestaurantMap() {
           situation={`전국에서 영업 중인 참치 전문점은 총 ${totalRestaurants.toLocaleString()}개이며, 경기도(618개)와 서울(498개)이 전체의 50.4%를 차지합니다. 부산(123개)·인천(148개)·경남(112개) 등 항만도시에도 밀집되어 있어, 축양 참다랑어의 국내 B2B 수요 기반은 수도권+항만 축으로 뚜렷하게 형성되어 있습니다.`}
           actionPlan={
             <ul style={{ margin: 0, paddingLeft: '1.2rem', color: 'var(--w-slate-200)', fontSize: '0.85rem' }}>
-              <li style={{ marginBottom: '4px' }}><strong>[1차 타겟]</strong> 서울 강남/중구/용산 + 경기 분당/판교 — 대형 오마카세/법인접대 상권 플래그십 직납</li>
-              <li style={{ marginBottom: '4px' }}><strong>[2차 볼륨]</strong> 경기 평택/남양주/인천 남동 — 다점포 가성비 세트 물류 거점</li>
-              <li><strong>[3차 지방]</strong> 광주 서구/전주 완산/경북 구미 — 지역 수산 도매상 독점 파트너십</li>
+              <li style={{ marginBottom: '4px' }}><strong>[1차 타겟]</strong> 서울 강남/중구/용산 + 경기 분당/판교 - 대형 오마카세/법인접대 상권 플래그십 직납</li>
+              <li style={{ marginBottom: '4px' }}><strong>[2차 볼륨]</strong> 경기 평택/남양주/인천 남동 - 다점포 가성비 세트 물류 거점</li>
+              <li><strong>[3차 지방]</strong> 광주 서구/전주 완산/경북 구미 - 지역 수산 도매상 독점 파트너십</li>
             </ul>
           }
         />

@@ -32,7 +32,7 @@ const UsPollockDetourWidget = () => {
       icon={Route}
       iconColor="#ef4444"
       pillar="S3"
-      cardDesc={`미국 인구조사국(US Census Bureau) + USITC + USTR 제재 데이터 — 미국 대러 수산물 수입 금지(2022-03) 전후 ${HS_LABEL_KR['030475']} 의 중국 가공 우회 경로 추적 (HS 030475)`}
+      cardDesc={`미국 인구조사국(US Census Bureau) + USITC + USTR 제재 데이터 - 미국 대러 수산물 수입 금지(2022-03) 전후 ${HS_LABEL_KR['030475']} 의 중국 가공 우회 경로 추적 (HS 030475)`}
       unit="(단위: $M)"
       telemetry={{ status: META.status, syncDate: end }}
       chartHeight={320}

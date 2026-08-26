@@ -40,7 +40,7 @@ export const AtunaBangkokPriceWidget = () => (
     icon={DollarSign}
     iconColor="#3b82f6"
     pillar="S4"
-    cardDesc="2026-05-27 Atuna 보도 기준 방콕 WCPO 가다랑어 산지가 $1,850/t (2025-08 고점 $1,845 대비 5월 회복 추세). 미국 소매업계는 $1,500/t 통제선 압박 — 출처: Atuna News (2026-05-20, 2026-05-26)"
+    cardDesc="2026-05-27 Atuna 보도 기준 방콕 WCPO 가다랑어 산지가 $1,850/t (2025-08 고점 $1,845 대비 5월 회복 추세). 미국 소매업계는 $1,500/t 통제선 압박 - 출처: Atuna News (2026-05-20, 2026-05-26)"
     telemetry={{ status: 'STATIC', syncDate: '2026-05-27 Atuna' }}
     kpiPanel={[{ label: '방콕 가다랑어', value: '$1,850/t', sub: '2025-08 고점 $1,845 회복 추세' }]}
     chartHeight={200}

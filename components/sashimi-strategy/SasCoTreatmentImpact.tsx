@@ -29,7 +29,7 @@ export default function SasCoTreatmentImpact() {
       description="미국 내 CO 참치 가격 덤핑 및 FDA Import Alert 45-02"
       pillar="S5"
       telemetry={{ status: 'STATIC', syncDate: '2025-26' }}
-      cardDesc="FDA Import Alert 45-02·미국 도매가 — CO 처리 베트남산 $2.50 vs 정상 황다랑어 $4.50/lb 단가 교란"
+      cardDesc="FDA Import Alert 45-02·미국 도매가 - CO 처리 베트남산 $2.50 vs 정상 황다랑어 $4.50/lb 단가 교란"
       takeaway={{ 
         situation: "일본/EU/중국 등 6개국에서 금지된 CO 처리(발색) 참치가 미국에 합법적으로 유통되며, 베트남산이 약 $2.50/lb의 덤핑 단가로 정품 옐로핀($4.50/lb) 시장을 교란하고 있습니다.", 
         actionPlan: "FDA 수입 경보(Import Alert 45-02) 발동으로 저가 불법 발색 참치에 대한 단속이 강화되고 있습니다. 우리는 'No-CO / Natural' 속성을 핵심 마케팅 차별화 지점으로 활용해야 합니다.", 

@@ -47,7 +47,7 @@ const UNLOAD_VIEWS: Record<
   weekly: {
     rows: unloadData,
     xInterval: 25,
-    note: `전체 ${bangkokWeeks.length}주 중 하역 기록 ${unloadWeeks}주 — 무기록 주는 빈칸으로 둔다 (보간하지 않음). 주간치는 보고 시점 중복이 섞여 있어 단순 합산은 연도별 총량(연도별 표)과 일치하지 않는다.`,
+    note: `전체 ${bangkokWeeks.length}주 중 하역 기록 ${unloadWeeks}주 - 무기록 주는 빈칸으로 둔다 (보간하지 않음). 주간치는 보고 시점 중복이 섞여 있어 단순 합산은 연도별 총량(연도별 표)과 일치하지 않는다.`,
   },
   monthly: {
     rows: aggregateUnload('monthly').map((a) => ({ label: periodLabel(a.period), 하역량: a.unloadMt })),
@@ -94,17 +94,17 @@ const TRADER_VIEWS: Record<BangkokGranularity, { rows: TraderRow[]; xInterval: n
   monthly: {
     rows: traderMonthlyRecent,
     xInterval: 2,
-    note: `전체 ${bangkokTraderMonthly.length}개월 중 최근 ${MONTHLY_WINDOW}개월만 표시 — 전 기간 구성은 아래 연도별 표 참조.`,
+    note: `전체 ${bangkokTraderMonthly.length}개월 중 최근 ${MONTHLY_WINDOW}개월만 표시 - 전 기간 구성은 아래 연도별 표 참조.`,
   },
   quarterly: {
     rows: traderAggRows('quarterly'),
     xInterval: 1,
-    note: '월별 물량 합산 — 기록 있는 달만 (0 채움 없음).',
+    note: '월별 물량 합산 - 기록 있는 달만 (0 채움 없음).',
   },
   yearly: {
     rows: traderAggRows('yearly'),
     xInterval: 0,
-    note: '월별 물량 합산 — 기록 있는 달만 (0 채움 없음). 연도별 공식 집계와의 격차는 아래 격차 표에 밝힌다.',
+    note: '월별 물량 합산 - 기록 있는 달만 (0 채움 없음). 연도별 공식 집계와의 격차는 아래 격차 표에 밝힌다.',
   },
 };
 
@@ -250,7 +250,7 @@ export function UnloadTab() {
           span={12}
           title="계산합 대 보고합 격차"
           unit="물량 (MT) · 척수 (척)"
-          note={`트레이더 표의 계산합과 보고서 발표합이 어긋난 건이 ${bangkokMismatch.length}건 있다 — 전체 내역을 아래에 둔다 (조용히 덮지 않음).`}
+          note={`트레이더 표의 계산합과 보고서 발표합이 어긋난 건이 ${bangkokMismatch.length}건 있다 - 전체 내역을 아래에 둔다 (조용히 덮지 않음).`}
           src={SRC}
         >
           <Table head={['구분', '계산합', '보고합', '격차', '확인 보고서']}>

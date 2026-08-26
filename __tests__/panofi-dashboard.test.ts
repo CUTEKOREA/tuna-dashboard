@@ -113,7 +113,7 @@ describe('PFC 수요독점 판정', () => {
     expect(pfc.measured.priceChangeCount.PFC).toBe(changes('pfcTema'));
   });
 
-  it('갭이 벌어진 구간의 PFC 물량이 좁은 구간보다 많다 — 수요독점 판별식', () => {
+  it('갭이 벌어진 구간의 PFC 물량이 좁은 구간보다 많다 - 수요독점 판별식', () => {
     const wide = pfc.measured.volumeTest.wideGapWeeks.avgPfcDailyT;
     const narrow = pfc.measured.volumeTest.narrowGapWeeks.avgPfcDailyT;
     expect(wide).toBeGreaterThan(narrow);
@@ -141,14 +141,14 @@ describe('데이터 품질 표기', () => {
 });
 
 describe('가나 참치 무역 통계', () => {
-  it('(연도·흐름·HS·상대국) 조합이 유일하다 — 중복 합산 방지', () => {
+  it('(연도·흐름·HS·상대국) 조합이 유일하다 - 중복 합산 방지', () => {
     // Comtrade 는 같은 조합을 통관절차·운송수단별로 쪼개 보내고 소계까지 섞는다.
     // 집계 행(customsCode C00 · motCode 0)만 남기지 않으면 수치가 2~3배로 부푼다.
     const keys = trade.rows.map((r) => `${r.year}|${r.flow}|${r.hs}|${r.partnerCode}`);
     expect(new Set(keys).size).toBe(keys.length);
   });
 
-  it('preview 500행 상한에 걸린 조회가 없다 — 조용한 잘림 방지', () => {
+  it('preview 500행 상한에 걸린 조회가 없다 - 조용한 잘림 방지', () => {
     expect(trade.meta.truncatedQueries).toEqual([]);
   });
 
@@ -171,7 +171,7 @@ describe('가나 참치 무역 통계', () => {
     expect(partners / world).toBeLessThan(2);
   });
 
-  it('가공 단계가 올라갈수록 단가가 오른다 — 밸류 사다리', () => {
+  it('가공 단계가 올라갈수록 단가가 오른다 - 밸류 사다리', () => {
     expect(tradeLadderGap).not.toBeNull();
     expect(tradeLadderGap!.cannedUsdPerT).toBeGreaterThan(tradeLadderGap!.rawUsdPerT);
     expect(tradeLadderGap!.multiple).toBeGreaterThan(2);
@@ -244,7 +244,7 @@ describe('메뉴 배선', () => {
 });
 
 describe('추정실적 원장 (월별·척별)', () => {
-  it('척별 생산량 합이 누계와 맞는다 — 열 매핑이 밀리면 여기서 걸린다', () => {
+  it('척별 생산량 합이 누계와 맞는다 - 열 매핑이 밀리면 여기서 걸린다', () => {
     // 실제로 한 행 밀려 전 척이 null 로 나온 적이 있다. 합계 대조가 그걸 잡았다.
     const sum = vesselFullPnl.reduce((s, v) => s + (v.productionT ?? 0), 0);
     expect(Math.round(sum)).toBe(Math.round(actuals.byVessel.totals.생산량MT!));
@@ -310,7 +310,7 @@ describe('자금유동성 (월간보고 pptx)', () => {
     }
   });
 
-  it('전략보고 수치와 교차검증된다 — 연초 -799만불, 6월말 -2,082만불', () => {
+  it('전략보고 수치와 교차검증된다 - 연초 -799만불, 6월말 -2,082만불', () => {
     // 전략보고는 만불 단위 반올림값을 쓴다. 여기서는 천불 원값을 그대로 두고
     // 만불로 환산했을 때 보고서 값과 0.5만불 이내로 붙는지만 본다
     // (-7,985 는 -798.5만불이라 반올림 방향에 따라 -798/-799 로 갈린다).
@@ -329,7 +329,7 @@ describe('자금유동성 (월간보고 pptx)', () => {
     expect(liquidityBridge!.과부족).toBeLessThan(0); // 그럼에도 과부족 악화
   });
 
-  it('보고 공백 월을 숨기지 않는다 — 6월 보고 입수 후 공백은 3월뿐', () => {
+  it('보고 공백 월을 숨기지 않는다 - 6월 보고 입수 후 공백은 3월뿐', () => {
     expect(liquidity.meta.missingMonths).toEqual(['3월']);
     expect(liquidity.meta.knownDiscrepancy).toContain('44,158');
   });

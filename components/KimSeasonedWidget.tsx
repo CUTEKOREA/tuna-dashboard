@@ -34,7 +34,7 @@ export default function KimSeasonedWidget() {
       <div style={{ gridColumn: '1 / -1', padding: '40px', textAlign: 'center', background: 'rgba(255,255,255,0.02)', border: '1px dashed rgba(255,255,255,0.1)', borderRadius: '12px', color: 'var(--w-slate-500)' }}>
         <Sparkles size={26} style={{ opacity: 0.5, marginBottom: '8px' }} />
         <div style={{ fontSize: '0.85rem', fontWeight: 600 }}>{errored ? '조미김 통관 데이터를 불러오지 못했습니다' : '조미김 수출 통관 데이터 로딩 중…'}</div>
-        <div style={{ fontSize: '0.72rem', marginTop: '4px' }}>{errored ? '관세청 KCS OpenAPI 응답 없음 — 잠시 후 새로고침' : '관세청 KCS OpenAPI (HS 2008.99.50.10)'}</div>
+        <div style={{ fontSize: '0.72rem', marginTop: '4px' }}>{errored ? '관세청 KCS OpenAPI 응답 없음 - 잠시 후 새로고침' : '관세청 KCS OpenAPI (HS 2008.99.50.10)'}</div>
       </div>
     );
   }
@@ -64,7 +64,7 @@ export default function KimSeasonedWidget() {
         icon={Sparkles}
         iconColor="#84cc16"
         pillar="S3"
-        cardDesc={`조미김(HS 2008.99.50.10) 월별 수출 통관 물량(톤)·금액(천 USD) — ${data.hsCode || ''}`}
+        cardDesc={`조미김(HS 2008.99.50.10) 월별 수출 통관 물량(톤)·금액(천 USD) - ${data.hsCode || ''}`}
         telemetry={{ status: isLive ? 'LIVE' : 'STATIC', syncDate: isLive ? '실시간' : '관세청 2026-06' }}
         chart={
           <ComposedChart data={monthly} margin={{ top: 10, right: 10, left: -8, bottom: 0 }}>
@@ -80,7 +80,7 @@ export default function KimSeasonedWidget() {
         }
         takeaway={{
           situation: `<div><p>관세청 KCS 통관 기준 조미김(HS 2008.99.50.10) 수출은 ${isLive ? '실시간 연동' : '관세청 2026-06 실수집 fallback'}으로 집계. ${latest ? `최근(${latest.month}) 물량 <strong>${latest.volume?.toLocaleString()}톤</strong>, 금액 <strong>$${Math.round((latest.value || 0) / 1000)}M</strong>.` : ''} 조미김은 김 수출액의 약 67%를 차지하는 <strong>고부가 가공 수출재</strong>(외부: 관세청·KATI 연간 기준)로, 원초(마른김) 통관 단가보다 약 ${premiumX}배 높다.</p></div>`,
-          actionPlan: `<div><p><strong>재정의</strong>: 조미김은 "수산물"이 아닌 K-스낵 브랜드 게임 — 원초 약세기에도 가공 단가로 마진 방어.</p><p><strong>3단계</strong>: ① 미·일 편중(과반) 외 동남아·유럽 신흥 채널 확대 ② 프리미엄 SKU(김부각·김스낵)로 단가 상향 ③ 원초 선매입으로 가공 원가 헤지.</p></div>`,
+          actionPlan: `<div><p><strong>재정의</strong>: 조미김은 "수산물"이 아닌 K-스낵 브랜드 게임 - 원초 약세기에도 가공 단가로 마진 방어.</p><p><strong>3단계</strong>: ① 미·일 편중(과반) 외 동남아·유럽 신흥 채널 확대 ② 프리미엄 SKU(김부각·김스낵)로 단가 상향 ③ 원초 선매입으로 가공 원가 헤지.</p></div>`,
           source: isLive ? '관세청 KCS OpenAPI 수출통관 (실시간, HS 2008.99.50.10)' : '관세청 2026-06 실수집 (fallback)',
         }}
       />
@@ -89,7 +89,7 @@ export default function KimSeasonedWidget() {
         icon={Sparkles}
         iconColor="#84cc16"
         pillar="S3"
-        cardDesc="조미김 수출 통관 물량 기준 주요 대상국 비중(%) — 미국·일본 양강"
+        cardDesc="조미김 수출 통관 물량 기준 주요 대상국 비중(%) - 미국·일본 양강"
         telemetry={{ status: destIsLive ? 'LIVE' : 'STATIC', syncDate: destIsLive ? '실시간' : '관세청 2026-06' }}
         chart={
           <BarChart data={dest} layout="vertical" margin={{ top: 10, right: 24, left: 14, bottom: 0 }}>
@@ -113,7 +113,7 @@ export default function KimSeasonedWidget() {
         icon={Sparkles}
         iconColor="#84cc16"
         pillar="S3"
-        cardDesc="통관 단가($/kg) = 수출액÷물량 — 마른김(원초) vs 조미김(가공) 직접 비교, 가공 부가가치의 LIVE 증거"
+        cardDesc="통관 단가($/kg) = 수출액÷물량 - 마른김(원초) vs 조미김(가공) 직접 비교, 가공 부가가치의 LIVE 증거"
         telemetry={{ status: bothLive ? 'LIVE' : 'STATIC', syncDate: bothLive ? '실시간' : '관세청 2026-06' }}
         chart={
           <BarChart data={compareData} layout="vertical" margin={{ top: 10, right: 40, left: 18, bottom: 0 }}>
@@ -127,8 +127,8 @@ export default function KimSeasonedWidget() {
           </BarChart>
         }
         takeaway={{
-          situation: `<div><p>최근 통관 단가 기준 조미김 <strong>$${seasonedKg}/kg</strong> vs 마른김(원초 김) <strong>$${rawKg}/kg</strong> — 조미김이 약 <strong>${premiumX}배</strong> 고단가. 원초 김 자체가 이미 고단가 건조품이라 통관 단가 프리미엄은 크지 않지만, 조미김은 단가보다 <strong>미국 등 소비시장 직판 채널</strong>로 흘러 소매 마진(소매가 2~4배)을 가져가는 점이 본질적 차이.</p></div>`,
-          actionPlan: `<div><p><strong>재정의</strong>: 부가가치는 통관 단가(+${premiumX}배)가 아니라 "소비시장 직접 접근(채널)"에 있다 — 원초는 아시아 가공국 B2B, 조미김은 미국 B2C.</p><p><strong>3단계</strong>: ① 원초 약세기 선매입·계약재배로 가공 원가 고정 ② 조미·김부각 2차 가공 capa 증설 ③ 원물 직수출 비중 축소, 소비시장 직판 가공품 비중 상향.</p></div>`,
+          situation: `<div><p>최근 통관 단가 기준 조미김 <strong>$${seasonedKg}/kg</strong> vs 마른김(원초 김) <strong>$${rawKg}/kg</strong> - 조미김이 약 <strong>${premiumX}배</strong> 고단가. 원초 김 자체가 이미 고단가 건조품이라 통관 단가 프리미엄은 크지 않지만, 조미김은 단가보다 <strong>미국 등 소비시장 직판 채널</strong>로 흘러 소매 마진(소매가 2~4배)을 가져가는 점이 본질적 차이.</p></div>`,
+          actionPlan: `<div><p><strong>재정의</strong>: 부가가치는 통관 단가(+${premiumX}배)가 아니라 "소비시장 직접 접근(채널)"에 있다 - 원초는 아시아 가공국 B2B, 조미김은 미국 B2C.</p><p><strong>3단계</strong>: ① 원초 약세기 선매입·계약재배로 가공 원가 고정 ② 조미·김부각 2차 가공 capa 증설 ③ 원물 직수출 비중 축소, 소비시장 직판 가공품 비중 상향.</p></div>`,
           source: bothLive ? '관세청 KCS OpenAPI 수출통관 (실시간, HS 1212.21.1x vs 2008.99.50.10)' : '관세청 2026-06 실수집 (fallback)',
         }}
       />

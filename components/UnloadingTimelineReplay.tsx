@@ -364,7 +364,7 @@ export default function UnloadingTimelineReplay({
                           />
                         </div>
                         <div className={styles.holdCellMT}>
-                          {cumData.cumDischarge > 0 ? `${formatNum(cumData.cumDischarge)} MT` : '—'}
+                          {cumData.cumDischarge > 0 ? `${formatNum(cumData.cumDischarge)} MT` : '-'}
                         </div>
                         {cumData.lastTemp !== null && (
                           <div className={styles.holdCellTemp} style={{ color: tempColor }}>
@@ -430,9 +430,9 @@ export default function UnloadingTimelineReplay({
                       온도 관측
                     </div>
                     <div className={styles.summaryValue} style={{ color: getTempColor(tempRange.min) }}>
-                      {tempRange.min !== null ? `${tempRange.min}℃` : '—'}
+                      {tempRange.min !== null ? `${tempRange.min}℃` : '-'}
                       {' ~ '}
-                      {tempRange.max !== null ? `${tempRange.max}℃` : '—'}
+                      {tempRange.max !== null ? `${tempRange.max}℃` : '-'}
                     </div>
                   </div>
                 )}

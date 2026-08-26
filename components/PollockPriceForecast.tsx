@@ -37,11 +37,11 @@ export function PollockPriceForecastChart() {
 
   return (
     <WidgetCard
-      title="W-PF1 · 명태 가격 VAR 모형 — 2025-Q1 기준 분석 (과거 백테스트)"
+      title="W-PF1 · 명태 가격 VAR 모형 - 2025-Q1 기준 분석 (과거 백테스트)"
       icon={TrendingUp}
       iconColor="#3b82f6"
       pillar="S1"
-      cardDesc="5변수 VAR(러시아FOB·MGO·SST·KRW/USD·중국가동률) 통명태/수리미/명란 분기별 모형 — 2025-Q1 동결 시나리오의 과거 백테스트이며 현재 시점 미래 예측이 아님"
+      cardDesc="5변수 VAR(러시아FOB·MGO·SST·KRW/USD·중국가동률) 통명태/수리미/명란 분기별 모형 - 2025-Q1 동결 시나리오의 과거 백테스트이며 현재 시점 미래 예측이 아님"
       telemetry={{ status: 'STATIC', syncDate: '2025-Q1 기준 백테스트' }}
       customBody={
         <>
@@ -127,7 +127,7 @@ export function PollockScenarioSimulator() {
       icon={AlertTriangle}
       iconColor="#f59e0b"
       pillar="S1"
-      cardDesc="5대 시나리오별(기준·쿼터감축·제재강화·SST 양·동시충격) 명태 FOB/수리미 CIF/마진 영향 + 베링해 SST — 2024-08 자체추정 시나리오(동결)"
+      cardDesc="5대 시나리오별(기준·쿼터감축·제재강화·SST 양·동시충격) 명태 FOB/수리미 CIF/마진 영향 + 베링해 SST - 2024-08 자체추정 시나리오(동결)"
       telemetry={{ status: 'STATIC', syncDate: '2024-08 기준 시나리오' }}
       customBody={
         <>

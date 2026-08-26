@@ -113,7 +113,7 @@ const cohortShockData = [
 export function InsightJapanDemandCliff() {
   return (
     <WidgetCard
-      title="일본 사시미 수요 절벽 — 2050년 1/3 토막"
+      title="일본 사시미 수요 절벽 - 2050년 1/3 토막"
       icon={TrendingDown}
       iconColor="#ef4444"
       pillar="S4"
@@ -196,7 +196,7 @@ export function InsightJapanDemandCliff() {
 export function InsightPerCapitaGamma() {
   return (
     <WidgetCard
-      title="1인당 사시미 소비 감마곡선 — 2050년 27%"
+      title="1인당 사시미 소비 감마곡선 - 2050년 27%"
       icon={LineIcon}
       iconColor="#fbbf24"
       pillar="S4"
@@ -277,7 +277,7 @@ export function InsightPerCapitaGamma() {
 export function InsightSegmentDecline() {
   return (
     <WidgetCard
-      title="3개 세그먼트 차등 감소 — 캔만 견뎠다"
+      title="3개 세그먼트 차등 감소 - 캔만 견뎠다"
       icon={Layers}
       iconColor="#38bdf8"
       pillar="S4"
@@ -285,7 +285,7 @@ export function InsightSegmentDecline() {
       telemetry={{ status: 'STATIC', syncDate: '2026-04-30' }}
       termTooltip={{
         term: '세그먼트',
-        description: '용도별 시장 구분. 사시미(날것 회), 가츠오부시(가다랑어 훈연 건조 — 출고 시 가공 수율 0.2), 캔(통조림 가공 — cooked loin 수율 0.40).',
+        description: '용도별 시장 구분. 사시미(날것 회), 가츠오부시(가다랑어 훈연 건조 - 출고 시 가공 수율 0.2), 캔(통조림 가공 - cooked loin 수율 0.40).',
       }}
       kpiPanel={[
         {
@@ -332,17 +332,17 @@ export function InsightSegmentDecline() {
         actionPlan: (
           <div>
             <p>
-              <strong>재정의</strong>: 신라교역 일본향 포트폴리오의 사시미·캔 비중은 <strong>수요 탄력성이 정반대인 두 사업</strong>. 통합 P&amp;L 평가는 위험 신호를 가린다 — <strong>세그먼트별 분리 P&amp;L</strong>로 의사결정.
+              <strong>재정의</strong>: 신라교역 일본향 포트폴리오의 사시미·캔 비중은 <strong>수요 탄력성이 정반대인 두 사업</strong>. 통합 P&amp;L 평가는 위험 신호를 가린다 - <strong>세그먼트별 분리 P&amp;L</strong>로 의사결정.
             </p>
             <ol style={{ margin: '4px 0 0 18px', padding: 0 }}>
               <li style={{ marginBottom: 8 }}>
                 <strong>단기 (12개월)</strong>: 캔 비중 확대 우선순위. <strong>방콕·호치민 가다랑어 원어 확보 + OEM 캔 라인 가동률 KPI</strong>로 일본 캔 시장 점유율 추격. 비식용 부산물은 펫푸드로 cross-sell.
               </li>
               <li style={{ marginBottom: 8 }}>
-                <strong>중기 (3년)</strong>: 사시미는 <strong>일본 외 시장 비중 50%+</strong>로 강제 전환. 가츠오부시는 일본 전통 식문화 의존이 절대적이라 신라교역 본사 사업으로는 적합도 낮음 — 현지 파트너십(니노미야 가츠오부시 등)으로 자본 노출 최소화.
+                <strong>중기 (3년)</strong>: 사시미는 <strong>일본 외 시장 비중 50%+</strong>로 강제 전환. 가츠오부시는 일본 전통 식문화 의존이 절대적이라 신라교역 본사 사업으로는 적합도 낮음 - 현지 파트너십(니노미야 가츠오부시 등)으로 자본 노출 최소화.
               </li>
               <li>
-                <strong>장기 (5~10년)</strong>: 사시미 인접 신시장 개척 — <strong>HMR 사시미동·델리 스시·컵 사시미</strong>로 카테고리 자체 재정의. Z세대 시장은 전통 외식 사시미가 아닌 편의형·이동형 사시미 형태로만 회복 가능.
+                <strong>장기 (5~10년)</strong>: 사시미 인접 신시장 개척 - <strong>HMR 사시미동·델리 스시·컵 사시미</strong>로 카테고리 자체 재정의. Z세대 시장은 전통 외식 사시미가 아닌 편의형·이동형 사시미 형태로만 회복 가능.
               </li>
             </ol>
           </div>
@@ -360,7 +360,7 @@ export function InsightSegmentDecline() {
 export function InsightSupplyStructure2022() {
   return (
     <WidgetCard
-      title="일본 2022 공급 구조 — 연승·원어수입이 절반"
+      title="일본 2022 공급 구조 - 연승·원어수입이 절반"
       icon={GitFork}
       iconColor="#0e7490"
       pillar="S1"
@@ -368,7 +368,7 @@ export function InsightSupplyStructure2022() {
       telemetry={{ status: 'STATIC', syncDate: '2026-04-30' }}
       termTooltip={{
         term: '어법',
-        description: '선망(purse seine, 띠그물로 가다랑어·황다랑어 다량 어획), 연승(longline, 긴 줄에 미끼·바늘로 참다랑어·눈다랑어), 채낚기(pole-and-line, 한 마리씩 낚시), 양식(완전양식 PBF — 시즈오카·통영).',
+        description: '선망(purse seine, 띠그물로 가다랑어·황다랑어 다량 어획), 연승(longline, 긴 줄에 미끼·바늘로 참다랑어·눈다랑어), 채낚기(pole-and-line, 한 마리씩 낚시), 양식(완전양식 PBF - 시즈오카·통영).',
       }}
       kpiPanel={[
         {
@@ -416,17 +416,17 @@ export function InsightSupplyStructure2022() {
         actionPlan: (
           <div>
             <p>
-              <strong>재정의</strong>: 일본 연승 공급 채널은 <strong>국내 어선과 한국 원양선단이 같은 풀에서 경쟁</strong>하는 구조. 한국 점유율 확대는 일본 국내 어선의 노후·은퇴 가속과 직결 — <strong>일본 어선 인수·라이센스 매수</strong>가 가장 빠른 경로.
+              <strong>재정의</strong>: 일본 연승 공급 채널은 <strong>국내 어선과 한국 원양선단이 같은 풀에서 경쟁</strong>하는 구조. 한국 점유율 확대는 일본 국내 어선의 노후·은퇴 가속과 직결 - <strong>일본 어선 인수·라이센스 매수</strong>가 가장 빠른 경로.
             </p>
             <ol style={{ margin: '4px 0 0 18px', padding: 0 }}>
               <li style={{ marginBottom: 8 }}>
                 <strong>단기 (12개월)</strong>: 한국 연승선단의 일본행 출하 점유율을 <strong>분기 KPI로 모니터링</strong>. 일본 도매시장(쓰키지 후속 도요스) 경유 비중과 직거래 비중을 분리 측정.
               </li>
               <li style={{ marginBottom: 8 }}>
-                <strong>중기 (3년)</strong>: 일본 노후 연승선 인수 — <strong>5~10척 / 척당 $3~5M</strong>으로 일본 깃발 유지하면서 한국 사업자 운영. 일본 자체 쿼터(WCPFC·IOTC) 보존하며 어획 권리만 흡수.
+                <strong>중기 (3년)</strong>: 일본 노후 연승선 인수 - <strong>5~10척 / 척당 $3~5M</strong>으로 일본 깃발 유지하면서 한국 사업자 운영. 일본 자체 쿼터(WCPFC·IOTC) 보존하며 어획 권리만 흡수.
               </li>
               <li>
-                <strong>장기 (5~10년)</strong>: PBF 양식 시장 24천 톤 진입 — 통영·욕지 기존 양식 인프라 인수 후 일본 시즈오카 양식사와 <strong>합작 R&amp;D 컨소시엄</strong>. 양식 기술(완전양식 종묘·먹이) 이전을 조건으로 사시미 직판 채널 확보.
+                <strong>장기 (5~10년)</strong>: PBF 양식 시장 24천 톤 진입 - 통영·욕지 기존 양식 인프라 인수 후 일본 시즈오카 양식사와 <strong>합작 R&amp;D 컨소시엄</strong>. 양식 기술(완전양식 종묘·먹이) 이전을 조건으로 사시미 직판 채널 확보.
               </li>
             </ol>
           </div>
@@ -444,7 +444,7 @@ export function InsightSupplyStructure2022() {
 export function InsightPriceTier() {
   return (
     <WidgetCard
-      title="사시미 3단계 가격 매트릭스 — 14배 격차"
+      title="사시미 3단계 가격 매트릭스 - 14배 격차"
       icon={DollarSign}
       iconColor="#fbbf24"
       pillar="S4"
@@ -452,7 +452,7 @@ export function InsightPriceTier() {
       telemetry={{ status: 'STATIC', syncDate: '2026-04-30' }}
       termTooltip={{
         term: '3단계 가격대',
-        description: '프리미엄(참다랑어 — PBF 태평양참다랑어, SBF 남방참다랑어), 중급(눈다랑어 BET, 황다랑어 YFT), 저가(가다랑어 SKJ, 날개다랑어 ALB).',
+        description: '프리미엄(참다랑어 - PBF 태평양참다랑어, SBF 남방참다랑어), 중급(눈다랑어 BET, 황다랑어 YFT), 저가(가다랑어 SKJ, 날개다랑어 ALB).',
       }}
       kpiPanel={[
         {
@@ -492,7 +492,7 @@ export function InsightPriceTier() {
               어법 매핑: 프리미엄은 채낚기·연승·완전양식 중심, 중급은 연승·선망 혼재, 저가는 선망·채낚기. <strong>일본 수요 감소 시 하위 티어부터 잠식</strong>되는 트레이드다운(소비자가 저가로 옮겨가는) 패턴이 관측됨.
             </p>
             <p>
-              현재 가다랑어(SKJ) 방콕 FOB는 2026-Q2 약 $2,008/MT(약 JPY 300/kg, 8엔/$140 환산) — <strong>일본 도매가 저가 티어 상한</strong>에 근접. SKJ 캔 가공 마진 압박 가속 신호.
+              현재 가다랑어(SKJ) 방콕 FOB는 2026-Q2 약 $2,008/MT(약 JPY 300/kg, 8엔/$140 환산) - <strong>일본 도매가 저가 티어 상한</strong>에 근접. SKJ 캔 가공 마진 압박 가속 신호.
             </p>
           </div>
         ),
@@ -527,7 +527,7 @@ export function InsightPriceTier() {
 export function InsightCohortDoubleShock() {
   return (
     <WidgetCard
-      title="코호트 × 인구 더블 쇼크 — 자연 회복 불가"
+      title="코호트 × 인구 더블 쇼크 - 자연 회복 불가"
       icon={Users}
       iconColor="#a855f7"
       pillar="S5"
@@ -535,7 +535,7 @@ export function InsightCohortDoubleShock() {
       telemetry={{ status: 'STATIC', syncDate: '2026-04-30' }}
       termTooltip={{
         term: '코호트 효과',
-        description: '특정 세대(코호트)가 평생 유지하는 소비 성향. 일본 젊은 세대의 낮은 어류 소비는 나이가 들어도 회복되지 않고 평생 유지 — 세대교체로 하향 압력 가중.',
+        description: '특정 세대(코호트)가 평생 유지하는 소비 성향. 일본 젊은 세대의 낮은 어류 소비는 나이가 들어도 회복되지 않고 평생 유지 - 세대교체로 하향 압력 가중.',
       }}
       kpiPanel={[
         {
@@ -572,7 +572,7 @@ export function InsightCohortDoubleShock() {
               <strong>코호트 효과</strong>란 특정 세대(예: 1980년대생)가 형성한 식습관이 평생 유지된다는 식품경제학 개념입니다. Kawamoto는 일본 사시미 수요 감소가 <strong>"고령화로 회복되는 일시적 현상"</strong>이 아닌 <strong>"세대교체로 더 악화되는 구조적 변화"</strong>임을 입증.
             </p>
             <p>
-              1인당 소비량(자주색 막대): 2000년 5.5kg → 2050년 0.775kg <strong>(-86%)</strong>. 일본 총인구(노란 선): 2000년 1.268억 → 2050년 1.047억 <strong>(-17%)</strong>. <strong>두 축의 곱셈 효과</strong>: 총수요 2000년 698천 톤 → 2050년 81천 톤(국내 기준) — <strong>-88% 축소</strong>.
+              1인당 소비량(자주색 막대): 2000년 5.5kg → 2050년 0.775kg <strong>(-86%)</strong>. 일본 총인구(노란 선): 2000년 1.268억 → 2050년 1.047억 <strong>(-17%)</strong>. <strong>두 축의 곱셈 효과</strong>: 총수요 2000년 698천 톤 → 2050년 81천 톤(국내 기준) - <strong>-88% 축소</strong>.
             </p>
             <p>
               일반 통념: "고령자가 생선을 더 먹으니 고령화는 수요 회복 요인". <strong>Kawamoto 검증 결과 기각</strong>. 젊은 세대 생선 소비 성향이 평생 유지되며 세대교체로 평균 소비량이 계속 하락. Mori &amp; Saegusa(2010), Birch(1999) 등 식품경제학 cohort 연구와 일치.
@@ -589,10 +589,10 @@ export function InsightCohortDoubleShock() {
                 <strong>단기 (12개월)</strong>: <strong>일본 시장 회복 시나리오 폐기 감사</strong>. 사업계획·중기경영계획·이사회 보고서에서 "고령화 회복" 가정을 grep하여 제거. 신라교역 일본 자회사 valuation도 회복 가정 제외하고 재산정.
               </li>
               <li style={{ marginBottom: 8 }}>
-                <strong>중기 (3년)</strong>: Z세대 타깃 신제품 라인업 — <strong>컵 사시미동·델리 스시·HMR 회덮밥</strong>. 도쿄 도심 편의점·세븐&amp;아이 PB 채널 직진출. "사시미 = 전통 외식" 카테고리를 "사시미 = 편의 단백질"로 재정의.
+                <strong>중기 (3년)</strong>: Z세대 타깃 신제품 라인업 - <strong>컵 사시미동·델리 스시·HMR 회덮밥</strong>. 도쿄 도심 편의점·세븐&amp;아이 PB 채널 직진출. "사시미 = 전통 외식" 카테고리를 "사시미 = 편의 단백질"로 재정의.
               </li>
               <li>
-                <strong>장기 (5~10년)</strong>: 일본 외 사시미 시장 <strong>"코호트 부상 단계"</strong> 국가 선점. 미국(밀레니얼·Z세대 일식 수용도 8~10%), 동남아 신중산층(태국·베트남·인도네시아), 중남미(브라질·멕시코 사시미 외식 부상기) — 이들의 1인당 소비가 현재 일본의 1990년대 진입 지점인 국가 우선 진출.
+                <strong>장기 (5~10년)</strong>: 일본 외 사시미 시장 <strong>"코호트 부상 단계"</strong> 국가 선점. 미국(밀레니얼·Z세대 일식 수용도 8~10%), 동남아 신중산층(태국·베트남·인도네시아), 중남미(브라질·멕시코 사시미 외식 부상기) - 이들의 1인당 소비가 현재 일본의 1990년대 진입 지점인 국가 우선 진출.
               </li>
             </ol>
           </div>

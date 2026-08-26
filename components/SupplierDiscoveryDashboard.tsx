@@ -143,7 +143,7 @@ export default function SupplierDiscoveryDashboard() {
             hsCode: realHs,
             volume: `${blData.tradeVolume?.[4]?.importVolume || 0} MT (${blData.tradeVolume?.[4]?.year || '2026'})`,
             risk: blData.tradeVolume?.[4]?.source === 'KCS_LIVE' ? 'S' : 'C',
-            riskDesc: blData.tradeVolume?.[4]?.source === 'KCS_LIVE' ? 'KCS 관세청 실데이터 교차검증 완료' : 'KCS API 응답 없음 — 수동 확인 필요'
+            riskDesc: blData.tradeVolume?.[4]?.source === 'KCS_LIVE' ? 'KCS 관세청 실데이터 교차검증 완료' : 'KCS API 응답 없음 - 수동 확인 필요'
           }
         ]);
       } catch {
@@ -745,7 +745,7 @@ export default function SupplierDiscoveryDashboard() {
                 </div>
                 {riskData.mfds?.items?.slice(0, 2).map((item: any, i: number) => (
                   <div key={i} style={{ marginTop: '0.5rem', padding: '0.5rem', background: 'var(--w-navy-900)', borderRadius: '6px', fontSize: '0.8rem', color: 'var(--w-slate-400)' }}>
-                    {item.productName} — {item.reason?.substring(0, 60)}
+                    {item.productName} - {item.reason?.substring(0, 60)}
                   </div>
                 ))}
               </div>

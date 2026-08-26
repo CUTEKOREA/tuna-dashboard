@@ -73,7 +73,7 @@ export function skuTotal(): number {
 export function speciesMix(): { 어종: string; 수: number }[] {
   const m = new Map<string, number>();
   for (const s of data.skus) {
-    if (s.어종 === '—') continue;
+    if (s.어종 === '-') continue;
     // 학명·품종 괄호는 떼고 한글명으로 묶는다 — 「청어 (Clupea harengus)」와 「청어」가 갈리면 안 된다.
     // 한 행에 어종이 둘 붙은 것도 있어(「연어(핑크) · 연어」) 항목 단위로 쪼갠 뒤 중복을 없앤다.
     const keys = new Set(
@@ -100,6 +100,6 @@ export function byGrade(): { A: number; B: number } {
 /** 칸이 실제로 채워진 비율. 화면에 「무엇이 없는지」를 밝히는 데 쓴다. */
 export function fillRate(field: ' 어종' | '어종' | '규격' | '인증'): number {
   const k = field.trim() as keyof Sku;
-  const n = data.skus.filter((s) => s[k] !== '—').length;
+  const n = data.skus.filter((s) => s[k] !== '-').length;
   return Math.round((n / data.skus.length) * 1000) / 10;
 }

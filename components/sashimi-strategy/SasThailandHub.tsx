@@ -35,7 +35,7 @@ export default function SasThailandHub() {
   return (
     <WidgetCard
       id="W-SAS25"
-      title="🇹🇭 태국 — 세계 최대 참치 가공 허브"
+      title="🇹🇭 태국 - 세계 최대 참치 가공 허브"
       icon={Factory}
       iconColor="#f59e0b"
       pillar="S1"

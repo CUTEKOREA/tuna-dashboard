@@ -14,7 +14,7 @@ describe('동남아 가공사 조사 인테이크', () => {
     expect(seasiaCountries).toContain('베트남');
   });
 
-  it('전수표 합계가 메타와 일치한다 — 표를 조용히 흘리면 여기서 걸린다', () => {
+  it('전수표 합계가 메타와 일치한다 - 표를 조용히 흘리면 여기서 걸린다', () => {
     const sum = seasiaCountries.reduce((s, c) => s + (reportFor(c)?.registry.length ?? 0), 0);
     expect(sum).toBe(seasia.meta.registryTotal);
     expect(sum).toBeGreaterThan(300);

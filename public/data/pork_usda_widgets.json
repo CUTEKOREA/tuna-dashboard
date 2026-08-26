@@ -23,7 +23,7 @@
     {
       "id": "w_china_pork_dominance",
       "title": "중국 돼지고기 글로벌 점유",
-      "subtitle": "USDA GAIN CH2025-0053 — 세계 48%",
+      "subtitle": "USDA GAIN CH2025-0053 - 세계 48%",
       "cardDesc": "2024 중국 돼지고기 생산 57.06M MT, 세계 48% 점유. 종돈 수입 32K두(2017-2024) 중 미국 36%.",
       "chartType": "Bar",
       "pillar": "S1",
@@ -50,7 +50,7 @@
     {
       "id": "w_spain_pork_eu_leader",
       "title": "스페인 EU 돼지고기 1위",
-      "subtitle": "USDA GAIN SP2025-0039 — 수출 2.4M MT·$77억",
+      "subtitle": "USDA GAIN SP2025-0039 - 수출 2.4M MT·$77억",
       "cardDesc": "스페인 EU 최대 돼지고기 생산·수출국. 2024 생산 4.97M·수출 2.4M MT $77억. 2025.11 ASF 야생 멧돼지 첫 발생.",
       "chartType": "Bar",
       "pillar": "S1",
@@ -99,7 +99,7 @@
     {
       "id": "w_us_korea_pork_timeline",
       "title": "미국→한국 돼지고기 월별",
-      "subtitle": "USDA FAS ESR 1702 — 한국 세계 3위",
+      "subtitle": "USDA FAS ESR 1702 - 한국 세계 3위",
       "cardDesc": "ESR 주간→월간 집계(2025-06~2026-05). 한국 3년 누적 582K톤, 멕시코·일본 다음 3위. 2026-04 19.5K톤 피크.",
       "chartType": "Composed",
       "pillar": "S4",
@@ -131,7 +131,7 @@
     {
       "id": "w_us_pork_top_importers",
       "title": "미국 돼지고기 3년 수입국 Top8",
-      "subtitle": "USDA FAS ESR 1702 — 멕시코 압도",
+      "subtitle": "USDA FAS ESR 1702 - 멕시코 압도",
       "cardDesc": "USDA FAS ESR 주간 3년 누적(상위 8개국). 멕시코 2.3M(40%), 일본 719K, 한국 582K, 중국 579K, 캐나다 312K.",
       "chartType": "Bar",
       "pillar": "S4",

@@ -122,7 +122,7 @@ export default function PetFoodDashboard() {
             icon={Activity}
             iconColor="#f472b6"
             pillar="S4"
-            cardDesc="5대 진입 시나리오별 예상 자본금·매출·ROIC 비교 — PHASE 3 진입 전략 보고서"
+            cardDesc="5대 진입 시나리오별 예상 자본금·매출·ROIC 비교 - PHASE 3 진입 전략 보고서"
             telemetry={{ status: 'STATIC', syncDate: '2026-05' }}
             chartHeight={400}
             chart={
@@ -158,7 +158,7 @@ export default function PetFoodDashboard() {
               icon={AlertCircle}
               iconColor="var(--color-info)"
               pillar="S1"
-              cardDesc={`조업 리스크 — 최근 주차 어획량과 참깨/오징어 대체 단가 추이`}
+              cardDesc={`조업 리스크 - 최근 주차 어획량과 참깨/오징어 대체 단가 추이`}
               telemetry={{ status: data ? 'SYNCED' : 'STATIC', syncDate: '2026-05' }}
               customBody={<>
                 <div className={styles.chartContainer}>
@@ -187,7 +187,7 @@ export default function PetFoodDashboard() {
               icon={Activity}
               iconColor="var(--color-info)"
               pillar="S2"
-              cardDesc={`What-If — 동물성/식물성 단백질 믹스 비율에 따른 마진 시뮬레이터`}
+              cardDesc={`What-If - 동물성/식물성 단백질 믹스 비율에 따른 마진 시뮬레이터`}
               telemetry={{ status: data ? 'SYNCED' : 'STATIC', syncDate: '2026-05' }}
               customBody={<>
                 <div className={styles.chartContainer}>
@@ -215,7 +215,7 @@ export default function PetFoodDashboard() {
               icon={ShieldCheck}
               iconColor="var(--color-info)"
               pillar="S5"
-              cardDesc={`Carrageenan — 카라기난 성분을 배제한 클린 라벨 제품의 프리미엄 시장 장악력`}
+              cardDesc={`Carrageenan - 카라기난 성분을 배제한 클린 라벨 제품의 프리미엄 시장 장악력`}
               telemetry={{ status: 'STATIC', syncDate: '2026-05' }}
               customBody={<>
                 <div className={styles.chartContainer}>
@@ -241,7 +241,7 @@ export default function PetFoodDashboard() {
               icon={ArrowRightLeft}
               iconColor="var(--color-info)"
               pillar="S3"
-              cardDesc={`무역적자 — 수출이 연 25.2% 급성장했으나 여전히 수입의 2.3배가 적자.`}
+              cardDesc={`무역적자 - 수출이 연 25.2% 급성장했으나 여전히 수입의 2.3배가 적자.`}
               telemetry={{ status: data ? 'SYNCED' : 'STATIC', syncDate: '2026-05' }}
               customBody={<>
             <div className={styles.chartContainer}>
@@ -268,7 +268,7 @@ export default function PetFoodDashboard() {
               icon={DollarSign}
               iconColor="var(--color-info)"
               pillar="S4"
-              cardDesc={`Price Gap — 동일 시장에서 미국산이 태국산 대비 3~7배 고가.`}
+              cardDesc={`Price Gap - 동일 시장에서 미국산이 태국산 대비 3~7배 고가.`}
               telemetry={{ status: data ? 'SYNCED' : 'STATIC', syncDate: '2026-05' }}
               customBody={<>
             <div className={styles.chartContainer}>
@@ -294,7 +294,7 @@ export default function PetFoodDashboard() {
               icon={PieChartIcon}
               iconColor="var(--color-info)"
               pillar="S4"
-              cardDesc={`수산물 1.8% — 한국 판매 펫푸드 내 수산물 비중이 단 1.8%.`}
+              cardDesc={`수산물 1.8% - 한국 판매 펫푸드 내 수산물 비중이 단 1.8%.`}
               telemetry={{ status: data ? 'SYNCED' : 'STATIC', syncDate: '2026-05' }}
               customBody={<>
             <div className={styles.chartContainer}>
@@ -316,7 +316,7 @@ export default function PetFoodDashboard() {
               icon={Recycle}
               iconColor="var(--color-info)"
               pillar="S4"
-              cardDesc={`Empirical Data — 태국 참치캔 생산량 폭증의 핵심 요인: 프리미엄 펫푸드 참치육 수요.`}
+              cardDesc={`Empirical Data - 태국 참치캔 생산량 폭증의 핵심 요인: 프리미엄 펫푸드 참치육 수요.`}
               telemetry={{ status: data ? 'SYNCED' : 'STATIC', syncDate: '2026-05' }}
               customBody={<>
             <div className={styles.chartContainer}>
@@ -342,7 +342,7 @@ export default function PetFoodDashboard() {
               icon={Scale}
               iconColor="var(--color-info)"
               pillar="S4"
-              cardDesc={`어분 최저 — 어분 $0.45~0.50/kg으로 최저 동물성 단백질원. (업계 추정치)`}
+              cardDesc={`어분 최저 - 어분 $0.45~0.50/kg으로 최저 동물성 단백질원. (업계 추정치)`}
               telemetry={{ status: 'STATIC', syncDate: '2026-05' }}
               customBody={<>
             <div className={styles.chartContainer}>
@@ -368,7 +368,7 @@ export default function PetFoodDashboard() {
               icon={Leaf}
               iconColor="var(--color-info)"
               pillar="S4"
-              cardDesc={`연평균성장률(CAGR) 8.7% — 대체 단백질 펫푸드 시장 2027년 39억$ 전망. (업계 추정치)`}
+              cardDesc={`연평균성장률(CAGR) 8.7% - 대체 단백질 펫푸드 시장 2027년 39억$ 전망. (업계 추정치)`}
               telemetry={{ status: 'STATIC', syncDate: '2026-05' }}
               customBody={<>
             <div className={styles.kpiRow}>
@@ -396,7 +396,7 @@ export default function PetFoodDashboard() {
             icon={Activity}
             iconColor="var(--color-info)"
             pillar="S4"
-            cardDesc={`EPA+DHA 620 — 줄가자미 EPA+DHA 620.24 mg/100g — 오메가-3 최고`}
+            cardDesc={`EPA+DHA 620 - 줄가자미 EPA+DHA 620.24 mg/100g - 오메가-3 최고`}
             telemetry={{ status: data ? 'SYNCED' : 'STATIC', syncDate: '2026-05' }}
             customBody={<>
                   <div className={styles.chartContainer}>
@@ -422,7 +422,7 @@ export default function PetFoodDashboard() {
   icon={Ban}
   iconColor="var(--color-info)"
   pillar="S1"
-  cardDesc={`FAD -4%/년 — FAD 제한 350→288개로 연 4% 축소. 원물 단가 상승 불가피.`}
+  cardDesc={`FAD -4%/년 - FAD 제한 350→288개로 연 4% 축소. 원물 단가 상승 불가피.`}
   telemetry={{ status: data ? 'SYNCED' : 'STATIC', syncDate: '2026-05' }}
   customBody={<>
                 <div className={styles.kpiRow}>
@@ -454,7 +454,7 @@ export default function PetFoodDashboard() {
   icon={Thermometer}
   iconColor="var(--color-info)"
   pillar="S1"
-  cardDesc={`-15~30% — 중앙 태평양 바이오매스 2100년까지 15~30% 감소 전망.`}
+  cardDesc={`-15~30% - 중앙 태평양 바이오매스 2100년까지 15~30% 감소 전망.`}
   telemetry={{ status: data ? 'SYNCED' : 'STATIC', syncDate: '2026-05' }}
   customBody={<>
                 <div className={styles.kpiRow}>
@@ -490,7 +490,7 @@ export default function PetFoodDashboard() {
               icon={Recycle}
               iconColor="var(--color-info)"
               pillar="S2"
-              cardDesc={`단일 원료 반려견 간식 부가가치 — 업사이클링 마진 자체추정`}
+              cardDesc={`단일 원료 반려견 간식 부가가치 - 업사이클링 마진 자체추정`}
               telemetry={{ status: 'STATIC', syncDate: '2026-05' }}
               customBody={<>
                 <div className={styles.chartContainer}>
@@ -516,7 +516,7 @@ export default function PetFoodDashboard() {
               icon={Scale}
               iconColor="var(--color-info)"
               pillar="S4"
-              cardDesc={`Scoreboard — 로얄캐닌 2,093억 원으로 1위.`}
+              cardDesc={`Scoreboard - 로얄캐닌 2,093억 원으로 1위.`}
               telemetry={{ status: data ? 'SYNCED' : 'STATIC', syncDate: '2026-05' }}
               customBody={<>
             <div className={styles.chartContainer}>
@@ -542,7 +542,7 @@ export default function PetFoodDashboard() {
               icon={Activity}
               iconColor="var(--color-info)"
               pillar="S4"
-              cardDesc={`Sensitivity (Finansia/Globlex 모델) — 참치 매입가 +10% → 순이익 -8.5%. USD/THB 1 THB 절상(약 3% 평가절상) → i-Tail 수출 93.6% 노출로 순이익 -10%.`}
+              cardDesc={`Sensitivity (Finansia/Globlex 모델) - 참치 매입가 +10% → 순이익 -8.5%. USD/THB 1 THB 절상(약 3% 평가절상) → i-Tail 수출 93.6% 노출로 순이익 -10%.`}
               telemetry={{ status: 'STATIC', syncDate: 'Finansia/Globlex Securities Reports 2026-05' }}
               customBody={<>
             <div className={styles.chartContainer}>
@@ -568,7 +568,7 @@ export default function PetFoodDashboard() {
               icon={Factory}
               iconColor="var(--color-info)"
               pillar="S3"
-              cardDesc={`매출총이익률(GPM) 25% — 마즈·스머커 등 OEM으로 98.7% 매출. 매출총이익률(GPM) 25%.`}
+              cardDesc={`매출총이익률(GPM) 25% - 마즈·스머커 등 OEM으로 98.7% 매출. 매출총이익률(GPM) 25%.`}
               telemetry={{ status: data ? 'SYNCED' : 'STATIC', syncDate: '2026-05' }}
               customBody={<>
             <div className={styles.kpiRow}>
@@ -602,7 +602,7 @@ export default function PetFoodDashboard() {
               icon={LineChartIcon}
               iconColor="var(--color-info)"
               pillar="S4"
-              cardDesc={`V자 회복 — 원가율 78.6% → 이익률 6.5% 저점 → 15.4% V자 회복. (공시 기반 추정)`}
+              cardDesc={`V자 회복 - 원가율 78.6% → 이익률 6.5% 저점 → 15.4% V자 회복. (공시 기반 추정)`}
               telemetry={{ status: 'STATIC', syncDate: '2026-05' }}
               customBody={<>
             <div className={styles.chartContainer}>
@@ -630,7 +630,7 @@ export default function PetFoodDashboard() {
               icon={Zap}
               iconColor="var(--color-info)"
               pillar="S4"
-              cardDesc={`Vertical Integration — 계열사 닭고기 원가 직접 공급으로 흑자 전환.`}
+              cardDesc={`Vertical Integration - 계열사 닭고기 원가 직접 공급으로 흑자 전환.`}
               telemetry={{ status: data ? 'SYNCED' : 'STATIC', syncDate: '2026-05' }}
               customBody={<>
             <div className={styles.chartContainer}>
@@ -658,7 +658,7 @@ export default function PetFoodDashboard() {
               icon={Award}
               iconColor="var(--color-info)"
               pillar="S4"
-              cardDesc={`자체 브랜드(PB) 20.2% — 미국 자체 브랜드(PB) 펫푸드 성장률 20.2%로 프리미엄(11.1%)의 2배. (업계 추정치)`}
+              cardDesc={`자체 브랜드(PB) 20.2% - 미국 자체 브랜드(PB) 펫푸드 성장률 20.2%로 프리미엄(11.1%)의 2배. (업계 추정치)`}
               telemetry={{ status: 'STATIC', syncDate: '2026-05' }}
               customBody={<>
             <div className={styles.chartContainer}>
@@ -684,7 +684,7 @@ export default function PetFoodDashboard() {
               icon={Activity}
               iconColor="var(--color-info)"
               pillar="S3"
-              cardDesc={`Empirical Data — 태국 캔참치 수출량과 프리미엄 펫푸드 수요 지수 상관관계`}
+              cardDesc={`Empirical Data - 태국 캔참치 수출량과 프리미엄 펫푸드 수요 지수 상관관계`}
               telemetry={{ status: data ? 'SYNCED' : 'STATIC', syncDate: '2026-05' }}
               customBody={<>
             <div className={styles.chartContainer}>
@@ -710,7 +710,7 @@ export default function PetFoodDashboard() {
             icon={Zap}
             iconColor="var(--color-info)"
             pillar="S2"
-            cardDesc={`항산화 35.2% — Aroase AP-10 효소 최적, DPPH 라디칼 소거능 35.2%`}
+            cardDesc={`항산화 35.2% - Aroase AP-10 효소 최적, DPPH 라디칼 소거능 35.2%`}
             telemetry={{ status: data ? 'SYNCED' : 'STATIC', syncDate: '2026-05' }}
             customBody={<>
                   <div className={styles.chartContainer}>
@@ -737,7 +737,7 @@ export default function PetFoodDashboard() {
   icon={Leaf}
   iconColor="var(--color-info)"
   pillar="S2"
-  cardDesc={`수율 72.5% — 스피룰리나 알칼리추출 72.5% 수율, EAA 312mg/g`}
+  cardDesc={`수율 72.5% - 스피룰리나 알칼리추출 72.5% 수율, EAA 312mg/g`}
   telemetry={{ status: data ? 'SYNCED' : 'STATIC', syncDate: '2026-05' }}
   customBody={<>
                   <div className={styles.chartContainer}>

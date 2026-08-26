@@ -78,7 +78,7 @@ export default function ExchangeSimulator({ onSimulationChange }: ExchangeSimula
           <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '0.8rem' }}>
             <span style={{ color: 'var(--w-slate-50)', fontWeight: 600, fontSize: '0.9rem' }}>🇳🇴 NOK/KRW (노르웨이 크로네)</span>
             <span style={{ color: nokFactor > 0 ? 'var(--color-danger)' : nokFactor < 0 ? 'var(--color-success)' : 'var(--w-slate-400)', fontWeight: 700 }}>
-              {typeof liveRates?.nok_krw === 'number' ? `${(liveRates.nok_krw * (1 + nokFactor / 100)).toFixed(2)} 원` : '— (데이터 미수신)'} ({nokFactor > 0 ? '+' : ''}{nokFactor}%)
+              {typeof liveRates?.nok_krw === 'number' ? `${(liveRates.nok_krw * (1 + nokFactor / 100)).toFixed(2)} 원` : '- (데이터 미수신)'} ({nokFactor > 0 ? '+' : ''}{nokFactor}%)
             </span>
           </div>
           <input 
@@ -97,7 +97,7 @@ export default function ExchangeSimulator({ onSimulationChange }: ExchangeSimula
           <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '0.8rem' }}>
             <span style={{ color: 'var(--w-slate-50)', fontWeight: 600, fontSize: '0.9rem' }}>🇪🇺 EUR/KRW (유로)</span>
             <span style={{ color: eurFactor > 0 ? 'var(--color-danger)' : eurFactor < 0 ? 'var(--color-success)' : 'var(--w-slate-400)', fontWeight: 700 }}>
-              {typeof liveRates?.eur_krw === 'number' ? `${(liveRates.eur_krw * (1 + eurFactor / 100)).toFixed(2)} 원` : '— (데이터 미수신)'} ({eurFactor > 0 ? '+' : ''}{eurFactor}%)
+              {typeof liveRates?.eur_krw === 'number' ? `${(liveRates.eur_krw * (1 + eurFactor / 100)).toFixed(2)} 원` : '- (데이터 미수신)'} ({eurFactor > 0 ? '+' : ''}{eurFactor}%)
             </span>
           </div>
           <input 

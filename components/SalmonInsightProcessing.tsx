@@ -16,7 +16,7 @@ export default function SalmonInsightProcessing() {
       icon={Factory}
       iconColor="#38bdf8"
       pillar="S2"
-      cardDesc="가공 자동화 효과 비교 — 수율·인건비·리콜 대응시간은 자체 추정 시나리오값(illustrative)"
+      cardDesc="가공 자동화 효과 비교 - 수율·인건비·리콜 대응시간은 자체 추정 시나리오값(illustrative)"
       telemetry={{ status: 'STATIC', syncDate: '2026-05-29' }}
       chartHeight={250}
       chart={
@@ -42,7 +42,7 @@ export default function SalmonInsightProcessing() {
 </div>`,
         actionPlan: `<div>
 <p><strong>재정의</strong>: 가공 자동화는 단순 OPEX 절감이 아닌 <strong>"규제 compliance + 마진 방어 dual instrument"</strong>.</p>
-<p><strong>3단계</strong>: ① 통합 로보틱스 라인 도입 — 인건비·수율 개선 잠재력 검토(차트는 자체 추정 시나리오) ② AI 기반 재고 이력 관리(GenBI) 신규 capex ③ 슈퍼 칠링 기술 최우선 capex — FDA 이력 추적 의무화 사전 충족.</p>
+<p><strong>3단계</strong>: ① 통합 로보틱스 라인 도입 - 인건비·수율 개선 잠재력 검토(차트는 자체 추정 시나리오) ② AI 기반 재고 이력 관리(GenBI) 신규 capex ③ 슈퍼 칠링 기술 최우선 capex - FDA 이력 추적 의무화 사전 충족.</p>
 </div>`,
         source: "자체 추정 시나리오(illustrative) · 가공 자동화 효과는 BAADER/Mowi 공개 자료를 참고한 정성 가정값 (STATIC, 1차 추적 불가)"
       }}

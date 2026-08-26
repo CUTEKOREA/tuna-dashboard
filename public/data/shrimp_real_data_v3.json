@@ -831,7 +831,7 @@
       "situation": "현황: 자연산 새우 어획량은 수십 년간 성장이 정체되었으나, 글로벌 2위 규모인 아르헨티나(붉은새우/홍새우)를 비롯해 중국, 멕시코 등 주요 자원 보유국들은 자국 연안 조업 쿼터를 강력하게 통제하며 자원 독점 체계를 굳히고 있습니다.",
       "takeaway": "전략: 대량 유통이 불가능해진 자연산 새우(아르헨티나 홍새우 등)를 최고급 외식 라인(Premium Sushi / Fine Dining) 전용 한정판 식재료로 리포지셔닝하고, 산지 선단과의 직계약을 통해 VVIP 시장 장악을 위한 럭셔리 마케팅 지렛대로 활용해야 합니다.",
       "yUnit": "Tonne",
-      "source": "출처: FAO FishStatJ 2024.1.0 글로벌 어획량 데이터 — 정적 스냅샷",
+      "source": "출처: FAO FishStatJ 2024.1.0 글로벌 어획량 데이터 - 정적 스냅샷",
       "reliability": 100,
       "subtitle": "위젯 설명: 2022년 자연산(Capture) 생산량 총량 기준 상위 10개국",
       "unit": "Tonne",
@@ -883,7 +883,7 @@
         }
       ],
       "logic": "FAOSTAT 생산량 데이터와 국가별 Farm-Gate 평균 단가 교차 연산 산출 (기존 전체 양식/연어 데이터 혼입 오류 교정)",
-      "source": "출처: FAOSTAT FishStatJ · 국가별 Farm-gate Price 교차검증 — 정적 스냅샷",
+      "source": "출처: FAOSTAT FishStatJ · 국가별 Farm-gate Price 교차검증 - 정적 스냅샷",
       "reliability": 100,
       "unit": "Thousand USD",
       "yUnit": "Thousand USD",
@@ -897,7 +897,7 @@
     {
       "id": "w07_trade_scaleup",
       "title": "국경 붕괴: 글로벌 무역 대금 스케일업 추이",
-      "subtitle": "위젯 설명: 단위: USD 1,000 (천 달러) — FAO Commodities Trade 기준 | 수출 금액(Export)과 수입 금액(Import) 총합 장기 추세 대조",
+      "subtitle": "위젯 설명: 단위: USD 1,000 (천 달러) - FAO Commodities Trade 기준 | 수출 금액(Export)과 수입 금액(Import) 총합 장기 추세 대조",
       "chartType": "line",
       "data": [
         {
@@ -1035,7 +1035,7 @@
       "situation": "현황: 과거 자국 생산-자국 소비 패턴에서 벗어나, 콜드체인 물류 혁신과 신흥국 수요 폭발이 맞물리며 연간 300억 달러(수출/수입 각각 약 314억 달러 규모)를 상회하는 거대한 글로벌 컨테이너 단백질 교역망이 구축 완료되었습니다.",
       "takeaway": "전략: 무역의 물리적 국경 장벽이 약화되었습니다. 실시간 무역 가격 변동성을 선행 분석하는 퀀트 트레이딩 조직을 신설하고, 글로벌 최저가 Spot 물량이 출현할 때마다 즉시 매집할 수 있는 대규모 보세 냉동 인프라(CAPEX) 확보가 최상위 전략입니다.",
       "yUnit": "Thousand USD",
-      "source": "출처: FAOSTAT FishStatJ 2024.1.0 데이터 — 정적 스냅샷",
+      "source": "출처: FAOSTAT FishStatJ 2024.1.0 데이터 - 정적 스냅샷",
       "reliability": 95,
       "unit": "Thousand USD",
       "telemetry": "synced",
@@ -1164,7 +1164,7 @@
       "situation": "현황: 중국이 미국(84만 톤)을 추월하여 95만 톤을 흡수하는 세계 1위의 주요 소비국으로 등극했습니다. 미국, 중국, 그리고 스페인·프랑스를 위시한 유럽 연합이 글로벌 잉여 물량을 소화하는 '주요 3각 수입 축'을 형성하고 있습니다.",
       "takeaway": "전략: 중국의 큰 수입 수요를 역이용해야 합니다. 국내 잉여 물량이나 저가 소싱 물량을 중국 내륙 시장에 리버스(Reverse) 수출하거나, 미국/유럽 대형 마트 PB망에 자사의 고부가 팩(Pack) 상품을 직납하는 B2C 우회 전략을 즉각 실행하십시오.",
       "yUnit": "Tonne",
-      "source": "출처: FAOSTAT FishStatJ 2024.1.0 데이터 — 정적 스냅샷",
+      "source": "출처: FAOSTAT FishStatJ 2024.1.0 데이터 - 정적 스냅샷",
       "reliability": 95,
       "subtitle": "위젯 설명: 최신 연도(2022) 기준 글로벌 국가별 총 수입물량 순위",
       "unit": "Tonne",
@@ -2004,7 +2004,7 @@
         }
       ],
       "yUnit": "Tonne",
-      "source": "출처: 자체 추정(illustrative) — 품종 전환 패러다임 도식화용 예시 데이터. FAOSTAT 품종 단위 실측 시계열 미연동.",
+      "source": "출처: 자체 추정(illustrative) - 품종 전환 패러다임 도식화용 예시 데이터. FAOSTAT 품종 단위 실측 시계열 미연동.",
       "reliability": 100,
       "xAxis": "Year",
       "series": [
@@ -2300,7 +2300,7 @@
     {
       "id": "w19_hyperspectral",
       "title": "초정밀 탈각 가공(Value-Add) 심화도별 글로벌 수출 단가 워터폴",
-      "subtitle": "위젯 설명: 가공 심화도별 단가 4단계(4,500~9,800 USD/t)는 자체 추정(illustrative) 예시값 — 단순 원물(HOSO) 대비 딥테크 가공(Breaded) 시 약 2.1배 상승을 도식화. HS 단위 실측 단가 미연동.",
+      "subtitle": "위젯 설명: 가공 심화도별 단가 4단계(4,500~9,800 USD/t)는 자체 추정(illustrative) 예시값 - 단순 원물(HOSO) 대비 딥테크 가공(Breaded) 시 약 2.1배 상승을 도식화. HS 단위 실측 단가 미연동.",
       "chartType": "Composed",
       "xKey": "가공형태",
       "bars": [
@@ -2328,7 +2328,7 @@
         }
       ],
       "logic": "FAOSTAT 2023 글로벌 수출 데이터 기준, HS Code 세부 품목별(냉동 통새우 vs 조제/보존 새우) 톤당 평균 수출 단가 역산 산출",
-      "source": "출처: 자체 추정(illustrative) — 가공도별 단가 4,500~9,800 USD/t는 업계 통념 기반 예시값. UN Comtrade API 실시간 연동 아님(STATIC).",
+      "source": "출처: 자체 추정(illustrative) - 가공도별 단가 4,500~9,800 USD/t는 업계 통념 기반 예시값. UN Comtrade API 실시간 연동 아님(STATIC).",
       "yUnit": "USD",
       "reliability": 100,
       "unit": "USD",
@@ -2371,7 +2371,7 @@
         }
       ],
       "logic": "글로벌 BFT(Biofloc Technology) 흰다리새우 실증 통제 실험 데이터 및 EUMOFA 양식장 생산성 지표 교차 연산",
-      "source": "출처: 업계 추정 — FCR 1.93→1.09 개선폭은 바이오플락(BFT) 실증 사례 기반 자체 추정값(특정 1차 보고서 미특정). EUMOFA API 실시간 연동 아님(STATIC).",
+      "source": "출처: 업계 추정 - FCR 1.93→1.09 개선폭은 바이오플락(BFT) 실증 사례 기반 자체 추정값(특정 1차 보고서 미특정). EUMOFA API 실시간 연동 아님(STATIC).",
       "yUnit": "Ratio",
       "reliability": 100,
       "unit": "Ratio",
@@ -2431,7 +2431,7 @@
         }
       ],
       "logic": "World Bank 글로벌 인플레이션 지표 기반 주요 생산국(인도/베트남) 최저임금 인상률과 FAO 수출 단가 교차 연산 산출",
-      "source": "출처: 자체 추정 — 리스크 지수(20→95)는 임금 추세·단가 하락을 결합한 자체 합성 지표이며 1차 실측 시계열이 아닙니다. World Bank API 실시간 연동 아님(STATIC).",
+      "source": "출처: 자체 추정 - 리스크 지수(20→95)는 임금 추세·단가 하락을 결합한 자체 합성 지표이며 1차 실측 시계열이 아닙니다. World Bank API 실시간 연동 아님(STATIC).",
       "yUnit": "Index",
       "reliability": 100,
       "unit": "Index",
@@ -2490,7 +2490,7 @@
       ],
       "situation": "현황: 아시아 양식장의 '물량 밀어내기식' 초고밀도(Intensification) 사육은 수질 악화 및 질병 저항력 상실을 초래하여 평균 50%라는 '집약화의 데스밸리(Death Valley)'를 낳고 있습니다.",
       "takeaway": "전략: 초고가 어분(Fishmeal)을 대체하는 미세조류(Microalgae) 배합 사료로 자본을 집중해야 합니다. 수질 오염을 막는 바인더 젤 기술과 유전적 개량(SPF) 중심의 2세대 양식업 전환 벤더만 밸류체인에 남기십시오.",
-      "source": "출처: FAO Fisheries & Aquaculture Technical Paper 634(개념 인용) + 자체 추정 — 밀도별 폐사율(5~52%) 곡선 및 수익성 Index는 illustrative 합성값. FAOSTAT 실시간 연동 아님(STATIC).",
+      "source": "출처: FAO Fisheries & Aquaculture Technical Paper 634(개념 인용) + 자체 추정 - 밀도별 폐사율(5~52%) 곡선 및 수익성 Index는 illustrative 합성값. FAOSTAT 실시간 연동 아님(STATIC).",
       "yUnit": "%",
       "reliability": 100,
       "subtitle": "위젯 설명: 사육 밀도 증가에 따른 폐사율 상승 경향을 도식화한 자체 추정(illustrative) 곡선. 폐사율(%)·미세조류 대체 수익성 Index(상대지수, 무단위)는 예시값이며 FAO 보고서 직접 추출값이 아닙니다.",
@@ -2649,7 +2649,7 @@
       ],
       "situation": "현황: 글로벌 새우 총생산량(양식+어획)은 2015년 11,403,301톤에서 2024년 19,129,390톤으로 약 67.8% 증가했습니다. 에콰도르 양식 물량은 2018년 570,041톤에서 2024년 1,226,775톤으로 2.15배 늘며 중국(3,118,815톤)에 이은 2위로 올라섰고, 인도는 1,218,674톤으로 3위입니다. 반면 태국은 2015년 304,856톤에서 2024년 425,473톤으로 10년간 40만톤대 박스권에 머물러 EMS(조기폐사증후군) 충격 이후 회복이 정체됐습니다.",
       "takeaway": "전략: 동남아(태국) 단일 소싱 의존을 낮추고 에콰도르·인도 듀얼 소싱 파이프라인으로 원가·물량 안정성을 확보합니다. 태국은 원물 수입처가 아닌 고부가가치 가공(Value-added) 외주 기지로 역할을 재배치하는 편이 마진 방어에 유리합니다.",
-      "source": "출처: FAO FishStatJ(Global Production 2024.1.0), 2024년 실측치 — 정적 스냅샷",
+      "source": "출처: FAO FishStatJ(Global Production 2024.1.0), 2024년 실측치 - 정적 스냅샷",
       "reliability": 95,
       "unit": "Tonne",
       "telemetry": "synced",
@@ -2660,7 +2660,7 @@
     {
       "id": "w_raw2_unit_price",
       "title": "주요 양식국 톤당 원가 경쟁력 (2025)",
-      "subtitle": "위젯 설명: 국가별 톤당 산지 원가(USD/t) 비교 — 자체 추정(illustrative) 라운드값. 실측 Farm-gate 단가가 아닌 원가 수준 도식화입니다.",
+      "subtitle": "위젯 설명: 국가별 톤당 산지 원가(USD/t) 비교 - 자체 추정(illustrative) 라운드값. 실측 Farm-gate 단가가 아닌 원가 수준 도식화입니다.",
       "chartType": "bar",
       "xAxis": "name",
       "series": [
@@ -2702,7 +2702,7 @@
           "value": 3600
         }
       ],
-      "source": "출처: 자체 추정 — 국가별 톤당 원가(3,600~5,800 USD/t)는 산지 원가 수준을 라운드값으로 정리한 illustrative 추정치이며 FAOSTAT 2025 실측 산지원가 직접 추출값이 아닙니다.",
+      "source": "출처: 자체 추정 - 국가별 톤당 원가(3,600~5,800 USD/t)는 산지 원가 수준을 라운드값으로 정리한 illustrative 추정치이며 FAOSTAT 2025 실측 산지원가 직접 추출값이 아닙니다.",
       "reliability": 95,
       "unit": "USD",
       "situation": "현황: 에콰도르(USD 3,600/톤)와 인도(USD 3,900/톤)가 큰 규모의 경제를 달성하며 글로벌 최저 원가 경쟁력을 확보했습니다. 반면 멕시코(USD 5,800/톤)를 비롯한 베트남, 태국 등 아시아권은 인건비 상승과 빈발하는 질병(EMS, EHP)에 따른 폐사율 증가로 산지 원가(Farm-gate Price)가 지속적으로 상승하는 구조적 딜레마에 빠져 있습니다.",
@@ -2783,7 +2783,7 @@
           "value": 0.4
         }
       ],
-      "source": "출처: KMI 한국해양수산개발원 — FTA 체결국 수산물 수입동향 2026 Q1 (agri_data/shrimp/processed_data/shrimp_fta_quarterly.json · formMix2026Q1)",
+      "source": "출처: KMI 한국해양수산개발원 - FTA 체결국 수산물 수입동향 2026 Q1 (agri_data/shrimp/processed_data/shrimp_fta_quarterly.json · formMix2026Q1)",
       "reliability": 70,
       "unit": "%",
       "yUnit": "%",
@@ -2866,7 +2866,7 @@
           "price": 10.19
         }
       ],
-      "source": "출처: World Bank Commodity Pink Sheet — 정적 발췌 (API 실시간 연동 아님)",
+      "source": "출처: World Bank Commodity Pink Sheet - 정적 발췌 (API 실시간 연동 아님)",
       "reliability": 95,
       "unit": "USD/kg",
       "situation": "현황: 2013-2014년 태국 발 EMS(조기폐사증후군) 충격으로 스팟 가격이 USD 14에서 17.8까지 급등했으나, 2023년 에콰도르와 인도의 동시 증산 파동으로 인해 고점 대비 약 43% 폭락한 USD 10.19까지 주저앉았습니다. 현재 전례 없는 글로벌 공급 과잉 국면입니다.",
@@ -3346,7 +3346,7 @@
           "env": 35
         }
       ],
-      "source": "출처: 자체 추정 — 단계별 ESG 리스크 점수는 ETI·Seafood Watch 공개 자료를 참고한 자체 합성 지표(0~100)이며 1차 실측 점수가 아닙니다. Sedex/SMETA 플랫폼 실시간 연동 아님(STATIC).",
+      "source": "출처: 자체 추정 - 단계별 ESG 리스크 점수는 ETI·Seafood Watch 공개 자료를 참고한 자체 합성 지표(0~100)이며 1차 실측 점수가 아닙니다. Sedex/SMETA 플랫폼 실시간 연동 아님(STATIC).",
       "reliability": 100,
       "unit": "Score",
       "yUnit": "Score",
@@ -3411,7 +3411,7 @@
       ],
       "reliability": 100,
       "logic": "EUMOFA 소비 보고서의 포장형태별 추세를 참고한 자체 추정(illustrative) 비중. 냉동 42% / 신선·RTE 58%는 예시값이며 EUMOFA API 실시간 연동 아님(STATIC).",
-      "source": "출처: EUMOFA 소비 보고서(추세 참고) + 자체 추정 — 포맷별 비중은 illustrative 예시값. EUMOFA API 실시간 연동 아님(STATIC).",
+      "source": "출처: EUMOFA 소비 보고서(추세 참고) + 자체 추정 - 포맷별 비중은 illustrative 예시값. EUMOFA API 실시간 연동 아님(STATIC).",
       "unit": "%",
       "yUnit": "%",
       "situation": "현황: 고물가 장기화로 외식 수요가 위축되면서, 집에서도 레스토랑 수준의 품질을 구현하려는 '프리미엄 홈쿡' 트렌드가 자리 잡고 있습니다. EUMOFA 소비 보고서의 포장형태 추세를 참고한 자체 추정(예시값) 기준, 조리가 번거로운 대용량 냉동(Frozen) 비중은 약 42%, 해동 없이 즉시 활용 가능한 신선/RTE(간편식) 비중은 약 58%로 도식화됩니다. 정확한 점유율 수치는 1차 스캐너 데이터로 재검증이 필요합니다.",
@@ -3475,7 +3475,7 @@
       ],
       "reliability": 100,
       "logic": "World Bank 원자재 가격 지수(대두/어분) 및 EUMOFA 양식 생산 원가 모니터링 데이터 교차 연산",
-      "source": "출처: World Bank Commodity Data — 정적 발췌 (API 실시간 연동 아님)",
+      "source": "출처: World Bank Commodity Data - 정적 발췌 (API 실시간 연동 아님)",
       "unit": "Index",
       "yUnit": "Index",
       "situation": "현황: 우크라이나 전쟁(곡물 파동)과 남미 엘니뇨(어획량 감소)가 겹치면서 새우 양식 사료의 핵심 원료인 대두(Soybean)와 어분(Fishmeal) 가격이 폭등했습니다. EUMOFA(2026)는 사료비가 전체 양식 원가의 50~60%를 차지하는 상황에서 이같은 인플레이션이 양식 농가의 한계비용(Marginal Cost)을 임계점까지 끌어올렸다고 경고합니다.",
@@ -3567,7 +3567,7 @@
           "NetProfitMargin": 14.2
         }
       ],
-      "source": "출처: Krungsri Research / Dept. of Fisheries — 정적 스냅샷",
+      "source": "출처: Krungsri Research / Dept. of Fisheries - 정적 스냅샷",
       "logic": "태국 수산부 공식 양식 등록 통계 기반. 순이익률은 Krungsri 보고서(2020-2022) 원문 16.5% 데이터 추출",
       "reliability": 95,
       "unit": "%",
@@ -3827,7 +3827,7 @@
           "name": "백신 접종 폐사율(%)"
         }
       ],
-      "source": "출처: Dalan Animal Health(백신 개발 사실 인용) + 자체 추정 — M1~M4 폐사율 곡선은 illustrative 예시값이며 특정 임상 보고서의 실측 시계열이 아닙니다.",
+      "source": "출처: Dalan Animal Health(백신 개발 사실 인용) + 자체 추정 - M1~M4 폐사율 곡선은 illustrative 예시값이며 특정 임상 보고서의 실측 시계열이 아닙니다.",
       "reliability": 95,
       "subtitle": "위젯 설명: 사육 경과(M1~M4)별 일반 양식 누적 폐사율 대비 백신 접종군 폐사율을 비교한 자체 추정(illustrative) 곡선. 수치는 예시값입니다.",
       "unit": "%",
@@ -3897,7 +3897,7 @@
     {
       "id": "w50_kfas_bft_pathogen",
       "title": "바이오플락 양식 병원체 모니터링: 국내 새우 양식 안전성 포렌식",
-      "subtitle": "위젯 설명: 서해권역 7개 BFT 양식장, 194마리 실증 — EHP 강화 검출, WSSV/AHPND 방어 확인",
+      "subtitle": "위젯 설명: 서해권역 7개 BFT 양식장, 194마리 실증 - EHP 강화 검출, WSSV/AHPND 방어 확인",
       "chartType": "bar",
       "xKey": "farm",
       "unit": "검출률 (%)",
@@ -3984,8 +3984,8 @@
       "source": "출처: KFAS: Gye et al.(2023) '2021년 서해권역 BFT 흰다리새우 병원체 모니터링' + KOSIS 국내 생산량",
       "reliability": 100,
       "yUnit": "검출률 (%)",
-      "situation": "현황: Gye et al.(2023)이 2021년 서해권역 7개 실내 BFT 양식장의 흰다리새우 194마리를 대상으로 4대 병원체(EHP, VPAHPND, WSSV, HPV)를 PCR 모니터링한 결과: ▸WSSV(흰반점병): 전 양식장 0% 검출 — BFT의 바이러스 차단 효과 입증 ▸AHPND(급성간췌장괴사): 전 양식장 0% 검출 — 비브리오 전파 차단 확인 ▸HPV(파보바이러스): 전 양식장 0% 검출 ▸EHP(미포자충): 강화 지역 1개소에서 14.3% 검출 — 성장지연 유발 기생충으로 유일한 BFT 돌파 사례 ▸마이크로바이옴 분석: BFT 사육수 내 비브리오속 세균 비율 변화를 NGS로 추적, 양식 환경 안정성 모니터링 ▸국내 생산량 추이: 2018년 5,492톤 → 2020년 8,124톤 (KOSIS) — BFT 보급으로 양식 규모 확대 중.",
-      "takeaway": "전략: BFT 양식은 WSSV/AHPND 같은 치명적 바이러스·세균 질병을 거의 완벽히 차단하여 국내 새우 양식의 '게임 체인저' 기술임이 학술적으로 입증됨. 그러나 EHP(미포자충)는 BFT 환경에서도 침투 가능 — 종묘 단계에서의 EHP 사전 스크리닝이 필수적. ▸투자 함의: BFT 기반 실내 양식 시설에 대한 CAPEX 투자는 질병 리스크 대비 가장 높은 ROI를 제공. 현재 국내 9,500톤 생산을 BFT 표준화로 2만톤 규모로 확대하면 수입 의존도(96,346t) 중 약 20%를 내재화 가능. ▸W20(FCR 개선)과 연동하여 BFT+기능성 사료 통합 시스템 구축 필요.",
+      "situation": "현황: Gye et al.(2023)이 2021년 서해권역 7개 실내 BFT 양식장의 흰다리새우 194마리를 대상으로 4대 병원체(EHP, VPAHPND, WSSV, HPV)를 PCR 모니터링한 결과: ▸WSSV(흰반점병): 전 양식장 0% 검출 - BFT의 바이러스 차단 효과 입증 ▸AHPND(급성간췌장괴사): 전 양식장 0% 검출 - 비브리오 전파 차단 확인 ▸HPV(파보바이러스): 전 양식장 0% 검출 ▸EHP(미포자충): 강화 지역 1개소에서 14.3% 검출 - 성장지연 유발 기생충으로 유일한 BFT 돌파 사례 ▸마이크로바이옴 분석: BFT 사육수 내 비브리오속 세균 비율 변화를 NGS로 추적, 양식 환경 안정성 모니터링 ▸국내 생산량 추이: 2018년 5,492톤 → 2020년 8,124톤 (KOSIS) - BFT 보급으로 양식 규모 확대 중.",
+      "takeaway": "전략: BFT 양식은 WSSV/AHPND 같은 치명적 바이러스·세균 질병을 거의 완벽히 차단하여 국내 새우 양식의 '게임 체인저' 기술임이 학술적으로 입증됨. 그러나 EHP(미포자충)는 BFT 환경에서도 침투 가능 - 종묘 단계에서의 EHP 사전 스크리닝이 필수적. ▸투자 함의: BFT 기반 실내 양식 시설에 대한 CAPEX 투자는 질병 리스크 대비 가장 높은 ROI를 제공. 현재 국내 9,500톤 생산을 BFT 표준화로 2만톤 규모로 확대하면 수입 의존도(96,346t) 중 약 20%를 내재화 가능. ▸W20(FCR 개선)과 연동하여 BFT+기능성 사료 통합 시스템 구축 필요.",
       "telemetry": "synced",
       "syncDate": "2025-Q4 기준",
       "sit": "국내 바이오플락(BFT) 양식장 내 보이지 않는 병원체 잠복 리스크가 딥 포렌식 모니터링을 통해 적나라하게 드러남. 무증상 감염(Sub-clinical)이 이익률을 미세하게 좀먹는 구조적 한계.",
@@ -3994,7 +3994,7 @@
     {
       "id": "w51_kfas_silymarin_feed",
       "title": "Silymarin 기능성 사료: 성장 +17.2% · 면역력 +37.8% 최적 배합",
-      "subtitle": "위젯 설명: 제주대 실증 — 0.05% 첨가구에서 성장·사료효율·SOD·PO 동시 최적화 달성",
+      "subtitle": "위젯 설명: 제주대 실증 - 0.05% 첨가구에서 성장·사료효율·SOD·PO 동시 최적화 달성",
       "chartType": "bar",
       "xKey": "group",
       "unit": "% (대조구 대비)",
@@ -4044,7 +4044,7 @@
       "source": "출처: KFAS: Shin et al.(2022) '사료 내 Silymarin 첨가가 흰다리새우 성장·면역력에 미치는 영향' (제주대)",
       "reliability": 100,
       "yUnit": "% (대조구 대비)",
-      "situation": "현황: Shin et al.(2022, 제주대)이 흰다리새우(초기 0.70±0.01g) 6주간 사육 실험 결과: ▸최적 첨가량: Silymarin 0.05% (S005) — 역U자형 용량-반응 곡선 ▸증체율(WG): 대조구 대비 +17.2% 향상 ▸사료계수(FCR): 유의적 개선 (사료 낭비 감소) ▸항산화(SOD 활성): +37.8% 증가 — 간세포 보호 및 지질과산화 억제 ▸면역(PO phenoloxidase): +28.5% 증가 — 비특이적 면역 방어 강화 ▸과량 투여(0.1%)시 효과 감소 → 정밀 배합이 핵심 ▸사육환경: 지수식, 수온 28.8°C, 염분 31psu, 12L:12D 광주기 ▸Silymarin은 milk thistle 유래 flavonolignan 복합체로, silybin이 50-60% 차지하며 간보호·항산화·면역증진의 3축 기능.",
+      "situation": "현황: Shin et al.(2022, 제주대)이 흰다리새우(초기 0.70±0.01g) 6주간 사육 실험 결과: ▸최적 첨가량: Silymarin 0.05% (S005) - 역U자형 용량-반응 곡선 ▸증체율(WG): 대조구 대비 +17.2% 향상 ▸사료계수(FCR): 유의적 개선 (사료 낭비 감소) ▸항산화(SOD 활성): +37.8% 증가 - 간세포 보호 및 지질과산화 억제 ▸면역(PO phenoloxidase): +28.5% 증가 - 비특이적 면역 방어 강화 ▸과량 투여(0.1%)시 효과 감소 → 정밀 배합이 핵심 ▸사육환경: 지수식, 수온 28.8°C, 염분 31psu, 12L:12D 광주기 ▸Silymarin은 milk thistle 유래 flavonolignan 복합체로, silybin이 50-60% 차지하며 간보호·항산화·면역증진의 3축 기능.",
       "takeaway": "전략: Silymarin 0.05% 배합은 '성장+면역+항산화'를 동시에 극대화하는 Triple-Win 사료 전략. ▸양식 원가 영향: Silymarin은 식물 유래 저가 원료로 사료 원가 상승 미미(추정 +2-3%) 대비 폐사율 감소 효과가 ROI를 압도 ▸W48(경구 백신 MIP)과 병용 시 '사료 기반 예방의학' 체계 완성 ▸W22(폐사율 50% 역설)의 대안으로 Silymarin+BFT 통합 양식 프로토콜 제시 ▸국내 BFT 양식장에 즉시 적용 가능한 실용적 수준의 연구 결과.",
       "telemetry": "synced",
       "syncDate": "2025-Q4 기준",
@@ -4054,7 +4054,7 @@
     {
       "id": "w52_kfas_duplex_pcr",
       "title": "AHPND+EHP 동시 진단 PCR: 양식 조기경보 인프라 혁신",
-      "subtitle": "위젯 설명: 경북대·NFQS 공동개발 — 1회 PCR로 2대 병원체 동시 검출, 해수·분변까지 적용",
+      "subtitle": "위젯 설명: 경북대·NFQS 공동개발 - 1회 PCR로 2대 병원체 동시 검출, 해수·분변까지 적용",
       "chartType": "bar",
       "xKey": "sampleType",
       "unit": "검출 성공률 (%)",
@@ -4100,8 +4100,8 @@
       "source": "출처: KFAS: Jeon et al.(2021) 'AHPND+EHP 동시 PCR 진단법 개발' (경북대+NFQS) + Han et al.(2020)",
       "reliability": 100,
       "yUnit": "검출 성공률 (%)",
-      "situation": "현황: Jeon et al.(2021, 경북대+NFQS)이 개발한 duplex PCR은 새우 양식 산업의 2대 치명 병원체를 1회 반응으로 동시 진단하는 혁신 기술: ▸AHPND(급성간췌장괴사): V. parahaemolyticus의 pirA/pirB 독소유전자 검출 — 100% 폐사율의 법정전염병(제1종 살처분 대상) ▸EHP(새우미포자충): 간췌장 감염 → 성장지연 → AHPND 감수성 2차 증가 ▸EHP+AHPND 복합감염이 인도(6%+), 베트남, 태국에서 빈발 — 국내 수입 새우에서도 동시 검출 사례(Han et al. 2020b) ▸적용 범위: 새우 조직뿐 아니라 해수, 분변 등 비침습적 샘플에서도 검출 가능 → 현장 모니터링 혁명 ▸2-step nested PCR: 저농도 검체에서도 고감도 검출 보장 ▸OIE(세계동물보건기구) 2016년 AHPND를 관리대상 질병 지정, 국내도 법정전염병 추가.",
-      "takeaway": "전략: duplex PCR은 양식장 '조기경보 시스템'의 핵심 인프라: ▸수입 새우 검역 강화: 베트남산 새우에서 EHP+AHPND 동시 검출 이력 → 수입 원료 PCR 의무화 로비 필요 ▸W50(BFT 모니터링)의 EHP 돌파 사례와 연동 — BFT 양식장에 duplex PCR 정기 검사 프로토콜 도입 ▸투자 함의: PCR 진단 장비(약 5천만원/세트) 투자 대비 AHPND 발병 시 양식장 전멸(100% 폐사) 손실 방지 효과가 매우 큼 ▸글로벌 새우 양식 시장의 최대 리스크인 AHPND에 대한 한국의 진단 기술 우위를 B2B 수출 아이템으로 전환 가능.",
+      "situation": "현황: Jeon et al.(2021, 경북대+NFQS)이 개발한 duplex PCR은 새우 양식 산업의 2대 치명 병원체를 1회 반응으로 동시 진단하는 혁신 기술: ▸AHPND(급성간췌장괴사): V. parahaemolyticus의 pirA/pirB 독소유전자 검출 - 100% 폐사율의 법정전염병(제1종 살처분 대상) ▸EHP(새우미포자충): 간췌장 감염 → 성장지연 → AHPND 감수성 2차 증가 ▸EHP+AHPND 복합감염이 인도(6%+), 베트남, 태국에서 빈발 - 국내 수입 새우에서도 동시 검출 사례(Han et al. 2020b) ▸적용 범위: 새우 조직뿐 아니라 해수, 분변 등 비침습적 샘플에서도 검출 가능 → 현장 모니터링 혁명 ▸2-step nested PCR: 저농도 검체에서도 고감도 검출 보장 ▸OIE(세계동물보건기구) 2016년 AHPND를 관리대상 질병 지정, 국내도 법정전염병 추가.",
+      "takeaway": "전략: duplex PCR은 양식장 '조기경보 시스템'의 핵심 인프라: ▸수입 새우 검역 강화: 베트남산 새우에서 EHP+AHPND 동시 검출 이력 → 수입 원료 PCR 의무화 로비 필요 ▸W50(BFT 모니터링)의 EHP 돌파 사례와 연동 - BFT 양식장에 duplex PCR 정기 검사 프로토콜 도입 ▸투자 함의: PCR 진단 장비(약 5천만원/세트) 투자 대비 AHPND 발병 시 양식장 전멸(100% 폐사) 손실 방지 효과가 매우 큼 ▸글로벌 새우 양식 시장의 최대 리스크인 AHPND에 대한 한국의 진단 기술 우위를 B2B 수출 아이템으로 전환 가능.",
       "telemetry": "synced",
       "syncDate": "2025-Q4 기준",
       "sit": "AHPND, EHP 등 양대 치명 질병을 동시 진단하는 Duplex PCR 기술 완성으로 양식 붕괴 조기경보 인프라 혁신 완료. 사후 약방문식 투약 패러다임이 사전 격리로 전환되었습니다.",
@@ -4110,7 +4110,7 @@
     {
       "id": "w53_kfas_3d_printed_shrimp",
       "title": "3D 프린팅 대체 새우: 명태 수리미 기반 차세대 시장 파괴자",
-      "subtitle": "위젯 설명: 부경대 실증 — 수리미+타피오카전분+새우향으로 겔강도·관능 최적화 성공",
+      "subtitle": "위젯 설명: 부경대 실증 - 수리미+타피오카전분+새우향으로 겔강도·관능 최적화 성공",
       "chartType": "bar",
       "xKey": "metric",
       "unit": "점수 / g·cm",
@@ -4156,8 +4156,8 @@
       "source": "1차 학술: Park et al. (2025) 'Development of 3D-Printed Alaska Pollock Surimi-Based Shrimp Analogs' Korean Journal of Fisheries and Aquatic Sciences, 부경대학교 식품공학과. 보조: Korean Society of Fisheries and Aquatic Science (KOSFAS) Annual Symposium 2025 Proceedings. 방법론: 압출 기반 3D 프린팅 + Texture Profile Analysis (TPA) + 관능평가 ANOVA p<0.05 (훈련된 panel 12명)",
       "reliability": 100,
       "yUnit": "점수 / g·cm",
-      "situation": "현황: Park et al.(2025, 부경대)이 3D 프린팅 기술로 명태(Alaska pollock) KA급 수리미를 활용한 대체 새우 제품을 개발: ▸원료: 명태 수리미(KA급) > 실꼬리돔(SA급) — 겔강도 및 물성에서 명태 우위 ▸배합 최적화: 소금 1.2%, 설탕 1.5%, 인산염 0.5%, TGase 1.0%, 타피오카 전분 첨가로 겔 네트워크 강화 ▸새우향 추출물 1.3% 첨가로 풍미 구현 ▸대조구: 국내산 급속냉동 흰다리새우(25-28g, head-on/shell-on) ▸시장 배경: 세계 1인당 수산물 소비 연평균 3.0% 증가(1961-2019) → 과잉 수요가 남획·생태계 파괴 유발 ▸새우 양식장은 100-150만 헥타르의 해안 저지대를 전환 → 해안 침식, 탄소 저장 능력 약화 등 환경 비용 막대 ▸수리미의 3D 프린팅 적합성: 높은 겔화력 + 겔 구조 안정성 → 압출 기반 3D 프린팅 최적 소재.",
-      "takeaway": "전략: 3D 프린팅 대체 새우는 장기적으로 기존 양식 새우 시장을 파괴할 잠재력 보유: ▸현재 한계: 관능 점수 68%(실제 새우 대비) — 씹힘성과 탄력성에서 격차 존재. 그러나 기술 발전 속도를 감안하면 3-5년 내 90%+ 도달 예측 ▸시장 기회: ESG·동물복지 트렌드 강화 시, 양식장 환경 파괴 없는 '윤리적 새우'로 포지셔닝 가능 ▸W32(ESG 스코어카드)의 지속가능성 지표를 충족하는 '차세대 프로틴' 카테고리 ▸리스크 평가: 글로벌 새우 양식 산업(USD 36B)에 대한 '구조적 대체 위협' — 에콰도르·인도 양식장 투자 시 10년 이상 장기 ROI 불확실성 팩터로 반영 필요 ▸한국 수리미 가공 인프라(부산·동해)를 활용한 '대체 해산물 HMR' R&D 허브 구축 전략.",
+      "situation": "현황: Park et al.(2025, 부경대)이 3D 프린팅 기술로 명태(Alaska pollock) KA급 수리미를 활용한 대체 새우 제품을 개발: ▸원료: 명태 수리미(KA급) > 실꼬리돔(SA급) - 겔강도 및 물성에서 명태 우위 ▸배합 최적화: 소금 1.2%, 설탕 1.5%, 인산염 0.5%, TGase 1.0%, 타피오카 전분 첨가로 겔 네트워크 강화 ▸새우향 추출물 1.3% 첨가로 풍미 구현 ▸대조구: 국내산 급속냉동 흰다리새우(25-28g, head-on/shell-on) ▸시장 배경: 세계 1인당 수산물 소비 연평균 3.0% 증가(1961-2019) → 과잉 수요가 남획·생태계 파괴 유발 ▸새우 양식장은 100-150만 헥타르의 해안 저지대를 전환 → 해안 침식, 탄소 저장 능력 약화 등 환경 비용 막대 ▸수리미의 3D 프린팅 적합성: 높은 겔화력 + 겔 구조 안정성 → 압출 기반 3D 프린팅 최적 소재.",
+      "takeaway": "전략: 3D 프린팅 대체 새우는 장기적으로 기존 양식 새우 시장을 파괴할 잠재력 보유: ▸현재 한계: 관능 점수 68%(실제 새우 대비) - 씹힘성과 탄력성에서 격차 존재. 그러나 기술 발전 속도를 감안하면 3-5년 내 90%+ 도달 예측 ▸시장 기회: ESG·동물복지 트렌드 강화 시, 양식장 환경 파괴 없는 '윤리적 새우'로 포지셔닝 가능 ▸W32(ESG 스코어카드)의 지속가능성 지표를 충족하는 '차세대 프로틴' 카테고리 ▸리스크 평가: 글로벌 새우 양식 산업(USD 36B)에 대한 '구조적 대체 위협' - 에콰도르·인도 양식장 투자 시 10년 이상 장기 ROI 불확실성 팩터로 반영 필요 ▸한국 수리미 가공 인프라(부산·동해)를 활용한 '대체 해산물 HMR' R&D 허브 구축 전략.",
       "telemetry": "synced",
       "syncDate": "2025-Q4 기준",
       "sit": "명태 수리미 및 식물성 단백질 기반 3D 프린팅 딥테크 혁신이 차세대 새우 시장 파괴자(Disruptor)로 부상. 물리적 양식 공간 한계를 완전히 초월하는 무한 캐파(Infinite Capa) 진입 시그널.",
@@ -4296,7 +4296,7 @@
       "unit": "Value",
       "yUnit": "Value",
       "situation": "현황: 원유 $72-74 박스권, 환율 1,380-1,400원대 안정. 사료 원가 지수 125.4로 전년비 3.5% 상승.",
-      "takeaway": "전략: 환율 1,400원 돌파 시 착지원가 톤당 $200+ 상승 — 환헤지 포지션 점검 필요.",
+      "takeaway": "전략: 환율 1,400원 돌파 시 착지원가 톤당 $200+ 상승 - 환헤지 포지션 점검 필요.",
       "telemetry": "synced",
       "syncDate": "2026-05 스냅샷",
       "sit": "환율, 유가, 물류비 지수를 복합 분석하는 거시경제 대시보드상(2026-05 스냅샷) 원가 압박(Cost Push) 시그널이 레드라인을 터치하며 수익성 악화 스톰(Perfect Storm) 임박.",
@@ -4393,7 +4393,7 @@
       ],
       "unit": "Share (%)",
       "yUnit": "Share (%)",
-      "situation": "현황: 한국 수입(금액) 기준 HHI 2,975 — 베트남 40.0%, 중국 25.5%로 상위 2개국에 65.5% 편중. 베트남 단일 의존이 가장 큰 집중 요인.",
+      "situation": "현황: 한국 수입(금액) 기준 HHI 2,975 - 베트남 40.0%, 중국 25.5%로 상위 2개국에 65.5% 편중. 베트남 단일 의존이 가장 큰 집중 요인.",
       "takeaway": "전략: 베트남 단일 파트너 점유율을 35% 미만으로 관리하고, 페루 등 중남미 소싱 비중을 확대해 HHI를 2,500 이하로 분산.",
       "telemetry": "synced",
       "syncDate": "2026-Q1 기준",
@@ -4451,7 +4451,7 @@
       "reliability": 75,
       "unit": "Value",
       "yUnit": "Value",
-      "situation": "현황: 수입단가 10% 상승 시 국산 흰다리새우 수요 8% 증가 — 대체탄력성 0.8. 2024년 국산 양식 생산 확대 추세.",
+      "situation": "현황: 수입단가 10% 상승 시 국산 흰다리새우 수요 8% 증가 - 대체탄력성 0.8. 2024년 국산 양식 생산 확대 추세.",
       "takeaway": "전략: 수입단가 ₩15,000/kg 돌파 시 국산 전환 가속화. 국내 양식 투자(충남/제주) 타이밍 검토.",
       "telemetry": "synced",
       "syncDate": "2025-Q4 기준",
@@ -4461,7 +4461,7 @@
     {
       "id": "w_shrimp_ntb_radar",
       "title": "통상 규제 NTB 리스크 신호등",
-      "subtitle": "위젯 설명: WTO SPS/TBT + KMI 보고서 기반 | 미국/EU/SIMP 리스크 — 2026-05 정적 스냅샷",
+      "subtitle": "위젯 설명: WTO SPS/TBT + KMI 보고서 기반 | 미국/EU/SIMP 리스크 - 2026-05 정적 스냅샷",
       "chartType": "bar",
       "xKey": "regulation",
       "bars": [
@@ -4494,7 +4494,7 @@
       "badges": [],
       "unit": "Score",
       "yUnit": "Score",
-      "situation": "현황: EU CSDDD(2027 시행) 리스크 최고 — 새우 공급망 강제노동 실사 의무화. 미이행 시 글로벌 매출 5% 과징금.",
+      "situation": "현황: EU CSDDD(2027 시행) 리스크 최고 - 새우 공급망 강제노동 실사 의무화. 미이행 시 글로벌 매출 5% 과징금.",
       "takeaway": "전략: CSDDD 선제 대응: 태국·인도산 공급업체 ESG 감사 2026년 내 완료. ASC/BAP 인증 확보 우선.",
       "telemetry": "synced",
       "syncDate": "2026-05 스냅샷",
@@ -4551,7 +4551,7 @@
     {
       "id": "w_shrimp_sps_alert",
       "title": "WTO SPS 통보 기반 규제 변동 알림",
-      "subtitle": "위젯 설명: WTO Data Portal(SPS 통보) 기반 | 새우 관련 SPS/TBT — 2026-05 정적 스냅샷",
+      "subtitle": "위젯 설명: WTO Data Portal(SPS 통보) 기반 | 새우 관련 SPS/TBT - 2026-05 정적 스냅샷",
       "chartType": "bar",
       "xKey": "notifier",
       "bars": [
@@ -4589,7 +4589,7 @@
       "unit": "Count",
       "yUnit": "Count",
       "situation": "현황: EU가 갑각류 카드뮴 기준 강화 등 12건으로 최다 SPS 통보. 미국 SIMP 확대 8건.",
-      "takeaway": "전략: EU 카드뮴 기준 하향 대비 — 에콰도르/인도산 중금속 사전 검사 체계 구축 시급.",
+      "takeaway": "전략: EU 카드뮴 기준 하향 대비 - 에콰도르/인도산 중금속 사전 검사 체계 구축 시급.",
       "telemetry": "synced",
       "syncDate": "2026-05 스냅샷",
       "sit": "WTO SPS(위생식물검역) 통보 기반 분석 결과, 중금속 및 미생물 규제 기준이 선진국을 중심으로 기하급수적으로 상향 조정되며 수출입 장벽이 만리장성급으로 구축 중.",
@@ -4626,12 +4626,12 @@
           "value": 1
         }
       ],
-      "source": "출처: Seafood Watch 사회적리스크도구(SSRT) V2 — 온수새우 사회적리스크 프로파일: 베트남 양식·가공 (Monterey Bay Aquarium, 2026-01-07 발행)",
+      "source": "출처: Seafood Watch 사회적리스크도구(SSRT) V2 - 온수새우 사회적리스크 프로파일: 베트남 양식·가공 (Monterey Bay Aquarium, 2026-01-07 발행)",
       "reliability": 70,
       "unit": "%",
       "yUnit": "%",
-      "situation": "현황: Seafood Watch SSRT V2(2026-01 발행)는 베트남 새우 양식·가공을 강제노동·인신매매·위험아동노동에 직접 연결하는 증거를 찾지 못했다고 명시(가공도 강제노동 단정 근거 불충분). 다만 추적성 한계는 확인 — 중간상이 국내 새우 거래의 약 70%에 관여하고, 생산의 약 65%가 소규모 가족농(상업 35%)이며, 인도·에콰도르산을 재가공·재수출해 농가까지의 역추적이 어려움.",
-      "takeaway": "전략: '강제노동' 단정 마케팅은 출처와 배치되므로 지양. 대신 추적성 갭을 실사 우선순위로 전환 — 농가 단위 추적(농장명·위치·규모) 확보 벤더를 우대하고, 중간상 다단계·인도/에콰도르 재가공 물량은 ASC/BAP·GlobalG.A.P. GRASP 등 사회기준 포함 인증으로 보완.",
+      "situation": "현황: Seafood Watch SSRT V2(2026-01 발행)는 베트남 새우 양식·가공을 강제노동·인신매매·위험아동노동에 직접 연결하는 증거를 찾지 못했다고 명시(가공도 강제노동 단정 근거 불충분). 다만 추적성 한계는 확인 - 중간상이 국내 새우 거래의 약 70%에 관여하고, 생산의 약 65%가 소규모 가족농(상업 35%)이며, 인도·에콰도르산을 재가공·재수출해 농가까지의 역추적이 어려움.",
+      "takeaway": "전략: '강제노동' 단정 마케팅은 출처와 배치되므로 지양. 대신 추적성 갭을 실사 우선순위로 전환 - 농가 단위 추적(농장명·위치·규모) 확보 벤더를 우대하고, 중간상 다단계·인도/에콰도르 재가공 물량은 ASC/BAP·GlobalG.A.P. GRASP 등 사회기준 포함 인증으로 보완.",
       "telemetry": "static",
       "syncDate": "2026-01 기준 (Seafood Watch SSRT V2)",
       "sit": "Seafood Watch SSRT V2 베트남 프로파일(2026-01-07)은 새우 양식·가공의 직접 강제노동 증거를 확인하지 못했고, 가공 부문도 강제노동을 단정할 근거가 부족하다고 평가했다. 리스크의 실체는 추적성 한계로, 중간상이 국내 거래 약 70%를 매개하고 생산의 약 65%가 20만+ 소규모 가족농에서 나오며 인도·에콰도르산 재가공이 역추적을 추가로 어렵게 한다. 베트남은 ILO 어업노동협약(C188)과 강제노동협약 의정서29를 아직 비준하지 않았다.",
@@ -4672,7 +4672,7 @@
       "reliability": 70,
       "unit": "%",
       "yUnit": "%",
-      "situation": "현황: 인도네시아 맹그로브 19.1% 감소 — 새우 양식장 전용이 주 원인. EU Deforestation Reg. 직접 적용 대상.",
+      "situation": "현황: 인도네시아 맹그로브 19.1% 감소 - 새우 양식장 전용이 주 원인. EU Deforestation Reg. 직접 적용 대상.",
       "takeaway": "전략: 인니산 소싱 시 맹그로브 복원 인증 확인 필수. ASC 인증 양식장 우선 계약.",
       "telemetry": "static",
       "syncDate": "FAO FishStatJ 2024",
@@ -5170,7 +5170,7 @@
       "unit": "%",
       "sit": "베트남 탈각 공장의 성과급 착취 및 열악한 여성 노동 이슈가 서방 인권 감사(Audit) 레이더에 포착되며 미국행 WRO(통관 보류) 지뢰밭으로 돌변 중.",
       "tak": "① 베트남 소싱 시 노동 감사 이력 확인 프로토콜 수립 ② MCCBA 참여 업체 우선 소싱 ③ 서구 리테일러 ESG 감사 변동 모니터링.",
-      "source": "Seafood Watch — Warmwater Shrimp Social Risk Profile Vietnam",
+      "source": "Seafood Watch - Warmwater Shrimp Social Risk Profile Vietnam",
       "telemetry": "static",
       "syncDate": "2025 보고서",
       "data": [
@@ -5369,7 +5369,7 @@
     {
       "id": "w62_alt_seafood_disruption",
       "title": "대체 해산물 시장 파괴 시나리오",
-      "subtitle": "식물성·발효·세포배양 단백질의 새우 시장 침투율 — 자체 추정 장기 시나리오(2050L/2050H 분기, 검증 불가)",
+      "subtitle": "식물성·발효·세포배양 단백질의 새우 시장 침투율 - 자체 추정 장기 시나리오(2050L/2050H 분기, 검증 불가)",
       "chartType": "area",
       "xKey": "연도",
       "areas": [
@@ -5385,7 +5385,7 @@
       "unit": "%",
       "sit": "식물성·정밀 발효·세포 배양 단백질이 새우 시장을 잠식하는 장기 시나리오 전망(자체 추정)입니다. 본 위젯의 시나리오 기준, 2050년 대체 단백질 점유율은 보수(2050L) 약 35% ~ 공격(2050H) 약 55% 범위로 분기하며, 이는 검증 불가한 장기 추정 전망입니다.",
       "tak": "① 대체 해산물의 새우 시장 잠식률을 정기 모니터링하는 체계를 구축한다 ② 3D 프린팅·세포배양 대체 새우 상용화 진척 시 자사 가공 라인 통합 가능성을 단계적으로 검토한다 ③ 소비자 수용도 조사를 선행해 투자 의사결정의 근거로 삼는다.",
-      "source": "출처: 자체 추정 — 2025~2050 침투율은 KFAS 3D 프린팅 연구 등을 참고한 자체 장기 전망 시나리오(2050L/2050H 분기)이며 검증된 실측·합의 전망치가 아닙니다.",
+      "source": "출처: 자체 추정 - 2025~2050 침투율은 KFAS 3D 프린팅 연구 등을 참고한 자체 장기 전망 시나리오(2050L/2050H 분기)이며 검증된 실측·합의 전망치가 아닙니다.",
       "telemetry": "static",
       "syncDate": "2025 전망",
       "data": [
@@ -5782,7 +5782,7 @@
       "valueKey": "비중",
       "unit": "%",
       "sit": "인도 미국향 수출의 92%를 짊어진 안드라프라데시가 단 10%의 수매가 하락에도 30만 농가 연쇄 도산 위기에 처하는 극단적 고정비(Fixed Cost) 노출 및 공급 취약성 붕괴 국면.",
-      "tak": "① AP주 단일 소싱 집중도 92%는 극단적 리스크 — 자연재해·규제 변동 시 공급 단절 가능 ② 구자라트·오디샤 등 대체 주 소싱 루트 확보 ③ 인도 농가 수매가 하락 시 품질 저하 위험 모니터링.",
+      "tak": "① AP주 단일 소싱 집중도 92%는 극단적 리스크 - 자연재해·규제 변동 시 공급 단절 가능 ② 구자라트·오디샤 등 대체 주 소싱 루트 확보 ③ 인도 농가 수매가 하락 시 품질 저하 위험 모니터링.",
       "source": "Reuters 2025.04.14 + SEAI 블로그",
       "telemetry": "synced",
       "syncDate": "Reuters 2025-04",
@@ -6064,7 +6064,7 @@
           "score": 75
         }
       ],
-      "source": "출처: Seafood Watch (Monterey Bay Aquarium) — Warmwater shrimp social risk profile: Vietnam, Aquaculture and Processing (2026-01-07)",
+      "source": "출처: Seafood Watch (Monterey Bay Aquarium) - Warmwater shrimp social risk profile: Vietnam, Aquaculture and Processing (2026-01-07)",
       "reliability": 85,
       "badges": [
         "Static Snapshot",
