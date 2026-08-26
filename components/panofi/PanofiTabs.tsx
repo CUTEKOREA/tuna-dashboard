@@ -100,7 +100,10 @@ const SRC = {
   weekly: `「PANOFI 주간동향」 ${headline.weekCount}주 (${headline.rangeStart}~${headline.rangeEnd})`,
   ledger: `「2. 추정실적 (2026년 ${ytd.months}월).xlsx」 원장`,
   fs: '「Financial Statements(2025.12.31)」 신라교역 회계팀 확정 결산 xlsx — 세디 장부의 달러 환산, 분해는 시트 자체 각주',
-  board: '「PANOFI 월간보고」 pptx 5건 (1·2·4·5·7월)',
+  board: `「PANOFI 월간보고」 pptx ${liquidity.meta.sources.length}건 (${liquidity.meta.sources
+    .map((s) => s.file.match(/\((\d+월)\)/)?.[1])
+    .filter(Boolean)
+    .join('·')})`,
   comtrade: 'UN Comtrade public preview · 가나(reporter 288) 보고 기준',
   nlm: 'NotebookLM 「가나 중심 서아프리카 참치 비즈니스 분석」(소스 82건, 등급 B)',
   grok: 'Grok 1차출처 대조 (등급 B~부분확인)',
@@ -117,7 +120,7 @@ export function HomeTab() {
         <Stat k={`${ytd.label} 판매`} v={num(ytd.salesT)} unit="톤" d={`실현 어가 ${usd(ytd.priceUsdPerT)}/톤`} tone="down" />
         <Stat k="원장 손익분기" v={usd(ytd.ledgerBepUsdPerT)} unit="/톤" d={`실현 대비 ${usd(ytd.priceUsdPerT - ytd.ledgerBepUsdPerT)} · 전략보고 H1 ${usd(ytd.strategyBepUsdPerT)}`} tone="down" />
         <Stat k={`${ytd.label} 순손익`} v={kusd(ytd.netKusd)} tone="down" d="원장 Ⅶ행 · 이자·법인세 추징" />
-        <Stat k="자금 과부족" v={kusd(receivables.cashShortfallKusd)} tone="down" d="코스모 합산 시 그룹 -3,000만불" />
+        <Stat k="자금 과부족" v={kusd(liquidityBridge?.endShortfall ?? receivables.cashShortfallKusd)} tone="down" d={`${liquidityBridge?.to ?? ''} 실측 · 코스모 합산 시 그룹 -3,000만불`} />
       </Stats>
 
       <Sec>연도별 실적</Sec>
@@ -549,7 +552,12 @@ export function CashTab() {
   return (
     <>
       <Stats>
-        <Stat k="자금 과부족" v={kusd(receivables.cashShortfallKusd)} tone="down" />
+        <Stat
+          k="자금 과부족"
+          v={kusd(liquidityBridge?.endShortfall ?? receivables.cashShortfallKusd)}
+          tone="down"
+          d={liquidityBridge ? `${liquidityBridge.to} 월간보고 실측` : undefined}
+        />
         <Stat k="아비장 미수금" v={kusd(receivables.abidjanKusd)} tone="up" d={`정점 대비 ${kusd(receivables.recoveredKusd)}`} />
         {liquidityBridge && (
           <>

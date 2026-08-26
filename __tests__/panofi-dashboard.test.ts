@@ -5,7 +5,7 @@ import { renderToStaticMarkup } from 'react-dom/server';
 import { describe, expect, it } from 'vitest';
 
 import PanofiDashboard, { PANOFI_TABS } from '../components/panofi/PanofiDashboard';
-import { PriceTab, ProfitTab as PanofiTabsProfit } from '../components/panofi/PanofiTabs';
+import { CashTab, PriceTab, ProfitTab as PanofiTabsProfit } from '../components/panofi/PanofiTabs';
 import {
   bep,
   dataQuality,
@@ -63,6 +63,20 @@ describe('파노피 데이터 인테이크', () => {
   it('역내 입항 물량(입항톤수)이 최소 한 주는 숫자로 존재한다', () => {
     const withTons = regionalLandingSeries.filter((p) => typeof p.입항톤수 === 'number');
     expect(withTons.length).toBeGreaterThan(0);
+  });
+
+  // 2026-08-26 추가: 8월 주간동향 0818·0825 반영. 최신행 고정 — main 미병합 배포가
+  // 화면을 옛 값으로 되돌리는 회귀를 여기서 잡는다.
+  it('주간동향이 2026-08-25(35주차)까지 36주다', () => {
+    // 8월 신규 2주(0818·0825) + NFD 파일명 탓에 빠져 있던 3주(0106·0127·0728) 복원.
+    expect(headline.weekCount).toBe(36);
+    expect(headline.rangeEnd).toBe('2026-08-25');
+    const last = weeks[weeks.length - 1];
+    expect(last.reportDate).toBe('2026-08-25');
+    expect(last.prices.pfcTema).toBe(1600);
+    expect(last.prices.cosmoTema).toBe(1700);
+    expect(last.fx.cediPerUsd).toBe(11.13);
+    expect(last.dailyProcessing.COSMO).toBe(80);
   });
 
   it('주차가 보고일 오름차순으로 정렬돼 있다', () => {
@@ -289,10 +303,47 @@ describe('자금유동성 (월간보고 pptx)', () => {
     expect(liquidityBridge!.과부족).toBeLessThan(0); // 그럼에도 과부족 악화
   });
 
-  it('보고 공백 월을 숨기지 않는다', () => {
-    expect(liquidity.meta.missingMonths).toContain('3월');
-    expect(liquidity.meta.missingMonths).toContain('6월');
+  it('보고 공백 월을 숨기지 않는다 — 6월 보고 입수 후 공백은 3월뿐', () => {
+    expect(liquidity.meta.missingMonths).toEqual(['3월']);
     expect(liquidity.meta.knownDiscrepancy).toContain('44,158');
+  });
+
+  // 2026-08-26 추가: 6·8월 월간보고 pptx 반영. 5월말·7월말 잔액이 원본 인쇄값과 맞는다.
+  it('6·8월 보고의 5월말·7월말 잔액이 원본 인쇄 셀과 맞는다', () => {
+    const may = liquidity.series.find((r) => r.asOf === '2026-05-31');
+    expect(may!.현금).toBe(9556);
+    expect(may!.매출채권).toBe(22960);
+    expect(may!.매입채무).toBe(49213);
+    expect(may!.과부족).toBe(-16697);
+    const jul = liquidity.series.find((r) => r.asOf === '2026-07-31');
+    expect(jul!.현금).toBe(6543);
+    expect(jul!.매출채권).toBe(24364);
+    expect(jul!.매입채무).toBe(51482);
+    expect(jul!.과부족).toBe(-20575);
+  });
+
+  it('8월 추정손익이 최신 선행 수치다', () => {
+    const last = liquidity.estimates[liquidity.estimates.length - 1];
+    expect(last.forMonth).toBe(8);
+    expect(last.revenue).toBe(52881);
+    expect(last.operating).toBe(5794);
+    expect(last.net).toBe(-2261);
+  });
+
+  it('자금 과부족 스탯이 최신 월간보고 실측(7/31)을 쓴다', () => {
+    // 전략보고 6/30 고정값(-20,820)이 최신 실측을 가리면 신선도가 거짓이 된다.
+    const html = renderToStaticMarkup(React.createElement(CashTab));
+    expect(html).toContain('20,575');
+    expect(html).toContain('2026-07-31');
+    expect(html).not.toContain('20,820');
+  });
+
+  it('월간보고 출처 라벨이 실제 pptx 건수를 따라간다', () => {
+    // 5건(1·2·4·5·7월) 하드코딩이 6·8월 반영 후에도 남으면 화면이 출처를 거짓말한다.
+    const tabs = renderToStaticMarkup(React.createElement(CashTab));
+    expect(tabs).not.toContain('pptx 5건');
+    expect(tabs).toContain(`pptx ${liquidity.meta.sources.length}건`);
+    expect(liquidity.meta.sources.length).toBe(7);
   });
 });
 

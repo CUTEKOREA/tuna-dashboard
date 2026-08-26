@@ -18,6 +18,29 @@
 >
 > 마지막 업데이트: 2026-08-26 09:40 KST [CC]
 
+> ✅ **2026-08-26 08:50 KST — `/panofi` 8월 주간동향·월간보고 원자료 대조·로컬 반영** [CC]:
+> - 원자료 4건(모두 `unzip -t` 무결성 통과, Google Drive 신라그룹/11_Panofi_Cosmo_GGL /11. PANOFI/Panofi/):
+>   `PANOFI 주간동향20260818.docx` SHA-256 `7f177a1ae541cc381fe8c328c622cf2fa1d1ad41c2d6c14486d239a643836d75`,
+>   `PANOFI 주간동향20260825.docx` `2d6f19d9997dd275d80a61b115fc16cabfdb0d9a238ec09c7c5edb7b3c0fb3c2`,
+>   `PANOFI 월간보고 (8월).pptx` `9fd79e4261356895b05457c0cf5cffa3880df165c0b4d893cb802a7ede3e9eca`,
+>   `PANOFI 월간보고 (6월).pptx` `9f31ae3b01efd8ad1eacab0e43c14772058ca01066de79edc8b85542c70813fc`(기존 보고 공백 6월분 뒤늦게 입수).
+> - **NFD 파일명 버그 발견·수정**: Google Drive가 일부 한글 파일명을 NFD(자모 분해)로 올려 NFC glob이 조용히 빠뜨렸다.
+>   월간보고 8월분과 주간동향 3주(0106·0127·0728)가 실제로 이렇게 누락돼 있었다. 두 추출 스크립트의 파일 선택·정렬을
+>   NFC 정규화 기준으로 바꿔 복원했고, `missingMonths`는 하드코딩 대신 파일에서 계산한다(이제 3월만 공백). 원자료 경로도
+>   구 로컬 경로에서 Google Drive 하위폴더(주간동향/월간보고 분리)로 갱신했다(`PANOFI_SRC` env로 재정의 가능).
+> - 주간동향 31→36주(2025-12-23~2026-08-25; 시계열 밖 2025-01-07 단발 보고는 컷오프로 제외, 기존 주차 값 변경 0건).
+>   자금유동성 +2 기준일(5/31 -16,697 · 7/31 -20,575 천불, pptx 인쇄 셀 대조 일치), 추정손익 +2건(6월·8월, 8월 매출 52,881 천불).
+> - 화면: 자금 과부족 스탯(개관·자금 탭)을 전략보고 6/30 고정값(-20,820) 대신 최신 월간보고 실측(`liquidityBridge.endShortfall`,
+>   7/31 -20,575)으로 배선하고 기준일을 병기. 월간보고 출처 라벨은 pptx 건수·월을 meta에서 파생(«5건» 하드코딩 제거).
+> - 회귀 테스트 6건 신규(최신 주차 고정 · 5/31·7/31 잔액 · 8월 추정 · missingMonths · 과부족 스탯 · 출처 라벨) — 데이터 반영 전
+>   RED 확인 후 GREEN. `npm run verify` 통과: ESLint 0 errors(warnings 12 기존) · Vitest 1150 passed/2 skipped · API cache 158/158 · build·bundle OK.
+> - 브라우저 검증(로컬 production `next start`, `DASHBOARD_E2E_MODE=local` 경유): 데스크톱 1440·모바일 390px 모두 200 ·
+>   가로 overflow 0 · console error 0 · «주간동향 36주 (2025-12-23 ~ 2026-08-25)» 헤드라인·자금 탭 -20,575 실측 확인.
+>   ※ 함정: `.env.local`에 `vercel env pull` 산물 `VERCEL=1`이 있으면 로컬 E2E 게이트가 Vercel로 오인해 503으로 차단한다 — 로컬 검증 시 제거.
+> - 상태: 전용 worktree `data/panofi-aug-weekly`에 로컬 반영. **프로덕션 미배포**(이번 사용자 메시지에 배포 요청 없음).
+
+> 마지막 업데이트: 2026-08-26 08:50 KST [CC]
+
 > 🚀 **2026-08-26 03:18 KST — 2026-08-25 참치 데일리 브리핑 `/market` 라이브 배포 완료** [Claude]:
 > - PR [#777](https://github.com/CUTEKOREA/tuna-dashboard/pull/777)을 squash 병합했다. main commit `9336023fffab5273192b67715ac78e4cb9fe312d`, 변경 파일은 `public/data/tuna_daily_briefing.json` 1개(+52/-50)뿐이다. 기준일 2026-08-25, 기사 5건.
 > - 배포 게이트 3종 통과: 감사 `state/audit-2026-08-25.txt` = `AUDIT_PASS`, 로컬 준비·검증 완료(`__tests__/daily-briefing.test.ts` 4 passed), main 트리 3,140 blob 전량 SHA 대조 결과 차이 1개 파일. `lib/data/daily-briefing.ts`는 main과 동일해 변경 없음.

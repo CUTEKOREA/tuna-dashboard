@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """파노피 월간보고 pptx -> public/data/panofi/panofi_liquidity.json
 
-원자료: PANOFI 월간보고 (1·2·4·5·7월).pptx  ※ 3·6월은 부재(원본 공백)
+원자료: PANOFI 월간보고 (N월).pptx — 없는 달은 보고 공백으로 meta.missingMonths 에 계산해 남긴다
 
 추정실적 xlsx 에 없는 두 가지를 여기서만 얻는다:
   1) 자금유동성 — 현금·매출채권·매입채무 월말 잔액
@@ -13,13 +13,25 @@
 from __future__ import annotations
 
 import json
+import os
 import re
 import sys
+import unicodedata
 import zipfile
 from hashlib import sha256
 from pathlib import Path
 
-SRC_DIR = Path.home() / "my-project/11_Panofi_Cosmo_GGL /11. PANOFI/Panofi"
+# 원자료가 2026-08 Google Drive 로 이관되고 월간보고는 전용 하위폴더로 모였다.
+SRC_DIR = Path(
+    os.environ.get(
+        "PANOFI_SRC",
+        str(
+            Path.home()
+            / "Library/CloudStorage/GoogleDrive-cutekorea@gmail.com/내 드라이브/신라그룹"
+            / "11_Panofi_Cosmo_GGL /11. PANOFI/Panofi/PANOFI 월간보고"
+        ),
+    )
+)
 OUT = Path(__file__).resolve().parents[1] / "public/data/panofi/panofi_liquidity.json"
 
 
@@ -99,8 +111,19 @@ def parse_estimate(text: str) -> dict | None:
 
 
 def main() -> int:
-    files = sorted(SRC_DIR.glob("PANOFI 월간보고 (*월).pptx"))
-    files = [f for f in files if not f.name.startswith("~$")]
+    # Google Drive 가 한글 파일명을 NFD(자모 분해)로 올리는 경우가 있어 NFC glob 이
+    # 조용히 빠뜨린다(8월분이 실제로 그랬다). 이름을 NFC 로 정규화해 고른다.
+    # 정렬 키도 NFC — NFD 이름은 원문 정렬에서 엉뚱한 자리로 가 «나중 보고가
+    # 정정본» 규칙과 추정손익 순서를 깬다.
+    files = sorted(
+        (
+            f for f in SRC_DIR.iterdir()
+            if re.fullmatch(r"PANOFI 월간보고 \((\d+)월\)\.pptx",
+                            unicodedata.normalize("NFC", f.name))
+            and not f.name.startswith("~$")
+        ),
+        key=lambda f: unicodedata.normalize("NFC", f.name),
+    )
     if not files:
         print(f"원자료 없음: {SRC_DIR}", file=sys.stderr)
         return 1
@@ -111,7 +134,7 @@ def main() -> int:
     for f in files:
         text = pptx_text(f)
         sources.append({
-            "file": f.name,
+            "file": unicodedata.normalize("NFC", f.name),
             "sha256": sha256(f.read_bytes()).hexdigest()[:16],
         })
         for rec in parse_liquidity(text):
@@ -120,6 +143,7 @@ def main() -> int:
         est = parse_estimate(text)
         if est:
             estimates.append(est)
+    estimates.sort(key=lambda e: (e["forYear"], e["forMonth"]))
 
     series = sorted(liquidity.values(), key=lambda r: r["asOf"])
     for r in series:
@@ -133,12 +157,21 @@ def main() -> int:
         print(f"  {r['asOf']}  현금 {r.get('현금')}  매출채권 {r.get('매출채권')}"
               f"  매입채무 {r.get('매입채무')}  과부족 {r.get('과부족')}", file=sys.stderr)
 
+    # 보고 공백은 하드코딩하지 않고 파일에서 계산한다 — 6월분이 뒤늦게 입수된 전례.
+    have = {
+        int(m.group(1))
+        for f in files
+        if (m := re.search(r"\((\d+)월\)", unicodedata.normalize("NFC", f.name)))
+    }
+    missing = [f"{m}월" for m in range(1, max(have) + 1) if m not in have]
+
     payload = {
         "meta": {
             "unit": "천 달러",
             "sources": sources,
-            "missingMonths": ["3월", "6월"],
-            "caveat": "월간보고 3·6월분은 원본이 없다(보고 공백). 각 pptx 는 «전월 자금 + 당월 "
+            "missingMonths": missing,
+            "caveat": "월간보고가 없는 달은 보고 공백으로 그대로 남긴다(현재 "
+                      f"{'·'.join(missing) if missing else '없음'}). 각 pptx 는 «전월 자금 + 당월 "
                       "추정손익» 구조라 파일명 월과 데이터 기준월이 한 달 어긋난다 — 표에 찍힌 "
                       "기준일을 정본으로 썼다. 같은 기준일이 여러 보고에 반복되면 나중 보고를 "
                       "정정본으로 채택했다.",
