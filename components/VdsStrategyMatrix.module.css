@@ -239,8 +239,10 @@
 
 .barFill {
   height: 100%;
+  width: 100%;
+  transform-origin: left;
   border-radius: 4px;
-  transition: width 1s ease-out;
+  transition: transform 1s ease-out;
 }
 
 /* ─── Intelligence Feed ───

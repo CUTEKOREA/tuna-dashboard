@@ -289,11 +289,11 @@ export function MscBrandSourcingScorecard() {
               {/* Progress bar */}
               <div style={{ width: '100%', background: 'rgba(140,170,255,0.12)', borderRadius: 6, height: 8, overflow: 'hidden' }}>
                 <div style={{
-                  width: `${item.rate}%`,
+                  width: '100%', transform: `scaleX(${(item.rate) / 100})`, transformOrigin: 'left',
                   height: '100%',
                   borderRadius: 6,
                   background: `linear-gradient(90deg, ${item.color}cc, ${item.color})`,
-                  transition: 'width 0.6s ease',
+                  transition: 'transform 0.6s ease',
                 }} />
               </div>
 

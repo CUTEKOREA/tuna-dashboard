@@ -404,11 +404,6 @@
   margin-top: 6px;
 }
 
-.miniGaugeFill {
-  height: 100%;
-  border-radius: 3px;
-  transition: width 0.8s ease;
-}
 
 .vesselCatch {
   text-align: right;

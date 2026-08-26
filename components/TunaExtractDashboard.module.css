@@ -2,7 +2,7 @@
 .container {
   min-height: 100vh;
   color: #f8fafc;
-  font-family: 'Inter', 'Pretendard', sans-serif;
+  font-family: var(--font-sans);
 }
 
 .header {

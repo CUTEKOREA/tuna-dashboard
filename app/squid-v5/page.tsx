@@ -155,7 +155,7 @@ export default function SquidV5Preview() {
           return (
             <section key={key} style={{ marginTop: '32px' }}>
               <h2 style={{ fontSize: '1rem', fontWeight: 800, color: '#cbd5e1',
-                           borderLeft: '3px solid #8b5cf6', paddingLeft: '10px', margin: '0 0 12px' }}>
+                           margin: '0 0 12px' }}>
                 {key}. {label} <span style={{ color: '#64748b', fontWeight: 500 }}>({list.length})</span>
               </h2>
               <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(380px, 1fr))', gap: '14px' }}>

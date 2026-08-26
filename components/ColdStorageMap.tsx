@@ -351,7 +351,7 @@ export default function ColdStorageMap() {
                 <div className={styles.crossBar}>
                   <div 
                     className={styles.crossBarFill} 
-                    style={{ width: `${barWidth}%`, background: config.color }} 
+                    style={{ transform: `scaleX(${barWidth / 100})`, background: config.color }} 
                   />
                 </div>
               </div>

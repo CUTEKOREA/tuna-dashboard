@@ -345,9 +345,11 @@
 
 .progressFill {
   height: 100%;
+  width: 100%;
+  transform-origin: left;
   background: var(--accent-primary);
   border-radius: 3px;
-  transition: width 0.5s ease;
+  transition: transform 0.5s ease;
 }
 
 .deepDiveCard {

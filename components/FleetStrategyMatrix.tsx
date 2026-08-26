@@ -539,7 +539,7 @@ export default function FleetStrategyMatrix() {
               <div key={i} style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
                 <div style={{ width: '120px', fontSize: '0.8rem', color: 'rgba(255,255,255,0.7)', textAlign: 'right', flexShrink: 0 }}>{item.name}</div>
                 <div style={{ flex: 1, background: 'rgba(140,170,255,0.10)', borderRadius: '4px', height: '28px', position: 'relative', overflow: 'hidden' }}>
-                  <div style={{ width: `${Math.min((item.value / 214) * 100, 100)}%`, height: '100%', background: `linear-gradient(90deg, ${item.color}33, ${item.color}88)`, borderRadius: '4px', transition: 'width 1s ease' }} />
+                  <div style={{ width: '100%', transform: `scaleX(${(Math.min((item.value / 214) * 100, 100)) / 100})`, transformOrigin: 'left', height: '100%', background: `linear-gradient(90deg, ${item.color}33, ${item.color}88)`, borderRadius: '4px', transition: 'transform 1s ease' }} />
                   <span style={{ position: 'absolute', left: '8px', top: '50%', transform: 'translateY(-50%)', fontSize: '0.75rem', fontWeight: 700, color: 'var(--text-primary)' }}>
                     {item.value}억/척 ({item.vessels}척)
                   </span>

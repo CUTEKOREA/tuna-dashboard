@@ -114,7 +114,7 @@ export default function ResearchLabDashboard() {
 
   if (!data) return (
     <div style={{display:'flex',justifyContent:'center',alignItems:'center',height:'60vh',flexDirection:'column',gap:'1rem'}}>
-      <Briefcase size={32} style={{color:'var(--w-violet-500)',animation:'bounce 2s infinite'}} />
+      <Briefcase size={32} style={{color:'var(--w-violet-500)'}} />
       <p style={{color:'var(--w-slate-400)'}}>B2B 인텔리전스 데이터를 불러오는 중...</p>
     </div>
   );
@@ -290,7 +290,7 @@ export default function ResearchLabDashboard() {
                       {typeof p.trl === 'number' ? (
                         <div style={{display:'flex',alignItems:'center',gap:8}}>
                           <div style={{flex:1,height:6,background:'#272727',borderRadius:3,overflow:'hidden'}}>
-                            <div style={{width:`${(p.trl/9)*100}%`,height:'100%',background:p.trl>=6?'var(--w-emerald-400)':p.trl>=4?'#818cf8':'var(--w-slate-400)',borderRadius:3,transition:'width 0.5s'}} />
+                            <div style={{width: '100%', transform: `scaleX(${((p.trl/9)*100) / 100})`, transformOrigin: 'left',height:'100%',background:p.trl>=6?'var(--w-emerald-400)':p.trl>=4?'#818cf8':'var(--w-slate-400)',borderRadius:3,transition:'transform 0.5s'}} />
                           </div>
                           <span style={{fontSize:'0.85rem',fontWeight:700,color:p.trl>=6?'var(--w-emerald-400)':p.trl>=4?'#818cf8':'var(--w-slate-400)'}}>TRL {p.trl}</span>
                         </div>

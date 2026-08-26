@@ -1421,10 +1421,10 @@ export default function UnloadingStatus({ heroOnly = false }: { heroOnly?: boole
                   <div style={{ width: '100%', background: 'var(--dsc-surface-border)', height: '6px', borderRadius: '3px', overflow: 'hidden' }}>
                     <div 
                       style={{ 
-                        width: `${selectedHoldInfo.nominalCapacity > 0 ? Math.min((selectedHoldInfo.dischargedVolume / selectedHoldInfo.nominalCapacity) * 100, 100) : 0}%`, 
+                        width: '100%', transform: `scaleX(${(selectedHoldInfo.nominalCapacity > 0 ? Math.min((selectedHoldInfo.dischargedVolume / selectedHoldInfo.nominalCapacity) * 100, 100) : 0) / 100})`, transformOrigin: 'left', 
                         background: getTemperatureColor(selectedHoldInfo.lastTemperature).color, 
                         height: '100%',
-                        transition: 'width 0.4s ease'
+                        transition: 'transform 0.4s ease'
                       }}
                     ></div>
                   </div>
@@ -1457,10 +1457,10 @@ export default function UnloadingStatus({ heroOnly = false }: { heroOnly?: boole
                           <div style={{ width: '100%', background: 'var(--dsc-surface-border)', height: '4px', borderRadius: '2px', overflow: 'hidden' }}>
                             <div
                               style={{
-                                width: `${sp.percent}%`,
+                                width: '100%', transform: `scaleX(${(sp.percent) / 100})`, transformOrigin: 'left',
                                 background: sp.id === 'SJ' ? 'var(--w-sky-400)' : 'var(--w-amber-400)',
                                 height: '100%',
-                                transition: 'width 0.4s ease'
+                                transition: 'transform 0.4s ease'
                               }}
                             ></div>
                           </div>

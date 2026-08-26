@@ -210,8 +210,10 @@
 
 .unitCostBarFill {
   height: 100%;
+  width: 100%;
+  transform-origin: left;
   border-radius: 6px;
-  transition: width 1s ease;
+  transition: transform 1s ease;
 }
 
 /* ── Payment Timeline ── */

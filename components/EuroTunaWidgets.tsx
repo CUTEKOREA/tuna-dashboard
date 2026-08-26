@@ -229,7 +229,7 @@ export function EuroESGTrackerWidget() {
               <span style={{ fontSize: '0.9rem', fontWeight: 800, color: item.color, textShadow: `0 0 12px ${item.color}50` }}>{item.target}%</span>
             </div>
             <div style={{ width: '100%', background: 'rgba(30,41,59,0.7)', borderRadius: '8px', height: '8px', overflow: 'hidden', border: '1px solid rgba(51,65,85,0.4)' }}>
-              <div style={{ height: '100%', borderRadius: '8px', width: `${item.target}%`, background: `linear-gradient(90deg, ${item.color}80, ${item.color})`, boxShadow: `0 0 14px ${item.color}60`, transition: 'width 1.5s ease-out' }} />
+              <div style={{ height: '100%', borderRadius: '8px', width: '100%', transform: `scaleX(${(item.target) / 100})`, transformOrigin: 'left', background: `linear-gradient(90deg, ${item.color}80, ${item.color})`, boxShadow: `0 0 14px ${item.color}60`, transition: 'transform 1.5s ease-out' }} />
             </div>
             <span style={{ fontSize: '0.68rem', color: COLORS.textDim, fontWeight: 500 }}>{item.label}</span>
           </div>
@@ -335,7 +335,7 @@ export function EuroPremiumWidget() {
               <span style={{ fontSize: '1.6rem', fontWeight: 800, color: item.color, textShadow: `0 0 18px ${item.color}50`, fontVariantNumeric: 'tabular-nums' }}>+{item.premium}%</span>
             </div>
             <div style={{ width: '100%', background: 'rgba(30,41,59,0.7)', borderRadius: '8px', height: '10px', overflow: 'hidden', border: '1px solid rgba(51,65,85,0.4)' }}>
-              <div style={{ width: `${item.premium}%`, height: '100%', borderRadius: '8px', background: `linear-gradient(90deg, ${item.color}40, ${item.color})`, boxShadow: `0 0 16px ${item.color}60`, transition: 'width 1.5s ease-out' }} />
+              <div style={{ width: '100%', transform: `scaleX(${(item.premium) / 100})`, transformOrigin: 'left', height: '100%', borderRadius: '8px', background: `linear-gradient(90deg, ${item.color}40, ${item.color})`, boxShadow: `0 0 16px ${item.color}60`, transition: 'transform 1.5s ease-out' }} />
             </div>
           </div>
         ))}

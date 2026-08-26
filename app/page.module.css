@@ -28,13 +28,6 @@
   align-items: center;
   gap: var(--space-2);
   color: var(--text-primary);
-  /* cyan → blue → violet 3-stop gradient text + subtle glow.
-   * Lucide icons keep `color` via stroke=currentColor (unaffected by text-fill). */
-  background: var(--title-gradient);
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
-  filter: var(--title-glow);
 }
 
 .subtitle {
@@ -440,10 +433,7 @@
 /* Nav section labels only (scoped to .sidebar — the insight panel
  * reuses .sidebarTitle and must keep its plain styling) */
 .sidebar .sidebarTitle {
-  background: linear-gradient(90deg, #94a3b8 0%, #7dd3fc 70%, #818cf8 100%);
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
+  color: var(--text-dim);
 }
 
 /* ==========================================================
@@ -580,11 +570,7 @@
   font-size: 3.8rem;
   font-weight: 800;
   letter-spacing: -0.04em;
-  /* cyan → blue → violet 3-stop hero gradient (bright start for legibility) */
-  background: linear-gradient(135deg, #f0f9ff 0%, #7dd3fc 32%, #60a5fa 62%, #a78bfa 100%);
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
+  color: #f0f9ff;
   margin: 0;
   line-height: 1.1;
   /* drop-shadow instead of text-shadow: text-shadow bleeds through
@@ -658,7 +644,6 @@
   color: var(--accent-primary);
   border: 1px solid var(--card-border);
   font-weight: var(--weight-semi);
-  box-shadow: inset 3px 0 0 var(--accent-primary);
 }
 
 /* light mode keeps the classic inset indicator — hide the gradient bar */

@@ -41,9 +41,7 @@
   margin-top: -50vw;
   margin-left: -50vw;
   border-radius: 50%;
-  background-image: radial-gradient(circle, rgba(16, 185, 129, 0.15) 1px, transparent 1px), radial-gradient(circle, rgba(16, 185, 129, 0.1) 1px, transparent 1px);
-  background-size: 80px 80px;
-  background-position: 0 0, 40px 40px;
+  background-image: repeating-radial-gradient(circle, transparent 0 79px, rgba(16, 185, 129, 0.12) 79px 80px);
   opacity: 0.5;
 }
 

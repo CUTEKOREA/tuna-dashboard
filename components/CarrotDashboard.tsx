@@ -296,7 +296,7 @@ export default function CarrotDashboard() {
                   <span>소진율: <strong style={{color:'var(--w-slate-50)'}}>{liveTrq.trqStatus.exhaustionRate_percent}%</strong></span>
                 </div>
                 <div style={{ width:'100%', height:'8px', background:'rgba(255,255,255,0.1)', borderRadius:'4px', overflow:'hidden' }}>
-                  <div style={{ width:`${liveTrq.trqStatus.exhaustionRate_percent}%`, height:'100%', background: liveTrq.trqStatus.exhaustionRate_percent > 80 ? 'var(--w-amber-500)' : '#ea580c', transition:'width 1s ease-in-out' }} />
+                  <div style={{ width: '100%', transform: `scaleX(${(liveTrq.trqStatus.exhaustionRate_percent) / 100})`, transformOrigin: 'left', height:'100%', background: liveTrq.trqStatus.exhaustionRate_percent > 80 ? 'var(--w-amber-500)' : '#ea580c', transition:'transform 1s ease-in-out' }} />
                 </div>
                 {liveTrq.alerts?.length > 0 && (
                   <div style={{ fontSize:'0.7rem', color:'var(--w-amber-500)', marginTop:'8px', display:'flex', alignItems:'center', gap:'4px' }}>

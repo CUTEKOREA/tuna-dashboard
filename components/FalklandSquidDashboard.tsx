@@ -201,7 +201,7 @@ export default function FalklandSquidDashboard() {
                         <td style={{ padding: '12px 12px', borderLeft: '1px solid rgba(255,255,255,0.03)' }}>
                           <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
                             <div style={{ flex: 1, height: 5, background: 'rgba(255,255,255,0.04)', borderRadius: 999, overflow: 'hidden' }}>
-                              <div style={{ height: '100%', borderRadius: 999, background: 'linear-gradient(90deg, var(--w-violet-500), var(--w-pink-500))', width: `${Math.min(100, Number(percent) * 5)}%`, transition: 'width 0.5s ease' }}></div>
+                              <div style={{ height: '100%', borderRadius: 999, background: 'linear-gradient(90deg, var(--w-violet-500), var(--w-pink-500))', width: '100%', transform: `scaleX(${(Math.min(100, Number(percent) * 5)) / 100})`, transformOrigin: 'left', transition: 'transform 0.5s ease' }}></div>
                             </div>
                             <span style={{ fontSize: 11, fontWeight: 700, color: '#c4b5fd', fontFamily: 'monospace', minWidth: 36, textAlign: 'right' }}>{percent}%</span>
                           </div>

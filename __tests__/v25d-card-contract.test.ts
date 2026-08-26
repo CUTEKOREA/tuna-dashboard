@@ -21,7 +21,7 @@ function numericCardRadii(source: string): Array<{ selector: string; radius: num
 }
 
 describe('V2.5-d card contract', () => {
-  it('provides one 12px surface contract and a left-only 3px accent variant', () => {
+  it('provides one 12px surface contract and a tinted-border accent variant', () => {
     const globals = readSource('app/globals.css');
     const card = cssRule(globals, '.dsc-card');
     const accent = cssRule(globals, '.dsc-card--accent');
@@ -29,10 +29,11 @@ describe('V2.5-d card contract', () => {
     expect(card).toContain('background: var(--dsc-surface)');
     expect(card).toContain('border: 1px solid var(--dsc-surface-border)');
     expect(card).toContain('border-radius: var(--dsc-card-radius)');
+    // 2026-08-27: 좌측 3px 액센트 줄 폐지 - .dsc-card 의 1px 테두리를 액센트색으로 틴트한다.
     expect(accent).toContain(
-      'border-left: 3px solid var(--dsc-card-accent, var(--accent-primary))',
+      'border-color: color-mix(in srgb, var(--dsc-card-accent, var(--accent-primary)) 45%, var(--dsc-surface-border))',
     );
-    expect(accent).not.toMatch(/border-(?:top|right|bottom)\s*:/);
+    expect(accent).not.toMatch(/border-(?:top|right|bottom|left)\s*:/);
   });
 
   it('uses the shared left-accent contract on exactly two market macro cards', () => {
