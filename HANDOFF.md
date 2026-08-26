@@ -18,6 +18,13 @@
 >
 > 마지막 업데이트: 2026-08-26 09:40 KST [CC]
 
+> 🚀 **2026-08-26 11:20 KST — `/panofi` 8월 주간동향·월간보고 라이브 배포 완료** [CC]:
+> - PR [#782](https://github.com/CUTEKOREA/tuna-dashboard/pull/782)를 squash 병합했다. main commit `14dd74d1`. PR 게이트: lint typecheck test build pass + Vercel Preview pass. 병합 중 HANDOFF 충돌은 양쪽 항목을 시간순 보존으로 해소했다.
+> - Vercel Production: GitHub deployment `6095208837` state=success, sha `14dd74d1`.
+> - 라이브 실측(Aside 로그인 세션, 비인증 curl은 307 정상): 헤드라인 «주간동향 36주 (2025-12-23 ~ 2026-08-25)», 자금·미수금 탭 «-20,575»·«2026-07-31»·«pptx 7건» 확인, 옛 값 «-20,820» 비노출. 390px는 배포 전 동일 빌드 로컬 production에서 overflow 0 검증(Aside REPL은 뷰포트 변경 미지원).
+>
+> 마지막 업데이트: 2026-08-26 11:20 KST [CC]
+
 > ✅ **2026-08-26 08:50 KST — `/panofi` 8월 주간동향·월간보고 원자료 대조·로컬 반영** [CC]:
 > - 원자료 4건(모두 `unzip -t` 무결성 통과, Google Drive 신라그룹/11_Panofi_Cosmo_GGL /11. PANOFI/Panofi/):
 >   `PANOFI 주간동향20260818.docx` SHA-256 `7f177a1ae541cc381fe8c328c622cf2fa1d1ad41c2d6c14486d239a643836d75`,
