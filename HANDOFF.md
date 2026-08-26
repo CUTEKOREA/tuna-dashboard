@@ -1,3 +1,9 @@
+> 🚀 **2026-08-27 — 체선료 실산식 위젯 라이브 배포** [CC]:
+> - PR [#808](https://github.com/CUTEKOREA/tuna-dashboard/pull/808) squash `5aeea190`. Vercel Production **success** · leedonggun.co.kr /unloading 반영.
+> - 후속 과제: 하역 DB에 입항일(arrival_date) 필드 채우면 입항 대기 포함 정밀화. C/P 휴일 정의 상이 시 `lib/demurrage.ts` 목록 수정.
+
+> 마지막 업데이트: 2026-08-27 [CC]
+
 > 💰 **2026-08-27 — /unloading 항만 체선 위험 위젯: 하드코딩 라벨 → 실제 산식** [CC]:
 > - 소유자 산식 반영: 허용 정박일수 = 전체물량/220(최소 일일 하역량) - 사용일수(일요일·태국 공휴일 제외, 양끝 포함). 음수면 초과일수 x $10,000 1차 책정, 운반선사 조율 전 추정치로 표기.
 > - `lib/demurrage.ts` 신설 (태국 2026 공휴일 19일 목록 포함, 대체휴일 반영) + 유닛테스트 7건. 위험 등급: 여유>2일 Low / <=2일 Medium / 초과 High.
