@@ -1,3 +1,12 @@
+> 🚀 **2026-08-26 10:12 KST — `/gmts` 월간보고 탭 라이브 배포 완료** [CC]:
+> - PR [#779](https://github.com/CUTEKOREA/tuna-dashboard/pull/779)를 squash 병합했다. main commit `67b3e2f777a2645cfe1b88d42572738710b9aaca`. PR 게이트: App Quality Gate run `32917060188` success + Vercel Preview success. 병합 후 main 게이트: App Quality Gate success + Data Freshness Audit success.
+> - Vercel Production: GitHub deployment `6095024443` state=success, env=Production, ref=병합 SHA (`tuna-dashboard-fyswodraq-…vercel.app`).
+> - 라이브 실측(로그인 세션 브라우저, 비인증 curl은 307→/login 정상): `https://leedonggun.co.kr/gmts` 월간보고 탭 렌더 — 어획량·어가 차트, 「2026년 1~7월 손익」 3사 표(GMTS 매출 4,969,573 실측), 「2026년 7월말 채권/채무 내역」(KFC 잔액 -41,002,295 실측), 비고(정부기여금 $3,233,333), 업무 동향 5건, 출처 pptx 5건, 품질 플래그 「원문 확인 필요」 노출. 병합 셀 잔존값(122,052 등) 비노출 확인. 문서 overflow 0.
+> - 390px는 라이브 same-origin iframe으로 검증 — scrollW 375/375 overflow 0, monthly 탭 활성, 손익 섹션 렌더.
+> - Vercel 런타임 error 로그는 MCP·CLI 모두 403/미인증이라 직접 조회하지 못했다. 대체 증거: deployment success + 라이브 렌더 정상 + Next 에러 오버레이 0.
+>
+> 마지막 업데이트: 2026-08-26 10:12 KST [CC]
+
 > ✅ **2026-08-26 09:40 KST — `/gmts` 월간보고 탭 신설 (2·4·5·6·8월 pptx 5건 반영, 로컬 완료)** [CC]:
 > - 원자료: Google Drive `신라그룹/GMTS/GMTS Weekly Report/GMTS 월간보고 (N월).pptx` 5건 (2·4·5·6·8월, 전부 2026-08-26 오전 업로드). SHA-256 — 2월 `2775bc54ccd6…`, 4월 `642836a1ed28…`, 5월 `bdcd9e18f002…`, 6월 `b81b29f51c5e…`, 8월 `8a65fe2ebd78…` (전체 해시는 `data/gmts_monthly.json` sources에 보존). `unzip -t` 무결성 5/5 통과.
 > - 신규 파이프라인: `scripts/build_gmts_monthly.py`(stdlib 전용, pptx ZIP+XML 직접 파싱) → `data/gmts_monthly.json` → `lib/data/gmts-monthly.ts` → `components/gmts/GmtsMonthlyReport.tsx` → GmtsDashboard 6번째 탭 `월간보고`. npm 스크립트 `sync:gmts-monthly`·`test:gmts-monthly-sync` 추가.
