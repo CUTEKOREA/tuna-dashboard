@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """PANOFI 주간동향 docx -> public/data/panofi/panofi_weekly.json
 
-원자료: ~/my-project/11_Panofi_Cosmo_GGL /11. PANOFI/Panofi/PANOFI 주간동향YYYYMMDD.docx
+원자료: Google Drive 신라그룹/11_Panofi_Cosmo_GGL /11. PANOFI/Panofi/PANOFI 주간동향/PANOFI 주간동향YYYYMMDD.docx
 docx 는 라벨-값 표 구조가 31주 내내 안정적이다. 섹션 제목은 주마다 흔들리므로
 (운항정보 / 금어기 중 선박 동향 / 선박 동향) 위치가 아니라 **라벨**로 잡는다.
 
@@ -14,15 +14,21 @@ import json
 import os
 import re
 import sys
+import unicodedata
 import zipfile
 from datetime import date
 from hashlib import sha256
 from pathlib import Path
 
+# 원자료가 2026-08 Google Drive 로 이관되고 주간동향은 전용 하위폴더로 모였다.
 SRC_DIR = Path(
     os.environ.get(
         "PANOFI_SRC",
-        str(Path.home() / "my-project/11_Panofi_Cosmo_GGL /11. PANOFI/Panofi"),
+        str(
+            Path.home()
+            / "Library/CloudStorage/GoogleDrive-cutekorea@gmail.com/내 드라이브/신라그룹"
+            / "11_Panofi_Cosmo_GGL /11. PANOFI/Panofi/PANOFI 주간동향"
+        ),
     )
 )
 OUT = Path(__file__).resolve().parents[1] / "public/data/panofi/panofi_weekly.json"
@@ -274,7 +280,7 @@ def parse_week(path: Path) -> dict:
     return {
         "reportDate": d.isoformat(),
         "isoWeek": d.isocalendar()[1],
-        "source": path.name,
+        "source": unicodedata.normalize("NFC", path.name),
         "sha256": sha256(path.read_bytes()).hexdigest(),
         "author": author,
         "statedYearMismatch": year_mismatch,
@@ -314,14 +320,26 @@ def coverage(weeks: list[dict]) -> dict:
 
 
 def main() -> int:
-    files = sorted(SRC_DIR.glob("PANOFI 주간동향*.docx"))
-    files = [f for f in files if not f.name.startswith("~$")]
+    # Google Drive 가 한글 파일명을 NFD(자모 분해)로 올리는 경우가 있어 NFC glob 이
+    # 조용히 빠뜨린다(월간보고 8월분이 실제로 그랬다). 이름을 NFC 로 정규화해 고른다.
+    files = sorted(
+        f for f in SRC_DIR.iterdir()
+        if re.fullmatch(r"PANOFI 주간동향\d{8}\.docx",
+                        unicodedata.normalize("NFC", f.name))
+        and not f.name.startswith("~$")
+    )
     if not files:
         print(f"원자료 없음: {SRC_DIR}", file=sys.stderr)
         return 1
 
     weeks = [parse_week(f) for f in files]
     weeks.sort(key=lambda w: w["reportDate"])
+
+    # 연속 주간 시계열은 2025-12-23 부터다. 폴더에는 그보다 1년 전 단발 보고
+    # (PANOFI 주간동향20250107.docx)가 섞여 있는데, 이걸 넣으면 헤드라인
+    # «N주 (start~end)» 가 연속 커버리지인 척 거짓말한다 — 시계열 밖은 뺀다.
+    SERIES_START = "2025-12-23"
+    weeks = [w for w in weeks if w["reportDate"] >= SERIES_START]
 
     cov = coverage(weeks)
     total = len(weeks)
