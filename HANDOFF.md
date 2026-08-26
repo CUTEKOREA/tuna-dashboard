@@ -1,3 +1,10 @@
+> 🚀 **2026-08-26 — 앰대시 제거 + /port-intel 라이브 배포** [CC]:
+> - PR [#798](https://github.com/CUTEKOREA/tuna-dashboard/pull/798) 앰대시 전면 제거(5,111건/468파일) squash `8b9e7f49` → PR [#799](https://github.com/CUTEKOREA/tuna-dashboard/pull/799) /port-intel 1차 squash `1e109a96` 순차 병합 (HANDOFF 충돌 1건 리베이스 해소).
+> - Vercel Production `1e109a96` **success** · leedonggun.co.kr 반영. 운영 로그인 후 사이드바 「부산 입출항」 확인.
+> - 다음 주 갱신: `python3 scripts/sync_busan_port.py <새 통합본.html>` 후 verify·배포.
+
+> 마지막 업데이트: 2026-08-26 [CC]
+
 > ⚓ **2026-08-26 — /port-intel 부산 입출항 대시보드 1차 신설** [CC]:
 > - 해양수산3팀 주간 통합본(부산입출항선동향)을 대시보드로: 운영 섹션 fleet 다음, `requiresOperationAccess` 게이트. registry·패널·사이드바 등록.
 > - 파이프라인: `scripts/sync_busan_port.py <통합본.html>` -> `data/busan_port_calls.json`(20KB, force-add) -> `lib/data/busan-port.ts` 인테이크(ADR-0005). 체류 통계는 문서 renderStay 규칙(완료건 + 365일 초과 상시 제외, 90일 변형) 재계산 - 연승 52/47·선망 35/35·북양 92/46으로 문서와 정합 확인.
