@@ -1,3 +1,14 @@
+> 🚀 **2026-08-26 10:55 KST — 해양수산본부 8/26 일일보고 `/fleet` 라이브 배포 완료** [CC]:
+> - PR [#784](https://github.com/CUTEKOREA/tuna-dashboard/pull/784)를 squash 병합했다. main commit `7f67ff12adc7785b13e4b42b83b65226a6c2bf5c`. PR 게이트: App Quality Gate `32919118010` success + Vercel Preview success. 병합 후 main App Quality Gate success.
+> - 병합 전에 Production `FLEET_DAILY_DETAIL_JSON`(sensitive, target=production)을 8/26 상세 DTO로 교체했다. 로컬 canonical SHA와 공개 `_meta.detailSha256` `5379673f…5cef` 일치를 확인한 뒤 올렸다.
+> - Vercel Production `dpl_4sHgjJ4Zh2SrbSCRFc2rXjgVKJpX` READY, region `icn1`, alias `leedonggun.co.kr` 결합.
+> - 라이브 실측(로그인 세션 브라우저): 히어로 `2026-08-26 보고 · 2026-08-25 조업 기준`, KPI 215 / 7,943 / 79,500.8 / 8,763.3, 전일 대비 -95 · -245 · -340 (MT), 「전체 보고 142건」·「전기간 검산 568회」·검산 이슈 0건. `/api/fleet/daily`는 200 `private, no-store`로 보고일 2026-08-26 / 기준일 2026-08-25, 상세 행 태평양·대서양·운반선·연승 `10/7/6/2`를 반환했고 HIKARI 1·SEIN KASAMA·P/MAS·MOAMARI가 렌더된다. 인증 앱 코드·2단계 인증 문구는 0건이다.
+> - 비인증 경계 유지: `/fleet` 307 `→ /login?next=%2Ffleet`, `/api/fleet/daily` 401 `authentication_required`, 둘 다 `private, no-store`·`Vary: Cookie`.
+> - 1440px 문서 폭 1429, 390×844 iframe 문서 폭 379 — 양쪽 overflow 0, console/page error 0. 운영자 상태는 `fleet-daily: live_verified`다.
+> - 이 세션에서 Vercel CLI를 새로 설치했다(`npm i -g vercel`). 기존 저장 토큰은 2026-08-26 05:24 KST에 만료돼 있었고 CLI가 갱신했다.
+>
+> 마지막 업데이트: 2026-08-26 10:55 KST [CC]
+
 > ⚓ **2026-08-26 10:05 KST — 해양수산본부 8/26 일일보고 `/fleet` 로컬 반영 완료·미배포** [CC]:
 > - 원문은 `해양수산본부 일일업무보고-260826 (수).docx` 한 건이다. 운영자 CLI `prepare --page fleet-daily`로 공개 집계·보호 상세를 재생성했고 데이터 기준일은 보고 `2026-08-26` / 조업 `2026-08-25`다.
 > - 최신 집계: 태평양 일간 25 (월 2,813 / 연 47,645.8), 대서양 일간 190 (월 5,130 / 연 31,855), 운반선 선적 8,763.3 · 예상잔량 5,771.7 (MT). 전일 대비 일간 델타는 태평양 -95 · 대서양 -245 · 합계 -340이다. 검산 4건 전량 일치, `issueCount` 0.
