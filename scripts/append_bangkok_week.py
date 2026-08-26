@@ -347,20 +347,27 @@ def main() -> None:
         (r"~ \d{4}년 \d{1,2}월 \d{1,2}일 · 주간보고 \d+건\(고유 \d+주\)",
          f"~ {hdr['sub_end']} · 주간보고 {hdr['reports']}건(고유 {hdr['weeks']}주)"),
         (r'(<div class="lab">분석 대상</div>\s*<div class="val">)\d+주',
-         rf"\g<1>{hdr['weeks']}주"),
-        (r'(<div class="lab">최신 시세</div>\s*<div class="val">)\$[\d,]+',
-         rf"\g<1>{hdr['latestPrice'].replace('$', chr(92) + '$')}"),
+         f"{hdr['weeks']}주"),
+        (r'(<div class="lab">최신 시세</div>\s*<div class="val">)\\?\$[\d,]+',
+         hdr["latestPrice"]),
         (r'(<div class="lab">방콕 재고</div>\s*<div class="val">)[\d,]+ MT',
-         rf"\g<1>{hdr['stockMt']}"),
+         hdr["stockMt"]),
         (r'(<div class="lab">가공가능일수</div>\s*<div class="val">)\d+일',
-         rf"\g<1>{hdr['processDays']}"),
+         hdr["processDays"]),
         (r'(<div class="lab">2026 누적 하역</div>\s*<div class="val">)[\d,]+ MT',
-         rf"\g<1>{hdr['cumUnload']}"),
+         hdr["cumUnload"]),
     ]
     payload_json = json.dumps(d, ensure_ascii=False, separators=(",", ":"))
     new_html = html[: m.start(2)] + payload_json + html[m.end(2):]
     for pat, rep in replacements:
-        new_html, n = re.subn(pat, rep, new_html, count=1)
+        # substitute through a callable so '$' and '\\' inside the values stay literal
+        # (a plain replacement string would read them as regex escapes)
+        new_html, n = re.subn(
+            pat,
+            lambda mm, rep=rep: (mm.group(1) if mm.lastindex else "") + rep,
+            new_html,
+            count=1,
+        )
         if n != 1:
             fail(f"헤더 치환 실패: {pat}")
 
