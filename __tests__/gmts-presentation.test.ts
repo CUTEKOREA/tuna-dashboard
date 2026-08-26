@@ -7,12 +7,12 @@ function cloneDashboard(): GmtsDashboardData {
 }
 
 describe('GMTS presentation model', () => {
-  it('labels a blank completed-vessel count as unconfirmed rather than zero', () => {
+  it('formats declared vessel counts for the latest report', () => {
     const view = buildGmtsPresentation(getGmtsDashboard());
 
     expect(view.hero.activeVessels).toEqual({ value: '2척', tone: 'neutral' });
-    expect(view.hero.completedVessels).toEqual({ value: '미확정', tone: 'warning' });
-    expect(view.hero.incomingVessels).toEqual({ value: '2척', tone: 'neutral' });
+    expect(view.hero.completedVessels).toEqual({ value: '1척', tone: 'neutral' });
+    expect(view.hero.incomingVessels).toEqual({ value: '3척', tone: 'neutral' });
   });
 
   it('formats changed declared counts without attaching units to unknown values', () => {
@@ -107,7 +107,7 @@ describe('GMTS presentation model', () => {
     const view = buildGmtsPresentation(getGmtsDashboard());
     const blankWeek = view.portTrend.find((row) => row.reportDate === '2026-04-08');
 
-    expect(view.portTrend).toHaveLength(31);
+    expect(view.portTrend).toHaveLength(32);
     expect(blankWeek).toMatchObject({
       activeDeclaredCount: null,
       activeRecordCount: 0,
@@ -117,10 +117,10 @@ describe('GMTS presentation model', () => {
     expect(view.portTrend.at(-1)).toMatchObject({
       activeDeclaredCount: 2,
       activeRecordCount: 2,
-      completedDeclaredCount: null,
-      completedRecordCount: 0,
-      incomingDeclaredCount: 2,
-      incomingRecordCount: 2,
+      completedDeclaredCount: 1,
+      completedRecordCount: 1,
+      incomingDeclaredCount: 3,
+      incomingRecordCount: 3,
     });
   });
 
@@ -130,7 +130,7 @@ describe('GMTS presentation model', () => {
     const noOffer = view.priceTrend.find((row) => row.reportDate === '2026-05-06');
     const around = view.priceTrend.find((row) => row.reportDate === '2026-03-25');
 
-    expect(view.priceTrend).toHaveLength(31);
+    expect(view.priceTrend).toHaveLength(32);
     expect(noPrice).toMatchObject({ nonGspAmount: null, nonGspQualifier: 'no-price' });
     expect(noPrice?.nonGspRawText).toContain('No price');
     expect(noOffer).toMatchObject({ nonGspAmount: null, nonGspQualifier: 'no-offer' });
@@ -140,20 +140,19 @@ describe('GMTS presentation model', () => {
     });
   });
 
-  it('derives the latest GSP premium and keeps incoming cargo separate from Gensan allocation', () => {
+  it('derives the latest GSP premium and keeps TBA incoming cargo unconfirmed', () => {
     const view = buildGmtsPresentation(getGmtsDashboard());
 
     expect(view.comparisons.pricePremium).toEqual({
-      amount: 125,
-      pct: 6.58,
+      amount: 50,
+      pct: 2.38,
       unit: '원문 분모 미기재',
     });
+    // 입항 예정 3척 화물은 원문 TBA·EMPTY — 합계를 0으로 만들지 않는다
     expect(view.latestPort.incoming).toMatchObject({
-      totalCargoMt: 4994.414,
-      gensanAllocationMt: 2092.414,
+      totalCargoMt: null,
+      gensanAllocationMt: null,
     });
-    expect(view.latestPort.incoming.totalCargoMt)
-      .not.toBe(view.latestPort.incoming.gensanAllocationMt);
   });
 
   it('derives current report figures and narrative from a changed typed fixture', () => {
@@ -181,18 +180,17 @@ describe('GMTS presentation model', () => {
     const view = buildGmtsPresentation(getGmtsDashboard());
 
     expect(view.insights.port.situation.split('.').filter(Boolean).length).toBeGreaterThanOrEqual(2);
-    expect(view.insights.port.situation).toContain('하역 완료 선박은 없습니다');
-    expect(view.insights.port.situation).toContain('4,994.414 MT');
-    expect(view.insights.port.situation).toContain('2,092.414 MT');
-    expect(view.insights.port.situation).toContain('4,925.080 MT');
-    expect(view.insights.port.situation).toContain('2,252.630 MT');
+    expect(view.insights.port.situation).toContain('하역 완료 1척은 화물 580.000 MT 중 670.230 MT');
+    expect(view.insights.port.situation).toContain('입항 예정 3척의 표시 총화물은 미확정 MT');
+    expect(view.insights.port.situation).toContain('6,437.494 MT');
+    expect(view.insights.port.situation).toContain('4,148.470 MT');
     // 초과 양하는 원문 수치 그대로 드러난다
     expect(view.insights.port.situation).toContain('F/V QUEEN ELLICE');
-    expect(view.insights.port.situation).toContain('51.300 MT 초과 양하');
+    expect(view.insights.port.situation).toContain('90.230 MT 초과 양하');
     expect(view.insights.port.action).toContain('Gensan 반입 예측치');
     expect(view.insights.cannery.situation).toContain('895/1,095 MT');
     expect(view.insights.cannery.situation).toContain('122%');
-    expect(view.insights.priceVolume.situation).toContain('$125');
+    expect(view.insights.priceVolume.situation).toContain('$50');
     expect(view.insights.priceVolume.situation).toContain('5.38%');
     expect(view.insights.priceVolume.action).toContain('분모 단위');
   });
@@ -200,7 +198,7 @@ describe('GMTS presentation model', () => {
   it('exposes structured quality and source summaries for the data-quality tab', () => {
     const view = buildGmtsPresentation(getGmtsDashboard());
 
-    expect(view.qualitySummary.totalFlags).toBe(43);
+    expect(view.qualitySummary.totalFlags).toBe(44);
     expect(view.qualitySummary.byCode.blankDeclaredCount).toBe(6);
     expect(view.qualitySummary.capacityExceeded).toEqual(expect.arrayContaining([
       expect.objectContaining({ name: 'Celebes', storageUtilizationPercent: 122 }),
@@ -211,14 +209,14 @@ describe('GMTS presentation model', () => {
     expect(view.qualitySummary.unknownRuleNotice).toContain('확정하지 않음');
     expect(view.sourceSummary).toMatchObject({
       status: 'STATIC',
-      reportCount: 31,
-      pageCount: 39,
+      reportCount: 32,
+      pageCount: 40,
       coverageStart: '2026-01-21',
-      coverageEnd: '2026-08-19',
-      latestReportDate: '2026-08-19',
+      coverageEnd: '2026-08-26',
+      latestReportDate: '2026-08-26',
       operationalAsOfLabel: '운영 기준일 미기재',
     });
-    expect(view.sourceSummary.sources).toHaveLength(31);
+    expect(view.sourceSummary.sources).toHaveLength(32);
     expect(view.sourceSummary.sources.at(-1)?.sha256Prefix).toHaveLength(12);
   });
 
@@ -229,7 +227,7 @@ describe('GMTS presentation model', () => {
       '1월', '2월', '3월', '4월', '5월', '6월',
       '7월', '8월', '9월', '10월', '11월', '12월',
     ]);
-    expect(view.canneryTrend).toHaveLength(31);
+    expect(view.canneryTrend).toHaveLength(32);
     expect(view.canneryTrend.at(-1)).toMatchObject({
       productionUtilizationPct: 82,
       currentDailyProductionMt: 895,
