@@ -38,6 +38,7 @@ interface DashboardMenuConfigShape {
 export const DASHBOARD_MENU_CONFIGS = [
   { key: 'market', title: '시장 동향', section: 'operation', accent: 'cyan', shortcutOrder: 1, sidebar: { icon: 'BarChart2', suffix: 'Market' } },
   { key: 'fleet', title: '선단 운영', section: 'operation', accent: 'cyan', requiresOperationAccess: true, shortcutOrder: 2, sidebar: { icon: 'Navigation', suffix: 'Fleet' } },
+  { key: 'port-intel', title: '부산 입출항', section: 'operation', accent: 'cyan', requiresOperationAccess: true, sidebar: { icon: 'Ship', suffix: 'Port' } },
   { key: 'logistics', title: '물류·가공', section: 'operation', accent: 'cyan', requiresOperationAccess: true, shortcutOrder: 4, sidebar: { icon: 'Factory', suffix: 'Logistics' } },
   { key: 'unloading', title: '하역 현황', section: 'operation', accent: 'cyan', requiresOperationAccess: true, shortcutOrder: 3, sidebar: { icon: 'Anchor', suffix: 'Unloading' } },
   { key: 'panofi', title: '파노피', section: 'operation', accent: 'cyan', sidebar: { icon: 'Ship' } },
@@ -168,6 +169,7 @@ export const PUBLIC_DASHBOARD_ROUTES = DASHBOARD_MENU_CONFIGS
 export const DASHBOARD_PANEL_ORDER = [
   'market',
   'fleet',
+  'port-intel',
   'logistics',
   'cross-intelligence',
 
@@ -190,7 +192,7 @@ export const DASHBOARD_PANEL_ORDER = [
 ] as const satisfies readonly ActiveMenu[];
 
 const SIDEBAR_SECTION_KEYS: Record<DashboardSection, readonly ActiveMenu[]> = {
-  operation: ['market', 'fleet', 'unloading', 'logistics', 'panofi', 'cosmo', 'bangkok-office', 'gmts', 'mail'],
+  operation: ['market', 'fleet', 'port-intel', 'unloading', 'logistics', 'panofi', 'cosmo', 'bangkok-office', 'gmts', 'mail'],
   understanding: [
     'tuna-industry',
     'squid-industry',

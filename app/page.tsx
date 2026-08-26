@@ -46,6 +46,7 @@ const PanofiDashboard = dynamic(() => import('../components/panofi/PanofiDashboa
 const CosmoDashboard = dynamic(() => import('../components/cosmo/CosmoDashboard'));
 const BangkokDashboard = dynamic(() => import('../components/bangkok/BangkokDashboard'));
 const GmtsDashboard = dynamic(() => import('../components/gmts/GmtsDashboard'));
+const BusanPortDashboard = dynamic(() => import('../components/BusanPortDashboard'));
 const MailInboxDashboard = dynamic(() => import('../components/MailInboxDashboard'));
 const TunaIndustryDashboard = dynamic(() => import('../components/market-understanding/TunaIndustryDashboard'));
 const SquidIndustryDashboard = dynamic(() => import('../components/market-understanding/SquidIndustryDashboard'));
@@ -268,6 +269,7 @@ export default function Home() {
     cosmo: <CosmoDashboard />,
     'bangkok-office': <BangkokDashboard />,
     gmts: <GmtsDashboard />,
+    'port-intel': <BusanPortDashboard />,
     mail: mailAdminVisible ? <MailInboxDashboard /> : null,
     'purse-seiner-db': <PurseSeinerDashboard />,
     'tuna-industry': <TunaIndustryDashboard />,

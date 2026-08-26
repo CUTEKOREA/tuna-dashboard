@@ -1,15 +1,23 @@
 {
  "_meta": {
   "entry": "app/page.tsx",
-  "files": 195,
-  "widgets": 109,
-  "dataFiles": 83,
+  "files": 197,
+  "widgets": 110,
+  "dataFiles": 84,
   "generator": "scripts/widget_lineage.py"
  },
  "widgetToData": {
   "components/AmbientBackground.tsx": {
    "dataModules": [],
    "dataFiles": []
+  },
+  "components/BusanPortDashboard.tsx": {
+   "dataModules": [
+    "lib/data/busan-port.ts"
+   ],
+   "dataFiles": [
+    "data/busan_port_calls.json"
+   ]
   },
   "components/CanneryStatusCharts.tsx": {
    "dataModules": [],
@@ -931,6 +939,9 @@
   "data/beef_usda_widgets.json": [
    "components/PorkDashboard.tsx",
    "components/PorkUsdaWidgets.tsx"
+  ],
+  "data/busan_port_calls.json": [
+   "components/BusanPortDashboard.tsx"
   ],
   "data/chicken_usda_widgets.json": [
    "components/PorkDashboard.tsx",

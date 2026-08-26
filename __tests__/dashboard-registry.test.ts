@@ -535,6 +535,7 @@ describe('dashboard registry', () => {
     expect(operationItems).toEqual([
       'market',
       'fleet',
+      'port-intel',
       'unloading',
       'logistics',
       'panofi',
@@ -574,6 +575,7 @@ describe('dashboard registry', () => {
     expect(operationItems).toEqual([
       'market',
       'fleet',
+      'port-intel',
       'unloading',
       'logistics',
       'panofi',
@@ -594,6 +596,7 @@ describe('dashboard registry', () => {
       'fleet',
       'unloading',
       'logistics',
+      'port-intel',
       'bangkok-office',
       'gmts',
     ]);
@@ -625,7 +628,7 @@ describe('dashboard registry', () => {
   });
 
   it('keeps operation locks and keyboard shortcuts inside valid menus', () => {
-    expect(PROTECTED_OPERATION_MENU_KEYS).toEqual(['fleet', 'unloading', 'logistics', 'bangkok-office', 'gmts']);
+    expect(PROTECTED_OPERATION_MENU_KEYS).toEqual(['fleet', 'unloading', 'logistics', 'port-intel', 'bangkok-office', 'gmts']);
     expect(KEYBOARD_SHORTCUT_MENUS).toEqual([
       'market',
       'fleet',
@@ -644,7 +647,7 @@ describe('dashboard registry', () => {
     const proxySource = readFileSync(join(process.cwd(), 'proxy.ts'), 'utf8');
 
     expect(sessionAccessKeys).toEqual(VALID_MENUS.filter((menu) => menu !== 'mail'));
-    expect(PROTECTED_OPERATION_MENU_KEYS).toEqual(['fleet', 'unloading', 'logistics', 'bangkok-office', 'gmts']);
+    expect(PROTECTED_OPERATION_MENU_KEYS).toEqual(['fleet', 'unloading', 'logistics', 'port-intel', 'bangkok-office', 'gmts']);
     expect(PROTECTED_OPERATION_MENU_KEYS).not.toContain('mail');
     expect(KEYBOARD_SHORTCUT_MENUS).not.toContain('mail');
     expect(PUBLIC_DASHBOARD_ROUTES).not.toContain('mail');
@@ -739,7 +742,7 @@ describe('dashboard registry', () => {
     ]);
 
     expect(SIDEBAR_SECTIONS.map((section) => section.items.map((item) => item.key))).toEqual([
-      ['market', 'fleet', 'unloading', 'logistics', 'panofi', 'cosmo', 'bangkok-office', 'gmts'],
+      ['market', 'fleet', 'port-intel', 'unloading', 'logistics', 'panofi', 'cosmo', 'bangkok-office', 'gmts'],
       ['tuna-industry', 'squid-industry', 'mackerel-industry', 'whelk-industry', 'shrimp-industry', 'pollock-industry', 'tuna-anatomy'],
       // 2026-08-17 사용자 요청: 선단 DB 노출. cross-intelligence 는 종전대로 팔레트 전용
       ['purse-seiner-db', 'company-anatomy'],
@@ -761,6 +764,7 @@ describe('dashboard registry', () => {
     expect(DASHBOARD_PANEL_ORDER).toEqual([
       'market',
       'fleet',
+      'port-intel',
       'logistics',
       'cross-intelligence',
       'pork',
