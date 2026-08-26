@@ -851,3 +851,14 @@
     animation-iteration-count: 1 !important;
   }
 }
+
+/* 월간보고 3열 손익 표 — 760px 강제폭 없이 카드 절반 폭에 맞춘다 */
+.compactTable {
+  min-width: 0;
+}
+
+.compactTable td {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}

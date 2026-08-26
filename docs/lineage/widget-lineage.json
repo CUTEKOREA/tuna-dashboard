@@ -1,9 +1,9 @@
 {
  "_meta": {
   "entry": "app/page.tsx",
-  "files": 192,
-  "widgets": 108,
-  "dataFiles": 82,
+  "files": 194,
+  "widgets": 109,
+  "dataFiles": 83,
   "generator": "scripts/widget_lineage.py"
  },
  "widgetToData": {
@@ -505,7 +505,16 @@
     "lib/data/gmts.ts"
    ],
    "dataFiles": [
-    "data/gmts_dashboard.json"
+    "data/gmts_dashboard.json",
+    "data/gmts_monthly.json"
+   ]
+  },
+  "components/gmts/GmtsMonthlyReport.tsx": {
+   "dataModules": [
+    "lib/data/gmts-monthly.ts"
+   ],
+   "dataFiles": [
+    "data/gmts_monthly.json"
    ]
   },
   "components/market-understanding/AlbacoraCharts.tsx": {
@@ -930,6 +939,10 @@
   ],
   "data/gmts_dashboard.json": [
    "components/gmts/GmtsDashboard.tsx"
+  ],
+  "data/gmts_monthly.json": [
+   "components/gmts/GmtsDashboard.tsx",
+   "components/gmts/GmtsMonthlyReport.tsx"
   ],
   "data/mangosteen_kr_export.json": [
    "components/LogisticsDashboard.tsx",

@@ -4,6 +4,7 @@ import { useState, type ReactNode } from 'react';
 import {
   AlertTriangle,
   Anchor,
+  CalendarDays,
   Factory,
   LayoutDashboard,
   Ship,
@@ -35,6 +36,7 @@ import {
 import { TelemetryBadge } from '../TelemetryBadge';
 import TermTooltip from '../TermTooltip';
 import WidgetCard from '../WidgetCard';
+import { MonthlyPanel } from './GmtsMonthlyReport';
 import HeroZone from '../v2/HeroZone';
 import { HeroNowStrip } from '../v2/HeroNowStrip';
 import PillTabs, { type PillTab } from '../v2/PillTabs';
@@ -44,7 +46,7 @@ import { C } from './palette';
 const GMTS_DATA = getGmtsDashboard();
 const GMTS_VIEW = buildGmtsPresentation(GMTS_DATA);
 
-export type GmtsTabKey = 'summary' | 'port' | 'cannery' | 'price-volume' | 'quality';
+export type GmtsTabKey = 'summary' | 'port' | 'cannery' | 'price-volume' | 'monthly' | 'quality';
 
 interface GmtsDashboardProps {
   heroOnly?: boolean;
@@ -77,6 +79,7 @@ const GMTS_TABS: PillTab[] = [
   { key: 'port', label: '항만·선박', icon: <Ship size={15} /> },
   { key: 'cannery', label: '공장·재고', icon: <Factory size={15} /> },
   { key: 'price-volume', label: '가격·반입', icon: <TrendingUp size={15} /> },
+  { key: 'monthly', label: '월간보고', icon: <CalendarDays size={15} /> },
   { key: 'quality', label: '데이터 품질', icon: <ShieldCheck size={15} /> },
 ];
 
@@ -1148,6 +1151,8 @@ function ActivePanel({ activeTab }: { activeTab: GmtsTabKey }): ReactNode {
       return <CanneryPanel />;
     case 'price-volume':
       return <PriceVolumePanel />;
+    case 'monthly':
+      return <MonthlyPanel />;
     case 'quality':
       return <QualityPanel />;
   }
