@@ -1,26 +1,26 @@
 {
   "_meta": {
     "schemaVersion": 1,
-    "reportCount": 140,
+    "reportCount": 142,
     "firstReportDate": "2026-01-16",
-    "latestReportDate": "2026-08-25",
-    "latestAsOf": "2026-08-24",
-    "detailSha256": "802127ca925e7f722136bae0485828d367edc6585904930663ecbfddf42575fd"
+    "latestReportDate": "2026-08-26",
+    "latestAsOf": "2026-08-25",
+    "detailSha256": "5379673ffaae28646d1914914dea6744bdaec0fd87263ab3b4c1a3ef51005cef"
   },
   "latest": {
-    "reportDate": "2026-08-25",
-    "asOf": "2026-08-24",
+    "reportDate": "2026-08-26",
+    "asOf": "2026-08-25",
     "pacific": {
-      "asOf": "2026-08-24",
-      "dailyMt": 120,
-      "monthlyMt": 2788,
-      "annualMt": 47620.8
+      "asOf": "2026-08-25",
+      "dailyMt": 25,
+      "monthlyMt": 2813,
+      "annualMt": 47645.8
     },
     "atlantic": {
-      "asOf": "2026-08-24",
-      "dailyMt": 435,
-      "monthlyMt": 4940,
-      "annualMt": 31665
+      "asOf": "2026-08-25",
+      "dailyMt": 190,
+      "monthlyMt": 5130,
+      "annualMt": 31855
     },
     "carrier": {
       "loadedTotalMt": 8763.3,
@@ -28,20 +28,20 @@
     }
   },
   "deltas": {
-    "pacificDailyMt": 84,
-    "atlanticDailyMt": 155,
-    "totalDailyMt": 239
+    "pacificDailyMt": -95,
+    "atlanticDailyMt": -245,
+    "totalDailyMt": -340
   },
   "reconciliation": {
     "pacificDaily": {
-      "reportedMt": 120,
-      "rowsMt": 120,
+      "reportedMt": 25,
+      "rowsMt": 25,
       "matches": true,
       "missingCount": 0
     },
     "atlanticDaily": {
-      "reportedMt": 435,
-      "rowsMt": 435,
+      "reportedMt": 190,
+      "rowsMt": 190,
       "matches": true,
       "missingCount": 0
     },
@@ -63,8 +63,8 @@
   },
   "quality": {
     "counts": {
-      "reconciliationChecks": 560,
-      "reconciliationCompleteChecks": 560,
+      "reconciliationChecks": 568,
+      "reconciliationCompleteChecks": 568,
       "reconciliationUnavailableChecks": 0,
       "reconciliationUnavailableDocuments": 0,
       "reconciliationIssues": 14,
