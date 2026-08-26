@@ -1,3 +1,12 @@
+> 🚀 **2026-08-26 14:20 KST — `/gmts` 8/26 주간보고 라이브 배포 (PR #795 · 32번째 보고)** [CC]:
+> - 원자료: `GMTS Weekly Report 20260826.pdf` (1쪽, SHA-256 `344eb16cfbc5bf75c73431c2b2a6829b99037d440295fa092a442239bbc631b4`). `npm run sync:gmts` 재생성 — 32 reports, coverage 2026-01-21~2026-08-26.
+> - 핵심 수치: 어가 Non-GSP $2,100 / GSP $2,150(프리미엄 $50·2.38%). 하역 중 2척(SEA BLAZER 4,345.080/3,407.790 · SEIN QUEEN 2,092.414/740.680), 완료 1척(QUEEN ELLICE 580.000→670.230, 초과 90.230 원문 그대로), 입항 예정 3척은 TBA·EMPTY라 화물 공란 유지(합계 0으로 만들지 않음). 반입량 2026은 7월까지 그대로(누계 63,736), 품질 플래그 44건.
+> - RED→GREEN: sync 직후 gmts 3개 스위트 15건 실패 확인 후 원문 실측값으로 앵커 갱신, 전부 통과. `npm run verify` 통과: ESLint 0 errors(기존 warnings 12), Vitest 150 files/1,168 passed/2 skipped, Next 118페이지.
+> - 배포: PR [#795](https://github.com/CUTEKOREA/tuna-dashboard/pull/795) squash 병합, main `ae3569883253f330079af113d21a57afdd03ef93`. PR·main App Quality Gate success, GitHub deployment `6097593072` state=success.
+> - 라이브 실측(로그인 세션): 히어로 「보고일 2026.08.26 · 32건 정적 스냅샷」, $2,100/$2,150, 완료 1척·입항 3척, 항만·선박 탭 SIT에 6,437.494/4,148.470 MT·초과 90.230 MT 노출, QUEEN ELLICE 파이프라인 행 확인. 390px iframe overflow 0. 8/19 잔상 없음.
+>
+> 마지막 업데이트: 2026-08-26 14:20 KST [CC]
+
 > 🚀 **2026-08-26 14:10 KST — 방콕 주간보고 2026-08-26 라이브 배포 (PR #793 · 289주)** [CC]:
 > - PR [#793](https://github.com/CUTEKOREA/tuna-dashboard/pull/793) squash `213ed3c2`. PR 게이트 `lint typecheck test build` 성공·Vercel Preview 성공, main App Quality Gate `32932315863` 성공, Vercel Production READY(5분 전 배포, GitHub deployment SHA `213ed3c2`).
 > - 반영 값: 시세 $2,030(전주 $1,960) · 방콕 재고 104,500MT(-5,700) · 가동률 51% · 가공일수 49일 · 당주 하역 4척 13,048MT · 8월 누적 7척 25,214MT · 2026 누계 333,498MT(82척) · High Rejection 6건 351.2MT · High Salt 24행 $4,012. series 288→289주.
