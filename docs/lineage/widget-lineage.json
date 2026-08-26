@@ -1,7 +1,7 @@
 {
  "_meta": {
   "entry": "app/page.tsx",
-  "files": 197,
+  "files": 198,
   "widgets": 110,
   "dataFiles": 84,
   "generator": "scripts/widget_lineage.py"

@@ -1,3 +1,12 @@
+> 💰 **2026-08-27 — /unloading 항만 체선 위험 위젯: 하드코딩 라벨 → 실제 산식** [CC]:
+> - 소유자 산식 반영: 허용 정박일수 = 전체물량/220(최소 일일 하역량) - 사용일수(일요일·태국 공휴일 제외, 양끝 포함). 음수면 초과일수 x $10,000 1차 책정, 운반선사 조율 전 추정치로 표기.
+> - `lib/demurrage.ts` 신설 (태국 2026 공휴일 19일 목록 포함, 대체휴일 반영) + 유닛테스트 7건. 위험 등급: 여유>2일 Low / <=2일 Medium / 초과 High.
+> - 기존 "High·예상 지연 3~4일" 하드코딩은 산식과 모순이었음 - HIKARI 1 실측은 허용 13.3일 vs 사용 5일 = **여유 8.3일(Low)**.
+> - 한계: 하역 DB에 입항일 필드가 없어 하역 개시일 기준(입항 대기 미반영 - 화면에 명시). 다음 일보 동기화 때 `arrival_date` 채우면 정밀화. 공휴일은 태국 관공서 기준 - C/P 명시 휴일과 다르면 목록 수정.
+> - `npm run verify` 통과 (153 files·1,187 tests).
+
+> 마지막 업데이트: 2026-08-27 [CC]
+
 > 📰 **2026-08-27 00:56 KST — 2026-08-26 참치 데일리 브리핑 `/market` 라이브 배포 완료** [Claude/tuna-dashboard-publisher]:
 > - 게이트 3개 통과: 감사 `AUDIT_PASS`(`state/audit-2026-08-26.txt`) · prepare·verify 통과(`vitest __tests__/daily-briefing.test.ts` 4 passed) · 변경분 존재(origin/main 2026-08-25·5건 -> 2026-08-26·6건).
 > - PR [#803](https://github.com/CUTEKOREA/tuna-dashboard/pull/803) squash 병합 `aad009cf530cba3fc71f8ead250b8c258ac708b1`. 변경 파일은 `public/data/tuna_daily_briefing.json` 1건으로 한정. 브랜치 `briefing/2026-08-26` 삭제 완료.
