@@ -1,3 +1,14 @@
+> 🚢 **2026-08-27 08:08 KST — HIKARI 1 8/26 하역 일일보고·8/27 계획 로컬 반영 완료** [Codex]:
+> - 원본 3종 교차 확인: JPG `c3734350…5d06`, 결과 XLS `a198c274…955e`, 현황 XLSX `7a243d3d…445f`. 세 원본 모두 일일 `259.260 MT`, 누계 `2,582.900 MT`, 잔량 `346.100 MT`로 일치했다.
+> - 당일 GPZ `114.710 MT`(S/SPR #2-C `79.900` + MOAKONA #4-C `34.810`), ISA `144.550 MT`(MOAMARI #3-C). SJ `236.260`·YF `23.000 MT`, 작업 `08:10~13:40`, 17대다.
+> - 온도 원문 부호를 그대로 보존했다: S/SPR #2-C `-21,23℃`, MOAKONA #4-C `-22,23℃`, MOAMARI #3-C `-21,22℃`. 8/27 사용자 계획은 ISA 190·GPZ 150, 합계 `340 MT`다.
+> - Google Drive 원본 폴더에 `20260826 HIKARI 1 (BKK) 하역 업무 보고.txt`를 기존 고정 양식으로 저장했다. 대시보드 정본과 산술 일치·로컬 산출물 byte diff 0, SHA-256 `d8134a8a…e4bb`, 1,086 bytes다.
+> - TDD: HIKARI 계약 RED 5건 확인 후 14/14 통과. 하역 E2E는 구 통합 누계 `38,706 MT` 기대값에서 RED를 확인하고 새 렌더 `38,966 MT`로 갱신했으며, 데스크톱·390px·키보드·열린 탭 갱신·API/청크 장애 격리를 모두 통과했다.
+> - `npm run verify` 통과: ESLint 0 errors(기존 warnings 12), daily operator 10/10, fleet sync 11/11, Vitest 152 files·1,181 passed/2 skipped, API cache 158/158, Next 118페이지, client leak·bundle 통과.
+> - 운영자 상태는 `verified`까지 기록한다. **로컬 준비 완료, 라이브 미반영**이며 사용자가 `배포`를 명시하면 PR gate·Production·운영 API/화면을 후속 검증한다.
+>
+> 마지막 업데이트: 2026-08-27 08:08 KST [Codex]
+
 > 📰 **2026-08-27 00:56 KST — 2026-08-26 참치 데일리 브리핑 `/market` 라이브 배포 완료** [Claude/tuna-dashboard-publisher]:
 > - 게이트 3개 통과: 감사 `AUDIT_PASS`(`state/audit-2026-08-26.txt`) · prepare·verify 통과(`vitest __tests__/daily-briefing.test.ts` 4 passed) · 변경분 존재(origin/main 2026-08-25·5건 -> 2026-08-26·6건).
 > - PR [#803](https://github.com/CUTEKOREA/tuna-dashboard/pull/803) squash 병합 `aad009cf530cba3fc71f8ead250b8c258ac708b1`. 변경 파일은 `public/data/tuna_daily_briefing.json` 1건으로 한정. 브랜치 `briefing/2026-08-26` 삭제 완료.
