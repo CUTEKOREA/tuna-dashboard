@@ -1,0 +1,1459 @@
+{
+ "asof": "2026-08-21",
+ "sourceNote": "타사 국내 입항선 동향 주간 메일 + 당사 실적 (해양수산3팀 취합)",
+ "mailCount": 182,
+ "years": [
+  2026,
+  2025,
+  2024
+ ],
+ "kpi": {
+  "runs": {
+   "2026": 61,
+   "2025": 87,
+   "2024": 104
+  },
+  "carry": {
+   "2026": 9,
+   "2025": 10,
+   "2024": 12
+  },
+  "byType": {
+   "2026": {
+    "연승": 37,
+    "선망": 12,
+    "북양": 12
+   },
+   "2025": {
+    "연승": 54,
+    "선망": 15,
+    "북양": 18
+   },
+   "2024": {
+    "연승": 69,
+    "선망": 15,
+    "북양": 20
+   }
+  },
+  "own": {
+   "2026": 5,
+   "2025": 6,
+   "2024": 5
+  },
+  "changes": {
+   "2026": 37,
+   "2025": 50,
+   "2024": 67
+  },
+  "openNow": 6,
+  "waiting": {
+   "2024": 20,
+   "2025": 33,
+   "2026": 46
+  },
+  "forecast": {
+   "n": 19,
+   "dec": 7
+  }
+ },
+ "weekly": {
+  "w0": "2026-08-15",
+  "w1": "2026-08-21",
+  "in": [
+   {
+    "ship": "제208동원호",
+    "co": "동원산업",
+    "type": "연승",
+    "arrive": "2026-08-20",
+    "own": false
+   }
+  ],
+  "out": [
+   {
+    "ship": "제202대화호",
+    "co": "대해수산",
+    "type": "연승",
+    "depart": "2026-08-15",
+    "days": 19,
+    "change": true,
+    "own": false
+   }
+  ],
+  "prev": {
+   "in": 1,
+   "out": 2,
+   "chg": 2
+  }
+ },
+ "monthly": {
+  "2026": [
+   {
+    "m": 1,
+    "i": 2,
+    "o": 4,
+    "iBy": [
+     1,
+     1,
+     0
+    ],
+    "oBy": [
+     3,
+     1,
+     0
+    ]
+   },
+   {
+    "m": 2,
+    "i": 12,
+    "o": 2,
+    "iBy": [
+     11,
+     1,
+     0
+    ],
+    "oBy": [
+     1,
+     1,
+     0
+    ]
+   },
+   {
+    "m": 3,
+    "i": 13,
+    "o": 6,
+    "iBy": [
+     7,
+     2,
+     4
+    ],
+    "oBy": [
+     5,
+     1,
+     0
+    ]
+   },
+   {
+    "m": 4,
+    "i": 10,
+    "o": 1,
+    "iBy": [
+     4,
+     3,
+     3
+    ],
+    "oBy": [
+     1,
+     0,
+     0
+    ]
+   },
+   {
+    "m": 5,
+    "i": 7,
+    "o": 18,
+    "iBy": [
+     5,
+     0,
+     2
+    ],
+    "oBy": [
+     10,
+     2,
+     6
+    ]
+   },
+   {
+    "m": 6,
+    "i": 3,
+    "o": 8,
+    "iBy": [
+     1,
+     2,
+     0
+    ],
+    "oBy": [
+     4,
+     2,
+     2
+    ]
+   },
+   {
+    "m": 7,
+    "i": 2,
+    "o": 9,
+    "iBy": [
+     2,
+     0,
+     0
+    ],
+    "oBy": [
+     7,
+     1,
+     1
+    ]
+   },
+   {
+    "m": 8,
+    "i": 3,
+    "o": 3,
+    "iBy": [
+     1,
+     2,
+     0
+    ],
+    "oBy": [
+     3,
+     0,
+     0
+    ]
+   },
+   {
+    "m": 9,
+    "i": 0,
+    "o": 2,
+    "iBy": [
+     0,
+     0,
+     0
+    ],
+    "oBy": [
+     1,
+     1,
+     0
+    ]
+   },
+   {
+    "m": 10,
+    "i": 0,
+    "o": 0,
+    "iBy": [
+     0,
+     0,
+     0
+    ],
+    "oBy": [
+     0,
+     0,
+     0
+    ]
+   },
+   {
+    "m": 11,
+    "i": 0,
+    "o": 0,
+    "iBy": [
+     0,
+     0,
+     0
+    ],
+    "oBy": [
+     0,
+     0,
+     0
+    ]
+   },
+   {
+    "m": 12,
+    "i": 0,
+    "o": 0,
+    "iBy": [
+     0,
+     0,
+     0
+    ],
+    "oBy": [
+     0,
+     0,
+     0
+    ]
+   }
+  ],
+  "2025": [
+   {
+    "m": 1,
+    "i": 4,
+    "o": 5,
+    "iBy": [
+     3,
+     1,
+     0
+    ],
+    "oBy": [
+     3,
+     2,
+     0
+    ]
+   },
+   {
+    "m": 2,
+    "i": 9,
+    "o": 4,
+    "iBy": [
+     7,
+     0,
+     2
+    ],
+    "oBy": [
+     3,
+     1,
+     0
+    ]
+   },
+   {
+    "m": 3,
+    "i": 11,
+    "o": 5,
+    "iBy": [
+     3,
+     3,
+     5
+    ],
+    "oBy": [
+     5,
+     0,
+     0
+    ]
+   },
+   {
+    "m": 4,
+    "i": 10,
+    "o": 5,
+    "iBy": [
+     5,
+     2,
+     3
+    ],
+    "oBy": [
+     2,
+     3,
+     0
+    ]
+   },
+   {
+    "m": 5,
+    "i": 4,
+    "o": 16,
+    "iBy": [
+     3,
+     1,
+     0
+    ],
+    "oBy": [
+     6,
+     2,
+     8
+    ]
+   },
+   {
+    "m": 6,
+    "i": 2,
+    "o": 6,
+    "iBy": [
+     2,
+     0,
+     0
+    ],
+    "oBy": [
+     4,
+     0,
+     2
+    ]
+   },
+   {
+    "m": 7,
+    "i": 7,
+    "o": 2,
+    "iBy": [
+     4,
+     2,
+     1
+    ],
+    "oBy": [
+     2,
+     0,
+     0
+    ]
+   },
+   {
+    "m": 8,
+    "i": 4,
+    "o": 7,
+    "iBy": [
+     2,
+     2,
+     0
+    ],
+    "oBy": [
+     5,
+     2,
+     0
+    ]
+   },
+   {
+    "m": 9,
+    "i": 3,
+    "o": 5,
+    "iBy": [
+     3,
+     0,
+     0
+    ],
+    "oBy": [
+     3,
+     2,
+     0
+    ]
+   },
+   {
+    "m": 10,
+    "i": 9,
+    "o": 2,
+    "iBy": [
+     7,
+     0,
+     2
+    ],
+    "oBy": [
+     2,
+     0,
+     0
+    ]
+   },
+   {
+    "m": 11,
+    "i": 6,
+    "o": 4,
+    "iBy": [
+     5,
+     1,
+     0
+    ],
+    "oBy": [
+     4,
+     0,
+     0
+    ]
+   },
+   {
+    "m": 12,
+    "i": 7,
+    "o": 7,
+    "iBy": [
+     4,
+     1,
+     2
+    ],
+    "oBy": [
+     6,
+     1,
+     0
+    ]
+   }
+  ],
+  "2024": [
+   {
+    "m": 1,
+    "i": 6,
+    "o": 3,
+    "iBy": [
+     3,
+     2,
+     1
+    ],
+    "oBy": [
+     2,
+     1,
+     0
+    ]
+   },
+   {
+    "m": 2,
+    "i": 6,
+    "o": 8,
+    "iBy": [
+     5,
+     0,
+     1
+    ],
+    "oBy": [
+     7,
+     1,
+     0
+    ]
+   },
+   {
+    "m": 3,
+    "i": 13,
+    "o": 7,
+    "iBy": [
+     5,
+     2,
+     6
+    ],
+    "oBy": [
+     7,
+     0,
+     0
+    ]
+   },
+   {
+    "m": 4,
+    "i": 11,
+    "o": 7,
+    "iBy": [
+     10,
+     0,
+     1
+    ],
+    "oBy": [
+     5,
+     2,
+     0
+    ]
+   },
+   {
+    "m": 5,
+    "i": 8,
+    "o": 8,
+    "iBy": [
+     7,
+     1,
+     0
+    ],
+    "oBy": [
+     4,
+     0,
+     4
+    ]
+   },
+   {
+    "m": 6,
+    "i": 5,
+    "o": 6,
+    "iBy": [
+     4,
+     0,
+     1
+    ],
+    "oBy": [
+     3,
+     1,
+     2
+    ]
+   },
+   {
+    "m": 7,
+    "i": 6,
+    "o": 4,
+    "iBy": [
+     3,
+     3,
+     0
+    ],
+    "oBy": [
+     3,
+     1,
+     0
+    ]
+   },
+   {
+    "m": 8,
+    "i": 11,
+    "o": 4,
+    "iBy": [
+     9,
+     2,
+     0
+    ],
+    "oBy": [
+     3,
+     1,
+     0
+    ]
+   },
+   {
+    "m": 9,
+    "i": 9,
+    "o": 13,
+    "iBy": [
+     8,
+     1,
+     0
+    ],
+    "oBy": [
+     9,
+     4,
+     0
+    ]
+   },
+   {
+    "m": 10,
+    "i": 2,
+    "o": 4,
+    "iBy": [
+     2,
+     0,
+     0
+    ],
+    "oBy": [
+     4,
+     0,
+     0
+    ]
+   },
+   {
+    "m": 11,
+    "i": 6,
+    "o": 4,
+    "iBy": [
+     3,
+     0,
+     3
+    ],
+    "oBy": [
+     4,
+     0,
+     0
+    ]
+   },
+   {
+    "m": 12,
+    "i": 9,
+    "o": 5,
+    "iBy": [
+     3,
+     2,
+     4
+    ],
+    "oBy": [
+     4,
+     0,
+     1
+    ]
+   }
+  ]
+ },
+ "stay": {
+  "2026": {
+   "연승": {
+    "n": 33,
+    "avg": 52,
+    "avg90": 47,
+    "med": 40,
+    "min": 19,
+    "max": 136,
+    "long": 3
+   },
+   "선망": {
+    "n": 8,
+    "avg": 35,
+    "avg90": 35,
+    "med": 28,
+    "min": 24,
+    "max": 62,
+    "long": 0
+   },
+   "북양": {
+    "n": 9,
+    "avg": 92,
+    "avg90": 46,
+    "med": 79,
+    "min": 29,
+    "max": 188,
+    "long": 4
+   }
+  },
+  "2025": {
+   "연승": {
+    "n": 44,
+    "avg": 40,
+    "avg90": 27,
+    "med": 22,
+    "min": 16,
+    "max": 316,
+    "long": 3
+   },
+   "선망": {
+    "n": 13,
+    "avg": 26,
+    "avg90": 26,
+    "med": 26,
+    "min": 9,
+    "max": 41,
+    "long": 0
+   },
+   "북양": {
+    "n": 10,
+    "avg": 88,
+    "avg90": 55,
+    "med": 72,
+    "min": 42,
+    "max": 155,
+    "long": 4
+   }
+  },
+  "2024": {
+   "연승": {
+    "n": 55,
+    "avg": 45,
+    "avg90": 30,
+    "med": 27,
+    "min": 14,
+    "max": 231,
+    "long": 8
+   },
+   "선망": {
+    "n": 11,
+    "avg": 30,
+    "avg90": 30,
+    "med": 29,
+    "min": 6,
+    "max": 50,
+    "long": 0
+   },
+   "북양": {
+    "n": 7,
+    "avg": 103,
+    "avg90": 36,
+    "med": 94,
+    "min": 5,
+    "max": 190,
+    "long": 4
+   }
+  }
+ },
+ "timeline": [
+  {
+   "ship": "남궁515",
+   "co": "남궁튜나",
+   "type": "연승",
+   "arrive": "2024-05-13",
+   "depart": "2026-07-02",
+   "open": false,
+   "own": false,
+   "days": 780,
+   "carry": true,
+   "note": ""
+  },
+  {
+   "ship": "남북호",
+   "co": "남북수산",
+   "type": "북양",
+   "arrive": "2025-10-28",
+   "depart": "2026-05-04",
+   "open": false,
+   "own": false,
+   "days": 188,
+   "carry": true,
+   "note": ""
+  },
+  {
+   "ship": "제620동원호",
+   "co": "동원수산",
+   "type": "연승",
+   "arrive": "2025-11-27",
+   "depart": null,
+   "open": true,
+   "own": false,
+   "days": 267,
+   "carry": true,
+   "note": "감천 계류 중"
+  },
+  {
+   "ship": "해천 707",
+   "co": "해천물산",
+   "type": "연승",
+   "arrive": "2025-12-02",
+   "depart": "2026-01-03",
+   "open": false,
+   "own": false,
+   "days": 32,
+   "carry": true,
+   "note": ""
+  },
+  {
+   "ship": "준성호",
+   "co": "한성기업",
+   "type": "북양",
+   "arrive": "2025-12-04",
+   "depart": "2026-05-30",
+   "open": false,
+   "own": false,
+   "days": 177,
+   "carry": true,
+   "note": ""
+  },
+  {
+   "ship": "SEGYERO",
+   "co": "동원산업",
+   "type": "선망",
+   "arrive": "2025-12-06",
+   "depart": "2026-01-06",
+   "open": false,
+   "own": false,
+   "days": 31,
+   "carry": true,
+   "note": ""
+  },
+  {
+   "ship": "99오양",
+   "co": "사조산업",
+   "type": "북양",
+   "arrive": "2025-12-18",
+   "depart": "2026-05-04",
+   "open": false,
+   "own": false,
+   "days": 137,
+   "carry": true,
+   "note": ""
+  },
+  {
+   "ship": "제355오룡호",
+   "co": "사조산업",
+   "type": "연승",
+   "arrive": "2025-12-22",
+   "depart": "2026-01-17",
+   "open": false,
+   "own": false,
+   "days": 26,
+   "carry": true,
+   "note": ""
+  },
+  {
+   "ship": "제306오룡호",
+   "co": "사조산업",
+   "type": "연승",
+   "arrive": "2025-12-26",
+   "depart": "2026-01-22",
+   "open": false,
+   "own": false,
+   "days": 27,
+   "carry": true,
+   "note": ""
+  },
+  {
+   "ship": "SAJO COLUMBIA",
+   "co": "사조산업",
+   "type": "선망",
+   "arrive": "2026-01-17",
+   "depart": "2026-02-10",
+   "open": false,
+   "own": false,
+   "days": 24,
+   "carry": false,
+   "note": ""
+  },
+  {
+   "ship": "제38한성호",
+   "co": "한성기업",
+   "type": "연승",
+   "arrive": "2026-01-21",
+   "depart": "2026-02-12",
+   "open": false,
+   "own": false,
+   "days": 22,
+   "carry": false,
+   "note": ""
+  },
+  {
+   "ship": "제372오양호",
+   "co": "사조오양",
+   "type": "연승",
+   "arrive": "2026-02-01",
+   "depart": "2026-03-09",
+   "open": false,
+   "own": false,
+   "days": 36,
+   "carry": false,
+   "note": ""
+  },
+  {
+   "ship": "제632동원호",
+   "co": "동원수산",
+   "type": "연승",
+   "arrive": "2026-02-10",
+   "depart": "2026-03-03",
+   "open": false,
+   "own": false,
+   "days": 21,
+   "carry": false,
+   "note": ""
+  },
+  {
+   "ship": "제36한성호",
+   "co": "한성기업",
+   "type": "연승",
+   "arrive": "2026-02-10",
+   "depart": "2026-03-21",
+   "open": false,
+   "own": false,
+   "days": 39,
+   "carry": false,
+   "note": ""
+  },
+  {
+   "ship": "제633동원호",
+   "co": "동원수산",
+   "type": "연승",
+   "arrive": "2026-02-19",
+   "depart": "2026-03-10",
+   "open": false,
+   "own": false,
+   "days": 19,
+   "carry": false,
+   "note": ""
+  },
+  {
+   "ship": "제375오룡호",
+   "co": "사조산업",
+   "type": "연승",
+   "arrive": "2026-02-19",
+   "depart": "2026-05-12",
+   "open": false,
+   "own": false,
+   "days": 82,
+   "carry": false,
+   "note": ""
+  },
+  {
+   "ship": "N/SUN",
+   "co": "신라교역",
+   "type": "선망",
+   "arrive": "2026-02-22",
+   "depart": "2026-03-23",
+   "open": false,
+   "own": true,
+   "days": 29,
+   "carry": false,
+   "note": "당사 선박"
+  },
+  {
+   "ship": "제317오룡호",
+   "co": "사조씨푸드",
+   "type": "연승",
+   "arrive": "2026-02-23",
+   "depart": "2026-05-28",
+   "open": false,
+   "own": false,
+   "days": 94,
+   "carry": false,
+   "note": ""
+  },
+  {
+   "ship": "제623동원호",
+   "co": "동원수산",
+   "type": "연승",
+   "arrive": "2026-02-24",
+   "depart": "2026-03-16",
+   "open": false,
+   "own": false,
+   "days": 20,
+   "carry": false,
+   "note": ""
+  },
+  {
+   "ship": "제305오룡호",
+   "co": "사조산업",
+   "type": "연승",
+   "arrive": "2026-02-25",
+   "depart": "2026-07-11",
+   "open": false,
+   "own": false,
+   "days": 136,
+   "carry": false,
+   "note": ""
+  },
+  {
+   "ship": "제353오룡호",
+   "co": "사조산업",
+   "type": "연승",
+   "arrive": "2026-02-25",
+   "depart": "2026-05-23",
+   "open": false,
+   "own": false,
+   "days": 87,
+   "carry": false,
+   "note": ""
+  },
+  {
+   "ship": "제735오룡호",
+   "co": "사조산업",
+   "type": "연승",
+   "arrive": "2026-02-27",
+   "depart": "2026-05-21",
+   "open": false,
+   "own": false,
+   "days": 83,
+   "carry": false,
+   "note": ""
+  },
+  {
+   "ship": "제316오룡호",
+   "co": "사조산업",
+   "type": "연승",
+   "arrive": "2026-02-27",
+   "depart": "2026-05-19",
+   "open": false,
+   "own": false,
+   "days": 81,
+   "carry": false,
+   "note": ""
+  },
+  {
+   "ship": "해천 202",
+   "co": "해천물산",
+   "type": "연승",
+   "arrive": "2026-03-04",
+   "depart": null,
+   "open": false,
+   "own": false,
+   "days": null,
+   "carry": false,
+   "note": "기기고장"
+  },
+  {
+   "ship": "제722오룡호",
+   "co": "사조산업",
+   "type": "연승",
+   "arrive": "2026-03-09",
+   "depart": "2026-05-16",
+   "open": false,
+   "own": false,
+   "days": 68,
+   "carry": false,
+   "note": ""
+  },
+  {
+   "ship": "아그네스82호",
+   "co": "아그네스수산",
+   "type": "연승",
+   "arrive": "2026-03-11",
+   "depart": "2026-05-14",
+   "open": false,
+   "own": false,
+   "days": 64,
+   "carry": false,
+   "note": ""
+  },
+  {
+   "ship": "신영51호",
+   "co": "신라교역",
+   "type": "연승",
+   "arrive": "2026-03-14",
+   "depart": "2026-05-16",
+   "open": false,
+   "own": true,
+   "days": 63,
+   "carry": false,
+   "note": "당사 선박"
+  },
+  {
+   "ship": "칠성1호",
+   "co": "한성기업",
+   "type": "연승",
+   "arrive": "2026-03-17",
+   "depart": "2026-05-30",
+   "open": false,
+   "own": false,
+   "days": 74,
+   "carry": false,
+   "note": ""
+  },
+  {
+   "ship": "제313대화호",
+   "co": "대해수산",
+   "type": "연승",
+   "arrive": "2026-03-23",
+   "depart": "2026-04-13",
+   "open": false,
+   "own": false,
+   "days": 21,
+   "carry": false,
+   "note": ""
+  },
+  {
+   "ship": "SAJO ALEXANDRIA",
+   "co": "사조산업",
+   "type": "선망",
+   "arrive": "2026-03-23",
+   "depart": "2026-05-14",
+   "open": false,
+   "own": false,
+   "days": 52,
+   "carry": false,
+   "note": ""
+  },
+  {
+   "ship": "O/DIS",
+   "co": "극동수산",
+   "type": "북양",
+   "arrive": "2026-03-23",
+   "depart": "2026-07-03",
+   "open": false,
+   "own": false,
+   "days": 102,
+   "carry": false,
+   "note": ""
+  },
+  {
+   "ship": "ALIOT",
+   "co": "극동수산",
+   "type": "북양",
+   "arrive": "2026-03-23",
+   "depart": null,
+   "open": false,
+   "own": false,
+   "days": null,
+   "carry": false,
+   "note": ""
+  },
+  {
+   "ship": "MARAWA II",
+   "co": "동원산업",
+   "type": "선망",
+   "arrive": "2026-03-25",
+   "depart": null,
+   "open": true,
+   "own": false,
+   "days": 149,
+   "carry": false,
+   "note": "매각 예정"
+  },
+  {
+   "ship": "토니나5호",
+   "co": "동원산업",
+   "type": "연승",
+   "arrive": "2026-03-30",
+   "depart": "2026-05-07",
+   "open": false,
+   "own": false,
+   "days": 38,
+   "carry": false,
+   "note": "선대 대기 중 ( 수리完 )"
+  },
+  {
+   "ship": "오팔",
+   "co": "사조산업",
+   "type": "북양",
+   "arrive": "2026-03-30",
+   "depart": "2026-06-17",
+   "open": false,
+   "own": false,
+   "days": 79,
+   "carry": false,
+   "note": ""
+  },
+  {
+   "ship": "카롤리나77",
+   "co": "선경수산",
+   "type": "북양",
+   "arrive": "2026-03-31",
+   "depart": null,
+   "open": false,
+   "own": false,
+   "days": null,
+   "carry": false,
+   "note": ""
+  },
+  {
+   "ship": "미스나바린",
+   "co": "선경수산",
+   "type": "북양",
+   "arrive": "2026-04-01",
+   "depart": null,
+   "open": false,
+   "own": false,
+   "days": null,
+   "carry": false,
+   "note": ""
+  },
+  {
+   "ship": "제717오룡호",
+   "co": "사조산업",
+   "type": "연승",
+   "arrive": "2026-04-02",
+   "depart": "2026-07-04",
+   "open": false,
+   "own": false,
+   "days": 93,
+   "carry": false,
+   "note": ""
+  },
+  {
+   "ship": "JUBILEE",
+   "co": "동원산업",
+   "type": "선망",
+   "arrive": "2026-04-14",
+   "depart": "2026-05-11",
+   "open": false,
+   "own": false,
+   "days": 27,
+   "carry": false,
+   "note": ""
+  },
+  {
+   "ship": "SAJO THETISIA",
+   "co": "사조산업",
+   "type": "선망",
+   "arrive": "2026-04-19",
+   "depart": null,
+   "open": true,
+   "own": false,
+   "days": 124,
+   "carry": false,
+   "note": ""
+  },
+  {
+   "ship": "유고보스톡",
+   "co": "동남",
+   "type": "북양",
+   "arrive": "2026-04-21",
+   "depart": "2026-05-30",
+   "open": false,
+   "own": false,
+   "days": 39,
+   "carry": false,
+   "note": ""
+  },
+  {
+   "ship": "유고보스톡1",
+   "co": "동남",
+   "type": "북양",
+   "arrive": "2026-04-21",
+   "depart": "2026-05-30",
+   "open": false,
+   "own": false,
+   "days": 39,
+   "carry": false,
+   "note": ""
+  },
+  {
+   "ship": "제303오룡호",
+   "co": "사조산업",
+   "type": "연승",
+   "arrive": "2026-04-23",
+   "depart": "2026-07-22",
+   "open": false,
+   "own": false,
+   "days": 90,
+   "carry": false,
+   "note": ""
+  },
+  {
+   "ship": "SERENA 2",
+   "co": "사조산업",
+   "type": "선망",
+   "arrive": "2026-04-23",
+   "depart": "2026-06-24",
+   "open": false,
+   "own": false,
+   "days": 62,
+   "carry": false,
+   "note": ""
+  },
+  {
+   "ship": "제718오룡호",
+   "co": "사조산업",
+   "type": "연승",
+   "arrive": "2026-04-24",
+   "depart": "2026-06-23",
+   "open": false,
+   "own": false,
+   "days": 60,
+   "carry": false,
+   "note": ""
+  },
+  {
+   "ship": "제311오룡호",
+   "co": "사조산업",
+   "type": "연승",
+   "arrive": "2026-04-30",
+   "depart": "2026-07-25",
+   "open": false,
+   "own": false,
+   "days": 86,
+   "carry": false,
+   "note": ""
+  },
+  {
+   "ship": "미스올로바",
+   "co": "동남",
+   "type": "북양",
+   "arrive": "2026-05-01",
+   "depart": "2026-05-30",
+   "open": false,
+   "own": false,
+   "days": 29,
+   "carry": false,
+   "note": ""
+  },
+  {
+   "ship": "ZALIVZABIYAKA",
+   "co": "사조산업",
+   "type": "북양",
+   "arrive": "2026-05-05",
+   "depart": "2026-06-16",
+   "open": false,
+   "own": false,
+   "days": 42,
+   "carry": false,
+   "note": ""
+  },
+  {
+   "ship": "아그네스90호",
+   "co": "아그네스수산",
+   "type": "연승",
+   "arrive": "2026-05-11",
+   "depart": "2026-06-13",
+   "open": false,
+   "own": false,
+   "days": 33,
+   "carry": false,
+   "note": ""
+  },
+  {
+   "ship": "신영56호",
+   "co": "신라교역",
+   "type": "연승",
+   "arrive": "2026-05-11",
+   "depart": "2026-06-02",
+   "open": false,
+   "own": true,
+   "days": 22,
+   "carry": false,
+   "note": "당사 선박"
+  },
+  {
+   "ship": "카케하시1",
+   "co": "KHD 코리아",
+   "type": "연승",
+   "arrive": "2026-05-14",
+   "depart": "2026-06-09",
+   "open": false,
+   "own": false,
+   "days": 26,
+   "carry": false,
+   "note": ""
+  },
+  {
+   "ship": "제715오룡호",
+   "co": "사조산업",
+   "type": "연승",
+   "arrive": "2026-05-27",
+   "depart": "2026-07-11",
+   "open": false,
+   "own": false,
+   "days": 45,
+   "carry": false,
+   "note": ""
+  },
+  {
+   "ship": "제6경양호",
+   "co": "경양수산",
+   "type": "연승",
+   "arrive": "2026-05-28",
+   "depart": "2026-07-18",
+   "open": false,
+   "own": false,
+   "days": 51,
+   "carry": false,
+   "note": ""
+  },
+  {
+   "ship": "S/HARVESTER",
+   "co": "신라교역",
+   "type": "선망",
+   "arrive": "2026-06-01",
+   "depart": "2026-06-28",
+   "open": false,
+   "own": true,
+   "days": 27,
+   "carry": false,
+   "note": "당사 선박"
+  },
+  {
+   "ship": "BONAMI",
+   "co": "동원산업",
+   "type": "선망",
+   "arrive": "2026-06-04",
+   "depart": "2026-07-01",
+   "open": false,
+   "own": false,
+   "days": 27,
+   "carry": false,
+   "note": ""
+  },
+  {
+   "ship": "제733오룡호",
+   "co": "사조산업",
+   "type": "연승",
+   "arrive": "2026-06-29",
+   "depart": "2026-08-08",
+   "open": false,
+   "own": false,
+   "days": 40,
+   "carry": false,
+   "note": ""
+  },
+  {
+   "ship": "신영55호",
+   "co": "신라교역",
+   "type": "연승",
+   "arrive": "2026-07-19",
+   "depart": "2026-08-10",
+   "open": false,
+   "own": true,
+   "days": 22,
+   "carry": false,
+   "note": "당사 선박"
+  },
+  {
+   "ship": "제202대화호",
+   "co": "대해수산",
+   "type": "연승",
+   "arrive": "2026-07-27",
+   "depart": "2026-08-15",
+   "open": false,
+   "own": false,
+   "days": 19,
+   "carry": false,
+   "note": ""
+  },
+  {
+   "ship": "TAINA",
+   "co": "사조산업",
+   "type": "선망",
+   "arrive": "2026-08-03",
+   "depart": null,
+   "open": true,
+   "own": false,
+   "days": 18,
+   "carry": false,
+   "note": ""
+  },
+  {
+   "ship": "OCEAN ACE",
+   "co": "동원산업",
+   "type": "선망",
+   "arrive": "2026-08-10",
+   "depart": "2026-09-03",
+   "open": true,
+   "own": false,
+   "days": 24,
+   "carry": false,
+   "note": ""
+  },
+  {
+   "ship": "제208동원호",
+   "co": "동원산업",
+   "type": "연승",
+   "arrive": "2026-08-20",
+   "depart": "2026-09-04",
+   "open": true,
+   "own": false,
+   "days": 15,
+   "carry": false,
+   "note": ""
+  }
+ ]
+}
