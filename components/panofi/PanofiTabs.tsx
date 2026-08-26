@@ -1,10 +1,12 @@
 'use client';
 
+import Link from 'next/link';
 import Chart, { Legend, type Serie } from '../cosmo/Chart';
 import { Callout } from '../cosmo/Ui';
 import { Grid, Panel, Sec, Signal, Signals, Stat, Stats, Table } from './PanofiUi';
 import {
   actuals,
+  atlanticNow,
   annualSeries,
   annualVolumeSeries,
   bangkokSeries,
@@ -104,6 +106,7 @@ const SRC = {
     .map((s) => s.file.match(/\((\d+월)\)/)?.[1])
     .filter(Boolean)
     .join('·')})`,
+  fleetDaily: `「해양수산본부 일일 업무보고」 ${atlanticNow.reportDate} 보고 · /fleet 대서양 선망 공개 집계 항등 인용`,
   comtrade: 'UN Comtrade public preview · 가나(reporter 288) 보고 기준',
   nlm: 'NotebookLM 「가나 중심 서아프리카 참치 비즈니스 분석」(소스 82건, 등급 B)',
   grok: 'Grok 1차출처 대조 (등급 B~부분확인)',
@@ -176,8 +179,23 @@ export function HomeTab() {
 /* ------------------------------------------------------------- 선단·조업 */
 
 export function FleetTab() {
+  const deltaTone = atlanticNow.dailyDeltaMt >= 0 ? '▲' : '▼';
   return (
     <>
+      <Sec>오늘의 조업 — 대서양 선망 7척</Sec>
+      <Stats>
+        <Stat
+          k="일간 어획" v={atlanticNow.dailyMt.toLocaleString()} unit="톤"
+          tone={atlanticNow.dailyDeltaMt >= 0 ? 'up' : 'down'}
+          d={`전일 대비 ${deltaTone}${Math.abs(atlanticNow.dailyDeltaMt).toLocaleString()}톤 · ${atlanticNow.asOf} 기준`}
+        />
+        <Stat k="월간 누계" v={atlanticNow.monthlyMt.toLocaleString()} unit="톤" d={`${Number(atlanticNow.asOf.slice(5, 7))}월 어획`} />
+        <Stat k="연간 누계" v={atlanticNow.annualMt.toLocaleString()} unit="톤" d="2026년 어획" />
+      </Stats>
+      <p className="pf-src" style={{ margin: '0 0 14px' }}>
+        {SRC.fleetDaily} — 선박별 위치·적재량은 <Link href="/fleet">/fleet</Link> (로그인)
+      </p>
+
       <Sec>척당 경제학</Sec>
       <Grid>
         <Panel

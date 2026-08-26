@@ -5,6 +5,7 @@ import actualsRaw from '@/public/data/panofi/panofi_actuals.json';
 import liquidityRaw from '@/public/data/panofi/panofi_liquidity.json';
 import mirrorRaw from '@/public/data/panofi/ghana_tuna_mirror.json';
 import fsRaw from '@/public/data/panofi/panofi_fs_2025.json';
+import { fleetDailyPublicLatest, fleetDailyPublicDeltas } from '@/lib/data/fleet-daily-public';
 
 /**
  * 파노피(가나 참치 선망) 데이터 인테이크.
@@ -469,6 +470,22 @@ export const vesselCostGroups = actuals.byVessel.vessels.map((v) => {
   g.경비 = Math.round(g.경비 / 1000);
   return g;
 });
+
+/* --------------------------------------- 대서양 선망 조업 Now (/fleet 연동) */
+
+/**
+ * 파노피 선망 7척 = /fleet 일일 업무보고의 «대서양 선망». 주간동향(주 1회, 상태
+ * 문장)에 없는 일간 어획을 fleet 공개 집계에서 그대로 항등 인용한다 — 선박별
+ * 상세는 /fleet 로그인 게이트 뒤에만 있으므로 여기서는 집계만 쓴다.
+ */
+export const atlanticNow = {
+  reportDate: fleetDailyPublicLatest.reportDate,
+  asOf: fleetDailyPublicLatest.atlantic.asOf,
+  dailyMt: fleetDailyPublicLatest.atlantic.dailyMt,
+  monthlyMt: fleetDailyPublicLatest.atlantic.monthlyMt,
+  annualMt: fleetDailyPublicLatest.atlantic.annualMt,
+  dailyDeltaMt: fleetDailyPublicDeltas.atlanticDailyMt,
+};
 
 /* ------------------------------------------------- 자금유동성 (월간보고 pptx) */
 

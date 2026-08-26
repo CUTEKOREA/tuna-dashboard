@@ -868,6 +868,7 @@
     "lib/data/panofi.ts"
    ],
    "dataFiles": [
+    "lib/data/generated/fleet-daily-public.json",
     "public/data/panofi/ghana_tuna_mirror.json",
     "public/data/panofi/ghana_tuna_trade.json",
     "public/data/panofi/panofi_actuals.json",
@@ -882,6 +883,7 @@
     "lib/data/panofi.ts"
    ],
    "dataFiles": [
+    "lib/data/generated/fleet-daily-public.json",
     "public/data/panofi/ghana_tuna_mirror.json",
     "public/data/panofi/ghana_tuna_trade.json",
     "public/data/panofi/panofi_actuals.json",
@@ -994,7 +996,9 @@
   ],
   "lib/data/generated/fleet-daily-public.json": [
    "components/FleetCommandCenter.tsx",
-   "components/FleetDailyOperations.tsx"
+   "components/FleetDailyOperations.tsx",
+   "components/panofi/PanofiDashboard.tsx",
+   "components/panofi/PanofiTabs.tsx"
   ],
   "public/data/bangkok/seasia_processors.json": [
    "components/bangkok/BangkokDashboard.tsx",
