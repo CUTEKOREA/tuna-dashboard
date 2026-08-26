@@ -1,3 +1,22 @@
+> ✅ **2026-08-26 11:55 KST — `/panofi` ↔ `/fleet` 대서양 선망 조업 연동 (로컬 완료)** [CC]:
+> - 근거: 파노피 선망 7척(P/MAS·P/DIS·P/FORE·P/PATH·P/COM·P/QUEEN·P/GRACE) = `/fleet` 일일 업무보고의 «대서양 선망»
+>   (`lib/fleet-operations-2026-08-23.ts` 명부로 확인). 주간동향(주 1회, 상태 문장)에 없는 일간 어획 수치가 파노피에 부재했다.
+> - 배선: `lib/data/panofi.ts`에 `atlanticNow` 신설 — `fleet-daily-public.json` 공개 집계(일간·월간·연간·전일比·기준일)를
+>   **항등 인용**(재입력 금지). GitHub Actions 일일 동기화를 그대로 승계하므로 파노피 쪽 추가 갱신 작업 없음.
+>   선박별 위치·적재량은 `FLEET_DAILY_DETAIL_JSON` env 뒤 로그인 게이트 전용이라 집계만 쓰고 `/fleet` 딥링크로 위임 —
+>   fleet client leak 검사 통과(정적 파일 124개) 확인.
+> - 화면: 선단·조업 탭 최상단 «오늘의 조업 — 대서양 선망 7척» Stats 3개(일간 190톤 ▼245 · 월간 5,130 · 연간 31,855, 2026-08-25 기준)
+>   + 출처줄(`Link` → /fleet). 회귀 테스트 2건: lib 항등 + render 노출, RED 확인 후 GREEN.
+> - `npm run verify` 통과: ESLint 0 errors(warnings 12 기존) · Vitest 1162 passed/2 skipped · bundle 33 routes OK.
+>   브라우저(로컬 production): 데스크톱 1440·390px overflow 0 · error 0 · 탭 실측. ※ 검증 스크립트가 «선단» 부분일치로
+>   사이드바 «선단 운영»을 눌러 /fleet 로 이동한 오탐이 있었다 — 탭 클릭은 라벨 완전일치로 할 것.
+> - 앞서 8월 주간동향·월간보고 건은 PR [#782](https://github.com/CUTEKOREA/tuna-dashboard/pull/782) squash 병합(main `14dd74d1`),
+>   Vercel Production GitHub deployment `6095208837` success, 라이브 실측(Aside 로그인 세션) 완료 — «36주»·자금 탭 «-20,575» 확인.
+>   그 배포 기록 docs PR [#785](https://github.com/CUTEKOREA/tuna-dashboard/pull/785)는 병합 권한 차단으로 열려 있음.
+> - 상태: 전용 브랜치 `data/panofi-fleet-link`에 로컬 반영. **프로덕션 미배포**(이번 사용자 메시지에 배포 요청 없음).
+
+> 마지막 업데이트: 2026-08-26 11:55 KST [CC]
+
 > 🚀 **2026-08-26 10:55 KST — 해양수산본부 8/26 일일보고 `/fleet` 라이브 배포 완료** [CC]:
 > - PR [#784](https://github.com/CUTEKOREA/tuna-dashboard/pull/784)를 squash 병합했다. main commit `7f67ff12adc7785b13e4b42b83b65226a6c2bf5c`. PR 게이트: App Quality Gate `32919118010` success + Vercel Preview success. 병합 후 main App Quality Gate success.
 > - 병합 전에 Production `FLEET_DAILY_DETAIL_JSON`(sensitive, target=production)을 8/26 상세 DTO로 교체했다. 로컬 canonical SHA와 공개 `_meta.detailSha256` `5379673f…5cef` 일치를 확인한 뒤 올렸다.

@@ -74,6 +74,8 @@
 ## lib/data/generated/fleet-daily-public.json
 - components/FleetCommandCenter.tsx
 - components/FleetDailyOperations.tsx
+- components/panofi/PanofiDashboard.tsx
+- components/panofi/PanofiTabs.tsx
 
 ## public/data/bangkok/seasia_processors.json
 - components/bangkok/BangkokDashboard.tsx

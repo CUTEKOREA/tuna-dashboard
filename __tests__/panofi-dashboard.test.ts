@@ -200,6 +200,32 @@ describe('파노피 대시보드 렌더', () => {
   });
 });
 
+describe('/fleet 대서양 선망 연동', () => {
+  // 파노피 선망 7척 = /fleet 일일 업무보고의 «대서양 선망»이다. 주간동향(주 1회,
+  // 상태 문장)에는 없는 일간 어획 수치를 공개 집계에서 그대로 가져온다 — 재입력 금지.
+  it('조업 Now 수치가 fleet 일일 공개 집계와 항등이다', async () => {
+    const { atlanticNow } = await import('../lib/data/panofi');
+    const { fleetDailyPublicLatest, fleetDailyPublicDeltas } = await import('../lib/data/fleet-daily-public');
+    expect(atlanticNow.dailyMt).toBe(fleetDailyPublicLatest.atlantic.dailyMt);
+    expect(atlanticNow.monthlyMt).toBe(fleetDailyPublicLatest.atlantic.monthlyMt);
+    expect(atlanticNow.annualMt).toBe(fleetDailyPublicLatest.atlantic.annualMt);
+    expect(atlanticNow.asOf).toBe(fleetDailyPublicLatest.atlantic.asOf);
+    expect(atlanticNow.dailyDeltaMt).toBe(fleetDailyPublicDeltas.atlanticDailyMt);
+  });
+
+  it('선단·조업 탭이 일일 어획을 기준일과 함께 노출한다', async () => {
+    const { FleetTab } = await import('../components/panofi/PanofiTabs');
+    const { atlanticNow } = await import('../lib/data/panofi');
+    const html = renderToStaticMarkup(React.createElement(FleetTab));
+    expect(html).toContain('대서양 선망');
+    expect(html).toContain(atlanticNow.asOf);
+    expect(html).toContain(atlanticNow.dailyMt.toLocaleString());
+    expect(html).toContain(atlanticNow.monthlyMt.toLocaleString());
+    expect(html).toContain(atlanticNow.annualMt.toLocaleString());
+    expect(html).toContain('일일 업무보고');
+  });
+});
+
 describe('메뉴 배선', () => {
   it('파노피가 코스모 바로 위에 온다', () => {
     const operation = SIDEBAR_SECTIONS.find((s) => s.section === 'operation');
