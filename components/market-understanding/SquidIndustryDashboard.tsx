@@ -423,7 +423,7 @@ const SPEC: CommoditySpec = {
   ],
   // 오징어 브리핑은 원래 단계 귀속 없이 문장만 있었다. 공용 골격은 귀속이 있을 때만
   // 「N단계에서 보기」 버튼을 내므로, 빈 stage 를 주면 기존 화면 그대로다.
-  briefing: SQUID_BRIEFING_POINTS.map((text) => ({ stage: '', text })),
+  briefing: SQUID_BRIEFING_POINTS,
   // 위젯 JSON(ALL_STAGES)이 아니라 **서술**이 단계 목록을 정한다.
   //
   // 원래는 JSON 을 기준으로 삼았는데, 그러면 큐레이션 위젯이 없는 단계는 서술을 써도
