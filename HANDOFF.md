@@ -1,3 +1,13 @@
+> ⚓ **2026-08-26 10:05 KST — 해양수산본부 8/26 일일보고 `/fleet` 로컬 반영 완료·미배포** [CC]:
+> - 원문은 `해양수산본부 일일업무보고-260826 (수).docx` 한 건이다. 운영자 CLI `prepare --page fleet-daily`로 공개 집계·보호 상세를 재생성했고 데이터 기준일은 보고 `2026-08-26` / 조업 `2026-08-25`다.
+> - 최신 집계: 태평양 일간 25 (월 2,813 / 연 47,645.8), 대서양 일간 190 (월 5,130 / 연 31,855), 운반선 선적 8,763.3 · 예상잔량 5,771.7 (MT). 전일 대비 일간 델타는 태평양 -95 · 대서양 -245 · 합계 -340이다. 검산 4건 전량 일치, `issueCount` 0.
+> - **누락 보고 1건이 복구됐다.** 증분 동기화만으로는 141건이지만 전체 재동기화 결과는 142건이며 `--check`가 통과한다. 커밋돼 있던 140건 이력에 `2026-08-10` 보고가 빠져 있었다(파일명이 `해양수산본부 일일 업무보고-260810 (월).docx`로 띄어쓰기가 달랐다). 전기간 검산 회수도 560 → 568로 늘었다.
+> - RED: 8/25 계약이 남아 Vitest 6건 실패(`fleet-daily`, `fleet-daily-security-boundary`, `fleet-daily-command-center`, `v2-components-render`, `fleet-daily-source-contract`)를 확인했다. GREEN 후 `npm run verify` 통과 — Vitest 147 files / 1,147 passed, fleet client leak 0(정적 125개·보호 상세 32개), Next 빌드·bundle 33 routes.
+> - 보호 상세는 `artifacts/fleet-daily-detail.json`에만 있고 공개 SHA `5379673f…5cef`에 결합됐다. Git·클라이언트 번들에 포함되지 않는다. 운영자 상태는 `fleet-daily: verified`다.
+> - **다음 단계**: 사용자가 `배포`를 명시하면 Production `FLEET_DAILY_DETAIL_JSON`을 새 상세 DTO로 교체 → PR gate → main 병합 → READY → 인증/비인증 API와 데스크톱·390px 라이브 QA를 수행한다.
+>
+> 마지막 업데이트: 2026-08-26 10:05 KST [CC]
+
 > 🚀 **2026-08-26 10:12 KST — `/gmts` 월간보고 탭 라이브 배포 완료** [CC]:
 > - PR [#779](https://github.com/CUTEKOREA/tuna-dashboard/pull/779)를 squash 병합했다. main commit `67b3e2f777a2645cfe1b88d42572738710b9aaca`. PR 게이트: App Quality Gate run `32917060188` success + Vercel Preview success. 병합 후 main 게이트: App Quality Gate success + Data Freshness Audit success.
 > - Vercel Production: GitHub deployment `6095024443` state=success, env=Production, ref=병합 SHA (`tuna-dashboard-fyswodraq-…vercel.app`).
