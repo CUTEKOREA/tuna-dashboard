@@ -1,3 +1,25 @@
+> 🧭 **2026-08-27 15:25 KST — 부산 입출항 메뉴 숨김·라이트 스크롤바 검정 트랙 수정 로컬 완료** [Codex]:
+> - 사용자 요청대로 `port-intel`을 공용 숨김 목록에 추가해 사이드바와 명령 팔레트에서 「부산 입출항」을 제거했다. 데이터·패널·보호 경계와 직접 `/port-intel` 주소는 보존한다.
+> - 우측 검정 바는 별도 DOM 패널이 아니라 루트 문서 스크롤바의 투명 트랙이었다. 라이트 토큰이 내부 `appWrapper[data-v3='light']`에만 적용되고 `<html>`은 투명해 브라우저 검정 캔버스가 비쳤다. 라이브 DOM에서 `<html>` 배경만 `#f9fafb`로 바꾸자 즉시 사라져 원인을 확정했다.
+> - `darkMode` 상태를 `<html data-shell-theme>`에 동기화하고, 라이트 `#f9fafb`·다크 `var(--bg-color)` 배경을 루트에 지정했다. 콘텐츠 폭이나 스크롤 동작은 변경하지 않았다.
+> - TDD RED 6건 확인 후 registry 집중 35/35 통과. 전체 `npm run verify`도 통과했다: ESLint 0 errors(기존 warnings 12), Python 운영 27건, Vitest 1,211 passed/2 skipped, API cache 158/158, Next 118페이지, client leak·bundle 33경로.
+> - 로컬 production 1440px·390px에서 사이드바·명령 검색의 부산 메뉴 0건, 라이트 루트 `rgb(249,250,251)`·다크 `rgb(10,10,11)`, 가로 overflow 0을 확인했다. 직접 `/port-intel`은 200·본문 렌더, page/same-origin 오류 0이다.
+> - **로컬 완료, 프로덕션 미배포.** 사용자가 새 요청에서 배포를 명시하지 않아 배포 승인 대기 상태다.
+>
+> 마지막 업데이트: 2026-08-27 15:25 KST [Codex]
+
+> 🚀 **2026-08-27 14:51 KST — COSMO 34주·선단 8/27·TTA 운반선 33주 라이브 배포 완료** [Codex]:
+> - PR [#819](https://github.com/CUTEKOREA/tuna-dashboard/pull/819) squash `abc97271`. PR App Quality Gate `33042790355`, main App Quality Gate `33042993356`, Data Freshness Audit `33042993373`이 모두 성공했다.
+> - Vercel Production `dpl_3zcPAnGPjMN59zQLwziKMpKbayeQ`는 Ready·region `icn1`이며 `https://leedonggun.co.kr` 별칭에 연결됐다. GitHub Production deployment `6117209733`이 병합 SHA `abc97271b41540530e6d02c4d7c9f31142338ada`를 가리킨다.
+> - `FLEET_DAILY_DETAIL_JSON` Production secret을 최신 보호 DTO로 교체했다. canonical SHA-256 `2f469c32…b9d2`는 공개 `_meta.detailSha256`과 일치한다.
+> - 라이브 `/cosmo`에서 34주·견적 145건·수주잔량 $23.99M과 「34주차 업무 브리핑」의 아프리카 스타·식품안전 불시 심사(BRC/IFS)·P/MAS·P/DIS를 확인했다.
+> - 라이브 `/fleet`은 보고 2026-08-27/조업 8/26, 일 230·월 8,173·연 79,730.8·운반선 8,763.3MT를 표시한다. 보호 API는 200 `private, no-store`·`Vary: Cookie`, 상세 행은 태평양 10·대서양 7·운반선 6·연승 1이며 HIKARI 1·P/MAS·P/DIS·MOAMARI가 렌더된다.
+> - 라이브 `/logistics` 히어로와 선박·보고자료 탭은 모두 33주차 6척·22,890.273MT다. HIKARI 1 2,929MT·19.08.26·부두 33B와 공장 8곳 배분을 확인했다.
+> - same-origin 390px 프레임에서 세 화면 모두 `clientWidth=scrollWidth=380`, 핵심 마커 노출·overflow 0이다. 라이브 console/page/request/HTTP 오류 0, 새 Production error·fatal·5xx 로그도 0건이다.
+> - 운영자 상태는 `fleet-daily`와 `logistics-weekly` 모두 `live_verified`다. 다음 회차는 새 원본을 각 sync 스크립트로 변환한 뒤 같은 검산·배포 절차를 반복한다.
+>
+> 마지막 업데이트: 2026-08-27 14:51 KST [Codex]
+
 > 🐟 **2026-08-27 — `/mackerel` 국내 TAC·계군별 자원 위젯 2건** [Claude]:
 > - 보고서 보강 회차에서 나온 발견 두 개를 화면에 얹었다. 위젯 36 → **38**, 4축 90.5 (A 36 / B 2).
 > - `s1_domestic_tac_burn` — 한국수산자원공단 어종별 소진현황 24개 어기. **평균 소진율 77.4%, 최근 6개 어기 73.9%로 100%에 닿은 해가 없다.** 배분량은 110,078 → 126,072t 으로 늘렸는데 소진이 따라가지 못했다. 원자료가 어기마다 열 배치가 다르고 마지막 어기만 kg 단위이며, 2022 어기 소진율은 원문이 「71,0」으로 쉼표를 소수점 자리에 써 두어 배분·어획으로 재계산했다.
@@ -16,6 +38,7 @@
 > - Drive 보고서 제22판 `6ae341e`·103쪽 A4와 원장 44행·모니터링 20행·외부 매니페스트 127행은 배포본과 같은 8/27 정본이다.
 >
 > 마지막 업데이트: 2026-08-27 14:34 KST [Codex]
+
 > 📦 **2026-08-27 14:17 KST — COSMO 34주·선단 8/27·TTA 운반선 33주 통합 갱신 로컬 완료** [Codex]:
 > - 선행 하역 hotfix PR [#816](https://github.com/CUTEKOREA/tuna-dashboard/pull/816) squash `c5a067c3`는 Production `dpl_GKK3mCChptuB82EPcqBgsUfGU94r`에 배포했다. 라이브에서 HIKARI 1 기본 선택, 2026년 13항차 체선 계산, SEIN VENUS 무작업일 8/9·8/12·8/16, 연도경계 SEIN PHOENIX $30,000과 390px overflow 0·오류 로그 0을 확인했고 운영자 상태를 `live_verified`로 기록했다.
 > - COSMO 원본 2건을 검증했다. `COSMO 주간보고 (34주차)-첨부파일.xlsx` SHA-256 `99de9a50…afac`, `2026.8.27_COSMO 주간보고 (34주차).docx` `6a0d61f1…a5eb`; ZIP 무결성·수식 오류 0건이다.
