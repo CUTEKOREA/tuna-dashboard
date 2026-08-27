@@ -18,6 +18,18 @@ MEASUREMENT_GATE = OPERATIONS_DIR / "measurement_gate.csv"
 MONITORING_CALENDAR = OPERATIONS_DIR / "monitoring_calendar.csv"
 CORRECTIONS_REPORT = OPERATIONS_DIR / "전체수집_완료보고_20260812.md"
 _DATE_RE = re.compile(r"(?<!\d)(20\d{2})-(\d{2})-(\d{2})(?!\d)")
+MONITORING_PRIORITY = {
+    source_id: index
+    for index, source_id in enumerate(
+        (
+            "SQ-PRC-KMI",
+            "SQ-PRC-KAMIS",
+            "SQ-MGT-PRODUCE",
+            "SQ-MGT-SERNAPESCA",
+            "SQ-TRD-CN-CUSTOMS",
+        )
+    )
+}
 
 
 @dataclass(frozen=True)
@@ -88,6 +100,34 @@ def load_sources(archive_root: Path) -> tuple[list[dict], list[dict]]:
             "latest_verified": "2026-08-13",
             "note": "repo 내부 산출물. 외부 출처가 아니므로 C등급 · descriptive 용도로만",
         }
+    )
+    sources.extend(
+        [
+            {
+                "source_id": "MAN-GOV-SOURCE-REGISTRY",
+                "publisher": "아카이브 운영 원장",
+                "series": "오징어 공식 출처 레지스트리",
+                "priority": "P2",
+                "grade": "C",
+                "frequency": "event",
+                "landing_url": str(SOURCE_REGISTRY),
+                "archive_subdir": str(OPERATIONS_DIR),
+                "latest_verified": "2026-08-27",
+                "note": "각 행의 source_id가 실제 원출처를 역참조하는 운영 원장",
+            },
+            {
+                "source_id": "MAN-GOV-MONITORING-CALENDAR",
+                "publisher": "아카이브 운영 원장",
+                "series": "오징어 공식자료 모니터링 캘린더",
+                "priority": "P2",
+                "grade": "C",
+                "frequency": "event",
+                "landing_url": str(MONITORING_CALENDAR),
+                "archive_subdir": str(OPERATIONS_DIR),
+                "latest_verified": "2026-08-27",
+                "note": "각 행의 source_id가 실제 점검 대상 원출처를 역참조하는 운영 일정",
+            },
+        ]
     )
     return sources, registry_sources
 
@@ -163,7 +203,11 @@ def _build_widgets(
         return make_link_card(by_id[widget_id], source_map, gate_map)
 
     source_widget = base("E_source_registry")
-    source_widget.update(chartType="table", data=registry_sources)
+    source_widget.update(
+        title="출처 원장 (P0/P1/P2 · A/B/C)",
+        chartType="table",
+        data=registry_sources,
+    )
 
     gate_widget = base("E_gate_status_board")
     gate_widget.update(
@@ -181,8 +225,17 @@ def _build_widgets(
 
     monitoring_widget = base("E_monitoring_calendar")
     monitoring_widget.update(
+        title="공식자료 모니터링 캘린더",
         chartType="table",
-        data=sorted(monitoring, key=lambda item: item["next_check"]),
+        data=sorted(
+            monitoring,
+            key=lambda item: (
+                MONITORING_PRIORITY.get(item["source_id"], len(MONITORING_PRIORITY)),
+                item["next_check"],
+                item["source_id"],
+            ),
+        ),
+        methodology="공식 모니터링 캘린더에서 이번 점검 5개 계열을 먼저 두고 최신 확인·다음 확인·상태만 표시",
     )
 
     freshness_widget = base("E_freshness_heatmap")
@@ -254,4 +307,3 @@ def load_governance(
         monitoring=monitoring,
         widgets=widgets,
     )
-

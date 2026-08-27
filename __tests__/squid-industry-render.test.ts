@@ -1,4 +1,6 @@
 import React from 'react';
+import { readFileSync } from 'node:fs';
+import { join } from 'node:path';
 import { renderToStaticMarkup } from 'react-dom/server';
 import { describe, expect, it } from 'vitest';
 
@@ -12,6 +14,7 @@ import {
   getSquidCrossStages,
   getSquidStages,
   getSquidTradeData,
+  getSquidWidgetsMeta,
 } from '../lib/data/squid-industry';
 import {
   SQUID_ALL_NARRATIVES,
@@ -96,6 +99,73 @@ describe('시장 이해 > 오징어 - 데이터 인테이크', () => {
 });
 
 describe('시장 이해 > 오징어 - 위젯 큐레이션', () => {
+  it('생성 데이터에 앰대시가 재유입되지 않는다', () => {
+    const emDash = String.fromCodePoint(0x2014);
+    for (const file of ['squid_industry_widgets_v1.json']) {
+      const text = readFileSync(join(process.cwd(), 'public/data', file), 'utf8');
+      expect(text, file).not.toContain(emDash);
+    }
+  });
+
+  it('최신 KMI·칠레·모니터링 위젯과 핵심 감시행을 노출한다', () => {
+    const meta = getSquidWidgetsMeta() as { 생성일: string; 원본: string };
+    expect(meta.생성일).toBe('2026-08-27');
+    expect(meta.원본).toContain('위젯 62개');
+
+    const widgets = getSquidStages().flatMap((stage) => stage.widgets);
+    const ids = widgets.map((widget) => widget.id);
+    expect(ids).toContain('B_kmi_consumer_price');
+    expect(ids).toContain('A_chile_jibia_quota');
+    expect(ids).toContain('E_monitoring_calendar');
+    expect(widgets).toHaveLength(33);
+
+    const monitoring = widgets.find((widget) => widget.id === 'E_monitoring_calendar');
+    const visibleIds = (monitoring?.data ?? [])
+      .slice(0, 12)
+      .map((row) => String(row.source_id));
+    expect(visibleIds).toEqual(
+      expect.arrayContaining([
+        'SQ-PRC-KMI',
+        'SQ-PRC-KAMIS',
+        'SQ-MGT-PRODUCE',
+        'SQ-MGT-SERNAPESCA',
+        'SQ-TRD-CN-CUSTOMS',
+      ]),
+    );
+  });
+
+  it('본문 사실표도 최신 KMI·KAMIS·칠레 정본과 일치한다', () => {
+    const valueStage = SQUID_ALL_NARRATIVES.find((stage) => stage.key === 's07');
+    const sourcingStage = SQUID_ALL_NARRATIVES.find((stage) => stage.key === 's10');
+    expect(valueStage).toBeDefined();
+    expect(sourcingStage).toBeDefined();
+
+    const consumer = valueStage?.facts.find((fact) => fact.label === '한국 소비자가');
+    expect(consumer).toMatchObject({
+      value: '5,570 원/마리',
+      asOf: '2026-08-25',
+      grade: 'B',
+    });
+    expect(consumer?.note).toContain('8월 26일 화면 비교값 5,440원');
+
+    const wholesale = valueStage?.facts.find(
+      (fact) => fact.label === '국내 도매가: 원양과 연근해',
+    );
+    expect(wholesale?.asOf).toBe('2026-08-26');
+
+    const chile = sourcingStage?.facts.find(
+      (fact) => fact.label === '칠레 대왕오징어 쿼터 소진율',
+    );
+    expect(chile).toMatchObject({ value: '65.011%', grade: 'A' });
+    expect(chile?.asOf).toContain('130,021.9741톤');
+    expect(chile?.asOf).toContain('69,978.0259톤');
+
+    const currentText = JSON.stringify([valueStage, sourcingStage]);
+    expect(currentText).not.toContain('4,926 원/마리');
+    expect(currentText).not.toContain('60.93%');
+    expect(currentText).not.toContain('121,868.76톤');
+  });
+
   it('모든 위젯이 현황·실행지침을 갖춘다 (W-04)', () => {
     // 반쪽 카드가 나오는 것을 막는다. 참치에서 사용자가 지적했던 결함이다.
     const missing: string[] = [];
@@ -138,6 +208,7 @@ describe('시장 이해 > 오징어 - 위젯 큐레이션', () => {
     // 기관명·간행물명이 들어가는 열은 원어를 남긴다. 번역하면 원문을 찾을 수 없다.
     // 큐레이션 스크립트의 PROPER_NOUN_COLUMNS 와 같은 목록이어야 한다.
     const properNoun = new Set([
+      'source_id',
       'series',
       'publisher',
       'landing_url',

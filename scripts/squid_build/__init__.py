@@ -7,7 +7,9 @@ from pathlib import Path
 from zoneinfo import ZoneInfo
 
 from .governance import load_governance
+from .normalize import normalize_display_dashes
 from .spec import (
+    ARCHIVE_SNAPSHOT_DATE,
     DEFAULT_ARCHIVE_ROOT,
     DEFAULT_SPEC_PATH,
     apply_widget_patch,
@@ -118,7 +120,7 @@ def build_document(
         "meta": {
             "built_at": timestamp.isoformat(timespec="seconds"),
             "builder_version": BUILDER_VERSION,
-            "archive_snapshot": "squid archive @ 2026-08-12",
+            "archive_snapshot": f"squid archive @ {ARCHIVE_SNAPSHOT_DATE}",
             "gate_version": "measurement_gate 2026-08-12 + local G-012/G-013",
             "telemetry": "SYNCED",
         },
@@ -151,7 +153,7 @@ def build_document(
         # Keeping all 39 skeleton rows is deliberate: the validator and UI
         # contract never see a partially shaped document.
 
-    return document
+    return normalize_display_dashes(document, preserve_raw_evidence=True)
 
 
-__all__ = ["build_document"]
+__all__ = ["build_document", "normalize_display_dashes"]
