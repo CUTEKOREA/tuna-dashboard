@@ -1,3 +1,44 @@
+> ✅ **2026-08-27 21:51 KST — 루트 청록 스크롤바를 브라우저 기본 스크롤로 복원** [Codex]:
+> - 로그인된 라이브 `/fleet` DOM을 계측한 결과 콘텐츠 중첩 스크롤은 없었고 `HTML` 하나만 문서 스크롤을 소유했다. 내부창처럼 보인 파란 막대는 전역 `::-webkit-scrollbar`와 `html scrollbar-width/color`가 루트까지 칠한 손잡이였다. 8/27 검정 트랙 수정이 루트 배경을 밝게 만들면서 기존 청록 손잡이가 더 두드러졌다.
+> - `html`은 라이트·다크 배경 동기화만 유지하고 브라우저 기본 스크롤로 되돌렸다. 얇은 청록 사용자 지정 스크롤은 `body *` 후손으로 한정해 사이드바·모달·내부 목록의 기존 동작은 보존했다. 문서 높이·overflow·스크롤 기능은 변경하지 않았다.
+> - TDD: 기존 35/35에서 루트 비스코프 계약 RED 1건을 확인한 뒤 registry 36/36 통과. `npm run verify`: ESLint 0 errors(기존 warning 12), Python 운영 27건, Vitest 158파일·1,217 passed/2 skipped, API cache 158/158, Next 118페이지, client leak·bundle 33경로 통과.
+> - 로컬 production `/fleet` 1440px·390px에서 `document.scrollingElement=HTML`, 루트 `scrollbar-width/color=auto`, 내부 사이드바 `thin`, 비스코프 WebKit 선택자 0건을 확인했다. 두 폭 모두 가로 overflow·page/console/request/예상 외 HTTP 오류 0건이며 청록 루트 막대가 사라졌다.
+> - **다음 단계**: 로컬 전용 브랜치 `fix/root-scrollbar-scope-20260827`. 사용자가 배포를 명시하면 최신 main 통합 → PR gate → Production READY → 라이트·다크 로그인 라이브 재검증을 진행한다.
+>
+> 마지막 업데이트: 2026-08-27 21:51 KST [Codex]
+
+> ✅ **2026-08-27 20:43 KST — HIKARI 1 8/27 하역 실적·8/28 계획 로컬 반영** [Codex]:
+> - 원본 3종을 대조했다: JPG `c33f9eb4…7fde5`, 일일 결과 XLS `66e5b165…76ddb`, 일일 현황 XLSX `0bdef9ea…96e`. 8/27 일일 `283.910 MT`, 누계 `2,866.810 MT`, 잔량 `62.190 MT`; SJ `250.910`·YF `33.000 MT`; GPZ/MOAKONA #4-C `112.190`·ISA/MOAMARI #3-C `171.720 MT`; 작업 `08:10~13:30`, 19대다.
+> - 8/26 보고는 보존하고 `hikari-bangkok-2026-07-8-27`을 새 행으로 추가했다. HIKARI 1은 하역중 `97.9%`, 8/20~8/27 추이, 잔여 약 1일, 체선 사용 7일·여유 6.3일로 갱신된다. 전 선박 2026년 통합 누계는 화면 산식 기준 `39,249 MT`다.
+> - 사용자 제공 8/28 계획 `GPZ/H4C1(MOAKONA) 100 MT 08:00`은 `next_day`와 품질 메모에만 두어 8/27 실적에 섞이지 않게 했다.
+> - 원문 온도는 MOAKONA #4-C `-23℃`, MOAMARI #3-C `-22,23℃`다. 두 번째 부호를 추정하지 않고 기존 정책대로 `[-22, 23]`과 원문 표기를 함께 보존했다.
+> - Google Drive 같은 HIKARI 폴더에 `20260827 HIKARI 1 (BKK) 하역 업무 보고.txt`를 생성했다. SHA-256 `1cc0d4f7…285b3`이며 위 수치와 8/28 계획이 들어 있다.
+> - TDD RED 5건 확인 후 HIKARI 계약 15/15, 하역 집중 60/60 통과. `npm run verify`: ESLint 0 errors(기존 warning 12), Python 운영 27건, Vitest 158파일·1,217 passed/2 skipped, API cache 158/158, Next 118페이지, client leak·bundle 33경로 통과.
+> - 하역 E2E는 desktop·mobile·keyboard·열린 탭 갱신·API/청크 장애 격리까지 통과했다. 운영자 상태는 `verified`로 기록했다. **로컬 준비 완료, 미배포**이며 사용자가 배포를 명시하면 최신 main 통합 후 PR·Production·라이브 검증을 진행한다.
+>
+> 마지막 업데이트: 2026-08-27 20:43 KST [Codex]
+
+> ✅ **2026-08-27 20:28 KST — `/fleet` 선망선 어창 용량·적재율 표시 로컬 완료** [Codex]:
+> - FFA VRST 2026-08-14와 ICCAT active 2026-08-21 원본을 대조해 태평양 10척·대서양 7척의 어창 용량을 보호 상세 DTO에 추가했다. FFA MT 8척은 `누적 적재/어창 용량` 적재율과 막대를 표시하고, FFA·ICCAT ㎥ 9척은 MT와 단위가 달라 임의 환산하지 않고 `적재율 미산출`로 표시한다.
+> - 실제 비율은 100% 초과도 보존하되 막대만 100%에서 제한한다. 75% 이상은 `고적재`, 90% 이상은 `만재 임박` 문구와 별도 색 막대로 구분해 색상만으로 상태를 전달하지 않는다. 배지는 별도 줄에 두어 좁은 카드에서도 어창 용량이 잘리지 않는다.
+> - 상세 DTO 스키마는 `holdCapacity`를 선택 필드로 추가했다. 코드·환경변수 순차 배포 중 503을 막기 위해 공개 메타가 직전 상세 해시 1개만 롤링 허용하고, 최신 공개 집계와 보고일·합계가 같은지 별도로 계속 검증한다.
+> - 전체 원본 143건 결정성 검사를 통과했다. `npm run verify`: ESLint 0 errors(기존 warning 12), Python 운영 29건, Vitest 158파일·1,223 passed/1 skipped, API cache 158/158, Next 118페이지, client leak·bundle 33경로 통과.
+> - 로컬 production 1440px·375px에서 MT·㎥ 카드와 합성 90% `만재 임박` 상태를 확인했다. 가로 overflow·page/console/request/HTTP 오류는 모두 0건이다. 독립 리뷰의 배포 전환 호환성·색상 외 상태 표시 지적을 반영했다.
+> - **다음 단계**: 현재 로컬 전용 브랜치다. 사용자가 배포를 명시하면 최신 main 통합 → PR gate → 보호 상세 환경변수 교체 → Production READY → `/fleet` 로그인 라이브 검증 순서로 진행한다.
+>
+> 마지막 업데이트: 2026-08-27 20:28 KST [Codex]
+
+> 📦 **2026-08-27 17:08 KST — `/logistics` TTA 운반선 34주차 로컬 갱신 완료** [Codex]:
+> - 원본 `Reefer ship movement for week 34th.xlsx`는 ZIP 무결성·수식 오류·시트/헤더 이동 검사를 통과했다. SHA-256은 `1076d085bcf7908b20887c224e5fe771f0415a97f1c439221190c8e14c554ef3`, 보고기간은 2026-08-21~08-27이다.
+> - 기존 6척에 PATSORN을 추가한 7척의 공장 배분 합계는 25,214.952MT다. PATSORN 2,324.679MT는 MMP 1,000.646·TUM 770.788·UC 553.245이며 원문 기타 기재 `SAMUTSAKORN`을 그대로 보존했다.
+> - `sync_reefer_weekly.py`가 선박별 원문 총량과 F~AH 공장 배분을 재합산했고 `--check` byte 동일 검증을 통과했다. `data/reefer_week34.json`을 강제 추적하고 33주차 JSON은 이력으로 보존했다.
+> - 최신 SSOT를 34주차로 전환하고 물류 히어로·냉동 운반선 카드의 기간·선박 수·합계·STATIC 기준일·SIT/TAK를 같은 값으로 맞췄다. PATSORN용 7번째 항로 마커를 추가해 undefined 렌더 오류를 차단했다.
+> - TDD RED 7건을 확인한 뒤 물류 집중 5파일 36/36 GREEN. 독립 검증자가 원본 수치·PATSORN·이력·마커·민감정보 경계를 반증했고, 초기 Critical이던 신규 JSON 미추적을 `git add -f`로 해소한 뒤 최종 Ready Yes를 받았다.
+> - 전체 `npm run verify` 통과: ESLint 0 errors(기존 warnings 12), Python 운영 27건, Vitest 158파일·1,215 passed/2 skipped, API cache 158/158, Next 118페이지, client leak·bundle 33경로.
+> - 로컬 production `/logistics` 1440×1000·390×844에서 34주차·7척·25,214.952MT·PATSORN·SAMUTSAKORN·항로 마커 7개를 확인했다. 두 화면 모두 `clientWidth=scrollWidth`, page/console/request/same-origin HTTP 오류 0이다.
+> - 운영자 상태 `logistics-weekly=verified`. **로컬 준비 완료, 라이브 미반영**이며 사용자의 별도 `배포` 지시를 기다린다.
+>
+> 마지막 업데이트: 2026-08-27 17:08 KST [Codex]
 > 🐟 **2026-08-27 — 미확보 원본 2건 확보 + 공식 자급률 위젯 3건** [Claude]:
 > - **해양수산부 실태조사 2024년판(2023년 기준)과 자급률 고시 제2026-53호를 확보했다.** 원장 grade C → **A** 둘 다. 보고서 10절 값 사슬의 원전이 이제 아카이브에 실물로 있다.
 > - **고시 산식이 조문 텍스트가 아니라 GIF 이미지였다.** 법령 API 는 `<img id="164093933">` 만 돌려준다. `flDownload.do?flSeq=…` 로 내려받아 읽었다 — 산식은 **[국내생산량/국내소비량(생산＋수입＋재고－이월－수출)]×100**. 보고서가 「＋재고 －이월」 두 항을 빠뜨리고 있었다.
@@ -23,7 +64,6 @@
 > - 게이트: provenance 39/39, mackerel:test 4/4, tsc clean, Vitest 157 files·1,209 passed/2 skipped.
 > - **다음 단계**: 사용자가 `배포`를 명시하면 `mackerel/ledger-sync` → PR gate → main 병합 → Vercel READY → `/mackerel` 데스크톱·390px 라이브 확인. 미확보 원본 2건(`MOF_SURVEY_DISTRIBUTION`·`MOF_SELF_SUFFICIENCY`)은 다음 수집 최우선 — 보고서 10절 값 사슬 전체가 그 위에 서 있다.
 >
-
 > 🚀 **2026-08-27 16:08 KST — 부산 입출항 메뉴 숨김·라이트 스크롤바 검정 트랙 수정 라이브 배포** [Codex]:
 > - 사용자 요청대로 `port-intel`을 공용 숨김 목록에 추가해 사이드바와 명령 팔레트에서 「부산 입출항」을 제거했다. 데이터·패널·보호 경계와 직접 `/port-intel` 주소는 보존한다.
 > - 우측 검정 바는 별도 DOM 패널이 아니라 루트 문서 스크롤바의 투명 트랙이었다. 라이트 토큰이 내부 `appWrapper[data-v3='light']`에만 적용되고 `<html>`은 투명해 브라우저 검정 캔버스가 비쳤다. 라이브 DOM에서 `<html>` 배경만 `#f9fafb`로 바꾸자 즉시 사라져 원인을 확정했다.

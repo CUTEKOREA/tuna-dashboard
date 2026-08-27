@@ -5,7 +5,10 @@
     "firstReportDate": "2026-01-16",
     "latestReportDate": "2026-08-27",
     "latestAsOf": "2026-08-26",
-    "detailSha256": "2f469c32161e54db549e02c5a7ddfaff1a18919e05f1b88d4de7810390d3b9d2"
+    "detailSha256": "d50fbd4b699b6b290a24cabffa0bb54c18988dd9da43b50619b3e825f235e005",
+    "detailSha256Compat": [
+      "2f469c32161e54db549e02c5a7ddfaff1a18919e05f1b88d4de7810390d3b9d2"
+    ]
   },
   "latest": {
     "reportDate": "2026-08-27",

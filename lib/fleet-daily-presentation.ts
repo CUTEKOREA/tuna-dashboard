@@ -39,6 +39,7 @@ function displayLocation(position: string) {
 export function buildFleetRoster(detail: FleetDailyDetailPayload) {
   const pacific = detail.pacific.vessels.map((vessel) => ({
     ...vessel,
+    capacityMt: vessel.holdCapacity?.unit === 'MT' ? vessel.holdCapacity.value : null,
     displayName: vessel.name,
     zone: vessel.position,
     location: displayLocation(vessel.position),
@@ -46,6 +47,7 @@ export function buildFleetRoster(detail: FleetDailyDetailPayload) {
   }));
   const atlantic = detail.atlantic.vessels.map((vessel) => ({
     ...vessel,
+    capacityMt: vessel.holdCapacity?.unit === 'MT' ? vessel.holdCapacity.value : null,
     displayName: vessel.name,
     zone: vessel.position,
     location: displayLocation(vessel.position),

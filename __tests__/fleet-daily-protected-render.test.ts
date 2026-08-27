@@ -61,6 +61,32 @@ const DETAIL: FleetDailyDetailPayload = {
   },
 };
 
+const DETAIL_WITH_CAPACITY = {
+  ...DETAIL,
+  pacific: {
+    ...DETAIL.pacific,
+    vessels: DETAIL.pacific.vessels.map((vessel, index) => {
+      if (index === 0) return {
+        ...vessel,
+        holdCapacity: { value: 1_300, unit: 'MT', source: 'FFA VRST', asOf: '2026-08-14' },
+      };
+      if (index === 1) return {
+        ...vessel,
+        loadedMt: 950,
+        holdCapacity: { value: 1_000, unit: 'MT', source: 'FFA VRST', asOf: '2026-08-14' },
+      };
+      return vessel;
+    }),
+  },
+  atlantic: {
+    ...DETAIL.atlantic,
+    vessels: DETAIL.atlantic.vessels.map((vessel, index) => index === 0 ? {
+      ...vessel,
+      holdCapacity: { value: 3_114.85, unit: '㎥', source: 'ICCAT', asOf: '2026-08-21' },
+    } : vessel),
+  },
+} as FleetDailyDetailPayload;
+
 describe('fleet protected daily detail rendering', () => {
   it('renders minimized detail only after an authorized state is supplied', () => {
     const operations = renderToStaticMarkup(
@@ -83,5 +109,21 @@ describe('fleet protected daily detail rendering', () => {
     for (const code of ['BKK', 'GENSAN', 'X-MAS', 'RABAUL', 'TEMA', 'TAHITI']) {
       expect(`${operations}${roster}`).not.toContain(code);
     }
+  });
+
+  it('shows hold capacity and a numeric utilization without mixing MT and cubic metres', () => {
+    const roster = renderToStaticMarkup(React.createElement(FleetRosterGrid, { detail: DETAIL_WITH_CAPACITY }));
+
+    expect(roster).toContain('어창 용량');
+    expect(roster).toContain('1,300');
+    expect(roster).toContain('적재율 0.8%');
+    expect(roster).toContain('만재 임박');
+    expect(roster).toContain('role="progressbar"');
+    expect(roster).toContain('aria-valuenow="0.8"');
+    expect(roster).toContain('3,114.85');
+    expect(roster).toContain('㎥');
+    expect(roster).toContain('적재율 미산출');
+    expect(roster).toContain('적재량 MT와 어창 용량 ㎥의 단위가 다릅니다');
+    expect(roster).toContain('어창 용량 미확인');
   });
 });

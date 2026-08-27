@@ -13,6 +13,7 @@ import {
   fleetDailyPublicDetailSha256,
   fleetDailyPublicLatest,
 } from '@/lib/data/fleet-daily-public';
+import type { FleetDailyDetailPayload } from '@/lib/contracts/fleet-daily-api';
 
 const ORIGINAL_DETAIL = process.env.FLEET_DAILY_DETAIL_JSON;
 const PRIVATE_DETAIL = join(process.cwd(), 'artifacts', 'fleet-daily-detail.json');
@@ -53,6 +54,32 @@ describe('fleet daily protected detail loader', () => {
       latest: VALID_DETAIL,
       detailSha256: fleetDailyDetailSha256(VALID_DETAIL),
     })).toEqual(VALID_DETAIL);
+  });
+
+  it('accepts exactly one previous digest during a coordinated detail migration', () => {
+    const currentDetail: FleetDailyDetailPayload = {
+      ...VALID_DETAIL,
+      pacific: {
+        ...VALID_DETAIL.pacific,
+        vessels: VALID_DETAIL.pacific.vessels.map((vessel) => ({
+          ...vessel,
+          holdCapacity: { value: 1_300, unit: 'MT', source: 'FFA VRST', asOf: '2026-08-14' },
+        })),
+      },
+    };
+    const previousSha = fleetDailyDetailSha256(VALID_DETAIL);
+
+    expect(parseFleetDailyDetailSource(JSON.stringify(VALID_DETAIL), {
+      latest: VALID_DETAIL,
+      detailSha256: fleetDailyDetailSha256(currentDetail),
+      detailSha256Compat: [previousSha],
+    })).toEqual(VALID_DETAIL);
+
+    expect(() => parseFleetDailyDetailSource(JSON.stringify(VALID_DETAIL), {
+      latest: VALID_DETAIL,
+      detailSha256: fleetDailyDetailSha256(currentDetail),
+      detailSha256Compat: ['f'.repeat(64)],
+    })).toThrow('digest does not match');
   });
 
   it('rejects missing, malformed, oversized, unknown, and stale detail values', () => {

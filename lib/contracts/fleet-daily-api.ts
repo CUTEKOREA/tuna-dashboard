@@ -1,6 +1,12 @@
 import { z } from 'zod';
 
 const nullableMt = z.number().finite().nullable();
+const fishingHoldCapacitySchema = z.object({
+  value: z.number().finite().positive(),
+  unit: z.enum(['MT', '㎥']),
+  source: z.enum(['FFA VRST', 'ICCAT']),
+  asOf: z.iso.date(),
+}).strict();
 const regionAggregateSchema = z.object({
   asOf: z.iso.date(),
   dailyMt: z.number().finite(),
@@ -37,6 +43,7 @@ export const fleetDailyPublicSchema = z.object({
     latestReportDate: z.iso.date(),
     latestAsOf: z.iso.date(),
     detailSha256: z.string().regex(/^[a-f0-9]{64}$/),
+    detailSha256Compat: z.array(z.string().regex(/^[a-f0-9]{64}$/)).max(1).optional(),
   }).strict(),
   latest: z.object({
     reportDate: z.iso.date(),
@@ -75,6 +82,7 @@ const fishingVesselSchema = z.object({
   catchMt: nullableMt,
   loadedMt: nullableMt,
   note: z.string().max(500),
+  holdCapacity: fishingHoldCapacitySchema.nullable().optional(),
 }).strict();
 
 const carrierVesselSchema = z.object({

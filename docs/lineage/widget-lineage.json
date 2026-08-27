@@ -117,7 +117,7 @@
     "lib/data/reefer-weekly.ts"
    ],
    "dataFiles": [
-    "data/reefer_week33.json",
+    "data/reefer_week34.json",
     "public/data/bangkok_weekly_kpi.json",
     "public/data/bangkok_weekly_payload.json"
    ]
@@ -200,7 +200,7 @@
     "lib/data/reefer-weekly.ts"
    ],
    "dataFiles": [
-    "data/reefer_week33.json"
+    "data/reefer_week34.json"
    ]
   },
   "components/SafeResponsiveContainer.tsx": {
@@ -943,7 +943,7 @@
    "components/PorkDashboard.tsx",
    "components/PorkUsdaWidgets.tsx"
   ],
-  "data/reefer_week33.json": [
+  "data/reefer_week34.json": [
    "components/LogisticsDashboard.tsx",
    "components/ReeferMovement.tsx"
   ],

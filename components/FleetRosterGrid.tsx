@@ -5,10 +5,15 @@ import { Anchor, MapPin, Navigation, Package, Ship, type LucideIcon } from 'luci
 
 import type { FleetDailyDetailPayload } from '@/lib/contracts/fleet-daily-api';
 import { buildFleetRoster, formatFleetDailyNote, formatReportedMt, type FleetRoster } from '@/lib/fleet-daily-presentation';
+import { resolveFleetHoldUtilization } from '@/lib/fleet-map-load-signal';
 import s from './FleetCommandCenter.module.css';
 
 function formatMt(value: number | null) {
   return formatReportedMt(value);
+}
+
+function formatCapacity(value: number) {
+  return value.toLocaleString('ko-KR', { maximumFractionDigits: 2 });
 }
 
 type FishingFleetRow = FleetRoster['pacific'][number];
@@ -17,6 +22,15 @@ type LonglineFleetRow = FleetRoster['longline'][number];
 
 function FishingVesselCard({ vessel }: { vessel: FishingFleetRow }) {
   const [hovered, setHovered] = useState(false);
+  const capacity = vessel.holdCapacity ?? null;
+  const utilization = resolveFleetHoldUtilization(vessel.loadedMt, capacity);
+  const capacityText = capacity ? `${formatCapacity(capacity.value)} ${capacity.unit}` : '미확인';
+  const utilizationText = utilization ? `${utilization.ratioPct}%` : capacity ? '미산출' : '미확인';
+  const utilizationStatus = utilization?.level === 'nearCapacity'
+    ? '만재 임박'
+    : utilization?.level === 'high'
+      ? '고적재'
+      : null;
   return (
     <article
       onMouseEnter={() => setHovered(true)}
@@ -28,6 +42,32 @@ function FishingVesselCard({ vessel }: { vessel: FishingFleetRow }) {
       <div className={s.latestVesselMetrics}>
         <div><span>일간 어획</span><strong>{formatMt(vessel.catchMt)} <small>(MT)</small></strong></div>
         <div><span>누적 적재</span><strong>{formatMt(vessel.loadedMt)} <small>(MT)</small></strong></div>
+      </div>
+      <div
+        className={s.holdUtilization}
+        data-level={utilization?.level ?? (capacity ? 'unitMismatch' : 'missing')}
+        aria-label={capacity ? `어창 용량 ${capacityText} · 적재율 ${utilizationText}` : '어창 용량 미확인'}
+        title={capacity ? `${capacity.source} ${capacity.asOf} 기준` : undefined}
+      >
+        <div className={s.holdUtilizationHeader}>
+          <span>어창 용량</span><strong>{capacityText}</strong>
+          <span>적재율</span>
+          <strong>{utilizationText}</strong>
+        </div>
+        {utilizationStatus ? <div className={s.holdStatusRow}><em className={s.holdStatusLabel}>{utilizationStatus}</em></div> : null}
+        {utilization ? (
+          <div
+            className={s.holdProgress}
+            role="progressbar"
+            aria-label={`${vessel.displayName} 적재율 ${utilization.ratioPct}%${utilizationStatus ? ` · ${utilizationStatus}` : ''}`}
+            aria-valuemin={0}
+            aria-valuemax={100}
+            aria-valuenow={Math.min(utilization.ratioPct, 100)}
+          >
+            <span className={s.holdProgressFill} style={{ width: `${utilization.barPct}%` }} />
+          </div>
+        ) : null}
+        {capacity?.unit === '㎥' ? <p className={s.holdCapacityNote}>적재량 MT와 어창 용량 ㎥의 단위가 다릅니다.</p> : null}
       </div>
       {vessel.note !== '-' ? <p className={s.latestVesselNote}>보고 당시 비고: {formatFleetDailyNote(vessel.note)}</p> : null}
     </article>

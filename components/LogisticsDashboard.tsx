@@ -53,6 +53,7 @@ const bangkokMarkerPositions = [
   { x: 202, y: 334 },
   { x: 222, y: 324 },
   { x: 188, y: 320 },
+  { x: 166, y: 338 },
 ] as const;
 
 function FishingGroundToBangkokRouteMap() {
@@ -293,13 +294,13 @@ export default function LogisticsDashboard({ heroOnly = false }: { heroOnly?: bo
                   icon={Navigation}
                   iconColor="var(--color-info)"
                   pillar="S3"
-                  cardDesc="방콕항 운반선 이동 스케줄 - 33주차 주간 보고 (2026-08-14~08-20 기준)"
-                  telemetry={{ status: 'STATIC', syncDate: '2026-08-20', label: '정적' }}
+                  cardDesc="방콕권 운반선 이동 스케줄 - 34주차 주간 보고 (2026-08-21~08-27 기준)"
+                  telemetry={{ status: 'STATIC', syncDate: '2026-08-27', label: '정적' }}
                   customBody={<ReeferMovement />}
                   takeaway={{
-                    situation: '33주차(2026-08-14~08-20) TTA 보고에는 방콕항 6척의 캔 공장별 배분 22,890.273MT가 기록됐으며, HIKARI 1 2,929MT가 새로 포함됐습니다.',
-                    actionPlan: 'HIKARI 1의 ASIAN·CMC·GB·GPZ·ISA·MMP·RMK·TUM 배분 합계 2,929MT를 하역 원장과 교차 확인하고 이후 보고에서 실제 하역 진행을 추적합니다.',
-                    source: 'TTA 운반선 이동표 33주차 (2026-08-20 기준)',
+                    situation: '34주차(2026-08-21~08-27) TTA 보고에는 방콕권 7척의 캔 공장별 배분 25,214.952MT가 기록됐으며, PATSORN 2,324.679MT가 8월 25일 새로 포함됐습니다.',
+                    actionPlan: 'PATSORN의 MMP·TUM·UC 배분 합계 2,324.679MT와 SAMUTSAKORN 기재를 다음 보고에서 교차 확인하고 실제 하역 진행을 추적합니다.',
+                    source: 'TTA 운반선 이동표 34주차 (2026-08-27 기준)',
                   }}
                 />
               </div>
