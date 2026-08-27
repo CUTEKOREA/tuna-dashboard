@@ -1,3 +1,22 @@
+> 🚀 **2026-08-27 — `/mackerel-industry` NSC 34주·KMI Vol.257 라이브 배포** [Codex]:
+> - PR [#813](https://github.com/CUTEKOREA/tuna-dashboard/pull/813) squash `757fa2b8`. PR App Quality Gate·Vercel Preview와 main App Quality Gate·Freshness workflow가 성공했다.
+> - Vercel Production `dpl_2MykeHGzGK8aYWfT8s8FeuzbXP3T` Ready · region `icn1` · `https://leedonggun.co.kr` alias 연결. 배포 후 최근 30분 error 로그 0건.
+> - 라이브 데스크톱에서 상단 「노르웨이 34주 누계 41,108톤 · 48.35 NOK/kg」, 03단계 KMI 냉장·냉동 도매와 냉장 소매·냉동 소매 미형성, 05단계 NSC 전년 대비 물량 −46.2%·단가 +61.3%를 확인했다. console/page/Next overlay 오류 0, 문서 overflow 0.
+> - same-origin 390px 모바일 프레임은 `scrollWidth=clientWidth=380`, 03·05단계 최신 근거 모두 노출, overlay 0이었다.
+> - Google Drive 보고서 정본·HTML과 Google Calendar 6개 반복 시리즈(종료 2027-12-31)도 게시·readback 완료했다.
+>
+> 마지막 업데이트: 2026-08-27 [Codex]
+
+> 🐟 **2026-08-27 — `/mackerel-industry` NSC 34주·KMI Vol.257 반영** [Codex]:
+> - NSC 600g 미만 냉동고등어 34주 누계 **41,108톤(-46.2%)·48.35 NOK/kg(+61.3%)**과 KMI 8월 3주 냉장 도매 **6,172원/kg**, 냉동 도매 **4,204원/kg**, 냉장 소매 **12,317원/kg**을 03·05단계 근거표와 상단 주간 스트립에 추가했다.
+> - KMI 냉동 소매는 0원이 아니라 **미형성**으로 표기하고, NSC 34주 값은 600g 미만 규격(2025 비교 규격 400g 미만)이라는 범위 제한을 출처와 한계에 고정했다.
+> - Drive 보고서 정본·HTML과 수치 정본을 같은 값으로 갱신했다. 보고서 수치 대조 357건 통과, 미확인 0건, 교체 9파일 해시 일치·기존본 백업 완료.
+> - Google Calendar의 기존 6개 `[고등어]` 이벤트를 주간 2·월간 3·분기 1 시리즈로 전환해 **2027-12-31**까지 반복 규칙을 확인했다.
+> - TDD RED 3건을 먼저 확인하고 GREEN 3/3, 고등어 집중 회귀 114/114를 통과했다. 전체 `npm run verify`도 통과: ESLint 0 errors(기존 warnings 12), Python 운영 테스트 21건, Vitest 154파일·1,191 passed/2 skipped, API cache 158/158, Next 118페이지, client-leak·bundle 게이트.
+> - 사용자가 이번 요청에서 **배포**를 명시했다. PR 품질 게이트와 프로덕션·라이브 검증을 후속한다.
+>
+> 마지막 업데이트: 2026-08-27 [Codex]
+
 > 🛠️ **2026-08-27 10:58 KST — 2026년 전 선박 체선 계산·효율 카드 표시 로컬 완료** [Codex]:
 > - HIKARI 1 8/26 하역 PR [#812](https://github.com/CUTEKOREA/tuna-dashboard/pull/812) squash `1e9579b6`를 Production에 반영했다. 라이브 API·화면에서 일일 `259.260 MT`, 누계 `2,582.900 MT`, 잔량 `346.100 MT`, 통합 `38,966 MT`를 확인했다.
 > - Google Tasks `내 할 일 목록`의 8/26 단일 후보 `HIKARI 1 ###톤`을 `HIKARI 1 259.260 MT`로 수정했다. 8/26 자리표시자 0건·수정본 1건·미완료 상태를 재확인했고 8/27·28·29·31 예정 자리표시자는 유지했다.
