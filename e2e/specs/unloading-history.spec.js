@@ -280,8 +280,82 @@ async function runHappyPath(browser) {
 
   const body = await page.evaluate(() => document.body.innerText);
   assert.match(body, /38,966\s+MT/);
+  assert.match(body, /Low\s+\(방콕\)/);
+  assert.match(body, /허용\s+13\.3일/);
+  assert.match(body, /사용\s+6일/);
+  assert.match(body, /여유\s+7\.3일/);
+  assert.doesNotMatch(body, /진행 중 항차가 없어 체선 계산 대상이 없습니다/);
+  assert.match(body, /M\/V HIKARI 1 - 상세 하역 분석/);
   assert.match(body, /완료 선박:\s*12\s*척/);
   assert.doesNotMatch(body, /어종 분해 미확인/);
+
+  const hikariDemurrageText = await page.$eval(
+    '[data-testid="selected-vessel-demurrage"]',
+    (node) => node.innerText,
+  );
+  for (const pattern of [
+    /체선 등급\s+낮음/,
+    /허용 정박일수\s+13\.3일/,
+    /사용일수\s+6일/,
+    /여유\s+7\.3일/,
+    /체선료 추정\s+없음/,
+    /2026년\s+13항차 동일 산식 적용/,
+  ]) {
+    assert.match(hikariDemurrageText, pattern);
+  }
+
+  const expandedCompleted = await page.evaluate(() => {
+    const button = [...document.querySelectorAll('button')]
+      .find((candidate) => candidate.textContent?.includes('완료 선박 펼치기'));
+    button?.click();
+    return Boolean(button);
+  });
+  assert.equal(expandedCompleted, true, '완료 선박 목록을 펼치지 못했습니다.');
+  await page.waitForSelector('[data-testid="vessel-select-item-sein-venus"]');
+  await page.click('[data-testid="vessel-select-item-sein-venus"]');
+  await page.waitForFunction(() => (
+    document.querySelector('[data-testid="selected-vessel-demurrage"]')?.textContent?.includes('14.9일')
+  ));
+  const seinVenusDemurrageText = await page.$eval(
+    '[data-testid="selected-vessel-demurrage"]',
+    (node) => node.innerText,
+  );
+  for (const pattern of [
+    /체선 등급\s+주의/,
+    /허용 정박일수\s+14\.9일/,
+    /사용일수\s+13일/,
+    /여유\s+1\.9일/,
+    /체선료 추정\s+없음/,
+  ]) {
+    assert.match(seinVenusDemurrageText, pattern);
+  }
+  const noWorkDays = await page.$eval(
+    '[data-testid="unloading-daily-chart"]',
+    (node) => node.getAttribute('data-no-work-days'),
+  );
+  assert.equal(noWorkDays, '8/9,8/12,8/16');
+
+  await page.click('[data-testid="vessel-select-item-sein-phoenix-2025-12"]');
+  await page.waitForFunction(() => (
+    document.querySelector('[data-testid="selected-vessel-demurrage"]')?.textContent?.includes('$30,000')
+  ));
+  const crossYearDemurrageText = await page.$eval(
+    '[data-testid="selected-vessel-demurrage"]',
+    (node) => node.innerText,
+  );
+  for (const pattern of [
+    /체선 등급\s+높음/,
+    /사용일수\s+20일/,
+    /초과\s+3\.0일/,
+    /체선료 추정\s+\$30,000 \(조율 전\)/,
+  ]) {
+    assert.match(crossYearDemurrageText, pattern);
+  }
+
+  await page.click('[data-testid="vessel-select-item-sein-venus"]');
+  await page.waitForFunction(() => (
+    document.querySelector('[data-testid="selected-vessel-demurrage"]')?.textContent?.includes('14.9일')
+  ));
 
   await page.click('#unloading-tab-timeline');
   await page.waitForSelector('[data-testid="timeline-node-8-22"]');

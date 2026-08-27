@@ -338,7 +338,7 @@ describe('SEIN VENUS unloading data', () => {
     expect(source).toContain("'#3-B': 420");
     expect(source).toContain("'#2-A': 410");
     expect(source).toContain("'#1-A': 250");
-    expect(source).toContain("useState('sein-venus')");
+    expect(source).toContain('resolveSelectedVesselId(vesselsList, selectedVessel)');
     expect(source).toContain('원적재선별 하역 비중');
     expect(source).toContain('수하처:');
     expect(source).toContain('수하처별 하역량');

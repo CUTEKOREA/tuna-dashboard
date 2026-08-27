@@ -17,6 +17,19 @@
 >
 > 마지막 업데이트: 2026-08-27 [Codex]
 
+> 🛠️ **2026-08-27 10:58 KST — 2026년 전 선박 체선 계산·효율 카드 표시 로컬 완료** [Codex]:
+> - HIKARI 1 8/26 하역 PR [#812](https://github.com/CUTEKOREA/tuna-dashboard/pull/812) squash `1e9579b6`를 Production에 반영했다. 라이브 API·화면에서 일일 `259.260 MT`, 누계 `2,582.900 MT`, 잔량 `346.100 MT`, 통합 `38,966 MT`를 확인했다.
+> - Google Tasks `내 할 일 목록`의 8/26 단일 후보 `HIKARI 1 ###톤`을 `HIKARI 1 259.260 MT`로 수정했다. 8/26 자리표시자 0건·수정본 1건·미완료 상태를 재확인했고 8/27·28·29·31 예정 자리표시자는 유지했다.
+> - 라이브 QA에서 `vesselLatestReport()`는 `2026.08.26`을 반환하지만 체선 연결부가 `8/26`만 파싱해 진행 HIKARI를 `해당 없음`으로 버리는 회귀를 발견했다. 날짜 어댑터를 단일 함수로 통합하고 2026년 표시 항차 13척 모두를 계산하도록 확장했다.
+> - 사용자가 지정한 `하역 효율 지표`에 선택 선박별 체선 등급·허용 정박일수·사용일수·여유/초과·추정 체선료를 추가했다. 상단 카드는 진행 선박만 유지한다. HIKARI는 허용 `13.3`·사용 `6`·여유 `7.3일(Low)`, SEIN VENUS는 허용 `14.9`·사용 `13`·여유 `1.9일(주의)`다.
+> - 현재 하역 중인 HIKARI 1을 기본 상세로 선택하고, 사용자가 고른 선박·URL 지정은 유지한다. 하역 그래프는 양수 하역 보고의 최초~최종일을 연속화해 작업 없는 날을 일일 `0 MT`·직전 누계 수평선으로 표시한다. SEIN VENUS는 `8/9·8/12·8/16`이 공백일이며, 다일 합산 보고 구간은 임의 분할하지 않는다.
+> - 교차 리뷰 지적을 반영했다. 동일 종료일의 복수 양수 보고는 일일량 합계·누계 최댓값으로 1점만 만들고, 태국 중앙은행 2025 휴일 공표에 따라 `2025-12-31`을 제외한다. 연도 경계 SEIN PHOENIX는 허용 `17.0`·사용 `20`·초과 `3.0일`·추정 `$30,000`이며 High 분기도 실제 통화 문자열을 렌더한다.
+> - TDD: 기존 화면은 `해당 없음`·SEIN VENUS 기본 선택·공백일 누락으로 RED, 수정 후 로컬 실제 DOM에서 13항차 문구와 위 수치를 확인했다. 1440px·390px overflow 0, page/console error 0. 최신 main 통합 후 ESLint 0 errors(기존 warnings 12), TypeScript, Vitest 155 files·1,198 passed/2 skipped, daily operator 10/10, fleet sync 11/11, API cache 158/158 통과.
+> - 외부 Google Fonts 일시 차단 뒤 캐시를 복구해 표준 Turbopack `npm run verify` 전체를 재실행했다. Next 118페이지 빌드, client-leak 정적 125개·합성 경계 3개, bundle 33 routes까지 모두 통과했다.
+> - **다음 단계**: hotfix PR gate → Production 재배포 → 로그인 데스크톱·390px·오류 로그 확인 후 운영자 `record-release` 갱신.
+>
+> 마지막 업데이트: 2026-08-27 10:58 KST [Codex]
+
 > 🚀 **2026-08-27 — 체선료 실산식 위젯 라이브 배포** [CC]:
 > - PR [#808](https://github.com/CUTEKOREA/tuna-dashboard/pull/808) squash `5aeea190`. Vercel Production **success** · leedonggun.co.kr /unloading 반영.
 > - 후속 과제: 하역 DB에 입항일(arrival_date) 필드 채우면 입항 대기 포함 정밀화. C/P 휴일 정의 상이 시 `lib/demurrage.ts` 목록 수정.

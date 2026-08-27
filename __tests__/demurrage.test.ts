@@ -7,6 +7,11 @@ import {
   countLaytimeDays,
   demurrageRisk,
 } from '@/lib/demurrage';
+import * as demurrageModule from '@/lib/demurrage';
+
+const formatDemurrageEstimateUsd = (demurrageModule as unknown as {
+  formatDemurrageEstimateUsd?: (estimateUsd: number) => string;
+}).formatDemurrageEstimateUsd;
 
 describe('체선료 산식 (전체물량/220 - 사용일수, 일요일·공휴일 제외)', () => {
   it('기준 상수는 소유자 산식과 일치한다 (220 MT/일, $10,000/일)', () => {
@@ -61,5 +66,24 @@ describe('체선료 산식 (전체물량/220 - 사용일수, 일요일·공휴�
     expect(demurrageRisk(1.5)).toBe('Medium');
     expect(demurrageRisk(0)).toBe('Medium');
     expect(demurrageRisk(2.1)).toBe('Low');
+  });
+
+  it('연도 경계 항차에서 2025년 연말 휴일을 제외한다', () => {
+    const result = calcDemurrage({
+      cargoMt: 3740,
+      startDate: '2025-12-18',
+      baseDate: '2026-01-13',
+    });
+
+    expect(result.allowedDays).toBe(17);
+    expect(result.excludedSundays).toBe(4);
+    expect(result.excludedHolidays).toBe(3);
+    expect(result.usedDays).toBe(20);
+    expect(result.balanceDays).toBe(-3);
+    expect(result.estimateUsd).toBe(30_000);
+  });
+
+  it('추정 체선료를 자바스크립트 식이 아닌 통화 문자열로 만든다', () => {
+    expect(formatDemurrageEstimateUsd?.(30_000)).toBe('$30,000');
   });
 });
