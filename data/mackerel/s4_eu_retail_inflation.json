@@ -26,7 +26,7 @@
   ],
   "id": "s4_eu_retail_inflation",
   "provenance": {
-    "extract_date": "2026-08-16",
+    "extract_date": "2026-08-27",
     "grade": "B",
     "input_files": [
       "05_시장·소매·소비/eumofa/2026-08-12_full/EUMOFA_Monthly_Highlights_4_2026.md"
