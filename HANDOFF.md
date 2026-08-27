@@ -10,7 +10,7 @@
 > - 재사용 파이프라인 `sync_cosmo_weekly.py`·`sync_reefer_weekly.py`를 추가했다. COSMO 의미 라벨 이동, TTA F~AH 배분 헤더 이동/중복, 수식 오류·선박별 합계 불일치를 fail-closed로 차단한다. Python 직접 테스트 6건을 `npm run verify`에 연결했다.
 > - CI에 Python 3.13과 `openpyxl==3.1.5`·`et-xmlfile==2.0.0` 설치를 추가하고 COSMO/TTA 원본 산출물·파서 경로 필터를 연결했다. 깨끗한 venv 설치 후 6/6 재현했다. 리니지도 199파일·110위젯·74데이터로 재생성했다.
 > - 작성자와 별도 검증자가 원본 수치·공개/보호 경계·Git 추적·상단 KPI를 반증했다. 초기 Important 3건은 W33 JSON 강제 추적, 물류 히어로 최신화, 파서 경계 테스트로 해소했다.
-> - `npm run verify` 통과: ESLint 0 errors(기존 warnings 12), Python 운영 테스트 27건, Vitest 157파일·1,208건, API cache 158/158, Next 118페이지, client leak·bundle 33경로 통과.
+> - 최신 main 통합 후 `npm run verify` 통과: ESLint 0 errors(기존 warnings 12), Python 운영 테스트 27건, Vitest 157파일·1,211건, API cache 158/158, Next 118페이지, client leak·bundle 33경로 통과.
 > - 로컬 production 1440px·390px에서 `/cosmo`·`/fleet`·`/logistics` 모두 핵심 문구 렌더·가로 overflow 0·page error 0이다. 로컬 광고 요청 403과 Supabase 미설정 `/api/fleet/daily` 503은 예상 경계이며 보호 상세는 Production 로그인 세션에서 후속 확인한다.
 > - 사용자가 세 화면의 반영과 배포를 명시했다. **다음 단계**: PR gate → main 병합 → Fleet 상세 환경변수 교체 → Production READY → 세 화면 데스크톱·390px·보호 API·오류 로그 라이브 검증.
 >
