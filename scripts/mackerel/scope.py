@@ -106,3 +106,7 @@ FRA_TSUSHIMA_MD = ARCHIVE / "01_자연산_어획·자원/fra/2026-08-16/FRA_R7_2
 
 # 노르웨이 수산총국 공식 어획통계 F06001. 어획연 × 선적국 × 어구, 원중량(톤)·어획가치(천 크로네)
 FDIR_CATCH_CSV = ARCHIVE / "10_원본데이터셋/fiskeridir/2026-08-16/FDIR_F06001_makrell.csv"
+
+# 해양수산부 수산물 생산 및 유통산업 실태조사 2024(2023년 기준) 396쪽.
+# 표 4-11 공식 자급률, 표 4-2 망치고등어 분해, 표 4-19 국산 값사슬, 표 4-22 수입 값사슬, 표 5-4 품목비교
+MOF_SURVEY_2024_PDF = ARCHIVE / "05_시장·소매·소비/mof_survey/2026-08-27/MOF_distribution_survey_2024.pdf"
