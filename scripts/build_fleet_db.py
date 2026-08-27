@@ -33,10 +33,10 @@ ICCAT = REGISTRY / "ICCAT_vessels_active_2026-08-17.tsv"
 IOTC = REGISTRY / "IOTC_active_vessels_20250228.xlsx"
 CCSBT = TUNA / "RFMO_어획통계_원본/all_vessels_2026-05-04.csv"
 SPRFMO = (
-    BASE / "squid/00_오징어_관련자료/01_오징어_시장·가격/01_생산·자원"
+    BASE / "squid/00_오징어_관련자료/01_생산·자원"
     "/SPRFMO_ROV/2026-08-17/SPRFMO_ROV_all_2026-08-17.csv"
 )
-NPFC_DIR = BASE / "squid/00_오징어_관련자료/01_오징어_시장·가격/01_생산·자원/NPFC_등록부/2026-08-17"
+NPFC_DIR = BASE / "squid/00_오징어_관련자료/01_생산·자원/NPFC_등록부/2026-08-17"
 NPFC_VESSELS = NPFC_DIR / "npfc_vessels.csv"
 NPFC_AUTH = NPFC_DIR / "npfc_auth.csv"
 

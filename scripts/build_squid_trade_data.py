@@ -33,8 +33,8 @@ BASE = Path(
     "/Users/idong-geon/Library/CloudStorage/GoogleDrive-cutekorea@gmail.com/내 드라이브"
     "/agri_data/01_수산물(Seafood)/squid"
 )
-HISTORY = BASE / "extras/kcs/KCS_squid_HS_2020-2024.csv"
-YTD = BASE / "update_2026-07-06/kcs/KCS_2026YTD_HS_squid.csv"
+HISTORY = BASE / "00_오징어_관련자료/10_원본데이터셋/extras/kcs/KCS_squid_HS_2020-2024.csv"
+YTD = BASE / "00_오징어_관련자료/10_원본데이터셋/legacy_updates/update_2026-07-06/kcs/KCS_2026YTD_HS_squid.csv"
 
 # 관세청 추출본은 2024년에서 끝난다. 2025년은 유엔 무역통계(Comtrade)로 잇는다.
 # 두 출처의 2024년 값이 품목별로 일치함을 확인하고 붙였다 —
@@ -42,7 +42,7 @@ YTD = BASE / "update_2026-07-06/kcs/KCS_2026YTD_HS_squid.csv"
 # 값이 어긋나면 스크립트가 멈춘다(아래 CROSS_CHECK_TOLERANCE).
 COMTRADE = (
     BASE
-    / "00_오징어_관련자료/01_오징어_시장·가격/03_무역·HS"
+    / "00_오징어_관련자료/03_무역·HS"
     / "20260816-COMTRADE-core_reporters_World_TOTALS_squid_HS_2024-2025.csv"
 )
 CROSS_CHECK_TOLERANCE = 0.02  # 2%

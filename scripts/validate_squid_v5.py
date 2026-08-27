@@ -4,7 +4,7 @@
 Two layers:
   1. structural — JSON Schema (scripts/squid_v5.schema.json)
   2. measurement gates G-001..G-011 from the squid archive, plus local G-012/G-013
-     (00_오징어_관련자료/01_오징어_시장·가격/00_운영/measurement_gate.csv)
+     (00_오징어_관련자료/00_운영/measurement_gate.csv)
 
 Exit 0 = publishable. Non-zero = build must stop.
 

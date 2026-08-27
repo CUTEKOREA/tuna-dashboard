@@ -12,7 +12,7 @@ from typing import Iterable
 from .spec import WidgetSpec, make_link_card, specs_by_id
 
 
-OPERATIONS_DIR = Path("00_오징어_관련자료/01_오징어_시장·가격/00_운영")
+OPERATIONS_DIR = Path("00_오징어_관련자료/00_운영")
 SOURCE_REGISTRY = OPERATIONS_DIR / "source_registry.csv"
 MEASUREMENT_GATE = OPERATIONS_DIR / "measurement_gate.csv"
 MONITORING_CALENDAR = OPERATIONS_DIR / "monitoring_calendar.csv"

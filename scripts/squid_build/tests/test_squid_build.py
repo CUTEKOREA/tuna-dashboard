@@ -47,7 +47,7 @@ def test_fishstat_species_filter() -> None:
 
     rows = _read_csv(
         DEFAULT_ARCHIVE_ROOT
-        / "update_2026-07-06/fishstat/FishStat_2026.1.0_species_codes_squid.csv"
+        / "00_오징어_관련자료/10_원본데이터셋/legacy_updates/update_2026-07-06/fishstat/FishStat_2026.1.0_species_codes_squid.csv"
     )
     filtered = filter_species_rows(rows)
     observed = {row["Scientific_Name"] for row in filtered}
@@ -97,7 +97,7 @@ def test_kcs_2026_coverage_stops_at_may() -> None:
     from scripts.squid_build.extract.kcs import extract_kcs
 
     specs = _specs_by_id()
-    ytd_path = "update_2026-07-06/kcs/KCS_2026YTD_HS_squid.csv"
+    ytd_path = "00_오징어_관련자료/10_원본데이터셋/legacy_updates/update_2026-07-06/kcs/KCS_2026YTD_HS_squid.csv"
     assert specs["B_kcs_import_unit_price"].archive_paths == (ytd_path,)
     assert specs["C_korea_import_monthly"].archive_paths == (ytd_path,)
     widgets = extract_kcs(DEFAULT_ARCHIVE_ROOT, specs)
@@ -450,8 +450,8 @@ def test_sourcing_signal_records_observed_and_schedule_derivations() -> None:
     assert "공보" in argentina["reason"]
     assert argentina["state_evidence"]["derivation"] == "subsequent_law_past_tense"
     assert argentina["state_evidence"]["archive_path"].split(";") == [
-        "00_오징어_관련자료/01_오징어_시장·가격/02_쿼터·어장/20260812-ARG-CTMFM_Resolution_2_2026.html",
-        "00_오징어_관련자료/01_오징어_시장·가격/02_쿼터·어장/20260812-ARG-Resolution_6_2026.html",
+        "00_오징어_관련자료/02_쿼터·어장/20260812-ARG-CTMFM_Resolution_2_2026.html",
+        "00_오징어_관련자료/02_쿼터·어장/20260812-ARG-Resolution_6_2026.html",
     ]
     assert "후속 법령의 과거형" in argentina["reason"]
     assert "2026 주간공보" in argentina["reason"]
@@ -489,7 +489,7 @@ def test_pdf_layout_fallback_preserves_archive_pdf_citation() -> None:
 
     spec = replace(
         _specs_by_id()["A_argentina_illex_gap"],
-        archive_paths=("00_오징어_관련자료/01_오징어_시장·가격/08_국가별_조달/01_Argentina/INIDEP_Calamar_T2024_Informe_final.pdf",),
+        archive_paths=("00_오징어_관련자료/08_국가별_조달/01_Argentina/INIDEP_Calamar_T2024_Informe_final.pdf",),
     )
     config = {
         "widget_id": spec.widget_id,

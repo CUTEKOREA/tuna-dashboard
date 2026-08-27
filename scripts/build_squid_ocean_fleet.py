@@ -26,7 +26,7 @@ from pathlib import Path
 
 SRC = Path(
     "/Users/idong-geon/Library/CloudStorage/GoogleDrive-cutekorea@gmail.com/내 드라이브"
-    "/agri_data/01_수산물(Seafood)/squid/00_오징어_관련자료/01_오징어_시장·가격/01_생산·자원"
+    "/agri_data/01_수산물(Seafood)/squid/00_오징어_관련자료/01_생산·자원"
     "/SPRFMO_ROV/2026-08-17/SPRFMO_ROV_all_2026-08-17.csv"
 )
 OUT_PATH = Path(__file__).resolve().parent.parent / "public/data/squid_ocean_fleet_v1.json"

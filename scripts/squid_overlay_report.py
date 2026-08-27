@@ -15,8 +15,8 @@ from pathlib import Path
 from scripts.validate_squid_v5 import validate
 
 ARCHIVE = (Path.home() / "Library/CloudStorage/GoogleDrive-cutekorea@gmail.com/내 드라이브/agri_data"
-           / "01_수산물(Seafood)/squid/8_한국_오징어_산업_해부/02_출처원본")
-REL = "8_한국_오징어_산업_해부/02_출처원본"
+           / "01_수산물(Seafood)/squid/01_보고서/8_한국_오징어_산업_해부/02_출처원본")
+REL = "01_보고서/8_한국_오징어_산업_해부/02_출처원본"
 RETRIEVED = "2026-08-22"
 
 SOURCES = [
