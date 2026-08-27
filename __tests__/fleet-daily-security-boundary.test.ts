@@ -70,6 +70,7 @@ describe('fleet daily public and private DTO boundary', () => {
         latestReportDate: '2026-08-27',
         latestAsOf: '2026-08-26',
         detailSha256: expect.stringMatching(/^[a-f0-9]{64}$/),
+        detailSha256Compat: [expect.stringMatching(/^[a-f0-9]{64}$/)],
       },
       latest: {
         reportDate: '2026-08-27',

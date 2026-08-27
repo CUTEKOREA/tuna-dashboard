@@ -82,6 +82,7 @@ describe('fleet daily bounded intake', () => {
       latestReportDate: '2026-08-27',
       latestAsOf: '2026-08-26',
       detailSha256: expect.stringMatching(/^[a-f0-9]{64}$/),
+      detailSha256Compat: [expect.stringMatching(/^[a-f0-9]{64}$/)],
     });
     expect(fleetDailyPublicLatest.pacific).toMatchObject({
       dailyMt: 65,

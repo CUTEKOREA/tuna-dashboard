@@ -87,6 +87,48 @@ def report_tables(*, daily: int, atlantic_daily: int, mismatch: bool = False, in
 
 
 class FleetDailyReportSyncTest(unittest.TestCase):
+    def test_fishing_hold_capacity_registry_preserves_source_units(self) -> None:
+        module = load_sync_module()
+        capacity_of = getattr(module, 'fishing_hold_capacity', lambda _name: None)
+
+        self.assertEqual(capacity_of('S/SPR'), {
+            'value': 1200,
+            'unit': 'MT',
+            'source': 'FFA VRST',
+            'asOf': '2026-08-14',
+        })
+        self.assertEqual(capacity_of('NAOERO SUN'), {
+            'value': 1614,
+            'unit': '㎥',
+            'source': 'FFA VRST',
+            'asOf': '2026-08-14',
+        })
+        self.assertEqual(capacity_of('P/DIS'), {
+            'value': 3114.85,
+            'unit': '㎥',
+            'source': 'ICCAT',
+            'asOf': '2026-08-21',
+        })
+        self.assertIsNone(capacity_of('UNKNOWN VESSEL'))
+
+    def test_detail_digest_compat_rolls_only_the_previous_generation(self) -> None:
+        module = load_sync_module()
+        compatible = getattr(module, 'compatible_detail_sha256', lambda _public, _current: [])
+        previous = {
+            '_meta': {
+                'detailSha256': 'a' * 64,
+                'detailSha256Compat': ['z' * 64],
+            },
+        }
+
+        self.assertEqual(compatible(previous, 'b' * 64), ['a' * 64])
+        self.assertEqual(compatible({
+            '_meta': {
+                'detailSha256': 'b' * 64,
+                'detailSha256Compat': ['a' * 64],
+            },
+        }, 'b' * 64), ['a' * 64])
+
     def test_parse_amount_preserves_an_approximate_tonnage(self) -> None:
         module = load_sync_module()
 
@@ -247,6 +289,7 @@ class FleetDailyReportSyncTest(unittest.TestCase):
             "latestReportDate": "2026-08-15",
             "latestAsOf": "2026-08-14",
             "detailSha256": "b" * 64,
+            "detailSha256Compat": ["a" * 64],
         })
         self.assertEqual(result["deltas"], {
             "pacificDailyMt": 15,
@@ -471,6 +514,18 @@ class FleetDailyReportSyncTest(unittest.TestCase):
             self.assertNotIn("reconciliationChecks", public_payload["quality"])
 
             self.assertEqual(detail_payload["reportDate"], "2026-08-14")
+            self.assertEqual(detail_payload["pacific"]["vessels"][0].get("holdCapacity"), {
+                "value": 1300,
+                "unit": "MT",
+                "source": "FFA VRST",
+                "asOf": "2026-08-14",
+            })
+            self.assertEqual(detail_payload["atlantic"]["vessels"][0].get("holdCapacity"), {
+                "value": 2817.52,
+                "unit": "㎥",
+                "source": "ICCAT",
+                "asOf": "2026-08-21",
+            })
             self.assertEqual(detail_payload["longline"]["vessels"][0], {
                 "name": "TEST LONGLINE A",
                 "loadedMt": 338.699,

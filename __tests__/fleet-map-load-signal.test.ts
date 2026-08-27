@@ -1,6 +1,16 @@
 import { describe, expect, it } from 'vitest';
 
-import { getFleetLoadSignalStyle, resolveFleetLoadSignal } from '@/lib/fleet-map-load-signal';
+import * as loadSignals from '@/lib/fleet-map-load-signal';
+
+const { getFleetLoadSignalStyle, resolveFleetLoadSignal } = loadSignals;
+const resolveFleetHoldUtilization = (
+  loadSignals as typeof loadSignals & {
+    resolveFleetHoldUtilization?: (
+      loadedMt: number | null,
+      capacity: { value: number; unit: 'MT' | '㎥' } | null | undefined,
+    ) => { ratioPct: number; barPct: number; level: string } | null;
+  }
+).resolveFleetHoldUtilization;
 
 describe('fleet map load signals', () => {
   it('fails closed when capacity is missing or invalid', () => {
@@ -68,5 +78,42 @@ describe('fleet map load signals', () => {
       radius: 28,
       weight: 3,
     });
+  });
+});
+
+describe('fleet hold utilization', () => {
+  it('calculates a visible percentage only when loaded weight and capacity share MT units', () => {
+    expect(resolveFleetHoldUtilization?.(10, { value: 1_300, unit: 'MT' })).toEqual({
+      ratioPct: 0.8,
+      barPct: expect.closeTo(10 / 13, 5),
+      level: 'normal',
+    });
+    expect(resolveFleetHoldUtilization?.(766, { value: 1_200, unit: 'MT' })).toEqual({
+      ratioPct: 63.8,
+      barPct: expect.closeTo(63.833333, 5),
+      level: 'normal',
+    });
+  });
+
+  it('does not mix MT loaded weight with cubic-metre hold capacity', () => {
+    expect(resolveFleetHoldUtilization?.(900, { value: 3_114.85, unit: '㎥' })).toBeNull();
+    expect(resolveFleetHoldUtilization?.(900, null)).toBeNull();
+  });
+
+  it('keeps the reported over-capacity percentage while clamping only the visual bar', () => {
+    expect(resolveFleetHoldUtilization?.(1_050, { value: 1_000, unit: 'MT' })).toEqual({
+      ratioPct: 105,
+      barPct: 100,
+      level: 'nearCapacity',
+    });
+  });
+
+  it('keeps 75 and 90 percent boundaries semantically distinct', () => {
+    expect(resolveFleetHoldUtilization?.(750, { value: 1_000, unit: 'MT' })?.level).toBe('high');
+    expect(resolveFleetHoldUtilization?.(899.5, { value: 1_000, unit: 'MT' })).toMatchObject({
+      ratioPct: 89.9,
+      level: 'high',
+    });
+    expect(resolveFleetHoldUtilization?.(900, { value: 1_000, unit: 'MT' })?.level).toBe('nearCapacity');
   });
 });

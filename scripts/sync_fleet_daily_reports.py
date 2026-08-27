@@ -35,9 +35,73 @@ NUMBER = re.compile(r"[-+]?\d[\d,]*(?:\.\d+)?")
 COORDINATE = re.compile(r"^[NS]\d{4}\s+[EW]\d{5}(?:\s+\([A-Z]+\))?$")
 WORD = "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}"
 
+# 어창 용량은 최신 일일보고에 없으므로 외부 등록부 정본을 선박 코드와 결합한다.
+# FFA와 ICCAT의 단위가 MT·㎥로 섞여 있어 원단위를 보존하고, 변환값은 만들지 않는다.
+FISHING_HOLD_CAPACITY_PROVENANCE = {
+    "FFA VRST": {
+        "asOf": "2026-08-14",
+        "sha256": "b859fff6d8f3ed30d2f2beb73f1ebd9a9600815e28cda17b4df999cb8fc343bb",
+    },
+    "ICCAT": {
+        "asOf": "2026-08-21",
+        "sha256": "28ae917d6b8ecdb4d00bd41088f1019895f6f8a9ec6440f87b3d785a162d7d82",
+    },
+}
+FISHING_HOLD_CAPACITIES = {
+    "SHILLA EXPLORER": (1300, "MT", "FFA VRST"),
+    "SHILLA PIONEER": (1300, "MT", "FFA VRST"),
+    "SHILLA CHALLENGER": (1000, "MT", "FFA VRST"),
+    "SHILLA HARVESTER": (1200, "MT", "FFA VRST"),
+    "SHILLA JUPITER": (1000, "MT", "FFA VRST"),
+    "SHILLA SPRINTER": (1200, "MT", "FFA VRST"),
+    "MOAMARI": (1000, "MT", "FFA VRST"),
+    "MOAKONA": (1200, "MT", "FFA VRST"),
+    "NAOERO SUN": (1614, "㎥", "FFA VRST"),
+    "NAOERO STAR": (1614, "㎥", "FFA VRST"),
+    "PANOFI MASTER": (2817.52, "㎥", "ICCAT"),
+    "PANOFI DISCOVERER": (3114.85, "㎥", "ICCAT"),
+    "PANOFI FORE-RUNNER": (3114.85, "㎥", "ICCAT"),
+    "PANOFI PATH-FINDER": (3114.85, "㎥", "ICCAT"),
+    "PANOFI COMMANDER": (4009.66, "㎥", "ICCAT"),
+    "PANOFI QUEEN": (4295.66, "㎥", "ICCAT"),
+    "PANOFI GRACE": (4295.66, "㎥", "ICCAT"),
+}
+FISHING_HOLD_CAPACITY_ALIASES = {
+    "S/EXP": "SHILLA EXPLORER",
+    "S/PIO": "SHILLA PIONEER",
+    "S/CHA": "SHILLA CHALLENGER",
+    "S/HAR": "SHILLA HARVESTER",
+    "S/JUP": "SHILLA JUPITER",
+    "S/SPR": "SHILLA SPRINTER",
+    "P/MAS": "PANOFI MASTER",
+    "P/DIS": "PANOFI DISCOVERER",
+    "P/FORE": "PANOFI FORE-RUNNER",
+    "P/PATH": "PANOFI PATH-FINDER",
+    "P/COM": "PANOFI COMMANDER",
+    "P/COMM": "PANOFI COMMANDER",
+    "P/QUEEN": "PANOFI QUEEN",
+    "P/GRACE": "PANOFI GRACE",
+}
+
 
 class FleetDailySyncError(RuntimeError):
     """The source documents do not meet the daily fleet intake contract."""
+
+
+def fishing_hold_capacity(name: str) -> dict[str, Any] | None:
+    normalized = normalize_text(name).upper()
+    canonical = FISHING_HOLD_CAPACITY_ALIASES.get(normalized, normalized)
+    capacity = FISHING_HOLD_CAPACITIES.get(canonical)
+    if capacity is None:
+        return None
+    value, unit, source = capacity
+    provenance = FISHING_HOLD_CAPACITY_PROVENANCE[source]
+    return {
+        "value": value,
+        "unit": unit,
+        "source": source,
+        "asOf": provenance["asOf"],
+    }
 
 
 @dataclass(frozen=True)
@@ -526,7 +590,30 @@ def public_reconciliation_result(check: dict[str, Any]) -> dict[str, Any]:
     }
 
 
-def build_public_payload(payload: dict[str, Any], detail_sha256: str) -> dict[str, Any]:
+def compatible_detail_sha256(previous_public: dict[str, Any], current_sha256: str) -> list[str]:
+    """배포 전환 중 허용할 직전 상세 해시 한 개만 보존한다."""
+    meta = previous_public.get("_meta")
+    if not isinstance(meta, dict):
+        return []
+    candidates: list[Any] = [meta.get("detailSha256")]
+    previous_compat = meta.get("detailSha256Compat")
+    if isinstance(previous_compat, list):
+        candidates.extend(previous_compat)
+    for candidate in candidates:
+        if (
+            isinstance(candidate, str)
+            and candidate != current_sha256
+            and re.fullmatch(r"[a-f0-9]{64}", candidate)
+        ):
+            return [candidate]
+    return []
+
+
+def build_public_payload(
+    payload: dict[str, Any],
+    detail_sha256: str,
+    detail_sha256_compat: Sequence[str] = (),
+) -> dict[str, Any]:
     latest = payload["latest"]
     previous = payload["previous"]
     latest_checks = {
@@ -566,8 +653,16 @@ def build_public_payload(payload: dict[str, Any], detail_sha256: str) -> dict[st
     ]
     pacific_delta = latest["pacific"]["dailyMt"] - previous["pacific"]["dailyMt"]
     atlantic_delta = latest["atlantic"]["dailyMt"] - previous["atlantic"]["dailyMt"]
+    public_meta = {**payload["_meta"], "detailSha256": detail_sha256}
+    compatible = [
+        digest
+        for digest in detail_sha256_compat
+        if digest != detail_sha256 and re.fullmatch(r"[a-f0-9]{64}", digest)
+    ][:1]
+    if compatible:
+        public_meta["detailSha256Compat"] = compatible
     return {
-        "_meta": {**payload["_meta"], "detailSha256": detail_sha256},
+        "_meta": public_meta,
         "latest": {
             "reportDate": latest["reportDate"],
             "asOf": latest["asOf"],
@@ -648,7 +743,11 @@ def build_incremental_public_payload(
             "counts": counts,
         },
     }
-    public_payload = build_public_payload(incremental_payload, detail_sha256)
+    public_payload = build_public_payload(
+        incremental_payload,
+        detail_sha256,
+        compatible_detail_sha256(previous_public, detail_sha256),
+    )
     public_payload["quality"] = {
         "counts": counts,
         "incompletePartialDifferences": previous_quality["incompletePartialDifferences"] + incomplete_count,
@@ -674,7 +773,10 @@ def build_detail_payload(payload: dict[str, Any]) -> dict[str, Any]:
         return {
             **{key: region[key] for key in ("asOf", "dailyMt", "monthlyMt", "annualMt")},
             "vessels": [
-                {key: vessel[key] for key in ("name", "position", "catchMt", "loadedMt", "note")}
+                {
+                    **{key: vessel[key] for key in ("name", "position", "catchMt", "loadedMt", "note")},
+                    "holdCapacity": fishing_hold_capacity(vessel["name"]),
+                }
                 for vessel in region["vessels"]
             ],
         }
@@ -796,7 +898,17 @@ def main(argv: Sequence[str] | None = None) -> int:
         )
         detail_payload = build_detail_payload(payload)
         content = serialized(payload)
-        public_content = serialized(build_public_payload(payload, canonical_sha256(detail_payload)))
+        detail_sha256 = canonical_sha256(detail_payload)
+        previous_public = (
+            json.loads(public_output.read_text(encoding="utf-8"))
+            if public_output.is_file()
+            else {}
+        )
+        public_content = serialized(build_public_payload(
+            payload,
+            detail_sha256,
+            compatible_detail_sha256(previous_public, detail_sha256),
+        ))
         detail_content = serialized(detail_payload)
         if args.check:
             expected_outputs = (

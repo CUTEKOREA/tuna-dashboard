@@ -14,6 +14,46 @@ export interface FleetLoadSignalStyle {
   weight: number;
 }
 
+export type FleetHoldUtilizationLevel = 'normal' | FleetLoadSignalLevel;
+
+export interface FleetHoldCapacityValue {
+  value: number;
+  unit: 'MT' | '㎥';
+}
+
+export interface FleetHoldUtilization {
+  ratioPct: number;
+  barPct: number;
+  level: FleetHoldUtilizationLevel;
+}
+
+/** 적재량과 어창 용량이 모두 MT일 때만 적재율을 만든다. ㎥는 임의 환산하지 않는다. */
+export function resolveFleetHoldUtilization(
+  loadedMt: number | null,
+  capacity: FleetHoldCapacityValue | null | undefined,
+): FleetHoldUtilization | null {
+  if (
+    loadedMt === null
+    || !Number.isFinite(loadedMt)
+    || loadedMt < 0
+    || !capacity
+    || capacity.unit !== 'MT'
+    || !Number.isFinite(capacity.value)
+    || capacity.value <= 0
+  ) {
+    return null;
+  }
+
+  const rawPct = loadedMt / capacity.value * 100;
+  const roundedPct = Number(rawPct.toFixed(1));
+  const ratioPct = rawPct < 90 && roundedPct >= 90 ? 89.9 : roundedPct;
+  return {
+    ratioPct,
+    barPct: Math.min(rawPct, 100),
+    level: rawPct >= 90 ? 'nearCapacity' : rawPct >= 75 ? 'high' : 'normal',
+  };
+}
+
 /** 보고 적재량과 선복량이 모두 있을 때만 지도 적재 신호를 만든다. */
 export function resolveFleetLoadSignal(
   loadedMt: number | null,

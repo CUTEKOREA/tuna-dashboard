@@ -2,7 +2,11 @@ import 'server-only';
 
 import { createHash } from 'node:crypto';
 import { validateFleetDailyDetailPayload, type FleetDailyDetailPayload } from '@/lib/contracts/fleet-daily-api';
-import { fleetDailyPublicDetailSha256, fleetDailyPublicLatest } from '@/lib/data/fleet-daily-public';
+import {
+  fleetDailyPublicDetailSha256,
+  fleetDailyPublicDetailSha256Compat,
+  fleetDailyPublicLatest,
+} from '@/lib/data/fleet-daily-public';
 
 const MAX_DETAIL_BYTES = 64 * 1024;
 let cachedSource: string | null = null;
@@ -11,6 +15,7 @@ let cachedDetail: FleetDailyDetailPayload | null = null;
 type PublicBinding = {
   latest: typeof fleetDailyPublicLatest;
   detailSha256: string;
+  detailSha256Compat?: readonly string[];
 };
 
 function canonicalize(value: unknown): unknown {
@@ -61,7 +66,8 @@ export function parseFleetDailyDetailSource(source: string, binding: PublicBindi
   }
   const detail = validateFleetDailyDetailPayload(parsed);
   assertCurrentPublicAggregate(detail, binding.latest);
-  if (fleetDailyDetailSha256(detail) !== binding.detailSha256) {
+  const digest = fleetDailyDetailSha256(detail);
+  if (digest !== binding.detailSha256 && !binding.detailSha256Compat?.includes(digest)) {
     throw new Error('fleet detail digest does not match public aggregate');
   }
   return detail;
@@ -74,6 +80,7 @@ export function getFleetDailyDetail(): FleetDailyDetailPayload {
   const detail = parseFleetDailyDetailSource(source, {
     latest: fleetDailyPublicLatest,
     detailSha256: fleetDailyPublicDetailSha256,
+    detailSha256Compat: fleetDailyPublicDetailSha256Compat,
   });
   cachedSource = source;
   cachedDetail = detail;

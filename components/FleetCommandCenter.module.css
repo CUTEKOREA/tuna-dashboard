@@ -344,6 +344,20 @@
 .latestVesselHeader span { display:flex; align-items:center; gap:3px; color:var(--dsc-ink-muted); font-size:.68rem; text-align:right; }
 .latestVesselMetrics { margin-top:12px; align-items:flex-end; }
 .latestVesselMetrics strong { display:block; margin-top:3px; color:var(--dsc-ink); font-size:1rem; font-variant-numeric:tabular-nums; }
+.holdUtilization { margin-top:10px; padding-top:9px; border-top:1px solid var(--dsc-surface-border); }
+.holdUtilizationHeader { display:grid; grid-template-columns:auto minmax(0,1fr) auto auto; align-items:center; gap:6px 8px; font-size:.75rem; }
+.holdUtilizationHeader span { color:var(--dsc-ink-muted); }
+.holdUtilizationHeader strong { color:var(--dsc-ink); font-variant-numeric:tabular-nums; }
+.holdUtilizationHeader strong:first-of-type { min-width:0; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+.holdStatusRow { display:flex; justify-content:flex-end; margin-top:6px; }
+.holdStatusLabel { display:inline-flex; align-items:center; padding:2px 5px; border:1px solid currentColor; border-radius:999px; color:var(--color-warning); font-size:.64rem; font-style:normal; font-weight:700; line-height:1; white-space:nowrap; }
+.holdUtilization[data-level='nearCapacity'] .holdStatusLabel { color:var(--color-danger); }
+.holdProgress { height:6px; margin-top:8px; overflow:hidden; border-radius:999px; background:var(--dsc-bg-deep); }
+.holdStatusRow + .holdProgress { margin-top:5px; }
+.holdProgressFill { display:block; height:100%; border-radius:inherit; background:var(--accent-primary); }
+.holdUtilization[data-level='high'] .holdProgressFill { background:var(--color-warning); }
+.holdUtilization[data-level='nearCapacity'] .holdProgressFill { background:var(--color-danger); }
+.holdCapacityNote { margin:6px 0 0; color:var(--dsc-ink-muted); font-size:.75rem; line-height:1.4; }
 .latestVesselNote { margin-top:10px; padding-top:9px; border-top:1px solid var(--dsc-surface-border); }
 .emptyRoster { padding:16px; }
 
