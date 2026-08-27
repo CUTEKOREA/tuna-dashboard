@@ -1,3 +1,14 @@
+> 🚀 **2026-08-27 23:03 KST — 물류 34주·선단 어창 용량·HIKARI 8/27·루트 스크롤바 라이브 배포** [Codex]:
+> - PR [#826](https://github.com/CUTEKOREA/tuna-dashboard/pull/826) squash `2b1da943`. PR App Quality Gate `33078039309`, main App Quality Gate `33078385432`, Data Freshness Audit `33078385368`이 모두 성공했다.
+> - Vercel Production `dpl_FjjcWTV2evQHYU7Mqm8aLJ8aGQ2j`는 Ready·region `icn1`이며 `https://leedonggun.co.kr` 별칭에 연결됐다. GitHub Production deployment `6123937537`이 같은 병합 SHA를 가리킨다.
+> - Production `FLEET_DAILY_DETAIL_JSON`을 새 보호 DTO로 갱신했다. canonical SHA `d50fbd4b…e005`는 공개 `_meta.detailSha256`과 일치한다. 라이브 보호 API 200, 태평양 10·대서양 7척 모두 어창 용량이 있고 MT 8척은 적재율 막대, ㎥ 9척은 미산출로 표시된다.
+> - 라이브 `/unloading`은 HIKARI 1 8/27 일일 283.910·누계 2,866.810·잔량 62.190MT, 진행률 97.9%, 8/28 GPZ/H4C1 100MT 계획과 2026 통합 누계 39,249.410MT를 표시한다. 8/26 이력도 유지된다.
+> - 라이브 `/logistics`는 34주차 7척·25,214.952MT, PATSORN 2,324.679MT, SAMUTSAKORN과 공장 3곳을 표시한다.
+> - 세 페이지 same-origin 390px에서 `clientWidth=scrollWidth=371`, 루트 `scrollbar-width=auto`, bare WebKit 스크롤 규칙 0건이다. 데스크톱 page/console/request/HTTP 오류 0, 배포 후 30분 error·fatal·500 런타임 로그도 0건이다.
+> - 운영자 상태는 `fleet-daily`·`unloading-daily`·`logistics-weekly` 모두 `live_verified`다. 다음 회차는 새 원본 기준으로 각 동기화 절차를 반복한다.
+>
+> 마지막 업데이트: 2026-08-27 23:03 KST [Codex]
+
 > ✅ **2026-08-27 21:51 KST — 루트 청록 스크롤바를 브라우저 기본 스크롤로 복원** [Codex]:
 > - 로그인된 라이브 `/fleet` DOM을 계측한 결과 콘텐츠 중첩 스크롤은 없었고 `HTML` 하나만 문서 스크롤을 소유했다. 내부창처럼 보인 파란 막대는 전역 `::-webkit-scrollbar`와 `html scrollbar-width/color`가 루트까지 칠한 손잡이였다. 8/27 검정 트랙 수정이 루트 배경을 밝게 만들면서 기존 청록 손잡이가 더 두드러졌다.
 > - `html`은 라이트·다크 배경 동기화만 유지하고 브라우저 기본 스크롤로 되돌렸다. 얇은 청록 사용자 지정 스크롤은 `body *` 후손으로 한정해 사이드바·모달·내부 목록의 기존 동작은 보존했다. 문서 높이·overflow·스크롤 기능은 변경하지 않았다.
