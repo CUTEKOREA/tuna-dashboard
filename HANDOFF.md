@@ -1,4 +1,11 @@
 > 📰 **2026-08-27 00:56 KST — 2026-08-26 참치 데일리 브리핑 `/market` 라이브 배포 완료** [Claude/tuna-dashboard-publisher]:
+> ✅ **2026-08-27 16:55 KST — 오징어 시장 이해 페이지: 산업해부 보고서 제25판 동기화 (로컬 반영)** [CC]:
+> - 원자료: 보고서 제25판(`03_통합/20_한국오징어산업해부_보고서.html`, 대조 486건 통과) ← 수협중앙회 어업경영조사보고 2025년판(승인 307001호)·수협 계통판매 월보 289개월 재집계·머코프레스 08-12/언더커런트 08-20 보도(C등급).
+> - `lib/squid-industry-content.ts` 4개 단계 갱신: s04 포클랜드 2차 시즌 일시 중단(fact C등급·원문 미확보 명시), s07 중국 재고 소진 국면+4분기 공급 리스크 창 문단·소비자가 5,570원/마리(08-25)로 갱신, s09 어종별 계통판매 분해(살오징어 56,807→13,199→30,176t, 갑오징어·한치 안정, 결측 57개월 한계), s13 척당 손익(근해채낚기 어업이익 △56백만원·kg당 △1,844원, 동해구중형트롤 △90.0%). SQUID_SOURCE_NOTES에 제25판 반영 명기.
+> - 회귀 테스트 `__tests__/squid-report25-sync.test.ts` 5건 — 반영 전 RED 확인 후 GREEN. 전체 vitest 1,185 passed·2 skipped, tsc 0, npm run verify 통과(빌드 33 라우트·bundle budget OK).
+> - 브라우저 검증: 로컬 next start가 Google OAuth 게이트 env 부재로 503 — 화면 렌더는 jsdom 렌더 테스트(squid-industry-render 등 34건)로 갈음. 같은 워킹트리에 폴더 재편 경로 치환분(spec CSV·build py·squid_v5.json 등 10파일)도 미커밋 상태로 함께 있음.
+> - 상태: **로컬 반영·미커밋·프로덕션 미배포**(이번 사용자 메시지에 배포 요청 없음). 배포 시 전용 브랜치→PR→Gate→라이브 재검증 절차.
+
 > - 게이트 3개 통과: 감사 `AUDIT_PASS`(`state/audit-2026-08-26.txt`) · prepare·verify 통과(`vitest __tests__/daily-briefing.test.ts` 4 passed) · 변경분 존재(origin/main 2026-08-25·5건 -> 2026-08-26·6건).
 > - PR [#803](https://github.com/CUTEKOREA/tuna-dashboard/pull/803) squash 병합 `aad009cf530cba3fc71f8ead250b8c258ac708b1`. 변경 파일은 `public/data/tuna_daily_briefing.json` 1건으로 한정. 브랜치 `briefing/2026-08-26` 삭제 완료.
 > - Vercel Preview success -> main Production deployment `6107060650` success.
