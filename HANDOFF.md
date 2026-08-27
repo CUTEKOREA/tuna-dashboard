@@ -16,6 +16,17 @@
 >
 > 마지막 업데이트: 2026-08-27 14:17 KST [Codex]
 
+> 🦑 **2026-08-27 14:11 KST — 오징어 공식 모니터링 5계열·산업보고서·`/squid-industry` 배포 준비 완료** [Codex]:
+> - KMI FishData는 확정 관측 `2026-08-25 5,570원/마리`와 `2026-08-26` 화면 비교값 `5,440원(미확정)`을 분리했다. KAMIS 도매는 `2026-08-26` 서울 연근해 냉동 `13,600원/kg`·원양 냉동 `10,500원/kg`을 별도 계열로 유지했다. 페이지 본문·사실표·위젯도 같은 기준일과 KMI 등급 B로 동기화했다.
+> - SERNAPESCA v20260820 `RESUMEN`의 내부 기준일은 `2026-08-18`: 법정 쿼터 `200,000t`, 포획 `130,021.9741t`, 잔량 `69,978.0259t`, 소진 `65.011%`. 기존 8/06·8/13 파일은 삭제하지 않았다.
+> - PRODUCE RD 00263-2026은 조사 참여선 20척 명단이며 상업 재개가 아니다. 8/27까지 별도 상업 재개·추가중단 공문은 없었다. 중국 해관 030743 수입 USD 5·6월은 HTTP 412·HTTPS 504·캡차 차단으로 값 미확정이며 0·Comtrade 대체를 금지했다.
+> - Drive 아카이브에 원문 4건과 GACC 실패 영수증 1건을 저장하고 `source_registry.csv` 44행·`monitoring_calendar.csv` 20행을 갱신했다. KMI·KAMIS 파생 CSV를 별도 증거행으로 추가한 `external_sources_manifest.csv` 127행은 전 경로·크기·SHA-256 대조를 통과했다.
+> - 보고서는 제22판 `6ae341e`로 재발행했다. HTML 수치 대조 471건·표 51·그림 8, PDF 103쪽 A4이며 표 51과 판권면을 시각 검수했다. 표 51은 5,440원의 날짜와 미확정 성격을 명시하고, 판권면은 본문 구조자료 8/22·최신 모니터링 8/27을 분리한다.
+> - 대시보드는 기존 62위젯 계약을 보존하고 `A_chile_jibia_quota`·`B_kmi_consumer_price`·`E_monitoring_calendar`를 승격해 33개를 노출한다. 이번 범위 밖 F 위젯 23개는 기존 프로덕션과 canonical SHA-256 `fa3f944b…dc418`로 동일하게 보존했다. 원문 번역 120건의 source hash 회귀검사와 표시문자 정규화의 원문 필드 보존 검사를 추가했다.
+> - 오징어 Python 계약 25/25·집중 Vitest 25/25 통과. 전체 `npm run verify`도 통과했다: ESLint 0 errors(기존 warnings 12), 운영자 Python 21건, Vitest 155파일·1,201 passed/2 skipped, API cache 158/158, Next 118페이지, client leak·bundle 통과. 로컬 브라우저는 의도된 구글 소유자 보안 설정 부재로 503 fail-closed였고 코드 오류가 아니므로, PR·Production 배포 뒤 로그인 데스크톱·390px·오류 로그를 검증한다.
+>
+> 마지막 업데이트: 2026-08-27 14:11 KST [Codex]
+
 > 🚀 **2026-08-27 — `/mackerel-industry` NSC 34주·KMI Vol.257 라이브 배포** [Codex]:
 > - PR [#813](https://github.com/CUTEKOREA/tuna-dashboard/pull/813) squash `757fa2b8`. PR App Quality Gate·Vercel Preview와 main App Quality Gate·Freshness workflow가 성공했다.
 > - Vercel Production `dpl_2MykeHGzGK8aYWfT8s8FeuzbXP3T` Ready · region `icn1` · `https://leedonggun.co.kr` alias 연결. 배포 후 최근 30분 error 로그 0건.

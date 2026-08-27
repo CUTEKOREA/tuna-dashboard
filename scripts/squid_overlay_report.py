@@ -13,6 +13,7 @@ import argparse, json, sys
 from pathlib import Path
 
 from scripts.validate_squid_v5 import validate
+from scripts.squid_build.normalize import normalize_display_dashes
 
 ARCHIVE = (Path.home() / "Library/CloudStorage/GoogleDrive-cutekorea@gmail.com/내 드라이브/agri_data"
            / "01_수산물(Seafood)/squid/8_한국_오징어_산업_해부/02_출처원본")
@@ -345,17 +346,47 @@ def widgets():
     return W
 
 def main() -> int:
-    ap = argparse.ArgumentParser(); ap.add_argument("--inout", type=Path, required=True); a = ap.parse_args()
+    ap = argparse.ArgumentParser()
+    ap.add_argument("--inout", type=Path, required=True)
+    ap.add_argument(
+        "--preserve-f-from",
+        type=Path,
+        help="이번 점검 범위 밖인 기존 F 위젯을 이 산출물에서 그대로 보존",
+    )
+    a = ap.parse_args()
     doc = json.loads(a.inout.read_text(encoding="utf-8"))
     known = {s["source_id"] for s in doc["sources"]}
     doc["sources"] += [s for s in SOURCES if s["source_id"] not in known]
     W = widgets()
+    preserved_count = 0
+    if a.preserve_f_from:
+        preserved_doc = json.loads(a.preserve_f_from.read_text(encoding="utf-8"))
+        preserved = {
+            widget_id: widget
+            for widget_id, widget in preserved_doc.get("widgets", {}).items()
+            if widget_id.startswith("F_")
+        }
+        if set(preserved) != set(W):
+            missing = sorted(set(W) - set(preserved))
+            extra = sorted(set(preserved) - set(W))
+            print(
+                f"F 보존 집합 불일치: missing={missing}, extra={extra}",
+                file=sys.stderr,
+            )
+            return 1
+        W = preserved
+        preserved_count = len(preserved)
     doc["widgets"].update(W)
+    doc = normalize_display_dashes(doc, preserve_raw_evidence=True)
     errs = validate(doc)
     if errs:
         print("\n".join(errs), file=sys.stderr); return 1
     a.inout.write_text(json.dumps(doc, ensure_ascii=False, indent=1), encoding="utf-8")
-    print(f"F 섹션 {len(W)}개 위젯 · 출처 {len(doc['sources'])}건 · 검증 통과 → {a.inout}")
+    preserved_note = f" · 기존 F {preserved_count}개 보존" if preserved_count else ""
+    print(
+        f"F 섹션 {len(W)}개 위젯{preserved_note} · 출처 {len(doc['sources'])}건 "
+        f"· 검증 통과 → {a.inout}"
+    )
     return 0
 
 if __name__ == "__main__":
