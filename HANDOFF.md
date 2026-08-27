@@ -1,3 +1,21 @@
+> 📦 **2026-08-27 14:17 KST — COSMO 34주·선단 8/27·TTA 운반선 33주 통합 갱신 로컬 완료** [Codex]:
+> - 선행 하역 hotfix PR [#816](https://github.com/CUTEKOREA/tuna-dashboard/pull/816) squash `c5a067c3`는 Production `dpl_GKK3mCChptuB82EPcqBgsUfGU94r`에 배포했다. 라이브에서 HIKARI 1 기본 선택, 2026년 13항차 체선 계산, SEIN VENUS 무작업일 8/9·8/12·8/16, 연도경계 SEIN PHOENIX $30,000과 390px overflow 0·오류 로그 0을 확인했고 운영자 상태를 `live_verified`로 기록했다.
+> - COSMO 원본 2건을 검증했다. `COSMO 주간보고 (34주차)-첨부파일.xlsx` SHA-256 `99de9a50…afac`, `2026.8.27_COSMO 주간보고 (34주차).docx` `6a0d61f1…a5eb`; ZIP 무결성·수식 오류 0건이다.
+> - `/cosmo`는 34주·수주 26 FCL/$2.023M·수주잔량 356 FCL/$23.988M·주간 판매 $166.7K·누적 $42.182M·CBU 380.066MT/수율 37.74%로 갱신했다. 34주 검산 8/8이 닫혔고 견적은 145건이다.
+> - Word에만 있는 아프리카 스타 $540K 재심리, 식품안전 불시 심사(BRC/IFS), P/MAS·P/DIS 하역 일정과 8월 결산 계획을 `cosmo-weekly-report.ts`로 정규화해 경영요약의 「34주차 업무 브리핑」에 노출했다.
+> - 해양수산본부 원본 `해양수산본부 일일업무보고-260827 (목).docx` SHA-256 `54503e73…90d`; 전체 재동기화와 `--check`가 byte 동일하게 통과했다. `/fleet` 공개 집계는 보고 2026-08-27/조업 8/26, 143건, 태평양 65·대서양 165·합계 230MT, 월 8,173MT, 연 79,730.8MT, 검산 572/572회다.
+> - 보호 상세는 `artifacts/fleet-daily-detail.json`과 canonical SHA `2f469c32…b9d2`에만 있고 공개 JSON에는 선박명·좌표·비고가 없다. 최신 상세는 태평양 10·대서양 7·운반선 6·연승 1행이며 HIKARI 1·P/MAS·P/DIS를 포함한다.
+> - TTA 원본 `Reefer ship movement for week 33rd.xlsx` SHA-256 `03d617a7…bca1`; 기간 2026-08-14~08-20, 방콕 6척·22,890.273MT를 선박별로 재합산했다. HIKARI 1은 2,929MT(ASIAN 404·CMC 405·GB 130·GPZ 500·ISA 790·MMP 300·RMK 100·TUM 300), 부두 33B다.
+> - `/logistics` 최신 보고 위젯과 상단 히어로를 모두 33주차 SSOT로 통일했다. 히어로는 6척·22,890.273MT·6마커를 표시하며 32주차 JSON은 이력으로 보존한다.
+> - 재사용 파이프라인 `sync_cosmo_weekly.py`·`sync_reefer_weekly.py`를 추가했다. COSMO 의미 라벨 이동, TTA F~AH 배분 헤더 이동/중복, 수식 오류·선박별 합계 불일치를 fail-closed로 차단한다. Python 직접 테스트 6건을 `npm run verify`에 연결했다.
+> - CI에 Python 3.13과 `openpyxl==3.1.5`·`et-xmlfile==2.0.0` 설치를 추가하고 COSMO/TTA 원본 산출물·파서 경로 필터를 연결했다. 깨끗한 venv 설치 후 6/6 재현했다. 리니지도 199파일·110위젯·74데이터로 재생성했다.
+> - 작성자와 별도 검증자가 원본 수치·공개/보호 경계·Git 추적·상단 KPI를 반증했다. 초기 Important 3건은 W33 JSON 강제 추적, 물류 히어로 최신화, 파서 경계 테스트로 해소했다.
+> - `npm run verify` 통과: ESLint 0 errors(기존 warnings 12), Python 운영 테스트 27건, Vitest 157파일·1,208건, API cache 158/158, Next 118페이지, client leak·bundle 33경로 통과.
+> - 로컬 production 1440px·390px에서 `/cosmo`·`/fleet`·`/logistics` 모두 핵심 문구 렌더·가로 overflow 0·page error 0이다. 로컬 광고 요청 403과 Supabase 미설정 `/api/fleet/daily` 503은 예상 경계이며 보호 상세는 Production 로그인 세션에서 후속 확인한다.
+> - 사용자가 세 화면의 반영과 배포를 명시했다. **다음 단계**: PR gate → main 병합 → Fleet 상세 환경변수 교체 → Production READY → 세 화면 데스크톱·390px·보호 API·오류 로그 라이브 검증.
+>
+> 마지막 업데이트: 2026-08-27 14:17 KST [Codex]
+
 > 🚀 **2026-08-27 — `/mackerel-industry` NSC 34주·KMI Vol.257 라이브 배포** [Codex]:
 > - PR [#813](https://github.com/CUTEKOREA/tuna-dashboard/pull/813) squash `757fa2b8`. PR App Quality Gate·Vercel Preview와 main App Quality Gate·Freshness workflow가 성공했다.
 > - Vercel Production `dpl_2MykeHGzGK8aYWfT8s8FeuzbXP3T` Ready · region `icn1` · `https://leedonggun.co.kr` alias 연결. 배포 후 최근 30분 error 로그 0건.

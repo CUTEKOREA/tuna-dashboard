@@ -225,7 +225,7 @@ describe('dashboard registry', () => {
 
     expect(logisticsSource).toContain('<HeroZone');
     expect(logisticsSource).toContain('variant="map"');
-    expect(logisticsSource).toContain("getMiscData('reeferWeek31')");
+    expect(logisticsSource).toContain("from '@/lib/data/reefer-weekly'");
     expect(logisticsSource).toContain('<PillTabs');
 
     expect(marketSource).toContain('<HeroZone');
