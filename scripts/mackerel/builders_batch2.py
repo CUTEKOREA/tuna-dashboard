@@ -1013,7 +1013,12 @@ def s1_official_self_sufficiency():
 
 @builder("s1_self_sufficiency_species_gap")
 def s1_self_sufficiency_species_gap():
-    """자급률 분자가 망치고등어를 뺀다. 높은 해일수록 빠진 몫이 크다."""
+    """자급률 분자가 망치고등어를 뺀다. 그 어종이 많은 해일수록 값이 부풀려진다.
+
+    주의: 「자급률이 높은 해 = 망치고등어가 많은 해」는 성립하지 않는다. 자급률 상위는
+    2018>2023>2022 이고 망치 비중 상위는 2018>2022>2023 이라 집합만 같고 순서가 다르다.
+    산식이 뒷받침하는 것은 반대 방향뿐이다 — 망치고등어가 많으면 그만큼 분자에서 빠진다.
+    """
     data = []
     for y in sorted(_SUPPLY):
         tot, blue = _BLUE[y]
@@ -1022,7 +1027,7 @@ def s1_self_sufficiency_species_gap():
                      "망치고등어 포함": r1(100 * tot / (s["소비"] + blue)),
                      "망치 비중": r1(100 * blue / tot)})
     return {
-        "title": "자급률이 높은 해일수록 빠진 어종이 크다",
+        "title": "망치고등어가 많은 해일수록 자급률이 부풀려진다",
         "subtitle": "해양수산부 실태조사 2024. 공표 자급률은 국내생산에서 망치고등어를 빼고 계산한다. "
                     "망치고등어를 분자에 넣고 분모의 소비에도 더해 다시 계산한 값을 나란히 놓았다. 단위 %.",
         "chartType": "Composed", "xKey": "연도",
