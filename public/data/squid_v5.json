@@ -1,8 +1,8 @@
 {
  "meta": {
-  "built_at": "2026-08-18T23:18:11+09:00",
+  "built_at": "2026-08-27T14:08:37+09:00",
   "builder_version": "squid_build/1.2.0",
-  "archive_snapshot": "squid archive @ 2026-08-12",
+  "archive_snapshot": "squid archive @ 2026-08-27",
   "gate_version": "measurement_gate 2026-08-12 + local G-012/G-013",
   "telemetry": "SYNCED"
  },
@@ -124,8 +124,8 @@
    "frequency": "event_weekly",
    "landing_url": "https://www.gob.pe/institucion/produce/tema/pesca",
    "archive_subdir": "02_쿼터·어장",
-   "latest_verified": "RM 00269-2026 gazette 2026-08-15 (research/prospecting only); commercial suspension still RD 00092-2026",
-   "note": "7월 9일 529391.41t/89.84% 뒤 선창규모별 중단 공지; 최신 공지가 우선 | 8월 16일 기준 재개 공지 없음. 7월 24일 소통문이 조업상태 최신. | RM 00269는 조사·탐사 인가. 상업 재개 아님."
+   "latest_verified": "2026-08-27 RD00263 research vessel list; no commercial reopening or additional closure",
+   "note": "7월 선창규모별 중단이 상업상태 최신. RM00269는 조사·탐사 인가이고 RD00263은 참여선 20척 명단이다. 상업 재개로 읽지 말 것."
   },
   {
    "source_id": "SQ-MGT-SUBPESCA",
@@ -148,8 +148,8 @@
    "frequency": "weekly_monthly",
    "landing_url": "https://www.sernapesca.cl/informacion-utilidad/consumo-de-cuotas/",
    "archive_subdir": "10_원본데이터셋",
-   "latest_verified": "2026-08-13 workbook",
-   "note": "원시 XLSX; 쿼터·어획·잔량 단위 검증 후 사용 | v20260813이 v20260806을 대체하지 않고 병행 보존."
+   "latest_verified": "v20260820 workbook; internal preliminary date 2026-08-18",
+   "note": "원시 XLSX; RESUMEN 총계 기준 포획 130021.9741t·잔량 69978.0259t·소진 65.0110%. 이전 버전 병행 보존."
   },
   {
    "source_id": "SQ-MGT-JFA",
@@ -280,8 +280,8 @@
    "frequency": "weekly",
    "landing_url": "https://fishdata.kmi.re.kr/front/kmisys/seafoodPriceTrends.do",
    "archive_subdir": "04_가격·도매",
-   "latest_verified": "resultList extract 2026-08-13; d09=5271 oneDateD09=4912",
-   "note": "aT KAMIS 기반 소비자가격; 원양 냉동 중품 1마리. 도매는 SQ-PRC-KAMIS. 2026-08-16 HTML resultList에서 추출."
+   "latest_verified": "resultList extract 2026-08-27; oneDate 20260825 oneDateD09 5570; comparison d09 5440",
+   "note": "aT KAMIS 기반 소비자가격; 원양 냉동 중품 1마리. oneDateD09 확정 관측과 d09 비교기준 분리. 도매 SQ-PRC-KAMIS와 평균 금지."
   },
   {
    "source_id": "SQ-PRC-FAO-EFPR",
@@ -508,8 +508,8 @@
    "frequency": "daily_weekly",
    "landing_url": "https://www.kamis.or.kr/",
    "archive_subdir": "04_가격·도매",
-   "latest_verified": "item 619 kinds 01/04/05/GG; wholesale 04=13600 05=10500 through 2026-08-14; kind 01 empty",
-   "note": "KMI FishData는 KAMIS 소비자 가공표. 도매는 품종 분리. GG 서울은 04·05 두 시리즈가 같이 나옴. 키 미저장."
+   "latest_verified": "2026-08-26 item 619 Seoul kind04=13600원/kg kind05=10500원/kg",
+   "note": "도매 kind04 연근해냉동과 kind05 원양냉동 분리. KMI 소비자 원/마리와 평균·마진 계산 금지."
   },
   {
    "source_id": "SQ-TRD-CN-CUSTOMS",
@@ -520,8 +520,8 @@
    "frequency": "monthly",
    "landing_url": "http://stats.customs.gov.cn/",
    "archive_subdir": "03_무역·HS",
-   "latest_verified": "2026-05 split IE 4HS; 2025 monthly 4HS IMP/EXP RMB; IMP USD captcha fail",
-   "note": "HTTP+브라우저+슬라이더 캡차. HTTPS 504. 6자리 HS. 进口=1 出口=0 进出口=10. 수량 열 없음. 상품명에 墨鱼(갑오징어) 포함. 2026-05 030743 进口 RMB 1304799873 + 出口 765528382 = 이미 수집한 进出口 2070328255. IMP USD 미수집. Comtrade와 합치지 말 것."
+   "latest_verified": "2026-06 month metadata confirmed; HS030743 import USD 2026-05 and 2026-06 captcha_blocked",
+   "note": "HTTP 412 JS challenge·HTTPS 504·브라우저 슬라이더 미통과. 수입 USD 값은 빈칸 유지하고 0 또는 Comtrade 대체값을 넣지 말 것."
   },
   {
    "source_id": "SQ-SAFE-RASFF",
@@ -560,6 +560,30 @@
    "note": "repo 내부 산출물. 외부 출처가 아니므로 C등급 · descriptive 용도로만"
   },
   {
+   "source_id": "MAN-GOV-SOURCE-REGISTRY",
+   "publisher": "아카이브 운영 원장",
+   "series": "오징어 공식 출처 레지스트리",
+   "priority": "P2",
+   "grade": "C",
+   "frequency": "event",
+   "landing_url": "00_오징어_관련자료/01_오징어_시장·가격/00_운영/source_registry.csv",
+   "archive_subdir": "00_오징어_관련자료/01_오징어_시장·가격/00_운영",
+   "latest_verified": "2026-08-27",
+   "note": "각 행의 source_id가 실제 원출처를 역참조하는 운영 원장"
+  },
+  {
+   "source_id": "MAN-GOV-MONITORING-CALENDAR",
+   "publisher": "아카이브 운영 원장",
+   "series": "오징어 공식자료 모니터링 캘린더",
+   "priority": "P2",
+   "grade": "C",
+   "frequency": "event",
+   "landing_url": "00_오징어_관련자료/01_오징어_시장·가격/00_운영/monitoring_calendar.csv",
+   "archive_subdir": "00_오징어_관련자료/01_오징어_시장·가격/00_운영",
+   "latest_verified": "2026-08-27",
+   "note": "각 행의 source_id가 실제 점검 대상 원출처를 역참조하는 운영 일정"
+  },
+  {
    "source_id": "SQ-PROC-MFDS-C002",
    "publisher": "식품의약품안전처",
    "series": "품목제조보고·생산실적",
@@ -596,16 +620,40 @@
    "note": "2025-08~2026-07 신고명의 608(정규화 603). 건수만 있고 물량·금액은 없다 - 물량은 관세청 과세정보로 봉인(관세법 제116조)"
   },
   {
-   "source_id": "SQ-FIN-DART",
-   "publisher": "금융감독원",
-   "series": "전자공시 사업보고서·감사보고서",
+   "source_id": "SQ-FIN-CRETOP",
+   "publisher": "한국평가데이터",
+   "series": "크레탑 기업 재무제표 보고서",
+   "priority": "P2",
+   "grade": "B",
+   "frequency": "annual",
+   "landing_url": "https://www.cretop.com",
+   "archive_subdir": "8_한국_오징어_산업_해부/02_출처원본",
+   "latest_verified": "2026-08-24",
+   "note": "표준재무제표증명·기업 제시 자료. 전자공시 미등재 법인의 재무가 여기서 열린다. 감사보고서 원문과 등급이 다르다"
+  },
+  {
+   "source_id": "SQ-CATCH-MOF-DWF",
+   "publisher": "해양수산부",
+   "series": "수산정보포털 원양어업통계 품종별 현황",
    "priority": "P1",
    "grade": "A",
    "frequency": "annual",
-   "landing_url": "https://opendart.fss.or.kr/",
+   "landing_url": "https://www.fips.go.kr/p/S020404/",
    "archive_subdir": "8_한국_오징어_산업_해부/02_출처원본",
-   "latest_verified": "FY2025",
-   "note": "가공 상위 100 중 18곳만 재무 공시. 동명 별개 법인 8건은 소재지·업종으로 걸렀다"
+   "latest_verified": "2025",
+   "note": "「오징어류」 한 칸으로만 집계된다. FAO 어획통계보다 한 해 빠르지만 종·세부해역 분해가 없다"
+  },
+  {
+   "source_id": "SQ-COOP-FIPS",
+   "publisher": "해양수산부",
+   "series": "수산정보포털 수협계통판매통계정보",
+   "priority": "P1",
+   "grade": "A",
+   "frequency": "monthly",
+   "landing_url": "https://www.fips.go.kr/p/S020601/",
+   "archive_subdir": "8_한국_오징어_산업_해부/02_출처원본",
+   "latest_verified": "2026-06",
+   "note": "계통판매 = 수협 위판. 항목 10종 × 1998~2026, 보안문자 없음. 원장(수산물유통종합정보)은 이 계열의 66~82%만 담는다"
   },
   {
    "source_id": "SQ-TAR-KCS-RATE",
@@ -632,40 +680,16 @@
    "note": "별표 26·27 냉동·냉장오징어 4개 코드 지정(~2029-04-30). 제2조 7호: 제조공장은 소매업자 → 신고의무 없음. 공표 규정 없음"
   },
   {
-   "source_id": "SQ-COOP-FIPS",
-   "publisher": "해양수산부",
-   "series": "수산정보포털 수협계통판매통계정보",
-   "priority": "P1",
-   "grade": "A",
-   "frequency": "monthly",
-   "landing_url": "https://www.fips.go.kr/p/S020601/",
-   "archive_subdir": "8_한국_오징어_산업_해부/02_출처원본",
-   "latest_verified": "2026-06",
-   "note": "계통판매 = 수협 위판. 항목 10종 × 1998~2026, 보안문자 없음. 원장(수산물유통종합정보)은 이 계열의 66~82%만 담는다"
-  },
-  {
-   "source_id": "SQ-FIN-CRETOP",
-   "publisher": "한국평가데이터",
-   "series": "크레탑 기업 재무제표 보고서",
-   "priority": "P2",
-   "grade": "B",
-   "frequency": "annual",
-   "landing_url": "https://www.cretop.com",
-   "archive_subdir": "8_한국_오징어_산업_해부/02_출처원본",
-   "latest_verified": "2026-08-24",
-   "note": "표준재무제표증명·기업 제시 자료. 전자공시 미등재 법인의 재무가 여기서 열린다. 감사보고서 원문과 등급이 다르다"
-  },
-  {
-   "source_id": "SQ-CATCH-MOF-DWF",
-   "publisher": "해양수산부",
-   "series": "수산정보포털 원양어업통계 품종별 현황",
+   "source_id": "SQ-FIN-DART",
+   "publisher": "금융감독원",
+   "series": "전자공시 사업보고서·감사보고서",
    "priority": "P1",
    "grade": "A",
    "frequency": "annual",
-   "landing_url": "https://www.fips.go.kr/p/S020404/",
+   "landing_url": "https://opendart.fss.or.kr/",
    "archive_subdir": "8_한국_오징어_산업_해부/02_출처원본",
-   "latest_verified": "2025",
-   "note": "「오징어류」 한 칸으로만 집계된다. FAO 어획통계보다 한 해 빠르지만 종·세부해역 분해가 없다"
+   "latest_verified": "FY2025",
+   "note": "가공 상위 100 중 18곳만 재무 공시. 동명 별개 법인 8건은 소재지·업종으로 걸렀다"
   }
  ],
  "gates": [
@@ -750,71 +774,71 @@
  "monitoring": [
   {
    "source_id": "SQ-PRC-KMI",
-   "series": "KMI FishData 오징어 소비자가격",
+   "series": "한국해양수산개발원 오징어 소비자가격",
    "frequency": "weekly",
-   "latest_verified": "extract 2026-08-13 (d09 5271 / oneDate 4912)",
-   "next_check": "2026-08-19",
+   "latest_verified": "2026-08-27 추출; 2026-08-25 확정 5570원; 화면 비교기준 5440원 분리",
+   "next_check": "2026-09-02",
    "status": "active"
   },
   {
    "source_id": "SQ-MGT-PRODUCE",
-   "series": "Peru pota 공지",
+   "series": "페루 대왕오징어 공지",
    "frequency": "weekly_in_season",
-   "latest_verified": "2026-08-17 RM00269 (조사·탐사만); 상업재개 공문 없음",
-   "next_check": "2026-08-24",
+   "latest_verified": "2026-08-27 결의 제00263호 참여선 20척 확인; 상업재개·추가중단 공문 없음",
+   "next_check": "2026-08-31",
    "status": "active"
   },
   {
    "source_id": "SQ-MGT-SERNAPESCA",
-   "series": "Chile jibia quota consumption",
+   "series": "칠레 대왕오징어 쿼터 소진",
    "frequency": "weekly",
-   "latest_verified": "2026-08-13",
-   "next_check": "2026-08-22",
+   "latest_verified": "2026-08-20판 내부 2026-08-18; 포획 130021.9741t·소진 65.0110%",
+   "next_check": "2026-08-28",
    "status": "active"
   },
   {
    "source_id": "SQ-PROD-INIDEP",
-   "series": "Argentina Illex weekly bulletin",
+   "series": "아르헨티나 오징어 주간 보고",
    "frequency": "weekly_in_season",
-   "latest_verified": "semana 14 / 2026-04-06",
+   "latest_verified": "제14주 2026-04-06",
    "next_check": "2026-09-01",
    "status": "active_gap"
   },
   {
    "source_id": "SQ-TRD-KCS",
-   "series": "Korea squid HS trade",
+   "series": "한국 오징어 품목번호 무역",
    "frequency": "monthly",
-   "latest_verified": "2026-05 observed",
+   "latest_verified": "2026-05 관측",
    "next_check": "2026-09-10",
    "status": "pipeline_gap"
   },
   {
    "source_id": "SQ-PROD-KOSIS",
-   "series": "Korea fishery production",
+   "series": "한국 어업생산",
    "frequency": "monthly",
-   "latest_verified": "access 2026-08-12",
+   "latest_verified": "2026-08-12 접속 확인",
    "next_check": "2026-09-15",
    "status": "manual_export_gap"
   },
   {
    "source_id": "SQ-TRD-COMTRADE",
-   "series": "Global squid HS trade",
+   "series": "세계 오징어 품목번호 무역",
    "frequency": "monthly",
-   "latest_verified": "core 6 reporters 2024-25 totals; Peru 2025 unpublished",
+   "latest_verified": "주요 6개 보고국 2024~2025 총계; 페루 2025 미게시",
    "next_check": "2026-09-30",
    "status": "coverage_gap"
   },
   {
    "source_id": "SQ-MKT-FAO-GLOBEFISH",
-   "series": "GLOBEFISH cephalopods",
+   "series": "세계수산물무역정보 두족류 시황",
    "frequency": "quarterly",
-   "latest_verified": "Issue 2/2026",
+   "latest_verified": "2026년 제2호",
    "next_check": "2026-10-15",
    "status": "active"
   },
   {
    "source_id": "SQ-PRC-FAO-EFPR",
-   "series": "European Fish Price Report",
+   "series": "유럽 수산물 가격 보고서",
    "frequency": "monthly",
    "latest_verified": "2026-07",
    "next_check": "2026-09-05",
@@ -822,31 +846,31 @@
   },
   {
    "source_id": "SQ-MKT-EUMOFA",
-   "series": "EUMOFA squid and monthly highlights",
+   "series": "유럽 수산시장관측소 오징어 월간 동향",
    "frequency": "monthly",
-   "latest_verified": "profile 2026-08-12",
+   "latest_verified": "2026-08-12 품목 프로필",
    "next_check": "2026-09-12",
    "status": "active"
   },
   {
    "source_id": "SQ-EVT-SPRFMO-SC14",
-   "series": "SPRFMO SC14",
+   "series": "남태평양지역수산관리기구 과학위원회 제14차",
    "frequency": "event",
-   "latest_verified": "working papers 2026-08-16",
+   "latest_verified": "2026-08-16 작업문서",
    "next_check": "2026-09-14",
    "status": "scheduled"
   },
   {
    "source_id": "SQ-PROD-FAO-FISHSTAT",
-   "series": "FAO FishStat",
+   "series": "유엔식량농업기구 수산통계",
    "frequency": "annual",
-   "latest_verified": "2026.1.0 / data 2024",
+   "latest_verified": "2026.1.0판·자료 2024년",
    "next_check": "2027-07-15",
    "status": "active"
   },
   {
    "source_id": "SQ-MGT-MOF-TAC",
-   "series": "Korea TAC plan",
+   "series": "한국 총허용어획량 시행계획",
    "frequency": "annual_event",
    "latest_verified": "2026-06-30",
    "next_check": "2027-06-15",
@@ -854,7 +878,7 @@
   },
   {
    "source_id": "SQ-MGT-JFA",
-   "series": "Japan surumeika TAC",
+   "series": "일본 살오징어 총허용어획량",
    "frequency": "annual_event",
    "latest_verified": "2026-03-23",
    "next_check": "2026-12-15",
@@ -862,50 +886,50 @@
   },
   {
    "source_id": "SQ-MGT-FIFD",
-   "series": "Falkland calamari licensing/surveys",
+   "series": "포클랜드 오징어 인허가·조사",
    "frequency": "seasonal",
-   "latest_verified": "2025 assessments; no 2026 survey/notice",
+   "latest_verified": "2025년 평가 확보; 2026년 조사·공지 미게시",
    "next_check": "2026-09-15",
    "status": "active_gap"
   },
   {
    "source_id": "SQ-PROD-IMARPE",
-   "series": "IMARPE pota cruise/situation",
+   "series": "페루 해양연구소 대왕오징어 조사",
    "frequency": "event_seasonal",
-   "latest_verified": "2026-02-09 cruise/OCG-IV",
+   "latest_verified": "2026-02-09 조사·제4차 대왕오징어 작전",
    "next_check": "2026-09-15",
    "status": "active"
   },
   {
    "source_id": "SQ-PROD-NPFC-JFS",
-   "series": "NPFC/NIFS 살오징어",
+   "series": "북태평양수산위원회·국립수산과학원 살오징어",
    "frequency": "annual_event",
-   "latest_verified": "FRA/JFA FY2025 published 2025-12-26",
+   "latest_verified": "2025 회계연도 평가 2025-12-26 게시",
    "next_check": "2026-12-15",
    "status": "active"
   },
   {
    "source_id": "SQ-MGT-KR-TAC-CONSUMPTION",
-   "series": "한국 살오징어 TAC 소진",
+   "series": "한국 살오징어 총허용어획량 소진",
    "frequency": "monthly_in_season",
-   "latest_verified": "2026-06-30 FIRA 오징어 36.6%",
+   "latest_verified": "2026-06-30 오징어 36.6%",
    "next_check": "2026-09-10",
    "status": "active"
   },
   {
    "source_id": "SQ-PRC-KAMIS",
-   "series": "KAMIS 오징어 도매",
+   "series": "농수산물유통정보 오징어 도매",
    "frequency": "weekly",
-   "latest_verified": "kinds 04=13600 05=10500 through 2026-08-14",
-   "next_check": "2026-08-20",
+   "latest_verified": "2026-08-26 서울 연근해냉동 13600원/kg; 원양냉동 10500원/kg",
+   "next_check": "2026-09-02",
    "status": "active"
   },
   {
    "source_id": "SQ-TRD-CN-CUSTOMS",
-   "series": "중국 해관 오징어 HS",
+   "series": "중국 해관 오징어 품목번호 무역",
    "frequency": "monthly",
-   "latest_verified": "2025 monthly 4HS IMP/EXP RMB; 2026-05 IMP USD still blocked",
-   "next_check": "2026-08-25",
+   "latest_verified": "2026-06 월 메타 확인; 품목번호 030743 수입 달러 5·6월 보안문자 차단·값 미확정",
+   "next_check": "2026-09-25",
    "status": "partial"
   }
  ],
@@ -930,11 +954,11 @@
     {
      "origin": "칠레 jibia",
      "status": "조업중",
-     "as_of": "2026-08-06",
+     "as_of": "2026-08-18",
      "evidence_widget": "A_chile_jibia_quota",
-     "reason": "누적 포획이 증가 중이며 잔여 78,131톤",
+     "reason": "누적 포획이 증가 중이며 잔여 69,978톤",
      "state_evidence": {
-      "archive_path": "00_오징어_관련자료/01_오징어_시장·가격/10_원본데이터셋/20260806-SERNAPESCA-Jibia_Quota_Consumption_2026.xlsx",
+      "archive_path": "00_오징어_관련자료/01_오징어_시장·가격/10_원본데이터셋/20260820-SERNAPESCA-Jibia_Quota_Consumption_2026.xlsx",
       "derivation": "observed_capture_accrual",
       "evidence_type": "observed_report"
      }
@@ -942,7 +966,7 @@
     {
      "origin": "포클랜드 Loligo",
      "status": "어기중",
-     "as_of": "2026-08-18",
+     "as_of": "2026-08-27",
      "evidence_widget": "A_falkland_loligo_season",
      "reason": "공개 어기 일정(2기: 7월 말부터 64일) 기준이며 2026 개장 공지 확인은 아님",
      "state_evidence": {
@@ -998,9 +1022,9 @@
     "fx_date": null,
     "nominal_real": "n/a",
     "coverage_start": "2026-05-28",
-    "coverage_end": "2026-08-12",
-    "published_at": "2026-08-12",
-    "retrieved_at": "2026-08-12",
+    "coverage_end": "2026-08-18",
+    "published_at": "2026-08-20",
+    "retrieved_at": "2026-08-27",
     "source_ids": [
      "SQ-MGT-PRODUCE",
      "SQ-MGT-SERNAPESCA",
@@ -1121,20 +1145,20 @@
    "title": "칠레 jibia - 쿼터 소진율",
    "chartType": "gauge",
    "data": {
-    "as_of": "2026-08-06",
+    "as_of": "2026-08-18",
     "legal_quota_tonnes": 200000,
-    "recorded_capture_tonnes": 121868.7551,
-    "quota_minus_recorded_capture_tonnes": 78131.2449,
-    "consumption_pct": 60.9344,
+    "recorded_capture_tonnes": 130021.9741,
+    "quota_minus_recorded_capture_tonnes": 69978.0259,
+    "consumption_pct": 65.011,
     "denominator_source": "00_오징어_관련자료/01_오징어_시장·가격/02_쿼터·어장/20251218-SUBPESCA-Jibia_Quota_2026.md",
-    "numerator_source": "00_오징어_관련자료/01_오징어_시장·가격/10_원본데이터셋/20260806-SERNAPESCA-Jibia_Quota_Consumption_2026.xlsx",
+    "numerator_source": "00_오징어_관련자료/01_오징어_시장·가격/10_원본데이터셋/20260820-SERNAPESCA-Jibia_Quota_Consumption_2026.xlsx",
     "breakdown": [
      {
       "segment": "ARTESANAL",
       "allocation_tonnes": 175500,
-      "capture_tonnes": 121486.3518,
-      "balance_tonnes": 54013.6482,
-      "consumption_pct": 69.223
+      "capture_tonnes": 129611.9928,
+      "balance_tonnes": 45888.0072,
+      "consumption_pct": 73.853
      },
      {
       "segment": "INDUSTRIAL",
@@ -1144,15 +1168,22 @@
       "consumption_pct": 0.0005
      },
      {
-      "segment": "ARTESANAL-INDUSTRIAL",
+      "segment": "FAUNA ACOMPAÑANTE",
       "allocation_tonnes": 4000,
-      "capture_tonnes": 382.3153,
-      "balance_tonnes": 3617.6847,
-      "consumption_pct": 9.5579
+      "capture_tonnes": 409.8933,
+      "balance_tonnes": 3590.1067,
+      "consumption_pct": 10.2473
+     },
+     {
+      "segment": "INVESTIGACIÓN",
+      "allocation_tonnes": 1000,
+      "capture_tonnes": 0,
+      "balance_tonnes": 1000,
+      "consumption_pct": 0
      }
     ]
    },
-   "methodology": "SUBPESCA 법정 총쿼터를 분모로, SERNAPESCA XLSX의 중복 없는 3개 OBJETIVO 포획행 합계를 분자로 계산",
+   "methodology": "칠레 수산차관부 법정 총쿼터를 분모로, 칠레 수산청 엑셀 요약 시트의 합계 포획·잔량·소진율과 4개 배분행을 직접 적재",
    "basis": {
     "species": [
      "Dosidicus gigas"
@@ -1171,15 +1202,15 @@
     "fx_date": null,
     "nominal_real": "n/a",
     "coverage_start": "2026-01-01",
-    "coverage_end": "2026-08-06",
-    "published_at": "2026-08-06",
-    "retrieved_at": "2026-08-12",
+    "coverage_end": "2026-08-18",
+    "published_at": "2026-08-20",
+    "retrieved_at": "2026-08-27",
     "source_ids": [
      "SQ-MGT-SERNAPESCA",
      "SQ-MGT-SUBPESCA"
     ],
     "source_grade": "A",
-    "archive_path": "00_오징어_관련자료/01_오징어_시장·가격/10_원본데이터셋/20260806-SERNAPESCA-Jibia_Quota_Consumption_2026.xlsx;00_오징어_관련자료/01_오징어_시장·가격/02_쿼터·어장/20251218-SUBPESCA-Jibia_Quota_2026.md",
+    "archive_path": "00_오징어_관련자료/01_오징어_시장·가격/10_원본데이터셋/20260820-SERNAPESCA-Jibia_Quota_Consumption_2026.xlsx;00_오징어_관련자료/01_오징어_시장·가격/02_쿼터·어장/20251218-SUBPESCA-Jibia_Quota_2026.md",
     "restrictions": [],
     "blocked_use": []
    },
@@ -1318,7 +1349,7 @@
     "coverage_start": "2025-08-29",
     "coverage_end": "2025-12-12",
     "published_at": "2025-12-12",
-    "retrieved_at": "2026-08-12",
+    "retrieved_at": "2026-08-27",
     "source_ids": [
      "SQ-PROD-FIFD",
      "SQ-MGT-FIFD"
@@ -1355,7 +1386,7 @@
     "coverage_start": "2026-08-12",
     "coverage_end": "2026-08-12",
     "published_at": "2026-08-12",
-    "retrieved_at": "2026-08-12",
+    "retrieved_at": "2026-08-27",
     "source_ids": [
      "SQ-PROD-INIDEP",
      "SQ-MGT-ARGENTINA"
@@ -1497,7 +1528,7 @@
     "coverage_start": "2026-01-14",
     "coverage_end": "2026-03-23",
     "published_at": "2026-03-23",
-    "retrieved_at": "2026-08-12",
+    "retrieved_at": "2026-08-27",
     "source_ids": [
      "SQ-MGT-JFA",
      "SQ-PROD-JFA"
@@ -1559,7 +1590,7 @@
     "coverage_start": "2026-06-05",
     "coverage_end": "2026-06-05",
     "published_at": "2026-06-05",
-    "retrieved_at": "2026-08-12",
+    "retrieved_at": "2026-08-27",
     "source_ids": [
      "SQ-MGT-SPRFMO-CMM"
     ],
@@ -2589,7 +2620,7 @@
     "coverage_start": "2026-06",
     "coverage_end": "2026-08-12",
     "published_at": "2026-08-12",
-    "retrieved_at": "2026-08-12",
+    "retrieved_at": "2026-08-27",
     "source_ids": [
      "SQ-PROD-NIFS-CLIMATE",
      "SQ-PROD-NOAA-LONGFIN"
@@ -2614,42 +2645,42 @@
     },
     "observations": [
      {
-      "date": "2026-08-07",
-      "price_krw": 4954
+      "date": "2026-08-24",
+      "price_krw": 5424
      },
      {
-      "date": "2026-08-10",
-      "price_krw": 4899
-     },
-     {
-      "date": "2026-08-11",
-      "price_krw": 4926
+      "date": "2026-08-25",
+      "price_krw": 5570
      }
     ],
+    "comparison_snapshot": {
+     "date": "2026-08-26",
+     "price_krw": 5440
+    },
     "comparisons": [
      {
       "basis": "5년 평균",
       "price_krw": 4442,
-      "difference_pct": 10.9
+      "difference_pct": 22.5
      },
      {
       "basis": "전년 평균",
       "price_krw": 4828,
-      "difference_pct": 2.0
+      "difference_pct": 12.7
      },
      {
       "basis": "전월 평균",
       "price_krw": 5227,
-      "difference_pct": -5.8
+      "difference_pct": 4.1
      },
      {
       "basis": "전주 가격",
-      "price_krw": 5258,
-      "difference_pct": -6.3
+      "price_krw": 5257,
+      "difference_pct": 3.5
      }
     ]
    },
-   "methodology": "KMI FishData 보관 CSV 1행의 관측일 가격과 네 비교기준을 그대로 적재",
+   "methodology": "한국해양수산개발원 보관 자료의 날짜 확정 관측과 화면 비교기준을 분리하고, 네 비교율은 화면 비교기준에만 귀속",
    "basis": {
     "species": [
      "Todarodes pacificus",
@@ -2668,15 +2699,15 @@
     "currency_converted": false,
     "fx_date": null,
     "nominal_real": "nominal",
-    "coverage_start": "2026-08-07",
-    "coverage_end": "2026-08-11",
-    "published_at": "2026-08-11",
-    "retrieved_at": "2026-08-12",
+    "coverage_start": "2026-08-24",
+    "coverage_end": "2026-08-25",
+    "published_at": "2026-08-26",
+    "retrieved_at": "2026-08-27",
     "source_ids": [
      "SQ-PRC-KMI"
     ],
     "source_grade": "B",
-    "archive_path": "00_오징어_관련자료/01_오징어_시장·가격/11_분석·가공데이터/KMI_FishData_squid_price_20260811.csv",
+    "archive_path": "00_오징어_관련자료/01_오징어_시장·가격/11_분석·가공데이터/KMI_FishData_squid_price_20260827.csv",
     "restrictions": [],
     "blocked_use": [],
     "product_form": "원양(냉동) 中 1마리"
@@ -3303,7 +3334,7 @@
     "coverage_start": "2026-07",
     "coverage_end": "2026-07",
     "published_at": "2026-07",
-    "retrieved_at": "2026-08-12",
+    "retrieved_at": "2026-08-27",
     "source_ids": [
      "SQ-PRC-FAO-EFPR"
     ],
@@ -3415,11 +3446,11 @@
      "market_stage": "consumer",
      "label": "한국 소비자가",
      "available": true,
-     "value": 4926,
+     "value": 5570,
      "unit": "원/마리",
      "currency": "KRW",
      "weight_basis": "product_weight",
-     "coverage_end": "2026-08-11",
+     "coverage_end": "2026-08-25",
      "source_widget": "B_kmi_consumer_price"
     },
     {
@@ -3467,9 +3498,9 @@
     "fx_date": null,
     "nominal_real": "n/a",
     "coverage_start": "2026-01",
-    "coverage_end": "2026-08-11",
-    "published_at": "2026-08-12",
-    "retrieved_at": "2026-08-12",
+    "coverage_end": "2026-08-25",
+    "published_at": "2026-08-26",
+    "retrieved_at": "2026-08-27",
     "source_ids": [
      "SQ-PRC-KMI",
      "SQ-PRC-FAO-EFPR",
@@ -4193,7 +4224,7 @@
     "coverage_start": "2026-07",
     "coverage_end": "2026-08-12",
     "published_at": "2026-08-12",
-    "retrieved_at": "2026-08-12",
+    "retrieved_at": "2026-08-27",
     "source_ids": [
      "SQ-PRC-FAO-EFPR"
     ],
@@ -4322,7 +4353,7 @@
     "coverage_start": "2026-05-25",
     "coverage_end": "2026-07-03",
     "published_at": "2026-07-03",
-    "retrieved_at": "2026-08-12",
+    "retrieved_at": "2026-08-27",
     "source_ids": [
      "SQ-MKT-FAO-GLOBEFISH"
     ],
@@ -4345,8 +4376,8 @@
     {
      "indicator": "KMI 소비자가",
      "source_widget": "B_kmi_consumer_price",
-     "coverage_end": "2026-08-11",
-     "age_days": 7,
+     "coverage_end": "2026-08-25",
+     "age_days": 2,
      "available": true,
      "status": "정상"
     },
@@ -4386,9 +4417,9 @@
     "fx_date": null,
     "nominal_real": "n/a",
     "coverage_start": "2026-05",
-    "coverage_end": "2026-08-11",
-    "published_at": "2026-08-12",
-    "retrieved_at": "2026-08-12",
+    "coverage_end": "2026-08-25",
+    "published_at": "2026-08-26",
+    "retrieved_at": "2026-08-27",
     "source_ids": [
      "SQ-PRC-KMI",
      "SQ-PRC-FAO-EFPR",
@@ -7098,7 +7129,7 @@
     "coverage_start": "2025-12-02",
     "coverage_end": "2026-08-12",
     "published_at": "2026-08-12",
-    "retrieved_at": "2026-08-12",
+    "retrieved_at": "2026-08-27",
     "source_ids": [
      "SQ-MKT-EUMOFA"
     ],
@@ -7149,7 +7180,7 @@
     "coverage_start": "2025-12",
     "coverage_end": "2025-12",
     "published_at": "2025-12",
-    "retrieved_at": "2026-08-12",
+    "retrieved_at": "2026-08-27",
     "source_ids": [
      "SQ-COUNTRY-USDA-KOREA"
     ],
@@ -7217,7 +7248,7 @@
     "coverage_start": "2026-02-20",
     "coverage_end": "2026-02-20",
     "published_at": "2026-02-20",
-    "retrieved_at": "2026-08-12",
+    "retrieved_at": "2026-08-27",
     "source_ids": [
      "SQ-ESG-SPRFMO"
     ],
@@ -7283,7 +7314,7 @@
     {
      "kind": "source_excerpt",
      "source_path": "00_오징어_관련자료/01_오징어_시장·가격/07_지속가능성·IUU·노동/20260220-SPRFMO-Final_Compliance_Report_2024-2025.md",
-     "text": "The main reasons for failing to meet the 2% standard are as follows:  Firstly, the round-trip travel time between the port and fishing grounds for observers takes about 90 days, which reduces the time they actually working on fishing vessels;  Secondly, certain unforeseen incidents have resulted in lower observed fishing days-for instance, an observer developed a sudden illness and had to terminate the observation mission early, thus he only working on the Priority fishing vessel for one month; Non-Compliant China Compliant  Thirdly, uncertainties in estimating the next year’s total fishing days and the observer deployment process, such as the departure time of observers from the port and the transit time from carrier vessels to target fishing vessels after arriving at the fishing grounds, have led to deviations in the estimated number of deployed observers and their observation days.",
+     "text": "The main reasons for failing to meet the 2% standard are as follows:  Firstly, the round-trip travel time between the port and fishing grounds for observers takes about 90 days, which reduces the time they actually working on fishing vessels;  Secondly, certain unforeseen incidents have resulted in lower observed fishing days—for instance, an observer developed a sudden illness and had to terminate the observation mission early, thus he only working on the Priority fishing vessel for one month; Non-Compliant China Compliant  Thirdly, uncertainties in estimating the next year’s total fishing days and the observer deployment process, such as the departure time of observers from the port and the transit time from carrier vessels to target fishing vessels after arriving at the fishing grounds, have led to deviations in the estimated number of deployed observers and their observation days.",
      "text_ko": "2% 기준을 충족하지 못한 주된 이유는 다음과 같다.  첫째, 옵서버가 항만과 어장 사이를 왕복하는 데 약 90일이 걸려 실제 어선에서 근무하는 시간이 줄어든다.  둘째, 일부 예기치 못한 사건으로 관찰 대상 조업일수가 감소했다. 예를 들어 한 옵서버가 갑자기 병에 걸려 관찰 임무를 조기에 종료해야 했고, 그 결과 어선에서 한 달만 근무했다.  셋째, 다음 해 총 조업일수 추정과 옵서버 배치 과정의 불확실성, 예컨대 옵서버의 출항 시점과 어장 도착 후 운반선에서 대상 어선으로 이동하는 데 걸리는 시간 때문에 배치 옵서버 수와 관찰일수의 추정치에 편차가 발생했다. 회원국/협력 비체약 당사자(CNCP): 중국. 이전 준수 상태: 준수(Compliant). 현재 준수 상태: 우선순위 비준수(Priority Non-Compliant)."
     },
     {
@@ -7374,7 +7405,7 @@
     {
      "kind": "source_excerpt",
      "source_path": "00_오징어_관련자료/01_오징어_시장·가격/07_지속가능성·IUU·노동/20260812-NOAA-Seafood_Import_Monitoring_Program.html",
-     "text": "One of five videos in a 5-part Seafood Import Monitoring Program series covering wild capture, pen-matured harvest-or “ranching”-involves capturing live wild fish and transferring them to aquaculture for feeding and growth until re-harvest.",
+     "text": "One of five videos in a 5-part Seafood Import Monitoring Program series covering wild capture, pen-matured harvest—or “ranching”—involves capturing live wild fish and transferring them to aquaculture for feeding and growth until re-harvest.",
      "text_ko": "수산물 수입 모니터링 프로그램(Seafood Import Monitoring Program) 5부작 시리즈의 다섯 영상 중 한 편으로 자연산 어획을 다룬다. 축양 뒤 어획, 즉 ‘랜칭(ranching)’은 살아 있는 자연산 어류를 포획해 양식시설로 옮긴 뒤 다시 어획할 때까지 먹이를 주고 성장시키는 방식이다."
     },
     {
@@ -7438,7 +7469,7 @@
     "coverage_start": "2026-08-12",
     "coverage_end": "2026-08-12",
     "published_at": "2026-08-12",
-    "retrieved_at": "2026-08-12",
+    "retrieved_at": "2026-08-27",
     "source_ids": [
      "SQ-ESG-NOAA-SIMP"
     ],
@@ -7502,13 +7533,13 @@
     {
      "kind": "source_excerpt",
      "source_path": "00_오징어_관련자료/01_오징어_시장·가격/07_지속가능성·IUU·노동/20260604-EJF-Global_Squid_Report_2026.md",
-     "text": "17 Cause for concern across three of The world's three most commercially significant squid fisheries - the NWIO, SWA and SEP - are the world’s most important squid each grappling with a distinct set of challenges as fisheries industrial fishing operations have expanded rapidly while regulation has failed to keep pace. EJF's recent investigations have additionally documented persistent forced labour, destructive fishing practices and deliberate opacity across all three. Argentine shortfin squid made up approximately 77% of all seafood species Southwest Atlantic: A FAO paper published in the run-up to a FAO Committee on Fisheries (COFI) (by tonnage) caught through unregulated Subcommittee meeting in Reykjavik, Iceland in fishing between 2014 and 2023.76 February 2026 found the Argentine shortfin squid (contributing 16% of the world’s squid catches) to be by far the most fished seafood species “outside the competence of an RFMO or arrangement” - otherwise known as unregulated fishing.77 The main FAO fishing area for the species - FAO 41 - is also highly significant, contributing 94.6% of estimated unregulated global",
+     "text": "17 Cause for concern across three of The world's three most commercially significant squid fisheries — the NWIO, SWA and SEP — are the world’s most important squid each grappling with a distinct set of challenges as fisheries industrial fishing operations have expanded rapidly while regulation has failed to keep pace. EJF's recent investigations have additionally documented persistent forced labour, destructive fishing practices and deliberate opacity across all three. Argentine shortfin squid made up approximately 77% of all seafood species Southwest Atlantic: A FAO paper published in the run-up to a FAO Committee on Fisheries (COFI) (by tonnage) caught through unregulated Subcommittee meeting in Reykjavik, Iceland in fishing between 2014 and 2023.76 February 2026 found the Argentine shortfin squid (contributing 16% of the world’s squid catches) to be by far the most fished seafood species “outside the competence of an RFMO or arrangement” - otherwise known as unregulated fishing.77 The main FAO fishing area for the species - FAO 41 - is also highly significant, contributing 94.6% of estimated unregulated global",
      "text_ko": "17 세계에서 가장 중요한 오징어 어업 세 곳 전반의 우려 사유. 세계에서 상업적으로 가장 중요한 오징어 어업 세 곳인 북서인도양(NWIO), 남서대서양(SWA), 남동태평양(SEP)은 산업적 어업 활동이 빠르게 확대되는 동안 규제가 그 속도를 따라가지 못해 각각 서로 다른 과제에 직면해 있다. 환경정의재단(EJF)의 최근 조사에서는 세 곳 모두에서 지속적인 강제노동, 파괴적 어업관행, 의도적인 불투명성도 기록했다. 아르헨티나오징어(Illex argentinus)는 2014년부터 2023.76까지 비규제 어업으로 잡힌 모든 수산물 종 가운데 중량 기준 약 77%를 차지했다. 남서대서양: 2026년 이월 아이슬란드 레이캬비크에서 열린 유엔식량농업기구(FAO) 수산위원회(COFI) 소위원회 회의를 앞두고 발행된 FAO 논문은 세계 오징어 어획량의 16%를 차지하는 아르헨티나오징어가 ‘지역수산관리기구 또는 협정의 권한 밖’, 즉 비규제 어업에서 단연 가장 많이 어획된 수산물 종이라고 밝혔다.77 이 종의 주요 FAO 어업구역인 FAO 41도 매우 중요하며, 추정된 세계 비규제(estimated unregulated global)의 94.6%"
     },
     {
      "kind": "source_excerpt",
      "source_path": "00_오징어_관련자료/01_오징어_시장·가격/07_지속가능성·IUU·노동/20260604-EJF-Global_Squid_Report_2026.md",
-     "text": "\"developing deep-sea aquaculture and modern distant- water fisheries\" within a dedicated marine economy In July 2024, Taiwan's Ministry of Agriculture released chapter.115 However, neither the publicly released a four-year plan to eliminate IUU fishing, centred on Plan outline nor MARA's February 2026 fisheries increasing monitoring capacity and strengthening work deployment meeting names squid specifically, traceability for key species including squid.121 In July and neither contains numerical effort caps, subsidy 2025, the Taiwanese government also endorsed the phase-outs, or quantified IUU-fishing reduction Global Charter for Fisheries Transparency, signalling a targets for the DWF fleet.116 The 15th Plan is, on current willingness to engage with civil society on sustainable evidence, an enabling and continuity document rather fisheries reform.122 These are welcome steps, and than a reform document - leaving the substantive Taiwan's trajectory stands in contrast to China's pattern regulation of China's DWF squid fleet to the same of regulatory non-engagement.",
+     "text": "\"developing deep-sea aquaculture and modern distant- water fisheries\" within a dedicated marine economy In July 2024, Taiwan's Ministry of Agriculture released chapter.115 However, neither the publicly released a four-year plan to eliminate IUU fishing, centred on Plan outline nor MARA's February 2026 fisheries increasing monitoring capacity and strengthening work deployment meeting names squid specifically, traceability for key species including squid.121 In July and neither contains numerical effort caps, subsidy 2025, the Taiwanese government also endorsed the phase-outs, or quantified IUU-fishing reduction Global Charter for Fisheries Transparency, signalling a targets for the DWF fleet.116 The 15th Plan is, on current willingness to engage with civil society on sustainable evidence, an enabling and continuity document rather fisheries reform.122 These are welcome steps, and than a reform document — leaving the substantive Taiwan's trajectory stands in contrast to China's pattern regulation of China's DWF squid fleet to the same of regulatory non-engagement.",
      "text_ko": "전용 해양경제 장에서 ‘심해 양식과 현대적 원양어업 개발’.115 그러나 공개된 계획 개요와 중국 농업농촌부(MARA)의 2026년 이월 어업 업무 배치 회의 어느 쪽도 오징어를 구체적으로 언급하지 않으며, 어느 쪽에도 원양어업(DWF) 선단의 수치화된 어획노력 상한, 보조금 단계적 폐지 또는 정량화된 불법·비보고·비규제(IUU) 어업 감축 목표가 없다.116 현재 증거에 따르면 제15차 계획은 개혁 문서가 아니라 기반 조성 및 연속성 문서이며, 중국 원양 오징어선단의 실질적 규제를 동일한\n2024년 칠월 대만 농업부(Taiwan's Ministry of Agriculture)는 모니터링 역량 확대와 오징어를 포함한 주요 어종의 추적성 강화를 중심으로 하는 IUU 어업 근절 사 개년 계획을 발표했다.121 2025년 칠월 대만 정부는 세계 수산투명성 헌장(Global Charter for Fisheries Transparency)도 지지해 지속가능한 수산개혁에서 시민사회와 협력할 의지를 나타냈다.122 이는 환영할 조치이며, 대만의 행보는 중국의 규제 비관여 양상과 대조된다."
     },
     {
@@ -7526,7 +7557,7 @@
     {
      "kind": "source_excerpt",
      "source_path": "00_오징어_관련자료/01_오징어_시장·가격/07_지속가능성·IUU·노동/20260604-EJF-Global_Squid_Report_2026.md",
-     "text": "This report presents the first comparative, interview- All three fisheries are dominated by Chinese-flagged based analysis of conditions across three of the world's DWF vessels. 70% of the 249 vessels in our study most commercially significant DWF squid fisheries were flagged to China, 16% to Taiwan and 14% to - the SWA, SEP and NWIO. Earlier EJF investigations South Korea. Korean and Taiwanese operations were have examined the SWA and SEP fleets separately;176/177 concentrated almost entirely in the SWA.",
+     "text": "This report presents the first comparative, interview- All three fisheries are dominated by Chinese-flagged based analysis of conditions across three of the world's DWF vessels. 70% of the 249 vessels in our study most commercially significant DWF squid fisheries were flagged to China, 16% to Taiwan and 14% to — the SWA, SEP and NWIO. Earlier EJF investigations South Korea. Korean and Taiwanese operations were have examined the SWA and SEP fleets separately;176/177 concentrated almost entirely in the SWA.",
      "text_ko": "이 보고서는 세계에서 상업적으로 가장 중요한 원양 오징어 어업 세 곳, 즉 남서대서양(SWA)·남동태평양(SEP)·북서인도양(NWIO)의 노동조건을 면담에 근거해 비교한 최초의 분석을 제시한다. 세 어업 모두 중국 기국 원양어선이 지배한다. 연구대상 선박 249척 가운데 70%는 중국, 16%는 대만, 14%는 대한민국 기국이었다. 환경정의재단(EJF)의 앞선 조사들은 SWA와 SEP 선단을 각각 검토했으며,176/177 대한민국과 대만의 조업은 거의 전부 SWA에 집중돼 있었다."
     },
     {
@@ -7566,7 +7597,7 @@
     "coverage_start": "2026-06-04",
     "coverage_end": "2026-06-04",
     "published_at": "2026-06-04",
-    "retrieved_at": "2026-08-12",
+    "retrieved_at": "2026-08-27",
     "source_ids": [
      "SQ-ESG-EJF"
     ],
@@ -7691,7 +7722,7 @@
     "coverage_start": "2026-05",
     "coverage_end": "2026-05",
     "published_at": "2026-05",
-    "retrieved_at": "2026-08-12",
+    "retrieved_at": "2026-08-27",
     "source_ids": [
      "SQ-ESG-DOL"
     ],
@@ -7755,7 +7786,7 @@
     "coverage_start": "2026-08-12",
     "coverage_end": "2026-08-12",
     "published_at": "2026-08-12",
-    "retrieved_at": "2026-08-12",
+    "retrieved_at": "2026-08-27",
     "source_ids": [
      "SQ-ESG-MSC"
     ],
@@ -7863,7 +7894,7 @@
     "coverage_start": "2025-12-18",
     "coverage_end": "2026-08-12",
     "published_at": "2026-08-12",
-    "retrieved_at": "2026-08-12",
+    "retrieved_at": "2026-08-27",
     "source_ids": [
      "SQ-MGT-ARGENTINA",
      "SQ-MGT-SUBPESCA",
@@ -7907,10 +7938,10 @@
     "currency_converted": false,
     "fx_date": null,
     "nominal_real": "n/a",
-    "coverage_start": "2026-08-12",
-    "coverage_end": "2026-08-12",
-    "published_at": "2026-08-12",
-    "retrieved_at": "2026-08-12",
+    "coverage_start": "2026-08-27",
+    "coverage_end": "2026-08-27",
+    "published_at": "2026-08-27",
+    "retrieved_at": "2026-08-27",
     "source_ids": [
      "SQ-SAFE-NFQS"
     ],
@@ -7926,7 +7957,7 @@
   },
   "E_source_registry": {
    "section": "E",
-   "title": "출처 원장 36건 (P0/P1/P2 · A/B/C)",
+   "title": "출처 원장 (P0/P1/P2 · A/B/C)",
    "chartType": "table",
    "data": [
     {
@@ -8046,8 +8077,8 @@
      "frequency": "event_weekly",
      "landing_url": "https://www.gob.pe/institucion/produce/tema/pesca",
      "archive_subdir": "02_쿼터·어장",
-     "latest_verified": "RM 00269-2026 gazette 2026-08-15 (research/prospecting only); commercial suspension still RD 00092-2026",
-     "note": "7월 9일 529391.41t/89.84% 뒤 선창규모별 중단 공지; 최신 공지가 우선 | 8월 16일 기준 재개 공지 없음. 7월 24일 소통문이 조업상태 최신. | RM 00269는 조사·탐사 인가. 상업 재개 아님."
+     "latest_verified": "2026-08-27 RD00263 research vessel list; no commercial reopening or additional closure",
+     "note": "7월 선창규모별 중단이 상업상태 최신. RM00269는 조사·탐사 인가이고 RD00263은 참여선 20척 명단이다. 상업 재개로 읽지 말 것."
     },
     {
      "source_id": "SQ-MGT-SUBPESCA",
@@ -8070,8 +8101,8 @@
      "frequency": "weekly_monthly",
      "landing_url": "https://www.sernapesca.cl/informacion-utilidad/consumo-de-cuotas/",
      "archive_subdir": "10_원본데이터셋",
-     "latest_verified": "2026-08-13 workbook",
-     "note": "원시 XLSX; 쿼터·어획·잔량 단위 검증 후 사용 | v20260813이 v20260806을 대체하지 않고 병행 보존."
+     "latest_verified": "v20260820 workbook; internal preliminary date 2026-08-18",
+     "note": "원시 XLSX; RESUMEN 총계 기준 포획 130021.9741t·잔량 69978.0259t·소진 65.0110%. 이전 버전 병행 보존."
     },
     {
      "source_id": "SQ-MGT-JFA",
@@ -8202,8 +8233,8 @@
      "frequency": "weekly",
      "landing_url": "https://fishdata.kmi.re.kr/front/kmisys/seafoodPriceTrends.do",
      "archive_subdir": "04_가격·도매",
-     "latest_verified": "resultList extract 2026-08-13; d09=5271 oneDateD09=4912",
-     "note": "aT KAMIS 기반 소비자가격; 원양 냉동 중품 1마리. 도매는 SQ-PRC-KAMIS. 2026-08-16 HTML resultList에서 추출."
+     "latest_verified": "resultList extract 2026-08-27; oneDate 20260825 oneDateD09 5570; comparison d09 5440",
+     "note": "aT KAMIS 기반 소비자가격; 원양 냉동 중품 1마리. oneDateD09 확정 관측과 d09 비교기준 분리. 도매 SQ-PRC-KAMIS와 평균 금지."
     },
     {
      "source_id": "SQ-PRC-FAO-EFPR",
@@ -8430,8 +8461,8 @@
      "frequency": "daily_weekly",
      "landing_url": "https://www.kamis.or.kr/",
      "archive_subdir": "04_가격·도매",
-     "latest_verified": "item 619 kinds 01/04/05/GG; wholesale 04=13600 05=10500 through 2026-08-14; kind 01 empty",
-     "note": "KMI FishData는 KAMIS 소비자 가공표. 도매는 품종 분리. GG 서울은 04·05 두 시리즈가 같이 나옴. 키 미저장."
+     "latest_verified": "2026-08-26 item 619 Seoul kind04=13600원/kg kind05=10500원/kg",
+     "note": "도매 kind04 연근해냉동과 kind05 원양냉동 분리. KMI 소비자 원/마리와 평균·마진 계산 금지."
     },
     {
      "source_id": "SQ-TRD-CN-CUSTOMS",
@@ -8442,8 +8473,8 @@
      "frequency": "monthly",
      "landing_url": "http://stats.customs.gov.cn/",
      "archive_subdir": "03_무역·HS",
-     "latest_verified": "2026-05 split IE 4HS; 2025 monthly 4HS IMP/EXP RMB; IMP USD captcha fail",
-     "note": "HTTP+브라우저+슬라이더 캡차. HTTPS 504. 6자리 HS. 进口=1 出口=0 进出口=10. 수량 열 없음. 상품명에 墨鱼(갑오징어) 포함. 2026-05 030743 进口 RMB 1304799873 + 出口 765528382 = 이미 수집한 进出口 2070328255. IMP USD 미수집. Comtrade와 합치지 말 것."
+     "latest_verified": "2026-06 month metadata confirmed; HS030743 import USD 2026-05 and 2026-06 captcha_blocked",
+     "note": "HTTP 412 JS challenge·HTTPS 504·브라우저 슬라이더 미통과. 수입 USD 값은 빈칸 유지하고 0 또는 Comtrade 대체값을 넣지 말 것."
     },
     {
      "source_id": "SQ-SAFE-RASFF",
@@ -8476,14 +8507,14 @@
     "currency_converted": false,
     "fx_date": null,
     "nominal_real": "n/a",
-    "coverage_start": "2026-08-12",
-    "coverage_end": "2026-08-12",
-    "published_at": "2026-08-12",
-    "retrieved_at": "2026-08-12",
+    "coverage_start": "2026-08-27",
+    "coverage_end": "2026-08-27",
+    "published_at": "2026-08-27",
+    "retrieved_at": "2026-08-27",
     "source_ids": [
-     "SQ-PROD-FAO-FISHSTAT"
+     "MAN-GOV-SOURCE-REGISTRY"
     ],
-    "source_grade": "A",
+    "source_grade": "C",
     "archive_path": "00_오징어_관련자료/01_오징어_시장·가격/00_운영/source_registry.csv",
     "restrictions": [],
     "blocked_use": []
@@ -8601,10 +8632,10 @@
     "currency_converted": false,
     "fx_date": null,
     "nominal_real": "n/a",
-    "coverage_start": "2026-08-12",
-    "coverage_end": "2026-08-12",
-    "published_at": "2026-08-12",
-    "retrieved_at": "2026-08-12",
+    "coverage_start": "2026-08-27",
+    "coverage_end": "2026-08-27",
+    "published_at": "2026-08-27",
+    "retrieved_at": "2026-08-27",
     "source_ids": [
      "SQ-PROD-FAO-FISHSTAT"
     ],
@@ -8616,140 +8647,140 @@
   },
   "E_monitoring_calendar": {
    "section": "E",
-   "title": "모니터링 캘린더 15계열",
+   "title": "공식자료 모니터링 캘린더",
    "chartType": "table",
    "data": [
     {
      "source_id": "SQ-PRC-KMI",
-     "series": "KMI FishData 오징어 소비자가격",
+     "series": "한국해양수산개발원 오징어 소비자가격",
      "frequency": "weekly",
-     "latest_verified": "extract 2026-08-13 (d09 5271 / oneDate 4912)",
-     "next_check": "2026-08-19",
+     "latest_verified": "2026-08-27 추출; 2026-08-25 확정 5570원; 화면 비교기준 5440원 분리",
+     "next_check": "2026-09-02",
      "status": "active"
     },
     {
      "source_id": "SQ-PRC-KAMIS",
-     "series": "KAMIS 오징어 도매",
+     "series": "농수산물유통정보 오징어 도매",
      "frequency": "weekly",
-     "latest_verified": "kinds 04=13600 05=10500 through 2026-08-14",
-     "next_check": "2026-08-20",
-     "status": "active"
-    },
-    {
-     "source_id": "SQ-MGT-SERNAPESCA",
-     "series": "Chile jibia quota consumption",
-     "frequency": "weekly",
-     "latest_verified": "2026-08-13",
-     "next_check": "2026-08-22",
+     "latest_verified": "2026-08-26 서울 연근해냉동 13600원/kg; 원양냉동 10500원/kg",
+     "next_check": "2026-09-02",
      "status": "active"
     },
     {
      "source_id": "SQ-MGT-PRODUCE",
-     "series": "Peru pota 공지",
+     "series": "페루 대왕오징어 공지",
      "frequency": "weekly_in_season",
-     "latest_verified": "2026-08-17 RM00269 (조사·탐사만); 상업재개 공문 없음",
-     "next_check": "2026-08-24",
+     "latest_verified": "2026-08-27 결의 제00263호 참여선 20척 확인; 상업재개·추가중단 공문 없음",
+     "next_check": "2026-08-31",
+     "status": "active"
+    },
+    {
+     "source_id": "SQ-MGT-SERNAPESCA",
+     "series": "칠레 대왕오징어 쿼터 소진",
+     "frequency": "weekly",
+     "latest_verified": "2026-08-20판 내부 2026-08-18; 포획 130021.9741t·소진 65.0110%",
+     "next_check": "2026-08-28",
      "status": "active"
     },
     {
      "source_id": "SQ-TRD-CN-CUSTOMS",
-     "series": "중국 해관 오징어 HS",
+     "series": "중국 해관 오징어 품목번호 무역",
      "frequency": "monthly",
-     "latest_verified": "2025 monthly 4HS IMP/EXP RMB; 2026-05 IMP USD still blocked",
-     "next_check": "2026-08-25",
+     "latest_verified": "2026-06 월 메타 확인; 품목번호 030743 수입 달러 5·6월 보안문자 차단·값 미확정",
+     "next_check": "2026-09-25",
      "status": "partial"
     },
     {
      "source_id": "SQ-PROD-INIDEP",
-     "series": "Argentina Illex weekly bulletin",
+     "series": "아르헨티나 오징어 주간 보고",
      "frequency": "weekly_in_season",
-     "latest_verified": "semana 14 / 2026-04-06",
+     "latest_verified": "제14주 2026-04-06",
      "next_check": "2026-09-01",
      "status": "active_gap"
     },
     {
      "source_id": "SQ-PRC-FAO-EFPR",
-     "series": "European Fish Price Report",
+     "series": "유럽 수산물 가격 보고서",
      "frequency": "monthly",
      "latest_verified": "2026-07",
      "next_check": "2026-09-05",
      "status": "active"
     },
     {
-     "source_id": "SQ-TRD-KCS",
-     "series": "Korea squid HS trade",
-     "frequency": "monthly",
-     "latest_verified": "2026-05 observed",
-     "next_check": "2026-09-10",
-     "status": "pipeline_gap"
-    },
-    {
      "source_id": "SQ-MGT-KR-TAC-CONSUMPTION",
-     "series": "한국 살오징어 TAC 소진",
+     "series": "한국 살오징어 총허용어획량 소진",
      "frequency": "monthly_in_season",
-     "latest_verified": "2026-06-30 FIRA 오징어 36.6%",
+     "latest_verified": "2026-06-30 오징어 36.6%",
      "next_check": "2026-09-10",
      "status": "active"
     },
     {
-     "source_id": "SQ-MKT-EUMOFA",
-     "series": "EUMOFA squid and monthly highlights",
+     "source_id": "SQ-TRD-KCS",
+     "series": "한국 오징어 품목번호 무역",
      "frequency": "monthly",
-     "latest_verified": "profile 2026-08-12",
+     "latest_verified": "2026-05 관측",
+     "next_check": "2026-09-10",
+     "status": "pipeline_gap"
+    },
+    {
+     "source_id": "SQ-MKT-EUMOFA",
+     "series": "유럽 수산시장관측소 오징어 월간 동향",
+     "frequency": "monthly",
+     "latest_verified": "2026-08-12 품목 프로필",
      "next_check": "2026-09-12",
      "status": "active"
     },
     {
      "source_id": "SQ-EVT-SPRFMO-SC14",
-     "series": "SPRFMO SC14",
+     "series": "남태평양지역수산관리기구 과학위원회 제14차",
      "frequency": "event",
-     "latest_verified": "working papers 2026-08-16",
+     "latest_verified": "2026-08-16 작업문서",
      "next_check": "2026-09-14",
      "status": "scheduled"
     },
     {
-     "source_id": "SQ-PROD-KOSIS",
-     "series": "Korea fishery production",
-     "frequency": "monthly",
-     "latest_verified": "access 2026-08-12",
-     "next_check": "2026-09-15",
-     "status": "manual_export_gap"
-    },
-    {
      "source_id": "SQ-MGT-FIFD",
-     "series": "Falkland calamari licensing/surveys",
+     "series": "포클랜드 오징어 인허가·조사",
      "frequency": "seasonal",
-     "latest_verified": "2025 assessments; no 2026 survey/notice",
+     "latest_verified": "2025년 평가 확보; 2026년 조사·공지 미게시",
      "next_check": "2026-09-15",
      "status": "active_gap"
     },
     {
      "source_id": "SQ-PROD-IMARPE",
-     "series": "IMARPE pota cruise/situation",
+     "series": "페루 해양연구소 대왕오징어 조사",
      "frequency": "event_seasonal",
-     "latest_verified": "2026-02-09 cruise/OCG-IV",
+     "latest_verified": "2026-02-09 조사·제4차 대왕오징어 작전",
      "next_check": "2026-09-15",
      "status": "active"
     },
     {
-     "source_id": "SQ-TRD-COMTRADE",
-     "series": "Global squid HS trade",
+     "source_id": "SQ-PROD-KOSIS",
+     "series": "한국 어업생산",
      "frequency": "monthly",
-     "latest_verified": "core 6 reporters 2024-25 totals; Peru 2025 unpublished",
+     "latest_verified": "2026-08-12 접속 확인",
+     "next_check": "2026-09-15",
+     "status": "manual_export_gap"
+    },
+    {
+     "source_id": "SQ-TRD-COMTRADE",
+     "series": "세계 오징어 품목번호 무역",
+     "frequency": "monthly",
+     "latest_verified": "주요 6개 보고국 2024~2025 총계; 페루 2025 미게시",
      "next_check": "2026-09-30",
      "status": "coverage_gap"
     },
     {
      "source_id": "SQ-MKT-FAO-GLOBEFISH",
-     "series": "GLOBEFISH cephalopods",
+     "series": "세계수산물무역정보 두족류 시황",
      "frequency": "quarterly",
-     "latest_verified": "Issue 2/2026",
+     "latest_verified": "2026년 제2호",
      "next_check": "2026-10-15",
      "status": "active"
     },
     {
      "source_id": "SQ-MGT-JFA",
-     "series": "Japan surumeika TAC",
+     "series": "일본 살오징어 총허용어획량",
      "frequency": "annual_event",
      "latest_verified": "2026-03-23",
      "next_check": "2026-12-15",
@@ -8757,15 +8788,15 @@
     },
     {
      "source_id": "SQ-PROD-NPFC-JFS",
-     "series": "NPFC/NIFS 살오징어",
+     "series": "북태평양수산위원회·국립수산과학원 살오징어",
      "frequency": "annual_event",
-     "latest_verified": "FRA/JFA FY2025 published 2025-12-26",
+     "latest_verified": "2025 회계연도 평가 2025-12-26 게시",
      "next_check": "2026-12-15",
      "status": "active"
     },
     {
      "source_id": "SQ-MGT-MOF-TAC",
-     "series": "Korea TAC plan",
+     "series": "한국 총허용어획량 시행계획",
      "frequency": "annual_event",
      "latest_verified": "2026-06-30",
      "next_check": "2027-06-15",
@@ -8773,14 +8804,14 @@
     },
     {
      "source_id": "SQ-PROD-FAO-FISHSTAT",
-     "series": "FAO FishStat",
+     "series": "유엔식량농업기구 수산통계",
      "frequency": "annual",
-     "latest_verified": "2026.1.0 / data 2024",
+     "latest_verified": "2026.1.0판·자료 2024년",
      "next_check": "2027-07-15",
      "status": "active"
     }
    ],
-   "methodology": "원문에서 표시값을 확정하지 못해 링크 카드로 강등",
+   "methodology": "공식 모니터링 캘린더에서 이번 점검 5개 계열을 먼저 두고 최신 확인·다음 확인·상태만 표시",
    "basis": {
     "species": [
      "n/a"
@@ -8798,14 +8829,14 @@
     "currency_converted": false,
     "fx_date": null,
     "nominal_real": "n/a",
-    "coverage_start": "2026-08-12",
-    "coverage_end": "2026-08-12",
-    "published_at": "2026-08-12",
-    "retrieved_at": "2026-08-12",
+    "coverage_start": "2026-08-27",
+    "coverage_end": "2026-08-27",
+    "published_at": "2026-08-27",
+    "retrieved_at": "2026-08-27",
     "source_ids": [
-     "SQ-PROD-FAO-FISHSTAT"
+     "MAN-GOV-MONITORING-CALENDAR"
     ],
-    "source_grade": "A",
+    "source_grade": "C",
     "archive_path": "00_오징어_관련자료/01_오징어_시장·가격/00_운영/monitoring_calendar.csv",
     "restrictions": [],
     "blocked_use": []
@@ -8818,141 +8849,141 @@
    "data": [
     {
      "source_id": "SQ-PRC-KMI",
-     "series": "KMI FishData 오징어 소비자가격",
-     "latest_verified": "extract 2026-08-13 (d09 5271 / oneDate 4912)",
-     "age_days": 5,
+     "series": "한국해양수산개발원 오징어 소비자가격",
+     "latest_verified": "2026-08-27 추출; 2026-08-25 확정 5570원; 화면 비교기준 5440원 분리",
+     "age_days": 0,
      "band": "정상"
     },
     {
      "source_id": "SQ-MGT-PRODUCE",
-     "series": "Peru pota 공지",
-     "latest_verified": "2026-08-17 RM00269 (조사·탐사만); 상업재개 공문 없음",
-     "age_days": 1,
+     "series": "페루 대왕오징어 공지",
+     "latest_verified": "2026-08-27 결의 제00263호 참여선 20척 확인; 상업재개·추가중단 공문 없음",
+     "age_days": 0,
      "band": "정상"
     },
     {
      "source_id": "SQ-MGT-SERNAPESCA",
-     "series": "Chile jibia quota consumption",
-     "latest_verified": "2026-08-13",
-     "age_days": 5,
+     "series": "칠레 대왕오징어 쿼터 소진",
+     "latest_verified": "2026-08-20판 내부 2026-08-18; 포획 130021.9741t·소진 65.0110%",
+     "age_days": 7,
      "band": "정상"
     },
     {
      "source_id": "SQ-PROD-INIDEP",
-     "series": "Argentina Illex weekly bulletin",
-     "latest_verified": "semana 14 / 2026-04-06",
-     "age_days": 134,
+     "series": "아르헨티나 오징어 주간 보고",
+     "latest_verified": "제14주 2026-04-06",
+     "age_days": 143,
      "band": "주황"
     },
     {
      "source_id": "SQ-TRD-KCS",
-     "series": "Korea squid HS trade",
-     "latest_verified": "2026-05 observed",
+     "series": "한국 오징어 품목번호 무역",
+     "latest_verified": "2026-05 관측",
      "age_days": null,
      "band": "기준일 해석불가"
     },
     {
      "source_id": "SQ-PROD-KOSIS",
-     "series": "Korea fishery production",
-     "latest_verified": "access 2026-08-12",
-     "age_days": 6,
+     "series": "한국 어업생산",
+     "latest_verified": "2026-08-12 접속 확인",
+     "age_days": 15,
      "band": "정상"
     },
     {
      "source_id": "SQ-TRD-COMTRADE",
-     "series": "Global squid HS trade",
-     "latest_verified": "core 6 reporters 2024-25 totals; Peru 2025 unpublished",
+     "series": "세계 오징어 품목번호 무역",
+     "latest_verified": "주요 6개 보고국 2024~2025 총계; 페루 2025 미게시",
      "age_days": null,
      "band": "기준일 해석불가"
     },
     {
      "source_id": "SQ-MKT-FAO-GLOBEFISH",
-     "series": "GLOBEFISH cephalopods",
-     "latest_verified": "Issue 2/2026",
+     "series": "세계수산물무역정보 두족류 시황",
+     "latest_verified": "2026년 제2호",
      "age_days": null,
      "band": "기준일 해석불가"
     },
     {
      "source_id": "SQ-PRC-FAO-EFPR",
-     "series": "European Fish Price Report",
+     "series": "유럽 수산물 가격 보고서",
      "latest_verified": "2026-07",
      "age_days": null,
      "band": "기준일 해석불가"
     },
     {
      "source_id": "SQ-MKT-EUMOFA",
-     "series": "EUMOFA squid and monthly highlights",
-     "latest_verified": "profile 2026-08-12",
-     "age_days": 6,
+     "series": "유럽 수산시장관측소 오징어 월간 동향",
+     "latest_verified": "2026-08-12 품목 프로필",
+     "age_days": 15,
      "band": "정상"
     },
     {
      "source_id": "SQ-EVT-SPRFMO-SC14",
-     "series": "SPRFMO SC14",
-     "latest_verified": "working papers 2026-08-16",
-     "age_days": 2,
+     "series": "남태평양지역수산관리기구 과학위원회 제14차",
+     "latest_verified": "2026-08-16 작업문서",
+     "age_days": 11,
      "band": "정상"
     },
     {
      "source_id": "SQ-PROD-FAO-FISHSTAT",
-     "series": "FAO FishStat",
-     "latest_verified": "2026.1.0 / data 2024",
+     "series": "유엔식량농업기구 수산통계",
+     "latest_verified": "2026.1.0판·자료 2024년",
      "age_days": null,
      "band": "기준일 해석불가"
     },
     {
      "source_id": "SQ-MGT-MOF-TAC",
-     "series": "Korea TAC plan",
+     "series": "한국 총허용어획량 시행계획",
      "latest_verified": "2026-06-30",
-     "age_days": 49,
+     "age_days": 58,
      "band": "정상"
     },
     {
      "source_id": "SQ-MGT-JFA",
-     "series": "Japan surumeika TAC",
+     "series": "일본 살오징어 총허용어획량",
      "latest_verified": "2026-03-23",
-     "age_days": 148,
+     "age_days": 157,
      "band": "주황"
     },
     {
      "source_id": "SQ-MGT-FIFD",
-     "series": "Falkland calamari licensing/surveys",
-     "latest_verified": "2025 assessments; no 2026 survey/notice",
+     "series": "포클랜드 오징어 인허가·조사",
+     "latest_verified": "2025년 평가 확보; 2026년 조사·공지 미게시",
      "age_days": null,
      "band": "기준일 해석불가"
     },
     {
      "source_id": "SQ-PROD-IMARPE",
-     "series": "IMARPE pota cruise/situation",
-     "latest_verified": "2026-02-09 cruise/OCG-IV",
-     "age_days": 190,
+     "series": "페루 해양연구소 대왕오징어 조사",
+     "latest_verified": "2026-02-09 조사·제4차 대왕오징어 작전",
+     "age_days": 199,
      "band": "주황"
     },
     {
      "source_id": "SQ-PROD-NPFC-JFS",
-     "series": "NPFC/NIFS 살오징어",
-     "latest_verified": "FRA/JFA FY2025 published 2025-12-26",
-     "age_days": 235,
+     "series": "북태평양수산위원회·국립수산과학원 살오징어",
+     "latest_verified": "2025 회계연도 평가 2025-12-26 게시",
+     "age_days": 244,
      "band": "주황"
     },
     {
      "source_id": "SQ-MGT-KR-TAC-CONSUMPTION",
-     "series": "한국 살오징어 TAC 소진",
-     "latest_verified": "2026-06-30 FIRA 오징어 36.6%",
-     "age_days": 49,
+     "series": "한국 살오징어 총허용어획량 소진",
+     "latest_verified": "2026-06-30 오징어 36.6%",
+     "age_days": 58,
      "band": "정상"
     },
     {
      "source_id": "SQ-PRC-KAMIS",
-     "series": "KAMIS 오징어 도매",
-     "latest_verified": "kinds 04=13600 05=10500 through 2026-08-14",
-     "age_days": 4,
+     "series": "농수산물유통정보 오징어 도매",
+     "latest_verified": "2026-08-26 서울 연근해냉동 13600원/kg; 원양냉동 10500원/kg",
+     "age_days": 1,
      "band": "정상"
     },
     {
      "source_id": "SQ-TRD-CN-CUSTOMS",
-     "series": "중국 해관 오징어 HS",
-     "latest_verified": "2025 monthly 4HS IMP/EXP RMB; 2026-05 IMP USD still blocked",
+     "series": "중국 해관 오징어 품목번호 무역",
+     "latest_verified": "2026-06 월 메타 확인; 품목번호 030743 수입 달러 5·6월 보안문자 차단·값 미확정",
      "age_days": null,
      "band": "기준일 해석불가"
     }
@@ -8975,10 +9006,10 @@
     "currency_converted": false,
     "fx_date": null,
     "nominal_real": "n/a",
-    "coverage_start": "2026-08-12",
-    "coverage_end": "2026-08-12",
-    "published_at": "2026-08-12",
-    "retrieved_at": "2026-08-12",
+    "coverage_start": "2026-08-27",
+    "coverage_end": "2026-08-27",
+    "published_at": "2026-08-27",
+    "retrieved_at": "2026-08-27",
     "source_ids": [
      "SQ-PROD-FAO-FISHSTAT"
     ],
@@ -9011,10 +9042,10 @@
     "currency_converted": false,
     "fx_date": null,
     "nominal_real": "n/a",
-    "coverage_start": "2026-08-12",
-    "coverage_end": "2026-08-12",
-    "published_at": "2026-08-12",
-    "retrieved_at": "2026-08-12",
+    "coverage_start": "2026-08-27",
+    "coverage_end": "2026-08-27",
+    "published_at": "2026-08-27",
+    "retrieved_at": "2026-08-27",
     "source_ids": [
      "MAN-AUDIT-DASHBOARD"
     ],

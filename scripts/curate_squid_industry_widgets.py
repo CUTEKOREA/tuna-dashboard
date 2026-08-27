@@ -29,6 +29,8 @@ import json
 import re
 from pathlib import Path
 
+from squid_build.normalize import normalize_display_dashes
+
 ROOT = Path(__file__).resolve().parent.parent
 SRC = ROOT / "public/data/squid_v5.json"
 OUT = ROOT / "public/data/squid_industry_widgets_v1.json"
@@ -66,12 +68,15 @@ PROMOTED: dict[str, str] = {
     "F_tariff_rates": "같은 냉동오징어라도 세번과 원산지에 따라 관세가 0%에서 22%까지 갈린다. 페루·칠레산은 두 세번 모두 0%, 중국산은 0307.43-2090이 2026년 8%지만 0307.43-2010은 22%다.",
     "F_traceability_coverage": "2026-06-29 시행 유통이력 고시는 2025년 오징어 수입의 금액 65.1%, 물량 77.3%만 덮는다(대상 437,944,857달러 / 총 672,612,910달러, 대상 127,342,711kg / 총 164,675,983kg).",
 
-    "A_sourcing_signal_board": "2026년 5~8월 기준일의 다섯 산지 신호가 갈린다. 페루는 중단 공지, 칠레는 잔여 쿼터 78,131톤으로 조업 중, 아르헨티나는 어기 종료, 한국 살오징어는 조업 상태를 확인할 데이터 자체가 없다.",
+    "A_sourcing_signal_board": "2026년 5~8월 기준일의 다섯 산지 신호가 갈린다. 페루는 중단 공지, 칠레는 잔여 쿼터 69,978톤으로 조업 중, 아르헨티나는 어기 종료, 한국 살오징어는 조업 상태를 확인할 데이터 자체가 없다.",
     "A_peru_pota_timeline": "페루 대왕오징어는 7월 9일 소진율 89.8%(529,391톤/589,230톤) 공지 뒤 열흘 안팎에 선창 규모별로 조업이 닫혔다. 잔여 한도 10% 진입이 곧 발주 마감 신호다.",
+    "A_chile_jibia_quota": "칠레 대왕오징어는 8월 18일 기준 법정 쿼터 200,000톤 중 130,021.9741톤을 포획해 65.011%를 소진했고 잔량은 69,978.0259톤이다.",
     "C_korea_import_monthly": "2026년 월별 수입에서 금액 순위와 물량 순위가 어긋난다. 1월 베트남은 831만 달러로 금액 3위지만 물량 86만 kg 는 276만 달러어치 161만 kg 를 들여온 에콰도르보다 적다.",
     "C_import_concentration": "한국 수입 집중은 5년 새 완화가 아니라 심화됐다. 1위국 비중 36.2%→46.1%, 집중도 지수 2,331→2,623 (2020→2024).",
     "B_species_price_ladder": "모로코산 통마리에서는 규격 한 칸이 킬로그램당 2~4유로를 가른다. 12-16 규격 6.98유로에서 27-31 규격 12.98유로로 86% 벌어진다. 산지에 따라서는 규격 차이가 거의 없는 곳(포클랜드)도 있어, 규격 프리미엄은 산지별로 따져야 한다.",
+    "B_kmi_consumer_price": "한국해양수산개발원 화면의 최신 날짜 확정 소비자가는 8월 25일 5,570원/마리다. 화면 비교 기준값 5,440원은 별도 값이므로 당일 확정가로 쓰지 않는다.",
     "D_sprfmo_compliance": "2024/25 남태평양 공해 준수보고의 잠재적 비준수 41건에는 한국 기국 어선의 오징어 전재자료 기한 초과 제출 1건이 포함됐다. 서류 지연 한 건이 기국 준수기록에 남는 구조다.",
+    "E_monitoring_calendar": "이번 주 5개 감시축은 가격 두 계열 갱신, 페루 상업 재개 없음, 칠레 쿼터 65.011% 소진, 중국 해관 수입 달러값 미확정으로 갈린다.",
 }
 
 STAGES: list[dict] = [
@@ -88,6 +93,7 @@ STAGES: list[dict] = [
         "widgets": [
             "A_sourcing_signal_board",
             "A_peru_pota_timeline",
+            "A_chile_jibia_quota",
             "A_falkland_loligo_season",
         ],
     },
@@ -145,8 +151,8 @@ STAGES: list[dict] = [
      "widgets": ["F_processing_scale", "F_processing_region", "F_processing_top100", "F_processing_sales"]},
     {"key": "s13", "title": "연결과 재무", "pillar": "S4", "widgets": ["F_processing_financials", "F_overlap_by_type", "F_direct_importers"]},
     {"key": "s14", "title": "값 — 산지에서 소비자까지", "pillar": "S4",
-     "widgets": ["F_kamis_region_2025", "F_kamis_daily_monthly", "F_kamis_origin_premium", "F_kamis_wholesale", "F_kamis_retail", "F_tariff_rates"]},
-    {"key": "s15", "title": "제도와 남은 물음", "pillar": "S5", "widgets": ["F_traceability_coverage"]},
+     "widgets": ["B_kmi_consumer_price", "F_kamis_region_2025", "F_kamis_daily_monthly", "F_kamis_origin_premium", "F_kamis_wholesale", "F_kamis_retail", "F_tariff_rates"]},
+    {"key": "s15", "title": "제도와 남은 물음", "pillar": "S5", "widgets": ["E_monitoring_calendar", "F_traceability_coverage"]},
     {
         "key": "x01",
         "title": "기후와 자원 변동",
@@ -200,6 +206,7 @@ TITLE_OVERRIDES = {
     "A_climate_stock_brief": "기후 변화와 연근해 어획 구성 — 원문 발췌",
     "A_sourcing_signal_board": "산지 다섯 곳의 조업 상태",
     "A_peru_pota_timeline": "페루 대왕오징어 조업 중단 경과",
+    "A_chile_jibia_quota": "칠레 대왕오징어 쿼터 소진",
     "A_falkland_loligo_season": "포클랜드 파타고니아오징어 어기 전 자원조사 — 원문 발췌",
     "A_sprfmo_cmm18_effort": "남태평양 공해 오징어 선박 상한 (척·총톤수)",
     "A_korea_tac": "한국 총허용어획량 적용 업종 확대",
@@ -213,6 +220,7 @@ TITLE_OVERRIDES = {
     "C_fta_import_trend": "자유무역협정별 수입 추이",
     "B_stage_separated_prices": "거래 단계별 가격 — 섞어 쓰면 안 되는 셋",
     "B_species_price_ladder": "종·규격별 수입 거래가격 계단 (유로/킬로그램)",
+    "B_kmi_consumer_price": "오징어 소비자가 확정 관측과 비교 기준",
     "B_kcs_import_unit_price": "한국 수입단가 5년 (달러/톤)",
     "B_eu_market_prices": "유럽 시장 거래가격표",
     "B_globefish_market_brief": "세계 두족류 시장 브리핑 — 원문 발췌",
@@ -227,6 +235,7 @@ TITLE_OVERRIDES = {
     "C_comtrade_coverage_matrix": "국제 무역통계 수록 범위 점검",
     "E_gate_status_board": "측정 게이트 현황판",
     "E_source_registry": "표준 출처 원장",
+    "E_monitoring_calendar": "공식자료 점검 일정과 최신 상태",
 }
 
 # ── 라벨 한글화 ──────────────────────────────────────────────────────
@@ -250,6 +259,11 @@ CELL_FIXES = {
     "Korea": "대한민국",
     "Chinese Taipei": "대만",
     "Total": "합계",
+    "TOTAL": "합계",
+    "ARTESANAL": "영세어업",
+    "INDUSTRIAL": "산업어업",
+    "FAUNA ACOMPAÑANTE": "부수어획",
+    "INVESTIGACIÓN": "조사",
     "Peru": "페루",
     "Chile": "칠레",
     "Argentina": "아르헨티나",
@@ -372,6 +386,9 @@ CELL_FIXES = {
     "weekly_annual": "주간·연간",
     "weekly_in_season": "어기 중 주간",
     "weekly_monthly": "주간·월간",
+    "event_seasonal": "수시·어기별",
+    "monthly_in_season": "어기 중 월간",
+    "daily_weekly": "일간·주간",
     # 상태
     "active": "가동",
     "active_gap": "가동·결측 있음",
@@ -379,6 +396,7 @@ CELL_FIXES = {
     "manual_export_gap": "수기 반출 결측",
     "pipeline_gap": "수집 경로 결측",
     "scheduled": "예정",
+    "partial": "부분수집",
     "UN Comtrade legacy": "유엔 무역통계 구 계열",
     # 기관 약어 — 처음 노출되는 자리라 한글 풀네임으로 편다
     "KMI": "한국해양수산개발원",
@@ -465,6 +483,18 @@ SIT_TAK: dict[str, tuple[str, str]] = {
         "다섯 산지의 상태가 같은 시점에 갈린다. 페루 대왕오징어는 2026년 7월 24일 중단 공지가 확인됐고 칠레는 조업 중이며 잔여 쿼터가 남아 있다. 산지마다 신호가 다르다는 것 자체가 이 시장의 구조다.",
         "한 산지가 멈춰도 다른 산지가 도는 것이 오징어 조달의 기본 전제다. **단일 산지 의존을 계약 단계에서 금지**하고 산지별 중단 공지를 주간 단위로 확인하라.",
     ),
+    "A_chile_jibia_quota": (
+        "칠레 수산청의 2026년 8월 20일 워크북은 내부 기준일 8월 18일 현재 총쿼터 200,000톤 중 130,021.9741톤을 포획했다고 기록한다. 소진율은 65.011%, 잔량은 69,978.0259톤이다.",
+        "잔량은 재고나 확보 가능 물량이 아니다. **워크북의 포획 누계와 법정 쿼터를 주간 대조**해 소진 속도가 빨라질 때 칠레산 신규 계약의 선적기한을 앞당겨라.",
+    ),
+    "B_kmi_consumer_price": (
+        "원양 냉동 오징어 중품 1마리의 최신 날짜 확정값은 2026년 8월 25일 5,570원이다. 같은 화면의 비교율은 별도 기준값 5,440원에 붙으므로 두 값을 한 시세로 합치면 안 된다.",
+        "소비자가는 매입원가가 아니다. **확정 관측 5,570원과 화면 비교기준 5,440원을 분리 표기**하고, KAMIS 도매 원/kg 또는 수입단가와 평균하지 마라.",
+    ),
+    "E_monitoring_calendar": (
+        "8월 27일 점검에서 KMI와 KAMIS는 가격이 갱신됐고 칠레 쿼터는 65.011% 소진됐다. 페루는 조사 참여선 공문만 추가돼 상업 재개가 아니며, 중국 해관 030743 수입 달러값은 보안문자 차단으로 미확정이다.",
+        "확정값과 차단 상태를 같은 숫자표로 메우지 마라. **다섯 공식 계열의 다음 확인일을 운영 일정으로 유지**하고 미확정 중국 값은 빈칸으로 남겨라.",
+    ),
     "A_sprfmo_cmm18_effort": (
         "남태평양 공해 오징어 조업은 선박 수로 관리한다. 상한 651척 중 중국이 570척으로 87.6%를 가진다. "
         "한국은 43척, 대만은 38척이다. 총톤수로도 중국이 54.8만 GT 중 대부분이다.",
@@ -477,8 +507,8 @@ SIT_TAK: dict[str, tuple[str, str]] = {
         "집중도가 높으면 한 산지의 사고가 곧 가격 충격이 된다. 상위 3국 비중을 낮추는 것 자체를 조달 목표로 세우고 해마다 측정하라.",
     ),
     "B_stage_separated_prices": (
-        "같은 오징어라도 어느 단계의 가격인지에 따라 값이 다르다. 소비자가는 마리당 4,926원, "
-        "수입단가는 톤당 3,288.74달러다. 단위도 기준중량도 달라 그대로 비교할 수 없다.",
+        "같은 오징어라도 어느 단계의 가격인지에 따라 값이 다르다. 8월 25일 확정 소비자가는 마리당 5,570원이고, "
+        "8월 26일 화면 비교값 5,440원과도 구분해야 한다. 수입단가는 톤당 3,288.74달러라 단위와 기준중량도 다르다.",
         "가격을 인용할 때 **거래 단계와 중량 기준을 함께 적어라.** "
         "소비자가로 수입 채산성을 따지거나 수입단가로 소매 마진을 추정하면 결론이 통째로 틀린다.",
     ),
@@ -613,6 +643,17 @@ COLUMN_KO: dict[str, str] = {
     '가동률_%': '가동률(%)',
     '생산량_t': '생산량(t)',
     '중량_t': '중량(t)',
+    'kind': '구분',
+    'row_type': '구분',
+    'price_krw': '가격(원/마리)',
+    'segment': '배분 구분',
+    'allocation_tonnes': '배정량(t)',
+    'capture_tonnes': '포획량(t)',
+    'balance_tonnes': '잔량(t)',
+    'consumption_pct': '소진율(%)',
+    'recorded_capture_tonnes': '누적 포획량(t)',
+    'quota_minus_recorded_capture_tonnes': '쿼터 잔량(t)',
+    'source_id': '출처 ID',
     '금액_억': '금액(억원)',
     '2023_t': '2023 중량(t)',
     '2023_억': '2023 금액(억원)',
@@ -919,7 +960,7 @@ SIT_TAK.update({
         "남미 공급 확대와 중국산 축소가 한국 수입 구성에서도 함께 확인되므로, **중국 경유 물량의 일부를 페루·칠레 직수입으로 옮기는 안**을 원가와 리드타임 기준으로 비교해볼 시점이다.",
     ),
     "B_price_freshness_board": (
-        "가격 자료 세 종 가운데 기준일이 날짜까지 확정된 것은 한국해양수산개발원 소비자가격뿐으로, 2026년 8월 11일까지를 담아 경과 2일이다. 유엔식량농업기구 유럽 거래가격은 2026년 7월, 관세청 수입단가는 2026년 5월까지여서 월 단위 표기 탓에 경과일을 계산할 수 없는 「기준일정밀도부족」 상태다. 세 자료의 최신 시점은 최대 석 달가량 어긋난다.",
+        "가격 자료 세 종 가운데 기준일이 날짜까지 확정된 것은 한국해양수산개발원 소비자가격뿐으로, 2026년 8월 25일까지를 담아 경과 2일이다. 유엔식량농업기구 유럽 거래가격은 2026년 7월, 관세청 수입단가는 2026년 5월까지여서 월 단위 표기 탓에 경과일을 계산할 수 없는 「기준일정밀도부족」 상태다. 세 자료의 최신 시점은 최대 석 달가량 어긋난다.",
         "시차가 다른 세 자료를 한 화면에 얹으면 마진 착시가 생기므로, **월 단위 자료에는 기준월을 함께 적고** 주간 매입 판단에는 날짜가 확정된 자료만 쓰는 규칙이 필요하다.",
     ),
     "D_sprfmo_compliance": (
@@ -956,6 +997,7 @@ DROP_EMPTY = True
 # 기관명·간행물명이 들어가는 열. 번역하면 원문을 찾을 수 없게 되므로 원어를 남긴다.
 # 대신 그 열의 한글 라벨이 무엇을 담은 열인지 알려 준다.
 PROPER_NOUN_COLUMNS = {
+    "source_id",
     "series",
     "publisher",
     "landing_url",
@@ -1077,7 +1119,7 @@ def localize_rows(rows: list) -> list:
                 )
                 for k, v in row.items()
                 # 발췌 판별에 쓰는 kind/text_ko/source_path 는 뒤에서 따로 처리하므로 남긴다
-                if k not in COLUMN_DROP or k in ("kind", "text_ko", "source_path")
+                if k not in COLUMN_DROP or k in ("kind", "text_ko", "source_path", "source_id")
             }
         )
     return out
@@ -1138,6 +1180,27 @@ def basis_ko(basis: dict | None) -> dict | None:
     return out or None
 
 
+def display_rows(widget_id: str, data) -> list:
+    """객체형 운영 위젯을 의미가 분리된 표 행으로 편다."""
+    if widget_id == "B_kmi_consumer_price":
+        observations = list(data.get("observations") or [])
+        rows = [{"row_type": "확정 관측", **row} for row in observations]
+        comparison = data.get("comparison_snapshot")
+        if comparison:
+            rows.append({"row_type": "화면 비교 기준", **comparison})
+        return rows
+    if widget_id == "A_chile_jibia_quota":
+        total = {
+            "segment": "TOTAL",
+            "allocation_tonnes": data["legal_quota_tonnes"],
+            "capture_tonnes": data["recorded_capture_tonnes"],
+            "balance_tonnes": data["quota_minus_recorded_capture_tonnes"],
+            "consumption_pct": data["consumption_pct"],
+        }
+        return [total, *(data.get("breakdown") or [])]
+    return data if isinstance(data, list) else []
+
+
 def main() -> None:
     src = json.loads(SRC.read_text(encoding="utf-8"))
     widgets = src["widgets"]
@@ -1157,7 +1220,7 @@ def main() -> None:
             if raw is None:
                 dropped.append(f"{wid} (원본에 없음)")
                 continue
-            data = raw.get("data") or []
+            data = display_rows(wid, raw.get("data") or [])
             if DROP_EMPTY and not data:
                 dropped.append(f"{wid} (데이터 비어 있음)")
                 continue
@@ -1170,6 +1233,8 @@ def main() -> None:
             excerpts, plain = split_excerpts(localized)
             # 발췌만 있고 표 행이 없으면 인용 카드다. 차트 타입을 바로잡는다.
             chart_type = raw.get("chartType", "table")
+            if wid in {"B_kmi_consumer_price", "A_chile_jibia_quota", "E_monitoring_calendar"}:
+                chart_type = "table"
             if excerpts and not plain:
                 chart_type = "excerpt"
 
@@ -1216,6 +1281,9 @@ def main() -> None:
             # 2026-08-17: 어기 표기(2026/27)가 이듬해로 잡히는 보정 + 기준일 없는 위젯 채움
             DATAYEAR_OVERRIDES = {
                 "A_sourcing_signal_board": 2026,
+                "A_chile_jibia_quota": 2026,
+                "B_kmi_consumer_price": 2026,
+                "E_monitoring_calendar": 2026,
                 "C_korea_import_monthly": 2026,
                 "B_species_price_ladder": 2024,
             }
@@ -1239,8 +1307,8 @@ def main() -> None:
 
     payload = {
         "_meta": {
-            "생성일": "2026-08-16",
-            "원본": "public/data/squid_v5.json (위젯 39개)",
+            "생성일": str(src.get("meta", {}).get("built_at", "")).split("T", 1)[0],
+            "원본": f"public/data/squid_v5.json (위젯 {len(widgets)}개)",
             "선별": picked,
             "선별주석": "게재 수(중복 포함) — C_import_concentration 이 s06·x03 에 의도적으로 두 번 실린다",
             "규칙": (
@@ -1307,6 +1375,7 @@ def main() -> None:
             + ", ".join(sorted(UNMAPPED_COLUMNS))
         )
 
+    payload = normalize_display_dashes(payload)
     OUT.write_text(json.dumps(payload, ensure_ascii=False, indent=1), encoding="utf-8")
     size = OUT.stat().st_size / 1024
     print(f"✅ {OUT} ({size:,.0f} KB)")
