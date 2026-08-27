@@ -24,7 +24,7 @@
 > - 사용자가 지정한 `하역 효율 지표`에 선택 선박별 체선 등급·허용 정박일수·사용일수·여유/초과·추정 체선료를 추가했다. 상단 카드는 진행 선박만 유지한다. HIKARI는 허용 `13.3`·사용 `6`·여유 `7.3일(Low)`, SEIN VENUS는 허용 `14.9`·사용 `13`·여유 `1.9일(주의)`다.
 > - 현재 하역 중인 HIKARI 1을 기본 상세로 선택하고, 사용자가 고른 선박·URL 지정은 유지한다. 하역 그래프는 양수 하역 보고의 최초~최종일을 연속화해 작업 없는 날을 일일 `0 MT`·직전 누계 수평선으로 표시한다. SEIN VENUS는 `8/9·8/12·8/16`이 공백일이며, 다일 합산 보고 구간은 임의 분할하지 않는다.
 > - 교차 리뷰 지적을 반영했다. 동일 종료일의 복수 양수 보고는 일일량 합계·누계 최댓값으로 1점만 만들고, 태국 중앙은행 2025 휴일 공표에 따라 `2025-12-31`을 제외한다. 연도 경계 SEIN PHOENIX는 허용 `17.0`·사용 `20`·초과 `3.0일`·추정 `$30,000`이며 High 분기도 실제 통화 문자열을 렌더한다.
-> - TDD: 기존 화면은 `해당 없음`·SEIN VENUS 기본 선택·공백일 누락으로 RED, 수정 후 로컬 실제 DOM에서 13항차 문구와 위 수치를 확인했다. 1440px·390px overflow 0, page/console error 0. ESLint 0 errors, TypeScript, Vitest 154 files·1,195 passed/2 skipped, daily operator 10/10, fleet sync 11/11, API cache 158/158 통과.
+> - TDD: 기존 화면은 `해당 없음`·SEIN VENUS 기본 선택·공백일 누락으로 RED, 수정 후 로컬 실제 DOM에서 13항차 문구와 위 수치를 확인했다. 1440px·390px overflow 0, page/console error 0. 최신 main 통합 후 ESLint 0 errors(기존 warnings 12), TypeScript, Vitest 155 files·1,198 passed/2 skipped, daily operator 10/10, fleet sync 11/11, API cache 158/158 통과.
 > - 로컬 기본 Turbopack build는 외부 Google Fonts 차단으로 무응답, webpack은 compile 후 기존 `app/mail/login/page.tsx` 추가 export에서 중단됐다. 이번 변경의 타입·브라우저 검증은 통과했으며, PR App Quality Gate와 Vercel 표준 빌드를 배포 차단 게이트로 사용한다.
 > - **다음 단계**: hotfix PR gate → Production 재배포 → 로그인 데스크톱·390px·오류 로그 확인 후 운영자 `record-release` 갱신.
 >
