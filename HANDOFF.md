@@ -1,12 +1,13 @@
-> 🧭 **2026-08-27 15:25 KST — 부산 입출항 메뉴 숨김·라이트 스크롤바 검정 트랙 수정 로컬 완료** [Codex]:
+> 🚀 **2026-08-27 16:08 KST — 부산 입출항 메뉴 숨김·라이트 스크롤바 검정 트랙 수정 라이브 배포** [Codex]:
 > - 사용자 요청대로 `port-intel`을 공용 숨김 목록에 추가해 사이드바와 명령 팔레트에서 「부산 입출항」을 제거했다. 데이터·패널·보호 경계와 직접 `/port-intel` 주소는 보존한다.
 > - 우측 검정 바는 별도 DOM 패널이 아니라 루트 문서 스크롤바의 투명 트랙이었다. 라이트 토큰이 내부 `appWrapper[data-v3='light']`에만 적용되고 `<html>`은 투명해 브라우저 검정 캔버스가 비쳤다. 라이브 DOM에서 `<html>` 배경만 `#f9fafb`로 바꾸자 즉시 사라져 원인을 확정했다.
 > - `darkMode` 상태를 `<html data-shell-theme>`에 동기화하고, 라이트 `#f9fafb`·다크 `var(--bg-color)` 배경을 루트에 지정했다. 콘텐츠 폭이나 스크롤 동작은 변경하지 않았다.
 > - TDD RED 6건 확인 후 registry 집중 35/35 통과. 전체 `npm run verify`도 통과했다: ESLint 0 errors(기존 warnings 12), Python 운영 27건, Vitest 1,211 passed/2 skipped, API cache 158/158, Next 118페이지, client leak·bundle 33경로.
-> - 로컬 production 1440px·390px에서 사이드바·명령 검색의 부산 메뉴 0건, 라이트 루트 `rgb(249,250,251)`·다크 `rgb(10,10,11)`, 가로 overflow 0을 확인했다. 직접 `/port-intel`은 200·본문 렌더, page/same-origin 오류 0이다.
-> - **로컬 완료, 프로덕션 미배포.** 사용자가 새 요청에서 배포를 명시하지 않아 배포 승인 대기 상태다.
+> - PR [#822](https://github.com/CUTEKOREA/tuna-dashboard/pull/822) squash `2fc55ff8`. PR App Quality Gate `33047069552`와 main App Quality Gate `33047356699`가 성공했다. Vercel Production `dpl_6pKW9xGN7SnvK8UFCDyfBQDhJTKi`는 READY·region `icn1`이며 `https://leedonggun.co.kr` 별칭에 연결됐다. GitHub Production deployment `6118001541`이 같은 병합 SHA를 가리킨다.
+> - 로그인 라이브에서 사이드바 부산 메뉴 0건, 명령 검색 「부산」 결과 0건, 라이트 루트 `rgb(249,250,251)`·다크 `rgb(10,10,11)`을 확인했다. 우측 트랙은 라이트 배경으로 표시되며 기존 검정 바가 없다.
+> - 직접 `/port-intel`은 HTTP 200·「부산 입출항선 동향」 본문을 유지했고 사이드바에는 메뉴가 없다. same-origin 390px `/market`은 `clientWidth=scrollWidth=379`, 부산 메뉴 0건·라이트 루트 정상이다. 라이브 page/console/request/same-origin HTTP 오류 0, 새 Production error·fatal·5xx 로그도 0건이다.
 >
-> 마지막 업데이트: 2026-08-27 15:25 KST [Codex]
+> 마지막 업데이트: 2026-08-27 16:08 KST [Codex]
 
 > 🚀 **2026-08-27 14:51 KST — COSMO 34주·선단 8/27·TTA 운반선 33주 라이브 배포 완료** [Codex]:
 > - PR [#819](https://github.com/CUTEKOREA/tuna-dashboard/pull/819) squash `abc97271`. PR App Quality Gate `33042790355`, main App Quality Gate `33042993356`, Data Freshness Audit `33042993373`이 모두 성공했다.
