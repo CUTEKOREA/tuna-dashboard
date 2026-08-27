@@ -7,7 +7,10 @@ s1_domestic_tac_burn,S1,국내 TAC 는 채운 적이 없다,FIRA_TAC_BURN,script
 s1_import_origin_mix,S1,수입 원산지 구성과 집중 리스크,KCS_NITEMTRADE,script,A,2019-2024,95,70,95,100,90.0,A
 s1_import_origin_price,S1,원산지별 수입단가 비교,FAO_FISHSTAT_TRADE,script,A,2019-2024,95,70,95,100,90.0,A
 s1_korea_production,S1,한국 생산량·자급률,FAO_FISHSTAT_GLOBAL_PRODUCTION,script,A,2019-2024,95,70,95,100,90.0,A
+s1_norway_catch_value,S1,노르웨이는 덜 잡고 더 번다,FISKERIDIR_CATCH,script,A,2018-2025,95,80,95,100,92.5,A
 s1_nsc_weekly,S1,노르웨이 주간 수출 물량·단가,NORWEGIAN_SEAFOOD_EXPORTS,script,A,2026-W32,80,95,95,100,92.5,A
+s1_official_self_sufficiency,S1,자급률은 수출이 움직인다,MOF_DISTRIBUTION_SURVEY,script,B,2018-2023,95,40,95,100,82.5,B
+s1_self_sufficiency_species_gap,S1,자급률이 높은 해일수록 빠진 어종이 크다,MOF_DISTRIBUTION_SURVEY,script,B,2018-2023,95,40,95,100,82.5,B
 s1_species_production_gap,S1,국내 품종별 생산과 FAO 제출값,FIPS_PRODUCTION_SPECIES,script,A,2015-2026,95,95,95,100,96.2,A
 s1_stock_by_population,S1,한국 근해 계군은 회복 중이다,FRA_MASABA_TSUSHIMA,script,B,2024,95,70,95,100,90.0,A
 s1_stock_status,S1,자원평가 상태 스코어카드 (ICES·NPFC),ICES_ATLANTIC_MACKEREL,manual_extract,B,2024-2026,95,95,70,100,90.0,A
@@ -36,4 +39,5 @@ s4_globefish_brief,S4,소형부어류 수급 브리핑,FAO_GLOBEFISH_SMALL_PELAG
 s4_korea_retail,S4,국내 생산량·소비자가격 (월간),KMI_FISHDATA_PRICE,manual_extract,B,2026-04~2026-05,80,95,70,100,86.2,A
 s4_market_polarization,S4,수입단가 양극화 (EU vs 아프리카),FAO_FISHSTAT_TRADE_PARTNERS,script,A,2019-2024,95,70,95,100,90.0,A
 s4_retail_origin_spread,S4,소매에서 국산이 더 싸다,KAMIS_MACKEREL_PRICE,script,A,2023-08~2026-08,95,95,95,100,96.2,A
+s4_value_chain_domestic_vs_import,S4,어부의 몫이 노르웨이 쪽보다 크다,MOF_DISTRIBUTION_SURVEY,script,B,2023,95,40,95,100,82.5,B
 s5_msc_cert,S5,MSC 인증 커버리지,MSC_MACKEREL_FISHERIES,manual_extract,B,2026,65,95,70,100,82.5,B
