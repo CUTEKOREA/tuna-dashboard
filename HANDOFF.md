@@ -1,3 +1,11 @@
+> 🚀 **2026-08-27 14:34 KST — 오징어 공식 모니터링·산업보고서 라이브 배포 완료** [Codex]:
+> - PR [#818](https://github.com/CUTEKOREA/tuna-dashboard/pull/818) squash `f522d12d`. PR App Quality Gate·Vercel Preview와 main App Quality Gate가 모두 성공했다.
+> - Vercel Production `dpl_AH22pDS5HG3Y4FfEVuuZjH6BKz7A` Ready, `https://leedonggun.co.kr` 별칭 연결. GitHub Production deployment `6117048705`가 병합 SHA `f522d12dc274fe660f752b9076e3f004083519a9`를 정확히 가리킨다.
+> - 로그인된 `/squid-industry`에서 02단계 칠레 `130,021.9741t·65.011%·69,978.0259t`, 14단계 KMI 확정 `5,570원(8/25)`·화면 비교 `5,440원(8/26)`, 15단계 KMI·KAMIS·PRODUCE·SERNAPESCA·GACC 우선 5행을 확인했다.
+> - 라이브 1440×900·390×844에서 문서 가로 overflow 0, Next 오류 overlay 0, console/page/request/same-origin 4xx·5xx 0. 배포 후 30분 Vercel error·fatal·500 로그도 0건이다.
+> - Drive 보고서 제22판 `6ae341e`·103쪽 A4와 원장 44행·모니터링 20행·외부 매니페스트 127행은 배포본과 같은 8/27 정본이다.
+>
+> 마지막 업데이트: 2026-08-27 14:34 KST [Codex]
 > 📦 **2026-08-27 14:17 KST — COSMO 34주·선단 8/27·TTA 운반선 33주 통합 갱신 로컬 완료** [Codex]:
 > - 선행 하역 hotfix PR [#816](https://github.com/CUTEKOREA/tuna-dashboard/pull/816) squash `c5a067c3`는 Production `dpl_GKK3mCChptuB82EPcqBgsUfGU94r`에 배포했다. 라이브에서 HIKARI 1 기본 선택, 2026년 13항차 체선 계산, SEIN VENUS 무작업일 8/9·8/12·8/16, 연도경계 SEIN PHOENIX $30,000과 390px overflow 0·오류 로그 0을 확인했고 운영자 상태를 `live_verified`로 기록했다.
 > - COSMO 원본 2건을 검증했다. `COSMO 주간보고 (34주차)-첨부파일.xlsx` SHA-256 `99de9a50…afac`, `2026.8.27_COSMO 주간보고 (34주차).docx` `6a0d61f1…a5eb`; ZIP 무결성·수식 오류 0건이다.
