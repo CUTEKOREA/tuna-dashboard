@@ -1,3 +1,13 @@
+> 🐟 **2026-08-27 — `/mackerel-industry` NSC 34주·KMI Vol.257 반영** [Codex]:
+> - NSC 600g 미만 냉동고등어 34주 누계 **41,108톤(-46.2%)·48.35 NOK/kg(+61.3%)**과 KMI 8월 3주 냉장 도매 **6,172원/kg**, 냉동 도매 **4,204원/kg**, 냉장 소매 **12,317원/kg**을 03·05단계 근거표와 상단 주간 스트립에 추가했다.
+> - KMI 냉동 소매는 0원이 아니라 **미형성**으로 표기하고, NSC 34주 값은 600g 미만 규격(2025 비교 규격 400g 미만)이라는 범위 제한을 출처와 한계에 고정했다.
+> - Drive 보고서 정본·HTML과 수치 정본을 같은 값으로 갱신했다. 보고서 수치 대조 357건 통과, 미확인 0건, 교체 9파일 해시 일치·기존본 백업 완료.
+> - Google Calendar의 기존 6개 `[고등어]` 이벤트를 주간 2·월간 3·분기 1 시리즈로 전환해 **2027-12-31**까지 반복 규칙을 확인했다.
+> - TDD RED 3건을 먼저 확인하고 GREEN 3/3, 고등어 집중 회귀 114/114를 통과했다. 전체 `npm run verify`도 통과: ESLint 0 errors(기존 warnings 12), Python 운영 테스트 21건, Vitest 154파일·1,191 passed/2 skipped, API cache 158/158, Next 118페이지, client-leak·bundle 게이트.
+> - 사용자가 이번 요청에서 **배포**를 명시했다. PR 품질 게이트와 프로덕션·라이브 검증을 후속한다.
+>
+> 마지막 업데이트: 2026-08-27 [Codex]
+
 > 🚀 **2026-08-27 — 체선료 실산식 위젯 라이브 배포** [CC]:
 > - PR [#808](https://github.com/CUTEKOREA/tuna-dashboard/pull/808) squash `5aeea190`. Vercel Production **success** · leedonggun.co.kr /unloading 반영.
 > - 후속 과제: 하역 DB에 입항일(arrival_date) 필드 채우면 입항 대기 포함 정밀화. C/P 휴일 정의 상이 시 `lib/demurrage.ts` 목록 수정.
