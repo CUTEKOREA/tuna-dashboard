@@ -22,10 +22,13 @@ import PillTabs from './v2/PillTabs';
 import VesselTopSVG from './v2/VesselTopSVG';
 import {
   avgPerReportDay,
+  buildContinuousUnloadingChartData,
   getUnloadingEtaLabel,
   getVesselStatusKind,
+  resolveSelectedVesselId,
 } from '../lib/unloading-operations';
 import { progressPct } from '../lib/metrics';
+import { calcDemurrage, demurrageRisk, DEMURRAGE_DAILY_BASIS_MT, formatDemurrageEstimateUsd, type DemurrageResult } from '../lib/demurrage';
 import { CHART_RANK, HUB_ID } from '@/lib/chart-palette';
 
 export {
@@ -576,6 +579,33 @@ function vesselLatestReport(v: { dateRange?: string; timeline?: { date: string }
   return { label: `${year}.${mm}.${dd}`, sortKey: year * 10000 + maxKey };
 }
 
+type VesselDemurrageSnapshot = {
+  startDate: string;
+  baseDate: string;
+  calc: DemurrageResult;
+};
+
+function getVesselDemurrage(
+  vessel: Pick<UnloadingVesselData, 'dateRange' | 'timeline' | 'reportedTotal'>,
+): VesselDemurrageSnapshot | null {
+  const start = String(vessel.dateRange || '').match(/(20\d{2})\.(\d{2})\.(\d{2})/);
+  const latest = vesselLatestReport(vessel);
+  const fullBase = latest?.label.match(/^(20\d{2})\.(\d{2})\.(\d{2})$/);
+  const shortBase = latest?.label.match(/^(\d{1,2})\/(\d{1,2})$/);
+  if (!start || (!fullBase && !shortBase) || !vessel.reportedTotal) return null;
+
+  const startDate = `${start[1]}-${start[2]}-${start[3]}`;
+  const baseDate = fullBase
+    ? `${fullBase[1]}-${fullBase[2]}-${fullBase[3]}`
+    : `${start[1]}-${String(shortBase?.[1]).padStart(2, '0')}-${String(shortBase?.[2]).padStart(2, '0')}`;
+
+  return {
+    startDate,
+    baseDate,
+    calc: calcDemurrage({ cargoMt: vessel.reportedTotal, startDate, baseDate }),
+  };
+}
+
 function BaseDateTag({ date }: { date: string | null }) {
   if (!date) return null;
   return (
@@ -700,7 +730,7 @@ function RadialGauge({
 }
 
 export default function UnloadingStatus({ heroOnly = false }: { heroOnly?: boolean }) {
-  const [selectedVessel, setSelectedVessel] = useState('sein-venus');
+  const [selectedVessel, setSelectedVessel] = useState('');
   const [liveData, setLiveData] = useState<any>(null);
   const [dbData, setDbData] = useState<Record<string, UnloadingVesselData>>({});
   const [selectedHold, setSelectedHold] = useState<string | null>(null);
@@ -783,13 +813,20 @@ export default function UnloadingStatus({ heroOnly = false }: { heroOnly?: boole
 
   const formatNum = (num: number) => num.toLocaleString('en-US', { minimumFractionDigits: 0, maximumFractionDigits: 0 });
 
-  const vesselId = data[selectedVessel as keyof typeof data] ? selectedVessel : 'sein-phoenix';
+  const vesselId = resolveSelectedVesselId(vesselsList, selectedVessel) ?? 'sein-phoenix';
   const selectedData = data[vesselId as keyof typeof data] || data['sein-phoenix'];
-  const chartData = (selectedData.timeline || []).map(t => ({
-    name: t.date,
-    일일하역량: t.dailyAmount,
-    누적하역량: t.cumAmount
+  const chartData = buildContinuousUnloadingChartData(
+    selectedData.timeline || [],
+    selectedData.dateRange,
+  ).map((point) => ({
+    name: point.name,
+    일일하역량: point.dailyAmount,
+    누적하역량: point.cumulativeAmount,
+    isNoWorkDay: point.isNoWorkDay,
   }));
+  const chartNoWorkDays = chartData
+    .filter((point) => point.isNoWorkDay)
+    .map((point) => point.name);
 
   const holdsData = selectedData.holdDataAvailable === false
     ? {}
@@ -825,11 +862,38 @@ export default function UnloadingStatus({ heroOnly = false }: { heroOnly?: boole
       (acc, cur) => (cur && (!acc || cur.sortKey > acc.sortKey) ? cur : acc),
       null
     )?.label || null;
+  // 체선료 추정 (2026-08-27 소유자 산식: 전체물량/220 - 사용일수, 일요일·태국 공휴일 제외).
+  // 입항일 필드가 아직 없어 하역 개시일 기준으로 계산한다 (입항 대기 미반영 - 화면에 명시).
+  const demurrageRows = vesselsList.flatMap((v) => {
+    const snapshot = getVesselDemurrage(v);
+    return snapshot?.baseDate.startsWith('2026-') ? [{ vessel: v, ...snapshot }] : [];
+  });
+  const activeDemurrageRows = demurrageRows
+    .filter(({ vessel }) => getVesselStatusKind(vessel.status) === 'progress')
+    .sort((a, b) => a.calc.balanceDays - b.calc.balanceDays);
+  const worstDemurrage = activeDemurrageRows[0] ?? null;
+
   const earliestStart = vesselsList
     .map(v => v.annualStartDate || (String(v.dateRange || '').match(/20\d{2}\.\d{2}\.\d{2}/) || [])[0])
     .filter(Boolean)
     .sort()[0] || null;
   const selectedBaseDate = vesselLatestReport(selectedData as any)?.label || null;
+  const selectedDemurrage = demurrageRows.find(({ vessel }) => vessel.id === vesselId) ?? null;
+  const selectedDemurrageRisk = selectedDemurrage
+    ? demurrageRisk(selectedDemurrage.calc.balanceDays)
+    : null;
+  const selectedDemurrageRiskLabel = selectedDemurrageRisk === 'High'
+    ? '높음'
+    : selectedDemurrageRisk === 'Medium'
+      ? '주의'
+      : selectedDemurrageRisk === 'Low'
+        ? '낮음'
+        : '자료 없음';
+  const selectedDemurrageRiskColor = selectedDemurrageRisk === 'High'
+    ? 'var(--color-danger)'
+    : selectedDemurrageRisk === 'Medium'
+      ? 'var(--color-warning)'
+      : 'var(--color-success)';
   const selectedStatusKind = getVesselStatusKind(selectedData.status);
   const selectedTimeline = (selectedData.timeline || []).filter(t => t.dailyAmount > 0);
   // 보고일 전체 기준 (완료 예상일 산출용 — lib/unloading-operations SSOT 정의)
@@ -1011,12 +1075,40 @@ export default function UnloadingStatus({ heroOnly = false }: { heroOnly?: boole
           <div className={styles.execCardTitle}>
             <AlertCircle size={16} /> 항만 체선 위험 <BaseDateTag date={globalBaseDate} />
           </div>
-          <div className={styles.execCardValue} style={{ color: 'var(--color-danger)' }}>
-            High <span style={{ fontSize: '1rem', fontWeight: 'normal', color: 'var(--text-muted)' }}>(방콕)</span>
-          </div>
-          <div className={styles.execCardTakeaway}>
-            <TermTooltip term="체선료(Demurrage)" description="선박이 정해진 정박 기간을 초과하여 항구에 머물 때 발생하는 지연 배상금입니다." /> 리스크 증가: <strong>예상 지연 3~4일</strong> ({globalBaseDate ? `${globalBaseDate} 하역 보고 기준` : '최근 하역 보고 기준'})
-          </div>
+          {worstDemurrage ? (() => {
+            const { vessel, calc } = worstDemurrage;
+            const risk = demurrageRisk(calc.balanceDays);
+            const riskColor = risk === 'High' ? 'var(--color-danger)' : risk === 'Medium' ? 'var(--color-warning)' : 'var(--color-success)';
+            const port = /방콕|BANGKOK/i.test(vessel.location) ? '방콕' : /젠산|GENSAN/i.test(vessel.location) ? '젠산' : vessel.location;
+            const excluded = [
+              calc.excludedSundays ? `일요일 ${calc.excludedSundays}` : null,
+              calc.excludedHolidays ? `공휴일 ${calc.excludedHolidays}` : null,
+            ].filter(Boolean).join('·');
+            return (
+              <>
+                <div className={styles.execCardValue} style={{ color: riskColor }}>
+                  {risk} <span style={{ fontSize: '1rem', fontWeight: 'normal', color: 'var(--text-muted)' }}>({port})</span>
+                </div>
+                <div className={styles.execCardTakeaway}>
+                  <TermTooltip term="체선료(Demurrage)" description={`허용 정박일수(전체물량 / ${DEMURRAGE_DAILY_BASIS_MT}MT)에서 사용 일수(일요일·태국 공휴일 제외)를 뺀 값이 음수면 초과일수당 $10,000로 1차 책정 후 운반선사와 최종 조율합니다.`} />{' '}
+                  허용 <strong>{calc.allowedDays}일</strong>({formatNum(vessel.reportedTotal)}MT/{DEMURRAGE_DAILY_BASIS_MT}) - 사용 <strong>{calc.usedDays}일</strong>{excluded ? ` (${excluded} 제외)` : ''} ={' '}
+                  {calc.balanceDays < 0 ? (
+                    <strong>초과 {Math.abs(calc.balanceDays)}일 · 추정 {formatDemurrageEstimateUsd(calc.estimateUsd ?? 0)} (조율 전)</strong>
+                  ) : (
+                    <strong>여유 {calc.balanceDays}일</strong>
+                  )}
+                  <span style={{ display: 'block', fontSize: '0.72rem', marginTop: '2px', color: 'var(--text-dim)' }}>
+                    {vessel.name} · 하역 개시일 기준 (입항 대기 미반영 - 입항일 확보 시 자동 정밀화)
+                  </span>
+                </div>
+              </>
+            );
+          })() : (
+            <>
+              <div className={styles.execCardValue} style={{ color: 'var(--text-muted)' }}>해당 없음</div>
+              <div className={styles.execCardTakeaway}>진행 중 항차가 없어 체선 계산 대상이 없습니다.</div>
+            </>
+          )}
         </div>
 
         <div className={`${styles.execCard} ${styles.glassPanel}`}>
@@ -1556,7 +1648,11 @@ export default function UnloadingStatus({ heroOnly = false }: { heroOnly?: boole
               style={{ display: 'flex', flexWrap: 'wrap', gap: '20px', marginBottom: '20px' }}
             >
               {/* Chart - Left */}
-              <div style={{ flex: '1 1 600px', minWidth: 0, background: 'var(--dsc-surface)', borderRadius: '12px', padding: '20px', border: '1px solid var(--dsc-surface-border)', overflow: 'hidden' }}>
+              <div
+                data-testid="unloading-daily-chart"
+                data-no-work-days={chartNoWorkDays.join(',')}
+                style={{ flex: '1 1 600px', minWidth: 0, background: 'var(--dsc-surface)', borderRadius: '12px', padding: '20px', border: '1px solid var(--dsc-surface-border)', overflow: 'hidden' }}
+              >
                 <h4 style={{ marginBottom: '16px', fontSize: '0.95rem', color: 'var(--text-muted)', display: 'flex', alignItems: 'center', gap: '8px' }}>일일 및 누적 하역 추이 (MT) <BaseDateTag date={selectedBaseDate} /></h4>
                 <div style={{ width: '100%', overflowX: 'auto', paddingBottom: '8px' }}>
                   <div style={{ width: `${Math.max(chartData.length * 55, 750)}px`, height: '350px' }}>
@@ -1597,16 +1693,70 @@ export default function UnloadingStatus({ heroOnly = false }: { heroOnly?: boole
                           : <span style={{fontSize:'0.9rem'}}>자료 없음</span>}
                       </div>
                     </div>
-                    <div>
-                      <div style={{ fontSize: '0.8rem', color: 'var(--text-muted)' }}>시간당 하역속도</div>
-                      <div style={{ fontSize: '1.2rem', fontWeight: 'bold' }}>
-                        {totalWorkingHours > 0
-                          ? <>{avgBurnRate.toFixed(1)} <span style={{fontSize:'0.8rem', fontWeight:'normal'}}>MT/hr</span></>
-                          : <span style={{fontSize:'0.9rem'}}>자료 없음</span>}
-                      </div>
+                  <div>
+                    <div style={{ fontSize: '0.8rem', color: 'var(--text-muted)' }}>시간당 하역속도</div>
+                    <div style={{ fontSize: '1.2rem', fontWeight: 'bold' }}>
+                      {totalWorkingHours > 0
+                        ? <>{avgBurnRate.toFixed(1)} <span style={{fontSize:'0.8rem', fontWeight:'normal'}}>MT/hr</span></>
+                        : <span style={{fontSize:'0.9rem'}}>자료 없음</span>}
                     </div>
                   </div>
+                  {selectedDemurrage ? (
+                    <div
+                      data-testid="selected-vessel-demurrage"
+                      style={{
+                        gridColumn: '1 / -1',
+                        borderTop: '1px solid var(--dsc-surface-border)',
+                        paddingTop: '14px',
+                        display: 'grid',
+                        gridTemplateColumns: 'repeat(2, minmax(0, 1fr))',
+                        gap: '14px 16px',
+                      }}
+                    >
+                      <div>
+                        <div style={{ fontSize: '0.8rem', color: 'var(--text-muted)' }}>체선 등급</div>
+                        <div style={{ fontSize: '1.2rem', fontWeight: 'bold', color: selectedDemurrageRiskColor }}>
+                          {selectedDemurrageRiskLabel}
+                        </div>
+                      </div>
+                      <div>
+                        <div style={{ fontSize: '0.8rem', color: 'var(--text-muted)' }}>허용 정박일수</div>
+                        <div style={{ fontSize: '1.2rem', fontWeight: 'bold' }}>{selectedDemurrage.calc.allowedDays.toFixed(1)}일</div>
+                      </div>
+                      <div>
+                        <div style={{ fontSize: '0.8rem', color: 'var(--text-muted)' }}>사용일수</div>
+                        <div style={{ fontSize: '1.2rem', fontWeight: 'bold' }}>{selectedDemurrage.calc.usedDays}일</div>
+                      </div>
+                      <div>
+                        <div style={{ fontSize: '0.8rem', color: 'var(--text-muted)' }}>
+                          {selectedDemurrage.calc.balanceDays < 0 ? '초과' : '여유'}
+                        </div>
+                        <div style={{ fontSize: '1.2rem', fontWeight: 'bold', color: selectedDemurrageRiskColor }}>
+                          {Math.abs(selectedDemurrage.calc.balanceDays).toFixed(1)}일
+                        </div>
+                      </div>
+                      <div style={{ gridColumn: '1 / -1' }}>
+                        <div style={{ fontSize: '0.8rem', color: 'var(--text-muted)' }}>체선료 추정</div>
+                        <div style={{ fontSize: '1rem', fontWeight: 'bold' }}>
+                          {selectedDemurrage.calc.estimateUsd == null
+                            ? '없음'
+                            : `${formatDemurrageEstimateUsd(selectedDemurrage.calc.estimateUsd)} (조율 전)`}
+                        </div>
+                      </div>
+                      <div style={{ gridColumn: '1 / -1', fontSize: '0.72rem', lineHeight: 1.5, color: 'var(--text-dim)' }}>
+                        2026년 {demurrageRows.length}항차 동일 산식 적용 · 일요일 {selectedDemurrage.calc.excludedSundays}일·태국 공휴일 {selectedDemurrage.calc.excludedHolidays}일 제외 · 하역 개시일 기준(입항 대기 미반영)
+                      </div>
+                    </div>
+                  ) : (
+                    <div
+                      data-testid="selected-vessel-demurrage"
+                      style={{ gridColumn: '1 / -1', borderTop: '1px solid var(--dsc-surface-border)', paddingTop: '14px', color: 'var(--text-muted)', fontSize: '0.82rem' }}
+                    >
+                      체선 계산에 필요한 하역 기간 자료가 없습니다.
+                    </div>
+                  )}
                 </div>
+              </div>
 
                 {/* Dynamic ETA gauge */}
                 <div style={{ background: 'var(--dsc-surface)', borderRadius: '12px', padding: '20px', border: '1px solid var(--dsc-surface-border)' }}>

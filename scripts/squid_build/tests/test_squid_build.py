@@ -29,7 +29,7 @@ from scripts.validate_squid_v5 import parse_edge, validate  # noqa: E402
 # 결정론을 위해 빌드시각을 고정한다. 아카이브에 더 최신 문서가 들어오면
 # 이 값만 올린다 — 7곳에 흩어져 있던 탓에 2026-08-17 문서가 들어오자
 # G-012 검사가 엉뚱하게 실패했다.
-BUILT_AT = datetime(2026, 8, 18, 9, 0, tzinfo=ZoneInfo("Asia/Seoul"))
+BUILT_AT = datetime(2026, 8, 27, 13, 0, tzinfo=ZoneInfo("Asia/Seoul"))
 
 
 def _read_csv(path: Path) -> list[dict[str, str]]:
@@ -56,16 +56,25 @@ def test_fishstat_species_filter() -> None:
 
 
 def test_kmi_price_round_trip() -> None:
-    """Changing the archived final KMI observation must fail this test."""
+    """KMI 확정 관측과 화면 비교 기준을 섞으면 실패한다."""
     from scripts.squid_build.extract.kmi_price import extract_kmi_price
 
     spec = _specs_by_id()["B_kmi_consumer_price"]
     patch = extract_kmi_price(DEFAULT_ARCHIVE_ROOT, spec)
+    assert spec.archive_paths == (
+        "00_오징어_관련자료/01_오징어_시장·가격/11_분석·가공데이터/"
+        "KMI_FishData_squid_price_20260827.csv",
+    )
     assert patch["data"]["observations"][-1] == {
-        "date": "2026-08-11",
-        "price_krw": 4926,
+        "date": "2026-08-25",
+        "price_krw": 5570,
     }
-    assert patch["basis"]["coverage_end"] == "2026-08-11"
+    assert patch["data"]["comparison_snapshot"] == {
+        "date": "2026-08-26",
+        "price_krw": 5440,
+    }
+    assert patch["data"]["comparisons"][-1]["difference_pct"] == 3.5
+    assert patch["basis"]["coverage_end"] == "2026-08-25"
 
 
 def test_peru_timeline_order() -> None:
@@ -86,10 +95,58 @@ def test_chile_uses_separate_quota_and_capture_sources() -> None:
     spec = _specs_by_id()["A_chile_jibia_quota"]
     widget = extract_chile_jibia(DEFAULT_ARCHIVE_ROOT, spec)
     assert widget["data"]["legal_quota_tonnes"] == 200000
-    assert widget["data"]["recorded_capture_tonnes"] == 121868.7551
-    assert widget["data"]["consumption_pct"] == 60.9344
+    assert widget["data"]["as_of"] == "2026-08-18"
+    assert widget["data"]["recorded_capture_tonnes"] == 130021.9741
+    assert widget["data"]["quota_minus_recorded_capture_tonnes"] == 69978.0259
+    assert widget["data"]["consumption_pct"] == 65.011
+    assert len(widget["data"]["breakdown"]) == 4
+    assert widget["data"]["breakdown"][-1] == {
+        "segment": "INVESTIGACIÓN",
+        "allocation_tonnes": 1000,
+        "capture_tonnes": 0,
+        "balance_tonnes": 1000,
+        "consumption_pct": 0,
+    }
     assert widget["data"]["denominator_source"].endswith("20251218-SUBPESCA-Jibia_Quota_2026.md")
-    assert widget["data"]["numerator_source"].endswith("20260806-SERNAPESCA-Jibia_Quota_Consumption_2026.xlsx")
+    assert widget["data"]["numerator_source"].endswith("20260820-SERNAPESCA-Jibia_Quota_Consumption_2026.xlsx")
+    assert widget["basis"]["coverage_end"] == "2026-08-18"
+
+
+def test_monitoring_calendar_prioritizes_requested_sources_without_mixing_values() -> None:
+    """이번 점검 5계열은 화면 앞쪽에 남고 숫자 계산 필드를 만들지 않는다."""
+    from scripts.squid_build.governance import load_governance
+
+    bundle = load_governance(DEFAULT_ARCHIVE_ROOT, load_spec(), BUILT_AT.date())
+    rows = bundle.widgets["E_monitoring_calendar"]["data"]
+    requested = [
+        "SQ-PRC-KMI",
+        "SQ-PRC-KAMIS",
+        "SQ-MGT-PRODUCE",
+        "SQ-MGT-SERNAPESCA",
+        "SQ-TRD-CN-CUSTOMS",
+    ]
+    assert [row["source_id"] for row in rows[:5]] == requested
+    widget = bundle.widgets["E_monitoring_calendar"]
+    assert widget["title"] == "공식자료 모니터링 캘린더"
+    assert widget["basis"]["source_ids"] == ["MAN-GOV-MONITORING-CALENDAR"]
+    assert {row["source_id"] for row in rows} == {
+        row["source_id"] for row in bundle.monitoring
+    }
+    source_widget = bundle.widgets["E_source_registry"]
+    assert "36건" not in source_widget["title"]
+    assert source_widget["basis"]["source_ids"] == ["MAN-GOV-SOURCE-REGISTRY"]
+    assert {row["source_id"] for row in source_widget["data"]} == {
+        row["source_id"] for row in bundle.registry_sources
+    }
+    for row in rows[:5]:
+        assert set(row) == {
+            "source_id",
+            "series",
+            "frequency",
+            "latest_verified",
+            "next_check",
+            "status",
+        }
 
 
 def test_kcs_2026_coverage_stops_at_may() -> None:
@@ -258,6 +315,67 @@ def test_translation_number_fidelity() -> None:
     print(f"    (번역 {checked}건 수치 대조)")
 
 
+def test_display_dash_normalization_preserves_raw_evidence() -> None:
+    """표시용 대시 교정이 원문·원문표 해시를 바꾸면 실패한다."""
+    from scripts.squid_build.normalize import normalize_display_dashes
+
+    em_dash = chr(0x2014)
+    raw = {
+        "title": f"표시{em_dash}제목",
+        "text": f"원문{em_dash}문장",
+        "source_excerpt": f"원문{em_dash}표",
+    }
+    normalized = normalize_display_dashes(raw, preserve_raw_evidence=True)
+    assert normalized["title"] == "표시-제목"
+    assert normalized["text"] == raw["text"]
+    assert normalized["source_excerpt"] == raw["source_excerpt"]
+
+
+def test_published_json_preserves_translation_source_hashes() -> None:
+    """overlay까지 끝난 저장 JSON의 원문이 번역표 키와 같아야 한다."""
+    from scripts.squid_build.extract.md_extract import _excerpt_hash, _translations
+
+    document = json.loads(
+        (REPO_ROOT / "public/data/squid_v5.json").read_text(encoding="utf-8")
+    )
+    table = _translations()
+    checked = 0
+    for widget_id, widget in document["widgets"].items():
+        rows = widget.get("data")
+        if not isinstance(rows, list):
+            continue
+        for row in rows:
+            if not isinstance(row, dict) or "text_ko" not in row:
+                continue
+            checked += 1
+            assert _excerpt_hash(row["text"]) in table, widget_id
+    assert checked >= 100, checked
+
+
+def test_published_json_preserves_out_of_scope_f_bundle() -> None:
+    """이번 5계열 점검에서 F 23개 내용을 재산출하면 실패한다."""
+    import hashlib
+
+    document = json.loads(
+        (REPO_ROOT / "public/data/squid_v5.json").read_text(encoding="utf-8")
+    )
+    f_widgets = {
+        widget_id: widget
+        for widget_id, widget in document["widgets"].items()
+        if widget_id.startswith("F_")
+    }
+    canonical = json.dumps(
+        f_widgets,
+        ensure_ascii=False,
+        sort_keys=True,
+        separators=(",", ":"),
+    ).encode()
+    assert len(f_widgets) == 23
+    assert hashlib.sha256(canonical).hexdigest() == (
+        "fa3f944bb95d179cfe3bfc1b02aafc1169e11c223af521c13f98b3114b6dc418"
+    )
+
+
 def test_peru_research_authorisation_is_not_a_reopening() -> None:
     """RM00269 를 상업 재개로 표기하면 실패한다.
 
@@ -415,15 +533,15 @@ def test_sourcing_signal_records_observed_and_schedule_derivations() -> None:
 
     chile = rows["칠레 jibia"]
     assert chile["status"] == "조업중"
-    assert chile["as_of"] == "2026-08-06"
+    assert chile["as_of"] == "2026-08-18"
     # 잔여량은 조달 판단용이므로 정수 톤. 소수점 4자리는 의미 없는 정밀도였다.
-    assert "78,131톤" in chile["reason"]
+    assert "69,978톤" in chile["reason"]
     # 기준일은 카드가 as_of 로 따로 찍는다 — reason 안에서 되풀이하지 않는다.
-    assert "2026-08-06" not in chile["reason"]
+    assert "2026-08-18" not in chile["reason"]
     assert chile["state_evidence"]["evidence_type"] == "observed_report"
     assert chile["state_evidence"]["derivation"] == "observed_capture_accrual"
     assert chile["state_evidence"]["archive_path"].endswith(
-        "20260806-SERNAPESCA-Jibia_Quota_Consumption_2026.xlsx"
+        "20260820-SERNAPESCA-Jibia_Quota_Consumption_2026.xlsx"
     )
 
     falkland = rows["포클랜드 Loligo"]
@@ -567,6 +685,17 @@ def test_derivations_preserve_missing_inputs() -> None:
     ]
     assert all(row["market_stage"] != "first_sale" for row in stages)
     assert all("combined_average" not in row for row in stages)
+    stage_basis = patches["B_stage_separated_prices"]["basis"]
+    assert stage_basis["coverage_end"] == "2026-08-25"
+    assert stage_basis["published_at"] == "2026-08-26"
+    assert stage_basis["retrieved_at"] == "2026-08-27"
+
+    freshness = patches["B_price_freshness_board"]
+    assert freshness["basis"]["coverage_end"] == "2026-08-25"
+    kmi_freshness = next(
+        row for row in freshness["data"] if row["source_widget"] == "B_kmi_consumer_price"
+    )
+    assert kmi_freshness["age_days"] == 2
 
 
 def test_complete_document_contract() -> None:
@@ -574,6 +703,7 @@ def test_complete_document_contract() -> None:
     document = build_document(archive_root=DEFAULT_ARCHIVE_ROOT)
     assert len(document["widgets"]) == 39, len(document["widgets"])
     assert document["meta"]["telemetry"] == "SYNCED"
+    assert document["meta"]["archive_snapshot"] == "squid archive @ 2026-08-27"
     errors = validate(document)
     assert errors == [], "\n".join(errors)
 
@@ -584,12 +714,16 @@ def main() -> None:
         test_kmi_price_round_trip,
         test_peru_timeline_order,
         test_chile_uses_separate_quota_and_capture_sources,
+        test_monitoring_calendar_prioritizes_requested_sources_without_mixing_values,
         test_kcs_2026_coverage_stops_at_may,
         test_comtrade_is_coverage_only,
         test_concentration_covers_every_observed_year,
         test_report_coverage_uses_observation_period_not_publication_date,
         test_every_coverage_end_is_on_or_before_build_day,
         test_translation_number_fidelity,
+        test_display_dash_normalization_preserves_raw_evidence,
+        test_published_json_preserves_translation_source_hashes,
+        test_published_json_preserves_out_of_scope_f_bundle,
         test_peru_research_authorisation_is_not_a_reopening,
         test_hs_map_preserves_archive_rows,
         test_md_configs_cover_work_list_and_isolate_failures,

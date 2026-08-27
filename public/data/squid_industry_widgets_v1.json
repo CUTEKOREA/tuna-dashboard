@@ -1,8 +1,8 @@
 {
  "_meta": {
-  "생성일": "2026-08-16",
-  "원본": "public/data/squid_v5.json (위젯 39개)",
-  "선별": 30,
+  "생성일": "2026-08-27",
+  "원본": "public/data/squid_v5.json (위젯 62개)",
+  "선별": 33,
   "선별주석": "게재 수(중복 포함) - C_import_concentration 이 s06·x03 에 의도적으로 두 번 실린다",
   "규칙": "학습용 페이지는 운영 감시용 위젯을 전부 싣지 않는다. 서사 단계에 근거로 붙는 것만 고른다. 데이터가 빈 위젯은 뺀다.",
   "보완": "원본에 없는 현황·실행지침을 채운 위젯은 narrativeFilled=true 로 표시하고 카드 출처 줄에 그 사실을 밝힌다. 채울 때는 그 위젯 자신의 데이터만 쓴다.",
@@ -33,13 +33,13 @@
       {
        "origin": "칠레 대왕오징어(히비아)",
        "status": "조업중",
-       "as_of": "2026-08-06",
-       "reason": "누적 포획이 증가 중이며 잔여 78,131톤"
+       "as_of": "2026-08-18",
+       "reason": "누적 포획이 증가 중이며 잔여 69,978톤"
       },
       {
        "origin": "포클랜드 파타고니아오징어",
        "status": "어기중",
-       "as_of": "2026-08-18",
+       "as_of": "2026-08-27",
        "reason": "공개 어기 일정(2기: 7월 말부터 64일) 기준이며 2026 개장 공지 확인은 아님"
       },
       {
@@ -56,7 +56,7 @@
       }
      ],
      "pillar": "S1",
-     "thesis": "2026년 5~8월 기준일의 다섯 산지 신호가 갈린다. 페루는 중단 공지, 칠레는 잔여 쿼터 78,131톤으로 조업 중, 아르헨티나는 어기 종료, 한국 살오징어는 조업 상태를 확인할 데이터 자체가 없다.",
+     "thesis": "2026년 5~8월 기준일의 다섯 산지 신호가 갈린다. 페루는 중단 공지, 칠레는 잔여 쿼터 69,978톤으로 조업 중, 아르헨티나는 어기 종료, 한국 살오징어는 조업 상태를 확인할 데이터 자체가 없다.",
      "columns": [
       {
        "key": "origin",
@@ -193,6 +193,95 @@
      },
      "situation": "페루 생산부 문서는 2026년 7월 4일 법정한도를 589,230톤으로 조정했고 7월 9일에는 누적 하역량이 529,391.41톤으로 한도의 89.84%에 이르렀다고 공지했다. 이어 7월 24일 공지에서 선창용적 10세제곱미터 미만 선박은 7월 22일부터, 10~32.6세제곱미터 선박은 7월 18일부터 조업이 중단됐다. 소진율 공지에서 중단 발효까지 열흘 안팎이 걸렸다.",
      "takeaway": "페루산 원물은 소진율이 90%에 닿는 순간 선적 창구가 열흘 안에 닫힐 수 있으므로, **잔여 한도 10% 구간에서는 신규 발주를 멈추고 기확보 물량의 선적 완료 확인에 집중**하는 기준을 두어야 한다.",
+     "narrativeFilled": true
+    },
+    {
+     "id": "A_chile_jibia_quota",
+     "title": "칠레 대왕오징어 쿼터 소진",
+     "chartType": "table",
+     "data": [
+      {
+       "segment": "합계",
+       "allocation_tonnes": 200000,
+       "capture_tonnes": 130021.9741,
+       "balance_tonnes": 69978.0259,
+       "consumption_pct": 65.011
+      },
+      {
+       "segment": "영세어업",
+       "allocation_tonnes": 175500,
+       "capture_tonnes": 129611.9928,
+       "balance_tonnes": 45888.0072,
+       "consumption_pct": 73.853
+      },
+      {
+       "segment": "산업어업",
+       "allocation_tonnes": 19500,
+       "capture_tonnes": 0.088,
+       "balance_tonnes": 19499.912,
+       "consumption_pct": 0.0005
+      },
+      {
+       "segment": "부수어획",
+       "allocation_tonnes": 4000,
+       "capture_tonnes": 409.8933,
+       "balance_tonnes": 3590.1067,
+       "consumption_pct": 10.2473
+      },
+      {
+       "segment": "조사",
+       "allocation_tonnes": 1000,
+       "capture_tonnes": 0,
+       "balance_tonnes": 1000,
+       "consumption_pct": 0
+      }
+     ],
+     "pillar": "S1",
+     "thesis": "칠레 대왕오징어는 8월 18일 기준 법정 쿼터 200,000톤 중 130,021.9741톤을 포획해 65.011%를 소진했고 잔량은 69,978.0259톤이다.",
+     "columns": [
+      {
+       "key": "segment",
+       "label": "배분 구분"
+      },
+      {
+       "key": "allocation_tonnes",
+       "label": "배정량(t)"
+      },
+      {
+       "key": "capture_tonnes",
+       "label": "포획량(t)"
+      },
+      {
+       "key": "balance_tonnes",
+       "label": "잔량(t)"
+      },
+      {
+       "key": "consumption_pct",
+       "label": "소진율(%)"
+      }
+     ],
+     "series": [
+      {
+       "key": "recorded_capture_tonnes",
+       "name": "누적 포획량(t)"
+      },
+      {
+       "key": "quota_minus_recorded_capture_tonnes",
+       "name": "쿼터 잔량(t)"
+      }
+     ],
+     "unit": "톤·%",
+     "cardDesc": "칠레 수산차관부 법정 총쿼터를 분모로, 칠레 수산청 엑셀 요약 시트의 합계 포획·잔량·소진율과 4개 배분행을 직접 적재",
+     "dataYear": 2026,
+     "basis": {
+      "분류범위": "오징어만",
+      "중량기준": "생중량",
+      "거래단계": "해당 없음",
+      "합산여부": "없음",
+      "쿼터의미": "소진 공지"
+     },
+     "situation": "칠레 수산청의 2026년 8월 20일 워크북은 내부 기준일 8월 18일 현재 총쿼터 200,000톤 중 130,021.9741톤을 포획했다고 기록한다. 소진율은 65.011%, 잔량은 69,978.0259톤이다.",
+     "takeaway": "잔량은 재고나 확보 가능 물량이 아니다. **워크북의 포획 누계와 법정 쿼터를 주간 대조**해 소진 속도가 빨라질 때 칠레산 신규 계약의 선적기한을 앞당겨라.",
      "narrativeFilled": true
     }
    ]
@@ -7582,6 +7671,65 @@
    "title": "값 - 산지에서 소비자까지",
    "widgets": [
     {
+     "id": "B_kmi_consumer_price",
+     "title": "오징어 소비자가 확정 관측과 비교 기준",
+     "chartType": "table",
+     "data": [
+      {
+       "row_type": "확정 관측",
+       "date": "2026-08-24",
+       "price_krw": 5424
+      },
+      {
+       "row_type": "확정 관측",
+       "date": "2026-08-25",
+       "price_krw": 5570
+      },
+      {
+       "row_type": "화면 비교 기준",
+       "date": "2026-08-26",
+       "price_krw": 5440
+      }
+     ],
+     "pillar": "S4",
+     "thesis": "한국해양수산개발원 화면의 최신 날짜 확정 소비자가는 8월 25일 5,570원/마리다. 화면 비교 기준값 5,440원은 별도 값이므로 당일 확정가로 쓰지 않는다.",
+     "columns": [
+      {
+       "key": "row_type",
+       "label": "구분"
+      },
+      {
+       "key": "date",
+       "label": "일자"
+      },
+      {
+       "key": "price_krw",
+       "label": "가격(원/마리)"
+      }
+     ],
+     "series": [
+      {
+       "key": "price_krw",
+       "name": "가격(원/마리)"
+      }
+     ],
+     "xKey": "date",
+     "xLabel": "일자",
+     "unit": "원/마리",
+     "cardDesc": "한국해양수산개발원 보관 자료의 날짜 확정 관측과 화면 비교기준을 분리하고, 네 비교율은 화면 비교기준에만 귀속",
+     "dataYear": 2026,
+     "basis": {
+      "분류범위": "오징어만",
+      "중량기준": "제품중량",
+      "거래단계": "소비자",
+      "합산여부": "없음",
+      "쿼터의미": "해당 없음"
+     },
+     "situation": "원양 냉동 오징어 중품 1마리의 최신 날짜 확정값은 2026년 8월 25일 5,570원이다. 같은 화면의 비교율은 별도 기준값 5,440원에 붙으므로 두 값을 한 시세로 합치면 안 된다.",
+     "takeaway": "소비자가는 매입원가가 아니다. **확정 관측 5,570원과 화면 비교기준 5,440원을 분리 표기**하고, KAMIS 도매 원/kg 또는 수입단가와 평균하지 마라.",
+     "narrativeFilled": true
+    },
+    {
      "id": "F_kamis_region_2025",
      "title": "2025년 지역별 오징어 가격 - 마른오징어는 수원과 강릉이 35.7% 벌어진다",
      "chartType": "table",
@@ -8921,6 +9069,209 @@
    "key": "s15",
    "title": "제도와 남은 물음",
    "widgets": [
+    {
+     "id": "E_monitoring_calendar",
+     "title": "공식자료 점검 일정과 최신 상태",
+     "chartType": "table",
+     "data": [
+      {
+       "source_id": "SQ-PRC-KMI",
+       "series": "한국해양수산개발원 오징어 소비자가격",
+       "frequency": "주간",
+       "latest_verified": "2026-08-27 추출; 2026-08-25 확정 5570원; 화면 비교기준 5440원 분리",
+       "next_check": "2026-09-02",
+       "status": "가동"
+      },
+      {
+       "source_id": "SQ-PRC-KAMIS",
+       "series": "농수산물유통정보 오징어 도매",
+       "frequency": "주간",
+       "latest_verified": "2026-08-26 서울 연근해냉동 13600원/kg; 원양냉동 10500원/kg",
+       "next_check": "2026-09-02",
+       "status": "가동"
+      },
+      {
+       "source_id": "SQ-MGT-PRODUCE",
+       "series": "페루 대왕오징어 공지",
+       "frequency": "어기 중 주간",
+       "latest_verified": "2026-08-27 결의 제00263호 참여선 20척 확인; 상업재개·추가중단 공문 없음",
+       "next_check": "2026-08-31",
+       "status": "가동"
+      },
+      {
+       "source_id": "SQ-MGT-SERNAPESCA",
+       "series": "칠레 대왕오징어 쿼터 소진",
+       "frequency": "주간",
+       "latest_verified": "2026-08-20판 내부 2026-08-18; 포획 130021.9741t·소진 65.0110%",
+       "next_check": "2026-08-28",
+       "status": "가동"
+      },
+      {
+       "source_id": "SQ-TRD-CN-CUSTOMS",
+       "series": "중국 해관 오징어 품목번호 무역",
+       "frequency": "월간",
+       "latest_verified": "2026-06 월 메타 확인; 품목번호 030743 수입 달러 5·6월 보안문자 차단·값 미확정",
+       "next_check": "2026-09-25",
+       "status": "부분수집"
+      },
+      {
+       "source_id": "SQ-PROD-INIDEP",
+       "series": "아르헨티나 오징어 주간 보고",
+       "frequency": "어기 중 주간",
+       "latest_verified": "제14주 2026-04-06",
+       "next_check": "2026-09-01",
+       "status": "가동·결측 있음"
+      },
+      {
+       "source_id": "SQ-PRC-FAO-EFPR",
+       "series": "유럽 수산물 가격 보고서",
+       "frequency": "월간",
+       "latest_verified": "2026-07",
+       "next_check": "2026-09-05",
+       "status": "가동"
+      },
+      {
+       "source_id": "SQ-MGT-KR-TAC-CONSUMPTION",
+       "series": "한국 살오징어 총허용어획량 소진",
+       "frequency": "어기 중 월간",
+       "latest_verified": "2026-06-30 오징어 36.6%",
+       "next_check": "2026-09-10",
+       "status": "가동"
+      },
+      {
+       "source_id": "SQ-TRD-KCS",
+       "series": "한국 오징어 품목번호 무역",
+       "frequency": "월간",
+       "latest_verified": "2026-05 관측",
+       "next_check": "2026-09-10",
+       "status": "수집 경로 결측"
+      },
+      {
+       "source_id": "SQ-MKT-EUMOFA",
+       "series": "유럽 수산시장관측소 오징어 월간 동향",
+       "frequency": "월간",
+       "latest_verified": "2026-08-12 품목 프로필",
+       "next_check": "2026-09-12",
+       "status": "가동"
+      },
+      {
+       "source_id": "SQ-EVT-SPRFMO-SC14",
+       "series": "남태평양지역수산관리기구 과학위원회 제14차",
+       "frequency": "수시",
+       "latest_verified": "2026-08-16 작업문서",
+       "next_check": "2026-09-14",
+       "status": "예정"
+      },
+      {
+       "source_id": "SQ-MGT-FIFD",
+       "series": "포클랜드 오징어 인허가·조사",
+       "frequency": "어기별",
+       "latest_verified": "2025년 평가 확보; 2026년 조사·공지 미게시",
+       "next_check": "2026-09-15",
+       "status": "가동·결측 있음"
+      },
+      {
+       "source_id": "SQ-PROD-IMARPE",
+       "series": "페루 해양연구소 대왕오징어 조사",
+       "frequency": "수시·어기별",
+       "latest_verified": "2026-02-09 조사·제4차 대왕오징어 작전",
+       "next_check": "2026-09-15",
+       "status": "가동"
+      },
+      {
+       "source_id": "SQ-PROD-KOSIS",
+       "series": "한국 어업생산",
+       "frequency": "월간",
+       "latest_verified": "2026-08-12 접속 확인",
+       "next_check": "2026-09-15",
+       "status": "수기 반출 결측"
+      },
+      {
+       "source_id": "SQ-TRD-COMTRADE",
+       "series": "세계 오징어 품목번호 무역",
+       "frequency": "월간",
+       "latest_verified": "주요 6개 보고국 2024~2025 총계; 페루 2025 미게시",
+       "next_check": "2026-09-30",
+       "status": "수록 결측"
+      },
+      {
+       "source_id": "SQ-MKT-FAO-GLOBEFISH",
+       "series": "세계수산물무역정보 두족류 시황",
+       "frequency": "분기",
+       "latest_verified": "2026년 제2호",
+       "next_check": "2026-10-15",
+       "status": "가동"
+      },
+      {
+       "source_id": "SQ-MGT-JFA",
+       "series": "일본 살오징어 총허용어획량",
+       "frequency": "연간·수시",
+       "latest_verified": "2026-03-23",
+       "next_check": "2026-12-15",
+       "status": "가동"
+      },
+      {
+       "source_id": "SQ-PROD-NPFC-JFS",
+       "series": "북태평양수산위원회·국립수산과학원 살오징어",
+       "frequency": "연간·수시",
+       "latest_verified": "2025 회계연도 평가 2025-12-26 게시",
+       "next_check": "2026-12-15",
+       "status": "가동"
+      },
+      {
+       "source_id": "SQ-MGT-MOF-TAC",
+       "series": "한국 총허용어획량 시행계획",
+       "frequency": "연간·수시",
+       "latest_verified": "2026-06-30",
+       "next_check": "2027-06-15",
+       "status": "가동"
+      },
+      {
+       "source_id": "SQ-PROD-FAO-FISHSTAT",
+       "series": "유엔식량농업기구 수산통계",
+       "frequency": "연간",
+       "latest_verified": "2026.1.0판·자료 2024년",
+       "next_check": "2027-07-15",
+       "status": "가동"
+      }
+     ],
+     "pillar": "S5",
+     "thesis": "이번 주 5개 감시축은 가격 두 계열 갱신, 페루 상업 재개 없음, 칠레 쿼터 65.011% 소진, 중국 해관 수입 달러값 미확정으로 갈린다.",
+     "columns": [
+      {
+       "key": "series",
+       "label": "계열"
+      },
+      {
+       "key": "frequency",
+       "label": "갱신 주기"
+      },
+      {
+       "key": "latest_verified",
+       "label": "최종 확인"
+      },
+      {
+       "key": "next_check",
+       "label": "다음 확인"
+      },
+      {
+       "key": "status",
+       "label": "상태"
+      }
+     ],
+     "cardDesc": "공식 모니터링 캘린더에서 이번 점검 5개 계열을 먼저 두고 최신 확인·다음 확인·상태만 표시",
+     "dataYear": 2026,
+     "basis": {
+      "분류범위": "오징어만",
+      "중량기준": "해당 없음",
+      "거래단계": "해당 없음",
+      "합산여부": "없음",
+      "쿼터의미": "해당 없음"
+     },
+     "situation": "8월 27일 점검에서 KMI와 KAMIS는 가격이 갱신됐고 칠레 쿼터는 65.011% 소진됐다. 페루는 조사 참여선 공문만 추가돼 상업 재개가 아니며, 중국 해관 030743 수입 달러값은 보안문자 차단으로 미확정이다.",
+     "takeaway": "확정값과 차단 상태를 같은 숫자표로 메우지 마라. **다섯 공식 계열의 다음 확인일을 운영 일정으로 유지**하고 미확정 중국 값은 빈칸으로 남겨라.",
+     "narrativeFilled": true
+    },
     {
      "id": "F_traceability_coverage",
      "title": "유통이력 고시가 덮는 오징어 수입 비중",

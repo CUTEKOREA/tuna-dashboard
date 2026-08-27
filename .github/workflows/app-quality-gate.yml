@@ -8,8 +8,15 @@ on:
       - 'e2e/**'
       - 'lib/**'
       - '__tests__/**'
+      - 'data/reefer_week*.json'
+      - 'public/data/cosmo/**'
       - 'package.json'
       - 'package-lock.json'
+      - 'scripts/sync_cosmo_weekly.py'
+      - 'scripts/sync_reefer_weekly.py'
+      - 'scripts/test_sync_cosmo_weekly.py'
+      - 'scripts/test_sync_reefer_weekly.py'
+      - 'scripts/requirements-dashboard-sync.txt'
       - 'scripts/audit_api_cache_policy.mjs'
       - 'scripts/check_route_bundle_budget.mjs'
       - 'eslint.config.mjs'
@@ -25,8 +32,15 @@ on:
       - 'e2e/**'
       - 'lib/**'
       - '__tests__/**'
+      - 'data/reefer_week*.json'
+      - 'public/data/cosmo/**'
       - 'package.json'
       - 'package-lock.json'
+      - 'scripts/sync_cosmo_weekly.py'
+      - 'scripts/sync_reefer_weekly.py'
+      - 'scripts/test_sync_cosmo_weekly.py'
+      - 'scripts/test_sync_reefer_weekly.py'
+      - 'scripts/requirements-dashboard-sync.txt'
       - 'scripts/audit_api_cache_policy.mjs'
       - 'scripts/check_route_bundle_budget.mjs'
       - 'eslint.config.mjs'
@@ -49,6 +63,16 @@ jobs:
         with:
           node-version: '24'
           cache: npm
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+          cache: pip
+          cache-dependency-path: scripts/requirements-dashboard-sync.txt
+
+      - name: Install dashboard sync dependencies
+        run: python -m pip install -r scripts/requirements-dashboard-sync.txt
 
       - name: Install dependencies
         run: npm ci --no-audit

@@ -490,7 +490,7 @@
           "bc167212fd33f3d22f6e3ad72cafe2b50d2b98a324bd1a854b9406c6db899b82"
         ],
         "method": "script",
-        "note": "2026-07-06 수집본. 관세청 API가 현재 서비스키 없이 401이라 자동 갱신 불가 - 키 확보 전까지 이 스냅샷이 최신이다. 범용 HS 030489는 고등어 전용이 아니라 제외.",
+        "note": "2026-07-06 수집본. 관세청 API가 현재 서비스키 없이 401이라 자동 갱신 불가 — 키 확보 전까지 이 스냅샷이 최신이다. 범용 HS 030489는 고등어 전용이 아니라 제외.",
         "period": "2026.01~2026.05",
         "publisher": "Korea Customs Service",
         "rebuild": "python scripts/mackerel/build.py s3_kcs_monthly",
@@ -752,7 +752,7 @@
         }
       ],
       "provenance": {
-        "extract_date": "2026-08-16",
+        "extract_date": "2026-08-27",
         "grade": "B",
         "input_files": [
           "11_분석·가공데이터/collections/2026-08-12/fao_filtered/mackerel_trade_partners.csv"

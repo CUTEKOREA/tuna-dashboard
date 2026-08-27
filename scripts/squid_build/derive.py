@@ -17,6 +17,12 @@ def _has_data(widget: dict) -> bool:
     return bool(data)
 
 
+def _latest_basis_value(widgets: Iterable[dict], key: str) -> str:
+    """Return the latest ISO-like date value carried by source widgets."""
+    values = [widget.get("basis", {}).get(key) for widget in widgets]
+    return max(value for value in values if value)
+
+
 def _peru_reason(closure, research) -> str:
     """페루 사유 문자열.
 
@@ -209,6 +215,7 @@ def _sourcing_signal(document: dict, spec: WidgetSpec, built_on: date) -> dict:
             ),
         },
     ]
+    source_widgets = (peru, chile, falkland, korea)
     return {
         "chartType": spec.chart_type,
         "data": data,
@@ -222,9 +229,9 @@ def _sourcing_signal(document: dict, spec: WidgetSpec, built_on: date) -> dict:
             "metrics": ["coverage"],
             "quota_semantics": "closure_notice",
             "coverage_start": "2026-05-28",
-            "coverage_end": "2026-08-12",
-            "published_at": "2026-08-12",
-            "retrieved_at": "2026-08-12",
+            "coverage_end": _latest_basis_value(source_widgets, "coverage_end"),
+            "published_at": _latest_basis_value(source_widgets, "published_at"),
+            "retrieved_at": _latest_basis_value(source_widgets, "retrieved_at"),
         },
     }
 
@@ -272,6 +279,7 @@ def _stage_board(document: dict, spec: WidgetSpec) -> dict:
             "source_widget": "B_kcs_import_unit_price",
         },
     ]
+    source_widgets = (kmi, efpr, kcs)
     return {
         "chartType": spec.chart_type,
         "data": data,
@@ -283,9 +291,9 @@ def _stage_board(document: dict, spec: WidgetSpec) -> dict:
             "currency": "n/a",
             "nominal_real": "n/a",
             "coverage_start": "2026-01",
-            "coverage_end": "2026-08-11",
-            "published_at": "2026-08-12",
-            "retrieved_at": "2026-08-12",
+            "coverage_end": _latest_basis_value(source_widgets, "coverage_end"),
+            "published_at": _latest_basis_value(source_widgets, "published_at"),
+            "retrieved_at": _latest_basis_value(source_widgets, "retrieved_at"),
             "hs_codes": list(kcs["basis"]["hs_codes"]),
         },
     }
@@ -348,6 +356,9 @@ def _freshness_board(document: dict, spec: WidgetSpec, built_on: date) -> dict:
                 "status": status,
             }
         )
+    source_widget_objects = tuple(
+        document["widgets"][widget_id] for _, widget_id in source_widgets
+    )
     return {
         "chartType": spec.chart_type,
         "data": data,
@@ -359,9 +370,9 @@ def _freshness_board(document: dict, spec: WidgetSpec, built_on: date) -> dict:
             "currency": "n/a",
             "nominal_real": "n/a",
             "coverage_start": "2026-05",
-            "coverage_end": "2026-08-11",
-            "published_at": "2026-08-12",
-            "retrieved_at": "2026-08-12",
+            "coverage_end": _latest_basis_value(source_widget_objects, "coverage_end"),
+            "published_at": _latest_basis_value(source_widget_objects, "published_at"),
+            "retrieved_at": _latest_basis_value(source_widget_objects, "retrieved_at"),
             "hs_codes": list(
                 document["widgets"]["B_kcs_import_unit_price"]["basis"]["hs_codes"]
             ),

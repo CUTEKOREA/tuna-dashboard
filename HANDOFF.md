@@ -1,3 +1,132 @@
+> 🚀 **2026-08-27 16:08 KST — 부산 입출항 메뉴 숨김·라이트 스크롤바 검정 트랙 수정 라이브 배포** [Codex]:
+> - 사용자 요청대로 `port-intel`을 공용 숨김 목록에 추가해 사이드바와 명령 팔레트에서 「부산 입출항」을 제거했다. 데이터·패널·보호 경계와 직접 `/port-intel` 주소는 보존한다.
+> - 우측 검정 바는 별도 DOM 패널이 아니라 루트 문서 스크롤바의 투명 트랙이었다. 라이트 토큰이 내부 `appWrapper[data-v3='light']`에만 적용되고 `<html>`은 투명해 브라우저 검정 캔버스가 비쳤다. 라이브 DOM에서 `<html>` 배경만 `#f9fafb`로 바꾸자 즉시 사라져 원인을 확정했다.
+> - `darkMode` 상태를 `<html data-shell-theme>`에 동기화하고, 라이트 `#f9fafb`·다크 `var(--bg-color)` 배경을 루트에 지정했다. 콘텐츠 폭이나 스크롤 동작은 변경하지 않았다.
+> - TDD RED 6건 확인 후 registry 집중 35/35 통과. 전체 `npm run verify`도 통과했다: ESLint 0 errors(기존 warnings 12), Python 운영 27건, Vitest 1,211 passed/2 skipped, API cache 158/158, Next 118페이지, client leak·bundle 33경로.
+> - PR [#822](https://github.com/CUTEKOREA/tuna-dashboard/pull/822) squash `2fc55ff8`. PR App Quality Gate `33047069552`와 main App Quality Gate `33047356699`가 성공했다. Vercel Production `dpl_6pKW9xGN7SnvK8UFCDyfBQDhJTKi`는 READY·region `icn1`이며 `https://leedonggun.co.kr` 별칭에 연결됐다. GitHub Production deployment `6118001541`이 같은 병합 SHA를 가리킨다.
+> - 로그인 라이브에서 사이드바 부산 메뉴 0건, 명령 검색 「부산」 결과 0건, 라이트 루트 `rgb(249,250,251)`·다크 `rgb(10,10,11)`을 확인했다. 우측 트랙은 라이트 배경으로 표시되며 기존 검정 바가 없다.
+> - 직접 `/port-intel`은 HTTP 200·「부산 입출항선 동향」 본문을 유지했고 사이드바에는 메뉴가 없다. same-origin 390px `/market`은 `clientWidth=scrollWidth=379`, 부산 메뉴 0건·라이트 루트 정상이다. 라이브 page/console/request/same-origin HTTP 오류 0, 새 Production error·fatal·5xx 로그도 0건이다.
+>
+> 마지막 업데이트: 2026-08-27 16:08 KST [Codex]
+
+> 🚀 **2026-08-27 14:51 KST — COSMO 34주·선단 8/27·TTA 운반선 33주 라이브 배포 완료** [Codex]:
+> - PR [#819](https://github.com/CUTEKOREA/tuna-dashboard/pull/819) squash `abc97271`. PR App Quality Gate `33042790355`, main App Quality Gate `33042993356`, Data Freshness Audit `33042993373`이 모두 성공했다.
+> - Vercel Production `dpl_3zcPAnGPjMN59zQLwziKMpKbayeQ`는 Ready·region `icn1`이며 `https://leedonggun.co.kr` 별칭에 연결됐다. GitHub Production deployment `6117209733`이 병합 SHA `abc97271b41540530e6d02c4d7c9f31142338ada`를 가리킨다.
+> - `FLEET_DAILY_DETAIL_JSON` Production secret을 최신 보호 DTO로 교체했다. canonical SHA-256 `2f469c32…b9d2`는 공개 `_meta.detailSha256`과 일치한다.
+> - 라이브 `/cosmo`에서 34주·견적 145건·수주잔량 $23.99M과 「34주차 업무 브리핑」의 아프리카 스타·식품안전 불시 심사(BRC/IFS)·P/MAS·P/DIS를 확인했다.
+> - 라이브 `/fleet`은 보고 2026-08-27/조업 8/26, 일 230·월 8,173·연 79,730.8·운반선 8,763.3MT를 표시한다. 보호 API는 200 `private, no-store`·`Vary: Cookie`, 상세 행은 태평양 10·대서양 7·운반선 6·연승 1이며 HIKARI 1·P/MAS·P/DIS·MOAMARI가 렌더된다.
+> - 라이브 `/logistics` 히어로와 선박·보고자료 탭은 모두 33주차 6척·22,890.273MT다. HIKARI 1 2,929MT·19.08.26·부두 33B와 공장 8곳 배분을 확인했다.
+> - same-origin 390px 프레임에서 세 화면 모두 `clientWidth=scrollWidth=380`, 핵심 마커 노출·overflow 0이다. 라이브 console/page/request/HTTP 오류 0, 새 Production error·fatal·5xx 로그도 0건이다.
+> - 운영자 상태는 `fleet-daily`와 `logistics-weekly` 모두 `live_verified`다. 다음 회차는 새 원본을 각 sync 스크립트로 변환한 뒤 같은 검산·배포 절차를 반복한다.
+>
+> 마지막 업데이트: 2026-08-27 14:51 KST [Codex]
+
+> 🐟 **2026-08-27 — `/mackerel` 국내 TAC·계군별 자원 위젯 2건** [Claude]:
+> - 보고서 보강 회차에서 나온 발견 두 개를 화면에 얹었다. 위젯 36 → **38**, 4축 90.5 (A 36 / B 2).
+> - `s1_domestic_tac_burn` — 한국수산자원공단 어종별 소진현황 24개 어기. **평균 소진율 77.4%, 최근 6개 어기 73.9%로 100%에 닿은 해가 없다.** 배분량은 110,078 → 126,072t 으로 늘렸는데 소진이 따라가지 못했다. 원자료가 어기마다 열 배치가 다르고 마지막 어기만 kg 단위이며, 2022 어기 소진율은 원문이 「71,0」으로 쉼표를 소수점 자리에 써 두어 배분·어획으로 재계산했다.
+> - `s1_stock_by_population` — 일본 수산연구·교육기구 2025년도 자원평가. **한국 근해 계군(마사바 대마난류)은 회복 중**이다. 자원량 2019년 50.7만 t → 2024년 91.1만 t, 친어량 34.0만 t 으로 MSY 기준 33.0만 t 을 1.03배 넘었고 어획압은 Fmsy 의 0.83배다. 반면 마사바 태평양은 친어량이 2017년 75.0만 t 에서 9.7만 t 으로 급감, 고마사바 대마난류는 기준 하회·어획압 초과다.
+> - **「세 대양이 동시에 조인다」가 계군 단위로는 성립하지 않는다.** 국내 TAC 가 남는 것과 근해 계군 회복을 같이 읽으면, 제약은 물량이 아니라 규격이다 — 소형어는 남아 아프리카로 나가고 대형어는 모자라 노르웨이에서 들여온다. 보고서 01절 첫 항도 같은 이유로 고쳤다.
+> - 고마사바 기준 미달은 06절 망치고등어 위판 붕괴(2023년 42,885t → 2024년 9,676t)와 방향이 맞는다.
+> - 게이트: provenance 38/38, mackerel:test 4/4, ESLint 0 errors, tsc clean, Vitest 157 files·1,209 passed/2 skipped.
+>
+> 마지막 업데이트: 2026-08-27 [Claude]
+
+> 🚀 **2026-08-27 14:34 KST — 오징어 공식 모니터링·산업보고서 라이브 배포 완료** [Codex]:
+> - PR [#818](https://github.com/CUTEKOREA/tuna-dashboard/pull/818) squash `f522d12d`. PR App Quality Gate·Vercel Preview와 main App Quality Gate가 모두 성공했다.
+> - Vercel Production `dpl_AH22pDS5HG3Y4FfEVuuZjH6BKz7A` Ready, `https://leedonggun.co.kr` 별칭 연결. GitHub Production deployment `6117048705`가 병합 SHA `f522d12dc274fe660f752b9076e3f004083519a9`를 정확히 가리킨다.
+> - 로그인된 `/squid-industry`에서 02단계 칠레 `130,021.9741t·65.011%·69,978.0259t`, 14단계 KMI 확정 `5,570원(8/25)`·화면 비교 `5,440원(8/26)`, 15단계 KMI·KAMIS·PRODUCE·SERNAPESCA·GACC 우선 5행을 확인했다.
+> - 라이브 1440×900·390×844에서 문서 가로 overflow 0, Next 오류 overlay 0, console/page/request/same-origin 4xx·5xx 0. 배포 후 30분 Vercel error·fatal·500 로그도 0건이다.
+> - Drive 보고서 제22판 `6ae341e`·103쪽 A4와 원장 44행·모니터링 20행·외부 매니페스트 127행은 배포본과 같은 8/27 정본이다.
+>
+> 마지막 업데이트: 2026-08-27 14:34 KST [Codex]
+
+> 📦 **2026-08-27 14:17 KST — COSMO 34주·선단 8/27·TTA 운반선 33주 통합 갱신 로컬 완료** [Codex]:
+> - 선행 하역 hotfix PR [#816](https://github.com/CUTEKOREA/tuna-dashboard/pull/816) squash `c5a067c3`는 Production `dpl_GKK3mCChptuB82EPcqBgsUfGU94r`에 배포했다. 라이브에서 HIKARI 1 기본 선택, 2026년 13항차 체선 계산, SEIN VENUS 무작업일 8/9·8/12·8/16, 연도경계 SEIN PHOENIX $30,000과 390px overflow 0·오류 로그 0을 확인했고 운영자 상태를 `live_verified`로 기록했다.
+> - COSMO 원본 2건을 검증했다. `COSMO 주간보고 (34주차)-첨부파일.xlsx` SHA-256 `99de9a50…afac`, `2026.8.27_COSMO 주간보고 (34주차).docx` `6a0d61f1…a5eb`; ZIP 무결성·수식 오류 0건이다.
+> - `/cosmo`는 34주·수주 26 FCL/$2.023M·수주잔량 356 FCL/$23.988M·주간 판매 $166.7K·누적 $42.182M·CBU 380.066MT/수율 37.74%로 갱신했다. 34주 검산 8/8이 닫혔고 견적은 145건이다.
+> - Word에만 있는 아프리카 스타 $540K 재심리, 식품안전 불시 심사(BRC/IFS), P/MAS·P/DIS 하역 일정과 8월 결산 계획을 `cosmo-weekly-report.ts`로 정규화해 경영요약의 「34주차 업무 브리핑」에 노출했다.
+> - 해양수산본부 원본 `해양수산본부 일일업무보고-260827 (목).docx` SHA-256 `54503e73…90d`; 전체 재동기화와 `--check`가 byte 동일하게 통과했다. `/fleet` 공개 집계는 보고 2026-08-27/조업 8/26, 143건, 태평양 65·대서양 165·합계 230MT, 월 8,173MT, 연 79,730.8MT, 검산 572/572회다.
+> - 보호 상세는 `artifacts/fleet-daily-detail.json`과 canonical SHA `2f469c32…b9d2`에만 있고 공개 JSON에는 선박명·좌표·비고가 없다. 최신 상세는 태평양 10·대서양 7·운반선 6·연승 1행이며 HIKARI 1·P/MAS·P/DIS를 포함한다.
+> - TTA 원본 `Reefer ship movement for week 33rd.xlsx` SHA-256 `03d617a7…bca1`; 기간 2026-08-14~08-20, 방콕 6척·22,890.273MT를 선박별로 재합산했다. HIKARI 1은 2,929MT(ASIAN 404·CMC 405·GB 130·GPZ 500·ISA 790·MMP 300·RMK 100·TUM 300), 부두 33B다.
+> - `/logistics` 최신 보고 위젯과 상단 히어로를 모두 33주차 SSOT로 통일했다. 히어로는 6척·22,890.273MT·6마커를 표시하며 32주차 JSON은 이력으로 보존한다.
+> - 재사용 파이프라인 `sync_cosmo_weekly.py`·`sync_reefer_weekly.py`를 추가했다. COSMO 의미 라벨 이동, TTA F~AH 배분 헤더 이동/중복, 수식 오류·선박별 합계 불일치를 fail-closed로 차단한다. Python 직접 테스트 6건을 `npm run verify`에 연결했다.
+> - CI에 Python 3.13과 `openpyxl==3.1.5`·`et-xmlfile==2.0.0` 설치를 추가하고 COSMO/TTA 원본 산출물·파서 경로 필터를 연결했다. 깨끗한 venv 설치 후 6/6 재현했다. 리니지도 199파일·110위젯·74데이터로 재생성했다.
+> - 작성자와 별도 검증자가 원본 수치·공개/보호 경계·Git 추적·상단 KPI를 반증했다. 초기 Important 3건은 W33 JSON 강제 추적, 물류 히어로 최신화, 파서 경계 테스트로 해소했다.
+> - 최신 main 통합 후 `npm run verify` 통과: ESLint 0 errors(기존 warnings 12), Python 운영 테스트 27건, Vitest 157파일·1,211건, API cache 158/158, Next 118페이지, client leak·bundle 33경로 통과.
+> - 로컬 production 1440px·390px에서 `/cosmo`·`/fleet`·`/logistics` 모두 핵심 문구 렌더·가로 overflow 0·page error 0이다. 로컬 광고 요청 403과 Supabase 미설정 `/api/fleet/daily` 503은 예상 경계이며 보호 상세는 Production 로그인 세션에서 후속 확인한다.
+> - 사용자가 세 화면의 반영과 배포를 명시했다. **다음 단계**: PR gate → main 병합 → Fleet 상세 환경변수 교체 → Production READY → 세 화면 데스크톱·390px·보호 API·오류 로그 라이브 검증.
+>
+> 마지막 업데이트: 2026-08-27 14:17 KST [Codex]
+
+> 🦑 **2026-08-27 14:11 KST — 오징어 공식 모니터링 5계열·산업보고서·`/squid-industry` 배포 준비 완료** [Codex]:
+> - KMI FishData는 확정 관측 `2026-08-25 5,570원/마리`와 `2026-08-26` 화면 비교값 `5,440원(미확정)`을 분리했다. KAMIS 도매는 `2026-08-26` 서울 연근해 냉동 `13,600원/kg`·원양 냉동 `10,500원/kg`을 별도 계열로 유지했다. 페이지 본문·사실표·위젯도 같은 기준일과 KMI 등급 B로 동기화했다.
+> - SERNAPESCA v20260820 `RESUMEN`의 내부 기준일은 `2026-08-18`: 법정 쿼터 `200,000t`, 포획 `130,021.9741t`, 잔량 `69,978.0259t`, 소진 `65.011%`. 기존 8/06·8/13 파일은 삭제하지 않았다.
+> - PRODUCE RD 00263-2026은 조사 참여선 20척 명단이며 상업 재개가 아니다. 8/27까지 별도 상업 재개·추가중단 공문은 없었다. 중국 해관 030743 수입 USD 5·6월은 HTTP 412·HTTPS 504·캡차 차단으로 값 미확정이며 0·Comtrade 대체를 금지했다.
+> - Drive 아카이브에 원문 4건과 GACC 실패 영수증 1건을 저장하고 `source_registry.csv` 44행·`monitoring_calendar.csv` 20행을 갱신했다. KMI·KAMIS 파생 CSV를 별도 증거행으로 추가한 `external_sources_manifest.csv` 127행은 전 경로·크기·SHA-256 대조를 통과했다.
+> - 보고서는 제22판 `6ae341e`로 재발행했다. HTML 수치 대조 471건·표 51·그림 8, PDF 103쪽 A4이며 표 51과 판권면을 시각 검수했다. 표 51은 5,440원의 날짜와 미확정 성격을 명시하고, 판권면은 본문 구조자료 8/22·최신 모니터링 8/27을 분리한다.
+> - 대시보드는 기존 62위젯 계약을 보존하고 `A_chile_jibia_quota`·`B_kmi_consumer_price`·`E_monitoring_calendar`를 승격해 33개를 노출한다. 이번 범위 밖 F 위젯 23개는 기존 프로덕션과 canonical SHA-256 `fa3f944b…dc418`로 동일하게 보존했다. 원문 번역 120건의 source hash 회귀검사와 표시문자 정규화의 원문 필드 보존 검사를 추가했다.
+> - 오징어 Python 계약 25/25·집중 Vitest 25/25 통과. 전체 `npm run verify`도 통과했다: ESLint 0 errors(기존 warnings 12), 운영자 Python 21건, Vitest 155파일·1,201 passed/2 skipped, API cache 158/158, Next 118페이지, client leak·bundle 통과. 로컬 브라우저는 의도된 구글 소유자 보안 설정 부재로 503 fail-closed였고 코드 오류가 아니므로, PR·Production 배포 뒤 로그인 데스크톱·390px·오류 로그를 검증한다.
+>
+> 마지막 업데이트: 2026-08-27 14:11 KST [Codex]
+
+> 🚀 **2026-08-27 — `/mackerel-industry` NSC 34주·KMI Vol.257 라이브 배포** [Codex]:
+> - PR [#813](https://github.com/CUTEKOREA/tuna-dashboard/pull/813) squash `757fa2b8`. PR App Quality Gate·Vercel Preview와 main App Quality Gate·Freshness workflow가 성공했다.
+> - Vercel Production `dpl_2MykeHGzGK8aYWfT8s8FeuzbXP3T` Ready · region `icn1` · `https://leedonggun.co.kr` alias 연결. 배포 후 최근 30분 error 로그 0건.
+> - 라이브 데스크톱에서 상단 「노르웨이 34주 누계 41,108톤 · 48.35 NOK/kg」, 03단계 KMI 냉장·냉동 도매와 냉장 소매·냉동 소매 미형성, 05단계 NSC 전년 대비 물량 −46.2%·단가 +61.3%를 확인했다. console/page/Next overlay 오류 0, 문서 overflow 0.
+> - same-origin 390px 모바일 프레임은 `scrollWidth=clientWidth=380`, 03·05단계 최신 근거 모두 노출, overlay 0이었다.
+> - Google Drive 보고서 정본·HTML과 Google Calendar 6개 반복 시리즈(종료 2027-12-31)도 게시·readback 완료했다.
+>
+> 마지막 업데이트: 2026-08-27 [Codex]
+
+> 🐟 **2026-08-27 — `/mackerel-industry` NSC 34주·KMI Vol.257 반영** [Codex]:
+> - NSC 600g 미만 냉동고등어 34주 누계 **41,108톤(-46.2%)·48.35 NOK/kg(+61.3%)**과 KMI 8월 3주 냉장 도매 **6,172원/kg**, 냉동 도매 **4,204원/kg**, 냉장 소매 **12,317원/kg**을 03·05단계 근거표와 상단 주간 스트립에 추가했다.
+> - KMI 냉동 소매는 0원이 아니라 **미형성**으로 표기하고, NSC 34주 값은 600g 미만 규격(2025 비교 규격 400g 미만)이라는 범위 제한을 출처와 한계에 고정했다.
+> - Drive 보고서 정본·HTML과 수치 정본을 같은 값으로 갱신했다. 보고서 수치 대조 357건 통과, 미확인 0건, 교체 9파일 해시 일치·기존본 백업 완료.
+> - Google Calendar의 기존 6개 `[고등어]` 이벤트를 주간 2·월간 3·분기 1 시리즈로 전환해 **2027-12-31**까지 반복 규칙을 확인했다.
+> - TDD RED 3건을 먼저 확인하고 GREEN 3/3, 고등어 집중 회귀 114/114를 통과했다. 전체 `npm run verify`도 통과: ESLint 0 errors(기존 warnings 12), Python 운영 테스트 21건, Vitest 154파일·1,191 passed/2 skipped, API cache 158/158, Next 118페이지, client-leak·bundle 게이트.
+> - 사용자가 이번 요청에서 **배포**를 명시했다. PR 품질 게이트와 프로덕션·라이브 검증을 후속한다.
+>
+> 마지막 업데이트: 2026-08-27 [Codex]
+
+> 🛠️ **2026-08-27 10:58 KST — 2026년 전 선박 체선 계산·효율 카드 표시 로컬 완료** [Codex]:
+> - HIKARI 1 8/26 하역 PR [#812](https://github.com/CUTEKOREA/tuna-dashboard/pull/812) squash `1e9579b6`를 Production에 반영했다. 라이브 API·화면에서 일일 `259.260 MT`, 누계 `2,582.900 MT`, 잔량 `346.100 MT`, 통합 `38,966 MT`를 확인했다.
+> - Google Tasks `내 할 일 목록`의 8/26 단일 후보 `HIKARI 1 ###톤`을 `HIKARI 1 259.260 MT`로 수정했다. 8/26 자리표시자 0건·수정본 1건·미완료 상태를 재확인했고 8/27·28·29·31 예정 자리표시자는 유지했다.
+> - 라이브 QA에서 `vesselLatestReport()`는 `2026.08.26`을 반환하지만 체선 연결부가 `8/26`만 파싱해 진행 HIKARI를 `해당 없음`으로 버리는 회귀를 발견했다. 날짜 어댑터를 단일 함수로 통합하고 2026년 표시 항차 13척 모두를 계산하도록 확장했다.
+> - 사용자가 지정한 `하역 효율 지표`에 선택 선박별 체선 등급·허용 정박일수·사용일수·여유/초과·추정 체선료를 추가했다. 상단 카드는 진행 선박만 유지한다. HIKARI는 허용 `13.3`·사용 `6`·여유 `7.3일(Low)`, SEIN VENUS는 허용 `14.9`·사용 `13`·여유 `1.9일(주의)`다.
+> - 현재 하역 중인 HIKARI 1을 기본 상세로 선택하고, 사용자가 고른 선박·URL 지정은 유지한다. 하역 그래프는 양수 하역 보고의 최초~최종일을 연속화해 작업 없는 날을 일일 `0 MT`·직전 누계 수평선으로 표시한다. SEIN VENUS는 `8/9·8/12·8/16`이 공백일이며, 다일 합산 보고 구간은 임의 분할하지 않는다.
+> - 교차 리뷰 지적을 반영했다. 동일 종료일의 복수 양수 보고는 일일량 합계·누계 최댓값으로 1점만 만들고, 태국 중앙은행 2025 휴일 공표에 따라 `2025-12-31`을 제외한다. 연도 경계 SEIN PHOENIX는 허용 `17.0`·사용 `20`·초과 `3.0일`·추정 `$30,000`이며 High 분기도 실제 통화 문자열을 렌더한다.
+> - TDD: 기존 화면은 `해당 없음`·SEIN VENUS 기본 선택·공백일 누락으로 RED, 수정 후 로컬 실제 DOM에서 13항차 문구와 위 수치를 확인했다. 1440px·390px overflow 0, page/console error 0. 최신 main 통합 후 ESLint 0 errors(기존 warnings 12), TypeScript, Vitest 155 files·1,198 passed/2 skipped, daily operator 10/10, fleet sync 11/11, API cache 158/158 통과.
+> - 외부 Google Fonts 일시 차단 뒤 캐시를 복구해 표준 Turbopack `npm run verify` 전체를 재실행했다. Next 118페이지 빌드, client-leak 정적 125개·합성 경계 3개, bundle 33 routes까지 모두 통과했다.
+> - **다음 단계**: hotfix PR gate → Production 재배포 → 로그인 데스크톱·390px·오류 로그 확인 후 운영자 `record-release` 갱신.
+>
+> 마지막 업데이트: 2026-08-27 10:58 KST [Codex]
+
+> 🚀 **2026-08-27 — 체선료 실산식 위젯 라이브 배포** [CC]:
+> - PR [#808](https://github.com/CUTEKOREA/tuna-dashboard/pull/808) squash `5aeea190`. Vercel Production **success** · leedonggun.co.kr /unloading 반영.
+> - 후속 과제: 하역 DB에 입항일(arrival_date) 필드 채우면 입항 대기 포함 정밀화. C/P 휴일 정의 상이 시 `lib/demurrage.ts` 목록 수정.
+
+> 마지막 업데이트: 2026-08-27 [CC]
+
+> 💰 **2026-08-27 — /unloading 항만 체선 위험 위젯: 하드코딩 라벨 → 실제 산식** [CC]:
+> - 소유자 산식 반영: 허용 정박일수 = 전체물량/220(최소 일일 하역량) - 사용일수(일요일·태국 공휴일 제외, 양끝 포함). 음수면 초과일수 x $10,000 1차 책정, 운반선사 조율 전 추정치로 표기.
+> - `lib/demurrage.ts` 신설 (태국 2026 공휴일 19일 목록 포함, 대체휴일 반영) + 유닛테스트 7건. 위험 등급: 여유>2일 Low / <=2일 Medium / 초과 High.
+> - 기존 "High·예상 지연 3~4일" 하드코딩은 산식과 모순이었음 - HIKARI 1 실측은 허용 13.3일 vs 사용 5일 = **여유 8.3일(Low)**.
+> - 한계: 하역 DB에 입항일 필드가 없어 하역 개시일 기준(입항 대기 미반영 - 화면에 명시). 다음 일보 동기화 때 `arrival_date` 채우면 정밀화. 공휴일은 태국 관공서 기준 - C/P 명시 휴일과 다르면 목록 수정.
+> - `npm run verify` 통과 (153 files·1,187 tests).
+
+> 마지막 업데이트: 2026-08-27 [CC]
+
+> 🚢 **2026-08-27 08:08 KST — HIKARI 1 8/26 하역 일일보고·8/27 계획 로컬 반영 완료** [Codex]:
+> - 원본 3종 교차 확인: JPG `c3734350…5d06`, 결과 XLS `a198c274…955e`, 현황 XLSX `7a243d3d…445f`. 세 원본 모두 일일 `259.260 MT`, 누계 `2,582.900 MT`, 잔량 `346.100 MT`로 일치했다.
+> - 당일 GPZ `114.710 MT`(S/SPR #2-C `79.900` + MOAKONA #4-C `34.810`), ISA `144.550 MT`(MOAMARI #3-C). SJ `236.260`·YF `23.000 MT`, 작업 `08:10~13:40`, 17대다.
+> - 온도 원문 부호를 그대로 보존했다: S/SPR #2-C `-21,23℃`, MOAKONA #4-C `-22,23℃`, MOAMARI #3-C `-21,22℃`. 8/27 사용자 계획은 ISA 190·GPZ 150, 합계 `340 MT`다.
+> - Google Drive 원본 폴더에 `20260826 HIKARI 1 (BKK) 하역 업무 보고.txt`를 기존 고정 양식으로 저장했다. 대시보드 정본과 산술 일치·로컬 산출물 byte diff 0, SHA-256 `d8134a8a…e4bb`, 1,086 bytes다.
+> - TDD: HIKARI 계약 RED 5건 확인 후 14/14 통과. 하역 E2E는 구 통합 누계 `38,706 MT` 기대값에서 RED를 확인하고 새 렌더 `38,966 MT`로 갱신했으며, 데스크톱·390px·키보드·열린 탭 갱신·API/청크 장애 격리를 모두 통과했다.
+> - `npm run verify` 통과: ESLint 0 errors(기존 warnings 12), daily operator 10/10, fleet sync 11/11, Vitest 152 files·1,181 passed/2 skipped, API cache 158/158, Next 118페이지, client leak·bundle 통과.
+> - 운영자 상태는 `verified`까지 기록한다. **로컬 준비 완료, 라이브 미반영**이며 사용자가 `배포`를 명시하면 PR gate·Production·운영 API/화면을 후속 검증한다.
+>
+> 마지막 업데이트: 2026-08-27 08:08 KST [Codex]
+
 > 📰 **2026-08-27 00:56 KST — 2026-08-26 참치 데일리 브리핑 `/market` 라이브 배포 완료** [Claude/tuna-dashboard-publisher]:
 > ✅ **2026-08-27 16:55 KST — 오징어 시장 이해 페이지: 산업해부 보고서 제25판 동기화 (로컬 반영)** [CC]:
 > - 원자료: 보고서 제25판(`03_통합/20_한국오징어산업해부_보고서.html`, 대조 486건 통과) ← 수협중앙회 어업경영조사보고 2025년판(승인 307001호)·수협 계통판매 월보 289개월 재집계·머코프레스 08-12/언더커런트 08-20 보도(C등급).

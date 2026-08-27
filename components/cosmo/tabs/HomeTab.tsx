@@ -7,6 +7,7 @@ import {
   gapDecomposition, musd, num, pct, n, quoteStats, breakevenMargin, materialBurn, weeks, profitCash,
 } from '@/lib/data/cosmo'
 import { cosmoMonthlyReport as mr } from '@/lib/data/cosmo-monthly-report'
+import { cosmoWeeklyReport as wr } from '@/lib/data/cosmo-weekly-report'
 
 const f = (v: number) => v.toLocaleString('en-US')
 const m1 = (v: number) => (v / 1e6).toFixed(1) + 'M'
@@ -113,6 +114,39 @@ export default function Home() {
         <Card>
           <Kpi k="수주잔량 소진" v={backlogWeeks == null ? '-' : backlogWeeks.toFixed(1)} unit=" 주"
             d={`최근 4주 평균 선적 ${num(avgFclWeek, 1)} FCL/주 기준`} />
+        </Card>
+      </div>
+
+      <SecHead>{latest.week}주차 업무 브리핑 ({wr.source.period.replace('2026-', '').replace('~2026-', ' ~ ')})</SecHead>
+      <div className="grid g4">
+        <Card>
+          <Kpi
+            k="영업·시장"
+            v={`${num(latest.new_orders_fcl, 0)} FCL`}
+            d={`${wr.market.productionSecuredThrough} 확보 · ${wr.market.summary}`}
+          />
+        </Card>
+        <Card>
+          <Kpi
+            k="법무 위험"
+            v={musd(wr.litigation.amountUsd)}
+            d={`${wr.litigation.case} · ${wr.litigation.status}`}
+            tone="down"
+          />
+        </Card>
+        <Card>
+          <Kpi
+            k="품질·심사"
+            v={wr.operations.audit.name}
+            d={`${wr.operations.audit.start.slice(5).replace('-', '/')}~${wr.operations.audit.end.slice(5).replace('-', '/')} · ${wr.operations.qualityFocus}`}
+          />
+        </Card>
+        <Card>
+          <Kpi
+            k="하역·차주"
+            v={wr.operations.unloading.active}
+            d={`${wr.operations.unloading.activeSince.slice(5).replace('-', '/')}부터 하역 · ${wr.operations.unloading.next} ${wr.operations.unloading.nextDate.slice(5).replace('-', '/')} 예정 · ${wr.nextActions[1]}`}
+          />
         </Card>
       </div>
 

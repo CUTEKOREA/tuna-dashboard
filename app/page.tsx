@@ -118,6 +118,8 @@ export default function Home() {
   });
   useEffect(() => {
     window.localStorage.setItem('theme-mode', darkMode ? 'dark' : 'light');
+    // 루트 스크롤바 트랙은 appWrapper 밖에 있어 셸 테마를 별도로 동기화해야 한다.
+    document.documentElement.setAttribute('data-shell-theme', darkMode ? 'dark' : 'light');
   }, [darkMode]);
 
   const navigateToMenu = React.useCallback((menu: ActiveMenu) => {

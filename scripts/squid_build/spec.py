@@ -18,7 +18,7 @@ DEFAULT_ARCHIVE_ROOT = Path(
     "GoogleDrive-cutekorea@gmail.com/내 드라이브/agri_data/"
     "01_수산물(Seafood)/squid"
 )
-ARCHIVE_SNAPSHOT_DATE = "2026-08-12"
+ARCHIVE_SNAPSHOT_DATE = "2026-08-27"
 
 _GRADE_ORDER = {"A": 0, "B": 1, "C": 2}
 _DATE8_RE = re.compile(r"(?<!\d)(20\d{2})(\d{2})(\d{2})(?!\d)")
