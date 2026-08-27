@@ -19,6 +19,8 @@ export const DEMURRAGE_RATE_USD_PER_DAY = 10_000;
  * 5/31·12/5 본일은 주말이라 대체일(6/1·12/7)만 수록. 연도 추가 시 아래에 이어 붙인다.
  */
 export const THAI_PUBLIC_HOLIDAYS: readonly string[] = [
+  // 2025 연도 경계 항차 (태국 중앙은행 2025 금융기관 휴일 공표)
+  '2025-12-31', // 연말
   // 2026
   '2026-01-01', // 신정
   '2026-01-02', // 특별 공휴일 (내각 지정)
@@ -120,6 +122,10 @@ export function calcDemurrage(input: DemurrageInput): DemurrageResult {
     estimateUsd,
     waitingIncluded: Boolean(input.waitingIncluded),
   };
+}
+
+export function formatDemurrageEstimateUsd(estimateUsd: number): string {
+  return `$${Math.round(estimateUsd).toLocaleString('en-US')}`;
 }
 
 /** 위험 등급 - 잔여 일수 기준 (양수 넉넉=Low, 2일 이내=Medium, 초과=High) */
