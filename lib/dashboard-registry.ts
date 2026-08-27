@@ -64,7 +64,8 @@ export const DASHBOARD_MENU_CONFIGS = [
 export type ActiveMenu = (typeof DASHBOARD_MENU_CONFIGS)[number]['key'];
 export type DashboardMenuConfig = Omit<DashboardMenuConfigShape, 'key'> & { key: ActiveMenu };
 
-export const HIDDEN_DASHBOARD_MENU_KEYS = new Set<ActiveMenu>(['pork', 'mail']);
+// 직접 URL·보호 경계는 유지하되 사이드바와 명령 팔레트에서는 숨긴다.
+export const HIDDEN_DASHBOARD_MENU_KEYS = new Set<ActiveMenu>(['pork', 'port-intel', 'mail']);
 
 export interface SidebarMenuItem {
   key: ActiveMenu;
