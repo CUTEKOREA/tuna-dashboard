@@ -103,3 +103,6 @@ KOFPI_TAC_XLSX = ARCHIVE / "01_자연산_어획·자원/kofpi/2026-08-16/FIRA_TA
 
 # 일본 수산연구·교육기구 자원평가 (2026-08-16 수집). 한국 근해는 대마난류계군이다.
 FRA_TSUSHIMA_MD = ARCHIVE / "01_자연산_어획·자원/fra/2026-08-16/FRA_R7_2025_masaba_tsushima_details_final.md"
+
+# 노르웨이 수산총국 공식 어획통계 F06001. 어획연 × 선적국 × 어구, 원중량(톤)·어획가치(천 크로네)
+FDIR_CATCH_CSV = ARCHIVE / "10_원본데이터셋/fiskeridir/2026-08-16/FDIR_F06001_makrell.csv"

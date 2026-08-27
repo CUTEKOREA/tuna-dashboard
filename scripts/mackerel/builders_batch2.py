@@ -9,9 +9,9 @@ grade 규칙
   B = PDF/MD 수동 추출 → method=manual_extract
 """
 from build import C, builder, r1
-from scope import (AFRICA, ARCHIVE, BCFM_JSON, COMTRADE_CSV, FIPS_COOP_CSV,
-                   FIPS_PROD_JSON, KAMIS_JSON, KCS_MACKEREL_HS, KOFPI_TAC_XLSX,
-                   FRA_TSUSHIMA_MD, MFDS_C002_CSV, MFDS_I0300_CSV)
+from scope import (AFRICA, ARCHIVE, BCFM_JSON, COMTRADE_CSV, FDIR_CATCH_CSV,
+                   FIPS_COOP_CSV, FIPS_PROD_JSON, KAMIS_JSON, KCS_MACKEREL_HS,
+                   KOFPI_TAC_XLSX, FRA_TSUSHIMA_MD, MFDS_C002_CSV, MFDS_I0300_CSV)
 
 ICES_MD = ARCHIVE / "01_자연산_어획·자원/ices/2026-08-12_full/ICES_Atlantic_mackerel_advice_2026.md"
 NPFC_MD = ARCHIVE / "01_자연산_어획·자원/npfc/2026-08-12_full/NPFC_TWG_CMSA11_report_2025.md"
@@ -900,4 +900,56 @@ def s1_stock_by_population():
                            "표시했다. 원문은 「본 계군은 한국·중국 등에 의해서도 어획되며 특히 동중국해 "
                            "중국 어선이 자원에 큰 영향을 준다고 상정되나 어획량 정보를 얻지 못해 평가에 "
                            "반영하지 못했다」고 적는다."),
+    }
+
+
+@builder("s1_norway_catch_value")
+def s1_norway_catch_value():
+    """노르웨이 어획량과 어가. 물량이 줄수록 값이 오른 8년.
+
+    노르웨이 수산총국 공식 통계 F06001 을 어획연별로 합산한다. 선적국을 NORGE 로 한정해
+    노르웨이 선단 실적만 본다. 어가는 어획가치 ÷ 원중량이라 선상 위판 단가이며 수출 FOB 가 아니다.
+    """
+    import csv as _csv
+    agg = {}
+    with FDIR_CATCH_CSV.open(encoding="utf-8-sig") as fh:
+        for r in _csv.DictReader(fh):
+            if r["Fartøynasjon"] != "NORGE":
+                continue
+            y = int(r["Fangstår"])
+            v, w = agg.get(y, (0.0, 0.0))
+            agg[y] = (v + float(r["Fangstverdi (1000 kr)"] or 0),
+                      w + float(r["Rundvekt (tonn)"] or 0))
+    yrs = [y for y in sorted(agg) if agg[y][1]]
+    data = [{"연도": str(y), "어획량": r1(agg[y][1] / 1000),
+             "어가": r1(agg[y][0] / agg[y][1])} for y in yrs]
+    # 서술·KPI 는 반올림 전 값으로 쓴다. 차트만 r1 로 눕힌다
+    kg = {y: agg[y][0] / agg[y][1] for y in yrs}          # kr/kg
+    tn = {y: agg[y][1] for y in yrs}                       # 톤
+    y0, y1, y2 = yrs[0], yrs[-2], yrs[-1]
+    return {
+        "title": "노르웨이는 덜 잡고 더 번다",
+        "subtitle": "노르웨이 수산총국 어획통계 F06001, 노르웨이 선적 어선. "
+                    "어획량은 천 톤, 어가는 어획가치를 원중량으로 나눈 kr/kg 이다.",
+        "chartType": "Composed", "xKey": "연도",
+        "bars": [{"key": "어획량", "color": C["sky"], "yAxisId": "left"}],
+        "lines": [{"key": "어가", "color": C["rose"], "yAxisId": "right"}],
+        "data": data, "unit": "천 톤 · kr/kg",
+        "sit": f"{y2}년 어획량은 {tn[y2]:,.0f}톤으로 {y1}년 {tn[y1]:,.0f}톤에서 "
+               f"{100 * (1 - tn[y2] / tn[y1]):.1f}% 줄었다. 그런데 어획가치는 같은 해 늘었고 어가는 "
+               f"{kg[y1]:.2f}kr/kg 에서 {kg[y2]:.2f}kr/kg 로 올랐다. {y0}년 {kg[y0]:.2f}kr/kg 와 견주면 "
+               f"여덟 해 만에 {kg[y2] / kg[y0]:.1f}배다. 물량이 가장 많았던 2021~2022년이 어가는 가장 낮았다.",
+        "strat": "노르웨이가 조이는 것은 어획량이지 매출이 아니다. 수량이 줄어도 단가가 그만큼 오르면 "
+                 "판매자는 버티고 구매자만 부담을 진다. 한국 수입의 88%가 이 선단에서 나오므로 "
+                 "협상 여지는 물량 확보가 아니라 계약 시점과 규격에 있다. 어가는 선상 위판 단가라 "
+                 "한국 도착 단가와는 운임·가공이 붙은 만큼 차이가 난다.",
+        "_kpi": {"title": f"노르웨이 어가 ({y2})", "value": f"{kg[y2]:.2f} kr/kg",
+                 "trend": f"{y1}년 {kg[y1]:.2f}kr/kg 대비 +{100 * (kg[y2] / kg[y1] - 1):.1f}%",
+                 "desc": f"같은 해 어획량은 {tn[y2]:,.0f}톤으로 {100 * (1 - tn[y2] / tn[y1]):.1f}% 감소"},
+        "_prov": dict(source_id="FISKERIDIR_CATCH", period=f"{y0}-{y2}",
+                      inputs=[FDIR_CATCH_CSV], grade="A",
+                      note="공식 통계 CSV 를 어획연별로 기계 합산했다. 선적국 NORGE 한정이라 "
+                           "노르웨이 수역에서 조업한 외국 선단은 빠진다. 어가는 어획가치÷원중량이며 "
+                           "어구별 단가 차이가 평균에 섞인다. 2025년 어획량 156,234톤은 FAO 값과 "
+                           "0.2톤 차로 일치한다."),
     }

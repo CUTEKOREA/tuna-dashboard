@@ -7,6 +7,7 @@ s1_domestic_tac_burn,S1,국내 TAC 는 채운 적이 없다,FIRA_TAC_BURN,script
 s1_import_origin_mix,S1,수입 원산지 구성과 집중 리스크,KCS_NITEMTRADE,script,A,2019-2024,95,70,95,100,90.0,A
 s1_import_origin_price,S1,원산지별 수입단가 비교,FAO_FISHSTAT_TRADE,script,A,2019-2024,95,70,95,100,90.0,A
 s1_korea_production,S1,한국 생산량·자급률,FAO_FISHSTAT_GLOBAL_PRODUCTION,script,A,2019-2024,95,70,95,100,90.0,A
+s1_norway_catch_value,S1,노르웨이는 덜 잡고 더 번다,FISKERIDIR_CATCH,script,A,2018-2025,95,80,95,100,92.5,A
 s1_nsc_weekly,S1,노르웨이 주간 수출 물량·단가,NORWEGIAN_SEAFOOD_EXPORTS,script,A,2026-W32,80,95,95,100,92.5,A
 s1_species_production_gap,S1,국내 품종별 생산과 FAO 제출값,FIPS_PRODUCTION_SPECIES,script,A,2015-2026,95,95,95,100,96.2,A
 s1_stock_by_population,S1,한국 근해 계군은 회복 중이다,FRA_MASABA_TSUSHIMA,script,B,2024,95,70,95,100,90.0,A

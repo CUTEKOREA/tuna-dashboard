@@ -33,6 +33,9 @@ C = {  # UI_RULES 팔레트
     "rose": "#ef4444", "blue": "#3b82f6", "slate": "#94a3b8",
 }
 
+# MackerelWidgetV2.tsx 의 switch 가 아는 이름. 벗어나면 default 로 빠져 빈 위젯이 그려진다
+CHART_TYPES = {"Area", "Line", "Bar", "Composed", "Pie", "Radar"}
+
 BUILDERS = {}
 
 
@@ -389,6 +392,10 @@ def run(only=None):
         raise SystemExit(f"알 수 없는 위젯 id: {only}. 가능: {sorted(BUILDERS)}")
     for final_id, fn in sorted(targets.items()):
         widget = fn()
+        ct = widget.get("chartType")
+        if ct not in CHART_TYPES:
+            raise SystemExit(f"{final_id}: 렌더러가 모르는 chartType {ct!r}. "
+                             f"가능: {sorted(CHART_TYPES)}")
         prov = widget.pop("_prov")
         prov.setdefault("rebuild", f"python scripts/mackerel/build.py {final_id}")
         widget["id"] = final_id
