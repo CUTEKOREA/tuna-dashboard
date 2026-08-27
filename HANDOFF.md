@@ -21,6 +21,30 @@
 > - 게이트: provenance 39/39, mackerel:test 4/4, tsc clean, Vitest 157 files·1,209 passed/2 skipped.
 > - **다음 단계**: 사용자가 `배포`를 명시하면 `mackerel/ledger-sync` → PR gate → main 병합 → Vercel READY → `/mackerel` 데스크톱·390px 라이브 확인. 미확보 원본 2건(`MOF_SURVEY_DISTRIBUTION`·`MOF_SELF_SUFFICIENCY`)은 다음 수집 최우선 — 보고서 10절 값 사슬 전체가 그 위에 서 있다.
 >
+
+> 🚀 **2026-08-27 16:08 KST — 부산 입출항 메뉴 숨김·라이트 스크롤바 검정 트랙 수정 라이브 배포** [Codex]:
+> - 사용자 요청대로 `port-intel`을 공용 숨김 목록에 추가해 사이드바와 명령 팔레트에서 「부산 입출항」을 제거했다. 데이터·패널·보호 경계와 직접 `/port-intel` 주소는 보존한다.
+> - 우측 검정 바는 별도 DOM 패널이 아니라 루트 문서 스크롤바의 투명 트랙이었다. 라이트 토큰이 내부 `appWrapper[data-v3='light']`에만 적용되고 `<html>`은 투명해 브라우저 검정 캔버스가 비쳤다. 라이브 DOM에서 `<html>` 배경만 `#f9fafb`로 바꾸자 즉시 사라져 원인을 확정했다.
+> - `darkMode` 상태를 `<html data-shell-theme>`에 동기화하고, 라이트 `#f9fafb`·다크 `var(--bg-color)` 배경을 루트에 지정했다. 콘텐츠 폭이나 스크롤 동작은 변경하지 않았다.
+> - TDD RED 6건 확인 후 registry 집중 35/35 통과. 전체 `npm run verify`도 통과했다: ESLint 0 errors(기존 warnings 12), Python 운영 27건, Vitest 1,211 passed/2 skipped, API cache 158/158, Next 118페이지, client leak·bundle 33경로.
+> - PR [#822](https://github.com/CUTEKOREA/tuna-dashboard/pull/822) squash `2fc55ff8`. PR App Quality Gate `33047069552`와 main App Quality Gate `33047356699`가 성공했다. Vercel Production `dpl_6pKW9xGN7SnvK8UFCDyfBQDhJTKi`는 READY·region `icn1`이며 `https://leedonggun.co.kr` 별칭에 연결됐다. GitHub Production deployment `6118001541`이 같은 병합 SHA를 가리킨다.
+> - 로그인 라이브에서 사이드바 부산 메뉴 0건, 명령 검색 「부산」 결과 0건, 라이트 루트 `rgb(249,250,251)`·다크 `rgb(10,10,11)`을 확인했다. 우측 트랙은 라이트 배경으로 표시되며 기존 검정 바가 없다.
+> - 직접 `/port-intel`은 HTTP 200·「부산 입출항선 동향」 본문을 유지했고 사이드바에는 메뉴가 없다. same-origin 390px `/market`은 `clientWidth=scrollWidth=379`, 부산 메뉴 0건·라이트 루트 정상이다. 라이브 page/console/request/same-origin HTTP 오류 0, 새 Production error·fatal·5xx 로그도 0건이다.
+>
+> 마지막 업데이트: 2026-08-27 16:08 KST [Codex]
+
+> 🚀 **2026-08-27 14:51 KST — COSMO 34주·선단 8/27·TTA 운반선 33주 라이브 배포 완료** [Codex]:
+> - PR [#819](https://github.com/CUTEKOREA/tuna-dashboard/pull/819) squash `abc97271`. PR App Quality Gate `33042790355`, main App Quality Gate `33042993356`, Data Freshness Audit `33042993373`이 모두 성공했다.
+> - Vercel Production `dpl_3zcPAnGPjMN59zQLwziKMpKbayeQ`는 Ready·region `icn1`이며 `https://leedonggun.co.kr` 별칭에 연결됐다. GitHub Production deployment `6117209733`이 병합 SHA `abc97271b41540530e6d02c4d7c9f31142338ada`를 가리킨다.
+> - `FLEET_DAILY_DETAIL_JSON` Production secret을 최신 보호 DTO로 교체했다. canonical SHA-256 `2f469c32…b9d2`는 공개 `_meta.detailSha256`과 일치한다.
+> - 라이브 `/cosmo`에서 34주·견적 145건·수주잔량 $23.99M과 「34주차 업무 브리핑」의 아프리카 스타·식품안전 불시 심사(BRC/IFS)·P/MAS·P/DIS를 확인했다.
+> - 라이브 `/fleet`은 보고 2026-08-27/조업 8/26, 일 230·월 8,173·연 79,730.8·운반선 8,763.3MT를 표시한다. 보호 API는 200 `private, no-store`·`Vary: Cookie`, 상세 행은 태평양 10·대서양 7·운반선 6·연승 1이며 HIKARI 1·P/MAS·P/DIS·MOAMARI가 렌더된다.
+> - 라이브 `/logistics` 히어로와 선박·보고자료 탭은 모두 33주차 6척·22,890.273MT다. HIKARI 1 2,929MT·19.08.26·부두 33B와 공장 8곳 배분을 확인했다.
+> - same-origin 390px 프레임에서 세 화면 모두 `clientWidth=scrollWidth=380`, 핵심 마커 노출·overflow 0이다. 라이브 console/page/request/HTTP 오류 0, 새 Production error·fatal·5xx 로그도 0건이다.
+> - 운영자 상태는 `fleet-daily`와 `logistics-weekly` 모두 `live_verified`다. 다음 회차는 새 원본을 각 sync 스크립트로 변환한 뒤 같은 검산·배포 절차를 반복한다.
+>
+> 마지막 업데이트: 2026-08-27 14:51 KST [Codex]
+
 > 🐟 **2026-08-27 — `/mackerel` 국내 TAC·계군별 자원 위젯 2건** [Claude]:
 > - 보고서 보강 회차에서 나온 발견 두 개를 화면에 얹었다. 위젯 36 → **38**, 4축 90.5 (A 36 / B 2).
 > - `s1_domestic_tac_burn` — 한국수산자원공단 어종별 소진현황 24개 어기. **평균 소진율 77.4%, 최근 6개 어기 73.9%로 100%에 닿은 해가 없다.** 배분량은 110,078 → 126,072t 으로 늘렸는데 소진이 따라가지 못했다. 원자료가 어기마다 열 배치가 다르고 마지막 어기만 kg 단위이며, 2022 어기 소진율은 원문이 「71,0」으로 쉼표를 소수점 자리에 써 두어 배분·어획으로 재계산했다.
@@ -39,6 +63,7 @@
 > - Drive 보고서 제22판 `6ae341e`·103쪽 A4와 원장 44행·모니터링 20행·외부 매니페스트 127행은 배포본과 같은 8/27 정본이다.
 >
 > 마지막 업데이트: 2026-08-27 14:34 KST [Codex]
+
 > 📦 **2026-08-27 14:17 KST — COSMO 34주·선단 8/27·TTA 운반선 33주 통합 갱신 로컬 완료** [Codex]:
 > - 선행 하역 hotfix PR [#816](https://github.com/CUTEKOREA/tuna-dashboard/pull/816) squash `c5a067c3`는 Production `dpl_GKK3mCChptuB82EPcqBgsUfGU94r`에 배포했다. 라이브에서 HIKARI 1 기본 선택, 2026년 13항차 체선 계산, SEIN VENUS 무작업일 8/9·8/12·8/16, 연도경계 SEIN PHOENIX $30,000과 390px overflow 0·오류 로그 0을 확인했고 운영자 상태를 `live_verified`로 기록했다.
 > - COSMO 원본 2건을 검증했다. `COSMO 주간보고 (34주차)-첨부파일.xlsx` SHA-256 `99de9a50…afac`, `2026.8.27_COSMO 주간보고 (34주차).docx` `6a0d61f1…a5eb`; ZIP 무결성·수식 오류 0건이다.
@@ -127,6 +152,13 @@
 > 마지막 업데이트: 2026-08-27 08:08 KST [Codex]
 
 > 📰 **2026-08-27 00:56 KST — 2026-08-26 참치 데일리 브리핑 `/market` 라이브 배포 완료** [Claude/tuna-dashboard-publisher]:
+> ✅ **2026-08-27 16:55 KST — 오징어 시장 이해 페이지: 산업해부 보고서 제25판 동기화 (로컬 반영)** [CC]:
+> - 원자료: 보고서 제25판(`03_통합/20_한국오징어산업해부_보고서.html`, 대조 486건 통과) ← 수협중앙회 어업경영조사보고 2025년판(승인 307001호)·수협 계통판매 월보 289개월 재집계·머코프레스 08-12/언더커런트 08-20 보도(C등급).
+> - `lib/squid-industry-content.ts` 4개 단계 갱신: s04 포클랜드 2차 시즌 일시 중단(fact C등급·원문 미확보 명시), s07 중국 재고 소진 국면+4분기 공급 리스크 창 문단·소비자가 5,570원/마리(08-25)로 갱신, s09 어종별 계통판매 분해(살오징어 56,807→13,199→30,176t, 갑오징어·한치 안정, 결측 57개월 한계), s13 척당 손익(근해채낚기 어업이익 △56백만원·kg당 △1,844원, 동해구중형트롤 △90.0%). SQUID_SOURCE_NOTES에 제25판 반영 명기.
+> - 회귀 테스트 `__tests__/squid-report25-sync.test.ts` 5건 — 반영 전 RED 확인 후 GREEN. 전체 vitest 1,185 passed·2 skipped, tsc 0, npm run verify 통과(빌드 33 라우트·bundle budget OK).
+> - 브라우저 검증: 로컬 next start가 Google OAuth 게이트 env 부재로 503 — 화면 렌더는 jsdom 렌더 테스트(squid-industry-render 등 34건)로 갈음. 같은 워킹트리에 폴더 재편 경로 치환분(spec CSV·build py·squid_v5.json 등 10파일)도 미커밋 상태로 함께 있음.
+> - 상태: **로컬 반영·미커밋·프로덕션 미배포**(이번 사용자 메시지에 배포 요청 없음). 배포 시 전용 브랜치→PR→Gate→라이브 재검증 절차.
+
 > - 게이트 3개 통과: 감사 `AUDIT_PASS`(`state/audit-2026-08-26.txt`) · prepare·verify 통과(`vitest __tests__/daily-briefing.test.ts` 4 passed) · 변경분 존재(origin/main 2026-08-25·5건 -> 2026-08-26·6건).
 > - PR [#803](https://github.com/CUTEKOREA/tuna-dashboard/pull/803) squash 병합 `aad009cf530cba3fc71f8ead250b8c258ac708b1`. 변경 파일은 `public/data/tuna_daily_briefing.json` 1건으로 한정. 브랜치 `briefing/2026-08-26` 삭제 완료.
 > - Vercel Preview success -> main Production deployment `6107060650` success.

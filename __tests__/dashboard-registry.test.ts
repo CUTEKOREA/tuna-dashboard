@@ -535,7 +535,6 @@ describe('dashboard registry', () => {
     expect(operationItems).toEqual([
       'market',
       'fleet',
-      'port-intel',
       'unloading',
       'logistics',
       'panofi',
@@ -575,7 +574,6 @@ describe('dashboard registry', () => {
     expect(operationItems).toEqual([
       'market',
       'fleet',
-      'port-intel',
       'unloading',
       'logistics',
       'panofi',
@@ -658,7 +656,7 @@ describe('dashboard registry', () => {
 
   it('drives command search from the same valid menu registry', () => {
     expect(DASHBOARD_COMMANDS.map((command) => command.key)).toEqual(
-      VALID_MENUS.filter((menu) => menu !== 'pork' && menu !== 'mail'),
+      VALID_MENUS.filter((menu) => menu !== 'pork' && menu !== 'port-intel' && menu !== 'mail'),
     );
 
     for (const command of DASHBOARD_COMMANDS) {
@@ -681,6 +679,18 @@ describe('dashboard registry', () => {
     expect(PUBLIC_DASHBOARD_ROUTES).not.toContain('pork');
     expect(VALID_MENUS).toContain('pork');
     expect(DASHBOARD_PANEL_ORDER).toContain('pork');
+  });
+
+  it('retires 부산 입출항 from navigation while preserving the protected direct route', () => {
+    const operationItems = SIDEBAR_SECTIONS
+      .find((section) => section.section === 'operation')
+      ?.items.map((item) => item.key) ?? [];
+
+    expect(operationItems).not.toContain('port-intel');
+    expect(DASHBOARD_COMMANDS.map((command) => command.key)).not.toContain('port-intel');
+    expect(VALID_MENUS).toContain('port-intel');
+    expect(PROTECTED_OPERATION_MENU_KEYS).toContain('port-intel');
+    expect(DASHBOARD_PANEL_ORDER).toContain('port-intel');
   });
 
   it('omits session-locked dashboards from public sitemap routes', () => {
@@ -742,7 +752,7 @@ describe('dashboard registry', () => {
     ]);
 
     expect(SIDEBAR_SECTIONS.map((section) => section.items.map((item) => item.key))).toEqual([
-      ['market', 'fleet', 'port-intel', 'unloading', 'logistics', 'panofi', 'cosmo', 'bangkok-office', 'gmts'],
+      ['market', 'fleet', 'unloading', 'logistics', 'panofi', 'cosmo', 'bangkok-office', 'gmts'],
       ['tuna-industry', 'squid-industry', 'mackerel-industry', 'whelk-industry', 'shrimp-industry', 'pollock-industry', 'tuna-anatomy'],
       // 2026-08-17 사용자 요청: 선단 DB 노출. cross-intelligence 는 종전대로 팔레트 전용
       ['purse-seiner-db', 'company-anatomy'],
@@ -834,5 +844,20 @@ describe('dark mode toggle (2026-08-17, 결정 ① «다크는 토글 보존»)'
     // 다크 = light 스코프 제거 → :root 기존 다크 토큰 복귀. 무조건 light 고정으로 회귀하면 실패.
     expect(pageSource).toContain("data-v3={darkMode ? undefined : 'light'}");
     expect(pageSource).not.toContain('data-v3="light"');
+  });
+
+  it('루트 스크롤바 배경을 현재 라이트·다크 셸과 동기화한다', () => {
+    const pageSource = readFileSync(join(process.cwd(), 'app/page.tsx'), 'utf8');
+    const globalsSource = readFileSync(join(process.cwd(), 'app/globals.css'), 'utf8');
+
+    expect(pageSource).toContain(
+      "document.documentElement.setAttribute('data-shell-theme', darkMode ? 'dark' : 'light')",
+    );
+    expect(globalsSource).toMatch(
+      /html\[data-shell-theme='light'\]\s*\{[\s\S]*?background:\s*#f9fafb;/,
+    );
+    expect(globalsSource).toMatch(
+      /html\[data-shell-theme='dark'\]\s*\{[\s\S]*?background:\s*var\(--bg-color\);/,
+    );
   });
 });

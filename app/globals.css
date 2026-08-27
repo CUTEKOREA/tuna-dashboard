@@ -712,8 +712,18 @@ a {
 
 /* Scrollbar — slim dark scrollbar with cyan tint */
 html {
+  /* 라이트가 기본이다. 투명 루트 캔버스가 스크롤바 트랙에서 검정으로 비치지 않게 한다. */
+  background: #f9fafb;
   scrollbar-width: thin;
   scrollbar-color: rgba(56, 189, 248, 0.3) transparent;
+}
+
+html[data-shell-theme='light'] {
+  background: #f9fafb;
+}
+
+html[data-shell-theme='dark'] {
+  background: var(--bg-color);
 }
 
 ::-webkit-scrollbar {
