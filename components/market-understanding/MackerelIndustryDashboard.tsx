@@ -224,6 +224,11 @@ const SPEC: CommoditySpec = {
       title: '노르웨이 비중',
       body: `${DATA.수입원산지.rows[0]?.비중 ?? 0} (%)`,
     },
+    {
+      eyebrow: '주간',
+      title: '노르웨이 34주 누계',
+      body: '41,108톤 · 48.35 NOK/kg',
+    },
   ],
   briefing: MACKEREL_BRIEFING_POINTS,
   narratives: MACKEREL_NARRATIVES,
@@ -233,7 +238,8 @@ const SPEC: CommoditySpec = {
     `어획 집계 · ${DATA.한국어획._meta.출처}`,
     `위판 집계 · ${DATA.위판등급._meta.출처}`,
     `통관 집계 · ${DATA.수입원산지._meta.출처} · ${DATA.수입원산지._meta.구간}`,
-    `갱신 ${DATA._meta.생성일}`,
+    '주간 수급 · NSC 2026-W34 · KMI Vol.257',
+    '갱신 2026-08-27',
   ].join(' · '),
 };
 
