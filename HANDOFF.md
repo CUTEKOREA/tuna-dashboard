@@ -1,3 +1,15 @@
+> 📦 **2026-08-27 17:08 KST — `/logistics` TTA 운반선 34주차 로컬 갱신 완료** [Codex]:
+> - 원본 `Reefer ship movement for week 34th.xlsx`는 ZIP 무결성·수식 오류·시트/헤더 이동 검사를 통과했다. SHA-256은 `1076d085bcf7908b20887c224e5fe771f0415a97f1c439221190c8e14c554ef3`, 보고기간은 2026-08-21~08-27이다.
+> - 기존 6척에 PATSORN을 추가한 7척의 공장 배분 합계는 25,214.952MT다. PATSORN 2,324.679MT는 MMP 1,000.646·TUM 770.788·UC 553.245이며 원문 기타 기재 `SAMUTSAKORN`을 그대로 보존했다.
+> - `sync_reefer_weekly.py`가 선박별 원문 총량과 F~AH 공장 배분을 재합산했고 `--check` byte 동일 검증을 통과했다. `data/reefer_week34.json`을 강제 추적하고 33주차 JSON은 이력으로 보존했다.
+> - 최신 SSOT를 34주차로 전환하고 물류 히어로·냉동 운반선 카드의 기간·선박 수·합계·STATIC 기준일·SIT/TAK를 같은 값으로 맞췄다. PATSORN용 7번째 항로 마커를 추가해 undefined 렌더 오류를 차단했다.
+> - TDD RED 7건을 확인한 뒤 물류 집중 5파일 36/36 GREEN. 독립 검증자가 원본 수치·PATSORN·이력·마커·민감정보 경계를 반증했고, 초기 Critical이던 신규 JSON 미추적을 `git add -f`로 해소한 뒤 최종 Ready Yes를 받았다.
+> - 전체 `npm run verify` 통과: ESLint 0 errors(기존 warnings 12), Python 운영 27건, Vitest 158파일·1,215 passed/2 skipped, API cache 158/158, Next 118페이지, client leak·bundle 33경로.
+> - 로컬 production `/logistics` 1440×1000·390×844에서 34주차·7척·25,214.952MT·PATSORN·SAMUTSAKORN·항로 마커 7개를 확인했다. 두 화면 모두 `clientWidth=scrollWidth`, page/console/request/same-origin HTTP 오류 0이다.
+> - 운영자 상태 `logistics-weekly=verified`. **로컬 준비 완료, 라이브 미반영**이며 사용자의 별도 `배포` 지시를 기다린다.
+>
+> 마지막 업데이트: 2026-08-27 17:08 KST [Codex]
+
 > 🐟 **2026-08-27 — 미확보 원본 2건 확보 + 공식 자급률 위젯 3건** [Claude]:
 > - **해양수산부 실태조사 2024년판(2023년 기준)과 자급률 고시 제2026-53호를 확보했다.** 원장 grade C → **A** 둘 다. 보고서 10절 값 사슬의 원전이 이제 아카이브에 실물로 있다.
 > - **고시 산식이 조문 텍스트가 아니라 GIF 이미지였다.** 법령 API 는 `<img id="164093933">` 만 돌려준다. `flDownload.do?flSeq=…` 로 내려받아 읽었다 — 산식은 **[국내생산량/국내소비량(생산＋수입＋재고－이월－수출)]×100**. 보고서가 「＋재고 －이월」 두 항을 빠뜨리고 있었다.
@@ -23,7 +35,6 @@
 > - 게이트: provenance 39/39, mackerel:test 4/4, tsc clean, Vitest 157 files·1,209 passed/2 skipped.
 > - **다음 단계**: 사용자가 `배포`를 명시하면 `mackerel/ledger-sync` → PR gate → main 병합 → Vercel READY → `/mackerel` 데스크톱·390px 라이브 확인. 미확보 원본 2건(`MOF_SURVEY_DISTRIBUTION`·`MOF_SELF_SUFFICIENCY`)은 다음 수집 최우선 — 보고서 10절 값 사슬 전체가 그 위에 서 있다.
 >
-
 > 🚀 **2026-08-27 16:08 KST — 부산 입출항 메뉴 숨김·라이트 스크롤바 검정 트랙 수정 라이브 배포** [Codex]:
 > - 사용자 요청대로 `port-intel`을 공용 숨김 목록에 추가해 사이드바와 명령 팔레트에서 「부산 입출항」을 제거했다. 데이터·패널·보호 경계와 직접 `/port-intel` 주소는 보존한다.
 > - 우측 검정 바는 별도 DOM 패널이 아니라 루트 문서 스크롤바의 투명 트랙이었다. 라이트 토큰이 내부 `appWrapper[data-v3='light']`에만 적용되고 `<html>`은 투명해 브라우저 검정 캔버스가 비쳤다. 라이브 DOM에서 `<html>` 배경만 `#f9fafb`로 바꾸자 즉시 사라져 원인을 확정했다.
