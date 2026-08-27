@@ -1,3 +1,13 @@
+> ✅ **2026-08-28 05:54 KST — `/fleet` Panofi·Naoero 어창 용량·등록 제원 검증 반영** [Codex]:
+> - ICCAT SCRS/2024/127 Table 2의 FHV(㎥)를 Panofi 7척에 적용했다: MASTER 1,163·DISCOVERER 3,200·FORE-RUNNER 3,000·PATH-FINDER 3,200·COMMANDER 1,488·QUEEN 1,538·GRACE 1,538. 기존 ICCAT `CarCapacity`를 FHV로 잘못 표시하던 값을 교체했다.
+> - Panofi 7척은 ICCAT 등록 IMO·GRT와 SCRS 전장·건조년을, NAOERO SUN/STAR는 WCPFC RFV IMO `8812203`/`8813477`·GT 1,742·전장 68.29m·건조 1990년을 보호 상세 DTO에 결합했다. Naoero FHC 1,614㎥는 FFA Good Standing 근거를 따로 보존했다. 독립 리뷰가 Panofi 톤수를 GT로 단정한 초기 오류를 찾아 GRT/GT 단위 필드를 분리했고, 수정 후 Critical·Important·Minor 없음으로 승인받았다.
+> - `/fleet` 선박 카드에 IMO·총톤수·전장·건조년·제원/용량 근거를 추가했다. MT 적재량과 ㎥ 어창은 환산하지 않고 `적재율 미산출`을 유지한다. VOLTA GLORY는 사내 확인상 매각 완료로 현행 조업 명부에서 제외함을 표시했다.
+> - ICCAT `LOAm` 유럽식 소수점 쉼표를 천 단위로 오인하던 파서를 분리했다. 재생성한 참치 선박 DB에서 전장 10,594건만 수정됐고 기타 필드 변경은 0건이다. Panofi MASTER `566→56.6m`, GRACE `694→69.4m`, VOLTA GLORY `938→93.8m`를 회귀 테스트로 고정했다.
+> - 전체 원문 143건 결정성 검사와 `npm run verify`가 통과했다: ESLint 0 errors(기존 warnings 12), Python 운영 테스트, Vitest 160파일·1,232 passed/1 skipped, API cache 158/158, Next 118페이지, client-leak·bundle 33경로 통과. 로컬 production 1440px·375px에서 표시값·줄바꿈·가로 overflow 0·page/console/request/HTTP 오류 0을 확인했다.
+> - **다음 단계**: 로컬 브랜치 `feat/fleet-verified-hold-specs-20260827`에서 준비됐으며 미배포다. 사용자가 `배포`를 명시하면 최신 main 통합 → PR gate → `FLEET_DAILY_DETAIL_JSON` 교체 → Production READY → 로그인 라이브 `/fleet` 검증을 진행한다.
+>
+> 마지막 업데이트: 2026-08-28 05:54 KST [Codex]
+
 > 🚀 **2026-08-27 23:03 KST — 물류 34주·선단 어창 용량·HIKARI 8/27·루트 스크롤바 라이브 배포** [Codex]:
 > - PR [#826](https://github.com/CUTEKOREA/tuna-dashboard/pull/826) squash `2b1da943`. PR App Quality Gate `33078039309`, main App Quality Gate `33078385432`, Data Freshness Audit `33078385368`이 모두 성공했다.
 > - Vercel Production `dpl_FjjcWTV2evQHYU7Mqm8aLJ8aGQ2j`는 Ready·region `icn1`이며 `https://leedonggun.co.kr` 별칭에 연결됐다. GitHub Production deployment `6123937537`이 같은 병합 SHA를 가리킨다.

@@ -4,8 +4,18 @@ const nullableMt = z.number().finite().nullable();
 const fishingHoldCapacitySchema = z.object({
   value: z.number().finite().positive(),
   unit: z.enum(['MT', '㎥']),
-  source: z.enum(['FFA VRST', 'ICCAT']),
+  source: z.enum(['FFA VRST', 'ICCAT', 'ICCAT SCRS']),
   asOf: z.iso.date(),
+  reference: z.string().min(1).max(160).optional(),
+}).strict();
+const fishingVesselSpecSchema = z.object({
+  imo: z.string().regex(/^\d{7}$/),
+  grossTonnage: z.number().finite().positive(),
+  grossTonnageUnit: z.enum(['GT', 'GRT']),
+  lengthM: z.number().finite().positive(),
+  builtYear: z.number().int().min(1900).max(2100),
+  source: z.enum(['ICCAT/SCRS', 'WCPFC RFV']),
+  reference: z.string().min(1).max(200),
 }).strict();
 const regionAggregateSchema = z.object({
   asOf: z.iso.date(),
@@ -83,6 +93,7 @@ const fishingVesselSchema = z.object({
   loadedMt: nullableMt,
   note: z.string().max(500),
   holdCapacity: fishingHoldCapacitySchema.nullable().optional(),
+  vesselSpec: fishingVesselSpecSchema.nullable().optional(),
 }).strict();
 
 const carrierVesselSchema = z.object({

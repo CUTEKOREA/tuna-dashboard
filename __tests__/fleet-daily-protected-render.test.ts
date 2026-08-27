@@ -75,6 +75,26 @@ const DETAIL_WITH_CAPACITY = {
         loadedMt: 950,
         holdCapacity: { value: 1_000, unit: 'MT', source: 'FFA VRST', asOf: '2026-08-14' },
       };
+      if (index === 2) return {
+        ...vessel,
+        name: 'NAOERO SUN',
+        holdCapacity: {
+          value: 1_614,
+          unit: '㎥',
+          source: 'FFA VRST',
+          asOf: '2026-08-14',
+          reference: 'FFA Good Standing Vessels',
+        },
+        vesselSpec: {
+          imo: '8812203',
+          grossTonnage: 1_742,
+          grossTonnageUnit: 'GT',
+          lengthM: 68.29,
+          builtYear: 1990,
+          source: 'WCPFC RFV',
+          reference: 'WCPFC VID 926 · 2026-01-22',
+        },
+      };
       return vessel;
     }),
   },
@@ -82,7 +102,22 @@ const DETAIL_WITH_CAPACITY = {
     ...DETAIL.atlantic,
     vessels: DETAIL.atlantic.vessels.map((vessel, index) => index === 0 ? {
       ...vessel,
-      holdCapacity: { value: 3_114.85, unit: '㎥', source: 'ICCAT', asOf: '2026-08-21' },
+      holdCapacity: {
+        value: 1_538,
+        unit: '㎥',
+        source: 'ICCAT SCRS',
+        asOf: '2023-12-31',
+        reference: 'SCRS/2024/127 Table 2',
+      },
+      vesselSpec: {
+        imo: '9517276',
+        grossTonnage: 1_517,
+        grossTonnageUnit: 'GRT',
+        lengthM: 69.42,
+        builtYear: 2008,
+        source: 'ICCAT/SCRS',
+        reference: 'ICCAT Record 2026-08-21 · SCRS/2024/127 Table 2',
+      },
     } : vessel),
   },
 } as FleetDailyDetailPayload;
@@ -120,10 +155,28 @@ describe('fleet protected daily detail rendering', () => {
     expect(roster).toContain('만재 임박');
     expect(roster).toContain('role="progressbar"');
     expect(roster).toContain('aria-valuenow="0.8"');
-    expect(roster).toContain('3,114.85');
+    expect(roster).toContain('1,538');
     expect(roster).toContain('㎥');
     expect(roster).toContain('적재율 미산출');
     expect(roster).toContain('적재량 MT와 어창 용량 ㎥의 단위가 다릅니다');
     expect(roster).toContain('어창 용량 미확인');
+  });
+
+  it('shows registry identity beside verified hold volume and explains the divested carrier exclusion', () => {
+    const roster = renderToStaticMarkup(React.createElement(FleetRosterGrid, { detail: DETAIL_WITH_CAPACITY }));
+
+    expect(roster).toContain('1,538');
+    expect(roster).toContain('SCRS/2024/127 Table 2');
+    expect(roster).toContain('IMO 9517276');
+    expect(roster).toContain('1,517 GRT');
+    expect(roster).toContain('69.42m');
+    expect(roster).toContain('2008년');
+    expect(roster).toContain('IMO 8812203');
+    expect(roster).toContain('1,742 GT');
+    expect(roster).toContain('68.29m');
+    expect(roster).toContain('1990년');
+    expect(roster).toContain('WCPFC VID 926');
+    expect(roster).toContain('VOLTA GLORY는 매각 완료');
+    expect(roster).toContain('현행 조업 명부에서 제외');
   });
 });
