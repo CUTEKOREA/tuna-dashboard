@@ -344,6 +344,9 @@
 .latestVesselHeader span { display:flex; align-items:center; gap:3px; color:var(--dsc-ink-muted); font-size:.68rem; text-align:right; }
 .latestVesselMetrics { margin-top:12px; align-items:flex-end; }
 .latestVesselMetrics strong { display:block; margin-top:3px; color:var(--dsc-ink); font-size:1rem; font-variant-numeric:tabular-nums; }
+.vesselSpec { display:flex; flex-direction:column; gap:4px; margin-top:10px; padding:8px 9px; border-radius:8px; background:var(--dsc-bg-deep); }
+.vesselSpec p { display:flex; flex-wrap:wrap; justify-content:space-between; gap:4px 12px; margin:0; color:var(--dsc-ink); font-size:.74rem; font-variant-numeric:tabular-nums; }
+.vesselSpec small,.holdEvidence { color:var(--dsc-ink-muted); font-size:.7rem; line-height:1.4; overflow-wrap:anywhere; }
 .holdUtilization { margin-top:10px; padding-top:9px; border-top:1px solid var(--dsc-surface-border); }
 .holdUtilizationHeader { display:grid; grid-template-columns:auto minmax(0,1fr) auto auto; align-items:center; gap:6px 8px; font-size:.75rem; }
 .holdUtilizationHeader span { color:var(--dsc-ink-muted); }
@@ -358,6 +361,7 @@
 .holdUtilization[data-level='high'] .holdProgressFill { background:var(--color-warning); }
 .holdUtilization[data-level='nearCapacity'] .holdProgressFill { background:var(--color-danger); }
 .holdCapacityNote { margin:6px 0 0; color:var(--dsc-ink-muted); font-size:.75rem; line-height:1.4; }
+.holdEvidence { margin:5px 0 0; }
 .latestVesselNote { margin-top:10px; padding-top:9px; border-top:1px solid var(--dsc-surface-border); }
 .emptyRoster { padding:16px; }
 

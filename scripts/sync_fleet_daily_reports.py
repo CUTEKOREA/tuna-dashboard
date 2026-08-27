@@ -42,9 +42,9 @@ FISHING_HOLD_CAPACITY_PROVENANCE = {
         "asOf": "2026-08-14",
         "sha256": "b859fff6d8f3ed30d2f2beb73f1ebd9a9600815e28cda17b4df999cb8fc343bb",
     },
-    "ICCAT": {
-        "asOf": "2026-08-21",
-        "sha256": "28ae917d6b8ecdb4d00bd41088f1019895f6f8a9ec6440f87b3d785a162d7d82",
+    "ICCAT SCRS": {
+        "asOf": "2023-12-31",
+        "reference": "SCRS/2024/127 Table 2",
     },
 }
 FISHING_HOLD_CAPACITIES = {
@@ -58,13 +58,13 @@ FISHING_HOLD_CAPACITIES = {
     "MOAKONA": (1200, "MT", "FFA VRST"),
     "NAOERO SUN": (1614, "㎥", "FFA VRST"),
     "NAOERO STAR": (1614, "㎥", "FFA VRST"),
-    "PANOFI MASTER": (2817.52, "㎥", "ICCAT"),
-    "PANOFI DISCOVERER": (3114.85, "㎥", "ICCAT"),
-    "PANOFI FORE-RUNNER": (3114.85, "㎥", "ICCAT"),
-    "PANOFI PATH-FINDER": (3114.85, "㎥", "ICCAT"),
-    "PANOFI COMMANDER": (4009.66, "㎥", "ICCAT"),
-    "PANOFI QUEEN": (4295.66, "㎥", "ICCAT"),
-    "PANOFI GRACE": (4295.66, "㎥", "ICCAT"),
+    "PANOFI MASTER": (1163, "㎥", "ICCAT SCRS"),
+    "PANOFI DISCOVERER": (3200, "㎥", "ICCAT SCRS"),
+    "PANOFI FORE-RUNNER": (3000, "㎥", "ICCAT SCRS"),
+    "PANOFI PATH-FINDER": (3200, "㎥", "ICCAT SCRS"),
+    "PANOFI COMMANDER": (1488, "㎥", "ICCAT SCRS"),
+    "PANOFI QUEEN": (1538, "㎥", "ICCAT SCRS"),
+    "PANOFI GRACE": (1538, "㎥", "ICCAT SCRS"),
 }
 FISHING_HOLD_CAPACITY_ALIASES = {
     "S/EXP": "SHILLA EXPLORER",
@@ -82,6 +82,21 @@ FISHING_HOLD_CAPACITY_ALIASES = {
     "P/QUEEN": "PANOFI QUEEN",
     "P/GRACE": "PANOFI GRACE",
 }
+FISHING_HOLD_CAPACITY_REFERENCES = {
+    "NAOERO SUN": "FFA Good Standing Vessels",
+    "NAOERO STAR": "FFA Good Standing Vessels",
+}
+FISHING_VESSEL_SPECS = {
+    "PANOFI MASTER": ("8976815", 995, "GRT", 64.7, 1988, "ICCAT/SCRS", "ICCAT Record 2026-08-21 · SCRS/2024/127 Table 2"),
+    "PANOFI DISCOVERER": ("9565352", 1100, "GRT", 70.59, 2009, "ICCAT/SCRS", "ICCAT Record 2026-08-21 · SCRS/2024/127 Table 2"),
+    "PANOFI FORE-RUNNER": ("9568859", 1100, "GRT", 70.59, 2009, "ICCAT/SCRS", "ICCAT Record 2026-08-21 · SCRS/2024/127 Table 2"),
+    "PANOFI PATH-FINDER": ("9568861", 1100, "GRT", 70.59, 2009, "ICCAT/SCRS", "ICCAT Record 2026-08-21 · SCRS/2024/127 Table 2"),
+    "PANOFI COMMANDER": ("9097379", 1416, "GRT", 71.79, 2007, "ICCAT/SCRS", "ICCAT Record 2026-08-21 · SCRS/2024/127 Table 2"),
+    "PANOFI QUEEN": ("9097329", 1517, "GRT", 69.42, 2007, "ICCAT/SCRS", "ICCAT Record 2026-08-21 · SCRS/2024/127 Table 2"),
+    "PANOFI GRACE": ("9517276", 1517, "GRT", 69.42, 2008, "ICCAT/SCRS", "ICCAT Record 2026-08-21 · SCRS/2024/127 Table 2"),
+    "NAOERO SUN": ("8812203", 1742, "GT", 68.29, 1990, "WCPFC RFV", "WCPFC VID 926 · 2026-01-22"),
+    "NAOERO STAR": ("8813477", 1742, "GT", 68.29, 1990, "WCPFC RFV", "WCPFC VID 927 · 2026-06-26"),
+}
 
 
 class FleetDailySyncError(RuntimeError):
@@ -96,11 +111,33 @@ def fishing_hold_capacity(name: str) -> dict[str, Any] | None:
         return None
     value, unit, source = capacity
     provenance = FISHING_HOLD_CAPACITY_PROVENANCE[source]
-    return {
+    result = {
         "value": value,
         "unit": unit,
         "source": source,
         "asOf": provenance["asOf"],
+    }
+    reference = provenance.get("reference") or FISHING_HOLD_CAPACITY_REFERENCES.get(canonical)
+    if reference:
+        result["reference"] = reference
+    return result
+
+
+def fishing_vessel_spec(name: str) -> dict[str, Any] | None:
+    normalized = normalize_text(name).upper()
+    canonical = FISHING_HOLD_CAPACITY_ALIASES.get(normalized, normalized)
+    spec = FISHING_VESSEL_SPECS.get(canonical)
+    if spec is None:
+        return None
+    imo, gross_tonnage, gross_tonnage_unit, length_m, built_year, source, reference = spec
+    return {
+        "imo": imo,
+        "grossTonnage": gross_tonnage,
+        "grossTonnageUnit": gross_tonnage_unit,
+        "lengthM": length_m,
+        "builtYear": built_year,
+        "source": source,
+        "reference": reference,
     }
 
 
@@ -776,6 +813,7 @@ def build_detail_payload(payload: dict[str, Any]) -> dict[str, Any]:
                 {
                     **{key: vessel[key] for key in ("name", "position", "catchMt", "loadedMt", "note")},
                     "holdCapacity": fishing_hold_capacity(vessel["name"]),
+                    "vesselSpec": fishing_vessel_spec(vessel["name"]),
                 }
                 for vessel in region["vessels"]
             ],

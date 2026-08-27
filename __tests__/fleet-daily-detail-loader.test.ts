@@ -10,6 +10,7 @@ import {
   parseFleetDailyDetailSource,
 } from '@/lib/data/fleet-daily-detail';
 import {
+  fleetDailyPublicDetailSha256Compat,
   fleetDailyPublicDetailSha256,
   fleetDailyPublicLatest,
 } from '@/lib/data/fleet-daily-public';
@@ -48,6 +49,12 @@ afterEach(() => {
 });
 
 describe('fleet daily protected detail loader', () => {
+  it('keeps the currently deployed detail digest valid during the schema transition', () => {
+    expect(fleetDailyPublicDetailSha256Compat).toContain(
+      'd50fbd4b699b6b290a24cabffa0bb54c18988dd9da43b50619b3e825f235e005',
+    );
+  });
+
   it('accepts a strict current DTO from the server environment', () => {
     const source = JSON.stringify(VALID_DETAIL);
     expect(parseFleetDailyDetailSource(source, {

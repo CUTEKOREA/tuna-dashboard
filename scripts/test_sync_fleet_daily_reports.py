@@ -102,14 +102,40 @@ class FleetDailyReportSyncTest(unittest.TestCase):
             'unit': '㎥',
             'source': 'FFA VRST',
             'asOf': '2026-08-14',
+            'reference': 'FFA Good Standing Vessels',
         })
         self.assertEqual(capacity_of('P/DIS'), {
-            'value': 3114.85,
+            'value': 3200,
             'unit': '㎥',
-            'source': 'ICCAT',
-            'asOf': '2026-08-21',
+            'source': 'ICCAT SCRS',
+            'asOf': '2023-12-31',
+            'reference': 'SCRS/2024/127 Table 2',
         })
         self.assertIsNone(capacity_of('UNKNOWN VESSEL'))
+
+    def test_fishing_vessel_specs_bind_registry_identity_to_current_roster(self) -> None:
+        module = load_sync_module()
+        spec_of = getattr(module, 'fishing_vessel_spec', lambda _name: None)
+
+        self.assertEqual(spec_of('P/GRACE'), {
+            'imo': '9517276',
+            'grossTonnage': 1517,
+            'grossTonnageUnit': 'GRT',
+            'lengthM': 69.42,
+            'builtYear': 2008,
+            'source': 'ICCAT/SCRS',
+            'reference': 'ICCAT Record 2026-08-21 · SCRS/2024/127 Table 2',
+        })
+        self.assertEqual(spec_of('NAOERO SUN'), {
+            'imo': '8812203',
+            'grossTonnage': 1742,
+            'grossTonnageUnit': 'GT',
+            'lengthM': 68.29,
+            'builtYear': 1990,
+            'source': 'WCPFC RFV',
+            'reference': 'WCPFC VID 926 · 2026-01-22',
+        })
+        self.assertIsNone(spec_of('VOLTA GLORY'))
 
     def test_detail_digest_compat_rolls_only_the_previous_generation(self) -> None:
         module = load_sync_module()
@@ -521,10 +547,20 @@ class FleetDailyReportSyncTest(unittest.TestCase):
                 "asOf": "2026-08-14",
             })
             self.assertEqual(detail_payload["atlantic"]["vessels"][0].get("holdCapacity"), {
-                "value": 2817.52,
+                "value": 1163,
                 "unit": "㎥",
-                "source": "ICCAT",
-                "asOf": "2026-08-21",
+                "source": "ICCAT SCRS",
+                "asOf": "2023-12-31",
+                "reference": "SCRS/2024/127 Table 2",
+            })
+            self.assertEqual(detail_payload["atlantic"]["vessels"][0].get("vesselSpec"), {
+                "imo": "8976815",
+                "grossTonnage": 995,
+                "grossTonnageUnit": "GRT",
+                "lengthM": 64.7,
+                "builtYear": 1988,
+                "source": "ICCAT/SCRS",
+                "reference": "ICCAT Record 2026-08-21 · SCRS/2024/127 Table 2",
             })
             self.assertEqual(detail_payload["longline"]["vessels"][0], {
                 "name": "TEST LONGLINE A",

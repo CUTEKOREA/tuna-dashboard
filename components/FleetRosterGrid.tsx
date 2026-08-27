@@ -23,6 +23,7 @@ type LonglineFleetRow = FleetRoster['longline'][number];
 function FishingVesselCard({ vessel }: { vessel: FishingFleetRow }) {
   const [hovered, setHovered] = useState(false);
   const capacity = vessel.holdCapacity ?? null;
+  const spec = vessel.vesselSpec ?? null;
   const utilization = resolveFleetHoldUtilization(vessel.loadedMt, capacity);
   const capacityText = capacity ? `${formatCapacity(capacity.value)} ${capacity.unit}` : '미확인';
   const utilizationText = utilization ? `${utilization.ratioPct}%` : capacity ? '미산출' : '미확인';
@@ -43,6 +44,13 @@ function FishingVesselCard({ vessel }: { vessel: FishingFleetRow }) {
         <div><span>일간 어획</span><strong>{formatMt(vessel.catchMt)} <small>(MT)</small></strong></div>
         <div><span>누적 적재</span><strong>{formatMt(vessel.loadedMt)} <small>(MT)</small></strong></div>
       </div>
+      {spec ? (
+        <div className={s.vesselSpec} role="group" aria-label={`${vessel.displayName} 등록 제원`}>
+          <p><span>IMO {spec.imo}</span><span>{formatCapacity(spec.grossTonnage)} {spec.grossTonnageUnit}</span></p>
+          <p><span>전장 {formatCapacity(spec.lengthM)}m</span><span>건조 {spec.builtYear}년</span></p>
+          <small>제원 근거: {spec.reference}</small>
+        </div>
+      ) : null}
       <div
         className={s.holdUtilization}
         data-level={utilization?.level ?? (capacity ? 'unitMismatch' : 'missing')}
@@ -68,6 +76,7 @@ function FishingVesselCard({ vessel }: { vessel: FishingFleetRow }) {
           </div>
         ) : null}
         {capacity?.unit === '㎥' ? <p className={s.holdCapacityNote}>적재량 MT와 어창 용량 ㎥의 단위가 다릅니다.</p> : null}
+        {capacity?.reference ? <p className={s.holdEvidence}>용량 근거: {capacity.reference}</p> : null}
       </div>
       {vessel.note !== '-' ? <p className={s.latestVesselNote}>보고 당시 비고: {formatFleetDailyNote(vessel.note)}</p> : null}
     </article>
@@ -113,7 +122,7 @@ function SectionHeader({ icon: Icon, title, count, summary, countLabel = `${coun
 export default function FleetRosterGrid({ detail }: { detail: FleetDailyDetailPayload }) {
   const roster = useMemo(() => buildFleetRoster(detail), [detail]);
   const pacificSummary = `일간 ${detail.pacific.dailyMt.toLocaleString()} (MT) · 월간 ${detail.pacific.monthlyMt.toLocaleString()} (MT) · 연간 ${detail.pacific.annualMt.toLocaleString()} (MT) · ${detail.asOf}`;
-  const atlanticSummary = `일간 ${detail.atlantic.dailyMt.toLocaleString()} (MT) · 월간 ${detail.atlantic.monthlyMt.toLocaleString()} (MT) · 연간 ${detail.atlantic.annualMt.toLocaleString()} (MT) · ${detail.asOf}`;
+  const atlanticSummary = `일간 ${detail.atlantic.dailyMt.toLocaleString()} (MT) · 월간 ${detail.atlantic.monthlyMt.toLocaleString()} (MT) · 연간 ${detail.atlantic.annualMt.toLocaleString()} (MT) · ${detail.asOf} · VOLTA GLORY는 매각 완료(사내 확인)로 현행 조업 명부에서 제외`;
 
   return (
     <div className={s.rosterGrid}>
