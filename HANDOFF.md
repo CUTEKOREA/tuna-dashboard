@@ -1,3 +1,12 @@
+> 🚀 **2026-08-27 14:34 KST — 오징어 공식 모니터링·산업보고서 라이브 배포 완료** [Codex]:
+> - PR [#818](https://github.com/CUTEKOREA/tuna-dashboard/pull/818) squash `f522d12d`. PR App Quality Gate·Vercel Preview와 main App Quality Gate가 모두 성공했다.
+> - Vercel Production `dpl_AH22pDS5HG3Y4FfEVuuZjH6BKz7A` Ready, `https://leedonggun.co.kr` 별칭 연결. GitHub Production deployment `6117048705`가 병합 SHA `f522d12dc274fe660f752b9076e3f004083519a9`를 정확히 가리킨다.
+> - 로그인된 `/squid-industry`에서 02단계 칠레 `130,021.9741t·65.011%·69,978.0259t`, 14단계 KMI 확정 `5,570원(8/25)`·화면 비교 `5,440원(8/26)`, 15단계 KMI·KAMIS·PRODUCE·SERNAPESCA·GACC 우선 5행을 확인했다.
+> - 라이브 1440×900·390×844에서 문서 가로 overflow 0, Next 오류 overlay 0, console/page/request/same-origin 4xx·5xx 0. 배포 후 30분 Vercel error·fatal·500 로그도 0건이다.
+> - Drive 보고서 제22판 `6ae341e`·103쪽 A4와 원장 44행·모니터링 20행·외부 매니페스트 127행은 배포본과 같은 8/27 정본이다.
+>
+> 마지막 업데이트: 2026-08-27 14:34 KST [Codex]
+
 > 🦑 **2026-08-27 14:11 KST — 오징어 공식 모니터링 5계열·산업보고서·`/squid-industry` 배포 준비 완료** [Codex]:
 > - KMI FishData는 확정 관측 `2026-08-25 5,570원/마리`와 `2026-08-26` 화면 비교값 `5,440원(미확정)`을 분리했다. KAMIS 도매는 `2026-08-26` 서울 연근해 냉동 `13,600원/kg`·원양 냉동 `10,500원/kg`을 별도 계열로 유지했다. 페이지 본문·사실표·위젯도 같은 기준일과 KMI 등급 B로 동기화했다.
 > - SERNAPESCA v20260820 `RESUMEN`의 내부 기준일은 `2026-08-18`: 법정 쿼터 `200,000t`, 포획 `130,021.9741t`, 잔량 `69,978.0259t`, 소진 `65.011%`. 기존 8/06·8/13 파일은 삭제하지 않았다.
