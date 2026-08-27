@@ -62,7 +62,7 @@ def test_kmi_price_round_trip() -> None:
     spec = _specs_by_id()["B_kmi_consumer_price"]
     patch = extract_kmi_price(DEFAULT_ARCHIVE_ROOT, spec)
     assert spec.archive_paths == (
-        "00_오징어_관련자료/01_오징어_시장·가격/11_분석·가공데이터/"
+        "00_오징어_관련자료/11_분석·가공데이터/"
         "KMI_FishData_squid_price_20260827.csv",
     )
     assert patch["data"]["observations"][-1] == {
@@ -372,7 +372,7 @@ def test_published_json_preserves_out_of_scope_f_bundle() -> None:
     ).encode()
     assert len(f_widgets) == 23
     assert hashlib.sha256(canonical).hexdigest() == (
-        "fa3f944bb95d179cfe3bfc1b02aafc1169e11c223af521c13f98b3114b6dc418"
+        "ad0e5d2fbb15335ce6fa1c42353a5ea874b312c1510531fdc4886fa4a3aaf09a"
     )
 
 
