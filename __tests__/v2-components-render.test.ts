@@ -242,7 +242,7 @@ describe('Deep Sea Command V2 - Fleet pilot', () => {
 
     expect(markup).toContain('선단 운영');
     expect(markup).toContain('일간 합계');
-    expect(markup).toContain('data-kpi-value="215"');
+    expect(markup).toContain('data-kpi-value="230"');
     // 2026-08-15 사용자 지시: 선박 사진 배경 제거 — 라이트 히어로는 배경 없이
     expect(markup).not.toContain('/heroes/seiner.webp');
   });
@@ -308,7 +308,7 @@ describe('Deep Sea Command V2 - Phase 2 운영 페이지', () => {
     expect(markup).not.toContain('/heroes/carrier.webp');
   });
 
-  it('물류 히어로가 31주차 4척 항로 마커와 기존 하역 SIT·TAK를 렌더한다', async () => {
+  it('물류 히어로가 33주차 6척 항로 마커와 기존 하역 SIT·TAK를 렌더한다', async () => {
     const logisticsModule = await import('../components/LogisticsDashboard');
     const LogisticsHero = (logisticsModule as Record<string, unknown>).LogisticsHero;
 
@@ -322,8 +322,11 @@ describe('Deep Sea Command V2 - Phase 2 운영 페이지', () => {
     expect(markup).toContain('물류·가공');
     expect(markup).toContain('주간 하역 합계');
     expect(markup).toContain('(MT)');
-    expect(markup.match(/data-week31-carrier-marker="true"/g)?.length).toBe(4);
-    expect(markup.match(/data-marker-tone="data"/g)?.length).toBe(4);
+    expect(markup).toContain('33주차 운반선 보고 기준');
+    expect(markup).toContain('data-kpi-value="22890.273"');
+    expect(markup).toContain('data-kpi-value="6"');
+    expect(markup.match(/data-reefer-carrier-marker="true"/g)?.length).toBe(6);
+    expect(markup.match(/data-marker-tone="data"/g)?.length).toBe(6);
     expect(markup).not.toContain('#f59e0b');
     expect(markup).toContain('입항 재확인 2척 후속 확인 완료');
     expect(markup).not.toContain('SEIN VENUS와 HENG HONG 9의 예정일이 도래했으므로 실제 입항·접안 여부를 확인합니다.');

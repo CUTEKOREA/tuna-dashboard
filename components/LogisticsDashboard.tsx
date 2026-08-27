@@ -16,7 +16,7 @@ import HeroZone from './v2/HeroZone';
 import PillTabs from './v2/PillTabs';
 import styles from './LogisticsCommandCenter.module.css';
 import { logisticsWeeklyReport } from '@/lib/logistics-weekly-report';
-import { getMiscData } from '@/lib/data/misc';
+import { reeferWeeklyReport } from '@/lib/data/reefer-weekly';
 import { bangkokMeta } from '@/lib/data/bangkok-weekly';
 
 type LogisticsTab = 'operations' | 'receipts' | 'canneries' | 'vessels';
@@ -28,15 +28,17 @@ const tabs: Array<{ id: LogisticsTab; label: string; description: string }> = [
   { id: 'vessels', label: '선박·보고자료', description: '하역 현황과 보고 시점 이동표' },
 ];
 
-const reeferWeek31 = getMiscData('reeferWeek31');
+const reeferRows = reeferWeeklyReport.rows;
 const carrierSituation = '8월 5일 입항 예정이던 SEIN VENUS는 하역 원장에서 8월 22일 하역 완료가 확인됐고, HENG HONG 9는 31·32주차 운반선 배분 보고에서 8월 6일 입항·배분이 확인됐습니다.';
 const carrierAction = '두 선박의 예정 상태 경고를 해제하고, 보고 당시 예정일과 후속 확인 근거를 함께 보존합니다.';
 
-const week31DeliveryTotal = (row: (typeof reeferWeek31)[number]) => Object.entries(row.deliveries)
+const reeferDeliveryTotal = (row: (typeof reeferRows)[number]) => Object.entries(row.deliveries)
   .filter(([destination]) => destination !== 'OTHER' && destination !== 'SHIP')
   .reduce((total, [, amount]) => total + Number(String(amount).replace(/,/g, '')), 0);
 
-const week31Total = reeferWeek31.reduce((total, row) => total + week31DeliveryTotal(row), 0);
+const reeferTotal = Math.round(
+  reeferRows.reduce((total, row) => total + reeferDeliveryTotal(row), 0) * 1_000,
+) / 1_000;
 
 /* 트레이더 SIT/TAK 숫자는 위젯과 같은 집계에서 뽑는다 — 문장과 차트가 어긋나지 않게 */
 const traderShare = (mt: number) => ((mt / traderFullPeriod.grandMt) * 100).toFixed(1);
@@ -49,6 +51,8 @@ const bangkokMarkerPositions = [
   { x: 204, y: 292 },
   { x: 232, y: 310 },
   { x: 202, y: 334 },
+  { x: 222, y: 324 },
+  { x: 188, y: 320 },
 ] as const;
 
 function FishingGroundToBangkokRouteMap() {
@@ -72,12 +76,12 @@ function FishingGroundToBangkokRouteMap() {
         <path d="M 330 138 L 312 142 L 328 156 Z" fill="var(--accent-primary)" opacity="0.85" />
         <text x="158" y="368" fill="var(--dsc-ink)" fontSize="20" fontWeight="700">방콕</text>
         <text x="700" y="120" fill="var(--dsc-ink-muted)" fontSize="20" fontWeight="700">태평양 어장</text>
-        {reeferWeek31.map((row, index) => {
+        {reeferRows.map((row, index) => {
           const position = bangkokMarkerPositions[index];
           return (
             <g
               key={row.carrier}
-              data-week31-carrier-marker="true"
+              data-reefer-carrier-marker="true"
               data-marker-tone="data"
               transform={`translate(${position.x} ${position.y})`}
             >
@@ -98,11 +102,11 @@ export function LogisticsHero() {
       className={styles.logisticsHero}
       variant="map"
       title="물류·가공"
-      subtitle="조업지(태평양 어장)→하역지(방콕) 정적 항로도 · 31주차 운반선 보고 기준 · 입항 재확인 2척 후속 확인 완료"
+      subtitle={`조업지(태평양 어장)→하역지(방콕) 정적 항로도 · ${reeferWeeklyReport.source.week}주차 운반선 보고 기준 · 입항 재확인 2척 후속 확인 완료`}
       background={<FishingGroundToBangkokRouteMap />}
-      primaryKpi={{ label: '주간 하역 합계', value: week31Total, unit: '(MT)', decimals: 3 }}
+      primaryKpi={{ label: '주간 하역 합계', value: reeferTotal, unit: '(MT)', decimals: 3 }}
       secondaryKpis={[
-        { label: '방콕 보고 선박', value: reeferWeek31.length, unit: '(척)' },
+        { label: '방콕 보고 선박', value: reeferRows.length, unit: '(척)' },
         { label: '현재 하역 보고', value: logisticsWeeklyReport.unloading.currentTotal.amount, unit: '(MT)' },
         { label: '원어 협의 시장가', value: logisticsWeeklyReport.market.rawMaterialPriceUsdPerMt, unit: '($/MT)' },
       ]}
@@ -289,13 +293,13 @@ export default function LogisticsDashboard({ heroOnly = false }: { heroOnly?: bo
                   icon={Navigation}
                   iconColor="var(--color-info)"
                   pillar="S3"
-                  cardDesc="방콕항 운반선 이동 스케줄 - 32주차 주간 보고 (2026-08-07~08-13 기준)"
-                  telemetry={{ status: 'STATIC', syncDate: '2026-08-13', label: '정적' }}
+                  cardDesc="방콕항 운반선 이동 스케줄 - 33주차 주간 보고 (2026-08-14~08-20 기준)"
+                  telemetry={{ status: 'STATIC', syncDate: '2026-08-20', label: '정적' }}
                   customBody={<ReeferMovement />}
                   takeaway={{
-                    situation: '32주차(2026-08-07~08-13) TTA 보고에는 방콕항 6척의 캔 공장별 배분 24,834.299MT가 기록됐으며, SEA STAR V와 PACIFIC JOURNEY가 추가됐습니다.',
-                    actionPlan: '신규 보고된 SEA STAR V 3,951.273MT와 PACIFIC JOURNEY 2,240MT의 실제 하역 진행 상태를 이후 주간보고와 교차 확인합니다.',
-                    source: 'TTA 운반선 이동표 32주차 (2026-08-13 기준)',
+                    situation: '33주차(2026-08-14~08-20) TTA 보고에는 방콕항 6척의 캔 공장별 배분 22,890.273MT가 기록됐으며, HIKARI 1 2,929MT가 새로 포함됐습니다.',
+                    actionPlan: 'HIKARI 1의 ASIAN·CMC·GB·GPZ·ISA·MMP·RMK·TUM 배분 합계 2,929MT를 하역 원장과 교차 확인하고 이후 보고에서 실제 하역 진행을 추적합니다.',
+                    source: 'TTA 운반선 이동표 33주차 (2026-08-20 기준)',
                   }}
                 />
               </div>
