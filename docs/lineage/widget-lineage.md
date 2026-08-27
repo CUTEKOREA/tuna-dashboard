@@ -1,7 +1,7 @@
 # 위젯 리니지 — 데이터 파일별 영향 범위
 
 > `python3 scripts/widget_lineage.py`로 재생성. 손으로 고치지 말 것.
-> 진입점 app/page.tsx · closure 198파일 · 위젯 110개 · 데이터 파일 84개.
+> 진입점 app/page.tsx · closure 199파일 · 위젯 110개 · 데이터 파일 74개.
 > 데이터 파일 필드를 바꾸기 전에 여기서 영향 위젯을 확인한다 (파손 진단 1단계).
 
 ## data/beef_usda_widgets.json
@@ -26,51 +26,11 @@
 - components/gmts/GmtsDashboard.tsx
 - components/gmts/GmtsMonthlyReport.tsx
 
-## data/mangosteen_kr_export.json
-- components/LogisticsDashboard.tsx
-- components/ReeferMovement.tsx
-
-## data/octopus_domestic_resource.json
-- components/LogisticsDashboard.tsx
-- components/ReeferMovement.tsx
-
-## data/octopus_global_catch.json
-- components/LogisticsDashboard.tsx
-- components/ReeferMovement.tsx
-
 ## data/pork_usda_widgets.json
 - components/PorkDashboard.tsx
 - components/PorkUsdaWidgets.tsx
 
-## data/reefer_week27.json
-- components/LogisticsDashboard.tsx
-- components/ReeferMovement.tsx
-
-## data/reefer_week29.json
-- components/LogisticsDashboard.tsx
-- components/ReeferMovement.tsx
-
-## data/reefer_week30.json
-- components/LogisticsDashboard.tsx
-- components/ReeferMovement.tsx
-
-## data/reefer_week31.json
-- components/LogisticsDashboard.tsx
-- components/ReeferMovement.tsx
-
-## data/reefer_week32.json
-- components/LogisticsDashboard.tsx
-- components/ReeferMovement.tsx
-
-## data/seasia_oem_ma_candidates.json
-- components/LogisticsDashboard.tsx
-- components/ReeferMovement.tsx
-
-## data/seasia_oem_vendors.json
-- components/LogisticsDashboard.tsx
-- components/ReeferMovement.tsx
-
-## data/shrimp_dashboard.json
+## data/reefer_week33.json
 - components/LogisticsDashboard.tsx
 - components/ReeferMovement.tsx
 
