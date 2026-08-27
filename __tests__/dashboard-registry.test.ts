@@ -860,4 +860,20 @@ describe('dark mode toggle (2026-08-17, 결정 ① «다크는 토글 보존»)'
       /html\[data-shell-theme='dark'\]\s*\{[\s\S]*?background:\s*var\(--bg-color\);/,
     );
   });
+
+  it('문서 루트는 기본 스크롤을 쓰고 사용자 지정 스크롤바는 내부 요소에만 적용한다', () => {
+    const globalsSource = readFileSync(join(process.cwd(), 'app/globals.css'), 'utf8');
+    const rootRule = cssRule(globalsSource, 'html');
+    const internalRule = cssRule(globalsSource, 'body *');
+    const bareWebkitRules = globalsSource.match(/^\s*::-webkit-scrollbar[^\{]*\{/gm) ?? [];
+
+    expect(rootRule).not.toMatch(/scrollbar-(?:width|color)\s*:/);
+    expect(internalRule).toMatch(/scrollbar-width:\s*thin/);
+    expect(internalRule).toMatch(/scrollbar-color:\s*rgba\(56, 189, 248, 0\.3\) transparent/);
+    expect(bareWebkitRules).toEqual([]);
+    expect(globalsSource).toContain('body *::-webkit-scrollbar {');
+    expect(globalsSource).toContain('body *::-webkit-scrollbar-track {');
+    expect(globalsSource).toContain('body *::-webkit-scrollbar-thumb {');
+    expect(globalsSource).toContain('body *::-webkit-scrollbar-thumb:hover {');
+  });
 });

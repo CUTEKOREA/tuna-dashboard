@@ -1,3 +1,12 @@
+> ✅ **2026-08-27 21:51 KST — 루트 청록 스크롤바를 브라우저 기본 스크롤로 복원** [Codex]:
+> - 로그인된 라이브 `/fleet` DOM을 계측한 결과 콘텐츠 중첩 스크롤은 없었고 `HTML` 하나만 문서 스크롤을 소유했다. 내부창처럼 보인 파란 막대는 전역 `::-webkit-scrollbar`와 `html scrollbar-width/color`가 루트까지 칠한 손잡이였다. 8/27 검정 트랙 수정이 루트 배경을 밝게 만들면서 기존 청록 손잡이가 더 두드러졌다.
+> - `html`은 라이트·다크 배경 동기화만 유지하고 브라우저 기본 스크롤로 되돌렸다. 얇은 청록 사용자 지정 스크롤은 `body *` 후손으로 한정해 사이드바·모달·내부 목록의 기존 동작은 보존했다. 문서 높이·overflow·스크롤 기능은 변경하지 않았다.
+> - TDD: 기존 35/35에서 루트 비스코프 계약 RED 1건을 확인한 뒤 registry 36/36 통과. `npm run verify`: ESLint 0 errors(기존 warning 12), Python 운영 27건, Vitest 158파일·1,217 passed/2 skipped, API cache 158/158, Next 118페이지, client leak·bundle 33경로 통과.
+> - 로컬 production `/fleet` 1440px·390px에서 `document.scrollingElement=HTML`, 루트 `scrollbar-width/color=auto`, 내부 사이드바 `thin`, 비스코프 WebKit 선택자 0건을 확인했다. 두 폭 모두 가로 overflow·page/console/request/예상 외 HTTP 오류 0건이며 청록 루트 막대가 사라졌다.
+> - **다음 단계**: 로컬 전용 브랜치 `fix/root-scrollbar-scope-20260827`. 사용자가 배포를 명시하면 최신 main 통합 → PR gate → Production READY → 라이트·다크 로그인 라이브 재검증을 진행한다.
+>
+> 마지막 업데이트: 2026-08-27 21:51 KST [Codex]
+
 > ✅ **2026-08-27 20:43 KST — HIKARI 1 8/27 하역 실적·8/28 계획 로컬 반영** [Codex]:
 > - 원본 3종을 대조했다: JPG `c33f9eb4…7fde5`, 일일 결과 XLS `66e5b165…76ddb`, 일일 현황 XLSX `0bdef9ea…96e`. 8/27 일일 `283.910 MT`, 누계 `2,866.810 MT`, 잔량 `62.190 MT`; SJ `250.910`·YF `33.000 MT`; GPZ/MOAKONA #4-C `112.190`·ISA/MOAMARI #3-C `171.720 MT`; 작업 `08:10~13:30`, 19대다.
 > - 8/26 보고는 보존하고 `hikari-bangkok-2026-07-8-27`을 새 행으로 추가했다. HIKARI 1은 하역중 `97.9%`, 8/20~8/27 추이, 잔여 약 1일, 체선 사용 7일·여유 6.3일로 갱신된다. 전 선박 2026년 통합 누계는 화면 산식 기준 `39,249 MT`다.

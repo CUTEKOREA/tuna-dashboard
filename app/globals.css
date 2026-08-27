@@ -710,10 +710,13 @@ a {
   color: #F8FAFC;
 }
 
-/* Scrollbar — slim dark scrollbar with cyan tint */
+/* 문서 루트는 브라우저 기본 스크롤을 사용하고 내부 목록만 얇은 스크롤바를 쓴다. */
 html {
   /* 라이트가 기본이다. 투명 루트 캔버스가 스크롤바 트랙에서 검정으로 비치지 않게 한다. */
   background: #f9fafb;
+}
+
+body * {
   scrollbar-width: thin;
   scrollbar-color: rgba(56, 189, 248, 0.3) transparent;
 }
@@ -726,21 +729,21 @@ html[data-shell-theme='dark'] {
   background: var(--bg-color);
 }
 
-::-webkit-scrollbar {
+body *::-webkit-scrollbar {
   width: 6px;
   height: 6px;
 }
 
-::-webkit-scrollbar-track {
+body *::-webkit-scrollbar-track {
   background: transparent;
 }
 
-::-webkit-scrollbar-thumb {
+body *::-webkit-scrollbar-thumb {
   background: var(--scrollbar-thumb-tint);
   border-radius: 3px;
 }
 
-::-webkit-scrollbar-thumb:hover {
+body *::-webkit-scrollbar-thumb:hover {
   background: var(--scrollbar-thumb-tint-hover);
 }
 
@@ -811,12 +814,12 @@ img, video, canvas, svg {
   }
 
   /* Hide scrollbar on mobile for cleaner look */
-  ::-webkit-scrollbar {
+  body *::-webkit-scrollbar {
     width: 3px;
     height: 3px;
   }
 
-  ::-webkit-scrollbar-thumb {
+  body *::-webkit-scrollbar-thumb {
     background: rgba(6, 182, 212, 0.1);
   }
 
@@ -866,7 +869,7 @@ img, video, canvas, svg {
 
 @media (max-width: 480px) {
   /* Even thinner scrollbars */
-  ::-webkit-scrollbar {
+  body *::-webkit-scrollbar {
     width: 2px;
     height: 2px;
   }
