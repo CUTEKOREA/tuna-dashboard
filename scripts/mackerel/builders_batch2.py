@@ -10,8 +10,8 @@ grade 규칙
 """
 from build import C, builder, r1
 from scope import (AFRICA, ARCHIVE, BCFM_JSON, COMTRADE_CSV, FIPS_COOP_CSV,
-                   FIPS_PROD_JSON, KAMIS_JSON, KCS_MACKEREL_HS, MFDS_C002_CSV,
-                   MFDS_I0300_CSV)
+                   FIPS_PROD_JSON, KAMIS_JSON, KCS_MACKEREL_HS, KOFPI_TAC_XLSX,
+                   FRA_TSUSHIMA_MD, MFDS_C002_CSV, MFDS_I0300_CSV)
 
 ICES_MD = ARCHIVE / "01_자연산_어획·자원/ices/2026-08-12_full/ICES_Atlantic_mackerel_advice_2026.md"
 NPFC_MD = ARCHIVE / "01_자연산_어획·자원/npfc/2026-08-12_full/NPFC_TWG_CMSA11_report_2025.md"
@@ -318,8 +318,8 @@ def s3_kcs_2026_origin():
     import csv as _csv
     from collections import defaultdict as _dd
     from scope import (AFRICA, ARCHIVE, BCFM_JSON, COMTRADE_CSV, FIPS_COOP_CSV,
-                   FIPS_PROD_JSON, KAMIS_JSON, KCS_MACKEREL_HS, MFDS_C002_CSV,
-                   MFDS_I0300_CSV)
+                   FIPS_PROD_JSON, KAMIS_JSON, KCS_MACKEREL_HS, KOFPI_TAC_XLSX,
+                   FRA_TSUSHIMA_MD, MFDS_C002_CSV, MFDS_I0300_CSV)
 
     src = next((ARCHIVE / "10_원본데이터셋/kcs").rglob("*nitemtrade*.csv"))
     imp, exp = _dd(float), _dd(float)
@@ -774,4 +774,130 @@ def s1_auction_grade_spread():
                            "같은 구분이 아니라 잇지 않는다. 갈고등어(Decapterus)·고등어잡어 제외, 수입산 "
                            "제외. 한 표에 구·신 품목코드 블록이 겹치는 날이 이틀 있으나 라벨로 갈랐다. "
                            "부산공동어시장 한 곳이며 전국 규격 구성이 아니다."),
+    }
+
+
+# ── 국내 TAC 소진율 (한국수산자원공단) ────────────────────────────────────
+# 2026-08-27 신규. 밖의 한도만 보면 절반이다. 국내는 배분을 채운 적이 없다.
+# 원자료 시트가 어기마다 열 배치가 다르고 마지막 어기만 kg 단위다 — 헤더로 찾아 읽는다.
+
+def _tac_series():
+    import openpyxl
+    import warnings
+    warnings.filterwarnings("ignore")
+    wb = openpyxl.load_workbook(KOFPI_TAC_XLSX, data_only=True)
+
+    def num(x):
+        if x is None:
+            return None
+        try:
+            return float(str(x).replace(",", "").strip())
+        except ValueError:
+            return None
+
+    out = []
+    for sn in wb.sheetnames:
+        ws = wb[sn]
+        col = None
+        for r in range(1, 7):
+            vals = [str(ws.cell(r, c).value).strip() for c in range(1, ws.max_column + 1)]
+            if "배분량" in vals:
+                col = vals.index("배분량") + 1
+                break
+        if not col:
+            continue
+        row = next((r for r in range(1, ws.max_row + 1)
+                    if str(ws.cell(r, 1).value).strip() == "고등어"), None)
+        if not row:
+            continue
+        if sn.startswith("2023년 7월"):        # 이 어기만 kg·다른 배치
+            a, b = num(ws.cell(row, 4).value), num(ws.cell(row, 6).value)
+            a, b = a / 1000, b / 1000
+        else:
+            a, b = num(ws.cell(row, col).value), num(ws.cell(row, col + 1).value)
+        if not a:
+            continue
+        # 소진율은 원문 표기가 어기마다 흔들려(「71,0」 등) 배분·어획으로 다시 계산한다
+        out.append({"어기": sn, "배분": a, "어획": b, "소진율": r1(100 * b / a)})
+    return out
+
+
+@builder("s1_domestic_tac_burn")
+def s1_domestic_tac_burn():
+    ser = _tac_series()
+    data = [{"season": s["어기"].replace("년 1~12월", "").replace("년 7월~", "-")
+                        .replace("년 6월", "").replace("년 2월 5주", ""),
+             "배분량": round(s["배분"]), "어획량": round(s["어획"]),
+             "소진율": s["소진율"]} for s in ser]
+    last = data[-1]
+    avg = r1(sum(d["소진율"] for d in data) / len(data))
+    rec = [d for d in data if d["season"][:4] >= "2018"]
+    ravg = r1(sum(d["소진율"] for d in rec) / len(rec))
+    peak = max(data, key=lambda d: d["소진율"])
+    return {
+        "title": "국내 TAC 는 채운 적이 없다",
+        "subtitle": f"한국수산자원공단 어종별 소진현황. 2000년 이후 {len(data)}개 어기 평균 소진율 {avg}%. "
+                    f"100%에 닿은 해가 없고 최고가 {peak['season']} {peak['소진율']}%다.",
+        "chartType": "Composed", "xKey": "season",
+        "bars": [{"key": "배분량", "color": C["slate"]}, {"key": "어획량", "color": C["sky"]}],
+        "lines": [{"key": "소진율", "color": C["rose"], "yAxisId": "right"}],
+        "data": data, "unit": "톤 / %",
+        "sit": f"최근 6개 어기 평균은 {ravg}%로 전체 평균보다 낮다. 배분량은 오히려 늘렸는데 소진이 "
+               f"따라가지 못했다. 밖에서는 연안국이 ICES 권고를 2010년 이후 평균 39% 초과해 잡는데, "
+               f"안에서는 배분이 남는다. 한국 근해 계군(마사바 대마난류) 자원량은 2019년 50.7만 톤에서 "
+               f"2024년 91.1만 톤으로 회복했고 친어량이 MSY 기준을 넘었다.",
+        "strat": "「국산이 부족하다」는 말의 근거를 배분량에서 찾으면 안 된다. 제약은 규격이다 — "
+                 "소형어는 남아 아프리카로 나가고 식탁용 대형어는 모자라 노르웨이에서 들여온다. "
+                 "국산 조달을 늘릴 여지는 TAC 가 아니라 어획 규격 구성에 있다.",
+        "_kpi": {"title": "국내 TAC 소진율 (최근 6개 어기)", "value": f"{ravg}%",
+                 "trend": f"{len(data)}개 어기 평균 {avg}%",
+                 "desc": "한국수산자원공단. 배분량 대비 어획량"},
+        "_prov": dict(source_id="FIRA_TAC_BURN", period=f"{data[0]['season']}-{last['season']}",
+                      inputs=[KOFPI_TAC_XLSX], grade="A",
+                      note="소진율은 원문 표기가 어기마다 흔들려(2022 어기는 「71,0」으로 쉼표를 소수점 "
+                           "자리에 씀) 배분·어획으로 재계산했다. 2017년부터 어기가 7월~6월로 바뀌었고 "
+                           "마지막 어기는 2024년 2월 5주까지의 중간 집계이며 원자료 단위가 그 어기만 kg 이다."),
+    }
+
+
+@builder("s1_stock_by_population")
+def s1_stock_by_population():
+    """계군별 자원 상태. 한국 근해는 회복 중이고 그게 03절 논지의 축이다.
+
+    수치는 일본 수산연구·교육기구 令和7(2025)년도 자원평가 본문에서 옮겼다. PDF 수동 추출이라
+    method=manual_extract 이며, 원문이 중국 어선 어획을 반영하지 못했다고 밝히고 있다.
+    """
+    data = [
+        {"계군": "마사바 대마난류", "자원량": 91.1, "친어량": 34.0, "MSY 기준": 33.0},
+        {"계군": "마사바 태평양", "자원량": 93.0, "친어량": 9.7, "MSY 기준": 0},
+        {"계군": "고마사바 대마난류", "자원량": 10.7, "친어량": 5.7, "MSY 기준": 9.2},
+    ]
+    return {
+        "title": "한국 근해 계군은 회복 중이다",
+        "subtitle": "일본 수산연구·교육기구 2025년도 자원평가, 2024년 값. 단위 만 톤. "
+                    "한국 근해 고등어는 마사바 대마난류계군이며 친어량이 MSY 기준을 1.03배 넘었다.",
+        "chartType": "Bar", "xKey": "계군",
+        "bars": [{"key": "자원량", "color": C["sky"]},
+                 {"key": "친어량", "color": C["emerald"]},
+                 {"key": "MSY 기준", "color": C["rose"]}],
+        "data": data, "unit": "만 톤",
+        "sit": "마사바 대마난류는 2019년 자원량 50.7만 톤까지 떨어졌다가 2022년 이후 가입량이 좋아 "
+               "2024년 91.1만 톤으로 늘었다. 어획압은 Fmsy 의 0.83배이고 2026년 ABC 는 30.4만 톤이다. "
+               "반면 마사바 태평양은 친어량이 2017년 75.0만 톤에서 9.7만 톤으로 급감했고, "
+               "고마사바 대마난류는 친어량이 MSY 기준을 밑돌며 어획압이 기준을 넘는다.",
+        "strat": "「세 대양이 동시에 조인다」는 계군 단위로 보면 성립하지 않는다. 대서양 권고는 "
+                 "69.8% 깎였고 태평양 마사바는 친어량이 무너졌지만 한국 근해 계군은 반대로 늘었다. "
+                 "국내 TAC 소진율이 73.9%에 머무는 것과 같이 읽어야 한다 — 물고기가 없어서가 아니다. "
+                 "다만 고마사바(망치고등어)는 기준 미달이고, 위판도 2023년 42,885톤에서 "
+                 "2024년 9,676톤으로 무너졌다.",
+        "_kpi": {"title": "마사바 대마난류 친어량 (2024)", "value": "34.0만 톤",
+                 "trend": "MSY 기준 33.0만 톤의 1.03배",
+                 "desc": "한국 근해 계군. 어획압도 Fmsy 아래"},
+        "_prov": dict(source_id="FRA_MASABA_TSUSHIMA", period="2024",
+                      inputs=[FRA_TSUSHIMA_MD], grade="B",
+                      note="일본 수산연구·교육기구 자원평가 PDF 수동 추출. 마사바 태평양의 MSY 기준은 "
+                           "원문이 생물학적 관리기준값을 Fmsy 대체값으로 두어 친어량 기준이 없으므로 0 으로 "
+                           "표시했다. 원문은 「본 계군은 한국·중국 등에 의해서도 어획되며 특히 동중국해 "
+                           "중국 어선이 자원에 큰 영향을 준다고 상정되나 어획량 정보를 얻지 못해 평가에 "
+                           "반영하지 못했다」고 적는다."),
     }

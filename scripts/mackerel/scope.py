@@ -97,3 +97,9 @@ KAMIS_JSON = ARCHIVE / "03_무역·가격/kamis/2026-08-22/kamis_mackerel.json"
 
 # 부산공동어시장 일자별 경매 (2026-08-23 수집). 규격별. 등급 체계가 2026-07-01 에 바뀌어 두 체계를 잇지 않는다.
 BCFM_JSON = ARCHIVE / "03_무역·가격/bcfm_auction/2026-08-23/bcfm_mackerel_daily.json"
+
+# 한국수산자원공단 어종별 TAC 소진현황 (2026-08-16 수집). 2000년 이후 24개 어기.
+KOFPI_TAC_XLSX = ARCHIVE / "01_자연산_어획·자원/kofpi/2026-08-16/FIRA_TAC_species_burn.xlsx"
+
+# 일본 수산연구·교육기구 자원평가 (2026-08-16 수집). 한국 근해는 대마난류계군이다.
+FRA_TSUSHIMA_MD = ARCHIVE / "01_자연산_어획·자원/fra/2026-08-16/FRA_R7_2025_masaba_tsushima_details_final.md"
