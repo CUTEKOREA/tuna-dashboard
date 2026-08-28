@@ -82,9 +82,15 @@ function FishingVesselCard({ vessel }: { vessel: FishingFleetRow }) {
 
 function CarrierCard({ vessel }: { vessel: CarrierFleetRow }) {
   const [hovered, setHovered] = useState(false);
-  const loadedPercent = vessel.loadedMt === null || vessel.capacityMt === null
+  // 어선 카드와 같은 게이지 규칙 재사용 (용량 MT 실측 - 75% 고적재 / 90% 만재 임박)
+  const utilization = vessel.capacityMt === null
     ? null
-    : Math.min(Math.round(vessel.loadedMt / vessel.capacityMt * 100), 100);
+    : resolveFleetHoldUtilization(vessel.loadedMt, { value: vessel.capacityMt, unit: 'MT' });
+  const utilizationStatus = utilization?.level === 'nearCapacity'
+    ? '만재 임박'
+    : utilization?.level === 'high'
+      ? '고적재'
+      : null;
   return (
     <article
       onMouseEnter={() => setHovered(true)}
@@ -98,7 +104,33 @@ function CarrierCard({ vessel }: { vessel: CarrierFleetRow }) {
         <div><span>선적</span><strong>{formatMt(vessel.loadedMt)} <small>(MT)</small></strong></div>
         <div><span>예상잔량</span><strong>{formatMt(vessel.expectedRemainingMt)} <small>(MT)</small></strong></div>
       </div>
-      <p className={s.latestVesselNote}>{vessel.entityType === 'container' ? '컨테이너 화물 기록' : `용량 ${formatMt(vessel.capacityMt)} (MT) · 적재율 ${loadedPercent === null ? '미보고' : `${loadedPercent}%`}`} · 보고 당시 비고: {formatFleetDailyNote(vessel.note)}</p>
+      {vessel.entityType !== 'container' && vessel.capacityMt !== null ? (
+        <div
+          className={s.holdUtilization}
+          data-level={utilization?.level ?? 'missing'}
+          aria-label={`선적 용량 ${formatMt(vessel.capacityMt)} MT · 적재율 ${utilization ? `${utilization.ratioPct}%` : '미보고'}`}
+        >
+          <div className={s.holdUtilizationHeader}>
+            <span>선적 용량</span><strong>{formatMt(vessel.capacityMt)} <small>(MT)</small></strong>
+            <span>적재율</span>
+            <strong>{utilization ? `${utilization.ratioPct}%` : '미보고'}</strong>
+          </div>
+          {utilizationStatus ? <div className={s.holdStatusRow}><em className={s.holdStatusLabel}>{utilizationStatus}</em></div> : null}
+          {utilization ? (
+            <div
+              className={s.holdProgress}
+              role="progressbar"
+              aria-label={`${vessel.displayName} 적재율 ${utilization.ratioPct}%${utilizationStatus ? ` · ${utilizationStatus}` : ''}`}
+              aria-valuemin={0}
+              aria-valuemax={100}
+              aria-valuenow={Math.min(utilization.ratioPct, 100)}
+            >
+              <span className={s.holdProgressFill} style={{ width: `${utilization.barPct}%` }} />
+            </div>
+          ) : null}
+        </div>
+      ) : null}
+      <p className={s.latestVesselNote}>{vessel.entityType === 'container' ? '컨테이너 화물 기록 · ' : ''}보고 당시 비고: {formatFleetDailyNote(vessel.note)}</p>
     </article>
   );
 }
