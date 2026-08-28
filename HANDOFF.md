@@ -1,3 +1,9 @@
+> 🚀 **2026-08-28 — HIKARI 1 최종 하역보고 라이브 배포 + 업무 보고 텍스트** [CC]:
+> - PR [#840](https://github.com/CUTEKOREA/tuna-dashboard/pull/840) squash `1e21a597`. Vercel Production **success** · /unloading 항차 완료(누계 2,986.06 MT) 반영.
+> - 업무 보고 텍스트 작성: Drive `11. 태국/012. 하역 업무/HIKARI 1 (3,700)/20260828 HIKARI 1 (BKK) 하역 업무 보고.txt` (8/27 양식, 완료 보고 + 모선별 최종 누계).
+
+> 마지막 업데이트: 2026-08-28 [CC]
+
 > ✅ **2026-08-28 — /unloading HIKARI 1 8/28 최종 하역보고 반영 · 항차 완료** [CC]:
 > - 원자료 3종 교차 검산: 일일하역량 현황 xlsx SHA `bfc4cb6f…` · 하역결과보고 xls SHA `f97b4dbc…` · K Group Report No.9 jpg. 8/28 MOAKONA #4-C 119.25 MT (GPZ, 08:10~13:00, -19/23℃, 8 trucks).
 > - **전 물량 하역 완료** (사용자 확정): 최종 누계 2,986.06 MT, 본선보고량 2,929 대비 +57.06 초과 (3원자료 BALANCE 일치). status 하역완료 (Completed), date_range 8/20~8/28. 어종 최종 SJ 2,602.74 / YF 383.32. 모선 4척 전부 하역완료.
