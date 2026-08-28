@@ -1,3 +1,11 @@
+> 🐟 **2026-08-28 — /fleet 어창 적재율: ㎥ 선박 환산 계산 반영** [CC]:
+> - ㎥ 용량 선박(P/COM·NAOERO 등)이 「미산출」로 남던 것을 소유자 확정 계수 **0.7 MT/㎥**(냉동 가다랑어 브라인 웰 통용값)로 환산 계산. `lib/fleet-map-load-signal.ts` `HOLD_M3_TO_MT_FACTOR` 단일 상수.
+> - 정직 표기: 환산 결과는 `estimated=true` + 화면에 「(환산)」 라벨 + 환산 용량 MT 병기. 실측 MT 용량과 구분.
+> - 기존 「임의 환산 금지」 정책은 계수 미확정 때문이었음 - 2026-08-28 소유자 0.7 확정으로 해제.
+> - 테스트: 환산 케이스 추가·구 정책 앵커 갱신 (10/10). `npm run verify` 통과 (159 files·1,228 tests).
+
+> 마지막 업데이트: 2026-08-28 [CC]
+
 > 🚀 **2026-08-27 23:03 KST — 물류 34주·선단 어창 용량·HIKARI 8/27·루트 스크롤바 라이브 배포** [Codex]:
 > - PR [#826](https://github.com/CUTEKOREA/tuna-dashboard/pull/826) squash `2b1da943`. PR App Quality Gate `33078039309`, main App Quality Gate `33078385432`, Data Freshness Audit `33078385368`이 모두 성공했다.
 > - Vercel Production `dpl_FjjcWTV2evQHYU7Mqm8aLJ8aGQ2j`는 Ready·region `icn1`이며 `https://leedonggun.co.kr` 별칭에 연결됐다. GitHub Production deployment `6123937537`이 같은 병합 SHA를 가리킨다.
