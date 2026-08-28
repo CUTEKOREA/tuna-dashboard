@@ -1,3 +1,8 @@
+> 🚀 **2026-08-28 — 운반선 적재율 게이지 라이브 배포** [CC]:
+> - PR [#834](https://github.com/CUTEKOREA/tuna-dashboard/pull/834) squash `6934ed25`. Vercel Production **success** · /fleet 운반선·컨테이너 섹션 반영.
+
+> 마지막 업데이트: 2026-08-28 [CC]
+
 > 📊 **2026-08-28 — /fleet 운반선 카드 적재율 게이지 바** [CC]:
 > - 운반선(HIKARI 1·SEIN GALAXY 등) 카드의 텍스트 적재율을 어선 카드와 동일한 게이지 바로 교체 - `resolveFleetHoldUtilization` 재사용(75% 고적재 / 90% 만재 임박 동일 규칙).
 > - 컨테이너 기록(HIKARI 1PSS 등, 용량 없음)은 바 없이 기존 표기 유지.
