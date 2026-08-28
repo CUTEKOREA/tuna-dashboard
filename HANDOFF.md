@@ -1,3 +1,12 @@
+> ✅ **2026-08-28 — /unloading HIKARI 1 8/28 최종 하역보고 반영 · 항차 완료** [CC]:
+> - 원자료 3종 교차 검산: 일일하역량 현황 xlsx SHA `bfc4cb6f…` · 하역결과보고 xls SHA `f97b4dbc…` · K Group Report No.9 jpg. 8/28 MOAKONA #4-C 119.25 MT (GPZ, 08:10~13:00, -19/23℃, 8 trucks).
+> - **전 물량 하역 완료** (사용자 확정): 최종 누계 2,986.06 MT, 본선보고량 2,929 대비 +57.06 초과 (3원자료 BALANCE 일치). status 하역완료 (Completed), date_range 8/20~8/28. 어종 최종 SJ 2,602.74 / YF 383.32. 모선 4척 전부 하역완료.
+> - **입항일 확보**: K Group 보고 ARRIVED ON AUGUST 19 → vessel `arrival_date` 신설, 체선 계산이 입항일 우선(입항 대기 포함) - 8/27 후속과제 해소. 화면 문구 「입항일 기준 (입항 대기 포함)」 전환.
+> - 테스트: 8/28 앵커 RED→GREEN, 완료 커버리지 12→13척 갱신. `npm run verify` 통과 (160 files·1,234 tests).
+> - **프로덕션 미배포** (배포 지시 대기).
+
+> 마지막 업데이트: 2026-08-28 [CC]
+
 > 🚀 **2026-08-28 — VDS 8/28 대장 라이브 배포** [CC]:
 > - PR [#837](https://github.com/CUTEKOREA/tuna-dashboard/pull/837) squash `bb70a0ad`. Vercel Production **success** · /fleet VDS Strategy Matrix 반영.
 > - 다음 갱신: 새 대장 xlsx를 Drive 01_미경실에 넣고 `python3 scripts/sync_vds_burn.py "<xlsx>" --asof <기준일>` → verify → 배포.

@@ -30,7 +30,7 @@ describe('HIKARI 1 Bangkok unloading plan and daily report', () => {
 
     expect(payload.data['hikari-bangkok-2026-07']).toMatchObject({
       name: 'M/V HIKARI 1',
-      status: '하역중',
+      status: '하역완료 (Completed)',
       reportedTotal: 2929,
     });
   });
@@ -42,16 +42,50 @@ describe('HIKARI 1 Bangkok unloading plan and daily report', () => {
       name: 'M/V HIKARI 1',
       location: '방콕, 태국',
       buyer: 'FCF CO.,LTD',
-      status: '하역중',
+      status: '하역완료 (Completed)',
       reportedTotal: 2929,
-      actualTotal: 2866.81,
+      actualTotal: 2986.06,
     });
-    expect(vessel.surplus).toBeCloseTo(-62.19, 6);
+    expect(vessel.surplus).toBeCloseTo(57.06, 6);
     const loadingPlan = vessel.timeline.find((entry: { date: string }) => entry.date === '7/17~7/20');
     expect(loadingPlan.quality).toContain('정격 3,700 MT');
     expect(loadingPlan.quality).toContain('총 적재 3,214 MT');
     expect(loadingPlan.quality).toContain('FCF 방콕 하역대상 2,929 MT');
     expect(loadingPlan.quality).toContain('#2-A 별도 배정 285 MT');
+  });
+
+  it('records the 8/28 final report and closes the voyage (전 물량 하역 완료)', async () => {
+    const vessel = await loadHikari();
+    expect(vessel.dateRange).toBe('2026.08.20 ~ 2026.08.28');
+
+    const reports = vessel.timeline.filter((entry: { date: string }) => entry.date === '8/28');
+    expect(reports).toHaveLength(1);
+    expect(reports[0]).toMatchObject({
+      date: '8/28',
+      dailyAmount: 119.25,
+      cumAmount: 2986.06,
+    });
+    expect(reports[0].allocations).toEqual([
+      {
+        consignee: 'GPZ',
+        amount: 119.25,
+        loads: [{ sourceVessel: 'MOAKONA', hatch: '#4-C', amount: 119.25 }],
+      },
+    ]);
+    expect(reports[0].observations).toEqual([
+      { sourceVessel: 'MOAKONA', hatch: '#4-C', temperaturesC: [-19, 23] },
+    ]);
+    expect(reports[0].speciesAmounts).toEqual({ SJ: 101.45, YF: 17.8 });
+    expect(reports[0].remainingAmount).toBeCloseTo(-57.06, 6);
+    expect(reports[0].quality).toContain('TOTAL 8 TRUCKS');
+    expect(reports[0].quality).toContain('전 물량 하역 완료');
+
+    // 어종 최종 누계 - 8/28 결과보고 계 (SJ 2,602.74 / YF 383.32)
+    const bySpecies = Object.fromEntries(
+      vessel.species.map((item: { name: string; actual: number }) => [item.name, item.actual]),
+    );
+    expect(bySpecies['가다랑어']).toBeCloseTo(2602.74, 6);
+    expect(bySpecies['황다랑어']).toBeCloseTo(383.32, 6);
   });
 
   it('publishes loading records without turning them into discharge results', async () => {
@@ -79,7 +113,7 @@ describe('HIKARI 1 Bangkok unloading plan and daily report', () => {
     const dischargeReports = vessel.timeline.filter((entry: { dailyAmount: number }) => entry.dailyAmount > 0);
     const report = dischargeReports.find((entry: { date: string }) => entry.date === '8/20');
 
-    expect(dischargeReports).toHaveLength(8);
+    expect(dischargeReports).toHaveLength(9);
     expect(report).toMatchObject({
       date: '8/20',
       time: '10:00 ~ 15:20',
@@ -498,12 +532,12 @@ describe('HIKARI 1 Bangkok unloading plan and daily report', () => {
     const vessel = await loadHikari();
 
     expect(vessel.species).toEqual([
-      expect.objectContaining({ id: 'SJ', name: '가다랑어', reported: 2515, actual: 2501.29 }),
-      expect.objectContaining({ id: 'YF', name: '황다랑어', reported: 358, actual: 365.52 }),
+      expect.objectContaining({ id: 'SJ', name: '가다랑어', reported: 2515, actual: 2602.74 }),
+      expect.objectContaining({ id: 'YF', name: '황다랑어', reported: 358, actual: 383.32 }),
       expect.objectContaining({ id: 'BE', name: '눈다랑어', reported: 56, actual: 0 }),
     ]);
     expect(vessel.species.reduce((sum: number, item: { reported: number }) => sum + item.reported, 0)).toBe(2929);
-    expect(vessel.species.reduce((sum: number, item: { actual: number }) => sum + item.actual, 0)).toBeCloseTo(2866.81, 6);
+    expect(vessel.species.reduce((sum: number, item: { actual: number }) => sum + item.actual, 0)).toBeCloseTo(2986.06, 6);
     expect(vessel.motherVessel).toBe('S/SPR 670 · MOAKONA 314 · MOAMARI 940 · NAOERO STAR 1,005 MT');
   });
 
@@ -539,7 +573,7 @@ describe('HIKARI 1 Bangkok unloading plan and daily report', () => {
     expect(holds['#3-C'].lastTemperature).toBe(1);
     expect(holds['#4-A'].lastTemperature).toBe(-21);
     expect(holds['#4-B'].lastTemperature).toBe(0);
-    expect(holds['#4-C'].lastTemperature).toBe(-23);
+    expect(holds['#4-C'].lastTemperature).toBe(2);
   });
 
   it('shows the vessel as active after the first discharge', () => {

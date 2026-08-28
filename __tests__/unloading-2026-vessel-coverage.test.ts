@@ -142,9 +142,9 @@ describe('2026 unloading vessel coverage', () => {
     }
   });
 
-  it('exposes all 12 completed 2026 vessels (Bangkok 11 + Gensan 1) after the client merge', async () => {
+  it('exposes all 13 completed 2026 vessels (Bangkok 12 + Gensan 1) after the client merge', async () => {
     // 히어로 KPI와 완료 선박 목록이 같은 completedVessels 배열을 쓰므로,
-    // SEIN VENUS 종료 뒤 병합 결과 12척이 목록에도 전부 노출되어야 한다.
+    // HIKARI 1 방콕 항차 완료(2026-08-28) 뒤 병합 결과 13척이 목록에도 전부 노출되어야 한다.
     const { getVesselStatusKind } = await import('../lib/unloading-operations');
     const { GET } = await import('../app/api/unloading-db/route');
 
@@ -157,6 +157,7 @@ describe('2026 unloading vessel coverage', () => {
     expect(dbCompleted.map(([id]) => id).sort()).toEqual([
       'angara-2026-01',
       'bao-lucky',
+      'hikari-bangkok-2026-07',
       'salt-lake-2026-01',
       'sein-phoenix',
       'sein-phoenix-2025-12',
@@ -173,10 +174,10 @@ describe('2026 unloading vessel coverage', () => {
       expect(source).toContain(staticOnly);
     }
     const mergedCompleted = dbCompleted.length + 4;
-    expect(mergedCompleted).toBe(12);
+    expect(mergedCompleted).toBe(13);
 
     const bangkok = dbCompleted.filter(([, v]) => /BANGKOK|방콕/i.test(v.location)).length + 3;
-    expect(bangkok).toBe(11); // 젠산은 static hikari 1척뿐
+    expect(bangkok).toBe(12); // 젠산은 static hikari 1척뿐
   });
 
   it('prefers the committed local_db.json even when Supabase env keys are present', async () => {
