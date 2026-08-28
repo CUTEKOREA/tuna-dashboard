@@ -1,3 +1,9 @@
+> 🚀 **2026-08-28 — VDS 8/28 대장 라이브 배포** [CC]:
+> - PR [#837](https://github.com/CUTEKOREA/tuna-dashboard/pull/837) squash `bb70a0ad`. Vercel Production **success** · /fleet VDS Strategy Matrix 반영.
+> - 다음 갱신: 새 대장 xlsx를 Drive 01_미경실에 넣고 `python3 scripts/sync_vds_burn.py "<xlsx>" --asof <기준일>` → verify → 배포.
+
+> 마지막 업데이트: 2026-08-28 [CC]
+
 > 📅 **2026-08-28 — /fleet VDS 히트맵 8/28 대장 반영 + 하드코딩 계약 분리** [CC]:
 > - 원자료: `260828_수역별 회사별 조업일수 소진현황.xlsx` SHA-256 `9cb4d48d70b72e634db68f276a3d2cc632830055a5734ec7e2b1652ebf922b40`. Downloads → Drive `신라그룹/01. 신라교역/01_미경실/`로 이동(전 버전 260331 옆). 기준일 2026-08-28 (Pool·공해 일부 7/31).
 > - `scripts/sync_vds_burn.py` 신설: 연도 시트(2023~2026) 수역 블록의 최종 소진/잔여/소진률 요약 파싱. **Kiribati 는 「집계」 블록**(20-21어기·회사집계 블록 제외), 소진률 셀은 비율 x100, 원문-재계산 1%p 초과 시 경고만(임의 보정 금지). 최근 이벤트(추가 구매·전배) 5건도 원장 비고에서 추출.
