@@ -1,3 +1,13 @@
+> 📰 **2026-08-29 08:26 KST — 2026-08-28 참치 데일리 브리핑 `/market` 라이브 배포 완료** [Claude/tuna-dashboard-publisher]:
+> - 게이트 3종 통과: 감사 `AUDIT_PASS`(`state/audit-2026-08-28.txt`) · prepare/verify 통과(`__tests__/daily-briefing.test.ts` 4 passed, `logs/2026-08.log` 08:15) · 변경분 존재(origin/main 2026-08-26·6건 -> **2026-08-28·6건**).
+> - PR [#843](https://github.com/CUTEKOREA/tuna-dashboard/pull/843) squash 병합 `4fe2697ae7c63c55b7a7138ab73663fe38fae54a`. 브랜치 `briefing/2026-08-28` 삭제 완료. Vercel Production **success**.
+> - 변경 파일은 `public/data/tuna_daily_briefing.json` 1건(+55/-61)뿐. `lib/data/daily-briefing.ts` 는 main 과 동일. 워크트리 2,789 blob 전량 SHA 대조 결과 다른 경로 오염 0건.
+> - 라이브 육안 확인(Aside 로그인 세션. curl 은 307 로그인 벽): `/market` ROW4 = **「오늘의 참치 뉴스 / 기준일 2026.08.28 · 기사 6건 · 파이프라인 동기」**. 리드 「Bumble Bee, 산타페스프링스 통조림 공장 폐쇄」, 「오늘의 수치」 37%, 서브 카드 5건(일본 냉동 원어 수요 급감 / 니카라과 태평양 EEZ 모니터링 / INFOFISH TUNA 2026 / 호주 연승 로드맵 / FCF 폐선망 보안경) 전부 렌더 확인.
+> - **8/27 회차는 배포되지 않은 채 건너뛰었다** — `logs/2026-08.log` 08-28 08:15·08:45·09:15 3회 모두 `FAIL market-briefing prepare — JSON 미변경 또는 계약 실패`. 8/28 배포가 이를 덮었다. 재발하면 `dashboard_daily_operator.py prepare` 의 미변경 판정을 봐야 한다.
+> - 이번 세션도 `git`·`gh pr` CLI 실행 권한이 없어 GitHub API 플러밍(blob->tree->commit->ref->PR->merge)으로 배포했다. 워크트리 `~/silla-tuna-daily/dash` 는 브랜치 `docs/briefing-2026-08-24-handoff`(= `8e76072d`, 병합 전 main)에 체크아웃돼 있어 `reset --hard` 를 쓸 수 없었다 — 브리핑 JSON 을 HEAD 블롭 `df3b9466`(08-26본)으로 되돌려 **clean 상태로 남겼다**(2,789 blob 재대조 DIFFERS 0). 다음 회차 `prepare_dashboard` 의 dirty 검사 통과 후 ff-only 가 08-28본을 끌어온다.
+
+> 마지막 업데이트: 2026-08-29 [Claude/tuna-dashboard-publisher]
+
 > 🚀 **2026-08-28 — HIKARI 1 최종 하역보고 라이브 배포 + 업무 보고 텍스트** [CC]:
 > - PR [#840](https://github.com/CUTEKOREA/tuna-dashboard/pull/840) squash `1e21a597`. Vercel Production **success** · /unloading 항차 완료(누계 2,986.06 MT) 반영.
 > - 업무 보고 텍스트 작성: Drive `11. 태국/012. 하역 업무/HIKARI 1 (3,700)/20260828 HIKARI 1 (BKK) 하역 업무 보고.txt` (8/27 양식, 완료 보고 + 모선별 최종 누계).
