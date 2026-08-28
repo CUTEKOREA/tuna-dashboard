@@ -25,7 +25,9 @@ function FishingVesselCard({ vessel }: { vessel: FishingFleetRow }) {
   const capacity = vessel.holdCapacity ?? null;
   const utilization = resolveFleetHoldUtilization(vessel.loadedMt, capacity);
   const capacityText = capacity ? `${formatCapacity(capacity.value)} ${capacity.unit}` : '미확인';
-  const utilizationText = utilization ? `${utilization.ratioPct}%` : capacity ? '미산출' : '미확인';
+  const utilizationText = utilization
+    ? `${utilization.ratioPct}%${utilization.estimated ? ' (환산)' : ''}`
+    : capacity ? '미산출' : '미확인';
   const utilizationStatus = utilization?.level === 'nearCapacity'
     ? '만재 임박'
     : utilization?.level === 'high'
@@ -67,7 +69,11 @@ function FishingVesselCard({ vessel }: { vessel: FishingFleetRow }) {
             <span className={s.holdProgressFill} style={{ width: `${utilization.barPct}%` }} />
           </div>
         ) : null}
-        {capacity?.unit === '㎥' ? <p className={s.holdCapacityNote}>적재량 MT와 어창 용량 ㎥의 단위가 다릅니다.</p> : null}
+        {capacity?.unit === '㎥' && utilization ? (
+          <p className={s.holdCapacityNote}>적재율은 ㎥ 용량 x 0.7 MT/㎥ 환산 추정입니다 (환산 용량 {formatCapacity(utilization.capacityMtEquivalent)} MT).</p>
+        ) : capacity?.unit === '㎥' ? (
+          <p className={s.holdCapacityNote}>적재량 MT와 어창 용량 ㎥의 단위가 다릅니다.</p>
+        ) : null}
       </div>
       {vessel.note !== '-' ? <p className={s.latestVesselNote}>보고 당시 비고: {formatFleetDailyNote(vessel.note)}</p> : null}
     </article>
