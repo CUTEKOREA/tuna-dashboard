@@ -1,3 +1,9 @@
+> 🚀 **2026-08-28 — 어창 ㎥ 환산 적재율 라이브 배포** [CC]:
+> - PR [#830](https://github.com/CUTEKOREA/tuna-dashboard/pull/830) squash `bb7f717e`. Vercel Production **success** · /fleet 반영.
+> - ㎥ 선박 적재율 = 적재 MT / (㎥ x 0.7), 「(환산)」 라벨로 실측과 구분. 계수 변경은 `lib/fleet-map-load-signal.ts` `HOLD_M3_TO_MT_FACTOR` 한 줄.
+
+> 마지막 업데이트: 2026-08-28 [CC]
+
 > 🐟 **2026-08-28 — /fleet 어창 적재율: ㎥ 선박 환산 계산 반영** [CC]:
 > - ㎥ 용량 선박(P/COM·NAOERO 등)이 「미산출」로 남던 것을 소유자 확정 계수 **0.7 MT/㎥**(냉동 가다랑어 브라인 웰 통용값)로 환산 계산. `lib/fleet-map-load-signal.ts` `HOLD_M3_TO_MT_FACTOR` 단일 상수.
 > - 정직 표기: 환산 결과는 `estimated=true` + 화면에 「(환산)」 라벨 + 환산 용량 MT 병기. 실측 MT 용량과 구분.
