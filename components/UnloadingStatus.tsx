@@ -586,7 +586,7 @@ type VesselDemurrageSnapshot = {
 };
 
 function getVesselDemurrage(
-  vessel: Pick<UnloadingVesselData, 'dateRange' | 'timeline' | 'reportedTotal'>,
+  vessel: Pick<UnloadingVesselData, 'dateRange' | 'timeline' | 'reportedTotal' | 'arrivalDate'>,
 ): VesselDemurrageSnapshot | null {
   const start = String(vessel.dateRange || '').match(/(20\d{2})\.(\d{2})\.(\d{2})/);
   const latest = vesselLatestReport(vessel);
@@ -594,7 +594,8 @@ function getVesselDemurrage(
   const shortBase = latest?.label.match(/^(\d{1,2})\/(\d{1,2})$/);
   if (!start || (!fullBase && !shortBase) || !vessel.reportedTotal) return null;
 
-  const startDate = `${start[1]}-${start[2]}-${start[3]}`;
+  // 입항일이 있으면 입항 대기 포함 (소유자 산식 원칙) - 없으면 하역 개시일 폴백
+  const startDate = vessel.arrivalDate || `${start[1]}-${start[2]}-${start[3]}`;
   const baseDate = fullBase
     ? `${fullBase[1]}-${fullBase[2]}-${fullBase[3]}`
     : `${start[1]}-${String(shortBase?.[1]).padStart(2, '0')}-${String(shortBase?.[2]).padStart(2, '0')}`;
@@ -602,7 +603,7 @@ function getVesselDemurrage(
   return {
     startDate,
     baseDate,
-    calc: calcDemurrage({ cargoMt: vessel.reportedTotal, startDate, baseDate }),
+    calc: calcDemurrage({ cargoMt: vessel.reportedTotal, startDate, baseDate, waitingIncluded: Boolean(vessel.arrivalDate) }),
   };
 }
 
@@ -1098,7 +1099,7 @@ export default function UnloadingStatus({ heroOnly = false }: { heroOnly?: boole
                     <strong>여유 {calc.balanceDays}일</strong>
                   )}
                   <span style={{ display: 'block', fontSize: '0.72rem', marginTop: '2px', color: 'var(--text-dim)' }}>
-                    {vessel.name} · 하역 개시일 기준 (입항 대기 미반영 - 입항일 확보 시 자동 정밀화)
+                    {vessel.name} · {calc.waitingIncluded ? '입항일 기준 (입항 대기 포함)' : '하역 개시일 기준 (입항 대기 미반영 - 입항일 확보 시 자동 정밀화)'}
                   </span>
                 </div>
               </>
@@ -1744,7 +1745,7 @@ export default function UnloadingStatus({ heroOnly = false }: { heroOnly?: boole
                         </div>
                       </div>
                       <div style={{ gridColumn: '1 / -1', fontSize: '0.72rem', lineHeight: 1.5, color: 'var(--text-dim)' }}>
-                        2026년 {demurrageRows.length}항차 동일 산식 적용 · 일요일 {selectedDemurrage.calc.excludedSundays}일·태국 공휴일 {selectedDemurrage.calc.excludedHolidays}일 제외 · 하역 개시일 기준(입항 대기 미반영)
+                        2026년 {demurrageRows.length}항차 동일 산식 적용 · 일요일 {selectedDemurrage.calc.excludedSundays}일·태국 공휴일 {selectedDemurrage.calc.excludedHolidays}일 제외 · {selectedDemurrage.calc.waitingIncluded ? '입항일 기준(입항 대기 포함)' : '하역 개시일 기준(입항 대기 미반영)'}
                       </div>
                     </div>
                   ) : (

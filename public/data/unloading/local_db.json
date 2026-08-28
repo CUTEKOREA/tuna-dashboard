@@ -1,2842 +1,2887 @@
 {
-  "unloading_vessels": [
+ "unloading_vessels": [
+  {
+   "id": "1af1e709-13c6-49ac-ae5c-8f8b027db408",
+   "vessel_id": "sein-phoenix",
+   "name": "M/V SEIN PHOENIX",
+   "location": "BANGKOK, THAILAND",
+   "buyer": "FCF CO.,LTD",
+   "mother_vessel": "-",
+   "status": "하역완료 (Completed)",
+   "reported_total": 6955,
+   "date_range": "2026.05.23 ~ 2026.06.18",
+   "created_at": "2026-06-01T22:42:57.072021+00:00",
+   "updated_at": "2026-06-01T22:42:57.072021+00:00"
+  },
+  {
+   "vessel_id": "bao-lucky",
+   "name": "M/V BAO LUCKY",
+   "location": "BANGKOK, THAILAND",
+   "buyer": "FCF CO.,LTD",
+   "status": "하역완료 (Completed)",
+   "reported_total": 4803,
+   "date_range": "2026.05.23 ~ 2026.06.23",
+   "mother_vessel": "-"
+  },
+  {
+   "vessel_id": "shin-fuji",
+   "name": "M/V SHIN FUJI",
+   "location": "BANGKOK, THAILAND",
+   "buyer": "FCF CO.,LTD",
+   "status": "하역완료 (Completed)",
+   "reported_total": 3096,
+   "date_range": "2026.06.20 ~ 2026.07.06",
+   "mother_vessel": "-",
+   "updated_at": "2026-07-07T08:49:12.027607"
+  },
+  {
+   "vessel_id": "sein-venus",
+   "name": "M/V SEIN VENUS",
+   "location": "방콕, 태국",
+   "port_code": "BKK",
+   "buyer": "FCF CO.,LTD",
+   "status": "하역완료 (Completed)",
+   "reported_total": 3275,
+   "date_range": "2026.08.07 ~ 2026.08.22",
+   "mother_vessel": "S/SPR · S/PIO · N/STAR · N/SUN",
+   "hold_species_breakdown_available": false,
+   "unclassified_actual_amount": 0,
+   "species_breakdown_as_of": "2026-08-22",
+   "species_breakdown_note": "8/22 일일 결과보고 XLS에서 어종별 일일·누적 물량을 확인했고 일일하역량 현황 XLSX로 교차 확인했습니다. 개별 어창별 어종 분해는 제공되지 않습니다. 원선 4척(N/STAR, N/SUN, S/SPR, S/PIO) 하역완료.",
+   "created_at": "2026-08-12T15:34:21+09:00",
+   "updated_at": "2026-08-22T15:52:00+09:00"
+  },
+  {
+   "vessel_id": "hikari-bangkok-2026-07",
+   "name": "M/V HIKARI 1",
+   "location": "방콕, 태국",
+   "buyer": "FCF CO.,LTD",
+   "status": "하역완료 (Completed)",
+   "reported_total": 2929,
+   "date_range": "2026.08.20 ~ 2026.08.28",
+   "mother_vessel": "S/SPR 670 · MOAKONA 314 · MOAMARI 940 · NAOERO STAR 1,005 MT",
+   "hold_species_breakdown_available": false,
+   "unclassified_actual_amount": 0,
+   "species_breakdown_as_of": "2026-08-27",
+   "species_breakdown_note": "8/27 일일 결과보고 XLS에서 어종별 일일·누적 물량을 확인했고 일일하역량 현황 XLSX로 교차 확인했습니다. XLS의 SJ 보고량 2,571 MT는 적재계획의 SJ 2,515 MT와 BE 56 MT를 합친 기준이며, 실제 하역량은 SJ·YF 두 항목만 제공합니다. 개별 어창별 어종 분해는 제공되지 않습니다. 원선 3척(MOAMARI, N/STAR, S/SPR) 하역완료.",
+   "created_at": "2026-08-12T16:35:00+09:00",
+   "updated_at": "2026-08-28T17:10:00+09:00",
+   "arrival_date": "2026-08-19"
+  },
+  {
+   "vessel_id": "sein-phoenix-2025-12",
+   "name": "M/V SEIN PHOENIX",
+   "location": "방콕, 태국",
+   "buyer": "FCF CO.,LTD",
+   "status": "하역완료 (Completed)",
+   "reported_total": 3740,
+   "date_range": "2025.12.18 ~ 2026.01.13",
+   "mother_vessel": "S/PIO · S/JUP · S/EXP · N/STAR",
+   "annual_actual_total": 1687.73,
+   "annual_start_date": "2026.01.05",
+   "hold_data_available": false,
+   "updated_at": "2026-08-12T18:00:00+09:00"
+  },
+  {
+   "vessel_id": "volta-victory-2026-01",
+   "name": "M/V VOLTA VICTORY",
+   "location": "방콕, 태국",
+   "buyer": "FCF CO.,LTD",
+   "status": "하역완료 (Completed)",
+   "reported_total": 2675,
+   "date_range": "2026.01.05 ~ 2026.01.19",
+   "mother_vessel": "S/CHA · S/JUP · S/PIO",
+   "annual_actual_total": 2652.97,
+   "annual_start_date": "2026.01.05",
+   "hold_data_available": false,
+   "updated_at": "2026-08-12T18:00:00+09:00"
+  },
+  {
+   "vessel_id": "angara-2026-01",
+   "name": "M/V ANGARA",
+   "location": "방콕, 태국",
+   "buyer": "FCF CO.,LTD",
+   "status": "하역완료 (Completed)",
+   "reported_total": 2657,
+   "date_range": "2026.01.20 ~ 2026.02.02",
+   "mother_vessel": "S/PIO · S/HAR · S/EXP · N/SUN",
+   "annual_actual_total": 2683.08,
+   "annual_start_date": "2026.01.20",
+   "hold_data_available": false,
+   "updated_at": "2026-08-12T18:00:00+09:00"
+  },
+  {
+   "vessel_id": "salt-lake-2026-01",
+   "name": "M/V SALT LAKE",
+   "location": "방콕, 태국",
+   "buyer": "FCF CO.,LTD",
+   "status": "하역완료 (Completed)",
+   "reported_total": 200,
+   "date_range": "2026.01.13 ~ 2026.01.14",
+   "mother_vessel": "S/HAR",
+   "annual_actual_total": 204.3,
+   "annual_start_date": "2026.01.13",
+   "hold_data_available": false,
+   "updated_at": "2026-08-12T18:00:00+09:00"
+  }
+ ],
+ "unloading_reports": [
+  {
+   "id": "a9a8f1f8-a2cf-47bc-98de-54fb37511e8d",
+   "vessel_id": "sein-phoenix",
+   "report_date": "5/23",
+   "work_time": "08:10 ~ 20:30",
+   "target_holds": "S/HAR(#2-A)",
+   "daily_amount": 146.89,
+   "cumulative_amount": 146.89,
+   "quality_notes": "어창 개방 측정온도 -24.0℃ ~ -25.0℃. 외관상태 및 색택 전반적으로 양호.",
+   "created_at": "2026-06-01T22:42:57.072021+00:00"
+  },
+  {
+   "id": "44b0096e-1f3e-4211-9f20-8d35ee0802d7",
+   "vessel_id": "sein-phoenix",
+   "report_date": "5/24",
+   "work_time": "-",
+   "target_holds": "-",
+   "daily_amount": 0,
+   "cumulative_amount": 146.89,
+   "quality_notes": "일요일 휴무.",
+   "created_at": "2026-06-01T22:42:57.072021+00:00"
+  },
+  {
+   "id": "fdaed80b-40e2-499a-a43d-8a9ad6c55820",
+   "vessel_id": "sein-phoenix",
+   "report_date": "5/25",
+   "work_time": "08:10 ~ 19:00",
+   "target_holds": "S/HAR(#2-A), S/EXP(#4-A)",
+   "daily_amount": 216.09,
+   "cumulative_amount": 362.98,
+   "quality_notes": "어창 온도 -21.0℃ ~ -24.0℃. 외관상태 양호.",
+   "created_at": "2026-06-01T22:42:57.072021+00:00"
+  },
+  {
+   "id": "a374d650-bfb2-4e7d-b752-78db11f44710",
+   "vessel_id": "sein-phoenix",
+   "report_date": "5/26",
+   "work_time": "08:00 ~ 20:30",
+   "target_holds": "S/SPR(#4-A, #4-B)",
+   "daily_amount": 224.69,
+   "cumulative_amount": 587.67,
+   "quality_notes": "어창 개방 측정온도 -24.0℃ ~ -26.0℃. 외관상태 및 색택 전반적으로 양호.",
+   "created_at": "2026-06-01T22:42:57.072021+00:00"
+  },
+  {
+   "id": "5e45b5a4-81cc-40d0-83d4-fb43b1764f75",
+   "vessel_id": "sein-phoenix",
+   "report_date": "5/27",
+   "work_time": "08:10 ~ 20:00",
+   "target_holds": "S/SPR(#1-A, #4-B), S/HAR(#2-A)",
+   "daily_amount": 239.99,
+   "cumulative_amount": 827.66,
+   "quality_notes": "어창 개방 측정온도 -20.0℃ ~ -24.0℃. 외관상태 및 색택 전반적으로 양호.",
+   "created_at": "2026-06-01T22:42:57.072021+00:00"
+  },
+  {
+   "id": "4141957d-ea0e-4c90-8f13-3b49d95dd2d2",
+   "vessel_id": "sein-phoenix",
+   "report_date": "5/28",
+   "work_time": "08:10 ~ 23:00",
+   "target_holds": "S/SPR(#1-A, #4-B), MOAKONA(#2-A, #2-B)",
+   "daily_amount": 287.94,
+   "cumulative_amount": 1115.6,
+   "quality_notes": "S/SPR: 어창 개방 측정온도 -20.0℃ ~ -24.0℃. MOAKONA: -22.0℃ ~ -23.0℃. 외관상태 및 색택 전반적으로 양호.",
+   "created_at": "2026-06-01T22:42:57.072021+00:00"
+  },
+  {
+   "id": "11f2b24a-7a67-410c-a6a0-6bb2f0225af5",
+   "vessel_id": "sein-phoenix",
+   "report_date": "5/29",
+   "work_time": "08:30 ~ 21:00",
+   "target_holds": "MOAKONA(#2-B), S/SPR(#4-B)",
+   "daily_amount": 318.11,
+   "cumulative_amount": 1433.71,
+   "quality_notes": "S/SPR(#4-B): 어창 개방 측정온도 -20.0℃ ~ -21.0℃. MOAKONA(#2-B): -22.0℃ ~ -23.0℃. 외관상태 및 색택 전반적으로 양호. 명일(5/30) 약 310톤 하역 진행 예정.",
+   "created_at": "2026-06-01T22:42:57.072021+00:00"
+  },
+  {
+   "id": "cb5577da-1f6e-41c2-8f7a-fc4baf231b4b",
+   "vessel_id": "sein-phoenix",
+   "report_date": "5/30",
+   "work_time": "08:10 ~ 19:00",
+   "target_holds": "S/SPR(#1-A, #4-B, #4-C)",
+   "daily_amount": 307.41,
+   "cumulative_amount": 1741.12,
+   "quality_notes": "어창 개방 측정온도 -18.0℃ ~ -22.0℃. 외관상태 및 색택 전반적으로 양호. 명일(5/31) 약 300톤 하역 진행 예정.",
+   "created_at": "2026-06-01T22:42:57.072021+00:00"
+  },
+  {
+   "id": "201da328-8507-4fa2-95cc-dc13c3b0144b",
+   "vessel_id": "sein-phoenix",
+   "report_date": "5/31",
+   "work_time": "08:10 ~ 13:00",
+   "target_holds": "MOAKONA(#2-B)",
+   "daily_amount": 93.56,
+   "cumulative_amount": 1834.68,
+   "quality_notes": "어창 개방 측정온도 -20.0℃ ~ -21.0℃. 외관상태 및 색택 전반적으로 양호. 명일(6/1) 약 300톤 하역 진행 예정.",
+   "created_at": "2026-06-01T22:42:57.072021+00:00"
+  },
+  {
+   "id": "7681717d-304e-42d7-a909-67f58e9df7db",
+   "vessel_id": "sein-phoenix",
+   "report_date": "6/1",
+   "work_time": "08:20 ~ 20:20",
+   "target_holds": "MOAKONA(#2-B), MOAMARI(#4-C)",
+   "daily_amount": 271.53,
+   "cumulative_amount": 2106.21,
+   "quality_notes": "MOAKONA(#2-B): 어창 개방 측정온도 -21.0℃ ~ -22.0℃. 외관상태 및 색택 전반적으로 양호. MOAMARI(#4-C): 어창 개방 측정온도 -20.0℃ ~ -23.0℃. 외관상태 및 색택 전반적으로 양호. 명일(6/2)은 약 250톤 하역 진행 예정.",
+   "created_at": "2026-06-01T22:42:57.072021+00:00"
+  },
+  {
+   "vessel_id": "sein-phoenix",
+   "report_date": "6/2",
+   "work_time": "08:20 ~ 14:00",
+   "target_holds": "S/SPR(#1-A), MOAMARI(#4-C)",
+   "daily_amount": 198.78,
+   "cumulative_amount": 2304.99,
+   "quality_notes": "S/SPR(#1-A): 어창 개방 측정온도 -20.0℃ ~ -21.0℃. 외관상태 및 색택 전반적으로 양호.MOAMARI(#4-C): 어창 개방 측정온도 -21.0℃ ~ -22.0℃. 외관상태 및 색택 전반적으로 양호. 명일(6/6) 약 235톤 하역 진행 예정."
+  },
+  {
+   "vessel_id": "bao-lucky",
+   "report_date": "6/2",
+   "work_time": "09:00 ~ 17:10",
+   "target_holds": "S/EXP(#4-A), N/STAR(#1-A)",
+   "daily_amount": 229.16,
+   "cumulative_amount": 229.16,
+   "quality_notes": "S/EXP(#4-A): 어창 개방 측정온도 -18.0℃ ~ -19.0℃. 외관상태 및 색택 전반적으로 양호.N/STAR(#1-A): 어창 개방 측정온도 -19.0℃ ~ -20.0℃. 외관상태 및 색택 전반적으로 양호. 명일(6/6) 약 176톤 하역 진행 예정."
+  },
+  {
+   "vessel_id": "sein-phoenix",
+   "report_date": "6/3",
+   "work_time": "08:10 ~ 18:40",
+   "target_holds": "S/PIO(#3-A), MOAKONA(#2-B)",
+   "daily_amount": 236.14,
+   "cumulative_amount": 2541.13,
+   "quality_notes": "S/PIO(#3-A): 어창 개방 측정온도 -21.0℃ ~ -22.0℃. 외관상태 및 색택 전반적으로 양호.MOAKONA(#2-B): 어창 개방 측정온도 -21.0℃ ~ -22.0℃. 외관상태 및 색택 전반적으로 양호. 명일(6/6) 약 330톤 하역 진행 예정."
+  },
+  {
+   "vessel_id": "bao-lucky",
+   "report_date": "6/3",
+   "work_time": "08:00 ~ 18:00",
+   "target_holds": "S/EXP(#4-B)",
+   "daily_amount": 180.34,
+   "cumulative_amount": 409.5,
+   "quality_notes": "S/EXP(#4-B): 어창 개방 측정온도 -20.0℃. 양호. 명일(6/6) 약 410톤 하역 진행 예정."
+  },
+  {
+   "vessel_id": "bao-lucky",
+   "report_date": "6/4",
+   "work_time": "08:20 ~ 15:20",
+   "target_holds": "N/STAR(#1-A), S/EXP(#2-A,#4-A), MOAKONA(#2-A)",
+   "daily_amount": 417.35,
+   "cumulative_amount": 826.85,
+   "quality_notes": "제품상태:N/STAR(#1-A) - 어창 개방 측정온도는 -22.0℃ ~ -23.0℃ 입니다. - 외관상태 및 색택 전반적으로 양호하였습니다.S/EXP(#2-A,#4-A) - 어창 개방 측정온도는 -19.0℃ ~ -21.0℃ 입니다. - 외관상태 및 색택 전반적으로 양호하였습니다.MOAKONA(#2-A) - 어창 개방 측정온도는 -20.0℃ ~ -21.0℃ 입니다. - 외관상태 및 색택 전반적으로 양호하였습니다. 명일(6/6) 약 270톤 하역 진행 예정."
+  },
+  {
+   "vessel_id": "sein-phoenix",
+   "report_date": "6/4",
+   "work_time": "08:20 ~ 18:30",
+   "target_holds": "S/PIO(#3-A), MOAKONA(#2-B)",
+   "daily_amount": 322.87,
+   "cumulative_amount": 2864,
+   "quality_notes": "S/PIO(#3-A)- 어창 개방 측정온도는 -18.0℃ ~ -21.0℃ 입니다.- 외관상태 및 색택 전반적으로 양호하였습니다.  MOAKONA(#2-B)- 어창 개방 측정온도는 -22.0℃ ~ -23.0℃ 입니다.- 외관상태 및 색택 전반적으로 양호하였습니다. 명일(6/6) 약 580톤 하역 진행 예정."
+  },
+  {
+   "vessel_id": "bao-lucky",
+   "report_date": "6/5",
+   "work_time": "08:00 ~ 16:50",
+   "target_holds": "S/PIO(#3-A), N/STAR(#1-A), S/EXP(#4-A)",
+   "daily_amount": 309.67,
+   "cumulative_amount": 1136.52,
+   "quality_notes": "S/PIO(#3-A) - 어창 개방 측정온도는 -20.0℃ ~ -21.0℃ 입니다. - 외관상태 및 색택 전반적으로 양호하였습니다. S/EXP(#4-A) - 어창 개방 측정온도는 -21.0℃ ~ -22.0℃ 입니다. - 외관상태 및 색택 전반적으로 양호하였습니다. N/STAR(#1-A) - 어창 개방 측정온도는 -19.0℃ ~ -20.0℃ 입니다. - 외관상태 및 색택 전반적으로 양호하였습니다. 명일(6/6) 약 270톤 하역 진행 예정."
+  },
+  {
+   "vessel_id": "sein-phoenix",
+   "report_date": "6/5",
+   "work_time": "08:10 ~ 18:20",
+   "target_holds": "S/HAR(#1-B), MOAKONA(#2-B), S/PIO(#3-A,#3-B), MOAMARI(#4-C,#4-D)",
+   "daily_amount": 438.05,
+   "cumulative_amount": 3302.05,
+   "quality_notes": "S/PIO(#3-A,#3-B) - 어창 개방 측정온도는 -18.0℃ ~ -22.0℃ 입니다. - 외관상태 및 색택 전반적으로 양호하였습니다. S/HAR(#1-B) - 어창 개방 측정온도는 -21.0℃ ~ -22.0℃ 입니다. - 외관상태 및 색택 전반적으로 양호하였습니다. MOAKONA(#2-B) - 어창 개방 측정온도는 -18.0℃ ~ -19.0℃ 입니다. - 외관상태 및 색택 전반적으로 양호하였습니다. MOAMARI(#4-C,#4-D) - 어창 개방 측정온도는 -22.0℃ ~ -23.0℃ 입니다. - 외관상태 및 색택 전반적으로 양호하였습니다. 명일(6/6) 약 450톤 하역 진행 예정."
+  },
+  {
+   "vessel_id": "bao-lucky",
+   "report_date": "6/6",
+   "work_time": "08:20 ~ 15:50",
+   "target_holds": "S/EXP(#4-A), N/STAR(#1-A), MOAMARI(#2-A)",
+   "daily_amount": 276.89,
+   "cumulative_amount": 1413.41,
+   "quality_notes": "S/EXP(#4-A) - 어창 개방 측정온도는 -21.0℃ ~ -22.0℃ 입니다. - 외관상태 및 색택 전반적으로 양호하였습니다. N/STAR(#1-A) - 어창 개방 측정온도는 -20.0℃ ~ -21.0℃ 입니다. - 외관상태 및 색택 전반적으로 양호하였습니다. MOAMARI(#2-A) - 어창 개방 측정온도는 -19.0℃ ~ -20.0℃ 입니다. - 외관상태 및 색택 전반적으로 양호하였습니다. 명일(6/7,공휴일)은 하역 작업이 없으며, 재명일(6/8) 약 550톤 하역 진행 예정."
+  },
+  {
+   "vessel_id": "sein-phoenix",
+   "report_date": "6/6",
+   "work_time": "08:10 ~ 18:00",
+   "target_holds": "S/PIO(#3-B), S/SPR(#4-D), N/STAR(#2-C)",
+   "daily_amount": 465.96,
+   "cumulative_amount": 3768.01,
+   "quality_notes": "S/PIO(#3-B) - 어창 개방 측정온도는 -18.0℃ ~ -19.0℃ 입니다. - 외관상태 및 색택 전반적으로 양호하였습니다. S/SPR(#4-D) - 어창 개방 측정온도는 -20.0℃ ~ -21.0℃ 입니다. - 외관상태 및 색택 전반적으로 양호하였습니다. N/STAR(#2-C) - 어창 개방 측정온도는 -20.0℃ ~ -21.0℃ 입니다. - 외관상태 및 색택 전반적으로 양호하였습니다. 명일(6/7,공휴일)은 하역작업이 없으며, 재명일(6/8) 약 586톤 하역 진행 예정."
+  },
+  {
+   "vessel_id": "sein-phoenix",
+   "report_date": "6/7",
+   "work_time": "-",
+   "target_holds": "-",
+   "daily_amount": 0,
+   "cumulative_amount": 3768.01,
+   "quality_notes": "공휴일 휴무."
+  },
+  {
+   "vessel_id": "bao-lucky",
+   "report_date": "6/7",
+   "work_time": "-",
+   "target_holds": "-",
+   "daily_amount": 0,
+   "cumulative_amount": 1413.41,
+   "quality_notes": "공휴일 휴무."
+  },
+  {
+   "vessel_id": "sein-phoenix",
+   "report_date": "6/8",
+   "work_time": "08:10 ~ 16:50",
+   "target_holds": "N/STAR(#2-C:128.460), S/SPR(#4-D:143.560), S/HAR(#1-B:78.060), S/PIO(#3-B:152.410)",
+   "daily_amount": 502.53,
+   "cumulative_amount": 4270.54,
+   "quality_notes": "S/PIO(#3-B) - 어창 개방 측정온도는 -18.0℃ ~ -19.0℃ 입니다. - 외관상태 및 색택 전반적으로 양호하였습니다. S/HAR(#1-B) - 어창 개방 측정온도는 -20.0℃ ~ -21.0℃ 입니다. - 외관상태 및 색택 전반적으로 양호하였습니다. S/SPR(#4-D) - 어창 개방 측정온도는 -22.0℃ ~ -23.0℃ 입니다. - 외관상태 및 색택 전반적으로 양호하였습니다. N/STAR(#2-C) - 어창 개방 측정온도는 -22.0℃ ~ -23.0℃ 입니다. - 외관상태 및 색택 전반적으로 양호하였습니다. 명일(6/9)은 약 250톤 하역 진행 예정."
+  },
+  {
+   "vessel_id": "bao-lucky",
+   "report_date": "6/8",
+   "work_time": "08:00 ~ 20:20",
+   "target_holds": "N/STAR(#1-B:207.750), MOAKONA(#2-A:89.070), S/PIO(#3-A:70.380), S/EXP(#4-A:59.245,#4-B:59.245)",
+   "daily_amount": 485.69,
+   "cumulative_amount": 1899.1,
+   "quality_notes": "N/STAR(#1-B) - 어창 개방 측정온도는 -20.0℃ ~ -21.0℃ 입니다. - 외관상태 및 색택 전반적으로 양호하였습니다. S/PIO(#3-A) - 어창 개방 측정온도는 -20.0℃ ~ -21.0℃ 입니다. - 외관상태 및 색택 전반적으로 양호하였습니다. S/EXP(#4-A,#4-B) - 어창 개방 측정온도는 -18.0℃ ~ -20.0℃ 입니다. - 외관상태 및 색택 전반적으로 양호하였습니다. MOAKONA(#2-A) - 어창 개방 측정온도는 -20.0℃ ~ -21.0℃ 입니다. - 외관상태 및 색택 전반적으로 양호하였습니다. 명일(6/9)은 약 70톤 하역 진행 예정."
+  },
+  {
+   "vessel_id": "sein-phoenix",
+   "report_date": "6/9",
+   "work_time": "08:10 ~ 14:00",
+   "target_holds": "N/STAR(#2-C), S/PIO(#3-B)",
+   "daily_amount": 214.9,
+   "cumulative_amount": 4485.44,
+   "quality_notes": "S/PIO(#3-B) - 어창 개방 측정온도는 -17.0℃ ~ -18.0℃ 입니다. - 외관상태 및 색택 전반적으로 양호하였습니다. N/STAR(#2-C) - 어창 개방 측정온도는 -22.0℃ ~ -23.0℃ 입니다. - 외관상태 및 색택 전반적으로 양호하였습니다. 명일(6/10)은 약 185톤 하역 진행 예정."
+  },
+  {
+   "vessel_id": "bao-lucky",
+   "report_date": "6/9",
+   "work_time": "08:30 ~ 11:50",
+   "target_holds": "S/PIO(#3-A)",
+   "daily_amount": 37.6,
+   "cumulative_amount": 1936.7,
+   "quality_notes": "S/PIO(#3-A) - 어창 개방 측정온도는 -20.0℃ ~ -21.0℃ 입니다. - 외관상태 및 색택 전반적으로 양호하였습니다. 명일(6/10)은 약 335톤 하역 진행 예정."
+  },
+  {
+   "vessel_id": "sein-phoenix",
+   "report_date": "6/10",
+   "work_time": "09:00 ~ 17:30",
+   "target_holds": "N/STAR(#2-C)",
+   "daily_amount": 178.28,
+   "cumulative_amount": 4663.72,
+   "quality_notes": "N/STAR(#2-C) - 어창 개방 측정온도는 -21.0℃ ~ -22.0℃ 입니다. - 외관상태 및 색택 전반적으로 양호하였습니다. 명일(6/11)은 약 100톤 하역 진행 예정."
+  },
+  {
+   "vessel_id": "bao-lucky",
+   "report_date": "6/10",
+   "work_time": "08:10 ~ 19:40",
+   "target_holds": "MOAKONA(#2-A:81.590), S/CHA(#3-A:116.580), S/PIO(#4-B:86.270)",
+   "daily_amount": 284.44,
+   "cumulative_amount": 2221.14,
+   "quality_notes": "S/PIO(#4-B) - 어창 개방 측정온도는 -19.0℃ ~ -20.0℃. S/CHA(#3-A) - -21.0℃ ~ -22.0℃. MOAKONA(#2-A) - -21.0℃ ~ -22.0℃. 외관상태 및 색택 전반적으로 양호. 명일(6/11)은 약 180톤 하역 진행 예정."
+  },
+  {
+   "vessel_id": "sein-phoenix",
+   "report_date": "6/11",
+   "work_time": "08:10 ~ 14:00",
+   "target_holds": "S/PIO(#3-B)",
+   "daily_amount": 112.92,
+   "cumulative_amount": 4776.64,
+   "quality_notes": "S/PIO(#3-B) - 어창 개방 측정온도는 -20.0℃ ~ -21.0℃ 입니다. - 외관상태 및 색택 전반적으로 양호하였습니다. 명일(6/12)은 약 150톤 하역 진행 예정."
+  },
+  {
+   "vessel_id": "bao-lucky",
+   "report_date": "6/11",
+   "work_time": "08:10 ~ 14:10",
+   "target_holds": "MOAKONA(#2-A:107.730), S/CHA(#3-A,#3-B:98.800)",
+   "daily_amount": 206.53,
+   "cumulative_amount": 2427.67,
+   "quality_notes": "S/CHA(#3-A,#3-B) - 어창 개방 측정온도는 -20.0℃ ~ -23.0℃. MOAKONA(#2-A) - -21.0℃ ~ -22.0℃. 외관상태 및 색택 전반적으로 양호. 명일(6/12)은 약 100톤 하역 진행 예정."
+  },
+  {
+   "vessel_id": "sein-phoenix",
+   "report_date": "6/12",
+   "work_time": "08:10 ~ 16:00",
+   "target_holds": "N/STAR(#2-C), S/PIO(#3-B,#3-C)",
+   "daily_amount": 146.2,
+   "cumulative_amount": 4922.84,
+   "quality_notes": "S/PIO(#3-B,#3-C) - 어창 개방 측정온도는 -17.0℃ ~ -20.0℃ 입니다. N/STAR(#2-C) - 어창 개방 측정온도는 -19.0℃ ~ -20.0℃ 입니다. 외관상태 및 색택 전반적으로 양호하였습니다. 명일(6/13)은 약 530톤 하역 진행 예정."
+  },
+  {
+   "vessel_id": "bao-lucky",
+   "report_date": "6/12",
+   "work_time": "08:20 ~ 14:30",
+   "target_holds": "MOAKONA(#2-A)",
+   "daily_amount": 66.66,
+   "cumulative_amount": 2494.33,
+   "quality_notes": "MOAKONA(#2-A) - 어창 개방 측정온도는 -20.0℃ ~ -21.0℃. 외관상태 및 색택 전반적으로 양호. 6/13~6/14 하역 작업 없음. 월요일(6/15) 하역 재개 예정."
+  },
+  {
+   "vessel_id": "sein-phoenix",
+   "report_date": "6/13",
+   "work_time": "08:10 ~ 18:30",
+   "target_holds": "S/HAR(#1-B:131.450), N/STAR(#2-C,#2-D:196.600), S/JUP(#3-C:161.730)",
+   "daily_amount": 489.78,
+   "cumulative_amount": 5412.62,
+   "quality_notes": "S/HAR(#1-B) - 어창 개방 측정온도는 -20.0℃ ~ -21.0℃. S/JUP(#3-C) - -20.0℃ ~ -21.0℃. N/STAR(#2-C,#2-D) - -18.0℃ ~ -22.0℃. 외관상태 및 색택 전반적으로 양호. 명일(6/14)은 약 100톤 하역 진행 예정."
+  },
+  {
+   "vessel_id": "sein-phoenix",
+   "report_date": "6/14",
+   "work_time": "08:00 ~ 14:20",
+   "target_holds": "S/JUP(#3-C)",
+   "daily_amount": 93.75,
+   "cumulative_amount": 5506.37,
+   "quality_notes": "S/JUP(#3-C) - 어창 개방 측정온도는 -21.0℃ ~ -22.0℃ 입니다. 외관상태 및 색택 전반적으로 양호하였습니다. 명일(6/15)은 약 210톤 하역 진행 예정."
+  },
+  {
+   "vessel_id": "sein-phoenix",
+   "report_date": "6/15",
+   "work_time": "08:20 ~ 18:20",
+   "target_holds": "S/JUP(#3-C,#3-D)",
+   "daily_amount": 227.99,
+   "cumulative_amount": 5734.36,
+   "quality_notes": "S/JUP(#3-C,#3-D) - 어창 개방 측정온도는 -19.0℃ ~ -22.0℃ 입니다. - 외관상태 및 색택 전반적으로 양호하였습니다. 명일(6/16)은 약 380톤 하역 진행 예정."
+  },
+  {
+   "vessel_id": "bao-lucky",
+   "report_date": "6/15",
+   "work_time": "08:20 ~ 19:40",
+   "target_holds": "KONA(#2-A,#2-B), S/CHA(#3-B), S/PIO(#4-B)",
+   "daily_amount": 256.5,
+   "cumulative_amount": 2750.83,
+   "quality_notes": "MOAKONA(#2-A,#2-B) - 어창 개방 측정온도는 -21.0℃ ~ -22.0℃. S/CHA(#3-B) - -22.0℃ ~ -23.0℃. S/PIO(#4-B) - -20.0℃ ~ -21.0℃. 명일(6/16)은 약 240톤 하역 작업 예정."
+  },
+  {
+   "id": "f00e14ed-5d25-4c0c-ab1e-d2d9ea690bb7",
+   "vessel_id": "sein-phoenix",
+   "report_date": "6/16",
+   "work_time": "08:10 ~ 18:10",
+   "target_holds": "S/SPR(#4-D), N/STAR(#2-D), S/JUP(#3-D)",
+   "daily_amount": 390.96,
+   "cumulative_amount": 6125.32,
+   "quality_notes": "S/JUP(#3-D) - 어창 개방 측정온도는 -20.0℃ ~ -21.0℃ 입니다. - 외관상태 및 색택 전반적으로 양호하였습니다. S/SPR(#4-D) - 어창 개방 측정온도는 -22.0℃ ~ -23.0℃ 입니다. - 외관상태 및 색택 전반적으로 양호하였습니다. N/STAR(#2-D) - 어창 개방 측정온도는 -21.0℃ ~ -22.0℃ 입니다. - 외관상태 및 색택 전반적으로 양호하였습니다. 명일(6/17)은 약 485톤 하역 진행 예정.",
+   "created_at": "2026-06-17T09:17:31.432671"
+  },
+  {
+   "id": "9a2006e9-d25c-4f32-aa3e-62d21eb0a2b0",
+   "vessel_id": "bao-lucky",
+   "report_date": "6/16",
+   "work_time": "08:10 ~ 15:30",
+   "target_holds": "S/PIO(#4-B), KONA(#2-B), S/CHA(#3-B)",
+   "daily_amount": 243.86,
+   "cumulative_amount": 2994.69,
+   "quality_notes": "MOAKONA(#2-A,#2-B) - 어창 개방 측정온도는 -20.0℃ ~ -21.0℃ 입니다. S/CHA(#3-B) - 어창 개방 측정온도는 -22.0℃ ~ -23.0℃ 입니다. S/PIO(#4-B) - 어창 개방 측정온도는 -20.0℃ ~ -21.0℃ 입니다. 명일(6/17)은 약 95톤 하역 작업 예정입니다.",
+   "created_at": "2026-06-17T09:20:22.570111"
+  },
+  {
+   "id": "c1f7365b-a63b-48c9-83bc-42b7819cf789",
+   "vessel_id": "bao-lucky",
+   "report_date": "6/17",
+   "work_time": "08:10 ~ 10:20",
+   "target_holds": "S/PIO(#4-B), KONA(#2-B)",
+   "daily_amount": 69.01,
+   "cumulative_amount": 3063.7,
+   "quality_notes": "MOAKONA(#2-B) - 어창 개방 측정온도는 -20.0℃ ~ -21.0℃ 입니다. S/PIO(#4-B) - 어창 개방 측정온도는 -20.0℃ ~ -21.0℃ 입니다. 명일(6/18)은 약 377톤 하역 작업 예정입니다.",
+   "created_at": "2026-06-18T09:17:00.000000"
+  },
+  {
+   "id": "e30e14ad-2b3d-4c3e-862a-10f7ca620ab1",
+   "vessel_id": "sein-phoenix",
+   "report_date": "6/17",
+   "work_time": "08:10 ~ 19:30",
+   "target_holds": "S/HAR(#1-B,#1-C), N/STAR(#2-D), S/JUP(#3-D)",
+   "daily_amount": 486.08,
+   "cumulative_amount": 6611.4,
+   "quality_notes": "S/JUP(#3-D) - 어창 개방 측정온도는 -20.0℃ ~ -21.0℃ 입니다. - 외관상태 및 색택 전반적으로 양호하였습니다. S/HAR(#1-B,#1-C) - 어창 개방 측정온도는 -22.0℃ ~ -23.0℃ 입니다. - 외관상태 및 색택 전반적으로 양호하였습니다. N/STAR(#2-D) - 어창 개방 측정온도는 -21.0℃ ~ -22.0℃ 입니다. - 외관상태 및 색택 전반적으로 양호하였습니다. 명일(6/18)은 약 420톤 하역 진행 예정입니다.",
+   "created_at": "2026-06-18T09:20:00.000000"
+  },
+  {
+   "id": "new-report-sein-phoenix-6-18",
+   "vessel_id": "sein-phoenix",
+   "report_date": "6/18",
+   "work_time": "08:20 ~ 17:40",
+   "target_holds": "S/HAR(#1-C), S/JUP(#3-D)",
+   "daily_amount": 449.55,
+   "cumulative_amount": 7060.95,
+   "quality_notes": "S/JUP(#3-D) - 어창 개방 측정온도는 -20.0℃ ~ -21.0℃ 입니다. - 외관상태 및 색택 전반적으로 양호하였습니다. S/HAR(#1-C) - 어창 개방 측정온도는 -19.0℃ ~ -20.0℃ 입니다. - 외관상태 및 색택 전반적으로 양호하였습니다. 6/18 하역 최종 종료.",
+   "created_at": "2026-06-18T18:00:00.000000"
+  },
+  {
+   "id": "new-report-bao-lucky-6-18",
+   "vessel_id": "bao-lucky",
+   "report_date": "6/18",
+   "work_time": "08:20 ~ 20:00",
+   "target_holds": "N/STAR(#1-B), MOAMARI(#1-B), MOAKONA(#2-B)",
+   "daily_amount": 324.15,
+   "cumulative_amount": 3387.85,
+   "quality_notes": "MOAKONA(#2-B) - 어창 개방 측정온도는 -20.0℃ ~ -21.0℃ 입니다. MOAMARI(#1-B) - 어창 개방 측정온도는 -21.0℃ ~ -22.0℃ 입니다. N/STAR(#1-B) - 어창 개방 측정온도는 -20.0℃ ~ -21.0℃ 입니다. 명일(6/19)은 약 430톤 하역 작업 예정입니다.",
+   "created_at": "2026-06-18T18:00:00.000000"
+  },
+  {
+   "id": "new-report-baolucky-6-19",
+   "vessel_id": "bao-lucky",
+   "report_date": "6/19",
+   "work_time": "08:20 ~ 20:40",
+   "target_holds": "S/CHA(#3-B), MOAMARI(#1-B)",
+   "daily_amount": 411.05,
+   "cumulative_amount": 3798.9,
+   "quality_notes": "MOAMARI(#1-B) - 어창 개방 측정온도는 -21.0℃ ~ -22.0℃ 입니다. S/CHA(#3-B) - 어창 개방 측정온도는 -21.0℃ ~ -22.0℃ 입니다. 명일(6/20)은 약 330톤 하역 작업 예정입니다.",
+   "created_at": "2026-06-19T21:00:00.000000"
+  },
+  {
+   "id": "new-report-shinfuji-6-20",
+   "vessel_id": "shin-fuji",
+   "report_date": "6/20",
+   "work_time": "08:20 ~ 11:00",
+   "target_holds": "N/STAR(#1-A)",
+   "daily_amount": 63.39,
+   "cumulative_amount": 63.39,
+   "quality_notes": "N/STAR(#1-A) - 어창 개방 측정온도는 -19.0℃ ~ -20.0℃ 입니다. 명일(6/21)은 공휴일로 하역 작업이 없으며, 재명일(6/22)은 약 140톤 하역 작업 예정입니다.",
+   "created_at": "2026-06-20T20:00:00.000000"
+  },
+  {
+   "id": "new-report-baolucky-6-20",
+   "vessel_id": "bao-lucky",
+   "report_date": "6/20",
+   "work_time": "08:10 ~ 17:40",
+   "target_holds": "S/CHA(#3-B,#3-C), MOAMARI(#1-B,#1-C)",
+   "daily_amount": 323.59,
+   "cumulative_amount": 4122.49,
+   "quality_notes": "MOAMARI(#1-B,#1-C) - 어창 개방 측정온도는 -20.0℃ ~ -21.0℃ 입니다. S/CHA(#3-B,#3-C) - 어창 개방 측정온도는 -20.0℃ ~ -22.0℃ 입니다. 명일(6/21)은 약 100톤 하역 작업 예정입니다.",
+   "created_at": "2026-06-20T21:00:00.000000"
+  },
+  {
+   "id": "3a4e6080-de11-45ff-94f0-9e4651cd433d",
+   "vessel_id": "bao-lucky",
+   "report_date": "6/21",
+   "work_time": "08:20 ~ 13:30",
+   "target_holds": "S/CHA(#3-C)",
+   "daily_amount": 94.9,
+   "cumulative_amount": 4217.39,
+   "quality_notes": "S/CHA(#3-C) - 어창 개방 측정온도는 -20.0℃ ~ -22.0℃ 입니다. 명일(6/22)은 약 297톤 하역 작업 예정입니다.",
+   "created_at": "2026-06-22T11:09:53.933560"
+  },
+  {
+   "id": "9bbd2146-1828-43a0-82bc-9839033603b1",
+   "vessel_id": "bao-lucky",
+   "report_date": "6/22",
+   "work_time": "08:10 ~ 19:30",
+   "target_holds": "S/CHA(#3-C), MOAMARI(#1-C), N/STAR(#2-B)",
+   "daily_amount": 313.18,
+   "cumulative_amount": 4530.57,
+   "quality_notes": "S/CHA(#3-C) - 어창 개방 측정온도는 -20.0℃ ~ -22.0℃ 입니다. 명일(6/23)은 약 310톤 하역 작업 예정입니다.",
+   "created_at": "2026-06-24T09:13:55.214694"
+  },
+  {
+   "id": "012bb6e5-62b2-447c-b135-a00a96cfae3b",
+   "vessel_id": "bao-lucky",
+   "report_date": "6/23",
+   "work_time": "08:10 ~ 19:40",
+   "target_holds": "MOAMARI(#1-C), N/STAR(#2-B)",
+   "daily_amount": 317.59,
+   "cumulative_amount": 4848.16,
+   "quality_notes": "MOAMARI(#1-C) 및 N/STAR(#2-B) - 어창 개방 측정온도는 -20.0℃ ~ -21.0℃ 입니다. 총 4803톤 대비 45.16톤 증가한 4848.16톤으로 하역 종료하였습니다.",
+   "created_at": "2026-06-24T09:13:55.214704"
+  },
+  {
+   "id": "c2411389-4f7c-4744-9fec-51c83b8c8ecb",
+   "vessel_id": "shin-fuji",
+   "report_date": "6/22",
+   "work_time": "08:10 ~ 18:00",
+   "target_holds": "MOAMARI(#3-A)",
+   "daily_amount": 140.48,
+   "cumulative_amount": 203.87,
+   "quality_notes": "MOAMARI(#3-A) - 어창 개방 측정온도는 -20.0℃ ~ -21.0℃ 입니다. 명일(6/23)은 약 100톤 하역 작업 예정입니다.",
+   "created_at": "2026-06-24T09:13:55.214709"
+  },
+  {
+   "id": "c7319f73-cff5-4f10-b38b-b2b2d7a0cb40",
+   "vessel_id": "shin-fuji",
+   "report_date": "6/23",
+   "work_time": "08:10 ~ 11:10",
+   "target_holds": "MOAMARI(#3-A)",
+   "daily_amount": 104.16,
+   "cumulative_amount": 308.03,
+   "quality_notes": "MOAMARI(#3-A) - 어창 개방 측정온도는 -20.0℃ ~ -21.0℃ 입니다. 명일(6/24)은 약 210톤 하역 작업 예정입니다.",
+   "created_at": "2026-06-24T09:13:55.214712"
+  },
+  {
+   "id": "c1c18c32-33af-4cb1-b38c-9adf04e9a8ce",
+   "vessel_id": "shin-fuji",
+   "report_date": "6/24",
+   "work_time": "08:10 ~ 15:30",
+   "target_holds": "MARI(#3-A, #3-B)",
+   "daily_amount": 201.14,
+   "cumulative_amount": 509.17,
+   "quality_notes": "MOAMARI(#3-A, #3-B) - 어창 개방 측정온도는 -18.0℃ ~ -20.0℃ 입니다. 명일(6/25)은 약 425톤 하역 작업 예정입니다.",
+   "created_at": "2026-07-02T04:42:29.306467Z"
+  },
+  {
+   "id": "d23760cf-7b1c-4d93-8603-1a9555c249aa",
+   "vessel_id": "shin-fuji",
+   "report_date": "6/25",
+   "work_time": "08:10 ~ 20:40",
+   "target_holds": "N/STAR(#1-A, #2-A), MARI(#3-B), N/STAR(#1-B)",
+   "daily_amount": 440.15,
+   "cumulative_amount": 949.32,
+   "quality_notes": "MOAMARI(#3-B) - 어창 개방 측정온도는 -19.0℃ ~ -20.0℃ 입니다. N/STAR(#1-A, #1-B, #2-A) - 어창 개방 측정온도는 -19.0℃ ~ -21.0℃ 입니다. 명일(6/26)은 약 350톤 하역 작업 예정입니다.",
+   "created_at": "2026-07-02T04:42:29.306651Z"
+  },
+  {
+   "id": "83356f6b-f485-42f3-8a79-a410a443f7ca",
+   "vessel_id": "shin-fuji",
+   "report_date": "6/26",
+   "work_time": "08:10 ~ 17:50",
+   "target_holds": "N/STAR(#2-A), MARI(#3-B, #3-C), N/STAR(#1-B)",
+   "daily_amount": 393.16,
+   "cumulative_amount": 1342.48,
+   "quality_notes": "MOAMARI(#3-B, #3-C) - 어창 개방 측정온도는 -19.0℃ ~ -20.0℃ 입니다. N/STAR(#1-B, #2-A) - 어창 개방 측정온도는 -18.0℃ ~ -22.0℃ 입니다. 명일(6/27)은 약 350톤 하역 작업 예정입니다.",
+   "created_at": "2026-07-02T04:42:29.306664Z"
+  },
+  {
+   "id": "08784b56-5e16-4cff-8b8e-3084d8cc60d0",
+   "vessel_id": "shin-fuji",
+   "report_date": "6/27",
+   "work_time": "08:10 ~ 17:30",
+   "target_holds": "S/PIO(#4-A), N/SUN(#2-A, #2-B)",
+   "daily_amount": 413.05,
+   "cumulative_amount": 1755.53,
+   "quality_notes": "S/PIO(#4-A) - 어창 개방 측정온도는 -19.0℃ ~ -20.0℃ 입니다. N/SUN(#2-A, #2-B) - 어창 개방 측정온도는 -18.0℃ ~ -23.0℃ 입니다. 명일(6/28)은 공휴일로 하역 작업이 없으며, 재명일(6/29) 약 120톤 하역 작업 예정입니다.",
+   "created_at": "2026-07-02T04:42:29.306673Z"
+  },
+  {
+   "id": "049f81fe-f9f1-4107-88ff-306c387c0419",
+   "vessel_id": "shin-fuji",
+   "report_date": "6/28",
+   "work_time": "-",
+   "target_holds": "-",
+   "daily_amount": 0,
+   "cumulative_amount": 1755.53,
+   "quality_notes": "공휴일로 하역 작업 없음.",
+   "created_at": "2026-07-02T04:42:29.306682Z"
+  },
+  {
+   "id": "1ee36d97-593f-4f9c-bd0f-d36682d1e775",
+   "vessel_id": "shin-fuji",
+   "report_date": "6/29",
+   "work_time": "08:20 ~ 14:20",
+   "target_holds": "N/SUN(#2-B)",
+   "daily_amount": 121.64,
+   "cumulative_amount": 1877.17,
+   "quality_notes": "N/SUN(#2-B) - 어창 개방 측정온도는 -18.0℃ ~ -19.0℃ 입니다. 명일(6/30)은 약 120톤 하역 작업 예정입니다.",
+   "created_at": "2026-07-02T04:42:29.306690Z"
+  },
+  {
+   "id": "3c801601-460d-4403-9b4a-e673205ee543",
+   "vessel_id": "shin-fuji",
+   "report_date": "6/30",
+   "work_time": "08:20 ~ 15:10",
+   "target_holds": "N/STAR(#4-A, 4-B)",
+   "daily_amount": 124.67,
+   "cumulative_amount": 2001.84,
+   "quality_notes": "N/STAR(#4-A, 4-B) - 어창 개방 측정온도는 -18.0℃ ~ -22.0℃ 입니다. 명일(7/1)은 약 220톤 하역 작업 예정입니다.",
+   "created_at": "2026-07-02T04:44:25.667948+00:00"
+  },
+  {
+   "id": "fc70ad2b-d27b-4a93-bc0b-4591a7f8aefc",
+   "vessel_id": "shin-fuji",
+   "report_date": "7/1",
+   "work_time": "08:10 ~ 12:40",
+   "target_holds": "N/SUN(#2-B), N/STAR(#4-B)",
+   "daily_amount": 217.27,
+   "cumulative_amount": 2219.11,
+   "quality_notes": "N/SUN(#2-B) - 어창 개방 측정온도는 -23.0℃ ~ -24.0℃ 입니다. N/STAR(#4-B) - 어창 개방 측정온도는 -20.0℃ ~ -21.0℃ 입니다. 명일(7/2)은 약 240톤 하역 작업 예정입니다.",
+   "created_at": "2026-07-02T04:44:25.668085+00:00"
+  },
+  {
+   "id": "deb78bad-533d-4c58-91cf-f5005dd68ddb",
+   "vessel_id": "shin-fuji",
+   "report_date": "7/2",
+   "work_time": "08:10 ~ 14:10",
+   "target_holds": "N/SUN(#2-B, #2-C), N/STAR(#4-B, #4-C)",
+   "daily_amount": 240.26,
+   "cumulative_amount": 2459.37,
+   "quality_notes": "N/SUN(#2-B, #2-C) - 어창 개방 측정온도는 -18.0℃ ~ -19.0℃ 입니다. N/STAR(#4-B, #4-C) - 어창 개방 측정온도는 -18.0℃ ~ -20.0℃ 입니다. 명일(7/3)은 약 240톤 하역 작업 예정입니다.",
+   "created_at": "2026-07-02T23:45:07.162912+00:00"
+  },
+  {
+   "id": "shin-fuji-7-3",
+   "vessel_id": "shin-fuji",
+   "report_date": "7/3",
+   "work_time": "08:10 ~ 19:30",
+   "target_holds": "N/SUN(#2-C), S/EXP(#4-C)",
+   "daily_amount": 391.54,
+   "cumulative_amount": 2850.91,
+   "quality_notes": "N/SUN(#2-C) - 어창 개방 측정온도는 -18.0℃ ~ -19.0℃ 입니다. S/EXP(#4-C) - 어창 개방 측정온도는 -18.0℃ ~ -20.0℃ 입니다. 명일(7/4)은 약 120톤 하역 작업 예정입니다.",
+   "created_at": "2026-07-05T23:35:34.373243+00:00"
+  },
+  {
+   "id": "shin-fuji-7-4",
+   "vessel_id": "shin-fuji",
+   "report_date": "7/4",
+   "work_time": "08:40 ~ 14:40",
+   "target_holds": "MOAMARI(#3-C)",
+   "daily_amount": 150.66,
+   "cumulative_amount": 3001.57,
+   "quality_notes": "MOAMARI(#3-C) - 어창 개방 측정온도는 -18.0℃ ~ -19.0℃ 입니다. 명일(7/5)은 공휴일로 하역작업이 없으며, 재명일(7/6)은 약 235톤 하역 작업 예정입니다.",
+   "created_at": "2026-07-05T23:34:45.007032+00:00"
+  },
+  {
+   "id": "shin-fuji-7-5",
+   "vessel_id": "shin-fuji",
+   "report_date": "7/5",
+   "work_time": "공휴일 휴무",
+   "target_holds": "-",
+   "daily_amount": 0,
+   "cumulative_amount": 3001.57,
+   "quality_notes": "공휴일로 하역작업 없음.",
+   "created_at": "2026-07-07T08:49:12.027607"
+  },
+  {
+   "id": "shin-fuji-7-6",
+   "vessel_id": "shin-fuji",
+   "report_date": "7/6",
+   "work_time": "08:20 ~ 15:40",
+   "target_holds": "N/SUN(#2-C), MOAMARI(#3-C)",
+   "daily_amount": 228.65,
+   "cumulative_amount": 3230.22,
+   "quality_notes": "N/SUN(#2-C) - 어창 개방 측정온도는 -18.0℃ ~ -19.0℃ 입니다. MOAMARI(#3-C) - 어창 개방 측정온도는 -19.0℃ ~ -20.0℃ 입니다. 운반선 보고량(3,096톤) 대비 134.220톤 증가한 3,230.220톤으로 하역 종료.",
+   "created_at": "2026-07-07T08:49:12.027607"
+  },
+  {
+   "id": "sein-venus-8-7",
+   "vessel_id": "sein-venus",
+   "report_date": "8/7",
+   "work_time": "10:10 ~ 19:00",
+   "target_holds": "N/SUN(#3-B:174.640)",
+   "daily_amount": 174.64,
+   "cumulative_amount": 174.64,
+   "species_amounts": {
+    "SJ": 150.34,
+    "YF": 24.3
+   },
+   "quality_notes": "N/SUN(#3-B) - 어창 개방 측정온도는 -21.0℃ ~ -23.0℃ 입니다. 8/8 약 160톤 하역 예정입니다.",
+   "created_at": "2026-08-12T15:34:21+09:00"
+  },
+  {
+   "id": "sein-venus-8-8",
+   "vessel_id": "sein-venus",
+   "report_date": "8/8",
+   "work_time": "08:10 ~ 13:00",
+   "target_holds": "S/PIO(#2-A:109.070)",
+   "daily_amount": 109.07,
+   "cumulative_amount": 283.71,
+   "species_amounts": {
+    "SJ": 104.17,
+    "YF": 4.9
+   },
+   "quality_notes": "S/PIO(#2-A) - 어창 개방 측정온도는 -22.0℃ ~ -23.0℃ 입니다. 8/9 공휴일로 하역 작업이 없으며, 8/10 약 310톤 하역 예정입니다.",
+   "created_at": "2026-08-12T15:34:21+09:00"
+  },
+  {
+   "id": "sein-venus-8-10",
+   "vessel_id": "sein-venus",
+   "report_date": "8/10",
+   "work_time": "08:10 ~ 16:10",
+   "target_holds": "S/PIO(#1-A:169.330), N/STAR(#2-A:162.140)",
+   "daily_amount": 331.47,
+   "cumulative_amount": 615.18,
+   "species_amounts": {
+    "SJ": 272.27,
+    "YF": 59.2
+   },
+   "quality_notes": "S/PIO(#1-A) - 어창 개방 측정온도는 -19.0℃ ~ -20.0℃ 입니다. N/STAR(#2-A) - 어창 개방 측정온도는 -22.0℃ ~ -23.0℃ 입니다. 8/11 약 420톤 하역 예정입니다.",
+   "created_at": "2026-08-12T15:34:21+09:00"
+  },
+  {
+   "id": "sein-venus-8-11",
+   "vessel_id": "sein-venus",
+   "report_date": "8/11",
+   "work_time": "08:10 ~ 14:40",
+   "target_holds": "S/PIO(#1-A:80.670,#1-B:41.170), N/STAR(#2-A:143.640), N/SUN(#3-B:197.330)",
+   "daily_amount": 462.81,
+   "cumulative_amount": 1077.99,
+   "species_amounts": {
+    "SJ": 377.61,
+    "YF": 85.2
+   },
+   "quality_notes": "S/PIO(#1-A,#1-B) - 어창 개방 측정온도는 -18.0℃ ~ -19.0℃ 입니다. N/STAR(#2-A) - 어창 개방 측정온도는 -19.0℃ ~ -20.0℃ 입니다. N/SUN(#3-B) - 어창 개방 측정온도는 -22.0℃ ~ -23.0℃ 입니다. 8/12 공휴일로 하역 작업이 없으며, 8/13 약 150톤 하역 예정입니다.",
+   "created_at": "2026-08-12T15:34:21+09:00"
+  },
+  {
+   "id": "sein-venus-8-13",
+   "vessel_id": "sein-venus",
+   "report_date": "8/13",
+   "work_time": "08:20 ~ 15:10",
+   "target_holds": "N/STAR(#2-B:159.590)",
+   "consignee": "MMP",
+   "daily_amount": 159.59,
+   "cumulative_amount": 1237.58,
+   "species_amounts": {
+    "SJ": 124.89,
+    "YF": 34.7
+   },
+   "quality_notes": "N/STAR(#2-B) - 어창 개방 측정온도는 -22.0℃ ~ -23.0℃ 입니다. 8/14 약 400톤 하역 예정입니다.",
+   "created_at": "2026-08-14T06:21:36+09:00"
+  },
+  {
+   "id": "sein-venus-8-14",
+   "vessel_id": "sein-venus",
+   "report_year": 2026,
+   "report_date": "8/14",
+   "work_time": "08:00 ~ 18:00",
+   "target_holds": "N/STAR(#2-B:78.650), N/SUN(#3-B:84.630,#3-C:203.200), S/SPR(#4-B:43.050,#4-C:15.250)",
+   "consignee": "MMP · ISA · TUM",
+   "allocations": [
     {
-      "id": "1af1e709-13c6-49ac-ae5c-8f8b027db408",
-      "vessel_id": "sein-phoenix",
-      "name": "M/V SEIN PHOENIX",
-      "location": "BANGKOK, THAILAND",
-      "buyer": "FCF CO.,LTD",
-      "mother_vessel": "-",
-      "status": "하역완료 (Completed)",
-      "reported_total": 6955,
-      "date_range": "2026.05.23 ~ 2026.06.18",
-      "created_at": "2026-06-01T22:42:57.072021+00:00",
-      "updated_at": "2026-06-01T22:42:57.072021+00:00"
+     "consignee": "MMP",
+     "amount": 78.65,
+     "loads": [
+      {
+       "source_vessel": "N/STAR",
+       "hatch": "#2-B",
+       "amount": 78.65
+      }
+     ]
     },
     {
-      "vessel_id": "bao-lucky",
-      "name": "M/V BAO LUCKY",
-      "location": "BANGKOK, THAILAND",
-      "buyer": "FCF CO.,LTD",
-      "status": "하역완료 (Completed)",
-      "reported_total": 4803,
-      "date_range": "2026.05.23 ~ 2026.06.23",
-      "mother_vessel": "-"
+     "consignee": "ISA",
+     "amount": 142.93,
+     "loads": [
+      {
+       "source_vessel": "N/SUN",
+       "hatch": "#3-B",
+       "amount": 84.63
+      },
+      {
+       "source_vessel": "S/SPR",
+       "hatch": "#4-B",
+       "amount": 43.05
+      },
+      {
+       "source_vessel": "S/SPR",
+       "hatch": "#4-C",
+       "amount": 15.25
+      }
+     ]
     },
     {
-      "vessel_id": "shin-fuji",
-      "name": "M/V SHIN FUJI",
-      "location": "BANGKOK, THAILAND",
-      "buyer": "FCF CO.,LTD",
-      "status": "하역완료 (Completed)",
-      "reported_total": 3096,
-      "date_range": "2026.06.20 ~ 2026.07.06",
-      "mother_vessel": "-",
-      "updated_at": "2026-07-07T08:49:12.027607"
-    },
-    {
-      "vessel_id": "sein-venus",
-      "name": "M/V SEIN VENUS",
-      "location": "방콕, 태국",
-      "port_code": "BKK",
-      "buyer": "FCF CO.,LTD",
-      "status": "하역완료 (Completed)",
-      "reported_total": 3275,
-      "date_range": "2026.08.07 ~ 2026.08.22",
-      "mother_vessel": "S/SPR · S/PIO · N/STAR · N/SUN",
-      "hold_species_breakdown_available": false,
-      "unclassified_actual_amount": 0,
-      "species_breakdown_as_of": "2026-08-22",
-      "species_breakdown_note": "8/22 일일 결과보고 XLS에서 어종별 일일·누적 물량을 확인했고 일일하역량 현황 XLSX로 교차 확인했습니다. 개별 어창별 어종 분해는 제공되지 않습니다. 원선 4척(N/STAR, N/SUN, S/SPR, S/PIO) 하역완료.",
-      "created_at": "2026-08-12T15:34:21+09:00",
-      "updated_at": "2026-08-22T15:52:00+09:00"
-    },
-    {
-      "vessel_id": "hikari-bangkok-2026-07",
-      "name": "M/V HIKARI 1",
-      "location": "방콕, 태국",
-      "buyer": "FCF CO.,LTD",
-      "status": "하역중",
-      "reported_total": 2929,
-      "date_range": "2026.08.20 ~ 진행중",
-      "mother_vessel": "S/SPR 670 · MOAKONA 314 · MOAMARI 940 · NAOERO STAR 1,005 MT",
-      "hold_species_breakdown_available": false,
-      "unclassified_actual_amount": 0,
-      "species_breakdown_as_of": "2026-08-27",
-      "species_breakdown_note": "8/27 일일 결과보고 XLS에서 어종별 일일·누적 물량을 확인했고 일일하역량 현황 XLSX로 교차 확인했습니다. XLS의 SJ 보고량 2,571 MT는 적재계획의 SJ 2,515 MT와 BE 56 MT를 합친 기준이며, 실제 하역량은 SJ·YF 두 항목만 제공합니다. 개별 어창별 어종 분해는 제공되지 않습니다. 원선 3척(MOAMARI, N/STAR, S/SPR) 하역완료.",
-      "created_at": "2026-08-12T16:35:00+09:00",
-      "updated_at": "2026-08-27T20:35:00+09:00"
-    },
-    {
-      "vessel_id": "sein-phoenix-2025-12",
-      "name": "M/V SEIN PHOENIX",
-      "location": "방콕, 태국",
-      "buyer": "FCF CO.,LTD",
-      "status": "하역완료 (Completed)",
-      "reported_total": 3740,
-      "date_range": "2025.12.18 ~ 2026.01.13",
-      "mother_vessel": "S/PIO · S/JUP · S/EXP · N/STAR",
-      "annual_actual_total": 1687.73,
-      "annual_start_date": "2026.01.05",
-      "hold_data_available": false,
-      "updated_at": "2026-08-12T18:00:00+09:00"
-    },
-    {
-      "vessel_id": "volta-victory-2026-01",
-      "name": "M/V VOLTA VICTORY",
-      "location": "방콕, 태국",
-      "buyer": "FCF CO.,LTD",
-      "status": "하역완료 (Completed)",
-      "reported_total": 2675,
-      "date_range": "2026.01.05 ~ 2026.01.19",
-      "mother_vessel": "S/CHA · S/JUP · S/PIO",
-      "annual_actual_total": 2652.97,
-      "annual_start_date": "2026.01.05",
-      "hold_data_available": false,
-      "updated_at": "2026-08-12T18:00:00+09:00"
-    },
-    {
-      "vessel_id": "angara-2026-01",
-      "name": "M/V ANGARA",
-      "location": "방콕, 태국",
-      "buyer": "FCF CO.,LTD",
-      "status": "하역완료 (Completed)",
-      "reported_total": 2657,
-      "date_range": "2026.01.20 ~ 2026.02.02",
-      "mother_vessel": "S/PIO · S/HAR · S/EXP · N/SUN",
-      "annual_actual_total": 2683.08,
-      "annual_start_date": "2026.01.20",
-      "hold_data_available": false,
-      "updated_at": "2026-08-12T18:00:00+09:00"
-    },
-    {
-      "vessel_id": "salt-lake-2026-01",
-      "name": "M/V SALT LAKE",
-      "location": "방콕, 태국",
-      "buyer": "FCF CO.,LTD",
-      "status": "하역완료 (Completed)",
-      "reported_total": 200,
-      "date_range": "2026.01.13 ~ 2026.01.14",
-      "mother_vessel": "S/HAR",
-      "annual_actual_total": 204.3,
-      "annual_start_date": "2026.01.13",
-      "hold_data_available": false,
-      "updated_at": "2026-08-12T18:00:00+09:00"
+     "consignee": "TUM",
+     "amount": 203.2,
+     "loads": [
+      {
+       "source_vessel": "N/SUN",
+       "hatch": "#3-C",
+       "amount": 203.2
+      }
+     ]
     }
-  ],
-  "unloading_reports": [
-    {
-      "id": "a9a8f1f8-a2cf-47bc-98de-54fb37511e8d",
-      "vessel_id": "sein-phoenix",
-      "report_date": "5/23",
-      "work_time": "08:10 ~ 20:30",
-      "target_holds": "S/HAR(#2-A)",
-      "daily_amount": 146.89,
-      "cumulative_amount": 146.89,
-      "quality_notes": "어창 개방 측정온도 -24.0℃ ~ -25.0℃. 외관상태 및 색택 전반적으로 양호.",
-      "created_at": "2026-06-01T22:42:57.072021+00:00"
-    },
-    {
-      "id": "44b0096e-1f3e-4211-9f20-8d35ee0802d7",
-      "vessel_id": "sein-phoenix",
-      "report_date": "5/24",
-      "work_time": "-",
-      "target_holds": "-",
-      "daily_amount": 0,
-      "cumulative_amount": 146.89,
-      "quality_notes": "일요일 휴무.",
-      "created_at": "2026-06-01T22:42:57.072021+00:00"
-    },
-    {
-      "id": "fdaed80b-40e2-499a-a43d-8a9ad6c55820",
-      "vessel_id": "sein-phoenix",
-      "report_date": "5/25",
-      "work_time": "08:10 ~ 19:00",
-      "target_holds": "S/HAR(#2-A), S/EXP(#4-A)",
-      "daily_amount": 216.09,
-      "cumulative_amount": 362.98,
-      "quality_notes": "어창 온도 -21.0℃ ~ -24.0℃. 외관상태 양호.",
-      "created_at": "2026-06-01T22:42:57.072021+00:00"
-    },
-    {
-      "id": "a374d650-bfb2-4e7d-b752-78db11f44710",
-      "vessel_id": "sein-phoenix",
-      "report_date": "5/26",
-      "work_time": "08:00 ~ 20:30",
-      "target_holds": "S/SPR(#4-A, #4-B)",
-      "daily_amount": 224.69,
-      "cumulative_amount": 587.67,
-      "quality_notes": "어창 개방 측정온도 -24.0℃ ~ -26.0℃. 외관상태 및 색택 전반적으로 양호.",
-      "created_at": "2026-06-01T22:42:57.072021+00:00"
-    },
-    {
-      "id": "5e45b5a4-81cc-40d0-83d4-fb43b1764f75",
-      "vessel_id": "sein-phoenix",
-      "report_date": "5/27",
-      "work_time": "08:10 ~ 20:00",
-      "target_holds": "S/SPR(#1-A, #4-B), S/HAR(#2-A)",
-      "daily_amount": 239.99,
-      "cumulative_amount": 827.66,
-      "quality_notes": "어창 개방 측정온도 -20.0℃ ~ -24.0℃. 외관상태 및 색택 전반적으로 양호.",
-      "created_at": "2026-06-01T22:42:57.072021+00:00"
-    },
-    {
-      "id": "4141957d-ea0e-4c90-8f13-3b49d95dd2d2",
-      "vessel_id": "sein-phoenix",
-      "report_date": "5/28",
-      "work_time": "08:10 ~ 23:00",
-      "target_holds": "S/SPR(#1-A, #4-B), MOAKONA(#2-A, #2-B)",
-      "daily_amount": 287.94,
-      "cumulative_amount": 1115.6,
-      "quality_notes": "S/SPR: 어창 개방 측정온도 -20.0℃ ~ -24.0℃. MOAKONA: -22.0℃ ~ -23.0℃. 외관상태 및 색택 전반적으로 양호.",
-      "created_at": "2026-06-01T22:42:57.072021+00:00"
-    },
-    {
-      "id": "11f2b24a-7a67-410c-a6a0-6bb2f0225af5",
-      "vessel_id": "sein-phoenix",
-      "report_date": "5/29",
-      "work_time": "08:30 ~ 21:00",
-      "target_holds": "MOAKONA(#2-B), S/SPR(#4-B)",
-      "daily_amount": 318.11,
-      "cumulative_amount": 1433.71,
-      "quality_notes": "S/SPR(#4-B): 어창 개방 측정온도 -20.0℃ ~ -21.0℃. MOAKONA(#2-B): -22.0℃ ~ -23.0℃. 외관상태 및 색택 전반적으로 양호. 명일(5/30) 약 310톤 하역 진행 예정.",
-      "created_at": "2026-06-01T22:42:57.072021+00:00"
-    },
-    {
-      "id": "cb5577da-1f6e-41c2-8f7a-fc4baf231b4b",
-      "vessel_id": "sein-phoenix",
-      "report_date": "5/30",
-      "work_time": "08:10 ~ 19:00",
-      "target_holds": "S/SPR(#1-A, #4-B, #4-C)",
-      "daily_amount": 307.41,
-      "cumulative_amount": 1741.12,
-      "quality_notes": "어창 개방 측정온도 -18.0℃ ~ -22.0℃. 외관상태 및 색택 전반적으로 양호. 명일(5/31) 약 300톤 하역 진행 예정.",
-      "created_at": "2026-06-01T22:42:57.072021+00:00"
-    },
-    {
-      "id": "201da328-8507-4fa2-95cc-dc13c3b0144b",
-      "vessel_id": "sein-phoenix",
-      "report_date": "5/31",
-      "work_time": "08:10 ~ 13:00",
-      "target_holds": "MOAKONA(#2-B)",
-      "daily_amount": 93.56,
-      "cumulative_amount": 1834.68,
-      "quality_notes": "어창 개방 측정온도 -20.0℃ ~ -21.0℃. 외관상태 및 색택 전반적으로 양호. 명일(6/1) 약 300톤 하역 진행 예정.",
-      "created_at": "2026-06-01T22:42:57.072021+00:00"
-    },
-    {
-      "id": "7681717d-304e-42d7-a909-67f58e9df7db",
-      "vessel_id": "sein-phoenix",
-      "report_date": "6/1",
-      "work_time": "08:20 ~ 20:20",
-      "target_holds": "MOAKONA(#2-B), MOAMARI(#4-C)",
-      "daily_amount": 271.53,
-      "cumulative_amount": 2106.21,
-      "quality_notes": "MOAKONA(#2-B): 어창 개방 측정온도 -21.0℃ ~ -22.0℃. 외관상태 및 색택 전반적으로 양호. MOAMARI(#4-C): 어창 개방 측정온도 -20.0℃ ~ -23.0℃. 외관상태 및 색택 전반적으로 양호. 명일(6/2)은 약 250톤 하역 진행 예정.",
-      "created_at": "2026-06-01T22:42:57.072021+00:00"
-    },
-    {
-      "vessel_id": "sein-phoenix",
-      "report_date": "6/2",
-      "work_time": "08:20 ~ 14:00",
-      "target_holds": "S/SPR(#1-A), MOAMARI(#4-C)",
-      "daily_amount": 198.78,
-      "cumulative_amount": 2304.99,
-      "quality_notes": "S/SPR(#1-A): 어창 개방 측정온도 -20.0℃ ~ -21.0℃. 외관상태 및 색택 전반적으로 양호.MOAMARI(#4-C): 어창 개방 측정온도 -21.0℃ ~ -22.0℃. 외관상태 및 색택 전반적으로 양호. 명일(6/6) 약 235톤 하역 진행 예정."
-    },
-    {
-      "vessel_id": "bao-lucky",
-      "report_date": "6/2",
-      "work_time": "09:00 ~ 17:10",
-      "target_holds": "S/EXP(#4-A), N/STAR(#1-A)",
-      "daily_amount": 229.16,
-      "cumulative_amount": 229.16,
-      "quality_notes": "S/EXP(#4-A): 어창 개방 측정온도 -18.0℃ ~ -19.0℃. 외관상태 및 색택 전반적으로 양호.N/STAR(#1-A): 어창 개방 측정온도 -19.0℃ ~ -20.0℃. 외관상태 및 색택 전반적으로 양호. 명일(6/6) 약 176톤 하역 진행 예정."
-    },
-    {
-      "vessel_id": "sein-phoenix",
-      "report_date": "6/3",
-      "work_time": "08:10 ~ 18:40",
-      "target_holds": "S/PIO(#3-A), MOAKONA(#2-B)",
-      "daily_amount": 236.14,
-      "cumulative_amount": 2541.13,
-      "quality_notes": "S/PIO(#3-A): 어창 개방 측정온도 -21.0℃ ~ -22.0℃. 외관상태 및 색택 전반적으로 양호.MOAKONA(#2-B): 어창 개방 측정온도 -21.0℃ ~ -22.0℃. 외관상태 및 색택 전반적으로 양호. 명일(6/6) 약 330톤 하역 진행 예정."
-    },
-    {
-      "vessel_id": "bao-lucky",
-      "report_date": "6/3",
-      "work_time": "08:00 ~ 18:00",
-      "target_holds": "S/EXP(#4-B)",
-      "daily_amount": 180.34,
-      "cumulative_amount": 409.5,
-      "quality_notes": "S/EXP(#4-B): 어창 개방 측정온도 -20.0℃. 양호. 명일(6/6) 약 410톤 하역 진행 예정."
-    },
-    {
-      "vessel_id": "bao-lucky",
-      "report_date": "6/4",
-      "work_time": "08:20 ~ 15:20",
-      "target_holds": "N/STAR(#1-A), S/EXP(#2-A,#4-A), MOAKONA(#2-A)",
-      "daily_amount": 417.35,
-      "cumulative_amount": 826.85,
-      "quality_notes": "제품상태:N/STAR(#1-A) - 어창 개방 측정온도는 -22.0℃ ~ -23.0℃ 입니다. - 외관상태 및 색택 전반적으로 양호하였습니다.S/EXP(#2-A,#4-A) - 어창 개방 측정온도는 -19.0℃ ~ -21.0℃ 입니다. - 외관상태 및 색택 전반적으로 양호하였습니다.MOAKONA(#2-A) - 어창 개방 측정온도는 -20.0℃ ~ -21.0℃ 입니다. - 외관상태 및 색택 전반적으로 양호하였습니다. 명일(6/6) 약 270톤 하역 진행 예정."
-    },
-    {
-      "vessel_id": "sein-phoenix",
-      "report_date": "6/4",
-      "work_time": "08:20 ~ 18:30",
-      "target_holds": "S/PIO(#3-A), MOAKONA(#2-B)",
-      "daily_amount": 322.87,
-      "cumulative_amount": 2864,
-      "quality_notes": "S/PIO(#3-A)- 어창 개방 측정온도는 -18.0℃ ~ -21.0℃ 입니다.- 외관상태 및 색택 전반적으로 양호하였습니다.  MOAKONA(#2-B)- 어창 개방 측정온도는 -22.0℃ ~ -23.0℃ 입니다.- 외관상태 및 색택 전반적으로 양호하였습니다. 명일(6/6) 약 580톤 하역 진행 예정."
-    },
-    {
-      "vessel_id": "bao-lucky",
-      "report_date": "6/5",
-      "work_time": "08:00 ~ 16:50",
-      "target_holds": "S/PIO(#3-A), N/STAR(#1-A), S/EXP(#4-A)",
-      "daily_amount": 309.67,
-      "cumulative_amount": 1136.52,
-      "quality_notes": "S/PIO(#3-A) - 어창 개방 측정온도는 -20.0℃ ~ -21.0℃ 입니다. - 외관상태 및 색택 전반적으로 양호하였습니다. S/EXP(#4-A) - 어창 개방 측정온도는 -21.0℃ ~ -22.0℃ 입니다. - 외관상태 및 색택 전반적으로 양호하였습니다. N/STAR(#1-A) - 어창 개방 측정온도는 -19.0℃ ~ -20.0℃ 입니다. - 외관상태 및 색택 전반적으로 양호하였습니다. 명일(6/6) 약 270톤 하역 진행 예정."
-    },
-    {
-      "vessel_id": "sein-phoenix",
-      "report_date": "6/5",
-      "work_time": "08:10 ~ 18:20",
-      "target_holds": "S/HAR(#1-B), MOAKONA(#2-B), S/PIO(#3-A,#3-B), MOAMARI(#4-C,#4-D)",
-      "daily_amount": 438.05,
-      "cumulative_amount": 3302.05,
-      "quality_notes": "S/PIO(#3-A,#3-B) - 어창 개방 측정온도는 -18.0℃ ~ -22.0℃ 입니다. - 외관상태 및 색택 전반적으로 양호하였습니다. S/HAR(#1-B) - 어창 개방 측정온도는 -21.0℃ ~ -22.0℃ 입니다. - 외관상태 및 색택 전반적으로 양호하였습니다. MOAKONA(#2-B) - 어창 개방 측정온도는 -18.0℃ ~ -19.0℃ 입니다. - 외관상태 및 색택 전반적으로 양호하였습니다. MOAMARI(#4-C,#4-D) - 어창 개방 측정온도는 -22.0℃ ~ -23.0℃ 입니다. - 외관상태 및 색택 전반적으로 양호하였습니다. 명일(6/6) 약 450톤 하역 진행 예정."
-    },
-    {
-      "vessel_id": "bao-lucky",
-      "report_date": "6/6",
-      "work_time": "08:20 ~ 15:50",
-      "target_holds": "S/EXP(#4-A), N/STAR(#1-A), MOAMARI(#2-A)",
-      "daily_amount": 276.89,
-      "cumulative_amount": 1413.41,
-      "quality_notes": "S/EXP(#4-A) - 어창 개방 측정온도는 -21.0℃ ~ -22.0℃ 입니다. - 외관상태 및 색택 전반적으로 양호하였습니다. N/STAR(#1-A) - 어창 개방 측정온도는 -20.0℃ ~ -21.0℃ 입니다. - 외관상태 및 색택 전반적으로 양호하였습니다. MOAMARI(#2-A) - 어창 개방 측정온도는 -19.0℃ ~ -20.0℃ 입니다. - 외관상태 및 색택 전반적으로 양호하였습니다. 명일(6/7,공휴일)은 하역 작업이 없으며, 재명일(6/8) 약 550톤 하역 진행 예정."
-    },
-    {
-      "vessel_id": "sein-phoenix",
-      "report_date": "6/6",
-      "work_time": "08:10 ~ 18:00",
-      "target_holds": "S/PIO(#3-B), S/SPR(#4-D), N/STAR(#2-C)",
-      "daily_amount": 465.96,
-      "cumulative_amount": 3768.01,
-      "quality_notes": "S/PIO(#3-B) - 어창 개방 측정온도는 -18.0℃ ~ -19.0℃ 입니다. - 외관상태 및 색택 전반적으로 양호하였습니다. S/SPR(#4-D) - 어창 개방 측정온도는 -20.0℃ ~ -21.0℃ 입니다. - 외관상태 및 색택 전반적으로 양호하였습니다. N/STAR(#2-C) - 어창 개방 측정온도는 -20.0℃ ~ -21.0℃ 입니다. - 외관상태 및 색택 전반적으로 양호하였습니다. 명일(6/7,공휴일)은 하역작업이 없으며, 재명일(6/8) 약 586톤 하역 진행 예정."
-    },
-    {
-      "vessel_id": "sein-phoenix",
-      "report_date": "6/7",
-      "work_time": "-",
-      "target_holds": "-",
-      "daily_amount": 0,
-      "cumulative_amount": 3768.01,
-      "quality_notes": "공휴일 휴무."
-    },
-    {
-      "vessel_id": "bao-lucky",
-      "report_date": "6/7",
-      "work_time": "-",
-      "target_holds": "-",
-      "daily_amount": 0,
-      "cumulative_amount": 1413.41,
-      "quality_notes": "공휴일 휴무."
-    },
-    {
-      "vessel_id": "sein-phoenix",
-      "report_date": "6/8",
-      "work_time": "08:10 ~ 16:50",
-      "target_holds": "N/STAR(#2-C:128.460), S/SPR(#4-D:143.560), S/HAR(#1-B:78.060), S/PIO(#3-B:152.410)",
-      "daily_amount": 502.53,
-      "cumulative_amount": 4270.54,
-      "quality_notes": "S/PIO(#3-B) - 어창 개방 측정온도는 -18.0℃ ~ -19.0℃ 입니다. - 외관상태 및 색택 전반적으로 양호하였습니다. S/HAR(#1-B) - 어창 개방 측정온도는 -20.0℃ ~ -21.0℃ 입니다. - 외관상태 및 색택 전반적으로 양호하였습니다. S/SPR(#4-D) - 어창 개방 측정온도는 -22.0℃ ~ -23.0℃ 입니다. - 외관상태 및 색택 전반적으로 양호하였습니다. N/STAR(#2-C) - 어창 개방 측정온도는 -22.0℃ ~ -23.0℃ 입니다. - 외관상태 및 색택 전반적으로 양호하였습니다. 명일(6/9)은 약 250톤 하역 진행 예정."
-    },
-    {
-      "vessel_id": "bao-lucky",
-      "report_date": "6/8",
-      "work_time": "08:00 ~ 20:20",
-      "target_holds": "N/STAR(#1-B:207.750), MOAKONA(#2-A:89.070), S/PIO(#3-A:70.380), S/EXP(#4-A:59.245,#4-B:59.245)",
-      "daily_amount": 485.69,
-      "cumulative_amount": 1899.1,
-      "quality_notes": "N/STAR(#1-B) - 어창 개방 측정온도는 -20.0℃ ~ -21.0℃ 입니다. - 외관상태 및 색택 전반적으로 양호하였습니다. S/PIO(#3-A) - 어창 개방 측정온도는 -20.0℃ ~ -21.0℃ 입니다. - 외관상태 및 색택 전반적으로 양호하였습니다. S/EXP(#4-A,#4-B) - 어창 개방 측정온도는 -18.0℃ ~ -20.0℃ 입니다. - 외관상태 및 색택 전반적으로 양호하였습니다. MOAKONA(#2-A) - 어창 개방 측정온도는 -20.0℃ ~ -21.0℃ 입니다. - 외관상태 및 색택 전반적으로 양호하였습니다. 명일(6/9)은 약 70톤 하역 진행 예정."
-    },
-    {
-      "vessel_id": "sein-phoenix",
-      "report_date": "6/9",
-      "work_time": "08:10 ~ 14:00",
-      "target_holds": "N/STAR(#2-C), S/PIO(#3-B)",
-      "daily_amount": 214.9,
-      "cumulative_amount": 4485.44,
-      "quality_notes": "S/PIO(#3-B) - 어창 개방 측정온도는 -17.0℃ ~ -18.0℃ 입니다. - 외관상태 및 색택 전반적으로 양호하였습니다. N/STAR(#2-C) - 어창 개방 측정온도는 -22.0℃ ~ -23.0℃ 입니다. - 외관상태 및 색택 전반적으로 양호하였습니다. 명일(6/10)은 약 185톤 하역 진행 예정."
-    },
-    {
-      "vessel_id": "bao-lucky",
-      "report_date": "6/9",
-      "work_time": "08:30 ~ 11:50",
-      "target_holds": "S/PIO(#3-A)",
-      "daily_amount": 37.6,
-      "cumulative_amount": 1936.7,
-      "quality_notes": "S/PIO(#3-A) - 어창 개방 측정온도는 -20.0℃ ~ -21.0℃ 입니다. - 외관상태 및 색택 전반적으로 양호하였습니다. 명일(6/10)은 약 335톤 하역 진행 예정."
-    },
-    {
-      "vessel_id": "sein-phoenix",
-      "report_date": "6/10",
-      "work_time": "09:00 ~ 17:30",
-      "target_holds": "N/STAR(#2-C)",
-      "daily_amount": 178.28,
-      "cumulative_amount": 4663.72,
-      "quality_notes": "N/STAR(#2-C) - 어창 개방 측정온도는 -21.0℃ ~ -22.0℃ 입니다. - 외관상태 및 색택 전반적으로 양호하였습니다. 명일(6/11)은 약 100톤 하역 진행 예정."
-    },
-    {
-      "vessel_id": "bao-lucky",
-      "report_date": "6/10",
-      "work_time": "08:10 ~ 19:40",
-      "target_holds": "MOAKONA(#2-A:81.590), S/CHA(#3-A:116.580), S/PIO(#4-B:86.270)",
-      "daily_amount": 284.44,
-      "cumulative_amount": 2221.14,
-      "quality_notes": "S/PIO(#4-B) - 어창 개방 측정온도는 -19.0℃ ~ -20.0℃. S/CHA(#3-A) - -21.0℃ ~ -22.0℃. MOAKONA(#2-A) - -21.0℃ ~ -22.0℃. 외관상태 및 색택 전반적으로 양호. 명일(6/11)은 약 180톤 하역 진행 예정."
-    },
-    {
-      "vessel_id": "sein-phoenix",
-      "report_date": "6/11",
-      "work_time": "08:10 ~ 14:00",
-      "target_holds": "S/PIO(#3-B)",
-      "daily_amount": 112.92,
-      "cumulative_amount": 4776.64,
-      "quality_notes": "S/PIO(#3-B) - 어창 개방 측정온도는 -20.0℃ ~ -21.0℃ 입니다. - 외관상태 및 색택 전반적으로 양호하였습니다. 명일(6/12)은 약 150톤 하역 진행 예정."
-    },
-    {
-      "vessel_id": "bao-lucky",
-      "report_date": "6/11",
-      "work_time": "08:10 ~ 14:10",
-      "target_holds": "MOAKONA(#2-A:107.730), S/CHA(#3-A,#3-B:98.800)",
-      "daily_amount": 206.53,
-      "cumulative_amount": 2427.67,
-      "quality_notes": "S/CHA(#3-A,#3-B) - 어창 개방 측정온도는 -20.0℃ ~ -23.0℃. MOAKONA(#2-A) - -21.0℃ ~ -22.0℃. 외관상태 및 색택 전반적으로 양호. 명일(6/12)은 약 100톤 하역 진행 예정."
-    },
-    {
-      "vessel_id": "sein-phoenix",
-      "report_date": "6/12",
-      "work_time": "08:10 ~ 16:00",
-      "target_holds": "N/STAR(#2-C), S/PIO(#3-B,#3-C)",
-      "daily_amount": 146.2,
-      "cumulative_amount": 4922.84,
-      "quality_notes": "S/PIO(#3-B,#3-C) - 어창 개방 측정온도는 -17.0℃ ~ -20.0℃ 입니다. N/STAR(#2-C) - 어창 개방 측정온도는 -19.0℃ ~ -20.0℃ 입니다. 외관상태 및 색택 전반적으로 양호하였습니다. 명일(6/13)은 약 530톤 하역 진행 예정."
-    },
-    {
-      "vessel_id": "bao-lucky",
-      "report_date": "6/12",
-      "work_time": "08:20 ~ 14:30",
-      "target_holds": "MOAKONA(#2-A)",
-      "daily_amount": 66.66,
-      "cumulative_amount": 2494.33,
-      "quality_notes": "MOAKONA(#2-A) - 어창 개방 측정온도는 -20.0℃ ~ -21.0℃. 외관상태 및 색택 전반적으로 양호. 6/13~6/14 하역 작업 없음. 월요일(6/15) 하역 재개 예정."
-    },
-    {
-      "vessel_id": "sein-phoenix",
-      "report_date": "6/13",
-      "work_time": "08:10 ~ 18:30",
-      "target_holds": "S/HAR(#1-B:131.450), N/STAR(#2-C,#2-D:196.600), S/JUP(#3-C:161.730)",
-      "daily_amount": 489.78,
-      "cumulative_amount": 5412.62,
-      "quality_notes": "S/HAR(#1-B) - 어창 개방 측정온도는 -20.0℃ ~ -21.0℃. S/JUP(#3-C) - -20.0℃ ~ -21.0℃. N/STAR(#2-C,#2-D) - -18.0℃ ~ -22.0℃. 외관상태 및 색택 전반적으로 양호. 명일(6/14)은 약 100톤 하역 진행 예정."
-    },
-    {
-      "vessel_id": "sein-phoenix",
-      "report_date": "6/14",
-      "work_time": "08:00 ~ 14:20",
-      "target_holds": "S/JUP(#3-C)",
-      "daily_amount": 93.75,
-      "cumulative_amount": 5506.37,
-      "quality_notes": "S/JUP(#3-C) - 어창 개방 측정온도는 -21.0℃ ~ -22.0℃ 입니다. 외관상태 및 색택 전반적으로 양호하였습니다. 명일(6/15)은 약 210톤 하역 진행 예정."
-    },
-    {
-      "vessel_id": "sein-phoenix",
-      "report_date": "6/15",
-      "work_time": "08:20 ~ 18:20",
-      "target_holds": "S/JUP(#3-C,#3-D)",
-      "daily_amount": 227.99,
-      "cumulative_amount": 5734.36,
-      "quality_notes": "S/JUP(#3-C,#3-D) - 어창 개방 측정온도는 -19.0℃ ~ -22.0℃ 입니다. - 외관상태 및 색택 전반적으로 양호하였습니다. 명일(6/16)은 약 380톤 하역 진행 예정."
-    },
-    {
-      "vessel_id": "bao-lucky",
-      "report_date": "6/15",
-      "work_time": "08:20 ~ 19:40",
-      "target_holds": "KONA(#2-A,#2-B), S/CHA(#3-B), S/PIO(#4-B)",
-      "daily_amount": 256.5,
-      "cumulative_amount": 2750.83,
-      "quality_notes": "MOAKONA(#2-A,#2-B) - 어창 개방 측정온도는 -21.0℃ ~ -22.0℃. S/CHA(#3-B) - -22.0℃ ~ -23.0℃. S/PIO(#4-B) - -20.0℃ ~ -21.0℃. 명일(6/16)은 약 240톤 하역 작업 예정."
-    },
-    {
-      "id": "f00e14ed-5d25-4c0c-ab1e-d2d9ea690bb7",
-      "vessel_id": "sein-phoenix",
-      "report_date": "6/16",
-      "work_time": "08:10 ~ 18:10",
-      "target_holds": "S/SPR(#4-D), N/STAR(#2-D), S/JUP(#3-D)",
-      "daily_amount": 390.96,
-      "cumulative_amount": 6125.32,
-      "quality_notes": "S/JUP(#3-D) - 어창 개방 측정온도는 -20.0℃ ~ -21.0℃ 입니다. - 외관상태 및 색택 전반적으로 양호하였습니다. S/SPR(#4-D) - 어창 개방 측정온도는 -22.0℃ ~ -23.0℃ 입니다. - 외관상태 및 색택 전반적으로 양호하였습니다. N/STAR(#2-D) - 어창 개방 측정온도는 -21.0℃ ~ -22.0℃ 입니다. - 외관상태 및 색택 전반적으로 양호하였습니다. 명일(6/17)은 약 485톤 하역 진행 예정.",
-      "created_at": "2026-06-17T09:17:31.432671"
-    },
-    {
-      "id": "9a2006e9-d25c-4f32-aa3e-62d21eb0a2b0",
-      "vessel_id": "bao-lucky",
-      "report_date": "6/16",
-      "work_time": "08:10 ~ 15:30",
-      "target_holds": "S/PIO(#4-B), KONA(#2-B), S/CHA(#3-B)",
-      "daily_amount": 243.86,
-      "cumulative_amount": 2994.69,
-      "quality_notes": "MOAKONA(#2-A,#2-B) - 어창 개방 측정온도는 -20.0℃ ~ -21.0℃ 입니다. S/CHA(#3-B) - 어창 개방 측정온도는 -22.0℃ ~ -23.0℃ 입니다. S/PIO(#4-B) - 어창 개방 측정온도는 -20.0℃ ~ -21.0℃ 입니다. 명일(6/17)은 약 95톤 하역 작업 예정입니다.",
-      "created_at": "2026-06-17T09:20:22.570111"
-    },
-    {
-      "id": "c1f7365b-a63b-48c9-83bc-42b7819cf789",
-      "vessel_id": "bao-lucky",
-      "report_date": "6/17",
-      "work_time": "08:10 ~ 10:20",
-      "target_holds": "S/PIO(#4-B), KONA(#2-B)",
-      "daily_amount": 69.01,
-      "cumulative_amount": 3063.7,
-      "quality_notes": "MOAKONA(#2-B) - 어창 개방 측정온도는 -20.0℃ ~ -21.0℃ 입니다. S/PIO(#4-B) - 어창 개방 측정온도는 -20.0℃ ~ -21.0℃ 입니다. 명일(6/18)은 약 377톤 하역 작업 예정입니다.",
-      "created_at": "2026-06-18T09:17:00.000000"
-    },
-    {
-      "id": "e30e14ad-2b3d-4c3e-862a-10f7ca620ab1",
-      "vessel_id": "sein-phoenix",
-      "report_date": "6/17",
-      "work_time": "08:10 ~ 19:30",
-      "target_holds": "S/HAR(#1-B,#1-C), N/STAR(#2-D), S/JUP(#3-D)",
-      "daily_amount": 486.08,
-      "cumulative_amount": 6611.4,
-      "quality_notes": "S/JUP(#3-D) - 어창 개방 측정온도는 -20.0℃ ~ -21.0℃ 입니다. - 외관상태 및 색택 전반적으로 양호하였습니다. S/HAR(#1-B,#1-C) - 어창 개방 측정온도는 -22.0℃ ~ -23.0℃ 입니다. - 외관상태 및 색택 전반적으로 양호하였습니다. N/STAR(#2-D) - 어창 개방 측정온도는 -21.0℃ ~ -22.0℃ 입니다. - 외관상태 및 색택 전반적으로 양호하였습니다. 명일(6/18)은 약 420톤 하역 진행 예정입니다.",
-      "created_at": "2026-06-18T09:20:00.000000"
-    },
-    {
-      "id": "new-report-sein-phoenix-6-18",
-      "vessel_id": "sein-phoenix",
-      "report_date": "6/18",
-      "work_time": "08:20 ~ 17:40",
-      "target_holds": "S/HAR(#1-C), S/JUP(#3-D)",
-      "daily_amount": 449.55,
-      "cumulative_amount": 7060.95,
-      "quality_notes": "S/JUP(#3-D) - 어창 개방 측정온도는 -20.0℃ ~ -21.0℃ 입니다. - 외관상태 및 색택 전반적으로 양호하였습니다. S/HAR(#1-C) - 어창 개방 측정온도는 -19.0℃ ~ -20.0℃ 입니다. - 외관상태 및 색택 전반적으로 양호하였습니다. 6/18 하역 최종 종료.",
-      "created_at": "2026-06-18T18:00:00.000000"
-    },
-    {
-      "id": "new-report-bao-lucky-6-18",
-      "vessel_id": "bao-lucky",
-      "report_date": "6/18",
-      "work_time": "08:20 ~ 20:00",
-      "target_holds": "N/STAR(#1-B), MOAMARI(#1-B), MOAKONA(#2-B)",
-      "daily_amount": 324.15,
-      "cumulative_amount": 3387.85,
-      "quality_notes": "MOAKONA(#2-B) - 어창 개방 측정온도는 -20.0℃ ~ -21.0℃ 입니다. MOAMARI(#1-B) - 어창 개방 측정온도는 -21.0℃ ~ -22.0℃ 입니다. N/STAR(#1-B) - 어창 개방 측정온도는 -20.0℃ ~ -21.0℃ 입니다. 명일(6/19)은 약 430톤 하역 작업 예정입니다.",
-      "created_at": "2026-06-18T18:00:00.000000"
-    },
-    {
-      "id": "new-report-baolucky-6-19",
-      "vessel_id": "bao-lucky",
-      "report_date": "6/19",
-      "work_time": "08:20 ~ 20:40",
-      "target_holds": "S/CHA(#3-B), MOAMARI(#1-B)",
-      "daily_amount": 411.05,
-      "cumulative_amount": 3798.9,
-      "quality_notes": "MOAMARI(#1-B) - 어창 개방 측정온도는 -21.0℃ ~ -22.0℃ 입니다. S/CHA(#3-B) - 어창 개방 측정온도는 -21.0℃ ~ -22.0℃ 입니다. 명일(6/20)은 약 330톤 하역 작업 예정입니다.",
-      "created_at": "2026-06-19T21:00:00.000000"
-    },
-    {
-      "id": "new-report-shinfuji-6-20",
-      "vessel_id": "shin-fuji",
-      "report_date": "6/20",
-      "work_time": "08:20 ~ 11:00",
-      "target_holds": "N/STAR(#1-A)",
-      "daily_amount": 63.39,
-      "cumulative_amount": 63.39,
-      "quality_notes": "N/STAR(#1-A) - 어창 개방 측정온도는 -19.0℃ ~ -20.0℃ 입니다. 명일(6/21)은 공휴일로 하역 작업이 없으며, 재명일(6/22)은 약 140톤 하역 작업 예정입니다.",
-      "created_at": "2026-06-20T20:00:00.000000"
-    },
-    {
-      "id": "new-report-baolucky-6-20",
-      "vessel_id": "bao-lucky",
-      "report_date": "6/20",
-      "work_time": "08:10 ~ 17:40",
-      "target_holds": "S/CHA(#3-B,#3-C), MOAMARI(#1-B,#1-C)",
-      "daily_amount": 323.59,
-      "cumulative_amount": 4122.49,
-      "quality_notes": "MOAMARI(#1-B,#1-C) - 어창 개방 측정온도는 -20.0℃ ~ -21.0℃ 입니다. S/CHA(#3-B,#3-C) - 어창 개방 측정온도는 -20.0℃ ~ -22.0℃ 입니다. 명일(6/21)은 약 100톤 하역 작업 예정입니다.",
-      "created_at": "2026-06-20T21:00:00.000000"
-    },
-    {
-      "id": "3a4e6080-de11-45ff-94f0-9e4651cd433d",
-      "vessel_id": "bao-lucky",
-      "report_date": "6/21",
-      "work_time": "08:20 ~ 13:30",
-      "target_holds": "S/CHA(#3-C)",
-      "daily_amount": 94.9,
-      "cumulative_amount": 4217.39,
-      "quality_notes": "S/CHA(#3-C) - 어창 개방 측정온도는 -20.0℃ ~ -22.0℃ 입니다. 명일(6/22)은 약 297톤 하역 작업 예정입니다.",
-      "created_at": "2026-06-22T11:09:53.933560"
-    },
-    {
-      "id": "9bbd2146-1828-43a0-82bc-9839033603b1",
-      "vessel_id": "bao-lucky",
-      "report_date": "6/22",
-      "work_time": "08:10 ~ 19:30",
-      "target_holds": "S/CHA(#3-C), MOAMARI(#1-C), N/STAR(#2-B)",
-      "daily_amount": 313.18,
-      "cumulative_amount": 4530.57,
-      "quality_notes": "S/CHA(#3-C) - 어창 개방 측정온도는 -20.0℃ ~ -22.0℃ 입니다. 명일(6/23)은 약 310톤 하역 작업 예정입니다.",
-      "created_at": "2026-06-24T09:13:55.214694"
-    },
-    {
-      "id": "012bb6e5-62b2-447c-b135-a00a96cfae3b",
-      "vessel_id": "bao-lucky",
-      "report_date": "6/23",
-      "work_time": "08:10 ~ 19:40",
-      "target_holds": "MOAMARI(#1-C), N/STAR(#2-B)",
-      "daily_amount": 317.59,
-      "cumulative_amount": 4848.16,
-      "quality_notes": "MOAMARI(#1-C) 및 N/STAR(#2-B) - 어창 개방 측정온도는 -20.0℃ ~ -21.0℃ 입니다. 총 4803톤 대비 45.16톤 증가한 4848.16톤으로 하역 종료하였습니다.",
-      "created_at": "2026-06-24T09:13:55.214704"
-    },
-    {
-      "id": "c2411389-4f7c-4744-9fec-51c83b8c8ecb",
-      "vessel_id": "shin-fuji",
-      "report_date": "6/22",
-      "work_time": "08:10 ~ 18:00",
-      "target_holds": "MOAMARI(#3-A)",
-      "daily_amount": 140.48,
-      "cumulative_amount": 203.87,
-      "quality_notes": "MOAMARI(#3-A) - 어창 개방 측정온도는 -20.0℃ ~ -21.0℃ 입니다. 명일(6/23)은 약 100톤 하역 작업 예정입니다.",
-      "created_at": "2026-06-24T09:13:55.214709"
-    },
-    {
-      "id": "c7319f73-cff5-4f10-b38b-b2b2d7a0cb40",
-      "vessel_id": "shin-fuji",
-      "report_date": "6/23",
-      "work_time": "08:10 ~ 11:10",
-      "target_holds": "MOAMARI(#3-A)",
-      "daily_amount": 104.16,
-      "cumulative_amount": 308.03,
-      "quality_notes": "MOAMARI(#3-A) - 어창 개방 측정온도는 -20.0℃ ~ -21.0℃ 입니다. 명일(6/24)은 약 210톤 하역 작업 예정입니다.",
-      "created_at": "2026-06-24T09:13:55.214712"
-    },
-    {
-      "id": "c1c18c32-33af-4cb1-b38c-9adf04e9a8ce",
-      "vessel_id": "shin-fuji",
-      "report_date": "6/24",
-      "work_time": "08:10 ~ 15:30",
-      "target_holds": "MARI(#3-A, #3-B)",
-      "daily_amount": 201.14,
-      "cumulative_amount": 509.17,
-      "quality_notes": "MOAMARI(#3-A, #3-B) - 어창 개방 측정온도는 -18.0℃ ~ -20.0℃ 입니다. 명일(6/25)은 약 425톤 하역 작업 예정입니다.",
-      "created_at": "2026-07-02T04:42:29.306467Z"
-    },
-    {
-      "id": "d23760cf-7b1c-4d93-8603-1a9555c249aa",
-      "vessel_id": "shin-fuji",
-      "report_date": "6/25",
-      "work_time": "08:10 ~ 20:40",
-      "target_holds": "N/STAR(#1-A, #2-A), MARI(#3-B), N/STAR(#1-B)",
-      "daily_amount": 440.15,
-      "cumulative_amount": 949.32,
-      "quality_notes": "MOAMARI(#3-B) - 어창 개방 측정온도는 -19.0℃ ~ -20.0℃ 입니다. N/STAR(#1-A, #1-B, #2-A) - 어창 개방 측정온도는 -19.0℃ ~ -21.0℃ 입니다. 명일(6/26)은 약 350톤 하역 작업 예정입니다.",
-      "created_at": "2026-07-02T04:42:29.306651Z"
-    },
-    {
-      "id": "83356f6b-f485-42f3-8a79-a410a443f7ca",
-      "vessel_id": "shin-fuji",
-      "report_date": "6/26",
-      "work_time": "08:10 ~ 17:50",
-      "target_holds": "N/STAR(#2-A), MARI(#3-B, #3-C), N/STAR(#1-B)",
-      "daily_amount": 393.16,
-      "cumulative_amount": 1342.48,
-      "quality_notes": "MOAMARI(#3-B, #3-C) - 어창 개방 측정온도는 -19.0℃ ~ -20.0℃ 입니다. N/STAR(#1-B, #2-A) - 어창 개방 측정온도는 -18.0℃ ~ -22.0℃ 입니다. 명일(6/27)은 약 350톤 하역 작업 예정입니다.",
-      "created_at": "2026-07-02T04:42:29.306664Z"
-    },
-    {
-      "id": "08784b56-5e16-4cff-8b8e-3084d8cc60d0",
-      "vessel_id": "shin-fuji",
-      "report_date": "6/27",
-      "work_time": "08:10 ~ 17:30",
-      "target_holds": "S/PIO(#4-A), N/SUN(#2-A, #2-B)",
-      "daily_amount": 413.05,
-      "cumulative_amount": 1755.53,
-      "quality_notes": "S/PIO(#4-A) - 어창 개방 측정온도는 -19.0℃ ~ -20.0℃ 입니다. N/SUN(#2-A, #2-B) - 어창 개방 측정온도는 -18.0℃ ~ -23.0℃ 입니다. 명일(6/28)은 공휴일로 하역 작업이 없으며, 재명일(6/29) 약 120톤 하역 작업 예정입니다.",
-      "created_at": "2026-07-02T04:42:29.306673Z"
-    },
-    {
-      "id": "049f81fe-f9f1-4107-88ff-306c387c0419",
-      "vessel_id": "shin-fuji",
-      "report_date": "6/28",
-      "work_time": "-",
-      "target_holds": "-",
-      "daily_amount": 0,
-      "cumulative_amount": 1755.53,
-      "quality_notes": "공휴일로 하역 작업 없음.",
-      "created_at": "2026-07-02T04:42:29.306682Z"
-    },
-    {
-      "id": "1ee36d97-593f-4f9c-bd0f-d36682d1e775",
-      "vessel_id": "shin-fuji",
-      "report_date": "6/29",
-      "work_time": "08:20 ~ 14:20",
-      "target_holds": "N/SUN(#2-B)",
-      "daily_amount": 121.64,
-      "cumulative_amount": 1877.17,
-      "quality_notes": "N/SUN(#2-B) - 어창 개방 측정온도는 -18.0℃ ~ -19.0℃ 입니다. 명일(6/30)은 약 120톤 하역 작업 예정입니다.",
-      "created_at": "2026-07-02T04:42:29.306690Z"
-    },
-    {
-      "id": "3c801601-460d-4403-9b4a-e673205ee543",
-      "vessel_id": "shin-fuji",
-      "report_date": "6/30",
-      "work_time": "08:20 ~ 15:10",
-      "target_holds": "N/STAR(#4-A, 4-B)",
-      "daily_amount": 124.67,
-      "cumulative_amount": 2001.84,
-      "quality_notes": "N/STAR(#4-A, 4-B) - 어창 개방 측정온도는 -18.0℃ ~ -22.0℃ 입니다. 명일(7/1)은 약 220톤 하역 작업 예정입니다.",
-      "created_at": "2026-07-02T04:44:25.667948+00:00"
-    },
-    {
-      "id": "fc70ad2b-d27b-4a93-bc0b-4591a7f8aefc",
-      "vessel_id": "shin-fuji",
-      "report_date": "7/1",
-      "work_time": "08:10 ~ 12:40",
-      "target_holds": "N/SUN(#2-B), N/STAR(#4-B)",
-      "daily_amount": 217.27,
-      "cumulative_amount": 2219.11,
-      "quality_notes": "N/SUN(#2-B) - 어창 개방 측정온도는 -23.0℃ ~ -24.0℃ 입니다. N/STAR(#4-B) - 어창 개방 측정온도는 -20.0℃ ~ -21.0℃ 입니다. 명일(7/2)은 약 240톤 하역 작업 예정입니다.",
-      "created_at": "2026-07-02T04:44:25.668085+00:00"
-    },
-    {
-      "id": "deb78bad-533d-4c58-91cf-f5005dd68ddb",
-      "vessel_id": "shin-fuji",
-      "report_date": "7/2",
-      "work_time": "08:10 ~ 14:10",
-      "target_holds": "N/SUN(#2-B, #2-C), N/STAR(#4-B, #4-C)",
-      "daily_amount": 240.26,
-      "cumulative_amount": 2459.37,
-      "quality_notes": "N/SUN(#2-B, #2-C) - 어창 개방 측정온도는 -18.0℃ ~ -19.0℃ 입니다. N/STAR(#4-B, #4-C) - 어창 개방 측정온도는 -18.0℃ ~ -20.0℃ 입니다. 명일(7/3)은 약 240톤 하역 작업 예정입니다.",
-      "created_at": "2026-07-02T23:45:07.162912+00:00"
-    },
-    {
-      "id": "shin-fuji-7-3",
-      "vessel_id": "shin-fuji",
-      "report_date": "7/3",
-      "work_time": "08:10 ~ 19:30",
-      "target_holds": "N/SUN(#2-C), S/EXP(#4-C)",
-      "daily_amount": 391.54,
-      "cumulative_amount": 2850.91,
-      "quality_notes": "N/SUN(#2-C) - 어창 개방 측정온도는 -18.0℃ ~ -19.0℃ 입니다. S/EXP(#4-C) - 어창 개방 측정온도는 -18.0℃ ~ -20.0℃ 입니다. 명일(7/4)은 약 120톤 하역 작업 예정입니다.",
-      "created_at": "2026-07-05T23:35:34.373243+00:00"
-    },
-    {
-      "id": "shin-fuji-7-4",
-      "vessel_id": "shin-fuji",
-      "report_date": "7/4",
-      "work_time": "08:40 ~ 14:40",
-      "target_holds": "MOAMARI(#3-C)",
-      "daily_amount": 150.66,
-      "cumulative_amount": 3001.57,
-      "quality_notes": "MOAMARI(#3-C) - 어창 개방 측정온도는 -18.0℃ ~ -19.0℃ 입니다. 명일(7/5)은 공휴일로 하역작업이 없으며, 재명일(7/6)은 약 235톤 하역 작업 예정입니다.",
-      "created_at": "2026-07-05T23:34:45.007032+00:00"
-    },
-    {
-      "id": "shin-fuji-7-5",
-      "vessel_id": "shin-fuji",
-      "report_date": "7/5",
-      "work_time": "공휴일 휴무",
-      "target_holds": "-",
-      "daily_amount": 0,
-      "cumulative_amount": 3001.57,
-      "quality_notes": "공휴일로 하역작업 없음.",
-      "created_at": "2026-07-07T08:49:12.027607"
-    },
-    {
-      "id": "shin-fuji-7-6",
-      "vessel_id": "shin-fuji",
-      "report_date": "7/6",
-      "work_time": "08:20 ~ 15:40",
-      "target_holds": "N/SUN(#2-C), MOAMARI(#3-C)",
-      "daily_amount": 228.65,
-      "cumulative_amount": 3230.22,
-      "quality_notes": "N/SUN(#2-C) - 어창 개방 측정온도는 -18.0℃ ~ -19.0℃ 입니다. MOAMARI(#3-C) - 어창 개방 측정온도는 -19.0℃ ~ -20.0℃ 입니다. 운반선 보고량(3,096톤) 대비 134.220톤 증가한 3,230.220톤으로 하역 종료.",
-      "created_at": "2026-07-07T08:49:12.027607"
-    },
-    {
-      "id": "sein-venus-8-7",
-      "vessel_id": "sein-venus",
-      "report_date": "8/7",
-      "work_time": "10:10 ~ 19:00",
-      "target_holds": "N/SUN(#3-B:174.640)",
-      "daily_amount": 174.64,
-      "cumulative_amount": 174.64,
-      "species_amounts": {
-        "SJ": 150.34,
-        "YF": 24.3
-      },
-      "quality_notes": "N/SUN(#3-B) - 어창 개방 측정온도는 -21.0℃ ~ -23.0℃ 입니다. 8/8 약 160톤 하역 예정입니다.",
-      "created_at": "2026-08-12T15:34:21+09:00"
-    },
-    {
-      "id": "sein-venus-8-8",
-      "vessel_id": "sein-venus",
-      "report_date": "8/8",
-      "work_time": "08:10 ~ 13:00",
-      "target_holds": "S/PIO(#2-A:109.070)",
-      "daily_amount": 109.07,
-      "cumulative_amount": 283.71,
-      "species_amounts": {
-        "SJ": 104.17,
-        "YF": 4.9
-      },
-      "quality_notes": "S/PIO(#2-A) - 어창 개방 측정온도는 -22.0℃ ~ -23.0℃ 입니다. 8/9 공휴일로 하역 작업이 없으며, 8/10 약 310톤 하역 예정입니다.",
-      "created_at": "2026-08-12T15:34:21+09:00"
-    },
-    {
-      "id": "sein-venus-8-10",
-      "vessel_id": "sein-venus",
-      "report_date": "8/10",
-      "work_time": "08:10 ~ 16:10",
-      "target_holds": "S/PIO(#1-A:169.330), N/STAR(#2-A:162.140)",
-      "daily_amount": 331.47,
-      "cumulative_amount": 615.18,
-      "species_amounts": {
-        "SJ": 272.27,
-        "YF": 59.2
-      },
-      "quality_notes": "S/PIO(#1-A) - 어창 개방 측정온도는 -19.0℃ ~ -20.0℃ 입니다. N/STAR(#2-A) - 어창 개방 측정온도는 -22.0℃ ~ -23.0℃ 입니다. 8/11 약 420톤 하역 예정입니다.",
-      "created_at": "2026-08-12T15:34:21+09:00"
-    },
-    {
-      "id": "sein-venus-8-11",
-      "vessel_id": "sein-venus",
-      "report_date": "8/11",
-      "work_time": "08:10 ~ 14:40",
-      "target_holds": "S/PIO(#1-A:80.670,#1-B:41.170), N/STAR(#2-A:143.640), N/SUN(#3-B:197.330)",
-      "daily_amount": 462.81,
-      "cumulative_amount": 1077.99,
-      "species_amounts": {
-        "SJ": 377.61,
-        "YF": 85.2
-      },
-      "quality_notes": "S/PIO(#1-A,#1-B) - 어창 개방 측정온도는 -18.0℃ ~ -19.0℃ 입니다. N/STAR(#2-A) - 어창 개방 측정온도는 -19.0℃ ~ -20.0℃ 입니다. N/SUN(#3-B) - 어창 개방 측정온도는 -22.0℃ ~ -23.0℃ 입니다. 8/12 공휴일로 하역 작업이 없으며, 8/13 약 150톤 하역 예정입니다.",
-      "created_at": "2026-08-12T15:34:21+09:00"
-    },
-    {
-      "id": "sein-venus-8-13",
-      "vessel_id": "sein-venus",
-      "report_date": "8/13",
-      "work_time": "08:20 ~ 15:10",
-      "target_holds": "N/STAR(#2-B:159.590)",
-      "consignee": "MMP",
-      "daily_amount": 159.59,
-      "cumulative_amount": 1237.58,
-      "species_amounts": {
-        "SJ": 124.89,
-        "YF": 34.7
-      },
-      "quality_notes": "N/STAR(#2-B) - 어창 개방 측정온도는 -22.0℃ ~ -23.0℃ 입니다. 8/14 약 400톤 하역 예정입니다.",
-      "created_at": "2026-08-14T06:21:36+09:00"
-    },
-    {
-      "id": "sein-venus-8-14",
-      "vessel_id": "sein-venus",
-      "report_year": 2026,
-      "report_date": "8/14",
-      "work_time": "08:00 ~ 18:00",
-      "target_holds": "N/STAR(#2-B:78.650), N/SUN(#3-B:84.630,#3-C:203.200), S/SPR(#4-B:43.050,#4-C:15.250)",
-      "consignee": "MMP · ISA · TUM",
-      "allocations": [
-        {
-          "consignee": "MMP",
-          "amount": 78.65,
-          "loads": [
-            {
-              "source_vessel": "N/STAR",
-              "hatch": "#2-B",
-              "amount": 78.65
-            }
-          ]
-        },
-        {
-          "consignee": "ISA",
-          "amount": 142.93,
-          "loads": [
-            {
-              "source_vessel": "N/SUN",
-              "hatch": "#3-B",
-              "amount": 84.63
-            },
-            {
-              "source_vessel": "S/SPR",
-              "hatch": "#4-B",
-              "amount": 43.05
-            },
-            {
-              "source_vessel": "S/SPR",
-              "hatch": "#4-C",
-              "amount": 15.25
-            }
-          ]
-        },
-        {
-          "consignee": "TUM",
-          "amount": 203.2,
-          "loads": [
-            {
-              "source_vessel": "N/SUN",
-              "hatch": "#3-C",
-              "amount": 203.2
-            }
-          ]
-        }
-      ],
-      "observations": [
-        {
-          "source_vessel": "N/STAR",
-          "hatch": "#2-B",
-          "temperatures_c": [
-            -22,
-            -23
-          ]
-        },
-        {
-          "source_vessel": "N/SUN",
-          "hatch": "#3-B",
-          "temperatures_c": [
-            -21,
-            -22
-          ]
-        },
-        {
-          "source_vessel": "N/SUN",
-          "hatch": "#3-C",
-          "temperatures_c": [
-            -22,
-            -23
-          ]
-        },
-        {
-          "source_vessel": "S/SPR",
-          "hatch": "#4-B",
-          "temperatures_c": [
-            -21,
-            -22
-          ]
-        },
-        {
-          "source_vessel": "S/SPR",
-          "hatch": "#4-C",
-          "temperatures_c": [
-            -22,
-            -23
-          ]
-        }
-      ],
-      "daily_amount": 424.78,
-      "cumulative_amount": 1662.36,
-      "species_amounts": {
-        "SJ": 368.08,
-        "YF": 56.7
-      },
-      "remaining_amount": 1612.64,
-      "quality_notes": "N/STAR(#2-B) - 어창 개방 측정온도는 -22.0℃ ~ -23.0℃ 입니다. N/SUN(#3-B) - 어창 개방 측정온도는 -21.0℃ ~ -22.0℃ 입니다. N/SUN(#3-C) - 어창 개방 측정온도는 -22.0℃ ~ -23.0℃ 입니다. S/SPR(#4-B) - 어창 개방 측정온도는 -21.0℃ ~ -22.0℃ 입니다. S/SPR(#4-C) - 어창 개방 측정온도는 -22.0℃ ~ -23.0℃ 입니다.",
-      "source_sha256": "2c1a9f4b28f5a6a555b8329d3926fcb9eec0c1cf465deeed778919c7be3af76a",
-      "source_workbook_sha256": "0ad30e784ec9c643dfe1bb42ffa597005c5dffa2ea74523acff7c639637a6d70",
-      "status_workbook_sha256": "9814a954e5c7984a3be51cb1071cc60bbb9fc6734c20a51e14759a234775f7cf",
-      "created_at": "2026-08-14T21:01:37+09:00"
-    },
-    {
-      "id": "sein-venus-8-15",
-      "vessel_id": "sein-venus",
-      "report_year": 2026,
-      "report_date": "8/15",
-      "work_time": "08:10 ~ 17:00",
-      "target_holds": "N/STAR(#2-B:160.600,#2-C:41.990), N/SUN(#3-C:60.100), S/SPR(#4-C:88.050)",
-      "consignee": "TUM · ISA",
-      "allocations": [
-        {
-          "consignee": "TUM",
-          "amount": 202.59,
-          "loads": [
-            {
-              "source_vessel": "N/STAR",
-              "hatch": "#2-B",
-              "amount": 160.6
-            },
-            {
-              "source_vessel": "N/STAR",
-              "hatch": "#2-C",
-              "amount": 41.99
-            }
-          ]
-        },
-        {
-          "consignee": "ISA",
-          "amount": 148.15,
-          "loads": [
-            {
-              "source_vessel": "N/SUN",
-              "hatch": "#3-C",
-              "amount": 60.1
-            },
-            {
-              "source_vessel": "S/SPR",
-              "hatch": "#4-C",
-              "amount": 88.05
-            }
-          ]
-        }
-      ],
-      "observations": [
-        {
-          "source_vessel": "N/STAR",
-          "hatch": "#2-B",
-          "temperatures_c": [
-            -22,
-            -23
-          ]
-        },
-        {
-          "source_vessel": "N/STAR",
-          "hatch": "#2-C",
-          "temperatures_c": [
-            -22,
-            -23
-          ]
-        },
-        {
-          "source_vessel": "N/SUN",
-          "hatch": "#3-C",
-          "temperatures_c": [
-            -21,
-            -22
-          ]
-        },
-        {
-          "source_vessel": "S/SPR",
-          "hatch": "#4-C",
-          "temperatures_c": [
-            -21,
-            -22
-          ]
-        }
-      ],
-      "daily_amount": 350.74,
-      "cumulative_amount": 2013.1,
-      "species_amounts": {
-        "SJ": 318.14,
-        "YF": 32.6
-      },
-      "remaining_amount": 1261.9,
-      "daily_adjustment_amount": -21.16,
-      "cumulative_adjustment_amount": -0.73,
-      "adjusted_remaining_amount": 1261.17,
-      "next_day": {
-        "kind": "no_work",
-        "date": "8/16",
-        "reason": "공휴일",
-        "resume_date": "8/17",
-        "planned_mt": 300
-      },
-      "quality_notes": "N/STAR(#2-B) - 어창 개방 측정온도는 -22.0℃ ~ -23.0℃ 입니다. N/STAR(#2-C) - 어창 개방 측정온도는 -22.0℃ ~ -23.0℃ 입니다. N/SUN(#3-C) - 어창 개방 측정온도는 -21.0℃ ~ -22.0℃ 입니다. S/SPR(#4-C) - 어창 개방 측정온도는 -21.0℃ ~ -22.0℃ 입니다.",
-      "source_sha256": "2b295ca629ace7e9aa0b3d50c00992e8f0bdec13b7f1c80d8fb2e6d89fa39b6b",
-      "source_workbook_sha256": "a52a830b86c022936bf0c727d617073a548c5df466b1111223adab16e6c175b0",
-      "status_workbook_sha256": "0f0fe538043a59b9bf75f2cab299e161f1dd6299f41b96661bb642c497993dbd",
-      "created_at": "2026-08-15T19:27:19+09:00"
-    },
-    {
-      "id": "sein-venus-8-17",
-      "vessel_id": "sein-venus",
-      "report_year": 2026,
-      "report_date": "8/17",
-      "work_time": "08:10 ~ 16:30",
-      "target_holds": "N/STAR(#2-C:201.620), S/SPR(#4-C:97.500), N/SUN(#4-C:13.450)",
-      "consignee": "TUM · ISA",
-      "allocations": [
-        {
-          "consignee": "TUM",
-          "amount": 201.62,
-          "loads": [
-            {
-              "source_vessel": "N/STAR",
-              "hatch": "#2-C",
-              "amount": 201.62
-            }
-          ]
-        },
-        {
-          "consignee": "ISA",
-          "amount": 110.95,
-          "loads": [
-            {
-              "source_vessel": "S/SPR",
-              "hatch": "#4-C",
-              "amount": 97.5
-            },
-            {
-              "source_vessel": "N/SUN",
-              "hatch": "#4-C",
-              "amount": 13.45
-            }
-          ]
-        }
-      ],
-      "observations": [
-        {
-          "source_vessel": "N/STAR",
-          "hatch": "#2-C",
-          "temperatures_c": [
-            -21,
-            -23
-          ]
-        },
-        {
-          "source_vessel": "S/SPR",
-          "hatch": "#4-C",
-          "temperatures_c": [
-            -22,
-            -23
-          ]
-        },
-        {
-          "source_vessel": "N/SUN",
-          "hatch": "#4-C",
-          "temperatures_c": [
-            -22,
-            -23
-          ]
-        }
-      ],
-      "daily_amount": 312.57,
-      "cumulative_amount": 2325.67,
-      "species_amounts": {
-        "SJ": 279.77,
-        "YF": 32.8
-      },
-      "remaining_amount": 949.33,
-      "daily_adjustment_amount": 22.25,
-      "cumulative_adjustment_amount": 21.52,
-      "adjusted_remaining_amount": 970.85,
-      "next_day": {
-        "kind": "work",
-        "date": "8/18",
-        "planned_mt": 343
-      },
-      "quality_notes": "N/STAR(#2-C) - 어창 개방 측정온도는 -21.0℃ ~ -23.0℃ 입니다. S/SPR(#4-C) - 어창 개방 측정온도는 -22.0℃ ~ -23.0℃ 입니다. N/SUN(#4-C) - 어창 개방 측정온도는 -22.0℃ ~ -23.0℃ 입니다.",
-      "source_sha256": "e613b9c30622067e4c1115ae4a5233d8da7654871c95ab9ace9f8e4796c584a1",
-      "source_workbook_sha256": "60e054c9f9ea485c5c0f833e3a89c969598aac355c550b3a2e6d753dc751d84b",
-      "status_workbook_sha256": "bcd1d07d745d75a93f9c17512159e01c1b95acaed6d7bc8e08875aa60d2af22e",
-      "created_at": "2026-08-17T20:25:14+09:00"
-    },
-    {
-      "id": "sein-venus-8-18",
-      "vessel_id": "sein-venus",
-      "report_year": 2026,
-      "report_date": "8/18",
-      "work_time": "08:10 ~ 15:40",
-      "target_holds": "N/STAR(#2-C:130.880), N/SUN(#3-C:55.770,#4-C:153.080)",
-      "consignee": "TUM · GFF",
-      "allocations": [
-        {
-          "consignee": "TUM",
-          "amount": 186.65,
-          "loads": [
-            {
-              "source_vessel": "N/STAR",
-              "hatch": "#2-C",
-              "amount": 130.88
-            },
-            {
-              "source_vessel": "N/SUN",
-              "hatch": "#3-C",
-              "amount": 55.77
-            }
-          ]
-        },
-        {
-          "consignee": "GFF",
-          "amount": 153.08,
-          "loads": [
-            {
-              "source_vessel": "N/SUN",
-              "hatch": "#4-C",
-              "amount": 153.08
-            }
-          ]
-        }
-      ],
-      "observations": [
-        {
-          "source_vessel": "N/STAR",
-          "hatch": "#2-C",
-          "temperatures_c": [
-            -22,
-            -23
-          ]
-        },
-        {
-          "source_vessel": "N/SUN",
-          "hatch": "#3-C",
-          "temperatures_c": [
-            -22,
-            -23
-          ]
-        },
-        {
-          "source_vessel": "N/SUN",
-          "hatch": "#4-C",
-          "temperatures_c": [
-            -22,
-            -23
-          ]
-        }
-      ],
-      "daily_amount": 339.73,
-      "cumulative_amount": 2665.4,
-      "species_amounts": {
-        "SJ": 170.85,
-        "YF": 168.88
-      },
-      "remaining_amount": 609.6,
-      "daily_adjustment_amount": 4.57,
-      "cumulative_adjustment_amount": 26.09,
-      "adjusted_remaining_amount": 635.69,
-      "next_day": {
-        "kind": "work",
-        "date": "8/19",
-        "planned_mt": 280
-      },
-      "quality_notes": "N/STAR(#2-C) - 어창 개방 측정온도는 -22.0℃ ~ -23.0℃ 입니다. N/SUN(#3-C) - 어창 개방 측정온도는 -22.0℃ ~ -23.0℃ 입니다. N/SUN(#4-C) - 어창 개방 측정온도는 -22.0℃ ~ -23.0℃ 입니다.",
-      "source_sha256": "aafd0069803c8a2d115c33a490e5f04f85261c10886ec309c3bc2360da58ee59",
-      "source_workbook_sha256": "669a59d177710d341604a174288a0c0cec777e5c1f1b6c81393d6a6203fc78c3",
-      "status_workbook_sha256": "f3da391273b36b06cfa77bf24e552e7dfed1629090867ab17afea8ec449a5ba7",
-      "created_at": "2026-08-18T22:45:00+09:00"
-    },
-    {
-      "id": "hikari-loading-7-2-4",
-      "vessel_id": "hikari-bangkok-2026-07",
-      "report_date": "7/2~7/4",
-      "work_time": "선적기록",
-      "target_holds": "SHILLA SPRINTER(#2-B:340,#2-C:330)",
-      "daily_amount": 0,
-      "cumulative_amount": 0,
-      "quality_notes": "크리스마스섬 선적 766 MT 중 FCF 670 MT(SJ 648·YF 10·BE 12)를 #2-B·#2-C에 배치했습니다. #2-A 황다랑어 96 MT 별도 배정입니다. 적재 중 어체온도는 #2-C -12.3℃ ~ -14.5℃, #2-B -12.0℃ ~ -13.7℃였습니다.",
-      "created_at": "2026-08-12T16:35:00+09:00"
-    },
-    {
-      "id": "hikari-loading-7-14-15",
-      "vessel_id": "hikari-bangkok-2026-07",
-      "report_date": "7/14~7/15",
-      "work_time": "선적기록",
-      "target_holds": "MOAKONA(#4-C:314)",
-      "daily_amount": 0,
-      "cumulative_amount": 0,
-      "quality_notes": "크리스마스섬 선적 428 MT 중 FCF 314 MT(SJ 268·YF 38·BE 8)를 #4-C에 배치했습니다. #2-A 황다랑어 114 MT 별도 배정입니다. 적재 중 어체온도는 #4-C -12.8℃ ~ -41.6℃였습니다.",
-      "created_at": "2026-08-12T16:35:00+09:00"
-    },
-    {
-      "id": "hikari-loading-7-17-19",
-      "vessel_id": "hikari-bangkok-2026-07",
-      "report_date": "7/17~7/19",
-      "work_time": "선적기록",
-      "target_holds": "MOAMARI(#4-A:137,#4-B:390,#3-C:413)",
-      "daily_amount": 0,
-      "cumulative_amount": 0,
-      "quality_notes": "크리스마스섬 선적 940 MT 전량 FCF(SJ 668·YF 248·BE 24)이며 #4-A·#4-B·#3-C에 배치했습니다. 적재 중 어체온도는 #4-A -11.0℃ ~ -11.9℃, #4-B -11.2℃ ~ -12.5℃, #3-C -11.0℃ ~ -12.5℃였습니다.",
-      "created_at": "2026-08-12T16:35:00+09:00"
-    },
-    {
-      "id": "hikari-loading-7-17-20",
-      "vessel_id": "hikari-bangkok-2026-07",
-      "report_date": "7/17~7/20",
-      "work_time": "선적기록",
-      "target_holds": "NAOERO STAR(#1-A:280,#1-B:200,#3-A:165,#3-B:360)",
-      "daily_amount": 0,
-      "cumulative_amount": 0,
-      "quality_notes": "크리스마스섬 선적 1,005 MT 전량 FCF(SJ 931·YF 62·BE 12)이며 #1-A·#1-B·#3-A·#3-B에 배치했습니다. 적재 중 어체온도는 #1-A -11.4℃ ~ -12.4℃, #1-B -11.2℃ ~ -12.5℃, #3-A -11.0℃ ~ -12.3℃, #3-B -11.5℃ ~ -12.5℃였습니다. 7/20 최종 적재계획 기준 정격 3,700 MT, 총 적재 3,214 MT, FCF 방콕 하역대상 2,929 MT입니다. #2-A 별도 배정 285 MT(S/SPR 96·MOAKONA 114·S/PIO 75 황다랑어)는 하역 목표에서 제외했습니다.",
-      "created_at": "2026-08-12T16:35:00+09:00"
-    },
-    {
-      "id": "hikari-bangkok-2026-07-8-20",
-      "vessel_id": "hikari-bangkok-2026-07",
-      "report_year": 2026,
-      "report_date": "8/20",
-      "work_time": "10:00 ~ 15:20",
-      "target_holds": "N/STAR(#3-A:104.240,#1-A:69.800), MOAMARI(#4-A:123.020)",
-      "consignee": "MMP · GFF",
-      "allocations": [
-        {
-          "consignee": "MMP",
-          "amount": 174.04,
-          "loads": [
-            {
-              "source_vessel": "N/STAR",
-              "hatch": "#3-A",
-              "amount": 104.24
-            },
-            {
-              "source_vessel": "N/STAR",
-              "hatch": "#1-A",
-              "amount": 69.8
-            }
-          ]
-        },
-        {
-          "consignee": "GFF",
-          "amount": 123.02,
-          "loads": [
-            {
-              "source_vessel": "MOAMARI",
-              "hatch": "#4-A",
-              "amount": 123.02
-            }
-          ]
-        }
-      ],
-      "observations": [
-        {
-          "source_vessel": "N/STAR",
-          "hatch": "#3-A",
-          "temperatures_c": [
-            -22.0
-          ]
-        },
-        {
-          "source_vessel": "N/STAR",
-          "hatch": "#1-A",
-          "temperatures_c": [
-            -20.0
-          ]
-        },
-        {
-          "source_vessel": "MOAMARI",
-          "hatch": "#4-A",
-          "temperatures_c": [
-            -20.0
-          ]
-        }
-      ],
-      "daily_amount": 297.06,
-      "cumulative_amount": 297.06,
-      "species_amounts": {
-        "SJ": 146.14,
-        "YF": 150.92
-      },
-      "remaining_amount": 2631.94,
-      "next_day": {
-        "kind": "work",
-        "date": "8/21",
-        "planned_mt": 490
-      },
-      "quality_notes": "N/STAR(#3-A) - 어창 개방 측정온도는 -22.0℃ 입니다. N/STAR(#1-A) - 어창 개방 측정온도는 -20.0℃ 입니다. MOAMARI(#4-A) - 어창 개방 측정온도는 -20.0℃ 입니다. #3-A 차량 대기 13:00~13:20·14:10~14:40, #4-A 차량 대기 13:00~13:20.",
-      "source_sha256": "f991a53cbd4846d8487a17a28a54de419877b7e0f3665d2d9b3f88b31f065746",
-      "source_workbook_sha256": "794353927cc51bf5bd1181fc031c5fc0f7b49e0f5f71a49fb9a36653ab510cf2",
-      "status_workbook_sha256": "0c7363f7e4a0835655e7c06d7099ff54e342f27585a83b15121de4539a1a920d",
-      "created_at": "2026-08-20T19:01:00+09:00"
-    },
-    {
-      "id": "hikari-bangkok-2026-07-8-21",
-      "vessel_id": "hikari-bangkok-2026-07",
-      "report_year": 2026,
-      "report_date": "8/21",
-      "work_time": "08:10 ~ 15:00",
-      "target_holds": "N/STAR(#1-A:143.330), S/SPR(#2-B:132.550), N/STAR(#3-A:62.690,#3-B:60.820), MOAMARI(#4-A:4.990,#4-B:101.600)",
-      "consignee": "MMP · AAI · TUM · RMK",
-      "allocations": [
-        {
-          "consignee": "MMP",
-          "amount": 143.33,
-          "loads": [
-            {
-              "source_vessel": "N/STAR",
-              "hatch": "#1-A",
-              "amount": 143.33
-            }
-          ]
-        },
-        {
-          "consignee": "AAI",
-          "amount": 132.55,
-          "loads": [
-            {
-              "source_vessel": "S/SPR",
-              "hatch": "#2-B",
-              "amount": 132.55
-            }
-          ]
-        },
-        {
-          "consignee": "TUM",
-          "amount": 123.51,
-          "loads": [
-            {
-              "source_vessel": "N/STAR",
-              "hatch": "#3-A",
-              "amount": 62.69
-            },
-            {
-              "source_vessel": "N/STAR",
-              "hatch": "#3-B",
-              "amount": 60.82
-            }
-          ]
-        },
-        {
-          "consignee": "RMK",
-          "amount": 106.59,
-          "loads": [
-            {
-              "source_vessel": "MOAMARI",
-              "hatch": "#4-A",
-              "amount": 4.99
-            },
-            {
-              "source_vessel": "MOAMARI",
-              "hatch": "#4-B",
-              "amount": 101.6
-            }
-          ]
-        }
-      ],
-      "observations": [
-        {
-          "source_vessel": "N/STAR",
-          "hatch": "#1-A",
-          "temperatures_c": [
-            -22.0,
-            -23.0
-          ]
-        },
-        {
-          "source_vessel": "S/SPR",
-          "hatch": "#2-B",
-          "temperatures_c": [
-            -23.0
-          ]
-        },
-        {
-          "source_vessel": "N/STAR",
-          "hatch": "#3-A",
-          "temperatures_c": [
-            -19.0,
-            -21.0
-          ]
-        },
-        {
-          "source_vessel": "N/STAR",
-          "hatch": "#3-B",
-          "temperatures_c": [
-            -23.0,
-            -24.0
-          ]
-        },
-        {
-          "source_vessel": "MOAMARI",
-          "hatch": "#4-A",
-          "temperatures_c": [
-            -21.0
-          ]
-        },
-        {
-          "source_vessel": "MOAMARI",
-          "hatch": "#4-B",
-          "temperatures_c": [
-            -23.0,
-            -24.0
-          ]
-        }
-      ],
-      "daily_amount": 505.98,
-      "cumulative_amount": 803.04,
-      "species_amounts": {
-        "SJ": 460.28,
-        "YF": 45.7
-      },
-      "remaining_amount": 2125.96,
-      "next_day": {
-        "kind": "work",
-        "date": "8/22",
-        "planned_mt": 570
-      },
-      "quality_notes": "N/STAR(#1-A) 08:10~14:00 - 어창 개방 측정온도는 -22.0℃ ~ -23.0℃ 입니다. S/SPR(#2-B) 08:30~14:40 - 어창 개방 측정온도는 -23.0℃ 입니다. N/STAR(#3-A) 08:20~10:10 - 어창 개방 측정온도는 -19.0℃ ~ -21.0℃ 입니다. N/STAR(#3-B) 10:20~13:10 - 어창 개방 측정온도는 -23.0℃ ~ -24.0℃ 입니다. MOAMARI(#4-A) 08:10~08:30 - 어창 개방 측정온도는 -21.0℃ 입니다. MOAMARI(#4-B) 08:30~15:00 - 어창 개방 측정온도는 -23.0℃ ~ -24.0℃ 입니다. #4-B 차량 대기 12:00~13:00, #1-A 차량 대기 10:30~11:00·11:30~13:00. 8/22 TUM/H1A1+1B1(N.STAR) 180 MT 08:00, AAI/H2B1(S.SPRINTER) 120 MT 08:00, CMC/H3B1(N.STAR) 120 MT 08:00(BKK), ISA/H4B1(N.STAR) 150 MT 08:00 작업 예정입니다.",
-      "source_sha256": "a45de42427044b0516edc8d6bfe1b9cdb81354d5ce69afef1a89bde7c68360bc",
-      "source_workbook_sha256": "530591db571a0d6b19e4aa6fdfca2bab0f5d378a3d54ee2c00e40984e3fd2c3d",
-      "status_workbook_sha256": "268e9833627709c1705882b4f69a579bb607412022d64d07c27329741c0ca8aa",
-      "created_at": "2026-08-21T18:35:00+09:00"
-    },
-    {
-      "id": "hikari-bangkok-2026-07-8-22",
-      "vessel_id": "hikari-bangkok-2026-07",
-      "report_year": 2026,
-      "report_date": "8/22",
-      "work_time": "08:10 ~ 16:50",
-      "target_holds": "N/STAR(#1-A:78.540,#1-B:108.800), S/SPR(#2-B:154.610), N/STAR(#3-B:104.020), MOAMARI(#4-B:155.450)",
-      "consignee": "TUM · AAI · CMC · ISA",
-      "allocations": [
-        {
-          "consignee": "TUM",
-          "amount": 187.34,
-          "loads": [
-            {
-              "source_vessel": "N/STAR",
-              "hatch": "#1-A",
-              "amount": 78.54
-            },
-            {
-              "source_vessel": "N/STAR",
-              "hatch": "#1-B",
-              "amount": 108.8
-            }
-          ]
-        },
-        {
-          "consignee": "AAI",
-          "amount": 154.61,
-          "loads": [
-            {
-              "source_vessel": "S/SPR",
-              "hatch": "#2-B",
-              "amount": 154.61
-            }
-          ]
-        },
-        {
-          "consignee": "CMC",
-          "amount": 104.02,
-          "loads": [
-            {
-              "source_vessel": "N/STAR",
-              "hatch": "#3-B",
-              "amount": 104.02
-            }
-          ]
-        },
-        {
-          "consignee": "ISA",
-          "amount": 155.45,
-          "loads": [
-            {
-              "source_vessel": "MOAMARI",
-              "hatch": "#4-B",
-              "amount": 155.45
-            }
-          ]
-        }
-      ],
-      "observations": [
-        {
-          "source_vessel": "N/STAR",
-          "hatch": "#1-A",
-          "temperatures_c": [
-            -22.0
-          ]
-        },
-        {
-          "source_vessel": "N/STAR",
-          "hatch": "#1-B",
-          "temperatures_c": [
-            -23.0
-          ]
-        },
-        {
-          "source_vessel": "S/SPR",
-          "hatch": "#2-B",
-          "temperatures_c": [
-            -22.0,
-            -23.0
-          ]
-        },
-        {
-          "source_vessel": "N/STAR",
-          "hatch": "#3-B",
-          "temperatures_c": [
-            -22.0,
-            -23.0
-          ]
-        },
-        {
-          "source_vessel": "MOAMARI",
-          "hatch": "#4-B",
-          "temperatures_c": [
-            -19.0,
-            -24.0
-          ]
-        }
-      ],
-      "daily_amount": 601.42,
-      "cumulative_amount": 1404.46,
-      "species_amounts": {
-        "SJ": 550.02,
-        "YF": 51.4
-      },
-      "remaining_amount": 1524.54,
-      "next_day": {
-        "kind": "work",
-        "date": "8/23",
-        "planned_mt": 87
-      },
-      "quality_notes": "N/STAR(#1-A) 08:10~10:40 - 어창 개방 측정온도는 -22.0℃ 입니다. N/STAR(#1-B) 10:40~15:40 - 어창 개방 측정온도는 -23.0℃ 입니다. S/SPR(#2-B) 08:10~16:50 - 어창 개방 측정온도는 -22.0℃ ~ -23.0℃ 입니다. N/STAR(#3-B) 08:10~13:00 - 어창 개방 측정온도는 -22.0℃ ~ -23.0℃ 입니다. MOAMARI(#4-B) 08:10~12:30 - 어창 개방 측정온도는 -19.0℃ ~ -24.0℃ 입니다. 원문 온도 표기는 #2-B·#3-B ‘-22,23’ 및 #4-B ‘-19,24’(단위: ℃)입니다. #3-B CMC 차량 대기 10:10~11:20, #2-B AAI 차량 대기 11:10~11:30·13:00~14:00, AAI 차량 수리 15:20~16:50(70-7297), 우천 13:00~14:00. 8/23 CMC/H3B1(N.STAR) 87 MT 08:00 (GO TO SONGKHLA) 작업 예정입니다.",
-      "source_sha256": "1755015c49636e49519d2587bf00c8eae3bb836de9797b021c5a9bdc631917dd",
-      "source_workbook_sha256": "fbd21293704d38a1719d7ad8c90d8771e57184b26a544165db58ae52eb713c9d",
-      "status_workbook_sha256": "aaeedeb697baa01d930494a581107fc6dd1b5a0a6ed9f800c2d6ca6044828916",
-      "created_at": "2026-08-22T20:55:00+09:00"
-    },
-    {
-      "id": "hikari-bangkok-2026-07-8-23",
-      "vessel_id": "hikari-bangkok-2026-07",
-      "report_year": 2026,
-      "report_date": "8/23",
-      "work_time": "08:20 ~ 11:50",
-      "target_holds": "N/STAR(#3-B:90.420)",
-      "consignee": "CMC",
-      "allocations": [
-        {
-          "consignee": "CMC",
-          "amount": 90.42,
-          "loads": [
-            {
-              "source_vessel": "N/STAR",
-              "hatch": "#3-B",
-              "amount": 90.42
-            }
-          ]
-        }
-      ],
-      "observations": [
-        {
-          "source_vessel": "N/STAR",
-          "hatch": "#3-B",
-          "temperatures_c": [
-            -22.0,
-            24.0
-          ]
-        }
-      ],
-      "daily_amount": 90.42,
-      "cumulative_amount": 1494.88,
-      "species_amounts": {
-        "SJ": 83.62,
-        "YF": 6.8
-      },
-      "remaining_amount": 1434.12,
-      "next_day": {
-        "kind": "work",
-        "date": "8/24",
-        "planned_mt": 390
-      },
-      "quality_notes": "N/STAR(#3-B) 08:20~11:50 - 어창 개방 측정온도는 -22.0℃ ~ 24.0℃ 입니다. 원문 온도 표기는 -22,24℃입니다. REEFER TRUCK 7대(#1~#7) 합계 90.420 MT. 8/24 AAI/H2B1(S.SPRINTER) 120 MT 08:00, CMC/H3B1(N.STAR) 120 MT 08:00(GO TO SONGKHLA 1 TRUCK), ISA/H4B1(N.STAR) 150 MT 08:00 작업 예정입니다.",
-      "source_sha256": "1a0dff719d2969f00008fd9a958d47c6ae752cace3e1a2fd9383326441c49212",
-      "source_workbook_sha256": "9d18f8ee5ad09023ac67172b0aa59c3a40177b03d259ad5e2b883475fdc7f242",
-      "status_workbook_sha256": "fc065b7c185994143d8dab9b624349da19e7718d7f59b939ad6cd1ec2fe2a523",
-      "created_at": "2026-08-23T15:51:00+09:00"
-    },
-    {
-      "id": "hikari-bangkok-2026-07-8-24",
-      "vessel_id": "hikari-bangkok-2026-07",
-      "report_year": 2026,
-      "report_date": "8/24",
-      "work_time": "08:10 ~ 13:50",
-      "target_holds": "N/STAR(#3-B:116.230), S/SPR(#2-B:77.670,#2-C:66.470), MOAMARI(#4-B:134.110)",
-      "consignee": "CMC · AAI · ISA",
-      "allocations": [
-        {
-          "consignee": "CMC",
-          "amount": 116.23,
-          "loads": [
-            {
-              "source_vessel": "N/STAR",
-              "hatch": "#3-B",
-              "amount": 116.23
-            }
-          ]
-        },
-        {
-          "consignee": "AAI",
-          "amount": 144.14,
-          "loads": [
-            {
-              "source_vessel": "S/SPR",
-              "hatch": "#2-B",
-              "amount": 77.67
-            },
-            {
-              "source_vessel": "S/SPR",
-              "hatch": "#2-C",
-              "amount": 66.47
-            }
-          ]
-        },
-        {
-          "consignee": "ISA",
-          "amount": 134.11,
-          "loads": [
-            {
-              "source_vessel": "MOAMARI",
-              "hatch": "#4-B",
-              "amount": 134.11
-            }
-          ]
-        }
-      ],
-      "observations": [
-        {
-          "source_vessel": "N/STAR",
-          "hatch": "#3-B",
-          "temperatures_c": [
-            -21.0
-          ]
-        },
-        {
-          "source_vessel": "S/SPR",
-          "hatch": "#2-B",
-          "temperatures_c": [
-            -21.0,
-            22.0
-          ]
-        },
-        {
-          "source_vessel": "S/SPR",
-          "hatch": "#2-C",
-          "temperatures_c": [
-            -21.0
-          ]
-        },
-        {
-          "source_vessel": "MOAMARI",
-          "hatch": "#4-B",
-          "temperatures_c": [
-            -23.0,
-            23.0
-          ]
-        }
-      ],
-      "daily_amount": 394.48,
-      "cumulative_amount": 1889.36,
-      "species_amounts": {
-        "SJ": 362.68,
-        "YF": 31.8
-      },
-      "remaining_amount": 1039.64,
-      "next_day": {
-        "kind": "work",
-        "date": "8/25",
-        "planned_mt": 400
-      },
-      "quality_notes": "N/STAR(#3-B) 08:10~13:00 - 어창 개방 측정온도는 -21.0℃ 입니다. S/SPR(#2-B) 08:10~10:50 - 어창 개방 측정온도는 -21.0℃ ~ 22.0℃ 입니다. S/SPR(#2-C) 10:50~13:50 - 어창 개방 측정온도는 -21.0℃ 입니다. MOAMARI(#4-B) 08:10~12:20 - 어창 개방 측정온도는 -23.0℃ ~ 23.0℃ 입니다. 원문 온도 표기는 #2-B ‘-21,22’ 및 #4-B ‘-23,23’(단위: ℃)입니다. REEFER TRUCK #1 12.910 MT, TOTAL 26 TRUCKS. 8/25 CMC/H1B1(N.STAR) 100 MT 08:00, GPZ/H2C1(S.SPRINTER) 150 MT 08:00, ISA/H4B1->3C1(MOAKONA+MOAMARI) 150 MT 08:00 작업 예정입니다.",
-      "source_sha256": "8afc7cd70fae24e98b08f07ff19756d38df7f5ce2894632c1c03c13c6ef7ba7c",
-      "source_workbook_sha256": "8b8c1d0e6a14939901f651b0fa38a3c082636c7197f251ace4ff7458e31b9ed0",
-      "status_workbook_sha256": "5de92feee19ffd3f127fb93655232d08de9bad2d60ded4710eab04e830ecece1",
-      "created_at": "2026-08-24T18:13:00+09:00"
-    },
-    {
-      "id": "hikari-bangkok-2026-07-8-25",
-      "vessel_id": "hikari-bangkok-2026-07",
-      "report_year": 2026,
-      "report_date": "8/25",
-      "work_time": "08:10 ~ 13:30",
-      "target_holds": "N/STAR(#1-B:96.300), S/SPR(#2-C:185.720), MOAMARI(#3-C:74.670), MOAKONA(#4-C:77.590)",
-      "consignee": "CMC · GPZ · ISA",
-      "allocations": [
-        {
-          "consignee": "CMC",
-          "amount": 96.3,
-          "loads": [
-            {
-              "source_vessel": "N/STAR",
-              "hatch": "#1-B",
-              "amount": 96.3
-            }
-          ]
-        },
-        {
-          "consignee": "GPZ",
-          "amount": 185.72,
-          "loads": [
-            {
-              "source_vessel": "S/SPR",
-              "hatch": "#2-C",
-              "amount": 185.72
-            }
-          ]
-        },
-        {
-          "consignee": "ISA",
-          "amount": 152.26,
-          "loads": [
-            {
-              "source_vessel": "MOAMARI",
-              "hatch": "#3-C",
-              "amount": 74.67
-            },
-            {
-              "source_vessel": "MOAKONA",
-              "hatch": "#4-C",
-              "amount": 77.59
-            }
-          ]
-        }
-      ],
-      "observations": [
-        {
-          "source_vessel": "N/STAR",
-          "hatch": "#1-B",
-          "temperatures_c": [
-            -20.0
-          ]
-        },
-        {
-          "source_vessel": "S/SPR",
-          "hatch": "#2-C",
-          "temperatures_c": [
-            -21.0
-          ]
-        },
-        {
-          "source_vessel": "MOAMARI",
-          "hatch": "#3-C",
-          "temperatures_c": [
-            -20.0,
-            24.0
-          ]
-        },
-        {
-          "source_vessel": "MOAKONA",
-          "hatch": "#4-C",
-          "temperatures_c": [
-            -20.0,
-            21.0
-          ]
-        }
-      ],
-      "daily_amount": 434.28,
-      "cumulative_amount": 2323.64,
-      "species_amounts": {
-        "SJ": 411.38,
-        "YF": 22.9
-      },
-      "remaining_amount": 605.36,
-      "next_day": {
-        "kind": "work",
-        "date": "8/26",
-        "planned_mt": 250
-      },
-      "quality_notes": "N/STAR(#1-B) 08:10~10:40 - 어창 개방 측정온도는 -20.0℃ 입니다. S/SPR(#2-C) 08:10~13:30 - 어창 개방 측정온도는 -21.0℃ 입니다. MOAMARI(#3-C) 08:20~13:10 - 어창 개방 측정온도는 -20.0℃ ~ 24.0℃ 입니다. MOAKONA(#4-C) 08:10~11:10 - 어창 개방 측정온도는 -20.0℃ ~ 21.0℃ 입니다. 원문 온도 표기는 #3-C ‘-20,24’ 및 #4-C ‘-20,21’(단위: ℃)입니다. TOTAL 27 TRUCKS. 8/26 GPZ/H2C1(S.SPRINTER) 100 MT 08:00, ISA/H3C1(MOAMARI) 150 MT 08:00 작업 예정입니다.",
-      "source_sha256": "762f880298659c2892815701f296c7f3d5022eca347eb8d0510316b87e703910",
-      "source_workbook_sha256": "111cd3f4cc2f08541fe65406a97d8acb8ea491d43f5621fb192c86ff61f73017",
-      "status_workbook_sha256": "08832eced6cf7d4e2679896e7a55035698b3366ee676af664e9259998b233935",
-      "created_at": "2026-08-25T21:36:00+09:00"
-    },
-    {
-      "id": "hikari-bangkok-2026-07-8-26",
-      "vessel_id": "hikari-bangkok-2026-07",
-      "report_year": 2026,
-      "report_date": "8/26",
-      "work_time": "08:10 ~ 13:40",
-      "target_holds": "S/SPR(#2-C:79.900), MOAKONA(#4-C:34.810), MOAMARI(#3-C:144.550)",
-      "consignee": "GPZ · ISA",
-      "allocations": [
-        {
-          "consignee": "GPZ",
-          "amount": 114.71,
-          "loads": [
-            {
-              "source_vessel": "S/SPR",
-              "hatch": "#2-C",
-              "amount": 79.9
-            },
-            {
-              "source_vessel": "MOAKONA",
-              "hatch": "#4-C",
-              "amount": 34.81
-            }
-          ]
-        },
-        {
-          "consignee": "ISA",
-          "amount": 144.55,
-          "loads": [
-            {
-              "source_vessel": "MOAMARI",
-              "hatch": "#3-C",
-              "amount": 144.55
-            }
-          ]
-        }
-      ],
-      "observations": [
-        {
-          "source_vessel": "S/SPR",
-          "hatch": "#2-C",
-          "temperatures_c": [
-            -21.0,
-            23.0
-          ]
-        },
-        {
-          "source_vessel": "MOAKONA",
-          "hatch": "#4-C",
-          "temperatures_c": [
-            -22.0,
-            23.0
-          ]
-        },
-        {
-          "source_vessel": "MOAMARI",
-          "hatch": "#3-C",
-          "temperatures_c": [
-            -21.0,
-            22.0
-          ]
-        }
-      ],
-      "daily_amount": 259.26,
-      "cumulative_amount": 2582.9,
-      "species_amounts": {
-        "SJ": 236.26,
-        "YF": 23.0
-      },
-      "remaining_amount": 346.1,
-      "next_day": {
-        "kind": "work",
-        "date": "8/27",
-        "planned_mt": 340
-      },
-      "quality_notes": "S/SPR(#2-C) 08:10~10:30 - 어창 개방 측정온도는 -21.0℃ ~ 23.0℃ 입니다. MOAKONA(#4-C) 10:40~11:50 - 어창 개방 측정온도는 -22.0℃ ~ 23.0℃ 입니다. MOAMARI(#3-C) 08:10~13:40 - 어창 개방 측정온도는 -21.0℃ ~ 22.0℃ 입니다. 원문 온도 표기는 #2-C ‘-21,23’, #4-C ‘-22,23’, #3-C ‘-21,22’(단위: ℃)입니다. TOTAL 17 TRUCKS. 8/27 ISA/H3C1(MOAMARI) 190 MT 08:00, GPZ/H4B1(MOAKONA) 150 MT 08:00 작업 예정입니다.",
-      "source_sha256": "c37343500e26f2c544493d9fbf7ad1d173daffbcdd1fc15b629752e47b7c5d06",
-      "source_workbook_sha256": "a198c274d681cc95fe37e5c6ae216050665bf5ba3937711fe4e70ae4be4d955e",
-      "status_workbook_sha256": "7a243d3db59378fef27c26d9b31c82937297766195a5b3e3db0cb74fa86f445f",
-      "created_at": "2026-08-26T17:57:36+09:00"
-    },
-    {
-      "id": "hikari-bangkok-2026-07-8-27",
-      "vessel_id": "hikari-bangkok-2026-07",
-      "report_year": 2026,
-      "report_date": "8/27",
-      "work_time": "08:10 ~ 13:30",
-      "target_holds": "MOAMARI(#3-C:171.720), MOAKONA(#4-C:112.190)",
-      "consignee": "GPZ · ISA",
-      "allocations": [
-        {
-          "consignee": "GPZ",
-          "amount": 112.19,
-          "loads": [
-            {
-              "source_vessel": "MOAKONA",
-              "hatch": "#4-C",
-              "amount": 112.19
-            }
-          ]
-        },
-        {
-          "consignee": "ISA",
-          "amount": 171.72,
-          "loads": [
-            {
-              "source_vessel": "MOAMARI",
-              "hatch": "#3-C",
-              "amount": 171.72
-            }
-          ]
-        }
-      ],
-      "observations": [
-        {
-          "source_vessel": "MOAKONA",
-          "hatch": "#4-C",
-          "temperatures_c": [
-            -23.0
-          ]
-        },
-        {
-          "source_vessel": "MOAMARI",
-          "hatch": "#3-C",
-          "temperatures_c": [
-            -22.0,
-            23.0
-          ]
-        }
-      ],
-      "daily_amount": 283.91,
-      "cumulative_amount": 2866.81,
-      "species_amounts": {
-        "SJ": 250.91,
-        "YF": 33.0
-      },
-      "remaining_amount": 62.19,
-      "next_day": {
-        "kind": "work",
-        "date": "8/28",
-        "planned_mt": 100
-      },
-      "quality_notes": "MOAKONA(#4-C) 08:10~11:30 - 어창 개방 측정온도는 -23.0℃ 입니다. MOAMARI(#3-C) 08:10~13:30 - 어창 개방 측정온도는 -22.0℃ ~ 23.0℃ 입니다. 원문 온도 표기는 #3-C ‘-22,23’(단위: ℃)입니다. TOTAL 19 TRUCKS. 8/28 GPZ/H4C1(MOAKONA) 100 MT 08:00 작업 예정입니다.",
-      "source_sha256": "c33f9eb4f2e4b22b20c07c9976f52aa6cece2c3edeee9deac7a26a073e37fde5",
-      "source_workbook_sha256": "66e5b1653930a9062901a7a5504c72502bb1e714b753190f198a8d79ac476ddb",
-      "status_workbook_sha256": "0bdef9ead72015bbcedd819a60eff5566348778ba1676e70695db4c354bcc96e",
-      "created_at": "2026-08-27T20:35:00+09:00"
-    },
-    {
-      "id": "sein-phoenix-2025-12-12-18",
-      "vessel_id": "sein-phoenix-2025-12",
-      "report_year": 2025,
-      "report_date": "12/18",
-      "work_time": "-",
-      "target_holds": "N/STAR(2)(#3-A)",
-      "daily_amount": 15.13,
-      "cumulative_amount": 15.13,
-      "quality_notes": "일일 XLS 원표 기준. 작업시간·온도는 원표에 미기재."
-    },
-    {
-      "id": "sein-phoenix-2025-12-12-19",
-      "vessel_id": "sein-phoenix-2025-12",
-      "report_year": 2025,
-      "report_date": "12/19",
-      "work_time": "-",
-      "target_holds": "N/STAR(2)(#3-A)",
-      "daily_amount": 104.61,
-      "cumulative_amount": 119.74,
-      "quality_notes": "일일 XLS 원표 기준. 작업시간·온도는 원표에 미기재."
-    },
-    {
-      "id": "sein-phoenix-2025-12-12-22",
-      "vessel_id": "sein-phoenix-2025-12",
-      "report_year": 2025,
-      "report_date": "12/22",
-      "work_time": "-",
-      "target_holds": "N/STAR(2)(#3-A)",
-      "daily_amount": 205.06,
-      "cumulative_amount": 324.8,
-      "quality_notes": "일일 XLS 원표 기준. 작업시간·온도는 원표에 미기재."
-    },
-    {
-      "id": "sein-phoenix-2025-12-12-23",
-      "vessel_id": "sein-phoenix-2025-12",
-      "report_year": 2025,
-      "report_date": "12/23",
-      "work_time": "-",
-      "target_holds": "N/STAR(2)(#3-A,#3-B)",
-      "daily_amount": 224.65,
-      "cumulative_amount": 549.45,
-      "quality_notes": "일일 XLS 원표 기준. 작업시간·온도는 원표에 미기재."
-    },
-    {
-      "id": "sein-phoenix-2025-12-12-24",
-      "vessel_id": "sein-phoenix-2025-12",
-      "report_year": 2025,
-      "report_date": "12/24",
-      "work_time": "-",
-      "target_holds": "N/STAR(2)(#3-B)",
-      "daily_amount": 239.09,
-      "cumulative_amount": 788.54,
-      "quality_notes": "일일 XLS 원표 기준. 작업시간·온도는 원표에 미기재."
-    },
-    {
-      "id": "sein-phoenix-2025-12-12-25",
-      "vessel_id": "sein-phoenix-2025-12",
-      "report_year": 2025,
-      "report_date": "12/25",
-      "work_time": "-",
-      "target_holds": "S/PIO(#3-B,#3-C), S/EXP(#2-B), N/STAR(2)(#3-B)",
-      "daily_amount": 502.16,
-      "cumulative_amount": 1290.7,
-      "quality_notes": "일일 XLS 원표 기준. 작업시간·온도는 원표에 미기재."
-    },
-    {
-      "id": "sein-phoenix-2025-12-12-26",
-      "vessel_id": "sein-phoenix-2025-12",
-      "report_year": 2025,
-      "report_date": "12/26",
-      "work_time": "-",
-      "target_holds": "S/PIO(#3-C), S/EXP(#2-B,#2-C)",
-      "daily_amount": 457.32,
-      "cumulative_amount": 1748.02,
-      "quality_notes": "일일 XLS 원표 기준. 작업시간·온도는 원표에 미기재."
-    },
-    {
-      "id": "sein-phoenix-2025-12-12-27",
-      "vessel_id": "sein-phoenix-2025-12",
-      "report_year": 2025,
-      "report_date": "12/27",
-      "work_time": "-",
-      "target_holds": "S/PIO(#3-C), S/EXP(#2-C)",
-      "daily_amount": 232.96,
-      "cumulative_amount": 1980.98,
-      "quality_notes": "일일 XLS 원표 기준. 작업시간·온도는 원표에 미기재."
-    },
-    {
-      "id": "sein-phoenix-2025-12-1-5",
-      "vessel_id": "sein-phoenix-2025-12",
-      "report_year": 2026,
-      "report_date": "1/5",
-      "work_time": "-",
-      "target_holds": "S/PIO(#3-C), S/EXP(#2-C)",
-      "daily_amount": 304.69,
-      "cumulative_amount": 2285.67,
-      "quality_notes": "일일 XLS 원표 기준. 작업시간·온도는 원표에 미기재."
-    },
-    {
-      "id": "sein-phoenix-2025-12-1-6",
-      "vessel_id": "sein-phoenix-2025-12",
-      "report_year": 2026,
-      "report_date": "1/6",
-      "work_time": "-",
-      "target_holds": "S/PIO(#3-C,#3-D), S/EXP(#2-C)",
-      "daily_amount": 287.62,
-      "cumulative_amount": 2573.29,
-      "quality_notes": "일일 XLS 원표 기준. 작업시간·온도는 원표에 미기재."
-    },
-    {
-      "id": "sein-phoenix-2025-12-1-7",
-      "vessel_id": "sein-phoenix-2025-12",
-      "report_year": 2026,
-      "report_date": "1/7",
-      "work_time": "-",
-      "target_holds": "S/PIO(#3-D), S/EXP(#2-C,#2-D)",
-      "daily_amount": 274.83,
-      "cumulative_amount": 2848.12,
-      "quality_notes": "일일 XLS 원표 기준. 작업시간·온도는 원표에 미기재."
-    },
-    {
-      "id": "sein-phoenix-2025-12-1-8",
-      "vessel_id": "sein-phoenix-2025-12",
-      "report_year": 2026,
-      "report_date": "1/8",
-      "work_time": "-",
-      "target_holds": "S/PIO(#3-D), S/EXP(#2-D)",
-      "daily_amount": 271.89,
-      "cumulative_amount": 3120.01,
-      "quality_notes": "일일 XLS 원표 기준. 작업시간·온도는 원표에 미기재."
-    },
-    {
-      "id": "sein-phoenix-2025-12-1-9",
-      "vessel_id": "sein-phoenix-2025-12",
-      "report_year": 2026,
-      "report_date": "1/9",
-      "work_time": "-",
-      "target_holds": "S/PIO(#3-D), S/JUP(#2-D), N/STAR(1)(#3-D)",
-      "daily_amount": 223.95,
-      "cumulative_amount": 3343.96,
-      "quality_notes": "일일 XLS 원표 기준. 작업시간·온도는 원표에 미기재."
-    },
-    {
-      "id": "sein-phoenix-2025-12-1-10",
-      "vessel_id": "sein-phoenix-2025-12",
-      "report_year": 2026,
-      "report_date": "1/10",
-      "work_time": "-",
-      "target_holds": "S/JUP(#2-D), N/STAR(1)(#3-D)",
-      "daily_amount": 144.36,
-      "cumulative_amount": 3488.32,
-      "quality_notes": "일일 XLS 원표 기준. 작업시간·온도는 원표에 미기재."
-    },
-    {
-      "id": "sein-phoenix-2025-12-1-12",
-      "vessel_id": "sein-phoenix-2025-12",
-      "report_year": 2026,
-      "report_date": "1/12",
-      "work_time": "-",
-      "target_holds": "S/JUP(#2-D)",
-      "daily_amount": 117.38,
-      "cumulative_amount": 3605.7,
-      "quality_notes": "일일 XLS 원표 기준. 작업시간·온도는 원표에 미기재."
-    },
-    {
-      "id": "sein-phoenix-2025-12-1-13",
-      "vessel_id": "sein-phoenix-2025-12",
-      "report_year": 2026,
-      "report_date": "1/13",
-      "work_time": "-",
-      "target_holds": "S/JUP(#2-D)",
-      "daily_amount": 63.01,
-      "cumulative_amount": 3668.71,
-      "quality_notes": "08:10 ~ 11:10 작업. S/JUP(#2-D) 개방 온도 -19.0℃ ~ -20.0℃, 외관·색택 양호. XLS 일일량 63.010 MT를 적용했으며 이메일 본문 63.310 MT는 누계 산술과 불일치."
-    },
-    {
-      "id": "volta-victory-2026-01-1-5",
-      "vessel_id": "volta-victory-2026-01",
-      "report_year": 2026,
-      "report_date": "1/5",
-      "work_time": "-",
-      "target_holds": "S/JUP(#3-A)",
-      "daily_amount": 161.4,
-      "cumulative_amount": 161.4,
-      "quality_notes": "일일 XLS 원표 기준. 작업시간·온도는 원표에 미기재."
-    },
-    {
-      "id": "volta-victory-2026-01-1-6",
-      "vessel_id": "volta-victory-2026-01",
-      "report_year": 2026,
-      "report_date": "1/6",
-      "work_time": "-",
-      "target_holds": "S/JUP(#2-A), S/PIO(#2-A)",
-      "daily_amount": 61.97,
-      "cumulative_amount": 223.37,
-      "quality_notes": "일일 XLS 원표 기준. 작업시간·온도는 원표에 미기재."
-    },
-    {
-      "id": "volta-victory-2026-01-1-7",
-      "vessel_id": "volta-victory-2026-01",
-      "report_year": 2026,
-      "report_date": "1/7",
-      "work_time": "-",
-      "target_holds": "S/JUP(#3-A), S/PIO(#1-A)",
-      "daily_amount": 358.11,
-      "cumulative_amount": 581.48,
-      "quality_notes": "일일 XLS 원표 기준. 작업시간·온도는 원표에 미기재."
-    },
-    {
-      "id": "volta-victory-2026-01-1-8",
-      "vessel_id": "volta-victory-2026-01",
-      "report_year": 2026,
-      "report_date": "1/8",
-      "work_time": "-",
-      "target_holds": "S/JUP(#3-A), S/PIO(#1-A)",
-      "daily_amount": 141.85,
-      "cumulative_amount": 723.33,
-      "quality_notes": "일일 XLS 원표 기준. 작업시간·온도는 원표에 미기재."
-    },
-    {
-      "id": "volta-victory-2026-01-1-9",
-      "vessel_id": "volta-victory-2026-01",
-      "report_year": 2026,
-      "report_date": "1/9",
-      "work_time": "-",
-      "target_holds": "S/PIO(#1-A)",
-      "daily_amount": 110.02,
-      "cumulative_amount": 833.35,
-      "quality_notes": "일일 XLS 원표 기준. 작업시간·온도는 원표에 미기재."
-    },
-    {
-      "id": "volta-victory-2026-01-1-12",
-      "vessel_id": "volta-victory-2026-01",
-      "report_year": 2026,
-      "report_date": "1/12",
-      "work_time": "-",
-      "target_holds": "S/JUP(#3-A)",
-      "daily_amount": 100.04,
-      "cumulative_amount": 933.39,
-      "quality_notes": "일일 XLS 원표 기준. 작업시간·온도는 원표에 미기재."
-    },
-    {
-      "id": "volta-victory-2026-01-1-13",
-      "vessel_id": "volta-victory-2026-01",
-      "report_year": 2026,
-      "report_date": "1/13",
-      "work_time": "-",
-      "target_holds": "S/CHA(#2-A)",
-      "daily_amount": 151.49,
-      "cumulative_amount": 1084.88,
-      "quality_notes": "일일 XLS 원표 기준. 작업시간·온도는 원표에 미기재."
-    },
-    {
-      "id": "volta-victory-2026-01-1-14",
-      "vessel_id": "volta-victory-2026-01",
-      "report_year": 2026,
-      "report_date": "1/14",
-      "work_time": "-",
-      "target_holds": "S/CHA(#2-A)",
-      "daily_amount": 208.18,
-      "cumulative_amount": 1293.06,
-      "quality_notes": "일일 XLS 원표 기준. 작업시간·온도는 원표에 미기재."
-    },
-    {
-      "id": "volta-victory-2026-01-1-15",
-      "vessel_id": "volta-victory-2026-01",
-      "report_year": 2026,
-      "report_date": "1/15",
-      "work_time": "-",
-      "target_holds": "S/CHA(#2-A), S/JUP(#3-B), S/PIO(#1-A,#1-B)",
-      "daily_amount": 479.08,
-      "cumulative_amount": 1772.14,
-      "quality_notes": "일일 XLS 원표 기준. 작업시간·온도는 원표에 미기재."
-    },
-    {
-      "id": "volta-victory-2026-01-1-16",
-      "vessel_id": "volta-victory-2026-01",
-      "report_year": 2026,
-      "report_date": "1/16",
-      "work_time": "-",
-      "target_holds": "S/CHA(#2-A,#2-B), S/JUP(#3-B), S/PIO(#1-B)",
-      "daily_amount": 268.5,
-      "cumulative_amount": 2040.64,
-      "quality_notes": "일일 XLS 원표 기준. 작업시간·온도는 원표에 미기재."
-    },
-    {
-      "id": "volta-victory-2026-01-1-17",
-      "vessel_id": "volta-victory-2026-01",
-      "report_year": 2026,
-      "report_date": "1/17",
-      "work_time": "-",
-      "target_holds": "S/CHA(#2-B), S/JUP(#3-B)",
-      "daily_amount": 285.75,
-      "cumulative_amount": 2326.39,
-      "quality_notes": "일일 XLS 원표 기준. 작업시간·온도는 원표에 미기재."
-    },
-    {
-      "id": "volta-victory-2026-01-1-19",
-      "vessel_id": "volta-victory-2026-01",
-      "report_year": 2026,
-      "report_date": "1/19",
-      "work_time": "-",
-      "target_holds": "S/CHA(#2-B), S/JUP(#3-B)",
-      "daily_amount": 326.58,
-      "cumulative_amount": 2652.97,
-      "quality_notes": "08:20 ~ 17:20 작업. S/CHA(#2-B)와 S/JUP(#3-B) 개방 온도 -29.0℃ ~ -30.0℃, 외관·색택 양호."
-    },
-    {
-      "id": "angara-2026-01-1-20",
-      "vessel_id": "angara-2026-01",
-      "report_year": 2026,
-      "report_date": "1/20",
-      "work_time": "-",
-      "target_holds": "N/SUN(#4-A)",
-      "daily_amount": 239.15,
-      "cumulative_amount": 239.15,
-      "quality_notes": "일일 XLS 원표 기준. 작업시간·온도는 원표에 미기재."
-    },
-    {
-      "id": "angara-2026-01-1-21",
-      "vessel_id": "angara-2026-01",
-      "report_year": 2026,
-      "report_date": "1/21",
-      "work_time": "-",
-      "target_holds": "S/EXP(#2-A)",
-      "daily_amount": 143.5,
-      "cumulative_amount": 382.65,
-      "quality_notes": "일일 XLS 원표 기준. 작업시간·온도는 원표에 미기재."
-    },
-    {
-      "id": "angara-2026-01-1-22",
-      "vessel_id": "angara-2026-01",
-      "report_year": 2026,
-      "report_date": "1/22",
-      "work_time": "-",
-      "target_holds": "S/EXP(#2-A,#3-A), N/SUN(#4-A)",
-      "daily_amount": 156.47,
-      "cumulative_amount": 539.12,
-      "quality_notes": "일일 XLS 원표 기준. 작업시간·온도는 원표에 미기재."
-    },
-    {
-      "id": "angara-2026-01-1-23",
-      "vessel_id": "angara-2026-01",
-      "report_year": 2026,
-      "report_date": "1/23",
-      "work_time": "-",
-      "target_holds": "S/EXP(#2-A), N/SUN(#4-A,#4-B)",
-      "daily_amount": 175.23,
-      "cumulative_amount": 714.35,
-      "quality_notes": "일일 XLS 원표 기준. 작업시간·온도는 원표에 미기재."
-    },
-    {
-      "id": "angara-2026-01-1-24",
-      "vessel_id": "angara-2026-01",
-      "report_year": 2026,
-      "report_date": "1/24",
-      "work_time": "-",
-      "target_holds": "S/EXP(#2-A), N/SUN(#4-B)",
-      "daily_amount": 186.96,
-      "cumulative_amount": 901.31,
-      "quality_notes": "일일 XLS 원표 기준. 작업시간·온도는 원표에 미기재."
-    },
-    {
-      "id": "angara-2026-01-1-26",
-      "vessel_id": "angara-2026-01",
-      "report_year": 2026,
-      "report_date": "1/26",
-      "work_time": "-",
-      "target_holds": "S/HAR(#2-B), S/EXP(#3-A,#2-B)",
-      "daily_amount": 226.61,
-      "cumulative_amount": 1127.92,
-      "quality_notes": "일일 XLS 원표 기준. 작업시간·온도는 원표에 미기재."
-    },
-    {
-      "id": "angara-2026-01-1-27",
-      "vessel_id": "angara-2026-01",
-      "report_year": 2026,
-      "report_date": "1/27",
-      "work_time": "-",
-      "target_holds": "S/HAR(#2-B), S/EXP(#3-A), N/SUN(#4-B,#4-C)",
-      "daily_amount": 287.4,
-      "cumulative_amount": 1415.32,
-      "quality_notes": "일일 XLS 원표 기준. 작업시간·온도는 원표에 미기재."
-    },
-    {
-      "id": "angara-2026-01-1-28",
-      "vessel_id": "angara-2026-01",
-      "report_year": 2026,
-      "report_date": "1/28",
-      "work_time": "-",
-      "target_holds": "S/EXP(#3-A), N/SUN(#4-C)",
-      "daily_amount": 274.07,
-      "cumulative_amount": 1689.39,
-      "quality_notes": "일일 XLS 원표 기준. 작업시간·온도는 원표에 미기재."
-    },
-    {
-      "id": "angara-2026-01-1-29",
-      "vessel_id": "angara-2026-01",
-      "report_year": 2026,
-      "report_date": "1/29",
-      "work_time": "-",
-      "target_holds": "S/HAR(#2-B,#2-C,#3-B), N/SUN(#3-A)",
-      "daily_amount": 468.39,
-      "cumulative_amount": 2157.78,
-      "quality_notes": "일일 XLS 원표 기준. 작업시간·온도는 원표에 미기재."
-    },
-    {
-      "id": "angara-2026-01-1-30",
-      "vessel_id": "angara-2026-01",
-      "report_year": 2026,
-      "report_date": "1/30",
-      "work_time": "-",
-      "target_holds": "S/HAR(#2-C,#3-B,#3-C)",
-      "daily_amount": 245.38,
-      "cumulative_amount": 2403.16,
-      "quality_notes": "일일 XLS 원표 기준. 작업시간·온도는 원표에 미기재."
-    },
-    {
-      "id": "angara-2026-01-1-31",
-      "vessel_id": "angara-2026-01",
-      "report_year": 2026,
-      "report_date": "1/31",
-      "work_time": "-",
-      "target_holds": "S/PIO(#3-C), S/HAR(#3-C)",
-      "daily_amount": 228.35,
-      "cumulative_amount": 2631.51,
-      "quality_notes": "일일 XLS 원표 기준. 작업시간·온도는 원표에 미기재."
-    },
-    {
-      "id": "angara-2026-01-2-2",
-      "vessel_id": "angara-2026-01",
-      "report_year": 2026,
-      "report_date": "2/2",
-      "work_time": "-",
-      "target_holds": "S/PIO(#3-C)",
-      "daily_amount": 51.57,
-      "cumulative_amount": 2683.08,
-      "quality_notes": "S/PIO(#3-C) 개방 온도 -22.0℃ ~ -24.0℃, 외관·색택 양호. 이메일 본문은 핵심 수치와 작업시간 일부가 마스킹되어 XLS 수치를 적용."
-    },
-    {
-      "id": "salt-lake-2026-01-1-13",
-      "vessel_id": "salt-lake-2026-01",
-      "report_year": 2026,
-      "report_date": "1/13",
-      "work_time": "-",
-      "target_holds": "S/HAR(#3-A)",
-      "daily_amount": 102.65,
-      "cumulative_amount": 102.65,
-      "quality_notes": "일일 XLS 원표 기준. 작업시간·온도는 원표에 미기재."
-    },
-    {
-      "id": "salt-lake-2026-01-1-14",
-      "vessel_id": "salt-lake-2026-01",
-      "report_year": 2026,
-      "report_date": "1/14",
-      "work_time": "-",
-      "target_holds": "S/HAR(#3-A)",
-      "daily_amount": 101.65,
-      "cumulative_amount": 204.3,
-      "quality_notes": "08:20 ~ 11:20 작업. S/HAR(#3-A) 개방 온도 -20.0℃ ~ -21.0℃, 외관·색택 양호."
-    },
-    {
-      "id": "sein-venus-8-19",
-      "vessel_id": "sein-venus",
-      "report_year": 2026,
-      "report_date": "8/19",
-      "work_time": "08:10 ~ 13:40",
-      "target_holds": "S/PIO(#1-B:148.930), N/SUN(#3-C:128.940)",
-      "consignee": "TUM · GPZ",
-      "allocations": [
-        {
-          "consignee": "TUM",
-          "amount": 128.94,
-          "loads": [
-            {
-              "source_vessel": "N/SUN",
-              "hatch": "#3-C",
-              "amount": 128.94
-            }
-          ]
-        },
-        {
-          "consignee": "GPZ",
-          "amount": 148.93,
-          "loads": [
-            {
-              "source_vessel": "S/PIO",
-              "hatch": "#1-B",
-              "amount": 148.93
-            }
-          ]
-        }
-      ],
-      "observations": [
-        {
-          "source_vessel": "S/PIO",
-          "hatch": "#1-B",
-          "temperatures_c": [
-            -20.0,
-            -21.0
-          ]
-        },
-        {
-          "source_vessel": "N/SUN",
-          "hatch": "#3-C",
-          "temperatures_c": [
-            -22.0,
-            -23.0
-          ]
-        }
-      ],
-      "daily_amount": 277.87,
-      "cumulative_amount": 2943.27,
-      "species_amounts": {
-        "SJ": 263.17,
-        "YF": 14.7
-      },
-      "remaining_amount": 331.73,
-      "daily_adjustment_amount": 3.01,
-      "cumulative_adjustment_amount": 29.1,
-      "adjusted_remaining_amount": 360.83,
-      "next_day": {
-        "kind": "work",
-        "date": "8/20",
-        "planned_mt": null,
-        "reason": "원자료에 명일 하역 계획이 기재되지 않았습니다"
-      },
-      "quality_notes": "S/PIO(#1-B) - 어창 개방 측정온도는 -20.0℃ ~ -21.0℃ 입니다. N/SUN(#3-C) - 어창 개방 측정온도는 -22.0℃ ~ -23.0℃ 입니다.",
-      "source_sha256": "987ec215d04c977a9a46cd5724b5192dc7de8f7de5f5a9b85095d27a9cbfebcb",
-      "source_workbook_sha256": "b003b00a3e5124210f2c62c219033250610ed9caef2bc4132a3f38d53c22f357",
-      "status_workbook_sha256": "85194881524a8a195faec039f33fb7c7aae79ae3757390379d0e5416cb54a96b",
-      "created_at": "2026-08-19T22:00:00+09:00"
-    },
-    {
-      "id": "sein-venus-8-20",
-      "vessel_id": "sein-venus",
-      "report_year": 2026,
-      "report_date": "8/20",
-      "work_time": "08:10 ~ 13:40",
-      "target_holds": "S/PIO(#1-B:147.490)",
-      "consignee": "GPZ",
-      "allocations": [
-        {
-          "consignee": "GPZ",
-          "amount": 147.49,
-          "loads": [
-            {
-              "source_vessel": "S/PIO",
-              "hatch": "#1-B",
-              "amount": 147.49
-            }
-          ]
-        }
-      ],
-      "observations": [
-        {
-          "source_vessel": "S/PIO",
-          "hatch": "#1-B",
-          "temperatures_c": [
-            -20.0,
-            -21.0
-          ]
-        }
-      ],
-      "daily_amount": 147.49,
-      "cumulative_amount": 3090.76,
-      "species_amounts": {
-        "SJ": 133.19,
-        "YF": 14.3
-      },
-      "remaining_amount": 184.24,
-      "daily_adjustment_amount": 26.66,
-      "cumulative_adjustment_amount": 55.76,
-      "adjusted_remaining_amount": 240,
-      "next_day": {
-        "kind": "work",
-        "date": "8/21",
-        "planned_mt": 150
-      },
-      "quality_notes": "S/PIO(#1-B) - 어창 개방 측정온도는 -20.0℃ ~ -21.0℃ 입니다.",
-      "source_sha256": "48c3f3068a470408dd4db398029bdf4697b0b7cb1c4a7861030f7d1b113a7db2",
-      "source_workbook_sha256": "1afe7469fa889c584d9ef39b8215c62de3a6db05c3ea3475d38485cb7b6368c1",
-      "status_workbook_sha256": "45b95797988b0d1de4b7d183e464894a753f19f3ecb74036996ce6a64a3c81ac",
-      "created_at": "2026-08-20T18:17:27+09:00"
-    },
-    {
-      "id": "sein-venus-8-21",
-      "vessel_id": "sein-venus",
-      "report_year": 2026,
-      "report_date": "8/21",
-      "work_time": "08:10 ~ 12:00",
-      "target_holds": "S/PIO(#1-B:5.770,#1-C:143.030)",
-      "consignee": "GPZ",
-      "allocations": [
-        {
-          "consignee": "GPZ",
-          "amount": 148.8,
-          "loads": [
-            {
-              "source_vessel": "S/PIO",
-              "hatch": "#1-B",
-              "amount": 5.77
-            },
-            {
-              "source_vessel": "S/PIO",
-              "hatch": "#1-C",
-              "amount": 143.03
-            }
-          ]
-        }
-      ],
-      "observations": [
-        {
-          "source_vessel": "S/PIO",
-          "hatch": "#1-B",
-          "temperatures_c": [
-            -18.0,
-            -19.0
-          ]
-        },
-        {
-          "source_vessel": "S/PIO",
-          "hatch": "#1-C",
-          "temperatures_c": [
-            -20.0,
-            -21.0
-          ]
-        }
-      ],
-      "daily_amount": 148.8,
-      "cumulative_amount": 3239.56,
-      "species_amounts": {
-        "SJ": 143.6,
-        "YF": 5.2
-      },
-      "remaining_amount": 35.44,
-      "daily_adjustment_amount": 5.77,
-      "cumulative_adjustment_amount": 61.53,
-      "adjusted_remaining_amount": 96.97,
-      "next_day": {
-        "kind": "work",
-        "date": "8/22",
-        "planned_mt": 100
-      },
-      "quality_notes": "S/PIO(#1-B) - 어창 개방 측정온도는 -18.0℃ ~ -19.0℃ 입니다. S/PIO(#1-C) - 어창 개방 측정온도는 -20.0℃ ~ -21.0℃ 입니다. 8/22 GPZ/H1C1(S.PIONEER) 100 MT, 08:00 작업 예정입니다.",
-      "source_sha256": "931ebf66af256b2882a89ca69acb5c851cd171b7ea60f074e58319c39e36037b",
-      "source_workbook_sha256": "30a0f429a1472a796501416ad5cdc29b0bc328a98af3ae00b389a5c069ad654e",
-      "status_workbook_sha256": "ac332bc9a1062a6e36357633f497e3c5e157e87855b0986a00d431f5741827bf",
-      "created_at": "2026-08-21T15:43:45+09:00"
-    },
-    {
-      "id": "sein-venus-8-22",
-      "vessel_id": "sein-venus",
-      "report_year": 2026,
-      "report_date": "8/22",
-      "work_time": "08:20 ~ 10:40",
-      "target_holds": "S/PIO(#1-C:89.520)",
-      "consignee": "GPZ",
-      "allocations": [
-        {
-          "consignee": "GPZ",
-          "amount": 89.52,
-          "loads": [
-            {
-              "source_vessel": "S/PIO",
-              "hatch": "#1-C",
-              "amount": 89.52
-            }
-          ]
-        }
-      ],
-      "observations": [
-        {
-          "source_vessel": "S/PIO",
-          "hatch": "#1-C",
-          "temperatures_c": [
-            -21.0,
-            -22.0
-          ]
-        }
-      ],
-      "daily_amount": 89.52,
-      "cumulative_amount": 3329.08,
-      "species_amounts": {
-        "SJ": 87.82,
-        "YF": 1.7
-      },
-      "remaining_amount": -54.08,
-      "daily_adjustment_amount": -7.45,
-      "cumulative_adjustment_amount": 54.08,
-      "adjusted_remaining_amount": 0,
-      "quality_notes": "S/PIO(#1-C) - 어창 개방 측정온도는 -21.0℃ ~ -22.0℃ 입니다. 당일 보정 -7.450 MT, 누적 보정 +54.080 MT, 실제 잔량 0 MT.",
-      "source_sha256": "957c3826b8639aec801567e1ca413a04dbc6164429039749722fe7beea313b50",
-      "source_workbook_sha256": "1cabdba041e2781bdc44dac75f1583c96ffc5aa572453200742d7c10bf0a38e9",
-      "status_workbook_sha256": "ce23e5d9ed8536cf669a00c8eddd03a64fea60b68b097be898fda1a69cf9e714",
-      "created_at": "2026-08-22T15:52:00+09:00"
+   ],
+   "observations": [
+    {
+     "source_vessel": "N/STAR",
+     "hatch": "#2-B",
+     "temperatures_c": [
+      -22,
+      -23
+     ]
+    },
+    {
+     "source_vessel": "N/SUN",
+     "hatch": "#3-B",
+     "temperatures_c": [
+      -21,
+      -22
+     ]
+    },
+    {
+     "source_vessel": "N/SUN",
+     "hatch": "#3-C",
+     "temperatures_c": [
+      -22,
+      -23
+     ]
+    },
+    {
+     "source_vessel": "S/SPR",
+     "hatch": "#4-B",
+     "temperatures_c": [
+      -21,
+      -22
+     ]
+    },
+    {
+     "source_vessel": "S/SPR",
+     "hatch": "#4-C",
+     "temperatures_c": [
+      -22,
+      -23
+     ]
     }
-  ],
-  "unloading_species": [
+   ],
+   "daily_amount": 424.78,
+   "cumulative_amount": 1662.36,
+   "species_amounts": {
+    "SJ": 368.08,
+    "YF": 56.7
+   },
+   "remaining_amount": 1612.64,
+   "quality_notes": "N/STAR(#2-B) - 어창 개방 측정온도는 -22.0℃ ~ -23.0℃ 입니다. N/SUN(#3-B) - 어창 개방 측정온도는 -21.0℃ ~ -22.0℃ 입니다. N/SUN(#3-C) - 어창 개방 측정온도는 -22.0℃ ~ -23.0℃ 입니다. S/SPR(#4-B) - 어창 개방 측정온도는 -21.0℃ ~ -22.0℃ 입니다. S/SPR(#4-C) - 어창 개방 측정온도는 -22.0℃ ~ -23.0℃ 입니다.",
+   "source_sha256": "2c1a9f4b28f5a6a555b8329d3926fcb9eec0c1cf465deeed778919c7be3af76a",
+   "source_workbook_sha256": "0ad30e784ec9c643dfe1bb42ffa597005c5dffa2ea74523acff7c639637a6d70",
+   "status_workbook_sha256": "9814a954e5c7984a3be51cb1071cc60bbb9fc6734c20a51e14759a234775f7cf",
+   "created_at": "2026-08-14T21:01:37+09:00"
+  },
+  {
+   "id": "sein-venus-8-15",
+   "vessel_id": "sein-venus",
+   "report_year": 2026,
+   "report_date": "8/15",
+   "work_time": "08:10 ~ 17:00",
+   "target_holds": "N/STAR(#2-B:160.600,#2-C:41.990), N/SUN(#3-C:60.100), S/SPR(#4-C:88.050)",
+   "consignee": "TUM · ISA",
+   "allocations": [
     {
-      "id": "a23c0558-9eca-4283-badc-9b8795e8030d",
-      "vessel_id": "sein-phoenix",
-      "species_id": "SJ",
-      "species_name": "Skipjack",
-      "reported_amount": 6646,
-      "actual_amount": 6677.15,
-      "updated_at": "2026-06-10T01:00:00.000000+00:00"
+     "consignee": "TUM",
+     "amount": 202.59,
+     "loads": [
+      {
+       "source_vessel": "N/STAR",
+       "hatch": "#2-B",
+       "amount": 160.6
+      },
+      {
+       "source_vessel": "N/STAR",
+       "hatch": "#2-C",
+       "amount": 41.99
+      }
+     ]
     },
     {
-      "id": "d596a051-506a-409c-a9a6-ee84f91ff127",
-      "vessel_id": "sein-phoenix",
-      "species_id": "YF",
-      "species_name": "Yellowfin",
-      "reported_amount": 309,
-      "actual_amount": 383.8,
-      "updated_at": "2026-06-10T01:00:00.000000+00:00"
-    },
-    {
-      "vessel_id": "bao-lucky",
-      "species_id": "SJ",
-      "species_name": "Skipjack",
-      "reported_amount": 4176,
-      "actual_amount": 4237.56
-    },
-    {
-      "vessel_id": "bao-lucky",
-      "species_id": "YF",
-      "species_name": "Yellowfin",
-      "reported_amount": 627,
-      "actual_amount": 610.6
-    },
-    {
-      "vessel_id": "shin-fuji",
-      "species_id": "SJ",
-      "species_name": "Skipjack",
-      "reported_amount": 2957,
-      "actual_amount": 3028.12,
-      "updated_at": "2026-07-07T08:49:12.027607"
-    },
-    {
-      "vessel_id": "shin-fuji",
-      "species_id": "YF",
-      "species_name": "Yellowfin",
-      "reported_amount": 139,
-      "actual_amount": 202.1,
-      "updated_at": "2026-07-07T08:49:12.027607"
-    },
-    {
-      "vessel_id": "shin-fuji",
-      "species_id": "BE",
-      "species_name": "Bigeye",
-      "reported_amount": 0,
-      "actual_amount": 0
-    },
-    {
-      "vessel_id": "sein-venus",
-      "species_id": "SJ",
-      "species_name": "가다랑어·눈다랑어 합산",
-      "reported_amount": 2844,
-      "actual_amount": 2793.9,
-      "updated_at": "2026-08-22T15:52:00+09:00"
-    },
-    {
-      "vessel_id": "sein-venus",
-      "species_id": "YF",
-      "species_name": "황다랑어",
-      "reported_amount": 431,
-      "actual_amount": 535.18,
-      "updated_at": "2026-08-22T15:52:00+09:00"
-    },
-    {
-      "vessel_id": "hikari-bangkok-2026-07",
-      "species_id": "SJ",
-      "species_name": "가다랑어",
-      "reported_amount": 2515,
-      "actual_amount": 2501.29,
-      "updated_at": "2026-08-27T20:35:00+09:00"
-    },
-    {
-      "vessel_id": "hikari-bangkok-2026-07",
-      "species_id": "YF",
-      "species_name": "황다랑어",
-      "reported_amount": 358,
-      "actual_amount": 365.52,
-      "updated_at": "2026-08-27T20:35:00+09:00"
-    },
-    {
-      "vessel_id": "hikari-bangkok-2026-07",
-      "species_id": "BE",
-      "species_name": "눈다랑어",
-      "reported_amount": 56,
-      "actual_amount": 0,
-      "updated_at": "2026-08-27T20:35:00+09:00"
-    },
-    {
-      "vessel_id": "sein-phoenix-2025-12",
-      "species_id": "SJ",
-      "species_name": "가다랑어",
-      "reported_amount": 3232,
-      "actual_amount": 3089.07,
-      "updated_at": "2026-08-12T18:00:00+09:00"
-    },
-    {
-      "vessel_id": "sein-phoenix-2025-12",
-      "species_id": "YF",
-      "species_name": "황다랑어",
-      "reported_amount": 508,
-      "actual_amount": 579.64,
-      "updated_at": "2026-08-12T18:00:00+09:00"
-    },
-    {
-      "vessel_id": "volta-victory-2026-01",
-      "species_id": "SJ",
-      "species_name": "가다랑어",
-      "reported_amount": 2144,
-      "actual_amount": 2096.87,
-      "updated_at": "2026-08-12T18:00:00+09:00"
-    },
-    {
-      "vessel_id": "volta-victory-2026-01",
-      "species_id": "YF",
-      "species_name": "황다랑어",
-      "reported_amount": 531,
-      "actual_amount": 556.1,
-      "updated_at": "2026-08-12T18:00:00+09:00"
-    },
-    {
-      "vessel_id": "angara-2026-01",
-      "species_id": "SJ",
-      "species_name": "가다랑어",
-      "reported_amount": 1899,
-      "actual_amount": 1872.55,
-      "updated_at": "2026-08-12T18:00:00+09:00"
-    },
-    {
-      "vessel_id": "angara-2026-01",
-      "species_id": "YF",
-      "species_name": "황다랑어",
-      "reported_amount": 758,
-      "actual_amount": 810.53,
-      "updated_at": "2026-08-12T18:00:00+09:00"
-    },
-    {
-      "vessel_id": "salt-lake-2026-01",
-      "species_id": "SJ",
-      "species_name": "가다랑어",
-      "reported_amount": 193,
-      "actual_amount": 195.7,
-      "updated_at": "2026-08-12T18:00:00+09:00"
-    },
-    {
-      "vessel_id": "salt-lake-2026-01",
-      "species_id": "YF",
-      "species_name": "황다랑어",
-      "reported_amount": 7,
-      "actual_amount": 8.6,
-      "updated_at": "2026-08-12T18:00:00+09:00"
+     "consignee": "ISA",
+     "amount": 148.15,
+     "loads": [
+      {
+       "source_vessel": "N/SUN",
+       "hatch": "#3-C",
+       "amount": 60.1
+      },
+      {
+       "source_vessel": "S/SPR",
+       "hatch": "#4-C",
+       "amount": 88.05
+      }
+     ]
     }
-  ]
+   ],
+   "observations": [
+    {
+     "source_vessel": "N/STAR",
+     "hatch": "#2-B",
+     "temperatures_c": [
+      -22,
+      -23
+     ]
+    },
+    {
+     "source_vessel": "N/STAR",
+     "hatch": "#2-C",
+     "temperatures_c": [
+      -22,
+      -23
+     ]
+    },
+    {
+     "source_vessel": "N/SUN",
+     "hatch": "#3-C",
+     "temperatures_c": [
+      -21,
+      -22
+     ]
+    },
+    {
+     "source_vessel": "S/SPR",
+     "hatch": "#4-C",
+     "temperatures_c": [
+      -21,
+      -22
+     ]
+    }
+   ],
+   "daily_amount": 350.74,
+   "cumulative_amount": 2013.1,
+   "species_amounts": {
+    "SJ": 318.14,
+    "YF": 32.6
+   },
+   "remaining_amount": 1261.9,
+   "daily_adjustment_amount": -21.16,
+   "cumulative_adjustment_amount": -0.73,
+   "adjusted_remaining_amount": 1261.17,
+   "next_day": {
+    "kind": "no_work",
+    "date": "8/16",
+    "reason": "공휴일",
+    "resume_date": "8/17",
+    "planned_mt": 300
+   },
+   "quality_notes": "N/STAR(#2-B) - 어창 개방 측정온도는 -22.0℃ ~ -23.0℃ 입니다. N/STAR(#2-C) - 어창 개방 측정온도는 -22.0℃ ~ -23.0℃ 입니다. N/SUN(#3-C) - 어창 개방 측정온도는 -21.0℃ ~ -22.0℃ 입니다. S/SPR(#4-C) - 어창 개방 측정온도는 -21.0℃ ~ -22.0℃ 입니다.",
+   "source_sha256": "2b295ca629ace7e9aa0b3d50c00992e8f0bdec13b7f1c80d8fb2e6d89fa39b6b",
+   "source_workbook_sha256": "a52a830b86c022936bf0c727d617073a548c5df466b1111223adab16e6c175b0",
+   "status_workbook_sha256": "0f0fe538043a59b9bf75f2cab299e161f1dd6299f41b96661bb642c497993dbd",
+   "created_at": "2026-08-15T19:27:19+09:00"
+  },
+  {
+   "id": "sein-venus-8-17",
+   "vessel_id": "sein-venus",
+   "report_year": 2026,
+   "report_date": "8/17",
+   "work_time": "08:10 ~ 16:30",
+   "target_holds": "N/STAR(#2-C:201.620), S/SPR(#4-C:97.500), N/SUN(#4-C:13.450)",
+   "consignee": "TUM · ISA",
+   "allocations": [
+    {
+     "consignee": "TUM",
+     "amount": 201.62,
+     "loads": [
+      {
+       "source_vessel": "N/STAR",
+       "hatch": "#2-C",
+       "amount": 201.62
+      }
+     ]
+    },
+    {
+     "consignee": "ISA",
+     "amount": 110.95,
+     "loads": [
+      {
+       "source_vessel": "S/SPR",
+       "hatch": "#4-C",
+       "amount": 97.5
+      },
+      {
+       "source_vessel": "N/SUN",
+       "hatch": "#4-C",
+       "amount": 13.45
+      }
+     ]
+    }
+   ],
+   "observations": [
+    {
+     "source_vessel": "N/STAR",
+     "hatch": "#2-C",
+     "temperatures_c": [
+      -21,
+      -23
+     ]
+    },
+    {
+     "source_vessel": "S/SPR",
+     "hatch": "#4-C",
+     "temperatures_c": [
+      -22,
+      -23
+     ]
+    },
+    {
+     "source_vessel": "N/SUN",
+     "hatch": "#4-C",
+     "temperatures_c": [
+      -22,
+      -23
+     ]
+    }
+   ],
+   "daily_amount": 312.57,
+   "cumulative_amount": 2325.67,
+   "species_amounts": {
+    "SJ": 279.77,
+    "YF": 32.8
+   },
+   "remaining_amount": 949.33,
+   "daily_adjustment_amount": 22.25,
+   "cumulative_adjustment_amount": 21.52,
+   "adjusted_remaining_amount": 970.85,
+   "next_day": {
+    "kind": "work",
+    "date": "8/18",
+    "planned_mt": 343
+   },
+   "quality_notes": "N/STAR(#2-C) - 어창 개방 측정온도는 -21.0℃ ~ -23.0℃ 입니다. S/SPR(#4-C) - 어창 개방 측정온도는 -22.0℃ ~ -23.0℃ 입니다. N/SUN(#4-C) - 어창 개방 측정온도는 -22.0℃ ~ -23.0℃ 입니다.",
+   "source_sha256": "e613b9c30622067e4c1115ae4a5233d8da7654871c95ab9ace9f8e4796c584a1",
+   "source_workbook_sha256": "60e054c9f9ea485c5c0f833e3a89c969598aac355c550b3a2e6d753dc751d84b",
+   "status_workbook_sha256": "bcd1d07d745d75a93f9c17512159e01c1b95acaed6d7bc8e08875aa60d2af22e",
+   "created_at": "2026-08-17T20:25:14+09:00"
+  },
+  {
+   "id": "sein-venus-8-18",
+   "vessel_id": "sein-venus",
+   "report_year": 2026,
+   "report_date": "8/18",
+   "work_time": "08:10 ~ 15:40",
+   "target_holds": "N/STAR(#2-C:130.880), N/SUN(#3-C:55.770,#4-C:153.080)",
+   "consignee": "TUM · GFF",
+   "allocations": [
+    {
+     "consignee": "TUM",
+     "amount": 186.65,
+     "loads": [
+      {
+       "source_vessel": "N/STAR",
+       "hatch": "#2-C",
+       "amount": 130.88
+      },
+      {
+       "source_vessel": "N/SUN",
+       "hatch": "#3-C",
+       "amount": 55.77
+      }
+     ]
+    },
+    {
+     "consignee": "GFF",
+     "amount": 153.08,
+     "loads": [
+      {
+       "source_vessel": "N/SUN",
+       "hatch": "#4-C",
+       "amount": 153.08
+      }
+     ]
+    }
+   ],
+   "observations": [
+    {
+     "source_vessel": "N/STAR",
+     "hatch": "#2-C",
+     "temperatures_c": [
+      -22,
+      -23
+     ]
+    },
+    {
+     "source_vessel": "N/SUN",
+     "hatch": "#3-C",
+     "temperatures_c": [
+      -22,
+      -23
+     ]
+    },
+    {
+     "source_vessel": "N/SUN",
+     "hatch": "#4-C",
+     "temperatures_c": [
+      -22,
+      -23
+     ]
+    }
+   ],
+   "daily_amount": 339.73,
+   "cumulative_amount": 2665.4,
+   "species_amounts": {
+    "SJ": 170.85,
+    "YF": 168.88
+   },
+   "remaining_amount": 609.6,
+   "daily_adjustment_amount": 4.57,
+   "cumulative_adjustment_amount": 26.09,
+   "adjusted_remaining_amount": 635.69,
+   "next_day": {
+    "kind": "work",
+    "date": "8/19",
+    "planned_mt": 280
+   },
+   "quality_notes": "N/STAR(#2-C) - 어창 개방 측정온도는 -22.0℃ ~ -23.0℃ 입니다. N/SUN(#3-C) - 어창 개방 측정온도는 -22.0℃ ~ -23.0℃ 입니다. N/SUN(#4-C) - 어창 개방 측정온도는 -22.0℃ ~ -23.0℃ 입니다.",
+   "source_sha256": "aafd0069803c8a2d115c33a490e5f04f85261c10886ec309c3bc2360da58ee59",
+   "source_workbook_sha256": "669a59d177710d341604a174288a0c0cec777e5c1f1b6c81393d6a6203fc78c3",
+   "status_workbook_sha256": "f3da391273b36b06cfa77bf24e552e7dfed1629090867ab17afea8ec449a5ba7",
+   "created_at": "2026-08-18T22:45:00+09:00"
+  },
+  {
+   "id": "hikari-loading-7-2-4",
+   "vessel_id": "hikari-bangkok-2026-07",
+   "report_date": "7/2~7/4",
+   "work_time": "선적기록",
+   "target_holds": "SHILLA SPRINTER(#2-B:340,#2-C:330)",
+   "daily_amount": 0,
+   "cumulative_amount": 0,
+   "quality_notes": "크리스마스섬 선적 766 MT 중 FCF 670 MT(SJ 648·YF 10·BE 12)를 #2-B·#2-C에 배치했습니다. #2-A 황다랑어 96 MT 별도 배정입니다. 적재 중 어체온도는 #2-C -12.3℃ ~ -14.5℃, #2-B -12.0℃ ~ -13.7℃였습니다.",
+   "created_at": "2026-08-12T16:35:00+09:00"
+  },
+  {
+   "id": "hikari-loading-7-14-15",
+   "vessel_id": "hikari-bangkok-2026-07",
+   "report_date": "7/14~7/15",
+   "work_time": "선적기록",
+   "target_holds": "MOAKONA(#4-C:314)",
+   "daily_amount": 0,
+   "cumulative_amount": 0,
+   "quality_notes": "크리스마스섬 선적 428 MT 중 FCF 314 MT(SJ 268·YF 38·BE 8)를 #4-C에 배치했습니다. #2-A 황다랑어 114 MT 별도 배정입니다. 적재 중 어체온도는 #4-C -12.8℃ ~ -41.6℃였습니다.",
+   "created_at": "2026-08-12T16:35:00+09:00"
+  },
+  {
+   "id": "hikari-loading-7-17-19",
+   "vessel_id": "hikari-bangkok-2026-07",
+   "report_date": "7/17~7/19",
+   "work_time": "선적기록",
+   "target_holds": "MOAMARI(#4-A:137,#4-B:390,#3-C:413)",
+   "daily_amount": 0,
+   "cumulative_amount": 0,
+   "quality_notes": "크리스마스섬 선적 940 MT 전량 FCF(SJ 668·YF 248·BE 24)이며 #4-A·#4-B·#3-C에 배치했습니다. 적재 중 어체온도는 #4-A -11.0℃ ~ -11.9℃, #4-B -11.2℃ ~ -12.5℃, #3-C -11.0℃ ~ -12.5℃였습니다.",
+   "created_at": "2026-08-12T16:35:00+09:00"
+  },
+  {
+   "id": "hikari-loading-7-17-20",
+   "vessel_id": "hikari-bangkok-2026-07",
+   "report_date": "7/17~7/20",
+   "work_time": "선적기록",
+   "target_holds": "NAOERO STAR(#1-A:280,#1-B:200,#3-A:165,#3-B:360)",
+   "daily_amount": 0,
+   "cumulative_amount": 0,
+   "quality_notes": "크리스마스섬 선적 1,005 MT 전량 FCF(SJ 931·YF 62·BE 12)이며 #1-A·#1-B·#3-A·#3-B에 배치했습니다. 적재 중 어체온도는 #1-A -11.4℃ ~ -12.4℃, #1-B -11.2℃ ~ -12.5℃, #3-A -11.0℃ ~ -12.3℃, #3-B -11.5℃ ~ -12.5℃였습니다. 7/20 최종 적재계획 기준 정격 3,700 MT, 총 적재 3,214 MT, FCF 방콕 하역대상 2,929 MT입니다. #2-A 별도 배정 285 MT(S/SPR 96·MOAKONA 114·S/PIO 75 황다랑어)는 하역 목표에서 제외했습니다.",
+   "created_at": "2026-08-12T16:35:00+09:00"
+  },
+  {
+   "id": "hikari-bangkok-2026-07-8-20",
+   "vessel_id": "hikari-bangkok-2026-07",
+   "report_year": 2026,
+   "report_date": "8/20",
+   "work_time": "10:00 ~ 15:20",
+   "target_holds": "N/STAR(#3-A:104.240,#1-A:69.800), MOAMARI(#4-A:123.020)",
+   "consignee": "MMP · GFF",
+   "allocations": [
+    {
+     "consignee": "MMP",
+     "amount": 174.04,
+     "loads": [
+      {
+       "source_vessel": "N/STAR",
+       "hatch": "#3-A",
+       "amount": 104.24
+      },
+      {
+       "source_vessel": "N/STAR",
+       "hatch": "#1-A",
+       "amount": 69.8
+      }
+     ]
+    },
+    {
+     "consignee": "GFF",
+     "amount": 123.02,
+     "loads": [
+      {
+       "source_vessel": "MOAMARI",
+       "hatch": "#4-A",
+       "amount": 123.02
+      }
+     ]
+    }
+   ],
+   "observations": [
+    {
+     "source_vessel": "N/STAR",
+     "hatch": "#3-A",
+     "temperatures_c": [
+      -22.0
+     ]
+    },
+    {
+     "source_vessel": "N/STAR",
+     "hatch": "#1-A",
+     "temperatures_c": [
+      -20.0
+     ]
+    },
+    {
+     "source_vessel": "MOAMARI",
+     "hatch": "#4-A",
+     "temperatures_c": [
+      -20.0
+     ]
+    }
+   ],
+   "daily_amount": 297.06,
+   "cumulative_amount": 297.06,
+   "species_amounts": {
+    "SJ": 146.14,
+    "YF": 150.92
+   },
+   "remaining_amount": 2631.94,
+   "next_day": {
+    "kind": "work",
+    "date": "8/21",
+    "planned_mt": 490
+   },
+   "quality_notes": "N/STAR(#3-A) - 어창 개방 측정온도는 -22.0℃ 입니다. N/STAR(#1-A) - 어창 개방 측정온도는 -20.0℃ 입니다. MOAMARI(#4-A) - 어창 개방 측정온도는 -20.0℃ 입니다. #3-A 차량 대기 13:00~13:20·14:10~14:40, #4-A 차량 대기 13:00~13:20.",
+   "source_sha256": "f991a53cbd4846d8487a17a28a54de419877b7e0f3665d2d9b3f88b31f065746",
+   "source_workbook_sha256": "794353927cc51bf5bd1181fc031c5fc0f7b49e0f5f71a49fb9a36653ab510cf2",
+   "status_workbook_sha256": "0c7363f7e4a0835655e7c06d7099ff54e342f27585a83b15121de4539a1a920d",
+   "created_at": "2026-08-20T19:01:00+09:00"
+  },
+  {
+   "id": "hikari-bangkok-2026-07-8-21",
+   "vessel_id": "hikari-bangkok-2026-07",
+   "report_year": 2026,
+   "report_date": "8/21",
+   "work_time": "08:10 ~ 15:00",
+   "target_holds": "N/STAR(#1-A:143.330), S/SPR(#2-B:132.550), N/STAR(#3-A:62.690,#3-B:60.820), MOAMARI(#4-A:4.990,#4-B:101.600)",
+   "consignee": "MMP · AAI · TUM · RMK",
+   "allocations": [
+    {
+     "consignee": "MMP",
+     "amount": 143.33,
+     "loads": [
+      {
+       "source_vessel": "N/STAR",
+       "hatch": "#1-A",
+       "amount": 143.33
+      }
+     ]
+    },
+    {
+     "consignee": "AAI",
+     "amount": 132.55,
+     "loads": [
+      {
+       "source_vessel": "S/SPR",
+       "hatch": "#2-B",
+       "amount": 132.55
+      }
+     ]
+    },
+    {
+     "consignee": "TUM",
+     "amount": 123.51,
+     "loads": [
+      {
+       "source_vessel": "N/STAR",
+       "hatch": "#3-A",
+       "amount": 62.69
+      },
+      {
+       "source_vessel": "N/STAR",
+       "hatch": "#3-B",
+       "amount": 60.82
+      }
+     ]
+    },
+    {
+     "consignee": "RMK",
+     "amount": 106.59,
+     "loads": [
+      {
+       "source_vessel": "MOAMARI",
+       "hatch": "#4-A",
+       "amount": 4.99
+      },
+      {
+       "source_vessel": "MOAMARI",
+       "hatch": "#4-B",
+       "amount": 101.6
+      }
+     ]
+    }
+   ],
+   "observations": [
+    {
+     "source_vessel": "N/STAR",
+     "hatch": "#1-A",
+     "temperatures_c": [
+      -22.0,
+      -23.0
+     ]
+    },
+    {
+     "source_vessel": "S/SPR",
+     "hatch": "#2-B",
+     "temperatures_c": [
+      -23.0
+     ]
+    },
+    {
+     "source_vessel": "N/STAR",
+     "hatch": "#3-A",
+     "temperatures_c": [
+      -19.0,
+      -21.0
+     ]
+    },
+    {
+     "source_vessel": "N/STAR",
+     "hatch": "#3-B",
+     "temperatures_c": [
+      -23.0,
+      -24.0
+     ]
+    },
+    {
+     "source_vessel": "MOAMARI",
+     "hatch": "#4-A",
+     "temperatures_c": [
+      -21.0
+     ]
+    },
+    {
+     "source_vessel": "MOAMARI",
+     "hatch": "#4-B",
+     "temperatures_c": [
+      -23.0,
+      -24.0
+     ]
+    }
+   ],
+   "daily_amount": 505.98,
+   "cumulative_amount": 803.04,
+   "species_amounts": {
+    "SJ": 460.28,
+    "YF": 45.7
+   },
+   "remaining_amount": 2125.96,
+   "next_day": {
+    "kind": "work",
+    "date": "8/22",
+    "planned_mt": 570
+   },
+   "quality_notes": "N/STAR(#1-A) 08:10~14:00 - 어창 개방 측정온도는 -22.0℃ ~ -23.0℃ 입니다. S/SPR(#2-B) 08:30~14:40 - 어창 개방 측정온도는 -23.0℃ 입니다. N/STAR(#3-A) 08:20~10:10 - 어창 개방 측정온도는 -19.0℃ ~ -21.0℃ 입니다. N/STAR(#3-B) 10:20~13:10 - 어창 개방 측정온도는 -23.0℃ ~ -24.0℃ 입니다. MOAMARI(#4-A) 08:10~08:30 - 어창 개방 측정온도는 -21.0℃ 입니다. MOAMARI(#4-B) 08:30~15:00 - 어창 개방 측정온도는 -23.0℃ ~ -24.0℃ 입니다. #4-B 차량 대기 12:00~13:00, #1-A 차량 대기 10:30~11:00·11:30~13:00. 8/22 TUM/H1A1+1B1(N.STAR) 180 MT 08:00, AAI/H2B1(S.SPRINTER) 120 MT 08:00, CMC/H3B1(N.STAR) 120 MT 08:00(BKK), ISA/H4B1(N.STAR) 150 MT 08:00 작업 예정입니다.",
+   "source_sha256": "a45de42427044b0516edc8d6bfe1b9cdb81354d5ce69afef1a89bde7c68360bc",
+   "source_workbook_sha256": "530591db571a0d6b19e4aa6fdfca2bab0f5d378a3d54ee2c00e40984e3fd2c3d",
+   "status_workbook_sha256": "268e9833627709c1705882b4f69a579bb607412022d64d07c27329741c0ca8aa",
+   "created_at": "2026-08-21T18:35:00+09:00"
+  },
+  {
+   "id": "hikari-bangkok-2026-07-8-22",
+   "vessel_id": "hikari-bangkok-2026-07",
+   "report_year": 2026,
+   "report_date": "8/22",
+   "work_time": "08:10 ~ 16:50",
+   "target_holds": "N/STAR(#1-A:78.540,#1-B:108.800), S/SPR(#2-B:154.610), N/STAR(#3-B:104.020), MOAMARI(#4-B:155.450)",
+   "consignee": "TUM · AAI · CMC · ISA",
+   "allocations": [
+    {
+     "consignee": "TUM",
+     "amount": 187.34,
+     "loads": [
+      {
+       "source_vessel": "N/STAR",
+       "hatch": "#1-A",
+       "amount": 78.54
+      },
+      {
+       "source_vessel": "N/STAR",
+       "hatch": "#1-B",
+       "amount": 108.8
+      }
+     ]
+    },
+    {
+     "consignee": "AAI",
+     "amount": 154.61,
+     "loads": [
+      {
+       "source_vessel": "S/SPR",
+       "hatch": "#2-B",
+       "amount": 154.61
+      }
+     ]
+    },
+    {
+     "consignee": "CMC",
+     "amount": 104.02,
+     "loads": [
+      {
+       "source_vessel": "N/STAR",
+       "hatch": "#3-B",
+       "amount": 104.02
+      }
+     ]
+    },
+    {
+     "consignee": "ISA",
+     "amount": 155.45,
+     "loads": [
+      {
+       "source_vessel": "MOAMARI",
+       "hatch": "#4-B",
+       "amount": 155.45
+      }
+     ]
+    }
+   ],
+   "observations": [
+    {
+     "source_vessel": "N/STAR",
+     "hatch": "#1-A",
+     "temperatures_c": [
+      -22.0
+     ]
+    },
+    {
+     "source_vessel": "N/STAR",
+     "hatch": "#1-B",
+     "temperatures_c": [
+      -23.0
+     ]
+    },
+    {
+     "source_vessel": "S/SPR",
+     "hatch": "#2-B",
+     "temperatures_c": [
+      -22.0,
+      -23.0
+     ]
+    },
+    {
+     "source_vessel": "N/STAR",
+     "hatch": "#3-B",
+     "temperatures_c": [
+      -22.0,
+      -23.0
+     ]
+    },
+    {
+     "source_vessel": "MOAMARI",
+     "hatch": "#4-B",
+     "temperatures_c": [
+      -19.0,
+      -24.0
+     ]
+    }
+   ],
+   "daily_amount": 601.42,
+   "cumulative_amount": 1404.46,
+   "species_amounts": {
+    "SJ": 550.02,
+    "YF": 51.4
+   },
+   "remaining_amount": 1524.54,
+   "next_day": {
+    "kind": "work",
+    "date": "8/23",
+    "planned_mt": 87
+   },
+   "quality_notes": "N/STAR(#1-A) 08:10~10:40 - 어창 개방 측정온도는 -22.0℃ 입니다. N/STAR(#1-B) 10:40~15:40 - 어창 개방 측정온도는 -23.0℃ 입니다. S/SPR(#2-B) 08:10~16:50 - 어창 개방 측정온도는 -22.0℃ ~ -23.0℃ 입니다. N/STAR(#3-B) 08:10~13:00 - 어창 개방 측정온도는 -22.0℃ ~ -23.0℃ 입니다. MOAMARI(#4-B) 08:10~12:30 - 어창 개방 측정온도는 -19.0℃ ~ -24.0℃ 입니다. 원문 온도 표기는 #2-B·#3-B ‘-22,23’ 및 #4-B ‘-19,24’(단위: ℃)입니다. #3-B CMC 차량 대기 10:10~11:20, #2-B AAI 차량 대기 11:10~11:30·13:00~14:00, AAI 차량 수리 15:20~16:50(70-7297), 우천 13:00~14:00. 8/23 CMC/H3B1(N.STAR) 87 MT 08:00 (GO TO SONGKHLA) 작업 예정입니다.",
+   "source_sha256": "1755015c49636e49519d2587bf00c8eae3bb836de9797b021c5a9bdc631917dd",
+   "source_workbook_sha256": "fbd21293704d38a1719d7ad8c90d8771e57184b26a544165db58ae52eb713c9d",
+   "status_workbook_sha256": "aaeedeb697baa01d930494a581107fc6dd1b5a0a6ed9f800c2d6ca6044828916",
+   "created_at": "2026-08-22T20:55:00+09:00"
+  },
+  {
+   "id": "hikari-bangkok-2026-07-8-23",
+   "vessel_id": "hikari-bangkok-2026-07",
+   "report_year": 2026,
+   "report_date": "8/23",
+   "work_time": "08:20 ~ 11:50",
+   "target_holds": "N/STAR(#3-B:90.420)",
+   "consignee": "CMC",
+   "allocations": [
+    {
+     "consignee": "CMC",
+     "amount": 90.42,
+     "loads": [
+      {
+       "source_vessel": "N/STAR",
+       "hatch": "#3-B",
+       "amount": 90.42
+      }
+     ]
+    }
+   ],
+   "observations": [
+    {
+     "source_vessel": "N/STAR",
+     "hatch": "#3-B",
+     "temperatures_c": [
+      -22.0,
+      24.0
+     ]
+    }
+   ],
+   "daily_amount": 90.42,
+   "cumulative_amount": 1494.88,
+   "species_amounts": {
+    "SJ": 83.62,
+    "YF": 6.8
+   },
+   "remaining_amount": 1434.12,
+   "next_day": {
+    "kind": "work",
+    "date": "8/24",
+    "planned_mt": 390
+   },
+   "quality_notes": "N/STAR(#3-B) 08:20~11:50 - 어창 개방 측정온도는 -22.0℃ ~ 24.0℃ 입니다. 원문 온도 표기는 -22,24℃입니다. REEFER TRUCK 7대(#1~#7) 합계 90.420 MT. 8/24 AAI/H2B1(S.SPRINTER) 120 MT 08:00, CMC/H3B1(N.STAR) 120 MT 08:00(GO TO SONGKHLA 1 TRUCK), ISA/H4B1(N.STAR) 150 MT 08:00 작업 예정입니다.",
+   "source_sha256": "1a0dff719d2969f00008fd9a958d47c6ae752cace3e1a2fd9383326441c49212",
+   "source_workbook_sha256": "9d18f8ee5ad09023ac67172b0aa59c3a40177b03d259ad5e2b883475fdc7f242",
+   "status_workbook_sha256": "fc065b7c185994143d8dab9b624349da19e7718d7f59b939ad6cd1ec2fe2a523",
+   "created_at": "2026-08-23T15:51:00+09:00"
+  },
+  {
+   "id": "hikari-bangkok-2026-07-8-24",
+   "vessel_id": "hikari-bangkok-2026-07",
+   "report_year": 2026,
+   "report_date": "8/24",
+   "work_time": "08:10 ~ 13:50",
+   "target_holds": "N/STAR(#3-B:116.230), S/SPR(#2-B:77.670,#2-C:66.470), MOAMARI(#4-B:134.110)",
+   "consignee": "CMC · AAI · ISA",
+   "allocations": [
+    {
+     "consignee": "CMC",
+     "amount": 116.23,
+     "loads": [
+      {
+       "source_vessel": "N/STAR",
+       "hatch": "#3-B",
+       "amount": 116.23
+      }
+     ]
+    },
+    {
+     "consignee": "AAI",
+     "amount": 144.14,
+     "loads": [
+      {
+       "source_vessel": "S/SPR",
+       "hatch": "#2-B",
+       "amount": 77.67
+      },
+      {
+       "source_vessel": "S/SPR",
+       "hatch": "#2-C",
+       "amount": 66.47
+      }
+     ]
+    },
+    {
+     "consignee": "ISA",
+     "amount": 134.11,
+     "loads": [
+      {
+       "source_vessel": "MOAMARI",
+       "hatch": "#4-B",
+       "amount": 134.11
+      }
+     ]
+    }
+   ],
+   "observations": [
+    {
+     "source_vessel": "N/STAR",
+     "hatch": "#3-B",
+     "temperatures_c": [
+      -21.0
+     ]
+    },
+    {
+     "source_vessel": "S/SPR",
+     "hatch": "#2-B",
+     "temperatures_c": [
+      -21.0,
+      22.0
+     ]
+    },
+    {
+     "source_vessel": "S/SPR",
+     "hatch": "#2-C",
+     "temperatures_c": [
+      -21.0
+     ]
+    },
+    {
+     "source_vessel": "MOAMARI",
+     "hatch": "#4-B",
+     "temperatures_c": [
+      -23.0,
+      23.0
+     ]
+    }
+   ],
+   "daily_amount": 394.48,
+   "cumulative_amount": 1889.36,
+   "species_amounts": {
+    "SJ": 362.68,
+    "YF": 31.8
+   },
+   "remaining_amount": 1039.64,
+   "next_day": {
+    "kind": "work",
+    "date": "8/25",
+    "planned_mt": 400
+   },
+   "quality_notes": "N/STAR(#3-B) 08:10~13:00 - 어창 개방 측정온도는 -21.0℃ 입니다. S/SPR(#2-B) 08:10~10:50 - 어창 개방 측정온도는 -21.0℃ ~ 22.0℃ 입니다. S/SPR(#2-C) 10:50~13:50 - 어창 개방 측정온도는 -21.0℃ 입니다. MOAMARI(#4-B) 08:10~12:20 - 어창 개방 측정온도는 -23.0℃ ~ 23.0℃ 입니다. 원문 온도 표기는 #2-B ‘-21,22’ 및 #4-B ‘-23,23’(단위: ℃)입니다. REEFER TRUCK #1 12.910 MT, TOTAL 26 TRUCKS. 8/25 CMC/H1B1(N.STAR) 100 MT 08:00, GPZ/H2C1(S.SPRINTER) 150 MT 08:00, ISA/H4B1->3C1(MOAKONA+MOAMARI) 150 MT 08:00 작업 예정입니다.",
+   "source_sha256": "8afc7cd70fae24e98b08f07ff19756d38df7f5ce2894632c1c03c13c6ef7ba7c",
+   "source_workbook_sha256": "8b8c1d0e6a14939901f651b0fa38a3c082636c7197f251ace4ff7458e31b9ed0",
+   "status_workbook_sha256": "5de92feee19ffd3f127fb93655232d08de9bad2d60ded4710eab04e830ecece1",
+   "created_at": "2026-08-24T18:13:00+09:00"
+  },
+  {
+   "id": "hikari-bangkok-2026-07-8-25",
+   "vessel_id": "hikari-bangkok-2026-07",
+   "report_year": 2026,
+   "report_date": "8/25",
+   "work_time": "08:10 ~ 13:30",
+   "target_holds": "N/STAR(#1-B:96.300), S/SPR(#2-C:185.720), MOAMARI(#3-C:74.670), MOAKONA(#4-C:77.590)",
+   "consignee": "CMC · GPZ · ISA",
+   "allocations": [
+    {
+     "consignee": "CMC",
+     "amount": 96.3,
+     "loads": [
+      {
+       "source_vessel": "N/STAR",
+       "hatch": "#1-B",
+       "amount": 96.3
+      }
+     ]
+    },
+    {
+     "consignee": "GPZ",
+     "amount": 185.72,
+     "loads": [
+      {
+       "source_vessel": "S/SPR",
+       "hatch": "#2-C",
+       "amount": 185.72
+      }
+     ]
+    },
+    {
+     "consignee": "ISA",
+     "amount": 152.26,
+     "loads": [
+      {
+       "source_vessel": "MOAMARI",
+       "hatch": "#3-C",
+       "amount": 74.67
+      },
+      {
+       "source_vessel": "MOAKONA",
+       "hatch": "#4-C",
+       "amount": 77.59
+      }
+     ]
+    }
+   ],
+   "observations": [
+    {
+     "source_vessel": "N/STAR",
+     "hatch": "#1-B",
+     "temperatures_c": [
+      -20.0
+     ]
+    },
+    {
+     "source_vessel": "S/SPR",
+     "hatch": "#2-C",
+     "temperatures_c": [
+      -21.0
+     ]
+    },
+    {
+     "source_vessel": "MOAMARI",
+     "hatch": "#3-C",
+     "temperatures_c": [
+      -20.0,
+      24.0
+     ]
+    },
+    {
+     "source_vessel": "MOAKONA",
+     "hatch": "#4-C",
+     "temperatures_c": [
+      -20.0,
+      21.0
+     ]
+    }
+   ],
+   "daily_amount": 434.28,
+   "cumulative_amount": 2323.64,
+   "species_amounts": {
+    "SJ": 411.38,
+    "YF": 22.9
+   },
+   "remaining_amount": 605.36,
+   "next_day": {
+    "kind": "work",
+    "date": "8/26",
+    "planned_mt": 250
+   },
+   "quality_notes": "N/STAR(#1-B) 08:10~10:40 - 어창 개방 측정온도는 -20.0℃ 입니다. S/SPR(#2-C) 08:10~13:30 - 어창 개방 측정온도는 -21.0℃ 입니다. MOAMARI(#3-C) 08:20~13:10 - 어창 개방 측정온도는 -20.0℃ ~ 24.0℃ 입니다. MOAKONA(#4-C) 08:10~11:10 - 어창 개방 측정온도는 -20.0℃ ~ 21.0℃ 입니다. 원문 온도 표기는 #3-C ‘-20,24’ 및 #4-C ‘-20,21’(단위: ℃)입니다. TOTAL 27 TRUCKS. 8/26 GPZ/H2C1(S.SPRINTER) 100 MT 08:00, ISA/H3C1(MOAMARI) 150 MT 08:00 작업 예정입니다.",
+   "source_sha256": "762f880298659c2892815701f296c7f3d5022eca347eb8d0510316b87e703910",
+   "source_workbook_sha256": "111cd3f4cc2f08541fe65406a97d8acb8ea491d43f5621fb192c86ff61f73017",
+   "status_workbook_sha256": "08832eced6cf7d4e2679896e7a55035698b3366ee676af664e9259998b233935",
+   "created_at": "2026-08-25T21:36:00+09:00"
+  },
+  {
+   "id": "hikari-bangkok-2026-07-8-26",
+   "vessel_id": "hikari-bangkok-2026-07",
+   "report_year": 2026,
+   "report_date": "8/26",
+   "work_time": "08:10 ~ 13:40",
+   "target_holds": "S/SPR(#2-C:79.900), MOAKONA(#4-C:34.810), MOAMARI(#3-C:144.550)",
+   "consignee": "GPZ · ISA",
+   "allocations": [
+    {
+     "consignee": "GPZ",
+     "amount": 114.71,
+     "loads": [
+      {
+       "source_vessel": "S/SPR",
+       "hatch": "#2-C",
+       "amount": 79.9
+      },
+      {
+       "source_vessel": "MOAKONA",
+       "hatch": "#4-C",
+       "amount": 34.81
+      }
+     ]
+    },
+    {
+     "consignee": "ISA",
+     "amount": 144.55,
+     "loads": [
+      {
+       "source_vessel": "MOAMARI",
+       "hatch": "#3-C",
+       "amount": 144.55
+      }
+     ]
+    }
+   ],
+   "observations": [
+    {
+     "source_vessel": "S/SPR",
+     "hatch": "#2-C",
+     "temperatures_c": [
+      -21.0,
+      23.0
+     ]
+    },
+    {
+     "source_vessel": "MOAKONA",
+     "hatch": "#4-C",
+     "temperatures_c": [
+      -22.0,
+      23.0
+     ]
+    },
+    {
+     "source_vessel": "MOAMARI",
+     "hatch": "#3-C",
+     "temperatures_c": [
+      -21.0,
+      22.0
+     ]
+    }
+   ],
+   "daily_amount": 259.26,
+   "cumulative_amount": 2582.9,
+   "species_amounts": {
+    "SJ": 236.26,
+    "YF": 23.0
+   },
+   "remaining_amount": 346.1,
+   "next_day": {
+    "kind": "work",
+    "date": "8/27",
+    "planned_mt": 340
+   },
+   "quality_notes": "S/SPR(#2-C) 08:10~10:30 - 어창 개방 측정온도는 -21.0℃ ~ 23.0℃ 입니다. MOAKONA(#4-C) 10:40~11:50 - 어창 개방 측정온도는 -22.0℃ ~ 23.0℃ 입니다. MOAMARI(#3-C) 08:10~13:40 - 어창 개방 측정온도는 -21.0℃ ~ 22.0℃ 입니다. 원문 온도 표기는 #2-C ‘-21,23’, #4-C ‘-22,23’, #3-C ‘-21,22’(단위: ℃)입니다. TOTAL 17 TRUCKS. 8/27 ISA/H3C1(MOAMARI) 190 MT 08:00, GPZ/H4B1(MOAKONA) 150 MT 08:00 작업 예정입니다.",
+   "source_sha256": "c37343500e26f2c544493d9fbf7ad1d173daffbcdd1fc15b629752e47b7c5d06",
+   "source_workbook_sha256": "a198c274d681cc95fe37e5c6ae216050665bf5ba3937711fe4e70ae4be4d955e",
+   "status_workbook_sha256": "7a243d3db59378fef27c26d9b31c82937297766195a5b3e3db0cb74fa86f445f",
+   "created_at": "2026-08-26T17:57:36+09:00"
+  },
+  {
+   "id": "hikari-bangkok-2026-07-8-27",
+   "vessel_id": "hikari-bangkok-2026-07",
+   "report_year": 2026,
+   "report_date": "8/27",
+   "work_time": "08:10 ~ 13:30",
+   "target_holds": "MOAMARI(#3-C:171.720), MOAKONA(#4-C:112.190)",
+   "consignee": "GPZ · ISA",
+   "allocations": [
+    {
+     "consignee": "GPZ",
+     "amount": 112.19,
+     "loads": [
+      {
+       "source_vessel": "MOAKONA",
+       "hatch": "#4-C",
+       "amount": 112.19
+      }
+     ]
+    },
+    {
+     "consignee": "ISA",
+     "amount": 171.72,
+     "loads": [
+      {
+       "source_vessel": "MOAMARI",
+       "hatch": "#3-C",
+       "amount": 171.72
+      }
+     ]
+    }
+   ],
+   "observations": [
+    {
+     "source_vessel": "MOAKONA",
+     "hatch": "#4-C",
+     "temperatures_c": [
+      -23.0
+     ]
+    },
+    {
+     "source_vessel": "MOAMARI",
+     "hatch": "#3-C",
+     "temperatures_c": [
+      -22.0,
+      23.0
+     ]
+    }
+   ],
+   "daily_amount": 283.91,
+   "cumulative_amount": 2866.81,
+   "species_amounts": {
+    "SJ": 250.91,
+    "YF": 33.0
+   },
+   "remaining_amount": 62.19,
+   "next_day": {
+    "kind": "work",
+    "date": "8/28",
+    "planned_mt": 100
+   },
+   "quality_notes": "MOAKONA(#4-C) 08:10~11:30 - 어창 개방 측정온도는 -23.0℃ 입니다. MOAMARI(#3-C) 08:10~13:30 - 어창 개방 측정온도는 -22.0℃ ~ 23.0℃ 입니다. 원문 온도 표기는 #3-C ‘-22,23’(단위: ℃)입니다. TOTAL 19 TRUCKS. 8/28 GPZ/H4C1(MOAKONA) 100 MT 08:00 작업 예정입니다.",
+   "source_sha256": "c33f9eb4f2e4b22b20c07c9976f52aa6cece2c3edeee9deac7a26a073e37fde5",
+   "source_workbook_sha256": "66e5b1653930a9062901a7a5504c72502bb1e714b753190f198a8d79ac476ddb",
+   "status_workbook_sha256": "0bdef9ead72015bbcedd819a60eff5566348778ba1676e70695db4c354bcc96e",
+   "created_at": "2026-08-27T20:35:00+09:00"
+  },
+  {
+   "id": "sein-phoenix-2025-12-12-18",
+   "vessel_id": "sein-phoenix-2025-12",
+   "report_year": 2025,
+   "report_date": "12/18",
+   "work_time": "-",
+   "target_holds": "N/STAR(2)(#3-A)",
+   "daily_amount": 15.13,
+   "cumulative_amount": 15.13,
+   "quality_notes": "일일 XLS 원표 기준. 작업시간·온도는 원표에 미기재."
+  },
+  {
+   "id": "sein-phoenix-2025-12-12-19",
+   "vessel_id": "sein-phoenix-2025-12",
+   "report_year": 2025,
+   "report_date": "12/19",
+   "work_time": "-",
+   "target_holds": "N/STAR(2)(#3-A)",
+   "daily_amount": 104.61,
+   "cumulative_amount": 119.74,
+   "quality_notes": "일일 XLS 원표 기준. 작업시간·온도는 원표에 미기재."
+  },
+  {
+   "id": "sein-phoenix-2025-12-12-22",
+   "vessel_id": "sein-phoenix-2025-12",
+   "report_year": 2025,
+   "report_date": "12/22",
+   "work_time": "-",
+   "target_holds": "N/STAR(2)(#3-A)",
+   "daily_amount": 205.06,
+   "cumulative_amount": 324.8,
+   "quality_notes": "일일 XLS 원표 기준. 작업시간·온도는 원표에 미기재."
+  },
+  {
+   "id": "sein-phoenix-2025-12-12-23",
+   "vessel_id": "sein-phoenix-2025-12",
+   "report_year": 2025,
+   "report_date": "12/23",
+   "work_time": "-",
+   "target_holds": "N/STAR(2)(#3-A,#3-B)",
+   "daily_amount": 224.65,
+   "cumulative_amount": 549.45,
+   "quality_notes": "일일 XLS 원표 기준. 작업시간·온도는 원표에 미기재."
+  },
+  {
+   "id": "sein-phoenix-2025-12-12-24",
+   "vessel_id": "sein-phoenix-2025-12",
+   "report_year": 2025,
+   "report_date": "12/24",
+   "work_time": "-",
+   "target_holds": "N/STAR(2)(#3-B)",
+   "daily_amount": 239.09,
+   "cumulative_amount": 788.54,
+   "quality_notes": "일일 XLS 원표 기준. 작업시간·온도는 원표에 미기재."
+  },
+  {
+   "id": "sein-phoenix-2025-12-12-25",
+   "vessel_id": "sein-phoenix-2025-12",
+   "report_year": 2025,
+   "report_date": "12/25",
+   "work_time": "-",
+   "target_holds": "S/PIO(#3-B,#3-C), S/EXP(#2-B), N/STAR(2)(#3-B)",
+   "daily_amount": 502.16,
+   "cumulative_amount": 1290.7,
+   "quality_notes": "일일 XLS 원표 기준. 작업시간·온도는 원표에 미기재."
+  },
+  {
+   "id": "sein-phoenix-2025-12-12-26",
+   "vessel_id": "sein-phoenix-2025-12",
+   "report_year": 2025,
+   "report_date": "12/26",
+   "work_time": "-",
+   "target_holds": "S/PIO(#3-C), S/EXP(#2-B,#2-C)",
+   "daily_amount": 457.32,
+   "cumulative_amount": 1748.02,
+   "quality_notes": "일일 XLS 원표 기준. 작업시간·온도는 원표에 미기재."
+  },
+  {
+   "id": "sein-phoenix-2025-12-12-27",
+   "vessel_id": "sein-phoenix-2025-12",
+   "report_year": 2025,
+   "report_date": "12/27",
+   "work_time": "-",
+   "target_holds": "S/PIO(#3-C), S/EXP(#2-C)",
+   "daily_amount": 232.96,
+   "cumulative_amount": 1980.98,
+   "quality_notes": "일일 XLS 원표 기준. 작업시간·온도는 원표에 미기재."
+  },
+  {
+   "id": "sein-phoenix-2025-12-1-5",
+   "vessel_id": "sein-phoenix-2025-12",
+   "report_year": 2026,
+   "report_date": "1/5",
+   "work_time": "-",
+   "target_holds": "S/PIO(#3-C), S/EXP(#2-C)",
+   "daily_amount": 304.69,
+   "cumulative_amount": 2285.67,
+   "quality_notes": "일일 XLS 원표 기준. 작업시간·온도는 원표에 미기재."
+  },
+  {
+   "id": "sein-phoenix-2025-12-1-6",
+   "vessel_id": "sein-phoenix-2025-12",
+   "report_year": 2026,
+   "report_date": "1/6",
+   "work_time": "-",
+   "target_holds": "S/PIO(#3-C,#3-D), S/EXP(#2-C)",
+   "daily_amount": 287.62,
+   "cumulative_amount": 2573.29,
+   "quality_notes": "일일 XLS 원표 기준. 작업시간·온도는 원표에 미기재."
+  },
+  {
+   "id": "sein-phoenix-2025-12-1-7",
+   "vessel_id": "sein-phoenix-2025-12",
+   "report_year": 2026,
+   "report_date": "1/7",
+   "work_time": "-",
+   "target_holds": "S/PIO(#3-D), S/EXP(#2-C,#2-D)",
+   "daily_amount": 274.83,
+   "cumulative_amount": 2848.12,
+   "quality_notes": "일일 XLS 원표 기준. 작업시간·온도는 원표에 미기재."
+  },
+  {
+   "id": "sein-phoenix-2025-12-1-8",
+   "vessel_id": "sein-phoenix-2025-12",
+   "report_year": 2026,
+   "report_date": "1/8",
+   "work_time": "-",
+   "target_holds": "S/PIO(#3-D), S/EXP(#2-D)",
+   "daily_amount": 271.89,
+   "cumulative_amount": 3120.01,
+   "quality_notes": "일일 XLS 원표 기준. 작업시간·온도는 원표에 미기재."
+  },
+  {
+   "id": "sein-phoenix-2025-12-1-9",
+   "vessel_id": "sein-phoenix-2025-12",
+   "report_year": 2026,
+   "report_date": "1/9",
+   "work_time": "-",
+   "target_holds": "S/PIO(#3-D), S/JUP(#2-D), N/STAR(1)(#3-D)",
+   "daily_amount": 223.95,
+   "cumulative_amount": 3343.96,
+   "quality_notes": "일일 XLS 원표 기준. 작업시간·온도는 원표에 미기재."
+  },
+  {
+   "id": "sein-phoenix-2025-12-1-10",
+   "vessel_id": "sein-phoenix-2025-12",
+   "report_year": 2026,
+   "report_date": "1/10",
+   "work_time": "-",
+   "target_holds": "S/JUP(#2-D), N/STAR(1)(#3-D)",
+   "daily_amount": 144.36,
+   "cumulative_amount": 3488.32,
+   "quality_notes": "일일 XLS 원표 기준. 작업시간·온도는 원표에 미기재."
+  },
+  {
+   "id": "sein-phoenix-2025-12-1-12",
+   "vessel_id": "sein-phoenix-2025-12",
+   "report_year": 2026,
+   "report_date": "1/12",
+   "work_time": "-",
+   "target_holds": "S/JUP(#2-D)",
+   "daily_amount": 117.38,
+   "cumulative_amount": 3605.7,
+   "quality_notes": "일일 XLS 원표 기준. 작업시간·온도는 원표에 미기재."
+  },
+  {
+   "id": "sein-phoenix-2025-12-1-13",
+   "vessel_id": "sein-phoenix-2025-12",
+   "report_year": 2026,
+   "report_date": "1/13",
+   "work_time": "-",
+   "target_holds": "S/JUP(#2-D)",
+   "daily_amount": 63.01,
+   "cumulative_amount": 3668.71,
+   "quality_notes": "08:10 ~ 11:10 작업. S/JUP(#2-D) 개방 온도 -19.0℃ ~ -20.0℃, 외관·색택 양호. XLS 일일량 63.010 MT를 적용했으며 이메일 본문 63.310 MT는 누계 산술과 불일치."
+  },
+  {
+   "id": "volta-victory-2026-01-1-5",
+   "vessel_id": "volta-victory-2026-01",
+   "report_year": 2026,
+   "report_date": "1/5",
+   "work_time": "-",
+   "target_holds": "S/JUP(#3-A)",
+   "daily_amount": 161.4,
+   "cumulative_amount": 161.4,
+   "quality_notes": "일일 XLS 원표 기준. 작업시간·온도는 원표에 미기재."
+  },
+  {
+   "id": "volta-victory-2026-01-1-6",
+   "vessel_id": "volta-victory-2026-01",
+   "report_year": 2026,
+   "report_date": "1/6",
+   "work_time": "-",
+   "target_holds": "S/JUP(#2-A), S/PIO(#2-A)",
+   "daily_amount": 61.97,
+   "cumulative_amount": 223.37,
+   "quality_notes": "일일 XLS 원표 기준. 작업시간·온도는 원표에 미기재."
+  },
+  {
+   "id": "volta-victory-2026-01-1-7",
+   "vessel_id": "volta-victory-2026-01",
+   "report_year": 2026,
+   "report_date": "1/7",
+   "work_time": "-",
+   "target_holds": "S/JUP(#3-A), S/PIO(#1-A)",
+   "daily_amount": 358.11,
+   "cumulative_amount": 581.48,
+   "quality_notes": "일일 XLS 원표 기준. 작업시간·온도는 원표에 미기재."
+  },
+  {
+   "id": "volta-victory-2026-01-1-8",
+   "vessel_id": "volta-victory-2026-01",
+   "report_year": 2026,
+   "report_date": "1/8",
+   "work_time": "-",
+   "target_holds": "S/JUP(#3-A), S/PIO(#1-A)",
+   "daily_amount": 141.85,
+   "cumulative_amount": 723.33,
+   "quality_notes": "일일 XLS 원표 기준. 작업시간·온도는 원표에 미기재."
+  },
+  {
+   "id": "volta-victory-2026-01-1-9",
+   "vessel_id": "volta-victory-2026-01",
+   "report_year": 2026,
+   "report_date": "1/9",
+   "work_time": "-",
+   "target_holds": "S/PIO(#1-A)",
+   "daily_amount": 110.02,
+   "cumulative_amount": 833.35,
+   "quality_notes": "일일 XLS 원표 기준. 작업시간·온도는 원표에 미기재."
+  },
+  {
+   "id": "volta-victory-2026-01-1-12",
+   "vessel_id": "volta-victory-2026-01",
+   "report_year": 2026,
+   "report_date": "1/12",
+   "work_time": "-",
+   "target_holds": "S/JUP(#3-A)",
+   "daily_amount": 100.04,
+   "cumulative_amount": 933.39,
+   "quality_notes": "일일 XLS 원표 기준. 작업시간·온도는 원표에 미기재."
+  },
+  {
+   "id": "volta-victory-2026-01-1-13",
+   "vessel_id": "volta-victory-2026-01",
+   "report_year": 2026,
+   "report_date": "1/13",
+   "work_time": "-",
+   "target_holds": "S/CHA(#2-A)",
+   "daily_amount": 151.49,
+   "cumulative_amount": 1084.88,
+   "quality_notes": "일일 XLS 원표 기준. 작업시간·온도는 원표에 미기재."
+  },
+  {
+   "id": "volta-victory-2026-01-1-14",
+   "vessel_id": "volta-victory-2026-01",
+   "report_year": 2026,
+   "report_date": "1/14",
+   "work_time": "-",
+   "target_holds": "S/CHA(#2-A)",
+   "daily_amount": 208.18,
+   "cumulative_amount": 1293.06,
+   "quality_notes": "일일 XLS 원표 기준. 작업시간·온도는 원표에 미기재."
+  },
+  {
+   "id": "volta-victory-2026-01-1-15",
+   "vessel_id": "volta-victory-2026-01",
+   "report_year": 2026,
+   "report_date": "1/15",
+   "work_time": "-",
+   "target_holds": "S/CHA(#2-A), S/JUP(#3-B), S/PIO(#1-A,#1-B)",
+   "daily_amount": 479.08,
+   "cumulative_amount": 1772.14,
+   "quality_notes": "일일 XLS 원표 기준. 작업시간·온도는 원표에 미기재."
+  },
+  {
+   "id": "volta-victory-2026-01-1-16",
+   "vessel_id": "volta-victory-2026-01",
+   "report_year": 2026,
+   "report_date": "1/16",
+   "work_time": "-",
+   "target_holds": "S/CHA(#2-A,#2-B), S/JUP(#3-B), S/PIO(#1-B)",
+   "daily_amount": 268.5,
+   "cumulative_amount": 2040.64,
+   "quality_notes": "일일 XLS 원표 기준. 작업시간·온도는 원표에 미기재."
+  },
+  {
+   "id": "volta-victory-2026-01-1-17",
+   "vessel_id": "volta-victory-2026-01",
+   "report_year": 2026,
+   "report_date": "1/17",
+   "work_time": "-",
+   "target_holds": "S/CHA(#2-B), S/JUP(#3-B)",
+   "daily_amount": 285.75,
+   "cumulative_amount": 2326.39,
+   "quality_notes": "일일 XLS 원표 기준. 작업시간·온도는 원표에 미기재."
+  },
+  {
+   "id": "volta-victory-2026-01-1-19",
+   "vessel_id": "volta-victory-2026-01",
+   "report_year": 2026,
+   "report_date": "1/19",
+   "work_time": "-",
+   "target_holds": "S/CHA(#2-B), S/JUP(#3-B)",
+   "daily_amount": 326.58,
+   "cumulative_amount": 2652.97,
+   "quality_notes": "08:20 ~ 17:20 작업. S/CHA(#2-B)와 S/JUP(#3-B) 개방 온도 -29.0℃ ~ -30.0℃, 외관·색택 양호."
+  },
+  {
+   "id": "angara-2026-01-1-20",
+   "vessel_id": "angara-2026-01",
+   "report_year": 2026,
+   "report_date": "1/20",
+   "work_time": "-",
+   "target_holds": "N/SUN(#4-A)",
+   "daily_amount": 239.15,
+   "cumulative_amount": 239.15,
+   "quality_notes": "일일 XLS 원표 기준. 작업시간·온도는 원표에 미기재."
+  },
+  {
+   "id": "angara-2026-01-1-21",
+   "vessel_id": "angara-2026-01",
+   "report_year": 2026,
+   "report_date": "1/21",
+   "work_time": "-",
+   "target_holds": "S/EXP(#2-A)",
+   "daily_amount": 143.5,
+   "cumulative_amount": 382.65,
+   "quality_notes": "일일 XLS 원표 기준. 작업시간·온도는 원표에 미기재."
+  },
+  {
+   "id": "angara-2026-01-1-22",
+   "vessel_id": "angara-2026-01",
+   "report_year": 2026,
+   "report_date": "1/22",
+   "work_time": "-",
+   "target_holds": "S/EXP(#2-A,#3-A), N/SUN(#4-A)",
+   "daily_amount": 156.47,
+   "cumulative_amount": 539.12,
+   "quality_notes": "일일 XLS 원표 기준. 작업시간·온도는 원표에 미기재."
+  },
+  {
+   "id": "angara-2026-01-1-23",
+   "vessel_id": "angara-2026-01",
+   "report_year": 2026,
+   "report_date": "1/23",
+   "work_time": "-",
+   "target_holds": "S/EXP(#2-A), N/SUN(#4-A,#4-B)",
+   "daily_amount": 175.23,
+   "cumulative_amount": 714.35,
+   "quality_notes": "일일 XLS 원표 기준. 작업시간·온도는 원표에 미기재."
+  },
+  {
+   "id": "angara-2026-01-1-24",
+   "vessel_id": "angara-2026-01",
+   "report_year": 2026,
+   "report_date": "1/24",
+   "work_time": "-",
+   "target_holds": "S/EXP(#2-A), N/SUN(#4-B)",
+   "daily_amount": 186.96,
+   "cumulative_amount": 901.31,
+   "quality_notes": "일일 XLS 원표 기준. 작업시간·온도는 원표에 미기재."
+  },
+  {
+   "id": "angara-2026-01-1-26",
+   "vessel_id": "angara-2026-01",
+   "report_year": 2026,
+   "report_date": "1/26",
+   "work_time": "-",
+   "target_holds": "S/HAR(#2-B), S/EXP(#3-A,#2-B)",
+   "daily_amount": 226.61,
+   "cumulative_amount": 1127.92,
+   "quality_notes": "일일 XLS 원표 기준. 작업시간·온도는 원표에 미기재."
+  },
+  {
+   "id": "angara-2026-01-1-27",
+   "vessel_id": "angara-2026-01",
+   "report_year": 2026,
+   "report_date": "1/27",
+   "work_time": "-",
+   "target_holds": "S/HAR(#2-B), S/EXP(#3-A), N/SUN(#4-B,#4-C)",
+   "daily_amount": 287.4,
+   "cumulative_amount": 1415.32,
+   "quality_notes": "일일 XLS 원표 기준. 작업시간·온도는 원표에 미기재."
+  },
+  {
+   "id": "angara-2026-01-1-28",
+   "vessel_id": "angara-2026-01",
+   "report_year": 2026,
+   "report_date": "1/28",
+   "work_time": "-",
+   "target_holds": "S/EXP(#3-A), N/SUN(#4-C)",
+   "daily_amount": 274.07,
+   "cumulative_amount": 1689.39,
+   "quality_notes": "일일 XLS 원표 기준. 작업시간·온도는 원표에 미기재."
+  },
+  {
+   "id": "angara-2026-01-1-29",
+   "vessel_id": "angara-2026-01",
+   "report_year": 2026,
+   "report_date": "1/29",
+   "work_time": "-",
+   "target_holds": "S/HAR(#2-B,#2-C,#3-B), N/SUN(#3-A)",
+   "daily_amount": 468.39,
+   "cumulative_amount": 2157.78,
+   "quality_notes": "일일 XLS 원표 기준. 작업시간·온도는 원표에 미기재."
+  },
+  {
+   "id": "angara-2026-01-1-30",
+   "vessel_id": "angara-2026-01",
+   "report_year": 2026,
+   "report_date": "1/30",
+   "work_time": "-",
+   "target_holds": "S/HAR(#2-C,#3-B,#3-C)",
+   "daily_amount": 245.38,
+   "cumulative_amount": 2403.16,
+   "quality_notes": "일일 XLS 원표 기준. 작업시간·온도는 원표에 미기재."
+  },
+  {
+   "id": "angara-2026-01-1-31",
+   "vessel_id": "angara-2026-01",
+   "report_year": 2026,
+   "report_date": "1/31",
+   "work_time": "-",
+   "target_holds": "S/PIO(#3-C), S/HAR(#3-C)",
+   "daily_amount": 228.35,
+   "cumulative_amount": 2631.51,
+   "quality_notes": "일일 XLS 원표 기준. 작업시간·온도는 원표에 미기재."
+  },
+  {
+   "id": "angara-2026-01-2-2",
+   "vessel_id": "angara-2026-01",
+   "report_year": 2026,
+   "report_date": "2/2",
+   "work_time": "-",
+   "target_holds": "S/PIO(#3-C)",
+   "daily_amount": 51.57,
+   "cumulative_amount": 2683.08,
+   "quality_notes": "S/PIO(#3-C) 개방 온도 -22.0℃ ~ -24.0℃, 외관·색택 양호. 이메일 본문은 핵심 수치와 작업시간 일부가 마스킹되어 XLS 수치를 적용."
+  },
+  {
+   "id": "salt-lake-2026-01-1-13",
+   "vessel_id": "salt-lake-2026-01",
+   "report_year": 2026,
+   "report_date": "1/13",
+   "work_time": "-",
+   "target_holds": "S/HAR(#3-A)",
+   "daily_amount": 102.65,
+   "cumulative_amount": 102.65,
+   "quality_notes": "일일 XLS 원표 기준. 작업시간·온도는 원표에 미기재."
+  },
+  {
+   "id": "salt-lake-2026-01-1-14",
+   "vessel_id": "salt-lake-2026-01",
+   "report_year": 2026,
+   "report_date": "1/14",
+   "work_time": "-",
+   "target_holds": "S/HAR(#3-A)",
+   "daily_amount": 101.65,
+   "cumulative_amount": 204.3,
+   "quality_notes": "08:20 ~ 11:20 작업. S/HAR(#3-A) 개방 온도 -20.0℃ ~ -21.0℃, 외관·색택 양호."
+  },
+  {
+   "id": "sein-venus-8-19",
+   "vessel_id": "sein-venus",
+   "report_year": 2026,
+   "report_date": "8/19",
+   "work_time": "08:10 ~ 13:40",
+   "target_holds": "S/PIO(#1-B:148.930), N/SUN(#3-C:128.940)",
+   "consignee": "TUM · GPZ",
+   "allocations": [
+    {
+     "consignee": "TUM",
+     "amount": 128.94,
+     "loads": [
+      {
+       "source_vessel": "N/SUN",
+       "hatch": "#3-C",
+       "amount": 128.94
+      }
+     ]
+    },
+    {
+     "consignee": "GPZ",
+     "amount": 148.93,
+     "loads": [
+      {
+       "source_vessel": "S/PIO",
+       "hatch": "#1-B",
+       "amount": 148.93
+      }
+     ]
+    }
+   ],
+   "observations": [
+    {
+     "source_vessel": "S/PIO",
+     "hatch": "#1-B",
+     "temperatures_c": [
+      -20.0,
+      -21.0
+     ]
+    },
+    {
+     "source_vessel": "N/SUN",
+     "hatch": "#3-C",
+     "temperatures_c": [
+      -22.0,
+      -23.0
+     ]
+    }
+   ],
+   "daily_amount": 277.87,
+   "cumulative_amount": 2943.27,
+   "species_amounts": {
+    "SJ": 263.17,
+    "YF": 14.7
+   },
+   "remaining_amount": 331.73,
+   "daily_adjustment_amount": 3.01,
+   "cumulative_adjustment_amount": 29.1,
+   "adjusted_remaining_amount": 360.83,
+   "next_day": {
+    "kind": "work",
+    "date": "8/20",
+    "planned_mt": null,
+    "reason": "원자료에 명일 하역 계획이 기재되지 않았습니다"
+   },
+   "quality_notes": "S/PIO(#1-B) - 어창 개방 측정온도는 -20.0℃ ~ -21.0℃ 입니다. N/SUN(#3-C) - 어창 개방 측정온도는 -22.0℃ ~ -23.0℃ 입니다.",
+   "source_sha256": "987ec215d04c977a9a46cd5724b5192dc7de8f7de5f5a9b85095d27a9cbfebcb",
+   "source_workbook_sha256": "b003b00a3e5124210f2c62c219033250610ed9caef2bc4132a3f38d53c22f357",
+   "status_workbook_sha256": "85194881524a8a195faec039f33fb7c7aae79ae3757390379d0e5416cb54a96b",
+   "created_at": "2026-08-19T22:00:00+09:00"
+  },
+  {
+   "id": "sein-venus-8-20",
+   "vessel_id": "sein-venus",
+   "report_year": 2026,
+   "report_date": "8/20",
+   "work_time": "08:10 ~ 13:40",
+   "target_holds": "S/PIO(#1-B:147.490)",
+   "consignee": "GPZ",
+   "allocations": [
+    {
+     "consignee": "GPZ",
+     "amount": 147.49,
+     "loads": [
+      {
+       "source_vessel": "S/PIO",
+       "hatch": "#1-B",
+       "amount": 147.49
+      }
+     ]
+    }
+   ],
+   "observations": [
+    {
+     "source_vessel": "S/PIO",
+     "hatch": "#1-B",
+     "temperatures_c": [
+      -20.0,
+      -21.0
+     ]
+    }
+   ],
+   "daily_amount": 147.49,
+   "cumulative_amount": 3090.76,
+   "species_amounts": {
+    "SJ": 133.19,
+    "YF": 14.3
+   },
+   "remaining_amount": 184.24,
+   "daily_adjustment_amount": 26.66,
+   "cumulative_adjustment_amount": 55.76,
+   "adjusted_remaining_amount": 240,
+   "next_day": {
+    "kind": "work",
+    "date": "8/21",
+    "planned_mt": 150
+   },
+   "quality_notes": "S/PIO(#1-B) - 어창 개방 측정온도는 -20.0℃ ~ -21.0℃ 입니다.",
+   "source_sha256": "48c3f3068a470408dd4db398029bdf4697b0b7cb1c4a7861030f7d1b113a7db2",
+   "source_workbook_sha256": "1afe7469fa889c584d9ef39b8215c62de3a6db05c3ea3475d38485cb7b6368c1",
+   "status_workbook_sha256": "45b95797988b0d1de4b7d183e464894a753f19f3ecb74036996ce6a64a3c81ac",
+   "created_at": "2026-08-20T18:17:27+09:00"
+  },
+  {
+   "id": "sein-venus-8-21",
+   "vessel_id": "sein-venus",
+   "report_year": 2026,
+   "report_date": "8/21",
+   "work_time": "08:10 ~ 12:00",
+   "target_holds": "S/PIO(#1-B:5.770,#1-C:143.030)",
+   "consignee": "GPZ",
+   "allocations": [
+    {
+     "consignee": "GPZ",
+     "amount": 148.8,
+     "loads": [
+      {
+       "source_vessel": "S/PIO",
+       "hatch": "#1-B",
+       "amount": 5.77
+      },
+      {
+       "source_vessel": "S/PIO",
+       "hatch": "#1-C",
+       "amount": 143.03
+      }
+     ]
+    }
+   ],
+   "observations": [
+    {
+     "source_vessel": "S/PIO",
+     "hatch": "#1-B",
+     "temperatures_c": [
+      -18.0,
+      -19.0
+     ]
+    },
+    {
+     "source_vessel": "S/PIO",
+     "hatch": "#1-C",
+     "temperatures_c": [
+      -20.0,
+      -21.0
+     ]
+    }
+   ],
+   "daily_amount": 148.8,
+   "cumulative_amount": 3239.56,
+   "species_amounts": {
+    "SJ": 143.6,
+    "YF": 5.2
+   },
+   "remaining_amount": 35.44,
+   "daily_adjustment_amount": 5.77,
+   "cumulative_adjustment_amount": 61.53,
+   "adjusted_remaining_amount": 96.97,
+   "next_day": {
+    "kind": "work",
+    "date": "8/22",
+    "planned_mt": 100
+   },
+   "quality_notes": "S/PIO(#1-B) - 어창 개방 측정온도는 -18.0℃ ~ -19.0℃ 입니다. S/PIO(#1-C) - 어창 개방 측정온도는 -20.0℃ ~ -21.0℃ 입니다. 8/22 GPZ/H1C1(S.PIONEER) 100 MT, 08:00 작업 예정입니다.",
+   "source_sha256": "931ebf66af256b2882a89ca69acb5c851cd171b7ea60f074e58319c39e36037b",
+   "source_workbook_sha256": "30a0f429a1472a796501416ad5cdc29b0bc328a98af3ae00b389a5c069ad654e",
+   "status_workbook_sha256": "ac332bc9a1062a6e36357633f497e3c5e157e87855b0986a00d431f5741827bf",
+   "created_at": "2026-08-21T15:43:45+09:00"
+  },
+  {
+   "id": "sein-venus-8-22",
+   "vessel_id": "sein-venus",
+   "report_year": 2026,
+   "report_date": "8/22",
+   "work_time": "08:20 ~ 10:40",
+   "target_holds": "S/PIO(#1-C:89.520)",
+   "consignee": "GPZ",
+   "allocations": [
+    {
+     "consignee": "GPZ",
+     "amount": 89.52,
+     "loads": [
+      {
+       "source_vessel": "S/PIO",
+       "hatch": "#1-C",
+       "amount": 89.52
+      }
+     ]
+    }
+   ],
+   "observations": [
+    {
+     "source_vessel": "S/PIO",
+     "hatch": "#1-C",
+     "temperatures_c": [
+      -21.0,
+      -22.0
+     ]
+    }
+   ],
+   "daily_amount": 89.52,
+   "cumulative_amount": 3329.08,
+   "species_amounts": {
+    "SJ": 87.82,
+    "YF": 1.7
+   },
+   "remaining_amount": -54.08,
+   "daily_adjustment_amount": -7.45,
+   "cumulative_adjustment_amount": 54.08,
+   "adjusted_remaining_amount": 0,
+   "quality_notes": "S/PIO(#1-C) - 어창 개방 측정온도는 -21.0℃ ~ -22.0℃ 입니다. 당일 보정 -7.450 MT, 누적 보정 +54.080 MT, 실제 잔량 0 MT.",
+   "source_sha256": "957c3826b8639aec801567e1ca413a04dbc6164429039749722fe7beea313b50",
+   "source_workbook_sha256": "1cabdba041e2781bdc44dac75f1583c96ffc5aa572453200742d7c10bf0a38e9",
+   "status_workbook_sha256": "ce23e5d9ed8536cf669a00c8eddd03a64fea60b68b097be898fda1a69cf9e714",
+   "created_at": "2026-08-22T15:52:00+09:00"
+  },
+  {
+   "id": "hikari-bangkok-2026-07-8-28",
+   "vessel_id": "hikari-bangkok-2026-07",
+   "report_year": 2026,
+   "report_date": "8/28",
+   "work_time": "08:10 ~ 13:00",
+   "target_holds": "MOAKONA(#4-C:119.250)",
+   "consignee": "GPZ",
+   "allocations": [
+    {
+     "consignee": "GPZ",
+     "amount": 119.25,
+     "loads": [
+      {
+       "source_vessel": "MOAKONA",
+       "hatch": "#4-C",
+       "amount": 119.25
+      }
+     ]
+    }
+   ],
+   "observations": [
+    {
+     "source_vessel": "MOAKONA",
+     "hatch": "#4-C",
+     "temperatures_c": [
+      -19.0,
+      23.0
+     ]
+    }
+   ],
+   "daily_amount": 119.25,
+   "cumulative_amount": 2986.06,
+   "species_amounts": {
+    "SJ": 101.45,
+    "YF": 17.8
+   },
+   "remaining_amount": -57.06,
+   "quality_notes": "MOAKONA(#4-C) 08:10~13:00 - 어창 개방 측정온도는 -19.0℃ ~ 23.0℃ 입니다. 원문 온도 표기는 #4-C ‘-19,23’(단위: ℃)입니다. TOTAL 8 TRUCKS. WAITING TRUCK 11:30~12:00. 8/28 작업으로 전 물량 하역 완료 - 최종 누계 2,986.06 MT, 본선보고량 2,929 MT 대비 +57.06 MT 초과 하역(K Group Report No.9 BALANCE +57.060 일치). 모선 4척(S/SPR·MOAKONA·MOAMARI·N/STAR) 전부 하역완료.",
+   "source_sha256": "f97b4dbc2bc4c93f4b5c0ffeb38c0d00e79173be997c0884538f44d511b0ce08",
+   "source_workbook_sha256": "bfc4cb6f71a2a1e1cbc8403006e3553309735f09f56ec4c0a7e5e04e1d4948eb",
+   "status_workbook_sha256": "ae89273f705541d5ba482f2fe70ede3ed39fc9f9777883e733500e3a75ef06ac",
+   "created_at": "2026-08-28T17:10:00+09:00"
+  }
+ ],
+ "unloading_species": [
+  {
+   "id": "a23c0558-9eca-4283-badc-9b8795e8030d",
+   "vessel_id": "sein-phoenix",
+   "species_id": "SJ",
+   "species_name": "Skipjack",
+   "reported_amount": 6646,
+   "actual_amount": 6677.15,
+   "updated_at": "2026-06-10T01:00:00.000000+00:00"
+  },
+  {
+   "id": "d596a051-506a-409c-a9a6-ee84f91ff127",
+   "vessel_id": "sein-phoenix",
+   "species_id": "YF",
+   "species_name": "Yellowfin",
+   "reported_amount": 309,
+   "actual_amount": 383.8,
+   "updated_at": "2026-06-10T01:00:00.000000+00:00"
+  },
+  {
+   "vessel_id": "bao-lucky",
+   "species_id": "SJ",
+   "species_name": "Skipjack",
+   "reported_amount": 4176,
+   "actual_amount": 4237.56
+  },
+  {
+   "vessel_id": "bao-lucky",
+   "species_id": "YF",
+   "species_name": "Yellowfin",
+   "reported_amount": 627,
+   "actual_amount": 610.6
+  },
+  {
+   "vessel_id": "shin-fuji",
+   "species_id": "SJ",
+   "species_name": "Skipjack",
+   "reported_amount": 2957,
+   "actual_amount": 3028.12,
+   "updated_at": "2026-07-07T08:49:12.027607"
+  },
+  {
+   "vessel_id": "shin-fuji",
+   "species_id": "YF",
+   "species_name": "Yellowfin",
+   "reported_amount": 139,
+   "actual_amount": 202.1,
+   "updated_at": "2026-07-07T08:49:12.027607"
+  },
+  {
+   "vessel_id": "shin-fuji",
+   "species_id": "BE",
+   "species_name": "Bigeye",
+   "reported_amount": 0,
+   "actual_amount": 0
+  },
+  {
+   "vessel_id": "sein-venus",
+   "species_id": "SJ",
+   "species_name": "가다랑어·눈다랑어 합산",
+   "reported_amount": 2844,
+   "actual_amount": 2793.9,
+   "updated_at": "2026-08-22T15:52:00+09:00"
+  },
+  {
+   "vessel_id": "sein-venus",
+   "species_id": "YF",
+   "species_name": "황다랑어",
+   "reported_amount": 431,
+   "actual_amount": 535.18,
+   "updated_at": "2026-08-22T15:52:00+09:00"
+  },
+  {
+   "vessel_id": "hikari-bangkok-2026-07",
+   "species_id": "SJ",
+   "species_name": "가다랑어",
+   "reported_amount": 2515,
+   "actual_amount": 2602.74,
+   "updated_at": "2026-08-28T17:10:00+09:00"
+  },
+  {
+   "vessel_id": "hikari-bangkok-2026-07",
+   "species_id": "YF",
+   "species_name": "황다랑어",
+   "reported_amount": 358,
+   "actual_amount": 383.32,
+   "updated_at": "2026-08-28T17:10:00+09:00"
+  },
+  {
+   "vessel_id": "hikari-bangkok-2026-07",
+   "species_id": "BE",
+   "species_name": "눈다랑어",
+   "reported_amount": 56,
+   "actual_amount": 0,
+   "updated_at": "2026-08-28T17:10:00+09:00"
+  },
+  {
+   "vessel_id": "sein-phoenix-2025-12",
+   "species_id": "SJ",
+   "species_name": "가다랑어",
+   "reported_amount": 3232,
+   "actual_amount": 3089.07,
+   "updated_at": "2026-08-12T18:00:00+09:00"
+  },
+  {
+   "vessel_id": "sein-phoenix-2025-12",
+   "species_id": "YF",
+   "species_name": "황다랑어",
+   "reported_amount": 508,
+   "actual_amount": 579.64,
+   "updated_at": "2026-08-12T18:00:00+09:00"
+  },
+  {
+   "vessel_id": "volta-victory-2026-01",
+   "species_id": "SJ",
+   "species_name": "가다랑어",
+   "reported_amount": 2144,
+   "actual_amount": 2096.87,
+   "updated_at": "2026-08-12T18:00:00+09:00"
+  },
+  {
+   "vessel_id": "volta-victory-2026-01",
+   "species_id": "YF",
+   "species_name": "황다랑어",
+   "reported_amount": 531,
+   "actual_amount": 556.1,
+   "updated_at": "2026-08-12T18:00:00+09:00"
+  },
+  {
+   "vessel_id": "angara-2026-01",
+   "species_id": "SJ",
+   "species_name": "가다랑어",
+   "reported_amount": 1899,
+   "actual_amount": 1872.55,
+   "updated_at": "2026-08-12T18:00:00+09:00"
+  },
+  {
+   "vessel_id": "angara-2026-01",
+   "species_id": "YF",
+   "species_name": "황다랑어",
+   "reported_amount": 758,
+   "actual_amount": 810.53,
+   "updated_at": "2026-08-12T18:00:00+09:00"
+  },
+  {
+   "vessel_id": "salt-lake-2026-01",
+   "species_id": "SJ",
+   "species_name": "가다랑어",
+   "reported_amount": 193,
+   "actual_amount": 195.7,
+   "updated_at": "2026-08-12T18:00:00+09:00"
+  },
+  {
+   "vessel_id": "salt-lake-2026-01",
+   "species_id": "YF",
+   "species_name": "황다랑어",
+   "reported_amount": 7,
+   "actual_amount": 8.6,
+   "updated_at": "2026-08-12T18:00:00+09:00"
+  }
+ ]
 }

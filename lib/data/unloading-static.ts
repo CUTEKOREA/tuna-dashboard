@@ -52,6 +52,8 @@ export type UnloadingTimelineEntry = {
 export type UnloadingVesselData = {
   name: string;
   dateRange: string;
+  /** 입항일 (하역 개시 전 대기 포함 체선 계산용, K Group 보고 ARRIVED ON) */
+  arrivalDate?: string | null;
   location: string;
   buyer: string;
   motherVessel?: string;

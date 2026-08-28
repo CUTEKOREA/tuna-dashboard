@@ -78,6 +78,7 @@ export async function GET() {
         name: v.name,
         portCode: v.port_code || null,
         dateRange: v.date_range,
+        arrivalDate: v.arrival_date || null,
         location: v.location,
         buyer: v.buyer,
         motherVessel: v.mother_vessel || '-',
