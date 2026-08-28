@@ -1,3 +1,12 @@
+> ⚓ **2026-08-28 11:20 KST — 해양수산본부 8/28 일일보고 `/fleet` 반영 (로컬 완료·배포 진행)** [CC]:
+> - 원문 `해양수산본부 일일업무보고-260828 (금).docx` 한 건을 운영자 CLI `prepare --page fleet-daily`로 증분 반영했다. 데이터 기준일은 보고 `2026-08-28` / 조업 `2026-08-27`, 보고 누계는 143 → 144건이다.
+> - 최신 집계: 태평양 일간 120 (월 2,998 / 연 47,830.8), 대서양 일간 230 (월 5,525 / 연 32,250), 운반선 선적 8,763.3 · 예상잔량 5,771.7 (MT). 전일 대비 일간 델타는 태평양 +55 · 대서양 +65 · 합계 +120이다. 검산 4건 전량 일치, `issueCount` 0. 전기간 검산은 572 → 576회.
+> - 보호 상세 SHA는 `f2efea1c…bded`이고 직전 `d50fbd4b…e005`가 `detailSha256Compat`에 남아 배포 전환 중에도 상세가 끊기지 않는다. 병합 전에 Production `FLEET_DAILY_DETAIL_JSON`을 새 DTO로 교체했다.
+> - RED→GREEN: 8/27 계약이 남아 Vitest 5파일(`fleet-daily`, `fleet-daily-security-boundary`, `fleet-daily-command-center`, `v2-components-render`, `fleet-daily-source-contract`)이 실패하는 것을 확인하고 새 값으로 갱신했다. `npm run verify` 통과(ESLint 0 errors, Vitest 전량, Python fleet sync 13/13, Next 빌드, fleet client leak 0 — 정적 125개·보호 상세 32개, bundle 33 routes).
+> - 이번 회차에 어창 ㎥ 환산 작업을 별도 worktree에서 중복 구현했다가 폐기했다. main에 이미 `bb7f717e`(#830)로 같은 기능이 0.7 MT/㎥ 계수로 병합·배포돼 있었다. **일일 반영에 들어가기 전 `origin/main`을 먼저 확인할 것.**
+>
+> 마지막 업데이트: 2026-08-28 11:20 KST [CC]
+
 > 🚀 **2026-08-28 — 어창 ㎥ 환산 적재율 라이브 배포** [CC]:
 > - PR [#830](https://github.com/CUTEKOREA/tuna-dashboard/pull/830) squash `bb7f717e`. Vercel Production **success** · /fleet 반영.
 > - ㎥ 선박 적재율 = 적재 MT / (㎥ x 0.7), 「(환산)」 라벨로 실측과 구분. 계수 변경은 `lib/fleet-map-load-signal.ts` `HOLD_M3_TO_MT_FACTOR` 한 줄.
