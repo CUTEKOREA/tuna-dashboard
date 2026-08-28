@@ -5,43 +5,26 @@ import { Target, Activity, Zap, TrendingUp } from 'lucide-react';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from 'recharts';
 import SafeResponsiveContainer from './SafeResponsiveContainer';
 import { nationalVds } from '@/lib/fleet-operations-2026-08-23';
+import { getVdsBurnCell, getVdsCompanyBurn } from '@/lib/data/vds-company-burn';
 
 // ─── Data ───
 const companies = ['동원산업', '사조산업', '사조씨푸드', '사조오양', '신라교역'];
 const zones = ['PNG', 'Solomon', 'Kiribati', 'Tuvalu', 'Nauru', 'FSM'];
 const years = ['2023', '2024', '2025', '2026'];
 
-// Combined Data [Year][Company][Zone]
-const heatmapData: Record<string, Record<string, Record<string, { remaining: number; rate: number }>>> = {
-  '2023': {
-    '동원산업': { 'PNG': { remaining: 7.79, rate: 99 }, 'Solomon': { remaining: 9.09, rate: 76 }, 'Kiribati': { remaining: 87.22, rate: 94 }, 'Tuvalu': { remaining: 2.04, rate: 97 }, 'Nauru': { remaining: 10.06, rate: 83 }, 'FSM': { remaining: 5.28, rate: 96 } },
-    '사조산업': { 'PNG': { remaining: -44.31, rate: 111 }, 'Solomon': { remaining: -7.41, rate: 112 }, 'Kiribati': { remaining: -30.53, rate: 105 }, 'Tuvalu': { remaining: -48.82, rate: 134 }, 'Nauru': { remaining: -4.70, rate: 116 }, 'FSM': { remaining: -15.51, rate: 119 } },
-    '사조씨푸드': { 'PNG': { remaining: 9.08, rate: 90 }, 'Solomon': { remaining: 5.24, rate: 69 }, 'Kiribati': { remaining: 27.54, rate: 78 }, 'Tuvalu': { remaining: 22.05, rate: 24 }, 'Nauru': { remaining: 3.03, rate: 68 }, 'FSM': { remaining: 3.92, rate: 81 } },
-    '사조오양': { 'PNG': { remaining: 36.71, rate: 58 }, 'Solomon': { remaining: 3.02, rate: 82 }, 'Kiribati': { remaining: -1.75, rate: 101 }, 'Tuvalu': { remaining: 26.32, rate: 9 }, 'Nauru': { remaining: -1.63, rate: 117 }, 'FSM': { remaining: 11.88, rate: 43 } },
-    '신라교역': { 'PNG': { remaining: 0.10, rate: 100 }, 'Solomon': { remaining: 0.16, rate: 100 }, 'Kiribati': { remaining: 99.40, rate: 91 }, 'Tuvalu': { remaining: -56.30, rate: 271 }, 'Nauru': { remaining: 1.34, rate: 95 }, 'FSM': { remaining: 0.36, rate: 99 } }
-  },
-  '2024': {
-    '동원산업': { 'PNG': { remaining: 0.27, rate: 100 }, 'Solomon': { remaining: 3.17, rate: 99 }, 'Kiribati': { remaining: 80.00, rate: 90 }, 'Tuvalu': { remaining: 0.88, rate: 100 }, 'Nauru': { remaining: 0.28, rate: 98 }, 'FSM': { remaining: 0.09, rate: 100 } },
-    '사조산업': { 'PNG': { remaining: 26.76, rate: 95 }, 'Solomon': { remaining: 34.46, rate: 88 }, 'Kiribati': { remaining: 35.00, rate: 95 }, 'Tuvalu': { remaining: 26.22, rate: 79 }, 'Nauru': { remaining: -12.29, rate: 156 }, 'FSM': { remaining: -9.85, rate: 107 } },
-    '사조씨푸드': { 'PNG': { remaining: -9.80, rate: 109 }, 'Solomon': { remaining: -23.88, rate: 168 }, 'Kiribati': { remaining: -10.0, rate: 110 }, 'Tuvalu': { remaining: -20.44, rate: 246 }, 'Nauru': { remaining: 7.94, rate: 12 }, 'FSM': { remaining: 4.71, rate: 78 } },
-    '사조오양': { 'PNG': { remaining: -5.55, rate: 104 }, 'Solomon': { remaining: -9.10, rate: 126 }, 'Kiribati': { remaining: -5.0, rate: 105 }, 'Tuvalu': { remaining: -3.79, rate: 127 }, 'Nauru': { remaining: 4.90, rate: 46 }, 'FSM': { remaining: 5.37, rate: 74 } },
-    '신라교역': { 'PNG': { remaining: 3.52, rate: 100 }, 'Solomon': { remaining: 0.53, rate: 100 }, 'Kiribati': { remaining: 20.00, rate: 95 }, 'Tuvalu': { remaining: 0.72, rate: 99 }, 'Nauru': { remaining: -0.19, rate: 102 }, 'FSM': { remaining: 0.38, rate: 100 } }
-  },
-  '2025': {
-    '동원산업': { 'PNG': { remaining: 24.24, rate: 98 }, 'Solomon': { remaining: 11.84, rate: 97 }, 'Kiribati': { remaining: 30.28, rate: 81 }, 'Tuvalu': { remaining: 0.31, rate: 99 }, 'Nauru': { remaining: 0.00, rate: 100 }, 'FSM': { remaining: 0.19, rate: 100 } },
-    '사조산업': { 'PNG': { remaining: 17.70, rate: 97 }, 'Solomon': { remaining: -34.00, rate: 116 }, 'Kiribati': { remaining: 36.05, rate: 83 }, 'Tuvalu': { remaining: 18.40, rate: 76 }, 'Nauru': { remaining: -4.65, rate: 116 }, 'FSM': { remaining: -14.98, rate: 112 } },
-    '사조씨푸드': { 'PNG': { remaining: 11.67, rate: 87 }, 'Solomon': { remaining: -12.34, rate: 129 }, 'Kiribati': { remaining: 4.61, rate: 89 }, 'Tuvalu': { remaining: -33.67, rate: 260 }, 'Nauru': { remaining: -1.52, rate: 130 }, 'FSM': { remaining: 4.58, rate: 70 } },
-    '사조오양': { 'PNG': { remaining: 1.44, rate: 98 }, 'Solomon': { remaining: -3.55, rate: 108 }, 'Kiribati': { remaining: -12.41, rate: 130 }, 'Tuvalu': { remaining: 14.60, rate: 30 }, 'Nauru': { remaining: 9.90, rate: 38 }, 'FSM': { remaining: 10.42, rate: 50 } },
-    '신라교역': { 'PNG': { remaining: 6.49, rate: 99 }, 'Solomon': { remaining: -7.39, rate: 102 }, 'Kiribati': { remaining: 35.85, rate: 87 }, 'Tuvalu': { remaining: 0.90, rate: 99 }, 'Nauru': { remaining: 1.56, rate: 97 }, 'FSM': { remaining: 0.07, rate: 100 } }
-  },
-  '2026': {
-    '동원산업': { 'PNG': { remaining: 330.34, rate: 18 }, 'Solomon': { remaining: 18.39, rate: 89 }, 'Kiribati': { remaining: 59.49, rate: 93 }, 'Tuvalu': { remaining: 54.93, rate: 67 }, 'Nauru': { remaining: 25.96, rate: 88 }, 'FSM': { remaining: 15.66, rate: 89 } },
-    '사조산업': { 'PNG': { remaining: 271.81, rate: 5 }, 'Solomon': { remaining: 42.05, rate: 57 }, 'Kiribati': { remaining: 4.26, rate: 99 }, 'Tuvalu': { remaining: -7.25, rate: 108 }, 'Nauru': { remaining: 22.49, rate: 74 }, 'FSM': { remaining: 26.46, rate: 59 } },
-    '사조씨푸드': { 'PNG': { remaining: 58.00, rate: 0 }, 'Solomon': { remaining: -2.40, rate: 113 }, 'Kiribati': { remaining: -3.31, rate: 105 }, 'Tuvalu': { remaining: 4.48, rate: 76 }, 'Nauru': { remaining: 0.56, rate: 96 }, 'FSM': { remaining: 12.00, rate: 0 } },
-    '사조오양': { 'PNG': { remaining: 52.85, rate: 9 }, 'Solomon': { remaining: -25.32, rate: 205 }, 'Kiribati': { remaining: 5.65, rate: 92 }, 'Tuvalu': { remaining: 3.75, rate: 80 }, 'Nauru': { remaining: -1.72, rate: 111 }, 'FSM': { remaining: 4.21, rate: 65 } },
-    '신라교역': { 'PNG': { remaining: 0, rate: 0 }, 'Solomon': { remaining: 0, rate: 0 }, 'Kiribati': { remaining: 0, rate: 0 }, 'Tuvalu': { remaining: 0, rate: 0 }, 'Nauru': { remaining: 0, rate: 0 }, 'FSM': { remaining: 0, rate: 0 } }
+// [Year][Company][Zone] - 미경실 조업일수 대장 (scripts/sync_vds_burn.py 산출)
+const vdsBurn = getVdsCompanyBurn();
+const heatmapData: Record<string, Record<string, Record<string, { remaining: number; rate: number }>>> = {};
+for (const y of years) {
+  heatmapData[y] = {};
+  for (const c of companies) {
+    heatmapData[y][c] = {};
+    for (const z of zones) {
+      const cell = getVdsBurnCell(y, c, z);
+      heatmapData[y][c][z] = { remaining: cell?.remaining ?? 0, rate: cell?.ratePct ?? 0 };
+    }
   }
-};
+}
 
 const companyColors: Record<string, string> = {
   '동원산업': '#3b82f6', // blue
@@ -74,13 +57,7 @@ const currentSillaZone = (zone: string) => {
 
 const sillaData = zones.map((zone) => ({ zone, ...currentSillaZone(zone) }));
 
-const intelFeed = [
-  { date: '07/29', msg: '키리바시 조업일수 추가 구매 (20일)' },
-  { date: '07/27', msg: '키리바시 조업일수 추가 구매 (60일)' },
-  { date: '07/22', msg: '키리바시 조업일수 추가 구매 (80일)' },
-  { date: '07/16', msg: '키리바시 조업일수 추가 구매 (100일)' },
-  { date: '07/10', msg: '키리바시 조업일수 추가 구매 (70일)' }
-];
+const intelFeed = vdsBurn.recentEvents;
 
 export default function VdsStrategyMatrix() {
   const [activeYear, setActiveYear] = useState('2026');
@@ -104,9 +81,7 @@ export default function VdsStrategyMatrix() {
   const chartData = years.map(y => {
     const dataObj: any = { year: y };
     companies.forEach(c => {
-      dataObj[c] = y === '2026' && c === '신라교역'
-        ? currentSillaZone(activeZone).remaining
-        : heatmapData[y][c][activeZone].remaining;
+      dataObj[c] = heatmapData[y][c][activeZone].remaining;
     });
     return dataObj;
   });
@@ -116,7 +91,7 @@ export default function VdsStrategyMatrix() {
       <div className={s.header}>
         <div>
           <h2 className={s.title}><Target size={22} className={s.titleIcon} /> VDS Strategy Matrix</h2>
-          <div className={s.subtitle}>2023~2026 수역별 조업일수(VDS) 시계열 트렌드 및 경쟁사 전략 분석</div>
+          <div className={s.subtitle}>2023~2026 수역별 조업일수(VDS) 시계열 트렌드 및 경쟁사 전략 분석 · 미경실 대장 {vdsBurn.asOf} 기준</div>
         </div>
         <div className={s.yearTabs}>
           {years.map(y => (

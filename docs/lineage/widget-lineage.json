@@ -1,9 +1,9 @@
 {
  "_meta": {
   "entry": "app/page.tsx",
-  "files": 199,
+  "files": 200,
   "widgets": 110,
-  "dataFiles": 74,
+  "dataFiles": 75,
   "generator": "scripts/widget_lineage.py"
  },
  "widgetToData": {
@@ -66,6 +66,7 @@
     "lib/data/fleet-daily-public.ts"
    ],
    "dataFiles": [
+    "data/vds_company_burn.json",
     "lib/data/generated/fleet-daily-public.json"
    ]
   },
@@ -279,8 +280,12 @@
    "dataFiles": []
   },
   "components/VdsStrategyMatrix.tsx": {
-   "dataModules": [],
-   "dataFiles": []
+   "dataModules": [
+    "lib/data/vds-company-burn.ts"
+   ],
+   "dataFiles": [
+    "data/vds_company_burn.json"
+   ]
   },
   "components/VesselVdsStatus.tsx": {
    "dataModules": [],
@@ -946,6 +951,10 @@
   "data/reefer_week34.json": [
    "components/LogisticsDashboard.tsx",
    "components/ReeferMovement.tsx"
+  ],
+  "data/vds_company_burn.json": [
+   "components/FleetCommandCenter.tsx",
+   "components/VdsStrategyMatrix.tsx"
   ],
   "lib/data/generated/fleet-daily-public.json": [
    "components/FleetCommandCenter.tsx",
