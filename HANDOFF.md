@@ -1,3 +1,14 @@
+> ⚓ **2026-08-31 12:05 KST — 해양수산본부 8/31 일일보고 `/fleet` 반영 (로컬 완료·배포 진행)** [CC]:
+> - 원문 `해양수산본부 일일업무보고-260831 (월).docx` 한 건을 운영자 CLI `prepare --page fleet-daily`로 증분 반영했다. 데이터 기준일은 보고 `2026-08-31` / 조업 `2026-08-30`, 보고 누계는 144 → 145건이다.
+> - 최신 집계: 태평양 일간 60 (월 3,313 / 연 48,145.8), 대서양 일간 400 (월 6,550 / 연 33,275), 운반선 선적 5,834.1 · 예상잔량 5,771.7 (MT). 전일 대비 일간 델타는 태평양 -60 · 대서양 +170 · 합계 +110이다. 전기간 검산은 576 → 580회.
+> - **운반선 선적 검산이 처음으로 불일치 1건으로 열렸다.** 보고 헤더 5,834.1 대 상세 행 합계 5,834.13(284.830 + 1,846 + 900 + 1,848 + 955.3)로 0.03 MT 차이다. 원문이 소수 둘째 자리를 반올림해 헤더에 적은 표기 차이이며 데이터 오류가 아니다. 파이프라인 원칙대로 자동 보정하지 않았고, 검산 카드는 `최신 상세 행 확인 필요`(tone danger)로 정직하게 노출된다.
+> - 운반선 구성이 바뀌었다. HIKARI 1 본선이 항차 완료로 빠지고 SEIN SAPPHIRE(7,300)가 X-MAS 대기로 들어왔다. MOAMARI는 프로펠러 로프가드 수리 후 8/31 출항, SEIN SAPPHIRE 예인으로 GENSAN향 예정이다.
+> - 보호 상세 SHA는 `fa52059b…742c`이고 직전 `f2efea1c…bded`가 `detailSha256Compat`에 남아 배포 전환 중에도 상세가 끊기지 않는다. 병합 전에 Production `FLEET_DAILY_DETAIL_JSON`을 새 DTO로 교체했다.
+> - RED→GREEN: 8/28 계약이 남아 Vitest 5파일이 실패하는 것을 확인하고 새 값으로 갱신했다. 검산 카드 문구도 `최신 상세 행 검산 일치` → `최신 상세 행 확인 필요`로 계약을 바꿨다. `npm run verify` 통과(ESLint 0 errors·warnings 12, Vitest 전량, Python fleet sync 13/13, Next 빌드, fleet client leak 0 — 정적 125개·보호 상세 31개, bundle 33 routes).
+> - **8/28 회차 배포 기록이 유실됐다.** 2026-08-28 `/fleet` 배포(PR #833, main `7be02c69`)는 라이브까지 정상 완료했으나, 기록 커밋 push가 `send-pack: unexpected disconnect`로 끊긴 뒤 worktree가 정리돼 HANDOFF 항목이 남지 못했다. 그날 실측은 히어로 `2026-08-28 보고 · 2026-08-27 조업 기준`, KPI 350 / 8,523 / 80,080.8 / 8,763.3, 검산 4건 전량 일치, 상세 행 `10/7/6/1`, 어창 ㎥ 환산(P/GRACE 16.1% 환산) 확인이었다.
+>
+> 마지막 업데이트: 2026-08-31 12:05 KST [CC]
+
 > 📰 **2026-08-29 08:26 KST — 2026-08-28 참치 데일리 브리핑 `/market` 라이브 배포 완료** [Claude/tuna-dashboard-publisher]:
 > - 게이트 3종 통과: 감사 `AUDIT_PASS`(`state/audit-2026-08-28.txt`) · prepare/verify 통과(`__tests__/daily-briefing.test.ts` 4 passed, `logs/2026-08.log` 08:15) · 변경분 존재(origin/main 2026-08-26·6건 -> **2026-08-28·6건**).
 > - PR [#843](https://github.com/CUTEKOREA/tuna-dashboard/pull/843) squash 병합 `4fe2697ae7c63c55b7a7138ab73663fe38fae54a`. 브랜치 `briefing/2026-08-28` 삭제 완료. Vercel Production **success**.
