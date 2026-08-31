@@ -1,3 +1,13 @@
+> 🚀 **2026-08-31 14:05 KST — `/fleet` 일간 어획 추이 위젯 라이브 배포 완료** [CC]:
+> - PR [#848](https://github.com/CUTEKOREA/tuna-dashboard/pull/848)을 squash 병합했다. main commit `cded9528`. Vercel Preview success, Production `dpl_3xrV8w2yWNX4v17fspSSFm9cdvdu` READY, region `icn1`, alias `leedonggun.co.kr` 결합.
+> - 보호 상세 DTO를 건드리지 않아 `FLEET_DAILY_DETAIL_JSON` 교체 없이 배포했다. `detailSha256`은 `fa52059b…742c` 그대로다.
+> - 라이브 실측(로그인 세션 브라우저): 「실적 분석 → 일간 추이」 탭에서 대서양·태평양·합계 3선이 1/16~8/25 x축으로 렌더된다. 「태평양 선박별」을 누르면 S/EXP·S/PIO·S/CHA·S/HAR·S/JUP·S/SPR·MOAMARI·MOAKONA·NAOERO SUN·NAOERO STAR 칩이 열리고, S/SPR 선택 시 실선 + 태평양 해역 합계 점선이 함께 그려진다.
+> - TakeawayBox 실측값: 「2026-01-16~2026-08-31 일일보고 145건 기준으로 태평양 25,880t, 대서양 19,560t을 조업했습니다. 하루 평균은 태평양 178.5t, 대서양 134.9t입니다.」 출처 표기도 원문 건수와 함께 노출된다.
+> - 1440px 정상 렌더, 390×844 iframe 문서 폭 371 — overflow 0, console/page error 0.
+> - ⚠️ App Quality Gate는 이번에도 `unloading-history` E2E(`/39,249\s+MT/`)로만 실패했다. main `1e21a597`부터 이어지는 기존 red이며 이 PR의 diff와 무관하다. **하역 이력 합계 정본을 확인해 spec 기대값을 맞추는 작업이 여전히 남아 있다.**
+>
+> 마지막 업데이트: 2026-08-31 14:05 KST [CC]
+
 > 📈 **2026-08-31 13:15 KST — `/fleet` 일간 어획 추이 위젯 신설 (로컬 완료·미배포)** [CC]:
 > - 사용자 요청은 «태평양·대서양 일간 조업량 추이 합계 + 선박별 옵션, 2023~2026년»이었다. **2023·2024·2025년 원문이 없어 2026년만으로 확정했다**(사용자 확인). 일일보고 폴더는 2026년 145건·2022년 90건·2021년 82건이고 저장소의 `purseSeineCatch`도 2026년 월별만 담고 있다.
 > - **원문 폴더 구조가 오늘 바뀌었다.** 평면 322개에서 연도 하위 폴더(`2021`/`2022`/`2026`)로 재정리돼 `iter_reports`의 `source_dir.iterdir()`가 원문을 찾지 못했다. 재귀(`rglob`)로 바꿨고 `FLEET_DAILY_COVERAGE_START`(2026-01-16) 필터가 2021·2022를 그대로 걸러낸다. **다음 회차부터 `--latest-report` 경로도 `.../2026/` 하위다.**
