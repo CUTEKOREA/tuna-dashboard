@@ -1,57 +1,57 @@
 {
   "_meta": {
     "schemaVersion": 1,
-    "reportCount": 144,
+    "reportCount": 145,
     "firstReportDate": "2026-01-16",
-    "latestReportDate": "2026-08-28",
-    "latestAsOf": "2026-08-27",
-    "detailSha256": "f2efea1cb1ac0a41eb0e8c36b7686a5a61e34f5459e9fb44ee363725b0d8bded",
+    "latestReportDate": "2026-08-31",
+    "latestAsOf": "2026-08-30",
+    "detailSha256": "fa52059bc546e9f795c226f8ddde1d5dbb13ff8ec232cb4053841c213709742c",
     "detailSha256Compat": [
-      "d50fbd4b699b6b290a24cabffa0bb54c18988dd9da43b50619b3e825f235e005"
+      "f2efea1cb1ac0a41eb0e8c36b7686a5a61e34f5459e9fb44ee363725b0d8bded"
     ]
   },
   "latest": {
-    "reportDate": "2026-08-28",
-    "asOf": "2026-08-27",
+    "reportDate": "2026-08-31",
+    "asOf": "2026-08-30",
     "pacific": {
-      "asOf": "2026-08-27",
-      "dailyMt": 120,
-      "monthlyMt": 2998,
-      "annualMt": 47830.8
+      "asOf": "2026-08-30",
+      "dailyMt": 60,
+      "monthlyMt": 3313,
+      "annualMt": 48145.8
     },
     "atlantic": {
-      "asOf": "2026-08-27",
-      "dailyMt": 230,
-      "monthlyMt": 5525,
-      "annualMt": 32250
+      "asOf": "2026-08-30",
+      "dailyMt": 400,
+      "monthlyMt": 6550,
+      "annualMt": 33275
     },
     "carrier": {
-      "loadedTotalMt": 8763.3,
+      "loadedTotalMt": 5834.1,
       "expectedRemainingMt": 5771.7
     }
   },
   "deltas": {
-    "pacificDailyMt": 55,
-    "atlanticDailyMt": 65,
-    "totalDailyMt": 120
+    "pacificDailyMt": -60,
+    "atlanticDailyMt": 170,
+    "totalDailyMt": 110
   },
   "reconciliation": {
     "pacificDaily": {
-      "reportedMt": 120,
-      "rowsMt": 120,
+      "reportedMt": 60,
+      "rowsMt": 60,
       "matches": true,
       "missingCount": 0
     },
     "atlanticDaily": {
-      "reportedMt": 230,
-      "rowsMt": 230,
+      "reportedMt": 400,
+      "rowsMt": 400,
       "matches": true,
       "missingCount": 0
     },
     "carrierLoaded": {
-      "reportedMt": 8763.3,
-      "rowsMt": 8763.3,
-      "matches": true,
+      "reportedMt": 5834.1,
+      "rowsMt": 5834.13,
+      "matches": false,
       "missingCount": 0
     },
     "carrierExpectedRemaining": {
@@ -60,20 +60,20 @@
       "matches": true,
       "missingCount": 0
     },
-    "valid": true,
+    "valid": false,
     "unavailableCount": 0,
-    "issueCount": 0
+    "issueCount": 1
   },
   "quality": {
     "counts": {
-      "reconciliationChecks": 576,
-      "reconciliationCompleteChecks": 576,
+      "reconciliationChecks": 580,
+      "reconciliationCompleteChecks": 580,
       "reconciliationUnavailableChecks": 0,
       "reconciliationUnavailableDocuments": 0,
-      "reconciliationIssues": 14,
-      "reconciliationDocuments": 12,
-      "reconciliationPartialDifferences": 14,
-      "reconciliationPartialDifferenceDocuments": 12,
+      "reconciliationIssues": 15,
+      "reconciliationDocuments": 13,
+      "reconciliationPartialDifferences": 15,
+      "reconciliationPartialDifferenceDocuments": 13,
       "duplicateVesselRows": 4,
       "coordinateFormatIssues": 6,
       "longlineSectionMissing": 13
