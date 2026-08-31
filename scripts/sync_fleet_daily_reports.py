@@ -208,7 +208,8 @@ def iter_reports(
     if not source_dir.is_dir():
         raise FleetDailySyncError(f"원문 폴더를 찾을 수 없습니다: {source_dir}")
     reports: list[tuple[str, Path]] = []
-    for candidate in source_dir.iterdir():
+    # 2026-08-31: 원문 폴더가 연도 하위 폴더로 재정리돼 재귀로 훑는다.
+    for candidate in sorted(source_dir.rglob("*")):
         entry = report_entry(candidate, required=False)
         if entry is not None:
             reports.append(entry)
@@ -515,6 +516,54 @@ def compact_summary(report: dict[str, Any]) -> dict[str, Any]:
     }
 
 
+def build_daily_series(reports: Sequence[dict[str, Any]]) -> dict[str, Any]:
+    """일간 어획 추이. 합계는 보고 헤더의 dailyMt, 선박별은 상세 행의 catchMt를 쓴다."""
+    def region(key: str) -> dict[str, Any]:
+        names: list[str] = []
+        for report in reports:
+            for vessel in report[key]["vessels"]:
+                if vessel["name"] not in names:
+                    names.append(vessel["name"])
+        vessels = {}
+        for name in names:
+            # ponytail: 보고 x 선박 완전탐색. 145 x 17이라 그대로 둔다.
+            vessels[name] = [
+                next((vessel["catchMt"] for vessel in report[key]["vessels"] if vessel["name"] == name), None)
+                for report in reports
+            ]
+        return {
+            "totalMt": [report[key]["dailyMt"] for report in reports],
+            "vessels": vessels,
+        }
+
+    return {
+        "dates": [report["reportDate"] for report in reports],
+        "pacific": region("pacific"),
+        "atlantic": region("atlantic"),
+    }
+
+
+def append_daily_series(series: dict[str, Any], report: dict[str, Any]) -> dict[str, Any]:
+    """증분 동기화에서 하루치만 이어 붙인다. 신규 선박은 앞 구간을 None으로 채운다."""
+    length = len(series["dates"])
+    appended = {"dates": [*series["dates"], report["reportDate"]]}
+    for key in ("pacific", "atlantic"):
+        previous = series[key]
+        catches = {vessel["name"]: vessel["catchMt"] for vessel in report[key]["vessels"]}
+        vessels = {
+            name: [*values, catches.get(name)]
+            for name, values in previous["vessels"].items()
+        }
+        for name, value in catches.items():
+            if name not in vessels:
+                vessels[name] = [*([None] * length), value]
+        appended[key] = {
+            "totalMt": [*previous["totalMt"], report[key]["dailyMt"]],
+            "vessels": vessels,
+        }
+    return appended
+
+
 def build_payload(
     source_dir: Path,
     additional_reports: Iterable[Path] = (),
@@ -569,6 +618,7 @@ def build_payload(
         "latest": latest,
         "previous": compact_summary(previous),
         "daily": [compact_summary(report) for report in parsed],
+        "dailySeries": build_daily_series(parsed),
         "quality": quality,
     }
 
@@ -679,6 +729,7 @@ def build_public_payload(
             "totalDailyMt": display_number(float(pacific_delta + atlantic_delta)),
         },
         "reconciliation": reconciliation,
+        "dailySeries": payload["dailySeries"],
         "quality": {
             "counts": payload["quality"]["counts"],
             "incompletePartialDifferences": len(incomplete_checks),
@@ -728,7 +779,13 @@ def build_incremental_public_payload(
     counts["coordinateFormatIssues"] += len(issues["coordinate"])
     counts["longlineSectionMissing"] += len(issues["longlineMissing"])
 
+    try:
+        previous_series = previous_public["dailySeries"]
+    except (KeyError, TypeError) as error:
+        raise FleetDailySyncError("기존 공개 집계 JSON에 일간 추이가 없습니다") from error
+
     incremental_payload = {
+        "dailySeries": append_daily_series(previous_series, report),
         "_meta": {
             "schemaVersion": 1,
             "reportCount": previous_meta["reportCount"] + 1,

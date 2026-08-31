@@ -234,6 +234,11 @@ class FleetDailyReportSyncTest(unittest.TestCase):
             },
             "deltas": {"pacificDailyMt": 0, "atlanticDailyMt": 0, "totalDailyMt": 0},
             "reconciliation": {},
+            "dailySeries": {
+                "dates": ["2026-08-13", "2026-08-14"],
+                "pacific": {"totalMt": [80, 85], "vessels": {"S/EXP": [10, 15]}},
+                "atlantic": {"totalMt": [160, 170], "vessels": {"P/MAS": [None, 20]}},
+            },
             "quality": {
                 "counts": {
                     "reconciliationChecks": 8,
