@@ -1,3 +1,15 @@
+> 🚀 **2026-08-31 12:40 KST — 해양수산본부 8/31 일일보고 `/fleet` 라이브 배포 완료** [CC]:
+> - PR [#846](https://github.com/CUTEKOREA/tuna-dashboard/pull/846)을 squash 병합했다. main commit `9cc73608`. Vercel Preview success. Vercel Production `dpl_GDoqfqb1ju17R5fGZPQALiWfuFam` READY, region `icn1`, alias `leedonggun.co.kr` 결합.
+> - 병합 전에 Production `FLEET_DAILY_DETAIL_JSON`을 8/31 상세 DTO로 교체했다. canonical SHA `fa52059b…742c`가 공개 `_meta.detailSha256`과 일치하고, 직전 `f2efea1c…bded`는 `detailSha256Compat`에 남겼다.
+> - 라이브 실측(로그인 세션 브라우저): 히어로 `2026-08-31 보고 · 2026-08-30 조업 기준`, KPI 460 / 9,863 / 81,420.8 / 5,834.1, 전일 대비 -60 · +170 · +110 (MT), 「전체 보고 145건」·「전기간 검산 580회」.
+> - 검산 패널은 태평양 60/60 일치, 대서양 400/400 일치, 운반선 예상잔량 5,771.7/5,771.7 일치, **운반선 선적 5,834.1 / 5,834.13 · 확인 필요**로 표시된다. 원문 헤더 반올림 차이 0.03 MT이며 자동 보정하지 않았다.
+> - `/api/fleet/daily` 200 `private, no-store`, 보고일 2026-08-31 / 기준일 2026-08-30, 상세 행 `10/7/6/1`. 운반선 로스터에 SEIN SAPPHIRE가 들어오고 HIKARI 1은 PSS YF 컨테이너 기록만 남았다.
+> - 비인증 경계 유지: `/fleet` 307 `→ /login?next=%2Ffleet`, `/api/fleet/daily` 401 `authentication_required`, 둘 다 `private, no-store`·`Vary: Cookie`.
+> - 1440px 문서 폭 1425, 390×844 iframe 문서 폭 375 — 양쪽 overflow 0, console/page error 0. 운영자 상태는 `fleet-daily: live_verified`다.
+> - ⚠️ **App Quality Gate는 이 PR 이전부터 red다.** `e2e/specs/unloading-history.spec.js`의 `/39,249\s+MT/` assertion이 main `1e21a597`(2026-08-28 HIKARI 1 최종 하역보고)부터 같은 자리에서 실패하고 있다. 이번 PR의 diff는 fleet 데이터·fleet 계약 테스트·HANDOFF뿐이라 원인이 아니다. **하역 담당 흐름에서 하역 이력 합계 정본을 확인하고 spec 기대값을 맞춰야 한다.**
+>
+> 마지막 업데이트: 2026-08-31 12:40 KST [CC]
+
 > ⚓ **2026-08-31 12:05 KST — 해양수산본부 8/31 일일보고 `/fleet` 반영 (로컬 완료·배포 진행)** [CC]:
 > - 원문 `해양수산본부 일일업무보고-260831 (월).docx` 한 건을 운영자 CLI `prepare --page fleet-daily`로 증분 반영했다. 데이터 기준일은 보고 `2026-08-31` / 조업 `2026-08-30`, 보고 누계는 144 → 145건이다.
 > - 최신 집계: 태평양 일간 60 (월 3,313 / 연 48,145.8), 대서양 일간 400 (월 6,550 / 연 33,275), 운반선 선적 5,834.1 · 예상잔량 5,771.7 (MT). 전일 대비 일간 델타는 태평양 -60 · 대서양 +170 · 합계 +110이다. 전기간 검산은 576 → 580회.
