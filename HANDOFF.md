@@ -1,3 +1,14 @@
+> 📰 **2026-09-01 08:55 KST — `/market` 2026-08-31 참치 데일리 브리핑 라이브 배포 완료** [CC]:
+> - PR [#851](https://github.com/CUTEKOREA/tuna-dashboard/pull/851)을 squash 병합했다. main commit `1839a73d` (브랜치 커밋 `e1240074`). 변경은 `public/data/tuna_daily_briefing.json` 한 파일뿐(+55/−61)이다.
+> - 직전 회차가 커밋 전에 중단돼 워크트리에 준비분만 남아 있던 건을 이어받았다. 감사 게이트 `state/audit-2026-08-31.txt` = `AUDIT_PASS`, 회귀 테스트 `__tests__/daily-briefing.test.ts` 4/4 통과를 배포 전에 재확인했다.
+> - 데이터: 기준일 2026-08-31, digest 5건 / articles 5건. 원문 `참치뉴스_게시판용_2026-08-31.html` 동기.
+> - 라이브 실측(로그인 세션 브라우저): 「오늘의 참치 뉴스」 헤더가 **「기준일 2026.08.31 · 기사 5건 · 파이프라인 동기」**로 렌더된다. 리드는 "태국 가공업체, 원어 황다랑어 구매 4분의 1 축소", 오늘의 수치 5%·2,550톤, 하위 카드 4건(IATTC 제104차 연차회, MIFCO 가다랑어 가격 인상, INFOFISH TUNA 2026 연사, 발렌시아 첫 참치 축양장)까지 확인했다.
+> - ⚠️ 배포 직후 첫 reload에서 「페이지 로딩 오류」 에러 바운더리가 한 번 떴다. 재접속 후 정상 렌더되고 console/page error 0 — Vercel 전파 중 청크 불일치로 판단한다. **`curl`로는 확인 불가**(307 로그인 게이트).
+> - `gh pr merge --delete-branch`가 `'main' is already used by worktree at .../tuna-dashboard-mackerel-fix`로 실패했지만 **원격 병합은 이미 끝나 있었다**(`gh pr view 851` = MERGED). 원격 브랜치는 수동 삭제했고, 워크트리는 PR MERGED + JSON이 origin/main과 동일함을 확인한 뒤 `reset --hard origin/main`으로 정리했다.
+> - ℹ️ 워크트리 `~/silla-tuna-daily/dash`는 로컬 브랜치 `briefing/2026-08-31`에 체크아웃돼 있다(원격 삭제로 upstream 없음). `prepare_dashboard`는 `merge --ff-only origin/main`을 쓰므로 다음 회차에 영향 없다.
+>
+> 마지막 업데이트: 2026-09-01 08:55 KST [CC]
+
 > 🚀 **2026-08-31 14:05 KST — `/fleet` 일간 어획 추이 위젯 라이브 배포 완료** [CC]:
 > - PR [#848](https://github.com/CUTEKOREA/tuna-dashboard/pull/848)을 squash 병합했다. main commit `cded9528`. Vercel Preview success, Production `dpl_3xrV8w2yWNX4v17fspSSFm9cdvdu` READY, region `icn1`, alias `leedonggun.co.kr` 결합.
 > - 보호 상세 DTO를 건드리지 않아 `FLEET_DAILY_DETAIL_JSON` 교체 없이 배포했다. `detailSha256`은 `fa52059b…742c` 그대로다.
