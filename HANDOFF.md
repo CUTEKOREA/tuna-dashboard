@@ -1,3 +1,14 @@
+> 📈 **2026-08-31 13:15 KST — `/fleet` 일간 어획 추이 위젯 신설 (로컬 완료·미배포)** [CC]:
+> - 사용자 요청은 «태평양·대서양 일간 조업량 추이 합계 + 선박별 옵션, 2023~2026년»이었다. **2023·2024·2025년 원문이 없어 2026년만으로 확정했다**(사용자 확인). 일일보고 폴더는 2026년 145건·2022년 90건·2021년 82건이고 저장소의 `purseSeineCatch`도 2026년 월별만 담고 있다.
+> - **원문 폴더 구조가 오늘 바뀌었다.** 평면 322개에서 연도 하위 폴더(`2021`/`2022`/`2026`)로 재정리돼 `iter_reports`의 `source_dir.iterdir()`가 원문을 찾지 못했다. 재귀(`rglob`)로 바꿨고 `FLEET_DAILY_COVERAGE_START`(2026-01-16) 필터가 2021·2022를 그대로 걸러낸다. **다음 회차부터 `--latest-report` 경로도 `.../2026/` 하위다.**
+> - 공개 집계에 `dailySeries`를 추가했다. `dates` 145개(2026-01-16~08-31), 해역별 `totalMt`(보고 머리글 일간 어획량)와 `vessels`(상세 행 어획량, 태평양 10척·대서양 7척)다. 공개 JSON은 2KB → 42KB. 보호 상세 DTO는 건드리지 않았고 `detailSha256`도 `fa52059b…742c` 그대로라 **배포 시 `FLEET_DAILY_DETAIL_JSON` 교체가 필요 없다.**
+> - 경계 판단: `check_fleet_client_leak.mjs`는 `position`·`note`만 감시하지만, `fleet-daily-security-boundary` 테스트가 공개 payload에서 `vessels` 키 자체를 금지하고 있었다. 키 이름을 바꿔 우회하지 않고 **계약을 정밀화**했다 — 금지 목록에서 `vessels`만 빼고, 대신 시계열 값이 숫자·null 배열뿐이며 선박 키에 좌표가 섞이지 않는지 검사한다. `name`·`position`·`note`·`loadPlan` 금지는 그대로다. 선박별 어획량은 이미 주간 랭킹·월별 위젯에 공개돼 있어 노출 수준이 새로 올라가지 않는다.
+> - UI는 `FleetChartSection`에 「일간 추이」 탭을 넣었다(주간 어획·월간 추이·현어기 누적에 이어 4번째). 기본은 태평양·대서양·합계 3선이고, 「태평양 선박별」·「대서양 선박별」 칩을 누르면 해역 합계 점선 위에 선택 선박 실선을 얹는다. TakeawayBox는 시계열에서 계산한 실측 문장을 쓴다.
+> - 검증: 신규 `__tests__/fleet-daily-trend-render.test.ts` 2건(날짜·선박 배열 길이 정렬, 탭 노출·보호 상세 미노출), Python fleet sync 13/13, `sync_fleet_daily_reports.py --check` 통과, `npm run verify` 통과(ESLint 0 errors, Vitest 전량, Next 빌드, fleet client leak 0 — 정적 125개·보호 상세 31개, bundle 33 routes).
+> - 상태: worktree `cc/fleet-daily-20260831`에 로컬 반영. **프로덕션 미배포** — 이번 메시지에 배포 요청이 없었다.
+>
+> 마지막 업데이트: 2026-08-31 13:15 KST [CC]
+
 > 🚀 **2026-08-31 12:40 KST — 해양수산본부 8/31 일일보고 `/fleet` 라이브 배포 완료** [CC]:
 > - PR [#846](https://github.com/CUTEKOREA/tuna-dashboard/pull/846)을 squash 병합했다. main commit `9cc73608`. Vercel Preview success. Vercel Production `dpl_GDoqfqb1ju17R5fGZPQALiWfuFam` READY, region `icn1`, alias `leedonggun.co.kr` 결합.
 > - 병합 전에 Production `FLEET_DAILY_DETAIL_JSON`을 8/31 상세 DTO로 교체했다. canonical SHA `fa52059b…742c`가 공개 `_meta.detailSha256`과 일치하고, 직전 `f2efea1c…bded`는 `detailSha256Compat`에 남겼다.

@@ -35,6 +35,17 @@ const qualityCountsSchema = z.object({
   longlineSectionMissing: z.number().int().nonnegative(),
 }).strict();
 
+const dailySeriesRegionSchema = z.object({
+  totalMt: z.array(nullableMt),
+  vessels: z.record(z.string(), z.array(nullableMt)),
+}).strict();
+
+const dailySeriesSchema = z.object({
+  dates: z.array(z.iso.date()),
+  pacific: dailySeriesRegionSchema,
+  atlantic: dailySeriesRegionSchema,
+}).strict();
+
 export const fleetDailyPublicSchema = z.object({
   _meta: z.object({
     schemaVersion: z.literal(1),
@@ -69,6 +80,7 @@ export const fleetDailyPublicSchema = z.object({
     unavailableCount: z.number().int().nonnegative(),
     issueCount: z.number().int().nonnegative(),
   }).strict(),
+  dailySeries: dailySeriesSchema,
   quality: z.object({
     counts: qualityCountsSchema,
     incompletePartialDifferences: z.number().int().nonnegative(),
@@ -135,6 +147,7 @@ const fleetDailyDetailResponseSchema = z.discriminatedUnion('ok', [
 ]);
 
 export type FleetDailyPublicPayload = z.infer<typeof fleetDailyPublicSchema>;
+export type FleetDailyDailySeries = z.infer<typeof dailySeriesSchema>;
 export type FleetDailyDetailPayload = z.infer<typeof fleetDailyDetailSchema>;
 export type FleetDailyDetailErrorCode = z.infer<typeof fleetDailyDetailErrorCodeSchema>;
 export type FleetDailyDetailResponse = z.infer<typeof fleetDailyDetailResponseSchema>;

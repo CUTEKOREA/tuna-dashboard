@@ -39,6 +39,8 @@
 - components/VdsStrategyMatrix.tsx
 
 ## lib/data/generated/fleet-daily-public.json
+- components/FleetAnalysisPanels.tsx
+- components/FleetCharts.tsx
 - components/FleetCommandCenter.tsx
 - components/FleetDailyOperations.tsx
 - components/panofi/PanofiDashboard.tsx

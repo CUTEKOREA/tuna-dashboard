@@ -1,10 +1,11 @@
 'use client';
 import React, { useState } from 'react';
 import { ChevronDown, Trophy, BarChart3 } from 'lucide-react';
-import { WeeklyCatchChart, MonthlyCatchChart, CumulativeChart, CumulativeTableData } from './FleetCharts';
+import { WeeklyCatchChart, MonthlyCatchChart, CumulativeChart, CumulativeTableData, DailyCatchTrendChart } from './FleetCharts';
 import TakeawayBox from './TakeawayBox';
 import s from './FleetCommandCenter.module.css';
 import { purseSeineCatch } from '@/lib/fleet-operations-2026-08-23';
+import { fleetDailyPublicSeries } from '@/lib/data/fleet-daily-public';
 
 const rankData = purseSeineCatch.weeklyRanking.map((item) => ({
   r: item.rank, cap: item.captain, name: item.vessel, weekly: item.catchMt, daily: item.dailyAverageMt,
@@ -13,10 +14,21 @@ const rankData = purseSeineCatch.weeklyRanking.map((item) => ({
 const weeklyPeriod = `${purseSeineCatch.period.from.slice(2).replaceAll('-', '.')}~${purseSeineCatch.period.to.slice(5).replace('-', '.')}`;
 const weeklyLabel = purseSeineCatch.source.split(' - ').at(-1) ?? '주간 실적';
 
+const dailyTrendSituation = (() => {
+  const series = fleetDailyPublicSeries;
+  const sum = (values: (number | null)[]) => values.reduce<number>((total, value) => total + (value ?? 0), 0);
+  const pacific = sum(series.pacific.totalMt);
+  const atlantic = sum(series.atlantic.totalMt);
+  const days = series.dates.length;
+  const format = (value: number) => Math.round(value).toLocaleString('ko-KR');
+  return `${series.dates[0]}~${series.dates.at(-1)} 일일보고 ${days}건 기준으로 태평양 ${format(pacific)}t, 대서양 ${format(atlantic)}t을 조업했습니다. 하루 평균은 태평양 ${(pacific / days).toFixed(1)}t, 대서양 ${(atlantic / days).toFixed(1)}t입니다.`;
+})();
+
 const tabs = [
   { id: 'weekly', label: '주간 어획' },
   { id: 'monthly', label: '월간 추이' },
   { id: 'cumulative', label: '현어기 누적' },
+  { id: 'daily', label: '일간 추이' },
 ] as const;
 
 const badgeClass: Record<string, string> = { gold: s.badgeGold, silver: s.badgeSilver, bronze: s.badgeBronze };
@@ -69,6 +81,18 @@ export function FleetChartSection() {
                 situation={<>김효원(S/SPR) 일어획 27.3t으로 현어기 1위, 김정훈(MARI) 23.3t 2위, 김승현(S/PIO) 19.5t 3위입니다. N/STAR는 이진우 선장 승선 후 5일·15t을 조업했습니다.</>}
                 actionPlan={<>선단 평균 19.4t 대비 하위 5척은 원인별로 수역·조업일수·선박 상태를 대조하십시오.</>}
                 source={`선장 실적 누계 (현어기) · ${purseSeineCatch.period.to}`}
+              />
+            </div>
+          </>
+        )}
+        {activeTab === 'daily' && (
+          <>
+            <DailyCatchTrendChart />
+            <div style={{ marginTop: 16 }}>
+              <TakeawayBox
+                situation={<>{dailyTrendSituation}</>}
+                actionPlan={<>해역 합계는 일일보고 머리글의 일간 어획량이고 선박별 선은 상세 행 값입니다. 두 값이 어긋나는 날은 원문 검산 항목과 함께 확인하십시오.</>}
+                source={`해양수산본부 일일업무보고 ${fleetDailyPublicSeries.dates[0]}~${fleetDailyPublicSeries.dates.at(-1)} · ${fleetDailyPublicSeries.dates.length}건`}
               />
             </div>
           </>

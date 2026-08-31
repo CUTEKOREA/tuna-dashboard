@@ -89,6 +89,11 @@ describe('fleet daily public and private DTO boundary', () => {
         unavailableCount: 0,
         issueCount: 1,
       },
+      dailySeries: {
+        dates: expect.any(Array),
+        pacific: { totalMt: expect.any(Array), vessels: expect.any(Object) },
+        atlantic: { totalMt: expect.any(Array), vessels: expect.any(Object) },
+      },
       quality: {
         counts: {
           reconciliationChecks: 580,
@@ -114,11 +119,22 @@ describe('fleet daily public and private DTO boundary', () => {
 
     const keys = collectKeys(fleetDailyPublic);
     for (const forbidden of [
-      'vessels', 'name', 'position', 'note', 'loadPlan', 'daily',
+      'name', 'position', 'note', 'loadPlan', 'daily',
       'catchMtRaw', 'loadedMtRaw',
       'catchMtParenthetical', 'loadedMtParenthetical',
     ]) {
       expect(keys.has(forbidden), forbidden).toBe(false);
+    }
+
+    // 일간 추이는 선박별 어획량만 공개한다. 위치·비고 같은 보고 상세는 값에도 실리지 않는다.
+    for (const region of ['pacific', 'atlantic'] as const) {
+      for (const [vessel, values] of Object.entries(fleetDailyPublic.dailySeries[region].vessels)) {
+        expect(vessel).not.toMatch(/[NS]\d{4}\s+[EW]\d{5}/);
+        expect(values.length).toBe(fleetDailyPublic.dailySeries.dates.length);
+        for (const value of values) {
+          expect(value === null || typeof value === 'number').toBe(true);
+        }
+      }
     }
     expect(Array.isArray((fleetDailyPublic.quality as Record<string, unknown>).reconciliationChecks)).toBe(false);
   });

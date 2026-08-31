@@ -99,6 +99,11 @@ const carrierSummarySchema = z.object({
   assertAmountContract(row, 'expectedRemainingMt', 'expectedRemainingMtRaw', 'expectedRemainingParentheticalMt', ctx);
 });
 
+const dailySeriesRegionSchema = z.object({
+  totalMt: z.array(z.number().finite().nullable()),
+  vessels: z.record(z.string(), z.array(z.number().finite().nullable())),
+}).strict();
+
 const dailySummarySchema = z.object({
   reportDate: z.iso.date(),
   asOf: z.iso.date(),
@@ -165,6 +170,11 @@ const fleetDailySourceSchema = z.object({
   }).strict(),
   previous: dailySummarySchema,
   daily: z.array(dailySummarySchema).min(2),
+  dailySeries: z.object({
+    dates: z.array(z.iso.date()),
+    pacific: dailySeriesRegionSchema,
+    atlantic: dailySeriesRegionSchema,
+  }).strict(),
   quality: z.object({
     reconciliationChecks: z.array(reconciliationCheckSchema),
     duplicateVesselRows: z.array(z.iso.date()),
