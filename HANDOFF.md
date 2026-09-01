@@ -1,3 +1,11 @@
+> 🎨 **2026-09-01 14:35 KST — 일일 운영 보고 증감 색 분기 (로컬 완료)** [CC]:
+> - 사용자 지시대로 전일 대비 증감을 국내 시세 관례에 맞췄다. **늘면 빨강(`#ef4444`), 줄면 파랑(`#3b82f6`)**, 변화 없으면 중립(`--dsc-ink-muted`). 기존에는 부호와 무관하게 전부 파랑이었다.
+> - `FleetDailyOperations`의 증감 `em`에 `data-delta` 속성(up/down/flat)을 달고 `FleetCommandCenter.module.css`에서 색을 분기한다. 「운반선 선적」 카드의 「원문 집계 기준」은 증감이 아니므로 기존 색 그대로다.
+> - 9/1 기준 표시: 태평양 `+35` 빨강, 대서양 `-215` 파랑, 합계 `-180` 파랑.
+> - `npm run verify` 통과. 커맨드센터 테스트에 `data-delta="up"`·`"down"` 노출 검사를 추가했다.
+>
+> 마지막 업데이트: 2026-09-01 14:35 KST [CC]
+
 > 🚀 **2026-09-01 14:20 KST — MOAMARI 코멘트 근거 정정 + 조업손실 범위 라이브 배포 완료** [CC]:
 > - PR [#863](https://github.com/CUTEKOREA/tuna-dashboard/pull/863)을 squash 병합했다. main commit `845977bc`. Production `dpl_F9VkXRiV7ewCEaGBiUTmkzt8XHdE` READY, region `icn1`, alias `leedonggun.co.kr`.
 > - 라이브 실측: 헤드라인 「프로펠러 로프가드 수리차 젠산 예인 중 · 복귀 10월 말~11월 중순 · 총 이탈 61~93일 · 조업손실 약 900~1,370 MT」. 경위 항목은 14일 체류를 SEIN KASAMA 전재 소요로 명시하고, 「수리 (짧은 쪽)」은 개방 정박지 조건을 «손상이 가벼워도 젠산까지 끌고 갈 수 있다»는 근거로만 쓴다. 「조업손실」 항목이 산출식(39~59보고일 × 23.05 MT, 277 MT 포함, 연간 실적의 27~41%)과 함께 렌더된다.
