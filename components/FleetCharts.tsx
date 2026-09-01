@@ -18,6 +18,7 @@ import { useResponsiveChart } from '../lib/useResponsiveChart';
 import { ChartPatternDefs } from './ChartPatterns';
 import { purseSeineCatch } from '@/lib/fleet-operations-2026-08-23';
 import { fleetDailyPublicSeries } from '@/lib/data/fleet-daily-public';
+import { FLEET_IDLE_NOTES, FLEET_IDLE_THRESHOLD_DAYS, resolveFleetIdleVessels } from '@/lib/fleet-idle-vessels';
 import { CHART_RANK, shareColor } from '@/lib/chart-palette';
 
 const subscribeClientReady = () => () => {};
@@ -370,6 +371,55 @@ export function DailyCatchTrendChart() {
           )}
         </ComposedChart>
       </SafeResponsiveContainer>
+    </div>
+  );
+}
+
+/* 가동 중단 선박 — 일간 시계열에서 어획 공백을 직접 읽는다.
+ * 조업을 재개하면 목록에서 빠지므로 사고 종료 후 화면에 남지 않는다. */
+export function FleetIdleVesselPanel() {
+  const idle = resolveFleetIdleVessels();
+  if (idle.length === 0) return null;
+
+  return (
+    <div style={{ marginTop: 16 }}>
+      <h4 style={{ margin: '0 0 8px', fontSize: '0.9rem', fontWeight: 700, color: 'var(--text-main)' }}>
+        가동 중단 선박 <span style={{ fontWeight: 400, color: 'var(--text-muted)', fontSize: '0.78rem' }}>
+          어획 공백 {FLEET_IDLE_THRESHOLD_DAYS}보고일 이상
+        </span>
+      </h4>
+      {idle.map((row) => {
+        const note = FLEET_IDLE_NOTES[row.vessel];
+        return (
+          <div
+            key={`${row.region}-${row.vessel}`}
+            style={{
+              border: '1px solid var(--dsc-surface-border, rgba(0,0,0,.1))',
+              borderRadius: 10,
+              padding: '10px 12px',
+              marginBottom: 8,
+            }}
+          >
+            <div style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'baseline', gap: 8 }}>
+              <strong style={{ fontSize: '0.88rem', color: 'var(--text-main)' }}>{row.vessel}</strong>
+              <span style={{ fontSize: '0.75rem', color: 'var(--text-muted)' }}>{row.region}</span>
+              <span style={{ fontSize: '0.78rem', color: 'var(--accent-danger)', fontWeight: 600 }}>
+                무실적 {row.idleDays}보고일
+              </span>
+            </div>
+            <p style={{ margin: '4px 0 0', fontSize: '0.78rem', color: 'var(--text-muted)', lineHeight: 1.6 }}>
+              마지막 어획 {row.lastCatchDate} · 보고일 일평균 {row.dailyAverageMt} (MT) ·
+              기회손실 약 {row.forgoneMt.toLocaleString('ko-KR')} (MT) ·
+              해역 누계 비중 {row.regionSharePct}%
+            </p>
+            {note ? (
+              <p style={{ margin: '6px 0 0', fontSize: '0.78rem', color: 'var(--text-main)', lineHeight: 1.7 }}>
+                {note.body} <span style={{ color: 'var(--text-muted)' }}>(경위 {note.asOf} 보고 기준)</span>
+              </p>
+            ) : null}
+          </div>
+        );
+      })}
     </div>
   );
 }

@@ -139,11 +139,30 @@ function LonglineCard({ vessel }: { vessel: LonglineFleetRow }) {
   return <article className={s.latestVesselCard} data-longline-record="true"><div className={s.latestVesselHeader}><strong>{vessel.displayName}</strong></div><div className={s.latestVesselMetrics}><div><span>선적</span><strong>{formatMt(vessel.loadedMt)} <small>(MT)</small></strong></div></div><p className={s.latestVesselNote}>보고 당시 비고: {formatFleetDailyNote(vessel.note || '미보고')}</p></article>;
 }
 
-function SectionHeader({ icon: Icon, title, count, summary, countLabel = `${count}척 보고` }: { icon: LucideIcon; title: string; count: number; summary: string; countLabel?: string }) {
+/** 태평양 선망 10척 중 신라 국적선 6척. 나머지 4척은 합작선이다. */
+const PACIFIC_NATIONAL_VESSELS = new Set(['S/EXP', 'S/PIO', 'S/CHA', 'S/HAR', 'S/JUP', 'S/SPR']);
+
+/** 일간 어획만 상세 행에서 국적·합작으로 가른다. 월간·연간 누계는 행 합계와 다르므로 나누지 않는다. */
+function splitDailyCatch(vessels: { name: string; catchMt: number | null }[]) {
+  let national = 0;
+  let joint = 0;
+  for (const vessel of vessels) {
+    if (PACIFIC_NATIONAL_VESSELS.has(vessel.name)) national += vessel.catchMt ?? 0;
+    else joint += vessel.catchMt ?? 0;
+  }
+  return { national, joint, total: national + joint };
+}
+
+function SectionHeader({ icon: Icon, title, count, summary, split, countLabel = `${count}척 보고` }: { icon: LucideIcon; title: string; count: number; summary: string; split?: { national: number; joint: number; total: number }; countLabel?: string }) {
   return (
     <header className={s.latestRosterHeader}>
       <div><Icon size={18} aria-hidden="true" /><strong>{title}</strong><span>{countLabel}</span></div>
       <p>{summary}</p>
+      {split ? (
+        <p>
+          일간 내역 · 국적 {split.national.toLocaleString()} (MT) + 합작 {split.joint.toLocaleString()} (MT) = 합계 {split.total.toLocaleString()} (MT)
+        </p>
+      ) : null}
     </header>
   );
 }
@@ -151,12 +170,13 @@ function SectionHeader({ icon: Icon, title, count, summary, countLabel = `${coun
 export default function FleetRosterGrid({ detail }: { detail: FleetDailyDetailPayload }) {
   const roster = useMemo(() => buildFleetRoster(detail), [detail]);
   const pacificSummary = `일간 ${detail.pacific.dailyMt.toLocaleString()} (MT) · 월간 ${detail.pacific.monthlyMt.toLocaleString()} (MT) · 연간 ${detail.pacific.annualMt.toLocaleString()} (MT) · ${detail.asOf}`;
+  const pacificSplit = useMemo(() => splitDailyCatch(detail.pacific.vessels), [detail.pacific.vessels]);
   const atlanticSummary = `일간 ${detail.atlantic.dailyMt.toLocaleString()} (MT) · 월간 ${detail.atlantic.monthlyMt.toLocaleString()} (MT) · 연간 ${detail.atlantic.annualMt.toLocaleString()} (MT) · ${detail.asOf}`;
 
   return (
     <div className={s.rosterGrid}>
       <section className={s.rosterSection}>
-        <SectionHeader icon={Navigation} title="태평양 선망" count={roster.pacific.length} summary={pacificSummary} />
+        <SectionHeader icon={Navigation} title="태평양 선망" count={roster.pacific.length} summary={pacificSummary} split={pacificSplit} />
         <div className={s.latestRosterCards}>{roster.pacific.map((vessel) => <FishingVesselCard key={vessel.name} vessel={vessel} />)}</div>
       </section>
       <section className={s.rosterSection}>

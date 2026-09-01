@@ -125,5 +125,10 @@ describe('fleet protected daily detail rendering', () => {
     expect(roster).toContain('적재율 미산출');
     expect(roster).toContain('적재량 MT와 어창 용량 ㎥의 단위가 다릅니다');
     expect(roster).toContain('어창 용량 미확인');
+
+    // 태평양 일간은 국적 6척과 합작 4척으로 갈라 표기한다. 월간·연간 누계는 행 합계와 달라 나누지 않는다.
+    expect(roster).toContain('일간 내역 · 국적');
+    expect(roster).toContain('합작');
+    expect(roster).toContain('= 합계');
   });
 });
