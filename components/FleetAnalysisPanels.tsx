@@ -1,7 +1,7 @@
 'use client';
 import React, { useState } from 'react';
 import { ChevronDown, Trophy, BarChart3 } from 'lucide-react';
-import { WeeklyCatchChart, MonthlyCatchChart, CumulativeChart, CumulativeTableData, DailyCatchTrendChart } from './FleetCharts';
+import { WeeklyCatchChart, MonthlyCatchChart, CumulativeChart, CumulativeTableData, DailyCatchTrendChart, FleetIdleVesselPanel } from './FleetCharts';
 import TakeawayBox from './TakeawayBox';
 import s from './FleetCommandCenter.module.css';
 import { purseSeineCatch } from '@/lib/fleet-operations-2026-08-23';
@@ -88,6 +88,7 @@ export function FleetChartSection() {
         {activeTab === 'daily' && (
           <>
             <DailyCatchTrendChart />
+            <FleetIdleVesselPanel />
             <div style={{ marginTop: 16 }}>
               <TakeawayBox
                 situation={<>{dailyTrendSituation}</>}
