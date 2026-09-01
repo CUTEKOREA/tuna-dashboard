@@ -54,8 +54,8 @@ export function FleetChartSection() {
             <WeeklyCatchChart />
             <div style={{ marginTop: 16 }}>
               <TakeawayBox
-                situation={<>N/SUN(김형주) 130t 주간 1위, S/SPR(김효원) 107t 2위. 주간 총 어획량은 419t(국적 258t, 합작 161t)입니다.</>}
-                actionPlan={<>S/PIO·S/CHA·MARI는 주간 어획이 없습니다. N/SUN·S/SPR·S/EXP 상위 3척과 무실적 3척의 수역·조업일수·선박 상태를 대조해 배치를 조정하십시오.</>}
+                situation={<>N/SUN(김형주) 145t 주간 1위, S/SPR(김효원) 140t 2위, S/EXP(공준식) 130t 3위입니다. 주간 총 어획량은 645t(국적 460t, 합작 185t)입니다.</>}
+                actionPlan={<>S/JUP·MARI는 주간 어획이 없습니다. 상위 3척과 무실적 2척의 수역·조업일수·선박 상태를 대조해 배치를 조정하십시오.</>}
                 source={purseSeineCatch.source}
               />
             </div>
@@ -66,8 +66,8 @@ export function FleetChartSection() {
             <MonthlyCatchChart />
             <div style={{ marginTop: 16 }}>
               <TakeawayBox
-                situation={<>8월 누계 2,668t(국적 1,074t, 합작 1,594t)입니다. 합작선 비중은 59.7%로 MARI·N/SUN·N/STAR가 월간 물량을 견인합니다.</>}
-                actionPlan={<>연간 누계 47,501t 중 S/SPR이 6,741t으로 최대입니다. 합작선 의존과 국적선 생산 회복을 함께 관리하십시오.</>}
+                situation={<>8월 누계 3,313t(국적 1,534t, 합작 1,779t)입니다. 합작선 비중은 53.7%로 직전 주 59.7%에서 낮아졌습니다.</>}
+                actionPlan={<>연간 누계 48,146t 중 S/SPR이 6,881t으로 최대이고 N/STAR가 6,405t으로 뒤를 잇습니다. 합작선 의존과 국적선 생산 회복을 함께 관리하십시오.</>}
                 source={purseSeineCatch.source}
               />
             </div>
@@ -78,8 +78,8 @@ export function FleetChartSection() {
             <CumulativeChart />
             <div style={{ marginTop: 16 }}>
               <TakeawayBox
-                situation={<>김효원(S/SPR) 일어획 27.3t으로 현어기 1위, 김정훈(MARI) 23.3t 2위, 김승현(S/PIO) 19.5t 3위입니다. N/STAR는 이진우 선장 승선 후 5일·15t을 조업했습니다.</>}
-                actionPlan={<>선단 평균 19.4t 대비 하위 5척은 원인별로 수역·조업일수·선박 상태를 대조하십시오.</>}
+                situation={<>김효원(S/SPR) 일어획 27.1t으로 현어기 1위, 김정훈(MARI) 22.9t 2위, 김승현(S/PIO) 19.2t 3위입니다. N/STAR는 이진우 선장 승선 후 12일·40t을 조업했습니다.</>}
+                actionPlan={<>선단 평균 19.1t 대비 하위 5척은 원인별로 수역·조업일수·선박 상태를 대조하십시오.</>}
                 source={`선장 실적 누계 (현어기) · ${purseSeineCatch.period.to}`}
               />
             </div>
@@ -172,8 +172,8 @@ export function FleetDetailPanel() {
           </div>
           <div style={{ marginTop: 16 }}>
             <TakeawayBox
-              situation={<>김효원(S/SPR) 어기 331일·일어획 27.3t으로 1위, 김정훈(MARI) 23.3t으로 2위입니다. 선단 평균은 19.4t입니다. N/STAR는 이진우 선장 승선 후 5일·15t으로 집계됩니다.</>}
-              actionPlan={<>MARI(김정훈)는 11,485t 누적으로 최대이나 일어획은 23.3t 2위입니다. 순위와 누계 물량을 분리해 평가하십시오.</>}
+              situation={<>김효원(S/SPR) 어기 338일·일어획 27.1t으로 1위, 김정훈(MARI) 22.9t으로 2위입니다. 선단 평균은 19.1t입니다. N/STAR는 이진우 선장 승선 후 12일·40t으로 집계됩니다.</>}
+              actionPlan={<>MARI(김정훈)는 11,485t 누적으로 최대이나 일어획은 22.9t 2위입니다. 순위와 누계 물량을 분리해 평가하십시오.</>}
               source={`선장 실적 누계 (현어기) · ${purseSeineCatch.period.to}`}
             />
           </div>
