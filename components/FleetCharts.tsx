@@ -413,9 +413,26 @@ export function FleetIdleVesselPanel() {
               해역 누계 비중 {row.regionSharePct}%
             </p>
             {note ? (
-              <p style={{ margin: '6px 0 0', fontSize: '0.78rem', color: 'var(--text-main)', lineHeight: 1.7 }}>
-                {note.body} <span style={{ color: 'var(--text-muted)' }}>(경위 {note.asOf} 보고 기준)</span>
-              </p>
+              <div style={{ marginTop: 8, paddingTop: 8, borderTop: '1px dashed var(--dsc-surface-border, rgba(0,0,0,.12))' }}>
+                <p style={{ margin: 0, fontSize: '0.8rem', fontWeight: 600, color: 'var(--text-main)', lineHeight: 1.6 }}>
+                  {note.headline}
+                </p>
+                <dl style={{ margin: '6px 0 0', display: 'grid', gridTemplateColumns: 'auto 1fr', gap: '3px 10px' }}>
+                  {note.lines.map((line) => (
+                    <React.Fragment key={line.label}>
+                      <dt style={{ fontSize: '0.74rem', fontWeight: 600, color: 'var(--text-muted)', whiteSpace: 'nowrap' }}>
+                        {line.label}
+                      </dt>
+                      <dd style={{ margin: 0, fontSize: '0.78rem', color: 'var(--text-main)', lineHeight: 1.6 }}>
+                        {line.text}
+                      </dd>
+                    </React.Fragment>
+                  ))}
+                </dl>
+                <p style={{ margin: '6px 0 0', fontSize: '0.72rem', color: 'var(--text-muted)' }}>
+                  경위 {note.asOf} 보고 기준
+                </p>
+              </div>
             ) : null}
           </div>
         );

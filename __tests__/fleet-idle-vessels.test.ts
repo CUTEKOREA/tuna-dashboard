@@ -27,7 +27,9 @@ describe('fleet idle vessel detection', () => {
 
     expect(moamari).toMatchObject({ region: '태평양', lastCatchDate: '2026-08-13' });
     expect(moamari!.dailyAverageMt).toBeCloseTo(23.05, 2);
-    expect(FLEET_IDLE_NOTES.MOAMARI.body).toContain('젠산');
+    expect(FLEET_IDLE_NOTES.MOAMARI.headline).toContain('젠산');
+    expect(FLEET_IDLE_NOTES.MOAMARI.lines.map((line) => line.label)).toContain('예인');
+    expect(FLEET_IDLE_NOTES.MOAMARI.lines.every((line) => line.text.length > 0)).toBe(true);
   });
 
   it('hides a vessel once it lands a catch again', () => {
