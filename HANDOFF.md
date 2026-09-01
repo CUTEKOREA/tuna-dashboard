@@ -1,3 +1,10 @@
+> 🚀 **2026-09-01 14:55 KST — 일일 운영 보고 증감 색 분기 라이브 배포 완료** [CC]:
+> - PR [#865](https://github.com/CUTEKOREA/tuna-dashboard/pull/865)를 squash 병합했다. main commit `e74424eb`. Production `dpl_4cMjvQJyhUnGQEa7yiLQn7yB3C5N` READY, region `icn1`, alias `leedonggun.co.kr`.
+> - 라이브 실측(computed style): 태평양 `+35 (MT) 전일 대비` → `data-delta="up"` · `rgb(239, 68, 68)` 빨강, 대서양 `-215` 와 합계 `-180` → `data-delta="down"` · `rgb(59, 130, 246)` 파랑. 국내 시세 관례대로다.
+> - 중간에 main이 앞서가 CONFLICTING이 났고 rebase 후 force-with-lease로 다시 올렸다.
+>
+> 마지막 업데이트: 2026-09-01 14:55 KST [CC]
+
 > 🎨 **2026-09-01 14:35 KST — 일일 운영 보고 증감 색 분기 (로컬 완료)** [CC]:
 > - 사용자 지시대로 전일 대비 증감을 국내 시세 관례에 맞췄다. **늘면 빨강(`#ef4444`), 줄면 파랑(`#3b82f6`)**, 변화 없으면 중립(`--dsc-ink-muted`). 기존에는 부호와 무관하게 전부 파랑이었다.
 > - `FleetDailyOperations`의 증감 `em`에 `data-delta` 속성(up/down/flat)을 달고 `FleetCommandCenter.module.css`에서 색을 분기한다. 「운반선 선적」 카드의 「원문 집계 기준」은 증감이 아니므로 기존 색 그대로다.
