@@ -49,58 +49,54 @@ describe('2026-08-23 fleet operations sources', () => {
     });
   });
 
-  it('preserves the August third-week catch hierarchy and monthly reconciliation', () => {
-    expect(purseSeineCatch.period).toEqual({ from: '2026-08-17', to: '2026-08-23' });
+  it('preserves the August fourth-week catch hierarchy and monthly reconciliation', () => {
+    expect(purseSeineCatch.period).toEqual({ from: '2026-08-24', to: '2026-08-30' });
     expect(purseSeineCatch.summary).toEqual({
-      nationalWeekly: 258,
-      jointWeekly: 161,
-      weeklyTotal: 419,
-      nationalMonthly: 1_074,
-      jointMonthly: 1_594,
-      monthlyTotal: 2_668,
-      nationalAnnual: 27_575,
-      jointAnnual: 19_926,
-      annualTotal: 47_501,
+      nationalWeekly: 460,
+      jointWeekly: 185,
+      weeklyTotal: 645,
+      nationalMonthly: 1_534,
+      jointMonthly: 1_779,
+      monthlyTotal: 3_313,
+      nationalAnnual: 28_035,
+      jointAnnual: 20_111,
+      annualTotal: 48_146,
     });
-    expect(purseSeineCatch.weeklyRanking.slice(0, 2)).toEqual([
-      { rank: 1, captain: '김형주', vessel: 'N/SUN', catchMt: 130, dailyAverageMt: 18.57 },
-      { rank: 2, captain: '김효원', vessel: 'S/SPR', catchMt: 107, dailyAverageMt: 15.29 },
-    ]);
     expect(purseSeineCatch.weeklyRanking).toEqual([
-      { rank: 1, captain: '김형주', vessel: 'N/SUN', catchMt: 130, dailyAverageMt: 18.57 },
-      { rank: 2, captain: '김효원', vessel: 'S/SPR', catchMt: 107, dailyAverageMt: 15.29 },
-      { rank: 3, captain: '공준식', vessel: 'S/EXP', catchMt: 80, dailyAverageMt: 11.43 },
-      { rank: 4, captain: '강창훈', vessel: 'S/JUP', catchMt: 50, dailyAverageMt: 7.14 },
-      { rank: 5, captain: '오복근', vessel: 'S/HAR', catchMt: 21, dailyAverageMt: 3 },
-      { rank: 6, captain: '이평규', vessel: 'KONA', catchMt: 16, dailyAverageMt: 2.29 },
-      { rank: 7, captain: '이진우', vessel: 'N/STAR', catchMt: 15, dailyAverageMt: 2.14 },
-      { rank: 8, captain: '김승현', vessel: 'S/PIO', catchMt: 0, dailyAverageMt: 0 },
-      { rank: 9, captain: '최용석', vessel: 'S/CHA', catchMt: 0, dailyAverageMt: 0 },
+      { rank: 1, captain: '김형주', vessel: 'N/SUN', catchMt: 145, dailyAverageMt: 20.71 },
+      { rank: 2, captain: '김효원', vessel: 'S/SPR', catchMt: 140, dailyAverageMt: 20 },
+      { rank: 3, captain: '공준식', vessel: 'S/EXP', catchMt: 130, dailyAverageMt: 18.57 },
+      { rank: 4, captain: '오복근', vessel: 'S/HAR', catchMt: 105, dailyAverageMt: 15 },
+      { rank: 5, captain: '김승현', vessel: 'S/PIO', catchMt: 60, dailyAverageMt: 8.57 },
+      { rank: 6, captain: '최용석', vessel: 'S/CHA', catchMt: 25, dailyAverageMt: 3.57 },
+      { rank: 7, captain: '이진우', vessel: 'N/STAR', catchMt: 25, dailyAverageMt: 3.57 },
+      { rank: 8, captain: '이평규', vessel: 'KONA', catchMt: 15, dailyAverageMt: 2.14 },
+      { rank: 9, captain: '강창훈', vessel: 'S/JUP', catchMt: 0, dailyAverageMt: 0 },
       { rank: 10, captain: '김정훈', vessel: 'MARI', catchMt: 0, dailyAverageMt: 0 },
     ]);
-    expect(purseSeineCatch.weeklyRanking.reduce((sum, vessel) => sum + vessel.catchMt, 0)).toBe(419);
+    expect(purseSeineCatch.weeklyRanking.reduce((sum, vessel) => sum + vessel.catchMt, 0)).toBe(645);
     const nationalVessels = new Set(nationalVds.vessels);
-    expect(purseSeineCatch.weeklyRanking.filter((vessel) => nationalVessels.has(vessel.vessel)).reduce((sum, vessel) => sum + vessel.catchMt, 0)).toBe(258);
-    expect(purseSeineCatch.weeklyRanking.filter((vessel) => !nationalVessels.has(vessel.vessel)).reduce((sum, vessel) => sum + vessel.catchMt, 0)).toBe(161);
+    expect(purseSeineCatch.weeklyRanking.filter((vessel) => nationalVessels.has(vessel.vessel)).reduce((sum, vessel) => sum + vessel.catchMt, 0)).toBe(460);
+    expect(purseSeineCatch.weeklyRanking.filter((vessel) => !nationalVessels.has(vessel.vessel)).reduce((sum, vessel) => sum + vessel.catchMt, 0)).toBe(185);
     expect(purseSeineCatch.monthlyByVessel.map(({ vessel, monthlyMt, totalMt }) => ({ vessel, monthlyMt, totalMt }))).toEqual([
-      { vessel: 'S/EXP', monthlyMt: [927, 875, 465, 679, 319, 185, 484, 85], totalMt: 4_019 },
-      { vessel: 'S/PIO', monthlyMt: [620, 585, 560, 475, 1_205, 881, 308, 86], totalMt: 4_720 },
-      { vessel: 'S/CHA', monthlyMt: [320, 700, 640, 250, 805, 380, 690, 260], totalMt: 4_045 },
-      { vessel: 'S/HAR', monthlyMt: [1_095, 935, 1_120, 435, 575, 551, 0, 109], totalMt: 4_820 },
+      { vessel: 'S/EXP', monthlyMt: [927, 875, 465, 679, 319, 185, 484, 215], totalMt: 4_149 },
+      { vessel: 'S/PIO', monthlyMt: [620, 585, 560, 475, 1_205, 881, 308, 146], totalMt: 4_780 },
+      { vessel: 'S/CHA', monthlyMt: [320, 700, 640, 250, 805, 380, 690, 285], totalMt: 4_070 },
+      { vessel: 'S/HAR', monthlyMt: [1_095, 935, 1_120, 435, 575, 551, 0, 214], totalMt: 4_925 },
       { vessel: 'S/JUP', monthlyMt: [175, 595, 855, 310, 845, 135, 0, 315], totalMt: 3_230 },
-      { vessel: 'S/SPR', monthlyMt: [806, 485, 1_065, 1_555, 1_234, 970, 407, 219], totalMt: 6_741 },
+      { vessel: 'S/SPR', monthlyMt: [806, 485, 1_065, 1_555, 1_234, 970, 407, 359], totalMt: 6_881 },
       { vessel: 'MARI', monthlyMt: [975, 660, 525, 350, 1_060, 900, 955, 460], totalMt: 5_885 },
-      { vessel: 'KONA', monthlyMt: [722, 330, 659, 430, 596, 681, 439, 364], totalMt: 4_221 },
-      { vessel: 'N/SUN', monthlyMt: [665, 310, 502, 528, 820, 230, 0, 385], totalMt: 3_440 },
-      { vessel: 'N/STAR', monthlyMt: [675, 880, 515, 1_105, 415, 1_165, 1_240, 385], totalMt: 6_380 },
+      { vessel: 'KONA', monthlyMt: [722, 330, 659, 430, 596, 681, 439, 379], totalMt: 4_236 },
+      { vessel: 'N/SUN', monthlyMt: [665, 310, 502, 528, 820, 230, 0, 530], totalMt: 3_585 },
+      { vessel: 'N/STAR', monthlyMt: [675, 880, 515, 1_105, 415, 1_165, 1_240, 410], totalMt: 6_405 },
     ]);
-    expect(purseSeineCatch.monthlyByVessel.reduce((sum, vessel) => sum + vessel.monthlyMt[7], 0)).toBe(2_668);
-    expect(purseSeineCatch.monthlyByVessel.reduce((sum, vessel) => sum + vessel.totalMt, 0)).toBe(47_501);
-    expect(purseSeineCatch.seasonAverageDailyMt).toBe(19.4);
-    expect([...purseSeineCatch.seasonRanking].sort((a, b) => a.rank - b.rank)[0]).toMatchObject({ captain: '김효원', vessel: 'S/SPR', dailyCatchMt: 27.3, rank: 1 });
-    expect(purseSeineCatch.seasonRanking.find((row) => row.vessel === 'S/EXP')?.leaderDeltaMt).toBe(-16.63);
+    expect(purseSeineCatch.monthlyByVessel.reduce((sum, vessel) => sum + vessel.monthlyMt[7], 0)).toBe(3_313);
+    expect(purseSeineCatch.monthlyByVessel.reduce((sum, vessel) => sum + vessel.totalMt, 0)).toBe(48_146);
+    expect(purseSeineCatch.seasonAverageDailyMt).toBe(19.1);
+    expect([...purseSeineCatch.seasonRanking].sort((a, b) => a.rank - b.rank)[0]).toMatchObject({ captain: '김효원', vessel: 'S/SPR', dailyCatchMt: 27.1, rank: 1 });
+    expect(purseSeineCatch.seasonRanking.find((row) => row.vessel === 'S/EXP')?.leaderDeltaMt).toBe(-15.76);
     expect(purseSeineCatch.seasonRanking.find((row) => row.vessel === 'N/STAR')).toMatchObject({
-      captain: '이진우', boardingDate: '2026-08-19', seasonDays: 5, catchMt: 15, dailyCatchMt: 3, rank: 10,
+      captain: '이진우', boardingDate: '2026-08-19', seasonDays: 12, catchMt: 40, dailyCatchMt: 3.3, rank: 10,
     });
   });
 

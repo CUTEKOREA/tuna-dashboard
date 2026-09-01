@@ -9,10 +9,10 @@ describe('FleetCommandCenter daily operations', () => {
   it('renders the latest daily report as the hero KPI source', () => {
     const markup = renderToStaticMarkup(React.createElement(FleetCommandCenter));
 
-    expect(markup).toContain('2026-08-31 보고 · 2026-08-30 조업 기준');
-    expect(markup).toContain('data-kpi-value="460"');
-    expect(markup).toContain('data-kpi-value="9863"');
-    expect(markup).toContain('data-kpi-value="81420.8"');
+    expect(markup).toContain('2026-09-01 보고 · 2026-08-31 조업 기준');
+    expect(markup).toContain('data-kpi-value="280"');
+    expect(markup).toContain('data-kpi-value="10143"');
+    expect(markup).toContain('data-kpi-value="81700.8"');
     expect(markup).toContain('data-kpi-value="5834.1"');
   });
 
@@ -20,9 +20,9 @@ describe('FleetCommandCenter daily operations', () => {
     const markup = renderToStaticMarkup(React.createElement(FleetCommandCenter));
 
     for (const value of [
-      '-60 (MT)', '+170 (MT)', '+110 (MT)', 'SYNCED',
-      '전체 보고 145건', '전기간 검산 580회', '완전 검산 580회', '미보고 포함 0회 / 0문서',
-      '부분합 차이 전체 15건 / 13문서', '확정 불일치 15건 / 13문서', '미보고 포함 차이 0건 / 0문서',
+      '+35 (MT)', '-215 (MT)', '-180 (MT)', 'SYNCED',
+      '전체 보고 146건', '전기간 검산 584회', '완전 검산 584회', '미보고 포함 0회 / 0문서',
+      '부분합 차이 전체 16건 / 14문서', '확정 불일치 16건 / 14문서', '미보고 포함 차이 0건 / 0문서',
       '중복 선박 행 4건', '좌표 형식 이슈 6건', '연승 구역 미기재 13건',
       '최신 상세 행 확인 필요',
     ]) {
@@ -37,14 +37,14 @@ describe('FleetCommandCenter daily operations', () => {
   it('keeps the weekly performance and VDS contracts while withholding the latest roster', () => {
     const markup = renderToStaticMarkup(React.createElement(FleetCommandCenter));
 
-    expect(markup).toContain('26.08.17~08.23');
-    expect(markup).toContain('data-kpi-value="419"');
-    expect(markup).toContain('data-kpi-value="2668"');
-    expect(markup).toContain('data-kpi-value="47501"');
-    expect(markup).toContain('N/SUN(김형주) 130t 주간 1위');
+    expect(markup).toContain('26.08.24~08.30');
+    expect(markup).toContain('data-kpi-value="645"');
+    expect(markup).toContain('data-kpi-value="3313"');
+    expect(markup).toContain('data-kpi-value="48146"');
+    expect(markup).toContain('N/SUN(김형주) 145t 주간 1위');
     expect(markup).toContain('김효원(S/SPR)');
     expect(markup).toContain('-0.00');
-    expect(markup).not.toContain('26.08.10~08.16');
+    expect(markup).not.toContain('26.08.17~08.23');
     expect(markup).not.toContain('929t');
     expect(markup).toContain('VDS');
     expect(markup).not.toContain('data-carrier-entity=');
