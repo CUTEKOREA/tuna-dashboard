@@ -1,3 +1,14 @@
+> 🚀 **2026-09-01 12:55 KST — 9/1 일일보고 + 8월 넷째주 주간 실적 `/fleet` 라이브 배포 완료** [CC]:
+> - PR [#854](https://github.com/CUTEKOREA/tuna-dashboard/pull/854)를 squash 병합했다. main commit `53fd89fc`. Vercel Preview success, Production `dpl_G2U9TbDsFJV9CHz3VesqF8uLdyhY` READY, region `icn1`, alias `leedonggun.co.kr` 결합.
+> - 병합 전에 Production `FLEET_DAILY_DETAIL_JSON`을 새 DTO(`3a14df70…b77c`)로 교체했다.
+> - 라이브 실측(로그인 세션 브라우저): 히어로 `2026-09-01 보고 · 2026-08-31 조업 기준`, 일일 KPI 280 / 10,143 / 81,700.8 / 5,834.1, 전일 대비 +35 · -215 · -180 (MT). `/api/fleet/daily` 200, 보고일 2026-09-01 / 기준일 2026-08-31, 상세 행 `10/7/6/1`.
+> - 주간 패널 실측: 기간 `26.08.24~08.30`, 주간 KPI 645 / 3,313 / 48,146, 문구 「N/SUN(김형주) 145t 주간 1위, S/SPR(김효원) 140t 2위, S/EXP(공준식) 130t 3위입니다. 주간 총 어획량은 645t(국적 460t, 합작 185t)입니다.」
+> - 1440px 문서 폭 1425, 390×844 iframe 문서 폭 373 — 양쪽 overflow 0, console/page error 0. 운영자 상태는 `fleet-daily: live_verified`다.
+> - 사용자가 «계정 변경함»이라고 알렸으나 배포 경로 자격증명은 그대로였다 — GitHub `CUTEKOREA`, Vercel `cutekorea-3280`, 프로젝트 `tuna-dashboard`(`prj_bHttkNl…`). 어느 계정을 바꿨는지는 확인받지 못했다.
+> - ⚠️ App Quality Gate는 이번에도 `unloading-history` E2E(`/39,249\s+MT/`)로만 실패했다. main `1e21a597`부터 이어지는 기존 red다.
+>
+> 마지막 업데이트: 2026-09-01 12:55 KST [CC]
+
 > ⚓ **2026-09-01 12:10 KST — 9/1 일일보고 + 8월 넷째주 주간 실적 `/fleet` 반영 (로컬 완료·배포 진행)** [CC]:
 > - 두 건을 함께 반영했다. ① 일일보고 `260901 (화)` 증분, ② 주간 실적 현황 26.08.24~08.30(8월 넷째주) 게시물 4건.
 > - 일일: 보고 `2026-09-01` / 조업 `2026-08-31`, 누계 145 → 146건. 태평양 일간 95(월 3,408 / 연 48,240.8), 대서양 일간 185(월 6,735 / 연 33,460), 운반선 선적 5,834.1 · 예상잔량 5,771.7. 전일 대비 +35 · -215 · -180. 전기간 검산 580 → 584회.
