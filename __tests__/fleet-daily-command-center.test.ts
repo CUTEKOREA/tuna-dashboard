@@ -28,6 +28,9 @@ describe('FleetCommandCenter daily operations', () => {
     ]) {
       expect(markup).toContain(value);
     }
+    // 증감 색: 늘면 빨강, 줄면 파랑 (국내 시세 관례)
+    expect(markup).toContain('data-delta="up"');
+    expect(markup).toContain('data-delta="down"');
     expect(markup).toContain('선박 상세 보호');
     for (const protectedValue of ['보고 당시 상태·예정', 'data-carrier-entity=', '보고 당시 비고:']) {
       expect(markup).not.toContain(protectedValue);

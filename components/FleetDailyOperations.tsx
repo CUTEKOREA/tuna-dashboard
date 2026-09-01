@@ -95,7 +95,7 @@ export default function FleetDailyOperations({
             <span>{metric.label} 일간</span>
             <strong>{formatMt(metric.daily)} <small>(MT)</small></strong>
             <p>월간 {formatMt(metric.monthly)} (MT) · 연간 {formatMt(metric.annual)} (MT)</p>
-            <em>{formatFleetDailyDelta(metric.delta)} (MT) 전일 대비</em>
+            <em data-delta={metric.delta > 0 ? 'up' : metric.delta < 0 ? 'down' : 'flat'}>{formatFleetDailyDelta(metric.delta)} (MT) 전일 대비</em>
           </article>
         ))}
         <article className={s.dailyMetricCard}>
