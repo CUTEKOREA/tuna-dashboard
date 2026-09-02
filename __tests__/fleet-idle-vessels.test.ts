@@ -28,7 +28,22 @@ describe('fleet idle vessel detection', () => {
     expect(moamari).toMatchObject({ region: '태평양', lastCatchDate: '2026-08-13' });
     expect(moamari!.dailyAverageMt).toBeCloseTo(22.89, 2);
     expect(FLEET_IDLE_NOTES.MOAMARI.headline).toContain('젠산');
-    expect(FLEET_IDLE_NOTES.MOAMARI.lines.map((line) => line.label)).toContain('예인');
+    // 2026-09-02: 계약(항해 24~26일·일 $41,000)과 현재 속도 30일을 분리해 적는다
+    const labels = FLEET_IDLE_NOTES.MOAMARI.lines.map((line) => line.label);
+    expect(labels).toContain('예인 계약');
+    expect(labels).toContain('예인 진행 (예상)');
+    expect(labels).toContain('예인료 (계약 확정 / 총액 예상)');
+    const contract = FLEET_IDLE_NOTES.MOAMARI.lines.find((line) => line.label === '예인 계약')!;
+    expect(contract.text).toContain('24~26일');
+    expect(contract.text).toContain('$41,000');
+    const fee = FLEET_IDLE_NOTES.MOAMARI.lines.find((line) => line.label.startsWith('예인료'))!;
+    expect(fee.text).toContain('17억원');
+    expect(fee.text).toContain('$16.4만~24.6만');
+    expect(FLEET_IDLE_NOTES.MOAMARI.headline).toContain('계약 항해 24~26일');
+    // 확정과 예상을 섞지 않는다 — 도착일·총액은 예상치로만 적는다
+    expect(FLEET_IDLE_NOTES.MOAMARI.headline).toContain('예상');
+    const split = FLEET_IDLE_NOTES.MOAMARI.lines.find((line) => line.label === '확정 / 예상 구분')!;
+    expect(split.text).toContain('전부 예상치');
     expect(FLEET_IDLE_NOTES.MOAMARI.lines.every((line) => line.text.length > 0)).toBe(true);
   });
 

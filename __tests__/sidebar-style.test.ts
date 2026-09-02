@@ -18,11 +18,13 @@ describe('sidebar menu style', () => {
 describe('차트 툴팁 배경 (2026-09-02 사용자 지시: 불투명도 60%)', () => {
   const cosmoCss = readFileSync(join(process.cwd(), 'components/cosmo/cosmo.css'), 'utf8');
 
-  it('60% 반투명 배경을 backdrop blur와 함께만 적용한다', () => {
-    expect(cosmoCss).toContain('color-mix(in srgb, var(--cosmo-surface) 60%, transparent)');
-    // blur 미지원 브라우저에는 불투명 배경이 남아야 한다 (UI_RULES 2-2 가독성)
-    const guard = cosmoCss.slice(cosmoCss.indexOf('@supports ((backdrop-filter'));
-    expect(guard).toContain('backdrop-filter: blur(8px)');
-    expect(cosmoCss).toMatch(/\.cosmo-root \.tip \{\s*\n\s*background: var\(--cosmo-surface\);/);
+  it('60% 반투명 배경만 두고 뒤에 불투명 배경을 깔지 않는다', () => {
+    const tip = cosmoCss.slice(cosmoCss.indexOf('.cosmo-root .tip {'));
+    const block = tip.slice(0, tip.indexOf('}') + 1);
+    expect(block).toContain('color-mix(in srgb, var(--cosmo-surface) 60%, transparent)');
+    expect(block).toContain('backdrop-filter: blur(8px)');
+    // 2026-09-02 사용자 지시: 불투명 배경을 뒤에 두지 않는다
+    expect(block).not.toContain('background: var(--cosmo-surface);');
+    expect(cosmoCss).not.toContain('@supports ((backdrop-filter');
   });
 });
