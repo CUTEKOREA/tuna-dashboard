@@ -172,15 +172,42 @@ def backtest(rows, spec, start, min_train=60):
             pred = p0 * math.exp(predict(model, xi))
         else:
             pred = p0
-        recs.append((rows[i]["m"], actual, pred, p0, p0 * math.exp(seas_drift(rows, i, i))))
+        sd = seas_drift(rows, i, i)
+        recs.append((rows[i]["m"], actual, pred, p0, p0 * math.exp(sd), p0 * math.exp(0.5 * sd)))
     return recs
 
 
+def dm_test(e_model, e_base, lag=2):
+    """Diebold–Mariano, Newey–West(lag) 분산. 겹치는 3개월 구간이라 자기상관을 반영한다. 반환 (t, p)."""
+    d = e_base - e_model; n = len(d); dbar = d.mean(); u = d - dbar
+    g = [float(np.dot(u[: n - l], u[l:]) / n) for l in range(lag + 1)]
+    var = (g[0] + 2 * sum((1 - l / (lag + 1)) * g[l] for l in range(1, lag + 1))) / n
+    t = dbar / math.sqrt(max(var, 1e-12))
+    return t, math.erfc(abs(t) / math.sqrt(2))
+
+
+def block_boot_ci(d, B=3000, blk=6, seed=0):
+    """6개월 블록 부트스트랩 90% CI — iid 부트스트랩은 겹침 자기상관을 무시해 CI를 좁게 만든다."""
+    rng = np.random.default_rng(seed); n = len(d); out = []
+    for _ in range(B):
+        idx = []
+        while len(idx) < n:
+            st = rng.integers(0, n - blk + 1); idx.extend(range(st, st + blk))
+        out.append(d[idx[:n]].mean())
+    return float(np.quantile(out, .05)), float(np.quantile(out, .95))
+
+
 def metrics(recs):
-    a = np.array([r[1] for r in recs]); p = np.array([r[2] for r in recs]); p0 = np.array([r[3] for r in recs]); b = np.array([r[4] for r in recs])
+    a = np.array([r[1] for r in recs]); p = np.array([r[2] for r in recs]); p0 = np.array([r[3] for r in recs]); b = np.array([r[4] for r in recs]); b5 = np.array([r[5] for r in recs])
     mape = lambda f: float(np.mean(np.abs(f - a) / a) * 100)
     hit = lambda f: float(np.mean(np.sign(f - p0) == np.sign(a - p0)) * 100)
-    return {"n": len(recs), "mape": mape(p), "rw": mape(p0), "seas": mape(b), "hit": hit(p), "hit_seas": hit(b)}
+    em = np.abs(p - a) / a
+    out = {"n": len(recs), "mape": mape(p), "rw": mape(p0), "seas": mape(b), "seas5": mape(b5), "hit": hit(p), "hit_seas": hit(b)}
+    for key, base in (("rw", p0), ("seas", b), ("seas5", b5)):
+        eb = np.abs(base - a) / a
+        t, pv = dm_test(em, eb); lo, hi = block_boot_ci(eb - em)
+        out[f"dm_{key}"] = pv; out[f"ci_{key}"] = (lo * 100, hi * 100); out[f"gain_{key}"] = float(np.mean(eb - em) * 100)
+    return out
 
 
 def main(argv=None):
@@ -219,7 +246,8 @@ def main(argv=None):
 
     lines = [f"# 방콕 SKJ 월별 시세 3개월 예측 — 롤링 백테스트 (Atuna 1.8kg CFR, {rows[0]['m']}~{rows[-1]['m']}, {len(rows)}개월)", "",
              f"오리진 {a.start} 이후, 확장창, 직접예측 h=3개월, 릿지 λ={LAM}. 기준선 SEAS = 같은 달 출발 과거 3개월 평균 변화율. 외생 리드(개월): {leads}", "",
-             "| 모델 | n | MAPE | 랜덤워크 | 계절기준선 | 방향적중 모델/기준선 | 판정 |", "|---|---|---|---|---|---|---|"]
+             "판정 = 랜덤워크·계절기준선·감쇠기준선(드리프트×0.5) 셋 다 MAPE가 낮고, 감쇠기준선 대비 DM(NW lag2) p<0.10 일 때만 «이김». 그 밖은 «우위 있으나 유의 안 함» 또는 «못 이김».", "",
+             "| 모델 | n | MAPE | 랜덤워크 | 계절기준선 | 감쇠기준선 | 방향 모델/기준선 | DM p (vs RW / SEAS / 감쇠) | 판정 |", "|---|---|---|---|---|---|---|---|---|"]
     results = {}
     for name, spec in specs.items():
         recs = backtest(rows, spec, a.start)
@@ -227,32 +255,26 @@ def main(argv=None):
             lines.append(f"| {name} | 0 | — | — | — | — | 표본 부족 |"); continue
         m = metrics(recs); results[name] = (recs, m)
         beat = m["mape"] < m["seas"] and m["mape"] < m["rw"]
-        lines.append(f"| {name} | {m['n']} | {m['mape']:.1f}% | {m['rw']:.1f}% | {m['seas']:.1f}% | {m['hit']:.0f}% / {m['hit_seas']:.0f}% | {'**이김**' if beat else '못 이김'} |")
+        beat = m["mape"] < m["seas"] and m["mape"] < m["rw"] and m["mape"] < m["seas5"] and m["dm_seas5"] < 0.10
+        weak = (not beat) and m["mape"] < m["seas"] and m["mape"] < m["rw"]
+        lines.append(f"| {name} | {m['n']} | {m['mape']:.1f}% | {m['rw']:.1f}% | {m['seas']:.1f}% | {m['seas5']:.1f}% | {m['hit']:.0f}% / {m['hit_seas']:.0f}% | {m['dm_rw']:.2f} / {m['dm_seas']:.2f} / {m['dm_seas5']:.2f} | {'**이김**' if beat else ('우위 있으나 유의 안 함' if weak else '못 이김')} |")
 
     # 공정 비교 — 사양마다 표본 길이가 달라 MAPE를 바로 비교하면 안 된다. 공통 오리진에서 다시 잰다.
     keyed = {name: {r[0]: r for r in recs} for name, (recs, _) in results.items() if len(recs) >= 100}  # 짧은 사양은 제외
     common = sorted(set.intersection(*[set(v) for v in keyed.values()])) if keyed else []
     if len(common) >= 30:
-        lines += ["", f"## 공통 오리진 비교 — {len(common)}개({common[0]}~{common[-1]}), 같은 표본", "", "| 모델 | MAPE | 랜덤워크 | 계절기준선 | 방향 | 이득(%p) | 부트스트랩 90% CI |", "|---|---|---|---|---|---|---|"]
-        rng2 = np.random.default_rng(1)
+        lines += ["", f"## 공통 오리진 비교 — {len(common)}개({common[0]}~{common[-1]}), 같은 표본", "", "| 모델 | MAPE | 랜덤워크 | 계절기준선 | 감쇠기준선 | 방향 | vs 감쇠 이득 [블록부트 90% CI] | DM p |", "|---|---|---|---|---|---|---|---|"]
         for name in keyed:
-            recs = [keyed[name][m] for m in common]
-            mm = metrics(recs)
-            aa = np.array([r[1] for r in recs]); pp = np.array([r[2] for r in recs]); bb = np.array([r[4] for r in recs])
-            d = np.abs(bb - aa) / aa - np.abs(pp - aa) / aa
-            boots = [np.mean(d[rng2.integers(0, len(d), len(d))]) for _ in range(3000)]
-            lines.append(f"| {name} | {mm['mape']:.1f}% | {mm['rw']:.1f}% | {mm['seas']:.1f}% | {mm['hit']:.0f}% | {np.mean(d)*100:+.2f} | [{np.quantile(boots, .05)*100:+.2f}, {np.quantile(boots, .95)*100:+.2f}] |")
+            mm = metrics([keyed[name][m] for m in common])
+            lines.append(f"| {name} | {mm['mape']:.1f}% | {mm['rw']:.1f}% | {mm['seas']:.1f}% | {mm['seas5']:.1f}% | {mm['hit']:.0f}% | {mm['gain_seas5']:+.2f} [{mm['ci_seas5'][0]:+.2f}, {mm['ci_seas5'][1]:+.2f}] | {mm['dm_seas5']:.2f} |")
 
     # 유의성 — 오리진별 |오차| 차이(기준선 − 모델)의 부트스트랩 90% CI
-    lines += ["", "## 유의성 (기준선 |오차| − 모델 |오차|, %p; 양수면 모델 우세)", "", "| 모델 | n | 평균 차이 | 부트스트랩 90% CI | 모델 우세 비율 |", "|---|---|---|---|---|"]
-    rng = np.random.default_rng(0)
+    lines += ["", "## 유의성 — 6개월 블록 부트스트랩 90% CI (기준선 |오차| − 모델 |오차|, %p; 양수면 모델 우세)", "", "| 모델 | n | vs 랜덤워크 | vs 계절기준선 | vs 감쇠기준선 |", "|---|---|---|---|---|"]
     for name, (recs, m) in results.items():
         if name == "RW" or len(recs) < 30:
             continue
-        aa = np.array([r[1] for r in recs]); pp = np.array([r[2] for r in recs]); bb = np.array([r[4] for r in recs])
-        d = np.abs(bb - aa) / aa - np.abs(pp - aa) / aa
-        boots = [np.mean(d[rng.integers(0, len(d), len(d))]) for _ in range(3000)]
-        lines.append(f"| {name} | {len(d)} | {np.mean(d)*100:+.2f} | [{np.quantile(boots, 0.05)*100:+.2f}, {np.quantile(boots, 0.95)*100:+.2f}] | {(d > 0).mean()*100:.0f}% |")
+        cell = lambda k: f"{m['gain_'+k]:+.2f} [{m['ci_'+k][0]:+.2f}, {m['ci_'+k][1]:+.2f}]"
+        lines.append(f"| {name} | {m['n']} | {cell('rw')} | {cell('seas')} | {cell('seas5')} |")
 
     # 구간별 (2010s vs 2020s) 안정성
     lines += ["", "## 구간별 MAPE (모델 / 계절기준선)", "", "| 모델 | 2010-2015 | 2016-2019 | 2020-2023 | 2024- |", "|---|---|---|---|---|"]
@@ -265,12 +287,13 @@ def main(argv=None):
         lines.append(f"| {name} | " + " | ".join(cells) + " |")
 
     # 최근 오리진 표 + 현재 예측
-    best = min(results, key=lambda k: results[k][1]["mape"])
+    long_specs = [k for k in results if results[k][1]["n"] >= 150] or list(results)
+    best = min(long_specs, key=lambda k: results[k][1]["mape"])  # 같은 길이 표본끼리만 고른다
     lines += ["", f"## 최근 오리진 (최저 MAPE 모델 «{best}»)", "", "| 오리진 | 당시 | 3개월 뒤 실측 | 모델 | 계절기준선 |", "|---|---|---|---|---|"]
-    for mo, act, pred, p0, base in results[best][0][-10:]:
+    for mo, act, pred, p0, base, _base5 in results[best][0][-10:]:
         lines.append(f"| {mo} | {p0:,.0f} | {act:,.0f} | {pred:,.0f} | {base:,.0f} |")
     last = len(rows) - 1
-    lines += ["", f"## 지금 시점({rows[last]['m']}, ${rows[last]['p']:,.0f}) 3개월 뒤 예측", "", "| 모델 | 예측 | 80% 밴드(백테스트 잔차) |", "|---|---|---|"]
+    lines += ["", f"## 지금 시점({rows[last]['m']}, ${rows[last]['p']:,.0f}) 3개월 뒤 예측", "", "| 모델 | 예측 | 80% 밴드(백테스트 선행 잔차) |", "|---|---|---|"]
     for name, (recs, m) in results.items():
         spec = specs[name]
         xi = features(rows, last, spec) if spec else []
@@ -286,7 +309,8 @@ def main(argv=None):
             pred = rows[last]["p"]
         err = np.array([math.log(r[1] / r[2]) for r in recs])
         lo, hi = np.quantile(err, 0.1), np.quantile(err, 0.9)
-        lines.append(f"| {name} | {pred:,.0f} | {pred*math.exp(lo):,.0f} ~ {pred*math.exp(hi):,.0f} |")
+        rec = err[-120:]; lo2, hi2 = np.quantile(rec, 0.1), np.quantile(rec, 0.9)
+        lines.append(f"| {name} | {pred:,.0f} | {pred*math.exp(lo):,.0f} ~ {pred*math.exp(hi):,.0f} (최근 10년 잔차 {pred*math.exp(lo2):,.0f} ~ {pred*math.exp(hi2):,.0f}) |")
     # 표적 시리즈 교차검증 — Thai Union IR 월별 방콕 SKJ(2019~)와 대조
     if a.thaiunion and a.thaiunion.exists():
         tu = json.loads(a.thaiunion.read_text())["monthly"]
