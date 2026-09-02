@@ -154,6 +154,8 @@ describe('bangkok native dashboard', () => {
     expect(markup).toContain('과거 같은 달 평균 변화');
     expect(markup).toContain('최근 10년은');
     expect(markup).not.toContain('예측치:');
+    // 2026-09-02 사용자 지시: 계절 패턴 선·밴드는 어튜나 주황(#d95926)이 아니라 중립 회색이어야 한다
+    expect(markup).toContain('#64748b');
 
     for (const value of [2030, 100500, 341810, 47]) {
       expect(markup).toContain(`data-kpi-value="${value}"`);

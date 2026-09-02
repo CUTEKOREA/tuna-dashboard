@@ -40,14 +40,15 @@ const latestUnload = latest((w) => w.unloadMt);
 /* ── 차트 데이터 (모듈 스코프 — 원천이 정적이다) ───────────────────────── */
 
 /** 가격 3종은 단위가 같아($/t) 한 축에, 재고(MT)·가동률(%)은 같은 시간축의 별도 패널에 — 이중 축은 쓰지 않는다. */
-const PRICE_COLORS = { office: C.bangkok, atuna: '#d95926', mgo: '#199e70' } as const;
+// 계절 패턴 참고선은 계열이 아니라 주석이라 중립 회색 — 어튜나 주황과 혼동 방지(2026-09-02 사용자 지시)
+const PRICE_COLORS = { office: C.bangkok, atuna: '#d95926', mgo: '#199e70', seasonal: '#64748b' } as const;
 const priceSeries: Serie[] = [
   { key: '방콕사무소', name: '방콕사무소 원어 시세', color: PRICE_COLORS.office, fmt: (v) => `${num(v)} 달러/톤` },
   { key: '어튜나', name: '어튜나 SKJ 방콕', color: PRICE_COLORS.atuna, fmt: (v) => `${num(v)} 달러/톤` },
   { key: 'MGO', name: '싱가포르 MGO', color: PRICE_COLORS.mgo, dash: true, fmt: (v) => `${num(v)} 달러/톤` },
   // 계절 패턴 참고선 — 예측이 아니다. 어튜나 기준점과 목표월 두 점만 있고 connectNulls로 잇는다.
-  { key: '계절밴드', name: '계절 패턴 80% 밴드', color: PRICE_COLORS.atuna, type: 'area', connectNulls: true, fmt: (v) => `${num(v)} 달러/톤` },
-  { key: '계절패턴', name: skjSeasonalOutlook.label, color: PRICE_COLORS.atuna, dash: true, connectNulls: true, fmt: (v) => `${num(v)} 달러/톤` },
+  { key: '계절밴드', name: '계절 패턴 80% 밴드', color: PRICE_COLORS.seasonal, type: 'area', connectNulls: true, fmt: (v) => `${num(v)} 달러/톤` },
+  { key: '계절패턴', name: skjSeasonalOutlook.label, color: PRICE_COLORS.seasonal, dash: true, connectNulls: true, fmt: (v) => `${num(v)} 달러/톤` },
 ];
 const outlookCaption = `${skjSeasonalOutlook.label}: ${skjSeasonalOutlook.asOf.replace('-', '.')} $${num(skjSeasonalOutlook.anchorPrice)} → ${skjSeasonalOutlook.targetMonth.replace('-', '.')} $${num(skjSeasonalOutlook.value)} (80% 밴드 ${num(skjSeasonalOutlook.band80[0])}~${num(skjSeasonalOutlook.band80[1])}). 과거 ${skjSeasonalOutlook.history.years}년 중 하락 ${skjSeasonalOutlook.history.down}회(평균 ${skjSeasonalOutlook.history.meanPct}%), 최근 10년은 ${skjSeasonalOutlook.recent10y.down}/${skjSeasonalOutlook.recent10y.years}회(평균 ${skjSeasonalOutlook.recent10y.meanPct}%). 예측치가 아니라 과거 계절 패턴이며 밴드는 백테스트 선행 잔차다.`;
 const stockSeries: Serie[] = [
