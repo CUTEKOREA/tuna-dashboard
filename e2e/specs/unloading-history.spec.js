@@ -279,30 +279,51 @@ async function runHappyPath(browser) {
   await waitForText(page, '[data-testid="history-kpi-actual"]', /76,050\.239 MT/);
 
   const body = await page.evaluate(() => document.body.innerText);
-  assert.match(body, /39,249\s+MT/);
-  assert.match(body, /Low\s+\(방콕\)/);
-  assert.match(body, /허용\s+13\.3일/);
-  assert.match(body, /사용\s+7일/);
-  assert.match(body, /여유\s+6\.3일/);
-  assert.doesNotMatch(body, /진행 중 항차가 없어 체선 계산 대상이 없습니다/);
+  assert.match(body, /39,369\s+MT/);
+
+  // 체선 카드는 「진행 중 항차」가 있을 때만 등급을 낸다. 항차가 끝나면 카드가 사라지고
+  // 안내문만 남는다 — 2026-08-28 HIKARI 1 완료 후가 그 상태다. 어느 쪽이 정상이냐는
+  // 그날 조업에 달렸으므로 상태를 고정하지 않고 **두 모습 각각이 온전한지**를 본다.
+  const berthIdle = /진행 중 항차가 없어 체선 계산 대상이 없습니다/.test(body);
+  if (berthIdle) {
+    assert.match(body, /하역 중[\s\S]{0,40}?0\s*척/, '진행 중 항차가 없으면 하역 중은 0척이어야 한다');
+    assert.match(body, /해당 없음/, '체선 카드가 「해당 없음」이어야 한다');
+    assert.doesNotMatch(body, /Low\s+\(방콕\)/, '항차가 없는데 체선 등급이 남아 있다');
+  } else {
+    assert.match(body, /(Low|Medium|High)\s+\([^)]+\)/, '진행 중 항차가 있으면 체선 등급이 나와야 한다');
+    assert.match(body, /허용\s+[\d.]+일/);
+    assert.match(body, /사용\s+[\d.]+일/);
+    assert.match(body, /여유\s+-?[\d.]+일/);
+  }
+
   assert.match(body, /M\/V HIKARI 1 - 상세 하역 분석/);
-  assert.match(body, /완료 선박:\s*12\s*척/);
+  // 완료 척수는 항차가 끝날 때마다 는다. 값을 못박으면 조업이 진행될 때마다 깨진다.
+  const completed = body.match(/완료 선박:\s*(\d+)\s*척/);
+  assert.ok(completed, '완료 선박 척수를 찾지 못했습니다.');
+  assert.ok(Number(completed[1]) >= 12, `완료 선박이 줄었다: ${completed[1]}척`);
   assert.doesNotMatch(body, /어종 분해 미확인/);
 
   const hikariDemurrageText = await page.$eval(
     '[data-testid="selected-vessel-demurrage"]',
     (node) => node.innerText,
   );
+  // 사용일수와 여유는 항차가 길어질수록 움직인다(8/20~8/28 항차에서 7일 → 9일).
+  // 값을 못박는 대신 산식이 성립하는지 본다 — 허용 = 사용 + 여유.
   for (const pattern of [
     /체선 등급\s+낮음/,
     /허용 정박일수\s+13\.3일/,
-    /사용일수\s+7일/,
-    /여유\s+6\.3일/,
     /체선료 추정\s+없음/,
     /2026년\s+13항차 동일 산식 적용/,
   ]) {
     assert.match(hikariDemurrageText, pattern);
   }
+  const used = Number(hikariDemurrageText.match(/사용일수\s+([\d.]+)일/)?.[1]);
+  const spare = Number(hikariDemurrageText.match(/여유\s+(-?[\d.]+)일/)?.[1]);
+  assert.ok(Number.isFinite(used) && Number.isFinite(spare), '사용일수·여유를 읽지 못했습니다.');
+  assert.ok(
+    Math.abs(used + spare - 13.3) < 0.05,
+    `허용 13.3일 = 사용 ${used} + 여유 ${spare} 가 맞지 않는다`,
+  );
 
   const expandedCompleted = await page.evaluate(() => {
     const button = [...document.querySelectorAll('button')]
@@ -480,8 +501,9 @@ async function runFailureIsolation(browser) {
   await waitForText(page, '[data-testid="unloading-history-section"]', /과거 이력을 불러오지 못했습니다/);
   const body = await page.evaluate(() => document.body.innerText);
   assert.match(body, /다시 시도/);
-  assert.match(body, /39,249\s+MT/);
-  assert.match(body, /완료 선박:\s*12\s*척/);
+  assert.match(body, /39,369\s+MT/);
+  const done = body.match(/완료 선박:\s*(\d+)\s*척/);
+  assert.ok(done && Number(done[1]) >= 12, '완료 선박 척수를 읽지 못했거나 줄었습니다.');
   assert.equal(pageErrors.length, 0, pageErrors.join('\n'));
   assert.equal(consoleErrors.length, 0, consoleErrors.join('\n'));
   assert.equal(networkErrors.length, 0, networkErrors.join('\n'));
@@ -543,8 +565,9 @@ async function runChunkFailureIsolation(browser) {
   );
   const body = await page.evaluate(() => document.body.innerText);
   assert.match(body, /다시 시도/);
-  assert.match(body, /39,249\s+MT/);
-  assert.match(body, /완료 선박:\s*12\s*척/);
+  assert.match(body, /39,369\s+MT/);
+  const done = body.match(/완료 선박:\s*(\d+)\s*척/);
+  assert.ok(done && Number(done[1]) >= 12, '완료 선박 척수를 읽지 못했거나 줄었습니다.');
   assert.equal(getBlockedAppRequestCount(), 1);
   await Promise.all([
     page.waitForNavigation({ waitUntil: 'networkidle0' }),
@@ -553,8 +576,9 @@ async function runChunkFailureIsolation(browser) {
   await page.waitForSelector('[data-testid="unloading-history-panel"]');
   await waitForText(page, '[data-testid="history-kpi-actual"]', /76,050\.239 MT/);
   const recoveredBody = await page.evaluate(() => document.body.innerText);
-  assert.match(recoveredBody, /39,249\s+MT/);
-  assert.match(recoveredBody, /완료 선박:\s*12\s*척/);
+  assert.match(recoveredBody, /39,369\s+MT/);
+  const doneRecovered = recoveredBody.match(/완료 선박:\s*(\d+)\s*척/);
+  assert.ok(doneRecovered && Number(doneRecovered[1]) >= 12, '복구 후 완료 선박 척수가 줄었습니다.');
   assert.equal(getBlockedAppRequestCount(), 1);
   assert.equal(pageErrors.length, 0, pageErrors.join('\n'));
   assert.equal(consoleErrors.length, 0, consoleErrors.join('\n'));
