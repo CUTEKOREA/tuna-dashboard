@@ -8,7 +8,7 @@
 | D 주간 하네스 반증 | Codex | 60분 무응답 → kill (중간보고: 재현 일치, A·8주만 기준선 상회) | orch/out_codex_D_review.md |
 | E 월별 모델 독립 재구현 | Codex | 완료 — 197오리진 MAPE 14.671/15.468/15.559 재현, 누출 4항목 전부 반증(없음) | orch/out_codex_E_reimpl.md |
 | F 하락 예측 반증(실시간) | Grok | 완료 — «상방 위험 큼, 반증 실패». 엘니뇨 해 2015·2023 8→11월 −33%·−17% | orch/out_grok_F_bearcase.md |
-| 1차 시리즈 수집 | source-archivist(skj-sources) | 실행 중 — ONI·USD/THB·미국 캔참치 수입(NOAA FOSS) 확보, Comtrade 태국 030343 월별 루프(91/139), WCPO 어획 CSV 미확보 | orch/archive/ |
+| 1차 시리즈 수집 | source-archivist(skj-sources) | 완료 5/6 — ONI(v5·v6·RONI 1950~) · WCPFC 선망 월별 5°셀 SKJ/YFT/BET 1967-12~2024-12 · 태국 HS030343 월별 2015-01~2023-01(46개월 공백) · 미국 HTS1604.14 월별 2015~2026-06 · USD/THB(BIS 월·Fed 일). 실패: FFA TIN 시세(Cloudflare 403·Wayback 404·PDF에 수치 없음) | orch/archive/README.md |
 | 월별 결과 적대 리뷰 | adversarial-reviewer(skj-forecast-review) | 완료 — 판정 «수정»: 누출 없음, 우위 0.3~0.9pp 유의 안 함(DM p 0.17·블록부트 CI 0 포함), 계절기준선 약함(감쇠×0.5=15.01), MA24 항 기여 0, 추세 국면 구조적 열세 | 재실험 3개 반영 → 리포트 재생성 |
 | 메인 | Claude Code | 월별 30년 백테스트·유의성·창 민감도·유사국면·TU 교차검증 완료 | docs/2026-09-02_skj_monthly_forecast_backtest.md |
 

@@ -263,7 +263,8 @@ def main(argv=None):
     keyed = {name: {r[0]: r for r in recs} for name, (recs, _) in results.items() if len(recs) >= 100}  # 짧은 사양은 제외
     common = sorted(set.intersection(*[set(v) for v in keyed.values()])) if keyed else []
     if len(common) >= 30:
-        lines += ["", f"## 공통 오리진 비교 — {len(common)}개({common[0]}~{common[-1]}), 같은 표본", "", "| 모델 | MAPE | 랜덤워크 | 계절기준선 | 감쇠기준선 | 방향 | vs 감쇠 이득 [블록부트 90% CI] | DM p |", "|---|---|---|---|---|---|---|---|"]
+        lines += ["", f"## 공통 오리진 비교 — {len(common)}개({common[0]}~{common[-1]}), 같은 표본", "",
+                  "⚠ 이 구간은 긴 사양들이 겹치는 표본이지 무작위 표본이 아니다 — 모델이 지는 2010~15 추세 국면이 빠진 사후 부분표본이라, 여기서의 우위는 «2015년 이후 국면 한정»으로만 읽는다.", "", "| 모델 | MAPE | 랜덤워크 | 계절기준선 | 감쇠기준선 | 방향 | vs 감쇠 이득 [블록부트 90% CI] | DM p |", "|---|---|---|---|---|---|---|---|"]
         for name in keyed:
             mm = metrics([keyed[name][m] for m in common])
             lines.append(f"| {name} | {mm['mape']:.1f}% | {mm['rw']:.1f}% | {mm['seas']:.1f}% | {mm['seas5']:.1f}% | {mm['hit']:.0f}% | {mm['gain_seas5']:+.2f} [{mm['ci_seas5'][0]:+.2f}, {mm['ci_seas5'][1]:+.2f}] | {mm['dm_seas5']:.2f} |")
