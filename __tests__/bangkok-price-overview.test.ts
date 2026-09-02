@@ -27,5 +27,40 @@ describe('방콕 개관 시세 겹쳐보기 행 구성', () => {
     const last = rows.at(-1)!;
     expect(last).toMatchObject({ date: '2026-09-02', 방콕사무소: 2030, 재고: 100500, 가동률: 51, MGO: 1222.5, 어튜나: null });
     expect(rows.find((r) => r.date === '2020-05-27')?.MGO).toBeNull();
+    // 2024-01-10 은 원문 docx 오기($2,000) — 2026-09-02 사용자 지시로 전후 주 값 $1,450 으로 정정(payload corrections 에 근거 기록)
+    const corrected = bangkokWeeks.find((w) => w.date === '2024-01-10')!;
+    expect(corrected).toMatchObject({ price: 1450, suspect: false });
+    expect(rows.find((r) => r.date === '2024-01-10')?.방콕사무소).toBe(1450);
+    // 의심 플래그가 남은 주는 선을 끊는다 — 그 규칙 자체는 유지
+    expect(rows.filter((r) => r.방콕사무소 === null).length).toBe(bangkokWeeks.filter((w) => w.price === null || w.suspect).length);
+  });
+});
+
+import { appendSeasonalOutlook } from '@/lib/bangkok-price-overview';
+import { skjSeasonalOutlook } from '@/lib/data/skj-seasonal-outlook';
+
+describe('계절 패턴 참고선 (예측 아님)', () => {
+  it('산출물이 감쇠 계절 기준선이고 밴드가 값을 감싼다', () => {
+    expect(skjSeasonalOutlook.kind).toBe('seasonal-baseline');
+    expect(skjSeasonalOutlook.label).toContain('과거 같은 달 평균 변화');
+    expect(skjSeasonalOutlook.label).not.toContain('예측');
+    expect(skjSeasonalOutlook.band80[0]).toBeLessThan(skjSeasonalOutlook.value);
+    expect(skjSeasonalOutlook.value).toBeLessThan(skjSeasonalOutlook.band80[1]);
+    expect(skjSeasonalOutlook.recent10y.years).toBe(10);
+  });
+
+  it('기준점과 목표월 두 점에만 값을 두고 중간 주는 비운다', () => {
+    const base = buildOverviewRows(bangkokWeeks, singaporeMgoAt, []);
+    const rows = appendSeasonalOutlook(base, skjSeasonalOutlook);
+    const withValue = rows.filter((r) => r.계절패턴 != null);
+    expect(withValue).toHaveLength(2);
+    expect(withValue[0].date.slice(0, 7)).toBe(skjSeasonalOutlook.asOf);
+    expect(withValue[0].계절패턴).toBe(skjSeasonalOutlook.anchorPrice);
+    expect(rows.at(-1)!.date.slice(0, 7)).toBe(skjSeasonalOutlook.targetMonth);
+    expect(rows.at(-1)!.계절패턴).toBe(skjSeasonalOutlook.value);
+    expect(rows.at(-1)!.계절밴드).toEqual([skjSeasonalOutlook.band80[0], skjSeasonalOutlook.band80[1]]);
+    expect(rows.length).toBeGreaterThan(base.length);
+    // 미래 행은 실측 계열이 전부 null
+    expect(rows.slice(base.length).every((r) => r.방콕사무소 === null && r.재고 === null)).toBe(true);
   });
 });

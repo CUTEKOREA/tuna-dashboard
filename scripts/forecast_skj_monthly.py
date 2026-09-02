@@ -255,9 +255,11 @@ def main(argv=None):
             lines.append(f"| {name} | 0 | — | — | — | — | 표본 부족 |"); continue
         m = metrics(recs); results[name] = (recs, m)
         beat = m["mape"] < m["seas"] and m["mape"] < m["rw"]
-        beat = m["mape"] < m["seas"] and m["mape"] < m["rw"] and m["mape"] < m["seas5"] and m["dm_seas5"] < 0.10
-        weak = (not beat) and m["mape"] < m["seas"] and m["mape"] < m["rw"]
-        lines.append(f"| {name} | {m['n']} | {m['mape']:.1f}% | {m['rw']:.1f}% | {m['seas']:.1f}% | {m['seas5']:.1f}% | {m['hit']:.0f}% / {m['hit_seas']:.0f}% | {m['dm_rw']:.2f} / {m['dm_seas']:.2f} / {m['dm_seas5']:.2f} | {'**이김**' if beat else ('우위 있으나 유의 안 함' if weak else '못 이김')} |")
+        beat = m["n"] >= 150 and m["mape"] < m["seas"] and m["mape"] < m["rw"] and m["mape"] < m["seas5"] and m["dm_seas5"] < 0.10
+        weak = (not beat) and m["n"] >= 150 and m["mape"] < m["seas"] and m["mape"] < m["rw"]
+        if m["n"] < 150:
+            beat = False; weak = False
+        lines.append(f"| {name} | {m['n']} | {m['mape']:.1f}% | {m['rw']:.1f}% | {m['seas']:.1f}% | {m['seas5']:.1f}% | {m['hit']:.0f}% / {m['hit_seas']:.0f}% | {m['dm_rw']:.2f} / {m['dm_seas']:.2f} / {m['dm_seas5']:.2f} | {'**이김**' if beat else ('우위 있으나 유의 안 함' if weak else ('표본 부족(참고)' if m['n'] < 150 else '못 이김'))} |")
 
     # 공정 비교 — 사양마다 표본 길이가 달라 MAPE를 바로 비교하면 안 된다. 공통 오리진에서 다시 잰다.
     keyed = {name: {r[0]: r for r in recs} for name, (recs, _) in results.items() if len(recs) >= 100}  # 짧은 사양은 제외
@@ -335,6 +337,28 @@ def main(argv=None):
                   f"{len(analogs)}건 중 3개월 뒤 하락 {(ch < 0).sum()}건({(ch < 0).mean()*100:.0f}%) · 변화율 중앙값 {np.median(ch)*100:+.0f}% · 10~90분위 {np.quantile(ch, .1)*100:+.0f}%~{np.quantile(ch, .9)*100:+.0f}%", "",
                   "| 출발 | 시세 | gap | 3개월 뒤 |", "|---|---|---|---|"]
         lines += [f"| {m} | {p_:,.0f} | {g*100:+.0f}% | {c*100:+.0f}% |" for m, p_, g, c in analogs[-14:]]
+    # 화면용 계절 전망 — 모델이 아니라 감쇠 계절 기준선을 내보낸다(Fable 5.1 독립 검증 조건).
+    sd_now = seas_drift(rows, last, last)
+    target_m = add_months(rows[last]["m"], H)
+    recs_sm = results["S+mom"][0] if "S+mom" in results else []
+    err_sm = np.array([math.log(r[1] / r[2]) for r in recs_sm]) if recs_sm else np.array([0.0])
+    lo, hi = float(np.quantile(err_sm, 0.1)), float(np.quantile(err_sm, 0.9))
+    mo = rows[last]["m"][5:7]
+    same_month = [(rows[k]["m"], dlog(rows[k + H]["p"], rows[k]["p"])) for k in range(0, last - H + 1) if rows[k]["m"][5:7] == mo]
+    recent = [c for m_, c in same_month if m_ >= add_months(rows[last]["m"], -120)]
+    outlook = {
+        "kind": "seasonal-baseline",
+        "label": f"{int(mo)}→{int(target_m[5:7])}월 과거 같은 달 평균 변화(감쇠 ×0.5)",
+        "source": "Atuna SKJ 1.8kg CFR 방콕 월별 (data/atuna_prices.json)",
+        "asOf": rows[last]["m"], "anchorPrice": rows[last]["p"],
+        "targetMonth": target_m, "value": round(rows[last]["p"] * math.exp(0.5 * sd_now)),
+        "band80": [round(rows[last]["p"] * math.exp(0.5 * sd_now + lo)), round(rows[last]["p"] * math.exp(0.5 * sd_now + hi))],
+        "bandMethod": "S+mom 롤링 백테스트 선행(walk-forward) 잔차 10~90분위, 2010~",
+        "history": {"years": len(same_month), "down": int(sum(1 for _, c in same_month if c < 0)), "meanPct": round(float(np.mean([c for _, c in same_month])) * 100, 1)},
+        "recent10y": {"years": len(recent), "down": int(sum(1 for c in recent if c < 0)), "meanPct": round(float(np.mean(recent)) * 100, 1) if recent else None},
+        "notForecast": "모델(S+mom)은 감쇠 계절 기준선과 통계적으로 구분되지 않아(DM p 0.12) 예측치로 표기하지 않는다.",
+    }
+    (ROOT / "public/data/skj_seasonal_outlook.json").write_text(json.dumps(outlook, ensure_ascii=False, indent=1) + "\n")
     cov = {k: sum(1 for r in rows if r.get(k) is not None) for k in exog}
     lines += ["", f"커버리지(월): {cov} / 총 {len(rows)}"]
     a.out.write_text("\n".join(lines) + "\n")
