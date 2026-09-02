@@ -1,3 +1,14 @@
+> 📈 **2026-09-02 15:45 KST — 싱가포르 MGO 동기화 + 방콕 원어 시세 3개월 예측 백테스트 (결론: 점선 안 그림)** [CC]:
+> - **싱가포르 MGO 인테이크 신설**: `scripts/sync_singapore_mgo.py` → `public/data/singapore_mgo.json`. Ship & Bunker 페이지 그래프가 쓰는 공개 API(`POST https://shipandbunker.com/a/.json`, `api-method=pricesForAllSeriesGet&mc0=SG SIN&pc0=MGO`)에서 **일별 783행(2023-09-01~2026-09-01)**, 화요일 정렬 주간 157행. 등급 MGO 0.1% DMA(사이트 LSMGO와 동일값). 차트 실측 4개 지점(1/8 593.5·4/6 2,064·11/28 672·9/1 1,222.5)과 일치. `npm run sync:singapore-mgo`, 자기점검 `test:singapore-mgo-sync`(verify 체인 포함), 최신행 고정 테스트 `__tests__/singapore-mgo-data.test.ts`.
+> - **파노피 유가 4지점 vs 싱가포르 MGO 대조** (artifact `f12355ca…`): 4지점 구간 26주에서 싱가포르 변동폭 108% vs 파노피 탱커 53%·테마 27%. 수준 상관 다카르 .84·탱커 .64·아비장 .52·테마 .31. 주간 변동률은 **싱가포르 1주 선행**일 때 최대(아비장 .61·테마 .49) — 파노피 호가가 한 주 늦게 반영. 저장소 `/api/mgo`의 Brent×13.78 추정은 실측 SG/Brent 평균 12.4(범위 9.2~19.7)라 평시 약 40% 과대·급등기 20~57% 과소. 사용자 지시로 유가 변수는 **싱가포르 MGO 기준**으로 확정.
+> - **예측 백테스트** `scripts/forecast_bangkok_price.py` → `docs/2026-09-02_bangkok_price_forecast_backtest.md`. 릿지 회귀(로그차분, 직접예측 h=4/8/13주), 롤링 오리진 2024-06~2026-05(n 83~109), 기준선=계절 랜덤워크. 변수 세트 4종(A 반입량+재고+가공일수 / B A+싱가포르 MGO / C B+미국·영국 CPI / D MGO만). **결과: 12개 조합 중 11개가 기준선·랜덤워크를 못 이김.** 유일한 예외 A·8주(모델 9.5% vs 기준선 10.0% vs 랜덤워크 9.7%)도 차이가 오차 범위. 13주 MAPE는 기준선 ~10% vs 모델 10~16%. 싱가포르 MGO를 넣으면 오히려 나빠짐(B/D) — 3~4월 유가 급등이 시세 상승으로 외삽돼 4월 오리진 예측 2,768~3,398 vs 실측 1,820~1,930. CPI 추가도 악화.
+> - **판단: 3개월 예측 점선은 그리지 않는다.** 그릴 근거가 있는 건 계절 기준선(80% 밴드 ±10~13%)뿐이며, 그것도 «예측»이 아니라 «과거 같은 달 평균 변화» 라벨이어야 한다. 2026-05-20 VAR 폐기 교훈 그대로.
+> - 데이터 메모: 영국 CPI는 FRED `GBRCPIALLMINMEI`가 2025-03에서 끊겨 ONS generator CSV(`D7G7`, 2026-07까지)로 대체. 미국 CPI FRED `CPIAUCSL` 2026-07까지. 둘 다 스크래치 JSON으로 넣었고 저장소엔 미포함(회귀에서 기여 없음). 선단 조업량은 2026-01부터라 백테스트 제외.
+> - `npm run verify` 통과: ESLint 0 errors(기존 warnings 12) · TypeScript · 파이썬 자기점검 10/13/3/3/**4** · Vitest 1245/1245(163 파일) · API cache 158/158 · Next.js 정적 118개 · fleet client leak 통과 · bundle budget 33 라우트. 화면 변경 없음 — 배포 대상 아님.
+> - **다음 단계 후보**: (1) `/api/mgo` Brent 환산을 `singapore_mgo.json` 실측으로 교체(L-09 정직 표기), (2) `/bangkok-office` 원어 시세 차트에 계절 기준선+밴드를 «기준선» 라벨로 표시할지는 사용자 결정, (3) 예측을 계속 시도한다면 변수가 아니라 **표본**을 늘려야 함 — 주간 시세 284주 중 급등 국면이 2번뿐이라 어떤 회귀도 국면 전환을 못 배운다.
+
+> 마지막 업데이트: 2026-09-02 15:45 KST [CC]
+
 > 🚀 **2026-09-02 15:15 KST — `/bangkok-office` 2026-09-02 주간보고 라이브 배포 완료 (290주)** [CC]:
 > - PR [#871](https://github.com/CUTEKOREA/tuna-dashboard/pull/871)를 squash 병합했다. main commit `8463229a`. Production `dpl_96hGShiyDn2AonNzJPTFnWsomWS3` READY, alias `leedonggun.co.kr`. env 교체 없음.
 > - 라이브 실측: 「분석 기간 2020.05~2026.09 · 고유 290주」, 최신 시세 $2,030 · 방콕 재고 100,500 MT · 2026 누적 하역 341,810 MT · 가공가능일수 47일 · 하이솔트 확정액 142,000 USD · 방콕 가동률 51% · 최근 하역 12,876 MT.
