@@ -9,13 +9,13 @@ describe('bangkok native dashboard', () => {
     const intake = await import('../lib/data/bangkok-weekly');
 
     expect(intake.bangkokWeeklyKpi).toEqual({
-      period: '2020.05~2026.08',
-      // 2026-08-26 주간보고 반영 (매주 sync로 갱신되는 확정 KPI)
-      weeks: 289,
+      period: '2020.05~2026.09',
+      // 2026-09-02 주간보고 반영 (매주 sync로 갱신되는 확정 KPI)
+      weeks: 290,
       latestPrice: 2030,
-      stockMt: 104500,
-      processDays: 49,
-      cumUnloadMt: 333498,
+      stockMt: 100500,
+      processDays: 47,
+      cumUnloadMt: 341810,
       highSaltUsd: 142000,
     });
 
@@ -142,8 +142,8 @@ describe('bangkok native dashboard', () => {
 
     expect(markup).toContain('방콕사무소');
     expect(markup).toContain('data-now="true"');
-    expect(markup).toContain('분석 기간 2020.05~2026.08 · 고유 289주');
-    for (const value of [2030, 104500, 333498, 49]) {
+    expect(markup).toContain('분석 기간 2020.05~2026.09 · 고유 290주');
+    for (const value of [2030, 100500, 341810, 47]) {
       expect(markup).toContain(`data-kpi-value="${value}"`);
     }
     for (const label of [
