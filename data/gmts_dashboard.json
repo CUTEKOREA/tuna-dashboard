@@ -2,12 +2,12 @@
   "schemaVersion": 1,
   "metadata": {
     "status": "STATIC",
-    "reportCount": 32,
-    "pageCount": 40,
+    "reportCount": 33,
+    "pageCount": 41,
     "firstReportDate": "2026-01-21",
     "coverageStart": "2026-01-21",
-    "coverageEnd": "2026-08-26",
-    "latestReportDate": "2026-08-26"
+    "coverageEnd": "2026-09-02",
+    "latestReportDate": "2026-09-02"
   },
   "weekly": [
     {
@@ -1961,15 +1961,76 @@
         ],
         "total": 63736.0
       }
+    },
+    {
+      "reportDate": "2026-09-02",
+      "operationalAsOf": null,
+      "port": {
+        "active": {
+          "declaredCount": 3,
+          "recordCount": 3
+        },
+        "completed": {
+          "declaredCount": 1,
+          "recordCount": 1
+        },
+        "incoming": {
+          "declaredCount": 1,
+          "recordCount": 1
+        }
+      },
+      "canneryTotal": {
+        "maxDailyProductionMt": 1095.0,
+        "currentDailyProductionMt": 895.0,
+        "productionUtilizationPct": 82.0,
+        "storageCapacityMt": 40600.0,
+        "currentStockMt": 17550.0,
+        "storageUtilizationPct": 43.0,
+        "reportedProcessingDays": 20.0
+      },
+      "prices": {
+        "nonGspNonMsc": {
+          "amount": 2100,
+          "currencySymbol": "$",
+          "basisUnit": null,
+          "qualifier": "quoted",
+          "rawText": "$2,100"
+        },
+        "gspNonMsc": {
+          "amount": 2150,
+          "currencySymbol": "$",
+          "basisUnit": null,
+          "qualifier": "quoted",
+          "rawText": "$2,150"
+        }
+      },
+      "volume2026": {
+        "year": 2026,
+        "months": [
+          4920.0,
+          11968.0,
+          8757.0,
+          8059.0,
+          3307.0,
+          14038.0,
+          12687.0,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        "total": 63736.0
+      }
     }
   ],
   "latest": {
-    "reportDate": "2026-08-26",
+    "reportDate": "2026-09-02",
     "operationalAsOf": null,
     "port": {
       "active": {
-        "declaredCount": 2,
-        "recordCount": 2,
+        "declaredCount": 3,
+        "recordCount": 3,
         "records": [
           {
             "sourceIdentifier": "MV SEA BLAZER",
@@ -1979,7 +2040,7 @@
               "FCF"
             ],
             "cargo": 4345.08,
-            "discharged": 3407.79,
+            "discharged": 4175.53,
             "short": null,
             "gensanAllocation": null,
             "etaOrUnloadingDate": null,
@@ -2012,10 +2073,104 @@
             },
             "rawFields": {
               "cargo": "4,345.080 MT",
-              "discharged": "3,407.790 MT"
+              "discharged": "4,175.530 MT"
             },
-            "rawText": "TSP FCF | MV SEA BLAZER | Total Cargo | 4,345.080 MT | TSP/TS FCF/TS FOODSPHERE\nArrived | 2026/08/11\nWharf Berthed | Wharf 1 Berth 2\nUnloading started | 2026/08/12\nTotal Discharged | 3,407.790 MT\nBalance | 937.290 MT\nETC | 2026/25-26"
+            "rawText": "TSP FCF | MV SEA BLAZER | Total Cargo | 4,345.080 MT | TSP/TS FCF/TS FOODSPHERE\nArrived | 2026/08/11\nWharf Berthed | Wharf 1 Berth 2\nUnloading started | 2026/08/12\nTotal Discharged | 4,175.530 MT\nBalance | 169.550 MT\nETC | 2026/09/01-02"
           },
+          {
+            "sourceIdentifier": "MV FRANSESCA LT",
+            "displayName": "FRANSESCA LT",
+            "traders": [
+              "TPJ/LOCAL"
+            ],
+            "cargo": 1572.905,
+            "discharged": 519.88,
+            "short": null,
+            "gensanAllocation": null,
+            "etaOrUnloadingDate": null,
+            "consignees": [
+              "SEATRADE",
+              "GTC",
+              "TPJ/TS"
+            ],
+            "dates": {
+              "arrived": {
+                "value": "2026-08-26",
+                "rawText": "2026/08/26"
+              },
+              "unloadingStarted": {
+                "value": "2026-08-28",
+                "rawText": "2026/08/28"
+              },
+              "etd": {
+                "value": null,
+                "rawText": null
+              },
+              "etaStart": {
+                "value": null,
+                "rawText": null
+              },
+              "etaEnd": {
+                "value": null,
+                "rawText": null
+              }
+            },
+            "rawFields": {
+              "cargo": "1,572.905 MT",
+              "discharged": "519.880 MT"
+            },
+            "rawText": "TPJ/LOCAL | MV FRANSESCA LT | Total Cargo | 1,572.905 MT | SEATRADE GTC TPJ/TS\nArrived | 2026/08/26\nWharf Berthed | Wharf 1 Berth 1\nUnloading started | 2026/08/28\nTotal Discharged | 519.880 MT\nBalance | 1,053.025 MT\nETC | 2026/09/06-07"
+          },
+          {
+            "sourceIdentifier": "MV SEIN GALAXY",
+            "displayName": "SEIN GALAXY",
+            "traders": [
+              "TPJ"
+            ],
+            "cargo": 1597.268,
+            "discharged": 162.51,
+            "short": null,
+            "gensanAllocation": null,
+            "etaOrUnloadingDate": null,
+            "consignees": [
+              "ALLIANCE",
+              "TPJ/TS"
+            ],
+            "dates": {
+              "arrived": {
+                "value": "2026-08-27",
+                "rawText": "2026/08/27"
+              },
+              "unloadingStarted": {
+                "value": "2026-08-28",
+                "rawText": "2026/08/28"
+              },
+              "etd": {
+                "value": null,
+                "rawText": null
+              },
+              "etaStart": {
+                "value": null,
+                "rawText": null
+              },
+              "etaEnd": {
+                "value": null,
+                "rawText": null
+              }
+            },
+            "rawFields": {
+              "cargo": "1,597.268 MT",
+              "discharged": "162.510 MT"
+            },
+            "rawText": "TPJ | MV SEIN GALAXY | Total Cargo | 1,597.268 MT | ALLIANCE TPJ/TS\nArrived | 2026/08/27\nWharf Berthed | Wharf 1 Berth 3\nUnloading started | 2026/08/28\nTotal Discharged | 162.510 MT\nBalance | 1,434.758 MT\nETC | 2026/09/07-08"
+          }
+        ],
+        "rawText": "A. Unloading Vessels :3"
+      },
+      "completed": {
+        "declaredCount": 1,
+        "recordCount": 1,
+        "records": [
           {
             "sourceIdentifier": "MV SEIN QUEEN",
             "displayName": "SEIN QUEEN",
@@ -2023,12 +2178,12 @@
               "TPJ"
             ],
             "cargo": 2092.414,
-            "discharged": 740.68,
-            "short": null,
+            "discharged": 1932.35,
+            "short": 160.064,
             "gensanAllocation": null,
             "etaOrUnloadingDate": null,
             "consignees": [
-              "GENERAL TUNA",
+              "GENERAL TUNA CORP.",
               "TPJ/TS"
             ],
             "dates": {
@@ -2041,8 +2196,8 @@
                 "rawText": "2026/08/18"
               },
               "etd": {
-                "value": "2028-08-28",
-                "rawText": "2028/08/28-29"
+                "value": "2026-08-29",
+                "rawText": "2026/08/29"
               },
               "etaStart": {
                 "value": null,
@@ -2055,71 +2210,23 @@
             },
             "rawFields": {
               "cargo": "2,092.414 MT",
-              "discharged": "740.680 MT"
+              "discharged": "1,932.350 MT",
+              "short": "160.064 MT"
             },
-            "rawText": "TPJ | MV SEIN QUEEN | Total Cargo | 2,092.414 MT | GENERAL TUNA TPJ/TS\nArrived | 2026/08/17\nWharf Berthed | Wharf 2 Berth 1\nUnloading started | 2026/08/18\nTotal Discharged | 740.680 MT\nBALANCE | 1,359.974 MT\nETD | 2028/08/28-29"
-          }
-        ],
-        "rawText": "A. Unloading Vessels :2"
-      },
-      "completed": {
-        "declaredCount": 1,
-        "recordCount": 1,
-        "records": [
-          {
-            "sourceIdentifier": "F/V QUEEN ELLICE",
-            "displayName": "F/V QUEEN ELLICE",
-            "traders": [
-              "ITOCHU"
-            ],
-            "cargo": 580.0,
-            "discharged": 670.23,
-            "short": null,
-            "gensanAllocation": null,
-            "etaOrUnloadingDate": null,
-            "consignees": [
-              "GENERAL TUNA"
-            ],
-            "dates": {
-              "arrived": {
-                "value": "2026-08-11",
-                "rawText": "2026/08/11"
-              },
-              "unloadingStarted": {
-                "value": "2026-08-12",
-                "rawText": "2026/08/12"
-              },
-              "etd": {
-                "value": "2026-08-23",
-                "rawText": "2026/08/23"
-              },
-              "etaStart": {
-                "value": null,
-                "rawText": null
-              },
-              "etaEnd": {
-                "value": null,
-                "rawText": null
-              }
-            },
-            "rawFields": {
-              "cargo": "580.000 MT",
-              "discharged": "670.230 MT"
-            },
-            "rawText": "ITOCHU | F/V QUEEN ELLICE | Total Cargo | 580.000 MT | GENERAL TUNA\nArrived | 2026/08/11\nUnloading started | 2026/08/12\nTotal Discharged | 670.230 MT\nOVER | 90.230 MT\nETD | 2026/08/23"
+            "rawText": "TPJ | MV SEIN QUEEN | Total Cargo | 2,092.414 MT | GENERAL TUNA CORP. TPJ/TS\nArrived | 2026/08/17\nUnloading started | 2026/08/18\nTotal Discharged | 1,932.350 MT\nShort | 160.064 MT\nETD | 2026/08/29"
           }
         ],
         "rawText": "A-1. Completed Discharging Vessels:1"
       },
       "incoming": {
-        "declaredCount": 3,
-        "recordCount": 3,
+        "declaredCount": 1,
+        "recordCount": 1,
         "records": [
           {
-            "sourceIdentifier": "FV FRANCESCA LT",
-            "displayName": "FRANCESCA LT",
+            "sourceIdentifier": "MV VOLTA VICTORY",
+            "displayName": "VOLTA VICTORY",
             "traders": [
-              "TPJ/LOCAL"
+              "TPJ"
             ],
             "cargo": null,
             "discharged": null,
@@ -2127,7 +2234,7 @@
             "gensanAllocation": null,
             "etaOrUnloadingDate": "TBA",
             "consignees": [
-              "GENTUNA"
+              "TBA"
             ],
             "dates": {
               "arrived": {
@@ -2154,96 +2261,16 @@
             "rawFields": {
               "cargo": "TBA"
             },
-            "rawText": "TPJ/LOCAL | FV FRANCESCA LT | Total Cargo | TBA | GENTUNA\nETA | TBA\n"
-          },
-          {
-            "sourceIdentifier": "FV GOLDEN SAPPHIRE",
-            "displayName": "GOLDEN SAPPHIRE",
-            "traders": [
-              "FFC/LOCAL"
-            ],
-            "cargo": null,
-            "discharged": null,
-            "short": null,
-            "gensanAllocation": null,
-            "etaOrUnloadingDate": "2026/08/24",
-            "consignees": [],
-            "dates": {
-              "arrived": {
-                "value": null,
-                "rawText": null
-              },
-              "unloadingStarted": {
-                "value": null,
-                "rawText": null
-              },
-              "etd": {
-                "value": null,
-                "rawText": null
-              },
-              "etaStart": {
-                "value": "2026-08-24",
-                "rawText": "2026/08/24"
-              },
-              "etaEnd": {
-                "value": null,
-                "rawText": null
-              }
-            },
-            "rawFields": {
-              "cargo": "EMPTY"
-            },
-            "rawText": "FFC/LOCAL | FV GOLDEN SAPPHIRE | Total Cargo | EMPTY\nETA | 2026/08/24\nPURPOSE | DRY DOCK FFC COMPOUND"
-          },
-          {
-            "sourceIdentifier": "MV SEIN GALAXY",
-            "displayName": "SEIN GALAXY",
-            "traders": [
-              "TPJ"
-            ],
-            "cargo": null,
-            "discharged": null,
-            "short": null,
-            "gensanAllocation": null,
-            "etaOrUnloadingDate": "2026/08/27",
-            "consignees": [
-              "TBA"
-            ],
-            "dates": {
-              "arrived": {
-                "value": null,
-                "rawText": null
-              },
-              "unloadingStarted": {
-                "value": null,
-                "rawText": null
-              },
-              "etd": {
-                "value": null,
-                "rawText": null
-              },
-              "etaStart": {
-                "value": "2026-08-27",
-                "rawText": "2026/08/27"
-              },
-              "etaEnd": {
-                "value": null,
-                "rawText": null
-              }
-            },
-            "rawFields": {
-              "cargo": "TBA"
-            },
-            "rawText": "TPJ | MV SEIN GALAXY | TBA\nTotal Cargo | TBA\nETA | 2026/08/27"
+            "rawText": "TPJ | MV VOLTA VICTORY | Total Cargo | TBA | TBA\nETA | TBA\n"
           }
         ],
-        "rawText": "B. Incoming Vessel: 3"
+        "rawText": "B. Incoming Vessel: 1"
       }
     },
     "canneries": [
       {
         "name": "Gentuna/Century",
-        "rawText": "Gentuna/Century 800      600       75%    25,000    12,000     48%  20",
+        "rawText": "Gentuna/Century 800     600       75%     25,000   12,000     48%  20",
         "rawValues": {
           "maximumProductionMt": "800",
           "currentProductionMt": "600",
@@ -2263,7 +2290,7 @@
       },
       {
         "name": "Philbest",
-        "rawText": "Philbest 60        50       83%     3,000     800       27%  16",
+        "rawText": "Philbest 60        50       83%      3,000     800      27%  16",
         "rawValues": {
           "maximumProductionMt": "60",
           "currentProductionMt": "50",
@@ -2283,7 +2310,7 @@
       },
       {
         "name": "Alliance",
-        "rawText": "Alliance 80        80      100%     6,500     2,000     31%  25",
+        "rawText": "Alliance 80        80      100%      6,500    2,000     31%  25",
         "rawValues": {
           "maximumProductionMt": "80",
           "currentProductionMt": "80",
@@ -2303,7 +2330,7 @@
       },
       {
         "name": "Celebes",
-        "rawText": "Celebes 40        45      113%     1,600     1,950    122%  43",
+        "rawText": "Celebes 40        45      113%      1,600    1,950    122%  43",
         "rawValues": {
           "maximumProductionMt": "40",
           "currentProductionMt": "45",
@@ -2323,7 +2350,7 @@
       },
       {
         "name": "Foodsphere",
-        "rawText": "Foodsphere 50        55      110%     2,500     200       8%    6",
+        "rawText": "Foodsphere 50        55      110%      2,500     200      8%   6",
         "rawValues": {
           "maximumProductionMt": "50",
           "currentProductionMt": "55",
@@ -2343,7 +2370,7 @@
       },
       {
         "name": "Sea Trade",
-        "rawText": "Sea Trade 50        50      100%     1,500     500       33%  10",
+        "rawText": "Sea Trade 50        50      100%      1,500     500      33%  10",
         "rawValues": {
           "maximumProductionMt": "50",
           "currentProductionMt": "50",
@@ -2363,7 +2390,7 @@
       },
       {
         "name": "R&R",
-        "rawText": "R&R 15        15      100%      500      100       20%   7",
+        "rawText": "R&R 15        15      100%      500       100      20%  7",
         "rawValues": {
           "maximumProductionMt": "15",
           "currentProductionMt": "15",
@@ -2383,7 +2410,7 @@
       },
       {
         "name": "Total",
-        "rawText": "Total 1,095     895       82%    40,600    17,550     43%  20",
+        "rawText": "Total 1,095     895       82%     40,600   17,550     43%  20",
         "rawValues": {
           "maximumProductionMt": "1,095",
           "currentProductionMt": "895",
@@ -2428,9 +2455,9 @@
       }
     },
     "source": {
-      "reportDate": "2026-08-26",
-      "fileName": "GMTS Weekly Report 20260826.pdf",
-      "sha256": "344eb16cfbc5bf75c73431c2b2a6829b99037d440295fa092a442239bbc631b4",
+      "reportDate": "2026-09-02",
+      "fileName": "GMTS Weekly Report 20260902.pdf",
+      "sha256": "fdffc87d9909ed998fee1e3f02bca86ac0e51c999281589b816c99b0dd59b4e5",
       "pages": 1
     }
   },
@@ -3231,6 +3258,26 @@
           ],
           "total": 63736.0
         }
+      },
+      {
+        "reportDate": "2026-09-02",
+        "volume2026": {
+          "months": [
+            4920.0,
+            11968.0,
+            8757.0,
+            8059.0,
+            3307.0,
+            14038.0,
+            12687.0,
+            null,
+            null,
+            null,
+            null,
+            null
+          ],
+          "total": 63736.0
+        }
       }
     ],
     "revisions": [
@@ -3434,6 +3481,12 @@
       "reportDate": "2026-08-26",
       "fileName": "GMTS Weekly Report 20260826.pdf",
       "sha256": "344eb16cfbc5bf75c73431c2b2a6829b99037d440295fa092a442239bbc631b4",
+      "pages": 1
+    },
+    {
+      "reportDate": "2026-09-02",
+      "fileName": "GMTS Weekly Report 20260902.pdf",
+      "sha256": "fdffc87d9909ed998fee1e3f02bca86ac0e51c999281589b816c99b0dd59b4e5",
       "pages": 1
     }
   ],
@@ -3683,6 +3736,12 @@
     {
       "code": "capacity_exceeded",
       "reportDate": "2026-08-26",
+      "name": "Celebes",
+      "storageUtilizationPercent": 122.0
+    },
+    {
+      "code": "capacity_exceeded",
+      "reportDate": "2026-09-02",
       "name": "Celebes",
       "storageUtilizationPercent": 122.0
     },
