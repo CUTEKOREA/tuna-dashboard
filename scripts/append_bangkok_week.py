@@ -309,6 +309,8 @@ def main() -> None:
             continue  # 이번 주 값으로 재판정 (아래에서 다시 추가)
         if where == f"{year}년 누계표 물량":
             continue
+        if where.startswith(f"{year}년 누계표 ") and where.split("누계표 ", 1)[1] in TRADERS:
+            continue
         new_mismatch.append(entry)
     tm_row = d["traderMonthly"][key]
     if tm_row["total_calc"] != tm_row["total_reported"]:
@@ -324,6 +326,20 @@ def main() -> None:
             "reported": yr_reported, "diff": ta.get("total", 0) - yr_reported,
             "source_file": date,
         })
+    # 트레이더별 누계도 대조한다. 총계만 보면 한 트레이더 칸이 틀려도 다른 칸과
+    # 상쇄되어 지나간다 — 2026-09-02 보고의 TRI MARINE 45,463(실제 56,463)이 그랬다.
+    for trader in TRADERS:
+        if trader not in spec["trader_year_reported"]:
+            continue
+        reported = spec["trader_year_reported"][trader]
+        calc = ta.get(trader)
+        where = f"{year}년 누계표 {trader}"
+        new_mismatch = [e for e in new_mismatch if e["where"] != where]
+        if calc != reported:
+            new_mismatch.append({
+                "where": where, "calc": calc, "reported": reported,
+                "diff": (calc or 0) - reported, "source_file": date,
+            })
     d["mismatch"] = new_mismatch
 
     # meta
