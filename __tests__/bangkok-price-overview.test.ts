@@ -27,6 +27,10 @@ describe('방콕 개관 시세 겹쳐보기 행 구성', () => {
     const last = rows.at(-1)!;
     expect(last).toMatchObject({ date: '2026-09-02', 방콕사무소: 2030, 재고: 100500, 가동률: 51, MGO: 1222.5, 어튜나: null });
     expect(rows.find((r) => r.date === '2020-05-27')?.MGO).toBeNull();
+    // 2024-01-10 은 원문이 $2,000(전후 주 $1,450, 어튜나 $1,480) — suspect 플래그라 차트에서는 끊는다
+    const flagged = bangkokWeeks.find((w) => w.date === '2024-01-10')!;
+    expect(flagged).toMatchObject({ price: 2000, suspect: true });
+    expect(rows.find((r) => r.date === '2024-01-10')?.방콕사무소).toBeNull();
   });
 });
 

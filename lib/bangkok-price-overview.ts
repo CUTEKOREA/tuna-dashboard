@@ -73,7 +73,8 @@ export function buildOverviewRows(
   return weeks.map((w) => ({
     주: w.date.slice(2, 7),
     date: w.date,
-    방콕사무소: w.price,
+    // 의심 플래그 주(이웃 중앙값 대비 급변 — 예: 2024-01-10 원문 $2,000, 전후 주 $1,450)는 선을 끊는다. 원 기록은 payload 에 그대로 둔다.
+    방콕사무소: w.suspect ? null : w.price,
     어튜나: atunaHistory.length ? atunaAt(atunaHistory, w.date) : null,
     MGO: mgoAt(w.date),
     재고: w.bkkStockMt,

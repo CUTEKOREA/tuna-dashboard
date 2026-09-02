@@ -128,7 +128,7 @@ export function HomeTab() {
           span={12}
           title="원어 시세 추이"
           unit="달러/톤 · 전체 기간"
-          note={`값이 없는 주는 선을 끊어 표시한다 (보간하지 않음). 어튜나 시세는 로그인 세션으로 불러오며${atunaState === 'error' ? ' — 이번엔 불러오지 못했다' : ''}, 싱가포르 MGO는 보고일 직전 영업일 종가(${singaporeMgoMeta.first}~${singaporeMgoMeta.last}). ${outlookCaption}`}
+          note={`값이 없는 주와 의심 플래그 주(이웃 대비 급변 — 예: 2024-01-10 원문 $2,000, 전후 주 $1,450·어튜나 $1,480)는 선을 끊어 표시한다 (보간·정정하지 않음). 어튜나 시세는 로그인 세션으로 불러오며${atunaState === 'error' ? ' — 이번엔 불러오지 못했다' : ''}, 싱가포르 MGO는 보고일 직전 영업일 종가(${singaporeMgoMeta.first}~${singaporeMgoMeta.last}). ${outlookCaption}`}
           src={`${SRC} · 어튜나 SKJ 1.8kg CFR 방콕 · Ship & Bunker 싱가포르 MGO`}
         >
           <Legend items={priceSeries.map((s) => ({ name: s.name, color: s.color, dash: s.dash }))} />
