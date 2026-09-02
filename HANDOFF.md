@@ -1,3 +1,18 @@
+> 📊 **2026-09-02 11:10 KST — `/fleet` 260902 일일보고 · `/panofi` 20260901 주간동향 로컬 반영** [CC]:
+> - 원자료 ①: `해양수산본부 일일업무보고-260902 (수).docx`, SHA-256 `a02b937d…790f`. 보고일 2026-09-02, 조업 기준일 2026-09-01. `npm run sync:fleet-daily`로 147건(2026-01-16~09-02) 재생성.
+> - 원자료 ②: `PANOFI 주간동향20260901.docx`, SHA-256 `02c69fa4…b3e2`. `python3 scripts/extract_panofi.py`로 37주(2025-12-23~2026-09-01) 재생성. 커버리지 최저 91%(`prices.cosmoTema`).
+> - 선단 수치: 태평양 일간 175 / 월간 175 / 연간 48,415.8 (MT), 대서양 일간 120 / 월간 120 / 연간 33,580 (MT), 합계 295 / 295 / 81,995.8 (MT). 운반선 선적 5,834.1 (MT) · 예상잔량 5,771.7 (MT). 전일 대비 태평양 +80, 대서양 -65, 합계 +15. **9월 첫 보고라 일간과 월간 누계가 같다.**
+> - 검산 이슈가 16건 → 17건(14문서 → 15문서)으로 늘었다. 늘어난 1건은 260902 운반선 소계다 — **인쇄 소계 5,834.1톤 vs 행 합계 5,834.13톤, 0.03톤 차이**. 파이프라인이 인쇄값을 유지하고 차이를 공개한다(맞추지 않음).
+> - 파노피 수치: SCODI 아비장 $1,722/톤(직전 $1,700). 테마는 PFC $1,600·COSMO $1,700으로 8월 값 유지 — 원문이 「9월어가 협의 중」이라 인상 전이다. 환율 11.25 CEDI/$ · 580 CFA/$, COSMO 일 가공 80톤, 아비장 미수 합계 $3,162,914(직전 주와 동일).
+> - 알려진 파서 공백(이번 변경과 무관, 기존 동작): 주간 미수금 `buyers`에서 ETS BADARA·SDMG가 계속 `null`로 떨어진다. 합계는 원문과 일치한다.
+> - 날짜 고정 회귀 테스트 7개(`fleet-daily`·`fleet-daily-security-boundary`·`fleet-daily-source-contract`·`fleet-daily-command-center`·`fleet-idle-vessels`·`v2-components-render`·`panofi-dashboard`)를 새 최신행으로 갱신했다. 갱신 전 RED를 확인했다.
+> - `npm run verify` 통과: ESLint 0 errors(기존 warnings 12) · TypeScript · 파이썬 자기점검 10/13/3/3 · Vitest 1242/1242(162 파일) · API cache 158/158 · Next.js 정적 118개 · fleet client leak 통과(정적 125·보호 상세 33) · bundle budget 33 라우트.
+> - 화면 확인은 서버 렌더 마크업 대조로 했다 — 로컬 `/fleet`·`/panofi`는 구글 OAuth 게이트 뒤라 헤드리스 열람이 막힌다. 렌더 결과: 「2026-09-02 보고 · 2026-09-01 조업 기준」, SYNCED 2026-09-02, 파노피 「주간동향 37주 (2025-12-23 ~ 2026-09-01)」·SCODI $1,722·11.25 CEDI.
+> - **작업 베이스 주의**: 이 반영은 워크트리 `fleet-panofi-0902`(`feat/fleet-panofi-2026-09-02`, origin/main 기준)에서 했다. 기존 워크트리 `참치왕국`의 `codex/fleet-production-2025` 브랜치는 main보다 **681 커밋 뒤처져** 있어 그쪽 `/fleet` 컴포넌트에 반영하면 회귀가 난다.
+> - 상태: 로컬 반영 완료. 사용자 「배포」 지시를 받아 배포 진행 중.
+
+> 마지막 업데이트: 2026-09-02 11:10 KST [CC]
+
 > 🚀 **2026-09-01 14:55 KST — 일일 운영 보고 증감 색 분기 라이브 배포 완료** [CC]:
 > - PR [#865](https://github.com/CUTEKOREA/tuna-dashboard/pull/865)를 squash 병합했다. main commit `e74424eb`. Production `dpl_4cMjvQJyhUnGQEa7yiLQn7yB3C5N` READY, region `icn1`, alias `leedonggun.co.kr`.
 > - 라이브 실측(computed style): 태평양 `+35 (MT) 전일 대비` → `data-delta="up"` · `rgb(239, 68, 68)` 빨강, 대서양 `-215` 와 합계 `-180` → `data-delta="down"` · `rgb(59, 130, 246)` 파랑. 국내 시세 관례대로다.
