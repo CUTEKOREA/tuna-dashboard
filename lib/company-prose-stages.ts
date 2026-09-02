@@ -18,11 +18,15 @@ import {
   reportProse,
 } from '@/lib/data/company-report-prose';
 
-function blocksToParagraphs(sec: ProseSection, withHeading: boolean): string[] {
+function blocksToParagraphs(
+  sec: ProseSection,
+  withHeading: boolean,
+  skip?: ProseSection['blocks'][number],
+): string[] {
   const out: string[] = [];
   if (withHeading && sec.subtitle) out.push(`**${sec.label}: ${sec.subtitle}**`);
   for (const b of sec.blocks) {
-    if (b.kind === 'lead' && !withHeading) continue;  // 리드는 lede 로 따로 나간다
+    if (b === skip) continue;                          // lede 로 올라간 블록
     if (b.kind === 'h3') continue;                    // 소제목은 표가 이어받는다
     out.push(b.kind === 'call' && b.title ? `**${b.title}** ${b.text}` : b.text);
   }
@@ -40,16 +44,21 @@ export function proseStages(company: string): StageNarrative[] {
 
   return [...byStage.entries()]
     .sort(([a], [b]) => a.localeCompare(b))
-    .map(([stage, secs]) => {
+    .map(([stage, secs], stageIndex) => {
       const head = secs[0];
-      const lead = head.blocks.find((b) => b.kind === 'lead');
+      // 리드 없이 소제목으로 여는 절이 있다(Frinsa 06절). 그럴 때는 첫 서술 블록을
+      // 리드 자리에 놓는다 — 비워 두면 단계 머리가 통째로 빈다.
+      const lead = head.blocks.find((b) => b.kind === 'lead')
+        ?? head.blocks.find((b) => b.kind === 'para' || b.kind === 'call');
       const paragraphs = [
-        ...blocksToParagraphs(head, false),
+        ...blocksToParagraphs(head, false, lead),
         ...secs.slice(1).flatMap((s) => blocksToParagraphs(s, true)),
       ];
       return {
         key: stage,
-        numeral: head.numeral,
+        // 절 번호가 아니라 **화면 단계 순번**이다. 한 단계에 절이 여럿 합쳐지거나
+        // 절 하나가 빠지면 둘이 어긋난다 — Thai Union 은 05 자리에 08절이 온다.
+        numeral: String(stageIndex + 1).padStart(2, '0'),
         title: `${head.label}: ${head.subtitle}`,
         question: head.blocks.find((b) => b.kind === 'h3')?.title ?? head.subtitle,
         lede: lead?.text ?? '',
