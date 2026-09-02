@@ -34,6 +34,8 @@ describe('fleet idle vessel detection', () => {
     const damage = FLEET_IDLE_NOTES.MOAMARI.lines.find((line) => line.label.startsWith('손상'))!;
     expect(damage.text).toContain('프로펠러 볼트 3개 파손');
     expect(damage.text).toContain('잠수부 점검');
+    // 카드는 line.text 를 그대로 출력한다 — 마크다운 강조를 쓰면 별표가 화면에 보인다
+    for (const line of FLEET_IDLE_NOTES.MOAMARI.lines) expect(line.text).not.toContain('**');
     const cause = FLEET_IDLE_NOTES.MOAMARI.lines.find((line) => line.label.startsWith('사고 경위'))!;
     expect(cause.text).toContain('SEIN KASAMA');
     expect(cause.text).toContain('ASTERN');
