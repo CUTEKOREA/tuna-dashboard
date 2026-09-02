@@ -1,6 +1,7 @@
 'use client';
 
-import Chart, { type Serie } from '../../cosmo/Chart';
+import { useEffect, useMemo, useState } from 'react';
+import Chart, { Legend, type Serie } from '../../cosmo/Chart';
 import { Grid, Panel, Sec, Stat, Stats, Table } from '../../panofi/PanofiUi';
 import {
   bangkokWeeklyKpi,
@@ -8,6 +9,8 @@ import {
   bangkokYearly,
   type BangkokWeek,
 } from '@/lib/data/bangkok-weekly';
+import { singaporeMgoAt, singaporeMgoMeta } from '@/lib/data/singapore-mgo';
+import { buildOverviewRows, type AtunaHistoryRow } from '@/lib/bangkok-price-overview';
 import { C } from '../palette';
 
 /* ── 표기 헬퍼 ─────────────────────────────────────────────────────────── */
@@ -35,9 +38,18 @@ const latestUnload = latest((w) => w.unloadMt);
 
 /* ── 차트 데이터 (모듈 스코프 — 원천이 정적이다) ───────────────────────── */
 
-const priceRows = bangkokWeeks.map((w) => ({ 주: w.date.slice(2, 7), 시세: w.price }));
+/** 가격 3종은 단위가 같아($/t) 한 축에, 재고(MT)·가동률(%)은 같은 시간축의 별도 패널에 — 이중 축은 쓰지 않는다. */
+const PRICE_COLORS = { office: C.bangkok, atuna: '#d95926', mgo: '#199e70' } as const;
 const priceSeries: Serie[] = [
-  { key: '시세', name: '원어 시세', color: C.bangkok, fmt: (v) => `${num(v)} 달러/톤` },
+  { key: '방콕사무소', name: '방콕사무소 원어 시세', color: PRICE_COLORS.office, fmt: (v) => `${num(v)} 달러/톤` },
+  { key: '어튜나', name: '어튜나 SKJ 방콕', color: PRICE_COLORS.atuna, fmt: (v) => `${num(v)} 달러/톤` },
+  { key: 'MGO', name: '싱가포르 MGO', color: PRICE_COLORS.mgo, dash: true, fmt: (v) => `${num(v)} 달러/톤` },
+];
+const stockSeries: Serie[] = [
+  { key: '재고', name: '방콕 캐너리 보유 원어 합', color: '#0891b2', type: 'area', fmt: (v) => `${num(v)} MT` },
+];
+const utilSeries: Serie[] = [
+  { key: '가동률', name: '방콕 캐너리 평균 가동률', color: '#c98500', fmt: (v) => `${num1(v)} %` },
 ];
 
 const unloadRows = bangkokYearly.map((y) => ({ 연도: String(y.year), 하역: y.unloadTotalMt }));
@@ -48,6 +60,27 @@ const unloadSeries: Serie[] = [
 /* ── 개관 탭 ───────────────────────────────────────────────────────────── */
 
 export function HomeTab() {
+  // 어튜나 시세는 페이월 자료라 정적 번들에 넣지 않는다 — 소유자 로그인 세션으로 라우트에서 받아 온다.
+  const [atunaHistory, setAtunaHistory] = useState<AtunaHistoryRow[]>([]);
+  const [atunaState, setAtunaState] = useState<'idle' | 'ready' | 'error'>('idle');
+  useEffect(() => {
+    const ctrl = new AbortController();
+    fetch('/api/atuna-prices', { cache: 'no-store', credentials: 'same-origin', signal: ctrl.signal })
+      .then((res) => (res.ok ? res.json() : Promise.reject(new Error(String(res.status)))))
+      .then((body: { history?: AtunaHistoryRow[]; restricted?: boolean }) => {
+        if (body.restricted || !Array.isArray(body.history)) throw new Error('restricted');
+        setAtunaHistory(body.history);
+        setAtunaState('ready');
+      })
+      .catch((err: unknown) => {
+        if ((err as Error)?.name !== 'AbortError') setAtunaState('error');
+      });
+    return () => ctrl.abort();
+  }, []);
+  const overviewRows = useMemo(
+    () => buildOverviewRows(bangkokWeeks, singaporeMgoAt, atunaHistory),
+    [atunaHistory],
+  );
   return (
     <>
       <Stats>
@@ -89,10 +122,17 @@ export function HomeTab() {
           span={12}
           title="원어 시세 추이"
           unit="달러/톤 · 전체 기간"
-          note="값이 없는 주는 선을 끊어 표시한다 (보간하지 않음)."
-          src={SRC}
+          note={`값이 없는 주는 선을 끊어 표시한다 (보간하지 않음). 어튜나 시세는 로그인 세션으로 불러오며${atunaState === 'error' ? ' — 이번엔 불러오지 못했다' : ''}, 싱가포르 MGO는 보고일 직전 영업일 종가(${singaporeMgoMeta.first}~${singaporeMgoMeta.last}).`}
+          src={`${SRC} · 어튜나 SKJ 1.8kg CFR 방콕 · Ship & Bunker 싱가포르 MGO`}
         >
-          <Chart data={priceRows} x="주" height={260} series={priceSeries} xInterval={25} yFmt={num} />
+          <Legend items={priceSeries.map((s) => ({ name: s.name, color: s.color, dash: s.dash }))} />
+          <Chart data={overviewRows} x="주" height={260} series={priceSeries} xInterval={25} yFmt={num} />
+        </Panel>
+        <Panel span={6} title="방콕 캐너리 보유 원어 합" unit="MT · 주간보고 냉동재고 SUM" src={SRC}>
+          <Chart data={overviewRows} x="주" height={180} series={stockSeries} xInterval={40} yFmt={num} />
+        </Panel>
+        <Panel span={6} title="방콕 캐너리 평균 가동률" unit="% · 일생산 ÷ 최대생산" src={SRC}>
+          <Chart data={overviewRows} x="주" height={180} series={utilSeries} xInterval={40} yFmt={num1} domain={[0, 100]} />
         </Panel>
       </Grid>
 

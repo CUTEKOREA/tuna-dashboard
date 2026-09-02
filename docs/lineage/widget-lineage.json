@@ -1,9 +1,9 @@
 {
  "_meta": {
   "entry": "app/page.tsx",
-  "files": 201,
+  "files": 203,
   "widgets": 110,
-  "dataFiles": 75,
+  "dataFiles": 76,
   "generator": "scripts/widget_lineage.py"
  },
  "widgetToData": {
@@ -310,7 +310,8 @@
    "dataFiles": [
     "public/data/bangkok/seasia_processors.json",
     "public/data/bangkok_weekly_kpi.json",
-    "public/data/bangkok_weekly_payload.json"
+    "public/data/bangkok_weekly_payload.json",
+    "public/data/singapore_mgo.json"
    ]
   },
   "components/bangkok/tabs/CanneryTab.tsx": {
@@ -333,11 +334,13 @@
   },
   "components/bangkok/tabs/HomeTab.tsx": {
    "dataModules": [
-    "lib/data/bangkok-weekly.ts"
+    "lib/data/bangkok-weekly.ts",
+    "lib/data/singapore-mgo.ts"
    ],
    "dataFiles": [
     "public/data/bangkok_weekly_kpi.json",
-    "public/data/bangkok_weekly_payload.json"
+    "public/data/bangkok_weekly_payload.json",
+    "public/data/singapore_mgo.json"
    ]
   },
   "components/bangkok/tabs/LeadingTab.tsx": {
@@ -1227,6 +1230,10 @@
    "components/market-understanding/ShrimpIndustryDashboard.tsx",
    "components/market-understanding/TunaAnatomyDashboard.tsx",
    "components/market-understanding/WhelkIndustryDashboard.tsx"
+  ],
+  "public/data/singapore_mgo.json": [
+   "components/bangkok/BangkokDashboard.tsx",
+   "components/bangkok/tabs/HomeTab.tsx"
   ],
   "public/data/squid_company_research_v1.json": [
    "components/market-understanding/CompanyResearchTables.tsx",
