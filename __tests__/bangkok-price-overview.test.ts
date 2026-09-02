@@ -27,10 +27,12 @@ describe('방콕 개관 시세 겹쳐보기 행 구성', () => {
     const last = rows.at(-1)!;
     expect(last).toMatchObject({ date: '2026-09-02', 방콕사무소: 2030, 재고: 100500, 가동률: 51, MGO: 1222.5, 어튜나: null });
     expect(rows.find((r) => r.date === '2020-05-27')?.MGO).toBeNull();
-    // 2024-01-10 은 원문이 $2,000(전후 주 $1,450, 어튜나 $1,480) — suspect 플래그라 차트에서는 끊는다
-    const flagged = bangkokWeeks.find((w) => w.date === '2024-01-10')!;
-    expect(flagged).toMatchObject({ price: 2000, suspect: true });
-    expect(rows.find((r) => r.date === '2024-01-10')?.방콕사무소).toBeNull();
+    // 2024-01-10 은 원문 docx 오기($2,000) — 2026-09-02 사용자 지시로 전후 주 값 $1,450 으로 정정(payload corrections 에 근거 기록)
+    const corrected = bangkokWeeks.find((w) => w.date === '2024-01-10')!;
+    expect(corrected).toMatchObject({ price: 1450, suspect: false });
+    expect(rows.find((r) => r.date === '2024-01-10')?.방콕사무소).toBe(1450);
+    // 의심 플래그가 남은 주는 선을 끊는다 — 그 규칙 자체는 유지
+    expect(rows.filter((r) => r.방콕사무소 === null).length).toBe(bangkokWeeks.filter((w) => w.price === null || w.suspect).length);
   });
 });
 
