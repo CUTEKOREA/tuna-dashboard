@@ -1,3 +1,16 @@
+> 📊 **2026-09-02 14:20 KST — `/gmts` 20260902 주간보고 반영 + `AGENTS.md` 에이전트 명부 정정 (로컬 완료)** [CC]:
+> - 원자료: `GMTS Weekly Report 20260902.pdf`, SHA-256 `fdffc87d…b4e5`, 1쪽. `npm run sync:gmts`로 33건(2026-01-21~09-02) 재생성.
+> - 하역 중 3척: SEA BLAZER 4,345.080 / 4,175.530 양하, FRANSESCA LT 1,572.905 / 519.880, SEIN GALAXY 1,597.268 / 162.510. 합계 화물 7,515.253 MT · 양하 4,857.920 MT.
+> - 하역 완료 1척: SEIN QUEEN 2,092.414 MT 중 1,932.350 MT 양하, **SHORT 160.064 MT**(원문 명시). 입항 예정 1척 VOLTA VICTORY는 화물·ETA 모두 TBA라 공란 유지.
+> - 공장·가격·반입량은 8/26과 동일: 일생산 895/1,095 MT(82%), 냉동 17,550/40,600 MT(43%), 처리 20일, Non-GSP $2,100 · GSP $2,150, 2026 누적 63,736(7월까지, 8월 공란).
+> - 품질 플래그 44 → 45건. 늘어난 1건은 `price_qualifier`(주차 1건 추가). `blank_declared_count`는 6건 그대로다.
+> - `AGENTS.md`를 4-에이전트 명부로 정정했다. main에 아직 Hermes가 5번째 에이전트로 남아 있었고, 워크트리 `참치왕국`의 `codex/fleet-production-2025`에만 있던 수정을 옮겼다. `[Hermes]`는 과거 기록 태그로 내려갔다.
+> - 날짜 고정 회귀 테스트 3파일(`gmts-dashboard-data`·`gmts-presentation`·`gmts-dashboard-render`)에서 13건이 RED로 떨어진 것을 확인한 뒤 9/2 값으로 갱신했다. 값은 PDF 원문을 직접 읽어 대조했다(스크립트 산출과 일치).
+> - `npm run verify` 통과: ESLint 0 errors(기존 warnings 12) · TypeScript · 파이썬 자기점검 10/13/3/3 · Vitest 1242/1242(162 파일) · API cache 158/158 · Next.js 정적 118개 · fleet client leak 통과 · bundle budget 33 라우트.
+> - 상태: 로컬 반영 완료. 배포는 사용자 요청에 따라 진행.
+
+> 마지막 업데이트: 2026-09-02 14:20 KST [CC]
+
 > 🚀 **2026-09-02 12:00 KST — `/fleet` 260902 일일보고 · `/panofi` 20260901 주간동향 라이브 배포 완료** [CC]:
 > - PR [#869](https://github.com/CUTEKOREA/tuna-dashboard/pull/869)를 squash 병합했다. main commit `cde29cae`. Production `dpl_D9TJUV3Ez7LyULDe6BVS9FANQL2S` READY, alias `leedonggun.co.kr`.
 > - 병합 전에 Production `FLEET_DAILY_DETAIL_JSON`을 새 보호 DTO로 교체했다. canonical SHA `f04b4d33…846c`가 공개 `_meta.detailSha256`과 일치하고, 직전 `3a14df70…b77c`는 `detailSha256Compat`에 남겼다.
