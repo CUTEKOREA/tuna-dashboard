@@ -32,6 +32,14 @@
 
 > 마지막 업데이트: 2026-09-02 16:40 KST [CC]
 
+> 🧹 **2026-09-02 15:55 KST — `/bangkok-office` 히어로에서 「하이솔트 확정액」 타일 제거 (로컬 완료)** [CC]:
+> - 사용자 지시. `components/bangkok/BangkokDashboard.tsx` `secondaryKpis`에서 1행 삭제. 히어로 보조 KPI는 방콕 재고 · 2026 누적 하역 · 가공가능일수 3개.
+> - KPI 계약(`lib/data/bangkok-weekly.ts`의 `highSaltUsd`)과 `bangkok_weekly_kpi.json`은 그대로 — 동기화 스크립트가 계속 쓰고 품질 클레임 탭도 그대로다. 화면만 뺐다.
+> - `embedded-operation-pages` 렌더 테스트에 `not.toContain('하이솔트 확정액')` 가드 추가. `npm run verify` 통과. 배포는 사용자 요청 시.
+
+> 마지막 업데이트: 2026-09-02 15:55 KST [CC]
+
+
 > 📈 **2026-09-02 15:45 KST — 싱가포르 MGO 동기화 + 방콕 원어 시세 3개월 예측 백테스트 (결론: 점선 안 그림)** [CC]:
 > - **싱가포르 MGO 인테이크 신설**: `scripts/sync_singapore_mgo.py` → `public/data/singapore_mgo.json`. Ship & Bunker 페이지 그래프가 쓰는 공개 API(`POST https://shipandbunker.com/a/.json`, `api-method=pricesForAllSeriesGet&mc0=SG SIN&pc0=MGO`)에서 **일별 783행(2023-09-01~2026-09-01)**, 화요일 정렬 주간 157행. 등급 MGO 0.1% DMA(사이트 LSMGO와 동일값). 차트 실측 4개 지점(1/8 593.5·4/6 2,064·11/28 672·9/1 1,222.5)과 일치. `npm run sync:singapore-mgo`, 자기점검 `test:singapore-mgo-sync`(verify 체인 포함), 최신행 고정 테스트 `__tests__/singapore-mgo-data.test.ts`.
 > - **파노피 유가 4지점 vs 싱가포르 MGO 대조** (artifact `f12355ca…`): 4지점 구간 26주에서 싱가포르 변동폭 108% vs 파노피 탱커 53%·테마 27%. 수준 상관 다카르 .84·탱커 .64·아비장 .52·테마 .31. 주간 변동률은 **싱가포르 1주 선행**일 때 최대(아비장 .61·테마 .49) — 파노피 호가가 한 주 늦게 반영. 저장소 `/api/mgo`의 Brent×13.78 추정은 실측 SG/Brent 평균 12.4(범위 9.2~19.7)라 평시 약 40% 과대·급등기 20~57% 과소. 사용자 지시로 유가 변수는 **싱가포르 MGO 기준**으로 확정.

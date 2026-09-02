@@ -83,7 +83,6 @@ export default function BangkokDashboard({ heroOnly = false }: { heroOnly?: bool
           { label: '방콕 재고', value: bangkokWeeklyKpi.stockMt, unit: '(MT)' },
           { label: '2026 누적 하역', value: bangkokWeeklyKpi.cumUnloadMt, unit: '(MT)' },
           { label: '가공가능일수', value: bangkokWeeklyKpi.processDays, unit: '(일)' },
-          { label: '하이솔트 확정액', value: bangkokWeeklyKpi.highSaltUsd, unit: '(USD)' },
         ]}
         minHeight={360}
         strip={(
