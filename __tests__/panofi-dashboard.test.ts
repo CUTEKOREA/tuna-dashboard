@@ -67,16 +67,21 @@ describe('파노피 데이터 인테이크', () => {
 
   // 2026-08-26 추가: 8월 주간동향 0818·0825 반영. 최신행 고정 — main 미병합 배포가
   // 화면을 옛 값으로 되돌리는 회귀를 여기서 잡는다.
-  it('주간동향이 2026-08-25(35주차)까지 36주다', () => {
-    // 8월 신규 2주(0818·0825) + NFD 파일명 탓에 빠져 있던 3주(0106·0127·0728) 복원.
-    expect(headline.weekCount).toBe(36);
-    expect(headline.rangeEnd).toBe('2026-08-25');
+  it('주간동향이 2026-09-01(36주차)까지 37주다', () => {
+    // 2026-09-02 추가: 9/1 주간동향 반영. 8월분(0818·0825)과 NFD 파일명 탓에 빠져 있던
+    // 3주(0106·0127·0728) 복원분은 그대로 유지된다.
+    expect(headline.weekCount).toBe(37);
+    expect(headline.rangeEnd).toBe('2026-09-01');
     const last = weeks[weeks.length - 1];
-    expect(last.reportDate).toBe('2026-08-25');
+    expect(last.reportDate).toBe('2026-09-01');
+    // 테마 어가는 8월 값으로 9월 협의 중이라 그대로고, 아비장 SCODI만 $1,722로 올랐다.
     expect(last.prices.pfcTema).toBe(1600);
     expect(last.prices.cosmoTema).toBe(1700);
-    expect(last.fx.cediPerUsd).toBe(11.13);
+    expect(last.prices.scodiAbidjan).toBe(1722);
+    expect(last.fx.cediPerUsd).toBe(11.25);
+    expect(last.fx.cfaPerUsd).toBe(580);
     expect(last.dailyProcessing.COSMO).toBe(80);
+    expect(last.receivables.totalUsd).toBe(3_162_914);
   });
 
   it('주차가 보고일 오름차순으로 정렬돼 있다', () => {

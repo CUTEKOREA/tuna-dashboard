@@ -242,7 +242,7 @@ describe('Deep Sea Command V2 - Fleet pilot', () => {
 
     expect(markup).toContain('선단 운영');
     expect(markup).toContain('일간 합계');
-    expect(markup).toContain('data-kpi-value="280"');
+    expect(markup).toContain('data-kpi-value="295"');
     // 2026-08-15 사용자 지시: 선박 사진 배경 제거 — 라이트 히어로는 배경 없이
     expect(markup).not.toContain('/heroes/seiner.webp');
   });

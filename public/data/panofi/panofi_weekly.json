@@ -1,19 +1,19 @@
 {
  "meta": {
   "generatedFrom": "/Users/idong-geon/Library/CloudStorage/GoogleDrive-cutekorea@gmail.com/내 드라이브/신라그룹/11_Panofi_Cosmo_GGL /11. PANOFI/Panofi/PANOFI 주간동향",
-  "weekCount": 36,
+  "weekCount": 37,
   "rangeStart": "2025-12-23",
-  "rangeEnd": "2026-08-25",
+  "rangeEnd": "2026-09-01",
   "coverage": {
-   "prices.cosmoTema": 33,
-   "prices.scodiAbidjan": 36,
-   "fx.cediPerUsd": 36,
-   "dailyProcessing.COSMO": 35,
-   "receivables.totalUsd": 36,
-   "fuel(형식 온전)": 36,
-   "fleetStatus(관측됨)": 36,
-   "senegalFleet": 36,
-   "fishingGround.coastalMax": 36
+   "prices.cosmoTema": 34,
+   "prices.scodiAbidjan": 37,
+   "fx.cediPerUsd": 37,
+   "dailyProcessing.COSMO": 36,
+   "receivables.totalUsd": 37,
+   "fuel(형식 온전)": 37,
+   "fleetStatus(관측됨)": 37,
+   "senegalFleet": 37,
+   "fishingGround.coastalMax": 37
   },
   "vessels": {
    "P/QUEEN": "P/QUE",
@@ -4692,6 +4692,138 @@
     "tema": 1563.0,
     "dakar": 1121.0,
     "tanker": 1401.0,
+    "single": null
+   }
+  },
+  {
+   "reportDate": "2026-09-01",
+   "isoWeek": 36,
+   "source": "PANOFI 주간동향20260901.docx",
+   "sha256": "02c69fa4af978a1fc48490f01c793c6de7d1efca8d41658c4e6884768641b3e2",
+   "author": "김평회 법인장",
+   "statedYearMismatch": false,
+   "fleetStatus": "detailed",
+   "ownVessels": [
+    {
+     "vessel": "P/GRACE",
+     "code": "P/GRA",
+     "status": null
+    },
+    {
+     "vessel": "P/DIS",
+     "code": "P/DIS",
+     "status": null
+    },
+    {
+     "vessel": "P/PATH",
+     "code": "P/PATH",
+     "status": null
+    }
+   ],
+   "fishingGround": {
+    "coastalMin": 25.8,
+    "coastalMax": 26.9,
+    "oceanMin": 23.4,
+    "oceanMax": 24.8,
+    "coastalCurrent": "동류",
+    "oceanCurrent": "서류"
+   },
+   "senegalFleet": [
+    {
+     "fleet": "캅센",
+     "vessel": "CAP ATLANTIQUE",
+     "arrive": "8/17",
+     "depart": "미정",
+     "tons": null,
+     "note": "상가수리 중"
+    },
+    {
+     "fleet": "캅센",
+     "vessel": "WESTERN KIM",
+     "arrive": "8/21",
+     "depart": "8/27",
+     "tons": 760.0,
+     "note": "출항 완료"
+    },
+    {
+     "fleet": "캅센",
+     "vessel": "COSMOS KIM",
+     "arrive": "8/22",
+     "depart": "미정",
+     "tons": 980.0,
+     "note": "하역 완료, 임시국적 증서 갱신 차 체항중"
+    },
+    {
+     "fleet": "그랑블루",
+     "vessel": "SEE BREEZE",
+     "arrive": "8/20",
+     "depart": "8/26",
+     "tons": 960.0,
+     "note": "출항 완료"
+    },
+    {
+     "fleet": "그랑블루",
+     "vessel": "SEA DEFENDER",
+     "arrive": "8/25",
+     "depart": "8/29",
+     "tons": 920.0,
+     "note": "출항 완료"
+    },
+    {
+     "fleet": "운반선",
+     "vessel": "BOYANG BERING",
+     "arrive": "8/31",
+     "depart": "미정",
+     "tons": null,
+     "note": "조업선 물량 전재 중"
+    }
+   ],
+   "prices": {
+    "pfcTema": 1600.0,
+    "cosmoTema": 1700.0,
+    "scodiAbidjan": 1722.0,
+    "marketTemaCedi": 14000.0,
+    "marketTemaUsd": 1244.0,
+    "marketAbidjanCfa": 800000.0,
+    "marketAbidjanUsd": 1379.0
+   },
+   "fx": {
+    "cediPerUsd": 11.25,
+    "cfaPerUsd": 580.0
+   },
+   "dailyProcessing": {
+    "COSMO": 80.0,
+    "PFC": 90.0,
+    "SCODI": 85.0,
+    "SCASA": 100.0,
+    "AIRONE": 0.0
+   },
+   "receivables": {
+    "buyers": [
+     {
+      "buyer": "INTER OCEAN",
+      "cfa": 953997275.0,
+      "usd": 1644823.0
+     },
+     {
+      "buyer": "ETS BADARA",
+      "cfa": null,
+      "usd": null
+     },
+     {
+      "buyer": "SDMG",
+      "cfa": null,
+      "usd": null
+     }
+    ],
+    "totalCfa": 1834490179.0,
+    "totalUsd": 3162914.0
+   },
+   "fuel": {
+    "abidjan": 1302.0,
+    "tema": 1569.0,
+    "dakar": 1293.0,
+    "tanker": 1445.0,
     "single": null
    }
   }

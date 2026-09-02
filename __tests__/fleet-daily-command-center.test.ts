@@ -9,10 +9,10 @@ describe('FleetCommandCenter daily operations', () => {
   it('renders the latest daily report as the hero KPI source', () => {
     const markup = renderToStaticMarkup(React.createElement(FleetCommandCenter));
 
-    expect(markup).toContain('2026-09-01 보고 · 2026-08-31 조업 기준');
-    expect(markup).toContain('data-kpi-value="280"');
-    expect(markup).toContain('data-kpi-value="10143"');
-    expect(markup).toContain('data-kpi-value="81700.8"');
+    expect(markup).toContain('2026-09-02 보고 · 2026-09-01 조업 기준');
+    // 9월 첫 보고라 일간과 월간 누계가 같은 295 MT다.
+    expect(markup).toContain('data-kpi-value="295"');
+    expect(markup).toContain('data-kpi-value="81995.8"');
     expect(markup).toContain('data-kpi-value="5834.1"');
   });
 
@@ -20,9 +20,9 @@ describe('FleetCommandCenter daily operations', () => {
     const markup = renderToStaticMarkup(React.createElement(FleetCommandCenter));
 
     for (const value of [
-      '+35 (MT)', '-215 (MT)', '-180 (MT)', 'SYNCED',
-      '전체 보고 146건', '전기간 검산 584회', '완전 검산 584회', '미보고 포함 0회 / 0문서',
-      '부분합 차이 전체 16건 / 14문서', '확정 불일치 16건 / 14문서', '미보고 포함 차이 0건 / 0문서',
+      '+80 (MT)', '-65 (MT)', '+15 (MT)', 'SYNCED',
+      '전체 보고 147건', '전기간 검산 588회', '완전 검산 588회', '미보고 포함 0회 / 0문서',
+      '부분합 차이 전체 17건 / 15문서', '확정 불일치 17건 / 15문서', '미보고 포함 차이 0건 / 0문서',
       '중복 선박 행 4건', '좌표 형식 이슈 6건', '연승 구역 미기재 13건',
       '최신 상세 행 확인 필요',
     ]) {
