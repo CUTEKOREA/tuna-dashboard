@@ -32,8 +32,8 @@ describe('기업 해부 카드 뒷면', () => {
     expect(new Set(css).size, '두 나라가 같은 문양을 쓰고 있다').toBe(css.length);
   });
 
-  it('일곱 장이 다섯 나라에 들어간다', () => {
-    expect(COMPANY_CARDS).toHaveLength(7);
-    expect(new Set(COMPANY_CARDS.map(countryOf)).size).toBe(5);
+  it('여덟 장이 여섯 나라에 들어간다', () => {
+    expect(COMPANY_CARDS).toHaveLength(8);
+    expect(new Set(COMPANY_CARDS.map(countryOf)).size).toBe(6);
   });
 });

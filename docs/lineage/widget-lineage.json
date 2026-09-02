@@ -1,9 +1,9 @@
 {
  "_meta": {
   "entry": "app/page.tsx",
-  "files": 204,
+  "files": 207,
   "widgets": 110,
-  "dataFiles": 77,
+  "dataFiles": 79,
   "generator": "scripts/widget_lineage.py"
  },
  "widgetToData": {
@@ -563,6 +563,7 @@
     "lib/data/company-albacora.ts",
     "lib/data/company-bolton.ts",
     "lib/data/company-fcf.ts",
+    "lib/data/company-frabelle.ts",
     "lib/data/company-frinsa.ts",
     "lib/data/company-itochu.ts",
     "lib/data/company-jais.ts",
@@ -577,6 +578,8 @@
     "public/data/companies/bolton_v1.json",
     "public/data/companies/fcf_tables_v1.json",
     "public/data/companies/fcf_v1.json",
+    "public/data/companies/frabelle_prose_v1.json",
+    "public/data/companies/frabelle_v1.json",
     "public/data/companies/frinsa_tables_v1.json",
     "public/data/companies/frinsa_v1.json",
     "public/data/companies/itochu_tables_v1.json",
@@ -1025,6 +1028,12 @@
    "components/market-understanding/CompanyAnatomyDashboard.tsx"
   ],
   "public/data/companies/fcf_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/frabelle_prose_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/frabelle_v1.json": [
    "components/market-understanding/CompanyAnatomyDashboard.tsx"
   ],
   "public/data/companies/frinsa_tables_v1.json": [

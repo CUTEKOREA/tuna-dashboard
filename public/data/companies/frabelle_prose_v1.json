@@ -1,0 +1,709 @@
+{
+ "_meta": {
+  "출처": "docs/evidence/company-frabelle-2026-09/보고서.html",
+  "생성": "python3 scripts/build_report_prose.py",
+  "설명": "조사보고서 서술을 원문에서 그대로 읽는다. 손으로 옮기지 않는다."
+ },
+ "sections": [
+  {
+   "sid": "s1",
+   "numeral": "01",
+   "label": "회사 개요",
+   "subtitle": "캐너리 없는 어획 전문사",
+   "blocks": [
+    {
+     "kind": "lead",
+     "text": "Frabelle은 필리핀에서 참치를 잡아 General Santos의 캐너리에 공급한다. 자사 참치 제조는 Papua New Guinea의 Lae에서 이뤄진다. 한 회사 안에 어획과 가공이 함께 있다. 두 기능이 놓인 나라는 서로 다르다."
+    },
+    {
+     "kind": "call",
+     "text": "General Santos에는 선단 기지와 하역 부두가 있다. BFAR의 승인 어선 명단은 FFC 주소를 Cabu Bawing으로 적고 Friend of the Sea 감사자료는 Veneracion Wharf를 현장으로 올렸다. 회사 사이트와 BFAR EU 승인 수산가공장 명단에는 Frabelle 명의의 현지 참치 캐너리가 없다.",
+     "chips": [
+      "원본"
+     ],
+     "title": "General Santos에서 하는 일",
+     "tone": "hot"
+    },
+    {
+     "kind": "call",
+     "text": "2024년 투입된 Red Robin 88의 어획물도 대부분 General Santos의 캐너리들로 보내고 일부를 PNG 자사 가공시설에 공급한다고 회사 사장이 밝혔다. 이 발언은 필리핀의 원어 공급과 PNG의 제조를 구분한다.",
+     "chips": [
+      "매체"
+     ],
+     "tone": "hot"
+    },
+    {
+     "kind": "h3",
+     "text": "",
+     "title": "법인 설립일과 사업 창업 연도"
+    },
+    {
+     "kind": "para",
+     "text": "Navotas는 회사가 내건 본점이고 General Santos는 선박 등록과 하역 기록이 모이는 조업기지다. 두 주소 가운데 어느 곳이 현재 SEC 등기 본점인지는 공개되지 않는다.",
+     "chips": [
+      "원본",
+      "미공개"
+     ]
+    },
+    {
+     "kind": "call",
+     "text": "EMIS가 무료로 내놓은 FFC 개별법인의 FY2024 수치는 순매출 -34.54%, 순이익 +24.47%, 총자산 +12.13%다. 모두 FY2023 대비 증감률이다. 절대액은 제시되지 않는다. 그룹 전체 실적으로 합산할 수도 없다.",
+     "chips": [
+      "매체"
+     ],
+     "title": "증감률만 나오는 FFC 재무",
+     "tone": "warn"
+    },
+    {
+     "kind": "call",
+     "text": "Frabelle Corporation과 Frabelle Market Corporation도 같은 방식의 법인별 증감률만 공개된다. 남는 것은 법인별 증감률이고, 그 위의 합계는 어디에도 집계되지 않은 채로 있다.",
+     "chips": [
+      "미공개"
+     ],
+     "tone": "warn"
+    },
+    {
+     "kind": "h3",
+     "text": "",
+     "title": "Frabelle 사업 확장 연혁"
+    }
+   ],
+   "stage": "c01"
+  },
+  {
+   "sid": "s2",
+   "numeral": "02",
+   "label": "지배구조",
+   "subtitle": "Frabelle Holdings의 지주 역할은 공개되지 않았다",
+   "blocks": [
+    {
+     "kind": "lead",
+     "text": "회사 사이트가 계열사를 묶는 이름은 창업주 Francisco O. Tiu Laurel이다. Frabelle Holdings Corporation은 2022년에 등기됐다. 어느 법인의 지분을 얼마나 보유하는지는 공개되지 않는다. 창업 2세 Francisco P. Tiu Laurel Jr.는 농업부 장관에 임명됐고 취임 직후 지분 처분을 밝혔다.",
+     "chips": [
+      "원본",
+      "매체"
+     ]
+    },
+    {
+     "kind": "h3",
+     "text": "",
+     "title": "세 층위의 지배구조"
+    },
+    {
+     "kind": "para",
+     "text": "Frabelle Holdings라는 법인은 존재한다. 그러나 공개된 등기 파생정보만으로는 이 법인이 그룹을 지배한다고 단정할 수 없다. 회사가 외부에 내놓은 조직의 상단에는 여전히 창업주 개인의 직함이 놓여 있다.",
+     "chips": [
+      "원본",
+      "미공개"
+     ]
+    },
+    {
+     "kind": "call",
+     "text": "대통령실은 2023-11-03 장관 임명 발표 때 Laurel Jr.가 회사 지분을 이미 처분했다고 밝혔다. 그는 2023-11-06 첫 기자회견에서 자신이 과거 보유했던 모든 회사에 더는 이해관계가 없다고 말했다.",
+     "chips": [
+      "매체"
+     ],
+     "title": "처분했다는 말과 남은 빈칸",
+     "tone": "hot"
+    },
+    {
+     "kind": "call",
+     "text": "CoverStory는 2024년 입수한 SEC 기록에서 Frabelle과 Diamond Export의 지분 처분이 나타난다고 보도했다. 처분 상대와 대가, 방식, 정확한 시점, 백지신탁 여부는 발언 밖으로 나온 적이 없고 SEC 원문도 열리지 않는다.",
+     "chips": [
+      "매체",
+      "미공개"
+     ],
+     "tone": "hot"
+    },
+    {
+     "kind": "h3",
+     "text": "",
+     "title": "장관 임명 전후의 공개 기록"
+    },
+    {
+     "kind": "h3",
+     "text": "",
+     "title": "네 사람의 직책과 남은 빈칸"
+    },
+    {
+     "kind": "call",
+     "text": "Laurel 장관의 2023년부터 2025년까지 SALN 순자산 수치는 열람 제한 대상으로 묶여 있다. COA가 공개한 2025년 급여·수당 ₱5.2M은 공직 보수다. 순자산과는 다른 항목이다.",
+     "chips": [
+      "매체",
+      "미공개"
+     ],
+     "title": "Laurel 장관의 SALN과 공직 보수",
+     "tone": "warn"
+    }
+   ],
+   "stage": "c02"
+  },
+  {
+   "sid": "s3",
+   "numeral": "03",
+   "label": "사업구조·계열사",
+   "subtitle": "PNG Lae 중심의 수직통합 구조",
+   "blocks": [
+    {
+     "kind": "lead",
+     "text": "Frabelle의 사업은 어로에서 냉동창고와 조선소, 식품, 부동산, 전력까지 뻗어 있다. 참치만 놓고 보면 흐름은 더 짧다. 필리핀과 PNG 선단이 잡은 원어를 필리핀에서는 외부 캐너리에 팔고 PNG Lae의 자사 공장과 공동투자 공장에서 가공한다."
+    },
+    {
+     "kind": "call",
+     "text": "Frabelle이 공개한 계열사와 Food Group 페이지에서 참치 캐너리로 특정된 법인은 Frabelle (PNG) Limited뿐이다. 필리핀 BFAR EU 승인 수산가공장 명단에도 Frabelle 계열 명칭이 없다.",
+     "chips": [
+      "원본"
+     ],
+     "title": "필리핀·PNG의 참치 공급·가공 구조",
+     "tone": "hot"
+    },
+    {
+     "kind": "call",
+     "text": "Lae 공장은 2025-05 하루 120~130 MT을 생산했고 회사 사이트는 2026년 능력을 140 MT/일로 적는다. General Santos에 들어오는 FFC 어획은 현지 캐너리들로 향한다.",
+     "chips": [
+      "매체",
+      "원본"
+     ],
+     "tone": "hot"
+    },
+    {
+     "kind": "h3",
+     "text": "",
+     "title": "밸류체인 단계별 법인·거점"
+    },
+    {
+     "kind": "h3",
+     "text": "",
+     "title": "회사 사이트의 계열 범위가 바뀌었다"
+    },
+    {
+     "kind": "para",
+     "text": "두 목록의 차이는 사이트 표기가 바뀌었다는 사실만 보여 준다. 장관 취임 뒤 이뤄진 지분 처분과 계열사 목록 변경 사이의 인과관계는 공개 자료에 없다.",
+     "chips": [
+      "미공개"
+     ]
+    },
+    {
+     "kind": "h3",
+     "text": "",
+     "title": "공동투자 사업의 지분 구조"
+    },
+    {
+     "kind": "call",
+     "text": "Frabelle Food Group은 여러 식품회사를 묶은 사업군 이름이다. aquaculture도 회사가 열거한 사업영역일 뿐 법인명과 거점, 어종은 공개되지 않는다. Frabelle Tuna Corporation, Frabelle Aquaculture, Frabelle Foods라는 이름은 브랜드로만 쓰이고, 같은 이름의 법인은 회사 공개문서와 SEC 미러 어느 쪽에도 등재가 없다.",
+     "chips": [
+      "미공개"
+     ],
+     "title": "사업군명과 법인명 구분",
+     "tone": "warn"
+    }
+   ],
+   "stage": "c03"
+  },
+  {
+   "sid": "s4",
+   "numeral": "04",
+   "label": "선단",
+   "subtitle": "회사 표기 100척과 등록부의 참치 선망선 13척",
+   "blocks": [
+    {
+     "kind": "lead",
+     "text": "Frabelle이 내건 100척 이상은 정어리와 고등어를 잡는 근해선까지 포괄한 그룹 숫자다. 2026-09-02 WCPFC와 FFA 등록부에 허가가 살아 있는 자사 명의 참치 선망선은 13척이다. 같은 회사 이름 아래 놓인 두 수치는 서로 다른 선단을 센다.",
+     "chips": [
+      "원본"
+     ]
+    },
+    {
+     "kind": "call",
+     "text": "회사 사이트의 100척 이상에는 가다랑어·황다랑어 선망선과 정어리·고등어·갈고등어를 잡는 선박이 함께 들어간다. 같은 기준으로 작성된 제3자 총선단 명단은 공개되지 않는다.",
+     "chips": [
+      "원본",
+      "미공개"
+     ],
+     "title": "분모가 다른 두 선단",
+     "tone": "hot"
+    },
+    {
+     "kind": "call",
+     "text": "13척은 회사가 2025-02 FAD 관리정책에 적은 선박과 WCPFC 등록부의 허가 유효 선망선이 한 척씩 맞아떨어지는 숫자다. 전체 선단 100척 이상과 참치 선망선 13척을 증감으로 비교할 수는 없다.",
+     "chips": [
+      "원본"
+     ],
+     "tone": "hot"
+    },
+    {
+     "kind": "h3",
+     "text": "",
+     "title": "네 법인 명의로 나뉜 13척"
+    },
+    {
+     "kind": "para",
+     "text": "필리핀기 7척은 Distant Water Fishing Permit으로 WCPO를 다닌다. PNG기 6척의 허가수역은 PNG 군도수역과 EEZ 안의 육지·섬·선포 암초에서 12해리 밖으로 적혀 있다. 13척 모두 공해 전재 권한은 NO다.",
+     "chips": [
+      "원본"
+     ]
+    },
+    {
+     "kind": "h3",
+     "text": "",
+     "title": "소유는 흩어지고 운항은 Lae로 모인다"
+    },
+    {
+     "kind": "para",
+     "text": "Bluecatch의 Queen Marilou 계열 3척과 Veera, Mavienne, Kamilah은 필리핀기를 유지한 채 2026년 PNG 수역 용선선으로 신고됐다. 선박 소유와 실제 운항기지가 같은 법인에 모이지 않는 구조다.",
+     "chips": [
+      "원본"
+     ]
+    },
+    {
+     "kind": "call",
+     "text": "2024-06 보도는 Red Robin 88을 새 선박으로 소개했다. WCPFC 등록부에는 2010년 대만에서 건조된 DISCOVERY 101이 2024년 이름을 바꾼 선박으로 올라 있다. 등록부 기준으로는 중고선 취득과 개명이다.",
+     "chips": [
+      "매체",
+      "원본"
+     ],
+     "title": "Red Robin 88은 신조선이 아니다",
+     "tone": "warn"
+    },
+    {
+     "kind": "call",
+     "text": "13척 가운데 2013년 건조된 Kaile 888과 Marita 88만 신조 취득선에 해당한다. 나머지 11척의 건조연도는 1980년부터 2010년 사이다. Navotas 조선소는 수리·개조·드라이독 시설로 공개돼 있으며, 신조 실적은 회사 어느 문서에도 적혀 있지 않다.",
+     "chips": [
+      "원본",
+      "미공개"
+     ],
+     "tone": "warn"
+    },
+    {
+     "kind": "h3",
+     "text": "",
+     "title": "시점마다 달라지는 척수"
+    }
+   ],
+   "stage": "c04"
+  },
+  {
+   "sid": "s5",
+   "numeral": "05",
+   "label": "가공거점",
+   "subtitle": "참치 제조의 좌표는 PNG Lae다",
+   "blocks": [
+    {
+     "kind": "lead",
+     "text": "Frabelle이 자사 참치 캐너리로 내놓은 곳은 Papua New Guinea의 Lae다. General Santos에는 선단 기지와 하역 부두가 있고 어획은 현지 캐너리들로 간다. Lae의 또 다른 공장 Majestic은 2023-06 가동을 멈춘 뒤 재가동 완료 시점을 공개하지 않았다.",
+     "chips": [
+      "원본",
+      "매체"
+     ]
+    },
+    {
+     "kind": "call",
+     "text": "현행 Group of Companies와 Food Group 페이지가 참치 캐너리로 적은 법인은 Frabelle (PNG) Limited뿐이다. 필리핀 BFAR의 2025-11 및 2026-02 EU 승인 수산가공장 명단에는 Frabelle, Eoana, FFC Subic 명칭이 한 곳도 없다.",
+     "chips": [
+      "원본"
+     ],
+     "title": "회사 사이트가 특정한 캐너리 한 곳",
+     "tone": "hot"
+    },
+    {
+     "kind": "call",
+     "text": "Red Robin 88의 어획은 대부분 General Santos의 캐너리들로 보내고 일부는 PNG의 자사 가공시설로 보낸다는 2024-06 사장 발언도 제조 거점을 PNG로 특정한다.",
+     "chips": [
+      "매체"
+     ],
+     "tone": "hot"
+    },
+    {
+     "kind": "h3",
+     "text": "",
+     "title": "거점 네 곳의 생산과 인력"
+    },
+    {
+     "kind": "para",
+     "text": "PT Sinar는 2010년 당시 사장이 쓴 글에서 Frabelle이 참여한 필리핀 투자그룹의 인도네시아 가공사업으로 소개됐다. 현재 지분율과 생산능력, 인력은 공개되지 않는다.",
+     "chips": [
+      "원본",
+      "미공개"
+     ]
+    },
+    {
+     "kind": "h3",
+     "text": "",
+     "title": "시점마다 다른 Lae 공장 생산량"
+    },
+    {
+     "kind": "call",
+     "text": "2025-05 냉동창고 개소를 다룬 The National 기사는 Frabelle PNG의 인력을 현지 1,800명과 외국인 최대 70명으로 나눠 적었다. 같은 주의 다른 기사는 2,100명이라고 썼다.",
+     "chips": [
+      "매체"
+     ],
+     "title": "같은 시점의 인력 두 값",
+     "tone": "warn"
+    },
+    {
+     "kind": "call",
+     "text": "기준값은 내·외국인을 구분한 1,800명과 최대 70명이고, 2,100명은 상충값이다. 두 기사 모두 집계 기준을 적지 않았다.",
+     "chips": [
+      "미공개"
+     ],
+     "tone": "warn"
+    },
+    {
+     "kind": "h3",
+     "text": "",
+     "title": "General Santos에 있는 것과 없는 것"
+    },
+    {
+     "kind": "h3",
+     "text": "",
+     "title": "재가동 계획과 멈춘 라인 사이의 Majestic"
+    }
+   ],
+   "stage": "c05"
+  },
+  {
+   "sid": "s6",
+   "numeral": "06",
+   "label": "지속가능성·인증·노동",
+   "subtitle": "인증 문서의 밀도와 노동 공개의 빈칸",
+   "blocks": [
+    {
+     "kind": "lead",
+     "text": "선박 정책은 13개 PDF로 세분돼 있다. MSC와 Friend of the Sea의 범위도 어업과 선박, PNG Lae 가공을 중심으로 드러난다. 그러나 회사가 네 번째 책임축으로 이름 붙인 Labour Welfare Policy는 원문이 공개되지 않고 노동 정보는 해고와 재고용 때의 보도에 흩어져 있다.",
+     "chips": [
+      "원본",
+      "미공개"
+     ]
+    },
+    {
+     "kind": "h3",
+     "text": "",
+     "title": "13개 정책문서가 다루는 것"
+    },
+    {
+     "kind": "call",
+     "text": "FAD와 상어지느러미, 비얽힘 어구 문서는 법인·선명·IMO까지 적는다. 2025-02 FAD 문서의 13척은 WCPFC 허가 유효 선망선 명단과 일치한다.",
+     "chips": [
+      "원본"
+     ],
+     "title": "정책의 공개선은 선박에서 멈춘다",
+     "tone": "hot"
+    },
+    {
+     "kind": "call",
+     "text": "같은 페이지에는 연차 지속가능성 보고서, ESG 수치 목표, 노동지표가 없다. Labour Welfare Policy와 BSCI 감사결과도 공개되지 않는다. 환경·어구 관리와 노동 공개의 깊이가 같지 않다.",
+     "chips": [
+      "원본",
+      "미공개"
+     ],
+     "tone": "hot"
+    },
+    {
+     "kind": "h3",
+     "text": "",
+     "title": "인증이 붙은 대상"
+    },
+    {
+     "kind": "para",
+     "text": "가공 인증의 공개 기록은 PNG Lae에 모여 있다. 필리핀 법인은 선박 정책과 어업 인증에 등장하지만 자사 참치 가공장으로 EU 승인을 받은 이름은 BFAR 명단에 없다.",
+     "chips": [
+      "원본"
+     ]
+    },
+    {
+     "kind": "h3",
+     "text": "",
+     "title": "노동 기록은 생산 중단 때 나타났다"
+    },
+    {
+     "kind": "call",
+     "text": "어업·추적성 인증은 자원관리와 공급망 범위를 보여 준다. 해고 절차, 임금, 노동시간, 고충처리 결과까지 증명하는 자료는 아니다. 2018년 급여·수당 지급은 회사 발언으로만 공개됐다.",
+     "chips": [
+      "매체"
+     ],
+     "title": "인증서가 답하지 않는 질문",
+     "tone": "warn"
+    },
+    {
+     "kind": "call",
+     "text": "선원 처우와 강제노동, 임금체불에 관한 회사별 지표·소송·시정조치, Labour Welfare Policy 원문은 공개 자료에 없다. 인증서는 공정과 추적성을 증명하고, 노동조건은 그 문서가 다루는 범위 밖에 있다.",
+     "chips": [
+      "미공개"
+     ],
+     "tone": "warn"
+    }
+   ],
+   "stage": "c06"
+  },
+  {
+   "sid": "s7",
+   "numeral": "07",
+   "label": "필리핀 참치산업",
+   "subtitle": "캐너리에 파는 쪽",
+   "blocks": [
+    {
+     "kind": "lead",
+     "text": "필리핀 참치산업의 중심은 General Santos다. 어선이 원어를 내리고 여섯 수출 캐너리가 이를 캔과 로인으로 만든다. Frabelle은 이 여섯 곳에 들어가지 않는다. 이 회사의 필리핀 참치 사업은 선망선과 하역 부두를 앞세워 가공업체에 원어를 공급하는 데 놓여 있다."
+    },
+    {
+     "kind": "call",
+     "text": "Floyd Tiu Laurel 사장은 2024-06 Red Robin 88 투입으로 연간 어획이 8,000 MT 이상 늘어날 것이라고 밝혔다. 그 물량은 대부분 General Santos의 캐너리로 보내고 일부만 PNG의 자사 가공시설에 공급한다는 설명도 함께 내놨다.",
+     "chips": [
+      "매체"
+     ],
+     "title": "Red Robin 88이 보여 준 판매처",
+     "tone": "hot"
+    },
+    {
+     "kind": "call",
+     "text": "필리핀 안에서 Frabelle의 경쟁력은 캔 생산능력보다 원어 조달과 공급에 있다. 제품 제조는 PNG Lae의 Frabelle (PNG) Limited가 맡는다.",
+     "chips": [
+      "원본"
+     ],
+     "tone": "hot"
+    },
+    {
+     "kind": "h3",
+     "text": "",
+     "title": "생산과 교역의 분모"
+    },
+    {
+     "kind": "para",
+     "text": "필리핀은 참치를 대량으로 잡으면서 원어도 대량으로 들여온다. 가공능력에 비해 원료가 부족해 2019년 General Santos 여섯 캐너리의 가동률은 50% 미만으로 보도됐다. Frabelle이 PNG 조업분 일부를 자사 Lae 공장으로 보내고 나머지를 General Santos에 공급하는 흐름은 이 원료 조달 시장 안에 놓인다.",
+     "chips": [
+      "매체"
+     ]
+    },
+    {
+     "kind": "h3",
+     "text": "",
+     "title": "General Santos의 여섯 수출 캐너리"
+    },
+    {
+     "kind": "para",
+     "text": "여섯 캐너리의 능력은 서로 다른 연도의 회사 표기와 과거 업계 목록에서 나온 값이다. 현재 실가동량으로 합산할 수 없다. 비교 가능한 업계 기준은 2018년 약 700 MT/일, 2019년 720 MT/일이라는 두 역사적 수치다.",
+     "chips": [
+      "매체"
+     ]
+    },
+    {
+     "kind": "call",
+     "text": "Frabelle은 2024-06 필리핀과 PNG 배치 참치 선망선 14척을 발표했다. 2026-09 WCPFC·FFA 등록부의 허가 유효 자사 명의 선망선은 13척이다. 규모 있는 선망 사업자라는 점은 분명하지만 두 수치는 시점과 범위가 다르다.",
+     "chips": [
+      "매체",
+      "원본"
+     ],
+     "title": "등록부 기준 순위에서의 자리",
+     "tone": "warn"
+    },
+    {
+     "kind": "call",
+     "text": "BFAR Region XII 등록부를 바탕으로 한 2024년 분석은 선박·어구 최다 보유 모기업으로 Citra Mina, RD, TSP Livestock을 꼽았다. Frabelle은 그 세 회사에 들지 않았다. 등록 지역과 외국적 선박을 함께 포괄하는 전국 단일 순위는 공개되지 않는다.",
+     "chips": [
+      "매체",
+      "미공개"
+     ],
+     "tone": "warn"
+    },
+    {
+     "kind": "h3",
+     "text": "",
+     "title": "EU에 더 기운 조제참치 수출"
+    },
+    {
+     "kind": "para",
+     "text": "필리핀의 GSP+ 지위는 캔참치를 포함한 6,000여 품목에 EU 무관세를 제공한다. 현행 규정의 적용기한은 2027-12-31이다. 참치 로인의 일반관세가 24%인 만큼 특혜가 끊길 때의 가격 충격은 작지 않다.",
+     "chips": [
+      "원본",
+      "매체"
+     ]
+    },
+    {
+     "kind": "call",
+     "text": "EU27 비중은 금액 기준 2023년 60.5%에서 2025년 70.0%로 높아졌다. GSP+ 연장이나 EU·필리핀 FTA가 확정되지 않으면 General Santos 캐너리가 수출하는 제품에 일반관세가 다시 적용될 수 있다. 2026년 FTA 협상은 아직 진행 중이다.",
+     "chips": [
+      "원본",
+      "미공개"
+     ],
+     "title": "2027년 뒤의 관세선",
+     "tone": "warn"
+    }
+   ],
+   "stage": "c07"
+  },
+  {
+   "sid": "s8",
+   "numeral": "08",
+   "label": "한국 관점",
+   "subtitle": "FCF를 매개로 한 2단계",
+   "blocks": [
+    {
+     "kind": "lead",
+     "text": "Frabelle과 신라교역 사이에는 직접 지분관계가 없다. 두 회사를 잇는 이름은 대만의 FCF다. FCF는 PNG에서 Frabelle (PNG)와 Majestic을 공동소유하고 가나에서는 신라교역과 Cosmo Seafoods를 공동소유한다. 서로 다른 두 합작사가 FCF에서만 만난다."
+    },
+    {
+     "kind": "call",
+     "text": "PNG Lae의 Majestic Tuna Corporation에는 FCF Co. Ltd와 Frabelle (PNG) Ltd가 주주로 올라 있다. PNG 수산장관이 2025-02 소유구조와 경영진 변경을 발표하며 밝힌 구성이다. 두 회사가 각각 얼마를 쥐었는지는 그 발표에 없다.",
+     "chips": [
+      "매체",
+      "미공개"
+     ],
+     "title": "Majestic과 Cosmo가 겹치는 한 점, FCF",
+     "tone": "hot"
+    },
+    {
+     "kind": "call",
+     "text": "가나 Tema의 Cosmo Seafoods는 FCF와 한국 신라교역의 합작 캐너리다. FCF 연혁은 2012년 합작을 적고 신라교역 공시는 Cosmo 지분 23.84%를 밝힌다.",
+     "chips": [
+      "원본"
+     ],
+     "tone": "hot"
+    },
+    {
+     "kind": "call",
+     "text": "이 두 문장을 이어도 Frabelle과 신라교역의 직접 투자관계가 되지는 않는다. FCF가 양쪽의 공동 파트너일 뿐 Majestic과 Cosmo 사이의 자금, 원어, 인력 이동은 공개되지 않는다.",
+     "chips": [
+      "미공개"
+     ],
+     "tone": "hot"
+    },
+    {
+     "kind": "h3",
+     "text": "",
+     "title": "같은 FCF, 서로 다른 합작사"
+    },
+    {
+     "kind": "para",
+     "text": "Majestic은 2009년 보도에서 Thai Union, Century Canning, FFC가 각각 33%를 가진 3자 사업으로 소개됐다. 2025년 발표에는 FCF와 Frabelle (PNG)만 남았다. 기존 주주가 언제 어떤 방식으로 얼마를 받고 빠졌는지는 양쪽 모두 밝히지 않았다.",
+     "chips": [
+      "매체",
+      "미공개"
+     ]
+    },
+    {
+     "kind": "h3",
+     "text": "",
+     "title": "PNG 정책 안에서 만나는 한국 기업"
+    },
+    {
+     "kind": "h3",
+     "text": "",
+     "title": "한국산 냉동 원어는 국가 통계에만 잡힌다"
+    },
+    {
+     "kind": "call",
+     "text": "양국 신고는 2022년 정점과 2023년 급감, 2024년 반등이라는 흐름을 함께 보인다. 신고 기준과 시차 때문에 물량은 일치하지 않는다. 어느 값도 Frabelle을 수입자로 특정하지 않는다. Frabelle이 한국산 원어를 직접 샀는지, 상대가 누구인지는 어느 쪽 기록에도 남아 있지 않다.",
+     "chips": [
+      "원본",
+      "미공개"
+     ],
+     "title": "무역량을 Frabelle 매입으로 바꿀 수 없다",
+     "tone": "warn"
+    },
+    {
+     "kind": "h3",
+     "text": "",
+     "title": "배 한 척에 남은 한국 이력"
+    },
+    {
+     "kind": "para",
+     "text": "한국과의 관계를 지분, 원어, 선박으로 나누면 경계가 선명해진다. 지분은 FCF를 거친 2단계, 원어는 국가 통계, 선박은 구 한국적 이력 한 척이다. 두 회사를 잇는 것은 지분이 아니라 FCF라는 공통 주주 하나다.",
+     "chips": [
+      "원본",
+      "미공개"
+     ]
+    }
+   ],
+   "stage": "c08"
+  },
+  {
+   "sid": "s9",
+   "numeral": "09",
+   "label": "종합 평가",
+   "subtitle": "어획은 선명하고 소유와 재무는 흐리다",
+   "blocks": [
+    {
+     "kind": "lead",
+     "text": "Frabelle은 필리핀에서 원어를 공급하고 PNG에서 참치를 가공한다. 등록부에는 자사 명의 선망선과 용선망이 구체적으로 남지만 그룹을 묶는 지분도와 연결재무는 공개되지 않는다. 운영자산의 윤곽과 기업집단의 경제적 실체 사이에 큰 정보 격차가 있다."
+    },
+    {
+     "kind": "call",
+     "text": "이 회사의 필리핀 내 핵심 자산은 참치 캐너리가 아니라 선단과 하역망이다. General Santos에서는 외부 캐너리에 원어를 팔고 Lae에서는 Frabelle (PNG)가 캔과 로인을 만든다. 어획과 제조를 한 나라에 모은 수직통합 기업으로 설명하면 실제 자산 배치가 가려진다.",
+     "chips": [
+      "원본",
+      "매체"
+     ],
+     "title": "Frabelle을 놓을 자리",
+     "tone": "hot"
+    },
+    {
+     "kind": "call",
+     "text": "한국과의 접점은 두 갈래로 좁혀진다. 신라교역은 FCF와 Cosmo Seafoods를 공동소유하고 Frabelle (PNG)는 같은 FCF와 Majestic을 공동소유한다. Frabelle과 신라교역 사이에 직접 지분관계는 없다.",
+     "chips": [
+      "원본",
+      "매체"
+     ],
+     "tone": "hot"
+    },
+    {
+     "kind": "h3",
+     "text": "",
+     "title": "공개 기록이 그리는 기업의 윤곽"
+    },
+    {
+     "kind": "h3",
+     "text": "",
+     "title": "운영 기반과 노출 요인"
+    },
+    {
+     "kind": "para",
+     "text": "Frabelle의 운영 규모는 선박과 공장 기록으로 드러난다. 기업가치와 수익성, 계열사 사이의 자금 흐름은 같은 수준으로 드러나지 않는다. 따라서 선단 척수나 Lae 생산량을 그룹 전체의 재무 규모로 환산할 근거가 없다.",
+     "chips": [
+      "원본",
+      "미공개"
+     ]
+    },
+    {
+     "kind": "h3",
+     "text": "",
+     "title": "남은 물음"
+    },
+    {
+     "kind": "h3",
+     "text": "",
+     "title": "자료의 한계"
+    },
+    {
+     "kind": "call",
+     "text": "Frabelle은 비상장 그룹이다. 회사 사이트는 사업군과 일부 운영수치를 제공하지만 법인별 GIS, 연결재무제표, 내부거래와 최종 수익자를 공개하지 않는다. 상용DB의 증감률은 절대 재무를 대신하지 못한다.",
+     "chips": [
+      "원본",
+      "매체",
+      "미공개"
+     ],
+     "title": "공개 기록이 답할 수 있는 범위",
+     "tone": "warn"
+    },
+    {
+     "kind": "call",
+     "text": "WCPFC·FFA·BFAR 등록부는 특정 기준일의 소유자, 용선자, 허가와 승인 상태를 보여 준다. 실질 지배와 일별 가동, 매각·계선 여부까지 담지는 않는다. 회사 명칭이 특정 명단에 없다는 사실도 그 명단의 범위 안에서만 유효하다.",
+     "chips": [
+      "원본"
+     ],
+     "tone": "warn"
+    },
+    {
+     "kind": "call",
+     "text": "UN Comtrade는 국가 간 흐름을 보여 줄 뿐 개별 수입자를 밝히지 않는다. 매체에 나온 생산량과 고용은 시점과 집계단위가 달라 서로 바꿔 쓸 수 없다. 결론의 범위는 공개된 법인·선박·가공장·무역 기록이 말하는 데까지다. 그 너머 지분과 거래 상대, 절대 재무는 이 회사가 열지 않는 영역으로 남는다.",
+     "chips": [
+      "원본",
+      "매체",
+      "미공개"
+     ],
+     "tone": "warn"
+    }
+   ],
+   "stage": "c09"
+  }
+ ]
+}

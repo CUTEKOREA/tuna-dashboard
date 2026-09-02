@@ -223,6 +223,8 @@ import {
   tablesForStage,
 } from '@/lib/data/company-report-tables';
 import styles from './TunaIndustryDashboard.module.css';
+import { FRABELLE_BRIEFING, FRABELLE_SOURCE_NOTES, FRABELLE_STAGES } from '@/lib/company-frabelle-content';
+import { frabelleMeta, frabelleStats, laeOutputRange, registeredVessels } from '@/lib/data/company-frabelle';
 
 const ACCENT = '#c2410c';
 /** 정적 조사 아카이브라 갱신일이 곧 조사일이다. LIVE 로 표기하지 않는다(L-09). */
@@ -1947,6 +1949,45 @@ const JAI_CHART_SLOTS: Record<string, ChartSlot[]> = {
   ],
 };
 
+const FRA_ACCENT = '#0F3F7A';
+
+const FRA_SPEC: CommoditySpec = {
+  key: 'company-anatomy-frabelle',
+  title: '기업 해부: Frabelle Group',
+  subtitle: '캔을 만드는 회사가 아니다. 필리핀에서는 캐너리에 원어를 파는 쪽이고, 참치를 캔에 담는 공장은 파푸아뉴기니에 하나 있다.',
+  accent: FRA_ACCENT,
+  primaryKpi: {
+    label: '등록부 확인 참치 선망선',
+    value: frabelleStats.등록부_참치선망선,
+    unit: '(척)',
+    accent: FRA_ACCENT,
+  },
+  secondaryKpis: [
+    { label: 'PNG Lae 가공 능력', value: frabelleStats.PNG_Lae_능력_MT일, unit: '(MT/일)' },
+    { label: '필리핀 국내 참치 캐너리', value: frabelleStats.필리핀_국내_참치캐너리, unit: '(곳)' },
+    { label: 'PNG Lae 현지 고용', value: frabelleStats.PNG_Lae_현지고용, unit: '(명)' },
+  ],
+  stripItems: [
+    {
+      now: true,
+      eyebrow: '등록부',
+      title: '선박 총계',
+      body: `${registeredVessels()} (척 · 선망 13 + 운반 2 + 보조 2 + 용선 6)`,
+    },
+    { eyebrow: '실생산', title: 'PNG Lae', body: `${laeOutputRange()} (MT/일 · 능력 140)` },
+    { eyebrow: '수출', title: 'EU 비중', body: `${frabelleStats.EU비중_2023} → ${frabelleStats.EU비중_2025} (%)` },
+  ],
+  briefing: FRABELLE_BRIEFING,
+  narratives: FRABELLE_STAGES,
+  chartSlots: withReport('frabelle', {}),
+  sourceNotes: FRABELLE_SOURCE_NOTES,
+  sourceMeta: [
+    `${frabelleMeta.회사} · ${frabelleMeta.국가} · ${frabelleMeta.업종}`,
+    `출처 ${frabelleMeta.출처}`,
+    `갱신 ${frabelleMeta.갱신방법}`,
+  ].join(' · '),
+};
+
 const JAI_SPEC: CommoditySpec = {
   key: 'company-anatomy-jais',
   title: '기업 해부: JAIS S.R.L.',
@@ -2029,6 +2070,17 @@ const FLAG: Record<string, { flagCss: string; backInk: string }> = {
       'linear-gradient(180deg, #f4f5f0 0%, #e6eaec 100%)',
     ].join(', '),
     backInk: '#1b2733',
+  },
+  // 필리핀 국기 — 남색·빨강 가로 밴드에 왼쪽 흰 삼각과 태양. 삼각은 흰 사선 두 장으로 만든다
+  필리핀: {
+    flagCss: [
+      'radial-gradient(circle at 50% 30%, rgba(255, 255, 255, 0.12), transparent 55%)',
+      'radial-gradient(circle at 17% 50%, #fcd116 0 6%, transparent 6.4%)',
+      'linear-gradient(112deg, #f4f5f0 0%, #f4f5f0 26%, transparent 26.2%)',
+      'linear-gradient(68deg, #f4f5f0 0%, #f4f5f0 26%, transparent 26.2%)',
+      'linear-gradient(180deg, #0038a8 0%, #0038a8 50%, #ce1126 50%, #ce1126 100%)',
+    ].join(', '),
+    backInk: '#f4f5f0',
   },
   // 트리콜로레 — 초록·하양·빨강 세로 밴드
   이탈리아: {
@@ -2133,6 +2185,19 @@ export const COMPANY_CARDS: CompanyCard[] = [
       { label: '공장 · 선박 · 자회사', value: `${ownedAssets()} 개` },
     ],
   },
+  {
+    key: 'frabelle',
+    numeral: 'Ⅷ',
+    name: 'Frabelle Group',
+    country: '필리핀 · 나보타스',
+    tagline: '캔을 만드는 회사가 아니다. 필리핀에는 자사 참치 캐너리가 없고 캔 공장은 파푸아뉴기니에 하나 있다.',
+    ...FLAG.필리핀,
+    stats: [
+      { label: '등록부 확인 선망선', value: `${frabelleStats.등록부_참치선망선} 척` },
+      { label: 'PNG Lae 가공 능력', value: `${frabelleStats.PNG_Lae_능력_MT일} MT/일` },
+      { label: '필리핀 국내 캐너리', value: `${frabelleStats.필리핀_국내_참치캐너리} 곳` },
+    ],
+  },
 ];
 
 export interface CompanyAnatomyDashboardProps {
@@ -2158,6 +2223,7 @@ export default function CompanyAnatomyDashboard({
     itochu: ITC_SPEC,
     bolton: BOL_SPEC,
     jais: JAI_SPEC,
+    frabelle: FRA_SPEC,
   };
   const spec = SPECS[selected] ?? SPEC;
 

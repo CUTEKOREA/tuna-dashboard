@@ -1,0 +1,1013 @@
+<title>Frabelle 해부</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nanum+Myeongjo:wght@400;700;800&family=Noto+Sans+KR:wght@200;300;400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&family=Kaushan+Script&display=swap">
+
+<style>
+:root{
+  --paper:#F6F5F2; --paper-2:#EAE9E4; --card:#FCFCFA;
+  --ink:#14181D; --ink-2:#424A53; --ink-3:#6E767F;
+  --rule:#D5D7D2; --rule-2:#BDC0BA;
+  --adri:#0F3F7A; --adri-soft:#E3EAF4; --night:#0A1A33;
+  --ocra:#B8860B;
+  --ok:#2E6B4E; --ok-bg:#E2EDE6;
+  --warn:#8A6415; --warn-bg:#F3ECD8;
+  --sans:'Noto Sans KR',system-ui,-apple-system,'Malgun Gothic',sans-serif;
+  --disp:'Nanum Myeongjo','Noto Serif KR',Georgia,serif;
+  --mono:'IBM Plex Mono',ui-monospace,SFMono-Regular,Menlo,monospace;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --paper:#111417; --paper-2:#191E23; --card:#151A1F;
+    --ink:#E9ECEF; --ink-2:#B3BAC2; --ink-3:#828B94;
+    --rule:#272D33; --rule-2:#39424B;
+    --adri:#7FAAD8; --adri-soft:#16212E; --night:#070F18;
+    --ocra:#D6AA5A;
+    --ok:#7FBFA3; --ok-bg:#152720;
+    --warn:#D6B268; --warn-bg:#2A2314;
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#111417; --paper-2:#191E23; --card:#151A1F;
+  --ink:#E9ECEF; --ink-2:#B3BAC2; --ink-3:#828B94;
+  --rule:#272D33; --rule-2:#39424B;
+  --adri:#7FAAD8; --adri-soft:#16212E; --night:#070F18;
+  --ocra:#D6AA5A;
+  --ok:#7FBFA3; --ok-bg:#152720;
+  --warn:#D6B268; --warn-bg:#2A2314;
+}
+
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);
+  font-family:var(--sans);font-weight:350;font-size:16px;line-height:1.75;
+  -webkit-font-smoothing:antialiased}
+
+/* ===== COVER ===== */
+.cover{position:relative;background:var(--night);color:#EAF0ED;overflow:hidden;
+  min-height:100vh;display:flex;align-items:stretch}
+.cover-bg{position:absolute;left:0;right:0;bottom:0;height:58%;background-size:cover;
+  background-position:center 62%;opacity:.17;filter:saturate(.3) contrast(1.08)}
+.cover-bg::after{content:'';position:absolute;inset:0;
+  background:linear-gradient(to bottom,var(--night) 0%,rgba(16,26,24,0) 46%)}
+.cover-tint{position:absolute;inset:0;
+  background:radial-gradient(115% 78% at 20% 6%,rgba(31,93,76,.5) 0%,rgba(16,26,24,0) 60%)}
+.cover-in{position:relative;width:100%;max-width:72rem;margin:0 auto;
+  padding:3.5rem 2rem 3rem;display:flex;flex-direction:column}
+.cover-top{display:flex;justify-content:space-between;align-items:flex-start;gap:2rem;
+  padding-bottom:1.5rem;border-bottom:1px solid rgba(234,240,237,.2)}
+.cover-mark{display:flex;align-items:baseline;gap:.7rem}
+.cover-mark .m1{font-family:var(--disp);font-weight:800;font-size:2.1rem;letter-spacing:.02em;color:#F3F7F5}
+.cover-mark .m2{font-family:var(--mono);font-size:.68rem;letter-spacing:.22em;
+  text-transform:uppercase;color:var(--ocra)}
+.cover-tag{font-family:var(--mono);font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;
+  color:rgba(234,240,237,.6);text-align:right;line-height:2}
+.cover-mid{flex:1;display:flex;flex-direction:column;justify-content:center;padding:3rem 0 2.5rem}
+.cover-kick{font-family:var(--mono);font-size:.74rem;letter-spacing:.2em;text-transform:uppercase;
+  color:var(--ocra);margin-bottom:1.5rem}
+.cover h1{font-family:var(--disp);font-weight:800;font-size:clamp(2.7rem,8.6vw,6.2rem);
+  line-height:1.02;letter-spacing:-.02em;margin:0 0 1.5rem;color:#F5F9F7}
+.cover h1 .lt{font-weight:400}
+.cover-sub{font-family:var(--sans);font-weight:300;font-size:clamp(1rem,2.2vw,1.4rem);
+  line-height:1.6;color:rgba(234,240,237,.85);max-width:46rem;margin:0}
+.cover-nums{display:flex;gap:2.6rem;margin-top:2.6rem;flex-wrap:wrap}
+.cn{border-left:2px solid var(--ocra);padding-left:.9rem}
+.cn .v{font-family:var(--mono);font-weight:600;font-size:clamp(1.5rem,3.4vw,2.3rem);
+  letter-spacing:-.03em;color:#F5F9F7;font-variant-numeric:tabular-nums;line-height:1.1}
+.cn .k{font-family:var(--sans);font-size:.76rem;color:rgba(234,240,237,.62);margin-top:.25rem}
+.cover-by{display:flex;justify-content:space-between;align-items:flex-end;gap:1.5rem;
+  padding:0 0 1.25rem;margin-bottom:1.25rem;border-bottom:1px solid rgba(234,240,237,.2)}
+.by-l{display:flex;align-items:baseline;gap:.95rem;padding-left:1rem;
+  border-left:3px solid var(--ocra)}
+.by-k{font-family:var(--mono);font-size:.7rem;font-weight:600;letter-spacing:.2em;
+  text-transform:uppercase;color:var(--ocra)}
+.by-v{font-family:var(--disp);font-weight:800;font-size:1.75rem;letter-spacing:.01em;color:#FFF}
+.by-r{font-family:var(--mono);font-size:.7rem;letter-spacing:.1em;color:rgba(234,240,237,.55)}
+.cover-facts{display:grid;grid-template-columns:repeat(auto-fit,minmax(8rem,1fr));
+  gap:1.75rem 2.5rem;padding-top:2rem;border-top:1px solid rgba(234,240,237,.24)}
+.cf .k{font-family:var(--mono);font-size:.66rem;letter-spacing:.12em;text-transform:uppercase;
+  color:rgba(234,240,237,.55)}
+.cf .v{font-family:var(--mono);font-weight:600;font-size:1.5rem;letter-spacing:-.02em;color:#F5F9F7;
+  font-variant-numeric:tabular-nums;margin-top:.3rem;line-height:1.15}
+.cf .n{font-family:var(--sans);font-size:.72rem;color:rgba(234,240,237,.58);margin-top:.15rem}
+
+/* ===== LAYOUT ===== */
+.wrap{max-width:72rem;margin:0 auto;padding:0 2rem}
+.layout{display:grid;grid-template-columns:13rem 1fr;gap:3.5rem;padding-top:3.5rem}
+@media(max-width:960px){.layout{grid-template-columns:1fr;gap:0}nav{display:none}}
+main{min-width:0;max-width:52rem}
+nav{position:sticky;top:1.5rem;font-family:var(--sans);font-size:.82rem;align-self:start}
+nav .nt{font-family:var(--mono);font-size:.66rem;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--ink-3);margin-bottom:.9rem;padding-bottom:.5rem;border-bottom:1px solid var(--rule)}
+nav ol{list-style:none;margin:0;padding:0}
+nav li{margin-bottom:.55rem}
+nav a{display:flex;gap:.6rem;color:var(--ink-2);text-decoration:none;line-height:1.45}
+nav a:hover{color:var(--ocra)}
+nav a:focus-visible{outline:2px solid var(--adri);outline-offset:2px}
+nav .n{font-family:var(--mono);font-size:.68rem;color:var(--ink-3);padding-top:.15rem}
+
+.cover h1 .scr{font-family:'Kaushan Script','Snell Roundhand','Apple Chancery',cursive;
+  font-weight:400;font-size:1.02em;letter-spacing:.005em;padding-right:.06em;
+  display:inline-block;transform:translateY(.03em)}
+.chip.c-est{background:transparent;color:var(--ink-3);box-shadow:inset 0 0 0 1px currentColor;opacity:.9}
+section{margin:0 0 4.5rem;scroll-margin-top:1.5rem}
+h2{font-family:var(--disp);font-weight:700;font-size:1.75rem;letter-spacing:-.028em;
+  margin:0 0 .4rem;padding-top:.45rem;border-top:2px solid var(--ink);text-wrap:balance}
+.h2n{font-family:var(--mono);font-size:.7rem;color:var(--adri);font-weight:500;
+  letter-spacing:.1em;display:block;margin-bottom:.9rem}
+h3{font-family:var(--disp);font-weight:700;font-size:1.1rem;margin:2.6rem 0 .7rem}
+h4{font-family:var(--sans);font-weight:600;font-size:.92rem;margin:1.8rem 0 .5rem;color:var(--ink-2)}
+p{margin:0 0 1.1rem;max-width:none}
+.lead{font-size:1.1rem;line-height:1.7;color:var(--ink-2);max-width:none}
+strong{font-weight:600;color:var(--ink)}
+.es{font-style:italic}
+code{font-family:var(--mono);font-size:.85em;background:var(--paper-2);padding:.1em .3em;
+  border-radius:2px;color:var(--ink-2);word-break:break-all}
+
+/* ===== BRAND CARDS ===== */
+.brands{display:grid;grid-template-columns:repeat(auto-fit,minmax(15rem,1fr));gap:1.25rem;
+  margin:0 0 2rem}
+.bc{border:1px solid var(--rule);background:var(--card);display:flex;flex-direction:column;
+  overflow:hidden}
+.bc-img{background:var(--paper-2);padding:1.5rem;display:flex;align-items:center;
+  justify-content:center;min-height:9.5rem}
+.bc-img img{max-height:7rem;width:auto}
+.bc-b{padding:1rem 1.15rem 1.25rem}
+.bc-n{font-family:var(--disp);font-weight:700;font-size:1rem;margin:0 0 .15rem}
+.bc-t{font-family:var(--mono);font-size:.66rem;letter-spacing:.08em;text-transform:uppercase;
+  color:var(--adri);margin-bottom:.5rem}
+.bc-d{font-family:var(--sans);font-size:.82rem;line-height:1.6;color:var(--ink-2);margin:0}
+.bc-p{font-family:var(--mono);font-size:.78rem;color:var(--ocra);margin-top:.6rem;font-weight:500}
+
+/* ===== PRODUCT FIGURE ===== */
+figure{margin:0 0 1.8rem;border:1px solid var(--rule);background:var(--card)}
+figure .fi{background:var(--paper-2);padding:1.75rem;display:flex;justify-content:center}
+figure .fi img{max-height:16rem;width:auto}
+figcaption{padding:.85rem 1.1rem;font-family:var(--sans);font-size:.82rem;line-height:1.6;
+  color:var(--ink-2);border-top:1px solid var(--rule)}
+figcaption b{color:var(--ink)}
+.figrow{display:grid;grid-template-columns:repeat(auto-fit,minmax(13rem,1fr));gap:1.25rem;
+  margin:0 0 1.8rem}
+.figrow figure{margin:0}
+.figrow figure .fi{padding:1.25rem;min-height:11rem;align-items:center}
+.figrow figure .fi img{max-height:9rem}
+
+/* ===== TABLES ===== */
+.tw{overflow-x:auto;margin:0 0 1.6rem;border:1px solid var(--rule)}
+table{border-collapse:collapse;width:100%;font-family:var(--sans);font-size:.85rem;background:var(--card)}
+th{background:var(--paper-2);text-align:left;font-weight:600;font-size:.71rem;letter-spacing:.06em;
+  text-transform:uppercase;color:var(--ink-2);padding:.6rem .8rem;
+  border-bottom:1px solid var(--rule-2);white-space:nowrap}
+td{padding:.55rem .8rem;border-bottom:1px solid var(--rule);color:var(--ink-2);vertical-align:top}
+/* 브라우저 기본값은 한글을 글자 단위로 끊는다 — 좁은 칸에서 낱말이 갈라진다.
+   한국어 조판의 기본은 띄어쓰기에서만 끊는 것이다. */
+main th,main td{word-break:keep-all}
+
+tr:last-child td{border-bottom:none}
+td.num,th.num{text-align:right;font-family:var(--mono);font-variant-numeric:tabular-nums;white-space:nowrap}
+/* .num 은 숫자를 안 끊으려고 nowrap 이다. 그런데 같은 칸에 붙는 주석 줄까지
+   붙들려 표가 컨테이너를 밀어냈다 — 숫자와 칩은 그대로 두고 주석만 접는다. */
+td.num span:not(.chip):not(.basis){white-space:normal;word-break:keep-all}
+
+td b{color:var(--ink);font-weight:600}
+tr.hl td{background:var(--adri-soft)}
+tr.dim td{color:var(--ink-3)}
+
+/* ===== CALLOUT / QUOTE ===== */
+.call{border:1px solid var(--rule-2);background:var(--card);padding:1.15rem 1.3rem;margin:0 0 1.6rem;
+  max-width:none}
+.call.hot{border-left:3px solid var(--ocra)}
+.call.warn{border-left:3px solid var(--warn);background:var(--warn-bg)}
+.call .ct{font-family:var(--disp);font-weight:700;font-size:.82rem;margin:0 0 .5rem;color:var(--ink)}
+.call p{margin:0 0 .6rem;font-size:.89rem;line-height:1.7}
+.call p:last-child{margin-bottom:0}
+blockquote{margin:0 0 1.2rem;padding:.85rem 1.1rem;background:var(--paper-2);
+  border-left:3px solid var(--adri);max-width:none;font-size:.9rem;line-height:1.65;color:var(--ink-2)}
+blockquote .who{display:block;margin-top:.5rem;font-family:var(--mono);font-size:.69rem;color:var(--ink-3)}
+
+/* ===== MISC ===== */
+.metrics{display:grid;grid-template-columns:repeat(auto-fit,minmax(9.5rem,1fr));gap:1px;
+  background:var(--rule);border:1px solid var(--rule);margin:0 0 2.2rem}
+.metric{background:var(--card);padding:1.1rem 1.15rem}
+.metric .lab{font-family:var(--sans);font-size:.67rem;font-weight:500;letter-spacing:.08em;
+  text-transform:uppercase;color:var(--ink-3);margin-bottom:.35rem}
+.metric .val{font-family:var(--mono);font-size:1.4rem;font-weight:600;font-variant-numeric:tabular-nums;
+  letter-spacing:-.03em;line-height:1.1;color:var(--ink)}
+.metric .note{font-family:var(--sans);font-size:.71rem;color:var(--ink-3);margin-top:.2rem}
+.metric.hot .val{color:var(--ocra)}
+.chip{display:inline-flex;font-family:var(--mono);font-size:.64rem;font-weight:600;letter-spacing:.05em;
+  padding:.1rem .4rem;border-radius:2px;vertical-align:.1em;white-space:nowrap}
+.c-src{background:var(--adri-soft);color:var(--adri)}
+.c-doc{background:var(--ok-bg);color:var(--ok)}
+.c-nd{background:var(--warn-bg);color:var(--warn)}
+.certrow{display:flex;gap:1.5rem;align-items:center;flex-wrap:wrap;padding:1rem 0}
+.certrow img{height:3rem;width:auto;opacity:.9}
+footer{border-top:2px solid var(--ink);margin-top:1rem;padding:1.75rem 0 4rem;
+  font-family:var(--sans);font-size:.79rem;color:var(--ink-3);line-height:1.7}
+footer p{max-width:none}
+@media(prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+
+/* 연결·개별 이중기준 표 */
+table th.grp,table td.grp{background:var(--adri-soft)}
+:root[data-theme="dark"] table th.grp,:root[data-theme="dark"] table td.grp{background:var(--adri-soft)}
+th.grp{color:var(--adri)}
+.basis{display:inline-flex;align-items:center;gap:.3rem;font-family:var(--mono);font-size:.64rem;
+  font-weight:600;letter-spacing:.06em;padding:.12rem .45rem;border-radius:2px;white-space:nowrap}
+.b-con{background:var(--adri-soft);color:var(--adri)}
+.b-sep{background:var(--paper-2);color:var(--ink-3);border:1px solid var(--rule)}
+.legend{display:flex;gap:1rem;flex-wrap:wrap;font-family:var(--sans);font-size:.78rem;
+  color:var(--ink-3);margin:-.8rem 0 1.6rem}
+
+
+
+.cover-shots{display:flex;gap:1.7rem;align-items:flex-end;flex-wrap:wrap;
+  margin-top:2.8rem;padding-bottom:.4rem}
+
+.cover-shots img{height:clamp(4.6rem,10vw,7.4rem);width:auto;max-width:12rem;
+  object-fit:contain;filter:drop-shadow(0 16px 26px rgba(0,0,0,.55))}
+
+.cover-shots figcaption{display:none}
+
+.cover-shots-cap{font-family:var(--mono);font-size:.66rem;letter-spacing:.05em;
+  text-transform:uppercase;color:rgba(231,238,239,.5);margin:.9rem 0 0}
+</style>
+<!-- ================= COVER ================= -->
+<!-- ================= COVER ================= -->
+<header class="cover">
+  <div class="cover-tint"></div>
+  <div class="cover-in">
+    <div class="cover-top">
+      <div class="cover-mark">
+        <span class="m1">FRABELLE</span>
+        <span class="m2">Fishing Corporation · Navotas</span>
+      </div>
+      <div class="cover-tag">
+        Frabelle (PNG) · FFC Subic Seafoods<br>Bluecatch · KF (PNG) · Markham Resources<br>
+        1051 North Bay Blvd. · Navotas City · Philippines<br>
+        선단 · 가공거점 · 지배구조 · 한국 관점
+      </div>
+    </div>
+
+    <div class="cover-mid">
+      <p class="cover-kick">상단이 개인 이름인 가족 그룹 · 필리핀 국내 참치 캐너리 0곳</p>
+      <h1><span class="scr">Frabelle</span> <span class="lt">해부</span></h1>
+      <p class="cover-sub">캔을 만드는 회사가 아니다. 필리핀에서는 캐너리에 원어를 파는 쪽이고,
+        <b>참치를 캔에 담는 공장은 파푸아뉴기니에 하나</b> 있다.</p>
+      <div class="cover-nums">
+        <div class="cn"><div class="v">13척</div><div class="k">등록부 확인 참치 선망선</div></div>
+        <div class="cn"><div class="v">140 MT/일</div><div class="k">PNG Lae 가공 능력</div></div>
+        <div class="cn"><div class="v">0곳</div><div class="k">필리핀 국내 참치 캐너리</div></div>
+      </div>
+      <p class="cover-shots-cap">회사 표기 「100척 이상」은 그룹 전체·전 어종 기준이고 검증 경로가 없다.
+        위 13척은 WCPFC 어선등록부와 FFA 지역등록부로 확인된 참치 선망선이다.</p>
+    </div>
+
+    <div class="cover-by">
+      <div class="by-l">
+        <span class="by-k">작성자</span>
+        <span class="by-v">이동건</span>
+      </div>
+      <div class="by-r">2026년 9월</div>
+    </div>
+
+    <div class="cover-facts">
+      <div class="cf"><div class="k">창업</div><div class="v">1966</div><div class="n">회사 표기 · 상용DB 1964</div></div>
+      <div class="cf"><div class="k">지주 법인</div><div class="v">역할 미공개</div><div class="n">2022년 등기, 지분 비공개</div></div>
+      <div class="cf"><div class="k">계열 표기</div><div class="v">8 → 6</div><div class="n">2018판 → 2026판 사이트</div></div>
+      <div class="cf"><div class="k">그룹 인력</div><div class="v">7,000+</div><div class="n">회사 표기 · 2024년 5,000</div></div>
+      <div class="cf"><div class="k">PNG Lae</div><div class="v">1,800명</div><div class="n">현지 고용 · 외국인 최대 70</div></div>
+      <div class="cf"><div class="k">2대 경영</div><div class="v">농업부</div><div class="n">2023-11 장관 · 지분 처분 발언</div></div>
+    </div>
+  </div>
+</header>
+
+<div class="wrap">
+<div class="layout">
+
+<nav>
+  <div class="nt">목차</div>
+  <ol>
+    <li><a href="#s1"><span class="n">01</span> 회사 개요</a></li>
+    <li><a href="#s2"><span class="n">02</span> 지배구조</a></li>
+    <li><a href="#s3"><span class="n">03</span> 계열사와 수직통합</a></li>
+    <li><a href="#s4"><span class="n">04</span> 선단</a></li>
+    <li><a href="#s5"><span class="n">05</span> 가공거점</a></li>
+    <li><a href="#s6"><span class="n">06</span> 인증과 노동</a></li>
+    <li><a href="#s7"><span class="n">07</span> 필리핀 참치산업</a></li>
+    <li><a href="#s8"><span class="n">08</span> 한국 관점</a></li>
+    <li><a href="#s9"><span class="n">09</span> 종합 평가</a></li>
+  </ol>
+</nav>
+
+<main>
+<section id="s1">
+  <h2><span class="h2n">01 / 회사 개요</span>캐너리 없는 어획 전문사</h2>
+
+  <p class="lead">Frabelle은 필리핀에서 참치를 잡아 General Santos의 캐너리에 공급한다.
+    자사 참치 제조는 Papua New Guinea의 Lae에서 이뤄진다. 한 회사 안에 어획과 가공이 함께 있다.
+    두 기능이 놓인 나라는 서로 다르다.</p>
+
+  <div class="metrics">
+    <div class="metric hot"><div class="lab">회사 표기 창업</div><div class="val">1966</div><div class="note">중고 트롤선 1척 <span class="chip c-doc">원본</span></div></div>
+    <div class="metric"><div class="lab">참치 선망선단</div><div class="val">14척</div><div class="note">필리핀·PNG 배치, 2024-06 <span class="chip c-src">매체</span></div></div>
+    <div class="metric"><div class="lab">그룹 인력 표기</div><div class="val">7,000명+</div><div class="note">2024년 5,000명, 2026년 7,000명+ <span class="chip c-doc">원본</span></div></div>
+    <div class="metric"><div class="lab">필리핀 자사 캐너리</div><div class="val">0곳</div><div class="note">회사 사이트·BFAR EU 승인 명단 <span class="chip c-doc">원본</span></div></div>
+  </div>
+
+  <div class="call hot">
+    <p class="ct">General Santos에서 하는 일</p>
+    <p>General Santos에는 선단 기지와 하역 부두가 있다. BFAR의 승인 어선 명단은 FFC 주소를
+      Cabu Bawing으로 적고 Friend of the Sea 감사자료는 Veneracion Wharf를 현장으로 올렸다.
+      회사 사이트와 BFAR EU 승인 수산가공장 명단에는 Frabelle 명의의 현지 참치 캐너리가 없다.
+      <span class="chip c-doc">원본</span></p>
+    <p>2024년 투입된 Red Robin 88의 어획물도 대부분 General Santos의 캐너리들로 보내고
+      일부를 PNG 자사 가공시설에 공급한다고 회사 사장이 밝혔다. 이 발언은 필리핀의 원어 공급과
+      PNG의 제조를 구분한다. <span class="chip c-src">매체</span></p>
+  </div>
+
+  <h3>법인 설립일과 사업 창업 연도</h3>
+  <div class="tw"><table>
+    <thead><tr><th>항목</th><th>공개된 내용</th><th>근거</th></tr></thead>
+    <tbody>
+      <tr class="hl"><td><b>핵심 법인</b></td><td><b>Frabelle Fishing Corporation</b>. 회사는 그룹의 flagship company로 부른다</td><td><span class="chip c-doc">원본</span></td></tr>
+      <tr><td>설립·창업</td><td>EMIS 설립일 <b>1964-03-11</b>. 회사 연혁은 Francis와 Bella Tiu Laurel이 중고 트롤선 한 척으로 사업을 시작한 <b>1966년</b>을 창업 시점으로 적는다</td><td><span class="chip c-src">매체</span> <span class="chip c-doc">원본</span></td></tr>
+      <tr><td>회사 표기 본점</td><td><b>1051 North Bay Blvd., Navotas City</b></td><td><span class="chip c-doc">원본</span></td></tr>
+      <tr><td>상용DB 표기 본점</td><td><b>Sitio Cabu, Barangay Bawing, General Santos City</b></td><td><span class="chip c-src">매체</span></td></tr>
+      <tr><td>등기 정보</td><td>FFC의 SEC 등록번호와 수권·납입자본, GIS 원문은 공개되지 않는다</td><td><span class="chip c-nd">미공개</span></td></tr>
+      <tr><td>공개 재무</td><td>그룹 연결 매출·순이익·자산은 공개되지 않는다. 법인별 절대액도 무료 공개 범위 밖이다</td><td><span class="chip c-nd">미공개</span></td></tr>
+    </tbody>
+  </table></div>
+
+  <p>Navotas는 회사가 내건 본점이고 General Santos는 선박 등록과 하역 기록이 모이는 조업기지다.
+    두 주소 가운데 어느 곳이 현재 SEC 등기 본점인지는 공개되지 않는다.
+    <span class="chip c-doc">원본</span> <span class="chip c-nd">미공개</span></p>
+
+  <div class="call warn">
+    <p class="ct">증감률만 나오는 FFC 재무</p>
+    <p>EMIS가 무료로 내놓은 FFC 개별법인의 FY2024 수치는 순매출 <b>-34.54%</b>, 순이익
+      <b>+24.47%</b>, 총자산 <b>+12.13%</b>다. 모두 FY2023 대비 증감률이다. 절대액은 제시되지 않는다.
+      그룹 전체 실적으로 합산할 수도 없다. <span class="chip c-src">매체</span></p>
+    <p>Frabelle Corporation과 Frabelle Market Corporation도 같은 방식의 법인별 증감률만 공개된다.
+      남는 것은 법인별 증감률이고, 그 위의 합계는 어디에도 집계되지 않은 채로 있다.
+      <span class="chip c-nd">미공개</span></p>
+  </div>
+
+  <h3>Frabelle 사업 확장 연혁</h3>
+  <div class="tw"><table>
+    <thead><tr><th>시점</th><th>사업의 이동</th><th>근거</th></tr></thead>
+    <tbody>
+      <tr class="hl"><td><b>1966</b></td><td>Francis와 Bella Tiu Laurel이 중고 트롤선 한 척으로 Frabelle 어업을 시작했다</td><td><span class="chip c-doc">원본</span></td></tr>
+      <tr><td><b>1981</b></td><td>필리핀 밖 서부·중부태평양으로 조업 범위를 넓혔다</td><td><span class="chip c-doc">원본</span></td></tr>
+      <tr><td><b>1993</b></td><td>Frabelle Properties Corporation을 세워 부동산으로 사업을 넓혔다</td><td><span class="chip c-doc">원본</span></td></tr>
+      <tr class="hl"><td><b>2006</b></td><td>회사 연혁상 Frabelle (PNG) Limited가 Lae에서 출범했다. PNGWorkforce는 법인 설립을 1989년으로 적어 캐너리 개설 시점과 법인 설립일이 갈린다</td><td><span class="chip c-doc">원본</span> <span class="chip c-est">2차</span></td></tr>
+      <tr><td><b>2011</b></td><td>Century Pacific 계열과 Thai Union, FFC가 Lae의 Majestic 합작사업을 추진했다</td><td><span class="chip c-src">매체</span></td></tr>
+      <tr><td><b>2019</b></td><td>Frabelle Corporation이 Johnsonville과 육가공 합작사를 꾸렸다</td><td><span class="chip c-doc">원본</span></td></tr>
+      <tr><td><b>2024</b></td><td>Red Robin 88을 더해 필리핀·PNG 배치 참치 선망선단을 14척으로 늘렸다고 밝혔다</td><td><span class="chip c-src">매체</span></td></tr>
+      <tr><td><b>2025</b></td><td>PNG 정부는 Majestic을 FCF와 Frabelle (PNG)의 공동소유로 소개하고 연내 재가동 계획을 발표했다. 실제 생산 재개 시점은 공개되지 않는다</td><td><span class="chip c-src">매체</span> <span class="chip c-nd">미공개</span></td></tr>
+    </tbody>
+  </table></div>
+</section>
+
+<section id="s2">
+  <h2><span class="h2n">02 / 지배구조</span>Frabelle Holdings의 지주 역할은 공개되지 않았다</h2>
+
+  <p class="lead">회사 사이트가 계열사를 묶는 이름은 창업주 Francisco O. Tiu Laurel이다.
+    Frabelle Holdings Corporation은 2022년에 등기됐다. 어느 법인의 지분을 얼마나 보유하는지는 공개되지 않는다.
+    창업 2세 Francisco P. Tiu Laurel Jr.는 농업부 장관에 임명됐고 취임 직후 지분 처분을 밝혔다.
+    <span class="chip c-doc">원본</span> <span class="chip c-src">매체</span></p>
+
+  <div class="metrics">
+    <div class="metric hot"><div class="lab">Holdings 등기</div><div class="val">2022</div><div class="note">SEC 2022070059166-00 <span class="chip c-src">매체</span></div></div>
+    <div class="metric"><div class="lab">FFC 상위 주주</div><div class="val">5인 · 61.76%</div><div class="note">성명은 유료 마스킹 <span class="chip c-src">매체</span></div></div>
+    <div class="metric"><div class="lab">장관 임명</div><div class="val">2023-11-03</div><div class="note">취임 선서 <span class="chip c-doc">원본</span></div></div>
+    <div class="metric"><div class="lab">FFC 사장</div><div class="val">Floyd</div><div class="note">2024-06 시점 <span class="chip c-src">매체</span></div></div>
+  </div>
+
+  <h3>세 층위의 지배구조</h3>
+  <div class="tw"><table>
+    <thead><tr><th>층위</th><th>공개된 사실</th><th>자료의 경계</th></tr></thead>
+    <tbody>
+      <tr class="hl"><td><b>그룹 상단</b></td><td>Frabelle Properties 사이트는 Francisco O. Tiu Laurel을 <b>Chairman &amp; Founder</b>이자 Frabelle Group 회장으로 표기한다 <span class="chip c-doc">원본</span></td><td>법인별 보유지분은 <span class="chip c-nd">미공개</span></td></tr>
+      <tr><td><b>Frabelle Holdings Corporation</b></td><td>SEC 미러에 등록번호 <b>2022070059166-00</b>, 설립연도 <b>2022년</b>으로 올라 있다 <span class="chip c-src">매체</span></td><td>지주 역할·주주·계열사 지분은 <span class="chip c-nd">미공개</span></td></tr>
+      <tr><td><b>Frabelle Fishing Corporation</b></td><td>EMIS가 공개한 상위 지분율은 <b>19.73%·12.45%·12.04%·8.92%·8.62%</b>, 합계 <b>61.76%</b>다 <span class="chip c-src">매체</span></td><td>주주 성명과 자연인·법인 여부는 <span class="chip c-nd">미공개</span></td></tr>
+      <tr><td><b>계열 연결</b></td><td>회사 사이트는 Fishing·PNG·Cold Storage·Shipyard·Properties·Markham 등을 한 그룹으로 제시한다 <span class="chip c-doc">원본</span></td><td>각 법인 사이의 지분율과 의결권은 <span class="chip c-nd">미공개</span></td></tr>
+    </tbody>
+  </table></div>
+
+  <p>Frabelle Holdings라는 법인은 존재한다. 그러나 공개된 등기 파생정보만으로는 이 법인이 그룹을
+    지배한다고 단정할 수 없다. 회사가 외부에 내놓은 조직의 상단에는 여전히 창업주 개인의 직함이 놓여 있다.
+    <span class="chip c-doc">원본</span> <span class="chip c-nd">미공개</span></p>
+
+  <div class="call hot">
+    <p class="ct">처분했다는 말과 남은 빈칸</p>
+    <p>대통령실은 2023-11-03 장관 임명 발표 때 Laurel Jr.가 회사 지분을 이미 처분했다고 밝혔다.
+      그는 2023-11-06 첫 기자회견에서 자신이 과거 보유했던 모든 회사에 더는 이해관계가 없다고 말했다.
+      <span class="chip c-src">매체</span></p>
+    <p>CoverStory는 2024년 입수한 SEC 기록에서 Frabelle과 Diamond Export의 지분 처분이 나타난다고 보도했다.
+      처분 상대와 대가, 방식, 정확한 시점, 백지신탁 여부는 발언 밖으로 나온 적이 없고 SEC 원문도 열리지 않는다.
+      <span class="chip c-src">매체</span> <span class="chip c-nd">미공개</span></p>
+  </div>
+
+  <h3>장관 임명 전후의 공개 기록</h3>
+  <div class="tw"><table>
+    <thead><tr><th>시점</th><th>사실</th><th>근거</th></tr></thead>
+    <tbody>
+      <tr><td><b>1985</b></td><td>Laurel Jr.가 FFC 사장에 취임한 시점으로 2차 자료에 기록돼 있다</td><td><span class="chip c-est">2차</span></td></tr>
+      <tr><td><b>2022</b></td><td>대선 당시 Partido Federal ng Pilipinas에 <b>₱30M</b>을 기부했고 같은 해 8월 대통령 민간자문위 농업분과에 합류했다</td><td><span class="chip c-src">매체</span></td></tr>
+      <tr class="hl"><td><b>2023-11-03</b></td><td>마르코스 대통령이 Laurel Jr.를 농업부 장관으로 임명하고 취임 선서를 받았다</td><td><span class="chip c-doc">원본</span></td></tr>
+      <tr class="hl"><td><b>2023-11-06</b></td><td>첫 기자회견에서 모든 회사 지분을 처분했다고 밝혔다</td><td><span class="chip c-src">매체</span></td></tr>
+      <tr><td><b>2023-12-05</b></td><td>Commission on Appointments가 임명을 인준했다</td><td><span class="chip c-doc">원본</span></td></tr>
+      <tr><td><b>2024-06</b></td><td>PhilStar는 FFC 사장을 <b>Floyd Tiu Laurel</b>로 적었다</td><td><span class="chip c-src">매체</span></td></tr>
+    </tbody>
+  </table></div>
+
+  <h3>네 사람의 직책과 남은 빈칸</h3>
+  <div class="tw"><table>
+    <thead><tr><th>인물</th><th>공개 직책</th><th>공개되지 않은 정보</th></tr></thead>
+    <tbody>
+      <tr class="hl"><td><b>Francisco O. Tiu Laurel</b></td><td>1966년 공동창업주, 그룹 및 Frabelle Properties 회장·창업자 <span class="chip c-doc">원본</span></td><td>현재 법인별 지분 <span class="chip c-nd">미공개</span></td></tr>
+      <tr><td><b>Bella Tiu Laurel</b></td><td>1966년 공동창업주 <span class="chip c-doc">원본</span></td><td>현재 법인별 지분 <span class="chip c-nd">미공개</span></td></tr>
+      <tr><td><b>Francisco P. Tiu Laurel Jr.</b></td><td>FFC 전 사장, 2023-11-03부터 농업부 장관 <span class="chip c-doc">원본</span></td><td>지분 처분 상대·방식 <span class="chip c-nd">미공개</span></td></tr>
+      <tr><td><b>Floyd Tiu Laurel</b></td><td>2024-06 시점 FFC 사장 <span class="chip c-src">매체</span></td><td>Laurel Jr.와의 관계, 취임일·이사회 결의 <span class="chip c-nd">미공개</span></td></tr>
+    </tbody>
+  </table></div>
+
+  <div class="call warn">
+    <p class="ct">Laurel 장관의 SALN과 공직 보수</p>
+    <p>Laurel 장관의 2023년부터 2025년까지 SALN 순자산 수치는 열람 제한 대상으로 묶여 있다.
+      COA가 공개한 2025년 급여·수당 <b>₱5.2M</b>은 공직 보수다. 순자산과는 다른 항목이다.
+      <span class="chip c-src">매체</span> <span class="chip c-nd">미공개</span></p>
+  </div>
+</section>
+
+<section id="s3">
+  <h2><span class="h2n">03 / 사업구조·계열사</span>PNG Lae 중심의 수직통합 구조</h2>
+
+  <p class="lead">Frabelle의 사업은 어로에서 냉동창고와 조선소, 식품, 부동산, 전력까지 뻗어 있다.
+    참치만 놓고 보면 흐름은 더 짧다. 필리핀과 PNG 선단이 잡은 원어를 필리핀에서는 외부 캐너리에 팔고
+    PNG Lae의 자사 공장과 공동투자 공장에서 가공한다.</p>
+
+  <div class="metrics">
+    <div class="metric hot"><div class="lab">Lae 공장 능력</div><div class="val">140 MT/일</div><div class="note">2026년 회사 표기 <span class="chip c-doc">원본</span></div></div>
+    <div class="metric"><div class="lab">FG 냉동창고</div><div class="val">7,218 MT</div><div class="note">BFAR 인가용량 <span class="chip c-doc">원본</span></div></div>
+    <div class="metric"><div class="lab">Navotas 드라이독</div><div class="val">5,974.85 DWT</div><div class="note">MARINA 등록 최대 설비 <span class="chip c-doc">원본</span></div></div>
+    <div class="metric"><div class="lab">육가공 합작</div><div class="val">51% · 49%</div><div class="note">Johnsonville · FFC <span class="chip c-src">매체</span></div></div>
+  </div>
+
+  <div class="call hot">
+    <p class="ct">필리핀·PNG의 참치 공급·가공 구조</p>
+    <p>Frabelle이 공개한 계열사와 Food Group 페이지에서 참치 캐너리로 특정된 법인은
+      Frabelle (PNG) Limited뿐이다. 필리핀 BFAR EU 승인 수산가공장 명단에도 Frabelle 계열 명칭이 없다.
+      <span class="chip c-doc">원본</span></p>
+    <p>Lae 공장은 2025-05 하루 <b>120~130 MT</b>을 생산했고 회사 사이트는 2026년 능력을
+      <b>140 MT/일</b>로 적는다. General Santos에 들어오는 FFC 어획은 현지 캐너리들로 향한다.
+      <span class="chip c-src">매체</span> <span class="chip c-doc">원본</span></p>
+  </div>
+
+  <h3>밸류체인 단계별 법인·거점</h3>
+  <div class="tw"><table>
+    <thead><tr><th>단계</th><th>법인·거점</th><th>하는 일</th><th>소유의 경계</th></tr></thead>
+    <tbody>
+      <tr class="hl"><td><b>어로</b></td><td>FFC · FFC Subic Seafoods · Frabelle PNG · KF (PNG) · Bluecatch</td><td>선망선과 운반선·지원선 보유 및 운항. 필리핀기 선박 여러 척도 Frabelle PNG가 용선·운영한다 <span class="chip c-doc">원본</span></td><td>FFC Subic·KF·Bluecatch의 그룹 내 정확한 지분은 <span class="chip c-nd">미공개</span></td></tr>
+      <tr class="hl"><td><b>참치 가공</b></td><td>Frabelle (PNG) Limited, Lae<br>Majestic Tuna Corporation, Malahang</td><td>캔참치·냉동 조리 로인·raw-pack. Majestic은 2023-06 가동을 멈췄고 2025년 재가동 계획이 발표됐다 <span class="chip c-src">매체</span></td><td>Majestic의 2025년 주주는 FCF와 Frabelle PNG. 지분율과 실제 재가동 시점은 <span class="chip c-nd">미공개</span></td></tr>
+      <tr><td><b>냉동창고</b></td><td>Frabelle Cold Storage · FG Cold Storage</td><td>Navotas·Caloocan의 제3자 대상 냉동보관. FG 시설은 <b>7,218 MT</b>, Caloocan 시설은 <b>225 MT</b>로 BFAR에 등록돼 있다 <span class="chip c-doc">원본</span></td><td>Sandiwa 85와 5F Cold Storage는 frabellecs.com 연락처를 쓰지만 지분관계는 <span class="chip c-nd">미공개</span></td></tr>
+      <tr><td><b>조선·수리</b></td><td>Frabelle Shipyard and Marine Services, Navotas</td><td>선박 건조·개조·수리. MARINA 등록 드라이독은 <b>5,974.85 DWT</b>와 <b>2,833.92 DWT</b>다 <span class="chip c-doc">원본</span></td><td>그룹 선망선을 자체 신조한 기록은 공개되지 않는다 <span class="chip c-nd">미공개</span></td></tr>
+      <tr><td><b>식품</b></td><td>FMC · Westpac · Amenico · Frabelle Corporation</td><td>냉동수산·어묵·스낵, 육류 수입, 냉동채소, 가공육. Frabelle Corporation은 Johnsonville과 J&amp;F Foods를 운영한다 <span class="chip c-doc">원본</span></td><td>Johnsonville <b>51%</b>, FFC <b>49%</b> <span class="chip c-src">매체</span></td></tr>
+      <tr><td><b>부동산·전력</b></td><td>Frabelle Properties · Markham Resources</td><td>상업·주거 부동산과 수력발전. Markham은 Frabelle과 TSP Marine이 공동 운영한다 <span class="chip c-doc">원본</span></td><td>Markham 자체 지분율은 공개되지 않는다 <span class="chip c-nd">미공개</span></td></tr>
+    </tbody>
+  </table></div>
+
+  <h3>회사 사이트의 계열 범위가 바뀌었다</h3>
+  <div class="tw"><table>
+    <thead><tr><th>페이지 시점</th><th>사이트에 오른 이름</th><th>읽을 수 있는 범위</th></tr></thead>
+    <tbody>
+      <tr><td><b>2018판</b></td><td>FFC · Frabelle Cold Storage · Westpac Meat Processing · Eoana Canning · Frabelle Shipyard · Frabelle Properties. 별도 메뉴에 FMC와 Frabelle Corporation이 있었다 <span class="chip c-doc">원본</span></td><td>당시 회사가 공개한 계열·사업군 표기</td></tr>
+      <tr class="hl"><td><b>2026판</b></td><td>FFC · Frabelle Shipyard and Marine Services · Frabelle PNG · Frabelle Cold Storage · Markham Resources · Frabelle Properties <span class="chip c-doc">원본</span></td><td>현재 그룹 페이지의 열거</td></tr>
+      <tr><td>변경의 이유</td><td>Eoana·Westpac이 빠지고 PNG·전력이 들어왔다. Shipyard 명칭도 길어졌다</td><td>매각·합병·상호변경 여부는 <span class="chip c-nd">미공개</span></td></tr>
+    </tbody>
+  </table></div>
+
+  <p>두 목록의 차이는 사이트 표기가 바뀌었다는 사실만 보여 준다. 장관 취임 뒤 이뤄진 지분 처분과
+    계열사 목록 변경 사이의 인과관계는 공개 자료에 없다. <span class="chip c-nd">미공개</span></p>
+
+  <h3>공동투자 사업의 지분 구조</h3>
+  <div class="tw"><table>
+    <thead><tr><th>사업</th><th>처음 공개된 구도</th><th>최근 공개된 구도</th></tr></thead>
+    <tbody>
+      <tr class="hl"><td><b>Majestic, PNG</b></td><td>2009년 Thai Union·Century Canning·FFC가 각각 <b>33%</b>로 설립했다고 보도됐다 <span class="chip c-src">매체</span></td><td>2025년 소유주는 <b>FCF와 Frabelle (PNG)</b>. 각 지분율과 이전 조건은 <span class="chip c-nd">미공개</span></td></tr>
+      <tr><td><b>J&amp;F Foods, 필리핀</b></td><td>2019년 Johnsonville이 Frabelle Corporation 지분 <b>51%</b>을 인수했다 <span class="chip c-doc">원본</span></td><td>2024년 EMIS의 <b>51%·49%</b> 표기와 일치한다 <span class="chip c-src">매체</span></td></tr>
+      <tr><td><b>Lake Mainit 수력</b></td><td>Markham이 사업회사를 지배했고 J-POWER가 2022년 <b>40%</b> 인수 계약을 맺었다 <span class="chip c-doc">원본</span></td><td>Lake Mainit Hydro Holdings는 Markham <b>60%</b>, J-POWER <b>40%</b>로 공개돼 있다 <span class="chip c-doc">원본</span></td></tr>
+      <tr><td><b>PT Sinar, 인도네시아</b></td><td>Frabelle은 2003년 공장을 인수한 필리핀 투자그룹의 일원으로 보도됐다 <span class="chip c-src">매체</span></td><td>Frabelle 브랜드 캔 생산은 이어지지만 현재 지분율은 <span class="chip c-nd">미공개</span></td></tr>
+    </tbody>
+  </table></div>
+
+  <div class="call warn">
+    <p class="ct">사업군명과 법인명 구분</p>
+    <p>Frabelle Food Group은 여러 식품회사를 묶은 사업군 이름이다. aquaculture도 회사가 열거한 사업영역일 뿐
+      법인명과 거점, 어종은 공개되지 않는다. Frabelle Tuna Corporation, Frabelle Aquaculture,
+      Frabelle Foods라는 이름은 브랜드로만 쓰이고, 같은 이름의 법인은 회사 공개문서와 SEC 미러 어느 쪽에도 등재가 없다.
+      <span class="chip c-nd">미공개</span></p>
+  </div>
+</section>
+
+<section id="s4">
+  <h2><span class="h2n">04 / 선단</span>회사 표기 100척과 등록부의 참치 선망선 13척</h2>
+
+  <p class="lead">Frabelle이 내건 100척 이상은 정어리와 고등어를 잡는 근해선까지 포괄한 그룹 숫자다.
+    2026-09-02 WCPFC와 FFA 등록부에 허가가 살아 있는 자사 명의 참치 선망선은 13척이다.
+    같은 회사 이름 아래 놓인 두 수치는 서로 다른 선단을 센다. <span class="chip c-doc">원본</span></p>
+
+  <div class="metrics">
+    <div class="metric"><div class="lab">그룹 전체 표기</div><div class="val">100척+</div><div class="note">전 어종·전 선형 <span class="chip c-doc">원본</span></div></div>
+    <div class="metric hot"><div class="lab">허가 유효 선망선</div><div class="val">13척</div><div class="note">WCPFC RFV, 2026-09-02 <span class="chip c-doc">원본</span></div></div>
+    <div class="metric"><div class="lab">기국 구성</div><div class="val">7 · 6</div><div class="note">필리핀기 7척 · PNG기 6척 <span class="chip c-doc">원본</span></div></div>
+    <div class="metric"><div class="lab">Bluecatch 용선</div><div class="val">6척</div><div class="note">PNG 수역 운항, 2026년 <span class="chip c-doc">원본</span></div></div>
+  </div>
+
+  <div class="call hot">
+    <p class="ct">분모가 다른 두 선단</p>
+    <p>회사 사이트의 100척 이상에는 가다랑어·황다랑어 선망선과 정어리·고등어·갈고등어를
+      잡는 선박이 함께 들어간다. 같은 기준으로 작성된 제3자 총선단 명단은 공개되지 않는다.
+      <span class="chip c-doc">원본</span> <span class="chip c-nd">미공개</span></p>
+    <p>13척은 회사가 2025-02 FAD 관리정책에 적은 선박과 WCPFC 등록부의 허가 유효 선망선이
+      한 척씩 맞아떨어지는 숫자다. 전체 선단 100척 이상과 참치 선망선 13척을 증감으로 비교할 수는 없다.
+      <span class="chip c-doc">원본</span></p>
+  </div>
+
+  <h3>네 법인 명의로 나뉜 13척</h3>
+  <div class="tw"><table>
+    <thead><tr><th>등록 소유자</th><th>기국</th><th class="num">척수</th><th>허가 유효 선박</th></tr></thead>
+    <tbody>
+      <tr class="hl"><td><b>Frabelle Fishing Corporation</b></td><td>필리핀</td><td class="num"><b>4</b> <span class="chip c-doc">원본</span></td><td>Red Robin 88 · Kaile 888 · Marita 88 · Pink Carnation 888</td></tr>
+      <tr><td><b>FFC Subic Seafoods Corporation</b></td><td>필리핀</td><td class="num"><b>3</b> <span class="chip c-doc">원본</span></td><td>Jasmin 888 · Purple Beauty 888 · Sunflower 8</td></tr>
+      <tr class="hl"><td><b>Frabelle PNG Limited</b></td><td>PNG</td><td class="num"><b>4</b> <span class="chip c-doc">원본</span></td><td>Gardenia 888 · Golden Sapphire 88 · Milflores 888 · Purple Lilac 888</td></tr>
+      <tr><td><b>KF (PNG) Limited</b></td><td>PNG</td><td class="num"><b>2</b> <span class="chip c-doc">원본</span></td><td>Amaryllis 88 · Niupelalip No.8</td></tr>
+      <tr class="hl"><td colspan="2"><b>합계</b></td><td class="num"><b>13</b> <span class="chip c-doc">원본</span></td><td>회사 FAD 관리정책 명단과 WCPFC RFV 명단이 일치한다</td></tr>
+    </tbody>
+  </table></div>
+
+  <p>필리핀기 7척은 Distant Water Fishing Permit으로 WCPO를 다닌다. PNG기 6척의 허가수역은
+    PNG 군도수역과 EEZ 안의 육지·섬·선포 암초에서 12해리 밖으로 적혀 있다. 13척 모두 공해 전재 권한은
+    NO다. <span class="chip c-doc">원본</span></p>
+
+  <h3>소유는 흩어지고 운항은 Lae로 모인다</h3>
+  <div class="tw"><table>
+    <thead><tr><th>선박군</th><th class="num">규모</th><th>등록 소유자</th><th>운항 관계</th></tr></thead>
+    <tbody>
+      <tr class="hl"><td><b>허가 유효 참치 선망선</b></td><td class="num"><b>13척</b> <span class="chip c-doc">원본</span></td><td>FFC·FFC Subic·Frabelle PNG·KF (PNG)</td><td>FFA에는 필리핀기 선박 여러 척도 Frabelle PNG가 용선자나 운항자로 올라 있다</td></tr>
+      <tr><td><b>냉동운반선</b></td><td class="num"><b>2척</b> <span class="chip c-doc">원본</span></td><td>FFC</td><td>Primrose 888과 Vanda 888. FFA 운항자는 Frabelle PNG다</td></tr>
+      <tr><td><b>보조선</b></td><td class="num"><b>2척</b> <span class="chip c-doc">원본</span></td><td>FFC 1척·Lake Harvest 1척</td><td>Victor 91과 급유선 Zinnia 5. Lake Harvest의 그룹 지분관계는 <span class="chip c-nd">미공개</span></td></tr>
+      <tr class="hl"><td><b>Bluecatch 선망선</b></td><td class="num"><b>6척</b> <span class="chip c-doc">원본</span></td><td>Bluecatch Corporation</td><td>2026년 WCPFC 용선 통보의 용선자는 Frabelle (PNG) Limited다. 자본관계는 <span class="chip c-nd">미공개</span></td></tr>
+      <tr class="dim"><td><b>허가 만료 구선</b></td><td class="num"><b>8척</b> <span class="chip c-doc">원본</span></td><td>FFC·Frabelle PNG</td><td>RFV에는 남아 있으나 2026년 허가는 없다. 매각·해체·계선 여부는 <span class="chip c-nd">미공개</span></td></tr>
+    </tbody>
+  </table></div>
+
+  <p>Bluecatch의 Queen Marilou 계열 3척과 Veera, Mavienne, Kamilah은 필리핀기를 유지한 채
+    2026년 PNG 수역 용선선으로 신고됐다. 선박 소유와 실제 운항기지가 같은 법인에 모이지 않는 구조다.
+    <span class="chip c-doc">원본</span></p>
+
+  <div class="call warn">
+    <p class="ct">Red Robin 88은 신조선이 아니다</p>
+    <p>2024-06 보도는 Red Robin 88을 새 선박으로 소개했다. WCPFC 등록부에는 2010년 대만에서 건조된
+      DISCOVERY 101이 2024년 이름을 바꾼 선박으로 올라 있다. 등록부 기준으로는 중고선 취득과 개명이다.
+      <span class="chip c-src">매체</span> <span class="chip c-doc">원본</span></p>
+    <p>13척 가운데 2013년 건조된 Kaile 888과 Marita 88만 신조 취득선에 해당한다. 나머지 11척의
+      건조연도는 1980년부터 2010년 사이다. Navotas 조선소는 수리·개조·드라이독 시설로 공개돼 있으며,
+      신조 실적은 회사 어느 문서에도 적혀 있지 않다. <span class="chip c-doc">원본</span> <span class="chip c-nd">미공개</span></p>
+  </div>
+
+  <h3>시점마다 달라지는 척수</h3>
+  <div class="tw"><table>
+    <thead><tr><th>시점</th><th>공개 수치</th><th>센 범위</th><th>근거</th></tr></thead>
+    <tbody>
+      <tr><td><b>2009-08</b></td><td>PNG 선망·핸드라인 <b>21척</b></td><td>Frabelle PNG의 당시 인증 선단</td><td><span class="chip c-src">매체</span></td></tr>
+      <tr><td><b>2023-06</b></td><td>PNG 선망선 <b>20척에서 14척</b>으로 축소</td><td>당시 사장 발언의 PNG 기지 선단</td><td><span class="chip c-src">매체</span></td></tr>
+      <tr><td><b>2024-06</b></td><td>참치 선망선 <b>14척</b></td><td>필리핀·PNG 배치 선단이라는 회사 설명</td><td><span class="chip c-src">매체</span></td></tr>
+      <tr class="hl"><td><b>2025-02</b></td><td>FAD 정책 적용 <b>13척</b></td><td>네 법인의 회사 정책문서 명단</td><td><span class="chip c-doc">원본</span></td></tr>
+      <tr class="hl"><td><b>2026-09</b></td><td>허가 유효 선망선 <b>13척</b></td><td>WCPFC RFV와 FFA 등록부</td><td><span class="chip c-doc">원본</span></td></tr>
+    </tbody>
+  </table></div>
+</section>
+
+<section id="s5">
+  <h2><span class="h2n">05 / 가공거점</span>참치 제조의 좌표는 PNG Lae다</h2>
+
+  <p class="lead">Frabelle이 자사 참치 캐너리로 내놓은 곳은 Papua New Guinea의 Lae다.
+    General Santos에는 선단 기지와 하역 부두가 있고 어획은 현지 캐너리들로 간다.
+    Lae의 또 다른 공장 Majestic은 2023-06 가동을 멈춘 뒤 재가동 완료 시점을 공개하지 않았다.
+    <span class="chip c-doc">원본</span> <span class="chip c-src">매체</span></p>
+
+  <div class="metrics">
+    <div class="metric hot"><div class="lab">Lae 실생산</div><div class="val">120~130 MT/일</div><div class="note">Frabelle PNG, 2025-05 <span class="chip c-src">매체</span></div></div>
+    <div class="metric"><div class="lab">회사 표기 능력</div><div class="val">140 MT/일</div><div class="note">기준연도 미기재 <span class="chip c-doc">원본</span></div></div>
+    <div class="metric"><div class="lab">신규 냉동창고</div><div class="val">1,000 MT</div><div class="note">Lae, 2025-05 개소 <span class="chip c-src">매체</span></div></div>
+    <div class="metric"><div class="lab">Majestic 상태</div><div class="val">가동 중단</div><div class="note">2023-06부터 <span class="chip c-src">매체</span></div></div>
+  </div>
+
+  <div class="call hot">
+    <p class="ct">회사 사이트가 특정한 캐너리 한 곳</p>
+    <p>현행 Group of Companies와 Food Group 페이지가 참치 캐너리로 적은 법인은
+      Frabelle (PNG) Limited뿐이다. 필리핀 BFAR의 2025-11 및 2026-02 EU 승인 수산가공장 명단에는
+      Frabelle, Eoana, FFC Subic 명칭이 한 곳도 없다. <span class="chip c-doc">원본</span></p>
+    <p>Red Robin 88의 어획은 대부분 General Santos의 캐너리들로 보내고 일부는 PNG의 자사
+      가공시설로 보낸다는 2024-06 사장 발언도 제조 거점을 PNG로 특정한다.
+      <span class="chip c-src">매체</span></p>
+  </div>
+
+  <h3>거점 네 곳의 생산과 인력</h3>
+  <div class="tw"><table>
+    <thead><tr><th>거점</th><th>법인</th><th>생산품목·기능</th><th class="num">규모</th><th class="num">인력</th></tr></thead>
+    <tbody>
+      <tr class="hl"><td><b>Lae</b><br>PNG, Speybank St</td><td><b>Frabelle (PNG) Limited</b></td><td>프리쿡·raw-pack 캔참치, 냉동 조리 로인, 환동참치, 어유, Isabella 브랜드. 자체 부두·제빙·급속동결·냉동창고를 갖춘다 <span class="chip c-doc">원본</span></td><td class="num"><b>120~130 MT/일</b><br><span style="font-size:.8em;color:var(--ink-3)">2025-05 실생산</span> <span class="chip c-src">매체</span><br><b>140 MT/일</b><br><span style="font-size:.8em;color:var(--ink-3)">회사 표기 능력</span> <span class="chip c-doc">원본</span></td><td class="num"><b>현지 1,800명</b><br>외국인 ≤70명 <span class="chip c-src">매체</span><br><b>2,100명</b><br><span style="font-size:.8em;color:var(--ink-3)">같은 시점 별도 보도</span> <span class="chip c-src">매체</span></td></tr>
+      <tr><td><b>Malahang</b><br>PNG, Lae</td><td><b>Majestic Seafood Corp.</b><br>2025 보도명 Majestic Tuna Corporation</td><td>캔참치와 냉동 조리 로인. 2023-06부터 가동 중단 <span class="chip c-src">매체</span></td><td class="num"><b>350 MT/일</b><br><span style="font-size:.8em;color:var(--ink-3)">2단계 계획치, 2013 개장 발표</span> <span class="chip c-src">매체</span><br><b>80 MT/일</b><br><span style="font-size:.8em;color:var(--ink-3)">2019 실가동</span> <span class="chip c-src">매체</span></td><td class="num"><b>1,300명</b><br><span style="font-size:.8em;color:var(--ink-3)">2023 중단 시 회사 제공</span> <span class="chip c-src">매체</span></td></tr>
+      <tr><td><b>Bitung</b><br>인도네시아</td><td><b>PT Sinar Pure Foods International</b></td><td>가다랑어·황다랑어·보니토 캔, 어분, 참치유. Frabelle 브랜드 캔을 생산한다 <span class="chip c-doc">원본</span></td><td class="num"><span class="chip c-nd">미공개</span></td><td class="num"><span class="chip c-nd">미공개</span></td></tr>
+      <tr class="dim"><td><b>General Santos</b><br>필리핀</td><td>Frabelle Fishing Corporation</td><td>선단 기지·하역 부두. 자사 참치 캐너리나 로인 공장은 회사 공개자료와 BFAR EU 승인 가공장 명단에 없다 <span class="chip c-doc">원본</span></td><td class="num"><b>가공장 0곳</b><br><span style="font-size:.8em;color:var(--ink-3)">BFAR EU 승인 명단</span> <span class="chip c-doc">원본</span></td><td class="num"><span class="chip c-nd">미공개</span></td></tr>
+    </tbody>
+  </table></div>
+
+  <p>PT Sinar는 2010년 당시 사장이 쓴 글에서 Frabelle이 참여한 필리핀 투자그룹의 인도네시아
+    가공사업으로 소개됐다. 현재 지분율과 생산능력, 인력은 공개되지 않는다.
+    <span class="chip c-doc">원본</span> <span class="chip c-nd">미공개</span></p>
+
+  <h3>시점마다 다른 Lae 공장 생산량</h3>
+  <div class="tw"><table>
+    <thead><tr><th>시점</th><th>공개된 생산·설비</th><th>인력·시장</th><th>근거</th></tr></thead>
+    <tbody>
+      <tr><td><b>2012</b></td><td><b>120 MT/일</b>. US$2M raw-pack 라인으로 20 MT 추가 능력을 도입했다</td><td>수출의 <b>80%</b>가 EU, 나머지는 PNG 내수 Isabella 브랜드</td><td><span class="chip c-src">매체</span></td></tr>
+      <tr><td><b>2017-09</b></td><td>신규 라인으로 <b>70에서 100 MT/일</b>로 늘렸다. 부두는 동시에 3척을 하역하도록 확장했다</td><td><b>2,000명 미만</b>, 2교대</td><td><span class="chip c-src">매체</span></td></tr>
+      <tr><td><b>2019-05</b></td><td>실가동 <b>90 MT/일</b>, 당시 능력 <b>120 MT/일</b></td><td>공장당 약 <b>800명</b> 재고용</td><td><span class="chip c-src">매체</span></td></tr>
+      <tr class="hl"><td><b>2025-05</b></td><td>실생산 <b>120~130 MT/일</b>. <b>20~30 MT/일</b> 증설 계획과 <b>1,000 MT</b> 냉동창고 개소</td><td>현지 <b>1,800명</b>과 외국인 최대 <b>70명</b>. <b>200~300명</b> 추가고용 계획</td><td><span class="chip c-src">매체</span></td></tr>
+      <tr><td><b>현행 사이트</b></td><td>생산능력 <b>140 MT/일</b></td><td>주요 수출시장 EU</td><td><span class="chip c-doc">원본</span></td></tr>
+    </tbody>
+  </table></div>
+
+  <div class="call warn">
+    <p class="ct">같은 시점의 인력 두 값</p>
+    <p>2025-05 냉동창고 개소를 다룬 The National 기사는 Frabelle PNG의 인력을 현지 1,800명과
+      외국인 최대 70명으로 나눠 적었다. 같은 주의 다른 기사는 2,100명이라고 썼다.
+      <span class="chip c-src">매체</span></p>
+    <p>기준값은 내·외국인을 구분한 1,800명과 최대 70명이고, 2,100명은
+      상충값이다. 두 기사 모두 집계 기준을 적지 않았다. <span class="chip c-nd">미공개</span></p>
+  </div>
+
+  <h3>General Santos에 있는 것과 없는 것</h3>
+  <div class="tw"><table>
+    <thead><tr><th>물적 기능</th><th>공개 기록</th><th>경계</th></tr></thead>
+    <tbody>
+      <tr class="hl"><td><b>선단 기지</b></td><td>BFAR 승인 어선은 Cabu Bawing을 모항으로 적고, FoS 감사자료는 Veneracion Wharf를 현장으로 적는다 <span class="chip c-doc">원본</span></td><td>어선·하역 시설</td></tr>
+      <tr><td><b>냉동창고</b></td><td>Sandiwa 85 Cold Storage가 Tambler에 <b>4,500 MT</b> 규모로 등록돼 있다 <span class="chip c-doc">원본</span></td><td>frabellecs.com 연락처를 쓰지만 지분관계는 <span class="chip c-nd">미공개</span></td></tr>
+      <tr class="hl"><td><b>참치 가공</b></td><td>BFAR EU 승인 가공장 명단에 Frabelle 명칭 <b>0곳</b> <span class="chip c-doc">원본</span></td><td>FFC 어획은 General Santos의 외부 캐너리와 PNG 자사 공장으로 간다 <span class="chip c-src">매체</span></td></tr>
+      <tr><td><b>Frabelle Tuna Corporation</b></td><td>회사 사이트와 공개된 법인자료에 해당 명칭이 없다</td><td><span class="chip c-nd">미공개</span></td></tr>
+    </tbody>
+  </table></div>
+
+  <h3>재가동 계획과 멈춘 라인 사이의 Majestic</h3>
+  <div class="tw"><table>
+    <thead><tr><th>시점</th><th>공장 상태</th><th>생산·고용</th><th>소유구조</th></tr></thead>
+    <tbody>
+      <tr><td><b>2013-06</b></td><td>Malahang 공장 개소</td><td>1단계 <b>150 MT/일</b>, 계획 고용 <b>2,500명</b> <span class="chip c-src">매체</span></td><td>Century 계열·FFC·Thai Union의 공동사업 <span class="chip c-src">매체</span></td></tr>
+      <tr><td><b>2019-05</b></td><td>가동 중</td><td>실가동 <b>80 MT/일</b>, 능력 <b>250 MT/일</b> <span class="chip c-src">매체</span></td><td>당시 지분 변동은 공개되지 않는다 <span class="chip c-nd">미공개</span></td></tr>
+      <tr class="hl"><td><b>2023-06</b></td><td><b>캐너리·로인 공장 가동 중단</b></td><td>중단 시 고용 <b>1,300명</b>. 가다랑어 부족과 높은 원어가, GST 환급 지연이 함께 제시됐다 <span class="chip c-src">매체</span></td><td>기존 공동사업</td></tr>
+      <tr><td><b>2025-02</b></td><td>PNG 정부가 연내 재가동 계획 발표</td><td><b>1,000명 이상</b> 고용 전망 <span class="chip c-src">매체</span></td><td><b>FCF Co. Ltd와 Frabelle (PNG) Ltd</b>의 2자 소유 <span class="chip c-src">매체</span></td></tr>
+      <tr class="dim"><td><b>2025~2026</b></td><td>실제 재가동 시점</td><td colspan="2"><span class="chip c-nd">미공개</span></td></tr>
+    </tbody>
+  </table></div>
+</section>
+
+<section id="s6">
+  <h2><span class="h2n">06 / 지속가능성·인증·노동</span>인증 문서의 밀도와 노동 공개의 빈칸</h2>
+
+  <p class="lead">선박 정책은 13개 PDF로 세분돼 있다. MSC와 Friend of the Sea의 범위도
+    어업과 선박, PNG Lae 가공을 중심으로 드러난다. 그러나 회사가 네 번째 책임축으로 이름 붙인
+    Labour Welfare Policy는 원문이 공개되지 않고 노동 정보는 해고와 재고용 때의 보도에 흩어져 있다.
+    <span class="chip c-doc">원본</span> <span class="chip c-nd">미공개</span></p>
+
+  <div class="metrics">
+    <div class="metric hot"><div class="lab">연결 정책문서</div><div class="val">13건</div><div class="note">회사 지속가능성 페이지 <span class="chip c-doc">원본</span></div></div>
+    <div class="metric"><div class="lab">정책 적용 법인</div><div class="val">4개</div><div class="note">FFC·PNG·Subic·KF <span class="chip c-doc">원본</span></div></div>
+    <div class="metric"><div class="lab">FAD 정책 선망선</div><div class="val">13척</div><div class="note">2025-02-12 명단 <span class="chip c-doc">원본</span></div></div>
+    <div class="metric"><div class="lab">노동정책 원문</div><div class="val">0건</div><div class="note">명칭만 공개 <span class="chip c-doc">원본</span></div></div>
+  </div>
+
+  <h3>13개 정책문서가 다루는 것</h3>
+  <div class="tw"><table>
+    <thead><tr><th>정책</th><th class="num">문서</th><th>적용 범위·채택일</th><th>공개된 내용</th></tr></thead>
+    <tbody>
+      <tr class="hl"><td><b>FAD Management Policy</b></td><td class="num"><b>4건</b> <span class="chip c-doc">원본</span></td><td>네 법인, <b>2025-02-12</b>, 선망선 <b>13척</b> <span class="chip c-doc">원본</span></td><td>관측원, 부이 위치·에코사운더 자료 제출, 완전 비얽힘 FAD, 실키상어 안전방류</td></tr>
+      <tr><td><b>Anti-Shark Finning Policy</b></td><td class="num"><b>4건</b> <span class="chip c-doc">원본</span></td><td>FFC·Frabelle PNG·FSS는 <b>2024-02-01</b>, KF (PNG)는 <b>2023-01-01</b> <span class="chip c-doc">원본</span></td><td>상어지느러미 제거·보유 금지와 자연 부착 원칙</td></tr>
+      <tr><td><b>Non-Entangling FADs Policy</b></td><td class="num"><b>4건</b> <span class="chip c-doc">원본</span></td><td>네 법인, <b>2023-01-01</b> <span class="chip c-doc">원본</span></td><td>뗏목 그물과 얽힘 구조 제한</td></tr>
+      <tr><td><b>Full Catch Retention Policy</b></td><td class="num"><b>1건</b> <span class="chip c-doc">원본</span></td><td>Frabelle PNG만 적용, 채택일 <span class="chip c-nd">미공개</span></td><td>폐기 예외와 48시간 안의 보고 항목 <span class="chip c-doc">원본</span></td></tr>
+      <tr class="dim"><td><b>Labour Welfare Policy</b></td><td class="num"><b>0건</b> <span class="chip c-doc">원본</span></td><td>Responsible Sourcing의 네 번째 기둥으로 명칭만 표기</td><td>정책 원문·적용 법인·고충처리·감사결과 <span class="chip c-nd">미공개</span></td></tr>
+    </tbody>
+  </table></div>
+
+  <div class="call hot">
+    <p class="ct">정책의 공개선은 선박에서 멈춘다</p>
+    <p>FAD와 상어지느러미, 비얽힘 어구 문서는 법인·선명·IMO까지 적는다. 2025-02 FAD 문서의
+      13척은 WCPFC 허가 유효 선망선 명단과 일치한다. <span class="chip c-doc">원본</span></p>
+    <p>같은 페이지에는 연차 지속가능성 보고서, ESG 수치 목표, 노동지표가 없다.
+      Labour Welfare Policy와 BSCI 감사결과도 공개되지 않는다. 환경·어구 관리와 노동 공개의
+      깊이가 같지 않다. <span class="chip c-doc">원본</span> <span class="chip c-nd">미공개</span></p>
+  </div>
+
+  <h3>인증이 붙은 대상</h3>
+  <div class="tw"><table>
+    <thead><tr><th>인증·제도</th><th>대상과 상태</th><th>말해 주는 범위</th><th>공개되지 않은 범위</th></tr></thead>
+    <tbody>
+      <tr class="hl"><td><b>MSC 어업 인증</b></td><td>PNG FIA 선망 가다랑어·황다랑어·눈다랑어 어업. <b>2020-05-11</b> 인증, <b>2031-07-30</b> 만료. <b>2026-08-03</b> 재평가 문서의 고객그룹에 Frabelle (PNG) Ltd가 올라 있다 <span class="chip c-doc">원본</span></td><td>PNG EEZ·군도수역의 인증단위와 회원사 어업</td><td>개별 공장 노동조건과 임금·고충처리</td></tr>
+      <tr><td><b>Friend of the Sea</b></td><td>Frabelle (PNG) Limited와 Frabelle Fishing Corporation 모두 ACTIVE, <b>2026-11-28</b> 만료. PNG 등록에는 선박 <b>6척</b>이 적혀 있다 <span class="chip c-doc">원본</span></td><td>선망 어업과 대상 어종·선박</td><td>가공장별 노동 감사결과</td></tr>
+      <tr class="hl"><td><b>MSC Chain of Custody</b></td><td>Frabelle Processing PNG Limited <b>MSC-C-53092</b>, Majestic Seafood <b>MSC-C-54164</b>가 2022년 업계 발표에 실렸다 <span class="chip c-src">매체</span></td><td>인증 원료의 가공·유통 추적</td><td>현재 인증서 유효상태와 두 법인 관계 <span class="chip c-nd">미공개</span></td></tr>
+      <tr><td><b>BRC·IFS·BSCI·Dolphin Safe</b></td><td>Frabelle PNG가 보유 인증으로 회사 사이트에 열거한다 <span class="chip c-doc">원본</span></td><td>Lae 가공장의 회사 공시</td><td>인증번호·유효기간·BSCI 감사결과 <span class="chip c-nd">미공개</span></td></tr>
+      <tr class="dim"><td><b>필리핀 EU 승인 가공장</b></td><td>BFAR 2025-11 및 2026-02 명단의 Frabelle 계열 <b>0곳</b> <span class="chip c-doc">원본</span></td><td>필리핀에서 EU로 수출하는 승인 가공장</td><td>Frabelle의 필리핀 자사 참치 가공장 기록이 없다</td></tr>
+    </tbody>
+  </table></div>
+
+  <p>가공 인증의 공개 기록은 PNG Lae에 모여 있다. 필리핀 법인은 선박 정책과 어업 인증에
+    등장하지만 자사 참치 가공장으로 EU 승인을 받은 이름은 BFAR 명단에 없다.
+    <span class="chip c-doc">원본</span></p>
+
+  <h3>노동 기록은 생산 중단 때 나타났다</h3>
+  <div class="tw"><table>
+    <thead><tr><th>시점</th><th>사업장</th><th>공개된 고용 변화</th><th>당시 설명</th></tr></thead>
+    <tbody>
+      <tr class="hl"><td><b>2018-05</b></td><td>Frabelle PNG, Lae</td><td><b>849명 해고</b> <span class="chip c-src">매체</span></td><td>EU 주문 부진으로 캔 라인을 일시 중단했다. 회사는 raw-pack 라인은 계속 돌고 급여와 수당을 전액 지급했다고 밝혔다 <span class="chip c-src">매체</span></td></tr>
+      <tr><td><b>2019-05</b></td><td>Frabelle PNG·Majestic</td><td>공장당 약 <b>800명 재고용</b> <span class="chip c-src">매체</span></td><td>정부 리베이트 승인 뒤 가동을 늘렸다</td></tr>
+      <tr class="hl"><td><b>2023-06</b></td><td>Majestic, Malahang</td><td>가동 중단 당시 <b>1,300명</b> <span class="chip c-src">매체</span></td><td>Frabelle이 제공한 고용 수치다. 2013년 증설 계획 인력 2,500명과는 별개 값이다</td></tr>
+      <tr><td><b>2025-05</b></td><td>Frabelle PNG, Lae</td><td>현지 <b>1,800명</b>과 외국인 최대 <b>70명</b>. 다른 기사는 <b>2,100명</b>으로 보도 <span class="chip c-src">매체</span></td><td>신규 냉동창고와 증설로 <b>200~300명</b> 추가고용 계획 <span class="chip c-src">매체</span></td></tr>
+    </tbody>
+  </table></div>
+
+  <div class="call warn">
+    <p class="ct">인증서가 답하지 않는 질문</p>
+    <p>어업·추적성 인증은 자원관리와 공급망 범위를 보여 준다. 해고 절차, 임금, 노동시간,
+      고충처리 결과까지 증명하는 자료는 아니다. 2018년 급여·수당 지급은 회사 발언으로만 공개됐다.
+      <span class="chip c-src">매체</span></p>
+    <p>선원 처우와 강제노동, 임금체불에 관한 회사별 지표·소송·시정조치, Labour Welfare Policy 원문은
+      공개 자료에 없다. 인증서는 공정과 추적성을 증명하고, 노동조건은 그 문서가 다루는 범위 밖에 있다.
+      <span class="chip c-nd">미공개</span></p>
+  </div>
+</section>
+
+<section id="s7">
+  <h2><span class="h2n">07 / 필리핀 참치산업</span>캐너리에 파는 쪽</h2>
+
+  <p class="lead">필리핀 참치산업의 중심은 General Santos다. 어선이 원어를 내리고 여섯 수출 캐너리가
+    이를 캔과 로인으로 만든다. Frabelle은 이 여섯 곳에 들어가지 않는다. 이 회사의 필리핀 참치 사업은
+    선망선과 하역 부두를 앞세워 가공업체에 원어를 공급하는 데 놓여 있다.</p>
+
+  <div class="metrics">
+    <div class="metric hot"><div class="lab">필리핀 참치 생산</div><div class="val">494,047 MT</div><div class="note">2024년 어획 <span class="chip c-doc">원본</span></div></div>
+    <div class="metric"><div class="lab">GenSan 수출 캐너리</div><div class="val">6곳</div><div class="note">필리핀 주요 8개사 중 <span class="chip c-doc">원본</span></div></div>
+    <div class="metric"><div class="lab">합산 처리능력</div><div class="val">약 700 MT/일</div><div class="note">2018년 업계 자료 <span class="chip c-src">매체</span></div></div>
+    <div class="metric"><div class="lab">Frabelle 캐너리</div><div class="val">0곳</div><div class="note">필리핀 BFAR EU 승인 명단 <span class="chip c-doc">원본</span></div></div>
+  </div>
+
+  <div class="call hot">
+    <p class="ct">Red Robin 88이 보여 준 판매처</p>
+    <p>Floyd Tiu Laurel 사장은 2024-06 Red Robin 88 투입으로 연간 어획이 <b>8,000 MT 이상</b>
+      늘어날 것이라고 밝혔다. 그 물량은 대부분 General Santos의 캐너리로 보내고 일부만 PNG의
+      자사 가공시설에 공급한다는 설명도 함께 내놨다. <span class="chip c-src">매체</span></p>
+    <p>필리핀 안에서 Frabelle의 경쟁력은 캔 생산능력보다 원어 조달과 공급에 있다. 제품 제조는
+      PNG Lae의 Frabelle (PNG) Limited가 맡는다. <span class="chip c-doc">원본</span></p>
+  </div>
+
+  <h3>생산과 교역의 분모</h3>
+  <div class="tw"><table>
+    <thead><tr><th>항목</th><th class="num">2024년 규모</th><th>읽을 수 있는 범위</th></tr></thead>
+    <tbody>
+      <tr class="hl"><td><b>참치 총생산</b></td><td class="num"><b>494,047.14 MT</b> <span class="chip c-doc">원본</span></td><td>상업어업과 연안어업을 합친 어획량. 필리핀 어획어업 총량의 <b>26.89%</b>로 어종 1위다(BFAR Table 3.10)</td></tr>
+      <tr><td><b>상업어업 참치</b></td><td class="num"><b>367,189.43 MT</b> <span class="chip c-doc">원본</span></td><td>상업어업 총량 <b>868,324.25 MT</b>의 <b>42.29%</b>를 차지한다</td></tr>
+      <tr class="hl"><td><b>참치 수출</b></td><td class="num"><b>130,564 MT</b><br><b>USD 477.69M</b> <span class="chip c-doc">원본</span></td><td>BFAR 기준. 이 가운데 조제·보존 참치는 <b>110,692 MT·USD 417.8M</b>이다</td></tr>
+      <tr><td><b>수출액 별도 집계</b></td><td class="num"><b>USD 514.47M</b> <span class="chip c-doc">원본</span></td><td>DA가 PSA를 인용한 값이다. BFAR 집계와의 HS 범위 차이는 공개되지 않는다</td></tr>
+      <tr class="hl"><td><b>참치 수입</b></td><td class="num"><b>168,100 MT</b><br><b>USD 286.7M</b> <span class="chip c-doc">원본</span></td><td>신선·냉장·냉동이 <b>166,205 MT</b>. PNG산은 <b>70,325 MT·USD 123.8M</b>으로 가장 컸다</td></tr>
+    </tbody>
+  </table></div>
+
+  <p>필리핀은 참치를 대량으로 잡으면서 원어도 대량으로 들여온다. 가공능력에 비해 원료가 부족해
+    2019년 General Santos 여섯 캐너리의 가동률은 <b>50% 미만</b>으로 보도됐다.
+    Frabelle이 PNG 조업분 일부를 자사 Lae 공장으로 보내고 나머지를 General Santos에 공급하는 흐름은
+    이 원료 조달 시장 안에 놓인다. <span class="chip c-src">매체</span></p>
+
+  <h3>General Santos의 여섯 수출 캐너리</h3>
+  <div class="tw"><table>
+    <thead><tr><th>캐너리</th><th>소유·계열</th><th class="num">공개된 일일 처리능력</th><th>Frabelle과의 구분</th></tr></thead>
+    <tbody>
+      <tr class="hl"><td><b>General Tuna</b></td><td>Century Pacific Food</td><td class="num"><b>200 MT</b> <span class="chip c-est">과거 자료</span></td><td rowspan="6">이들 가운데 어느 업체가 Frabelle 원어를 매입하는지, 업체별 납품량과 계약조건은 <span class="chip c-nd">미공개</span></td></tr>
+      <tr><td><b>Philbest Canning</b></td><td>RD Corporation</td><td class="num"><b>200 MT</b> <span class="chip c-src">2021</span></td></tr>
+      <tr class="hl"><td><b>Alliance Select</b></td><td>Strongoak 지배</td><td class="num"><b>90~140 MT</b> <span class="chip c-est">과거 자료</span></td></tr>
+      <tr><td><b>Celebes Canning</b></td><td>비상장 사기업</td><td class="num"><b>75 MT</b> <span class="chip c-est">과거 자료</span></td></tr>
+      <tr class="hl"><td><b>Ocean Canning</b></td><td>비상장 사기업</td><td class="num"><b>45~80 MT</b> <span class="chip c-est">과거 자료</span></td></tr>
+      <tr><td><b>Seatrade Canning</b></td><td>비상장 사기업</td><td class="num"><b>120 MT</b> <span class="chip c-doc">원본</span></td></tr>
+      <tr class="dim"><td><b>Frabelle</b></td><td>FFC</td><td class="num"><b>0곳</b> <span class="chip c-doc">원본</span></td><td>선단 기지와 하역 부두는 있으나 BFAR EU 승인 가공장 명단에 계열 명칭이 없다</td></tr>
+    </tbody>
+  </table></div>
+
+  <p>여섯 캐너리의 능력은 서로 다른 연도의 회사 표기와 과거 업계 목록에서 나온 값이다.
+    현재 실가동량으로 합산할 수 없다. 비교 가능한 업계 기준은 2018년 약 <b>700 MT/일</b>,
+    2019년 <b>720 MT/일</b>이라는 두 역사적 수치다. <span class="chip c-src">매체</span></p>
+
+  <div class="call warn">
+    <p class="ct">등록부 기준 순위에서의 자리</p>
+    <p>Frabelle은 2024-06 필리핀과 PNG 배치 참치 선망선 <b>14척</b>을 발표했다.
+      2026-09 WCPFC·FFA 등록부의 허가 유효 자사 명의 선망선은 <b>13척</b>이다.
+      규모 있는 선망 사업자라는 점은 분명하지만 두 수치는 시점과 범위가 다르다.
+      <span class="chip c-src">매체</span> <span class="chip c-doc">원본</span></p>
+    <p>BFAR Region XII 등록부를 바탕으로 한 2024년 분석은 선박·어구 최다 보유 모기업으로
+      Citra Mina, RD, TSP Livestock을 꼽았다. Frabelle은 그 세 회사에 들지 않았다.
+      등록 지역과 외국적 선박을 함께 포괄하는 전국 단일 순위는 공개되지 않는다.
+      <span class="chip c-src">매체</span> <span class="chip c-nd">미공개</span></p>
+  </div>
+
+  <h3>EU에 더 기운 조제참치 수출</h3>
+  <div class="tw"><table>
+    <thead><tr><th>연도</th><th class="num">HS 1604.14 수출액</th><th class="num">EU27 수출액</th><th class="num">EU27 비중</th><th>자료 상태</th></tr></thead>
+    <tbody>
+      <tr><td><b>2023</b></td><td class="num">USD <b>319.3M</b></td><td class="num">USD <b>193.3M</b></td><td class="num"><b>60.5%</b> <span class="chip c-doc">원본</span></td><td>필리핀 신고</td></tr>
+      <tr class="hl"><td><b>2024</b></td><td class="num">USD <b>417.8M</b></td><td class="num">USD <b>273.5M</b></td><td class="num"><b>65.5%</b> <span class="chip c-doc">원본</span></td><td>BFAR 수치와 일치</td></tr>
+      <tr><td><b>2025</b></td><td class="num">USD <b>361.2M</b></td><td class="num">USD <b>252.8M</b></td><td class="num"><b>70.0%</b> <span class="chip c-doc">원본</span></td><td>연간 신고 완료 여부 <span class="chip c-nd">미공개</span></td></tr>
+    </tbody>
+  </table></div>
+
+  <p>필리핀의 GSP+ 지위는 캔참치를 포함한 6,000여 품목에 EU 무관세를 제공한다.
+    현행 규정의 적용기한은 <b>2027-12-31</b>이다. 참치 로인의 일반관세가 <b>24%</b>인 만큼
+    특혜가 끊길 때의 가격 충격은 작지 않다. <span class="chip c-doc">원본</span> <span class="chip c-src">매체</span></p>
+
+  <div class="call warn">
+    <p class="ct">2027년 뒤의 관세선</p>
+    <p>EU27 비중은 금액 기준 2023년 <b>60.5%</b>에서 2025년 <b>70.0%</b>로 높아졌다.
+      GSP+ 연장이나 EU·필리핀 FTA가 확정되지 않으면 General Santos 캐너리가 수출하는 제품에
+      일반관세가 다시 적용될 수 있다. 2026년 FTA 협상은 아직 진행 중이다.
+      <span class="chip c-doc">원본</span> <span class="chip c-nd">미공개</span></p>
+  </div>
+</section>
+
+<section id="s8">
+  <h2><span class="h2n">08 / 한국 관점</span>FCF를 매개로 한 2단계</h2>
+
+  <p class="lead">Frabelle과 신라교역 사이에는 직접 지분관계가 없다. 두 회사를 잇는 이름은 대만의
+    FCF다. FCF는 PNG에서 Frabelle (PNG)와 Majestic을 공동소유하고 가나에서는 신라교역과
+    Cosmo Seafoods를 공동소유한다. 서로 다른 두 합작사가 FCF에서만 만난다.</p>
+
+  <div class="metrics">
+    <div class="metric hot"><div class="lab">Majestic 주주</div><div class="val">2자</div><div class="note">FCF + Frabelle (PNG), 2025 <span class="chip c-src">매체</span></div></div>
+    <div class="metric"><div class="lab">Cosmo 합작</div><div class="val">2012</div><div class="note">FCF + 신라교역 <span class="chip c-doc">원본</span></div></div>
+    <div class="metric"><div class="lab">신라교역 지분</div><div class="val">23.84%</div><div class="note">Cosmo Seafoods <span class="chip c-doc">원본</span></div></div>
+    <div class="metric"><div class="lab">한국 건조선</div><div class="val">0척</div><div class="note">WCPFC 등록부 표본 <span class="chip c-doc">원본</span></div></div>
+  </div>
+
+  <div class="call hot">
+    <p class="ct">Majestic과 Cosmo가 겹치는 한 점, FCF</p>
+    <p>PNG Lae의 Majestic Tuna Corporation에는 <b>FCF Co. Ltd와 Frabelle (PNG) Ltd</b>가
+      주주로 올라 있다. PNG 수산장관이 2025-02 소유구조와 경영진 변경을 발표하며 밝힌 구성이다.
+      두 회사가 각각 얼마를 쥐었는지는 그 발표에 없다. <span class="chip c-src">매체</span> <span class="chip c-nd">미공개</span></p>
+    <p>가나 Tema의 Cosmo Seafoods는 <b>FCF와 한국 신라교역</b>의 합작 캐너리다.
+      FCF 연혁은 2012년 합작을 적고 신라교역 공시는 Cosmo 지분 <b>23.84%</b>를 밝힌다.
+      <span class="chip c-doc">원본</span></p>
+    <p>이 두 문장을 이어도 Frabelle과 신라교역의 직접 투자관계가 되지는 않는다. FCF가 양쪽의
+      공동 파트너일 뿐 Majestic과 Cosmo 사이의 자금, 원어, 인력 이동은 공개되지 않는다.
+      <span class="chip c-nd">미공개</span></p>
+  </div>
+
+  <h3>같은 FCF, 서로 다른 합작사</h3>
+  <div class="tw"><table>
+    <thead><tr><th>합작사</th><th>거점</th><th>공개된 주주</th><th>공개된 사업 상태</th><th>관계의 경계</th></tr></thead>
+    <tbody>
+      <tr class="hl"><td><b>Majestic Tuna Corporation</b><br>구 Majestic Seafoods Corp.</td><td>Lae Malahang, PNG</td><td><b>FCF Co. Ltd<br>Frabelle (PNG) Ltd</b> <span class="chip c-src">매체</span></td><td>2023-06 가동 중단. PNG 정부가 2025년 안의 재가동 계획과 <b>1,000명 이상</b> 고용 전망을 발표했다 <span class="chip c-src">매체</span></td><td>각 지분율과 실제 재가동 실적은 <span class="chip c-nd">미공개</span></td></tr>
+      <tr><td><b>Cosmo Seafoods Company</b></td><td>Tema, 가나</td><td><b>FCF Co. Ltd<br>신라교역</b> <span class="chip c-doc">원본</span></td><td>FCF는 참치 캐너리 능력을 <b>200 MT/일</b>로 표기한다. 신라교역 공시 지분은 <b>23.84%</b>다 <span class="chip c-doc">원본</span></td><td>FCF의 정확한 지분과 Majestic과의 거래는 <span class="chip c-nd">미공개</span></td></tr>
+    </tbody>
+  </table></div>
+
+  <p>Majestic은 2009년 보도에서 Thai Union, Century Canning, FFC가 각각 <b>33%</b>를 가진
+    3자 사업으로 소개됐다. 2025년 발표에는 FCF와 Frabelle (PNG)만 남았다. 기존 주주가 언제 어떤 방식으로 얼마를 받고 빠졌는지는 양쪽 모두 밝히지 않았다. <span class="chip c-src">매체</span> <span class="chip c-nd">미공개</span></p>
+
+  <h3>PNG 정책 안에서 만나는 한국 기업</h3>
+  <div class="tw"><table>
+    <thead><tr><th>접점</th><th>공개된 사실</th><th>Frabelle과의 거리</th></tr></thead>
+    <tbody>
+      <tr class="hl"><td><b>동원산업</b></td><td>2025-02 PNG 정부 발표에서 동원산업, TriMarine, FCF가 Madang의 RD Tuna Canners 재편 지원사로 이름을 올렸다 <span class="chip c-src">매체</span></td><td>RD는 Frabelle과 별개 회사다. 같은 PNG 가공·입어 정책 안의 경쟁 접점이다</td></tr>
+      <tr><td><b>신라교역</b></td><td>FCF와 가나 Cosmo Seafoods를 공동소유한다. Cosmo의 거점은 Tema다 <span class="chip c-doc">원본</span></td><td>FCF를 한 단계 사이에 둔 간접 접점이다</td></tr>
+      <tr class="hl"><td><b>한국 원어</b></td><td>한국에서 필리핀으로 향한 냉동 황다랑어와 가다랑어가 UN Comtrade 양국 신고에 잡힌다 <span class="chip c-doc">원본</span></td><td>국가 단위 통계다. Frabelle의 수입 계약을 뜻하지 않는다</td></tr>
+      <tr><td><b>선박</b></td><td>WCPFC 등록부 표본의 Frabelle 계열 소유·용선선 가운데 한국 건조선은 <b>0척</b>이다 <span class="chip c-doc">원본</span></td><td>구 한국적 중고선 한 척은 별도로 남아 있다</td></tr>
+    </tbody>
+  </table></div>
+
+  <h3>한국산 냉동 원어는 국가 통계에만 잡힌다</h3>
+  <div class="tw"><table>
+    <thead><tr><th>품목</th><th>신고 방향</th><th class="num">2022</th><th class="num">2024</th><th>귀속 범위</th></tr></thead>
+    <tbody>
+      <tr class="hl"><td rowspan="2"><b>HS 030342</b><br>냉동 황다랑어</td><td>필리핀 수입 신고</td><td class="num"><b>1,284 t</b></td><td class="num"><b>293 t</b> <span class="chip c-doc">원본</span></td><td rowspan="4">한국과 필리핀 사이의 국가 단위 물량이다. 수입자·공급계약·최종 캐너리는 <span class="chip c-nd">미공개</span></td></tr>
+      <tr><td>한국 수출 신고</td><td class="num"><b>1,636 t</b></td><td class="num"><b>1,084 t</b> <span class="chip c-doc">원본</span></td></tr>
+      <tr class="hl"><td rowspan="2"><b>HS 030343</b><br>냉동 가다랑어</td><td>필리핀 수입 신고</td><td class="num"><b>7,322 t</b></td><td class="num"><b>4,392 t</b> <span class="chip c-doc">원본</span></td></tr>
+      <tr><td>한국 수출 신고</td><td class="num"><b>9,812 t</b></td><td class="num"><b>5,429 t</b> <span class="chip c-doc">원본</span></td></tr>
+    </tbody>
+  </table></div>
+
+  <div class="call warn">
+    <p class="ct">무역량을 Frabelle 매입으로 바꿀 수 없다</p>
+    <p>양국 신고는 2022년 정점과 2023년 급감, 2024년 반등이라는 흐름을 함께 보인다.
+      신고 기준과 시차 때문에 물량은 일치하지 않는다. 어느 값도 Frabelle을 수입자로 특정하지 않는다.
+      Frabelle이 한국산 원어를 직접 샀는지, 상대가 누구인지는 어느 쪽 기록에도 남아 있지 않다.
+      <span class="chip c-doc">원본</span> <span class="chip c-nd">미공개</span></p>
+  </div>
+
+  <h3>배 한 척에 남은 한국 이력</h3>
+  <div class="tw"><table>
+    <thead><tr><th>항목</th><th>WCPFC 등록 내용</th><th>한국과의 관계</th></tr></thead>
+    <tbody>
+      <tr class="hl"><td><b>SILVER QUEEN</b></td><td>IMO 8327715, <b>1975년 미국 건조</b>, <b>960.86 GT</b>. 등록 소유자는 Frabelle Fishing Corporation이고 마지막 허가는 2023-12-31 만료됐다 <span class="chip c-doc">원본</span></td><td>이전 선명 <b>POLARIS 2</b>, 이전 기국 <b>Korea</b></td></tr>
+      <tr><td><b>한국 건조 이력</b></td><td>Frabelle 계열 소유·용선선의 등록부 표본에 <b>0척</b> <span class="chip c-doc">원본</span></td><td>SILVER QUEEN도 미국 건조선이다</td></tr>
+      <tr class="dim"><td><b>이전 거래</b></td><td>한국 측 원소유 법인과 매각연도</td><td><span class="chip c-nd">미공개</span></td></tr>
+    </tbody>
+  </table></div>
+
+  <p>한국과의 관계를 지분, 원어, 선박으로 나누면 경계가 선명해진다. 지분은 FCF를 거친 2단계,
+    원어는 국가 통계, 선박은 구 한국적 이력 한 척이다. 두 회사를 잇는 것은 지분이 아니라 FCF라는 공통 주주 하나다.
+    <span class="chip c-doc">원본</span> <span class="chip c-nd">미공개</span></p>
+</section>
+
+<section id="s9">
+  <h2><span class="h2n">09 / 종합 평가</span>어획은 선명하고 소유와 재무는 흐리다</h2>
+
+  <p class="lead">Frabelle은 필리핀에서 원어를 공급하고 PNG에서 참치를 가공한다. 등록부에는
+    자사 명의 선망선과 용선망이 구체적으로 남지만 그룹을 묶는 지분도와 연결재무는 공개되지 않는다.
+    운영자산의 윤곽과 기업집단의 경제적 실체 사이에 큰 정보 격차가 있다.</p>
+
+  <div class="metrics">
+    <div class="metric hot"><div class="lab">허가 유효 선망선</div><div class="val">13척</div><div class="note">자사 명의, 2026-09 <span class="chip c-doc">원본</span></div></div>
+    <div class="metric"><div class="lab">필리핀 캐너리</div><div class="val">0곳</div><div class="note">BFAR EU 승인 명단 <span class="chip c-doc">원본</span></div></div>
+    <div class="metric"><div class="lab">Lae 실생산</div><div class="val">120~130 MT/일</div><div class="note">Frabelle PNG, 2025-05 <span class="chip c-src">매체</span></div></div>
+    <div class="metric"><div class="lab">EU27 수출 비중</div><div class="val">70.0%</div><div class="note">필리핀 조제참치, 2025 <span class="chip c-doc">원본</span> <span class="chip c-nd">확정 여부 미공개</span></div></div>
+  </div>
+
+  <div class="call hot">
+    <p class="ct">Frabelle을 놓을 자리</p>
+    <p>이 회사의 필리핀 내 핵심 자산은 참치 캐너리가 아니라 선단과 하역망이다. General Santos에서는
+      외부 캐너리에 원어를 팔고 Lae에서는 Frabelle (PNG)가 캔과 로인을 만든다. 어획과 제조를 한 나라에
+      모은 수직통합 기업으로 설명하면 실제 자산 배치가 가려진다. <span class="chip c-doc">원본</span> <span class="chip c-src">매체</span></p>
+    <p>한국과의 접점은 두 갈래로 좁혀진다. 신라교역은 FCF와 Cosmo Seafoods를 공동소유하고
+      Frabelle (PNG)는 같은 FCF와 Majestic을 공동소유한다. Frabelle과 신라교역 사이에 직접 지분관계는 없다.
+      <span class="chip c-doc">원본</span> <span class="chip c-src">매체</span></p>
+  </div>
+
+  <h3>공개 기록이 그리는 기업의 윤곽</h3>
+  <div class="tw"><table>
+    <thead><tr><th>축</th><th>공개된 사실</th><th>종합 평가</th></tr></thead>
+    <tbody>
+      <tr class="hl"><td><b>필리핀 사업</b></td><td>General Santos 선단 기지와 하역 부두, 냉동창고. 자사 참치 캐너리는 <b>0곳</b> <span class="chip c-doc">원본</span></td><td>대형 캐너리의 원어 공급자</td></tr>
+      <tr><td><b>PNG 사업</b></td><td>Lae 자사 공장 실생산 <b>120~130 MT/일</b>, 회사 표기 능력 <b>140 MT/일</b>. Majestic은 2023-06부터 가동 중단 <span class="chip c-src">매체</span> <span class="chip c-doc">원본</span></td><td>그룹 참치 제조가 모인 거점</td></tr>
+      <tr class="hl"><td><b>선단</b></td><td>자사 명의 허가 유효 선망선 <b>13척</b>, Bluecatch 용선 <b>6척</b>, 운반선 <b>2척</b>, 보조선 <b>2척</b> <span class="chip c-doc">원본</span></td><td>소유 법인은 나뉘고 PNG 운항은 Frabelle (PNG)에 집중</td></tr>
+      <tr><td><b>그룹 범위</b></td><td>어업 외에 냉동창고, 조선·수리, 식품, 부동산, 전력이 회사 사이트에 열거돼 있다 <span class="chip c-doc">원본</span></td><td>사업 다각화는 보이지만 법인별 기여도는 <span class="chip c-nd">미공개</span></td></tr>
+      <tr class="hl"><td><b>지배구조</b></td><td>Frabelle Holdings는 <b>2022년</b> 등기됐고 회사 사이트는 창업주를 그룹 회장으로 적는다 <span class="chip c-src">매체</span> <span class="chip c-doc">원본</span></td><td>계열 지분과 최종 지배구조는 <span class="chip c-nd">미공개</span></td></tr>
+      <tr><td><b>한국 접점</b></td><td>FCF를 사이에 둔 Majestic·Cosmo의 2단계 연결, 국가 단위 원어 교역, 구 한국적 중고선 <b>1척</b> <span class="chip c-doc">원본</span> <span class="chip c-src">매체</span></td><td>신라교역과 직접 지분관계는 없다. 한국산 원어 직접 구매는 <span class="chip c-nd">미공개</span></td></tr>
+    </tbody>
+  </table></div>
+
+  <h3>운영 기반과 노출 요인</h3>
+  <div class="tw"><table>
+    <thead><tr><th>항목</th><th>기반</th><th>노출</th></tr></thead>
+    <tbody>
+      <tr class="hl"><td><b>원어 조달</b></td><td>필리핀·PNG 기선과 필리핀기 용선선을 함께 운항한다 <span class="chip c-doc">원본</span></td><td>PNG의 입어료, VDS, 국내가공 리베이트와 원어 공급조건이 수익성에 직접 닿는다 <span class="chip c-src">매체</span></td></tr>
+      <tr><td><b>가공</b></td><td>Frabelle PNG는 2025-05 <b>120~130 MT/일</b>을 생산했고 <b>1,000 MT</b> 냉동창고를 열었다 <span class="chip c-src">매체</span></td><td>Majestic은 원어 부족과 높은 가격, GST 환급 지연 속에 2023-06 가동을 멈췄다 <span class="chip c-src">매체</span></td></tr>
+      <tr class="hl"><td><b>시장 접근</b></td><td>필리핀 조제참치의 EU27 비중은 2025년 금액 기준 <b>70.0%</b>다 <span class="chip c-doc">원본</span></td><td>GSP+ 적용기한은 <b>2027-12-31</b>. 이후 관세조건은 <span class="chip c-nd">미공개</span></td></tr>
+      <tr><td><b>선박 연령</b></td><td>허가 유효 선망선 <b>13척</b> 가운데 신조 취득선은 <b>2척</b>이다 <span class="chip c-doc">원본</span></td><td>나머지 <b>11척</b>은 1980년부터 2010년 사이 건조된 중고선이다 <span class="chip c-doc">원본</span></td></tr>
+      <tr class="hl"><td><b>지속가능성</b></td><td>법인·선명·IMO를 적은 FAD, 상어지느러미, 비얽힘 어구 정책 <b>13건</b>이 공개돼 있다 <span class="chip c-doc">원본</span></td><td>연차 지속가능성 보고서와 노동지표, Labour Welfare Policy 원문은 <span class="chip c-nd">미공개</span></td></tr>
+      <tr><td><b>재무 가시성</b></td><td>EMIS는 FFC FY2024 순매출 <b>-34.54%</b>, 순이익 <b>+24.47%</b>, 총자산 <b>+12.13%</b>의 증감률을 제공한다 <span class="chip c-src">매체</span></td><td>법인 절대액과 그룹 연결실적은 <span class="chip c-nd">미공개</span></td></tr>
+    </tbody>
+  </table></div>
+
+  <p>Frabelle의 운영 규모는 선박과 공장 기록으로 드러난다. 기업가치와 수익성, 계열사 사이의
+    자금 흐름은 같은 수준으로 드러나지 않는다. 따라서 선단 척수나 Lae 생산량을 그룹 전체의 재무 규모로
+    환산할 근거가 없다. <span class="chip c-doc">원본</span> <span class="chip c-nd">미공개</span></p>
+
+  <h3>남은 물음</h3>
+  <div class="tw"><table>
+    <thead><tr><th>항목</th><th>공개된 데까지</th><th>아직 공개되지 않은 것</th></tr></thead>
+    <tbody>
+      <tr class="hl"><td><b>SEC 절대 재무</b></td><td>FFC와 일부 계열사의 연도별 증감률만 상용DB에 나온다 <span class="chip c-src">매체</span></td><td>매출·영업이익·순이익·자산의 법인별 절대액과 그룹 연결재무 <span class="chip c-nd">미공개</span></td></tr>
+      <tr><td><b>Laurel 장관 SALN</b></td><td>2025년 급여·수당 <b>₱5.2M</b>은 COA 자료에 나온다 <span class="chip c-src">매체</span></td><td>2023년부터 2025년까지 SALN 순자산. 공직 보수는 순자산 수치가 아니다 <span class="chip c-nd">미공개</span></td></tr>
+      <tr class="hl"><td><b>Frabelle Holdings</b></td><td>SEC 미러에 <b>2022년</b> 설립과 등록번호 2022070059166-00이 올라 있다 <span class="chip c-src">매체</span></td><td>주주, 계열사 보유지분, 의결권과 실제 지주 역할 <span class="chip c-nd">미공개</span></td></tr>
+      <tr><td><b>KF (PNG) Limited</b></td><td>Frabelle PNG와 같은 Lae 주소를 쓰고 선망선 <b>2척</b>의 정책·등록 소유자로 등장한다 <span class="chip c-doc">원본</span></td><td>주주와 Frabelle 계열 여부, 사업 역할 <span class="chip c-nd">미공개</span></td></tr>
+      <tr class="hl"><td><b>Majestic 재가동</b></td><td>PNG 정부가 2025년 안의 재가동 계획과 <b>1,000명 이상</b> 고용 전망을 발표했다 <span class="chip c-src">매체</span></td><td>실제 재가동일, 생산량, 가동률, 고용 실적과 FCF·Frabelle (PNG)의 지분율 <span class="chip c-nd">미공개</span></td></tr>
+      <tr><td><b>ISSF PVR</b></td><td>회사 사이트에는 ISSF 보전조치 형식의 선박별 정책문서가 있다 <span class="chip c-doc">원본</span></td><td>Frabelle 계열 개별 선박의 현행 PVR 등재 상태 <span class="chip c-nd">미공개</span></td></tr>
+      <tr class="hl"><td><b>한국과의 실물 거래</b></td><td>FCF 합작관계, 국가 무역통계, SILVER QUEEN의 구 한국적 이력이 각각 공개돼 있다 <span class="chip c-doc">원본</span> <span class="chip c-src">매체</span></td><td>Frabelle의 한국산 원어 직접 매입, SILVER QUEEN의 한국 원소유자·매각연도, Majestic와 Cosmo 사이의 거래 <span class="chip c-nd">미공개</span></td></tr>
+    </tbody>
+  </table></div>
+
+  <h3>자료의 한계</h3>
+  <div class="call warn">
+    <p class="ct">공개 기록이 답할 수 있는 범위</p>
+    <p>Frabelle은 비상장 그룹이다. 회사 사이트는 사업군과 일부 운영수치를 제공하지만 법인별 GIS,
+      연결재무제표, 내부거래와 최종 수익자를 공개하지 않는다. 상용DB의 증감률은 절대 재무를 대신하지 못한다.
+      <span class="chip c-doc">원본</span> <span class="chip c-src">매체</span> <span class="chip c-nd">미공개</span></p>
+    <p>WCPFC·FFA·BFAR 등록부는 특정 기준일의 소유자, 용선자, 허가와 승인 상태를 보여 준다.
+      실질 지배와 일별 가동, 매각·계선 여부까지 담지는 않는다. 회사 명칭이 특정 명단에 없다는 사실도
+      그 명단의 범위 안에서만 유효하다. <span class="chip c-doc">원본</span></p>
+    <p>UN Comtrade는 국가 간 흐름을 보여 줄 뿐 개별 수입자를 밝히지 않는다. 매체에 나온 생산량과 고용은
+      시점과 집계단위가 달라 서로 바꿔 쓸 수 없다. 결론의 범위는 공개된 법인·선박·가공장·무역 기록이
+      말하는 데까지다. 그 너머 지분과 거래 상대, 절대 재무는 이 회사가 열지 않는 영역으로 남는다.
+      <span class="chip c-doc">원본</span> <span class="chip c-src">매체</span> <span class="chip c-nd">미공개</span></p>
+  </div>
+</section>
+
+</main>
+</div>
+</div>
