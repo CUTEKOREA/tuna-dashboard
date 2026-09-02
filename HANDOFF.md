@@ -1,3 +1,9 @@
+> 🚀 **2026-09-02 19:05 KST — `/bangkok-office` 히어로 「하이솔트 확정액」 타일 제거 라이브 배포 완료** [CC]:
+> - PR [#873](https://github.com/CUTEKOREA/tuna-dashboard/pull/873) squash → main `dc0a450e`. Production `dpl_2UURddhRYaasTLJEEeBpAT4MCyDi` READY. 라이브 히어로 보조 KPI: 방콕 재고 · 2026 누적 하역 · 가공가능일수 3개 — «하이솔트 확정액» 문자열 없음. console/page error 0, 런타임 로그 5xx 0건.
+> - 다음: PR [#876](https://github.com/CUTEKOREA/tuna-dashboard/pull/876) 계절 패턴 참고선(예측 아님) — main 위로 리베이스, MERGEABLE, 병합 대기.
+
+> 마지막 업데이트: 2026-09-02 19:05 KST [CC]
+
 > 🚀 **2026-09-02 18:05 KST — `/bangkok-office` 개관 차트 확장 + 싱가포르 MGO 인테이크 라이브 배포 완료** [CC]:
 > - PR [#872](https://github.com/CUTEKOREA/tuna-dashboard/pull/872) squash 병합 → main `634a21bb`. Production `dpl_AqSJEZz1kDeyWAe6JRHhPqkNBgRV` READY, alias `leedonggun.co.kr`. env 교체 없음.
 > - 라이브 실측(로그인 세션): 「원어 시세 추이」에 방콕사무소 원어 시세 · 어튜나 SKJ 방콕 · 싱가포르 MGO(점선) 3계열이 한 $/t 축에, 아래 「방콕 캐너리 보유 원어 합」(MT)·「방콕 캐너리 평균 가동률」(%) 소패널. 곡선 5개(가격 3 + 재고 area + 가동률 line), 점선 1, 우측 y축 0. 어튜나 라인은 `/api/atuna-prices` 로그인 fetch로 정상 로드.
