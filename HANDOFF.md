@@ -1,3 +1,11 @@
+> 🚀 **2026-09-02 18:05 KST — `/bangkok-office` 개관 차트 확장 + 싱가포르 MGO 인테이크 라이브 배포 완료** [CC]:
+> - PR [#872](https://github.com/CUTEKOREA/tuna-dashboard/pull/872) squash 병합 → main `634a21bb`. Production `dpl_AqSJEZz1kDeyWAe6JRHhPqkNBgRV` READY, alias `leedonggun.co.kr`. env 교체 없음.
+> - 라이브 실측(로그인 세션): 「원어 시세 추이」에 방콕사무소 원어 시세 · 어튜나 SKJ 방콕 · 싱가포르 MGO(점선) 3계열이 한 $/t 축에, 아래 「방콕 캐너리 보유 원어 합」(MT)·「방콕 캐너리 평균 가동률」(%) 소패널. 곡선 5개(가격 3 + 재고 area + 가동률 line), 점선 1, 우측 y축 0. 어튜나 라인은 `/api/atuna-prices` 로그인 fetch로 정상 로드.
+> - 데스크톱 1425px·390px 가로 overflow 0, console/page error 0, 배포 후 런타임 로그 error/5xx 0건.
+> - 예측 점선은 넣지 않았다 — Fable 5.1 독립 검증 판정 대기. 후속 PR #873(하이솔트 타일 제거)은 main 위로 리베이스해 MERGEABLE.
+
+> 마지막 업데이트: 2026-09-02 18:05 KST [CC]
+
 > 🔁 **2026-09-02 17:30 KST — 적대 리뷰 판정 «수정» 반영: 예측 공식은 «방향 틸트»로 격하** [CC]:
 > - adversarial-reviewer(skj-forecast-review) 판정: 누출 없음(확인) · **우위는 유의하지 않음**(MR+S+mom vs 계절기준선 Δ0.89pp, DM(NW lag2) p=0.17, 6개월 블록부트 90% CI [−2.02, +0.27], 6개 사양 선택 반영 reality-check p=0.18) · 계절기준선이 약함(드리프트 무감쇠 — ×0.5로 감쇠하면 15.01) · **MA24 «회귀» 항 기여 0**(gap 뺀 S+mom이 더 좋음) · 추세 국면(2005-09·2010-15)에서 구조적 열세, 2026 랠리가 그 국면. 부수: best 선택이 n=20 사양을 n=197과 같은 표에서 골랐던 버그.
 > - 내 이전 «CI가 0을 확실히 벗어남»은 **iid 부트스트랩 오류**였다 — 겹치는 3개월 구간의 자기상관을 무시했다. 정정한다.
