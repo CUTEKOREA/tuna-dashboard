@@ -143,6 +143,11 @@ describe('bangkok native dashboard', () => {
     expect(markup).toContain('방콕사무소');
     expect(markup).toContain('data-now="true"');
     expect(markup).toContain('분석 기간 2020.05~2026.09 · 고유 290주');
+    // 2026-09-02: 개관 시세 차트가 어튜나·방콕사무소·싱가포르 MGO 3종(같은 $/t 축) + 재고·가동률 소패널로 확장
+    for (const text of ['방콕사무소 원어 시세', '어튜나 SKJ 방콕', '싱가포르 MGO', '방콕 캐너리 보유 원어 합', '방콕 캐너리 평균 가동률']) {
+      expect(markup).toContain(text);
+    }
+    expect(markup).not.toContain('yAxisId="right"'); // 이중 축 금지 — 단위가 다르면 패널을 나눈다
     for (const value of [2030, 100500, 341810, 47]) {
       expect(markup).toContain(`data-kpi-value="${value}"`);
     }

@@ -1,3 +1,17 @@
+> 📈 **2026-09-02 16:40 KST — 방콕 SKJ 3개월 예측: 월별 30년 모델이 기준선을 이김 + `/bangkok-office` 개관 차트 확장 (로컬 완료)** [CC]:
+> - 오케스트레이션(run-log `docs/run-log/skj_price_forecast_2026-09-02.md`): Grok×4(문헌·데이터원·실시간·반증)·Codex×2(주간 하네스 반증·월별 독립 재구현)·source-archivist·adversarial-reviewer 병렬. B(데이터원)·D(주간 반증)는 60분 무응답으로 kill.
+> - **핵심 전환**: 주간 284주로는 어떤 회귀도 기준선을 못 이겼으나(#872), `data/atuna_prices.json`의 **월별 SKJ 1.8kg CFR 방콕 1994~2026(392개월)** 로 바꾸니 이긴다. `scripts/forecast_skj_monthly.py` → `docs/2026-09-02_skj_monthly_forecast_backtest.md`.
+> - **최선 공식 MR+S+mom**: Δln P(t+3) = 0.009 − 0.091·gap − 0.329·mom3 + 0.551·seas. gap = ln P − ln MA24(24개월 이동평균 대비 고평가), mom3 = 직전 3개월 로그변화(단기 과열 되돌림), seas = 같은 달 출발 과거 3개월 평균 변화율. 롤링 197오리진(2010~2026): MAPE 14.7% vs 랜덤워크 15.5% vs 계절기준선 15.6%, 방향 61%. **공통 오리진 116개(2015~)에서는 13.3% vs 15.1%/15.3%, 방향 66%, 이득 +1.96%p [부트스트랩 90% CI +0.92~+3.00]**. 2016~2026 세 구간 모두 우세, 2010~15만 열세. MA 창 12~36·λ 0.1~10에 둔감(14.5~14.7%).
+> - **외생변수는 도움 안 됨**: Brent·USD/THB·ONI(3·12개월 리드)·미국 CPI·싱가포르 MGO·만타/세이셸/아비장 스프레드 — 공통 표본에서 MR+S+mom보다 낫지 않다. 만타 스프레드는 표본 길이 차이로 처음엔 나아 보였으나 같은 오리진에서 비교하면 오히려 못하다(계수 ≈0).
+> - **검증**: Codex 독립 재구현(코드 미열람) MAPE 14.671/15.468/15.559 재현, 누출 4항목(MA24·seas·훈련경계·표준화) 전부 «없음». Thai Union IR 월별 방콕 SKJ(2019~, `public/data/thaiunion_skj_monthly.json`)와 Atuna 상관 0.93·평균 절대차 4.7% — 표적 시리즈 교차검증.
+> - **지금 예측**: 2026-08 $2,000 → **2026-11 $1,787(80% 밴드 1,409~2,213), −11~13%**. 기여: 계절(8월 출발 −9.9%p) > 모멘텀(−2.3) > 고평가(−1.7). 유사국면(7~9월 출발·MA24 대비 ≥+15%) 33건 중 24건(73%) 하락, 중앙값 −13%.
+> - **Grok 반증 시도**(2026-07 이후 실시간): 판정 «상방 위험 큼 — 반증 실패». FAD 금어 종료 후 어획 회복 보도 없음·8월 시세 상승·초강력 엘니뇨(OND >90%)가 상방 위험이나, 엘니뇨 해 2015·2023의 8→11월 방콕 실측 −33%·−17%, 미국 관세 수요 위축, 대형 팩커 인상 저항이 하락 가설과 부합. 1997은 Atuna −13.9% vs FAO +8.1%로 출처 불일치.
+> - **`/bangkok-office` 개관 차트 확장**(사용자 지시): 「원어 시세 추이」에 방콕사무소 시세·어튜나 SKJ 방콕·싱가포르 MGO(점선) 3종을 **같은 $/t 축**에, 그 아래 「방콕 캐너리 보유 원어 합」(MT)·「방콕 캐너리 평균 가동률」(%) 소패널을 같은 시간축으로. 이중 축 금지(dataviz). 어튜나는 페이월 자료라 `/api/atuna-prices`를 로그인 세션으로 클라이언트 fetch(실패 시 미표시·안내), MGO는 새 인테이크 `lib/data/singapore-mgo.ts`(보고일 직전 영업일, 보간 없음). 팔레트 방콕 #3b82f6·어튜나 #d95926·MGO #199e70은 dataviz validator 라이트·다크 통과. 예측 점선은 적대 리뷰 판정 후 다음 PR.
+> - `npm run verify` 통과: ESLint 0 errors(기존 warnings 12) · TypeScript · 파이썬 자기점검 10/13/3/3/4 · Vitest 1248/1248(164 파일) · API cache 158/158 · Next.js 정적 118개 · fleet client leak 통과 · bundle budget 33 라우트.
+> - 미완: adversarial-reviewer(skj-forecast-review)·source-archivist(skj-sources) 보고 대기. 판정이 뒤집히면 후속 항목으로 정정한다.
+
+> 마지막 업데이트: 2026-09-02 16:40 KST [CC]
+
 > 📈 **2026-09-02 15:45 KST — 싱가포르 MGO 동기화 + 방콕 원어 시세 3개월 예측 백테스트 (결론: 점선 안 그림)** [CC]:
 > - **싱가포르 MGO 인테이크 신설**: `scripts/sync_singapore_mgo.py` → `public/data/singapore_mgo.json`. Ship & Bunker 페이지 그래프가 쓰는 공개 API(`POST https://shipandbunker.com/a/.json`, `api-method=pricesForAllSeriesGet&mc0=SG SIN&pc0=MGO`)에서 **일별 783행(2023-09-01~2026-09-01)**, 화요일 정렬 주간 157행. 등급 MGO 0.1% DMA(사이트 LSMGO와 동일값). 차트 실측 4개 지점(1/8 593.5·4/6 2,064·11/28 672·9/1 1,222.5)과 일치. `npm run sync:singapore-mgo`, 자기점검 `test:singapore-mgo-sync`(verify 체인 포함), 최신행 고정 테스트 `__tests__/singapore-mgo-data.test.ts`.
 > - **파노피 유가 4지점 vs 싱가포르 MGO 대조** (artifact `f12355ca…`): 4지점 구간 26주에서 싱가포르 변동폭 108% vs 파노피 탱커 53%·테마 27%. 수준 상관 다카르 .84·탱커 .64·아비장 .52·테마 .31. 주간 변동률은 **싱가포르 1주 선행**일 때 최대(아비장 .61·테마 .49) — 파노피 호가가 한 주 늦게 반영. 저장소 `/api/mgo`의 Brent×13.78 추정은 실측 SG/Brent 평균 12.4(범위 9.2~19.7)라 평시 약 40% 과대·급등기 20~57% 과소. 사용자 지시로 유가 변수는 **싱가포르 MGO 기준**으로 확정.
