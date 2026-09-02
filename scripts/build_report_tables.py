@@ -91,6 +91,12 @@ SPECS: dict[str, dict] = {
                  "s6|연도 | 조달량", "s6|어종 | 2024", "s6|어법 | 2024",
                  "s7|등록부 | 내용", "s8|명단 연도", "s9|연도 | 한국 국적선"],
     },
+    "frabelle": {
+        "src": "docs/evidence/company-frabelle-2026-09/보고서.html",
+        # 보고서 9절이 화면 9단계와 1:1 이다. build_report_prose.py 와 같은 매핑을 쓴다.
+        "stages": {f"s{i}": f"c{i:02d}" for i in range(1, 10)},
+        "drop": [],
+    },
     "jais": {
         "src": "docs/evidence/company-jais-2026-08/보고서.html",
         "stages": {"s1": "c01", "s2": "c01", "s3": "c02", "s4": "c03", "s5": "c04",
