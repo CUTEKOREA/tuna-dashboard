@@ -28,6 +28,15 @@ describe('fleet idle vessel detection', () => {
     expect(moamari).toMatchObject({ region: '태평양', lastCatchDate: '2026-08-13' });
     expect(moamari!.dailyAverageMt).toBeCloseTo(22.89, 2);
     expect(FLEET_IDLE_NOTES.MOAMARI.headline).toContain('젠산');
+    // 2026-09-02 선장 사고보고서(8/18): 손상은 로프가드가 아니라 프로펠러 볼트 3개 파손
+    expect(FLEET_IDLE_NOTES.MOAMARI.headline).toContain('프로펠러 볼트 3개 파손');
+    expect(FLEET_IDLE_NOTES.MOAMARI.headline).not.toContain('로프가드');
+    const damage = FLEET_IDLE_NOTES.MOAMARI.lines.find((line) => line.label.startsWith('손상'))!;
+    expect(damage.text).toContain('프로펠러 볼트 3개 파손');
+    expect(damage.text).toContain('잠수부 점검');
+    const cause = FLEET_IDLE_NOTES.MOAMARI.lines.find((line) => line.label.startsWith('사고 경위'))!;
+    expect(cause.text).toContain('SEIN KASAMA');
+    expect(cause.text).toContain('ASTERN');
     // 2026-09-02: 계약(항해 24~26일·일 $41,000)과 현재 속도 30일을 분리해 적는다
     const labels = FLEET_IDLE_NOTES.MOAMARI.lines.map((line) => line.label);
     expect(labels).toContain('예인 계약');
