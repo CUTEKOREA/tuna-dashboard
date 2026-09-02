@@ -11,7 +11,41 @@ export type OverviewRow = {
   MGO: number | null;
   재고: number | null;
   가동률: number | null;
+  /** 계절 패턴 참고선 — 기준점(마지막 어튜나 월)과 목표월 두 점만 값이 있다 */
+  계절패턴?: number | null;
+  /** 계절 패턴 80% 밴드 [하단, 상단] — 목표월에만 */
+  계절밴드?: [number, number] | null;
 };
+
+export type SeasonalOutlookInput = {
+  asOf: string; anchorPrice: number; targetMonth: string; value: number; band80: readonly [number, number];
+};
+
+/**
+ * 마지막 실측 주 뒤에 목표월까지 주 단위 빈 행을 붙이고, 기준점(asOf 월의 마지막 주)과 목표월(마지막 주)에만
+ * 계절 패턴 값을 둔다. 중간 주에는 값을 만들지 않는다 — 선은 connectNulls로 두 점을 잇는다.
+ */
+export function appendSeasonalOutlook(rows: OverviewRow[], o: SeasonalOutlookInput): OverviewRow[] {
+  if (!rows.length) return rows;
+  const out = rows.map((r) => ({ ...r }));
+  // 기준점: asOf 월에 속하는 마지막 행 (없으면 마지막 행)
+  let anchor = -1;
+  for (let i = out.length - 1; i >= 0; i -= 1) if (out[i].date.slice(0, 7) === o.asOf) { anchor = i; break; }
+  if (anchor < 0) anchor = out.length - 1;
+  out[anchor].계절패턴 = o.anchorPrice;
+  out[anchor].계절밴드 = [o.anchorPrice, o.anchorPrice];
+  const last = new Date(`${out[out.length - 1].date}T00:00:00Z`);
+  const targetEnd = new Date(`${o.targetMonth}-01T00:00:00Z`);
+  targetEnd.setUTCMonth(targetEnd.getUTCMonth() + 1); targetEnd.setUTCDate(0); // 목표월 말일
+  for (let d = new Date(last.getTime() + 7 * MS_DAY); d <= targetEnd; d = new Date(d.getTime() + 7 * MS_DAY)) {
+    const date = d.toISOString().slice(0, 10);
+    out.push({ 주: date.slice(2, 7), date, 방콕사무소: null, 어튜나: null, MGO: null, 재고: null, 가동률: null });
+  }
+  const tail = out[out.length - 1];
+  tail.계절패턴 = o.value;
+  tail.계절밴드 = [o.band80[0], o.band80[1]];
+  return out;
+}
 
 const MS_DAY = 86_400_000;
 

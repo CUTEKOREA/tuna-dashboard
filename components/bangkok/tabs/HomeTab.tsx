@@ -10,7 +10,8 @@ import {
   type BangkokWeek,
 } from '@/lib/data/bangkok-weekly';
 import { singaporeMgoAt, singaporeMgoMeta } from '@/lib/data/singapore-mgo';
-import { buildOverviewRows, type AtunaHistoryRow } from '@/lib/bangkok-price-overview';
+import { appendSeasonalOutlook, buildOverviewRows, type AtunaHistoryRow } from '@/lib/bangkok-price-overview';
+import { skjSeasonalOutlook } from '@/lib/data/skj-seasonal-outlook';
 import { C } from '../palette';
 
 /* ── 표기 헬퍼 ─────────────────────────────────────────────────────────── */
@@ -44,7 +45,11 @@ const priceSeries: Serie[] = [
   { key: '방콕사무소', name: '방콕사무소 원어 시세', color: PRICE_COLORS.office, fmt: (v) => `${num(v)} 달러/톤` },
   { key: '어튜나', name: '어튜나 SKJ 방콕', color: PRICE_COLORS.atuna, fmt: (v) => `${num(v)} 달러/톤` },
   { key: 'MGO', name: '싱가포르 MGO', color: PRICE_COLORS.mgo, dash: true, fmt: (v) => `${num(v)} 달러/톤` },
+  // 계절 패턴 참고선 — 예측이 아니다. 어튜나 기준점과 목표월 두 점만 있고 connectNulls로 잇는다.
+  { key: '계절밴드', name: '계절 패턴 80% 밴드', color: PRICE_COLORS.atuna, type: 'area', connectNulls: true, fmt: (v) => `${num(v)} 달러/톤` },
+  { key: '계절패턴', name: skjSeasonalOutlook.label, color: PRICE_COLORS.atuna, dash: true, connectNulls: true, fmt: (v) => `${num(v)} 달러/톤` },
 ];
+const outlookCaption = `${skjSeasonalOutlook.label}: ${skjSeasonalOutlook.asOf.replace('-', '.')} $${num(skjSeasonalOutlook.anchorPrice)} → ${skjSeasonalOutlook.targetMonth.replace('-', '.')} $${num(skjSeasonalOutlook.value)} (80% 밴드 ${num(skjSeasonalOutlook.band80[0])}~${num(skjSeasonalOutlook.band80[1])}). 과거 ${skjSeasonalOutlook.history.years}년 중 하락 ${skjSeasonalOutlook.history.down}회(평균 ${skjSeasonalOutlook.history.meanPct}%), 최근 10년은 ${skjSeasonalOutlook.recent10y.down}/${skjSeasonalOutlook.recent10y.years}회(평균 ${skjSeasonalOutlook.recent10y.meanPct}%). 예측치가 아니라 과거 계절 패턴이며 밴드는 백테스트 선행 잔차다.`;
 const stockSeries: Serie[] = [
   { key: '재고', name: '방콕 캐너리 보유 원어 합', color: '#0891b2', type: 'area', fmt: (v) => `${num(v)} MT` },
 ];
@@ -77,9 +82,10 @@ export function HomeTab() {
       });
     return () => ctrl.abort();
   }, []);
+  const actualRows = useMemo(() => buildOverviewRows(bangkokWeeks, singaporeMgoAt, atunaHistory), [atunaHistory]);
   const overviewRows = useMemo(
-    () => buildOverviewRows(bangkokWeeks, singaporeMgoAt, atunaHistory),
-    [atunaHistory],
+    () => appendSeasonalOutlook(actualRows, skjSeasonalOutlook),
+    [actualRows],
   );
   return (
     <>
@@ -122,17 +128,17 @@ export function HomeTab() {
           span={12}
           title="원어 시세 추이"
           unit="달러/톤 · 전체 기간"
-          note={`값이 없는 주는 선을 끊어 표시한다 (보간하지 않음). 어튜나 시세는 로그인 세션으로 불러오며${atunaState === 'error' ? ' — 이번엔 불러오지 못했다' : ''}, 싱가포르 MGO는 보고일 직전 영업일 종가(${singaporeMgoMeta.first}~${singaporeMgoMeta.last}).`}
+          note={`값이 없는 주는 선을 끊어 표시한다 (보간하지 않음). 어튜나 시세는 로그인 세션으로 불러오며${atunaState === 'error' ? ' — 이번엔 불러오지 못했다' : ''}, 싱가포르 MGO는 보고일 직전 영업일 종가(${singaporeMgoMeta.first}~${singaporeMgoMeta.last}). ${outlookCaption}`}
           src={`${SRC} · 어튜나 SKJ 1.8kg CFR 방콕 · Ship & Bunker 싱가포르 MGO`}
         >
           <Legend items={priceSeries.map((s) => ({ name: s.name, color: s.color, dash: s.dash }))} />
           <Chart data={overviewRows} x="주" height={260} series={priceSeries} xInterval={25} yFmt={num} />
         </Panel>
         <Panel span={6} title="방콕 캐너리 보유 원어 합" unit="MT · 주간보고 냉동재고 SUM" src={SRC}>
-          <Chart data={overviewRows} x="주" height={180} series={stockSeries} xInterval={40} yFmt={num} />
+          <Chart data={actualRows} x="주" height={180} series={stockSeries} xInterval={40} yFmt={num} />
         </Panel>
         <Panel span={6} title="방콕 캐너리 평균 가동률" unit="% · 일생산 ÷ 최대생산" src={SRC}>
-          <Chart data={overviewRows} x="주" height={180} series={utilSeries} xInterval={40} yFmt={num1} domain={[0, 100]} />
+          <Chart data={actualRows} x="주" height={180} series={utilSeries} xInterval={40} yFmt={num1} domain={[0, 100]} />
         </Panel>
       </Grid>
 

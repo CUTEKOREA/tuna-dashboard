@@ -1,9 +1,9 @@
 {
  "_meta": {
   "entry": "app/page.tsx",
-  "files": 203,
+  "files": 204,
   "widgets": 110,
-  "dataFiles": 76,
+  "dataFiles": 77,
   "generator": "scripts/widget_lineage.py"
  },
  "widgetToData": {
@@ -311,7 +311,8 @@
     "public/data/bangkok/seasia_processors.json",
     "public/data/bangkok_weekly_kpi.json",
     "public/data/bangkok_weekly_payload.json",
-    "public/data/singapore_mgo.json"
+    "public/data/singapore_mgo.json",
+    "public/data/skj_seasonal_outlook.json"
    ]
   },
   "components/bangkok/tabs/CanneryTab.tsx": {
@@ -335,12 +336,14 @@
   "components/bangkok/tabs/HomeTab.tsx": {
    "dataModules": [
     "lib/data/bangkok-weekly.ts",
-    "lib/data/singapore-mgo.ts"
+    "lib/data/singapore-mgo.ts",
+    "lib/data/skj-seasonal-outlook.ts"
    ],
    "dataFiles": [
     "public/data/bangkok_weekly_kpi.json",
     "public/data/bangkok_weekly_payload.json",
-    "public/data/singapore_mgo.json"
+    "public/data/singapore_mgo.json",
+    "public/data/skj_seasonal_outlook.json"
    ]
   },
   "components/bangkok/tabs/LeadingTab.tsx": {
@@ -1232,6 +1235,10 @@
    "components/market-understanding/WhelkIndustryDashboard.tsx"
   ],
   "public/data/singapore_mgo.json": [
+   "components/bangkok/BangkokDashboard.tsx",
+   "components/bangkok/tabs/HomeTab.tsx"
+  ],
+  "public/data/skj_seasonal_outlook.json": [
    "components/bangkok/BangkokDashboard.tsx",
    "components/bangkok/tabs/HomeTab.tsx"
   ],

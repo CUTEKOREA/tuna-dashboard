@@ -150,6 +150,11 @@ describe('bangkok native dashboard', () => {
       expect(markup).toContain(text);
     }
     expect(markup).not.toContain('yAxisId="right"'); // 이중 축 금지 — 단위가 다르면 패널을 나눈다
+    // 2026-09-02 Fable 5.1 검증 조건: 계절 패턴은 «예측» 라벨로 그리지 않는다
+    expect(markup).toContain('과거 같은 달 평균 변화');
+    expect(markup).toContain('최근 10년은');
+    expect(markup).not.toContain('예측치:');
+
     for (const value of [2030, 100500, 341810, 47]) {
       expect(markup).toContain(`data-kpi-value="${value}"`);
     }
