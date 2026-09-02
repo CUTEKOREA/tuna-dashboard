@@ -143,6 +143,8 @@ describe('bangkok native dashboard', () => {
     expect(markup).toContain('방콕사무소');
     expect(markup).toContain('data-now="true"');
     expect(markup).toContain('분석 기간 2020.05~2026.09 · 고유 290주');
+    // 2026-09-02 사용자 지시: 하이솔트 확정액 타일은 히어로에서 뺀다 (KPI 계약의 highSaltUsd는 유지).
+    expect(markup).not.toContain('하이솔트 확정액');
     // 2026-09-02: 개관 시세 차트가 어튜나·방콕사무소·싱가포르 MGO 3종(같은 $/t 축) + 재고·가동률 소패널로 확장
     for (const text of ['방콕사무소 원어 시세', '어튜나 SKJ 방콕', '싱가포르 MGO', '방콕 캐너리 보유 원어 합', '방콕 캐너리 평균 가동률']) {
       expect(markup).toContain(text);
