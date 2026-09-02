@@ -8,9 +8,11 @@
 import { describe, expect, it } from 'vitest';
 
 import { FRABELLE_STAGES } from '@/lib/company-frabelle-content';
+import { proseStages } from '@/lib/company-prose-stages';
 import {
   proseForStage,
   proseStagesUsed,
+  REPORT_PROSE_COMPANIES,
   reportProse,
 } from '@/lib/data/company-report-prose';
 
@@ -56,5 +58,30 @@ describe('Frabelle 보고서 서술 추출', () => {
     }
     // Majestic 폐쇄 인력은 1,300명이다. 5,000명은 2013년 계획치가 전이된 값이라 쓰지 않는다.
     expect(all).not.toContain('5,000명 실직');
+  });
+});
+
+describe('여덟 편 공통', () => {
+  it('단계 번호가 화면 순서와 어긋나지 않는다', () => {
+    // 한 단계에 절이 여럿 합쳐지면 절 번호와 화면 순서가 갈린다.
+    // Thai Union 은 05 자리에 08절이 온다 — 번호는 순번이어야 한다.
+    for (const c of REPORT_PROSE_COMPANIES) {
+      const nums = proseStages(c).map((s) => s.numeral);
+      expect(nums, `${c} 단계 번호`).toEqual(
+        nums.map((_, i) => String(i + 1).padStart(2, '0')),
+      );
+    }
+  });
+
+  it('여덟 편 모두 서술이 있다', () => {
+    expect(REPORT_PROSE_COMPANIES).toHaveLength(8);
+    for (const c of REPORT_PROSE_COMPANIES) {
+      const stages = proseStages(c);
+      expect(stages.length, `${c} 단계 수`).toBeGreaterThanOrEqual(6);
+      for (const st of stages) {
+        expect(st.lede.length, `${c} ${st.key} 리드`).toBeGreaterThan(0);
+        expect(st.paragraphs.length, `${c} ${st.key} 본문`).toBeGreaterThan(0);
+      }
+    }
   });
 });
