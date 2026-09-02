@@ -11,8 +11,6 @@
 import { describe, expect, it } from 'vitest';
 
 import {
-  FCF_BRIEFING,
-  FCF_NARRATIVES,
   FCF_SOURCE_NOTES,
 } from '@/lib/company-fcf-content';
 import {
@@ -27,6 +25,11 @@ import {
   sillaLatest,
   sillaPeak,
 } from '@/lib/data/company-fcf';
+import { proseBriefing, proseStages } from '@/lib/company-prose-stages';
+
+// 서술은 조사보고서에서 그대로 읽어 온다. 손으로 쓴 상수는 더 없다.
+const FCF_NARRATIVES = proseStages('fcf');
+const FCF_BRIEFING = proseBriefing('fcf');
 
 describe('FCF 인테이크', () => {
   it('자사 어선은 0척이다 - 이 회사 성격의 출발점', () => {

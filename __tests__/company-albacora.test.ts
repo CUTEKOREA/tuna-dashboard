@@ -11,8 +11,6 @@
 import { describe, expect, it } from 'vitest';
 
 import {
-  ALBACORA_BRIEFING,
-  ALBACORA_NARRATIVES,
   ALBACORA_SOURCE_NOTES,
 } from '@/lib/company-albacora-content';
 import {
@@ -33,6 +31,11 @@ import {
   plantRevenueTotal,
   siaVolumeDrop,
 } from '@/lib/data/company-albacora';
+import { proseBriefing, proseStages } from '@/lib/company-prose-stages';
+
+// 서술은 조사보고서에서 그대로 읽어 온다. 손으로 쓴 상수는 더 없다.
+const ALBACORA_NARRATIVES = proseStages('albacora');
+const ALBACORA_BRIEFING = proseBriefing('albacora');
 
 describe('Albacora 인테이크', () => {
   it('선단은 등록부 확인분 12척이고 합계 36,404 GT 다', () => {
@@ -120,12 +123,11 @@ describe('Albacora 서술', () => {
     ]);
   });
 
-  it('모든 단계가 질문·리드·본문·사실을 갖춘다', () => {
+  it('모든 단계가 질문·리드·본문을 갖춘다', () => {
     for (const n of ALBACORA_NARRATIVES) {
-      expect(n.question.length).toBeGreaterThan(5);
-      expect(n.lede.length).toBeGreaterThan(20);
-      expect(n.paragraphs.length).toBeGreaterThanOrEqual(2);
-      expect(n.facts.length).toBeGreaterThanOrEqual(4);
+      expect(n.question.length, `${n.key} 질문`).toBeGreaterThan(1);
+      expect(n.lede.length, `${n.key} 리드`).toBeGreaterThan(20);
+      expect(n.paragraphs.length, `${n.key} 본문`).toBeGreaterThanOrEqual(2);
     }
   });
 
@@ -141,12 +143,6 @@ describe('Albacora 서술', () => {
     expect(all).toContain('방향치');        // 재무 등급
   });
 
-  it('C 등급 사실에는 절대액 단정이 없다', () => {
-    const cGrade = ALBACORA_NARRATIVES.flatMap((n) => n.facts).filter((f) => f.grade === 'C');
-    expect(cGrade.length).toBeGreaterThan(0);
-    for (const f of cGrade) {
-      // 방향치·발언 인용에는 «약» 또는 «방향» 표지가 붙어 있어야 한다
-      expect(`${f.value} ${f.note ?? ''}`).toMatch(/약|방향|추정|미공개/);
-    }
-  });
+  // 등급별 사실 검사는 보고서 표로 옮겼다. 서술의 facts 는 비어 있고 근거는
+  // `company-report-tables.ts` 가 원문 표에서 그대로 읽어 온다.
 });

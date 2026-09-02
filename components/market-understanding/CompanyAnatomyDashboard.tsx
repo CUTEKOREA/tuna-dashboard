@@ -11,8 +11,6 @@
 import React, { useState } from 'react';
 
 import {
-  FRINSA_BRIEFING,
-  FRINSA_NARRATIVES,
   FRINSA_SOURCE_NOTES,
 } from '@/lib/company-frinsa-content';
 import {
@@ -40,8 +38,6 @@ import {
   FrinsaSustainabilityChart,
 } from './FrinsaCharts';
 import {
-  THAIUNION_BRIEFING,
-  THAIUNION_NARRATIVES,
   THAIUNION_SOURCE_NOTES,
 } from '@/lib/company-thaiunion-content';
 import {
@@ -77,8 +73,6 @@ import {
   TuTc25Chart,
 } from './ThaiUnionCharts';
 import {
-  ALBACORA_BRIEFING,
-  ALBACORA_NARRATIVES,
   ALBACORA_SOURCE_NOTES,
 } from '@/lib/company-albacora-content';
 import {
@@ -109,8 +103,6 @@ import {
 } from '@/lib/data/company-albacora';
 
 import {
-  FCF_BRIEFING,
-  FCF_NARRATIVES,
   FCF_SOURCE_NOTES,
 } from '@/lib/company-fcf-content';
 import {
@@ -128,8 +120,6 @@ import {
   sillaPeak,
 } from '@/lib/data/company-fcf';
 import {
-  ITOCHU_BRIEFING,
-  ITOCHU_NARRATIVES,
   ITOCHU_SOURCE_NOTES,
 } from '@/lib/company-itochu-content';
 import {
@@ -149,8 +139,6 @@ import {
   siGtTotal,
 } from '@/lib/data/company-itochu';
 import {
-  BOLTON_BRIEFING,
-  BOLTON_NARRATIVES,
   BOLTON_SOURCE_NOTES,
 } from '@/lib/company-bolton-content';
 import {
@@ -173,8 +161,6 @@ import {
   nonTunaShare,
 } from '@/lib/data/company-bolton';
 import {
-  JAIS_BRIEFING,
-  JAIS_NARRATIVES,
   JAIS_SOURCE_NOTES,
 } from '@/lib/company-jais-content';
 import {
@@ -223,7 +209,8 @@ import {
   tablesForStage,
 } from '@/lib/data/company-report-tables';
 import styles from './TunaIndustryDashboard.module.css';
-import { FRABELLE_BRIEFING, FRABELLE_SOURCE_NOTES, FRABELLE_STAGES } from '@/lib/company-frabelle-content';
+import { FRABELLE_SOURCE_NOTES } from '@/lib/company-frabelle-content';
+import { proseBriefing, proseStages } from '@/lib/company-prose-stages';
 import { frabelleMeta, frabelleStats, laeOutputRange, registeredVessels } from '@/lib/data/company-frabelle';
 
 const ACCENT = '#c2410c';
@@ -488,8 +475,8 @@ const SPEC: CommoditySpec = {
     { eyebrow: '창구', title: '싱가포르 구매본부 BAI', body: '5.0 (M€)' },
     { eyebrow: '관세', title: '캔가공용 냉동 통마리', body: '0 (%)' },
   ],
-  briefing: FRINSA_BRIEFING,
-  narratives: FRINSA_NARRATIVES,
+  briefing: proseBriefing('frinsa'),
+  narratives: proseStages('frinsa'),
   chartSlots: withReport('frinsa', CHART_SLOTS),
   sourceNotes: FRINSA_SOURCE_NOTES,
   sourceMeta: [
@@ -1072,8 +1059,8 @@ const TU_SPEC: CommoditySpec = {
     { eyebrow: '한국 접점', title: `한국→태국 수출 (${TU_KE.연도})`, body: `${Math.round(TU_KE.톤).toLocaleString('ko-KR')} (톤)` },
     { eyebrow: '관세', title: '수침 캔참치 대미 부담', body: '31.5 (%)' },
   ],
-  briefing: THAIUNION_BRIEFING,
-  narratives: THAIUNION_NARRATIVES,
+  briefing: proseBriefing('thaiunion'),
+  narratives: proseStages('thaiunion'),
   chartSlots: withReport('thaiunion', TU_CHART_SLOTS),
   sourceNotes: THAIUNION_SOURCE_NOTES,
   sourceMeta: [
@@ -1381,8 +1368,8 @@ const ALB_SPEC: CommoditySpec = {
     { eyebrow: '무게중심', title: '에콰도르 매출 비중', body: `${ecuadorRevenueShare()} (%)` },
     { eyebrow: '숨은 신호', title: 'SIA 실물 투입 (2023)', body: '−44 (%)' },
   ],
-  briefing: ALBACORA_BRIEFING,
-  narratives: ALBACORA_NARRATIVES,
+  briefing: proseBriefing('albacora'),
+  narratives: proseStages('albacora'),
   chartSlots: withReport('albacora', ALB_CHART_SLOTS),
   sourceNotes: ALBACORA_SOURCE_NOTES,
   sourceMeta: [
@@ -1511,8 +1498,8 @@ const FCF_SPEC: CommoditySpec = {
     { eyebrow: '본체', title: '선망 원어 비중', body: '90 (%)' },
     { eyebrow: '실권', title: '光陽 계열 지분', body: `${kwangyangShare().toFixed(2)} (%)` },
   ],
-  briefing: FCF_BRIEFING,
-  narratives: FCF_NARRATIVES,
+  briefing: proseBriefing('fcf'),
+  narratives: proseStages('fcf'),
   chartSlots: withReport('fcf', FCF_CHART_SLOTS),
   sourceNotes: FCF_SOURCE_NOTES,
   sourceMeta: [
@@ -1647,8 +1634,8 @@ const ITC_SPEC: CommoditySpec = {
     { eyebrow: '규모 상한', title: '生鮮食品 부문 순이익', body: `${itochuStats.생선식품_억엔} (억엔)` },
     { eyebrow: '부재', title: '수산 실적 공시', body: '0 (건)' },
   ],
-  briefing: ITOCHU_BRIEFING,
-  narratives: ITOCHU_NARRATIVES,
+  briefing: proseBriefing('itochu'),
+  narratives: proseStages('itochu'),
   chartSlots: withReport('itochu', ITC_CHART_SLOTS),
   sourceNotes: ITOCHU_SOURCE_NOTES,
   sourceMeta: [
@@ -1829,8 +1816,8 @@ const BOL_SPEC: CommoditySpec = {
     { eyebrow: '본체', title: '선망 비중', body: `${boltonStats.선망_비중.toFixed(0)} (%)` },
     { eyebrow: '자사 자산', title: '활성 등록 자사선', body: `${activeOwnVessels()} (척)` },
   ],
-  briefing: BOLTON_BRIEFING,
-  narratives: BOLTON_NARRATIVES,
+  briefing: proseBriefing('bolton'),
+  narratives: proseStages('bolton'),
   chartSlots: withReport('bolton', BOL_CHART_SLOTS),
   sourceNotes: BOLTON_SOURCE_NOTES,
   sourceMeta: [
@@ -1977,8 +1964,8 @@ const FRA_SPEC: CommoditySpec = {
     { eyebrow: '실생산', title: 'PNG Lae', body: `${laeOutputRange()} (MT/일 · 능력 140)` },
     { eyebrow: '수출', title: 'EU 비중', body: `${frabelleStats.EU비중_2023} → ${frabelleStats.EU비중_2025} (%)` },
   ],
-  briefing: FRABELLE_BRIEFING,
-  narratives: FRABELLE_STAGES,
+  briefing: proseBriefing('frabelle'),
+  narratives: proseStages('frabelle'),
   chartSlots: withReport('frabelle', {}),
   sourceNotes: FRABELLE_SOURCE_NOTES,
   sourceMeta: [
@@ -2014,8 +2001,8 @@ const JAI_SPEC: CommoditySpec = {
     { eyebrow: '구조', title: '순마진 최대 진폭', body: `${marginBand().toFixed(2)} (%)` },
     { eyebrow: '지금', title: '연속 적자', body: `${lossStreak()} (년)` },
   ],
-  briefing: JAIS_BRIEFING,
-  narratives: JAIS_NARRATIVES,
+  briefing: proseBriefing('jais'),
+  narratives: proseStages('jais'),
   chartSlots: withReport('jais', JAI_CHART_SLOTS),
   sourceNotes: JAIS_SOURCE_NOTES,
   sourceMeta: [

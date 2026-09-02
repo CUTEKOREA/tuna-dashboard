@@ -9,6 +9,7 @@
 """
 from __future__ import annotations
 
+import importlib
 import json
 import sys
 from pathlib import Path
@@ -20,13 +21,13 @@ ROOT = Path(__file__).resolve().parents[1]
 OUT = ROOT / "public/data/companies"
 
 # 절 → 단계. build_report_tables.py 의 stages 와 같은 값을 써야 표와 서술이 한 단계에 모인다.
-SPECS: dict[str, dict] = {
-    "frabelle": {
-        "src": "docs/evidence/company-frabelle-2026-09/보고서.html",
-        # 보고서 9절이 화면 9단계와 1:1 이다.
-        "stages": {f"s{i}": f"c{i:02d}" for i in range(1, 10)},
-    },
-}
+SPECS: dict[str, dict] = {}
+
+# 절 → 단계 매핑은 `build_report_tables.py` 가 이미 갖고 있다. 표와 서술이 같은 단계에
+# 모여야 하므로 **그 매핑을 그대로 재사용한다.** 여기서 따로 적으면 두 파일이 어긋난다.
+_TABLES = importlib.import_module("build_report_tables")
+for _key, _spec in _TABLES.SPECS.items():
+    SPECS[_key] = {"src": _spec["src"], "stages": _spec["stages"]}
 
 
 def build(key: str, spec: dict) -> tuple[int, int, int]:
