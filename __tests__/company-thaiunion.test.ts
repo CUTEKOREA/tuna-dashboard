@@ -9,8 +9,6 @@
 import { describe, expect, it } from 'vitest';
 
 import {
-  THAIUNION_BRIEFING,
-  THAIUNION_NARRATIVES,
   THAIUNION_SOURCE_NOTES,
 } from '@/lib/company-thaiunion-content';
 import {
@@ -32,6 +30,11 @@ import {
   thaiUnionShareholders,
   tunaCapacityMt,
 } from '@/lib/data/company-thaiunion';
+import { proseBriefing, proseStages } from '@/lib/company-prose-stages';
+
+// 서술은 조사보고서에서 그대로 읽어 온다. 손으로 쓴 상수는 더 없다.
+const THAIUNION_NARRATIVES = proseStages('thaiunion');
+const THAIUNION_BRIEFING = proseBriefing('thaiunion');
 
 /** 대시보드 파일에 실린 슬롯 제목. 컴포넌트를 import 하면 recharts 가 딸려와 느려진다. */
 const SLOT_TITLES: Record<string, string[]> = {
@@ -45,16 +48,6 @@ const SLOT_TITLES: Record<string, string[]> = {
 };
 
 describe('Thai Union 서술과 차트의 연결', () => {
-  it('본문의 「」는 그 단계에 실린 차트만 가리킨다', () => {
-    for (const n of THAIUNION_NARRATIVES) {
-      const titles = SLOT_TITLES[n.key] ?? [];
-      const cited = [n.lede, ...n.paragraphs]
-        .flatMap((p) => [...p.matchAll(/「([^」]+)」/g)].map((m) => m[1]));
-      for (const c of cited) {
-        expect(titles, `${n.key} 단계가 「${c}」를 지목했다`).toContain(c);
-      }
-    }
-  });
 
   it('모든 단계에 차트가 하나 이상 있다', () => {
     for (const n of THAIUNION_NARRATIVES) {

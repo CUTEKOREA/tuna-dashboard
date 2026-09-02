@@ -1,4 +1,11 @@
+import albacoraRaw from '@/public/data/companies/albacora_prose_v1.json';
+import boltonRaw from '@/public/data/companies/bolton_prose_v1.json';
+import fcfRaw from '@/public/data/companies/fcf_prose_v1.json';
 import frabelleRaw from '@/public/data/companies/frabelle_prose_v1.json';
+import frinsaRaw from '@/public/data/companies/frinsa_prose_v1.json';
+import itochuRaw from '@/public/data/companies/itochu_prose_v1.json';
+import jaisRaw from '@/public/data/companies/jais_prose_v1.json';
+import thaiunionRaw from '@/public/data/companies/thaiunion_prose_v1.json';
 
 /**
  * 조사보고서 서술 전량 인테이크.
@@ -37,7 +44,14 @@ interface Intake {
 }
 
 const INTAKES: Record<string, Intake> = {
+  albacora: albacoraRaw as unknown as Intake,
+  bolton: boltonRaw as unknown as Intake,
+  fcf: fcfRaw as unknown as Intake,
   frabelle: frabelleRaw as unknown as Intake,
+  frinsa: frinsaRaw as unknown as Intake,
+  itochu: itochuRaw as unknown as Intake,
+  jais: jaisRaw as unknown as Intake,
+  thaiunion: thaiunionRaw as unknown as Intake,
 };
 
 export const REPORT_PROSE_COMPANIES = Object.keys(INTAKES);
