@@ -1,3 +1,14 @@
+> 🚀 **2026-09-02 12:00 KST — `/fleet` 260902 일일보고 · `/panofi` 20260901 주간동향 라이브 배포 완료** [CC]:
+> - PR [#869](https://github.com/CUTEKOREA/tuna-dashboard/pull/869)를 squash 병합했다. main commit `cde29cae`. Production `dpl_D9TJUV3Ez7LyULDe6BVS9FANQL2S` READY, alias `leedonggun.co.kr`.
+> - 병합 전에 Production `FLEET_DAILY_DETAIL_JSON`을 새 보호 DTO로 교체했다. canonical SHA `f04b4d33…846c`가 공개 `_meta.detailSha256`과 일치하고, 직전 `3a14df70…b77c`는 `detailSha256Compat`에 남겼다.
+> - 라이브 실측 `/fleet`: 「2026-09-02 보고 · 2026-09-01 조업 기준」, 일간 295 · 월간 295 · 연간 81,995.8 · 운반선 선적 5,834.1 (MT). 태평양 175(전일 +80)·연간 48,415.8, 대서양 120(전일 -65)·연간 33,580, 합계 전일 +15. 검산 「이슈 1건」. 배지 SYNCED 2026-09-02.
+> - 보호 상세도 라이브에서 뜬다 — MOAMARI 예인(9/29 젠산 도착 예정), P/DIS·P/PATH·P/COM·P/GRACE 입출항 예정, 운반선 6척, SEIBU 125.4 (MT). `/api/fleet/daily` 200.
+> - 라이브 실측 `/panofi`: 「주간동향 37주 (2025-12-23 ~ 2026-09-01)」, SCODI 아비장 $1,722/톤(변동 23회), PFC $1,600·코스모 $1,700 유지.
+> - 데스크톱 + 390px 둘 다 확인. 가로 overflow 0, console/page error 0. 배포 후 Vercel 로그 error 0건(`/fleet`·`/panofi`·`/api/fleet/daily` 모두 200).
+> - App Quality Gate는 fail이지만 `main`에도 있던 기존 실패다 — `/unloading` E2E `39,249 MT` 정규식(run `33472209652`에서 동일). 이번 변경과 무관하며 별건으로 남는다.
+
+> 마지막 업데이트: 2026-09-02 12:00 KST [CC]
+
 > 📊 **2026-09-02 11:10 KST — `/fleet` 260902 일일보고 · `/panofi` 20260901 주간동향 로컬 반영** [CC]:
 > - 원자료 ①: `해양수산본부 일일업무보고-260902 (수).docx`, SHA-256 `a02b937d…790f`. 보고일 2026-09-02, 조업 기준일 2026-09-01. `npm run sync:fleet-daily`로 147건(2026-01-16~09-02) 재생성.
 > - 원자료 ②: `PANOFI 주간동향20260901.docx`, SHA-256 `02c69fa4…b3e2`. `python3 scripts/extract_panofi.py`로 37주(2025-12-23~2026-09-01) 재생성. 커버리지 최저 91%(`prices.cosmoTema`).
