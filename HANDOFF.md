@@ -1,3 +1,10 @@
+> 🪟 **2026-09-02 20:30 KST — 차트 툴팁 배경 불투명도 60% (로컬 완료)** [CC]:
+> - 사용자 지시. `components/cosmo/cosmo.css`의 `.cosmo-root .tip` 배경을 `color-mix(in srgb, var(--cosmo-surface) 60%, transparent)`로. 코스모·파노피·방콕·GMTS가 공유하는 툴팁이라 네 화면에 함께 적용된다.
+> - UI_RULES 2-2가 툴팁 가독성 때문에 «불투명 배경»을 요구하므로, 투명도만 주지 않고 `backdrop-filter: blur(8px) saturate(1.1)`을 함께 걸어 뒤 차트선을 흐린다. `@supports`로 감싸 blur 미지원 브라우저에는 기존 불투명 배경이 남는다 — 가독성이 먼저다.
+> - `__tests__/sidebar-style.test.ts`에 60% 값·blur 존재·폴백 불투명 배경을 고정하는 검사 추가. `npm run verify` 통과. 배포는 사용자 요청 시.
+
+> 마지막 업데이트: 2026-09-02 20:30 KST [CC]
+
 > 🎨 **2026-09-02 20:15 KST — 계절 패턴 선·밴드 색 분리 라이브 배포 완료** [CC]:
 > - PR [#878](https://github.com/CUTEKOREA/tuna-dashboard/pull/878) squash → main `f685d2d7`. Production `dpl_HHnupm6cJjT6tN48ZsBYKmd6trz1` READY.
 > - 사용자 지적: 계절 패턴 점선·밴드가 어튜나 주황(`#d95926`)과 같아 «어튜나 시세가 미래로 이어지는 것»처럼 읽혔다. 중립 회색 `#64748b`로 분리. 라이브 실측 — 점선 stroke 2종 `#199e70`(MGO)·`#64748b`(계절 패턴), 밴드 fill `#64748b`, 어튜나 주황은 점선/밴드에 없음. console error 0, 런타임 로그 5xx 0건.
