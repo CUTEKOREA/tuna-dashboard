@@ -1,3 +1,15 @@
+> 📊 **2026-09-03 12:20 KST — `/fleet` 260903 일일보고 반영 + MOAMARI 도착 하루 당김 (로컬 완료)** [CC]:
+> - 원자료: `해양수산본부 일일업무보고-260903 (목).docx`, SHA-256 `e0c4d387…bb82`. 보고일 2026-09-03, 조업 기준일 2026-09-02. `npm run sync:fleet-daily`로 148건(2026-01-16~09-03) 재생성. 원문을 따로 추출해 파이프라인 산출과 대조했고 전 항목 일치했다.
+> - 수치: 태평양 일간 175 / 월간 350 / 연간 48,590.8 (MT), 대서양 일간 195 / 월간 315 / 연간 33,775 (MT), 합계 370 / 665 / 82,365.8. 전일 대비 태평양 **0**(175→175) · 대서양 **+75** · 합계 **+75**. 운반선 선적 5,834.1 · 예상잔량 5,771.7로 전일과 동일.
+> - 검산 이슈 17 → 18건(15문서 → 16문서). 늘어난 1건은 또 운반선 소계 인쇄값 5,834.1 vs 행 합계 5,834.13(0.03톤) — 매일 같은 항목이 재계상된다.
+> - 대서양 변화: P/DIS가 9/2 12:00 테마 출항 완료(하역 누계 1,099.994톤·증 199.994톤)로 선적 0. P/COM은 9/2 13:00 아비장 입항. P/MAS +90, P/QUEEN +55, P/FORE +50이 대서양 +75의 원인이다.
+> - **MOAMARI 도착 예정이 9/29 → 9/28로 하루 당겨졌다.** 노트 재계산: 항해 30일 → **29일**(평균 6.4 → 6.7노트), 총 예인료 약 123만불 → **약 119만불**(자금팀 추산은 9/29 기준이라 $4.1만·0.6억원 낮아짐), 계약(24~26일) 초과 4~6일 → **3~5일**($12.3만~20.5만·약 1.7~2.9억원), 어장 복귀 10/9~11/3 → **10/8~11/2**, 총 이탈 57~82일 → **56~81일**, 조업손실 840~1,210 → **820~1,190 MT**(일평균도 22.89 → 22.74로 갱신). 「확정 / 예상 구분」에 «도착 예정일은 일일보고에서 매일 바뀐다»를 명시했다.
+> - 날짜 고정 테스트 6파일 갱신(`fleet-daily`·`fleet-daily-security-boundary`·`fleet-daily-source-contract`·`fleet-daily-command-center`·`fleet-idle-vessels`·`v2-components-render`). **증감 색 테스트는 날짜 의존을 걷어냈다** — 9/2는 부호가 0·+75·+75뿐이라 «down 이 반드시 있다»는 가정이 깨졌다. 이제 «모든 증감에 `data-delta` 가 붙고 값은 up/down/flat 뿐» + «CSS가 셋 다 정의»를 본다.
+> - `npm run verify` 통과: ESLint 0 errors(기존 warnings 12) · TypeScript · 파이썬 자기점검 10/13/3/3/4 · Vitest 1254/1254(165 파일) · API cache 158/158 · Next.js 정적 118개 · fleet client leak 통과 · bundle budget 33 라우트.
+> - **배포 시 주의**: `detailSha256`이 `387000c1…3eaf`로 바뀐다(직전 `f04b4d33…846c`는 `detailSha256Compat`에 남음). 병합 전에 Production `FLEET_DAILY_DETAIL_JSON`을 새 DTO(`artifacts/fleet-daily-detail.json`)로 교체해야 보호 상세가 끊기지 않는다.
+
+> 마지막 업데이트: 2026-09-03 12:20 KST [CC]
+
 > 📰 **2026-09-03 03:55 KST — `/market` 2026-09-02 참치 데일리 브리핑 라이브 배포 완료** [CC/tuna-dashboard-publisher]:
 > - PR [#890](https://github.com/CUTEKOREA/tuna-dashboard/pull/890) squash 병합. main commit `24f73533` (브랜치 커밋 `201e7fa8`). 변경은 `public/data/tuna_daily_briefing.json` 한 파일뿐(+60/−71). `lib/data/daily-briefing.ts` 는 main 과 동일.
 > - 게이트 3종: 감사 `state/audit-2026-09-02.txt` = `AUDIT_PASS`, `__tests__/daily-briefing.test.ts` 4/4 통과(파이프라인 로그), 변경분은 JSON 단일 파일. 데이터: 기준일 2026-09-02, digest 6건 / articles 6건.
