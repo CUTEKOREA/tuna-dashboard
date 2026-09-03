@@ -9,6 +9,14 @@ export const cosmoMonthlyReport = {
     sha256: '107b9ccac5e2e554d7c741af3fe21fe8dbe7d665b7a28664e69a437b1097c78d',
   },
 
+  /** 같은 7월 업무보고의 나중 판본(docx). 월별 원어 처리량·컨테이너 출고 표는 여기에만 있고,
+   *  유동성·재고자산 표는 pptx 에만 있다. 겹치는 항목은 두 판본이 같은 값을 준다. */
+  docSource: {
+    file: 'COSMO 2026 07 업무보고.docx',
+    sha256: 'f89ee979f7389ff7cd3ff4bfcda0a51c29813be2405c35e09536a5a61802ac5b',
+    received: '2026-09-04',
+  },
+
   /** 유동성 — begin=1.1, end=7.31. 연초 현금부족 −562 는 원문 인쇄값(행 계산은 −561, 원문 반올림). */
   liquidity: {
     asOf: '7/31',
@@ -33,8 +41,36 @@ export const cosmoMonthlyReport = {
     augustRevisedMt: 2310,
     annualPlanMt: 29000,
     annualRevisedMt: 26118,
-    september: { days: 21, dailyMt: 110, totalMt: 2310 },
+    /** 9월은 docx 표(21일 × 120톤 = 2,520 MT)를 따른다.
+     *  pptx 판본에는 «21일 × 110톤»으로 적혀 있으나 그러면 12개월 합이 25,908 이 되어
+     *  두 판본이 함께 인쇄한 연간 개정치 26,118 과 어긋난다. 2,310 은 8월 변경치와 같은 값이다. */
+    september: { days: 21, dailyMt: 120, totalMt: 2520 },
+    septemberPptxRaw: { days: 21, dailyMt: 110, totalMt: 2310 },
   },
+
+  /** 월별 원어 처리량 (MT). 실적/변경 행은 1~6월이 실적, 7월 이후는 변경계획이다.
+   *  원문 「차이」의 «-» 는 계획과 같다는 뜻(0)이라 여기서는 두 행의 차로 계산한다.
+   *  일 처리량은 원문 인쇄값(정수 반올림)이며 처리량÷일수와 1톤 안에서 맞는다. */
+  rawThroughput: {
+    actualThrough: 6,
+    plan: [2375, 2500, 2570, 1875, 1750, 2860, 2860, 2730, 2520, 2640, 2520, 1800],
+    revised: [1540, 2191, 2126, 2128, 1640, 2364, 2414, 2310, 2520, 2640, 2520, 1725],
+    days: [16.5, 20, 19, 18, 14, 21.5, 21, 21, 21, 22, 21, 15],
+    dailyMt: [93, 110, 112, 118, 117, 110, 115, 110, 120, 120, 120, 115],
+    annual: { planMt: 29000, revisedMt: 26118, days: 230, dailyMt: 113 },
+  },
+
+  /** 컨테이너 출고 (FCL). CBU 는 계획 대비 On Board, FBU 는 계획 구분 없이 한 행이다. */
+  containers: {
+    actualThrough: 6,
+    cbuPlan: [85, 89, 92, 67, 62, 102, 102, 98, 90, 94, 90, 65],
+    cbuOnBoard: [63, 75, 63, 49, 106, 76, 93, 95, 88, 84, 80, 62],
+    fbu: [4, 2, 1, 6, 6, 8, 2, 5, 4, 3, 4, 3],
+    annual: { cbuPlan: 1036, cbuOnBoard: 934, cbuGap: -102, fbu: 48 },
+  },
+
+  /** 클리너 인원 — 전년 7월 평균 713명 대비 110명 감소. 상세는 품질개선 보고에 있다. */
+  cleaners: { basis: '7월 평균', y2025: 713, y2026: 603, delta: -110 },
 
   /** 수주 단가 인상 — 어가 상승분 반영, 인상 단가로 수주 진행 중. 리테일 Tender 참여는 당분간 자제. */
   orderPrice: { fromUsd: 46.0, toUsd: 49.5, basis: '$2kg 기준' },
@@ -43,10 +79,10 @@ export const cosmoMonthlyReport = {
 
   rawStock: { asOf: '8/21', sjMt: 3396, yfMt: 26, mixMt: 620 },
 
-  /** 9~10월 주요 업무 — 원문 요지 */
+  /** 기타 진행 사항 — docx 판본 기준. pptx 판본에서 «예정»이던 BRC/IFS 심사는 완료·A+ 로 확정됐다. */
   agenda: [
-    'BRC/IFS Unannounced Audit 실시 예정 (8월 말~9월 초)',
-    '필리핀 직원 채용(8/10 업무 시작) - 9월부터 2nd Shift 가동',
+    'BRC/IFS Unannounced Audit 실시 완료 (8/24~8/28) - A+ 등급 유지',
+    '필리핀 QC 담당 채용(8/10 업무 시작) - 9월부터 2nd Shift 관리',
     '대만 SK은행 3년 약정 대출 갱신 완료 (기존 동일 조건)',
   ],
 } as const
