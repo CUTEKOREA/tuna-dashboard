@@ -50,6 +50,19 @@ export default function Home() {
   const revPrevSum = monthlySeries.reduce((a, m) => a + n(m.revenuePrev), 0)
   const revYoY = revPrevSum > 0 ? n(latestMonth.revenueYtd) / revPrevSum - 1 : null
 
+  // 주간보고에 따라 「하역 중 + 차주 예정」이 있는 주도, 「완료분만」 있는 주도 있다 — 없는 항목은 문장에서 뺀다.
+  const u = wr.operations.unloading;
+  const done = 'completed' in u ? u.completed : [];
+  const md = (d: string) => d.slice(5).replace('-', '/');
+  const unloadingHeadline = done.length ? `${done.map((x) => x.vessel).join(' · ')} 하역 완료` : u.active;
+  const unloadingDetail = [
+    done.length
+      ? done.map((x) => `${x.vessel} ${x.totalMt.toLocaleString('ko-KR')}톤`).join(' · ')
+      : `${md(u.activeSince)}부터 하역`,
+    u.next && u.nextDate ? `${u.next} ${md(u.nextDate)} 예정` : null,
+    wr.nextActions.join(' · '),
+  ].filter(Boolean).join(' · ');
+
   return (
     <>
       <PageHead
@@ -138,14 +151,14 @@ export default function Home() {
           <Kpi
             k="품질·심사"
             v={wr.operations.audit.name}
-            d={`${wr.operations.audit.start.slice(5).replace('-', '/')}~${wr.operations.audit.end.slice(5).replace('-', '/')} · ${wr.operations.qualityFocus}`}
+            d={`${wr.operations.audit.start.slice(5).replace('-', '/')}~${wr.operations.audit.end.slice(5).replace('-', '/')}${'result' in wr.operations.audit ? ` · ${wr.operations.audit.result}` : ''} · ${wr.operations.qualityFocus}`}
           />
         </Card>
         <Card>
           <Kpi
             k="하역·차주"
-            v={wr.operations.unloading.active}
-            d={`${wr.operations.unloading.activeSince.slice(5).replace('-', '/')}부터 하역 · ${wr.operations.unloading.next} ${wr.operations.unloading.nextDate.slice(5).replace('-', '/')} 예정 · ${wr.nextActions[1]}`}
+            v={unloadingHeadline}
+            d={unloadingDetail}
           />
         </Card>
       </div>
