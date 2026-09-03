@@ -1,3 +1,13 @@
+> 🚢 **2026-09-03 13:20 KST — `/logistics` TTA 35주차 운반선 주간동향 반영 (로컬 완료)** [CC]:
+> - 원자료: `Reefer ship movement for week 35th.xlsx`, SHA-256 `6740bc3c…1564`. 기간 **2026-08-28~09-03**, 방콕항 **6척 · 공장 배분 21,176.679 MT**(34주차 7척·25,214.952 MT).
+> - 선박별: SEIN VENUS 3,275 · PACIFIC JOURNEY 2,240 · PATSORN 2,324.679 · SEITA MARU 3,432 · **FONG KUO NO.818 4,880** · **ZHONG YU MARINE 5,025**. 뒤 셋이 35주차 신규 접안이고, 34주차에 있던 SEA STAR V·SEIN PRINCESS·HENG HONG 9·HIKARI 1은 빠졌다.
+> - **원본 서식 드리프트**: 35주차 워크북 시트명이 `WEEK 35`가 아니라 `sheet 1`로 와서 `sync_reefer_weekly.py`가 멈췄다. 주차·기간·배분 헤더는 이미 **파일명 · `AJ2` · `A1` · 6행 헤더**로 따로 검증하므로, 시트명 일치 요구를 «시트가 하나인지»로 바꿨다(내용 가드는 그대로). AJ2=35, A1=`28/08/26 - 03/09/26` 확인.
+> - 인테이크 `lib/data/reefer-weekly.ts`를 35주차로 전환. 34주차 테스트는 라이브 인테이크가 아니라 아카이브 JSON(`data/reefer_week34.json`)을 고정하는 «이력» 형태로 바꿨다 — 31~33주차 테스트와 같은 꼴이다. 35주차 테스트를 새로 넣어 선박 목록·접안일·ZHONG YU MARINE 배분·21,176.679 MT 합계를 독립 검산한다.
+> - 화면 쪽 고정값도 함께 이동: `reefer-movement-render`(기간·6척·21,176.679·신규 3척, HIKARI 1·SEA STAR V 부재), `logistics-command-center`(35주차·KPI 21176.679·6), `v2-components-render`(항로 마커 7→6개).
+> - `npm run verify` 통과: ESLint 0 errors(기존 12 warnings) · TypeScript · 파이썬 자기점검 10/13/3/3/4 · Vitest 1258/1258(166 파일) · API cache 158/158 · 정적 118개 · fleet client leak 통과 · bundle 33 라우트. env 교체 없음.
+
+> 마지막 업데이트: 2026-09-03 13:20 KST [CC]
+
 > 🏭 **2026-09-03 12:50 KST — `/cosmo` 35주차(8.24~8.30) 주간보고 반영 (로컬 완료)** [CC]:
 > - 원자료 2종: `COSMO 주간보고 (35주차)-첨부파일.xlsx` SHA-256 `40d4cc77…9ce4`(수치 정본), `2026.9.2_COSMO 주간보고 (35주차).docx` SHA-256 `49dddff7…03a6`(서술 정본). `python3 scripts/sync_cosmo_weekly.py <xlsx>` — **주차 검산 8/8 통과**, 35주 수록(1~35주, 결측 없음).
 > - 수치: 수주잔량 356 → **343 FCL** / $23,988,150 → **$23,529,530**. 신규수주 26 → **3 FCL**($2,022,949 → $229,828, 캐터링 2컨 + 파우치 1컨). 주간 판매 $115,185(수출 8만 + 내수 3만), 누적 $42,296,959. CBU 처리량 **425.5톤**(수율 38.68%, 5일·일평균 85톤), FBU 61톤. 재고 **$20,601,128**(원어 780만·제품 1,161만), 현금 **$5,314,086**. 원어구매 PANOFI 99.8%.

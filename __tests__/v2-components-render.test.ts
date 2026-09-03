@@ -308,7 +308,7 @@ describe('Deep Sea Command V2 - Phase 2 운영 페이지', () => {
     expect(markup).not.toContain('/heroes/carrier.webp');
   });
 
-  it('물류 히어로가 34주차 7척 항로 마커와 기존 하역 SIT·TAK를 렌더한다', async () => {
+  it('물류 히어로가 35주차 6척 항로 마커와 기존 하역 SIT·TAK를 렌더한다', async () => {
     const logisticsModule = await import('../components/LogisticsDashboard');
     const LogisticsHero = (logisticsModule as Record<string, unknown>).LogisticsHero;
 
@@ -322,11 +322,11 @@ describe('Deep Sea Command V2 - Phase 2 운영 페이지', () => {
     expect(markup).toContain('물류·가공');
     expect(markup).toContain('주간 하역 합계');
     expect(markup).toContain('(MT)');
-    expect(markup).toContain('34주차 운반선 보고 기준');
-    expect(markup).toContain('data-kpi-value="25214.952"');
-    expect(markup).toContain('data-kpi-value="7"');
-    expect(markup.match(/data-reefer-carrier-marker="true"/g)?.length).toBe(7);
-    expect(markup.match(/data-marker-tone="data"/g)?.length).toBe(7);
+    expect(markup).toContain('35주차 운반선 보고 기준');
+    expect(markup).toContain('data-kpi-value="21176.679"');
+    expect(markup).toContain('data-kpi-value="6"');
+    expect(markup.match(/data-reefer-carrier-marker="true"/g)?.length).toBe(6);
+    expect(markup.match(/data-marker-tone="data"/g)?.length).toBe(6);
     expect(markup).not.toContain('#f59e0b');
     expect(markup).toContain('입항 재확인 2척 후속 확인 완료');
     expect(markup).not.toContain('SEIN VENUS와 HENG HONG 9의 예정일이 도래했으므로 실제 입항·접안 여부를 확인합니다.');
