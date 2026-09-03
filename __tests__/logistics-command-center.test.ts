@@ -50,9 +50,9 @@ describe('logistics decision workspace', () => {
     const heroMarkup = renderToStaticMarkup(React.createElement(LogisticsHero));
     const carrierMarkup = renderToStaticMarkup(React.createElement(CarrierUnloadingStatus));
 
-    expect(heroMarkup).toContain('34주차 운반선 보고 기준');
-    expect(heroMarkup).toContain('data-kpi-value="25214.952"');
-    expect(heroMarkup).toContain('data-kpi-value="7"');
+    expect(heroMarkup).toContain('35주차 운반선 보고 기준');
+    expect(heroMarkup).toContain('data-kpi-value="21176.679"');
+    expect(heroMarkup).toContain('data-kpi-value="6"');
     expect(heroMarkup).toContain('입항 재확인 2척 후속 확인 완료');
     expect(heroMarkup).not.toContain('입항 상태 재확인');
     expect(carrierMarkup).toContain('입항 예정 후속 확인');

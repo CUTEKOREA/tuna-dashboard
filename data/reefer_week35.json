@@ -1,0 +1,102 @@
+[
+  {
+    "carrier": "SEIN VENUS",
+    "date": "06.08.26",
+    "status": "주간 보고 기록",
+    "daysRemaining": null,
+    "priority": "이력",
+    "deliveries": {
+      "GB": "143",
+      "GPZ": "925",
+      "ISA": "760",
+      "MMP": "400",
+      "PTY": "100",
+      "TUM": "947",
+      "OTHER": "41"
+    }
+  },
+  {
+    "carrier": "PACIFIC JOURNEY",
+    "date": "13.08.26",
+    "status": "주간 보고 기록",
+    "daysRemaining": null,
+    "priority": "이력",
+    "deliveries": {
+      "DIA": "470",
+      "GB": "50",
+      "MMP": "365",
+      "RS": "406",
+      "SIF": "300",
+      "SE": "300",
+      "TUM": "349",
+      "OTHER": "21A"
+    }
+  },
+  {
+    "carrier": "PATSORN",
+    "date": "25.08.26",
+    "status": "주간 보고 기록",
+    "daysRemaining": null,
+    "priority": "이력",
+    "deliveries": {
+      "MMP": "1,000.646",
+      "TUM": "770.788",
+      "UC": "553.245",
+      "OTHER": "SAMUTSAKORN"
+    }
+  },
+  {
+    "carrier": "SEITA MARU",
+    "date": "29.08.26",
+    "status": "주간 보고 기록",
+    "daysRemaining": null,
+    "priority": "이력",
+    "deliveries": {
+      "AEC": "56",
+      "DIA": "494",
+      "MMP": "20",
+      "TUG": "25",
+      "TUM": "2,837",
+      "OTHER": "23"
+    }
+  },
+  {
+    "carrier": "FONG KUO NO.818",
+    "date": "01.09.26",
+    "status": "주간 보고 기록",
+    "daysRemaining": null,
+    "priority": "이력",
+    "deliveries": {
+      "AEC": "630",
+      "CMC": "250",
+      "DIA": "200",
+      "ISA": "1,000",
+      "MMP": "222",
+      "PTY": "500",
+      "SK": "250",
+      "TUM": "314",
+      "UC": "1,514",
+      "OTHER": "23"
+    }
+  },
+  {
+    "carrier": "ZHONG YU MARINE",
+    "date": "02.09.26",
+    "status": "주간 보고 기록",
+    "daysRemaining": null,
+    "priority": "이력",
+    "deliveries": {
+      "AEC": "228",
+      "CMC": "400",
+      "GB": "100",
+      "MMP": "574",
+      "PTY": "606",
+      "RMK": "287",
+      "RS": "869",
+      "SEAP": "300",
+      "TUM": "265",
+      "UC": "1,396",
+      "OTHER": "23"
+    }
+  }
+]
