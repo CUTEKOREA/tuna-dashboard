@@ -33,7 +33,11 @@ from pathlib import Path
 from typing import Any
 
 ROOT = Path(__file__).resolve().parents[1]
-DEFAULT_OUTPUT = ROOT / "public/data/pork_usda_widgets.json"
+# 화면이 읽는 것은 `data/` 쪽이다 — lib/data/usda-widgets.ts 가 그것을 import 한다.
+# `public/data/` 에도 같은 이름의 사본이 있어 2026-09-04 에 그쪽을 고쳤다가 화면이 안 바뀌었다.
+# 두 벌을 함께 쓰되 정본은 data/ 다.
+DEFAULT_OUTPUT = ROOT / "data/pork_usda_widgets.json"
+MIRROR_OUTPUT = ROOT / "public/data/pork_usda_widgets.json"
 
 API = "https://api.fas.usda.gov/api"
 COMMODITY = 1702           # Pork, fresh/chilled/frozen muscle cuts
@@ -186,10 +190,14 @@ def main() -> int:
         print(json.dumps({"latestWeek": week, "changed": not same}, ensure_ascii=False, indent=2))
         return 0
     args.output.write_text(text, encoding="utf-8")
+    # 사본이 갈라지면 어느 쪽이 화면인지 다시 헷갈린다. 같이 쓴다.
+    if args.output.resolve() == DEFAULT_OUTPUT.resolve() and MIRROR_OUTPUT.exists():
+        MIRROR_OUTPUT.write_text(text, encoding="utf-8")
     print(json.dumps({
         "output": str(args.output), "latestWeek": week,
         "timelineMonths": len(timeline), "importers": len(importers),
         "untouched": [w["id"] for w in payload["widgets"] if w["id"] not in ESR_WIDGETS],
+        "mirrored": str(MIRROR_OUTPUT) if MIRROR_OUTPUT.exists() else None,
     }, ensure_ascii=False, indent=2))
     return 0
 

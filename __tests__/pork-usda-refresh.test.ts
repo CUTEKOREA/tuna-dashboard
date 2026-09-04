@@ -1,6 +1,9 @@
 import { describe, expect, it } from 'vitest';
 
-import pork from '../public/data/pork_usda_widgets.json';
+// 화면이 읽는 정본은 data/ 다 (lib/data/usda-widgets.ts 가 이것을 import 한다).
+// public/data/ 에 같은 이름의 사본이 있어 2026-09-04 에 그쪽만 고쳤다가 화면이 안 바뀌었다.
+import pork from '../data/pork_usda_widgets.json';
+import porkMirror from '../public/data/pork_usda_widgets.json';
 
 /* 원자료: USDA FAS ESR commodityCode 1702 (Pork muscle cuts), MY2024~2026.
  * scripts/sync_pork_usda.py 로 받는다.
@@ -22,6 +25,11 @@ const ESR = ['w_us_korea_pork_timeline', 'w_us_pork_top_importers'];
 const GAIN = ['w_china_pork_dominance', 'w_spain_pork_eu_leader', 'w_asf_global_spread'];
 
 describe('돼지고기 USDA 위젯', () => {
+  it('data/ 와 public/data/ 사본이 갈라지지 않는다', () => {
+    // 갈라지면 어느 쪽이 화면인지 다시 헷갈리고, 안 읽히는 쪽만 갱신하는 사고가 반복된다
+    expect(porkMirror).toEqual(pork);
+  });
+
   it('ESR 위젯은 SYNCED 이고 GAIN 위젯은 STATIC 인 채로 남는다', () => {
     for (const id of ESR) {
       expect(byId(id).telemetry).toBe('SYNCED');
