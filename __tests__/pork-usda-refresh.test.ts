@@ -59,6 +59,25 @@ describe('돼지고기 USDA 위젯', () => {
     }
   });
 
+  it('설명문이 차트 수치와 같은 이야기를 한다', () => {
+    // 데이터만 갈고 문장을 두면 화면이 서로 다른 말을 한다 — 2026-09-04 에 실제로
+    // 「2025-06~2026-05 · 582K톤」 문장이 2026-01~08 차트 위에 남아 있었다.
+    const tl = byId('w_us_korea_pork_timeline');
+    const rows = tl.data as { month: string; weeklyExports: number }[];
+    const span = `${rows[0].month}~${rows[rows.length - 1].month}`;
+    expect((tl as unknown as { cardDesc: string }).cardDesc).toContain(span);
+    const peak = rows.reduce((a, b) => (b.weeklyExports > a.weeklyExports ? b : a));
+    expect((tl as unknown as { sit: string }).sit).toContain(peak.month);
+
+    const ti = byId('w_us_pork_top_importers');
+    const imp = ti.data as { country: string; exports_kt: number }[];
+    // 1위 국가와 그 수치가 문장에 그대로 있어야 한다
+    expect((ti as unknown as { cardDesc: string }).cardDesc).toContain(imp[0].country);
+    const korea = imp.find((r) => r.country === '한국')!;
+    expect((tl as unknown as { cardDesc: string }).cardDesc)
+      .toContain(`세계 ${imp.indexOf(korea) + 1}위`);
+  });
+
   it('수입국 표가 내림차순이고 국가명이 코드로 새지 않는다', () => {
     const rows = byId('w_us_pork_top_importers').data as { country: string; exports_kt: number }[];
     expect(rows).toHaveLength(8);

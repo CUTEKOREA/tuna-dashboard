@@ -170,6 +170,39 @@ def main() -> int:
 
     widgets["w_us_korea_pork_timeline"]["data"] = timeline
     widgets["w_us_pork_top_importers"]["data"] = importers
+
+    # 설명문도 같은 숫자에서 만든다. 데이터만 갈고 문장을 두면 화면이 서로 다른 말을 한다 —
+    # 2026-09-04 에 실제로 「2025-06~2026-05 · 582K톤」 문장이 2026-01~08 차트 위에 남아 있었다.
+    span = f"{timeline[0]['month']}~{timeline[-1]['month']}"
+    peak = max(timeline, key=lambda r: r["weeklyExports"])
+    avg = sum(r["weeklyExports"] for r in timeline) / len(timeline)
+    korea = next((r for r in importers if r["country"] == "한국"), None)
+    rank = importers.index(korea) + 1 if korea else None
+    kt = lambda v: f"{v:,.0f}K톤" if v < 1000 else f"{v/1000:.1f}M톤"
+    top_line = " > ".join(f"{r['country']} {kt(r['exports_kt'])}" for r in importers[:4])
+
+    tl = widgets["w_us_korea_pork_timeline"]
+    tl["cardDesc"] = (
+        f"ESR 주간→월간 집계({span}). 한국 {years[0]}~{years[-1]}년 누적 "
+        f"{kt(korea['exports_kt']) if korea else '-'}, 세계 {rank}위. "
+        f"{peak['month']} {peak['weeklyExports']/1000:.1f}K톤 피크."
+    )
+    tl["sit"] = (
+        f"미국→한국 Pork 평균 {avg/1000:.1f}K톤/월({span}). "
+        f"{peak['month']} {peak['weeklyExports']/1000:.1f}K톤이 최고, "
+        f"{min(timeline, key=lambda r: r['weeklyExports'])['month']} "
+        f"{min(r['weeklyExports'] for r in timeline)/1000:.1f}K톤이 최저다. "
+        f"{years[0]}~{years[-1]}년 누적 {kt(korea['exports_kt']) if korea else '-'}로 세계 {rank}위. "
+        f"KORUS 무관세와 ASF 청정 공급원이라는 위치는 그대로다."
+    )
+    ti = widgets["w_us_pork_top_importers"]
+    ti["cardDesc"] = f"USDA FAS ESR 주간 {len(years)}년 누적(상위 {len(importers)}개국). {top_line}."
+    ti["sit"] = (
+        f"USDA FAS ESR MY{years[0]}~{years[-1]} 누적 기준 미국 Pork 수출 상위는 {top_line} 순이다. "
+        f"1위 {importers[0]['country']}가 상위 8개국 합계의 "
+        f"{importers[0]['exports_kt']/sum(r['exports_kt'] for r in importers)*100:.0f}%를 차지한다."
+    )
+
     for wid in ESR_WIDGETS:
         widgets[wid]["syncDate"] = week
         widgets[wid]["telemetry"] = "SYNCED"
