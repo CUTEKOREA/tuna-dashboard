@@ -97,6 +97,12 @@ SPECS: dict[str, dict] = {
         "stages": {f"s{i}": f"c{i:02d}" for i in range(1, 10)},
         "drop": [],
     },
+    "jealsa": {
+        "src": "docs/evidence/company-jealsa-2026-09/보고서.html",
+        # 보고서 9절이 화면 9단계와 1:1 이다.
+        "stages": {f"s{i}": f"c{i:02d}" for i in range(1, 10)},
+        "drop": [],
+    },
     "jais": {
         "src": "docs/evidence/company-jais-2026-08/보고서.html",
         "stages": {"s1": "c01", "s2": "c01", "s3": "c02", "s4": "c03", "s5": "c04",
