@@ -99,8 +99,8 @@ SPECS: dict[str, dict] = {
     },
     "jealsa": {
         "src": "docs/evidence/company-jealsa-2026-09/보고서.html",
-        # 보고서 9절이 화면 9단계와 1:1 이다.
-        "stages": {f"s{i}": f"c{i:02d}" for i in range(1, 10)},
+        # 보고서 12절이 화면 12단계와 1:1 이다.
+        "stages": {f"s{i}": f"c{i:02d}" for i in range(1, 13)},
         "drop": [],
     },
     "jais": {
