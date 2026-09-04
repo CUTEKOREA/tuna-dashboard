@@ -1,3 +1,11 @@
+> 🧰 **2026-09-04 16:20 KST — 죽은 자동화 후속: `data/` gitignore 가 세 워크플로를 함께 막고 있었다** [CC]:
+> - #904 병합 후 세 워크플로를 수동 실행해 실제로 어디까지 가는지 확인했다. **제 수정 지점은 둘 다 통과**했고, 더 뒤에서 각각 다른 벽에 부딪혔다.
+> - **Korea Consignment Data Sync** — ESM 확장자 수정으로 모듈 해석은 통과. 이제 `Missing required environment variable: FISHERY_API_KEY` 에서 멈춘다. **저장소에 등록된 시크릿이 0개**다(`gh secret list` 비어 있음). 코드 문제가 아니라 **시크릿 미등록** — 사용자만 넣을 수 있다. 워크플로가 참조하는 키: `FISHERY_API_KEY`, `DATA_GO_KR_NEW_KEY`, `KAMIS_API_KEY`, `KCS_API_KEY`, `SLACK_WEBHOOK_URL`.
+> - **Shrimp External Intelligence Scraper** — `Set up Python`·`Install`·**`Run Shrimp Scraper Script` 까지 성공**. 마지막 커밋 단계에서 `The following paths are ignored by one of your .gitignore files: data` 로 죽는다.
+> - **뿌리가 하나였다.** 세 워크플로(carrot·shrimp·thai-moc)가 전부 `git add data/...` 를 하는데 `/data/` 는 `.gitignore:53` 으로 무시된다(L-08 대용량 데이터 git 금지). 게다가 **이 산출물들을 읽는 대시보드 코드가 하나도 없다** — `thai_moc_hs_codes`·`External_` 를 참조하는 건 자기 생성 스크립트뿐이다. 대시보드 피드가 아니라 사람이 읽는 조사 자료다.
+> - 사용자 지시로 확정된 보관 계약(`agri_data/CLAUDE.md`)상 이런 조사물의 정본 자리는 **Drive `agri_data/`** 이고 CI 는 거기에 못 쓴다. 그래서 **커밋 단계를 `actions/upload-artifact` 로 교체**(90일 보관)했다 — 잡이 성공하고 산출물도 남아, 받아서 `agri_data` 알맞은 레인에 넣으면 된다.
+> - Carrot 은 스케줄을 껐다(#904). 나머지 둘은 이제 성공해야 정상이다.
+
 > 🔧 **2026-09-04 15:40 KST — 전 대시보드 데이터 신선도 감사: 자동화 4개가 전부 죽어 있었다** [CC]:
 > - 사용자 요청으로 전 대시보드 신선도를 훑다가, **예약 워크플로 6개 중 4개가 계속 실패 중**인 것을 발견했다. 화면은 멀쩡해 보이지만 데이터가 안 들어오고 있었다.
 > - **Korea Consignment Data Sync** — 6시간마다 실패(최소 9/2~9/3 전량). `scripts/sync_consignment_data.ts:18` 의 `from '../app/api/_shared/env'` 에 확장자가 없어 Node ESM 이 못 찾는다. 같은 파일 16·17행은 이미 `.ts` 를 달고 있어 그 한 줄만 빠진 것. **로컬에서도 동일 재현**됐고, `.ts` 를 붙이니 모듈 해석이 통과해 이제 env 미설정 단계까지 진행한다(러너에는 secret 이 있다).

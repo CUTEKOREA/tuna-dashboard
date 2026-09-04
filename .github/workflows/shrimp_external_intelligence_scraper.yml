@@ -30,15 +30,14 @@ jobs:
       - name: Run Shrimp Scraper Script
         run: python scripts/fetch_shrimp_external_intelligence.py
 
-      - name: Commit and Push changes
-        run: |
-          git config --local user.email "github-actions[bot]@users.noreply.github.com"
-          git config --local user.name "github-actions[bot]"
-          git add data/새우/External_*.md
-          # 변경사항이 있을 경우에만 커밋 및 푸시 진행
-          if git diff --staged --quiet; then
-            echo "No new external intelligence data to commit."
-          else
-            git commit -m "chore(shrimp): auto-fetch monthly external intelligence reports [skip ci]"
-            git push
-          fi
+      # 산출물은 `data/` 아래라 .gitignore:53 에 걸려 커밋되지 않는다(L-08, 대용량 데이터 git 금지).
+      # 이 수집물을 읽는 대시보드 코드도 없다 — 사람이 읽는 조사 자료다.
+      # 정본 보관처는 Drive 의 `agri_data/01_수산물(Seafood)/shrimp/00_shrimp_관련자료/` 이고
+      # CI 는 거기에 쓸 수 없으므로, 커밋 대신 아티팩트로 남겨 내려받아 정리하게 한다.
+      - name: Upload collected reports
+        uses: actions/upload-artifact@v4
+        with:
+          name: shrimp-external-intelligence-${{ github.run_id }}
+          path: data/새우/External_*.md
+          if-no-files-found: warn
+          retention-days: 90
