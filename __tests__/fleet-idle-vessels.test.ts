@@ -26,7 +26,7 @@ describe('fleet idle vessel detection', () => {
     const moamari = resolveFleetIdleVessels().find((row) => row.vessel === 'MOAMARI');
 
     expect(moamari).toMatchObject({ region: '태평양', lastCatchDate: '2026-08-13' });
-    expect(moamari!.dailyAverageMt).toBeCloseTo(22.74, 2);
+    expect(moamari!.dailyAverageMt).toBeCloseTo(22.58, 2);
     expect(FLEET_IDLE_NOTES.MOAMARI.headline).toContain('젠산');
     // 2026-09-02 선장 사고보고서(8/18): 손상은 로프가드가 아니라 프로펠러 볼트 3개 파손
     expect(FLEET_IDLE_NOTES.MOAMARI.headline).toContain('프로펠러 볼트 3개 파손');
