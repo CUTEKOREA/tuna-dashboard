@@ -1,0 +1,74 @@
+{
+ "_meta": {
+  "출처": "docs/evidence/company-fcf-2026-08/보고서.html",
+  "생성": "python3 scripts/build_report_figures.py",
+  "설명": "보고서의 팩샷과 차트. 이미지는 public 아래 정적 파일이고 여기에는 URL 만 담는다."
+ },
+ "figures": [
+  {
+   "stage": "c01",
+   "sid": "s1",
+   "kind": "shot",
+   "caption": "FCF 발표자료 「Our Global Footprint」, 2026년 4월. 범례는 본사(HEADQUARTER) · 자회사(SUBSIDIARY) · 지사(BRANCH OFFICE)와 색이 다른 네 번째 범주로 나뉜다. 촬영본이라 네 번째 범례의 글자는 판독되지 않으나, 파푸아뉴기니 3사와 가나 Cosmo가 그 범주에 묶여 자회사와 구분 된다. 2",
+   "alt": "FCF 그룹 글로벌 법인 지도 — 대만 본사, 미국·캐나다·파나마 자회사, 일본·싱가포르·인도네시아 지사, PNG·가나 합작",
+   "src": "/data/companies/figures/fcf/a4a27943a8d1.jpg"
+  },
+  {
+   "stage": "c04",
+   "sid": "s4",
+   "kind": "chart",
+   "caption": "1999~2005년 6년간 +117%는 파푸아뉴기니·트리니다드 가공공장 진출 효과다. 1978년 값은 「10억 돌파」이고 2024년 600억은 회사 발언에 근거한 보도치다. 감사받은 수치가 아니다. 11",
+   "alt": "",
+   "svg": "<svg viewBox=\"0 0 720 264\" role=\"img\" aria-label=\"1978년 10억에서 2024년 600억으로 성장한 FCF 매출 곡선\">\n      <line class=\"grid-l\" x1=\"48\" y1=\"226\" x2=\"700\" y2=\"226\"></line>\n      <line class=\"grid-l\" x1=\"48\" y1=\"162.6\" x2=\"700\" y2=\"162.6\"></line>\n      <line class=\"grid-l\" x1=\"48\" y1=\"99.2\" x2=\"700\" y2=\"99.2\"></line>\n      <line class=\"grid-l\" x1=\"48\" y1=\"35.9\" x2=\"700\" y2=\"35.9\"></line>\n      <text class=\"axis-t\" x=\"42\" y=\"230\" text-anchor=\"end\">0</text>\n      <text class=\"axis-t\" x=\"42\" y=\"166\" text-anchor=\"end\">200</text>\n      <text class=\"axis-t\" x=\"42\" y=\"103\" text-anchor=\"end\">400</text>\n      <text class=\"axis-t\" x=\"42\" y=\"40\" text-anchor=\"end\">600</text>\n      <line x1=\"429\" y1=\"20\" x2=\"429\" y2=\"226\" stroke=\"var(--rule-2)\" stroke-width=\"1\" stroke-dasharray=\"3 3\"></line>\n      <line x1=\"632\" y1=\"20\" x2=\"632\" y2=\"226\" stroke=\"var(--rule-2)\" stroke-width=\"1\" stroke-dasharray=\"3 3\"></line>\n      <text class=\"ev-l\" x=\"433\" y=\"30\">2000 PNG 가공 진출</text>\n      <text class=\"ev-l\" x=\"628\" y=\"30\" text-anchor=\"end\">2020 Bumble Bee 인수</text>\n      <polyline fill=\"none\" stroke=\"var(--chart-1)\" stroke-width=\"2\" stroke-linejoin=\"round\" stroke-linecap=\"round\"\n        points=\"86,222.8 162,219.6 188,214.7 200,212.1 213,211.3 226,212.3 353,184.0 429,134.6 493,99.2 594,83.4 671,35.9\"></polyline>\n      <circle cx=\"86\" cy=\"222.8\" r=\"3.2\" fill=\"var(--chart-1)\"></circle>\n      <circle cx=\"353\" cy=\"184.0\" r=\"3.2\" fill=\"var(--chart-1)\"></circle>\n      <circle cx=\"429\" cy=\"134.6\" r=\"3.2\" fill=\"var(--chart-1)\"></circle>\n      <circle cx=\"594\" cy=\"83.4\" r=\"3.2\" fill=\"var(--chart-1)\"></circle>\n      <circle cx=\"671\" cy=\"35.9\" r=\"4.6\" fill=\"var(--chart-1)\" stroke=\"var(--card)\" stroke-width=\"2\"></circle>\n      <text class=\"pt-l\" x=\"86\" y=\"238\" text-anchor=\"middle\">1978 · 10</text>\n      <text class=\"pt-l\" x=\"353\" y=\"177\" text-anchor=\"middle\">133</text>\n      <text class=\"pt-l\" x=\"429\" y=\"127\" text-anchor=\"middle\">288</text>\n      <text class=\"pt-l\" x=\"594\" y=\"76\" text-anchor=\"middle\">450</text>\n      <text class=\"pt-l\" x=\"671\" y=\"28\" text-anchor=\"middle\">2024 · 600</text>\n      <text class=\"axis-t\" x=\"353\" y=\"252\" text-anchor=\"middle\">1999</text>\n      <text class=\"axis-t\" x=\"429\" y=\"252\" text-anchor=\"middle\">2005</text>\n      <text class=\"axis-t\" x=\"594\" y=\"252\" text-anchor=\"middle\">2018</text>\n    </svg>",
+   "css": ":scope{--card:#FCFCFB;--chart-1:#0090A3;--ink-2:#5A534C;--ink-3:#8C837A;--mono:'IBM Plex Mono',ui-monospace,SFMono-Regular,Menlo,monospace;--rule:#E2DDD5;--rule-2:#CFC8BE}.grid-l{stroke:var(--rule);stroke-width:1}.axis-t{font-family:var(--mono);font-size:10px;fill:var(--ink-3)}.pt-l{font-family:var(--mono);font-size:10.5px;fill:var(--ink-2);font-weight:500}.ev-l{font-family:var(--mono);font-size:10px;fill:var(--ink-3)}"
+  },
+  {
+   "stage": "c04",
+   "sid": "s5",
+   "kind": "shot",
+   "caption": "Bumble Bee 미국 · 캔·파우치 참치와 연어. 그룹 주력",
+   "alt": "Bumble Bee 제품",
+   "src": "/data/companies/figures/fcf/da8c8593cee5.jpg"
+  },
+  {
+   "stage": "c04",
+   "sid": "s5",
+   "kind": "shot",
+   "caption": "Clover Leaf 캐나다 캔수산물 1위 · 1871년",
+   "alt": "Clover Leaf 제품",
+   "src": "/data/companies/figures/fcf/fea2cf53b1cc.jpg"
+  },
+  {
+   "stage": "c04",
+   "sid": "s5",
+   "kind": "shot",
+   "caption": "Brunswick 캐나다 캔 정어리 1위 · 1893년",
+   "alt": "Brunswick 제품",
+   "src": "/data/companies/figures/fcf/1e38341a5a38.jpg"
+  },
+  {
+   "stage": "c04",
+   "sid": "s5",
+   "kind": "shot",
+   "caption": "Snow's 뉴잉글랜드 클램 · 1920년",
+   "alt": "Snow's 제품",
+   "src": "/data/companies/figures/fcf/dc98a6e26ace.jpg"
+  },
+  {
+   "stage": "c04",
+   "sid": "s5",
+   "kind": "shot",
+   "caption": "Beach Cliff 정어리",
+   "alt": "Beach Cliff 제품",
+   "src": "/data/companies/figures/fcf/c38035bcce3e.jpg"
+  },
+  {
+   "stage": "c04",
+   "sid": "s5",
+   "kind": "shot",
+   "caption": "Sweet Sue 캔 치킨: 참치 외 단백질 라인",
+   "alt": "Sweet Sue 제품",
+   "src": "/data/companies/figures/fcf/540d7bfa8cdd.jpg"
+  }
+ ]
+}

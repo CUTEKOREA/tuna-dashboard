@@ -1,0 +1,17 @@
+{
+ "_meta": {
+  "출처": "docs/evidence/company-jais-2026-08/보고서.html",
+  "생성": "python3 scripts/build_report_figures.py",
+  "설명": "보고서의 팩샷과 차트. 이미지는 public 아래 정적 파일이고 여기에는 URL 만 담는다."
+ },
+ "figures": [
+  {
+   "stage": "c01",
+   "sid": "cover",
+   "kind": "doc",
+   "caption": "FRIEND OF THE SEA 승인선박 명부 2018-10-10 · 298~319행 스물두 줄 가운데 스물한 줄의 선사 칸이 JAIS다. 배도 어업권도 남의 것이고, 이 회사가 가진 것은 그 줄에 이름을 올릴 권한이다. 300행 하나만 FCF다. 2023년판에서 JAIS 행은 0이 된다.",
+   "alt": "Friend of the Sea 승인선박 명부 2018년판 298~319행. 선사 칸이 JAIS로 적힌 줄이 21개다",
+   "src": "/data/companies/figures/jais/4fae1afd53a7.jpg"
+  }
+ ]
+}

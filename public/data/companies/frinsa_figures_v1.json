@@ -1,0 +1,153 @@
+{
+ "_meta": {
+  "출처": "docs/evidence/company-frinsa-2026-08/보고서.html",
+  "생성": "python3 scripts/build_report_figures.py",
+  "설명": "보고서의 팩샷과 차트. 이미지는 public 아래 정적 파일이고 여기에는 URL 만 담는다."
+ },
+ "figures": [
+  {
+   "stage": "c01",
+   "sid": "cover",
+   "kind": "shot",
+   "caption": "",
+   "alt": "Ribeira 참치캔 라인업",
+   "src": "/data/companies/figures/frinsa/8da0a887fd9c.jpg"
+  },
+  {
+   "stage": "c01",
+   "sid": "cover",
+   "kind": "shot",
+   "caption": "",
+   "alt": "Navajas al ajillo",
+   "src": "/data/companies/figures/frinsa/3ce1358f993a.jpg"
+  },
+  {
+   "stage": "c01",
+   "sid": "cover",
+   "kind": "shot",
+   "caption": "",
+   "alt": "SOLO 기능성 라인",
+   "src": "/data/companies/figures/frinsa/09ab56374fc4.jpg"
+  },
+  {
+   "stage": "c03",
+   "sid": "s3",
+   "kind": "shot",
+   "caption": "Ventresca de atún rojo · 120 g · 26.50 € 참다랑어 뱃살 수작업 통살. 한정판",
+   "alt": "Ventresca de atún rojo 한정판 케이스",
+   "src": "/data/companies/figures/frinsa/0b98abf3d9a3.jpg"
+  },
+  {
+   "stage": "c03",
+   "sid": "s3",
+   "kind": "shot",
+   "caption": "Ventresca de Bonito del Norte · 120 g · 11.95 € 날개다랑어 뱃살. 올리브유·AOVE·자연산 3종",
+   "alt": "Ventresca de Bonito del Norte AOVE",
+   "src": "/data/companies/figures/frinsa/747c3bb506e9.jpg"
+  },
+  {
+   "stage": "c03",
+   "sid": "s3",
+   "kind": "shot",
+   "caption": "Bonito del Norte en tarro · 190/260/400 g 6.95–13.25 € · 유리병 규격이 캔보다 비싸다",
+   "alt": "Bonito del Norte en tarro 190 g AOVE",
+   "src": "/data/companies/figures/frinsa/4eb40f10e8a0.jpg"
+  },
+  {
+   "stage": "c03",
+   "sid": "s3",
+   "kind": "shot",
+   "caption": "Atún en aceite de girasol · 1,000 g 업소용 대용량. 1,730 g·3,000 g 규격도 유럽에서 유통",
+   "alt": "Ribeira Atún en aceite de girasol 1000 g",
+   "src": "/data/companies/figures/frinsa/1115cd69e2c5.jpg"
+  },
+  {
+   "stage": "c03",
+   "sid": "s3",
+   "kind": "shot",
+   "caption": "Atún en aceite de oliva · 6×80 g 가정용 멀티팩. 이탈리아는 12×70 g 규격",
+   "alt": "Ribeira Atún en aceite de oliva 6x80 g",
+   "src": "/data/companies/figures/frinsa/0709816c53df.jpg"
+  },
+  {
+   "stage": "c03",
+   "sid": "s3",
+   "kind": "shot",
+   "caption": "Mejillones · 3×80 g 홍합 원료는 칠레산 으로 표기된다",
+   "alt": "Ribeira Mejillones 3x80 g",
+   "src": "/data/companies/figures/frinsa/a2c3ad5f74cc.jpg"
+  },
+  {
+   "stage": "c03",
+   "sid": "s3",
+   "kind": "shot",
+   "caption": "Estuche VIP Noroeste · 152.00 € 자사몰 최고가 상품. 단품 합 대비 +42%",
+   "alt": "Estuche VIP Noroeste",
+   "src": "/data/companies/figures/frinsa/6a9e51724b3c.jpg"
+  },
+  {
+   "stage": "c03",
+   "sid": "s3",
+   "kind": "shot",
+   "caption": "Atún claro en aceite de oliva · 200 g · 4.25 € 자사몰 최저가 참치. 21.25 €/kg",
+   "alt": "Atún claro en aceite de oliva 200 g",
+   "src": "/data/companies/figures/frinsa/7b1ab2f3995a.jpg"
+  },
+  {
+   "stage": "c03",
+   "sid": "s3",
+   "kind": "shot",
+   "caption": "Paté de atún Bio (Minerva) · 75 g · 2.50 € 유기농 파테 4종은 전부 포르투갈 브랜드다",
+   "alt": "Paté de atún Bio Minerva",
+   "src": "/data/companies/figures/frinsa/2905b2218570.jpg"
+  },
+  {
+   "stage": "c03",
+   "sid": "s3",
+   "kind": "shot",
+   "caption": "SOLO Atún claro al natural · 160 g · 3.50 € 물 + 소금만. 고형량 112 g",
+   "alt": "SOLO Atún claro al natural 160 g",
+   "src": "/data/companies/figures/frinsa/24e35d149339.jpg"
+  },
+  {
+   "stage": "c03",
+   "sid": "s3",
+   "kind": "shot",
+   "caption": "SOLO Pechuga de pollo · 160 g · 3.50 € 수산이 아닌 가금류 캔. 같은 공장에서 만든다",
+   "alt": "SOLO Pechuga de pollo al natural",
+   "src": "/data/companies/figures/frinsa/02415cd085cd.jpg"
+  },
+  {
+   "stage": "c03",
+   "sid": "s3",
+   "kind": "shot",
+   "caption": "SOLUTION MIX · 160 + 120 g · 4.95 € 단백질 캔 + 탄수 캔 묶음. GI 수치 병기",
+   "alt": "SOLO SOLUTION MIX 닭 + 바스마티",
+   "src": "/data/companies/figures/frinsa/ee50ce0eb4cb.jpg"
+  },
+  {
+   "stage": "c03",
+   "sid": "s3",
+   "kind": "shot",
+   "caption": "Ribeira Proteína Natural: Salmón al natural · 160 g · 2016년 라인. 규격과 내용물(물+소금)이 그대로 SOLO로 넘어갔고, 브랜드 이름만 바뀌었다.",
+   "alt": "Ribeira Proteína Natural 연어 캔 (2016)",
+   "src": "/data/companies/figures/frinsa/9d0f4a899def.jpg"
+  },
+  {
+   "stage": "c05",
+   "sid": "s6",
+   "kind": "shot",
+   "caption": "Ribeira 본사·주력공장 : Polígono Industrial de Xarás. 2019년까지 그룹의 유일한 생산기지였다.",
+   "alt": "Frinsa Ribeira 공장",
+   "src": "/data/companies/figures/frinsa/2f7017524f5a.jpg"
+  },
+  {
+   "stage": "c05",
+   "sid": "s6",
+   "kind": "shot",
+   "caption": "Ribeira 라인업: 참치와 홍합, 꼬막, 오징어까지 최광폭 구성",
+   "alt": "Ribeira 브랜드 제품군",
+   "src": "/data/companies/figures/frinsa/fc92d8979762.jpg"
+  }
+ ]
+}

@@ -1,0 +1,17 @@
+{
+ "_meta": {
+  "출처": "docs/evidence/company-albacora-2026-08/보고서.html",
+  "생성": "python3 scripts/build_report_figures.py",
+  "설명": "보고서의 팩샷과 차트. 이미지는 public 아래 정적 파일이고 여기에는 URL 만 담는다."
+ },
+ "figures": [
+  {
+   "stage": "c03",
+   "sid": "s3",
+   "kind": "shot",
+   "caption": "회사가 설명하는 자사 선망 어법 : 선택성('참치 어획 평균 96%, 낮은 혼획률'), '돌고래 없음', '세계 선단 평균 대비 연료 −67%' . 전부 회사 자기주장이다. 회사 자료",
+   "alt": "Albacora 선망 어법 인포그래픽",
+   "src": "/data/companies/figures/albacora/56db32f3adb7.jpg"
+  }
+ ]
+}

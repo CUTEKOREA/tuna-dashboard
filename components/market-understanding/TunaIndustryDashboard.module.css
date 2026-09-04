@@ -1435,3 +1435,69 @@
   color: var(--mu-ink-faint, var(--mu-ink-soft));
   word-break: keep-all;
 }
+
+/* ── 보고서 그림 (팩샷·차트·문서 캡처) ─────────────────────────────
+   보고서에는 아홉 편 합쳐 59장이 있었는데 화면에는 한 장도 올라오지 않았다.
+   이미지는 public 아래 정적 파일이라 여기서는 배치만 맡는다. */
+.figGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(11rem, 1fr));
+  gap: 0.9rem;
+  margin: 0.2rem 0 0.4rem;
+}
+.figCard {
+  border: 1px solid var(--rule, #d8dade);
+  border-radius: 6px;
+  background: var(--card, #fff);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+.figShot {
+  background: var(--paper-2, #f1f2ef);
+  padding: 0.9rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 8.5rem;
+}
+.figShot img {
+  max-height: 7.5rem;
+  width: auto;
+  max-width: 100%;
+  display: block;
+}
+.figCap {
+  padding: 0.55rem 0.7rem;
+  font-size: 0.72rem;
+  line-height: 1.55;
+  color: var(--ink-2, #4a5560);
+  border-top: 1px solid var(--rule, #d8dade);
+}
+/* 차트는 폭을 다 쓴다. 격자에 넣으면 눈금이 뭉갠다. */
+.figChart {
+  border: 1px solid var(--rule, #d8dade);
+  border-radius: 6px;
+  background: var(--card, #fff);
+  margin: 0.2rem 0 0.6rem;
+  overflow: hidden;
+}
+.figChart > div {
+  padding: 1rem 0.9rem;
+}
+.figChart svg {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+/* 문서 캡처는 읽혀야 하므로 크게 놓는다. */
+.figDoc img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+/* 차트 판. 보고서의 밝은 팔레트를 쓰므로 바탕을 고정한다 — 팩샷도 흰 배경이라 톤이 맞는다. */
+.figPlate {
+  background: #fff;
+  padding: 1rem 0.9rem;
+}
