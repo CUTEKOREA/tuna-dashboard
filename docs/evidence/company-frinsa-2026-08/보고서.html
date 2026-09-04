@@ -112,8 +112,8 @@ h2{font-family:var(--sans);font-weight:600;font-size:1.7rem;letter-spacing:-.022
   letter-spacing:.1em;display:block;margin-bottom:.9rem}
 h3{font-family:var(--sans);font-weight:600;font-size:1.06rem;margin:2.6rem 0 .7rem}
 h4{font-family:var(--sans);font-weight:600;font-size:.92rem;margin:1.8rem 0 .5rem;color:var(--ink-2)}
-p{margin:0 0 1.1rem;max-width:44rem}
-.lead{font-size:1.1rem;line-height:1.7;color:var(--ink-2);max-width:44rem}
+p{margin:0 0 1.1rem;max-width:none}
+.lead{font-size:1.1rem;line-height:1.7;color:var(--ink-2);max-width:none}
 strong{font-weight:600;color:var(--ink)}
 .es{font-style:italic}
 code{font-family:var(--mono);font-size:.85em;background:var(--paper-2);padding:.1em .3em;
@@ -154,22 +154,30 @@ th{background:var(--paper-2);text-align:left;font-weight:600;font-size:.71rem;le
   text-transform:uppercase;color:var(--ink-2);padding:.6rem .8rem;
   border-bottom:1px solid var(--rule-2);white-space:nowrap}
 td{padding:.55rem .8rem;border-bottom:1px solid var(--rule);color:var(--ink-2);vertical-align:top}
+/* 브라우저 기본값은 한글을 글자 단위로 끊는다 — 좁은 칸에서 낱말이 갈라진다.
+   한국어 조판의 기본은 띄어쓰기에서만 끊는 것이다. */
+main th,main td{word-break:keep-all}
+
 tr:last-child td{border-bottom:none}
 td.num,th.num{text-align:right;font-family:var(--mono);font-variant-numeric:tabular-nums;white-space:nowrap}
+/* .num 은 숫자를 안 끊으려고 nowrap 이다. 그런데 같은 칸에 붙는 주석 줄까지
+   붙들려 표가 컨테이너를 밀어냈다 — 숫자와 칩은 그대로 두고 주석만 접는다. */
+td.num span:not(.chip):not(.basis){white-space:normal;word-break:keep-all}
+
 td b{color:var(--ink);font-weight:600}
 tr.hl td{background:var(--steel-soft)}
 tr.dim td{color:var(--ink-3)}
 
 /* ===== CALLOUT / QUOTE ===== */
 .call{border:1px solid var(--rule-2);background:var(--card);padding:1.15rem 1.3rem;margin:0 0 1.6rem;
-  max-width:46rem}
+  max-width:none}
 .call.hot{border-left:3px solid var(--pimenton)}
 .call.warn{border-left:3px solid var(--warn);background:var(--warn-bg)}
 .call .ct{font-family:var(--sans);font-weight:600;font-size:.82rem;margin:0 0 .5rem;color:var(--ink)}
 .call p{margin:0 0 .6rem;font-size:.89rem;line-height:1.7}
 .call p:last-child{margin-bottom:0}
 blockquote{margin:0 0 1.2rem;padding:.85rem 1.1rem;background:var(--paper-2);
-  border-left:3px solid var(--steel);max-width:46rem;font-size:.9rem;line-height:1.65;color:var(--ink-2)}
+  border-left:3px solid var(--steel);max-width:none;font-size:.9rem;line-height:1.65;color:var(--ink-2)}
 blockquote .who{display:block;margin-top:.5rem;font-family:var(--mono);font-size:.69rem;color:var(--ink-3)}
 
 /* ===== MISC ===== */
@@ -192,7 +200,7 @@ blockquote .who{display:block;margin-top:.5rem;font-family:var(--mono);font-size
 .certrow img{height:3rem;width:auto;opacity:.9}
 footer{border-top:2px solid var(--ink);margin-top:1rem;padding:1.75rem 0 4rem;
   font-family:var(--sans);font-size:.79rem;color:var(--ink-3);line-height:1.7}
-footer p{max-width:52rem}
+footer p{max-width:none}
 @media(prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
 
 .chip.c-est{background:transparent;color:var(--ink-3);box-shadow:inset 0 0 0 1px currentColor;opacity:.9}
@@ -282,7 +290,7 @@ footer p{max-width:52rem}
       <tr><td>설립</td><td><b>1961년 9월 27일</b>, Ribeira. 산업용 냉동창고로 출발</td></tr>
       <tr><td>CIF · 업종</td><td>A15010564 · CNAE 10.22 (수산통조림 제조), 스페인 업종 매출 1위</td></tr>
       <tr><td>본사·공장</td><td>Av. Ramiro Carregal Rey 29, Polígono Industrial de Xarás, 15969 Ribeira (A Coruña)</td></tr>
-      <tr><td>지배구조</td><td>가족 100%, 창업자 <b>Ramiro Carregal 64.10%</b> / 아들 <b>Jorge Carregal Varela 35.90%</b></td></tr>
+      <tr><td>지배구조</td><td>가족 100%. 창업자 <b>Ramiro Carregal 64.10%</b> / 아들 <b>Jorge Carregal Varela 35.90%</b> (⚠ 2026-09-04 보완: 이 배분이 명시된 <b>마지막 보도는 2021~2022년 계정</b> 기준이다. Expansión 2022-10-13은 Jorge를 Luangwa Valley 경유 <b>약 37%</b>로 적어 소수점이 어긋난다. <b>2024~2026년 등기에서 재확인된 바 없다.</b> 두 사람 가족 소유라는 점만 2025-07 보도로 재확인)</td></tr>
       <tr><td>경영 체제</td><td><b>이사회 없음.</b> 단독이사(administrador único) 1인 체제, 2017년 부자 승계</td></tr>
       <tr><td>그룹 인원</td><td>2024년 기말 <b>1,222명</b> · 평균 1,263명 (연결 기준)</td></tr>
       <tr><td>생산 거점</td><td>Ribeira(스페인) · Póvoa de Varzim(포르투갈, 지분 75%)</td></tr>
@@ -378,7 +386,7 @@ footer p{max-width:52rem}
   </div>
 
   <h3>포르투갈에서는 브랜드가 아홉 갈래다</h3>
-  <p>2019년 인수한 A Poveira는 그 자체가 <strong>브랜드 포트폴리오</strong>였다.
+  <p><b>⚠ 2026-09-04 정정:</b> 2019년 거래는 <b>지분 50% 취득</b>이고 통째 인수가 아니다(Grande Consumo 2019-09-18, Expresso 2019-09-10). <b>2021-09-19 콜옵션 조기 행사로 75%</b>가 됐고 나머지 25%는 기존 파트너가 갖는다. 75%가 마지막 공개 지분이다. 또한 2026년 apoveira.pt에 올라 있는 것은 <b>Minerva·Poveira·Alva·La Góndola 넷</b>이고, Capitão Poveiro·Galeão·Ala-arriba가 현재 현역 SKU인지는 확인되지 않는다. 그 A Poveira는 그 자체가 <strong>브랜드 포트폴리오</strong>였다.
     핵심은 각 브랜드에 채널이 명시적으로 배정돼 있다는 점이다. 같은 정어리를 근대유통과 도매, 수출, 루소폰 시장에 각각 다른 이름으로 내보낸다.</p>
   <div class="tw"><table>
     <thead><tr><th>브랜드</th><th>포지션</th><th>배정된 채널 · 시장</th></tr></thead>
@@ -682,7 +690,7 @@ footer p{max-width:52rem}
     <tbody>
       <tr class="hl"><td><span class="chip c-tag">정량</span></td><td>2013년 시점 스페인 PB 수산통조림 시장 <b>금액 65% · 물량 72.7%</b> 점유 (Alimarket)</td></tr>
       <tr><td><span class="chip c-tag">거래처</span></td><td><b>El Corte Inglés · Carrefour · Alcampo · Lidl · DIA</b>, 2013년과 2021~22년 두 시점에서 동일 조합 확인</td></tr>
-      <tr><td><span class="chip c-tag">상세</span></td><td>Alcampo는 <b>Auchan 브랜드 참치캔 전 종류</b>를 이 회사가 생산</td></tr>
+      <tr><td><span class="chip c-tag">상세</span></td><td>Alcampo의 Auchan 브랜드 참치캔에 대해 <b>&ldquo;전 종류&rdquo;라 적은 것은 Merca2 2021-10-13 보도</b>이고 <b>이후 재확인되지 않았다</b>(⚠ 2026-09-04 보완). 2020-09 Cinco Días는 Auchan 참치를 Frinsa가 만든다고만 적는다. 같은 2021년 기사가 다른 체인은 일부 SKU라고 단서를 단다. 현재 직접 증거가 있는 것은 El Corte Inglés 자체브랜드 캔의 &ldquo;Elaborado para El Corte Inglés por Frinsa del Noroeste, S.A.&rdquo; 표기다</td></tr>
       <tr><td><span class="chip c-tag">포르투갈</span></td><td>A Poveira 경유 <b>Jerónimo Martins</b>(Pingo Doce·Recheio) 및 Sonae 공급</td></tr>
       <tr><td><span class="chip c-tag">Mercadona</span></td><td>참치는 Conservas Escurís가 공급. <b>Frinsa는 2022년 닭고기 통조림으로 진입</b>(1,000만 € 투자), 다만 그 제품은 현재 Mercadona 온라인 카탈로그에서 확인되지 않는다</td></tr>
       <tr class="dim"><td><span class="chip c-nd">비공시</span></td><td><b>PL이 전사 매출의 몇 %인지는 공개하지 않는다.</b> 비재무정보보고서 296쪽 전체에 <code>MDD</code>·<code>marca blanca</code>·<code>marca de distribución</code> 표기가 없다</td></tr>
@@ -781,7 +789,7 @@ footer p{max-width:52rem}
       <tr><td>2020-12</td><td><b>파리 Saint-Germain-en-Laye</b> 첫 해외 매장 (프랑스 판매법인 등록주소와 동일)</td></tr>
       <tr><td>2021-01</td><td>A Coruña 이전·재개장, 포르투갈 브랜드 Minerva·Góndola 취급 개시</td></tr>
       <tr><td>2023-08</td><td>미슐랭 셰프 <b>Pepe Solla</b> 협업, 산센쇼 팝업</td></tr>
-      <tr class="hl"><td><b>2026-06</b></td><td><b>8개월 만에 5곳 폐점 → 스페인·프랑스 합쳐 6곳으로 축소</b></td></tr>
+      <tr class="hl"><td><b>2026-06</b></td><td><b><b>⚠ 2026-09-04 정정:</b> &ldquo;8개월 만에 5곳 폐점 → 6곳&rdquo;은 <b>확인되지 않는다</b>. 이를 적은 기사도 회사 발표도 없다. 2026년 frinsa.es에 살아 있는 매장 페이지는 <b>마드리드 Goya·산티아고·알리칸테·무르시아·발렌시아·리베이라·라코루냐·파리 여덟 곳</b>이고, 산센쇼는 일시폐쇄/팝업으로 적힌다. 제3자 목록은 <b>비토리아를 영구폐쇄</b>로 적는다. 정점은 2022~23년 보도 기준 약 12곳이다. <b>절반 이하로 줄었다는 서술은 근거가 없다.</b></b></td></tr>
     </tbody>
   </table></div>
   <p>2026년에 직영 소매는 절반 이하로 줄이면서 신규 브랜드 SOLO는 Carrefour 독점 입점과

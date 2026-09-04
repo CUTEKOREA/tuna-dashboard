@@ -116,8 +116,8 @@ h2{font-family:var(--disp);font-weight:700;font-size:1.75rem;letter-spacing:-.02
   letter-spacing:.1em;display:block;margin-bottom:.9rem}
 h3{font-family:var(--disp);font-weight:700;font-size:1.1rem;margin:2.6rem 0 .7rem}
 h4{font-family:var(--sans);font-weight:600;font-size:.92rem;margin:1.8rem 0 .5rem;color:var(--ink-2)}
-p{margin:0 0 1.1rem;max-width:44rem}
-.lead{font-size:1.1rem;line-height:1.7;color:var(--ink-2);max-width:44rem}
+p{margin:0 0 1.1rem;max-width:none}
+.lead{font-size:1.1rem;line-height:1.7;color:var(--ink-2);max-width:none}
 strong{font-weight:600;color:var(--ink)}
 .es{font-style:italic}
 code{font-family:var(--mono);font-size:.85em;background:var(--paper-2);padding:.1em .3em;
@@ -158,22 +158,30 @@ th{background:var(--paper-2);text-align:left;font-weight:600;font-size:.71rem;le
   text-transform:uppercase;color:var(--ink-2);padding:.6rem .8rem;
   border-bottom:1px solid var(--rule-2);white-space:nowrap}
 td{padding:.55rem .8rem;border-bottom:1px solid var(--rule);color:var(--ink-2);vertical-align:top}
+/* 브라우저 기본값은 한글을 글자 단위로 끊는다 — 좁은 칸에서 낱말이 갈라진다.
+   한국어 조판의 기본은 띄어쓰기에서만 끊는 것이다. */
+main th,main td{word-break:keep-all}
+
 tr:last-child td{border-bottom:none}
 td.num,th.num{text-align:right;font-family:var(--mono);font-variant-numeric:tabular-nums;white-space:nowrap}
+/* .num 은 숫자를 안 끊으려고 nowrap 이다. 그런데 같은 칸에 붙는 주석 줄까지
+   붙들려 표가 컨테이너를 밀어냈다 — 숫자와 칩은 그대로 두고 주석만 접는다. */
+td.num span:not(.chip):not(.basis){white-space:normal;word-break:keep-all}
+
 td b{color:var(--ink);font-weight:600}
 tr.hl td{background:var(--adri-soft)}
 tr.dim td{color:var(--ink-3)}
 
 /* ===== CALLOUT / QUOTE ===== */
 .call{border:1px solid var(--rule-2);background:var(--card);padding:1.15rem 1.3rem;margin:0 0 1.6rem;
-  max-width:46rem}
+  max-width:none}
 .call.hot{border-left:3px solid var(--ocra)}
 .call.warn{border-left:3px solid var(--warn);background:var(--warn-bg)}
 .call .ct{font-family:var(--disp);font-weight:700;font-size:.82rem;margin:0 0 .5rem;color:var(--ink)}
 .call p{margin:0 0 .6rem;font-size:.89rem;line-height:1.7}
 .call p:last-child{margin-bottom:0}
 blockquote{margin:0 0 1.2rem;padding:.85rem 1.1rem;background:var(--paper-2);
-  border-left:3px solid var(--adri);max-width:46rem;font-size:.9rem;line-height:1.65;color:var(--ink-2)}
+  border-left:3px solid var(--adri);max-width:none;font-size:.9rem;line-height:1.65;color:var(--ink-2)}
 blockquote .who{display:block;margin-top:.5rem;font-family:var(--mono);font-size:.69rem;color:var(--ink-3)}
 
 /* ===== MISC ===== */
@@ -195,7 +203,7 @@ blockquote .who{display:block;margin-top:.5rem;font-family:var(--mono);font-size
 .certrow img{height:3rem;width:auto;opacity:.9}
 footer{border-top:2px solid var(--ink);margin-top:1rem;padding:1.75rem 0 4rem;
   font-family:var(--sans);font-size:.79rem;color:var(--ink-3);line-height:1.7}
-footer p{max-width:52rem}
+footer p{max-width:none}
 @media(prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
 
 /* 연결·개별 이중기준 표 */
@@ -1294,7 +1302,7 @@ th.grp{color:var(--adri)}
     신고인은 경쟁사 Iasa S.r.l.이다. 혐의는 Rio Mare 연어와 고등어 필레의 "grigliato"(구운) 표시가 오인을 유발한다는 것이었다.
     표시광고 사건이며 지속가능성 클레임과는 무관하다.</p>
   <p>2023-12-05 AGCM은 회사가 낸 시정약속을 구속력 있게 수용하고 <strong>위반을 인정하지 않은 채</strong> 사건을 닫았다. 과징금은 0이다.
-    그리고 2026-06-17 Consiglio di Stato 제6부가 판결 n.4828로 그 AGCM 결정을 취소했다.
+    그리고 2026-06-17 Consiglio di Stato 제6부가 판결 n.4828(NRG 4514/2025)로 라치오 행정법원 판결 n.4202/2025를 뒤집고 <b>AGCM 결정 n.31009를 취소</b>했다. <b>⚠ 2026-09-04 보완:</b> 법원은 절차만 지적한 것이 아니다. 그릴이 <b>약 2초의 표면 각인이지 조리가 아니라고</b> 보고 소비자기본법 제21조에 걸린다고 판단했다. 다만 <b>새 과징금 결정은 아니고 AGCM이 다시 판단해야 한다.</b> 2026-09-04 기준 재결정은 공개되지 않았다.
     이유는 AGCM에 실질적 조사가 없었다는 것이다.
     판결문은 "si è limitata ad acquisire e recepire la relazione fornita dalla controinteressata",
     상대방이 제출한 보고서를 그대로 받아 넣었을 뿐이라고 적었고,
@@ -1312,8 +1320,7 @@ th.grp{color:var(--adri)}
     핵심은 Tri Marine이 자사 선박의 Bolton 어업기준과 인권정책 준수 증거를 충분히 제시하지 못했다는 것이었다.
     감사인이 Tier 1 공급자에 무작위 4척의 서명 정책 제출을 요구했을 때 돌아온 결과가 이렇게 적혀 있다.
     "Sufficient evidence for 1 vessel was received, but not for the other three."</p>
-  <p style="font-size:.86rem;color:var(--ink-3)">Rompiscatole 페이지는 2016년 4판을 기초로 2017년 이후 부분 갱신됐고,
-    Greenpeace Italia는 그 뒤로 캔참치 랭킹을 다시 내지 않았다. 이 4위에 특정 연도를 붙일 근거가 없다.
+  <p style="font-size:.86rem;color:var(--ink-3)">Rompiscatole 페이지는 <b>⚠ 2026-09-04 정정:</b> 제4판 보도자료는 <b>2015년 10월 26일</b>자다(2016년이 아니다). Greenpeace Italia 2016년 연보가 &ldquo;fine 2016&rdquo;이라 적은 것이 혼동의 출처다. 그 뒤로 이탈리아 캔참치 브랜드 랭킹은 나오지 않았다. 1위는 AsdoMar이고 최초로 녹색 등급을 받았다. 당시 등급 색은 녹색·주황·적색이어서 <b>&ldquo;노란 등급&rdquo;은 확인되지 않는다.</b>
     <span class="chip c-doc">Greenpeace</span></p>
 </section>
 

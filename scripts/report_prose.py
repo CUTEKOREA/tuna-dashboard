@@ -32,11 +32,45 @@ def _text(raw: str) -> tuple[str, list[str]]:
     return " ".join(H.unescape(s).split()), [c for c in chips if c]
 
 
+def _strip_tables(html: str) -> str:
+    """표만 정확히 도려낸다.
+
+    ⚠ 옛 정규식 `<div class="tw">.*?</div>\\s*</div>` 는 **중첩 div 를 못 센다.**
+    `.*?</div>\\s*</div>` 가 표를 넘어 다음 블록까지 먹었다 — FCF 06절에서 6,890자 중
+    **5,621자를 삼켰고** 그 안에 판결 정정 문단이 들어 있었다. 화면에는 1,269자만 갔다.
+
+    div 는 깊이를 세어야 한다. 정규식으로는 셀 수 없으므로 손으로 센다.
+    """
+    out, i = [], 0
+    while True:
+        m = re.search(r'<table\b', html[i:])
+        w = re.search(r'<div class="tw"[^>]*>', html[i:])
+        # 표 래퍼가 먼저면 래퍼째, 아니면 표만 도려낸다
+        if w and (not m or w.start() < m.start()):
+            out.append(html[i:i + w.start()])
+            j, depth = i + w.end(), 1
+            for t in re.finditer(r'<div\b[^>]*>|</div>', html[j:]):
+                depth += 1 if t.group(0) != '</div>' else -1
+                if depth == 0:
+                    j += t.end()
+                    break
+            else:
+                j = len(html)
+            i = j
+        elif m:
+            out.append(html[i:i + m.start()])
+            e = re.search(r'</table>', html[i + m.start():])
+            i = i + m.start() + (e.end() if e else len(html) - i - m.start())
+        else:
+            out.append(html[i:])
+            return "".join(out)
+
+
 @dataclass
 class Block:
     """서술 한 덩어리. kind 가 화면 렌더를 가른다."""
 
-    kind: str          # lead | para | call | h3
+    kind: str          # lead | para | call | h3 | quote | li | term
     text: str = ""
     chips: list[str] = field(default_factory=list)
     title: str = ""    # call 의 제목, h3 의 소제목
@@ -92,12 +126,17 @@ def parse(doc: str) -> list[Section]:
 
         # 표는 report_tables 가 담당한다. 여기서 지워 두 경로가 겹치지 않게 한다.
         rest = body[h2.end():] if h2 else body
-        rest = re.sub(r'<div class="tw">.*?</div>\s*</div>|<table.*?</table>', "", rest, flags=re.S)
+        rest = _strip_tables(rest)
 
+        # 문단·소제목·콜아웃만 보던 초판은 목록과 인용을 통째로 흘렸다 —
+        # JAIS 26개 `li` + 16개 `dt/dd`, FCF 55 + 24, Jealsa 인용 4개가 화면에 없었다.
         for el in re.finditer(
             r'<div class="call([^"]*)"[^>]*>(.*?)</div>'
             r'|<h3[^>]*>(.*?)</h3>'
-            r'|<p(?![^>]*class="ct")([^>]*)>(.*?)</p>',
+            r'|<p(?![^>]*class="ct")([^>]*)>(.*?)</p>'
+            r'|<blockquote[^>]*>(.*?)</blockquote>'
+            r'|<li[^>]*>(.*?)</li>'
+            r'|<dt[^>]*>(.*?)</dt>\s*<dd[^>]*>(.*?)</dd>',
             rest, re.S,
         ):
             if el.group(2) is not None:                      # 콜아웃
@@ -120,12 +159,25 @@ def parse(doc: str) -> list[Section]:
                 txt, _ = _text(el.group(3))
                 if txt:
                     sec.blocks.append(Block("h3", title=txt))
-            else:                                            # 문단
+            elif el.group(5) is not None:                    # 문단
                 attrs, raw = el.group(4) or "", el.group(5)
                 txt, chips = _text(raw)
                 if not txt:
                     continue
                 kind = "lead" if "lead" in attrs else "para"
                 sec.blocks.append(Block(kind, txt, chips))
+            elif el.group(6) is not None:                    # 인용 — 원문 그대로 실린 대목
+                txt, chips = _text(el.group(6))
+                if txt:
+                    sec.blocks.append(Block("quote", txt, chips))
+            elif el.group(7) is not None:                    # 목록 한 줄
+                txt, chips = _text(el.group(7))
+                if txt:
+                    sec.blocks.append(Block("li", txt, chips))
+            elif el.group(8) is not None:                    # 정의 — 용어와 뜻이 짝이다
+                term, _ = _text(el.group(8))
+                desc, chips = _text(el.group(9) or "")
+                if term or desc:
+                    sec.blocks.append(Block("term", desc, chips, title=term))
         out.append(sec)
     return out
