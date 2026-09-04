@@ -24,6 +24,7 @@ type Imp = {
 type Sup = {
   country: string; hs: string; year: number; partner: string
   valueUsd: number; qtyKg?: number; share?: number; source?: string; grade?: string
+  period?: string
 }
 
 export const exportMeta = ex.meta as {
@@ -56,9 +57,17 @@ const priorRaw = ex.prior as unknown as {
   byMarket: Grp[]; byBuyer: Grp[]; bySpecGroup: Grp[]
 }
 
-export const tradeMeta = ts.meta as { collected: string; hs: string[]; note: string }
 const imports = (ts.imports ?? []) as unknown as Imp[]
 const suppliers = (ts.suppliers ?? []) as unknown as Sup[]
+export const tradeMeta = {
+  ...(ts.meta as {
+    collected: string; hs: string[]; note: string
+    coverage?: Record<string, string>
+  }),
+  coverage: ((ts.meta as { coverage?: Record<string, string> }).coverage ?? {}),
+  /** 회귀 테스트가 원본 행을 직접 검산할 수 있도록 열어 둔다 (화면에서는 쓰지 않는다) */
+  raw: { imports, suppliers },
+}
 
 /* 원장의 시장명(한글) ↔ 무역통계의 국가명(영문) */
 const MARKET_COUNTRY: Record<string, string> = {
@@ -69,17 +78,37 @@ const MARKET_COUNTRY: Record<string, string> = {
 }
 const HS_CAN = '160414'
 
-/** 무역통계에 연도가 여러 개다. 전년 전체가 있는 가장 최근 연도를 기준으로 쓴다
- *  (2026 은 부분 데이터라 연간 비교의 분모로 못 쓴다). */
+/** 무역통계에 연도가 여러 개다. 전체가 있는 가장 최근 연도를 기준으로 쓴다
+ *  (부분 연도는 `period` 가 붙어 있어 연간 비교의 분모로 못 쓴다). */
 export const benchYear = (() => {
   const full = imports.filter((x) => x.hs === HS_CAN && !x.period)
   return full.length ? Math.max(...full.map((x) => x.year)) : null
 })()
 
-const impOf = (country: string, year: number | null) =>
-  imports.find((x) => x.hs === HS_CAN && x.country === country && x.year === year && !x.period)
-const ghanaOf = (country: string, year: number | null) =>
-  suppliers.find((x) => x.hs === HS_CAN && x.country === country && x.year === year && /ghana/i.test(x.partner))
+/** 부분 연도 중 가장 최근 것. 두 출처가 같은 기간을 덮을 때만 채워진다. */
+export const partialYear = (() => {
+  const partial = imports.filter((x) => x.hs === HS_CAN && x.period)
+  if (!partial.length) return null
+  const year = Math.max(...partial.map((x) => x.year))
+  const periods = [...new Set(partial.filter((x) => x.year === year).map((x) => x.period!))]
+  // 출처마다 기간이 다르면 비교가 성립하지 않는다 - 그럴 땐 부분 연도를 아예 쓰지 않는다.
+  return periods.length === 1 ? { year, period: periods[0] } : null
+})()
+
+/** 「2026-01..2026-06」을 「1~6월」로. 화면에는 한글 기간만 노출한다. */
+export function periodLabelKo(period: string): string {
+  const match = /^(\d{4})-(\d{2})\.\.(\d{4})-(\d{2})$/.exec(period)
+  if (!match) return period
+  const [, , from, , to] = match
+  return `${Number(from)}~${Number(to)}월`
+}
+
+const impOf = (country: string, year: number | null, period?: string | null) =>
+  imports.find((x) => x.hs === HS_CAN && x.country === country && x.year === year
+    && (period ? x.period === period : !x.period))
+const ghanaOf = (country: string, year: number | null, period?: string | null) =>
+  suppliers.find((x) => x.hs === HS_CAN && x.country === country && x.year === year
+    && (period ? x.period === period : !x.period) && /ghana/i.test(x.partner))
 
 /** COSMO 실적은 1~5월분이다. 연간 수입액과 대려면 연환산해야 한다.
  *  ⚠️ 계절성을 보정하지 않은 단순 환산이라 참고치다. */
@@ -185,32 +214,65 @@ export const ghanaTrend = (() => {
 
 /** 경쟁 공급국 — 같은 시장에 누가 얼마나 들어오나.
  *  업무보고의 "영국 무관세로 태국·인니 저가 공세"를 정량화한다. */
+type SupplierRow = {
+  partner: string; valueUsd: number; qtyKg: number | null
+  share: number | null; usdPerKg: number | null; isGhana: boolean; rank: number
+}
+
+/** 한 시장·한 기간의 공급국 순위표. 기간이 연간이든 반기든 계산은 같다. */
+function rankSuppliers(country: string, year: number | null, period: string | null) {
+  const imp = impOf(country, year, period)
+  const all: SupplierRow[] = suppliers
+    .filter((s) => s.hs === HS_CAN && s.country === country && s.year === year
+      && (period ? s.period === period : !s.period))
+    .map((s) => ({
+      partner: s.partner,
+      valueUsd: s.valueUsd,
+      qtyKg: s.qtyKg ?? null,
+      share: imp ? s.valueUsd / imp.valueUsd : null,
+      usdPerKg: s.qtyKg ? s.valueUsd / s.qtyKg : null,
+      isGhana: /ghana/i.test(s.partner),
+    }))
+    .sort((a, b) => b.valueUsd - a.valueUsd)
+    .map((r, i) => ({ ...r, rank: i + 1 }))
+  return { imp, all }
+}
+
 export const competitors = (() => {
   const focus = ghanaShare.slice(0, 4).map((g) => ({ market: g.market, country: g.country }))
+  // 화면 기준은 가장 최근 구간이다 - 부분 연도가 두 출처를 같은 기간으로 덮으면 그쪽을 쓴다.
+  const head = partialYear ?? { year: benchYear, period: null as string | null }
   return focus.map(({ market, country }) => {
-    const imp = impOf(country, benchYear)
-    const all = suppliers
-      .filter((s) => s.hs === HS_CAN && s.country === country && s.year === benchYear)
-      .map((s) => ({
-        partner: s.partner,
-        valueUsd: s.valueUsd,
-        qtyKg: s.qtyKg ?? null,
-        share: imp ? s.valueUsd / imp.valueUsd : null,
-        usdPerKg: s.qtyKg ? s.valueUsd / s.qtyKg : null,
-        isGhana: /ghana/i.test(s.partner),
-      }))
-      .sort((a, b) => b.valueUsd - a.valueUsd)
-      .map((r, i) => ({ ...r, rank: i + 1 }))
+    const { imp, all } = rankSuppliers(country, head.year, head.period)
+    // 비교축: 부분 연도를 보고 있을 때만 직전 «연간»을 함께 얹는다.
+    const prior = head.period ? rankSuppliers(country, benchYear, null) : null
 
-    // 가나가 상위권 밖이면 우리 위치가 화면에서 아예 사라진다 — 순위를 달아 반드시 넣는다
     const TOP_N = 10
     const top = all.slice(0, TOP_N)
     const gh = all.find((r) => r.isGhana)
-    const rows = gh && !top.some((r) => r.isGhana) ? [...top, gh] : top
+    const rows = (gh && !top.some((r) => r.isGhana) ? [...top, gh] : top).map((r) => {
+      const was = prior?.all.find((p) => p.partner === r.partner) ?? null
+      return {
+        ...r,
+        priorShare: was?.share ?? null,
+        priorRank: was?.rank ?? null,
+        // 점유율은 기간 길이와 무관하게 비교된다. 금액은 반기 대 연간이라 비교하지 않는다.
+        shareDelta: was?.share != null && r.share != null ? r.share - was.share : null,
+        rankDelta: was ? was.rank - r.rank : null,
+      }
+    })
+    const ghRow = rows.find((r) => r.isGhana) ?? null
     return {
       market, country, marketUsdKg: imp?.unitUsdKg ?? null, rows, topN: TOP_N,
       ghanaRank: gh?.rank ?? null, supplierCount: all.length,
       ghanaOutsideTop: !!gh && gh.rank > TOP_N,
+      year: head.year, period: head.period,
+      periodLabel: head.period ? periodLabelKo(head.period) : '연간',
+      priorYear: prior ? benchYear : null,
+      priorMarketUsdKg: prior?.imp?.unitUsdKg ?? null,
+      ghanaShareDelta: ghRow?.shareDelta ?? null,
+      ghanaRankDelta: ghRow?.rankDelta ?? null,
+      priorSupplierCount: prior?.all.length ?? null,
     }
   })
 })()

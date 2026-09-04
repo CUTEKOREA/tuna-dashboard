@@ -1,0 +1,169 @@
+name: Monthly Dataset Audit
+
+# 매월 1일, 대시보드가 의존하는 외부 데이터셋이 새 기간을 발행했는지 확인한다.
+#
+# 이 워크플로는 데이터를 main 에 직접 쓰지 않는다. 갱신분이 있으면 브랜치를 만들어
+# PR 을 열고 사람이 검수한다 — 무역통계는 최근 1~2개월이 사후 수정되고, 화면에
+# 고정된 수치를 함께 옮겨야 하므로 자동 병합이 안전하지 않다.
+# (배포 규율: 프로덕션 반영은 언제나 사람이 명시적으로 승인한다.)
+#
+# 보안: workflow_dispatch 입력은 신뢰할 수 없는 값이다. run: 안에 ${{ }} 로 펼치지 않고
+# env 로 넘긴 뒤 형식을 먼저 검사한다.
+
+on:
+  schedule:
+    # 매월 1일 00:20 UTC = 09:20 KST. Eurostat·HMRC 는 월 중순에 내므로
+    # 1일에 도는 이 잡은 «지난달까지 무엇이 새로 들어왔나»를 잡는 용도다.
+    - cron: '20 0 1 * *'
+  workflow_dispatch:
+    inputs:
+      through:
+        description: '마지막 달 (YYYY-MM). 비우면 두 출처의 공통 최신월'
+        required: false
+
+concurrency:
+  group: monthly-dataset-audit
+  cancel-in-progress: false
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    permissions:
+      contents: write
+      pull-requests: write
+
+    steps:
+      - name: Checkout main
+        uses: actions/checkout@v4
+        with:
+          ref: main
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: npm
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install dependencies
+        run: npm ci --no-audit
+
+      # 어느 출처가 어디까지 냈는지 먼저 남긴다. 갱신이 없어도 이 기록은 남는다.
+      - name: Probe publication coverage
+        id: probe
+        run: |
+          set -euo pipefail
+          python3 scripts/sync_trade_stats.py --probe | tee coverage.json
+          {
+            echo 'coverage<<COVERAGE_EOF'
+            cat coverage.json
+            echo COVERAGE_EOF
+          } >> "$GITHUB_OUTPUT"
+          python3 - <<'PY' >> "$GITHUB_OUTPUT"
+          import json
+          print(f"common={json.load(open('coverage.json'))['commonThrough']}")
+          PY
+
+      # 수동 입력은 여기서 한 번 걸러 이후 단계가 안전하게 쓰게 한다.
+      - name: Resolve target period
+        id: target
+        env:
+          REQUESTED: ${{ github.event.inputs.through }}
+          COMMON: ${{ steps.probe.outputs.common }}
+        run: |
+          set -euo pipefail
+          THROUGH="${REQUESTED:-$COMMON}"
+          if ! printf '%s' "$THROUGH" | grep -Eq '^[0-9]{4}-(0[1-9]|1[0-2])$'; then
+            echo "기간 형식이 YYYY-MM 이 아닙니다: $THROUGH" >&2
+            exit 1
+          fi
+          echo "through=$THROUGH" >> "$GITHUB_OUTPUT"
+          echo "year=${THROUGH%%-*}" >> "$GITHUB_OUTPUT"
+          echo "branch=data/trade-stats-$THROUGH" >> "$GITHUB_OUTPUT"
+
+      - name: Refresh trade statistics
+        env:
+          THROUGH: ${{ steps.target.outputs.through }}
+          YEAR: ${{ steps.target.outputs.year }}
+        run: python3 scripts/sync_trade_stats.py --year "$YEAR" --through "$THROUGH"
+
+      - name: Detect changes
+        id: diff
+        run: |
+          if git diff --quiet -- public/data/cosmo/trade_stats.json; then
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+          else
+            echo "changed=true" >> "$GITHUB_OUTPUT"
+          fi
+
+      # 데이터가 바뀌면 화면에 고정된 수치도 함께 움직여야 한다.
+      # 여기서 깨지는 테스트가 곧 «사람이 손봐야 할 목록»이다.
+      - name: Run the gate
+        if: steps.diff.outputs.changed == 'true'
+        id: gate
+        continue-on-error: true
+        run: npm run verify
+
+      - name: Open a pull request
+        if: steps.diff.outputs.changed == 'true'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          COVERAGE: ${{ steps.probe.outputs.coverage }}
+          GATE: ${{ steps.gate.outcome }}
+          THROUGH: ${{ steps.target.outputs.through }}
+          BRANCH: ${{ steps.target.outputs.branch }}
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git checkout -b "$BRANCH"
+          git add public/data/cosmo/trade_stats.json
+          git commit --file - <<COMMIT_EOF
+          data(cosmo): refresh European import statistics through $THROUGH
+
+          Picked up by the monthly dataset audit. Coverage reported by the
+          sources at the time of the run:
+
+          $COVERAGE
+
+          npm run verify: $GATE
+
+          [CC]
+          COMMIT_EOF
+          git push -u origin "$BRANCH"
+          cat > pr-body.md <<BODY_EOF
+          ## Monthly dataset audit
+
+          The sources published new periods, so \`trade_stats.json\` was refreshed through **$THROUGH**.
+
+          \`\`\`json
+          $COVERAGE
+          \`\`\`
+
+          \`npm run verify\` on the refreshed data: **$GATE**.
+
+          If it failed, the failures are the point of this PR — screen figures pinned to the previous
+          period have to move with the data. Read the diff, move the pinned values, and check that the
+          period label on the market board still matches what the data covers.
+
+          Recent months get restated by Eurostat, so figures for the newest one or two months may
+          change again next run.
+          BODY_EOF
+          gh pr create --base main --head "$BRANCH" \
+            --title "data(cosmo): refresh European import statistics through $THROUGH" \
+            --body-file pr-body.md
+
+      - name: Report when nothing new
+        if: steps.diff.outputs.changed != 'true'
+        run: |
+          {
+            echo "새 발행분 없음 — trade_stats.json 변경 없음"
+            echo '```json'
+            cat coverage.json
+            echo '```'
+          } >> "$GITHUB_STEP_SUMMARY"

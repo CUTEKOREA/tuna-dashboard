@@ -94,6 +94,10 @@
 .cosmo-root .g2 { grid-template-columns: repeat(auto-fit, minmax(330px, 1fr)); }
 .cosmo-root .g3 { grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); }
 .cosmo-root .g4 { grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); }
+/* 카드 안에 넓은 표가 들어가는 자리 — auto-fit 에 맡기면 4열까지 벌어져 표가 잘린다.
+   한 줄에 두 장으로 못 박고, 좁아지면 한 장으로 떨어뜨린다. */
+.cosmo-root .gpair { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+@media (max-width: 900px) { .cosmo-root .gpair { grid-template-columns: minmax(0, 1fr); } }
 .cosmo-root .card {
   background: var(--dsc-surface); border: 1px solid var(--dsc-surface-border);
   border-radius: var(--dsc-card-radius); box-shadow: var(--cosmo-shadow); padding: 16px 18px; min-width: 0;
@@ -267,7 +271,8 @@
 
   .cosmo-root .g2,
   .cosmo-root .g3,
-  .cosmo-root .g4 {
+  .cosmo-root .g4,
+  .cosmo-root .gpair {
     grid-template-columns: minmax(0, 1fr);
   }
 }

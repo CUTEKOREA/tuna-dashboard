@@ -7,7 +7,7 @@ import {
   exportMeta, totals, concentration, byMarket, byBuyer, byInvoiceParty,
   bySpecGroup, byMedia, marketSpecCross, specGroups, buyerBand,
   pricePosition, pricePositionMaterial, repricingUpside, ghanaShare, aggregateShare, ghanaTrend,
-  competitors, benchYear, tradeMeta, exportChecks, exportCheckFail, ANNUALIZE, sillaShare,
+  competitors, benchYear, partialYear, periodLabelKo, tradeMeta, exportChecks, exportCheckFail, ANNUALIZE, sillaShare,
   exportYoY, exportSources,
 } from '@/lib/data/cosmo-market'
 
@@ -16,6 +16,8 @@ const m2 = (v: number) => '$' + (v / 1e6).toFixed(2) + 'M'
 const kg2 = (v: number) => '$' + v.toFixed(2) + '/kg'
 const k1 = (v: number) => '$' + (v / 1000).toFixed(1) + '천'
 const p1 = (v: number) => (v * 100).toFixed(1) + '%'
+/** 점유율끼리의 차는 퍼센트가 아니라 퍼센트포인트다 */
+const pp = (v: number) => (v > 0 ? '+' : '') + (v * 100).toFixed(2) + '%p'
 const S = SERIES
 
 export default function Market() {
@@ -41,7 +43,9 @@ export default function Market() {
         meta={[
           `${totals.fcl.toFixed(0)} FCL · ${musd(totals.amountUsd)} (1~5월 선적)`,
           `바이어 ${exportMeta.buyerCount}곳 · 시장 ${exportMeta.marketCount}개`,
-          `수입통계 기준연도 ${benchYear} · 수집 ${tradeMeta.collected}`,
+          partialYear
+            ? `수입통계 ${partialYear.year}년 ${periodLabelKo(partialYear.period)} (${benchYear}년 연간과 비교) · 수집 ${tradeMeta.collected}`
+            : `수입통계 기준연도 ${benchYear} · 수집 ${tradeMeta.collected}`,
           `원장 ${exportSources.map((x) => `${x.year} ${x.period}`).join(' + ')}`,
           'CBU 수출만 - 내수·FBU 제외',
         ]}
@@ -355,11 +359,13 @@ export default function Market() {
       </div>
 
       <SecHead>경쟁 공급국</SecHead>
-      <div className="grid g2">
+      <div className="grid gpair">
         {competitors.slice(0, 4).map((c) => (
           <Card key={c.market}
             title={`${c.market} - 공급국 Top${c.topN}`}
-            sub={`${benchYear}년 HS 160414 수입. 시장 평균 ${c.marketUsdKg ? kg2(c.marketUsdKg) : '-'}.`}
+            sub={`${c.year}년 ${c.periodLabel} HS 160414 수입. 시장 평균 ${c.marketUsdKg ? kg2(c.marketUsdKg) : '-'}`
+              + (c.priorYear ? ` · ${c.priorYear}년 연간 ${c.priorMarketUsdKg ? kg2(c.priorMarketUsdKg) : '-'}` : '')
+              + '. 금액은 반기 대 연간이라 비교가 성립하지 않아 뺐습니다 - 점유·순위·단가로 봅니다.'}
             note={(() => {
               const gh = c.rows.find((r) => r.isGhana)
               const cheap = c.rows.filter((r) => r.usdPerKg != null && gh?.usdPerKg != null && r.usdPerKg < gh.usdPerKg)
@@ -369,6 +375,13 @@ export default function Market() {
                   점유 <b>{pct(gh.share, 2)}</b>({musd(gh.valueUsd)}), 단가 {gh.usdPerKg != null ? kg2(gh.usdPerKg) : '-'}
                   {c.marketUsdKg != null && gh.usdPerKg != null &&
                     <> - 시장 평균 대비 <b>{p1(gh.usdPerKg / c.marketUsdKg - 1)}</b></>}.
+                  {c.priorYear != null && (
+                    <> {c.priorYear}년 연간과 대면 점유는 {c.ghanaShareDelta == null ? '비교 불가' : <b>{pp(c.ghanaShareDelta)}</b>},
+                      순위는 {c.ghanaRankDelta == null ? '비교 불가'
+                        : c.ghanaRankDelta === 0 ? <b>그대로</b>
+                        : <b>{c.ghanaRankDelta > 0 ? `${c.ghanaRankDelta}계단 상승` : `${-c.ghanaRankDelta}계단 하락`}</b>}입니다
+                      (금액은 반기 대 연간이라 대지 않습니다).</>
+                  )}
                   {c.ghanaOutsideTop && <> Top{c.topN} 밖이라 표 맨 아래에 따로 붙였습니다.</>}
                   {cheap.length > 0
                     ? <> 가나보다 싼 공급국이 <b>{cheap.length}곳</b>({cheap.slice(0, 3).map((r) => r.partner).join('·')})
@@ -381,19 +394,29 @@ export default function Market() {
             <div className="tw">
               <table>
                 <thead>
-                  <tr><th className="n">#</th><th>공급국</th><th className="n">금액</th>
-                    <th className="n">점유</th><th className="n">$/kg</th><th className="n">평균대비</th></tr>
+                  <tr><th className="n">#</th><th>공급국</th>
+                    <th className="n">점유</th>
+                    {c.priorYear != null && <th className="n">{c.priorYear} 점유</th>}
+                    {c.priorYear != null && <th className="n">증감</th>}
+                    <th className="n">$/kg</th></tr>
                 </thead>
                 <tbody>
                   {c.rows.map((r) => (
                     <tr key={r.partner} className={r.isGhana ? 'us' : undefined}>
                       <td className="n"><span className="rank">{r.rank}</span></td>
                       <td className="nowrap">{r.partner}</td>
-                      <td className="n">{musd(r.valueUsd)}</td>
                       <td className="n">{r.share != null ? pct(r.share, 2) : '-'}</td>
-                      <td className="n">{r.usdPerKg != null ? r.usdPerKg.toFixed(2) : '-'}</td>
-                      <td className="n">{r.usdPerKg != null && c.marketUsdKg
-                        ? p1(r.usdPerKg / c.marketUsdKg - 1) : '-'}</td>
+                      {c.priorYear != null && (
+                        <td className="n">{r.priorShare != null ? pct(r.priorShare, 2) : '신규'}</td>
+                      )}
+                      {c.priorYear != null && (
+                        <td className={`n ${r.shareDelta == null ? '' : r.shareDelta > 0 ? 'up' : r.shareDelta < 0 ? 'down' : ''}`}>
+                          {r.shareDelta == null ? '-' : pp(r.shareDelta)}
+                        </td>
+                      )}
+                      <td className={`n ${r.usdPerKg != null && c.marketUsdKg
+                        ? (r.usdPerKg < c.marketUsdKg ? 'down' : '') : ''}`}>
+                        {r.usdPerKg != null ? r.usdPerKg.toFixed(2) : '-'}</td>
                     </tr>
                   ))}
                 </tbody>
