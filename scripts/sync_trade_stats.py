@@ -361,6 +361,11 @@ def main() -> int:
     parser.add_argument("--through", help="마지막 달 (YYYY-MM). 생략하면 두 출처의 공통 최신월")
     parser.add_argument("--output", type=Path, default=DEFAULT_OUTPUT)
     parser.add_argument("--probe", action="store_true", help="발행 현황만 보고 끝낸다")
+    parser.add_argument(
+        "--also-through", action="append", default=[], metavar="YYYY-MM",
+        help="같은 해에 대해 추가로 만들 구간의 마지막 달. COSMO 원장이 1~5월이면 "
+             "시장 통계도 1~5월 창이 있어야 단가를 같은 기간으로 비교할 수 있다. 여러 번 지정 가능.",
+    )
     args = parser.parse_args()
 
     if args.probe:
@@ -374,26 +379,43 @@ def main() -> int:
             f"요청한 {through} 는 두 출처의 공통 발행 범위({coverage['commonThrough']})를 넘습니다. "
             f"Eurostat {coverage['eurostatLastPeriod']}, HMRC {coverage['hmrcLastPeriod']}."
         )
-    months = months_between(f"{args.year}-01", through)
-    print(f"기간 {months[0]}..{months[-1]} ({len(months)}개월)", file=sys.stderr)
-
-    eur_usd = ecb_average("D.USD.EUR.SP00.A", months)
-    gbp_eur = ecb_average("D.GBP.EUR.SP00.A", months)
-    gbp_usd = eur_usd / gbp_eur
-    print(f"환율 EUR→USD {eur_usd:.6f} · GBP→USD {gbp_usd:.6f}", file=sys.stderr)
+    windows: list[str] = []
+    for candidate in [*args.also_through, through]:
+        if candidate > coverage["commonThrough"]:
+            raise SyncError(f"{candidate} 는 공통 발행 범위({coverage['commonThrough']})를 넘습니다")
+        if candidate not in windows:
+            windows.append(candidate)
+    windows.sort()
 
     existing = json.loads(args.output.read_text(encoding="utf-8")) if args.output.exists() else {
         "meta": {}, "imports": [], "suppliers": [],
     }
     imports = [r for r in existing["imports"] if r["year"] != args.year]
     suppliers = [r for r in existing["suppliers"] if r["year"] != args.year]
+    period_labels: list[str] = []
+    fx_by_window: dict[str, dict[str, float]] = {}
 
-    for hs in HS_CODES:
-        print(f"HS {hs}", file=sys.stderr)
-        new_imports, new_suppliers = build_rows(hs, args.year, months, eur_usd, gbp_usd)
-        imports.extend(new_imports)
-        suppliers.extend(new_suppliers)
+    for window_end in windows:
+        months = months_between(f"{args.year}-01", window_end)
+        print(f"기간 {months[0]}..{months[-1]} ({len(months)}개월)", file=sys.stderr)
 
+        # 환율도 구간마다 다르다. 1~5월과 1~6월에 같은 평균을 쓰면 그만큼 값이 어긋난다.
+        eur_usd = ecb_average("D.USD.EUR.SP00.A", months)
+        gbp_eur = ecb_average("D.GBP.EUR.SP00.A", months)
+        gbp_usd = eur_usd / gbp_eur
+        print(f"  환율 EUR→USD {eur_usd:.6f} · GBP→USD {gbp_usd:.6f}", file=sys.stderr)
+
+        for hs in HS_CODES:
+            print(f"  HS {hs}", file=sys.stderr)
+            new_imports, new_suppliers = build_rows(hs, args.year, months, eur_usd, gbp_usd)
+            imports.extend(new_imports)
+            suppliers.extend(new_suppliers)
+
+        label = f"{months[0]}..{months[-1]}"
+        period_labels.append(label)
+        fx_by_window[label] = {"eurUsd": eur_usd, "gbpUsd": gbp_usd}
+
+    months = months_between(f"{args.year}-01", through)
     period_label = f"{months[0]}..{months[-1]}"
     meta = dict(existing.get("meta") or {})
     meta["collected"] = date.today().isoformat()
@@ -403,10 +425,12 @@ def main() -> int:
         "eurostatLastPeriod": coverage["eurostatLastPeriod"],
         "hmrcLastPeriod": coverage["hmrcLastPeriod"],
         f"{args.year}Period": period_label,
+        f"{args.year}Windows": period_labels,
     }
     fx = dict(meta.get("fx") or {})
-    fx.setdefault("eurUsd", {})[f"{args.year}:{period_label}"] = eur_usd
-    fx.setdefault("gbpUsd", {})[f"{args.year}:{period_label}"] = gbp_usd
+    for label, rates in fx_by_window.items():
+        fx.setdefault("eurUsd", {})[f"{args.year}:{label}"] = rates["eurUsd"]
+        fx.setdefault("gbpUsd", {})[f"{args.year}:{label}"] = rates["gbpUsd"]
     fx["note"] = "ECB reference rates; GBP->USD is cross-derived as (USD/EUR)/(GBP/EUR)"
     meta["fx"] = fx
     meta["note"] = (
