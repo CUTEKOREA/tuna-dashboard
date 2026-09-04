@@ -212,6 +212,7 @@ import styles from './TunaIndustryDashboard.module.css';
 import { FRABELLE_SOURCE_NOTES } from '@/lib/company-frabelle-content';
 import { proseBriefing, proseStages } from '@/lib/company-prose-stages';
 import { frabelleMeta, frabelleStats, laeOutputRange, registeredVessels } from '@/lib/data/company-frabelle';
+import { jealsaMeta, jealsaStats, jealsaSourceNotes, mercadonaShare } from '@/lib/data/company-jealsa';
 
 const ACCENT = '#c2410c';
 /** 정적 조사 아카이브라 갱신일이 곧 조사일이다. LIVE 로 표기하지 않는다(L-09). */
@@ -1975,6 +1976,54 @@ const FRA_SPEC: CommoditySpec = {
   ].join(' · '),
 };
 
+/** 갈리시아 로히괄다의 붉은 밴드에서 따온다. 앞선 두 스페인 편과 겹치지 않는 채도를 쓴다. */
+const JEA_ACCENT = '#9d1017';
+
+const JEA_SPEC: CommoditySpec = {
+  key: 'company-anatomy-jealsa',
+  title: '기업 해부: Jealsa',
+  subtitle: '스페인 최대 통조림 그룹이다. 이익을 만든 것이 통조림이 아니었던 해가 있고, 창업 가문의 자산지주는 경쟁 그룹 Albacora의 부회장석에 앉아 있다.',
+  accent: JEA_ACCENT,
+  primaryKpi: {
+    label: '2025년 연결매출',
+    value: jealsaStats.연결매출_2025,
+    unit: '(M€)',
+    accent: JEA_ACCENT,
+  },
+  secondaryKpis: [
+    { label: 'Mercadona 향 매출', value: jealsaStats.mercadona_매출, unit: '(M€)' },
+    { label: '계열 법인 중 에너지', value: jealsaStats.에너지_법인수, unit: `(/${jealsaStats.계열_법인수}개사)` },
+    { label: 'ICCAT 활성 과테말라 기국', value: jealsaStats.iccat_활성_과테말라, unit: '(척)' },
+  ],
+  stripItems: [
+    {
+      now: true,
+      eyebrow: '단일 고객',
+      title: 'Mercadona 비중',
+      body: `${mercadonaShare()} (% · ${jealsaStats.mercadona_매출} / ${jealsaStats.연결매출_2025} M€)`,
+    },
+    {
+      eyebrow: '정점',
+      title: `${jealsaStats.정점연도}년 연결매출`,
+      body: `${jealsaStats.연결매출_정점} (M€ · 2025년에 되찾았다)`,
+    },
+    {
+      eyebrow: '조달',
+      title: 'MSC 인증 어장',
+      body: `${jealsaStats.msc_인증어장_비중} (% · 자사 단독 인증서는 2022년 철회)`,
+    },
+  ],
+  briefing: proseBriefing('jealsa'),
+  narratives: proseStages('jealsa'),
+  chartSlots: withReport('jealsa', {}),
+  sourceNotes: jealsaSourceNotes,
+  sourceMeta: [
+    `${jealsaMeta.회사} · ${jealsaMeta.국가} · ${jealsaMeta.업종}`,
+    `출처 ${jealsaMeta.출처}`,
+    `갱신 ${jealsaMeta.갱신방법}`,
+  ].join(' · '),
+};
+
 const JAI_SPEC: CommoditySpec = {
   key: 'company-anatomy-jais',
   title: '기업 해부: JAIS S.R.L.',
@@ -2185,6 +2234,19 @@ export const COMPANY_CARDS: CompanyCard[] = [
       { label: '필리핀 국내 캐너리', value: `${frabelleStats.필리핀_국내_참치캐너리} 곳` },
     ],
   },
+  {
+    key: 'jealsa',
+    numeral: 'Ⅸ',
+    name: 'Jealsa',
+    country: '스페인 · 보이로',
+    tagline: '매출의 절반 넘게를 고객 한 곳이 가져간다. 창업 가문의 자산지주는 경쟁 그룹 이사회의 부회장석에 앉아 있다.',
+    ...FLAG.스페인,
+    stats: [
+      { label: '2025년 연결매출', value: `${jealsaStats.연결매출_2025} M€` },
+      { label: 'Mercadona 향 비중', value: `${mercadonaShare()} %` },
+      { label: '자체 선망선', value: `${jealsaStats.선단_회사표기} 척` },
+    ],
+  },
 ];
 
 export interface CompanyAnatomyDashboardProps {
@@ -2211,6 +2273,7 @@ export default function CompanyAnatomyDashboard({
     bolton: BOL_SPEC,
     jais: JAI_SPEC,
     frabelle: FRA_SPEC,
+    jealsa: JEA_SPEC,
   };
   const spec = SPECS[selected] ?? SPEC;
 

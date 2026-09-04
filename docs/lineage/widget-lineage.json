@@ -1,9 +1,9 @@
 {
  "_meta": {
   "entry": "app/page.tsx",
-  "files": 210,
+  "files": 211,
   "widgets": 110,
-  "dataFiles": 86,
+  "dataFiles": 88,
   "generator": "scripts/widget_lineage.py"
  },
  "widgetToData": {
@@ -572,6 +572,7 @@
     "lib/data/company-frinsa.ts",
     "lib/data/company-itochu.ts",
     "lib/data/company-jais.ts",
+    "lib/data/company-jealsa.ts",
     "lib/data/company-report-tables.ts",
     "lib/data/company-thaiunion-skus.ts",
     "lib/data/company-thaiunion.ts"
@@ -597,6 +598,8 @@
     "public/data/companies/jais_prose_v1.json",
     "public/data/companies/jais_tables_v1.json",
     "public/data/companies/jais_v1.json",
+    "public/data/companies/jealsa_prose_v1.json",
+    "public/data/companies/jealsa_v1.json",
     "public/data/companies/thaiunion_prose_v1.json",
     "public/data/companies/thaiunion_skus_v1.json",
     "public/data/companies/thaiunion_tables_v1.json",
@@ -1083,6 +1086,12 @@
    "components/market-understanding/CompanyAnatomyDashboard.tsx"
   ],
   "public/data/companies/jais_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/jealsa_prose_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/jealsa_v1.json": [
    "components/market-understanding/CompanyAnatomyDashboard.tsx"
   ],
   "public/data/companies/thaiunion_prose_v1.json": [

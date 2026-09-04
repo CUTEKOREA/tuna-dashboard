@@ -1,0 +1,1111 @@
+<title>Jealsa 해부</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nanum+Myeongjo:wght@400;700;800&family=Noto+Sans+KR:wght@200;300;400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&family=Kaushan+Script&display=swap">
+
+<style>
+:root{
+  --paper:#F6F5F2; --paper-2:#EAE9E4; --card:#FCFCFA;
+  --ink:#14181D; --ink-2:#424A53; --ink-3:#6E767F;
+  --rule:#D5D7D2; --rule-2:#BDC0BA;
+  --adri:#0F3F7A; --adri-soft:#E3EAF4; --night:#0A1A33;
+  --ocra:#B8860B;
+  --ok:#2E6B4E; --ok-bg:#E2EDE6;
+  --warn:#8A6415; --warn-bg:#F3ECD8;
+  --sans:'Noto Sans KR',system-ui,-apple-system,'Malgun Gothic',sans-serif;
+  --disp:'Nanum Myeongjo','Noto Serif KR',Georgia,serif;
+  --mono:'IBM Plex Mono',ui-monospace,SFMono-Regular,Menlo,monospace;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --paper:#111417; --paper-2:#191E23; --card:#151A1F;
+    --ink:#E9ECEF; --ink-2:#B3BAC2; --ink-3:#828B94;
+    --rule:#272D33; --rule-2:#39424B;
+    --adri:#7FAAD8; --adri-soft:#16212E; --night:#070F18;
+    --ocra:#D6AA5A;
+    --ok:#7FBFA3; --ok-bg:#152720;
+    --warn:#D6B268; --warn-bg:#2A2314;
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#111417; --paper-2:#191E23; --card:#151A1F;
+  --ink:#E9ECEF; --ink-2:#B3BAC2; --ink-3:#828B94;
+  --rule:#272D33; --rule-2:#39424B;
+  --adri:#7FAAD8; --adri-soft:#16212E; --night:#070F18;
+  --ocra:#D6AA5A;
+  --ok:#7FBFA3; --ok-bg:#152720;
+  --warn:#D6B268; --warn-bg:#2A2314;
+}
+
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);
+  font-family:var(--sans);font-weight:350;font-size:16px;line-height:1.75;
+  -webkit-font-smoothing:antialiased}
+
+/* ===== COVER ===== */
+.cover{position:relative;background:var(--night);color:#EAF0ED;overflow:hidden;
+  min-height:100vh;display:flex;align-items:stretch}
+.cover-bg{position:absolute;left:0;right:0;bottom:0;height:58%;background-size:cover;
+  background-position:center 62%;opacity:.17;filter:saturate(.3) contrast(1.08)}
+.cover-bg::after{content:'';position:absolute;inset:0;
+  background:linear-gradient(to bottom,var(--night) 0%,rgba(16,26,24,0) 46%)}
+.cover-tint{position:absolute;inset:0;
+  background:radial-gradient(115% 78% at 20% 6%,rgba(31,93,76,.5) 0%,rgba(16,26,24,0) 60%)}
+.cover-in{position:relative;width:100%;max-width:72rem;margin:0 auto;
+  padding:3.5rem 2rem 3rem;display:flex;flex-direction:column}
+.cover-top{display:flex;justify-content:space-between;align-items:flex-start;gap:2rem;
+  padding-bottom:1.5rem;border-bottom:1px solid rgba(234,240,237,.2)}
+.cover-mark{display:flex;align-items:baseline;gap:.7rem}
+.cover-mark .m1{font-family:var(--disp);font-weight:800;font-size:2.1rem;letter-spacing:.02em;color:#F3F7F5}
+.cover-mark .m2{font-family:var(--mono);font-size:.68rem;letter-spacing:.22em;
+  text-transform:uppercase;color:var(--ocra)}
+.cover-tag{font-family:var(--mono);font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;
+  color:rgba(234,240,237,.6);text-align:right;line-height:2}
+.cover-mid{flex:1;display:flex;flex-direction:column;justify-content:center;padding:3rem 0 2.5rem}
+.cover-kick{font-family:var(--mono);font-size:.74rem;letter-spacing:.2em;text-transform:uppercase;
+  color:var(--ocra);margin-bottom:1.5rem}
+.cover h1{font-family:var(--disp);font-weight:800;font-size:clamp(2.7rem,8.6vw,6.2rem);
+  line-height:1.02;letter-spacing:-.02em;margin:0 0 1.5rem;color:#F5F9F7}
+.cover h1 .lt{font-weight:400}
+.cover-sub{font-family:var(--sans);font-weight:300;font-size:clamp(1rem,2.2vw,1.4rem);
+  line-height:1.6;color:rgba(234,240,237,.85);max-width:46rem;margin:0}
+.cover-nums{display:flex;gap:2.6rem;margin-top:2.6rem;flex-wrap:wrap}
+.cn{border-left:2px solid var(--ocra);padding-left:.9rem}
+.cn .v{font-family:var(--mono);font-weight:600;font-size:clamp(1.5rem,3.4vw,2.3rem);
+  letter-spacing:-.03em;color:#F5F9F7;font-variant-numeric:tabular-nums;line-height:1.1}
+.cn .k{font-family:var(--sans);font-size:.76rem;color:rgba(234,240,237,.62);margin-top:.25rem}
+.cover-by{display:flex;justify-content:space-between;align-items:flex-end;gap:1.5rem;
+  padding:0 0 1.25rem;margin-bottom:1.25rem;border-bottom:1px solid rgba(234,240,237,.2)}
+.by-l{display:flex;align-items:baseline;gap:.95rem;padding-left:1rem;
+  border-left:3px solid var(--ocra)}
+.by-k{font-family:var(--mono);font-size:.7rem;font-weight:600;letter-spacing:.2em;
+  text-transform:uppercase;color:var(--ocra)}
+.by-v{font-family:var(--disp);font-weight:800;font-size:1.75rem;letter-spacing:.01em;color:#FFF}
+.by-r{font-family:var(--mono);font-size:.7rem;letter-spacing:.1em;color:rgba(234,240,237,.55)}
+.cover-facts{display:grid;grid-template-columns:repeat(auto-fit,minmax(8rem,1fr));
+  gap:1.75rem 2.5rem;padding-top:2rem;border-top:1px solid rgba(234,240,237,.24)}
+.cf .k{font-family:var(--mono);font-size:.66rem;letter-spacing:.12em;text-transform:uppercase;
+  color:rgba(234,240,237,.55)}
+.cf .v{font-family:var(--mono);font-weight:600;font-size:1.5rem;letter-spacing:-.02em;color:#F5F9F7;
+  font-variant-numeric:tabular-nums;margin-top:.3rem;line-height:1.15}
+.cf .n{font-family:var(--sans);font-size:.72rem;color:rgba(234,240,237,.58);margin-top:.15rem}
+
+/* ===== LAYOUT ===== */
+.wrap{max-width:72rem;margin:0 auto;padding:0 2rem}
+.layout{display:grid;grid-template-columns:13rem 1fr;gap:3.5rem;padding-top:3.5rem}
+@media(max-width:960px){.layout{grid-template-columns:1fr;gap:0}nav{display:none}}
+main{min-width:0;max-width:52rem}
+nav{position:sticky;top:1.5rem;font-family:var(--sans);font-size:.82rem;align-self:start}
+nav .nt{font-family:var(--mono);font-size:.66rem;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--ink-3);margin-bottom:.9rem;padding-bottom:.5rem;border-bottom:1px solid var(--rule)}
+nav ol{list-style:none;margin:0;padding:0}
+nav li{margin-bottom:.55rem}
+nav a{display:flex;gap:.6rem;color:var(--ink-2);text-decoration:none;line-height:1.45}
+nav a:hover{color:var(--ocra)}
+nav a:focus-visible{outline:2px solid var(--adri);outline-offset:2px}
+nav .n{font-family:var(--mono);font-size:.68rem;color:var(--ink-3);padding-top:.15rem}
+
+.cover h1 .scr{font-family:'Kaushan Script','Snell Roundhand','Apple Chancery',cursive;
+  font-weight:400;font-size:1.02em;letter-spacing:.005em;padding-right:.06em;
+  display:inline-block;transform:translateY(.03em)}
+.chip.c-est{background:transparent;color:var(--ink-3);box-shadow:inset 0 0 0 1px currentColor;opacity:.9}
+section{margin:0 0 4.5rem;scroll-margin-top:1.5rem}
+h2{font-family:var(--disp);font-weight:700;font-size:1.75rem;letter-spacing:-.028em;
+  margin:0 0 .4rem;padding-top:.45rem;border-top:2px solid var(--ink);text-wrap:balance}
+.h2n{font-family:var(--mono);font-size:.7rem;color:var(--adri);font-weight:500;
+  letter-spacing:.1em;display:block;margin-bottom:.9rem}
+h3{font-family:var(--disp);font-weight:700;font-size:1.1rem;margin:2.6rem 0 .7rem}
+h4{font-family:var(--sans);font-weight:600;font-size:.92rem;margin:1.8rem 0 .5rem;color:var(--ink-2)}
+p{margin:0 0 1.1rem;max-width:none}
+.lead{font-size:1.1rem;line-height:1.7;color:var(--ink-2);max-width:none}
+strong{font-weight:600;color:var(--ink)}
+.es{font-style:italic}
+code{font-family:var(--mono);font-size:.85em;background:var(--paper-2);padding:.1em .3em;
+  border-radius:2px;color:var(--ink-2);word-break:break-all}
+
+/* ===== BRAND CARDS ===== */
+.brands{display:grid;grid-template-columns:repeat(auto-fit,minmax(15rem,1fr));gap:1.25rem;
+  margin:0 0 2rem}
+.bc{border:1px solid var(--rule);background:var(--card);display:flex;flex-direction:column;
+  overflow:hidden}
+.bc-img{background:var(--paper-2);padding:1.5rem;display:flex;align-items:center;
+  justify-content:center;min-height:9.5rem}
+.bc-img img{max-height:7rem;width:auto}
+.bc-b{padding:1rem 1.15rem 1.25rem}
+.bc-n{font-family:var(--disp);font-weight:700;font-size:1rem;margin:0 0 .15rem}
+.bc-t{font-family:var(--mono);font-size:.66rem;letter-spacing:.08em;text-transform:uppercase;
+  color:var(--adri);margin-bottom:.5rem}
+.bc-d{font-family:var(--sans);font-size:.82rem;line-height:1.6;color:var(--ink-2);margin:0}
+.bc-p{font-family:var(--mono);font-size:.78rem;color:var(--ocra);margin-top:.6rem;font-weight:500}
+
+/* ===== PRODUCT FIGURE ===== */
+figure{margin:0 0 1.8rem;border:1px solid var(--rule);background:var(--card)}
+figure .fi{background:var(--paper-2);padding:1.75rem;display:flex;justify-content:center}
+figure .fi img{max-height:16rem;width:auto}
+figcaption{padding:.85rem 1.1rem;font-family:var(--sans);font-size:.82rem;line-height:1.6;
+  color:var(--ink-2);border-top:1px solid var(--rule)}
+figcaption b{color:var(--ink)}
+.figrow{display:grid;grid-template-columns:repeat(auto-fit,minmax(13rem,1fr));gap:1.25rem;
+  margin:0 0 1.8rem}
+.figrow figure{margin:0}
+.figrow figure .fi{padding:1.25rem;min-height:11rem;align-items:center}
+.figrow figure .fi img{max-height:9rem}
+
+/* ===== TABLES ===== */
+.tw{overflow-x:auto;margin:0 0 1.6rem;border:1px solid var(--rule)}
+table{border-collapse:collapse;width:100%;font-family:var(--sans);font-size:.85rem;background:var(--card)}
+th{background:var(--paper-2);text-align:left;font-weight:600;font-size:.71rem;letter-spacing:.06em;
+  text-transform:uppercase;color:var(--ink-2);padding:.6rem .8rem;
+  border-bottom:1px solid var(--rule-2);white-space:nowrap}
+td{padding:.55rem .8rem;border-bottom:1px solid var(--rule);color:var(--ink-2);vertical-align:top}
+/* 브라우저 기본값은 한글을 글자 단위로 끊는다 — 좁은 칸에서 낱말이 갈라진다.
+   한국어 조판의 기본은 띄어쓰기에서만 끊는 것이다. */
+main th,main td{word-break:keep-all}
+
+tr:last-child td{border-bottom:none}
+td.num,th.num{text-align:right;font-family:var(--mono);font-variant-numeric:tabular-nums;white-space:nowrap}
+/* .num 은 숫자를 안 끊으려고 nowrap 이다. 그런데 같은 칸에 붙는 주석 줄까지
+   붙들려 표가 컨테이너를 밀어냈다 — 숫자와 칩은 그대로 두고 주석만 접는다. */
+td.num span:not(.chip):not(.basis){white-space:normal;word-break:keep-all}
+
+td b{color:var(--ink);font-weight:600}
+tr.hl td{background:var(--adri-soft)}
+tr.dim td{color:var(--ink-3)}
+
+/* ===== CALLOUT / QUOTE ===== */
+.call{border:1px solid var(--rule-2);background:var(--card);padding:1.15rem 1.3rem;margin:0 0 1.6rem;
+  max-width:none}
+.call.hot{border-left:3px solid var(--ocra)}
+.call.warn{border-left:3px solid var(--warn);background:var(--warn-bg)}
+.call .ct{font-family:var(--disp);font-weight:700;font-size:.82rem;margin:0 0 .5rem;color:var(--ink)}
+.call p{margin:0 0 .6rem;font-size:.89rem;line-height:1.7}
+.call p:last-child{margin-bottom:0}
+blockquote{margin:0 0 1.2rem;padding:.85rem 1.1rem;background:var(--paper-2);
+  border-left:3px solid var(--adri);max-width:none;font-size:.9rem;line-height:1.65;color:var(--ink-2)}
+blockquote .who{display:block;margin-top:.5rem;font-family:var(--mono);font-size:.69rem;color:var(--ink-3)}
+
+/* ===== MISC ===== */
+.metrics{display:grid;grid-template-columns:repeat(auto-fit,minmax(9.5rem,1fr));gap:1px;
+  background:var(--rule);border:1px solid var(--rule);margin:0 0 2.2rem}
+.metric{background:var(--card);padding:1.1rem 1.15rem}
+.metric .lab{font-family:var(--sans);font-size:.67rem;font-weight:500;letter-spacing:.08em;
+  text-transform:uppercase;color:var(--ink-3);margin-bottom:.35rem}
+.metric .val{font-family:var(--mono);font-size:1.4rem;font-weight:600;font-variant-numeric:tabular-nums;
+  letter-spacing:-.03em;line-height:1.1;color:var(--ink)}
+.metric .note{font-family:var(--sans);font-size:.71rem;color:var(--ink-3);margin-top:.2rem}
+.metric.hot .val{color:var(--ocra)}
+.chip{display:inline-flex;font-family:var(--mono);font-size:.64rem;font-weight:600;letter-spacing:.05em;
+  padding:.1rem .4rem;border-radius:2px;vertical-align:.1em;white-space:nowrap}
+.c-src{background:var(--adri-soft);color:var(--adri)}
+.c-doc{background:var(--ok-bg);color:var(--ok)}
+.c-nd{background:var(--warn-bg);color:var(--warn)}
+.certrow{display:flex;gap:1.5rem;align-items:center;flex-wrap:wrap;padding:1rem 0}
+.certrow img{height:3rem;width:auto;opacity:.9}
+footer{border-top:2px solid var(--ink);margin-top:1rem;padding:1.75rem 0 4rem;
+  font-family:var(--sans);font-size:.79rem;color:var(--ink-3);line-height:1.7}
+footer p{max-width:none}
+@media(prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+
+/* 연결·개별 이중기준 표 */
+table th.grp,table td.grp{background:var(--adri-soft)}
+:root[data-theme="dark"] table th.grp,:root[data-theme="dark"] table td.grp{background:var(--adri-soft)}
+th.grp{color:var(--adri)}
+.basis{display:inline-flex;align-items:center;gap:.3rem;font-family:var(--mono);font-size:.64rem;
+  font-weight:600;letter-spacing:.06em;padding:.12rem .45rem;border-radius:2px;white-space:nowrap}
+.b-con{background:var(--adri-soft);color:var(--adri)}
+.b-sep{background:var(--paper-2);color:var(--ink-3);border:1px solid var(--rule)}
+.legend{display:flex;gap:1rem;flex-wrap:wrap;font-family:var(--sans);font-size:.78rem;
+  color:var(--ink-3);margin:-.8rem 0 1.6rem}
+
+
+
+.cover-shots{display:flex;gap:1.7rem;align-items:flex-end;flex-wrap:wrap;
+  margin-top:2.8rem;padding-bottom:.4rem}
+
+.cover-shots img{height:clamp(4.6rem,10vw,7.4rem);width:auto;max-width:12rem;
+  object-fit:contain;filter:drop-shadow(0 16px 26px rgba(0,0,0,.55))}
+
+.cover-shots figcaption{display:none}
+
+.cover-shots-cap{font-family:var(--mono);font-size:.66rem;letter-spacing:.05em;
+  text-transform:uppercase;color:rgba(231,238,239,.5);margin:.9rem 0 0}
+</style>
+
+<!-- ================= COVER ================= -->
+<header class="cover">
+  <div class="cover-tint"></div>
+  <div class="cover-in">
+    <div class="cover-top">
+      <div class="cover-mark">
+        <span class="m1">JEALSA</span>
+        <span class="m2">Corporación Empresarial Jesús Alonso · Boiro</span>
+      </div>
+      <div class="cover-tag">
+        Rianxeira · Escurís · Lucky<br>Mare Aperto · Robinson Crusoe<br>
+        Calle Vimieiro · Boiro · A Coruña · España<br>
+        재무 · 계열 · 선단 · 자본 교차
+      </div>
+    </div>
+
+    <div class="cover-mid">
+      <p class="cover-kick">매출의 55%가 고객 한 곳 · 경쟁 그룹 이사회의 부회장석</p>
+      <h1><span class="scr">Jealsa</span> <span class="lt">해부</span></h1>
+      <p class="cover-sub">스페인 최대 통조림 그룹이다. 그런데 <b>이익을 만든 것이 통조림이 아니었던 해</b>가 있고,
+        창업 가문의 자산지주는 <b>경쟁 그룹 Albacora의 부회장석</b>에 앉아 있다.</p>
+      <div class="cover-nums">
+        <div class="cn"><div class="v">825,7 M€</div><div class="k">2025년 연결매출</div></div>
+        <div class="cn"><div class="v">55%</div><div class="k">Mercadona 향 매출 비중</div></div>
+        <div class="cn"><div class="v">2척</div><div class="k">회사가 적는 자체 선망선</div></div>
+      </div>
+      <p class="cover-shots-cap">연결계정 예치 주체는 Corporación Empresarial Jesús Alonso, S.L.이다.
+        개별법인 랭킹에서는 Jealsa Foods가 2위, Escurís가 3위로 갈라져 나온다.
+        ICCAT 등록부에는 동급 세 척이 올라 있고 전부 활성 목록 밖이다.</p>
+    </div>
+
+    <div class="cover-by">
+      <div class="by-l">
+        <span class="by-k">작성자</span>
+        <span class="by-v">이동건</span>
+      </div>
+      <div class="by-r">2026년 9월</div>
+    </div>
+
+    <div class="cover-facts">
+      <div class="cf"><div class="k">창업</div><div class="v">1958</div><div class="n">법인화는 1974년</div></div>
+      <div class="cf"><div class="k">연결 모회사</div><div class="v">CEJA</div><div class="n">B70304316 · 2011년 설립</div></div>
+      <div class="cf"><div class="k">산업 공장</div><div class="v">7개소</div><div class="n">스페인·과테말라·칠레·브라질</div></div>
+      <div class="cf"><div class="k">발전 자회사</div><div class="v">14개</div><div class="n">통조림 자회사의 두 배</div></div>
+      <div class="cf"><div class="k">선단 기국</div><div class="v">과테말라</div><div class="n">스페인 등록부에 없다</div></div>
+      <div class="cf"><div class="k">MSC 단독인증</div><div class="v">2022 철회</div><div class="n">현행은 AGAC 집단 인증</div></div>
+    </div>
+  </div>
+</header>
+
+<div class="wrap">
+<div class="layout">
+
+<nav>
+  <div class="nt">목차</div>
+  <ol>
+    <li><a href="#s1"><span class="n">01</span> 이름이 셋인 회사</a></li>
+    <li><a href="#s2"><span class="n">02</span> 5남매와 자산지주</a></li>
+    <li><a href="#s3"><span class="n">03</span> 매출과 이익</a></li>
+    <li><a href="#s4"><span class="n">04</span> 계열과 수직통합</a></li>
+    <li><a href="#s5"><span class="n">05</span> 선단과 가공거점</a></li>
+    <li><a href="#s6"><span class="n">06</span> 조달 규율과 인증</a></li>
+    <li><a href="#s7"><span class="n">07</span> Albacora 자본 교차</a></li>
+    <li><a href="#s8"><span class="n">08</span> Mercadona와 경쟁 구도</a></li>
+    <li><a href="#s9"><span class="n">09</span> 한국 관점</a></li>
+  </ol>
+</nav>
+
+<main>
+
+<section id="s1">
+  <h2><span class="h2n">01 / 이름이 셋인 회사</span>어느 층을 보느냐에 따라 매출이 달라진다</h2>
+
+  <p class="lead">바깥에서 「Jealsa」라고 부르는 것은 등기 상호가 아니다. 창업자 이름
+    Jesús Alonso와 S.A.를 줄인 말이다. 실제 법인은 지주와 영업회사로 층이 갈려 있고,
+    스페인 통조림 업계 순위표는 어느 층을 세느냐에 따라 1위가 바뀐다.</p>
+
+  <div class="metrics">
+    <div class="metric hot"><div class="lab">연결 모회사</div><div class="val">CEJA</div><div class="note">Corporación Empresarial Jesús Alonso, S.L. <span class="chip c-doc">원본</span></div></div>
+    <div class="metric"><div class="lab">지주 설립</div><div class="val">2011</div><div class="note">2011-08-29 · CIF B70304316 <span class="chip c-doc">원본</span></div></div>
+    <div class="metric"><div class="lab">사업 창업</div><div class="val">1958</div><div class="note">법인화는 1974년 <span class="chip c-src">매체</span></div></div>
+    <div class="metric"><div class="lab">통조림 영업법인</div><div class="val">2개</div><div class="note">Jealsa Foods · Escurís <span class="chip c-doc">원본</span></div></div>
+  </div>
+
+  <h3>층위별 법인</h3>
+  <div class="tw"><table>
+    <thead><tr><th>층위</th><th>등기 상호</th><th>CIF</th><th>설립</th><th>역할</th></tr></thead>
+    <tbody>
+      <tr class="hl"><td><b>연결 모회사</b></td><td><b>Corporación Empresarial Jesús Alonso, S.L.</b></td><td>B70304316</td><td>2011-08-29</td><td>순수 지주. 상업등기소 연결계정 예치 주체</td></tr>
+      <tr><td>통조림 영업</td><td><b>Jealsa Foods, S.A.U.</b></td><td>—</td><td>—</td><td>CNAE 1022. 2024년 개별매출 553,4 M€</td></tr>
+      <tr><td>통조림 영업</td><td><b>Escurís, S.L.</b></td><td>—</td><td>—</td><td>CNAE 1022. 2024년 개별매출 526,9 M€</td></tr>
+      <tr><td>상표 보유</td><td>Jealsa Rianxeira, S.A.</td><td>A15022221</td><td>1974-01-18</td><td>2014년부터 지주의 1인 회사. Rianxeira·Lucky 상표. 감사인 Deloitte</td></tr>
+      <tr><td>소멸</td><td>Jealsa Industria Alimentaria, S.L.U.</td><td>—</td><td>—</td><td>2022년 부분분할 뒤 정리</td></tr>
+    </tbody>
+  </table></div>
+
+  <p>「Jealsa Corporación」은 대외 표기다. 상용DB는 같은 지주를 「Corporación Empresarial Jealsa, S.L.」로도
+    색인한다. CIF가 같으므로 한 회사의 다른 이름이다.
+    <span class="chip c-doc">원본</span> <span class="chip c-src">매체</span></p>
+
+  <div class="call hot">
+    <p class="ct">순위표가 갈리는 자리</p>
+    <p>스페인 상업등기 CNAE 10.22 개별법인 매출에서 2024년 1위는 Frinsa del Noroeste(625,9 M€)다.
+      Jealsa Foods가 553,4 M€로 2위, Escurís가 526,9 M€로 3위다. 두 법인을 더하면 1.080,3 M€로
+      Jealsa 그룹 연결매출 781 M€를 넘는다. 차액은 내부거래 상계분이다.
+      <span class="chip c-doc">원본</span></p>
+    <p>즉 개별 랭킹에서 Frinsa가 앞선 것은 법인을 하나로 묶어 두었기 때문이고,
+      그룹 연결로 세면 Jealsa가 앞선다. 두 순위는 서로를 반박하지 않는다. 세는 단위가 다를 뿐이다.
+      <span class="chip c-doc">원본</span></p>
+  </div>
+
+  <h3>1958년과 1974년</h3>
+  <p>1958년 Boiro에서 Jesús Alonso Fernández가 어패류 통조림 사업을 시작했고, 법인화는 1974년에
+    「Jesús Alonso, S.A.」라는 이름으로 이루어졌다. 회사 연혁은 1958년을 창업으로 센다.
+    별개로 Jealsa Rianxeira, S.A.의 상업등기 설립일은 1974-01-18이다.
+    <span class="chip c-src">매체</span> <span class="chip c-doc">원본</span></p>
+</section>
+
+<section id="s2">
+  <h2><span class="h2n">02 / 5남매와 자산지주</span>조업도 가공도 하지 않는 법인 하나</h2>
+
+  <p class="lead">2015년 6월, 창업자가 85세에 주주총회에서 사임했다. 연령과 건강을 이유로 들었다.
+    승계는 다섯 자녀에게 갔고 전원이 등기 임원으로 남았다. 그 옆에 매출 30만 유로가 안 되는
+    법인이 하나 서 있는데, 이 회사가 경쟁 그룹 Albacora로 이어지는 자본 교차의 통로다.</p>
+
+  <div class="metrics">
+    <div class="metric"><div class="lab">승계 시점</div><div class="val">2015-06</div><div class="note">창업자 사임 · 5남매 배치 <span class="chip c-src">매체</span></div></div>
+    <div class="metric"><div class="lab">창업자 별세</div><div class="val">2022-05</div><div class="note">향년 92세 · Boiro 시장 역임 <span class="chip c-src">매체</span></div></div>
+    <div class="metric hot"><div class="lab">가문 자산지주</div><div class="val">1984</div><div class="note">ALONSO ESCURIS, S.L. · 1984-10-29 <span class="chip c-doc">원본</span></div></div>
+    <div class="metric"><div class="lab">그 법인 자본금</div><div class="val">4.257.453,95 €</div><div class="note">직원 5~7명 · CNAE 7490 <span class="chip c-doc">원본</span></div></div>
+  </div>
+
+  <h3>승계 배치</h3>
+  <div class="tw"><table>
+    <thead><tr><th>등기 임원</th><th>그룹 직위</th></tr></thead>
+    <tbody>
+      <tr class="hl"><td><b>Jesús Manuel Alonso Escurís</b> (Boiro, 1959)</td><td><b>회장</b></td></tr>
+      <tr><td>Juan Luis Alonso Escurís</td><td>부회장</td></tr>
+      <tr><td>Purificación Alonso Escurís</td><td>이사</td></tr>
+      <tr><td>Javier Alejandro Alonso Escurís</td><td>이사</td></tr>
+      <tr><td>Miguel Alonso Escurís</td><td>이사</td></tr>
+    </tbody>
+  </table></div>
+
+  <h3>ALONSO ESCURIS, S.L.: 그릇의 정체</h3>
+  <div class="tw"><table>
+    <thead><tr><th>항목</th><th>등기 내용</th><th>근거</th></tr></thead>
+    <tbody>
+      <tr><td>설립</td><td>1984-10-29</td><td><span class="chip c-doc">원본</span></td></tr>
+      <tr><td>본점</td><td>Calle Vimieiro s/n, 15930 <b>Boiro</b>, A Coruña, 그룹 본거지와 같은 거리</td><td><span class="chip c-doc">원본</span></td></tr>
+      <tr><td>자본금</td><td>4.257.453,95 €</td><td><span class="chip c-doc">원본</span></td></tr>
+      <tr><td>CNAE</td><td>7490 · 기타 전문·과학·기술 서비스</td><td><span class="chip c-doc">원본</span></td></tr>
+      <tr><td>사업 목적</td><td>금융·부동산 관리, 중개, 경제·경영 자문. <b>조업도 가공도 없다</b></td><td><span class="chip c-src">매체</span></td></tr>
+      <tr><td>규모</td><td>매출 30만 € 미만 · 직원 5~7명</td><td><span class="chip c-src">매체</span></td></tr>
+      <tr><td>흡수합병</td><td>PROBOIN, S.L.(2022-09-21) · BEIRA DA RIA, S.L.(2025-07-01)</td><td><span class="chip c-doc">원본</span></td></tr>
+      <tr><td>CIF 표기</td><td>B15070717, 다른 상용DB는 A15070717로 적는다. 법인격이 S.L.이므로 B가 정합적이다</td><td><span class="chip c-doc">원본</span> <span class="chip c-est">추정</span></td></tr>
+    </tbody>
+  </table></div>
+
+  <p>이사회를 보면 성격이 드러난다. 승계 5남매 가운데 넷이 이 법인 이사회에 앉아 있다.
+    <span class="chip c-doc">원본</span></p>
+
+  <div class="tw"><table>
+    <thead><tr><th>등기 임원</th><th>직위</th><th>취임</th></tr></thead>
+    <tbody>
+      <tr class="hl"><td><b>Javier Alejandro Alonso Escurís</b></td><td><b>회장</b></td><td>2026-08-03</td></tr>
+      <tr><td>Miguel Alonso Escurís</td><td>부회장</td><td>2018-10-04</td></tr>
+      <tr><td>Silvia Lousa Alonso</td><td>이사</td><td>2026-08-03</td></tr>
+      <tr><td>Juan Luis Alonso Escurís</td><td>이사</td><td>2011-03-09</td></tr>
+      <tr><td>Jesús Manuel Alonso Escurís</td><td>이사</td><td>2011-03-09</td></tr>
+      <tr><td>José Manuel Hermida Bouzas</td><td>비이사 서기</td><td>2026-08-03</td></tr>
+    </tbody>
+  </table></div>
+
+  <div class="call">
+    <p class="ct">왜 이 법인을 따로 세워 두는가</p>
+    <p>영업회사의 지분과 가문의 부동산·금융 자산을 한 그릇에 담으면 승계도 담보도 상속도 한꺼번에 얽힌다.
+      1984년에 세운 이 별도 법인은 그 얽힘을 끊는 장치다. 그룹 영업과 무관해 보이지만
+      가문이 그룹 밖에서 무엇을 쥐고 있는지가 여기에 모인다. <span class="chip c-doc">원본</span></p>
+  </div>
+</section>
+
+<section id="s3">
+  <h2><span class="h2n">03 / 매출과 이익</span>정점은 2022년이었고 이익은 다른 데서 왔다</h2>
+
+  <p class="lead">2025년 연결매출 825,7 M€는 「사상 최대」로 보도된다. 시계열을 한 칸 더 넓히면
+    다른 그림이 나온다. 2022년에 814,8 M€를 찍었고 이듬해 4,5% 빠졌다. 2025년은 3년 만에
+    그 고점을 되찾은 해다. 그리고 그 사이 이익을 만든 것은 통조림이 아니었다.</p>
+
+  <div class="metrics">
+    <div class="metric hot"><div class="lab">2025 연결매출</div><div class="val">825,7 M€</div><div class="note">+5,7% <span class="chip c-src">매체</span></div></div>
+    <div class="metric"><div class="lab">직전 고점</div><div class="val">814,8 M€</div><div class="note">2022년 <span class="chip c-src">매체</span></div></div>
+    <div class="metric warn"><div class="lab">2023 순이익</div><div class="val">2,13 M€</div><div class="note">매출 778,5 M€ 위에서 <span class="chip c-src">매체</span></div></div>
+    <div class="metric"><div class="lab">2025 순이익</div><div class="val">26,4 M€</div><div class="note">+149% <span class="chip c-src">매체</span></div></div>
+  </div>
+
+  <h3>연결 시계열</h3>
+  <p>예치 주체는 Corporación Empresarial Jesús Alonso, S.L.이다. 아래는 상업등기소에 예치된
+    연결계정을 인용한 보도를 모은 것이다.</p>
+
+  <div class="tw"><table>
+    <thead><tr><th>회계연도</th><th>연결매출</th><th>증감</th><th>영업이익</th><th>EBITDA</th><th>순이익</th></tr></thead>
+    <tbody>
+      <tr><td>2020</td><td>712,8 M€</td><td>—</td><td>—</td><td>—</td><td>약 11,4 M€</td></tr>
+      <tr><td>2021</td><td><b>704 M€</b></td><td>−1,2%</td><td>—</td><td>—</td><td><b>4 M€</b> (−65%)</td></tr>
+      <tr class="hl"><td><b>2022</b></td><td><b>814,8 M€</b></td><td><b>+15,7%</b></td><td>58,8 M€</td><td>87,5 M€</td><td>약 50 M€</td></tr>
+      <tr><td>2023</td><td>778,5 M€</td><td>−4,5%</td><td>35 M€</td><td>57,5 M€</td><td><b>2,13 M€</b></td></tr>
+      <tr><td>2024</td><td>781 M€</td><td>+0,3%</td><td>48,17 M€</td><td>70,45 M€</td><td>10,6 M€</td></tr>
+      <tr class="hl"><td><b>2025</b></td><td><b>825,7 M€</b></td><td>+5,7%</td><td>51,8 M€</td><td>—</td><td><b>26,4 M€</b></td></tr>
+    </tbody>
+  </table></div>
+
+  <div class="call warn">
+    <p class="ct">공장이 두 달 멈췄는데 매출은 1,2%만 빠졌다</p>
+    <p>2021년 5월 Boiro 공장에 불이 났다. 약 11.000 m², 설비의 3분의 1이 탔다. 로인 라인과 냉장·냉동,
+      펫푸드 구역, 그리고 어류 재고가 피해를 입었다. 공장은 두 달 멈췄고 통조림 부문 매출은 3,6% 줄었다.
+      <span class="chip c-src">매체</span></p>
+    <p>그런데 그룹 연결매출은 704 M€로 1,2% 감소에 그쳤다. 대신 순이익이 65% 날아가 4 M€가 됐다.
+      2021년 계정에 화재 손실 22,6 M€를 계상했고, 보험사가 약 94 M€를 일곱 달 뒤 지급했다.
+      <span class="chip c-src">매체</span></p>
+  </div>
+
+  <h3>같은 해의 두 값이 아니었다</h3>
+  <p>갈리시아 매체 하나는 Jealsa 매출을 779 M€로, 다른 자료는 781 M€로 적는다. 충돌처럼 보이지만
+    아니다. 779를 적은 기사는 제목부터 「2023년에 새 정점에 올랐다」이고, 본문이
+    «cerró el <b>ejercicio 2023</b> con ingresos que alcanzaron los <b>779 millones de euros</b>»라고 쓴다.
+    FY2023 연결은 778,5 M€다. <b>779는 2023년, 781은 2024년 값이다.</b>
+    같은 기사가 Frinsa 712,8 M€와 Nauterra 697 M€도 전부 2023년으로 적는다.
+    <span class="chip c-src">매체</span></p>
+
+  <div class="call">
+    <p class="ct">매체가 연결 수치를 개별법인 이름으로 적는다</p>
+    <p>그 기사가 적은 주체는 「Jealsa Foods」인데 값은 그룹 연결이다. Jealsa Foods, S.A.U.의
+      2024년 개별매출은 553,4 M€다. 두 수치를 같은 줄에 놓으면 개별과 연결이 섞인다.
+      <span class="chip c-doc">원본</span></p>
+    <p>같은 오용이 2025년 보도에도 반복된다. 한 매체는 「Jealsa Foods가 825 M€를 올렸다」로,
+      다른 매체는 「연결 기준 825,7 M€」로 적는다. 법인명이 아니라 「consolidada」 표기를 보고 판단해야 한다.
+      <span class="chip c-src">매체</span></p>
+  </div>
+
+  <h3>이익의 출처</h3>
+  <p>2022년 연결이익 약 5.000만 €에 관해 스페인 경제매체는 「전통적 통조림 사업이 아니라
+    풍력단지 지분 매각에서 나왔다」고 적었다. 같은 해에 화재 보험금 약 94 M€도 들어왔다.
+    <b>비영업 요인이 둘이다.</b> 2024년 이익 회복에 대해서도 보도는 열병합발전과 풍력의 기여를 명시한다.
+    <span class="chip c-src">매체</span></p>
+
+  <p>공시 수치가 이 서사를 뒷받침한다. 그룹 발전량이 2022년 376.721 MWh에서 2024년 121.105 MWh로 줄었고,
+    비재무보고서 적용범위의 풍력·수력 법인도 11곳에서 6곳으로 줄었다. 그중 넷은 아직 착공 전이다.
+    <span class="chip c-doc">원본</span></p>
+
+  <div class="call hot">
+    <p class="ct">읽는 법</p>
+    <p>이 그룹의 이익률을 통조림 업황 지표로 읽으면 틀린다. 매출은 통조림이 만들고
+      이익은 에너지와 보험금이 메운 해가 있다. <span class="chip c-doc">원본</span> <span class="chip c-src">매체</span></p>
+  </div>
+
+  <h3>2025년 부속 지표</h3>
+  <div class="tw"><table>
+    <thead><tr><th>항목</th><th>값</th><th>근거</th></tr></thead>
+    <tbody>
+      <tr class="hl"><td><b>Mercadona 향 매출</b></td><td><b>454 M€</b> (+6%), 연결매출의 <b>55%</b></td><td><span class="chip c-src">매체</span></td></tr>
+      <tr><td>캐시플로</td><td>60 M€</td><td><span class="chip c-src">매체</span></td></tr>
+      <tr><td>배당</td><td>준비금 재원 10 M€</td><td><span class="chip c-src">매체</span></td></tr>
+      <tr><td>투자</td><td>40 M€, Bodión 물류센터(팔레트 26.678매), 참치 로인 해동 자동화</td><td><span class="chip c-src">매체</span></td></tr>
+      <tr><td>보조금</td><td>5 M€, PERTE del Mar, 자동화 사업비의 41%</td><td><span class="chip c-src">매체</span></td></tr>
+      <tr><td>조세기여</td><td>55 M€</td><td><span class="chip c-src">매체</span></td></tr>
+      <tr><td>유럽 매출 비중</td><td><b>85%</b>, 비재무보고서 본문에도 같은 수치가 있다</td><td><span class="chip c-doc">원본</span></td></tr>
+    </tbody>
+  </table></div>
+</section>
+
+<section id="s4">
+  <h2><span class="h2n">04 / 계열과 수직통합</span>법인의 40%대가 에너지다</h2>
+
+  <p class="lead">비재무보고서 적용범위에 21개사가 들어 있다. 그중 아홉이 발전 회사다.
+    통조림을 만드는 회사보다 전기를 만드는 회사가 많다.</p>
+
+  <div class="metrics">
+    <div class="metric hot"><div class="lab">적용범위 법인</div><div class="val">21개사</div><div class="note">2024년 기준 <span class="chip c-doc">원본</span></div></div>
+    <div class="metric"><div class="lab">에너지 법인</div><div class="val">9개사</div><div class="note">열병합 3, 풍력·수력 6 <span class="chip c-doc">원본</span></div></div>
+    <div class="metric warn"><div class="lab">미착공 발전소</div><div class="val">4곳</div><div class="note">신규 6곳 중 넷이 「IN PROJECT」 <span class="chip c-doc">원본</span></div></div>
+  </div>
+
+  <h3>디비전 구성과 2년 사이의 변화</h3>
+  <div class="tw"><table>
+    <thead><tr><th>디비전</th><th>2022</th><th>2024</th><th>역할</th></tr></thead>
+    <tbody>
+      <tr><td>Food and Services</td><td>7</td><td><b>6</b></td><td>통조림, 로인, 냉장</td></tr>
+      <tr><td>Fishing</td><td>3</td><td><b>2</b></td><td>조업 2개사</td></tr>
+      <tr><td>Waste Recovery</td><td>3</td><td>3</td><td>어분·어유, 부산물 고부가화, 펫푸드</td></tr>
+      <tr class="hl"><td><b>Energy</b></td><td>3+11</td><td><b>3+6</b></td><td>열병합 3, 풍력·수력 6</td></tr>
+      <tr><td>Marketing and Distribution</td><td>1</td><td>1</td><td>Mare Aperto Foods S.r.l., 이탈리아</td></tr>
+    </tbody>
+  </table></div>
+
+  <p>2024년판에서 칠레 ALBA 계열과 Peña Armada, Careón이 사라졌고 새로 들어온 여섯 곳 가운데
+    넷은 아직 프로젝트 단계다. <b>풍력 자산을 팔고 수력으로 갈아타는 중</b>으로 읽힌다.
+    <span class="chip c-doc">원본</span> <span class="chip c-est">추정</span></p>
+
+  <div class="call">
+    <p class="ct">에너지를 지주 직속으로 올린 등기</p>
+    <p>2022년 6월 29일, Beltaine Renewable Energy S.L. 지분 전부가 식품 중간지주
+      Jealsa Industria Alimentaria, S.L.U.에서 지주 Corporación Empresarial Jesús Alonso, S.L.로
+      부분분할됐다. 수혜회사가 이미 분할회사를 100% 보유해 간이절차가 적용됐고 고용 영향은 없었다.
+      공고 BORME-C-2022-6084, 게재 2022-09-19. <span class="chip c-doc">원본</span></p>
+    <p>공고는 「분할회사가 필요한 금액만큼 자기자본을 감소한다」고만 적고 금액을 밝히지 않는다.
+      에너지 자산이 통조림 밑에서 지주 직속으로 올라간 것이 요지다.
+      <span class="chip c-doc">원본</span> <span class="chip c-nd">미공개</span></p>
+  </div>
+
+  <h3>원물이 지나가는 자리</h3>
+  <div class="tw"><table>
+    <thead><tr><th>단계</th><th>법인</th><th>거점</th></tr></thead>
+    <tbody>
+      <tr><td>어선</td><td>Atunera Sant Yago, S.A. · Atunera Nacional, S.A.</td><td>과테말라 기국</td></tr>
+      <tr><td>로인</td><td>Industria Atunera Centroamericana(IACASA)</td><td>과테말라 Masagua, Escuintla</td></tr>
+      <tr><td rowspan="4">통조림</td><td>Jealsa Foods, S.A.U.</td><td>BODIÓN, 스페인 Boiro</td></tr>
+      <tr><td>Escurís, S.L.</td><td>BAIUCA, 스페인 Barbanza</td></tr>
+      <tr><td>Trans Antartic, Ltda.</td><td>칠레 Puerto Montt</td></tr>
+      <tr><td>Crusoe Foods Ltda.</td><td>브라질 Fortaleza, São Gonçalo do Amarante</td></tr>
+      <tr><td rowspan="3">부산물</td><td>Conserveros Reunidos, S.L.</td><td>CONRESA, 어분·어유</td></tr>
+      <tr><td>Valora Marine Ingredients, S.L.</td><td>제약·화장품 원료</td></tr>
+      <tr><td>Petselect, S.A.</td><td>BAIUCA, 펫푸드</td></tr>
+      <tr><td>냉장</td><td>Frigoríficos Puebla, S.L.(FRIPUSA)</td><td>A Pobra do Caramiñal, 공동지배</td></tr>
+      <tr><td>유통</td><td>Mare Aperto Foods, S.R.L.</td><td>이탈리아, 지사 5곳</td></tr>
+    </tbody>
+  </table></div>
+
+  <p>공장이 쓰는 스팀을 그룹 발전소가 대고, 공장이 버리는 것을 그룹 순환법인이 되받는다.
+    반입 원물의 45%가 인간 식용과 펫푸드로, 35%가 어분·어유로, 20%가 제약·화장품 원료로 간다.
+    회사는 이것을 「100% 고부가화」라고 부른다. <span class="chip c-doc">원본</span></p>
+
+  <div class="call warn">
+    <p class="ct">지도에서 사라진 두 법인</p>
+    <p>Silsoco MMB, S.L.은 Boiro에서 참치 로인을 만들던 별도 거점이었다. 2024년판 각주는
+      Jealsa Foods, S.A.U. 옆에 'Including the <b>old company</b> SILSOCO MMB, S.L.'이라고 적는다.
+      흡수됐다. <span class="chip c-doc">원본</span></p>
+    <p>Sant Yago Tuna Fisheries, N.V.는 쿠라사오의 수산물 트레이딩 법인으로 2022년판에 있었고
+      2023년판부터 적용범위에서 빠졌다. 이 법인은 철회된 MSC 인증서의 클라이언트이기도 하다.
+      현재 그룹 내 역할은 공개되지 않는다.
+      <span class="chip c-doc">원본</span> <span class="chip c-nd">미공개</span></p>
+  </div>
+
+  <h3>브랜드</h3>
+  <div class="tw"><table>
+    <thead><tr><th>브랜드</th><th>시장</th><th>비고</th></tr></thead>
+    <tbody>
+      <tr><td>Rianxeira</td><td>스페인</td><td>그룹 대표 브랜드. 상표 보유는 Jealsa Rianxeira, S.A.</td></tr>
+      <tr><td>Escurís</td><td>스페인</td><td>법인명이자 브랜드</td></tr>
+      <tr><td>Lucky</td><td>스페인</td><td>Jealsa Rianxeira, S.A. 상표</td></tr>
+      <tr><td>Mare Aperto</td><td>이탈리아</td><td>Bolton의 Rio Mare와 다른 회사 브랜드다</td></tr>
+      <tr><td>Robinson Crusoe</td><td>칠레·브라질</td><td>Crusoe Foods 법인명과 짝</td></tr>
+      <tr class="hl"><td><b>Hacendado</b></td><td>스페인</td><td>Mercadona의 자체 상표. 자사 브랜드가 아니지만 <b>매출의 55%</b></td></tr>
+    </tbody>
+  </table></div>
+
+  <p>참치가 그룹 매출에서 차지하는 비중을 통신사는 78%로 적는다. 다만 그 문장이 든 분모 775 M€는
+    연도 표기가 없고 연결 시계열 어느 해와도 맞지 않는다. 2022년은 814,8, 2023년은 778,5,
+    2024년은 781이다. 비교에 쓰기 어려운 수치다.
+    <span class="chip c-src">매체</span> <span class="chip c-est">추정</span></p>
+</section>
+
+<section id="s5">
+  <h2><span class="h2n">05 / 선단과 가공거점</span>배 두 척, 과테말라 기국</h2>
+
+  <p class="lead">회사는 세 해 연속 같은 문장을 쓴다. 어선 두 척과 보조선 한 척이 대서양에서 조업한다고.
+    ICCAT 선박등록부를 열면 동급 세 척이 나오고, 셋 다 활성 목록 밖에 있다.</p>
+
+  <p>회사 공시 원문이다.</p>
+  <blockquote>«JEALSA has its own tuna fleet, consisting of <b>two fishing vessels and an auxiliary vessel</b>
+    that operate <b>in the Atlantic Ocean</b>.»</blockquote>
+
+  <div class="metrics">
+    <div class="metric hot"><div class="lab">회사 진술 선단</div><div class="val">2척 + 보조선</div><div class="note">2022·2023·2024 동일 문장 <span class="chip c-doc">원본</span></div></div>
+    <div class="metric"><div class="lab">등록부 선체</div><div class="val">3척</div><div class="note">전부 79,8 m · 2.109 GRT <span class="chip c-doc">원본</span></div></div>
+    <div class="metric warn"><div class="lab">ICCAT 활성 목록</div><div class="val">0척</div><div class="note">과테말라 기국 전체가 0 <span class="chip c-doc">원본</span></div></div>
+    <div class="metric"><div class="lab">산업 공장</div><div class="val">7개소</div><div class="note">스페인·과테말라·칠레·브라질 <span class="chip c-doc">원본</span></div></div>
+  </div>
+
+  <h3>등록부에 올라 있는 세 척</h3>
+  <div class="tw"><table>
+    <thead><tr><th>선명</th><th>IMO</th><th>구 선명 · 구 기국</th><th>상태코드</th><th>등록부 소유·운항</th></tr></thead>
+    <tbody>
+      <tr class="hl"><td><b>SANT YAGO UNO</b></td><td>8919439</td><td><b>Arowana</b> · 일본</td><td>DELI</td><td>Atunera Nacional, S.A.</td></tr>
+      <tr class="hl"><td><b>Sant Yago Tres</b></td><td>8919427</td><td><b>Cap Coz</b> · 벨리즈</td><td>DELI</td><td>Atunera Sant Yago, S.A.</td></tr>
+      <tr><td><b>SANT YAGO DOS</b></td><td>8919491</td><td>—</td><td>OPVE</td><td>Atunera Sant Yago, S.A.</td></tr>
+    </tbody>
+  </table></div>
+
+  <p>세 척 다 전장 79,8 m에 2.109 GRT 건착망선이다. Sant Yago Tres는 1991년 스페인 건조,
+    모항 Puerto Quetzal, 어창 1.300, 기관 3.530 HP, VMS는 IRIDIUM이다. Sant Yago Uno는 기관 4.800 HP다.
+    상태코드 DELI와 OPVE의 공식 정의는 ICCAT 문서에 없다.
+    <span class="chip c-doc">원본</span> <span class="chip c-nd">미공개</span></p>
+
+  <div class="call warn">
+    <p class="ct">세 번째 배를 「보조선」으로 읽을 수 있는가</p>
+    <p>SANT YAGO DOS의 ICCAT 일련번호는 UNO와 TRES 사이에 정확히 끼어 있고 소유사도 같다.
+      Jealsa 선단의 세 번째 배가 맞다. <span class="chip c-doc">원본</span></p>
+    <p>그런데 규격이 맞지 않는다. 보조선은 통상 FAD 지원용 소형 보급선인데 이 배는 나머지 둘과
+      완전히 동형인 대형 건착망선이다. 노후 자매선을 보급용으로 돌려 쓰는 것일 수도, 회사가 말하는
+      보조선이 등록부에 없는 별개의 소형선일 수도 있다. 공개 기록은 둘을 가르지 않는다.
+      <span class="chip c-doc">원본</span> <span class="chip c-nd">미공개</span></p>
+  </div>
+
+  <h3>조업 해역: 네 출처가 두 방향을 가리킨다</h3>
+  <div class="tw"><table>
+    <thead><tr><th>출처</th><th>무엇을 말하는가</th><th>근거</th></tr></thead>
+    <tbody>
+      <tr><td>회사 비재무보고서 2022·2023·2024</td><td>대서양</td><td><span class="chip c-doc">원본</span></td></tr>
+      <tr class="hl"><td><b>과테말라 농축식품부</b>, 2024-04-04</td><td>두 척이 <b>Gran Canaria 레이나소피아항</b>에서 ICCAT 준수 정기검사 통과. 검사는 2년 주기, <b>대서양</b></td><td><span class="chip c-doc">원본</span></td></tr>
+      <tr><td>ICCAT 활성 선박등록부</td><td><b>과테말라 기국 0척.</b> 세 척 다 활성 목록 밖</td><td><span class="chip c-doc">원본</span></td></tr>
+      <tr><td>MSC AGAC 선박목록, 2026-04-13</td><td>Sant Yago Uno가 <b>태평양 인증서</b> 표에 있다</td><td><span class="chip c-doc">원본</span></td></tr>
+      <tr><td>선박 관측·AIS</td><td>Tres는 라스팔마스, Uno는 파나마 발보아</td><td><span class="chip c-src">매체</span></td></tr>
+    </tbody>
+  </table></div>
+
+  <p>정부 검사 기록과 관측은 대서양을, 인증서 등재와 AIS는 태평양을 가리킨다. 두 대양을 오가는 배일 수도
+    있고 시점 차이일 수도 있다. 공개 기록만으로는 한쪽을 고를 수 없다.
+    <span class="chip c-doc">원본</span> <span class="chip c-src">매체</span></p>
+
+  <div class="call">
+    <p class="ct">선박이 어느 법인 것인지도 갈린다</p>
+    <p>비재무보고서와 AENOR 책임어업 인증서는 서로 일치한다. Uno가 Atunera Sant Yago, Tres가
+      Atunera Nacional이다. 인증번호는 APR-2024/0001과 APR-2024/0002, 유효기간은 2024-02-02부터
+      2029-02-02까지다. <span class="chip c-doc">원본</span></p>
+    <p>ICCAT 등록부만 정반대로 적는다. 둘 중 하나가 오기이거나 그 사이 선박이 두 법인 사이를 옮겼다.
+      공개 기록은 어느 쪽인지 말하지 않는다. 조업 법인이 하나가 아니라 둘이라는 사실만 확실하다.
+      <span class="chip c-doc">원본</span> <span class="chip c-nd">미공개</span></p>
+  </div>
+
+  <h3>Sant Yago Tres가 지나온 이름들</h3>
+  <p>이 배는 2005년 6월 3일 IOTC의 IUU 어선 목록에 올랐다. 사유는 IOTC 결의 02/04 위반이었고
+    2006년 5월 26일 해제됐다. 그 전후로 일곱 개의 선명과 여섯 개의 기국을 거쳤다.
+    현행 IUU 목록에는 없다. 20년 전 일이고 Jealsa가 인수하기 전 이력일 개연이 크지만,
+    공개 기록이 그렇게까지 말해 주지는 않는다.
+    <span class="chip c-src">매체</span> <span class="chip c-est">추정</span></p>
+
+  <p>Sant Yago Uno의 직전 이름은 Arowana, 직전 기국은 일본이다. 두 척 다 국적을 바꿔 온 배다.
+    <span class="chip c-doc">원본</span></p>
+
+  <h3>스페인 4사 선단</h3>
+  <div class="tw"><table>
+    <thead><tr><th>그룹</th><th>자체 선단</th><th>성격</th></tr></thead>
+    <tbody>
+      <tr><td>Frinsa</td><td>0척</td><td>전량 외부 조달</td></tr>
+      <tr class="hl"><td><b>Jealsa</b></td><td><b>2척 + 보조선 1척</b></td><td>회사 표기. 자사 산업에 공급</td></tr>
+      <tr><td>Nauterra(Calvo)</td><td>8척</td><td>조업 지분이 크다</td></tr>
+      <tr><td>Albacora</td><td>약 20척</td><td>조업이 본업</td></tr>
+    </tbody>
+  </table></div>
+
+  <p>두 척이 연결매출 8억 유로대 그룹의 원물을 다 댈 수는 없다. 대부분은 사 온다.
+    자체 어획이 총 처리량에서 차지하는 비율은 공개되지 않는다.
+    <span class="chip c-nd">미공개</span></p>
+
+  <h3>가공거점 7곳</h3>
+  <div class="tw"><table>
+    <thead><tr><th>거점</th><th>소재</th><th>운영 법인</th><th>생산품</th></tr></thead>
+    <tbody>
+      <tr class="hl"><td><b>BODIÓN</b></td><td>스페인 Boiro, A Coruña</td><td>Jealsa Foods, S.A.U.</td><td>통조림, 본사, 열병합 2기</td></tr>
+      <tr><td>BAIUCA</td><td>스페인 Barbanza</td><td>Escurís, S.L. · Petselect, S.A.</td><td>통조림, 펫푸드, 열병합 1기</td></tr>
+      <tr><td>GUATEMALA</td><td>Masagua, Escuintla</td><td>IACASA</td><td>참치 로인, 어분</td></tr>
+      <tr><td>CHILE</td><td>Puerto Montt</td><td>Trans Antartic, Ltda.</td><td>통조림</td></tr>
+      <tr><td>BRAZIL</td><td>Fortaleza · São Gonçalo do Amarante</td><td>Crusoe Foods Ltda.</td><td>통조림</td></tr>
+      <tr><td>CONRESA</td><td>스페인</td><td>Conserveros Reunidos, S.L.</td><td>어분·어유</td></tr>
+      <tr><td>FRIPUSA</td><td>스페인 A Pobra do Caramiñal</td><td>Frigoríficos Puebla, S.L.</td><td>산업용 냉장, 공동지배</td></tr>
+    </tbody>
+  </table></div>
+
+  <p>Boiro와 A Pobra do Caramiñal은 둘 다 A Coruña 주에 있다. 매체가 Pontevedra로 적는 일이 있다.
+    상업 지사는 마드리드, 마토지뉴스, 산티아고, 포르탈레자, 제노바 다섯 곳이다.
+    2025년에는 Bodión 물류센터와 참치 로인 해동 자동화에 40 M€를 넣었다.
+    <span class="chip c-doc">원본</span> <span class="chip c-src">매체</span></p>
+</section>
+
+<section id="s6">
+  <h2><span class="h2n">06 / 조달 규율과 인증</span>인증서는 회사 것이 아니라 협회 것이다</h2>
+
+  <p class="lead">2019년 Jealsa는 자기 배 두 척으로 서대서양 황다랑어 자유군영 어획에 MSC 어장 인증을 받았다.
+    스페인 자본 기업으로는 대서양에서 처음이었다. 그 인증서는 지금 없다.</p>
+
+  <div class="metrics">
+    <div class="metric warn"><div class="lab">단독 인증서</div><div class="val">철회</div><div class="note">MSC-F-30011, 2022-11-22 <span class="chip c-doc">원본</span></div></div>
+    <div class="metric hot"><div class="lab">현행 커버리지</div><div class="val">AGAC 집단</div><div class="note">Albacora·Bolton과 같은 인증서 <span class="chip c-doc">원본</span></div></div>
+    <div class="metric"><div class="lab">MSC 인증 어장 조달</div><div class="val">58%</div><div class="note">2024년 처리 참치 <span class="chip c-doc">원본</span></div></div>
+    <div class="metric"><div class="lab">PVR 등재선 어획</div><div class="val">100%</div><div class="note">회사 진술 <span class="chip c-doc">원본</span></div></div>
+  </div>
+
+  <h3>인증서의 이력</h3>
+  <div class="tw"><table>
+    <thead><tr><th>인증서</th><th>어장</th><th>클라이언트</th><th>상태</th></tr></thead>
+    <tbody>
+      <tr class="hl"><td><b>MSC-F-30011</b></td><td>Sant Yago TF Unassociated purse seine Atlantic yellowfin tuna</td><td><b>Sant Yago Tuna Fisheries N.V.</b>, 쿠라사오</td><td><b>Withdrawn</b>, 두 단위 모두</td></tr>
+      <tr><td>AGAC Integral Purse Seine Tropical Tuna</td><td>대서양·인도양 / 태평양</td><td>AGAC</td><td>Certified</td></tr>
+    </tbody>
+  </table></div>
+
+  <p>심사 이력은 이렇다. 최초 공개인증보고서 2019-03-05, 가다랑어로 스코프 확대 2021-05-27,
+    정지 예고 2021-09-16, 시정계획 2022-05-17, 철회 2022-11-22. 인증기관은 Bureau Veritas였다.
+    MSC 어업 데이터베이스 전체에 「Jealsa」 명의 어장은 없다.
+    <span class="chip c-doc">원본</span></p>
+
+  <p>현재 커버리지는 AGAC 집단 인증을 거친다. 회사 보도자료가 그렇게 적는다.
+    «La Asociación de Grandes Atuneros Congeladores (AGAC), <b>de la que forma parte Jealsa</b>,
+    es la primera pesquería que certifica … sus capturas en las cuatro regiones oceánicas.»
+    그 인증은 자유군영뿐 아니라 FAD 조업도 포함한다.
+    <span class="chip c-doc">원본</span></p>
+
+  <div class="call hot">
+    <p class="ct">차별점이 아니라 공유다</p>
+    <p>AGAC 선박목록을 열면 Sant Yago Uno 옆에 Albacora의 Albatun Tres, Mar de Sergio, Panama Tuna,
+      Guayatuna Dos, Intertuna Tres가 있고 Bolton Food의 Aurora B, Rosita C, Charo, San Andres가 있다.
+      한 장의 인증서 아래 세 그룹의 배가 함께 올라 있다.
+      <span class="chip c-doc">원본</span></p>
+    <p>회사는 2024년 비재무보고서에도 「설비와 참치 선단의 MSC 인증」이라 적고
+      2019년 취득, 2022년 확대, 2024년 가다랑어 전량이라는 연혁을 유지한다.
+      어느 인증서로 커버되는지는 적지 않는다.
+      <span class="chip c-doc">원본</span> <span class="chip c-nd">미공개</span></p>
+  </div>
+
+  <h3>조달의 정량: 2024년에 처음 나왔다</h3>
+  <p>2024년 처리 어류의 96%가 지속가능 이니셔티브에 참여하는 선박의 어획이다. 내역은 이렇다.</p>
+
+  <div class="tw"><table>
+    <thead><tr><th>구분</th><th>비중</th></tr></thead>
+    <tbody>
+      <tr class="hl"><td><b>MSC 인증 어장</b></td><td><b>58%</b></td></tr>
+      <tr><td>MSC 인증을 위한 종합 평가 진행 중</td><td>14%</td></tr>
+      <tr><td>MSC 개선 프로그램</td><td>9%</td></tr>
+      <tr><td>공개 어업개선사업(FIP) 참여 선박</td><td>15%</td></tr>
+      <tr><td>어느 범주에도 들지 않음</td><td><b>4%</b></td></tr>
+    </tbody>
+  </table></div>
+
+  <p>58%가 MSC 인증 어장이라는 것은 뒤집으면 42%가 아니라는 뜻이기도 하다.
+    <span class="chip c-doc">원본</span></p>
+
+  <h3>공급 선박에 요구하는 것</h3>
+  <div class="tw"><table>
+    <thead><tr><th>요건</th><th>내용</th></tr></thead>
+    <tbody>
+      <tr><td>위생</td><td>공급 선박과 업체 전부 EU 위생번호. 냉동선·공선·냉동운반선, 가공장·냉장창고가 대상</td></tr>
+      <tr><td>노동</td><td>ILO 제188호 협약 준수</td></tr>
+      <tr class="hl"><td><b>기국</b></td><td><b>RFMO 회원국이나 협력국 기국 선박이 잡은 참치만 구매</b></td></tr>
+      <tr><td>감시</td><td>전 공급선이 UVI 번호를 갖고 옵서버를 태우며 지정항에서 전재</td></tr>
+      <tr><td>교육</td><td>선장과 항해사가 ISSF 우량조업 교육을 이수</td></tr>
+      <tr><td>상어</td><td>샥스핀 절단 금지 정책이 없는 업체·선박에서 구매 불가</td></tr>
+      <tr><td>IUU</td><td>EC 규칙 1005/2008 요건 준수</td></tr>
+      <tr><td>신조</td><td>ISSF 어획능력 제한 결의 수용</td></tr>
+      <tr class="hl"><td><b>PVR</b></td><td><b>처리 참치의 100%가 PVR 등재 선박 어획</b></td></tr>
+      <tr><td>표시</td><td>자사 브랜드 전 품목에 어종과 어획해역 표기</td></tr>
+    </tbody>
+  </table></div>
+
+  <p>2022년판과 2024년판이 같은 문장을 쓴다. 다만 「100%」는 회사 자기 진술이고 제3자 검증 문서는 없다.
+    PVR 자체가 ISSF의 자율 등록부이지 규제 등록부가 아니다.
+    <span class="chip c-doc">원본</span> <span class="chip c-est">추정</span></p>
+
+  <h3>그 밖의 인증과 제휴</h3>
+  <p>설비 MSC는 BODIÓN, BAIUCA, 칠레 세 곳이다. 칠레와 Petselect는 ASC 인증을 갖는다.
+    식품안전은 IFS와 BRC다. 주요 제휴로는 BSCI Amfori, ISSF, Dolphin Safe, OPAGAC,
+    Marine Stewardship Council, Friend of the Sea를 든다. 2022년판에 있던 IPNLF와
+    Global Ghost Gear Initiative는 2024년 목록에서 빠졌다.
+    <span class="chip c-doc">원본</span></p>
+
+  <h3>인력이 줄고 있다</h3>
+  <div class="tw"><table>
+    <thead><tr><th>기준</th><th>2021</th><th>2022</th><th>2023</th><th>2024</th></tr></thead>
+    <tbody>
+      <tr><td>상시 인력, 11월 30일</td><td>—</td><td><b>4.421</b></td><td>약 3.459</td><td><b>3.667</b></td></tr>
+      <tr class="hl"><td><b>연간 총 창출 고용</b></td><td>6.834</td><td><b>7.786</b></td><td>6.346</td><td><b>5.756</b></td></tr>
+      <tr><td>여성 비중</td><td>—</td><td>65%</td><td>—</td><td>65%</td></tr>
+      <tr><td>교육시간</td><td>—</td><td>57.443</td><td>—</td><td>43.279</td></tr>
+    </tbody>
+  </table></div>
+
+  <p>회사는 2020년부터 11월 30일 기준으로 인원을 센다. 업종의 계절성 때문에 그 날짜가 더 대표성이
+    있다는 것이 설명이다. 2024년 3.667명은 전년 같은 날 대비 6% 늘었지만 2022년과 비교하면 17% 적다.
+    연간 총 창출 고용은 2년 새 26% 줄었다. 계절 고용이 빠지고 있다.
+    <span class="chip c-doc">원본</span></p>
+
+  <div class="call">
+    <p class="ct">숫자가 두꺼운 쪽은 어업이 아니다</p>
+    <p>반입 원물 100% 고부가화, 풍력 발전 376.721 MWh와 CO₂ 342.141 t 회피(2022년), 설비용량 51 MW,
+      태양광 833.85 kWp, 사회공헌 592.604 €. 순환경제와 에너지 쪽에는 자릿수가 붙은 지표가 여럿이다.
+      <span class="chip c-doc">원본</span></p>
+    <p>어업 쪽에서 검증 가능한 정량은 2024년에야 나온 조달 구성 하나와 「100% PVR」 진술이다.
+      나머지는 인증 보유 여부로 표시된다. <span class="chip c-doc">원본</span></p>
+  </div>
+</section>
+
+<section id="s7">
+  <h2><span class="h2n">07 / Albacora 자본 교차</span>경쟁 그룹 이사회의 부회장석</h2>
+
+  <p class="lead">갈리시아 3사는 통조림 시장에서 경쟁한다. 손익계산서 층위에서는 그 그림이 맞다.
+    층위를 나누면 달라진다. Jealsa 창업 가문의 자산지주가 바스크 선단 Albacora의 부회장석에 앉아 있고,
+    같은 가문의 등기 임원이 Albacora의 가공 자회사 두 곳 이사이기도 하다.</p>
+
+
+  <h3>층위를 나눠 본다</h3>
+  <div class="tw"><table>
+    <thead><tr><th>층위</th><th>확인된 것</th><th>근거</th></tr></thead>
+    <tbody>
+      <tr class="hl"><td><b>지배구조</b></td><td>ALONSO ESCURIS, S.L.이 Albacora <b>부회장</b>. Juan Luis Alonso Escurís가 이사이자 Salica 두 회사 이사</td><td><span class="chip c-doc">원본</span></td></tr>
+      <tr><td><b>조업·인증</b></td><td>MSC AGAC 인증서 한 장 아래 Jealsa·Albacora·Bolton 선박이 함께 등재</td><td><span class="chip c-doc">원본</span></td></tr>
+      <tr><td><b>자본</b></td><td>통신사 한 건이 「Jealsa」를 Albacora 주주로 적는다. 주체와 비율은 나오지 않는다</td><td><span class="chip c-src">매체</span></td></tr>
+    </tbody>
+  </table></div>
+
+  <div class="metrics">
+    <div class="metric hot"><div class="lab">Albacora 부회장</div><div class="val">법인 이사</div><div class="note">ALONSO ESCURIS, S.L. <span class="chip c-doc">원본</span></div></div>
+    <div class="metric"><div class="lab">재선임</div><div class="val">2026-07-22</div><div class="note">BORME-A-2026-144-48 <span class="chip c-doc">원본</span></div></div>
+    <div class="metric warn"><div class="lab">지분율</div><div class="val">비공시</div><div class="note">주주명부는 등기 공시 대상이 아니다 <span class="chip c-nd">미공개</span></div></div>
+    <div class="metric"><div class="lab">Albacora 발행주식</div><div class="val">317.520주</div><div class="note">액면 37 €, 감자 공고에서 산출 <span class="chip c-doc">원본</span></div></div>
+  </div>
+
+  <h3>Albacora S.A. 이사회</h3>
+  <p>CIF A11902269, 1974년 6월 22일 설립, 자본금 11.748.240 €, 본점 Bermeo, 감사인 KPMG.</p>
+
+  <div class="tw"><table>
+    <thead><tr><th>등기 임원 · 법인</th><th>직위</th></tr></thead>
+    <tbody>
+      <tr><td>Lachaga Uria, María Luisa</td><td>회장</td></tr>
+      <tr class="hl"><td><b>ALONSO ESCURIS, S.L.</b></td><td><b>부회장</b></td></tr>
+      <tr><td>Beitia Lachaga, Alfonso Ignacio</td><td>이사·업무집행이사</td></tr>
+      <tr><td>Beitia Lachaga, Isabel Casandra</td><td>이사·업무집행이사</td></tr>
+      <tr><td>Nieto Gómez, María Luisa</td><td>이사</td></tr>
+      <tr class="hl"><td><b>Alonso Escurís, Juan Luis</b></td><td><b>이사</b></td></tr>
+      <tr><td>AMUI CORPORATION V, S.L.</td><td>이사</td></tr>
+      <tr><td>Sáez de Ibarra y Trueba, Ignacio</td><td>이사</td></tr>
+      <tr><td>Uría Echevarría, Juan Ignacio</td><td>이사</td></tr>
+    </tbody>
+  </table></div>
+
+  <p>두 축이 보인다. Lachaga와 Beitia 계열이 바스크 쪽이고 Alonso Escurís 계열이 갈리시아 쪽이다.
+    법인 이사가 두 곳인데 각각 두 가문의 그릇이다. AMUI Corporation V, S.L.은 2018년 6월 28일 설립,
+    자본금 2.792.200 €, 목적이 「모든 종류 회사의 유가증권·지분 취득·보유·매각」이다.
+    <span class="chip c-doc">원본</span></p>
+
+  <p>이 자리는 현재도 유효하다. 2026년 7월 22일 등기, 7월 29일 공고된 BORME-A-2026-144-48에서
+    ALONSO ESCURIS SL과 ALONSO ESCURIS JUAN LUIS가 나란히 재선임됐다.
+    임기가 갱신됐다는 것은 주주총회가 열렸고 가문의 자리가 그대로였다는 뜻이다.
+    <span class="chip c-doc">원본</span></p>
+
+  <h3>통신사가 평문으로 적는다</h3>
+  <blockquote>«Es el caso de <b>Jealsa</b>, con sede en Boiro (Coruña) y referente en conservas, con una
+    facturación global de 775 millones, de las que un 78% proceden de la transformación atunera;
+    cuenta con dos barcos que abastecen a la propia industria. <b>Jealsa, también accionista de
+    Albacora</b>, tiene fábricas en España, Guatemala, Chile y Brasil.»</blockquote>
+
+  <div class="call warn">
+    <p class="ct">이 한 문장이 증명하는 범위</p>
+    <p>자본 층위의 근거는 이 통신사 기사 한 건이다. 그리고 기사가 주주로 지목한 주체는 「Jealsa」다.
+      회사가 직접 들고 있는지, 지주 Corporación Empresarial Jesús Alonso가 들고 있는지,
+      가문 지주 ALONSO ESCURIS, S.L.이 들고 있는지를 말하는 자료는 없다.
+      <span class="chip c-src">매체</span></p>
+    <p>이사회 자리는 지분 보유의 증거가 아니다. 스페인 주식회사의 주주명부는 비공개이고
+      등기와 관보는 이사 선임만 공고한다. 등록부가 증명하는 것은 부회장석까지다.
+      <span class="chip c-doc">원본</span> <span class="chip c-nd">미공개</span></p>
+  </div>
+
+  <h3>지분율은 없다. 그러나 지배지분이 아니라는 것은 말할 수 있다</h3>
+  <p>Albacora의 감자 공고는 있다. BORME-C-2023-5876은 2023년 6월 14일 총회 결의를 이행해
+    자기주식 426주를 소각하고 자본금을 15.762 € 줄여 11.748.240 €로 맞췄다고 적는다.
+    여기서 액면 37 €가 나오고, 자본금을 나누면 발행주식 317.520주가 계산된다. 다만 자기주식을
+    사들여 없앤 형식이라 판 사람은 공고에 적히지 않는다.
+    <span class="chip c-doc">원본</span></p>
+
+  <div class="call hot">
+    <p class="ct">GLEIF가 답을 하나 준다</p>
+    <p>Albacora S.A.는 법인식별기호 레벨2 신고에서 직접 회계연결 모회사와 최종 회계연결 모회사
+      양쪽 모두에 대해 NON_CONSOLIDATING 예외를 제출했다. 이 법인을 연결재무제표에 편입하는
+      상위 법인이 없다는 자기 신고다. <span class="chip c-doc">원본</span></p>
+    <p>즉 Alonso Escurís 쪽도 Lachaga·Beitia 쪽도 Albacora를 연결하지 않는다. 지분율은 몰라도
+      어느 쪽도 회계상 지배주주가 아니라는 것은 말할 수 있다. 다만 이 신고는 연결의무가 없다는 뜻이지
+      지분이 절반 미만이라는 직접 증명은 아니다.
+      <span class="chip c-doc">원본</span> <span class="chip c-nd">미공개</span></p>
+  </div>
+
+  <p>Jealsa 쪽 공시도 이 보유를 말하지 않는다. 2021년부터 2023년까지 세 해 비재무보고서 전문에
+    Albacora, Salica, Bermeo가 한 번도 나오지 않는다. 반대로 Albacora의 2024년과 2025년
+    비재무보고서에도 accionista, Alonso, Escurís, Jealsa가 나오지 않는다. 양쪽 다 침묵한다.
+    <span class="chip c-doc">원본</span></p>
+
+  <h3>같은 항구, 다른 자본</h3>
+  <p>Albacora는 2025년 6월 26일 결의로 Consignaciones Puebla, S.L.U.를 흡수합병했다.
+    회계효력은 2025년 1월 1일, 등기는 2026년 5월 13일이다. 선박대리점이고 소재는
+    A Pobra do Caramiñal, Jealsa의 앞마당이다. <span class="chip c-doc">원본</span></p>
+
+  <div class="tw"><table>
+    <thead><tr><th>항목</th><th>Frigoríficos Puebla, S.L.(FRIPUSA)</th><th>Consignaciones Puebla, S.L.U.</th></tr></thead>
+    <tbody>
+      <tr><td>CIF</td><td>B15016827</td><td>B15318157</td></tr>
+      <tr><td>설립</td><td>1971-03-11</td><td>—</td></tr>
+      <tr><td>업종</td><td>산업용 냉장창고</td><td>선박대리점</td></tr>
+      <tr class="hl"><td><b>소유</b></td><td><b>Jealsa 지주가 주요주주. 회계상 공동지배</b></td><td><b>Albacora가 100%</b></td></tr>
+      <tr><td>상태</td><td>활성</td><td>소멸, Albacora에 흡수</td></tr>
+    </tbody>
+  </table></div>
+
+  <p>이름이 겹치는 것은 회사가 같아서가 아니라 지명이 같아서다. Puebla는 A Pobra do Caramiñal이다.
+    두 법인을 잇는 지분이나 연혁의 고리는 공개 기록에 없다. 바스크 그룹은 그 항구에 자기 대리점을 두었고
+    갈리시아 그룹은 같은 읍에 냉장창고 공동지배 지분을 갖는다. 인프라는 나란히 있고 자본은 따로 있다.
+    <span class="chip c-doc">원본</span></p>
+
+  <p>스페인 참치 산업의 경쟁사 경계는 판매 시장에서만 선명하다. 어획 자산 쪽으로 갈수록 흐려진다.
+    <span class="chip c-doc">원본</span> <span class="chip c-src">매체</span></p>
+</section>
+
+<section id="s8">
+  <h2><span class="h2n">08 / Mercadona와 경쟁 구도</span>매출의 절반 넘게를 고객 한 곳이 가져간다</h2>
+
+  <p class="lead">2025년 Mercadona 향 매출은 454 M€, 연결매출의 55%다. Hacendado 상표를 단 참치와
+    봉이토, 홍합이 그 자리를 채운다. 자사 브랜드는 그 뒤에 선다.</p>
+
+  <div class="metrics">
+    <div class="metric hot"><div class="lab">Mercadona 향 매출</div><div class="val">454 M€</div><div class="note">+6%, 2025년 <span class="chip c-src">매체</span></div></div>
+    <div class="metric hot"><div class="lab">연결매출 대비</div><div class="val">55%</div><div class="note">825,7 M€ 중 <span class="chip c-src">매체</span></div></div>
+    <div class="metric"><div class="lab">2020→2024 성장률</div><div class="val">+9,6%</div><div class="note">3사 중 가장 낮다 <span class="chip c-src">매체</span></div></div>
+    <div class="metric warn"><div class="lab">상시 인력 변화</div><div class="val">−17%</div><div class="note">2022년 대비 2024년 <span class="chip c-doc">원본</span></div></div>
+  </div>
+
+  <div class="call warn">
+    <p class="ct">interproveedor 모델이 주는 것과 가져가는 것</p>
+    <p>Mercadona의 전속 공급 모델은 장기 관계와 물량 예측 가능성을 준다. 회사는 포르투갈 매장
+      70곳 이상이 사업의 안정성을 높인다고 설명한다. <span class="chip c-src">매체</span></p>
+    <p>대신 다각화 여지가 줄어든다. 체인이 공급사를 바꾸거나 소요를 조정하면 그대로 실적이 흔들린다.
+      스페인 경제매체는 이 관계에 놓인 공급사들을 두고 「인질」이라는 표현까지 쓴다.
+      <span class="chip c-src">매체</span></p>
+  </div>
+
+  <p>그 자리가 처음부터 Jealsa의 것이었던 것도 아니다. 갈리시아 매체는
+    «Frinsa entra en Mercadona <b>tras el éxito de Jealsa</b> y la salida de Calvo»라고 적었다.
+    Jealsa가 성공했고 Calvo가 빠졌고 Frinsa가 들어왔다. 진열대의 자리는 옮겨 다닌다.
+    <span class="chip c-src">매체</span></p>
+
+  <h3>갈리시아 3사, 그룹 연결 기준</h3>
+  <div class="tw"><table>
+    <thead><tr><th>연도</th><th>Jealsa</th><th>Nauterra(Calvo)</th><th>Frinsa</th></tr></thead>
+    <tbody>
+      <tr><td>2020</td><td>712,8</td><td>578</td><td>588</td></tr>
+      <tr><td>2021</td><td>704</td><td>—</td><td>—</td></tr>
+      <tr><td>2022</td><td><b>814,8</b></td><td>—</td><td>약 609</td></tr>
+      <tr><td>2023</td><td>778,5</td><td>697</td><td>712,8</td></tr>
+      <tr><td>2024</td><td><b>781</b></td><td>727</td><td>741</td></tr>
+      <tr class="hl"><td><b>2025</b></td><td><b>825,7</b></td><td>765</td><td>미공표</td></tr>
+    </tbody>
+  </table></div>
+
+  <p>2020년에서 2024년 사이 Frinsa가 26,0%, Nauterra가 25,8% 자랐고 Jealsa는 9,6% 자랐다.
+    1위는 지켰지만 셋 중 가장 느리다. 2024년 세 회사 합산 순이익은 74,7 M€로 85% 늘었고
+    합산 종업원은 약 1만 명이다. <span class="chip c-src">매체</span></p>
+
+  <div class="call">
+    <p class="ct">1위는 잣대마다 다르다</p>
+    <p>그룹 연결로 세면 Jealsa가 스페인 통조림 1위다. 개별법인으로 세면 Frinsa del Noroeste가 앞선다.
+      세는 단위가 다를 뿐 두 순위는 서로를 반박하지 않는다.
+      <span class="chip c-doc">원본</span></p>
+    <p>회사는 스스로를 스페인 1위이자 유럽 2위 통조림사로 적는다. 어종 범위와 기업 소재지 기준,
+      매출 정의가 제시되지 않는다. 그 순위는 회사 자기 표기다.
+      <span class="chip c-src">매체</span></p>
+  </div>
+
+  <h3>인력의 방향</h3>
+
+  <p>2022년을 정점으로 상시 인력이 17%, 연간 총 창출 고용이 26% 줄었다.
+    매출 성장이 셋 중 가장 느리다는 사실과 같은 방향을 가리킨다.
+    <span class="chip c-doc">원본</span></p>
+
+</section>
+
+<section id="s9">
+  <h2><span class="h2n">09 / 한국 관점</span>공시에 한국은 없고 규격은 남는다</h2>
+
+  <p class="lead">비재무보고서 2022년판 87쪽과 2024년판 89쪽 어디에도 Corea나 Korea는 나오지 않는다.
+    계열과 공장, 지사, 시장 열거 어디에도 한국이 없다.</p>
+
+  <div class="metrics">
+    <div class="metric"><div class="lab">공시상 한국 언급</div><div class="val">0회</div><div class="note">2022·2024 두 판 <span class="chip c-doc">원본</span></div></div>
+    <div class="metric"><div class="lab">판매국</div><div class="val">49개국</div><div class="note">2024년 <span class="chip c-doc">원본</span></div></div>
+    <div class="metric hot"><div class="lab">아시아 시장</div><div class="val">베트남·일본</div><div class="note">2023년판부터 등장 <span class="chip c-doc">원본</span></div></div>
+    <div class="metric"><div class="lab">MSC 인증 외 조달</div><div class="val">42%</div><div class="note">평가·개선·FIP·기타 <span class="chip c-doc">원본</span></div></div>
+  </div>
+
+  <p>직접 거래를 보여 주는 공개 자료는 없다. 없다고 단정할 근거도 없다. 비상장 그룹은 거래처를
+    공시하지 않는다. <span class="chip c-nd">미공개</span></p>
+
+  <h3>아시아는 들어왔다</h3>
+  <div class="tw"><table>
+    <thead><tr><th>보고서</th><th>유럽 비중</th><th>그 밖의 시장</th></tr></thead>
+    <tbody>
+      <tr><td>2022</td><td>82%</td><td>미국, 멕시코, 호주, 모로코</td></tr>
+      <tr><td>2023</td><td>85%</td><td>미국, 멕시코, <b>베트남, 일본</b></td></tr>
+      <tr class="hl"><td><b>2024</b></td><td><b>85%</b></td><td>미국, 멕시코, <b>베트남, 일본</b>, 베네수엘라</td></tr>
+    </tbody>
+  </table></div>
+
+  <p>베트남과 일본이 2023년판에 들어왔고 호주와 모로코가 빠졌다. 한국은 여전히 없다.
+    <span class="chip c-doc">원본</span></p>
+
+  <h3>구매 규격이 관문이다</h3>
+  <p>Jealsa가 공급 선박에 요구하는 조달 규율은 한국 선사가 유럽 통조림사에 원물을 팔 때
+    그대로 통과해야 하는 조건이다.</p>
+
+  <div class="tw"><table>
+    <thead><tr><th>요건</th><th>한국 선사 관점</th></tr></thead>
+    <tbody>
+      <tr><td>EU 위생번호</td><td>냉동운반선까지 대상이다. 운반 단계에서 걸린다</td></tr>
+      <tr><td>RFMO 회원국·협력국 기국</td><td>한국은 네 기구 모두 회원이다. 통과</td></tr>
+      <tr class="hl"><td><b>UVI, 옵서버, 지정항 전재</b></td><td>해상전재 관행이 남아 있으면 여기서 막힌다</td></tr>
+      <tr><td>선장·항해사 ISSF 교육 이수</td><td>서류가 아니라 개인 이수 이력을 본다</td></tr>
+      <tr><td>PVR 등재</td><td>미등재 선박은 후보에서 빠진다</td></tr>
+      <tr class="hl"><td><b>ILO 제188호 협약</b></td><td><b>한국은 미비준국이다.</b> 구매자 요건과 국가 비준이 어긋난다</td></tr>
+      <tr><td>EC 규칙 1005/2008</td><td>한국은 2013년 예비 식별을 받았다가 2015년 해제된 이력이 있다</td></tr>
+    </tbody>
+  </table></div>
+
+  <div class="call hot">
+    <p class="ct">문은 반쯤 열려 있다</p>
+    <p>2024년 이 회사가 산 참치 가운데 MSC 인증 어장은 58%다. 나머지는 평가 진행 14%,
+      개선 프로그램 9%, 공개 FIP 15%, 기타 4%로 나뉜다. 인증이 없어도 들어갈 자리가 38% 있다는 뜻이다.
+      <span class="chip c-doc">원본</span></p>
+    <p>다만 회사는 어느 범주에도 들지 않는 4%를 줄이는 것이 목표라고 적는다. 방향은 좁아지는 쪽이다.
+      <span class="chip c-doc">원본</span></p>
+  </div>
+
+  <h3>인증이 협회 단위로 움직인다</h3>
+  <p>Jealsa 선단의 MSC 커버리지는 자사 인증서가 아니라 AGAC 집단 인증이다. 같은 인증서 아래
+    Albacora와 Bolton의 선박이 함께 있다. 유럽 참치 인증은 회사 단위가 아니라 협회 단위로 움직인다.
+    한국 선사가 개별로 인증을 들고 협상 자리에 앉는 것과 구조가 다르다.
+    <span class="chip c-doc">원본</span></p>
+
+  <h3>취약점의 위치가 반대다</h3>
+  <p>Jealsa는 매출의 55%가 고객 한 곳에 걸려 있다. 한국 3사는 국내 시장 하나에 걸려 있다.
+    같은 통조림 회사라도 무너지는 방향이 다르다. Jealsa 쪽은 계약이 바뀌면 절반이 흔들리고,
+    한국 쪽은 시장이 줄면 전체가 줄어든다. <span class="chip c-src">매체</span></p>
+
+  <p>신라교역과의 접점은 금융감독원 전자공시, RFMO 등록부, 상대방 공시 어디에서도 나오지 않는다.
+    <span class="chip c-nd">미공개</span></p>
+
+  <h3>남은 물음</h3>
+  <div class="tw"><table>
+    <thead><tr><th>물음</th><th>공개 기록이 멈추는 자리</th></tr></thead>
+    <tbody>
+      <tr><td>Albacora 주주별 지분율</td><td>주주명부는 등기 공시 대상이 아니다. 감자 공고는 자기주식 소각이라 매도인을 적지 않는다</td></tr>
+      <tr><td>Albacora·Salica가 Jealsa에 로인을 파는가</td><td>Jealsa 비재무보고서 세 해 전문에 두 이름이 나오지 않는다</td></tr>
+      <tr><td>FRIPUSA 지분율</td><td>보고서가 두 해 모두 「주요주주」로만 적는다</td></tr>
+      <tr><td>보조선의 정체</td><td>선명이 공시에 없다. 등록부의 세 번째 배와 같은지도 나오지 않는다</td></tr>
+      <tr><td>두 척의 현재 조업 해역</td><td>정부 검사 기록과 인증서 등재가 서로 다른 대양을 가리킨다</td></tr>
+      <tr><td>2022년 이익의 구성</td><td>보험금과 풍력 매각의 금액 배분이 공개되지 않는다</td></tr>
+      <tr><td>공장별 생산능력과 인력</td><td>보고서가 그룹 합계만 싣는다</td></tr>
+      <tr><td>자체 어획량이 총 처리량에서 차지하는 비율</td><td>공개되지 않는다</td></tr>
+    </tbody>
+  </table></div>
+
+  <h3>자료의 한계</h3>
+  <div class="call warn">
+    <p class="ct">공개 기록이 답할 수 있는 범위</p>
+    <p>Jealsa는 비상장 가족 그룹이다. 상업등기소에 연결계정을 예치하고 비재무보고서를 웹에 올리지만
+      법인별 재무제표, 내부거래, 주주 구성은 공개하지 않는다. 스페인어판 보고서는 텍스트층이 없는
+      스캔본이라 광학인식을 거쳐야 읽힌다.
+      <span class="chip c-doc">원본</span> <span class="chip c-nd">미공개</span></p>
+    <p>ICCAT과 MSC 등록부는 특정 기준일의 등재 상태를 보여 준다. 실제 조업과 매각, 계선까지 담지는
+      않는다. 회사 명칭이 어떤 명단에 없다는 사실도 그 명단의 범위 안에서만 유효하다.
+      ICCAT의 상태코드 정의는 공개 문서에 없다. DELI와 OPVE가 무엇을 뜻하는지는 등록부만으로 알 수 없다.
+      <span class="chip c-doc">원본</span></p>
+    <p>매체가 인용하는 재무 수치는 등기 예치계정에서 나오지만 개별법인명과 연결 수치를 섞어 적는
+      관행이 있다. 「consolidada」 표기가 없는 수치는 개별법인 값일 수 있다. 결론의 범위는
+      공개된 등기, 공시, 등록부, 인증 기록이 말하는 데까지다. 그 너머 지분과 거래 상대는
+      이 회사가 열지 않는 영역으로 남는다.
+      <span class="chip c-doc">원본</span> <span class="chip c-src">매체</span> <span class="chip c-nd">미공개</span></p>
+  </div>
+</section>
+
+
+</main>
+</div>
+</div>

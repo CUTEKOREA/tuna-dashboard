@@ -32,8 +32,9 @@ describe('기업 해부 카드 뒷면', () => {
     expect(new Set(css).size, '두 나라가 같은 문양을 쓰고 있다').toBe(css.length);
   });
 
-  it('여덟 장이 여섯 나라에 들어간다', () => {
-    expect(COMPANY_CARDS).toHaveLength(8);
+  it('아홉 장이 여섯 나라에 들어간다', () => {
+    expect(COMPANY_CARDS).toHaveLength(9);
+    // 스페인이 세 장(Frinsa·Albacora·Jealsa)이라 나라 수는 여섯에서 늘지 않는다.
     expect(new Set(COMPANY_CARDS.map(countryOf)).size).toBe(6);
   });
 });
