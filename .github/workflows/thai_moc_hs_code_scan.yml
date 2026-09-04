@@ -29,16 +29,14 @@ jobs:
       - name: Run Thai MOC HS Code Scanner
         run: python scripts/thai_moc_hs_code_scanner.py
 
-      - name: Commit and Push Updated HS Codes
-        run: |
-          git config --local user.email "github-actions[bot]@users.noreply.github.com"
-          git config --local user.name "github-actions[bot]"
-          git add data/thai_moc_hs_codes.json
-          
-          # 변경사항이 있을 경우에만 커밋 및 푸시
-          if git diff --staged --quiet; then
-            echo "No changes in HS codes."
-          else
-            git commit -m "chore(thai-moc): auto-update Thai MOC HS codes catalog [skip ci]"
-            git push
-          fi
+      # 산출물은 `data/` 아래라 .gitignore:53 에 걸려 커밋되지 않는다(L-08).
+      # 이 카탈로그를 읽는 대시보드 코드도 없다 — 조사용 참조 자료다.
+      # 정본 보관처는 Drive 의 `agri_data/13_공통(General)/02_공통자료/` 이고 CI 는 거기에 쓸 수 없으므로,
+      # 커밋 대신 아티팩트로 남겨 내려받아 정리하게 한다.
+      - name: Upload HS code catalog
+        uses: actions/upload-artifact@v4
+        with:
+          name: thai-moc-hs-codes-${{ github.run_id }}
+          path: data/thai_moc_hs_codes.json
+          if-no-files-found: warn
+          retention-days: 90
