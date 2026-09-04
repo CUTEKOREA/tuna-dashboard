@@ -1,0 +1,57 @@
+{
+ "_meta": {
+  "출처": "docs/evidence/company-bolton-2026-08/보고서.html",
+  "생성": "python3 scripts/build_report_figures.py",
+  "설명": "보고서의 팩샷과 차트. 이미지는 public 아래 정적 파일이고 여기에는 URL 만 담는다."
+ },
+ "figures": [
+  {
+   "stage": "c01",
+   "sid": "cover",
+   "kind": "shot",
+   "caption": "제품 이미지: Rio Mare · Saupiquet · Isabel · Cuca 각 브랜드 공식 사이트",
+   "alt": "Rio Mare Tonno all'Olio di Oliva 80g 캔",
+   "src": "/data/companies/figures/bolton/2ea56ad94705.jpg"
+  },
+  {
+   "stage": "c01",
+   "sid": "cover",
+   "kind": "shot",
+   "caption": "제품 이미지: Rio Mare · Saupiquet · Isabel · Cuca 각 브랜드 공식 사이트",
+   "alt": "Rio Mare Filetti di Tonno 유리병",
+   "src": "/data/companies/figures/bolton/08aff716d940.jpg"
+  },
+  {
+   "stage": "c01",
+   "sid": "cover",
+   "kind": "shot",
+   "caption": "제품 이미지: Rio Mare · Saupiquet · Isabel · Cuca 각 브랜드 공식 사이트",
+   "alt": "Saupiquet Filets de Thon Huile d'Olive 캔",
+   "src": "/data/companies/figures/bolton/2d3248bb8f63.jpg"
+  },
+  {
+   "stage": "c01",
+   "sid": "cover",
+   "kind": "shot",
+   "caption": "제품 이미지: Rio Mare · Saupiquet · Isabel · Cuca 각 브랜드 공식 사이트",
+   "alt": "Isabel Atún en Escabeche 캔",
+   "src": "/data/companies/figures/bolton/7e49a27761de.jpg"
+  },
+  {
+   "stage": "c01",
+   "sid": "cover",
+   "kind": "shot",
+   "caption": "제품 이미지: Rio Mare · Saupiquet · Isabel · Cuca 각 브랜드 공식 사이트",
+   "alt": "Cuca Atún Claro en Aceite de Oliva 갑",
+   "src": "/data/companies/figures/bolton/8ba0f5da7f90.jpg"
+  },
+  {
+   "stage": "c01",
+   "sid": "cover",
+   "kind": "shot",
+   "caption": "제품 이미지: Rio Mare · Saupiquet · Isabel · Cuca 각 브랜드 공식 사이트",
+   "alt": "Wild Planet Premium Skipjack 캔",
+   "src": "/data/companies/figures/bolton/c7d0bd43e547.jpg"
+  }
+ ]
+}

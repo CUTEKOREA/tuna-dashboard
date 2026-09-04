@@ -1,0 +1,97 @@
+{
+ "_meta": {
+  "출처": "docs/evidence/company-thaiunion-2026-08/보고서.html",
+  "생성": "python3 scripts/build_report_figures.py",
+  "설명": "보고서의 팩샷과 차트. 이미지는 public 아래 정적 파일이고 여기에는 URL 만 담는다."
+ },
+ "figures": [
+  {
+   "stage": "c01",
+   "sid": "cover",
+   "kind": "shot",
+   "caption": "",
+   "alt": "John West Tuna Chunks",
+   "src": "/data/companies/figures/thaiunion/0b0ac479897f.jpg"
+  },
+  {
+   "stage": "c01",
+   "sid": "cover",
+   "kind": "shot",
+   "caption": "",
+   "alt": "Chicken of the Sea Solid White",
+   "src": "/data/companies/figures/thaiunion/cd0912fd8e8b.jpg"
+  },
+  {
+   "stage": "c01",
+   "sid": "cover",
+   "kind": "shot",
+   "caption": "",
+   "alt": "Petit Navire Thon MSC",
+   "src": "/data/companies/figures/thaiunion/a26b9853f4e2.jpg"
+  },
+  {
+   "stage": "c02",
+   "sid": "s2",
+   "kind": "shot",
+   "caption": "Ambient · 642.8억 밧 회사의 출발점이자 여전히 최대 축. 유럽이 44.2%",
+   "alt": "Ambient 상온 수산통조림",
+   "src": "/data/companies/figures/thaiunion/8ab15e35a5dd.jpg"
+  },
+  {
+   "stage": "c02",
+   "sid": "s2",
+   "kind": "shot",
+   "caption": "Frozen · 411.5억 밧 새우가 최대. 미국이 51.2%로 편중",
+   "alt": "Frozen 냉동·냉장",
+   "src": "/data/companies/figures/thaiunion/5cc7c2436aa5.jpg"
+  },
+  {
+   "stage": "c02",
+   "sid": "s2",
+   "kind": "shot",
+   "caption": "PetCare · 178.8억 밧 유일한 성장 카테고리. 마진 25.6%로 최고",
+   "alt": "PetCare 펫푸드",
+   "src": "/data/companies/figures/thaiunion/90c2dad82d3d.jpg"
+  },
+  {
+   "stage": "c04",
+   "sid": "s4",
+   "kind": "shot",
+   "caption": "John West Tuna Chunks in Spring Water · 4캔팩 영국 주력. 가다랑어 청수 절임: 영국 캔참치의 기본형",
+   "alt": "John West Tuna Chunks In Spring Water 4 Pack",
+   "src": "/data/companies/figures/thaiunion/0b0ac479897f.jpg"
+  },
+  {
+   "stage": "c04",
+   "sid": "s4",
+   "kind": "shot",
+   "caption": "Chicken of the Sea Solid White Premium Tuna · 4 oz 미국 주력. 알바코어 통살 워터팩",
+   "alt": "Chicken of the Sea Solid White Tuna in Water 4oz",
+   "src": "/data/companies/figures/thaiunion/cd0912fd8e8b.jpg"
+  },
+  {
+   "stage": "c04",
+   "sid": "s4",
+   "kind": "shot",
+   "caption": "Petit Navire Thon Entier &agrave; l'Huile d'Olive Vierge Extra 프랑스 프리미엄. MSC 라벨 + 엑스트라버진 올리브유",
+   "alt": "Petit Navire Thon Entier MSC 올리브유",
+   "src": "/data/companies/figures/thaiunion/a26b9853f4e2.jpg"
+  },
+  {
+   "stage": "c04",
+   "sid": "s4",
+   "kind": "shot",
+   "caption": "No Drain Fridge Pot : 냉장 보관형 참치 스테이크. 캔을 벗어난 첫 형태 혁신으로, 프린사 SOLO와 같은 '간편 단백질' 문법이다",
+   "alt": "John West No Drain Fridge Pot",
+   "src": "/data/companies/figures/thaiunion/b7dde76a63c9.jpg"
+  },
+  {
+   "stage": "c04",
+   "sid": "s4",
+   "kind": "shot",
+   "caption": "Chicken of the Sea 조미 파우치 (Chili Lime · 2.5 oz): 미국 라인의 성장 축. Frank's RedHot&reg;·OLD BAY&reg; 콜라보 , Ghost Pepper까지",
+   "alt": "Chicken of the Sea Chili Lime Tuna Packet",
+   "src": "/data/companies/figures/thaiunion/a0b6a1243262.jpg"
+  }
+ ]
+}

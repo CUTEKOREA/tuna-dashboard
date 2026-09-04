@@ -209,6 +209,11 @@ import {
   stagesUsed,
   tablesForStage,
 } from '@/lib/data/company-report-tables';
+import {
+  type ReportFigure,
+  figureStagesUsed,
+  figuresForStage,
+} from '@/lib/data/company-report-figures';
 import styles from './TunaIndustryDashboard.module.css';
 import { FRABELLE_SOURCE_NOTES } from '@/lib/company-frabelle-content';
 import { proseBriefing, proseStages } from '@/lib/company-prose-stages';
@@ -624,6 +629,61 @@ function TuRows({ head, rows }: { head: string[]; rows: (string | number)[][] })
  * 열을 그대로 우측정렬하고, 빈 칸(병합됐던 자리)을 「」가 아니라 「—」로 채우지 않는 것.
  * 원문이 비워 둔 칸을 채우면 없는 값을 만들어 내는 셈이다.
  */
+/** 보고서 팩샷 묶음. 격자로 놓고 캡션을 살린다. */
+function RepShots({ figs }: { figs: ReportFigure[] }) {
+  return (
+    <div className={styles.figGrid}>
+      {figs.map((f, i) => (
+        <figure key={i} className={styles.figCard}>
+          <div className={styles.figShot}>
+            {/* 보고서에서 뽑은 정적 파일이다. 크기가 제각각이라 next/image 로 감싸지 않는다. */}
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img src={f.src} alt={f.alt || f.caption} loading="lazy" />
+          </div>
+          {f.alt || f.caption ? (
+            <figcaption className={styles.figCap}>{f.alt || f.caption}</figcaption>
+          ) : null}
+        </figure>
+      ))}
+    </div>
+  );
+}
+
+/**
+ * 인라인 SVG 차트.
+ *
+ * 차트가 쓰는 클래스는 **보고서 자체 style 에만** 있다. 그대로 심으면 선이 안 보이고
+ * 글자가 기본 크기로 나온다 — FCF 차트가 실제로 그랬다. 추출기가 그 규칙을 함께 뽑아 두었고
+ * 여기서 그림 하나에만 걸리도록 범위를 좁혀 붙인다. 전역에 새면 대시보드 다른 곳이 깨진다.
+ *
+ * 색 변수는 보고서의 밝은 팔레트다. 그래서 판을 흰색으로 고정한다 — 팩샷도 흰 배경이라
+ * 그림끼리 톤이 어긋나지 않는다.
+ */
+function RepChart({ f, id }: { f: ReportFigure; id: string }) {
+  const scoped = (f.css ?? '')
+    .replace(/:scope\{/g, `[data-fig="${id}"]{`)
+    .replace(/(^|\})\s*(\.[^{}]+)\{/g,
+      (_m: string, close: string, sel: string) => `${close}[data-fig="${id}"] ${sel}{`);
+  return (
+    <figure className={styles.figChart} data-fig={id}>
+      {scoped ? <style dangerouslySetInnerHTML={{ __html: scoped }} /> : null}
+      <div className={styles.figPlate} dangerouslySetInnerHTML={{ __html: f.svg ?? '' }} />
+      {f.caption ? <figcaption className={styles.figCap}>{f.caption}</figcaption> : null}
+    </figure>
+  );
+}
+
+/** 문서 캡처. 읽혀야 하므로 폭을 다 쓴다. */
+function RepDoc({ f }: { f: ReportFigure }) {
+  return (
+    <figure className={`${styles.figChart} ${styles.figDoc}`}>
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img src={f.src} alt={f.alt || f.caption} loading="lazy" />
+      {f.caption ? <figcaption className={styles.figCap}>{f.caption}</figcaption> : null}
+    </figure>
+  );
+}
+
 function RepTable({ t }: { t: ReportTable }) {
   return (
     <>
@@ -654,6 +714,49 @@ function RepTable({ t }: { t: ReportTable }) {
 }
 
 /** 보고서 표를 그 단계의 슬롯으로 바꾼다. 제목·설명·출처가 전부 원문에서 온다. */
+/**
+ * 그 단계의 보고서 그림. 팩샷은 한 묶음으로, 차트·문서는 한 장씩 슬롯을 차지한다.
+ *
+ * 표보다 **앞에** 온다. 제품이 눈에 먼저 들어와야 뒤의 표가 읽힌다.
+ */
+function figSlots(company: string, stage: string): ChartSlot[] {
+  const figs = figuresForStage(company, stage);
+  if (!figs.length) return [];
+  const out: ChartSlot[] = [];
+  const shots = figs.filter((f) => f.kind === 'shot');
+  if (shots.length) {
+    out.push({
+      title: shots.length > 1 ? `제품 이미지 ${shots.length}점` : '제품 이미지',
+      caption: shots.find((f) => f.caption)?.caption ?? '',
+      telemetry: SYNC,
+      render: () => <RepShots figs={shots} />,
+      span: 'full' as const,
+      sourceLine: '사내 조사보고서 · 브랜드 공식 이미지',
+    });
+  }
+  for (const [i, f] of figs.filter((x) => x.kind === 'chart').entries()) {
+    out.push({
+      title: f.caption.slice(0, 40) || '차트',
+      caption: f.caption,
+      telemetry: SYNC,
+      render: () => <RepChart f={f} id={`${company}-${f.sid}-${i}`} />,
+      span: 'full' as const,
+      sourceLine: `사내 조사보고서 ${f.sid}`,
+    });
+  }
+  for (const f of figs.filter((x) => x.kind === 'doc')) {
+    out.push({
+      title: f.alt.slice(0, 40) || '문서 캡처',
+      caption: f.caption,
+      telemetry: SYNC,
+      render: () => <RepDoc f={f} />,
+      span: 'full' as const,
+      sourceLine: '사내 조사보고서 · 원본 캡처',
+    });
+  }
+  return out;
+}
+
 function repSlots(company: string, stage: string): ChartSlot[] {
   return tablesForStage(company, stage).map((t) => ({
     title: t.title,
@@ -677,11 +780,13 @@ function withReport(
 ): Record<string, ChartSlot[]> {
   // 단계 수는 편마다 다르다. 손으로 적으면 절이 늘어난 편의 마지막 단계가 조용히 빠진다 —
   // 실제로 9절짜리 두 편(Frabelle·Jealsa)의 c09 표가 그렇게 사라져 있었다.
-  const reportStages = stagesUsed(company);
+  const reportStages = [...stagesUsed(company), ...figureStagesUsed(company)];
   const stages = new Set([...Object.keys(curated), ...reportStages]);
   const out: Record<string, ChartSlot[]> = {};
   for (const st of stages) {
-    const merged = [...(curated[st] ?? []), ...repSlots(company, st)];
+    // 순서: 손으로 만든 슬롯 → 보고서 그림 → 보고서 표.
+    // 그림이 표보다 앞에 와야 「무엇을 파는 회사인가」가 숫자보다 먼저 들어온다.
+    const merged = [...(curated[st] ?? []), ...figSlots(company, st), ...repSlots(company, st)];
     if (merged.length) out[st] = merged;
   }
   return out;
