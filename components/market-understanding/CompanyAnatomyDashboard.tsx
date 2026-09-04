@@ -206,6 +206,7 @@ import {
 } from '@/lib/data/company-thaiunion-skus';
 import {
   type ReportTable,
+  stagesUsed,
   tablesForStage,
 } from '@/lib/data/company-report-tables';
 import styles from './TunaIndustryDashboard.module.css';
@@ -674,7 +675,10 @@ function withReport(
   company: string,
   curated: Record<string, ChartSlot[]>,
 ): Record<string, ChartSlot[]> {
-  const stages = new Set([...Object.keys(curated), ...['c01', 'c02', 'c03', 'c04', 'c05', 'c06', 'c07', 'c08']]);
+  // 단계 수는 편마다 다르다. 손으로 적으면 절이 늘어난 편의 마지막 단계가 조용히 빠진다 —
+  // 실제로 9절짜리 두 편(Frabelle·Jealsa)의 c09 표가 그렇게 사라져 있었다.
+  const reportStages = stagesUsed(company);
+  const stages = new Set([...Object.keys(curated), ...reportStages]);
   const out: Record<string, ChartSlot[]> = {};
   for (const st of stages) {
     const merged = [...(curated[st] ?? []), ...repSlots(company, st)];

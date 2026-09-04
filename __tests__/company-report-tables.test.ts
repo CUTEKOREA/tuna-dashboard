@@ -15,10 +15,11 @@ import {
   tablesForStage,
 } from '@/lib/data/company-report-tables';
 
-const 회사 = ['frinsa', 'thaiunion', 'albacora', 'fcf', 'itochu', 'bolton', 'jais'];
+const 회사 = ['frinsa', 'thaiunion', 'albacora', 'fcf', 'itochu', 'bolton', 'jais', 'frabelle', 'jealsa'];
 
 describe('인테이크 구성', () => {
-  it('일곱 편이 전부 있다', () => {
+  it('아홉 편이 전부 있다', () => {
+    // Frabelle·Jealsa 는 표가 생성돼 있는데도 이 목록에 없어 화면에서 빠져 있었다.
     expect(REPORT_TABLE_COMPANIES.sort()).toEqual([...회사].sort());
   });
 
@@ -26,12 +27,12 @@ describe('인테이크 구성', () => {
     for (const c of 회사) expect(reportTables(c).length, c).toBeGreaterThan(0);
   });
 
-  it('표 120개·칸 2,200개를 밑돌지 않는다', () => {
-    // 커버리지가 조용히 줄어드는 것을 막는 하한선이다. 현재 표 120개 · 칸 2,226개.
+  it('표 175개·칸 3,400개를 밑돌지 않는다', () => {
+    // 커버리지가 조용히 줄어드는 것을 막는 하한선이다. 현재 아홉 편 합산 표 182개 · 칸 3,526개.
     const 표 = 회사.reduce((a, c) => a + reportTables(c).length, 0);
     const 칸 = 회사.reduce((a, c) => a + cellCount(c), 0);
-    expect(표).toBeGreaterThanOrEqual(120);
-    expect(칸).toBeGreaterThanOrEqual(2200);
+    expect(표).toBeGreaterThanOrEqual(175);
+    expect(칸).toBeGreaterThanOrEqual(3400);
   });
 });
 
@@ -69,7 +70,7 @@ describe('표가 표로 남아 있는가', () => {
 describe('단계 배치', () => {
   it.each(회사)('%s - 모든 표가 c0N 단계에 붙는다', (c) => {
     for (const t of reportTables(c)) {
-      expect(t.stage, `${t.sid} ${t.title}`).toMatch(/^c0[1-8]$/);
+      expect(t.stage, `${t.sid} ${t.title}`).toMatch(/^c0[1-9]$/);
     }
   });
 

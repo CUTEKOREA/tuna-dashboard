@@ -1,9 +1,11 @@
 import albacoraRaw from '@/public/data/companies/albacora_tables_v1.json';
 import boltonRaw from '@/public/data/companies/bolton_tables_v1.json';
 import fcfRaw from '@/public/data/companies/fcf_tables_v1.json';
+import frabelleRaw from '@/public/data/companies/frabelle_tables_v1.json';
 import frinsaRaw from '@/public/data/companies/frinsa_tables_v1.json';
 import itochuRaw from '@/public/data/companies/itochu_tables_v1.json';
 import jaisRaw from '@/public/data/companies/jais_tables_v1.json';
+import jealsaRaw from '@/public/data/companies/jealsa_tables_v1.json';
 import thaiunionRaw from '@/public/data/companies/thaiunion_tables_v1.json';
 
 /**
@@ -50,6 +52,8 @@ const INTAKES: Record<string, Intake> = {
   itochu: itochuRaw as unknown as Intake,
   bolton: boltonRaw as unknown as Intake,
   jais: jaisRaw as unknown as Intake,
+  frabelle: frabelleRaw as unknown as Intake,
+  jealsa: jealsaRaw as unknown as Intake,
 };
 
 export const REPORT_TABLE_COMPANIES = Object.keys(INTAKES);
