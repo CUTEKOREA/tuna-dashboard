@@ -19,7 +19,8 @@ describe('Atuna price data freshness', () => {
     ) as AtunaPriceRow[];
 
     expect(latestForKey(rows, 'skj_bkk')).toEqual({ date: '2026-08-20', price: 2000 });
-    expect(latestForKey(rows, 'skj_mnt')).toEqual({ date: '2026-08-14', price: 2200 });
+    // 2026-09-04: 8/25 브리핑의 만타 현물가 $2,220 이 계열에 빠져 있어 추가했다
+    expect(latestForKey(rows, 'skj_mnt')).toEqual({ date: '2026-08-25', price: 2220 });
     expect(latestForKey(rows, 'skj_sey')).toEqual({ date: '2026-08-11', price: 1600 });
     expect(latestForKey(rows, 'yf_sey')).toEqual({ date: '2026-08-11', price: 2050 });
     expect(latestForKey(rows, 'yf_abj')).toEqual({ date: '2026-07-30', price: 2500 });
