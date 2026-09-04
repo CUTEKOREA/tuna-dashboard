@@ -376,6 +376,10 @@
      "text": "회사는 공식 디비전 페이지에서 자사 브랜드를 넷으로 못박는다. 그런데 매출의 절반 넘게는 그 넷이 아니라 고객의 상표를 달고 나간다. 브랜드 지도를 그리면 이 회사가 무엇으로 돈을 버는지가 한 장에 들어온다."
     },
     {
+     "kind": "quote",
+     "text": "«Además de nuestras marcas Rianxeira, Escurís, Mare Aperto y Robinson Crusoe, fabricamos para otras marcas de clientes en diversos canales de venta.»"
+    },
+    {
      "kind": "h3",
      "text": "",
      "title": "브랜드 지도"
@@ -517,6 +521,10 @@
      "title": "공시가 약속한 표기와 진열대의 표기"
     },
     {
+     "kind": "quote",
+     "text": "«As a transparency principle, all proprietary brand products include an indication of the species used and the fishing area.»"
+    },
+    {
      "kind": "call",
      "text": "세 자사 브랜드의 제품 페이지 어디에도 학명과 어획해역이 없다. Rianxeira 일곱 카테고리, Escurís 상품 상세 스물여섯 건, Mare Aperto 목록과 상세가 그렇다. 참치 제품의 학명과 어획해역은 한 건도 나오지 않는다. 브랜드가 적는 것은 어법까지다. Rianxeira는 「Pescado a Caña」, Escurís는 「pescado mediante caña o anzuelo」, Mare Aperto는 「Pescato a Canna」라고 쓴다.",
      "chips": [
@@ -564,6 +572,10 @@
     {
      "kind": "para",
      "text": "회사 공시 원문이다."
+    },
+    {
+     "kind": "quote",
+     "text": "«JEALSA has its own tuna fleet, consisting of two fishing vessels and an auxiliary vessel that operate in the Atlantic Ocean.»"
     },
     {
      "kind": "h3",
@@ -1082,6 +1094,10 @@
      "kind": "h3",
      "text": "",
      "title": "통신사가 평문으로 적는다"
+    },
+    {
+     "kind": "quote",
+     "text": "«Es el caso de Jealsa, con sede en Boiro (Coruña) y referente en conservas, con una facturación global de 775 millones, de las que un 78% proceden de la transformación atunera; cuenta con dos barcos que abastecen a la propia industria. Jealsa, también accionista de Albacora, tiene fábricas en España, Guatemala, Chile y Brasil.»"
     },
     {
      "kind": "call",

@@ -852,8 +852,8 @@ const TU_CHART_SLOTS: Record<string, ChartSlot[]> = {
       caption: '공식몰 API·사이트맵 전수(2026-08-20). 라인업이 서로 겹치지 않는다. 산 것은 상표가 아니라 시장별 소비 문법이다.',
       telemetry: SYNC,
       render: () => (
-        <TuRows head={['브랜드', '국가', '인수', 'SKU', '라인업 축']}
-          rows={thaiUnionBrands.map((r) => [r.브랜드, r.국가, r.인수, r.sku ?? '-', r.축])} />
+        <TuRows head={['브랜드', '국가', 'SKU', '라인업 축']}
+          rows={thaiUnionBrands.map((r) => [r.브랜드, r.국가, r.sku ?? '-', r.축])} />
       ),
       span: 'full',
       sourceLine: '사내 조사보고서 04장 (2026-08) · WP REST·Shopify GraphQL·사이트맵·OFF 실측',

@@ -111,8 +111,8 @@ h2{font-family:var(--disp);font-weight:700;font-size:1.75rem;letter-spacing:-.02
   letter-spacing:.1em;display:block;margin-bottom:.9rem}
 h3{font-family:var(--disp);font-weight:700;font-size:1.1rem;margin:2.6rem 0 .7rem}
 h4{font-family:var(--sans);font-weight:600;font-size:.92rem;margin:1.8rem 0 .5rem;color:var(--ink-2)}
-p{margin:0 0 1.1rem;max-width:44rem}
-.lead{font-size:1.1rem;line-height:1.7;color:var(--ink-2);max-width:44rem}
+p{margin:0 0 1.1rem;max-width:none}
+.lead{font-size:1.1rem;line-height:1.7;color:var(--ink-2);max-width:none}
 strong{font-weight:600;color:var(--ink)}
 .es{font-style:italic}
 code{font-family:var(--mono);font-size:.85em;background:var(--paper-2);padding:.1em .3em;
@@ -153,22 +153,30 @@ th{background:var(--paper-2);text-align:left;font-weight:600;font-size:.71rem;le
   text-transform:uppercase;color:var(--ink-2);padding:.6rem .8rem;
   border-bottom:1px solid var(--rule-2);white-space:nowrap}
 td{padding:.55rem .8rem;border-bottom:1px solid var(--rule);color:var(--ink-2);vertical-align:top}
+/* 브라우저 기본값은 한글을 글자 단위로 끊는다 — 좁은 칸에서 낱말이 갈라진다.
+   한국어 조판의 기본은 띄어쓰기에서만 끊는 것이다. */
+main th,main td{word-break:keep-all}
+
 tr:last-child td{border-bottom:none}
 td.num,th.num{text-align:right;font-family:var(--mono);font-variant-numeric:tabular-nums;white-space:nowrap}
+/* .num 은 숫자를 안 끊으려고 nowrap 이다. 그런데 같은 칸에 붙는 주석 줄까지
+   붙들려 표가 컨테이너를 밀어냈다 — 숫자와 칩은 그대로 두고 주석만 접는다. */
+td.num span:not(.chip):not(.basis){white-space:normal;word-break:keep-all}
+
 td b{color:var(--ink);font-weight:600}
 tr.hl td{background:var(--txak-soft)}
 tr.dim td{color:var(--ink-3)}
 
 /* ===== CALLOUT / QUOTE ===== */
 .call{border:1px solid var(--rule-2);background:var(--card);padding:1.15rem 1.3rem;margin:0 0 1.6rem;
-  max-width:46rem}
+  max-width:none}
 .call.hot{border-left:3px solid var(--ikur)}
 .call.warn{border-left:3px solid var(--warn);background:var(--warn-bg)}
 .call .ct{font-family:var(--disp);font-weight:700;font-size:.82rem;margin:0 0 .5rem;color:var(--ink)}
 .call p{margin:0 0 .6rem;font-size:.89rem;line-height:1.7}
 .call p:last-child{margin-bottom:0}
 blockquote{margin:0 0 1.2rem;padding:.85rem 1.1rem;background:var(--paper-2);
-  border-left:3px solid var(--txak);max-width:46rem;font-size:.9rem;line-height:1.65;color:var(--ink-2)}
+  border-left:3px solid var(--txak);max-width:none;font-size:.9rem;line-height:1.65;color:var(--ink-2)}
 blockquote .who{display:block;margin-top:.5rem;font-family:var(--mono);font-size:.69rem;color:var(--ink-3)}
 
 /* ===== MISC ===== */
@@ -190,7 +198,7 @@ blockquote .who{display:block;margin-top:.5rem;font-family:var(--mono);font-size
 .certrow img{height:3rem;width:auto;opacity:.9}
 footer{border-top:2px solid var(--ink);margin-top:1rem;padding:1.75rem 0 4rem;
   font-family:var(--sans);font-size:.79rem;color:var(--ink-3);line-height:1.7}
-footer p{max-width:52rem}
+footer p{max-width:none}
 @media(prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
 
 /* ===== 연결 / 개별 이중기준 표 ===== */

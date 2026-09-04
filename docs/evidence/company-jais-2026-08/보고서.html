@@ -125,24 +125,24 @@ h2{font-family:var(--disp);font-weight:700;font-size:1.75rem;letter-spacing:-.02
   letter-spacing:.1em;display:block;margin-bottom:.9rem}
 h3{font-family:var(--disp);font-weight:700;font-size:1.1rem;margin:2.6rem 0 .7rem}
 h4{font-family:var(--sans);font-weight:600;font-size:.92rem;margin:1.8rem 0 .5rem;color:var(--ink-2)}
-p{margin:0 0 1.1rem;max-width:37rem}
-.lead{font-family:var(--disp);font-size:1.13rem;line-height:1.82;color:var(--ink-2);max-width:37rem}
-ul.t{margin:.2rem 0 1.2rem;padding-left:1.15rem;max-width:37rem}
+p{margin:0 0 1.1rem;max-width:none}
+.lead{font-family:var(--disp);font-size:1.13rem;line-height:1.82;color:var(--ink-2);max-width:none}
+ul.t{margin:.2rem 0 1.2rem;padding-left:1.15rem;max-width:none}
 ul.t li{margin-bottom:.45rem;line-height:1.75}
 sup.fn{font-family:var(--mono);font-size:.62em;font-weight:600;color:var(--teal);
   vertical-align:super;line-height:0;margin-left:.1em}
 
 /* ===== BLOCKS ===== */
 .panel{border:1px solid var(--rule);background:var(--card);border-radius:3px;
-  padding:1.15rem 1.25rem;margin:0 0 1.3rem;max-width:37rem}
+  padding:1.15rem 1.25rem;margin:0 0 1.3rem;max-width:none}
 .panel-t{font-family:var(--mono);font-size:.66rem;letter-spacing:.15em;text-transform:uppercase;
   color:var(--ink-3);margin-bottom:.55rem}
 .pull{border-left:3px solid var(--ikur);background:var(--warn-bg);border-radius:0 3px 3px 0;
-  padding:1.15rem 1.25rem;margin:0 0 1.3rem;max-width:37rem}
+  padding:1.15rem 1.25rem;margin:0 0 1.3rem;max-width:none}
 .pull .panel-t{color:var(--ikur)}
 .pull .q{font-family:var(--disp);font-size:1.07rem;line-height:1.78;display:block}
 .alert{border-left:3px solid var(--risk);background:var(--risk-bg);border-radius:0 3px 3px 0;
-  padding:1.15rem 1.25rem;margin:0 0 1.3rem;max-width:37rem}
+  padding:1.15rem 1.25rem;margin:0 0 1.3rem;max-width:none}
 .alert .panel-t{color:var(--risk)}
 .alert p:last-child,.panel p:last-child,.pull p:last-child{margin-bottom:0}
 
@@ -157,10 +157,18 @@ sup.fn{font-family:var(--mono);font-size:.62em;font-weight:600;color:var(--teal)
 .tw{overflow-x:auto;border:1px solid var(--rule);border-radius:3px;background:var(--card);margin:0 0 1.4rem}
 table{border-collapse:collapse;width:100%;font-size:.86rem;min-width:30rem}
 th,td{padding:.6rem .8rem;text-align:left;border-bottom:1px solid var(--rule);vertical-align:top}
+/* 브라우저 기본값은 한글을 글자 단위로 끊는다 — 좁은 칸에서 낱말이 갈라진다.
+   한국어 조판의 기본은 띄어쓰기에서만 끊는 것이다. */
+main th,main td{word-break:keep-all}
+
 th{font-family:var(--mono);font-size:.66rem;letter-spacing:.09em;text-transform:uppercase;
   color:var(--ink-3);font-weight:600;background:var(--paper-2);white-space:nowrap}
 tbody tr:last-child td{border-bottom:none}
 td.num{font-family:var(--mono);font-variant-numeric:tabular-nums;text-align:right;white-space:nowrap}
+/* .num 은 숫자를 안 끊으려고 nowrap 이다. 그런데 같은 칸에 붙는 주석 줄까지
+   붙들려 표가 컨테이너를 밀어냈다 — 숫자와 칩은 그대로 두고 주석만 접는다. */
+td.num span:not(.chip):not(.basis){white-space:normal;word-break:keep-all}
+
 caption{caption-side:bottom;text-align:left;font-size:.76rem;color:var(--ink-3);
   padding:.6rem .8rem;line-height:1.65}
 
@@ -170,7 +178,7 @@ figure{margin:0 0 1.5rem}
   padding:1.1rem 1.1rem .85rem;overflow-x:auto}
 .chart-t{font-weight:700;font-size:.94rem;margin-bottom:.12rem}
 .chart-s{font-size:.78rem;color:var(--ink-2);margin-bottom:.85rem}
-figcaption{font-size:.77rem;color:var(--ink-3);line-height:1.65;margin-top:.6rem;max-width:37rem}
+figcaption{font-size:.77rem;color:var(--ink-3);line-height:1.65;margin-top:.6rem;max-width:none}
 svg{display:block;max-width:100%;height:auto}
 .grid-l{stroke:var(--rule);stroke-width:1}
 .axis-t{font-family:var(--mono);font-size:10px;fill:var(--ink-3)}
@@ -196,7 +204,7 @@ svg{display:block;max-width:100%;height:auto}
 .sw{width:11px;height:11px;border-radius:2px;flex:none}
 
 /* ===== OWNERSHIP / CHAIN / TIMELINE ===== */
-.own{display:flex;flex-direction:column;gap:.42rem;margin:0 0 .8rem;max-width:37rem}
+.own{display:flex;flex-direction:column;gap:.42rem;margin:0 0 .8rem;max-width:none}
 .own-r{display:grid;grid-template-columns:1fr 4rem;gap:.8rem;align-items:center;
   padding:.5rem .75rem;border:1px solid var(--rule);border-radius:3px;background:var(--card)}
 .own-r.a{border-left:3px solid var(--chart-1)}
@@ -207,7 +215,7 @@ svg{display:block;max-width:100%;height:auto}
 .own-p{font-family:var(--mono);font-variant-numeric:tabular-nums;text-align:right;font-weight:600;font-size:.88rem}
 .chain{font-family:var(--mono);font-size:.8rem;line-height:2.1;color:var(--ink-2);margin:0}
 .chain b{color:var(--ink)}
-.tl{display:flex;flex-direction:column;margin:0 0 1.4rem;max-width:37rem}
+.tl{display:flex;flex-direction:column;margin:0 0 1.4rem;max-width:none}
 .tl-i{display:grid;grid-template-columns:5rem 1fr;gap:.9rem;padding:.65rem 0 .65rem .9rem;
   border-left:3px solid var(--rule-2);border-bottom:1px solid var(--rule)}
 .tl-i.hi{border-left-color:var(--risk)}
@@ -218,12 +226,12 @@ dl.kv dt{color:var(--ink-3);font-size:.8rem;padding-top:.14rem}
 dl.kv dd{margin:0}
 
 /* ===== NOTES ===== */
-ol.src{margin:0;padding-left:1.6rem;font-size:.82rem;line-height:1.75;color:var(--ink-2);max-width:40rem}
+ol.src{margin:0;padding-left:1.6rem;font-size:.82rem;line-height:1.75;color:var(--ink-2);max-width:none}
 ol.src li{margin-bottom:.42rem}
 ol.src b{color:var(--ink);font-weight:500}
 footer{border-top:1px solid var(--rule);margin-top:1rem;padding:2rem 0 4rem;
   color:var(--ink-3);font-size:.78rem;line-height:1.7}
-footer p{max-width:40rem}
+footer p{max-width:none}
 
 @media(max-width:640px){
   .wrap{padding:0 1.3rem}
