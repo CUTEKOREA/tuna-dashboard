@@ -1,10 +1,12 @@
 'use client';
 import React, { useMemo, useSyncExternalStore } from 'react';
 import s from './PnaAccessFeeWidgets.module.css';
+import { pnaAccessFee, companyTotals, shinlaInstallmentDue } from '@/lib/data/pna-access-fee';
 
 /* ═══════════════════════════════════════════════════════
-   2026어기 PNA 수역별 입어료 2차분 배정 데이터
-   Source: 260604_참치선망 수역별 입어료 2차분 배정.xlsx
+   2026어기 PNA 수역별 입어료 배정
+   데이터는 lib/data/pna-access-fee.ts 가 유일한 통로다 (ADR-0005).
+   여기서 숫자를 다시 적지 않는다 — 다음 회차 배정표가 오면 계약만 고친다.
    ═══════════════════════════════════════════════════════ */
 
 interface ZoneData {
@@ -14,39 +16,33 @@ interface ZoneData {
   vessels: number;
   days: number;
   unitCost: number;   // $/일
-  fee: number;        // 입어료
-  extras: number;     // 제반경비 (옵서버/허가/MCS 등)
+  fee: number;        // 해당 회차 입어료
+  extras: number;     // 제반경비 + 송금수수료
   total: number;      // 소계
   color: string;
+  installment: number;
+  sharePct: number;
 }
 
-const ZONES: ZoneData[] = [
-  { id: 'png',   name: 'PNG',       nameKr: '파푸아뉴기니', vessels: 6, days: 361, unitCost: 10500, fee: 1263500, extras: 98689,  total: 1362189, color: '#ef4444' },
-  { id: 'ki',    name: 'Kiribati',  nameKr: '키리바시',     vessels: 6, days: 234, unitCost: 10750, fee: 1257750, extras: 36020,  total: 1293770, color: '#f59e0b' },
-  { id: 'fsm',   name: 'FSM',       nameKr: '미크로네시아', vessels: 6, days: 84,  unitCost: 11025, fee: 463050,  extras: 102604, total: 565654,  color: '#8b5cf6' },
-  { id: 'sol',   name: 'Solomon',   nameKr: '솔로몬',       vessels: 6, days: 50,  unitCost: 10000, fee: 250000,  extras: 2,      total: 250002,  color: '#06b6d4' },
-  { id: 'tv',    name: 'Tuvalu',    nameKr: '투발루',       vessels: 6, days: 40,  unitCost: 10000, fee: 400000,  extras: 84034,  total: 484034,  color: '#10b981' },
-  { id: 'nr',    name: 'Nauru',     nameKr: '나우루',       vessels: 6, days: 12,  unitCost: 10000, fee: 120000,  extras: 48009,  total: 168009,  color: '#ec4899' },
-];
+/** 화면은 신라교역 몫만 본다 — 회사별 전체는 아래 업계 점유율 카드가 맡는다 */
+const ZONES: ZoneData[] = pnaAccessFee.zones.map((z) => {
+  const mine = z.companies.find((c) => c.name === '신라교역');
+  const days = mine?.days ?? 0;
+  const fee = mine?.fee ?? 0;
+  const extras = z.shinlaExtras + z.shinlaRemitFee;
+  return {
+    id: z.id, name: z.name, nameKr: z.nameKr,
+    vessels: mine?.vessels ?? 0, days, unitCost: z.unitCost,
+    fee, extras, total: fee + extras, color: z.color,
+    installment: z.installment, sharePct: z.sharePct,
+  };
+});
 
-interface PaymentSchedule {
-  zone: string;
-  date: string;     // 납기일 'YYYY.MM.DD'
-  done?: boolean;   // 납부 완료 여부 (260604 배정표 기준)
-}
-
-const PAYMENTS: PaymentSchedule[] = [
-  { zone: 'PNG 1차분(33%)',       date: '2025.12.31', done: true },
-  { zone: '키리바시 1차분',       date: '2025.12.31', done: true },
-  { zone: 'FSM 1차분(50%)',       date: '2025.12.31', done: true },
-  { zone: '솔로몬 1차분(25%)',    date: '2025.12.31', done: true },
-  { zone: '솔로몬 2차분(50%)',    date: '2026.04.01', done: true },
-  { zone: 'PNG 2차분(33%)',       date: '2026.06.30' },
-  { zone: 'FSM 2차분(50%)',       date: '2026.07.01' },
-  { zone: '키리바시 2차분',       date: '2026.07.01' },
-  { zone: '솔로몬 3차분(25%)',    date: '2026.07.01' },
-  { zone: 'PNG 3차분(33%)',       date: '2026.09.30' },
-];
+const PAYMENTS = pnaAccessFee.payments;
+const COMPANIES = companyTotals();
+const SUPPORT_SHIPS = pnaAccessFee.supportShips;
+const DUE = shinlaInstallmentDue();
+const SYNC_DATE = pnaAccessFee.source.allocation.issuedAt;
 
 /* 패턴 F 정정: D-day는 하드코딩하지 않고 렌더 시점에 납기일로부터 계산 */
 const URGENT_WINDOW_DAYS = 30;
@@ -65,39 +61,6 @@ function getDDay(dateStr: string, today: Date): { diff: number; label: string } 
   const label = diff > 0 ? `D-${diff}` : diff === 0 ? 'D-DAY' : `D+${-diff} 경과`;
   return { diff, label };
 }
-
-interface CompanyShare {
-  name: string;
-  vessels: number;
-  totalDays: number;
-  totalFee: number;
-  color: string;
-  isShinla?: boolean;
-}
-
-const COMPANIES: CompanyShare[] = [
-  { name: '동원산업',   vessels: 9, totalDays: 1180, totalFee: 5242775,  color: '#3b82f6' },
-  { name: '신라교역',   vessels: 6, totalDays: 781,  totalFee: 3754300,  color: '#f59e0b', isShinla: true },
-  { name: '사조산업',   vessels: 5, totalDays: 656,  totalFee: 3212788,  color: '#8b5cf6' },
-  { name: '사조씨푸드', vessels: 1, totalDays: 131,  totalFee: 640951,   color: '#10b981' },
-  { name: '사조오양',   vessels: 1, totalDays: 131,  totalFee: 641288,   color: '#06b6d4' },
-];
-
-interface SupportShip {
-  name: string;
-  nameKr: string;
-  vessels: number;
-  total: number;
-}
-
-const SUPPORT_SHIPS: SupportShip[] = [
-  { name: 'SEIN SHIPPING',  nameKr: '세인해운', vessels: 22, total: 186329 },
-  { name: 'JISUNG SHIPPING', nameKr: '지성해운', vessels: 11, total: 93164 },
-  { name: 'BOYANG(Khana)',   nameKr: '가나마린', vessels: 8,  total: 67756 },
-  { name: 'DONGWON',         nameKr: '동원산업', vessels: 5,  total: 42347 },
-  { name: 'EASTERN STAR',    nameKr: '오션해운', vessels: 2,  total: 16939 },
-  { name: 'ES SHIPPING',     nameKr: 'ES해운',   vessels: 1,  total: 8469 },
-];
 
 /* ─── Utility ─── */
 const fmt = (n: number) => n.toLocaleString('en-US');
@@ -121,7 +84,7 @@ function HeroCostCard() {
       <h3 className={s.sectionTitle}>
         <span style={{ fontSize: '1.2em' }}>💰</span>
         2026어기 PNA 수역별 입어료 배정 총괄
-        <span className={s.sectionSub}>신라교역 · 6척 기준 · STATIC · 26.06.04 배정표 동기화</span>
+        <span className={s.sectionSub}>신라교역 · 6척 기준 · STATIC · {SYNC_DATE} 배정표 동기화</span>
       </h3>
       <div className={s.heroGrid}>
         <div className={s.heroStat}>
@@ -145,13 +108,34 @@ function HeroCostCard() {
       </div>
       <div style={{ display: 'flex', gap: 16, marginTop: 16, flexWrap: 'wrap' }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: 8, fontSize: '0.78rem', color: 'var(--text-muted)' }}>
-          <span style={{ color: 'var(--w-amber-500)' }}>●</span> 입어료: <span style={{ fontWeight: 700, color: 'var(--text-main)' }}>${fmt(totalFee)}</span>
+          <span style={{ color: 'var(--w-amber-500)' }}>●</span> 입어료: <span style={{ fontWeight: 700, color: 'var(--text-main)' }}>${fmt(Math.round(totalFee))}</span>
         </div>
         <div style={{ display: 'flex', alignItems: 'center', gap: 8, fontSize: '0.78rem', color: 'var(--text-muted)' }}>
-          <span style={{ color: 'var(--w-violet-500)' }}>●</span> 제반경비: <span style={{ fontWeight: 700, color: 'var(--text-main)' }}>${fmt(totalExtras)}</span>
+          <span style={{ color: 'var(--w-violet-500)' }}>●</span> 제반경비: <span style={{ fontWeight: 700, color: 'var(--text-main)' }}>${fmt(Math.round(totalExtras))}</span>
         </div>
         <div style={{ display: 'flex', alignItems: 'center', gap: 8, fontSize: '0.78rem', color: 'var(--text-muted)' }}>
           <span style={{ color: 'var(--w-cyan-500)' }}>●</span> 6개 수역 · 6척 배정
+        </div>
+      </div>
+      <div style={{ marginTop: 16, paddingTop: 14, borderTop: '1px solid var(--border-subtle, rgba(255,255,255,0.08))' }}>
+        <div style={{ fontSize: '0.78rem', color: 'var(--text-muted)', marginBottom: 8 }}>
+          이번 배정 — <strong style={{ color: 'var(--text-main)' }}>솔로몬·PNG 3차분</strong>
+          {' '}(협회 송금 기한 <strong style={{ color: 'var(--w-amber-500)' }}>{DUE.remitBy.replace(/-/g, '.')}</strong>,
+          {' '}정부 납기 {DUE.dueDate.replace(/-/g, '.')})
+        </div>
+        <div style={{ display: 'flex', gap: 18, flexWrap: 'wrap', fontSize: '0.8rem' }}>
+          {DUE.zones.map((z) => (
+            <span key={z.id} style={{ color: 'var(--text-muted)' }}>
+              {z.nameKr} {z.installment}차분 {z.days}일{' '}
+              <strong style={{ color: 'var(--text-main)' }}>${fmt(z.fee)}</strong>
+            </span>
+          ))}
+          <span style={{ color: 'var(--text-muted)' }}>
+            송금수수료 <strong style={{ color: 'var(--text-main)' }}>${fmt(DUE.remitFee)}</strong>
+          </span>
+          <span style={{ color: 'var(--text-muted)' }}>
+            합계 <strong style={{ color: 'var(--w-amber-500)' }}>${fmt(DUE.total)}</strong>
+          </span>
         </div>
       </div>
     </div>
@@ -175,6 +159,9 @@ function ZoneAllocationChart() {
           <div key={z.id} className={s.zoneRow}>
             <div className={s.zoneName} style={{ color: z.color }}>
               {z.name}
+              <span style={{ display: 'block', fontSize: '0.62rem', color: 'var(--text-muted)', fontWeight: 400 }}>
+                {z.installment}차분 {Math.round(z.sharePct * 100)}%
+              </span>
             </div>
             <div className={s.zoneBarTrack}>
               <div
@@ -308,15 +295,15 @@ function PaymentTimeline() {
    5. Industry Share (Donut + Legend)
    ═══════════════════════════════════════════════════════ */
 function IndustryShareChart() {
-  const totalFee = COMPANIES.reduce((a, c) => a + c.totalFee, 0);
+  const totalFee = COMPANIES.reduce((a, c) => a + c.fee, 0);
   const shinla = COMPANIES.find(c => c.isShinla)!;
-  const shinlaPct = ((shinla.totalFee / totalFee) * 100).toFixed(1);
+  const shinlaPct = ((shinla.fee / totalFee) * 100).toFixed(1);
 
   // Build SVG donut
   const segments = useMemo(() => {
     const circumference = 2 * Math.PI * 52;
-    return COMPANIES.reduce<{ items: Array<CompanyShare & { dasharray: string; dashoffset: number }>; offset: number }>((acc, c) => {
-      const pct = c.totalFee / totalFee;
+    return COMPANIES.reduce<{ items: Array<ReturnType<typeof companyTotals>[number] & { dasharray: string; dashoffset: number }>; offset: number }>((acc, c) => {
+      const pct = c.fee / totalFee;
       const len = circumference * pct;
       const gap = circumference - len;
       return {
@@ -358,7 +345,7 @@ function IndustryShareChart() {
         </div>
         <div className={s.legendList}>
           {COMPANIES.map(c => {
-            const pct = ((c.totalFee / totalFee) * 100).toFixed(1);
+            const pct = ((c.fee / totalFee) * 100).toFixed(1);
             return (
               <div key={c.name} className={s.legendItem} style={c.isShinla ? { fontWeight: 700, color: 'var(--text-main)' } : {}}>
                 <span className={s.legendDot} style={{ background: c.color }} />

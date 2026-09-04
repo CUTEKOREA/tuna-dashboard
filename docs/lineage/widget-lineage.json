@@ -1,7 +1,7 @@
 {
  "_meta": {
   "entry": "app/page.tsx",
-  "files": 209,
+  "files": 210,
   "widgets": 110,
   "dataFiles": 86,
   "generator": "scripts/widget_lineage.py"
@@ -164,7 +164,9 @@
    "dataFiles": []
   },
   "components/PnaAccessFeeWidgets.tsx": {
-   "dataModules": [],
+   "dataModules": [
+    "lib/data/pna-access-fee.ts"
+   ],
    "dataFiles": []
   },
   "components/PorkDashboard.tsx": {
