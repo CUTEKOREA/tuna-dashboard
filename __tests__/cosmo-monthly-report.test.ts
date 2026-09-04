@@ -50,11 +50,12 @@ describe('cosmo 7월 업무보고 데이터 계약', () => {
     expect(r.productionPlan.annualPlanMt).toBe(29000);
     expect(r.productionPlan.annualRevisedMt).toBe(26118);
     expect(r.productionPlan.annualRevisedMt - r.productionPlan.annualPlanMt).toBe(-2882);
-    // 9월은 docx 표가 정본이다 - pptx 의 21일×110톤은 연간 26,118 과 맞지 않는다
+    // 9월은 월별 표가 정본이다(docx = pptx 3쪽 표). pptx 5쪽 슬라이드의 21일×110톤은
+    // 같은 문서의 3쪽 표와도, 연간 26,118 과도 맞지 않는다
     expect(r.productionPlan.september).toEqual({ days: 21, dailyMt: 120, totalMt: 2520 });
     expect(r.productionPlan.september.days * r.productionPlan.september.dailyMt)
       .toBe(r.productionPlan.september.totalMt);
-    // pptx 판본 값을 그대로 쓰면 12개월 합이 연간 개정치와 어긋난다는 것을 고정한다
+    // 5쪽 슬라이드 값을 그대로 쓰면 12개월 합이 연간 개정치와 어긋난다는 것을 고정한다
     const pptxSum = r.rawThroughput.revised.reduce((a, b) => a + b, 0)
       - r.productionPlan.september.totalMt + r.productionPlan.septemberPptxRaw.totalMt;
     expect(pptxSum).not.toBe(r.productionPlan.annualRevisedMt);
