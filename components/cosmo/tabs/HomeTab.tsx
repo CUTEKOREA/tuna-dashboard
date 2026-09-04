@@ -8,6 +8,7 @@ import {
 } from '@/lib/data/cosmo'
 import { cosmoMonthlyReport as mr } from '@/lib/data/cosmo-monthly-report'
 import { cosmoWeeklyReport as wr } from '@/lib/data/cosmo-weekly-report'
+import { cosmoQualityReport as qr } from '@/lib/data/cosmo-quality-report'
 
 const f = (v: number) => v.toLocaleString('en-US')
 const m1 = (v: number) => (v / 1e6).toFixed(1) + 'M'
@@ -344,7 +345,7 @@ export default function Home() {
           sub="월간 업무보고에만 있는 선행 정보 - 연간 계획 하향과 인상 수주."
           note={<>수주는 어가 상승분을 반영해 <b>${mr.orderPrice.fromUsd.toFixed(1)} → ${mr.orderPrice.toUsd.toFixed(1)}</b>
             ({mr.orderPrice.basis})로 인상된 단가로 진행 중이며, 물량보다 단가·수익성을 우선해 리테일 Tender 참여는
-            당분간 자제한다고 밝혔습니다. 9~10월 예정: {mr.agenda.map((a, i) => <span key={i}>{i > 0 && ' · '}{a}</span>)}.</>}
+            당분간 자제한다고 밝혔습니다. 기타 진행 사항: {mr.agenda.map((a, i) => <span key={i}>{i > 0 && ' · '}{a}</span>)}.</>}
         >
           <div className="tw">
             <table>
@@ -363,6 +364,20 @@ export default function Home() {
             </table>
           </div>
         </Card>
+      </div>
+
+      <div style={{ marginTop: 14 }}>
+        <Callout kind="warn" label={`품질 클레임 — ${qr.trigger.buyer} (${qr.trigger.country})`}>
+          {qr.trigger.date.replace(/-/g, '.')} <b>{qr.trigger.buyer}</b>로부터 당사 생산 참치캔의
+          {' '}{qr.defects.map((d) => d.split(' (')[0]).join('·')} 문제로 공문을 접수했습니다.
+          같은 고객사 클레임은 2025년 이후 <b>{qr.claims.length}건</b>이고
+          {' '}{qr.claims.filter((c) => c.defects.some((d) => d.includes('클리닝 부적합'))).length}건이 클리닝 부적합이며,
+          모두 같은 제품({qr.claims[0].product})에서 나왔습니다. 법인은 {qr.source.reportDate.replace(/-/g, '.')}자
+          {' '}<b>품질개선 보고</b>로 입고보관부터 멸균까지 {qr.processStages.length}개 공정의 원인과
+          실행계획 {qr.actions.length}건을 냈습니다. 클리닝은 <b>처리량과 정면으로 맞바꾸는 공정</b>이라
+          — 7월 평균 클리너가 전년 {mr.cleaners.y2025}명에서 <b>{mr.cleaners.y2026}명({mr.cleaners.delta}명)</b>으로 줄어든 상태입니다 —
+          품질 기준 강화는 그대로 처리량 계획에 부담으로 돌아옵니다(생산 보드).
+        </Callout>
       </div>
 
       <div style={{ marginTop: 18 }}>

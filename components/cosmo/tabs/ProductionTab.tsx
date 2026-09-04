@@ -6,8 +6,11 @@ import {
   weeks, weeklySeries, annual, latest, meta, yoy,
   gapDecomposition, gapValuation, musd, num, pct, n,
 } from '@/lib/data/cosmo'
+import { cosmoMonthlyReport as mr } from '@/lib/data/cosmo-monthly-report'
+import { cosmoQualityReport as qr } from '@/lib/data/cosmo-quality-report'
 
 const mt = (v: number) => v.toLocaleString('en-US', { maximumFractionDigits: 0 }) + ' MT'
+const n0 = (v: number) => v.toLocaleString('en-US')
 const mtk = (v: number) => (v / 1000).toFixed(0) + 'k'
 const dly = (v: number) => v.toFixed(1) + ' MT/일'
 const day = (v: number) => v.toFixed(1) + '일'
@@ -25,6 +28,35 @@ const tightDomain = (vals: (number | null | undefined)[], pad = 0.3): [number, n
 }
 
 export default function Production() {
+  // 월간 업무보고의 월별 표 — 계획 대비 변경계획을 12개월로 편다.
+  // 1~mr.rawThroughput.actualThrough 월이 실적이고 그 뒤는 변경계획이라, 화면에서 구간을 갈라 표시한다.
+  const tp = mr.rawThroughput
+  const cn = mr.containers
+  const monthRows = tp.plan.map((plan, i) => ({
+    label: `${i + 1}월`,
+    계획: plan,
+    '실적·변경': tp.revised[i],
+    gap: tp.revised[i] - plan,
+    days: tp.days[i],
+    daily: tp.dailyMt[i],
+    actual: i < tp.actualThrough,
+  }))
+  const ctnRows = cn.cbuPlan.map((plan, i) => ({
+    label: `${i + 1}월`,
+    'CBU 계획': plan,
+    'CBU 실적·변경': cn.cbuOnBoard[i],
+    FBU: cn.fbu[i],
+    gap: cn.cbuOnBoard[i] - plan,
+    actual: i < cn.actualThrough,
+  }))
+  // 실적 구간(1~6월)만의 누적 — 변경계획을 실적처럼 읽지 않기 위해 따로 센다
+  const actualPlan = tp.plan.slice(0, tp.actualThrough).reduce((a, b) => a + b, 0)
+  const actualDone = tp.revised.slice(0, tp.actualThrough).reduce((a, b) => a + b, 0)
+  const ctnActualPlan = cn.cbuPlan.slice(0, cn.actualThrough).reduce((a, b) => a + b, 0)
+  const ctnActualDone = cn.cbuOnBoard.slice(0, cn.actualThrough).reduce((a, b) => a + b, 0)
+  const cleanerDrop = qr.cleaners.rows[0].count - qr.cleaners.rows[2].count
+  const cleaningClaims = qr.claims.filter((c) => c.defects.some((d) => d.includes('클리닝 부적합'))).length
+  const freezerDays = qr.freezer.recovery.reduce((a, r) => a + (r.elapsedDays ?? 0), 0)
   const cbu = latest.production?.CBU
   const fbu = latest.production?.FBU
   const gap = gapDecomposition(cbu)
@@ -421,6 +453,213 @@ export default function Production() {
             />
           </Card>
         )}
+      </div>
+
+      <SecHead id="monthly-plan">월간 업무보고 — 월별 계획 대비</SecHead>
+      <div className="grid g2">
+        <Card
+          title="월별 원어 처리량 — 계획 vs 실적·변경"
+          sub={`${mr.docSource.file} 기준. 1~${tp.actualThrough}월은 실적, ${tp.actualThrough + 1}월 이후는 변경계획이다. 단위 MT.`}
+          span={2}
+          note={<>실적 구간 1~{tp.actualThrough}월만 보면 계획 {n0(actualPlan)} MT 대비 <b>{n0(actualDone)} MT</b>
+            ({pct(actualDone / actualPlan - 1, 1)})입니다. 연간은 계획 {n0(tp.annual.planMt)} MT 를
+            {' '}<b>{n0(tp.annual.revisedMt)} MT 로 하향</b>({n0(tp.annual.revisedMt - tp.annual.planMt)} MT) 개정했는데,
+            {tp.actualThrough + 1}월 이후 변경계획의 일 처리량이 {tp.dailyMt[tp.actualThrough]}~{Math.max(...tp.dailyMt.slice(tp.actualThrough))}톤으로
+            상반기 실적 일 처리량보다 높게 잡혀 있습니다 — <b>개정 계획 자체가 회복을 전제</b>합니다.
+            연간 일 처리량 {tp.annual.dailyMt}톤 × {tp.annual.days}일이 개정치의 근거입니다.</>}
+        >
+          <Legend items={[
+            { name: '계획', color: C.s3, box: true },
+            { name: '실적·변경', color: C.s1, box: true },
+          ]} />
+          <Chart
+            data={monthRows} x="label" height={230} yFmt={mtk}
+            series={[
+              { key: '계획', name: '계획', color: C.s3, type: 'bar', fmt: mt },
+              { key: '실적·변경', name: '실적·변경', color: C.s1, type: 'bar', fmt: mt },
+            ]}
+          />
+          <div className="tw" style={{ marginTop: 12 }}>
+            <table>
+              <thead>
+                <tr>
+                  <th>월</th><th className="n">계획 (MT)</th><th className="n">실적·변경 (MT)</th>
+                  <th className="n">차이 (MT)</th><th className="n">생산일수</th><th className="n">일 처리량 (MT)</th>
+                </tr>
+              </thead>
+              <tbody>
+                {monthRows.map((r) => (
+                  <tr key={r.label} className={r.gap <= -400 ? 'warn' : undefined}>
+                    <td>{r.label} {!r.actual && <span className="tag">변경계획</span>}</td>
+                    <td className="n">{n0(r.계획)}</td>
+                    <td className="n">{n0(r['실적·변경'])}</td>
+                    <td className={`n ${r.gap < 0 ? 'down' : r.gap > 0 ? 'up' : ''}`}>{r.gap === 0 ? '-' : n0(r.gap)}</td>
+                    <td className="n">{r.days}일</td>
+                    <td className="n">{r.daily}</td>
+                  </tr>
+                ))}
+                <tr className="bad">
+                  <td><b>연간</b></td>
+                  <td className="n">{n0(tp.annual.planMt)}</td>
+                  <td className="n">{n0(tp.annual.revisedMt)}</td>
+                  <td className="n down">{n0(tp.annual.revisedMt - tp.annual.planMt)}</td>
+                  <td className="n">{tp.annual.days}일</td>
+                  <td className="n">{tp.annual.dailyMt}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </Card>
+
+        <Card
+          title="컨테이너 출고 — CBU 계획 대비 선적"
+          sub={`CBU 는 계획 대비 On Board, FBU 는 계획 구분 없이 한 행이다. 단위 FCL.`}
+          span={2}
+          note={<>실적 구간 1~{cn.actualThrough}월 CBU 는 계획 {ctnActualPlan} FCL 대비 <b>{ctnActualDone} FCL</b>
+            ({pct(ctnActualDone / ctnActualPlan - 1, 1)})입니다. 연간으로는 {n0(cn.annual.cbuPlan)} → {n0(cn.annual.cbuOnBoard)} FCL 로
+            {' '}<b>{cn.annual.cbuGap} FCL</b> 부족합니다. 5월만 계획을 {cn.cbuOnBoard[4] - cn.cbuPlan[4]} FCL 넘겼는데,
+            같은 달 원어 처리량은 계획 대비 {n0(tp.revised[4] - tp.plan[4])} MT 부족했습니다 —
+            <b>출고는 생산이 아니라 재고와 선적 일정을 따릅니다</b>. 주간보고가 지적한 MSC 선박 출항 일정 변경도 같은 축의 변수입니다.
+            FBU 는 연간 {cn.annual.fbu} FCL 로 CBU 의 {(cn.annual.fbu / cn.annual.cbuOnBoard * 100).toFixed(0)}% 규모입니다.</>}
+        >
+          <Legend items={[
+            { name: 'CBU 계획', color: C.s3, box: true },
+            { name: 'CBU 실적·변경', color: C.s1, box: true },
+            { name: 'FBU', color: C.s5, box: true },
+          ]} />
+          <Chart
+            data={ctnRows} x="label" height={210} yFmt={(v) => String(v)}
+            series={[
+              { key: 'CBU 계획', name: 'CBU 계획', color: C.s3, type: 'bar', fmt: (v) => v + ' FCL' },
+              { key: 'CBU 실적·변경', name: 'CBU 실적·변경', color: C.s1, type: 'bar', fmt: (v) => v + ' FCL' },
+              { key: 'FBU', name: 'FBU', color: C.s5, type: 'bar', fmt: (v) => v + ' FCL' },
+            ]}
+          />
+        </Card>
+      </div>
+
+      <SecHead id="quality-claim">품질 클레임과 개선 대책</SecHead>
+      <div className="grid g2">
+        <Card
+          title={`${qr.trigger.buyer} 클레임 접수 내역`}
+          sub={`${qr.source.title} (${qr.source.reportDate}) 기준. 클레임 접수일과 해당 제품의 제조일자.`}
+          note={<>{qr.trigger.date.replace(/-/g, '.')} 접수된 공문이 이 보고를 촉발했습니다.
+            2025년 이후 <b>{qr.claims.length}건</b> 중 <b>{cleaningClaims}건이 클리닝 부적합</b>이고
+            {' '}{qr.claims.filter((c) => c.defects.some((d) => d.includes('어두움'))).length}건이 색상 문제이며,
+            모두 같은 제품({qr.claims[0].product})입니다. 접수와 제조 사이가
+            {' '}{qr.claims.map((c) => Math.round((Date.parse(c.receivedAt) - Date.parse(c.producedAt[0])) / 86400000 / 30)).join('·')}개월로
+            벌어져 있어, <b>불량은 생산 시점보다 한참 뒤에 드러납니다</b> — 지금 라인의 품질이 좋아져도 클레임은 당분간 더 들어옵니다.</>}
+        >
+          <div className="tw">
+            <table>
+              <thead><tr><th>접수일</th><th>클레임 내용</th><th>제품 제조일자</th></tr></thead>
+              <tbody>
+                {qr.claims.map((c) => (
+                  <tr key={c.receivedAt} className={c.defects.some((d) => d.includes('클리닝 부적합')) ? 'warn' : undefined}>
+                    <td>{c.receivedAt.replace(/-/g, '.')}</td>
+                    <td>{c.defects.join(' · ')}{c.note && <span className="tag">{c.note}</span>}</td>
+                    <td>{c.producedAt.map((d) => d.replace(/-/g, '.')).join(', ')}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </Card>
+
+        <Card
+          title="클리너 인원과 생산성"
+          sub={`인원은 ${qr.cleaners.basis}, 생산성은 원어 사이즈가 비슷한 ${qr.productivity.basis} 비교다. 기준 월이 달라 두 표를 섞지 않는다.`}
+          note={<>능숙한 클리너가 2024년 {qr.cleaners.rows[0].count}명에서 <b>{qr.cleaners.rows[2].count}명
+            ({cleanerDrop}명, {pct(qr.cleaners.rows[2].count / qr.cleaners.rows[0].count - 1, 0)})</b>으로 줄었습니다.
+            같은 기간 인당 생산성은 {qr.productivity.rows[0].kgPerManHour} → <b>{qr.productivity.rows[2].kgPerManHour} kg/인시</b>로 올랐는데,
+            같은 기간 평균 원어 사이즈는 {qr.productivity.rows[0].kgPerFish} → {qr.productivity.rows[2].kgPerFish} kg/미로 거의 같아,
+            어체가 커져서 오른 것이 아닙니다. <b>이 상승은 품질을 깎아 산 것</b>이라는 것이 보고의 진단입니다 — Bruise 를 표면만 제거하고 갈변 표층을 남기면 처리는 빨라집니다.
+            대책(완전 제거·Deep Cleaning)은 그래서 <b>수율과 처리량을 동시에 떨어뜨립니다</b>.
+            보고는 인센티브·등급제로 품질과 개인 생산성을 함께 걸어 상쇄를 노립니다.</>}
+        >
+          <div className="tw">
+            <table>
+              <thead>
+                <tr><th>연도</th><th className="n">클리너 수</th>
+                  <th className="n">생산성 (kg/인시)</th><th className="n">전년비</th></tr>
+              </thead>
+              <tbody>
+                {qr.productivity.rows.map((r, i) => (
+                  <tr key={r.year} className={i === 2 ? 'warn' : undefined}>
+                    <td>{r.year}</td>
+                    <td className="n">{n0(qr.cleaners.rows[i].count)}</td>
+                    <td className="n">{r.kgPerManHour}</td>
+                    <td className="n up">{r.yoy == null ? '-' : pct(r.yoy, 1)}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </Card>
+
+        <Card
+          title="공정별 원인과 개선 대책"
+          sub={`입고보관부터 멸균까지 ${qr.processStages.length}개 공정. 핵심 관리 공정은 ${qr.criticalStage}이다.`}
+          span={2}
+        >
+          <div className="tw">
+            <table>
+              <thead><tr><th>공정</th><th>불량 유형</th><th>현황·문제점</th><th>개선 대책</th></tr></thead>
+              <tbody>
+                {qr.processStages.map((st) => (
+                  <tr key={st.stage} className={st.stage.includes('클리닝') ? 'warn' : undefined}>
+                    <td>{st.stage}</td>
+                    <td>{st.defect}</td>
+                    <td>{st.problem}</td>
+                    <td>{st.action}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </Card>
+
+        <Card
+          title="냉동창고 회복 기록과 보수 견적"
+          sub={`${qr.freezer.unit} — 만창 ${n0(qr.freezer.capacityMt)}톤 상태의 온도 기록.`}
+          note={<>{qr.freezer.issue} 만창에서 −18℃ 에 닿기까지 <b>{freezerDays}일</b> 걸렸습니다.
+            콘덴서 1기 보수 견적은 <b>{(qr.freezer.quote.totalKrw / 1e6).toFixed(0)}백만원</b>
+            (콘덴서 4EA {n0(qr.freezer.quote.items[0].unitKrw / 1e6)}백만원 등)입니다.
+            원문 우선순위 표기가 «{qr.freezer.priorityRaw}» 로 #2가 두 번 나오는데, 원문 그대로 옮겼습니다 — <b>확인이 필요합니다</b>.
+            Scow 는 가나 사업장 누적 {n0(qr.scows.total)}개 중 Plate Type 이 {n0(qr.scows.plateType)}개
+            ({pct(qr.scows.plateType / qr.scows.total, 0)})뿐이라, 「Plate 우선 사용」은 당분간 물량 제약을 받습니다.</>}
+        >
+          <div className="tw">
+            <table>
+              <thead><tr><th>일자</th><th className="n">냉동고 온도</th><th className="n">소요일수</th></tr></thead>
+              <tbody>
+                {qr.freezer.recovery.map((r) => (
+                  <tr key={r.date}>
+                    <td>{r.date.replace(/-/g, '.')}</td>
+                    <td className="n">{r.tempC} ℃</td>
+                    <td className="n">{r.elapsedDays == null ? '-' : r.elapsedDays + '일'}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </Card>
+
+        <Card
+          title="세부 실행 계획"
+          sub={`보고가 낸 ${qr.actions.length}건. 이행 여부는 원자료에 없어 진척을 표시하지 않는다.`}
+        >
+          <div className="tw">
+            <table>
+              <thead><tr><th className="n">No</th><th>항목</th><th>내용</th></tr></thead>
+              <tbody>
+                {qr.actions.map((a) => (
+                  <tr key={a.no}><td className="n">{a.no}</td><td>{a.title}</td><td>{a.detail}</td></tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </Card>
       </div>
 
       <SecHead>2025년 대비</SecHead>

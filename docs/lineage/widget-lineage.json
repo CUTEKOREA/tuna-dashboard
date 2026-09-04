@@ -1,7 +1,7 @@
 {
  "_meta": {
   "entry": "app/page.tsx",
-  "files": 208,
+  "files": 209,
   "widgets": 110,
   "dataFiles": 86,
   "generator": "scripts/widget_lineage.py"
@@ -438,6 +438,7 @@
   "components/cosmo/tabs/HomeTab.tsx": {
    "dataModules": [
     "lib/data/cosmo-monthly-report.ts",
+    "lib/data/cosmo-quality-report.ts",
     "lib/data/cosmo-weekly-report.ts",
     "lib/data/cosmo.ts"
    ],
@@ -461,6 +462,8 @@
   },
   "components/cosmo/tabs/ProductionTab.tsx": {
    "dataModules": [
+    "lib/data/cosmo-monthly-report.ts",
+    "lib/data/cosmo-quality-report.ts",
     "lib/data/cosmo.ts"
    ],
    "dataFiles": [
