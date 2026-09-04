@@ -7,7 +7,7 @@ import {
   exportMeta, totals, concentration, byMarket, byBuyer, byInvoiceParty,
   bySpecGroup, byMedia, marketSpecCross, specGroups, buyerBand,
   pricePosition, pricePositionMaterial, repricingUpside, ghanaShare, aggregateShare, ghanaTrend,
-  competitors, benchYear, partialYear, periodLabelKo, tradeMeta, exportChecks, exportCheckFail, ANNUALIZE, sillaShare,
+  competitors, benchYear, partialYear, priceBasis, shareBasis, ledgerMonths, periodLabelKo, tradeMeta, exportChecks, exportCheckFail, ANNUALIZE, sillaShare,
   exportYoY, exportSources,
 } from '@/lib/data/cosmo-market'
 
@@ -93,7 +93,10 @@ export default function Market() {
       <div className="grid g2">
         <Card
           title="단가 포지션 - COSMO vs 시장 평균 vs 가나 평균"
-          sub={`kg당 실현 단가. 시장 평균은 ${benchYear}년 해당국 HS 160414 수입 총액 ÷ 총 물량.`}
+          sub={`kg당 실현 단가. 시장 평균은 ${priceBasis.period
+            ? `${priceBasis.year}년 ${periodLabelKo(priceBasis.period)}`
+            : `${benchYear}년`} 해당국 HS 160414 수입 총액 ÷ 총 물량 - `
+            + `원장과 같은 ${ledgerMonths}개월로 잘라 맞췄습니다.`}
           note={<>COSMO 평균 <b>{kg2(n(totals.usdPerKg))}</b>. 수입통계가 확보된 {pricePosition.length}개 시장 중
             <b> {above}곳만 시장 평균 이상</b>입니다. 주력 시장(매출 2% 이상) 가운데 최저는
             <b> {worst.market} {p1(worst.vsMarket)}</b>입니다
@@ -120,7 +123,8 @@ export default function Market() {
 
         <Card
           title="시장 평균 대비 격차"
-          sub="음(−)이면 시장 평균보다 싸게 팔고 있다는 뜻."
+          sub={`음(−)이면 시장 평균보다 싸게 팔고 있다는 뜻. 기준은 ${priceBasis.period
+            ? `${priceBasis.year}년 ${periodLabelKo(priceBasis.period)}` : `${benchYear}년 연간`}.`}
           note={<>모든 시장의 격차를 메워 시장 평균 단가까지 올렸다면 같은 물량에서
             <b> 약 {musd(repricingUpside.upsideUsd)}</b>(매출의 {pct(repricingUpside.ratio, 1)})를 더 받았을 계산입니다.
             <b>다만 이건 이론적 상한</b>입니다 - 판가를 올리면 물량이 그대로 유지되지 않고,
@@ -314,8 +318,10 @@ export default function Market() {
       <SecHead>전체 시장 대비 우리 자리</SecHead>
       <div className="grid g2">
         <Card
-          title={`가나 점유율 - ${benchYear}년`}
-          sub="해당국 참치캔 수입(HS 160414) 총액 중 가나發 비중. 무역통계 내부 값이라 신뢰도가 높다."
+          title={`가나 점유율 - ${shareBasis.period
+            ? `${shareBasis.year}년 ${periodLabelKo(shareBasis.period)}` : `${benchYear}년`}`}
+          sub={`해당국 참치캔 수입(HS 160414) 총액 중 가나發 비중. 무역통계 내부 값이라 신뢰도가 높다.`
+            + (shareBasis.period ? ` ${benchYear}년 연간과 나란히 놓았습니다 - 점유율은 기간 길이와 무관합니다.` : '')}
           note={<>가나는 {aggregateShare.markets}개 시장 수입 {musd(aggregateShare.marketUsd)} 중
             <b> {musd(aggregateShare.ghanaUsd)}({pct(aggregateShare.ghanaInMarket, 2)})</b>를 공급합니다.
             COSMO 연환산 실적({musd(aggregateShare.cosmoAnnualUsd)})을 대면 <b>가나 물량의 약
@@ -326,7 +332,10 @@ export default function Market() {
             <table>
               <thead>
                 <tr><th>시장</th><th className="n">시장 수입</th><th className="n">가나發</th>
-                  <th className="n">가나 점유(금액)</th><th className="n">가나 점유(물량)</th></tr>
+                  <th className="n">가나 점유(금액)</th>
+                  {shareBasis.period && <th className="n">{benchYear} 점유</th>}
+                  {shareBasis.period && <th className="n">증감</th>}
+                  <th className="n">가나 점유(물량)</th></tr>
               </thead>
               <tbody>
                 {ghanaShare.map((g) => (
@@ -335,6 +344,15 @@ export default function Market() {
                     <td className="n">{musd(g.marketValueUsd)}</td>
                     <td className="n">{musd(g.ghanaValueUsd)}</td>
                     <td className="n">{pct(g.shareValue, 2)}</td>
+                    {shareBasis.period && (
+                      <td className="n">{g.priorShareValue != null ? pct(g.priorShareValue, 2) : '-'}</td>
+                    )}
+                    {shareBasis.period && (
+                      <td className={`n ${g.shareValueDelta == null ? ''
+                        : g.shareValueDelta > 0 ? 'up' : g.shareValueDelta < 0 ? 'down' : ''}`}>
+                        {g.shareValueDelta == null ? '-' : pp(g.shareValueDelta)}
+                      </td>
+                    )}
                     <td className="n">{g.shareQty != null ? pct(g.shareQty, 2) : '-'}</td>
                   </tr>
                 ))}
@@ -345,7 +363,8 @@ export default function Market() {
 
         <Card
           title="가나 점유율 추이"
-          sub={`상위 ${trendMarkets.length}개 시장. 금액 기준.`}
+          sub={`상위 ${trendMarkets.length}개 시장. 금액 기준.`
+            + (partialYear ? ` 마지막 점은 ${partialYear.year}년 ${periodLabelKo(partialYear.period)} 부분 구간입니다.` : '')}
           note={<>우리 자리가 커지는지 줄어드는지를 보는 축입니다. 시장 규모가 커져도
             점유율이 내려가면 <b>성장하는 시장에서 밀리고 있다</b>는 뜻입니다.
             이 계열은 가나 전체이므로 COSMO 단독 추이와는 다를 수 있습니다.</>}
@@ -500,9 +519,10 @@ export default function Market() {
           <br />
           <b>② 연환산은 단순 배수</b>입니다. 1~5월 실적 × {ANNUALIZE.toFixed(1)}로, 계절성을 보정하지 않았습니다.
           <br />
-          <b>③ 시점이 서로 어긋납니다.</b> 수입통계는 기준연도 {benchYear}, 수출 원장은 <b>2026년 1~5월</b>에서
-          멈춰 있는데, 손익은 {latestMonth.month}월·운영 주간은 {latest.week}주차까지 와 있습니다.
-          이 보드의 단가·점유율은 5월까지의 이야기입니다.
+          <b>③ 단가는 시점을 맞췄고, 점유율은 한 달 더 갑니다.</b> 단가 비교는 수입통계를 원장과 같은
+          {' '}<b>{ledgerMonths}개월</b>로 잘라 맞췄습니다. 점유율은 기간 길이에 좌우되지 않아
+          {partialYear && <> <b>{partialYear.year}년 {periodLabelKo(partialYear.period)}</b></>}까지 씁니다.
+          손익은 {latestMonth.month}월·운영 주간은 {latest.week}주차라 그보다 앞서 있습니다.
           <br />
           <b>④ 단가 비교는 믹스 차이를 포함</b>합니다. 우리 제품 구성(규격·사양)이 시장 평균 구성과 다르므로
           격차 전부가 가격 문제는 아닙니다.
