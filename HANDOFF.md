@@ -1,3 +1,12 @@
+> 🔧 **2026-09-04 15:40 KST — 전 대시보드 데이터 신선도 감사: 자동화 4개가 전부 죽어 있었다** [CC]:
+> - 사용자 요청으로 전 대시보드 신선도를 훑다가, **예약 워크플로 6개 중 4개가 계속 실패 중**인 것을 발견했다. 화면은 멀쩡해 보이지만 데이터가 안 들어오고 있었다.
+> - **Korea Consignment Data Sync** — 6시간마다 실패(최소 9/2~9/3 전량). `scripts/sync_consignment_data.ts:18` 의 `from '../app/api/_shared/env'` 에 확장자가 없어 Node ESM 이 못 찾는다. 같은 파일 16·17행은 이미 `.ts` 를 달고 있어 그 한 줄만 빠진 것. **로컬에서도 동일 재현**됐고, `.ts` 를 붙이니 모듈 해석이 통과해 이제 env 미설정 단계까지 진행한다(러너에는 secret 이 있다).
+> - **Shrimp External Intelligence Scraper · Thai MOC HS Code 전수 조사** — 매월 1일 실패, **6·7·8·9월 4회 연속**. 둘 다 `Set up Python` 단계에서 죽는데 원인은 `cache: pip` 다: 저장소에 `requirements.txt`·`pyproject.toml` 이 없어 `##[error]No file ... matched to [**/requirements.txt or **/pyproject.toml]`. 캐시 지정을 뺐다.
+> - **Carrot Intelligence Hyper-Pipeline Sync** — 매일 실패. **사용자 지시로 스케줄을 껐다**(수동 트리거는 유지). 커밋 단계의 `git add data/당근/carrot_*.json` 도 같은 gitignore 아래라, 스크립트가 있었어도 올라갈 것이 없었다. 재가동 조건은 워크플로 주석에 적어 뒀다 — 수집기를 `scripts/` 로, 산출물을 `public/data/agri/` 로 옮긴 뒤 schedule 주석 해제. `data/당근/carrot_real_data_collector.py` 를 호출하는데 **`/data/` 가 gitignore 라 러너에 파일이 없다**(`.gitignore:53`). 그 스크립트는 worktree·다른 체크아웃·git 이력 어디에도 없다 — **CI 에서 한 번도 성공한 적이 없는 워크플로**다. 파일을 복원할 수 없어 고치지 못했다. 사용자 결정 필요: 수집기를 `scripts/` 로 커밋하거나, 매일 실패만 쌓는 스케줄을 끄거나.
+> - 감사 방법: `TelemetryBadge syncDate` 를 전 컴포넌트에서 추출(배지 보유 115파일, 90일 초과 107개)한 뒤, 되받을 출처가 있는 것만 추렸다. 파일 mtime 이나 JSON 안의 연도 문자열은 **예측연도를 날짜로 오독**해 못 쓴다(2073년·2099년 등 음수 경과일이 나왔다).
+> - 실측한 출처 신선도: **USDA FAS ESR 라이브 2026-08-27 까지**(정적 위젯은 2026-05-30 GAIN 보고서 파생이라 성격이 다름) · Eurostat COMEXT 2026-06 · HMRC OTS 2026-06 · ECB 당일.
+> - `npm run verify` 통과: Vitest 1284/1284(169 파일) · ESLint 0 errors.
+
 > 🌍 **2026-09-04 14:10 KST — `/cosmo` 시장 보드 2026 상반기 전환 + 월간 데이터셋 감사 자동화 (로컬 완료)** [CC]:
 > - **2026 상반기는 이제 확보된다.** 라이브 확인 결과 Eurostat COMEXT·HMRC OTS **둘 다 2026-06 까지** 발행했다. 직전 스냅샷이 EU 1~4월에서 멎어 있던 건 수집일(8/14)과 COMEXT 발행시각(8/14 11:00 CEST)이 겹쳐 앞질러 간 탓으로 보인다.
 > - 신규 `scripts/sync_trade_stats.py` — Eurostat(EU 8개국)·HMRC(영국)·ECB(환율)를 직접 받아 `trade_stats.json` 을 다시 쓴다. `--probe` 는 각 출처의 최신 발행월만 보고한다. **두 출처의 공통 최신월까지만 «완결 구간»으로 자르고 한쪽에만 있는 달은 버린다** — 보간 없음.
