@@ -3,7 +3,7 @@
   "entry": "app/page.tsx",
   "files": 211,
   "widgets": 110,
-  "dataFiles": 88,
+  "dataFiles": 90,
   "generator": "scripts/widget_lineage.py"
  },
  "widgetToData": {
@@ -588,6 +588,7 @@
     "public/data/companies/fcf_tables_v1.json",
     "public/data/companies/fcf_v1.json",
     "public/data/companies/frabelle_prose_v1.json",
+    "public/data/companies/frabelle_tables_v1.json",
     "public/data/companies/frabelle_v1.json",
     "public/data/companies/frinsa_prose_v1.json",
     "public/data/companies/frinsa_tables_v1.json",
@@ -599,6 +600,7 @@
     "public/data/companies/jais_tables_v1.json",
     "public/data/companies/jais_v1.json",
     "public/data/companies/jealsa_prose_v1.json",
+    "public/data/companies/jealsa_tables_v1.json",
     "public/data/companies/jealsa_v1.json",
     "public/data/companies/thaiunion_prose_v1.json",
     "public/data/companies/thaiunion_skus_v1.json",
@@ -1057,6 +1059,9 @@
   "public/data/companies/frabelle_prose_v1.json": [
    "components/market-understanding/CompanyAnatomyDashboard.tsx"
   ],
+  "public/data/companies/frabelle_tables_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
   "public/data/companies/frabelle_v1.json": [
    "components/market-understanding/CompanyAnatomyDashboard.tsx"
   ],
@@ -1089,6 +1094,9 @@
    "components/market-understanding/CompanyAnatomyDashboard.tsx"
   ],
   "public/data/companies/jealsa_prose_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/jealsa_tables_v1.json": [
    "components/market-understanding/CompanyAnatomyDashboard.tsx"
   ],
   "public/data/companies/jealsa_v1.json": [
