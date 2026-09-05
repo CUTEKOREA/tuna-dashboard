@@ -82,14 +82,16 @@ describe('FCF 인테이크', () => {
     expect(fcfProfile.some(([, v]) => v.includes('발행정지'))).toBe(true);
   });
 
-  it('서술은 6단계이고 브리핑이 실재 단계를 가리킨다', () => {
-    expect(FCF_NARRATIVES).toHaveLength(6);
+  it('서술 단계가 비어 있지 않고 브리핑이 실재 단계를 가리킨다', () => {
+    // 단계 수를 리터럴로 적지 않는다. 절이 늘면 조용히 깨지는 대신 인테이크를 따라간다.
+    expect(FCF_NARRATIVES.length).toBeGreaterThanOrEqual(6);
     const keys = new Set(FCF_NARRATIVES.map((s) => s.key));
     for (const b of FCF_BRIEFING) expect(keys.has(b.stage)).toBe(true);
   });
 
-  it('한국 관점 단계가 마지막이다', () => {
-    const last = FCF_NARRATIVES[FCF_NARRATIVES.length - 1];
-    expect(last.title).toContain('한국');
+  it('한국 관점 단계가 본문 절 가운데 마지막이다', () => {
+    // 정정 이력 절은 본문 뒤에 붙는 부록이라 마지막 자리를 가져간다.
+    const body = FCF_NARRATIVES.filter((n) => !n.title.includes('정정 이력'));
+    expect(body[body.length - 1].title).toContain('한국');
   });
 });

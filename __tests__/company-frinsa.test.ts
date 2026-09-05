@@ -27,6 +27,7 @@ import {
   tunaPurchasedMt,
 } from '@/lib/data/company-frinsa';
 import { proseBriefing, proseStages } from '@/lib/company-prose-stages';
+import { tablesForStage } from '@/lib/data/company-report-tables';
 
 // 서술은 조사보고서에서 그대로 읽어 온다. 손으로 쓴 상수는 더 없다.
 const FRINSA_NARRATIVES = proseStages('frinsa');
@@ -46,9 +47,13 @@ const SLOT_TITLES: Record<string, string[]> = {
 
 describe('Frinsa 서술과 차트의 연결', () => {
 
-  it('모든 단계에 차트가 하나 이상 있다', () => {
+  it('모든 단계에 차트나 보고서 표가 하나 이상 있다', () => {
+    // 보고서 표는 이제 서술 흐름(flow) 안에 원문 자리로 들어간다.
+    // 손으로 고른 차트가 없는 단계라도 표가 있으면 근거가 비지 않는다.
     for (const n of FRINSA_NARRATIVES) {
-      expect(SLOT_TITLES[n.key]?.length ?? 0, `${n.key}`).toBeGreaterThan(0);
+      const curated = SLOT_TITLES[n.key]?.length ?? 0;
+      const tables = tablesForStage('frinsa', n.key).length;
+      expect(curated + tables, `${n.key}`).toBeGreaterThan(0);
     }
   });
 

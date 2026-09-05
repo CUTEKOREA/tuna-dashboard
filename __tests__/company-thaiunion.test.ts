@@ -31,6 +31,7 @@ import {
   tunaCapacityMt,
 } from '@/lib/data/company-thaiunion';
 import { proseBriefing, proseStages } from '@/lib/company-prose-stages';
+import { tablesForStage } from '@/lib/data/company-report-tables';
 
 // 서술은 조사보고서에서 그대로 읽어 온다. 손으로 쓴 상수는 더 없다.
 const THAIUNION_NARRATIVES = proseStages('thaiunion');
@@ -49,9 +50,12 @@ const SLOT_TITLES: Record<string, string[]> = {
 
 describe('Thai Union 서술과 차트의 연결', () => {
 
-  it('모든 단계에 차트가 하나 이상 있다', () => {
+  it('모든 단계에 차트나 보고서 표가 하나 이상 있다', () => {
+    // 보고서 표는 이제 서술 흐름(flow) 안에 원문 자리로 들어간다.
     for (const n of THAIUNION_NARRATIVES) {
-      expect(SLOT_TITLES[n.key]?.length ?? 0, `${n.key}`).toBeGreaterThan(0);
+      const curated = SLOT_TITLES[n.key]?.length ?? 0;
+      const tables = tablesForStage('thaiunion', n.key).length;
+      expect(curated + tables, `${n.key}`).toBeGreaterThan(0);
     }
   });
 

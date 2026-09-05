@@ -337,6 +337,7 @@ figure.chart figcaption b{color:var(--ink)}
     <li><a href="#s8"><span class="n">09</span> 종합 평가</a></li>
     <li><a href="#sa"><span class="n">A</span> 자료의 한계</a></li>
     <li><a href="#sb"><span class="n">B</span> 자료 출처</a></li>
+    <li><a href="#scorr"><span class="n">07</span> 정정 이력</a></li>
   </ol>
 </nav>
 
@@ -740,6 +741,35 @@ figure.chart figcaption b{color:var(--ink)}
   <p><b>표기 원칙.</b> 법인명은 「JAIS S.R.L.(구 JAIS S.p.A.)」로 통일한다. 인증·명부 인용에는 판 날짜를 병기한다. 같은 기관이 판마다 다른 값을 싣기 때문이다. 상용 무역 데이터베이스 집계는 수치로 채택하지 않고, 인용할 때는 소스와 기준을 함께 적는다.</p>
   <p style="margin-top:1rem;font-family:var(--mono);font-size:.72rem;letter-spacing:.04em">기업 심층조사 · JAIS S.R.L.(Milano) · 작성 이동건 · 2026년 8월</p>
 </footer>
+
+<section id="scorr">
+  <h2><span class="h2n">07 / 정정 이력</span>2026-09-05 · 반증 검토가 채운 자리</h2>
+  <p class="lead">별도 검증(작성자≠검증자)이 아래를 깼다. 가장 잦은 유형은 「숫자가 틀렸다」가 아니라
+    <strong>「범위·출처·단위를 넓게 적었다」</strong>이다. 본문은 이미 고쳤고 무엇이 어떻게 바뀌었는지를 남긴다.</p>
+  <h3>고치기 전과 고친 뒤</h3>
+  <div class="tw"><table>
+    <thead><tr><th>#</th><th>고치기 전</th><th>고친 뒤</th><th>근거</th></tr></thead>
+    <tbody>
+      <tr class="hl"><td>1</td><td>2018~2023 매년 목록에 있다가 2023-04 에 사라졌다</td><td><b>회수됐고, 곡선이 보인다.</b> 2018-10-10 <b>43행</b> → 2019-06-04 43 → 2020-03-25 41 → 2022-12-05 32 → 2023-04-22 <b>12</b> → 2023-11-24 <b>0</b>, 이후 2025-12-19 까지 0. 한 번의 삭제가 아니라 <b>3년에 걸친 감소</b>이고 마지막 7개월 사이에 0이 됐다. 2021년판은 아카이브에 없다</td><td>FoS 승인 선박목록 전 판본</td></tr>
+      <tr><td>2</td><td>종업원 8명</td><td><b>확정 불가.</b> 같은 상업등기를 출처로 내걸고 7명과 8명이 동시에 나오며(<code>aziende.it</code> 7 · <code>fatturatoaziende</code> 8) 다른 집계는 6~9 범위로 적는다. 예치 bilancio 원문은 유료다</td><td>집계사 4곳 2026-09-05</td></tr>
+      <tr class="hl"><td>3</td><td>통합 레지스트리 2026-09-03 생성 · 1,191행</td><td><b>2026-09-04 생성 · 1,194행</b>이다. 그 파일에 FCF·Panofi·Intertonno·Zarotti 는 Active 로 있고 JAIS 만 없다 — 죽은 파일이 아니다</td><td>FOS 통합 PDF</td></tr>
+      <tr><td>4</td><td>최근 1년 113건 · $10.29M</td><td><b>창(window)에 딸린 값</b>이다. 같은 벤더 계열을 2026-09-05 에 2025-07~2026-06 창으로 조회하면 <b>129건 · $18.12M · 에콰도르 81%</b> 가 나오고, 또 다른 벤더는 누적 <b>405건</b>을 센다. 284건을 전수로 읽으면 깨진다</td><td>Volza · Market Inside · 52wmb</td></tr>
+      <tr class="hl"><td>5</td><td>Olimar 771건</td><td><b>unverified.</b> 유료 페이지 노트에만 있고 재열람에 실패했다. 상표 SURO 와 자사 도메인 <code>jais-suro.it</code> 의 일치까지가 확인되는 전부다</td><td>ImportGenius 유료</td></tr>
+      <tr><td>6</td><td>보건부 명단 0건</td><td>덤프(2026-04-24 수신, 46,937행) 기준으로는 맞고 <b>대조군도 걸린다</b> — 같은 파일에서 밀라노 316행, Nordfish·Callipo·Bolton·Intertonno·Mareblu 가 모두 잡힌다. 다만 2026-09-04 갱신본은 사이트 차단으로 재확인하지 못했다</td><td>MinSalute STAB_POA 덤프</td></tr>
+    </tbody>
+  </table></div>
+  <p>이 표의 대부분은 숫자를 잘못 옮긴 것이 아니라 <b>범위를 넓게 적은 것</b>이다. 회사 진술을
+    등록부 사실로, 경쟁사 신고서를 제3자 심사로, 특정 창(window)의 스냅샷을 전수로, 능력을 실적으로
+    올린 자리들이다. 그 넷이 이 검토에서 가장 자주 깨진 유형이다.
+    <span class="chip c-doc">원본</span></p>
+  <p>검증은 작성자와 분리해 돌렸다. 같은 사람이 다시 읽으면 자기가 넓게 적은 자리를 넓다고 보지 못한다.
+    깨지지 않은 항목은 여기 남기지 않았다 — 남긴 것은 <b>바뀐 것</b>뿐이다.
+    <span class="chip c-doc">원본</span></p>
+  <p>깨지지 않은 것도 있다. 반증에 걸리지 않은 항목은 그만큼 단단해졌다고 읽어도 된다 —
+    다만 「반증하지 못했다」와 「확인했다」는 다르고, 유료벽 뒤 원문이 남아 있는 칸은 여전히
+    <b>미확인</b>이다. 그 구분을 지우면 이 표의 의미가 사라진다.
+    <span class="chip c-nd">미공개</span></p>
+</section>
 
 </main>
 </div>

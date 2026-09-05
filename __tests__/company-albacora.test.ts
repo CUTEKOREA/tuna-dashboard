@@ -117,10 +117,11 @@ describe('Albacora 인테이크', () => {
 });
 
 describe('Albacora 서술', () => {
-  it('7단계가 c01~c07 로 이어진다', () => {
-    expect(ALBACORA_NARRATIVES.map((n) => n.key)).toEqual([
-      'c01', 'c02', 'c03', 'c04', 'c05', 'c06', 'c07',
-    ]);
+  it('단계 키가 c01 부터 빠짐없이 이어진다', () => {
+    // 절이 늘어도 깨지지 않게, 개수가 아니라 연속성을 본다.
+    const keys = ALBACORA_NARRATIVES.map((n) => n.key);
+    expect(keys.length).toBeGreaterThanOrEqual(7);
+    keys.forEach((k, i) => expect(k).toBe(`c${String(i + 1).padStart(2, '0')}`));
   });
 
   it('모든 단계가 질문·리드·본문을 갖춘다', () => {
