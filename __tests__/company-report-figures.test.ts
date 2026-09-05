@@ -23,10 +23,10 @@ describe('인테이크 구성', () => {
     expect(REPORT_FIGURE_COMPANIES.sort()).toEqual([...REPORT_TABLE_COMPANIES].sort());
   });
 
-  it('그림 59장을 밑돌지 않는다', () => {
-    // 커버리지가 조용히 줄어드는 것을 막는 하한선이다. 현재 팩샷 54 · 차트 4 · 문서 1.
+  it('그림 88장을 밑돌지 않는다', () => {
+    // 커버리지가 조용히 줄어드는 것을 막는 하한선이다. 현재 팩샷 70 · 차트 17 · 문서 1.
     const n = REPORT_FIGURE_COMPANIES.reduce((a, c) => a + reportFigures(c).length, 0);
-    expect(n).toBeGreaterThanOrEqual(59);
+    expect(n).toBeGreaterThanOrEqual(88);
   });
 
   it.each(그림있는회사)('%s - 그림이 있다', (c) => {
@@ -82,12 +82,28 @@ describe('차트는 인라인 SVG 로 남는다', () => {
     }
   });
 
+  it('편마다 차트가 하나는 있다', () => {
+    // 넷은 차트가 아예 없었다 — 표만 있는 편은 읽는 사람이 규모를 눈으로 못 잡는다.
+    for (const c of REPORT_FIGURE_COMPANIES) {
+      const n = reportFigures(c).filter((x) => x.kind === 'chart').length;
+      expect(n, `${c} 차트 0`).toBeGreaterThan(0);
+    }
+  });
+
   it('차트 규칙이 참조하는 색 변수를 함께 싣는다', () => {
     // var(--x) 를 쓰는데 그 값이 없으면 대시보드에서 투명하게 그려진다.
+    // 편마다 다른 강조색은 :scope 가 아니라 <svg style="--rc-b:…"> 로 실려 오므로
+    // 규칙에 없으면 그림 자체에 있는지까지 본다 — 둘 다 없으면 투명해진다.
     for (const c of REPORT_FIGURE_COMPANIES) {
       for (const f of reportFigures(c).filter((x) => x.kind === 'chart')) {
         const vars = new Set([...(f.css ?? '').matchAll(/var\(\s*(--[a-z0-9-]+)/g)].map((m) => m[1]));
-        for (const v of vars) expect(f.css, `${c} ${f.sid} ${v} 미정의`).toContain(`${v}:`);
+        for (const v of vars) {
+          const where = `${v}:`;
+          expect(
+            (f.css ?? '').includes(where) || (f.svg ?? '').includes(where),
+            `${c} ${f.sid} ${v} 미정의`,
+          ).toBe(true);
+        }
       }
     }
   });

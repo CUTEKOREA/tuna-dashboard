@@ -54,6 +54,15 @@
    "src": "/data/companies/figures/thaiunion/90c2dad82d3d.jpg"
   },
   {
+   "stage": "c03",
+   "sid": "s3",
+   "kind": "chart",
+   "caption": "2010년 한 건이 네 브랜드를 한꺼번에 데려왔다 — MW Brands 인수로 John West·Petit Navire·Parmentier·Mareblu가 함께 들어왔다. 노르웨이의 King Oscar는 그 뒤 2014년, 독일 두 건은 2016·2021년이다. 「2010년 한 해에 유럽을 샀다」는 요약은 이 분포를 뭉갠다.",
+   "alt": "",
+   "svg": "<svg viewBox=\"0 0 620 150\" role=\"img\" aria-label=\"인수 건별 브랜드 수 — 2010년 MW Brands 한 건이 4개\" style=\"--rc-b:#1B3A5C;--rc-h:#A9762E\"><line class=\"rc-g\" x1=\"251.8\" y1=\"16\" x2=\"251.8\" y2=\"120\"/><text class=\"rc-l\" x=\"251.8\" y=\"133\" text-anchor=\"middle\">1</text><line class=\"rc-g\" x1=\"353.6\" y1=\"16\" x2=\"353.6\" y2=\"120\"/><text class=\"rc-l\" x=\"353.6\" y=\"133\" text-anchor=\"middle\">2</text><line class=\"rc-g\" x1=\"455.4\" y1=\"16\" x2=\"455.4\" y2=\"120\"/><text class=\"rc-l\" x=\"455.4\" y=\"133\" text-anchor=\"middle\">3</text><line class=\"rc-g\" x1=\"557.1\" y1=\"16\" x2=\"557.1\" y2=\"120\"/><text class=\"rc-l\" x=\"557.1\" y=\"133\" text-anchor=\"middle\">4</text><rect class=\"rc-b\" x=\"150\" y=\"23.0\" width=\"101.8\" height=\"12\" rx=\"1\"/><text class=\"rc-l\" x=\"144\" y=\"32.0\" text-anchor=\"end\">1997 Chicken of the Sea</text><text class=\"rc-v\" x=\"256.8\" y=\"32.0\">1</text><rect class=\"rc-b hot\" x=\"150\" y=\"49.0\" width=\"407.1\" height=\"12\" rx=\"1\"/><text class=\"rc-l\" x=\"144\" y=\"58.0\" text-anchor=\"end\">2010 MW Brands 4개</text><text class=\"rc-v\" x=\"562.1\" y=\"58.0\">4</text><rect class=\"rc-b\" x=\"150\" y=\"75.0\" width=\"101.8\" height=\"12\" rx=\"1\"/><text class=\"rc-l\" x=\"144\" y=\"84.0\" text-anchor=\"end\">2014 King Oscar</text><text class=\"rc-v\" x=\"256.8\" y=\"84.0\">1</text><rect class=\"rc-b\" x=\"150\" y=\"101.0\" width=\"203.6\" height=\"12\" rx=\"1\"/><text class=\"rc-l\" x=\"144\" y=\"110.0\" text-anchor=\"end\">2016·2021 독일 2개</text><text class=\"rc-v\" x=\"358.6\" y=\"110.0\">2</text><text class=\"rc-n\" x=\"150\" y=\"144\">한 거래로 들어온 브랜드 수</text></svg>",
+   "css": ":scope{--brass:#A9762E;--ink:#14181B;--ink-2:#3F484E;--ink-3:#6B757B;--mono:'JetBrains Mono',ui-monospace,SFMono-Regular,Menlo,monospace;--rule:#D5D9D2;--rule-2:#BFC5BC;--sans:'Noto Sans KR',system-ui,-apple-system,'Malgun Gothic',sans-serif}.call.hot{border-left:3px solid var(--brass)}.metric.hot .val{color:var(--brass)}.rc-g{stroke:var(--rule);stroke-width:.6}.rc-l{fill:var(--ink-3);font-family:var(--mono);font-size:8px;letter-spacing:.04em}.rc-v{fill:var(--ink);font-family:var(--mono);font-size:8.5px;font-weight:600}.rc-b{fill:var(--rc-b,#3a6ea5)}.rc-b.hot{fill:var(--rc-h,#b8860b)}.rc-b.mut{fill:var(--rule-2)}.rc-n{fill:var(--ink-2);font-family:var(--sans);font-size:8px}"
+  },
+  {
    "stage": "c04",
    "sid": "s4",
    "kind": "shot",
@@ -81,7 +90,7 @@
    "stage": "c04",
    "sid": "s4",
    "kind": "shot",
-   "caption": "No Drain Fridge Pot : 냉장 보관형 참치 스테이크. 캔을 벗어난 첫 형태 혁신으로, 프린사 SOLO와 같은 '간편 단백질' 문법이다",
+   "caption": "No Drain Fridge Pot: 냉장 보관형 참치 스테이크. 캔을 벗어난 첫 형태 혁신으로, 프린사 SOLO와 같은 '간편 단백질' 문법이다",
    "alt": "John West No Drain Fridge Pot",
    "src": "/data/companies/figures/thaiunion/b7dde76a63c9.jpg"
   },
@@ -89,7 +98,7 @@
    "stage": "c04",
    "sid": "s4",
    "kind": "shot",
-   "caption": "Chicken of the Sea 조미 파우치 (Chili Lime · 2.5 oz): 미국 라인의 성장 축. Frank's RedHot&reg;·OLD BAY&reg; 콜라보 , Ghost Pepper까지",
+   "caption": "Chicken of the Sea 조미 파우치 (Chili Lime · 2.5 oz): 미국 라인의 성장 축. Frank's RedHot&reg;·OLD BAY&reg; 콜라보, Ghost Pepper까지",
    "alt": "Chicken of the Sea Chili Lime Tuna Packet",
    "src": "/data/companies/figures/thaiunion/a0b6a1243262.jpg"
   }

@@ -30,12 +30,13 @@
     "check:fleet-client-leak": "node scripts/check_fleet_client_leak.mjs",
     "check:fleet-client-leak:ci": "node scripts/check_fleet_client_leak.mjs --allow-synthetic",
     "check:bundle": "node scripts/check_route_bundle_budget.mjs",
-    "verify": "npm run lint && npm run typecheck && npm run test:daily-operator && npm run test:fleet-daily-sync && npm run test:weekly-data-sync && npm run test:singapore-mgo-sync && npm test && npm run check:api-cache && npm run build && npm run check:fleet-client-leak:ci && npm run check:bundle",
+    "verify": "npm run lint && npm run typecheck && npm run test:daily-operator && npm run test:fleet-daily-sync && npm run test:weekly-data-sync && npm run test:singapore-mgo-sync && npm test && npm run check:api-cache && npm run build && npm run check:fleet-client-leak:ci && npm run check:bundle && npm run check:report-tables",
     "mackerel": "python3 scripts/mackerel/build.py && python3 scripts/mackerel/validate_provenance.py",
     "mackerel:test": "python3 scripts/mackerel/test_build.py",
     "mackerel:ledger": "python3 scripts/mackerel/build_ledger.py && python3 scripts/mackerel/validate_consolidation.py",
     "mackerel:score": "python3 scripts/mackerel/score_4axis.py",
-    "check:enrich": "python3 scripts/tests/check_enrich_verbatim.py"
+    "check:enrich": "python3 scripts/tests/check_enrich_verbatim.py",
+    "check:report-tables": "python3 scripts/check_report_tables.py"
   },
   "dependencies": {
     "@chenglou/pretext": "^0.0.5",

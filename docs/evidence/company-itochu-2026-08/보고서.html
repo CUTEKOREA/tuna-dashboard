@@ -175,6 +175,21 @@ footer code{font-family:var(--mono);font-size:.75rem}
   display:inline-block;transform:translateY(.03em)}
 
 .chip.c-est{background:transparent;color:var(--ink-3);box-shadow:inset 0 0 0 1px currentColor;opacity:.9}
+
+/* 차트 — 인라인 SVG. 색은 그림마다 style 로 실려 온다 */
+figure.chart{margin:0 0 1.6rem;border:1px solid var(--rule);background:var(--card);break-inside:avoid}
+figure.chart .fi{background:var(--paper-2);padding:1.05rem .8rem;display:block}
+figure.chart svg{width:100%;height:auto;display:block}
+figure.chart figcaption{display:block;margin:0;max-width:none;font-size:.78rem;line-height:1.62;color:var(--ink-2);padding:.62rem .85rem;border-top:1px solid var(--rule)}
+figure.chart figcaption b{color:var(--ink)}
+.rc-g{stroke:var(--rule);stroke-width:.6}
+.rc-a{stroke:var(--rule-2);stroke-width:.8}
+.rc-l{fill:var(--ink-3);font-family:var(--mono);font-size:8px;letter-spacing:.04em}
+.rc-v{fill:var(--ink);font-family:var(--mono);font-size:8.5px;font-weight:600}
+.rc-b{fill:var(--rc-b,#3a6ea5)}
+.rc-b.hot{fill:var(--rc-h,#b8860b)}
+.rc-b.mut{fill:var(--rule-2)}
+.rc-n{fill:var(--ink-2);font-family:var(--sans);font-size:8px}
 </style>
 
 <header class="cover">
@@ -226,8 +241,9 @@ footer code{font-family:var(--mono);font-size:.75rem}
     <li><a href="#s5"><span class="n">05</span> 원료 트레이딩</a></li>
     <li><a href="#s6"><span class="n">06</span> 대만</a></li>
     <li><a href="#s7"><span class="n">07</span> 재무</a></li>
-    <li><a href="#s8"><span class="n">08</span> 리스크</a></li>
-    <li><a href="#s9"><span class="n">09</span> 한국 관점</a></li>
+    <li><a href="#s7b"><span class="n">08</span> 부채와 담보</a></li>
+    <li><a href="#s8"><span class="n">09</span> 리스크</a></li>
+    <li><a href="#s9"><span class="n">10</span> 한국 관점</a></li>
   </ol>
 </nav>
 <main>
@@ -421,7 +437,10 @@ footer code{font-family:var(--mono);font-size:.75rem}
   </div>
 
   <h3>SI WCPO 어업 (MSC-F-31555): 6척, 전부 한국 선적</h3>
-  <div class="tw"><table>
+  <figure class="chart"><div class="fi"><svg viewBox="0 0 620 176" role="img" aria-label="기국별 척수 — 대만 12, 한국 6, 키리바시 3, 투발루 2, 바누아투 2" style="--rc-b:#1F3A5F;--rc-h:#A8243A"><line class="rc-g" x1="319.6" y1="16" x2="319.6" y2="146"/><text class="rc-l" x="319.6" y="159" text-anchor="middle">5</text><line class="rc-g" x1="489.3" y1="16" x2="489.3" y2="146"/><text class="rc-l" x="489.3" y="159" text-anchor="middle">10</text><rect class="rc-b" x="150" y="23.0" width="407.1" height="12" rx="1"/><text class="rc-l" x="144" y="32.0" text-anchor="end">대만</text><text class="rc-v" x="562.1" y="32.0">12</text><rect class="rc-b hot" x="150" y="49.0" width="203.6" height="12" rx="1"/><text class="rc-l" x="144" y="58.0" text-anchor="end">한국</text><text class="rc-v" x="358.6" y="58.0">6</text><rect class="rc-b hot" x="150" y="75.0" width="101.8" height="12" rx="1"/><text class="rc-l" x="144" y="84.0" text-anchor="end">키리바시</text><text class="rc-v" x="256.8" y="84.0">3</text><rect class="rc-b" x="150" y="101.0" width="67.9" height="12" rx="1"/><text class="rc-l" x="144" y="110.0" text-anchor="end">투발루</text><text class="rc-v" x="222.9" y="110.0">2</text><rect class="rc-b hot" x="150" y="127.0" width="67.9" height="12" rx="1"/><text class="rc-l" x="144" y="136.0" text-anchor="end">바누아투</text><text class="rc-v" x="222.9" y="136.0">2</text><text class="rc-n" x="150" y="170">ITOCHU 인증 선단 25척의 기국 구성 (척)</text></svg></div>
+  <figcaption>배를 한 척도 갖지 않은 회사의 인증 선단이다. 짙은 색으로 표시한 <b>사조 계열 11척(44%)</b>은 한국 6, 키리바시 3, 바누아투 2로 흩어져 있다. 선단 명단을 열자 절반이 한 그룹이었다.</figcaption></figure>
+  <div class="tw">
+    <table>
     <caption>Vessel List 원문, 2022-07-07 최종갱신 · 주 양륙항 전부 Tarawa(키리바시) <span class="chip c-doc">원본</span></caption>
     <thead><tr><th class="num">#</th><th>선명</th><th>선사</th><th>기국</th><th class="num">IMO</th><th class="num">GRT</th></tr></thead>
     <tbody>
@@ -589,7 +608,7 @@ footer code{font-family:var(--mono);font-size:.75rem}
     <p><b>Greenpeace 'Misery at Sea'(2018-05)</b> 각주 21이 FCF/FCN의 일본 공급처로 <b>ITOCHU Corporation을 실명 지목</b>했다.
       <b>HRN+TAHR 'Silenced Voices'(2025-10)</b>는 대만 원양 연승선 You Fu·Yu Shun No.668 선원 증언을 근거로 일본 수산 19사에 앙케트를 돌렸고 ITOCHU는 응답한 7사 중 하나다.</p>
     <p>다만 2025년 보고서의 <b>거래관계 진술은 신규 조사결과가 아니다.</b> <span class="es">"Past investigations—most notably a <b>2019 Greenpeace supply chain analysis</b>—suggested that FCN and its parent, FCF, supplied tuna to several major Japanese companies…"</span>
-      즉 원 근거는 그린피스 분석 하나다. 2025년 보고서가 독자 확보한 것은 선원 증언과 기업 앙케트 응답이다.</p>
+      즉 원 근거는 그린피스 분석 하나다. 2025년 보고서가 새로 더한 것은 선원 증언과 기업 앙케트 응답이다.</p>
   </div>
 </section>
 
@@ -775,8 +794,104 @@ footer code{font-family:var(--mono);font-size:.75rem}
 
 </section>
 
+<section id="s7b">
+  <h2><span class="h2n">08 / 부채와 담보</span>담보로 잡힌 자산이 3,106억엔이다</h2>
+
+  <p class="lead">앞 절이 「세그먼트 아래로는 숫자가 없다」로 끝났는데, 그룹 단위로 올라가면 반대가 된다.
+    <strong>순유이자부채 30,243억엔</strong>, 담보로 내준 자산 <strong>3,106억엔</strong>,
+    금융보증 실보증액 <strong>1,119억엔</strong>이 모두 표로 나온다.
+    이 시리즈에서 이만큼 촘촘한 것은 이 회사와 Thai Union 둘뿐이고, 나머지 일곱은 순부채가 유료벽 뒤에 있다.</p>
+
+  <div class="metrics">
+    <div class="metric"><div class="lab">유이자부채 계</div><div class="val">36,727억엔</div><div class="note">2026년 3월기 연결</div></div>
+    <div class="metric hot"><div class="lab">순유이자부채</div><div class="val">30,243억엔</div><div class="note">NET DER 0.51 → 0.46배</div></div>
+    <div class="metric"><div class="lab">담보 제공 자산</div><div class="val">3,106억엔</div><div class="note">피담보채무 1,717억엔</div></div>
+    <div class="metric hot"><div class="lab">유가증권보고서의 「鮪」</div><div class="val">1회</div><div class="note">본문 695,841자(공백 포함) 중</div></div>
+  </div>
+
+  <h3>부채는 한 표에 다 있다</h3>
+
+  <div class="tw"><table>
+    <thead><tr><th>구분</th><th class="num">전기말</th><th class="num">당기말</th><th class="num">증감</th></tr></thead>
+    <tbody>
+      <tr><td>은행차입금 등 (단기)</td><td class="num">7,037</td><td class="num">6,560</td><td class="num">−478</td></tr>
+      <tr><td>기업어음</td><td class="num">410</td><td class="num">809</td><td class="num">+399</td></tr>
+      <tr><td>사채 (단기)</td><td class="num">824</td><td class="num">100</td><td class="num">−724</td></tr>
+      <tr><td><b>단기 계</b></td><td class="num">8,271</td><td class="num"><b>7,469</b></td><td class="num">−802</td></tr>
+      <tr><td>은행차입금 등 (장기)</td><td class="num">23,519</td><td class="num">23,692</td><td class="num">+173</td></tr>
+      <tr><td>사채 (장기)</td><td class="num">3,718</td><td class="num">5,567</td><td class="num">+1,849</td></tr>
+      <tr><td><b>장기 계</b></td><td class="num">27,236</td><td class="num"><b>29,258</b></td><td class="num">+2,022</td></tr>
+      <tr class="hl"><td><b>유이자부채 계</b></td><td class="num">35,508</td><td class="num"><b>36,727</b></td><td class="num">+1,219</td></tr>
+      <tr><td>현금및현금성자산·정기예금</td><td class="num">5,895</td><td class="num">6,484</td><td class="num">+590</td></tr>
+      <tr class="hl"><td><b>순유이자부채</b></td><td class="num">29,613</td><td class="num"><b>30,243</b></td><td class="num">+630</td></tr>
+      <tr class="dim"><td>NET DER · 장기유이자부채 비율</td><td class="num">0.51배 · 77%</td><td class="num">0.46배 · 80%</td><td class="num">개선 · +3pt</td></tr>
+    </tbody>
+  </table></div>
+
+  <p style="font-size:.86rem;color:var(--ink-3)">단위 억엔. 표의 열두 값은 원문 그대로다.
+    <b>반올림 잔차가 세 군데 있다</b> — 당기 장기 계는 개별항목 합이 29,259인데 표기가 29,258이고,
+    당기 총계는 개별항목 합이 36,728인데 표기가 36,727이다(소계끼리 더하면 7,469+29,258=36,727로 맞는다).
+    증감란도 잔고 뺄셈과 1억엔씩 다른 곳이 둘이다(−478은 −477, +590은 +589).
+    <b>전기 총계 35,508은 개별항목 합과 정확히 일치한다.</b> <span class="chip c-doc">유가증권보고서 제102기</span></p>
+
+  <h3>담보로 넘긴 자산과, 셀 수 없다고 적은 담보</h3>
+
+  <p>담보 주석은 제공한 자산을 항목별로 적는다. 당기말 합계 <b>3,106억엔</b>이고 그 대부분이
+    <b>투자·장기채권 2,365억엔</b>이다. 그 담보가 잡고 있는 채무는 <b>1,717억엔</b>이며
+    가장 큰 항목은 차입금이 아니라 <b>리스부채 1,205억엔</b>이다.</p>
+
+  <div class="tw"><table>
+    <thead><tr><th>담보로 제공한 자산</th><th class="num">전기말</th><th class="num">당기말</th><th>피담보채무</th><th class="num">당기말</th></tr></thead>
+    <tbody>
+      <tr class="hl"><td>투자 및 장기채권</td><td class="num">232,980</td><td class="num"><b>236,478</b></td><td>리스부채(단기·장기)</td><td class="num"><b>120,463</b></td></tr>
+      <tr><td>재고자산</td><td class="num">60,143</td><td class="num">53,452</td><td>영업채무 등</td><td class="num">48,110</td></tr>
+      <tr><td>영업채권 등</td><td class="num">8,428</td><td class="num">15,240</td><td>차입금(장기)</td><td class="num">2,244</td></tr>
+      <tr><td>유형고정자산 등</td><td class="num">5,641</td><td class="num">5,437</td><td>차입금(단기)</td><td class="num">859</td></tr>
+      <tr><td>현예금·정기예금</td><td class="num">26</td><td class="num">5</td><td></td><td class="num"></td></tr>
+      <tr class="hl"><td><b>합계</b></td><td class="num">307,218</td><td class="num"><b>310,612</b></td><td><b>합계</b></td><td class="num"><b>171,676</b></td></tr>
+    </tbody>
+  </table></div>
+
+  <p style="font-size:.86rem;color:var(--ink-3)">단위 백만엔. 양쪽 세로합 모두 표기와 일치한다.</p>
+
+  <div class="call warn">
+    <p class="ct">이 표 밖에 더 있는데 못 센다고 적었다</p>
+    <p>같은 주석이 표 아래에 단서를 단다. 수입 거래에서 어음 인수 은행에
+      <b>그 수입 상품이나 매출 대금을 담보로 넣는데</b>, 그 자산의 금액은
+      <b>「수입 거래량이 방대해 실무상 산정이 곤란」</b>하여 위 수치에 포함하지 않는다는 것이다.
+      차입 쪽 관행도 적혀 있다 — 대주가 요구하면 담보나 보증인을 세우고,
+      현재의 담보물이 <b>특정 차입에 대한 것인지를 묻지 않고</b> 현재와 장래의 모든 차입에 대한 담보로
+      대주가 취급할 수 있게 약정돼 있다.
+      비상장사들이 담보를 안 밝히는 것과, 이 회사가 <b>3,106억엔을 적고 나서 「나머지는 못 센다」고 덧붙이는 것</b>은 다르다.</p>
+  </div>
+
+  <h3>유동성 준비를 우발부채까지 얹어 잰다</h3>
+
+  <p>회사는 유동성을 「불측의 사태에도 대응할 수 있는가」로 설명하면서 분모를 크게 잡는다.
+    단기유이자부채 7,469억엔에 1년 내 만기 도래 장기분 4,338억엔과
+    <b>우발부채 1,119억엔</b>을 더해 <b>1조 2,927억엔</b>을 세우고,
+    그에 맞서는 준비를 현금·정기예금 6,484억엔 + 커밋먼트라인 미사용 9,328억엔 = <b>1조 5,813억엔</b>으로 낸다.
+    거기에 단기 현금화가 가능한 매각가능유가증권 등 9,036억엔이 더 있다고 덧붙인다.</p>
+
+  <p style="font-size:.86rem;color:var(--ink-3)">그 우발부채 1,119억엔의 정의는
+    <b>「관계회사·합작사·일반거래처에 대한 금융보증의 실보증액」</b>이다.
+    이 표에도 반올림 잔차가 있다 — 세 항목 합은 12,926이고 표기는 12,927,
+    준비 두 항목 합은 15,812이고 표기는 15,813이다. <span class="chip c-doc">유가증권보고서 제102기</span></p>
+
+  <div class="call hot">
+    <p class="ct">69만 자에서 참치가 나오는 자리는 한 곳뿐이다</p>
+    <p>여기까지가 이 회사가 공개하는 것이다. 그런데 같은 문서에서 <b>「鮪」라는 글자가 나오는 자리는 한 곳</b>,
+      하고로모푸즈 정책보유주식의 <b>보유 사유란</b>이다 — 재무제표 본문도 세그먼트 정보도 아니다.
+      부채는 항목별로, 담보는 자산별로, 우발부채는 정의까지 적는 문서가
+      <b>참치 사업의 매출도 물량도 이익도 적지 않는다.</b>
+      공시가 얇아서가 아니다 — <b>공시 단위가 세그먼트에서 멈추기 때문</b>이고,
+      참치는 그 세그먼트 안의 한 부(部)의 절반이다.</p>
+  </div>
+</section>
+
+
 <section id="s8">
-  <h2><span class="h2n">08 / 리스크</span>스스로 중점 상재로 지정하고, 6년간 들여다보지 않았다</h2>
+  <h2><span class="h2n">09 / 리스크</span>스스로 중점 상재로 지정하고, 6년간 들여다보지 않았다</h2>
   <p class="lead">정책 문서는 갖췄다. 인증도 갖췄다. 그런데 <strong>자기가 「인권 리스크 중점 상재」로 지정한 품목을
     회사 차원 인권 실사 대상으로 한 번도 삼지 않았다.</strong></p>
 
@@ -883,7 +998,7 @@ footer code{font-family:var(--mono);font-size:.75rem}
 </section>
 
 <section id="s9">
-  <h2><span class="h2n">09 / 한국 관점</span>이미 있는 거래, 다른 품목</h2>
+  <h2><span class="h2n">10 / 한국 관점</span>이미 있는 거래, 다른 품목</h2>
   <p class="lead">MSC 인증 선단 25척 중 11척이 사조그룹이다. 그런데 한국이 일본에 파는 어종과 ITOCHU가 사는 어종은 <strong>서로 다르다.</strong> 한국 관점은 이 두 가지 위에 선다.</p>
 
   <div class="metrics">
@@ -897,7 +1012,7 @@ footer code{font-family:var(--mono);font-size:.75rem}
     <p class="ct">확정된 접점: ITOCHU가 사조 선단의 MSC 인증 보유자다 <span class="chip c-doc">원본</span></p>
     <p><b>SI WCPO 어업(MSC-F-31555)</b>의 6척은 전부 한국 선적이며 소유주가 SAJO INDUSTRIES · OYANG CORPORATION · SAJO SEAFOOD다.
       <b>TTKV 어업</b>에는 <b>KIRIBATI &amp; SAJO FISHERIES</b> 3척과 <b>SAJO VANUATU</b> 2척이 더 있다.</p>
-    <p>앞서 본 사조 선단이다. 한국 쪽에서 실무상 중요한 것은 결절점의 위치인데, SI 6척의 <b>주 양륙항이 전부 타라와(키리바시)</b>이고 부산은 그 경로 밖에 있다.</p>
+    <p>사조 선단이다. 한국 쪽에서 실무상 중요한 것은 결절점의 위치인데, SI 6척의 <b>주 양륙항이 전부 타라와(키리바시)</b>이고 부산은 그 경로 밖에 있다.</p>
   </div>
 
   <div class="tw"><table>
@@ -1001,7 +1116,7 @@ footer code{font-family:var(--mono);font-size:.75rem}
     MSC 역산 취급량의 분모는 참치 단독이 아닌 <b>수산원료 전체</b>이고, ATI 역산은 그와 다른 모집단이다.
     관세는 EPA 열을 한 칸만 밀려 읽어도 결론이 뒤바뀐다.</p>
 
-  <p><b>확인되지 않은 것.</b> ① FY2024→FY2025 수산원료 취급량 감소의 크기. 방향과 최소 -35%는 산술로 확정되나,
+  <p><b>공개 자료가 답하지 않는 것.</b> ① FY2024→FY2025 수산원료 취급량 감소의 크기. 방향과 최소 -35%는 산술로 확정되나,
     회사가 분모를 정의하지 않는 한 -43%라는 값 자체는 검증되지 않는다. ② 한국이토추 식료본부 「참치」의 방향성. 법인 성격(수수료 대리)과 무역 흐름은 확정되나 품목 단위 방향을 명시한 문서는 없다.
     ③ ATI 지분 20%를 보유한 외국계 1사의 법인 실체. 이름이 회사소개 텍스트 계보 밖에서는 나오지 않는다.
     ④ Friend of the Sea 이탈의 사유. 양측 모두 비공개다. ⑤ 일본 내 사시미용 초저온 참치 취급 여부. 주력·공표 사업이 아님은 확정되나, 취급이 전혀 없다는 데까지는 자료가 닿지 않는다.</p>

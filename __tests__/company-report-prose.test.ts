@@ -19,15 +19,18 @@ import {
 describe('Frabelle 보고서 서술 추출', () => {
   const secs = reportProse('frabelle');
 
-  it('보고서 9절이 모두 들어온다', () => {
-    expect(secs).toHaveLength(9);
+  it('보고서 절이 하나도 빠지지 않고 번호가 이어진다', () => {
+    // ⚠ 절 수를 리터럴로 적지 마라. 9 로 박아 뒀더니 법원기록 절이 늘었을 때
+    // 「추출이 깨졌다」가 아니라 「테스트가 낡았다」로 이틀을 썼다.
+    // 하한만 두고, 번호는 1부터 연속인지로 본다.
+    expect(secs.length).toBeGreaterThanOrEqual(9);
     expect(secs.map((s) => s.numeral)).toEqual(
-      ['01', '02', '03', '04', '05', '06', '07', '08', '09'],
+      secs.map((_, i) => String(i + 1).padStart(2, '0')),
     );
   });
 
   it('모든 절이 단계에 붙는다 — 하나라도 빠지면 화면에서 사라진다', () => {
-    expect(proseStagesUsed('frabelle')).toHaveLength(9);
+    expect(proseStagesUsed('frabelle').length).toBeGreaterThanOrEqual(9);
     for (const s of secs) {
       expect(proseForStage('frabelle', s.stage).length, `${s.stage} 매핑`).toBeGreaterThan(0);
     }
@@ -42,7 +45,7 @@ describe('Frabelle 보고서 서술 추출', () => {
   });
 
   it('단계 변환이 보고서 문장을 그대로 옮긴다', () => {
-    expect(FRABELLE_STAGES).toHaveLength(9);
+    expect(FRABELLE_STAGES).toHaveLength(secs.length);
     for (const st of FRABELLE_STAGES) {
       expect(st.lede.length).toBeGreaterThan(0);
       expect(st.paragraphs.length).toBeGreaterThan(0);
