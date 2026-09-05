@@ -27,7 +27,7 @@ from pathlib import Path
 
 DRIVE = Path(
     "/Users/idong-geon/Library/CloudStorage/GoogleDrive-cutekorea@gmail.com/내 드라이브"
-    "/agri_data/01_수산물(Seafood)/tuna/8_한국_참치_산업_해부/02_출처원본"
+    "/agri_data/01_수산물(Seafood)/tuna/01_보고서/8_한국_참치_산업_해부/02_출처원본"
 )
 LOCAL = Path("/tmp/kr_tuna/src")
 OUT = Path(__file__).resolve().parent.parent / "public/data/tuna_anatomy_v1.json"

@@ -217,6 +217,21 @@ th.grp{color:var(--indigo)}
   display:inline-block;transform:translateY(.03em)}
 
 .chip.c-est{background:transparent;color:var(--ink-3);box-shadow:inset 0 0 0 1px currentColor;opacity:.9}
+
+/* 차트 — 인라인 SVG. 색은 그림마다 style 로 실려 온다 */
+figure.chart{margin:0 0 1.6rem;border:1px solid var(--rule);background:var(--card);break-inside:avoid}
+figure.chart .fi{background:var(--paper-2);padding:1.05rem .8rem;display:block}
+figure.chart svg{width:100%;height:auto;display:block}
+figure.chart figcaption{display:block;margin:0;max-width:none;font-size:.78rem;line-height:1.62;color:var(--ink-2);padding:.62rem .85rem;border-top:1px solid var(--rule)}
+figure.chart figcaption b{color:var(--ink)}
+.rc-g{stroke:var(--rule);stroke-width:.6}
+.rc-a{stroke:var(--rule-2);stroke-width:.8}
+.rc-l{fill:var(--ink-3);font-family:var(--mono);font-size:8px;letter-spacing:.04em}
+.rc-v{fill:var(--ink);font-family:var(--mono);font-size:8.5px;font-weight:600}
+.rc-b{fill:var(--rc-b,#3a6ea5)}
+.rc-b.hot{fill:var(--rc-h,#b8860b)}
+.rc-b.mut{fill:var(--rule-2)}
+.rc-n{fill:var(--ink-2);font-family:var(--sans);font-size:8px}
 </style>
 <!-- ================= COVER ================= -->
 <header class="cover">
@@ -275,9 +290,10 @@ th.grp{color:var(--indigo)}
     <li><a href="#s4"><span class="n">04</span> 제품 카탈로그</a></li>
     <li><a href="#s5"><span class="n">05</span> 생산과 원어 조달</a></li>
     <li><a href="#s6"><span class="n">06</span> 재무</a></li>
-    <li><a href="#s7"><span class="n">07</span> 리스크</a></li>
-    <li><a href="#s8"><span class="n">08</span> 지속가능성</a></li>
-    <li><a href="#s9"><span class="n">09</span> 한국 관점</a></li>
+    <li><a href="#s6b"><span class="n">07</span> 조세혜택</a></li>
+    <li><a href="#s7"><span class="n">08</span> 리스크</a></li>
+    <li><a href="#s8"><span class="n">09</span> 지속가능성</a></li>
+    <li><a href="#s9"><span class="n">10</span> 한국 관점</a></li>
   </ol>
 </nav>
 
@@ -455,7 +471,10 @@ th.grp{color:var(--indigo)}
     지금 유럽 소비자가 집어 드는 참치캔의 상당수가 태국 회사 소유다.</p>
 
   <h3>인수로 만든 지도</h3>
-  <div class="tw"><table>
+  <figure class="chart"><div class="fi"><svg viewBox="0 0 620 150" role="img" aria-label="인수 건별 브랜드 수 — 2010년 MW Brands 한 건이 4개" style="--rc-b:#1B3A5C;--rc-h:#A9762E"><line class="rc-g" x1="251.8" y1="16" x2="251.8" y2="120"/><text class="rc-l" x="251.8" y="133" text-anchor="middle">1</text><line class="rc-g" x1="353.6" y1="16" x2="353.6" y2="120"/><text class="rc-l" x="353.6" y="133" text-anchor="middle">2</text><line class="rc-g" x1="455.4" y1="16" x2="455.4" y2="120"/><text class="rc-l" x="455.4" y="133" text-anchor="middle">3</text><line class="rc-g" x1="557.1" y1="16" x2="557.1" y2="120"/><text class="rc-l" x="557.1" y="133" text-anchor="middle">4</text><rect class="rc-b" x="150" y="23.0" width="101.8" height="12" rx="1"/><text class="rc-l" x="144" y="32.0" text-anchor="end">1997 Chicken of the Sea</text><text class="rc-v" x="256.8" y="32.0">1</text><rect class="rc-b hot" x="150" y="49.0" width="407.1" height="12" rx="1"/><text class="rc-l" x="144" y="58.0" text-anchor="end">2010 MW Brands 4개</text><text class="rc-v" x="562.1" y="58.0">4</text><rect class="rc-b" x="150" y="75.0" width="101.8" height="12" rx="1"/><text class="rc-l" x="144" y="84.0" text-anchor="end">2014 King Oscar</text><text class="rc-v" x="256.8" y="84.0">1</text><rect class="rc-b" x="150" y="101.0" width="203.6" height="12" rx="1"/><text class="rc-l" x="144" y="110.0" text-anchor="end">2016·2021 독일 2개</text><text class="rc-v" x="358.6" y="110.0">2</text><text class="rc-n" x="150" y="144">한 거래로 들어온 브랜드 수</text></svg></div>
+  <figcaption><b>2010년 한 건이 네 브랜드를 한꺼번에 데려왔다</b> — MW Brands 인수로 John West·Petit Navire·Parmentier·Mareblu가 함께 들어왔다. 노르웨이의 King Oscar는 그 뒤 2014년, 독일 두 건은 2016·2021년이다. 「2010년 한 해에 유럽을 샀다」는 요약은 이 분포를 뭉갠다.</figcaption></figure>
+  <div class="tw">
+    <table>
     <thead><tr><th>브랜드</th><th>본거지</th><th>인수</th><th>보유 법인</th><th>지분</th></tr></thead>
     <tbody>
       <tr class="hl"><td><b>Chicken of the Sea</b></td><td>미국</td><td><b>1997</b></td><td>Tri-Union Seafoods, LLC</td><td>100%</td></tr>
@@ -480,8 +499,7 @@ th.grp{color:var(--indigo)}
       <strong>King Oscar</strong>(노르웨이 프리미엄 정어리)는 <strong>2014년 11월</strong>에 종결됐고,
       <strong>Rügen Fisch</strong>(독일 수산 1위)는 <strong>2016년 2월</strong> 51%를 €4,220만에 잡은 뒤
       <strong>2021년 5월</strong> 나머지 49%를 사서 100%가 됐다.</p>
-    <p class="note" style="font-size:.9em;opacity:.75">⚠ 2026-09-03 정정. 종전 판은 이 세 건을 모두 2010년으로 적었다.
-      MW Brands(2010-10-29 종결, 기업가치 €6억8,000만) 네 브랜드만 2010년이다.</p>
+    <p class="note" style="font-size:.9em;opacity:.75">2010년에 종결된 것은 <b>MW Brands 한 건</b>(2010-10-29, 기업가치 €6억8,000만)이고 그 한 건에 네 브랜드가 들어 있었다. 나머지 세 건은 연도가 다르다.</p>
     <p>이 브랜드들은 전부 지분 100%다. 합작이나 소수지분으로 발만 걸친 사례가 없다. 브랜드와 공장, 현지 법인을 함께 넘겨받는 방식이었다.</p>
   </div>
 
@@ -665,7 +683,7 @@ th.grp{color:var(--indigo)}
     공식 브랜드 카탈로그와 공개 제품 데이터, 소매가격 자료 376건 기준이다.
     별표가 붙은 제품 수는 보존 공개페이지 또는 제3자 제품 데이터베이스 기준이다.</p>
 <h3 id="sku-catalog">SKU 전수: 아홉 브랜드 467개</h3>
-<p>앞 절이 브랜드마다 어떤 성격인지 적었다면 여기는 그 근거다. 아홉 브랜드의 공개 제품 467개를 규격·어종·인증까지 그대로 옮긴다. 여섯 곳은 회사가 내놓은 카탈로그이고(314개), 셋은 전용 사이트가 없거나 막혀 소비자 데이터베이스에서 받았다(153개). 두 갈래를 섞지 않고 등급으로 가른다.</p>
+<p>브랜드마다 어떤 성격인지는 위에서 보았고, 여기는 그 근거다. 아홉 브랜드의 공개 제품 467개를 규격·어종·인증까지 그대로 옮긴다. 여섯 곳은 회사가 내놓은 카탈로그이고(314개), 셋은 전용 사이트가 없거나 막혀 소비자 데이터베이스에서 받았다(153개). 두 갈래를 섞지 않고 등급으로 가른다.</p>
 <p>빈 칸은 채우지 않았다. 어종이 적힌 것이 442개, 규격 363개, 인증 162개이고 나머지는 출처에 없다. 「—」가 곧 그 뜻이다.</p>
 <h4>브랜드별 SKU 수와 자료 등급</h4>
 <div class="tw"><table><thead><tr><th>브랜드</th><th>국가</th><th class="num">SKU</th><th>등급</th><th>자료</th></tr></thead><tbody><tr><td>John West</td><td>영국</td><td class="num">87</td><td>A</td><td>공식 브랜드 카탈로그</td></tr><tr><td>Chicken of the Sea</td><td>미국</td><td class="num">68</td><td>A</td><td>공식 브랜드 카탈로그</td></tr><tr><td>Petit Navire</td><td>프랑스</td><td class="num">68</td><td>A</td><td>공식 제품 카탈로그</td></tr><tr><td>Rügen Fisch</td><td>독일</td><td class="num">31</td><td>A</td><td>공식 제품 카탈로그</td></tr><tr><td>Hawesta</td><td>독일</td><td class="num">31</td><td>A</td><td>공식 제품 카탈로그</td></tr><tr><td>King Oscar</td><td>노르웨이</td><td class="num">29</td><td>A</td><td>공식 제품 카탈로그(Shopify)</td></tr><tr><td>Mareblu</td><td>이탈리아</td><td class="num">85</td><td>B</td><td>Open Food Facts</td></tr><tr><td>Parmentier</td><td>프랑스</td><td class="num">54</td><td>B</td><td>Open Food Facts</td></tr><tr><td>Sealect</td><td>태국</td><td class="num">14</td><td>B</td><td>Open Food Facts</td></tr></tbody></table></div>
@@ -1254,9 +1272,99 @@ th.grp{color:var(--indigo)}
 
 </section>
 
+<section id="s6b">
+  <h2><span class="h2n">07 / 조세혜택</span>3년 실효세율이 마이너스인데 한 해가 만든다</h2>
+
+  <p class="lead">감사받은 연결 손익에서 세 해치 법인세 비용을 더하면 <strong>−2.06억 밧</strong>이다.
+    같은 기간 금융비용까지 뺀 세전이익은 <strong>179.45억 밧</strong>이었다.
+    다만 그 마이너스는 <strong>2023년 한 해가 거의 다 만든다</strong> — 그해를 빼면 두 해 실효세율은 <strong>+3.4%</strong>다.
+    그리고 회사는 별개로 <strong>투자위원회 조세혜택 때문에 태국 실효세율이 15%에 못 미친다</strong>고 리스크 절에 적어 두었다.
+    그 혜택을 겨냥한 국제 최저한세가 <strong>2025 회계연도부터 이 그룹에 적용되기 시작했다</strong>.</p>
+
+  <div class="metrics">
+    <div class="metric hot"><div class="lab">3년 실효세율</div><div class="val">−1.15%</div><div class="note">2023 제외하면 +3.4%</div></div>
+    <div class="metric"><div class="lab">2025 법인세</div><div class="val">환입</div><div class="note">이익을 16.51백만 밧 늘렸다</div></div>
+    <div class="metric"><div class="lab">2023 법인세</div><div class="val">환입</div><div class="note">이익을 619.94백만 밧 늘렸다</div></div>
+    <div class="metric"><div class="lab">국제 최저한세</div><div class="val">15%</div><div class="note">2025 회계연도부터 적용</div></div>
+  </div>
+
+  <h3>세전이익과 법인세</h3>
+
+  <div class="tw"><table>
+    <thead><tr><th>연결 · 감사 (백만 밧)</th><th class="num">2023</th><th class="num">2024</th><th class="num">2025</th></tr></thead>
+    <tbody>
+      <tr><td>금융비용·법인세 차감 전 이익</td><td class="num">8,114.69</td><td class="num">8,996.27</td><td class="num">8,007.10</td></tr>
+      <tr><td>금융비용</td><td class="num">−2,302.09</td><td class="num">−2,492.36</td><td class="num">−2,378.57</td></tr>
+      <tr><td><b>세전이익</b></td><td class="num"><b>5,812.60</b></td><td class="num"><b>6,503.91</b></td><td class="num"><b>5,628.53</b></td></tr>
+      <tr class="hl"><td><b>법인세 비용</b></td><td class="num"><b>+619.94</b></td><td class="num">−430.02</td><td class="num"><b>+16.51</b></td></tr>
+      <tr class="hl"><td><b>실효세율</b></td><td class="num"><b>−10.7%</b></td><td class="num">6.6%</td><td class="num"><b>−0.3%</b></td></tr>
+      <tr><td>계속영업 당기순이익</td><td class="num">6,432.54</td><td class="num">6,073.89</td><td class="num">5,645.03</td></tr>
+      <tr class="dim"><td>당기순이익 (중단영업 포함)</td><td class="num" style="color:var(--warn)"><b>−13,200.29</b></td><td class="num">6,073.89</td><td class="num">5,645.03</td></tr>
+    </tbody>
+  </table></div>
+
+  <p style="font-size:.86rem;color:var(--ink-3)">원문과 부호 규약이 다르다. 원문은 차감항목을 양수 크기로 실어 금융비용이 <b>+2,302.09</b>이고
+    법인세 비용은 <b>−619.94 · 430.02 · −16.51</b>인데, 그 규약에서 음수는 <b>환입</b>이다.
+    위 표는 <b>「이익에 미친 방향」으로 통일했다</b> — 양수는 이익을 늘린 값, 음수는 줄인 값이다.
+    그래서 금융비용이 −2,302.09로, 2023년 법인세가 +619.94로 적힌다.
+    검산: 8,114.69 − 2,302.09 + 619.94 = 6,432.54, 8,996.27 − 2,492.36 − 430.02 = 6,073.89,
+    8,007.10 − 2,378.57 + 16.51 = 5,645.04(표기 5,645.03, 0.01 반올림).
+    <span class="chip c-doc">56-1 One Report 2025</span></p>
+
+  <div class="call hot">
+    <p class="ct">3년 마이너스는 2023년 한 해가 만든다</p>
+    <p>세 해를 합치면 실효세율이 −1.15%인데, <b>2023년을 빼면 +3.4%로 뒤집힌다.</b>
+      그 2023년은 회사가 「조정해서 보라」고 각주를 단 해다 — 보고 순손익이 <b>−132억 밧</b>인 것은
+      Red Lobster 관련 항목 때문이고, 회사는 그 항목을
+      <b>「지분법 손실 재분류 + 184억 밧 일회성 비현금 손상(중단영업) + 세액공제(tax credit)」</b>로 적는다.
+      <b>회사가 그해 세액공제를 Red Lobster 항목으로 못박은 것이다.</b>
+      다만 그 공제가 중단영업 쪽인지 계속영업의 −619.94에 들어 있는지는 공시로 갈리지 않는다.</p>
+  </div>
+
+  <h3>회사가 스스로 적은 리스크</h3>
+
+  <p style="font-size:.86rem;color:var(--ink-3)"><b>위 실효세율은 연결 그룹 전체 값이다.</b>
+    태국 법정 법인세율 20%와 나란히 놓으면 분모가 어긋난다 — 태국은 이 그룹 매출의
+    <b>12%·11%·12%</b>(2023·2024·2025)일 뿐이고, 회사가 말하는 「15% 미만」도 태국 한 나라 이야기다.
+    <b>그룹 실효세율과 태국 실효세율은 다른 수치이고, 회사는 후자를 숫자로 공개하지 않는다.</b></p>
+
+  <h3>회사가 스스로 적은 리스크</h3>
+
+  <p>리스크 목록 안에 국제 조세 항목이 하나 들어 있다.
+    경제협력개발기구가 이끄는 <b>세원잠식·소득이전 방지 제2기둥</b>이 다국적기업에
+    <b>15% 글로벌 최저한세</b>를 물리려는 것인데, 회사가 적은 영향은 셋이다.</p>
+
+  <div class="tw"><table>
+    <thead><tr><th>회사가 적은 영향</th><th>내용</th></tr></thead>
+    <tbody>
+      <tr class="hl"><td><b>추가 세부담</b></td><td>「투자위원회 조세혜택 때문에 <b>태국 실효세율이 15% 미만</b>이라 태국에서 추가 세금을 낼 가능성.
+        태국의 제2기둥 입법은 <b>이미 시행됐고 2025 회계연도부터 그룹에 영향</b>」</td></tr>
+      <tr><td>준수 비용</td><td>복잡한 신규 규정 이행에 비용이 들고 조세계획·보고 절차를 바꿔야 한다</td></tr>
+      <tr><td>행정 부담</td><td>데이터 수집·통제·보고</td></tr>
+      <tr><td>대응</td><td>영향 평가 완료, <b>국가별보고 전환기 세이프하버</b> 적용 관할 식별, 계산용 재무데이터 준비, 이행계획 수립</td></tr>
+    </tbody>
+  </table></div>
+
+  <div class="call warn">
+    <p class="ct">혜택의 크기를 회사는 적지 않는다</p>
+    <p>실효세율이 15% 미만이라는 것은 회사가 밝히는데, <b>투자위원회 혜택으로 면제받은 금액이 얼마인지는 적지 않는다.</b>
+      공시된 인증 목록에는 <b>혜택이 아직 작동하지 않는 건</b>이 섞여 있다 —
+      「아직 소득이 발생하지 않았다」가 붙은 건이 여섯이고,
+      「국제사업센터」 인증 하나는 아예 「법인세는 면제되지 않는다」로 명시된다.
+      <b>인증별 기간은 공시돼 있으나 감면 금액은 어느 칸에도 없다.</b>
+      따라서 <b>「보조금을 얼마 받았다」로 환산할 수 없다</b> — 확인되는 것은 실효세율의 결과값까지다.
+      <span class="chip c-nd">감면액 비공시</span></p>
+  </div>
+
+  <p>앞 편들과 견주면 자리가 뒤집힌다. 스페인 두 회사는 보조금 <b>금액</b>이 국가 공표시스템에 그대로 뜨는데
+    재무제표는 유료다. 이 회사는 <b>재무제표가 전부 공개</b>인데 세제 혜택의 금액이 없다.
+    <b>공개의 두께가 아니라 방향이 다르다.</b></p>
+</section>
+
+
 <!-- ============ 07 ============ -->
 <section id="s7">
-  <h2><span class="h2n">07 / 리스크</span>회사가 스스로 적은 열다섯 가지</h2>
+  <h2><span class="h2n">08 / 리스크</span>회사가 스스로 적은 열다섯 가지</h2>
 
   <p class="lead">56-1 One Report는 리스크를 <strong>15개 항목 + 주주 리스크 1개</strong>로 열거한다.
     그중 셋이 이 회사의 다음 3년을 좌우한다. <strong>미국 관세</strong>, <strong>참치 원어</strong>,
@@ -1346,7 +1454,7 @@ th.grp{color:var(--indigo)}
 
 <!-- ============ 08 ============ -->
 <section id="s8">
-  <h2><span class="h2n">08 / 지속가능성</span>SeaChange 2030: 숫자로 약속한 것들</h2>
+  <h2><span class="h2n">09 / 지속가능성</span>SeaChange 2030: 숫자로 약속한 것들</h2>
 
   <p class="lead">타이유니온의 지속가능성 프로그램 <strong>SeaChange</strong>가 내건 것은 
     수치 목표와 기준연도가 붙은 약속이다. 그중 일부는 이미 달성했고,
@@ -1537,7 +1645,7 @@ th.grp{color:var(--indigo)}
 
 <!-- ============ 09 ============ -->
 <section id="s9">
-  <h2><span class="h2n">09 / 한국 관점</span>'Korea' 1회에 담긴 비대칭</h2>
+  <h2><span class="h2n">10 / 한국 관점</span>'Korea' 1회에 담긴 비대칭</h2>
 
   <p class="lead">56-1 One Report 478쪽에 'Korea'는 단 1회 나온다. 그러나 교역·시장 자료는 다르게 말한다. <strong>한국 냉동참치 수출의 절반이 태국으로 가고, 미국 매대에서는 동원과 법정까지 간 경쟁자이며,
     한국 매대에서는 관세 20%에 막혀 있다.</strong> 타이유니온에게 한국은 익명의 원어 조달처이고,
@@ -1569,7 +1677,7 @@ th.grp{color:var(--indigo)}
       어획물 매출 중 수출(태국·베트남 등)이 <strong>37.03%</strong>.</p>
     <p><strong>신라교역 FY2025 사업보고서</strong>는 이렇게 적는다. "미국과 태국 간 상호관세 협상 이후…  <b>참치 가공업체들은 매입을 일시적으로 보류</b>하며 시장 상황을 관망".
       태국을 <strong>가격형성 시장</strong>으로 기술한다.
-      앞서 본 타이유니온 매입 −25%와 같은 사건을 반대편에서 보고 있다.</p>
+      타이유니온 매입 −25%와 같은 사건을 반대편에서 보고 있다.</p>
   </div>
 
   <h3>미국 시장: 담합 사건의 비대칭 결말</h3>

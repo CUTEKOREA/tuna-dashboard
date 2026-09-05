@@ -42,8 +42,13 @@ _VAR = re.compile(r'var\(\s*(--[a-z0-9-]+)\s*(?:,[^)]*)?\)')
 _TAG = re.compile(r'<[^>]+>')
 
 
+# 인라인 강조는 **공백 없이** 지운다. 태그마다 공백을 넣으면
+# 「<b>€3.2 Billion 이상</b>」 이 「 €3.2 Billion 이상 」 으로 벌어진다.
+_INLINE = re.compile(r'</?(?:b|strong|em|i|u|span|code|sub|sup|a|small)\b[^>]*>', re.I)
+
+
 def _text(html: str) -> str:
-    t = _TAG.sub(' ', html)
+    t = _TAG.sub(' ', _INLINE.sub('', html))
     for a, b in (('&amp;', '&'), ('&lt;', '<'), ('&gt;', '>'), ('&nbsp;', ' '), ('&quot;', '"')):
         t = t.replace(a, b)
     return re.sub(r'\s+', ' ', t).strip()

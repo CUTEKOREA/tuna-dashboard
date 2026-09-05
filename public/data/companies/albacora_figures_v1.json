@@ -8,10 +8,92 @@
   {
    "stage": "c03",
    "sid": "s3",
+   "kind": "chart",
+   "caption": "회색 두 척은 Albacora 배가 아니다 — 인증 명부가 소유사를 Atunera Dularra로, 그룹을 Bolton Food로 적는다. 같은 Bermeo 등록항과 선명 규칙을 쓰지만 그룹이 다르다. 그 둘을 빼면 10척 31,423 GT다. 짙은 색 4척은 스페인 국기를 달지 않고(파나마 2 · 모리셔스 2) 11,842 GT로 그 10척의 37.7%이며, 가장 큰 배가 그중 하나다.",
+   "alt": "",
+   "svg": "<svg viewBox=\"0 0 620 358\" role=\"img\" aria-label=\"선박별 GT — 4,428에서 2,072까지. 회색 두 척은 Bolton 그룹\" style=\"--rc-b:#1F5D4C;--rc-h:#A32A2A\"><line class=\"rc-g\" x1=\"269.9\" y1=\"16\" x2=\"269.9\" y2=\"328\"/><text class=\"rc-l\" x=\"269.9\" y=\"341\" text-anchor=\"middle\">1,000</text><line class=\"rc-g\" x1=\"354.8\" y1=\"16\" x2=\"354.8\" y2=\"328\"/><text class=\"rc-l\" x=\"354.8\" y=\"341\" text-anchor=\"middle\">2,000</text><line class=\"rc-g\" x1=\"439.7\" y1=\"16\" x2=\"439.7\" y2=\"328\"/><text class=\"rc-l\" x=\"439.7\" y=\"341\" text-anchor=\"middle\">3,000</text><line class=\"rc-g\" x1=\"524.6\" y1=\"16\" x2=\"524.6\" y2=\"328\"/><text class=\"rc-l\" x=\"524.6\" y=\"341\" text-anchor=\"middle\">4,000</text><rect class=\"rc-b hot\" x=\"185\" y=\"23.0\" width=\"375.9\" height=\"12\" rx=\"1\"/><text class=\"rc-l\" x=\"179\" y=\"32.0\" text-anchor=\"end\">INTERTUNA TRES 🇵🇦</text><text class=\"rc-v\" x=\"565.9\" y=\"32.0\">4,428</text><rect class=\"rc-b\" x=\"185\" y=\"49.0\" width=\"374.0\" height=\"12\" rx=\"1\"/><text class=\"rc-l\" x=\"179\" y=\"58.0\" text-anchor=\"end\">ALBATUN TRES</text><text class=\"rc-v\" x=\"564.0\" y=\"58.0\">4,406</text><rect class=\"rc-b\" x=\"185\" y=\"75.0\" width=\"374.0\" height=\"12\" rx=\"1\"/><text class=\"rc-l\" x=\"179\" y=\"84.0\" text-anchor=\"end\">ALBATUN DOS</text><text class=\"rc-v\" x=\"564.0\" y=\"84.0\">4,406</text><rect class=\"rc-b\" x=\"185\" y=\"101.0\" width=\"304.2\" height=\"12\" rx=\"1\"/><text class=\"rc-l\" x=\"179\" y=\"110.0\" text-anchor=\"end\">ALBACORA UNO</text><text class=\"rc-v\" x=\"494.2\" y=\"110.0\">3,584</text><rect class=\"rc-b hot\" x=\"185\" y=\"127.0\" width=\"272.2\" height=\"12\" rx=\"1\"/><text class=\"rc-l\" x=\"179\" y=\"136.0\" text-anchor=\"end\">GALERNA LAU 🇲🇺</text><text class=\"rc-v\" x=\"462.2\" y=\"136.0\">3,206</text><rect class=\"rc-b\" x=\"185\" y=\"153.0\" width=\"234.9\" height=\"12\" rx=\"1\"/><text class=\"rc-l\" x=\"179\" y=\"162.0\" text-anchor=\"end\">MAR DE SERGIO</text><text class=\"rc-v\" x=\"424.9\" y=\"162.0\">2,767</text><rect class=\"rc-b mut\" x=\"185\" y=\"179.0\" width=\"212.4\" height=\"12\" rx=\"1\"/><text class=\"rc-l\" x=\"179\" y=\"188.0\" text-anchor=\"end\">ROSITA C — Bolton</text><text class=\"rc-v\" x=\"402.4\" y=\"188.0\">2,502</text><rect class=\"rc-b mut\" x=\"185\" y=\"205.0\" width=\"210.4\" height=\"12\" rx=\"1\"/><text class=\"rc-l\" x=\"179\" y=\"214.0\" text-anchor=\"end\">AURORA B — Bolton</text><text class=\"rc-v\" x=\"400.4\" y=\"214.0\">2,479</text><rect class=\"rc-b\" x=\"185\" y=\"231.0\" width=\"198.3\" height=\"12\" rx=\"1\"/><text class=\"rc-l\" x=\"179\" y=\"240.0\" text-anchor=\"end\">ALBACORA QUINCE</text><text class=\"rc-v\" x=\"388.3\" y=\"240.0\">2,336</text><rect class=\"rc-b hot\" x=\"185\" y=\"257.0\" width=\"181.3\" height=\"12\" rx=\"1\"/><text class=\"rc-l\" x=\"179\" y=\"266.0\" text-anchor=\"end\">ALBACORA CARIBE 🇵🇦</text><text class=\"rc-v\" x=\"371.3\" y=\"266.0\">2,136</text><rect class=\"rc-b\" x=\"185\" y=\"283.0\" width=\"176.7\" height=\"12\" rx=\"1\"/><text class=\"rc-l\" x=\"179\" y=\"292.0\" text-anchor=\"end\">ALBACORA CUATRO</text><text class=\"rc-v\" x=\"366.7\" y=\"292.0\">2,082</text><rect class=\"rc-b hot\" x=\"185\" y=\"309.0\" width=\"175.9\" height=\"12\" rx=\"1\"/><text class=\"rc-l\" x=\"179\" y=\"318.0\" text-anchor=\"end\">CAPE CORAL 🇲🇺</text><text class=\"rc-v\" x=\"365.9\" y=\"318.0\">2,072</text><text class=\"rc-n\" x=\"185\" y=\"352\">Bermeo 등록항을 쓰는 12척의 GT · Albacora 계열 10척 합계 31,423</text></svg>",
+   "css": ":scope{--ikur:#A32A2A;--ink:#141A18;--ink-2:#414B47;--ink-3:#6D7873;--mono:'IBM Plex Mono',ui-monospace,SFMono-Regular,Menlo,monospace;--rule:#D6D8D0;--rule-2:#BEC2B9;--sans:'Noto Sans KR',system-ui,-apple-system,'Malgun Gothic',sans-serif}.call.hot{border-left:3px solid var(--ikur)}.metric.hot .val{color:var(--ikur)}.rc-g{stroke:var(--rule);stroke-width:.6}.rc-l{fill:var(--ink-3);font-family:var(--mono);font-size:8px;letter-spacing:.04em}.rc-v{fill:var(--ink);font-family:var(--mono);font-size:8.5px;font-weight:600}.rc-b{fill:var(--rc-b,#3a6ea5)}.rc-b.hot{fill:var(--rc-h,#b8860b)}.rc-b.mut{fill:var(--rule-2)}.rc-n{fill:var(--ink-2);font-family:var(--sans);font-size:8px}"
+  },
+  {
+   "stage": "c03",
+   "sid": "s3",
    "kind": "shot",
-   "caption": "회사가 설명하는 자사 선망 어법 : 선택성('참치 어획 평균 96%, 낮은 혼획률'), '돌고래 없음', '세계 선단 평균 대비 연료 −67%' . 전부 회사 자기주장이다. 회사 자료",
+   "caption": "회사가 설명하는 자사 선망 어법: 선택성('참치 어획 평균 96%, 낮은 혼획률'), '돌고래 없음', '세계 선단 평균 대비 연료 −67%'. 전부 회사 자기주장이다. 회사 자료",
    "alt": "Albacora 선망 어법 인포그래픽",
    "src": "/data/companies/figures/albacora/56db32f3adb7.jpg"
+  },
+  {
+   "stage": "c05",
+   "sid": "s5b",
+   "kind": "chart",
+   "caption": "붉은색이 Bonito del Norte(날개다랑어), 초록색이 Atún Claro(황다랑어·눈다랑어), 회색 한 칸이 Atún(가다랑어)이다 — 공장 표기를 그대로 따랐다. 날개다랑어 아홉 개의 중앙값은 25.15, 황다랑어 아홉 개는 15.53으로 1.6배 차이다. 위쪽에 날개다랑어가 몰려 있고 아래를 황다랑어가 채우는데, 예외가 하나 있다 — 둘째 칸의 황다랑어 올리브유 180 g(27.72)이 날개다랑어 일곱 개보다 비싸다. 막대는 열일곱인데 참치 SKU 는 열아홉이다 — 한정판 하나를 빼고, 값이 같은 두 SKU 를 한 줄로 묶었다.",
+   "alt": "",
+   "svg": "<svg viewBox=\"0 0 620 488\" role=\"img\" aria-label=\"SKU별 €/kg — 29.09에서 12.18까지, 붉은색이 날개다랑어\" style=\"--rc-b:#1F5D4C;--rc-h:#A32A2A\"><line class=\"rc-g\" x1=\"321.1\" y1=\"16\" x2=\"321.1\" y2=\"458\"/><text class=\"rc-l\" x=\"321.1\" y=\"471\" text-anchor=\"middle\">10</text><line class=\"rc-g\" x1=\"447.3\" y1=\"16\" x2=\"447.3\" y2=\"458\"/><text class=\"rc-l\" x=\"447.3\" y=\"471\" text-anchor=\"middle\">20</text><line class=\"rc-g\" x1=\"573.4\" y1=\"16\" x2=\"573.4\" y2=\"458\"/><text class=\"rc-l\" x=\"573.4\" y=\"471\" text-anchor=\"middle\">30</text><rect class=\"rc-b hot\" x=\"195\" y=\"23.0\" width=\"367.0\" height=\"12\" rx=\"1\"/><text class=\"rc-l\" x=\"189\" y=\"32.0\" text-anchor=\"end\">Bonito 올리브유 110 g</text><text class=\"rc-v\" x=\"567.0\" y=\"32.0\">29.09</text><rect class=\"rc-b\" x=\"195\" y=\"49.0\" width=\"349.7\" height=\"12\" rx=\"1\"/><text class=\"rc-l\" x=\"189\" y=\"58.0\" text-anchor=\"end\">Atún Claro 올리브유 180 g</text><text class=\"rc-v\" x=\"549.7\" y=\"58.0\">27.72</text><rect class=\"rc-b hot\" x=\"195\" y=\"75.0\" width=\"340.9\" height=\"12\" rx=\"1\"/><text class=\"rc-l\" x=\"189\" y=\"84.0\" text-anchor=\"end\">Bonito MSC 올리브유 1,850 g</text><text class=\"rc-v\" x=\"540.9\" y=\"84.0\">27.02</text><rect class=\"rc-b hot\" x=\"195\" y=\"101.0\" width=\"335.6\" height=\"12\" rx=\"1\"/><text class=\"rc-l\" x=\"189\" y=\"110.0\" text-anchor=\"end\">Bonito 올리브유 150 g</text><text class=\"rc-v\" x=\"535.6\" y=\"110.0\">26.60</text><rect class=\"rc-b hot\" x=\"195\" y=\"127.0\" width=\"317.3\" height=\"12\" rx=\"1\"/><text class=\"rc-l\" x=\"189\" y=\"136.0\" text-anchor=\"end\">Bonito 에스카베체 266 g</text><text class=\"rc-v\" x=\"517.3\" y=\"136.0\">25.15</text><rect class=\"rc-b hot\" x=\"195\" y=\"153.0\" width=\"314.6\" height=\"12\" rx=\"1\"/><text class=\"rc-l\" x=\"189\" y=\"162.0\" text-anchor=\"end\">Bonito 에스카베체 160 g</text><text class=\"rc-v\" x=\"514.6\" y=\"162.0\">24.94</text><rect class=\"rc-b hot\" x=\"195\" y=\"179.0\" width=\"306.4\" height=\"12\" rx=\"1\"/><text class=\"rc-l\" x=\"189\" y=\"188.0\" text-anchor=\"end\">Bonito 올리브유 70 g</text><text class=\"rc-v\" x=\"506.4\" y=\"188.0\">24.29</text><rect class=\"rc-b\" x=\"195\" y=\"205.0\" width=\"269.1\" height=\"12\" rx=\"1\"/><text class=\"rc-l\" x=\"189\" y=\"214.0\" text-anchor=\"end\">Atún Claro APR 올리브유 150 g</text><text class=\"rc-v\" x=\"469.1\" y=\"214.0\">21.33</text><rect class=\"rc-b hot\" x=\"195\" y=\"231.0\" width=\"225.7\" height=\"12\" rx=\"1\"/><text class=\"rc-l\" x=\"189\" y=\"240.0\" text-anchor=\"end\">Bonito MSC 에스카베체 1,900 g</text><text class=\"rc-v\" x=\"425.7\" y=\"240.0\">17.89</text><rect class=\"rc-b\" x=\"195\" y=\"257.0\" width=\"218.5\" height=\"12\" rx=\"1\"/><text class=\"rc-l\" x=\"189\" y=\"266.0\" text-anchor=\"end\">Atún Claro 올리브유 750 g</text><text class=\"rc-v\" x=\"418.5\" y=\"266.0\">17.32</text><rect class=\"rc-b\" x=\"195\" y=\"283.0\" width=\"204.2\" height=\"12\" rx=\"1\"/><text class=\"rc-l\" x=\"189\" y=\"292.0\" text-anchor=\"end\">Atún Claro APR 에스카베체 160 g</text><text class=\"rc-v\" x=\"404.2\" y=\"292.0\">16.19</text><rect class=\"rc-b hot\" x=\"195\" y=\"309.0\" width=\"199.2\" height=\"12\" rx=\"1\"/><text class=\"rc-l\" x=\"189\" y=\"318.0\" text-anchor=\"end\">Bonito MSC 살사 1,900 g</text><text class=\"rc-v\" x=\"399.2\" y=\"318.0\">15.79</text><rect class=\"rc-b\" x=\"195\" y=\"335.0\" width=\"195.9\" height=\"12\" rx=\"1\"/><text class=\"rc-l\" x=\"189\" y=\"344.0\" text-anchor=\"end\">Atún Claro 해바라기유 1,900 g</text><text class=\"rc-v\" x=\"395.9\" y=\"344.0\">15.53</text><rect class=\"rc-b\" x=\"195\" y=\"361.0\" width=\"173.5\" height=\"12\" rx=\"1\"/><text class=\"rc-l\" x=\"189\" y=\"370.0\" text-anchor=\"end\">Atún Claro APR 자연산 160 g</text><text class=\"rc-v\" x=\"373.5\" y=\"370.0\">13.75</text><rect class=\"rc-b mut\" x=\"195\" y=\"387.0\" width=\"164.0\" height=\"12\" rx=\"1\"/><text class=\"rc-l\" x=\"189\" y=\"396.0\" text-anchor=\"end\">Atún(가다랑어) 해바라기유 400 g</text><text class=\"rc-v\" x=\"364.0\" y=\"396.0\">13.00</text><rect class=\"rc-b\" x=\"195\" y=\"413.0\" width=\"156.0\" height=\"12\" rx=\"1\"/><text class=\"rc-l\" x=\"189\" y=\"422.0\" text-anchor=\"end\">Atún Claro 에스카베체 1,900 g</text><text class=\"rc-v\" x=\"356.0\" y=\"422.0\">12.37</text><rect class=\"rc-b\" x=\"195\" y=\"439.0\" width=\"153.6\" height=\"12\" rx=\"1\"/><text class=\"rc-l\" x=\"189\" y=\"448.0\" text-anchor=\"end\">Atún Claro 에스카베체 266 g</text><text class=\"rc-v\" x=\"353.6\" y=\"448.0\">12.18</text><text class=\"rc-n\" x=\"195\" y=\"482\">자사몰 단위가 환산 €/kg · 2026-08-20 수집분</text></svg>",
+   "css": ":scope{--ikur:#A32A2A;--ink:#141A18;--ink-2:#414B47;--ink-3:#6D7873;--mono:'IBM Plex Mono',ui-monospace,SFMono-Regular,Menlo,monospace;--rule:#D6D8D0;--rule-2:#BEC2B9;--sans:'Noto Sans KR',system-ui,-apple-system,'Malgun Gothic',sans-serif}.call.hot{border-left:3px solid var(--ikur)}.metric.hot .val{color:var(--ikur)}.rc-g{stroke:var(--rule);stroke-width:.6}.rc-l{fill:var(--ink-3);font-family:var(--mono);font-size:8px;letter-spacing:.04em}.rc-v{fill:var(--ink);font-family:var(--mono);font-size:8.5px;font-weight:600}.rc-b{fill:var(--rc-b,#3a6ea5)}.rc-b.hot{fill:var(--rc-h,#b8860b)}.rc-b.mut{fill:var(--rule-2)}.rc-n{fill:var(--ink-2);font-family:var(--sans);font-size:8px}"
+  },
+  {
+   "stage": "c05",
+   "sid": "s5b",
+   "kind": "shot",
+   "caption": "Bonito del Norte · 올리브유 110 g · 29.09 €/kg 스물두 품목 중 가장 비싸다",
+   "alt": "Campos Bonito del Norte 올리브유 110g 캔",
+   "src": "/data/companies/figures/albacora/f8a41a24d063.jpg"
+  },
+  {
+   "stage": "c05",
+   "sid": "s5b",
+   "kind": "shot",
+   "caption": "Bonito del Norte · 에스카베체 160 g · 24.94 €/kg 같은 160 g 에스카베체 황다랑어(16.19)의 1.54배",
+   "alt": "Campos Bonito del Norte 에스카베체 160g 캔",
+   "src": "/data/companies/figures/albacora/c798a02c41a0.jpg"
+  },
+  {
+   "stage": "c05",
+   "sid": "s5b",
+   "kind": "shot",
+   "caption": "Bonito del Norte MSC · 1,850 g · 27.02 €/kg MSC 라벨이 붙는 것은 이 대형 라인이다",
+   "alt": "Campos Bonito del Norte MSC 올리브유 1850g 대형 캔",
+   "src": "/data/companies/figures/albacora/f73ea422e6fc.jpg"
+  },
+  {
+   "stage": "c05",
+   "sid": "s5b",
+   "kind": "shot",
+   "caption": "Atún Claro · 올리브유 180 g 유리병 · 27.72 €/kg 황다랑어인데 날개다랑어 값이다 — 회사 설명은 「넓은 입 유리병, 내용물이 밖에서 보인다」",
+   "alt": "Campos Atún Claro 올리브유 180g 유리병",
+   "src": "/data/companies/figures/albacora/92082954a8f1.jpg"
+  },
+  {
+   "stage": "c05",
+   "sid": "s5b",
+   "kind": "shot",
+   "caption": "Atún Claro APR · 올리브유 150 g · 21.33 €/kg 「책임어업 참치」 인증 라인",
+   "alt": "Campos Atún Claro APR 올리브유 150g 캔",
+   "src": "/data/companies/figures/albacora/1559352bc701.jpg"
+  },
+  {
+   "stage": "c05",
+   "sid": "s5b",
+   "kind": "shot",
+   "caption": "Atún Claro APR · 자연산 160 g · 13.75 €/kg 같은 APR인데 값이 절반이다 — 보존액이 값을 가른다",
+   "alt": "Campos Atún Claro APR 자연산 160g 캔",
+   "src": "/data/companies/figures/albacora/c73a761c5023.jpg"
+  },
+  {
+   "stage": "c05",
+   "sid": "s5b",
+   "kind": "shot",
+   "caption": "Atún Claro · 올리브유 750 g · 17.32 €/kg 같은 어종·같은 보존액인데 대형 캔이면 17.32다",
+   "alt": "Campos Atún Claro 올리브유 750g 대형 캔",
+   "src": "/data/companies/figures/albacora/1fbf67fa4145.jpg"
+  },
+  {
+   "stage": "c05",
+   "sid": "s5b",
+   "kind": "shot",
+   "caption": "Atún Claro · 해바라기유 1,900 g · 15.53 €/kg 업소용 대형 규격",
+   "alt": "Campos Atún Claro 해바라기유 1900g 대형 캔",
+   "src": "/data/companies/figures/albacora/cb67717421d5.jpg"
   }
  ]
 }

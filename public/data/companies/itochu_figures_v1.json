@@ -28,6 +28,15 @@
    "caption": "",
    "alt": "シーチキン New L フレーク — 하고로모푸드",
    "src": "/data/companies/figures/itochu/6bf6b3a1738c.jpg"
+  },
+  {
+   "stage": "c03",
+   "sid": "s4",
+   "kind": "chart",
+   "caption": "배를 한 척도 갖지 않은 회사의 인증 선단이다. 짙은 색으로 표시한 사조 계열 11척(44%)은 한국 6, 키리바시 3, 바누아투 2로 흩어져 있다. 선단 명단을 열자 절반이 한 그룹이었다.",
+   "alt": "",
+   "svg": "<svg viewBox=\"0 0 620 176\" role=\"img\" aria-label=\"기국별 척수 — 대만 12, 한국 6, 키리바시 3, 투발루 2, 바누아투 2\" style=\"--rc-b:#1F3A5F;--rc-h:#A8243A\"><line class=\"rc-g\" x1=\"319.6\" y1=\"16\" x2=\"319.6\" y2=\"146\"/><text class=\"rc-l\" x=\"319.6\" y=\"159\" text-anchor=\"middle\">5</text><line class=\"rc-g\" x1=\"489.3\" y1=\"16\" x2=\"489.3\" y2=\"146\"/><text class=\"rc-l\" x=\"489.3\" y=\"159\" text-anchor=\"middle\">10</text><rect class=\"rc-b\" x=\"150\" y=\"23.0\" width=\"407.1\" height=\"12\" rx=\"1\"/><text class=\"rc-l\" x=\"144\" y=\"32.0\" text-anchor=\"end\">대만</text><text class=\"rc-v\" x=\"562.1\" y=\"32.0\">12</text><rect class=\"rc-b hot\" x=\"150\" y=\"49.0\" width=\"203.6\" height=\"12\" rx=\"1\"/><text class=\"rc-l\" x=\"144\" y=\"58.0\" text-anchor=\"end\">한국</text><text class=\"rc-v\" x=\"358.6\" y=\"58.0\">6</text><rect class=\"rc-b hot\" x=\"150\" y=\"75.0\" width=\"101.8\" height=\"12\" rx=\"1\"/><text class=\"rc-l\" x=\"144\" y=\"84.0\" text-anchor=\"end\">키리바시</text><text class=\"rc-v\" x=\"256.8\" y=\"84.0\">3</text><rect class=\"rc-b\" x=\"150\" y=\"101.0\" width=\"67.9\" height=\"12\" rx=\"1\"/><text class=\"rc-l\" x=\"144\" y=\"110.0\" text-anchor=\"end\">투발루</text><text class=\"rc-v\" x=\"222.9\" y=\"110.0\">2</text><rect class=\"rc-b hot\" x=\"150\" y=\"127.0\" width=\"67.9\" height=\"12\" rx=\"1\"/><text class=\"rc-l\" x=\"144\" y=\"136.0\" text-anchor=\"end\">바누아투</text><text class=\"rc-v\" x=\"222.9\" y=\"136.0\">2</text><text class=\"rc-n\" x=\"150\" y=\"170\">ITOCHU 인증 선단 25척의 기국 구성 (척)</text></svg>",
+   "css": ":scope{--ai:#1F3A5F;--ai-soft:#DEE6EF;--beni:#A8243A;--ink:#12171C;--ink-2:#414A52;--ink-3:#6B757D;--mono:'IBM Plex Mono',ui-monospace,SFMono-Regular,Menlo,monospace;--rule:#D2D7DB;--rule-2:#B7BFC6;--sans:'Gothic A1','Noto Sans JP',system-ui,-apple-system,'Malgun Gothic',sans-serif}.metric.hot .val{color:var(--beni)}.call.hot{border-left-color:var(--ai);background:var(--ai-soft)}.rc-g{stroke:var(--rule);stroke-width:.6}.rc-l{fill:var(--ink-3);font-family:var(--mono);font-size:8px;letter-spacing:.04em}.rc-v{fill:var(--ink);font-family:var(--mono);font-size:8.5px;font-weight:600}.rc-b{fill:var(--rc-b,#3a6ea5)}.rc-b.hot{fill:var(--rc-h,#b8860b)}.rc-b.mut{fill:var(--rule-2)}.rc-n{fill:var(--ink-2);font-family:var(--sans);font-size:8px}"
   }
  ]
 }
