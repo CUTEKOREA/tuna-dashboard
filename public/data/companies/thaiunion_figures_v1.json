@@ -9,6 +9,7 @@
    "stage": "c01",
    "sid": "cover",
    "kind": "shot",
+   "ord": 0,
    "caption": "",
    "alt": "John West Tuna Chunks",
    "src": "/data/companies/figures/thaiunion/0b0ac479897f.jpg"
@@ -17,6 +18,7 @@
    "stage": "c01",
    "sid": "cover",
    "kind": "shot",
+   "ord": 0,
    "caption": "",
    "alt": "Chicken of the Sea Solid White",
    "src": "/data/companies/figures/thaiunion/cd0912fd8e8b.jpg"
@@ -25,6 +27,7 @@
    "stage": "c01",
    "sid": "cover",
    "kind": "shot",
+   "ord": 0,
    "caption": "",
    "alt": "Petit Navire Thon MSC",
    "src": "/data/companies/figures/thaiunion/a26b9853f4e2.jpg"
@@ -33,6 +36,7 @@
    "stage": "c02",
    "sid": "s2",
    "kind": "shot",
+   "ord": 2552,
    "caption": "Ambient · 642.8억 밧 회사의 출발점이자 여전히 최대 축. 유럽이 44.2%",
    "alt": "Ambient 상온 수산통조림",
    "src": "/data/companies/figures/thaiunion/8ab15e35a5dd.jpg"
@@ -41,6 +45,7 @@
    "stage": "c02",
    "sid": "s2",
    "kind": "shot",
+   "ord": 31747,
    "caption": "Frozen · 411.5억 밧 새우가 최대. 미국이 51.2%로 편중",
    "alt": "Frozen 냉동·냉장",
    "src": "/data/companies/figures/thaiunion/5cc7c2436aa5.jpg"
@@ -49,6 +54,7 @@
    "stage": "c02",
    "sid": "s2",
    "kind": "shot",
+   "ord": 65117,
    "caption": "PetCare · 178.8억 밧 유일한 성장 카테고리. 마진 25.6%로 최고",
    "alt": "PetCare 펫푸드",
    "src": "/data/companies/figures/thaiunion/90c2dad82d3d.jpg"
@@ -57,6 +63,7 @@
    "stage": "c03",
    "sid": "s3",
    "kind": "chart",
+   "ord": 313,
    "caption": "2010년 한 건이 네 브랜드를 한꺼번에 데려왔다 — MW Brands 인수로 John West·Petit Navire·Parmentier·Mareblu가 함께 들어왔다. 노르웨이의 King Oscar는 그 뒤 2014년, 독일 두 건은 2016·2021년이다. 「2010년 한 해에 유럽을 샀다」는 요약은 이 분포를 뭉갠다.",
    "alt": "",
    "svg": "<svg viewBox=\"0 0 620 150\" role=\"img\" aria-label=\"인수 건별 브랜드 수 — 2010년 MW Brands 한 건이 4개\" style=\"--rc-b:#1B3A5C;--rc-h:#A9762E\"><line class=\"rc-g\" x1=\"251.8\" y1=\"16\" x2=\"251.8\" y2=\"120\"/><text class=\"rc-l\" x=\"251.8\" y=\"133\" text-anchor=\"middle\">1</text><line class=\"rc-g\" x1=\"353.6\" y1=\"16\" x2=\"353.6\" y2=\"120\"/><text class=\"rc-l\" x=\"353.6\" y=\"133\" text-anchor=\"middle\">2</text><line class=\"rc-g\" x1=\"455.4\" y1=\"16\" x2=\"455.4\" y2=\"120\"/><text class=\"rc-l\" x=\"455.4\" y=\"133\" text-anchor=\"middle\">3</text><line class=\"rc-g\" x1=\"557.1\" y1=\"16\" x2=\"557.1\" y2=\"120\"/><text class=\"rc-l\" x=\"557.1\" y=\"133\" text-anchor=\"middle\">4</text><rect class=\"rc-b\" x=\"150\" y=\"23.0\" width=\"101.8\" height=\"12\" rx=\"1\"/><text class=\"rc-l\" x=\"144\" y=\"32.0\" text-anchor=\"end\">1997 Chicken of the Sea</text><text class=\"rc-v\" x=\"256.8\" y=\"32.0\">1</text><rect class=\"rc-b hot\" x=\"150\" y=\"49.0\" width=\"407.1\" height=\"12\" rx=\"1\"/><text class=\"rc-l\" x=\"144\" y=\"58.0\" text-anchor=\"end\">2010 MW Brands 4개</text><text class=\"rc-v\" x=\"562.1\" y=\"58.0\">4</text><rect class=\"rc-b\" x=\"150\" y=\"75.0\" width=\"101.8\" height=\"12\" rx=\"1\"/><text class=\"rc-l\" x=\"144\" y=\"84.0\" text-anchor=\"end\">2014 King Oscar</text><text class=\"rc-v\" x=\"256.8\" y=\"84.0\">1</text><rect class=\"rc-b\" x=\"150\" y=\"101.0\" width=\"203.6\" height=\"12\" rx=\"1\"/><text class=\"rc-l\" x=\"144\" y=\"110.0\" text-anchor=\"end\">2016·2021 독일 2개</text><text class=\"rc-v\" x=\"358.6\" y=\"110.0\">2</text><text class=\"rc-n\" x=\"150\" y=\"144\">한 거래로 들어온 브랜드 수</text></svg>",
@@ -66,6 +73,7 @@
    "stage": "c04",
    "sid": "s4",
    "kind": "shot",
+   "ord": 1991,
    "caption": "John West Tuna Chunks in Spring Water · 4캔팩 영국 주력. 가다랑어 청수 절임: 영국 캔참치의 기본형",
    "alt": "John West Tuna Chunks In Spring Water 4 Pack",
    "src": "/data/companies/figures/thaiunion/0b0ac479897f.jpg"
@@ -74,6 +82,7 @@
    "stage": "c04",
    "sid": "s4",
    "kind": "shot",
+   "ord": 73321,
    "caption": "Chicken of the Sea Solid White Premium Tuna · 4 oz 미국 주력. 알바코어 통살 워터팩",
    "alt": "Chicken of the Sea Solid White Tuna in Water 4oz",
    "src": "/data/companies/figures/thaiunion/cd0912fd8e8b.jpg"
@@ -82,6 +91,7 @@
    "stage": "c04",
    "sid": "s4",
    "kind": "shot",
+   "ord": 178490,
    "caption": "Petit Navire Thon Entier &agrave; l'Huile d'Olive Vierge Extra 프랑스 프리미엄. MSC 라벨 + 엑스트라버진 올리브유",
    "alt": "Petit Navire Thon Entier MSC 올리브유",
    "src": "/data/companies/figures/thaiunion/a26b9853f4e2.jpg"
@@ -90,6 +100,7 @@
    "stage": "c04",
    "sid": "s4",
    "kind": "shot",
+   "ord": 295584,
    "caption": "No Drain Fridge Pot: 냉장 보관형 참치 스테이크. 캔을 벗어난 첫 형태 혁신으로, 프린사 SOLO와 같은 '간편 단백질' 문법이다",
    "alt": "John West No Drain Fridge Pot",
    "src": "/data/companies/figures/thaiunion/b7dde76a63c9.jpg"
@@ -98,6 +109,7 @@
    "stage": "c04",
    "sid": "s4",
    "kind": "shot",
+   "ord": 360686,
    "caption": "Chicken of the Sea 조미 파우치 (Chili Lime · 2.5 oz): 미국 라인의 성장 축. Frank's RedHot&reg;·OLD BAY&reg; 콜라보, Ghost Pepper까지",
    "alt": "Chicken of the Sea Chili Lime Tuna Packet",
    "src": "/data/companies/figures/thaiunion/a0b6a1243262.jpg"

@@ -34,7 +34,7 @@ def build(key: str, spec: dict) -> tuple[int, int, int]:
         stage = "c01" if f.sid == "cover" else spec["stages"].get(f.sid)
         if stage is None:
             continue
-        kept.append({"stage": stage, "sid": f.sid, "kind": f.kind,
+        kept.append({"stage": stage, "sid": f.sid, "kind": f.kind, "ord": f.ord,
                      "caption": f.caption, "alt": f.alt,
                      **({"src": f.src} if f.src else {}),
                      **({"svg": f.svg} if f.svg else {}),

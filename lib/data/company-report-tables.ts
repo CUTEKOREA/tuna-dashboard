@@ -21,6 +21,8 @@ import thaiunionRaw from '@/public/data/companies/thaiunion_tables_v1.json';
  */
 
 export interface ReportTable {
+  /** 절 본문 안의 문자 오프셋. 원문 자리에 되돌릴 때 쓴다. */
+  ord: number;
   /** 표 바로 앞 소제목. 없으면 헤더 서명으로 대신한다. */
   title: string;
   head: string[];

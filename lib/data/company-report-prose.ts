@@ -19,8 +19,10 @@ import thaiunionRaw from '@/public/data/companies/thaiunion_prose_v1.json';
 
 /** 서술 한 덩어리. `kind` 가 화면 렌더를 가른다. */
 export interface ProseBlock {
-  kind: 'lead' | 'para' | 'call' | 'h3';
+  kind: 'lead' | 'para' | 'call' | 'h3' | 'quote' | 'li' | 'term';
   text: string;
+  /** 절 본문 안의 문자 오프셋. 표·그림을 원문 자리에 되돌릴 때 쓴다. */
+  ord: number;
   /** 근거 등급 칩. 보고서가 문장 끝에 달아 둔 것을 그대로 옮긴다. */
   chips?: string[];
   /** 콜아웃 제목, 또는 소제목 본문 */

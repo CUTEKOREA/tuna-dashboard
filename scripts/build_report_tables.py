@@ -18,6 +18,7 @@
 from __future__ import annotations
 
 import json
+import re
 import sys
 from pathlib import Path
 
@@ -101,8 +102,14 @@ SPECS: dict[str, dict] = {
     },
     "jealsa": {
         "src": "docs/evidence/company-jealsa-2026-09/보고서.html",
-        # 보고서 12절이 화면 12단계와 1:1 이다.
-        "stages": {f"s{i}": f"c{i:02d}" for i in range(1, 13)},
+        # 보고서 12절이 화면 12단계와 1:1 이다. 정정 이력은 마지막 단계에 붙인다.
+        "stages": {**{f"s{i}": f"c{i:02d}" for i in range(1, 13)}, "scorr": "c13"},
+        "drop": [],
+    },
+    "nauterra": {
+        "src": "docs/evidence/company-nauterra-2026-09/보고서.html",
+        # 14절이 화면 14단계와 1:1 이다. 절 id 는 s1..s14 로 연속이라 손으로 적지 않는다.
+        "stages": {f"s{i}": f"c{i:02d}" for i in range(1, 15)},
         "drop": [],
     },
     "jais": {
@@ -114,9 +121,28 @@ SPECS: dict[str, dict] = {
 }
 
 
+def _assert_all_sections_mapped(key: str, doc: str, spec: dict) -> None:
+    """문서의 절 id 가 전부 `stages` 에 있는지 본다.
+
+    없으면 그 절은 표도 서술도 그림도 **에러 없이 통째로 빠진다.** 실제로 세 번 났다 —
+    `c01..c08` 을 손으로 적은 자리가 셋이라 절이 아홉으로 늘었을 때 두 편의 마지막 표가
+    사라졌고, 2026-09-05 에는 Jealsa 정정 이력 절이 id 를 `corr` 로 붙였다가 빠졌다.
+    조용한 누락을 빌드 실패로 바꾼다.
+    """
+    ids = re.findall(r'<section id="(s[0-9a-z]+)">', doc)
+    missing = [i for i in dict.fromkeys(ids) if i not in spec["stages"]]
+    if missing:
+        raise SystemExit(
+            f"{key}: 절 {', '.join(missing)} 이 stages 에 없다 — 그대로 두면 화면에서 사라진다. "
+            f"매핑을 추가하라 (id 는 반드시 s 로 시작해야 파서가 잡는다)"
+        )
+
+
 def build(key: str, spec: dict) -> tuple[int, int, int]:
     src = ROOT / spec["src"]
-    ts = TableSet(src.read_text(encoding="utf8", errors="replace"))
+    doc = src.read_text(encoding="utf8", errors="replace")
+    _assert_all_sections_mapped(key, doc, spec)
+    ts = TableSet(doc)
 
     per_section: dict[str, int] = {}
     hits: dict[str, int] = {d: 0 for d in spec["drop"]}

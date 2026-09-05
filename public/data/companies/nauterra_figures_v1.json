@@ -1,0 +1,75 @@
+{
+ "_meta": {
+  "출처": "docs/evidence/company-nauterra-2026-09/보고서.html",
+  "생성": "python3 scripts/build_report_figures.py",
+  "설명": "보고서의 팩샷과 차트. 이미지는 public 아래 정적 파일이고 여기에는 URL 만 담는다."
+ },
+ "figures": [
+  {
+   "stage": "c05",
+   "sid": "s5",
+   "kind": "shot",
+   "ord": 4005,
+   "caption": "같은 브랜드, 같은 보존액(올리브유), 같은 저염 라인. 왼쪽은 atún claro, 오른쪽은 bonito del norte다. 어종이 갈리는 라인이 실재하는데 주력 진열 카테고리에는 왼쪽만 있다. 오른쪽 제품의 상품코드는 8410090051080이다. 두 캔 어디에도 학명은 없다.",
+   "alt": "Calvo 저염 올리브유 아툰클라로 3×65 g 캔 묶음. 라벨에 ATUN CLARO 와 BAJO EN SAL 이 적혀 있고 학명 표기는 없다.",
+   "src": "/data/companies/figures/nauterra/1626855ddba4.jpg"
+  },
+  {
+   "stage": "c05",
+   "sid": "s5",
+   "kind": "shot",
+   "ord": 4005,
+   "caption": "같은 브랜드, 같은 보존액(올리브유), 같은 저염 라인. 왼쪽은 atún claro, 오른쪽은 bonito del norte다. 어종이 갈리는 라인이 실재하는데 주력 진열 카테고리에는 왼쪽만 있다. 오른쪽 제품의 상품코드는 8410090051080이다. 두 캔 어디에도 학명은 없다.",
+   "alt": "Calvo 저염 올리브유 보니토델노르테 타원캔. 라벨에 BONITO DEL NORTE 가 적혀 있고 학명 표기는 없다.",
+   "src": "/data/companies/figures/nauterra/8d96b6e423f2.jpg"
+  },
+  {
+   "stage": "c05",
+   "sid": "s5",
+   "kind": "shot",
+   "ord": 90775,
+   "caption": "왼쪽 스페인 Calvo, 오른쪽 브라질 Gomes da Costa. 같은 그룹의 두 브랜드가 각자의 시장에서 다른 이름으로 선다. 브라질 라벨의 원재료란은 'Atum, água, sal'뿐이고 여기에도 어종 구분이 없다.",
+   "alt": "Calvo La Espanola 올리브유 아툰클라로 3연 묶음 캔.",
+   "src": "/data/companies/figures/nauterra/667d216e3958.jpg"
+  },
+  {
+   "stage": "c05",
+   "sid": "s5",
+   "kind": "shot",
+   "ord": 90775,
+   "caption": "왼쪽 스페인 Calvo, 오른쪽 브라질 Gomes da Costa. 같은 그룹의 두 브랜드가 각자의 시장에서 다른 이름으로 선다. 브라질 라벨의 원재료란은 'Atum, água, sal'뿐이고 여기에도 어종 구분이 없다.",
+   "alt": "Gomes da Costa 아툼 솔리도 아우 나투랄 170 g 캔. 브라질 시장용 라벨.",
+   "src": "/data/companies/figures/nauterra/09b47f1174f3.jpg"
+  },
+  {
+   "stage": "c07",
+   "sid": "s7",
+   "kind": "chart",
+   "ord": 991,
+   "caption": "회사가 밝히는 거점별 연간 캐파. 합계 166.000 t 가운데 브라질이 절반을 넘는다. 스페인 국내 생산은 2017년 Esteiro 폐쇄 뒤 Carballo 한 곳이다.",
+   "alt": "",
+   "svg": "<svg viewBox=\"0 0 620 124\" role=\"img\" aria-label=\"3개국 가공 캐파\" style=\"--rc-b:#12414C;--rc-h:#A8541F\"><line class=\"rc-g\" x1=\"244.7\" y1=\"16\" x2=\"244.7\" y2=\"94\"/><text class=\"rc-l\" x=\"244.7\" y=\"107\" text-anchor=\"middle\">20.000</text><line class=\"rc-g\" x1=\"339.4\" y1=\"16\" x2=\"339.4\" y2=\"94\"/><text class=\"rc-l\" x=\"339.4\" y=\"107\" text-anchor=\"middle\">40.000</text><line class=\"rc-g\" x1=\"434.1\" y1=\"16\" x2=\"434.1\" y2=\"94\"/><text class=\"rc-l\" x=\"434.1\" y=\"107\" text-anchor=\"middle\">60.000</text><line class=\"rc-g\" x1=\"528.7\" y1=\"16\" x2=\"528.7\" y2=\"94\"/><text class=\"rc-l\" x=\"528.7\" y=\"107\" text-anchor=\"middle\">80.000</text><rect class=\"rc-b hot\" x=\"150\" y=\"23.0\" width=\"407.1\" height=\"12\" rx=\"1\"/><text class=\"rc-l\" x=\"144\" y=\"32.0\" text-anchor=\"end\">브라질 Itajaí</text><text class=\"rc-v\" x=\"562.1\" y=\"32.0\">86.000</text><rect class=\"rc-b\" x=\"150\" y=\"49.0\" width=\"265.1\" height=\"12\" rx=\"1\"/><text class=\"rc-l\" x=\"144\" y=\"58.0\" text-anchor=\"end\">스페인 Carballo</text><text class=\"rc-v\" x=\"420.1\" y=\"58.0\">56.000</text><rect class=\"rc-b\" x=\"150\" y=\"75.0\" width=\"113.6\" height=\"12\" rx=\"1\"/><text class=\"rc-l\" x=\"144\" y=\"84.0\" text-anchor=\"end\">엘살바도르 La Unión</text><text class=\"rc-v\" x=\"268.6\" y=\"84.0\">24.000</text><text class=\"rc-n\" x=\"150\" y=\"118\">연간 가공 캐파 · t</text></svg>",
+   "css": ":scope{--ink:#14181D;--ink-2:#424A53;--ink-3:#6E767F;--mono:'IBM Plex Mono',ui-monospace,SFMono-Regular,Menlo,monospace;--ocre:#A8541F;--rule:#D5D7D2;--rule-2:#BDC0BA;--sans:'Noto Sans KR',system-ui,-apple-system,'Malgun Gothic',sans-serif}.cx-bar.hot{fill:var(--ocre)}.cx-dot.hot{fill:var(--ocre)}.call.hot{border-left:3px solid var(--ocre)}.metric.hot .val{color:var(--ocre)}.rc-g{stroke:var(--rule);stroke-width:.6}.rc-l{fill:var(--ink-3);font-family:var(--mono);font-size:8px;letter-spacing:.04em}.rc-v{fill:var(--ink);font-family:var(--mono);font-size:8.5px;font-weight:600}.rc-b{fill:var(--rc-b,#3a6ea5)}.rc-b.hot{fill:var(--rc-h,#b8860b)}.rc-b.mut{fill:var(--rule-2)}.rc-n{fill:var(--ink-2);font-family:var(--sans);font-size:8px}"
+  },
+  {
+   "stage": "c09",
+   "sid": "s9",
+   "kind": "chart",
+   "ord": 948,
+   "caption": "2025년 엘살바도르의 참치 조제품 수출 $136,5M · 27.743 t의 목적지. 스페인과 이탈리아가 53,5%이고 EU 합산은 63,8%다. 국가 단위 통계이고 물량이 이 회사 현지 캐파 24.000 t를 넘으므로 전량을 한 회사 몫으로 읽을 수 없다.",
+   "alt": "",
+   "svg": "<svg viewBox=\"0 0 660 150\" role=\"img\" aria-label=\"엘살바도르 수출 목적지\" style=\"--rc-b:#12414C;--rc-h:#A8541F\"><line class=\"rc-g\" x1=\"318.2\" y1=\"16\" x2=\"318.2\" y2=\"120\"/><text class=\"rc-l\" x=\"318.2\" y=\"133\" text-anchor=\"middle\">10</text><line class=\"rc-g\" x1=\"458.4\" y1=\"16\" x2=\"458.4\" y2=\"120\"/><text class=\"rc-l\" x=\"458.4\" y=\"133\" text-anchor=\"middle\">20</text><line class=\"rc-g\" x1=\"598.7\" y1=\"16\" x2=\"598.7\" y2=\"120\"/><text class=\"rc-l\" x=\"598.7\" y=\"133\" text-anchor=\"middle\">30</text><rect class=\"rc-b hot\" x=\"178\" y=\"23.0\" width=\"417.9\" height=\"12\" rx=\"1\"/><text class=\"rc-l\" x=\"172\" y=\"32.0\" text-anchor=\"end\">스페인</text><text class=\"rc-v\" x=\"600.9\" y=\"32.0\">29,8</text><rect class=\"rc-b hot\" x=\"178\" y=\"49.0\" width=\"332.3\" height=\"12\" rx=\"1\"/><text class=\"rc-l\" x=\"172\" y=\"58.0\" text-anchor=\"end\">이탈리아</text><text class=\"rc-v\" x=\"515.3\" y=\"58.0\">23,7</text><rect class=\"rc-b\" x=\"178\" y=\"75.0\" width=\"203.3\" height=\"12\" rx=\"1\"/><text class=\"rc-l\" x=\"172\" y=\"84.0\" text-anchor=\"end\">코스타리카</text><text class=\"rc-v\" x=\"386.3\" y=\"84.0\">14,5</text><rect class=\"rc-b\" x=\"178\" y=\"101.0\" width=\"152.8\" height=\"12\" rx=\"1\"/><text class=\"rc-l\" x=\"172\" y=\"110.0\" text-anchor=\"end\">미국</text><text class=\"rc-v\" x=\"335.8\" y=\"110.0\">10,9</text><text class=\"rc-n\" x=\"178\" y=\"144\">엘살바도르 참치조제품 수출 목적지 비중 · % (2025)</text></svg>",
+   "css": ":scope{--ink:#14181D;--ink-2:#424A53;--ink-3:#6E767F;--mono:'IBM Plex Mono',ui-monospace,SFMono-Regular,Menlo,monospace;--ocre:#A8541F;--rule:#D5D7D2;--rule-2:#BDC0BA;--sans:'Noto Sans KR',system-ui,-apple-system,'Malgun Gothic',sans-serif}.cx-bar.hot{fill:var(--ocre)}.cx-dot.hot{fill:var(--ocre)}.call.hot{border-left:3px solid var(--ocre)}.metric.hot .val{color:var(--ocre)}.rc-g{stroke:var(--rule);stroke-width:.6}.rc-l{fill:var(--ink-3);font-family:var(--mono);font-size:8px;letter-spacing:.04em}.rc-v{fill:var(--ink);font-family:var(--mono);font-size:8.5px;font-weight:600}.rc-b{fill:var(--rc-b,#3a6ea5)}.rc-b.hot{fill:var(--rc-h,#b8860b)}.rc-b.mut{fill:var(--rule-2)}.rc-n{fill:var(--ink-2);font-family:var(--sans);font-size:8px}"
+  },
+  {
+   "stage": "c11",
+   "sid": "s11",
+   "kind": "chart",
+   "ord": 949,
+   "caption": "국가보조금 공표시스템 누계. Nauterra 그룹 819.140,62 €는 Jealsa의 6분의 1, Frinsa의 5분의 1이다. 그 가운데 811.793,07 €가 선단 법인 한 곳이고 97,4%가 어업용 경유와 에너지비용 대응이다. 경쟁 두 곳이 받은 것은 공장 전환투자다. Albacora는 0건이라 막대가 최소 폭으로 그려진다.",
+   "alt": "",
+   "svg": "<svg viewBox=\"0 0 660 176\" role=\"img\" aria-label=\"갈리시아·바스크 통조림사 국가보조금 누계\" style=\"--rc-b:#12414C;--rc-h:#A8541F\"><line class=\"rc-g\" x1=\"333.6\" y1=\"16\" x2=\"333.6\" y2=\"146\"/><text class=\"rc-l\" x=\"333.6\" y=\"159\" text-anchor=\"middle\">2.000.000</text><line class=\"rc-g\" x1=\"489.2\" y1=\"16\" x2=\"489.2\" y2=\"146\"/><text class=\"rc-l\" x=\"489.2\" y=\"159\" text-anchor=\"middle\">4.000.000</text><line class=\"rc-g\" x1=\"644.8\" y1=\"16\" x2=\"644.8\" y2=\"146\"/><text class=\"rc-l\" x=\"644.8\" y=\"159\" text-anchor=\"middle\">6.000.000</text><rect class=\"rc-b\" x=\"178\" y=\"23.0\" width=\"417.9\" height=\"12\" rx=\"1\"/><text class=\"rc-l\" x=\"172\" y=\"32.0\" text-anchor=\"end\">Jealsa</text><text class=\"rc-v\" x=\"600.9\" y=\"32.0\">5.371.309</text><rect class=\"rc-b\" x=\"178\" y=\"49.0\" width=\"324.3\" height=\"12\" rx=\"1\"/><text class=\"rc-l\" x=\"172\" y=\"58.0\" text-anchor=\"end\">Frinsa</text><text class=\"rc-v\" x=\"507.3\" y=\"58.0\">4.168.965</text><rect class=\"rc-b hot\" x=\"178\" y=\"75.0\" width=\"63.7\" height=\"12\" rx=\"1\"/><text class=\"rc-l\" x=\"172\" y=\"84.0\" text-anchor=\"end\">Nauterra 그룹</text><text class=\"rc-v\" x=\"246.7\" y=\"84.0\">819.141</text><rect class=\"rc-b\" x=\"178\" y=\"101.0\" width=\"6.6\" height=\"12\" rx=\"1\"/><text class=\"rc-l\" x=\"172\" y=\"110.0\" text-anchor=\"end\">Salica (Albacora 가공)</text><text class=\"rc-v\" x=\"189.6\" y=\"110.0\">84.310</text><rect class=\"rc-b mut\" x=\"178\" y=\"127.0\" width=\"1.5\" height=\"12\" rx=\"1\"/><text class=\"rc-l\" x=\"172\" y=\"136.0\" text-anchor=\"end\">Albacora</text><text class=\"rc-v\" x=\"184.5\" y=\"136.0\">0</text><text class=\"rc-n\" x=\"178\" y=\"170\">스페인 국가보조금 공표시스템 누계 · €</text></svg>",
+   "css": ":scope{--ink:#14181D;--ink-2:#424A53;--ink-3:#6E767F;--mono:'IBM Plex Mono',ui-monospace,SFMono-Regular,Menlo,monospace;--ocre:#A8541F;--rule:#D5D7D2;--rule-2:#BDC0BA;--sans:'Noto Sans KR',system-ui,-apple-system,'Malgun Gothic',sans-serif}.cx-bar.hot{fill:var(--ocre)}.cx-bar.mut{fill:var(--rule-2)}.cx-dot.hot{fill:var(--ocre)}.call.hot{border-left:3px solid var(--ocre)}.metric.hot .val{color:var(--ocre)}.rc-g{stroke:var(--rule);stroke-width:.6}.rc-l{fill:var(--ink-3);font-family:var(--mono);font-size:8px;letter-spacing:.04em}.rc-v{fill:var(--ink);font-family:var(--mono);font-size:8.5px;font-weight:600}.rc-b{fill:var(--rc-b,#3a6ea5)}.rc-b.hot{fill:var(--rc-h,#b8860b)}.rc-b.mut{fill:var(--rule-2)}.rc-n{fill:var(--ink-2);font-family:var(--sans);font-size:8px}"
+  }
+ ]
+}

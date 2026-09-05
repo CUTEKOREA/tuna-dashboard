@@ -48,6 +48,7 @@ def _strip_tables(html: str) -> str:
         # 표 래퍼가 먼저면 래퍼째, 아니면 표만 도려낸다
         if w and (not m or w.start() < m.start()):
             out.append(html[i:i + w.start()])
+            cut_from = i + w.start()
             j, depth = i + w.end(), 1
             for t in re.finditer(r'<div\b[^>]*>|</div>', html[j:]):
                 depth += 1 if t.group(0) != '</div>' else -1
@@ -56,11 +57,16 @@ def _strip_tables(html: str) -> str:
                     break
             else:
                 j = len(html)
+            # 도려낸 자리를 같은 길이 공백으로 메운다. 길이가 보존돼야 서술 블록의
+            # 오프셋이 원문 오프셋과 같아지고, 표를 원래 자리에 되돌릴 수 있다.
+            out.append(" " * (j - cut_from))
             i = j
         elif m:
             out.append(html[i:i + m.start()])
             e = re.search(r'</table>', html[i + m.start():])
-            i = i + m.start() + (e.end() if e else len(html) - i - m.start())
+            end = i + m.start() + (e.end() if e else len(html) - i - m.start())
+            out.append(" " * (end - (i + m.start())))
+            i = end
         else:
             out.append(html[i:])
             return "".join(out)
@@ -75,9 +81,10 @@ class Block:
     chips: list[str] = field(default_factory=list)
     title: str = ""    # call 의 제목, h3 의 소제목
     tone: str = ""     # call 의 warn | hot
+    ord: int = 0       # 절 본문 안의 문자 오프셋. 표·그림을 원래 자리에 되돌릴 때 쓴다.
 
     def as_json(self) -> dict:
-        d = {"kind": self.kind, "text": self.text}
+        d = {"kind": self.kind, "text": self.text, "ord": self.ord}
         if self.chips:
             d["chips"] = self.chips
         if self.title:
@@ -127,6 +134,7 @@ def parse(doc: str) -> list[Section]:
         # 표는 report_tables 가 담당한다. 여기서 지워 두 경로가 겹치지 않게 한다.
         rest = body[h2.end():] if h2 else body
         rest = _strip_tables(rest)
+        base = h2.end() if h2 else 0            # rest 오프셋 → 절 본문 오프셋
 
         # 문단·소제목·콜아웃만 보던 초판은 목록과 인용을 통째로 흘렸다 —
         # JAIS 26개 `li` + 16개 `dt/dd`, FCF 55 + 24, Jealsa 인용 4개가 화면에 없었다.
@@ -153,31 +161,32 @@ def parse(doc: str) -> list[Section]:
                     txt, chips = _text(raw)
                     if txt:
                         sec.blocks.append(
-                            Block("call", txt, chips, title if i == 0 else "", tone)
+                            Block("call", txt, chips, title if i == 0 else "", tone,
+                                  ord=base + el.start())
                         )
             elif el.group(3) is not None:                    # 소제목
                 txt, _ = _text(el.group(3))
                 if txt:
-                    sec.blocks.append(Block("h3", title=txt))
+                    sec.blocks.append(Block("h3", title=txt, ord=base + el.start()))
             elif el.group(5) is not None:                    # 문단
                 attrs, raw = el.group(4) or "", el.group(5)
                 txt, chips = _text(raw)
                 if not txt:
                     continue
                 kind = "lead" if "lead" in attrs else "para"
-                sec.blocks.append(Block(kind, txt, chips))
+                sec.blocks.append(Block(kind, txt, chips, ord=base + el.start()))
             elif el.group(6) is not None:                    # 인용 — 원문 그대로 실린 대목
                 txt, chips = _text(el.group(6))
                 if txt:
-                    sec.blocks.append(Block("quote", txt, chips))
+                    sec.blocks.append(Block("quote", txt, chips, ord=base + el.start()))
             elif el.group(7) is not None:                    # 목록 한 줄
                 txt, chips = _text(el.group(7))
                 if txt:
-                    sec.blocks.append(Block("li", txt, chips))
+                    sec.blocks.append(Block("li", txt, chips, ord=base + el.start()))
             elif el.group(8) is not None:                    # 정의 — 용어와 뜻이 짝이다
                 term, _ = _text(el.group(8))
                 desc, chips = _text(el.group(9) or "")
                 if term or desc:
-                    sec.blocks.append(Block("term", desc, chips, title=term))
+                    sec.blocks.append(Block("term", desc, chips, title=term, ord=base + el.start()))
         out.append(sec)
     return out

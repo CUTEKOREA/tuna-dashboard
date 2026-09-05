@@ -9,6 +9,7 @@
    "stage": "c01",
    "sid": "cover",
    "kind": "shot",
+   "ord": 0,
    "caption": "",
    "alt": "Sun Bell — ATI 자체 브랜드 라인업",
    "src": "/data/companies/figures/itochu/6101e0043048.jpg"
@@ -17,6 +18,7 @@
    "stage": "c01",
    "sid": "cover",
    "kind": "shot",
+   "ord": 0,
    "caption": "",
    "alt": "シーチキン マイルド — 라벨에 「海外製造」 표기",
    "src": "/data/companies/figures/itochu/c30e69b51507.jpg"
@@ -25,6 +27,7 @@
    "stage": "c01",
    "sid": "cover",
    "kind": "shot",
+   "ord": 0,
    "caption": "",
    "alt": "シーチキン New L フレーク — 하고로모푸드",
    "src": "/data/companies/figures/itochu/6bf6b3a1738c.jpg"
@@ -33,6 +36,7 @@
    "stage": "c03",
    "sid": "s4",
    "kind": "chart",
+   "ord": 1337,
    "caption": "배를 한 척도 갖지 않은 회사의 인증 선단이다. 짙은 색으로 표시한 사조 계열 11척(44%)은 한국 6, 키리바시 3, 바누아투 2로 흩어져 있다. 선단 명단을 열자 절반이 한 그룹이었다.",
    "alt": "",
    "svg": "<svg viewBox=\"0 0 620 176\" role=\"img\" aria-label=\"기국별 척수 — 대만 12, 한국 6, 키리바시 3, 투발루 2, 바누아투 2\" style=\"--rc-b:#1F3A5F;--rc-h:#A8243A\"><line class=\"rc-g\" x1=\"319.6\" y1=\"16\" x2=\"319.6\" y2=\"146\"/><text class=\"rc-l\" x=\"319.6\" y=\"159\" text-anchor=\"middle\">5</text><line class=\"rc-g\" x1=\"489.3\" y1=\"16\" x2=\"489.3\" y2=\"146\"/><text class=\"rc-l\" x=\"489.3\" y=\"159\" text-anchor=\"middle\">10</text><rect class=\"rc-b\" x=\"150\" y=\"23.0\" width=\"407.1\" height=\"12\" rx=\"1\"/><text class=\"rc-l\" x=\"144\" y=\"32.0\" text-anchor=\"end\">대만</text><text class=\"rc-v\" x=\"562.1\" y=\"32.0\">12</text><rect class=\"rc-b hot\" x=\"150\" y=\"49.0\" width=\"203.6\" height=\"12\" rx=\"1\"/><text class=\"rc-l\" x=\"144\" y=\"58.0\" text-anchor=\"end\">한국</text><text class=\"rc-v\" x=\"358.6\" y=\"58.0\">6</text><rect class=\"rc-b hot\" x=\"150\" y=\"75.0\" width=\"101.8\" height=\"12\" rx=\"1\"/><text class=\"rc-l\" x=\"144\" y=\"84.0\" text-anchor=\"end\">키리바시</text><text class=\"rc-v\" x=\"256.8\" y=\"84.0\">3</text><rect class=\"rc-b\" x=\"150\" y=\"101.0\" width=\"67.9\" height=\"12\" rx=\"1\"/><text class=\"rc-l\" x=\"144\" y=\"110.0\" text-anchor=\"end\">투발루</text><text class=\"rc-v\" x=\"222.9\" y=\"110.0\">2</text><rect class=\"rc-b hot\" x=\"150\" y=\"127.0\" width=\"67.9\" height=\"12\" rx=\"1\"/><text class=\"rc-l\" x=\"144\" y=\"136.0\" text-anchor=\"end\">바누아투</text><text class=\"rc-v\" x=\"222.9\" y=\"136.0\">2</text><text class=\"rc-n\" x=\"150\" y=\"170\">ITOCHU 인증 선단 25척의 기국 구성 (척)</text></svg>",

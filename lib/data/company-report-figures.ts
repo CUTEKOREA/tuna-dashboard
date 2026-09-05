@@ -23,6 +23,8 @@ import thaiunionRaw from '@/public/data/companies/thaiunion_figures_v1.json';
 export interface ReportFigure {
   stage: string;
   sid: string;
+  /** 절 본문 안의 문자 오프셋. 원문 자리에 되돌릴 때 쓴다. */
+  ord: number;
   /** shot=제품 팩샷 · chart=인라인 SVG · doc=문서 캡처 */
   kind: 'shot' | 'chart' | 'doc';
   caption: string;

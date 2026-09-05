@@ -9,6 +9,7 @@
    "stage": "c03",
    "sid": "s3",
    "kind": "chart",
+   "ord": 940,
    "caption": "2025년 막대가 가장 높다. 그러나 직전 고점은 2022년(814,8)이었고 이듬해 4,5% 빠졌다. 2025년은 세 해 만의 회복이다. 2021년은 Boiro 공장 화재로 두 달 멈춘 해다. 세로축은 660에서 시작한다.",
    "alt": "",
    "svg": "<svg viewBox=\"0 0 620 210\" role=\"img\" aria-label=\"연결매출 시계열 2020-2025\">\n<line class=\"cx-grid\" x1=\"46\" y1=\"145.5\" x2=\"606\" y2=\"145.5\"/><text class=\"cx-lab\" x=\"40\" y=\"148.5\" text-anchor=\"end\">700</text><line class=\"cx-grid\" x1=\"46\" y1=\"102.3\" x2=\"606\" y2=\"102.3\"/><text class=\"cx-lab\" x=\"40\" y=\"105.3\" text-anchor=\"end\">750</text><line class=\"cx-grid\" x1=\"46\" y1=\"59.2\" x2=\"606\" y2=\"59.2\"/><text class=\"cx-lab\" x=\"40\" y=\"62.2\" text-anchor=\"end\">800</text><line class=\"cx-grid\" x1=\"46\" y1=\"16.0\" x2=\"606\" y2=\"16.0\"/><text class=\"cx-lab\" x=\"40\" y=\"19.0\" text-anchor=\"end\">850</text><line class=\"cx-axis\" x1=\"46\" y1=\"180.0\" x2=\"606\" y2=\"180.0\"/>\n<rect class=\"cx-bar\" x=\"71.2\" y=\"134.4\" width=\"42.9\" height=\"45.6\" rx=\"1\"/><text class=\"cx-val\" x=\"92.7\" y=\"130.4\" text-anchor=\"middle\">712,8</text><text class=\"cx-lab\" x=\"92.7\" y=\"193.0\" text-anchor=\"middle\">2020</text><rect class=\"cx-bar\" x=\"164.5\" y=\"142.0\" width=\"42.9\" height=\"38.0\" rx=\"1\"/><text class=\"cx-val\" x=\"186.0\" y=\"138.0\" text-anchor=\"middle\">704,0</text><text class=\"cx-lab\" x=\"186.0\" y=\"193.0\" text-anchor=\"middle\">2021</text><rect class=\"cx-bar hot\" x=\"257.9\" y=\"46.4\" width=\"42.9\" height=\"133.6\" rx=\"1\"/><text class=\"cx-val\" x=\"279.3\" y=\"42.4\" text-anchor=\"middle\">814,8</text><text class=\"cx-lab\" x=\"279.3\" y=\"193.0\" text-anchor=\"middle\">2022</text><rect class=\"cx-bar\" x=\"351.2\" y=\"77.7\" width=\"42.9\" height=\"102.3\" rx=\"1\"/><text class=\"cx-val\" x=\"372.7\" y=\"73.7\" text-anchor=\"middle\">778,5</text><text class=\"cx-lab\" x=\"372.7\" y=\"193.0\" text-anchor=\"middle\">2023</text><rect class=\"cx-bar\" x=\"444.5\" y=\"75.6\" width=\"42.9\" height=\"104.4\" rx=\"1\"/><text class=\"cx-val\" x=\"466.0\" y=\"71.6\" text-anchor=\"middle\">781,0</text><text class=\"cx-lab\" x=\"466.0\" y=\"193.0\" text-anchor=\"middle\">2024</text><rect class=\"cx-bar hot\" x=\"537.9\" y=\"37.0\" width=\"42.9\" height=\"143.0\" rx=\"1\"/><text class=\"cx-val\" x=\"559.3\" y=\"33.0\" text-anchor=\"middle\">825,7</text><text class=\"cx-lab\" x=\"559.3\" y=\"193.0\" text-anchor=\"middle\">2025</text>\n<text class=\"cx-note\" x=\"46\" y=\"204\">단위 M€ · 예치 주체 Corporación Empresarial Jesús Alonso, S.L.</text></svg>",
@@ -18,6 +19,7 @@
    "stage": "c06",
    "sid": "s6",
    "kind": "shot",
+   "ord": 1007,
    "caption": "Rianxeira · Atún claro, aceite de oliva eco y flor de sal MSC 로고, Sabor del Año 2020 배지, 유기농 올리브유 표기",
    "alt": "Rianxeira 아툰 클라로 올리브유 에코 4개입",
    "src": "/data/companies/figures/jealsa/2631b5ea95be.jpg"
@@ -26,6 +28,7 @@
    "stage": "c06",
    "sid": "s6",
    "kind": "shot",
+   "ord": 51176,
    "caption": "Hacendado · Atún claro en aceite de oliva · 6×80 g · 4,90 € 공급사 표기 ESCURIS, S.L. 로고 하나, 배지 없음",
    "alt": "Hacendado 아툰 클라로 올리브유 6개입",
    "src": "/data/companies/figures/jealsa/ff773fe35123.jpg"
@@ -34,6 +37,7 @@
    "stage": "c06",
    "sid": "s6",
    "kind": "shot",
+   "ord": 101707,
    "caption": "Rianxeira · Ventresca de atún claro · OL-120 뱃살 라인은 두 상표 모두에 있다",
    "alt": "Rianxeira 벤트레스카",
    "src": "/data/companies/figures/jealsa/90c75be0af29.jpg"
@@ -42,6 +46,7 @@
    "stage": "c06",
    "sid": "s6",
    "kind": "shot",
+   "ord": 156949,
    "caption": "Hacendado · Ventresca de atún claro · 111 g · 3,30 € 같은 부위, 같은 공장, 다른 상표",
    "alt": "Hacendado 벤트레스카",
    "src": "/data/companies/figures/jealsa/31ff5cba77ca.jpg"
@@ -50,6 +55,7 @@
    "stage": "c06",
    "sid": "s6",
    "kind": "chart",
+   "ord": 204937,
    "caption": "가로축이 로그 눈금이다. 바닥에서 꼭대기까지 15,6배이고, 위쪽 절반에서 두 상표가 서로 물린다. 자사 브랜드 표준 라인(26,58)이 Hacendado 벤트레스카(29,73)보다 싸다. 상표가 아니라 부위가 가격을 가르는 구간이 있다는 뜻이다.",
    "alt": "",
    "svg": "<svg viewBox=\"0 0 620 250\" role=\"img\" aria-label=\"그룹 내 가격 사다리\">\n<line class=\"cx-grid\" x1=\"225.7\" y1=\"16\" x2=\"225.7\" y2=\"220.0\"/><text class=\"cx-lab\" x=\"225.7\" y=\"233.0\" text-anchor=\"middle\">10</text><line class=\"cx-grid\" x1=\"328.5\" y1=\"16\" x2=\"328.5\" y2=\"220.0\"/><text class=\"cx-lab\" x=\"328.5\" y=\"233.0\" text-anchor=\"middle\">20</text><line class=\"cx-grid\" x1=\"464.3\" y1=\"16\" x2=\"464.3\" y2=\"220.0\"/><text class=\"cx-lab\" x=\"464.3\" y=\"233.0\" text-anchor=\"middle\">50</text><line class=\"cx-grid\" x1=\"567.1\" y1=\"16\" x2=\"567.1\" y2=\"220.0\"/><text class=\"cx-lab\" x=\"567.1\" y=\"233.0\" text-anchor=\"middle\">100</text><rect class=\"cx-bar\" x=\"150\" y=\"22.8\" width=\"27.4\" height=\"12\" rx=\"1\"/><text class=\"cx-lab\" x=\"144\" y=\"31.8\" text-anchor=\"end\">Hacendado 900 g</text><text class=\"cx-val\" x=\"182.4\" y=\"31.8\">7,22</text><rect class=\"cx-bar\" x=\"150\" y=\"48.2\" width=\"78.8\" height=\"12\" rx=\"1\"/><text class=\"cx-lab\" x=\"144\" y=\"57.2\" text-anchor=\"end\">Hacendado 6×80 g</text><text class=\"cx-val\" x=\"233.8\" y=\"57.2\">10,21</text><rect class=\"cx-bar\" x=\"150\" y=\"73.8\" width=\"125.2\" height=\"12\" rx=\"1\"/><text class=\"cx-lab\" x=\"144\" y=\"82.8\" text-anchor=\"end\">Hacendado 111 g</text><text class=\"cx-val\" x=\"280.2\" y=\"82.8\">13,96</text><rect class=\"cx-bar hot\" x=\"150\" y=\"99.2\" width=\"220.7\" height=\"12\" rx=\"1\"/><text class=\"cx-lab\" x=\"144\" y=\"108.2\" text-anchor=\"end\">Escurís 111 g</text><text class=\"cx-val\" x=\"375.7\" y=\"108.2\">26,58</text><rect class=\"cx-bar\" x=\"150\" y=\"124.8\" width=\"237.3\" height=\"12\" rx=\"1\"/><text class=\"cx-lab\" x=\"144\" y=\"133.8\" text-anchor=\"end\">Hacendado ventresca</text><text class=\"cx-val\" x=\"392.3\" y=\"133.8\">29,73</text><rect class=\"cx-bar hot\" x=\"150\" y=\"150.2\" width=\"265.4\" height=\"12\" rx=\"1\"/><text class=\"cx-lab\" x=\"144\" y=\"159.2\" text-anchor=\"end\">Escurís bonito</text><text class=\"cx-val\" x=\"420.4\" y=\"159.2\">35,95</text><rect class=\"cx-bar hot\" x=\"150\" y=\"175.8\" width=\"376.7\" height=\"12\" rx=\"1\"/><text class=\"cx-lab\" x=\"144\" y=\"184.8\" text-anchor=\"end\">Escurís ventresca bonito</text><text class=\"cx-val\" x=\"531.7\" y=\"184.8\">76,13</text><rect class=\"cx-bar hot\" x=\"150\" y=\"201.2\" width=\"434.7\" height=\"12\" rx=\"1\"/><text class=\"cx-lab\" x=\"144\" y=\"210.2\" text-anchor=\"end\">Escurís 한정판</text><text class=\"cx-val\" x=\"589.7\" y=\"210.2\">112,61</text>\n<text class=\"cx-note\" x=\"150\" y=\"244\">€/kg · 가로축 로그 눈금 · 파랑 Hacendado, 황토 자사 브랜드</text></svg>",
@@ -59,6 +65,7 @@
    "stage": "c06",
    "sid": "s6",
    "kind": "shot",
+   "ord": 210337,
    "caption": "Ventresca de Bonito del Norte · 날개다랑어 뱃살",
    "alt": "Rianxeira 봉이토 벤트레스카",
    "src": "/data/companies/figures/jealsa/fd77124853d9.jpg"
@@ -67,6 +74,7 @@
    "stage": "c06",
    "sid": "s6",
    "kind": "shot",
+   "ord": 269814,
    "caption": "Mejillones de las Rías Gallegas · 갈리시아 리아스 홍합",
    "alt": "Rianxeira 홍합 에스카베체",
    "src": "/data/companies/figures/jealsa/588630d4975f.jpg"
@@ -75,6 +83,7 @@
    "stage": "c06",
    "sid": "s6",
    "kind": "shot",
+   "ord": 314947,
    "caption": "Sardinas en aceite de oliva · RR-125",
    "alt": "Rianxeira 정어리 올리브유",
    "src": "/data/companies/figures/jealsa/77e22504654f.jpg"
@@ -83,6 +92,7 @@
    "stage": "c06",
    "sid": "s6",
    "kind": "shot",
+   "ord": 372963,
    "caption": "업소용 대형캔. 가정용과 캔 형태부터 다르다",
    "alt": "Rianxeira 업소용 대형캔",
    "src": "/data/companies/figures/jealsa/dade364a7461.jpg"
@@ -91,6 +101,7 @@
    "stage": "c08",
    "sid": "s8",
    "kind": "chart",
+   "ord": 2621,
    "caption": "회사가 앞세우는 수치는 96%다. 그 96%를 쪼개면 MSC 인증 어장은 58%이고 나머지는 평가 진행·개선 프로그램·공개 FIP다. 어느 범주에도 들지 않는 4%가 회사가 줄이겠다고 적은 몫이다.",
    "alt": "",
    "svg": "<svg viewBox=\"0 0 620 150\" role=\"img\" aria-label=\"2024년 참치 조달 구성\">\n<rect class=\"cx-bar\" x=\"20.0\" y=\"40\" width=\"339.9\" height=\"34\" rx=\"1\"/><text class=\"cx-val\" x=\"189.9\" y=\"61\" text-anchor=\"middle\" fill=\"#fff\">58%</text><rect class=\"cx-bar mut\" x=\"359.9\" y=\"40\" width=\"82.0\" height=\"34\" rx=\"1\"/><text class=\"cx-val\" x=\"400.9\" y=\"61\" text-anchor=\"middle\" fill=\"#fff\">14%</text><rect class=\"cx-bar mut\" x=\"441.9\" y=\"40\" width=\"52.7\" height=\"34\" rx=\"1\"/><text class=\"cx-val\" x=\"468.3\" y=\"61\" text-anchor=\"middle\" fill=\"#fff\">9%</text><rect class=\"cx-bar mut\" x=\"494.7\" y=\"40\" width=\"87.9\" height=\"34\" rx=\"1\"/><text class=\"cx-val\" x=\"538.6\" y=\"61\" text-anchor=\"middle\" fill=\"#fff\">15%</text><rect class=\"cx-bar hot\" x=\"582.6\" y=\"40\" width=\"23.4\" height=\"34\" rx=\"1\"/><text class=\"cx-val\" x=\"594.3\" y=\"30\" text-anchor=\"middle\">4%</text><rect class=\"cx-bar\" x=\"20.0\" y=\"96\" width=\"9\" height=\"9\" rx=\"1\"/><text class=\"cx-lab\" x=\"33.0\" y=\"104\">MSC 인증 어장</text><rect class=\"cx-bar mut\" x=\"142.0\" y=\"96\" width=\"9\" height=\"9\" rx=\"1\"/><text class=\"cx-lab\" x=\"155.0\" y=\"104\">MSC 평가 진행</text><rect class=\"cx-bar mut\" x=\"264.0\" y=\"96\" width=\"9\" height=\"9\" rx=\"1\"/><text class=\"cx-lab\" x=\"277.0\" y=\"104\">MSC 개선 프로그램</text><rect class=\"cx-bar mut\" x=\"386.0\" y=\"96\" width=\"9\" height=\"9\" rx=\"1\"/><text class=\"cx-lab\" x=\"399.0\" y=\"104\">공개 FIP</text><rect class=\"cx-bar hot\" x=\"508.0\" y=\"96\" width=\"9\" height=\"9\" rx=\"1\"/><text class=\"cx-lab\" x=\"521.0\" y=\"104\">어느 범주에도 없음</text>\n<text class=\"cx-note\" x=\"20\" y=\"132\">2024년 처리 어류 100% 기준 · 96%가 지속가능 이니셔티브 참여 선박</text></svg>",

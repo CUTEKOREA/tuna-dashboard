@@ -52,7 +52,20 @@ export interface StageNarrative {
   paragraphs: string[];
   facts: FactRow[];
   terms: TermDef[];
+  /**
+   * 원문 순서. 있으면 `paragraphs` 대신 이것을 낸다 —
+   * 서술과 표·그림이 **보고서에 있던 그 자리 그대로** 섞인다.
+   * 표를 절 끝에 몰아 두면 그 표를 설명하는 문장과 멀어져 둘 다 안 읽힌다.
+   * 순서는 추출기가 문자 오프셋(`ord`)으로 재구성한다.
+   */
+  flow?: FlowItem[];
 }
+
+/** 원문 순서의 한 조각. 글이거나, 그 자리에 있던 표·그림이다. */
+export type FlowItem =
+  | { kind: 'text'; ord: number; text: string }
+  | { kind: 'head'; ord: number; text: string }
+  | { kind: 'slot'; ord: number; slot: ChartSlot };
 
 export interface ChartSlot {
   /** 서술이 「」로 지목하는 이름이다. 바꾸면 참조가 끊긴다(테스트가 잡는다) */
@@ -108,6 +121,13 @@ export interface CommoditySpec {
   stripItems: HeroNowItem[];
   briefing: BriefingPoint[];
   narratives: StageNarrative[];
+  /**
+   * 단계를 하나씩 넘기지 않고 **문서 순서 그대로 이어서** 렌더한다.
+   * 기업 해부 카드용이다 — 거기서 「단계」는 밸류체인이 아니라 조사보고서의 절이고,
+   * 절을 한 번에 하나씩 보여 주면 13번 눌러야 한 편을 읽는다. 탭은 이동 수단으로 남는다.
+   * 품목 대시보드(참치·오징어)는 이 값을 주지 않으므로 종전대로 페이저다.
+   */
+  continuous?: boolean;
   chartSlots: Record<string, ChartSlot[]>;
   sourceNotes: string[];
   sourceMeta: string;
@@ -235,7 +255,7 @@ function StageSection({
   charts: ChartSlot[];
   next?: StageNarrative;
   onGo: (key: string) => void;
-  headingRef: React.RefObject<HTMLHeadingElement | null>;
+  headingRef?: React.RefObject<HTMLHeadingElement | null>;
 }) {
   // 2026-08-17 사용자 지시: 차트는 전부 사실표 아래로 — 본문 위 근거 레일 폐지
   const rest = charts;
@@ -266,11 +286,25 @@ function StageSection({
         </p>
       )}
 
-      <div className={styles.prose}>
-        {narrative.paragraphs.map((paragraph, index) => (
-          <p key={index}>{renderEmphasis(paragraph)}</p>
-        ))}
-      </div>
+      {narrative.flow ? (
+        <div className={styles.prose}>
+          {narrative.flow.map((item, index) => {
+            if (item.kind === 'text') return <p key={index}>{renderEmphasis(item.text)}</p>;
+            if (item.kind === 'head') return <h3 key={index} className={styles.flowHeading}>{item.text}</h3>;
+            return (
+              <div key={index} className={styles.flowSlot}>
+                <ChartFigure slot={item.slot} />
+              </div>
+            );
+          })}
+        </div>
+      ) : (
+        <div className={styles.prose}>
+          {narrative.paragraphs.map((paragraph, index) => (
+            <p key={index}>{renderEmphasis(paragraph)}</p>
+          ))}
+        </div>
+      )}
 
       {narrative.terms.length > 0 && (
         <div className={styles.termRow}>
@@ -330,7 +364,10 @@ export default function CommodityIndustryDashboard({
   const go = useCallback((key: string) => {
     setStage(key);
     requestAnimationFrame(() => {
-      const heading = headingRef.current;
+      // 연속 모드에서는 절이 전부 떠 있으므로 그 절의 제목으로 스크롤한다.
+      const heading = spec.continuous
+        ? (document.getElementById(`${spec.key}-stage-${key}`) as HTMLElement | null)
+        : headingRef.current;
       if (!heading) return;
       const reduce =
         typeof window !== 'undefined' &&
@@ -338,7 +375,7 @@ export default function CommodityIndustryDashboard({
       heading.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'start' });
       heading.focus({ preventScroll: true });
     });
-  }, [setStage]);
+  }, [setStage, spec.continuous, spec.key]);
 
   /**
    * 탭에는 단계 이름만 싣고 부제(「— …」)는 뺀다.
@@ -388,7 +425,9 @@ export default function CommodityIndustryDashboard({
           30초 브리핑
         </h2>
         <p className={styles.briefingIntro}>
-          아래로 내려가지 않아도 되는 사람을 위한 요약이다. 각 항목은 사슬의 한 단계에서 나온다.
+          {spec.continuous
+            ? '아래로 내려가지 않아도 되는 사람을 위한 요약이다. 각 항목은 보고서의 한 절에서 나온다.'
+            : '아래로 내려가지 않아도 되는 사람을 위한 요약이다. 각 항목은 사슬의 한 단계에서 나온다.'}
         </p>
         <ol className={styles.briefingList}>
           {spec.briefing.map((point) => {
@@ -404,7 +443,7 @@ export default function CommodityIndustryDashboard({
                     className={styles.briefingJump}
                     onClick={() => go(stage.key)}
                   >
-                    {stage.numeral}단계에서 보기
+                    {stage.numeral}{spec.continuous ? '절로' : '단계에서'} 보기
                   </button>
                 )}
               </li>
@@ -413,7 +452,7 @@ export default function CommodityIndustryDashboard({
         </ol>
       </section>
 
-      <nav className={styles.tabNav} aria-label="밸류체인 단계 이동">
+      <nav className={styles.tabNav} aria-label={spec.continuous ? '절 이동' : '밸류체인 단계 이동'}>
         <PillTabs
           tabs={tabs}
           activeKey={active?.key ?? ''}
@@ -427,7 +466,17 @@ export default function CommodityIndustryDashboard({
 
       {spec.insets?.AfterTabs && <spec.insets.AfterTabs activeKey={activeKey} go={go} />}
 
-      {active ? (
+      {spec.continuous ? (
+        spec.narratives.map((narrative) => (
+          <StageSection
+            key={narrative.key}
+            prefix={spec.key}
+            narrative={narrative}
+            charts={spec.chartSlots[narrative.key] ?? []}
+            onGo={go}
+          />
+        ))
+      ) : active ? (
         <StageSection
           prefix={spec.key}
           narrative={active}

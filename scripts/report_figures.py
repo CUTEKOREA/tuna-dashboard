@@ -65,6 +65,7 @@ class Figure:
     css: str = ''           # 그 SVG 가 쓰는 클래스 규칙 (스코프 적용 전)
     stage: str = ''
     bytes: int = 0
+    ord: int = 0            # 절 본문 안의 문자 오프셋. 원문 순서로 되돌릴 때 쓴다.
 
 
 @dataclass
@@ -131,8 +132,9 @@ def parse(html: str, key: str, out_dir: Path, url_base: str) -> FigureSet:
     out_dir.mkdir(parents=True, exist_ok=True)
     seen: dict[str, str] = {}
 
-    def emit(sid: str, kind: str, caption: str, alt: str, blob: bytes | None, svg: str) -> None:
-        f = Figure(sid=sid, kind=kind, caption=caption, alt=alt, svg=svg,
+    def emit(sid: str, kind: str, caption: str, alt: str, blob: bytes | None, svg: str,
+             ord_: int = 0) -> None:
+        f = Figure(sid=sid, kind=kind, caption=caption, alt=alt, svg=svg, ord=ord_,
                    css=_chart_css(html, svg) if svg else '')
         if blob is not None:
             digest = hashlib.sha1(blob).hexdigest()[:12]
@@ -172,18 +174,21 @@ def parse(html: str, key: str, out_dir: Path, url_base: str) -> FigureSet:
             emit('cover', 'doc', capt, alt, base64.b64decode(s2.group(2)), '')
 
     # ── 본문 figure ──
-    for sid, sec in _SECTION.findall(body):
-        for _attrs, inner in _FIGURE.findall(sec):
+    for sm in _SECTION.finditer(body):
+        sid, sec = sm.group(1), sm.group(2)
+        for fm in _FIGURE.finditer(sec):
+            inner = fm.group(2)
+            at = fm.start()                 # 절 본문 안에서 이 그림이 있던 자리
             cap = _CAP.search(inner)
             capt = _text(cap.group(1)) if cap else ''
             svg = _SVG.search(inner)
             if svg:
-                emit(sid, 'chart', capt, '', None, svg.group(0))
+                emit(sid, 'chart', capt, '', None, svg.group(0), at)
                 continue
             for tag in _IMG.findall(inner):
                 s = _SRC.search(tag)
                 if not s:
                     continue
                 alt = (_ALT.search(tag).group(1) if _ALT.search(tag) else '')
-                emit(sid, 'shot', capt, alt, base64.b64decode(s.group(2)), '')
+                emit(sid, 'shot', capt, alt, base64.b64decode(s.group(2)), '', at)
     return fs

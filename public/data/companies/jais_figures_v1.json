@@ -9,6 +9,7 @@
    "stage": "c01",
    "sid": "cover",
    "kind": "doc",
+   "ord": 0,
    "caption": "FRIEND OF THE SEA 승인선박 명부 2018-10-10 · 298~319행 스물두 줄 가운데 스물한 줄의 판매권자 칸이 JAIS다. 배도 어업권도 남의 것이고, 이 회사가 가진 것은 그 줄에 이름을 올릴 권한이다. 300행 하나만 FCF다. 2023년판에서 JAIS 행은 0이 된다.",
    "alt": "Friend of the Sea 승인선박 명부 2018년판 298~319행. 판매권자 칸이 JAIS로 적힌 줄이 21개다",
    "src": "/data/companies/figures/jais/4fae1afd53a7.jpg"
@@ -17,6 +18,7 @@
    "stage": "c03",
    "sid": "s4",
    "kind": "chart",
+   "ord": 261,
    "caption": "이 회사는 자기 문서가 아니라 남의 명부에 한 줄로 존재했다. 그 줄이 사라지는 과정이다 — 마지막 막대는 0행이고, 눈에 보이라고 최소 폭으로만 그렸다. 같은 명부에서 FCF는 34척 전부 유효하다.",
    "alt": "",
    "svg": "<svg viewBox=\"0 0 620 202\" role=\"img\" aria-label=\"JAIS 등재행이 43행에서 0행으로 줄어드는 과정\" style=\"--rc-b:#0F7A8A;--rc-h:#A9541F\"><line class=\"rc-g\" x1=\"244.7\" y1=\"16\" x2=\"244.7\" y2=\"172\"/><text class=\"rc-l\" x=\"244.7\" y=\"185\" text-anchor=\"middle\">10</text><line class=\"rc-g\" x1=\"339.4\" y1=\"16\" x2=\"339.4\" y2=\"172\"/><text class=\"rc-l\" x=\"339.4\" y=\"185\" text-anchor=\"middle\">20</text><line class=\"rc-g\" x1=\"434.1\" y1=\"16\" x2=\"434.1\" y2=\"172\"/><text class=\"rc-l\" x=\"434.1\" y=\"185\" text-anchor=\"middle\">30</text><line class=\"rc-g\" x1=\"528.7\" y1=\"16\" x2=\"528.7\" y2=\"172\"/><text class=\"rc-l\" x=\"528.7\" y=\"185\" text-anchor=\"middle\">40</text><rect class=\"rc-b\" x=\"150\" y=\"23.0\" width=\"407.1\" height=\"12\" rx=\"1\"/><text class=\"rc-l\" x=\"144\" y=\"32.0\" text-anchor=\"end\">2018–10</text><text class=\"rc-v\" x=\"562.1\" y=\"32.0\">43</text><rect class=\"rc-b\" x=\"150\" y=\"49.0\" width=\"407.1\" height=\"12\" rx=\"1\"/><text class=\"rc-l\" x=\"144\" y=\"58.0\" text-anchor=\"end\">2019–06</text><text class=\"rc-v\" x=\"562.1\" y=\"58.0\">43</text><rect class=\"rc-b\" x=\"150\" y=\"75.0\" width=\"397.7\" height=\"12\" rx=\"1\"/><text class=\"rc-l\" x=\"144\" y=\"84.0\" text-anchor=\"end\">2020–03</text><text class=\"rc-v\" x=\"552.7\" y=\"84.0\">42</text><rect class=\"rc-b hot\" x=\"150\" y=\"101.0\" width=\"303.0\" height=\"12\" rx=\"1\"/><text class=\"rc-l\" x=\"144\" y=\"110.0\" text-anchor=\"end\">2022–12</text><text class=\"rc-v\" x=\"458.0\" y=\"110.0\">32</text><rect class=\"rc-b hot\" x=\"150\" y=\"127.0\" width=\"113.6\" height=\"12\" rx=\"1\"/><text class=\"rc-l\" x=\"144\" y=\"136.0\" text-anchor=\"end\">2023–04</text><text class=\"rc-v\" x=\"268.6\" y=\"136.0\">12</text><rect class=\"rc-b hot\" x=\"150\" y=\"153.0\" width=\"1.5\" height=\"12\" rx=\"1\"/><text class=\"rc-l\" x=\"144\" y=\"162.0\" text-anchor=\"end\">2023–11 이후</text><text class=\"rc-v\" x=\"156.5\" y=\"162.0\">0</text><text class=\"rc-n\" x=\"150\" y=\"196\">Friend of the Sea 승인선박 명부의 JAIS 등재행</text></svg>",
@@ -26,6 +28,7 @@
    "stage": "c05",
    "sid": "s6b",
    "kind": "chart",
+   "ord": 1724,
    "caption": "건수로 보면 필리핀이 3분의 2(63.03%)다. 붉은 막대가 에콰도르인데, 건수로는 열한 건으로 꼴찌이면서 최근 1년을 금액으로 재면 68.89%로 1위가 된다. 선적 한 건의 무게가 두 축에서 다를 수 있다는 정도까지 읽히고, 벤더가 건당 물량을 공개하지 않으므로 그 이상은 말할 수 없다.",
    "alt": "",
    "svg": "<svg viewBox=\"0 0 620 150\" role=\"img\" aria-label=\"원산지별 수입 선적 건수 — 필리핀 179, 가나 51, 인도네시아 43, 에콰도르 11\" style=\"--rc-b:#0F7A8A;--rc-h:#A9541F\"><line class=\"rc-g\" x1=\"233.7\" y1=\"16\" x2=\"233.7\" y2=\"120\"/><text class=\"rc-l\" x=\"233.7\" y=\"133\" text-anchor=\"middle\">50</text><line class=\"rc-g\" x1=\"357.4\" y1=\"16\" x2=\"357.4\" y2=\"120\"/><text class=\"rc-l\" x=\"357.4\" y=\"133\" text-anchor=\"middle\">100</text><line class=\"rc-g\" x1=\"481.1\" y1=\"16\" x2=\"481.1\" y2=\"120\"/><text class=\"rc-l\" x=\"481.1\" y=\"133\" text-anchor=\"middle\">150</text><line class=\"rc-g\" x1=\"604.8\" y1=\"16\" x2=\"604.8\" y2=\"120\"/><text class=\"rc-l\" x=\"604.8\" y=\"133\" text-anchor=\"middle\">200</text><rect class=\"rc-b\" x=\"110\" y=\"23.0\" width=\"442.9\" height=\"12\" rx=\"1\"/><text class=\"rc-l\" x=\"104\" y=\"32.0\" text-anchor=\"end\">필리핀</text><text class=\"rc-v\" x=\"557.9\" y=\"32.0\">179</text><rect class=\"rc-b\" x=\"110\" y=\"49.0\" width=\"126.2\" height=\"12\" rx=\"1\"/><text class=\"rc-l\" x=\"104\" y=\"58.0\" text-anchor=\"end\">가나</text><text class=\"rc-v\" x=\"241.2\" y=\"58.0\">51</text><rect class=\"rc-b\" x=\"110\" y=\"75.0\" width=\"106.4\" height=\"12\" rx=\"1\"/><text class=\"rc-l\" x=\"104\" y=\"84.0\" text-anchor=\"end\">인도네시아</text><text class=\"rc-v\" x=\"221.4\" y=\"84.0\">43</text><rect class=\"rc-b hot\" x=\"110\" y=\"101.0\" width=\"27.2\" height=\"12\" rx=\"1\"/><text class=\"rc-l\" x=\"104\" y=\"110.0\" text-anchor=\"end\">에콰도르</text><text class=\"rc-v\" x=\"142.2\" y=\"110.0\">11</text><text class=\"rc-n\" x=\"110\" y=\"144\">상용 무역데이터가 센 누적 수입 선적 (건) · 합계 284</text></svg>",

@@ -25,6 +25,8 @@ import {
 import CommodityIndustryDashboard, {
   type ChartSlot,
   type CommoditySpec,
+  type FlowItem,
+  type StageNarrative,
 } from './CommodityIndustryDashboard';
 import {
   FrinsaBaiChart,
@@ -206,12 +208,10 @@ import {
 } from '@/lib/data/company-thaiunion-skus';
 import {
   type ReportTable,
-  stagesUsed,
   tablesForStage,
 } from '@/lib/data/company-report-tables';
 import {
   type ReportFigure,
-  figureStagesUsed,
   figuresForStage,
 } from '@/lib/data/company-report-figures';
 import styles from './TunaIndustryDashboard.module.css';
@@ -483,8 +483,11 @@ const SPEC: CommoditySpec = {
     { eyebrow: '관세', title: '캔가공용 냉동 통마리', body: '0 (%)' },
   ],
   briefing: proseBriefing('frinsa'),
-  narratives: proseStages('frinsa'),
-  chartSlots: withReport('frinsa', CHART_SLOTS),
+  narratives: inlineReport('frinsa', proseStages('frinsa')),
+  // 보고서 표·그림은 flow 가 원문 자리에 낸다. 여기는 손으로 고른 슬롯만 남는다.
+  chartSlots: CHART_SLOTS,
+  // 조사보고서는 절을 하나씩 넘기며 읽는 문서가 아니다. 문서 순서 그대로 이어서 낸다.
+  continuous: true,
   sourceNotes: FRINSA_SOURCE_NOTES,
   sourceMeta: [
     `${frinsaMeta.회사} · ${frinsaMeta.국가} · ${frinsaMeta.업종}`,
@@ -713,83 +716,93 @@ function RepTable({ t }: { t: ReportTable }) {
   );
 }
 
-/** 보고서 표를 그 단계의 슬롯으로 바꾼다. 제목·설명·출처가 전부 원문에서 온다. */
 /**
- * 그 단계의 보고서 그림. 팩샷은 한 묶음으로, 차트·문서는 한 장씩 슬롯을 차지한다.
+ * 보고서 표·그림을 **원문에 있던 자리**로 되돌린 서술 흐름.
  *
- * 표보다 **앞에** 온다. 제품이 눈에 먼저 들어와야 뒤의 표가 읽힌다.
+ * 표를 절 끝에 몰아 두면 그 표를 설명하는 문장과 멀어져 둘 다 안 읽힌다. 추출기가 남긴
+ * 문자 오프셋(`ord`)으로 글·표·그림을 한 줄로 세운다. 손으로 고른 인터랙티브 차트는
+ * 원문에 자리가 없으므로 절 끝 「근거」에 그대로 남는다.
  */
-function figSlots(company: string, stage: string): ChartSlot[] {
-  const figs = figuresForStage(company, stage);
-  if (!figs.length) return [];
-  const out: ChartSlot[] = [];
-  const shots = figs.filter((f) => f.kind === 'shot');
-  if (shots.length) {
-    out.push({
-      title: shots.length > 1 ? `제품 이미지 ${shots.length}점` : '제품 이미지',
-      caption: shots.find((f) => f.caption)?.caption ?? '',
-      telemetry: SYNC,
-      render: () => <RepShots figs={shots} />,
-      span: 'full' as const,
-      sourceLine: '사내 조사보고서 · 브랜드 공식 이미지',
-    });
-  }
-  for (const [i, f] of figs.filter((x) => x.kind === 'chart').entries()) {
-    out.push({
-      title: f.caption.slice(0, 40) || '차트',
-      caption: f.caption,
-      telemetry: SYNC,
-      render: () => <RepChart f={f} id={`${company}-${f.sid}-${i}`} />,
-      span: 'full' as const,
-      sourceLine: `사내 조사보고서 ${f.sid}`,
-    });
-  }
-  for (const f of figs.filter((x) => x.kind === 'doc')) {
-    out.push({
-      title: f.alt.slice(0, 40) || '문서 캡처',
-      caption: f.caption,
-      telemetry: SYNC,
-      render: () => <RepDoc f={f} />,
-      span: 'full' as const,
-      sourceLine: '사내 조사보고서 · 원본 캡처',
-    });
-  }
-  return out;
-}
+function inlineReport(company: string, narratives: StageNarrative[]): StageNarrative[] {
+  return narratives.map((n) => {
+    if (!n.flow) return n;
+    const figs = figuresForStage(company, n.key);
+    const tabs = tablesForStage(company, n.key);
+    const extras: FlowItem[] = [];
 
-function repSlots(company: string, stage: string): ChartSlot[] {
-  return tablesForStage(company, stage).map((t) => ({
-    title: t.title,
-    caption: t.note ?? '',
-    telemetry: SYNC,
-    render: () => <RepTable t={t} />,
-    span: 'full' as const,
-    sourceLine: `사내 조사보고서 ${t.section}`,
-  }));
-}
+    // 팩샷은 한 묶음이다. 첫 팩샷 자리에 통째로 놓는다.
+    const shots = figs.filter((f) => f.kind === 'shot');
+    if (shots.length) {
+      extras.push({
+        kind: 'slot',
+        ord: Math.min(...shots.map((f) => f.ord ?? 0)),
+        slot: {
+          title: shots.length > 1 ? `제품 이미지 ${shots.length}점` : '제품 이미지',
+          caption: shots.find((f) => f.caption)?.caption ?? '',
+          telemetry: SYNC,
+          render: () => <RepShots figs={shots} />,
+          span: 'full' as const,
+          sourceLine: '사내 조사보고서 · 브랜드 공식 이미지',
+        },
+      });
+    }
+    for (const [i, f] of figs.filter((x) => x.kind === 'chart').entries()) {
+      extras.push({
+        kind: 'slot',
+        ord: f.ord ?? 0,
+        slot: {
+          title: f.caption.slice(0, 40) || '차트',
+          caption: f.caption,
+          telemetry: SYNC,
+          render: () => <RepChart f={f} id={`${company}-${f.sid}-${i}`} />,
+          span: 'full' as const,
+          sourceLine: `사내 조사보고서 ${f.sid}`,
+        },
+      });
+    }
+    for (const f of figs.filter((x) => x.kind === 'doc')) {
+      extras.push({
+        kind: 'slot',
+        ord: f.ord ?? 0,
+        slot: {
+          title: f.alt.slice(0, 40) || '문서 캡처',
+          caption: f.caption,
+          telemetry: SYNC,
+          render: () => <RepDoc f={f} />,
+          span: 'full' as const,
+          sourceLine: '사내 조사보고서 · 원본 캡처',
+        },
+      });
+    }
+    for (const t of tabs) {
+      extras.push({
+        kind: 'slot',
+        ord: t.ord ?? 0,
+        slot: {
+          title: t.title,
+          caption: t.note ?? '',
+          telemetry: SYNC,
+          render: () => <RepTable t={t} />,
+          span: 'full' as const,
+          sourceLine: `사내 조사보고서 ${t.section}`,
+        },
+      });
+    }
+    if (!extras.length) return n;
+    const merged = [...n.flow, ...extras].sort((a, b) => a.ord - b.ord);
 
-/**
- * 손으로 만든 슬롯 뒤에 보고서 나머지 표를 붙인다.
- *
- * 순서가 중요하다. 앞에 오는 것은 「무엇을 보라」를 쓴 슬롯이고, 뒤는 근거다.
- * 뒤집으면 화면이 자료집이 되고 읽는 순서가 사라진다.
- */
-function withReport(
-  company: string,
-  curated: Record<string, ChartSlot[]>,
-): Record<string, ChartSlot[]> {
-  // 단계 수는 편마다 다르다. 손으로 적으면 절이 늘어난 편의 마지막 단계가 조용히 빠진다 —
-  // 실제로 9절짜리 두 편(Frabelle·Jealsa)의 c09 표가 그렇게 사라져 있었다.
-  const reportStages = [...stagesUsed(company), ...figureStagesUsed(company)];
-  const stages = new Set([...Object.keys(curated), ...reportStages]);
-  const out: Record<string, ChartSlot[]> = {};
-  for (const st of stages) {
-    // 순서: 손으로 만든 슬롯 → 보고서 그림 → 보고서 표.
-    // 그림이 표보다 앞에 와야 「무엇을 파는 회사인가」가 숫자보다 먼저 들어온다.
-    const merged = [...(curated[st] ?? []), ...figSlots(company, st), ...repSlots(company, st)];
-    if (merged.length) out[st] = merged;
-  }
-  return out;
+    // 소제목이 바로 뒤 표의 제목과 같으면 지운다. 추출기가 표 제목을 그 소제목에서
+    // 가져오므로 그대로 두면 같은 말이 두 줄 연속으로 선다.
+    const deduped = merged.filter((item, i) => {
+      if (item.kind !== 'head') return true;
+      const next = merged[i + 1];
+      return !(next && next.kind === 'slot' && next.slot.title === item.text);
+    });
+    // 절 머리의 부제와 첫 소제목이 같은 경우도 마찬가지다.
+    const first = deduped[0];
+    if (first && first.kind === 'head' && first.text === n.question) deduped.shift();
+    return { ...n, flow: deduped };
+  });
 }
 
 const TU_CHART_SLOTS: Record<string, ChartSlot[]> = {
@@ -1170,8 +1183,11 @@ const TU_SPEC: CommoditySpec = {
     { eyebrow: '관세', title: '수침 캔참치 대미 부담', body: '31.5 (%)' },
   ],
   briefing: proseBriefing('thaiunion'),
-  narratives: proseStages('thaiunion'),
-  chartSlots: withReport('thaiunion', TU_CHART_SLOTS),
+  narratives: inlineReport('thaiunion', proseStages('thaiunion')),
+  // 보고서 표·그림은 flow 가 원문 자리에 낸다. 여기는 손으로 고른 슬롯만 남는다.
+  chartSlots: TU_CHART_SLOTS,
+  // 조사보고서는 절을 하나씩 넘기며 읽는 문서가 아니다. 문서 순서 그대로 이어서 낸다.
+  continuous: true,
   sourceNotes: THAIUNION_SOURCE_NOTES,
   sourceMeta: [
     `${thaiUnionMeta.회사} · ${thaiUnionMeta.국가} · ${thaiUnionMeta.업종}`,
@@ -1479,8 +1495,11 @@ const ALB_SPEC: CommoditySpec = {
     { eyebrow: '숨은 신호', title: 'SIA 실물 투입 (2023)', body: '−44 (%)' },
   ],
   briefing: proseBriefing('albacora'),
-  narratives: proseStages('albacora'),
-  chartSlots: withReport('albacora', ALB_CHART_SLOTS),
+  narratives: inlineReport('albacora', proseStages('albacora')),
+  // 보고서 표·그림은 flow 가 원문 자리에 낸다. 여기는 손으로 고른 슬롯만 남는다.
+  chartSlots: ALB_CHART_SLOTS,
+  // 조사보고서는 절을 하나씩 넘기며 읽는 문서가 아니다. 문서 순서 그대로 이어서 낸다.
+  continuous: true,
   sourceNotes: ALBACORA_SOURCE_NOTES,
   sourceMeta: [
     `${albacoraMeta.회사} · ${albacoraMeta.국가} · ${albacoraMeta.업종}`,
@@ -1609,8 +1628,11 @@ const FCF_SPEC: CommoditySpec = {
     { eyebrow: '실권', title: '光陽 계열 지분', body: `${kwangyangShare().toFixed(2)} (%)` },
   ],
   briefing: proseBriefing('fcf'),
-  narratives: proseStages('fcf'),
-  chartSlots: withReport('fcf', FCF_CHART_SLOTS),
+  narratives: inlineReport('fcf', proseStages('fcf')),
+  // 보고서 표·그림은 flow 가 원문 자리에 낸다. 여기는 손으로 고른 슬롯만 남는다.
+  chartSlots: FCF_CHART_SLOTS,
+  // 조사보고서는 절을 하나씩 넘기며 읽는 문서가 아니다. 문서 순서 그대로 이어서 낸다.
+  continuous: true,
   sourceNotes: FCF_SOURCE_NOTES,
   sourceMeta: [
     `${fcfMeta.회사} · ${fcfMeta.국가} · ${fcfMeta.업종}`,
@@ -1745,8 +1767,11 @@ const ITC_SPEC: CommoditySpec = {
     { eyebrow: '부재', title: '수산 실적 공시', body: '0 (건)' },
   ],
   briefing: proseBriefing('itochu'),
-  narratives: proseStages('itochu'),
-  chartSlots: withReport('itochu', ITC_CHART_SLOTS),
+  narratives: inlineReport('itochu', proseStages('itochu')),
+  // 보고서 표·그림은 flow 가 원문 자리에 낸다. 여기는 손으로 고른 슬롯만 남는다.
+  chartSlots: ITC_CHART_SLOTS,
+  // 조사보고서는 절을 하나씩 넘기며 읽는 문서가 아니다. 문서 순서 그대로 이어서 낸다.
+  continuous: true,
   sourceNotes: ITOCHU_SOURCE_NOTES,
   sourceMeta: [
     `${itochuMeta.회사} · ${itochuMeta.국가} · ${itochuMeta.업종}`,
@@ -1927,8 +1952,11 @@ const BOL_SPEC: CommoditySpec = {
     { eyebrow: '자사 자산', title: '활성 등록 자사선', body: `${activeOwnVessels()} (척)` },
   ],
   briefing: proseBriefing('bolton'),
-  narratives: proseStages('bolton'),
-  chartSlots: withReport('bolton', BOL_CHART_SLOTS),
+  narratives: inlineReport('bolton', proseStages('bolton')),
+  // 보고서 표·그림은 flow 가 원문 자리에 낸다. 여기는 손으로 고른 슬롯만 남는다.
+  chartSlots: BOL_CHART_SLOTS,
+  // 조사보고서는 절을 하나씩 넘기며 읽는 문서가 아니다. 문서 순서 그대로 이어서 낸다.
+  continuous: true,
   sourceNotes: BOLTON_SOURCE_NOTES,
   sourceMeta: [
     `${boltonMeta.회사} · ${boltonMeta.국가} · ${boltonMeta.업종}`,
@@ -2075,8 +2103,11 @@ const FRA_SPEC: CommoditySpec = {
     { eyebrow: '수출', title: 'EU 비중', body: `${frabelleStats.EU비중_2023} → ${frabelleStats.EU비중_2025} (%)` },
   ],
   briefing: proseBriefing('frabelle'),
-  narratives: proseStages('frabelle'),
-  chartSlots: withReport('frabelle', {}),
+  narratives: inlineReport('frabelle', proseStages('frabelle')),
+  // 보고서 표·그림은 flow 가 원문 자리에 낸다. 여기는 손으로 고른 슬롯만 남는다.
+  chartSlots: {},
+  // 조사보고서는 절을 하나씩 넘기며 읽는 문서가 아니다. 문서 순서 그대로 이어서 낸다.
+  continuous: true,
   sourceNotes: FRABELLE_SOURCE_NOTES,
   sourceMeta: [
     `${frabelleMeta.회사} · ${frabelleMeta.국가} · ${frabelleMeta.업종}`,
@@ -2123,8 +2154,11 @@ const JEA_SPEC: CommoditySpec = {
     },
   ],
   briefing: proseBriefing('jealsa'),
-  narratives: proseStages('jealsa'),
-  chartSlots: withReport('jealsa', {}),
+  narratives: inlineReport('jealsa', proseStages('jealsa')),
+  // 보고서 표·그림은 flow 가 원문 자리에 낸다. 여기는 손으로 고른 슬롯만 남는다.
+  chartSlots: {},
+  // 조사보고서는 절을 하나씩 넘기며 읽는 문서가 아니다. 문서 순서 그대로 이어서 낸다.
+  continuous: true,
   sourceNotes: jealsaSourceNotes,
   sourceMeta: [
     `${jealsaMeta.회사} · ${jealsaMeta.국가} · ${jealsaMeta.업종}`,
@@ -2160,8 +2194,11 @@ const JAI_SPEC: CommoditySpec = {
     { eyebrow: '지금', title: '연속 적자', body: `${lossStreak()} (년)` },
   ],
   briefing: proseBriefing('jais'),
-  narratives: proseStages('jais'),
-  chartSlots: withReport('jais', JAI_CHART_SLOTS),
+  narratives: inlineReport('jais', proseStages('jais')),
+  // 보고서 표·그림은 flow 가 원문 자리에 낸다. 여기는 손으로 고른 슬롯만 남는다.
+  chartSlots: JAI_CHART_SLOTS,
+  // 조사보고서는 절을 하나씩 넘기며 읽는 문서가 아니다. 문서 순서 그대로 이어서 낸다.
+  continuous: true,
   sourceNotes: JAIS_SOURCE_NOTES,
   sourceMeta: [
     `${jaisMeta.회사} · ${jaisMeta.국가} · ${jaisMeta.업종}`,
