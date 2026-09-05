@@ -32,9 +32,20 @@ describe('기업 해부 카드 뒷면', () => {
     expect(new Set(css).size, '두 나라가 같은 문양을 쓰고 있다').toBe(css.length);
   });
 
-  it('아홉 장이 여섯 나라에 들어간다', () => {
-    expect(COMPANY_CARDS).toHaveLength(9);
-    // 스페인이 세 장(Frinsa·Albacora·Jealsa)이라 나라 수는 여섯에서 늘지 않는다.
-    expect(new Set(COMPANY_CARDS.map(countryOf)).size).toBe(6);
+  it('카드마다 나라가 읽히고 문양이 붙어 있다', () => {
+    // ⚠ 장수를 리터럴로 적지 마라. 9 로 박아 뒀더니 열 번째 편이 붙었을 때
+    // 「카드가 깨졌다」가 아니라 「테스트가 낡았다」로 빌드가 멈췄다.
+    // 세어야 할 것은 장수가 아니라 **한 장도 빠짐없이 나라와 문양을 갖는가**다.
+    expect(COMPANY_CARDS.length).toBeGreaterThanOrEqual(9);
+    for (const c of COMPANY_CARDS) {
+      expect(countryOf(c), `${c.name} 나라를 못 읽는다`).toBeTruthy();
+      expect(c.flagCss, `${c.name} 문양이 없다`).toBeTruthy();
+      expect(c.backInk, `${c.name} 잉크가 없다`).toBeTruthy();
+    }
+    // 로마숫자는 수록순이라 중복되면 안 된다.
+    const numerals = COMPANY_CARDS.map((c) => c.numeral);
+    expect(new Set(numerals).size, `로마숫자 중복: ${numerals.join(' ')}`).toBe(numerals.length);
+    // 나라 수는 카드 수보다 적다 — 스페인처럼 여러 장인 나라가 있다.
+    expect(new Set(COMPANY_CARDS.map(countryOf)).size).toBeLessThan(COMPANY_CARDS.length);
   });
 });

@@ -219,6 +219,7 @@ import { FRABELLE_SOURCE_NOTES } from '@/lib/company-frabelle-content';
 import { proseBriefing, proseStages } from '@/lib/company-prose-stages';
 import { frabelleMeta, frabelleStats, laeOutputRange, registeredVessels } from '@/lib/data/company-frabelle';
 import { jealsaMeta, jealsaStats, jealsaSourceNotes, mercadonaShare } from '@/lib/data/company-jealsa';
+import { nauterraMeta, nauterraStats, nauterraSourceNotes, nonSpanishFlagShare, fleetEntitySubsidyShare, subsidyGapVs } from '@/lib/data/company-nauterra';
 
 const ACCENT = '#c2410c';
 /** 정적 조사 아카이브라 갱신일이 곧 조사일이다. LIVE 로 표기하지 않는다(L-09). */
@@ -2167,6 +2168,55 @@ const JEA_SPEC: CommoditySpec = {
   ].join(' · '),
 };
 
+/** 대서양 황혼의 선체 — 앞선 두 스페인 편(로히괄다 붉은 밴드·짙은 남색)과 겹치지 않는 청록으로 잡는다. */
+const NAU_ACCENT = '#12414c';
+
+const NAU_SPEC: CommoditySpec = {
+  key: 'company-anatomy-nauterra',
+  title: '기업 해부: Nauterra',
+  subtitle: '배 여덟 척과 공장 셋을 가진 갈리시아 통조림 그룹인데, 상업등기부에도 어선등록부 소유자 칸에도 이 이름이 없다. 또렷이 남는 자리는 이탈리아 경쟁사가 쥔 40%다.',
+  accent: NAU_ACCENT,
+  primaryKpi: {
+    label: '2025년 그룹 매출',
+    value: nauterraStats.매출_2025,
+    unit: '(M€)',
+    accent: NAU_ACCENT,
+  },
+  secondaryKpis: [
+    { label: 'Bolton 지분', value: nauterraStats.bolton_지분, unit: `(% · 이사회 ${nauterraStats.이사회_bolton}/${nauterraStats.이사회_정원}석)` },
+    { label: '엘살바도르 기 선박', value: nauterraStats.선단_엘살바도르기, unit: `(/${nauterraStats.선단}척)` },
+    { label: '브라질 가공 캐파', value: nauterraStats.캐파_브라질, unit: '(t · 스페인 56.000)' },
+  ],
+  stripItems: [
+    {
+      now: true,
+      eyebrow: '등록부',
+      title: '상업등기부의 「Nauterra」',
+      body: `0 (건 · 대조군 「nombramiento」 ${nauterraStats.borme_대조군.toLocaleString('ko-KR')}건)`,
+    },
+    {
+      eyebrow: '선단',
+      title: '스페인 국적선이 아닌 배',
+      body: `${nonSpanishFlagShare()} (% · 등록 소유자는 현지 특수법인)`,
+    },
+    {
+      eyebrow: '공적자금',
+      title: '선단 법인이 받은 몫',
+      body: `${fleetEntitySubsidyShare()} (% · Jealsa의 1/${subsidyGapVs('Jealsa')})`,
+    },
+  ],
+  briefing: proseBriefing('nauterra'),
+  narratives: inlineReport('nauterra', proseStages('nauterra')),
+  chartSlots: {},
+  continuous: true,
+  sourceNotes: nauterraSourceNotes,
+  sourceMeta: [
+    `${nauterraMeta.회사} · ${nauterraMeta.국가} · ${nauterraMeta.업종}`,
+    `출처 ${nauterraMeta.출처}`,
+    `갱신 ${nauterraMeta.갱신방법}`,
+  ].join(' · '),
+};
+
 const JAI_SPEC: CommoditySpec = {
   key: 'company-anatomy-jais',
   title: '기업 해부: JAIS S.R.L.',
@@ -2393,6 +2443,19 @@ export const COMPANY_CARDS: CompanyCard[] = [
       { label: '자체 선망선', value: `${jealsaStats.선단_회사표기} 척` },
     ],
   },
+  {
+    key: 'nauterra',
+    numeral: 'Ⅹ',
+    name: 'Nauterra',
+    country: '스페인 · 카르바요',
+    tagline: '배 여덟 척과 공장 셋을 가졌는데 명부를 열면 이름이 없다. 등기 상호는 아직 Luis Calvo Sanz다.',
+    ...FLAG.스페인,
+    stats: [
+      { label: '2025년 그룹 매출', value: `${nauterraStats.매출_2025} M€` },
+      { label: '엘살바도르 기 선박', value: `${nauterraStats.선단_엘살바도르기} / ${nauterraStats.선단} 척` },
+      { label: 'Bolton 지분', value: `${nauterraStats.bolton_지분} %` },
+    ],
+  },
 ];
 
 export interface CompanyAnatomyDashboardProps {
@@ -2420,6 +2483,7 @@ export default function CompanyAnatomyDashboard({
     jais: JAI_SPEC,
     frabelle: FRA_SPEC,
     jealsa: JEA_SPEC,
+    nauterra: NAU_SPEC,
   };
   const spec = SPECS[selected] ?? SPEC;
 

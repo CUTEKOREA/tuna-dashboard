@@ -1,9 +1,9 @@
 {
  "_meta": {
   "entry": "app/page.tsx",
-  "files": 212,
+  "files": 213,
   "widgets": 110,
-  "dataFiles": 99,
+  "dataFiles": 100,
   "generator": "scripts/widget_lineage.py"
  },
  "widgetToData": {
@@ -573,6 +573,7 @@
     "lib/data/company-itochu.ts",
     "lib/data/company-jais.ts",
     "lib/data/company-jealsa.ts",
+    "lib/data/company-nauterra.ts",
     "lib/data/company-report-figures.ts",
     "lib/data/company-report-tables.ts",
     "lib/data/company-thaiunion-skus.ts",
@@ -611,6 +612,7 @@
     "public/data/companies/jealsa_prose_v1.json",
     "public/data/companies/jealsa_tables_v1.json",
     "public/data/companies/jealsa_v1.json",
+    "public/data/companies/nauterra_v1.json",
     "public/data/companies/thaiunion_figures_v1.json",
     "public/data/companies/thaiunion_prose_v1.json",
     "public/data/companies/thaiunion_skus_v1.json",
@@ -1134,6 +1136,9 @@
    "components/market-understanding/CompanyAnatomyDashboard.tsx"
   ],
   "public/data/companies/jealsa_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/nauterra_v1.json": [
    "components/market-understanding/CompanyAnatomyDashboard.tsx"
   ],
   "public/data/companies/thaiunion_figures_v1.json": [
