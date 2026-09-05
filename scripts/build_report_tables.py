@@ -119,6 +119,12 @@ SPECS: dict[str, dict] = {
         "stages": {f"s{i}": f"c{i:02d}" for i in range(1, 15)},
         "drop": [],
     },
+    "starkist": {
+        "src": "docs/evidence/company-starkist-2026-09/보고서.html",
+        # 14절이 화면 14단계와 1:1 이다. 정정 이력 절은 따로 없다.
+        "stages": {f"s{i}": f"c{i:02d}" for i in range(1, 15)},
+        "drop": [],
+    },
     "jais": {
         "src": "docs/evidence/company-jais-2026-08/보고서.html",
         "stages": {"s1": "c01", "s2": "c01", "s3": "c02", "s4": "c03", "s5": "c04",
