@@ -226,6 +226,7 @@ import { sajoMeta, sajoStats, sajoSourceNotes, sajoExportSharePct, lossMakingSeg
 import { bumblebeeMeta, bumblebeeStats, bumblebeeSourceNotes, cashSharePct, bidFunnel, albacoreMultiple, outstandingFine, strategyGapAxesBB, bumblebeeStrategyAxes } from '@/lib/data/company-bumblebee';
 import { umiosMeta, umiosStats, umiosSourceNotes, umiosSeedShareOfNational, nationalSeedCollapsePct, fullCycleSharePct } from '@/lib/data/company-umios';
 import { kyokuyoMeta, kyokuyoStats, kyokuyoSourceNotes, oldSegmentLeverage, freshProfitTrough } from '@/lib/data/company-kyokuyo';
+import { seavalueMeta, seavalueStats, seavalueSourceNotes, ownBrandTunaShare, canadaVsBumbleBee, denominatorGap } from '@/lib/data/company-seavalue';
 
 const ACCENT = '#c2410c';
 /** 정적 조사 아카이브라 갱신일이 곧 조사일이다. LIVE 로 표기하지 않는다(L-09). */
@@ -2616,6 +2617,62 @@ const KY_SPEC: CommoditySpec = {
   ].join(' · '),
 };
 
+const SV_ACCENT = '#6b4a2f';
+
+const SV_SPEC: CommoditySpec = {
+  key: 'company-anatomy-seavalue',
+  title: '기업 해부: Sea Value',
+  subtitle:
+    '1989년 9월 태국 Unicord가 미국 Bumble Bee를 2억 6,900만 달러에 샀다. 그 뒤 미국 자회사는 1997년, 태국 Unicord는 2000년에 무너졌고 2005년 Sea Value가 지분 98.51%를 인수했다. ' +
+    '지금 방향은 반대다 — 캔을 미국으로 보내는 계열 I.S.A. Value의 최대 거래상대가 StarKist이고 그것은 동원산업의 미국 자회사다. Bumble Bee는 한때 이 그룹의 지분 10%를 가졌다. ' +
+    '비상장이지만 계열 Unicord가 공개회사라 재무제표가 열린다 — 2022년 매출 253억 바트, 순이익 13.6억 바트.',
+  accent: SV_ACCENT,
+  primaryKpi: {
+    label: '1989년 Bumble Bee 인수 대가',
+    value: seavalueStats.인수대가_백만USD,
+    unit: '(US$ 백만 · 미국 국제무역위원회 조사보고서 2-16쪽 · 매수 주체는 Uni Group Inc.)',
+    accent: SV_ACCENT,
+  },
+  secondaryKpis: [
+    { label: '2005년 Sea Value의 Unicord 인수 지분', value: seavalueStats.인수지분, decimals: 2, unit: '(% · 1,477,631,210 / 1,500,000,000주)' },
+    { label: '자체 브랜드 라이브 SKU 중 참치', value: ownBrandTunaShare(), decimals: 1, unit: `(% · ${seavalueStats.자체브랜드_참치_행} / ${seavalueStats.자체브랜드_총행}행 · 나머지는 사르딘·고등어)` },
+    { label: '한국 가다랑어 태국행 — 분모를 바꾸면', value: denominatorGap(), decimals: 1, unit: '(%p 하락 · 수출 중 59.67% → 어획 중 40.5%)' },
+  ],
+  stripItems: [
+    {
+      now: true,
+      eyebrow: '판로',
+      title: 'I.S.A. Value의 최대 거래상대',
+      body: `StarKist · 누적 ${(seavalueStats.starkist_누적_kg / 1e6).toFixed(1)}백만 kg (동원산업의 미국 자회사)`,
+    },
+    {
+      eyebrow: '매대',
+      title: '제조사를 이 이름으로 찍은 소매 페이지',
+      body: `${seavalueStats.제조사표기_소매페이지} (건 · 전 세계 · 그것도 품절)`,
+    },
+    {
+      eyebrow: '물류',
+      title: '캐나다 두 건이 Bumble Bee 컨테이너의',
+      body: `${canadaVsBumbleBee()} (배 · 198,444 kg 대 15,111 kg)`,
+    },
+    {
+      eyebrow: '브랜드',
+      title: '자기 캔에 붙는 남의 브랜드',
+      body: `${seavalueStats.브랜드_수}+ (개 · 회사가 스스로 적는다)`,
+    },
+  ],
+  briefing: proseBriefing('seavalue'),
+  narratives: inlineReport('seavalue', proseStages('seavalue')),
+  chartSlots: {},
+  continuous: true,
+  sourceNotes: seavalueSourceNotes,
+  sourceMeta: [
+    `${seavalueMeta.회사} · ${seavalueMeta.국가} · ${seavalueMeta.업종}`,
+    `출처 ${seavalueMeta.출처}`,
+    `조사 ${seavalueMeta.조사일}`,
+  ].join(' · '),
+};
+
 export const COMPANY_CARDS: CompanyCard[] = [
   {
     key: 'frinsa',
@@ -2825,6 +2882,19 @@ export const COMPANY_CARDS: CompanyCard[] = [
       { label: '선망 (자회사 명의)', value: `${kyokuyoStats.선망_척} 척` },
     ],
   },
+  {
+    key: 'seavalue',
+    numeral: 'ⅩⅦ',
+    name: 'Sea Value Group',
+    country: '태국 · 사뭇사콘',
+    tagline: '1989년에 Bumble Bee를 사서 무너진 회사가 이 그룹 안에 있다. 지금 캔은 StarKist로 간다.',
+    ...FLAG.태국,
+    stats: [
+      { label: '1989년 인수 대가', value: `US$${seavalueStats.인수대가_백만USD}M` },
+      { label: '2005년 인수 지분', value: `${seavalueStats.인수지분}%` },
+      { label: '자체 브랜드 참치 SKU', value: `${seavalueStats.자체브랜드_참치_행} / ${seavalueStats.자체브랜드_총행}` },
+    ],
+  },
 
 ];
 
@@ -2860,6 +2930,7 @@ export default function CompanyAnatomyDashboard({
     bumblebee: BB_SPEC,
     umios: UM_SPEC,
     kyokuyo: KY_SPEC,
+    seavalue: SV_SPEC,
   };
   const spec = SPECS[selected] ?? SPEC;
 

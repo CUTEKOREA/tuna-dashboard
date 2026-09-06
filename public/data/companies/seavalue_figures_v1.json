@@ -1,0 +1,90 @@
+{
+ "_meta": {
+  "출처": "docs/evidence/company-seavalue-2026-09/보고서.html",
+  "생성": "python3 scripts/build_report_figures.py",
+  "설명": "보고서의 팩샷과 차트. 이미지는 public 아래 정적 파일이고 여기에는 URL 만 담는다."
+ },
+ "figures": [
+  {
+   "stage": "c01",
+   "sid": "s1",
+   "kind": "chart",
+   "ord": 2436,
+   "caption": "날짜가 박힌 사실만 세로로 놓았다. 인과는 적지 않았다.",
+   "alt": "",
+   "svg": "<svg viewBox=\"0 0 720 320\" width=\"100%\" role=\"img\" preserveAspectRatio=\"xMidYMid meet\" style=\"max-width:100%;height:auto;display:block\"><text x=\"150.0\" y=\"34.0\" text-anchor=\"start\" style=\"font-family:var(--mono,'IBM Plex Mono',ui-monospace,monospace);font-size:8px;fill:var(--ink-3,#6E767F);font-weight:600;font-variant-numeric:tabular-nums;letter-spacing:.13em\">1989 → 2026 · 산 쪽과 팔린 쪽이 뒤집힌다</text><circle cx=\"150\" cy=\"58\" r=\"5\" fill=\"var(--ocre,#B2503A)\"/><line x1=\"150\" y1=\"64\" x2=\"150\" y2=\"90\" stroke=\"var(--rule,#D5D7D2)\" stroke-width=\"1.4\"/><text x=\"136.0\" y=\"62.0\" text-anchor=\"end\" style=\"font-family:var(--mono,'IBM Plex Mono',ui-monospace,monospace);font-size:9.5px;fill:var(--ink-2,#424A53);font-weight:700;font-variant-numeric:tabular-nums\">1989-09</text><text x=\"166.0\" y=\"62.0\" text-anchor=\"start\" style=\"font-family:var(--sans,'Noto Sans KR',system-ui,sans-serif);font-size:10.5px;fill:var(--ink,#14181D);font-weight:500;font-variant-numeric:tabular-nums\">Unicord → Bumble Bee 인수</text><text x=\"690.0\" y=\"62.0\" text-anchor=\"end\" style=\"font-family:var(--mono,'IBM Plex Mono',ui-monospace,monospace);font-size:9.5px;fill:var(--ocre,#B2503A);font-weight:700;font-variant-numeric:tabular-nums\">US$269M</text><circle cx=\"150\" cy=\"96\" r=\"5\" fill=\"var(--rule-2,#BDC0BA)\"/><line x1=\"150\" y1=\"102\" x2=\"150\" y2=\"128\" stroke=\"var(--rule,#D5D7D2)\" stroke-width=\"1.4\"/><text x=\"136.0\" y=\"100.0\" text-anchor=\"end\" style=\"font-family:var(--mono,'IBM Plex Mono',ui-monospace,monospace);font-size:9.5px;fill:var(--ink-2,#424A53);font-weight:700;font-variant-numeric:tabular-nums\">1997-05</text><text x=\"166.0\" y=\"100.0\" text-anchor=\"start\" style=\"font-family:var(--sans,'Noto Sans KR',system-ui,sans-serif);font-size:10.5px;fill:var(--ink,#14181D);font-weight:500;font-variant-numeric:tabular-nums\">미국 BBII 챕터11</text><circle cx=\"150\" cy=\"134\" r=\"5\" fill=\"var(--rule-2,#BDC0BA)\"/><line x1=\"150\" y1=\"140\" x2=\"150\" y2=\"166\" stroke=\"var(--rule,#D5D7D2)\" stroke-width=\"1.4\"/><text x=\"136.0\" y=\"138.0\" text-anchor=\"end\" style=\"font-family:var(--mono,'IBM Plex Mono',ui-monospace,monospace);font-size:9.5px;fill:var(--ink-2,#424A53);font-weight:700;font-variant-numeric:tabular-nums\">2000</text><text x=\"166.0\" y=\"138.0\" text-anchor=\"start\" style=\"font-family:var(--sans,'Noto Sans KR',system-ui,sans-serif);font-size:10.5px;fill:var(--ink,#14181D);font-weight:500;font-variant-numeric:tabular-nums\">태국 Unicord 파산 · 부채 71억 바트</text><circle cx=\"150\" cy=\"172\" r=\"5\" fill=\"var(--atl,#1B3B52)\"/><line x1=\"150\" y1=\"178\" x2=\"150\" y2=\"204\" stroke=\"var(--rule,#D5D7D2)\" stroke-width=\"1.4\"/><text x=\"136.0\" y=\"176.0\" text-anchor=\"end\" style=\"font-family:var(--mono,'IBM Plex Mono',ui-monospace,monospace);font-size:9.5px;fill:var(--ink-2,#424A53);font-weight:700;font-variant-numeric:tabular-nums\">2005-09</text><text x=\"166.0\" y=\"176.0\" text-anchor=\"start\" style=\"font-family:var(--sans,'Noto Sans KR',system-ui,sans-serif);font-size:10.5px;fill:var(--ink,#14181D);font-weight:500;font-variant-numeric:tabular-nums\">Sea Value → Unicord 98.51% 인수</text><circle cx=\"150\" cy=\"210\" r=\"5\" fill=\"var(--ocre,#B2503A)\"/><line x1=\"150\" y1=\"216\" x2=\"150\" y2=\"242\" stroke=\"var(--rule,#D5D7D2)\" stroke-width=\"1.4\"/><text x=\"136.0\" y=\"214.0\" text-anchor=\"end\" style=\"font-family:var(--mono,'IBM Plex Mono',ui-monospace,monospace);font-size:9.5px;fill:var(--ink-2,#424A53);font-weight:700;font-variant-numeric:tabular-nums\">2014</text><text x=\"166.0\" y=\"214.0\" text-anchor=\"start\" style=\"font-family:var(--sans,'Noto Sans KR',system-ui,sans-serif);font-size:10.5px;fill:var(--ink,#14181D);font-weight:500;font-variant-numeric:tabular-nums\">Bumble Bee가 Sea Value 지분 10% 보유</text><circle cx=\"150\" cy=\"248\" r=\"5\" fill=\"var(--atl,#1B3B52)\"/><text x=\"136.0\" y=\"252.0\" text-anchor=\"end\" style=\"font-family:var(--mono,'IBM Plex Mono',ui-monospace,monospace);font-size:9.5px;fill:var(--ink-2,#424A53);font-weight:700;font-variant-numeric:tabular-nums\">2026</text><text x=\"166.0\" y=\"252.0\" text-anchor=\"start\" style=\"font-family:var(--sans,'Noto Sans KR',system-ui,sans-serif);font-size:10.5px;fill:var(--ink,#14181D);font-weight:500;font-variant-numeric:tabular-nums\">I.S.A. Value 최대 거래상대 = StarKist</text><text x=\"690.0\" y=\"252.0\" text-anchor=\"end\" style=\"font-family:var(--mono,'IBM Plex Mono',ui-monospace,monospace);font-size:9.5px;fill:var(--ocre,#B2503A);font-weight:700;font-variant-numeric:tabular-nums\">16,694,091 kg</text><text x=\"166.0\" y=\"292.0\" text-anchor=\"start\" style=\"font-family:var(--sans,'Noto Sans KR',system-ui,sans-serif);font-size:9px;fill:var(--ink-3,#6E767F);font-weight:500;font-variant-numeric:tabular-nums\">1989년에 산 법인과 2026년에 캔을 보내는 법인은 다르다. 자매 관계다.</text></svg>"
+  },
+  {
+   "stage": "c04",
+   "sid": "s4",
+   "kind": "chart",
+   "ord": 2262,
+   "caption": "남색 두 해는 감사 원본과 대조된 값이고, 구릿빛 세 해는 등기소 제출 요약이다.",
+   "alt": "",
+   "svg": "<svg viewBox=\"0 0 720 290\" width=\"100%\" role=\"img\" preserveAspectRatio=\"xMidYMid meet\" style=\"max-width:100%;height:auto;display:block\"><text x=\"110.0\" y=\"30.0\" text-anchor=\"start\" style=\"font-family:var(--mono,'IBM Plex Mono',ui-monospace,monospace);font-size:8px;fill:var(--ink-3,#6E767F);font-weight:600;font-variant-numeric:tabular-nums;letter-spacing:.13em\">Unicord PCL 매출 · 백만 바트 · 개별 재무제표</text><line x1=\"110\" y1=\"232.0\" x2=\"600\" y2=\"232.0\" stroke=\"var(--rule,#D5D7D2)\" stroke-width=\".7\"/><text x=\"102.0\" y=\"235.0\" text-anchor=\"end\" style=\"font-family:var(--mono,'IBM Plex Mono',ui-monospace,monospace);font-size:8px;fill:var(--ink-3,#6E767F);font-variant-numeric:tabular-nums\">0</text><line x1=\"110\" y1=\"172.0\" x2=\"600\" y2=\"172.0\" stroke=\"var(--rule,#D5D7D2)\" stroke-width=\".7\"/><text x=\"102.0\" y=\"175.0\" text-anchor=\"end\" style=\"font-family:var(--mono,'IBM Plex Mono',ui-monospace,monospace);font-size:8px;fill:var(--ink-3,#6E767F);font-variant-numeric:tabular-nums\">10,000</text><line x1=\"110\" y1=\"112.0\" x2=\"600\" y2=\"112.0\" stroke=\"var(--rule,#D5D7D2)\" stroke-width=\".7\"/><text x=\"102.0\" y=\"115.0\" text-anchor=\"end\" style=\"font-family:var(--mono,'IBM Plex Mono',ui-monospace,monospace);font-size:8px;fill:var(--ink-3,#6E767F);font-variant-numeric:tabular-nums\">20,000</text><line x1=\"110\" y1=\"52.0\" x2=\"600\" y2=\"52.0\" stroke=\"var(--rule,#D5D7D2)\" stroke-width=\".7\"/><text x=\"102.0\" y=\"55.0\" text-anchor=\"end\" style=\"font-family:var(--mono,'IBM Plex Mono',ui-monospace,monospace);font-size:8px;fill:var(--ink-3,#6E767F);font-variant-numeric:tabular-nums\">30,000</text><rect x=\"137.0\" y=\"106.3\" width=\"44\" height=\"125.7\" fill=\"var(--atl,#1B3B52)\"/><text x=\"159.0\" y=\"100.3\" text-anchor=\"middle\" style=\"font-family:var(--mono,'IBM Plex Mono',ui-monospace,monospace);font-size:8.5px;fill:var(--atl,#1B3B52);font-weight:700;font-variant-numeric:tabular-nums\">20,948</text><text x=\"159.0\" y=\"248.0\" text-anchor=\"middle\" style=\"font-family:var(--sans,'Noto Sans KR',system-ui,sans-serif);font-size:9.5px;fill:var(--ink-2,#424A53);font-weight:600;font-variant-numeric:tabular-nums\">2021</text><rect x=\"235.0\" y=\"80.1\" width=\"44\" height=\"151.9\" fill=\"var(--atl,#1B3B52)\"/><text x=\"257.0\" y=\"74.1\" text-anchor=\"middle\" style=\"font-family:var(--mono,'IBM Plex Mono',ui-monospace,monospace);font-size:8.5px;fill:var(--atl,#1B3B52);font-weight:700;font-variant-numeric:tabular-nums\">25,319</text><text x=\"257.0\" y=\"248.0\" text-anchor=\"middle\" style=\"font-family:var(--sans,'Noto Sans KR',system-ui,sans-serif);font-size:9.5px;fill:var(--ink-2,#424A53);font-weight:600;font-variant-numeric:tabular-nums\">2022</text><rect x=\"333.0\" y=\"97.2\" width=\"44\" height=\"134.8\" fill=\"var(--ocre,#B2503A)\"/><text x=\"355.0\" y=\"91.2\" text-anchor=\"middle\" style=\"font-family:var(--mono,'IBM Plex Mono',ui-monospace,monospace);font-size:8.5px;fill:var(--ocre,#B2503A);font-weight:700;font-variant-numeric:tabular-nums\">22,472</text><text x=\"355.0\" y=\"248.0\" text-anchor=\"middle\" style=\"font-family:var(--sans,'Noto Sans KR',system-ui,sans-serif);font-size:9.5px;fill:var(--ink-2,#424A53);font-weight:600;font-variant-numeric:tabular-nums\">2023</text><rect x=\"431.0\" y=\"61.6\" width=\"44\" height=\"170.4\" fill=\"var(--ocre,#B2503A)\"/><text x=\"453.0\" y=\"55.6\" text-anchor=\"middle\" style=\"font-family:var(--mono,'IBM Plex Mono',ui-monospace,monospace);font-size:8.5px;fill:var(--ocre,#B2503A);font-weight:700;font-variant-numeric:tabular-nums\">28,392</text><text x=\"453.0\" y=\"248.0\" text-anchor=\"middle\" style=\"font-family:var(--sans,'Noto Sans KR',system-ui,sans-serif);font-size:9.5px;fill:var(--ink-2,#424A53);font-weight:600;font-variant-numeric:tabular-nums\">2024</text><rect x=\"529.0\" y=\"71.7\" width=\"44\" height=\"160.3\" fill=\"var(--ocre,#B2503A)\"/><text x=\"551.0\" y=\"65.7\" text-anchor=\"middle\" style=\"font-family:var(--mono,'IBM Plex Mono',ui-monospace,monospace);font-size:8.5px;fill:var(--ocre,#B2503A);font-weight:700;font-variant-numeric:tabular-nums\">26,712</text><text x=\"551.0\" y=\"248.0\" text-anchor=\"middle\" style=\"font-family:var(--sans,'Noto Sans KR',system-ui,sans-serif);font-size:9.5px;fill:var(--ink-2,#424A53);font-weight:600;font-variant-numeric:tabular-nums\">2025</text><line x1=\"110\" y1=\"232\" x2=\"600\" y2=\"232\" stroke=\"var(--rule-2,#BDC0BA)\" stroke-width=\".9\"/><text x=\"614.0\" y=\"72.0\" text-anchor=\"start\" style=\"font-family:var(--sans,'Noto Sans KR',system-ui,sans-serif);font-size:9px;fill:var(--atl,#1B3B52);font-weight:600;font-variant-numeric:tabular-nums\">남색 = 감사</text><text x=\"614.0\" y=\"88.0\" text-anchor=\"start\" style=\"font-family:var(--sans,'Noto Sans KR',system-ui,sans-serif);font-size:9px;fill:var(--atl,#1B3B52);font-weight:600;font-variant-numeric:tabular-nums\">원본 대조</text><text x=\"614.0\" y=\"110.0\" text-anchor=\"start\" style=\"font-family:var(--sans,'Noto Sans KR',system-ui,sans-serif);font-size:9px;fill:var(--ocre,#B2503A);font-weight:600;font-variant-numeric:tabular-nums\">구릿빛 = 등기소</text><text x=\"614.0\" y=\"126.0\" text-anchor=\"start\" style=\"font-family:var(--sans,'Noto Sans KR',system-ui,sans-serif);font-size:9px;fill:var(--ocre,#B2503A);font-weight:600;font-variant-numeric:tabular-nums\">제출 요약</text><text x=\"110.0\" y=\"276.0\" text-anchor=\"start\" style=\"font-family:var(--sans,'Noto Sans KR',system-ui,sans-serif);font-size:8.5px;fill:var(--ink-3,#6E767F);font-weight:500;font-variant-numeric:tabular-nums\">공식 사이트 업로드는 2022년분에서 멈췄고, 법정 제출은 이어진다.</text></svg>"
+  },
+  {
+   "stage": "c07",
+   "sid": "s7",
+   "kind": "shot",
+   "ord": 80,
+   "caption": "공식 제품 페이지의 라인들. 자체 브랜드 Super C Chef와 부가가치 제품이다.",
+   "alt": "ทูน่าสเต็กในน้ำมันมะกอก · 참치 스테이크 올리브유 185 g — 캔에 고형량 130 g이 인쇄돼 있다",
+   "src": "/data/companies/figures/seavalue/c0ded9de0b95.jpg"
+  },
+  {
+   "stage": "c07",
+   "sid": "s7",
+   "kind": "shot",
+   "ord": 80,
+   "caption": "공식 제품 페이지의 라인들. 자체 브랜드 Super C Chef와 부가가치 제품이다.",
+   "alt": "참치 스테이크 대두유",
+   "src": "/data/companies/figures/seavalue/e481f67f9227.jpg"
+  },
+  {
+   "stage": "c07",
+   "sid": "s7",
+   "kind": "shot",
+   "ord": 80,
+   "caption": "공식 제품 페이지의 라인들. 자체 브랜드 Super C Chef와 부가가치 제품이다.",
+   "alt": "참치 스테이크 스프링워터",
+   "src": "/data/companies/figures/seavalue/da89c2f9a33c.jpg"
+  },
+  {
+   "stage": "c07",
+   "sid": "s7",
+   "kind": "shot",
+   "ord": 80,
+   "caption": "공식 제품 페이지의 라인들. 자체 브랜드 Super C Chef와 부가가치 제품이다.",
+   "alt": "ปลาแมคเคอเรลในซอสมะเขือเทศ · 고등어 토마토소스 155 g — 고형량 93 g",
+   "src": "/data/companies/figures/seavalue/0410ae1d1ca1.jpg"
+  },
+  {
+   "stage": "c07",
+   "sid": "s7",
+   "kind": "shot",
+   "ord": 80,
+   "caption": "공식 제품 페이지의 라인들. 자체 브랜드 Super C Chef와 부가가치 제품이다.",
+   "alt": "사르딘 토마토소스 155 g",
+   "src": "/data/companies/figures/seavalue/d9033c8cf9d8.jpg"
+  },
+  {
+   "stage": "c07",
+   "sid": "s7",
+   "kind": "shot",
+   "ord": 80,
+   "caption": "공식 제품 페이지의 라인들. 자체 브랜드 Super C Chef와 부가가치 제품이다.",
+   "alt": "사르딘·고등어 라인",
+   "src": "/data/companies/figures/seavalue/a1aed3c8ee56.jpg"
+  },
+  {
+   "stage": "c16",
+   "sid": "s16",
+   "kind": "chart",
+   "ord": 849,
+   "caption": "같은 세 해를 두 분모로 그렸다. 위가 수출 중, 아래가 어획 중이다.",
+   "alt": "",
+   "svg": "<svg viewBox=\"0 0 720 270\" width=\"100%\" role=\"img\" preserveAspectRatio=\"xMidYMid meet\" style=\"max-width:100%;height:auto;display:block\"><text x=\"170.0\" y=\"32.0\" text-anchor=\"start\" style=\"font-family:var(--mono,'IBM Plex Mono',ui-monospace,monospace);font-size:8px;fill:var(--ink-3,#6E767F);font-weight:600;font-variant-numeric:tabular-nums;letter-spacing:.13em\">한국산 냉동 가다랑어의 태국행 비중 · 분모에 따라 달라진다</text><text x=\"158.0\" y=\"70.0\" text-anchor=\"end\" style=\"font-family:var(--mono,'IBM Plex Mono',ui-monospace,monospace);font-size:10.5px;fill:var(--ink,#14181D);font-weight:700;font-variant-numeric:tabular-nums\">2022</text><rect x=\"170\" y=\"56\" width=\"420\" height=\"14\" fill=\"var(--atl-soft,#DBE6EC)\" opacity=\".35\"/><rect x=\"170\" y=\"56\" width=\"232.1\" height=\"14\" fill=\"var(--rule-2,#BDC0BA)\"/><text x=\"410.1\" y=\"67.0\" text-anchor=\"start\" style=\"font-family:var(--mono,'IBM Plex Mono',ui-monospace,monospace);font-size:9px;fill:var(--ink-2,#424A53);font-weight:600;font-variant-numeric:tabular-nums\">55.25%</text><rect x=\"170\" y=\"76\" width=\"420\" height=\"14\" fill=\"var(--atl-soft,#DBE6EC)\" opacity=\".35\"/><rect x=\"170\" y=\"76\" width=\"124.7\" height=\"14\" fill=\"var(--ocre,#B2503A)\"/><text x=\"302.7\" y=\"87.0\" text-anchor=\"start\" style=\"font-family:var(--mono,'IBM Plex Mono',ui-monospace,monospace);font-size:9px;fill:var(--ocre,#B2503A);font-weight:700;font-variant-numeric:tabular-nums\">29.7%</text><text x=\"158.0\" y=\"128.0\" text-anchor=\"end\" style=\"font-family:var(--mono,'IBM Plex Mono',ui-monospace,monospace);font-size:10.5px;fill:var(--ink,#14181D);font-weight:700;font-variant-numeric:tabular-nums\">2023</text><rect x=\"170\" y=\"114\" width=\"420\" height=\"14\" fill=\"var(--atl-soft,#DBE6EC)\" opacity=\".35\"/><rect x=\"170\" y=\"114\" width=\"325.3\" height=\"14\" fill=\"var(--rule-2,#BDC0BA)\"/><text x=\"503.3\" y=\"125.0\" text-anchor=\"start\" style=\"font-family:var(--mono,'IBM Plex Mono',ui-monospace,monospace);font-size:9px;fill:var(--ink-2,#424A53);font-weight:600;font-variant-numeric:tabular-nums\">77.45%</text><rect x=\"170\" y=\"134\" width=\"420\" height=\"14\" fill=\"var(--atl-soft,#DBE6EC)\" opacity=\".35\"/><rect x=\"170\" y=\"134\" width=\"183.1\" height=\"14\" fill=\"var(--ocre,#B2503A)\"/><text x=\"361.1\" y=\"145.0\" text-anchor=\"start\" style=\"font-family:var(--mono,'IBM Plex Mono',ui-monospace,monospace);font-size:9px;fill:var(--ocre,#B2503A);font-weight:700;font-variant-numeric:tabular-nums\">43.6%</text><text x=\"158.0\" y=\"186.0\" text-anchor=\"end\" style=\"font-family:var(--mono,'IBM Plex Mono',ui-monospace,monospace);font-size:10.5px;fill:var(--ink,#14181D);font-weight:700;font-variant-numeric:tabular-nums\">2024</text><rect x=\"170\" y=\"172\" width=\"420\" height=\"14\" fill=\"var(--atl-soft,#DBE6EC)\" opacity=\".35\"/><rect x=\"170\" y=\"172\" width=\"250.6\" height=\"14\" fill=\"var(--rule-2,#BDC0BA)\"/><text x=\"428.6\" y=\"183.0\" text-anchor=\"start\" style=\"font-family:var(--mono,'IBM Plex Mono',ui-monospace,monospace);font-size:9px;fill:var(--ink-2,#424A53);font-weight:600;font-variant-numeric:tabular-nums\">59.67%</text><rect x=\"170\" y=\"192\" width=\"420\" height=\"14\" fill=\"var(--atl-soft,#DBE6EC)\" opacity=\".35\"/><rect x=\"170\" y=\"192\" width=\"170.1\" height=\"14\" fill=\"var(--ocre,#B2503A)\"/><text x=\"348.1\" y=\"203.0\" text-anchor=\"start\" style=\"font-family:var(--mono,'IBM Plex Mono',ui-monospace,monospace);font-size:9px;fill:var(--ocre,#B2503A);font-weight:700;font-variant-numeric:tabular-nums\">40.5%</text><text x=\"170.0\" y=\"234.0\" text-anchor=\"start\" style=\"font-family:var(--sans,'Noto Sans KR',system-ui,sans-serif);font-size:9px;fill:var(--ink-2,#424A53);font-weight:600;font-variant-numeric:tabular-nums\">위 = 수출 중 (한국→세계가 분모)      아래 = 어획 중 (선망 가다랑어 어획이 분모)</text><text x=\"170.0\" y=\"254.0\" text-anchor=\"start\" style=\"font-family:var(--sans,'Noto Sans KR',system-ui,sans-serif);font-size:9.5px;fill:var(--ocre,#B2503A);font-weight:600;font-variant-numeric:tabular-nums\">같은 표인데 분모를 바꾸면 55%가 30%가 된다. 「잡은 것의 절반 넘게」는 거짓이다.</text></svg>"
+  }
+ ]
+}

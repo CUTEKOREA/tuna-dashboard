@@ -1,9 +1,9 @@
 {
  "_meta": {
   "entry": "app/page.tsx",
-  "files": 219,
+  "files": 220,
   "widgets": 110,
-  "dataFiles": 127,
+  "dataFiles": 131,
   "generator": "scripts/widget_lineage.py"
  },
  "widgetToData": {
@@ -580,6 +580,7 @@
     "lib/data/company-report-figures.ts",
     "lib/data/company-report-tables.ts",
     "lib/data/company-sajo.ts",
+    "lib/data/company-seavalue.ts",
     "lib/data/company-starkist.ts",
     "lib/data/company-thaiunion-skus.ts",
     "lib/data/company-thaiunion.ts",
@@ -638,6 +639,10 @@
     "public/data/companies/sajo_prose_v1.json",
     "public/data/companies/sajo_tables_v1.json",
     "public/data/companies/sajo_v1.json",
+    "public/data/companies/seavalue_figures_v1.json",
+    "public/data/companies/seavalue_prose_v1.json",
+    "public/data/companies/seavalue_tables_v1.json",
+    "public/data/companies/seavalue_v1.json",
     "public/data/companies/starkist_figures_v1.json",
     "public/data/companies/starkist_prose_v1.json",
     "public/data/companies/starkist_tables_v1.json",
@@ -1229,6 +1234,18 @@
    "components/market-understanding/CompanyAnatomyDashboard.tsx"
   ],
   "public/data/companies/sajo_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/seavalue_figures_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/seavalue_prose_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/seavalue_tables_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/seavalue_v1.json": [
    "components/market-understanding/CompanyAnatomyDashboard.tsx"
   ],
   "public/data/companies/starkist_figures_v1.json": [
