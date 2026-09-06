@@ -12,22 +12,22 @@ import { countryOf } from '@/components/market-understanding/CompanyGallery';
 
 describe('기업 해부 카드 뒷면', () => {
   it('같은 나라 카드는 문양과 잉크가 같다', () => {
-    const byCountry = new Map<string, { flagCss: string; backInk: string }>();
+    const byCountry = new Map<string, { flagSrc: string; backInk: string }>();
     for (const c of COMPANY_CARDS) {
       const k = countryOf(c);
       const seen = byCountry.get(k);
       if (!seen) {
-        byCountry.set(k, { flagCss: c.flagCss, backInk: c.backInk });
+        byCountry.set(k, { flagSrc: c.flagSrc, backInk: c.backInk });
         continue;
       }
-      expect(c.flagCss, `${k} - ${c.name} 문양이 같은 나라 다른 카드와 다르다`).toBe(seen.flagCss);
+      expect(c.flagSrc, `${k} - ${c.name} 문양이 같은 나라 다른 카드와 다르다`).toBe(seen.flagSrc);
       expect(c.backInk, `${k} - ${c.name} 잉크가 같은 나라 다른 카드와 다르다`).toBe(seen.backInk);
     }
   });
 
   it('나라가 다르면 문양도 다르다', () => {
     const perCountry = new Map<string, string>();
-    for (const c of COMPANY_CARDS) perCountry.set(countryOf(c), c.flagCss);
+    for (const c of COMPANY_CARDS) perCountry.set(countryOf(c), c.flagSrc);
     const css = [...perCountry.values()];
     expect(new Set(css).size, '두 나라가 같은 문양을 쓰고 있다').toBe(css.length);
   });
@@ -39,7 +39,7 @@ describe('기업 해부 카드 뒷면', () => {
     expect(COMPANY_CARDS.length).toBeGreaterThanOrEqual(9);
     for (const c of COMPANY_CARDS) {
       expect(countryOf(c), `${c.name} 나라를 못 읽는다`).toBeTruthy();
-      expect(c.flagCss, `${c.name} 문양이 없다`).toBeTruthy();
+      expect(c.flagSrc, `${c.name} 문양이 없다`).toBeTruthy();
       expect(c.backInk, `${c.name} 잉크가 없다`).toBeTruthy();
     }
     // 로마숫자는 수록순이라 중복되면 안 된다.

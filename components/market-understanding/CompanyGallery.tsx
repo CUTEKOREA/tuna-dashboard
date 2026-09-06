@@ -5,16 +5,13 @@
  * 클릭하면 타로카드처럼 뒤집혀 회사 요약이 공개된 뒤 해부 화면으로 넘어간다.
  * prefers-reduced-motion 이면 뒤집기 없이 바로 넘어간다.
  *
- * 뒷면 문양은 회사가 아니라 **나라** 단위다. 같은 나라 두 장이 서로 다른 그림이면
- * 고르는 사람이 나라를 못 읽는다. 문양 정의는 CompanyAnatomyDashboard 의 FLAG 에 있다.
- *
- * 뒷면 글자는 그 배경 위에 바로 얹지 않는다. 히노마루의 원이 회사명을 가로질러
- * 읽히지 않았다. 명판(backPlate)을 깔고 그 위에 올린다. 명판 색은 잉크 밝기에서
- * 자동으로 뒤집으므로 카드가 늘어도 손볼 데가 없다.
+ * 나라별 SVG 국기를 원래 비율로 표시한다. 국기와 회사명은 별도 영역에 배치해
+ * 문양을 가리거나 세로 카드에 맞춰 늘리지 않는다.
  */
 'use client';
 
 import React, { useMemo, useRef, useState } from 'react';
+import Image from 'next/image';
 
 import { nearTieWith, revenueUsdM, scaleLabel, scaleOf } from '@/lib/data/company-scale';
 
@@ -28,8 +25,8 @@ export interface CompanyCard {
   country: string;
   tagline: string;
   stats: { label: string; value: string }[];
-  /** 뒷면 배경 — 그 나라 국기를 연상시키는 CSS 그라데이션 (회사별) */
-  flagCss: string;
+  /** 나라별 국기 SVG의 로컬 경로. 원본 viewBox 비율을 유지한다. */
+  flagSrc: string;
   /** 뒷면 회사명·테두리 잉크 — 명판 위에서 읽히는 색 */
   backInk: string;
 }
@@ -139,21 +136,34 @@ export default function CompanyGallery({ companies, onSelect }: CompanyGalleryPr
               type="button"
               className={`${styles.card} ${flipped === c.key ? styles.flipped : ''}`}
               onClick={() => handleClick(c.key)}
-              aria-label={`${c.name} 해부 보기`}
+              aria-label={`${c.name} · ${countryOf(c)} 해부 보기`}
             >
               <span className={styles.cardInner}>
                 <span
                   className={`${styles.face} ${styles.back}`}
                   aria-hidden="true"
-                  style={{ background: c.flagCss, color: c.backInk }}
                 >
                   <span className={styles.backFrame} />
+                  <span className={styles.backNumeral}>{c.numeral}</span>
+                  <span className={styles.backFlag}>
+                    <Image
+                      src={c.flagSrc}
+                      alt=""
+                      fill
+                      unoptimized
+                      loading="eager"
+                      sizes="200px"
+                      className={styles.flagImage}
+                    />
+                  </span>
                   <span
                     className={styles.backPlate}
-                    style={{ background: plateFor(c.backInk) }}
+                    style={{ background: plateFor(c.backInk), color: c.backInk }}
                   >
-                    <span className={styles.backNumeral}>{c.numeral}</span>
                     <span className={styles.backName}>{c.name}</span>
+                    <span className={styles.backCountry}>
+                      {sort === 'country' ? c.country : countryOf(c)}
+                    </span>
                     {sort === 'revenue' && scale ? (
                       <span className={styles.backScale}>
                         {scaleLabel(c.key)}
@@ -162,9 +172,6 @@ export default function CompanyGallery({ companies, onSelect }: CompanyGalleryPr
                           {tied.length ? ' · ≈동률' : ''}
                         </em>
                       </span>
-                    ) : null}
-                    {sort === 'country' ? (
-                      <span className={styles.backScale}>{c.country}</span>
                     ) : null}
                   </span>
                 </span>

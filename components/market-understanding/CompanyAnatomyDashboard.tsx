@@ -2428,104 +2428,16 @@ const JAI_SPEC: CommoditySpec = {
   ].join(' · '),
 };
 
-/**
- * 카드 뒷면 문양은 **회사가 아니라 나라**로 정한다.
- *
- * 처음에는 회사마다 다르게 뒀다. 스페인이 갈리시아(로히괄다)와 바스크(이쿠리냐)로,
- * 이탈리아가 트리콜로레와 그 축약형으로 갈리자 일곱 장이 전부 다른 그림이 됐고,
- * 고르는 사람이 나라를 읽지 못했다. 나라당 한 벌만 둔다. 같은 나라 카드는 문양이
- * 같고 회사명으로 갈린다.
- *
- * 회사가 늘면 그 나라 항목이 없을 때만 여기에 한 줄 더한다.
- */
-const FLAG: Record<string, { flagCss: string; backInk: string }> = {
-  // 로히괄다 — 빨강·노랑·빨강 가로 밴드에 새틴 광
-  스페인: {
-    flagCss: [
-      'radial-gradient(circle at 50% 30%, rgba(255, 255, 255, 0.14), transparent 55%)',
-      'linear-gradient(180deg, #9d1017 0%, #9d1017 24%, #e0b400 24%, #e0b400 76%, #9d1017 76%, #9d1017 100%)',
-    ].join(', '),
-    backInk: '#4a2f00',
-  },
-  // 트라이롱 — 빨강·하양·남색(2배폭)·하양·빨강 가로 밴드
-  태국: {
-    flagCss: [
-      'radial-gradient(circle at 50% 30%, rgba(255, 255, 255, 0.14), transparent 55%)',
-      'linear-gradient(180deg, #a51931 0%, #a51931 16.6%, #f4f5f0 16.6%, #f4f5f0 33.3%, #2d2a4a 33.3%, #2d2a4a 66.6%, #f4f5f0 66.6%, #f4f5f0 83.3%, #a51931 83.3%, #a51931 100%)',
-    ].join(', '),
-    backInk: '#f4f5f0',
-  },
-  // 청천백일만지홍 — 붉은 바탕 좌상단에 남색 사각과 흰 태양
-  대만: {
-    flagCss: [
-      'radial-gradient(circle at 50% 30%, rgba(255, 255, 255, 0.14), transparent 55%)',
-      'radial-gradient(circle at 25% 25%, #f4f5f0 0 7%, transparent 7.4%)',
-      'radial-gradient(circle at 25% 25%, #1b3c8f 0 17%, transparent 17.4%)',
-      'linear-gradient(180deg, #c0202e 0%, #a81a26 100%)',
-    ].join(', '),
-    backInk: '#f4f5f0',
-  },
-  // 히노마루 — 흰 바탕 가운데 붉은 원
-  일본: {
-    flagCss: [
-      'radial-gradient(circle at 50% 28%, rgba(255, 255, 255, 0.9), transparent 55%)',
-      'radial-gradient(circle at 50% 45%, #bc002d 0 22%, transparent 22.5%)',
-      'linear-gradient(180deg, #f4f5f0 0%, #e6eaec 100%)',
-    ].join(', '),
-    backInk: '#1b2733',
-  },
-  // 필리핀 국기 — 남색·빨강 가로 밴드에 왼쪽 흰 삼각과 태양. 삼각은 흰 사선 두 장으로 만든다
-  필리핀: {
-    flagCss: [
-      'radial-gradient(circle at 50% 30%, rgba(255, 255, 255, 0.12), transparent 55%)',
-      'radial-gradient(circle at 17% 50%, #fcd116 0 6%, transparent 6.4%)',
-      'linear-gradient(112deg, #f4f5f0 0%, #f4f5f0 26%, transparent 26.2%)',
-      'linear-gradient(68deg, #f4f5f0 0%, #f4f5f0 26%, transparent 26.2%)',
-      'linear-gradient(180deg, #0038a8 0%, #0038a8 50%, #ce1126 50%, #ce1126 100%)',
-    ].join(', '),
-    backInk: '#f4f5f0',
-  },
-  // 성조기 — 13 줄 가로 밴드 위 좌상단 캔턴. 별 50 개를 다 찍으면 카드 크기에서 뭉치므로
-  // 여섯 점만 놓아 암시한다. 캔턴은 background 단축의 크기·반복 값으로 사각형을 만든다.
-  미국: {
-    flagCss: [
-      'radial-gradient(circle at 50% 30%, rgba(255, 255, 255, 0.12), transparent 55%)',
-      'radial-gradient(circle at 9% 11%, #f4f5f0 0 1.7%, transparent 2%)',
-      'radial-gradient(circle at 23% 11%, #f4f5f0 0 1.7%, transparent 2%)',
-      'radial-gradient(circle at 16% 25%, #f4f5f0 0 1.7%, transparent 2%)',
-      'radial-gradient(circle at 30% 25%, #f4f5f0 0 1.7%, transparent 2%)',
-      'radial-gradient(circle at 9% 39%, #f4f5f0 0 1.7%, transparent 2%)',
-      'radial-gradient(circle at 23% 39%, #f4f5f0 0 1.7%, transparent 2%)',
-      'linear-gradient(#2a3560, #2a3560) 0 0 / 40% 54% no-repeat',
-      'repeating-linear-gradient(180deg, #b3222c 0 7.69%, #f4f5f0 7.69% 15.38%)',
-    ].join(', '),
-    backInk: '#1b2733',
-  },
-  // 태극기 — 흰 바탕에 태극 원(빨강·파랑)과 네 모서리 건곤감리.
-  // 원은 흰 층에 원형 구멍을 뚫어 아래 conic 을 보여 주는 식으로 만든다.
-  // ⚠ 원을 정중앙(50% 50%)에 두면 카드 이름표에 통째로 가린다 — 33% 로 올려 위쪽에 세운다.
-  // sized linear-gradient 는 사각이라 원이 안 나온다. 괘는 짧은 사선 막대로만 암시한다.
-  한국: {
-    flagCss: [
-      'linear-gradient(126deg, #1b2733 0 100%) 15% 12% / 15% 2.2% no-repeat',
-      'linear-gradient(126deg, #1b2733 0 100%) 85% 12% / 15% 2.2% no-repeat',
-      'linear-gradient(126deg, #1b2733 0 100%) 15% 88% / 15% 2.2% no-repeat',
-      'linear-gradient(126deg, #1b2733 0 100%) 85% 88% / 15% 2.2% no-repeat',
-      'radial-gradient(circle at 50% 18%, rgba(255, 255, 255, 0.75), transparent 52%)',
-      'radial-gradient(circle at 50% 33%, transparent 0 16%, #f4f5f0 16.4%)',
-      'conic-gradient(from 145deg at 50% 33%, #cd2e3a 0 50%, #0b3d91 50% 100%)',
-      'linear-gradient(180deg, #f4f5f0 0%, #e6eaec 100%)',
-    ].join(', '),
-    backInk: '#1b2733',
-  },
-  // 트리콜로레 — 초록·하양·빨강 세로 밴드
-  이탈리아: {
-    flagCss: [
-      'radial-gradient(circle at 50% 30%, rgba(255, 255, 255, 0.12), transparent 55%)',
-      'linear-gradient(90deg, #0b6b4f 0%, #0b6b4f 33.3%, #f4f5f0 33.3%, #f4f5f0 66.6%, #b3222c 66.6%, #b3222c 100%)',
-    ].join(', '),
-    backInk: '#f4f5f0',
-  },
+/** 나라별 원본 SVG를 공유한다. 출처와 고정 버전은 public/flags/README.md 참조. */
+const FLAG: Record<string, Pick<CompanyCard, 'flagSrc' | 'backInk'>> = {
+  스페인: { flagSrc: '/flags/es.svg', backInk: '#4a2f00' },
+  태국: { flagSrc: '/flags/th.svg', backInk: '#f4f5f0' },
+  대만: { flagSrc: '/flags/tw.svg', backInk: '#f4f5f0' },
+  일본: { flagSrc: '/flags/jp.svg', backInk: '#1b2733' },
+  필리핀: { flagSrc: '/flags/ph.svg', backInk: '#f4f5f0' },
+  미국: { flagSrc: '/flags/us.svg', backInk: '#1b2733' },
+  한국: { flagSrc: '/flags/kr.svg', backInk: '#1b2733' },
+  이탈리아: { flagSrc: '/flags/it.svg', backInk: '#f4f5f0' },
 };
 
 /** 선택 갤러리 카드 목록. 회사가 늘면 여기에 한 장씩 추가한다. */
