@@ -121,8 +121,9 @@ SPECS: dict[str, dict] = {
     },
     "starkist": {
         "src": "docs/evidence/company-starkist-2026-09/보고서.html",
-        # 14절이 화면 14단계와 1:1 이다. 정정 이력 절은 따로 없다.
-        "stages": {f"s{i}": f"c{i:02d}" for i in range(1, 15)},
+        # 16절. 제품(s12)·전략(s13)이 뒤에 붙어 절이 14→16 으로 늘었다.
+        # ⚠ 단계 수를 리터럴로 적지 마라 — 절이 늘면 마지막 절이 조용히 사라진다.
+        "stages": {f"s{i}": f"c{i:02d}" for i in range(1, 17)},
         "drop": [],
     },
     "jais": {

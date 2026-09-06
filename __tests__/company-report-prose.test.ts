@@ -76,8 +76,9 @@ describe('아홉 편 공통', () => {
     }
   });
 
-  it('아홉 편 모두 서술이 있다', () => {
-    expect(REPORT_PROSE_COMPANIES).toHaveLength(9);
+  it('실린 편은 모두 서술이 있다', () => {
+    // ⚠ 편 수를 리터럴로 적지 마라. 9 로 박아 둔 자리가 Nauterra(Ⅹ) 누락을 못 잡았다.
+    expect(REPORT_PROSE_COMPANIES.length).toBeGreaterThanOrEqual(9);
     for (const c of REPORT_PROSE_COMPANIES) {
       const stages = proseStages(c);
       expect(stages.length, `${c} 단계 수`).toBeGreaterThanOrEqual(6);

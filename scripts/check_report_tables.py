@@ -25,13 +25,36 @@ def cells(row: str) -> list[str]:
             for c in re.findall(r'<t[hd][^>]*>.*?</t[hd]>', row, re.S)]
 
 
-def val(t: str):
+def euro(doc: str) -> bool:
+    r"""이 보고서가 유럽식 표기인가 — 소수점이 쉼표인가.
+
+    스페인 회사 편은 「825,7 M€」·「2.428명」처럼 적는다. 영미식으로 읽으면
+    2.428 이 「이 점 사삼팔」이 되어 415+2.428+161+1.366=579,8 같은 유령 세로합이 나온다
+    (Nauterra 가공거점 표 실측).
+
+    ⚠ `\d,\d` 만 보면 안 된다 — 영미식 천 단위 `2,409` 도 걸린다. **뒤에 몇 자리가
+    오는지**가 갈라 준다. 소수는 1~2자리, 천 단위는 정확히 3자리다. 양쪽 신호를 세어
+    많은 쪽을 택하고, 판정은 **보고서 단위**로 한다 — 표 하나에는 표본이 모자란다.
+    """
+    eu = (len(re.findall(r'\d,\d{1,2}(?!\d)', doc))      # 825,7  소수 쉼표
+          + len(re.findall(r'\d\.\d{3}(?!\d)', doc)))     # 2.428  천 단위 점
+    an = (len(re.findall(r'\d,\d{3}(?!\d)', doc))        # 2,409  천 단위 쉼표
+          + len(re.findall(r'\d\.\d{1,2}(?!\d)', doc)))   # 68.3   소수 점
+    return eu > an
+
+
+def val(t: str, eu: bool = False):
     """칸의 **첫 숫자**만 읽는다.
 
     「2,409  68.3%」나 「559,209 (79%)」처럼 값과 비율이 한 칸에 같이 있는 표가 많다.
     비숫자를 지우고 이어 붙이면 285,940 같은 유령 값이 나와 전부 거짓 지적이 된다.
     """
-    t = t.replace(",", "").strip()
+    t = t.strip()
+    if eu:
+        # 천 단위 점을 지우고 소수 쉼표를 점으로. 순서를 바꾸면 안 된다.
+        t = t.replace(".", "").replace(",", ".")
+    else:
+        t = t.replace(",", "")
     m = re.match(r'^[−-]?\d+(?:\.\d+)?', t)
     return float(m.group(0).replace("−", "-")) if m else None
 
@@ -43,6 +66,7 @@ def main() -> int:
         if not f.exists():
             continue
         s = f.read_text(encoding="utf-8")
+        eu = euro(re.sub(r"<[^>]+>", " ", s))
         for ti, tbl in enumerate(re.findall(r'<table.*?</table>', s, re.S)):
             rows = [cells(r) for r in re.findall(r'<tr.*?</tr>', tbl, re.S)]
             rows = [r for r in rows if r]
@@ -62,8 +86,8 @@ def main() -> int:
                     continue
                 if all("%" in r[c] for r in body):
                     continue
-                want = val(trow[c])
-                got = [val(r[c]) for r in body]
+                want = val(trow[c], eu)
+                got = [val(r[c], eu) for r in body]
                 if want is None or any(g is None for g in got) or len(got) < 2:
                     continue
                 if abs(sum(got) - want) > max(1.0, abs(want) * 0.005):

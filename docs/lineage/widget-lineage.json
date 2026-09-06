@@ -1,9 +1,9 @@
 {
  "_meta": {
   "entry": "app/page.tsx",
-  "files": 213,
+  "files": 214,
   "widgets": 110,
-  "dataFiles": 100,
+  "dataFiles": 107,
   "generator": "scripts/widget_lineage.py"
  },
  "widgetToData": {
@@ -576,6 +576,7 @@
     "lib/data/company-nauterra.ts",
     "lib/data/company-report-figures.ts",
     "lib/data/company-report-tables.ts",
+    "lib/data/company-starkist.ts",
     "lib/data/company-thaiunion-skus.ts",
     "lib/data/company-thaiunion.ts"
    ],
@@ -612,7 +613,14 @@
     "public/data/companies/jealsa_prose_v1.json",
     "public/data/companies/jealsa_tables_v1.json",
     "public/data/companies/jealsa_v1.json",
+    "public/data/companies/nauterra_figures_v1.json",
+    "public/data/companies/nauterra_prose_v1.json",
+    "public/data/companies/nauterra_tables_v1.json",
     "public/data/companies/nauterra_v1.json",
+    "public/data/companies/starkist_figures_v1.json",
+    "public/data/companies/starkist_prose_v1.json",
+    "public/data/companies/starkist_tables_v1.json",
+    "public/data/companies/starkist_v1.json",
     "public/data/companies/thaiunion_figures_v1.json",
     "public/data/companies/thaiunion_prose_v1.json",
     "public/data/companies/thaiunion_skus_v1.json",
@@ -1138,7 +1146,28 @@
   "public/data/companies/jealsa_v1.json": [
    "components/market-understanding/CompanyAnatomyDashboard.tsx"
   ],
+  "public/data/companies/nauterra_figures_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/nauterra_prose_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/nauterra_tables_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
   "public/data/companies/nauterra_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/starkist_figures_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/starkist_prose_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/starkist_tables_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/starkist_v1.json": [
    "components/market-understanding/CompanyAnatomyDashboard.tsx"
   ],
   "public/data/companies/thaiunion_figures_v1.json": [

@@ -4,5 +4,144 @@
   "생성": "python3 scripts/build_report_figures.py",
   "설명": "보고서의 팩샷과 차트. 이미지는 public 아래 정적 파일이고 여기에는 URL 만 담는다."
  },
- "figures": []
+ "figures": [
+  {
+   "stage": "c03",
+   "sid": "s3",
+   "kind": "chart",
+   "ord": 2308,
+   "caption": "같은 매출을 두 통화로 지수화했다. 원화는 오르고 달러는 내린다. 미국 시장에서 달러로 파는 회사이므로 사업의 크기는 아래 세 칸이 말한다.",
+   "alt": "",
+   "svg": "<svg viewBox=\"0 0 620 202\" role=\"img\" aria-label=\"원화와 달러의 매출 추이\" style=\"--rc-b:#12414C;--rc-h:#A8541F\"><line class=\"rc-g\" x1=\"227.1\" y1=\"16\" x2=\"227.1\" y2=\"172\"/><text class=\"rc-l\" x=\"227.1\" y=\"185\" text-anchor=\"middle\">20</text><line class=\"rc-g\" x1=\"304.2\" y1=\"16\" x2=\"304.2\" y2=\"172\"/><text class=\"rc-l\" x=\"304.2\" y=\"185\" text-anchor=\"middle\">40</text><line class=\"rc-g\" x1=\"381.3\" y1=\"16\" x2=\"381.3\" y2=\"172\"/><text class=\"rc-l\" x=\"381.3\" y=\"185\" text-anchor=\"middle\">60</text><line class=\"rc-g\" x1=\"458.4\" y1=\"16\" x2=\"458.4\" y2=\"172\"/><text class=\"rc-l\" x=\"458.4\" y=\"185\" text-anchor=\"middle\">80</text><line class=\"rc-g\" x1=\"535.6\" y1=\"16\" x2=\"535.6\" y2=\"172\"/><text class=\"rc-l\" x=\"535.6\" y=\"185\" text-anchor=\"middle\">100</text><rect class=\"rc-b mut\" x=\"150\" y=\"23.0\" width=\"385.6\" height=\"12\" rx=\"1\"/><text class=\"rc-l\" x=\"144\" y=\"32.0\" text-anchor=\"end\">원화 2023</text><text class=\"rc-v\" x=\"540.6\" y=\"32.0\">100.0</text><rect class=\"rc-b\" x=\"150\" y=\"49.0\" width=\"404.4\" height=\"12\" rx=\"1\"/><text class=\"rc-l\" x=\"144\" y=\"58.0\" text-anchor=\"end\">원화 2024</text><text class=\"rc-v\" x=\"559.4\" y=\"58.0\">104.9</text><rect class=\"rc-b\" x=\"150\" y=\"75.0\" width=\"407.1\" height=\"12\" rx=\"1\"/><text class=\"rc-l\" x=\"144\" y=\"84.0\" text-anchor=\"end\">원화 2025</text><text class=\"rc-v\" x=\"562.1\" y=\"84.0\">105.6</text><rect class=\"rc-b mut\" x=\"150\" y=\"101.0\" width=\"385.6\" height=\"12\" rx=\"1\"/><text class=\"rc-l\" x=\"144\" y=\"110.0\" text-anchor=\"end\">달러 2023</text><text class=\"rc-v\" x=\"540.6\" y=\"110.0\">100.0</text><rect class=\"rc-b hot\" x=\"150\" y=\"127.0\" width=\"387.1\" height=\"12\" rx=\"1\"/><text class=\"rc-l\" x=\"144\" y=\"136.0\" text-anchor=\"end\">달러 2024</text><text class=\"rc-v\" x=\"542.1\" y=\"136.0\">100.4</text><rect class=\"rc-b hot\" x=\"150\" y=\"153.0\" width=\"373.6\" height=\"12\" rx=\"1\"/><text class=\"rc-l\" x=\"144\" y=\"162.0\" text-anchor=\"end\">달러 2025</text><text class=\"rc-v\" x=\"528.6\" y=\"162.0\">96.9</text><text class=\"rc-n\" x=\"150\" y=\"196\">2023년 = 100</text></svg>",
+   "css": ":scope{--ink:#14181D;--ink-2:#424A53;--ink-3:#6E767F;--mono:'IBM Plex Mono',ui-monospace,SFMono-Regular,Menlo,monospace;--ocre:#A8541F;--rule:#D5D7D2;--rule-2:#BDC0BA;--sans:'Noto Sans KR',system-ui,-apple-system,'Malgun Gothic',sans-serif}.cx-bar.hot{fill:var(--ocre)}.cx-bar.mut{fill:var(--rule-2)}.cx-dot.hot{fill:var(--ocre)}.call.hot{border-left:3px solid var(--ocre)}.metric.hot .val{color:var(--ocre)}.rc-g{stroke:var(--rule);stroke-width:.6}.rc-l{fill:var(--ink-3);font-family:var(--mono);font-size:8px;letter-spacing:.04em}.rc-v{fill:var(--ink);font-family:var(--mono);font-size:8.5px;font-weight:600}.rc-b{fill:var(--rc-b,#3a6ea5)}.rc-b.hot{fill:var(--rc-h,#b8860b)}.rc-b.mut{fill:var(--rule-2)}.rc-n{fill:var(--ink-2);font-family:var(--sans);font-size:8px}"
+  },
+  {
+   "stage": "c04",
+   "sid": "s4",
+   "kind": "chart",
+   "ord": 3157,
+   "caption": "회사는 상한 1억 달러를 2018년 1분기부터 공시에 적어 두고 그 절반을 쌓았다. 짙게 칠한 두 칸이 같은 5천만 달러다. 앞은 결산 충당액, 뒤는 다섯 달 뒤 법정에서 요청한 액수.",
+   "alt": "",
+   "svg": "<svg viewBox=\"0 0 620 176\" role=\"img\" aria-label=\"충당금과 법정 상한의 사다리\" style=\"--rc-b:#12414C;--rc-h:#A8541F\"><line class=\"rc-g\" x1=\"231.4\" y1=\"16\" x2=\"231.4\" y2=\"146\"/><text class=\"rc-l\" x=\"231.4\" y=\"159\" text-anchor=\"middle\">20</text><line class=\"rc-g\" x1=\"312.9\" y1=\"16\" x2=\"312.9\" y2=\"146\"/><text class=\"rc-l\" x=\"312.9\" y=\"159\" text-anchor=\"middle\">40</text><line class=\"rc-g\" x1=\"394.3\" y1=\"16\" x2=\"394.3\" y2=\"146\"/><text class=\"rc-l\" x=\"394.3\" y=\"159\" text-anchor=\"middle\">60</text><line class=\"rc-g\" x1=\"475.7\" y1=\"16\" x2=\"475.7\" y2=\"146\"/><text class=\"rc-l\" x=\"475.7\" y=\"159\" text-anchor=\"middle\">80</text><line class=\"rc-g\" x1=\"557.1\" y1=\"16\" x2=\"557.1\" y2=\"146\"/><text class=\"rc-l\" x=\"557.1\" y=\"159\" text-anchor=\"middle\">100</text><rect class=\"rc-b mut\" x=\"150\" y=\"23.0\" width=\"407.1\" height=\"12\" rx=\"1\"/><text class=\"rc-l\" x=\"144\" y=\"32.0\" text-anchor=\"end\">법정 상한 (2018 1Q 공시)</text><text class=\"rc-v\" x=\"562.1\" y=\"32.0\">100</text><rect class=\"rc-b\" x=\"150\" y=\"49.0\" width=\"162.9\" height=\"12\" rx=\"1\"/><text class=\"rc-l\" x=\"144\" y=\"58.0\" text-anchor=\"end\">2017년말 충당</text><text class=\"rc-v\" x=\"317.9\" y=\"58.0\">40</text><rect class=\"rc-b hot\" x=\"150\" y=\"75.0\" width=\"203.6\" height=\"12\" rx=\"1\"/><text class=\"rc-l\" x=\"144\" y=\"84.0\" text-anchor=\"end\">2018년말 충당</text><text class=\"rc-v\" x=\"358.6\" y=\"84.0\">50</text><rect class=\"rc-b hot\" x=\"150\" y=\"101.0\" width=\"203.6\" height=\"12\" rx=\"1\"/><text class=\"rc-l\" x=\"144\" y=\"110.0\" text-anchor=\"end\">2019-05 법정 요청액</text><text class=\"rc-v\" x=\"358.6\" y=\"110.0\">50</text><rect class=\"rc-b\" x=\"150\" y=\"127.0\" width=\"407.1\" height=\"12\" rx=\"1\"/><text class=\"rc-l\" x=\"144\" y=\"136.0\" text-anchor=\"end\">2019-09 선고</text><text class=\"rc-v\" x=\"562.1\" y=\"136.0\">100</text><text class=\"rc-n\" x=\"150\" y=\"170\">백만 달러</text></svg>",
+   "css": ":scope{--ink:#14181D;--ink-2:#424A53;--ink-3:#6E767F;--mono:'IBM Plex Mono',ui-monospace,SFMono-Regular,Menlo,monospace;--ocre:#A8541F;--rule:#D5D7D2;--rule-2:#BDC0BA;--sans:'Noto Sans KR',system-ui,-apple-system,'Malgun Gothic',sans-serif}.cx-bar.hot{fill:var(--ocre)}.cx-bar.mut{fill:var(--rule-2)}.cx-dot.hot{fill:var(--ocre)}.call.hot{border-left:3px solid var(--ocre)}.metric.hot .val{color:var(--ocre)}.rc-g{stroke:var(--rule);stroke-width:.6}.rc-l{fill:var(--ink-3);font-family:var(--mono);font-size:8px;letter-spacing:.04em}.rc-v{fill:var(--ink);font-family:var(--mono);font-size:8.5px;font-weight:600}.rc-b{fill:var(--rc-b,#3a6ea5)}.rc-b.hot{fill:var(--rc-h,#b8860b)}.rc-b.mut{fill:var(--rule-2)}.rc-n{fill:var(--ink-2);font-family:var(--sans);font-size:8px}"
+  },
+  {
+   "stage": "c05",
+   "sid": "s5",
+   "kind": "chart",
+   "ord": 1878,
+   "caption": "2019·2020년에 몰려 있다가 2021년부터 사라진다. 그 뒤 남은 「벌금」은 법인세 회계정책 문구이고 이 사건과 무관하다. 벌금 자체는 2024년까지 분할상환 중이었다.",
+   "alt": "",
+   "svg": "<svg viewBox=\"0 0 620 202\" role=\"img\" aria-label=\"형사벌금 언급의 소멸\" style=\"--rc-b:#12414C;--rc-h:#A8541F\"><line class=\"rc-g\" x1=\"319.6\" y1=\"16\" x2=\"319.6\" y2=\"172\"/><text class=\"rc-l\" x=\"319.6\" y=\"185\" text-anchor=\"middle\">5</text><line class=\"rc-g\" x1=\"489.3\" y1=\"16\" x2=\"489.3\" y2=\"172\"/><text class=\"rc-l\" x=\"489.3\" y=\"185\" text-anchor=\"middle\">10</text><rect class=\"rc-b\" x=\"150\" y=\"23.0\" width=\"101.8\" height=\"12\" rx=\"1\"/><text class=\"rc-l\" x=\"144\" y=\"32.0\" text-anchor=\"end\">2018 사업보고서</text><text class=\"rc-v\" x=\"256.8\" y=\"32.0\">3</text><rect class=\"rc-b hot\" x=\"150\" y=\"49.0\" width=\"407.1\" height=\"12\" rx=\"1\"/><text class=\"rc-l\" x=\"144\" y=\"58.0\" text-anchor=\"end\">2019 사업보고서</text><text class=\"rc-v\" x=\"562.1\" y=\"58.0\">12</text><rect class=\"rc-b hot\" x=\"150\" y=\"75.0\" width=\"407.1\" height=\"12\" rx=\"1\"/><text class=\"rc-l\" x=\"144\" y=\"84.0\" text-anchor=\"end\">2020 사업보고서</text><text class=\"rc-v\" x=\"562.1\" y=\"84.0\">12</text><rect class=\"rc-b mut\" x=\"150\" y=\"101.0\" width=\"1.5\" height=\"12\" rx=\"1\"/><text class=\"rc-l\" x=\"144\" y=\"110.0\" text-anchor=\"end\">2021 사업보고서</text><text class=\"rc-v\" x=\"156.5\" y=\"110.0\">0</text><rect class=\"rc-b mut\" x=\"150\" y=\"127.0\" width=\"1.5\" height=\"12\" rx=\"1\"/><text class=\"rc-l\" x=\"144\" y=\"136.0\" text-anchor=\"end\">2022 사업보고서</text><text class=\"rc-v\" x=\"156.5\" y=\"136.0\">0</text><rect class=\"rc-b mut\" x=\"150\" y=\"153.0\" width=\"1.5\" height=\"12\" rx=\"1\"/><text class=\"rc-l\" x=\"144\" y=\"162.0\" text-anchor=\"end\">2023 사업보고서</text><text class=\"rc-v\" x=\"156.5\" y=\"162.0\">0</text><text class=\"rc-n\" x=\"150\" y=\"196\">「벌금」 출현 횟수 · 동원산업 사업보고서</text></svg>",
+   "css": ":scope{--ink:#14181D;--ink-2:#424A53;--ink-3:#6E767F;--mono:'IBM Plex Mono',ui-monospace,SFMono-Regular,Menlo,monospace;--ocre:#A8541F;--rule:#D5D7D2;--rule-2:#BDC0BA;--sans:'Noto Sans KR',system-ui,-apple-system,'Malgun Gothic',sans-serif}.cx-bar.hot{fill:var(--ocre)}.cx-bar.mut{fill:var(--rule-2)}.cx-dot.hot{fill:var(--ocre)}.call.hot{border-left:3px solid var(--ocre)}.metric.hot .val{color:var(--ocre)}.rc-g{stroke:var(--rule);stroke-width:.6}.rc-l{fill:var(--ink-3);font-family:var(--mono);font-size:8px;letter-spacing:.04em}.rc-v{fill:var(--ink);font-family:var(--mono);font-size:8.5px;font-weight:600}.rc-b{fill:var(--rc-b,#3a6ea5)}.rc-b.hot{fill:var(--rc-h,#b8860b)}.rc-b.mut{fill:var(--rule-2)}.rc-n{fill:var(--ink-2);font-family:var(--sans);font-size:8px}"
+  },
+  {
+   "stage": "c12",
+   "sid": "s12",
+   "kind": "shot",
+   "ord": 2506,
+   "caption": "Chunk Light in Water · 5 oz",
+   "alt": "Chunk Light in Water · 5 oz",
+   "src": "/data/companies/figures/starkist/2ca7a71aa1ad.jpg"
+  },
+  {
+   "stage": "c12",
+   "sid": "s12",
+   "kind": "shot",
+   "ord": 19816,
+   "caption": "Solid White Albacore in Water · 5 oz",
+   "alt": "Solid White Albacore in Water · 5 oz",
+   "src": "/data/companies/figures/starkist/3be75e6f5ece.jpg"
+  },
+  {
+   "stage": "c12",
+   "sid": "s12",
+   "kind": "shot",
+   "ord": 38090,
+   "caption": "Chunk White Albacore in Water · 5 oz",
+   "alt": "Chunk White Albacore in Water · 5 oz",
+   "src": "/data/companies/figures/starkist/bd56e71798fa.jpg"
+  },
+  {
+   "stage": "c12",
+   "sid": "s12",
+   "kind": "shot",
+   "ord": 56288,
+   "caption": "E.V.O.O. Solid Yellowfin · 4.5 oz",
+   "alt": "E.V.O.O. Solid Yellowfin · 4.5 oz",
+   "src": "/data/companies/figures/starkist/5f5a089a25be.jpg"
+  },
+  {
+   "stage": "c12",
+   "sid": "s12",
+   "kind": "shot",
+   "ord": 72996,
+   "caption": "Selects Chunk White · 무염 · 4.5 oz",
+   "alt": "Selects Chunk White · 무염 · 4.5 oz",
+   "src": "/data/companies/figures/starkist/b30aff86d738.jpg"
+  },
+  {
+   "stage": "c12",
+   "sid": "s12",
+   "kind": "shot",
+   "ord": 88518,
+   "caption": "Light Tuna in Water · 파우치 2.6 oz",
+   "alt": "Light Tuna in Water · 파우치 2.6 oz",
+   "src": "/data/companies/figures/starkist/787297d44e33.jpg"
+  },
+  {
+   "stage": "c12",
+   "sid": "s12",
+   "kind": "shot",
+   "ord": 118314,
+   "caption": "Tuna Creations 레몬페퍼",
+   "alt": "Tuna Creations 레몬페퍼",
+   "src": "/data/companies/figures/starkist/f22108031c92.jpg"
+  },
+  {
+   "stage": "c12",
+   "sid": "s12",
+   "kind": "shot",
+   "ord": 148378,
+   "caption": "Tuna Creations BOLD 스리라차",
+   "alt": "Tuna Creations BOLD 스리라차",
+   "src": "/data/companies/figures/starkist/58cbe2ac7db6.jpg"
+  },
+  {
+   "stage": "c12",
+   "sid": "s12",
+   "kind": "shot",
+   "ord": 182060,
+   "caption": "Premium White Chicken · 파우치",
+   "alt": "Premium White Chicken · 파우치",
+   "src": "/data/companies/figures/starkist/f43000b05d60.jpg"
+  },
+  {
+   "stage": "c12",
+   "sid": "s12",
+   "kind": "shot",
+   "ord": 216928,
+   "caption": "Wild Pink Salmon · 파우치",
+   "alt": "Wild Pink Salmon · 파우치",
+   "src": "/data/companies/figures/starkist/f617c20592b0.jpg"
+  },
+  {
+   "stage": "c12",
+   "sid": "s12",
+   "kind": "shot",
+   "ord": 254886,
+   "caption": "Smart Bowls 잠발라야 · 4.5 oz",
+   "alt": "Smart Bowls 잠발라야 · 4.5 oz",
+   "src": "/data/companies/figures/starkist/ea92044029bf.jpg"
+  },
+  {
+   "stage": "c12",
+   "sid": "s12",
+   "kind": "shot",
+   "ord": 300846,
+   "caption": "Snack-To-Go 클래식 참치샐러드 키트",
+   "alt": "Snack-To-Go 클래식 참치샐러드 키트",
+   "src": "/data/companies/figures/starkist/57ef6b9a7949.jpg"
+  }
+ ]
 }

@@ -220,6 +220,7 @@ import { proseBriefing, proseStages } from '@/lib/company-prose-stages';
 import { frabelleMeta, frabelleStats, laeOutputRange, registeredVessels } from '@/lib/data/company-frabelle';
 import { jealsaMeta, jealsaStats, jealsaSourceNotes, mercadonaShare } from '@/lib/data/company-jealsa';
 import { nauterraMeta, nauterraStats, nauterraSourceNotes, nonSpanishFlagShare, fleetEntitySubsidyShare, subsidyGapVs } from '@/lib/data/company-nauterra';
+import { starkistMeta, starkistStats, starkistSourceNotes, revenueTrendPct, totalClaimsUsdM, provisionVsCapPct, pouchShareChangePct, strategyGapCount, pbPremiumMultiple } from '@/lib/data/company-starkist';
 
 const ACCENT = '#c2410c';
 /** 정적 조사 아카이브라 갱신일이 곧 조사일이다. LIVE 로 표기하지 않는다(L-09). */
@@ -2217,6 +2218,62 @@ const NAU_SPEC: CommoditySpec = {
   ].join(' · '),
 };
 
+/** 파고파고 만의 청회색 — 앞선 남색 셋(Thai Union·JAIS·Frabelle)보다 어둡고 채도가 낮다. */
+const SK_ACCENT = '#16324f';
+/** 전략 절의 축 수. 인테이크가 정본이라 로더에서 읽는다. */
+const starkistStrategyAxes = 5;
+
+const SK_SPEC: CommoditySpec = {
+  key: 'company-anatomy-starkist',
+  title: '기업 해부: StarKist',
+  subtitle: '미국 캔참치 1위 브랜드이고 한국 상장사의 100% 자회사다. 2018년 가격담합으로 형사 유죄를 인정하고 법정 상한 1억 달러를 선고받았는데, 그 사건의 충당금·확정액·분할상환 일정을 연도별로 적은 문서는 미국 증권신고서가 아니라 서울에 제출된 정기공시다.',
+  accent: SK_ACCENT,
+  primaryKpi: {
+    label: '회사가 공시한 법정 상한',
+    value: starkistStats.법정상한_공시_usd_m,
+    unit: '(US$ 백만 · 쌓은 충당은 그 절반)',
+    accent: SK_ACCENT,
+  },
+  secondaryKpis: [
+    { label: '미국 규제·소송 청구서', value: totalClaimsUsdM(), unit: '(US$ 백만 · 기간 합산)' },
+    { label: '전수검색한 정기공시', value: starkistStats.전수검색_합, unit: `(건 · 자사 명의 선박 ${starkistStats.선단}척)` },
+    { label: '자체브랜드 대비 프리미엄', value: pbPremiumMultiple('Chunk Light'), unit: '(배 · 월마트 5 oz 물캔 · 물뺀 기준)' },
+  ],
+  stripItems: [
+    {
+      now: true,
+      eyebrow: '충당',
+      title: '상한 대비 회사가 쌓은 금액',
+      body: `${provisionVsCapPct()} (% · 그 절반이 이듬해 법정에서 요청한 액수와 같다)`,
+    },
+    {
+      eyebrow: '통화',
+      title: '3년 매출, 원화와 달러',
+      body: `${revenueTrendPct('krw') > 0 ? '+' : ''}${revenueTrendPct('krw')} / ${revenueTrendPct('usd')} (% · 방향이 반대다)`,
+    },
+    {
+      eyebrow: '제품',
+      title: '파우치 매출 비중 변화',
+      body: `${pouchShareChangePct()} (%p · 성장 축이라 말하는 품목이 줄었다)`,
+    },
+    {
+      eyebrow: '전략',
+      title: '말과 돈이 어긋나는 축',
+      body: `${strategyGapCount()} (/${starkistStrategyAxes} 개)`,
+    },
+  ],
+  briefing: proseBriefing('starkist'),
+  narratives: inlineReport('starkist', proseStages('starkist')),
+  chartSlots: {},
+  continuous: true,
+  sourceNotes: starkistSourceNotes,
+  sourceMeta: [
+    `${starkistMeta.회사} · ${starkistMeta.국가} · ${starkistMeta.업종}`,
+    `출처 ${starkistMeta.출처}`,
+    `갱신 ${starkistMeta.갱신방법}`,
+  ].join(' · '),
+};
+
 const JAI_SPEC: CommoditySpec = {
   key: 'company-anatomy-jais',
   title: '기업 해부: JAIS S.R.L.',
@@ -2313,6 +2370,22 @@ const FLAG: Record<string, { flagCss: string; backInk: string }> = {
       'linear-gradient(180deg, #0038a8 0%, #0038a8 50%, #ce1126 50%, #ce1126 100%)',
     ].join(', '),
     backInk: '#f4f5f0',
+  },
+  // 성조기 — 13 줄 가로 밴드 위 좌상단 캔턴. 별 50 개를 다 찍으면 카드 크기에서 뭉치므로
+  // 여섯 점만 놓아 암시한다. 캔턴은 background 단축의 크기·반복 값으로 사각형을 만든다.
+  미국: {
+    flagCss: [
+      'radial-gradient(circle at 50% 30%, rgba(255, 255, 255, 0.12), transparent 55%)',
+      'radial-gradient(circle at 9% 11%, #f4f5f0 0 1.7%, transparent 2%)',
+      'radial-gradient(circle at 23% 11%, #f4f5f0 0 1.7%, transparent 2%)',
+      'radial-gradient(circle at 16% 25%, #f4f5f0 0 1.7%, transparent 2%)',
+      'radial-gradient(circle at 30% 25%, #f4f5f0 0 1.7%, transparent 2%)',
+      'radial-gradient(circle at 9% 39%, #f4f5f0 0 1.7%, transparent 2%)',
+      'radial-gradient(circle at 23% 39%, #f4f5f0 0 1.7%, transparent 2%)',
+      'linear-gradient(#2a3560, #2a3560) 0 0 / 40% 54% no-repeat',
+      'repeating-linear-gradient(180deg, #b3222c 0 7.69%, #f4f5f0 7.69% 15.38%)',
+    ].join(', '),
+    backInk: '#1b2733',
   },
   // 트리콜로레 — 초록·하양·빨강 세로 밴드
   이탈리아: {
@@ -2456,6 +2529,19 @@ export const COMPANY_CARDS: CompanyCard[] = [
       { label: 'Bolton 지분', value: `${nauterraStats.bolton_지분} %` },
     ],
   },
+  {
+    key: 'starkist',
+    numeral: 'ⅩⅠ',
+    name: 'StarKist',
+    country: '미국 · 파고파고',
+    tagline: '미국 법정에서 벌어진 일의 회계 계보를 연도별로 적은 문서는 한국어다.',
+    ...FLAG.미국,
+    stats: [
+      { label: '회사가 공시한 법정 상한', value: `US$${starkistStats.법정상한_공시_usd_m}M` },
+      { label: '회사가 쌓은 충당', value: `US$${starkistStats.충당_2018_usd_m}M` },
+      { label: '전수검색 정기공시', value: `${starkistStats.전수검색_합} 건` },
+    ],
+  },
 ];
 
 export interface CompanyAnatomyDashboardProps {
@@ -2484,6 +2570,7 @@ export default function CompanyAnatomyDashboard({
     frabelle: FRA_SPEC,
     jealsa: JEA_SPEC,
     nauterra: NAU_SPEC,
+    starkist: SK_SPEC,
   };
   const spec = SPECS[selected] ?? SPEC;
 
