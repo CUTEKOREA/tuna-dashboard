@@ -223,6 +223,7 @@ import { nauterraMeta, nauterraStats, nauterraSourceNotes, nonSpanishFlagShare, 
 import { starkistMeta, starkistStats, starkistSourceNotes, revenueTrendPct, totalClaimsUsdM, provisionVsCapPct, pouchShareChangePct, strategyGapCount, pbPremiumMultiple } from '@/lib/data/company-starkist';
 import { dongwonMeta, dongwonStats, dongwonSourceNotes, catchSharePct, exportLeadGapPct, starkistGuaranteeSharePct, strategyGapAxes, dongwonStrategyAxes, peerNonTunaBillionKrw } from '@/lib/data/company-dongwon';
 import { sajoMeta, sajoStats, sajoSourceNotes, sajoExportSharePct, lossMakingSegments, segmentsBeatingLossMaker, cartelFineBillionKrw, fineVsPurchaseGapBillionKrw, millFineSharePct, strategyGapAxesSajo, sajoStrategyAxes } from '@/lib/data/company-sajo';
+import { bumblebeeMeta, bumblebeeStats, bumblebeeSourceNotes, cashSharePct, bidFunnel, albacoreMultiple, outstandingFine, strategyGapAxesBB, bumblebeeStrategyAxes } from '@/lib/data/company-bumblebee';
 
 const ACCENT = '#c2410c';
 /** 정적 조사 아카이브라 갱신일이 곧 조사일이다. LIVE 로 표기하지 않는다(L-09). */
@@ -2389,6 +2390,63 @@ const SJ_SPEC: CommoditySpec = {
   ].join(' · '),
 };
 
+const BB_ACCENT = '#1f3a54';
+
+const BB_SPEC: CommoditySpec = {
+  key: 'company-anatomy-bumblebee',
+  title: '기업 해부: Bumble Bee',
+  subtitle:
+    '배가 한 척도 없이 미국 알바코어 캔의 41%를 판다. 2019년 11월 다섯 법인이 함께 챕터11을 냈고 두 달 뒤 유일한 원료 공급자가 회사를 샀다. ' +
+    '9억 2,560만 달러 거래에서 현금은 2억 7,500만이었고 나머지는 채권을 갈아타거나 채무를 떠안은 것이다. ' +
+    '재건계획은 끝내 만들어지지 못했고 남은 껍데기 세 곳의 도켓 표제는 지금 Old BBP·Old BBH·Old BBF다.',
+  accent: BB_ACCENT,
+  primaryKpi: {
+    label: '총 기업가치에서 현금이 차지한 몫',
+    value: cashSharePct(),
+    decimals: 2,
+    unit: '(% · 925,600,000 중 275,000,000 · 나머지는 굴리거나 떠안았다)',
+    accent: BB_ACCENT,
+  },
+  secondaryKpis: [
+    { label: '미국 알바코어 캔 점유', value: bumblebeeStats.알바코어_점유, unit: `(% · 즉석 참치식사는 ${bumblebeeStats.즉석식사_점유}%)` },
+    { label: '선박명부 등재', value: bumblebeeStats.선박_등재, unit: '(척 · 감사가 항목 7.1을 N/A로 적는다)' },
+    { label: '파산 신청일 형사벌금 잔액', value: Math.round(outstandingFine() / 1e6), unit: `(US$ 백만 · 벌금 ${Math.round(bumblebeeStats.벌금 / 1e6)}백만 중 매수인이 승계)` },
+  ],
+  stripItems: [
+    {
+      now: true,
+      eyebrow: '대금',
+      title: '현금은 3할이 안 된다',
+      body: `${cashSharePct()} (% · 275,000,000 / 925,600,000)`,
+    },
+    {
+      eyebrow: '조달',
+      title: '알바코어를 한 곳에서만 산다',
+      body: `${bumblebeeStats.알바코어_공급_하한}~100 (% · 2010년 이후 · 라이트미트는 ${bumblebeeStats.라이트미트_공급_하한}~100%)`,
+    },
+    {
+      eyebrow: '절차',
+      title: '접촉 대비 최종 응찰',
+      body: `${bidFunnel().접촉} → ${bidFunnel().최종} (곳 · 경쟁 절차는 있었다)`,
+    },
+    {
+      eyebrow: '매대',
+      title: '알바코어가 라이트미트의',
+      body: `${albacoreMultiple()} (배 · 같은 브랜드 같은 5 oz 캔)`,
+    },
+  ],
+  briefing: proseBriefing('bumblebee'),
+  narratives: inlineReport('bumblebee', proseStages('bumblebee')),
+  chartSlots: {},
+  continuous: true,
+  sourceNotes: bumblebeeSourceNotes,
+  sourceMeta: [
+    `${bumblebeeMeta.회사} · ${bumblebeeMeta.국가} · ${bumblebeeMeta.업종}`,
+    `출처 ${bumblebeeMeta.출처}`,
+    `조사 ${bumblebeeMeta.조사일}`,
+  ].join(' · '),
+};
+
 const JAI_SPEC: CommoditySpec = {
   key: 'company-anatomy-jais',
   title: '기업 해부: JAIS S.R.L.',
@@ -2612,6 +2670,19 @@ export const COMPANY_CARDS: CompanyCard[] = [
       { label: '두 담합 과징금', value: `${cartelFineBillionKrw().toLocaleString('ko-KR')} 억원` },
     ],
   },
+  {
+    key: 'bumblebee',
+    numeral: 'ⅩⅣ',
+    name: 'Bumble Bee Foods',
+    country: '미국 · 캘리포니아 샌디에이고',
+    tagline: '배가 한 척도 없는 회사가 미국 알바코어 캔의 41%를 판다.',
+    ...FLAG.미국,
+    stats: [
+      { label: '알바코어 캔 점유', value: `${bumblebeeStats.알바코어_점유}%` },
+      { label: '거래에서 현금 비중', value: `${cashSharePct()}%` },
+      { label: '선박명부 등재', value: `${bumblebeeStats.선박_등재} 척` },
+    ],
+  },
 
 ];
 
@@ -2644,6 +2715,7 @@ export default function CompanyAnatomyDashboard({
     starkist: SK_SPEC,
     dongwon: DW_SPEC,
     sajo: SJ_SPEC,
+    bumblebee: BB_SPEC,
   };
   const spec = SPECS[selected] ?? SPEC;
 

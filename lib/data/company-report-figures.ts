@@ -11,6 +11,7 @@ import nauterraRaw from '@/public/data/companies/nauterra_figures_v1.json';
 import starkistRaw from '@/public/data/companies/starkist_figures_v1.json';
 import dongwonRaw from '@/public/data/companies/dongwon_figures_v1.json';
 import sajoRaw from '@/public/data/companies/sajo_figures_v1.json';
+import bumblebeeRaw from '@/public/data/companies/bumblebee_figures_v1.json';
 
 /**
  * 조사보고서 그림 인테이크 — 팩샷·차트·문서 캡처.
@@ -60,6 +61,7 @@ const INTAKES: Record<string, Intake> = {
   starkist: starkistRaw as unknown as Intake,
   dongwon: dongwonRaw as unknown as Intake,
   sajo: sajoRaw as unknown as Intake,
+  bumblebee: bumblebeeRaw as unknown as Intake,
 };
 
 export const REPORT_FIGURE_COMPANIES = Object.keys(INTAKES);
