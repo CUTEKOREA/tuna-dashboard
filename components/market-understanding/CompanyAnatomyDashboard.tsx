@@ -2186,7 +2186,7 @@ const NAU_SPEC: CommoditySpec = {
     accent: NAU_ACCENT,
   },
   secondaryKpis: [
-    { label: 'Bolton 지분', value: nauterraStats.bolton_지분, unit: `(% · 이사회 ${nauterraStats.이사회_bolton}/${nauterraStats.이사회_정원}석)` },
+    { decimals: 2, label: 'Bolton 지분', value: nauterraStats.bolton_지분, unit: `(% · 이사회 ${nauterraStats.이사회_bolton}/${nauterraStats.이사회_정원}석)` },
     { label: '엘살바도르 기 선박', value: nauterraStats.선단_엘살바도르기, unit: `(/${nauterraStats.선단}척)` },
     { label: '브라질 가공 캐파', value: nauterraStats.캐파_브라질, unit: '(t · 스페인 56.000)' },
   ],
@@ -2289,11 +2289,12 @@ const DW_SPEC: CommoditySpec = {
   primaryKpi: {
     label: '연결 외부수익에서 어획이 차지하는 몫',
     value: catchSharePct(),
+    decimals: 2,
     unit: '(% · 339,590백만원 · 참치캔은 이 분자에 없다)',
     accent: DW_ACCENT,
   },
   secondaryKpis: [
-    { label: '원양 수출실적 점유', value: dongwonStats.원양수출_점유, unit: `(% · 2024년 · 2위와 ${exportLeadGapPct()}%p 차)` },
+    { label: '원양 수출실적 점유', value: dongwonStats.원양수출_점유, decimals: 2, unit: `(% · 2024년 · 2위와 ${exportLeadGapPct()}%p 차)` },
     { label: '운영 선단', value: dongwonStats.선단_척, unit: `(척 · 선망 ${dongwonStats.선망_척}척 · 연간 약 20만 톤)` },
     { label: 'StarKist 앞 연대보증', value: Math.round(dongwonStats.StarKist_보증_USD / 1e6), unit: `(US$ 백만 · 달러 보증의 ${starkistGuaranteeSharePct()}%)` },
   ],
@@ -2349,8 +2350,8 @@ const SJ_SPEC: CommoditySpec = {
     accent: SJ_ACCENT,
   },
   secondaryKpis: [
-    { label: '원양 수출실적 점유 (사조 3사 합)', value: sajoExportSharePct(), unit: '(% · 2024년 · 씨푸드 9.83 + 산업 8.88 + 오양 1.16)' },
-    { label: '㈜사조시스템즈 단독 지분', value: sajoStats.사조시스템즈_지분, unit: `(% · 비상장 · 특수관계인 합산은 ${sajoStats.특수관계인_지분}%)` },
+    { label: '원양 수출실적 점유 (사조 3사 합)', value: sajoExportSharePct(), decimals: 2, unit: '(% · 2024년 · 씨푸드 9.83 + 산업 8.88 + 오양 1.16)' },
+    { label: '㈜사조시스템즈 단독 지분', value: sajoStats.사조시스템즈_지분, decimals: 2, unit: `(% · 비상장 · 특수관계인 합산은 ${sajoStats.특수관계인_지분}%)` },
     { label: '2026-07 두 담합 과징금 합', value: cartelFineBillionKrw(), unit: `(억원 · 밀가루 1,830.97 + 전분당 2,001.32)` },
   ],
   stripItems: [
