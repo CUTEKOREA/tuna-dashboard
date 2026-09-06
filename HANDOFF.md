@@ -1,3 +1,15 @@
+> **2026-09-06 17:58 KST — 기업 해부 국기 타일 수정, 로컬 검증** [Codex]
+> - CSS 그라데이션으로 생략했던 국기를 8개국 원본 SVG로 교체했다. 태극·건곤감리, 미국 50별·13줄, 대만 백일, 필리핀 태양·3별, 스페인 문장을 포함한다. SVG 원본은 수정 없이 `public/flags/`에 두고 고정 커밋·SHA-256을 README에 기록했다(총 53,393 bytes).
+> - 국기는 원래 비율(`object-fit: contain`)을 유지하고 회사명과 별도 영역에 놓는다. 수록된 13개 회사의 본문·수치·국가 연결, 정렬과 카드 뒤집기는 유지했다. 흰 국기색에도 테마 필터를 적용하지 않는다.
+> - 작업 위치: `/Users/idong-geon/tuna-dashboard-flags-fix`, 브랜치 `codex/company-flags-20260906`, 기준 `efad1ebc`. 스크린샷에 해당하는 최신 정본은 `~/tuna-dashboard`이며 예전 `~/my-project/tuna-dashboard` 작업 사본과 구별한다. 다른 작업 사본은 수정하지 않았다.
+> - 전체 `npm run verify` 통과: ESLint 오류 0(기존 경고 12), TypeScript, Python 동기화 검사, Vitest 1,378 통과·2 skipped, API 캐시·클라이언트 경계·번들 33개 라우트·보고서 합계. 최종 국기 로딩 설정을 eager로 통일한 후 관련 검사 24개와 빌드·클라이언트 경계·번들도 다시 통과했다.
+> - 브라우저: 최종 빌드(`next start`)에서 1720px/390px × 실제 light/dark × 수록순/매출순/국가순 12조건 모두 국기 13장 로딩, 8국가 연결, contain, 글자 겹침·잘림·가로 overflow 0. 키보드 Enter 뒤집기→상세→복귀와 reduced-motion 즉시 진입 통과. `pageerror`·console error 0. 기존 외부 광고 스크립트의 DOM 주입은 이 UI 검증에서만 빈 응답으로 격리했다. 인증 코드는 변경하지 않고 저장소의 localhost E2E 경계를 사용했다.
+> - 독립 읽기 전용 검토에서도 SVG 문양·방향·원본 해시·국가 연결과 최종 두 스타일/로딩 조정에 결함이 발견되지 않았다.
+> - 미리보기: `docs/assets/company-flags-20260906-desktop.png`, `docs/assets/company-flags-20260906-mobile.png`. 검사 로그와 재현 스크립트: `/private/tmp/company-flags-qa-cy_vfpji/`.
+> - 다음 단계: 사용자가 배포를 명시적으로 요청하면 이 브랜치 변경을 통합해 라이브에서 확인한다. 이번 작업은 로컬 변경·커밋까지이며 원격 push/배포는 하지 않는다.
+>
+> 마지막 업데이트: 2026-09-06 17:58 KST [Codex]
+
 > 📰 **2026-09-05 08:10 KST — `/market` 2026-09-04 참치 데일리 브리핑 라이브 배포 완료** [CC/tuna-dashboard-publisher]:
 > - PR [#920](https://github.com/CUTEKOREA/tuna-dashboard/pull/920) squash 병합. main commit `82471694` (브랜치 커밋 `7eee5fb6`). 변경은 `public/data/tuna_daily_briefing.json` 한 파일뿐(+67/−61). `lib/data/daily-briefing.ts` 는 main 과 동일.
 > - 게이트 3종: 감사 `AUDIT_PASS`(상위 세션 확인) · 로컬 `__tests__/daily-briefing.test.ts` 4/4 + `__tests__/market-dashboard-composition.test.ts` 3/3 통과 · 변경분 존재. **워크트리 추적 블롭 2,914개를 main 트리와 전수 대조해 차이가 브리핑 JSON 1건뿐임을 확인**했다 — `git status` 를 못 쓰는 세션이라 이 대조가 「변경분이 두 파일 밖으로 번지지 않았다」의 근거다.
