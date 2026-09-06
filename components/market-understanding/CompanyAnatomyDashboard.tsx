@@ -2446,16 +2446,17 @@ const FLAG: Record<string, { flagCss: string; backInk: string }> = {
   },
   // 태극기 — 흰 바탕에 태극 원(빨강·파랑)과 네 모서리 건곤감리.
   // 원은 흰 층에 원형 구멍을 뚫어 아래 conic 을 보여 주는 식으로 만든다.
+  // ⚠ 원을 정중앙(50% 50%)에 두면 카드 이름표에 통째로 가린다 — 33% 로 올려 위쪽에 세운다.
   // sized linear-gradient 는 사각이라 원이 안 나온다. 괘는 짧은 사선 막대로만 암시한다.
   한국: {
     flagCss: [
-      'linear-gradient(126deg, #1b2733 0 100%) 16% 20% / 15% 2.2% no-repeat',
-      'linear-gradient(126deg, #1b2733 0 100%) 84% 20% / 15% 2.2% no-repeat',
-      'linear-gradient(126deg, #1b2733 0 100%) 16% 80% / 15% 2.2% no-repeat',
-      'linear-gradient(126deg, #1b2733 0 100%) 84% 80% / 15% 2.2% no-repeat',
-      'radial-gradient(circle at 50% 26%, rgba(255, 255, 255, 0.9), transparent 55%)',
-      'radial-gradient(circle at 50% 50%, transparent 0 16%, #f4f5f0 16.4%)',
-      'conic-gradient(from 145deg at 50% 50%, #cd2e3a 0 50%, #0b3d91 50% 100%)',
+      'linear-gradient(126deg, #1b2733 0 100%) 15% 12% / 15% 2.2% no-repeat',
+      'linear-gradient(126deg, #1b2733 0 100%) 85% 12% / 15% 2.2% no-repeat',
+      'linear-gradient(126deg, #1b2733 0 100%) 15% 88% / 15% 2.2% no-repeat',
+      'linear-gradient(126deg, #1b2733 0 100%) 85% 88% / 15% 2.2% no-repeat',
+      'radial-gradient(circle at 50% 18%, rgba(255, 255, 255, 0.75), transparent 52%)',
+      'radial-gradient(circle at 50% 33%, transparent 0 16%, #f4f5f0 16.4%)',
+      'conic-gradient(from 145deg at 50% 33%, #cd2e3a 0 50%, #0b3d91 50% 100%)',
       'linear-gradient(180deg, #f4f5f0 0%, #e6eaec 100%)',
     ].join(', '),
     backInk: '#1b2733',
