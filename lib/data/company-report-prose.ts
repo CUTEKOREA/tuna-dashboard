@@ -13,6 +13,7 @@ import dongwonRaw from '@/public/data/companies/dongwon_prose_v1.json';
 import sajoRaw from '@/public/data/companies/sajo_prose_v1.json';
 import bumblebeeRaw from '@/public/data/companies/bumblebee_prose_v1.json';
 import umiosRaw from '@/public/data/companies/umios_prose_v1.json';
+import kyokuyoRaw from '@/public/data/companies/kyokuyo_prose_v1.json';
 
 /**
  * 조사보고서 서술 전량 인테이크.
@@ -67,6 +68,7 @@ const INTAKES: Record<string, Intake> = {
   sajo: sajoRaw as unknown as Intake,
   bumblebee: bumblebeeRaw as unknown as Intake,
   umios: umiosRaw as unknown as Intake,
+  kyokuyo: kyokuyoRaw as unknown as Intake,
   thaiunion: thaiunionRaw as unknown as Intake,
 };
 

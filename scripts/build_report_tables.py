@@ -140,6 +140,13 @@ SPECS: dict[str, dict] = {
         "stages": {f"s{i}": f"c{i:02d}" for i in range(1, 17)},
         "drop": [],
     },
+    "kyokuyo": {
+        "src": "docs/evidence/company-kyokuyo-2026-09/보고서.html",
+        # 19절. 절 id 가 s1..s19 이고 단계도 c01..c19 로 1:1 이다.
+        # ⚠ 단계 수를 리터럴로 적지 마라 — 절이 늘면 마지막 절이 조용히 사라진다.
+        "stages": {f"s{i}": f"c{i:02d}" for i in range(1, 20)},
+        "drop": [],
+    },
     "umios": {
         "src": "docs/evidence/company-umios-2026-09/보고서.html",
         # 17절. 절 id 가 s1..s17 이고 단계도 c01..c17 로 1:1 이다.

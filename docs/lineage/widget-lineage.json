@@ -1,9 +1,9 @@
 {
  "_meta": {
   "entry": "app/page.tsx",
-  "files": 218,
+  "files": 219,
   "widgets": 110,
-  "dataFiles": 123,
+  "dataFiles": 127,
   "generator": "scripts/widget_lineage.py"
  },
  "widgetToData": {
@@ -575,6 +575,7 @@
     "lib/data/company-itochu.ts",
     "lib/data/company-jais.ts",
     "lib/data/company-jealsa.ts",
+    "lib/data/company-kyokuyo.ts",
     "lib/data/company-nauterra.ts",
     "lib/data/company-report-figures.ts",
     "lib/data/company-report-tables.ts",
@@ -625,6 +626,10 @@
     "public/data/companies/jealsa_prose_v1.json",
     "public/data/companies/jealsa_tables_v1.json",
     "public/data/companies/jealsa_v1.json",
+    "public/data/companies/kyokuyo_figures_v1.json",
+    "public/data/companies/kyokuyo_prose_v1.json",
+    "public/data/companies/kyokuyo_tables_v1.json",
+    "public/data/companies/kyokuyo_v1.json",
     "public/data/companies/nauterra_figures_v1.json",
     "public/data/companies/nauterra_prose_v1.json",
     "public/data/companies/nauterra_tables_v1.json",
@@ -1188,6 +1193,18 @@
    "components/market-understanding/CompanyAnatomyDashboard.tsx"
   ],
   "public/data/companies/jealsa_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/kyokuyo_figures_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/kyokuyo_prose_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/kyokuyo_tables_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/kyokuyo_v1.json": [
    "components/market-understanding/CompanyAnatomyDashboard.tsx"
   ],
   "public/data/companies/nauterra_figures_v1.json": [

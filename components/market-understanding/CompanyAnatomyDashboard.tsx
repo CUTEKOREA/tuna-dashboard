@@ -225,6 +225,7 @@ import { dongwonMeta, dongwonStats, dongwonSourceNotes, catchSharePct, exportLea
 import { sajoMeta, sajoStats, sajoSourceNotes, sajoExportSharePct, lossMakingSegments, segmentsBeatingLossMaker, cartelFineBillionKrw, fineVsPurchaseGapBillionKrw, millFineSharePct, strategyGapAxesSajo, sajoStrategyAxes } from '@/lib/data/company-sajo';
 import { bumblebeeMeta, bumblebeeStats, bumblebeeSourceNotes, cashSharePct, bidFunnel, albacoreMultiple, outstandingFine, strategyGapAxesBB, bumblebeeStrategyAxes } from '@/lib/data/company-bumblebee';
 import { umiosMeta, umiosStats, umiosSourceNotes, umiosSeedShareOfNational, nationalSeedCollapsePct, fullCycleSharePct } from '@/lib/data/company-umios';
+import { kyokuyoMeta, kyokuyoStats, kyokuyoSourceNotes, oldSegmentLeverage, freshProfitTrough } from '@/lib/data/company-kyokuyo';
 
 const ACCENT = '#c2410c';
 /** 정적 조사 아카이브라 갱신일이 곧 조사일이다. LIVE 로 표기하지 않는다(L-09). */
@@ -2558,6 +2559,63 @@ const UM_SPEC: CommoditySpec = {
   ].join(' · '),
 };
 
+const KY_ACCENT = '#2b4a3f';
+
+const KY_SPEC: CommoditySpec = {
+  key: 'company-anatomy-kyokuyo',
+  title: '기업 해부: 極洋',
+  subtitle:
+    '2023년 3월기까지 이 회사 보고부문 하나의 이름은 「鰹・鮪」였다. 그 부문은 매출의 14.41%로 세그먼트이익의 57.17%를 냈고, 나머지 네 부문을 합쳐도 그 하나에 못 미쳤다. ' +
+    '제101기에 관리구분을 바꾸며 生鮮事業으로 흡수했고, 회사가 전기를 신 구분으로 재작성해 공표한 덕분에 같은 해를 두 구분으로 견줄 수 있다 — 이익 몫은 57%에서 58%로 그대로인데 매출 몫만 14%에서 27%로 뛴다. ' +
+    '이름이 사라진 첫 해 그 자리의 이익 몫은 23.53%로 떨어졌고 회사의 이익 중심은 水産事業으로 넘어갔다.',
+  accent: KY_ACCENT,
+  primaryKpi: {
+    label: '구 「鰹・鮪」가 세그먼트이익에서 차지한 몫',
+    value: kyokuyoStats.구부문_이익몫,
+    decimals: 2,
+    unit: `(% · 5,325 / 9,315 · 매출 몫은 ${kyokuyoStats.구부문_매출몫}%였다)`,
+    accent: KY_ACCENT,
+  },
+  secondaryKpis: [
+    { label: '이익 몫 ÷ 매출 몫', value: oldSegmentLeverage(), decimals: 2, unit: '(배 · 현행 구분으로 같은 해를 읽으면 2.18배다)' },
+    { label: '이름이 사라진 첫 해 이익 몫', value: kyokuyoStats.FY2024_이익몫, decimals: 2, unit: `(% · 매출 몫 ${kyokuyoStats.FY2024_매출몫}%보다 낮았던 유일한 해)` },
+    { label: '生鮮 이익 정점 대비 저점', value: freshProfitTrough(), decimals: 1, unit: '(% · 5,406 → 2,485백만엔 · 이후 3,856으로 회복)' },
+  ],
+  stripItems: [
+    {
+      now: true,
+      eyebrow: '부문',
+      title: '나머지 넷을 합쳐도 못 미쳤다',
+      body: `3,988 대 ${kyokuyoStats.구부문_이익_백만엔.toLocaleString('ko-KR')} (백만엔 · 제100기 세그먼트이익)`,
+    },
+    {
+      eyebrow: '선단',
+      title: '모회사 이름으로 등록부를 뒤지면',
+      body: `${kyokuyoStats.RFMO_모회사명의} (척 · 선망 ${kyokuyoStats.선망_척}척은 전부 자회사 極洋水産 명의)`,
+    },
+    {
+      eyebrow: '양식',
+      title: '참다랑어 완전양식 합작이 해산했다',
+      body: `${kyokuyoStats.합작_대손_백만엔.toLocaleString('ko-KR')} (백만엔 대손 · 2024-03-31)`,
+    },
+    {
+      eyebrow: '어구',
+      title: '有報 다섯 연차에서 「延縄」이 나온 횟수',
+      body: `${kyokuyoStats.연승_언급_횟수} (회 · 1973년 이래 선망이다)`,
+    },
+  ],
+  briefing: proseBriefing('kyokuyo'),
+  narratives: inlineReport('kyokuyo', proseStages('kyokuyo')),
+  chartSlots: {},
+  continuous: true,
+  sourceNotes: kyokuyoSourceNotes,
+  sourceMeta: [
+    `${kyokuyoMeta.회사} · ${kyokuyoMeta.국가} · ${kyokuyoMeta.업종}`,
+    `출처 ${kyokuyoMeta.출처}`,
+    `조사 ${kyokuyoMeta.조사일}`,
+  ].join(' · '),
+};
+
 export const COMPANY_CARDS: CompanyCard[] = [
   {
     key: 'frinsa',
@@ -2754,6 +2812,19 @@ export const COMPANY_CARDS: CompanyCard[] = [
       { label: '전국 인공종묘 정점 대비', value: `${nationalSeedCollapsePct()}%` },
     ],
   },
+  {
+    key: 'kyokuyo',
+    numeral: 'ⅩⅥ',
+    name: '株式会社極洋',
+    country: '일본 · 도쿄',
+    tagline: '이익의 57%를 내던 참치 부문이 이름을 잃었다. 첫 해에 그 자리의 이익 몫은 24%가 됐다.',
+    ...FLAG.일본,
+    stats: [
+      { label: '구 「鰹・鮪」 이익 몫', value: `${kyokuyoStats.구부문_이익몫}%` },
+      { label: '이익 몫 ÷ 매출 몫', value: `${oldSegmentLeverage()}배` },
+      { label: '선망 (자회사 명의)', value: `${kyokuyoStats.선망_척} 척` },
+    ],
+  },
 
 ];
 
@@ -2788,6 +2859,7 @@ export default function CompanyAnatomyDashboard({
     sajo: SJ_SPEC,
     bumblebee: BB_SPEC,
     umios: UM_SPEC,
+    kyokuyo: KY_SPEC,
   };
   const spec = SPECS[selected] ?? SPEC;
 
