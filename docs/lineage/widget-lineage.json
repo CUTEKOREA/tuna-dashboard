@@ -1,9 +1,9 @@
 {
  "_meta": {
   "entry": "app/page.tsx",
-  "files": 215,
+  "files": 216,
   "widgets": 110,
-  "dataFiles": 111,
+  "dataFiles": 115,
   "generator": "scripts/widget_lineage.py"
  },
  "widgetToData": {
@@ -577,6 +577,7 @@
     "lib/data/company-nauterra.ts",
     "lib/data/company-report-figures.ts",
     "lib/data/company-report-tables.ts",
+    "lib/data/company-sajo.ts",
     "lib/data/company-starkist.ts",
     "lib/data/company-thaiunion-skus.ts",
     "lib/data/company-thaiunion.ts"
@@ -622,6 +623,10 @@
     "public/data/companies/nauterra_prose_v1.json",
     "public/data/companies/nauterra_tables_v1.json",
     "public/data/companies/nauterra_v1.json",
+    "public/data/companies/sajo_figures_v1.json",
+    "public/data/companies/sajo_prose_v1.json",
+    "public/data/companies/sajo_tables_v1.json",
+    "public/data/companies/sajo_v1.json",
     "public/data/companies/starkist_figures_v1.json",
     "public/data/companies/starkist_prose_v1.json",
     "public/data/companies/starkist_tables_v1.json",
@@ -1173,6 +1178,18 @@
    "components/market-understanding/CompanyAnatomyDashboard.tsx"
   ],
   "public/data/companies/nauterra_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/sajo_figures_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/sajo_prose_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/sajo_tables_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/sajo_v1.json": [
    "components/market-understanding/CompanyAnatomyDashboard.tsx"
   ],
   "public/data/companies/starkist_figures_v1.json": [

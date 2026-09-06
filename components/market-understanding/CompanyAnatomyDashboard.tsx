@@ -222,6 +222,7 @@ import { jealsaMeta, jealsaStats, jealsaSourceNotes, mercadonaShare } from '@/li
 import { nauterraMeta, nauterraStats, nauterraSourceNotes, nonSpanishFlagShare, fleetEntitySubsidyShare, subsidyGapVs } from '@/lib/data/company-nauterra';
 import { starkistMeta, starkistStats, starkistSourceNotes, revenueTrendPct, totalClaimsUsdM, provisionVsCapPct, pouchShareChangePct, strategyGapCount, pbPremiumMultiple } from '@/lib/data/company-starkist';
 import { dongwonMeta, dongwonStats, dongwonSourceNotes, catchSharePct, exportLeadGapPct, starkistGuaranteeSharePct, strategyGapAxes, dongwonStrategyAxes, peerNonTunaBillionKrw } from '@/lib/data/company-dongwon';
+import { sajoMeta, sajoStats, sajoSourceNotes, sajoExportSharePct, lossMakingSegments, segmentsBeatingLossMaker, cartelFineBillionKrw, fineVsPurchaseGapBillionKrw, millFineSharePct, strategyGapAxesSajo, sajoStrategyAxes } from '@/lib/data/company-sajo';
 
 const ACCENT = '#c2410c';
 /** 정적 조사 아카이브라 갱신일이 곧 조사일이다. LIVE 로 표기하지 않는다(L-09). */
@@ -2331,6 +2332,62 @@ const DW_SPEC: CommoditySpec = {
   ].join(' · '),
 };
 
+const SJ_ACCENT = '#14494a';
+
+const SJ_SPEC: CommoditySpec = {
+  key: 'company-anatomy-sajo',
+  title: '기업 해부: 사조그룹',
+  subtitle:
+    '계열 42사, 상장 6사, 참치를 잡는 법인이 셋이다. 맨 위는 비상장 ㈜사조시스템즈이고 사조산업 지분 29.94%를 단독으로 쥔다. ' +
+    '사조산업 연결 일곱 부문 가운데 적자는 수산사업 하나이고 골프장이 그보다 번다. ' +
+    '2024년부터 참치 밖 회사 일곱을 사서 자산이 1.4조 늘어 공시대상기업집단으로 지정됐고, 2026년 7월 그 계열 둘이 담합으로 3,832억을 물게 됐다.',
+  accent: SJ_ACCENT,
+  primaryKpi: {
+    label: '일곱 부문 가운데 영업손실을 낸 부문',
+    value: lossMakingSegments(),
+    unit: `(개 · 수산사업 12,666,285천원 손실 · 나머지 ${segmentsBeatingLossMaker()}개는 흑자)`,
+    accent: SJ_ACCENT,
+  },
+  secondaryKpis: [
+    { label: '원양 수출실적 점유 (사조 3사 합)', value: sajoExportSharePct(), unit: '(% · 2024년 · 씨푸드 9.83 + 산업 8.88 + 오양 1.16)' },
+    { label: '㈜사조시스템즈 단독 지분', value: sajoStats.사조시스템즈_지분, unit: `(% · 비상장 · 특수관계인 합산은 ${sajoStats.특수관계인_지분}%)` },
+    { label: '2026-07 두 담합 과징금 합', value: cartelFineBillionKrw(), unit: `(억원 · 밀가루 1,830.97 + 전분당 2,001.32)` },
+  ],
+  stripItems: [
+    {
+      now: true,
+      eyebrow: '부문',
+      title: '적자는 수산사업 하나',
+      body: `${lossMakingSegments()} / ${sajoStats.부문_수} (개 · 골프장 54.9억이 그보다 번다)`,
+    },
+    {
+      eyebrow: '담합',
+      title: '밀가루 7사에서 사조동아원의 몫',
+      body: `${millFineSharePct()} (% · 671,045백만원 중 183,097 — 최대)`,
+    },
+    {
+      eyebrow: '규모',
+      title: '취득가와 과징금의 차',
+      body: `${fineVsPurchaseGapBillionKrw()} (억원 · 우연이고 인과가 아니다)`,
+    },
+    {
+      eyebrow: '전략',
+      title: '말과 돈이 어긋난 축',
+      body: `${strategyGapAxesSajo()} (/${sajoStrategyAxes} 개)`,
+    },
+  ],
+  briefing: proseBriefing('sajo'),
+  narratives: inlineReport('sajo', proseStages('sajo')),
+  chartSlots: {},
+  continuous: true,
+  sourceNotes: sajoSourceNotes,
+  sourceMeta: [
+    `${sajoMeta.회사} · ${sajoMeta.국가} · ${sajoMeta.업종}`,
+    `출처 ${sajoMeta.출처}`,
+    `조사 ${sajoMeta.조사일}`,
+  ].join(' · '),
+};
+
 const JAI_SPEC: CommoditySpec = {
   key: 'company-anatomy-jais',
   title: '기업 해부: JAIS S.R.L.',
@@ -2629,6 +2686,19 @@ export const COMPANY_CARDS: CompanyCard[] = [
       { label: '보유 선단', value: `${dongwonStats.선단_척} 척` },
     ],
   },
+  {
+    key: 'sajo',
+    numeral: 'ⅩⅢ',
+    name: '기업집단 「사조」',
+    country: '대한민국 · 서울 서대문',
+    tagline: '일곱 부문 가운데 적자는 수산사업 하나이고 골프장이 그보다 번다.',
+    ...FLAG.한국,
+    stats: [
+      { label: '계열 / 상장', value: `${sajoStats.계열_수}사 / ${sajoStats.상장_수}사` },
+      { label: '원양 수출 점유 (3사)', value: `${sajoExportSharePct()}%` },
+      { label: '두 담합 과징금', value: `${cartelFineBillionKrw().toLocaleString('ko-KR')} 억원` },
+    ],
+  },
 
 ];
 
@@ -2660,6 +2730,7 @@ export default function CompanyAnatomyDashboard({
     nauterra: NAU_SPEC,
     starkist: SK_SPEC,
     dongwon: DW_SPEC,
+    sajo: SJ_SPEC,
   };
   const spec = SPECS[selected] ?? SPEC;
 
