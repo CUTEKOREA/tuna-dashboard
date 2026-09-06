@@ -2520,8 +2520,8 @@ const UM_SPEC: CommoditySpec = {
   },
   secondaryKpis: [
     { label: '전국 양식 참다랑어에서 이 회사 몫', value: umiosStats.회사_점유, decimals: 1, unit: '(% · 4,300 / 18,687톤 · 生産 대 出荷로 기준이 다르다)' },
-    { label: '회사 양식 중 알에서 기른 몫', value: fullCycleSharePct(), decimals: 2, unit: `(% · ${umiosStats.완전양식_톤}톤 / ${umiosStats.양식_참다랑어_톤.toLocaleString('ko-KR')}톤)` },
-    { label: '무너진 405톤에서 이 회사 몫', value: umiosSeedShareOfNational(), decimals: 1, unit: '(% · 전국이 줄어든 자리에 남은 비중이다)' },
+    { label: '회사 양식 중 알에서 기른 몫', value: Math.round(fullCycleSharePct()), decimals: 0, unit: `(% · 약 4% · ${umiosStats.완전양식_톤}톤 出荷 / ${umiosStats.양식_참다랑어_톤.toLocaleString('ko-KR')}톤 生産 · 기준이 달라 소수점은 쓰지 않는다)` },
+    { label: '무너진 405톤에서 이 회사 몫', value: Math.round(umiosSeedShareOfNational()), decimals: 0, unit: '(% · 약 43% · 분자는 완전양식, 분모는 인공종묘 유래다)' },
   ],
   stripItems: [
     {
@@ -2750,7 +2750,7 @@ export const COMPANY_CARDS: CompanyCard[] = [
     ...FLAG.일본,
     stats: [
       { label: '전국 양식 참다랑어 몫', value: `${umiosStats.회사_점유}%` },
-      { label: '알에서 기른 몫', value: `${fullCycleSharePct()}%` },
+      { label: '알에서 기른 몫', value: `약 ${Math.round(fullCycleSharePct())}%` },
       { label: '전국 인공종묘 정점 대비', value: `${nationalSeedCollapsePct()}%` },
     ],
   },
