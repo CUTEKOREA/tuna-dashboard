@@ -224,6 +224,7 @@ import { starkistMeta, starkistStats, starkistSourceNotes, revenueTrendPct, tota
 import { dongwonMeta, dongwonStats, dongwonSourceNotes, catchSharePct, exportLeadGapPct, starkistGuaranteeSharePct, strategyGapAxes, dongwonStrategyAxes, peerNonTunaBillionKrw } from '@/lib/data/company-dongwon';
 import { sajoMeta, sajoStats, sajoSourceNotes, sajoExportSharePct, lossMakingSegments, segmentsBeatingLossMaker, cartelFineBillionKrw, fineVsPurchaseGapBillionKrw, millFineSharePct, strategyGapAxesSajo, sajoStrategyAxes } from '@/lib/data/company-sajo';
 import { bumblebeeMeta, bumblebeeStats, bumblebeeSourceNotes, cashSharePct, bidFunnel, albacoreMultiple, outstandingFine, strategyGapAxesBB, bumblebeeStrategyAxes } from '@/lib/data/company-bumblebee';
+import { umiosMeta, umiosStats, umiosSourceNotes, umiosSeedShareOfNational, nationalSeedCollapsePct, fullCycleSharePct } from '@/lib/data/company-umios';
 
 const ACCENT = '#c2410c';
 /** 정적 조사 아카이브라 갱신일이 곧 조사일이다. LIVE 로 표기하지 않는다(L-09). */
@@ -2500,6 +2501,63 @@ const FLAG: Record<string, Pick<CompanyCard, 'flagSrc' | 'backInk'>> = {
 };
 
 /** 선택 갤러리 카드 목록. 회사가 늘면 여기에 한 장씩 추가한다. */
+const UM_ACCENT = '#1d4e5f';
+
+const UM_SPEC: CommoditySpec = {
+  key: 'company-anatomy-umios',
+  title: '기업 해부: Umios',
+  subtitle:
+    '2026년 3월 1일 マルハニチロ가 Umios가 됐고 종목코드 1333은 그대로다. 국내 양식 참다랑어 18,687톤 가운데 4,300톤이 이 회사 것이다. ' +
+    '그 4,300톤에서 알에서부터 기른 것은 175톤, 약 4%다. 전국으로 넓히면 인공종묘에서 나온 참치는 2020년 2,975톤에서 2024년 405톤으로 86.4% 줄었다. ' +
+    '보고부문 셋 어디에도 「まぐろ」가 없어 참치 비중은 공시로 낼 수 없다.',
+  accent: UM_ACCENT,
+  primaryKpi: {
+    label: '전국 인공종묘 유래 출하의 정점 대비 변화',
+    value: nationalSeedCollapsePct(),
+    decimals: 1,
+    unit: `(% · 2020년 ${umiosStats.전국_인공종묘_정점_톤.toLocaleString('ko-KR')}톤 → 2024년 ${umiosStats.전국_인공종묘_2024_톤}톤)`,
+    accent: UM_ACCENT,
+  },
+  secondaryKpis: [
+    { label: '전국 양식 참다랑어에서 이 회사 몫', value: umiosStats.회사_점유, decimals: 1, unit: '(% · 4,300 / 18,687톤 · 生産 대 出荷로 기준이 다르다)' },
+    { label: '회사 양식 중 알에서 기른 몫', value: fullCycleSharePct(), decimals: 2, unit: `(% · ${umiosStats.완전양식_톤}톤 / ${umiosStats.양식_참다랑어_톤.toLocaleString('ko-KR')}톤)` },
+    { label: '무너진 405톤에서 이 회사 몫', value: umiosSeedShareOfNational(), decimals: 1, unit: '(% · 전국이 줄어든 자리에 남은 비중이다)' },
+  ],
+  stripItems: [
+    {
+      now: true,
+      eyebrow: '부문',
+      title: '보고부문 셋에 참치가 없다',
+      body: `${umiosStats.부문에_참치_있는_수} / ${umiosStats.보고부문_수} (개 · 어획·양식·유통·가공 넷에 걸쳐 있다)`,
+    },
+    {
+      eyebrow: '선단',
+      title: '모회사 이름으로 명부를 뒤지면',
+      body: `${umiosStats.모회사명의_RFMO_등재} (척 · RFMO 네 곳 · 자회사 명의로는 걸린다)`,
+    },
+    {
+      eyebrow: '규제',
+      title: '표시 규범을 논하는 회사가 받은 표시 지시',
+      body: `${umiosStats.표시처분_팩.toLocaleString('ko-KR')} (팩 · 2024-03-26 농림수산성 · 본체 대상)`,
+    },
+    {
+      eyebrow: '매대',
+      title: '같은 브랜드 안 어종 프리미엄',
+      body: `${umiosStats.매대_어종_프리미엄} (% · まぐろ 127.44엔 대 かつお 116.64엔)`,
+    },
+  ],
+  briefing: proseBriefing('umios'),
+  narratives: inlineReport('umios', proseStages('umios')),
+  chartSlots: {},
+  continuous: true,
+  sourceNotes: umiosSourceNotes,
+  sourceMeta: [
+    `${umiosMeta.회사} · ${umiosMeta.국가} · ${umiosMeta.업종}`,
+    `출처 ${umiosMeta.출처}`,
+    `조사 ${umiosMeta.조사일}`,
+  ].join(' · '),
+};
+
 export const COMPANY_CARDS: CompanyCard[] = [
   {
     key: 'frinsa',
@@ -2683,6 +2741,19 @@ export const COMPANY_CARDS: CompanyCard[] = [
       { label: '선박명부 등재', value: `${bumblebeeStats.선박_등재} 척` },
     ],
   },
+  {
+    key: 'umios',
+    numeral: 'ⅩⅤ',
+    name: 'Umios株式会社',
+    country: '일본 · 도쿄 미나토',
+    tagline: '국내 양식 참다랑어의 23%를 기른다. 알에서 기른 것은 4%이고, 그 4%는 무너진 뒤의 4%다.',
+    ...FLAG.일본,
+    stats: [
+      { label: '전국 양식 참다랑어 몫', value: `${umiosStats.회사_점유}%` },
+      { label: '알에서 기른 몫', value: `${fullCycleSharePct()}%` },
+      { label: '전국 인공종묘 정점 대비', value: `${nationalSeedCollapsePct()}%` },
+    ],
+  },
 
 ];
 
@@ -2716,6 +2787,7 @@ export default function CompanyAnatomyDashboard({
     dongwon: DW_SPEC,
     sajo: SJ_SPEC,
     bumblebee: BB_SPEC,
+    umios: UM_SPEC,
   };
   const spec = SPECS[selected] ?? SPEC;
 

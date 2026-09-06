@@ -1,9 +1,9 @@
 {
  "_meta": {
   "entry": "app/page.tsx",
-  "files": 217,
+  "files": 218,
   "widgets": 110,
-  "dataFiles": 119,
+  "dataFiles": 123,
   "generator": "scripts/widget_lineage.py"
  },
  "widgetToData": {
@@ -581,7 +581,8 @@
     "lib/data/company-sajo.ts",
     "lib/data/company-starkist.ts",
     "lib/data/company-thaiunion-skus.ts",
-    "lib/data/company-thaiunion.ts"
+    "lib/data/company-thaiunion.ts",
+    "lib/data/company-umios.ts"
    ],
    "dataFiles": [
     "public/data/companies/albacora_figures_v1.json",
@@ -640,7 +641,11 @@
     "public/data/companies/thaiunion_prose_v1.json",
     "public/data/companies/thaiunion_skus_v1.json",
     "public/data/companies/thaiunion_tables_v1.json",
-    "public/data/companies/thaiunion_v1.json"
+    "public/data/companies/thaiunion_v1.json",
+    "public/data/companies/umios_figures_v1.json",
+    "public/data/companies/umios_prose_v1.json",
+    "public/data/companies/umios_tables_v1.json",
+    "public/data/companies/umios_v1.json"
    ]
   },
   "components/market-understanding/CompanyGallery.tsx": {
@@ -1236,6 +1241,18 @@
   "public/data/companies/thaiunion_v1.json": [
    "components/market-understanding/CompanyAnatomyDashboard.tsx",
    "components/market-understanding/ThaiUnionCharts.tsx"
+  ],
+  "public/data/companies/umios_figures_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/umios_prose_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/umios_tables_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/umios_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
   ],
   "public/data/cosmo/cosmo_2026.json": [
    "components/cosmo/CosmoDashboard.tsx",
