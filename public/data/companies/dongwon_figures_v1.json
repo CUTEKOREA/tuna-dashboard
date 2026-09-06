@@ -1,0 +1,90 @@
+{
+ "_meta": {
+  "출처": "docs/evidence/company-dongwon-2026-09/보고서.html",
+  "생성": "python3 scripts/build_report_figures.py",
+  "설명": "보고서의 팩샷과 차트. 이미지는 public 아래 정적 파일이고 여기에는 URL 만 담는다."
+ },
+ "figures": [
+  {
+   "stage": "c02",
+   "sid": "s2",
+   "kind": "chart",
+   "ord": 227,
+   "caption": "발행주식 수의 이동. 2024년 자기주식 10,460,770주를 소각해 22.5% 줄였고, 2025년 무상증자로 10%를 늘린 뒤, 동원F&B 주주에게 줄 신주 4,523,902주를 더 찍었다. 소각은 주주에게 돌려준 것이고 신주는 자회사를 사 온 대가다.",
+   "alt": "",
+   "svg": "<svg viewBox=\"0 0 700 232\" width=\"100%\" role=\"img\" style=\"max-width:100%;height:auto;font-family:var(--sans)\"><defs><marker id=\"ar\" markerWidth=\"7\" markerHeight=\"7\" refX=\"6\" refY=\"3.5\" orient=\"auto\"><path d=\"M0,0 L7,3.5 L0,7 z\" fill=\"var(--ink-3)\"/></marker></defs><rect x=\"90\" y=\"40.0\" width=\"118\" height=\"150.0\" rx=\"2\" fill=\"var(--rule-2)\"/><text x=\"149.0\" y=\"33.0\" text-anchor=\"middle\" font-size=\"11.5\" font-weight=\"600\" fill=\"var(--ink)\" style=\"font-family:var(--mono)\">46,482,665</text><text x=\"149.0\" y=\"207\" text-anchor=\"middle\" font-size=\"11.5\" fill=\"var(--ink-2)\">2024 초</text><rect x=\"235\" y=\"73.8\" width=\"118\" height=\"116.2\" rx=\"2\" fill=\"var(--ocre)\"/><text x=\"294.0\" y=\"66.8\" text-anchor=\"middle\" font-size=\"11.5\" font-weight=\"600\" fill=\"var(--ink)\" style=\"font-family:var(--mono)\">36,021,895</text><text x=\"294.0\" y=\"207\" text-anchor=\"middle\" font-size=\"11.5\" fill=\"var(--ink-2)\">자기주식 소각</text><path d=\"M213,131.9 L229,131.9\" stroke=\"var(--ink-3)\" stroke-width=\"1.2\" marker-end=\"url(#ar)\"/><rect x=\"380\" y=\"62.1\" width=\"118\" height=\"127.9\" rx=\"2\" fill=\"var(--rule-2)\"/><text x=\"439.0\" y=\"55.1\" text-anchor=\"middle\" font-size=\"11.5\" font-weight=\"600\" fill=\"var(--ink)\" style=\"font-family:var(--mono)\">39,624,084</text><text x=\"439.0\" y=\"207\" text-anchor=\"middle\" font-size=\"11.5\" fill=\"var(--ink-2)\">무상증자 10%</text><path d=\"M358,126.1 L374,126.1\" stroke=\"var(--ink-3)\" stroke-width=\"1.2\" marker-end=\"url(#ar)\"/><rect x=\"525\" y=\"47.5\" width=\"118\" height=\"142.5\" rx=\"2\" fill=\"var(--atl)\"/><text x=\"584.0\" y=\"40.5\" text-anchor=\"middle\" font-size=\"11.5\" font-weight=\"600\" fill=\"var(--ink)\" style=\"font-family:var(--mono)\">44,147,986</text><text x=\"584.0\" y=\"207\" text-anchor=\"middle\" font-size=\"11.5\" fill=\"var(--ink-2)\">주식교환 신주</text><path d=\"M503,118.8 L519,118.8\" stroke=\"var(--ink-3)\" stroke-width=\"1.2\" marker-end=\"url(#ar)\"/><text x=\"90\" y=\"24\" font-size=\"11\" fill=\"var(--ink-3)\">발행주식 수 · 2024~2025</text></svg>"
+  },
+  {
+   "stage": "c03",
+   "sid": "s3",
+   "kind": "chart",
+   "ord": 250,
+   "caption": "제57기 연결 외부수익 9,583,674백만원의 부문별 구성. 어획은 3.54%이고 식품가공유통이 67.67%다. 다섯 값의 세로합이 합계와 정확히 같다.",
+   "alt": "",
+   "svg": "<svg viewBox=\"0 0 700 188\" width=\"100%\" role=\"img\" style=\"max-width:100%;height:auto;font-family:var(--sans)\"><text x=\"158\" y=\"43\" text-anchor=\"end\" font-size=\"12.5\" fill=\"var(--ink-2)\">수산사업 (어획)</text><rect x=\"168\" y=\"30\" width=\"15.2\" height=\"19\" rx=\"2\" fill=\"var(--ocre)\"/><text x=\"190.2367140201138\" y=\"43\" font-size=\"12\" font-weight=\"600\" fill=\"var(--ink)\" style=\"font-family:var(--mono)\">3.54%</text><text x=\"235.2367140201138\" y=\"43\" font-size=\"10.5\" fill=\"var(--ink-3)\" style=\"font-family:var(--mono)\">339,590</text><text x=\"158\" y=\"73\" text-anchor=\"end\" font-size=\"12.5\" fill=\"var(--ink-2)\">식품가공유통</text><rect x=\"168\" y=\"60\" width=\"291.0\" height=\"19\" rx=\"2\" fill=\"var(--atl)\"/><text x=\"465.982830801632\" y=\"73\" font-size=\"12\" font-weight=\"600\" fill=\"var(--ink)\" style=\"font-family:var(--mono)\">67.67%</text><text x=\"510.982830801632\" y=\"73\" font-size=\"10.5\" fill=\"var(--ink-3)\" style=\"font-family:var(--mono)\">6,485,313</text><text x=\"158\" y=\"103\" text-anchor=\"end\" font-size=\"12.5\" fill=\"var(--ink-2)\">물류사업</text><rect x=\"168\" y=\"90\" width=\"53.3\" height=\"19\" rx=\"2\" fill=\"var(--rule-2)\"/><text x=\"228.31714747392283\" y=\"103\" font-size=\"12\" font-weight=\"600\" fill=\"var(--ink)\" style=\"font-family:var(--mono)\">12.40%</text><text x=\"273.31714747392283\" y=\"103\" font-size=\"10.5\" fill=\"var(--ink-3)\" style=\"font-family:var(--mono)\">1,188,312</text><text x=\"158\" y=\"133\" text-anchor=\"end\" font-size=\"12.5\" fill=\"var(--ink-2)\">포장소재</text><rect x=\"168\" y=\"120\" width=\"49.6\" height=\"19\" rx=\"2\" fill=\"var(--rule-2)\"/><text x=\"224.63492289074105\" y=\"133\" font-size=\"12\" font-weight=\"600\" fill=\"var(--ink)\" style=\"font-family:var(--mono)\">11.54%</text><text x=\"269.63492289074105\" y=\"133\" font-size=\"10.5\" fill=\"var(--ink-3)\" style=\"font-family:var(--mono)\">1,106,244</text><text x=\"158\" y=\"163\" text-anchor=\"end\" font-size=\"12.5\" fill=\"var(--ink-2)\">기타 (건설·투자)</text><rect x=\"168\" y=\"150\" width=\"20.8\" height=\"19\" rx=\"2\" fill=\"var(--rule-2)\"/><text x=\"195.82838481359028\" y=\"163\" font-size=\"12\" font-weight=\"600\" fill=\"var(--ink)\" style=\"font-family:var(--mono)\">4.84%</text><text x=\"240.82838481359028\" y=\"163\" font-size=\"10.5\" fill=\"var(--ink-3)\" style=\"font-family:var(--mono)\">464,215</text><line x1=\"168\" y1=\"18\" x2=\"168\" y2=\"174\" stroke=\"var(--rule)\" stroke-width=\"1\"/><text x=\"168\" y=\"13\" font-size=\"10.5\" fill=\"var(--ink-3)\">외부수익 (백만원) · 제57기 · 합계 9,583,674</text></svg>"
+  },
+  {
+   "stage": "c07",
+   "sid": "s7",
+   "kind": "shot",
+   "ord": 217,
+   "caption": "동원몰에 올라 있는 여섯 SKU. 왼쪽부터 라이트스탠다드 150 g, 야채참치 150 g, 고추참치 100 g, DHA 150 g, 마일드참치 200 g, 라이트튜나 파우치 170 g.",
+   "alt": "라이트스탠다드 150 g",
+   "src": "/data/companies/figures/dongwon/789a23bc6084.jpg"
+  },
+  {
+   "stage": "c07",
+   "sid": "s7",
+   "kind": "shot",
+   "ord": 217,
+   "caption": "동원몰에 올라 있는 여섯 SKU. 왼쪽부터 라이트스탠다드 150 g, 야채참치 150 g, 고추참치 100 g, DHA 150 g, 마일드참치 200 g, 라이트튜나 파우치 170 g.",
+   "alt": "야채참치 150 g",
+   "src": "/data/companies/figures/dongwon/605e298a9f78.jpg"
+  },
+  {
+   "stage": "c07",
+   "sid": "s7",
+   "kind": "shot",
+   "ord": 217,
+   "caption": "동원몰에 올라 있는 여섯 SKU. 왼쪽부터 라이트스탠다드 150 g, 야채참치 150 g, 고추참치 100 g, DHA 150 g, 마일드참치 200 g, 라이트튜나 파우치 170 g.",
+   "alt": "고추참치 100 g",
+   "src": "/data/companies/figures/dongwon/4966f0e6b16a.jpg"
+  },
+  {
+   "stage": "c07",
+   "sid": "s7",
+   "kind": "shot",
+   "ord": 217,
+   "caption": "동원몰에 올라 있는 여섯 SKU. 왼쪽부터 라이트스탠다드 150 g, 야채참치 150 g, 고추참치 100 g, DHA 150 g, 마일드참치 200 g, 라이트튜나 파우치 170 g.",
+   "alt": "DHA 150 g",
+   "src": "/data/companies/figures/dongwon/613f32a76609.jpg"
+  },
+  {
+   "stage": "c07",
+   "sid": "s7",
+   "kind": "shot",
+   "ord": 217,
+   "caption": "동원몰에 올라 있는 여섯 SKU. 왼쪽부터 라이트스탠다드 150 g, 야채참치 150 g, 고추참치 100 g, DHA 150 g, 마일드참치 200 g, 라이트튜나 파우치 170 g.",
+   "alt": "마일드참치 200 g",
+   "src": "/data/companies/figures/dongwon/678df70a1ff1.jpg"
+  },
+  {
+   "stage": "c07",
+   "sid": "s7",
+   "kind": "shot",
+   "ord": 217,
+   "caption": "동원몰에 올라 있는 여섯 SKU. 왼쪽부터 라이트스탠다드 150 g, 야채참치 150 g, 고추참치 100 g, DHA 150 g, 마일드참치 200 g, 라이트튜나 파우치 170 g.",
+   "alt": "라이트튜나 파우치 170 g",
+   "src": "/data/companies/figures/dongwon/7e2a7ce8c3ba.jpg"
+  },
+  {
+   "stage": "c11",
+   "sid": "s11",
+   "kind": "chart",
+   "ord": 215,
+   "caption": "2024년 원양 수출실적 점유. 합계 387,000천$. 아홉 값의 세로합이 합계와 정확히 같다. 2위와의 격차는 15.57%포인트다.",
+   "alt": "",
+   "svg": "<svg viewBox=\"0 0 700 263\" width=\"100%\" role=\"img\" style=\"max-width:100%;height:auto;font-family:var(--sans)\"><text x=\"122\" y=\"44\" text-anchor=\"end\" font-size=\"12\" fill=\"var(--ink-2)\">동원산업</text><rect x=\"132\" y=\"32\" width=\"163.9\" height=\"17\" rx=\"2\" fill=\"var(--atl)\"/><text x=\"302.92510594315246\" y=\"44\" font-size=\"11.5\" font-weight=\"600\" fill=\"var(--ink)\" style=\"font-family:var(--mono)\">38.30%</text><text x=\"122\" y=\"69\" text-anchor=\"end\" font-size=\"12\" fill=\"var(--ink-2)\">신라교역</text><rect x=\"132\" y=\"57\" width=\"97.3\" height=\"17\" rx=\"2\" fill=\"var(--ocre)\"/><text x=\"236.28428940568475\" y=\"69\" font-size=\"11.5\" font-weight=\"600\" fill=\"var(--ink)\" style=\"font-family:var(--mono)\">22.73%</text><text x=\"122\" y=\"94\" text-anchor=\"end\" font-size=\"12\" fill=\"var(--ink-2)\">사조씨푸드</text><rect x=\"132\" y=\"82\" width=\"42.1\" height=\"17\" rx=\"2\" fill=\"var(--rule-2)\"/><text x=\"181.06565374677\" y=\"94\" font-size=\"11.5\" font-weight=\"600\" fill=\"var(--ink)\" style=\"font-family:var(--mono)\">9.83%</text><text x=\"122\" y=\"119\" text-anchor=\"end\" font-size=\"12\" fill=\"var(--ink-2)\">사조산업</text><rect x=\"132\" y=\"107\" width=\"38.0\" height=\"17\" rx=\"2\" fill=\"var(--rule-2)\"/><text x=\"177.01900775193798\" y=\"119\" font-size=\"11.5\" font-weight=\"600\" fill=\"var(--ink)\" style=\"font-family:var(--mono)\">8.88%</text><text x=\"122\" y=\"144\" text-anchor=\"end\" font-size=\"12\" fill=\"var(--ink-2)\">티엔에스산업</text><rect x=\"132\" y=\"132\" width=\"31.9\" height=\"17\" rx=\"2\" fill=\"var(--rule-2)\"/><text x=\"170.89761240310077\" y=\"144\" font-size=\"11.5\" font-weight=\"600\" fill=\"var(--ink)\" style=\"font-family:var(--mono)\">7.45%</text><text x=\"122\" y=\"169\" text-anchor=\"end\" font-size=\"12\" fill=\"var(--ink-2)\">정일산업</text><rect x=\"132\" y=\"157\" width=\"20.3\" height=\"17\" rx=\"2\" fill=\"var(--rule-2)\"/><text x=\"159.3360826873385\" y=\"169\" font-size=\"11.5\" font-weight=\"600\" fill=\"var(--ink)\" style=\"font-family:var(--mono)\">4.75%</text><text x=\"122\" y=\"194\" text-anchor=\"end\" font-size=\"12\" fill=\"var(--ink-2)\">홍진실업</text><rect x=\"132\" y=\"182\" width=\"18.9\" height=\"17\" rx=\"2\" fill=\"var(--rule-2)\"/><text x=\"157.93042894056848\" y=\"194\" font-size=\"11.5\" font-weight=\"600\" fill=\"var(--ink)\" style=\"font-family:var(--mono)\">4.42%</text><text x=\"122\" y=\"219\" text-anchor=\"end\" font-size=\"12\" fill=\"var(--ink-2)\">동원수산</text><rect x=\"132\" y=\"207\" width=\"10.6\" height=\"17\" rx=\"2\" fill=\"var(--rule-2)\"/><text x=\"149.58055813953487\" y=\"219\" font-size=\"11.5\" font-weight=\"600\" fill=\"var(--ink)\" style=\"font-family:var(--mono)\">2.47%</text><text x=\"122\" y=\"244\" text-anchor=\"end\" font-size=\"12\" fill=\"var(--ink-2)\">사조오양</text><rect x=\"132\" y=\"232\" width=\"5.0\" height=\"17\" rx=\"2\" fill=\"var(--rule-2)\"/><text x=\"143.96126098191215\" y=\"244\" font-size=\"11.5\" font-weight=\"600\" fill=\"var(--ink)\" style=\"font-family:var(--mono)\">1.16%</text><line x1=\"132\" y1=\"20\" x2=\"132\" y2=\"249\" stroke=\"var(--rule)\" stroke-width=\"1\"/><text x=\"132\" y=\"14\" font-size=\"10.5\" fill=\"var(--ink-3)\">원양 수출실적 점유 · 2024년 · 합계 387,000천$</text></svg>"
+  }
+ ]
+}

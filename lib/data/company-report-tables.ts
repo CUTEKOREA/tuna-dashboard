@@ -9,6 +9,7 @@ import jealsaRaw from '@/public/data/companies/jealsa_tables_v1.json';
 import thaiunionRaw from '@/public/data/companies/thaiunion_tables_v1.json';
 import nauterraRaw from '@/public/data/companies/nauterra_tables_v1.json';
 import starkistRaw from '@/public/data/companies/starkist_tables_v1.json';
+import dongwonRaw from '@/public/data/companies/dongwon_tables_v1.json';
 
 /**
  * 조사보고서 표 전량 인테이크.
@@ -60,6 +61,7 @@ const INTAKES: Record<string, Intake> = {
   jealsa: jealsaRaw as unknown as Intake,
   nauterra: nauterraRaw as unknown as Intake,
   starkist: starkistRaw as unknown as Intake,
+  dongwon: dongwonRaw as unknown as Intake,
 };
 
 export const REPORT_TABLE_COMPANIES = Object.keys(INTAKES);

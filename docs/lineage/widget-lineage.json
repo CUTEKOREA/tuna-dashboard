@@ -1,9 +1,9 @@
 {
  "_meta": {
   "entry": "app/page.tsx",
-  "files": 214,
+  "files": 215,
   "widgets": 110,
-  "dataFiles": 107,
+  "dataFiles": 111,
   "generator": "scripts/widget_lineage.py"
  },
  "widgetToData": {
@@ -567,6 +567,7 @@
    "dataModules": [
     "lib/data/company-albacora.ts",
     "lib/data/company-bolton.ts",
+    "lib/data/company-dongwon.ts",
     "lib/data/company-fcf.ts",
     "lib/data/company-frabelle.ts",
     "lib/data/company-frinsa.ts",
@@ -589,6 +590,10 @@
     "public/data/companies/bolton_prose_v1.json",
     "public/data/companies/bolton_tables_v1.json",
     "public/data/companies/bolton_v1.json",
+    "public/data/companies/dongwon_figures_v1.json",
+    "public/data/companies/dongwon_prose_v1.json",
+    "public/data/companies/dongwon_tables_v1.json",
+    "public/data/companies/dongwon_v1.json",
     "public/data/companies/fcf_figures_v1.json",
     "public/data/companies/fcf_prose_v1.json",
     "public/data/companies/fcf_tables_v1.json",
@@ -1071,6 +1076,18 @@
    "components/market-understanding/CompanyAnatomyDashboard.tsx"
   ],
   "public/data/companies/bolton_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/dongwon_figures_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/dongwon_prose_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/dongwon_tables_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/dongwon_v1.json": [
    "components/market-understanding/CompanyAnatomyDashboard.tsx"
   ],
   "public/data/companies/fcf_figures_v1.json": [

@@ -221,6 +221,7 @@ import { frabelleMeta, frabelleStats, laeOutputRange, registeredVessels } from '
 import { jealsaMeta, jealsaStats, jealsaSourceNotes, mercadonaShare } from '@/lib/data/company-jealsa';
 import { nauterraMeta, nauterraStats, nauterraSourceNotes, nonSpanishFlagShare, fleetEntitySubsidyShare, subsidyGapVs } from '@/lib/data/company-nauterra';
 import { starkistMeta, starkistStats, starkistSourceNotes, revenueTrendPct, totalClaimsUsdM, provisionVsCapPct, pouchShareChangePct, strategyGapCount, pbPremiumMultiple } from '@/lib/data/company-starkist';
+import { dongwonMeta, dongwonStats, dongwonSourceNotes, catchSharePct, exportLeadGapPct, starkistGuaranteeSharePct, strategyGapAxes, dongwonStrategyAxes, peerNonTunaBillionKrw } from '@/lib/data/company-dongwon';
 
 const ACCENT = '#c2410c';
 /** 정적 조사 아카이브라 갱신일이 곧 조사일이다. LIVE 로 표기하지 않는다(L-09). */
@@ -2274,6 +2275,62 @@ const SK_SPEC: CommoditySpec = {
   ].join(' · '),
 };
 
+const DW_ACCENT = '#1b3a5c';
+
+const DW_SPEC: CommoditySpec = {
+  key: 'company-anatomy-dongwon',
+  title: '기업 해부: 동원산업',
+  subtitle:
+    '한국 원양 수출의 38.30%를 가진 1위 선사이고 선망 19척으로 한 해 약 20만 톤을 잡는다. ' +
+    '그런데 사업보고서 본문은 스스로를 지주회사라 적고, 연결 외부수익에서 어획이 차지하는 몫은 3.54%다. ' +
+    '다섯 개 보고부문 어느 이름에도 「참치」가 없다 — 어획과 가공유통으로 갈라 놓았기 때문이다.',
+  accent: DW_ACCENT,
+  primaryKpi: {
+    label: '연결 외부수익에서 어획이 차지하는 몫',
+    value: catchSharePct(),
+    unit: '(% · 339,590백만원 · 참치캔은 이 분자에 없다)',
+    accent: DW_ACCENT,
+  },
+  secondaryKpis: [
+    { label: '원양 수출실적 점유', value: dongwonStats.원양수출_점유, unit: `(% · 2024년 · 2위와 ${exportLeadGapPct()}%p 차)` },
+    { label: '운영 선단', value: dongwonStats.선단_척, unit: `(척 · 선망 ${dongwonStats.선망_척}척 · 연간 약 20만 톤)` },
+    { label: 'StarKist 앞 연대보증', value: Math.round(dongwonStats.StarKist_보증_USD / 1e6), unit: `(US$ 백만 · 달러 보증의 ${starkistGuaranteeSharePct()}%)` },
+  ],
+  stripItems: [
+    {
+      now: true,
+      eyebrow: '분모',
+      title: '같은 회사, 다른 표',
+      body: `${catchSharePct()} / ${dongwonStats.원양수출_점유} (% · 연결 어획 비중과 업계 수출 점유)`,
+    },
+    {
+      eyebrow: '자본',
+      title: '조 단위 자회사를 삼킨 값',
+      body: '2,246 (억원 · 전부 신주 · 현금 유출입이 없는 거래)',
+    },
+    {
+      eyebrow: '전략',
+      title: '말만 있고 돈이 안 간 축',
+      body: `${strategyGapAxes()} (/${dongwonStrategyAxes} 개)`,
+    },
+    {
+      eyebrow: '업계',
+      title: '경쟁사가 참치 밖에 쓴 돈',
+      body: `${peerNonTunaBillionKrw().toLocaleString('ko-KR')} (억원 · 2024~2026)`,
+    },
+  ],
+  briefing: proseBriefing('dongwon'),
+  narratives: inlineReport('dongwon', proseStages('dongwon')),
+  chartSlots: {},
+  continuous: true,
+  sourceNotes: dongwonSourceNotes,
+  sourceMeta: [
+    `${dongwonMeta.회사} · ${dongwonMeta.국가} · ${dongwonMeta.업종}`,
+    `출처 ${dongwonMeta.출처}`,
+    `조사 ${dongwonMeta.조사일}`,
+  ].join(' · '),
+};
+
 const JAI_SPEC: CommoditySpec = {
   key: 'company-anatomy-jais',
   title: '기업 해부: JAIS S.R.L.',
@@ -2384,6 +2441,22 @@ const FLAG: Record<string, { flagCss: string; backInk: string }> = {
       'radial-gradient(circle at 23% 39%, #f4f5f0 0 1.7%, transparent 2%)',
       'linear-gradient(#2a3560, #2a3560) 0 0 / 40% 54% no-repeat',
       'repeating-linear-gradient(180deg, #b3222c 0 7.69%, #f4f5f0 7.69% 15.38%)',
+    ].join(', '),
+    backInk: '#1b2733',
+  },
+  // 태극기 — 흰 바탕에 태극 원(빨강·파랑)과 네 모서리 건곤감리.
+  // 원은 흰 층에 원형 구멍을 뚫어 아래 conic 을 보여 주는 식으로 만든다.
+  // sized linear-gradient 는 사각이라 원이 안 나온다. 괘는 짧은 사선 막대로만 암시한다.
+  한국: {
+    flagCss: [
+      'linear-gradient(126deg, #1b2733 0 100%) 16% 20% / 15% 2.2% no-repeat',
+      'linear-gradient(126deg, #1b2733 0 100%) 84% 20% / 15% 2.2% no-repeat',
+      'linear-gradient(126deg, #1b2733 0 100%) 16% 80% / 15% 2.2% no-repeat',
+      'linear-gradient(126deg, #1b2733 0 100%) 84% 80% / 15% 2.2% no-repeat',
+      'radial-gradient(circle at 50% 26%, rgba(255, 255, 255, 0.9), transparent 55%)',
+      'radial-gradient(circle at 50% 50%, transparent 0 16%, #f4f5f0 16.4%)',
+      'conic-gradient(from 145deg at 50% 50%, #cd2e3a 0 50%, #0b3d91 50% 100%)',
+      'linear-gradient(180deg, #f4f5f0 0%, #e6eaec 100%)',
     ].join(', '),
     backInk: '#1b2733',
   },
@@ -2542,6 +2615,20 @@ export const COMPANY_CARDS: CompanyCard[] = [
       { label: '전수검색 정기공시', value: `${starkistStats.전수검색_합} 건` },
     ],
   },
+  {
+    key: 'dongwon',
+    numeral: 'ⅩⅡ',
+    name: '동원산업㈜',
+    country: '대한민국 · 서울 서초',
+    tagline: '선망 19척으로 한 해 20만 톤을 잡는다. 그런데 연결 매출에서 어획은 3.54%다.',
+    ...FLAG.한국,
+    stats: [
+      { label: '원양 수출 점유', value: `${dongwonStats.원양수출_점유}%` },
+      { label: '연결 어획 비중', value: `${catchSharePct()}%` },
+      { label: '보유 선단', value: `${dongwonStats.선단_척} 척` },
+    ],
+  },
+
 ];
 
 export interface CompanyAnatomyDashboardProps {
@@ -2571,6 +2658,7 @@ export default function CompanyAnatomyDashboard({
     jealsa: JEA_SPEC,
     nauterra: NAU_SPEC,
     starkist: SK_SPEC,
+    dongwon: DW_SPEC,
   };
   const spec = SPECS[selected] ?? SPEC;
 

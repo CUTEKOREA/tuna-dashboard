@@ -9,6 +9,7 @@ import jealsaRaw from '@/public/data/companies/jealsa_figures_v1.json';
 import thaiunionRaw from '@/public/data/companies/thaiunion_figures_v1.json';
 import nauterraRaw from '@/public/data/companies/nauterra_figures_v1.json';
 import starkistRaw from '@/public/data/companies/starkist_figures_v1.json';
+import dongwonRaw from '@/public/data/companies/dongwon_figures_v1.json';
 
 /**
  * 조사보고서 그림 인테이크 — 팩샷·차트·문서 캡처.
@@ -56,6 +57,7 @@ const INTAKES: Record<string, Intake> = {
   jealsa: jealsaRaw as unknown as Intake,
   nauterra: nauterraRaw as unknown as Intake,
   starkist: starkistRaw as unknown as Intake,
+  dongwon: dongwonRaw as unknown as Intake,
 };
 
 export const REPORT_FIGURE_COMPANIES = Object.keys(INTAKES);

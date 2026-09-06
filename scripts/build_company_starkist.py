@@ -207,8 +207,10 @@ STATS = {
     "케이스가_usd": 49.92,
     "원어단가_2025_usd_t": 1_484,
     "사모아캔_2025_mt": 82_554,
-    "에콰도르파우치_2025_mt": 29_772,
-    "에콰도르파우치_능력_mt": 29_635,
+    "에콰도르파우치_2023_mt": 25_113,   # 모회사(동원산업) 제57기 사업보고서가 채운 칸
+    "에콰도르파우치_2024_mt": 29_772,
+    "에콰도르파우치_2025_mt": 29_635,
+    # ⚠ 파우치 행에는 생산능력 칸이 없다. 「에콰도르파우치_능력_mt」 를 되살리지 마라.
     "최저임금_2027": 6.76,
 }
 
@@ -314,7 +316,7 @@ def main() -> int:
         print("어종 프리미엄 배수 불일치", file=sys.stderr); return 1
     gv = next(r for r in PRICELADDER if r["브랜드"] == "Great Value" and r["등급"] == "Chunk Light")
     if not 1.0 < cl["kg_drained"] / gv["kg_drained"] < 1.10:
-        print("PB 대비 프리미엄이 본문 서술(4%)과 어긋난다", file=sys.stderr); return 1
+        print("PB 대비 배수가 표의 범위를 벗어난다 — 8팩 단가와 단품가를 나눈 값이라 프리미엄으로 쓰지 마라", file=sys.stderr); return 1
     if sum(1 for r in STRATEGY if r["판정"] != "일치") < 3:
         print("전략 절의 「어긋남 셋」 서술이 데이터와 어긋난다", file=sys.stderr); return 1
 
