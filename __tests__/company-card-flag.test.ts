@@ -5,6 +5,9 @@
  * 그 축약형으로 갈려 일곱 장이 전부 다른 그림이 됐다. 나라를 못 읽는다는 지적을
  * 받고 나라당 한 벌로 묶었다. 회사가 늘 때 그 규칙이 다시 깨지는 것을 여기서 잡는다.
  */
+import { readFileSync } from 'node:fs';
+import { resolve } from 'node:path';
+
 import { describe, expect, it } from 'vitest';
 
 import { COMPANY_CARDS } from '@/components/market-understanding/CompanyAnatomyDashboard';
@@ -47,5 +50,22 @@ describe('기업 해부 카드 뒷면', () => {
     expect(new Set(numerals).size, `로마숫자 중복: ${numerals.join(' ')}`).toBe(numerals.length);
     // 나라 수는 카드 수보다 적다 — 스페인처럼 여러 장인 나라가 있다.
     expect(new Set(COMPANY_CARDS.map(countryOf)).size).toBeLessThan(COMPANY_CARDS.length);
+  });
+});
+
+describe('KPI 소수 자릿수', () => {
+  // % 를 단위로 쓰는 KPI 가 decimals 를 안 주면 HeroZone 기본값 0 이 걸려
+  // 29.94% 가 화면에 「30」으로 나간다. 발행본과 카드가 다른 숫자를 말하게 된다.
+  // 2026-09-06 라이브에서 동원 3.54 → 4, 사조 29.94 → 30 으로 나가 있었다.
+  it('% 단위 KPI 는 decimals 를 명시한다', () => {
+    const src = readFileSync(
+      resolve(__dirname, '../components/market-understanding/CompanyAnatomyDashboard.tsx'),
+      'utf8',
+    );
+    const offenders: string[] = [];
+    for (const m of src.matchAll(/\{(?:[^{}]|[\r\n])*?unit:\s*[`'"]\(%(?:[^{}]|[\r\n])*?\}/g)) {
+      if (!/decimals\s*:/.test(m[0])) offenders.push(m[0].replace(/\s+/g, ' ').slice(0, 90));
+    }
+    expect(offenders).toEqual([]);
   });
 });
