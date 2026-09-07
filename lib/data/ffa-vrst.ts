@@ -30,7 +30,12 @@ export type OwnerRow = { 선주: string; 표기수: number; 척수: number; 선�
 export type HoldRow = { 선명: string; 선종: string; 용량: number; 단위: string };
 
 const data = raw as unknown as {
-  _meta: { 출처: string; 기간: string; 등급: string; 주의: string; 측정경계: string; 단위경고: string; 갱신방법: string };
+  _meta: {
+    출처: string; 기간: string; 등급: string; 주의: string;
+    측정경계: string; 단위경고: string; 갱신방법: string;
+    /** 기간 이후 등록돼 보고할 날이 없던 선박 — 총척수에서 뺐다는 기록 */
+    기간후등록제외?: string[];
+  };
   요약: { 총척수: number; 국기수: number; 미보고척수: number; 한국척수: number; 일수: number };
   국기별: FlagRow[];
   선종별: TypeRow[];
