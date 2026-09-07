@@ -179,14 +179,14 @@ const monthlyRows = [
 ] as const;
 
 const weeklyRanking = [
-  { rank: 1, captain: '김형주', vessel: 'N/SUN', catchMt: 145, dailyAverageMt: 20.71 },
-  { rank: 2, captain: '김효원', vessel: 'S/SPR', catchMt: 140, dailyAverageMt: 20 },
-  { rank: 3, captain: '공준식', vessel: 'S/EXP', catchMt: 130, dailyAverageMt: 18.57 },
-  { rank: 4, captain: '오복근', vessel: 'S/HAR', catchMt: 105, dailyAverageMt: 15 },
-  { rank: 5, captain: '김승현', vessel: 'S/PIO', catchMt: 60, dailyAverageMt: 8.57 },
-  { rank: 6, captain: '최용석', vessel: 'S/CHA', catchMt: 25, dailyAverageMt: 3.57 },
-  { rank: 7, captain: '이진우', vessel: 'N/STAR', catchMt: 25, dailyAverageMt: 3.57 },
-  { rank: 8, captain: '이평규', vessel: 'KONA', catchMt: 15, dailyAverageMt: 2.14 },
+  { rank: 1, captain: '김형주', vessel: 'N/SUN', catchMt: 260, dailyAverageMt: 37.14 },
+  { rank: 2, captain: '이평규', vessel: 'KONA', catchMt: 195, dailyAverageMt: 27.86 },
+  { rank: 3, captain: '김효원', vessel: 'S/SPR', catchMt: 155, dailyAverageMt: 22.14 },
+  { rank: 4, captain: '이진우', vessel: 'N/STAR', catchMt: 105, dailyAverageMt: 15 },
+  { rank: 5, captain: '공준식', vessel: 'S/EXP', catchMt: 70, dailyAverageMt: 10 },
+  { rank: 6, captain: '오복근', vessel: 'S/HAR', catchMt: 65, dailyAverageMt: 9.29 },
+  { rank: 7, captain: '김승현', vessel: 'S/PIO', catchMt: 35, dailyAverageMt: 5 },
+  { rank: 8, captain: '최용석', vessel: 'S/CHA', catchMt: 0, dailyAverageMt: 0 },
   { rank: 9, captain: '강창훈', vessel: 'S/JUP', catchMt: 0, dailyAverageMt: 0 },
   { rank: 10, captain: '김정훈', vessel: 'MARI', catchMt: 0, dailyAverageMt: 0 },
 ] as const;
@@ -208,33 +208,39 @@ const monthlyTotal = monthlyByVessel.reduce((sum, vessel) => sum + vessel.monthl
 const annualTotal = monthlyByVessel.reduce((sum, vessel) => sum + vessel.totalMt, 0);
 
 export const purseSeineCatch = {
-  period: { from: '2026-08-24', to: '2026-08-30' },
-  source: '주간 실적 현황 (26.08.24~08.30) - 8월 넷째주',
+  period: { from: '2026-08-31', to: '2026-09-06' },
+  source: '주간 실적 현황 (26.08.31~09.06) - 9월 첫째주',
+  // 합계는 원문 인쇄값이다. 월별 계열에서 파생하면 그 계열의 기준일(8월 넷째주)에 묶인다.
   summary: {
     nationalWeekly,
     jointWeekly,
     weeklyTotal: nationalWeekly + jointWeekly,
-    nationalMonthly: 1_534,
-    jointMonthly: 1_779,
-    monthlyTotal,
-    nationalAnnual: 28_035,
-    jointAnnual: 20_111,
-    annualTotal,
+    nationalMonthly: 315,
+    jointMonthly: 475,
+    monthlyTotal: 790,
+    nationalAnnual: 28_360,
+    jointAnnual: 20_671,
+    annualTotal: 49_031,
   },
+  /** 월별 계열만 아직 8월 넷째주 판이다 — 9월 첫째주 보고의 월별 그래프는
+   *  스택 막대 이미지뿐이라 합작선 9월치를 읽어낼 수 없었다. 읽은 값으로는
+   *  9월 소계가 국적 279 / 합작 0 이 되어 원문 인쇄값(315 / 475)과 맞지 않는다.
+   *  지어내지 않고 원본(xlsx 등)이 들어오면 갱신한다. */
+  monthlySeriesAsOf: '2026-08-30',
   weeklyRanking,
   monthlyByVessel,
-  seasonAverageDailyMt: 19.1,
+  seasonAverageDailyMt: 18.9,
   seasonRanking: [
-    { captain: '공준식', vessel: 'S/EXP', boardingDate: '2026-06-14', seasonDays: 78, catchMt: 884, dailyCatchMt: 11.3, rank: 9, leaderDeltaMt: -15.76, averageDeltaMt: -7.78 },
-    { captain: '김승현', vessel: 'S/PIO', boardingDate: '2026-01-22', seasonDays: 221, catchMt: 4_240, dailyCatchMt: 19.2, rank: 3, leaderDeltaMt: -7.91, averageDeltaMt: 0.07 },
-    { captain: '최용석', vessel: 'S/CHA', boardingDate: '2026-01-04', seasonDays: 239, catchMt: 4_070, dailyCatchMt: 17.0, rank: 5, leaderDeltaMt: -10.07, averageDeltaMt: -2.09 },
-    { captain: '오복근', vessel: 'S/HAR', boardingDate: '2026-06-28', seasonDays: 64, catchMt: 765, dailyCatchMt: 12.0, rank: 8, leaderDeltaMt: -15.15, averageDeltaMt: -7.17 },
-    { captain: '강창훈', vessel: 'S/JUP', boardingDate: '2025-06-10', seasonDays: 447, catchMt: 7_410, dailyCatchMt: 16.6, rank: 6, leaderDeltaMt: -10.52, averageDeltaMt: -2.54 },
-    { captain: '김효원', vessel: 'S/SPR', boardingDate: '2025-09-27', seasonDays: 338, catchMt: 9_159, dailyCatchMt: 27.1, rank: 1, leaderDeltaMt: -0, averageDeltaMt: 7.98 },
-    { captain: '김정훈', vessel: 'MARI', boardingDate: '2025-04-17', seasonDays: 501, catchMt: 11_485, dailyCatchMt: 22.9, rank: 2, leaderDeltaMt: -4.18, averageDeltaMt: 3.80 },
-    { captain: '이평규', vessel: 'KONA', boardingDate: '2026-03-11', seasonDays: 173, catchMt: 3_034, dailyCatchMt: 17.5, rank: 4, leaderDeltaMt: -9.56, averageDeltaMt: -1.58 },
-    { captain: '김형주', vessel: 'N/SUN', boardingDate: '2025-10-20', seasonDays: 315, catchMt: 4_570, dailyCatchMt: 14.5, rank: 7, leaderDeltaMt: -12.59, averageDeltaMt: -4.61 },
-    { captain: '이진우', vessel: 'N/STAR', boardingDate: '2026-08-19', seasonDays: 12, catchMt: 40, dailyCatchMt: 3.3, rank: 10, leaderDeltaMt: -23.77, averageDeltaMt: -15.79 },
+    { captain: '공준식', vessel: 'S/EXP', boardingDate: '2026-06-14', seasonDays: 85, catchMt: 954, dailyCatchMt: 11.2, rank: 9, leaderDeltaMt: -15.77, averageDeltaMt: -7.7 },
+    { captain: '김승현', vessel: 'S/PIO', boardingDate: '2026-01-22', seasonDays: 228, catchMt: 4_275, dailyCatchMt: 18.8, rank: 3, leaderDeltaMt: -8.25, averageDeltaMt: -0.18 },
+    { captain: '최용석', vessel: 'S/CHA', boardingDate: '2026-01-04', seasonDays: 246, catchMt: 4_070, dailyCatchMt: 16.5, rank: 5, leaderDeltaMt: -10.46, averageDeltaMt: -2.39 },
+    { captain: '오복근', vessel: 'S/HAR', boardingDate: '2026-06-28', seasonDays: 71, catchMt: 830, dailyCatchMt: 11.7, rank: 8, leaderDeltaMt: -15.31, averageDeltaMt: -7.24 },
+    { captain: '강창훈', vessel: 'S/JUP', boardingDate: '2025-06-10', seasonDays: 454, catchMt: 7_410, dailyCatchMt: 16.3, rank: 6, leaderDeltaMt: -10.68, averageDeltaMt: -2.61 },
+    { captain: '김효원', vessel: 'S/SPR', boardingDate: '2025-09-27', seasonDays: 345, catchMt: 9_314, dailyCatchMt: 27, rank: 1, leaderDeltaMt: -0, averageDeltaMt: 8.07 },
+    { captain: '김정훈', vessel: 'MARI', boardingDate: '2025-04-17', seasonDays: 508, catchMt: 11_485, dailyCatchMt: 22.6, rank: 2, leaderDeltaMt: -4.39, averageDeltaMt: 3.68 },
+    { captain: '이평규', vessel: 'KONA', boardingDate: '2026-03-11', seasonDays: 180, catchMt: 3_229, dailyCatchMt: 17.9, rank: 4, leaderDeltaMt: -9.06, averageDeltaMt: -0.99 },
+    { captain: '김형주', vessel: 'N/SUN', boardingDate: '2025-10-20', seasonDays: 322, catchMt: 4_830, dailyCatchMt: 15, rank: 7, leaderDeltaMt: -12, averageDeltaMt: -3.93 },
+    { captain: '이진우', vessel: 'N/STAR', boardingDate: '2026-08-19', seasonDays: 19, catchMt: 145, dailyCatchMt: 7.6, rank: 10, leaderDeltaMt: -19.37, averageDeltaMt: -11.3 },
   ],
 };
 
