@@ -2705,7 +2705,7 @@ const NS_SPEC: CommoditySpec = {
     {
       eyebrow: '참치',
       title: '회사가 가른 최소 칸',
-      body: `${nissuiStats.참치버킷_억엔}억엔 (그 안 네 요인 중 하나가 참치 · 수산 증익의 40%는 북미·남미)`,
+      body: `${nissuiStats.참치버킷_억엔}억엔 (그 안 네 요인 중 하나가 참치 · 수산 증익의 46%는 북미·남미)`,
     },
     {
       eyebrow: '선단',
