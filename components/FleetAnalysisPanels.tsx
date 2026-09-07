@@ -4,7 +4,7 @@ import { ChevronDown, Trophy, BarChart3 } from 'lucide-react';
 import { WeeklyCatchChart, MonthlyCatchChart, CumulativeChart, CumulativeTableData, DailyCatchTrendChart, FleetIdleVesselPanel } from './FleetCharts';
 import TakeawayBox from './TakeawayBox';
 import s from './FleetCommandCenter.module.css';
-import { purseSeineCatch } from '@/lib/fleet-operations-2026-08-23';
+import { monthBoundaryDay, purseSeineCatch } from '@/lib/fleet-operations-2026-08-23';
 import { fleetDailyPublicSeries } from '@/lib/data/fleet-daily-public';
 
 const rankData = purseSeineCatch.weeklyRanking.map((item) => ({
@@ -84,7 +84,7 @@ export function FleetChartSection() {
             <div style={{ marginTop: 16 }}>
               <TakeawayBox
                 situation={<>{top3.map((row) => `${row.vessel}(${row.captain}) ${nf(row.catchMt)}t`).join(', ')} 순입니다. 주간 총 어획량은 {nf(summary.weeklyTotal)}t(국적 {nf(summary.nationalWeekly)}t, 합작 {nf(summary.jointWeekly)}t)입니다.</>}
-                actionPlan={<>{idle.length > 0 ? `${idle.map((row) => row.vessel).join('·')}는 주간 어획이 없습니다. ` : ''}상위 3척과 무실적 {idle.length}척의 수역·조업일수·선박 상태를 대조해 배치를 조정하십시오.</>}
+                actionPlan={<>{idle.length > 0 ? `${idle.map((row) => row.vessel).join('·')}는 주간 어획이 없습니다. ` : ''}주간은 {monthBoundaryDay.date.slice(5).replace('-', '/').replace(/^0/, '')}을 포함하고 월간은 9월분이라, 차이 {nf(monthBoundaryDay.totalMt)}t(국적 {nf(monthBoundaryDay.nationalMt)}t, 합작 {nf(monthBoundaryDay.jointMt)}t)이 그 하루치입니다. 상위 3척과 무실적 {idle.length}척의 수역·조업일수·선박 상태를 대조해 배치를 조정하십시오.</>}
                 source={purseSeineCatch.source}
               />
             </div>

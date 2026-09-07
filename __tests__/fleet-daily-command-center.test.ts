@@ -4,6 +4,8 @@ import React from 'react';
 import { renderToStaticMarkup } from 'react-dom/server';
 import { describe, expect, it } from 'vitest';
 
+import { fleetDailyPublicReconciliation } from '@/lib/data/fleet-daily-public';
+import { monthBoundaryDay } from '@/lib/fleet-operations-2026-08-23';
 import FleetCommandCenter from '@/components/FleetCommandCenter';
 import FleetDailyOperations from '@/components/FleetDailyOperations';
 
@@ -25,9 +27,11 @@ describe('FleetCommandCenter daily operations', () => {
       // 9/2 기준: 태평양 전일 대비 0(175→175), 대서양 +75, 합계 +75
       '-95 (MT)', 'SYNCED',
       '전체 보고 150건', '전기간 검산 600회', '완전 검산 600회', '미보고 포함 0회 / 0문서',
-      '부분합 차이 전체 20건 / 18문서', '확정 불일치 20건 / 18문서', '미보고 포함 차이 0건 / 0문서',
+      // 20/18 이었다가 14/12 로 줄었다 - 운반선 머리글의 0.03 반올림 잔차 6건이
+      // 불일치로 잡히던 것을 인쇄 자릿수 허용 폭으로 걸러냈다 (2026-09-07)
+      '부분합 차이 전체 14건 / 12문서', '확정 불일치 14건 / 12문서', '미보고 포함 차이 0건 / 0문서',
       '중복 선박 행 4건', '좌표 형식 이슈 6건', '연승 구역 미기재 13건',
-      '최신 상세 행 확인 필요',
+      '최신 상세 행 검산 일치',
     ]) {
       expect(markup).toContain(value);
     }
@@ -91,5 +95,30 @@ describe('FleetCommandCenter daily operations', () => {
       .replace(/\/\/.*$/gm, '');
     const hardcoded = panels.match(/(?<![\w.])\d[\d,.]*\s*(?:t입니다|t으로|t 누적|일·)/g) ?? [];
     expect(hardcoded).toEqual([]);
+  });
+
+  it('검산 배지가 반올림 잔차로 빨갛게 뜨지 않는다', () => {
+    /* 머리글은 소수 1자리(6,854.1), 상세 행은 2자리(합 6,854.13)로 찍힌다.
+     * 그 0.03 하나로 「최신 상세 행 확인 필요」가 상시 점등돼 있었다(2026-09-07).
+     * 허용 폭은 인쇄된 마지막 자리의 절반이고, 실제 어긋남은 그대로 잡힌다. */
+    const markup = renderToStaticMarkup(React.createElement(FleetCommandCenter));
+    expect(fleetDailyPublicReconciliation.valid).toBe(true);
+    expect(fleetDailyPublicReconciliation.issueCount).toBe(0);
+    expect(markup).toContain('최신 상세 행 검산 일치');
+    expect(markup).not.toContain('최신 상세 행 확인 필요');
+
+    const carrier = fleetDailyPublicReconciliation.carrierLoaded;
+    expect(carrier.matches).toBe(true);
+    // 잔차가 0 이라서 통과한 게 아니라, 인쇄 자릿수 안이라서 통과한 것이다
+    expect(carrier.reportedMt).not.toBe(carrier.rowsMt);
+    expect(Math.abs(Number(carrier.reportedMt) - Number(carrier.rowsMt))).toBeLessThanOrEqual(0.05);
+  });
+
+  it('주간과 월간의 차이가 8월 31일 하루치로 설명된다', () => {
+    // 885 주간 옆에 790 월간이 놓이면 «왜 다르지» 가 먼저 나온다. 주간은 8/31 을
+    // 포함하고 월간은 9월분이라 차이가 그 하루치다 - 화면이 그걸 말해야 한다.
+    expect(monthBoundaryDay).toEqual({ date: '2026-08-31', nationalMt: 10, jointMt: 85, totalMt: 95 });
+    const markup = renderToStaticMarkup(React.createElement(FleetCommandCenter));
+    expect(markup).toContain('8/31을 포함하고 월간은 9월분이라, 차이 95t(국적 10t, 합작 85t)');
   });
 });

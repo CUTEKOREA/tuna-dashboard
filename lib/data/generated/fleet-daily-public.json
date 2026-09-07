@@ -51,7 +51,7 @@
     "carrierLoaded": {
       "reportedMt": 6854.1,
       "rowsMt": 6854.13,
-      "matches": false,
+      "matches": true,
       "missingCount": 0
     },
     "carrierExpectedRemaining": {
@@ -60,9 +60,9 @@
       "matches": true,
       "missingCount": 0
     },
-    "valid": false,
+    "valid": true,
     "unavailableCount": 0,
-    "issueCount": 1
+    "issueCount": 0
   },
   "dailySeries": {
     "dates": [
@@ -3120,10 +3120,10 @@
       "reconciliationCompleteChecks": 600,
       "reconciliationUnavailableChecks": 0,
       "reconciliationUnavailableDocuments": 0,
-      "reconciliationIssues": 20,
-      "reconciliationDocuments": 18,
-      "reconciliationPartialDifferences": 20,
-      "reconciliationPartialDifferenceDocuments": 18,
+      "reconciliationIssues": 14,
+      "reconciliationDocuments": 12,
+      "reconciliationPartialDifferences": 14,
+      "reconciliationPartialDifferenceDocuments": 12,
       "duplicateVesselRows": 4,
       "coordinateFormatIssues": 6,
       "longlineSectionMissing": 13

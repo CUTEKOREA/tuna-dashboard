@@ -58,10 +58,10 @@ function daily(reportDate: string, asOf: string) {
 
 function checks(reportDate: string) {
   return [
-    { reportDate, field: 'pacific.dailyMt', reportedMt: 20, knownRowsMt: 20, missingCount: 0, status: 'completeMatch' },
-    { reportDate, field: 'atlantic.dailyMt', reportedMt: 30, knownRowsMt: 30, missingCount: 0, status: 'completeMatch' },
-    { reportDate, field: 'carrier.loadedMt', reportedMt: 100, knownRowsMt: 100, missingCount: 0, status: 'completeMatch' },
-    { reportDate, field: 'carrier.expectedRemainingMt', reportedMt: 50, knownRowsMt: 50, missingCount: 0, status: 'completeMatch' },
+    { reportDate, field: 'pacific.dailyMt', reportedMt: 20, knownRowsMt: 20, missingCount: 0, toleranceMt: 0.001, status: 'completeMatch' },
+    { reportDate, field: 'atlantic.dailyMt', reportedMt: 30, knownRowsMt: 30, missingCount: 0, toleranceMt: 0.001, status: 'completeMatch' },
+    { reportDate, field: 'carrier.loadedMt', reportedMt: 100, knownRowsMt: 100, missingCount: 0, toleranceMt: 0.001, status: 'completeMatch' },
+    { reportDate, field: 'carrier.expectedRemainingMt', reportedMt: 50, knownRowsMt: 50, missingCount: 0, toleranceMt: 0.001, status: 'completeMatch' },
   ];
 }
 
