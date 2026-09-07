@@ -1,9 +1,9 @@
 {
  "_meta": {
   "entry": "app/page.tsx",
-  "files": 220,
+  "files": 221,
   "widgets": 110,
-  "dataFiles": 131,
+  "dataFiles": 135,
   "generator": "scripts/widget_lineage.py"
  },
  "widgetToData": {
@@ -577,6 +577,7 @@
     "lib/data/company-jealsa.ts",
     "lib/data/company-kyokuyo.ts",
     "lib/data/company-nauterra.ts",
+    "lib/data/company-nissui.ts",
     "lib/data/company-report-figures.ts",
     "lib/data/company-report-tables.ts",
     "lib/data/company-sajo.ts",
@@ -635,6 +636,10 @@
     "public/data/companies/nauterra_prose_v1.json",
     "public/data/companies/nauterra_tables_v1.json",
     "public/data/companies/nauterra_v1.json",
+    "public/data/companies/nissui_figures_v1.json",
+    "public/data/companies/nissui_prose_v1.json",
+    "public/data/companies/nissui_tables_v1.json",
+    "public/data/companies/nissui_v1.json",
     "public/data/companies/sajo_figures_v1.json",
     "public/data/companies/sajo_prose_v1.json",
     "public/data/companies/sajo_tables_v1.json",
@@ -1222,6 +1227,18 @@
    "components/market-understanding/CompanyAnatomyDashboard.tsx"
   ],
   "public/data/companies/nauterra_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/nissui_figures_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/nissui_prose_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/nissui_tables_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/nissui_v1.json": [
    "components/market-understanding/CompanyAnatomyDashboard.tsx"
   ],
   "public/data/companies/sajo_figures_v1.json": [

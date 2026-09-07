@@ -227,6 +227,7 @@ import { bumblebeeMeta, bumblebeeStats, bumblebeeSourceNotes, cashSharePct, bidF
 import { umiosMeta, umiosStats, umiosSourceNotes, umiosSeedShareOfNational, nationalSeedCollapsePct, fullCycleSharePct } from '@/lib/data/company-umios';
 import { kyokuyoMeta, kyokuyoStats, kyokuyoSourceNotes, oldSegmentLeverage, freshProfitTrough } from '@/lib/data/company-kyokuyo';
 import { seavalueMeta, seavalueStats, seavalueSourceNotes, ownBrandTunaShare, canadaVsBumbleBee, denominatorGap } from '@/lib/data/company-seavalue';
+import { nissuiMeta, nissuiStats, nissuiSourceNotes, marineProfitMultiple, logisticsMarginGap } from '@/lib/data/company-nissui';
 
 const ACCENT = '#c2410c';
 /** 정적 조사 아카이브라 갱신일이 곧 조사일이다. LIVE 로 표기하지 않는다(L-09). */
@@ -2673,6 +2674,62 @@ const SV_SPEC: CommoditySpec = {
   ].join(' · '),
 };
 
+const NS_ACCENT = '#1c3f5c';
+
+const NS_SPEC: CommoditySpec = {
+  key: 'company-anatomy-nissui',
+  title: '기업 해부: ニッスイ',
+  subtitle:
+    '앞 편에서 極洋은 보고부문 이름 「鰹・鮪」를 지웠다. 이 회사는 반대로 2024년에 국내 양식 참치를 새 회사로 묶고 그 상호에 참치를 박았다 — ㈱ニッスイまぐろ. ' +
+    '그 회사가 온전히 한 해를 돈 첫 회계연도에 水産事業 영업이익이 8,418에서 17,770백만엔으로 두 배가 됐고, 그 한 부문의 증가분(9,352)이 연결 영업이익 증가분(8,651)보다 크다. ' +
+    '그런데 제111기 유가증권보고서 208쪽에서 그 회사 이름은 연혁 두 건에만 나오고 관계회사 표에는 행이 없다.',
+  accent: NS_ACCENT,
+  primaryKpi: {
+    label: '水産事業 영업이익 증가분',
+    value: nissuiStats.수산증가분,
+    unit: `(백만엔 · 8,418 → 17,770 · 연결 증가분 ${nissuiStats.연결증가분.toLocaleString('ko-KR')}보다 크다)`,
+    accent: NS_ACCENT,
+  },
+  secondaryKpis: [
+    { label: '부문 증가분 ÷ 연결 증가분', value: nissuiStats.증가분_비율, decimals: 1, unit: '(% · 연결 기준일 때만 100%를 넘는다 · 4부문 계로는 95.5%)' },
+    { label: '남미에서 감선한 배의 감손', value: nissuiStats.감손_백만엔, unit: `(백만엔 · 遊休資産·칠레·船舶 · 水産 증가분의 ${nissuiStats.감손_대_수산증가분}% · 特別損失이라 부문 이익 아래)` },
+    { label: '物流 이익률이 분모를 바꾸면', value: logisticsMarginGap(), decimals: 2, unit: '(%p 하락 · 14.50% → 7.82% · 내부매출이 총매출의 46.11%)' },
+  ],
+  stripItems: [
+    {
+      now: true,
+      eyebrow: '이름',
+      title: '상호에 박았는데 명부에는 없다',
+      body: `${nissuiStats.연결자회사_수}개 연결자회사 · ㈱ニッスイまぐろ는 「その他48社」에 들어 있다`,
+    },
+    {
+      eyebrow: '참치',
+      title: '회사가 가른 최소 칸',
+      body: `${nissuiStats.참치버킷_억엔}억엔 (그 안 네 요인 중 하나가 참치 · 수산 증익의 40%는 북미·남미)`,
+    },
+    {
+      eyebrow: '선단',
+      title: '有報는 말하지 않고 등록부가 말한다',
+      body: `${nissuiStats.참치선망_척} (척 · 第七十八·第八十八光洋丸 · MSC-F-31618)`,
+    },
+    {
+      eyebrow: '매대',
+      title: '자기 이름으로 파는 참치 캔',
+      body: `${nissuiStats.자사_참치캔_SKU} (종 · 브랜드명 光洋丸은 그 선망선 이름이다)`,
+    },
+  ],
+  briefing: proseBriefing('nissui'),
+  narratives: inlineReport('nissui', proseStages('nissui')),
+  chartSlots: {},
+  continuous: true,
+  sourceNotes: nissuiSourceNotes,
+  sourceMeta: [
+    `${nissuiMeta.회사} · ${nissuiMeta.국가} · ${nissuiMeta.업종}`,
+    `출처 ${nissuiMeta.출처}`,
+    `조사 ${nissuiMeta.조사일}`,
+  ].join(' · '),
+};
+
 export const COMPANY_CARDS: CompanyCard[] = [
   {
     key: 'frinsa',
@@ -2895,6 +2952,19 @@ export const COMPANY_CARDS: CompanyCard[] = [
       { label: '자체 브랜드 참치 SKU', value: `${seavalueStats.자체브랜드_참치_행} / ${seavalueStats.자체브랜드_총행}` },
     ],
   },
+  {
+    key: 'nissui',
+    numeral: 'ⅩⅧ',
+    name: '株式会社ニッスイ',
+    country: '일본 · 도쿄',
+    tagline: '참치를 회사 이름에 박았는데, 관계회사 명부에는 그 이름이 없다.',
+    ...FLAG.일본,
+    stats: [
+      { label: '水産 이익 배수', value: `${marineProfitMultiple()}배` },
+      { label: '부문 ÷ 연결 증가분', value: `${nissuiStats.증가분_비율}%` },
+      { label: '자사 참치 캔', value: `${nissuiStats.자사_참치캔_SKU} 종` },
+    ],
+  },
 
 ];
 
@@ -2931,6 +3001,7 @@ export default function CompanyAnatomyDashboard({
     umios: UM_SPEC,
     kyokuyo: KY_SPEC,
     seavalue: SV_SPEC,
+    nissui: NS_SPEC,
   };
   const spec = SPECS[selected] ?? SPEC;
 
