@@ -200,7 +200,9 @@
    "dataFiles": []
   },
   "components/PurseSeinerDashboard.tsx": {
-   "dataModules": [],
+   "dataModules": [
+    "lib/data/ffa-vrst.ts"
+   ],
    "dataFiles": [
     "public/data/ffa_vrst_v1.json",
     "public/data/tuna_purse_seiners_v1.json"

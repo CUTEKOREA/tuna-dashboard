@@ -6,6 +6,8 @@
  *   ② 배 자신의 중앙값만 기준 삼으면 상시 절반 보고하는 배가 만점을 받는다
  *   ③ 어창 용량은 ㎥ 와 t 가 섞여 있어 합칠 수 없다
  */
+import { readFileSync } from 'node:fs';
+import { join } from 'node:path';
 import { describe, expect, it } from 'vitest';
 
 import {
@@ -146,5 +148,14 @@ describe('한국 선단', () => {
     for (const h of t) expect(h.단위).toBe('t');
     // 단위 경고가 살아 있어야 한다.
     expect(ffaMeta.단위경고).toMatch(/더하거나|합치/);
+  });
+});
+
+describe('선단 DB 탭 라벨', () => {
+  it('척수를 데이터에서 뽑는다 - 하드코딩하면 원자료가 바뀔 때 라벨만 남는다', () => {
+    // 2026-09-07: 주간(820척) → 월간(811척) 전환에서 라벨 두 곳이 820 을 계속 말했다.
+    const src = readFileSync(join(process.cwd(), 'components/PurseSeinerDashboard.tsx'), 'utf8');
+    expect(src).toContain('ffaSummary.총척수');
+    expect(src).not.toMatch(/FFA 조업허가·위치보고 \(\d/);
   });
 });
