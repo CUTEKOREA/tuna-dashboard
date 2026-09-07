@@ -23,6 +23,26 @@ const seriesTop = [...purseSeineCatch.monthlyByVessel].sort((a, b) => b.totalMt 
 const seriesAsOfKo = purseSeineCatch.monthlySeriesAsOf.slice(2).replaceAll('-', '.');
 const nf = (value: number) => value.toLocaleString('ko-KR');
 
+/* 현어기 문장은 두 군데에서 쓴다(누계 탭·선장 실적표). 한 곳만 고치면 다른 쪽이 지난주에 남는다 —
+ * 2026-09-07 에 실제로 선장 실적표가 「338일·27.1t·평균 19.1t」 를 그대로 들고 있었다. */
+const seasonByRank = [...purseSeineCatch.seasonRanking].sort((a, b) => a.rank - b.rank);
+const seasonAvg = purseSeineCatch.seasonAverageDailyMt;
+const seasonBelow = seasonByRank.filter((row) => row.dailyCatchMt < seasonAvg).length;
+const seasonNewest = seasonByRank.reduce((a, b) => (b.boardingDate > a.boardingDate ? b : a));
+const seasonHeaviest = seasonByRank.reduce((a, b) => (b.catchMt > a.catchMt ? b : a));
+const seasonSituation = (
+  <>
+    {seasonByRank.slice(0, 2).map((row) => `${row.captain}(${row.vessel}) 어기 ${row.seasonDays}일·일어획 ${row.dailyCatchMt}t`).join(', ')} 순입니다.
+    {' '}선단 평균은 {seasonAvg}t입니다. {seasonNewest.vessel}는 {seasonNewest.captain} 선장 승선 후 {seasonNewest.seasonDays}일·{nf(seasonNewest.catchMt)}t으로 집계됩니다.
+  </>
+);
+const seasonAction = (
+  <>
+    {seasonHeaviest.vessel}({seasonHeaviest.captain})는 {nf(seasonHeaviest.catchMt)}t 누적으로 최대이나 일어획은 {seasonHeaviest.dailyCatchMt}t {seasonHeaviest.rank}위입니다.
+    {' '}평균 {seasonAvg}t 미만 {seasonBelow}척은 순위와 누계 물량을 분리해 평가하십시오.
+  </>
+);
+
 const dailyTrendSituation = (() => {
   const series = fleetDailyPublicSeries;
   const sum = (values: (number | null)[]) => values.reduce<number>((total, value) => total + (value ?? 0), 0);
@@ -87,8 +107,8 @@ export function FleetChartSection() {
             <CumulativeChart />
             <div style={{ marginTop: 16 }}>
               <TakeawayBox
-                situation={<>{[...purseSeineCatch.seasonRanking].sort((a, b) => a.rank - b.rank).slice(0, 3).map((row) => `${row.captain}(${row.vessel}) 일어획 ${row.dailyCatchMt}t`).join(', ')} 순입니다. 현어기 선단 평균은 {purseSeineCatch.seasonAverageDailyMt}t입니다.</>}
-                actionPlan={<>평균 {purseSeineCatch.seasonAverageDailyMt}t 대비 하위 {purseSeineCatch.seasonRanking.filter((row) => row.dailyCatchMt < purseSeineCatch.seasonAverageDailyMt).length}척은 원인별로 수역·조업일수·선박 상태를 대조하십시오.</>}
+                situation={seasonSituation}
+                actionPlan={seasonAction}
                 source={`선장 실적 누계 (현어기) · ${purseSeineCatch.period.to}`}
               />
             </div>
@@ -182,8 +202,8 @@ export function FleetDetailPanel() {
           </div>
           <div style={{ marginTop: 16 }}>
             <TakeawayBox
-              situation={<>김효원(S/SPR) 어기 338일·일어획 27.1t으로 1위, 김정훈(MARI) 22.9t으로 2위입니다. 선단 평균은 19.1t입니다. N/STAR는 이진우 선장 승선 후 12일·40t으로 집계됩니다.</>}
-              actionPlan={<>MARI(김정훈)는 11,485t 누적으로 최대이나 일어획은 22.9t 2위입니다. 순위와 누계 물량을 분리해 평가하십시오.</>}
+              situation={seasonSituation}
+              actionPlan={seasonAction}
               source={`선장 실적 누계 (현어기) · ${purseSeineCatch.period.to}`}
             />
           </div>
