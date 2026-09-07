@@ -81,4 +81,15 @@ describe('FleetCommandCenter daily operations', () => {
     expect(markup).not.toContain('2단계 인증');
     expect(markup).toContain('로그인 세션을 다시 확인해주세요.');
   });
+
+  it('실적 분석 문장에 수치를 손으로 박지 않는다', () => {
+    /* 이 파일의 SIT/TAK 는 계약에서 파생해야 한다. 손으로 적으면 차트만 갈리고
+     * 문장이 지난주에 남는다 - 2026-09-07 에 두 군데가 동시에 그 상태였다
+     * (주간 탭 「645t · 145t 1위」, 선장 실적표 「338일 · 27.1t · 평균 19.1t」). */
+    const panels = readFileSync(join(process.cwd(), 'components/FleetAnalysisPanels.tsx'), 'utf8')
+      .replace(/\/\*[\s\S]*?\*\//g, '')   // 주석 안 예시 숫자는 대상이 아니다
+      .replace(/\/\/.*$/gm, '');
+    const hardcoded = panels.match(/(?<![\w.])\d[\d,.]*\s*(?:t입니다|t으로|t 누적|일·)/g) ?? [];
+    expect(hardcoded).toEqual([]);
+  });
 });
