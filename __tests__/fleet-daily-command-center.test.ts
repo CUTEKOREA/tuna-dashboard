@@ -52,11 +52,17 @@ describe('FleetCommandCenter daily operations', () => {
   it('keeps the weekly performance and VDS contracts while withholding the latest roster', () => {
     const markup = renderToStaticMarkup(React.createElement(FleetCommandCenter));
 
-    expect(markup).toContain('26.08.24~08.30');
-    expect(markup).toContain('data-kpi-value="645"');
-    expect(markup).toContain('data-kpi-value="3313"');
-    expect(markup).toContain('data-kpi-value="48146"');
-    expect(markup).toContain('N/SUN(김형주) 145t 주간 1위');
+    expect(markup).toContain('26.08.31~09.06');
+    expect(markup).toContain('data-kpi-value="885"');
+    expect(markup).toContain('data-kpi-value="790"');
+    expect(markup).toContain('data-kpi-value="49031"');
+    // 문장은 계약에서 파생한다 - 차트만 갈리고 문장이 지난주에 남는 사고를 막는다
+    expect(markup).toContain('N/SUN(김형주) 260t');
+    expect(markup).toContain('주간 총 어획량은 885t(국적 325t, 합작 560t)');
+    expect(markup).not.toContain('645t');
+    // 월별 카드 라벨은 계열에서 파생한다 - 계열이 한 달 늘어도 «8월»이 남지 않는다
+    expect(markup).toContain('월별 계열은 2026-08-30 보고 기준');
+    expect(markup).toContain('추세선은 1~8월');
     expect(markup).toContain('김효원(S/SPR)');
     expect(markup).toContain('-0.00');
     expect(markup).not.toContain('26.08.17~08.23');
