@@ -34,58 +34,58 @@ const area = (areaName: string, rows: VdsRow[], printedTotals?: VdsTotals, note?
 });
 
 export const nationalVds = {
-  asOf: '2026-08-23',
-  source: '태평양 선망 VDS 현황_2026.08.23.pdf',
+  asOf: '2026-09-06',
+  source: '태평양 선망 VDS 현황_2026.09.06.pdf',
   vessels: ['S/EXP', 'S/PIO', 'S/CHA', 'S/HAR', 'S/JUP', 'S/SPR'],
   areas: [
     area('파푸아뉴기니', [
-      { vessel: 'S/EXP', allocated: 55.17, consumed: 10, remaining: 45.17, weekly: 0 },
-      { vessel: 'S/PIO', allocated: 55.17, consumed: 0.4, remaining: 54.77, weekly: 0 },
-      { vessel: 'S/CHA', allocated: 55.17, consumed: 0.8, remaining: 54.37, weekly: 0 },
-      { vessel: 'S/HAR', allocated: 55.17, consumed: 2.5, remaining: 52.67, weekly: 0 },
-      { vessel: 'S/JUP', allocated: 55.17, consumed: 2.4, remaining: 52.77, weekly: 0 },
-      { vessel: 'S/SPR', allocated: 55.17, consumed: 0, remaining: 55.17, weekly: 0 },
-    ], { allocated: 331, consumed: 16.1, remaining: 314.9, weekly: 0 }),
+      { vessel: 'S/EXP', allocated: 55.17, consumed: 20.9, remaining: 34.27, weekly: 5.4 },
+      { vessel: 'S/PIO', allocated: 55.17, consumed: 8.9, remaining: 46.27, weekly: 5.4 },
+      { vessel: 'S/CHA', allocated: 55.17, consumed: 11.8, remaining: 43.37, weekly: 7 },
+      { vessel: 'S/HAR', allocated: 55.17, consumed: 2.6, remaining: 52.57, weekly: 0.1 },
+      { vessel: 'S/JUP', allocated: 55.17, consumed: 4.6, remaining: 50.57, weekly: 2.2 },
+      { vessel: 'S/SPR', allocated: 55.17, consumed: 10.1, remaining: 45.07, weekly: 7 },
+    ], { allocated: 331, consumed: 58.9, remaining: 272.1, weekly: 27.1 }),
     area('솔로몬제도', [
-      { vessel: 'S/EXP', allocated: 7.33, consumed: 6, remaining: 1.33, weekly: 1.6 },
+      { vessel: 'S/EXP', allocated: 7.33, consumed: 9.1, remaining: -1.77, weekly: 1.5 },
       { vessel: 'S/PIO', allocated: 7.33, consumed: 1.5, remaining: 5.83, weekly: 0 },
       { vessel: 'S/CHA', allocated: 7.33, consumed: 4.4, remaining: 2.93, weekly: 0 },
       { vessel: 'S/HAR', allocated: 7.33, consumed: 4.6, remaining: 2.73, weekly: 0 },
-      { vessel: 'S/JUP', allocated: 7.33, consumed: 4.3, remaining: 3.03, weekly: 0 },
+      { vessel: 'S/JUP', allocated: 7.33, consumed: 7.3, remaining: 0.03, weekly: 3 },
       { vessel: 'S/SPR', allocated: 7.33, consumed: 4.6, remaining: 2.73, weekly: 0 },
-    ], { allocated: 44, consumed: 25.4, remaining: 18.6, weekly: 1.6 }),
+    ], { allocated: 44, consumed: 31.5, remaining: 12.5, weekly: 4.5 }),
     area('미크로네시아', [
       { vessel: 'S/EXP', allocated: 8.17, consumed: 12.8, remaining: -4.63, weekly: 0 },
-      { vessel: 'S/PIO', allocated: 8.17, consumed: 0.3, remaining: 7.87, weekly: 0 },
+      { vessel: 'S/PIO', allocated: 8.17, consumed: 1.7, remaining: 6.47, weekly: 1.4 },
       { vessel: 'S/CHA', allocated: 8.17, consumed: 1.1, remaining: 7.07, weekly: 0 },
       { vessel: 'S/HAR', allocated: 8.17, consumed: 0, remaining: 8.17, weekly: 0 },
       { vessel: 'S/JUP', allocated: 8.17, consumed: 0.7, remaining: 7.47, weekly: 0 },
       { vessel: 'S/SPR', allocated: 8.17, consumed: 0, remaining: 8.17, weekly: 0 },
-    ], { allocated: 49, consumed: 14.9, remaining: 34.1, weekly: 0 }),
+    ], { allocated: 49, consumed: 16.3, remaining: 32.7, weekly: 1.4 }),
     area('키리바시', [
-      { vessel: 'S/EXP', allocated: 127.33, consumed: 101.5, remaining: 25.83, weekly: 1.9 },
-      { vessel: 'S/PIO', allocated: 127.33, consumed: 146.6, remaining: -19.27, weekly: 4.9 },
-      { vessel: 'S/CHA', allocated: 127.33, consumed: 140.4, remaining: -13.07, weekly: 4.3 },
-      { vessel: 'S/HAR', allocated: 127.33, consumed: 109, remaining: 18.33, weekly: 4.6 },
-      { vessel: 'S/JUP', allocated: 127.33, consumed: 99.6, remaining: 27.73, weekly: 2.8 },
-      { vessel: 'S/SPR', allocated: 127.33, consumed: 142.1, remaining: -14.77, weekly: 3.4 },
-    ], { allocated: 764, consumed: 739.2, remaining: 24.8, weekly: 21.9 }),
+      { vessel: 'S/EXP', allocated: 127.33, consumed: 101.5, remaining: 25.83, weekly: 0 },
+      { vessel: 'S/PIO', allocated: 127.33, consumed: 149.1, remaining: -21.77, weekly: 0 },
+      { vessel: 'S/CHA', allocated: 127.33, consumed: 141.6, remaining: -14.27, weekly: -0.8 },
+      { vessel: 'S/HAR', allocated: 127.33, consumed: 116.7, remaining: 10.63, weekly: 4.6 },
+      { vessel: 'S/JUP', allocated: 127.33, consumed: 102.4, remaining: 24.93, weekly: 0 },
+      { vessel: 'S/SPR', allocated: 127.33, consumed: 144.6, remaining: -17.27, weekly: 0 },
+    ], { allocated: 764, consumed: 756, remaining: 8.1, weekly: 3.8 }),
     area('투발루', [
-      { vessel: 'S/EXP', allocated: 17, consumed: 12, remaining: 5, weekly: 2.4 },
-      { vessel: 'S/PIO', allocated: 17, consumed: 18.7, remaining: -1.7, weekly: 0 },
-      { vessel: 'S/CHA', allocated: 17, consumed: 10.3, remaining: 6.7, weekly: 0.8 },
-      { vessel: 'S/HAR', allocated: 17, consumed: 14.4, remaining: 2.6, weekly: 0.3 },
-      { vessel: 'S/JUP', allocated: 17, consumed: 24.9, remaining: -7.9, weekly: 0 },
-      { vessel: 'S/SPR', allocated: 17, consumed: 18.3, remaining: -1.3, weekly: 0.9 },
-    ], { allocated: 102, consumed: 98.6, remaining: 3.4, weekly: 4.4 }),
+      { vessel: 'S/EXP', allocated: 18.67, consumed: 12, remaining: 6.67, weekly: 0 },
+      { vessel: 'S/PIO', allocated: 18.67, consumed: 18.7, remaining: -0.03, weekly: 0 },
+      { vessel: 'S/CHA', allocated: 18.67, consumed: 10.3, remaining: 8.37, weekly: 0 },
+      { vessel: 'S/HAR', allocated: 18.67, consumed: 19, remaining: -0.33, weekly: 1 },
+      { vessel: 'S/JUP', allocated: 18.67, consumed: 28.3, remaining: -9.63, weekly: 1.1 },
+      { vessel: 'S/SPR', allocated: 18.67, consumed: 18.5, remaining: 0.17, weekly: 0 },
+    ], { allocated: 112, consumed: 106.8, remaining: 5.2, weekly: 2.1 }),
     area('나우루', [
       { vessel: 'S/EXP', allocated: 23.67, consumed: 21.3, remaining: 2.37, weekly: 0 },
-      { vessel: 'S/PIO', allocated: 23.67, consumed: 18.1, remaining: 5.57, weekly: 0 },
+      { vessel: 'S/PIO', allocated: 23.67, consumed: 19, remaining: 4.67, weekly: 0 },
       { vessel: 'S/CHA', allocated: 23.67, consumed: 28.5, remaining: -4.83, weekly: 0 },
-      { vessel: 'S/HAR', allocated: 23.67, consumed: 14, remaining: 9.67, weekly: 0 },
+      { vessel: 'S/HAR', allocated: 23.67, consumed: 14.8, remaining: 8.87, weekly: 0.8 },
       { vessel: 'S/JUP', allocated: 23.67, consumed: 16.2, remaining: 7.47, weekly: 0 },
-      { vessel: 'S/SPR', allocated: 23.67, consumed: 24.4, remaining: -0.73, weekly: 0 },
-    ], { allocated: 142, consumed: 122.5, remaining: 19.5, weekly: 0 }),
+      { vessel: 'S/SPR', allocated: 23.67, consumed: 25.1, remaining: -1.43, weekly: 0 },
+    ], { allocated: 142, consumed: 124.9, remaining: 17.1, weekly: 0.8 }),
     area('마샬군도', [
       { vessel: 'S/EXP', allocated: 3.75, consumed: 3.3, remaining: 0.45, weekly: 0 },
       { vessel: 'S/PIO', allocated: 0, consumed: 0, remaining: 0, weekly: 0 },
@@ -99,16 +99,16 @@ export const nationalVds = {
       { vessel: 'S/PIO', allocated: 8.63, consumed: 6, remaining: 2.63, weekly: 0 },
       { vessel: 'S/CHA', allocated: 8.63, consumed: 8, remaining: 0.63, weekly: 0 },
       { vessel: 'S/HAR', allocated: 8.63, consumed: 5, remaining: 3.63, weekly: 0 },
-      { vessel: 'S/JUP', allocated: 8.63, consumed: 7, remaining: 1.63, weekly: 3 },
+      { vessel: 'S/JUP', allocated: 8.63, consumed: 7, remaining: 1.63, weekly: 0 },
       { vessel: 'S/SPR', allocated: 8.63, consumed: 7, remaining: 1.63, weekly: 0 },
-    ], { allocated: 51.75, consumed: 36, remaining: 15.75, weekly: 3 }, '소진일수에서 제외', false),
+    ], { allocated: 51.75, consumed: 36, remaining: 15.75, weekly: 0 }, '소진일수에서 제외', false),
   ],
-  totals: { allocated: 1_447, consumed: 1_023.8, remaining: 423.2, weekly: 27.9 },
+  totals: { allocated: 1_457, consumed: 1_101.4, remaining: 355.6, weekly: 39.7 },
 };
 
 export const kiribatiVds = {
-  asOf: '2026-08-23',
-  source: 'KFC 태평양 선망 VDS 현황_2026.08.23.pdf',
+  asOf: '2026-09-06',
+  source: 'KFC 태평양 선망 VDS 현황_2026.09.06.pdf',
   vessels: ['MOAMARI', 'MOAKONA', 'NAOERO SUN', 'NAOERO STAR'],
   areas: [
     area('미크로네시아 협정', [
@@ -116,11 +116,11 @@ export const kiribatiVds = {
       { vessel: 'MOAKONA', allocated: 9.5, consumed: 7.6, remaining: 1.9, weekly: 0 },
     ], { allocated: 19, consumed: 12.8, remaining: 6.2, weekly: 0 }),
     area('키리바시', [
-      { vessel: 'MOAMARI', allocated: 95.25, consumed: 99.9, remaining: -4.65, weekly: 0.1 },
-      { vessel: 'MOAKONA', allocated: 95.25, consumed: 90.7, remaining: 4.55, weekly: 4.6 },
-      { vessel: 'NAOERO SUN', allocated: 95.25, consumed: 68.2, remaining: 27.05, weekly: 0 },
-      { vessel: 'NAOERO STAR', allocated: 95.25, consumed: 94, remaining: 1.25, weekly: 1.8 },
-    ], { allocated: 381, consumed: 352.7, remaining: 28.2, weekly: 6.5 }),
+      { vessel: 'MOAMARI', allocated: 95.25, consumed: 101.9, remaining: -6.65, weekly: 2 },
+      { vessel: 'MOAKONA', allocated: 95.25, consumed: 104.2, remaining: -8.95, weekly: 6.9 },
+      { vessel: 'NAOERO SUN', allocated: 95.25, consumed: 69.3, remaining: 25.95, weekly: 1.1 },
+      { vessel: 'NAOERO STAR', allocated: 95.25, consumed: 93.7, remaining: 1.55, weekly: 0 },
+    ], { allocated: 381, consumed: 369.1, remaining: 11.9, weekly: 10 }),
     area('미크로네시아 양자', [
       { vessel: 'MOAMARI', allocated: 8.75, consumed: 4, remaining: 4.75, weekly: 0 },
       { vessel: 'MOAKONA', allocated: 8.75, consumed: 3.5, remaining: 5.25, weekly: 0 },
@@ -146,21 +146,22 @@ export const kiribatiVds = {
       { vessel: 'NAOERO STAR', allocated: 3.5, consumed: 2, remaining: 1.5, weekly: 0 },
     ], { allocated: 14, consumed: 11.6, remaining: 2.4, weekly: 0 }),
     area('투발루 양자', [
-      { vessel: 'MOAMARI', allocated: 23.75, consumed: 18.2, remaining: 5.55, weekly: 0 },
-      { vessel: 'MOAKONA', allocated: 23.75, consumed: 9.3, remaining: 14.45, weekly: 0 },
-      { vessel: 'NAOERO SUN', allocated: 23.75, consumed: 8, remaining: 15.75, weekly: 0 },
-      { vessel: 'NAOERO STAR', allocated: 23.75, consumed: 24.2, remaining: -0.45, weekly: 0 },
-    ], { allocated: 95, consumed: 59.7, remaining: 35.3, weekly: 0 }),
-    // 공해는 원문이 「소진일수에서 제외」라 적었다. 총계 750일에 들어가지 않는다 —
-    // 더하면 배정일이 972일로 불어난다.
+      { vessel: 'MOAMARI', allocated: 21.25, consumed: 18.2, remaining: 3.05, weekly: 0 },
+      { vessel: 'MOAKONA', allocated: 21.25, consumed: 9.3, remaining: 11.95, weekly: 0 },
+      { vessel: 'NAOERO SUN', allocated: 21.25, consumed: 8, remaining: 13.25, weekly: 0 },
+      { vessel: 'NAOERO STAR', allocated: 21.25, consumed: 24.2, remaining: -2.95, weekly: 0 },
+    ], { allocated: 85, consumed: 59.7, remaining: 25.3, weekly: 0 }),
+    // 공해는 원문이 「소진일수에서 제외」라 적었다. 총계 740일에 들어가지 않는다 —
+    // 더하면 배정일이 987일로 불어난다.
     area('공해', [
       { vessel: 'MOAMARI', allocated: 50, consumed: 50, remaining: 0, weekly: 0 },
       { vessel: 'MOAKONA', allocated: 51, consumed: 51, remaining: 0, weekly: 0 },
-      { vessel: 'NAOERO SUN', allocated: 70, consumed: 70, remaining: 0, weekly: 5 },
-      { vessel: 'NAOERO STAR', allocated: 51, consumed: 51, remaining: 0, weekly: 3 },
-    ], { allocated: 222, consumed: 222, remaining: 0, weekly: 8 }, '소진일수에서 제외', false),
+      { vessel: 'NAOERO SUN', allocated: 81, consumed: 81, remaining: 0, weekly: 4 },
+      { vessel: 'NAOERO STAR', allocated: 65, consumed: 65, remaining: 0, weekly: 7 },
+    ], { allocated: 247, consumed: 247, remaining: 0, weekly: 11 }, '소진일수에서 제외', false),
   ],
-  totals: { allocated: 750, consumed: 543, remaining: 207, weekly: 6.5 },
+  // 원문 TOTAL 행. 공해는 「소진일수에서 제외」라 배정 740 에 들어가지 않는다.
+  totals: { allocated: 740, consumed: 559.3, remaining: 180.7, weekly: 10 },
 };
 
 

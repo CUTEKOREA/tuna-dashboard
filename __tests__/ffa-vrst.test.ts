@@ -39,16 +39,28 @@ describe('FFA 집계 정합', () => {
     expect(topFlags(8).at(-1)?.국기).toBe('그 외');
   });
 
-  it('14일 구간이다', () => {
+  it('8월 전월 31일 구간이다', () => {
+    // 2026-09-07 에 주간(8/1~14) 판에서 월간(8/1~31) 판으로 바꿨다.
     expect(ffaDays).toHaveLength(ffaSummary.일수);
+    expect(ffaSummary.일수).toBe(31);
     expect(ffaDays[0]).toBe('2026-08-01');
-    expect(ffaDays.at(-1)).toBe('2026-08-14');
+    expect(ffaDays.at(-1)).toBe('2026-08-31');
+  });
+
+  it('기간 이후 등록분을 집계에서 빼고 그 사실을 남긴다', () => {
+    // 명부는 추출 시점 기준이라 월말 직후 등록분이 함께 실린다. 보고할 날이 없으므로
+    // 총척수에서 빼되, 몇 척을 왜 뺐는지 화면에서 확인할 수 있어야 한다.
+    const excluded = ffaMeta.기간후등록제외 as string[] | undefined;
+    expect(Array.isArray(excluded)).toBe(true);
+    expect(excluded!.length).toBeGreaterThan(0);
+    for (const item of excluded!) expect(item).toMatch(/\(2026-09-0\d\)$/);
   });
 
   it('원본 집계 시트의 불일치를 숨기지 않는다', () => {
-    // FFA 가 붙여 둔 집계표는 중국 행의 선종 열 합이 1척 모자란다.
+    // FFA 가 붙여 둔 집계표는 선종 열 합이 실제 척수와 어긋난다. 어느 국기에서
+    // 어긋나는지는 판마다 달라진다 - 8월 월간판은 피지·미국이다.
     // 원표를 썼다는 사실과 함께 화면에 남아야 한다.
-    expect(ffaMeta.주의).toMatch(/중국/);
+    expect(ffaMeta.주의).toMatch(/선종 열 합/);
     expect(ffaMeta.주의).toMatch(/원표/);
   });
 

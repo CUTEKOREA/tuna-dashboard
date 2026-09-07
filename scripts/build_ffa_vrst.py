@@ -106,7 +106,7 @@ def main() -> int:
     #   등록일 이전의 빈 칸은 「아직 등록 전」이라 셀 대상이 아니다. 둘을 합치면
     #   8월 14일에 등록한 배가 13일치를 무보고한 것처럼 보인다.
     #   그래서 등록일 이전은 분모에서 뺀다.
-    vessels = []
+    vessels, after_period = [], []
     for r in vbody:
         name = str(r[0]).strip()
         sp = specs.get(name)
@@ -121,6 +121,13 @@ def main() -> int:
             v = r[i]
             nums.append(float(v) if isinstance(v, (int, float)) else 0.0)
         if not applicable:
+            # 등록일이 보고 기간보다 **뒤**면 실패가 아니다. 명부는 추출 시점 기준이라
+            # 월간 보고서에는 월말 직후 등록분이 함께 실린다(2026-08 판에 9/1~9/2 등록 10척).
+            # 보고할 날이 없었을 뿐이므로 집계에서 빼고 _meta 에 남긴다.
+            # 등록일이 기간보다 **앞**인데 해당일이 없다면 그건 진짜 이상이다.
+            if reg_day and reg_day > days[-1]:
+                after_period.append({'선박': name, '등록': reg_day})
+                continue
             errors.append(f'{name}: 기간 내 등록일이 없다 (등록 {reg_day})')
             continue
 
@@ -150,8 +157,8 @@ def main() -> int:
             'imo': str(r[5]) if r[5] else None,
         })
 
-    if len(vessels) != len(vbody):
-        errors.append(f'선박 집계 누락: {len(vessels)}/{len(vbody)}')
+    if len(vessels) + len(after_period) != len(vbody):
+        errors.append(f'선박 집계 누락: {len(vessels)}/{len(vbody)} (기간 후 등록 {len(after_period)}척 제외)')
 
     # ── 선종 표준 주기 ────────────────────────────────────────────────
     #
@@ -229,6 +236,9 @@ def main() -> int:
         '_meta': {
             '출처': 'FFA 어선등록부 주간 VMS 보고현황 보고서 (VRST)',
             '기간': f'{days[0]} ~ {days[-1]}',
+            # 명부는 추출 시점 기준이라 기간 이후 등록분이 함께 실린다. 보고할 날이
+            # 없었으므로 집계에서 뺐다 — 총척수가 명부 행수보다 그만큼 적은 이유다.
+            '기간후등록제외': [f"{v['선박']}({v['등록']})" for v in after_period],
             '등급': 'A',
             '주의': (
                 '원본 집계 시트(Countbyflag)의 선종 열 합이 실제 척수와 다르다 — '
