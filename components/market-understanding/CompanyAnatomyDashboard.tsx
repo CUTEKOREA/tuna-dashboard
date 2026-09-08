@@ -1252,7 +1252,7 @@ const ALB_CHART_SLOTS: Record<string, ChartSlot[]> = {
   c02: [
     {
       title: '승계: 3년 사이의 네 번',
-      caption: '별세 → 딸 회장 → 손자 CEO → 공동 CEO 사임. BORME 공고로 확인되는 변동이다.',
+      caption: '별세 → 딸 회장 → 손자 CEO. 2026년 7월 집행이사 직위 종료는 8월 17일 재등기의 앞단이다.',
       telemetry: SYNC,
       render: () => (
         <TuRows head={['시점', '변동']} rows={albacoraSuccession.map((r) => [r.시점, r.변동])} />

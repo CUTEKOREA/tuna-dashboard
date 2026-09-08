@@ -62,6 +62,8 @@ body{margin:0;background:var(--paper);color:var(--ink);
   text-transform:uppercase;color:var(--cv)}
 .cover-tag{font-family:var(--mono);font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;
   color:rgba(234,240,237,.6);text-align:right;line-height:2}
+@media print{.cover .cover-top{flex-wrap:wrap}.cover .cover-mark{min-width:0}.cover .cover-tag{min-width:0;max-width:100%;white-space:normal;overflow-wrap:break-word;letter-spacing:.08em}}
+
 .cover-mid{flex:1;display:flex;flex-direction:column;justify-content:center;padding:3rem 0 2.5rem}
 .cover-kick{font-family:var(--mono);font-size:.74rem;letter-spacing:.2em;text-transform:uppercase;
   color:var(--cv);margin-bottom:1.5rem}
@@ -377,7 +379,7 @@ figure.shots figcaption b{color:var(--ink)}
     <li><a href="#s12"><span class="n">12</span> 규제 기록</a></li>
     <li><a href="#s13"><span class="n">13</span> 전략</a></li>
     <li><a href="#s14"><span class="n">14</span> 한국 원양업계에서 본 자리</a></li>
-    <li><a href="#s15"><span class="n">15</span> 앞 편과의 대비</a></li>
+    <li><a href="#s15"><span class="n">15</span> StarKist와의 대비</a></li>
     <li><a href="#s16"><span class="n">16</span> 남은 물음</a></li>
   </ol>
 </nav>
@@ -1463,7 +1465,7 @@ figure.shots figcaption b{color:var(--ink)}
     어획량이 줄었는지 판매처가 바뀌었는지는 이 두 줄로 갈리지 않는다.</p>
 </section>
 <section id="s15">
-  <h2><span class="h2n">15 / 앞 편과의 대비</span>같은 표를 두 나라 서식으로 읽으면 한 칸이 늘어난다</h2>
+  <h2><span class="h2n">15 / StarKist와의 대비</span>같은 표를 두 나라 서식으로 읽으면 한 칸이 늘어난다</h2>
 
   <p class="lead">StarKist는 미국 법인이고 동원산업은 그 모회사다. 두 회사의 공시를 겹쳐 놓으면
     한쪽에만 있는 값이 나온다. 그리고 한쪽 서식의 함정이 다른 쪽에서도 그대로 반복된다.</p>
@@ -1489,7 +1491,7 @@ figure.shots figcaption b{color:var(--ink)}
   </div>
 
   <h3>이름이 닮은 법인을 합치는 사고</h3>
-  <p>앞 편들에서 같은 유형이 세 번 나왔다. 상호가 바뀐 같은 법인을 다른 회사로 읽거나,
+  <p>같은 유형이 이 업계에서 되풀이된다. 상호가 바뀐 같은 법인을 다른 회사로 읽거나,
     이름이 닮은 다른 법인을 한 회사로 묶는 것이다. 여기서도 걸렸다.
     <code>DONGWON INDUSTRIES</code>와 <code>DONGWON FISHERIES</code>는 등록부에서
     연승선 14척을 사이에 두고 갈린다. <b>법인은 이름이 아니라 주소와 등록번호로 묶는다.</b></p>
@@ -1570,6 +1572,14 @@ figure.shots figcaption b{color:var(--ink)}
       <tr><td><span class="nb">2026-09-06</span></td><td>초판</td><td>—</td></tr>
     </tbody>
   </table></div>
+
+  <p>열두 칸의 성격은 셋으로 갈린다. 어획량·고형량·톤수처럼 <b>회사와 관청이 그 숫자를 내지 않아</b>
+    막힌 것이 있고, 해외 자회사 선망 7척처럼 <b>한국 명부가 관할하지 않아</b> 막힌 것이 있으며,
+    StarKist 매각과 HMM 인수 검토처럼 <b>공시가 「미확정」에서 멈춰</b> 막힌 것이 있다.</p>
+  <p>앞의 둘은 다른 문서를 열면 닫힌다. 어획량은 원양산업 통계연보와 WCPFC 회원국 연간보고가
+    어종별로 적고, 해외 선망선은 기국을 키리바시·바누아투로 바꿔 WCPFC 명부를 다시 조회하면
+    잡힌다. 세 번째는 문서의 문제가 아니라 <b>시점의 문제</b>다 — 재공시 기한이 오면 회사가
+    스스로 답하게 되어 있다.</p>
 </section>
 
 </main>

@@ -61,6 +61,8 @@ body{margin:0;background:var(--paper);color:var(--ink);
   text-transform:uppercase;color:var(--ikur)}
 .cover-tag{font-family:var(--mono);font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;
   color:rgba(234,240,237,.6);text-align:right;line-height:2}
+@media print{.cover .cover-top{flex-wrap:wrap}.cover .cover-mark{min-width:0}.cover .cover-tag{min-width:0;max-width:100%;white-space:normal;overflow-wrap:break-word;letter-spacing:.08em}}
+
 .cover-mid{flex:1;display:flex;flex-direction:column;justify-content:center;padding:3rem 0 2.5rem}
 .cover-kick{font-family:var(--mono);font-size:.74rem;letter-spacing:.2em;text-transform:uppercase;
   color:var(--ikur);margin-bottom:1.5rem}
@@ -254,9 +256,9 @@ figure.chart figcaption b{color:var(--ink)}
     <div class="cover-mid">
       <p class="cover-kick">스페인 해양어업 매출 1위 · 선망 23척(EINF 2025)</p>
       <h1><span class="scr">Albacora</span> <span class="lt">해부</span></h1>
-      <p class="cover-sub">앞의 두 회사는 참치를 <b>샀다</b>. 이 회사는 <b>잡는다.</b> 한 해 20만 톤. 한국 선망업계에게는 같은 어장의 경쟁자다.</p>
+      <p class="cover-sub">이 나라의 큰 통조림사들이 원료를 <b>사서</b> 캔에 넣을 때, 이 회사는 <b>잡는다.</b> 한 해 20만 톤. 한국 선망업계에게는 같은 어장의 경쟁자다.</p>
       <div class="cover-nums">
-        <div class="cn"><div class="v">200,000 t</div><div class="k">2025년 어획량</div></div>
+        <div class="cn"><div class="v">약 20만 t</div><div class="k">2025년 어획 — 회사 자기보고. 원문이 「rondan los 200 miles」(대략)이고 주어는 그룹이 아니라 Albacora S.A.다</div></div>
         <div class="cn"><div class="v">23척</div><div class="k">선망 선단 · 3대양 (EINF 2025 · 용선 4)</div></div>
         <div class="cn"><div class="v">3,770명</div><div class="k">그룹 인력</div></div>
       </div>
@@ -296,7 +298,8 @@ figure.chart figcaption b{color:var(--ink)}
     <li><a href="#s5b"><span class="n">07</span> 제품 카탈로그</a></li>
     <li><a href="#s6"><span class="n">08</span> 재무 · 리스크</a></li>
     <li><a href="#s7"><span class="n">09</span> 한국 관점</a></li>
-    <li><a href="#scorr"><span class="n">08</span> 정정 이력</a></li>
+    <li><a href="#s7b"><span class="n">10</span> 전략</a></li>
+    <li><a href="#scorr"><span class="n">11</span> 정정 이력</a></li>
   </ol>
 </nav>
 
@@ -388,11 +391,13 @@ figure.chart figcaption b{color:var(--ink)}
       <tr class="hl"><td>2023-02</td><td>회장 <b>María Luisa Lachaga Uría</b> 취임, <b>창업자의 딸로 보인다</b>. EINF 2025 서명 'Luisa Latxaga'와 동일인</td></tr>
       <tr><td>2023-06</td><td>Isabel Casandra Beitia Lachaga 공동 CEO 선임</td></tr>
       <tr class="hl"><td>2024-02</td><td>CEO <b>Alfonso Ignacio Beitia Lachaga</b>, <b>창업자의 손자</b></td></tr>
-      <tr class="hl"><td><b>2026-07-22</b></td><td><b>Isabel Beitia CEO 사임</b> (BORME 2026-07-29 공고). 이사로는 잔류</td></tr>
+      <tr class="hl"><td><b>2026-07-22</b></td><td><b>Isabel Beitia 집행이사(Consejero Delegado) 직위 종료</b> · 이사로는 <b>재선임</b> (BORME 2026-07-29 공고)</td></tr>
+      <tr class="hl"><td><b>2026-08-17</b></td><td><b>같은 사람이 집행이사로 다시 등기됐다.</b> BORME 2026-08-25 공고(act390908) — 표제는 <b>Nombramientos</b>(선임)이고 재선임(Reelecciones)이 아니다. 7월의 종료는 <b>이탈이 아니라 이 등기의 앞단</b>이었다</td></tr>
     </tbody>
   </table></div>
-  <p><strong>3년 사이에 창업자가 별세하고 딸이 회장에, 손자가 CEO에 올랐다가, 공동 CEO가 물러났다.</strong>
-    승계가 아직 안정 궤도에 오르지 않은 국면이다.
+  <p><strong>3년 사이에 창업자가 별세하고 딸이 회장에, 손자가 CEO에 올랐다.</strong>
+    2026년 7월의 집행이사 직위 종료를 이탈로 읽으면 틀린다 — <b>같은 사람이 8월 17일에 집행이사로
+    다시 등기</b>됐고 그 사이에도 이사직은 유지됐다(BORME 2026-08-25, 표제 Nombramientos).
     가족 지주회사 <strong>AMUI Corporation V SL</strong>(2018 설립, 빌바오)이 이사회에 법인이사로 참여한다.</p>
 
   <div class="call warn">
@@ -1386,10 +1391,58 @@ figure.chart figcaption b{color:var(--ink)}
     정량 비교는 위 항목이 채워져야 가능하다.</p>
 </section>
 
+<section id="s7b">
+  <h2><span class="h2n">10 / 전략</span>잡은 것을 어느 관세선 안에서 캔에 넣을지가 이 회사의 선택이다</h2>
+
+  <p class="lead">배를 가진 회사는 원료를 사 오지 않는다. 그래서 남들에게 없는 선택이 하나 더 생긴다 —
+    <b>잡은 것을 어느 관세선 안에서 캔에 넣을지</b>다. 이 회사의 전략은 그 선택 위에 서 있다.</p>
+
+  <div class="tw"><table>
+    <thead><tr><th>축</th><th>어디서</th><th>그 자리가 정하는 것</th></tr></thead>
+    <tbody>
+      <tr class="hl"><td>잡는다</td><td>세 대양</td><td>원료를 사지 않으므로 원료 시세에 덜 걸린다</td></tr>
+      <tr class="hl"><td>캔에 넣는다</td><td>스페인 <b>베르메오</b>(캔) · 에콰도르 <b>포소르하</b>(캔·파우치·로인).
+        갈리시아 <b>A Pobra</b>는 캔이 아니라 <b>냉동 필레·로인</b> 공장이다</td><td><b>관세선 양쪽에 공장이 있다.</b> 어느 쪽에서 만드느냐가 도착지의 세율을 정한다</td></tr>
+      <tr><td>판다</td><td>에콰도르·과테말라 <b>30%</b> · 세이셸·모리셔스·마다가스카르 25% · 스페인 10%</td><td>자기 공장이 있는 스페인이 첫째가 아니다</td></tr>
+    </tbody>
+  </table></div>
+  <p class="cap">어로 부문 판매의 도착지 비중이다. 가공 공장의 판매시장과는 다른 값이다.
+    <span class="chip c-doc">원본</span></p>
+
+  <p>파는 자리를 도착지 비중으로 늘어놓으면 관세선의 뜻이 드러난다. 어로 부문 판매는
+    에콰도르·과테말라가 <b>30%</b>로 가장 크고, 세이셸·모리셔스·마다가스카르가 25%,
+    자기 가공공장이 있는 <b>스페인이 10%</b>다. 잡은 것이 곧바로 자국 공장으로 가는 구조가
+    아니라는 뜻이다. <b>어디서 잡느냐보다 어느 관세선 안의 공장으로 보내느냐가 값을 정한다.</b></p>
+
+  <h3>같은 기간에 집행된 것</h3>
+  <div class="tw"><table>
+    <thead><tr><th>시점</th><th>무엇이</th></tr></thead>
+    <tbody>
+      <tr><td><span class="nb">2025-02</span></td><td>온수용 <b>고효율 보일러 교체 완료</b></td></tr>
+      <tr><td>2024년 등재</td><td>필레 절단 자동화로 <b>어자원 소비 5% 절감</b></td></tr>
+      <tr><td>2020~2026</td><td>공장마다 자가 태양광. 한 곳은 2024년 전력의 <b>27%</b>(2022년 8%), 다른 곳은 총소비의 22%, 에콰도르 공장은 2026년 설치 예정</td></tr>
+      <tr class="hl"><td><span class="nb">2026-05-13</span></td><td>계열 한 곳을 <b>흡수합병</b>해 소멸시켰다</td></tr>
+    </tbody>
+  </table></div>
+  <p class="cap">준공·교체·합병처럼 날짜가 박힌 것만 적었다. <span class="chip c-doc">원본</span><span class="chip c-src">매체</span></p>
+
+  <div class="call warn">
+    <p class="ct">아직 공장으로 세지 않는 자리</p>
+    <p>탄자니아 프로젝트는 그룹 활동표에 올라 있지만, 회사가 업계매체에
+      <b>면적·투자·고용·일정이 후속 단계에서 확정될 예정</b>이라고 밝혔다.
+      지금은 가공공장으로 세는 자리가 아니다. <span class="chip c-src">매체</span></p>
+  </div>
+
+  <p>지배 구조 쪽은 2026년에 등기가 여러 번 움직였지만 방향이 바뀐 것은 아니다.
+    <span class="nb">2026-07-22</span>에 집행이사 직위가 종료되고 <span class="nb">2026-08-17</span>에
+    <b>같은 사람이 집행이사로 다시 등기</b>됐다(BORME 2026-08-25). 창업자 별세 뒤 딸이 회장에,
+    손자가 CEO에 오른 가족 지배는 그대로다. <b>등기의 움직임을 승계의 불안정으로 읽지 않는다.</b></p>
+</section>
+
 <section id="scorr">
-  <h2><span class="h2n">08 / 정정 이력</span>2026-09-05 · 반증 검토가 좁힌 여덟 자리</h2>
-  <p class="lead">별도 검증(작성자≠검증자)이 아래를 깼다. 가장 잦은 유형은 「숫자가 틀렸다」가 아니라
-    <strong>「범위·출처·단위를 넓게 적었다」</strong>이다. 본문은 이미 고쳤고 무엇이 어떻게 바뀌었는지를 남긴다.</p>
+  <h2><span class="h2n">11 / 정정 이력</span>2026-09-05 · 여덟 자리를 좁혔다</h2>
+  <p class="lead">고친 자리를 남긴다. 가장 잦은 유형은 「숫자가 틀렸다」가 아니라
+    <strong>「범위·출처·단위를 넓게 적었다」</strong>이다. 아래는 고치기 전과 고친 뒤다.</p>
   <h3>고치기 전과 고친 뒤</h3>
   <div class="tw"><table>
     <thead><tr><th>#</th><th>고치기 전</th><th>고친 뒤</th><th>근거</th></tr></thead>
