@@ -244,6 +244,15 @@ export const purseSeineCatch = {
   ],
 };
 
+/** 주간은 8/31~9/6 이고 월간은 9월분이라, 둘의 차이가 8월 31일 하루치다.
+ *  두 숫자가 나란히 놓이면 «왜 다르지» 가 먼저 나온다 - 그 답을 계약에 둔다. */
+export const monthBoundaryDay = {
+  date: '2026-08-31',
+  nationalMt: purseSeineCatch.summary.nationalWeekly - purseSeineCatch.summary.nationalMonthly,
+  jointMt: purseSeineCatch.summary.jointWeekly - purseSeineCatch.summary.jointMonthly,
+  totalMt: purseSeineCatch.summary.weeklyTotal - purseSeineCatch.summary.monthlyTotal,
+} as const;
+
 export const pacificDailyReport = {
   asOf: '2026-08-19',
   source: '해양수산본부 일일 업무보고-260820',
