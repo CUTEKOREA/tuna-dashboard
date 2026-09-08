@@ -77,30 +77,30 @@ describe('fleet daily bounded intake', () => {
   it('exposes only the current public aggregate and quality counts', () => {
     expect(fleetDailyPublic._meta).toEqual({
       schemaVersion: 1,
-      reportCount: 150,
+      reportCount: 151,
       firstReportDate: '2026-01-16',
-      latestReportDate: '2026-09-07',
-      latestAsOf: '2026-09-06',
+      latestReportDate: '2026-09-08',
+      latestAsOf: '2026-09-07',
       detailSha256: expect.stringMatching(/^[a-f0-9]{64}$/),
       detailSha256Compat: [expect.stringMatching(/^[a-f0-9]{64}$/)],
     });
     expect(fleetDailyPublicLatest.pacific).toMatchObject({
-      dailyMt: 100,
-      monthlyMt: 790,
-      annualMt: 49_030.8,
+      dailyMt: 25,
+      monthlyMt: 815,
+      annualMt: 49_055.8,
     });
     expect(fleetDailyPublicLatest.atlantic).toMatchObject({
-      dailyMt: 75,
-      monthlyMt: 990,
-      annualMt: 34_450,
+      dailyMt: 50,
+      monthlyMt: 1_040,
+      annualMt: 34_500,
     });
     expect(fleetDailyPublicLatest.carrier).toEqual({
-      loadedTotalMt: 6_854.1,
-      expectedRemainingMt: 4_751.7,
+      loadedTotalMt: 7_684.1,
+      expectedRemainingMt: 3_821.7,
     });
     expect(fleetDailyPublic.quality.counts).toMatchObject({
-      reconciliationChecks: 600,
-      reconciliationCompleteChecks: 600,
+      reconciliationChecks: 604,
+      reconciliationCompleteChecks: 604,
       reconciliationUnavailableChecks: 0,
       reconciliationUnavailableDocuments: 0,
       reconciliationIssues: 14,
@@ -121,9 +121,9 @@ describe('fleet daily bounded intake', () => {
 
   it('formats signed deltas and reported port names without changing source values', () => {
     expect(fleetDailyPublicDeltas).toEqual({
-      pacificDailyMt: -55,
-      atlanticDailyMt: -40,
-      totalDailyMt: -95,
+      pacificDailyMt: -75,
+      atlanticDailyMt: -25,
+      totalDailyMt: -100,
     });
     expect(formatFleetDailyDelta(20)).toBe('+20');
     expect(formatFleetDailyDelta(-20)).toBe('-20');

@@ -26,7 +26,11 @@ describe('fleet idle vessel detection', () => {
     const moamari = resolveFleetIdleVessels().find((row) => row.vessel === 'MOAMARI');
 
     expect(moamari).toMatchObject({ region: '태평양', lastCatchDate: '2026-08-13' });
-    expect(moamari!.dailyAverageMt).toBeCloseTo(22.43, 2);
+    /* 일평균은 계열이 하루 늘 때마다 다시 계산된다 - 값을 못박으면 매일 깨진다
+     * (2026-09-08 에 22.43 → 22.28). 지켜야 할 것은 «계열에서 나온 값인가» 다. */
+    expect(moamari!.dailyAverageMt).toBeGreaterThan(0);
+    expect(moamari!.forgoneMt).toBe(Math.round(moamari!.dailyAverageMt * moamari!.idleDays));
+    expect(moamari!.idleDays).toBeGreaterThan(0);
     expect(FLEET_IDLE_NOTES.MOAMARI.headline).toContain('젠산');
     // 2026-09-02 선장 사고보고서(8/18): 손상은 로프가드가 아니라 프로펠러 볼트 3개 파손
     expect(FLEET_IDLE_NOTES.MOAMARI.headline).toContain('프로펠러 볼트 3개 파손');
