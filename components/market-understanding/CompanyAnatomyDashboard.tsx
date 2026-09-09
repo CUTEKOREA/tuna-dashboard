@@ -3216,8 +3216,8 @@ export default function CompanyAnatomyDashboard({
           icon={Globe2}
           iconColor="#4FB0A5"
           pillar="S2"
-          cardDesc="20편이 확정한 본사·생산 거점·지분·공급·명단·무역을 지구 위 네 층으로 나눠 얹는다"
-          telemetry={{ status: 'STATIC', syncDate: '2026-09', source: '기업 해부 Ⅰ~ⅩⅩ 조사노트·통합프로필' }}
+          cardDesc="스물한 편이 확정한 본사·생산 거점·지분·공급·명단·무역을 지구 위 네 층으로 나눠 얹는다"
+          telemetry={{ status: 'STATIC', syncDate: '2026-09', source: '기업 해부 Ⅰ~ⅩⅩⅠ 조사노트·통합프로필' }}
           customBody={<TunaPowerGlobe />}
           takeaway={{
             situation:
@@ -3228,7 +3228,7 @@ export default function CompanyAnatomyDashboard({
               '「잡는 곳」 층에서 우리 자리를 먼저 보고, 「우리가 닿은 곳」 층의 연도를 넘겨 '
               + '공급선 명단 척수가 어떻게 움직였는지 확인한다. 선을 클릭하면 그 관계로 '
               + '하면 안 되는 말이 함께 뜬다.',
-            source: '기업 해부 Ⅰ~ⅩⅩ · 좌표는 도시 중심 근사치',
+            source: '기업 해부 Ⅰ~ⅩⅩⅠ · 좌표는 도시 중심 근사치',
           }}
         />
       </div>
