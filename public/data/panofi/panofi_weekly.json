@@ -1,19 +1,19 @@
 {
  "meta": {
   "generatedFrom": "/Users/idong-geon/Library/CloudStorage/GoogleDrive-cutekorea@gmail.com/내 드라이브/신라그룹/11_Panofi_Cosmo_GGL /11. PANOFI/Panofi/PANOFI 주간동향",
-  "weekCount": 37,
+  "weekCount": 38,
   "rangeStart": "2025-12-23",
-  "rangeEnd": "2026-09-01",
+  "rangeEnd": "2026-09-08",
   "coverage": {
-   "prices.cosmoTema": 34,
-   "prices.scodiAbidjan": 37,
-   "fx.cediPerUsd": 37,
-   "dailyProcessing.COSMO": 36,
-   "receivables.totalUsd": 37,
-   "fuel(형식 온전)": 37,
-   "fleetStatus(관측됨)": 37,
-   "senegalFleet": 37,
-   "fishingGround.coastalMax": 37
+   "prices.cosmoTema": 35,
+   "prices.scodiAbidjan": 38,
+   "fx.cediPerUsd": 38,
+   "dailyProcessing.COSMO": 37,
+   "receivables.totalUsd": 38,
+   "fuel(형식 온전)": 38,
+   "fleetStatus(관측됨)": 38,
+   "senegalFleet": 38,
+   "fishingGround.coastalMax": 38
   },
   "vessels": {
    "P/QUEEN": "P/QUE",
@@ -76,8 +76,12 @@
    ],
    "prices": {
     "pfcTema": 1380.0,
+    "pfcTemaMonth": "12월",
     "cosmoTema": 1380.0,
+    "cosmoTemaMonth": "12월",
+    "temaUnderNegotiation": false,
     "scodiAbidjan": 1413.0,
+    "scodiAbidjanMonth": null,
     "marketTemaCedi": 12500.0,
     "marketTemaUsd": 1094.0,
     "marketAbidjanCfa": 600000.0,
@@ -103,13 +107,13 @@
      },
      {
       "buyer": "ETS BADARA",
-      "cfa": null,
-      "usd": null
+      "cfa": 1611350475.0,
+      "usd": 2802349.0
      },
      {
       "buyer": "SDMG",
-      "cfa": null,
-      "usd": null
+      "cfa": 1488888369.0,
+      "usd": 2589371.0
      }
     ],
     "totalCfa": 4601980613.0,
@@ -174,8 +178,12 @@
    ],
    "prices": {
     "pfcTema": 1380.0,
+    "pfcTemaMonth": "12월",
     "cosmoTema": 1380.0,
+    "cosmoTemaMonth": "12월",
+    "temaUnderNegotiation": false,
     "scodiAbidjan": 1411.0,
+    "scodiAbidjanMonth": null,
     "marketTemaCedi": 12500.0,
     "marketTemaUsd": 1173.0,
     "marketAbidjanCfa": 600000.0,
@@ -201,13 +209,13 @@
      },
      {
       "buyer": "ETS BADARA",
-      "cfa": null,
-      "usd": null
+      "cfa": 1343782075.0,
+      "usd": 2337012.0
      },
      {
       "buyer": "SDMG",
-      "cfa": null,
-      "usd": null
+      "cfa": 1314729369.0,
+      "usd": 2286486.0
      }
     ],
     "totalCfa": 4160253213.0,
@@ -304,8 +312,12 @@
    ],
    "prices": {
     "pfcTema": 1380.0,
+    "pfcTemaMonth": "1월",
     "cosmoTema": 1380.0,
+    "cosmoTemaMonth": "1월",
+    "temaUnderNegotiation": false,
     "scodiAbidjan": 1402.0,
+    "scodiAbidjanMonth": null,
     "marketTemaCedi": 12500.0,
     "marketTemaUsd": 1179.0,
     "marketAbidjanCfa": 600000.0,
@@ -331,13 +343,13 @@
      },
      {
       "buyer": "ETS BADARA",
-      "cfa": null,
-      "usd": null
+      "cfa": 1243782075.0,
+      "usd": 2182074.0
      },
      {
       "buyer": "SDMG",
-      "cfa": null,
-      "usd": null
+      "cfa": 1114729369.0,
+      "usd": 1955666.0
      }
     ],
     "totalCfa": 3860253213.0,
@@ -446,8 +458,12 @@
    ],
    "prices": {
     "pfcTema": 1380.0,
+    "pfcTemaMonth": "1월",
     "cosmoTema": 1380.0,
+    "cosmoTemaMonth": "1월",
+    "temaUnderNegotiation": false,
     "scodiAbidjan": 1399.0,
+    "scodiAbidjanMonth": null,
     "marketTemaCedi": 12500.0,
     "marketTemaUsd": 1167.0,
     "marketAbidjanCfa": 600000.0,
@@ -473,13 +489,13 @@
      },
      {
       "buyer": "ETS BADARA",
-      "cfa": null,
-      "usd": null
+      "cfa": 1193782075.0,
+      "usd": 2076143.0
      },
      {
       "buyer": "SDMG",
-      "cfa": null,
-      "usd": null
+      "cfa": 1114729369.0,
+      "usd": 1938660.0
      }
     ],
     "totalCfa": 3810253213.0,
@@ -552,8 +568,12 @@
    ],
    "prices": {
     "pfcTema": 1380.0,
+    "pfcTemaMonth": "1월",
     "cosmoTema": 1380.0,
+    "cosmoTemaMonth": "1월",
+    "temaUnderNegotiation": false,
     "scodiAbidjan": 1407.0,
+    "scodiAbidjanMonth": null,
     "marketTemaCedi": 12500.0,
     "marketTemaUsd": 1153.0,
     "marketAbidjanCfa": 600000.0,
@@ -579,13 +599,13 @@
      },
      {
       "buyer": "ETS BADARA",
-      "cfa": null,
-      "usd": null
+      "cfa": 1143782075.0,
+      "usd": 1989186.0
      },
      {
       "buyer": "SDMG",
-      "cfa": null,
-      "usd": null
+      "cfa": 1064729369.0,
+      "usd": 1851703.0
      }
     ],
     "totalCfa": 3710253213.0,
@@ -650,8 +670,12 @@
    ],
    "prices": {
     "pfcTema": 1380.0,
+    "pfcTemaMonth": "1월",
     "cosmoTema": 1380.0,
+    "cosmoTemaMonth": "1월",
+    "temaUnderNegotiation": false,
     "scodiAbidjan": 1410.0,
+    "scodiAbidjanMonth": null,
     "marketTemaCedi": 12500.0,
     "marketTemaUsd": 1146.0,
     "marketAbidjanCfa": 600000.0,
@@ -677,13 +701,13 @@
      },
      {
       "buyer": "ETS BADARA",
-      "cfa": null,
-      "usd": null
+      "cfa": 1722606599.0,
+      "usd": 3022116.0
      },
      {
       "buyer": "SDMG",
-      "cfa": null,
-      "usd": null
+      "cfa": 1285241161.0,
+      "usd": 2254809.0
      }
     ],
     "totalCfa": 3961845035.0,
@@ -756,8 +780,12 @@
    ],
    "prices": {
     "pfcTema": 1380.0,
+    "pfcTemaMonth": "2월",
     "cosmoTema": 1380.0,
+    "cosmoTemaMonth": "2월",
+    "temaUnderNegotiation": false,
     "scodiAbidjan": 1415.0,
+    "scodiAbidjanMonth": null,
     "marketTemaCedi": 12500.0,
     "marketTemaUsd": 1140.0,
     "marketAbidjanCfa": 600000.0,
@@ -783,13 +811,13 @@
      },
      {
       "buyer": "ETS BADARA",
-      "cfa": null,
-      "usd": null
+      "cfa": 1722606599.0,
+      "usd": 3022116.0
      },
      {
       "buyer": "SDMG",
-      "cfa": null,
-      "usd": null
+      "cfa": 1285241161.0,
+      "usd": 2254809.0
      }
     ],
     "totalCfa": 3961845035.0,
@@ -878,8 +906,12 @@
    ],
    "prices": {
     "pfcTema": 1400.0,
+    "pfcTemaMonth": "2월",
     "cosmoTema": 1400.0,
+    "cosmoTemaMonth": "2월",
+    "temaUnderNegotiation": false,
     "scodiAbidjan": 1428.0,
+    "scodiAbidjanMonth": null,
     "marketTemaCedi": 12500.0,
     "marketTemaUsd": 1137.0,
     "marketAbidjanCfa": 600000.0,
@@ -905,13 +937,13 @@
      },
      {
       "buyer": "ETS BADARA",
-      "cfa": null,
-      "usd": null
+      "cfa": 1409949028.0,
+      "usd": 2486682.0
      },
      {
       "buyer": "SDMG",
-      "cfa": null,
-      "usd": null
+      "cfa": 1285241161.0,
+      "usd": 2266739.0
      }
     ],
     "totalCfa": 3649187464.0,
@@ -1000,8 +1032,12 @@
    ],
    "prices": {
     "pfcTema": 1400.0,
+    "pfcTemaMonth": "2월",
     "cosmoTema": 1400.0,
+    "cosmoTemaMonth": "2월",
+    "temaUnderNegotiation": false,
     "scodiAbidjan": 1420.0,
+    "scodiAbidjanMonth": null,
     "marketTemaCedi": 12500.0,
     "marketTemaUsd": 1137.0,
     "marketAbidjanCfa": 600000.0,
@@ -1027,13 +1063,13 @@
      },
      {
       "buyer": "ETS BADARA",
-      "cfa": null,
-      "usd": null
+      "cfa": 1409949028.0,
+      "usd": 2495485.0
      },
      {
       "buyer": "SDMG",
-      "cfa": null,
-      "usd": null
+      "cfa": 1085241161.0,
+      "usd": 1920780.0
      }
     ],
     "totalCfa": 3449187464.0,
@@ -1122,8 +1158,12 @@
    ],
    "prices": {
     "pfcTema": 1400.0,
+    "pfcTemaMonth": "2월",
     "cosmoTema": 1400.0,
+    "cosmoTemaMonth": "2월",
+    "temaUnderNegotiation": false,
     "scodiAbidjan": 1413.0,
+    "scodiAbidjanMonth": null,
     "marketTemaCedi": 12500.0,
     "marketTemaUsd": 1146.0,
     "marketAbidjanCfa": 600000.0,
@@ -1149,13 +1189,13 @@
      },
      {
       "buyer": "ETS BADARA",
-      "cfa": null,
-      "usd": null
+      "cfa": 1409949028.0,
+      "usd": 2495485.0
      },
      {
       "buyer": "SDMG",
-      "cfa": null,
-      "usd": null
+      "cfa": 893990979.0,
+      "usd": 1582284.0
      }
     ],
     "totalCfa": 3257937282.0,
@@ -1206,8 +1246,12 @@
    ],
    "prices": {
     "pfcTema": 1400.0,
+    "pfcTemaMonth": "2월",
     "cosmoTema": 1400.0,
+    "cosmoTemaMonth": "2월",
+    "temaUnderNegotiation": true,
     "scodiAbidjan": 1388.0,
+    "scodiAbidjanMonth": null,
     "marketTemaCedi": 12500.0,
     "marketTemaUsd": 1160.0,
     "marketAbidjanCfa": 600000.0,
@@ -1233,13 +1277,13 @@
      },
      {
       "buyer": "ETS BADARA",
-      "cfa": null,
-      "usd": null
+      "cfa": 1220347134.0,
+      "usd": 2140959.0
      },
      {
       "buyer": "SDMG",
-      "cfa": null,
-      "usd": null
+      "cfa": 893990979.0,
+      "usd": 1568405.0
      }
     ],
     "totalCfa": 3068335388.0,
@@ -1306,8 +1350,12 @@
    ],
    "prices": {
     "pfcTema": 1400.0,
+    "pfcTemaMonth": "3월",
     "cosmoTema": 1500.0,
+    "cosmoTemaMonth": "3월",
+    "temaUnderNegotiation": false,
     "scodiAbidjan": 1397.0,
+    "scodiAbidjanMonth": null,
     "marketTemaCedi": 13500.0,
     "marketTemaUsd": 1252.0,
     "marketAbidjanCfa": 600000.0,
@@ -1333,13 +1381,13 @@
      },
      {
       "buyer": "ETS BADARA",
-      "cfa": null,
-      "usd": null
+      "cfa": 1220347134.0,
+      "usd": 2140959.0
      },
      {
       "buyer": "SDMG",
-      "cfa": null,
-      "usd": null
+      "cfa": 893990979.0,
+      "usd": 1568405.0
      }
     ],
     "totalCfa": 3068335388.0,
@@ -1453,8 +1501,12 @@
    ],
    "prices": {
     "pfcTema": 1400.0,
+    "pfcTemaMonth": "3월",
     "cosmoTema": 1500.0,
+    "cosmoTemaMonth": "3월",
+    "temaUnderNegotiation": false,
     "scodiAbidjan": 1420.0,
+    "scodiAbidjanMonth": null,
     "marketTemaCedi": 13500.0,
     "marketTemaUsd": 1241.0,
     "marketAbidjanCfa": 600000.0,
@@ -1480,13 +1532,13 @@
      },
      {
       "buyer": "ETS BADARA",
-      "cfa": null,
-      "usd": null
+      "cfa": 1220347134.0,
+      "usd": 2140959.0
      },
      {
       "buyer": "SDMG",
-      "cfa": null,
-      "usd": null
+      "cfa": 893990979.0,
+      "usd": 1568405.0
      }
     ],
     "totalCfa": 3068335388.0,
@@ -1605,8 +1657,12 @@
    ],
    "prices": {
     "pfcTema": 1400.0,
+    "pfcTemaMonth": "3월",
     "cosmoTema": 1500.0,
+    "cosmoTemaMonth": "3월",
+    "temaUnderNegotiation": false,
     "scodiAbidjan": 1477.0,
+    "scodiAbidjanMonth": null,
     "marketTemaCedi": 13500.0,
     "marketTemaUsd": 1234.0,
     "marketAbidjanCfa": 600000.0,
@@ -1632,13 +1688,13 @@
      },
      {
       "buyer": "ETS BADARA",
-      "cfa": null,
-      "usd": null
+      "cfa": 1220347134.0,
+      "usd": 2140959.0
      },
      {
       "buyer": "SDMG",
-      "cfa": null,
-      "usd": null
+      "cfa": 693931067.0,
+      "usd": 1217422.0
      }
     ],
     "totalCfa": 2868275476.0,
@@ -1739,7 +1795,7 @@
      "note": "메인토핑 윈치 고장으로 수리중"
     },
     {
-     "fleet": "블루",
+     "fleet": "그랑블루",
      "vessel": "SEA BREEZE",
      "arrive": "3/15",
      "depart": "미정",
@@ -1747,7 +1803,7 @@
      "note": "체항 수리중"
     },
     {
-     "fleet": "블루",
+     "fleet": "그랑블루",
      "vessel": "SEA DEFENDER",
      "arrive": "3/16",
      "depart": "미정",
@@ -1755,7 +1811,7 @@
      "note": "하역 및 정비 중"
     },
     {
-     "fleet": "블루",
+     "fleet": "그랑블루",
      "vessel": "SEA FRONTIER",
      "arrive": "3/25",
      "depart": "미정",
@@ -1765,8 +1821,12 @@
    ],
    "prices": {
     "pfcTema": 1400.0,
+    "pfcTemaMonth": "3월",
     "cosmoTema": 1500.0,
+    "cosmoTemaMonth": "3월",
+    "temaUnderNegotiation": false,
     "scodiAbidjan": 1477.0,
+    "scodiAbidjanMonth": null,
     "marketTemaCedi": 13500.0,
     "marketTemaUsd": 1228.0,
     "marketAbidjanCfa": 600000.0,
@@ -1792,13 +1852,13 @@
      },
      {
       "buyer": "ETS BADARA",
-      "cfa": null,
-      "usd": null
+      "cfa": 1220347134.0,
+      "usd": 2140959.0
      },
      {
       "buyer": "SDMG",
-      "cfa": null,
-      "usd": null
+      "cfa": 693931067.0,
+      "usd": 1217422.0
      }
     ],
     "totalCfa": 2868275476.0,
@@ -1899,7 +1959,7 @@
      "note": "체항 수리중"
     },
     {
-     "fleet": "블루",
+     "fleet": "그랑블루",
      "vessel": "SEA BREEZE",
      "arrive": "3/15",
      "depart": "미정",
@@ -1907,7 +1967,7 @@
      "note": "체항 수리중, 강광진 선장 휴가"
     },
     {
-     "fleet": "블루",
+     "fleet": "그랑블루",
      "vessel": "SEA DEFENDER",
      "arrive": "3/16",
      "depart": "미정",
@@ -1915,7 +1975,7 @@
      "note": "체항 수리중"
     },
     {
-     "fleet": "블루",
+     "fleet": "그랑블루",
      "vessel": "SEA FRONTIER",
      "arrive": "3/25",
      "depart": "미정",
@@ -1925,8 +1985,12 @@
    ],
    "prices": {
     "pfcTema": 1400.0,
+    "pfcTemaMonth": "3월",
     "cosmoTema": 1500.0,
+    "cosmoTemaMonth": "3월",
+    "temaUnderNegotiation": false,
     "scodiAbidjan": 1477.0,
+    "scodiAbidjanMonth": null,
     "marketTemaCedi": 13500.0,
     "marketTemaUsd": 1227.0,
     "marketAbidjanCfa": 600000.0,
@@ -1952,13 +2016,13 @@
      },
      {
       "buyer": "ETS BADARA",
-      "cfa": null,
-      "usd": null
+      "cfa": 1220347134.0,
+      "usd": 2140959.0
      },
      {
       "buyer": "SDMG",
-      "cfa": null,
-      "usd": null
+      "cfa": 693931067.0,
+      "usd": 1217422.0
      }
     ],
     "totalCfa": 2868275476.0,
@@ -2075,7 +2139,7 @@
      "note": "체항 수리중"
     },
     {
-     "fleet": "블루",
+     "fleet": "그랑블루",
      "vessel": "SEA BREEZE",
      "arrive": "3/15",
      "depart": "미정",
@@ -2083,7 +2147,7 @@
      "note": "체항 수리중, 강광진 선장 휴가"
     },
     {
-     "fleet": "블루",
+     "fleet": "그랑블루",
      "vessel": "SEA DEFENDER",
      "arrive": "3/16",
      "depart": "미정",
@@ -2091,7 +2155,7 @@
      "note": "체항 수리중"
     },
     {
-     "fleet": "블루",
+     "fleet": "그랑블루",
      "vessel": "SEA FRONTIER",
      "arrive": "3/25",
      "depart": "미정",
@@ -2099,7 +2163,7 @@
      "note": "체항 수리중, 현병갑 선장 휴가"
     },
     {
-     "fleet": "블루",
+     "fleet": "그랑블루",
      "vessel": "PONT SAINT LOUIS",
      "arrive": "4/12",
      "depart": "미정",
@@ -2109,8 +2173,12 @@
    ],
    "prices": {
     "pfcTema": 1400.0,
+    "pfcTemaMonth": "3월",
     "cosmoTema": 1500.0,
+    "cosmoTemaMonth": "3월",
+    "temaUnderNegotiation": false,
     "scodiAbidjan": 1477.0,
+    "scodiAbidjanMonth": null,
     "marketTemaCedi": 13500.0,
     "marketTemaUsd": 1223.0,
     "marketAbidjanCfa": 600000.0,
@@ -2136,13 +2204,13 @@
      },
      {
       "buyer": "ETS BADARA",
-      "cfa": null,
-      "usd": null
+      "cfa": 1165617134.0,
+      "usd": 2037792.0
      },
      {
       "buyer": "SDMG",
-      "cfa": null,
-      "usd": null
+      "cfa": 449611729.0,
+      "usd": 786034.0
      }
     ],
     "totalCfa": 2569226138.0,
@@ -2259,7 +2327,7 @@
      "note": "체항 수리중"
     },
     {
-     "fleet": "블루",
+     "fleet": "그랑블루",
      "vessel": "SEA BREEZE",
      "arrive": "3/15",
      "depart": "미정",
@@ -2267,7 +2335,7 @@
      "note": "체항 수리중, 강광진 선장 휴가"
     },
     {
-     "fleet": "블루",
+     "fleet": "그랑블루",
      "vessel": "SEA DEFENDER",
      "arrive": "3/16",
      "depart": "미정",
@@ -2275,7 +2343,7 @@
      "note": "체항 수리중"
     },
     {
-     "fleet": "블루",
+     "fleet": "그랑블루",
      "vessel": "SEA FRONTIER",
      "arrive": "3/25",
      "depart": "미정",
@@ -2283,7 +2351,7 @@
      "note": "체항 수리중, 현병갑 선장 휴가"
     },
     {
-     "fleet": "블루",
+     "fleet": "그랑블루",
      "vessel": "PONT SAINT LOUIS",
      "arrive": "4/12",
      "depart": "미정",
@@ -2293,8 +2361,12 @@
    ],
    "prices": {
     "pfcTema": 1400.0,
+    "pfcTemaMonth": "3월",
     "cosmoTema": 1500.0,
+    "cosmoTemaMonth": "3월",
+    "temaUnderNegotiation": false,
     "scodiAbidjan": 1477.0,
+    "scodiAbidjanMonth": null,
     "marketTemaCedi": 13500.0,
     "marketTemaUsd": 1221.0,
     "marketAbidjanCfa": 600000.0,
@@ -2320,13 +2392,13 @@
      },
      {
       "buyer": "ETS BADARA",
-      "cfa": null,
-      "usd": null
+      "cfa": 1080617134.0,
+      "usd": 1895819.0
      },
      {
       "buyer": "SDMG",
-      "cfa": null,
-      "usd": null
+      "cfa": 213061729.0,
+      "usd": 373792.0
      }
     ],
     "totalCfa": 2247676138.0,
@@ -2443,7 +2515,7 @@
      "note": "체항 수리중"
     },
     {
-     "fleet": "블루",
+     "fleet": "그랑블루",
      "vessel": "SEA BREEZE",
      "arrive": "3/15",
      "depart": "4/29",
@@ -2451,7 +2523,7 @@
      "note": "체항 수리중"
     },
     {
-     "fleet": "블루",
+     "fleet": "그랑블루",
      "vessel": "SEA DEFENDER",
      "arrive": "3/16",
      "depart": "4/29",
@@ -2459,7 +2531,7 @@
      "note": "체항 수리중"
     },
     {
-     "fleet": "블루",
+     "fleet": "그랑블루",
      "vessel": "SEA FRONTIER",
      "arrive": "3/25",
      "depart": "4/29",
@@ -2467,7 +2539,7 @@
      "note": "체항 수리중"
     },
     {
-     "fleet": "블루",
+     "fleet": "그랑블루",
      "vessel": "PONT SAINT LOUIS",
      "arrive": "4/12",
      "depart": "4/29",
@@ -2477,8 +2549,12 @@
    ],
    "prices": {
     "pfcTema": null,
+    "pfcTemaMonth": null,
     "cosmoTema": 1500.0,
+    "cosmoTemaMonth": "3월",
+    "temaUnderNegotiation": false,
     "scodiAbidjan": 1405.0,
+    "scodiAbidjanMonth": null,
     "marketTemaCedi": 13500.0,
     "marketTemaUsd": 1215.0,
     "marketAbidjanCfa": 600000.0,
@@ -2504,13 +2580,13 @@
      },
      {
       "buyer": "ETS BADARA",
-      "cfa": null,
-      "usd": null
+      "cfa": 1080617134.0,
+      "usd": 1895819.0
      },
      {
       "buyer": "SDMG",
-      "cfa": null,
-      "usd": null
+      "cfa": 213061729.0,
+      "usd": 373792.0
      }
     ],
     "totalCfa": 2247676138.0,
@@ -2591,7 +2667,7 @@
      "note": "출항 완료"
     },
     {
-     "fleet": "블루",
+     "fleet": "그랑블루",
      "vessel": "SEA BREEZE",
      "arrive": "3/15",
      "depart": "4/29",
@@ -2599,7 +2675,7 @@
      "note": "체항 수리중"
     },
     {
-     "fleet": "블루",
+     "fleet": "그랑블루",
      "vessel": "SEA DEFENDER",
      "arrive": "3/16",
      "depart": "4/29",
@@ -2607,7 +2683,7 @@
      "note": "출항 완료"
     },
     {
-     "fleet": "블루",
+     "fleet": "그랑블루",
      "vessel": "SEA FRONTIER",
      "arrive": "3/25",
      "depart": "5/2",
@@ -2615,7 +2691,7 @@
      "note": "출항 완료"
     },
     {
-     "fleet": "블루",
+     "fleet": "그랑블루",
      "vessel": "PONT SAINT LOUIS",
      "arrive": "4/12",
      "depart": "4/30",
@@ -2623,7 +2699,7 @@
      "note": "출항 완료"
     },
     {
-     "fleet": "EU 선단",
+     "fleet": "EU",
      "vessel": "PLAYA DE LAGA",
      "arrive": "5/3",
      "depart": "미정",
@@ -2631,7 +2707,7 @@
      "note": "하역 중"
     },
     {
-     "fleet": "EU 선단",
+     "fleet": "EU",
      "vessel": "MONTEFRISA NUEVE",
      "arrive": "5/3",
      "depart": "미정",
@@ -2641,8 +2717,12 @@
    ],
    "prices": {
     "pfcTema": null,
+    "pfcTemaMonth": null,
     "cosmoTema": null,
+    "cosmoTemaMonth": null,
+    "temaUnderNegotiation": false,
     "scodiAbidjan": 1405.0,
+    "scodiAbidjanMonth": "3월",
     "marketTemaCedi": 13500.0,
     "marketTemaUsd": 1203.0,
     "marketAbidjanCfa": 600000.0,
@@ -2668,13 +2748,13 @@
      },
      {
       "buyer": "ETS BADARA",
-      "cfa": null,
-      "usd": null
+      "cfa": 1080617134.0,
+      "usd": 1879334.0
      },
      {
       "buyer": "SDMG",
-      "cfa": null,
-      "usd": null
+      "cfa": 204561729.0,
+      "usd": 355759.0
      }
     ],
     "totalCfa": 2239176138.0,
@@ -2731,7 +2811,7 @@
      "note": "하역 중"
     },
     {
-     "fleet": "블루",
+     "fleet": "그랑블루",
      "vessel": "SEA BREEZE",
      "arrive": "3/15",
      "depart": "5/12",
@@ -2739,7 +2819,7 @@
      "note": "수리 후 출항 완료"
     },
     {
-     "fleet": "블루",
+     "fleet": "그랑블루",
      "vessel": "PONT SAINT LOUIS",
      "arrive": "5/9",
      "depart": "미정",
@@ -2749,8 +2829,12 @@
    ],
    "prices": {
     "pfcTema": null,
+    "pfcTemaMonth": null,
     "cosmoTema": null,
+    "cosmoTemaMonth": null,
+    "temaUnderNegotiation": false,
     "scodiAbidjan": 1408.0,
+    "scodiAbidjanMonth": "3월",
     "marketTemaCedi": 13500.0,
     "marketTemaUsd": 1194.0,
     "marketAbidjanCfa": 600000.0,
@@ -2776,13 +2860,13 @@
      },
      {
       "buyer": "ETS BADARA",
-      "cfa": null,
-      "usd": null
+      "cfa": 891470634.0,
+      "usd": 1563983.0
      },
      {
       "buyer": "SDMG",
-      "cfa": null,
-      "usd": null
+      "cfa": 16543521.0,
+      "usd": 29023.0
      }
     ],
     "totalCfa": 1828924388.0,
@@ -2855,7 +2939,7 @@
      "note": "하역 중"
     },
     {
-     "fleet": "블루",
+     "fleet": "그랑블루",
      "vessel": "PONT SAINT LOUIS",
      "arrive": "5/9",
      "depart": "5/16",
@@ -2863,7 +2947,7 @@
      "note": "출항 완료"
     },
     {
-     "fleet": "블루",
+     "fleet": "그랑블루",
      "vessel": "SEA DEFENDER",
      "arrive": "5/13",
      "depart": "미정",
@@ -2871,18 +2955,30 @@
      "note": "하역 중"
     },
     {
-     "fleet": "블루",
+     "fleet": "그랑블루",
      "vessel": "SEA FRONTIER",
      "arrive": "5/18",
      "depart": "미정",
      "tons": 820.0,
      "note": "하역 중"
+    },
+    {
+     "fleet": "EU",
+     "vessel": "ALBONIGA",
+     "arrive": "5/17",
+     "depart": "미정",
+     "tons": 500.0,
+     "note": "하역 중"
     }
    ],
    "prices": {
     "pfcTema": null,
+    "pfcTemaMonth": null,
     "cosmoTema": null,
+    "cosmoTemaMonth": null,
+    "temaUnderNegotiation": false,
     "scodiAbidjan": 1393.0,
+    "scodiAbidjanMonth": "3월",
     "marketTemaCedi": 13500.0,
     "marketTemaUsd": 1179.0,
     "marketAbidjanCfa": 600000.0,
@@ -2908,13 +3004,13 @@
      },
      {
       "buyer": "ETS BADARA",
-      "cfa": null,
-      "usd": null
+      "cfa": 888671234.0,
+      "usd": 1545515.0
      },
      {
       "buyer": "SDMG",
-      "cfa": null,
-      "usd": null
+      "cfa": 15526670.0,
+      "usd": 27002.0
      }
     ],
     "totalCfa": 1858195179.0,
@@ -2979,18 +3075,30 @@
      "note": "출항 완료"
     },
     {
-     "fleet": "블루",
+     "fleet": "그랑블루",
      "vessel": "PONT SAINT LOUIS",
      "arrive": "5/26",
      "depart": "미정",
      "tons": 1200.0,
      "note": "하역 대기중"
+    },
+    {
+     "fleet": "EU",
+     "vessel": "ALBONIGA",
+     "arrive": "5/17",
+     "depart": "5/21",
+     "tons": 500.0,
+     "note": "출항 완료"
     }
    ],
    "prices": {
     "pfcTema": 1570.0,
+    "pfcTemaMonth": "5월",
     "cosmoTema": 1650.0,
+    "cosmoTemaMonth": "5월",
+    "temaUnderNegotiation": false,
     "scodiAbidjan": 1697.0,
+    "scodiAbidjanMonth": "5월",
     "marketTemaCedi": 15000.0,
     "marketTemaUsd": 1290.0,
     "marketAbidjanCfa": 600000.0,
@@ -3016,13 +3124,13 @@
      },
      {
       "buyer": "ETS BADARA",
-      "cfa": null,
-      "usd": null
+      "cfa": 888671234.0,
+      "usd": 1559072.0
      },
      {
       "buyer": "SDMG",
-      "cfa": null,
-      "usd": null
+      "cfa": 15526670.0,
+      "usd": 27239.0
      }
     ],
     "totalCfa": 1858195179.0,
@@ -3103,7 +3211,7 @@
      "note": "FAD 자재, 유류수급 후 출항"
     },
     {
-     "fleet": "블루",
+     "fleet": "그랑블루",
      "vessel": "PONT SAINT LOUIS",
      "arrive": "5/26",
      "depart": "미정",
@@ -3111,7 +3219,7 @@
      "note": "하역 중"
     },
     {
-     "fleet": "블루",
+     "fleet": "그랑블루",
      "vessel": "SEA BREEZE",
      "arrive": "5/28",
      "depart": "미정",
@@ -3119,18 +3227,30 @@
      "note": "하역 중"
     },
     {
-     "fleet": "블루",
+     "fleet": "그랑블루",
      "vessel": "SEA DEFENDER",
      "arrive": "5/30",
      "depart": "미정",
      "tons": 910.0,
      "note": "하역 대기중"
+    },
+    {
+     "fleet": "EU",
+     "vessel": "EGALUZE",
+     "arrive": "5/28",
+     "depart": "미정",
+     "tons": null,
+     "note": "스페인 선원 사망으로 입항"
     }
    ],
    "prices": {
     "pfcTema": 1570.0,
+    "pfcTemaMonth": "6월",
     "cosmoTema": 1650.0,
+    "cosmoTemaMonth": "6월",
+    "temaUnderNegotiation": false,
     "scodiAbidjan": 1699.0,
+    "scodiAbidjanMonth": "6월",
     "marketTemaCedi": 15000.0,
     "marketTemaUsd": 1276.0,
     "marketAbidjanCfa": 600000.0,
@@ -3156,13 +3276,13 @@
      },
      {
       "buyer": "ETS BADARA",
-      "cfa": null,
-      "usd": null
+      "cfa": 888671234.0,
+      "usd": 1559072.0
      },
      {
       "buyer": "SDMG",
-      "cfa": null,
-      "usd": null
+      "cfa": 15526670.0,
+      "usd": 27239.0
      }
     ],
     "totalCfa": 1858195179.0,
@@ -3238,7 +3358,7 @@
      "note": "FAD 자재 선적중"
     },
     {
-     "fleet": "블루",
+     "fleet": "그랑블루",
      "vessel": "PONT SAINT LOUIS",
      "arrive": "5/26",
      "depart": "6/7",
@@ -3246,7 +3366,7 @@
      "note": "출항 완료"
     },
     {
-     "fleet": "블루",
+     "fleet": "그랑블루",
      "vessel": "SEA BREEZE",
      "arrive": "5/28",
      "depart": "미정",
@@ -3254,7 +3374,7 @@
      "note": "하역 종료, 출항 대기중"
     },
     {
-     "fleet": "블루",
+     "fleet": "그랑블루",
      "vessel": "SEA DEFENDER",
      "arrive": "5/30",
      "depart": "미정",
@@ -3262,7 +3382,7 @@
      "note": "하역 대기중"
     },
     {
-     "fleet": "블루",
+     "fleet": "그랑블루",
      "vessel": "SEA FRONTIER",
      "arrive": "6/2",
      "depart": "미정",
@@ -3270,7 +3390,15 @@
      "note": "하역 중"
     },
     {
-     "fleet": "블루",
+     "fleet": "EU",
+     "vessel": "EGALUZE",
+     "arrive": "5/28",
+     "depart": "미정",
+     "tons": null,
+     "note": "스페인 선원 사망으로 입항"
+    },
+    {
+     "fleet": "EU",
      "vessel": "ALBACORA QUINCE",
      "arrive": "6/4",
      "depart": "미정",
@@ -3280,8 +3408,12 @@
    ],
    "prices": {
     "pfcTema": 1570.0,
+    "pfcTemaMonth": "6월",
     "cosmoTema": 1650.0,
+    "cosmoTemaMonth": "6월",
+    "temaUnderNegotiation": false,
     "scodiAbidjan": 1689.0,
+    "scodiAbidjanMonth": "6월",
     "marketTemaCedi": 15000.0,
     "marketTemaUsd": 1266.0,
     "marketAbidjanCfa": 800000.0,
@@ -3307,13 +3439,13 @@
      },
      {
       "buyer": "ETS BADARA",
-      "cfa": null,
-      "usd": null
+      "cfa": 888671234.0,
+      "usd": 1559072.0
      },
      {
       "buyer": "SDMG",
-      "cfa": null,
-      "usd": null
+      "cfa": 15526670.0,
+      "usd": 27239.0
      }
     ],
     "totalCfa": 1858195179.0,
@@ -3384,7 +3516,7 @@
      "note": "하역 중"
     },
     {
-     "fleet": "블루",
+     "fleet": "그랑블루",
      "vessel": "SEA DEFENDER",
      "arrive": "5/30",
      "depart": "6/13",
@@ -3392,7 +3524,7 @@
      "note": "출항 완료"
     },
     {
-     "fleet": "블루",
+     "fleet": "그랑블루",
      "vessel": "SEA FRONTIER",
      "arrive": "6/2",
      "depart": "6/11",
@@ -3400,7 +3532,15 @@
      "note": "출항 완료"
     },
     {
-     "fleet": "블루",
+     "fleet": "EU",
+     "vessel": "ALBONIGA",
+     "arrive": "6/14",
+     "depart": "미정",
+     "tons": 450.0,
+     "note": "하역 중"
+    },
+    {
+     "fleet": "EU",
      "vessel": "ALBACORA QUINCE",
      "arrive": "6/4",
      "depart": "6/12",
@@ -3410,8 +3550,12 @@
    ],
    "prices": {
     "pfcTema": 1570.0,
+    "pfcTemaMonth": "6월",
     "cosmoTema": 1650.0,
+    "cosmoTemaMonth": "6월",
+    "temaUnderNegotiation": false,
     "scodiAbidjan": 1692.0,
+    "scodiAbidjanMonth": "6월",
     "marketTemaCedi": 15000.0,
     "marketTemaUsd": 1351.0,
     "marketAbidjanCfa": 800000.0,
@@ -3437,13 +3581,13 @@
      },
      {
       "buyer": "ETS BADARA",
-      "cfa": null,
-      "usd": null
+      "cfa": 888671234.0,
+      "usd": 1559072.0
      },
      {
       "buyer": "SDMG",
-      "cfa": null,
-      "usd": null
+      "cfa": 15526670.0,
+      "usd": 27239.0
      }
     ],
     "totalCfa": 1858195179.0,
@@ -3504,12 +3648,24 @@
      "depart": "미정",
      "tons": 710.0,
      "note": "하역 대기 중"
+    },
+    {
+     "fleet": "EU",
+     "vessel": "ALBONIGA",
+     "arrive": "6/14",
+     "depart": "6/17",
+     "tons": 450.0,
+     "note": "출항"
     }
    ],
    "prices": {
     "pfcTema": 1570.0,
+    "pfcTemaMonth": "6월",
     "cosmoTema": 1650.0,
+    "cosmoTemaMonth": "6월",
+    "temaUnderNegotiation": false,
     "scodiAbidjan": 1663.0,
+    "scodiAbidjanMonth": "6월",
     "marketTemaCedi": 15000.0,
     "marketTemaUsd": 1339.0,
     "marketAbidjanCfa": 800000.0,
@@ -3535,13 +3691,13 @@
      },
      {
       "buyer": "ETS BADARA",
-      "cfa": null,
-      "usd": null
+      "cfa": 888671234.0,
+      "usd": 1559072.0
      },
      {
       "buyer": "SDMG",
-      "cfa": null,
-      "usd": null
+      "cfa": 15526670.0,
+      "usd": 27239.0
      }
     ],
     "totalCfa": 1858195179.0,
@@ -3594,12 +3750,24 @@
      "depart": "미정",
      "tons": 710.0,
      "note": "하역중"
+    },
+    {
+     "fleet": "EU",
+     "vessel": "ZUBEROA",
+     "arrive": "6/27",
+     "depart": "미정",
+     "tons": 925.0,
+     "note": "하역중"
     }
    ],
    "prices": {
     "pfcTema": 1570.0,
+    "pfcTemaMonth": "6월",
     "cosmoTema": 1650.0,
+    "cosmoTemaMonth": "6월",
+    "temaUnderNegotiation": false,
     "scodiAbidjan": 1630.0,
+    "scodiAbidjanMonth": "6월",
     "marketTemaCedi": 15000.0,
     "marketTemaUsd": 1324.0,
     "marketAbidjanCfa": 800000.0,
@@ -3625,13 +3793,13 @@
      },
      {
       "buyer": "ETS BADARA",
-      "cfa": null,
-      "usd": null
+      "cfa": 888671234.0,
+      "usd": 1519096.0
      },
      {
       "buyer": "SDMG",
-      "cfa": null,
-      "usd": null
+      "cfa": 672670.0,
+      "usd": 11498.0
      }
     ],
     "totalCfa": 1848275179.0,
@@ -3746,12 +3914,24 @@
      "depart": "미정",
      "tons": 790.0,
      "note": "하역중"
+    },
+    {
+     "fleet": "EU",
+     "vessel": "ALBACORA QUINCE",
+     "arrive": "7/6",
+     "depart": "미정",
+     "tons": 1300.0,
+     "note": "선석 대기중"
     }
    ],
    "prices": {
     "pfcTema": 1570.0,
+    "pfcTemaMonth": "7월",
     "cosmoTema": 1620.0,
+    "cosmoTemaMonth": "7월",
+    "temaUnderNegotiation": false,
     "scodiAbidjan": 1633.0,
+    "scodiAbidjanMonth": "7월",
     "marketTemaCedi": 15000.0,
     "marketTemaUsd": 1316.0,
     "marketAbidjanCfa": 800000.0,
@@ -3777,13 +3957,13 @@
      },
      {
       "buyer": "ETS BADARA",
-      "cfa": null,
-      "usd": null
+      "cfa": 888671234.0,
+      "usd": 1506222.0
      },
      {
       "buyer": "SDMG",
-      "cfa": null,
-      "usd": null
+      "cfa": 6726670.0,
+      "usd": 11401.0
      }
     ],
     "totalCfa": 1848275179.0,
@@ -3883,7 +4063,15 @@
      "note": "하역중"
     },
     {
-     "fleet": "그랑블루",
+     "fleet": "EU",
+     "vessel": "ALBACORA QUINCE",
+     "arrive": "7/6",
+     "depart": "미정",
+     "tons": 1300.0,
+     "note": "운반선 전재 중"
+    },
+    {
+     "fleet": "EU",
      "vessel": "ALBONIGA",
      "arrive": "7/7",
      "depart": "7/11",
@@ -3901,8 +4089,12 @@
    ],
    "prices": {
     "pfcTema": 1570.0,
+    "pfcTemaMonth": "7월",
     "cosmoTema": 1620.0,
+    "cosmoTemaMonth": "7월",
+    "temaUnderNegotiation": false,
     "scodiAbidjan": 1637.0,
+    "scodiAbidjanMonth": "7월",
     "marketTemaCedi": 15000.0,
     "marketTemaUsd": 1305.0,
     "marketAbidjanCfa": 800000.0,
@@ -3928,13 +4120,13 @@
      },
      {
       "buyer": "ETS BADARA",
-      "cfa": null,
-      "usd": null
+      "cfa": 870826234.0,
+      "usd": 1463573.0
      },
      {
       "buyer": "SDMG",
-      "cfa": null,
-      "usd": null
+      "cfa": 6726670.0,
+      "usd": 11305.0
      }
     ],
     "totalCfa": 1831550179.0,
@@ -4007,7 +4199,15 @@
      "note": "출항 완료"
     },
     {
-     "fleet": "그랑블루",
+     "fleet": "EU",
+     "vessel": "ALBACORA QUINCE",
+     "arrive": "7/6",
+     "depart": "7/17",
+     "tons": 1300.0,
+     "note": "출항 완료"
+    },
+    {
+     "fleet": "EU",
      "vessel": "ZUBEROA",
      "arrive": "7/13",
      "depart": "미정",
@@ -4015,7 +4215,7 @@
      "note": "운반선 전재중"
     },
     {
-     "fleet": "그랑블루",
+     "fleet": "EU",
      "vessel": "MONTERAIOLA",
      "arrive": "7/15",
      "depart": "미정",
@@ -4033,8 +4233,12 @@
    ],
    "prices": {
     "pfcTema": 1600.0,
+    "pfcTemaMonth": "7월",
     "cosmoTema": 1620.0,
+    "cosmoTemaMonth": "7월",
+    "temaUnderNegotiation": false,
     "scodiAbidjan": 1637.0,
+    "scodiAbidjanMonth": "7월",
     "marketTemaCedi": 15000.0,
     "marketTemaUsd": 1297.0,
     "marketAbidjanCfa": 800000.0,
@@ -4060,13 +4264,13 @@
      },
      {
       "buyer": "ETS BADARA",
-      "cfa": null,
-      "usd": null
+      "cfa": 870826234.0,
+      "usd": 1463573.0
      },
      {
       "buyer": "SDMG",
-      "cfa": null,
-      "usd": null
+      "cfa": 6726670.0,
+      "usd": 11305.0
      }
     ],
     "totalCfa": 1831550179.0,
@@ -4147,7 +4351,15 @@
      "note": "하역 중"
     },
     {
-     "fleet": "그랑블루",
+     "fleet": "EU",
+     "vessel": "MONTEFRISA NUEVE",
+     "arrive": "7/20",
+     "depart": "미정",
+     "tons": null,
+     "note": "운반선 전재중"
+    },
+    {
+     "fleet": "EU",
      "vessel": "ALABONIGA",
      "arrive": "7/24",
      "depart": "미정",
@@ -4165,8 +4377,12 @@
    ],
    "prices": {
     "pfcTema": 1600.0,
+    "pfcTemaMonth": "7월",
     "cosmoTema": 1620.0,
+    "cosmoTemaMonth": "7월",
+    "temaUnderNegotiation": false,
     "scodiAbidjan": 1623.0,
+    "scodiAbidjanMonth": "7월",
     "marketTemaCedi": 14500.0,
     "marketTemaUsd": 1246.0,
     "marketAbidjanCfa": 800000.0,
@@ -4192,13 +4408,13 @@
      },
      {
       "buyer": "ETS BADARA",
-      "cfa": null,
-      "usd": null
+      "cfa": 870826234.0,
+      "usd": 1451377.0
      },
      {
       "buyer": "SDMG",
-      "cfa": null,
-      "usd": null
+      "cfa": 6726670.0,
+      "usd": 11211.0
      }
     ],
     "totalCfa": 1831550179.0,
@@ -4263,7 +4479,7 @@
      "note": "조업 중"
     },
     {
-     "fleet": "EU 선단",
+     "fleet": "EU",
      "vessel": "ZUBEROA",
      "arrive": "7/28",
      "depart": "미정",
@@ -4281,8 +4497,12 @@
    ],
    "prices": {
     "pfcTema": 1600.0,
+    "pfcTemaMonth": "8월",
     "cosmoTema": 1700.0,
+    "cosmoTemaMonth": "8월",
+    "temaUnderNegotiation": false,
     "scodiAbidjan": 1700.0,
+    "scodiAbidjanMonth": "8월",
     "marketTemaCedi": 14500.0,
     "marketTemaUsd": 1239.0,
     "marketAbidjanCfa": 800000.0,
@@ -4308,13 +4528,13 @@
      },
      {
       "buyer": "ETS BADARA",
-      "cfa": null,
-      "usd": null
+      "cfa": 870826234.0,
+      "usd": 1451377.0
      },
      {
       "buyer": "SDMG",
-      "cfa": null,
-      "usd": null
+      "cfa": 6726670.0,
+      "usd": 11211.0
      }
     ],
     "totalCfa": 1831550179.0,
@@ -4403,7 +4623,7 @@
      "note": "하역 중"
     },
     {
-     "fleet": "EU 선단",
+     "fleet": "EU",
      "vessel": "ZUBEROA",
      "arrive": "7/28",
      "depart": "8/8",
@@ -4421,8 +4641,12 @@
    ],
    "prices": {
     "pfcTema": 1600.0,
+    "pfcTemaMonth": "8월",
     "cosmoTema": 1700.0,
+    "cosmoTemaMonth": "8월",
+    "temaUnderNegotiation": false,
     "scodiAbidjan": 1700.0,
+    "scodiAbidjanMonth": "8월",
     "marketTemaCedi": 14500.0,
     "marketTemaUsd": 1232.0,
     "marketAbidjanCfa": 800000.0,
@@ -4448,13 +4672,13 @@
      },
      {
       "buyer": "ETS BADARA",
-      "cfa": null,
-      "usd": null
+      "cfa": 873766234.0,
+      "usd": 1456277.0
      },
      {
       "buyer": "SDMG",
-      "cfa": null,
-      "usd": null
+      "cfa": 6726670.0,
+      "usd": 11211.0
      }
     ],
     "totalCfa": 1834490179.0,
@@ -4511,7 +4735,7 @@
      "note": null
     },
     {
-     "fleet": "EU 선단",
+     "fleet": "EU",
      "vessel": "ALBONIGA",
      "arrive": "8/13",
      "depart": "미정",
@@ -4529,8 +4753,12 @@
    ],
    "prices": {
     "pfcTema": 1600.0,
+    "pfcTemaMonth": "8월",
     "cosmoTema": 1700.0,
+    "cosmoTemaMonth": "8월",
+    "temaUnderNegotiation": false,
     "scodiAbidjan": 1700.0,
+    "scodiAbidjanMonth": "8월",
     "marketTemaCedi": 14500.0,
     "marketTemaUsd": 1318.0,
     "marketAbidjanCfa": 800000.0,
@@ -4556,13 +4784,13 @@
      },
      {
       "buyer": "ETS BADARA",
-      "cfa": null,
-      "usd": null
+      "cfa": 873766234.0,
+      "usd": 1456277.0
      },
      {
       "buyer": "SDMG",
-      "cfa": null,
-      "usd": null
+      "cfa": 6726670.0,
+      "usd": 11211.0
      }
     ],
     "totalCfa": 1834490179.0,
@@ -4648,8 +4876,12 @@
    ],
    "prices": {
     "pfcTema": 1600.0,
+    "pfcTemaMonth": "8월",
     "cosmoTema": 1700.0,
+    "cosmoTemaMonth": "8월",
+    "temaUnderNegotiation": false,
     "scodiAbidjan": 1700.0,
+    "scodiAbidjanMonth": "8월",
     "marketTemaCedi": 14000.0,
     "marketTemaUsd": 1257.0,
     "marketAbidjanCfa": 800000.0,
@@ -4675,13 +4907,13 @@
      },
      {
       "buyer": "ETS BADARA",
-      "cfa": null,
-      "usd": null
+      "cfa": 873766234.0,
+      "usd": 1506494.0
      },
      {
       "buyer": "SDMG",
-      "cfa": null,
-      "usd": null
+      "cfa": 6726670.0,
+      "usd": 11598.0
      }
     ],
     "totalCfa": 1834490179.0,
@@ -4770,6 +5002,14 @@
      "note": "출항 완료"
     },
     {
+     "fleet": "EU",
+     "vessel": "EGALUZE",
+     "arrive": "8/31",
+     "depart": "미정",
+     "tons": 450.0,
+     "note": "운반선 BOYANG BERING 전재중"
+    },
+    {
      "fleet": "운반선",
      "vessel": "BOYANG BERING",
      "arrive": "8/31",
@@ -4780,8 +5020,12 @@
    ],
    "prices": {
     "pfcTema": 1600.0,
+    "pfcTemaMonth": "8월",
     "cosmoTema": 1700.0,
+    "cosmoTemaMonth": "8월",
+    "temaUnderNegotiation": true,
     "scodiAbidjan": 1722.0,
+    "scodiAbidjanMonth": "9월",
     "marketTemaCedi": 14000.0,
     "marketTemaUsd": 1244.0,
     "marketAbidjanCfa": 800000.0,
@@ -4807,13 +5051,13 @@
      },
      {
       "buyer": "ETS BADARA",
-      "cfa": null,
-      "usd": null
+      "cfa": 873766234.0,
+      "usd": 1506494.0
      },
      {
       "buyer": "SDMG",
-      "cfa": null,
-      "usd": null
+      "cfa": 6726670.0,
+      "usd": 11598.0
      }
     ],
     "totalCfa": 1834490179.0,
@@ -4824,6 +5068,179 @@
     "tema": 1569.0,
     "dakar": 1293.0,
     "tanker": 1445.0,
+    "single": null
+   }
+  },
+  {
+   "reportDate": "2026-09-08",
+   "isoWeek": 37,
+   "source": "PANOFI 주간동향20260908.docx",
+   "sha256": "625fc4c7d32dc4701eb05060880a953cc21909f78717ff3cb0ce6f92b01dc947",
+   "author": "김평회 법인장",
+   "statedYearMismatch": false,
+   "fleetStatus": "detailed",
+   "ownVessels": [
+    {
+     "vessel": "P/QUEEN",
+     "code": "P/QUE",
+     "status": null
+    },
+    {
+     "vessel": "P/GRACE",
+     "code": "P/GRA",
+     "status": null
+    },
+    {
+     "vessel": "P/FORE",
+     "code": "P/FORE",
+     "status": null
+    },
+    {
+     "vessel": "P/MAS",
+     "code": "P/MAS",
+     "status": null
+    }
+   ],
+   "fishingGround": {
+    "coastalMin": 25.2,
+    "coastalMax": 26.0,
+    "oceanMin": 23.2,
+    "oceanMax": 24.9,
+    "coastalCurrent": "동류",
+    "oceanCurrent": "서류"
+   },
+   "senegalFleet": [
+    {
+     "fleet": "캅센",
+     "vessel": "CAP ATLANTIQUE",
+     "arrive": "8/17",
+     "depart": "미정",
+     "tons": null,
+     "note": "상가수리 중"
+    },
+    {
+     "fleet": "캅센",
+     "vessel": "COSMOS KIM",
+     "arrive": "8/22",
+     "depart": "미정",
+     "tons": 980.0,
+     "note": "하역 완료, 임시국적 증서 갱신 차 체항중"
+    },
+    {
+     "fleet": "캅센",
+     "vessel": "GRANADA",
+     "arrive": "9/1",
+     "depart": "9/5",
+     "tons": 440.0,
+     "note": "어기교대 후 출항 완료"
+    },
+    {
+     "fleet": "캅센",
+     "vessel": "XIXILI",
+     "arrive": "9/1",
+     "depart": "9/6",
+     "tons": 715.0,
+     "note": "운반선 전재 후 출항 완료"
+    },
+    {
+     "fleet": "캅센",
+     "vessel": "ORIENTAL KIM",
+     "arrive": "9/5",
+     "depart": "미정",
+     "tons": 900.0,
+     "note": "하역 중"
+    },
+    {
+     "fleet": "그랑블루",
+     "vessel": "PONT SAINT LOUIS",
+     "arrive": "9/6",
+     "depart": "미정",
+     "tons": 1100.0,
+     "note": "하역 중"
+    },
+    {
+     "fleet": "EU",
+     "vessel": "EGALUZE",
+     "arrive": "8/31",
+     "depart": "9/7",
+     "tons": 450.0,
+     "note": "운반선 전재 후 출항 완료"
+    },
+    {
+     "fleet": "EU",
+     "vessel": "ALBONIGA",
+     "arrive": "9/2",
+     "depart": "미정",
+     "tons": 450.0,
+     "note": "운반선 전재 중"
+    },
+    {
+     "fleet": "EU",
+     "vessel": "ZUBEROA",
+     "arrive": "9/5",
+     "depart": "미정",
+     "tons": null,
+     "note": "운반선 전재 중"
+    },
+    {
+     "fleet": "운반선",
+     "vessel": "BOYANG BERING",
+     "arrive": "8/31",
+     "depart": "미정",
+     "tons": null,
+     "note": "조업선 물량 전재 중"
+    }
+   ],
+   "prices": {
+    "pfcTema": 1900.0,
+    "pfcTemaMonth": "9월",
+    "cosmoTema": 1700.0,
+    "cosmoTemaMonth": "8월",
+    "temaUnderNegotiation": true,
+    "scodiAbidjan": 1722.0,
+    "scodiAbidjanMonth": "9월",
+    "marketTemaCedi": 14000.0,
+    "marketTemaUsd": 1229.0,
+    "marketAbidjanCfa": 800000.0,
+    "marketAbidjanUsd": 1367.0
+   },
+   "fx": {
+    "cediPerUsd": 11.39,
+    "cfaPerUsd": 585.0
+   },
+   "dailyProcessing": {
+    "COSMO": 80.0,
+    "PFC": 120.0,
+    "SCODI": 85.0,
+    "SCASA": 100.0,
+    "AIRONE": 0.0
+   },
+   "receivables": {
+    "buyers": [
+     {
+      "buyer": "INTER OCEAN",
+      "cfa": 953997275.0,
+      "usd": 1630764.0
+     },
+     {
+      "buyer": "ETS BADARA",
+      "cfa": 873766234.0,
+      "usd": 1493617.0
+     },
+     {
+      "buyer": "SDMG",
+      "cfa": 6726670.0,
+      "usd": 11498.0
+     }
+    ],
+    "totalCfa": 1834490179.0,
+    "totalUsd": 3135880.0
+   },
+   "fuel": {
+    "abidjan": 1232.0,
+    "tema": 1573.0,
+    "dakar": 1224.0,
+    "tanker": 1442.0,
     "single": null
    }
   }

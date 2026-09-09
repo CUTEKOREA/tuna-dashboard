@@ -14,7 +14,7 @@ import { fleetDailyPublicLatest, fleetDailyPublicDeltas } from '@/lib/data/fleet
  * 이 모듈이 내보내는 파생 시리즈만 쓰고 원본 JSON 을 직접 import 하지 않는다.
  *
  * 원자료 2종:
- *  - panofi_weekly.json  : 주간동향 docx 31주 기계 추출 (scripts/extract_panofi.py)
+ *  - panofi_weekly.json  : 주간동향 docx 전주차 기계 추출 (scripts/extract_panofi.py)
  *  - panofi_profile.json : 전략보고·3개사 보고·외부 조사 수작업 정리 (근거등급 포함)
  */
 
@@ -36,7 +36,55 @@ export const profile = profileRaw;
 export const latest = weeks[weeks.length - 1];
 export const previous = weeks.length > 1 ? weeks[weeks.length - 2] : undefined;
 
-/** 주간 라벨은 '8/11' 처럼 월/일로 쓴다. 31주가 한 축에 들어가야 하므로 짧아야 한다. */
+/** 테마 두 채널의 격차. **같은 월 기준일 때만** 뺀다.
+ *
+ * 37주 내내 PFC·코스모는 같은 월 어가였는데 2026-09-08 에 처음 갈렸다 - PFC 는 9월
+ * $1,900 으로 확정됐고 코스모는 8월 $1,700 을 그대로 둔 채 9월 협의 중이다. 이걸 그냥
+ * 빼면 «PFC 가 $200 비싸다»가 되는데, 코스모의 9월 값은 아직 존재하지 않는다.
+ * 비교가 성립하지 않는 주는 숫자를 만들지 않고 null 을 낸다. */
+/** 프로필 `pfcDominance.measured` 는 손으로 적은 고정 창 실측이다. 창의 끝은
+ *  `currentPrices.asOf`. 그런데 그 뒤 NFD 파일명 탓에 빠져 있던 3주(0106·0127·0728)가
+ *  복원돼 같은 날짜 창의 실제 주차 수가 31 → 34 로 늘었고, 프로필의 SCODI 변동 23회는
+ *  복원 전 숫자라 3회 적다. 화면에 내보내는 카운트는 데이터에서 다시 센다 -
+ *  손으로 적은 값은 판정 서술의 근거로만 남긴다. */
+export const priceWindow = (() => {
+  const end = profile.pfcDominance.measured.currentPrices.asOf;
+  const rows = weeks.filter((w) => w.reportDate <= end);
+  const countChanges = (pick: (w: PanofiWeek) => number | null): number => {
+    let count = 0;
+    let prev: number | null = null;
+    for (const w of rows) {
+      const v = pick(w);
+      if (v !== null && prev !== null && v !== prev) count += 1;
+      if (v !== null) prev = v;
+    }
+    return count;
+  };
+  return {
+    end,
+    weekCount: rows.length,
+    changes: {
+      PFC: countChanges((w) => w.prices.pfcTema),
+      코스모: countChanges((w) => w.prices.cosmoTema),
+      SCODI: countChanges((w) => w.prices.scodiAbidjan),
+    },
+  };
+})();
+
+export const temaGap = (() => {
+  const { pfcTema, cosmoTema, pfcTemaMonth, cosmoTemaMonth, temaUnderNegotiation } = latest.prices;
+  const sameMonth = pfcTemaMonth != null && cosmoTemaMonth != null && pfcTemaMonth === cosmoTemaMonth;
+  const comparable = sameMonth && pfcTema != null && cosmoTema != null;
+  return {
+    usdPerT: comparable ? pfcTema - cosmoTema : null,
+    comparable,
+    pfcMonth: pfcTemaMonth,
+    cosmoMonth: cosmoTemaMonth,
+    underNegotiation: temaUnderNegotiation === true,
+  };
+})();
+
+/** 주간 라벨은 '8/11' 처럼 월/일로 쓴다. 전 주차가 한 축에 들어가야 하므로 짧아야 한다. */
 function shortLabel(iso: string): string {
   const [, m, d] = iso.split('-');
   return `${Number(m)}/${Number(d)}`;
