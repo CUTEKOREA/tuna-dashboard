@@ -1,0 +1,81 @@
+{
+ "_meta": {
+  "출처": "docs/evidence/company-trimarine-2026-09/보고서.html",
+  "생성": "python3 scripts/build_report_figures.py",
+  "설명": "보고서의 팩샷과 차트. 이미지는 public 아래 정적 파일이고 여기에는 URL 만 담는다."
+ },
+ "figures": [
+  {
+   "stage": "c05",
+   "sid": "s9",
+   "kind": "chart",
+   "ord": 1502,
+   "caption": "네 수하인의 합이 24건이다(14+5+3+2). 그룹 내부로 간 것은 셋뿐이고 열넷은 경쟁 브랜드로 갔다.",
+   "alt": "",
+   "svg": "<svg viewBox=\"0 0 680 196\" xmlns=\"http://www.w3.org/2000/svg\" role=\"img\" aria-label=\"콜롬비아 법인 선적의 수하인\"><text x=\"226\" y=\"38\" text-anchor=\"end\" font-size=\"13\" fill=\"#3d4351\">Tri Union Seafoods (치킨오브더씨)</text><rect x=\"236\" y=\"24\" width=\"386.0\" height=\"21\" fill=\"#2f5d6b\"/><text x=\"630.0\" y=\"40\" font-size=\"13.5\" font-weight=\"700\" fill=\"#2f5d6b\">14건</text><text x=\"226\" y=\"78\" text-anchor=\"end\" font-size=\"13\" fill=\"#3d4351\">Conservas Selectas de Galicia</text><rect x=\"236\" y=\"64\" width=\"137.9\" height=\"21\" fill=\"#4d7f8d\"/><text x=\"381.9\" y=\"80\" font-size=\"13.5\" font-weight=\"700\" fill=\"#4d7f8d\">5건</text><text x=\"226\" y=\"118\" text-anchor=\"end\" font-size=\"13\" fill=\"#3d4351\">Tri Marine Europe (그룹 내부)</text><rect x=\"236\" y=\"104\" width=\"82.7\" height=\"21\" fill=\"#c2703a\"/><text x=\"326.7\" y=\"120\" font-size=\"13.5\" font-weight=\"700\" fill=\"#c2703a\">3건</text><text x=\"226\" y=\"158\" text-anchor=\"end\" font-size=\"13\" fill=\"#3d4351\">Bumble Bee Foods</text><rect x=\"236\" y=\"144\" width=\"55.1\" height=\"21\" fill=\"#7a3f2f\"/><text x=\"299.1\" y=\"160\" font-size=\"13.5\" font-weight=\"700\" fill=\"#7a3f2f\">2건</text><line x1=\"236\" y1=\"184\" x2=\"622\" y2=\"184\" stroke=\"#c9cdd6\"/><text x=\"236\" y=\"14\" font-size=\"12.5\" fill=\"#5a6072\">화주 GRALCO S.A. · 2016-11-22~2022-06-01 · 총 24건</text></svg>"
+  },
+  {
+   "stage": "c05",
+   "sid": "s10",
+   "kind": "shot",
+   "ord": 1535,
+   "caption": "SolTuna Premium Chilli Tuna 160 g — 라벨에 「Yellowfin Tuna in Oil」과 「Net 160 g」, 그리고 지속가능 인증 생태라벨이 인쇄돼 있다. 이 계열 제품 가운데 어종이 라벨에 박힌 유일한 사례다.",
+   "alt": "SolTuna Premium Chilli Tuna 160 g",
+   "src": "/data/companies/figures/trimarine/be4adae0f549.jpg"
+  },
+  {
+   "stage": "c05",
+   "sid": "s10",
+   "kind": "shot",
+   "ord": 60244,
+   "caption": "Solomon Blue White Tuna Flakes in Oil 400 g — 「WHITE TUNA FLAKES IN OIL / 400 g」과 코셔 마크. 바코드 접두는 호주 코드이고 측면에 피지 유통사 주소가 찍혀 있다. 어종 표기는 없다.",
+   "alt": "Solomon Blue White Tuna Flakes in Oil 400 g",
+   "src": "/data/companies/figures/trimarine/4236933a4d3f.jpg"
+  },
+  {
+   "stage": "c05",
+   "sid": "s10",
+   "kind": "shot",
+   "ord": 180145,
+   "caption": "Solomon Blue Sandwich Tuna 170 g — 같은 브랜드의 중가 라인. 대두유 플레이크 제품. 공장 자사 사이트는 브랜드를 셋으로 정리하고, 모회사 보고서는 둘만 적는다.",
+   "alt": "Solomon Blue Sandwich Tuna 170 g",
+   "src": "/data/companies/figures/trimarine/d7ecad6782dd.jpg"
+  },
+  {
+   "stage": "c05",
+   "sid": "s10",
+   "kind": "shot",
+   "ord": 332427,
+   "caption": "SolTuna Skipjack 100 g — 프리미엄 라인의 최소 규격. 유통사 규격표는 이 라인을 100 g과 170 g 두 규격으로 적는다.",
+   "alt": "SolTuna Skipjack 100 g",
+   "src": "/data/companies/figures/trimarine/ec005dde06e1.jpg"
+  },
+  {
+   "stage": "c05",
+   "sid": "s10",
+   "kind": "shot",
+   "ord": 430914,
+   "caption": "Alamar Bocados de Atún en Aceite 140 g — 라벨에 「PESO NETO: 140 g / PESO DRENADO: 91 g」이 인쇄돼 있다. 공식 제품 페이지 수치와 라벨 수치가 일치한다.",
+   "alt": "Alamar Bocados de Atún en Aceite 140 g",
+   "src": "/data/companies/figures/trimarine/d476453d5eb0.jpg"
+  },
+  {
+   "stage": "c05",
+   "sid": "s10",
+   "kind": "shot",
+   "ord": 509777,
+   "caption": "Alamar Bocados de Atún en Agua 140 g — 같은 규격의 수침 제품. 성분표에 「Atún」만 있고 어종은 없다.",
+   "alt": "Alamar Bocados de Atún en Agua 140 g",
+   "src": "/data/companies/figures/trimarine/e6a8657c2127.jpg"
+  },
+  {
+   "stage": "c05",
+   "sid": "s11",
+   "kind": "chart",
+   "ord": 921,
+   "caption": "배는 507척에서 323척으로 36.3% 줄었는데 거래량은 570에서 563.8로 1.1% 줄었다. 앞 두 해 거래량은 하한값이라 실제 감소폭은 더 크다.",
+   "alt": "",
+   "svg": "<svg viewBox=\"0 0 680 300\" xmlns=\"http://www.w3.org/2000/svg\" role=\"img\" aria-label=\"매입 대상 선박과 거래량\"><line x1=\"54\" y1=\"256\" x2=\"626\" y2=\"256\" stroke=\"#c9cdd6\"/><rect x=\"117.3\" y=\"47.8\" width=\"64\" height=\"208.2\" fill=\"#2f5d6b\" opacity=\"0.55\"/><text x=\"149.3\" y=\"40.8\" text-anchor=\"middle\" font-size=\"14\" font-weight=\"700\" fill=\"#2f5d6b\">507척</text><text x=\"149.3\" y=\"276.0\" text-anchor=\"middle\" font-size=\"13\" fill=\"#5a6072\">2020</text><rect x=\"308.0\" y=\"60.5\" width=\"64\" height=\"195.5\" fill=\"#2f5d6b\" opacity=\"0.75\"/><text x=\"340.0\" y=\"53.5\" text-anchor=\"middle\" font-size=\"14\" font-weight=\"700\" fill=\"#2f5d6b\">476척</text><text x=\"340.0\" y=\"276.0\" text-anchor=\"middle\" font-size=\"13\" fill=\"#5a6072\">2021</text><rect x=\"498.7\" y=\"123.3\" width=\"64\" height=\"132.7\" fill=\"#2f5d6b\" opacity=\"0.95\"/><text x=\"530.7\" y=\"116.3\" text-anchor=\"middle\" font-size=\"14\" font-weight=\"700\" fill=\"#2f5d6b\">323척</text><text x=\"530.7\" y=\"276.0\" text-anchor=\"middle\" font-size=\"13\" fill=\"#5a6072\">2022</text><polyline points=\"149.3,68.7 340.0,65.4 530.7,70.7\" fill=\"none\" stroke=\"#c2703a\" stroke-width=\"2.4\"/><circle cx=\"149.3\" cy=\"68.7\" r=\"4.2\" fill=\"#c2703a\"/><text x=\"149.3\" y=\"57.7\" text-anchor=\"middle\" font-size=\"12.5\" font-weight=\"600\" fill=\"#c2703a\">570</text><circle cx=\"340.0\" cy=\"65.4\" r=\"4.2\" fill=\"#c2703a\"/><text x=\"340.0\" y=\"54.4\" text-anchor=\"middle\" font-size=\"12.5\" font-weight=\"600\" fill=\"#c2703a\">580</text><circle cx=\"530.7\" cy=\"70.7\" r=\"4.2\" fill=\"#c2703a\"/><text x=\"530.7\" y=\"59.7\" text-anchor=\"middle\" font-size=\"12.5\" font-weight=\"600\" fill=\"#c2703a\">563.806</text><text x=\"54\" y=\"16\" font-size=\"12.5\" fill=\"#2f5d6b\" font-weight=\"700\">■ 매입 대상 선박(척)</text><text x=\"224\" y=\"16\" font-size=\"12.5\" fill=\"#c2703a\" font-weight=\"700\">● 거래량(천 metric tons)</text></svg>"
+  }
+ ]
+}

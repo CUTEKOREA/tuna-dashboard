@@ -1,9 +1,9 @@
 {
  "_meta": {
   "entry": "app/page.tsx",
-  "files": 227,
+  "files": 228,
   "widgets": 111,
-  "dataFiles": 143,
+  "dataFiles": 147,
   "generator": "scripts/widget_lineage.py"
  },
  "widgetToData": {
@@ -589,6 +589,7 @@
     "lib/data/company-starkist.ts",
     "lib/data/company-thaiunion-skus.ts",
     "lib/data/company-thaiunion.ts",
+    "lib/data/company-trimarine.ts",
     "lib/data/company-umios.ts"
    ],
    "dataFiles": [
@@ -669,6 +670,10 @@
     "public/data/companies/thaiunion_skus_v1.json",
     "public/data/companies/thaiunion_tables_v1.json",
     "public/data/companies/thaiunion_v1.json",
+    "public/data/companies/trimarine_figures_v1.json",
+    "public/data/companies/trimarine_prose_v1.json",
+    "public/data/companies/trimarine_tables_v1.json",
+    "public/data/companies/trimarine_v1.json",
     "public/data/companies/umios_figures_v1.json",
     "public/data/companies/umios_prose_v1.json",
     "public/data/companies/umios_tables_v1.json",
@@ -1335,6 +1340,18 @@
   "public/data/companies/thaiunion_v1.json": [
    "components/market-understanding/CompanyAnatomyDashboard.tsx",
    "components/market-understanding/ThaiUnionCharts.tsx"
+  ],
+  "public/data/companies/trimarine_figures_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/trimarine_prose_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/trimarine_tables_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/trimarine_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
   ],
   "public/data/companies/umios_figures_v1.json": [
    "components/market-understanding/CompanyAnatomyDashboard.tsx"

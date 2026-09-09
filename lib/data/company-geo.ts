@@ -109,6 +109,8 @@ export const HQ_POINTS: GeoPoint[] = [
   { company: 'boltonfood', numeral: 'ⅩⅩ', kind: 'hq', label: 'Bolton Food 등기 본점', country: '이탈리아',
     lat: 45.71, lng: 9.09, basis: 'ⅩⅩ 기준선 §1 · Via Einaudi 18/22, 22072 Cermenate (CO)',
     note: '밀라노가 아니다. 밀라노는 지주의 주소다' },
+  { company: 'trimarine', numeral: 'ⅩⅩⅠ', kind: 'hq', label: 'Tri Marine 등기', country: '싱가포르',
+    lat: 1.29, lng: 103.85, basis: 'ⅩⅩⅠ · TRI-MARINE INTERNATIONAL (PTE) LTD · UEN 197601267M · 1976-06-21' },
 ];
 
 /**
@@ -209,6 +211,21 @@ export const PLANT_POINTS: GeoPoint[] = [
     lat: 1.29, lng: 103.85, basis: 'Ⅳ group · Trading & Fishery', role: 'trading' },
   { company: 'fcf', numeral: 'Ⅳ', kind: 'plant', label: '파나마 (Thalassic)', country: '파나마',
     lat: 8.98, lng: -79.52, basis: 'Ⅳ group · 공식 거점 목록에 없던 법인', role: 'trading' },
+
+  // ── ⅩⅩⅠ Tri Marine 가공 3사 ─────────────────────────────
+  // 회사 지속가능보고서가 스스로 세는 가공공장은 셋이다. 이탈리아 공장은 그 셋에 없다.
+  { company: 'trimarine', numeral: 'ⅩⅩⅠ', kind: 'plant', label: 'SolTuna (노로)', country: '솔로몬제도',
+    lat: -8.22, lng: 157.20, sizeValue: 20914, sizeUnit: '톤/년',
+    basis: 'ⅩⅩⅠ · 2021년 20,914 metric tons of tuna products',
+    note: '솔로몬 최대 민간 고용주 · 2,000명 초과' },
+  { company: 'trimarine', numeral: 'ⅩⅩⅠ', kind: 'plant', label: 'SEAFMAN (만타)', country: '에콰도르',
+    lat: -0.95, lng: -80.73, sizeValue: 28357, sizeUnit: '톤/년',
+    basis: 'ⅩⅩⅠ · 2021년 28,357 metric tons of tuna products',
+    note: '자기 브랜드가 없다 — 남의 브랜드 34개를 채운다' },
+  { company: 'trimarine', numeral: 'ⅩⅩⅠ', kind: 'plant', label: 'GRALCO (바랑키야)', country: '콜롬비아',
+    lat: 10.99, lng: -74.79, sizeValue: 800, sizeUnit: '명',
+    basis: 'ⅩⅩⅠ · 종업원 800명 초과 · 생산량은 ⚠️미확인',
+    note: 'Alamar 브랜드 생산' },
 ];
 
 /**
@@ -293,6 +310,7 @@ export const NO_FLEET: { company: string; basis: string }[] = [
   { company: 'bumblebee', basis: 'ⅩⅣ stats · 선박명부 등재 0척' },
   { company: 'centurypacific', basis: 'ⅩⅨ stats · RFV 어선 0척(매입의 59%는 선박 직구매)' },
   { company: 'jais', basis: 'Ⅶ stats · 공장·선박·자회사 0개' },
+  { company: 'trimarine', basis: 'ⅩⅩⅠ · WCPFC·IATTC·FFA 세 등록부의 소유자·운영자 칸 모두 0척. 배는 계열 NFD 명의다' },
 ];
 
 /** 지도에 찍는 모든 점. */
