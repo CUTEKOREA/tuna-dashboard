@@ -1,3 +1,18 @@
+> ⚠️ **2026-09-09 — `FLEET_DAILY_DETAIL_JSON` 교체 순서 재정정(실측판). 앞의 두 판은 둘 다 틀렸다** [CC]:
+> - **`detailSha256Compat` 는 보고일이 넘어가면 전환 창을 만들어 주지 못한다.** `lib/data/fleet-daily-detail.ts` 의
+>   `parseFleetDailyDetailSource` 가 digest 검사 **앞에** `assertCurrentPublicAggregate(detail, binding.latest)` 를 돌린다.
+>   이 단정은 `reportDate`·`asOf`·해역별 일간/월간/연간·운반선 2개 = 12개 필드를 공개 집계와 대조한다.
+>   즉 **해시가 compat 에 있어도 보고일이 다르면 그 앞에서 거부**된다. compat 은 «내용은 같은데 직렬화·해시만 바뀐» 경우에만 쓸모가 있다.
+> - **Vercel env 변경은 실행 중 배포에 반영되지 않는다.** 새 배포가 떠야 새 값을 읽는다.
+> - 그래서 두 방향 모두 한 번은 깨진다 — 실측:
+>   · 2026-09-08 **병합 전 교체** → 아직 떠 있는 옛 코드(공개 260907)가 신규 시크릿(상세 260908)을 거부. 라이브에 「공개 집계와 맞지 않습니다」.
+>   · 2026-09-09 **병합 후 교체** → 새 배포의 env 스냅샷이 아직 옛 시크릿(상세 260908)이라 공개 260909 와 안 맞아 거부. **재배포하고서야 풀렸다.**
+> - **실동작 순서**: ① PR 병합 → ② Production READY 확인 → ③ canonical SHA 대조 후 `FLEET_DAILY_DETAIL_JSON` 교체
+>   → ④ **재배포**(`npx vercel redeploy <prod-url>`) → ⑤ 보호 패널 확인.
+>   ②~④ 사이 약 3분간 보호 패널이 깨져 있는 것은 구조상 불가피하다.
+> - canonical SHA 대조는 그대로 필수 — `json.dumps(sort_keys=True, separators=(',',':'))` 해시가 공개 `_meta.detailSha256` 과 같아야 한다. **파일 raw 해시와 다르다.**
+> - 절차를 `scripts/swap_fleet_detail_secret.sh` 로 박았다. 해시 대조 → 교체 → 재배포 → 검증을 한 번에 돌리고, 해시가 어긋나면 교체 전에 멈춘다.
+
 > ✅ **2026-09-09 — `/bangkok-office` 계절 패턴선 앵커를 어튜나 → 방콕사무소로 전환** [CC]:
 > - 사용자 지시. 화면의 굵은 선은 방콕사무소($2,150)인데 점선은 어튜나 마지막 달($2,000, 2026-08)에서 출발해
 >   **점선이 실선보다 낮은 데서 시작**해 보였다. 어튜나는 페이월 수동 동기화라 최신 달이 뒤처진다
@@ -83,7 +98,7 @@
 >   이력 카운트 변동 없음(확정 불일치 14 / 12문서, 중복 4, 좌표 6, 연승 13). 검산 604 → 608회.
 > - 테스트: `fleet-idle-vessels` 의 `forgoneMt === round(dailyAverageMt × idleDays)` 단정이 1 차이로 깨졌다(398 vs 399).
 >   lib 은 반올림 전 평균으로 계산하고 내보내는 값은 소수 2자리라 어느 날은 어긋난다. 오차 ≤ 1 로 풀었다. 제품 수치는 손대지 않았다.
-> - **배포 순서** (2026-09-08 정정판): ① PR 병합 → ② Production READY → ③ `FLEET_DAILY_DETAIL_JSON` 을 신규 DTO 로 교체 → ④ 보호 패널 확인.
+> - **배포 순서**: 아래 2026-09-09 항목의 «실측판»을 따른다. 여기 적혀 있던 4단계는 **재배포가 빠져 실제로 깨진다**.
 >   신규 canonical SHA `5ecbb1f9…`(공개 `_meta.detailSha256` 과 일치 확인), compat 에 직전 `5667fd5f…` 보존.
 > - `npm run verify` 통과: ESLint 0 errors(기존 warnings 16) · Vitest 1391/1391 · build · bundle 33 routes.
 > - 브라우저(로컬 production): `2026-09-09 보고 · 2026-09-08 조업 기준` · 일간 211 · 월간 2,066 · 연간 83,766.8 · 71 / 140 ·

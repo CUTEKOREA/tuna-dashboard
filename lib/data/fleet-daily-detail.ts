@@ -65,6 +65,10 @@ export function parseFleetDailyDetailSource(source: string, binding: PublicBindi
     throw new Error('fleet detail is invalid');
   }
   const detail = validateFleetDailyDetailPayload(parsed);
+  /* 내용 대조가 digest 대조보다 «먼저» 온다. 그래서 detailSha256Compat 은 보고일이
+   * 넘어간 상세를 통과시키지 못한다 - 내용은 같은데 직렬화·해시만 바뀐 경우에만 쓸모가 있다.
+   * 배포 때 시크릿을 언제 바꿔야 하는지가 여기서 갈린다: HANDOFF 2026-09-09 항목 참조
+   * (병합 → READY → 교체 → **재배포** → 확인). */
   assertCurrentPublicAggregate(detail, binding.latest);
   const digest = fleetDailyDetailSha256(detail);
   if (digest !== binding.detailSha256 && !binding.detailSha256Compat?.includes(digest)) {
