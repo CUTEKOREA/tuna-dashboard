@@ -19,3 +19,7 @@
 ## 설계
 
 `docs/superpowers/specs/2026-09-09-tuna-wiki-design.md`
+
+## 훅
+
+`~/.claude/harness/verify/verify_wiki.sh` (PostToolUse Write|Edit) 가 저장 시 `scripts/check_article.py`를 돌린다. 오류면 저장이 막힌다.
