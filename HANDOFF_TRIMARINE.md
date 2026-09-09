@@ -4,25 +4,17 @@
 
 | | |
 |---|---|
-| Artifact | https://claude.ai/code/artifact/8abc7ed5-a3e3-4f69-a5c0-64eeb14c900f (🐟) |
+| Artifact | https://claude.ai/code/artifact/7b6cee13-bf17-47bc-bf5c-87f209b51f90 (🐟) |
 | Drive | `…/02_참치_가공·유통·기업/싱가포르/TriMarine/` — 브리프·노트 9·표지원본·통합·발행본 2 |
 | 대시보드 | 카드 키 `trimarine` · `leedonggun.co.kr/company-anatomy` 21번째 |
 | 커밋 | `32f173f2`(본편) · `e8355905`(문구) · main |
 | 지표 | A4 26쪽 · 16절 · 표 23 · 그림 8 · must 81/81 · 산술 26 · 서술 15,080자 |
 
-## ⚠️ 아티팩트가 지워졌다 (2026-09-09 확인)
+## ⚠️ 아티팩트 조회 API 사고 (2026-09-09)
 
-첫 발행 URL `7b6cee13…` 이 **삭제됐다.** 도구가 `artifact-deleted` 로 답하며 그 URL 재사용을 막는다.
-새 URL 은 위 표의 `8abc7ed5…` 다.
-
-같은 일이 다른 편에도 일어난 것으로 보인다 — 감시 해제 알림이 Ⅰ Frinsa · Ⅱ Thai Union ·
-Ⅲ Albacora · Ⅵ Bolton · Ⅶ JAIS 다섯을 「없다」로 보고했고, `list` 는 계정 전체를 비었다고 답한다.
-**확인 결과 21편 전부 지워져 있었고 같은 날 전부 재발행했다.** 현행 URL 원장은 `docs/ARTIFACTS.md` 다.
-
-재발행 재료는 완비다 — 21편 전부 `docs/evidence/company-*/보고서.html` 에 자족 HTML 로 있다.
-아티팩트 추출은 `<title>`·링크·`<style>`·`<body>` 안쪽만 뽑으면 된다.
-**재발행하면 URL 이 바뀌므로** 메모리 파일(`~/.claude/projects/.../memory/*-anatomy-*.md`)과
-Drive 통합프로필의 링크도 같이 고쳐야 한다.
+한동안 `list` 가 비고 `read` 가 not found 를 냈으며 재발행 시 `artifact-deleted` 까지 왔다.
+**아무것도 지워지지 않았다** — 나중에 같은 URL 이 정상으로 열렸다.
+그 사이 중복 22개를 만들었고 정본은 위 표의 URL 이다. 원장은 `docs/ARTIFACTS.md`.
 
 ## 이 편의 축
 
