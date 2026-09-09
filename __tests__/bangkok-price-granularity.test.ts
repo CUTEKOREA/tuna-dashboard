@@ -70,20 +70,30 @@ describe('방콕 원어 시세 입도 전환', () => {
     expect(priceAggregators.aggregateBangkokPrices).toBeTypeOf('function');
     if (!priceAggregators.aggregateBangkokPrices) return;
 
-    expect(
-      priceAggregators.aggregateBangkokPrices('yearly').map(
-        ({ period, priceAvg, priceMin, priceMax }) => ({ period, priceAvg, priceMin, priceMax }),
-      ),
-    ).toEqual([
+    const rows = priceAggregators.aggregateBangkokPrices('yearly').map(
+      ({ period, priceAvg, priceMin, priceMax }) => ({ period, priceAvg, priceMin, priceMax }),
+    );
+
+    // 끝난 연도는 고정이다 - 여기가 흔들리면 과거가 다시 쓰였다는 뜻이다
+    expect(rows.slice(0, 6)).toEqual([
       { period: '2020', priceAvg: 1397, priceMin: 1270, priceMax: 1525 },
       { period: '2021', priceAvg: 1412, priceMin: 1250, priceMax: 1775 },
       { period: '2022', priceAvg: 1664, priceMin: 1420, priceMax: 1950 },
       { period: '2023', priceAvg: 1821, priceMin: 1450, priceMax: 2025 },
       { period: '2024', priceAvg: 1425, priceMin: 1250, priceMax: 1600 },
       { period: '2025', priceAvg: 1598, priceMin: 1480, priceMax: 1770 },
-      // 2026-08-19 주간보고 반영으로 30주 평균 1796→1801 (진행 연도는 매주 갱신됨)
-      { period: '2026', priceAvg: 1815, priceMin: 1500, priceMax: 2050 },
     ]);
+
+    /* 진행 연도는 주간보고가 들어올 때마다 바뀐다. 값을 못박으면 매주 이 테스트를
+     * 고쳐야 한다(2026-09-09 에 평균 1815 → 1825, 최고 2050 → 2150 으로 실제로 깨졌다).
+     * 지킬 것은 «집계가 계약의 주차들에서 나왔는가» 다. */
+    const running = rows.at(-1)!;
+    const weeks = bangkokData.bangkokWeeks.filter((w) => w.date.startsWith(running.period) && w.price !== null && !w.suspect);
+    const prices = weeks.map((w) => w.price as number);
+    expect(weeks.length).toBeGreaterThan(0);
+    expect(running.priceMin).toBe(Math.min(...prices));
+    expect(running.priceMax).toBe(Math.max(...prices));
+    expect(running.priceAvg).toBe(Math.round(prices.reduce((a, b) => a + b, 0) / prices.length));
   });
 
   it('추이와 범위 차트에 독립 입도 옵션을 렌더링하고 기존 기본값을 유지한다', () => {
