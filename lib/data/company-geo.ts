@@ -45,6 +45,17 @@ export interface GeoPoint {
   sizeUnit?: '명' | '톤/년' | 'MT/일';
   /** 보조 설명 한 줄. */
   note?: string;
+  /**
+   * 거점 성격. **없으면 생산이다.**
+   * 「캔은 어디서 만들어지는가」에 답하는 층이라, 트레이딩·구매 법인을
+   * 「생산 거점」으로 찍으면 그 층의 물음 자체가 거짓이 된다.
+   */
+  role?: 'trading' | 'sourcing';
+}
+
+/** 이 점이 실제로 물건을 만드는 곳인가. */
+export function isProduction(p: GeoPoint): boolean {
+  return p.kind === 'plant' && !p.role;
 }
 
 /**
@@ -189,15 +200,15 @@ export const PLANT_POINTS: GeoPoint[] = [
   { company: 'frinsa', numeral: 'Ⅰ', kind: 'plant', label: '리베이라', country: '스페인',
     lat: 42.55, lng: -8.99, basis: 'Ⅰ profile · 설립지 · 캔 자체 제조 · 그룹 약 1,300명' },
   { company: 'frinsa', numeral: 'Ⅰ', kind: 'plant', label: '싱가포르 구매본부', country: '싱가포르',
-    lat: 1.35, lng: 103.82, basis: 'Ⅰ bai2024 · 세전이익 €5,012,317' },
+    lat: 1.35, lng: 103.82, basis: 'Ⅰ bai2024 · 세전이익 €5,012,317', role: 'sourcing' },
 
   // ── Ⅳ FCF 그룹 거점 ────────────────────────────────────────
   { company: 'fcf', numeral: 'Ⅳ', kind: 'plant', label: '시미즈 (F.C.N.)', country: '일본',
-    lat: 35.02, lng: 138.49, basis: 'Ⅳ group · 보고경계 5개사' },
+    lat: 35.02, lng: 138.49, basis: 'Ⅳ group · 보고경계 5개사', role: 'trading' },
   { company: 'fcf', numeral: 'Ⅳ', kind: 'plant', label: '싱가포르 (F.C.S.)', country: '싱가포르',
-    lat: 1.29, lng: 103.85, basis: 'Ⅳ group · Trading & Fishery' },
+    lat: 1.29, lng: 103.85, basis: 'Ⅳ group · Trading & Fishery', role: 'trading' },
   { company: 'fcf', numeral: 'Ⅳ', kind: 'plant', label: '파나마 (Thalassic)', country: '파나마',
-    lat: 8.98, lng: -79.52, basis: 'Ⅳ group · 공식 거점 목록에 없던 법인' },
+    lat: 8.98, lng: -79.52, basis: 'Ⅳ group · 공식 거점 목록에 없던 법인', role: 'trading' },
 ];
 
 /**
@@ -219,7 +230,21 @@ export const UNLOCATED_PLANTS: { company: string; count: number; basis: string }
  * 20편에 **모항이 한 건도 없다.** 기국은 배가 어디서 조업하는지가 아니라 어느 나라 깃발을
  * 다는지다. 그래서 이 값을 지도 위 점으로 만들지 않는다 — 회사 패널의 배지로만 쓴다.
  */
-export const FLAG_STATES: { company: string; flags: { country: string; count: number }[]; basis: string }[] = [
+/**
+ * 선단의 기국.
+ *
+ * ⚠ **기국이 아닌 칸이 섞인다.** 편에 따라 등록부 이름(WCPFC 등록·ICCAT 비활성)이나
+ * 소유 구분(해외 자회사·합작)으로만 적힌 것이 있다. 그것을 나라처럼 배지에 늘어놓으면
+ * 「어느 나라 깃발을 다는가」라는 물음에 다른 축의 답을 섞어 내는 것이 된다.
+ * `isFlag: false` 로 갈라 화면에서 따로 낸다.
+ */
+export const FLAG_STATES: {
+  company: string;
+  flags: { country: string; count: number; isFlag?: false }[];
+  basis: string;
+  /** 배지에 같이 띄울 단서. 척수의 성격이 소유가 아닐 때 쓴다. */
+  note?: string;
+}[] = [
   { company: 'albacora',
     flags: [{ country: '스페인', count: 8 }, { country: '파나마', count: 2 }, { country: '모리셔스', count: 2 }],
     basis: 'Ⅲ fleet · 등록부 확인 12척(회사 표기 23척·웹 18척)' },
@@ -229,15 +254,17 @@ export const FLAG_STATES: { company: string; flags: { country: string; count: nu
   { company: 'itochu',
     flags: [{ country: '대만', count: 12 }, { country: '대한민국', count: 6 }, { country: '키리바시', count: 3 },
             { country: '투발루', count: 2 }, { country: '바누아투', count: 2 }],
-    basis: 'Ⅴ fleet · MSC 인증 25척(인증 보유자는 ITOCHU)' },
+    basis: 'Ⅴ fleet · MSC 집단인증 명부 25척 · 인증 보유자가 ITOCHU일 뿐 소유선이 아니다',
+    note: 'MSC 집단인증 명부 — 소유선이 아니다' },
   { company: 'sajo',
-    flags: [{ country: '대한민국', count: 6 }, { country: '해외 자회사', count: 2 }],
+    flags: [{ country: '대한민국', count: 6 }, { country: '해외 자회사', count: 2, isFlag: false }],
     basis: 'ⅩⅢ fleet · purse · 참치선망 8척' },
   { company: 'dongwon',
-    flags: [{ country: '대한민국', count: 24 }, { country: '합작', count: 1 }, { country: '해외 자회사', count: 10 }],
+    flags: [{ country: '대한민국', count: 24 }, { country: '합작', count: 1, isFlag: false },
+            { country: '해외 자회사', count: 10, isFlag: false }],
     basis: 'ⅩⅡ fleet · 총 35척(선망 19)' },
   { company: 'jealsa',
-    flags: [{ country: '등록부 확인', count: 3 }],
+    flags: [{ country: '등록부 확인', count: 3, isFlag: false }],
     basis: 'Ⅸ fleet · 회사 표기 2척 / 등록부 3척' },
   { company: 'kyokuyo',
     flags: [{ country: '일본', count: 4 }],
@@ -246,11 +273,18 @@ export const FLAG_STATES: { company: string; flags: { country: string; count: nu
     flags: [{ country: '일본', count: 2 }],
     basis: 'ⅩⅧ sourcenotes · WCPFC 등록부 + MSC-F-31618' },
   { company: 'bolton',
-    flags: [{ country: 'WCPFC 등록', count: 10 }, { country: 'IATTC 등록', count: 4 }, { country: 'ICCAT 비활성', count: 3 }],
+    flags: [{ country: 'WCPFC 등록', count: 10, isFlag: false }, { country: 'IATTC 등록', count: 4, isFlag: false },
+            { country: 'ICCAT 비활성', count: 3, isFlag: false }],
     basis: 'Ⅵ ownFleet · 조달 선단 399척과 혼동하지 않는다' },
 ];
 
 /** 배가 0척인 회사. 이 사실 자체가 이 산업의 구조다. */
+/**
+ * 이 층에 선단이 없는 회사.
+ *
+ * ⚠ 대부분은 **등록부·명부의 부재**이지 소유의 부재가 아니다. 「배가 0척이다」로
+ * 뭉치면 확인한 것보다 센 말이 된다 — 화면 문구는 「자사 명의 등재 0척」으로 낸다.
+ */
 export const NO_FLEET: { company: string; basis: string }[] = [
   { company: 'frinsa', basis: 'Ⅰ stats · 보유 선단 0척' },
   { company: 'thaiunion', basis: 'Ⅱ stats · 보유 선단 0척' },

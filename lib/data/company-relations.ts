@@ -48,6 +48,8 @@ export interface Relation {
   /**
    * 굵기 계산에 쓰는 값. **숫자가 확정된 관계에만 넣는다.**
    * 지분율은 %, 물량은 톤, 금액은 원문 통화 단위 그대로.
+   * ⚠ 금액(`USD천`·`억원`)은 공통 축이 없어 **굵기에는 쓰지 않는다**(`strokeWeight` 참조).
+   * ⚠ 누적치를 연간치와 같은 단위로 넣지 마라. 축이 다르면 값을 빼고 라벨로만 적는다.
    */
   value?: number;
   unit?: '%' | '톤' | '척' | 'USD천' | '억원';
@@ -59,14 +61,51 @@ export interface Relation {
   caution?: string;
 }
 
-/** 편 밖의 상대. 지도에 점으로 찍히지만 카드가 없다. */
-export const EXTERNAL_NODES: Record<string, { label: string; country: string; lat: number; lng: number }> = {
-  'external:silla': { label: '신라교역', country: '대한민국', lat: 37.51, lng: 127.02 },
-  'external:panofi': { label: 'Panofi', country: '가나', lat: 5.62, lng: 0.02 },
-  'external:mitsubishi': { label: '미쓰비시상사', country: '일본', lat: 35.68, lng: 139.76 },
-  'external:unicord': { label: 'Unicord PCL', country: '태국', lat: 13.54, lng: 100.28 },
-  'external:hagoromo': { label: 'はごろもフーズ', country: '일본', lat: 35.02, lng: 138.49 },
-  'external:trimarine': { label: 'Tri Marine', country: '싱가포르', lat: 1.29, lng: 103.85 },
+/**
+ * 편 밖의 상대. **아크의 끝점이 되고, 그 층에 걸린 것만 지도에 점으로 찍힌다.**
+ *
+ * ⚠ 좌표가 본사 핀과 겹치면 화면이 거짓말을 한다. 미쓰비시상사를 ニッスイ 본사와
+ * 같은 점에 두면 「ニッスイ가 Thai Union 지분을 노렸다」로 읽힌다 — 실제로 그렇게 그려졌었다.
+ * 편이 주소를 주지 않는 상대는 `basis` 에 **근사치임을 적고** 겹치지 않는 자리에 둔다.
+ */
+export const EXTERNAL_NODES: Record<
+  string,
+  { label: string; country: string; lat: number; lng: number; basis: string }
+> = {
+  'external:silla': { label: '신라교역', country: '대한민국', lat: 37.56, lng: 126.98,
+    basis: '서울 중구 · 동원산업 본사(서초)와 겹치지 않게 시청 기준' },
+  'external:panofi': { label: 'Panofi', country: '가나', lat: 5.62, lng: 0.02,
+    basis: 'Ⅶ panofi · 테마(Tema)' },
+  // 편이 주소를 주지 않는다. ニッスイ·極洋 본사 핀도 「도쿄」 한 단어라 셋이 한 점이 됐고,
+  // 그 결과 Thai Union 으로 뻗는 지분선이 ニッスイ 핀에서 나가는 것처럼 보였다.
+  'external:mitsubishi': { label: '미쓰비시상사', country: '일본', lat: 35.72, lng: 139.80,
+    basis: 'Ⅱ history · 편에 주소가 없다. 도쿄 안에서 ニッスイ·極洋 핀과 겹치지 않게 띄운 자리이고 실제 본점 위치가 아니다' },
+  'external:unicord': { label: 'Unicord PCL', country: '태국', lat: 13.75, lng: 100.52,
+    basis: 'ⅩⅦ · 방콕 근사치 — 편에 주소가 없다. 사뭇사콘의 Sea Value 본사와 다른 법인이다' },
+  'external:hagoromo': { label: 'はごろもフーズ', country: '일본', lat: 35.02, lng: 138.49,
+    basis: 'Ⅴ ati · 시즈오카' },
+  'external:trimarine': { label: 'Tri Marine', country: '싱가포르', lat: 1.29, lng: 103.85,
+    basis: 'ⅩⅩ tables · Tri Marine International (PTE) Ltd' },
+  'external:ati': { label: 'PT Aneka Tuna Indonesia', country: '인도네시아', lat: -7.65, lng: 112.91,
+    basis: 'Ⅴ ati · 파수루안 · ITOCHU 47% + はごろも 33% + 외국계 1사 20%' },
+  'external:cpgi': { label: 'Century Pacific Group, Inc.', country: '필리핀', lat: 14.55, lng: 121.03,
+    basis: 'ⅩⅨ · 구 Century Canning Corporation · 비상장 지주' },
+  'external:kingfisher': { label: 'Kingfisher Holdings Ltd', country: '태국', lat: 13.66, lng: 100.28,
+    basis: 'ⅩⅤ · 사뭇사콘 · 영국의 동명 Kingfisher Foods 와 다른 회사다' },
+
+  // 무역선의 끝점. **회사가 아니라 나라다.** 통관 통계를 회사 대 회사로 그리면 거짓이 된다.
+  'external:kr-trade': { label: '대한민국 — 수출 통계', country: '대한민국', lat: 36.5, lng: 127.8,
+    basis: '국가 중심 근사치 · 회사 노드가 아니다' },
+  'external:th-trade': { label: '태국 — 수입 통계', country: '태국', lat: 15.2, lng: 101.0,
+    basis: '국가 중심 근사치 · 회사 노드가 아니다' },
+  'external:es-trade': { label: '스페인 — 수입 통계', country: '스페인', lat: 40.2, lng: -3.7,
+    basis: '국가 중심 근사치 · 회사 노드가 아니다' },
+  'external:it-trade': { label: '이탈리아 — 수입 통계', country: '이탈리아', lat: 42.6, lng: 12.6,
+    basis: '국가 중심 근사치 · 회사 노드가 아니다' },
+  'external:jp-trade': { label: '일본 — 수입 통계', country: '일본', lat: 36.2, lng: 138.3,
+    basis: '국가 중심 근사치 · 회사 노드가 아니다' },
+  'external:ph-trade': { label: '필리핀 — 수입 통계', country: '필리핀', lat: 12.5, lng: 122.0,
+    basis: '국가 중심 근사치 · 회사 노드가 아니다' },
 };
 
 /**
@@ -85,39 +124,60 @@ export const EQUITY_RELATIONS: Relation[] = [
     basis: 'Ⅹ stats · Bolton 지분 40%',
     caution: '6:4를 경쟁당국이 적었다고 쓰지 마라. 결정문은 이사회 인원을 가렸다' },
   { from: 'bolton', to: 'external:trimarine', kind: 'equity', status: 'active',
-    label: '2013·2019년 2단계 인수', confirmed: true,
-    basis: 'Ⅵ 로더 주석 · 2019-07 참치 공급망 100%',
+    label: '2013년 공동지배 49% → 2019년 잔여 51%', confirmed: true,
+    basis: 'Ⅵ tables · 「Tri Marine 공동지배 49% EU 승인」 · 「Tri Marine 잔여 51% 취득」',
     caution: '대가는 비공개다. 당사자 보도자료가 「조건을 공개하지 않기로 합의」라 적는다' },
   { from: 'bolton', to: 'boltonfood', kind: 'equity', status: 'active',
     label: '이탈리아 식품 법인', confirmed: true,
     basis: 'Ⅵ profile · ⅩⅩ · 직접 연결자 Bolton Group S.r.l.',
     caution: '「그룹 €3.5십억이 식품 매출」로 쓰지 마라. 세제·화장품·접착제가 들어 있다' },
-  { from: 'itochu', to: 'external:hagoromo', kind: 'equity', status: 'active',
-    label: 'ATI 합작 — ITOCHU 47% · はごろも 33%', value: 47, unit: '%', confirmed: true,
-    basis: 'Ⅴ ati · 인도네시아 파수루안 · 외국계 1사 20%' },
+  // 47%·33% 는 **ATI 지분**이다. 둘은 ATI 의 공동출자자이고 서로의 지분이 아니다.
+  // 이 두 줄을 itochu → はごろも 한 줄로 합치면 「ITOCHU 가 하고로모 47% 를 쥔다」가 된다.
+  { from: 'itochu', to: 'external:ati', kind: 'equity', status: 'active',
+    label: 'ATI 지분 47%', value: 47, unit: '%', confirmed: true,
+    basis: 'Ⅴ ati · ITOCHU 47.0% + はごろもフーズ 33.0% + 외국계 1사 20.0% = 100%',
+    caution: 'ITOCHU 가 하고로모 지분을 47% 쥔 것이 아니다. 둘 다 ATI 의 공동출자자다' },
+  { from: 'external:hagoromo', to: 'external:ati', kind: 'equity', status: 'active',
+    label: 'ATI 지분 33% · 議決権 33.0%', value: 33, unit: '%', confirmed: true,
+    basis: 'Ⅴ ati · 하고로모 제97기 유가증권보고서 「持分法適用の関連会社」에 ATI 단 1사',
+    caution: 'ITOCHU→하고로모 지분은 정책보유주식 1건이고 지분율이 편 어디에도 없다' },
   { from: 'external:unicord', to: 'bumblebee', kind: 'equity', status: 'ended',
-    label: '1989년 US$269M · 지분 98.51% → 파산', value: 98.51, unit: '%', confirmed: true,
-    basis: 'ⅩⅦ stats · Uni Group Inc.',
+    label: '1989년 US$269M 인수 → 파산', confirmed: true,
+    basis: 'ⅩⅦ 연표 1989-09 · 매수 주체 Uni Group Inc. · **지분율은 편에 없다**',
     caution: '1989년에 산 것은 Unicord이고 지금 캔을 미국으로 보내는 것은 I.S.A. Value다. 같은 법인이 아니다' },
+  { from: 'seavalue', to: 'external:unicord', kind: 'equity', status: 'active',
+    label: '2005-09 Unicord 지분 98.51% 인수', value: 98.51, unit: '%', confirmed: true,
+    basis: 'ⅩⅦ 연표 2005-09 · 1,477,631,210주 / 발행 1,500,000,000주',
+    caution: '98.51% 는 Sea Value 가 Unicord 에서 가진 몫이다. 1989년 Unicord→Bumble Bee 지분율이 아니다' },
+  // ⅩⅦ 이 「현재는 확인 못 했다」고 남긴 줄이다. confirmed:true 로 올리면 지금 살아 있는 지분이 된다.
   { from: 'bumblebee', to: 'seavalue', kind: 'equity', status: 'active',
-    label: 'Bumble Bee가 Sea Value 지분 10%', value: 10, unit: '%', confirmed: true,
-    basis: 'ⅩⅦ 로더 금칙 · 「Bumble Bee owns a 10 percent share in Sea Value」',
-    caution: '방향이 자주 뒤바뀐다. Sea Value가 Bumble Bee를 가진 것이 아니다' },
-  { from: 'external:mitsubishi', to: 'thaiunion', kind: 'equity', status: 'failed',
-    label: '지분 6.19% → 20% 확대 시도, 2025년 무산', value: 6.19, unit: '%', confirmed: true,
-    basis: 'Ⅱ history · 2025-09-29 공개매수 응모 미달로 자동 취소',
+    label: '2014년 기고 시점 지분 10%', confirmed: false,
+    basis: 'ⅩⅦ 02절 · 2014-01-27 미 하원의원 기명 기고 · 등급 B · 그 뒤 변동 문서 미확인',
+    caution: '방향이 자주 뒤바뀐다(Sea Value 가 Bumble Bee 를 가진 것이 아니다). 그리고 **지금도 보유한다고 쓰지 마라** — ⅩⅦ 이 현재를 미확인으로 남겼다' },
+  { from: 'external:mitsubishi', to: 'thaiunion', kind: 'equity', status: 'active',
+    label: '지분 6.19% (1992년~)', value: 6.19, unit: '%', confirmed: true,
+    basis: 'Ⅱ history 1992 · 238,745,120주 · 2025년 확대 무산 뒤에도 그대로',
     caution: '「미쓰비시가 인수했다」로 쓰지 마라. 지분은 6.19% 그대로다' },
+  { from: 'external:mitsubishi', to: 'thaiunion', kind: 'equity', status: 'failed',
+    label: '20% 확대 시도 — 2025-09-29 무산', confirmed: false,
+    basis: 'Ⅱ history 2025 · 공개매수 응모 미달로 자동 취소 · 2025-11 기준 새 제안 없음',
+    caution: '무산된 것은 확대분이다. 위의 6.19% 는 살아 있다 — 자본선 자체를 회색으로 읽으면 안 된다' },
+  { from: 'external:silla', to: 'external:panofi', kind: 'equity', status: 'active',
+    label: '지분 45% · 2003년 취득 · 장부가액 0', value: 45, unit: '%', confirmed: true,
+    basis: 'Ⅶ panofi · 자본잠식 235억원 → 407억원',
+    caution: 'Ⅶ panofi 에 공급 방향을 말하는 행이 없다. 물건을 댄다고 쓰지 마라 — 선망 7척은 Panofi 쪽에 있다' },
   { from: 'jealsa', to: 'albacora', kind: 'equity', status: 'active',
     label: '부회장 법인이사석 — 지분율 미확인', confirmed: false,
     basis: 'Ⅸ albacora · ALONSO ESCURIS S.L. 2022-09~ · GLEIF는 NON_CONSOLIDATING',
     caution: '지분율은 어디에도 없다. 「지배지분은 아니다」까지만 말할 수 있다' },
-  { from: 'centurypacific', to: 'centurypacific', kind: 'equity', status: 'active',
+  { from: 'external:cpgi', to: 'centurypacific', kind: 'equity', status: 'active',
     label: '지주 직접명의 62.994% · 예탁 포함 65.5%', value: 65.5, unit: '%', confirmed: true,
     basis: 'ⅩⅨ 기준선 §2 · 2,320,120,781주 / 발행 3,542,258,595주',
     caution: '지주 63%로 쓰지 마라. 63%는 직접명의분 62.994%의 반올림이다' },
-  { from: 'umios', to: 'umios', kind: 'equity', status: 'active',
-    label: 'Kingfisher 지분 50.7%', value: 50.7, unit: '%', confirmed: true,
-    basis: 'ⅩⅤ stats' },
+  { from: 'umios', to: 'external:kingfisher', kind: 'equity', status: 'active',
+    label: 'Kingfisher Holdings 지분 50.70%', value: 50.7, unit: '%', confirmed: true,
+    basis: 'ⅩⅤ stats · 제82기 유가증권보고서 「関係会社の状況」',
+    caution: '영국의 동명 Kingfisher Foods 와 다른 회사다' },
 ];
 
 /**
@@ -131,10 +191,11 @@ export const SUPPLY_RELATIONS: Relation[] = [
   { from: 'fcf', to: 'bumblebee', kind: 'supply', status: 'active',
     label: '알바코어 95~100% · 라이트미트 70~100%', value: 95, unit: '%', confirmed: true,
     basis: 'ⅩⅣ supply · FCF 계약선박 500척 · 공급자 교체에 6~12개월' },
+  // 누적치라 값을 빼 둔다. 연간 수출선(86,514톤/2025)과 같은 굵기 자로 재면 축이 어긋난다.
   { from: 'seavalue', to: 'starkist', kind: 'supply', status: 'active',
-    label: '누적 16,694,091 kg', value: 16694, unit: '톤', confirmed: true,
-    basis: 'ⅩⅦ stats · I.S.A. Value 명의',
-    caution: '「그 회사의 공장이 Bumble Bee 캔을 만든다」를 담은 문서는 하나도 없다' },
+    label: '누적 16,694,091 kg (2006-11~2026-08)', confirmed: false,
+    basis: 'ⅩⅦ stats · I.S.A. Value 명의 · 거래상대 행 최근일 2023-03-03 · 등급 B',
+    caution: '연간 물량으로 쓸 수 없다 — HS 한정 여부와 연도별 배분이 확인되지 않은 20년 누적이다. 「그 회사의 공장이 Bumble Bee 캔을 만든다」를 담은 문서도 하나도 없다' },
   { from: 'itochu', to: 'external:hagoromo', kind: 'supply', status: 'active',
     label: '연 62.08억엔 매입 — 전량 ITOCHU를 거친다', confirmed: true,
     basis: 'Ⅴ ati' },
@@ -142,9 +203,6 @@ export const SUPPLY_RELATIONS: Relation[] = [
     label: 'MSC 인증 25척 중 11척 (44%)', value: 11, unit: '척', confirmed: true,
     basis: 'Ⅴ korea · siVessels · 사조 6 + 키리바시&사조 3 + 사조바누아투 2',
     caution: 'ITOCHU가 인증 보유자로서 신청·유지 비용을 진다. 지분 관계가 아니다' },
-  { from: 'external:silla', to: 'external:panofi', kind: 'supply', status: 'active',
-    label: '지분 45% · 선망 7척 전량 담보권', value: 45, unit: '%', confirmed: true,
-    basis: 'Ⅶ panofi · 2003년 취득 · 장부가액 0' },
 ];
 
 /**
@@ -155,7 +213,7 @@ export const SUPPLY_RELATIONS: Relation[] = [
 export const REGISTRY_RELATIONS: Relation[] = [
   { from: 'external:silla', to: 'bolton', kind: 'registry', status: 'active',
     label: '공급선 명단 5척 (2025년판)', value: 5, unit: '척', confirmed: true,
-    basis: 'ⅩⅩ stats · 2021년 6척 → 2023년 0척 → 2024년 2척 → 2025년 5척',
+    basis: 'ⅩⅩ stats(2025년 5척) · Ⅵ korea(2021년 6척 → 2023년 0척 → 2024년 2척)',
     caution: '명단은 척수만 적는다. 2025년판 분모는 964척이고 한국 국적선은 23척이다' },
   { from: 'dongwon', to: 'bolton', kind: 'registry', status: 'active',
     label: '공급선 명단 10척 (2025년판)', value: 10, unit: '척', confirmed: true,
@@ -184,26 +242,33 @@ export const REGISTRY_RELATIONS: Relation[] = [
  *
  * ⚠ FCF 거래는 선상·환적항 인도라 매수인 국적과 화물 목적지가 분리된다 —
  * 한국→대만 참치 수출은 통계에 0으로 찍힌다. 그래서 그 축은 여기 없다(Ⅳ 금칙).
+ *
+ * ⚠ **양 끝이 나라다.** 통관 통계를 회사 본사 핀에 물리면
+ * 「신라교역이 Thai Union 에 86,514톤을 팔았다」로 읽힌다 — 실제로 그렇게 그려졌었다.
+ * 이 층의 노드는 `external:*-trade` 이고 회사가 아니다.
  */
 export const TRADE_RELATIONS: Relation[] = [
-  { from: 'external:silla', to: 'thaiunion', kind: 'trade', status: 'active',
+  { from: 'external:kr-trade', to: 'external:th-trade', kind: 'trade', status: 'active',
     label: '한국 → 태국 86,514톤 (2025년)', value: 86514, unit: '톤', confirmed: true,
     basis: 'Ⅱ koreaExport · 2024년 107,151톤에서 감소',
-    caution: '이 값은 「태국」이라는 시장의 몫이지 이 회사 한 곳의 매입이 아니다' },
-  { from: 'external:silla', to: 'frinsa', kind: 'trade', status: 'active',
+    caution: '나라 대 나라 통관 통계다. 어느 회사가 얼마를 샀는지가 아니다' },
+  { from: 'external:kr-trade', to: 'external:es-trade', kind: 'trade', status: 'active',
     label: '한국 → 스페인 1,954톤 (2025년)', value: 1954, unit: '톤', confirmed: true,
-    basis: 'Ⅰ koreaExport · 2024년 5,509톤에서 감소' },
-  { from: 'external:silla', to: 'jais', kind: 'trade', status: 'active',
+    basis: 'Ⅰ koreaExport · 2024년 5,509톤에서 감소',
+    caution: '나라 대 나라 통관 통계다. Frinsa 의 매입이 아니다' },
+  { from: 'external:kr-trade', to: 'external:it-trade', kind: 'trade', status: 'active',
     label: '한국 → 이탈리아 2,548톤 · 금액 1위', value: 2548, unit: '톤', confirmed: true,
     basis: 'Ⅶ korea · ⅩⅩ · HS 0304.87 · 금액 36.88% 1위 / 중량 31.09% 2위',
-    caution: '금액으로 1위이고 중량으로는 2위다. 축을 붙이지 않으면 거짓이 된다' },
-  { from: 'external:silla', to: 'itochu', kind: 'trade', status: 'active',
+    caution: '금액으로 1위이고 중량으로는 2위다. 축을 붙이지 않으면 거짓이 된다. 그리고 나라의 몫이지 JAIS 의 매입이 아니다' },
+  { from: 'external:kr-trade', to: 'external:jp-trade', kind: 'trade', status: 'active',
     label: '한국 → 일본 9,901톤 · 단가 $5.89/kg', value: 9901, unit: '톤', confirmed: true,
-    basis: 'Ⅴ korea · 세계평균 $4.17의 1.41배 · 수입국 5위' },
-  { from: 'external:silla', to: 'centurypacific', kind: 'trade', status: 'active',
-    label: '한국 → 필리핀 몫 1.62% (2025년)', value: 1.62, unit: '%', confirmed: true,
+    basis: 'Ⅴ korea · 세계평균 $4.17의 1.41배 · 수입국 5위',
+    caution: '나라 대 나라 통관 통계다. ITOCHU 의 매입이 아니다' },
+  // 몫(%)은 톤과 다른 축이라 굵기 값에서 뺀다.
+  { from: 'external:kr-trade', to: 'external:ph-trade', kind: 'trade', status: 'active',
+    label: '한국 수출 중 필리핀 몫 1.62% (2025년)', confirmed: true,
     basis: 'ⅩⅨ stats · 2022년 9.70%에서 3년 만에 6분의 1',
-    caution: '분모는 한국의 전세계 수출 중량이다. 이 회사의 매입이 아니라 나라의 몫이다' },
+    caution: '분모는 한국의 전세계 수출 중량이다. Century Pacific 의 매입이 아니다' },
 ];
 
 /**
@@ -214,7 +279,7 @@ export const FINANCE_RELATIONS: Relation[] = [
     label: '지급보증 USD 169,200천', value: 169200, unit: 'USD천', confirmed: true,
     basis: 'ⅩⅡ guarantee · 하나 뉴욕·SMBC 뉴욕·신한 뉴욕 · 달러 보증의 98.37%' },
   { from: 'external:silla', to: 'external:panofi', kind: 'finance', status: 'active',
-    label: '대여금 196.8억원 · 지급보증 USD 31,500천', value: 19680, unit: '억원', confirmed: true,
+    label: '대여금 196.8억원 · 지급보증 USD 31,500천', value: 196.8, unit: '억원', confirmed: true,
     basis: 'Ⅶ panofi · 수취채권 949.9억원 · 이자수익 70.1억원',
     caution: 'Panofi는 자본잠식이 235억원에서 407억원으로 커졌다' },
 ];
@@ -245,6 +310,8 @@ export function strokeWeight(r: Relation): number {
   if (r.unit === '%') return BASE + (Math.min(r.value, 100) / 100) * 1.15;
   if (r.unit === '척') return BASE + Math.min(r.value / 12, 1) * 1.15;
   if (r.unit === '톤') return BASE + Math.min(r.value / 90000, 1) * 1.15;
+  // 금액은 통화가 둘(USD천·억원)이고 환율을 원장에 박을 수 없다.
+  // 공통 축이 없으므로 **굵기에 쓰지 않는다** — 값은 라벨로만 읽힌다.
   return BASE + 0.4;
 }
 

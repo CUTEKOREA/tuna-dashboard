@@ -32,6 +32,7 @@ import {
   PLANT_POINTS,
   UNLOCATED_PLANTS,
   hasSize,
+  isProduction,
 } from '@/lib/data/company-geo';
 import {
   ALL_RELATIONS,
@@ -243,14 +244,30 @@ export default function TunaPowerGlobe() {
     [relations, nodeIndex],
   );
 
-  const maxSize = useMemo(() => {
-    const vals = points.filter(hasSize).map((p) => p.sizeValue!);
-    return vals.length ? Math.max(...vals) : 1;
+  /**
+   * 단위마다 따로 정규화한다.
+   *
+   * 하나의 최댓값으로 전부 나누면 **명·톤/년·MT/일이 한 자로 재진다.**
+   * 실제로 그랬다 — 파고파고 108,000 톤/년이 최댓값이 되어 포소르하 2,358명과
+   * 사뭇사콘 1,000 MT/일(연 30만 톤급)이 그 톤 값으로 나뉘어 더 작게 그려졌다.
+   * `company-geo.ts` 의 5번 규칙이 「같은 단위끼리만 견준다」인데 코드가 깨고 있었다.
+   */
+  const maxByUnit = useMemo(() => {
+    const m = new Map<string, number>();
+    for (const p of points) {
+      if (!hasSize(p)) continue;
+      m.set(p.sizeUnit!, Math.max(m.get(p.sizeUnit!) ?? 0, p.sizeValue!));
+    }
+    return m;
   }, [points]);
 
   const radiusOf = useCallback(
-    (p: GeoPoint) => (hasSize(p) ? 0.26 + Math.sqrt(p.sizeValue! / maxSize) * 0.70 : 0.24),
-    [maxSize],
+    (p: GeoPoint) => {
+      if (!hasSize(p)) return 0.24;
+      const max = maxByUnit.get(p.sizeUnit!) ?? p.sizeValue!;
+      return 0.26 + Math.sqrt(p.sizeValue! / max) * 0.70;
+    },
+    [maxByUnit],
   );
 
   /**
@@ -262,7 +279,59 @@ export default function TunaPowerGlobe() {
     [points],
   );
 
+  /**
+   * 이 층의 아크가 닿는 **편 밖 상대**. 점으로 찍지 않으면 아크가
+   * 근처 본사 핀에서 출발하는 것처럼 보인다 — 미쓰비시상사 선이 ニッスイ 핀에서
+   * 뻗어 나가 「ニッスイ가 시도했다」로 읽혔다. 회색 마름모로 따로 낸다.
+   */
+  const externals = useMemo(() => {
+    const ids = new Set<string>();
+    for (const a of arcs) {
+      if (a.r.from.startsWith('external:')) ids.add(a.r.from);
+      if (a.r.to.startsWith('external:')) ids.add(a.r.to);
+    }
+    return [...ids].map((id) => ({ id, ...EXTERNAL_NODES[id] })).filter((x) => x.label);
+  }, [arcs]);
+
   const timelineNow = LIST_TIMELINE.find((t) => t.year === year);
+
+  /**
+   * 캡션의 개수는 **손으로 적지 않고 화면에서 센다.**
+   * 「지분선 12개」라 써 놓고 10개가 그려지고 그중 국경을 넘는 것이 7개였다.
+   * 「회색 점선 둘」이라 써 놓고 셋이 그려졌고 그 셋째는 살아 있는 관계였다.
+   */
+  const drawn = useMemo(() => {
+    const cross = arcs.filter((a) => {
+      const x = nodeIndex.get(a.r.from);
+      const y = nodeIndex.get(a.r.to);
+      return x && y && x.country !== y.country;
+    }).length;
+    const grey = arcs.filter(
+      (a) => a.r.status !== 'active' || !a.r.confirmed,
+    ).length;
+    const dead = arcs.filter((a) => a.r.status !== 'active').length;
+    return { total: arcs.length, cross, grey, unconfirmedLive: grey - dead };
+  }, [arcs, nodeIndex]);
+
+  /** 기국으로 셀 수 있는 칸과 그렇지 않은 칸(등록부 이름·소유 구분)을 가른다. */
+  const flagSplit = useMemo(
+    () =>
+      FLAG_STATES.map((f) => ({
+        ...f,
+        real: f.flags.filter((x) => x.isFlag !== false),
+        other: f.flags.filter((x) => x.isFlag === false),
+      })),
+    [],
+  );
+
+  /** 이 층에 선단 정보가 아예 없는 회사. 「일곱」이라 못박았다가 실제로 열하나였다. */
+  const fleetSilent = useMemo(() => {
+    const known = new Set([
+      ...FLAG_STATES.map((f) => f.company),
+      ...NO_FLEET.map((n) => n.company),
+    ]);
+    return HQ_POINTS.filter((p) => !known.has(p.company));
+  }, []);
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
@@ -350,6 +419,16 @@ export default function TunaPowerGlobe() {
             ringMaxRadius={1.9}
             ringPropagationSpeed={0.85}
             ringRepeatPeriod={(d: any) => d.period}
+            /* 편 밖 상대 — 회사 핀과 섞이지 않게 라벨 표식으로 따로 낸다 */
+            labelsData={externals}
+            labelLat={(d: any) => d.lat}
+            labelLng={(d: any) => d.lng}
+            labelText={(d: any) => d.label}
+            labelSize={0.62}
+            labelDotRadius={0.34}
+            labelColor={() => 'rgba(226,232,240,0.78)'}
+            labelResolution={2}
+            labelAltitude={0.014}
             /* 선 */
             arcsData={arcs}
             arcStartLat={(d: any) => d.startLat}
@@ -463,7 +542,10 @@ export default function TunaPowerGlobe() {
         >
           <div><span style={{ color: current.accent }}>●</span> 확정 — 실선 · 굵기가 값에 비례</div>
           <div><span style={{ color: 'rgba(203,213,225,0.6)' }}>○</span> 미확인 — 점선 · 고정 굵기</div>
-          <div style={{ opacity: 0.72 }}>회색 점선은 끝났거나 무산된 관계다</div>
+          <div style={{ opacity: 0.72 }}>
+            회색은 <b>끝났거나 · 무산됐거나 · 근거가 미확인</b>인 관계다 — 셋을 한 색으로 낸다
+          </div>
+          <div style={{ opacity: 0.72 }}>◇ 표식은 편 밖의 상대다 (카드가 없다)</div>
         </div>
 
         {/* 상세 카드 */}
@@ -484,7 +566,12 @@ export default function TunaPowerGlobe() {
                 <>
                   <div style={{ fontSize: 14, fontWeight: 700, marginBottom: 3 }}>{picked.label}</div>
                   <div style={{ color: 'var(--w-slate-400, #94a3b8)', marginBottom: 9 }}>
-                    {picked.country} · 편 {picked.numeral} · {picked.kind === 'hq' ? '등기·본사' : '생산 거점'}
+                    {picked.country} · 편 {picked.numeral} ·{' '}
+                    {picked.kind === 'hq'
+                      ? '등기·본사'
+                      : isProduction(picked)
+                        ? '생산 거점'
+                        : picked.role === 'trading' ? '트레이딩 법인' : '구매 거점'}
                   </div>
                   {hasSize(picked) && (
                     <div style={{ marginBottom: 7 }}>
@@ -545,7 +632,7 @@ export default function TunaPowerGlobe() {
       {layer === 'catch' && (
         <div style={{ display: 'grid', gap: 10 }}>
           <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8 }}>
-            {FLAG_STATES.map((f) => (
+            {flagSplit.map((f) => (
               <div
                 key={f.company}
                 style={{
@@ -555,13 +642,27 @@ export default function TunaPowerGlobe() {
                 }}
               >
                 <b>{nodeIndex.get(f.company)?.label ?? f.company}</b>{' '}
-                {f.flags.map((x) => `${x.country} ${x.count}`).join(' · ')}
+                {f.real.length > 0
+                  ? f.real.map((x) => `${x.country} ${x.count}`).join(' · ')
+                  : <span style={{ opacity: 0.6 }}>기국 표기 없음</span>}
+                {f.other.length > 0 && (
+                  <span style={{ color: '#e8b45f' }}>
+                    {' '}· 기국 아님({f.other.map((x) => `${x.country} ${x.count}`).join(' · ')})
+                  </span>
+                )}
+                {f.note && (
+                  <span style={{ display: 'block', marginTop: 3, fontSize: 11, color: '#e8b45f' }}>
+                    {f.note}
+                  </span>
+                )}
               </div>
             ))}
           </div>
           <p style={{ margin: 0, fontSize: 12, color: '#e8b45f', lineHeight: 1.7 }}>
             배를 바다에 찍지 않았다. 20편 어디에도 <b>모항이 없고</b> 있는 것은 기국뿐이다 —
-            기국은 배가 어디서 조업하는지가 아니라 어느 나라 깃발을 다는지다.
+            기국은 배가 어디서 조업하는지가 아니라 어느 나라 깃발을 다는지다.{' '}
+            <b>노란 칸은 기국이 아니다</b> — 편이 등록부 이름(WCPFC 등록·ICCAT 비활성)이나
+            소유 구분(해외 자회사·합작)으로만 적은 것이라 나라로 세면 안 된다.
           </p>
           <div
             style={{
@@ -570,9 +671,17 @@ export default function TunaPowerGlobe() {
               color: 'var(--w-slate-300, #cbd5e1)',
             }}
           >
-            <b>이 층이 비는 회사가 일곱이다.</b>{' '}
-            {NO_FLEET.map((n) => nodeIndex.get(n.company)?.label ?? n.company).join(' · ')} 는 배가 0척이다.
-            빈칸을 채우지 않았다 — 그게 이 산업의 구조다.
+            <b>자사 명의 등재가 0척인 회사가 {NO_FLEET.length}곳이다.</b>{' '}
+            {NO_FLEET.map((n) => nodeIndex.get(n.company)?.label ?? n.company).join(' · ')}.
+            근거는 회사마다 다르다 — 「RFMO 자사 명의 0척」·「선박명부 등재 0척」처럼
+            <b> 등록부의 부재</b>이지 소유의 부재가 아니다. FCF는 협력 공급 어선이 600척 넘는다.
+            {fleetSilent.length > 0 && (
+              <>
+                {' '}그리고 <b>선단 정보가 아예 없는 회사가 {fleetSilent.length}곳</b> 더 있다 —{' '}
+                {fleetSilent.map((p) => nodeIndex.get(p.company)?.label ?? p.company).join(' · ')}.
+                빈칸을 채우지 않았다.
+              </>
+            )}
           </div>
         </div>
       )}
@@ -583,6 +692,14 @@ export default function TunaPowerGlobe() {
             원의 크기는 <b>인력·캐파 값이 확정된 거점</b>에만 붙였다. 단위가 다른 값끼리는 견주지 않는다 —
             명(인력)과 톤/년(캐파)과 MT/일(일산)은 서로 다른 자다.
             본사 핀은 회색 작은 점이고 <b>크기를 갖지 않는다</b>.
+            그리고 크기는 <b>같은 단위끼리만</b> 정규화한다 — 명·톤/년·MT/일을 한 자로 재면
+            단위가 큰 쪽이 무조건 커진다.
+          </p>
+          <p style={{ margin: 0, fontSize: 12.5, color: '#e8b45f', lineHeight: 1.75 }}>
+            <b>이 층의 점 {points.length}개 가운데 {points.filter((p) => !isProduction(p)).length}개는
+            캔을 만드는 곳이 아니다</b> —{' '}
+            {points.filter((p) => !isProduction(p)).map((p) => p.label).join(' · ')} 는
+            트레이딩·구매 법인이다. 상세 카드에도 그렇게 적는다.
           </p>
           <div
             style={{
@@ -601,8 +718,9 @@ export default function TunaPowerGlobe() {
       {layer === 'capital' && (
         <div style={{ display: 'grid', gap: 10 }}>
           <p style={{ margin: 0, fontSize: 12.5, color: 'var(--w-slate-400, #94a3b8)', lineHeight: 1.75 }}>
-            국경을 넘는 지분선 {EQUITY_RELATIONS.length}개. 선을 클릭하면 근거와 함께
-            <b> 그 관계로 하면 안 되는 말</b>이 뜬다.
+            화면에 그려진 지분선 {drawn.total}개, 그중 <b>국경을 넘는 것이 {drawn.cross}개</b>다
+            (원장에는 {EQUITY_RELATIONS.length}개가 있고 양 끝 좌표가 같은 것은 그리지 않는다).
+            선을 클릭하면 근거와 함께 <b>그 관계로 하면 안 되는 말</b>이 뜬다.
           </p>
           <div
             style={{
@@ -613,8 +731,10 @@ export default function TunaPowerGlobe() {
           >
             대만 회사가 미국 브랜드를 갖고, 한국 회사가 미국령 사모아에서 캔을 만들며,
             이탈리아 그룹이 스페인 캐너리의 40%를 쥔다.{' '}
-            <b>회색 점선 둘은 끝났거나 무산된 관계다</b> — 1989년 태국 인수는 파산으로 끝났고
-            2025년 일본 상사의 지분 확대는 응모 미달로 무산됐다.
+            <b>회색은 {drawn.grey}개</b>다 — 1989년 태국 인수는 파산으로 끝났고,
+            2025년 일본 상사의 <b>지분 확대분</b>은 응모 미달로 무산됐다
+            (그 회사의 6.19%는 1992년부터 살아 있다 — 무산된 것은 확대분이다).
+            나머지 {drawn.unconfirmedLive}개는 끝난 것이 아니라 <b>근거가 미확인</b>인 관계다.
           </div>
         </div>
       )}
@@ -642,7 +762,7 @@ export default function TunaPowerGlobe() {
               );
             })}
             <span style={{ fontSize: 12.5, color: '#e9a99f' }}>
-              우리 배 <b>{timelineNow?.silla ?? 0}척</b>
+              명단 등재 <b>{timelineNow?.silla ?? 0}척</b>
             </span>
           </div>
           <p style={{ margin: 0, fontSize: 12.5, color: 'var(--w-slate-400, #94a3b8)', lineHeight: 1.75 }}>
@@ -657,6 +777,11 @@ export default function TunaPowerGlobe() {
           >
             <b>시간축은 이 층에만 있다.</b> 확정된 시계열이 공급선 명단 하나뿐이라,
             다른 층에 연도 스크럽바를 붙이면 없는 시계열을 만드는 것이 된다.
+            <br />
+            <b>이 숫자는 보유 선박 수가 아니라 명단에 오른 척수다.</b> 0인 해는 배가 없었던 해가
+            아니라 그 판에 우리 계열 표기가 없던 해다. 그리고 2024→2025 에 분모가 399 → 964로
+            2.4배가 된 것은 배가 는 것이 아니라 <b>명단의 범위가 넓어진 것</b>이라,
+            두 해의 등재 척수를 그대로 견주면 안 된다.
           </div>
         </div>
       )}
