@@ -25,7 +25,9 @@ describe('방콕 개관 시세 겹쳐보기 행 구성', () => {
     const rows = buildOverviewRows(bangkokWeeks, singaporeMgoAt, []);
     expect(rows).toHaveLength(bangkokWeeks.length);
     const last = rows.at(-1)!;
-    expect(last).toMatchObject({ date: '2026-09-02', 방콕사무소: 2030, 재고: 100500, 가동률: 51, MGO: 1222.5, 어튜나: null });
+    // 최신행 고정 - main 미병합 배포가 화면을 옛 주차로 되돌리는 회귀를 여기서 잡는다.
+    // MGO 는 실측 JSON 이 아직 이 주차를 안 담아 null 이다(가격·재고와 갱신 주기가 다르다).
+    expect(last).toMatchObject({ date: '2026-09-09', 방콕사무소: 2150, 재고: 94300, 가동률: 51, MGO: null, 어튜나: null });
     expect(rows.find((r) => r.date === '2020-05-27')?.MGO).toBeNull();
     // 2024-01-10 은 원문 docx 오기($2,000) — 2026-09-02 사용자 지시로 전후 주 값 $1,450 으로 정정(payload corrections 에 근거 기록)
     const corrected = bangkokWeeks.find((w) => w.date === '2024-01-10')!;

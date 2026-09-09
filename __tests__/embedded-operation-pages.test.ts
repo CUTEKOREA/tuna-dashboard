@@ -10,12 +10,12 @@ describe('bangkok native dashboard', () => {
 
     expect(intake.bangkokWeeklyKpi).toEqual({
       period: '2020.05~2026.09',
-      // 2026-09-02 주간보고 반영 (매주 sync로 갱신되는 확정 KPI)
-      weeks: 290,
-      latestPrice: 2030,
-      stockMt: 100500,
-      processDays: 47,
-      cumUnloadMt: 341810,
+      // 2026-09-09 주간보고 반영 (매주 sync로 갱신되는 확정 KPI)
+      weeks: 291,
+      latestPrice: 2150,
+      stockMt: 94300,
+      processDays: 44,
+      cumUnloadMt: 349737,
       highSaltUsd: 142000,
     });
 
@@ -138,11 +138,13 @@ describe('bangkok native dashboard', () => {
 
   it('네이티브 히어로 + 탭을 렌더하고 iframe은 남기지 않는다', async () => {
     const { default: BangkokDashboard } = await import('../components/bangkok/BangkokDashboard');
+    const { bangkokWeeklyKpi: intakeKpi } = await import('../lib/data/bangkok-weekly');
     const markup = renderToStaticMarkup(React.createElement(BangkokDashboard));
 
     expect(markup).toContain('방콕사무소');
     expect(markup).toContain('data-now="true"');
-    expect(markup).toContain('분석 기간 2020.05~2026.09 · 고유 290주');
+    // 주차 수는 매주 는다 - 값을 못박지 말고 계약에서 파생시킨다
+    expect(markup).toContain(`분석 기간 2020.05~2026.09 · 고유 ${intakeKpi.weeks}주`);
     // 2026-09-02 사용자 지시: 하이솔트 확정액 타일은 히어로에서 뺀다 (KPI 계약의 highSaltUsd는 유지).
     expect(markup).not.toContain('하이솔트 확정액');
     // 2026-09-02: 개관 시세 차트가 어튜나·방콕사무소·싱가포르 MGO 3종(같은 $/t 축) + 재고·가동률 소패널로 확장
@@ -157,7 +159,8 @@ describe('bangkok native dashboard', () => {
     // 2026-09-02 사용자 지시: 계절 패턴 선·밴드는 어튜나 주황(#d95926)이 아니라 중립 회색이어야 한다
     expect(markup).toContain('#64748b');
 
-    for (const value of [2030, 100500, 341810, 47]) {
+    // 히어로 KPI 4종은 매주 바뀐다 - 계약에서 파생시켜 주차마다 손대지 않게 한다
+    for (const value of [intakeKpi.latestPrice, intakeKpi.stockMt, intakeKpi.cumUnloadMt, intakeKpi.processDays]) {
       expect(markup).toContain(`data-kpi-value="${value}"`);
     }
     for (const label of [
