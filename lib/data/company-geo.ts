@@ -1,0 +1,275 @@
+/**
+ * 참치 기업 해부 20편의 **지리 원장**.
+ *
+ * 20편 어디에도 위경도가 없다. 편이 확정한 것은 **도시 이름**까지이고, 좌표는 그 도시의
+ * 공개 좌표를 여기서 붙인 것이다. 그래서 모든 행이 `basis` 로 「어느 편 어느 필드가 그 도시를
+ * 말하는가」를 들고 다닌다.
+ *
+ * ## 이 파일이 지키는 다섯 가지 — 조사가 낸 「지도로 그리면 거짓이 되는 것」
+ *
+ * 1. **본사와 생산 거점을 가른다.** 본사 핀에 매출을 붙이면 거짓이 된다. Albacora 의 몸통은
+ *    스페인이 아니라 에콰도르 포소르하(가공매출의 74%)이고, Nauterra 는 상업등기부에
+ *    그 상호의 법인이 **0건**이며, Bolton Food 등기 본점은 밀라노가 아니라 체르메나테다.
+ *    → `kind: 'hq'` 는 크기를 갖지 않는다. 크기는 `kind: 'plant'` 에만 붙는다.
+ * 2. **선단을 지도에 찍지 않는다.** 20편에 **모항이 한 건도 없다.** 있는 것은 기국뿐이고,
+ *    Nauterra 8척 중 7척이 엘살바도르 기이며 Kyokuyo 4척은 전부 자회사 명의다.
+ *    → 선단은 `FLAG_STATES` 로만 두고 지도 위 점으로 만들지 않는다.
+ * 3. **미확인 거점은 찍지 않는다.** Jealsa 공장 7곳·Bumble Bee 자가 공장 1곳은 위치가 없다.
+ *    → `UNLOCATED_PLANTS` 에 개수만 적고 회사 패널에서 「위치 미확인 n곳」으로 낸다.
+ * 4. **국가를 칠하지 않는다.** Bolton 매출의 32.7%가 접착제·세제·화장품이고 ITOCHU 는
+ *    수산 실적 공시가 0건이다. 회사 하나를 나라 하나에 칠하면 그 사실이 지워진다.
+ * 5. **규모 값의 단위를 섞지 않는다.** `sizeValue` 는 `sizeUnit` 이 같은 것끼리만 견준다.
+ *
+ * ⚠ 좌표는 도시 중심의 근사치다. 부두·공장의 정확한 위치가 아니다.
+ */
+
+/** 지점 종류. 본사는 크기를 갖지 않는다(1번 규칙). */
+export type GeoKind = 'hq' | 'plant';
+
+export interface GeoPoint {
+  /** `COMPANY_CARDS` 의 key 와 같다. */
+  company: string;
+  /** 편 로마숫자. */
+  numeral: string;
+  kind: GeoKind;
+  /** 화면에 띄우는 지점 이름. */
+  label: string;
+  country: string;
+  lat: number;
+  lng: number;
+  /** 어느 편 어느 필드가 이 도시를 말하는가. 빈 문자열 금지. */
+  basis: string;
+  /** 크기를 줄 값. `kind: 'plant'` 이고 값이 있을 때만. */
+  sizeValue?: number;
+  /** `sizeValue` 의 단위. 다른 단위끼리 견주지 않는다. */
+  sizeUnit?: '명' | '톤/년' | 'MT/일';
+  /** 보조 설명 한 줄. */
+  note?: string;
+}
+
+/**
+ * 본사·등기지 20곳.
+ *
+ * 도시는 `COMPANY_CARDS` 의 `country` 필드와 각 편 인테이크 `_meta.국가` 가 확정한다.
+ * ITOCHU 는 등기 본점(오사카)과 본사(도쿄)가 갈리므로 등기 본점을 찍는다.
+ */
+export const HQ_POINTS: GeoPoint[] = [
+  { company: 'frinsa', numeral: 'Ⅰ', kind: 'hq', label: 'Frinsa 본사', country: '스페인',
+    lat: 42.55, lng: -8.99, basis: 'Ⅰ _meta.국가 · Ribeira (A Coruña)' },
+  { company: 'thaiunion', numeral: 'Ⅱ', kind: 'hq', label: 'Thai Union 본사', country: '태국',
+    lat: 13.55, lng: 100.27, basis: 'Ⅱ _meta.국가 · 사뭇사콘' },
+  { company: 'albacora', numeral: 'Ⅲ', kind: 'hq', label: 'Albacora 등기 본점', country: '스페인',
+    lat: 43.42, lng: -2.72, basis: 'Ⅲ profile · Pol. Ind. Landabaso, 48370 Bermeo',
+    note: '본사가 있는 곳이지 생산이 일어나는 곳이 아니다' },
+  { company: 'fcf', numeral: 'Ⅳ', kind: 'hq', label: 'FCF 본사', country: '대만',
+    lat: 22.60, lng: 120.31, basis: 'Ⅳ profile · 高雄市前鎮區民權二路8號28樓' },
+  { company: 'itochu', numeral: 'Ⅴ', kind: 'hq', label: 'ITOCHU 등기 본점', country: '일본',
+    lat: 34.70, lng: 135.50, basis: 'Ⅴ profile · 오사카 우메다(본사는 도쿄 기타아오야마)' },
+  { company: 'bolton', numeral: 'Ⅵ', kind: 'hq', label: 'Bolton Group 본사', country: '이탈리아',
+    lat: 45.48, lng: 9.20, basis: 'Ⅵ profile · Via G.B. Pirelli 19, 20124 Milano' },
+  { company: 'jais', numeral: 'Ⅶ', kind: 'hq', label: 'JAIS 본사', country: '이탈리아',
+    lat: 45.45, lng: 9.16, basis: 'Ⅶ profile · Via Andrea Solari 43, 20144 Milano',
+    note: '배도 공장도 자회사도 없다' },
+  { company: 'frabelle', numeral: 'Ⅷ', kind: 'hq', label: 'Frabelle 본사', country: '필리핀',
+    lat: 14.66, lng: 120.94, basis: 'Ⅷ _meta.국가 · Navotas' },
+  { company: 'jealsa', numeral: 'Ⅸ', kind: 'hq', label: 'Jealsa 본사', country: '스페인',
+    lat: 42.65, lng: -8.89, basis: 'Ⅸ _meta.국가 · Boiro (A Coruña)' },
+  { company: 'nauterra', numeral: 'Ⅹ', kind: 'hq', label: 'Nauterra 본사', country: '스페인',
+    lat: 43.21, lng: -8.69, basis: 'Ⅹ _meta.국가 · Carballo · 등기 상호 Luis Calvo Sanz, S.A.',
+    note: '상업등기부에 「Nauterra」 법인은 0건이다' },
+  { company: 'starkist', numeral: 'ⅩⅠ', kind: 'hq', label: 'StarKist 본사', country: '미국',
+    lat: 38.96, lng: -77.36, basis: 'ⅩⅠ _meta · Reston, Virginia' },
+  { company: 'dongwon', numeral: 'ⅩⅡ', kind: 'hq', label: '동원산업 본사', country: '대한민국',
+    lat: 37.48, lng: 127.02, basis: 'ⅩⅡ _meta.국가 · 서울 서초' },
+  { company: 'sajo', numeral: 'ⅩⅢ', kind: 'hq', label: '사조 본사', country: '대한민국',
+    lat: 37.57, lng: 126.94, basis: 'ⅩⅢ _meta.국가 · 서울 서대문' },
+  { company: 'bumblebee', numeral: 'ⅩⅣ', kind: 'hq', label: 'Bumble Bee 본사', country: '미국',
+    lat: 32.72, lng: -117.16, basis: 'ⅩⅣ _meta.국가 · San Diego, CA' },
+  { company: 'umios', numeral: 'ⅩⅤ', kind: 'hq', label: 'Umios 본사', country: '일본',
+    lat: 35.66, lng: 139.75, basis: 'ⅩⅤ _meta.국가 · 도쿄 미나토' },
+  { company: 'kyokuyo', numeral: 'ⅩⅥ', kind: 'hq', label: '極洋 본사', country: '일본',
+    lat: 35.67, lng: 139.76, basis: 'ⅩⅥ _meta.국가 · 도쿄' },
+  { company: 'seavalue', numeral: 'ⅩⅦ', kind: 'hq', label: 'Sea Value 본사', country: '태국',
+    lat: 13.54, lng: 100.28, basis: 'ⅩⅦ _meta.국가 · 사뭇사콘' },
+  { company: 'nissui', numeral: 'ⅩⅧ', kind: 'hq', label: 'ニッスイ 본사', country: '일본',
+    lat: 35.68, lng: 139.76, basis: 'ⅩⅧ _meta.국가 · 도쿄' },
+  { company: 'centurypacific', numeral: 'ⅩⅨ', kind: 'hq', label: 'Century Pacific 본사', country: '필리핀',
+    lat: 14.58, lng: 121.06, basis: 'ⅩⅨ _meta.국가 · Pasig' },
+  { company: 'boltonfood', numeral: 'ⅩⅩ', kind: 'hq', label: 'Bolton Food 등기 본점', country: '이탈리아',
+    lat: 45.71, lng: 9.09, basis: 'ⅩⅩ 기준선 §1 · Via Einaudi 18/22, 22072 Cermenate (CO)',
+    note: '밀라노가 아니다. 밀라노는 지주의 주소다' },
+];
+
+/**
+ * 생산 거점.
+ *
+ * 인테이크에 **거점명이 적힌 것만** 넣는다. 인력·캐파 수치가 붙는 곳에만 `sizeValue` 를 준다.
+ * 도시가 미확인인 공장은 여기 없고 `UNLOCATED_PLANTS` 로 간다.
+ */
+export const PLANT_POINTS: GeoPoint[] = [
+  // ── Ⅲ Albacora ─────────────────────────────────────────────
+  { company: 'albacora', numeral: 'Ⅲ', kind: 'plant', label: 'SIA 베르메오', country: '스페인',
+    lat: 43.42, lng: -2.72, sizeValue: 138, sizeUnit: '명',
+    basis: 'Ⅲ plants[0] · 2025년 매출 65.8 M€' },
+  { company: 'albacora', numeral: 'Ⅲ', kind: 'plant', label: 'SAC 갈리시아', country: '스페인',
+    lat: 42.60, lng: -8.93, sizeValue: 68, sizeUnit: '명',
+    basis: 'Ⅲ plants[1] · 2025년 매출 15.7 M€' },
+  { company: 'albacora', numeral: 'Ⅲ', kind: 'plant', label: 'SAE 포소르하', country: '에콰도르',
+    lat: -2.71, lng: -80.25, sizeValue: 2358, sizeUnit: '명',
+    basis: 'Ⅲ plants[2] · 2025년 매출 233.3 M€',
+    note: '가공매출의 74%가 여기서 나온다. 이 회사의 몸통이다' },
+
+  // ── Ⅱ Thai Union ───────────────────────────────────────────
+  { company: 'thaiunion', numeral: 'Ⅱ', kind: 'plant', label: '사뭇사콘 단지', country: '태국',
+    lat: 13.55, lng: 100.27, basis: 'Ⅱ factories[0] · 참치 가공 + 제관·라벨' },
+  { company: 'thaiunion', numeral: 'Ⅱ', kind: 'plant', label: '송클라', country: '태국',
+    lat: 7.19, lng: 100.60, basis: 'Ⅱ factories[1] · i-Tail 펫케어·냉동새우' },
+  { company: 'thaiunion', numeral: 'Ⅱ', kind: 'plant', label: '벤륵', country: '베트남',
+    lat: 10.64, lng: 106.48, basis: 'Ⅱ factories[2] · Yueh Chyang Canned Food' },
+  { company: 'thaiunion', numeral: 'Ⅱ', kind: 'plant', label: '빅토리아', country: '세이셸',
+    lat: -4.62, lng: 55.45, basis: 'Ⅱ factories[3] · Indian Ocean Tuna 60%',
+    note: '세계 최대급 캐너리' },
+  { company: 'thaiunion', numeral: 'Ⅱ', kind: 'plant', label: '테마', country: '가나',
+    lat: 5.62, lng: 0.02, basis: 'Ⅱ factories[4] · Pioneer Food Cannery 100%',
+    note: '냉동창고 8,000톤 2024-07-18 개소' },
+  { company: 'thaiunion', numeral: 'Ⅱ', kind: 'plant', label: '두아르네네·캥페르', country: '프랑스',
+    lat: 48.10, lng: -4.33, basis: 'Ⅱ factories[5] · Paul Paulet · MerAlliance' },
+  { company: 'thaiunion', numeral: 'Ⅱ', kind: 'plant', label: '페니시', country: '포르투갈',
+    lat: 39.36, lng: -9.38, basis: 'Ⅱ factories[6] · European Seafood Investment' },
+  { company: 'thaiunion', numeral: 'Ⅱ', kind: 'plant', label: '그니에비노', country: '폴란드',
+    lat: 54.72, lng: 18.00, basis: 'Ⅱ factories[7] · 캔수산' },
+  { company: 'thaiunion', numeral: 'Ⅱ', kind: 'plant', label: '자스니츠', country: '독일',
+    lat: 54.51, lng: 13.63, basis: 'Ⅱ factories[8] · Rügen Fisch · 참치유 정제' },
+  { company: 'thaiunion', numeral: 'Ⅱ', kind: 'plant', label: '크레팅가', country: '리투아니아',
+    lat: 55.89, lng: 21.25, basis: 'Ⅱ factories[9] · 수산 가공' },
+  { company: 'thaiunion', numeral: 'Ⅱ', kind: 'plant', label: '베르겐', country: '노르웨이',
+    lat: 60.39, lng: 5.32, basis: 'Ⅱ factories[10] · King Oscar AS' },
+  { company: 'thaiunion', numeral: 'Ⅱ', kind: 'plant', label: '도모데도보', country: '러시아',
+    lat: 55.44, lng: 37.76, basis: 'Ⅱ factories[11] · Dalpromryba' },
+  { company: 'thaiunion', numeral: 'Ⅱ', kind: 'plant', label: '수라바야', country: '인도네시아',
+    lat: -7.25, lng: 112.75, basis: 'Ⅱ factories[13] · PT TU Kharisma Lestari 33.15%' },
+
+  // ── Ⅹ Nauterra ─────────────────────────────────────────────
+  { company: 'nauterra', numeral: 'Ⅹ', kind: 'plant', label: '카르바요', country: '스페인',
+    lat: 43.21, lng: -8.69, sizeValue: 415, sizeUnit: '명',
+    basis: 'Ⅹ plants[0] · 캐파 56,000톤' },
+  { company: 'nauterra', numeral: 'Ⅹ', kind: 'plant', label: '이타자이', country: '브라질',
+    lat: -26.91, lng: -48.66, sizeValue: 2428, sizeUnit: '명',
+    basis: 'Ⅹ plants[1] · 캐파 86,000톤' },
+  { company: 'nauterra', numeral: 'Ⅹ', kind: 'plant', label: '라우니온', country: '엘살바도르',
+    lat: 13.34, lng: -87.84, sizeValue: 1366, sizeUnit: '명',
+    basis: 'Ⅹ plants[3] · 캐파 24,000톤' },
+
+  // ── ⅩⅠ StarKist (동원산업 100%) ────────────────────────────
+  { company: 'starkist', numeral: 'ⅩⅠ', kind: 'plant', label: '파고파고', country: '미국령 사모아',
+    lat: -14.28, lng: -170.70, sizeValue: 108000, sizeUnit: '톤/년',
+    basis: 'ⅩⅠ entities · production · 2025년 실적 82,554톤' },
+  { company: 'starkist', numeral: 'ⅩⅠ', kind: 'plant', label: '과야킬', country: '에콰도르',
+    lat: -2.19, lng: -79.89, sizeValue: 36000, sizeUnit: '톤/년',
+    basis: 'ⅩⅠ entities · Galapesca S.A. 1999-08-23' },
+
+  // ── Ⅷ Frabelle ─────────────────────────────────────────────
+  { company: 'frabelle', numeral: 'Ⅷ', kind: 'plant', label: 'PNG 라에', country: '파푸아뉴기니',
+    lat: -6.73, lng: 147.00, sizeValue: 140, sizeUnit: 'MT/일',
+    basis: 'Ⅷ stats · 실생산 120~130 MT/일 · 현지고용 1,800명',
+    note: '필리핀 국내에는 자사 참치 캐너리가 없다' },
+
+  // ── Ⅴ ITOCHU ───────────────────────────────────────────────
+  { company: 'itochu', numeral: 'Ⅴ', kind: 'plant', label: '파수루안', country: '인도네시아',
+    lat: -7.65, lng: 112.91, sizeValue: 250, sizeUnit: 'MT/일',
+    basis: 'Ⅴ ati · ATI 2공장 · ITOCHU 47%',
+    note: '2016년 현장 확인 수치다' },
+
+  // ── ⅩⅦ Sea Value ───────────────────────────────────────────
+  { company: 'seavalue', numeral: 'ⅩⅦ', kind: 'plant', label: '사뭇사콘 공장 3곳', country: '태국',
+    lat: 13.53, lng: 100.30, sizeValue: 1000, sizeUnit: 'MT/일',
+    basis: 'ⅩⅦ stats.공장_수 = 3 · 캐파 1,000톤/일' },
+
+  // ── Ⅰ Frinsa ───────────────────────────────────────────────
+  { company: 'frinsa', numeral: 'Ⅰ', kind: 'plant', label: '리베이라', country: '스페인',
+    lat: 42.55, lng: -8.99, basis: 'Ⅰ profile · 설립지 · 캔 자체 제조 · 그룹 약 1,300명' },
+  { company: 'frinsa', numeral: 'Ⅰ', kind: 'plant', label: '싱가포르 구매본부', country: '싱가포르',
+    lat: 1.35, lng: 103.82, basis: 'Ⅰ bai2024 · 세전이익 €5,012,317' },
+
+  // ── Ⅳ FCF 그룹 거점 ────────────────────────────────────────
+  { company: 'fcf', numeral: 'Ⅳ', kind: 'plant', label: '시미즈 (F.C.N.)', country: '일본',
+    lat: 35.02, lng: 138.49, basis: 'Ⅳ group · 보고경계 5개사' },
+  { company: 'fcf', numeral: 'Ⅳ', kind: 'plant', label: '싱가포르 (F.C.S.)', country: '싱가포르',
+    lat: 1.29, lng: 103.85, basis: 'Ⅳ group · Trading & Fishery' },
+  { company: 'fcf', numeral: 'Ⅳ', kind: 'plant', label: '파나마 (Thalassic)', country: '파나마',
+    lat: 8.98, lng: -79.52, basis: 'Ⅳ group · 공식 거점 목록에 없던 법인' },
+];
+
+/**
+ * 위치가 확인되지 않은 공장.
+ *
+ * **지도에 찍지 않는다.** 회사 패널에서 개수만 낸다 — 「위치 미확인 n곳」.
+ * 찍어 넣으면 없는 정밀도를 만드는 것이다.
+ */
+export const UNLOCATED_PLANTS: { company: string; count: number; basis: string }[] = [
+  { company: 'jealsa', count: 7, basis: 'Ⅸ stats.산업공장 = 7 · 위치 미확인' },
+  { company: 'bumblebee', count: 1, basis: 'ⅩⅣ stats.자가_참치공장 = 1 · 위치 미확인' },
+  { company: 'thaiunion', count: 1, basis: 'Ⅱ factories[12] · Tri-Union Seafoods 미국 · 도시 미확인' },
+  { company: 'nauterra', count: 1, basis: 'Ⅹ plants[2] · 브라질 용기공장 · 도시 미확인' },
+];
+
+/**
+ * 선단의 **기국** 분포.
+ *
+ * 20편에 **모항이 한 건도 없다.** 기국은 배가 어디서 조업하는지가 아니라 어느 나라 깃발을
+ * 다는지다. 그래서 이 값을 지도 위 점으로 만들지 않는다 — 회사 패널의 배지로만 쓴다.
+ */
+export const FLAG_STATES: { company: string; flags: { country: string; count: number }[]; basis: string }[] = [
+  { company: 'albacora',
+    flags: [{ country: '스페인', count: 8 }, { country: '파나마', count: 2 }, { country: '모리셔스', count: 2 }],
+    basis: 'Ⅲ fleet · 등록부 확인 12척(회사 표기 23척·웹 18척)' },
+  { company: 'nauterra',
+    flags: [{ country: '엘살바도르', count: 7 }, { country: '스페인', count: 1 }],
+    basis: 'Ⅹ fleet · 선명·IMO·기국·유형' },
+  { company: 'itochu',
+    flags: [{ country: '대만', count: 12 }, { country: '대한민국', count: 6 }, { country: '키리바시', count: 3 },
+            { country: '투발루', count: 2 }, { country: '바누아투', count: 2 }],
+    basis: 'Ⅴ fleet · MSC 인증 25척(인증 보유자는 ITOCHU)' },
+  { company: 'sajo',
+    flags: [{ country: '대한민국', count: 6 }, { country: '해외 자회사', count: 2 }],
+    basis: 'ⅩⅢ fleet · purse · 참치선망 8척' },
+  { company: 'dongwon',
+    flags: [{ country: '대한민국', count: 24 }, { country: '합작', count: 1 }, { country: '해외 자회사', count: 10 }],
+    basis: 'ⅩⅡ fleet · 총 35척(선망 19)' },
+  { company: 'jealsa',
+    flags: [{ country: '등록부 확인', count: 3 }],
+    basis: 'Ⅸ fleet · 회사 표기 2척 / 등록부 3척' },
+  { company: 'kyokuyo',
+    flags: [{ country: '일본', count: 4 }],
+    basis: 'ⅩⅥ sourcenotes · 전부 100% 자회사 極洋水産 명의' },
+  { company: 'nissui',
+    flags: [{ country: '일본', count: 2 }],
+    basis: 'ⅩⅧ sourcenotes · WCPFC 등록부 + MSC-F-31618' },
+  { company: 'bolton',
+    flags: [{ country: 'WCPFC 등록', count: 10 }, { country: 'IATTC 등록', count: 4 }, { country: 'ICCAT 비활성', count: 3 }],
+    basis: 'Ⅵ ownFleet · 조달 선단 399척과 혼동하지 않는다' },
+];
+
+/** 배가 0척인 회사. 이 사실 자체가 이 산업의 구조다. */
+export const NO_FLEET: { company: string; basis: string }[] = [
+  { company: 'frinsa', basis: 'Ⅰ stats · 보유 선단 0척' },
+  { company: 'thaiunion', basis: 'Ⅱ stats · 보유 선단 0척' },
+  { company: 'fcf', basis: 'Ⅳ stats · 자사 보유 어선 0척(협력 공급 어선 600척+)' },
+  { company: 'starkist', basis: 'ⅩⅠ registries · RFMO 자사 명의 0척' },
+  { company: 'bumblebee', basis: 'ⅩⅣ stats · 선박명부 등재 0척' },
+  { company: 'centurypacific', basis: 'ⅩⅨ stats · RFV 어선 0척(매입의 59%는 선박 직구매)' },
+  { company: 'jais', basis: 'Ⅶ stats · 공장·선박·자회사 0개' },
+];
+
+/** 지도에 찍는 모든 점. */
+export const ALL_POINTS: GeoPoint[] = [...HQ_POINTS, ...PLANT_POINTS];
+
+/** 좌표가 지구 위에 있는가. 테스트가 이 함수를 쓴다. */
+export function isValidCoord(p: GeoPoint): boolean {
+  return p.lat >= -90 && p.lat <= 90 && p.lng >= -180 && p.lng <= 180;
+}
+
+/** 크기를 줄 수 있는 점인가. 본사는 언제나 false다(1번 규칙). */
+export function hasSize(p: GeoPoint): boolean {
+  return p.kind === 'plant' && typeof p.sizeValue === 'number' && !!p.sizeUnit;
+}

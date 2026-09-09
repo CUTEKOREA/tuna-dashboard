@@ -9,6 +9,9 @@
 'use client';
 
 import React, { useState } from 'react';
+import dynamic from 'next/dynamic';
+import { Globe2 } from 'lucide-react';
+import WidgetCard from '@/components/WidgetCard';
 
 import {
   FRINSA_SOURCE_NOTES,
@@ -236,6 +239,9 @@ import {
   boltonfoodMeta, boltonfoodStats, boltonfoodSourceNotes,
   groupToEntityMultiple, vesselListGrowthMultiple, italyShareGapPp,
 } from '@/lib/data/company-boltonfood';
+
+/** 20편을 지구 위에 네 층으로 얹는다. three.js 가 무거워 갤러리에서만 지연 로드한다. */
+const TunaPowerGlobe = dynamic(() => import('./TunaPowerGlobe'), { ssr: false });
 
 const ACCENT = '#c2410c';
 /** 정적 조사 아카이브라 갱신일이 곧 조사일이다. LIVE 로 표기하지 않는다(L-09). */
@@ -3127,7 +3133,31 @@ export default function CompanyAnatomyDashboard({
   if (heroOnly) return <CommodityIndustryDashboard spec={SPEC} heroOnly />;
 
   if (selected === null) {
-    return <CompanyGallery companies={COMPANY_CARDS} onSelect={setSelected} />;
+    return (
+      <div style={{ display: 'flex', flexDirection: 'column', gap: 28 }}>
+        <CompanyGallery companies={COMPANY_CARDS} onSelect={setSelected} />
+        <WidgetCard
+          title="세력 지구본"
+          icon={Globe2}
+          iconColor="#4FB0A5"
+          pillar="S2"
+          cardDesc="20편이 확정한 본사·생산 거점·지분·공급·명단·무역을 지구 위 네 층으로 나눠 얹는다"
+          telemetry={{ status: 'STATIC', syncDate: '2026-09', source: '기업 해부 Ⅰ~ⅩⅩ 조사노트·통합프로필' }}
+          customBody={<TunaPowerGlobe />}
+          takeaway={{
+            situation:
+              '물을 잡는 곳, 캔을 만드는 곳, 브랜드를 파는 곳, 돈을 쥔 곳이 전부 다른 대륙에 있다. '
+              + '스페인 회사의 몸통은 에콰도르에 있고, 대만 회사가 미국 브랜드를 가지며, '
+              + '한국 회사가 미국령 사모아에서 캔을 만든다. 배를 한 척도 안 가진 회사가 일곱이다.',
+            actionPlan:
+              '「잡는 곳」 층에서 우리 자리를 먼저 보고, 「우리가 닿은 곳」 층의 연도를 넘겨 '
+              + '공급선 명단 척수가 어떻게 움직였는지 확인한다. 선을 클릭하면 그 관계로 '
+              + '하면 안 되는 말이 함께 뜬다.',
+            source: '기업 해부 Ⅰ~ⅩⅩ · 좌표는 도시 중심 근사치',
+          }}
+        />
+      </div>
+    );
   }
 
   const SPECS: Record<string, CommoditySpec> = {
