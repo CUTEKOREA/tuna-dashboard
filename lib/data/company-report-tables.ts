@@ -16,6 +16,8 @@ import umiosRaw from '@/public/data/companies/umios_tables_v1.json';
 import kyokuyoRaw from '@/public/data/companies/kyokuyo_tables_v1.json';
 import seavalueRaw from '@/public/data/companies/seavalue_tables_v1.json';
 import nissuiRaw from '@/public/data/companies/nissui_tables_v1.json';
+import centurypacificRaw from '@/public/data/companies/centurypacific_tables_v1.json';
+import boltonfoodRaw from '@/public/data/companies/boltonfood_tables_v1.json';
 
 /**
  * 조사보고서 표 전량 인테이크.
@@ -74,6 +76,8 @@ const INTAKES: Record<string, Intake> = {
   kyokuyo: kyokuyoRaw as unknown as Intake,
   seavalue: seavalueRaw as unknown as Intake,
   nissui: nissuiRaw as unknown as Intake,
+  centurypacific: centurypacificRaw as unknown as Intake,
+  boltonfood: boltonfoodRaw as unknown as Intake,
 };
 
 export const REPORT_TABLE_COMPANIES = Object.keys(INTAKES);

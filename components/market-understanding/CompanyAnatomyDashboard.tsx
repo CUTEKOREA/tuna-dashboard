@@ -228,6 +228,14 @@ import { umiosMeta, umiosStats, umiosSourceNotes, umiosSeedShareOfNational, nati
 import { kyokuyoMeta, kyokuyoStats, kyokuyoSourceNotes, oldSegmentLeverage, freshProfitTrough } from '@/lib/data/company-kyokuyo';
 import { seavalueMeta, seavalueStats, seavalueSourceNotes, ownBrandTunaShare, canadaVsBumbleBee, denominatorGap } from '@/lib/data/company-seavalue';
 import { nissuiMeta, nissuiStats, nissuiSourceNotes, marineProfitMultiple, logisticsMarginGap } from '@/lib/data/company-nissui';
+import {
+  centurypacificMeta, centurypacificStats, centurypacificSourceNotes,
+  marineSharePct, advanceSharePct, koreaShareShrinkFactor,
+} from '@/lib/data/company-centurypacific';
+import {
+  boltonfoodMeta, boltonfoodStats, boltonfoodSourceNotes,
+  groupToEntityMultiple, vesselListGrowthMultiple, italyShareGapPp,
+} from '@/lib/data/company-boltonfood';
 
 const ACCENT = '#c2410c';
 /** 정적 조사 아카이브라 갱신일이 곧 조사일이다. LIVE 로 표기하지 않는다(L-09). */
@@ -2730,6 +2738,119 @@ const NS_SPEC: CommoditySpec = {
   ].join(' · '),
 };
 
+const CP_ACCENT = '#0b6b4f';
+
+const CP_SPEC: CommoditySpec = {
+  key: 'company-anatomy-centurypacific',
+  title: '기업 해부: Century Pacific Food',
+  subtitle:
+    '캔참치 회사로 알려져 있으나 수산 부문은 2025년 매출의 40.28%이고 그 부문마저 참치와 정어리를 함께 담는다. ' +
+    '중서부태평양 선박등록부에 이 회사군 명의 어선은 0척인데, 국제기구 공시는 같은 해 참치 매입의 59%를 선박 직구매로 적는다 — 소유하지 않고 직접 산다. ' +
+    '같은 기간 한국이 이 나라에 파는 냉동 가다랑어의 몫은 9.70%에서 1.62%로 3년 만에 6분의 1이 됐다.',
+  accent: CP_ACCENT,
+  primaryKpi: {
+    label: '수산 부문 외부매출',
+    value: centurypacificStats.수산부문_외부매출_2025,
+    unit: `(₱ · 연결 매출의 ${marineSharePct()}% · 참치와 정어리를 함께 담는 부문이다)`,
+    accent: CP_ACCENT,
+  },
+  secondaryKpis: [
+    { label: '참치 매입 중 선박 직구매', value: centurypacificStats.선박직구매_퍼센트, decimals: 0, unit: '(% · 등록부의 자사 어선은 0척 · 분모는 참치 환산 원어 톤)' },
+    { label: '상반기 지출 중 공급자 선수금', value: advanceSharePct(), decimals: 1, unit: '(% · 절반이 아직 자산이 아니다 · 계획 대비 속도는 91.85%)' },
+    { label: '한국 몫이 줄어든 배수', value: koreaShareShrinkFactor(), decimals: 1, unit: '(배 · 9.70% → 1.62% · 분모는 한국의 전세계 수출 중량)' },
+  ],
+  stripItems: [
+    {
+      now: true,
+      eyebrow: '부문',
+      title: 'Marine은 참치가 아니다',
+      body: '참치·정어리·기타 수산물을 한 칸에 담는다. 이 회사에서 참치 단독 매출을 낼 수 있는 공개 문서는 없다',
+    },
+    {
+      eyebrow: '조달',
+      title: '배 0척, 직구매 59%',
+      body: `참여사 경유 ${centurypacificStats.참여사경유_퍼센트}% · 기타 ${centurypacificStats.기타경로_퍼센트}% · 공급자 상호는 어디에도 없다`,
+    },
+    {
+      eyebrow: '지배',
+      title: '63%와 65.5%는 어긋난 것이 아니다',
+      body: `직접명의 ${centurypacificStats.지주지분_직접명의_퍼센트}%에 예탁분을 더하면 ${centurypacificStats.지주지분_퍼센트}%가 된다`,
+    },
+    {
+      eyebrow: '돈',
+      title: '계획과 집행을 갈라 읽는다',
+      body: '₱80~90억은 2026-06-30 주주총회가 재확인한 계획이다. 집행은 2025년 ₱40.8억, 2026년 상반기 ₱36.7억',
+    },
+  ],
+  briefing: proseBriefing('centurypacific'),
+  narratives: inlineReport('centurypacific', proseStages('centurypacific')),
+  chartSlots: {},
+  continuous: true,
+  sourceNotes: centurypacificSourceNotes,
+  sourceMeta: [
+    `${centurypacificMeta.회사} · ${centurypacificMeta.국가} · ${centurypacificMeta.업종}`,
+    `출처 ${centurypacificMeta.출처}`,
+    `조사 ${centurypacificMeta.조사일}`,
+  ].join(' · '),
+};
+
+const BF_ACCENT = '#7a2f3a';
+
+const BF_SPEC: CommoditySpec = {
+  key: 'company-anatomy-boltonfood',
+  title: '기업 해부: Bolton Food S.p.A.',
+  subtitle:
+    '편 Ⅵ이 그룹을 다뤘다면 이 편은 법인 하나로 내려간다. 같은 회사를 부르는 숫자가 셋이고 서로 4,8배 차이다 — ' +
+    '그룹 순매출 €3.541백만, 식품 카테고리 €2.382백만, 법인 개별 €734,2백만. 본사도 밀라노가 아니라 코모현 체르메나테다. ' +
+    '이탈리아는 주식회사에 결산 예탁을 의무로 정하는데 그 원문은 무료 경로 어디에도 없다 — 「공개하지 않는다」가 아니라 「유료벽 뒤에 있다」가 정확한 문장이다.',
+  accent: BF_ACCENT,
+  primaryKpi: {
+    label: '그룹 순매출 대 법인 개별',
+    value: groupToEntityMultiple(),
+    decimals: 1,
+    unit: '(배 · €3.541백만 대 €734,2백만 · 법인 값만 집계 자료다)',
+    accent: BF_ACCENT,
+  },
+  secondaryKpis: [
+    { label: '공급선 명단이 넓어진 배수', value: vesselListGrowthMultiple(), decimals: 1, unit: '(배 · 398 → 964척 · 조달이 아니라 명단 정의가 넓어졌다)' },
+    { label: '그룹 탄소발자국 중 트레이딩 계열', value: boltonfoodStats.트레이딩계열_탄소몫_퍼센트, decimals: 1, unit: '(% · 목표표에서 빠진 칸은 매출·물 지표이지 온실가스 목표가 아니다)' },
+    { label: '한국 몫의 금액 대 중량 차', value: italyShareGapPp(), decimals: 2, unit: '(%p · 금액 36,88%로 1위 · 중량 31,09%로 2위)' },
+  ],
+  stripItems: [
+    {
+      now: true,
+      eyebrow: '등기',
+      title: '밀라노가 아니라 체르메나테',
+      body: '부가세 번호 조회·법인식별자·코모현 환경허가 셋이 같은 주소로 닫힌다. 밀라노는 지주의 주소다',
+    },
+    {
+      eyebrow: '명단',
+      title: '한국 배 스물셋의 주인',
+      body: `동원 ${boltonfoodStats.한국_동원} · 사조 ${boltonfoodStats.한국_사조} · 신라 ${boltonfoodStats.한국_신라} · 미확인 ${boltonfoodStats.한국_미확인}. 가장 많은 곳은 동원이다`,
+    },
+    {
+      eyebrow: '기준',
+      title: '2030년 인증 100%는 한 브랜드다',
+      body: `대표 브랜드 참치만이고 2025년 실적 ${boltonfoodStats.대표브랜드_인증_퍼센트}%. 그룹 문장은 「매년 최소 95%를 건강한 자원에서」로 기준이 다르다`,
+    },
+    {
+      eyebrow: '관세',
+      title: '사흘 만에 닫히는 문',
+      body: `로인 무관세 할당 ${boltonfoodStats.ATQ_배정_톤.toLocaleString('ko-KR')} t이 세 해 모두 1월 초에 잔량 0. 2027년분 근거 규정은 아직 없다`,
+    },
+  ],
+  briefing: proseBriefing('boltonfood'),
+  narratives: inlineReport('boltonfood', proseStages('boltonfood')),
+  chartSlots: {},
+  continuous: true,
+  sourceNotes: boltonfoodSourceNotes,
+  sourceMeta: [
+    `${boltonfoodMeta.회사} · ${boltonfoodMeta.국가} · ${boltonfoodMeta.업종}`,
+    `출처 ${boltonfoodMeta.출처}`,
+    `조사 ${boltonfoodMeta.조사일}`,
+  ].join(' · '),
+};
+
 export const COMPANY_CARDS: CompanyCard[] = [
   {
     key: 'frinsa',
@@ -2965,6 +3086,32 @@ export const COMPANY_CARDS: CompanyCard[] = [
       { label: '자사 참치 캔', value: `${nissuiStats.자사_참치캔_SKU} 종` },
     ],
   },
+  {
+    key: 'centurypacific',
+    numeral: 'ⅩⅨ',
+    name: 'Century Pacific Food',
+    country: '필리핀 · 파시그',
+    tagline: '배가 한 척도 없는데 참치 매입의 59%가 선박 직구매다. 한국에서 사는 몫만 3년 만에 6분의 1이 됐다.',
+    ...FLAG.필리핀,
+    stats: [
+      { label: '수산 부문 몫', value: `${marineSharePct()}%` },
+      { label: '선박 직구매', value: `${centurypacificStats.선박직구매_퍼센트}%` },
+      { label: '보유 선단', value: `${centurypacificStats.RFV_어선_척} 척` },
+    ],
+  },
+  {
+    key: 'boltonfood',
+    numeral: 'ⅩⅩ',
+    name: 'Bolton Food S.p.A.',
+    country: '이탈리아 · 체르메나테',
+    tagline: '같은 회사를 부르는 숫자가 셋이고 서로 4,8배 차이다. 결산 원문은 무료 경로 어디에도 없다.',
+    ...FLAG.이탈리아,
+    stats: [
+      { label: '그룹 대 법인', value: `${groupToEntityMultiple()}배` },
+      { label: '공급선 명단', value: `${boltonfoodStats.명단_2025_고유선박.toLocaleString('ko-KR')} 척` },
+      { label: '한국 국적선', value: `${boltonfoodStats.명단_2025_한국} 척` },
+    ],
+  },
 
 ];
 
@@ -3002,6 +3149,8 @@ export default function CompanyAnatomyDashboard({
     kyokuyo: KY_SPEC,
     seavalue: SV_SPEC,
     nissui: NS_SPEC,
+    centurypacific: CP_SPEC,
+    boltonfood: BF_SPEC,
   };
   const spec = SPECS[selected] ?? SPEC;
 
