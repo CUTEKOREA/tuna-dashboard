@@ -16,7 +16,9 @@ describe('fleet idle vessel detection', () => {
     expect(idle.length).toBeGreaterThan(0);
     for (const row of idle) {
       expect(row.idleDays).toBeGreaterThanOrEqual(FLEET_IDLE_THRESHOLD_DAYS);
-      expect(row.forgoneMt).toBe(Math.round(row.dailyAverageMt * row.idleDays));
+      // forgoneMt 는 반올림 전 평균으로 계산되고 dailyAverageMt 는 소수 2자리로 내보낸다.
+      // 둘을 정확히 맞추면 어느 날은 1 차이로 깨진다(2026-09-09: 398 vs 399).
+      expect(Math.abs(row.forgoneMt - row.dailyAverageMt * row.idleDays)).toBeLessThanOrEqual(1);
       expect(row.regionSharePct).toBeGreaterThan(0);
     }
     expect([...idle].sort((a, b) => b.idleDays - a.idleDays)).toEqual(idle);
@@ -29,7 +31,7 @@ describe('fleet idle vessel detection', () => {
     /* 일평균은 계열이 하루 늘 때마다 다시 계산된다 - 값을 못박으면 매일 깨진다
      * (2026-09-08 에 22.43 → 22.28). 지켜야 할 것은 «계열에서 나온 값인가» 다. */
     expect(moamari!.dailyAverageMt).toBeGreaterThan(0);
-    expect(moamari!.forgoneMt).toBe(Math.round(moamari!.dailyAverageMt * moamari!.idleDays));
+    expect(Math.abs(moamari!.forgoneMt - moamari!.dailyAverageMt * moamari!.idleDays)).toBeLessThanOrEqual(1);
     expect(moamari!.idleDays).toBeGreaterThan(0);
     expect(FLEET_IDLE_NOTES.MOAMARI.headline).toContain('젠산');
     // 2026-09-02 선장 사고보고서(8/18): 손상은 로프가드가 아니라 프로펠러 볼트 3개 파손
