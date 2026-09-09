@@ -17,7 +17,7 @@
 
 같은 일이 다른 편에도 일어난 것으로 보인다 — 감시 해제 알림이 Ⅰ Frinsa · Ⅱ Thai Union ·
 Ⅲ Albacora · Ⅵ Bolton · Ⅶ JAIS 다섯을 「없다」로 보고했고, `list` 는 계정 전체를 비었다고 답한다.
-**나머지 편의 URL 도 죽었다고 가정하고 확인해야 한다.**
+**확인 결과 21편 전부 지워져 있었고 같은 날 전부 재발행했다.** 현행 URL 원장은 `docs/ARTIFACTS.md` 다.
 
 재발행 재료는 완비다 — 21편 전부 `docs/evidence/company-*/보고서.html` 에 자족 HTML 로 있다.
 아티팩트 추출은 `<title>`·링크·`<style>`·`<body>` 안쪽만 뽑으면 된다.
