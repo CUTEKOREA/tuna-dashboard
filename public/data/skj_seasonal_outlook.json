@@ -1,25 +1,26 @@
 {
  "kind": "seasonal-baseline",
- "label": "8→11월 과거 같은 달 평균 변화(감쇠 ×0.5)",
- "source": "Atuna SKJ 1.8kg CFR 방콕 월별 (data/atuna_prices.json)",
- "asOf": "2026-08",
- "anchorPrice": 2000.0,
- "targetMonth": "2026-11",
- "value": 1835,
+ "label": "9→12월 과거 같은 달 평균 변화(감쇠 ×0.5)",
+ "source": "계절 변화율 Atuna SKJ 1.8kg CFR 방콕 월별 · 앵커 방콕사무소 주간보고 (public/data/bangkok_weekly_payload.json)",
+ "asOf": "2026-09",
+ "anchorPrice": 2150.0,
+ "anchorSource": "방콕사무소 주간보고 (public/data/bangkok_weekly_payload.json)",
+ "targetMonth": "2026-12",
+ "value": 2004,
  "band80": [
-  1450,
-  2293
+  1583,
+  2504
  ],
  "bandMethod": "S+mom 롤링 백테스트 선행(walk-forward) 잔차 10~90분위, 2010~",
  "history": {
   "years": 32,
   "down": 25,
-  "meanPct": -17.2
+  "meanPct": -14.1
  },
  "recent10y": {
   "years": 10,
   "down": 6,
-  "meanPct": -7.6
+  "meanPct": -6.7
  },
  "notForecast": "모델(S+mom)은 감쇠 계절 기준선과 통계적으로 구분되지 않아(DM p 0.12) 예측치로 표기하지 않는다."
 }

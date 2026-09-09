@@ -51,6 +51,23 @@ describe('계절 패턴 참고선 (예측 아님)', () => {
     expect(skjSeasonalOutlook.recent10y.years).toBe(10);
   });
 
+  it('출발점이 화면의 굵은 선(방콕사무소)과 같은 값·같은 주다', () => {
+    /* 2026-09-09 사용자 지시로 앵커를 어튜나에서 방콕사무소로 옮겼다. 어튜나는
+     * 페이월 수동 동기화라 최신 달이 뒤처지고, 그러면 점선이 실선보다 낮은 데서
+     * 출발해 보인다(실제로 실선 $2,150 옆에서 점선이 $2,000 에서 시작했다).
+     * 계절 변화율·밴드는 그대로 어튜나 32년에서 온다 - 여기서 지키는 건 출발점뿐이다. */
+    expect(skjSeasonalOutlook.anchorSource).toContain('방콕사무소');
+    const latest = [...bangkokWeeks].reverse().find((w) => w.price !== null && !w.suspect)!;
+    expect(skjSeasonalOutlook.asOf).toBe(latest.date.slice(0, 7));
+    expect(skjSeasonalOutlook.anchorPrice).toBe(latest.price);
+    // 목표월은 앵커 +3개월
+    const [y, m] = skjSeasonalOutlook.asOf.split('-').map(Number);
+    const t = new Date(Date.UTC(y, m - 1 + 3, 1));
+    expect(skjSeasonalOutlook.targetMonth).toBe(`${t.getUTCFullYear()}-${String(t.getUTCMonth() + 1).padStart(2, '0')}`);
+    // 변화율·밴드의 출처는 여전히 어튜나임을 화면이 밝혀야 한다
+    expect(skjSeasonalOutlook.source).toContain('Atuna');
+  });
+
   it('기준점과 목표월 두 점에만 값을 두고 중간 주는 비운다', () => {
     const base = buildOverviewRows(bangkokWeeks, singaporeMgoAt, []);
     const rows = appendSeasonalOutlook(base, skjSeasonalOutlook);

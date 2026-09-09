@@ -50,7 +50,7 @@ const priceSeries: Serie[] = [
   { key: '계절밴드', name: '계절 패턴 80% 밴드', color: PRICE_COLORS.seasonal, type: 'area', connectNulls: true, fmt: (v) => `${num(v)} 달러/톤` },
   { key: '계절패턴', name: skjSeasonalOutlook.label, color: PRICE_COLORS.seasonal, dash: true, connectNulls: true, fmt: (v) => `${num(v)} 달러/톤` },
 ];
-const outlookCaption = `${skjSeasonalOutlook.label}: ${skjSeasonalOutlook.asOf.replace('-', '.')} $${num(skjSeasonalOutlook.anchorPrice)} → ${skjSeasonalOutlook.targetMonth.replace('-', '.')} $${num(skjSeasonalOutlook.value)} (80% 밴드 ${num(skjSeasonalOutlook.band80[0])}~${num(skjSeasonalOutlook.band80[1])}). 과거 ${skjSeasonalOutlook.history.years}년 중 하락 ${skjSeasonalOutlook.history.down}회(평균 ${skjSeasonalOutlook.history.meanPct}%), 최근 10년은 ${skjSeasonalOutlook.recent10y.down}/${skjSeasonalOutlook.recent10y.years}회(평균 ${skjSeasonalOutlook.recent10y.meanPct}%). 예측치가 아니라 과거 계절 패턴이며 밴드는 백테스트 선행 잔차다.`;
+const outlookCaption = `${skjSeasonalOutlook.label}: ${skjSeasonalOutlook.asOf.replace('-', '.')} $${num(skjSeasonalOutlook.anchorPrice)} → ${skjSeasonalOutlook.targetMonth.replace('-', '.')} $${num(skjSeasonalOutlook.value)} (80% 밴드 ${num(skjSeasonalOutlook.band80[0])}~${num(skjSeasonalOutlook.band80[1])}). 과거 ${skjSeasonalOutlook.history.years}년 중 하락 ${skjSeasonalOutlook.history.down}회(평균 ${skjSeasonalOutlook.history.meanPct}%), 최근 10년은 ${skjSeasonalOutlook.recent10y.down}/${skjSeasonalOutlook.recent10y.years}회(평균 ${skjSeasonalOutlook.recent10y.meanPct}%). 예측치가 아니라 과거 계절 패턴이며 밴드는 백테스트 선행 잔차다. 출발점은 ${skjSeasonalOutlook.anchorSource.split(' (')[0]} 시세이고, 변화율과 밴드는 어튜나 32년 월별에서 계산했다.`;
 const stockSeries: Serie[] = [
   { key: '재고', name: '방콕 캐너리 보유 원어 합', color: '#0891b2', type: 'area', fmt: (v) => `${num(v)} MT` },
 ];

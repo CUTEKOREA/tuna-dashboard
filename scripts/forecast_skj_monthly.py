@@ -18,6 +18,7 @@ from __future__ import annotations
 import argparse
 import json
 import math
+import sys
 from datetime import date
 from pathlib import Path
 
@@ -88,6 +89,30 @@ def load_mgo(path: Path | None) -> dict[str, float]:
     return out
 
 
+def load_bangkok_monthly() -> tuple[dict[str, float], str, float]:
+    """방콕사무소 주간보고 시세를 월별로 접고, 최신 달과 그 달의 마지막 주 값을 낸다.
+
+    계절 드리프트·밴드는 그대로 Atuna 32년 월별에서 나온다 - 표본이 5배 길어
+    계절성 추정이 훨씬 안정적이다. 여기서 가져오는 것은 **앵커(출발점)뿐**이다.
+    두 계열은 겹치는 72개월에서 수준 상관 0.978 · 로그변화 상관 0.870 ·
+    평균 절대차 33$/t(2.1%) 로 사실상 같은 시장이라, 상대 변화율을 옮겨 붙일 수 있다.
+    화면의 굵은 선이 방콕사무소인데 점선이 Atuna 마지막 달에서 출발하면
+    «점선이 실선보다 낮은 데서 시작»해 보인다 - 그것을 없애려는 변경이다.
+    """
+    payload = json.loads((ROOT / "public/data/bangkok_weekly_payload.json").read_text())
+    by_month: dict[str, list[float]] = {}
+    last_date, last_price = "", 0.0
+    for w in payload["series"]:
+        price = w.get("price")
+        if price is None or w.get("suspect"):
+            continue
+        by_month.setdefault(w["date"][:7], []).append(float(price))
+        if w["date"] > last_date:
+            last_date, last_price = w["date"], float(price)
+    monthly = {m: v[-1] for m, v in by_month.items()}   # Atuna 와 같은 규칙: 그 달의 마지막 값
+    return monthly, last_date[:7], last_price
+
+
 def dlog(a, b):
     return None if (a is None or b is None or a <= 0 or b <= 0) else math.log(a) - math.log(b)
 
@@ -113,11 +138,15 @@ def build(skj, exog: dict[str, dict[str, float]], leads: dict[str, int]):
     return rows
 
 
-def seas_drift(rows, i, end):
-    mo = rows[i]["m"][5:7]
+def seasonal_drift_for_month(rows, mo: str, end: int) -> float:
+    """월 «mo» 에서 3개월 뒤까지의 과거 로그변화 평균. 앵커 달의 관측 없이도 낸다."""
     ch = [dlog(rows[k + H]["p"], rows[k]["p"]) for k in range(0, end - H) if rows[k]["m"][5:7] == mo]
     ch = [c for c in ch if c is not None]
     return float(np.mean(ch)) if len(ch) >= 3 else 0.0
+
+
+def seas_drift(rows, i, end):
+    return seasonal_drift_for_month(rows, rows[i]["m"][5:7], end)
 
 
 def ridge(X, y, lam=LAM):
@@ -217,6 +246,11 @@ def main(argv=None):
     ap.add_argument("--mgo", type=Path); ap.add_argument("--cpi", type=Path)
     ap.add_argument("--thaiunion", type=Path, default=ROOT / "public/data/thaiunion_skj_monthly.json")
     ap.add_argument("--out", type=Path, default=ROOT / "docs/2026-09-02_skj_monthly_forecast_backtest.md")
+    # 화면 계절선의 출발점. 굵은 선(방콕사무소)에 맞추는 것이 기본이다 -
+    # Atuna 는 페이월 수동 동기화라 최신 달이 뒤처지고, 그러면 점선이 실선보다
+    # 낮은 데서 출발해 보인다. 계절 변화율·밴드는 어느 쪽이든 Atuna 32년에서 온다.
+    ap.add_argument("--anchor", choices=("bangkok", "atuna"), default="bangkok")
+    ap.add_argument("--write-report", action="store_true", help="백테스트 리포트도 다시 쓴다(외생 입력 필요)")
     a = ap.parse_args(argv)
 
     skj = load_skj()
@@ -338,21 +372,29 @@ def main(argv=None):
                   "| 출발 | 시세 | gap | 3개월 뒤 |", "|---|---|---|---|"]
         lines += [f"| {m} | {p_:,.0f} | {g*100:+.0f}% | {c*100:+.0f}% |" for m, p_, g, c in analogs[-14:]]
     # 화면용 계절 전망 — 모델이 아니라 감쇠 계절 기준선을 내보낸다(Fable 5.1 독립 검증 조건).
-    sd_now = seas_drift(rows, last, last)
-    target_m = add_months(rows[last]["m"], H)
+    if a.anchor == "bangkok":
+        _, anchor_m, anchor_p = load_bangkok_monthly()
+        anchor_src = "방콕사무소 주간보고 (public/data/bangkok_weekly_payload.json)"
+    else:
+        anchor_m, anchor_p = rows[last]["m"], rows[last]["p"]
+        anchor_src = "Atuna SKJ 1.8kg CFR 방콕 (data/atuna_prices.json)"
+    # 드리프트는 앵커 «달»만 쓴다 - 그 달의 Atuna 과거 3개월 변화율 평균이라
+    # 앵커 달에 해당하는 Atuna 관측이 없어도 계산된다.
+    sd_now = seasonal_drift_for_month(rows, anchor_m[5:7], last)
+    target_m = add_months(anchor_m, H)
     recs_sm = results["S+mom"][0] if "S+mom" in results else []
     err_sm = np.array([math.log(r[1] / r[2]) for r in recs_sm]) if recs_sm else np.array([0.0])
     lo, hi = float(np.quantile(err_sm, 0.1)), float(np.quantile(err_sm, 0.9))
-    mo = rows[last]["m"][5:7]
+    mo = anchor_m[5:7]
     same_month = [(rows[k]["m"], dlog(rows[k + H]["p"], rows[k]["p"])) for k in range(0, last - H + 1) if rows[k]["m"][5:7] == mo]
-    recent = [c for m_, c in same_month if m_ >= add_months(rows[last]["m"], -120)]
+    recent = [c for m_, c in same_month if m_ >= add_months(anchor_m, -120)]
     outlook = {
         "kind": "seasonal-baseline",
         "label": f"{int(mo)}→{int(target_m[5:7])}월 과거 같은 달 평균 변화(감쇠 ×0.5)",
-        "source": "Atuna SKJ 1.8kg CFR 방콕 월별 (data/atuna_prices.json)",
-        "asOf": rows[last]["m"], "anchorPrice": rows[last]["p"],
-        "targetMonth": target_m, "value": round(rows[last]["p"] * math.exp(0.5 * sd_now)),
-        "band80": [round(rows[last]["p"] * math.exp(0.5 * sd_now + lo)), round(rows[last]["p"] * math.exp(0.5 * sd_now + hi))],
+        "source": f"계절 변화율 Atuna SKJ 1.8kg CFR 방콕 월별 · 앵커 {anchor_src}",
+        "asOf": anchor_m, "anchorPrice": anchor_p, "anchorSource": anchor_src,
+        "targetMonth": target_m, "value": round(anchor_p * math.exp(0.5 * sd_now)),
+        "band80": [round(anchor_p * math.exp(0.5 * sd_now + lo)), round(anchor_p * math.exp(0.5 * sd_now + hi))],
         "bandMethod": "S+mom 롤링 백테스트 선행(walk-forward) 잔차 10~90분위, 2010~",
         "history": {"years": len(same_month), "down": int(sum(1 for _, c in same_month if c < 0)), "meanPct": round(float(np.mean([c for _, c in same_month])) * 100, 1)},
         "recent10y": {"years": len(recent), "down": int(sum(1 for c in recent if c < 0)), "meanPct": round(float(np.mean(recent)) * 100, 1) if recent else None},
@@ -361,7 +403,12 @@ def main(argv=None):
     (ROOT / "public/data/skj_seasonal_outlook.json").write_text(json.dumps(outlook, ensure_ascii=False, indent=1) + "\n")
     cov = {k: sum(1 for r in rows if r.get(k) is not None) for k in exog}
     lines += ["", f"커버리지(월): {cov} / 총 {len(rows)}"]
-    a.out.write_text("\n".join(lines) + "\n")
+    if a.write_report:
+        a.out.write_text("\n".join(lines) + "\n")
+    else:
+        # 외생 스크래치 JSON(--brent 등) 없이 돌리면 리포트가 42줄 짧아진다.
+        # 화면용 outlook 만 갱신할 때 2026-09-02 산출물을 덮지 않도록 기본은 미기록이다.
+        print(f"(리포트 미기록 - 갱신하려면 --write-report, 외생 입력과 함께)", file=sys.stderr)
     print("\n".join(lines))
 
 
