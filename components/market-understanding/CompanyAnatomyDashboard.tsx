@@ -239,6 +239,10 @@ import {
   boltonfoodMeta, boltonfoodStats, boltonfoodSourceNotes,
   groupToEntityMultiple, vesselListGrowthMultiple, italyShareGapPp,
 } from '@/lib/data/company-boltonfood';
+import {
+  trimarineMeta, trimarineStats, trimarineSourceNotes,
+  purchaseVesselDropPct, solomonHeadcountDropPct, competitorShipmentSharePct,
+} from '@/lib/data/company-trimarine';
 
 /** 20편을 지구 위에 네 층으로 얹는다. three.js 가 무거워 갤러리에서만 지연 로드한다. */
 const TunaPowerGlobe = dynamic(() => import('./TunaPowerGlobe'), { ssr: false });
@@ -2515,6 +2519,7 @@ const FLAG: Record<string, Pick<CompanyCard, 'flagSrc' | 'backInk'>> = {
   미국: { flagSrc: '/flags/us.svg', backInk: '#1b2733' },
   한국: { flagSrc: '/flags/kr.svg', backInk: '#1b2733' },
   이탈리아: { flagSrc: '/flags/it.svg', backInk: '#f4f5f0' },
+  싱가포르: { flagSrc: '/flags/sg.svg', backInk: '#1b2733' },
 };
 
 /** 선택 갤러리 카드 목록. 회사가 늘면 여기에 한 장씩 추가한다. */
@@ -2857,6 +2862,63 @@ const BF_SPEC: CommoditySpec = {
   ].join(' · '),
 };
 
+const TM_ACCENT = '#2f5d6b';
+
+const TM_SPEC: CommoditySpec = {
+  key: 'company-anatomy-trimarine',
+  title: '기업 해부: Tri Marine',
+  subtitle:
+    '스무 편이 잡는 회사와 만드는 회사와 쥔 회사를 덮었다. 거래상이 없었다 — 열 편이 각주로 스치고 아무도 해부하지 않은 회사다. ' +
+    '크기가 함께 공개된 것은 한 판뿐이다: 순매출 906 M€, 그룹 매출의 28%, 공장 3, 배 15척, 종업원 5,100명. ' +
+    '그 칸이 다음 판에서 사라졌고, 그 뒤 성과 지표 각주에는 「Group, Tri Marine excluded」가 고정된다.',
+  accent: TM_ACCENT,
+  primaryKpi: {
+    label: '그룹 매출에서 차지하는 몫',
+    value: trimarineStats.그룹매출_몫_퍼센트,
+    decimals: 0,
+    unit: '(% · FY2022 사업부 카드 · 순매출 906 M€)',
+    accent: TM_ACCENT,
+  },
+  secondaryKpis: [
+    { label: '태평양 세 등록부의 자사 명의 선박', value: trimarineStats.등록부_자사명의_선박, decimals: 0, unit: '(척 · 배는 계열 NFD 명의로 있다 · 대서양·인도양은 못 열었다)' },
+    { label: '그룹 탄소발자국 중 이 회사 몫', value: trimarineStats.그룹탄소_이회사_몫_퍼센트, decimals: 1, unit: '(% · 조직도에서 지운 이름이 배출 배분표에는 남아 있다)' },
+    { label: '콜롬비아 법인 선적 중 경쟁 브랜드행', value: competitorShipmentSharePct(), decimals: 1, unit: '(% · 24건 중 16건 · 그룹 내부행은 3건)' },
+  ],
+  stripItems: [
+    {
+      now: true,
+      eyebrow: '등록부',
+      title: '이 상호로 등록된 배가 없다',
+      body: `WCPFC·IATTC·FFA 소유자·운영자 칸 모두 0척. 배는 계열 NFD 명의로 선망 ${trimarineStats.등록부_NFD_선망_등재}척이고 대만 연승 ${trimarineStats.용선_대만연승}척을 빌린다`,
+    },
+    {
+      eyebrow: '조직도',
+      title: '칸이 사라진 해는 2023년이다',
+      body: 'FY2021 Tri Marine → FY2022 Tuna Supply → FY2023 삭제. 그 뒤 관련 정책은 「식품 사업부 대표가 승인」으로 적힌다',
+    },
+    {
+      eyebrow: '세관',
+      title: '경쟁 브랜드로 가는 물건',
+      body: `콜롬비아 법인 ${trimarineStats.세관_GRALCO_총건수}건 중 ${trimarineStats.세관_GRALCO_경쟁사행_건수}건이 Tri Union·Bumble Bee 행이고 그룹 내부행은 ${trimarineStats.세관_GRALCO_그룹내부_건수}건이다`,
+    },
+    {
+      eyebrow: '명단',
+      title: '우리 배는 있고 이 이름은 없다',
+      body: `Bolton 공급선 명단 네 판에 한국 국적선 ${trimarineStats.한국국적선_명단_2021}~${trimarineStats.한국국적선_명단_2024}척. 조달 주체로 이 상호가 적힌 자리는 ${trimarineStats.명단_TriMarine_표기_횟수}회다`,
+    },
+  ],
+  briefing: proseBriefing('trimarine'),
+  narratives: inlineReport('trimarine', proseStages('trimarine')),
+  chartSlots: {},
+  continuous: true,
+  sourceNotes: trimarineSourceNotes,
+  sourceMeta: [
+    `${trimarineMeta.회사} · ${trimarineMeta.국가} · ${trimarineMeta.업종}`,
+    `출처 ${trimarineMeta.출처}`,
+    `조사 ${trimarineMeta.조사일}`,
+  ].join(' · '),
+};
+
 export const COMPANY_CARDS: CompanyCard[] = [
   {
     key: 'frinsa',
@@ -3118,6 +3180,19 @@ export const COMPANY_CARDS: CompanyCard[] = [
       { label: '한국 국적선', value: `${boltonfoodStats.명단_2025_한국} 척` },
     ],
   },
+  {
+    key: 'trimarine',
+    numeral: 'ⅩⅩⅠ',
+    name: 'Tri Marine',
+    country: '싱가포르 · 등기',
+    tagline: '그룹이 헤드라인에서 빼는 회사가 그룹 매출의 28%다. 태평양 등록부에 이 상호로 등록된 배는 없다.',
+    ...FLAG.싱가포르,
+    stats: [
+      { label: '그룹 매출 몫', value: `${trimarineStats.그룹매출_몫_퍼센트}%` },
+      { label: '자사 명의 선박', value: `${trimarineStats.등록부_자사명의_선박} 척` },
+      { label: '연방법원', value: `${trimarineStats.연방법원_사건} 건` },
+    ],
+  },
 
 ];
 
@@ -3181,6 +3256,7 @@ export default function CompanyAnatomyDashboard({
     nissui: NS_SPEC,
     centurypacific: CP_SPEC,
     boltonfood: BF_SPEC,
+    trimarine: TM_SPEC,
   };
   const spec = SPECS[selected] ?? SPEC;
 
