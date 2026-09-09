@@ -110,10 +110,24 @@ def parse_prices(text: str) -> dict:
         m = re.search(re.escape(after) + r"[^\$\n]{0,12}\$\s*([\d,]+)", s)
         return num(m.group(1)) if m else None
 
+    def month(s: str, after: str) -> str | None:
+        """어가 뒤 괄호의 적용 월. «PFC - $1,900(9월)» -> '9월'.
+
+        37주 내내 PFC·COSMO 가 같은 월이었다가 2026-09-08 에 처음 갈렸다
+        (PFC 9월 확정 / COSMO 8월 값 유지, 9월 협의 중). 월을 버리면 두 값의
+        차이가 동일 기준 격차로 읽힌다 - 실제로는 비교 자체가 성립하지 않는다."""
+        m = re.search(re.escape(after) + r"[^\$\n]{0,12}\$\s*[\d,]+\s*\(\s*(\d{1,2}\s*월)\s*\)", s)
+        return m.group(1).replace(" ", "") if m else None
+
     return {
         "pfcTema": dollar(tema, "PFC"),
+        "pfcTemaMonth": month(tema, "PFC"),
         "cosmoTema": dollar(tema, "COSMO"),
+        "cosmoTemaMonth": month(tema, "COSMO"),
+        # «⇒ 9월어가 협의 중» - 한쪽이 지난달 값을 그대로 들고 있다는 신호다
+        "temaUnderNegotiation": bool(re.search(r"어가\s*협의\s*중", tema)),
         "scodiAbidjan": num(m.group(1)) if (m := re.search(r"\$\s*([\d,]+)", abj)) else None,
+        "scodiAbidjanMonth": m.group(1).replace(" ", "") if (m := re.search(r"\(\s*(\d{1,2}\s*월)\s*\)", abj)) else None,
         "marketTemaCedi": num(m.group(1)) if (m := re.search(r"[￠¢]\s*([\d,]+)", mkt)) else None,
         "marketTemaUsd": num(m.group(1)) if (m := re.search(r"[￠¢][\d,]+\s*\(\$\s*([\d,]+)", mkt)) else None,
         "marketAbidjanCfa": num(m.group(1)) if (m := re.search(r"([\d,]+)\s*CFA", mkt)) else None,
@@ -142,6 +156,10 @@ def parse_processing(text: str) -> dict:
 def parse_receivables(text: str) -> dict:
     """아비장 미수금 — 표에 전주/금주가 나란히 온다. 마지막(=금주) 값을 쓴다."""
     blk = section(text, "아비장 마켓 미수금", "INTER OCEAN 법적", "유가")
+    # parse_senegal 과 같은 이유로 셀 경계 \n\t 를 접는다. 접지 않으면 바이어 행이 이름 셀에서
+    # 끊겨 ETS BADARA·SDMG 가 38주 내내 null 이었다 (2026-09-09 수정). INTER OCEAN 은
+    # 아래 '잔 액' 경로가 여러 줄을 보므로 영향이 없었다.
+    blk = blk.replace("\n\t", "\t")
     out: dict = {"buyers": [], "totalCfa": None, "totalUsd": None}
     for buyer in ["INTER OCEAN", "ETS BADARA", "SDMG"]:
         row = section(blk, buyer, "\n\n")
@@ -222,6 +240,17 @@ def parse_own_vessels(text: str) -> tuple[list[dict], str]:
     return [], "missing"
 
 
+# 선단 라벨은 주마다 표기가 흔들린다 - «EU 선단»·«EU선단»·«EU», 셀이 두 문단으로 갈라진 «그랑»/«블루».
+# 모르는 표기는 라벨이 아니라 선박명 후보로 넘어가 행이 통째로 빠지고, 뒤 행은 앞 라벨을 물려받아
+# 소속이 틀렸다 (2026-09-09: EU 13주·그랑블루 12주에서 실측). 공백을 뺀 뒤 정규 이름으로 접는다.
+FLEET_LABELS = {
+    "캅센": "캅센",
+    "그랑블루": "그랑블루", "그랑": "그랑블루", "블루": "그랑블루",
+    "EU선단": "EU", "EU": "EU",
+    "운반선": "운반선",
+}
+
+
 def parse_senegal(text: str) -> list[dict]:
     """세네갈·EU 선단 입출항 표 — 선단/선박명/입항일/출항일/입항톤수/비고."""
     blk = section(text, "조업선 동향", "어가동향")
@@ -236,8 +265,9 @@ def parse_senegal(text: str) -> list[dict]:
         cells = [c.strip() for c in line.split("\t") if c.strip()]
         if not cells:
             continue
-        if cells[0] in ("캅센", "그랑블루", "그랑", "EU 선단", "운반선", "블루"):
-            fleet = cells[0]
+        label = FLEET_LABELS.get(cells[0].replace(" ", ""))
+        if label:
+            fleet = label
             cells = cells[1:]
         if not cells:
             continue

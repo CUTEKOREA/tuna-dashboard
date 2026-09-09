@@ -6,9 +6,9 @@ import { Callout } from '../cosmo/Ui';
 import { Grid, Panel, Sec, Signal, Signals, Stat, Stats, Table } from './PanofiUi';
 import {
   actuals,
-  atlanticNow,
   annualSeries,
   annualVolumeSeries,
+  atlanticNow,
   bangkokSeries,
   bep,
   catchBySpecies,
@@ -18,17 +18,16 @@ import {
   costStructure,
   dataQuality,
   exportByCommodity,
-  exportMarkets,
   exportByForm,
   exportByPartner,
   exportBySpecies,
+  exportMarkets,
   fleetMargins,
   fleetTotals,
   fs2025,
   fuelSeries,
   h1,
   headline,
-  ytd,
   importByPartner,
   industry,
   kpiSignals,
@@ -45,6 +44,7 @@ import {
   monthlySeries,
   pfc,
   priceSeries,
+  priceWindow,
   priorities,
   processingSeries,
   receivableSeries,
@@ -54,6 +54,7 @@ import {
   seaTempSeries,
   sensitivityBars,
   stopCondition,
+  temaGap,
   trade,
   tradeBalanceSeries,
   tradeLadderGap,
@@ -62,6 +63,7 @@ import {
   vesselCostGroups,
   vesselFullPnl,
   weeks,
+  ytd,
 } from '@/lib/data/panofi';
 import { CHART_RANK, HUB_ID, PANOFI_ID, shareColor } from '@/lib/chart-palette';
 
@@ -346,17 +348,28 @@ export function PriceTab() {
   return (
     <>
       <Stats>
-        <Stat k="PFC (테마)" v={orNA(latest.prices.pfcTema, usd)} unit="/톤" d={`31주 중 변동 ${m.priceChangeCount.PFC}회`} />
-        <Stat k="코스모 (테마)" v={orNA(latest.prices.cosmoTema, usd)} unit="/톤" d={`변동 ${m.priceChangeCount.코스모}회`} />
-        <Stat k="SCODI (아비장)" v={orNA(latest.prices.scodiAbidjan, usd)} unit="/톤" d={`변동 ${m.priceChangeCount.SCODI}회`} />
-        <Stat k="PFC 격차" v={usd(m.currentGapUsdPerT)} unit="/톤" tone="down" d={`31주 평균 ${usd(m.gapVsCosmoUsdPerT.mean)}`} />
+        <Stat k="PFC (테마)" v={orNA(latest.prices.pfcTema, usd)} unit="/톤"
+          d={`${latest.prices.pfcTemaMonth ?? '월 미상'} 기준 · 측정 ${priceWindow.weekCount}주 중 변동 ${priceWindow.changes.PFC}회`} />
+        <Stat k="코스모 (테마)" v={orNA(latest.prices.cosmoTema, usd)} unit="/톤"
+          d={`${latest.prices.cosmoTemaMonth ?? '월 미상'} 기준 · 변동 ${priceWindow.changes.코스모}회`} />
+        <Stat k="SCODI (아비장)" v={orNA(latest.prices.scodiAbidjan, usd)} unit="/톤"
+          d={`${latest.prices.scodiAbidjanMonth ?? '월 미상'} 기준 · 변동 ${priceWindow.changes.SCODI}회`} />
+        {/* 두 채널의 월이 갈린 주에는 뺄셈이 성립하지 않는다 - 숫자를 만들지 않고 그 사실을 쓴다 */}
+        <Stat
+          k="PFC 격차"
+          v={temaGap.usdPerT != null ? usd(temaGap.usdPerT) : '비교 불가'}
+          unit={temaGap.comparable ? '/톤' : undefined}
+          tone={temaGap.comparable && (temaGap.usdPerT ?? 0) < 0 ? 'down' : undefined}
+          d={temaGap.comparable
+            ? `측정 ${priceWindow.weekCount}주 평균 ${usd(m.gapVsCosmoUsdPerT.mean)}`
+            : `PFC ${temaGap.pfcMonth ?? '미상'} · 코스모 ${temaGap.cosmoMonth ?? '미상'} 기준`} />
         <Stat k="원장 손익분기" v={usd(ytd.ledgerBepUsdPerT)} unit="/톤" d={`전략보고 H1 ${usd(bep.priceUsdPerT)}`} />
       </Stats>
 
       <Sec>채널별 어가</Sec>
       <Grid>
         <Panel
-          span={12} title="채널별 어가 31주" unit="달러/톤"
+          span={12} title={`채널별 어가 ${headline.weekCount}주`} unit="달러/톤"
           note={`원장 ${ytd.label} 손익분기 ${usd(ytd.ledgerBepUsdPerT)}를 넘는 채널이 최근에야 생겼다. 전략보고 H1 분기점은 ${usd(bep.priceUsdPerT)}였다. 로컬 마켓은 즉시 현금이지만 분기점을 크게 밑돌아 저가 사이즈 소진용으로만 쓴다.`}
           src={SRC.weekly}
         >
@@ -413,6 +426,22 @@ export function PriceTab() {
             {m.seasonalConfound.detail} {m.seasonalConfound.howToSettle}
           </Callout>
           <Callout kind="info" label="프레임">{m.verdictNote}</Callout>
+          {/* 판정은 고정 창의 실측이다. 창 밖에서 전제가 흔들리면 판정 옆에 붙여 둔다 -
+              각주로 밀면 판정만 읽고 넘어간다. */}
+          {latest.prices.pfcTema != null && latest.prices.pfcTema !== m.currentPrices.PFC && (
+            <Callout kind="warn" label="측정 창 밖의 변화">
+              위 판정은 {m.currentPrices.asOf}까지 {priceWindow.weekCount}주 실측이다.
+              그 뒤 {latest.reportDate} 주간동향에서 PFC가 {usd(m.currentPrices.PFC)}에서{' '}
+              {usd(latest.prices.pfcTema)}({latest.prices.pfcTemaMonth ?? '월 미상'} 어가)으로 올라
+              {latest.prices.cosmoTema != null && latest.prices.pfcTema > latest.prices.cosmoTema
+                ? ' 코스모를 처음으로 넘어섰다.'
+                : ' 움직였다.'}{' '}
+              {temaGap.underNegotiation
+                ? `다만 코스모는 ${temaGap.cosmoMonth ?? '지난달'} 값을 그대로 둔 채 협의 중이라 두 채널의 격차는 아직 같은 기준으로 비교할 수 없다.`
+                : ''}{' '}
+              «저가 구매자인데도 물량이 안 빠진다»는 전제가 바뀌는지는 코스모 9월 어가가 확정된 뒤 다시 잰다.
+            </Callout>
+          )}
         </Panel>
       </Grid>
 
