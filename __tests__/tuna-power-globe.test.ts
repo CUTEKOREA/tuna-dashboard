@@ -15,11 +15,13 @@ import {
   PLANT_POINTS,
   UNLOCATED_PLANTS,
   hasSize,
+  isProduction,
   isValidCoord,
 } from '@/lib/data/company-geo';
 import {
   ALL_RELATIONS,
   EXTERNAL_NODES,
+  TRADE_RELATIONS,
   isSolid,
   strokeWeight,
 } from '@/lib/data/company-relations';
@@ -172,6 +174,102 @@ describe('관계 원장', () => {
     expect(withCaution.length).toBeGreaterThanOrEqual(8);
     for (const r of withCaution) {
       expect(r.caution!.trim().length).toBeGreaterThan(10);
+    }
+  });
+});
+
+/* ── 2026-09-09 감사가 낸 P0 를 관문으로 박는다 ─────────────────────
+   에이전트 145개가 방금 배포한 원장에서 P0 25건을 찾았다. 전부 「사람 눈으로만
+   보이는」 결함이라 기존 17개 관문이 하나도 못 잡았다. 같은 유형이 다시 들어오면
+   여기서 죽는다. */
+
+describe('감사 P0 재발 방지', () => {
+  /** 화면 좌표가 겹치면 아크가 남의 핀에서 출발한다 — 실제로 그렇게 그려졌다. */
+  it('편 밖 노드가 본사 핀과 같은 자리에 있지 않다', () => {
+    for (const [id, e] of Object.entries(EXTERNAL_NODES)) {
+      for (const hq of HQ_POINTS) {
+        const same = Math.abs(e.lat - hq.lat) < 0.02 && Math.abs(e.lng - hq.lng) < 0.02;
+        expect(same, `${id} 가 ${hq.label} 핀과 겹친다 (${e.lat},${e.lng})`).toBe(false);
+      }
+    }
+  });
+
+  it('편 밖 노드도 근거를 들고 다닌다', () => {
+    for (const [id, e] of Object.entries(EXTERNAL_NODES)) {
+      expect(e.basis.trim().length, `${id} basis`).toBeGreaterThan(4);
+    }
+  });
+
+  /** 자기 자신을 가리키는 고리는 렌더러가 통째로 버려 화면에 없다. */
+  it('자기 자신을 가리키는 관계가 없다', () => {
+    for (const r of ALL_RELATIONS) {
+      expect(r.from === r.to, `${r.label} 가 자기 자신을 가리킨다`).toBe(false);
+    }
+  });
+
+  /** 통관 통계를 회사 핀에 물리면 「그 회사가 샀다」가 된다. */
+  it('무역선의 양 끝은 회사가 아니라 나라다', () => {
+    expect(TRADE_RELATIONS.length).toBeGreaterThan(0);
+    for (const r of TRADE_RELATIONS) {
+      expect(r.from.endsWith('-trade'), `${r.label} from=${r.from}`).toBe(true);
+      expect(r.to.endsWith('-trade'), `${r.label} to=${r.to}`).toBe(true);
+    }
+  });
+
+  /** 금액은 통화가 둘이라 공통 축이 없다. 굵기로 쓰면 100배 오타가 화면에서 안 보인다. */
+  it('통화 단위는 굵기를 바꾸지 않는다', () => {
+    const mk = (unit: any, value: number) => strokeWeight({
+      from: 'a', to: 'b', kind: 'finance', status: 'active',
+      label: 'x', confirmed: true, value, unit, basis: 'test',
+    });
+    expect(mk('USD천', 1)).toBe(mk('USD천', 999999));
+    expect(mk('억원', 1)).toBe(mk('억원', 999999));
+  });
+
+  /** 굵기에 들어가는 값은 단위가 선언된 축이어야 한다. */
+  it('값이 있는 관계는 굵기 축에 정의된 단위를 쓴다', () => {
+    const KNOWN = new Set(['%', '톤', '척', 'USD천', '억원']);
+    for (const r of ALL_RELATIONS) {
+      if (typeof r.value !== 'number') continue;
+      expect(r.unit, `${r.label} 에 값이 있는데 단위가 없다`).toBeTruthy();
+      expect(KNOWN.has(r.unit!), `${r.label} 단위 ${r.unit}`).toBe(true);
+    }
+  });
+
+  /** 지분율은 0 초과 100 이하다. 다른 회사쌍의 값이 섞여 들어온 적이 있다. */
+  it('지분율이 범위를 벗어나지 않는다', () => {
+    for (const r of ALL_RELATIONS) {
+      if (r.unit !== '%' || typeof r.value !== 'number') continue;
+      expect(r.value, `${r.label}`).toBeGreaterThan(0);
+      expect(r.value, `${r.label}`).toBeLessThanOrEqual(100);
+    }
+  });
+
+  /** 「캔은 어디서 만들어지는가」 층에 트레이딩 법인이 생산으로 섞였다. */
+  it('생산이 아닌 거점은 role 로 표시된다', () => {
+    const nonProd = PLANT_POINTS.filter((p) => !isProduction(p));
+    expect(nonProd.length).toBeGreaterThan(0);
+    for (const p of nonProd) {
+      expect(p.role, `${p.label} role`).toBeTruthy();
+      expect(hasSize(p), `${p.label} 는 생산이 아닌데 크기가 붙었다`).toBe(false);
+    }
+  });
+
+  /** 명·톤/년·MT/일을 한 자로 재면 단위가 큰 쪽이 무조건 커진다. */
+  it('크기 값은 단위가 둘 이상이라 단위별로 정규화해야 한다', () => {
+    const units = new Set(PLANT_POINTS.filter(hasSize).map((p) => p.sizeUnit));
+    expect(units.size, '단위가 하나뿐이면 이 관문의 전제가 깨진다').toBeGreaterThan(1);
+  });
+
+  /** 기국이 아닌 칸을 나라처럼 세면 「어느 나라 깃발」에 다른 축의 답이 섞인다. */
+  it('기국이 아닌 칸은 isFlag:false 로 갈라져 있다', () => {
+    const NOT_A_COUNTRY = /등록|비활성|자회사|합작|확인/;
+    for (const f of FLAG_STATES) {
+      for (const x of f.flags) {
+        if (NOT_A_COUNTRY.test(x.country)) {
+          expect(x.isFlag, `${f.company} 「${x.country}」 는 나라가 아니다`).toBe(false);
+        }
+      }
     }
   });
 });
