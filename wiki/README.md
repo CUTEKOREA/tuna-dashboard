@@ -23,3 +23,7 @@
 ## 훅
 
 `~/.claude/harness/verify/verify_wiki.sh` (PostToolUse Write|Edit) 가 저장 시 `scripts/check_article.py`를 돌린다. 오류면 저장이 막힌다.
+
+## 상태
+
+- 2026-09-09 문서 31장(기업 20·RFMO 4·어법 2·인증 2·제도 3) · 훅 통과 31/31 · 링크 경고 0 · 실사용 테스트: 대기(사용자 새 세션에서 「동원산업 IATTC 등록 선박 몇 척」)
