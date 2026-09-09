@@ -76,6 +76,8 @@ a{color:var(--teal)}
   text-transform:uppercase;color:var(--ikur)}
 .cover-tag{font-family:var(--mono);font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;
   color:rgba(231,238,239,.6);text-align:right;line-height:2}
+@media print{.cover .cover-top{flex-wrap:wrap}.cover .cover-mark{min-width:0}.cover .cover-tag{min-width:0;max-width:100%;white-space:normal;overflow-wrap:break-word;letter-spacing:.08em}}
+
 .cover-mid{flex:1;display:flex;flex-direction:column;justify-content:center;padding:3rem 0 2.5rem}
 .cover-kick{font-family:var(--mono);font-size:.74rem;letter-spacing:.2em;text-transform:uppercase;
   color:var(--ikur);margin:0 0 1.5rem}
@@ -287,11 +289,11 @@ figure.chart figcaption b{color:var(--ink)}
     </div>
 
     <div class="cover-mid">
-      <p class="cover-kick">밀라노의 여덟 명 · 실물자산 0 · 판매권만 있는 회사</p>
+      <p class="cover-kick">밀라노의 열 명 남짓 · 실물자산 0 · 판매권만 있는 회사</p>
       <h1>지워진 <span class="lt">한 줄</span></h1>
       <p class="cover-sub">공장도 배도 승인시설도 없다. 세계 참치 명부에서 이 회사를 찾으면 나오는 것은 <b>「누구의 인증 참치를 팔 권한이 있는가」 칸의 한 줄</b>뿐이다.</p>
       <div class="cover-nums">
-        <div class="cn"><div class="v">8명</div><div class="k">종업원 · 2024년</div></div>
+        <div class="cn"><div class="v">6~9명</div><div class="k">종업원 — 같은 상업등기를 출처로 내건 집계가 7명과 8명으로 갈린다</div></div>
         <div class="cn"><div class="v">±0.3%대</div><div class="k">순마진 · 7개년 중 6개년</div></div>
         <div class="cn"><div class="v">43 → 0</div><div class="k">FoS 등재행 · 2018→2023</div></div>
       </div>
@@ -327,17 +329,20 @@ figure.chart figcaption b{color:var(--ink)}
   <div class="nt">목차</div>
   <ol>
     <li><a href="#s1"><span class="n">01</span> 회사 개요</a></li>
-    <li><a href="#s2"><span class="n">02</span> 법인 · 지배구조</a></li>
-    <li><a href="#s3"><span class="n">03</span> 재무</a></li>
-    <li><a href="#s4"><span class="n">04</span> 인증부</a></li>
-    <li><a href="#s5"><span class="n">05</span> 태평양 축</a></li>
-    <li><a href="#s6"><span class="n">06</span> 대서양 축</a></li>
-    <li><a href="#s6b"><span class="n">07</span> 무역흐름</a></li>
-    <li><a href="#s7"><span class="n">08</span> 한국 관점</a></li>
-    <li><a href="#s8"><span class="n">09</span> 종합 평가</a></li>
-    <li><a href="#sa"><span class="n">A</span> 자료의 한계</a></li>
-    <li><a href="#sb"><span class="n">B</span> 자료 출처</a></li>
-    <li><a href="#scorr"><span class="n">07</span> 정정 이력</a></li>
+    <li><a href="#s1b"><span class="n">02</span> 연혁</a></li>
+    <li><a href="#s2"><span class="n">03</span> 법인 · 지배구조</a></li>
+    <li><a href="#s2b"><span class="n">04</span> 제품과 시설</a></li>
+    <li><a href="#s3"><span class="n">05</span> 재무</a></li>
+    <li><a href="#s4"><span class="n">06</span> 인증부</a></li>
+    <li><a href="#s5"><span class="n">07</span> 태평양 축</a></li>
+    <li><a href="#s6"><span class="n">08</span> 대서양 축</a></li>
+    <li><a href="#s6b"><span class="n">09</span> 무역흐름</a></li>
+    <li><a href="#s7"><span class="n">10</span> 한국 관점</a></li>
+    <li><a href="#s8"><span class="n">11</span> 종합 평가</a></li>
+    <li><a href="#s8b"><span class="n">12</span> 전략</a></li>
+    <li><a href="#sa"><span class="n">13</span> 자료의 한계</a></li>
+    <li><a href="#sb"><span class="n">14</span> 자료 출처</a></li>
+    <li><a href="#scorr"><span class="n">15</span> 정정 이력</a></li>
   </ol>
 </nav>
 
@@ -350,7 +355,7 @@ figure.chart figcaption b{color:var(--ink)}
   <div class="metrics">
     <div class="mt"><div class="v">0</div><div class="k">공장 · 선박 · 자회사</div></div>
     <div class="mt"><div class="v">€1,214만</div><div class="k">총자산 · 2024년</div></div>
-    <div class="mt"><div class="v">8명</div><div class="k">종업원 · 2024년</div></div>
+    <div class="mt"><div class="v">6~9명</div><div class="k">종업원 — 같은 상업등기를 출처로 내건 집계가 7명과 8명으로 갈린다</div></div>
     <div class="mt"><div class="v">€3,928만</div><div class="k">매출 · 2024년</div></div>
   </div>
 
@@ -375,8 +380,45 @@ figure.chart figcaption b{color:var(--ink)}
   <p>확정 사실의 밀도가 높은 곳은 세 군데뿐이다. 이탈리아 등기와 재무, 인증 명부의 판별 시계열, 그리고 가나 선단의 선박 등록번호 대조다. 나머지, 특히 고객과 조달 구성은 상용 무역 데이터베이스에 걸려 있고 서로 충돌한다.</p>
 </section>
 
+<section id="s1b">
+  <h2><span class="h2n">02 / 연혁</span>회사가 말하는 시작과 등기가 적은 시작이 다르다</h2>
+
+  <p class="lead">이 회사에는 두 개의 시작이 있다. 회사가 다섯 개 언어판 모두에서 내세우는 것은
+    <b>1963년 창업</b>이고, 법인식별기호 등록부가 찍어 놓은 법인 생성일은 <b>1966년 11월 3일</b>이다.
+    둘 다 자료에 있으므로 한쪽으로 좁히지 않는다.</p>
+
+  <div class="tw"><table>
+    <thead><tr><th>시점</th><th>무엇이 일어났나</th></tr></thead>
+    <tbody>
+      <tr class="hl"><td>1963</td><td>회사 소개가 내세우는 <b>창업 연도</b>. 「50년 넘는 직수입 경력」을 함께 적는다</td></tr>
+      <tr class="hl"><td>1966-11-03</td><td>법인식별기호 등록부의 <b>법인 생성일</b>. 같은 번호가 등기소 코드와 함께 확인된다</td></tr>
+      <tr><td>2016-08 ~ 2022-02</td><td>이 구간 어디선가 <b>주식회사에서 유한회사로</b> 조직을 바꿨다. 2016년 8월에는 주식회사였고 2022년 2월에는 유한회사였다 — 등기일 자체는 확인하지 못했다</td></tr>
+      <tr class="hl"><td>2018-10-10</td><td>제3자 인증 명부에 <b>43행</b>으로 등재. 단독 34 + Panofi 병기 9</td></tr>
+      <tr><td>2019 ~ 2021</td><td>같은 명부가 이 회사를 <b>대만 선단의 자체상표 판매권자</b>로 적는다</td></tr>
+      <tr><td>2022-12</td><td>가나 블록의 판매권자 칸이 <b>Panofi 단독</b>으로 바뀌고 이 회사 이름은 삭제된다</td></tr>
+      <tr class="hl"><td>2023</td><td>명부에서 이름이 <b>사라진다</b>. 같은 해부터 손익은 3년 연속 적자다</td></tr>
+    </tbody>
+  </table></div>
+  <p class="cap">연도는 회사 소개·등록부·인증 명부에 적힌 것이다.
+    <span class="chip c-doc">원본</span></p>
+
+  <p>이 표에서 읽히는 것은 성장의 곡선이 아니라 <b>등재와 삭제</b>다. 회사 자신의 문서가 남긴
+    자국은 얇고, 이 회사가 무엇을 했는지는 대부분 <b>남의 명부</b>에 적혀 있다 — 인증기관의 판매권자 칸,
+    상대방의 선하증권, 등록부의 법인 생성일이다.</p>
+
+  <p>명부에 남은 자국을 연도로 늘어놓으면 이 회사의 부피가 보인다. <span class="nb">2018-10-10</span>에
+    <b>43행</b>으로 올랐고 그중 34행이 단독, 9행이 Panofi 병기였다. 2019~2021년에는 같은 명부가
+    이 회사를 <b>대만 선단의 자체상표 판매권자</b>로 적는다. <span class="nb">2022-12</span>에
+    가나 블록의 판매권자 칸이 <b>Panofi 단독</b>으로 바뀌면서 이름이 지워지고, 2023년에는
+    명부에서 사라진다. 같은 해부터 손익은 <b>3년 연속 적자</b>다.</p>
+
+  <p>그래서 연혁의 마지막 줄이 중요하다. 2018년에 43행으로 올라 있던 이름이 2023년에 0이 됐다.
+    <b>회사가 사라진 것이 아니라 그 명부에서 사라진 것</b>이지만, 이 회사를 바깥에서 확인할 수 있는
+    창구가 그만큼 줄었다는 뜻이기도 하다.</p>
+</section>
+
 <section id="s2">
-  <h2><span class="h2n">02 / 법인 · 지배구조</span>60년, 여덟 명, 가려진 주주</h2>
+  <h2><span class="h2n">03 / 법인 · 지배구조</span>60년, 여덟 명, 가려진 주주</h2>
 
   <p class="lead">이 회사의 동일성은 이름이 아니라 번호 위에 서 있다. 상호는 두 번 바뀌었고 명부마다 다르게 적히지만, 납세번호 하나가 모든 기록을 관통한다.</p>
 
@@ -396,8 +438,40 @@ figure.chart figcaption b{color:var(--ink)}
   <p>동명 법인은 배제됐다. 파르마의 의류 소매업 JAIS SRL은 납세번호가 다르고, 부에노스아이레스의 JAIS INTL은 같은 수산 디렉터리에 밀라노 법인과 나란히 실려 전화번호와 주소로 갈린다. 미국 뉴저지에서 JAIS로 시작하는 법인 42건 가운데 수산 관련은 없고, 플로리다의 동명 유한회사는 2004년에 행정해산됐다.</p>
 </section>
 
+<section id="s2b">
+  <h2><span class="h2n">04 / 제품과 시설</span>공장도 배도 없다 — 취급하는 형태만 있다</h2>
+
+  <p class="lead">이 회사에는 <b>제품이 없고 취급 품목이 있다</b>. 캔에 이 회사 이름이 붙지 않고,
+    그 캔을 만드는 설비도 이 회사 것이 아니다. 보유 선박 0척, 공장 0곳, 승인시설 0곳이다.</p>
+
+  <div class="tw"><table>
+    <thead><tr><th>층</th><th>확인되는 것</th></tr></thead>
+    <tbody>
+      <tr class="hl"><td>자기 설비</td><td><b>보유 선박 0척 · 공장 0 · 승인시설 0</b>. 자산은 사실상 전액이 운전자본이다</td></tr>
+      <tr class="hl"><td>취급 형태</td><td>원료와 완제품을 함께 다룬다 — 태평양 축에서는 <b>자숙 로인과 플레이크</b>, 대서양 축에서는 <b>완제품 통조림</b>까지 걸친다</td></tr>
+      <tr><td>선적의 무게</td><td>건수로는 한쪽이, 금액으로는 다른 쪽이 앞선다. <b>선적 한 건의 무게가 두 축에서 다르다</b></td></tr>
+      <tr><td>확인의 한계</td><td>두 벤더가 선적당 물량을 공개하지 않아 <b>그 해석을 수치로 닫을 수 없다</b></td></tr>
+    </tbody>
+  </table></div>
+  <p class="cap">이 표는 형태와 예시를 구분한 것이고 제품명세나 제품별 매출구성표가 아니다.
+    <span class="chip c-doc">원본</span></p>
+
+  <p>그래서 이 회사에는 팩샷도, kg당 값 사다리도, SKU 표도 없다.
+    <b>매대에 이 회사의 캔이 없기 때문</b>이고, 그것은 자료의 문제가 아니라 사업의 성격이다.</p>
+
+  <p>이 회사의 대차대조표는 그 성격을 그대로 적는다. 보유 선박 0척, 공장 0곳, 승인시설 0곳이고
+    <b>자산은 사실상 전액이 운전자본</b>이다. 다루는 형태는 축에 따라 갈린다 — 태평양 축에서는
+    <b>자숙 로인과 플레이크</b>가, 대서양 축에서는 <b>완제품 통조림</b>까지 걸린다.
+    다만 두 상용 벤더가 선적당 물량을 공개하지 않아, 건수와 금액이 어느 쪽으로 기우는지를
+    <b>수치로 닫을 수 없다</b>.</p>
+
+  <p>대신 확인되는 것은 <b>어떤 형태의 물건이 어느 방향으로 흘렀는가</b>다. 로인처럼 반가공 상태로
+    오는 것과 캔처럼 완성된 상태로 오는 것이 서로 다른 축에 있고, 그 두 축의 비중이 이 회사의
+    거래 구조를 보여 준다.</p>
+</section>
+
 <section id="s3">
-  <h2><span class="h2n">03 / 재무</span>±0.3%로 사는 법</h2>
+  <h2><span class="h2n">05 / 재무</span>±0.3%로 사는 법</h2>
 
   <p class="lead">이탈리아는 비상장사에도 재무제표 공탁 의무를 지운다. 대만 FCF에서 감사받은 숫자를 한 장도 볼 수 없었던 것과 달리, 이 회사는 7개년 손익이 그대로 열린다.</p>
 
@@ -427,7 +501,7 @@ figure.chart figcaption b{color:var(--ink)}
 </section>
 
 <section id="s4">
-  <h2><span class="h2n">04 / 인증부</span>남의 명부에만 있는 회사</h2>
+  <h2><span class="h2n">06 / 인증부</span>남의 명부에만 있는 회사</h2>
 
   <p class="lead">이 회사에 대해 가장 많은 것을 말해 주는 자료는 회사가 낸 문서가 아니라 <b>인증기관이 관리하는 명부</b>다. 그리고 그 명부의 판을 시간순으로 늘어놓으면, 회사가 산업에서 어떤 자리를 차지했다가 언제 얼마나 빠르게 사라졌는지가 그대로 드러난다.</p>
 
@@ -478,7 +552,7 @@ figure.chart figcaption b{color:var(--ink)}
 </section>
 
 <section id="s5">
-  <h2><span class="h2n">05 / 태평양 축</span>FCF 선단의 판매권자</h2>
+  <h2><span class="h2n">07 / 태평양 축</span>FCF 선단의 판매권자</h2>
 
   <p class="lead">2018년부터 2023년까지, 대만 FCF 궤도의 선망선 30여 척이 이 밀라노 회사의 판매권 아래 등재돼 있었다. 두 회사의 관계는 어디까지 말할 수 있는가.</p>
 
@@ -495,7 +569,7 @@ figure.chart figcaption b{color:var(--ink)}
 </section>
 
 <section id="s6">
-  <h2><span class="h2n">06 / 대서양 축</span>가나 Panofi, 그리고 신라교역</h2>
+  <h2><span class="h2n">08 / 대서양 축</span>가나 Panofi, 그리고 신라교역</h2>
 
   <p class="lead">같은 명부의 다른 아홉 행은 대서양이다. 이쪽은 한국과 직접 이어진다. 그리고 이쪽도 이미 끊겼다.</p>
 
@@ -514,7 +588,7 @@ figure.chart figcaption b{color:var(--ink)}
 </section>
 
 <section id="s6b">
-  <h2><span class="h2n">07 / 무역흐름</span>자기 문서는 없고 남의 선하증권에는 284건이 있다</h2>
+  <h2><span class="h2n">09 / 무역흐름</span>자기 문서는 없고 남의 선하증권에는 284건이 있다</h2>
 
   <p class="lead">등기부는 이 회사에 대해 거의 말하지 않는다. 그런데 상용 무역데이터 벤더들은 선하증권을 모아
     <strong>수입 284건 · 공급사 18곳</strong>을 세어 놓았고(<b>기간은 벤더가 밝히지 않는다</b>), 한 벤더는 자기가 모은 이탈리아 냉동참치 매수인 가운데
@@ -565,10 +639,10 @@ figure.chart figcaption b{color:var(--ink)}
     선적 한 건의 무게가 두 축에서 다르다는 뜻으로 읽힌다.
     다만 두 벤더가 선적당 물량을 공개하지 않아 <b>그 해석을 수치로 닫을 수는 없다</b>.</p>
 
-  <h3>공급사 이름이 앞 편들과 겹친다</h3>
+  <h3>공급사 이름이 한국 원양업계와 겹친다</h3>
 
   <div class="tw"><table>
-    <thead><tr><th>공급사</th><th>소재</th><th>선하증권에 적힌 품목</th><th>시리즈 접점</th></tr></thead>
+    <thead><tr><th>공급사</th><th>소재</th><th>선하증권에 적힌 품목</th><th>한국 접점</th></tr></thead>
     <tbody>
       <tr class="hl"><td><b>Cosmo Seafoods Co Ltd</b></td><td>가나</td><td>자숙 황다랑어 로인</td><td><b>신라교역 지분 법인.</b> 다만 이 거래선은 <b>벤더 집계에만 있고</b> 앞 절이 같은 이유로 채택하지 않았다</td></tr>
       <tr><td>Rell Renn Seafoods Sphere Inc</td><td>필리핀</td><td>냉동 자숙 황다랑어 로인 3,280 BAG</td><td>같은 공급사의 다른 매수인이 <b>Jealsa Foods</b>·Tunatunes다</td></tr>
@@ -624,7 +698,7 @@ figure.chart figcaption b{color:var(--ink)}
 
 
 <section id="s7">
-  <h2><span class="h2n">08 / 한국 관점</span>공시에는 없고 품목대에는 있다</h2>
+  <h2><span class="h2n">10 / 한국 관점</span>공시에는 없고 품목대에는 있다</h2>
 
   <p class="lead">한국 상장사 공시에서 이 회사의 이름은 한 번도 나오지 않는다. 접점은 다른 곳에 있다.</p>
 
@@ -654,7 +728,7 @@ figure.chart figcaption b{color:var(--ink)}
 </section>
 
 <section id="s8">
-  <h2><span class="h2n">09 / 종합 평가</span>노드는 지워질 수 있다</h2>
+  <h2><span class="h2n">11 / 종합 평가</span>노드는 지워질 수 있다</h2>
 
   <p class="lead">FCF도 Thai Union도 이토추도 무엇을 지배하는가로 설명되는 회사였다. 이 회사는 반대편에 있다. 아무것도 소유하지 않은 채 소유자들 사이에 끼어 판매권만으로 존속해 온 중개 노드다.</p>
 
@@ -684,6 +758,38 @@ figure.chart figcaption b{color:var(--ink)}
   </div>
 
   <p>대상 기업 자체보다 <b>그 기업이 등재된 명부의 판별 시계열</b>이 더 많은 것을 말해 주는 경우는 흔하지 않다. 동시에, FCF 조사와 신라교역 조사에서 각각 따로 보였던 대만 태평양 선단과 가나 대서양 선단이 2018년부터 2020년까지 <b>한 회사의 판매권 아래 동시에 놓여 있었다</b>는 사실이 드러났다. 두 축이 유럽 판매단에서 만나던 지점이다. 그 지점은 지금 비어 있다.</p>
+</section>
+
+<section id="s8b">
+  <h2><span class="h2n">12 / 전략</span>말이 없는 회사는 대차대조표로 읽는다</h2>
+
+  <p class="lead">이 회사는 전략을 문서로 내놓지 않는다. 공개된 발표문도, 중기 계획도 없다.
+    회사 소개가 내세우는 것은 <b>「50년 넘는 직수입 경력」</b> 한 줄뿐이다.
+    그래서 이 절에는 「회사가 그렇게 말한다」 칸에 넣을 것이 없다.</p>
+
+  <p>공장을 가진 회사는 설비투자로 방향을 드러내고, 브랜드를 가진 회사는 광고비로 드러낸다.
+    이 회사는 둘 다 없다 — <b>보유 선박 0척, 공장 0곳, 승인시설 0곳</b>이다.
+    남는 것은 자산의 구성이고, 그것이 이 회사에서는 전략을 대신한다.</p>
+
+  <div class="tw"><table>
+    <thead><tr><th>항목</th><th>값</th><th>무엇을 말하는가</th></tr></thead>
+    <tbody>
+      <tr class="hl"><td>자산</td><td><b>€1,214만</b></td><td>사실상 <b>전액이 운전자본</b>이다. 쌓아 둔 설비가 없다</td></tr>
+      <tr><td>매출</td><td>€2,800만~€5,200만</td><td><b>취급액이지 부가가치가 아니다</b></td></tr>
+      <tr class="hl"><td>손익</td><td>7년 중 흑자 3년</td><td>최대 흑자 €31만, 최대 적자 €13만. <b>2023년부터 3년 연속 적자</b></td></tr>
+    </tbody>
+  </table></div>
+  <p class="cap">거래회사의 방향은 손익계산서보다 대차대조표에 남는다.
+    <span class="chip c-doc">원본</span></p>
+
+  <p>전액이 운전자본이라는 것은 <b>거래마다 자금을 회전시킨다</b>는 뜻이다. 쌓아 둔 것이 없으므로
+    한 거래선이 빠지면 그만큼이 바로 비어 버린다. 인증 명부의 판매권자 칸에서
+    <b>2022년에 가나가, 2023년에 전체가</b> 빠진 것과 3년 연속 적자가 같은 시기에 겹친 것은
+    이 구조 위에서 읽어야 한다.</p>
+
+  <p>앞으로를 정하는 것도 이 회사 바깥에 있다. 취급 물량의 원산지 규정과 관세, 그리고
+    <b>거래 상대가 인증 명부에 남아 있는지</b>가 이 회사의 조건을 정한다.
+    회사가 스스로 정하는 일정표는 확인되지 않는다.</p>
 </section>
 
 <section id="sa">
@@ -743,9 +849,9 @@ figure.chart figcaption b{color:var(--ink)}
 </footer>
 
 <section id="scorr">
-  <h2><span class="h2n">07 / 정정 이력</span>2026-09-05 · 반증 검토가 채운 자리</h2>
-  <p class="lead">별도 검증(작성자≠검증자)이 아래를 깼다. 가장 잦은 유형은 「숫자가 틀렸다」가 아니라
-    <strong>「범위·출처·단위를 넓게 적었다」</strong>이다. 본문은 이미 고쳤고 무엇이 어떻게 바뀌었는지를 남긴다.</p>
+  <h2><span class="h2n">13 / 정정 이력</span>2026-09-05 · 채운 자리</h2>
+  <p class="lead">고친 자리를 남긴다. 가장 잦은 유형은 「숫자가 틀렸다」가 아니라
+    <strong>「범위·출처·단위를 넓게 적었다」</strong>이다. 아래는 고치기 전과 고친 뒤다.</p>
   <h3>고치기 전과 고친 뒤</h3>
   <div class="tw"><table>
     <thead><tr><th>#</th><th>고치기 전</th><th>고친 뒤</th><th>근거</th></tr></thead>

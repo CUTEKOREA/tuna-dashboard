@@ -62,6 +62,8 @@ body{margin:0;background:var(--paper);color:var(--ink);
   text-transform:uppercase;color:var(--cv)}
 .cover-tag{font-family:var(--mono);font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;
   color:rgba(234,240,237,.6);text-align:right;line-height:2}
+@media print{.cover .cover-top{flex-wrap:wrap}.cover .cover-mark{min-width:0}.cover .cover-tag{min-width:0;max-width:100%;white-space:normal;overflow-wrap:break-word;letter-spacing:.08em}}
+
 .cover-mid{flex:1;display:flex;flex-direction:column;justify-content:center;padding:3rem 0 2.5rem}
 .cover-kick{font-family:var(--mono);font-size:.74rem;letter-spacing:.2em;text-transform:uppercase;
   color:var(--cv);margin-bottom:1.5rem}
@@ -637,6 +639,11 @@ figure.shots .figrow .fi span{font-family:var(--sans);font-size:.72rem;line-heig
       <span class="chip c-doc">원본</span></p>
   </div>
 
+  <p>세 어종의 크기와 자리를 함께 적어 둔다. 방어가 약 4,400톤으로 국내의 4%, 참다랑어가
+    약 4,300톤으로 23%, 잿방어가 약 2,500톤으로 11%다. 다만 이 표의 두 열은 기간이 다르다 —
+    <b>생산량은 2025년 3월기이고 점유율의 비교 기준은 2024년 1~12월</b>이다. 분자와 분모의
+    기간이 어긋나므로, 점유율을 그 생산량에 곱해 시장 규모를 역산하면 안 된다.</p>
+
   <h3>시험 단계</h3>
   <div class="tw"><table>
     <thead><tr><th>어종</th><th>상태</th></tr></thead>
@@ -653,7 +660,7 @@ figure.shots .figrow .fi span{font-family:var(--sans);font-size:.72rem;line-heig
 <section id="s6">
   <h2><span class="h2n">06 / 보고부문 셋</span>어디에도 「まぐろ」가 없다</h2>
 
-  <p class="lead">제82기 연결 매출은 1조 1,058억엔이고 보고부문은 셋이다.
+  <p class="lead">제82기 연결 매출은 <b>1,105,890백만엔</b>(약 1조 1,059억엔)이고 보고부문은 셋이다.
     참치는 <b>어획·양식·유통·가공 넷에 걸쳐</b> 있어 어느 한 부문에 담기지 않는다.</p>
 
   <div class="tw"><table>
@@ -686,12 +693,18 @@ figure.shots .figrow .fi span{font-family:var(--sans);font-size:.72rem;line-heig
     이익만 0.3 다르고 그 이유는 원문에 없다. 2024년 3월기는 두 쪽 다 16.0 / +0.7로 같다.
     <span class="chip c-doc">원본</span></p>
 
+  <p>보고부문 셋의 크기부터 적으면, 외부매출은 食材流通이 769,943으로 가장 크고
+    加工食品 185,752, 水産資源 129,371 순이다. 영업이익도 食材流通 15,777 · 加工食品 10,074 ·
+    水産資源 <b>2,445</b>로 같은 순서다. 참다랑어가 든 자리는 그 가장 작은 부문의
+    <b>한 단 아래 유닛</b>이고, 양식 유닛은 매출 17.4십억엔에 <b>영업손실</b>이다.
+    <b>이 회사에서 참치는 매출의 중심도 이익의 중심도 아니다.</b></p>
+
   <div class="call warn">
     <p class="ct">참치는 부문 넷에 흩어져 있다</p>
     <p>クロマグロ는 水産資源 부문의 <b>養殖 유닛</b>에 들어가고, 가다랑어·참치 어획은 <b>漁業 유닛</b>,
       원료 거래는 食材流通, 캔·파우치는 加工食品이다. <b>품목별 매출·이익이 분리돼 있지 않다.</b>
       부문 매출이나 국내 점유율 23%를 이 회사의 참치 사업 비중으로 쓰면 거짓이 된다.
-      앞 편 두 곳에서 같은 구조를 겪었다. 동원산업 보고부문 다섯에도, 사조산업 일곱에도
+      한국 상장 수산사 두 곳도 같은 구조다. 동원산업 보고부문 다섯에도, 사조산업 일곱에도
       품목 이름이 없었다. <span class="chip c-doc">원본</span></p>
   </div>
 </section>
@@ -722,7 +735,7 @@ figure.shots .figrow .fi span{font-family:var(--sans);font-size:.72rem;line-heig
   <p class="cap">십억엔. <b>총계가 두 기준에서 같다 — 순수 재배분이지 실적 수정이 아니다.</b>
     두 컬럼의 「Other」 행은 전사비 처리가 달라 서로 비교할 수 없다 —
     기존 컬럼은 공통비를 별행으로 세우고 재작성 컬럼은 その他에 접어 넣었다.
-    <span class="chip c-doc">원본</span>
+    <span class="chip c-doc">원본</span></p>
 
   <div class="call hot">
     <p class="ct">조직이 옮겨 간 자리가 그 차이다</p>
@@ -769,7 +782,13 @@ figure.shots .figrow .fi span{font-family:var(--sans);font-size:.72rem;line-heig
   <p class="cap">십억엔. 2025년 3월에 유이자부채가 13.5 줄었다가 9월에 23.8 늘었다.
     <span class="chip c-doc">원본</span></p>
 
-  <div class="call">
+  <p>3개년은 한 방향이다. 매출이 1,030.7 → 1,078.6 → <b>1,105.9</b>십억엔으로 늘었고
+    영업이익도 26.5 → 30.4 → 31.2로 올랐다. 그런데 지배주주 귀속 순이익은
+    20.9 → 23.3 → <b>22.2</b>로 마지막 해에 꺾인다. 재무상태 쪽에서는 총자산이 671.8 → 681.2 →
+    714.2로 늘고, 유이자부채가 2025년 3월에 13.5 줄었다가 <b>9월에 23.8 늘었다</b>.
+    <b>매출과 이익의 방향이 순이익에서 갈리는 자리가 이 절의 물음이다.</b></p>
+
+  <div class="call hot">
     <p class="ct">중간만 보면 방향이 다르다</p>
     <p>4~9월 반기로 보면 매출 532.1 → 536.7, 영업이익 16.1 → 18.7로 늘었는데
       <b>지배주주 귀속 순이익만 13.8 → 12.5로 줄었다.</b> 영업이 늘고 순이익이 준다는 것은
@@ -800,7 +819,7 @@ figure.shots .figrow .fi span{font-family:var(--sans);font-size:.72rem;line-heig
   <div class="call hot">
     <p class="ct">이름으로 찾으면 「선단 없음」이 나온다</p>
     <p>WCPFC·IATTC·ICCAT·IOTC를 전수로 뒤져도 <b>모회사 명의 등재는 0건</b>이다.
-      등재는 전부 <b>TAIYO A&amp;F·Taiyo Micronesia 명의</b>다. 앞 편에서는 반대 방향으로 걸렸다. 동원산업 편에서 명부의 「DONGWON FISHERIES」가 동원산업이 아닌 다른 회사였다.
+      등재는 전부 <b>TAIYO A&amp;F·Taiyo Micronesia 명의</b>다. 반대 방향의 사례도 있다. 명부의 「DONGWON FISHERIES」는 동원산업이 아닌 다른 회사였다.
       <b>이름은 법인을 묶지도, 가르지도 못한다.</b> <span class="chip c-doc">원본</span></p>
   </div>
 
@@ -839,6 +858,12 @@ figure.shots .figrow .fi span{font-family:var(--sans);font-size:.72rem;line-heig
     </tbody>
   </table></div>
 
+  <p>거점의 배치가 이 회사의 참치를 설명한다. 캔과 파우치를 만드는 두 공장 <b>SEAPAC SP-1</b>(방푸)과
+    <b>SP-2</b>(사뭇사콘)가 태국에 있고, 참치박을 다루는 피쉬프로틴도 사뭇사콘이다.
+    일본 밖의 또 다른 거점은 미크로네시아 폰페이로, 2018년부터 가쓰오부시와 피쉬밀을 만든다.
+    <b>돌고래안전 명부에서 가공(Processor) 역할을 가진 법인도 태국 법인</b>이다.
+    일본 상장사의 캔이지만 캔을 닫는 자리는 태국이다.</p>
+
   <h3>자사 어획은 얼마나 되나</h3>
   <div class="tw"><table>
     <thead><tr><th>항목</th><th class="num">값</th></tr></thead>
@@ -853,6 +878,16 @@ figure.shots .figrow .fi span{font-family:var(--sans);font-size:.72rem;line-heig
     <b>어획 22,607톤이 그대로 자사 캔 원료가 된다는 근거는 없다.</b>
     <span class="chip c-doc">원본</span></p>
 
+  <p>자사 어획으로 확인되는 것은 선망 3척의 MSC 신고분뿐이다. 2024년에 가다랑어
+    <b>19,632톤</b>과 황다랑어 <b>2,975톤</b>, 합쳐 22,607톤이다. 그런데 <b>자사 어획 대 매입의
+    비율은 공시가 없고</b>, 가공 원료는 MarinTrust 기준으로 FAO 51·57·61·71 여러 대양에서 온다.
+    그러므로 이 22,607톤을 그대로 자사 캔의 원료로 옮겨 읽을 근거는 없다.</p>
+
+  <p>태국 쪽 법인의 성격도 갈라 둘 필요가 있다. Kingfisher Holdings는 지분 <b>50.70%</b>,
+    시파크(SEAPAC)는 <b>100.00%</b>이고 KF Foods를 포함해 셋 다 加工食品 부문의
+    <b>연결자회사</b>다. 제82기 유가증권보고서가 시파크와 KF Foods를 「연결자회사인」이라
+    명시하며 자산 대여 관계까지 적는다. 영국의 동명 <b>Kingfisher Foods</b>는 다른 회사다.</p>
+
   <h3>태국 법인들은 연결자회사다</h3>
   <div class="tw"><table>
     <thead><tr><th>법인</th><th>소재</th><th>부문</th><th class="num">지분</th></tr></thead>
@@ -864,7 +899,7 @@ figure.shots .figrow .fi span{font-family:var(--sans);font-size:.72rem;line-heig
   </table></div>
   <p class="cap">제82기 유가증권보고서 「関係会社の状況」. 같은 보고서가 시파크와 KF Foods를
     <b>「연결자회사인」</b>이라 명시하며 자산 대여 관계를 적는다.
-    영국의 동명 <b>Kingfisher Foods</b>는 다른 회사다. 앞 편 분석이 적은 「1972년 SAFCOL·1990년
+    영국의 동명 <b>Kingfisher Foods</b>는 다른 회사다. 기존 분석이 적은 「1972년 SAFCOL·1990년
     Maruha 참여·2025년 매출 목표 약 3억 2,300만 달러」는 원문 대조가 안 된 값이다.
     <span class="chip c-doc">원본</span></p>
 </section>
@@ -945,6 +980,12 @@ figure.shots .figrow .fi span{font-family:var(--sans);font-size:.72rem;line-heig
   <p class="cap">공식 이미지 경로는 <code>products/photo/{JAN}_1.png</code>다.
     매대 SKU 둘은 그 경로에서 <b>404</b>가 난다. <span class="chip c-doc">원본</span><span class="chip c-src">매체</span></p>
 
+  <p>표의 아홉 행이 세 층으로 갈린다. 위 넷은 <b>공식 제품 페이지에 있고 이미지도 받아지는</b>
+    SKU이고, 가운데 셋은 매대·코스트코에 있는데 <b>공식 목록에 없는</b> 것이며, 아래 둘은 같은
+    매대의 대조군이다. 공식 이미지 경로가 <code>products/photo/{JAN}_1.png</code>인데
+    매대 SKU 둘은 그 경로에서 <b>404</b>가 난다. 네 SKU 가운데 어종을 이름에 쓴 것은
+    <b>かつおフレーク味付</b> 하나다.</p>
+
   <div class="call warn">
     <p class="ct">브랜드 표기와 공식 제품목록이 어긋난다</p>
     <p>상호는 Umios로 바뀌었고 공식 사이트도 Umios인데, 매대에 깔린 캔은 여전히
@@ -1007,8 +1048,8 @@ figure.shots .figrow .fi span{font-family:var(--sans);font-size:.72rem;line-heig
 <section id="s14">
   <h2><span class="h2n">14 / 「라이트」는 누가 정하나</span>미국은 연방규정, 일본은 업계 규약이다</h2>
 
-  <p class="lead">앞 편에서 미국 캔참치의 「white」·「light」·「chunk」가 <b>연방규정</b>으로
-    정의된 말이라는 것을 봤다. 일본에서는 같은 말이 <b>법령이 아니라 업계 자율규약</b>으로 정해진다.
+  <p class="lead">미국에서 캔참치의 「white」·「light」·「chunk」는 <b>연방규정</b>으로
+    정의된 말이다. 일본에서는 같은 말이 <b>법령이 아니라 업계 자율규약</b>으로 정해진다.
     강제력의 근거가 다르다.</p>
 
   <div class="tw"><table>
@@ -1135,6 +1176,17 @@ figure.shots .figrow .fi span{font-family:var(--sans);font-size:.72rem;line-heig
       양식은 참다랑어·방어·잿방어에 코비아·꽁치가 붙는다.
       다만 <b>순환형으로 나온 몫은 아직 175톤이다.</b> <span class="chip c-doc">원본</span></p>
   </div>
+
+  <p>표를 세로로 읽으면 두 방향이 동시에 있다. 기르는 쪽에서는 완전양식 상업출하와 코비아
+    시험양식처럼 <b>새로 여는 자리</b>가 늘고, 잡는 쪽에서는 대서양 참치 연승과 인도양 저인망에서
+    <b>철수</b>했으며 제8大都丸은 2025년 7월 게통발로 개조됐다. 남은 참치선은 <b>선망 3척</b>이다.
+    2026년 투입 계획인 신조선의 대상 어종은 파타고니아이빨고기와 블루그레나디어로
+    <b>참치가 아니다</b>.</p>
+
+  <p>다만 오른쪽 칸이 왼쪽 칸의 크기를 아직 따라가지 못한다. 완전양식 출하는 2024년도
+    <b>175톤</b>으로 그룹 양식 참다랑어 4,300톤의 약 4%이고, 코비아는 실제 톤수가 공개되지 않았으며,
+    신조선은 척수가 공개되지 않았다. 인증제품 매출 15%와 불법조업 대응의 그룹 전체 운영은
+    둘 다 <b>2031년 3월기</b>가 시점이다. <b>말은 전환을 적고 숫자는 아직 그 앞에 있다.</b></p>
 
   <h3>날짜가 박힌 것</h3>
   <div class="tw"><table>

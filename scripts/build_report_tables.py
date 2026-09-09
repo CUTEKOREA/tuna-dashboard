@@ -38,9 +38,9 @@ SPECS: dict[str, dict] = {
         "src": "docs/evidence/company-frinsa-2026-08/보고서.html",
         # 보고서 절 제목과 단계 제목을 맞춘다. 절 번호와 단계 번호는 어긋난다 —
         # 화면은 「생산」을 04, 「조달·인증」을 05로 쪼갰는데 보고서는 06절에 함께 뒀다.
-        "stages": {"s1": "c01", "s2": "c02", "s3": "c03", "s4": "c03",
+        "stages": {**{"s1": "c01", "s2": "c02", "s3": "c03", "s4": "c03",
                    "s5": "c06", "s6": "c05", "s7": "c06", "s7b": "c06", "s8": "c07", "s9": "c08",
-                   "scorr": "c09"},
+                   "scorr": "c09"}, "s0b": "c01", "s9b": "c08"},
         "drop": ["s1|항목 | 내용", "s2|브랜드 | 포지션", "s6|인증 | 번호", "s9|품목 | CN"],
         # 06절은 화면에서 04 생산과 05 조달·인증으로 갈린다. 공장 상세표는 생산 쪽이다.
         "move": {"s6|거점 | 법인 | 생산 품목": "c04"},
@@ -49,9 +49,9 @@ SPECS: dict[str, dict] = {
         "src": "docs/evidence/company-thaiunion-2026-08/보고서.html",
         # 화면 05는 「지속가능성」, 06은 「재무」다. 보고서는 07 리스크·08 지속가능성 순이라
         # 그대로 뒤에 붙이면 한국 단계에 열다섯 개가 쌓인다.
-        "stages": {"s1": "c01", "s2": "c02", "s3": "c03", "s4": "c04",
+        "stages": {**{"s1": "c01", "s2": "c02", "s3": "c03", "s4": "c04",
                    "s5": "c04", "s6": "c06", "s6b": "c06", "s7": "c06", "s8": "c05", "s9": "c07",
-                   "scorr": "c08"},
+                   "scorr": "c08"}, "s1b": "c01", "s9b": "c07"},
         "drop": ["s1|항목 | 내용", "s1|연도 | 사건", "s1|순위 | 주주",
                  "s4|브랜드 실판매가",
                  "s6|항목 (백만 밧)", "s7|층 | 시점", "s7|품목 | 실효",
@@ -59,9 +59,9 @@ SPECS: dict[str, dict] = {
     },
     "albacora": {
         "src": "docs/evidence/company-albacora-2026-08/보고서.html",
-        "stages": {"s1": "c01", "s2": "c02", "s3": "c03", "s4": "c04", "s4b": "c04",
+        "stages": {**{"s1": "c01", "s2": "c02", "s3": "c03", "s4": "c04", "s4b": "c04",
                    "s5": "c05", "s5b": "c05", "s6": "c06", "s7": "c07",
-                   "scorr": "c08"},
+                   "scorr": "c08"}, "s7b": "c07"},
         "drop": ["s1| | Frinsa", "s1|항목 | 내용", "s1|연도 | 사건",
                  "s2|시점 | 변동", "s2|계열·관계 법인", "s3|선명 | GT", "s3|장치 | 내용",
                  "s5|브랜드 | 성격", "s5|플랜트 | MSC", "s5|유닛 | 상태", "s5|항목 | 내용",
@@ -73,27 +73,27 @@ SPECS: dict[str, dict] = {
         # 07절 「독립 트레이더는 멸종했다」는 시장 구조라 03 사업구조 쪽이 맞다.
         # 리스크만 05에 남겨야 한 단계에 여덟 개가 쌓이지 않는다.
         # s3b 「그룹 법인 — 열다섯 나라에 서고 다섯만 보고한다」는 공시 경계라 02 지배구조 쪽이다.
-        "stages": {"s1": "c01", "s2": "c02", "s3": "c03", "s3b": "c02",
+        "stages": {**{"s1": "c01", "s2": "c02", "s3": "c03", "s3b": "c02",
                    "s4": "c04", "s4b": "c04", "s5": "c04",
                    "s6": "c05", "s7": "c03", "s8": "c06", "s9": "c06",
-                   "s10": "c06", "s11": "c06", "sa": "c06", "sb": "c06",
-                   "scorr": "c07"},
+                   "sa": "c06", "sb": "c06",
+                   "scorr": "c07"}, "s1b": "c01", "s9b": "c06"},
         "drop": ["s1|국가 | 법인"],
     },
     "itochu": {
         "src": "docs/evidence/company-itochu-2026-08/보고서.html",
-        "stages": {"s1": "c01", "s2": "c02", "s3": "c04", "s4": "c03", "s5": "c04",
+        "stages": {**{"s1": "c01", "s2": "c02", "s3": "c04", "s4": "c03", "s5": "c04",
                    "s6": "c06", "s7": "c05", "s7b": "c05", "s8": "c05", "s9": "c06",
-                   "scorr": "c07"},
+                   "scorr": "c07"}, "s3b": "c04", "s9b": "c06"},
         "drop": ["s1|항목 | 내용", "s4|기국 | 척수", "s4|# | 선명",
                  "s7|세그먼트 | FY2024", "s7|구분 | FY2024"],
     },
     "bolton": {
         "src": "docs/evidence/company-bolton-2026-08/보고서.html",
-        "stages": {"s1": "c01", "s2": "c02", "s3": "c02", "s4": "c03", "s4b": "c03",
+        "stages": {**{"s1": "c01", "s2": "c02", "s3": "c02", "s4": "c03", "s4b": "c03",
                    "s5": "c04", "s6": "c05", "s7": "c04", "s7b": "c05", "s8": "c05",
                    "s8b": "c06", "s9": "c06", "s10": "c06",
-                   "scorr": "c07"},
+                   "scorr": "c07"}, "s10b": "c06"},
         "drop": ["s1|항목 | 내용", "s2|항목 | Bolton Group", "s3|FY | 연결 순매출",
                  "s4|카테고리 | 2024", "s4|지역 | 2019", "s5|항목 | 1단계",
                  "s6|연도 | 조달량", "s6|어종 | 2024", "s6|어법 | 2024",
@@ -103,27 +103,27 @@ SPECS: dict[str, dict] = {
         "src": "docs/evidence/company-frabelle-2026-09/보고서.html",
         # 9절이 화면 9단계와 1:1 이었는데 s8b(법원기록)가 끼어들었다.
         # 화면 단계는 늘리지 않고 s8b 를 한국 관점과 같은 칸에 붙인다.
-        "stages": {**{f"s{i}": f"c{i:02d}" for i in range(1, 10)},
-                   "s8b": "c08", "scorr": "c10"},
+        "stages": {**{**{f"s{i}": f"c{i:02d}" for i in range(1, 10)},
+                   "s8b": "c08", "scorr": "c10"}, "s8c": "c05", "s9b": "c09"},
         "drop": [],
     },
     "jealsa": {
         "src": "docs/evidence/company-jealsa-2026-09/보고서.html",
         # 보고서 12절이 화면 12단계와 1:1 이다. 정정 이력은 마지막 단계에 붙인다.
-        "stages": {**{f"s{i}": f"c{i:02d}" for i in range(1, 13)}, "scorr": "c13"},
+        "stages": {**{**{f"s{i}": f"c{i:02d}" for i in range(1, 13)}, "scorr": "c13"}, "s1b": "c01", "s12b": "c12"},
         "drop": [],
     },
     "nauterra": {
         "src": "docs/evidence/company-nauterra-2026-09/보고서.html",
         # 14절이 화면 14단계와 1:1 이다. 절 id 는 s1..s14 로 연속이라 손으로 적지 않는다.
-        "stages": {f"s{i}": f"c{i:02d}" for i in range(1, 15)},
+        "stages": {**{f"s{i}": f"c{i:02d}" for i in range(1, 15)}, "s14b": "c13"},
         "drop": [],
     },
     "starkist": {
         "src": "docs/evidence/company-starkist-2026-09/보고서.html",
         # 16절. 제품(s12)·전략(s13)이 뒤에 붙어 절이 14→16 으로 늘었다.
         # ⚠ 단계 수를 리터럴로 적지 마라 — 절이 늘면 마지막 절이 조용히 사라진다.
-        "stages": {f"s{i}": f"c{i:02d}" for i in range(1, 17)},
+        "stages": {**{f"s{i}": f"c{i:02d}" for i in range(1, 17)}, "s0b": "c01", "s7b": "c07"},
         "drop": [],
     },
     "dongwon": {
@@ -137,14 +137,14 @@ SPECS: dict[str, dict] = {
         "src": "docs/evidence/company-bumblebee-2026-09/보고서.html",
         # 16절. 절 id 가 s1..s16 이고 단계도 c01..c16 로 1:1 이다.
         # ⚠ 단계 수를 리터럴로 적지 마라 — 절이 늘면 마지막 절이 조용히 사라진다.
-        "stages": {f"s{i}": f"c{i:02d}" for i in range(1, 17)},
+        "stages": {**{f"s{i}": f"c{i:02d}" for i in range(1, 17)}, "s1b": "c01"},
         "drop": [],
     },
     "nissui": {
         "src": "docs/evidence/company-nissui-2026-09/보고서.html",
         # 19절. 절 id 가 s1..s19 이고 단계도 c01..c19 로 1:1 이다.
         # ⚠ 단계 수를 리터럴로 적지 마라 — 절이 늘면 마지막 절이 조용히 사라진다.
-        "stages": {f"s{i}": f"c{i:02d}" for i in range(1, 20)},
+        "stages": {**{f"s{i}": f"c{i:02d}" for i in range(1, 20)}, "s10b": "c10"},
         "drop": [],
     },
     "seavalue": {
@@ -172,15 +172,47 @@ SPECS: dict[str, dict] = {
         "src": "docs/evidence/company-sajo-2026-09/보고서.html",
         # 16절. 절 id 가 s1..s16 이고 단계도 c01..c16 로 1:1 이다.
         # ⚠ 단계 수를 리터럴로 적지 마라 — 절이 늘면 마지막 절이 조용히 사라진다.
-        "stages": {f"s{i}": f"c{i:02d}" for i in range(1, 17)},
+        "stages": {**{f"s{i}": f"c{i:02d}" for i in range(1, 17)}, "s1b": "c01", "s6b": "c06"},
         "drop": [],
     },
     "jais": {
         "src": "docs/evidence/company-jais-2026-08/보고서.html",
-        "stages": {"s1": "c01", "s2": "c01", "s3": "c02", "s4": "c03", "s5": "c04",
+        "stages": {**{"s1": "c01", "s2": "c01", "s3": "c02", "s4": "c03", "s5": "c04",
                    "s6": "c05", "s6b": "c05", "s7": "c06", "s8": "c06", "sa": "c06", "sb": "c06",
-                   "scorr": "c07"},
+                   "scorr": "c07"}, "s1b": "c01", "s2b": "c06", "s8b": "c06"},
         "drop": ["s3|회계연도 | 매출", "s4|근거 | 표기", "s4|명부 판", "s8|축 | FCF"],
+    },
+    "centurypacific": {
+        "src": "docs/evidence/company-centurypacific-2026-09/보고서.html",
+        # 16절을 여덟 단계에 접는다. 법인·지배는 c01, 재무·부문은 c02,
+        # 사업구조·조달은 c03~c05, 규제·제품은 c06~c07, 한국·전략·남은 물음은 c08.
+        "stages": {
+            "s1": "c01", "s2": "c01", "s3": "c01",
+            "s4": "c02", "s5": "c02", "s6": "c02",
+            "s7": "c03", "s8": "c03", "s9": "c03",
+            "s10": "c04", "s11": "c04",
+            "s12": "c05", "s13": "c05",
+            "s14": "c06",
+            "s15": "c07",
+            "s16": "c08",
+        },
+        "drop": [],
+    },
+    "boltonfood": {
+        "src": "docs/evidence/company-boltonfood-2026-09/보고서.html",
+        # 편 Ⅵ이 그룹을 다뤘으므로 이 편은 법인·명단·기준이 앞에 온다.
+        "stages": {
+            "s1": "c01", "s2": "c01",
+            "s3": "c02", "s4": "c02",
+            "s5": "c03", "s6": "c03",
+            "s7": "c04", "s8": "c04",
+            "s9": "c05", "s10": "c05", "s11": "c05",
+            "s12": "c06", "s13": "c06",
+            "s14": "c07",
+            "s15": "c07",
+            "s16": "c08",
+        },
+        "drop": [],
     },
 }
 

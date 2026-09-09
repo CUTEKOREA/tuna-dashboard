@@ -70,7 +70,8 @@ SUCCESSION = [
     {"시점": "2023-02", "변동": "회장 María Luisa Lachaga Uría 취임 — 창업자의 딸로 추정"},
     {"시점": "2023-06", "변동": "Isabel Casandra Beitia Lachaga 공동 CEO 선임"},
     {"시점": "2024-02", "변동": "CEO Alfonso Ignacio Beitia Lachaga — 창업자의 손자"},
-    {"시점": "2026-07-22", "변동": "Isabel Beitia CEO 사임 (BORME 2026-07-29 공고). 이사로는 잔류"},
+    {"시점": "2026-07-22", "변동": "Isabel Beitia 집행이사 직위 종료 · 이사 재선임 (BORME 2026-07-29 공고)"},
+    {"시점": "2026-08-17", "변동": "같은 사람이 집행이사로 다시 등기 (BORME 2026-08-25, 표제 Nombramientos)"},
 ]
 
 AFFILIATES = [

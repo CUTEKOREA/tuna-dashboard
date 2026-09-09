@@ -62,6 +62,8 @@ body{margin:0;background:var(--paper);color:var(--ink);
   text-transform:uppercase;color:var(--cv)}
 .cover-tag{font-family:var(--mono);font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;
   color:rgba(234,240,237,.6);text-align:right;line-height:2}
+@media print{.cover .cover-top{flex-wrap:wrap}.cover .cover-mark{min-width:0}.cover .cover-tag{min-width:0;max-width:100%;white-space:normal;overflow-wrap:break-word;letter-spacing:.08em}}
+
 .cover-mid{flex:1;display:flex;flex-direction:column;justify-content:center;padding:3rem 0 2.5rem}
 .cover-kick{font-family:var(--mono);font-size:.74rem;letter-spacing:.2em;text-transform:uppercase;
   color:var(--cv);margin-bottom:1.5rem}
@@ -411,9 +413,9 @@ figure.shots .figrow .fi span{font-family:var(--sans);font-size:.72rem;line-heig
   <div class="tw"><table>
     <thead><tr><th>기</th><th>보고부문 다섯</th></tr></thead>
     <tbody>
-      <tr class="hl"><td><b>제100기</b><br><span class="nb"><span class="nb">2022-04</span></span>~<span class="nb"><span class="nb">2023-03</span></span></td><td>水産商事 · 食品 · <b>鰹・鮪</b> · 物流サービス · その他</td></tr>
-      <tr><td><b>제101기</b><br><span class="nb"><span class="nb">2023-04</span></span>~<span class="nb"><span class="nb">2024-03</span></span></td><td>水産事業 · <b>生鮮事業</b> · 食品事業 · 物流サービス · その他</td></tr>
-      <tr><td>제102·103기<br><span class="nb"><span class="nb">2024-04</span></span>~<span class="nb"><span class="nb">2026-03</span></span></td><td>같음. 제104기부터 <b>水産加工事業</b>을 더한다</td></tr>
+      <tr class="hl"><td><b>제100기</b><br><span class="nb">2022-04</span>~<span class="nb">2023-03</span></td><td>水産商事 · 食品 · <b>鰹・鮪</b> · 物流サービス · その他</td></tr>
+      <tr><td><b>제101기</b><br><span class="nb">2023-04</span>~<span class="nb">2024-03</span></td><td>水産事業 · <b>生鮮事業</b> · 食品事業 · 物流サービス · その他</td></tr>
+      <tr><td>제102·103기<br><span class="nb">2024-04</span>~<span class="nb">2026-03</span></td><td>같음. 제104기부터 <b>水産加工事業</b>을 더한다</td></tr>
     </tbody>
   </table></div>
   <p class="cap">부문 이름은 제101기 有価証券報告書 ― 98 ―와 제103기 ― 103 ―. 제104기 신설은 경영방침 ― 12 ―.
@@ -429,6 +431,11 @@ figure.shots .figrow .fi span{font-family:var(--sans);font-size:.72rem;line-heig
 
   <blockquote>「生鮮事業」は、寿司種や刺身などの生食商材の加工、販売、及び<b>カツオ・マグロ等の漁獲、養殖、買付</b>を行っております。
     <span class="qs">제103기 有価証券報告書 ― 103 ―</span></blockquote>
+
+  <p>바뀐 시점은 <b>제101기</b>(2023-04 ~ 2024-03)다. 제100기까지 다섯 칸은 水産商事·食品·
+    <b>鰹・鮪</b>·物流サービス·その他였고, 제101기부터 水産事業·<b>生鮮事業</b>·食品事業·
+    物流サービス·その他가 됐다. 회사가 그 이유를 「그룹 내 관리구분을 재검토했다」로 적는다.
+    그리고 제104기부터는 <b>水産加工事業</b>을 더한다고 경영방침에 적었는데, 그 이름에도 참치는 없다.</p>
 
   <div class="call warn">
     <p class="ct">生鮮事業 한 칸에 초밥 재료와 참치가 같이 있다</p>
@@ -504,6 +511,12 @@ figure.shots .figrow .fi span{font-family:var(--sans);font-size:.72rem;line-heig
   </table></div>
   <p class="cap">구 구분은 제100기 ― 103 ―, 신 구분은 제101기 재작성표 ― 99 ―. 이익 몫의 분모는 각각 9,315와 9,318이다.
     <span class="chip c-doc">원본</span></p>
+
+  <p>같은 해를 두 자로 잰 값이 이 표다. 2023년 3월기 외부매출이 구 구분 <b>鰹・鮪</b>에서
+    39,220인데 신 구분 <b>生鮮事業</b>에서는 <b>72,588</b>이다. 반면 세그먼트이익은 5,325와
+    <b>5,406</b>으로 거의 같다. 이익 몫의 분모도 9,315와 9,318로 사실상 같은 크기다.
+    <b>회사가 전기를 신 구분으로 재작성해 실었기 때문에 이런 대조가 가능하다</b> —
+    재작성표가 없었으면 두 구분을 같은 해에 겹쳐 놓을 수 없다.</p>
 
   <div class="call hot">
     <p class="ct">같은 이익에 매출이 두 배 붙어 이익률이 반토막 났다</p>
@@ -649,7 +662,7 @@ figure.shots .figrow .fi span{font-family:var(--sans);font-size:.72rem;line-heig
   <p>구분을 바꾸겠다는 말은 제100기 보고서에 이미 있었다. 이유도 함께 적혀 있다. 코어 사업을 분명히 하고, <b>초밥 재료 같은 생식 상재와 가다랑어·참치 상재를 같은 부문에서 다루겠다</b>는 것이다.
     그리고 제101기는 변경 사실만 적은 것이 아니라 <b>전기를 신 구분으로 다시 계산해 함께 실었다.</b></p>
 
-  <p>그래서 이 편이 두 구분을 견줄 수 있다. 재작성표가 없었으면 구 「鰹・鮪」의 숫자는
+  <p>그래서 두 구분을 견줄 수 있다. 재작성표가 없었으면 구 「鰹・鮪」의 숫자는
     한 해로 끊겨 비교 대상이 사라졌을 것이다. <b>이름이 사라진 자리에 숫자는 남아 있고,
     그 숫자를 회사가 스스로 옮겨 적었다.</b></p>
 </section>
@@ -685,12 +698,17 @@ figure.shots .figrow .fi span{font-family:var(--sans);font-size:.72rem;line-heig
     <span class="chip c-doc">원본</span></p>
 
 <p><b>원문이 그렇게 인쇄돼 있다.</b>
-      앞 편 Umios도 같은 성질로 +1과 +2가 났다. 절사 표기를 쓰는 일본 공시에서는
+      Umios의 같은 표에서도 +1과 +2가 난다. 절사 표기를 쓰는 일본 공시에서는
       세로합이 맞는 쪽이 오히려 예외다. <span class="chip c-doc">원본</span></p>
 
-  <p>절사 표기를 쓰는 일본 공시에서는 세로합이 맞는 쪽이 오히려 예외다. 백만엔 미만을 버리고 적은
-    다섯 값의 합은 버리기 전 값으로 낸 계와 어긋나고, <b>앞 편 Umios도 같은 성질로 +1과 +2가 났다.</b>
-    조정액과 미배분 전사비용도 다른 값이다.</p>
+  <p>어긋남의 크기와 방향도 적어 둔다. 일곱 표 32행을 전수로 재면 <b>+1이 4행, +2가 22행,
+    +3이 6행</b>이고 전부 같은 방향이다. 절사라면 합이 계보다 작아지는 쪽으로만 흩어지는데
+    실제로 그렇다. 조정 검산에서는 제100기와 제103기가 −1이고 <b>제101기와 제102기는 정확히 맞는다</b> —
+    조정액 자체도 절사값이라 어떤 해는 우연히 딱 맞는다.</p>
+
+  <p>그리고 이 표에서 조정액과 미배분 전사비용을 같은 값으로 쓰면 안 된다. 조정액이
+    1,209 · 1,753 · 1,641 · 2,035인데 그 안의 미배분 전사비용은 1,242 · 1,466 · 1,408 · 1,936이다.
+    제100기는 전사비용이 조정액보다 <b>크다</b>. <b>두 값은 포함 관계이지 같은 것이 아니다.</b></p>
 </section>
 <section id="s8">
   <h2><span class="h2n">08 / 지금의 다섯</span>제103기 연결과 부문</h2>
@@ -700,8 +718,8 @@ figure.shots .figrow .fi span{font-family:var(--sans);font-size:.72rem;line-heig
     <tbody>
       <tr><td>상호</td><td>株式会社極洋 (KYOKUYO CO., LTD.)</td><td>제103기 표지</td></tr>
       <tr><td>상장</td><td><b>東証プライム 1301</b></td><td>〃</td></tr>
-      <tr><td>제출</td><td>제103기 有価証券報告書 · <span class="nb"><span class="nb">2026-06-22</span></span> · EDINET <b>S100YE8K</b></td><td>〃 1/142</td></tr>
-      <tr><td>대상기</td><td><span class="nb"><span class="nb">2025-04-01</span></span> ~ <span class="nb"><span class="nb">2026-03-31</span></span></td><td>〃</td></tr>
+      <tr><td>제출</td><td>제103기 有価証券報告書 · <span class="nb">2026-06-22</span> · EDINET <b>S100YE8K</b></td><td>〃 1/142</td></tr>
+      <tr><td>대상기</td><td><span class="nb">2025-04-01</span> ~ <span class="nb">2026-03-31</span></td><td>〃</td></tr>
       <tr class="hl"><td><b>연결매출</b></td><td class="num"><b>334,612</b> 백만엔</td><td>연결손익계산서 64/142</td></tr>
       <tr class="hl"><td><b>영업이익</b></td><td class="num"><b>10,731</b> 백만엔</td><td>〃</td></tr>
       <tr><td>경상이익</td><td class="num">10,031 백만엔</td><td>〃</td></tr>
@@ -732,16 +750,23 @@ figure.shots .figrow .fi span{font-family:var(--sans);font-size:.72rem;line-heig
   <div class="tw"><table>
     <thead><tr><th>기</th><th>결산월</th><th class="num">연결매출</th><th class="num">영업이익</th></tr></thead>
     <tbody>
-      <tr><td>제100기</td><td><span class="nb"><span class="nb">2023-03</span></span></td><td class="num">272,167</td><td class="num">8,105</td></tr>
-      <tr><td>제101기</td><td><span class="nb"><span class="nb">2024-03</span></span></td><td class="num"><b>261,604</b></td><td class="num">8,806</td></tr>
-      <tr><td>제102기</td><td><span class="nb"><span class="nb">2025-03</span></span></td><td class="num">302,681</td><td class="num">11,079</td></tr>
-      <tr class="hl"><td><b>제103기</b></td><td><span class="nb"><span class="nb">2026-03</span></span></td><td class="num"><b>334,612</b></td><td class="num"><b>10,731</b></td></tr>
+      <tr><td>제100기</td><td><span class="nb">2023-03</span></td><td class="num">272,167</td><td class="num">8,105</td></tr>
+      <tr><td>제101기</td><td><span class="nb">2024-03</span></td><td class="num"><b>261,604</b></td><td class="num">8,806</td></tr>
+      <tr><td>제102기</td><td><span class="nb">2025-03</span></td><td class="num">302,681</td><td class="num">11,079</td></tr>
+      <tr class="hl"><td><b>제103기</b></td><td><span class="nb">2026-03</span></td><td class="num"><b>334,612</b></td><td class="num"><b>10,731</b></td></tr>
     </tbody>
   </table></div>
   <p class="cap">매출은 네 해 모두 「主要な経営指標等の推移」에도 실린다. 제103기 매출은 제100기의 1.23배다.
     <span class="chip c-doc">원본</span></p>
 
-<p>제103기 전문에서 「構成比」는 <b>0건</b>이고, 「제품 및 서비스별 정보」는
+<p>제103기의 크기부터 적으면 연결매출 <b>334,612</b>백만엔, 영업이익 <b>10,731</b>,
+    경상이익 10,031, 친회사주주귀속 순이익 6,841이다. 네 해를 나란히 두면 매출은
+    272,167 → 261,604 → 302,681 → <b>334,612</b>로 제101기에 한 번 꺾였다가 다시 올라
+    제100기의 <b>1.23배</b>가 됐고, 영업이익은 제102기 11,079가 정점이라 <b>매출 최고와 이익 최고가
+    같은 해가 아니다</b>. 부문에서는 水産事業이 외부매출 195,039로 가장 크고, 生鮮事業이 71,725로
+    그 다음이다.</p>
+
+  <p>제103기 전문에서 「構成比」는 <b>0건</b>이고, 「제품 및 서비스별 정보」는
       세그먼트 정보와 같아 기재를 생략한다고 적는다(― 106 ―).
       판매실적 표 옆에 붙은 %는 <b>전기비</b>다. 그 %를 비중으로 읽으면 틀린다.
       <span class="chip c-doc">원본</span></p>
@@ -785,6 +810,15 @@ figure.shots .figrow .fi span{font-family:var(--sans);font-size:.72rem;line-heig
       <b>배는 자회사 이름으로 등록부에 올라 있고, 모회사 명의의 선박은 등록부에 없다.</b>
       <span class="chip c-doc">원본</span></p>
   </div>
+
+  <p>배는 모회사 이름으로 등록부에 없다. 수산청 허가 명부의 참치 선망 넉 척은 모두
+    <b>極洋水産</b> 명의이고, WCPFC 등재 소유자 필드도 같은 회사(야이즈)로 적힌다.
+    IATTC와 ICCAT은 極洋·KYOKUYO 어느 표기로도 0건이며, ICCAT은 일본선 소유자 필드가
+    164/164 채워진 상태에서 0이므로 부재를 A등급으로 쓸 수 있다.</p>
+  <p>다만 부재의 등급은 명부마다 다르게 적어야 한다. IATTC와 ICCAT의 0건은 전수 대조라
+    <b>A</b>이지만, IOTC 쪽은 인도양 허가가 第六 하나뿐인데 대조한 것이 <b>RAV가 아니라
+    Active Vessels 목록</b>(91,900행 · 일본 4,669행)이라 <b>B</b>다. 같은 「0건」이라도
+    어느 명부에서 0인지에 따라 쓸 수 있는 문장이 달라진다.</p>
 </section>
 <section id="s10">
   <h2><span class="h2n">10 / 접은 것과 안 접은 것</span>연승은 애초에 없었고, 접은 배는 바나나를 실었다</h2>
@@ -794,7 +828,7 @@ figure.shots .figrow .fi span{font-family:var(--sans);font-size:.72rem;line-heig
     <tbody>
       <tr class="hl"><td><b>원양 참치 연승</b></td><td>제93·94·100·101·103기 有報 전문에서 <b>延縄·はえ縄·延繩 0회.</b> 애초에 없었다</td></tr>
       <tr><td>선망의 시작</td><td>1973년 「米国式まき網船『わかば丸』竣工、海外まき網事業開始」, 공식 연혁</td></tr>
-      <tr><td>선망을 줄였나</td><td><b>아니다.</b> 第十一わかば丸이 <span class="nb"><span class="nb">2022-08-10</span></span> 첫 출항했다</td></tr>
+      <tr><td>선망을 줄였나</td><td><b>아니다.</b> 第十一わかば丸이 <span class="nb">2022-08-10</span> 첫 출항했다</td></tr>
       <tr><td>참치 조업 철수 공시</td><td><b>없다.</b> 제103기에도 生鮮 정의에 가다랑어·참치 어획이 남아 있다</td></tr>
     </tbody>
   </table></div>
@@ -814,8 +848,8 @@ figure.shots .figrow .fi span{font-family:var(--sans);font-size:.72rem;line-heig
   <div class="tw"><table>
     <thead><tr><th>인력</th><th class="num">값</th></tr></thead>
     <tbody>
-      <tr class="hl"><td>연결 종업원 「鰹・鮪」 (<span class="nb"><span class="nb">2023-03-31</span></span>)</td><td class="num"><b>356</b>명</td></tr>
-      <tr><td>재편 후 生鮮事業 (<span class="nb"><span class="nb">2024-03-31</span></span>)</td><td class="num">720명</td></tr>
+      <tr class="hl"><td>연결 종업원 「鰹・鮪」 (<span class="nb">2023-03-31</span>)</td><td class="num"><b>356</b>명</td></tr>
+      <tr><td>재편 후 生鮮事業 (<span class="nb">2024-03-31</span>)</td><td class="num">720명</td></tr>
       <tr><td>極洋水産 설비표 인원</td><td class="num">153 → <b>155</b> → 151명</td></tr>
     </tbody>
   </table></div>
@@ -839,9 +873,9 @@ figure.shots .figrow .fi span{font-family:var(--sans);font-size:.72rem;line-heig
     <tbody>
       <tr><td>법인</td><td><b>極洋フィードワンマリン</b>, 極洋 50.0% · フィードワン 50.0%, 자본금 90백만엔</td></tr>
       <tr class="hl"><td><b>사업</b></td><td><b>クロマグロ(참다랑어) 양식·판매</b>, 완전양식 합작</td></tr>
-      <tr><td>해산</td><td><span class="nb"><span class="nb">2024-03-31</span></span></td></tr>
+      <tr><td>해산</td><td><span class="nb">2024-03-31</span></td></tr>
       <tr class="hl"><td><b>손실</b></td><td>대여금 <b>1,365백만엔</b> 대손충당 완료</td></tr>
-      <tr><td>공시</td><td>「連結子会社に対する債権の取立不能のおそれに関するお知らせ」 <span class="nb"><span class="nb">2024-02-02</span></span></td></tr>
+      <tr><td>공시</td><td>「連結子会社に対する債権の取立不能のおそれに関するお知らせ」 <span class="nb">2024-02-02</span></td></tr>
       <tr><td>회계</td><td>제101기 有報 주석 ※10 관계회사청산손 ― 76 ―</td></tr>
       <tr><td>관계회사 표</td><td>제100기에 있고(의결권 50.0%) <b>제101기에서 빠진다</b> ― 8 ―</td></tr>
     </tbody>
@@ -856,7 +890,7 @@ figure.shots .figrow .fi span{font-family:var(--sans);font-size:.72rem;line-heig
 
 
   <div class="call">
-    <p class="ct">앞 편과 나란히 두면 방향이 갈린다</p>
+    <p class="ct">같은 업계와 나란히 두면 방향이 갈린다</p>
     <p>같은 일본 상장사인 Umios는 완전양식 <b>175톤</b>을 남겼고, 그 175톤은 전국 인공종묘
       405톤의 약 43%였다. 이 회사는 그 자리의 합작을 <b>해산</b>했다.
       한쪽은 줄어드는 곡선 위에 남았고 다른 쪽은 내려왔다. <span class="chip c-src">매체</span></p>
@@ -953,16 +987,22 @@ figure.shots .figrow .fi span{font-family:var(--sans);font-size:.72rem;line-heig
   <div class="call">
     <p class="ct">캔은 태국에서, 파우치는 필리핀에서 만든다</p>
     <p>공식 상품 페이지가 최종가공지를 적는다. <b>캔 70 g은 태국, 파우치 50 g×3은 필리핀</b>이다.
-      앞 편들에서 본 구조와 같다. 일본 브랜드의 캔참치는 일본에서 만들지 않는다.
+      일본 브랜드에서 되풀이되는 구조다. 일본 브랜드의 캔참치는 일본에서 만들지 않는다.
       <span class="chip c-doc">원본</span></p>
   </div>
 
 <p>해외 법인 설비표에는 선박 열이 없다. 터키 법인에 잡히는 19는
       <b>리스자산</b>이지 선박이 아니다. <span class="chip c-doc">원본</span></p>
 
-  <p>기르는 곳과 만드는 곳이 갈린다. 해외 양식장은 0이고 참다랑어·참돔 양식은 국내 3사가 하는데,
-    공식 상품 페이지가 적는 최종가공지는 <b>캔 70 g이 태국, 파우치 50 g×3이 필리핀</b>이다.
-    해외 법인 설비표에는 선박 열이 아예 없다.</p>
+  <p>해외 법인의 지분은 대부분 전부거나 과반이다. 태국 KYOKUYO GLOBAL SEAFOODS와 베트남
+    Kyokuyo Vina Foods가 <b>100%</b>, 덴마크 Engelsviken Canning이 90%, 터키 KOCAMAN이
+    취득 시 51.0%, 미국 Ocean's Kitchen이 70%에서 뒤에 100%가 됐다. 네덜란드
+    Northseafood Holland만 과반이라 적히고 <b>지분율이 공시되지 않는다</b>. 국내 쪽은
+    キョクヨーマリン愛媛와 キョクヨーマリンファーム가 100%, クロシオ水産이 70%다.</p>
+
+  <p>그래서 이 회사의 지도는 두 색으로 나뉜다. <b>기르는 자리는 전부 일본이고 만드는 자리는
+    전부 밖</b>이다. 해외 양식장이 0이라는 사실과, 캔 70 g의 최종가공지가 태국이고 파우치
+    50 g×3이 필리핀이라는 사실이 같은 방향을 가리킨다.</p>
 </section>
 <section id="s15">
   <h2><span class="h2n">15 / 매대</span>같은 70 g인데 예전에는 고형량이었고 지금은 액즙을 포함한다</h2>
@@ -1087,10 +1127,10 @@ figure.shots .figrow .fi span{font-family:var(--sans);font-size:.72rem;line-heig
   <div class="tw"><table>
     <thead><tr><th>번호</th><th>보유</th><th>범위</th><th>유효</th></tr></thead>
     <tbody>
-      <tr class="hl"><td><b>MEL-JFR-C130021</b></td><td>株式会社極洋(도쿄)</td><td>CoC · MEL 인증 수산물 도매</td><td><span class="nb"><span class="nb">2024-01-31</span></span>~<span class="nb"><span class="nb">2027-01-30</span></span></td></tr>
-      <tr><td>MEL-JFR-A390007</td><td>クロシオ水産(고치, 자회사)</td><td>양식 · 마다이</td><td><span class="nb"><span class="nb">2023-12-25</span></span>~<span class="nb"><span class="nb">2026-12-24</span></span></td></tr>
-      <tr><td>MEL-JFR-A390009</td><td>クロシオ水産</td><td>양식 · ブリヒラ</td><td><span class="nb"><span class="nb">2024-01-15</span></span>~<span class="nb"><span class="nb">2027-01-14</span></span></td></tr>
-      <tr><td>MEL-JFR-A390008</td><td>クロシオ水産</td><td>양식 · <b>ブリ</b></td><td><b><span class="nb"><span class="nb">2025-06-06</span></span> 인증 종료</b></td></tr>
+      <tr class="hl"><td><b>MEL-JFR-C130021</b></td><td>株式会社極洋(도쿄)</td><td>CoC · MEL 인증 수산물 도매</td><td><span class="nb">2024-01-31</span>~<span class="nb">2027-01-30</span></td></tr>
+      <tr><td>MEL-JFR-A390007</td><td>クロシオ水産(고치, 자회사)</td><td>양식 · 마다이</td><td><span class="nb">2023-12-25</span>~<span class="nb">2026-12-24</span></td></tr>
+      <tr><td>MEL-JFR-A390009</td><td>クロシオ水産</td><td>양식 · ブリヒラ</td><td><span class="nb">2024-01-15</span>~<span class="nb">2027-01-14</span></td></tr>
+      <tr><td>MEL-JFR-A390008</td><td>クロシオ水産</td><td>양식 · <b>ブリ</b></td><td><b><span class="nb">2025-06-06</span> 인증 종료</b></td></tr>
     </tbody>
   </table></div>
   <p class="cap">MEL 공식 목록 <span class="nb">2026-03-26</span> 현재 281건에서 추출. 종료 건은 JFRCA 「인증종료 또는 일시휴지」 표에 있다.
@@ -1100,7 +1140,7 @@ figure.shots .figrow .fi span{font-family:var(--sans);font-size:.72rem;line-heig
   <div class="call">
     <p class="ct">참치 인증은 이 목록에 없다</p>
     <p>MEL로 살아 있는 것은 본사 <b>도매 CoC</b> 하나와 자회사의 <b>마다이·부리히라 양식</b> 둘이다.
-      참치 어업 인증도, 참치 양식 인증도 이 목록에 없다. 앞 편 Umios가
+      참치 어업 인증도, 참치 양식 인증도 이 목록에 없다. Umios가
       「참치에는 ASC 기준이 없다」고 자기 자료에 적은 것과 같은 자리다.
       <span class="chip c-doc">원본</span></p>
   </div>
@@ -1164,11 +1204,11 @@ figure.shots .figrow .fi span{font-family:var(--sans);font-size:.72rem;line-heig
     <thead><tr><th>사안</th><th>회사가 그렇게 말한다</th><th>되돌릴 수 없이 남은 자국</th></tr></thead>
     <tbody>
       <tr class="hl"><td><b>참치</b></td><td>生鮮 정의에 「カツオ・マグロ等の漁獲、養殖、買付」을 남기고, 경영방침 ― 12 ―는 「加工・販売まで一気通貫」이라 적는다</td><td><b>부문 이름에서 「鰹・鮪」가 사라졌다.</b> 그 자리의 이익 몫이 58%에서 24%로 떨어졌고 회복해도 30%다</td></tr>
-      <tr class="hl"><td><b>완전양식</b></td><td>「효율 높은 해역에서 계속한다」</td><td><b>합작 極洋フィードワンマリン 해산</b>(<span class="nb"><span class="nb">2024-03-31</span></span>) · 대여금 <b>1,365백만엔</b> 대손</td></tr>
-      <tr><td>선망</td><td>해외 선망을 그룹 조업 기반으로 적는다</td><td><b>第十一わかば丸 취항</b>(<span class="nb"><span class="nb">2022-08-10</span></span>) · 4척 체제 유지 · 인원 153→151</td></tr>
+      <tr class="hl"><td><b>완전양식</b></td><td>「효율 높은 해역에서 계속한다」</td><td><b>합작 極洋フィードワンマリン 해산</b>(<span class="nb">2024-03-31</span>) · 대여금 <b>1,365백만엔</b> 대손</td></tr>
+      <tr><td>선망</td><td>해외 선망을 그룹 조업 기반으로 적는다</td><td><b>第十一わかば丸 취항</b>(<span class="nb">2022-08-10</span>) · 4척 체제 유지 · 인원 153→151</td></tr>
       <tr><td>가공</td><td>제104기부터 <b>水産加工事業</b> 신설</td><td>태국·베트남 <b>100%</b> 공장, 터키 51%·덴마크 90% 인수. 캔은 태국, 파우치는 필리핀에서 만든다</td></tr>
       <tr><td>이익 중심</td><td>「コア事業を明確にした」</td><td><b>水産事業 이익 몫 29% → 47% → 48% → 45%.</b> 이관은 제101기 한 해에 끝났다</td></tr>
-      <tr><td>냉장운반선</td><td>—</td><td><span class="nb"><span class="nb">2016-09</span></span> 전 선박 매각·<b>사업 철수</b>(바나나 수송선 3척)</td></tr>
+      <tr><td>냉장운반선</td><td>—</td><td><span class="nb">2016-09</span> 전 선박 매각·<b>사업 철수</b>(바나나 수송선 3척)</td></tr>
     </tbody>
   </table></div>
   <p class="cap">왼쪽은 有報·경영방침·적시공시의 문장이고, 오른쪽은 날짜와 금액이 박힌 사실이다.
@@ -1189,9 +1229,9 @@ figure.shots .figrow .fi span{font-family:var(--sans);font-size:.72rem;line-heig
     <thead><tr><th>시점</th><th>무엇</th><th>발화자</th></tr></thead>
     <tbody>
       <tr class="hl"><td><b>제104기부터</b></td><td>보고부문에 <b>水産加工事業</b> 신설, 그 이름에도 참치가 없다</td><td>제103기 有報 경영방침 ― 12 ―</td></tr>
-      <tr><td><span class="nb"><span class="nb">2026-12-24</span></span></td><td>クロシオ水産 마다이 MEL 인증 만료</td><td>MEL 공식 목록</td></tr>
-      <tr><td><span class="nb"><span class="nb">2027-01-30</span></span></td><td>본사 MEL CoC 인증 만료</td><td>〃</td></tr>
-      <tr><td><span class="nb"><span class="nb">2027-07-31</span></span></td><td>선망 4척 WCPFC 인가 만료</td><td>WCPFC 등록부</td></tr>
+      <tr><td><span class="nb">2026-12-24</span></td><td>クロシオ水産 마다이 MEL 인증 만료</td><td>MEL 공식 목록</td></tr>
+      <tr><td><span class="nb">2027-01-30</span></td><td>본사 MEL CoC 인증 만료</td><td>〃</td></tr>
+      <tr><td><span class="nb">2027-07-31</span></td><td>선망 4척 WCPFC 인가 만료</td><td>WCPFC 등록부</td></tr>
     </tbody>
   </table></div>
 
@@ -1230,7 +1270,7 @@ figure.shots .figrow .fi span{font-family:var(--sans);font-size:.72rem;line-heig
     <thead><tr><th>물음</th><th>답</th></tr></thead>
     <tbody>
       <tr><td>「鰹・鮪」가 어디로 갔나</td><td><b>生鮮事業으로 흡수됐다.</b> 物流·その他 네 값이 구·신에서 같아 재배치가 세 부문에 닫히고, 이익 델타 합 +3이 계와 조정액의 차와 일치한다</td></tr>
-      <tr><td>일본 3사 부문 대조</td><td>세 회사 <b>決算短信이 이미 아카이브에 있었다</b>, 앞 편 폴더에서 나왔다</td></tr>
+      <tr><td>일본 3사 부문 대조</td><td>세 회사의 <b>決算短信은 부문 구분이 서로 다르다</b>. 나란히 두려면 값의 정의부터 맞춰야 한다</td></tr>
     </tbody>
   </table></div>
 
@@ -1258,7 +1298,7 @@ figure.shots .figrow .fi span{font-family:var(--sans);font-size:.72rem;line-heig
   <div class="tw"><table>
     <thead><tr><th>일자</th><th>고친 것</th><th>근거</th></tr></thead>
     <tbody>
-      <tr><td><span class="nb"><span class="nb">2026-09-06</span></span></td><td>초판</td><td>—</td></tr>
+      <tr><td><span class="nb">2026-09-06</span></td><td>초판</td><td>—</td></tr>
     </tbody>
   </table></div>
 </section>

@@ -62,6 +62,8 @@ body{margin:0;background:var(--paper);color:var(--ink);
   text-transform:uppercase;color:var(--ocre)}
 .cover-tag{font-family:var(--mono);font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;
   color:rgba(234,240,237,.6);text-align:right;line-height:2}
+@media print{.cover .cover-top{flex-wrap:wrap}.cover .cover-mark{min-width:0}.cover .cover-tag{min-width:0;max-width:100%;white-space:normal;overflow-wrap:break-word;letter-spacing:.08em}}
+
 .cover-mid{flex:1;display:flex;flex-direction:column;justify-content:center;padding:3rem 0 2.5rem}
 .cover-kick{font-family:var(--mono);font-size:.74rem;letter-spacing:.2em;text-transform:uppercase;
   color:var(--ocre);margin-bottom:1.5rem}
@@ -339,7 +341,7 @@ figure.shots figcaption b{color:var(--ink)}
       <div class="cover-nums">
         <div class="cn"><div class="v">$100M</div><div class="k">Sherman Act 법정 상한 · 회사가 2018년 1분기부터 공시에 적었다</div></div>
         <div class="cn"><div class="v">$50M</div><div class="k">2018년 결산 충당액 · 이듬해 법정에서 요청한 액수와 같다</div></div>
-        <div class="cn"><div class="v">59건 · 0척</div><div class="k">전수검색한 정기공시 · RFMO 등록부의 자사 명의 선박</div></div>
+        <div class="cn"><div class="v">0척</div><div class="k">RFMO 등록부에 이 회사 명의로 오른 선박. 모회사 정기공시 59건에도 자기 배가 없다</div></div>
       </div>
       <p class="cover-shots-cap">2017년 결산에 4천만 달러를 쌓고 2018년에 1천만 달러를 더해 5천만 달러를 맞췄다. 다섯 달 뒤 회사는 법원에 정확히 5천만 달러를 요청했고, 법원은 거부하고 상한을 부과했다. 담합 유죄인정보다 일곱 달 앞서 같은 공장에 환경 동의명령 650만 달러가 떨어져 있었다.</p>
     </div>
@@ -370,21 +372,23 @@ figure.shots figcaption b{color:var(--ink)}
   <div class="nt">목차</div>
   <ol>
     <li><a href="#s1"><span class="n">01</span> 브랜드와 법인</a></li>
-    <li><a href="#s2"><span class="n">02</span> 자회사가 쥔 계열사 지분</a></li>
-    <li><a href="#s3"><span class="n">03</span> 두 통화의 매출</a></li>
-    <li><a href="#s4"><span class="n">04</span> 상한과 충당</a></li>
-    <li><a href="#s5"><span class="n">05</span> 사라진 벌금</a></li>
-    <li><a href="#s6"><span class="n">06</span> 청구서 네 장</a></li>
-    <li><a href="#s7"><span class="n">07</span> 파고파고</a></li>
-    <li><a href="#s8"><span class="n">08</span> 파우치가 있는 곳</a></li>
-    <li><a href="#s9"><span class="n">09</span> 원료 조달</a></li>
-    <li><a href="#s10"><span class="n">10</span> 인증과 노동</a></li>
-    <li><a href="#s11"><span class="n">11</span> 미국령의 원가</a></li>
-    <li><a href="#s12"><span class="n">12</span> 제품 카탈로그</a></li>
-    <li><a href="#s13"><span class="n">13</span> 전략</a></li>
-    <li><a href="#s14"><span class="n">14</span> 경쟁 구도</a></li>
-    <li><a href="#s15"><span class="n">15</span> 한국 관점</a></li>
-    <li><a href="#s16"><span class="n">16</span> 종합 평가</a></li>
+    <li><a href="#s0b"><span class="n">02</span> 연혁</a></li>
+    <li><a href="#s2"><span class="n">03</span> 자회사가 쥔 계열사 지분</a></li>
+    <li><a href="#s3"><span class="n">04</span> 두 통화의 매출</a></li>
+    <li><a href="#s4"><span class="n">05</span> 상한과 충당</a></li>
+    <li><a href="#s5"><span class="n">06</span> 사라진 벌금</a></li>
+    <li><a href="#s6"><span class="n">07</span> 청구서 네 장</a></li>
+    <li><a href="#s7"><span class="n">08</span> 파고파고</a></li>
+    <li><a href="#s7b"><span class="n">09</span> 시설</a></li>
+    <li><a href="#s8"><span class="n">10</span> 파우치가 있는 곳</a></li>
+    <li><a href="#s9"><span class="n">11</span> 원료 조달</a></li>
+    <li><a href="#s10"><span class="n">12</span> 인증과 노동</a></li>
+    <li><a href="#s11"><span class="n">13</span> 미국령의 원가</a></li>
+    <li><a href="#s12"><span class="n">14</span> 제품 카탈로그</a></li>
+    <li><a href="#s13"><span class="n">15</span> 전략</a></li>
+    <li><a href="#s14"><span class="n">16</span> 경쟁 구도</a></li>
+    <li><a href="#s15"><span class="n">17</span> 한국 관점</a></li>
+    <li><a href="#s16"><span class="n">18</span> 종합 평가</a></li>
   </ol>
 </nav>
 
@@ -453,8 +457,45 @@ figure.shots figcaption b{color:var(--ink)}
       <span class="chip c-src">매체</span></p>
   </div>
 </section>
+<section id="s0b">
+  <h2><span class="h2n">02 / 연혁</span>상표는 1942년, 공장은 1963년, 지금의 법인은 2008년이다</h2>
+
+  <p class="lead">이 회사에서 「언제부터인가」를 물으면 답이 세 개 나온다. 상표가 시작된 해,
+    공장이 돌기 시작한 해, 지금의 법인이 설립된 해가 <b>모두 다르다</b>.</p>
+
+  <div class="tw"><table>
+    <thead><tr><th>시점</th><th>무엇이 일어났나</th></tr></thead>
+    <tbody>
+      <tr class="hl"><td>1942</td><td><b>상표 시작</b>. 지금의 사명으로 바뀐 것은 1953년이다</td></tr>
+      <tr class="hl"><td>1963</td><td>미국령 사모아 <b>공장이 돌기 시작</b>한다 — 법인 설립일보다 45년 앞선다</td></tr>
+      <tr><td>1976-02-17</td><td>계열 무역법인이 델라웨어에 설립된다</td></tr>
+      <tr class="hl"><td>2002</td><td>이전 소유주가 사업을 분할해 넘긴다. 다만 <b>분할 대상은 참치만이 아니었다</b> — 그때 받은 돈을 참치의 값으로 읽으면 틀린다</td></tr>
+      <tr class="hl"><td>2008-06-19</td><td>지금의 <b>법인 설립</b></td></tr>
+      <tr class="hl"><td>2008</td><td>현금 <b>US$363M</b>에 인수. 주식양수와 자산양수가 섞인 거래이고 운전자본 조정과 특정 영업부채 인수가 붙는다</td></tr>
+      <tr><td>2019</td><td>같은 해의 다른 인수에서 <b>미국령 자산은 처음부터 빠져 있었다</b>. 한 회사는 관세영역 안에 남고 다른 회사들은 밖으로 나간다</td></tr>
+    </tbody>
+  </table></div>
+  <p class="cap">법인 설립일은 공장의 역사가 아니다.
+    <span class="chip c-doc">원본</span><span class="chip c-src">매체</span></p>
+
+  <p>이 표가 중요한 이유는 <b>어느 시계로 재느냐에 따라 이 회사의 나이가 달라지기 때문</b>이다.
+    상표로 재면 80년이 넘고, 공장으로 재면 60년이며, 법인으로 재면 2008년부터다. 회사 소개가
+    어느 쪽을 내세우는지와 등기가 적는 것이 다르다.</p>
+
+  <p>표에는 시계가 하나 더 있다. <span class="nb">1976-02-17</span>에 계열 무역법인이
+    델라웨어에 설립됐고, 2019년의 다른 인수에서는 <b>미국령 자산이 처음부터 빠져 있었다</b>.
+    그 결과 한 회사는 관세영역 안에 남고 다른 회사들은 밖으로 나갔다.
+    <b>이 회사의 위치를 정한 것은 인수 금액이 아니라 어느 자산이 거래에 들어가고 빠졌는가다.</b></p>
+
+  <p>2008년 인수의 구조도 한 줄로 줄일 수 없다. <b>계약서의 현금가는 US$363M</b>인데
+    종결 공시는 <b>약 US$359M</b>을 적고 「종결 시점 운전자본의 최종 확정에 따라 추가 조정」이라
+    단서를 단다. 매도인의 이듬해 연차보고서는 그 확정으로 <b>US$23M이 더 지급됐다</b>고 적는다.
+    <b>세 숫자는 같은 거래의 서로 다른 단계</b>이고, 2002년 분할 때의 금액은 참치 밖 사업까지 포함한
+    값이었다. 두 숫자를 같은 자로 비교하면 이 회사의 몸값이 잘못 계산된다.</p>
+</section>
+
 <section id="s2">
-  <h2><span class="h2n">02 / 자회사가 쥔 계열사 지분</span>미 법무부가 팔아서 벌금을 내라고 지목한 자산이 아직 장부에 있다</h2>
+  <h2><span class="h2n">03 / 자회사가 쥔 계열사 지분</span>미 법무부가 팔아서 벌금을 내라고 지목한 자산이 아직 장부에 있다</h2>
 
   <p class="lead">동원산업 연결에서 StarKist는 네 법인 묶음이다. 그런데 지분이 한 방향으로만
     흐르지 않는다. 미국 자회사가 <b>한국 모회사의 계열사 지분</b>을 쥐고 있고, 그 지분이
@@ -503,7 +544,7 @@ figure.shots figcaption b{color:var(--ink)}
   </table></div>
 </section>
 <section id="s3">
-  <h2><span class="h2n">03 / 두 통화의 매출</span>원화로 보면 자라고 달러로 보면 줄어든다</h2>
+  <h2><span class="h2n">04 / 두 통화의 매출</span>원화로 보면 자라고 달러로 보면 줄어든다</h2>
 
   <p class="lead">StarKist는 비상장이라 자기 재무제표를 내지 않는다. 그런데 한국 모회사가
     종속회사 요약재무를 매 분기 한국어로 공시한다. 아래 숫자는 전부 그 경로로 왔고,
@@ -579,7 +620,7 @@ figure.shots figcaption b{color:var(--ink)}
     <span class="chip c-doc">원본</span></p>
 </section>
 <section id="s4">
-  <h2><span class="h2n">04 / 상한과 충당</span>회사가 적은 상한과 회사가 쌓은 금액이 두 배 벌어져 있었다</h2>
+  <h2><span class="h2n">05 / 상한과 충당</span>회사가 적은 상한과 회사가 쌓은 금액이 두 배 벌어져 있었다</h2>
 
   <p class="lead">2018년 10월 18일 StarKist는 미국 연방법원에서 가격담합 유죄를 인정했다.
     이듬해 9월 11일 판사는 회사가 요청한 5천만 달러를 거부하고 <b>법정 상한 1억 달러</b>를 부과했다.
@@ -667,7 +708,7 @@ figure.shots figcaption b{color:var(--ink)}
   </div>
 </section>
 <section id="s5">
-  <h2><span class="h2n">05 / 사라진 벌금</span>2019년 공시는 상환일정까지 적고 2021년 공시에는 그 사건이 없다</h2>
+  <h2><span class="h2n">06 / 사라진 벌금</span>2019년 공시는 상환일정까지 적고 2021년 공시에는 그 사건이 없다</h2>
 
   <p class="lead">동원산업 정기공시 39건과 구 지주 동원엔터프라이즈 20건, 모두 <b>59건을 전수 검색</b>했다.
     2018년부터 2020년까지는 Sherman Act라는 법명, 법정 상한, 충당액, 확정액, 분할상환 일정이
@@ -743,7 +784,7 @@ figure.shots figcaption b{color:var(--ink)}
     <span class="chip c-doc">원본</span></p>
 </section>
 <section id="s6">
-  <h2><span class="h2n">06 / 청구서 네 장</span>형사·민사·주정부·환경을 합치면 순이익 네 해치다</h2>
+  <h2><span class="h2n">07 / 청구서 네 장</span>형사·민사·주정부·환경을 합치면 순이익 네 해치다</h2>
 
   <p class="lead">StarKist가 미국 규제·소송으로 낸 돈은 담합 벌금 하나가 아니다. 관할도 규제도
     다른 청구서가 넷이고, 그중 하나는 담합 유죄인정보다 일곱 달 앞선 <b>환경 사건</b>이다.
@@ -865,7 +906,7 @@ figure.shots figcaption b{color:var(--ink)}
     하나는 파산했고, 하나는 상한을 맞았다.</p>
 </section>
 <section id="s7">
-  <h2><span class="h2n">07 / 파고파고</span>참치회사인데 자기 이름으로 등록된 배가 한 척도 없다</h2>
+  <h2><span class="h2n">08 / 파고파고</span>참치회사인데 자기 이름으로 등록된 배가 한 척도 없다</h2>
 
   <p class="lead">미국령 사모아 파고파고의 공장 하나가 StarKist 가공의 중심이다. 일일 목표
     약 450톤으로 돌아가고 게스트워커가 인력의 약 70%다. 그런데 <b>RFMO 등록부에서 이 그룹 명의로
@@ -930,8 +971,39 @@ figure.shots figcaption b{color:var(--ink)}
       <span class="chip c-nd">미공개</span></p>
   </div>
 </section>
+<section id="s7b">
+  <h2><span class="h2n">09 / 시설</span>공장이 관세선 안에 하나 남았다</h2>
+
+  <p class="lead">이 회사의 가공은 <b>미국령 사모아 파고파고</b>에서 이뤄진다. 미국령이라는 것이
+    이 공장의 성격을 정한다 — 관세영역 안이면서 본토와는 원가 조건이 다르다.</p>
+
+  <div class="tw"><table>
+    <thead><tr><th>거점</th><th>확인되는 것</th></tr></thead>
+    <tbody>
+      <tr class="hl"><td>파고파고, 미국령 사모아</td><td><b>가공 거점</b>. 공장은 <b>1963년부터</b> 돌았다</td></tr>
+      <tr><td>Reston, 버지니아</td><td>본사</td></tr>
+      <tr><td>연결 법인</td><td>본체와 사모아 법인, 무역법인을 포함해 <b>4곳</b></td></tr>
+      <tr class="hl"><td>확장</td><td>변호인이 심리에서 <b>벌금의 불확실성 때문에 확장이 어렵다</b>고 진술했고, 법원도 「당장은 새 시설을 짓지 않기로 한 결정」을 전제로 삼았다 — <b>폐쇄 판결이 아니다</b></td></tr>
+    </tbody>
+  </table></div>
+  <p class="cap">법정 진술은 회사의 계획을 말한 것이지 법원이 시설을 정한 것이 아니다.
+    <span class="chip c-doc">원본</span></p>
+
+  <p>시설이 한 곳이라는 사실이 이 회사의 원가 구조를 거의 다 설명한다. 미국령이므로 본토로
+    들어갈 때 관세가 붙지 않고, 동시에 본토 최저임금 체계와 다른 조건이 적용된다.
+    <b>경쟁사들이 관세선 밖에서 만드는 것과 정면으로 갈리는 자리</b>다.</p>
+
+  <p>거점의 수 자체가 적다. 가공은 <b>파고파고</b> 한 곳이고 본사는 버지니아 <b>Reston</b>이며,
+    연결 법인은 본체와 사모아 법인, 무역법인을 포함해 <b>4곳</b>이다. 공장은
+    <b>1963년부터</b> 돌았으므로 설비의 나이가 법인의 나이보다 훨씬 많다.</p>
+
+  <p>확장이 멈춘 이유도 시설의 문제가 아니라 <b>돈의 문제</b>로 기록돼 있다. 벌금 규모가 확정되지
+    않은 동안 새 시설을 짓지 않기로 했다는 진술이 남아 있을 뿐, 공장을 닫으라는 판단은 어디에도
+    없다.</p>
+</section>
+
 <section id="s8">
-  <h2><span class="h2n">08 / 파우치가 있는 곳</span>관세영역 밖 미국령을 두고 남미에서 만든다</h2>
+  <h2><span class="h2n">10 / 파우치가 있는 곳</span>관세영역 밖 미국령을 두고 남미에서 만든다</h2>
 
   <p class="lead">미국령 사모아는 본토 반입 무관세와 별도 최저임금이라는 두 이점 위에 서 있다.
     그러면 성장하는 제품군일수록 그곳에서 만들 것 같은데, <b>파우치는 그 반대로 간다</b>.</p>
@@ -982,7 +1054,7 @@ figure.shots figcaption b{color:var(--ink)}
     40센트씩 올라왔다. 본토와의 격차는 89센트다.</p>
 </section>
 <section id="s9">
-  <h2><span class="h2n">09 / 원료 조달</span>「모회사에서 안정적으로 조달」이라 적혀 있는데 비율은 3%와 13% 사이다</h2>
+  <h2><span class="h2n">11 / 원료 조달</span>「모회사에서 안정적으로 조달」이라 적혀 있는데 비율은 3%와 13% 사이다</h2>
 
   <p class="lead">증권신고서는 수직계열화를 명시한다. 그런데 그 수직계열화가 원료의 몇 할인지는
     어느 문서도 분모와 함께 적지 않는다. 공개자료로 만들 수 있는 것은 <b>범위</b>뿐이다.</p>
@@ -1016,12 +1088,18 @@ figure.shots figcaption b{color:var(--ink)}
     </tbody>
   </table></div>
 
+  <p>돈으로 잰 값도 같은 방향이다. 동원산업이 StarKist Co.에 39,644,255천원, StarKist Samoa에
+    9,111,271천원을 보내 합이 <b>약 487억원</b>인데, 같은 회사가 <b>동원F&amp;B</b>에 보낸 것은
+    <b>141,981백만원</b>이다. 동원산업의 2025년 어획물 수출 총액이 91,046백만원이고 그 가운데
+    절반 남짓이 미국행이지만 전량은 아니다. <b>세 숫자를 나란히 놓으면 국내 캔 계열사가
+    미국 자회사보다 크다.</b></p>
+
   <p>그룹 안에서 원어를 가장 많이 받는 곳은 국내 캔 계열사다.
     수직계열화라는 말이 미국 쪽에 붙어 있지만 물량의 무게중심은 한국에 있다.
     <span class="chip c-doc">원본</span></p>
 </section>
 <section id="s10">
-  <h2><span class="h2n">10 / 인증과 노동</span>명부마다 이름이 다르게 올라 있다</h2>
+  <h2><span class="h2n">12 / 인증과 노동</span>명부마다 이름이 다르게 올라 있다</h2>
 
   <p class="lead">StarKist를 지속가능성 인증 명부에서 찾으면 모회사 이름으로는 잘 잡히지 않는다.
     등재는 있는데 <b>등재명이 명부마다 다르다.</b> 대문자 하나, 괄호 하나가 갈린다.</p>
@@ -1083,7 +1161,7 @@ figure.shots figcaption b{color:var(--ink)}
     강제노동 판정과는 별개의 계통이다.</p>
 </section>
 <section id="s11">
-  <h2><span class="h2n">11 / 미국령의 원가</span>받던 것이 만료됐고 남은 것은 원가구조다</h2>
+  <h2><span class="h2n">13 / 미국령의 원가</span>받던 것이 만료됐고 남은 것은 원가구조다</h2>
 
   <p class="lead">미국령 사모아에 공장을 두는 이유는 세제와 임금이다. 그 세제를 하나씩 되짚으면
     「지금도 받는다」로 쓸 수 있는 것이 생각보다 적다. <b>둘 다 기한이 지났다</b>.</p>
@@ -1131,7 +1209,7 @@ figure.shots figcaption b{color:var(--ink)}
     동의해야 했다. <span class="chip c-doc">원본</span></p>
 </section>
 <section id="s12">
-  <h2><span class="h2n">12 / 제품 카탈로그</span>파우치를 밀겠다고 말하는 동안 파우치 매출이 줄었다</h2>
+  <h2><span class="h2n">14 / 제품 카탈로그</span>파우치를 밀겠다고 말하는 동안 파우치 매출이 줄었다</h2>
 
   <p class="lead">미국 매대에서 이 브랜드는 캔 하나로 서 있지 않다. 캔·파우치·시즈닝 파우치·
     그레인볼·키트에 참치가 아닌 닭고기와 연어까지 들어간다. 그런데 <b>회사가 성장 축이라 말하는
@@ -1316,7 +1394,7 @@ figure.shots figcaption b{color:var(--ink)}
     그 폭 안에서 이 브랜드가 잡은 자리는 <b>어종으로는 위, 가격으로는 가운데</b>다.</p>
 </section>
 <section id="s13">
-  <h2><span class="h2n">13 / 전략</span>말과 돈이 갈리는 자리가 셋이다</h2>
+  <h2><span class="h2n">15 / 전략</span>말과 돈이 갈리는 자리가 셋이다</h2>
 
   <p class="lead">회사가 무엇을 하겠다고 말하는지와 돈이 실제로 어디로 갔는지를 나란히 놓으면
     다섯 축 가운데 <b>돈이 말을 따라간 것은 생산 배치 하나</b>다. 나머지는 금액과 물량이 갈리거나,
@@ -1448,7 +1526,7 @@ figure.shots figcaption b{color:var(--ink)}
   </div>
 </section>
 <section id="s14">
-  <h2><span class="h2n">14 / 경쟁 구도</span>46과 80이 5.2포인트 어긋나는데 그 설명이 어느 문서에도 없다</h2>
+  <h2><span class="h2n">16 / 경쟁 구도</span>46과 80이 5.2포인트 어긋나는데 그 설명이 어느 문서에도 없다</h2>
 
   <p class="lead">StarKist의 미국 점유율로 도는 숫자가 셋이다. 셋이 서로 맞지 않는데,
     <b>맞지 않는 이유는 분모가 달라서</b>다. 그리고 그 분모를 적은 곳이 없다.</p>
@@ -1506,7 +1584,7 @@ figure.shots figcaption b{color:var(--ink)}
     <span class="chip c-doc">원본</span></p>
 </section>
 <section id="s15">
-  <h2><span class="h2n">15 / 한국 관점</span>한국 매대에는 없고 한국 선반의 79%는 같은 그룹이 쥔다</h2>
+  <h2><span class="h2n">17 / 한국 관점</span>한국 매대에는 없고 한국 선반의 79%는 같은 그룹이 쥔다</h2>
 
   <p class="lead">한국 원양업계에 StarKist는 사고팔 상대도 경쟁자도 아니다.
     <b>한국 상장사가 지분 100%를 가진 회사</b>다. 그런데 정작 한국 매대에서는 이 브랜드를
@@ -1574,7 +1652,7 @@ figure.shots figcaption b{color:var(--ink)}
   </div>
 </section>
 <section id="s16">
-  <h2><span class="h2n">16 / 종합 평가</span>같은 회사를 두 나라 기록이 그리는데 한쪽만 읽힌다</h2>
+  <h2><span class="h2n">18 / 종합 평가</span>같은 회사를 두 나라 기록이 그리는데 한쪽만 읽힌다</h2>
 
   <p class="lead">물음은 「모회사 공시와 자회사 법원기록이 같은 회사를 다르게 그리는가」였다.
     답은 <b>다르게 그리지 않는다.</b> 두 기록은 정확히 겹친다. 문제는 다른 데 있다.
