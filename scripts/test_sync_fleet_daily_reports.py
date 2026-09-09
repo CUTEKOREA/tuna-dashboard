@@ -558,3 +558,40 @@ class ParseAmountDashIsZero(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class ReconciliationToleranceTest(unittest.TestCase):
+    """검산 허용 폭은 머리글이 인쇄된 자릿수에서 나온다."""
+
+    def setUp(self) -> None:
+        self.m = load_sync_module()
+
+    def test_tolerance_follows_printed_precision(self) -> None:
+        # 2026-09-07 에 운반선 6,854.1 vs 행합 6,854.13 하나로
+        # 「최신 상세 행 확인 필요」가 상시 점등돼 있었다
+        self.assertEqual(self.m.rounding_tolerance("6,854.1(616.1)톤"), 0.05)
+        self.assertEqual(self.m.tolerance_from_value(6854.1), 0.05)
+        # 정수로 찍힌 값은 넓히지 않는다 - 진짜 차이를 덮는다
+        self.assertEqual(self.m.rounding_tolerance("100"), self.m.MIN_TOLERANCE_MT)
+        self.assertEqual(self.m.rounding_tolerance(None), self.m.MIN_TOLERANCE_MT)
+        self.assertEqual(self.m.tolerance_from_value(100), self.m.MIN_TOLERANCE_MT)
+
+    def test_rounding_residue_is_not_a_mismatch(self) -> None:
+        rounded = self.m.reconciliation_check(
+            "2026-09-07", "carrier.loadedMt", 6854.1,
+            [284.83, 1846, 900, 0, 2868, 955.3], "6,854.1(616.1)톤")
+        self.assertEqual(rounded["status"], "completeMatch")
+
+    def test_real_difference_still_fails(self) -> None:
+        real = self.m.reconciliation_check(
+            "2026-02-20", "carrier.loadedMt", 5000.0, [4100.0], "5,000.0")
+        self.assertEqual(real["status"], "completeMismatch")
+
+    def test_reevaluation_matches_a_fresh_check(self) -> None:
+        """원문 없이 재평가한 결과가 원문에서 뽑은 결과와 같아야 한다."""
+        fresh = self.m.reconciliation_check(
+            "2026-09-07", "carrier.loadedMt", 6854.1,
+            [284.83, 1846, 900, 0, 2868, 955.3], "6,854.1(616.1)톤")
+        stored = {k: fresh[k] for k in
+                  ("reportDate", "field", "reportedMt", "knownRowsMt", "missingCount")}
+        self.assertEqual(self.m.reevaluate_check(stored, "6,854.1(616.1)톤"), fresh)

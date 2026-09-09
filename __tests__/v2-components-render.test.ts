@@ -1,4 +1,5 @@
 import { readFileSync } from 'node:fs';
+import { fleetDailyPublicLatest } from '@/lib/data/fleet-daily-public';
 import { join } from 'node:path';
 import React from 'react';
 import { renderToStaticMarkup } from 'react-dom/server';
@@ -242,7 +243,9 @@ describe('Deep Sea Command V2 - Fleet pilot', () => {
 
     expect(markup).toContain('선단 운영');
     expect(markup).toContain('일간 합계');
-    expect(markup).toContain('data-kpi-value="175"');
+    // 일간 합계는 매일 바뀐다 - 값을 못박지 말고 계약에서 파생시킨다
+    const dailyTotal = fleetDailyPublicLatest.pacific.dailyMt + fleetDailyPublicLatest.atlantic.dailyMt;
+    expect(markup).toContain(`data-kpi-value="${dailyTotal}"`);
     // 2026-08-15 사용자 지시: 선박 사진 배경 제거 — 라이트 히어로는 배경 없이
     expect(markup).not.toContain('/heroes/seiner.webp');
   });

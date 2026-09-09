@@ -1,68 +1,68 @@
 {
   "_meta": {
     "schemaVersion": 1,
-    "reportCount": 150,
+    "reportCount": 152,
     "firstReportDate": "2026-01-16",
-    "latestReportDate": "2026-09-07",
-    "latestAsOf": "2026-09-06",
-    "detailSha256": "94618bf382b25cb6229d125fe0a5a5a937b380dd24279ac7f7ff9acecef7beed",
+    "latestReportDate": "2026-09-09",
+    "latestAsOf": "2026-09-08",
+    "detailSha256": "5ecbb1f9444d94d19270ae26c0df2e2aa6b1e348032552cba1ba1e5cce9c4341",
     "detailSha256Compat": [
-      "d9c09b5ec1241d79b16191a568d9374e2759de4a7dc10af996b75de533283ba9"
+      "5667fd5f4c954ff1c71e897c2685adf9fcf1e5af69d933cc03071315cf162315"
     ]
   },
   "latest": {
-    "reportDate": "2026-09-07",
-    "asOf": "2026-09-06",
+    "reportDate": "2026-09-09",
+    "asOf": "2026-09-08",
     "pacific": {
-      "asOf": "2026-09-06",
-      "dailyMt": 100,
-      "monthlyMt": 790,
-      "annualMt": 49030.8
+      "asOf": "2026-09-08",
+      "dailyMt": 71,
+      "monthlyMt": 886,
+      "annualMt": 49126.8
     },
     "atlantic": {
-      "asOf": "2026-09-06",
-      "dailyMt": 75,
-      "monthlyMt": 990,
-      "annualMt": 34450
+      "asOf": "2026-09-08",
+      "dailyMt": 140,
+      "monthlyMt": 1180,
+      "annualMt": 34640
     },
     "carrier": {
-      "loadedTotalMt": 6854.1,
-      "expectedRemainingMt": 4751.7
+      "loadedTotalMt": 7684.1,
+      "expectedRemainingMt": 3556.7
     }
   },
   "deltas": {
-    "pacificDailyMt": -55,
-    "atlanticDailyMt": -40,
-    "totalDailyMt": -95
+    "pacificDailyMt": 46,
+    "atlanticDailyMt": 90,
+    "totalDailyMt": 136
   },
   "reconciliation": {
     "pacificDaily": {
-      "reportedMt": 100,
-      "rowsMt": 100,
+      "reportedMt": 71,
+      "rowsMt": 71,
       "matches": true,
       "missingCount": 0
     },
     "atlanticDaily": {
-      "reportedMt": 75,
-      "rowsMt": 75,
+      "reportedMt": 140,
+      "rowsMt": 140,
       "matches": true,
       "missingCount": 0
     },
     "carrierLoaded": {
-      "reportedMt": 6854.1,
-      "rowsMt": 6854.13,
-      "matches": false,
-      "missingCount": 0
-    },
-    "carrierExpectedRemaining": {
-      "reportedMt": 4751.7,
-      "rowsMt": 4751.7,
+      "reportedMt": 7684.1,
+      "rowsMt": 7684.13,
       "matches": true,
       "missingCount": 0
     },
-    "valid": false,
+    "carrierExpectedRemaining": {
+      "reportedMt": 3556.7,
+      "rowsMt": 3556.7,
+      "matches": true,
+      "missingCount": 0
+    },
+    "valid": true,
     "unavailableCount": 0,
-    "issueCount": 1
+    "issueCount": 0
   },
   "dailySeries": {
     "dates": [
@@ -215,7 +215,9 @@
       "2026-09-02",
       "2026-09-03",
       "2026-09-04",
-      "2026-09-07"
+      "2026-09-07",
+      "2026-09-08",
+      "2026-09-09"
     ],
     "pacific": {
       "totalMt": [
@@ -368,7 +370,9 @@
         175,
         175,
         155,
-        100
+        100,
+        25,
+        71
       ],
       "vessels": {
         "S/EXP": [
@@ -521,7 +525,9 @@
           15,
           0,
           0,
-          40
+          40,
+          0,
+          0
         ],
         "S/PIO": [
           50,
@@ -673,7 +679,9 @@
           0,
           15,
           0,
-          0
+          0,
+          0,
+          10
         ],
         "S/CHA": [
           0,
@@ -825,6 +833,8 @@
           0,
           0,
           0,
+          0,
+          15,
           0
         ],
         "S/HAR": [
@@ -977,6 +987,8 @@
           45,
           0,
           10,
+          0,
+          0,
           0
         ],
         "S/JUP": [
@@ -1113,6 +1125,8 @@
           0,
           0,
           65,
+          0,
+          0,
           0,
           0,
           0,
@@ -1281,7 +1295,9 @@
           0,
           0,
           115,
-          15
+          15,
+          5,
+          61
         ],
         "MOAMARI": [
           80,
@@ -1418,6 +1434,8 @@
           0,
           0,
           85,
+          0,
+          0,
           0,
           0,
           0,
@@ -1585,7 +1603,9 @@
           90,
           0,
           0,
-          40
+          40,
+          5,
+          0
         ],
         "NAOERO SUN": [
           0,
@@ -1736,6 +1756,8 @@
           70,
           15,
           120,
+          0,
+          0,
           0,
           0
         ],
@@ -1889,7 +1911,9 @@
           10,
           40,
           30,
-          5
+          5,
+          0,
+          0
         ]
       }
     },
@@ -2044,7 +2068,9 @@
         120,
         195,
         115,
-        75
+        75,
+        50,
+        140
       ],
       "vessels": {
         "P/MAS": [
@@ -2197,7 +2223,9 @@
           30,
           90,
           75,
-          20
+          20,
+          10,
+          100
         ],
         "P/DIS": [
           15,
@@ -2349,6 +2377,8 @@
           0,
           0,
           0,
+          40,
+          40,
           40
         ],
         "P/FORE": [
@@ -2501,6 +2531,8 @@
           40,
           50,
           40,
+          0,
+          0,
           0
         ],
         "P/PATH": [
@@ -2653,6 +2685,8 @@
           0,
           0,
           0,
+          0,
+          0,
           0
         ],
         "P/COM": [
@@ -2800,6 +2834,8 @@
           30,
           45,
           25,
+          0,
+          0,
           0,
           0,
           0,
@@ -2957,7 +2993,9 @@
           50,
           55,
           0,
-          15
+          15,
+          0,
+          0
         ],
         "P/GRACE": [
           0,
@@ -3109,6 +3147,8 @@
           0,
           0,
           0,
+          0,
+          0,
           0
         ]
       }
@@ -3116,14 +3156,14 @@
   },
   "quality": {
     "counts": {
-      "reconciliationChecks": 600,
-      "reconciliationCompleteChecks": 600,
+      "reconciliationChecks": 608,
+      "reconciliationCompleteChecks": 608,
       "reconciliationUnavailableChecks": 0,
       "reconciliationUnavailableDocuments": 0,
-      "reconciliationIssues": 20,
-      "reconciliationDocuments": 18,
-      "reconciliationPartialDifferences": 20,
-      "reconciliationPartialDifferenceDocuments": 18,
+      "reconciliationIssues": 14,
+      "reconciliationDocuments": 12,
+      "reconciliationPartialDifferences": 14,
+      "reconciliationPartialDifferenceDocuments": 12,
       "duplicateVesselRows": 4,
       "coordinateFormatIssues": 6,
       "longlineSectionMissing": 13

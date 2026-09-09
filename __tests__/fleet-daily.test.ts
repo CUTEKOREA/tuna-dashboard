@@ -77,36 +77,36 @@ describe('fleet daily bounded intake', () => {
   it('exposes only the current public aggregate and quality counts', () => {
     expect(fleetDailyPublic._meta).toEqual({
       schemaVersion: 1,
-      reportCount: 150,
+      reportCount: 152,
       firstReportDate: '2026-01-16',
-      latestReportDate: '2026-09-07',
-      latestAsOf: '2026-09-06',
+      latestReportDate: '2026-09-09',
+      latestAsOf: '2026-09-08',
       detailSha256: expect.stringMatching(/^[a-f0-9]{64}$/),
       detailSha256Compat: [expect.stringMatching(/^[a-f0-9]{64}$/)],
     });
     expect(fleetDailyPublicLatest.pacific).toMatchObject({
-      dailyMt: 100,
-      monthlyMt: 790,
-      annualMt: 49_030.8,
+      dailyMt: 71,
+      monthlyMt: 886,
+      annualMt: 49_126.8,
     });
     expect(fleetDailyPublicLatest.atlantic).toMatchObject({
-      dailyMt: 75,
-      monthlyMt: 990,
-      annualMt: 34_450,
+      dailyMt: 140,
+      monthlyMt: 1_180,
+      annualMt: 34_640,
     });
     expect(fleetDailyPublicLatest.carrier).toEqual({
-      loadedTotalMt: 6_854.1,
-      expectedRemainingMt: 4_751.7,
+      loadedTotalMt: 7_684.1,
+      expectedRemainingMt: 3_556.7,
     });
     expect(fleetDailyPublic.quality.counts).toMatchObject({
-      reconciliationChecks: 600,
-      reconciliationCompleteChecks: 600,
+      reconciliationChecks: 608,
+      reconciliationCompleteChecks: 608,
       reconciliationUnavailableChecks: 0,
       reconciliationUnavailableDocuments: 0,
-      reconciliationIssues: 20,
-      reconciliationDocuments: 18,
-      reconciliationPartialDifferences: 20,
-      reconciliationPartialDifferenceDocuments: 18,
+      reconciliationIssues: 14,
+      reconciliationDocuments: 12,
+      reconciliationPartialDifferences: 14,
+      reconciliationPartialDifferenceDocuments: 12,
       duplicateVesselRows: 4,
       coordinateFormatIssues: 6,
       longlineSectionMissing: 13,
@@ -121,9 +121,9 @@ describe('fleet daily bounded intake', () => {
 
   it('formats signed deltas and reported port names without changing source values', () => {
     expect(fleetDailyPublicDeltas).toEqual({
-      pacificDailyMt: -55,
-      atlanticDailyMt: -40,
-      totalDailyMt: -95,
+      pacificDailyMt: 46,
+      atlanticDailyMt: 90,
+      totalDailyMt: 136,
     });
     expect(formatFleetDailyDelta(20)).toBe('+20');
     expect(formatFleetDailyDelta(-20)).toBe('-20');

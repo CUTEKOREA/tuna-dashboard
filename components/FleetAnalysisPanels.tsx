@@ -4,7 +4,7 @@ import { ChevronDown, Trophy, BarChart3 } from 'lucide-react';
 import { WeeklyCatchChart, MonthlyCatchChart, CumulativeChart, CumulativeTableData, DailyCatchTrendChart, FleetIdleVesselPanel } from './FleetCharts';
 import TakeawayBox from './TakeawayBox';
 import s from './FleetCommandCenter.module.css';
-import { purseSeineCatch } from '@/lib/fleet-operations-2026-08-23';
+import { monthBoundaryDay, purseSeineCatch } from '@/lib/fleet-operations-2026-08-23';
 import { fleetDailyPublicSeries } from '@/lib/data/fleet-daily-public';
 
 const rankData = purseSeineCatch.weeklyRanking.map((item) => ({
@@ -13,6 +13,35 @@ const rankData = purseSeineCatch.weeklyRanking.map((item) => ({
 }));
 const weeklyPeriod = `${purseSeineCatch.period.from.slice(2).replaceAll('-', '.')}~${purseSeineCatch.period.to.slice(5).replace('-', '.')}`;
 const weeklyLabel = purseSeineCatch.source.split(' - ').at(-1) ?? '주간 실적';
+// 문장을 손으로 적어두면 다음 주 반영 때 차트만 갈리고 문장은 지난주를 말한다.
+// 실제로 2026-09-07 에 「645t · 145t 1위」 문장이 885t 차트 위에 남아 있었다.
+const { summary, weeklyRanking } = purseSeineCatch;
+const top3 = weeklyRanking.slice(0, 3);
+const idle = weeklyRanking.filter((row) => row.catchMt === 0);
+const seriesTotal = purseSeineCatch.monthlyByVessel.reduce((sum, row) => sum + row.totalMt, 0);
+const seriesTop = [...purseSeineCatch.monthlyByVessel].sort((a, b) => b.totalMt - a.totalMt).slice(0, 2);
+const seriesAsOfKo = purseSeineCatch.monthlySeriesAsOf.slice(2).replaceAll('-', '.');
+const nf = (value: number) => value.toLocaleString('ko-KR');
+
+/* 현어기 문장은 두 군데에서 쓴다(누계 탭·선장 실적표). 한 곳만 고치면 다른 쪽이 지난주에 남는다 —
+ * 2026-09-07 에 실제로 선장 실적표가 「338일·27.1t·평균 19.1t」 를 그대로 들고 있었다. */
+const seasonByRank = [...purseSeineCatch.seasonRanking].sort((a, b) => a.rank - b.rank);
+const seasonAvg = purseSeineCatch.seasonAverageDailyMt;
+const seasonBelow = seasonByRank.filter((row) => row.dailyCatchMt < seasonAvg).length;
+const seasonNewest = seasonByRank.reduce((a, b) => (b.boardingDate > a.boardingDate ? b : a));
+const seasonHeaviest = seasonByRank.reduce((a, b) => (b.catchMt > a.catchMt ? b : a));
+const seasonSituation = (
+  <>
+    {seasonByRank.slice(0, 2).map((row) => `${row.captain}(${row.vessel}) 어기 ${row.seasonDays}일·일어획 ${row.dailyCatchMt}t`).join(', ')} 순입니다.
+    {' '}선단 평균은 {seasonAvg}t입니다. {seasonNewest.vessel}는 {seasonNewest.captain} 선장 승선 후 {seasonNewest.seasonDays}일·{nf(seasonNewest.catchMt)}t으로 집계됩니다.
+  </>
+);
+const seasonAction = (
+  <>
+    {seasonHeaviest.vessel}({seasonHeaviest.captain})는 {nf(seasonHeaviest.catchMt)}t 누적으로 최대이나 일어획은 {seasonHeaviest.dailyCatchMt}t {seasonHeaviest.rank}위입니다.
+    {' '}평균 {seasonAvg}t 미만 {seasonBelow}척은 순위와 누계 물량을 분리해 평가하십시오.
+  </>
+);
 
 const dailyTrendSituation = (() => {
   const series = fleetDailyPublicSeries;
@@ -54,8 +83,8 @@ export function FleetChartSection() {
             <WeeklyCatchChart />
             <div style={{ marginTop: 16 }}>
               <TakeawayBox
-                situation={<>N/SUN(김형주) 145t 주간 1위, S/SPR(김효원) 140t 2위, S/EXP(공준식) 130t 3위입니다. 주간 총 어획량은 645t(국적 460t, 합작 185t)입니다.</>}
-                actionPlan={<>S/JUP·MARI는 주간 어획이 없습니다. 상위 3척과 무실적 2척의 수역·조업일수·선박 상태를 대조해 배치를 조정하십시오.</>}
+                situation={<>{top3.map((row) => `${row.vessel}(${row.captain}) ${nf(row.catchMt)}t`).join(', ')} 순입니다. 주간 총 어획량은 {nf(summary.weeklyTotal)}t(국적 {nf(summary.nationalWeekly)}t, 합작 {nf(summary.jointWeekly)}t)입니다.</>}
+                actionPlan={<>{idle.length > 0 ? `${idle.map((row) => row.vessel).join('·')}는 주간 어획이 없습니다. ` : ''}주간은 {monthBoundaryDay.date.slice(5).replace('-', '/').replace(/^0/, '')}을 포함하고 월간은 9월분이라, 차이 {nf(monthBoundaryDay.totalMt)}t(국적 {nf(monthBoundaryDay.nationalMt)}t, 합작 {nf(monthBoundaryDay.jointMt)}t)이 그 하루치입니다. 상위 3척과 무실적 {idle.length}척의 수역·조업일수·선박 상태를 대조해 배치를 조정하십시오.</>}
                 source={purseSeineCatch.source}
               />
             </div>
@@ -66,9 +95,9 @@ export function FleetChartSection() {
             <MonthlyCatchChart />
             <div style={{ marginTop: 16 }}>
               <TakeawayBox
-                situation={<>8월 누계 3,313t(국적 1,534t, 합작 1,779t)입니다. 합작선 비중은 53.7%로 직전 주 59.7%에서 낮아졌습니다.</>}
-                actionPlan={<>연간 누계 48,146t 중 S/SPR이 6,881t으로 최대이고 N/STAR가 6,405t으로 뒤를 잇습니다. 합작선 의존과 국적선 생산 회복을 함께 관리하십시오.</>}
-                source={purseSeineCatch.source}
+                situation={<>이 차트는 {seriesAsOfKo} 기준 월별 계열입니다(누계 {nf(seriesTotal)}t). 최신 보고의 월간 누계는 {nf(summary.monthlyTotal)}t(국적 {nf(summary.nationalMonthly)}t, 합작 {nf(summary.jointMonthly)}t)입니다.</>}
+                actionPlan={<>계열 누계 중 {seriesTop.map((row) => `${row.vessel} ${nf(row.totalMt)}t`).join(', ')} 순으로 많습니다. 합작선 의존과 국적선 생산 회복을 함께 관리하십시오.</>}
+                source={`월별 계열 ${purseSeineCatch.monthlySeriesAsOf} 기준 · 누계는 ${purseSeineCatch.source}`}
               />
             </div>
           </>
@@ -78,8 +107,8 @@ export function FleetChartSection() {
             <CumulativeChart />
             <div style={{ marginTop: 16 }}>
               <TakeawayBox
-                situation={<>김효원(S/SPR) 일어획 27.1t으로 현어기 1위, 김정훈(MARI) 22.9t 2위, 김승현(S/PIO) 19.2t 3위입니다. N/STAR는 이진우 선장 승선 후 12일·40t을 조업했습니다.</>}
-                actionPlan={<>선단 평균 19.1t 대비 하위 5척은 원인별로 수역·조업일수·선박 상태를 대조하십시오.</>}
+                situation={seasonSituation}
+                actionPlan={seasonAction}
                 source={`선장 실적 누계 (현어기) · ${purseSeineCatch.period.to}`}
               />
             </div>
@@ -173,8 +202,8 @@ export function FleetDetailPanel() {
           </div>
           <div style={{ marginTop: 16 }}>
             <TakeawayBox
-              situation={<>김효원(S/SPR) 어기 338일·일어획 27.1t으로 1위, 김정훈(MARI) 22.9t으로 2위입니다. 선단 평균은 19.1t입니다. N/STAR는 이진우 선장 승선 후 12일·40t으로 집계됩니다.</>}
-              actionPlan={<>MARI(김정훈)는 11,485t 누적으로 최대이나 일어획은 22.9t 2위입니다. 순위와 누계 물량을 분리해 평가하십시오.</>}
+              situation={seasonSituation}
+              actionPlan={seasonAction}
               source={`선장 실적 누계 (현어기) · ${purseSeineCatch.period.to}`}
             />
           </div>

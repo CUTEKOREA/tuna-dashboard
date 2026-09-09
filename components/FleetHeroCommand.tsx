@@ -1,6 +1,6 @@
 /**
  * 선망선 어획 지휘형 카드 — 디자인 랩 6라운드 채택본 (★4 «정보 이해 만족», 2026-08-17).
- * 선망선 10척 카드(연간 누계+1~8월 미니 추세) 클릭 → 상단 연간·당월·시즌 일평균·월별 차트 전환.
+ * 선망선 10척 카드(연간 누계+월별 미니 추세) 클릭 → 상단 연간·당월·시즌 일평균·월별 차트 전환.
  * 소스는 fleet-operations 주간 랭킹 단독 — 히어로의 공개 집계(fleet-daily-public)와 기준일이
  * 달라 섞지 않는다. 증감은 완결 월끼리(6월 대비 7월)만 (부분 집계 왜곡 금지).
  */
@@ -20,7 +20,13 @@ const UP = 'var(--delta-up, #ef4444)';
 const DOWN = 'var(--delta-down, #3b82f6)';
 const FLAT = 'var(--text-muted)';
 
-const MONTH_LABELS = ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월'];
+/* 라벨을 손으로 적어두면 계열이 한 달 늘 때 «8월»이 그대로 남는다.
+ * 월 수는 계열에서 세고, 계열이 어느 보고 기준인지는 monthlySeriesAsOf 가 말한다. */
+const MONTH_COUNT = purseSeineCatch.monthlyByVessel[0]?.monthlyMt.length ?? 0;
+const MONTH_LABELS = Array.from({ length: MONTH_COUNT }, (_, i) => `${i + 1}월`);
+const LATEST_MONTH_LABEL = `${MONTH_COUNT}월`;
+const DELTA_LABEL = `${MONTH_COUNT - 2}월 대비 ${MONTH_COUNT - 1}월`;
+const SERIES_AS_OF = purseSeineCatch.monthlySeriesAsOf;
 
 /** 기준일 — 주간 랭킹 정본에서 파생 */
 const PERIOD_TEXT =
@@ -104,11 +110,11 @@ export default function FleetHeroCommand() {
             <span style={{ fontSize: '0.9rem', fontWeight: 400, color: 'var(--text-muted)', marginLeft: 6 }}>(MT)</span>
           </div>
           <div style={{ fontSize: '0.8rem', fontWeight: 700, color: delta.color }}>
-            6월 대비 7월 (완결 월 기준) {delta.text}
+            {DELTA_LABEL} (완결 월 기준) {delta.text}
           </div>
           <div style={{ display: 'flex', gap: 18, marginTop: 8 }}>
             <div>
-              <div style={{ fontSize: '0.7rem', fontWeight: 700, color: 'var(--text-muted)' }}>8월 누계</div>
+              <div style={{ fontSize: '0.7rem', fontWeight: 700, color: 'var(--text-muted)' }}>{LATEST_MONTH_LABEL} 누계</div>
               <div style={{ fontSize: '1.05rem', fontWeight: 800, fontVariantNumeric: 'tabular-nums', color: 'var(--text-main)' }}>
                 {currentMonth.toLocaleString()}
                 <span style={{ fontSize: '0.7rem', fontWeight: 400, color: 'var(--text-muted)', marginLeft: 3 }}>(MT)</span>
@@ -123,7 +129,7 @@ export default function FleetHeroCommand() {
             </div>
           </div>
           <div style={{ fontSize: '0.72rem', color: 'var(--text-muted)', marginTop: 6 }}>
-            주간 랭킹 기준 {PERIOD_TEXT} · 8월은 기준일까지 집계 중
+            주간 랭킹 기준 {PERIOD_TEXT} · 월별 계열은 {SERIES_AS_OF} 보고 기준
           </div>
         </div>
         <BarChart width={430} height={140} data={series} margin={{ top: 12, right: 12, left: 8, bottom: 4 }}>
@@ -181,7 +187,7 @@ export default function FleetHeroCommand() {
         })}
       </div>
       <p style={{ margin: '10px 0 0', fontSize: '0.72rem', color: 'var(--text-muted)' }}>
-        선박 클릭 = 상단 누계·월별 추이 전환 · 카드 값은 연간 누계 (MT) · 증감은 6월 대비 7월(완결 월), 추세선은 1~8월 · 그래프에 마우스를 올리면 월별 어획량
+        선박 클릭 = 상단 누계·월별 추이 전환 · 카드 값은 연간 누계 (MT) · 증감은 {DELTA_LABEL}(완결 월), 추세선은 1~{LATEST_MONTH_LABEL} · 그래프에 마우스를 올리면 월별 어획량
       </p>
     </div>
   );

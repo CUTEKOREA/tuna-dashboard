@@ -25,7 +25,9 @@ describe('방콕 개관 시세 겹쳐보기 행 구성', () => {
     const rows = buildOverviewRows(bangkokWeeks, singaporeMgoAt, []);
     expect(rows).toHaveLength(bangkokWeeks.length);
     const last = rows.at(-1)!;
-    expect(last).toMatchObject({ date: '2026-09-02', 방콕사무소: 2030, 재고: 100500, 가동률: 51, MGO: 1222.5, 어튜나: null });
+    // 최신행 고정 - main 미병합 배포가 화면을 옛 주차로 되돌리는 회귀를 여기서 잡는다.
+    // MGO 는 실측 JSON 이 아직 이 주차를 안 담아 null 이다(가격·재고와 갱신 주기가 다르다).
+    expect(last).toMatchObject({ date: '2026-09-09', 방콕사무소: 2150, 재고: 94300, 가동률: 51, MGO: null, 어튜나: null });
     expect(rows.find((r) => r.date === '2020-05-27')?.MGO).toBeNull();
     // 2024-01-10 은 원문 docx 오기($2,000) — 2026-09-02 사용자 지시로 전후 주 값 $1,450 으로 정정(payload corrections 에 근거 기록)
     const corrected = bangkokWeeks.find((w) => w.date === '2024-01-10')!;
@@ -47,6 +49,23 @@ describe('계절 패턴 참고선 (예측 아님)', () => {
     expect(skjSeasonalOutlook.band80[0]).toBeLessThan(skjSeasonalOutlook.value);
     expect(skjSeasonalOutlook.value).toBeLessThan(skjSeasonalOutlook.band80[1]);
     expect(skjSeasonalOutlook.recent10y.years).toBe(10);
+  });
+
+  it('출발점이 화면의 굵은 선(방콕사무소)과 같은 값·같은 주다', () => {
+    /* 2026-09-09 사용자 지시로 앵커를 어튜나에서 방콕사무소로 옮겼다. 어튜나는
+     * 페이월 수동 동기화라 최신 달이 뒤처지고, 그러면 점선이 실선보다 낮은 데서
+     * 출발해 보인다(실제로 실선 $2,150 옆에서 점선이 $2,000 에서 시작했다).
+     * 계절 변화율·밴드는 그대로 어튜나 32년에서 온다 - 여기서 지키는 건 출발점뿐이다. */
+    expect(skjSeasonalOutlook.anchorSource).toContain('방콕사무소');
+    const latest = [...bangkokWeeks].reverse().find((w) => w.price !== null && !w.suspect)!;
+    expect(skjSeasonalOutlook.asOf).toBe(latest.date.slice(0, 7));
+    expect(skjSeasonalOutlook.anchorPrice).toBe(latest.price);
+    // 목표월은 앵커 +3개월
+    const [y, m] = skjSeasonalOutlook.asOf.split('-').map(Number);
+    const t = new Date(Date.UTC(y, m - 1 + 3, 1));
+    expect(skjSeasonalOutlook.targetMonth).toBe(`${t.getUTCFullYear()}-${String(t.getUTCMonth() + 1).padStart(2, '0')}`);
+    // 변화율·밴드의 출처는 여전히 어튜나임을 화면이 밝혀야 한다
+    expect(skjSeasonalOutlook.source).toContain('Atuna');
   });
 
   it('기준점과 목표월 두 점에만 값을 두고 중간 주는 비운다', () => {

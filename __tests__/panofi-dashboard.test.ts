@@ -7,31 +7,34 @@ import { describe, expect, it } from 'vitest';
 import PanofiDashboard, { PANOFI_TABS } from '../components/panofi/PanofiDashboard';
 import { CashTab, PriceTab, ProfitTab as PanofiTabsProfit } from '../components/panofi/PanofiTabs';
 import {
+  actuals,
   bep,
+  catchBySpecies,
   dataQuality,
   fleetMargins,
   fleetTotals,
   h1,
   headline,
   industry,
-  pfc,
-  priceSeries,
-  regionalLandingSeries,
-  weeks,
-  trade,
-  tradeYear,
-  tradeLadderGap,
-  actuals,
-  ytd,
-  vesselFullPnl,
-  marginRankShift,
-  catchBySpecies,
-  monthlySeries,
+  latest,
   liquidity,
   liquidityBridge,
+  marginRankShift,
   mirror,
   mirrorPairs,
   mirrorTopGap,
+  monthlySeries,
+  pfc,
+  priceSeries,
+  priceWindow,
+  regionalLandingSeries,
+  temaGap,
+  trade,
+  tradeLadderGap,
+  tradeYear,
+  vesselFullPnl,
+  weeks,
+  ytd,
 } from '../lib/data/panofi';
 import { DASHBOARD_MENU_CONFIGS, SIDEBAR_SECTIONS } from '../lib/dashboard-registry';
 
@@ -67,21 +70,68 @@ describe('파노피 데이터 인테이크', () => {
 
   // 2026-08-26 추가: 8월 주간동향 0818·0825 반영. 최신행 고정 — main 미병합 배포가
   // 화면을 옛 값으로 되돌리는 회귀를 여기서 잡는다.
-  it('주간동향이 2026-09-01(36주차)까지 37주다', () => {
-    // 2026-09-02 추가: 9/1 주간동향 반영. 8월분(0818·0825)과 NFD 파일명 탓에 빠져 있던
-    // 3주(0106·0127·0728) 복원분은 그대로 유지된다.
-    expect(headline.weekCount).toBe(37);
-    expect(headline.rangeEnd).toBe('2026-09-01');
+  it('주간동향이 2026-09-08(37주차)까지 38주다', () => {
+    // 최신행 고정 - main 미병합 배포가 화면을 옛 값으로 되돌리는 회귀를 여기서 잡는다.
+    expect(headline.weekCount).toBe(38);
+    expect(headline.rangeEnd).toBe('2026-09-08');
     const last = weeks[weeks.length - 1];
-    expect(last.reportDate).toBe('2026-09-01');
-    // 테마 어가는 8월 값으로 9월 협의 중이라 그대로고, 아비장 SCODI만 $1,722로 올랐다.
-    expect(last.prices.pfcTema).toBe(1600);
+    expect(last.reportDate).toBe('2026-09-08');
+    // PFC가 9월 어가 $1,900으로 확정되며 $1,600에서 처음 코스모를 넘어섰다.
+    expect(last.prices.pfcTema).toBe(1900);
     expect(last.prices.cosmoTema).toBe(1700);
     expect(last.prices.scodiAbidjan).toBe(1722);
-    expect(last.fx.cediPerUsd).toBe(11.25);
-    expect(last.fx.cfaPerUsd).toBe(580);
+    expect(last.fx.cediPerUsd).toBe(11.39);
+    expect(last.fx.cfaPerUsd).toBe(585);
     expect(last.dailyProcessing.COSMO).toBe(80);
-    expect(last.receivables.totalUsd).toBe(3_162_914);
+    expect(last.receivables.totalUsd).toBe(3_135_880);
+  });
+
+  it('테마 격차는 두 채널이 같은 월일 때만 계산한다', () => {
+    /* 2026-09-08 원문: 「PFC - $1,900(9월), COSMO - $1,700(8월) ⇒ 9월어가 협의 중」.
+     * 그냥 빼면 «PFC가 $200 비싸다»가 되는데 코스모의 9월 값은 아직 없다.
+     * 37주 내내 두 채널은 같은 월이었고 이 주가 처음 갈렸다. */
+    expect(latest.prices.pfcTemaMonth).toBe('9월');
+    expect(latest.prices.cosmoTemaMonth).toBe('8월');
+    expect(latest.prices.temaUnderNegotiation).toBe(true);
+    expect(temaGap.comparable).toBe(false);
+    expect(temaGap.usdPerT).toBeNull();
+
+    // 월이 갈린 주는 이 한 주뿐이다 - 나머지는 전부 계산 가능해야 한다
+    const split = weeks.filter((w) => {
+      const { pfcTemaMonth: a, cosmoTemaMonth: b } = w.prices;
+      return a != null && b != null && a !== b;
+    });
+    expect(split.map((w) => w.reportDate)).toEqual(['2026-09-08']);
+  });
+
+  it('세네갈 선단 표기가 흔들려도 행이 사라지지 않는다', () => {
+    /* 선단 라벨은 주마다 «EU 선단»·«EU선단»·«EU» 로, 셀이 갈라지면 «그랑»/«블루» 로 온다.
+     * 모르는 표기는 라벨이 아니라 선박명 후보로 넘어가 행이 통째로 빠졌다 -
+     * 2026-09-09 에 12주에서 10행이 누락돼 있었고 10주는 소속이 «블루» 로 잘못 붙어 있었다. */
+    const FLEETS = new Set(['캅센', '그랑블루', 'EU', '운반선']);
+    for (const w of weeks) {
+      for (const row of w.senegalFleet) {
+        if (row.fleet === null) continue;
+        expect(FLEETS.has(row.fleet)).toBe(true);
+      }
+    }
+    const last = weeks[weeks.length - 1];
+    expect(last.senegalFleet.map((r) => r.vessel)).toContain('EGALUZE');
+    expect(last.senegalFleet.find((r) => r.vessel === 'EGALUZE')?.fleet).toBe('EU');
+    expect(last.senegalFleet).toHaveLength(10);
+  });
+
+  it('미수금은 바이어 3곳이 모두 채워진다', () => {
+    /* 셀 경계를 접지 않아 ETS BADARA·SDMG 가 38주 내내 null 이었다 (2026-09-09 수정).
+     * 합계만 맞아서 화면에서는 안 보였다. */
+    const last = weeks[weeks.length - 1];
+    const byBuyer = Object.fromEntries(last.receivables.buyers.map((b) => [b.buyer, b]));
+    expect(byBuyer['ETS BADARA'].usd).toBe(1_493_617);
+    expect(byBuyer['SDMG'].usd).toBe(11_498);
+    expect(byBuyer['INTER OCEAN'].usd).toBe(1_630_764);
+    // 바이어 합이 표 하단 합계와 맞는다
+    const sum = last.receivables.buyers.reduce((acc, b) => acc + (b.cfa ?? 0), 0);
+    expect(sum).toBe(last.receivables.totalCfa);
   });
 
   it('주차가 보고일 오름차순으로 정렬돼 있다', () => {
@@ -104,18 +154,43 @@ describe('파노피 데이터 인테이크', () => {
 });
 
 describe('PFC 수요독점 판정', () => {
-  it('가격 변동 횟수가 주간동향 실측과 일치한다', () => {
-    const changes = (key: 'pfcTema') => {
+  it('가격 변동 횟수가 «측정 창» 안의 주간동향과 일치한다', () => {
+    /* priceChangeCount 는 전 주차가 아니라 프로필에 박힌 고정 창(2025-12-23~2026-08-11,
+     * 31주)의 실측이다. 전 계열로 세면 새 주가 들어올 때마다 어긋난다 -
+     * 2026-09-08 에 PFC 가 $1,600 → $1,900 으로 움직여 실제로 3 vs 4 로 깨졌다. */
+    const inWindow = weeks.filter((w) => w.reportDate <= priceWindow.end);
+    expect(priceWindow.end).toBe(pfc.measured.currentPrices.asOf);
+    expect(priceWindow.weekCount).toBe(inWindow.length);
+
+    const changes = (key: 'pfcTema' | 'cosmoTema' | 'scodiAbidjan') => {
       let count = 0;
       let prev: number | null = null;
-      for (const w of weeklyRaw.weeks) {
+      for (const w of inWindow) {
         const v = w.prices[key];
         if (v !== null && prev !== null && v !== prev) count += 1;
         if (v !== null) prev = v;
       }
       return count;
     };
-    expect(pfc.measured.priceChangeCount.PFC).toBe(changes('pfcTema'));
+    expect(priceWindow.changes.PFC).toBe(changes('pfcTema'));
+    expect(priceWindow.changes.코스모).toBe(changes('cosmoTema'));
+    expect(priceWindow.changes.SCODI).toBe(changes('scodiAbidjan'));
+
+    /* 손으로 적은 프로필 값은 복원 전(31주) 숫자다. PFC·코스모는 복원 3주가 값을
+     * 바꾸지 않아 그대로 맞지만 SCODI 는 23 → 26 으로 3회 어긋난다.
+     * 그래서 화면은 프로필이 아니라 위 파생 카운트를 쓴다. */
+    expect(priceWindow.weekCount).toBeGreaterThan(pfc.measured.priceChangeCount.weeks);
+    expect(priceWindow.changes.PFC).toBe(pfc.measured.priceChangeCount.PFC);
+    expect(priceWindow.changes.SCODI).not.toBe(pfc.measured.priceChangeCount.SCODI);
+
+    // 창 밖에서 PFC 가 다시 움직였다면 화면이 그 사실을 말해야 한다
+    const after = weeks.filter((w) => w.reportDate > priceWindow.end);
+    const moved = after.some((w) => w.prices.pfcTema !== null
+      && w.prices.pfcTema !== pfc.measured.currentPrices.PFC);
+    if (moved) {
+      const markup = renderToStaticMarkup(React.createElement(PriceTab));
+      expect(markup).toContain('측정 창 밖');
+    }
   });
 
   it('갭이 벌어진 구간의 PFC 물량이 좁은 구간보다 많다 - 수요독점 판별식', () => {

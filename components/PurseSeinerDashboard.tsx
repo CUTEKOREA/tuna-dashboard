@@ -19,6 +19,9 @@ import {
 import TelemetryBadge from './TelemetryBadge';
 import FleetRegistryExplorer from './FleetRegistryExplorer';
 import FfaGoodStandingPanel from './FfaGoodStandingPanel';
+// 탭 라벨의 척수는 데이터에서 뽑는다. 하드코딩하면 원자료가 바뀔 때 라벨만 옛 값으로 남는다
+// (2026-09-07: 주간 820척 → 월간 811척 으로 바뀌었는데 라벨이 820 을 계속 말했다).
+import { ffaSummary } from '@/lib/data/ffa-vrst';
 import HeroZone from './v2/HeroZone';
 
 /* ───────── 데이터 기준일 (data/purseSeinerData.ts 최종 검증일) ───────── */
@@ -849,7 +852,7 @@ export default function PurseSeinerDashboard({ heroOnly = false }: { heroOnly?: 
           {tabButton('tuna', '참치 등록부 (5개 기구 · 전 해역)')}
           {tabButton('squid', '오징어 등록부 (남태평양+북태평양)')}
           {tabButton('kofa', '한국 원양선단 (협회 연보 2024)')}
-          {tabButton('ffa', 'FFA 조업허가·위치보고 (820척)')}
+          {tabButton('ffa', `FFA 조업허가·위치보고 (${ffaSummary.총척수.toLocaleString('ko-KR')}척)`)}
         </div>
         {dbTab === 'ffa' ? (
           <FfaGoodStandingPanel />
@@ -873,7 +876,7 @@ export default function PurseSeinerDashboard({ heroOnly = false }: { heroOnly?: 
         {tabButton('tuna', '참치 등록부 (5개 기구 · 전 해역)')}
         {tabButton('squid', '오징어 등록부 (남태평양+북태평양)')}
         {tabButton('kofa', '한국 원양선단 (협회 연보 2024)')}
-        {tabButton('ffa', 'FFA 조업허가·위치보고 (820척)')}
+        {tabButton('ffa', `FFA 조업허가·위치보고 (${ffaSummary.총척수.toLocaleString('ko-KR')}척)`)}
       </div>
 
       {/* Section 1: KPI Cards */}
