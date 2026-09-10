@@ -9,34 +9,34 @@
    "stage": "c02",
    "sid": "s4",
    "kind": "chart",
-   "ord": 1605,
-   "caption": "진한 막대가 매출, 밝은 막대가 순이익이다(₱십억, 소수 첫째 자리에서 끊었다). 다섯 해 동안 매출은 52.2%, 순이익은 51.2% 늘었다 — 두 증가율이 거의 같다. 축은 0에서 시작하고 자르지 않았다.",
+   "ord": 1588,
+   "caption": "진한 막대가 매출, 밝은 막대가 순이익이다(₱십억, 소수 첫째 자리에서 반올림했다). 다섯 해 동안 매출은 52.2%, 순이익은 51.2% 늘어 두 증가율이 거의 같다. 축은 0에서 시작하고 자르지 않았다.",
    "alt": "",
-   "svg": "<svg viewBox=\"0 0 720 250\" role=\"img\" aria-label=\"매출과 순이익 5개년\">\n      <g font-family=\"IBM Plex Mono, monospace\" font-size=\"11\" fill=\"#5b6660\">\n        <line x1=\"52\" y1=\"200\" x2=\"700\" y2=\"200\" stroke=\"#c9d2cc\"/>\n        <line x1=\"52\" y1=\"20\" x2=\"52\" y2=\"200\" stroke=\"#c9d2cc\"/>\n        <text x=\"8\" y=\"26\">90</text><text x=\"8\" y=\"115\">45</text><text x=\"8\" y=\"204\">0</text>\n        <text x=\"14\" y=\"240\">₱십억</text>\n      </g>\n      <g>\n        <rect x=\"76\"  y=\"90\"  width=\"46\" height=\"110\" fill=\"#2f6f5e\"/><rect x=\"126\" y=\"190\" width=\"20\" height=\"10\" fill=\"#c58a2e\"/>\n        <rect x=\"204\" y=\"76\"  width=\"46\" height=\"124\" fill=\"#2f6f5e\"/><rect x=\"254\" y=\"189\" width=\"20\" height=\"11\" fill=\"#c58a2e\"/>\n        <rect x=\"332\" y=\"66\"  width=\"46\" height=\"134\" fill=\"#2f6f5e\"/><rect x=\"382\" y=\"188\" width=\"20\" height=\"12\" fill=\"#c58a2e\"/>\n        <rect x=\"460\" y=\"49\"  width=\"46\" height=\"151\" fill=\"#2f6f5e\"/><rect x=\"510\" y=\"186\" width=\"20\" height=\"14\" fill=\"#c58a2e\"/>\n        <rect x=\"588\" y=\"33\"  width=\"46\" height=\"167\" fill=\"#2f6f5e\"/><rect x=\"638\" y=\"185\" width=\"20\" height=\"15\" fill=\"#c58a2e\"/>\n      </g>\n      <g font-family=\"IBM Plex Mono, monospace\" font-size=\"11\" fill=\"#38403b\" text-anchor=\"middle\">\n        <text x=\"110\" y=\"218\">2021</text><text x=\"238\" y=\"218\">2022</text><text x=\"366\" y=\"218\">2023</text>\n        <text x=\"494\" y=\"218\">2024</text><text x=\"622\" y=\"218\">2025</text>\n      </g>\n      <g font-family=\"IBM Plex Mono, monospace\" font-size=\"10\" fill=\"#2f6f5e\" text-anchor=\"middle\">\n        <text x=\"99\" y=\"84\">54.7</text><text x=\"227\" y=\"70\">62.3</text><text x=\"355\" y=\"60\">67.1</text>\n        <text x=\"483\" y=\"43\">75.5</text><text x=\"611\" y=\"27\">83.3</text>\n      </g>\n      <g font-family=\"IBM Plex Mono, monospace\" font-size=\"10\" fill=\"#8a6a20\" text-anchor=\"middle\">\n        <text x=\"136\" y=\"184\">4.7</text><text x=\"264\" y=\"183\">5.0</text><text x=\"392\" y=\"182\">5.6</text>\n        <text x=\"520\" y=\"180\">6.3</text><text x=\"648\" y=\"179\">7.1</text>\n      </g>\n    </svg>"
+   "svg": "<svg viewBox=\"0 0 720 250\" role=\"img\" aria-label=\"매출과 순이익 5개년\">\n      <g font-family=\"IBM Plex Mono, monospace\" font-size=\"11\" fill=\"#5b6660\">\n        <line x1=\"52\" y1=\"200\" x2=\"700\" y2=\"200\" stroke=\"#c9d2cc\"/>\n        <line x1=\"52\" y1=\"20\" x2=\"52\" y2=\"200\" stroke=\"#c9d2cc\"/>\n        <text x=\"8\" y=\"26\">90</text><text x=\"8\" y=\"115\">45</text><text x=\"8\" y=\"204\">0</text>\n        <text x=\"14\" y=\"240\">₱십억</text>\n      </g>\n      <g>\n        <rect x=\"77\" y=\"90\" width=\"30\" height=\"110\" fill=\"#2f6f5e\"/><rect x=\"113\" y=\"190\" width=\"30\" height=\"10\" fill=\"#c58a2e\"/>\n        <rect x=\"205\" y=\"76\" width=\"30\" height=\"124\" fill=\"#2f6f5e\"/><rect x=\"241\" y=\"189\" width=\"30\" height=\"11\" fill=\"#c58a2e\"/>\n        <rect x=\"333\" y=\"66\" width=\"30\" height=\"134\" fill=\"#2f6f5e\"/><rect x=\"369\" y=\"188\" width=\"30\" height=\"12\" fill=\"#c58a2e\"/>\n        <rect x=\"461\" y=\"49\" width=\"30\" height=\"151\" fill=\"#2f6f5e\"/><rect x=\"497\" y=\"186\" width=\"30\" height=\"14\" fill=\"#c58a2e\"/>\n        <rect x=\"589\" y=\"33\" width=\"30\" height=\"167\" fill=\"#2f6f5e\"/><rect x=\"625\" y=\"185\" width=\"30\" height=\"15\" fill=\"#c58a2e\"/>\n      </g>\n      <g font-family=\"IBM Plex Mono, monospace\" font-size=\"11\" fill=\"#38403b\" text-anchor=\"middle\">\n        <text x=\"110\" y=\"218\">2021</text><text x=\"238\" y=\"218\">2022</text><text x=\"366\" y=\"218\">2023</text>\n        <text x=\"494\" y=\"218\">2024</text><text x=\"622\" y=\"218\">2025</text>\n      </g>\n      <g font-family=\"IBM Plex Mono, monospace\" font-size=\"10\" fill=\"#2f6f5e\" text-anchor=\"middle\">\n        <text x=\"92\" y=\"84\">54.7</text><text x=\"220\" y=\"70\">62.3</text><text x=\"348\" y=\"60\">67.1</text>\n        <text x=\"476\" y=\"43\">75.5</text><text x=\"604\" y=\"27\">83.3</text>\n      </g>\n      <g font-family=\"IBM Plex Mono, monospace\" font-size=\"10\" fill=\"#8a6a20\" text-anchor=\"middle\">\n        <text x=\"128\" y=\"184\">4.7</text><text x=\"256\" y=\"183\">5.0</text><text x=\"384\" y=\"182\">5.6</text>\n        <text x=\"512\" y=\"180\">6.3</text><text x=\"640\" y=\"179\">7.1</text>\n      </g>\n    </svg>"
   },
   {
    "stage": "c04",
    "sid": "s10",
    "kind": "chart",
-   "ord": 885,
-   "caption": "선박등록부에 이 회사군 명의 어선은 0척이다. 그런데 매입의 59%가 선박 직구매다. 소유하지 않고 직접 산다. 상호는 이 자료에도 회사 문서에도 없다.",
+   "ord": 1022,
+   "caption": "필리핀기 선박등록부에 이 회사와 자회사 명의 어선은 0척이다. 그런데 General Tuna Corporation 매입의 59%가 선박 직구매다. 소유하지 않고 직접 산다. 상호는 이 자료에도 회사 문서에도 없다.",
    "alt": "",
-   "svg": "<svg viewBox=\"0 0 720 130\" role=\"img\" aria-label=\"2025년 자회사 참치 매입 경로\">\n      <rect x=\"40\" y=\"34\" width=\"378\" height=\"42\" fill=\"#2f6f5e\"/>\n      <rect x=\"418\" y=\"34\" width=\"115\" height=\"42\" fill=\"#7fa896\"/>\n      <rect x=\"533\" y=\"34\" width=\"147\" height=\"42\" fill=\"#c9d2cc\"/>\n      <g font-family=\"IBM Plex Mono, monospace\" font-size=\"13\" fill=\"#fff\" text-anchor=\"middle\">\n        <text x=\"229\" y=\"61\">59%</text><text x=\"475\" y=\"61\">18%</text>\n      </g>\n      <text x=\"606\" y=\"61\" font-family=\"IBM Plex Mono, monospace\" font-size=\"13\" fill=\"#38403b\" text-anchor=\"middle\">23%</text>\n      <g font-family=\"Gothic A1, sans-serif\" font-size=\"11\" fill=\"#5b6660\" text-anchor=\"middle\">\n        <text x=\"229\" y=\"98\">선박에서 직접 구매</text><text x=\"475\" y=\"98\">참여사 경유</text><text x=\"606\" y=\"98\">기타</text>\n      </g>\n      <text x=\"40\" y=\"22\" font-family=\"Gothic A1, sans-serif\" font-size=\"11\" fill=\"#5b6660\">2025년 · 분모 = 참치 환산 원어 톤</text>\n    </svg>"
+   "svg": "<svg viewBox=\"0 0 720 130\" role=\"img\" aria-label=\"2025년 General Tuna Corporation 참치 매입 경로\">\n      <rect x=\"40\" y=\"34\" width=\"378\" height=\"42\" fill=\"#2f6f5e\"/>\n      <rect x=\"418\" y=\"34\" width=\"115\" height=\"42\" fill=\"#7fa896\"/>\n      <rect x=\"533\" y=\"34\" width=\"147\" height=\"42\" fill=\"#c9d2cc\"/>\n      <g font-family=\"IBM Plex Mono, monospace\" font-size=\"13\" fill=\"#fff\" text-anchor=\"middle\">\n        <text x=\"229\" y=\"61\">59%</text><text x=\"475\" y=\"61\">18%</text>\n      </g>\n      <text x=\"606\" y=\"61\" font-family=\"IBM Plex Mono, monospace\" font-size=\"13\" fill=\"#38403b\" text-anchor=\"middle\">23%</text>\n      <g font-family=\"Gothic A1, sans-serif\" font-size=\"11\" fill=\"#5b6660\" text-anchor=\"middle\">\n        <text x=\"229\" y=\"98\">선박에서 직접 구매</text><text x=\"475\" y=\"98\">참여사 경유</text><text x=\"606\" y=\"98\">기타</text>\n      </g>\n      <text x=\"40\" y=\"22\" font-family=\"Gothic A1, sans-serif\" font-size=\"11\" fill=\"#5b6660\">2025년 · 분모 = 참치 환산 원어 톤</text>\n    </svg>"
   },
   {
    "stage": "c04",
    "sid": "s11",
    "kind": "chart",
-   "ord": 825,
-   "caption": "분모는 한국의 전세계 냉동 가다랑어 수출 중량이다. 2023년은 물량 순위 축이 금액 순위와 크게 갈려 점을 찍지 않았다 — 같은 축의 값만 잇는다.",
+   "ord": 941,
+   "caption": "분모는 한국의 전세계 냉동 가다랑어 수출 중량이다. 가로축은 연도 간격에 맞췄다. 2023년에 0.47%까지 떨어졌다가 2024년 3.39%로 되올라오고 다시 내려간다. 단조 감소가 아니다.",
    "alt": "",
-   "svg": "<svg viewBox=\"0 0 720 220\" role=\"img\" aria-label=\"한국 냉동 가다랑어 수출에서 필리핀 몫\">\n      <g font-family=\"IBM Plex Mono, monospace\" font-size=\"11\" fill=\"#5b6660\">\n        <line x1=\"60\" y1=\"180\" x2=\"690\" y2=\"180\" stroke=\"#c9d2cc\"/>\n        <line x1=\"60\" y1=\"20\" x2=\"60\" y2=\"180\" stroke=\"#c9d2cc\"/>\n        <text x=\"26\" y=\"26\">10%</text><text x=\"32\" y=\"103\">5%</text><text x=\"38\" y=\"184\">0</text>\n      </g>\n      <polyline points=\"140,25 415,126 690,154\" fill=\"none\" stroke=\"#c0392b\" stroke-width=\"2.5\"/>\n      <g fill=\"#c0392b\"><circle cx=\"140\" cy=\"25\" r=\"5\"/><circle cx=\"415\" cy=\"126\" r=\"5\"/><circle cx=\"690\" cy=\"154\" r=\"5\"/></g>\n      <g font-family=\"IBM Plex Mono, monospace\" font-size=\"12\" fill=\"#c0392b\" text-anchor=\"middle\">\n        <text x=\"140\" y=\"16\">9.70%</text><text x=\"415\" y=\"117\">3.39%</text><text x=\"660\" y=\"146\">1.62%</text>\n      </g>\n      <g font-family=\"IBM Plex Mono, monospace\" font-size=\"11\" fill=\"#38403b\" text-anchor=\"middle\">\n        <text x=\"140\" y=\"198\">2022</text><text x=\"415\" y=\"198\">2024</text><text x=\"690\" y=\"198\">2025</text>\n      </g>\n    </svg>"
+   "svg": "<svg viewBox=\"0 0 720 220\" role=\"img\" aria-label=\"한국 냉동 가다랑어 수출에서 필리핀 몫\">\n      <g font-family=\"IBM Plex Mono, monospace\" font-size=\"11\" fill=\"#5b6660\">\n        <line x1=\"60\" y1=\"180\" x2=\"690\" y2=\"180\" stroke=\"#c9d2cc\"/>\n        <line x1=\"60\" y1=\"20\" x2=\"60\" y2=\"180\" stroke=\"#c9d2cc\"/>\n        <text x=\"26\" y=\"26\">10%</text><text x=\"32\" y=\"103\">5%</text><text x=\"38\" y=\"184\">0</text>\n      </g>\n      <polyline points=\"140,25 323,172.5 507,126 690,154\" fill=\"none\" stroke=\"#c0392b\" stroke-width=\"2.5\"/>\n      <g fill=\"#c0392b\"><circle cx=\"140\" cy=\"25\" r=\"5\"/><circle cx=\"323\" cy=\"172.5\" r=\"5\"/><circle cx=\"507\" cy=\"126\" r=\"5\"/><circle cx=\"690\" cy=\"154\" r=\"5\"/></g>\n      <g font-family=\"IBM Plex Mono, monospace\" font-size=\"12\" fill=\"#c0392b\" text-anchor=\"middle\">\n        <text x=\"140\" y=\"16\">9.70%</text><text x=\"348\" y=\"152\">0.47%</text><text x=\"507\" y=\"117\">3.39%</text><text x=\"660\" y=\"146\">1.62%</text>\n      </g>\n      <g font-family=\"IBM Plex Mono, monospace\" font-size=\"11\" fill=\"#38403b\" text-anchor=\"middle\">\n        <text x=\"140\" y=\"198\">2022</text><text x=\"323\" y=\"198\">2023</text><text x=\"507\" y=\"198\">2024</text><text x=\"690\" y=\"198\">2025</text>\n      </g>\n    </svg>"
   },
   {
    "stage": "c06",
    "sid": "s14",
    "kind": "shot",
-   "ord": 477,
+   "ord": 472,
    "caption": "브랜드별 대표 규격. 라벨의 순중량은 읽히지만 물뺀중량 실측값은 이 사진들로 읽히지 않는다 — 국가표준의 60% 하한은 어디까지나 하한이고 제품별 실제 값이 아니다.",
    "alt": "",
    "src": "/data/companies/figures/centurypacific/0e5df568b56b.jpg"
@@ -45,7 +45,7 @@
    "stage": "c06",
    "sid": "s14",
    "kind": "shot",
-   "ord": 477,
+   "ord": 472,
    "caption": "브랜드별 대표 규격. 라벨의 순중량은 읽히지만 물뺀중량 실측값은 이 사진들로 읽히지 않는다 — 국가표준의 60% 하한은 어디까지나 하한이고 제품별 실제 값이 아니다.",
    "alt": "",
    "src": "/data/companies/figures/centurypacific/ce64c171e2a5.jpg"
@@ -54,7 +54,7 @@
    "stage": "c06",
    "sid": "s14",
    "kind": "shot",
-   "ord": 477,
+   "ord": 472,
    "caption": "브랜드별 대표 규격. 라벨의 순중량은 읽히지만 물뺀중량 실측값은 이 사진들로 읽히지 않는다 — 국가표준의 60% 하한은 어디까지나 하한이고 제품별 실제 값이 아니다.",
    "alt": "",
    "src": "/data/companies/figures/centurypacific/979304ad1325.jpg"
@@ -63,7 +63,7 @@
    "stage": "c06",
    "sid": "s14",
    "kind": "shot",
-   "ord": 477,
+   "ord": 472,
    "caption": "브랜드별 대표 규격. 라벨의 순중량은 읽히지만 물뺀중량 실측값은 이 사진들로 읽히지 않는다 — 국가표준의 60% 하한은 어디까지나 하한이고 제품별 실제 값이 아니다.",
    "alt": "",
    "src": "/data/companies/figures/centurypacific/c9ad4ddb352c.jpg"

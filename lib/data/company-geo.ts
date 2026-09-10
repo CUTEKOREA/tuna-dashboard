@@ -117,6 +117,9 @@ export const HQ_POINTS: GeoPoint[] = [
   { company: 'iot', numeral: 'ⅩⅩⅢ', kind: 'hq', label: 'Indian Ocean Tuna 등기·공장', country: '세이셸',
     lat: -4.62, lng: 55.45, basis: 'ⅩⅩⅢ · Fishing Port, PO Box 676, Victoria, Mahe · Thai Union Europe 60% · 정부 40%',
     note: '1987년 정부가 세운 Conserveries de l\'Océan Indien 이 전신 · 1995-11 개명' },
+  { company: 'ati', numeral: 'ⅩⅩⅣ', kind: 'hq', label: 'PT Aneka Tuna Indonesia 본사·제1공장', country: '인도네시아',
+    lat: -7.56, lng: 112.70, basis: 'ⅩⅩⅣ · Jl. Raya Surabaya–Malang Km.38, Gempol, Pasuruan · 伊藤忠 47.0% · はごろも 33.00%',
+    note: '1991-10 설립 · 1992-11 상업생산 · 유럽연합 승인 138.13.B/C(2021 목록)' },
 ];
 
 /**
@@ -249,6 +252,12 @@ export const PLANT_POINTS: GeoPoint[] = [
     lat: -4.62, lng: 55.46, sizeValue: 335, sizeUnit: 'MT/일',
     basis: 'ⅩⅩⅢ · 처리 능력 335 t/일(측정일 미기재) · 일 150만~200만 캔',
     note: '2024년 항구 양륙 매입 56,319 t — 양륙 88,569 t 의 64%. 총원료는 이보다 크다' },
+
+  // ── ⅩⅩⅣ Aneka Tuna Indonesia — 두 공장을 합친 능력만 1차 문서에 있다 ─────
+  { company: 'ati', numeral: 'ⅩⅩⅣ', kind: 'plant', label: 'Aneka Tuna 겜폴·판다안', country: '인도네시아',
+    lat: -7.62, lng: 112.69, sizeValue: 250, sizeUnit: 'MT/일',
+    basis: 'ⅩⅩⅣ · WCPFC-SC13-2017/ST-IP-05 「250 t/day with new plant」(2016~17 현장조사, 두 공장 합)',
+    note: '2025-08 주 수산청: 월 원료 1,841.6 t · 월 제품 862.6 t(수율 46.8%). 연간 총량은 확정치 없음' },
 ];
 
 /**
@@ -336,6 +345,7 @@ export const NO_FLEET: { company: string; basis: string }[] = [
   { company: 'trimarine', basis: 'ⅩⅩⅠ · WCPFC·IATTC·FFA 세 등록부의 소유자·운영자 칸 모두 0척. 배는 계열 NFD 명의다' },
   { company: 'princes', basis: 'ⅩⅩⅡ · ISSF PVR(2026-08-20)·FFA Good Standing(2026-09-02) 두 명부에 0척. 회사 ESG 보고서도 「선박을 소유하지 않는다」로 적는다' },
   { company: 'iot', basis: 'ⅩⅩⅢ · 자사 명의 어선 0척. 이 나라 국적 선망 13척은 경쟁 그룹 공급선 명부와 IMO 기준 전부 겹치지만 이 공장의 구매 문서는 없다' },
+  { company: 'ati', basis: 'ⅩⅩⅣ · WCPFC 승인선박기록(2026-08-17) 인도네시아 145척 중 소유사·주소 0척. FIP 명부 118척은 운영사 소유다' },
 ];
 
 /** 지도에 찍는 모든 점. */
