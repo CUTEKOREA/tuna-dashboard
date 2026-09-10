@@ -25,6 +25,7 @@
 | ⅩⅨ | Century Pacific Food | `centurypacific` | https://claude.ai/code/artifact/4e457f4f-93db-4dc6-985b-575b58bb2ddf |
 | ⅩⅩ | Bolton Food S.p.A. | `boltonfood` | https://claude.ai/code/artifact/d02a64ea-4f1a-458a-bd48-a963278b481a |
 | ⅩⅩⅠ | Tri Marine | `trimarine` | https://claude.ai/code/artifact/7b6cee13-bf17-47bc-bf5c-87f209b51f90 |
+| ⅩⅩⅡ | Princes Group plc | `princes` | https://claude.ai/code/artifact/f376eb72-cb7c-434a-a6a3-1a7b260f6e15 |
 
 그 밖 — 보고서 직판 랜딩 기획서 https://claude.ai/code/artifact/0f98e5a5-686b-4f47-b661-be5aa852f913
 

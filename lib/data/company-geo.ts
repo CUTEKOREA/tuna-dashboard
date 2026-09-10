@@ -111,6 +111,9 @@ export const HQ_POINTS: GeoPoint[] = [
     note: '밀라노가 아니다. 밀라노는 지주의 주소다' },
   { company: 'trimarine', numeral: 'ⅩⅩⅠ', kind: 'hq', label: 'Tri Marine 등기', country: '싱가포르',
     lat: 1.29, lng: 103.85, basis: 'ⅩⅩⅠ · TRI-MARINE INTERNATIONAL (PTE) LTD · UEN 197601267M · 1976-06-21' },
+  { company: 'princes', numeral: 'ⅩⅩⅡ', kind: 'hq', label: 'Princes Group plc 등기', country: '영국',
+    lat: 53.41, lng: -3.00, basis: 'ⅩⅩⅡ · Companies House 02328824 · Royal Liver Building, Pier Head, Liverpool L3 1NX',
+    note: '1988-12-15 설립 · 최초 상호 MITOPEN LIMITED · 2025-08-11 사모→공개 재등록' },
 ];
 
 /**
@@ -226,6 +229,17 @@ export const PLANT_POINTS: GeoPoint[] = [
     lat: 10.99, lng: -74.79, sizeValue: 800, sizeUnit: '명',
     basis: 'ⅩⅩⅠ · 종업원 800명 초과 · 생산량은 ⚠️미확인',
     note: 'Alamar 브랜드 생산' },
+
+  // ── ⅩⅩⅡ Princes 모리셔스 두 사이트 ───────────────────────
+  // 두 공장은 지분이 다른 별개 법인이다. 51% 를 두 곳에 함께 걸지 않는다.
+  { company: 'princes', numeral: 'ⅩⅩⅡ', kind: 'plant', label: 'Princes Tuna (Mauritius) · 리슈테르', country: '모리셔스',
+    lat: -20.14, lng: 57.53, sizeValue: 240, sizeUnit: 'MT/일',
+    basis: 'ⅩⅩⅡ · 계정서 자회사 주석 직접 51% · PO Box 131, New Trunk Road, Riche Terre, Port Louis',
+    note: '캔 라인 7 · 이 법인 매출 £189,970천 = Fish 부문의 54.12%' },
+  { company: 'princes', numeral: 'ⅩⅩⅡ', kind: 'plant', label: 'Indico Canning · 마린로드', country: '모리셔스',
+    lat: -20.16, lng: 57.50, sizeValue: 220, sizeUnit: 'MT/일',
+    basis: 'ⅩⅩⅡ · 계정서 자회사 주석 간접 68% · Marine Road, Port Louis',
+    note: '로인·파우치·병. 지분이 리슈테르와 다르다' },
 ];
 
 /**
@@ -311,6 +325,7 @@ export const NO_FLEET: { company: string; basis: string }[] = [
   { company: 'centurypacific', basis: 'ⅩⅨ stats · RFV 어선 0척(매입의 59%는 선박 직구매)' },
   { company: 'jais', basis: 'Ⅶ stats · 공장·선박·자회사 0개' },
   { company: 'trimarine', basis: 'ⅩⅩⅠ · WCPFC·IATTC·FFA 세 등록부의 소유자·운영자 칸 모두 0척. 배는 계열 NFD 명의다' },
+  { company: 'princes', basis: 'ⅩⅩⅡ · ISSF PVR(2026-08-20)·FFA Good Standing(2026-09-02) 두 명부에 0척. 회사 ESG 보고서도 「선박을 소유하지 않는다」로 적는다' },
 ];
 
 /** 지도에 찍는 모든 점. */
