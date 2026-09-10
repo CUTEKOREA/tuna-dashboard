@@ -243,6 +243,10 @@ import {
   trimarineMeta, trimarineStats, trimarineSourceNotes,
   purchaseVesselDropPct, solomonHeadcountDropPct, competitorShipmentSharePct,
 } from '@/lib/data/company-trimarine';
+import {
+  princesMeta, princesStats, princesSourceNotes,
+  ipoOffsetSharePct, fishRevenueSharePct, fishEbitdaSharePct, dpoMultiple, mauritiusRevenueSharePct,
+} from '@/lib/data/company-princes';
 
 /** 20편을 지구 위에 네 층으로 얹는다. three.js 가 무거워 갤러리에서만 지연 로드한다. */
 const TunaPowerGlobe = dynamic(() => import('./TunaPowerGlobe'), { ssr: false });
@@ -2520,6 +2524,7 @@ const FLAG: Record<string, Pick<CompanyCard, 'flagSrc' | 'backInk'>> = {
   한국: { flagSrc: '/flags/kr.svg', backInk: '#1b2733' },
   이탈리아: { flagSrc: '/flags/it.svg', backInk: '#f4f5f0' },
   싱가포르: { flagSrc: '/flags/sg.svg', backInk: '#1b2733' },
+  영국: { flagSrc: '/flags/gb.svg', backInk: '#f4f5f0' },
 };
 
 /** 선택 갤러리 카드 목록. 회사가 늘면 여기에 한 장씩 추가한다. */
@@ -2919,6 +2924,64 @@ const TM_SPEC: CommoditySpec = {
   ].join(' · '),
 };
 
+const PR_ACCENT = '#3b5f7a';
+
+const PR_SPEC: CommoditySpec = {
+  key: 'company-anatomy-princes',
+  title: '기업 해부: Princes',
+  subtitle:
+    '미쓰비시가 서른 해 넘게 들고 있던 영국 캔참치 회사를 넘긴 대가는 회사 계정서에 「순현금 GBP 1」로 적혀 있다. ' +
+    '그 회사는 15개월 만에 사모에서 공개로 재등록하고 런던 증시 본시장에 올랐다. ' +
+    '상장 발행 £829,839,041 가운데 절반은 시장 현금이 아니라 모회사 대여금의 주식 전환이고, ' +
+    '그 안에서 참치가 든 Fish 부문은 매출의 18.75% 를 대고 EBITDA 의 10.69% 를 낸다.',
+  accent: PR_ACCENT,
+  primaryKpi: {
+    label: '상장 발행 총액 중 모회사 대여금 상계',
+    value: ipoOffsetSharePct(),
+    decimals: 2,
+    unit: '(% · £429,699,000 · 시장 현금은 £400,140,028.50)',
+    accent: PR_ACCENT,
+  },
+  secondaryKpis: [
+    { label: '참치가 든 Fish 부문의 매출 몫', value: fishRevenueSharePct(), decimals: 2, unit: '(% · £350,992천 · 부문에는 고등어·연어도 들어간다)' },
+    { label: '같은 부문의 EBITDA 몫', value: fishEbitdaSharePct(), decimals: 2, unit: '(% · 이익 몫이 아니라 EBITDA 몫이다)' },
+    { label: '매입채무 회전일수 배수', value: dpoMultiple(), decimals: 2, unit: '(배 · 2024-03 36일 → 2025-12 93일 · 회사가 현금창출 기여로 적는다)' },
+  ],
+  stripItems: [
+    {
+      now: true,
+      eyebrow: '계정서 주석 1',
+      title: '지분 대가는 1파운드다',
+      body: '매수인이 대(對)미쓰비시 차입 상환 재원을 댔다. 계정서가 적는 조달은 모회사 대여 €200m 과 은행단 €300m 이다',
+    },
+    {
+      eyebrow: '등기',
+      title: '하루에 상호가 두 번 바뀌었다',
+      body: '2025-08-11 사모→공개 재등록. 같은 날 PRINCES LIMITED → PRINCES GROUP LIMITED → PRINCES GROUP PLC',
+    },
+    {
+      eyebrow: '공장',
+      title: '두 공장은 다른 법인이다',
+      body: `리슈테르는 직접 ${princesStats.PTM_지분_퍼센트}%, 마린로드는 간접 ${princesStats.indico_지분_퍼센트}%. 모리셔스 법인 하나가 Fish 매출의 ${mauritiusRevenueSharePct()}% 를 낸다`,
+    },
+    {
+      eyebrow: '인증',
+      title: '100%는 브랜드에만 걸린다',
+      body: `자체상표는 범위 밖이고, 회사 신고로 전 참치 조달 기준 MSC 인증은 ${princesStats.조달_MSC인증_퍼센트}% 다`,
+    },
+  ],
+  briefing: proseBriefing('princes'),
+  narratives: inlineReport('princes', proseStages('princes')),
+  chartSlots: {},
+  continuous: true,
+  sourceNotes: princesSourceNotes,
+  sourceMeta: [
+    `${princesMeta.회사} · ${princesMeta.국가} · ${princesMeta.업종}`,
+    `출처 ${princesMeta.출처}`,
+    `조사 ${princesMeta.조사일}`,
+  ].join(' · '),
+};
+
 export const COMPANY_CARDS: CompanyCard[] = [
   {
     key: 'frinsa',
@@ -3193,6 +3256,19 @@ export const COMPANY_CARDS: CompanyCard[] = [
       { label: '연방법원', value: `${trimarineStats.연방법원_사건} 건` },
     ],
   },
+  {
+    key: 'princes',
+    numeral: 'ⅩⅩⅡ',
+    name: 'Princes Group plc',
+    country: '영국 · 리버풀',
+    tagline: '지분 대가는 1파운드였다. 15개월 뒤 런던 증시에 올랐고, 참치는 매출의 18.75%다.',
+    ...FLAG.영국,
+    stats: [
+      { label: 'Fish 부문 매출', value: `£${(princesStats.fish_매출_천파운드 / 1000).toFixed(0)}백만` },
+      { label: '매입채무 회전일수', value: `${princesStats.DPO_2025_12_일}일` },
+      { label: '자사 선박', value: `${princesStats.자사선박_척} 척` },
+    ],
+  },
 
 ];
 
@@ -3257,6 +3333,7 @@ export default function CompanyAnatomyDashboard({
     centurypacific: CP_SPEC,
     boltonfood: BF_SPEC,
     trimarine: TM_SPEC,
+    princes: PR_SPEC,
   };
   const spec = SPECS[selected] ?? SPEC;
 

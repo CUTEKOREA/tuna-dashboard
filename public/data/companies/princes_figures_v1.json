@@ -1,0 +1,72 @@
+{
+ "_meta": {
+  "출처": "docs/evidence/company-princes-2026-09/보고서.html",
+  "생성": "python3 scripts/build_report_figures.py",
+  "설명": "보고서의 팩샷과 차트. 이미지는 public 아래 정적 파일이고 여기에는 URL 만 담는다."
+ },
+ "figures": [
+  {
+   "stage": "c02",
+   "sid": "s4",
+   "kind": "chart",
+   "ord": 3507,
+   "caption": "다섯 부문의 몫을 더하면 100%다. Fish 는 두 번째로 큰 칸이다.",
+   "alt": "",
+   "svg": "<svg viewBox=\"0 0 680 250\" xmlns=\"http://www.w3.org/2000/svg\" role=\"img\" aria-label=\"부문별 매출 몫 · FY2025 · 그룹 £1,871,531천 = 100%\"><text x=\"236\" y=\"14\" font-size=\"12.5\" fill=\"#5a6072\">부문별 매출 몫 · FY2025 · 그룹 £1,871,531천 = 100%</text><text x=\"226\" y=\"38\" text-anchor=\"end\" font-size=\"13\" fill=\"#3d4351\">Foods 623,181</text><rect x=\"236\" y=\"24\" width=\"386.0\" height=\"21\" fill=\"#4d7f8d\"/><text x=\"630.0\" y=\"40\" font-size=\"13.5\" font-weight=\"700\" fill=\"#4d7f8d\">33.3%</text><text x=\"226\" y=\"78\" text-anchor=\"end\" font-size=\"13\" fill=\"#3d4351\">Fish 350,992</text><rect x=\"236\" y=\"64\" width=\"217.3\" height=\"21\" fill=\"#3b5f7a\"/><text x=\"461.3\" y=\"80\" font-size=\"13.5\" font-weight=\"700\" fill=\"#3b5f7a\">18.75%</text><text x=\"226\" y=\"118\" text-anchor=\"end\" font-size=\"13\" fill=\"#3d4351\">Italian 309,844</text><rect x=\"236\" y=\"104\" width=\"191.8\" height=\"21\" fill=\"#8a9aa6\"/><text x=\"435.8\" y=\"120\" font-size=\"13.5\" font-weight=\"700\" fill=\"#8a9aa6\">16.56%</text><text x=\"226\" y=\"158\" text-anchor=\"end\" font-size=\"13\" fill=\"#3d4351\">Drinks 306,019</text><rect x=\"236\" y=\"144\" width=\"189.5\" height=\"21\" fill=\"#8a9aa6\"/><text x=\"433.5\" y=\"160\" font-size=\"13.5\" font-weight=\"700\" fill=\"#8a9aa6\">16.35%</text><text x=\"226\" y=\"198\" text-anchor=\"end\" font-size=\"13\" fill=\"#3d4351\">Oils 281,495</text><rect x=\"236\" y=\"184\" width=\"174.3\" height=\"21\" fill=\"#8a9aa6\"/><text x=\"418.3\" y=\"200\" font-size=\"13.5\" font-weight=\"700\" fill=\"#8a9aa6\">15.04%</text><line x1=\"236\" y1=\"244\" x2=\"622\" y2=\"244\" stroke=\"#c9cdd6\"/></svg>"
+  },
+  {
+   "stage": "c02",
+   "sid": "s4",
+   "kind": "chart",
+   "ord": 5136,
+   "caption": "같은 다섯 부문을 EBITDA 로 다시 세우면 Fish 는 두 번째에서 네 번째로 내려간다. Other 2,296(1.59%)은 이 그림에서 뺐다.",
+   "alt": "",
+   "svg": "<svg viewBox=\"0 0 680 250\" xmlns=\"http://www.w3.org/2000/svg\" role=\"img\" aria-label=\"부문별 EBITDA 몫 · FY2025 · 그룹 £144,016천 = 100%\"><text x=\"236\" y=\"14\" font-size=\"12.5\" fill=\"#5a6072\">부문별 EBITDA 몫 · FY2025 · 그룹 £144,016천 = 100%</text><text x=\"226\" y=\"38\" text-anchor=\"end\" font-size=\"13\" fill=\"#3d4351\">Foods 69,396</text><rect x=\"236\" y=\"24\" width=\"386.0\" height=\"21\" fill=\"#4d7f8d\"/><text x=\"630.0\" y=\"40\" font-size=\"13.5\" font-weight=\"700\" fill=\"#4d7f8d\">48.19%</text><text x=\"226\" y=\"78\" text-anchor=\"end\" font-size=\"13\" fill=\"#3d4351\">Italian 30,370</text><rect x=\"236\" y=\"64\" width=\"168.9\" height=\"21\" fill=\"#8a9aa6\"/><text x=\"412.9\" y=\"80\" font-size=\"13.5\" font-weight=\"700\" fill=\"#8a9aa6\">21.09%</text><text x=\"226\" y=\"118\" text-anchor=\"end\" font-size=\"13\" fill=\"#3d4351\">Drinks 15,759</text><rect x=\"236\" y=\"104\" width=\"87.6\" height=\"21\" fill=\"#8a9aa6\"/><text x=\"331.6\" y=\"120\" font-size=\"13.5\" font-weight=\"700\" fill=\"#8a9aa6\">10.94%</text><text x=\"226\" y=\"158\" text-anchor=\"end\" font-size=\"13\" fill=\"#3d4351\">Fish 15,390</text><rect x=\"236\" y=\"144\" width=\"85.6\" height=\"21\" fill=\"#3b5f7a\"/><text x=\"329.6\" y=\"160\" font-size=\"13.5\" font-weight=\"700\" fill=\"#3b5f7a\">10.69%</text><text x=\"226\" y=\"198\" text-anchor=\"end\" font-size=\"13\" fill=\"#3d4351\">Oils 10,805</text><rect x=\"236\" y=\"184\" width=\"60.1\" height=\"21\" fill=\"#8a9aa6\"/><text x=\"304.1\" y=\"200\" font-size=\"13.5\" font-weight=\"700\" fill=\"#8a9aa6\">7.5%</text><line x1=\"236\" y1=\"244\" x2=\"622\" y2=\"244\" stroke=\"#c9cdd6\"/></svg>"
+  },
+  {
+   "stage": "c02",
+   "sid": "s6",
+   "kind": "chart",
+   "ord": 1189,
+   "caption": "회사가 계정서에 적은 세 시점이다. 2024년 3월은 미쓰비시 소유 아래 마지막 결산이다.",
+   "alt": "",
+   "svg": "<svg viewBox=\"0 0 680 170\" xmlns=\"http://www.w3.org/2000/svg\" role=\"img\" aria-label=\"매입채무 회전일수 · 소유주 교체 전후\"><text x=\"236\" y=\"14\" font-size=\"12.5\" fill=\"#5a6072\">매입채무 회전일수 · 소유주 교체 전후</text><text x=\"226\" y=\"38\" text-anchor=\"end\" font-size=\"13\" fill=\"#3d4351\">2024-03</text><rect x=\"236\" y=\"24\" width=\"149.4\" height=\"21\" fill=\"#8a9aa6\"/><text x=\"393.4\" y=\"40\" font-size=\"13.5\" font-weight=\"700\" fill=\"#8a9aa6\">36일</text><text x=\"226\" y=\"78\" text-anchor=\"end\" font-size=\"13\" fill=\"#3d4351\">2024-12</text><rect x=\"236\" y=\"64\" width=\"224.1\" height=\"21\" fill=\"#4d7f8d\"/><text x=\"468.1\" y=\"80\" font-size=\"13.5\" font-weight=\"700\" fill=\"#4d7f8d\">54일</text><text x=\"226\" y=\"118\" text-anchor=\"end\" font-size=\"13\" fill=\"#3d4351\">2025-12</text><rect x=\"236\" y=\"104\" width=\"386.0\" height=\"21\" fill=\"#c2703a\"/><text x=\"630.0\" y=\"120\" font-size=\"13.5\" font-weight=\"700\" fill=\"#c2703a\">93일</text><line x1=\"236\" y1=\"164\" x2=\"622\" y2=\"164\" stroke=\"#c9cdd6\"/></svg>"
+  },
+  {
+   "stage": "c04",
+   "sid": "s11",
+   "kind": "shot",
+   "ord": 237,
+   "caption": "4캔 묶음 겉포장. 인증 로고와 재활용 표시가 같은 면에 있다. 어종은 이 면에 없다.",
+   "alt": "Princes Tuna Chunks in Spring Water 4팩 겉포장",
+   "src": "/data/companies/figures/princes/af396d2247ca.jpg"
+  },
+  {
+   "stage": "c04",
+   "sid": "s11",
+   "kind": "shot",
+   "ord": 31183,
+   "caption": "물을 따로 따르지 않는 스테이크 캔. 이 포맷에는 물뺀중량 표기가 없다.",
+   "alt": "Princes Drained Tuna Steak 캔",
+   "src": "/data/companies/figures/princes/b096e4f5b66e.jpg"
+  },
+  {
+   "stage": "c04",
+   "sid": "s11",
+   "kind": "shot",
+   "ord": 60159,
+   "caption": "단캔 145g. 같은 브랜드에서 kg 단가가 가장 비싼 규격이다.",
+   "alt": "Princes Tuna Chunks in Brine 145g",
+   "src": "/data/companies/figures/princes/e5bb4d7f2b70.jpg"
+  },
+  {
+   "stage": "c04",
+   "sid": "s11",
+   "kind": "shot",
+   "ord": 89936,
+   "caption": "해바라기유 침지. 같은 규격에서 담금액만 다르고 값은 같다.",
+   "alt": "Princes Tuna Chunks in Sunflower Oil",
+   "src": "/data/companies/figures/princes/59d4f41c53bf.jpg"
+  }
+ ]
+}
