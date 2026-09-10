@@ -251,6 +251,10 @@ import {
   iotMeta, iotStats, iotSourceNotes,
   cannedShareOfExportsPct, euShareOfCannedPct, landingShareOfPortPct, impossibleYieldPct, landedSharePct, domesticFlagShareSafe,
 } from '@/lib/data/company-iot';
+import {
+  atiMeta, atiStats, atiSourceNotes,
+  monthlyYieldPct, japanImportShareIdnPct, equityIncomeChangePct, koreaSkjShareToIdnPct, mscShiftPp,
+} from '@/lib/data/company-ati';
 
 /** 20편을 지구 위에 네 층으로 얹는다. three.js 가 무거워 갤러리에서만 지연 로드한다. */
 const TunaPowerGlobe = dynamic(() => import('./TunaPowerGlobe'), { ssr: false });
@@ -2530,6 +2534,7 @@ const FLAG: Record<string, Pick<CompanyCard, 'flagSrc' | 'backInk'>> = {
   싱가포르: { flagSrc: '/flags/sg.svg', backInk: '#1b2733' },
   영국: { flagSrc: '/flags/gb.svg', backInk: '#f4f5f0' },
   세이셸: { flagSrc: '/flags/sc.svg', backInk: '#f4f5f0' },
+  인도네시아: { flagSrc: '/flags/id.svg', backInk: '#1b2733' },
 };
 
 /** 선택 갤러리 카드 목록. 회사가 늘면 여기에 한 장씩 추가한다. */
@@ -3044,6 +3049,63 @@ const IOT_SPEC: CommoditySpec = {
   ].join(' · '),
 };
 
+const ATI_ACCENT = '#8a3b2e';
+
+const ATI_SPEC: CommoditySpec = {
+  key: 'company-anatomy-ati',
+  title: '기업 해부: Aneka Tuna Indonesia',
+  subtitle:
+    '伊藤忠과 はごろもフーズ가 세운 인도네시아 동자바의 캔참치 공장이다. 일본 매대의 シーチキン 일부가 여기서 닫힌다. ' +
+    '국제수산물지속가능재단의 2025년 활동분 감사에서 참여사 스물네 곳 가운데 Major 부적합(제품 표시)을 받은 곳은 이 회사 하나이고, 같은 조치가 2024년분에서도 Major였다. ' +
+    '같은 재단 조달표에서 선박 직접 구매 0%, 어느 범주에도 들지 않는 원료 89%로 직전 편의 영국 회사와 반대쪽 끝에 선다.',
+  accent: ATI_ACCENT,
+  primaryKpi: {
+    label: '일본 조제참치(HS 1604.14) 수입액 중 인도네시아산',
+    value: japanImportShareIdnPct(),
+    decimals: 1,
+    unit: '(% · 2025년 재무성 확정치 · 태국 60.6% 다음 2위 · 나라 몫이지 이 회사 몫이 아니다)',
+    accent: ATI_ACCENT,
+  },
+  secondaryKpis: [
+    { label: 'MSC 인증 어업 구매 — 2024 → 2025', value: mscShiftPp(), decimals: 0, unit: '(%p · 9% → 7% · 목표는 매년 +1%였다)' },
+    { label: 'はごろも 연결의 지분법 이익 증감', value: equityIncomeChangePct(), decimals: 1, unit: '(% · 제96기 146,365천엔 → 제97기 85,598천엔 · 매입은 +4.2%)' },
+    { label: '월 원료 대비 월 제품', value: monthlyYieldPct(), decimals: 1, unit: '(% · 2025-08 주 수산청 · 공장 구분 없음)' },
+  ],
+  stripItems: [
+    {
+      now: true,
+      eyebrow: '재단 감사',
+      title: '제품 표시 Major, 24사 중 하나',
+      body: '보존조치 2.3 — 어종과 어획 대양 표시. 2024·2025년 활동분 연속 Major, 대상 브랜드 Sun Bell·Hagoromo, 2026-06-11 기준 미시정',
+    },
+    {
+      eyebrow: '관세',
+      title: '9.6%에서가 아니라 5%에서 0',
+      body: '2026-08-01 일본–인도네시아 협정 개정 발효. 개정 직전 최저는 아세안 협정 5%. 두 세번에는 체장 30 cm 증명 조건',
+    },
+    {
+      eyebrow: '선단',
+      title: '등록부 0척, 사업 명부 118척',
+      body: `WCPFC 등록부 인도네시아 ${atiStats.WCPFC_인니_척}척 중 자사 ${atiStats.자사선박_척}척. FIP 명부 ${atiStats.FIP_명부_척}척은 운영사 소유다`,
+    },
+    {
+      eyebrow: '한국',
+      title: '우리 가다랑어의 행선지로는 작다',
+      body: `한국 냉동 가다랑어 수출 중 인도네시아 행 ${koreaSkjShareToIdnPct()}% (2024, ${atiStats.한국_0303_43_대인니_톤} t). 최대 행선지는 태국 61%`,
+    },
+  ],
+  briefing: proseBriefing('ati'),
+  narratives: inlineReport('ati', proseStages('ati')),
+  chartSlots: {},
+  continuous: true,
+  sourceNotes: atiSourceNotes,
+  sourceMeta: [
+    `${atiMeta.회사} · ${atiMeta.국가} · ${atiMeta.업종}`,
+    `출처 ${atiMeta.출처}`,
+    `조사 ${atiMeta.조사일}`,
+  ].join(' · '),
+};
+
 export const COMPANY_CARDS: CompanyCard[] = [
   {
     key: 'frinsa',
@@ -3344,6 +3406,19 @@ export const COMPANY_CARDS: CompanyCard[] = [
       { label: '자사 선박', value: `${iotStats.자사선박_척} 척` },
     ],
   },
+  {
+    key: 'ati',
+    numeral: 'ⅩⅩⅣ',
+    name: 'Aneka Tuna Indonesia',
+    country: '인도네시아 · 동자바 파수루안',
+    tagline: '같은 재단의 같은 표에서 반대쪽 끝에 있다. 제품 표시 Major, 24사 중 이 회사뿐이다.',
+    ...FLAG.인도네시아,
+    stats: [
+      { label: '일본 조제참치 수입 중 인니', value: `${japanImportShareIdnPct()}%` },
+      { label: '선박 직접 구매', value: `${atiStats.선박직접_pct}%` },
+      { label: '재단 Major', value: `${atiStats.ISSF_Major_회사} / ${atiStats.ISSF_참여사}` },
+    ],
+  },
 
 ];
 
@@ -3410,6 +3485,7 @@ export default function CompanyAnatomyDashboard({
     trimarine: TM_SPEC,
     princes: PR_SPEC,
     iot: IOT_SPEC,
+    ati: ATI_SPEC,
   };
   const spec = SPECS[selected] ?? SPEC;
 
