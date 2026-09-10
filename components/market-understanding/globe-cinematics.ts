@@ -63,44 +63,6 @@ function makeStarfield(count = 2600): THREE.Points {
   return p;
 }
 
-/* ── 대기 림 ─────────────────────────────────────────────────────── */
-
-const RIM_VERT = `
-varying vec3 vN; varying vec3 vP;
-void main() {
-  vN = normalize(normalMatrix * normal);
-  vec4 mv = modelViewMatrix * vec4(position, 1.0);
-  vP = mv.xyz;
-  gl_Position = projectionMatrix * mv;
-}`;
-
-const RIM_FRAG = `
-uniform vec3 uColor; uniform float uPower; uniform float uGain;
-varying vec3 vN; varying vec3 vP;
-void main() {
-  float f = pow(1.0 - abs(dot(normalize(vN), normalize(-vP))), uPower);
-  gl_FragColor = vec4(uColor, clamp(f * uGain, 0.0, 1.0));
-}`;
-
-function makeRim(color: THREE.Color): THREE.Mesh {
-  const mat = new THREE.ShaderMaterial({
-    vertexShader: RIM_VERT,
-    fragmentShader: RIM_FRAG,
-    uniforms: {
-      uColor: { value: color.clone() },
-      uPower: { value: 4.6 },
-      uGain: { value: 0.40 },
-    },
-    side: THREE.BackSide,
-    blending: THREE.AdditiveBlending,
-    transparent: true,
-    depthWrite: false,
-  });
-  const m = new THREE.Mesh(new THREE.SphereGeometry(R * 1.035, 64, 48), mat);
-  m.renderOrder = 1;
-  return m;
-}
-
 /* ── 설치 ───────────────────────────────────────────────────────── */
 
 /**
@@ -147,14 +109,6 @@ export function installCinematics(globe: any, accentHex: string): Cinematics | n
     scene.add(stars);
   }
 
-  /* 림 */
-  let rim = scene.getObjectByName('tuna-rim') as THREE.Mesh | undefined;
-  if (!rim) {
-    rim = makeRim(accent);
-    rim.name = 'tuna-rim';
-    scene.add(rim);
-  }
-
   /* 빛 — 기본 조명은 정면이라 평평하다. 키를 옆으로 밀고 반대편에 림을 둔다. */
   const lights: THREE.Light[] = globe.lights?.() ?? [];
   const dir = lights.find((l) => (l as any).isDirectionalLight) as THREE.DirectionalLight | undefined;
@@ -192,8 +146,6 @@ export function installCinematics(globe: any, accentHex: string): Cinematics | n
   return {
     setAccent(hex: string) {
       const c = new THREE.Color(hex);
-      const rm = rim!.material as THREE.ShaderMaterial;
-      rm.uniforms.uColor.value.copy(c);
       rimLight!.color.copy(c);
       if (surface) {
         surface.specular.copy(c).multiplyScalar(0.2);
@@ -213,11 +165,9 @@ export function installCinematics(globe: any, accentHex: string): Cinematics | n
       }
       // 별이 지구보다 훨씬 느리게 돈다 — 시차가 있어야 깊이로 읽힌다.
       stars!.rotation.y += dt * 0.0045;
-      const rm = rim!.material as THREE.ShaderMaterial;
-      rm.uniforms.uGain.value = 0.38 + Math.sin(t * 0.55) * 0.06;
     },
     dispose() {
-      for (const name of ['tuna-stars', 'tuna-rim', 'tuna-rimlight']) {
+      for (const name of ['tuna-stars', 'tuna-rimlight']) {
         const o = scene.getObjectByName(name);
         if (!o) continue;
         scene.remove(o);
