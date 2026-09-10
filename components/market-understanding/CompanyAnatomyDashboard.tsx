@@ -3292,7 +3292,7 @@ export default function CompanyAnatomyDashboard({
           icon={Globe2}
           iconColor="#4FB0A5"
           pillar="S2"
-          cardDesc="스물한 편이 확정한 본사·생산 거점·지분·공급·명단·무역을 지구 위 네 층으로 나눠 얹는다"
+          cardDesc="스물두 편이 확정한 본사·생산 거점·지분·공급·명단·무역을 지구 위 네 층으로 나눠 얹는다"
           telemetry={{ status: 'STATIC', syncDate: '2026-09', source: '기업 해부 Ⅰ~ⅩⅩⅠ 조사노트·통합프로필' }}
           customBody={<TunaPowerGlobe />}
           takeaway={{
