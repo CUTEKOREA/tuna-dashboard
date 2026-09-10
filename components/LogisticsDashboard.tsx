@@ -17,6 +17,21 @@ import PillTabs from './v2/PillTabs';
 import styles from './LogisticsCommandCenter.module.css';
 import { logisticsWeeklyReport } from '@/lib/logistics-weekly-report';
 import { reeferWeeklyReport } from '@/lib/data/reefer-weekly';
+
+/* 운반선 카드의 주차·기간·척수·배분량은 매주 바뀐다. 손으로 적어두면 표만 갈리고
+ * 카드 설명·SIT·TAK·syncDate 가 지난 주차에 남는다 - 2026-09-10 에 표가 36주차인데
+ * 카드가 34주차(25,214.952MT·PATSORN)를 말하고 있었다. */
+const reeferMt = (row: (typeof reeferWeeklyReport.rows)[number]) =>
+  Object.entries(row.deliveries).reduce((sum, [key, value]) => (
+    key === 'OTHER' || key === 'SHIP' || value === ''   // OTHER 는 하역처가 아니라 부두다
+      ? sum : sum + Number.parseFloat(value.replaceAll(',', ''))), 0);
+const reeferWeek = reeferWeeklyReport.source.week;
+const reeferPeriod = `${reeferWeeklyReport.source.startDate}~${reeferWeeklyReport.source.endDate}`;
+const reeferVessels = reeferWeeklyReport.rows.length;
+const reeferTotalMt = reeferWeeklyReport.rows.reduce((sum, row) => sum + reeferMt(row), 0);
+const reeferTopVessel = reeferWeeklyReport.rows
+  .map((row) => ({ carrier: row.carrier, mt: reeferMt(row) }))
+  .reduce((best, row) => (row.mt > best.mt ? row : best));
 import { bangkokMeta } from '@/lib/data/bangkok-weekly';
 
 type LogisticsTab = 'operations' | 'receipts' | 'canneries' | 'vessels';
@@ -294,13 +309,13 @@ export default function LogisticsDashboard({ heroOnly = false }: { heroOnly?: bo
                   icon={Navigation}
                   iconColor="var(--color-info)"
                   pillar="S3"
-                  cardDesc="방콕권 운반선 이동 스케줄 - 34주차 주간 보고 (2026-08-21~08-27 기준)"
-                  telemetry={{ status: 'STATIC', syncDate: '2026-08-27', label: '정적' }}
+                  cardDesc={`방콕권 운반선 이동 스케줄 - ${reeferWeek}주차 주간 보고 (${reeferPeriod} 기준)`}
+                  telemetry={{ status: 'STATIC', syncDate: reeferWeeklyReport.source.endDate, label: '정적' }}
                   customBody={<ReeferMovement />}
                   takeaway={{
-                    situation: '34주차(2026-08-21~08-27) TTA 보고에는 방콕권 7척의 캔 공장별 배분 25,214.952MT가 기록됐으며, PATSORN 2,324.679MT가 8월 25일 새로 포함됐습니다.',
-                    actionPlan: 'PATSORN의 MMP·TUM·UC 배분 합계 2,324.679MT와 SAMUTSAKORN 기재를 다음 보고에서 교차 확인하고 실제 하역 진행을 추적합니다.',
-                    source: 'TTA 운반선 이동표 34주차 (2026-08-27 기준)',
+                    situation: `${reeferWeek}주차(${reeferPeriod}) TTA 보고에는 방콕권 ${reeferVessels}척의 캔 공장별 배분 ${reeferTotalMt.toLocaleString('ko-KR')}MT가 기록됐습니다. ${reeferTopVessel.carrier} ${reeferTopVessel.mt.toLocaleString('ko-KR')}MT가 최대 배분입니다.`,
+                    actionPlan: `${reeferTopVessel.carrier}의 배분 합계와 부두 기재를 다음 보고에서 교차 확인하고 실제 하역 진행을 추적합니다.`,
+                    source: `TTA 운반선 이동표 ${reeferWeek}주차 (${reeferWeeklyReport.source.endDate} 기준)`,
                   }}
                 />
               </div>

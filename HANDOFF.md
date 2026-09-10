@@ -1,3 +1,23 @@
+> ✅ **2026-09-10 — `/logistics` TTA 36주차 운반선 주간동향 반영 + 카드 서술 2주 지연 수정** [CC]:
+> - 원자료: `Reefer ship movement for week 36th.xlsx`, SHA-256 `9ffeb58f7279df8f2e03e95e197227f4d43b4ab9c8c74a45f1f3062ae9095d5f`, 14,015 bytes, `unzip -t` 무결.
+>   보고기간 2026-09-04 ~ 09-10. Drive `agri_data/01_수산물(Seafood)/tuna/…/06_TTA_태국_운반선_주간동향/2026/`.
+> - 수치: **5척 · 공장 배분 19,514 MT**. 선박별 행 합산이 원문 TOTAL 열(AI)과 5척 전부 일치.
+>   35주차 6척 → 36주차 5척(PACIFIC JOURNEY·PATSORN 빠지고 SEIN QUEEN 신규).
+> - **`deliveries.OTHER` 는 하역처가 아니라 원문 REMARK(부두)다.** 「41/ASIMAR」·「11B」처럼 숫자가 아닌 값이 온다.
+>   `sync_reefer_weekly.py` 138줄이 의도적으로 그렇게 담고(33~36주 일관), 화면도 「부두」로 렌더하며 합계에서 뺀다.
+>   합산할 때 안 빼면 NaN 이 나거나 「23」 같은 선석 번호가 하역량으로 더해진다 — 실제로 검산 첫 시도에서 NaN 이 났다.
+> - **운반선 카드 서술이 2주 뒤처져 있었다.** `LogisticsDashboard.tsx` 의 cardDesc·SIT·TAK·source·`telemetry.syncDate` 가
+>   **34주차(25,214.952MT·PATSORN·2026-08-27)** 를 손으로 박고 있어, 표는 36주차인데 카드가 34주차를 말했다.
+>   전부 `reeferWeeklyReport` 에서 파생시키고, 이 파일에 주차 수치 리터럴이 있으면 실패하는 가드를 넣었다.
+> - 테스트: 매주 바뀌는 값을 못박던 4곳(주차 문자열·총량·척수·항로 마커 수)을 파생으로 바꿨다 —
+>   `reefer-movement-render`·`logistics-command-center`·`v2-components-render`. `reefer-week35-data` 는 36주차판으로 교체.
+> - `data/reefer_week36.json` 은 gitignore 대상이라 `git add -f` 로 넣었다(C-4 게이트 통과).
+> - `npm run verify` 통과: ESLint 0 errors(기존 warnings 16) · Vitest 1427/1427 · build · bundle 33 routes.
+> - 브라우저(로컬 production): 히어로 「36주차 운반선 보고 기준 · 19,514.000 MT · 5척」, 선박·보고자료 탭에
+>   「36주차 주간 보고 (2026-09-04~2026-09-10 기준)」·「방콕권 5척의 캔 공장별 배분 19,514MT」·부두 41/ASIMAR·11B 실측.
+>   34주차 잔재(25,214.952·PATSORN·SAMUTSAKORN·2026-08-27) 0. 390px overflow 0.
+> - 상태: `data/reefer-w36` 에 로컬 반영. **프로덕션 미배포**.
+
 > ✅ **2026-09-10 — `/fleet` 260910 (목) 일일업무보고 반영** [CC]:
 > - 원자료: `해양수산본부 일일업무보고-260910 (목).docx`, SHA-256 `cc1df46821b25889af74ed60ecc4d09244f7fd8e6e7c023c794ec2e4c093836a`, 166,936 bytes, `unzip -t` 무결.
 >   보고일 2026-09-10 / 조업 기준일 2026-09-09. 153건째.

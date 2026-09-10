@@ -1,4 +1,5 @@
 import { readFileSync } from 'node:fs';
+import { reeferWeeklyReport } from '@/lib/data/reefer-weekly';
 import { join } from 'node:path';
 import React from 'react';
 import { renderToStaticMarkup } from 'react-dom/server';
@@ -50,9 +51,14 @@ describe('logistics decision workspace', () => {
     const heroMarkup = renderToStaticMarkup(React.createElement(LogisticsHero));
     const carrierMarkup = renderToStaticMarkup(React.createElement(CarrierUnloadingStatus));
 
-    expect(heroMarkup).toContain('35주차 운반선 보고 기준');
-    expect(heroMarkup).toContain('data-kpi-value="21176.679"');
-    expect(heroMarkup).toContain('data-kpi-value="6"');
+    // 주차·총량·척수는 매주 바뀐다 - 계약에서 파생시킨다
+    const { source: reeferSource, rows: reeferRows } = reeferWeeklyReport;
+    const reeferTotal = reeferRows.reduce((sum, row) => sum + Object.entries(row.deliveries)
+      .reduce((inner, [key, value]) => (key === 'OTHER' || key === 'SHIP' || value === ''
+        ? inner : inner + Number.parseFloat(value.replaceAll(',', ''))), 0), 0);
+    expect(heroMarkup).toContain(`${reeferSource.week}주차 운반선 보고 기준`);
+    expect(heroMarkup).toContain(`data-kpi-value="${reeferTotal}"`);
+    expect(heroMarkup).toContain(`data-kpi-value="${reeferRows.length}"`);
     expect(heroMarkup).toContain('입항 재확인 2척 후속 확인 완료');
     expect(heroMarkup).not.toContain('입항 상태 재확인');
     expect(carrierMarkup).toContain('입항 예정 후속 확인');

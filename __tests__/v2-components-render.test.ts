@@ -311,7 +311,7 @@ describe('Deep Sea Command V2 - Phase 2 운영 페이지', () => {
     expect(markup).not.toContain('/heroes/carrier.webp');
   });
 
-  it('물류 히어로가 35주차 6척 항로 마커와 기존 하역 SIT·TAK를 렌더한다', async () => {
+  it('물류 히어로가 최신 주차 항로 마커와 기존 하역 SIT·TAK를 렌더한다', async () => {
     const logisticsModule = await import('../components/LogisticsDashboard');
     const LogisticsHero = (logisticsModule as Record<string, unknown>).LogisticsHero;
 
@@ -325,11 +325,17 @@ describe('Deep Sea Command V2 - Phase 2 운영 페이지', () => {
     expect(markup).toContain('물류·가공');
     expect(markup).toContain('주간 하역 합계');
     expect(markup).toContain('(MT)');
-    expect(markup).toContain('35주차 운반선 보고 기준');
-    expect(markup).toContain('data-kpi-value="21176.679"');
-    expect(markup).toContain('data-kpi-value="6"');
-    expect(markup.match(/data-reefer-carrier-marker="true"/g)?.length).toBe(6);
-    expect(markup.match(/data-marker-tone="data"/g)?.length).toBe(6);
+    // 주차·총량·척수는 매주 바뀐다 - 계약에서 파생시킨다
+    const { reeferWeeklyReport } = await import('../lib/data/reefer-weekly');
+    const reeferTotal = reeferWeeklyReport.rows.reduce((sum, row) => sum + Object.entries(row.deliveries)
+      .reduce((inner, [key, value]) => (key === 'OTHER' || key === 'SHIP' || value === ''
+        ? inner : inner + Number.parseFloat(value.replaceAll(',', ''))), 0), 0);
+    expect(markup).toContain(`${reeferWeeklyReport.source.week}주차 운반선 보고 기준`);
+    expect(markup).toContain(`data-kpi-value="${reeferTotal}"`);
+    expect(markup).toContain(`data-kpi-value="${reeferWeeklyReport.rows.length}"`);
+    // 항로 마커는 그 주 운반선 수만큼 — 척수가 바뀌면 같이 움직인다
+    expect(markup.match(/data-reefer-carrier-marker="true"/g)?.length).toBe(reeferWeeklyReport.rows.length);
+    expect(markup.match(/data-marker-tone="data"/g)?.length).toBe(reeferWeeklyReport.rows.length);
     expect(markup).not.toContain('#f59e0b');
     expect(markup).toContain('입항 재확인 2척 후속 확인 완료');
     expect(markup).not.toContain('SEIN VENUS와 HENG HONG 9의 예정일이 도래했으므로 실제 입항·접안 여부를 확인합니다.');
