@@ -1,3 +1,14 @@
+> ✅ **2026-09-10 — 시장 이해 7페이지 보고서 반영 고도화 + 문어 페이지 신설** [CC 지휘 · Grok/Claude/OpenCode 작성 · Codex/Claude 검증] (브랜치 `species-upgrade-20260910`, worktree `~/tuna-dashboard-wt-species`, **미커밋·미배포**):
+> - 기준: 종별 산업 해부 보고서 + 9/1~9/10 수집분 + Grok 실시간 신호. 사실 정본 팩 7종(scratchpad `facts/*_facts.md`)을 정답지로 두고 작성자≠검증자.
+> - 참치 역할 분리(사용자 결정): 참치 산업 = 세계 밸류체인 7단계 + 가격·규제·한국의 자리 3축(18→10), 한국 산업 해부는 참치 해부가 전담. D~K 전용 수치 42개를 해부로 옮기고(기계 검사 누락 0, Codex P0 0) 산업에서 걷어냄. 위젯 JSON·큐레이션 스크립트의 빈 D~K 단계도 제거.
+> - 단계: 참치 10(분리 후) · 고등어 6→10 · 골뱅이 6→10 · 새우 7→14 · 명태 6→9 · 오징어 19(사실표 59→76) · 참치 해부 15(명부 6표) · **문어 신설 10단계**(`octopus-industry`, 옛 `/octopus` 낙지 자료 미사용).
+> - 보고서↔페이지 커버리지(`scripts/report_coverage_audit.py`, main 대비): 참치 missing 16→10 · 고등어 15→12 · 골뱅이 15→3 · 새우 16→7 · 명태 8→4. 오징어는 이 지표로 변화 없음(자카드 한계, 수치·명부 보강은 됨).
+> - 검증: 종마다 적대 리뷰(Claude·Codex) → 수정 → Codex 마감 검증. 오류 유형 대부분이 「수치는 원문에 있는데 주어·기간·단위·기준이 틀린」 것이었다.
+> - 골격: `CommodityIndustryDashboard` 연속 모드에 「맨 위로」 버튼·절 진행 표시(OpenCode) 추가. 버튼은 IntersectionObserver 가 탭 점프 때 알림을 못 받아 스크롤 리스너로 교체.
+> - 9월 수집: launchd `com.agri.monthly-refresh` 경로 수정(없는 `~/agri_pipeline/monthly_refresh.sh` → `~/my-project/agri_pipeline`), 관세청은 미등록 NEW 키 대신 등록된 COMMON 키로 전환. 재수집 전 소스 성공. 위젯 3종 재생성(worktree 안).
+> - 검사: tsc 0 · Vitest 1486/1486 · eslint 0 errors · 로컬 production 8페이지×1440/390 렌더(절=탭, 가로 넘침 0, 콘솔 오류 0, 스크롤 추적·맨 위로 정상).
+> - 남은 것: Codex 코드 리뷰 P2 2건·키 패치 P2 1건 미반영. 참치 브리핑 1건(타이유니온 21.4%)·명태 1건(러시아 1,704.7천 톤)은 본문 근거가 없어 보류.
+
 > ✅ **2026-09-10 — `/logistics` TTA 36주차 운반선 주간동향 반영 + 카드 서술 2주 지연 수정** [CC]:
 > - 원자료: `Reefer ship movement for week 36th.xlsx`, SHA-256 `9ffeb58f7279df8f2e03e95e197227f4d43b4ab9c8c74a45f1f3062ae9095d5f`, 14,015 bytes, `unzip -t` 무결.
 >   보고기간 2026-09-04 ~ 09-10. Drive `agri_data/01_수산물(Seafood)/tuna/…/06_TTA_태국_운반선_주간동향/2026/`.

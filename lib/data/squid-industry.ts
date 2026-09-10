@@ -162,6 +162,7 @@ export interface SquidTradeData {
     바스켓: string;
     제외: string;
     이중계상방지: string;
+    합산금지?: string;
     갱신방법: string;
   };
   요약: {
@@ -192,6 +193,14 @@ export interface SquidTradeData {
     수출액: number;
     수출량: number;
   } | null;
+  단월_HS6?: Array<{
+    월: string;
+    소호: string;
+    수입액_USD: number;
+    수입량_kg: number;
+    수출액_USD: number;
+    수출량_kg: number;
+  }>;
 }
 
 // ─── 어법별 선단 ────────────────────────────────────────────────────────────

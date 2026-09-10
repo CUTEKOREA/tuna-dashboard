@@ -15,6 +15,7 @@ import {
   BrandMarketTable,
 } from './CompanyResearchTables';
 import { getWhelkCompanyResearch } from '@/lib/data/valuechain-companies';
+import { WHELK_COMPANY_RESEARCH as rawWhelkResearch } from '@/lib/data/whelk-company-research';
 
 import { getWhelkIndustryData } from '@/lib/data/commodity-industry';
 import { seriesRoles } from '@/lib/data/whelk-country-series';
@@ -44,9 +45,136 @@ const KCS_SYNC = {
   status: 'STATIC' as const,
   syncDate: `${DATA.한국수입._meta.기준연도}년 확정`,
 };
-const KOSIS_SYNC = { status: 'STATIC' as const, syncDate: '2025년까지' };
+const KOSIS_SYNC = { status: 'STATIC' as const, syncDate: '2025년(연간 계열)' };
+const REPORT_SYNC = { status: 'STATIC' as const, syncDate: '보고서 2026-08-25' };
+const MMO_SYNC = { status: 'STATIC' as const, syncDate: 'MMO 2026년 7월 잠정' };
 
 const WHELK_RESEARCH = getWhelkCompanyResearch();
+
+type RosterBlock = {
+  요지: string;
+  rows: Array<{ 회사: string; 위치: string; 규모: string; 내용: string; 성격: string; 출처: string }>;
+};
+type ProductBlock = {
+  요지: string;
+  rows: Array<{ 제품: string; 제조: string; 생산량: string; 종: string; 출처: string }>;
+};
+const RESEARCH_EXT = rawWhelkResearch as typeof rawWhelkResearch & {
+  국내가공: RosterBlock;
+  수입명의: RosterBlock;
+  제품: ProductBlock;
+  위판조합: RosterBlock;
+  급식낙찰: RosterBlock;
+};
+
+function PlainFactsTable({
+  caption,
+  headers,
+  rows,
+}: {
+  caption: string;
+  headers: string[];
+  rows: string[][];
+}) {
+  return (
+    <div className={styles.factWrap}>
+      <table className={styles.factTable}>
+        <caption className={styles.factCaption}>{caption}</caption>
+        <thead>
+          <tr>
+            {headers.map((h) => (
+              <th key={h}>{h}</th>
+            ))}
+          </tr>
+        </thead>
+        <tbody>
+          {rows.map((r) => (
+            <tr key={r.join('|')}>
+              {r.map((c, i) => (
+                <td key={`${r[0]}-${i}`}>{c}</td>
+              ))}
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  );
+}
+
+function RosterTable({
+  caption,
+  rows,
+  sizeLabel,
+}: {
+  caption: string;
+  rows: RosterBlock['rows'];
+  sizeLabel: string;
+}) {
+  return (
+    <div className={styles.factWrap}>
+      <table className={styles.factTable}>
+        <caption className={styles.factCaption}>{caption}</caption>
+        <thead>
+          <tr>
+            <th>회사</th>
+            <th>위치</th>
+            <th>{sizeLabel}</th>
+          </tr>
+        </thead>
+        <tbody>
+          {rows.map((r) => (
+            <tr key={r.회사}>
+              <td>
+                {r.회사}
+                <span className={styles.factNote}>{r.내용}</span>
+              </td>
+              <td>{r.위치}</td>
+              <td>
+                {r.규모}
+                <span className={styles.factNote}>
+                  {r.성격} · {r.출처}
+                </span>
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  );
+}
+
+function ProductTable({ rows }: { rows: ProductBlock['rows'] }) {
+  return (
+    <div className={styles.factWrap}>
+      <table className={styles.factTable}>
+        <caption className={styles.factCaption}>
+          2025년 품목제조보고×생산실적 표 23. 제품명 기준 참골뱅이 0 kg. 합산하지 않는다.
+        </caption>
+        <thead>
+          <tr>
+            <th>제품</th>
+            <th>제조</th>
+            <th>생산량</th>
+            <th>종</th>
+          </tr>
+        </thead>
+        <tbody>
+          {rows.map((r) => (
+            <tr key={`${r.제조}-${r.제품}`}>
+              <td>{r.제품}</td>
+              <td>{r.제조}</td>
+              <td>{r.생산량}</td>
+              <td>
+                {r.종}
+                <span className={styles.factNote}>{r.출처}</span>
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  );
+}
 
 const SERIES_SYNC = { status: 'STATIC' as const, syncDate: '관세청 2026년 1~7월' };
 
@@ -106,6 +234,29 @@ export const WHELK_CHART_SLOTS: Record<string, ChartSlot[]> = {
       telemetry: FAO_SYNC,
       render: () => <WhelkBuccinumChart data={DATA} />,
     },
+    {
+      title: '2024 어획 상위 8국',
+      caption:
+        'FAO Capture v2026.1.0 표 3. 활어중량. 종을 적는 나라와 적지 않는 나라가 갈린다. 참골뱅이속만 세면 한국은 0 t다.',
+      telemetry: FAO_SYNC,
+      span: 'full',
+      render: () => (
+        <PlainFactsTable
+          caption="보고서 §03 표 3. 활어중량. FAO와 관세청 제품중량을 더하지 않는다."
+          headers={['순위', '국가', '어획량', '종 구성']}
+          rows={[
+            ['1', '영국', '16,511.020 t', 'B. undatum 100%'],
+            ['2', '멕시코', '14,969.655 t', '분류없음 100%'],
+            ['3', '한국', '9,669.783 t', '분류없음 100%'],
+            ['4', '프랑스', '7,698.745 t', 'B. undatum 100%'],
+            ['5', '튀르키예', '6,961.600 t', 'R. venosa 100%'],
+            ['6', '러시아', '6,233.000 t', '분류없음 66.5% · R. venosa 33.5%'],
+            ['7', '캐나다', '5,410.208 t', 'B. undatum 100%'],
+            ['8', '아일랜드', '4,590.375 t', 'B. undatum 100%'],
+          ]}
+        />
+      ),
+    },
   ],
   s03: [
     {
@@ -139,6 +290,28 @@ export const WHELK_CHART_SLOTS: Record<string, ChartSlot[]> = {
       telemetry: KCS_SYNC,
       render: () => <WhelkImportChart data={DATA} />,
     },
+    {
+      title: '세 갈래 수입액 (USD)',
+      caption:
+        '관세청 표 8. 조제 1605.59 / 냉동 0307.92 / 활·신선 0307.91. 2026년은 1~7월 누계. 연환산하지 않는다.',
+      telemetry: KCS_SYNC,
+      span: 'full',
+      render: () => (
+        <PlainFactsTable
+          caption="보고서 §05 표 8. 세 갈래를 더해 골뱅이 수입이라 부르지 않는다."
+          headers={['연도', '1605.59', '0307.92', '0307.91']}
+          rows={[
+            ['2020', '103,945,209', '14,973,155', '868,875'],
+            ['2021', '90,513,149', '34,522,599', '761,341'],
+            ['2022', '80,492,358', '53,637,372', '749,953'],
+            ['2023', '68,983,613', '63,991,504', '1,991,546'],
+            ['2024', '58,504,760', '55,642,703', '1,705,049'],
+            ['2025', '52,359,695', '86,488,498', '1,546,951'],
+            ['2026 (1~7월)', '17,880,012', '56,639,814', '864,786'],
+          ]}
+        />
+      ),
+    },
   ],
   s05: [
     {
@@ -164,6 +337,129 @@ export const WHELK_CHART_SLOTS: Record<string, ChartSlot[]> = {
       telemetry: SERIES_SYNC,
       render: () => <WhelkSeriesUnitChart />,
     },
+    {
+      title: '1605.59 세 바구니 (USD)',
+      caption:
+        '관세청 HSK8 표 10. 북해축 16055910 / 소라 16055920 / 흑해·서아프리카축 16055990. 세 바구니가 같은 해에 같은 방향으로 움직인 적이 없다. HS6 분모로 점유율을 내지 않는다.',
+      telemetry: REPORT_SYNC,
+      span: 'full',
+      render: () => (
+        <PlainFactsTable
+          caption="보고서 §06 표 10. 2026년은 1~7월 누계."
+          headers={['연도', '16055910', '16055920', '16055990']}
+          rows={[
+            ['2020', '67,616,279', '4,257,303', '32,071,627'],
+            ['2021', '60,277,049', '5,988,267', '24,247,833'],
+            ['2022', '49,589,319', '6,428,128', '24,474,911'],
+            ['2023', '36,891,883', '4,179,633', '27,912,097'],
+            ['2024', '40,064,937', '713,700', '17,726,123'],
+            ['2025', '43,195,935', '119', '9,163,641'],
+            ['2026 (1~7월)', '13,866,833', '17,727', '3,995,452'],
+          ]}
+        />
+      ),
+    },
+  ],
+  s06: [
+    {
+      title: '국내 가공 상위 업체',
+      caption: RESEARCH_EXT.국내가공.요지,
+      telemetry: REPORT_SYNC,
+      span: 'full',
+      render: () => (
+        <RosterTable
+          caption="식약처 생산실적 2025 주원료·수산물가공품. 2020년 튐은 추세선에 넣지 않는다."
+          rows={RESEARCH_EXT.국내가공.rows}
+          sizeLabel="생산량 (성격)"
+        />
+      ),
+    },
+    {
+      title: '수입 신고 명의 상위',
+      caption: RESEARCH_EXT.수입명의.요지,
+      telemetry: REPORT_SYNC,
+      span: 'full',
+      render: () => (
+        <RosterTable
+          caption="식약처 수입식품 신고 2024-08~2026-08. 건수는 물량이 아니다."
+          rows={RESEARCH_EXT.수입명의.rows}
+          sizeLabel="건수 (성격)"
+        />
+      ),
+    },
+    {
+      title: '2025 주력 제품',
+      caption: RESEARCH_EXT.제품.요지,
+      telemetry: REPORT_SYNC,
+      span: 'full',
+      render: () => <ProductTable rows={RESEARCH_EXT.제품.rows} />,
+    },
+  ],
+  s07: [
+    {
+      title: '산지 위판 상위 조합',
+      caption: RESEARCH_EXT.위판조합.요지,
+      telemetry: REPORT_SYNC,
+      span: 'full',
+      render: () => (
+        <RosterTable
+          caption="2025 산지위판 원장. 43개 이름·76개 어종코드. 계통판매와 한 선으로 잇지 않는다."
+          rows={RESEARCH_EXT.위판조합.rows}
+          sizeLabel="물량·단가"
+        />
+      ),
+    },
+    {
+      title: '급식 낙찰 명부',
+      caption: RESEARCH_EXT.급식낙찰.요지,
+      telemetry: REPORT_SYNC,
+      span: 'full',
+      render: () => (
+        <RosterTable
+          caption="나라장터 2025-07~2026-05. 낙찰금액은 부식 전체다. 예정단가와 섞지 않는다."
+          rows={RESEARCH_EXT.급식낙찰.rows}
+          sizeLabel="낙찰금액"
+        />
+      ),
+    },
+  ],
+  s08: [
+    {
+      title: '2025 생산 상위 20곳',
+      caption: RESEARCH_EXT.국내가공.요지,
+      telemetry: REPORT_SYNC,
+      span: 'full',
+      render: () => (
+        <RosterTable
+          caption="식약처 표 21. 열은 2024·2025 생산량(kg), 전년비(%), 2025 점유율(%)이다. 2020년 튐은 추세선에 넣지 않는다."
+          rows={RESEARCH_EXT.국내가공.rows}
+          sizeLabel="생산량 (성격)"
+        />
+      ),
+    },
+  ],
+  x01: [
+    {
+      title: '세번·원산지 누적 (부록 B)',
+      caption:
+        '관세청 표 25·26. 2020~2026.07 누적. 세 세번 모두 골뱅이 밖의 것을 담는다. HS6 분모로 점유율을 내지 않는다.',
+      telemetry: REPORT_SYNC,
+      span: 'full',
+      render: () => (
+        <PlainFactsTable
+          caption="보고서 부록 B. 조제 kg과 냉동 kg을 더하지 않는다."
+          headers={['세번', '금액 (USD)', '구성']}
+          rows={[
+            ['16055910 골뱅이', '311,502,235 (65.9%)', '영국 76% · 아일랜드 20% · 중국 1%'],
+            ['16055990 기타', '139,591,684 (29.5%)', '튀르키예 31% · 중국 20% · 세네갈 16%'],
+            ['16055920 소라', '21,584,877 (4.6%)', '튀르키예 34% · 멕시코 32% · 불가리아 20%'],
+            ['03079290 기타', '266,934,861 (73.0%)', '러시아 45% · 베트남 15% · 영국 9%'],
+            ['03079210 조개관자', '83,852,021 (22.9%)', '중국 63% · 일본 22%'],
+            ['03079140 재첩', '3,160,627 (37.2%)', '중국 100%'],
+          ]}
+        />
+      ),
+    },
   ],
 };
 
@@ -176,7 +472,7 @@ const SPEC: CommoditySpec = {
   key: 'whelk',
   title: '골뱅이',
   subtitle:
-    '골뱅이 산업 해부 · 한 이름에 네 개 과(科)가 섞인 품목 - 종·원물·국내 생산·교역·수입 창구 5단계와 이름 자체의 문제',
+    '골뱅이 산업 해부 · 한 이름에 다섯 속과 한 빈칸 - 종·원물·국내·교역·수입 창구·명의·위판과 이름 자체의 문제',
   accent: WHELK_ACCENT,
   primaryKpi: {
     label: '다섯 과(科) 합계 생산량',
@@ -206,6 +502,24 @@ const SPEC: CommoditySpec = {
       title: '영국 비중',
       body: `${(((UK_IMPORT?.수입액 ?? 0) / (IMPORT_TOTAL || 1)) * 100).toFixed(1)} (%)`,
     },
+    {
+      now: true,
+      eyebrow: '지금',
+      title: '고둥류 2026.07',
+      body: '1,120.32 t',
+    },
+    {
+      now: true,
+      eyebrow: '지금',
+      title: '영국 양륙 2026.07 잠정',
+      body: '1,196.46 t',
+    },
+    {
+      now: true,
+      eyebrow: '지금',
+      title: '영국산 조제 7월',
+      body: '106,820 kg',
+    },
   ],
   briefing: WHELK_BRIEFING_POINTS,
   narratives: WHELK_NARRATIVES,
@@ -216,6 +530,8 @@ const SPEC: CommoditySpec = {
     `통관 집계 · ${DATA.한국수입._meta.출처}`,
     `국내 생산 · ${DATA.한국생산._meta.출처}`,
     `갱신 ${DATA._meta.생성일}`,
+    `영국 양륙 · ${MMO_SYNC.syncDate}`,
+    '보고서 제3판 2026-08-25 · KOSIS 2026-07 · 관세청 2026-07',
   ].join(' · '),
 };
 

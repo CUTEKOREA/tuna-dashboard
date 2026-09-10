@@ -43,6 +43,16 @@ def _peru_reason(closure, research) -> str:
     )
 
 
+def _peru_reopening_reason(reopening) -> str:
+    """RM00304 재개 사유. 기간 한도는 조달가능량이 아니라 법정 한도다 — 같은 문장에 박는다."""
+    windows = " · ".join(f"{w['kind']} {w['start'][5:]}~" for w in reopening["windows"])
+    return (
+        f"RM 00304-2026 상업 조업 재개({windows}). 8/30~12/31 기간 한도 "
+        f"{reopening['period_limit_tonnes']:,}톤은 법정 한도이지 조달가능량이 아님. "
+        "7/24 중단공지의 근거 RM 000075-2026 은 폐지"
+    )
+
+
 def _state_evidence(archive_path: str, derivation: str, evidence_type: str) -> dict:
     return {
         "archive_path": archive_path,
@@ -77,6 +87,18 @@ def _sourcing_signal(document: dict, spec: WidgetSpec, built_on: date) -> dict:
         None,
     )
 
+    # RM00304(2026-08-29) 상업 재개 공지. 조업 개시일이 빌드일 이전이면 중단 상태를 뒤집는다.
+    peru_reopening = next(
+        (
+            event
+            for event in peru.get("data", [])
+            if event.get("quota_semantics") == "reopening_notice"
+            and event.get("windows")
+            and date.fromisoformat(event["windows"][0]["start"]) <= built_on
+        ),
+        None,
+    )
+
     chile_data = chile.get("data", {}) if _has_data(chile) else {}
     chile_active = bool(chile_data.get("recorded_capture_tonnes", 0) > 0)
     chile_remaining = chile_data.get("quota_minus_recorded_capture_tonnes")
@@ -105,7 +127,13 @@ def _sourcing_signal(document: dict, spec: WidgetSpec, built_on: date) -> dict:
         falkland_schedule and falkland_full_season and falkland_in_unambiguous_window
     )
 
-    peru_path = peru_closure.get("source_path") if peru_closure else peru["basis"]["archive_path"]
+    peru_path = (
+        peru_reopening.get("source_path")
+        if peru_reopening
+        else peru_closure.get("source_path")
+        if peru_closure
+        else peru["basis"]["archive_path"]
+    )
     chile_path = chile_data.get("numerator_source", chile["basis"]["archive_path"])
     falkland_path = (
         falkland_schedule.get("source_path")
@@ -136,18 +164,29 @@ def _sourcing_signal(document: dict, spec: WidgetSpec, built_on: date) -> dict:
     data = [
         {
             "origin": "페루 pota",
-            "status": "중단·제한" if peru_closure else "데이터공백",
+            "status": (
+                "조업중"
+                if peru_reopening
+                else "중단·제한" if peru_closure else "데이터공백"
+            ),
             "as_of": (
-                peru_research["date"] if peru_research
+                peru_reopening["windows"][0]["start"] if peru_reopening
+                else peru_research["date"] if peru_research
                 else peru_closure["date"] if peru_closure
                 else None
             ),
             "evidence_widget": "A_peru_pota_timeline",
-            "reason": _peru_reason(peru_closure, peru_research),
+            "reason": (
+                _peru_reopening_reason(peru_reopening)
+                if peru_reopening
+                else _peru_reason(peru_closure, peru_research)
+            ),
             "state_evidence": _state_evidence(
                 peru_path,
-                "observed_closure_notice" if peru_closure else "unsupported_notice_gap",
-                "observed_notice" if peru_closure else "data_gap",
+                "observed_reopening_notice"
+                if peru_reopening
+                else "observed_closure_notice" if peru_closure else "unsupported_notice_gap",
+                "observed_notice" if (peru_reopening or peru_closure) else "data_gap",
             ),
         },
         {
@@ -179,7 +218,7 @@ def _sourcing_signal(document: dict, spec: WidgetSpec, built_on: date) -> dict:
             "reason": (
                 "공개 어기 일정(2기: 7월 말부터 64일) 기준이며 2026 개장 공지 확인은 아님"
                 if falkland_scheduled
-                else "공개 일정 또는 full-season 전제를 현재 빌드일에 적용할 수 없음"
+                else "공개 일정 또는 전어기 전제를 현재 빌드일에 적용할 수 없음"
             ),
             "state_evidence": _state_evidence(
                 falkland_path,

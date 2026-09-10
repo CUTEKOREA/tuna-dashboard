@@ -12,12 +12,17 @@
 import React from 'react';
 
 import { getTunaAnatomyData } from '@/lib/data/commodity-industry';
+import {
+  getTunaAnatomyRoster,
+  type TunaAnatomyRosterBlock,
+} from '@/lib/data/tuna-anatomy-roster';
 import { TUNA_ANATOMY_ACCENT } from '@/lib/tuna-anatomy-chart-colors';
 import {
   TUNA_ANATOMY_BRIEFING_POINTS,
   TUNA_ANATOMY_NARRATIVES,
   TUNA_ANATOMY_SOURCE_NOTES,
 } from '@/lib/tuna-anatomy-content';
+import styles from './TunaIndustryDashboard.module.css';
 import CommodityIndustryDashboard, {
   type ChartSlot,
   type CommoditySpec,
@@ -40,6 +45,52 @@ import {
   TunaAnatomyWorldChart,
 } from './CommodityCharts';
 
+type RosterBlock = TunaAnatomyRosterBlock;
+
+const ROSTER = getTunaAnatomyRoster();
+
+function RosterTable({
+  caption,
+  rows,
+  sizeLabel,
+}: {
+  caption: string;
+  rows: RosterBlock['rows'];
+  sizeLabel: string;
+}) {
+  return (
+    <div className={styles.factWrap}>
+      <table className={styles.factTable}>
+        <caption className={styles.factCaption}>{caption}</caption>
+        <thead>
+          <tr>
+            <th>회사</th>
+            <th>위치</th>
+            <th>{sizeLabel}</th>
+          </tr>
+        </thead>
+        <tbody>
+          {rows.map((r) => (
+            <tr key={`${r.회사}-${r.위치}`}>
+              <td>
+                {r.회사}
+                {r.내용 ? <span className={styles.factNote}>{r.내용}</span> : null}
+              </td>
+              <td>{r.위치}</td>
+              <td>
+                {r.규모}
+                <span className={styles.factNote}>
+                  {r.성격} · {r.출처}
+                </span>
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  );
+}
+
 const DATA = getTunaAnatomyData();
 
 const FAO_SYNC = { status: 'STATIC' as const, syncDate: `${DATA.세계어획._meta.기준연도}년 확정` };
@@ -48,9 +99,11 @@ const KOSFA_SYNC = { status: 'STATIC' as const, syncDate: '2024·2025년 실적'
 const FLEET_SYNC = { status: 'STATIC' as const, syncDate: '2024년 말 명부' };
 const KCS_SYNC = { status: 'STATIC' as const, syncDate: '2026년 7월 누계' };
 const PNA_SYNC = { status: 'STATIC' as const, syncDate: '2025년 12월호' };
-const DART_SYNC = { status: 'STATIC' as const, syncDate: '2025년 반기보고서' };
+const DART_SYNC = { status: 'STATIC' as const, syncDate: '2026년 2분기 보도 · 2025년 반기보고서' };
 const MFDS_SYNC = { status: 'STATIC' as const, syncDate: '2025년분' };
-const PRICE_SYNC = { status: 'STATIC' as const, syncDate: '2025년 11월 (방콕) · 2026년 6월 (월보)' };
+const MFDS_2024_SYNC = { status: 'STATIC' as const, syncDate: '2024년분' };
+const PRICE_SYNC = { status: 'STATIC' as const, syncDate: '2026년 8월 (방콕 계약가) · 2026년 6월 (월보)' };
+const ROSTER_SYNC = { status: 'STATIC' as const, syncDate: '2026-09-10 명부' };
 
 const meta = DATA.세계어획._meta as Record<string, number>;
 const tradeMeta = DATA.교역._meta as Record<string, number | string>;
@@ -95,6 +148,19 @@ export const TUNA_ANATOMY_CHART_SLOTS: Record<string, ChartSlot[]> = {
       telemetry: FLEET_SYNC,
       render: () => <TunaAnatomyFleetAgeChart data={DATA} />,
     },
+    {
+      title: '원양선사 명부 (법인명·수치 성격)',
+      caption: ROSTER.원양선사.요지,
+      telemetry: ROSTER_SYNC,
+      span: 'full',
+      render: () => (
+        <RosterTable
+          caption="협회 연보 회사별 업종별 생산실적. 2024·2025톤을 병기한다. 비공시 선사는 매출이 아니라 어획 톤만 있다. 한성기업 합계는 타 업종을 포함하므로 연승 칸과 더하지 않는다."
+          rows={ROSTER.원양선사.rows}
+          sizeLabel="어획 (성격)"
+        />
+      ),
+    },
   ],
   s06: [
     {
@@ -124,6 +190,21 @@ export const TUNA_ANATOMY_CHART_SLOTS: Record<string, ChartSlot[]> = {
       render: () => <TunaAnatomyFcfChart data={DATA} />,
     },
   ],
+  s08: [
+    {
+      title: '해외 캐너리·조업 법인 명부 (법인명·수치 성격)',
+      caption: ROSTER.해외가공.요지,
+      telemetry: ROSTER_SYNC,
+      span: 'full',
+      render: () => (
+        <RosterTable
+          caption="공시 지분·자칭 규모·인증 명단을 한 표에 두되 성격을 칸에 적는다. 한국 자본이 아닌 SolTuna·Nambawan은 따로 표시한다."
+          rows={ROSTER.해외가공.rows}
+          sizeLabel="규모 (성격)"
+        />
+      ),
+    },
+  ],
   s09: [
     {
       title: '참치 캔 브랜드별 생산 2022~2025 (톤)',
@@ -131,6 +212,45 @@ export const TUNA_ANATOMY_CHART_SLOTS: Record<string, ChartSlot[]> = {
       telemetry: MFDS_SYNC,
       span: 'full',
       render: () => <TunaAnatomyCanBrandChart data={DATA} />,
+    },
+    {
+      title: '국내 캔 공장 명부 (법인명·수치 성격)',
+      caption: ROSTER.국내캔.요지,
+      telemetry: MFDS_SYNC,
+      span: 'full',
+      render: () => (
+        <RosterTable
+          caption="식약처 I0300. 신진물산은 동원 행과 사조 행을 나누고 합치지 않는다. 오뚜기에스에프 5배 증가 원인은 공표 없음."
+          rows={ROSTER.국내캔.rows}
+          sizeLabel="생산 (성격)"
+        />
+      ),
+    },
+    {
+      title: '국내 횟감 공장 명부 (법인명·수치 성격)',
+      caption: ROSTER.국내횟감.요지,
+      telemetry: MFDS_2024_SYNC,
+      span: 'full',
+      render: () => (
+        <RosterTable
+          caption="식약처 I0300 2024년. 횟감·로인 제품 무게이며 어획 생물중량과 빼지 않는다."
+          rows={ROSTER.국내횟감.rows}
+          sizeLabel="생산 (성격)"
+        />
+      ),
+    },
+    {
+      title: '브랜드·제품 명부 (법인명·수치 성격)',
+      caption: ROSTER.브랜드제품.요지,
+      telemetry: ROSTER_SYNC,
+      span: 'full',
+      render: () => (
+        <RosterTable
+          caption="닐슨 점유는 자사 공시 인용(B). 출고가 인상은 보도(C). 세번 캔과 자숙 로인은 합치지 않는다."
+          rows={ROSTER.브랜드제품.rows}
+          sizeLabel="값 (성격)"
+        />
+      ),
     },
   ],
   s10: [
@@ -146,6 +266,19 @@ export const TUNA_ANATOMY_CHART_SLOTS: Record<string, ChartSlot[]> = {
       telemetry: { status: 'STATIC' as const, syncDate: '2025년 연간 (10자리 스냅샷)' },
       render: () => <TunaAnatomyCanSplitChart data={DATA} />,
     },
+    {
+      title: '수입 명의 명부 (건수≠물량)',
+      caption: ROSTER.수입명의.요지,
+      telemetry: { status: 'STATIC' as const, syncDate: '식약처 2025-01~2026-08' },
+      span: 'full',
+      render: () => (
+        <RosterTable
+          caption="식약처 수입식품정보마루. 건수는 레코드 수이지 톤이 아니다. 공개 기간 1년이라 2023~2024 명의 추세는 없다."
+          rows={ROSTER.수입명의.rows}
+          sizeLabel="신고 건 (성격)"
+        />
+      ),
+    },
   ],
   s12: [
     {
@@ -158,8 +291,8 @@ export const TUNA_ANATOMY_CHART_SLOTS: Record<string, ChartSlot[]> = {
   ],
   s13: [
     {
-      title: '방콕 가다랑어 월별 2024~2025 (달러/톤)',
-      caption: 'Thai Union이 공시하는 방콕 양륙 원료가다. 2024년 8월 1,250달러가 저점, 2025년 3월 1,740달러가 고점이다. 2025년 12월 이후 월별 단일값은 공시되지 않는다.',
+      title: '방콕 가다랑어 월별 2024~2026 (달러/톤)',
+      caption: 'Thai Union IR 표의 해당 월 계약가다. 원료 인도는 약 1개월 내라 인도 시점 가격이 아니다. 2024년 8월 1,250달러가 저점, 2026년 8월 2,100달러가 조회일 기준 마지막 달이다.',
       telemetry: PRICE_SYNC,
       render: () => <TunaAnatomyBangkokChart data={DATA} />,
     },
@@ -178,12 +311,12 @@ const SPEC: CommoditySpec = {
   key: 'tuna-anatomy',
   title: '참치 해부',
   subtitle:
-    '한국 참치 산업 해부 · 잡아서 남에게 파는 생선 - 원양 선단·환적·판매 상대·해외 가공·국내 캔·수입·값·제도 15단계',
+    '한국 참치 산업 해부 · 잡아서 남에게 파는 생선 - 원양 선단·환적·판매 상대·해외 가공·국내 캔·수입·명부·값·제도 15단계',
   accent: TUNA_ANATOMY_ACCENT,
   primaryKpi: {
     label: '한국 참치 어획 (FAO 7종)',
     value: Number(meta.한국 ?? 0),
-    unit: '(톤, 2024)',
+    unit: '(톤, 2024 FAO)',
     accent: TUNA_ANATOMY_ACCENT,
   },
   secondaryKpis: [
@@ -192,9 +325,10 @@ const SPEC: CommoditySpec = {
     { label: '국내 캔·조리 생산', value: Number(canMeta.캔2024 ?? 0), unit: '(톤, 2024)' },
   ],
   stripItems: [
-    { now: true, eyebrow: '선단', title: '2024년 말', body: '132 척 (선망 27 · 연승 105)' },
+    { now: true, eyebrow: '방콕 가다랑어', title: '2026년 8월 계약가', body: '2,100 달러/톤 · 인도 약 1개월 후' },
+    { eyebrow: '원양 어획', title: '2026년 1~6월 누계', body: '118,014 톤 (선망 97,487 · 연승 20,527)' },
+    { eyebrow: '국내 출고가', title: '2026년 8~9월', body: '사조 약 10%(8/3) · 동원F&B 평균 9%(9/1)' },
     { eyebrow: '선망 점유', title: '2024 동원산업', body: `${shares?.동원산업 ?? 0}% (신라교역 ${shares?.신라교역 ?? 0}%)` },
-    { eyebrow: '태국행', title: '냉동 참치 수출 중', body: `${String(tradeMeta.태국비중2024 ?? '')} · 대만 ${Number(tradeMeta.대만수출2024 ?? 0)} 톤` },
   ],
   briefing: TUNA_ANATOMY_BRIEFING_POINTS,
   narratives: TUNA_ANATOMY_NARRATIVES,
@@ -207,7 +341,7 @@ const SPEC: CommoditySpec = {
     `캔 · ${DATA.캔._meta.출처}`,
     `값 · ${DATA.가격._meta.출처}`,
     `재무 · ${DATA.재무._meta.출처}`,
-    `갱신 ${DATA._meta.생성일}`,
+    `집계 ${DATA._meta.생성일} · 방콕 IR·명부 보강 2026-09-10`,
   ].join(' · '),
 };
 

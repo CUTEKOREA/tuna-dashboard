@@ -52,6 +52,8 @@ export const DASHBOARD_MENU_CONFIGS = [
   { key: 'whelk-industry', title: '골뱅이', section: 'understanding', accent: 'amber', sidebar: { icon: 'Shell' } },
   { key: 'shrimp-industry', title: '새우', section: 'understanding', accent: 'teal', sidebar: { icon: 'Shrimp' } },
   { key: 'pollock-industry', title: '명태', section: 'understanding', accent: 'teal', sidebar: { icon: 'Snowflake' } },
+  // 문어 전용 세번은 0307521000 하나다. 옛 `/octopus`(낙지 위젯, 404)와 키를 나누려고 -industry 를 붙인다.
+  { key: 'octopus-industry', title: '문어', section: 'understanding', accent: 'rose', sidebar: { icon: 'LongArmOctopus' } },
   // 같은 참치를 한국 쪽에서 본다. 「참치」는 세계 밸류체인, 「참치 해부」는 한국 원양·환적·판매 상대·캔.
   { key: 'tuna-anatomy', title: '참치 해부', section: 'understanding', accent: 'cyan', sidebar: { icon: 'Ship' } },
   // 품목이 아니라 회사를 해부한다. 경쟁·조달 판단에 쓰는 자료라 「전략 분석」에 둔다.
@@ -188,6 +190,7 @@ export const DASHBOARD_PANEL_ORDER = [
   'whelk-industry',
   'shrimp-industry',
   'pollock-industry',
+  'octopus-industry',
   'tuna-anatomy',
   'company-anatomy',
 ] as const satisfies readonly ActiveMenu[];
@@ -201,6 +204,7 @@ const SIDEBAR_SECTION_KEYS: Record<DashboardSection, readonly ActiveMenu[]> = {
     'whelk-industry',
     'shrimp-industry',
     'pollock-industry',
+    'octopus-industry',
     'tuna-anatomy',
   ],
   fishery: [],

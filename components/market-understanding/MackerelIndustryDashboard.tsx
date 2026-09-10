@@ -13,6 +13,7 @@ import {
   CanneryCountryTable,
   BrandMarketTable,
 } from './CompanyResearchTables';
+import { getMackerelRoster } from '@/lib/data/mackerel-roster';
 import { getMackerelCompanyResearch } from '@/lib/data/valuechain-companies';
 
 import { getMackerelIndustryData } from '@/lib/data/commodity-industry';
@@ -51,8 +52,41 @@ const IMPORT_SYNC = {
 };
 
 const MACKEREL_RESEARCH = getMackerelCompanyResearch();
+const ROSTER = getMackerelRoster();
+
+function RosterTable({ block }: { block: (typeof ROSTER)['수입명의'] }) {
+  return (
+    <div className={styles.factWrap}>
+      <table className={styles.factTable}>
+        <caption className={styles.factCaption}>{block.기준}</caption>
+        <thead>
+          <tr>
+            <th>법인명</th>
+            <th>핵심 값</th>
+            <th>비고</th>
+          </tr>
+        </thead>
+        <tbody>
+          {block.rows.map((r) => (
+            <tr key={`${r.구분}-${r.법인명}`}>
+              <td>
+                {r.법인명}
+                <span className={styles.factNote}>
+                  {r.성격} · {r.출처}
+                </span>
+              </td>
+              <td>{r.핵심값}</td>
+              <td>{r.비고 || '—'}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  );
+}
 
 const SERIES_SYNC = { status: 'STATIC' as const, syncDate: '관세청 2026년 1~7월' };
+const ROSTER_SYNC = { status: 'STATIC' as const, syncDate: '2026-08-27 조회' };
 
 function SeriesRolesTable() {
   return (
@@ -160,6 +194,22 @@ export const MACKEREL_CHART_SLOTS: Record<string, ChartSlot[]> = {
       render: () => <MackerelSeriesUnitChart />,
     },
   ],
+  s09: [
+    {
+      title: '수입 명의 상위 20 (신고 레코드)',
+      caption: ROSTER.수입명의.기준,
+      telemetry: ROSTER_SYNC,
+      span: 'full',
+      render: () => <RosterTable block={ROSTER.수입명의} />,
+    },
+    {
+      title: '국내 가공 업소 상위 20 (2025년 생산량 kg)',
+      caption: ROSTER.국내가공.기준,
+      telemetry: ROSTER_SYNC,
+      span: 'full',
+      render: () => <RosterTable block={ROSTER.국내가공} />,
+    },
+  ],
   x01: [
     {
       title: '종별 보고량 추이 - 망치고등어가 사라진 자리 (톤)',
@@ -178,7 +228,7 @@ const SPEC: CommoditySpec = {
   key: 'mackerel',
   title: '고등어',
   subtitle:
-    '고등어 산업 해부 · 어법이 축이 아닌 품목 - 크기 등급·원산지·수입 창구 5단계와 그것을 관통하는 종의 문제',
+    '고등어 산업 해부 · 어법이 축이 아닌 품목 - 크기 등급·원산지·수입 창구와 제도·수출·유통·명부, 그것을 관통하는 종의 문제',
   accent: MACKEREL_ACCENT,
   primaryKpi: {
     label: '한국 고등어속 어획량',
@@ -200,7 +250,7 @@ const SPEC: CommoditySpec = {
       decimals: 2,
     },
     {
-      label: '노르웨이 수입 비중',
+      label: '노르웨이 수입 비중(2026년 1~7월 금액)',
       value: DATA.수입원산지.rows[0]?.비중 ?? 0,
       unit: '(%)',
       decimals: 2,
@@ -223,13 +273,13 @@ const SPEC: CommoditySpec = {
     },
     {
       eyebrow: '수입',
-      title: '노르웨이 비중',
+      title: '노르웨이 비중 · 1~7월 누계 금액',
       body: `${DATA.수입원산지.rows[0]?.비중 ?? 0} (%)`,
     },
     {
       eyebrow: '주간',
-      title: '노르웨이 34주 누계',
-      body: '41,108톤 · 48.35 NOK/kg',
+      title: '노르웨이 36주 누계',
+      body: '43,195톤 · 48.32 NOK/kg',
     },
   ],
   briefing: MACKEREL_BRIEFING_POINTS,
@@ -240,8 +290,8 @@ const SPEC: CommoditySpec = {
     `어획 집계 · ${DATA.한국어획._meta.출처}`,
     `위판 집계 · ${DATA.위판등급._meta.출처}`,
     `통관 집계 · ${DATA.수입원산지._meta.출처} · ${DATA.수입원산지._meta.구간}`,
-    '주간 수급 · NSC 2026-W34 · KMI Vol.257',
-    '갱신 2026-08-27',
+    '주간 수급 · NSC 2026-W36 · KMI Vol.259',
+    '갱신 2026-09-10',
   ].join(' · '),
 };
 

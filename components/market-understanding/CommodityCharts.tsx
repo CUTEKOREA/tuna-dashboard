@@ -1398,7 +1398,7 @@ export function TunaAnatomyBangkokChart({ data }: { data: TunaAnatomyData }) {
       <LineChart data={data.가격.방콕} margin={MARGIN}>
         {grid}
         <XAxis dataKey="월" {...AXIS} interval={2} angle={-45} textAnchor="end" height={56} tick={{ fill: 'var(--mu-axis)', fontSize: 10 }} />
-        <YAxis {...AXIS} domain={[1000, 2000]} />
+        <YAxis {...AXIS} domain={[1000, 2200]} />
         <Tooltip content={<Tip unit=" 달러/톤" />} />
         <Line type="monotone" dataKey="방콕" name="방콕 가다랑어 (달러/톤)" stroke={HIGHLIGHT} strokeWidth={2.2} dot isAnimationActive={animate} />
       </LineChart>
