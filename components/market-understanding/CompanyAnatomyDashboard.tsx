@@ -256,6 +256,10 @@ import {
   atiMeta, atiStats, atiSourceNotes,
   monthlyYieldPct, japanImportShareIdnPct, equityIncomeChangePct, koreaSkjShareToIdnPct, mscShiftPp,
 } from '@/lib/data/company-ati';
+import {
+  nirsaMeta, nirsaStats, nirsaSourceNotes,
+  salesVsSecondX, salesGrowthPct, shrimpShare2019Pct, ecuadorToUsSharePct,
+} from '@/lib/data/company-nirsa';
 
 /** 20편을 지구 위에 네 층으로 얹는다. three.js 가 무거워 갤러리에서만 지연 로드한다. */
 const TunaPowerGlobe = dynamic(() => import('./TunaPowerGlobe'), { ssr: false });
@@ -2536,6 +2540,7 @@ const FLAG: Record<string, Pick<CompanyCard, 'flagSrc' | 'backInk'>> = {
   영국: { flagSrc: '/flags/gb.svg', backInk: '#f4f5f0' },
   세이셸: { flagSrc: '/flags/sc.svg', backInk: '#f4f5f0' },
   인도네시아: { flagSrc: '/flags/id.svg', backInk: '#1b2733' },
+  에콰도르: { flagSrc: '/flags/ec.svg', backInk: '#1b2733' },
 };
 
 /** 선택 갤러리 카드 목록. 회사가 늘면 여기에 한 장씩 추가한다. */
@@ -3107,6 +3112,68 @@ const ATI_SPEC: CommoditySpec = {
   ].join(' · '),
 };
 
+const NIRSA_ACCENT = '#8a6d1f';
+
+const NIRSA_SPEC: CommoditySpec = {
+  key: 'company-anatomy-nirsa',
+  title: '기업 해부: NIRSA',
+  subtitle:
+    '에콰도르 포소르하의 참치·정어리 캐너리이고, 동태평양 참치위원회 등록부상 에콰도르 최대 선망 선단의 주인이다. ' +
+    `등록 소유자가 「NIRSA S.A.」인 선망 ${nirsaStats.소유_선망_척}척의 어창 용적이 에콰도르 선망 ${nirsaStats.에콰도르_선망_척}척 합계의 ${nirsaStats.소유_용적_비중_pct}%다. ` +
+    '그러나 유럽연합이 에콰도르산 조제참치에 0%를 매기는 조건은 이 회사의 배가 아니라 협정이 인정하는 배다 — 유럽연합·안데스 서명국 어느 쪽 배든 된다.',
+  accent: NIRSA_ACCENT,
+  primaryKpi: {
+    label: '에콰도르 선망 어창 용적 중 NIRSA 소유선',
+    value: nirsaStats.소유_용적_비중_pct,
+    decimals: 1,
+    unit: `(% · IATTC 등록부 2026-08-17 · 소유 ${nirsaStats.소유_선망_척}척 ${nirsaStats.소유_용적_m3.toLocaleString()} m³ · 운항만 맡은 한 척을 더하면 ${nirsaStats.운항포함_용적_비중_pct}%)`,
+    accent: NIRSA_ACCENT,
+  },
+  secondaryKpis: [
+    { label: '2024년 매출 — 에콰도르 참치 가공사 2위 대비', value: salesVsSecondX(), decimals: 2, unit: '(배 · 회사감독청 순위 원자료 · 새우 판매 포함)' },
+    { label: '매출 증가 2019 → 2024', value: salesGrowthPct(), decimals: 1, unit: '(% · 순위 원자료 두 해)' },
+    { label: '2019년 순매출 중 새우', value: shrimpShare2019Pct(), decimals: 1, unit: '(% · 경영자 보고서 · 법인 기준, 그룹 새우 가공사는 자매회사)' },
+  ],
+  stripItems: [
+    {
+      now: true,
+      eyebrow: '원산지',
+      title: '0%의 조건은 적격 배',
+      body: `유럽연합 기준세율 ${nirsaStats.EU_기준세율_pct}% → 협정 ${nirsaStats.EU_협정세율_pct}%(2017-01-01). 원산지 의정서 제5조 1(f) — 유럽연합·안데스 서명국 어느 쪽 적격 선박이든 된다`,
+    },
+    {
+      eyebrow: '선단',
+      title: `소유 ${nirsaStats.소유_선망_척}척, 열하나가 1990년 이전`,
+      body: '넷은 파나마·니카라과·코스타리카 어창 용적을 옮겨 받아 뛴다. 기국은 모두 에콰도르 — 「파나마 선적」이 아니다',
+    },
+    {
+      eyebrow: '인증',
+      title: '어업 증서의 주인은 Tunacons',
+      body: `MSC-F-31557 선박 ${nirsaStats.MSC_증서_선박}척 중 NIRSA 소유 ${nirsaStats.MSC_증서_중_소유선}척. 「100% MSC」는 회사 주장이다`,
+    },
+    {
+      eyebrow: '미국',
+      title: '유럽의 반대편',
+      body: `기본세 6~35%. 에콰도르 조제참치 세계 수출 중 미국행 ${ecuadorToUsSharePct()}%(2024). 301조 10%의 1604 면제 여부는 미확인`,
+    },
+    {
+      eyebrow: '한국',
+      title: '우리 선망은 이 바다에 없다',
+      body: `IATTC 등록 한국 기국 ${nirsaStats.한국_IATTC_등록_척}척은 전부 연승선, 선망 ${nirsaStats.한국_IATTC_선망_척}척`,
+    },
+  ],
+  briefing: proseBriefing('nirsa'),
+  narratives: inlineReport('nirsa', proseStages('nirsa')),
+  chartSlots: {},
+  continuous: true,
+  sourceNotes: nirsaSourceNotes,
+  sourceMeta: [
+    `${nirsaMeta.회사} · ${nirsaMeta.국가} · ${nirsaMeta.업종}`,
+    `출처 ${nirsaMeta.출처}`,
+    `조사 ${nirsaMeta.조사일}`,
+  ].join(' · '),
+};
+
 export const COMPANY_CARDS: CompanyCard[] = [
   {
     key: 'frinsa',
@@ -3420,6 +3487,19 @@ export const COMPANY_CARDS: CompanyCard[] = [
       { label: '재단 Major', value: `${atiStats.ISSF_Major_회사} / ${atiStats.ISSF_참여사}` },
     ],
   },
+  {
+    key: 'nirsa',
+    numeral: 'ⅩⅩⅤ',
+    name: 'NIRSA',
+    country: '에콰도르 · 과야킬·포소르하',
+    tagline: '에콰도르 최대 선단의 주인. 그러나 유럽 무관세의 조건은 그 배가 아니라 협정이 인정하는 배다.',
+    ...FLAG.에콰도르,
+    stats: [
+      { label: '에콰도르 선망 용적', value: `${nirsaStats.소유_용적_비중_pct}%` },
+      { label: '2024 매출 · 2위 대비', value: `${salesVsSecondX()}배` },
+      { label: '소유 선망', value: `${nirsaStats.소유_선망_척} 척` },
+    ],
+  },
 
 ];
 
@@ -3487,6 +3567,7 @@ export default function CompanyAnatomyDashboard({
     princes: PR_SPEC,
     iot: IOT_SPEC,
     ati: ATI_SPEC,
+    nirsa: NIRSA_SPEC,
   };
   const spec = SPECS[selected] ?? SPEC;
 

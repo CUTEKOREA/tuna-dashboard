@@ -1,0 +1,108 @@
+{
+ "_meta": {
+  "출처": "docs/evidence/company-nirsa-2026-09/보고서.html",
+  "생성": "python3 scripts/build_report_figures.py",
+  "설명": "보고서의 팩샷과 차트. 이미지는 public 아래 정적 파일이고 여기에는 URL 만 담는다."
+ },
+ "figures": [
+  {
+   "stage": "c01",
+   "sid": "s1",
+   "kind": "chart",
+   "ord": 881,
+   "caption": "IATTC 선박등록부(2026-08-17)의 소유자 칸을 그대로 묶은 값이다. NIRSA 막대는 등록 소유 14척이고, 운항만 맡은 El Marquez(486 m³)는 넣지 않았다. 둘째 소유사의 3.1배다.",
+   "alt": "",
+   "svg": "<svg viewBox=\"0 0 680 244\" xmlns=\"http://www.w3.org/2000/svg\" role=\"img\" aria-label=\"에콰도르 선망 어창 용적 — 소유사 상위 여섯\"><text x=\"250\" y=\"14\" font-size=\"12.5\" fill=\"#7a828b\">에콰도르 기국 선망 어창 용적(m³) — 등록 소유자별 상위 여섯</text><text x=\"240\" y=\"41\" text-anchor=\"end\" font-size=\"13\" fill=\"#7a828b\">NIRSA S.A.</text><rect x=\"250\" y=\"26\" width=\"351.9\" height=\"21\" fill=\"#B2503A\"/><text x=\"609.9\" y=\"42\" font-size=\"13.5\" font-weight=\"700\" fill=\"#B2503A\">15,639</text><text x=\"240\" y=\"75\" text-anchor=\"end\" font-size=\"13\" fill=\"#7a828b\">Elvayka Kyoei</text><rect x=\"250\" y=\"60\" width=\"112.5\" height=\"21\" fill=\"#6f8fa3\"/><text x=\"370.5\" y=\"76\" font-size=\"13.5\" font-weight=\"700\" fill=\"#6f8fa3\">4,999</text><text x=\"240\" y=\"109\" text-anchor=\"end\" font-size=\"13\" fill=\"#7a828b\">Guayatuna (Albacora 계열)</text><rect x=\"250\" y=\"94\" width=\"108.0\" height=\"21\" fill=\"#6f8fa3\"/><text x=\"366.0\" y=\"110\" font-size=\"13.5\" font-weight=\"700\" fill=\"#6f8fa3\">4,802</text><text x=\"240\" y=\"143\" text-anchor=\"end\" font-size=\"13\" fill=\"#7a828b\">Pesdel</text><rect x=\"250\" y=\"128\" width=\"89.2\" height=\"21\" fill=\"#6f8fa3\"/><text x=\"347.2\" y=\"144\" font-size=\"13.5\" font-weight=\"700\" fill=\"#6f8fa3\">3,964</text><text x=\"240\" y=\"177\" text-anchor=\"end\" font-size=\"13\" fill=\"#7a828b\">Pesquera Ugavi</text><rect x=\"250\" y=\"162\" width=\"84.5\" height=\"21\" fill=\"#6f8fa3\"/><text x=\"342.5\" y=\"178\" font-size=\"13.5\" font-weight=\"700\" fill=\"#6f8fa3\">3,756</text><text x=\"240\" y=\"211\" text-anchor=\"end\" font-size=\"13\" fill=\"#7a828b\">Conservas Isabel Ecuatoriana</text><rect x=\"250\" y=\"196\" width=\"83.0\" height=\"21\" fill=\"#6f8fa3\"/><text x=\"341.0\" y=\"212\" font-size=\"13.5\" font-weight=\"700\" fill=\"#6f8fa3\">3,689</text><line x1=\"250\" y1=\"230\" x2=\"610\" y2=\"230\" stroke=\"#a9aeb5\"/></svg>"
+  },
+  {
+   "stage": "c02",
+   "sid": "s4",
+   "kind": "chart",
+   "ord": 2587,
+   "caption": "두 계열을 한 축에 놓았다. 파란 막대는 감사보고서의 제품 매출, 붉은 막대는 순위 원자료의 매출이다. 두 계열이 겹치는 2019년은 363,031,964달러(감사)와 363,031,999달러(순위)로 같다. 막대 위 숫자는 백만 달러 반올림이다.",
+   "alt": "",
+   "svg": "<svg viewBox=\"0 0 680 250\" xmlns=\"http://www.w3.org/2000/svg\" role=\"img\" aria-label=\"NIRSA 매출 2014~2024\"><text x=\"40\" y=\"14\" font-size=\"12.5\" fill=\"#7a828b\">매출(백만 달러) — 2014~2019 감사보고서 제품 매출 · 2020~2024 회사감독청 순위 원자료</text><line x1=\"40\" y1=\"146.7\" x2=\"645\" y2=\"146.7\" stroke=\"#a9aeb5\" stroke-dasharray=\"2 3\"/><text x=\"34\" y=\"150.7\" text-anchor=\"end\" font-size=\"11\" fill=\"#7a828b\">200</text><line x1=\"40\" y1=\"93.3\" x2=\"645\" y2=\"93.3\" stroke=\"#a9aeb5\" stroke-dasharray=\"2 3\"/><text x=\"34\" y=\"97.3\" text-anchor=\"end\" font-size=\"11\" fill=\"#7a828b\">400</text><line x1=\"40\" y1=\"40.0\" x2=\"645\" y2=\"40.0\" stroke=\"#a9aeb5\" stroke-dasharray=\"2 3\"/><text x=\"34\" y=\"44.0\" text-anchor=\"end\" font-size=\"11\" fill=\"#7a828b\">600</text><rect x=\"48\" y=\"91.8\" width=\"40\" height=\"108.2\" fill=\"#6f8fa3\"/><text x=\"68.0\" y=\"86.8\" text-anchor=\"middle\" font-size=\"11.5\" font-weight=\"700\" fill=\"#6f8fa3\">406</text><text x=\"68.0\" y=\"216\" text-anchor=\"middle\" font-size=\"11.5\" fill=\"#7a828b\">2014</text><rect x=\"103\" y=\"105.2\" width=\"40\" height=\"94.8\" fill=\"#6f8fa3\"/><text x=\"123.0\" y=\"100.2\" text-anchor=\"middle\" font-size=\"11.5\" font-weight=\"700\" fill=\"#6f8fa3\">356</text><text x=\"123.0\" y=\"216\" text-anchor=\"middle\" font-size=\"11.5\" fill=\"#7a828b\">2015</text><rect x=\"158\" y=\"102.8\" width=\"40\" height=\"97.2\" fill=\"#6f8fa3\"/><text x=\"178.0\" y=\"97.8\" text-anchor=\"middle\" font-size=\"11.5\" font-weight=\"700\" fill=\"#6f8fa3\">364</text><text x=\"178.0\" y=\"216\" text-anchor=\"middle\" font-size=\"11.5\" fill=\"#7a828b\">2016</text><rect x=\"213\" y=\"92.4\" width=\"40\" height=\"107.6\" fill=\"#6f8fa3\"/><text x=\"233.0\" y=\"87.4\" text-anchor=\"middle\" font-size=\"11.5\" font-weight=\"700\" fill=\"#6f8fa3\">404</text><text x=\"233.0\" y=\"216\" text-anchor=\"middle\" font-size=\"11.5\" fill=\"#7a828b\">2017</text><rect x=\"268\" y=\"94.0\" width=\"40\" height=\"106.0\" fill=\"#6f8fa3\"/><text x=\"288.0\" y=\"89.0\" text-anchor=\"middle\" font-size=\"11.5\" font-weight=\"700\" fill=\"#6f8fa3\">398</text><text x=\"288.0\" y=\"216\" text-anchor=\"middle\" font-size=\"11.5\" fill=\"#7a828b\">2018</text><rect x=\"323\" y=\"103.2\" width=\"40\" height=\"96.8\" fill=\"#6f8fa3\"/><text x=\"343.0\" y=\"98.2\" text-anchor=\"middle\" font-size=\"11.5\" font-weight=\"700\" fill=\"#6f8fa3\">363</text><text x=\"343.0\" y=\"216\" text-anchor=\"middle\" font-size=\"11.5\" fill=\"#7a828b\">2019</text><rect x=\"378\" y=\"90.4\" width=\"40\" height=\"109.6\" fill=\"#B2503A\"/><text x=\"398.0\" y=\"85.4\" text-anchor=\"middle\" font-size=\"11.5\" font-weight=\"700\" fill=\"#B2503A\">411</text><text x=\"398.0\" y=\"216\" text-anchor=\"middle\" font-size=\"11.5\" fill=\"#7a828b\">2020</text><rect x=\"433\" y=\"66.1\" width=\"40\" height=\"133.9\" fill=\"#B2503A\"/><text x=\"453.0\" y=\"61.1\" text-anchor=\"middle\" font-size=\"11.5\" font-weight=\"700\" fill=\"#B2503A\">502</text><text x=\"453.0\" y=\"216\" text-anchor=\"middle\" font-size=\"11.5\" fill=\"#7a828b\">2021</text><rect x=\"488\" y=\"61.3\" width=\"40\" height=\"138.7\" fill=\"#B2503A\"/><text x=\"508.0\" y=\"56.3\" text-anchor=\"middle\" font-size=\"11.5\" font-weight=\"700\" fill=\"#B2503A\">520</text><text x=\"508.0\" y=\"216\" text-anchor=\"middle\" font-size=\"11.5\" fill=\"#7a828b\">2022</text><rect x=\"543\" y=\"51.3\" width=\"40\" height=\"148.7\" fill=\"#B2503A\"/><text x=\"563.0\" y=\"46.3\" text-anchor=\"middle\" font-size=\"11.5\" font-weight=\"700\" fill=\"#B2503A\">558</text><text x=\"563.0\" y=\"216\" text-anchor=\"middle\" font-size=\"11.5\" fill=\"#7a828b\">2023</text><rect x=\"598\" y=\"52.4\" width=\"40\" height=\"147.6\" fill=\"#B2503A\"/><text x=\"618.0\" y=\"47.4\" text-anchor=\"middle\" font-size=\"11.5\" font-weight=\"700\" fill=\"#B2503A\">554</text><text x=\"618.0\" y=\"216\" text-anchor=\"middle\" font-size=\"11.5\" fill=\"#7a828b\">2024</text><line x1=\"40\" y1=\"200\" x2=\"645\" y2=\"200\" stroke=\"#a9aeb5\"/></svg>"
+  },
+  {
+   "stage": "c04",
+   "sid": "s8",
+   "kind": "shot",
+   "ord": 354,
+   "caption": "주력 규격 180 g. 옆면에 「PESO NETO 180 g · PESO DRENADO 117 g」과 돌고래안전 로고가 있다.",
+   "alt": "Real 참치 조각 해바라기유 180g 캔",
+   "src": "/data/companies/figures/nirsa/b35ae7f09a08.jpg"
+  },
+  {
+   "stage": "c04",
+   "sid": "s8",
+   "kind": "shot",
+   "ord": 80783,
+   "caption": "물 절임 180 g. 오일 캔보다 4센트 비싸다.",
+   "alt": "Real 참치 조각 물 180g 캔",
+   "src": "/data/companies/figures/nirsa/575e2bc676fa.jpg"
+  },
+  {
+   "stage": "c04",
+   "sid": "s8",
+   "kind": "shot",
+   "ord": 118249,
+   "caption": "올리브유 160 g. 상품명에 「Atún Claro」가 붙는데, 이는 상업명이지 어종 표기가 아니다.",
+   "alt": "Real 올리브유 참치 160g 캔",
+   "src": "/data/companies/figures/nirsa/704463eeb20b.jpg"
+  },
+  {
+   "stage": "c04",
+   "sid": "s8",
+   "kind": "shot",
+   "ord": 178368,
+   "caption": "대용량 350 g.",
+   "alt": "Real 해바라기유 참치 350g 캔",
+   "src": "/data/companies/figures/nirsa/aca4d4c74ded.jpg"
+  },
+  {
+   "stage": "c04",
+   "sid": "s8",
+   "kind": "shot",
+   "ord": 247150,
+   "caption": "파우치 120 g. 가장 비싼 축이다.",
+   "alt": "Real 참치 부스러기 파우치 120g",
+   "src": "/data/companies/figures/nirsa/3da41e370b94.jpg"
+  },
+  {
+   "stage": "c04",
+   "sid": "s8",
+   "kind": "shot",
+   "ord": 332956,
+   "caption": "엔세보야도 400 g. 참치가 들어간 수프라 Real 제품 가운데 kg당 값이 가장 낮다.",
+   "alt": "Real 엔세보야도 참치 수프 400g 캔",
+   "src": "/data/companies/figures/nirsa/55915fcb761b.jpg"
+  },
+  {
+   "stage": "c04",
+   "sid": "s8",
+   "kind": "shot",
+   "ord": 422565,
+   "caption": "경쟁 브랜드 Van Camp's 184 g. 라벨에 물뺀중량 120 g.",
+   "alt": "Van&nbsp;Camp's 참치 해바라기유 184g 캔",
+   "src": "/data/companies/figures/nirsa/f5e9b939566e.jpg"
+  },
+  {
+   "stage": "c04",
+   "sid": "s8",
+   "kind": "shot",
+   "ord": 543109,
+   "caption": "경쟁 브랜드 Isabel 160 g.",
+   "alt": "Isabel 참치 해바라기유 160g 캔",
+   "src": "/data/companies/figures/nirsa/daf065c359c8.jpg"
+  },
+  {
+   "stage": "c04",
+   "sid": "s8",
+   "kind": "shot",
+   "ord": 616131,
+   "caption": "소매 체인 티아의 자체상표 Aliada 180 g. 같은 매대의 가장 낮은 값이다.",
+   "alt": "티아 자체상표 Aliada 참치 180g 캔",
+   "src": "/data/companies/figures/nirsa/10be7206cfa9.jpg"
+  }
+ ]
+}

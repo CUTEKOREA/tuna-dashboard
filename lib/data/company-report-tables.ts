@@ -22,6 +22,7 @@ import trimarineRaw from '@/public/data/companies/trimarine_tables_v1.json';
 import princesRaw from '@/public/data/companies/princes_tables_v1.json';
 import iotRaw from '@/public/data/companies/iot_tables_v1.json';
 import atiRaw from '@/public/data/companies/ati_tables_v1.json';
+import nirsaRaw from '@/public/data/companies/nirsa_tables_v1.json';
 
 /**
  * 조사보고서 표 전량 인테이크.
@@ -86,6 +87,7 @@ const INTAKES: Record<string, Intake> = {
   princes: princesRaw as unknown as Intake,
   iot: iotRaw as unknown as Intake,
   ati: atiRaw as unknown as Intake,
+  nirsa: nirsaRaw as unknown as Intake,
 };
 
 export const REPORT_TABLE_COMPANIES = Object.keys(INTAKES);
