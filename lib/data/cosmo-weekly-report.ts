@@ -1,17 +1,27 @@
 /**
- * COSMO 35주차 Word 업무보고에서 엑셀에 없는 운영 문장만 정규화한다.
+ * COSMO 주간 Word 업무보고에서 엑셀에 없는 운영 문장만 정규화한다.
  * 수주·판매·생산·구매·재고·현금 수치는 cosmo_2026.json이 정본이다.
+ *
+ * 주마다 보고되는 항목이 다르다. 36주차에는 품질 심사도 하역도 없었는데,
+ * 이 계약이 35주차 값을 그대로 들고 있으면 화면이 지난주 사건을
+ * 「36주차 업무 브리핑」으로 내보낸다(2026-09-10 실측). 그래서 그 두 항목은
+ * nullable 이고, 없는 주에는 그 주가 실제 보고한 물류·차주 계획이 대신 들어간다.
+ *
+ * 개인 이름은 저장소에 남기지 않는다 — 원문의 인명은 직급·역할로 바꾼다.
  */
 export const cosmoWeeklyReport = {
   source: {
-    file: '2026.9.2_COSMO 주간보고 (35주차).docx',
-    sha256: '49dddff739c221a5fb97f19ac292d8fec4da01f8b09e32d2a85a36507c6803a6',
-    period: '2026-08-24~2026-08-30',
+    file: '2026.9.9_COSMO 주간보고 (36주차).docx',
+    sha256: 'fd917193bb2b3716a37ba470f735a8d6c2e4bed6550ab58ea255ed3c416602c1',
+    period: '2026-08-31~2026-09-06',
   },
   market: {
     productionSecuredThrough: '2026년 11월 셋째 주 생산분',
-    summary: '원어 가격 상승분이 제품 판매가격에 점진적으로 반영되는 추세입니다.',
-    rawFishPressure: '일부 바이어가 물량 확보에 나섰으나 높아진 오퍼 가격 탓에 구매 협상이 어렵고, 에콰도르·필리핀 공급업체의 납품 지연과 계약 불이행으로 영국 Booker와 Country Range가 대체 공급처와 Spot 물량을 찾고 있습니다.',
+    summary: '판매단가 상승 부담으로 바이어들이 신규 물량 구매를 최소화하며 관망세를 유지하고 있습니다.',
+    rawFishPressure:
+      '베트남 EU 면세 쿼터가 2027년 1월 1일부터 적용될 예정이라 베트남 업체들이 낮은 가격으로 오퍼를 시작했고(10~11월 선적분이 12월 말~1월 초 유럽 도착 예상), '
+      + '모리셔스 Princes 공장은 인도양 원어 $1,800/MT를 기준으로 에콰도르 대비 약 17% 낮은 가격을 제시해 영국 Morrison’s Tender 수주 가능성이 거론됩니다. '
+      + '잔여 플레이크 재고는 중국·베트남 오퍼가가 약 $20/case로 코스모보다 $10/case 이상 낮아 신규 수주가 어렵습니다.',
   },
   litigation: {
     case: '아프리카 스타',
@@ -19,26 +29,25 @@ export const cosmoWeeklyReport = {
     status: '재심리 재판 진행 중',
   },
   operations: {
-    qualityFocus: 'MSC 선박 출항 일정이 사전 공지 없이 바뀌어 컨테이너 출고가 지연되고 있습니다.',
-    audit: {
-      name: '식품안전 불시 심사(BRC/IFS)',
-      start: '2026-08-24',
-      end: '2026-08-28',
-      result: 'A+ 등급 유지',
+    qualityFocus: 'MPS 항만 혼잡이 심해져 선적 지연이 이어지고, 약 30개 이상 컨테이너가 Gate-in 에 실패해 다음 선박편으로 이월됐습니다.',
+    /** 그 주에 심사가 없으면 null. 지난 심사를 이번 주 일처럼 내보내지 않는다. */
+    audit: null as null | { name: string; start: string; end: string; result?: string },
+    /** 그 주에 하역이 없으면 null. */
+    unloading: null as null | {
+      active: string | null;
+      activeSince: string | null;
+      next: string | null;
+      nextDate: string | null;
+      completed: ReadonlyArray<{ vessel: string; skjMt: number; ggMt: number; totalMt: number }>;
     },
-    unloading: {
-      active: 'P/DIS',
-      activeSince: '2026-08-29',
-      next: null,
-      nextDate: null,
-      completed: [
-        { vessel: 'P/MAS', skjMt: 575, ggMt: 6, totalMt: 581 },
-        { vessel: 'P/DIS', skjMt: 620, ggMt: 8, totalMt: 628 },
-      ],
+    /** 심사·하역이 없는 주에 브리핑 카드를 채우는 그 주의 물류 현황. */
+    logistics: {
+      headline: 'MPS 항만 혼잡',
+      detail: '컨테이너 30개 이상 Gate-in 실패 · 다음 선박편 이월 · 8월 결산 업무 진행 중',
     },
   },
   nextActions: [
-    '주 5일 생산',
+    '과장급 유럽 출장 (9/13~9/19, 독일·네덜란드·벨기에)',
     '8월 결산 업무 진행',
   ],
 } as const;
