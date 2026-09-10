@@ -387,6 +387,8 @@ export const SQUID_CHART_SLOTS: Record<string, ChartSlot[]> = Object.fromEntries
 );
 
 const SPEC: CommoditySpec = {
+  // 2026-09-10 사용자 지시: 단계를 탭으로 넘기지 않고 한 페이지에 전부 출력한다(기업 해부와 동일).
+  continuous: true,
   key: 'squid',
   title: '오징어',
   subtitle:

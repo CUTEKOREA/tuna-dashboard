@@ -20,6 +20,7 @@ import centurypacificRaw from '@/public/data/companies/centurypacific_figures_v1
 import boltonfoodRaw from '@/public/data/companies/boltonfood_figures_v1.json';
 import trimarineRaw from '@/public/data/companies/trimarine_figures_v1.json';
 import princesRaw from '@/public/data/companies/princes_figures_v1.json';
+import iotRaw from '@/public/data/companies/iot_figures_v1.json';
 
 /**
  * 조사보고서 그림 인테이크 — 팩샷·차트·문서 캡처.
@@ -78,6 +79,7 @@ const INTAKES: Record<string, Intake> = {
   boltonfood: boltonfoodRaw as unknown as Intake,
   trimarine: trimarineRaw as unknown as Intake,
   princes: princesRaw as unknown as Intake,
+  iot: iotRaw as unknown as Intake,
 };
 
 export const REPORT_FIGURE_COMPANIES = Object.keys(INTAKES);
