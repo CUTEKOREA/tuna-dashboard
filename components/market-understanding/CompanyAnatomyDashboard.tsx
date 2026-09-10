@@ -251,6 +251,7 @@ import {
   iotMeta, iotStats, iotSourceNotes,
   cannedShareOfExportsPct, euShareOfCannedPct, landingShareOfPortPct, impossibleYieldPct, landedSharePct, domesticFlagShareSafe,
 } from '@/lib/data/company-iot';
+import { NO_FLEET } from '@/lib/data/company-geo';
 import {
   atiMeta, atiStats, atiSourceNotes,
   monthlyYieldPct, japanImportShareIdnPct, equityIncomeChangePct, koreaSkjShareToIdnPct, mscShiftPp,
@@ -3055,7 +3056,7 @@ const ATI_SPEC: CommoditySpec = {
   key: 'company-anatomy-ati',
   title: '기업 해부: Aneka Tuna Indonesia',
   subtitle:
-    '伊藤忠과 はごろもフーズ가 세운 인도네시아 동자바의 캔참치 공장이다. 일본 매대의 シーチキン 일부가 여기서 닫힌다. ' +
+    '伊藤忠과 はごろもフーズ가 세운 인도네시아 동자바의 캔참치 공장이다. 일본 매대의 인도네시아 제조 シーチキン이 이 공장에서 나왔을 개연성이 높다(はごろも 공시상 인도네시아 제조위탁처는 이 회사 하나). ' +
     '국제수산물지속가능재단의 2025년 활동분 감사에서 참여사 스물네 곳 가운데 Major 부적합(제품 표시)을 받은 곳은 이 회사 하나이고, 같은 조치가 2024년분에서도 Major였다. ' +
     '같은 재단 조달표에서 선박 직접 구매 0%, 어느 범주에도 들지 않는 원료 89%로 ⅩⅩⅡ편의 영국 회사와 반대쪽에 선다.',
   accent: ATI_ACCENT,
@@ -3084,7 +3085,7 @@ const ATI_SPEC: CommoditySpec = {
       body: '2026-08-01 일본–인도네시아 협정 개정 발효. 개정 직전 최저는 아세안 협정 5%. 두 세번에는 체장 30 cm 증명 조건',
     },
     {
-      eyebrow: '선단',
+      eyebrow: '선박 명부',
       title: '등록부 0척, 사업 명부 118척',
       body: `WCPFC 등록부 인도네시아 ${atiStats.WCPFC_인니_척}척 중 자사 ${atiStats.자사선박_척}척. FIP 명부 ${atiStats.FIP_명부_척}척은 운영사 소유다`,
     },
@@ -3442,14 +3443,14 @@ export default function CompanyAnatomyDashboard({
           icon={Globe2}
           iconColor="#4FB0A5"
           pillar="S2"
-          cardDesc="스물세 편이 확정한 본사·생산 거점·지분·공급·명단·무역을 지구 위 네 층으로 나눠 얹는다"
-          telemetry={{ status: 'STATIC', syncDate: '2026-09', source: '기업 해부 Ⅰ~ⅩⅩⅠ 조사노트·통합프로필' }}
+          cardDesc={`${COMPANY_CARDS.length}편이 확정한 본사·생산 거점·지분·공급·명단·무역을 지구 위 네 층으로 나눠 얹는다`}
+          telemetry={{ status: 'STATIC', syncDate: '2026-09', source: `기업 해부 Ⅰ~${COMPANY_CARDS[COMPANY_CARDS.length - 1].numeral} 조사노트·통합프로필` }}
           customBody={<TunaPowerGlobe />}
           takeaway={{
             situation:
               '물을 잡는 곳, 캔을 만드는 곳, 브랜드를 파는 곳, 돈을 쥔 곳이 전부 다른 대륙에 있다. '
               + '스페인 회사의 몸통은 에콰도르에 있고, 대만 회사가 미국 브랜드를 가지며, '
-              + '한국 회사가 미국령 사모아에서 캔을 만든다. 배를 한 척도 안 가진 회사가 일곱이다.',
+              + `한국 회사가 미국령 사모아에서 캔을 만든다. 등록부에 제 명의 어선이 없는 회사가 ${NO_FLEET.length}곳이다.`,
             actionPlan:
               '「잡는 곳」 층에서 우리 자리를 먼저 보고, 「우리가 닿은 곳」 층의 연도를 넘겨 '
               + '공급선 명단 척수가 어떻게 움직였는지 확인한다. 선을 클릭하면 그 관계로 '
