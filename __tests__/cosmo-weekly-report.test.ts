@@ -13,10 +13,10 @@ const raw = JSON.parse(readFileSync(
 )) as {
   meta: { weekCount: number; weekRange: number[]; quoteCount: number };
   weeks: Array<Record<string, unknown>>;
-  checks: Array<{ week: number; ok: boolean }>;
+  checks: Array<{ week: number; name: string; residual: number; ok: boolean }>;
 };
 
-describe('COSMO 2026년 34주차 데이터 계약', () => {
+describe('COSMO 2026년 36주차 데이터 계약', () => {
   it('주간 엑셀의 핵심 수치와 검산 결과를 보존한다', () => {
     const latest = raw.weeks.at(-1) as {
       week: number;
@@ -31,50 +31,68 @@ describe('COSMO 2026년 34주차 데이터 계약', () => {
       cash: { endUsd: number };
     };
 
-    expect(raw.meta).toMatchObject({ weekCount: 35, weekRange: [1, 35], quoteCount: 147 });
+    expect(raw.meta).toMatchObject({ weekCount: 36, weekRange: [1, 36], quoteCount: 150 });
     expect(latest).toMatchObject({
-      week: 35,
-      backlog_total_fcl: 343,
-      backlog_total_usd: 23_529_530,
-      new_orders_fcl: 3,
-      new_orders_usd: 229_828,
-      salesWeekUsd: 115_185,
-      salesCumUsd: 42_296_959.586,
+      week: 36,
+      backlog_total_fcl: 340,
+      backlog_total_usd: 23_315_830,
+      new_orders_fcl: 11,
+      new_orders_usd: 764_769,
     });
-    expect(latest.production.CBU.weekRawMt).toBeCloseTo(425.5324, 4);
-    expect(latest.production.CBU.weekYield).toBeCloseTo(0.3867919470, 8);
-    expect(latest.inventory.totalEndUsd).toBeCloseTo(20_601_128.1016, 4);
-    expect(latest.cash.endUsd).toBeCloseTo(5_314_086.47, 2);
-    expect(raw.checks.filter((check) => check.week === 35)).toHaveLength(8);
-    expect(raw.checks.filter((check) => check.week === 35).every((check) => check.ok)).toBe(true);
+    // 부동소수 꼬리까지 못박으면 재동기화마다 깨진다 - 허용 오차로 본다
+    expect(latest.salesWeekUsd).toBeCloseTo(2_743_809.64, 2);
+    expect(latest.salesCumUsd).toBeCloseTo(45_040_769.226, 2);
+    expect(latest.production.CBU.weekRawMt).toBeCloseTo(430.9902, 4);
+    expect(latest.production.CBU.weekYield).toBeCloseTo(0.3878999151, 8);
+    expect(latest.inventory.totalEndUsd).toBeCloseTo(19_226_602.1, 1);
+    expect(latest.cash.endUsd).toBeCloseTo(7_113_546.14, 2);   // docx 「711만불」
+    expect(raw.checks.filter((check) => check.week === 36)).toHaveLength(8);
+
+    /* 36주차에 재고 항등식이 «처음» 깨졌다. 공관·ENDS·주입액 세 자재가 입고·출고 0 인데
+     * 잔액만 움직여 잔차 $31,063.75 가 남는다(1~35주는 전부 0.00). 원문 docx 도 그 두 칸이
+     * 비어 있어 전사 오류가 아니다 - 지우지 않고 데이터 품질 보드에 그대로 싣는다. */
+    const inv = raw.checks.find((c) => c.week === 36 && c.name === '재고 항등식')!;
+    expect(inv.ok).toBe(false);
+    expect(inv.residual).toBeCloseTo(31_063.75, 2);
+    expect(raw.checks.filter((c) => c.week <= 35 && c.name === '재고 항등식').every((c) => c.ok)).toBe(true);
   });
 });
 
-describe('COSMO 35주차 Word 업무보고 계약', () => {
+describe('COSMO 36주차 Word 업무보고 계약', () => {
   it('원본 출처와 고유 업무 내용을 보존한다', () => {
     expect(report.source).toEqual({
-      file: '2026.9.2_COSMO 주간보고 (35주차).docx',
-      sha256: '49dddff739c221a5fb97f19ac292d8fec4da01f8b09e32d2a85a36507c6803a6',
-      period: '2026-08-24~2026-08-30',
+      file: '2026.9.9_COSMO 주간보고 (36주차).docx',
+      sha256: 'fd917193bb2b3716a37ba470f735a8d6c2e4bed6550ab58ea255ed3c416602c1',
+      period: '2026-08-31~2026-09-06',
     });
     expect(report.litigation).toEqual({ case: '아프리카 스타', amountUsd: 540_000, status: '재심리 재판 진행 중' });
-    expect(report.operations.audit).toMatchObject({ name: '식품안전 불시 심사(BRC/IFS)', start: '2026-08-24', end: '2026-08-28' });
-    // 35주차는 P/MAS·P/DIS 하역이 둘 다 끝나 «차주 예정»이 없다 — next 가 null 인 주를 화면이 견뎌야 한다.
-    expect(report.operations.unloading).toMatchObject({ active: 'P/DIS', activeSince: '2026-08-29', next: null, nextDate: null });
-    expect(report.operations.unloading.completed.map((x) => [x.vessel, x.totalMt])).toEqual([['P/MAS', 581], ['P/DIS', 628]]);
-    expect(report.operations.audit.result).toBe('A+ 등급 유지');
+
+    /* 36주차 보고에는 품질 심사도 하역도 없다. 35주차 값을 그대로 두면 화면이 지난주
+     * 사건을 «36주차 업무 브리핑» 으로 내보낸다 - 그래서 두 항목은 null 이고,
+     * 그 자리에 그 주가 실제 보고한 물류·차주 계획이 들어간다. */
+    expect(report.operations.audit).toBeNull();
+    expect(report.operations.unloading).toBeNull();
+    expect(report.operations.logistics.headline).toBe('MPS 항만 혼잡');
     expect(report.nextActions).toContain('8월 결산 업무 진행');
   });
 
-  it('경영요약에 35주차 업무 브리핑을 렌더한다', () => {
+  it('원문 인명을 저장소에 남기지 않는다', () => {
+    // 차주 계획의 출장자는 원문에 실명으로 적혀 있다 - 직급으로만 옮긴다.
+    const text = JSON.stringify(report);
+    expect(text).not.toMatch(/[가-힣]{2,3}\s*(과장|부장|차장|대리|사장|이사)/);
+    expect(report.nextActions.some((a) => a.includes('과장급'))).toBe(true);
+  });
+
+  it('경영요약에 36주차 업무 브리핑을 렌더한다', () => {
     const markup = renderToStaticMarkup(React.createElement(HomeTab));
-    expect(markup).toContain('35주차 업무 브리핑');
+    expect(markup).toContain('36주차 업무 브리핑');
     expect(markup).toContain('아프리카 스타');
-    expect(markup).toContain('식품안전 불시 심사');
-    expect(markup).toContain('A+ 등급 유지');
-    expect(markup).toContain('P/MAS');
-    expect(markup).toContain('P/DIS');
-    // 차주 예정이 없는 주에 «null 예정» 같은 문장이 새지 않아야 한다
+    // 심사·하역이 없는 주라 그 자리에 이번 주 물류·차주 계획이 온다
+    expect(markup).toContain('MPS 항만 혼잡');
+    expect(markup).toContain('과장급 유럽 출장');
+    // 지난주 사건이 이번 주 브리핑으로 새지 않는다
+    expect(markup).not.toContain('식품안전 불시 심사');
+    expect(markup).not.toContain('P/MAS');
     expect(markup).not.toContain('null');
   });
 });

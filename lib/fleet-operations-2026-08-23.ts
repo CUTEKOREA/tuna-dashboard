@@ -204,8 +204,6 @@ const nationalWeekly = weeklyRanking
 const jointWeekly = weeklyRanking
   .filter((vessel) => !nationalVesselNames.has(vessel.vessel))
   .reduce((sum, vessel) => sum + vessel.catchMt, 0);
-const monthlyTotal = monthlyByVessel.reduce((sum, vessel) => sum + vessel.monthlyMt[7], 0);
-const annualTotal = monthlyByVessel.reduce((sum, vessel) => sum + vessel.totalMt, 0);
 
 export const purseSeineCatch = {
   period: { from: '2026-08-31', to: '2026-09-06' },
