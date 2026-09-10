@@ -119,19 +119,11 @@ export function installCinematics(globe: any, accentHex: string): Cinematics | n
   const amb = lights.find((l) => (l as any).isAmbientLight) as THREE.AmbientLight | undefined;
   if (amb) amb.intensity = 1.05;
 
-  let rimLight = scene.getObjectByName('tuna-rimlight') as THREE.DirectionalLight | undefined;
-  if (!rimLight) {
-    rimLight = new THREE.DirectionalLight(accent, 0.55);
-    rimLight.name = 'tuna-rimlight';
-    rimLight.position.set(1.1, -0.4, -0.9);
-    scene.add(rimLight);
-  }
-
-  /* 블룸 — 선과 기둥만 번지게 임계값을 높인다. 지구 표면은 안 탄다. */
+  /* 블룸 — 임계값을 0.82 로 올려 기둥·선만 번진다. 낮은 임계값에서는 지구 가장자리가 타서 후광이 생긴다. */
   const composer = globe.postProcessingComposer?.();
   let bloom: UnrealBloomPass | null = null;
   if (composer && !composer.passes.some((p: any) => p.__tunaBloom)) {
-    bloom = new UnrealBloomPass(new THREE.Vector2(1024, 1024), 0.46, 0.42, 0.58);
+    bloom = new UnrealBloomPass(new THREE.Vector2(1024, 1024), 0.30, 0.30, 0.82);
     (bloom as any).__tunaBloom = true;
     composer.addPass(bloom);
     const out = new OutputPass();
@@ -146,7 +138,6 @@ export function installCinematics(globe: any, accentHex: string): Cinematics | n
   return {
     setAccent(hex: string) {
       const c = new THREE.Color(hex);
-      rimLight!.color.copy(c);
       if (surface) {
         surface.specular.copy(c).multiplyScalar(0.2);
         surface.needsUpdate = true;
@@ -167,7 +158,7 @@ export function installCinematics(globe: any, accentHex: string): Cinematics | n
       stars!.rotation.y += dt * 0.0045;
     },
     dispose() {
-      for (const name of ['tuna-stars', 'tuna-rimlight']) {
+      for (const name of ['tuna-stars']) {
         const o = scene.getObjectByName(name);
         if (!o) continue;
         scene.remove(o);
