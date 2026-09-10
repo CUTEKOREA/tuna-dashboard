@@ -1,7 +1,7 @@
 # 위젯 리니지 — 데이터 파일별 영향 범위
 
 > `python3 scripts/widget_lineage.py`로 재생성. 손으로 고치지 말 것.
-> 진입점 app/page.tsx · closure 231파일 · 위젯 111개 · 데이터 파일 159개.
+> 진입점 app/page.tsx · closure 240파일 · 위젯 113개 · 데이터 파일 163개.
 > 데이터 파일 필드를 바꾸기 전에 여기서 영향 위젯을 확인한다 (파손 진단 1단계).
 
 ## data/beef_usda_widgets.json
@@ -479,6 +479,14 @@
 - components/market-understanding/TunaAnatomyDashboard.tsx
 - components/market-understanding/WhelkIndustryDashboard.tsx
 
+## public/data/octopus_company_research_v1.json
+- components/market-understanding/OctopusCharts.tsx
+- components/market-understanding/OctopusIndustryDashboard.tsx
+
+## public/data/octopus_industry_v1.json
+- components/market-understanding/OctopusCharts.tsx
+- components/market-understanding/OctopusIndustryDashboard.tsx
+
 ## public/data/panofi/ghana_tuna_mirror.json
 - components/panofi/PanofiDashboard.tsx
 - components/panofi/PanofiTabs.tsx
@@ -506,6 +514,9 @@
 ## public/data/panofi/panofi_weekly.json
 - components/panofi/PanofiDashboard.tsx
 - components/panofi/PanofiTabs.tsx
+
+## public/data/pollock_company_research_v1.json
+- components/market-understanding/PollockIndustryDashboard.tsx
 
 ## public/data/pollock_industry_v1.json
 - components/market-understanding/CommodityCharts.tsx
@@ -589,6 +600,9 @@
 - components/market-understanding/SquidCharts.tsx
 - components/market-understanding/SquidIndustryDashboard.tsx
 - components/market-understanding/SquidWidgetView.tsx
+
+## public/data/tuna_anatomy_roster_v1.json
+- components/market-understanding/TunaAnatomyDashboard.tsx
 
 ## public/data/tuna_anatomy_v1.json
 - components/market-understanding/CommodityCharts.tsx

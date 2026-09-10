@@ -24,9 +24,9 @@ const DASHBOARDS = [
   // 08 선박별(사내 자료) + 보고서 이식 09~15 + 배포본 전용 D 가 붙어 19단계다.
   ['오징어', SquidIndustryDashboard, 19],
   ['참치', TunaIndustryDashboard, 10],
-  ['새우', ShrimpIndustryDashboard, 7],
-  ['고등어', MackerelIndustryDashboard, 6],
-  ['골뱅이', WhelkIndustryDashboard, 6],
+  ['새우', ShrimpIndustryDashboard, 14],
+  ['고등어', MackerelIndustryDashboard, 10],
+  ['골뱅이', WhelkIndustryDashboard, 10],
 ] as const;
 
 function tabLabels(html: string): string[] {

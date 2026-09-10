@@ -35,6 +35,15 @@ BASE = Path(
 )
 HISTORY = BASE / "00_오징어_관련자료/10_원본데이터셋/extras/kcs/KCS_squid_HS_2020-2024.csv"
 YTD = BASE / "00_오징어_관련자료/10_원본데이터셋/legacy_updates/update_2026-07-06/kcs/KCS_2026YTD_HS_squid.csv"
+# 2026-09-10: 레거시 YTD 파일은 1~5월까지다(총계행 검산 232,559,835 USD·68,225,975 kg = 1~5월 상세행 합).
+# 옛 라벨 「1~6월」은 오기였다. 6·7월은 관세청 nitemtrade 단월 CSV(HS6별 총계행)를 소호별로만 싣는다.
+# HS 030742·030743·030749·160554를 서로 더하거나 1~5월 누계에 이어 붙이지 않는다.
+# 8월분은 2026-09-10 현재 미게시(레퍼런스갱신_20260910.md).
+YTD_MONTHLY_EXTRA = [
+    BASE / "00_오징어_관련자료/03_무역·HS/20260600-KCS-nitemtrade_squid_HS_2026-06.csv",
+    BASE / "00_오징어_관련자료/03_무역·HS/20260700-KCS-nitemtrade_squid_HS_2026-07.csv",
+]
+YTD_LABEL = "2026년 1~5월"
 
 # 관세청 추출본은 2024년에서 끝난다. 2025년은 유엔 무역통계(Comtrade)로 잇는다.
 # 두 출처의 2024년 값이 품목별로 일치함을 확인하고 붙였다 —
@@ -301,27 +310,49 @@ def main() -> None:
         if stage_v[s]
     ]
 
-    # ── 2026 상반기 ──
+    # ── 2026 1~5월 누계 (레거시 YTD) + 6·7월 HS6 단월(소호별, 합산 금지) ──
     ytd = None
+    monthly_hs6: list[dict] = []
     if YTD.exists():
         with open(YTD, encoding="utf-8-sig") as handle:
             yrows = [r for r in csv.DictReader(handle) if r.get("hs_query") in SQUID_HS]
-        # 이 파일은 year 컬럼이 '총계' 문자열이라 상세/총계 구분이 다르다. 총계행만 쓴다.
         tot = [r for r in yrows if (r.get("year") or "").strip() in ("총계", "")]
         use = tot or yrows
         ytd = {
-            "구간": "2026년 1~6월",
+            "구간": YTD_LABEL,
             "수입액": round(sum(num(r.get("impDlr")) for r in use) / 1e6, 1),
             "수입량": round(sum(num(r.get("impWgt")) for r in use) / 1000),
             "수출액": round(sum(num(r.get("expDlr")) for r in use) / 1e6, 1),
             "수출량": round(sum(num(r.get("expWgt")) for r in use) / 1000),
         }
 
+    for path in YTD_MONTHLY_EXTRA:
+        if not path.exists():
+            raise SystemExit(f"2026 월별 입력이 없다: {path}")
+        month = "2026-06" if "2026-06" in path.name else "2026-07"
+        with open(path, encoding="utf-8-sig") as handle:
+            for row in csv.DictReader(handle):
+                hs = (row.get("hs_query") or "").strip()
+                if hs not in SQUID_HS:
+                    continue
+                if (row.get("year") or "").strip() not in ("총계", ""):
+                    continue
+                monthly_hs6.append(
+                    {
+                        "월": month,
+                        "소호": hs,
+                        "수입액_USD": num(row.get("impDlr")),
+                        "수입량_kg": num(row.get("impWgt")),
+                        "수출액_USD": num(row.get("expDlr")),
+                        "수출량_kg": num(row.get("expWgt")),
+                    }
+                )
+
     payload = {
         "_meta": {
-            "생성일": "2026-08-16",
-            "출처": "관세청 수출입무역통계 (HSK 10자리 상세, 2020~2024) + 2026년 1~6월 누계",
-            "단위": "금액 백만 USD · 물량 톤 · 단가 USD/톤",
+            "생성일": "2026-09-10",
+            "출처": "관세청 수출입무역통계 (HSK 10자리 상세, 2020~2024) + 2026년 1~5월 누계 + 6·7월 HS6 단월 총계(소호별 유지, 합산 금지). 8월 미게시",
+            "단위": "금액 백만 USD · 물량 톤 · 단가 USD/톤. 단월_HS6 은 원문 USD·kg",
             "기준연도": latest,
             "바스켓": (
                 "HS 0307.41·42·43·49 + 1605.54. 0307.4x 는 갑오징어와 오징어를 한 소호에 "
@@ -332,6 +363,7 @@ def main() -> None:
                 "고둥류(0307.82) · 문어 조제품(1605.55) · 기타 연체동물 조제품(1605.59) 은 뺐다."
             ),
             "이중계상방지": "hsCd='-' 총계행을 빼고 HSK 10자리 상세행만 더했다. 두 합계가 일치함을 확인했다.",
+            "합산금지": "HS 030742·030743·030749·160554 총계를 서로 더하지 않는다. 1~5월 누계와 6·7월 단월을 이어 붙이지 않는다.",
             "갱신방법": "python3 scripts/build_squid_trade_data.py",
         },
         "요약": {
@@ -350,6 +382,7 @@ def main() -> None:
         "수입국구성": origins,
         "품목단계": stages,
         "최근누계": ytd,
+        "단월_HS6": monthly_hs6,
     }
 
     args.out.parent.mkdir(parents=True, exist_ok=True)
@@ -364,6 +397,7 @@ def main() -> None:
     print("   단계별:", " · ".join(f"{s['구분']} {s['단가']:,}USD/t" for s in stages))
     if ytd:
         print(f"   {ytd['구간']}: 수입 {ytd['수입액']:,}백만USD · {ytd['수입량']:,}t")
+    print(f"   단월_HS6 {len(monthly_hs6)}행 (소호별, 합산하지 않음)")
 
 
 if __name__ == "__main__":

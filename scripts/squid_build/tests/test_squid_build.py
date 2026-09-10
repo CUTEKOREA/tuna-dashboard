@@ -29,7 +29,7 @@ from scripts.validate_squid_v5 import parse_edge, validate  # noqa: E402
 # 결정론을 위해 빌드시각을 고정한다. 아카이브에 더 최신 문서가 들어오면
 # 이 값만 올린다 — 7곳에 흩어져 있던 탓에 2026-08-17 문서가 들어오자
 # G-012 검사가 엉뚱하게 실패했다.
-BUILT_AT = datetime(2026, 8, 27, 13, 0, tzinfo=ZoneInfo("Asia/Seoul"))
+BUILT_AT = datetime(2026, 9, 10, 13, 0, tzinfo=ZoneInfo("Asia/Seoul"))
 
 
 def _read_csv(path: Path) -> list[dict[str, str]]:
@@ -63,18 +63,18 @@ def test_kmi_price_round_trip() -> None:
     patch = extract_kmi_price(DEFAULT_ARCHIVE_ROOT, spec)
     assert spec.archive_paths == (
         "00_오징어_관련자료/11_분석·가공데이터/"
-        "KMI_FishData_squid_price_20260827.csv",
+        "KMI_FishData_squid_price_20260910.csv",
     )
     assert patch["data"]["observations"][-1] == {
-        "date": "2026-08-25",
-        "price_krw": 5570,
+        "date": "2026-09-08",
+        "price_krw": 5077,
     }
     assert patch["data"]["comparison_snapshot"] == {
-        "date": "2026-08-26",
-        "price_krw": 5440,
+        "date": "2026-09-09",
+        "price_krw": 4777,
     }
-    assert patch["data"]["comparisons"][-1]["difference_pct"] == 3.5
-    assert patch["basis"]["coverage_end"] == "2026-08-25"
+    assert patch["data"]["comparisons"][-1]["difference_pct"] == -9.9
+    assert patch["basis"]["coverage_end"] == "2026-09-08"
 
 
 def test_peru_timeline_order() -> None:
@@ -95,10 +95,10 @@ def test_chile_uses_separate_quota_and_capture_sources() -> None:
     spec = _specs_by_id()["A_chile_jibia_quota"]
     widget = extract_chile_jibia(DEFAULT_ARCHIVE_ROOT, spec)
     assert widget["data"]["legal_quota_tonnes"] == 200000
-    assert widget["data"]["as_of"] == "2026-08-18"
-    assert widget["data"]["recorded_capture_tonnes"] == 130021.9741
-    assert widget["data"]["quota_minus_recorded_capture_tonnes"] == 69978.0259
-    assert widget["data"]["consumption_pct"] == 65.011
+    assert widget["data"]["as_of"] == "2026-09-01"
+    assert widget["data"]["recorded_capture_tonnes"] == 139273.3293
+    assert widget["data"]["quota_minus_recorded_capture_tonnes"] == 60726.6707
+    assert widget["data"]["consumption_pct"] == 69.6367
     assert len(widget["data"]["breakdown"]) == 4
     assert widget["data"]["breakdown"][-1] == {
         "segment": "INVESTIGACIÓN",
@@ -108,8 +108,8 @@ def test_chile_uses_separate_quota_and_capture_sources() -> None:
         "consumption_pct": 0,
     }
     assert widget["data"]["denominator_source"].endswith("20251218-SUBPESCA-Jibia_Quota_2026.md")
-    assert widget["data"]["numerator_source"].endswith("20260820-SERNAPESCA-Jibia_Quota_Consumption_2026.xlsx")
-    assert widget["basis"]["coverage_end"] == "2026-08-18"
+    assert widget["data"]["numerator_source"].endswith("20260903-SERNAPESCA-Jibia_Quota_Consumption_2026.xlsx")
+    assert widget["basis"]["coverage_end"] == "2026-09-01"
 
 
 def test_monitoring_calendar_prioritizes_requested_sources_without_mixing_values() -> None:
@@ -400,16 +400,29 @@ def test_peru_research_authorisation_is_not_a_reopening() -> None:
     assert windows["IMARPE 자원조사"] == ("2026-08-23", "2026-08-29")
     assert windows["탐사조업"] == ("2026-08-30", "2026-09-26")
 
+    # 2026-08-29 RM00304 가 상업 재개 공문이다. 재개 사건은 기간 한도를 tonnes 로 두지
+    # 않는다 — 한도가 실적으로 읽히면 G-007 의 취지가 무너진다.
+    reopening = [e for e in timeline if e.get("quota_semantics") == "reopening_notice"]
+    assert len(reopening) == 1, [e["date"] for e in timeline]
+    assert reopening[0]["date"] == "2026-08-30"
+    assert "tonnes" not in reopening[0]
+    assert reopening[0]["period_limit_tonnes"] == 82321
+    starts = [w["start"] for w in reopening[0]["windows"]]
+    assert starts == ["2026-08-30", "2026-09-12"], starts
+    reset = [e for e in timeline if e["date"] == "2026-08-29"]
+    assert reset and reset[0]["tonnes"] == 709659
+
     peru = next(
         row
         for row in document["widgets"]["A_sourcing_signal_board"]["data"]
         if row["origin"].startswith("페루")
     )
-    assert peru["status"] == "중단·제한", peru["status"]
-    assert peru["as_of"] == "2026-08-17"
-    assert "상업 재개 공문은 아님" in peru["reason"]
-    # 중단이 유효하다는 사실이 사유에서 빠지면 안 된다.
-    assert "중단공지 유효" in peru["reason"]
+    assert peru["status"] == "조업중", peru["status"]
+    assert peru["as_of"] == "2026-08-30"
+    assert "RM 00304-2026" in peru["reason"]
+    # 기간 한도가 조달가능량으로 읽히면 안 된다는 사실이 사유에서 빠지면 안 된다.
+    assert "조달가능량이 아님" in peru["reason"]
+    assert peru["state_evidence"]["derivation"] == "observed_reopening_notice"
 
 
 def test_hs_map_preserves_archive_rows() -> None:
@@ -533,27 +546,27 @@ def test_sourcing_signal_records_observed_and_schedule_derivations() -> None:
 
     chile = rows["칠레 jibia"]
     assert chile["status"] == "조업중"
-    assert chile["as_of"] == "2026-08-18"
+    assert chile["as_of"] == "2026-09-01"
     # 잔여량은 조달 판단용이므로 정수 톤. 소수점 4자리는 의미 없는 정밀도였다.
-    assert "69,978톤" in chile["reason"]
+    assert "60,727톤" in chile["reason"]
     # 기준일은 카드가 as_of 로 따로 찍는다 — reason 안에서 되풀이하지 않는다.
-    assert "2026-08-18" not in chile["reason"]
+    assert "2026-09-01" not in chile["reason"]
     assert chile["state_evidence"]["evidence_type"] == "observed_report"
     assert chile["state_evidence"]["derivation"] == "observed_capture_accrual"
     assert chile["state_evidence"]["archive_path"].endswith(
-        "20260820-SERNAPESCA-Jibia_Quota_Consumption_2026.xlsx"
+        "20260903-SERNAPESCA-Jibia_Quota_Consumption_2026.xlsx"
     )
 
     falkland = rows["포클랜드 Loligo"]
-    assert falkland["status"] == "어기중"
-    assert falkland["state_evidence"]["evidence_type"] == "schedule_derived"
-    assert falkland["state_evidence"]["derivation"] == "published_schedule_window"
+    # 9월 빌드: 「7월 말부터 64일」 일정은 8월에만 모호함 없이 적용된다. 9월은 개장·폐쇄
+    # 공지 원문이 아카이브에 없으므로 일정에서 상태를 만들어 내지 않는다.
+    assert falkland["status"] == "데이터공백"
+    assert falkland["state_evidence"]["evidence_type"] == "data_gap"
+    assert falkland["state_evidence"]["derivation"] == "unsupported_schedule_gap"
     assert falkland["state_evidence"]["archive_path"].endswith(
         "20251212-FIFD-Licensing_Advice_2026.md"
     )
-    # 문구가 바뀌어도 "관측이 아니라 일정 기준"이라는 사실은 남아야 한다.
-    assert "공개 어기 일정" in falkland["reason"]
-    assert "개장 공지 확인은 아님" in falkland["reason"]
+    assert "적용할 수 없음" in falkland["reason"]
 
     argentina = rows["아르헨티나 Illex"]
     assert argentina["status"] == "어기외"
@@ -663,7 +676,7 @@ def test_derivations_preserve_missing_inputs() -> None:
     """A derivation that turns missing tariff/season evidence into a number must fail."""
     from scripts.squid_build.derive import derive_widgets
 
-    document = build_document(archive_root=DEFAULT_ARCHIVE_ROOT)
+    document = build_document(archive_root=DEFAULT_ARCHIVE_ROOT, built_at=BUILT_AT)
     specs = load_spec(DEFAULT_SPEC_PATH)
     patches = derive_widgets(document, specs)
 
@@ -672,7 +685,7 @@ def test_derivations_preserve_missing_inputs() -> None:
         "조업중", "어기중", "중단·제한", "어기외", "데이터공백"
     }
     peru = next(row for row in signal["data"] if row["origin"] == "페루 pota")
-    assert peru["status"] == "중단·제한"
+    assert peru["status"] == "조업중"
 
     landed = patches["B_landed_cost_calc"]
     assert landed["data"] == []
@@ -686,12 +699,12 @@ def test_derivations_preserve_missing_inputs() -> None:
     assert all(row["market_stage"] != "first_sale" for row in stages)
     assert all("combined_average" not in row for row in stages)
     stage_basis = patches["B_stage_separated_prices"]["basis"]
-    assert stage_basis["coverage_end"] == "2026-08-25"
-    assert stage_basis["published_at"] == "2026-08-26"
-    assert stage_basis["retrieved_at"] == "2026-08-27"
+    assert stage_basis["coverage_end"] == "2026-09-08"
+    assert stage_basis["published_at"] == "2026-09-09"
+    assert stage_basis["retrieved_at"] == "2026-09-10"
 
     freshness = patches["B_price_freshness_board"]
-    assert freshness["basis"]["coverage_end"] == "2026-08-25"
+    assert freshness["basis"]["coverage_end"] == "2026-09-08"
     kmi_freshness = next(
         row for row in freshness["data"] if row["source_widget"] == "B_kmi_consumer_price"
     )
@@ -703,7 +716,7 @@ def test_complete_document_contract() -> None:
     document = build_document(archive_root=DEFAULT_ARCHIVE_ROOT)
     assert len(document["widgets"]) == 39, len(document["widgets"])
     assert document["meta"]["telemetry"] == "SYNCED"
-    assert document["meta"]["archive_snapshot"] == "squid archive @ 2026-08-27"
+    assert document["meta"]["archive_snapshot"] == "squid archive @ 2026-09-10"
     errors = validate(document)
     assert errors == [], "\n".join(errors)
 

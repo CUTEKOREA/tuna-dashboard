@@ -101,7 +101,7 @@ describe('시장 이해 > 오징어 - 데이터 인테이크', () => {
 describe('시장 이해 > 오징어 - 위젯 큐레이션', () => {
   it('생성 데이터에 앰대시가 재유입되지 않는다', () => {
     const emDash = String.fromCodePoint(0x2014);
-    for (const file of ['squid_industry_widgets_v1.json']) {
+    for (const file of ['squid_industry_widgets_v1.json', 'squid_company_research_v1.json']) {
       const text = readFileSync(join(process.cwd(), 'public/data', file), 'utf8');
       expect(text, file).not.toContain(emDash);
     }
@@ -109,7 +109,7 @@ describe('시장 이해 > 오징어 - 위젯 큐레이션', () => {
 
   it('최신 KMI·칠레·모니터링 위젯과 핵심 감시행을 노출한다', () => {
     const meta = getSquidWidgetsMeta() as { 생성일: string; 원본: string };
-    expect(meta.생성일).toBe('2026-08-27');
+    expect(meta.생성일).toBe('2026-09-10');
     expect(meta.원본).toContain('위젯 62개');
 
     const widgets = getSquidStages().flatMap((stage) => stage.widgets);
@@ -142,28 +142,69 @@ describe('시장 이해 > 오징어 - 위젯 큐레이션', () => {
 
     const consumer = valueStage?.facts.find((fact) => fact.label === '한국 소비자가');
     expect(consumer).toMatchObject({
-      value: '5,570 원/마리',
-      asOf: '2026-08-25',
-      grade: 'B',
+      value: '5,077 원/마리',
+      asOf: '2026-09-08',
+      grade: 'A',
     });
-    expect(consumer?.note).toContain('8월 26일 화면 비교값 5,440원');
+    expect(consumer?.note).toContain('4,777원');
 
     const wholesale = valueStage?.facts.find(
       (fact) => fact.label === '국내 도매가: 원양과 연근해',
     );
-    expect(wholesale?.asOf).toBe('2026-08-26');
+    expect(wholesale?.asOf).toContain('2026-09-10');
+    expect(wholesale?.value).toContain('13,300');
 
     const chile = sourcingStage?.facts.find(
       (fact) => fact.label === '칠레 대왕오징어 쿼터 소진율',
     );
-    expect(chile).toMatchObject({ value: '65.011%', grade: 'A' });
-    expect(chile?.asOf).toContain('130,021.9741톤');
-    expect(chile?.asOf).toContain('69,978.0259톤');
+    expect(chile).toMatchObject({ value: '69.6367%', grade: 'A' });
+    expect(chile?.asOf).toContain('139,273.3293톤');
+    expect(chile?.asOf).toContain('60,726.6707톤');
 
     const currentText = JSON.stringify([valueStage, sourcingStage]);
     expect(currentText).not.toContain('4,926 원/마리');
+    expect(currentText).not.toContain('5,570 원/마리');
     expect(currentText).not.toContain('60.93%');
+    expect(currentText).not.toContain('65.011%');
     expect(currentText).not.toContain('121,868.76톤');
+    expect(currentText).not.toContain('130,021.9741톤');
+  });
+
+  it('Codex 지적 P0·P1의 옛 주어·기간·단위가 본문·교역 JSON에 남지 않는다', () => {
+    const quota = SQUID_ALL_NARRATIVES.find((stage) => stage.key === 's04');
+    const quotaText = JSON.stringify(quota);
+    expect(quotaText).toContain('38,907 GT');
+    expect(quotaText).not.toContain('38,907톤');
+    expect(quotaText).not.toContain('45,773톤');
+
+    const gfw = SQUID_ALL_NARRATIVES.find((stage) => stage.key === 'x02')?.facts.find(
+      (fact) => fact.label === '글로벌 피싱 워치 지거선 식별 기록',
+    );
+    expect(gfw?.asOf).toBe('전체 식별 기록 · 2025년 이후 송신 기록');
+    expect(gfw?.asOf).not.toContain('2024년');
+
+    const finance = SQUID_ALL_NARRATIVES.find((stage) => stage.key === 'x04');
+    const fy2025 = finance?.facts.find((fact) => fact.label === '선민수산 재무 상세 (2025 회계연도)');
+    expect(fy2025?.value).toContain('현금·단기금융상품');
+    expect(fy2025?.note).not.toContain('147억');
+    const combined = finance?.facts.find((fact) =>
+      fact.label.includes('선민 2026-04-30 + 현원 2025'),
+    );
+    expect(combined?.value).toContain('재고 147억');
+    expect(combined?.asOf).toBe('선민 2026-04-30 + 현원 2025');
+
+    const tradeText = JSON.stringify(SQUID_ALL_NARRATIVES.find((stage) => stage.key === 's06'));
+    expect(tradeText).not.toContain('3억 4,040만');
+    expect(tradeText).not.toContain('100,110');
+
+    const trade = getSquidTradeData();
+    expect(trade.최근누계?.구간).toBe('2026년 1~5월');
+    expect(trade.최근누계?.수입액).not.toBe(340.4);
+    expect(trade.최근누계?.수입량).not.toBe(100110);
+    expect((trade.단월_HS6 ?? []).length).toBeGreaterThan(0);
+    const hs6Codes = new Set((trade.단월_HS6 ?? []).map((row) => row.소호));
+    expect(hs6Codes.has('030743')).toBe(true);
+    expect(hs6Codes.has('160554')).toBe(true);
   });
 
   it('모든 위젯이 현황·실행지침을 갖춘다 (W-04)', () => {

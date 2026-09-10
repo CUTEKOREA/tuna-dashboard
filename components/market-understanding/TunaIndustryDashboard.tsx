@@ -8,7 +8,7 @@
  *  - 히어로: 산업의 크기 세 숫자
  *  - 30초 브리핑: 스크롤하지 않을 사람을 위한 출구
  *  - 분기도: 어법에서 갈린 두 경로가 소비까지 이어지는 그림
- *  - 사슬 7단계 + 횡단 3축: 각 단계는 서술 → 검증 수치 → 차트 순
+ *  - 사슬 7단계 + 횡단 11축: 각 단계는 서술 → 검증 수치 → 차트 순
  *  - 출처와 한계: 무엇을 확인했고 무엇을 확인 못 했는지
  *
  * 모든 수치의 근거는 `docs/2026-08-16_tuna_valuechain_sources.md`.
@@ -392,11 +392,12 @@ const CATCH_BASE_SLOTS: Record<string, ChartSlot[]> = {
     {
       title: '국가별 캔참치 공장과 주요 기업',
       caption: COMPANY_RESEARCH.캔공장.요지,
-      telemetry: { status: 'SYNCED' as const, syncDate: '2026-08-17 조사' },
+      telemetry: { status: 'SYNCED' as const, syncDate: '2026-09-10 조사' },
       span: 'full',
       render: () => <CanneryCountryTable rows={COMPANY_RESEARCH.캔공장.rows} />,
     },
   ],
+
   s06: [
     {
       title: '품목군별 교역 규모와 단가 (달러/톤)',
@@ -429,7 +430,7 @@ const CATCH_BASE_SLOTS: Record<string, ChartSlot[]> = {
     {
       title: '국가별 참치캔 브랜드와 점유율 (성격 구분)',
       caption: COMPANY_RESEARCH.브랜드.요지,
-      telemetry: { status: 'SYNCED' as const, syncDate: '2026-08-17 조사' },
+      telemetry: { status: 'SYNCED' as const, syncDate: '2026-09-10 조사' },
       span: 'full',
       render: () => <BrandMarketTable rows={COMPANY_RESEARCH.브랜드.rows} />,
     },
@@ -586,7 +587,7 @@ const SPEC: CommoditySpec = {
   continuous: true,
   key: 'tuna',
   title: '참치',
-  subtitle: '참치 산업 해부 · 바다에서 식탁까지 - 밸류체인 7단계와 그것을 관통하는 3개 축',
+  subtitle: '참치 산업 해부 · 바다에서 식탁까지 - 밸류체인 7단계와 가격·규제·한국의 자리 3개 축',
   accent: TUNA_ACCENT,
   primaryKpi: {
     label: '세계 주요 상업 참치 어획량',
@@ -602,19 +603,19 @@ const SPEC: CommoditySpec = {
   stripItems: [
     {
       now: true,
-      eyebrow: '기준',
-      title: '세계 어획량',
-      body: `${CATCH.요약.세계어획량.toLocaleString('ko-KR')} (톤)`,
+      eyebrow: '지금',
+      title: '방콕 가다랑어 계약가',
+      body: '2,100 달러/톤 (2026-08, 인도 약 1개월)',
+    },
+    {
+      eyebrow: '한국',
+      title: '2026 상반기 어획',
+      body: '118,014 톤 (6개월 누계)',
     },
     {
       eyebrow: '해역',
       title: '서·중부태평양',
       body: `${(CATCH.요약.최대해역비중 ?? 0).toLocaleString('ko-KR', { maximumFractionDigits: 2 })} (%)`,
-    },
-    {
-      eyebrow: '한국',
-      title: '국내 어획량',
-      body: `${(CATCH.요약.한국어획량 ?? 0).toLocaleString('ko-KR')} (톤)`,
     },
   ],
   // 참치 브리핑은 «결론 + 부연» 두 층이다. headline 이 굵은 앞줄을 그대로 살린다.

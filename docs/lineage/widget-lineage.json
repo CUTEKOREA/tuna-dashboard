@@ -1,9 +1,9 @@
 {
  "_meta": {
   "entry": "app/page.tsx",
-  "files": 231,
-  "widgets": 111,
-  "dataFiles": 159,
+  "files": 240,
+  "widgets": 113,
+  "dataFiles": 163,
   "generator": "scripts/widget_lineage.py"
  },
  "widgetToData": {
@@ -577,6 +577,7 @@
     "lib/data/company-fcf.ts",
     "lib/data/company-frabelle.ts",
     "lib/data/company-frinsa.ts",
+    "lib/data/company-geo.ts",
     "lib/data/company-iot.ts",
     "lib/data/company-itochu.ts",
     "lib/data/company-jais.ts",
@@ -738,6 +739,7 @@
    "dataModules": [
     "lib/data/commodity-industry.ts",
     "lib/data/mackerel-country-series.ts",
+    "lib/data/mackerel-roster.ts",
     "lib/data/valuechain-companies.ts"
    ],
    "dataFiles": [
@@ -762,13 +764,33 @@
     "public/data/whelk_industry_v1.json"
    ]
   },
+  "components/market-understanding/OctopusCharts.tsx": {
+   "dataModules": [
+    "lib/data/octopus-industry.ts"
+   ],
+   "dataFiles": [
+    "public/data/octopus_company_research_v1.json",
+    "public/data/octopus_industry_v1.json"
+   ]
+  },
+  "components/market-understanding/OctopusIndustryDashboard.tsx": {
+   "dataModules": [
+    "lib/data/octopus-industry.ts"
+   ],
+   "dataFiles": [
+    "public/data/octopus_company_research_v1.json",
+    "public/data/octopus_industry_v1.json"
+   ]
+  },
   "components/market-understanding/PollockIndustryDashboard.tsx": {
    "dataModules": [
-    "lib/data/commodity-industry.ts"
+    "lib/data/commodity-industry.ts",
+    "lib/data/pollock-company-research.ts"
    ],
    "dataFiles": [
     "public/data/mackerel_country_series_v1.json",
     "public/data/mackerel_industry_v1.json",
+    "public/data/pollock_company_research_v1.json",
     "public/data/pollock_industry_v1.json",
     "public/data/shrimp_argentina.json",
     "public/data/shrimp_industry_v1.json",
@@ -872,7 +894,8 @@
   },
   "components/market-understanding/TunaAnatomyDashboard.tsx": {
    "dataModules": [
-    "lib/data/commodity-industry.ts"
+    "lib/data/commodity-industry.ts",
+    "lib/data/tuna-anatomy-roster.ts"
    ],
    "dataFiles": [
     "public/data/mackerel_country_series_v1.json",
@@ -881,6 +904,7 @@
     "public/data/shrimp_argentina.json",
     "public/data/shrimp_industry_v1.json",
     "public/data/shrimp_real_data_v4.json",
+    "public/data/tuna_anatomy_roster_v1.json",
     "public/data/tuna_anatomy_v1.json",
     "public/data/whelk_country_series_v1.json",
     "public/data/whelk_industry_v1.json"
@@ -962,6 +986,7 @@
    "dataModules": [
     "lib/data/commodity-industry.ts",
     "lib/data/valuechain-companies.ts",
+    "lib/data/whelk-company-research.ts",
     "lib/data/whelk-country-series.ts"
    ],
    "dataFiles": [
@@ -1525,6 +1550,14 @@
    "components/market-understanding/TunaAnatomyDashboard.tsx",
    "components/market-understanding/WhelkIndustryDashboard.tsx"
   ],
+  "public/data/octopus_company_research_v1.json": [
+   "components/market-understanding/OctopusCharts.tsx",
+   "components/market-understanding/OctopusIndustryDashboard.tsx"
+  ],
+  "public/data/octopus_industry_v1.json": [
+   "components/market-understanding/OctopusCharts.tsx",
+   "components/market-understanding/OctopusIndustryDashboard.tsx"
+  ],
   "public/data/panofi/ghana_tuna_mirror.json": [
    "components/panofi/PanofiDashboard.tsx",
    "components/panofi/PanofiTabs.tsx"
@@ -1552,6 +1585,9 @@
   "public/data/panofi/panofi_weekly.json": [
    "components/panofi/PanofiDashboard.tsx",
    "components/panofi/PanofiTabs.tsx"
+  ],
+  "public/data/pollock_company_research_v1.json": [
+   "components/market-understanding/PollockIndustryDashboard.tsx"
   ],
   "public/data/pollock_industry_v1.json": [
    "components/market-understanding/CommodityCharts.tsx",
@@ -1635,6 +1671,9 @@
    "components/market-understanding/SquidCharts.tsx",
    "components/market-understanding/SquidIndustryDashboard.tsx",
    "components/market-understanding/SquidWidgetView.tsx"
+  ],
+  "public/data/tuna_anatomy_roster_v1.json": [
+   "components/market-understanding/TunaAnatomyDashboard.tsx"
   ],
   "public/data/tuna_anatomy_v1.json": [
    "components/market-understanding/CommodityCharts.tsx",

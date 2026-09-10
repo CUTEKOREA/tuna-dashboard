@@ -36,7 +36,11 @@ describe('골뱅이 05단계 - 수입 창구', () => {
       's03',
       's04',
       's05',
+      's06',
+      's07',
+      's08',
       'x01',
+      'x02',
     ]);
   });
 
@@ -114,7 +118,7 @@ describe('골뱅이 05단계 - 수입 창구', () => {
   it('s05 슬롯이 사람이 읽을 수치를 실제로 그려낸다', () => {
     const slots = WHELK_CHART_SLOTS.s05;
     expect(slots).toBeTruthy();
-    expect(slots.length).toBe(3);
+    expect(slots.length).toBeGreaterThanOrEqual(3);
 
     const html = slots
       .map((s) => renderToStaticMarkup(React.createElement(React.Fragment, null, s.render())))
@@ -137,5 +141,91 @@ describe('골뱅이 05단계 - 수입 창구', () => {
     const caps = WHELK_CHART_SLOTS.s05.map((s) => s.caption).join(' ');
     expect(caps).toMatch(/제품중량|세번/);
     expect(caps).toMatch(/더할 수 없다|만들지 않는다/);
+  });
+});
+
+describe('골뱅이 06·07단계 - 명의·위판 (보고서 제3판)', () => {
+  it('명의·위판 단계와 브리핑이 있다', () => {
+    expect(WHELK_NARRATIVES.find((n) => n.key === 's06')?.title.split(' - ')[0]).toBe('명의');
+    expect(WHELK_NARRATIVES.find((n) => n.key === 's07')?.title.split(' - ')[0]).toBe('위판');
+    expect(WHELK_NARRATIVES.find((n) => n.key === 's08')?.title.split(' - ')[0]).toBe('명부');
+    expect(WHELK_BRIEFING_POINTS.some((b) => b.stage === 's06')).toBe(true);
+    expect(WHELK_BRIEFING_POINTS.some((b) => b.stage === 's07')).toBe(true);
+    expect(WHELK_BRIEFING_POINTS.some((b) => b.stage === 's08')).toBe(true);
+    expect(WHELK_SOURCE_NOTES.some((n) => n.includes('제3판'))).toBe(true);
+  });
+
+  it('생산·위판 정본 수치가 본문에 있다', () => {
+    const s06 = WHELK_NARRATIVES.find((n) => n.key === 's06');
+    const s07 = WHELK_NARRATIVES.find((n) => n.key === 's07');
+    const t6 = [s06?.lede, ...(s06?.paragraphs ?? [])].join('\n');
+    const t7 = [s07?.lede, ...(s07?.paragraphs ?? [])].join('\n');
+    expect(t6).toContain('6,203,407');
+    expect(t6).toContain('2,464,820');
+    expect(t6).toContain('59.5%');
+    expect(t6).toContain('705건');
+    expect(t7).toContain('8,228,645');
+    expect(t7).toContain('7,925,747');
+    expect(t7).toContain('16-81');
+  });
+
+  it('매체 670 t과 세계 골뱅이 생산량 라벨을 쓰지 않는다', () => {
+    const text = WHELK_NARRATIVES.flatMap((s) => [s.lede, ...s.paragraphs]).join('\n');
+    expect(text).not.toContain('670 tons');
+    expect(text).not.toContain('1,591');
+    expect(text).not.toMatch(/(?<![0-9,])670 t\b/);
+  });
+
+  it('3차 지적: 기간·단위·표 불일치·전체화를 되돌리지 않는다', () => {
+    const s01 = WHELK_NARRATIVES.find((n) => n.key === 's01');
+    const s07 = WHELK_NARRATIVES.find((n) => n.key === 's07');
+    const s08 = WHELK_NARRATIVES.find((n) => n.key === 's08');
+    const x02 = WHELK_NARRATIVES.find((n) => n.key === 'x02');
+    const t7 = [s07?.lede, ...(s07?.paragraphs ?? [])].join('\n');
+    const t8 = [s08?.lede, ...(s08?.paragraphs ?? [])].join('\n');
+    const tX = [x02?.lede, ...(x02?.paragraphs ?? [])].join('\n');
+    const f01 = (s01?.facts ?? []).map((f) => `${f.label}|${f.value}|${f.asOf}|${f.note}`).join('\n');
+    const f07 = (s07?.facts ?? []).map((f) => `${f.label}|${f.value}|${f.note}`).join('\n');
+    const f08 = (s08?.facts ?? []).map((f) => `${f.label}|${f.value}|${f.asOf}|${f.note}`).join('\n');
+    expect(f01).toContain('6,443원/kg');
+    expect(f01).toContain('2020→2025년');
+    expect(f01).not.toMatch(/6,443원(?!\/kg)/);
+    expect(t7).toContain('잠수기 업종조합 2곳 위판');
+    expect(f07).toContain('잠수기 업종조합 2곳 위판');
+    expect(t8).toContain('2025년 생산 상위 20개 업체의 생산량과 점유율이다');
+    expect(t8).toContain('2024 생산량(kg)');
+    expect(t8).toContain('전년비(%)');
+    expect(t8).toContain('2025 점유율(%)');
+    expect(t8).not.toContain('원문 그대로 둔다');
+    expect(t8).toContain('표 11 기준 112건(영국 85');
+    expect(t8).toContain('원문 표 간 불일치');
+    expect(t8).toContain('미주통상 2022년 결산');
+    expect(f08).toContain('미주통상 2022년 결산');
+    expect(f08).toContain('2022년');
+    expect(tX).toContain('보고서가 집계한 7건의 사유는 카드뮴·납이다');
+    expect(tX).not.toContain('유럽연합 통보는 모두 카드뮴과 납');
+    const s08Html = (WHELK_CHART_SLOTS.s08 ?? [])
+      .map((s) => `${s.caption}\n${renderToStaticMarkup(React.createElement(React.Fragment, null, s.render()))}`)
+      .join('\n');
+    expect(s08Html).toContain('2024·2025 생산량(kg)');
+    expect(s08Html).not.toContain('전년비는 보고서 원문');
+  });
+
+  it('s06·s07 표가 법인명을 그린다', () => {
+    const html = [...(WHELK_CHART_SLOTS.s06 ?? []), ...(WHELK_CHART_SLOTS.s07 ?? [])]
+      .map((s) => renderToStaticMarkup(React.createElement(React.Fragment, null, s.render())))
+      .join('');
+    for (const probe of [
+      '유성물산교역',
+      '동원F&amp;B',
+      '유동골뱅이',
+      '구룡포',
+      '에스티엑스에프앤씨',
+      '한마루식품',
+      '은하수산',
+      '대천서부',
+    ]) {
+      expect(html, `마크업에 없음: ${probe}`).toContain(probe);
+    }
   });
 });

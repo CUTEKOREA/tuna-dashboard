@@ -14,7 +14,7 @@
 'use client';
 
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
-import { ArrowRight, BookOpen, Waves } from 'lucide-react';
+import { ArrowRight, ArrowUp, BookOpen, Waves } from 'lucide-react';
 
 import { TelemetryBadge } from '../TelemetryBadge';
 import TermTooltip from '../TermTooltip';
@@ -392,6 +392,38 @@ export default function CommodityIndustryDashboard({
     return () => observer.disconnect();
   }, [spec.continuous, spec.key, stageKeys]);
 
+  const [showTop, setShowTop] = useState(false);
+  useEffect(() => {
+    if (!spec.continuous) return;
+    if (typeof window === 'undefined' || typeof document === 'undefined') return;
+    const firstKey = stageKeys[0];
+    if (!firstKey) return;
+    const target = document.getElementById(`${spec.key}-stage-${firstKey}`);
+    if (!target) return;
+    /**
+     * IntersectionObserver 를 쓰지 않는다(2026-09-10 실측). 첫 절 제목은 데스크톱에서 처음부터 화면 아래에
+     * 있어, 탭·앵커로 멀리 건너뛰면 「안 보임→안 보임」이라 교차 알림이 오지 않고 버튼이 끝내 안 떴다.
+     * 스크롤마다(프레임당 한 번) 제목의 현재 위치를 직접 잰다.
+     */
+    let frame = 0;
+    const update = () => {
+      frame = 0;
+      setShowTop(target.getBoundingClientRect().top < 0);
+    };
+    const onScroll = () => {
+      if (frame) return;
+      frame = window.requestAnimationFrame(update);
+    };
+    update();
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', onScroll);
+    return () => {
+      window.removeEventListener('scroll', onScroll);
+      window.removeEventListener('resize', onScroll);
+      if (frame) window.cancelAnimationFrame(frame);
+    };
+  }, [spec.continuous, spec.key, stageKeys]);
+
   /**
    * 단계를 바꿀 때 새 단계의 제목으로 데려간다.
    * 이게 없으면 앞 단계 차트 높이에 스크롤이 남아 질문과 리드를 건너뛰고 표부터 보게 된다.
@@ -412,6 +444,16 @@ export default function CommodityIndustryDashboard({
       heading.focus({ preventScroll: true });
     });
   }, [setStage, spec.continuous, spec.key]);
+
+  const scrollToTop = useCallback(() => {
+    if (typeof document === 'undefined') return;
+    const target = document.getElementById(`${spec.key}-briefing-heading`);
+    if (!target) return;
+    const reduce =
+      typeof window !== 'undefined' &&
+      window.matchMedia?.('(prefers-reduced-motion: reduce)').matches;
+    target.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'start' });
+  }, [spec.key]);
 
   /**
    * 탭에는 단계 이름만 싣고 부제(「— …」)는 뺀다.
@@ -435,6 +477,11 @@ export default function CommodityIndustryDashboard({
   const stageNoun = spec.stageNoun ?? '단계';
   /** 탭·척추가 강조할 키. 연속 모드에서는 보고 있는 절, 페이저에서는 해시의 절. */
   const shownKey = spec.continuous && seenKey ? seenKey : activeKey;
+  const totalStages = spec.narratives.length;
+  const currentIndex = Math.max(0, stageKeys.indexOf(shownKey));
+  const currentDisplay = String(currentIndex + 1).padStart(2, '0');
+  const totalDisplay = String(totalStages).padStart(2, '0');
+  const progressPercent = totalStages > 0 ? ((currentIndex + 1) / totalStages) * 100 : 0;
 
   const hero = (
     <HeroZone
@@ -503,6 +550,27 @@ export default function CommodityIndustryDashboard({
         />
       </nav>
 
+      {spec.continuous && (
+        <div
+          className={styles.longpageProgress}
+          role="progressbar"
+          aria-valuemin={1}
+          aria-valuemax={totalStages}
+          aria-valuenow={currentIndex + 1}
+          aria-label="절 진행"
+        >
+          <div className={styles.longpageProgressTrack}>
+            <div
+              className={styles.longpageProgressFill}
+              style={{ width: `${progressPercent}%` }}
+            />
+          </div>
+          <span className={styles.longpageProgressText}>
+            {currentDisplay} / {totalDisplay}
+          </span>
+        </div>
+      )}
+
       {spec.insets?.AfterTabs && <spec.insets.AfterTabs activeKey={shownKey} go={go} />}
 
       {spec.continuous ? (
@@ -542,6 +610,18 @@ export default function CommodityIndustryDashboard({
         </ul>
         <p className={styles.sourceMeta}>{spec.sourceMeta}</p>
       </section>
+
+      {spec.continuous && (
+        <button
+          type="button"
+          aria-label="맨 위로"
+          className={styles.backToTop}
+          data-visible={showTop ? 'true' : 'false'}
+          onClick={scrollToTop}
+        >
+          <ArrowUp size={18} aria-hidden="true" />
+        </button>
+      )}
     </div>
   );
 }

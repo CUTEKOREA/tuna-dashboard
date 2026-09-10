@@ -408,19 +408,24 @@ const SPEC: CommoditySpec = {
   stripItems: [
     {
       now: true,
-      eyebrow: '기준',
-      title: '세계 어획량',
-      body: `${CATCH.요약.세계어획량.toLocaleString('ko-KR')} (톤)`,
+      eyebrow: '소비자가',
+      title: '원양 냉동 중품',
+      body: '5,077원/마리 (9/8 확정)',
     },
     {
-      eyebrow: '살오징어',
-      title: '정점 대비',
-      body: `${FLYING_SQUID_VS_PEAK_PCT.toLocaleString('ko-KR', { maximumFractionDigits: 1 })} (%)`,
+      eyebrow: '서울 도매',
+      title: '연근해·원양 냉동',
+      body: '13,300 · 10,500원/kg (9/10)',
     },
     {
-      eyebrow: '한국',
-      title: '국내 어획량',
-      body: `${CATCH.요약.한국어획량.toLocaleString('ko-KR')} (톤)`,
+      eyebrow: '칠레 쿼터',
+      title: '소진율',
+      body: '69.6367% (9/1 기준)',
+    },
+    {
+      eyebrow: '페루',
+      title: '상업 조업',
+      body: '8/30 재개 · 한도 82,321톤',
     },
   ],
   // 오징어 브리핑은 원래 단계 귀속 없이 문장만 있었다. 공용 골격은 귀속이 있을 때만

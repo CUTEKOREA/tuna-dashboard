@@ -134,6 +134,19 @@
   --mu-hover: rgba(12, 74, 110, 0.08);
 }
 
+/* 2026-09-10 문어 신설 — 차트 역할색 OCTOPUS_ROLE.volume(#86198f)과 같은 계열 */
+.page[data-commodity='octopus'] {
+  --mu-accent: #86198f;
+  --mu-accent-deep: #701a75;
+  --mu-hover: rgba(134, 25, 143, 0.12);
+}
+
+:global([data-v3='light']) .page[data-commodity='octopus'] {
+  --mu-accent: #86198f;
+  --mu-accent-deep: #701a75;
+  --mu-hover: rgba(134, 25, 143, 0.08);
+}
+
 /* ─── 30초 브리핑 ─────────────────────────────────────────────── */
 
 .briefing {
@@ -369,6 +382,84 @@
    가로 스크롤을 만들면 컨테이너가 둘이 되어 드래그·휠이 어디로 갈지 예측되지 않는다. */
 .tabNav {
   padding-bottom: 0.25rem;
+}
+
+/* ─── 긴 연속 페이지 보조 UI (spec_longpage_ui) ────────────────────────
+   연속 모드에서만 쓰는 두 요소: 탭 바로 아래 진행 막대와 우하단 맨 위로 버튼.
+   색은 기존 --mu-* 변수만 쓴다. */
+
+/* 탭 바로 아래 얇은 진행 막대 (3px) + 텍스트 */
+.longpageProgress {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-top: -0.5rem;
+  padding: 0 0.25rem;
+}
+
+.longpageProgressTrack {
+  flex: 1;
+  height: 3px;
+  background: var(--mu-line);
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+.longpageProgressFill {
+  height: 100%;
+  background: var(--mu-accent);
+  border-radius: 999px;
+  transition: width 0.2s ease;
+}
+
+.longpageProgressText {
+  flex: 0 0 auto;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--mu-ink-muted);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+/* 우하단 맨 위로 버튼 — 첫 절 제목이 위로 지나간 뒤에만 보인다 */
+.backToTop {
+  position: fixed;
+  right: 16px;
+  bottom: 16px;
+  width: 44px;
+  height: 44px;
+  min-width: 44px;
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  border: 1px solid var(--mu-line);
+  background: var(--mu-surface);
+  color: var(--mu-ink);
+  cursor: pointer;
+  box-shadow: 0 4px 16px rgba(15, 23, 42, 0.18);
+  z-index: 10;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.18s ease;
+}
+
+.backToTop[data-visible='true'] {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.backToTop:focus-visible {
+  outline: 2px solid var(--mu-accent);
+  outline-offset: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .longpageProgressFill,
+  .backToTop {
+    transition: none;
+  }
 }
 
 /* ─── 사슬 스테퍼 ─────────────────────────────────────────────── */
