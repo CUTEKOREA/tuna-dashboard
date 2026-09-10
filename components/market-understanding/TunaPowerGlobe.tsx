@@ -393,9 +393,7 @@ export default function TunaPowerGlobe() {
             bumpImageUrl="/textures/earth-topology.png"
             backgroundColor="rgba(0,0,0,0)"
             onGlobeReady={() => setReady(true)}
-            showAtmosphere
-            atmosphereColor={current.accent}
-            atmosphereAltitude={0.14}
+            showAtmosphere={false}
             /* 점 — 납작한 원이 아니라 지면에서 솟은 기둥이다 */
             pointsData={points}
             pointLat={(d: any) => d.lat}
