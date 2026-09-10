@@ -1,12 +1,12 @@
-import rows from '../../data/reefer_week35.json';
+import rows from '../../data/reefer_week36.json';
 
 export const reeferWeeklyReport = {
   source: {
-    file: 'Reefer ship movement for week 35th.xlsx',
-    sha256: '6740bc3c393589978f4642a289d15c73443e81a47f039dacef0712181fba1564',
-    week: 35,
-    startDate: '2026-08-28',
-    endDate: '2026-09-03',
+    file: 'Reefer ship movement for week 36th.xlsx',
+    sha256: '9ffeb58f7279df8f2e03e95e197227f4d43b4ab9c8c74a45f1f3062ae9095d5f',
+    week: 36,
+    startDate: '2026-09-04',
+    endDate: '2026-09-10',
   },
   rows,
 } as const;
