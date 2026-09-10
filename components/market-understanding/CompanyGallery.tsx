@@ -82,7 +82,7 @@ export function sortCompanies(companies: CompanyCard[], sort: SortKey): CompanyC
 
 export default function CompanyGallery({ companies, onSelect }: CompanyGalleryProps) {
   const [flipped, setFlipped] = useState<string | null>(null);
-  const [sort, setSort] = useState<SortKey>('listed');
+  const [sort, setSort] = useState<SortKey>('country');
   const timer = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   const ordered = useMemo(() => sortCompanies(companies, sort), [companies, sort]);
