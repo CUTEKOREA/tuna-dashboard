@@ -1,9 +1,9 @@
 {
  "_meta": {
   "entry": "app/page.tsx",
-  "files": 237,
+  "files": 238,
   "widgets": 112,
-  "dataFiles": 167,
+  "dataFiles": 168,
   "generator": "scripts/widget_lineage.py"
  },
  "widgetToData": {
@@ -708,6 +708,7 @@
   },
   "components/market-understanding/CompanyResearchTables.tsx": {
    "dataModules": [
+    "lib/data/squid-peru-supply.ts",
     "lib/data/valuechain-companies.ts"
    ],
    "dataFiles": [
@@ -717,6 +718,7 @@
     "public/data/mackerel_company_research_v1.json",
     "public/data/shrimp_company_research_v1.json",
     "public/data/squid_company_research_v1.json",
+    "public/data/squid_peru_supply_v1.json",
     "public/data/tuna_carrier_fleet_v1.json",
     "public/data/tuna_company_research_v1.json",
     "public/data/tuna_ocean_operators_v1.json",
@@ -759,6 +761,7 @@
     "public/data/shrimp_industry_v1.json",
     "public/data/shrimp_real_data_v4.json",
     "public/data/squid_company_research_v1.json",
+    "public/data/squid_peru_supply_v1.json",
     "public/data/tuna_anatomy_v1.json",
     "public/data/tuna_carrier_fleet_v1.json",
     "public/data/tuna_company_research_v1.json",
@@ -824,6 +827,7 @@
     "public/data/shrimp_industry_v1.json",
     "public/data/shrimp_real_data_v4.json",
     "public/data/squid_company_research_v1.json",
+    "public/data/squid_peru_supply_v1.json",
     "public/data/tuna_anatomy_v1.json",
     "public/data/tuna_carrier_fleet_v1.json",
     "public/data/tuna_company_research_v1.json",
@@ -837,7 +841,8 @@
    "dataModules": [
     "lib/data/deepsea-fishery.ts",
     "lib/data/falkland-squid-vessels.ts",
-    "lib/data/squid-industry.ts"
+    "lib/data/squid-industry.ts",
+    "lib/data/squid-peru-supply.ts"
    ],
    "dataFiles": [
     "public/data/deepsea_fishery_v1.json",
@@ -846,6 +851,7 @@
     "public/data/squid_industry_v1.json",
     "public/data/squid_industry_widgets_v1.json",
     "public/data/squid_ocean_fleet_v1.json",
+    "public/data/squid_peru_supply_v1.json",
     "public/data/squid_trade_v1.json"
    ]
   },
@@ -854,6 +860,7 @@
     "lib/data/deepsea-fishery.ts",
     "lib/data/falkland-squid-vessels.ts",
     "lib/data/squid-industry.ts",
+    "lib/data/squid-peru-supply.ts",
     "lib/data/valuechain-companies.ts"
    ],
    "dataFiles": [
@@ -869,6 +876,7 @@
     "public/data/squid_industry_v1.json",
     "public/data/squid_industry_widgets_v1.json",
     "public/data/squid_ocean_fleet_v1.json",
+    "public/data/squid_peru_supply_v1.json",
     "public/data/squid_trade_v1.json",
     "public/data/tuna_carrier_fleet_v1.json",
     "public/data/tuna_company_research_v1.json",
@@ -963,6 +971,7 @@
     "public/data/mackerel_company_research_v1.json",
     "public/data/shrimp_company_research_v1.json",
     "public/data/squid_company_research_v1.json",
+    "public/data/squid_peru_supply_v1.json",
     "public/data/tuna_carrier_fleet_v1.json",
     "public/data/tuna_company_research_v1.json",
     "public/data/tuna_fleet_v1.json",
@@ -999,6 +1008,7 @@
     "public/data/shrimp_industry_v1.json",
     "public/data/shrimp_real_data_v4.json",
     "public/data/squid_company_research_v1.json",
+    "public/data/squid_peru_supply_v1.json",
     "public/data/tuna_anatomy_v1.json",
     "public/data/tuna_carrier_fleet_v1.json",
     "public/data/tuna_company_research_v1.json",
@@ -1675,6 +1685,15 @@
    "components/market-understanding/SquidCharts.tsx",
    "components/market-understanding/SquidIndustryDashboard.tsx",
    "components/market-understanding/SquidWidgetView.tsx"
+  ],
+  "public/data/squid_peru_supply_v1.json": [
+   "components/market-understanding/CompanyResearchTables.tsx",
+   "components/market-understanding/MackerelIndustryDashboard.tsx",
+   "components/market-understanding/ShrimpIndustryDashboard.tsx",
+   "components/market-understanding/SquidCharts.tsx",
+   "components/market-understanding/SquidIndustryDashboard.tsx",
+   "components/market-understanding/TunaIndustryDashboard.tsx",
+   "components/market-understanding/WhelkIndustryDashboard.tsx"
   ],
   "public/data/squid_trade_v1.json": [
    "components/market-understanding/SquidCharts.tsx",

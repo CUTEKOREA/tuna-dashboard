@@ -74,6 +74,7 @@ import {
   StagePriceChart,
   SquidYearbookPriceChart,
   SquidMonthlyCatchChart,
+  PeruImportChart,
 } from './SquidCharts';
 import SquidWidgetView from './SquidWidgetView';
 import CommodityIndustryDashboard, {
@@ -84,7 +85,9 @@ import {
   TraderTable,
   CanneryCountryTable,
   BrandMarketTable,
+  PeruPlantTable,
 } from './CompanyResearchTables';
+import { peruImports, peruLedger, peruMeta, peruPlants } from '@/lib/data/squid-peru-supply';
 import { getSquidCompanyResearch, getKofaSeries } from '@/lib/data/valuechain-companies';
 
 const CATCH = getSquidCatchData();
@@ -136,7 +139,29 @@ const DW_SYNC = { status: 'SYNCED' as const, syncDate: `${DW_YEAR}년 확정 · 
 
 const FK_SYNC = { status: 'STATIC' as const, syncDate: `${falklandMeta.기간} 실적` };
 
+const PERU_SYNC = { status: 'STATIC' as const, syncDate: `${peruMeta.조회일} 조사` };
+
 const SQUID_BASE_SLOTS: Record<string, ChartSlot[]> = {
+  s10: [
+    {
+      title: '페루산 오징어 수입 — 냉동 원물과 조제품 (톤·달러/kg)',
+      caption:
+        '보라가 냉동 원물, 호박이 조제품(자숙 포함)이다. 2024년에 절반 아래로 꺾였다가 2025년에 42,517톤으로 돌아왔고 kg당 단가는 5년 새 두 배가 됐다. 금액으로는 조제품이 해마다 55~65%다.',
+      telemetry: PERU_SYNC,
+      span: 'full' as const,
+      render: () => <PeruImportChart rows={peruImports} />,
+      sourceLine: `출처: 관세청 수출입무역통계 HSK 10자리 (조회 ${peruMeta.조회일}) · ${peruMeta.보고서}`,
+    },
+    {
+      title: '페루 제조소 — 한국행 수입신고가 많은 14곳',
+      caption:
+        `14곳이 신고 ${peruLedger.전체_신고건수.toLocaleString()}건 가운데 ${peruLedger.상위14사_신고건수.toLocaleString()}건이고, 그중 한국계 경영 7곳이 ${peruLedger.한국계7사_신고건수.toLocaleString()}건이다. 여덟 곳이 북부 파이타에 공장을 둔다. 건수는 수량이 아니다.`,
+      telemetry: PERU_SYNC,
+      span: 'full' as const,
+      render: () => <PeruPlantTable rows={peruPlants} total={peruLedger.전체_신고건수} />,
+      sourceLine: '출처: 식품의약품안전처 수입식품정보마루 수입신고 원장 · 페루 세무당국(SUNAT)·생산부 공장등록부·위생당국(SANIPES) 승인명부 · PROMPERÚ 2024 수출 순위',
+    },
+  ],
   s08: [
     {
       title: '선박별 누계 물량 (판)',
