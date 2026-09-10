@@ -21,6 +21,7 @@ import boltonfoodRaw from '@/public/data/companies/boltonfood_prose_v1.json';
 import trimarineRaw from '@/public/data/companies/trimarine_prose_v1.json';
 import princesRaw from '@/public/data/companies/princes_prose_v1.json';
 import iotRaw from '@/public/data/companies/iot_prose_v1.json';
+import atiRaw from '@/public/data/companies/ati_prose_v1.json';
 
 /**
  * 조사보고서 서술 전량 인테이크.
@@ -83,6 +84,7 @@ const INTAKES: Record<string, Intake> = {
   trimarine: trimarineRaw as unknown as Intake,
   princes: princesRaw as unknown as Intake,
   iot: iotRaw as unknown as Intake,
+  ati: atiRaw as unknown as Intake,
   thaiunion: thaiunionRaw as unknown as Intake,
 };
 

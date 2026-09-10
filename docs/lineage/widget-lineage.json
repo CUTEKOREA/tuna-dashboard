@@ -1,9 +1,9 @@
 {
  "_meta": {
   "entry": "app/page.tsx",
-  "files": 239,
+  "files": 240,
   "widgets": 113,
-  "dataFiles": 159,
+  "dataFiles": 163,
   "generator": "scripts/widget_lineage.py"
  },
  "widgetToData": {
@@ -568,6 +568,7 @@
   "components/market-understanding/CompanyAnatomyDashboard.tsx": {
    "dataModules": [
     "lib/data/company-albacora.ts",
+    "lib/data/company-ati.ts",
     "lib/data/company-bolton.ts",
     "lib/data/company-boltonfood.ts",
     "lib/data/company-bumblebee.ts",
@@ -576,6 +577,7 @@
     "lib/data/company-fcf.ts",
     "lib/data/company-frabelle.ts",
     "lib/data/company-frinsa.ts",
+    "lib/data/company-geo.ts",
     "lib/data/company-iot.ts",
     "lib/data/company-itochu.ts",
     "lib/data/company-jais.ts",
@@ -599,6 +601,10 @@
     "public/data/companies/albacora_prose_v1.json",
     "public/data/companies/albacora_tables_v1.json",
     "public/data/companies/albacora_v1.json",
+    "public/data/companies/ati_figures_v1.json",
+    "public/data/companies/ati_prose_v1.json",
+    "public/data/companies/ati_tables_v1.json",
+    "public/data/companies/ati_v1.json",
     "public/data/companies/bolton_figures_v1.json",
     "public/data/companies/bolton_prose_v1.json",
     "public/data/companies/bolton_tables_v1.json",
@@ -1152,6 +1158,18 @@
   ],
   "public/data/companies/albacora_v1.json": [
    "components/market-understanding/AlbacoraCharts.tsx",
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/ati_figures_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/ati_prose_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/ati_tables_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/ati_v1.json": [
    "components/market-understanding/CompanyAnatomyDashboard.tsx"
   ],
   "public/data/companies/bolton_figures_v1.json": [
