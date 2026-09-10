@@ -247,6 +247,10 @@ import {
   princesMeta, princesStats, princesSourceNotes,
   ipoOffsetSharePct, fishRevenueSharePct, fishEbitdaSharePct, dpoMultiple, mauritiusRevenueSharePct,
 } from '@/lib/data/company-princes';
+import {
+  iotMeta, iotStats, iotSourceNotes,
+  cannedShareOfExportsPct, euShareOfCannedPct, landingShareOfPortPct, impossibleYieldPct, landedSharePct, domesticFlagShareSafe,
+} from '@/lib/data/company-iot';
 
 /** 20편을 지구 위에 네 층으로 얹는다. three.js 가 무거워 갤러리에서만 지연 로드한다. */
 const TunaPowerGlobe = dynamic(() => import('./TunaPowerGlobe'), { ssr: false });
@@ -2525,6 +2529,7 @@ const FLAG: Record<string, Pick<CompanyCard, 'flagSrc' | 'backInk'>> = {
   이탈리아: { flagSrc: '/flags/it.svg', backInk: '#f4f5f0' },
   싱가포르: { flagSrc: '/flags/sg.svg', backInk: '#1b2733' },
   영국: { flagSrc: '/flags/gb.svg', backInk: '#f4f5f0' },
+  세이셸: { flagSrc: '/flags/sc.svg', backInk: '#f4f5f0' },
 };
 
 /** 선택 갤러리 카드 목록. 회사가 늘면 여기에 한 장씩 추가한다. */
@@ -2982,6 +2987,63 @@ const PR_SPEC: CommoditySpec = {
   ].join(' · '),
 };
 
+const IOT_ACCENT = '#2c6b6b';
+
+const IOT_SPEC: CommoditySpec = {
+  key: 'company-anatomy-iot',
+  title: '기업 해부: Indian Ocean Tuna',
+  subtitle:
+    '인도양 한가운데 섬나라의 캔참치 공장 하나다. 이 나라 국내수출의 74.8%가 이 캔이고, ' +
+    '그 캔의 목적지에서 유럽이 차지하는 몫이 2019년 86%에서 2024년 54%로 내려갔다가 2025년 74.8%로 되돌아왔다. ' +
+    '총수출은 줄지 않았다 — 2024년에 전년 대비 28% 늘었다. 줄어든 것은 유럽 향 몫뿐이고, 한 해로 끊으면 방향이 반대로 읽힌다.',
+  accent: IOT_ACCENT,
+  primaryKpi: {
+    label: '이 나라 국내수출에서 캔참치가 차지하는 몫',
+    value: cannedShareOfExportsPct(2024),
+    decimals: 1,
+    unit: '(% · 2024년 SCR 3,817.0M ÷ 5,101.3M · 「제조업 수출 95%」와는 분모가 다르다)',
+    accent: IOT_ACCENT,
+  },
+  secondaryKpis: [
+    { label: '캔참치 수출 중 유럽 몫', value: euShareOfCannedPct(2024), decimals: 1, unit: '(% · 2019년 86% → 2024년 54% → 2025년 74.8%)' },
+    { label: '항구 양륙분 중 이 공장이 받는 몫', value: landingShareOfPortPct(), decimals: 1, unit: '(% · 분모는 양륙 88,569 t 이지 항구 합계가 아니다)' },
+    { label: '이 나라 수역 허가 선망 중 자국 국적', value: domesticFlagShareSafe(), decimals: 0, unit: '(% · 13척 / 50척 · 유럽연합 협정선이 27척이다)' },
+  ],
+  stripItems: [
+    {
+      now: true,
+      eyebrow: '표 7.1',
+      title: '총수출은 늘었다',
+      body: `2023년 ${iotStats.총수출_2023_톤.toLocaleString('ko-KR')} t → 2024년 ${iotStats.총수출_2024_톤.toLocaleString('ko-KR')} t. 줄어든 것은 유럽 향 몫뿐이다`,
+    },
+    {
+      eyebrow: '원료',
+      title: '양륙만으로는 캔이 설명되지 않는다',
+      body: `양륙 매입 ${iotStats.공장매입_2024_톤.toLocaleString('ko-KR')} t 만 원료로 보면 수율이 ${impossibleYieldPct()}% 가 된다. 냉동어 수입 ${iotStats.냉동어수입_2023_톤.toLocaleString('ko-KR')} t 이 따로 있다`,
+    },
+    {
+      eyebrow: '항구',
+      title: '지나가는 물량은 섬에 남지 않는다',
+      body: `포트 빅토리아 선망 물량 ${iotStats.항구_선망물량_2024_톤.toLocaleString('ko-KR')} t 중 섬에 남는 것은 ${landedSharePct()}% 이고 나머지는 전재로 나간다`,
+    },
+    {
+      eyebrow: '선단',
+      title: '이 공장에는 배가 없다',
+      body: `자사 명의 선박 ${iotStats.자사선박_척}척. 이 나라 국적 선망 ${iotStats.세이셸국적선망_척}척은 경쟁 그룹 공급선 명부와 선박식별번호까지 전부 겹친다`,
+    },
+  ],
+  briefing: proseBriefing('iot'),
+  narratives: inlineReport('iot', proseStages('iot')),
+  chartSlots: {},
+  continuous: true,
+  sourceNotes: iotSourceNotes,
+  sourceMeta: [
+    `${iotMeta.회사} · ${iotMeta.국가} · ${iotMeta.업종}`,
+    `출처 ${iotMeta.출처}`,
+    `조사 ${iotMeta.조사일}`,
+  ].join(' · '),
+};
+
 export const COMPANY_CARDS: CompanyCard[] = [
   {
     key: 'frinsa',
@@ -3269,6 +3331,19 @@ export const COMPANY_CARDS: CompanyCard[] = [
       { label: '자사 선박', value: `${princesStats.자사선박_척} 척` },
     ],
   },
+  {
+    key: 'iot',
+    numeral: 'ⅩⅩⅢ',
+    name: 'Indian Ocean Tuna',
+    country: '세이셸 · 빅토리아',
+    tagline: '캔은 그대로 나가는데 가는 곳이 바뀌었다. 이 나라 국내수출의 74.8%가 이 캔이다.',
+    ...FLAG.세이셸,
+    stats: [
+      { label: '국내수출 중 캔참치', value: `${cannedShareOfExportsPct(2024)}%` },
+      { label: '공장 양륙 매입', value: `${(iotStats.공장매입_2024_톤 / 1000).toFixed(1)}천 t` },
+      { label: '자사 선박', value: `${iotStats.자사선박_척} 척` },
+    ],
+  },
 
 ];
 
@@ -3292,7 +3367,7 @@ export default function CompanyAnatomyDashboard({
           icon={Globe2}
           iconColor="#4FB0A5"
           pillar="S2"
-          cardDesc="스물두 편이 확정한 본사·생산 거점·지분·공급·명단·무역을 지구 위 네 층으로 나눠 얹는다"
+          cardDesc="스물세 편이 확정한 본사·생산 거점·지분·공급·명단·무역을 지구 위 네 층으로 나눠 얹는다"
           telemetry={{ status: 'STATIC', syncDate: '2026-09', source: '기업 해부 Ⅰ~ⅩⅩⅠ 조사노트·통합프로필' }}
           customBody={<TunaPowerGlobe />}
           takeaway={{
@@ -3334,6 +3409,7 @@ export default function CompanyAnatomyDashboard({
     boltonfood: BF_SPEC,
     trimarine: TM_SPEC,
     princes: PR_SPEC,
+    iot: IOT_SPEC,
   };
   const spec = SPECS[selected] ?? SPEC;
 
@@ -3346,7 +3422,7 @@ export default function CompanyAnatomyDashboard({
       >
         ← 회사 선택
       </button>
-      <CommodityIndustryDashboard spec={spec} />
+      <CommodityIndustryDashboard spec={{ ...spec, stageNoun: '절' }} />
     </div>
   );
 }

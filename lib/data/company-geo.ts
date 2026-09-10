@@ -114,6 +114,9 @@ export const HQ_POINTS: GeoPoint[] = [
   { company: 'princes', numeral: 'ⅩⅩⅡ', kind: 'hq', label: 'Princes Group plc 등기', country: '영국',
     lat: 53.41, lng: -3.00, basis: 'ⅩⅩⅡ · Companies House 02328824 · Royal Liver Building, Pier Head, Liverpool L3 1NX',
     note: '1988-12-15 설립 · 최초 상호 MITOPEN LIMITED · 2025-08-11 사모→공개 재등록' },
+  { company: 'iot', numeral: 'ⅩⅩⅢ', kind: 'hq', label: 'Indian Ocean Tuna 등기·공장', country: '세이셸',
+    lat: -4.62, lng: 55.45, basis: 'ⅩⅩⅢ · Fishing Port, PO Box 676, Victoria, Mahe · Thai Union Europe 60% · 정부 40%',
+    note: '1987년 정부가 세운 Conserveries de l\'Océan Indien 이 전신 · 1995-11 개명' },
 ];
 
 /**
@@ -240,6 +243,12 @@ export const PLANT_POINTS: GeoPoint[] = [
     lat: -20.16, lng: 57.50, sizeValue: 220, sizeUnit: 'MT/일',
     basis: 'ⅩⅩⅡ · 계정서 자회사 주석 간접 68% · Marine Road, Port Louis',
     note: '로인·파우치·병. 지분이 리슈테르와 다르다' },
+
+  // ── ⅩⅩⅢ Indian Ocean Tuna — 공장과 등기가 같은 자리다 ─────
+  { company: 'iot', numeral: 'ⅩⅩⅢ', kind: 'plant', label: 'Indian Ocean Tuna (빅토리아)', country: '세이셸',
+    lat: -4.62, lng: 55.46, sizeValue: 335, sizeUnit: 'MT/일',
+    basis: 'ⅩⅩⅢ · 처리 능력 335 t/일(측정일 미기재) · 일 150만~200만 캔',
+    note: '2024년 항구 양륙 매입 56,319 t — 양륙 88,569 t 의 64%. 총원료는 이보다 크다' },
 ];
 
 /**
@@ -326,6 +335,7 @@ export const NO_FLEET: { company: string; basis: string }[] = [
   { company: 'jais', basis: 'Ⅶ stats · 공장·선박·자회사 0개' },
   { company: 'trimarine', basis: 'ⅩⅩⅠ · WCPFC·IATTC·FFA 세 등록부의 소유자·운영자 칸 모두 0척. 배는 계열 NFD 명의다' },
   { company: 'princes', basis: 'ⅩⅩⅡ · ISSF PVR(2026-08-20)·FFA Good Standing(2026-09-02) 두 명부에 0척. 회사 ESG 보고서도 「선박을 소유하지 않는다」로 적는다' },
+  { company: 'iot', basis: 'ⅩⅩⅢ · 자사 명의 어선 0척. 이 나라 국적 선망 13척은 경쟁 그룹 공급선 명부와 IMO 기준 전부 겹치지만 이 공장의 구매 문서는 없다' },
 ];
 
 /** 지도에 찍는 모든 점. */

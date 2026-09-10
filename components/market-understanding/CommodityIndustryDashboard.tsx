@@ -13,7 +13,7 @@
  */
 'use client';
 
-import React, { useCallback, useMemo, useRef } from 'react';
+import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { ArrowRight, BookOpen, Waves } from 'lucide-react';
 
 import { TelemetryBadge } from '../TelemetryBadge';
@@ -122,12 +122,17 @@ export interface CommoditySpec {
   briefing: BriefingPoint[];
   narratives: StageNarrative[];
   /**
-   * 단계를 하나씩 넘기지 않고 **문서 순서 그대로 이어서** 렌더한다.
-   * 기업 해부 카드용이다 — 거기서 「단계」는 밸류체인이 아니라 조사보고서의 절이고,
-   * 절을 한 번에 하나씩 보여 주면 13번 눌러야 한 편을 읽는다. 탭은 이동 수단으로 남는다.
-   * 품목 대시보드(참치·오징어)는 이 값을 주지 않으므로 종전대로 페이저다.
+   * 단계를 하나씩 넘기지 않고 **문서 순서 그대로 이어서** 렌더한다. 탭은 이동 수단으로 남는다.
+   * 처음엔 기업 해부 카드용이었다 — 절을 한 번에 하나씩 보여 주면 13번 눌러야 한 편을 읽는다.
+   * 2026-09-10 사용자 지시로 품목 대시보드(참치·오징어·고등어·골뱅이·새우·명태·참치 해부)도
+   * 같은 방식으로 바꿨다. 페이저(한 단계씩)는 이 값을 빼면 돌아온다.
    */
   continuous?: boolean;
+  /**
+   * 이동 단위의 이름. 품목 대시보드는 밸류체인 「단계」, 기업 해부는 보고서의 「절」.
+   * 문구(30초 브리핑 안내·점프 버튼·내비 라벨)만 바뀐다. 기본값은 '단계'.
+   */
+  stageNoun?: '단계' | '절';
   chartSlots: Record<string, ChartSlot[]>;
   sourceNotes: string[];
   sourceMeta: string;
@@ -358,11 +363,42 @@ export default function CommodityIndustryDashboard({
   const headingRef = useRef<HTMLHeadingElement | null>(null);
 
   /**
+   * 연속 모드의 스크롤 추적. 절이 전부 떠 있으면 해시(activeKey)는 마지막에 «누른» 절만 알지
+   * 지금 «보고 있는» 절은 모른다 — 10개 절을 내려 읽는 동안 탭이 01에 멈춰 있던 문제(2026-09-10).
+   * 제목이 화면 위쪽 40% 띠에 들어올 때만 갱신하므로 긴 본문 중간에서는 마지막 제목이 유지된다.
+   * 띠의 위 여백을 0으로 둔 이유: 탭·앵커로 온 제목은 y=0 에 놓이는데, 위를 잘라 두면 그 제목을 못 본다.
+   * 해시는 건드리지 않는다 — 스크롤마다 history 를 바꾸면 뒤로 가기가 망가진다.
+   */
+  const [seenKey, setSeenKey] = useState<string | null>(null);
+  useEffect(() => {
+    if (!spec.continuous || typeof IntersectionObserver === 'undefined') return;
+    const prefix = `${spec.key}-stage-`;
+    const headings = stageKeys
+      .map((key) => document.getElementById(`${prefix}${key}`))
+      .filter((el): el is HTMLElement => el !== null);
+    if (headings.length === 0) return;
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const visible = entries
+          .filter((entry) => entry.isIntersecting)
+          .map((entry) => entry.target as HTMLElement)
+          .sort((a, b) => a.getBoundingClientRect().top - b.getBoundingClientRect().top);
+        if (visible.length === 0) return;
+        setSeenKey(visible[0].id.slice(prefix.length));
+      },
+      { rootMargin: '0px 0px -60% 0px', threshold: 0 },
+    );
+    headings.forEach((heading) => observer.observe(heading));
+    return () => observer.disconnect();
+  }, [spec.continuous, spec.key, stageKeys]);
+
+  /**
    * 단계를 바꿀 때 새 단계의 제목으로 데려간다.
    * 이게 없으면 앞 단계 차트 높이에 스크롤이 남아 질문과 리드를 건너뛰고 표부터 보게 된다.
    */
   const go = useCallback((key: string) => {
     setStage(key);
+    setSeenKey(key);
     requestAnimationFrame(() => {
       // 연속 모드에서는 절이 전부 떠 있으므로 그 절의 제목으로 스크롤한다.
       const heading = spec.continuous
@@ -396,6 +432,9 @@ export default function CommodityIndustryDashboard({
 
   const active =
     spec.narratives.find((narrative) => narrative.key === activeKey) ?? spec.narratives[0];
+  const stageNoun = spec.stageNoun ?? '단계';
+  /** 탭·척추가 강조할 키. 연속 모드에서는 보고 있는 절, 페이저에서는 해시의 절. */
+  const shownKey = spec.continuous && seenKey ? seenKey : activeKey;
 
   const hero = (
     <HeroZone
@@ -425,7 +464,7 @@ export default function CommodityIndustryDashboard({
           30초 브리핑
         </h2>
         <p className={styles.briefingIntro}>
-          {spec.continuous
+          {stageNoun === '절'
             ? '아래로 내려가지 않아도 되는 사람을 위한 요약이다. 각 항목은 보고서의 한 절에서 나온다.'
             : '아래로 내려가지 않아도 되는 사람을 위한 요약이다. 각 항목은 사슬의 한 단계에서 나온다.'}
         </p>
@@ -443,7 +482,7 @@ export default function CommodityIndustryDashboard({
                     className={styles.briefingJump}
                     onClick={() => go(stage.key)}
                   >
-                    {stage.numeral}{spec.continuous ? '절로' : '단계에서'} 보기
+                    {stage.numeral}{stageNoun === '절' ? '절로' : '단계에서'} 보기
                   </button>
                 )}
               </li>
@@ -452,10 +491,10 @@ export default function CommodityIndustryDashboard({
         </ol>
       </section>
 
-      <nav className={styles.tabNav} aria-label={spec.continuous ? '절 이동' : '밸류체인 단계 이동'}>
+      <nav className={styles.tabNav} aria-label={stageNoun === '절' ? '절 이동' : '밸류체인 단계 이동'}>
         <PillTabs
           tabs={tabs}
-          activeKey={active?.key ?? ''}
+          activeKey={spec.continuous ? shownKey : (active?.key ?? '')}
           onChange={go}
           ariaLabel="밸류체인 단계"
           tabIdPrefix={`${spec.key}-industry-tab`}
@@ -464,7 +503,7 @@ export default function CommodityIndustryDashboard({
         />
       </nav>
 
-      {spec.insets?.AfterTabs && <spec.insets.AfterTabs activeKey={activeKey} go={go} />}
+      {spec.insets?.AfterTabs && <spec.insets.AfterTabs activeKey={shownKey} go={go} />}
 
       {spec.continuous ? (
         spec.narratives.map((narrative) => (
@@ -489,7 +528,7 @@ export default function CommodityIndustryDashboard({
         <p className={styles.missing}>이 단계의 서술이 아직 준비되지 않았습니다.</p>
       )}
 
-      {spec.insets?.AfterStage && <spec.insets.AfterStage activeKey={activeKey} go={go} />}
+      {spec.insets?.AfterStage && <spec.insets.AfterStage activeKey={shownKey} go={go} />}
 
       <section className={styles.sources} aria-labelledby={`${spec.key}-sources-heading`}>
         <h2 id={`${spec.key}-sources-heading`} className={styles.sourcesHeading}>

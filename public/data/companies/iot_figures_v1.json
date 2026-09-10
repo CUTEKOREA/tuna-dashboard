@@ -1,0 +1,72 @@
+{
+ "_meta": {
+  "출처": "docs/evidence/company-iot-2026-09/보고서.html",
+  "생성": "python3 scripts/build_report_figures.py",
+  "설명": "보고서의 팩샷과 차트. 이미지는 public 아래 정적 파일이고 여기에는 URL 만 담는다."
+ },
+ "figures": [
+  {
+   "stage": "c01",
+   "sid": "s1",
+   "kind": "chart",
+   "ord": 977,
+   "caption": "막대는 유럽 비중이고 왼쪽 라벨의 값이 그해 총수출이다. 2023년은 총량이 가장 작은데 비중은 가장 높다.",
+   "alt": "",
+   "svg": "<svg viewBox=\"0 0 680 170\" xmlns=\"http://www.w3.org/2000/svg\" role=\"img\" aria-label=\"캔참치 수출에서 유럽이 차지하는 몫\"><text x=\"236\" y=\"14\" font-size=\"12.5\" fill=\"#5a6072\">캔참치 수출에서 유럽이 차지하는 몫</text><text x=\"226\" y=\"38\" text-anchor=\"end\" font-size=\"13\" fill=\"#3d4351\">2019 · 총 45,042</text><rect x=\"236\" y=\"24\" width=\"356.9\" height=\"21\" fill=\"#8a9aa6\"/><text x=\"600.9\" y=\"40\" font-size=\"13.5\" font-weight=\"700\" fill=\"#8a9aa6\">86%</text><text x=\"226\" y=\"78\" text-anchor=\"end\" font-size=\"13\" fill=\"#3d4351\">2023 · 총 33,923</text><rect x=\"236\" y=\"64\" width=\"386.0\" height=\"21\" fill=\"#4d7f8d\"/><text x=\"630.0\" y=\"80\" font-size=\"13.5\" font-weight=\"700\" fill=\"#4d7f8d\">93%</text><text x=\"226\" y=\"118\" text-anchor=\"end\" font-size=\"13\" fill=\"#3d4351\">2024 · 총 43,310</text><rect x=\"236\" y=\"104\" width=\"224.1\" height=\"21\" fill=\"#c2703a\"/><text x=\"468.1\" y=\"120\" font-size=\"13.5\" font-weight=\"700\" fill=\"#c2703a\">54%</text><line x1=\"236\" y1=\"164\" x2=\"622\" y2=\"164\" stroke=\"#c9cdd6\"/></svg>"
+  },
+  {
+   "stage": "c03",
+   "sid": "s6",
+   "kind": "chart",
+   "ord": 757,
+   "caption": "양륙만으로는 캔 생산이 설명되지 않는다. 수입 냉동어가 그 차이를 메운다.",
+   "alt": "",
+   "svg": "<svg viewBox=\"0 0 680 170\" xmlns=\"http://www.w3.org/2000/svg\" role=\"img\" aria-label=\"공장 원료의 세 숫자 (t)\"><text x=\"236\" y=\"14\" font-size=\"12.5\" fill=\"#5a6072\">공장 원료의 세 숫자 (t)</text><text x=\"226\" y=\"38\" text-anchor=\"end\" font-size=\"13\" fill=\"#3d4351\">정부 계획 소요</text><rect x=\"236\" y=\"24\" width=\"386.0\" height=\"21\" fill=\"#8a9aa6\"/><text x=\"630.0\" y=\"40\" font-size=\"13.5\" font-weight=\"700\" fill=\"#8a9aa6\">80000</text><text x=\"226\" y=\"78\" text-anchor=\"end\" font-size=\"13\" fill=\"#3d4351\">냉동어 수입</text><rect x=\"236\" y=\"64\" width=\"314.8\" height=\"21\" fill=\"#4d7f8d\"/><text x=\"558.8\" y=\"80\" font-size=\"13.5\" font-weight=\"700\" fill=\"#4d7f8d\">65250</text><text x=\"226\" y=\"118\" text-anchor=\"end\" font-size=\"13\" fill=\"#3d4351\">항구 양륙 매입</text><rect x=\"236\" y=\"104\" width=\"271.7\" height=\"21\" fill=\"#c2703a\"/><text x=\"515.7\" y=\"120\" font-size=\"13.5\" font-weight=\"700\" fill=\"#c2703a\">56319</text><line x1=\"236\" y1=\"164\" x2=\"622\" y2=\"164\" stroke=\"#c9cdd6\"/></svg>"
+  },
+  {
+   "stage": "c03",
+   "sid": "s7",
+   "kind": "chart",
+   "ord": 1073,
+   "caption": "항구를 지나는 물량의 대부분은 섬에 머무르지 않는다. 이 공장이 만지는 것은 양륙분의 64%다.",
+   "alt": "",
+   "svg": "<svg viewBox=\"0 0 680 170\" xmlns=\"http://www.w3.org/2000/svg\" role=\"img\" aria-label=\"포트 빅토리아 선망 물량 2024 (t)\"><text x=\"236\" y=\"14\" font-size=\"12.5\" fill=\"#5a6072\">포트 빅토리아 선망 물량 2024 (t)</text><text x=\"226\" y=\"38\" text-anchor=\"end\" font-size=\"13\" fill=\"#3d4351\">전재 — 수출된다</text><rect x=\"236\" y=\"24\" width=\"386.0\" height=\"21\" fill=\"#8a9aa6\"/><text x=\"630.0\" y=\"40\" font-size=\"13.5\" font-weight=\"700\" fill=\"#8a9aa6\">240763</text><text x=\"226\" y=\"78\" text-anchor=\"end\" font-size=\"13\" fill=\"#3d4351\">양륙 — 섬에 남는다</text><rect x=\"236\" y=\"64\" width=\"142.0\" height=\"21\" fill=\"#4d7f8d\"/><text x=\"386.0\" y=\"80\" font-size=\"13.5\" font-weight=\"700\" fill=\"#4d7f8d\">88569</text><text x=\"226\" y=\"118\" text-anchor=\"end\" font-size=\"13\" fill=\"#3d4351\">그중 이 공장</text><rect x=\"236\" y=\"104\" width=\"90.3\" height=\"21\" fill=\"#c2703a\"/><text x=\"334.3\" y=\"120\" font-size=\"13.5\" font-weight=\"700\" fill=\"#c2703a\">56319</text><line x1=\"236\" y1=\"164\" x2=\"622\" y2=\"164\" stroke=\"#c9cdd6\"/></svg>"
+  },
+  {
+   "stage": "c05",
+   "sid": "s10",
+   "kind": "shot",
+   "ord": 275,
+   "caption": "프랑스 브랜드의 알바코어 캔. 이 규격의 제조지가 세이셸로 표기된다.",
+   "alt": "Petit Navire 알바코어 참치캔 뚜껑",
+   "src": "/data/companies/figures/iot/6ecb9e5371dc.jpg"
+  },
+  {
+   "stage": "c05",
+   "sid": "s10",
+   "kind": "shot",
+   "ord": 40413,
+   "caption": "같은 브랜드의 112g 규격. 제조지 표기가 세이셸이다.",
+   "alt": "Petit Navire 참치 조각 캔",
+   "src": "/data/companies/figures/iot/e771bdb2eb38.jpg"
+  },
+  {
+   "stage": "c05",
+   "sid": "s10",
+   "kind": "shot",
+   "ord": 67168,
+   "caption": "영국 브랜드. 상품 페이지에 세이셸 생산으로 적히는 규격이 있다.",
+   "alt": "John West 참치 청크 캔",
+   "src": "/data/companies/figures/iot/134648291ecd.jpg"
+  },
+  {
+   "stage": "c05",
+   "sid": "s10",
+   "kind": "shot",
+   "ord": 93085,
+   "caption": "증기조리 130g. 제조지 「Les Seychelles」.",
+   "alt": "Petit Navire 증기조리 참치캔",
+   "src": "/data/companies/figures/iot/4bc40ebf355c.jpg"
+  }
+ ]
+}

@@ -582,6 +582,8 @@ function GlossarySection() {
 }
 
 const SPEC: CommoditySpec = {
+  // 2026-09-10 사용자 지시: 단계를 탭으로 넘기지 않고 한 페이지에 전부 출력한다(기업 해부와 동일).
+  continuous: true,
   key: 'tuna',
   title: '참치',
   subtitle: '참치 산업 해부 · 바다에서 식탁까지 - 밸류체인 7단계와 그것을 관통하는 3개 축',
