@@ -3057,7 +3057,7 @@ const ATI_SPEC: CommoditySpec = {
   subtitle:
     '伊藤忠과 はごろもフーズ가 세운 인도네시아 동자바의 캔참치 공장이다. 일본 매대의 シーチキン 일부가 여기서 닫힌다. ' +
     '국제수산물지속가능재단의 2025년 활동분 감사에서 참여사 스물네 곳 가운데 Major 부적합(제품 표시)을 받은 곳은 이 회사 하나이고, 같은 조치가 2024년분에서도 Major였다. ' +
-    '같은 재단 조달표에서 선박 직접 구매 0%, 어느 범주에도 들지 않는 원료 89%로 직전 편의 영국 회사와 반대쪽 끝에 선다.',
+    '같은 재단 조달표에서 선박 직접 구매 0%, 어느 범주에도 들지 않는 원료 89%로 ⅩⅩⅡ편의 영국 회사와 반대쪽에 선다.',
   accent: ATI_ACCENT,
   primaryKpi: {
     label: '일본 조제참치(HS 1604.14) 수입액 중 인도네시아산',
@@ -3411,7 +3411,7 @@ export const COMPANY_CARDS: CompanyCard[] = [
     numeral: 'ⅩⅩⅣ',
     name: 'Aneka Tuna Indonesia',
     country: '인도네시아 · 동자바 파수루안',
-    tagline: '같은 재단의 같은 표에서 반대쪽 끝에 있다. 제품 표시 Major, 24사 중 이 회사뿐이다.',
+    tagline: '같은 재단의 표에서 준수가 가장 낮은 줄. 제품 표시 Major, 24사 중 이 회사뿐이다.',
     ...FLAG.인도네시아,
     stats: [
       { label: '일본 조제참치 수입 중 인니', value: `${japanImportShareIdnPct()}%` },

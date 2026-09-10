@@ -9,8 +9,8 @@
    "stage": "c01",
    "sid": "s1",
    "kind": "chart",
-   "ord": 1728,
-   "caption": "재단 2026년 7월 보고서 p.9·p.10 도판(표제 June 2025)의 막대를 읽은 값이다. 영국 회사 값은 직전 편이 같은 도판에서 확정한 수치다.",
+   "ord": 1791,
+   "caption": "재단 2026년 7월 보고서 p.9·p.10 도판(표제 June 2025)의 막대를 읽은 값이다. 영국 회사 값도 ⅩⅩⅡ편이 같은 도판에서 읽은 값이다.",
    "alt": "",
    "svg": "<svg viewBox=\"0 0 680 194\" xmlns=\"http://www.w3.org/2000/svg\" role=\"img\" aria-label=\"재단 보존조치 2.5 도판 — 같은 표의 두 회사\"><text x=\"236\" y=\"14\" font-size=\"12.5\" fill=\"#5a6072\">재단 보존조치 2.5 도판 — 같은 표의 두 회사</text><text x=\"226\" y=\"39\" text-anchor=\"end\" font-size=\"13\" fill=\"#3d4351\">이 회사 · MSC 인증 어업</text><rect x=\"236\" y=\"24\" width=\"26.2\" height=\"21\" fill=\"#8a3b2e\"/><text x=\"270.2\" y=\"40\" font-size=\"13.5\" font-weight=\"700\" fill=\"#8a3b2e\">약 7%</text><text x=\"226\" y=\"79\" text-anchor=\"end\" font-size=\"13\" fill=\"#3d4351\">영국 회사 · MSC 인증 어업</text><rect x=\"236\" y=\"64\" width=\"256.6\" height=\"21\" fill=\"#4d7f8d\"/><text x=\"500.6\" y=\"80\" font-size=\"13.5\" font-weight=\"700\" fill=\"#4d7f8d\">약 68.6%</text><text x=\"226\" y=\"119\" text-anchor=\"end\" font-size=\"13\" fill=\"#3d4351\">이 회사 · 선박 직접 구매</text><rect x=\"236\" y=\"104\" width=\"1.5\" height=\"21\" fill=\"#8a3b2e\"/><text x=\"245.5\" y=\"120\" font-size=\"13.5\" font-weight=\"700\" fill=\"#8a3b2e\">0%</text><text x=\"226\" y=\"159\" text-anchor=\"end\" font-size=\"13\" fill=\"#3d4351\">영국 회사 · 선박 직접 구매</text><rect x=\"236\" y=\"144\" width=\"212.1\" height=\"21\" fill=\"#4d7f8d\"/><text x=\"456.1\" y=\"160\" font-size=\"13.5\" font-weight=\"700\" fill=\"#4d7f8d\">약 56.7%</text><line x1=\"236\" y1=\"190\" x2=\"620\" y2=\"190\" stroke=\"#c9cdd6\"/></svg>"
   },
@@ -73,7 +73,7 @@
    "sid": "s8",
    "kind": "shot",
    "ord": 214528,
-   "caption": "규슈 슈퍼의 온라인몰. 상품 페이지가 원산국명을 인도네시아, 수입자를 はごろもフーズ 로 적는다.",
+   "caption": "규슈 슈퍼의 온라인몰. 상품 페이지가 원산국명을 인도네시아, 수입자를 はごろもフーズ 로 표기한다.",
    "alt": "CGC 은 はごろも シーチキンNewマイルド 3캔 묶음",
    "src": "/data/companies/figures/ati/d8b61eb2d553.jpg"
   },
@@ -81,7 +81,7 @@
    "stage": "c04",
    "sid": "s8",
    "kind": "shot",
-   "ord": 286198,
+   "ord": 286199,
    "caption": "업무용 1,705g 은 상품명 자체가 「インドネシア産」이다. 제품코드 9162, 내용량 1,705g.",
    "alt": "はごろも シーチキン L フレーク 인도네시아산 1,705g 업무용 캔",
    "src": "/data/companies/figures/ati/8352c2c3a326.jpg"
@@ -90,7 +90,7 @@
    "stage": "c04",
    "sid": "s8",
    "kind": "shot",
-   "ord": 300463,
+   "ord": 300464,
    "caption": "같은 매대의 유통업체 브랜드. 이쪽 원산국은 태국이다. 값 비교의 대조군이다.",
    "alt": "이온 톱밸류 라이트츠나 플레이크 유절임 3캔",
    "src": "/data/companies/figures/ati/0dec57e456e0.jpg"
