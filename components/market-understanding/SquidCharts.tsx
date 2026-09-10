@@ -59,6 +59,7 @@ import {
   colorForSpecies,
   dashForSeries,
 } from '@/lib/squid-chart-colors';
+import type { PeruImportRow } from '@/lib/data/squid-peru-supply';
 import SafeResponsiveContainer from '../SafeResponsiveContainer';
 import styles from './TunaIndustryDashboard.module.css';
 
@@ -1243,6 +1244,35 @@ export function FalklandSeasonChart() {
             />
           ))}
         </Bar>
+      </ComposedChart>
+    </SafeResponsiveContainer>
+  );
+}
+
+/** 페루산 오징어 수입 — 냉동 원물과 조제품을 쌓고, 선은 kg당 단가다. */
+export function PeruImportChart({ rows }: { rows: PeruImportRow[] }) {
+  const animate = useAnim();
+  return (
+    <SafeResponsiveContainer width="100%" height={300}>
+      <ComposedChart data={rows} margin={MARGIN}>
+        {grid}
+        <XAxis dataKey="연도" {...AXIS} />
+        <YAxis yAxisId="left" {...AXIS} tickFormatter={(v: number) => `${(v / 1000).toFixed(0)}천`} />
+        <YAxis yAxisId="right" orientation="right" {...AXIS} tickFormatter={(v: number) => v.toFixed(1)} />
+        <Tooltip content={<Tip />} />
+        {legend}
+        <Bar yAxisId="left" dataKey="냉동_톤" name="냉동 원물 (톤)" stackId="peru" fill={SQUID_ROLE.volume} isAnimationActive={animate} />
+        <Bar yAxisId="left" dataKey="조제_톤" name="조제품 (톤)" stackId="peru" fill={SQUID_ROLE.processed} radius={[3, 3, 0, 0]} isAnimationActive={animate} />
+        <Line
+          yAxisId="right"
+          type="monotone"
+          dataKey="단가_usd_kg"
+          name="단가 (달러/kg)"
+          stroke={CHART_RANK}
+          strokeWidth={2.4}
+          dot={{ r: 3 }}
+          isAnimationActive={animate}
+        />
       </ComposedChart>
     </SafeResponsiveContainer>
   );

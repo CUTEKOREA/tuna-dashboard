@@ -16,6 +16,7 @@ import type {
   CanneryCountryRow,
   BrandMarketRow,
 } from '@/lib/data/valuechain-companies';
+import type { PeruPlantRow } from '@/lib/data/squid-peru-supply';
 
 import styles from './TunaIndustryDashboard.module.css';
 
@@ -153,6 +154,55 @@ export function BrandMarketTable({ rows }: { rows: BrandMarketRow[] }) {
               <td>
                 {row.점유율}
                 <span className={styles.factNote}>{row.성격}</span>
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  );
+}
+
+/** 페루 제조소 표 — 식약처 수입신고 원장에서 한국행 신고가 많은 순. 건수는 수량이 아니다. */
+export function PeruPlantTable({ rows, total }: { rows: PeruPlantRow[]; total: number }) {
+  const fmt = (v: number | null, unit: string) => (v === null ? '확인불가' : `${v.toLocaleString()}${unit}`);
+  return (
+    <div className={styles.factWrap}>
+      <table className={styles.factTable}>
+        <caption className={styles.factCaption}>
+          페루산 오징어 수입신고 {total.toLocaleString()}건 가운데 신고가 많은 제조소 14곳. 신고 건수는 통관
+          횟수이지 수량이 아니다. 「한국계」는 페루 세무당국 등기 임원 성명으로 판단했다.
+        </caption>
+        <thead>
+          <tr>
+            <th scope="col">제조소</th>
+            <th scope="col">항구</th>
+            <th scope="col">신고 건수</th>
+            <th scope="col">능력 · 직원</th>
+            <th scope="col">대왕오징어 · 자숙 비율</th>
+          </tr>
+        </thead>
+        <tbody>
+          {rows.map((row) => (
+            <tr key={row.RUC}>
+              <th scope="row">
+                {row.공장}
+                <span className={styles.factNote}>
+                  {row.한국계경영 === '예' ? '한국계 경영' : row.한국계경영 === '아니오' ? '페루·기타 경영' : '경영 판단불가'}
+                  {row.SANIPES_영국승인 ? ` · 위생당국 영국 승인 ${row.SANIPES_영국승인}` : ''}
+                </span>
+              </th>
+              <td>{row.항구}</td>
+              <td>{row.신고건수.toLocaleString()}건</td>
+              <td>
+                {fmt(row.능력_톤일, ' t/일')}
+                <span className={styles.factNote}>
+                  직원 {row.직원.toLocaleString()}명 ({row.직원_기준월})
+                  {row.CHD수출_2024_usd !== null ? ` · 2024 식용 수산물 수출 ${(row.CHD수출_2024_usd / 1e6).toFixed(1)}백만 달러(전 어종)` : ''}
+                </span>
+              </td>
+              <td>
+                {row.대왕오징어_pct}% · {row.자숙_pct}%
               </td>
             </tr>
           ))}
