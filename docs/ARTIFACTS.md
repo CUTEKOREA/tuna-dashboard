@@ -28,6 +28,7 @@
 | ⅩⅩⅡ | Princes Group plc | `princes` | https://claude.ai/code/artifact/f376eb72-cb7c-434a-a6a3-1a7b260f6e15 |
 | ⅩⅩⅢ | Indian Ocean Tuna Ltd | `iot` | https://claude.ai/code/artifact/bcf1a4b0-59f7-44e4-91af-8f6d6ddb812a |
 | ⅩⅩⅣ | PT Aneka Tuna Indonesia | `ati` | https://claude.ai/code/artifact/0848b67a-c969-40c7-a4c3-cb36722bf8e5 |
+| ⅩⅩⅤ | NIRSA (Negocios Industriales Real N.I.R.S.A. S.A.) | `nirsa` | https://claude.ai/code/artifact/556e95c6-b36c-4edc-86a3-b4cd11d4c64e |
 
 그 밖 — 보고서 직판 랜딩 기획서 https://claude.ai/code/artifact/0f98e5a5-686b-4f47-b661-be5aa852f913
 

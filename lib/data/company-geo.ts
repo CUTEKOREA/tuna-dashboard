@@ -120,6 +120,9 @@ export const HQ_POINTS: GeoPoint[] = [
   { company: 'ati', numeral: 'ⅩⅩⅣ', kind: 'hq', label: 'PT Aneka Tuna Indonesia 본사·제1공장', country: '인도네시아',
     lat: -7.56, lng: 112.70, basis: 'ⅩⅩⅣ · Jl. Raya Surabaya–Malang Km.38, Gempol, Pasuruan · 伊藤忠 47.0% · はごろも 33.00%',
     note: '1991-10 설립 · 1992-11 상업생산 · 유럽연합 승인 138.13.B/C(2021 목록)' },
+  { company: 'nirsa', numeral: 'ⅩⅩⅤ', kind: 'hq', label: 'NIRSA 본점', country: '에콰도르',
+    lat: -2.19, lng: -79.89, basis: 'ⅩⅩⅤ · 본점 과야킬(회사감독청 등기, 도시 좌표) · 지주 Corporación Real Corprealsa 99.99%',
+    note: '활동 개시 1957-11-05 · 정어리 통조림으로 출발, 참치 1968년' },
 ];
 
 /**
@@ -258,6 +261,12 @@ export const PLANT_POINTS: GeoPoint[] = [
     lat: -7.62, lng: 112.69, sizeValue: 250, sizeUnit: 'MT/일',
     basis: 'ⅩⅩⅣ · WCPFC-SC13-2017/ST-IP-05 「250 t/day with new plant」(2016~17 현장조사, 두 공장 합)',
     note: '2025-08 주 수산청: 월 원료 1,841.6 t · 월 제품 862.6 t(수율 46.8%). 연간 총량은 확정치 없음' },
+
+  // ── ⅩⅩⅤ NIRSA — 능력은 회사 발언을 인용한 기사 한 건뿐이다 ─────
+  { company: 'nirsa', numeral: 'ⅩⅩⅤ', kind: 'plant', label: 'NIRSA 포소르하 참치·정어리 공장', country: '에콰도르',
+    lat: -2.70, lng: -80.25, sizeValue: 420, sizeUnit: 'MT/일',
+    basis: 'ⅩⅩⅤ · 2018년 수산실 게시 기사가 회사 발언을 인용한 참치 가공능력 일 420 t(회사 공식 문서에는 없다)',
+    note: '자체 부두가 공정 시설에서 400 m · 냉동창고 20,000 t(회사 소개) · MSC 유통망 MSC-C-56655' },
 ];
 
 /**
@@ -325,6 +334,10 @@ export const FLAG_STATES: {
     flags: [{ country: 'WCPFC 등록', count: 10, isFlag: false }, { country: 'IATTC 등록', count: 4, isFlag: false },
             { country: 'ICCAT 비활성', count: 3, isFlag: false }],
     basis: 'Ⅵ ownFleet · 조달 선단 399척과 혼동하지 않는다' },
+  { company: 'nirsa',
+    flags: [{ country: '에콰도르', count: 14 }],
+    basis: 'ⅩⅩⅤ · IATTC 등록부 2026-08-17 등록 소유자 NIRSA S.A. 선망 14척 15,639 m³',
+    note: '넷은 파나마·니카라과·코스타리카 어창 용적 이전선이다 — 기국은 에콰도르. 운항만 맡은 El Marquez(파나마 법인 소유)는 넣지 않았다' },
 ];
 
 /** 배가 0척인 회사. 이 사실 자체가 이 산업의 구조다. */

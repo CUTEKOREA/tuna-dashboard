@@ -22,6 +22,7 @@ import trimarineRaw from '@/public/data/companies/trimarine_figures_v1.json';
 import princesRaw from '@/public/data/companies/princes_figures_v1.json';
 import iotRaw from '@/public/data/companies/iot_figures_v1.json';
 import atiRaw from '@/public/data/companies/ati_figures_v1.json';
+import nirsaRaw from '@/public/data/companies/nirsa_figures_v1.json';
 
 /**
  * 조사보고서 그림 인테이크 — 팩샷·차트·문서 캡처.
@@ -82,6 +83,7 @@ const INTAKES: Record<string, Intake> = {
   princes: princesRaw as unknown as Intake,
   iot: iotRaw as unknown as Intake,
   ati: atiRaw as unknown as Intake,
+  nirsa: nirsaRaw as unknown as Intake,
 };
 
 export const REPORT_FIGURE_COMPANIES = Object.keys(INTAKES);
