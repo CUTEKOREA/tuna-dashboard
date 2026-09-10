@@ -123,6 +123,9 @@ export const HQ_POINTS: GeoPoint[] = [
   { company: 'nirsa', numeral: 'ⅩⅩⅤ', kind: 'hq', label: 'NIRSA 본점', country: '에콰도르',
     lat: -2.19, lng: -79.89, basis: 'ⅩⅩⅤ · 본점 과야킬(회사감독청 등기, 도시 좌표) · 지주 Corporación Real Corprealsa 99.99%',
     note: '활동 개시 1957-11-05 · 정어리 통조림으로 출발, 참치 1968년' },
+  { company: 'eurofish', numeral: 'ⅩⅩⅥ', kind: 'hq', label: 'Eurofish 본점·공장', country: '에콰도르',
+    lat: -0.99, lng: -80.69, basis: 'ⅩⅩⅥ · 몬테크리스티 Arroyo Azul, Calle Transmarina y Av. Hugo Mayo (만타–몬테크리스티 경계, 근사 좌표) · 주주 IBEROPESCA 39.93%',
+    note: '1998-09-08 만타 등기 · 2007 본점 몬테크리스티 이전 · EU 승인 575' },
 ];
 
 /**
@@ -267,6 +270,12 @@ export const PLANT_POINTS: GeoPoint[] = [
     lat: -2.70, lng: -80.25, sizeValue: 420, sizeUnit: 'MT/일',
     basis: 'ⅩⅩⅤ · 2018년 수산실 게시 기사가 회사 발언을 인용한 참치 가공능력 일 420 t(회사 공식 문서에는 없다)',
     note: '자체 부두가 공정 시설에서 400 m · 냉동창고 20,000 t(회사 소개) · MSC 유통망 MSC-C-56655' },
+
+  // ── ⅩⅩⅥ Eurofish — 능력 자칭치 대신 경영자 보고서의 실측 일 처리량 ─────
+  { company: 'eurofish', numeral: 'ⅩⅩⅥ', kind: 'plant', label: 'Eurofish 몬테크리스티 공장', country: '에콰도르',
+    lat: -0.98, lng: -80.68, sizeValue: 171.9, sizeUnit: 'MT/일',
+    basis: 'ⅩⅩⅥ · 2019 경영자 보고서 가공 41,422.74 t ÷ 241일 = 일 171.9 t (회사 자칭 연간 최대 76,800 t 은 조건 미공개)',
+    note: '캔·파우치 73.45% · 로인 26.38% · 펫푸드 공장 2019 가동 · 같은 부지에 Marprot 어분 공장(EU 3546)' },
 ];
 
 /**
@@ -338,6 +347,10 @@ export const FLAG_STATES: {
     flags: [{ country: '에콰도르', count: 14 }],
     basis: 'ⅩⅩⅤ · IATTC 등록부 2026-08-17 등록 소유자 NIRSA S.A. 선망 14척 15,639 m³',
     note: '넷은 파나마·니카라과·코스타리카 어창 용적 이전선이다 — 기국은 에콰도르. 운항만 맡은 El Marquez(파나마 법인 소유)는 넣지 않았다' },
+  { company: 'eurofish',
+    flags: [{ country: '에콰도르', count: 15 }, { country: '인증 연계', count: 19, isFlag: false }],
+    basis: 'ⅩⅩⅥ · MSC-F-31557 부속서(2024-07-03) Eurofish 연계 19척 중 IATTC 2026-08-17 에콰도르 기국 15척 15,894 m³',
+    note: '소유가 아니라 인증 연계 — 등록 소유자는 에콰도르 단선 법인·스페인·파나마·미국 법인. 소유자 칸 Eurofish 0척' },
 ];
 
 /** 배가 0척인 회사. 이 사실 자체가 이 산업의 구조다. */
