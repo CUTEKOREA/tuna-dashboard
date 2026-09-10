@@ -1,9 +1,9 @@
 {
  "_meta": {
   "entry": "app/page.tsx",
-  "files": 238,
+  "files": 239,
   "widgets": 112,
-  "dataFiles": 168,
+  "dataFiles": 172,
   "generator": "scripts/widget_lineage.py"
  },
  "widgetToData": {
@@ -574,6 +574,7 @@
     "lib/data/company-bumblebee.ts",
     "lib/data/company-centurypacific.ts",
     "lib/data/company-dongwon.ts",
+    "lib/data/company-eurofish.ts",
     "lib/data/company-fcf.ts",
     "lib/data/company-frabelle.ts",
     "lib/data/company-frinsa.ts",
@@ -625,6 +626,10 @@
     "public/data/companies/dongwon_prose_v1.json",
     "public/data/companies/dongwon_tables_v1.json",
     "public/data/companies/dongwon_v1.json",
+    "public/data/companies/eurofish_figures_v1.json",
+    "public/data/companies/eurofish_prose_v1.json",
+    "public/data/companies/eurofish_tables_v1.json",
+    "public/data/companies/eurofish_v1.json",
     "public/data/companies/fcf_figures_v1.json",
     "public/data/companies/fcf_prose_v1.json",
     "public/data/companies/fcf_tables_v1.json",
@@ -1237,6 +1242,18 @@
    "components/market-understanding/CompanyAnatomyDashboard.tsx"
   ],
   "public/data/companies/dongwon_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/eurofish_figures_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/eurofish_prose_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/eurofish_tables_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/eurofish_v1.json": [
    "components/market-understanding/CompanyAnatomyDashboard.tsx"
   ],
   "public/data/companies/fcf_figures_v1.json": [

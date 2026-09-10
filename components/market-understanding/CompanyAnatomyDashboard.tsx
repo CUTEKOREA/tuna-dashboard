@@ -256,6 +256,10 @@ import {
   nirsaMeta, nirsaStats, nirsaSourceNotes,
   salesVsSecondX, salesGrowthPct, shrimpShare2019Pct, ecuadorToUsSharePct,
 } from '@/lib/data/company-nirsa';
+import {
+  eurofishMeta, eurofishStats, eurofishSourceNotes,
+  linkedFleetSharePct, relatedPurchaseSharePct, salesGrowthPct as eurofishSalesGrowthPct, transferredShareOfLinkedPct,
+} from '@/lib/data/company-eurofish';
 
 
 const ACCENT = '#c2410c';
@@ -3168,6 +3172,63 @@ const NIRSA_SPEC: CommoditySpec = {
   ].join(' · '),
 };
 
+const EUROFISH_ACCENT = '#2f6b5a';
+
+const EUROFISH_SPEC: CommoditySpec = {
+  key: 'company-anatomy-eurofish',
+  title: '기업 해부: Eurofish',
+  subtitle:
+    '에콰도르 만타·몬테크리스티의 참치 가공사다. 회사는 자사 선망 21척이 원료의 약 70%를 댄다고 말하지만, 동태평양 참치위원회 등록부 소유자 칸에 이 회사 상호는 0척이다. ' +
+    `회사 누리집의 MSC 증서 부속서(2024-07-03)는 선망 ${eurofishStats.부속서_연계_척}척을 「Eurofish(법인명)」으로 묶는다 — 등록 소유자는 에콰도르 단선 법인과 스페인·파나마·미국 법인으로 흩어져 있다. ` +
+    '부속서의 회사 칸은 인증 연계이지 소유가 아니다.',
+  accent: EUROFISH_ACCENT,
+  primaryKpi: {
+    label: '에콰도르 선망 어창 용적 중 Eurofish 인증 연계 선박(현재 에콰도르 기국)',
+    value: linkedFleetSharePct(),
+    decimals: 1,
+    unit: `(% · ${eurofishStats.현재_에콰도르_연계_척}척 ${eurofishStats.현재_에콰도르_연계_용적_m3.toLocaleString()} m³ · 소유가 아니라 인증 연계 · NIRSA 등록 소유 ${eurofishStats.NIRSA_소유_용적_m3.toLocaleString()} m³와는 기준이 다르다)`,
+    accent: EUROFISH_ACCENT,
+  },
+  secondaryKpis: [
+    { label: '2019 관계회사 매입 거래 / 원어 매입액', value: relatedPurchaseSharePct(), decimals: 1, unit: '(% · 품목 미분류 조건부 비교값 · 자칭 70%와 단위가 다르다)' },
+    { label: '인도양 이적 4척의 연계 선단 용적 몫', value: transferredShareOfLinkedPct(), decimals: 1, unit: '(% · 2010~2013 건조 · 등록 소유 스페인·파나마 법인)' },
+    { label: '매출 증가 2019 → 2024', value: eurofishSalesGrowthPct(), decimals: 1, unit: '(% · 회사감독청 순위 원자료)' },
+  ],
+  stripItems: [
+    {
+      now: true,
+      eyebrow: '선단',
+      title: '등록부 0척, 인증서 19척',
+      body: 'Elvayka Kyoei(주주 IBEROPESCA 50%·사장 50%) 5척 등 에콰도르 법인 명의. Eurofish S.A. 2019 장부에는 어선 자산(장부가 786만 달러)',
+    },
+    {
+      eyebrow: '이적',
+      title: '인도양 90 m 선망 4척',
+      body: 'Sapmer(레위니옹)가 2023~2024년 매각. 등록 소유 스페인 Aldan Pacific S.L.·파나마 법인. 척당 어창 1,630 m³',
+    },
+    {
+      eyebrow: '행선지',
+      title: '유럽 브랜드 로인 · 미국 펫푸드',
+      body: `조제참치 수출 FOB 2024 ${eurofishStats.조제참치_수출_FOB_2024_백만usd}백만 달러(${eurofishStats.조제참치_수출_순위_2024}위). 미국 선하증권 최다 수하인은 펫푸드 수입사`,
+    },
+    {
+      eyebrow: '관세',
+      title: '파나마 소유 세 척의 유럽 원산지',
+      body: '유럽 0% 선박 요건은 등록·기국·소유. 등록 소유자가 파나마 법인인 세 척(4,890 m³)은 지분 비공개로 판단할 수 없다',
+    },
+  ],
+  briefing: proseBriefing('eurofish'),
+  narratives: inlineReport('eurofish', proseStages('eurofish')),
+  chartSlots: {},
+  continuous: true,
+  sourceNotes: eurofishSourceNotes,
+  sourceMeta: [
+    `${eurofishMeta.회사} · ${eurofishMeta.국가} · ${eurofishMeta.업종}`,
+    `출처 ${eurofishMeta.출처}`,
+    `조사 ${eurofishMeta.조사일}`,
+  ].join(' · '),
+};
+
 export const COMPANY_CARDS: CompanyCard[] = [
   {
     key: 'frinsa',
@@ -3494,6 +3555,19 @@ export const COMPANY_CARDS: CompanyCard[] = [
       { label: '소유 선망', value: `${nirsaStats.소유_선망_척} 척` },
     ],
   },
+  {
+    key: 'eurofish',
+    numeral: 'ⅩⅩⅥ',
+    name: 'Eurofish',
+    country: '에콰도르 · 만타·몬테크리스티',
+    tagline: '등록부에는 이 회사 이름의 배가 없고, 인증서에는 이 회사 이름으로 열아홉 척이 묶여 있다.',
+    ...FLAG.에콰도르,
+    stats: [
+      { label: '등록부 소유 / 인증 연계', value: `${eurofishStats.등록부_소유_척} / ${eurofishStats.부속서_연계_척} 척` },
+      { label: '관계회사 매입 비교값', value: `${relatedPurchaseSharePct()}%` },
+      { label: '2024 매출', value: `${(eurofishStats.매출_2024_usd / 1e6).toFixed(0)}M$` },
+    ],
+  },
 
 ];
 
@@ -3542,6 +3616,7 @@ export default function CompanyAnatomyDashboard({
     iot: IOT_SPEC,
     ati: ATI_SPEC,
     nirsa: NIRSA_SPEC,
+    eurofish: EUROFISH_SPEC,
   };
   const spec = SPECS[selected] ?? SPEC;
 
