@@ -27,6 +27,7 @@ import eurofishRaw from '@/public/data/companies/eurofish_tables_v1.json';
 import tecopescaRaw from '@/public/data/companies/tecopesca_tables_v1.json';
 import dongwonfnbRaw from '@/public/data/companies/dongwonfnb_tables_v1.json';
 import hagoromoRaw from '@/public/data/companies/hagoromo_tables_v1.json';
+import cnfcRaw from '@/public/data/companies/cnfc_tables_v1.json';
 
 /**
  * 조사보고서 표 전량 인테이크.
@@ -96,6 +97,7 @@ const INTAKES: Record<string, Intake> = {
   tecopesca: tecopescaRaw as unknown as Intake,
   dongwonfnb: dongwonfnbRaw as unknown as Intake,
   hagoromo: hagoromoRaw as unknown as Intake,
+  cnfc: cnfcRaw as unknown as Intake,
 };
 
 export const REPORT_TABLE_COMPANIES = Object.keys(INTAKES);

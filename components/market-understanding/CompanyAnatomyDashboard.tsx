@@ -272,6 +272,10 @@ import {
   hagoromoMeta, hagoromoStats, hagoromoSourceNotes,
   itochuSalesSharePct, tradingHousesSharePct, pbMultiple,
 } from '@/lib/data/company-hagoromo';
+import {
+  cnfcMeta, cnfcStats, cnfcSourceNotes,
+  tunaSharePct, tunaLossWan, subsidyToProfit,
+} from '@/lib/data/company-cnfc';
 
 
 const ACCENT = '#c2410c';
@@ -2539,6 +2543,7 @@ const FLAG: Record<string, Pick<CompanyCard, 'flagSrc' | 'backInk'>> = {
   필리핀: { flagSrc: '/flags/ph.svg', backInk: '#f4f5f0' },
   미국: { flagSrc: '/flags/us.svg', backInk: '#1b2733' },
   한국: { flagSrc: '/flags/kr.svg', backInk: '#1b2733' },
+  중국: { flagSrc: '/flags/cn.svg', backInk: '#1b2733' },
   이탈리아: { flagSrc: '/flags/it.svg', backInk: '#f4f5f0' },
   싱가포르: { flagSrc: '/flags/sg.svg', backInk: '#1b2733' },
   영국: { flagSrc: '/flags/gb.svg', backInk: '#f4f5f0' },
@@ -3404,6 +3409,62 @@ const HAGOROMO_SPEC: CommoditySpec = {
   ].join(' · '),
 };
 
+const CNFC_ACCENT = '#a33a2c';
+
+const CNFC_SPEC: CommoditySpec = {
+  key: 'company-anatomy-cnfc',
+  title: '기업 해부: 中水集团远洋',
+  subtitle:
+    '중국 국유 원양어업 그룹 中国农业发展集团의 선전 상장 자회사다. 캔공장 표에 이름이 올랐지만 2023~2025 연보와 2026 반기보고서에 「罐」 자가 한 번도 없고, 참치 이름이 붙은 가공 설비는 냉동 날개다랑어 로인을 만드는 저우산 초저온 가공센터 하나다. ' +
+    '캔 계획이 확인되는 곳은 바누아투 합작 Sino-Van(中瓦渔业 51%) 하나이고 캔 생산에 이르지 못했다. 2025년 참치 매출 7억 7,669만 위안은 원가보다 5,405만 위안 적었고, 같은 해 수익 관련 정부보조금 2억 6,656만 위안이 순이익보다 컸다.',
+  accent: CNFC_ACCENT,
+  primaryKpi: {
+    label: '2025년 참치 매출총이익률 (연결, 연보 分产品 표)',
+    value: cnfcStats.참치_이익률_2025_pct,
+    decimals: 2,
+    unit: `(% · 2023 ${cnfcStats.참치_이익률_2023_pct}% · 2024 ${cnfcStats.참치_이익률_2024_pct}% · 2026 상반기 ${cnfcStats.참치_이익률_2026H1_pct}%)`,
+    accent: CNFC_ACCENT,
+  },
+  secondaryKpis: [
+    { label: '2025 연결 매출 중 참치 몫', value: tunaSharePct(), decimals: 2, unit: '(% · 자기 배로 잡은 참치)' },
+    { label: '수익 관련 정부보조금 ÷ 순이익 (2025)', value: subsidyToProfit(), decimals: 2, unit: '(배 · 회사는 보조금을 경상 손익으로 분류, 비경상 125만 위안)' },
+    { label: 'RFMO 등록부 소유 선박', value: cnfcStats.등록부_선박, decimals: 0, unit: '(척 · 68행에서 기구 간 중복 제외 · 전부 연승)' },
+  ],
+  stripItems: [
+    {
+      now: true,
+      eyebrow: '구조',
+      title: '연보 네 권에 「罐」 0회',
+      body: '참치 이름이 붙은 가공 설비는 저우산 연구개발가공센터(냉동 날개다랑어 로인, 2025 실현 이익 13만 위안) 하나. 캔 계획은 바누아투 Sino-Van에만 있었다',
+    },
+    {
+      eyebrow: '이익',
+      title: `참치 원가가 매출보다 ${tunaLossWan().toLocaleString('ko-KR')}만 위안 많았다`,
+      body: '2025년. 손실은 상장사 개별(母公司)의 연승 참치에서 나고(−19.49%), 자회사 몫은 네 기간 모두 흑자(계산)',
+    },
+    {
+      eyebrow: '보조금',
+      title: '세 해 연속 보조금이 순이익보다 컸다',
+      body: '2025년 수익 관련 보조금 2억 6,656만 위안 대 순이익 1억 4,161만 위안. 2026 상반기 이익은 6월에 들어온 보조금 때문에 부풀어 보인다',
+    },
+    {
+      eyebrow: '선단',
+      title: '중국 선적 소유사 가운데 등록부 1위',
+      body: 'RFMO 등록부 소유 명의 61척(2위 30척). 새 예산 9,600만 위안도 고위도 초저온 참치 연승선이다',
+    },
+  ],
+  briefing: proseBriefing('cnfc'),
+  narratives: inlineReport('cnfc', proseStages('cnfc')),
+  chartSlots: {},
+  continuous: true,
+  sourceNotes: cnfcSourceNotes,
+  sourceMeta: [
+    `${cnfcMeta.회사} · ${cnfcMeta.국가} · ${cnfcMeta.업종}`,
+    `출처 ${cnfcMeta.출처}`,
+    `조사 ${cnfcMeta.조사일}`,
+  ].join(' · '),
+};
+
 export const COMPANY_CARDS: CompanyCard[] = [
   {
     key: 'frinsa',
@@ -3782,6 +3843,19 @@ export const COMPANY_CARDS: CompanyCard[] = [
       { label: '연결 매출 FY26/3', value: `${(hagoromoStats.연결_매출_FY26_jpy_k / 1e5).toFixed(1)}억엔` },
     ],
   },
+  {
+    key: 'cnfc',
+    numeral: 'ⅩⅩⅩ',
+    name: '中水集团远洋',
+    country: '중국 · 베이징(저우산 가공센터·바누아투 로인 공장)',
+    tagline: '연보 네 권에 통조림은 없고, 참치는 네 기간 가운데 세 기간 원가보다 싸게 팔렸다.',
+    ...FLAG.중국,
+    stats: [
+      { label: '참치 이익률 2025', value: `${cnfcStats.참치_이익률_2025_pct}%` },
+      { label: '참치 매출 몫', value: `${tunaSharePct()}%` },
+      { label: '등록부 선박', value: `${cnfcStats.등록부_선박}척` },
+    ],
+  },
 
 ];
 
@@ -3834,6 +3908,7 @@ export default function CompanyAnatomyDashboard({
     tecopesca: TECOPESCA_SPEC,
     dongwonfnb: DONGWONFNB_SPEC,
     hagoromo: HAGOROMO_SPEC,
+    cnfc: CNFC_SPEC,
   };
   const spec = SPECS[selected] ?? SPEC;
 

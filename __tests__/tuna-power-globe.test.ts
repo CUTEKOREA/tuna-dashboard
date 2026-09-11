@@ -29,12 +29,12 @@ import { COMPANY_CARDS } from '@/components/market-understanding/CompanyAnatomyD
 
 const NUMERALS = [
   'Ⅰ', 'Ⅱ', 'Ⅲ', 'Ⅳ', 'Ⅴ', 'Ⅵ', 'Ⅶ', 'Ⅷ', 'Ⅸ', 'Ⅹ',
-  'ⅩⅠ', 'ⅩⅡ', 'ⅩⅢ', 'ⅩⅣ', 'ⅩⅤ', 'ⅩⅥ', 'ⅩⅦ', 'ⅩⅧ', 'ⅩⅨ', 'ⅩⅩ', 'ⅩⅩⅠ', 'ⅩⅩⅡ', 'ⅩⅩⅢ', 'ⅩⅩⅣ', 'ⅩⅩⅤ', 'ⅩⅩⅥ', 'ⅩⅩⅦ', 'ⅩⅩⅧ', 'ⅩⅩⅨ',
+  'ⅩⅠ', 'ⅩⅡ', 'ⅩⅢ', 'ⅩⅣ', 'ⅩⅤ', 'ⅩⅥ', 'ⅩⅦ', 'ⅩⅧ', 'ⅩⅨ', 'ⅩⅩ', 'ⅩⅩⅠ', 'ⅩⅩⅡ', 'ⅩⅩⅢ', 'ⅩⅩⅣ', 'ⅩⅩⅤ', 'ⅩⅩⅥ', 'ⅩⅩⅦ', 'ⅩⅩⅧ', 'ⅩⅩⅨ', 'ⅩⅩⅩ',
 ];
 
 describe('좌표 원장', () => {
-  it('29편 전부가 본사 핀을 갖는다', () => {
-    expect(HQ_POINTS).toHaveLength(29);
+  it('30편 전부가 본사 핀을 갖는다', () => {
+    expect(HQ_POINTS).toHaveLength(30);
     const cardKeys = COMPANY_CARDS.map((c) => c.key).sort();
     const hqKeys = HQ_POINTS.map((p) => p.company).sort();
     expect(hqKeys).toEqual(cardKeys);

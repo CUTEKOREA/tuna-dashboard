@@ -1,9 +1,9 @@
 {
  "_meta": {
   "entry": "app/page.tsx",
-  "files": 242,
+  "files": 243,
   "widgets": 112,
-  "dataFiles": 184,
+  "dataFiles": 188,
   "generator": "scripts/widget_lineage.py"
  },
  "widgetToData": {
@@ -573,6 +573,7 @@
     "lib/data/company-boltonfood.ts",
     "lib/data/company-bumblebee.ts",
     "lib/data/company-centurypacific.ts",
+    "lib/data/company-cnfc.ts",
     "lib/data/company-dongwon.ts",
     "lib/data/company-dongwonfnb.ts",
     "lib/data/company-eurofish.ts",
@@ -625,6 +626,10 @@
     "public/data/companies/centurypacific_prose_v1.json",
     "public/data/companies/centurypacific_tables_v1.json",
     "public/data/companies/centurypacific_v1.json",
+    "public/data/companies/cnfc_figures_v1.json",
+    "public/data/companies/cnfc_prose_v1.json",
+    "public/data/companies/cnfc_tables_v1.json",
+    "public/data/companies/cnfc_v1.json",
     "public/data/companies/dongwon_figures_v1.json",
     "public/data/companies/dongwon_prose_v1.json",
     "public/data/companies/dongwon_tables_v1.json",
@@ -1245,6 +1250,18 @@
    "components/market-understanding/CompanyAnatomyDashboard.tsx"
   ],
   "public/data/companies/centurypacific_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/cnfc_figures_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/cnfc_prose_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/cnfc_tables_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/cnfc_v1.json": [
    "components/market-understanding/CompanyAnatomyDashboard.tsx"
   ],
   "public/data/companies/dongwon_figures_v1.json": [
