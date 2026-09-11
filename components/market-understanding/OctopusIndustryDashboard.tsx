@@ -144,7 +144,7 @@ export const OCTOPUS_CHART_SLOTS: Record<string, ChartSlot[]> = {
     {
       title: '세계 문어류 어획 2015~2024 (톤)',
       caption:
-        '굵은 자주 선이 세계 합계, 호박이 중국, 파랑이 모로코다. 한국은 FAO 신고가 3종 합이라 그리지 않았다.',
+        '굵은 파랑 선이 세계 합계, 주황이 중국, 청록이 모로코다. 한국은 FAO 신고가 3종 합이라 그리지 않았다.',
       telemetry: FAO_SYNC,
       render: () => <OctopusWorldChart data={DATA} />,
     },

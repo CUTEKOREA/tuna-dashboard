@@ -393,7 +393,7 @@ const CHART_SLOTS: Record<string, ChartSlot[]> = {
   c02: [
     {
       title: 'FY2024 국가별 세전이익 (M€)',
-      caption: '상위 6개국. 노란 막대가 싱가포르 구매본부다. 판매법인이 아닌데 그룹 2위권이다.',
+      caption: '상위 6개국. 주황 막대가 싱가포르 구매본부다. 판매법인이 아닌데 그룹 2위권이다.',
       telemetry: SYNC,
       render: () => <FrinsaBaiChart />,
       sourceLine: '회사 EINF ‘국가별 세전이익’ (국가 합계와 산술 일치 검증)',
@@ -402,7 +402,7 @@ const CHART_SLOTS: Record<string, ChartSlot[]> = {
   c03: [
     {
       title: '가격 사다리 (€/kg)',
-      caption: '자사몰·전문점·대형마트 진열가를 kg 단가로 환산했다. 노란 막대가 100 €/kg 초과 층이다.',
+      caption: '자사몰·전문점·대형마트 진열가를 kg 단가로 환산했다. 주황 막대가 100 €/kg 초과 층이다.',
       telemetry: SYNC,
       render: () => <FrinsaPriceLadderChart />,
       sourceLine: '자사몰 WooCommerce API 실측 (제품 69종, 2026-08-20) · Alcampo·Carrefour·DIA 진열가',
@@ -442,7 +442,7 @@ const CHART_SLOTS: Record<string, ChartSlot[]> = {
     },
     {
       title: '2025년 공급사 참여 (%)',
-      caption: '공급사 기준. 노란 막대가 「어디에도 해당 없음」으로, 앞 차트와 같은 것을 재지 않는다.',
+      caption: '공급사 기준. 주황 막대가 「어디에도 해당 없음」으로, 앞 차트와 같은 것을 재지 않는다.',
       telemetry: SYNC,
       render: () => <FrinsaSustainabilityChart axis="공급사 출처" />,
       sourceLine: 'Frinsa Marine Sustainability Policy 2026 (2025년 실적, 자사 공시)',
@@ -465,7 +465,7 @@ const CHART_SLOTS: Record<string, ChartSlot[]> = {
     },
     {
       title: 'FY2024 지역별 매출 (M€)',
-      caption: '이베리아 밖(노란 막대)이 57.6%다. 합 740.4가 보도치 741 과 정합한다.',
+      caption: '이베리아 밖(주황 막대)이 57.6%다. 합 740.4가 보도치 741 과 정합한다.',
       telemetry: SYNC,
       render: () => <FrinsaRegionalChart />,
       sourceLine: '조사 아카이브 §3 · 지역분해 3표 검증 (합계·보도치 산술 정합)',
@@ -889,14 +889,14 @@ const TU_CHART_SLOTS: Record<string, ChartSlot[]> = {
     },
     {
       title: '자사 브랜드 매출 비중 (%)',
-      caption: '노란 막대가 PetCare 다. 98.8%가 고객 브랜드·PL 이다. 한 회사 안의 두 모델.',
+      caption: '주황 막대가 PetCare 다. 98.8%가 고객 브랜드·PL 이다. 한 회사 안의 두 모델.',
       telemetry: SYNC,
       render: () => <TuBrandShareChart />,
       sourceLine: '사내 조사보고서 (2026-08) · One Report p.33·37',
     },
     {
       title: '카테고리별 지역 구성 (%)',
-      caption: '노란 구간이 미국·북미. Frozen 51.2%·PetCare 58.9%. 관세 직격 구간의 크기다.',
+      caption: '주황 구간이 미국·북미. Frozen 51.2%·PetCare 58.9%. 관세 직격 구간의 크기다.',
       telemetry: SYNC,
       render: () => <TuRegionChart />,
       sourceLine: '사내 조사보고서 (2026-08) · One Report pp.33-37',
@@ -916,7 +916,7 @@ const TU_CHART_SLOTS: Record<string, ChartSlot[]> = {
     },
     {
       title: 'John West 형태 사다리 (£/kg)',
-      caption: '같은 참치가 형태만으로 2.6배가 된다. 노란 막대가 £18 초과 층이다. Frinsa의 부위 사다리와 대구를 이룬다.',
+      caption: '같은 참치가 형태만으로 2.6배가 된다. 주황 막대가 £18 초과 층이다. Frinsa의 부위 사다리와 대구를 이룬다.',
       telemetry: SYNC,
       render: () => <TuJwLadderChart />,
       sourceLine: 'Morrisons 실측 46건 (사내 조사보고서 인용) · 2026-08-20',
@@ -1080,7 +1080,7 @@ const TU_CHART_SLOTS: Record<string, ChartSlot[]> = {
   c04: [
     {
       title: '그룹 생산능력 (톤/년)',
-      caption: '노란 막대가 참치 57만 톤. PetCare는 공시 내 모순(221k vs 195k)이 있어 서술값이다.',
+      caption: '주황 막대가 참치 57만 톤. PetCare는 공시 내 모순(221k vs 195k)이 있어 서술값이다.',
       telemetry: SYNC,
       render: () => <TuCapacityChart />,
       sourceLine: '사내 조사보고서 (2026-08) · One Report p.46',
@@ -1105,7 +1105,7 @@ const TU_CHART_SLOTS: Record<string, ChartSlot[]> = {
     },
     {
       title: 'TC25 6대 약속 이행률 (%)',
-      caption: '목표는 전부 2025년 100%. 노란 막대가 미달 구간이다. 공급자 감사가 87.6%로 가장 남았다.',
+      caption: '목표는 전부 2025년 100%. 주황 막대가 미달 구간이다. 공급자 감사가 87.6%로 가장 남았다.',
       telemetry: SYNC,
       render: () => <TuTc25Chart />,
       sourceLine: '사내 조사보고서 (2026-08) · SeaChange 2024 (Key Traceability 독립검증)',
@@ -1140,7 +1140,7 @@ const TU_CHART_SLOTS: Record<string, ChartSlot[]> = {
     },
     {
       title: '연결 vs 개별: 순이익 역전 (십억 밧)',
-      caption: '갈색(개별)이 남색(연결)보다 긴 줄이 이 회사의 함정이다. 모회사 배당수익 125.1억 밧.',
+      caption: '청록(개별)이 파랑(연결)보다 긴 줄이 이 회사의 함정이다. 모회사 배당수익 125.1억 밧.',
       telemetry: SYNC,
       render: () => <TuConVsSepChart />,
       sourceLine: '사내 조사보고서 (2026-08) · 감사 재무제표 p.357 (OCR)',
@@ -1184,7 +1184,7 @@ const TU_CHART_SLOTS: Record<string, ChartSlot[]> = {
     },
     {
       title: '식약처 수입신고 구성 (건)',
-      caption: '한국에 들어오는 실체는 참치(노랑)가 아니라 새우다. 등록 제조업소 14개소 · 173건.',
+      caption: '한국에 들어오는 실체는 참치(주황)가 아니라 새우다. 등록 제조업소 14개소 · 173건.',
       telemetry: SYNC,
       render: () => <TuMfdsChart />,
       sourceLine: '식약처 수입식품 DB 실측 (사내 조사보고서 인용) · 2024-01~2026-08',

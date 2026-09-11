@@ -6,6 +6,7 @@ import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from 'r
 import SafeResponsiveContainer from './SafeResponsiveContainer';
 import { nationalVds } from '@/lib/fleet-operations-2026-08-23';
 import { getVdsBurnCell, getVdsCompanyBurn } from '@/lib/data/vds-company-burn';
+import { SERIES } from '@/lib/chart-palette';
 
 // ─── Data ───
 const companies = ['동원산업', '사조산업', '사조씨푸드', '사조오양', '신라교역'];
@@ -27,11 +28,12 @@ for (const y of years) {
 }
 
 const companyColors: Record<string, string> = {
-  '동원산업': '#3b82f6', // blue
-  '사조산업': '#f59e0b', // amber
-  '사조씨푸드': '#f97316', // orange
-  '사조오양': '#ef4444', // red
-  '신라교역': '#10b981'  // emerald
+  // 공통 SERIES 앞 다섯 칸을 표시 순서대로(2026-09-11) — 옛 호박·주황 이웃은 색각 검사에서 떨어졌다
+  '동원산업': SERIES[0],
+  '사조산업': SERIES[1],
+  '사조씨푸드': SERIES[2],
+  '사조오양': SERIES[3],
+  '신라교역': SERIES[4],
 };
 
 const nationalZoneNames: Record<string, string> = {

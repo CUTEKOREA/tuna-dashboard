@@ -36,15 +36,18 @@ import {
   flagCounts,
 } from '@/lib/data/company-albacora';
 import SafeResponsiveContainer from '../SafeResponsiveContainer';
+import { CHART_ROLE, SERIES } from '@/lib/chart-palette';
 
 const MARGIN = { top: 12, right: 16, left: 0, bottom: 8 };
 const AXIS = { stroke: 'var(--mu-axis)', tick: { fill: 'var(--mu-axis)', fontSize: 11 } } as const;
 const grid = <CartesianGrid stroke="var(--mu-grid)" strokeDasharray="3 3" vertical={false} />;
 const legend = <Legend wrapperStyle={{ fontSize: 11, color: 'var(--mu-axis)' }} />;
 
-/* 바스크 차콜리 초록 — Frinsa(주황)·Thai Union(남색)과 색으로도 회사를 가른다. */
-const BASE = '#1f5d4c';
-const MARK = '#a32a2a';
+// 2026-09-11 팔레트 일원화 — 회사 브랜드색은 히어로 액센트(*_ACCENT)에만. 차트는 공통 역할색.
+const BASE = CHART_ROLE.volume;
+const MARK = CHART_ROLE.highlight;
+// 감소한 해 막대는 빨강, 전년비 선은 보라 — 파랑·빨강·보라가 인접 검사를 통과한다.
+const CHART_NEG = SERIES[7];
 const DIM = '#94a3b8';
 
 function Tip({ active, payload, label }: { active?: boolean; payload?: { name?: string; value?: number; color?: string }[]; label?: string }) {
@@ -186,10 +189,10 @@ export function AlbSiaTonnageChart() {
         {legend}
         <Bar yAxisId="left" dataKey="톤" name="투입 톤수 (t)" isAnimationActive={animate}>
           {albacoraSiaTonnage.map((r) => (
-            <Cell key={r.연도} fill={(r.전년비 ?? 0) < 0 ? MARK : BASE} />
+            <Cell key={r.연도} fill={(r.전년비 ?? 0) < 0 ? CHART_NEG : BASE} />
           ))}
         </Bar>
-        <Line yAxisId="right" dataKey="전년비" name="전년비 (%)" stroke={MARK} strokeWidth={2}
+        <Line yAxisId="right" dataKey="전년비" name="전년비 (%)" stroke={SERIES[6]} strokeWidth={2}
           strokeDasharray="4 3" dot={{ r: 4 }} connectNulls isAnimationActive={animate} />
       </ComposedChart>
     </SafeResponsiveContainer>

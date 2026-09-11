@@ -223,7 +223,7 @@ const CATCH_BASE_SLOTS: Record<string, ChartSlot[]> = {
     },
     {
       title: '국가별 어획량 상위 12 (톤)',
-      caption: '붉은 막대가 대한민국이다. 주요 상업어종 7종 기준 5위다.',
+      caption: '주황 막대가 대한민국이다. 주요 상업어종 7종 기준 5위다.',
       telemetry: CATCH_SYNC,
       render: () => <CountryRankChart data={CATCH} />,
     },
@@ -237,7 +237,7 @@ const CATCH_BASE_SLOTS: Record<string, ChartSlot[]> = {
     {
       title: '선사별 참치 선단 (척)',
       caption:
-        '보라가 선망, 주황이 연승이다. 사조는 연승에, 동원은 선망에 무게가 실려 있고 신라교역은 둘을 비슷하게 갖는다. ⚠ 기준시점이 달라 같은 날의 사진이 아니다 - 동원·사조는 2026년 6월, 신라교역은 2024년 12월이다.',
+        '파랑이 선망, 청록이 연승이다. 사조는 연승에, 동원은 선망에 무게가 실려 있고 신라교역은 둘을 비슷하게 갖는다. ⚠ 기준시점이 달라 같은 날의 사진이 아니다 - 동원·사조는 2026년 6월, 신라교역은 2024년 12월이다.',
       telemetry: OPERATOR_SYNC,
       render: () => <OperatorFleetChart rows={COMPANIES.조업.rows} />,
     },
@@ -256,7 +256,7 @@ const CATCH_BASE_SLOTS: Record<string, ChartSlot[]> = {
     {
       title: '서·중부태평양 인가 선박 상위 선사 (척)',
       caption:
-        '장미색이 한국 선사다. 3,023척의 소유사를 세어 상위 10곳을 뽑았다. 1위 필리핀 회사가 59척으로 2%가 안 된다 - 이 바다에는 지배적 선주가 없다. 「개인 소유」는 회사가 아니라 순위에서 뺐고, 이 수역에서 15.61%를 차지한다.',
+        '주황이 한국 선사다. 3,023척의 소유사를 세어 상위 10곳을 뽑았다. 1위 필리핀 회사가 59척으로 2%가 안 된다 - 이 바다에는 지배적 선주가 없다. 「개인 소유」는 회사가 아니라 순위에서 뺐고, 이 수역에서 15.61%를 차지한다.',
       telemetry: REGISTRY_SYNC,
       render: () => (
         <OceanTopOwnerChart rows={OCEAN_OPS.해역['서·중부태평양'].상위선사} area="서·중부태평양" />
@@ -265,7 +265,7 @@ const CATCH_BASE_SLOTS: Record<string, ChartSlot[]> = {
     {
       title: '동부태평양 인가 선박 상위 선사 (척)',
       caption:
-        '장미색이 한국 선사다. **사조산업이 27척으로 1위**다 - 이 등록부에서 가장 많은 배를 가진 선주가 한국 회사다. 다만 2,230척 가운데 1.21%라 지배력이라 부를 규모는 아니다.',
+        '주황이 한국 선사다. **사조산업이 27척으로 1위**다 - 이 등록부에서 가장 많은 배를 가진 선주가 한국 회사다. 다만 2,230척 가운데 1.21%라 지배력이라 부를 규모는 아니다.',
       telemetry: REGISTRY_SYNC,
       render: () => (
         <OceanTopOwnerChart rows={OCEAN_OPS.해역['동부태평양'].상위선사} area="동부태평양" />
@@ -297,7 +297,7 @@ const CATCH_BASE_SLOTS: Record<string, ChartSlot[]> = {
     {
       title: '선적국별 선망선과 어창용적 (척·㎥)',
       caption:
-        '막대는 척수, 선은 어창용적이다. 분홍이 한국 - 척수는 5위인데 용적은 3위다. 배가 크다는 뜻이고, 척수만 세면 과소평가된다.',
+        '막대는 척수, 선은 어창용적이다. 주황이 한국 - 척수는 5위인데 용적은 3위다. 배가 크다는 뜻이고, 척수만 세면 과소평가된다.',
       telemetry: FLEET_SYNC,
       render: () => <FlagFleetChart data={FLEET} />,
     },
@@ -504,14 +504,14 @@ const CATCH_BASE_SLOTS: Record<string, ChartSlot[]> = {
     {
       title: '한국 원양업계 회사별 수출실적 (천달러)',
       caption:
-        '장미색이 신라교역이다. 2024년 3억 8,700만 달러 가운데 22.73%로 2위다. 한 출처·한 통화·한 해라서 이 단계에서 나란히 세울 수 있는 유일한 값이다.',
+        '주황이 신라교역이다. 2024년 3억 8,700만 달러 가운데 22.73%로 2위다. 한 출처·한 통화·한 해라서 이 단계에서 나란히 세울 수 있는 유일한 값이다.',
       telemetry: EXPORT_SYNC,
       render: () => <ExportRankChart rows={COMPANIES.수출순위.rows} />,
     },
     {
       title: '한국 참치 업종별 척수와 선령 (척)',
       caption:
-        '분홍이 선령 31년 이상이다. 연승은 105척 중 99척(94%)이 31년을 넘었고 선망은 27척 중 6척(22%)이다 - 같은 참치라도 선단 갱신 속도가 다르다.',
+        '주황이 선령 31년 이상이다. 연승은 105척 중 99척(94%)이 31년을 넘었고 선망은 27척 중 6척(22%)이다 - 같은 참치라도 선단 갱신 속도가 다르다.',
       telemetry: { status: 'STATIC' as const, syncDate: '2024년 말 기준' },
       render: () => <KoreaTunaGearChart data={FLEET} />,
     },

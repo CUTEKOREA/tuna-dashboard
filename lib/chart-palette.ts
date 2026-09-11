@@ -1,108 +1,120 @@
 /**
- * 선단 DB에서 뽑은 차트 4겹 (2026-08-18 기획).
- * 연결: 시장 동향 · 선단 운영 · 하역 현황 · 오징어 · 물류·가공 · 파노피 · 코스모 · 방콕사무소 · GMTS · 참치 시장이해 · 고등어 시장이해 · 골뱅이 시장이해 · 새우 시장이해 · 돼지고기(CHART_RANK, 2026-09-11 차트 토큰 시범). 그 밖은 아직 import 하지 말 것.
- * 오징어 종·바스켓은 lib/squid-chart-colors 가 정체성 집을 유지한다.
- * 고등어 종·창구는 lib/mackerel-chart-colors 가 정체성 집을 유지한다.
- * 골뱅이 과·창구는 lib/whelk-chart-colors 가 정체성 집을 유지한다.
- * 새우 양식·종·창구는 lib/shrimp-chart-colors 가 정체성 집을 유지한다.
+ * 차트 색 한 벌 (2026-09-11 전면 개편 — 데이터 색은 전 메뉴 공통, 메뉴 톤은 차트 밖 액센트로만).
+ *
+ * SERIES 8색이 모든 데이터 색의 정본이다. 값은 dataviz 참조 팔레트의 다크 단계로,
+ * 흰 카드(#ffffff)와 다크 표면(≈#151517) 두 곳에서 모두 validate_palette.js 를 통과한다
+ * (명도대 · 채도 ≥ 0.1 · 인접 CVD ΔE ≥ 8 · 정상시각 ΔE ≥ 15 · 대비 ≥ 3:1).
+ * 한 hex 로 두 테마를 쓰므로 canvas·투명도 이어붙이기(`${c}33`) 코드에서도 그대로 쓴다.
+ *
+ * 순서가 색각 안전 장치다. 한 차트·한 정체성 집 안에서는 SERIES[0] 부터 표시 순서대로 차례로 쓴다.
+ * 다른 순서로 섞으면(예: 주황·노랑 이웃) 인접 검사가 깨진다 — 새 집을 만들면 표시 순서로 검증기를 돌린다.
+ * 8개를 넘으면 새 색을 만들지 말고 「기타」로 접거나 나눠 그린다.
  *
  * A 셸 — 흰 카드·잉크 숫자는 CSS 토큰(--dsc-*)이 담당
- * B 구성 — 파이·트리맵·점유 (파스텔 면색)
- * C 정체성 — 이름 고정 (항구·분류 칩·VDS 항목). RFMO 색상환과 같되 기구 이름이 아니다
+ * B 구성 — 파이·트리맵·점유 (SERIES 순서, 옛 파스텔은 모든 검사 탈락이라 폐기)
+ * C 정체성 — 이름 고정 (항구·RFMO·트레이더·VDS 항목). 집마다 SERIES 를 제 표시 순서로 쓴다
  * D 순위 — 단일 시리즈 막대
+ * 품목 파일(lib/*-chart-colors)은 대응표만 두고 색은 여기서 가져온다. 메뉴 액센트(*_ACCENT)는 차트 밖에만 쓴다.
  */
 
-export const CHART_SHARE = [
-  '#f4b4c4',
-  '#b7e0cf',
-  '#b7d4f0',
-  '#f6e08a',
-  '#f3c4a8',
-  '#d4c4f0',
-  '#c5e4a8',
-  '#e8d4c0',
+export const SERIES = [
+  '#3987e5', // 1 파랑
+  '#d95926', // 2 주황
+  '#199e70', // 3 청록
+  '#c98500', // 4 노랑
+  '#d55181', // 5 자홍
+  '#008300', // 6 초록
+  '#9085e9', // 7 보라
+  '#e66767', // 8 빨강
 ] as const;
 
-export const CHART_RANK = '#e879a8';
+/** 「기타」·미분류 — 범주 색이 아니다(채도 없음). */
+export const SERIES_OTHER = '#71717a';
+
+/** 품목 공통 역할 — 주 물량·강조·보조. SERIES 앞 세 칸은 모든 쌍 검사(--pairs all)까지 통과한다. */
+export const CHART_ROLE = {
+  volume: SERIES[0],
+  highlight: SERIES[1],
+  second: SERIES[2],
+} as const;
+
+export const CHART_SHARE = SERIES;
 
 export const RFMO_ID = {
-  WCPFC: '#3b82f6',
-  IOTC: '#10b981',
-  IATTC: '#f59e0b',
-  ICCAT: '#ef4444',
-  CCSBT: '#8b5cf6',
+  WCPFC: SERIES[0],
+  IOTC: SERIES[1],
+  IATTC: SERIES[2],
+  ICCAT: SERIES[3],
+  CCSBT: SERIES[4],
 } as const;
 
-/** 항구 정체성 — 가다랑어·황다랑어가 같은 항구면 같은 색. */
+/** 항구 정체성 — 가다랑어·황다랑어가 같은 항구면 같은 색. 시장 동향 선 순서(방콕·만타·아비장·세이셸·비고)대로. */
 export const HUB_ID = {
-  bkk: '#3b82f6',
-  mnt: '#10b981',
-  sey: '#f59e0b',
-  abj: '#8b5cf6',
-  vig: '#e879a8',
+  bkk: SERIES[0],
+  mnt: SERIES[1],
+  abj: SERIES[2],
+  sey: SERIES[3],
+  vig: SERIES[4],
 } as const;
 
-/** 어창·홀 선 — 흰 지면에서 읽히는 정체성 채도. 파스텔 세선은 쓰지 않는다. */
+/** 순위 막대 단색. 한 시리즈라 이웃이 없다 — 자홍(흰 카드 대비 3:1 통과). */
+export const CHART_RANK = HUB_ID.vig;
+
+/** 어창·홀·캐너리 선 — 8칸을 넘는 유일한 집. 9번째부터는 검증 밖이라 범례·툴팁 이름으로 구분한다. */
 export const HOLD_ID = [
-  '#3b82f6',
-  '#10b981',
-  '#f59e0b',
-  '#8b5cf6',
-  '#e879a8',
-  '#06b6d4',
-  '#84cc16',
-  '#a78bfa',
-  '#f97316',
+  ...SERIES,
   '#0ea5e9',
   '#64748b',
   '#14b8a6',
+  '#84cc16',
 ] as const;
 
 export function colorForHold(index: number): string {
   return HOLD_ID[((index % HOLD_ID.length) + HOLD_ID.length) % HOLD_ID.length];
 }
 
-/** 파노피 정체성 — 채널·항구. 허브 겹을 쓰되 기구 이름이 아니다. */
+/** 파노피 정체성 — 채널·항구. 파노피 차트 세 곳의 계열 순서(채널별 어가 · 가공사별 처리량 · 트럭·탱커 유가)가
+ * 모두 인접 검사를 통과하도록 전수 탐색으로 고른 배치다(2026-09-11). 순서를 바꾸면 다시 검증한다. */
 export const PANOFI_ID = {
-  cosmo: HUB_ID.bkk,
-  pfc: HUB_ID.vig,
-  scodi: HUB_ID.mnt,
-  scasa: HUB_ID.sey,
-  abidjan: HUB_ID.abj,
-  tema: '#06b6d4',
-  dakar: '#14b8a6',
-  tanker: '#f97316',
+  cosmo: SERIES[0],
+  pfc: SERIES[1],
+  scodi: SERIES[2],
+  scasa: SERIES[3],
+  abidjan: SERIES[6],
+  tema: SERIES[4],
+  dakar: SERIES[5],
+  tanker: SERIES[7],
 } as const;
 
 /** 트레이더 정체성 — 물류·방콕이 같은 이름에 같은 색. */
 export const TRADER_ID = {
-  FCF: HUB_ID.bkk,
-  ITOCHU: HUB_ID.abj,
-  'TRI MARINE': HUB_ID.vig,
-  DIRECT: HUB_ID.mnt,
-  MALDIVES: HUB_ID.sey,
+  FCF: SERIES[0],
+  ITOCHU: SERIES[1],
+  'TRI MARINE': SERIES[2],
+  DIRECT: SERIES[3],
+  MALDIVES: SERIES[4],
 } as const;
 
-/** 태국 항구 쌍 — 방콕은 허브 bkk, 송클라는 같은 차트에서 구분. */
+/** 태국 항구 쌍 — 방콕·송클라. */
 export const THAI_PORT_ID = {
-  bangkok: HUB_ID.bkk,
-  songkhla: '#06b6d4',
+  bangkok: SERIES[0],
+  songkhla: SERIES[1],
 } as const;
 
 /** VDS 요약 칸 — 배정·소진·잔여·주간. */
 export const VDS_ID = {
-  allocated: '#3b82f6',
-  consumed: '#8b5cf6',
-  remaining: '#10b981',
-  weekly: '#f59e0b',
+  allocated: SERIES[0],
+  consumed: SERIES[1],
+  remaining: SERIES[2],
+  weekly: SERIES[3],
 } as const;
 
 export const NEWS_CATEGORY_ID = {
-  시장: HUB_ID.bkk,
-  규제: HUB_ID.abj,
-  원료가: HUB_ID.sey,
-  무역: HUB_ID.mnt,
-  조업: HUB_ID.vig,
+  시장: SERIES[0],
+  규제: SERIES[1],
+  원료가: SERIES[2],
+  무역: SERIES[3],
+  조업: SERIES[4],
   뉴스: '#8d93a5',
 } as const;
 

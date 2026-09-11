@@ -16,15 +16,15 @@ import {
   type BangkokTrader,
 } from '@/lib/data/bangkok-weekly';
 import { logisticsWeeklyReport } from '@/lib/logistics-weekly-report';
-import { HUB_ID } from '@/lib/chart-palette';
+import { TRADER_ID } from '@/lib/chart-palette';
 
 /* 트레이더 이름은 정체성. Metabase --chart-s* 를 쓰지 않는다. */
 const TRADER_STYLE: Record<BangkokTrader, { gid: string; color: string }> = {
-  FCF: { gid: 'tFcf', color: HUB_ID.bkk },
-  ITOCHU: { gid: 'tIto', color: HUB_ID.abj },
-  'TRI MARINE': { gid: 'tTri', color: HUB_ID.vig },
-  DIRECT: { gid: 'tDir', color: HUB_ID.mnt },
-  MALDIVES: { gid: 'tMal', color: HUB_ID.sey },
+  FCF: { gid: 'tFcf', color: TRADER_ID.FCF },
+  ITOCHU: { gid: 'tIto', color: TRADER_ID.ITOCHU },
+  'TRI MARINE': { gid: 'tTri', color: TRADER_ID['TRI MARINE'] },
+  DIRECT: { gid: 'tDir', color: TRADER_ID.DIRECT },
+  MALDIVES: { gid: 'tMal', color: TRADER_ID.MALDIVES },
 };
 
 /** 차트 데이터키 = 화면 라벨 (L-01: 한글 라벨을 그대로 쓴다) */

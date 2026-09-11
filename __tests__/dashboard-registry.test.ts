@@ -342,7 +342,8 @@ describe('dashboard registry', () => {
     expect(heroCommand).toContain('CHART_RANK');
     expect(heroCommand).not.toContain('var(--chart-s1');
     const paletteSource = readFileSync(join(process.cwd(), 'lib/chart-palette.ts'), 'utf8');
-    for (const chartColor of ['#3b82f6', '#10b981', '#f59e0b', '#8b5cf6', '#e879a8']) {
+    // 2026-09-11 공통 8색(SERIES) — 값은 chart-palette.ts 한 곳에만 있다
+    for (const chartColor of ['#3987e5', '#d95926', '#199e70', '#c98500', '#d55181']) {
       expect(paletteSource).toContain(chartColor);
     }
     expect(marketSource).not.toContain('url(#mktGrad');
@@ -360,7 +361,7 @@ describe('dashboard registry', () => {
     const cannerySource = readFileSync(join(process.cwd(), 'components/CanneryStatusCharts.tsx'), 'utf8');
     const reeferSource = readFileSync(join(process.cwd(), 'components/ReeferMovement.tsx'), 'utf8');
     expect(traderSource).toContain("from '@/lib/chart-palette'");
-    expect(traderSource).toContain('HUB_ID.bkk');
+    expect(traderSource).toContain('TRADER_ID.FCF'); // 물류·방콕 공통 트레이더 집(2026-09-11)
     expect(traderSource).not.toContain('--chart-s1');
     expect(cannerySource).toContain('fill={CHART_RANK}');
     expect(cannerySource).toContain('fill={HUB_ID.bkk}');
@@ -430,7 +431,7 @@ describe('dashboard registry', () => {
       'utf8',
     );
     expect(mackerelColors).toContain("from '@/lib/chart-palette'");
-    expect(mackerelColors).toContain('HUB_ID.sey');
+    expect(mackerelColors).toContain('CHART_ROLE'); // 공통 역할색(2026-09-11)
     expect(mackerelDash).toContain('MACKEREL_ACCENT');
     expect(mackerelDash).not.toContain('#0e7490');
     expect(commodityCharts).toContain('MACKEREL_ROLE');
@@ -444,7 +445,7 @@ describe('dashboard registry', () => {
       'utf8',
     );
     expect(whelkColors).toContain("from '@/lib/chart-palette'");
-    expect(whelkColors).toContain('HUB_ID.sey');
+    expect(whelkColors).toContain('CHART_ROLE'); // 공통 역할색(2026-09-11)
     expect(whelkDash).toContain('WHELK_ACCENT');
     expect(whelkDash).not.toContain('#b45309');
     expect(commodityCharts).toContain('WHELK_ROLE');
@@ -459,7 +460,7 @@ describe('dashboard registry', () => {
       'utf8',
     );
     expect(shrimpColors).toContain("from '@/lib/chart-palette'");
-    expect(shrimpColors).toContain('HUB_ID.sey');
+    expect(shrimpColors).toContain('CHART_ROLE'); // 공통 역할색(2026-09-11)
     expect(shrimpDash).toContain('SHRIMP_ACCENT');
     expect(shrimpDash).not.toContain('#0d9488');
     expect(commodityCharts).toContain('SHRIMP_ROLE');

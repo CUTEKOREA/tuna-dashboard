@@ -40,7 +40,7 @@ describe('V2.5 multi-series chart palette', () => {
       '--chart-s7',
       '--chart-s8',
     ]);
-    expect(palette['--chart-s1']).toBe('#38bdf8');
+    expect(palette['--chart-s1']).toBe('#3987e5'); // = lib/chart-palette SERIES[0] (2026-09-11)
     expect(new Set(Object.values(palette)).size).toBe(8);
 
     for (const color of Object.values(palette)) {

@@ -44,6 +44,7 @@
 ### 3.2 S-Grade 디자인 시스템 (Global Commodity Theme)
 - D-03: **Dark Mode Glassmorphism** 필수 (`bg-gray-900/95` + `bg-white/5 backdrop-blur-md`).
 - D-04: **품목별(작물/축종/어종) 시그니처 그라디언트 테마 준수:**
+  - (2026-09-11) 시그니처는 **차트 밖**(히어로·섹션 머리·탭 표시선·아이콘)에만 쓴다. 차트 데이터 색은 품목과 무관하게 `lib/chart-palette.ts` 의 `SERIES` 8색·`CHART_ROLE` 공통이다 — 같은 나라·항구·기구가 어느 메뉴에서든 같은 색이어야 한다.
   - 참치(해양): `cyan → blue`
   - 고등어(등푸른 원양·연근해): `cyan-700 → sky-500` (#0e7490 → #0ea5e9)
   - 명태(한류 백색): `cyan-600 → sky-500` (#0891b2 → #0ea5e9)

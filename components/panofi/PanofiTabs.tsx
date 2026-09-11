@@ -65,7 +65,7 @@ import {
   weeks,
   ytd,
 } from '@/lib/data/panofi';
-import { CHART_RANK, HUB_ID, PANOFI_ID, shareColor } from '@/lib/chart-palette';
+import { CHART_RANK, HUB_ID, PANOFI_ID, SERIES as PALETTE, shareColor } from '@/lib/chart-palette';
 
 /* --------------------------------------------------------------- 표기 헬퍼 */
 
@@ -88,14 +88,15 @@ const S = (key: string, name: string, color: string, extra: Partial<Serie> = {})
 
 /** 색은 실체를 따라간다 — 계열이 줄어도 남은 계열의 색이 바뀌지 않게 고정 배정한다. */
 const C = {
-  s1: HUB_ID.bkk,
-  s2: HUB_ID.abj,
-  s3: HUB_ID.sey,
-  s4: HUB_ID.mnt,
-  s5: HUB_ID.vig,
+  // 계열 1~5는 SERIES 앞 다섯 칸을 순서대로 — 이 순서가 인접 색각 검사를 통과한다(2026-09-11).
+  s1: PALETTE[0],
+  s2: PALETTE[1],
+  s3: PALETTE[2],
+  s4: PALETTE[3],
+  s5: PALETTE[4],
   rank: CHART_RANK,
   mix: [shareColor(0), shareColor(1), shareColor(2)] as const,
-  sign: ['#ef4444', '#3b82f6'] as [string, string],
+  sign: ['#ef4444', '#3b82f6'] as [string, string], // 손익 부호 — 상태색이라 팔레트 밖
   danger: '#ef4444',
 };
 
@@ -654,18 +655,20 @@ export function CashTab() {
           <Chart
             data={liquiditySeries} x="label" height={270}
             series={[
-              S('과부족', '과부족', C.s3, { type: 'bar', signColor: C.sign }),
-              S('현금', '현금', C.s1, { type: 'line' }),
-              S('매출채권', '매출채권', C.s4, { type: 'line' }),
-              S('매입채무', '매입채무', C.s2, { type: 'line' }),
+              // 막대·선 네 계열이 SERIES 앞 네 칸 순서라 인접 검사를 통과한다(2026-09-11).
+              // 과부족 부호색은 다른 손익 막대와 같은 C.sign(한국식 — 양수 빨강·음수 파랑).
+              S('과부족', '과부족', C.s1, { type: 'bar', signColor: C.sign }),
+              S('현금', '현금', C.s2, { type: 'line' }),
+              S('매출채권', '매출채권', C.s3, { type: 'line' }),
+              S('매입채무', '매입채무', C.s4, { type: 'line' }),
             ]}
             zeroLine yFmt={kusd}
           />
           <Legend items={[
-            { name: '과부족', color: C.s3, box: true },
-            { name: '현금', color: C.s1 },
-            { name: '매출채권', color: C.s4 },
-            { name: '매입채무', color: C.s2 },
+            { name: '과부족', color: C.s1, box: true },
+            { name: '현금', color: C.s2 },
+            { name: '매출채권', color: C.s3 },
+            { name: '매입채무', color: C.s4 },
           ]} />
         </Panel>
 

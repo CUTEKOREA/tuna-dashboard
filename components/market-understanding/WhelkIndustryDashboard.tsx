@@ -215,7 +215,7 @@ export const WHELK_CHART_SLOTS: Record<string, ChartSlot[]> = {
     {
       title: '과(科)별 생산량 (톤)',
       caption:
-        '호박색이 양식, 나머지가 어획이다. 장미색 막대가 참골뱅이류 - 한국이 통조림으로 먹는 그 종이고, 양식이 0이라 막대 전체가 자연산이다.',
+        '청록이 양식, 나머지가 어획이다. 주황 막대가 참골뱅이류 - 한국이 통조림으로 먹는 그 종이고, 양식이 0이라 막대 전체가 자연산이다.',
       telemetry: FAO_SYNC,
       render: () => <WhelkGroupChart data={DATA} />,
     },
@@ -325,7 +325,7 @@ export const WHELK_CHART_SLOTS: Record<string, ChartSlot[]> = {
     {
       title: '수입 창구 물량 (톤)',
       caption:
-        '막대는 HS 1605.59 2026년 1~7월 제품중량이다. 장미색이 영국 - 이미 들어와 있는 본진이다. 프랑스 0은 어획이 없다는 뜻이 아니라 이 세번 추출에 이름이 없다는 뜻이다. 일곱 달이라 위 생산 통계·04단계 2024년 표와 더할 수 없다.',
+        '막대는 HS 1605.59 2026년 1~7월 제품중량이다. 주황이 영국 - 이미 들어와 있는 본진이다. 프랑스 0은 어획이 없다는 뜻이 아니라 이 세번 추출에 이름이 없다는 뜻이다. 일곱 달이라 위 생산 통계·04단계 2024년 표와 더할 수 없다.',
       telemetry: SERIES_SYNC,
       render: () => <WhelkSeriesWindowsChart />,
     },

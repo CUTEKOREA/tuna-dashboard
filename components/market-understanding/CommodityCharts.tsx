@@ -54,7 +54,7 @@ import SafeResponsiveContainer from '../SafeResponsiveContainer';
 import styles from './TunaIndustryDashboard.module.css';
 
 /**
- * 품목별 시그니처 색 (룰북 D-04). 강조색은 「여기를 보라」는 신호로만 쓰고,
+ * 품목 역할 색 — 2026-09-11부터 전 품목 공통 CHART_ROLE(시그니처는 룰북 D-04대로 차트 밖에만). 강조색은 「여기를 보라」는 신호로만 쓰고,
  * 나머지 항목은 전부 기본색으로 둔다 — 색이 많아지면 강조가 죽는다.
  */
 const PALETTE = {

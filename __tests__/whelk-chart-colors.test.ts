@@ -2,7 +2,7 @@ import { readFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { describe, expect, it } from 'vitest';
 
-import { CHART_RANK, HUB_ID } from '../lib/chart-palette';
+import { CHART_RANK, CHART_ROLE, SERIES } from '../lib/chart-palette';
 import { WHELK_ACCENT, WHELK_ROLE } from '../lib/whelk-chart-colors';
 
 const WHITE = '#ffffff';
@@ -22,14 +22,11 @@ function contrastRatio(foreground: string, background: string): number {
 }
 
 describe('골뱅이 차트 색', () => {
-  it('액센트가 물량색이고 노란 잔여·오징어 보라가 아니다', () => {
-    expect(WHELK_ACCENT).toBe(WHELK_ROLE.volume);
-    expect(WHELK_ROLE.volume).toBe('#92400e');
-    expect(WHELK_ROLE.highlight).toBe('#be123c');
-    expect(WHELK_ROLE.second).toBe(HUB_ID.sey);
-    expect(WHELK_ROLE.volume).not.toBe('#7c3aed');
-    expect(WHELK_ROLE.volume).not.toBe('#0369a1');
-    expect(WHELK_ROLE.highlight).not.toBe('#fbbf24');
+  it('데이터 색은 공통 역할이고 골뱅이 톤은 차트 밖 액센트로만 남는다', () => {
+    // 2026-09-11 팔레트 일원화 — 품목 시그니처는 룰북 D-04대로 히어로·섹션 머리에만 쓴다.
+    expect(WHELK_ROLE).toEqual(CHART_ROLE);
+    expect(WHELK_ACCENT).toBe('#92400e');
+    expect(SERIES).not.toContain(WHELK_ACCENT);
   });
 
   it('물량·강조가 흰 지면에서 그래픽 대비 3:1을 넘는다', () => {
@@ -51,6 +48,6 @@ describe('골뱅이 차트 색', () => {
     expect(dash).toContain('WHELK_ACCENT');
     expect(charts).not.toMatch(/#fbbf24|#d97706|#7c3aed/);
     expect(dash).not.toMatch(/#b45309|#fbbf24|#7c3aed/);
-    expect(CHART_RANK).toBe('#e879a8');
+    expect(SERIES).toContain(CHART_RANK);
   });
 });

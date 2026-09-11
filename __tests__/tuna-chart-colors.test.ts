@@ -58,7 +58,6 @@ describe('참치 차트 색', () => {
     const rfmos = ['WCPFC', 'IOTC', 'IATTC', 'ICCAT', 'CCAMLR'].map(colorForRfmo);
     expect(new Set(rfmos).size).toBe(5);
     expect(colorForRfmo('WCPFC')).not.toBe(colorForRfmo('ICCAT'));
-    expect(colorForRfmo('IATTC')).not.toBe(TUNA_ROLE.processed);
   });
 
   it('항구·기구는 선단 DB 정체성 집과 같다', () => {

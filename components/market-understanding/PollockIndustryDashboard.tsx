@@ -211,13 +211,13 @@ export const POLLOCK_CHART_SLOTS: Record<string, ChartSlot[]> = {
     {
       title: '전용 세번별 수입 물량 2023~2026 (톤)',
       caption:
-        '동태(장미)가 줄고 연육(호박)이 는다. 2026년은 1~7월 누계라 막대가 짧다.',
+        '동태(주황)가 줄고 연육(청록)이 는다. 2026년은 1~7월 누계라 막대가 짧다.',
       telemetry: IMPORT_SYNC,
       render: () => <PollockImportMixChart data={DATA} />,
     },
     {
       title: '수입 원산지 구성 2025 (%)',
-      caption: '장미색이 러시아다. 미국을 더하면 95.1%이고 나머지를 다 합쳐도 5%가 안 된다.',
+      caption: '주황이 러시아다. 미국을 더하면 95.1%이고 나머지를 다 합쳐도 5%가 안 된다.',
       telemetry: { status: 'STATIC' as const, syncDate: '2025년 통관' },
       render: () => <PollockOriginChart data={DATA} />,
     },

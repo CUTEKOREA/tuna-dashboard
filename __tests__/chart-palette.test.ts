@@ -1,67 +1,53 @@
 import { describe, expect, it } from 'vitest';
-import { CHART_RANK, colorForAtunaHub, colorForHold, HOLD_ID, HUB_ID, NEWS_CATEGORY_ID, PANOFI_ID, shareColor, THAI_PORT_ID, TRADER_ID, VDS_ID } from '@/lib/chart-palette';
+import {
+  CHART_RANK, CHART_ROLE, CHART_SHARE, colorForAtunaHub, colorForHold, HOLD_ID, HUB_ID, NEWS_CATEGORY_ID,
+  PANOFI_ID, RFMO_ID, SERIES, shareColor, THAI_PORT_ID, TRADER_ID, VDS_ID,
+} from '@/lib/chart-palette';
 
-describe('chart-palette (선단 DB 4겹)', () => {
-  it('keeps the same port the same color on skipjack and yellowfin', () => {
+// 2026-09-11 팔레트 일원화: 데이터 색은 SERIES 8색 한 벌이고, 정체성 집마다 제 표시 순서로 SERIES 를 쓴다.
+// 순서는 validate_palette.js 인접 검사로 고른 것이라 값을 바꾸면 검증기를 다시 돌리고 이 테스트를 고친다.
+describe('chart-palette (공통 8색)', () => {
+  it('SERIES 는 서로 다른 8색이다', () => {
+    expect(SERIES).toHaveLength(8);
+    expect(new Set(SERIES).size).toBe(8);
+    expect(SERIES[0]).toBe('#3987e5');
+  });
+
+  it('정체성 집은 SERIES 안의 색만 쓰고 집 안에서 겹치지 않는다', () => {
+    const maps = { RFMO_ID, HUB_ID, PANOFI_ID, TRADER_ID, THAI_PORT_ID, VDS_ID };
+    for (const [name, map] of Object.entries(maps)) {
+      const values = Object.values(map);
+      expect(new Set(values).size, name).toBe(values.length);
+      for (const color of values) expect(SERIES, `${name} ${color}`).toContain(color);
+    }
+    const chips = Object.entries(NEWS_CATEGORY_ID).filter(([key]) => key !== '뉴스').map(([, c]) => c);
+    expect(new Set(chips).size).toBe(chips.length);
+    expect(NEWS_CATEGORY_ID.뉴스).toBe('#8d93a5');
+  });
+
+  it('같은 항구는 가다랑어·황다랑어에서 같은 색이다', () => {
     expect(colorForAtunaHub('skj_abj')).toBe(HUB_ID.abj);
     expect(colorForAtunaHub('yf_abj')).toBe(HUB_ID.abj);
     expect(colorForAtunaHub('skj_bkk')).toBe(HUB_ID.bkk);
   });
 
-  it('does not use the old Metabase hub greens and browns', () => {
-    expect(Object.values(HUB_ID)).not.toContain('#509ee3');
-    expect(Object.values(HUB_ID)).not.toContain('#3f6212');
-    expect(Object.values(HUB_ID)).not.toContain('#9a3412');
+  it('구성(파이·트리맵)도 SERIES 순서를 쓴다 — 옛 파스텔은 모든 검사에서 탈락했다', () => {
+    expect(CHART_SHARE).toEqual(SERIES);
+    expect(shareColor(0)).toBe(SERIES[0]);
+    expect(shareColor(8)).toBe(SERIES[0]);
+    expect(CHART_SHARE).not.toContain('#f4b4c4');
   });
 
-  it('covers every briefing category chip', () => {
-    expect(NEWS_CATEGORY_ID).toMatchObject({
-      시장: HUB_ID.bkk,
-      규제: HUB_ID.abj,
-      원료가: HUB_ID.sey,
-      무역: HUB_ID.mnt,
-      조업: HUB_ID.vig,
-      뉴스: '#8d93a5',
-    });
-  });
-
-  it('cycles share pastels without throwing', () => {
-    expect(shareColor(0)).toBe('#f4b4c4');
-    expect(shareColor(8)).toBe('#f4b4c4');
-  });
-
-  it('cycles hold colors in the identity set, not Metabase browns', () => {
-    expect(colorForHold(0)).toBe(HOLD_ID[0]);
+  it('홀 선은 SERIES 8칸 뒤에 네 칸을 더 둔다', () => {
+    expect(HOLD_ID.slice(0, 8)).toEqual([...SERIES]);
     expect(colorForHold(HOLD_ID.length)).toBe(HOLD_ID[0]);
-    expect(HOLD_ID).not.toContain('#509ee3');
-    expect(HOLD_ID).not.toContain('#9a3412');
+    expect(new Set(HOLD_ID).size).toBe(HOLD_ID.length);
   });
 
-  it('keeps panofi channel colors in the identity set', () => {
-    expect(PANOFI_ID.cosmo).toBe(HUB_ID.bkk);
-    expect(PANOFI_ID.pfc).toBe(HUB_ID.vig);
-    expect(PANOFI_ID.scodi).toBe(HUB_ID.mnt);
-    expect(PANOFI_ID.scasa).toBe(HUB_ID.sey);
-    expect(PANOFI_ID.abidjan).toBe(HUB_ID.abj);
-    expect(PANOFI_ID.tema).toBe('#06b6d4');
-  });
-
-  it('keeps trader and Thai port colors aligned with logistics', () => {
-    expect(TRADER_ID.FCF).toBe(HUB_ID.bkk);
-    expect(TRADER_ID.ITOCHU).toBe(HUB_ID.abj);
-    expect(TRADER_ID['TRI MARINE']).toBe(HUB_ID.vig);
-    expect(TRADER_ID.DIRECT).toBe(HUB_ID.mnt);
-    expect(TRADER_ID.MALDIVES).toBe(HUB_ID.sey);
-    expect(THAI_PORT_ID.bangkok).toBe(HUB_ID.bkk);
-    expect(THAI_PORT_ID.songkhla).toBe(PANOFI_ID.tema);
-    expect(THAI_PORT_ID.songkhla).not.toBe(THAI_PORT_ID.bangkok);
-  });
-
-  it('keeps VDS and rank colors in the same identity set', () => {
-    expect(VDS_ID.allocated).toBe(HUB_ID.bkk);
-    expect(VDS_ID.consumed).toBe(HUB_ID.abj);
-    expect(VDS_ID.remaining).toBe(HUB_ID.mnt);
-    expect(VDS_ID.weekly).toBe(HUB_ID.sey);
+  it('역할 세 칸은 SERIES 앞 세 칸(모든 쌍 검사 통과)이고 순위색은 한 색이다', () => {
+    expect([CHART_ROLE.volume, CHART_ROLE.highlight, CHART_ROLE.second]).toEqual(SERIES.slice(0, 3));
     expect(CHART_RANK).toBe(HUB_ID.vig);
+    expect(SERIES).toContain(CHART_RANK);
+    expect(THAI_PORT_ID.songkhla).not.toBe(THAI_PORT_ID.bangkok);
   });
 });

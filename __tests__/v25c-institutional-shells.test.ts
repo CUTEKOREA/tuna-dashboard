@@ -112,7 +112,7 @@ describe('V2.5-c institutional page shells', () => {
     expect(purseSource).toContain("border: '1px solid var(--dsc-surface-border)'");
     expect(purseSource).toContain("borderRadius: 'var(--dsc-card-radius)'");
     expect(purseSource).toContain("height: 3, background: 'var(--accent-primary)'");
-    expect(purseSource).toContain("const CONTINENT_TREEMAP_COLORS = ['#3b82f6', '#10b981', '#f59e0b', '#ef4444', '#8b5cf6', '#ec4899', '#06b6d4']");
+    expect(purseSource).toContain('const CONTINENT_TREEMAP_COLORS = SERIES.slice(0, 7)'); // 공통 8색(2026-09-11)
 
     expect(cosmoSource).not.toMatch(/accent:\s*['"]#/);
     expect(cosmoSource).toContain('accentFrom="var(--accent-primary)"');
