@@ -1,0 +1,99 @@
+{
+ "_meta": {
+  "출처": "docs/evidence/company-dongwonfnb-2026-09/보고서.html",
+  "생성": "python3 scripts/build_report_figures.py",
+  "설명": "보고서의 팩샷과 차트. 이미지는 public 아래 정적 파일이고 여기에는 URL 만 담는다."
+ },
+ "figures": [
+  {
+   "stage": "c01",
+   "sid": "s1",
+   "kind": "chart",
+   "ord": 1203,
+   "caption": "사업보고서에 실린 참치캔 시장점유율(닐슨). 2016~2018년은 2019년 사업보고서, 2019~2021년은 한국신용평가 평가서와 2022년 사업보고서, 2022~2025년은 2025년 사업보고서 값이다.",
+   "alt": "",
+   "svg": "<svg viewBox=\"0 0 680 250\" xmlns=\"http://www.w3.org/2000/svg\" role=\"img\" aria-label=\"동원F&B 참치캔 시장점유율 2016~2025\"><text x=\"44\" y=\"14\" font-size=\"12.5\" fill=\"#7a828b\">참치캔 시장점유율(%, 닐슨 · 사업보고서 기재)</text><rect x=\"54.0\" y=\"71.3\" width=\"38.2\" height=\"118.7\" fill=\"#6f8fa3\"/><text x=\"73.1\" y=\"66.3\" text-anchor=\"middle\" font-size=\"10.5\" font-weight=\"700\" fill=\"#6f8fa3\">74.2</text><text x=\"73.1\" y=\"205\" text-anchor=\"middle\" font-size=\"10\" fill=\"#7a828b\">16</text><rect x=\"115.6\" y=\"70.0\" width=\"38.2\" height=\"120.0\" fill=\"#6f8fa3\"/><text x=\"134.7\" y=\"65.0\" text-anchor=\"middle\" font-size=\"10.5\" font-weight=\"700\" fill=\"#6f8fa3\">75.0</text><text x=\"134.7\" y=\"205\" text-anchor=\"middle\" font-size=\"10\" fill=\"#7a828b\">17</text><rect x=\"177.2\" y=\"66.2\" width=\"38.2\" height=\"123.8\" fill=\"#6f8fa3\"/><text x=\"196.3\" y=\"61.2\" text-anchor=\"middle\" font-size=\"10.5\" font-weight=\"700\" fill=\"#6f8fa3\">77.4</text><text x=\"196.3\" y=\"205\" text-anchor=\"middle\" font-size=\"10\" fill=\"#7a828b\">18</text><rect x=\"238.8\" y=\"61.8\" width=\"38.2\" height=\"128.2\" fill=\"#6f8fa3\"/><text x=\"257.9\" y=\"56.8\" text-anchor=\"middle\" font-size=\"10.5\" font-weight=\"700\" fill=\"#6f8fa3\">80.1</text><text x=\"257.9\" y=\"205\" text-anchor=\"middle\" font-size=\"10\" fill=\"#7a828b\">19</text><rect x=\"300.4\" y=\"61.4\" width=\"38.2\" height=\"128.6\" fill=\"#6f8fa3\"/><text x=\"319.5\" y=\"56.4\" text-anchor=\"middle\" font-size=\"10.5\" font-weight=\"700\" fill=\"#6f8fa3\">80.4</text><text x=\"319.5\" y=\"205\" text-anchor=\"middle\" font-size=\"10\" fill=\"#7a828b\">20</text><rect x=\"362.0\" y=\"59.9\" width=\"38.2\" height=\"130.1\" fill=\"#6f8fa3\"/><text x=\"381.1\" y=\"54.9\" text-anchor=\"middle\" font-size=\"10.5\" font-weight=\"700\" fill=\"#6f8fa3\">81.3</text><text x=\"381.1\" y=\"205\" text-anchor=\"middle\" font-size=\"10\" fill=\"#7a828b\">21</text><rect x=\"423.6\" y=\"58.0\" width=\"38.2\" height=\"132.0\" fill=\"#6f8fa3\"/><text x=\"442.7\" y=\"53.0\" text-anchor=\"middle\" font-size=\"10.5\" font-weight=\"700\" fill=\"#6f8fa3\">82.5</text><text x=\"442.7\" y=\"205\" text-anchor=\"middle\" font-size=\"10\" fill=\"#7a828b\">22</text><rect x=\"485.2\" y=\"59.3\" width=\"38.2\" height=\"130.7\" fill=\"#6f8fa3\"/><text x=\"504.3\" y=\"54.3\" text-anchor=\"middle\" font-size=\"10.5\" font-weight=\"700\" fill=\"#6f8fa3\">81.7</text><text x=\"504.3\" y=\"205\" text-anchor=\"middle\" font-size=\"10\" fill=\"#7a828b\">23</text><rect x=\"546.8\" y=\"59.8\" width=\"38.2\" height=\"130.2\" fill=\"#6f8fa3\"/><text x=\"565.9\" y=\"54.8\" text-anchor=\"middle\" font-size=\"10.5\" font-weight=\"700\" fill=\"#6f8fa3\">81.4</text><text x=\"565.9\" y=\"205\" text-anchor=\"middle\" font-size=\"10\" fill=\"#7a828b\">24</text><rect x=\"608.4\" y=\"63.8\" width=\"38.2\" height=\"126.2\" fill=\"#B2503A\"/><text x=\"627.5\" y=\"58.8\" text-anchor=\"middle\" font-size=\"10.5\" font-weight=\"700\" fill=\"#B2503A\">78.9</text><text x=\"627.5\" y=\"205\" text-anchor=\"middle\" font-size=\"10\" fill=\"#7a828b\">25</text><line x1=\"44\" y1=\"190\" x2=\"670\" y2=\"190\" stroke=\"#a9aeb5\"/></svg>"
+  },
+  {
+   "stage": "c04",
+   "sid": "s8",
+   "kind": "shot",
+   "ord": 359,
+   "caption": "라이트스탠다드 150 g. 가다랑어 함량 79%(상품 고시).",
+   "alt": "동원참치 라이트스탠다드 150g 캔",
+   "src": "/data/companies/figures/dongwonfnb/a8c311f01a59.jpg"
+  },
+  {
+   "stage": "c04",
+   "sid": "s8",
+   "kind": "shot",
+   "ord": 61844,
+   "caption": "고추참치 100 g. 가다랑어 50.3%, 나머지는 고추 소스.",
+   "alt": "동원 고추참치 100g 캔",
+   "src": "/data/companies/figures/dongwonfnb/39f5e244de5a.jpg"
+  },
+  {
+   "stage": "c04",
+   "sid": "s8",
+   "kind": "shot",
+   "ord": 121225,
+   "caption": "야채참치 150 g. 가다랑어 43%.",
+   "alt": "동원 야채참치 150g 캔",
+   "src": "/data/companies/figures/dongwonfnb/64a0e8e3bc82.jpg"
+  },
+  {
+   "stage": "c04",
+   "sid": "s8",
+   "kind": "shot",
+   "ord": 164384,
+   "caption": "DHA참치 150 g. 5캔 묶음 13,500원.",
+   "alt": "동원참치 DHA 150g 캔",
+   "src": "/data/companies/figures/dongwonfnb/2ac09e6ba2d6.jpg"
+  },
+  {
+   "stage": "c04",
+   "sid": "s8",
+   "kind": "shot",
+   "ord": 223022,
+   "caption": "마일드참치 200 g. 10캔 묶음 26,490원.",
+   "alt": "동원 마일드참치 200g 캔",
+   "src": "/data/companies/figures/dongwonfnb/cdadc61b79a1.jpg"
+  },
+  {
+   "stage": "c04",
+   "sid": "s8",
+   "kind": "shot",
+   "ord": 329073,
+   "caption": "라이트튜나 파우치 170 g.",
+   "alt": "동원 라이트튜나 파우치 170g",
+   "src": "/data/companies/figures/dongwonfnb/194acc7e39e0.jpg"
+  },
+  {
+   "stage": "c04",
+   "sid": "s8",
+   "kind": "shot",
+   "ord": 398066,
+   "caption": "노브랜드 살코기참치 150 g(이마트 자체상표) 2,280원.",
+   "alt": "노브랜드 살코기참치 150g 캔",
+   "src": "/data/companies/figures/dongwonfnb/c2a2baacfbad.jpg"
+  },
+  {
+   "stage": "c04",
+   "sid": "s8",
+   "kind": "shot",
+   "ord": 466741,
+   "caption": "사조 안심따개 살코기참치 150 g × 8(트레이더스) 16,880원.",
+   "alt": "사조참치 안심따개 살코기 150g 8캔",
+   "src": "/data/companies/figures/dongwonfnb/aa36a5bc539b.jpg"
+  },
+  {
+   "stage": "c06",
+   "sid": "s11",
+   "kind": "chart",
+   "ord": 363,
+   "caption": "식품안전나라 식품 생산실적(I0300) 품목명에 참치·다랑어가 든 캔·조리 수산물가공품. 원문 합계는 2022년 52,497 t, 2023년 57,222 t, 2024년 80,374 t, 2025년 74,316 t이고 막대는 반올림한 브랜드별 값이다.",
+   "alt": "",
+   "svg": "<svg viewBox=\"0 0 680 260\" xmlns=\"http://www.w3.org/2000/svg\" role=\"img\" aria-label=\"브랜드별 참치캔 생산 2022~2025\"><text x=\"44\" y=\"14\" font-size=\"12.5\" fill=\"#7a828b\">브랜드별 참치캔 생산(톤, 식품안전나라 생산실적) — 동원 · 사조 · 오뚜기 · 그 밖</text><rect x=\"84\" y=\"133.5\" width=\"70\" height=\"66.5\" fill=\"#B2503A\"/><text x=\"119\" y=\"170.8\" text-anchor=\"middle\" font-size=\"10.5\" font-weight=\"700\" fill=\"#fff\">35,191</text><rect x=\"84\" y=\"110.4\" width=\"70\" height=\"23.2\" fill=\"#6f8fa3\"/><text x=\"119\" y=\"125.9\" text-anchor=\"middle\" font-size=\"10.5\" font-weight=\"700\" fill=\"#fff\">12,264</text><rect x=\"84\" y=\"103.9\" width=\"70\" height=\"6.5\" fill=\"#c9a227\"/><rect x=\"84\" y=\"100.8\" width=\"70\" height=\"3.0\" fill=\"#a9aeb5\"/><text x=\"119\" y=\"215\" text-anchor=\"middle\" font-size=\"10.5\" fill=\"#7a828b\">2022</text><rect x=\"234\" y=\"135.4\" width=\"70\" height=\"64.6\" fill=\"#B2503A\"/><text x=\"269\" y=\"171.7\" text-anchor=\"middle\" font-size=\"10.5\" font-weight=\"700\" fill=\"#fff\">34,204</text><rect x=\"234\" y=\"103.0\" width=\"70\" height=\"32.4\" fill=\"#6f8fa3\"/><text x=\"269\" y=\"123.2\" text-anchor=\"middle\" font-size=\"10.5\" font-weight=\"700\" fill=\"#fff\">17,166</text><rect x=\"234\" y=\"94.5\" width=\"70\" height=\"8.5\" fill=\"#c9a227\"/><rect x=\"234\" y=\"91.9\" width=\"70\" height=\"2.5\" fill=\"#a9aeb5\"/><text x=\"269\" y=\"215\" text-anchor=\"middle\" font-size=\"10.5\" fill=\"#7a828b\">2023</text><rect x=\"384\" y=\"128.0\" width=\"70\" height=\"72.0\" fill=\"#B2503A\"/><text x=\"419\" y=\"168.0\" text-anchor=\"middle\" font-size=\"10.5\" font-weight=\"700\" fill=\"#fff\">38,135</text><rect x=\"384\" y=\"94.4\" width=\"70\" height=\"33.6\" fill=\"#6f8fa3\"/><text x=\"419\" y=\"115.2\" text-anchor=\"middle\" font-size=\"10.5\" font-weight=\"700\" fill=\"#fff\">17,784</text><rect x=\"384\" y=\"51.0\" width=\"70\" height=\"43.3\" fill=\"#c9a227\"/><text x=\"419\" y=\"76.7\" text-anchor=\"middle\" font-size=\"10.5\" font-weight=\"700\" fill=\"#fff\">22,937</text><rect x=\"384\" y=\"48.2\" width=\"70\" height=\"2.9\" fill=\"#a9aeb5\"/><text x=\"419\" y=\"215\" text-anchor=\"middle\" font-size=\"10.5\" fill=\"#7a828b\">2024</text><rect x=\"534\" y=\"134.0\" width=\"70\" height=\"66.0\" fill=\"#B2503A\"/><text x=\"569\" y=\"171.0\" text-anchor=\"middle\" font-size=\"10.5\" font-weight=\"700\" fill=\"#fff\">34,956</text><rect x=\"534\" y=\"97.7\" width=\"70\" height=\"36.3\" fill=\"#6f8fa3\"/><text x=\"569\" y=\"119.8\" text-anchor=\"middle\" font-size=\"10.5\" font-weight=\"700\" fill=\"#fff\">19,227</text><rect x=\"534\" y=\"63.1\" width=\"70\" height=\"34.6\" fill=\"#c9a227\"/><text x=\"569\" y=\"84.4\" text-anchor=\"middle\" font-size=\"10.5\" font-weight=\"700\" fill=\"#fff\">18,296</text><rect x=\"534\" y=\"59.6\" width=\"70\" height=\"3.5\" fill=\"#a9aeb5\"/><text x=\"569\" y=\"215\" text-anchor=\"middle\" font-size=\"10.5\" fill=\"#7a828b\">2025</text><line x1=\"44\" y1=\"200\" x2=\"670\" y2=\"200\" stroke=\"#a9aeb5\"/><rect x=\"84\" y=\"226\" width=\"10\" height=\"10\" fill=\"#B2503A\"/><text x=\"98\" y=\"235\" font-size=\"10.5\" fill=\"#424A53\">동원</text><rect x=\"164\" y=\"226\" width=\"10\" height=\"10\" fill=\"#6f8fa3\"/><text x=\"178\" y=\"235\" font-size=\"10.5\" fill=\"#424A53\">사조</text><rect x=\"244\" y=\"226\" width=\"10\" height=\"10\" fill=\"#c9a227\"/><text x=\"258\" y=\"235\" font-size=\"10.5\" fill=\"#424A53\">오뚜기</text><rect x=\"324\" y=\"226\" width=\"10\" height=\"10\" fill=\"#a9aeb5\"/><text x=\"338\" y=\"235\" font-size=\"10.5\" fill=\"#424A53\">그 밖</text></svg>"
+  }
+ ]
+}

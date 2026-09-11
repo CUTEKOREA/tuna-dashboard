@@ -129,6 +129,9 @@ export const HQ_POINTS: GeoPoint[] = [
   { company: 'tecopesca', numeral: 'ⅩⅩⅦ', kind: 'hq', label: 'Tecopesca 본점·공장', country: '에콰도르',
     lat: -0.97, lng: -80.64, basis: 'ⅩⅩⅦ · 하라미호 Km 4.5 Vía Manta–Rocafuerte (MSC 유통망 증서 주소, 근사 좌표) · 지주 GRUPOVISION GVHOLDING 99.99%',
     note: '1999-06-15 만타 설립 · EU 승인 591 · 배 없는 캐너리' },
+  { company: 'dongwonfnb', numeral: 'ⅩⅩⅧ', kind: 'hq', label: '동원F&B 본점', country: '대한민국',
+    lat: 37.47, lng: 127.04, basis: 'ⅩⅩⅧ · 서울 서초구 마방로 68(사업보고서, 도시 좌표) · 동원산업 100%(2025-07-14 주식교환)',
+    note: '2000-11-01 동원산업에서 인적분할 · 2025-07-31 상장폐지 · 참치캔 출시 1982' },
 ];
 
 /**
@@ -285,6 +288,12 @@ export const PLANT_POINTS: GeoPoint[] = [
     lat: -0.96, lng: -80.63, sizeValue: 230, sizeUnit: 'MT/일',
     basis: 'ⅩⅩⅦ · 2017 감사 주석 자숙 230 t/일(청소 210 t/일). 회사 게시물 자칭 2024 일 340 t 은 정의가 달라 쓰지 않았다',
     note: '가공 원료 55% 캔 · 45% 로인(2018 경영자 보고서) · MSC 유통망 MSC-C-55841 · BRCGS AA+' },
+
+  // ── ⅩⅩⅧ 동원F&B — 식품안전나라 생산실적 연간 톤을 사업보고서 연간 가동일수로 나눈 값 ─────
+  { company: 'dongwonfnb', numeral: 'ⅩⅩⅧ', kind: 'plant', label: '동원F&B 창원공장', country: '대한민국',
+    lat: 35.22, lng: 128.68, sizeValue: 74, sizeUnit: 'MT/일',
+    basis: 'ⅩⅩⅧ · 2025년 참치 수산물가공품 생산 19,536 t(식품안전나라 I0300) ÷ 연간 가동일수 264일(사업보고서) = 일 74 t(계산)',
+    note: '동원 브랜드 캔 2024년 38,135 t 중 창원 21,032 t(55%) · 나머지 삼진물산(목포)·신진물산(함안)' },
 ];
 
 /**
@@ -382,6 +391,7 @@ export const NO_FLEET: { company: string; basis: string }[] = [
   { company: 'iot', basis: 'ⅩⅩⅢ · 자사 명의 어선 0척. 이 나라 국적 선망 13척은 경쟁 그룹 공급선 명부와 IMO 기준 전부 겹치지만 이 공장의 구매 문서는 없다' },
   { company: 'ati', basis: 'ⅩⅩⅣ · WCPFC 승인선박기록(2026-08-17) 인도네시아 145척 중 소유사·주소 0척. FIP 명부 118척은 운영사 소유다' },
   { company: 'tecopesca', basis: 'ⅩⅩⅦ · IATTC 등록부(2026-08-17) 소유·운항자 칸 0척, TUNACONS MSC 부속서 0건. 원료는 해마다 바뀌는 매입처(2019 특수관계자 표 13곳)에서 산다' },
+  { company: 'dongwonfnb', basis: 'ⅩⅩⅧ · 자사 선박 0척. 원료는 모회사 동원산업(선망 11척·연승 8척 등 35척)에서 산다 — 2025년 1,172억 원(특수관계자 주석)' },
 ];
 
 /** 지도에 찍는 모든 점. */

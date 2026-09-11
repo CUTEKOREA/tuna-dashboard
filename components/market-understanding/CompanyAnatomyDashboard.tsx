@@ -264,6 +264,10 @@ import {
   tecopescaMeta, tecopescaStats, tecopescaSourceNotes,
   seriesSupplierSharePct, relatedPurchaseShare2018Pct, salesGrowth2024Pct, skipjackShare2018Pct,
 } from '@/lib/data/company-tecopesca';
+import {
+  dongwonfnbMeta, dongwonfnbStats, dongwonfnbSourceNotes,
+  ownPlantSharePct, rawPriceChange2025Pct, generalFoodOpChangePct,
+} from '@/lib/data/company-dongwonfnb';
 
 
 const ACCENT = '#c2410c';
@@ -3284,6 +3288,62 @@ const TECOPESCA_SPEC: CommoditySpec = {
   ].join(' · '),
 };
 
+const DONGWONFNB_ACCENT = '#b23a48';
+
+const DONGWONFNB_SPEC: CommoditySpec = {
+  key: 'company-anatomy-dongwonfnb',
+  title: '기업 해부: 동원F&B',
+  subtitle:
+    '1982년 동원산업이 국내에 처음 낸 참치캔 사업을 2000년 인적분할로 넘겨받은 회사다. 연결 매출 4조 8,777억 원의 식품·유통 회사지만, 한국신용평가는 2024년 별도 영업이익의 47%가 참치캔에서 나왔다고 본다. ' +
+    '원료 일부를 모회사 동원산업에서 사고(2025년 1,172억 원, 품목 미기재), 동원 브랜드 캔의 45%는 다른 회사 공장에서 나온다. 2025년 7월 동원산업의 완전자회사가 되어 상장폐지됐고, 공모사채가 남아 공시는 계속한다.',
+  accent: DONGWONFNB_ACCENT,
+  primaryKpi: {
+    label: '2024년 별도 영업이익 중 참치캔 몫 (한국신용평가 평가서)',
+    value: dongwonfnbStats.참치캔_별도_영업이익몫_2024_pct,
+    decimals: 0,
+    unit: `(% · 같은 해 매출 몫 ${dongwonfnbStats.참치캔_별도_매출몫_2024_pct}% · 사업보고서에는 참치캔 단독 이익이 없다)`,
+    accent: DONGWONFNB_ACCENT,
+  },
+  secondaryKpis: [
+    { label: '참치캔 시장점유율 2025 (닐슨, 사업보고서)', value: dongwonfnbStats.점유율_2025_pct, decimals: 1, unit: `(% · 2022년 ${dongwonfnbStats.점유율_2022_pct}%)` },
+    { label: '수산물 원재료 단가 변화 2024 → 2025', value: rawPriceChange2025Pct(), decimals: 1, unit: '(% · 원/kg, 사업보고서)' },
+    { label: '2024 동원 브랜드 캔 중 창원 자기 공장 몫', value: ownPlantSharePct(), decimals: 1, unit: '(% · 식품안전나라 생산실적 품목명 기준)' },
+  ],
+  stripItems: [
+    {
+      now: true,
+      eyebrow: '이익',
+      title: '매출 20%, 영업이익 47%',
+      body: `2024년 별도 기준(평가서). 2025년 일반식품 영업이익 ${generalFoodOpChangePct()}% — 회사는 「고환율에 따른 원부재료 구매단가 급등」을 들었다`,
+    },
+    {
+      eyebrow: '원료',
+      title: '모회사 동원산업에서 1,172억 원',
+      body: '2025년 특수관계자 매입. 수산물 원재료 단가 kg당 2,580원 → 2,949원 → 3,054원(2026 상반기)',
+    },
+    {
+      eyebrow: '생산',
+      title: '동원 캔의 45%는 다른 회사 공장',
+      body: '2024년 동원 브랜드 캔 38,135 t 중 창원 21,032 t. 삼진물산(목포)·신진물산(함안)이 나머지를 만든다',
+    },
+    {
+      eyebrow: '가격',
+      title: '가격 인상 네 번, 용량 축소 한 번',
+      body: '출고가 2021-12·2022-12 인상과 2026-09 인상 보도, 편의점가 2022-08, 2023년 편의점 100 g → 90 g. 라이트스탠다드 150 g은 kg당 18,667원',
+    },
+  ],
+  briefing: proseBriefing('dongwonfnb'),
+  narratives: inlineReport('dongwonfnb', proseStages('dongwonfnb')),
+  chartSlots: {},
+  continuous: true,
+  sourceNotes: dongwonfnbSourceNotes,
+  sourceMeta: [
+    `${dongwonfnbMeta.회사} · ${dongwonfnbMeta.국가} · ${dongwonfnbMeta.업종}`,
+    `출처 ${dongwonfnbMeta.출처}`,
+    `조사 ${dongwonfnbMeta.조사일}`,
+  ].join(' · '),
+};
+
 export const COMPANY_CARDS: CompanyCard[] = [
   {
     key: 'frinsa',
@@ -3636,6 +3696,19 @@ export const COMPANY_CARDS: CompanyCard[] = [
       { label: '2024 매출', value: `${(tecopescaStats.매출_2024_usd / 1e6).toFixed(0)}M$` },
     ],
   },
+  {
+    key: 'dongwonfnb',
+    numeral: 'ⅩⅩⅧ',
+    name: '동원F&B',
+    country: '대한민국 · 서울(창원 공장)',
+    tagline: '참치캔은 별도 매출의 20%로 영업이익의 47%를 냈다(2024년).',
+    ...FLAG.한국,
+    stats: [
+      { label: '참치캔 영업이익 몫', value: `${dongwonfnbStats.참치캔_별도_영업이익몫_2024_pct}%` },
+      { label: '점유율 2025', value: `${dongwonfnbStats.점유율_2025_pct}%` },
+      { label: '연결 매출 2025', value: `${(dongwonfnbStats.연결_매출_2025_krw_m / 1e6).toFixed(2)}조원` },
+    ],
+  },
 
 ];
 
@@ -3686,6 +3759,7 @@ export default function CompanyAnatomyDashboard({
     nirsa: NIRSA_SPEC,
     eurofish: EUROFISH_SPEC,
     tecopesca: TECOPESCA_SPEC,
+    dongwonfnb: DONGWONFNB_SPEC,
   };
   const spec = SPECS[selected] ?? SPEC;
 

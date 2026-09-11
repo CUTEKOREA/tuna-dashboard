@@ -31,6 +31,7 @@
 | ⅩⅩⅤ | NIRSA (Negocios Industriales Real N.I.R.S.A. S.A.) | `nirsa` | https://claude.ai/code/artifact/556e95c6-b36c-4edc-86a3-b4cd11d4c64e |
 | ⅩⅩⅥ | Eurofish S.A. | `eurofish` | https://claude.ai/code/artifact/c9f492af-5f2a-4c50-bdd3-5ae548a9e7fc |
 | ⅩⅩⅦ | Técnica y Comercio de la Pesca C.A. TECOPESCA | `tecopesca` | https://claude.ai/code/artifact/fbdbc0d5-b87f-4365-aee7-20da008c97b4 |
+| ⅩⅩⅧ | 주식회사 동원에프앤비(동원F&B) | `dongwonfnb` | https://claude.ai/code/artifact/018ab095-fffb-4584-9ab0-5ec71b5d78ea |
 
 그 밖 — 보고서 직판 랜딩 기획서 https://claude.ai/code/artifact/0f98e5a5-686b-4f47-b661-be5aa852f913
 
