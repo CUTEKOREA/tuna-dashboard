@@ -1,9 +1,9 @@
 {
  "_meta": {
   "entry": "app/page.tsx",
-  "files": 240,
+  "files": 243,
   "widgets": 112,
-  "dataFiles": 176,
+  "dataFiles": 188,
   "generator": "scripts/widget_lineage.py"
  },
  "widgetToData": {
@@ -573,11 +573,14 @@
     "lib/data/company-boltonfood.ts",
     "lib/data/company-bumblebee.ts",
     "lib/data/company-centurypacific.ts",
+    "lib/data/company-cnfc.ts",
     "lib/data/company-dongwon.ts",
+    "lib/data/company-dongwonfnb.ts",
     "lib/data/company-eurofish.ts",
     "lib/data/company-fcf.ts",
     "lib/data/company-frabelle.ts",
     "lib/data/company-frinsa.ts",
+    "lib/data/company-hagoromo.ts",
     "lib/data/company-iot.ts",
     "lib/data/company-itochu.ts",
     "lib/data/company-jais.ts",
@@ -623,10 +626,18 @@
     "public/data/companies/centurypacific_prose_v1.json",
     "public/data/companies/centurypacific_tables_v1.json",
     "public/data/companies/centurypacific_v1.json",
+    "public/data/companies/cnfc_figures_v1.json",
+    "public/data/companies/cnfc_prose_v1.json",
+    "public/data/companies/cnfc_tables_v1.json",
+    "public/data/companies/cnfc_v1.json",
     "public/data/companies/dongwon_figures_v1.json",
     "public/data/companies/dongwon_prose_v1.json",
     "public/data/companies/dongwon_tables_v1.json",
     "public/data/companies/dongwon_v1.json",
+    "public/data/companies/dongwonfnb_figures_v1.json",
+    "public/data/companies/dongwonfnb_prose_v1.json",
+    "public/data/companies/dongwonfnb_tables_v1.json",
+    "public/data/companies/dongwonfnb_v1.json",
     "public/data/companies/eurofish_figures_v1.json",
     "public/data/companies/eurofish_prose_v1.json",
     "public/data/companies/eurofish_tables_v1.json",
@@ -643,6 +654,10 @@
     "public/data/companies/frinsa_prose_v1.json",
     "public/data/companies/frinsa_tables_v1.json",
     "public/data/companies/frinsa_v1.json",
+    "public/data/companies/hagoromo_figures_v1.json",
+    "public/data/companies/hagoromo_prose_v1.json",
+    "public/data/companies/hagoromo_tables_v1.json",
+    "public/data/companies/hagoromo_v1.json",
     "public/data/companies/iot_figures_v1.json",
     "public/data/companies/iot_prose_v1.json",
     "public/data/companies/iot_tables_v1.json",
@@ -1237,6 +1252,18 @@
   "public/data/companies/centurypacific_v1.json": [
    "components/market-understanding/CompanyAnatomyDashboard.tsx"
   ],
+  "public/data/companies/cnfc_figures_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/cnfc_prose_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/cnfc_tables_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/cnfc_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
   "public/data/companies/dongwon_figures_v1.json": [
    "components/market-understanding/CompanyAnatomyDashboard.tsx"
   ],
@@ -1247,6 +1274,18 @@
    "components/market-understanding/CompanyAnatomyDashboard.tsx"
   ],
   "public/data/companies/dongwon_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/dongwonfnb_figures_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/dongwonfnb_prose_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/dongwonfnb_tables_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/dongwonfnb_v1.json": [
    "components/market-understanding/CompanyAnatomyDashboard.tsx"
   ],
   "public/data/companies/eurofish_figures_v1.json": [
@@ -1297,6 +1336,18 @@
   "public/data/companies/frinsa_v1.json": [
    "components/market-understanding/CompanyAnatomyDashboard.tsx",
    "components/market-understanding/FrinsaCharts.tsx"
+  ],
+  "public/data/companies/hagoromo_figures_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/hagoromo_prose_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/hagoromo_tables_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/hagoromo_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
   ],
   "public/data/companies/iot_figures_v1.json": [
    "components/market-understanding/CompanyAnatomyDashboard.tsx"

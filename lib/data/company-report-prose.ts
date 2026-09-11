@@ -25,6 +25,9 @@ import atiRaw from '@/public/data/companies/ati_prose_v1.json';
 import nirsaRaw from '@/public/data/companies/nirsa_prose_v1.json';
 import eurofishRaw from '@/public/data/companies/eurofish_prose_v1.json';
 import tecopescaRaw from '@/public/data/companies/tecopesca_prose_v1.json';
+import dongwonfnbRaw from '@/public/data/companies/dongwonfnb_prose_v1.json';
+import hagoromoRaw from '@/public/data/companies/hagoromo_prose_v1.json';
+import cnfcRaw from '@/public/data/companies/cnfc_prose_v1.json';
 
 /**
  * 조사보고서 서술 전량 인테이크.
@@ -91,6 +94,9 @@ const INTAKES: Record<string, Intake> = {
   nirsa: nirsaRaw as unknown as Intake,
   eurofish: eurofishRaw as unknown as Intake,
   tecopesca: tecopescaRaw as unknown as Intake,
+  dongwonfnb: dongwonfnbRaw as unknown as Intake,
+  hagoromo: hagoromoRaw as unknown as Intake,
+  cnfc: cnfcRaw as unknown as Intake,
   thaiunion: thaiunionRaw as unknown as Intake,
 };
 

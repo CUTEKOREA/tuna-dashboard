@@ -264,6 +264,18 @@ import {
   tecopescaMeta, tecopescaStats, tecopescaSourceNotes,
   seriesSupplierSharePct, relatedPurchaseShare2018Pct, salesGrowth2024Pct, skipjackShare2018Pct,
 } from '@/lib/data/company-tecopesca';
+import {
+  dongwonfnbMeta, dongwonfnbStats, dongwonfnbSourceNotes,
+  ownPlantSharePct, rawPriceChange2025Pct, generalFoodOpChangePct,
+} from '@/lib/data/company-dongwonfnb';
+import {
+  hagoromoMeta, hagoromoStats, hagoromoSourceNotes,
+  itochuSalesSharePct, tradingHousesSharePct, pbMultiple,
+} from '@/lib/data/company-hagoromo';
+import {
+  cnfcMeta, cnfcStats, cnfcSourceNotes,
+  tunaSharePct, tunaLossWan, subsidyToProfit,
+} from '@/lib/data/company-cnfc';
 
 
 const ACCENT = '#c2410c';
@@ -2531,6 +2543,7 @@ const FLAG: Record<string, Pick<CompanyCard, 'flagSrc' | 'backInk'>> = {
   필리핀: { flagSrc: '/flags/ph.svg', backInk: '#f4f5f0' },
   미국: { flagSrc: '/flags/us.svg', backInk: '#1b2733' },
   한국: { flagSrc: '/flags/kr.svg', backInk: '#1b2733' },
+  중국: { flagSrc: '/flags/cn.svg', backInk: '#1b2733' },
   이탈리아: { flagSrc: '/flags/it.svg', backInk: '#f4f5f0' },
   싱가포르: { flagSrc: '/flags/sg.svg', backInk: '#1b2733' },
   영국: { flagSrc: '/flags/gb.svg', backInk: '#f4f5f0' },
@@ -3284,6 +3297,174 @@ const TECOPESCA_SPEC: CommoditySpec = {
   ].join(' · '),
 };
 
+const DONGWONFNB_ACCENT = '#b23a48';
+
+const DONGWONFNB_SPEC: CommoditySpec = {
+  key: 'company-anatomy-dongwonfnb',
+  title: '기업 해부: 동원F&B',
+  subtitle:
+    '1982년 동원산업이 국내에 처음 낸 참치캔 사업을 2000년 인적분할로 넘겨받은 회사다. 연결 매출 4조 8,777억 원의 식품·유통 회사지만, 한국신용평가는 2024년 별도 영업이익의 47%가 참치캔에서 나왔다고 본다. ' +
+    '원료 일부를 모회사 동원산업에서 사고(2025년 1,172억 원, 품목 미기재), 동원 브랜드 캔의 45%는 다른 회사 공장에서 나온다. 2025년 7월 동원산업의 완전자회사가 되어 상장폐지됐고, 공모사채가 남아 공시는 계속한다.',
+  accent: DONGWONFNB_ACCENT,
+  primaryKpi: {
+    label: '2024년 별도 영업이익 중 참치캔 몫 (한국신용평가 평가서)',
+    value: dongwonfnbStats.참치캔_별도_영업이익몫_2024_pct,
+    decimals: 0,
+    unit: `(% · 같은 해 매출 몫 ${dongwonfnbStats.참치캔_별도_매출몫_2024_pct}% · 사업보고서에는 참치캔 단독 이익이 없다)`,
+    accent: DONGWONFNB_ACCENT,
+  },
+  secondaryKpis: [
+    { label: '참치캔 시장점유율 2025 (닐슨, 사업보고서)', value: dongwonfnbStats.점유율_2025_pct, decimals: 1, unit: `(% · 2022년 ${dongwonfnbStats.점유율_2022_pct}%)` },
+    { label: '수산물 원재료 단가 변화 2024 → 2025', value: rawPriceChange2025Pct(), decimals: 1, unit: '(% · 원/kg, 사업보고서)' },
+    { label: '2024 동원 브랜드 캔 중 창원 자기 공장 몫', value: ownPlantSharePct(), decimals: 1, unit: '(% · 식품안전나라 생산실적 품목명 기준)' },
+  ],
+  stripItems: [
+    {
+      now: true,
+      eyebrow: '이익',
+      title: '매출 20%, 영업이익 47%',
+      body: `2024년 별도 기준(평가서). 2025년 일반식품 영업이익 ${generalFoodOpChangePct()}% — 회사는 「고환율에 따른 원부재료 구매단가 급등」을 들었다`,
+    },
+    {
+      eyebrow: '원료',
+      title: '모회사 동원산업에서 1,172억 원',
+      body: '2025년 특수관계자 매입. 수산물 원재료 단가 kg당 2,580원 → 2,949원 → 3,054원(2026 상반기)',
+    },
+    {
+      eyebrow: '생산',
+      title: '동원 캔의 45%는 다른 회사 공장',
+      body: '2024년 동원 브랜드 캔 38,135 t 중 창원 21,032 t. 삼진물산(목포)·신진물산(함안)이 나머지를 만든다',
+    },
+    {
+      eyebrow: '가격',
+      title: '가격 인상 네 번, 용량 축소 한 번',
+      body: '출고가 2021-12·2022-12 인상과 2026-09 인상 보도, 편의점가 2022-08, 2023년 편의점 100 g → 90 g. 라이트스탠다드 150 g은 kg당 18,667원',
+    },
+  ],
+  briefing: proseBriefing('dongwonfnb'),
+  narratives: inlineReport('dongwonfnb', proseStages('dongwonfnb')),
+  chartSlots: {},
+  continuous: true,
+  sourceNotes: dongwonfnbSourceNotes,
+  sourceMeta: [
+    `${dongwonfnbMeta.회사} · ${dongwonfnbMeta.국가} · ${dongwonfnbMeta.업종}`,
+    `출처 ${dongwonfnbMeta.출처}`,
+    `조사 ${dongwonfnbMeta.조사일}`,
+  ].join(' · '),
+};
+
+const HAGOROMO_ACCENT = '#2f6f8f';
+
+const HAGOROMO_SPEC: CommoditySpec = {
+  key: 'company-anatomy-hagoromo',
+  title: '기업 해부: はごろもフーズ',
+  subtitle:
+    '1958년 참치 기름절임 캔의 이름 「シーチキン」을 상표로 등록한 시즈오카 회사다. 2026년 3월기 연결 매출 750.8억 엔의 47.0%가 참치 제품이지만, 자사 참치캔 공장은 焼津와 新清水 두 곳이고 전 제품을 통틀어 약 70곳 협력공장에 제조를 맡긴다. ' +
+    '공시에 이름이 나오는 참치 위탁처는 伊藤忠商事가 47%, 하고로모가 33%를 가진 인도네시아 PT Aneka Tuna 하나이고, 그 매입(62억 792만 엔)은 전량 伊藤忠을 거쳐 伊藤忠의 견적을 검토해 값을 정한다. 같은 해 하고로모 매출의 32.0%는 伊藤忠으로 나갔다.',
+  accent: HAGOROMO_ACCENT,
+  primaryKpi: {
+    label: '2026년 3월기 연결 매출 중 「ツナ等」 몫 (유가증권보고서)',
+    value: hagoromoStats.ツナ等_비중_FY26_pct,
+    decimals: 1,
+    unit: `(% · 2023년 3월기 ${hagoromoStats.ツナ等_비중_FY23_pct}%에서 3년 연속 상승)`,
+    accent: HAGOROMO_ACCENT,
+  },
+  secondaryKpis: [
+    { label: '연결 매출 중 伊藤忠商事 앞 몫 (전 제품)', value: itochuSalesSharePct(), decimals: 1, unit: `(% · 상사 세 곳 합 ${tradingHousesSharePct()}%)` },
+    { label: 'PT Aneka Tuna 제품 매입 2026년 3월기', value: hagoromoStats.ATI_매입_FY26_jpy_k / 1e5, decimals: 1, unit: '(억 엔 · 전량 伊藤忠 경유, 지분 33.0%)' },
+    { label: 'L 플레이크 70 g 세 캔 kg당 값 ÷ 이온 자체상표', value: pbMultiple(), decimals: 2, unit: '(배 · 소매 페이지 2026-09, 순중량 기준)' },
+  ],
+  stripItems: [
+    {
+      now: true,
+      eyebrow: '구조',
+      title: '자사 캔 공장 둘, 협력공장 약 70곳',
+      body: '焼津·新清水 장부가 46억 4,829만 엔·180명. 70곳은 디저트·파스타를 포함한 전 제품 기준이고 참치 위탁처 수는 공시에 없다',
+    },
+    {
+      eyebrow: '상사',
+      title: '伊藤忠이 매입과 매출 양쪽에',
+      body: 'PT Aneka Tuna 제품 매입은 伊藤忠 경유·伊藤忠 견적을 검토해 결정. 伊藤忠 앞 매출은 연결의 32.0%(전 제품)',
+    },
+    {
+      eyebrow: '재무',
+      title: '영업손실 11억 엔에서 영업이익 31억 엔으로',
+      body: '2023년 3월기 → 2026년 3월기. 회사는 매출총이익 증가와 판매장려금 감소를 들었다. 원료가·엔저 영향 금액은 공시에 없다',
+    },
+    {
+      eyebrow: '가격',
+      title: '2022년 이후 다섯 번 인상',
+      body: '2026-08-01 시치킨 가정용 80품목 6.7~25.0%·업무용 32품목 9.2~33.3%. 같은 날 발효한 EPA 무관세와 잇는 공시는 없다',
+    },
+  ],
+  briefing: proseBriefing('hagoromo'),
+  narratives: inlineReport('hagoromo', proseStages('hagoromo')),
+  chartSlots: {},
+  continuous: true,
+  sourceNotes: hagoromoSourceNotes,
+  sourceMeta: [
+    `${hagoromoMeta.회사} · ${hagoromoMeta.국가} · ${hagoromoMeta.업종}`,
+    `출처 ${hagoromoMeta.출처}`,
+    `조사 ${hagoromoMeta.조사일}`,
+  ].join(' · '),
+};
+
+const CNFC_ACCENT = '#a33a2c';
+
+const CNFC_SPEC: CommoditySpec = {
+  key: 'company-anatomy-cnfc',
+  title: '기업 해부: 中水集团远洋',
+  subtitle:
+    '중국 국유 원양어업 그룹 中国农业发展集团의 선전 상장 자회사다. 캔공장 표에 이름이 올랐지만 2023~2025 연보와 2026 반기보고서에 「罐」 자가 한 번도 없고, 참치 이름이 붙은 가공 설비는 냉동 날개다랑어 로인을 만드는 저우산 초저온 가공센터 하나다. ' +
+    '캔 계획이 확인되는 곳은 바누아투 합작 Sino-Van(中瓦渔业 51%) 하나이고 캔 생산에 이르지 못했다. 2025년 참치 매출 7억 7,669만 위안은 원가보다 5,405만 위안 적었고, 같은 해 수익 관련 정부보조금 2억 6,656만 위안이 순이익보다 컸다.',
+  accent: CNFC_ACCENT,
+  primaryKpi: {
+    label: '2025년 참치 매출총이익률 (연결, 연보 分产品 표)',
+    value: cnfcStats.참치_이익률_2025_pct,
+    decimals: 2,
+    unit: `(% · 2023 ${cnfcStats.참치_이익률_2023_pct}% · 2024 ${cnfcStats.참치_이익률_2024_pct}% · 2026 상반기 ${cnfcStats.참치_이익률_2026H1_pct}%)`,
+    accent: CNFC_ACCENT,
+  },
+  secondaryKpis: [
+    { label: '2025 연결 매출 중 참치 몫', value: tunaSharePct(), decimals: 2, unit: '(% · 자기 배로 잡은 참치)' },
+    { label: '수익 관련 정부보조금 ÷ 순이익 (2025)', value: subsidyToProfit(), decimals: 2, unit: '(배 · 회사는 보조금을 경상 손익으로 분류, 비경상 125만 위안)' },
+    { label: 'RFMO 등록부 소유 선박', value: cnfcStats.등록부_선박, decimals: 0, unit: '(척 · 68행에서 기구 간 중복 제외 · 전부 연승)' },
+  ],
+  stripItems: [
+    {
+      now: true,
+      eyebrow: '구조',
+      title: '연보 네 권에 「罐」 0회',
+      body: '참치 이름이 붙은 가공 설비는 저우산 연구개발가공센터(냉동 날개다랑어 로인, 2025 실현 이익 13만 위안) 하나. 캔 계획은 바누아투 Sino-Van에만 있었다',
+    },
+    {
+      eyebrow: '이익',
+      title: `참치 원가가 매출보다 ${tunaLossWan().toLocaleString('ko-KR')}만 위안 많았다`,
+      body: '2025년. 손실은 상장사 개별(母公司)의 연승 참치에서 나고(−19.49%), 자회사 몫은 네 기간 모두 흑자(계산)',
+    },
+    {
+      eyebrow: '보조금',
+      title: '세 해 연속 보조금이 순이익보다 컸다',
+      body: '2025년 수익 관련 보조금 2억 6,656만 위안 대 순이익 1억 4,161만 위안. 2026 상반기 이익은 6월에 들어온 보조금 때문에 부풀어 보인다',
+    },
+    {
+      eyebrow: '선단',
+      title: '중국 선적 소유사 가운데 등록부 1위',
+      body: 'RFMO 등록부 소유 명의 61척(2위 30척). 새 예산 9,600만 위안도 고위도 초저온 참치 연승선이다',
+    },
+  ],
+  briefing: proseBriefing('cnfc'),
+  narratives: inlineReport('cnfc', proseStages('cnfc')),
+  chartSlots: {},
+  continuous: true,
+  sourceNotes: cnfcSourceNotes,
+  sourceMeta: [
+    `${cnfcMeta.회사} · ${cnfcMeta.국가} · ${cnfcMeta.업종}`,
+    `출처 ${cnfcMeta.출처}`,
+    `조사 ${cnfcMeta.조사일}`,
+  ].join(' · '),
+};
+
 export const COMPANY_CARDS: CompanyCard[] = [
   {
     key: 'frinsa',
@@ -3636,6 +3817,45 @@ export const COMPANY_CARDS: CompanyCard[] = [
       { label: '2024 매출', value: `${(tecopescaStats.매출_2024_usd / 1e6).toFixed(0)}M$` },
     ],
   },
+  {
+    key: 'dongwonfnb',
+    numeral: 'ⅩⅩⅧ',
+    name: '동원F&B',
+    country: '대한민국 · 서울(창원 공장)',
+    tagline: '참치캔은 별도 매출의 20%로 영업이익의 47%를 냈다(2024년).',
+    ...FLAG.한국,
+    stats: [
+      { label: '참치캔 영업이익 몫', value: `${dongwonfnbStats.참치캔_별도_영업이익몫_2024_pct}%` },
+      { label: '점유율 2025', value: `${dongwonfnbStats.점유율_2025_pct}%` },
+      { label: '연결 매출 2025', value: `${(dongwonfnbStats.연결_매출_2025_krw_m / 1e6).toFixed(2)}조원` },
+    ],
+  },
+  {
+    key: 'hagoromo',
+    numeral: 'ⅩⅩⅨ',
+    name: 'はごろもフーズ',
+    country: '일본 · 시즈오카(焼津·新清水 공장)',
+    tagline: '자사 캔 공장은 둘, 공시에 이름이 나오는 참치 위탁처는 伊藤忠 경유 PT Aneka Tuna 하나.',
+    ...FLAG.일본,
+    stats: [
+      { label: 'ツナ等 매출 몫', value: `${hagoromoStats.ツナ等_비중_FY26_pct}%` },
+      { label: '伊藤忠 앞 매출', value: `${itochuSalesSharePct()}%` },
+      { label: '연결 매출 FY26/3', value: `${(hagoromoStats.연결_매출_FY26_jpy_k / 1e5).toFixed(1)}억엔` },
+    ],
+  },
+  {
+    key: 'cnfc',
+    numeral: 'ⅩⅩⅩ',
+    name: '中水集团远洋',
+    country: '중국 · 베이징(저우산 가공센터·바누아투 로인 공장)',
+    tagline: '연보 네 권에 통조림은 없고, 참치는 네 기간 가운데 세 기간 원가보다 싸게 팔렸다.',
+    ...FLAG.중국,
+    stats: [
+      { label: '참치 이익률 2025', value: `${cnfcStats.참치_이익률_2025_pct}%` },
+      { label: '참치 매출 몫', value: `${tunaSharePct()}%` },
+      { label: '등록부 선박', value: `${cnfcStats.등록부_선박}척` },
+    ],
+  },
 
 ];
 
@@ -3686,6 +3906,9 @@ export default function CompanyAnatomyDashboard({
     nirsa: NIRSA_SPEC,
     eurofish: EUROFISH_SPEC,
     tecopesca: TECOPESCA_SPEC,
+    dongwonfnb: DONGWONFNB_SPEC,
+    hagoromo: HAGOROMO_SPEC,
+    cnfc: CNFC_SPEC,
   };
   const spec = SPECS[selected] ?? SPEC;
 
