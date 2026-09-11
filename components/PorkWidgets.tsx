@@ -5,7 +5,7 @@ import { Globe, TrendingUp, ShoppingCart, Target, Zap, Shield } from 'lucide-rea
 import WidgetCard from './WidgetCard';
 import * as D from './porkData';
 import { ChartPatternDefs, A11Y_PALETTE } from './ChartPatterns';
-import { CHART_RANK } from '@/lib/chart-palette';
+import { CHART_RANK, SERIES } from '@/lib/chart-palette';
 
 const CT = ({ active, payload, label }: any) => {
   if (!active || !payload?.length) return null;
@@ -46,8 +46,8 @@ export function W1_ASFCycle({ accent }: any) {
       <ChartPatternDefs /><CartesianGrid strokeDasharray="3 3" stroke="rgba(140,170,255,0.12)" vertical={false} />
       <XAxis dataKey="year" stroke="var(--w-slate-500)" tick={{ fontSize: 9, fill: 'var(--w-slate-500)' }} /><YAxis yAxisId="left" stroke="var(--w-slate-500)" tick={{ fontSize: 9 }} tickFormatter={v => v >= 1000 ? `${(v / 1000).toFixed(0)}K` : v} />
       <YAxis yAxisId="right" orientation="right" stroke="var(--w-slate-500)" tick={{ fontSize: 9 }} /><RT content={<CT />} /><Legend verticalAlign="top" wrapperStyle={{ fontSize: '10px', paddingBottom: '10px' }} />
-      <Bar yAxisId="left" dataKey="production" name="중국 생산량 (천톤)" fill="var(--w-blue-500)" radius={[4, 4, 0, 0]} fillOpacity={0.8} />
-      <Line yAxisId="right" type="monotone" dataKey="price" name="산지 가격 지수" stroke="var(--w-rose-500)" strokeWidth={2.5} dot={true} />
+      <Bar yAxisId="left" dataKey="production" name="중국 생산량 (천톤)" fill={SERIES[0]} radius={[4, 4, 0, 0]} fillOpacity={0.8} />
+      <Line yAxisId="right" type="monotone" dataKey="price" name="산지 가격 지수" stroke={SERIES[1]} strokeWidth={2.5} dot={true} />
     </ComposedChart>
   </W>;
 }
@@ -61,7 +61,7 @@ export function W2_FeedMargin({ accent }: any) {
       <ChartPatternDefs /><CartesianGrid strokeDasharray="3 3" stroke="rgba(140,170,255,0.12)" vertical={false} />
       <XAxis dataKey="quarter" stroke="var(--w-slate-500)" tick={{ fontSize: 9, fill: 'var(--w-slate-500)' }} /><YAxis yAxisId="left" stroke="var(--w-slate-500)" tick={{ fontSize: 9 }} />
       <YAxis yAxisId="right" orientation="right" stroke="var(--w-slate-500)" tick={{ fontSize: 9 }} /><RT content={<CT />} /><Legend verticalAlign="top" wrapperStyle={{ fontSize: '10px', paddingBottom: '10px' }} />
-      <Line yAxisId="left" type="monotone" dataKey="feedIndex" name="사료 가격 지수" stroke="var(--w-yellow-500)" strokeWidth={2.5} />
+      <Line yAxisId="left" type="monotone" dataKey="feedIndex" name="사료 가격 지수" stroke={SERIES[0]} strokeWidth={2.5} />
       <Bar yAxisId="right" dataKey="porkMargin" name="가공 마진율 (%)" fill="var(--w-emerald-500)" radius={[4, 4, 0, 0]}>{D.feedCostData.map((e, i) => <Cell key={i} fill={e.porkMargin < 0 ? 'var(--w-red-500)' : 'var(--w-emerald-500)'} />)}</Bar>
     </ComposedChart>
   </W>;
@@ -74,8 +74,8 @@ export function W3_TradeSpread({ accent }: any) {
     strat="단가가 안정적인 북미 및 남미(브라질)산 비중을 높여 다변화 전략 시급." source="OEC 무역 데이터 방향성 참고 - 업계추정">
     <LineChart data={D.tradeSpreadData}><CartesianGrid strokeDasharray="3 3" stroke="rgba(140,170,255,0.12)" vertical={false} />
       <XAxis dataKey="month" stroke="var(--w-slate-500)" tick={{ fontSize: 9, fill: 'var(--w-slate-500)' }} /><YAxis stroke="var(--w-slate-500)" tick={{ fontSize: 9 }} /><RT content={<CT />} /><Legend verticalAlign="top" wrapperStyle={{ fontSize: '10px', paddingBottom: '10px' }} />
-      <Line type="monotone" dataKey="asiaPrice" name="아시아 도착가" stroke="var(--w-rose-500)" strokeWidth={2.5} /><Line type="monotone" dataKey="euPrice" name="EU 수출가" stroke="var(--w-blue-500)" strokeWidth={2} strokeDasharray="5 5" />
-      <Line type="monotone" dataKey="usPrice" name="북미 수출가" stroke="var(--w-yellow-500)" strokeWidth={2} strokeDasharray="5 5" />
+      <Line type="monotone" dataKey="asiaPrice" name="아시아 도착가" stroke={SERIES[0]} strokeWidth={2.5} /><Line type="monotone" dataKey="euPrice" name="EU 수출가" stroke={SERIES[1]} strokeWidth={2} strokeDasharray="5 5" />
+      <Line type="monotone" dataKey="usPrice" name="북미 수출가" stroke={SERIES[2]} strokeWidth={2} strokeDasharray="5 5" />
     </LineChart>
   </W>;
 }
@@ -113,10 +113,10 @@ export function W6_Trend({ accent }: any) {
     strat="역성장 중인 EU국 소싱 축소, 브라질/베트남 저가 원물 직소싱망 구축." source="FAOSTAT QCL">
     <LineChart data={D.productionTrendData}><CartesianGrid strokeDasharray="3 3" stroke="rgba(140,170,255,0.12)" vertical={false} />
       <XAxis dataKey="year" stroke="var(--w-slate-500)" tick={{ fontSize: 9, fill: 'var(--w-slate-500)' }} /><YAxis stroke="var(--w-slate-500)" tick={{ fontSize: 9 }} tickFormatter={v => v >= 1000 ? `${(v / 1000).toFixed(0)}K` : v} /><RT content={<CT />} /><Legend verticalAlign="top" wrapperStyle={{ fontSize: '10px', paddingBottom: '10px' }} />
-      <Line type="monotone" dataKey="중국" stroke="var(--w-rose-500)" strokeWidth={3} dot={false} /><Line type="monotone" dataKey="미국" stroke="var(--w-blue-500)" strokeWidth={2} dot={false} />
-      <Line type="monotone" dataKey="브라질" stroke="var(--w-emerald-500)" strokeWidth={2} dot={false} /><Line type="monotone" dataKey="독일" stroke="var(--w-yellow-500)" strokeWidth={2} dot={false} />
-      <Line type="monotone" dataKey="스페인" stroke="var(--w-pink-500)" strokeWidth={2} dot={false} /><Line type="monotone" dataKey="베트남" stroke="var(--w-cyan-500)" strokeWidth={2} dot={false} />
-      <Line type="monotone" dataKey="한국" stroke="var(--w-orange-500)" strokeWidth={2} strokeDasharray="5 5" dot={false} />
+      <Line type="monotone" dataKey="중국" stroke={SERIES[0]} strokeWidth={3} dot={false} /><Line type="monotone" dataKey="미국" stroke={SERIES[1]} strokeWidth={2} dot={false} />
+      <Line type="monotone" dataKey="브라질" stroke={SERIES[2]} strokeWidth={2} dot={false} /><Line type="monotone" dataKey="독일" stroke={SERIES[3]} strokeWidth={2} dot={false} />
+      <Line type="monotone" dataKey="스페인" stroke={SERIES[4]} strokeWidth={2} dot={false} /><Line type="monotone" dataKey="베트남" stroke={SERIES[5]} strokeWidth={2} dot={false} />
+      <Line type="monotone" dataKey="한국" stroke={SERIES[6]} strokeWidth={2} strokeDasharray="5 5" dot={false} />
     </LineChart>
   </W>;
 }
@@ -130,7 +130,7 @@ export function W7_KoreaSupply({ accent }: any) {
       <XAxis dataKey="year" stroke="var(--w-slate-500)" tick={{ fontSize: 9, fill: 'var(--w-slate-500)' }} /><YAxis yAxisId="left" stroke="var(--w-slate-500)" tick={{ fontSize: 9 }} />
       <YAxis yAxisId="right" orientation="right" stroke="var(--w-slate-500)" tick={{ fontSize: 9 }} domain={[30, 45]} /><RT content={<CT />} /><Legend verticalAlign="top" wrapperStyle={{ fontSize: '10px', paddingBottom: '10px' }} />
       <Bar yAxisId="left" dataKey="production" name="국내 생산 (천톤)" fill={A11Y_PALETTE[0]} radius={[4, 4, 0, 0]} /><Bar yAxisId="left" dataKey="imports" name="수입 (천톤)" fill={A11Y_PALETTE[2]} radius={[4, 4, 0, 0]} />
-      <Line yAxisId="right" type="monotone" dataKey="perCapita" name="1인당 소비 (kg)" stroke="var(--w-rose-500)" strokeWidth={2.5} dot={{ r: 3 }} />
+      <Line yAxisId="right" type="monotone" dataKey="perCapita" name="1인당 소비 (kg)" stroke={SERIES[0]} strokeWidth={2.5} dot={{ r: 3 }} />
     </ComposedChart>
   </W>;
 }
@@ -157,8 +157,8 @@ export function W9_ASFSeafood({ accent }: any) {
       <ChartPatternDefs /><CartesianGrid strokeDasharray="3 3" stroke="rgba(140,170,255,0.12)" vertical={false} />
       <XAxis dataKey="year" stroke="var(--w-slate-500)" tick={{ fontSize: 9, fill: 'var(--w-slate-500)' }} /><YAxis yAxisId="left" stroke="var(--w-slate-500)" tick={{ fontSize: 9 }} tickFormatter={v => v >= 1000 ? `${(v / 1000).toFixed(0)}K` : v} />
       <YAxis yAxisId="right" orientation="right" stroke="var(--w-slate-500)" tick={{ fontSize: 9 }} /><RT content={<CT />} /><Legend verticalAlign="top" wrapperStyle={{ fontSize: '10px', paddingBottom: '10px' }} />
-      <Area yAxisId="left" type="monotone" dataKey="chinaProduction" name="중국 생산량 (천톤)" fill="var(--w-rose-500)" stroke="var(--w-rose-500)" fillOpacity={0.15} strokeWidth={2} />
-      <Line yAxisId="right" type="monotone" dataKey="seafoodIndex" name="수산물 도매가 지수" stroke="var(--w-cyan-500)" strokeWidth={3} dot={{ r: 5, fill: 'var(--w-cyan-500)' }} />
+      <Area yAxisId="left" type="monotone" dataKey="chinaProduction" name="중국 생산량 (천톤)" fill={SERIES[0]} stroke={SERIES[0]} fillOpacity={0.15} strokeWidth={2} />
+      <Line yAxisId="right" type="monotone" dataKey="seafoodIndex" name="수산물 도매가 지수" stroke={SERIES[1]} strokeWidth={3} dot={{ r: 5, fill: SERIES[1] }} />
     </ComposedChart>
   </W>;
 }
@@ -171,7 +171,7 @@ export function W10_Portfolio({ accent }: any) {
     <BarChart data={D.proteinPortfolioData}>
       <ChartPatternDefs /><CartesianGrid strokeDasharray="3 3" stroke="rgba(140,170,255,0.12)" vertical={false} />
       <XAxis dataKey="metric" stroke="var(--w-slate-500)" tick={{ fontSize: 8, fill: 'var(--w-slate-500)' }} /><YAxis stroke="var(--w-slate-500)" tick={{ fontSize: 9 }} /><RT content={<CT />} /><Legend verticalAlign="top" wrapperStyle={{ fontSize: '10px', paddingBottom: '10px' }} />
-      <Bar dataKey="pork" name="돼지고기" fill="var(--w-rose-500)" radius={[4, 4, 0, 0]} /><Bar dataKey="seafood" name="수산물" fill="var(--w-cyan-500)" radius={[4, 4, 0, 0]} /><Bar dataKey="poultry" name="가금류" fill="var(--w-yellow-500)" radius={[4, 4, 0, 0]} />
+      <Bar dataKey="pork" name="돼지고기" fill={SERIES[0]} radius={[4, 4, 0, 0]} /><Bar dataKey="seafood" name="수산물" fill={SERIES[1]} radius={[4, 4, 0, 0]} /><Bar dataKey="poultry" name="가금류" fill={SERIES[2]} radius={[4, 4, 0, 0]} />
     </BarChart>
   </W>;
 }
@@ -184,7 +184,7 @@ export function W11_SelfSufficiency({ accent }: any) {
     <BarChart data={D.selfSufficiencyData} layout="vertical">
       <ChartPatternDefs /><CartesianGrid strokeDasharray="3 3" stroke="rgba(140,170,255,0.12)" horizontal vertical={false} />
       <XAxis type="number" stroke="var(--w-slate-500)" tick={{ fontSize: 9, fill: 'var(--w-slate-500)' }} domain={[0, 100]} /><YAxis type="category" dataKey="protein" stroke="var(--w-slate-500)" tick={{ fontSize: 9, fill: 'var(--w-slate-400)' }} width={60} /><RT content={<CT />} /><Legend verticalAlign="top" wrapperStyle={{ fontSize: '10px', paddingBottom: '10px' }} />
-      <Bar dataKey="selfRate" name="자급률 (%)" stackId="a" fill="var(--w-emerald-500)" /><Bar dataKey="importRate" name="수입 의존도 (%)" stackId="a" fill="var(--w-rose-500)" radius={[0, 4, 4, 0]} />
+      <Bar dataKey="selfRate" name="자급률 (%)" stackId="a" fill={SERIES[0]} /><Bar dataKey="importRate" name="수입 의존도 (%)" stackId="a" fill={SERIES[1]} radius={[0, 4, 4, 0]} />
     </BarChart>
   </W>;
 }
