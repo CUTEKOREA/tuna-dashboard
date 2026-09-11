@@ -542,7 +542,8 @@ export default function BusanPortDashboard() {
       <div
         style={{
           display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fit, minmax(min(480px, 100%), 1fr))',
+          // 최대 2열: 트랙 최소폭을 max(420px, 50%-gap) 로 둬 넓어도 3열이 안 되고, 1309px 창에서도 1열로 접히지 않는다
+          gridTemplateColumns: 'repeat(auto-fit, minmax(max(min(100%, 420px), calc(50% - 10px)), 1fr))',
           gap: 20,
         }}
       >

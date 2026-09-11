@@ -181,6 +181,8 @@ const card = (extra?: React.CSSProperties): React.CSSProperties => ({
   boxShadow: 'var(--dsc-card-shadow)',
   backdropFilter: 'var(--dsc-surface-blur)',
   padding: '20px 24px',
+  // 표가 든 카드의 최소폭이 표 폭으로 잡히면 짝 차트가 줄바꿈돼 전체 폭이 된다(1309px 창에서 실측). 줄바꿈은 flex-basis 로만 정한다.
+  minWidth: 0,
   ...extra,
 });
 
