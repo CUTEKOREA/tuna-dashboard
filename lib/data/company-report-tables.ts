@@ -24,6 +24,7 @@ import iotRaw from '@/public/data/companies/iot_tables_v1.json';
 import atiRaw from '@/public/data/companies/ati_tables_v1.json';
 import nirsaRaw from '@/public/data/companies/nirsa_tables_v1.json';
 import eurofishRaw from '@/public/data/companies/eurofish_tables_v1.json';
+import tecopescaRaw from '@/public/data/companies/tecopesca_tables_v1.json';
 
 /**
  * 조사보고서 표 전량 인테이크.
@@ -90,6 +91,7 @@ const INTAKES: Record<string, Intake> = {
   ati: atiRaw as unknown as Intake,
   nirsa: nirsaRaw as unknown as Intake,
   eurofish: eurofishRaw as unknown as Intake,
+  tecopesca: tecopescaRaw as unknown as Intake,
 };
 
 export const REPORT_TABLE_COMPANIES = Object.keys(INTAKES);
