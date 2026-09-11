@@ -1,9 +1,9 @@
 {
  "_meta": {
   "entry": "app/page.tsx",
-  "files": 241,
+  "files": 242,
   "widgets": 112,
-  "dataFiles": 180,
+  "dataFiles": 184,
   "generator": "scripts/widget_lineage.py"
  },
  "widgetToData": {
@@ -579,6 +579,7 @@
     "lib/data/company-fcf.ts",
     "lib/data/company-frabelle.ts",
     "lib/data/company-frinsa.ts",
+    "lib/data/company-hagoromo.ts",
     "lib/data/company-iot.ts",
     "lib/data/company-itochu.ts",
     "lib/data/company-jais.ts",
@@ -648,6 +649,10 @@
     "public/data/companies/frinsa_prose_v1.json",
     "public/data/companies/frinsa_tables_v1.json",
     "public/data/companies/frinsa_v1.json",
+    "public/data/companies/hagoromo_figures_v1.json",
+    "public/data/companies/hagoromo_prose_v1.json",
+    "public/data/companies/hagoromo_tables_v1.json",
+    "public/data/companies/hagoromo_v1.json",
     "public/data/companies/iot_figures_v1.json",
     "public/data/companies/iot_prose_v1.json",
     "public/data/companies/iot_tables_v1.json",
@@ -1314,6 +1319,18 @@
   "public/data/companies/frinsa_v1.json": [
    "components/market-understanding/CompanyAnatomyDashboard.tsx",
    "components/market-understanding/FrinsaCharts.tsx"
+  ],
+  "public/data/companies/hagoromo_figures_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/hagoromo_prose_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/hagoromo_tables_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/hagoromo_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
   ],
   "public/data/companies/iot_figures_v1.json": [
    "components/market-understanding/CompanyAnatomyDashboard.tsx"

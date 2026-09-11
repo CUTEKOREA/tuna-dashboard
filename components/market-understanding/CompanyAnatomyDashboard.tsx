@@ -268,6 +268,10 @@ import {
   dongwonfnbMeta, dongwonfnbStats, dongwonfnbSourceNotes,
   ownPlantSharePct, rawPriceChange2025Pct, generalFoodOpChangePct,
 } from '@/lib/data/company-dongwonfnb';
+import {
+  hagoromoMeta, hagoromoStats, hagoromoSourceNotes,
+  itochuSalesSharePct, tradingHousesSharePct, pbMultiple,
+} from '@/lib/data/company-hagoromo';
 
 
 const ACCENT = '#c2410c';
@@ -3344,6 +3348,62 @@ const DONGWONFNB_SPEC: CommoditySpec = {
   ].join(' · '),
 };
 
+const HAGOROMO_ACCENT = '#2f6f8f';
+
+const HAGOROMO_SPEC: CommoditySpec = {
+  key: 'company-anatomy-hagoromo',
+  title: '기업 해부: はごろもフーズ',
+  subtitle:
+    '1958년 참치 기름절임 캔의 이름 「シーチキン」을 상표로 등록한 시즈오카 회사다. 2026년 3월기 연결 매출 750.8억 엔의 47.0%가 참치 제품이지만, 자사 참치캔 공장은 焼津와 新清水 두 곳이고 전 제품을 통틀어 약 70곳 협력공장에 제조를 맡긴다. ' +
+    '공시에 이름이 나오는 참치 위탁처는 伊藤忠商事가 47%, 하고로모가 33%를 가진 인도네시아 PT Aneka Tuna 하나이고, 그 매입(62억 792만 엔)은 전량 伊藤忠을 거쳐 伊藤忠의 견적을 검토해 값을 정한다. 같은 해 하고로모 매출의 32.0%는 伊藤忠으로 나갔다.',
+  accent: HAGOROMO_ACCENT,
+  primaryKpi: {
+    label: '2026년 3월기 연결 매출 중 「ツナ等」 몫 (유가증권보고서)',
+    value: hagoromoStats.ツナ等_비중_FY26_pct,
+    decimals: 1,
+    unit: `(% · 2023년 3월기 ${hagoromoStats.ツナ等_비중_FY23_pct}%에서 3년 연속 상승)`,
+    accent: HAGOROMO_ACCENT,
+  },
+  secondaryKpis: [
+    { label: '연결 매출 중 伊藤忠商事 앞 몫 (전 제품)', value: itochuSalesSharePct(), decimals: 1, unit: `(% · 상사 세 곳 합 ${tradingHousesSharePct()}%)` },
+    { label: 'PT Aneka Tuna 제품 매입 2026년 3월기', value: hagoromoStats.ATI_매입_FY26_jpy_k / 1e5, decimals: 1, unit: '(억 엔 · 전량 伊藤忠 경유, 지분 33.0%)' },
+    { label: 'L 플레이크 70 g 세 캔 kg당 값 ÷ 이온 자체상표', value: pbMultiple(), decimals: 2, unit: '(배 · 소매 페이지 2026-09, 순중량 기준)' },
+  ],
+  stripItems: [
+    {
+      now: true,
+      eyebrow: '구조',
+      title: '자사 캔 공장 둘, 협력공장 약 70곳',
+      body: '焼津·新清水 장부가 46억 4,829만 엔·180명. 70곳은 디저트·파스타를 포함한 전 제품 기준이고 참치 위탁처 수는 공시에 없다',
+    },
+    {
+      eyebrow: '상사',
+      title: '伊藤忠이 매입과 매출 양쪽에',
+      body: 'PT Aneka Tuna 제품 매입은 伊藤忠 경유·伊藤忠 견적을 검토해 결정. 伊藤忠 앞 매출은 연결의 32.0%(전 제품)',
+    },
+    {
+      eyebrow: '재무',
+      title: '영업손실 11억 엔에서 영업이익 31억 엔으로',
+      body: '2023년 3월기 → 2026년 3월기. 회사는 매출총이익 증가와 판매장려금 감소를 들었다. 원료가·엔저 영향 금액은 공시에 없다',
+    },
+    {
+      eyebrow: '가격',
+      title: '2022년 이후 다섯 번 인상',
+      body: '2026-08-01 시치킨 가정용 80품목 6.7~25.0%·업무용 32품목 9.2~33.3%. 같은 날 발효한 EPA 무관세와 잇는 공시는 없다',
+    },
+  ],
+  briefing: proseBriefing('hagoromo'),
+  narratives: inlineReport('hagoromo', proseStages('hagoromo')),
+  chartSlots: {},
+  continuous: true,
+  sourceNotes: hagoromoSourceNotes,
+  sourceMeta: [
+    `${hagoromoMeta.회사} · ${hagoromoMeta.국가} · ${hagoromoMeta.업종}`,
+    `출처 ${hagoromoMeta.출처}`,
+    `조사 ${hagoromoMeta.조사일}`,
+  ].join(' · '),
+};
+
 export const COMPANY_CARDS: CompanyCard[] = [
   {
     key: 'frinsa',
@@ -3709,6 +3769,19 @@ export const COMPANY_CARDS: CompanyCard[] = [
       { label: '연결 매출 2025', value: `${(dongwonfnbStats.연결_매출_2025_krw_m / 1e6).toFixed(2)}조원` },
     ],
   },
+  {
+    key: 'hagoromo',
+    numeral: 'ⅩⅩⅨ',
+    name: 'はごろもフーズ',
+    country: '일본 · 시즈오카(焼津·新清水 공장)',
+    tagline: '자사 캔 공장은 둘, 공시에 이름이 나오는 참치 위탁처는 伊藤忠 경유 PT Aneka Tuna 하나.',
+    ...FLAG.일본,
+    stats: [
+      { label: 'ツナ等 매출 몫', value: `${hagoromoStats.ツナ等_비중_FY26_pct}%` },
+      { label: '伊藤忠 앞 매출', value: `${itochuSalesSharePct()}%` },
+      { label: '연결 매출 FY26/3', value: `${(hagoromoStats.연결_매출_FY26_jpy_k / 1e5).toFixed(1)}억엔` },
+    ],
+  },
 
 ];
 
@@ -3760,6 +3833,7 @@ export default function CompanyAnatomyDashboard({
     eurofish: EUROFISH_SPEC,
     tecopesca: TECOPESCA_SPEC,
     dongwonfnb: DONGWONFNB_SPEC,
+    hagoromo: HAGOROMO_SPEC,
   };
   const spec = SPECS[selected] ?? SPEC;
 
