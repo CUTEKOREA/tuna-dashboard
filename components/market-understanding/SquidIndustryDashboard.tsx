@@ -148,7 +148,6 @@ const SQUID_BASE_SLOTS: Record<string, ChartSlot[]> = {
       caption:
         '보라가 냉동 원물, 호박이 조제품(자숙 포함)이다. 2024년에 절반 아래로 꺾였다가 2025년에 42,517톤으로 돌아왔고 kg당 단가는 5년 새 두 배가 됐다. 금액으로는 조제품이 해마다 55~65%다.',
       telemetry: PERU_SYNC,
-      span: 'full' as const,
       render: () => <PeruImportChart rows={peruImports} />,
       sourceLine: `출처: 관세청 수출입무역통계 HSK 10자리 (조회 ${peruMeta.조회일}) · ${peruMeta.보고서}`,
     },
@@ -303,7 +302,6 @@ const SQUID_BASE_SLOTS: Record<string, ChartSlot[]> = {
       title: '한국 수입량과 수입단가 (톤·달러/톤)',
       caption: '막대는 수입량, 선은 톤당 단가다. 적게 사면서 비싸게 사는 흐름이 보인다.',
       telemetry: TRADE_SYNC,
-      span: 'full',
       render: () => <ImportTrendChart data={TRADE} />,
     },
     {
@@ -343,7 +341,6 @@ const SQUID_BASE_SLOTS: Record<string, ChartSlot[]> = {
       caption:
         '세계는 1968년, 한국은 1996년이 정점이다. 두 선이 함께 내려앉는 동안 오징어 전체 어획량은 유지됐다.',
       telemetry: CATCH_SYNC,
-      span: 'full',
       render: () => <CollapseChart data={CATCH} />,
     },
     {
@@ -367,7 +364,6 @@ const SQUID_BASE_SLOTS: Record<string, ChartSlot[]> = {
       caption:
         '분홍이 31년 이상이다. 20척 평균 선령 36.5년, 최고 51년이다. 2020년 건조 2척을 빼면 대부분 1970~80년대 배다.',
       telemetry: FLEET_SYNC,
-      span: 'full',
       render: () => <VesselAgeChart data={FLEET} />,
     },
     {

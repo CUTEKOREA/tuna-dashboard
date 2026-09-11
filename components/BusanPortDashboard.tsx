@@ -548,8 +548,9 @@ export default function BusanPortDashboard() {
       >
         <WeeklyDiffWidget />
         <MonthlyWidget />
+        {/* 차트는 1행 2개가 기본(UI_RULES §4). 타임라인은 가로로 긴 일정표라 전체 폭 예외. */}
+        <StayWidget />
       </div>
-      <StayWidget />
       <TimelineWidget />
     </div>
   );

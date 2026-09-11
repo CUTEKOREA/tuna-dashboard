@@ -335,7 +335,7 @@ export function CanneryTab() {
         </Panel>
 
         <Panel
-          span={12}
+          span={6}
           title="재고 점유"
           unit="(%)"
           note={`전체 ${bangkokStockShare.length}개 캐너리 중 상위 10 - 총재고 대비 비중`}

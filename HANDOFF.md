@@ -1,3 +1,14 @@
+> ✅ **2026-09-11 — 차트 고도화: /pork 색 시범 + 전 메뉴 「차트 1행 2개」 배치** [CC 지휘·작성 · Codex/Grok 검증] (브랜치 `feat/chart-token-pilot`, worktree `~/tuna-wt-chart-pilot`):
+> - /pork 시범(사용자 승인): 순위 막대 무지개 → `CHART_RANK` 단색, 두 도넛은 나라 고정색(`SUPPLY_COLOR`, 표에 없는 나라는 기타 회색) + 공통 범례, hex 34→5.
+>   체계에 없던 3색을 `--w-rose/yellow/orange-500` 로 토큰화(값 그대로). 라이트 스코프에서 재정의하면 가드 테스트가 잡는다.
+> - `scripts/fix_chart_tokens.py`(L-07 codemod): 값이 **정확히 같은** hex 만 `var(--w-*)` 로. 라이트가 재정의하는 토큰은 기본 제외(`--follow-theme` 로만),
+>   테스트 파일·canvas(echarts/zrender/three)·hex 투명도 이어붙이기 파일은 건너뛴다. 전 live 파일 기준 안전 치환은 9개뿐 — 나머지 505개는 **팔레트 결정이 먼저**다.
+> - 2열 배치(사용자 지시 「특별한 경우 빼고 그래프는 1행 2개」, UI_RULES §4): 19메뉴×탭을 브라우저로 재서(`cw`·점 수·범주 수) 판정.
+>   전체 폭 예외 = 점·범주 24개 초과, 표·지도·일정표, 집계 입도 토글, 카드 안 넓은 표, 테스트 고정 예외. 근거 차트 한 장은 반폭+빈칸.
+>   산업 7페이지 17장·기업 해부 6장 span 해제, 코스모 `.g2` 를 `repeat(2, minmax(0,1fr))`, 파노피·방콕 Panel span, 부산항·하역 역사·VDS 반폭. 상세·예외 목록은 `docs/run-log/chart-rollout_2026-09-11.md`.
+> - 검증: Codex 시범 리뷰 FAIL(6) → 수정 → Grok PASS. Grok 레이아웃 반증 FAIL(3)(6열 표 카드·38주·36점) → 반영. tsc 0 · eslint 0 errors · Vitest 1490 · 픽셀 비교(/pork 무변경 탭 0px).
+> - 남은 결정: 차트 팔레트 재설계(라이트 `--w` 값이 대비·구분 기준 미달), 이중 축 차트 4개(UI_RULES 허용 vs dataviz 금지).
+
 > ✅ **2026-09-11 — `/fleet` 260911 (금) 일일업무보고 반영** [CC]:
 > - 원자료: `해양수산본부 일일업무보고-260911 (금).docx`, SHA-256 `fe3d3ad8635cfddc22876e6a10246166e35339b783577ed7b92c87996582ad85`, 166,423 bytes, `unzip -t` 무결.
 >   보고일 2026-09-11 / 조업 기준일 2026-09-10. 154건째.

@@ -47,12 +47,24 @@ describe('V2.5-c institutional page shells', () => {
       '--w-pink-500': '#ec4899',
       '--w-cyan-500': '#06b6d4',
       '--w-emerald-400': '#34d399',
+      // 2026-09-11 차트 토큰 시범(/pork): hex 로 박혀 있던 3색을 기존 화면값 그대로 토큰화.
+      // 의도적 추가다. 값이 바뀌면 이 목록도 같이 바꿔야 한다.
+      '--w-rose-500': '#f43f5e',
+      '--w-yellow-500': '#eab308',
+      '--w-orange-500': '#f97316',
     });
     for (const [token, hex] of Object.entries(bridgeTokens)) {
       const rgb = hex.match(/[0-9a-f]{2}/gi)?.map((value) => parseInt(value, 16)).join(',');
       expect(bridgeRgbTokens[token]).toBe(rgb);
     }
     expect(Object.keys(bridgeTokens).some((token) => /chart|series|palette/.test(token))).toBe(false);
+
+    // /pork 시범 3색은 라이트 값이 아직 없다. 라이트 스코프 등 어디서든 재정의하면 /pork 라이트 화면이 바뀌므로
+    // 정의가 :root 한 곳뿐인지 파일 전체에서 본다(위 검사는 :root 구간만 보므로 이걸 못 잡는다).
+    const fullGlobals = readSource('app/globals.css');
+    for (const token of ['--w-rose-500', '--w-yellow-500', '--w-orange-500']) {
+      expect(fullGlobals.match(new RegExp(`${token}\\s*:`, 'g'))?.length).toBe(1);
+    }
   });
 
   it('removes ambient decoration and tokenizes the four remaining page shells', () => {

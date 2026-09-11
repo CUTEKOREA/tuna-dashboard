@@ -327,7 +327,8 @@ function StageSection({
       {rest.length > 0 && (
         <div className={styles.stageMore}>
           <h3 className={styles.stageMoreHeading}>근거</h3>
-          <div className={rest.length >= 2 ? styles.catchGrid : styles.catchStack}>
+          {/* 근거 차트는 한 장이어도 2열 격자의 반폭에 둔다(1행 2개 기본, 2026-09-11 사용자 지시). 전체 폭은 slot.span='full' 예외만. */}
+          <div className={styles.catchGrid}>
             {rest.map((slot) => (
               <ChartFigure key={slot.title} slot={slot} />
             ))}

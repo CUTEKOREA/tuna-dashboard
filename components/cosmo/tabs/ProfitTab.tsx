@@ -262,7 +262,6 @@ export default function Profit() {
         </Card>
 
         <Card
-          span={2}
           title="사업부별 영업손익"
           sub={`월별 영업손익을 통조림 · 어분 · FBU로 분해했다. 0선 기준. 부문별 공시는 ${opSeg.at(0)?.label ?? '-'}부터라 관측 ${opSeg.length}개월이다.`}
           note={<>{M.month}월 영업손익 {dk(n(M.op))}의 본체는 통조림 <b>{dk(n(M.op_cannery))}</b>입니다.

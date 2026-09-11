@@ -191,7 +191,6 @@ export const POLLOCK_CHART_SLOTS: Record<string, ChartSlot[]> = {
       caption:
         '옅은 막대가 할당, 짙은 막대가 어획이다. 2022년을 빼면 붙어 있다. 2026년 막대는 1~6월 누계라 짧다. 선은 입어료다.',
       telemetry: QUOTA_SYNC,
-      span: 'full',
       render: () => <PollockQuotaChart data={DATA} />,
     },
     {
@@ -244,7 +243,6 @@ export const POLLOCK_CHART_SLOTS: Record<string, ChartSlot[]> = {
       caption:
         '명란젓 2024년 막대가 튀는 것은 한 업체의 8,869톤 신고다. 연육 막대가 작은 것은 국내 생산이 아니라 수입이 공급의 97.4%라서다.',
       telemetry: MFDS_SYNC,
-      span: 'full',
       render: () => <PollockProcessingChart data={DATA} />,
     },
     {

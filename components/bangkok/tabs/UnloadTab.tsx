@@ -194,7 +194,7 @@ export function UnloadTab() {
       <Sec>트레이더 구성</Sec>
       <Grid>
         <Panel
-          span={12}
+          span={6}
           title="트레이더 구성"
           unit={traderPct ? '(%)' : '(MT)'}
           note={`${traderView.note}${traderPct ? ' 비중은 각 기간 트레이더 합계 대비 100% 스택.' : ''}`}

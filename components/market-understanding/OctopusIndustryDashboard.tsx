@@ -146,7 +146,6 @@ export const OCTOPUS_CHART_SLOTS: Record<string, ChartSlot[]> = {
       caption:
         '굵은 자주 선이 세계 합계, 호박이 중국, 파랑이 모로코다. 한국은 FAO 신고가 3종 합이라 그리지 않았다.',
       telemetry: FAO_SYNC,
-      span: 'full',
       render: () => <OctopusWorldChart data={DATA} />,
     },
     {
@@ -213,7 +212,6 @@ export const OCTOPUS_CHART_SLOTS: Record<string, ChartSlot[]> = {
       caption:
         '문어 전용 세번 0307521000. 2025년 수입액은 보고서 4,270만 달러, 원장 4,268만 달러(반올림 차)다. 조제 문어류와 한 축에 두지 않는다.',
       telemetry: KCS_SYNC,
-      span: 'full',
       render: () => <OctopusFrozenTradeChart data={DATA} />,
     },
     {
@@ -221,7 +219,6 @@ export const OCTOPUS_CHART_SLOTS: Record<string, ChartSlot[]> = {
       caption:
         '종 분리 없는 세번 1605550000. 2022년에 생겨 그 전 칸이 없다. 2024년은 원장 6,305,473 kg(6,305 t)이고 보고서는 6,306 t로 적었다(차이 원인 미확인). 냉동 문어와 한 축에 두지 않는다.',
       telemetry: KCS_SYNC,
-      span: 'full',
       render: () => <OctopusPreparedTradeChart data={DATA} />,
     },
     {

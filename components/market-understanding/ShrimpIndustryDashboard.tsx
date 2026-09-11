@@ -186,7 +186,7 @@ export const SHRIMP_CHART_SLOTS: Record<string, ChartSlot[]> = {
       caption:
         '호박색이 양식, 청록색이 자연산이다. 선은 양식 비중으로 2010년에 50%를 넘는다. 자연산 막대가 줄어든 것이 아니라 양식이 그 위에 쌓였다.',
       telemetry: SYNC,
-      span: 'full',
+      span: 'full', // 75년 추이 — 기존 전폭 예외(commodity-industry-render 테스트가 고정)
       render: () => <ShrimpTrendChart data={DATA} />,
     },
     {
@@ -235,7 +235,6 @@ export const SHRIMP_CHART_SLOTS: Record<string, ChartSlot[]> = {
       caption:
         '막대가 수입량, 선이 평균 신고단가다. 장미색이 아르헨티나 - 물량은 6위인데 단가는 가장 높은 축이다. 통관 신고 기준이라 위 생산 통계와 더할 수 없다.',
       telemetry: { status: 'STATIC' as const, syncDate: '2026년 1~5월 관세청' },
-      span: 'full',
       render: () => <ShrimpArgentinaKoreaChart />,
     },
     {
@@ -291,7 +290,6 @@ export const SHRIMP_CHART_SLOTS: Record<string, ChartSlot[]> = {
       caption:
         '막대 둘은 세번이 다르다 - 청록이 030617 원물, 호박색이 160521 조제품이다. 베트남만 강조한 이유는 두 창구가 비슷한 무게이기 때문이다. 2026년 1~6월 제품중량이라 위 생산 통계·05단계 1~5월 표와 더할 수 없다.',
       telemetry: SERIES_SYNC,
-      span: 'full',
       render: () => <ShrimpSeriesWindowsChart />,
     },
     {

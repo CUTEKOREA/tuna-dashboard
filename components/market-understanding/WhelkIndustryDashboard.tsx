@@ -264,7 +264,7 @@ export const WHELK_CHART_SLOTS: Record<string, ChartSlot[]> = {
       caption:
         '두 선이 2009년과 2010년 사이에서 끊긴다. 통계 코드가 바뀐 자리라 잇지 않았다. 점선인 소라는 다른 종이므로 합산 대상이 아니다.',
       telemetry: KOSIS_SYNC,
-      span: 'full',
+      span: 'full', // 1990~2025 36점 — 촘촘한 시계열 예외
       render: () => <WhelkKoreaSeriesChart data={DATA} />,
     },
   ],
@@ -327,7 +327,6 @@ export const WHELK_CHART_SLOTS: Record<string, ChartSlot[]> = {
       caption:
         '막대는 HS 1605.59 2026년 1~7월 제품중량이다. 장미색이 영국 - 이미 들어와 있는 본진이다. 프랑스 0은 어획이 없다는 뜻이 아니라 이 세번 추출에 이름이 없다는 뜻이다. 일곱 달이라 위 생산 통계·04단계 2024년 표와 더할 수 없다.',
       telemetry: SERIES_SYNC,
-      span: 'full',
       render: () => <WhelkSeriesWindowsChart />,
     },
     {
