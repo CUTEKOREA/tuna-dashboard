@@ -63,7 +63,10 @@ describe('KPI 소수 자릿수', () => {
       'utf8',
     );
     const offenders: string[] = [];
-    for (const m of src.matchAll(/\{(?:[^{}]|[\r\n])*?unit:\s*[`'"]\(%(?:[^{}]|[\r\n])*?\}/g)) {
+    // [^{}] 는 이미 개행을 포함한다. 예전 (?:[^{}]|[\r\n])*? 는 같은 문자를 두 갈래로
+    // 매칭해 역추적이 폭발했다 — 114KB 파일에서 6.6초, CI 에서 15초 타임아웃(2026-09-10 #1000 부터
+    // main 연속 실패). 매칭 결과는 동일하고(35건) 시간은 0ms 다.
+    for (const m of src.matchAll(/\{[^{}]*?unit:\s*[`'"]\(%[^{}]*?\}/g)) {
       if (!/decimals\s*:/.test(m[0])) offenders.push(m[0].replace(/\s+/g, ' ').slice(0, 90));
     }
     expect(offenders).toEqual([]);
