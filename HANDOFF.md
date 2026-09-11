@@ -1,3 +1,10 @@
+> ✅ **2026-09-11 — 차트 후속: /pork·코스모 계열 색 SERIES 화, head 스크립트 hydration 경고 제거** [CC 작성 · Grok 검증] (브랜치 `feat/chart-followups`):
+> - `scripts/fix_chart_series.py`(L-07): 차트 블록 안 유채색 계열을 처음 나온 순서대로 SERIES[0..] 로. 무채색·삼항 상태색·상태색 Cell 을 둔 막대의 범례 fill 은 건드리지 않는다(selftest). /pork 27계열 적용.
+> - 코스모 사업부별 영업손익 `var(--cosmo-s1/3/5)` → `C.s1..s3`. `--cosmo-s*` 정의는 가드 테스트대로 남김(다른 사용처 없음).
+> - `app/layout.tsx`: Clarity 스니펫(첫 <script> 앞에 삽입)과 AdSense 로더(show_ads 삽입)가 hydration 전에 <head> 를 바꿔 간헐적 hydration 불일치(8회 중 2회) → `next/script` afterInteractive. 수정 후 8회 0건, GA·Clarity·AdSense 요청 정상. 소유 확인은 기존 `google-adsense-account` 메타.
+> - 그대로 둔 것: 사이드바 밖 공개 페이지(/ffa-report·/squid·/falkland) — 페이지 고유 상수·표라 codemod 가 5계열만 닿는다. 반쯤 바꾸느니 둔다.
+> - 측정 함정: 로컬 E2E 스크립트가 `next dev` 부모만 죽이면 `next-server` 자식이 3917 을 쥐고 남는다 → 다음 실행이 옛 비밀값 서버에 붙어 503(렌더 0)인데 「오류 0」으로 보인다. 실행 전 `pkill -f next-server`, 판정에 렌더 수를 같이 본다.
+
 > ✅ **2026-09-11 — 차트 팔레트 일원화: 데이터 색은 전 메뉴 공통 8색, 메뉴 톤은 차트 밖에만** [CC 작성 · Grok 검증] (브랜치 `feat/chart-palette`):
 > - 정본 `lib/chart-palette.ts` `SERIES` 8색 = 파랑 #3987e5 · 주황 #d95926 · 청록 #199e70 · 노랑 #c98500 · 자홍 #d55181 · 초록 #008300 · 보라 #9085e9 · 빨강 #e66767.
 >   흰 카드·다크 표면 둘 다 validate_palette.js 전 항목 통과라 한 hex 로 두 테마를 쓴다(canvas·투명도 코드 안전). `CHART_ROLE` = 주 물량 파랑·강조 주황·보조 청록.

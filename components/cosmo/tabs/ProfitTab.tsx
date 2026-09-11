@@ -270,16 +270,16 @@ export default function Profit() {
             {' '}{opSeg.length}개월이라 수준이 아니라 <b>부호와 순서</b>만 읽습니다.</>}
         >
           <Legend items={[
-            { name: '통조림', color: 'var(--cosmo-s1)', box: true },
-            { name: '어분', color: 'var(--cosmo-s3)', box: true },
-            { name: 'FBU', color: 'var(--cosmo-s5)', box: true },
+            { name: '통조림', color: C.s1, box: true },
+            { name: '어분', color: C.s2, box: true },
+            { name: 'FBU', color: C.s3, box: true },
           ]} />
           <Chart
             data={monthlySeries} x="label" height={250} zeroLine yFmt={dk}
             series={[
-              { key: 'opCannery', name: '통조림', color: 'var(--cosmo-s1)', type: 'bar', fmt: dk },
-              { key: 'opFishmeal', name: '어분', color: 'var(--cosmo-s3)', type: 'bar', fmt: dk },
-              { key: 'opFbu', name: 'FBU', color: 'var(--cosmo-s5)', type: 'bar', fmt: dk },
+              { key: 'opCannery', name: '통조림', color: C.s1, type: 'bar', fmt: dk },
+              { key: 'opFishmeal', name: '어분', color: C.s2, type: 'bar', fmt: dk },
+              { key: 'opFbu', name: 'FBU', color: C.s3, type: 'bar', fmt: dk },
             ]}
           />
         </Card>

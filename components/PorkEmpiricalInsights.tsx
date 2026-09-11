@@ -161,9 +161,9 @@ export function InsightAsfChinaFactor({ accent = 'var(--w-rose-500)' }: any) {
           <YAxis yAxisId="right" orientation="right" stroke="var(--w-slate-500)" tick={{ fontSize: 9 }} domain={[0, 200]} />
           <Tooltip content={<CustomTooltip />} />
           <Legend verticalAlign="top" wrapperStyle={{ fontSize: '10px', paddingBottom: '10px' }} />
-          <Bar yAxisId="right" dataKey="asfOutbreaks" name="아시아 ASF 발병(건)" fill="url(#a11y-diag)" stroke="var(--w-red-500)" radius={[4, 4, 0, 0]} barSize={20} fillOpacity={0.4} />
-          <Area yAxisId="left" type="monotone" dataKey="chinaInv" name="중국 사육 두수(백만)" fill="url(#a11y-dots)" stroke="var(--w-amber-500)" fillOpacity={0.2} />
-          <Line yAxisId="right" type="step" dataKey="globalPrice" name="글로벌 돈가 지수" stroke="var(--w-sky-400)" strokeWidth={2.5} dot={{ r: 3 }} />
+          <Bar yAxisId="right" dataKey="asfOutbreaks" name="아시아 ASF 발병(건)" fill="url(#a11y-diag)" stroke={SERIES[0]} radius={[4, 4, 0, 0]} barSize={20} fillOpacity={0.4} />
+          <Area yAxisId="left" type="monotone" dataKey="chinaInv" name="중국 사육 두수(백만)" fill="url(#a11y-dots)" stroke={SERIES[1]} fillOpacity={0.2} />
+          <Line yAxisId="right" type="step" dataKey="globalPrice" name="글로벌 돈가 지수" stroke={SERIES[2]} strokeWidth={2.5} dot={{ r: 3 }} />
         </ComposedChart>
       }
     />
@@ -205,8 +205,8 @@ export function InsightHogCornRatio({ accent = '#ec4899' }: any) {
           <YAxis yAxisId="right" orientation="right" stroke="var(--w-slate-500)" tick={{ fontSize: 9 }} domain={[10, 25]} />
           <Tooltip content={<CustomTooltip />} />
           <Legend verticalAlign="top" wrapperStyle={{ fontSize: '10px', paddingBottom: '10px' }} />
-          <Area yAxisId="left" type="monotone" dataKey="cornPrice" name="옥수수 단가($/t)" fill="var(--w-amber-500)" stroke="var(--w-amber-500)" fillOpacity={0.1} />
-          <Line yAxisId="left" type="monotone" dataKey="porkWholesale" name="돈육 도매($/100lb)" stroke="var(--w-sky-400)" strokeWidth={2} strokeDasharray="5 5" />
+          <Area yAxisId="left" type="monotone" dataKey="cornPrice" name="옥수수 단가($/t)" fill={SERIES[0]} stroke={SERIES[0]} fillOpacity={0.1} />
+          <Line yAxisId="left" type="monotone" dataKey="porkWholesale" name="돈육 도매($/100lb)" stroke={SERIES[1]} strokeWidth={2} strokeDasharray="5 5" />
           <Bar yAxisId="right" dataKey="ratio" name="Hog-Corn 비율" fill={accent} radius={[4, 4, 0, 0]} barSize={25}>
             {hogCornData.map((e, index) => <Cell key={`cell-${index}`} fillOpacity={e.ratio > 15 ? 0.8 : 0.4} />)}
           </Bar>
