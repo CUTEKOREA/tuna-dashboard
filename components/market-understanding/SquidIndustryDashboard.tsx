@@ -146,7 +146,7 @@ const SQUID_BASE_SLOTS: Record<string, ChartSlot[]> = {
     {
       title: '페루산 오징어 수입 — 냉동 원물과 조제품 (톤·달러/kg)',
       caption:
-        '보라가 냉동 원물, 호박이 조제품(자숙 포함)이다. 2024년에 절반 아래로 꺾였다가 2025년에 42,517톤으로 돌아왔고 kg당 단가는 5년 새 두 배가 됐다. 금액으로는 조제품이 해마다 55~65%다.',
+        '파랑이 냉동 원물, 노랑이 조제품(자숙 포함)이다. 2024년에 절반 아래로 꺾였다가 2025년에 42,517톤으로 돌아왔고 kg당 단가는 5년 새 두 배가 됐다. 금액으로는 조제품이 해마다 55~65%다.',
       telemetry: PERU_SYNC,
       render: () => <PeruImportChart rows={peruImports} />,
       sourceLine: `출처: 관세청 수출입무역통계 HSK 10자리 (조회 ${peruMeta.조회일}) · ${peruMeta.보고서}`,
@@ -165,7 +165,7 @@ const SQUID_BASE_SLOTS: Record<string, ChartSlot[]> = {
     {
       title: '선박별 누계 물량 (판)',
       caption:
-        '30척이 한 어기에 올린 물량이다. 진한 장미색이 선민수산·현원수산 소속이다. 1위 601다가호 51,074판과 최하위 실적선 사이가 두 배다.',
+        '30척이 한 어기에 올린 물량이다. 주황이 선민수산·현원수산 소속이다. 1위 601다가호 51,074판과 최하위 실적선 사이가 두 배다.',
       telemetry: FK_SYNC,
       span: 'full' as const,
       render: () => <FalklandVesselChart />,
@@ -174,7 +174,7 @@ const SQUID_BASE_SLOTS: Record<string, ChartSlot[]> = {
     {
       title: '회사별 선단 규모와 물량',
       caption:
-        '막대가 물량, 선이 보유 척수다. 진한 장미색이 선민수산·현원수산이다. 현원수산은 0판이라 막대가 없어도 칩과 축에 남아 있다.',
+        '막대가 물량, 선이 보유 척수다. 주황이 선민수산·현원수산이다. 현원수산은 0판이라 막대가 없어도 칩과 축에 남아 있다.',
       telemetry: FK_SYNC,
       render: () => <FalklandCompanyChart />,
       sourceLine: `출처: ${falklandMeta.출처}`,
@@ -193,7 +193,7 @@ const SQUID_BASE_SLOTS: Record<string, ChartSlot[]> = {
     {
       title: '어종별 어획량 구성 (톤)',
       caption:
-        '같은 갈래는 비슷한 색이다. 오징어는 보라·남색, 갑오징어는 장미, 두족류 미분류는 회색, 그 밖의 종은 호박이다. 이 셋을 더하지 않는다.',
+        '갈래마다 한 색이다. 오징어는 파랑, 갑오징어는 주황, 두족류 미분류는 회색, 그 밖의 종은 노랑이다. 이 셋을 더하지 않는다.',
       telemetry: CATCH_SYNC,
       render: () => <SpeciesMixChart data={CATCH} />,
     },
@@ -231,7 +231,7 @@ const SQUID_BASE_SLOTS: Record<string, ChartSlot[]> = {
     {
       title: '원양 업종별 선박 수와 선령 (척)',
       caption:
-        '분홍이 선령 31년 이상이다. 한국 원양어선 198척 중 157척이 31년을 넘었고, 오징어채낚기는 20척 중 18척이다.',
+        '주황이 선령 31년 이상이다. 한국 원양어선 198척 중 157척이 31년을 넘었고, 오징어채낚기는 20척 중 18척이다.',
       telemetry: FLEET_SYNC,
       render: () => <DistantGearChart data={FLEET} />,
     },
@@ -245,13 +245,13 @@ const SQUID_BASE_SLOTS: Record<string, ChartSlot[]> = {
     {
       title: '남태평양 공해 채낚기 선단 (척·톤)',
       caption:
-        '막대는 척수, 선은 척당 평균 톤수다. 페루 1,013척은 평균 25톤짜리 소형선이고 중국 609척은 평균 948톤이다 - 같은 「채낚기」라도 배가 40배 다르다. 장미색이 한국(30척·평균 917톤)이다. ⚠ 이 등록부는 소유사를 공개하지 않아 선사 단위로는 갈 수 없다.',
+        '막대는 척수, 선은 척당 평균 톤수다. 페루 1,013척은 평균 25톤짜리 소형선이고 중국 609척은 평균 948톤이다 - 같은 「채낚기」라도 배가 40배 다르다. 주황이 한국(30척·평균 917톤)이다. ⚠ 이 등록부는 소유사를 공개하지 않아 선사 단위로는 갈 수 없다.',
       telemetry: { status: 'STATIC' as const, syncDate: '2026년 8월 등록부' },
       render: () => <OceanJiggerChart data={OCEAN_FLEET} />,
     },
     {
       title: '어획 상위 12개국 (톤)',
-      caption: '1위 중국은 자국 연안이 아니라 원양에서 대부분을 잡는다. 장미색이 한국이다.',
+      caption: '1위 중국은 자국 연안이 아니라 원양에서 대부분을 잡는다. 주황이 한국이다.',
       telemetry: CATCH_SYNC,
       render: () => <CountryRankChart data={CATCH} />,
       // 차트는 상위 12개국까지다. 15개 중 3개가 잘렸다는 사실은 그래프에 안 나온다.
@@ -267,7 +267,7 @@ const SQUID_BASE_SLOTS: Record<string, ChartSlot[]> = {
     {
       title: '해역별 오징어류 생산량 (톤)',
       caption:
-        '분홍이 태평양 동남부 - SPRFMO 관할 수역이다. 해역이 계층이라 「대서양」 안에 「서남부」가 들어 있으므로 막대를 더하면 이중계상이 된다.',
+        '주황이 태평양 동남부 - SPRFMO 관할 수역이다. 해역이 계층이라 「대서양」 안에 「서남부」가 들어 있으므로 막대를 더하면 이중계상이 된다.',
       telemetry: DW_SYNC,
       render: () => <SquidAreaChart year={DW_YEAR} />,
       sourceLine: `출처: ${deepseaMeta.출처}`,
@@ -362,7 +362,7 @@ const SQUID_BASE_SLOTS: Record<string, ChartSlot[]> = {
     {
       title: '오징어채낚기 선박별 선령 (년)',
       caption:
-        '분홍이 31년 이상이다. 20척 평균 선령 36.5년, 최고 51년이다. 2020년 건조 2척을 빼면 대부분 1970~80년대 배다.',
+        '주황이 31년 이상이다. 20척 평균 선령 36.5년, 최고 51년이다. 2020년 건조 2척을 빼면 대부분 1970~80년대 배다.',
       telemetry: FLEET_SYNC,
       render: () => <VesselAgeChart data={FLEET} />,
     },
@@ -390,7 +390,7 @@ const SQUID_BASE_SLOTS: Record<string, ChartSlot[]> = {
     {
       title: '한국 어종별 어획량 (톤)',
       caption:
-        '보라는 살오징어다. 연근해 자원이 한국 오징어 어획에서 차지하는 몫이 이만큼으로 줄었다.',
+        '파랑이 살오징어다(나머지는 회색). 연근해 자원이 한국 오징어 어획에서 차지하는 몫이 이만큼으로 줄었다.',
       telemetry: CATCH_SYNC,
       render: () => <KoreaSpeciesChart data={CATCH} />,
     },

@@ -23,10 +23,11 @@ import FfaGoodStandingPanel from './FfaGoodStandingPanel';
 // (2026-09-07: 주간 820척 → 월간 811척 으로 바뀌었는데 라벨이 820 을 계속 말했다).
 import { ffaSummary } from '@/lib/data/ffa-vrst';
 import HeroZone from './v2/HeroZone';
+import { SERIES } from '@/lib/chart-palette';
 
 /* ───────── 데이터 기준일 (data/purseSeinerData.ts 최종 검증일) ───────── */
 const DATA_DATE = '2026-08-17';
-const CONTINENT_TREEMAP_COLORS = ['#3b82f6', '#10b981', '#f59e0b', '#ef4444', '#8b5cf6', '#ec4899', '#06b6d4'];
+const CONTINENT_TREEMAP_COLORS = SERIES.slice(0, 7); // 공통 8색 순서(2026-09-11)
 const RFMO_MATRIX_COLUMNS = ['WCPFC', 'IOTC', 'IATTC', 'ICCAT'];
 /* Recharts 3: offset.left = margin.left + YAxis.width. 라벨 자리는 width만. */
 const V_BAR_MARGIN = { top: 4, right: 12, left: 4, bottom: 4 } as const;

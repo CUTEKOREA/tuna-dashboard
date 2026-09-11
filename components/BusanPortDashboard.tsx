@@ -30,11 +30,13 @@ import {
 } from '@/lib/data/busan-port';
 import WidgetCard from './WidgetCard';
 import { TelemetryBadge } from './TelemetryBadge';
+import { SERIES } from '@/lib/chart-palette';
 
+// 업종 색 — 공통 SERIES 파랑·주황·보라(2026-09-11). 당사 청록(#2dd4bf)과 이름이 겹치지 않게 북양은 보라. 아이콘 색(iconColor)은 차트 밖이라 그대로 둔다.
 const TYPE_COLORS: Record<string, string> = {
-  연승: '#38bdf8',
-  선망: '#f59e0b',
-  북양: '#8b5cf6',
+  연승: SERIES[0],
+  선망: SERIES[1],
+  북양: SERIES[6],
 };
 const GHOST = '#94a3b8';
 const INK_MUTED = 'var(--text-tertiary, #94a3b8)';
@@ -329,7 +331,7 @@ function MonthlyWidget() {
             }}
           />
           <Legend wrapperStyle={{ fontSize: 11 }} />
-          <Bar dataKey="입항" fill="#38bdf8" radius={[2, 2, 0, 0]} maxBarSize={18} />
+          <Bar dataKey="입항" fill={SERIES[0]} radius={[2, 2, 0, 0]} maxBarSize={18} />
           <Bar dataKey="출항" fill="rgba(148, 163, 184, 0.45)" radius={[2, 2, 0, 0]} maxBarSize={18} />
           <Line dataKey="전년입항" name={`${PREV} 입항`} stroke="#67e8f9" strokeDasharray="5 4" strokeWidth={1.6} dot={false} />
           <Line dataKey="전년출항" name={`${PREV} 출항`} stroke={GHOST} strokeDasharray="5 4" strokeWidth={1.4} dot={false} />
@@ -381,7 +383,7 @@ function StayWidget() {
           />
           <Legend wrapperStyle={{ fontSize: 11 }} />
           <Bar dataKey="전체포함" name="전체 포함" fill="rgba(148, 163, 184, 0.4)" radius={[2, 2, 0, 0]} maxBarSize={26} />
-          <Bar dataKey="90일제외" name="90일 초과 제외" fill="#38bdf8" radius={[2, 2, 0, 0]} maxBarSize={26} />
+          <Bar dataKey="90일제외" name="90일 초과 제외" fill={SERIES[0]} radius={[2, 2, 0, 0]} maxBarSize={26} />
           <Bar dataKey="전년90일제외" name={`전년 (90일 제외)`} fill="rgba(103, 232, 249, 0.35)" radius={[2, 2, 0, 0]} maxBarSize={26} />
         </ComposedChart>
       }
@@ -519,7 +521,7 @@ function TimelineWidget() {
             })}
           </div>
           <p style={{ fontSize: '0.66rem', color: INK_MUTED, margin: '8px 0 0' }}>
-            색상: 연승 하늘 · 선망 호박 · 북양 보라 · 당사 청록 | 적색 좌측선 = 전년 이월, 짙은 바 = 체류 중
+            색상: 연승 파랑 · 선망 주황 · 북양 보라 · 당사 청록 | 적색 좌측선 = 전년 이월, 짙은 바 = 체류 중
           </p>
         </div>
       }

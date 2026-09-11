@@ -164,7 +164,7 @@ export const MACKEREL_CHART_SLOTS: Record<string, ChartSlot[]> = {
     {
       title: '수입 원산지 구성 (%)',
       caption:
-        '장미색이 노르웨이다. 나머지를 다 합쳐도 노르웨이 하나에 못 미친다.',
+        '주황이 노르웨이다. 나머지를 다 합쳐도 노르웨이 하나에 못 미친다.',
       telemetry: IMPORT_SYNC,
       render: () => <MackerelOriginChart data={DATA} />,
       // 단가는 합계가 뜻이 없다. 물량만 더한다.
@@ -182,7 +182,7 @@ export const MACKEREL_CHART_SLOTS: Record<string, ChartSlot[]> = {
     {
       title: '수입 창구 물량 (톤)',
       caption:
-        '남색이 030354 냉동, 호박색이 0304895000 필렛이다. 노르웨이만 강조한 이유는 두 창구가 같이 크기 때문이다. 아이슬란드 0은 어획이 없다는 뜻이 아니라 이 세번 추출에 이름이 없다는 뜻이다. 2026년 1~7월 제품중량이라 위 생산 통계·04단계 1~5월 표와 더할 수 없다.',
+        '파랑이 030354 냉동(강조한 노르웨이는 주황), 청록이 0304895000 필렛이다. 노르웨이만 강조한 이유는 두 창구가 같이 크기 때문이다. 아이슬란드 0은 어획이 없다는 뜻이 아니라 이 세번 추출에 이름이 없다는 뜻이다. 2026년 1~7월 제품중량이라 위 생산 통계·04단계 1~5월 표와 더할 수 없다.',
       telemetry: SERIES_SYNC,
       render: () => <MackerelSeriesWindowsChart />,
     },

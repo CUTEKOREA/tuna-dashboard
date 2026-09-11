@@ -1,25 +1,27 @@
 /**
  * 참치 차트 시리즈 색 — 집계 차트와 위젯이 같은 종·같은 나라를 같은 색으로 그린다.
  *
- * 항구·기구는 lib/chart-palette 정체성 집을 쓴다. 오징어 보라(#7c3aed)는 쓰지 않는다.
+ * 색값은 lib/chart-palette 의 SERIES·CHART_ROLE(전 메뉴 공통)이다. 종 7개가 서로 다른 칸을 쓴다.
  */
 
-import { HUB_ID, RFMO_ID } from '@/lib/chart-palette';
+import { CHART_ROLE, HUB_ID, RFMO_ID, SERIES } from '@/lib/chart-palette';
 
 export const TUNA_ROLE = {
-  volume: HUB_ID.bkk,
-  highlight: '#be123c',
-  processed: '#c2410c',
+  volume: CHART_ROLE.volume,
+  highlight: CHART_ROLE.highlight,
+  processed: CHART_ROLE.second,
   muted: '#94a3b8',
 } as const;
 
+// 7종을 가다랑어·황다랑어·눈다랑어·날개다랑어·대서양참·남방참·태평양참 순으로 그려도, 앞 4종만 그려도
+// validate_palette.js 인접 검사를 두 테마 모두 통과하는 배치다(2026-09-11 전수 탐색). 황다랑어는 노랑.
 const SPECIES_COLOR: Record<string, string> = {
   가다랑어: TUNA_ROLE.volume,
-  황다랑어: '#059669',
-  눈다랑어: TUNA_ROLE.processed,
-  날개다랑어: '#0369a1',
-  대서양참다랑어: RFMO_ID.ICCAT,
-  남방참다랑어: RFMO_ID.CCSBT,
+  황다랑어: SERIES[3],
+  눈다랑어: SERIES[4],
+  날개다랑어: SERIES[5],
+  대서양참다랑어: SERIES[7],
+  남방참다랑어: SERIES[6],
   태평양참다랑어: TUNA_ROLE.highlight,
   참다랑어: TUNA_ROLE.highlight,
 };
@@ -42,16 +44,7 @@ const HUB_COLOR: Record<string, string> = {
   비고: HUB_ID.vig,
 };
 
-const FALLBACK = [
-  TUNA_ROLE.volume,
-  SPECIES_COLOR.황다랑어,
-  TUNA_ROLE.processed,
-  SPECIES_COLOR.날개다랑어,
-  TUNA_ROLE.highlight,
-  HUB_ID.abj,
-  '#64748b',
-  '#c2410c',
-] as const;
+const FALLBACK = SERIES;
 
 const NAMED: Record<string, string> = {
   ...SPECIES_COLOR,
@@ -83,7 +76,7 @@ export function colorForSpecies(name: string): string {
 }
 
 export function colorForRfmo(name: string): string {
-  return RFMO_COLOR[name] ?? FALLBACK[6];
+  return RFMO_COLOR[name] ?? TUNA_ROLE.muted;
 }
 
 export function colorForHub(name: string): string {

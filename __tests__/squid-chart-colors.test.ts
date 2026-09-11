@@ -8,6 +8,7 @@ import {
   colorForBasket,
   colorForSeries,
   colorForSpecies,
+  colorForSpeciesGroup,
   dashForSeries,
 } from '../lib/squid-chart-colors';
 
@@ -49,13 +50,15 @@ describe('오징어 차트 색', () => {
     expect(dashForSeries('파타고니아오징어')).toBe('6 3');
   });
 
-  it('어종 구성의 인접 막대가 같은 색을 쓰지 않는다', () => {
+  it('어종을 늘어놓는 막대는 갈래 색(오징어·갑오징어·미분류·그 밖의 종)으로 칠한다', () => {
+    // 2026-09-11 사용자 결정: 12종에 12색을 주지 않는다(8색 초과). 종 이름은 축 라벨이 말한다.
     const rows = getSquidCatchData().어종구성;
-    const fills = rows.map((row) => colorForSpecies(row.어종));
-    expect(new Set(fills).size).toBe(rows.length);
-    for (let i = 1; i < fills.length; i += 1) {
-      expect(fills[i], `${rows[i - 1].어종} / ${rows[i].어종}`).not.toBe(fills[i - 1]);
-    }
+    const fills = new Set(rows.map((row) => colorForSpeciesGroup(row.어종)));
+    expect(fills.size).toBeLessThanOrEqual(4);
+    expect(colorForSpeciesGroup('살오징어')).toBe(colorForBasket('오징어'));
+    expect(colorForSpeciesGroup('갑오징어류 미분류')).toBe(colorForBasket('갑오징어'));
+    expect(colorForSpeciesGroup('두족류 미분류')).toBe(colorForBasket('두족류 미분류'));
+    expect(colorForSpeciesGroup('그 밖의 종')).not.toBe(colorForSpeciesGroup('두족류 미분류'));
   });
 
   it('고정색이 흰 지면에서 그래픽 대비 3:1을 넘는다', () => {

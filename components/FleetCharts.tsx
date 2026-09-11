@@ -19,7 +19,7 @@ import { ChartPatternDefs } from './ChartPatterns';
 import { purseSeineCatch } from '@/lib/fleet-operations-2026-08-23';
 import { fleetDailyPublicSeries } from '@/lib/data/fleet-daily-public';
 import { FLEET_IDLE_NOTES, FLEET_IDLE_THRESHOLD_DAYS, resolveFleetIdleVessels } from '@/lib/fleet-idle-vessels';
-import { CHART_RANK, shareColor } from '@/lib/chart-palette';
+import { CHART_RANK, SERIES, shareColor } from '@/lib/chart-palette';
 
 const subscribeClientReady = () => () => {};
 const getClientReadySnapshot = () => true;
@@ -251,8 +251,8 @@ export const CumulativeTableData = cumulativeData;
 /* 일간 어획 추이 — 해역 합계가 기본이고, 옵션으로 선박별 라인을 편다.
  * 합계는 보고 헤더의 일간 어획량, 선박별은 상세 행의 어획량이라 검산 차이가 그대로 보인다. */
 const DAILY_TREND_REGIONS = {
-  pacific: { label: '태평양', color: 'var(--accent-primary)' },
-  atlantic: { label: '대서양', color: '#f59e0b' },
+  pacific: { label: '태평양', color: SERIES[0] },
+  atlantic: { label: '대서양', color: SERIES[1] },
 } as const;
 
 type DailyTrendRegion = keyof typeof DAILY_TREND_REGIONS;

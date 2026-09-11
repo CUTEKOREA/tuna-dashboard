@@ -154,14 +154,15 @@
    * 색상 + 명도 단계 + (5번째 시리즈부터) strokeDasharray 병행이 의무다.
    * 사용처는 Recharts stroke/fill에 var()로 참조하고, 5+ 시리즈 차트는
    * strokeDasharray="5 5" / "3 3" 등 대시 패턴을 시리즈별로 달리 줄 것. */
-  --chart-s1: #38bdf8;
-  --chart-s2: #34d399;
-  --chart-s3: #fbbf24;
-  --chart-s4: #a78bfa;
-  --chart-s5: #f472b6;
-  --chart-s6: #2dd4bf;
-  --chart-s7: #fb923c;
-  --chart-s8: #d4d4d8;
+  /* 범주 8색 = lib/chart-palette.ts SERIES (2026-09-11). 한 값으로 두 테마 모두 검증 통과 — 라이트 스코프도 같은 값 */
+  --chart-s1: #3987e5;
+  --chart-s2: #d95926;
+  --chart-s3: #199e70;
+  --chart-s4: #c98500;
+  --chart-s5: #d55181;
+  --chart-s6: #008300;
+  --chart-s7: #9085e9;
+  --chart-s8: #e66767;
 
   /* ===== SPACING SCALE (4px 기반) ===== */
   --space-1:  4px;
@@ -1155,14 +1156,14 @@ img, video, canvas, svg {
   --w-navy-900: #f1f4fa;     --w-navy-900-rgb: 241, 244, 250;
 
   /* V2.5 차트 팔레트 → Metabase accent 8색 (해시 고정 배정은 lib/chart-standards) */
-  --chart-s1: #509ee3;
-  --chart-s2: #88bf4d;
-  --chart-s3: #f9d45c;
-  --chart-s4: #a989c5;
-  --chart-s5: #ef8c8c;
-  --chart-s6: #98d9d9;
-  --chart-s7: #f2a86f;
-  --chart-s8: #7172ad;
+  --chart-s1: #3987e5;
+  --chart-s2: #d95926;
+  --chart-s3: #199e70;
+  --chart-s4: #c98500;
+  --chart-s5: #d55181;
+  --chart-s6: #008300;
+  --chart-s7: #9085e9;
+  --chart-s8: #e66767;
 
   background: var(--dsc-bg);
   color: var(--dsc-ink);

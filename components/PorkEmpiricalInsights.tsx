@@ -8,6 +8,7 @@ import { Activity, ShieldAlert, GitFork } from 'lucide-react';
 import WidgetCard from './WidgetCard';
 import SafeResponsiveContainer from './SafeResponsiveContainer';
 import { ChartPatternDefs } from './ChartPatterns';
+import { SERIES, SERIES_OTHER } from '@/lib/chart-palette';
 
 const customTooltipStyle = {
   background: 'rgba(10, 16, 40, 0.95)',
@@ -49,16 +50,16 @@ const processedMeatData = [
   { name: '기타', value: 3.7 },
 ];
 // 두 도넛이 같은 나라를 같은 색으로 칠하도록 색을 이름에 고정한다. 예전엔 순번(index)으로 칠해서
-// 미국이 신선육에선 빨강, 가공육에선 amber 로 나왔다. 배치는 dataviz 검증기(이웃 조각 구분·대비)를
-// 다크·라이트 모두 통과한 조합이고, 대비가 3:1 미만인 색(라이트 pink·회색)은 아래 범례로 보완한다.
+// 미국이 신선육에선 빨강, 가공육에선 amber 로 나왔다. 색은 공통 SERIES 순서(2026-09-11) — 신선육 조각 순서
+// (미국·스페인·캐나다·네덜란드·독일)대로 두 테마 모두 인접 검사를 통과한다. 이름은 아래 범례가 말한다.
 const SUPPLY_COLOR: Record<string, string> = {
-  미국: 'var(--w-blue-500)',
-  스페인: 'var(--w-pink-500)',
-  캐나다: 'var(--w-cyan-500)',
-  네덜란드: 'var(--w-amber-500)',
-  독일: 'var(--w-violet-500)',
-  덴마크: 'var(--w-emerald-500)',
-  기타: 'var(--w-slate-500)',
+  미국: SERIES[0],
+  스페인: SERIES[1],
+  캐나다: SERIES[2],
+  네덜란드: SERIES[3],
+  독일: SERIES[4],
+  덴마크: SERIES[5],
+  기타: SERIES_OTHER,
 };
 // 표에 없는 나라가 데이터에 들어오면 회색(기타 색)으로 칠하고 범례에도 이름을 올린다 — 색이 비거나 범례에서 빠지지 않게.
 const supplyColor = (name: string) => SUPPLY_COLOR[name] ?? SUPPLY_COLOR['기타'];
