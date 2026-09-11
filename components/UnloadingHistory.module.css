@@ -22,6 +22,8 @@
 .chartTitle > div { display: flex; align-items: center; gap: 8px; }
 .chartTitle span { color: #94a3b8; font-size: .72rem; }
 .chart { min-width: 0; }
+/* 막대 5개짜리 차트가 전체 폭으로 늘어나지 않게 반폭에 둔다(차트 1행 2개 기본, 2026-09-11). */
+@media (min-width: 900px) { .chartCard { width: calc(50% - 10px); } }
 
 .yearTabs { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 6px; margin: 20px 0 14px; padding: 5px; border: 1px solid rgba(148, 163, 184, .14); border-radius: 12px; background: rgba(2, 8, 23, .3); }
 .yearTab, .portButton, .retryButton { min-height: 44px; border: 1px solid transparent; border-radius: 9px; background: transparent; color: #94a3b8; font-weight: 750; cursor: pointer; transition: transform .2s ease, color .2s ease, background .2s ease, border-color .2s ease; }

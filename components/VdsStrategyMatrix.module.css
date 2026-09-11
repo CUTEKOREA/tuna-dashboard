@@ -309,3 +309,7 @@
     grid-template-columns: 1fr;
   }
 }
+
+@media (min-width: 900px) {
+  .halfPanel { width: calc(50% - var(--space-6) / 2); }
+}

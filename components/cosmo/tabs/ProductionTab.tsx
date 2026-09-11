@@ -421,7 +421,6 @@ export default function Production() {
       <div className="grid g2">
         {gapValuation && (
           <Card
-            span={2}
             title={`부족분 ${mt(gapValuation.shortMt)}의 금액 환산`}
             sub="조치의 가치를 설비 투자·인력 투입과 비교하려면 금액이 필요하다. 두 기준을 범위로 놓는다."
             note={<>총원가 기준은 <b>{musd(gapValuation.costBasis)}</b>
@@ -458,9 +457,9 @@ export default function Production() {
       <SecHead id="monthly-plan">월간 업무보고 — 월별 계획 대비</SecHead>
       <div className="grid g2">
         <Card
+          span={2} /* 카드 안 6열 표가 반폭이면 가로 스크롤이 생긴다 — 전체 폭 예외 */
           title="월별 원어 처리량 — 계획 vs 실적·변경"
           sub={`${mr.docSource.file} 기준. 1~${tp.actualThrough}월은 실적, ${tp.actualThrough + 1}월 이후는 변경계획이다. 단위 MT.`}
-          span={2}
           note={<>실적 구간 1~{tp.actualThrough}월만 보면 계획 {n0(actualPlan)} MT 대비 <b>{n0(actualDone)} MT</b>
             ({pct(actualDone / actualPlan - 1, 1)})입니다. 연간은 계획 {n0(tp.annual.planMt)} MT 를
             {' '}<b>{n0(tp.annual.revisedMt)} MT 로 하향</b>({n0(tp.annual.revisedMt - tp.annual.planMt)} MT) 개정했는데,
@@ -514,7 +513,6 @@ export default function Production() {
         <Card
           title="컨테이너 출고 — CBU 계획 대비 선적"
           sub={`CBU 는 계획 대비 On Board, FBU 는 계획 구분 없이 한 행이다. 단위 FCL.`}
-          span={2}
           note={<>실적 구간 1~{cn.actualThrough}월 CBU 는 계획 {ctnActualPlan} FCL 대비 <b>{ctnActualDone} FCL</b>
             ({pct(ctnActualDone / ctnActualPlan - 1, 1)})입니다. 연간으로는 {n0(cn.annual.cbuPlan)} → {n0(cn.annual.cbuOnBoard)} FCL 로
             {' '}<b>{cn.annual.cbuGap} FCL</b> 부족합니다. 5월만 계획을 {cn.cbuOnBoard[4] - cn.cbuPlan[4]} FCL 넘겼는데,

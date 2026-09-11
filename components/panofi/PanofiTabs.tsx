@@ -131,7 +131,7 @@ export function HomeTab() {
       <Sec>연도별 실적</Sec>
       <Grid>
         <Panel
-          span={12}
+          span={6}
           title="매출과 손익"
           unit={`백만 달러 · 2026은 ${ytd.label} 누계`}
           note={`2025년은 영업이익 1,291만불로 기록 해였으나 금융비용 -676만불과 법인세로 순이익이 0 부근이었다. ${ytd.label} 영업이익은 ${kusd(ytd.operatingKusd)}로 흑자이나 이자 ${kusd(ytd.financeKusd)}와 법인세 ${kusd(ytd.taxKusd)}가 순손익을 ${kusd(ytd.netKusd)}로 밀어냈다. 전략보고가 적은 상반기 순손익 ${kusd(h1.netKusd)}은 추징을 합친 H1 빈티지라 원장 Ⅶ행과 섞지 않는다. 회계 확정 결산(세디 장부의 달러 환산 - 이 차트의 전략보고 축과 다른 세 번째 축)은 2025 순이익을 +2,298만불로 집계하나 이는 세디 절상 환산이익이 만든 값이며 외환 제외 실질은 -249만불이다.`}
@@ -318,7 +318,7 @@ export function FleetTab() {
 
         {/* 물량과 척수는 단위가 다르다. 한 그림에 두 축을 얹으면 없는 상관을 만들어 낸다 —
             두 패널로 나눠 각자 축을 하나만 갖게 한다. */}
-        <Panel span={3} title="역내 입항 물량" unit="톤 · 세네갈·EU 선단" src={SRC.weekly}>
+        <Panel span={12} title="역내 입항 물량" unit="톤 · 세네갈·EU 선단" src={SRC.weekly}>
           <Chart
             data={regionalLandingSeries} x="label" height={200} xInterval={6}
             series={[S('입항톤수', '입항 물량', C.rank, { type: 'bar' })]}
@@ -326,7 +326,7 @@ export function FleetTab() {
           />
         </Panel>
         <Panel
-          span={3} title="역내 입항 척수" unit="척"
+          span={12} title="역내 입항 척수" unit="척"
           note="역내 입항이 몰리면 가공사 처리 슬롯과 선석이 함께 막혀 항차 사이클이 늘어난다. 목표는 6일 이내다."
           src={SRC.weekly}
         >
@@ -447,7 +447,7 @@ export function PriceTab() {
 
       <Sec>채널 정책과 국제 기준가</Sec>
       <Grid>
-        <Panel span={8} title="채널 정책" unit="7월 기준" src={`${SRC.strategy} §6`}>
+        <Panel span={6} title="채널 정책" unit="7월 기준" src={`${SRC.strategy} §6`}>
           <Table head={['채널', '지역', '어가 (달러/톤)', '성격', '하반기 방침']}>
             {channels.map((c) => (
               <tr key={c.channel}>
@@ -462,7 +462,7 @@ export function PriceTab() {
         </Panel>
 
         <Panel
-          span={4} title="방콕 기준가" unit="달러/톤 · 가다랑어"
+          span={6} title="방콕 기준가" unit="달러/톤 · 가다랑어"
           note={industry.skipjackBangkok.caveat}
           src={SRC.grok}
         >
@@ -647,7 +647,7 @@ export function CashTab() {
       <Sec>자금유동성</Sec>
       <Grid>
         <Panel
-          span={8} title="월말 잔액과 과부족" unit="천 달러 · 과부족 = 현금 + 매출채권 − 매입채무"
+          span={6} title="월말 잔액과 과부족" unit="천 달러 · 과부족 = 현금 + 매출채권 − 매입채무"
           note={liquidity.meta.caveat}
           src={SRC.board}
         >
@@ -670,7 +670,7 @@ export function CashTab() {
         </Panel>
 
         <Panel
-          span={4} title="회수했는데 왜 더 나빠졌나"
+          span={6} title="회수했는데 왜 더 나빠졌나"
           note="매출채권을 줄이고 현금을 늘렸는데도 과부족이 벌어진 이유는 매입채무다. 회수한 자금이 유류·수리·이자로 나가고 외상이 그보다 크게 쌓였다. 미수금 회수만으로는 뒤집히지 않으며 매입채무 만기 재조정과 관계사 결제 캘린더가 함께 가야 한다."
           src={SRC.board}
         >
@@ -1010,7 +1010,7 @@ export function TradeTab() {
       <Sec>거울통계 교차검증</Sec>
       <Grid>
         <Panel
-          span={12} title="가나 보고 vs 상대국 보고" unit={`백만 달러 · ${mirror.meta.year}년`}
+          span={6} title="가나 보고 vs 상대국 보고" unit={`백만 달러 · ${mirror.meta.year}년`}
           note={mirror.meta.interpretation}
           src="UN Comtrade public preview · 가나 보고 vs 상대국 보고 대조"
         >

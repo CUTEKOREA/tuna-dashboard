@@ -125,7 +125,6 @@ export const TUNA_ANATOMY_CHART_SLOTS: Record<string, ChartSlot[]> = {
       title: '2024년 세계 참치 어획 상위 12개국 (톤)',
       caption: '산호색이 한국이다. 인도네시아·에콰도르·일본·대만 다음 5위이고 일본과는 16,176톤 차이다. 연안국과 원양국이 섞여 있다.',
       telemetry: FAO_SYNC,
-      span: 'full',
       render: () => <TunaAnatomyCountryChart data={DATA} />,
     },
   ],
@@ -210,7 +209,6 @@ export const TUNA_ANATOMY_CHART_SLOTS: Record<string, ChartSlot[]> = {
       title: '참치 캔 브랜드별 생산 2022~2025 (톤)',
       caption: '식약처 생산실적을 품목명으로 브랜드에 귀속했다. 동원 막대에는 삼진물산·신진물산 위탁분이 들어 있다. 오뚜기의 2024년 급증은 원문 그대로이고 사유는 공개되지 않았다.',
       telemetry: MFDS_SYNC,
-      span: 'full',
       render: () => <TunaAnatomyCanBrandChart data={DATA} />,
     },
     {
@@ -285,7 +283,6 @@ export const TUNA_ANATOMY_CHART_SLOTS: Record<string, ChartSlot[]> = {
       title: '공시 10사 매출·영업이익 2024 (억원)',
       caption: '동원산업·동원F&B·오뚜기·사조대림은 연결 매출이 커서 축이 깨지므로 뺐다. 사조산업은 2024년 영업손실 94억원, 신라교역은 영업이익 164억원이다.',
       telemetry: DART_SYNC,
-      span: 'full',
       render: () => <TunaAnatomyFinanceChart data={DATA} />,
     },
   ],

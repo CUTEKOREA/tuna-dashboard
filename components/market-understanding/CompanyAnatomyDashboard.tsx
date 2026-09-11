@@ -396,7 +396,6 @@ const CHART_SLOTS: Record<string, ChartSlot[]> = {
       caption: '상위 6개국. 노란 막대가 싱가포르 구매본부다. 판매법인이 아닌데 그룹 2위권이다.',
       telemetry: SYNC,
       render: () => <FrinsaBaiChart />,
-      span: 'full',
       sourceLine: '회사 EINF ‘국가별 세전이익’ (국가 합계와 산술 일치 검증)',
     },
   ],
@@ -406,7 +405,6 @@ const CHART_SLOTS: Record<string, ChartSlot[]> = {
       caption: '자사몰·전문점·대형마트 진열가를 kg 단가로 환산했다. 노란 막대가 100 €/kg 초과 층이다.',
       telemetry: SYNC,
       render: () => <FrinsaPriceLadderChart />,
-      span: 'full',
       sourceLine: '자사몰 WooCommerce API 실측 (제품 69종, 2026-08-20) · Alcampo·Carrefour·DIA 진열가',
     },
     {
@@ -479,7 +477,6 @@ const CHART_SLOTS: Record<string, ChartSlot[]> = {
       caption: '2025년 Frinsa는 미공표라 막대가 없다. 0이 아니다.',
       telemetry: SYNC,
       render: () => <FrinsaGaliciaChart />,
-      span: 'full',
       sourceLine: '각 사 공시·언론 (economiadigital 2025-07 / 2026-05 · Europa Azul)',
     },
   ],
@@ -1314,7 +1311,6 @@ const ALB_CHART_SLOTS: Record<string, ChartSlot[]> = {
       caption: '등록부 확인 12척. 상위 3척이 4,400 GT 대로 세계 최대급이고 나머지와 층이 갈린다.',
       telemetry: SYNC,
       render: () => <AlbFleetGtChart />,
-      span: 'full',
       sourceLine: 'WCPFC·IOTC·ICCAT·IATTC 선박등록부 (2026-08-17 수집)',
     },
     {
@@ -1359,7 +1355,6 @@ const ALB_CHART_SLOTS: Record<string, ChartSlot[]> = {
       caption: '에콰도르 한 곳이 매출 74% · 인력 92%다. 스페인 두 공장이 줄 때 Posorja는 늘었다.',
       telemetry: SYNC,
       render: () => <AlbPlantChart />,
-      span: 'full',
       sourceLine: 'EINF 2025 (사내 조사보고서 인용)',
     },
     {
@@ -1394,7 +1389,6 @@ const ALB_CHART_SLOTS: Record<string, ChartSlot[]> = {
       caption: '프린사가 부위로 갈렸다면 이쪽은 인증(APR·MSC)과 대용량으로 갈린다. 최고가도 업소·수출 규격이다.',
       telemetry: SYNC,
       render: () => <AlbCamposPriceChart />,
-      span: 'full',
       sourceLine: 'clubcampos.com 실측 (2026-08) · 단일가 16 SKU',
     },
     {

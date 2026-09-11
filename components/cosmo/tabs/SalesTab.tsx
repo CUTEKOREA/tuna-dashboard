@@ -317,7 +317,6 @@ export default function Sales() {
       <SecHead>견적 마진</SecHead>
       <div className="grid g2">
         <Card
-          span={2}
           title="견적 마진 분포"
           sub={`마진값이 기록된 견적 ${quoteStats.withMargin}건의 구간별 건수. 붉은 막대가 위험 구간.`}
           note={<>분포가 <b>{pct(quoteStats.min, 2)} ~ {pct(quoteStats.max, 2)}</b> 안에 전부 들어가고

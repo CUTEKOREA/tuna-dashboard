@@ -519,7 +519,6 @@ const CATCH_BASE_SLOTS: Record<string, ChartSlot[]> = {
       title: '한국 어획량과 세계 점유율 20년',
       caption: '막대는 어획량(톤), 선은 세계 점유율(%)이다. 물량이 늘어도 점유율은 5%대에서 움직인다.',
       telemetry: CATCH_SYNC,
-      span: 'full',
       render: () => <KoreaTrendChart data={CATCH} />,
     },
     {

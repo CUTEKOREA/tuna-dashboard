@@ -190,8 +190,8 @@ export default function VdsStrategyMatrix() {
         </div>
       </div>
 
-      {/* BOTTOM SECTION: Line Chart Trend Analyzer */}
-      <div className={s.panel} style={{ marginTop: 'var(--space-6)' }}>
+      {/* BOTTOM SECTION: Line Chart Trend Analyzer — 4개 연도 추이라 반폭(차트 1행 2개 기본, 2026-09-11) */}
+      <div className={`${s.panel} ${s.halfPanel}`} style={{ marginTop: 'var(--space-6)' }}>
         <div className={s.panelTitle} style={{ marginBottom: 'var(--space-2)' }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: 16 }}>
             <span><TrendingUp size={16} style={{display:'inline', marginRight:6, verticalAlign:'-3px'}}/>수역별 조업일수(VDS) 잔여일수 4개년 트렌드</span>
