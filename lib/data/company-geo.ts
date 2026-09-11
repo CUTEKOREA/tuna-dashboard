@@ -126,6 +126,9 @@ export const HQ_POINTS: GeoPoint[] = [
   { company: 'eurofish', numeral: 'ⅩⅩⅥ', kind: 'hq', label: 'Eurofish 본점·공장', country: '에콰도르',
     lat: -0.99, lng: -80.69, basis: 'ⅩⅩⅥ · 몬테크리스티 Arroyo Azul, Calle Transmarina y Av. Hugo Mayo (만타–몬테크리스티 경계, 근사 좌표) · 주주 IBEROPESCA 39.93%',
     note: '1998-09-08 만타 등기 · 2007 본점 몬테크리스티 이전 · EU 승인 575' },
+  { company: 'tecopesca', numeral: 'ⅩⅩⅦ', kind: 'hq', label: 'Tecopesca 본점·공장', country: '에콰도르',
+    lat: -0.97, lng: -80.64, basis: 'ⅩⅩⅦ · 하라미호 Km 4.5 Vía Manta–Rocafuerte (MSC 유통망 증서 주소, 근사 좌표) · 지주 GRUPOVISION GVHOLDING 99.99%',
+    note: '1999-06-15 만타 설립 · EU 승인 591 · 배 없는 캐너리' },
 ];
 
 /**
@@ -276,6 +279,12 @@ export const PLANT_POINTS: GeoPoint[] = [
     lat: -0.98, lng: -80.68, sizeValue: 171.9, sizeUnit: 'MT/일',
     basis: 'ⅩⅩⅥ · 2019 경영자 보고서 가공 41,422.74 t ÷ 241일 = 일 171.9 t (회사 자칭 연간 최대 76,800 t 은 조건 미공개)',
     note: '캔·파우치 73.45% · 로인 26.38% · 펫푸드 공장 2019 가동 · 같은 부지에 Marprot 어분 공장(EU 3546)' },
+
+  // ── ⅩⅩⅦ Tecopesca — 감사 주석의 설비 능력(자숙 기준) ─────
+  { company: 'tecopesca', numeral: 'ⅩⅩⅦ', kind: 'plant', label: 'Tecopesca 하라미호 공장', country: '에콰도르',
+    lat: -0.96, lng: -80.63, sizeValue: 230, sizeUnit: 'MT/일',
+    basis: 'ⅩⅩⅦ · 2017 감사 주석 자숙 230 t/일(청소 210 t/일). 회사 게시물 자칭 2024 일 340 t 은 정의가 달라 쓰지 않았다',
+    note: '가공 원료 55% 캔 · 45% 로인(2018 경영자 보고서) · MSC 유통망 MSC-C-55841 · BRCGS AA+' },
 ];
 
 /**
@@ -372,6 +381,7 @@ export const NO_FLEET: { company: string; basis: string }[] = [
   { company: 'princes', basis: 'ⅩⅩⅡ · ISSF PVR(2026-08-20)·FFA Good Standing(2026-09-02) 두 명부에 0척. 회사 ESG 보고서도 「선박을 소유하지 않는다」로 적는다' },
   { company: 'iot', basis: 'ⅩⅩⅢ · 자사 명의 어선 0척. 이 나라 국적 선망 13척은 경쟁 그룹 공급선 명부와 IMO 기준 전부 겹치지만 이 공장의 구매 문서는 없다' },
   { company: 'ati', basis: 'ⅩⅩⅣ · WCPFC 승인선박기록(2026-08-17) 인도네시아 145척 중 소유사·주소 0척. FIP 명부 118척은 운영사 소유다' },
+  { company: 'tecopesca', basis: 'ⅩⅩⅦ · IATTC 등록부(2026-08-17) 소유·운항자 칸 0척, TUNACONS MSC 부속서 0건. 원료는 해마다 바뀌는 매입처(2019 특수관계자 표 13곳)에서 산다' },
 ];
 
 /** 지도에 찍는 모든 점. */

@@ -260,6 +260,10 @@ import {
   eurofishMeta, eurofishStats, eurofishSourceNotes,
   linkedFleetSharePct, relatedPurchaseSharePct, salesGrowthPct as eurofishSalesGrowthPct, transferredShareOfLinkedPct,
 } from '@/lib/data/company-eurofish';
+import {
+  tecopescaMeta, tecopescaStats, tecopescaSourceNotes,
+  seriesSupplierSharePct, relatedPurchaseShare2018Pct, salesGrowth2024Pct, skipjackShare2018Pct,
+} from '@/lib/data/company-tecopesca';
 
 
 const ACCENT = '#c2410c';
@@ -3229,6 +3233,63 @@ const EUROFISH_SPEC: CommoditySpec = {
   ].join(' · '),
 };
 
+const TECOPESCA_ACCENT = '#8a5a2b';
+
+const TECOPESCA_SPEC: CommoditySpec = {
+  key: 'company-anatomy-tecopesca',
+  title: '기업 해부: Tecopesca',
+  subtitle:
+    '에콰도르 만타 옆 하라미호의 참치 캐너리다. 동태평양 참치위원회 등록부 소유·운항자 칸에 이 회사 명의 배는 0척이고 원료는 전량 사 온다. ' +
+    '2019년 감사 주석의 원료 매입처에 Tri Marine·동원산업이, 2018년에는 Albacora가 있고, 판로에는 2015년 매출의 28%를 받은 Frinsa와 Thai Union의 미국 법인이 있다. ' +
+    '주석은 이 매입처들을 특수관계자 표에 적지만 근거를 밝히지 않는다 — 지분 관계로 읽지 않는다.',
+  accent: TECOPESCA_ACCENT,
+  primaryKpi: {
+    label: '2019 특수관계자 원료 매입 중 이 시리즈 회사(Tri Marine·동원) 몫',
+    value: seriesSupplierSharePct(),
+    decimals: 1,
+    unit: `(% · ${(tecopescaStats.시리즈_매입_2019_usd / 1e4).toFixed(0)}만 달러 / ${(tecopescaStats.특수관계_원료매입_2019_usd / 1e4).toFixed(0)}만 달러 · 최대 공급원은 시리즈 밖 Jadran 계열 두 선사 34.4%)`,
+    accent: TECOPESCA_ACCENT,
+  },
+  secondaryKpis: [
+    { label: '2018 특수관계자 원료 매입 / 원료 매입액', value: relatedPurchaseShare2018Pct(), decimals: 1, unit: '(% · 같은 해 금액끼리 · 2019 경영자 보고서 톤수는 2018 복제라 쓰지 않는다)' },
+    { label: '2018 원료 톤수 중 가다랑어', value: skipjackShare2018Pct(), decimals: 1, unit: '(% · 2018 경영자 보고서 어종 표)' },
+    { label: '매출 증가 2023 → 2024', value: salesGrowth2024Pct(), decimals: 1, unit: '(% · 회사감독청 순위 원자료 · 같은 해 총자산은 6.0% 증가)' },
+  ],
+  stripItems: [
+    {
+      now: true,
+      eyebrow: '원료',
+      title: '배 0척, 매입처 13곳',
+      body: 'Jadran 계열 파나마 선사 둘·Cristina Fishing·Tri Marine·Echebastar·동원산업 247만 달러(2019). 매입처 구성이 해마다 바뀐다',
+    },
+    {
+      eyebrow: '판로',
+      title: 'Frinsa 28% · Tri-Union 94건',
+      body: `2015년 최대 고객 Frinsa. 조제참치 수출 FOB 2024 ${tecopescaStats.조제참치_수출_FOB_2024_백만usd}백만 달러(${tecopescaStats.조제참치_수출_순위_2024}위). 콜롬비아로 Subway 상표 파우치`,
+    },
+    {
+      eyebrow: '관계사',
+      title: '상표 대금이 들어오지 않았다',
+      body: 'Tunalia 상표를 2018-12 관계사에 계약가 250만 달러+세금으로 넘겼고, 매각이익 118만 달러가 그해 순이익 19만 달러보다 컸다',
+    },
+    {
+      eyebrow: '관세',
+      title: '유럽 0%는 매입처 배마다',
+      body: '스페인·프랑스 기국은 적격 요건 대상, 파나마 기국은 중미 누적 조건부, 미국·한국 기국은 0% 칸 밖. 어느 캔에 어느 배 원료가 들었는지는 공개 자료로 가를 수 없다',
+    },
+  ],
+  briefing: proseBriefing('tecopesca'),
+  narratives: inlineReport('tecopesca', proseStages('tecopesca')),
+  chartSlots: {},
+  continuous: true,
+  sourceNotes: tecopescaSourceNotes,
+  sourceMeta: [
+    `${tecopescaMeta.회사} · ${tecopescaMeta.국가} · ${tecopescaMeta.업종}`,
+    `출처 ${tecopescaMeta.출처}`,
+    `조사 ${tecopescaMeta.조사일}`,
+  ].join(' · '),
+};
+
 export const COMPANY_CARDS: CompanyCard[] = [
   {
     key: 'frinsa',
@@ -3568,6 +3629,19 @@ export const COMPANY_CARDS: CompanyCard[] = [
       { label: '2024 매출', value: `${(eurofishStats.매출_2024_usd / 1e6).toFixed(0)}M$` },
     ],
   },
+  {
+    key: 'tecopesca',
+    numeral: 'ⅩⅩⅦ',
+    name: 'Tecopesca',
+    country: '에콰도르 · 하라미호(만타)',
+    tagline: '배가 없는 캐너리, 원료와 판로가 앞 편 회사 다섯과 닿아 있다.',
+    ...FLAG.에콰도르,
+    stats: [
+      { label: '등록부 소유', value: `${tecopescaStats.등록부_소유_척} 척` },
+      { label: '시리즈 회사 원료 몫', value: `${seriesSupplierSharePct()}%` },
+      { label: '2024 매출', value: `${(tecopescaStats.매출_2024_usd / 1e6).toFixed(0)}M$` },
+    ],
+  },
 
 ];
 
@@ -3617,6 +3691,7 @@ export default function CompanyAnatomyDashboard({
     ati: ATI_SPEC,
     nirsa: NIRSA_SPEC,
     eurofish: EUROFISH_SPEC,
+    tecopesca: TECOPESCA_SPEC,
   };
   const spec = SPECS[selected] ?? SPEC;
 

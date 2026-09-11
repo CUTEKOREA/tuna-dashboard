@@ -24,6 +24,7 @@ import iotRaw from '@/public/data/companies/iot_figures_v1.json';
 import atiRaw from '@/public/data/companies/ati_figures_v1.json';
 import nirsaRaw from '@/public/data/companies/nirsa_figures_v1.json';
 import eurofishRaw from '@/public/data/companies/eurofish_figures_v1.json';
+import tecopescaRaw from '@/public/data/companies/tecopesca_figures_v1.json';
 
 /**
  * 조사보고서 그림 인테이크 — 팩샷·차트·문서 캡처.
@@ -86,6 +87,7 @@ const INTAKES: Record<string, Intake> = {
   ati: atiRaw as unknown as Intake,
   nirsa: nirsaRaw as unknown as Intake,
   eurofish: eurofishRaw as unknown as Intake,
+  tecopesca: tecopescaRaw as unknown as Intake,
 };
 
 export const REPORT_FIGURE_COMPANIES = Object.keys(INTAKES);
