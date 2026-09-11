@@ -9,6 +9,7 @@ import raw from '../../public/data/squid_peru_supply_v1.json';
  * ⚠ **한국 전체 분모는 네 HS6 합산 바스켓이다.** s10 본문의 「10자리 오징어만」 비중과 같은 줄에 놓지 않는다.
  * ⚠ **CHD 수출액은 전 어종 합계이고 매출이 아니다.**
  * ⚠ 「한국계 경영」은 등기 임원 성명으로 판단한 값이다. 개인 이름은 싣지 않는다.
+ * ⚠ `예(미팅)` 은 사내 미팅(대표 면담)으로 확인한 경우다. `미팅_자칭` 값은 본인 진술이라 공개 자료 값과 섞지 않는다.
  */
 
 export interface PeruImportRow {
@@ -35,13 +36,34 @@ export interface PeruPlantRow {
   자숙_pct: number;
   CHD수출_2024_usd: number | null;
   SANIPES_영국승인: string | null;
+  미팅_자칭?: PeruPlantMeetingClaim;
+}
+
+/** 사내 미팅에서 대표가 직접 말한 값(검증되지 않음). */
+export interface PeruPlantMeetingClaim {
+  기준일: string;
+  출처: string;
+  연안조업선_척: number;
+  가공능력_톤일: number;
+  월작업일: number;
+  냉동창고_톤: number;
+  자숙_pct_약: number;
+  주요_한국파트너: string;
+  신뢰: string;
 }
 
 const data = raw as unknown as {
   _meta: { 출처: string; 보고서: string; 범위_수입: string; 조회일: string };
   수입: PeruImportRow[];
   공장: PeruPlantRow[];
-  원장요약: { 전체_신고건수: number; 상위14사_신고건수: number; 한국계7사_신고건수: number; 한국계7사_직원: number };
+  원장요약: {
+    전체_신고건수: number;
+    상위14사_신고건수: number;
+    한국계7사_신고건수: number;
+    한국계7사_직원: number;
+    한국계_미팅포함8사_신고건수: number;
+    한국계_미팅포함8사_직원: number;
+  };
 };
 
 export const peruMeta = data._meta;

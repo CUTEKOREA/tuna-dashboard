@@ -171,7 +171,8 @@ export function PeruPlantTable({ rows, total }: { rows: PeruPlantRow[]; total: n
       <table className={styles.factTable}>
         <caption className={styles.factCaption}>
           페루산 오징어 수입신고 {total.toLocaleString()}건 가운데 신고가 많은 제조소 14곳. 신고 건수는 통관
-          횟수이지 수량이 아니다. 「한국계」는 페루 세무당국 등기 임원 성명으로 판단했다.
+          횟수이지 수량이 아니다. 「한국계」는 페루 세무당국 등기 임원 성명으로 판단했고, KSL 은 2026-09-11 사내
+          미팅(대표 면담)으로 확인했다. 미팅에서 들은 값은 본인 진술이라 「자칭」으로 따로 적는다.
         </caption>
         <thead>
           <tr>
@@ -188,7 +189,13 @@ export function PeruPlantTable({ rows, total }: { rows: PeruPlantRow[]; total: n
               <th scope="row">
                 {row.공장}
                 <span className={styles.factNote}>
-                  {row.한국계경영 === '예' ? '한국계 경영' : row.한국계경영 === '아니오' ? '페루·기타 경영' : '경영 판단불가'}
+                  {row.한국계경영 === '예'
+                    ? '한국계 경영'
+                    : row.한국계경영 === '예(미팅)'
+                      ? '한국계 경영 · 사내 미팅 확인'
+                      : row.한국계경영 === '아니오'
+                        ? '페루·기타 경영'
+                        : '경영 판단불가'}
                   {row.SANIPES_영국승인 ? ` · 위생당국 영국 승인 ${row.SANIPES_영국승인}` : ''}
                 </span>
               </th>
@@ -200,9 +207,21 @@ export function PeruPlantTable({ rows, total }: { rows: PeruPlantRow[]; total: n
                   직원 {row.직원.toLocaleString()}명 ({row.직원_기준월})
                   {row.CHD수출_2024_usd !== null ? ` · 2024 식용 수산물 수출 ${(row.CHD수출_2024_usd / 1e6).toFixed(1)}백만 달러(전 어종)` : ''}
                 </span>
+                {row.미팅_자칭 ? (
+                  <span className={styles.factNote}>
+                    자칭({row.미팅_자칭.기준일} 미팅): 가공 {row.미팅_자칭.가공능력_톤일.toLocaleString()} t/일 · 월{' '}
+                    {row.미팅_자칭.월작업일}일 작업 · 냉동창고 {row.미팅_자칭.냉동창고_톤.toLocaleString()} t · 연안 조업선{' '}
+                    {row.미팅_자칭.연안조업선_척}척 · 한국 파트너 {row.미팅_자칭.주요_한국파트너}
+                  </span>
+                ) : null}
               </td>
               <td>
                 {row.대왕오징어_pct}% · {row.자숙_pct}%
+                {row.미팅_자칭 ? (
+                  <span className={styles.factNote}>
+                    자칭 자숙 약 {row.미팅_자칭.자숙_pct_약}% (신고 원장 {row.자숙_pct}%)
+                  </span>
+                ) : null}
               </td>
             </tr>
           ))}

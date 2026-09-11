@@ -154,7 +154,7 @@ const SQUID_BASE_SLOTS: Record<string, ChartSlot[]> = {
     {
       title: '페루 제조소 — 한국행 수입신고가 많은 14곳',
       caption:
-        `14곳이 신고 ${peruLedger.전체_신고건수.toLocaleString()}건 가운데 ${peruLedger.상위14사_신고건수.toLocaleString()}건이고, 그중 한국계 경영 7곳이 ${peruLedger.한국계7사_신고건수.toLocaleString()}건이다. 여덟 곳이 북부 파이타에 공장을 둔다. 건수는 수량이 아니다.`,
+        `14곳이 신고 ${peruLedger.전체_신고건수.toLocaleString()}건 가운데 ${peruLedger.상위14사_신고건수.toLocaleString()}건이다. 등기상 한국계 경영 7곳이 ${peruLedger.한국계7사_신고건수.toLocaleString()}건이고, 사내 미팅으로 한국계임을 확인한 KSL 을 더하면 8곳 ${peruLedger.한국계_미팅포함8사_신고건수.toLocaleString()}건이다. 14곳 중 여덟 곳이 북부 파이타에 공장을 둔다. 건수는 수량이 아니다.`,
       telemetry: PERU_SYNC,
       span: 'full' as const,
       render: () => <PeruPlantTable rows={peruPlants} total={peruLedger.전체_신고건수} />,
