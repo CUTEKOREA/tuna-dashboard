@@ -1,9 +1,9 @@
 {
  "_meta": {
   "entry": "app/page.tsx",
-  "files": 239,
+  "files": 240,
   "widgets": 112,
-  "dataFiles": 172,
+  "dataFiles": 176,
   "generator": "scripts/widget_lineage.py"
  },
  "widgetToData": {
@@ -592,6 +592,7 @@
     "lib/data/company-sajo.ts",
     "lib/data/company-seavalue.ts",
     "lib/data/company-starkist.ts",
+    "lib/data/company-tecopesca.ts",
     "lib/data/company-thaiunion-skus.ts",
     "lib/data/company-thaiunion.ts",
     "lib/data/company-trimarine.ts",
@@ -690,6 +691,10 @@
     "public/data/companies/starkist_prose_v1.json",
     "public/data/companies/starkist_tables_v1.json",
     "public/data/companies/starkist_v1.json",
+    "public/data/companies/tecopesca_figures_v1.json",
+    "public/data/companies/tecopesca_prose_v1.json",
+    "public/data/companies/tecopesca_tables_v1.json",
+    "public/data/companies/tecopesca_v1.json",
     "public/data/companies/thaiunion_figures_v1.json",
     "public/data/companies/thaiunion_prose_v1.json",
     "public/data/companies/thaiunion_skus_v1.json",
@@ -1435,6 +1440,18 @@
    "components/market-understanding/CompanyAnatomyDashboard.tsx"
   ],
   "public/data/companies/starkist_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/tecopesca_figures_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/tecopesca_prose_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/tecopesca_tables_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/tecopesca_v1.json": [
    "components/market-understanding/CompanyAnatomyDashboard.tsx"
   ],
   "public/data/companies/thaiunion_figures_v1.json": [
