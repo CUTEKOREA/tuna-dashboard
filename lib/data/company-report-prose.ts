@@ -32,6 +32,7 @@ import kaichuangRaw from '@/public/data/companies/kaichuang_prose_v1.json';
 import allianceRaw from '@/public/data/companies/alliance_prose_v1.json';
 import herdezRaw from '@/public/data/companies/herdez_prose_v1.json';
 import sajoseafoodRaw from '@/public/data/companies/sajoseafood_prose_v1.json';
+import garavillaRaw from '@/public/data/companies/garavilla_prose_v1.json';
 
 /**
  * 조사보고서 서술 전량 인테이크.
@@ -105,6 +106,7 @@ const INTAKES: Record<string, Intake> = {
   alliance: allianceRaw as unknown as Intake,
   herdez: herdezRaw as unknown as Intake,
   sajoseafood: sajoseafoodRaw as unknown as Intake,
+  garavilla: garavillaRaw as unknown as Intake,
   thaiunion: thaiunionRaw as unknown as Intake,
 };
 

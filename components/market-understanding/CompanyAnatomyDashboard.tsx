@@ -292,6 +292,10 @@ import {
   sajoseafoodMeta, sajoseafoodStats, sajoseafoodSourceNotes,
   processedToAssetRatio, affiliateShare2025,
 } from '@/lib/data/company-sajoseafood';
+import {
+  garavillaMeta, garavillaStats, garavillaSourceNotes,
+  fleetEnergyRatio, authorizedCasesShift,
+} from '@/lib/data/company-garavilla';
 
 
 const ACCENT = '#c2410c';
@@ -3706,6 +3710,62 @@ const SAJOSEAFOOD_SPEC: CommoditySpec = {
   ].join(' · '),
 };
 
+const GARAVILLA_ACCENT = '#0e6b7a';
+
+const GARAVILLA_SPEC: CommoditySpec = {
+  key: 'company-anatomy-garavilla',
+  title: '기업 해부: Conservas Garavilla',
+  subtitle:
+    '브랜드 Isabel. 공장 넷 가운데 라인 수와 분당 캔 수와 보일러 형식번호까지 읽히는 곳은 오 그로베 하나다 — 회사가 밝혀서가 아니라 갈리시아 통합환경허가가 공정 전체를 한 문서에 그리는 유일한 제도이기 때문이다. ' +
+    '만타의 에콰도르 ARCSA는 회수 결의로, 아가디르의 모로코 ONSSA는 위생승인 번호로 말한다. 사건과 번호는 주지만 도면은 주지 않는다. 그래서 사람이 가장 많은 공장(만타 1,799.00명)이 가장 얇게 보이고, 탄소는 공장이 아니라 선망 4척에 있다.',
+  accent: GARAVILLA_ACCENT,
+  primaryKpi: {
+    label: '선망 4척 대 공장 넷의 에너지 (2022)',
+    value: fleetEnergyRatio(),
+    decimals: 2,
+    unit: `(배 · 선단 ${Number(garavillaStats.에너지_선단_2022_GJ).toLocaleString('ko-KR')} GJ ÷ 공장 237,070.59 GJ · 절사)`,
+    accent: GARAVILLA_ACCENT,
+  },
+  secondaryKpis: [
+    { label: '오 그로베 인가 캔상자 증가 (2024 → 2025)', value: authorizedCasesShift().증가율, decimals: 1, unit: `(% · ${authorizedCasesShift()[2024].toLocaleString('ko-KR')} → ${authorizedCasesShift()[2025].toLocaleString('ko-KR')}상자 — 늘어난 자리는 전부 고등어다)` },
+    { label: '2025년 인가 물량의 고등어 몫', value: Number(garavillaStats.인가_캔상자_고등어_비중_pct), decimals: 1, unit: '(% · 1,666,667상자 ÷ 6,744,212상자 — 참치 인가 능력 3,910,568상자는 개편 전후가 같다)' },
+    { label: '선단 배출 대 공장 넷 배출 (2025)', value: Number(garavillaStats.배출_선단_2025_tCO2eq), decimals: 0, unit: '(tCO2eq · 공장 넷 합 20,023 — 오 그로베 2,778 · 카보 데 크루스 663 · 만타 11,692 · 아가디르 4,890)' },
+  ],
+  stripItems: [
+    {
+      now: true,
+      eyebrow: '제도',
+      title: '도면을 가진 제도는 IPPC 하나뿐이다',
+      body: '오 그로베만 부지 44,131 ㎡·보일러 3×5.22 MWt·방류 821,250 ㎥가 관보에 찍힌다. 만타·아가디르는 사건번호와 승인번호만 준다',
+    },
+    {
+      eyebrow: '라인',
+      title: '라인은 15 → 9인데 참치 능력은 그대로다',
+      body: '참치를 다루던 라인이 13개에서 5개로 줄었는데 참치 인가 생산능력은 3,910,568상자로 같다. 늘어난 인가 물량은 전부 고등어다',
+    },
+    {
+      eyebrow: '무게',
+      title: '사람은 만타, 탄소는 배, 문서는 오 그로베',
+      body: '만타 1,799.00명이 가장 얇게 보이고, 선망 4척이 2022년 에너지로 공장 넷의 2.39배를 태운다',
+    },
+    {
+      eyebrow: '2025',
+      title: '합병이 아니라 한 해에 겹친 세 갈래다',
+      body: '4/3 본점 빌바오 이전 · 5/6 상표 네 건이 Bolton Food S.p.A.로 · 9/16 단독주주 선언 · 12/23 이사회 교체. 합병 공고는 어느 관보에도 0건이다',
+    },
+  ],
+  briefing: proseBriefing('garavilla'),
+  narratives: inlineReport('garavilla', proseStages('garavilla')),
+  chartSlots: {},
+  continuous: true,
+  sourceNotes: garavillaSourceNotes,
+  sourceMeta: [
+    `${garavillaMeta.회사} · ${garavillaMeta.국가} · ${garavillaMeta.업종}`,
+    `출처 ${garavillaMeta.출처}`,
+    `조사 ${garavillaMeta.조사일}`,
+  ].join(' · '),
+};
+
 export const COMPANY_CARDS: CompanyCard[] = [
   {
     key: 'frinsa',
@@ -4145,6 +4205,18 @@ export const COMPANY_CARDS: CompanyCard[] = [
       { label: '가공용 원어의 계열 몫', value: `${affiliateShare2025()}%` },
       { label: '원양참치어선', value: `${sajoseafoodStats.어선_척수}척(선망 1·연승 2)` },
     ],
+  },  {
+    key: 'garavilla',
+    numeral: 'ⅩⅩⅩⅤ',
+    name: 'Conservas Garavilla',
+    country: '스페인 · 빌바오(공장은 오 그로베·카보 데 크루스·만타·아가디르)',
+    tagline: '설비 도면을 가진 제도는 하나뿐이다.',
+    ...FLAG.스페인,
+    stats: [
+      { label: '선단 대 공장 에너지', value: `${fleetEnergyRatio()}배` },
+      { label: '오 그로베 인가 라인', value: `${garavillaStats.오그로베_라인_2024} → ${garavillaStats.오그로베_라인_2025}개` },
+      { label: '선망선', value: `${garavillaStats.선망선_척수}척(에콰도르 2·스페인 2)` },
+    ],
   },
 
 
@@ -4204,6 +4276,7 @@ export default function CompanyAnatomyDashboard({
     alliance: ALLIANCE_SPEC,
     herdez: HERDEZ_SPEC,
     sajoseafood: SAJOSEAFOOD_SPEC,
+    garavilla: GARAVILLA_SPEC,
   };
   const spec = SPECS[selected] ?? SPEC;
 
