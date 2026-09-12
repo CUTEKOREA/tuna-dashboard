@@ -300,6 +300,10 @@ import {
   salicaMeta, salicaStats, salicaSourceNotes,
   ecuadorHeadcountShare, permitVsInput,
 } from '@/lib/data/company-salica';
+import {
+  majesticMeta, majesticStats, majesticSourceNotes,
+  capacityValues, nationalGrowth,
+} from '@/lib/data/company-majestic';
 
 
 const ACCENT = '#c2410c';
@@ -2575,6 +2579,7 @@ const FLAG: Record<string, Pick<CompanyCard, 'flagSrc' | 'backInk'>> = {
   세이셸: { flagSrc: '/flags/sc.svg', backInk: '#f4f5f0' },
   인도네시아: { flagSrc: '/flags/id.svg', backInk: '#1b2733' },
   에콰도르: { flagSrc: '/flags/ec.svg', backInk: '#1b2733' },
+  파푸아뉴기니: { flagSrc: '/flags/pg.svg', backInk: '#f4f5f0' },
 };
 
 /** 선택 갤러리 카드 목록. 회사가 늘면 여기에 한 장씩 추가한다. */
@@ -3841,6 +3846,78 @@ const SALICA_SPEC: CommoditySpec = {
   ].join(' · '),
 };
 
+const MAJESTIC_ACCENT = '#7a5a2e';
+
+const MAJESTIC_SPEC: CommoditySpec = {
+  key: 'company-anatomy-majestic',
+  title: '기업 해부: Majestic Seafood',
+  subtitle:
+    '값은 많고 실측은 하나다. 열세 해 동안 라에 말라항의 이 공장은 처리능력이 120·150·200·250·350·380·600 t/일 일곱 값으로, 고용이 800명에서 7,000명 사이 열한 값으로 적혔다. ' +
+    '그런데 부지·건물 면적을 적은 원문이 0건이고 연도별 생산 실적을 적은 원문도 0건이다 — 설비 명세 열 칸 가운데 두 칸이 통째로 비는데 그 둘이 공장의 크기를 재는 칸이다. ' +
+    '실제로 돌아간 날의 기록은 2019년 하나뿐이다(가용 250 가운데 하루 80 t). 2023년 6월에 멈춘 뒤에도 유럽연합 승인번호와 인증과 용선 세 척은 살아 있다 — 멈춘 것은 생산이다.',
+  accent: MAJESTIC_ACCENT,
+  primaryKpi: {
+    label: '이 나라 참치 가공 생산 증가 (2023 → 2024, 계산)',
+    value: nationalGrowth().계산증가율,
+    decimals: 1,
+    unit: `(% · ${nationalGrowth()[2023].toLocaleString('ko-KR')} t → ${nationalGrowth()[2024].toLocaleString('ko-KR')} t — 같은 발표문이 한 문장에 적은 값은 ${nationalGrowth().발표증가율}%다. 둘은 같이 성립하지 않는다)`,
+    accent: MAJESTIC_ACCENT,
+  },
+  secondaryKpis: [
+    {
+      label: '본문이 세는 처리능력 값의 개수',
+      value: capacityValues().개수,
+      decimals: 0,
+      unit: `(개 · ${capacityValues().값.join('·')} t/일 — 전부 계획·명판·전망이다. 실측은 ${capacityValues().실측연도}년 하루 ${capacityValues().실측} t 하나뿐이고 그때 가용은 ${capacityValues().가용}이었다)`,
+    },
+    {
+      label: '본문이 세는 고용 값의 개수',
+      value: Number(majesticStats.고용_값_개수),
+      decimals: 0,
+      unit: `(개 · ${Number(majesticStats.고용_최소_명).toLocaleString('ko-KR')}~${Number(majesticStats.고용_최대_명).toLocaleString('ko-KR')}명 — 폐쇄 시 파트너사 집계 ${Number(majesticStats.폐쇄시_파트너사집계_명).toLocaleString('ko-KR')}명 · 매체 ${Number(majesticStats.폐쇄시_매체_명).toLocaleString('ko-KR')} · 협회장 ${Number(majesticStats.폐쇄시_협회장_명).toLocaleString('ko-KR')})`,
+    },
+    {
+      label: '부지 면적·연도별 생산 실적을 적은 원문',
+      value: Number(majesticStats.면적_원문_건수) + Number(majesticStats.생산실적_원문_건수),
+      decimals: 0,
+      unit: `(건 · 설비 명세 ${majesticStats.설비명세_칸_수}칸 가운데 ${majesticStats.설비명세_빈칸_수}칸이 통째로 빈다 — 그 둘이 공장의 크기를 재는 칸이다)`,
+    },
+  ],
+  stripItems: [
+    {
+      now: true,
+      eyebrow: '산술',
+      title: '한 문장 안에서 34%와 50.5%가 같이 선다',
+      body: '재가동을 알린 발표문이 「34% 늘어 2023년 79,209 t에서 2024년 사상 최고 119,232 t」이라 적는다. 그 두 값의 산술은 +50.5%다(차이 40,023 t). 종전 최고는 2021년 117,483 t이다',
+    },
+    {
+      eyebrow: '줄자',
+      title: '350은 명판이고 실적은 80이다',
+      body: '350을 실적으로 쓴 원문은 0건이다. 2013년 개장 때 1단계는 150이었고 2019년 명판은 250으로 내려가 있는데 그 사유를 적은 원문이 없다. 그해 실가동은 하루 80 t이다',
+    },
+    {
+      eyebrow: '전망치',
+      title: '「5,000명」은 전망치가 실적으로 굳은 것이다',
+      body: '2012-08 「완전 가동이면 최소 5,000명」 → 2013-02 「최대」 → 2023-06 폐쇄 기사에서 실제 잉여 인원. 같은 사건에 파트너사는 1,300명, 협회장은 5,500명을 댄다',
+    },
+    {
+      eyebrow: '서류',
+      title: '생산은 멈췄고 등록은 살아 있다',
+      body: '유럽연합 승인 07EPR5110이 가공시설로 유효하고 Friend of the Sea가 2029-04-14까지 붙어 있으며 용선 세 척이 2026년에도 이 이름으로 등록부에 있다 — 소유가 아니라 용선이고 기국은 확인되지 않는다',
+    },
+  ],
+  briefing: proseBriefing('majestic'),
+  narratives: inlineReport('majestic', proseStages('majestic')),
+  chartSlots: {},
+  continuous: true,
+  sourceNotes: majesticSourceNotes,
+  sourceMeta: [
+    `${majesticMeta.회사} · ${majesticMeta.국가} · ${majesticMeta.업종}`,
+    `출처 ${majesticMeta.출처}`,
+    `조사 ${majesticMeta.조사일}`,
+  ].join(' · '),
+};
+
 export const COMPANY_CARDS: CompanyCard[] = [
   {
     key: 'frinsa',
@@ -4306,6 +4383,19 @@ export const COMPANY_CARDS: CompanyCard[] = [
       { label: '그룹 선박', value: `${salicaStats.그룹_선박_척수}척(용선 ${salicaStats.그룹_용선_척수}척 포함)` },
     ],
   },
+  {
+    key: 'majestic',
+    numeral: 'ⅩⅩⅩⅦ',
+    name: 'Majestic Seafood',
+    country: '파푸아뉴기니 · 라에 말라항(공장 한 곳)',
+    tagline: '값은 많고 실측은 하나다.',
+    ...FLAG.파푸아뉴기니,
+    stats: [
+      { label: '처리능력으로 적힌 값', value: `${capacityValues().개수}개(명판·계획·전망)` },
+      { label: '실측 가동', value: `${capacityValues().실측} t/일(${capacityValues().실측연도} · 가용 ${capacityValues().가용})` },
+      { label: '용선', value: `${majesticStats.용선_척수}척(소유 아님 · 기국 미확인)` },
+    ],
+  },
 
 
 ];
@@ -4366,6 +4456,7 @@ export default function CompanyAnatomyDashboard({
     sajoseafood: SAJOSEAFOOD_SPEC,
     garavilla: GARAVILLA_SPEC,
     salica: SALICA_SPEC,
+    majestic: MAJESTIC_SPEC,
   };
   const spec = SPECS[selected] ?? SPEC;
 
