@@ -5,6 +5,13 @@ import { useMemo, useState } from 'react';
 import { Grid, Panel, Pills, Sec, Stat, Stats, Table } from '../../panofi/PanofiUi';
 import { C } from '../palette';
 import {
+  vnSurimiRows,
+  vnSquidTopRows,
+  vnSupplierMeta,
+  vnSurimiDeclarations,
+  vnRegistrationRisk,
+} from '@/lib/data/vn-surimi-suppliers';
+import {
   companyName,
   headsOf,
   enrichCounts,
@@ -163,6 +170,32 @@ export function ProcessorsTab() {
             </div>
           </Panel>
         </Grid>
+      )}
+
+      {country === '베트남' && (
+        <>
+          <Sec>연육·오징어 공급사 (식약처 수입신고 원장)</Sec>
+          <Grid>
+            <Panel
+              span={12}
+              title="베트남 연육 수출사 29사"
+              unit={`한국향 연육 신고 ${num(vnSurimiDeclarations())}건 · 등록 만료·갱신필요 ${vnRegistrationRisk().length}곳`}
+              note={`${vnSupplierMeta.surimiPeriod}. ${vnSupplierMeta.note}`}
+              src={`${vnSupplierMeta.source} · ${vnSupplierMeta.ledger}`}
+            >
+              <RowsTable rows={vnSurimiRows} />
+            </Panel>
+            <Panel
+              span={12}
+              title="베트남산 오징어류 제조소 상위 10"
+              unit={`제조소 ${vnSupplierMeta.squidFacilities}곳 · 신고 ${num(vnSupplierMeta.squidDeclarations)}건`}
+              note={`${vnSupplierMeta.squidPeriod}. ${vnSupplierMeta.overlap}`}
+              src={`${vnSupplierMeta.source} · ${vnSupplierMeta.ledger}`}
+            >
+              <RowsTable rows={vnSquidTopRows} />
+            </Panel>
+          </Grid>
+        </>
       )}
 
       <Sec>주목 상위 후보</Sec>
