@@ -1,3 +1,12 @@
+> 📰 **2026-09-12 — `/market` 2026-09-11 참치 데일리 브리핑 라이브 배포 완료** [CC/tuna-dashboard-publisher]:
+> - PR [#1040](https://github.com/CUTEKOREA/tuna-dashboard/pull/1040) squash 병합. main commit `cd5a4ac0` (브랜치 커밋 `23cee2ec`). 변경은 `public/data/tuna_daily_briefing.json` 한 파일뿐(+49/−78). 기준일 `2026-09-11`, 기사 **5건**. `lib/data/daily-briefing.ts` 는 main 과 동일.
+> - 게이트 3종: 감사 `AUDIT_PASS`(상위 세션) · 데이터 계약 재검 통과(date ISO 유효 · digest 5 ≥ 3 · articles 5 ≥ 3 · 빈 문자열 0 · SIT 숫자 다이제스트 1건 이상) · 변경분 존재. **워크트리 추적 블롭 3,404 개를 병합 전 main(`1029ac10`) 트리와 전수 대조해 차이가 브리핑 JSON 1건뿐임을 확인**했다 — `git status` 를 못 쓰는 세션이라 이 대조가 「변경분이 두 파일 밖으로 번지지 않았다」의 근거다.
+> - Vercel: 브랜치 preview `success` → 병합 후 production `success`. 프로덕션 status 가 넘어간 뒤 화면이 바뀌었다(폴링 8회≈3분).
+> - 라이브 실측(Aside 로그인 세션. curl 은 307 로그인 벽): 「오늘의 참치 뉴스」 헤더 **「기준일 2026.09.11 · 기사 5건 · 파이프라인 동기」**. 리드 「EU 집행위, 마다가스카르와 참치 어업 협상 개시」, 하위 카드 4건(프랑스 바이어 인도양산 통조림 수입 축소 / 스페인 미사용 대서양 눈다랑어 쿼터 2,928톤 재배분 / 태국 냉동 원어 눈다랑어 매입 2024년 수준 복귀 / 영국 참다랑어 급증) 전부 렌더 확인.
+> - **「오늘의 수치」 패널이 빈 칸으로 렌더된다** — 다이제스트 5건 어디에도 `NUMBER_TOKEN_PATTERN`(%·USD·$·달러·톤·만)이 없어 `buildBriefingImpactNumbers` 가 0건을 돌려준 것이다. 수치를 지어내지 않는 fail-closed 설계대로의 동작이고 레이아웃도 깨지지 않는다(라벨만 남는다). 쿼터 「2,928톤」은 기사 본문에는 있지만 다이제스트 제목에 없어 잡히지 않았다 — 임팩트 넘버를 살리려면 요약 단계에서 수치를 제목에 올려야 한다.
+> - 이 세션도 `git`·`gh pr` CLI 실행 권한이 없어 GitHub API 플러밍(blob→tree→commit→ref→PR→merge)으로 배포했다. 업로드 blob SHA `9dff8cb6` 가 로컬에서 계산한 값과 일치해 바이트 동일성을 확인했다.
+> - 워크트리 정리 완료: `reset --hard`·`switch` 를 쓸 수 없어 브리핑 JSON 을 워크트리 HEAD(`1029ac10`)의 블롭 `f913b201`(09-10 윤문본)으로 되돌려 **clean 상태로 남겼다**(3,404 blob 재대조 DIFFERS 0). HEAD 가 squash 병합의 부모라 다음 회차 `prepare_dashboard` 의 dirty 검사 통과 후 ff-only 가 09-11본을 끌어온다.
+
 > ✅ **2026-09-11 — 차트 후속: /pork·코스모 계열 색 SERIES 화, head 스크립트 hydration 경고 제거** [CC 작성 · Grok 검증] (브랜치 `feat/chart-followups`):
 > - `scripts/fix_chart_series.py`(L-07): 차트 블록 안 유채색 계열을 처음 나온 순서대로 SERIES[0..] 로. 무채색·삼항 상태색·상태색 Cell 을 둔 막대의 범례 fill 은 건드리지 않는다(selftest). /pork 27계열 적용.
 > - 코스모 사업부별 영업손익 `var(--cosmo-s1/3/5)` → `C.s1..s3`. `--cosmo-s*` 정의는 가드 테스트대로 남김(다른 사용처 없음).
