@@ -366,13 +366,13 @@ export default function Production() {
         >
           <Legend items={[
             { name: 'CBU', color: C.s1, box: true },
-            { name: 'FBU', color: C.s4, box: true },
+            { name: 'FBU', color: C.s3, box: true },
           ]} />
           <Chart
             data={prod} x="label" height={250} xInterval={3} yFmt={(v) => v.toFixed(0)}
             series={[
               { key: 'cbuRawWeek', name: 'CBU', color: C.s1, type: 'bar', stackId: 'raw', fmt: mt },
-              { key: 'fbuRawWeek', name: 'FBU', color: C.s4, type: 'bar', stackId: 'raw', fmt: mt },
+              { key: 'fbuRawWeek', name: 'FBU', color: C.s3, type: 'bar', stackId: 'raw', fmt: mt },
             ]}
           />
         </Card>
@@ -468,13 +468,13 @@ export default function Production() {
             연간 일 처리량 {tp.annual.dailyMt}톤 × {tp.annual.days}일이 개정치의 근거입니다.</>}
         >
           <Legend items={[
-            { name: '계획', color: C.s3, box: true },
+            { name: '계획', color: C.s2, box: true },
             { name: '실적·변경', color: C.s1, box: true },
           ]} />
           <Chart
             data={monthRows} x="label" height={230} yFmt={mtk}
             series={[
-              { key: '계획', name: '계획', color: C.s3, type: 'bar', fmt: mt },
+              { key: '계획', name: '계획', color: C.s2, type: 'bar', fmt: mt },
               { key: '실적·변경', name: '실적·변경', color: C.s1, type: 'bar', fmt: mt },
             ]}
           />
@@ -521,16 +521,16 @@ export default function Production() {
             FBU 는 연간 {cn.annual.fbu} FCL 로 CBU 의 {(cn.annual.fbu / cn.annual.cbuOnBoard * 100).toFixed(0)}% 규모입니다.</>}
         >
           <Legend items={[
-            { name: 'CBU 계획', color: C.s3, box: true },
+            { name: 'CBU 계획', color: C.s2, box: true },
             { name: 'CBU 실적·변경', color: C.s1, box: true },
-            { name: 'FBU', color: C.s5, box: true },
+            { name: 'FBU', color: C.s3, box: true },
           ]} />
           <Chart
             data={ctnRows} x="label" height={210} yFmt={(v) => String(v)}
             series={[
-              { key: 'CBU 계획', name: 'CBU 계획', color: C.s3, type: 'bar', fmt: (v) => v + ' FCL' },
+              { key: 'CBU 계획', name: 'CBU 계획', color: C.s2, type: 'bar', fmt: (v) => v + ' FCL' },
               { key: 'CBU 실적·변경', name: 'CBU 실적·변경', color: C.s1, type: 'bar', fmt: (v) => v + ' FCL' },
-              { key: 'FBU', name: 'FBU', color: C.s5, type: 'bar', fmt: (v) => v + ' FCL' },
+              { key: 'FBU', name: 'FBU', color: C.s3, type: 'bar', fmt: (v) => v + ' FCL' },
             ]}
           />
         </Card>

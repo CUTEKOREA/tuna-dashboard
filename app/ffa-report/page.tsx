@@ -3,8 +3,9 @@
 import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import {
-  AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer
+  AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer
 } from 'recharts';
+import { COUNTRY_ID } from '@/lib/chart-palette';
 import {
   ArrowLeft, ShieldAlert, Award, Landmark, Activity, Globe
 } from 'lucide-react';
@@ -381,10 +382,11 @@ export default function FfaReportPage() {
                           <XAxis dataKey="year" tick={{ fill: '#94a3b8', fontSize: 9 }} />
                           <YAxis tick={{ fill: '#94a3b8', fontSize: 9 }} />
                           <Tooltip contentStyle={{ background: '#1a2442', border: '1px solid #334155', borderRadius: 8, fontSize: '0.65rem' }} />
-                          <Area type="monotone" dataKey="태국" stackId="1" stroke="#38bdf8" fill="#38bdf8" fillOpacity={0.1} />
-                          <Area type="monotone" dataKey="베트남" stackId="1" stroke="#10b981" fill="#10b981" fillOpacity={0.1} />
-                          <Area type="monotone" dataKey="피지" stackId="1" stroke="#f59e0b" fill="#f59e0b" fillOpacity={0.1} />
-                          <Area type="monotone" dataKey="중국" stackId="1" stroke="#ef4444" fill="#ef4444" fillOpacity={0.1} />
+                          <Legend iconSize={8} wrapperStyle={{ fontSize: '0.6rem' }} />
+                          <Area type="monotone" dataKey="태국" stackId="1" stroke={COUNTRY_ID.태국} fill={COUNTRY_ID.태국} fillOpacity={0.1} />
+                          <Area type="monotone" dataKey="베트남" stackId="1" stroke={COUNTRY_ID.베트남} fill={COUNTRY_ID.베트남} fillOpacity={0.1} />
+                          <Area type="monotone" dataKey="피지" stackId="1" stroke={COUNTRY_ID.피지} fill={COUNTRY_ID.피지} fillOpacity={0.1} />
+                          <Area type="monotone" dataKey="중국" stackId="1" stroke={COUNTRY_ID.중국} fill={COUNTRY_ID.중국} fillOpacity={0.1} />
                         </AreaChart>
                       </ResponsiveContainer>
                     </div>

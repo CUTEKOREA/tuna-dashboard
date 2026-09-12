@@ -32,7 +32,9 @@ import SafeResponsiveContainer from '../SafeResponsiveContainer';
 import SquidSection from './SquidSection';
 import type { SquidSource, SquidV5, SquidWidget } from './types';
 import { squidCurrencyLabel, squidSpeciesLabel, squidUnitLabel, squidValueLabel } from './localization';
+import { SERIES } from '@/lib/chart-palette';
 
+// 상태색·페이지 정체성 보라. 차트 데이터 마크는 여기 쓰지 않고 공통 SERIES 를 쓴다(2026-09-12).
 const C = {
   violation: '#f43f5e',
   caution: '#f59e0b',
@@ -230,7 +232,7 @@ const PriceLadder: React.FC<{ rows: LadderRow[] }> = ({ rows }) => {
             tickLine={false}
           />
           <RechartsTooltip content={<LadderTooltip />} cursor={{ fill: 'rgba(var(--w-violet-500-rgb), 0.07)' }} />
-          <Bar dataKey="price_eur_per_kg" fill={C.squid} radius={[0, 4, 4, 0]} barSize={17}>
+          <Bar dataKey="price_eur_per_kg" fill={SERIES[0]} radius={[0, 4, 4, 0]} barSize={17}>
             <LabelList dataKey="trend" position="right" content={TrendArrow} />
           </Bar>
         </BarChart>
@@ -472,9 +474,9 @@ const KmiConsumerPrice: React.FC<{ data: KmiData }> = ({ data }) => {
           <Line
             type="linear"
             dataKey="price_krw"
-            stroke={C.squid}
+            stroke={SERIES[0]}
             strokeWidth={2.5}
-            dot={{ r: 4, fill: C.squid, strokeWidth: 0 }}
+            dot={{ r: 4, fill: SERIES[0], strokeWidth: 0 }}
             isAnimationActive={false}
           />
         </ComposedChart>
@@ -564,7 +566,8 @@ const KcsImportPrice: React.FC<{ rows: KcsRow[] }> = ({ rows }) => {
             <Bar
               yAxisId="qty"
               dataKey="qty_mt"
-              fill="rgba(var(--w-sky-400-rgb), 0.25)"
+              fill={SERIES[1]}
+              fillOpacity={0.25}
               radius={[3, 3, 0, 0]}
               barSize={26}
             />
@@ -572,9 +575,9 @@ const KcsImportPrice: React.FC<{ rows: KcsRow[] }> = ({ rows }) => {
               yAxisId="price"
               type="linear"
               dataKey="unit_price_usd_mt"
-              stroke={C.squid}
+              stroke={SERIES[0]}
               strokeWidth={2.5}
-              dot={{ r: 4, fill: C.squid, strokeWidth: 0 }}
+              dot={{ r: 4, fill: SERIES[0], strokeWidth: 0 }}
               isAnimationActive={false}
             />
           </ComposedChart>
@@ -593,7 +596,8 @@ const KcsImportPrice: React.FC<{ rows: KcsRow[] }> = ({ rows }) => {
         </div>
       </div>
       <div style={captionStyle}>
-        ▉ 물량(톤, 오른쪽 축) · ─ 가중 수입단가(달러/톤, 왼쪽 축) · 관측이 없는 구간은
+        <span style={{ color: SERIES[1] }}>▉</span> 물량(톤, 오른쪽 축) ·{' '}
+        <span style={{ color: SERIES[0] }}>─</span> 가중 수입단가(달러/톤, 왼쪽 축) · 관측이 없는 구간은
         선을 잇거나 추세를 그리지 않는다
       </div>
     </div>

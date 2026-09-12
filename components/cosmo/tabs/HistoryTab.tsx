@@ -117,13 +117,13 @@ export default function History() {
         >
           <Legend items={[
             { name: '영업손익', color: C.s1, box: true },
-            { name: '순손익', color: C.s4, box: true },
+            { name: '순손익', color: C.s2, box: true },
           ]} />
           <Chart
             data={U} x="label" height={250} zeroLine yFmt={m0} xInterval={0}
             series={[
               { key: 'op', name: '영업손익', color: C.s1, type: 'bar', fmt: m2 },
-              { key: 'net', name: '순손익', color: C.s4, type: 'bar', fmt: m2 },
+              { key: 'net', name: '순손익', color: C.s2, type: 'bar', fmt: m2 },
             ]}
           />
         </Card>
@@ -138,10 +138,10 @@ export default function History() {
             매출이 정점 대비 내려온 상태에서 순손익만 간신히 흑자로 돌아섰으니,
             최근 개선은 <b>규모가 아니라 마진</b>에서 나온 것입니다.</>}
         >
-          <Legend items={[{ name: '매출', color: C.rank, box: true }]} />
+          <Legend items={[{ name: '매출', color: C.s1, box: true }]} />
           <Chart
             data={U} x="label" height={250} yFmt={m0} xInterval={0}
-            series={[{ key: 'revenue', name: '매출', color: C.rank, type: 'bar', fmt: m2 }]}
+            series={[{ key: 'revenue', name: '매출', color: C.s1, type: 'bar', fmt: m2 }]}
           />
         </Card>
       </div>

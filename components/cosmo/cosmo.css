@@ -14,11 +14,14 @@
   --cosmo-accent-soft: #251A1D;
   --cosmo-data: #3BA9CB;
   --cosmo-data-soft: #12222A;
-  --cosmo-s1: #2199B7;
-  --cosmo-s2: #CA5765;
-  --cosmo-s3: #B6880F;
-  --cosmo-s4: #38996E;
-  --cosmo-s5: #8878C4;
+  /* 계열 5색 = lib/chart-palette.ts SERIES[0..4] 사본. CSS 는 TS 를 못 읽으니 값을 옮겨 적는다.
+     정본은 SERIES 이고 여기 값은 따라간다 — SERIES 를 고치면 이 다섯 줄과 가드 테스트도 같이 고친다.
+     코스모 표면 #151D23 에서 validate_palette.js 8칸 전부 통과(2026-09-12). */
+  --cosmo-s1: #3987e5;
+  --cosmo-s2: #d95926;
+  --cosmo-s3: #199e70;
+  --cosmo-s4: #c98500;
+  --cosmo-s5: #d55181;
   --cosmo-ok: #38996E;
   --cosmo-ok-soft: #14261F;
   --cosmo-warn: #B6880F;

@@ -2,6 +2,8 @@ import { existsSync, readFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { describe, expect, it } from 'vitest';
 
+import { SERIES } from '@/lib/chart-palette';
+
 const root = process.cwd();
 const readSource = (relativePath: string) => readFileSync(join(root, relativePath), 'utf8');
 
@@ -120,14 +122,15 @@ describe('V2.5-c institutional page shells', () => {
     expect(cssRule(cosmoStyles, '.cosmo-root .cosmo-panel')).toContain('border: 1px solid var(--dsc-surface-border)');
     expect(cssRule(cosmoStyles, '.cosmo-root .cosmo-panel')).toContain('border-radius: var(--dsc-card-radius)');
     expect(cssRule(cosmoStyles, '.cosmo-root .cosmo-panel')).toContain('background: var(--dsc-surface)');
-    for (const preservedPalette of [
-      '--cosmo-s1: #2199B7',
-      '--cosmo-s2: #CA5765',
-      '--cosmo-s3: #B6880F',
-      '--cosmo-s4: #38996E',
-      '--cosmo-s5: #8878C4',
-    ]) {
-      expect(cosmoStyles).toContain(preservedPalette);
+    // 계열 5색은 공통 SERIES[0..4] 사본이다(2026-09-12 흡수). 코스모 전용 5색은 폐기.
+    for (const [i, decl] of [
+      '--cosmo-s1',
+      '--cosmo-s2',
+      '--cosmo-s3',
+      '--cosmo-s4',
+      '--cosmo-s5',
+    ].entries()) {
+      expect(cosmoStyles).toContain(`${decl}: ${SERIES[i]}`);
     }
   });
 

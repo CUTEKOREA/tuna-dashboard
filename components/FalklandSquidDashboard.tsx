@@ -12,6 +12,7 @@ import {
   Ship, Anchor, TrendingUp, Search
 } from 'lucide-react';
 import WidgetCard from './WidgetCard';
+import { SERIES } from '@/lib/chart-palette';
 import { ChartPatternDefs } from './ChartPatterns';
 
 
@@ -63,8 +64,8 @@ export default function FalklandSquidDashboard() {
             <AreaChart data={monthlyData} margin={{ top: 20, right: 30, left: 20, bottom: 5 }}>
               <defs>
                 <linearGradient id="colorTotal" x1="0" y1="0" x2="0" y2="1">
-                  <stop offset="5%" stopColor="var(--color-primary)" stopOpacity={0.8}/>
-                  <stop offset="95%" stopColor="var(--color-primary)" stopOpacity={0}/>
+                  <stop offset="5%" stopColor={SERIES[0]} stopOpacity={0.8}/>
+                  <stop offset="95%" stopColor={SERIES[0]} stopOpacity={0}/>
                 </linearGradient>
               </defs>
               <CartesianGrid strokeDasharray="3 3" stroke="var(--border-primary)" vertical={false} />
@@ -75,7 +76,7 @@ export default function FalklandSquidDashboard() {
                 itemStyle={{ color: 'var(--text-primary)' }}
                 formatter={(value: any) => [`${value.toLocaleString()} KG`, '어획량']}
               />
-              <Area type="monotone" dataKey="total" stroke="var(--color-primary)" fillOpacity={1} fill="url(#colorTotal)" />
+              <Area type="monotone" dataKey="total" stroke={SERIES[0]} fillOpacity={1} fill="url(#colorTotal)" />
             </AreaChart>
           }
           takeaway={{
@@ -94,13 +95,13 @@ export default function FalklandSquidDashboard() {
               <CartesianGrid strokeDasharray="3 3" stroke="var(--border-primary)" vertical={false} />
               <XAxis dataKey="name" stroke="var(--text-secondary)" fontSize={11} angle={0} textAnchor="middle" height={60} />
               <YAxis yAxisId="left" stroke="var(--text-secondary)" fontSize={12} tickFormatter={(val) => `${Math.round(val/1000)}t`} />
-              <YAxis yAxisId="right" orientation="right" stroke="var(--color-warning)" fontSize={12} />
+              <YAxis yAxisId="right" orientation="right" stroke={SERIES[1]} fontSize={12} />
               <RechartsTooltip
                 contentStyle={{ backgroundColor: 'var(--bg-secondary)', border: '1px solid var(--border-primary)', borderRadius: '8px' }}
               />
               <Legend />
-              <Bar yAxisId="left" dataKey="totalKg" name="총 어획량(KG)" fill="var(--color-secondary)" radius={[4, 4, 0, 0]} />
-              <Line yAxisId="right" type="monotone" dataKey="vessels" name="선박 수(척)" stroke="var(--color-warning)" strokeWidth={3} dot={{ r: 5 }} />
+              <Bar yAxisId="left" dataKey="totalKg" name="총 어획량(KG)" fill={SERIES[0]} radius={[4, 4, 0, 0]} />
+              <Line yAxisId="right" type="monotone" dataKey="vessels" name="선박 수(척)" stroke={SERIES[1]} strokeWidth={3} dot={{ r: 5 }} />
             </ComposedChart>
           }
           takeaway={{
