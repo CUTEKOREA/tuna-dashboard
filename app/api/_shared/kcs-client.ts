@@ -41,7 +41,10 @@ export type KCSResult = {
  */
 export function parseKCSXml(xml: string): { items: KCSItem[]; resultCode?: string } {
   const itemMatches = [...xml.matchAll(/<item>([\s\S]*?)<\/item>/g)];
-  const resultCode = xml.match(/<resultCode>([^<]+)<\/resultCode>/)?.[1];
+  // 키·활용신청 오류는 <resultCode> 가 아니라 <returnReasonCode> 로 온다(OpenAPI_ServiceResponse 봉투).
+  // 둘 다 안 읽으면 코드가 undefined 라 「키 계통 오류」로 안 잡히고 다음 키를 못 써 본다.
+  const resultCode =
+    xml.match(/<resultCode>([^<]+)<\/resultCode>/)?.[1] ?? xml.match(/<returnReasonCode>([^<]+)<\/returnReasonCode>/)?.[1];
 
   const items: KCSItem[] = [];
   for (const match of itemMatches) {

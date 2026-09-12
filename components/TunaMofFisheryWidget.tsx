@@ -48,7 +48,7 @@ const ROUTE_COLOR: Record<string, string> = {
 
 type FreightRow = { period: string } & Record<string, number | string>;
 type FreightResponse =
-  | { ok: true; unit: string; routes: string[]; routeNames: Record<string, string>; data: FreightRow[] }
+  | { ok: true; unit: string; routes: string[]; routeNames: Record<string, string>; failed?: string[]; data: FreightRow[] }
   | { ok: false; error: string };
 
 export function MofFishMarketWidget() {
@@ -196,7 +196,11 @@ export function MofShippingCostWidget() {
         const now = Number(last[code]);
         const then = Number(first[code]);
         if (!Number.isFinite(now)) return null;
-        const pct = Number.isFinite(then) && then > 0 ? Math.round(((now - then) / then) * 1000) / 10 : null;
+        // 행이 하나뿐이면 비교 기준이 없다. 0% 로 적으면 「변동 없음」이라는 없는 사실이 생긴다.
+        const pct =
+          rows.length > 1 && Number.isFinite(then) && then > 0
+            ? Math.round(((now - then) / then) * 1000) / 10
+            : null;
         return { code, name: live?.routeNames?.[code] ?? code, now, pct };
       })
       .filter(Boolean)
@@ -223,6 +227,7 @@ ${summary
 <p>가장 비싼 항로(${dearest?.name})와 가장 싼 항로(${cheapest?.name})의 격차는 <strong>${
         dearest && cheapest && cheapest.now > 0 ? (dearest.now / cheapest.now).toFixed(1) : '—'
       }배</strong>입니다. 원물을 어디서 들여오느냐가 곧 물류비 구조를 정합니다.</p>
+${(live?.failed?.length ?? 0) > 0 ? `<p>받지 못한 항로: ${live!.failed!.join(' · ')}</p>` : ''}
 <p>주의: 이 통계는 <strong>항로 단위</strong>지 품목 단위가 아닙니다. 컨테이너 한 대에 얼마를 싣느냐에 따라 kg당 부담이 달라지므로, 착지원가로 옮길 때는 적재중량 가정을 함께 적어야 합니다.</p>
 </div>`
     : `<div><p>관세청 해상 수출입 운송비용 API에서 데이터를 받지 못했습니다${

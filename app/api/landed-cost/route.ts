@@ -1,4 +1,5 @@
 import { NextResponse } from 'next/server';
+import { fetchDataGo } from '../_shared/datago';
 import { optionalEnv } from '../_shared/env';
 
 export const dynamic = 'force-dynamic';
@@ -12,9 +13,17 @@ export const dynamic = 'force-dynamic';
 const ECOS_BASE = 'https://ecos.bok.or.kr/api';
 
 // --- ECOS: 실시간 환율 ---
-async function getExchangeRate(currency: string): Promise<number> {
+type Rate = { value: number; live: boolean; reason: string };
+
+const FALLBACK_RATE = (currency: string, reason: string): Rate => ({
+  value: currency === 'USD' ? 1350 : 1,
+  live: false,
+  reason,
+});
+
+async function getExchangeRate(currency: string): Promise<Rate> {
   const apiKey = process.env.ECOS_API_KEY;
-  if (!apiKey) return currency === 'USD' ? 1350 : 1; // fallback
+  if (!apiKey) return FALLBACK_RATE(currency, 'ECOS 키 없음');
 
   const currencyMap: Record<string, string> = {
     'USD': '0000001', 'JPY': '0000002', 'EUR': '0000003',
@@ -30,13 +39,17 @@ async function getExchangeRate(currency: string): Promise<number> {
   try {
     const url = `${ECOS_BASE}/StatisticSearch/${apiKey}/json/kr/1/5/731Y001/D/${startDate}/${endDate}/${itemCode}`;
     const res = await fetch(url, { signal: AbortSignal.timeout(6000) });
-    if (!res.ok) return currency === 'USD' ? 1350 : 1;
+    if (!res.ok) return FALLBACK_RATE(currency, `ECOS HTTP ${res.status}`);
     const data = await res.json();
+    // ECOS 는 오류도 200 + {"RESULT": ...} 로 준다.
+    if (data?.RESULT) return FALLBACK_RATE(currency, `ECOS ${data.RESULT.CODE}`);
     const rows = data?.StatisticSearch?.row;
-    if (!rows || rows.length === 0) return currency === 'USD' ? 1350 : 1;
-    return parseFloat(rows[rows.length - 1].DATA_VALUE);
+    if (!rows || rows.length === 0) return FALLBACK_RATE(currency, 'ECOS 응답에 행 없음');
+    const parsed = parseFloat(rows[rows.length - 1].DATA_VALUE);
+    if (!Number.isFinite(parsed)) return FALLBACK_RATE(currency, 'ECOS 값이 숫자가 아님');
+    return { value: parsed, live: true, reason: '' };
   } catch {
-    return currency === 'USD' ? 1350 : 1;
+    return FALLBACK_RATE(currency, 'ECOS 연결 실패');
   }
 }
 
@@ -82,14 +95,10 @@ const NO_FREIGHT = (source: string): Freight => ({
   source,
 });
 
-async function getFreightCost(countryCode: string): Promise<Freight> {
-  const apiKey =
-    optionalEnv('DATA_GO_KR_KEY_2') ?? optionalEnv('DATA_GO_KR_NEW_KEY') ?? optionalEnv('DATA_GO_KR_COMMON_KEY');
-  if (!apiKey) return NO_FREIGHT('KCS_KEY_MISSING');
-
+async function getFreightCost(countryCode: string, label = countryCode): Promise<Freight> {
   const cnty = FREIGHT_COUNTRY[countryCode];
   // 태국·인도네시아·인도 등은 이 통계에 항로가 없다. 다른 나라 값으로 대신하지 않는다.
-  if (!cnty) return NO_FREIGHT(`KCS_NO_ROUTE(${countryCode})`);
+  if (!cnty) return NO_FREIGHT(`KCS_NO_ROUTE(${label || '원산지 미지정'})`);
 
   // 최근 12개월을 받아 가장 최신 달을 쓴다. 당월은 아직 안 쌓인다.
   const now = new Date();
@@ -100,9 +109,11 @@ async function getFreightCost(countryCode: string): Promise<Freight> {
   start.setMonth(start.getMonth() - 11);
   const yymm = (d: Date) => `${d.getFullYear()}${String(d.getMonth() + 1).padStart(2, '0')}`;
 
-  try {
-    const params = new URLSearchParams({
-      serviceKey: apiKey,
+  // 이 API 는 resultType=json 을 무시하고 XML 로 답한다. 공용 클라이언트가 두 봉투를 다 읽고
+  // 인증키도 여러 벌을 순서대로 시도한다 — 여기서 res.json() 을 부르면 정상 응답을 통째로 버린다.
+  const result = await fetchDataGo(
+    'https://apis.data.go.kr/1220000/seaimextrnpcst/getSeaImexTrnpCst',
+    {
       resultType: 'json',
       numOfRows: '100',
       pageNo: '1',
@@ -110,35 +121,25 @@ async function getFreightCost(countryCode: string): Promise<Freight> {
       imexTpcd: '2', // 수입
       strtYymm: yymm(start),
       endYymm: yymm(end),
-    });
+    },
+    { timeout: 8000 },
+  );
+  if (!result.ok) return NO_FREIGHT(`KCS_${result.code || 'ERROR'}: ${result.error}`);
+  if (result.rows.length === 0) return NO_FREIGHT('KCS_NO_DATA');
 
-    const res = await fetch(`https://apis.data.go.kr/1220000/seaimextrnpcst/getSeaImexTrnpCst?${params}`, {
-      signal: AbortSignal.timeout(8000),
-    });
-    if (!res.ok) return NO_FREIGHT(`KCS_HTTP_${res.status}`);
+  // 응답은 오래된 달부터 온다. 가장 최근 달을 쓴다.
+  const latest = result.rows[result.rows.length - 1];
+  const thousandWon = Number(String(latest.imexTrnpCst ?? '').replace(/,/g, ''));
+  if (!Number.isFinite(thousandWon) || thousandWon <= 0) return NO_FREIGHT('KCS_BAD_VALUE');
 
-    const data = await res.json().catch(() => null);
-    const body = data?.response?.body ?? data?.body ?? data;
-    const raw = body?.items?.item ?? body?.items ?? [];
-    const rows: any[] = Array.isArray(raw) ? raw : raw ? [raw] : [];
-    if (!rows.length) return NO_FREIGHT('KCS_NO_DATA');
-
-    // 응답은 오래된 달부터 온다. 가장 최근 달을 쓴다.
-    const latest = rows[rows.length - 1];
-    const thousandWon = Number(String(latest.imexTrnpCst ?? '').replace(/,/g, ''));
-    if (!Number.isFinite(thousandWon) || thousandWon <= 0) return NO_FREIGHT('KCS_BAD_VALUE');
-
-    return {
-      freightPerKgKRW: Math.round(((thousandWon * 1000) / REEFER_PAYLOAD_KG) * 100) / 100,
-      perContainerThousandKRW: thousandWon,
-      period: latest.year ?? null,
-      route: `${latest.statCdCntnKor1 ?? cnty} → 한국(수입)`,
-      assumedPayloadKg: REEFER_PAYLOAD_KG,
-      source: 'KCS_LIVE',
-    };
-  } catch {
-    return NO_FREIGHT('KCS_NETWORK_ERROR');
-  }
+  return {
+    freightPerKgKRW: Math.round(((thousandWon * 1000) / REEFER_PAYLOAD_KG) * 100) / 100,
+    perContainerThousandKRW: thousandWon,
+    period: latest.year ?? null,
+    route: `${latest.statCdCntnKor1 ?? cnty} → 한국(수입)`,
+    assumedPayloadKg: REEFER_PAYLOAD_KG,
+    source: 'KCS_LIVE',
+  };
 }
 
 // --- WITS: 관세율 조회 (기존 /api/wits 내부 로직 재활용) ---
@@ -194,28 +195,35 @@ export async function POST(req: Request) {
       '중국': '156', '베트남': '704', '태국': '764', '인도네시아': '360',
       '미국': '842', '일본': '392', '인도': '356',
     };
-    const cc = countryCodeMap[originCountry] || 'CN';
-    const iso3 = countryISO3Map[originCountry] || '156';
+    // 예전에는 모르는 원산지를 중국으로 바꿔 계산했다. 칠레·노르웨이를 골라도 중국 운임·중국 관세가
+    // 조용히 적용됐다는 뜻이다. 모르면 모른다고 두고, 아래에서 각 항목이 알아서 비운다.
+    const cc = countryCodeMap[originCountry] ?? '';
+    const iso3 = countryISO3Map[originCountry] ?? '';
 
     // Parallel API calls
-    const [exchangeRate, freight, tariff] = await Promise.all([
+    const [rate, freight, tariff] = await Promise.all([
       getExchangeRate('USD'),
-      getFreightCost(cc),
-      getTariffRate(hsCode, iso3),
+      getFreightCost(cc, originCountry),
+      iso3 ? getTariffRate(hsCode, iso3) : Promise.resolve({ mfn: 0, fta: 0, source: `NO_COUNTRY_CODE(${originCountry})` }),
     ]);
 
     // Landed cost calculation
     const totalFobUSD = fob * qty;
     // 운임을 못 받으면 0으로 두고 아래 meta 에 그렇게 적는다. 지어낸 값으로 채우면 총액이 조용히 틀린다.
+    // 컨테이너는 쪼개 실을 수 없다. kg 을 그대로 비례배분하면 24t 가정에서 25t 이 1.04대로 계산된다.
+    const containers =
+      freight.perContainerThousandKRW != null ? Math.ceil(qty / REEFER_PAYLOAD_KG) : 0;
     const totalFreightUSD =
-      freight.freightPerKgKRW != null ? (freight.freightPerKgKRW * qty) / exchangeRate : 0;
+      freight.perContainerThousandKRW != null
+        ? (freight.perContainerThousandKRW * 1000 * containers) / rate.value
+        : 0;
     const cifUSD = totalFobUSD + totalFreightUSD;
     const applicableTariffRate = tariff.fta > 0 ? tariff.fta : tariff.mfn;
     const dutyUSD = cifUSD * (applicableTariffRate / 100);
     const subtotalUSD = cifUSD + dutyUSD;
     const vatUSD = subtotalUSD * 0.1; // 10% VAT
     const totalLandedUSD = subtotalUSD + vatUSD;
-    const totalLandedKRW = totalLandedUSD * exchangeRate;
+    const totalLandedKRW = totalLandedUSD * rate.value;
     const perKgKRW = Math.round(totalLandedKRW / qty);
 
     return NextResponse.json({
@@ -227,6 +235,7 @@ export async function POST(req: Request) {
           perKgKRW: freight.freightPerKgKRW,
           perContainerThousandKRW: freight.perContainerThousandKRW,
           containerUnit: '천원/2TEU (40피트 1대)',
+          containers,
           assumedPayloadKg: freight.assumedPayloadKg,
           period: freight.period,
           route: freight.route,
@@ -240,13 +249,14 @@ export async function POST(req: Request) {
           totalUSD: Math.round(totalLandedUSD),
           totalKRW: Math.round(totalLandedKRW),
           perKgKRW,
-          exchangeRate,
+          exchangeRate: rate.value,
+          exchangeRateLive: rate.live,
           label: '총 착지원가',
         },
       },
       _meta: {
         dataSources: {
-          exchangeRate: process.env.ECOS_API_KEY ? 'ECOS 한국은행 (실시간)' : 'ECOS 키 없음 — 고정 환율 1350 사용',
+          exchangeRate: rate.live ? 'ECOS 한국은행 (실시간)' : `고정 환율 ${rate.value} 사용 (${rate.reason})`,
           freight:
             freight.source === 'KCS_LIVE'
               ? `관세청 해상수출입 운송비용 (${freight.period}, ${freight.perContainerThousandKRW}천원/2TEU, 적재중량 ${freight.assumedPayloadKg}kg 가정)`
@@ -256,9 +266,9 @@ export async function POST(req: Request) {
         timestamp: new Date().toISOString(),
         // 셋 중 하나라도 실측이 아니면 참이다. 예전에는 무조건 false 라 「전부 실데이터」로 읽혔다.
         estimatesUsed: [
-          !process.env.ECOS_API_KEY ? 'exchangeRate' : null,
+          !rate.live ? 'exchangeRate' : null,
           freight.source !== 'KCS_LIVE' ? 'freight' : null,
-          tariff.source === 'DEFAULT_ESTIMATE' ? 'tariff' : null,
+          tariff.source === 'DEFAULT_ESTIMATE' || tariff.source.startsWith('NO_COUNTRY_CODE') ? 'tariff' : null,
         ].filter(Boolean),
       }
     });

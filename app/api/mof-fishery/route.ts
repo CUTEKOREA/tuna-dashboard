@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { requireAnyEnv } from '../_shared/env';
+import { fetchDataGo } from '../_shared/datago';
 
 export const dynamic = 'force-dynamic';
 
@@ -20,10 +20,6 @@ export const dynamic = 'force-dynamic';
  *  3. 응답 필드 이름이 전부 추측이었다. 아래 매핑은 실제 응답에서 뽑았다.
  *  4. 실패를 지어낸 숫자로 덮었다. 이제 덮지 않는다 — 실패는 실패로 나간다.
  */
-
-// 계정마다 인증키가 여러 벌이고 재발급하면 이전 값이 죽는다. 순서대로 시도한다.
-const SERVICE_KEY = () =>
-  requireAnyEnv('DATA_GO_KR_KEY_2', 'DATA_GO_KR_NEW_KEY', 'DATA_GO_KR_COMMON_KEY');
 
 const MOF_BASE = 'https://apis.data.go.kr/1192000';
 const KCS_BASE = 'https://apis.data.go.kr/1220000';
@@ -154,7 +150,12 @@ const ENDPOINTS: Record<string, ApiEndpoint> = {
         pageNo: '1',
         cntyCd: FREIGHT_COUNTRIES[country] ? country : 'USW',
         imexTpcd: o.flow === '수출' ? '1' : '2',
-        strtYymm: o.startYymm ? digits(o.startYymm, 6, monthsBefore(end, 11)) : monthsBefore(end, 11),
+        // start 를 밖에서 받고 end 만 되짚으면 start > end 인 역전 구간이 나간다. 항상 end 기준으로 되잡는다.
+        strtYymm: (() => {
+          const wide = monthsBefore(end, 11);
+          const given = o.startYymm ? digits(o.startYymm, 6, wide) : wide;
+          return given <= end ? given : wide;
+        })(),
         endYymm: end,
       };
     },
@@ -171,47 +172,6 @@ const ENDPOINTS: Record<string, ApiEndpoint> = {
       })),
   },
 };
-
-/** data.go.kr 응답에서 행과 결과코드를 뽑는다. JSON·XML 봉투를 모두 받는다. */
-function readEnvelope(text: string): { rows: any[]; code: string; message: string; total: number | null } {
-  let code = '';
-  let message = '';
-  let rows: any[] = [];
-  let total: number | null = null;
-
-  try {
-    const data = JSON.parse(text);
-    // 해수부 1192000 은 봉투 이름이 `responseJson` 이다(관세청은 `response`).
-    // 이름 하나 놓치면 본문 대신 전체 객체를 뒤지게 되고, 행이 안 잡혀 **빈 배열이 성공으로** 나간다.
-    const envelope = data?.responseJson ?? data?.response ?? data;
-    const body = envelope?.body ?? data?.body ?? data;
-    const header = envelope?.header ?? data?.header ?? {};
-    code = String(header.resultCode ?? data?.resultCode ?? '');
-    message = String(header.resultMsg ?? data?.resultMsg ?? '');
-    const items = body?.items?.item ?? body?.items ?? body?.item ?? [];
-    rows = Array.isArray(items) ? items : items ? [items] : [];
-    // 해수부는 총건수를 header 에 넣는다. body 만 보면 늘 null 이다.
-    const totalRaw = body?.totalCount ?? header?.totalCount;
-    total = totalRaw != null ? Number(totalRaw) : null;
-  } catch {
-    // 관세청 운송비용은 resultType=json 을 무시하고 XML 로 답한다(2026-09-12 실측).
-    // 키·활용신청 문제도 XML(OpenAPI_ServiceResponse)로 온다. 둘 다 여기서 읽는다.
-    code = text.match(/<resultCode>([^<]*)</)?.[1] ?? text.match(/<returnReasonCode>([^<]*)</)?.[1] ?? '';
-    message =
-      text.match(/<resultMsg>([^<]*)</)?.[1] ??
-      text.match(/<returnAuthMsg>([^<]*)</)?.[1] ??
-      text.match(/<errMsg>([^<]*)</)?.[1] ??
-      text.slice(0, 200);
-    for (const m of text.matchAll(/<item>([\s\S]*?)<\/item>/g)) {
-      const row: Record<string, string> = {};
-      for (const f of m[1].matchAll(/<(\w+)>([^<]*)<\/\1>/g)) row[f[1]] = f[2];
-      rows.push(row);
-    }
-    const totalText = text.match(/<totalCount>(\d+)</)?.[1];
-    total = totalText != null ? Number(totalText) : null;
-  }
-  return { rows, code, message, total };
-}
 
 type Result =
   | { ok: true; title: string; unit: string; total: number | null; data: any[]; source: string }
@@ -238,43 +198,16 @@ async function fetchEndpoint(key: string, opts: Record<string, string>): Promise
 }
 
 async function fetchOnce(endpoint: ApiEndpoint, opts: Record<string, string>): Promise<Result> {
-
-  const label = `해양수산부·관세청 ${endpoint.title}`;
-  let params: URLSearchParams;
-  try {
-    params = new URLSearchParams({ ...endpoint.params(opts), serviceKey: SERVICE_KEY() });
-  } catch (error: any) {
-    return { ok: false, title: endpoint.title, error: error.message, source: 'ENV' };
-  }
-
-  try {
-    const response = await fetch(`${endpoint.url}?${params.toString()}`, {
-      headers: { Accept: 'application/json' },
-      signal: AbortSignal.timeout(10000),
-      next: { revalidate: 3600 },
-    });
-
-    // 포털은 키·활용신청 문제를 4xx 본문으로 알려 준다. 상태코드만 올리면 원인이 사라진다.
-    const { rows, code, message, total } = readEnvelope(await response.text());
-
-    if (code && code !== '00' && code !== '0') {
-      return { ok: false, title: endpoint.title, error: `결과코드 ${code}: ${message}`, source: 'UPSTREAM' };
-    }
-    if (!response.ok) {
-      return { ok: false, title: endpoint.title, error: `HTTP ${response.status}: ${message}`, source: 'UPSTREAM' };
-    }
-
-    return {
-      ok: true,
-      title: endpoint.title,
-      unit: endpoint.unit,
-      total,
-      data: endpoint.transform(rows),
-      source: label,
-    };
-  } catch (error: any) {
-    return { ok: false, title: endpoint.title, error: error.message ?? String(error), source: 'NETWORK' };
-  }
+  const result = await fetchDataGo(endpoint.url, endpoint.params(opts));
+  if (!result.ok) return { ok: false, title: endpoint.title, error: result.error, source: 'UPSTREAM' };
+  return {
+    ok: true,
+    title: endpoint.title,
+    unit: endpoint.unit,
+    total: result.total,
+    data: endpoint.transform(result.rows),
+    source: `해양수산부·관세청 ${endpoint.title}`,
+  };
 }
 
 /**
@@ -283,14 +216,29 @@ async function fetchOnce(endpoint: ApiEndpoint, opts: Record<string, string>): P
  */
 async function fetchFreightMatrix(opts: Record<string, string>) {
   const codes = Object.keys(FREIGHT_COUNTRIES);
-  const results = await Promise.all(codes.map((c) => fetchEndpoint('shipping_cost', { ...opts, country: c })));
+
+  // 공표가 두세 달 늦는다. 되짚기를 여섯 항로마다 따로 하면 6 × 6 = 36회를 상류에 던진다.
+  // 한 항로로 한 번만 되짚어 「값이 있는 달」을 찾고, 나머지는 그 달로 고정해 부른다.
+  let anchor = opts.endYymm;
+  if (!anchor) {
+    const probe = await fetchEndpoint('shipping_cost', { ...opts, country: codes[0] });
+    if (!probe.ok) {
+      return { ok: false as const, title: '해상 수출입 운송비용', error: probe.error, source: 'UPSTREAM' };
+    }
+    const last = probe.data[probe.data.length - 1];
+    anchor = String(last?.period ?? '').replace('.', '') || lastMonth();
+  }
+
+  const results = await Promise.all(
+    codes.map((c) => fetchEndpoint('shipping_cost', { ...opts, country: c, endYymm: anchor as string })),
+  );
 
   const byPeriod = new Map<string, Record<string, any>>();
   const failed: string[] = [];
   results.forEach((res, i) => {
     const code = codes[i];
     if (!res.ok) {
-      failed.push(`${code}: ${res.error}`);
+      failed.push(`${FREIGHT_COUNTRIES[code]}: ${res.error}`);
       return;
     }
     for (const row of res.data) {

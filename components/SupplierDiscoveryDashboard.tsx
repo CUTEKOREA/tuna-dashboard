@@ -685,7 +685,19 @@ export default function SupplierDiscoveryDashboard() {
               <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(150px, 1fr))', gap: '1rem', marginBottom: '1.5rem' }}>
                 {[
                   { label: 'FOB 가격', value: `$${landedCost.breakdown.fob.totalUSD?.toLocaleString()}`, color: '#3b82f6', sub: `$${landedCost.breakdown.fob.perKgUSD}/kg` },
-                  { label: '해상운임', value: `$${landedCost.breakdown.freight.totalUSD?.toLocaleString()}`, color: '#06b6d4', sub: `$${landedCost.breakdown.freight.perTonUSD}/ton` },
+                  // 운임은 컨테이너 단위다(관세청 천원/2TEU). 톤당으로 적으면 없는 단위를 지어내는 셈이라 대수·kg당으로 적는다.
+                  {
+                    label: '해상운임',
+                    value:
+                      landedCost.breakdown.freight.perKgKRW == null
+                        ? '조회 실패'
+                        : `$${landedCost.breakdown.freight.totalUSD?.toLocaleString()}`,
+                    color: '#06b6d4',
+                    sub:
+                      landedCost.breakdown.freight.perKgKRW == null
+                        ? String(landedCost.breakdown.freight.source ?? '')
+                        : `40ft ${landedCost.breakdown.freight.containers}대 · ₩${landedCost.breakdown.freight.perKgKRW}/kg`,
+                  },
                   { label: 'CIF 가격', value: `$${landedCost.breakdown.cif.totalUSD?.toLocaleString()}`, color: '#8b5cf6', sub: 'FOB + 운임' },
                   { label: `관세 (${landedCost.breakdown.duty.rate})`, value: `$${landedCost.breakdown.duty.totalUSD?.toLocaleString()}`, color: '#ef4444', sub: landedCost.breakdown.duty.tariffType },
                   { label: '부가세 (10%)', value: `$${landedCost.breakdown.vat.totalUSD?.toLocaleString()}`, color: '#f59e0b', sub: '' },

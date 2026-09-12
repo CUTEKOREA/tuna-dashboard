@@ -413,11 +413,12 @@ export async function POST(req: Request) {
           tariff: 'Gemini AI (trade knowledge)',
           tradeVolume: 'KCS 관세청 수출입무역통계 API (실시간)',
           kamisPrice: 'KAMIS / 수산물 경락가 API (실시간)',
-          mfdsRejection: 'FDA & MFDS 글로벌 안전성 API (실시간)',
+          mfdsRejection: 'FDA 실시간 · MFDS 조회불가(해당 오픈API 없음, 2026-09-12 확인)',
           scorecard: 'Gemini AI (evidence-based scoring)',
         },
         timestamp: new Date().toISOString(),
-        mockDataUsed: false,
+        // 항목별 출처는 위 dataSources 에 적었다. 통짜 false 는 「전부 실데이터」로 읽혀 위험하다.
+        estimatesUsed: ['mfdsRejection'],
       }
     });
   } catch (error) {
