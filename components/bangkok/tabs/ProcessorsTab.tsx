@@ -12,6 +12,15 @@ import {
   vnRegistrationRisk,
 } from '@/lib/data/vn-surimi-suppliers';
 import {
+  hasLedger,
+  ledgerFor,
+  ledgerTopRows,
+  ledgerThirdRows,
+  originLine,
+  seasiaLedgerMeta,
+  speciesLine,
+} from '@/lib/data/seasia-ledger';
+import {
   companyName,
   headsOf,
   enrichCounts,
@@ -197,6 +206,55 @@ export function ProcessorsTab() {
           </Grid>
         </>
       )}
+
+      {hasLedger(country) && (() => {
+        const led = ledgerFor(country);
+        if (!led) return null;
+        return (
+          <>
+            <Sec>어종·원료 원산지로 다시 본 제조소 (식약처 수입신고 원장)</Sec>
+            <Stats>
+              <Stat k="원장 신고" v={num(led.n)} unit="건" d={`${led.period[0]}~${led.period[1]}`} />
+              <Stat k="원장 제조소" v={String(led.facilities)} unit="곳" d={`전수표 수록 ${led.inRegistry} · 원장에만 ${led.onlyLedger}`} />
+              <Stat
+                k="제3국 원료 신고"
+                v={num(led.thirdCountry)}
+                unit="건"
+                tone={led.thirdCountry > 0 ? 'up' : undefined}
+                d={`제조소 ${led.thirdFacilities}곳`}
+              />
+              <Stat k="어종군" v={String(led.species.length)} unit="개" d={speciesLine(country, 3)} />
+            </Stats>
+            <Grid>
+              <Panel
+                span={12}
+                title={`${country} 가공 제조소 상위 20 — 어종군과 원료 원산지`}
+                unit={`신고 ${num(led.n)}건 · 제조소 ${led.facilities}곳`}
+                note={`어종군 ${speciesLine(country)} / 원료 원산지 ${originLine(country)}. ${seasiaLedgerMeta.diff} ${seasiaLedgerMeta.merge}`}
+                src={`${seasiaLedgerMeta.source} · ${seasiaLedgerMeta.ledger} · 어종 ${seasiaLedgerMeta.species}`}
+              >
+                <RowsTable rows={ledgerTopRows(country)} />
+              </Panel>
+              {led.thirdFacilities > 0 && (
+                <Panel
+                  span={12}
+                  title="제3국 원료를 쓰는 제조소"
+                  unit={`${led.thirdFacilities}곳 · 신고 ${num(led.thirdCountry)}건`}
+                  note={
+                    `원료 원산지가 ${country}이 아닌 신고가 있는 제조소다. ` +
+                    '이 칸은 기존 전수표에 없던 것이다 — **그 공장이 자국 어획을 쓰는지 남의 원료를 ' +
+                    '임가공하는지**가 인수·계약 판단에서 갈리기 때문이다. ' +
+                    '「제3국 원료」 비중이 높은 곳은 원료 조달을 스스로 쥐고 있지 않다.'
+                  }
+                  src={`${seasiaLedgerMeta.source} · ${seasiaLedgerMeta.basis}`}
+                >
+                  <RowsTable rows={ledgerThirdRows(country)} />
+                </Panel>
+              )}
+            </Grid>
+          </>
+        );
+      })()}
 
       <Sec>주목 상위 후보</Sec>
       <Grid>

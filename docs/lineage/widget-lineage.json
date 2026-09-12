@@ -1,9 +1,9 @@
 {
  "_meta": {
   "entry": "app/page.tsx",
-  "files": 247,
+  "files": 248,
   "widgets": 112,
-  "dataFiles": 201,
+  "dataFiles": 202,
   "generator": "scripts/widget_lineage.py"
  },
  "widgetToData": {
@@ -312,6 +312,7 @@
     "lib/data/bangkok-weekly.ts"
    ],
    "dataFiles": [
+    "public/data/bangkok/seasia_ledger.json",
     "public/data/bangkok/seasia_processors.json",
     "public/data/bangkok/vn_surimi_suppliers.json",
     "public/data/bangkok_weekly_kpi.json",
@@ -371,10 +372,12 @@
   },
   "components/bangkok/tabs/ProcessorsTab.tsx": {
    "dataModules": [
+    "lib/data/seasia-ledger.ts",
     "lib/data/seasia-processors.ts",
     "lib/data/vn-surimi-suppliers.ts"
    ],
    "dataFiles": [
+    "public/data/bangkok/seasia_ledger.json",
     "public/data/bangkok/seasia_processors.json",
     "public/data/bangkok/vn_surimi_suppliers.json",
     "public/data/bangkok_weekly_kpi.json",
@@ -1166,6 +1169,10 @@
    "components/FleetDailyOperations.tsx",
    "components/panofi/PanofiDashboard.tsx",
    "components/panofi/PanofiTabs.tsx"
+  ],
+  "public/data/bangkok/seasia_ledger.json": [
+   "components/bangkok/BangkokDashboard.tsx",
+   "components/bangkok/tabs/ProcessorsTab.tsx"
   ],
   "public/data/bangkok/seasia_processors.json": [
    "components/bangkok/BangkokDashboard.tsx",
