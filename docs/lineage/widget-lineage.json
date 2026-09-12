@@ -1,9 +1,9 @@
 {
  "_meta": {
   "entry": "app/page.tsx",
-  "files": 248,
+  "files": 250,
   "widgets": 112,
-  "dataFiles": 202,
+  "dataFiles": 210,
   "generator": "scripts/widget_lineage.py"
  },
  "widgetToData": {
@@ -587,6 +587,7 @@
     "lib/data/company-fcf.ts",
     "lib/data/company-frabelle.ts",
     "lib/data/company-frinsa.ts",
+    "lib/data/company-garavilla.ts",
     "lib/data/company-hagoromo.ts",
     "lib/data/company-herdez.ts",
     "lib/data/company-iot.ts",
@@ -602,6 +603,7 @@
     "lib/data/company-report-figures.ts",
     "lib/data/company-report-tables.ts",
     "lib/data/company-sajo.ts",
+    "lib/data/company-sajoseafood.ts",
     "lib/data/company-seavalue.ts",
     "lib/data/company-starkist.ts",
     "lib/data/company-tecopesca.ts",
@@ -667,6 +669,10 @@
     "public/data/companies/frinsa_prose_v1.json",
     "public/data/companies/frinsa_tables_v1.json",
     "public/data/companies/frinsa_v1.json",
+    "public/data/companies/garavilla_figures_v1.json",
+    "public/data/companies/garavilla_prose_v1.json",
+    "public/data/companies/garavilla_tables_v1.json",
+    "public/data/companies/garavilla_v1.json",
     "public/data/companies/hagoromo_figures_v1.json",
     "public/data/companies/hagoromo_prose_v1.json",
     "public/data/companies/hagoromo_tables_v1.json",
@@ -719,6 +725,10 @@
     "public/data/companies/sajo_prose_v1.json",
     "public/data/companies/sajo_tables_v1.json",
     "public/data/companies/sajo_v1.json",
+    "public/data/companies/sajoseafood_figures_v1.json",
+    "public/data/companies/sajoseafood_prose_v1.json",
+    "public/data/companies/sajoseafood_tables_v1.json",
+    "public/data/companies/sajoseafood_v1.json",
     "public/data/companies/seavalue_figures_v1.json",
     "public/data/companies/seavalue_prose_v1.json",
     "public/data/companies/seavalue_tables_v1.json",
@@ -1378,6 +1388,18 @@
    "components/market-understanding/CompanyAnatomyDashboard.tsx",
    "components/market-understanding/FrinsaCharts.tsx"
   ],
+  "public/data/companies/garavilla_figures_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/garavilla_prose_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/garavilla_tables_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/garavilla_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
   "public/data/companies/hagoromo_figures_v1.json": [
    "components/market-understanding/CompanyAnatomyDashboard.tsx"
   ],
@@ -1532,6 +1554,18 @@
    "components/market-understanding/CompanyAnatomyDashboard.tsx"
   ],
   "public/data/companies/sajo_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/sajoseafood_figures_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/sajoseafood_prose_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/sajoseafood_tables_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/sajoseafood_v1.json": [
    "components/market-understanding/CompanyAnatomyDashboard.tsx"
   ],
   "public/data/companies/seavalue_figures_v1.json": [

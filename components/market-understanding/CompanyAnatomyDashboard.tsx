@@ -288,6 +288,14 @@ import {
   herdezMeta, herdezStats, herdezSourceNotes,
   soldPlantThroughput, drainedShortfallPct, priceRatioVsDolores,
 } from '@/lib/data/company-herdez';
+import {
+  sajoseafoodMeta, sajoseafoodStats, sajoseafoodSourceNotes,
+  processedToAssetRatio, affiliateShare2025,
+} from '@/lib/data/company-sajoseafood';
+import {
+  garavillaMeta, garavillaStats, garavillaSourceNotes,
+  fleetEnergyRatio, authorizedCasesShift,
+} from '@/lib/data/company-garavilla';
 
 
 const ACCENT = '#c2410c';
@@ -3646,6 +3654,118 @@ const HERDEZ_SPEC: CommoditySpec = {
   ].join(' · '),
 };
 
+const SAJOSEAFOOD_ACCENT = '#1f6f8b';
+
+const SAJOSEAFOOD_SPEC: CommoditySpec = {
+  key: 'company-anatomy-sajoseafood',
+  title: '기업 해부: 사조씨푸드',
+  subtitle:
+    '유가증권시장 014710. 참치 매출 1,465억 7,640만 원(별도 매출의 67.41%)을 내는 수산물가공유통 부문의 설비 장부가가 2025년 말 3억 5,962만 원이고 그 부문에는 토지도 건물도 한 줄이 없다. ' +
+    '라인을 거치는 가공품 822억 8,654만 원만 놓아도 228.8배다. 부산 냉동창고 777㎡의 그해 임차료 3억 6,942만 원이 그 부문 전 자산의 장부가보다 크고, 가공용 원어의 94.9%는 사조산업·사조오양에서 온다. 원가를 정하는 것은 설비가 아니라 조달 계약이다.',
+  accent: SAJOSEAFOOD_ACCENT,
+  primaryKpi: {
+    label: '가공품 매출 대 그 부문 설비 장부가 (2025)',
+    value: processedToAssetRatio(),
+    decimals: 1,
+    unit: `(배 · 가공품 ${sajoseafoodStats.가공품_매출_2025.toLocaleString('ko-KR')}천원 ÷ 설비 ${sajoseafoodStats.부문_설비_장부가_2025.toLocaleString('ko-KR')}천원)`,
+    accent: SAJOSEAFOOD_ACCENT,
+  },
+  secondaryKpis: [
+    { label: '참치 매출 비중 (2025, 별도 기준)', value: sajoseafoodStats.참치_비중_별도_pct, decimals: 2, unit: `(% · 1,465억 7,640만 원 ÷ 별도 매출 — 연결 기준이면 ${sajoseafoodStats.참치_비중_연결_pct}%)` },
+    { label: '가공용 원어의 계열 몫 (2025)', value: affiliateShare2025(), decimals: 1, unit: '(% · 사조산업 + 사조오양 ÷ 부문 원재료 매입 711억 2,778만 원)' },
+    { label: '가동률 (2025, 수산물가공유통)', value: sajoseafoodStats.가동률_2025_pct, decimals: 2, unit: `(% · ${sajoseafoodStats.가동시간_2025_hr.toLocaleString('ko-KR')}시간 ÷ 정규 ${sajoseafoodStats.정규시간_2025_hr.toLocaleString('ko-KR')}시간 — 분모는 8시간 × 259일 가정)` },
+  ],
+  stripItems: [
+    {
+      now: true,
+      eyebrow: '자산',
+      title: '참치 1,466억 옆의 설비 3억 5,962만',
+      body: '그 부문에 토지도 건물도 없다. 라인을 거치는 가공품 822억 8,654만 원만 놓아도 228.8배이고, 상품 508억은 사서 되파는 것이다',
+    },
+    {
+      eyebrow: '임차',
+      title: '설비보다 임차료가 크다',
+      body: '부산 냉동창고 777㎡를 최대주주 사조산업에서 빌리고 2025년 임차료가 3억 6,942만 원 — 그 부문 전 자산의 장부가보다 크다',
+    },
+    {
+      eyebrow: '조달',
+      title: '가공용 원어의 94.9%가 계열에서 온다',
+      body: '다만 매끄러운 상승이 아니다 — 2023년 81.8%에서 2024년 94.4%로 12.6포인트 뛰었고 2026년 상반기에는 91.3%로 내려갔다',
+    },
+    {
+      eyebrow: '명판',
+      title: '가동률 105.74%의 분모는 행정 숫자다',
+      body: '분모 2,072시간은 259일 가정이고 같은 표의 능력 6,336톤은 264일 가정이다. 물량으로 재면 7,583 ÷ 6,336 = 119.7%다',
+    },
+  ],
+  briefing: proseBriefing('sajoseafood'),
+  narratives: inlineReport('sajoseafood', proseStages('sajoseafood')),
+  chartSlots: {},
+  continuous: true,
+  sourceNotes: sajoseafoodSourceNotes,
+  sourceMeta: [
+    `${sajoseafoodMeta.회사} · ${sajoseafoodMeta.국가} · ${sajoseafoodMeta.업종}`,
+    `출처 ${sajoseafoodMeta.출처}`,
+    `조사 ${sajoseafoodMeta.조사일}`,
+  ].join(' · '),
+};
+
+const GARAVILLA_ACCENT = '#0e6b7a';
+
+const GARAVILLA_SPEC: CommoditySpec = {
+  key: 'company-anatomy-garavilla',
+  title: '기업 해부: Conservas Garavilla',
+  subtitle:
+    '브랜드 Isabel. 공장 넷 가운데 라인 수와 분당 캔 수와 보일러 형식번호까지 읽히는 곳은 오 그로베 하나다 — 회사가 밝혀서가 아니라 갈리시아 통합환경허가가 공정 전체를 한 문서에 그리는 유일한 제도이기 때문이다. ' +
+    '만타의 에콰도르 ARCSA는 회수 결의로, 아가디르의 모로코 ONSSA는 위생승인 번호로 말한다. 사건과 번호는 주지만 도면은 주지 않는다. 그래서 사람이 가장 많은 공장(만타 1,799.00명)이 가장 얇게 보이고, 탄소는 공장이 아니라 선망 4척에 있다.',
+  accent: GARAVILLA_ACCENT,
+  primaryKpi: {
+    label: '선망 4척 대 공장 넷의 에너지 (2022)',
+    value: fleetEnergyRatio(),
+    decimals: 2,
+    unit: `(배 · 선단 ${Number(garavillaStats.에너지_선단_2022_GJ).toLocaleString('ko-KR')} GJ ÷ 공장 237,070.59 GJ · 절사)`,
+    accent: GARAVILLA_ACCENT,
+  },
+  secondaryKpis: [
+    { label: '오 그로베 인가 캔상자 증가 (2024 → 2025)', value: authorizedCasesShift().증가율, decimals: 1, unit: `(% · ${authorizedCasesShift()[2024].toLocaleString('ko-KR')} → ${authorizedCasesShift()[2025].toLocaleString('ko-KR')}상자 — 늘어난 자리는 전부 고등어다)` },
+    { label: '2025년 인가 물량의 고등어 몫', value: Number(garavillaStats.인가_캔상자_고등어_비중_pct), decimals: 1, unit: '(% · 1,666,667상자 ÷ 6,744,212상자 — 참치 인가 능력 3,910,568상자는 개편 전후가 같다)' },
+    { label: '선단 배출 대 공장 넷 배출 (2025)', value: Number(garavillaStats.배출_선단_2025_tCO2eq), decimals: 0, unit: '(tCO2eq · 공장 넷 합 20,023 — 오 그로베 2,778 · 카보 데 크루스 663 · 만타 11,692 · 아가디르 4,890)' },
+  ],
+  stripItems: [
+    {
+      now: true,
+      eyebrow: '제도',
+      title: '도면을 가진 제도는 IPPC 하나뿐이다',
+      body: '오 그로베만 부지 44,131 ㎡·보일러 3×5.22 MWt·방류 821,250 ㎥가 관보에 찍힌다. 만타·아가디르는 사건번호와 승인번호만 준다',
+    },
+    {
+      eyebrow: '라인',
+      title: '라인은 15 → 9인데 참치 능력은 그대로다',
+      body: '참치를 다루던 라인이 13개에서 5개로 줄었는데 참치 인가 생산능력은 3,910,568상자로 같다. 늘어난 인가 물량은 전부 고등어다',
+    },
+    {
+      eyebrow: '무게',
+      title: '사람은 만타, 탄소는 배, 문서는 오 그로베',
+      body: '만타 1,799.00명이 가장 얇게 보이고, 선망 4척이 2022년 에너지로 공장 넷의 2.39배를 태운다',
+    },
+    {
+      eyebrow: '2025',
+      title: '합병이 아니라 한 해에 겹친 세 갈래다',
+      body: '4/3 본점 빌바오 이전 · 5/6 상표 네 건이 Bolton Food S.p.A.로 · 9/16 단독주주 선언 · 12/23 이사회 교체. 합병 공고는 어느 관보에도 0건이다',
+    },
+  ],
+  briefing: proseBriefing('garavilla'),
+  narratives: inlineReport('garavilla', proseStages('garavilla')),
+  chartSlots: {},
+  continuous: true,
+  sourceNotes: garavillaSourceNotes,
+  sourceMeta: [
+    `${garavillaMeta.회사} · ${garavillaMeta.국가} · ${garavillaMeta.업종}`,
+    `출처 ${garavillaMeta.출처}`,
+    `조사 ${garavillaMeta.조사일}`,
+  ].join(' · '),
+};
+
 export const COMPANY_CARDS: CompanyCard[] = [
   {
     key: 'frinsa',
@@ -4073,6 +4193,30 @@ export const COMPANY_CARDS: CompanyCard[] = [
       { label: '배수중량 미달률', value: `${drainedShortfallPct()}%` },
       { label: '판 공장 설비용량', value: `${herdezStats.판_공장_설비용량_t.toLocaleString('ko-KR')} t` },
     ],
+  },  {
+    key: 'sajoseafood',
+    numeral: 'ⅩⅩⅩⅣ',
+    name: '사조씨푸드',
+    country: '대한민국 · 서울 서대문(가공은 부산, 김 공장은 익산)',
+    tagline: '참치는 설비가 아니라 계약서에서 나온다.',
+    ...FLAG.한국,
+    stats: [
+      { label: '가공품 대 부문 설비', value: `${processedToAssetRatio()}배` },
+      { label: '가공용 원어의 계열 몫', value: `${affiliateShare2025()}%` },
+      { label: '원양참치어선', value: `${sajoseafoodStats.어선_척수}척(선망 1·연승 2)` },
+    ],
+  },  {
+    key: 'garavilla',
+    numeral: 'ⅩⅩⅩⅤ',
+    name: 'Conservas Garavilla',
+    country: '스페인 · 빌바오(공장은 오 그로베·카보 데 크루스·만타·아가디르)',
+    tagline: '설비 도면을 가진 제도는 하나뿐이다.',
+    ...FLAG.스페인,
+    stats: [
+      { label: '선단 대 공장 에너지', value: `${fleetEnergyRatio()}배` },
+      { label: '오 그로베 인가 라인', value: `${garavillaStats.오그로베_라인_2024} → ${garavillaStats.오그로베_라인_2025}개` },
+      { label: '선망선', value: `${garavillaStats.선망선_척수}척(에콰도르 2·스페인 2)` },
+    ],
   },
 
 
@@ -4131,6 +4275,8 @@ export default function CompanyAnatomyDashboard({
     kaichuang: KAICHUANG_SPEC,
     alliance: ALLIANCE_SPEC,
     herdez: HERDEZ_SPEC,
+    sajoseafood: SAJOSEAFOOD_SPEC,
+    garavilla: GARAVILLA_SPEC,
   };
   const spec = SPECS[selected] ?? SPEC;
 

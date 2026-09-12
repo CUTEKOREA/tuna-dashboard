@@ -17,6 +17,10 @@ from pathlib import Path
 EV = Path(__file__).resolve().parents[1] / "docs/evidence"
 NUM = re.compile(r'^-?[\d,]+(?:\.\d+)?$')
 TOTAL = re.compile(r'합계|합 계|총계|^계$')
+# 「자산총계」·「부채총계」·「자본총계」는 재무 요약표의 **항목 행**이지 그 열의 합이 아니다.
+# 항목을 세로로 놓고 연도를 가로로 놓은 표에서 이 행을 합계행으로 잡으면
+# 매출+영업이익+순이익 = 자산총계 라는 없는 등식을 검산하게 된다(ⅩⅩⅩⅣ 표3 실측 5건).
+ITEM_ROW = re.compile(r'^(자산|부채|자본)\s*총계$')
 RATE = re.compile(r'률|율|비중|증감|전년비|%|단가|평균')
 
 
@@ -70,7 +74,8 @@ def main() -> int:
         for ti, tbl in enumerate(re.findall(r'<table.*?</table>', s, re.S)):
             rows = [cells(r) for r in re.findall(r'<tr.*?</tr>', tbl, re.S)]
             rows = [r for r in rows if r]
-            tot = next((i for i, r in enumerate(rows) if r and TOTAL.search(r[0])), None)
+            tot = next((i for i, r in enumerate(rows)
+                        if r and TOTAL.search(r[0]) and not ITEM_ROW.match(r[0])), None)
             if tot is None or tot < 2:
                 continue
             body, trow = rows[1:tot], rows[tot]
