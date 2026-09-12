@@ -317,7 +317,7 @@ export default function Profit() {
             { name: 'MT당 총원가', color: C.s1 },
             { name: 'MT당 원어비', color: C.s4 },
             { name: 'MT당 에너지', color: C.s3 },
-            { name: 'MT당 노무비', color: C.s5 },
+            { name: 'MT당 노무비', color: C.s2 },
           ]} />
           <Chart
             data={monthlyUnitCost} x="label" height={250} yFmt={dk} y2Fmt={d0}
@@ -325,7 +325,7 @@ export default function Profit() {
               { key: 'costPerMt', name: 'MT당 총원가', color: C.s1, fmt: d0 },
               { key: 'fishPerMt', name: 'MT당 원어비', color: C.s4, fmt: d0 },
               { key: 'energyPerMt', name: 'MT당 에너지', color: C.s3, axis: 'right', fmt: d0 },
-              { key: 'laborPerMt', name: 'MT당 노무비', color: C.s5, axis: 'right', fmt: d0 },
+              { key: 'laborPerMt', name: 'MT당 노무비', color: C.s2, axis: 'right', fmt: d0 },
             ]}
           />
         </Card>
@@ -338,7 +338,7 @@ export default function Profit() {
           note={<>Skipjack 단가는 {sjFirst?.label} {d0(n(sjFirst?.fishPriceSJ))}에서 {sjPrev?.label} {d0(n(sjPrev?.fishPriceSJ))}까지 줄곧 올랐다가, {sjLast?.label} <b>{d0(n(sjLast?.fishPriceSJ))}</b>로 <b>{pct(sjMoM, 1)}</b> 내렸습니다 - 1월 이후 <b>첫 하락 전환</b>입니다. 다만 관측 1개월이라 추세로 단정할 수 없고, 8월 원가 개선의 <b>선행 신호 후보</b>로만 둡니다. 같은 기간 매출총이익률은 {pct(sjFirst?.gpMargin, 2)} → <b>{pct(sjLast?.gpMargin, 2)}</b> - 누적 {pct(sjChange, 1)} 오른 단가를 판가가 따라잡지 못한 구조는 그대로입니다. 월 {sjRows.length}개 관측치라 상관계수를 말할 표본은 아니고, <b>방향</b>만 읽습니다.</>}
         >
           <Legend items={[
-            { name: '원어가 SJ ($/MT)', color: C.s3 },
+            { name: '원어가 SJ ($/MT)', color: C.s1 },
             { name: '매출총이익률', color: C.s4 },
           ]} />
           <Chart
@@ -346,7 +346,7 @@ export default function Profit() {
             domain={tightDomain(monthlySeries.map((r) => r.fishPriceSJ))}
             refLines={[{ y: 0, axis: 'right' }]}
             series={[
-              { key: 'fishPriceSJ', name: '원어가 SJ', color: C.s3, fmt: d0 },
+              { key: 'fishPriceSJ', name: '원어가 SJ', color: C.s1, fmt: d0 },
               { key: 'gpMargin', name: '매출총이익률', color: C.s4, axis: 'right', fmt: p1 },
             ]}
           />

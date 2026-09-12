@@ -154,7 +154,7 @@ export default function Market() {
           <Chart
             data={top.map((m) => ({ label: m.key, amountUsd: m.amountUsd }))}
             x="label" height={250} yFmt={m1} xInterval={0}
-            series={[{ key: 'amountUsd', name: '매출', color: C.rank, type: 'bar', fmt: m2 }]}
+            series={[{ key: 'amountUsd', name: '매출', color: C.s1, type: 'bar', fmt: m2 }]}
           />
         </Card>
 

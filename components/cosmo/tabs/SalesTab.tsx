@@ -221,7 +221,7 @@ export default function Sales() {
         >
           <Chart
             data={mixRows} x="label" height={260} yFmt={m1} xInterval={0}
-            series={[{ key: 'cumUsd', name: '누적 매출', color: C.rank, type: 'bar', fmt: m2 }]}
+            series={[{ key: 'cumUsd', name: '누적 매출', color: C.s1, type: 'bar', fmt: m2 }]}
           />
         </Card>
 

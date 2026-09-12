@@ -40,6 +40,15 @@ const FALLBACK_FLOWS: Record<string, any> = {
   ]
 };
 
+/** 이 구독 경로는 상대국 목록을 명시해야 국가별 행을 준다. 참치·수산 주요 공급국이다. */
+const DEFAULT_PARTNERS = ['764', '218', '156', '704', '360', '608', '842', '392', '604'].join(',');
+
+/** 응답의 partnerDesc 가 비어 오는 일이 있다. 코드로도 이름을 찾을 수 있게 둔다. */
+const PARTNER_NAME: Record<string, string> = {
+  '764': '태국', '218': '에콰도르', '156': '중국', '704': '베트남', '360': '인도네시아',
+  '608': '필리핀', '842': '미국', '392': '일본', '604': '페루', '410': '대한민국',
+};
+
 export async function POST(req: Request) {
   let isLive = false;
   let flows: any[] = [];
@@ -48,8 +57,12 @@ export async function POST(req: Request) {
     const body = await req.json();
     const { 
       cmdCode = '160414', 
-      reporterCode = 'all', 
-      partnerCode = 'all', 
+      // 2026-09-12 실측. 이 구독 경로는 `all` 을 신고국·상대국 어느 쪽에서도 받지 않는다(둘 다 HTTP 400).
+      // 예전 기본값이 양쪽 다 'all' 이라 구독 키가 있어도 항상 400 → 아래 정적 폴백으로 떨어졌다.
+      // 상대국을 0(세계 총계)으로 두면 200 이 오지만 이 화면은 국가→국가 흐름도라
+      // 파서가 상대국 0 행을 버린다. 그래서 주요 공급국을 명시적으로 나열한다.
+      reporterCode = '410', 
+      partnerCode = DEFAULT_PARTNERS, 
       period = '2023', 
       flowCode = 'M,X' 
     } = body;
@@ -67,13 +80,26 @@ export async function POST(req: Request) {
 
     if (res.ok) {
       const json = await res.json();
-      const rows: any[] = Array.isArray(json?.data) ? json.data : [];
+      let rows: any[] = Array.isArray(json?.data) ? json.data : [];
+      // 공개 preview 경로는 reporterCode 를 받지 않는다. 거르지 않으면 엉뚱한 나라 행이
+      // 「한국 기준」인 것처럼 isLive 로 올라간다.
+      if (!(comtradeKey && comtradeKey !== 'pending_issuance')) {
+        rows = rows.filter((r) => String(r.reporterCode) === String(reporterCode));
+      }
       // 실제 응답을 flows로 파싱: 수입(M)은 partner=수출원산지(source)→reporter=수입국(target)
       const parsed = rows
         .filter((r) => r.partnerCode && r.partnerCode !== 0 && Number(r.primaryValue) > 0)
         .map((r) => ({
-          source: KO_COUNTRY[String(r.partnerDesc)] || r.partnerDesc || String(r.partnerCode),
-          target: KO_COUNTRY[String(r.reporterDesc)] || r.reporterDesc || String(r.reporterCode),
+          source:
+            KO_COUNTRY[String(r.partnerDesc)] ||
+            r.partnerDesc ||
+            PARTNER_NAME[String(r.partnerCode)] ||
+            String(r.partnerCode),
+          target:
+            KO_COUNTRY[String(r.reporterDesc)] ||
+            r.reporterDesc ||
+            PARTNER_NAME[String(r.reporterCode)] ||
+            String(r.reporterCode),
           value: Math.round(Number(r.primaryValue)),
         }))
         .sort((a, b) => b.value - a.value)

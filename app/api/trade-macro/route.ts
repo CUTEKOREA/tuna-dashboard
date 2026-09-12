@@ -220,43 +220,11 @@ async function fetchGlobalSafetyData(itemName: string, engItemName: string) {
     fdaString = '0건 (FDA 실시간 조회 실패)';
   }
 
-  // 2) Try MFDS Check
-  const apiKey = process.env.MFDS_API_KEY;
-  let mfdsString = '';
-  if (!apiKey) {
-    mfdsString = '0건 (MFDS API 미설정)';
-  } else {
-    try {
-      const encodedItem = encodeURIComponent(itemName);
-      const url = `https://apis.data.go.kr/1471000/FoodFlshdImprtRejectInfoService/getFoodFlshdImprtRejectInfoList?serviceKey=${apiKey}&prdlst_nm=${encodedItem}&numOfRows=100&type=json`;
-
-      const res = await fetch(url, { signal: AbortSignal.timeout(8000) });
-      if (!res.ok) {
-        mfdsString = `0건 (MFDS ${res.status} 무응답, 내부망 통과)`;
-      } else {
-        const data = await res.json();
-        const items = data?.body?.items;
-        const totalCount = data?.body?.totalCount || 0;
-
-        if (totalCount === 0 || !items) {
-          mfdsString = `0건 (MFDS 실시간)`;
-        } else {
-          const oneYearAgo = new Date();
-          oneYearAgo.setFullYear(oneYearAgo.getFullYear() - 1);
-          const recentItems = Array.isArray(items) ? items.filter((i: any) => {
-            const dt = i.DCSN_DT || i.dcsn_dt || '';
-            if (!dt) return true;
-            return new Date(dt) >= oneYearAgo;
-          }) : [];
-
-          const recentCount = recentItems.length || totalCount;
-          mfdsString = `${recentCount}건 (MFDS 실시간, 총 ${totalCount}건)`;
-        }
-      }
-    } catch {
-      mfdsString = `0건 (MFDS 서버 무응답, 내부망 통과)`;
-    }
-  }
+  // 2) MFDS 부적합 — 2026-09-12 확인: 이 오픈API 는 존재하지 않는다.
+  // 포털에서 `FoodFlshdImprtRejectInfoService` 검색 결과 0건, 이름 변형 세 가지 모두 결과코드 12다.
+  // 예전 코드는 실패할 때마다 「0건 (MFDS 서버 무응답, 내부망 통과)」를 넣었다 —
+  // 조회를 못 한 것과 적발이 없는 것을 같은 문자열로 만들어, 아래 AI 채점이 이걸 「깨끗함」으로 읽었다.
+  const mfdsString = '조회불가 (해당 오픈API 없음 — 0건 아님)';
 
   return `FDA: ${fdaString} / MFDS: ${mfdsString}`;
 }
@@ -445,11 +413,12 @@ export async function POST(req: Request) {
           tariff: 'Gemini AI (trade knowledge)',
           tradeVolume: 'KCS 관세청 수출입무역통계 API (실시간)',
           kamisPrice: 'KAMIS / 수산물 경락가 API (실시간)',
-          mfdsRejection: 'FDA & MFDS 글로벌 안전성 API (실시간)',
+          mfdsRejection: 'FDA 실시간 · MFDS 조회불가(해당 오픈API 없음, 2026-09-12 확인)',
           scorecard: 'Gemini AI (evidence-based scoring)',
         },
         timestamp: new Date().toISOString(),
-        mockDataUsed: false,
+        // 항목별 출처는 위 dataSources 에 적었다. 통짜 false 는 「전부 실데이터」로 읽혀 위험하다.
+        estimatesUsed: ['mfdsRejection'],
       }
     });
   } catch (error) {

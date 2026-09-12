@@ -86,6 +86,21 @@ export const PANOFI_ID = {
   tanker: SERIES[7],
 } as const;
 
+/** 원산·수입 상대국 정체성 — 사이드바 밖 공개 페이지(/squid · /ffa-report)가 같은 나라를 같은 색으로 그린다.
+ * 슬롯은 오징어 한국 수입 상위 6개국의 누적 순서(중국·페루·베트남·칠레·에쿠아도르·아르헨티나)로 잡았고,
+ * 미국 로인 수입 스택(태국·베트남·피지·중국)도 이 배치로 인접 검사를 통과한다(2026-09-12). */
+export const COUNTRY_ID = {
+  중국: SERIES[0],
+  페루: SERIES[1],
+  베트남: SERIES[2],
+  칠레: SERIES[3],
+  에쿠아도르: SERIES[4],
+  아르헨티나: SERIES[5],
+  태국: SERIES[6],
+  피지: SERIES[7],
+  기타: SERIES_OTHER,
+} as const;
+
 /** 트레이더 정체성 — 물류·방콕이 같은 이름에 같은 색. */
 export const TRADER_ID = {
   FCF: SERIES[0],

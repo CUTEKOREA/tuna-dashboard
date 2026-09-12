@@ -39,3 +39,24 @@ export function hasEnv(...names: string[]): boolean {
 export function optionalEnv(name: string): string | null {
   return process.env[name] || null;
 }
+
+/**
+ * 공공데이터포털 인증키를 쓸 순서대로 돌려준다(중복 제거).
+ *
+ * 한 계정이 인증키를 여러 벌 갖고, **재발급하면 그 이전 값이 죽는다.** 서비스마다 활용신청이 붙은
+ * 계정·키가 다르기도 하다. 2026-09-12 실측: `DATA_GO_KR_NEW_KEY` 는 2026-08-13 재발급으로 죽은 값이라
+ * 이걸 1순위로 읽던 라우트는 전부 결과코드 30(등록되지 않은 서비스키)을 받고 있었다.
+ * 한 벌만 골라 쓰면 어느 쪽을 골라도 절반이 막히므로, 목록으로 받아 키 계통 오류면 다음 키로 넘어간다.
+ */
+export function dataGoKrKeys(): string[] {
+  const names = ['DATA_GO_KR_KEY_2', 'DATA_GO_KR_COMMON_KEY', 'DATA_GO_KR_NEW_KEY'];
+  const found: string[] = [];
+  for (const name of names) {
+    const value = process.env[name];
+    if (value && !found.includes(value)) found.push(value);
+  }
+  return found;
+}
+
+/** 키 계통 결과코드. 이 코드가 오면 다음 키로 넘어간다(22 요청초과는 키를 바꿔도 소용없어 뺀다). */
+export const DATA_GO_KR_KEY_ERRORS = new Set(['20', '30', '31', '32']);

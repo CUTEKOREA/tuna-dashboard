@@ -1,4 +1,4 @@
-import { requireAnyEnv } from './env';
+import { dataGoKrKeys, DATA_GO_KR_KEY_ERRORS, requireAnyEnv } from './env';
 /**
  * 관세청 KCS API 공유 클라이언트
  *
@@ -41,7 +41,10 @@ export type KCSResult = {
  */
 export function parseKCSXml(xml: string): { items: KCSItem[]; resultCode?: string } {
   const itemMatches = [...xml.matchAll(/<item>([\s\S]*?)<\/item>/g)];
-  const resultCode = xml.match(/<resultCode>([^<]+)<\/resultCode>/)?.[1];
+  // 키·활용신청 오류는 <resultCode> 가 아니라 <returnReasonCode> 로 온다(OpenAPI_ServiceResponse 봉투).
+  // 둘 다 안 읽으면 코드가 undefined 라 「키 계통 오류」로 안 잡히고 다음 키를 못 써 본다.
+  const resultCode =
+    xml.match(/<resultCode>([^<]+)<\/resultCode>/)?.[1] ?? xml.match(/<returnReasonCode>([^<]+)<\/returnReasonCode>/)?.[1];
 
   const items: KCSItem[] = [];
   for (const match of itemMatches) {
@@ -75,61 +78,51 @@ export async function fetchKCSNitemtrade(params: {
   const { hsSgn, year, month, timeout = 8000 } = params;
   const strtYymm = month ? `${year}${month}` : `${year}01`;
   const endYymm = month ? `${year}${month}` : `${year}12`;
+
+  const fail = (source: string, resultCode?: string): KCSResult => ({
+    isLive: false,
+    items: [],
+    totalCount: 0,
+    source,
+    apiHealth: { ok: false, items_count: 0, ...(resultCode ? { resultCode } : {}) },
+  });
+
   // 키 미설정은 "API 사용 불가"와 같다. 가짜 키를 만들지도, 라우트를 죽이지도 않고
   // 아래 실패 경로와 똑같이 isLive:false로 떨어뜨린다 (L-09).
-  let url: string;
-  try {
-    url = `${KCS_BASE}?serviceKey=${KCS_API_KEY()}&strtYymm=${strtYymm}&endYymm=${endYymm}&hsSgn=${hsSgn}`;
-  } catch {
-    return {
-      isLive: false,
-      items: [],
-      totalCount: 0,
-      source: 'KCS Fallback (credential not configured)',
-      apiHealth: { ok: false, items_count: 0 },
-    };
-  }
+  const keys = dataGoKrKeys();
+  if (keys.length === 0) return fail('KCS Fallback (credential not configured)');
 
-  try {
-    const res = await fetch(url, { signal: AbortSignal.timeout(timeout) });
-    if (!res.ok) {
+  let last = fail('KCS Fallback (no attempt)');
+  // 키를 순서대로 시도한다. 키 계통 코드(30 등)면 다음 키로 넘어간다 — 한 벌이 죽어 있어도 살아난다.
+  for (const key of keys) {
+    const url = `${KCS_BASE}?serviceKey=${key}&strtYymm=${strtYymm}&endYymm=${endYymm}&hsSgn=${hsSgn}`;
+    try {
+      const res = await fetch(url, { signal: AbortSignal.timeout(timeout) });
+      if (!res.ok) {
+        last = fail(`KCS Fallback (HTTP ${res.status})`);
+        continue;
+      }
+      const xml = await res.text();
+      const { items, resultCode } = parseKCSXml(xml);
+
+      if (items.length === 0 || resultCode !== "00") {
+        last = fail(`KCS Fallback (resultCode=${resultCode || 'none'})`, resultCode);
+        if (resultCode && DATA_GO_KR_KEY_ERRORS.has(resultCode)) continue;
+        return last;
+      }
+
       return {
-        isLive: false,
-        items: [],
-        totalCount: 0,
-        source: `KCS Fallback (HTTP ${res.status})`,
-        apiHealth: { ok: false, items_count: 0 },
+        isLive: true,
+        items,
+        totalCount: items.length,
+        source: `관세청 nitemtrade 실시간 HS ${hsSgn} (${year}${month ? '-' + month : ''})`,
+        apiHealth: { ok: true, items_count: items.length, resultCode },
       };
+    } catch (e: any) {
+      last = fail(`KCS Fallback (${e?.name === 'TimeoutError' ? 'timeout' : 'error'})`);
     }
-    const xml = await res.text();
-    const { items, resultCode } = parseKCSXml(xml);
-
-    if (items.length === 0 || resultCode !== "00") {
-      return {
-        isLive: false,
-        items: [],
-        totalCount: 0,
-        source: `KCS Fallback (resultCode=${resultCode || 'none'})`,
-        apiHealth: { ok: false, items_count: 0, resultCode },
-      };
-    }
-
-    return {
-      isLive: true,
-      items,
-      totalCount: items.length,
-      source: `관세청 nitemtrade 실시간 HS ${hsSgn} (${year}${month ? '-' + month : ''})`,
-      apiHealth: { ok: true, items_count: items.length, resultCode },
-    };
-  } catch (e: any) {
-    return {
-      isLive: false,
-      items: [],
-      totalCount: 0,
-      source: `KCS Fallback (${e?.name === 'TimeoutError' ? 'timeout' : 'error'})`,
-      apiHealth: { ok: false, items_count: 0 },
-    };
   }
+  return last;
 }
 
 /**

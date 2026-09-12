@@ -3,8 +3,9 @@
 import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import {
-  AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer
+  AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer
 } from 'recharts';
+import { COUNTRY_ID } from '@/lib/chart-palette';
 import {
   ArrowLeft, ShieldAlert, Award, Landmark, Activity, Globe
 } from 'lucide-react';
@@ -381,10 +382,13 @@ export default function FfaReportPage() {
                           <XAxis dataKey="year" tick={{ fill: '#94a3b8', fontSize: 9 }} />
                           <YAxis tick={{ fill: '#94a3b8', fontSize: 9 }} />
                           <Tooltip contentStyle={{ background: '#1a2442', border: '1px solid #334155', borderRadius: 8, fontSize: '0.65rem' }} />
-                          <Area type="monotone" dataKey="태국" stackId="1" stroke="#38bdf8" fill="#38bdf8" fillOpacity={0.1} />
-                          <Area type="monotone" dataKey="베트남" stackId="1" stroke="#10b981" fill="#10b981" fillOpacity={0.1} />
-                          <Area type="monotone" dataKey="피지" stackId="1" stroke="#f59e0b" fill="#f59e0b" fillOpacity={0.1} />
-                          <Area type="monotone" dataKey="중국" stackId="1" stroke="#ef4444" fill="#ef4444" fillOpacity={0.1} />
+                          <Legend iconSize={8} wrapperStyle={{ fontSize: '0.6rem' }} />
+                          {/* 쌓는 순서가 곧 인접 쌍이다. 피지(빨강)와 베트남(청록)이 붙으면 적록 색각에서
+                              ΔE 6.5 로 붙어 보인다 — 색은 나라에 묶어 두고 순서만 갈라 17.3 으로 벌린다. */}
+                          <Area type="monotone" dataKey="베트남" stackId="1" stroke={COUNTRY_ID.베트남} fill={COUNTRY_ID.베트남} fillOpacity={0.1} />
+                          <Area type="monotone" dataKey="태국" stackId="1" stroke={COUNTRY_ID.태국} fill={COUNTRY_ID.태국} fillOpacity={0.1} />
+                          <Area type="monotone" dataKey="피지" stackId="1" stroke={COUNTRY_ID.피지} fill={COUNTRY_ID.피지} fillOpacity={0.1} />
+                          <Area type="monotone" dataKey="중국" stackId="1" stroke={COUNTRY_ID.중국} fill={COUNTRY_ID.중국} fillOpacity={0.1} />
                         </AreaChart>
                       </ResponsiveContainer>
                     </div>
