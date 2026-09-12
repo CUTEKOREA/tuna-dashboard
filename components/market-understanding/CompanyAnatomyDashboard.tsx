@@ -288,6 +288,10 @@ import {
   herdezMeta, herdezStats, herdezSourceNotes,
   soldPlantThroughput, drainedShortfallPct, priceRatioVsDolores,
 } from '@/lib/data/company-herdez';
+import {
+  sajoseafoodMeta, sajoseafoodStats, sajoseafoodSourceNotes,
+  processedToAssetRatio, affiliateShare2025,
+} from '@/lib/data/company-sajoseafood';
 
 
 const ACCENT = '#c2410c';
@@ -3646,6 +3650,62 @@ const HERDEZ_SPEC: CommoditySpec = {
   ].join(' · '),
 };
 
+const SAJOSEAFOOD_ACCENT = '#1f6f8b';
+
+const SAJOSEAFOOD_SPEC: CommoditySpec = {
+  key: 'company-anatomy-sajoseafood',
+  title: '기업 해부: 사조씨푸드',
+  subtitle:
+    '유가증권시장 014710. 참치 매출 1,465억 7,640만 원(별도 매출의 67.41%)을 내는 수산물가공유통 부문의 설비 장부가가 2025년 말 3억 5,962만 원이고 그 부문에는 토지도 건물도 한 줄이 없다. ' +
+    '라인을 거치는 가공품 822억 8,654만 원만 놓아도 228.8배다. 부산 냉동창고 777㎡의 그해 임차료 3억 6,942만 원이 그 부문 전 자산의 장부가보다 크고, 가공용 원어의 94.9%는 사조산업·사조오양에서 온다. 원가를 정하는 것은 설비가 아니라 조달 계약이다.',
+  accent: SAJOSEAFOOD_ACCENT,
+  primaryKpi: {
+    label: '가공품 매출 대 그 부문 설비 장부가 (2025)',
+    value: processedToAssetRatio(),
+    decimals: 1,
+    unit: `(배 · 가공품 ${sajoseafoodStats.가공품_매출_2025.toLocaleString('ko-KR')}천원 ÷ 설비 ${sajoseafoodStats.부문_설비_장부가_2025.toLocaleString('ko-KR')}천원)`,
+    accent: SAJOSEAFOOD_ACCENT,
+  },
+  secondaryKpis: [
+    { label: '참치 매출 비중 (2025, 별도 기준)', value: sajoseafoodStats.참치_비중_별도_pct, decimals: 2, unit: `(% · 1,465억 7,640만 원 ÷ 별도 매출 — 연결 기준이면 ${sajoseafoodStats.참치_비중_연결_pct}%)` },
+    { label: '가공용 원어의 계열 몫 (2025)', value: affiliateShare2025(), decimals: 1, unit: '(% · 사조산업 + 사조오양 ÷ 부문 원재료 매입 711억 2,778만 원)' },
+    { label: '가동률 (2025, 수산물가공유통)', value: sajoseafoodStats.가동률_2025_pct, decimals: 2, unit: `(% · ${sajoseafoodStats.가동시간_2025_hr.toLocaleString('ko-KR')}시간 ÷ 정규 ${sajoseafoodStats.정규시간_2025_hr.toLocaleString('ko-KR')}시간 — 분모는 8시간 × 259일 가정)` },
+  ],
+  stripItems: [
+    {
+      now: true,
+      eyebrow: '자산',
+      title: '참치 1,466억 옆의 설비 3억 5,962만',
+      body: '그 부문에 토지도 건물도 없다. 라인을 거치는 가공품 822억 8,654만 원만 놓아도 228.8배이고, 상품 508억은 사서 되파는 것이다',
+    },
+    {
+      eyebrow: '임차',
+      title: '설비보다 임차료가 크다',
+      body: '부산 냉동창고 777㎡를 최대주주 사조산업에서 빌리고 2025년 임차료가 3억 6,942만 원 — 그 부문 전 자산의 장부가보다 크다',
+    },
+    {
+      eyebrow: '조달',
+      title: '가공용 원어의 94.9%가 계열에서 온다',
+      body: '다만 매끄러운 상승이 아니다 — 2023년 81.8%에서 2024년 94.4%로 12.6포인트 뛰었고 2026년 상반기에는 91.3%로 내려갔다',
+    },
+    {
+      eyebrow: '명판',
+      title: '가동률 105.74%의 분모는 행정 숫자다',
+      body: '분모 2,072시간은 259일 가정이고 같은 표의 능력 6,336톤은 264일 가정이다. 물량으로 재면 7,583 ÷ 6,336 = 119.7%다',
+    },
+  ],
+  briefing: proseBriefing('sajoseafood'),
+  narratives: inlineReport('sajoseafood', proseStages('sajoseafood')),
+  chartSlots: {},
+  continuous: true,
+  sourceNotes: sajoseafoodSourceNotes,
+  sourceMeta: [
+    `${sajoseafoodMeta.회사} · ${sajoseafoodMeta.국가} · ${sajoseafoodMeta.업종}`,
+    `출처 ${sajoseafoodMeta.출처}`,
+    `조사 ${sajoseafoodMeta.조사일}`,
+  ].join(' · '),
+};
+
 export const COMPANY_CARDS: CompanyCard[] = [
   {
     key: 'frinsa',
@@ -4073,6 +4133,18 @@ export const COMPANY_CARDS: CompanyCard[] = [
       { label: '배수중량 미달률', value: `${drainedShortfallPct()}%` },
       { label: '판 공장 설비용량', value: `${herdezStats.판_공장_설비용량_t.toLocaleString('ko-KR')} t` },
     ],
+  },  {
+    key: 'sajoseafood',
+    numeral: 'ⅩⅩⅩⅣ',
+    name: '사조씨푸드',
+    country: '대한민국 · 서울 서대문(가공은 부산, 김 공장은 익산)',
+    tagline: '참치는 설비가 아니라 계약서에서 나온다.',
+    ...FLAG.한국,
+    stats: [
+      { label: '가공품 대 부문 설비', value: `${processedToAssetRatio()}배` },
+      { label: '가공용 원어의 계열 몫', value: `${affiliateShare2025()}%` },
+      { label: '원양참치어선', value: `${sajoseafoodStats.어선_척수}척(선망 1·연승 2)` },
+    ],
   },
 
 
@@ -4131,6 +4203,7 @@ export default function CompanyAnatomyDashboard({
     kaichuang: KAICHUANG_SPEC,
     alliance: ALLIANCE_SPEC,
     herdez: HERDEZ_SPEC,
+    sajoseafood: SAJOSEAFOOD_SPEC,
   };
   const spec = SPECS[selected] ?? SPEC;
 
