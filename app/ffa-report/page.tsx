@@ -383,8 +383,10 @@ export default function FfaReportPage() {
                           <YAxis tick={{ fill: '#94a3b8', fontSize: 9 }} />
                           <Tooltip contentStyle={{ background: '#1a2442', border: '1px solid #334155', borderRadius: 8, fontSize: '0.65rem' }} />
                           <Legend iconSize={8} wrapperStyle={{ fontSize: '0.6rem' }} />
-                          <Area type="monotone" dataKey="태국" stackId="1" stroke={COUNTRY_ID.태국} fill={COUNTRY_ID.태국} fillOpacity={0.1} />
+                          {/* 쌓는 순서가 곧 인접 쌍이다. 피지(빨강)와 베트남(청록)이 붙으면 적록 색각에서
+                              ΔE 6.5 로 붙어 보인다 — 색은 나라에 묶어 두고 순서만 갈라 17.3 으로 벌린다. */}
                           <Area type="monotone" dataKey="베트남" stackId="1" stroke={COUNTRY_ID.베트남} fill={COUNTRY_ID.베트남} fillOpacity={0.1} />
+                          <Area type="monotone" dataKey="태국" stackId="1" stroke={COUNTRY_ID.태국} fill={COUNTRY_ID.태국} fillOpacity={0.1} />
                           <Area type="monotone" dataKey="피지" stackId="1" stroke={COUNTRY_ID.피지} fill={COUNTRY_ID.피지} fillOpacity={0.1} />
                           <Area type="monotone" dataKey="중국" stackId="1" stroke={COUNTRY_ID.중국} fill={COUNTRY_ID.중국} fillOpacity={0.1} />
                         </AreaChart>
