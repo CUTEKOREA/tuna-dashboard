@@ -41,39 +41,103 @@ async function getExchangeRate(currency: string): Promise<number> {
 }
 
 // --- KCS: 해상수출입 운송비용 ---
-async function getFreightCost(hsCode: string, countryCode: string): Promise<{ freightPerTon: number; source: string }> {
-  const apiKey = optionalEnv('DATA_GO_KR_NEW_KEY');
-  if (!apiKey) return { freightPerTon: 150, source: 'ESTIMATE' };
+//
+// 2026-09-12 실측으로 전면 교체. 이전 판은 세 군데가 틀려 한 번도 응답을 받은 적이 없다.
+//  · 오퍼레이션이 `getSeaimextrnpcstList` 였다. 실제 이름은 `getSeaImexTrnpCst` 다(틀리면 코드 12).
+//  · `hsSgn`·`statCd` 를 보냈다. 이 서비스는 품목을 받지 않는다 — `cntyCd`(국가)와 `imexTpcd`(1 수출·2 수입)뿐이다.
+//  · 응답을 `trnspCst`/`trnspWgt` 로 파싱했다. 실제 필드는 `imexTrnpCst` 하나이고,
+//    단위는 **천원/2TEU**(40피트 컨테이너 1대당 원화 천원)다. 달러도, 톤당도 아니다.
+//    출처: 관세청 수출입무역통계 「수출입운임통계 → 해상컨테이너운임」 단위 표기.
+//
+// 그래서 이 서비스로는 「HS 품목별 톤당 운임」을 낼 수 없다. 컨테이너 1대 값을 받아
+// 적재중량 가정을 명시적으로 걸어 kg 로 환산한다. 가정은 응답에 그대로 실어 보낸다.
 
-  const cleanHs = hsCode.replace(/\./g, '').substring(0, 6);
+/** 관세청이 받는 국가코드. 목록 밖이면 코드 99로 거절한다. */
+const FREIGHT_COUNTRY: Record<string, string> = {
+  US: 'USW', // 미국은 서부·동부가 따로다. 기본은 서부(부산 기준 주 항로).
+  CN: 'CN',
+  JP: 'JP',
+  VN: 'VN',
+  EU: 'EU',
+};
+
+/** 40피트 냉동 컨테이너의 실무 적재중량. 환산을 하려면 어딘가에 가정이 필요하다 — 숨기지 않고 적는다. */
+const REEFER_PAYLOAD_KG = 24000;
+
+type Freight = {
+  freightPerKgKRW: number | null;
+  perContainerThousandKRW: number | null;
+  period: string | null;
+  route: string | null;
+  assumedPayloadKg: number | null;
+  source: string;
+};
+
+const NO_FREIGHT = (source: string): Freight => ({
+  freightPerKgKRW: null,
+  perContainerThousandKRW: null,
+  period: null,
+  route: null,
+  assumedPayloadKg: null,
+  source,
+});
+
+async function getFreightCost(countryCode: string): Promise<Freight> {
+  const apiKey =
+    optionalEnv('DATA_GO_KR_KEY_2') ?? optionalEnv('DATA_GO_KR_NEW_KEY') ?? optionalEnv('DATA_GO_KR_COMMON_KEY');
+  if (!apiKey) return NO_FREIGHT('KCS_KEY_MISSING');
+
+  const cnty = FREIGHT_COUNTRY[countryCode];
+  // 태국·인도네시아·인도 등은 이 통계에 항로가 없다. 다른 나라 값으로 대신하지 않는다.
+  if (!cnty) return NO_FREIGHT(`KCS_NO_ROUTE(${countryCode})`);
+
+  // 최근 12개월을 받아 가장 최신 달을 쓴다. 당월은 아직 안 쌓인다.
+  const now = new Date();
+  now.setDate(1);
+  const end = new Date(now.getTime());
+  end.setMonth(end.getMonth() - 1);
+  const start = new Date(end.getTime());
+  start.setMonth(start.getMonth() - 11);
+  const yymm = (d: Date) => `${d.getFullYear()}${String(d.getMonth() + 1).padStart(2, '0')}`;
 
   try {
     const params = new URLSearchParams({
       serviceKey: apiKey,
-      hsSgn: cleanHs,
-      // Note: KCS seaimextrnpcst endpoint
+      resultType: 'json',
+      numOfRows: '100',
+      pageNo: '1',
+      cntyCd: cnty,
+      imexTpcd: '2', // 수입
+      strtYymm: yymm(start),
+      endYymm: yymm(end),
     });
-    if (countryCode) params.append('statCd', countryCode);
 
-    const url = `https://apis.data.go.kr/1220000/seaimextrnpcst/getSeaimextrnpcstList?${params.toString()}`;
-    const res = await fetch(url, { signal: AbortSignal.timeout(8000) });
-    if (!res.ok) return { freightPerTon: 150, source: 'ESTIMATE' };
+    const res = await fetch(`https://apis.data.go.kr/1220000/seaimextrnpcst/getSeaImexTrnpCst?${params}`, {
+      signal: AbortSignal.timeout(8000),
+    });
+    if (!res.ok) return NO_FREIGHT(`KCS_HTTP_${res.status}`);
 
-    const text = await res.text();
-    // Parse XML for freight data
-    const costMatch = text.match(/<trnspCst>(\d+)<\/trnspCst>/);
-    const wgtMatch = text.match(/<trnspWgt>(\d+)<\/trnspWgt>/);
+    const data = await res.json().catch(() => null);
+    const body = data?.response?.body ?? data?.body ?? data;
+    const raw = body?.items?.item ?? body?.items ?? [];
+    const rows: any[] = Array.isArray(raw) ? raw : raw ? [raw] : [];
+    if (!rows.length) return NO_FREIGHT('KCS_NO_DATA');
 
-    if (costMatch && wgtMatch) {
-      const totalCost = parseInt(costMatch[1], 10);
-      const totalWeight = parseInt(wgtMatch[1], 10);
-      const perTon = totalWeight > 0 ? Math.round(totalCost / totalWeight * 1000) : 150;
-      return { freightPerTon: perTon, source: 'KCS_LIVE' };
-    }
+    // 응답은 오래된 달부터 온다. 가장 최근 달을 쓴다.
+    const latest = rows[rows.length - 1];
+    const thousandWon = Number(String(latest.imexTrnpCst ?? '').replace(/,/g, ''));
+    if (!Number.isFinite(thousandWon) || thousandWon <= 0) return NO_FREIGHT('KCS_BAD_VALUE');
 
-    return { freightPerTon: 150, source: 'KCS_NO_DATA' };
+    return {
+      freightPerKgKRW: Math.round(((thousandWon * 1000) / REEFER_PAYLOAD_KG) * 100) / 100,
+      perContainerThousandKRW: thousandWon,
+      period: latest.year ?? null,
+      route: `${latest.statCdCntnKor1 ?? cnty} → 한국(수입)`,
+      assumedPayloadKg: REEFER_PAYLOAD_KG,
+      source: 'KCS_LIVE',
+    };
   } catch {
-    return { freightPerTon: 150, source: 'KCS_ERROR' };
+    return NO_FREIGHT('KCS_NETWORK_ERROR');
   }
 }
 
@@ -136,13 +200,15 @@ export async function POST(req: Request) {
     // Parallel API calls
     const [exchangeRate, freight, tariff] = await Promise.all([
       getExchangeRate('USD'),
-      getFreightCost(hsCode, cc),
+      getFreightCost(cc),
       getTariffRate(hsCode, iso3),
     ]);
 
     // Landed cost calculation
     const totalFobUSD = fob * qty;
-    const totalFreightUSD = (freight.freightPerTon / 1000) * qty;
+    // 운임을 못 받으면 0으로 두고 아래 meta 에 그렇게 적는다. 지어낸 값으로 채우면 총액이 조용히 틀린다.
+    const totalFreightUSD =
+      freight.freightPerKgKRW != null ? (freight.freightPerKgKRW * qty) / exchangeRate : 0;
     const cifUSD = totalFobUSD + totalFreightUSD;
     const applicableTariffRate = tariff.fta > 0 ? tariff.fta : tariff.mfn;
     const dutyUSD = cifUSD * (applicableTariffRate / 100);
@@ -156,7 +222,17 @@ export async function POST(req: Request) {
       input: { hsCode, originCountry, fobPriceUSD: fob, quantityKg: qty },
       breakdown: {
         fob: { totalUSD: Math.round(totalFobUSD), perKgUSD: fob, label: 'FOB 가격' },
-        freight: { totalUSD: Math.round(totalFreightUSD), perTonUSD: freight.freightPerTon, source: freight.source, label: '해상운임' },
+        freight: {
+          totalUSD: Math.round(totalFreightUSD),
+          perKgKRW: freight.freightPerKgKRW,
+          perContainerThousandKRW: freight.perContainerThousandKRW,
+          containerUnit: '천원/2TEU (40피트 1대)',
+          assumedPayloadKg: freight.assumedPayloadKg,
+          period: freight.period,
+          route: freight.route,
+          source: freight.source,
+          label: freight.freightPerKgKRW != null ? '해상운임' : '해상운임 (조회 실패 — 총액에 미포함)',
+        },
         cif: { totalUSD: Math.round(cifUSD), label: 'CIF 가격 (FOB + 운임)' },
         duty: { totalUSD: Math.round(dutyUSD), rate: `${applicableTariffRate}%`, tariffType: tariff.fta > 0 ? 'FTA' : 'MFN', source: tariff.source, label: '관세' },
         vat: { totalUSD: Math.round(vatUSD), rate: '10%', label: '부가세' },
@@ -170,12 +246,20 @@ export async function POST(req: Request) {
       },
       _meta: {
         dataSources: {
-          exchangeRate: 'ECOS 한국은행 (실시간)',
-          freight: freight.source,
+          exchangeRate: process.env.ECOS_API_KEY ? 'ECOS 한국은행 (실시간)' : 'ECOS 키 없음 — 고정 환율 1350 사용',
+          freight:
+            freight.source === 'KCS_LIVE'
+              ? `관세청 해상수출입 운송비용 (${freight.period}, ${freight.perContainerThousandKRW}천원/2TEU, 적재중량 ${freight.assumedPayloadKg}kg 가정)`
+              : freight.source,
           tariff: tariff.source,
         },
         timestamp: new Date().toISOString(),
-        mockDataUsed: false,
+        // 셋 중 하나라도 실측이 아니면 참이다. 예전에는 무조건 false 라 「전부 실데이터」로 읽혔다.
+        estimatesUsed: [
+          !process.env.ECOS_API_KEY ? 'exchangeRate' : null,
+          freight.source !== 'KCS_LIVE' ? 'freight' : null,
+          tariff.source === 'DEFAULT_ESTIMATE' ? 'tariff' : null,
+        ].filter(Boolean),
       }
     });
   } catch (error: any) {

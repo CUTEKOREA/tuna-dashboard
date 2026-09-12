@@ -48,8 +48,11 @@ export async function POST(req: Request) {
     const body = await req.json();
     const { 
       cmdCode = '160414', 
-      reporterCode = 'all', 
-      partnerCode = 'all', 
+      // 2026-09-12 실측: 구독 경로는 reporterCode=all 을 HTTP 400 으로 거절한다.
+      // 예전 기본값이 'all' 이라 구독 키가 있어도 항상 400 → 아래 정적 폴백으로 떨어졌다.
+      // 410 대한민국을 기본으로 둔다(156 중국·392 일본·842 미국·604 페루 등으로 바꿔 부른다).
+      reporterCode = '410', 
+      partnerCode = '0', 
       period = '2023', 
       flowCode = 'M,X' 
     } = body;
