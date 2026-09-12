@@ -284,6 +284,10 @@ import {
   allianceMeta, allianceStats, allianceSourceNotes,
   revenueMultiple, operatingCashFlowMn, dilutionPoints,
 } from '@/lib/data/company-alliance';
+import {
+  herdezMeta, herdezStats, herdezSourceNotes,
+  soldPlantThroughput, drainedShortfallPct, priceRatioVsDolores,
+} from '@/lib/data/company-herdez';
 
 
 const ACCENT = '#c2410c';
@@ -2549,6 +2553,7 @@ const FLAG: Record<string, Pick<CompanyCard, 'flagSrc' | 'backInk'>> = {
   대만: { flagSrc: '/flags/tw.svg', backInk: '#f4f5f0' },
   일본: { flagSrc: '/flags/jp.svg', backInk: '#1b2733' },
   필리핀: { flagSrc: '/flags/ph.svg', backInk: '#f4f5f0' },
+  멕시코: { flagSrc: '/flags/mx.svg', backInk: '#123b2a' },
   미국: { flagSrc: '/flags/us.svg', backInk: '#1b2733' },
   한국: { flagSrc: '/flags/kr.svg', backInk: '#1b2733' },
   중국: { flagSrc: '/flags/cn.svg', backInk: '#1b2733' },
@@ -3585,6 +3590,62 @@ const ALLIANCE_SPEC: CommoditySpec = {
   ].join(' · '),
 };
 
+const HERDEZ_ACCENT = '#9c4f2f';
+
+const HERDEZ_SPEC: CommoditySpec = {
+  key: 'company-anatomy-herdez',
+  title: '기업 해부: Grupo Herdez',
+  subtitle:
+    '멕시코 가공식품 상장사다. 2020년 7월 29일 합작사 Herdez Del Fuerte가 참치 어선과 조업장비, 치아파스 가공·포장 공장, 「Nair」 상표권을 팔았다. ' +
+    '「Herdez」 브랜드 참치는 제3자 위탁 생산으로 바꿔 유통과 판매만 남겼고, 그 뒤 현행 공시 열 권에 「atún」이 0회다. 2024년 연방소비자보호청 조사에서 이 브랜드 130 g 캔의 배수중량은 표시 90 g에 실측 83 g이었고, 그 공장을 사 간 회사의 Nair는 전 항목 적합이었다.',
+  accent: HERDEZ_ACCENT,
+  primaryKpi: {
+    label: '판 공장의 연간 설비용량 (2019년, 매각 전)',
+    value: herdezStats.판_공장_설비용량_t,
+    decimals: 0,
+    unit: `(t · 가동률 ${herdezStats.판_공장_가동률_pct}% · 환산 처리량 ${soldPlantThroughput().toLocaleString('ko-KR')} t)`,
+    accent: HERDEZ_ACCENT,
+  },
+  secondaryKpis: [
+    { label: '현행 공시 열 권의 「atún」', value: herdezStats.atun_출현_현행공시, decimals: 0, unit: '(회 · 통합보고서·감사재무제표·분기보고서·컨퍼런스콜 포함)' },
+    { label: '배수중량 실측 미달률 (130 g, 2024년 정부 조사)', value: drainedShortfallPct(), decimals: 1, unit: `(% · 표시 ${herdezStats.표시_배수중량_g} g → 실측 ${herdezStats.실측_배수중량_g} g)` },
+    { label: '통조림 카테고리 비중 (FY2025)', value: herdezStats.Enlatados_비중_pct, decimals: 1, unit: '(% · 참치 단독 수치는 공시에 없다 — 이 값이 상한)' },
+  ],
+  stripItems: [
+    {
+      now: true,
+      eyebrow: '매각',
+      title: '선단·공장·상표를 한꺼번에 넘겼다',
+      body: '2020-07-29 두 회사 동시 공시. 남긴 것은 브랜드와 매대 자리이고 생산은 「maquilados por terceros」 — 제조사 상호는 공시에 없다',
+    },
+    {
+      eyebrow: '공시',
+      title: '판 뒤로 참치가 문서에서 사라졌다',
+      body: '현행 공시 열 권에 「atún」 0회. 회사가 남긴 마지막 참치 수치는 2019년 Nair의 연결 순매출 1.4%이고 그것도 판 브랜드 몫이다',
+    },
+    {
+      eyebrow: '표시',
+      title: '표시 90 g, 실측 83 g',
+      body: '연방소비자보호청 2024년 조사 52종 중 배수중량 미달 7건에 Herdez 2건. 그 공장을 사 간 회사의 Nair(대두 0%)는 전 항목 적합',
+    },
+    {
+      eyebrow: '매대',
+      title: '기본 라인에서 가장 비싼 자리',
+      body: `100 g당 Herdez 18.5페소 대 Dolores 15.7·Tuny 15.0페소(${priceRatioVsDolores()}배). 고체 프리미엄 라인은 그 위에 따로 있다`,
+    },
+  ],
+  briefing: proseBriefing('herdez'),
+  narratives: inlineReport('herdez', proseStages('herdez')),
+  chartSlots: {},
+  continuous: true,
+  sourceNotes: herdezSourceNotes,
+  sourceMeta: [
+    `${herdezMeta.회사} · ${herdezMeta.국가} · ${herdezMeta.업종}`,
+    `출처 ${herdezMeta.출처}`,
+    `조사 ${herdezMeta.조사일}`,
+  ].join(' · '),
+};
+
 export const COMPANY_CARDS: CompanyCard[] = [
   {
     key: 'frinsa',
@@ -4000,7 +4061,20 @@ export const COMPANY_CARDS: CompanyCard[] = [
       { label: '영업현금흐름 2025', value: `${operatingCashFlowMn()}백만 달러` },
       { label: '증자 뒤 모회사 지분', value: `${allianceStats.증자후_지분_pct}%` },
     ],
+  },  {
+    key: 'herdez',
+    numeral: 'ⅩⅩⅩⅢ',
+    name: 'Grupo Herdez',
+    country: '멕시코 · 멕시코시티(판 공장은 푸에르토치아파스)',
+    tagline: '공장을 판 뒤에도 이름은 매대에 남았다.',
+    ...FLAG.멕시코,
+    stats: [
+      { label: '현행 공시의 「atún」', value: `${herdezStats.atun_출현_현행공시}회` },
+      { label: '배수중량 미달률', value: `${drainedShortfallPct()}%` },
+      { label: '판 공장 설비용량', value: `${herdezStats.판_공장_설비용량_t.toLocaleString('ko-KR')} t` },
+    ],
   },
+
 
 ];
 
@@ -4056,6 +4130,7 @@ export default function CompanyAnatomyDashboard({
     cnfc: CNFC_SPEC,
     kaichuang: KAICHUANG_SPEC,
     alliance: ALLIANCE_SPEC,
+    herdez: HERDEZ_SPEC,
   };
   const spec = SPECS[selected] ?? SPEC;
 

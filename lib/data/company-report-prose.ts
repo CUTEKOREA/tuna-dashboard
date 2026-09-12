@@ -30,6 +30,7 @@ import hagoromoRaw from '@/public/data/companies/hagoromo_prose_v1.json';
 import cnfcRaw from '@/public/data/companies/cnfc_prose_v1.json';
 import kaichuangRaw from '@/public/data/companies/kaichuang_prose_v1.json';
 import allianceRaw from '@/public/data/companies/alliance_prose_v1.json';
+import herdezRaw from '@/public/data/companies/herdez_prose_v1.json';
 
 /**
  * 조사보고서 서술 전량 인테이크.
@@ -101,6 +102,7 @@ const INTAKES: Record<string, Intake> = {
   cnfc: cnfcRaw as unknown as Intake,
   kaichuang: kaichuangRaw as unknown as Intake,
   alliance: allianceRaw as unknown as Intake,
+  herdez: herdezRaw as unknown as Intake,
   thaiunion: thaiunionRaw as unknown as Intake,
 };
 

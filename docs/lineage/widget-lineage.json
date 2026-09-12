@@ -1,9 +1,9 @@
 {
  "_meta": {
   "entry": "app/page.tsx",
-  "files": 245,
+  "files": 247,
   "widgets": 112,
-  "dataFiles": 196,
+  "dataFiles": 201,
   "generator": "scripts/widget_lineage.py"
  },
  "widgetToData": {
@@ -313,6 +313,7 @@
    ],
    "dataFiles": [
     "public/data/bangkok/seasia_processors.json",
+    "public/data/bangkok/vn_surimi_suppliers.json",
     "public/data/bangkok_weekly_kpi.json",
     "public/data/bangkok_weekly_payload.json",
     "public/data/singapore_mgo.json",
@@ -370,10 +371,12 @@
   },
   "components/bangkok/tabs/ProcessorsTab.tsx": {
    "dataModules": [
-    "lib/data/seasia-processors.ts"
+    "lib/data/seasia-processors.ts",
+    "lib/data/vn-surimi-suppliers.ts"
    ],
    "dataFiles": [
     "public/data/bangkok/seasia_processors.json",
+    "public/data/bangkok/vn_surimi_suppliers.json",
     "public/data/bangkok_weekly_kpi.json",
     "public/data/bangkok_weekly_payload.json"
    ]
@@ -582,6 +585,7 @@
     "lib/data/company-frabelle.ts",
     "lib/data/company-frinsa.ts",
     "lib/data/company-hagoromo.ts",
+    "lib/data/company-herdez.ts",
     "lib/data/company-iot.ts",
     "lib/data/company-itochu.ts",
     "lib/data/company-jais.ts",
@@ -664,6 +668,10 @@
     "public/data/companies/hagoromo_prose_v1.json",
     "public/data/companies/hagoromo_tables_v1.json",
     "public/data/companies/hagoromo_v1.json",
+    "public/data/companies/herdez_figures_v1.json",
+    "public/data/companies/herdez_prose_v1.json",
+    "public/data/companies/herdez_tables_v1.json",
+    "public/data/companies/herdez_v1.json",
     "public/data/companies/iot_figures_v1.json",
     "public/data/companies/iot_prose_v1.json",
     "public/data/companies/iot_tables_v1.json",
@@ -1163,6 +1171,10 @@
    "components/bangkok/BangkokDashboard.tsx",
    "components/bangkok/tabs/ProcessorsTab.tsx"
   ],
+  "public/data/bangkok/vn_surimi_suppliers.json": [
+   "components/bangkok/BangkokDashboard.tsx",
+   "components/bangkok/tabs/ProcessorsTab.tsx"
+  ],
   "public/data/bangkok_weekly_kpi.json": [
    "components/LogisticsDashboard.tsx",
    "components/TraderStatus.tsx",
@@ -1369,6 +1381,18 @@
    "components/market-understanding/CompanyAnatomyDashboard.tsx"
   ],
   "public/data/companies/hagoromo_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/herdez_figures_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/herdez_prose_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/herdez_tables_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/herdez_v1.json": [
    "components/market-understanding/CompanyAnatomyDashboard.tsx"
   ],
   "public/data/companies/iot_figures_v1.json": [
