@@ -30,6 +30,7 @@ import hagoromoRaw from '@/public/data/companies/hagoromo_figures_v1.json';
 import cnfcRaw from '@/public/data/companies/cnfc_figures_v1.json';
 import kaichuangRaw from '@/public/data/companies/kaichuang_figures_v1.json';
 import allianceRaw from '@/public/data/companies/alliance_figures_v1.json';
+import herdezRaw from '@/public/data/companies/herdez_figures_v1.json';
 
 /**
  * 조사보고서 그림 인테이크 — 팩샷·차트·문서 캡처.
@@ -98,6 +99,7 @@ const INTAKES: Record<string, Intake> = {
   cnfc: cnfcRaw as unknown as Intake,
   kaichuang: kaichuangRaw as unknown as Intake,
   alliance: allianceRaw as unknown as Intake,
+  herdez: herdezRaw as unknown as Intake,
 };
 
 export const REPORT_FIGURE_COMPANIES = Object.keys(INTAKES);
