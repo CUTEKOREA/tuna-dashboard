@@ -1,0 +1,81 @@
+{
+ "_meta": {
+  "출처": "docs/evidence/company-salica-2026-09/보고서.html",
+  "생성": "python3 scripts/build_report_figures.py",
+  "설명": "보고서의 팩샷과 차트. 이미지는 public 아래 정적 파일이고 여기에는 URL 만 담는다."
+ },
+ "figures": [
+  {
+   "stage": "c05",
+   "sid": "s7",
+   "kind": "chart",
+   "ord": 883,
+   "caption": "그룹 자신의 원단위로 역산한 가공량. 원단위가 소수 둘째 자리까지만 공표되고 「처리 톤」의 정의가 원문에 없어 근삿값이다.",
+   "alt": "",
+   "svg": "<svg viewBox=\"0 0 680 270\" xmlns=\"http://www.w3.org/2000/svg\" role=\"img\" aria-label=\"가공량\"><text x=\"48\" y=\"16\" font-size=\"12.5\" fill=\"#7a828b\">그룹 자신의 「처리 톤당 전력」 원단위로 역산한 가공량(톤, B등급) — 스페인 두 공장 몫은 5~6천 톤</text><line x1=\"48\" y1=\"222.0\" x2=\"670\" y2=\"222.0\" stroke=\"#d5d7d2\" stroke-width=\"0.6\"/><text x=\"42\" y=\"225.5\" text-anchor=\"end\" font-size=\"9.5\" fill=\"#7a828b\">0</text><line x1=\"48\" y1=\"184.4\" x2=\"670\" y2=\"184.4\" stroke=\"#d5d7d2\" stroke-width=\"0.6\"/><text x=\"42\" y=\"187.9\" text-anchor=\"end\" font-size=\"9.5\" fill=\"#7a828b\">20000</text><line x1=\"48\" y1=\"146.8\" x2=\"670\" y2=\"146.8\" stroke=\"#d5d7d2\" stroke-width=\"0.6\"/><text x=\"42\" y=\"150.3\" text-anchor=\"end\" font-size=\"9.5\" fill=\"#7a828b\">40000</text><line x1=\"48\" y1=\"109.2\" x2=\"670\" y2=\"109.2\" stroke=\"#d5d7d2\" stroke-width=\"0.6\"/><text x=\"42\" y=\"112.7\" text-anchor=\"end\" font-size=\"9.5\" fill=\"#7a828b\">60000</text><line x1=\"48\" y1=\"71.6\" x2=\"670\" y2=\"71.6\" stroke=\"#d5d7d2\" stroke-width=\"0.6\"/><text x=\"42\" y=\"75.1\" text-anchor=\"end\" font-size=\"9.5\" fill=\"#7a828b\">80000</text><line x1=\"48\" y1=\"34.0\" x2=\"670\" y2=\"34.0\" stroke=\"#d5d7d2\" stroke-width=\"0.6\"/><text x=\"42\" y=\"37.5\" text-anchor=\"end\" font-size=\"9.5\" fill=\"#7a828b\">100000</text><rect x=\"119.5\" y=\"84.8\" width=\"27.0\" height=\"137.2\" fill=\"#1B3B52\"/><text x=\"133.0\" y=\"80.8\" text-anchor=\"middle\" font-size=\"9.5\" font-weight=\"700\" fill=\"#1B3B52\">73,000</text><text x=\"134.5\" y=\"252\" text-anchor=\"middle\" font-size=\"10.5\" fill=\"#7a828b\">2020</text><rect x=\"272.5\" y=\"91.0\" width=\"27.0\" height=\"131.0\" fill=\"#1B3B52\"/><text x=\"286.0\" y=\"87.0\" text-anchor=\"middle\" font-size=\"9.5\" font-weight=\"700\" fill=\"#1B3B52\">69,700</text><text x=\"287.5\" y=\"252\" text-anchor=\"middle\" font-size=\"10.5\" fill=\"#7a828b\">2022</text><rect x=\"425.5\" y=\"56.7\" width=\"27.0\" height=\"165.3\" fill=\"#1B3B52\"/><text x=\"439.0\" y=\"52.7\" text-anchor=\"middle\" font-size=\"9.5\" font-weight=\"700\" fill=\"#1B3B52\">87,900</text><text x=\"440.5\" y=\"252\" text-anchor=\"middle\" font-size=\"10.5\" fill=\"#7a828b\">2024</text><rect x=\"578.5\" y=\"47.5\" width=\"27.0\" height=\"174.5\" fill=\"#1B3B52\"/><text x=\"592.0\" y=\"43.5\" text-anchor=\"middle\" font-size=\"9.5\" font-weight=\"700\" fill=\"#1B3B52\">92,800</text><text x=\"593.5\" y=\"252\" text-anchor=\"middle\" font-size=\"10.5\" fill=\"#7a828b\">2025</text><line x1=\"48\" y1=\"222.0\" x2=\"670\" y2=\"222.0\" stroke=\"#a9aeb5\"/><rect x=\"48\" y=\"256\" width=\"10\" height=\"10\" fill=\"#1B3B52\"/><text x=\"62\" y=\"265\" font-size=\"10.5\" fill=\"#7a828b\">그룹 전체(역산)</text></svg>"
+  },
+  {
+   "stage": "c05",
+   "sid": "s8",
+   "kind": "chart",
+   "ord": 240,
+   "caption": "법인별 연말 인원. 2022년을 기점으로 보면 스페인 두 공장이 내려가고 포소르하만 올라간다. 2020~2022년 구간은 방향이 반대다 — 갈리시아가 늘고 포소르하가 줄었다.",
+   "alt": "",
+   "svg": "<svg viewBox=\"0 0 680 270\" xmlns=\"http://www.w3.org/2000/svg\" role=\"img\" aria-label=\"세 공장의 인원\"><text x=\"48\" y=\"16\" font-size=\"12.5\" fill=\"#7a828b\">법인별 연말 인원(명) — 그룹 비재무정보보고서 2020~2025</text><line x1=\"48\" y1=\"222.0\" x2=\"670\" y2=\"222.0\" stroke=\"#d5d7d2\" stroke-width=\"0.6\"/><text x=\"42\" y=\"225.5\" text-anchor=\"end\" font-size=\"9.5\" fill=\"#7a828b\">0</text><line x1=\"48\" y1=\"184.4\" x2=\"670\" y2=\"184.4\" stroke=\"#d5d7d2\" stroke-width=\"0.6\"/><text x=\"42\" y=\"187.9\" text-anchor=\"end\" font-size=\"9.5\" fill=\"#7a828b\">500</text><line x1=\"48\" y1=\"146.8\" x2=\"670\" y2=\"146.8\" stroke=\"#d5d7d2\" stroke-width=\"0.6\"/><text x=\"42\" y=\"150.3\" text-anchor=\"end\" font-size=\"9.5\" fill=\"#7a828b\">1000</text><line x1=\"48\" y1=\"109.2\" x2=\"670\" y2=\"109.2\" stroke=\"#d5d7d2\" stroke-width=\"0.6\"/><text x=\"42\" y=\"112.7\" text-anchor=\"end\" font-size=\"9.5\" fill=\"#7a828b\">1500</text><line x1=\"48\" y1=\"71.6\" x2=\"670\" y2=\"71.6\" stroke=\"#d5d7d2\" stroke-width=\"0.6\"/><text x=\"42\" y=\"75.1\" text-anchor=\"end\" font-size=\"9.5\" fill=\"#7a828b\">2000</text><line x1=\"48\" y1=\"34.0\" x2=\"670\" y2=\"34.0\" stroke=\"#d5d7d2\" stroke-width=\"0.6\"/><text x=\"42\" y=\"37.5\" text-anchor=\"end\" font-size=\"9.5\" fill=\"#7a828b\">2500</text><rect x=\"89.5\" y=\"207.1\" width=\"27.0\" height=\"14.9\" fill=\"#1B3B52\"/><text x=\"103.0\" y=\"203.1\" text-anchor=\"middle\" font-size=\"9.5\" font-weight=\"700\" fill=\"#1B3B52\">198</text><rect x=\"119.5\" y=\"216.7\" width=\"27.0\" height=\"5.3\" fill=\"#7a8b93\"/><text x=\"133.0\" y=\"212.7\" text-anchor=\"middle\" font-size=\"9.5\" font-weight=\"700\" fill=\"#7a8b93\">70</text><rect x=\"149.5\" y=\"94.9\" width=\"27.0\" height=\"127.1\" fill=\"#B2503A\"/><text x=\"163.0\" y=\"90.9\" text-anchor=\"middle\" font-size=\"9.5\" font-weight=\"700\" fill=\"#B2503A\">1,690</text><text x=\"134.5\" y=\"252\" text-anchor=\"middle\" font-size=\"10.5\" fill=\"#7a828b\">2020</text><rect x=\"242.5\" y=\"208.4\" width=\"27.0\" height=\"13.6\" fill=\"#1B3B52\"/><text x=\"256.0\" y=\"204.4\" text-anchor=\"middle\" font-size=\"9.5\" font-weight=\"700\" fill=\"#1B3B52\">181</text><rect x=\"272.5\" y=\"215.1\" width=\"27.0\" height=\"6.9\" fill=\"#7a8b93\"/><text x=\"286.0\" y=\"211.1\" text-anchor=\"middle\" font-size=\"9.5\" font-weight=\"700\" fill=\"#7a8b93\">92</text><rect x=\"302.5\" y=\"99.7\" width=\"27.0\" height=\"122.3\" fill=\"#B2503A\"/><text x=\"316.0\" y=\"95.7\" text-anchor=\"middle\" font-size=\"9.5\" font-weight=\"700\" fill=\"#B2503A\">1,626</text><text x=\"287.5\" y=\"252\" text-anchor=\"middle\" font-size=\"10.5\" fill=\"#7a828b\">2022</text><rect x=\"395.5\" y=\"209.8\" width=\"27.0\" height=\"12.2\" fill=\"#1B3B52\"/><text x=\"409.0\" y=\"205.8\" text-anchor=\"middle\" font-size=\"9.5\" font-weight=\"700\" fill=\"#1B3B52\">162</text><rect x=\"425.5\" y=\"217.0\" width=\"27.0\" height=\"5.0\" fill=\"#7a8b93\"/><text x=\"439.0\" y=\"213.0\" text-anchor=\"middle\" font-size=\"9.5\" font-weight=\"700\" fill=\"#7a8b93\">67</text><rect x=\"455.5\" y=\"39.1\" width=\"27.0\" height=\"182.9\" fill=\"#B2503A\"/><text x=\"469.0\" y=\"35.1\" text-anchor=\"middle\" font-size=\"9.5\" font-weight=\"700\" fill=\"#B2503A\">2,432</text><text x=\"440.5\" y=\"252\" text-anchor=\"middle\" font-size=\"10.5\" fill=\"#7a828b\">2024</text><rect x=\"548.5\" y=\"211.6\" width=\"27.0\" height=\"10.4\" fill=\"#1B3B52\"/><text x=\"562.0\" y=\"207.6\" text-anchor=\"middle\" font-size=\"9.5\" font-weight=\"700\" fill=\"#1B3B52\">138</text><rect x=\"578.5\" y=\"216.9\" width=\"27.0\" height=\"5.1\" fill=\"#7a8b93\"/><text x=\"592.0\" y=\"212.9\" text-anchor=\"middle\" font-size=\"9.5\" font-weight=\"700\" fill=\"#7a8b93\">68</text><rect x=\"608.5\" y=\"44.7\" width=\"27.0\" height=\"177.3\" fill=\"#B2503A\"/><text x=\"622.0\" y=\"40.7\" text-anchor=\"middle\" font-size=\"9.5\" font-weight=\"700\" fill=\"#B2503A\">2,358</text><text x=\"593.5\" y=\"252\" text-anchor=\"middle\" font-size=\"10.5\" fill=\"#7a828b\">2025</text><line x1=\"48\" y1=\"222.0\" x2=\"670\" y2=\"222.0\" stroke=\"#a9aeb5\"/><rect x=\"48\" y=\"256\" width=\"10\" height=\"10\" fill=\"#1B3B52\"/><text x=\"62\" y=\"265\" font-size=\"10.5\" fill=\"#7a828b\">베르메오</text><rect x=\"112\" y=\"256\" width=\"10\" height=\"10\" fill=\"#7a8b93\"/><text x=\"126\" y=\"265\" font-size=\"10.5\" fill=\"#7a828b\">갈리시아</text><rect x=\"176\" y=\"256\" width=\"10\" height=\"10\" fill=\"#B2503A\"/><text x=\"190\" y=\"265\" font-size=\"10.5\" fill=\"#7a828b\">포소르하</text></svg>"
+  },
+  {
+   "stage": "c07",
+   "sid": "s12",
+   "kind": "shot",
+   "ord": 235,
+   "caption": "해바라기유 참치 80 g 3입. 자사몰의 기본 규격이다.",
+   "alt": "Campos 해바라기유 참치 3입",
+   "src": "/data/companies/figures/salica/df067ba29fe2.jpg"
+  },
+  {
+   "stage": "c07",
+   "sid": "s12",
+   "kind": "shot",
+   "ord": 54756,
+   "caption": "토마토 소스 참치 80 g 3입.",
+   "alt": "Campos 토마토 참치 3입",
+   "src": "/data/companies/figures/salica/aae8e605ca1e.jpg"
+  },
+  {
+   "stage": "c07",
+   "sid": "s12",
+   "kind": "shot",
+   "ord": 105982,
+   "caption": "책임어획 인증 표시를 단 엑스트라버진 올리브유 참치 65 g 3입.",
+   "alt": "Campos 엑스트라버진 올리브유 참치",
+   "src": "/data/companies/figures/salica/c34fc9edd060.jpg"
+  },
+  {
+   "stage": "c07",
+   "sid": "s12",
+   "kind": "shot",
+   "ord": 131372,
+   "caption": "보니토 델 노르테 올리브유 150 g. 같은 용량 참치보다 비싸다.",
+   "alt": "Campos 보니토 델 노르테 올리브유 150 g",
+   "src": "/data/companies/figures/salica/e792310f34cc.jpg"
+  },
+  {
+   "stage": "c07",
+   "sid": "s12",
+   "kind": "shot",
+   "ord": 156936,
+   "caption": "칸타브리아 해역 선별 보니토 100 g.",
+   "alt": "Campos 칸타브리아 보니토 100 g",
+   "src": "/data/companies/figures/salica/2ff10e61ff31.jpg"
+  },
+  {
+   "stage": "c07",
+   "sid": "s12",
+   "kind": "shot",
+   "ord": 179764,
+   "caption": "업소용 750 g 캔. 대용량으로 갈수록 킬로그램당 값이 내려간다.",
+   "alt": "Campos 해바라기유 참치 750 g",
+   "src": "/data/companies/figures/salica/24ce2ca0c7b9.jpg"
+  }
+ ]
+}

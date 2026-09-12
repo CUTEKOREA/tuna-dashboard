@@ -296,6 +296,10 @@ import {
   garavillaMeta, garavillaStats, garavillaSourceNotes,
   fleetEnergyRatio, authorizedCasesShift,
 } from '@/lib/data/company-garavilla';
+import {
+  salicaMeta, salicaStats, salicaSourceNotes,
+  ecuadorHeadcountShare, permitVsInput,
+} from '@/lib/data/company-salica';
 
 
 const ACCENT = '#c2410c';
@@ -3766,6 +3770,77 @@ const GARAVILLA_SPEC: CommoditySpec = {
   ].join(' · '),
 };
 
+const SALICA_ACCENT = '#8a4b1f';
+
+const SALICA_SPEC: CommoditySpec = {
+  key: 'company-anatomy-salica',
+  title: '기업 해부: Salica',
+  subtitle:
+    '문서의 두께를 정하는 것은 물량이 아니라 문턱이다. 사람이 가장 적은 베르메오 공장(2025년 138명)은 유럽 산업배출지침 범주에 걸려 통합환경허가 AAI00228이 부지 18,150 ㎡와 굴뚝 높이 10.5 m와 새벽 1시~6시 방류 금지까지 적고 12년 동안 정기검사를 다섯 번 받는다. ' +
+    '아 포브라 두 카라미냘은 완제품 하루 21 t으로 문턱에 못 미쳐 갈리시아 허가 등록부에 아예 없고, 사람이 2,358명인 포소르하는 에콰도르 원장에 생산부 코드 PP-670 한 줄과 항만보안 등록 ECPSJ-0001로만 남는다. 감시의 밀도는 물량이 아니라 관할과 문턱이 정한다.',
+  accent: SALICA_ACCENT,
+  primaryKpi: {
+    label: '세 공장 인원 가운데 에콰도르 몫 (2025)',
+    value: ecuadorHeadcountShare(),
+    decimals: 1,
+    unit: `(% · ${salicaStats.인원_포소르하_2025.toLocaleString('ko-KR')}명 ÷ ${salicaStats.인원_3사합_2025.toLocaleString('ko-KR')}명 — 분모를 그룹 전체 ${salicaStats.인원_그룹_2025.toLocaleString('ko-KR')}명으로 놓으면 ${salicaStats.에콰도르_인원비중_그룹_pct}%다)`,
+    accent: SALICA_ACCENT,
+  },
+  secondaryKpis: [
+    {
+      label: '베르메오 허가 능력 대 2022년 총투입',
+      value: permitVsInput().비율,
+      decimals: 1,
+      unit: `(% · ${permitVsInput().투입2022.toLocaleString('ko-KR')} t ÷ ${permitVsInput().허가.toLocaleString('ko-KR')} t — ${permitVsInput().단서})`,
+    },
+    {
+      label: '매출 가운데 에콰도르 몫 (2025)',
+      value: Number(salicaStats.에콰도르_매출비중_총액_pct),
+      decimals: 1,
+      unit: `(% · 세 법인 총액 단순합 ${salicaStats.매출_3사합_2025_M유로} M€ 기준 · 내부거래 미제거 — 같은 보고서 본문은 ${salicaStats.본문_세공장_매출_M유로} M€로 적는다)`,
+    },
+    {
+      label: '포소르하 역산 물량 증가 (2022 → 2025)',
+      value: Number(salicaStats.포소르하_역산증가_pct),
+      decimals: 0,
+      unit: '(% · 6.4만 → 8.8만 t · 그룹 원단위로 되짚은 B등급 역산이다)',
+    },
+  ],
+  stripItems: [
+    {
+      now: true,
+      eyebrow: '문턱',
+      title: '가장 작은 공장이 가장 두껍게 적힌다',
+      body: '베르메오만 부지 18,150 ㎡·건축 12,224.59 ㎡·보일러 2기(굴뚝 10.5·12.5 m)·새벽 1~6시 방류 금지가 관보에 찍힌다. 사람은 셋 중 가장 적은 138명이다',
+    },
+    {
+      eyebrow: '줄자',
+      title: '48,015 나누기 5,838은 가동률이 아니다',
+      body: '분자 48,015 t/년은 완제품 상한이고 분모 5,838 t은 캔과 세척제를 포함한 원료·부자재 총투입이다. 2024년 실제 참치 투입은 1,459 t이다',
+    },
+    {
+      eyebrow: '자기 신고',
+      title: '문턱 아래 공장의 자기 문서에 초과가 있다',
+      body: '아 포브라는 허가 대상이 아닌데 회사 환경선언의 암모니아성 질소가 2021~2024년 46·33·36·37로 한도 30을 네 해 연속 넘는다 — 감시체계가 다른 것이지 더러운 것이 아니다',
+    },
+    {
+      eyebrow: '순서',
+      title: '통합을 발표하기 전에 상표를 놓았다',
+      body: '유럽연합 SALICA 상표는 2025-05-25 만료, 유예는 2025-11-25에 끝났다. 「Albacora와 Salica를 하나로」라는 로고 발표는 그 다섯 달 뒤인 2026년 4월이고 합병 등기는 0건이다',
+    },
+  ],
+  briefing: proseBriefing('salica'),
+  narratives: inlineReport('salica', proseStages('salica')),
+  chartSlots: {},
+  continuous: true,
+  sourceNotes: salicaSourceNotes,
+  sourceMeta: [
+    `${salicaMeta.회사} · ${salicaMeta.국가} · ${salicaMeta.업종}`,
+    `출처 ${salicaMeta.출처}`,
+    `조사 ${salicaMeta.조사일}`,
+  ].join(' · '),
+};
+
 export const COMPANY_CARDS: CompanyCard[] = [
   {
     key: 'frinsa',
@@ -4218,6 +4293,19 @@ export const COMPANY_CARDS: CompanyCard[] = [
       { label: '선망선', value: `${garavillaStats.선망선_척수}척(에콰도르 2·스페인 2)` },
     ],
   },
+  {
+    key: 'salica',
+    numeral: 'ⅩⅩⅩⅥ',
+    name: 'Salica',
+    country: '스페인 · 베르메오(공장은 베르메오·아 포브라 두 카라미냘·포소르하)',
+    tagline: '가장 작은 공장이 가장 두껍게 적힌다.',
+    ...FLAG.스페인,
+    stats: [
+      { label: '세 공장 인원의 에콰도르 몫', value: `${ecuadorHeadcountShare()}%` },
+      { label: '허가 능력 대 2022 총투입', value: `${permitVsInput().비율}%(가동률 아님)` },
+      { label: '그룹 선박', value: `${salicaStats.그룹_선박_척수}척(용선 ${salicaStats.그룹_용선_척수}척 포함)` },
+    ],
+  },
 
 
 ];
@@ -4277,6 +4365,7 @@ export default function CompanyAnatomyDashboard({
     herdez: HERDEZ_SPEC,
     sajoseafood: SAJOSEAFOOD_SPEC,
     garavilla: GARAVILLA_SPEC,
+    salica: SALICA_SPEC,
   };
   const spec = SPECS[selected] ?? SPEC;
 
