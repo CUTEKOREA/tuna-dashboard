@@ -137,7 +137,11 @@ export const HQ_POINTS: GeoPoint[] = [
     note: '1931년 기름절임 참치캔으로 시작 · 1958년 「シーチキン」 상표 등록 · 재단 46.67%' },
   { company: 'cnfc', numeral: 'ⅩⅩⅩ', kind: 'hq', label: '中水集团远洋 본점', country: '중국',
     lat: 39.83, lng: 116.29, basis: 'ⅩⅩⅩ · 北京市丰台区南四环西路188号(2025 연보, 구 단위 근사 좌표) · 深交所 000798 · 中国水产 33.90% + 舟山海洋渔业 17.78%',
-    note: '1998-01 설립 · 연보 네 권에 「罐」 0회 · 2025 참치 매출총이익률 −6.96%' },
+    note: '1998-01 설립 · 연보 네 권에 「罐」 0회 · 2025 참치 매출총이익률 −6.96%' },  { company: 'kaichuang', numeral: 'ⅩⅩⅪ', kind: 'hq', label: '上海开创 본사', country: '중국',
+    lat: 31.27, lng: 121.53, basis: 'ⅩⅩⅪ · 上海市杨浦区安浦路661号(2025 연보 사무 주소, 구 단위 근사 좌표) · 上交所 600097 · 上海远洋渔业 42.26% · 光明食品 간접 42.83%',
+    note: '1997 설립·상장 · 2008 역합병으로 원양어업 회사가 됨 · 2025 캔 매출총이익 몫 52.48%' },  { company: 'alliance', numeral: 'ⅩⅩⅫ', kind: 'hq', label: 'Alliance Select 등록 본사', country: '필리핀',
+    lat: 14.58, lng: 121.06, basis: 'ⅩⅩⅫ · Suite 3104A West Tower, PSE Centre, Ortigas, Pasig City(2025 연차보고서, 시 단위 근사 좌표) · 필리핀증권거래소 FOOD · Strongoak 55.31%',
+    note: '2003 설립 · 2006-11-08 상장 · 생산은 제너럴산토스 한 부지 · 2026-09-02 감자·모회사 증자안 의결' },
 ];
 
 /**
@@ -320,6 +324,30 @@ export const PLANT_POINTS: GeoPoint[] = [
     lat: -17.74, lng: 168.31,
     basis: 'ⅩⅩⅩ · 연보 연결 자회사 中瓦渔业 51% 「码头运营、加工」 · 외교부 2015 「中瓦首个合资企业,成立于2008年」 · 로인 가공(Atuna 2026-06-23). 캔 설비는 2022 발표 뒤 미가동',
     note: '2025 매출 855만 위안 · 순손실 75만 위안 · 2026-06 바누아투 정부 감사 착수 · 시 단위 근사 좌표' },
+
+  // ── ⅩⅩⅪ 上海开创 — 캔은 스페인 Albo 공장 하나. 저우산은 로인, 마셜 식품 법인은 멈춤 ─────
+  { company: 'kaichuang', numeral: 'ⅩⅩⅪ', kind: 'plant', label: 'Albo 살바테라 데 미뇨 공장(PLISAN)', country: '스페인',
+    lat: 42.08, lng: -8.47,
+    basis: 'ⅩⅩⅪ · 연보: 신공장 투자 2,525만 유로(부가세 공제 뒤)·2021-04 착공·2022-12 시생산. 2025 캔 생산 5,809만 캔(연보, 규모 단위가 캔이라 크기로 싣지 않음)',
+    note: '2023-04 개소(Cadena SER) · 비고·셀레이로 공장 2022년 폐쇄 · 타피아 조제식품 2026-03 이전(Expansión) · 산업단지 단위 근사 좌표' },
+  { company: 'kaichuang', numeral: 'ⅩⅩⅪ', kind: 'plant', label: '舟山环太 岱山 로인 공장', country: '중국',
+    lat: 30.25, lng: 122.20, sizeValue: 10968, sizeUnit: '톤/년',
+    basis: 'ⅩⅩⅪ · 2025 연보 로인(鱼柳) 생산 10,968.47 t(생산 실적이지 능력이 아님) · 「产品以鱼柳为主，主要销往国外市场」 · 2022년 가동 · 캔 아님',
+    note: '2025 로인 매출총이익률 1.07% · 2026 상반기 순손실 2,050만 위안 · 현 단위 근사 좌표' },
+  { company: 'kaichuang', numeral: 'ⅩⅩⅪ', kind: 'plant', label: '泛太食品(마셜제도) 식품 법인', country: '마셜제도',
+    lat: 7.09, lng: 171.38,
+    basis: 'ⅩⅩⅪ · 연보 손자회사 「远洋捕捞及食品加工业」 · 2025 매출 7,519만 위안 · 제품·능력은 연보에 없음',
+    note: '2023·2026 상반기 연보 「停工损失」 — 가동이 멈춘 기간이 있다 · 마주로 근사 좌표' },
+
+  // ── ⅩⅩⅫ Alliance Select — 공장이 아니라 부지가 하나다 ─────
+  { company: 'alliance', numeral: 'ⅩⅩⅫ', kind: 'plant', label: 'Alliance Select 제너럴산토스 공장', country: '필리핀',
+    lat: 6.06, lng: 125.13, sizeValue: 102, sizeUnit: 'MT/일',
+    basis: 'ⅩⅩⅫ · Purok Saydala, Barangay Tambler, General Santos City · 부지 68,751 ㎡(AMHI 소유, ASFII 임차) · 처리량 102 t/일(2025 주주총회 의사록), 가동률 81%(2024) · 명판 능력은 공시에 없다',
+    note: '같은 부지에 캔·파우치·냉동 로인 설비와 어분·어유 설비, Big Glory Bay 연어 설비(985.88 ㎡)가 함께 있다 · 2013년 Foodport 가공 경제구역 지정 · 2026-06-08 지진으로 중단, 6-18 단계 재개 · 구 단위 근사 좌표' },
+  { company: 'alliance', numeral: 'ⅩⅩⅫ', kind: 'plant', label: 'PT IAFI 비퉁 공장(가동 중단)', country: '인도네시아',
+    lat: 1.44, lng: 125.19,
+    basis: 'ⅩⅩⅫ · 2008년 인수·일 90 t으로 증설 · 2019-10-18 고정자산 매각 후 사업 목적을 수출 무역으로 변경 · 2023~2025년 영업 없음',
+    note: '일 90 t은 매각 전 수치다 — 제너럴산토스 능력으로 옮겨 쓰지 않는다 · 투자액 499만 9,000달러 전액 손상 · 시 단위 근사 좌표' },
 ];
 
 /**
@@ -399,6 +427,10 @@ export const FLAG_STATES: {
     flags: [{ country: '중국', count: 61 }],
     basis: 'ⅩⅩⅩ · RFMO 등록부(2026-08-17) 소유 명의 CNFC OVERSEAS FISHERIES 68행, 기구 간 중복 제외 61척 · 전부 연승',
     note: '선망선은 자회사 中渔环球 명의로 따로 등록 — 여기 세지 않았다. 등록은 조업의 증거가 아니다' },
+  { company: 'kaichuang',
+    flags: [{ country: '중국', count: 6 }, { country: '마셜제도', count: 6 }],
+    basis: 'ⅩⅩⅪ · RFMO 등록부(WCPFC·FFA, 2026-08-17) 선망 12척 — 중국 선적 JIN HUI 6·8·9·68(开创远洋)·18·58(上海远洋渔业 소유, 开创 임차) · 마셜 선적 6척(泛太渔业, JUNMETO 2025-12 인도)',
+    note: '연보의 선망 11척은 JUNMETO 투입 전 수 · 운반선 KAICHUANG 101·102(지배주주 소유)는 세지 않았다. 등록은 조업의 증거가 아니다' },
 ];
 
 /** 배가 0척인 회사. 이 사실 자체가 이 산업의 구조다. */
@@ -416,6 +448,7 @@ export const NO_FLEET: { company: string; basis: string }[] = [
   { company: 'bumblebee', basis: 'ⅩⅣ stats · 선박명부 등재 0척' },
   { company: 'centurypacific', basis: 'ⅩⅨ stats · RFV 어선 0척(매입의 59%는 선박 직구매)' },
   { company: 'jais', basis: 'Ⅶ stats · 공장·선박·자회사 0개' },
+  { company: 'alliance', basis: 'ⅩⅩⅫ · 공시에 자사 어선 기재 없음 — 어업 자회사 PT Van De Zee 2024-08 청산 · 관계사 2014년 조업 중단 · 유형자산에 선박 계정 없음(운송장비 33만 3,510달러가 전부)' },
   { company: 'trimarine', basis: 'ⅩⅩⅠ · WCPFC·IATTC·FFA 세 등록부의 소유자·운영자 칸 모두 0척. 배는 계열 NFD 명의다' },
   { company: 'princes', basis: 'ⅩⅩⅡ · ISSF PVR(2026-08-20)·FFA Good Standing(2026-09-02) 두 명부에 0척. 회사 ESG 보고서도 「선박을 소유하지 않는다」로 적는다' },
   { company: 'iot', basis: 'ⅩⅩⅢ · 자사 명의 어선 0척. 이 나라 국적 선망 13척은 경쟁 그룹 공급선 명부와 IMO 기준 전부 겹치지만 이 공장의 구매 문서는 없다' },

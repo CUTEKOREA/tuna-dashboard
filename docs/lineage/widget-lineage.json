@@ -1,9 +1,9 @@
 {
  "_meta": {
   "entry": "app/page.tsx",
-  "files": 243,
+  "files": 245,
   "widgets": 112,
-  "dataFiles": 188,
+  "dataFiles": 196,
   "generator": "scripts/widget_lineage.py"
  },
  "widgetToData": {
@@ -568,6 +568,7 @@
   "components/market-understanding/CompanyAnatomyDashboard.tsx": {
    "dataModules": [
     "lib/data/company-albacora.ts",
+    "lib/data/company-alliance.ts",
     "lib/data/company-ati.ts",
     "lib/data/company-bolton.ts",
     "lib/data/company-boltonfood.ts",
@@ -585,6 +586,7 @@
     "lib/data/company-itochu.ts",
     "lib/data/company-jais.ts",
     "lib/data/company-jealsa.ts",
+    "lib/data/company-kaichuang.ts",
     "lib/data/company-kyokuyo.ts",
     "lib/data/company-nauterra.ts",
     "lib/data/company-nirsa.ts",
@@ -606,6 +608,10 @@
     "public/data/companies/albacora_prose_v1.json",
     "public/data/companies/albacora_tables_v1.json",
     "public/data/companies/albacora_v1.json",
+    "public/data/companies/alliance_figures_v1.json",
+    "public/data/companies/alliance_prose_v1.json",
+    "public/data/companies/alliance_tables_v1.json",
+    "public/data/companies/alliance_v1.json",
     "public/data/companies/ati_figures_v1.json",
     "public/data/companies/ati_prose_v1.json",
     "public/data/companies/ati_tables_v1.json",
@@ -674,6 +680,10 @@
     "public/data/companies/jealsa_prose_v1.json",
     "public/data/companies/jealsa_tables_v1.json",
     "public/data/companies/jealsa_v1.json",
+    "public/data/companies/kaichuang_figures_v1.json",
+    "public/data/companies/kaichuang_prose_v1.json",
+    "public/data/companies/kaichuang_tables_v1.json",
+    "public/data/companies/kaichuang_v1.json",
     "public/data/companies/kyokuyo_figures_v1.json",
     "public/data/companies/kyokuyo_prose_v1.json",
     "public/data/companies/kyokuyo_tables_v1.json",
@@ -1192,6 +1202,18 @@
    "components/market-understanding/AlbacoraCharts.tsx",
    "components/market-understanding/CompanyAnatomyDashboard.tsx"
   ],
+  "public/data/companies/alliance_figures_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/alliance_prose_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/alliance_tables_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/alliance_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
   "public/data/companies/ati_figures_v1.json": [
    "components/market-understanding/CompanyAnatomyDashboard.tsx"
   ],
@@ -1395,6 +1417,18 @@
    "components/market-understanding/CompanyAnatomyDashboard.tsx"
   ],
   "public/data/companies/jealsa_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/kaichuang_figures_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/kaichuang_prose_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/kaichuang_tables_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/kaichuang_v1.json": [
    "components/market-understanding/CompanyAnatomyDashboard.tsx"
   ],
   "public/data/companies/kyokuyo_figures_v1.json": [

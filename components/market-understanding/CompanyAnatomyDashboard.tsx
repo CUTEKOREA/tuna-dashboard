@@ -276,6 +276,14 @@ import {
   cnfcMeta, cnfcStats, cnfcSourceNotes,
   tunaSharePct, tunaLossWan, subsidyToProfit,
 } from '@/lib/data/company-cnfc';
+import {
+  kaichuangMeta, kaichuangStats, kaichuangSourceNotes,
+  canGrossShare, adToCanGross, panPacificShare, alboShare,
+} from '@/lib/data/company-kaichuang';
+import {
+  allianceMeta, allianceStats, allianceSourceNotes,
+  revenueMultiple, operatingCashFlowMn, dilutionPoints,
+} from '@/lib/data/company-alliance';
 
 
 const ACCENT = '#c2410c';
@@ -3465,6 +3473,118 @@ const CNFC_SPEC: CommoditySpec = {
   ].join(' · '),
 };
 
+const KAICHUANG_ACCENT = '#1f6f8b';
+
+const KAICHUANG_SPEC: CommoditySpec = {
+  key: 'company-anatomy-kaichuang',
+  title: '기업 해부: 上海开创',
+  subtitle:
+    '상하이 국유 식품그룹 光明食品의 원양어업 상장사다. 중서부태평양 선망선이 2025년 참치 88,561 t을 잡았고, 스페인 참치캔 브랜드 Albo를 100% 갖고 있다. ' +
+    '2025년 캔은 주영업 매출총이익의 52.48%를 냈지만 같은 해 광고·판촉비가 그 78.25%였고, 연결 순이익의 68.96%는 마셜제도 선적 선망선을 가진 손자회사 泛太渔业에 잡혔다. 선단의 참치가 Albo 캔으로 간다는 문장은 연보에 없다.',
+  accent: KAICHUANG_ACCENT,
+  primaryKpi: {
+    label: '2025년 주영업 매출총이익 가운데 캔(罐头食品) 몫 (연결 제품별 표, 계산)',
+    value: canGrossShare(),
+    decimals: 2,
+    unit: '(% · 캔 매출은 연결 매출의 34.9%)',
+    accent: KAICHUANG_ACCENT,
+  },
+  secondaryKpis: [
+    { label: '광고·판촉비 ÷ 캔 매출총이익 (2025)', value: adToCanGross(), decimals: 2, unit: '(% · 광고·판촉비 2억 8,397만 위안)' },
+    { label: '연결 순이익 가운데 泛太渔业 몫 (2025)', value: panPacificShare(), decimals: 2, unit: `(% · Albo 몫 ${alboShare()}% · 내부거래 보정 없음)` },
+    { label: 'RFMO 등록부 선망선', value: kaichuangStats.등록부_선망_중국 + kaichuangStats.등록부_선망_마셜, decimals: 0, unit: '(척 · 중국 선적 6·마셜 선적 6 · 2척은 지배주주 소유 임차)' },
+  ],
+  stripItems: [
+    {
+      now: true,
+      eyebrow: '구조',
+      title: '매출총이익의 과반은 스페인 캔',
+      body: '2025년 캔 매출 8억 1,635만 위안, 매출총이익 3억 6,291만 위안. 같은 해 Albo 순이익은 1,924만 위안이었다',
+    },
+    {
+      eyebrow: '이익',
+      title: '연결 순이익의 7할만큼을 마셜 선적 선망선 법인이 번다',
+      body: '泛太渔业(Pan Pacific Fishing RMI) 순이익 5,382만 위안 — 연결 순이익 7,805만 위안의 68.96%(계산). 2024년에도 68.19%',
+    },
+    {
+      eyebrow: '원료',
+      title: '선단 참치가 Albo로 간다는 문장은 연보에 없다',
+      body: '2023년 참치 판매의 98.75%가 중국 내 판매. Atuna가 전한 Albo행 중국산 원어는 대부분 연승 날개다랑어다',
+    },
+    {
+      eyebrow: '매대',
+      title: '같은 매장 같은 규격에서 자체상표의 2.29배',
+      body: 'El Corte Inglés 온라인 슈퍼, Albo 황다랑어 올리브유 82 g(물뺀) 3.66유로 대 자체상표 1.60유로(2026-09-12)',
+    },
+  ],
+  briefing: proseBriefing('kaichuang'),
+  narratives: inlineReport('kaichuang', proseStages('kaichuang')),
+  chartSlots: {},
+  continuous: true,
+  sourceNotes: kaichuangSourceNotes,
+  sourceMeta: [
+    `${kaichuangMeta.회사} · ${kaichuangMeta.국가} · ${kaichuangMeta.업종}`,
+    `출처 ${kaichuangMeta.출처}`,
+    `조사 ${kaichuangMeta.조사일}`,
+  ].join(' · '),
+};
+
+const ALLIANCE_ACCENT = '#2f6f4f';
+
+const ALLIANCE_SPEC: CommoditySpec = {
+  key: 'company-anatomy-alliance',
+  title: '기업 해부: Alliance Select',
+  subtitle:
+    '필리핀 제너럴산토스에서 남의 브랜드를 붙인 캔참치를 만드는 상장사다. 2025년 매출 7,882만 달러의 92.8%가 캔참치이고 자기 어선은 공시에 없다. ' +
+    '매출은 2022년 3,458만 달러에서 2.28배가 됐지만 매출총이익률은 11.10%(2024)에서 6.80%로 내려갔고 2025년 영업활동 현금흐름은 −1,578만 달러다. 2026년 6월 사장이 사임했고 9월 2일 이사회가 감자와 모회사 인수 ₱6억 6,000만을 의결했다.',
+  accent: ALLIANCE_ACCENT,
+  primaryKpi: {
+    label: '2025년 매출총이익률 (연결, 계산)',
+    value: allianceStats.매출총이익률_2025_pct,
+    decimals: 2,
+    unit: `(% · 2024년 ${allianceStats.매출총이익률_2024_pct}%에서 하락)`,
+    accent: ALLIANCE_ACCENT,
+  },
+  secondaryKpis: [
+    { label: '2025년 영업활동 현금흐름', value: operatingCashFlowMn(), decimals: 2, unit: '(백만 달러 · 매출채권과 공급자 선급금이 늘었다)' },
+    { label: '매출 배수 (2022 → 2025)', value: revenueMultiple(), decimals: 2, unit: '(배 · 3,458만 → 7,882만 달러)' },
+    { label: '모회사 증자 뒤 지분', value: allianceStats.증자후_지분_pct, decimals: 1, unit: `(% · 현재 ${allianceStats.Strongoak_지분_pct}% · 주주총회·규제 승인 조건부)` },
+  ],
+  stripItems: [
+    {
+      now: true,
+      eyebrow: '현금',
+      title: '매출은 2.3배, 현금은 반대로',
+      body: '2025년 영업활동 현금흐름 −1,578만 달러. 매출채권 +72%·공급자 선급금 +93%가 가져갔고 만기 4~11개월 무역금융 3,670만 달러가 메웠다',
+    },
+    {
+      eyebrow: '2026년',
+      title: '공장이 멈춘 것은 두 번이고 첫 번째는 지진이 아니다',
+      body: '1월 연례정비 연장으로 1분기 매출 −54%, 6월 8일 지진이 2분기를 덮쳤다. 상반기 순손실 716만 달러 중 36%가 지진 전(계산)',
+    },
+    {
+      eyebrow: '지배',
+      title: '55%가 87%로 불어나는 안',
+      body: '액면 ₱0.50 → ₱0.10 감자와 결손금 상계, 모회사 Strongoak의 60억 주 인수 ₱6억 6,000만. 특별주주총회 2026-10-15',
+    },
+    {
+      eyebrow: '공장',
+      title: '한 부지에 캔·어분·연어',
+      body: '제너럴산토스 68,751 ㎡ · 처리량 102 t/일(2025) · 가동률 81%(2024) · 총원 1,937명 중 정규직 123명',
+    },
+  ],
+  briefing: proseBriefing('alliance'),
+  narratives: inlineReport('alliance', proseStages('alliance')),
+  chartSlots: {},
+  continuous: true,
+  sourceNotes: allianceSourceNotes,
+  sourceMeta: [
+    `${allianceMeta.회사} · ${allianceMeta.국가} · ${allianceMeta.업종}`,
+    `출처 ${allianceMeta.출처}`,
+    `조사 ${allianceMeta.조사일}`,
+  ].join(' · '),
+};
+
 export const COMPANY_CARDS: CompanyCard[] = [
   {
     key: 'frinsa',
@@ -3856,6 +3976,31 @@ export const COMPANY_CARDS: CompanyCard[] = [
       { label: '등록부 선박', value: `${cnfcStats.등록부_선박}척` },
     ],
   },
+  {
+    key: 'kaichuang',
+    numeral: 'ⅩⅩⅪ',
+    name: '上海开创',
+    country: '중국 · 상하이(스페인 Albo 공장·저우산 로인 공장·마셜 선단)',
+    tagline: '매출총이익의 과반은 스페인 캔이 벌고, 연결 순이익의 7할만큼은 마셜제도 선적 선망선 법인 한 곳이 번다.',
+    ...FLAG.중국,
+    stats: [
+      { label: '캔 매출총이익 몫', value: `${canGrossShare()}%` },
+      { label: '泛太渔业 순이익 몫', value: `${panPacificShare()}%` },
+      { label: '등록부 선망', value: `${kaichuangStats.등록부_선망_중국 + kaichuangStats.등록부_선망_마셜}척` },
+    ],
+  },  {
+    key: 'alliance',
+    numeral: 'ⅩⅩⅫ',
+    name: 'Alliance Select Foods',
+    country: '필리핀 · 제너럴산토스',
+    tagline: '매출이 2.3배가 되는 동안 현금은 반대로 흘렀고, 그 값을 모회사 증자안이 떠안는다.',
+    ...FLAG.필리핀,
+    stats: [
+      { label: '매출총이익률 2025', value: `${allianceStats.매출총이익률_2025_pct}%` },
+      { label: '영업현금흐름 2025', value: `${operatingCashFlowMn()}백만 달러` },
+      { label: '증자 뒤 모회사 지분', value: `${allianceStats.증자후_지분_pct}%` },
+    ],
+  },
 
 ];
 
@@ -3909,6 +4054,8 @@ export default function CompanyAnatomyDashboard({
     dongwonfnb: DONGWONFNB_SPEC,
     hagoromo: HAGOROMO_SPEC,
     cnfc: CNFC_SPEC,
+    kaichuang: KAICHUANG_SPEC,
+    alliance: ALLIANCE_SPEC,
   };
   const spec = SPECS[selected] ?? SPEC;
 
