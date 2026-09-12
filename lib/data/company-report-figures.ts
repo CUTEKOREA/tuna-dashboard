@@ -29,6 +29,7 @@ import dongwonfnbRaw from '@/public/data/companies/dongwonfnb_figures_v1.json';
 import hagoromoRaw from '@/public/data/companies/hagoromo_figures_v1.json';
 import cnfcRaw from '@/public/data/companies/cnfc_figures_v1.json';
 import kaichuangRaw from '@/public/data/companies/kaichuang_figures_v1.json';
+import allianceRaw from '@/public/data/companies/alliance_figures_v1.json';
 
 /**
  * 조사보고서 그림 인테이크 — 팩샷·차트·문서 캡처.
@@ -96,6 +97,7 @@ const INTAKES: Record<string, Intake> = {
   hagoromo: hagoromoRaw as unknown as Intake,
   cnfc: cnfcRaw as unknown as Intake,
   kaichuang: kaichuangRaw as unknown as Intake,
+  alliance: allianceRaw as unknown as Intake,
 };
 
 export const REPORT_FIGURE_COMPANIES = Object.keys(INTAKES);

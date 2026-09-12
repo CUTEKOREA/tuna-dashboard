@@ -29,6 +29,7 @@ import dongwonfnbRaw from '@/public/data/companies/dongwonfnb_tables_v1.json';
 import hagoromoRaw from '@/public/data/companies/hagoromo_tables_v1.json';
 import cnfcRaw from '@/public/data/companies/cnfc_tables_v1.json';
 import kaichuangRaw from '@/public/data/companies/kaichuang_tables_v1.json';
+import allianceRaw from '@/public/data/companies/alliance_tables_v1.json';
 
 /**
  * 조사보고서 표 전량 인테이크.
@@ -100,6 +101,7 @@ const INTAKES: Record<string, Intake> = {
   hagoromo: hagoromoRaw as unknown as Intake,
   cnfc: cnfcRaw as unknown as Intake,
   kaichuang: kaichuangRaw as unknown as Intake,
+  alliance: allianceRaw as unknown as Intake,
 };
 
 export const REPORT_TABLE_COMPANIES = Object.keys(INTAKES);

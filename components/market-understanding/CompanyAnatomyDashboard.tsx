@@ -280,6 +280,10 @@ import {
   kaichuangMeta, kaichuangStats, kaichuangSourceNotes,
   canGrossShare, adToCanGross, panPacificShare, alboShare,
 } from '@/lib/data/company-kaichuang';
+import {
+  allianceMeta, allianceStats, allianceSourceNotes,
+  revenueMultiple, operatingCashFlowMn, dilutionPoints,
+} from '@/lib/data/company-alliance';
 
 
 const ACCENT = '#c2410c';
@@ -3525,6 +3529,62 @@ const KAICHUANG_SPEC: CommoditySpec = {
   ].join(' · '),
 };
 
+const ALLIANCE_ACCENT = '#2f6f4f';
+
+const ALLIANCE_SPEC: CommoditySpec = {
+  key: 'company-anatomy-alliance',
+  title: '기업 해부: Alliance Select',
+  subtitle:
+    '필리핀 제너럴산토스에서 남의 브랜드를 붙인 캔참치를 만드는 상장사다. 2025년 매출 7,882만 달러의 92.8%가 캔참치이고 자기 어선은 공시에 없다. ' +
+    '매출은 2022년 3,458만 달러에서 2.28배가 됐지만 매출총이익률은 11.10%(2024)에서 6.80%로 내려갔고 2025년 영업활동 현금흐름은 −1,578만 달러다. 2026년 6월 사장이 사임했고 9월 2일 이사회가 감자와 모회사 인수 ₱6억 6,000만을 의결했다.',
+  accent: ALLIANCE_ACCENT,
+  primaryKpi: {
+    label: '2025년 매출총이익률 (연결, 계산)',
+    value: allianceStats.매출총이익률_2025_pct,
+    decimals: 2,
+    unit: `(% · 2024년 ${allianceStats.매출총이익률_2024_pct}%에서 하락)`,
+    accent: ALLIANCE_ACCENT,
+  },
+  secondaryKpis: [
+    { label: '2025년 영업활동 현금흐름', value: operatingCashFlowMn(), decimals: 2, unit: '(백만 달러 · 매출채권과 공급자 선급금이 늘었다)' },
+    { label: '매출 배수 (2022 → 2025)', value: revenueMultiple(), decimals: 2, unit: '(배 · 3,458만 → 7,882만 달러)' },
+    { label: '모회사 증자 뒤 지분', value: allianceStats.증자후_지분_pct, decimals: 1, unit: `(% · 현재 ${allianceStats.Strongoak_지분_pct}% · 주주총회·규제 승인 조건부)` },
+  ],
+  stripItems: [
+    {
+      now: true,
+      eyebrow: '현금',
+      title: '매출은 2.3배, 현금은 반대로',
+      body: '2025년 영업활동 현금흐름 −1,578만 달러. 매출채권 +72%·공급자 선급금 +93%가 가져갔고 만기 4~11개월 무역금융 3,670만 달러가 메웠다',
+    },
+    {
+      eyebrow: '2026년',
+      title: '공장이 멈춘 것은 두 번이고 첫 번째는 지진이 아니다',
+      body: '1월 연례정비 연장으로 1분기 매출 −54%, 6월 8일 지진이 2분기를 덮쳤다. 상반기 순손실 716만 달러 중 36%가 지진 전(계산)',
+    },
+    {
+      eyebrow: '지배',
+      title: '55%가 87%로 불어나는 안',
+      body: '액면 ₱0.50 → ₱0.10 감자와 결손금 상계, 모회사 Strongoak의 60억 주 인수 ₱6억 6,000만. 특별주주총회 2026-10-15',
+    },
+    {
+      eyebrow: '공장',
+      title: '한 부지에 캔·어분·연어',
+      body: '제너럴산토스 68,751 ㎡ · 처리량 102 t/일(2025) · 가동률 81%(2024) · 총원 1,937명 중 정규직 123명',
+    },
+  ],
+  briefing: proseBriefing('alliance'),
+  narratives: inlineReport('alliance', proseStages('alliance')),
+  chartSlots: {},
+  continuous: true,
+  sourceNotes: allianceSourceNotes,
+  sourceMeta: [
+    `${allianceMeta.회사} · ${allianceMeta.국가} · ${allianceMeta.업종}`,
+    `출처 ${allianceMeta.출처}`,
+    `조사 ${allianceMeta.조사일}`,
+  ].join(' · '),
+};
+
 export const COMPANY_CARDS: CompanyCard[] = [
   {
     key: 'frinsa',
@@ -3928,7 +3988,20 @@ export const COMPANY_CARDS: CompanyCard[] = [
       { label: '泛太渔业 순이익 몫', value: `${panPacificShare()}%` },
       { label: '등록부 선망', value: `${kaichuangStats.등록부_선망_중국 + kaichuangStats.등록부_선망_마셜}척` },
     ],
+  },  {
+    key: 'alliance',
+    numeral: 'ⅩⅩⅫ',
+    name: 'Alliance Select Foods',
+    country: '필리핀 · 제너럴산토스',
+    tagline: '매출이 2.3배가 되는 동안 현금은 반대로 흘렀고, 그 값을 모회사 증자안이 떠안는다.',
+    ...FLAG.필리핀,
+    stats: [
+      { label: '매출총이익률 2025', value: `${allianceStats.매출총이익률_2025_pct}%` },
+      { label: '영업현금흐름 2025', value: `${operatingCashFlowMn()}백만 달러` },
+      { label: '증자 뒤 모회사 지분', value: `${allianceStats.증자후_지분_pct}%` },
+    ],
   },
+
 ];
 
 export interface CompanyAnatomyDashboardProps {
@@ -3982,6 +4055,7 @@ export default function CompanyAnatomyDashboard({
     hagoromo: HAGOROMO_SPEC,
     cnfc: CNFC_SPEC,
     kaichuang: KAICHUANG_SPEC,
+    alliance: ALLIANCE_SPEC,
   };
   const spec = SPECS[selected] ?? SPEC;
 

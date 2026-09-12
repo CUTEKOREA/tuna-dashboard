@@ -139,7 +139,9 @@ export const HQ_POINTS: GeoPoint[] = [
     lat: 39.83, lng: 116.29, basis: 'ⅩⅩⅩ · 北京市丰台区南四环西路188号(2025 연보, 구 단위 근사 좌표) · 深交所 000798 · 中国水产 33.90% + 舟山海洋渔业 17.78%',
     note: '1998-01 설립 · 연보 네 권에 「罐」 0회 · 2025 참치 매출총이익률 −6.96%' },  { company: 'kaichuang', numeral: 'ⅩⅩⅪ', kind: 'hq', label: '上海开创 본사', country: '중국',
     lat: 31.27, lng: 121.53, basis: 'ⅩⅩⅪ · 上海市杨浦区安浦路661号(2025 연보 사무 주소, 구 단위 근사 좌표) · 上交所 600097 · 上海远洋渔业 42.26% · 光明食品 간접 42.83%',
-    note: '1997 설립·상장 · 2008 역합병으로 원양어업 회사가 됨 · 2025 캔 매출총이익 몫 52.48%' },
+    note: '1997 설립·상장 · 2008 역합병으로 원양어업 회사가 됨 · 2025 캔 매출총이익 몫 52.48%' },  { company: 'alliance', numeral: 'ⅩⅩⅫ', kind: 'hq', label: 'Alliance Select 등록 본사', country: '필리핀',
+    lat: 14.58, lng: 121.06, basis: 'ⅩⅩⅫ · Suite 3104A West Tower, PSE Centre, Ortigas, Pasig City(2025 연차보고서, 시 단위 근사 좌표) · 필리핀증권거래소 FOOD · Strongoak 55.31%',
+    note: '2003 설립 · 2006-11-08 상장 · 생산은 제너럴산토스 한 부지 · 2026-09-02 감자·모회사 증자안 의결' },
 ];
 
 /**
@@ -336,6 +338,16 @@ export const PLANT_POINTS: GeoPoint[] = [
     lat: 7.09, lng: 171.38,
     basis: 'ⅩⅩⅪ · 연보 손자회사 「远洋捕捞及食品加工业」 · 2025 매출 7,519만 위안 · 제품·능력은 연보에 없음',
     note: '2023·2026 상반기 연보 「停工损失」 — 가동이 멈춘 기간이 있다 · 마주로 근사 좌표' },
+
+  // ── ⅩⅩⅫ Alliance Select — 공장이 아니라 부지가 하나다 ─────
+  { company: 'alliance', numeral: 'ⅩⅩⅫ', kind: 'plant', label: 'Alliance Select 제너럴산토스 공장', country: '필리핀',
+    lat: 6.06, lng: 125.13, sizeValue: 102, sizeUnit: 'MT/일',
+    basis: 'ⅩⅩⅫ · Purok Saydala, Barangay Tambler, General Santos City · 부지 68,751 ㎡(AMHI 소유, ASFII 임차) · 처리량 102 t/일(2025 주주총회 의사록), 가동률 81%(2024) · 명판 능력은 공시에 없다',
+    note: '같은 부지에 캔·파우치·냉동 로인 설비와 어분·어유 설비, Big Glory Bay 연어 설비(985.88 ㎡)가 함께 있다 · 2013년 Foodport 가공 경제구역 지정 · 2026-06-08 지진으로 중단, 6-18 단계 재개 · 구 단위 근사 좌표' },
+  { company: 'alliance', numeral: 'ⅩⅩⅫ', kind: 'plant', label: 'PT IAFI 비퉁 공장(가동 중단)', country: '인도네시아',
+    lat: 1.44, lng: 125.19,
+    basis: 'ⅩⅩⅫ · 2008년 인수·일 90 t으로 증설 · 2019-10-18 고정자산 매각 후 사업 목적을 수출 무역으로 변경 · 2023~2025년 영업 없음',
+    note: '일 90 t은 매각 전 수치다 — 제너럴산토스 능력으로 옮겨 쓰지 않는다 · 투자액 499만 9,000달러 전액 손상 · 시 단위 근사 좌표' },
 ];
 
 /**
@@ -436,6 +448,7 @@ export const NO_FLEET: { company: string; basis: string }[] = [
   { company: 'bumblebee', basis: 'ⅩⅣ stats · 선박명부 등재 0척' },
   { company: 'centurypacific', basis: 'ⅩⅨ stats · RFV 어선 0척(매입의 59%는 선박 직구매)' },
   { company: 'jais', basis: 'Ⅶ stats · 공장·선박·자회사 0개' },
+  { company: 'alliance', basis: 'ⅩⅩⅫ · 공시에 자사 어선 기재 없음 — 어업 자회사 PT Van De Zee 2024-08 청산 · 관계사 2014년 조업 중단 · 유형자산에 선박 계정 없음(운송장비 33만 3,510달러가 전부)' },
   { company: 'trimarine', basis: 'ⅩⅩⅠ · WCPFC·IATTC·FFA 세 등록부의 소유자·운영자 칸 모두 0척. 배는 계열 NFD 명의다' },
   { company: 'princes', basis: 'ⅩⅩⅡ · ISSF PVR(2026-08-20)·FFA Good Standing(2026-09-02) 두 명부에 0척. 회사 ESG 보고서도 「선박을 소유하지 않는다」로 적는다' },
   { company: 'iot', basis: 'ⅩⅩⅢ · 자사 명의 어선 0척. 이 나라 국적 선망 13척은 경쟁 그룹 공급선 명부와 IMO 기준 전부 겹치지만 이 공장의 구매 문서는 없다' },

@@ -35,6 +35,7 @@
 | ⅩⅩⅨ | はごろもフーズ株式会社 | `hagoromo` | https://claude.ai/code/artifact/2c585f03-0c86-4817-9789-53e9c61b7231 |
 | ⅩⅩⅩ | 中水集团远洋股份有限公司 | `cnfc` | https://claude.ai/code/artifact/5983ab7b-2459-4cce-b373-dd11f2852d48 |
 | ⅩⅩⅪ | 上海开创国际海洋资源股份有限公司 | `kaichuang` | https://claude.ai/code/artifact/6243669e-fdd7-4ef8-988e-02ec42c9a8d2 |
+| ⅩⅩⅫ | Alliance Select Foods International, Inc. | `alliance` | https://claude.ai/code/artifact/8981f4da-a889-4acf-bd23-a0f4540ad7a6 |
 
 그 밖 — 보고서 직판 랜딩 기획서 https://claude.ai/code/artifact/0f98e5a5-686b-4f47-b661-be5aa852f913
 

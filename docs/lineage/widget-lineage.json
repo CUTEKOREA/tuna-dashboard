@@ -1,9 +1,9 @@
 {
  "_meta": {
   "entry": "app/page.tsx",
-  "files": 244,
+  "files": 245,
   "widgets": 112,
-  "dataFiles": 192,
+  "dataFiles": 196,
   "generator": "scripts/widget_lineage.py"
  },
  "widgetToData": {
@@ -568,6 +568,7 @@
   "components/market-understanding/CompanyAnatomyDashboard.tsx": {
    "dataModules": [
     "lib/data/company-albacora.ts",
+    "lib/data/company-alliance.ts",
     "lib/data/company-ati.ts",
     "lib/data/company-bolton.ts",
     "lib/data/company-boltonfood.ts",
@@ -607,6 +608,10 @@
     "public/data/companies/albacora_prose_v1.json",
     "public/data/companies/albacora_tables_v1.json",
     "public/data/companies/albacora_v1.json",
+    "public/data/companies/alliance_figures_v1.json",
+    "public/data/companies/alliance_prose_v1.json",
+    "public/data/companies/alliance_tables_v1.json",
+    "public/data/companies/alliance_v1.json",
     "public/data/companies/ati_figures_v1.json",
     "public/data/companies/ati_prose_v1.json",
     "public/data/companies/ati_tables_v1.json",
@@ -1195,6 +1200,18 @@
   ],
   "public/data/companies/albacora_v1.json": [
    "components/market-understanding/AlbacoraCharts.tsx",
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/alliance_figures_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/alliance_prose_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/alliance_tables_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/alliance_v1.json": [
    "components/market-understanding/CompanyAnatomyDashboard.tsx"
   ],
   "public/data/companies/ati_figures_v1.json": [
