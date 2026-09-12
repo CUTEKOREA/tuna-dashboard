@@ -39,6 +39,7 @@
 | ⅩⅩⅩⅢ | Grupo Herdez, S.A.B. de C.V. | `herdez` | https://claude.ai/code/artifact/06a535a9-8c7d-4d99-bc0f-090e2e72db91 |
 | ⅩⅩⅩⅣ | 사조씨푸드 주식회사 | `sajoseafood` | https://claude.ai/code/artifact/0d2d60a7-5b7d-4fe4-9b95-8599c5b89557 |
 | ⅩⅩⅩⅤ | Grupo Conservas Garavilla S.L. (Isabel) | `garavilla` | https://claude.ai/code/artifact/da18e751-86a2-4870-ab35-98a3784a88c8 |
+| ⅩⅩⅩⅥ | Salica (Albacora 그룹 가공부문 · Campos) | `salica` | https://claude.ai/code/artifact/92aaec9e-da1c-4d35-aea9-33cadcc26b83 |
 
 그 밖 — 보고서 직판 랜딩 기획서 https://claude.ai/code/artifact/0f98e5a5-686b-4f47-b661-be5aa852f913
 
