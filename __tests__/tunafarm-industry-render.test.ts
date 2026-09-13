@@ -1,7 +1,7 @@
 /**
  * 「시장 이해 > 참치 양식」 가드.
  *
- * 1. 단계 여덟이 한 페이지에 이어서 그려지고 브리핑 수와 단계 수가 같다.
+ * 1. 단계 아홉이 한 페이지에 이어서 그려지고 브리핑 수와 단계 수가 같다.
  * 2. 보고서 원문 핵심 수치가 화면에 있다(재계산 없이 원문 표기 그대로).
  * 3. **층 경계 문구**가 있다 — 입식 상한과 총허용어획량은 다른 층이고, 명부 행 수는 농장 수가 아니다.
  * 4. **검증에서 철회한 주장이 되살아나지 않는다** — 이 편은 세 축 검증에서 P0 아홉을 받았고,
@@ -12,10 +12,14 @@ import React from 'react';
 import { renderToStaticMarkup } from 'react-dom/server';
 import { describe, expect, it } from 'vitest';
 
-import TunafarmIndustryDashboard from '@/components/market-understanding/TunafarmIndustryDashboard';
+import TunafarmIndustryDashboard, {
+  TUNAFARM_CHART_SLOTS,
+} from '@/components/market-understanding/TunafarmIndustryDashboard';
+import { getTunafarmCounts, getTunafarmChapterNames } from '@/lib/data/tunafarm-industry';
 import { isActiveMenu, getDashboardTitle, SIDEBAR_SECTIONS } from '@/lib/dashboard-registry';
 import {
   TUNAFARM_BRIEFING_POINTS,
+  TUNAFARM_CHAPTER_BY_STAGE,
   TUNAFARM_NARRATIVES,
   TUNAFARM_SOURCE_NOTES,
 } from '@/lib/tunafarm-industry-content';
@@ -37,8 +41,8 @@ describe('참치 양식 - 레지스트리', () => {
 });
 
 describe('참치 양식 - 구성', () => {
-  it('단계가 여덟이고 브리핑과 짝이 맞는다', () => {
-    expect(TUNAFARM_NARRATIVES).toHaveLength(8);
+  it('단계가 아홉이고 브리핑과 짝이 맞는다', () => {
+    expect(TUNAFARM_NARRATIVES).toHaveLength(9);
     expect(TUNAFARM_BRIEFING_POINTS).toHaveLength(TUNAFARM_NARRATIVES.length);
     const stages = TUNAFARM_NARRATIVES.map((n) => n.numeral);
     expect(TUNAFARM_BRIEFING_POINTS.map((b) => b.stage)).toEqual(stages);
@@ -58,9 +62,40 @@ describe('참치 양식 - 구성', () => {
     expect(TUNAFARM_SOURCE_NOTES.join(' ')).toContain('0304.87.1000');
   });
 
-  it('여덟 단계가 한 페이지에 이어서 나온다', () => {
+  it('아홉 단계가 한 페이지에 이어서 나온다', () => {
     for (const n of TUNAFARM_NARRATIVES) {
       expect(text).toContain(n.title);
+    }
+  });
+});
+
+describe('참치 양식 - 발행본 표가 실린다', () => {
+  it('표 46개와 콜아웃 19개를 옮겼다', () => {
+    const c = getTunafarmCounts();
+    expect(c.tables).toBe(46);
+    expect(c.callouts).toBe(19);
+  });
+
+  it('아홉 단계가 모두 표 슬롯을 갖는다', () => {
+    for (const n of TUNAFARM_NARRATIVES) {
+      expect(TUNAFARM_CHART_SLOTS[n.key], `${n.key} 슬롯`).toBeDefined();
+      expect(TUNAFARM_CHART_SLOTS[n.key].length).toBeGreaterThan(0);
+    }
+  });
+
+  it('장 이름이 발행본 표기와 맞는다 — 틀리면 표가 안 붙는다', () => {
+    const names = getTunafarmChapterNames();
+    for (const n of TUNAFARM_NARRATIVES) {
+      const chapter = TUNAFARM_CHAPTER_BY_STAGE[n.key];
+      expect(chapter, `${n.key} 장 매핑`).toBeDefined();
+      expect(names, `${chapter} 가 JSON 에 있다`).toContain(chapter);
+    }
+  });
+
+  it('표 본문이 화면에 그려진다', () => {
+    // 발행본 표에만 있는 값들. 서술에는 없다.
+    for (const v of ['ATEU1MLT00004', 'AT001TUR00011', 'ATEU1HRV00012', '2,156', '12,300']) {
+      expect(text, v).toContain(v);
     }
   });
 });

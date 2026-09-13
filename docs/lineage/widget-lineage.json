@@ -1,9 +1,9 @@
 {
  "_meta": {
   "entry": "app/page.tsx",
-  "files": 257,
+  "files": 258,
   "widgets": 114,
-  "dataFiles": 226,
+  "dataFiles": 227,
   "generator": "scripts/widget_lineage.py"
  },
  "widgetToData": {
@@ -1092,8 +1092,12 @@
    ]
   },
   "components/market-understanding/TunafarmIndustryDashboard.tsx": {
-   "dataModules": [],
-   "dataFiles": []
+   "dataModules": [
+    "lib/data/tunafarm-industry.ts"
+   ],
+   "dataFiles": [
+    "lib/data/tunafarm-tables.json"
+   ]
   },
   "components/market-understanding/ValueChainSpine.tsx": {
    "dataModules": [],
@@ -1239,6 +1243,9 @@
    "components/FleetDailyOperations.tsx",
    "components/panofi/PanofiDashboard.tsx",
    "components/panofi/PanofiTabs.tsx"
+  ],
+  "lib/data/tunafarm-tables.json": [
+   "components/market-understanding/TunafarmIndustryDashboard.tsx"
   ],
   "public/data/bangkok/seasia_ledger.json": [
    "components/bangkok/BangkokDashboard.tsx",
