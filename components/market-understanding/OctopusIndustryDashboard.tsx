@@ -34,6 +34,13 @@ import {
   OctopusPreparedTradeChart,
   OctopusWorldChart,
 } from './OctopusCharts';
+import {
+  AuctionPriceChart,
+  TradeBalanceChart,
+  auctionCaption,
+  tradeCaption,
+} from './MofLiveCharts';
+import { auctionMeta, tradeMeta } from '@/lib/data/mof-live';
 
 const DATA = getOctopusIndustryData();
 const RESEARCH = getOctopusCompanyResearch();
@@ -194,6 +201,13 @@ export const OCTOPUS_CHART_SLOTS: Record<string, ChartSlot[]> = {
   ],
   s03: [
     {
+      title: '국내 위판 일별 단가 (원/kg)',
+      caption: auctionCaption('문어'),
+      telemetry: { status: 'SYNCED' as const, syncDate: String(auctionMeta.기간) },
+      render: () => <AuctionPriceChart keyword="문어" />,
+      sourceLine: `출처: ${auctionMeta.출처} · 조회 ${auctionMeta.조회일} · scripts/sync_mof_auction.py`,
+    },
+    {
       title: '연근해 생산 2010~2025 (톤)',
       caption: '실선이 문어류(참문어+대문어), 점선이 낙지류와 주꾸미다. 품종이 달라 합계 선을 그리지 않는다.',
       telemetry: KOSIS_SYNC,
@@ -207,6 +221,13 @@ export const OCTOPUS_CHART_SLOTS: Record<string, ChartSlot[]> = {
     },
   ],
   s04: [
+    {
+      title: '문어 월별 수출입과 무역수지 (백만 달러)',
+      caption: tradeCaption('문어'),
+      telemetry: { status: 'SYNCED' as const, syncDate: String(tradeMeta.기간) },
+      render: () => <TradeBalanceChart keyword="문어" />,
+      sourceLine: `출처: ${tradeMeta.출처} · 조회 ${tradeMeta.조회일} · scripts/sync_mof_trade.py`,
+    },
     {
       title: '냉동 문어 수입 2019~2025 (톤)',
       caption:

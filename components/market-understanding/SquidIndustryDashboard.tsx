@@ -88,6 +88,15 @@ import {
   PeruPlantTable,
 } from './CompanyResearchTables';
 import { peruImports, peruLedger, peruMeta, peruPlants } from '@/lib/data/squid-peru-supply';
+import {
+  AuctionPriceChart,
+  FreightTrendChart,
+  TradeBalanceChart,
+  auctionCaption,
+  freightCaption,
+  tradeCaption,
+} from './MofLiveCharts';
+import { auctionMeta, freightMeta, tradeMeta } from '@/lib/data/mof-live';
 import { getSquidCompanyResearch, getKofaSeries } from '@/lib/data/valuechain-companies';
 
 const CATCH = getSquidCatchData();
@@ -142,7 +151,24 @@ const FK_SYNC = { status: 'STATIC' as const, syncDate: `${falklandMeta.기간} �
 const PERU_SYNC = { status: 'STATIC' as const, syncDate: `${peruMeta.조회일} 조사` };
 
 const SQUID_BASE_SLOTS: Record<string, ChartSlot[]> = {
+  // 아래 셋은 공공 API 스냅숏이다. 정적 집계가 아니라 스크립트가 받아 온 값이라 SYNCED 로 적는다.
+  s09: [
+    {
+      title: '국내 위판 일별 단가 (원/kg)',
+      caption: auctionCaption('오징어'),
+      telemetry: { status: 'SYNCED' as const, syncDate: String(auctionMeta.기간) },
+      render: () => <AuctionPriceChart keyword="오징어" />,
+      sourceLine: `출처: ${auctionMeta.출처} · 조회 ${auctionMeta.조회일} · scripts/sync_mof_auction.py`,
+    },
+  ],
   s10: [
+    {
+      title: '항로별 해상 운송비용과 환율 (천원/2TEU · 원/달러)',
+      caption: freightCaption(),
+      telemetry: { status: 'SYNCED' as const, syncDate: String(freightMeta.기간) },
+      render: () => <FreightTrendChart />,
+      sourceLine: `출처: ${freightMeta.출처} · 조회 ${freightMeta.조회일} · scripts/sync_landed_cost_trend.py`,
+    },
     {
       title: '페루산 오징어 수입 — 냉동 원물과 조제품 (톤·달러/kg)',
       caption:
@@ -298,6 +324,13 @@ const SQUID_BASE_SLOTS: Record<string, ChartSlot[]> = {
     },
   ],
   s06: [
+    {
+      title: '오징어 월별 수출입과 무역수지 (백만 달러)',
+      caption: tradeCaption('오징어'),
+      telemetry: { status: 'SYNCED' as const, syncDate: String(tradeMeta.기간) },
+      render: () => <TradeBalanceChart keyword="오징어" />,
+      sourceLine: `출처: ${tradeMeta.출처} · 조회 ${tradeMeta.조회일} · scripts/sync_mof_trade.py`,
+    },
     {
       title: '한국 수입량과 수입단가 (톤·달러/톤)',
       caption: '막대는 수입량, 선은 톤당 단가다. 적게 사면서 비싸게 사는 흐름이 보인다.',
