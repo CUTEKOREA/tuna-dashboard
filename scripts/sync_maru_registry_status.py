@@ -15,7 +15,6 @@
 from __future__ import annotations
 
 import json
-import re
 import sys
 from datetime import date
 from pathlib import Path
@@ -43,14 +42,18 @@ SENTINEL = "9999-12-31"
 
 def status_for(plant: str, index: list[tuple[str, dict]]) -> dict:
     key = maru.normalize_name(plant)
-    hits = [row for norm, row in index if norm.startswith(key)]
+    # 경계 없는 접두는 `KSL` 이 `KSL FOODS` 를 물게 한다. 약칭 뒤에 법인격만 붙은 경우만 인정한다.
+    legal = ("", "SAC", "SA", "SAA", "EIRL", "SRL", "SCRL", "SAS", "LTDA")
+    hits = [row for norm, row in index if norm.startswith(key) and norm[len(key) :] in legal]
     if not hits:
         return {"상태": "등록부에 없음", "만료일": None, "등록줄": 0, "등록명": None}
 
     names = {row["maker"] for row in hits}
-    # 접두가 여러 회사에 걸리면(예: 「PESQUERA」) 붙이지 않는다.
-    stems = {re.sub(r"(SAC|SA|EIRL|SRL)$", "", maru.normalize_name(n)) for n in names}
-    if len(stems) > 1:
+    # 접미사 제거는 하지 않는다. `PESQUERA ROSA` 의 끝 `SA` 를 법인격으로 보고 깎으면
+    # `PESQUERA RO S.A.` 와 같은 열쇠가 된다 — 서로 다른 회사다.
+    # 위에서 이미 「약칭 + 법인격」만 남겼으므로, 남은 후보의 본체가 갈리면 붙이지 않는다.
+    stems = {maru.normalize_name(n)[: len(key)] for n in names}
+    if len(stems) > 1 or len({maru.normalize_name(n) for n in names}) > 1:
         return {"상태": "모호", "만료일": None, "등록줄": len(hits), "등록명": sorted(names)[:3]}
 
     today = date.today().isoformat()
@@ -70,9 +73,17 @@ def status_for(plant: str, index: list[tuple[str, dict]]) -> dict:
 
 
 def main(paths: list[str]) -> int:
+    # 글롭에 옛 파일이 섞이면 시점이 다른 스냅숏이 합쳐진다. 가장 최근에 고친 파일 하나만 쓴다.
+    ordered = sorted((Path(p) for p in paths), key=lambda p: p.stat().st_mtime, reverse=True)
     rows: list[dict] = []
-    for path in paths:
-        rows += [r for r in maru.parse(path) if r["country"] == "페루"]
+    used: Path | None = None
+    for path in ordered:
+        candidate = [r for r in maru.parse(path) if r["country"] == "페루"]
+        if candidate:
+            rows, used = candidate, path
+            break
+    if len(ordered) > 1:
+        print(f"파일 {len(ordered)}장 중 가장 최근 것 하나만 쓴다: {used.name if used else '-'}", file=sys.stderr)
     if not rows:
         print("페루 행이 없다. 국가=페루로 받은 파일인지 확인한다.", file=sys.stderr)
         return 1
@@ -84,6 +95,7 @@ def main(paths: list[str]) -> int:
             "출처": "식품의약품안전처 수입식품정보마루 해외제조업소 조회(국가=페루, 로그인 불필요)",
             "조회일": date.today().isoformat(),
             "등록부_행수": len(rows),
+            "원본파일": used.name if used else None,
             "대조": "보고서 약칭 → 등록부 정식명 접두 일치. 후보가 갈리면 「모호」로 남긴다",
             "주의": "「만료」는 등록 만료일이 지났다는 뜻이지 위법이라는 뜻이 아니다. 갱신이 반영되기 전일 수 있다",
         },

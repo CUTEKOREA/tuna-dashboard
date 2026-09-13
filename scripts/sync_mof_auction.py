@@ -74,11 +74,15 @@ async def main(days: int) -> int:
             for row in rows:
                 buckets[row.get("mprcStdCodeNm") or "미상"].append(row)
             for species, group in buckets.items():
-                weight = sum(num(r.get("csmtWt")) for r in group)
-                amount = sum(num(r.get("csmtAmount")) for r in group)
+                # 중량이 0·비어 있는 행이 실제로 온다(2026-08-16 참문어 0kg·364,000원).
+                # 금액만 분자에 넣으면 단가가 부풀어 오른다 — 중량 있는 행만으로 가중평균을 낸다.
+                priced = [r for r in group if num(r.get("csmtWt")) > 0]
+                weight = sum(num(r.get("csmtWt")) for r in priced)
+                amount = sum(num(r.get("csmtAmount")) for r in priced)
                 daily[day][species] = {
                     "검색어": keyword,
                     "건수": len(group),
+                    "중량없는건수": len(group) - len(priced),
                     "물량_kg": round(weight, 1),
                     "금액_원": round(amount),
                     # 가중평균이다. 건별 단가를 평균 내면 소량 고가 건이 값을 끌어올린다.
@@ -88,10 +92,13 @@ async def main(days: int) -> int:
                 markets[species] |= {r.get("csmtmktNm") for r in group if r.get("csmtmktNm")}
         if not got_any:
             empty_days += 1
+            # defaultdict 는 접근만 해도 빈 항목을 만든다. 그대로 두면 「받은 날이 하루도 없다」 가드를
+            # 빈 날들이 통과시켜, 빈 스냅숏이 멀쩡한 기존 파일을 덮는다.
+            daily.pop(day, None)
         print(f"  {day} {'·'.join(sorted(daily[day])) if daily[day] else '위판 없음'}", file=sys.stderr)
 
     if not daily:
-        print("받은 날이 하루도 없다. 키와 기간을 확인한다.", file=sys.stderr)
+        print("받은 날이 하루도 없다. 키와 기간을 확인한다. 기존 스냅숏은 그대로 둔다.", file=sys.stderr)
         return 1
 
     payload = {

@@ -30,6 +30,19 @@ from silla_mcp_core import DataGoError  # noqa: E402
 
 SPECIES = ["오징어", "고등어", "명태", "새우", "문어", "골뱅이", "다랑어"]
 
+# 부분일치라 「어류(…고등어 등 이외)」·「어란(명태…이외 기타)」처럼 **그 어종을 뺀** 품목까지 걸린다.
+# 이름에 이 말이 붙어 있으면 그 어종 합계에서 뺀다 — 안 빼면 고등어 수지가 고등어가 아닌 값이 된다.
+EXCLUDE_MARKERS = ("이외", "제외", "except")
+
+
+def is_exclusion(item_name: str, keyword: str) -> bool:
+    """「keyword … 이외」 꼴인지. keyword 뒤쪽에 제외 표시가 오는 경우만 잡는다."""
+    where = item_name.find(keyword)
+    if where < 0:
+        return False
+    tail = item_name[where + len(keyword) :]
+    return any(marker in tail for marker in EXCLUDE_MARKERS)
+
 
 def num(value: object) -> float:
     try:
@@ -62,7 +75,12 @@ async def main(months: int) -> int:
         misses = 0
         bucket: dict[str, dict] = {}
         for keyword in SPECIES:
-            hit = [r for r in rows if keyword in str(r.get("mprcExipitmNm"))]
+            hit = [
+                r
+                for r in rows
+                if keyword in str(r.get("mprcExipitmNm"))
+                and not is_exclusion(str(r.get("mprcExipitmNm")), keyword)
+            ]
             if not hit:
                 continue
             entry = {"수출_kg": 0.0, "수출_usd": 0.0, "수입_kg": 0.0, "수입_usd": 0.0, "품목수": 0}
@@ -91,7 +109,7 @@ async def main(months: int) -> int:
             "기간": f"{min(monthly)}~{max(monthly)}",
             "검색어": SPECIES,
             "단위": "kg · USD",
-            "주의": "검색어 부분일치로 묶은 값이다. 어떤 품목이 들어갔는지는 「품목」 에 그대로 적었다",
+            "주의": "검색어 부분일치로 묶되 「… 이외」·「… 제외」 품목은 뺀 값이다. 들어간 품목은 「품목」 에 그대로 적었다",
             "공표지연": "두세 달 늦는다. 최근 달이 비어 있는 것은 아직 안 나온 것이다",
         },
         "월별": dict(sorted(monthly.items())),
