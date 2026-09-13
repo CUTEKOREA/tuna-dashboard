@@ -36,6 +36,7 @@ import garavillaRaw from '@/public/data/companies/garavilla_prose_v1.json';
 import salicaRaw from '@/public/data/companies/salica_prose_v1.json';
 import majesticRaw from '@/public/data/companies/majestic_prose_v1.json';
 import scaRaw from '@/public/data/companies/sca_prose_v1.json';
+import ghanaRaw from '@/public/data/companies/ghana_prose_v1.json';
 
 /**
  * 조사보고서 서술 전량 인테이크.
@@ -113,6 +114,7 @@ const INTAKES: Record<string, Intake> = {
   salica: salicaRaw as unknown as Intake,
   majestic: majesticRaw as unknown as Intake,
   sca: scaRaw as unknown as Intake,
+  ghana: ghanaRaw as unknown as Intake,
   thaiunion: thaiunionRaw as unknown as Intake,
 };
 

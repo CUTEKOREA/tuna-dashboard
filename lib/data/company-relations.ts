@@ -74,8 +74,8 @@ export const EXTERNAL_NODES: Record<
 > = {
   'external:silla': { label: '신라교역', country: '대한민국', lat: 37.56, lng: 126.98,
     basis: '서울 중구 · 동원산업 본사(서초)와 겹치지 않게 시청 기준' },
-  'external:panofi': { label: 'Panofi', country: '가나', lat: 5.62, lng: 0.02,
-    basis: 'Ⅶ panofi · 테마(Tema)' },
+  'external:panofi': { label: 'Panofi', country: '가나', lat: 5.6698, lng: 0.0166,
+    basis: 'Ⅶ panofi · 테마(Tema) — 편에 주소가 없어 도시 근사치다. ⅩⅩⅩⅨ 가 같은 항구의 두 캐너리 핀을 어항 좌표로 찍으면서 옛 자리(5.62, 0.02)가 그 핀과 겹쳤다 — 아크가 남의 핀에서 출발하므로 주소가 없는 이쪽을 테마 시가지로 띄웠다. 실제 본점 위치가 아니다' },
   // 편이 주소를 주지 않는다. ニッスイ·極洋 본사 핀도 「도쿄」 한 단어라 셋이 한 점이 됐고,
   // 그 결과 Thai Union 으로 뻗는 지분선이 ニッスイ 핀에서 나가는 것처럼 보였다.
   'external:mitsubishi': { label: '미쓰비시상사', country: '일본', lat: 35.72, lng: 139.80,

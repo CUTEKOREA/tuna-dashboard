@@ -308,6 +308,10 @@ import {
   scaMeta, scaStats, scaSourceNotes,
   twoEntities, bookValueGap,
 } from '@/lib/data/company-sca';
+import {
+  ghanaMeta, ghanaStats, ghanaSourceNotes,
+  ownershipDepth, purchaseTurn,
+} from '@/lib/data/company-ghana';
 
 
 const ACCENT = '#c2410c';
@@ -2585,6 +2589,7 @@ const FLAG: Record<string, Pick<CompanyCard, 'flagSrc' | 'backInk'>> = {
   에콰도르: { flagSrc: '/flags/ec.svg', backInk: '#1b2733' },
   파푸아뉴기니: { flagSrc: '/flags/pg.svg', backInk: '#f4f5f0' },
   세네갈: { flagSrc: '/flags/sn.svg', backInk: '#f4f5f0' },
+  가나: { flagSrc: '/flags/gh.svg', backInk: '#1b2733' },
 };
 
 /** 선택 갤러리 카드 목록. 회사가 늘면 여기에 한 장씩 추가한다. */
@@ -3995,6 +4000,78 @@ const SCA_SPEC: CommoditySpec = {
   ].join(' · '),
 };
 
+const GHANA_ACCENT = '#b8860b';
+
+const GHANA_SPEC: CommoditySpec = {
+  key: 'company-anatomy-ghana',
+  title: '기업 해부: 가나 테마의 두 캐너리',
+  subtitle:
+    '같은 부두에 선 두 공장이 문서에서 갈린다. 가나 테마 어항에 참치 캔을 만드는 공장이 둘 있다 — 태국 그룹의 Pioneer Food Cannery 와 한국 회사가 지분 일부를 쥔 Cosmo Seafoods 다. ' +
+    '한쪽은 주인이 다섯 겹까지 적혀 있다(타이유니언 → TUES1 → Thai Union Europe → Etablissements Paul Paulet → PFC, 전부 100%). 다른 한쪽에 공시가 적는 것은 신라교역 23.84% 한 줄뿐이고 나머지 76% 를 적은 문서는 어디에도 없다. ' +
+    '그리고 한국에서 간 돈은 보이지 않는 쪽으로 흘렀다 — 지분을 취득한 2012년 이후 열한 해 동안 0원이던 매입이 두 해 만에 846억 2,933만원이 됐다. 이 편이 세는 것은 비중의 크기가 아니라 그 전환과, 그 돈이 가는 쪽의 소유가 4분의 1만 보인다는 사실이다.',
+  accent: GHANA_ACCENT,
+  primaryKpi: {
+    label: '돈이 가는 공장의 소유 가운데 문서로 확인되는 지분',
+    value: ownershipDepth().빈쪽.지분_pct,
+    decimals: 2,
+    unit: `(% · 나머지 ${ownershipDepth().빈쪽.미상_pct}% 의 주주를 적은 문서가 없다 — ${ownershipDepth().빈쪽.근거}. 같은 항구의 ${ownershipDepth().적힌쪽.이름} 는 ${ownershipDepth().적힌쪽.겹수}겹이 전부 ${ownershipDepth().적힌쪽.지분_pct}% 로 적히고 소수 지분이 ${ownershipDepth().적힌쪽.미상_pct}이다)`,
+    accent: GHANA_ACCENT,
+  },
+  secondaryKpis: [
+    {
+      label: '신라교역이 이 공장에서 산 금액 (FY2025)',
+      value: purchaseTurn().FY2025_백만원 / 100,
+      decimals: 0,
+      unit: `(억원 · 그 공장 매출의 ${purchaseTurn().FY2025_비중_pct}% — ${purchaseTurn().공백_기간}년 ${purchaseTurn().공백_해수}해 동안 0원이었다가 FY2023 ${(purchaseTurn().FY2023_백만원 / 100).toFixed(0)}억 → FY2024 ${(purchaseTurn().FY2024_백만원 / 100).toFixed(0)}억을 거쳐 두 해 만에 ${purchaseTurn().배수}배가 됐다)`,
+    },
+    {
+      label: '같은 기간 그 투자의 장부금액',
+      value: purchaseTurn().장부금액_백만원,
+      decimals: 0,
+      unit: `(백만원 · ${purchaseTurn().장부금액_경과연수}년째 0 — ${purchaseTurn().단서}. 이 공장의 자본은 FY2025 말 ${purchaseTurn().자본_백만원.toLocaleString('ko-KR')}백만원으로 완전자본잠식이다)`,
+    },
+    {
+      label: '두 공장 가운데 고용을 해마다 적는 곳',
+      value: Number(ghanaStats.고용_연도별공시_공장수),
+      decimals: 0,
+      unit: `(곳 · PFC 는 FY2022 ${ghanaStats.PFC_고용_2022_명} → FY2023 ${Number(ghanaStats.PFC_고용_2023_명).toLocaleString('ko-KR')} → FY2024 ${Number(ghanaStats.PFC_고용_2024_명).toLocaleString('ko-KR')} → FY2025 ${Number(ghanaStats.PFC_고용_2025_명).toLocaleString('ko-KR')}명이 모회사 공시 부속 데이터로 ${ghanaStats.고용_연도별공시_해수}해 연속 잡히고, Cosmo 쪽은 2020년 현지 매체의 한 점이 전부다. 면적·라인은 두 공장 다 기재 ${ghanaStats.면적_라인_기재_건수}건이다)`,
+    },
+  ],
+  stripItems: [
+    {
+      now: true,
+      eyebrow: '전환',
+      title: '열한 해 동안 한 푼도 사지 않았다',
+      body: '관계기업 행은 매 해 표에 있었고 매입 칸만 「-」였다 — 열이 없어서 0인 것이 아니다. 회사가 사유를 적어 놨다. 사업 개요가 「2023년말부터 해외 합작법인에서 생산된 참치캔을 유럽 캔 시장에 유통하는 사업」이라 쓴다. 지분을 열한 해 들고 있다가 열두 해째에 유통을 시작한 것이다',
+    },
+    {
+      eyebrow: '장부',
+      title: '두 번 0이 됐고 한 번 되살아났다',
+      body: '2015년 말 지분법손실로 1차 소멸, 2016년 중 현금출자 43억 9,500만원으로 3억 401만원이 되살아났다가 2017년 말 2차 소멸했다. 신라교역 관계기업 일곱 곳 가운데 다섯이 장부가 0이고, 값이 남은 둘은 한국 섬유회사와 키리바시 조선소다 — 참치를 잡고 만드는 법인은 전부 0이다',
+    },
+    {
+      eyebrow: '번호',
+      title: '승인번호가 둘인 것은 공장이 둘이었기 때문이다',
+      body: '유럽연합 목록에 Cosmo 가 GS/SF/E070 과 GS/SF/E103 두 줄로 실린다. E103 은 원래 Ichiban Seafoods 의 번호이고 2016-01-01 에 Cosmo 가 흡수합병했다. 다만 「합병했으니 공장도 합쳤다」는 원문에 없는 말이다 — 목록은 도시까지만 적고 번호는 둘 다 살아 있다',
+    },
+    {
+      eyebrow: '카드',
+      title: '이 나라는 옐로카드를 두 번 받았다',
+      body: '2013-11-26 에 받아 2015-10-01 에 해제됐고, 2021-06-02 에 다시 받아 지금도 걸려 있다. 옐로카드는 수출 금지가 아니다 — 재지정 뒤에도 가나 캔참치 수출은 2022년 26,567톤에서 2025년 31,956톤으로 늘었다. 무게는 다음 단계에 있다',
+    },
+  ],
+  briefing: proseBriefing('ghana'),
+  narratives: inlineReport('ghana', proseStages('ghana')),
+  chartSlots: {},
+  continuous: true,
+  sourceNotes: ghanaSourceNotes,
+  sourceMeta: [
+    `${ghanaMeta.회사} · ${ghanaMeta.국가} · ${ghanaMeta.업종}`,
+    `출처 ${ghanaMeta.출처}`,
+    `조사 ${ghanaMeta.조사일}`,
+  ].join(' · '),
+};
+
 export const COMPANY_CARDS: CompanyCard[] = [
   {
     key: 'frinsa',
@@ -4486,6 +4563,19 @@ export const COMPANY_CARDS: CompanyCard[] = [
       { label: '가동', value: `명판 일 ${scaStats.명판_일_t} t 대 실제 일 ${scaStats.실가동_일_최저_t}~${scaStats.실가동_일_최고_t} t` },
     ],
   },
+  {
+    key: 'ghana',
+    numeral: 'ⅩⅩⅩⅨ',
+    name: '가나 테마의 두 캐너리',
+    country: '가나 · 테마 어항(Cosmo Seafoods · Pioneer Food Cannery)',
+    tagline: '한 공장은 주인이 다섯 겹까지 적혀 있고, 다른 공장은 4분의 3이 어디에도 없다.',
+    ...FLAG.가나,
+    stats: [
+      { label: '소유가 적힌 두께', value: `PFC ${ownershipDepth().적힌쪽.겹수}겹 전부 ${ownershipDepth().적힌쪽.지분_pct}% 대 Cosmo 한 줄 ${ownershipDepth().빈쪽.지분_pct}%(나머지 ${ownershipDepth().빈쪽.미상_pct}% 문서 없음)` },
+      { label: '매입 대 장부', value: `${purchaseTurn().공백_해수}해 0원 → FY2025 ${(purchaseTurn().FY2025_백만원 / 100).toFixed(0)}억(매출의 ${purchaseTurn().FY2025_비중_pct}%)인데 장부금액은 ${purchaseTurn().장부금액_경과연수}년째 ${purchaseTurn().장부금액_백만원}` },
+      { label: '설비', value: `면적·라인 기재 ${ghanaStats.면적_라인_기재_건수}건(두 공장 다) · 고용은 PFC만 연도별 ${ghanaStats.PFC_고용_2025_명}명` },
+    ],
+  },
 
 
 ];
@@ -4548,6 +4638,7 @@ export default function CompanyAnatomyDashboard({
     salica: SALICA_SPEC,
     majestic: MAJESTIC_SPEC,
     sca: SCA_SPEC,
+    ghana: GHANA_SPEC,
   };
   const spec = SPECS[selected] ?? SPEC;
 
