@@ -57,14 +57,26 @@ const ROUTE_COLOR: Record<string, string> = {
 
 /* ── 위판 일별 단가 ─────────────────────────────────────────────────────── */
 
+/**
+ * 표준명이 여럿 걸린다(「오징어」→ 살오징어·갑오징어류·…). 물량이 많은 순으로 최대 네 종만 그린다.
+ * 캡션도 같은 선택을 써야 한다 — 전체 기준으로 세면 그리지도 않은 종의 위판장 수가 캡션에 오른다.
+ */
+const TOP_SPECIES = 4;
+
+function topSpecies(keyword: string) {
+  const raw = auctionSeriesFor(keyword);
+  const weight = new Map<string, number>();
+  for (const row of raw) weight.set(row.species, (weight.get(row.species) ?? 0) + row.물량_kg);
+  const names = [...weight.entries()]
+    .sort((a, b) => b[1] - a[1])
+    .slice(0, TOP_SPECIES)
+    .map(([name]) => name);
+  return { raw, names, shown: raw.filter((row) => names.includes(row.species)) };
+}
+
 export function AuctionPriceChart({ keyword }: { keyword: string }) {
   const { rows, species } = useMemo(() => {
-    const raw = auctionSeriesFor(keyword);
-    // 표준명이 여럿 걸린다(「오징어」→ 살오징어·갑오징어류·…). 물량이 많은 순으로 최대 4종만 그린다.
-    const weight = new Map<string, number>();
-    for (const row of raw) weight.set(row.species, (weight.get(row.species) ?? 0) + row.물량_kg);
-    const top = [...weight.entries()].sort((a, b) => b[1] - a[1]).slice(0, 4).map(([name]) => name);
-
+    const { raw, names: top } = topSpecies(keyword);
     const byDate = new Map<string, Record<string, number | string | null>>();
     for (const row of raw) {
       if (!top.includes(row.species)) continue;
@@ -103,10 +115,11 @@ export function AuctionPriceChart({ keyword }: { keyword: string }) {
 }
 
 export function auctionCaption(keyword: string) {
-  const rows = auctionSeriesFor(keyword);
-  const days = new Set(rows.map((r) => r.date)).size;
-  const markets = Math.max(0, ...rows.map((r) => r.위판장수));
-  return `해양수산부 위판장별 위탁판매 ${auctionMeta.기간} 중 위판이 있었던 ${days}일. 「${keyword}」 부분일치로 잡힌 표준명 가운데 물량 상위 네 종. 단가는 금액÷물량 가중평균이고(건별 단가의 평균이 아니다) 하루 최대 ${markets}개 위판장이 섞여 있다. 주말·공휴일은 위판이 없어 선이 끊긴다.`;
+  const { raw, names, shown } = topSpecies(keyword);
+  const days = new Set(shown.map((r) => r.date)).size;
+  const markets = Math.max(0, ...shown.map((r) => r.위판장수));
+  const dropped = new Set(raw.map((r) => r.species)).size - names.length;
+  return `해양수산부 위판장별 위탁판매 ${auctionMeta.기간} 중 이 네 종의 위판이 있었던 ${days}일. 「${keyword}」 부분일치로 잡힌 표준명 가운데 물량 상위 ${names.join('·')}${dropped > 0 ? ` (나머지 ${dropped}종은 뺐다)` : ''}. 단가는 금액÷물량 가중평균이고 건별 단가의 평균이 아니다. 하루 최대 ${markets}개 위판장이 섞여 있다. 주말·공휴일은 위판이 없어 선이 끊긴다.`;
 }
 
 /* ── 품목 월별 무역수지 ─────────────────────────────────────────────────── */
