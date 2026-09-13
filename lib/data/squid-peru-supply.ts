@@ -75,3 +75,28 @@ export const peruLedger = data.원장요약;
 export function ledgerSharePct(n: number): number {
   return Number(((n / peruLedger.전체_신고건수) * 100).toFixed(1));
 }
+
+/**
+ * 식약처 해외제조업소 등록 상태 — 위 14곳에 붙인다.
+ *
+ * 보고서 데이터에는 신고 건수·능력·직원은 있어도 **등록이 살아 있는지**가 없었다.
+ * `scripts/sync_maru_registry_status.py` 로 다시 만든다(마루 화면 조회, 로그인 불필요).
+ *
+ * ⚠ 「만료」는 등록 만료일이 지났다는 뜻이지 위법이라는 뜻이 아니다. 갱신이 아직 반영되지 않았을 수 있다.
+ * ⚠ 보고서는 약칭을, 등록부는 정식명을 쓴다. 접두가 여러 회사에 걸리면 붙이지 않고 「모호」로 남긴다.
+ */
+import registry from '../../public/data/maru_registry_status_v1.json';
+
+export type PeruRegistryStatus = {
+  상태: '유효' | '만료' | '등록부에 없음' | '모호';
+  /** 이미 지난 만료일 중 가장 최근. 만료된 줄이 없으면 null. */
+  만료일: string | null;
+  /** 앞으로 다가오는 기한 중 가장 이른 것. 기한 표기가 없으면 null. */
+  유효기한?: string | null;
+  등록줄: number;
+  만료된줄?: number;
+  등록명?: string | string[] | null;
+};
+
+export const peruRegistry = registry.공장 as Record<string, PeruRegistryStatus>;
+export const peruRegistryMeta = registry._meta;

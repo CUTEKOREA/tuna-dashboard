@@ -30,6 +30,13 @@ import {
   PollockStockChart,
   PollockWorldChart,
 } from './CommodityCharts';
+import {
+  AuctionPriceChart,
+  TradeBalanceChart,
+  auctionCaption,
+  tradeCaption,
+} from './MofLiveCharts';
+import { auctionMeta, tradeMeta } from '@/lib/data/mof-live';
 
 const RESEARCH = getPollockCompanyResearch();
 
@@ -208,6 +215,13 @@ export const POLLOCK_CHART_SLOTS: Record<string, ChartSlot[]> = {
     },
   ],
   s03: [
+    {
+      title: '명태 월별 수출입과 무역수지 (백만 달러)',
+      caption: tradeCaption('명태'),
+      telemetry: { status: 'SYNCED' as const, syncDate: String(tradeMeta.기간) },
+      render: () => <TradeBalanceChart keyword="명태" />,
+      sourceLine: `출처: ${tradeMeta.출처} · 조회 ${tradeMeta.조회일} · scripts/sync_mof_trade.py`,
+    },
     {
       title: '전용 세번별 수입 물량 2023~2026 (톤)',
       caption:

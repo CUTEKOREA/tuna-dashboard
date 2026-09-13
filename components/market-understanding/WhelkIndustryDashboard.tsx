@@ -38,6 +38,13 @@ import {
   WhelkSeriesUnitChart,
   WhelkSeriesWindowsChart,
 } from './CommodityCharts';
+import {
+  AuctionPriceChart,
+  TradeBalanceChart,
+  auctionCaption,
+  tradeCaption,
+} from './MofLiveCharts';
+import { auctionMeta, tradeMeta } from '@/lib/data/mof-live';
 
 const DATA = getWhelkIndustryData();
 const FAO_SYNC = { status: 'STATIC' as const, syncDate: `${DATA.요약.기준연도}년 확정` };
@@ -360,6 +367,13 @@ export const WHELK_CHART_SLOTS: Record<string, ChartSlot[]> = {
     },
   ],
   s06: [
+    {
+      title: '골뱅이 월별 수출입과 무역수지 (백만 달러)',
+      caption: tradeCaption('골뱅이'),
+      telemetry: { status: 'SYNCED' as const, syncDate: String(tradeMeta.기간) },
+      render: () => <TradeBalanceChart keyword="골뱅이" />,
+      sourceLine: `출처: ${tradeMeta.출처} · 조회 ${tradeMeta.조회일} · scripts/sync_mof_trade.py`,
+    },
     {
       title: '국내 가공 상위 업체',
       caption: RESEARCH_EXT.국내가공.요지,

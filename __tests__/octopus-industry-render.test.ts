@@ -74,7 +74,8 @@ describe('문어 산업 페이지 - 구조', () => {
     for (const slot of Object.values(OCTOPUS_CHART_SLOTS).flat()) {
       expect(slot.title).toMatch(/[가-힣]/);
       expect(slot.caption.length).toBeGreaterThan(10);
-      expect(slot.telemetry.status).toBe('STATIC');
+      // L-09 는 실시간 fetch 없는 LIVE 를 막는 룰이다. 스냅숏(SYNCED)은 여기 해당하지 않는다.
+      expect(slot.telemetry.status).not.toBe('LIVE');
     }
   });
 

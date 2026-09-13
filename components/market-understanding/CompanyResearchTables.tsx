@@ -16,7 +16,8 @@ import type {
   CanneryCountryRow,
   BrandMarketRow,
 } from '@/lib/data/valuechain-companies';
-import type { PeruPlantRow } from '@/lib/data/squid-peru-supply';
+import type { PeruPlantRow, PeruRegistryStatus } from '@/lib/data/squid-peru-supply';
+import { peruRegistry, peruRegistryMeta } from '@/lib/data/squid-peru-supply';
 
 import styles from './TunaIndustryDashboard.module.css';
 
@@ -164,6 +165,37 @@ export function BrandMarketTable({ rows }: { rows: BrandMarketRow[] }) {
 }
 
 /** 페루 제조소 표 — 식약처 수입신고 원장에서 한국행 신고가 많은 순. 건수는 수량이 아니다. */
+/** 등록 상태 한 칸. 「만료」와 「대조 안 됨」을 같은 말로 뭉치지 않는다. */
+function registryCell(status: PeruRegistryStatus | undefined) {
+  if (!status) return <span className={styles.factNote}>대조 안 함</span>;
+  if (status.상태 === '등록부에 없음' || status.상태 === '모호') {
+    return (
+      <>
+        {status.상태 === '모호' ? '대조 모호' : '등록부에 없음'}
+        <span className={styles.factNote}>
+          {status.상태 === '모호'
+            ? '같은 접두로 여러 업소가 걸려 붙이지 않았다'
+            : '이 이름으로 등록된 업소를 못 찾았다 — 미등록이라는 뜻은 아니다'}
+        </span>
+      </>
+    );
+  }
+  const lapsed = status.만료된줄 ?? 0;
+  const until = status.유효기한 ? `${status.유효기한}까지` : '기한 표기 없음';
+  return (
+    <>
+      {status.상태}
+      <span className={styles.factNote}>
+        {status.상태 === '만료'
+          ? `${status.만료일 ?? '날짜 없음'} 만료`
+          : lapsed > 0
+            ? `${until} · 등록 ${status.등록줄}줄 중 ${lapsed}줄은 ${status.만료일} 만료`
+            : `${until} · 등록 ${status.등록줄}줄 모두 유효`}
+      </span>
+    </>
+  );
+}
+
 export function PeruPlantTable({ rows, total }: { rows: PeruPlantRow[]; total: number }) {
   const fmt = (v: number | null, unit: string) => (v === null ? '확인불가' : `${v.toLocaleString()}${unit}`);
   return (
@@ -173,6 +205,10 @@ export function PeruPlantTable({ rows, total }: { rows: PeruPlantRow[]; total: n
           페루산 오징어 수입신고 {total.toLocaleString()}건 가운데 신고가 많은 제조소 14곳. 신고 건수는 통관
           횟수이지 수량이 아니다. 「한국계」는 페루 세무당국 등기 임원 성명으로 판단했고, KSL 은 2026-09-11 사내
           미팅(대표 면담)으로 확인했다. 미팅에서 들은 값은 본인 진술이라 「자칭」으로 따로 적는다.
+          {' '}
+          식약처 등록은 수입식품정보마루 해외제조업소 조회({peruRegistryMeta.조회일} 기준)를 이름으로 이은 것이다.
+          <strong>「만료」는 등록 만료일이 지났다는 뜻이지 위법이라는 뜻이 아니다</strong> — 갱신이 아직
+          반영되지 않았을 수 있다. 이름이 안 붙은 곳은 「등록부에 없음」으로 적었고, 미등록과는 다른 말이다.
         </caption>
         <thead>
           <tr>
@@ -181,6 +217,7 @@ export function PeruPlantTable({ rows, total }: { rows: PeruPlantRow[]; total: n
             <th scope="col">신고 건수</th>
             <th scope="col">능력 · 직원</th>
             <th scope="col">대왕오징어 · 자숙 비율</th>
+            <th scope="col">식약처 등록</th>
           </tr>
         </thead>
         <tbody>
@@ -223,6 +260,7 @@ export function PeruPlantTable({ rows, total }: { rows: PeruPlantRow[]; total: n
                   </span>
                 ) : null}
               </td>
+              <td>{registryCell(peruRegistry[row.공장])}</td>
             </tr>
           ))}
         </tbody>
