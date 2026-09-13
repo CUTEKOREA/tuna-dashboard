@@ -4007,7 +4007,7 @@ const GHANA_SPEC: CommoditySpec = {
   title: '기업 해부: 가나 테마의 두 캐너리',
   subtitle:
     '같은 부두에 선 두 공장이 문서에서 갈린다. 가나 테마 어항에 참치 캔을 만드는 공장이 둘 있다 — 태국 그룹의 Pioneer Food Cannery 와 한국 회사가 지분 일부를 쥔 Cosmo Seafoods 다. ' +
-    '한쪽은 주인이 다섯 겹까지 적혀 있다(타이유니언 → TUES1 → Thai Union Europe → Etablissements Paul Paulet → PFC, 전부 100%). 다른 한쪽에 공시가 적는 것은 신라교역 23.84% 한 줄뿐이고 나머지 76.16% 를 적은 문서는 어디에도 없다. ' +
+    '한쪽은 주인이 다섯 겹까지 적혀 있다(타이유니언 → TUES1 → Thai Union Europe → Etablissements Paul Paulet → PFC, 전부 100%). 다른 한쪽에 공시가 적는 것은 신라교역 23.84% 한 줄뿐이고 나머지 76% 를 적은 문서는 어디에도 없다. ' +
     '그리고 한국에서 간 돈은 보이지 않는 쪽으로 흘렀다 — 지분을 취득한 2012년 이후 열한 해 동안 0원이던 매입이 두 해 만에 846억 2,933만원이 됐다. 이 편이 세는 것은 비중의 크기가 아니라 그 전환과, 그 돈이 가는 쪽의 소유가 4분의 1만 보인다는 사실이다.',
   accent: GHANA_ACCENT,
   primaryKpi: {
@@ -4031,10 +4031,10 @@ const GHANA_SPEC: CommoditySpec = {
       unit: `(백만원 · ${purchaseTurn().장부금액_경과연수}년째 0 — ${purchaseTurn().단서}. 이 공장의 자본은 FY2025 말 ${purchaseTurn().자본_백만원.toLocaleString('ko-KR')}백만원으로 완전자본잠식이다)`,
     },
     {
-      label: '두 공장 설비 열 칸 가운데 면적·라인이 적힌 칸',
-      value: Number(ghanaStats.면적_라인_기재_건수),
+      label: '두 공장 가운데 고용을 해마다 적는 곳',
+      value: Number(ghanaStats.고용_연도별공시_공장수),
       decimals: 0,
-      unit: `(건 · 값이 있는 칸은 Cosmo ${ghanaStats.Cosmo_설비칸_값있음}/${ghanaStats.설비칸_총} · PFC ${ghanaStats.PFC_설비칸_값있음}/${ghanaStats.설비칸_총} 이고 완전히 채워진 칸은 각각 ${ghanaStats.Cosmo_설비칸_완전채움}과 ${ghanaStats.PFC_설비칸_완전채움}이다. 회사가 스스로 적어야 채워지는 칸은 양쪽 다 비었다)`,
+      unit: `(곳 · PFC 는 FY2022 ${ghanaStats.PFC_고용_2022_명} → FY2023 ${Number(ghanaStats.PFC_고용_2023_명).toLocaleString('ko-KR')} → FY2024 ${Number(ghanaStats.PFC_고용_2024_명).toLocaleString('ko-KR')} → FY2025 ${Number(ghanaStats.PFC_고용_2025_명).toLocaleString('ko-KR')}명이 모회사 공시 부속 데이터로 ${ghanaStats.고용_연도별공시_해수}해 연속 잡히고, Cosmo 쪽은 2020년 현지 매체의 한 점이 전부다. 면적·라인은 두 공장 다 기재 ${ghanaStats.면적_라인_기재_건수}건이다)`,
     },
   ],
   stripItems: [
