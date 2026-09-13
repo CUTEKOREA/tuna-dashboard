@@ -36,6 +36,7 @@ import garavillaRaw from '@/public/data/companies/garavilla_figures_v1.json';
 import salicaRaw from '@/public/data/companies/salica_figures_v1.json';
 import majesticRaw from '@/public/data/companies/majestic_figures_v1.json';
 import scaRaw from '@/public/data/companies/sca_figures_v1.json';
+import ghanaRaw from '@/public/data/companies/ghana_figures_v1.json';
 
 /**
  * 조사보고서 그림 인테이크 — 팩샷·차트·문서 캡처.
@@ -110,6 +111,7 @@ const INTAKES: Record<string, Intake> = {
   salica: salicaRaw as unknown as Intake,
   majestic: majesticRaw as unknown as Intake,
   sca: scaRaw as unknown as Intake,
+  ghana: ghanaRaw as unknown as Intake,
 };
 
 export const REPORT_FIGURE_COMPANIES = Object.keys(INTAKES);
