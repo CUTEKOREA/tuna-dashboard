@@ -62,12 +62,24 @@ const ROUTE_COLOR: Record<string, string> = {
  * 캡션도 같은 선택을 써야 한다 — 전체 기준으로 세면 그리지도 않은 종의 위판장 수가 캡션에 오른다.
  */
 const TOP_SPECIES = 4;
+/** 물량만 보면 며칠만 나오는 대물량 품목이 뽑힌다(새우젓이 28일 중 2일). 선이 점 두 개가 된다. */
+const MIN_DAY_SHARE = 1 / 3;
 
 function topSpecies(keyword: string) {
   const raw = auctionSeriesFor(keyword);
+  const totalDays = new Set(raw.map((row) => row.date)).size;
   const weight = new Map<string, number>();
-  for (const row of raw) weight.set(row.species, (weight.get(row.species) ?? 0) + row.물량_kg);
-  const names = [...weight.entries()]
+  const days = new Map<string, Set<string>>();
+  for (const row of raw) {
+    weight.set(row.species, (weight.get(row.species) ?? 0) + row.물량_kg);
+    (days.get(row.species) ?? days.set(row.species, new Set()).get(row.species)!).add(row.date);
+  }
+  const eligible = [...weight.entries()].filter(
+    ([name]) => (days.get(name)?.size ?? 0) >= Math.max(2, totalDays * MIN_DAY_SHARE),
+  );
+  // 하한을 넘는 종이 넷도 안 되면 그때만 하한을 푼다 — 빈 차트보다는 성긴 선이 낫다.
+  const pool = eligible.length >= TOP_SPECIES ? eligible : [...weight.entries()];
+  const names = pool
     .sort((a, b) => b[1] - a[1])
     .slice(0, TOP_SPECIES)
     .map(([name]) => name);
