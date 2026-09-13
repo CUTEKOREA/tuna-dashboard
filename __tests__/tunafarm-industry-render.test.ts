@@ -50,10 +50,12 @@ describe('참치 양식 - 구성', () => {
 
   it('모든 단계가 서술과 사실을 갖는다', () => {
     for (const n of TUNAFARM_NARRATIVES) {
-      expect(n.paragraphs.length).toBeGreaterThanOrEqual(3);
+      // 다른 품목 대시보드 수준(절당 1,000자 이상)을 바닥으로 둔다.
+      // 표만 채운 절은 서술 추출에서 빈다 — `build_report_prose.py` 는 para 블록만 가져간다.
+      expect(n.paragraphs.length).toBeGreaterThanOrEqual(5);
       expect(n.facts.length).toBeGreaterThanOrEqual(3);
       const chars = n.paragraphs.join('').length;
-      expect(chars).toBeGreaterThan(400);
+      expect(chars, `${n.key} 서술량`).toBeGreaterThan(1000);
     }
   });
 
