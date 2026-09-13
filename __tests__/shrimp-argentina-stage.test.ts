@@ -144,7 +144,8 @@ describe('새우 05단계 - 아르헨티나', () => {
   it('s05 슬롯이 사람이 읽을 수치를 실제로 그려낸다', () => {
     const slots = SHRIMP_CHART_SLOTS.s05;
     expect(slots).toBeTruthy();
-    expect(slots.length).toBe(4);
+    // 2026-09-13 해수부 무역수지 스냅숏 슬롯이 앞에 하나 붙어 5개다.
+    expect(slots.length).toBe(5);
 
     const html = slots
       .map((s) => renderToStaticMarkup(React.createElement(React.Fragment, null, s.render())))

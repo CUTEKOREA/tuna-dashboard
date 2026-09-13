@@ -36,6 +36,13 @@ import {
   MackerelSeriesUnitChart,
   MackerelSeriesWindowsChart,
 } from './CommodityCharts';
+import {
+  AuctionPriceChart,
+  TradeBalanceChart,
+  auctionCaption,
+  tradeCaption,
+} from './MofLiveCharts';
+import { auctionMeta, tradeMeta } from '@/lib/data/mof-live';
 
 const DATA = getMackerelIndustryData();
 const CATCH_SYNC = {
@@ -122,6 +129,13 @@ function SeriesRolesTable() {
 export const MACKEREL_CHART_SLOTS: Record<string, ChartSlot[]> = {
   s01: [
     {
+      title: '국내 위판 일별 단가 (원/kg)',
+      caption: auctionCaption('고등어'),
+      telemetry: { status: 'SYNCED' as const, syncDate: String(auctionMeta.기간) },
+      render: () => <AuctionPriceChart keyword="고등어" />,
+      sourceLine: `출처: ${auctionMeta.출처} · 조회 ${auctionMeta.조회일} · scripts/sync_mof_auction.py`,
+    },
+    {
       title: '한국 고등어 어획량 30년 (톤)',
       caption:
         '1996년 415,003톤이 정점, 2020년 77,605톤이 바닥이다. 망치고등어 선이 2017년에 0으로 떨어지는 것은 어획이 멈춰서가 아니라 보고가 합쳐져서다.',
@@ -195,6 +209,13 @@ export const MACKEREL_CHART_SLOTS: Record<string, ChartSlot[]> = {
     },
   ],
   s09: [
+    {
+      title: '고등어 월별 수출입과 무역수지 (백만 달러)',
+      caption: tradeCaption('고등어'),
+      telemetry: { status: 'SYNCED' as const, syncDate: String(tradeMeta.기간) },
+      render: () => <TradeBalanceChart keyword="고등어" />,
+      sourceLine: `출처: ${tradeMeta.출처} · 조회 ${tradeMeta.조회일} · scripts/sync_mof_trade.py`,
+    },
     {
       title: '수입 명의 상위 20 (신고 레코드)',
       caption: ROSTER.수입명의.기준,

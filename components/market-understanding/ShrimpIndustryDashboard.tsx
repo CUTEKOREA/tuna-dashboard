@@ -44,6 +44,13 @@ import {
   ShrimpSpeciesChart,
   ShrimpTrendChart,
 } from './CommodityCharts';
+import {
+  AuctionPriceChart,
+  TradeBalanceChart,
+  auctionCaption,
+  tradeCaption,
+} from './MofLiveCharts';
+import { auctionMeta, tradeMeta } from '@/lib/data/mof-live';
 
 const DATA = getShrimpIndustryData();
 const SYNC = { status: 'STATIC' as const, syncDate: `${DATA.요약.기준연도}년 확정` };
@@ -231,6 +238,13 @@ export const SHRIMP_CHART_SLOTS: Record<string, ChartSlot[]> = {
   ],
   s05: [
     {
+      title: '새우 월별 수출입과 무역수지 (백만 달러)',
+      caption: tradeCaption('새우'),
+      telemetry: { status: 'SYNCED' as const, syncDate: String(tradeMeta.기간) },
+      render: () => <TradeBalanceChart keyword="새우" />,
+      sourceLine: `출처: ${tradeMeta.출처} · 조회 ${tradeMeta.조회일} · scripts/sync_mof_trade.py`,
+    },
+    {
       title: '한국 HS 030617 공급국 (톤·$/kg)',
       caption:
         '막대가 수입량, 선이 평균 신고단가다. 주황이 아르헨티나 - 물량은 6위인데 단가는 가장 높은 축이다. 통관 신고 기준이라 위 생산 통계와 더할 수 없다.',
@@ -351,6 +365,13 @@ export const SHRIMP_CHART_SLOTS: Record<string, ChartSlot[]> = {
     },
   ],
   s08: [
+    {
+      title: '국내 위판 일별 단가 (원/kg)',
+      caption: auctionCaption('새우'),
+      telemetry: { status: 'SYNCED' as const, syncDate: String(auctionMeta.기간) },
+      render: () => <AuctionPriceChart keyword="새우" />,
+      sourceLine: `출처: ${auctionMeta.출처} · 조회 ${auctionMeta.조회일} · scripts/sync_mof_auction.py`,
+    },
     {
       title: '국내 생산과 위판',
       caption: '통계청 생산(생물중량)과 수협 계통판매는 분모가 다르다. 비율 58.8%는 보고서 대조값이다.',

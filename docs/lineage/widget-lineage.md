@@ -1,7 +1,7 @@
 # 위젯 리니지 — 데이터 파일별 영향 범위
 
 > `python3 scripts/widget_lineage.py`로 재생성. 손으로 고치지 말 것.
-> 진입점 app/page.tsx · closure 254파일 · 위젯 113개 · 데이터 파일 218개.
+> 진입점 app/page.tsx · closure 256파일 · 위젯 114개 · 데이터 파일 222개.
 > 데이터 파일 필드를 바꾸기 전에 여기서 영향 위젯을 확인한다 (파손 진단 1단계).
 
 ## data/beef_usda_widgets.json
@@ -618,6 +618,15 @@
 - components/market-understanding/TunaIndustryDashboard.tsx
 - components/market-understanding/WhelkIndustryDashboard.tsx
 
+## public/data/landed_cost_trend_v1.json
+- components/market-understanding/MackerelIndustryDashboard.tsx
+- components/market-understanding/MofLiveCharts.tsx
+- components/market-understanding/OctopusIndustryDashboard.tsx
+- components/market-understanding/PollockIndustryDashboard.tsx
+- components/market-understanding/ShrimpIndustryDashboard.tsx
+- components/market-understanding/SquidIndustryDashboard.tsx
+- components/market-understanding/WhelkIndustryDashboard.tsx
+
 ## public/data/mackerel_company_research_v1.json
 - components/market-understanding/CompanyResearchTables.tsx
 - components/market-understanding/MackerelIndustryDashboard.tsx
@@ -641,6 +650,33 @@
 - components/market-understanding/PollockIndustryDashboard.tsx
 - components/market-understanding/ShrimpIndustryDashboard.tsx
 - components/market-understanding/TunaAnatomyDashboard.tsx
+- components/market-understanding/WhelkIndustryDashboard.tsx
+
+## public/data/maru_registry_status_v1.json
+- components/market-understanding/CompanyResearchTables.tsx
+- components/market-understanding/MackerelIndustryDashboard.tsx
+- components/market-understanding/ShrimpIndustryDashboard.tsx
+- components/market-understanding/SquidCharts.tsx
+- components/market-understanding/SquidIndustryDashboard.tsx
+- components/market-understanding/TunaIndustryDashboard.tsx
+- components/market-understanding/WhelkIndustryDashboard.tsx
+
+## public/data/mof_auction_daily_v1.json
+- components/market-understanding/MackerelIndustryDashboard.tsx
+- components/market-understanding/MofLiveCharts.tsx
+- components/market-understanding/OctopusIndustryDashboard.tsx
+- components/market-understanding/PollockIndustryDashboard.tsx
+- components/market-understanding/ShrimpIndustryDashboard.tsx
+- components/market-understanding/SquidIndustryDashboard.tsx
+- components/market-understanding/WhelkIndustryDashboard.tsx
+
+## public/data/mof_trade_monthly_v1.json
+- components/market-understanding/MackerelIndustryDashboard.tsx
+- components/market-understanding/MofLiveCharts.tsx
+- components/market-understanding/OctopusIndustryDashboard.tsx
+- components/market-understanding/PollockIndustryDashboard.tsx
+- components/market-understanding/ShrimpIndustryDashboard.tsx
+- components/market-understanding/SquidIndustryDashboard.tsx
 - components/market-understanding/WhelkIndustryDashboard.tsx
 
 ## public/data/octopus_company_research_v1.json
