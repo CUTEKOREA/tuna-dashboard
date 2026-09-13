@@ -1,8 +1,8 @@
 {
  "_meta": {
   "entry": "app/page.tsx",
-  "files": 252,
-  "widgets": 112,
+  "files": 254,
+  "widgets": 113,
   "dataFiles": 218,
   "generator": "scripts/widget_lineage.py"
  },
@@ -1049,6 +1049,10 @@
     "public/data/tuna_trade_v1.json",
     "public/data/whelk_company_research_v1.json"
    ]
+  },
+  "components/market-understanding/TunafarmIndustryDashboard.tsx": {
+   "dataModules": [],
+   "dataFiles": []
   },
   "components/market-understanding/ValueChainSpine.tsx": {
    "dataModules": [],
