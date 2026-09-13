@@ -304,6 +304,10 @@ import {
   majesticMeta, majesticStats, majesticSourceNotes,
   capacityValues, nationalGrowth,
 } from '@/lib/data/company-majestic';
+import {
+  scaMeta, scaStats, scaSourceNotes,
+  twoEntities, bookValueGap,
+} from '@/lib/data/company-sca';
 
 
 const ACCENT = '#c2410c';
@@ -2580,6 +2584,7 @@ const FLAG: Record<string, Pick<CompanyCard, 'flagSrc' | 'backInk'>> = {
   인도네시아: { flagSrc: '/flags/id.svg', backInk: '#1b2733' },
   에콰도르: { flagSrc: '/flags/ec.svg', backInk: '#1b2733' },
   파푸아뉴기니: { flagSrc: '/flags/pg.svg', backInk: '#f4f5f0' },
+  세네갈: { flagSrc: '/flags/sn.svg', backInk: '#f4f5f0' },
 };
 
 /** 선택 갤러리 카드 목록. 회사가 늘면 여기에 한 장씩 추가한다. */
@@ -3918,6 +3923,78 @@ const MAJESTIC_SPEC: CommoditySpec = {
   ].join(' · '),
 };
 
+const SCA_ACCENT = '#0b6b3a';
+
+const SCA_SPEC: CommoditySpec = {
+  key: 'company-anatomy-sca',
+  title: '기업 해부: S.C.A',
+  subtitle:
+    '같은 부두의 두 법인을 그룹 장부가 다르게 적는다. 세네갈 다카르 몰 10 부두에 한국 상장사의 법인이 둘 있다 — 고기를 잡는 CAPSEN과 통조림을 만드는 이 회사이고 대표이사가 같은 사람이다. ' +
+    '지분은 이 회사가 60%로 더 많은데 장부가는 2014년에 0이 되어 열한 해째 그대로이고 「주요 종속회사」도 아니다. 지분 49%인 조업사는 연결 사유가 그룹에서 유일하게 「실질지배력 보유」이고 장부가가 남아 있으며 주요 종속회사로 분류된다. ' +
+    '그런데 그룹이 지급보증을 세운 쪽은 장부가 0인 이 회사이고(EUR 2,860만) 값이 남은 조업사는 맨몸이다. 이 편이 세는 것은 회계 규칙 위반이 아니라 같은 항구의 두 법인이 장부에서 다르게 다뤄진다는 사실과 그 대비다.',
+  accent: SCA_ACCENT,
+  primaryKpi: {
+    label: '취득원가가 장부에서 0으로 남아 있는 햇수',
+    value: bookValueGap().경과연수,
+    decimals: 0,
+    unit: `(년 · 취득원가 ${bookValueGap().취득원가.toLocaleString('ko-KR')}백만원 전액을 ${bookValueGap().손상연도}년에 손상 처리해 장부가 ${bookValueGap().장부가} · 그 뒤 여섯 해 연속 흑자에도 환입 ${bookValueGap().환입건수}건 — ${bookValueGap().단서})`,
+    accent: SCA_ACCENT,
+  },
+  secondaryKpis: [
+    {
+      label: '이 회사 지분 (장부가 0 · 주요 종속회사 X)',
+      value: twoEntities().가공.지분_pct,
+      decimals: 0,
+      unit: `(% · 연결 사유 「${twoEntities().가공.연결사유}」 — 지분 ${twoEntities().조업.지분_pct}%인 조업사 ${twoEntities().조업.이름}은 연결 사유가 「${twoEntities().조업.연결사유}」이고 주요 종속회사 ${twoEntities().조업.주요종속회사}에 장부가 ${twoEntities().조업.장부가_천원.toLocaleString('ko-KR')}천원이 남는다)`,
+    },
+    {
+      label: '그룹이 이 회사에 세운 지급보증',
+      value: Number(scaStats.지급보증_EUR) / 1_000_000,
+      decimals: 1,
+      unit: `(백만 유로 · 2023년부터 · 통화는 차입지가 정한다 — 그룹 최대는 StarKist의 미화 ${(Number(scaStats.그룹최대보증_StarKist_USD) / 1_000_000).toLocaleString('ko-KR')}백만이다. 같은 나라 조업사에는 보증이 ${twoEntities().조업.지급보증}이다)`,
+    },
+    {
+      label: '같은 기준일 2025년 말 총자산을 적은 값의 개수',
+      value: 2,
+      decimals: 0,
+      unit: `(개 · 사업보고서 ${Number(scaStats.총자산_2025_사업보고서_백만원).toLocaleString('ko-KR')}백만원 대 반기보고서 ${Number(scaStats.총자산_2025_반기보고서_백만원).toLocaleString('ko-KR')}백만원 — ${scaStats.총자산_두값_차이_pct}% 차이다. 어느 쪽이 감사받은 값인지 원문으로 가릴 수 없어 둘 다 적는다)`,
+    },
+  ],
+  stripItems: [
+    {
+      now: true,
+      eyebrow: '장부',
+      title: '환입을 막은 것은 기준서가 아니다',
+      body: '2014년 「결손누적으로 손상징후가 발생한」 투자주식의 장부금액 전액을 손상으로 인식했다. 2018~2023년 여섯 해 흑자를 냈는데도 환입이 없다 — 환입이 금지된 것은 영업권뿐이고 종속기업투자 손상차손은 환입이 허용된다',
+    },
+    {
+      eyebrow: '옆자리',
+      title: '49%짜리가 「주요 종속회사」다',
+      body: '지분 49%인 조업사만 연결 사유가 그룹에서 유일하게 「실질지배력 보유」이고 주요 종속회사로 분류된다. 모회사가 2025년에 그쪽에서 사들인 금액은 330.0억이고 이 회사 쪽은 매입 열 자체가 없다 — 다만 가공 자회사 전부가 그렇다',
+    },
+    {
+      eyebrow: '줄자',
+      title: '명판은 120이고 그날 실제는 90~100이다',
+      body: '능력으로 적힌 값이 일곱인데 정부·인증 문서 근거가 0건이다. 명판과 실제가 한 문서에 함께 적힌 자리는 2025년 5월 현지 취재 하나뿐이고 사유로 든 것은 「물고기가 귀하다」였다. 부지·건물 면적과 연도별 생산 실적은 어느 원문에도 없다',
+    },
+    {
+      eyebrow: '2024년',
+      title: '여섯 달 사이에 표지와 경고가 함께 왔다',
+      body: '5월에 유럽연합이 세네갈을 불법·비보고·비규제 어업 사전지정(옐로카드)했고 11월 14일에 조업 단위가 서아프리카 최초로 해양관리협의회 인증을 받았다 — 인증 단위 이름은 「CAPSEN & Grand Bleu」 공동이다. 같은 해 이 공장 결산은 △124.5억이다',
+    },
+  ],
+  briefing: proseBriefing('sca'),
+  narratives: inlineReport('sca', proseStages('sca')),
+  chartSlots: {},
+  continuous: true,
+  sourceNotes: scaSourceNotes,
+  sourceMeta: [
+    `${scaMeta.회사} · ${scaMeta.국가} · ${scaMeta.업종}`,
+    `출처 ${scaMeta.출처}`,
+    `조사 ${scaMeta.조사일}`,
+  ].join(' · '),
+};
+
 export const COMPANY_CARDS: CompanyCard[] = [
   {
     key: 'frinsa',
@@ -4396,6 +4473,19 @@ export const COMPANY_CARDS: CompanyCard[] = [
       { label: '용선', value: `${majesticStats.용선_척수}척(소유 아님 · 기국 미확인)` },
     ],
   },
+  {
+    key: 'sca',
+    numeral: 'ⅩⅩⅩⅧ',
+    name: 'S.C.A',
+    country: '세네갈 · 다카르 몰 10 부두(공장 한 곳)',
+    tagline: '같은 부두의 두 법인을 장부가 다르게 적는다.',
+    ...FLAG.세네갈,
+    stats: [
+      { label: '지분 대 장부가', value: `${twoEntities().가공.지분_pct}%인데 장부가 ${bookValueGap().장부가}(${bookValueGap().손상연도}년 전액 손상 · ${bookValueGap().경과연수}년째)` },
+      { label: '옆 법인(조업)', value: `${twoEntities().조업.지분_pct}% · 주요종속회사 ${twoEntities().조업.주요종속회사} · 장부가 ${twoEntities().조업.장부가_천원.toLocaleString('ko-KR')}천원` },
+      { label: '가동', value: `명판 일 ${scaStats.명판_일_t} t 대 실제 일 ${scaStats.실가동_일_최저_t}~${scaStats.실가동_일_최고_t} t` },
+    ],
+  },
 
 
 ];
@@ -4457,6 +4547,7 @@ export default function CompanyAnatomyDashboard({
     garavilla: GARAVILLA_SPEC,
     salica: SALICA_SPEC,
     majestic: MAJESTIC_SPEC,
+    sca: SCA_SPEC,
   };
   const spec = SPECS[selected] ?? SPEC;
 
