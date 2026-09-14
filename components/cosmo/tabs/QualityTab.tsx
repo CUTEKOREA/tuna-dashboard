@@ -12,8 +12,9 @@ const isProd = (name: string) => name.includes('생산')
 const isMt = (name: string) => isProd(name) || name.includes('물량')
 const k = (v: number) => (Math.abs(v) >= 1000 ? (v / 1000).toFixed(0) + 'k' : num(v, 0))
 
-/** 검산 잔차의 단위는 검산 종류마다 다르다 — 금액 검산은 USD, 생산 브릿지는 MT */
-const resid = (name: string, v: number) => (isMt(name) ? num(v, 2) + ' MT' : usd(v, 2))
+/** 검산 잔차의 단위는 검산 종류마다 다르다 — 금액 검산은 USD, 생산일수 브릿지는 일, 나머지 물량은 MT */
+const resid = (name: string, v: number) =>
+  name.includes('일수') ? num(v, 2) + '일' : isMt(name) ? num(v, 2) + ' MT' : usd(v, 2)
 
 /** 알려진 원본 데이터 이슈. 데이터가 아니라 추출 과정의 문서화이므로 여기에 직접 적는다. */
 const ISSUES = [

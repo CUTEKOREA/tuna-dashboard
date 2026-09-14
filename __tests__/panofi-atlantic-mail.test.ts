@@ -84,5 +84,8 @@ describe('코스모 원장 대 PANOFI 메일', () => {
     // 생산 브릿지의 «반올림 수준» 문장에 물량 검산 260.66 이 섞이지 않는다
     expect(markup).toContain('원어 입고·구매 대조는 <b>36주차 260.66 MT</b> 어긋납니다');
     expect(markup).not.toMatch(/260\.66 MT[^<]*<\/b>로 반올림 수준/);
+    // 생산일수 브릿지 잔차는 일 단위다 - «4.00 MT» 로 찍히던 표기 오류
+    expect(markup).toContain('13주차 CBU 생산일수 누적 브릿지 4.00일');
+    expect(markup).not.toMatch(/생산일수 누적 브릿지 -?\d+\.\d{2} MT/);
   });
 });
