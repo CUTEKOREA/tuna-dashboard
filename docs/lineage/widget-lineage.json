@@ -1,9 +1,9 @@
 {
  "_meta": {
   "entry": "app/page.tsx",
-  "files": 263,
+  "files": 264,
   "widgets": 114,
-  "dataFiles": 235,
+  "dataFiles": 236,
   "generator": "scripts/widget_lineage.py"
  },
  "widgetToData": {
@@ -1122,9 +1122,11 @@
     "lib/data/mof-live.ts",
     "lib/data/valuechain-companies.ts",
     "lib/data/whelk-company-research.ts",
-    "lib/data/whelk-country-series.ts"
+    "lib/data/whelk-country-series.ts",
+    "lib/data/whelk-industry-tables.ts"
    ],
    "dataFiles": [
+    "lib/data/whelk-tables.json",
     "public/data/kofa_fleet_age_v1.json",
     "public/data/kofa_insights_v1.json",
     "public/data/kofa_series_v1.json",
@@ -1271,6 +1273,9 @@
   ],
   "lib/data/tunafarm-tables.json": [
    "components/market-understanding/TunafarmIndustryDashboard.tsx"
+  ],
+  "lib/data/whelk-tables.json": [
+   "components/market-understanding/WhelkIndustryDashboard.tsx"
   ],
   "public/data/bangkok/seasia_ledger.json": [
    "components/bangkok/BangkokDashboard.tsx",
