@@ -350,6 +350,27 @@ def parse_week(path: Path) -> tuple[dict[str, Any], list[dict[str, Any]]]:
     return week_data, quotes
 
 
+PS_RAW_ITEMS = ('SJ', 'YF/BE')
+
+
+def purchase_inflow_residual(week_data: dict[str, Any]) -> float:
+    """재고현황 선망(PS) 원어 입고 − 원어구매현황 PS 구매 물량 (MT).
+
+    1~35주차는 두 시트가 한 번도 어긋나지 않았다. 36주차에 재고현황 SJ 입고·출고
+    (742.21 / 458.156)가 35주차 값 그대로 남고 구매 시트만 481.554 로 갱신됐는데,
+    행 안에서는 기초+입고−출고=잔액이 맞아 재고 항등식이 이 복사를 잡지 못했다.
+    FBU 는 구매 외 입고가 섞여 원래 다르므로 대상에서 뺀다."""
+    bought = sum(
+        line['weekMt'] or 0 for line in week_data['purchase']['lines'] if line['unit'] == 'PS'
+    )
+    received = sum(
+        line['inQty'] or 0
+        for line in week_data['inventory']['lines']
+        if line['group'] == '원어' and line['item'] in PS_RAW_ITEMS
+    )
+    return rounded(received - bought)
+
+
 def make_checks(current: dict[str, Any], previous: dict[str, Any]) -> list[dict[str, Any]]:
     week = current['week']
     current_inventory = current['inventory']
@@ -383,6 +404,7 @@ def make_checks(current: dict[str, Any], previous: dict[str, Any]) -> list[dict[
         ('FBU 생산일수 누적 브릿지', rounded(
             current_fbu['cumDays'] - previous_fbu['cumDays'] - current_fbu['weekDays']
         ), '전주누계+금주−금주누계'),
+        ('원어 입고·구매 물량', purchase_inflow_residual(current), '재고 PS 원어 입고−구매 (MT)'),
         ('자금 항등식', rounded(
             current_cash['beginUsd'] + current_cash['inUsd']
             - current_cash['outUsd'] - current_cash['endUsd']
