@@ -312,6 +312,10 @@ import {
   ghanaMeta, ghanaStats, ghanaSourceNotes,
   ownershipDepth, purchaseTurn,
 } from '@/lib/data/company-ghana';
+import {
+  azoresMeta, azoresStats, azoresSourceNotes,
+  regionalSpectrum, regionalTonnes2024,
+} from '@/lib/data/company-azores';
 
 
 const ACCENT = '#c2410c';
@@ -2590,6 +2594,7 @@ const FLAG: Record<string, Pick<CompanyCard, 'flagSrc' | 'backInk'>> = {
   파푸아뉴기니: { flagSrc: '/flags/pg.svg', backInk: '#f4f5f0' },
   세네갈: { flagSrc: '/flags/sn.svg', backInk: '#f4f5f0' },
   가나: { flagSrc: '/flags/gh.svg', backInk: '#1b2733' },
+  포르투갈: { flagSrc: '/flags/pt.svg', backInk: '#1b2733' },
 };
 
 /** 선택 갤러리 카드 목록. 회사가 늘면 여기에 한 장씩 추가한다. */
@@ -4072,6 +4077,78 @@ const GHANA_SPEC: CommoditySpec = {
   ].join(' · '),
 };
 
+const AZORES_ACCENT = '#0f6e6e';
+
+const AZORES_SPEC: CommoditySpec = {
+  key: 'company-anatomy-azores',
+  title: '기업 해부: 아소르스의 다섯 캔공장',
+  subtitle:
+    '같은 보전금 명부가 다섯 공장을 한 줄에 세운다. 포르투갈 아소르스의 네 섬에 참치 캔 공장이 다섯 있다 — COFACO Açores · Santa Catarina(SCA 운영) · Pescatum · Sociedade Corretora · Conseran. ' +
+    '다섯은 유럽연합의 같은 최외곽지역 추가비용 보전금을 받고, 그 명부가 원어를 아소르스 배가 잡은 역내산과 그 밖의 배가 잡은 공동체산 두 코드로 갈라 적는다. 그래서 공장마다 어느 배의 참치를 얼마나 신청했는지가 남는다. ' +
+    '승인액 기준 역내산 비중은 Sociedade Corretora 100.00 % 부터 COFACO 8.72 % 까지 갈리고, 가장 낮은 COFACO 의 네 해 신청액이 나머지 넷의 합보다 크다. 본토 대조군 Ramirez 는 이 제도에 한 줄도 없고 공적 자금을 설비 사업의 이름으로 받는다.',
+  accent: AZORES_ACCENT,
+  primaryKpi: {
+    label: '신청액이 가장 큰 공장의 역내산 비중 (COFACO Açores · 승인액 기준 2021~2024 합)',
+    value: regionalSpectrum().공장[4].비중_pct,
+    decimals: 2,
+    unit: `(% · 같은 명부에서 ${regionalSpectrum().공장.slice(0, 4).map((x) => `${x.이름} ${x.비중_pct.toFixed(2)}`).join(' · ')} — COFACO 의 네 해 신청액 ${regionalSpectrum().최대_신청.신청액_EUR.toLocaleString('ko-KR')} € 는 나머지 넷의 합 ${regionalSpectrum().최대_신청.나머지넷_EUR.toLocaleString('ko-KR')} € 보다 크고, 그 가운데 ${Number(azoresStats.COFACO_공동체산_신청액_EUR).toLocaleString('ko-KR')} € 가 공동체산 코드다)`,
+    accent: AZORES_ACCENT,
+  },
+  secondaryKpis: [
+    {
+      label: '같은 1톤에 붙는 보전 단가 — 공동체산 대 역내산',
+      value: Number(azoresStats.단가_배수),
+      decimals: 2,
+      unit: `(배 · 역내산 ${Number(azoresStats.단가_역내산_EUR_t).toFixed(2)} €/t · 공동체산 ${Number(azoresStats.단가_공동체산_EUR_t).toFixed(2)} €/t(Portaria n.º 61/2023 제12조 제3항 b·제4항). 규정은 차이의 사유를 밝히지 않는다 — 공동체산 쪽 산식이 같다면 금액으로 잰 역내산 비중은 물량으로 잰 것보다 낮게 나온다)`,
+    },
+    {
+      label: '2024년 COFACO 가 신청한 역내산',
+      value: regionalTonnes2024().COFACO_t,
+      decimals: 1,
+      unit: `(t · 역내산 신청액 ${Number(azoresStats.역내산_2024_COFACO_신청액_EUR).toLocaleString('ko-KR')} € ÷ ${regionalTonnes2024().단가_EUR_t} €/t — 다섯 중 가장 적다. 가장 많은 SCA ${regionalTonnes2024().SCA_t} t 가 그 네 배에 가깝고, 다섯 합 ${regionalTonnes2024().합_t.toLocaleString('ko-KR')} t 은 그해 한도 훈령 ${regionalTonnes2024().한도_kg.toLocaleString('ko-KR')} kg 과 kg 단위까지 같다. ${regionalTonnes2024().단서})`,
+    },
+    {
+      label: 'Lotaçor 가 Santa Catarina 지분 99.73 % 를 넘겨받은 값 (2009-01-20)',
+      value: Number(azoresStats.Lotaçor_취득가_EUR),
+      decimals: 0,
+      unit: `(€ · 두 주 뒤 ${Number(azoresStats.회생대출_1차_EUR).toLocaleString('ko-KR')} €, 그해 8월 ${Number(azoresStats.회생대출_2차_EUR).toLocaleString('ko-KR')} € 대출이 이어졌다. ${azoresStats.운영이관일} 부터 민간 SCA 가 임차 운영하고 계약서 초안의 지분 매수옵션은 ${Number(azoresStats.매수옵션_EUR).toLocaleString('ko-KR')} € 다)`,
+    },
+  ],
+  stripItems: [
+    {
+      now: true,
+      eyebrow: '명부',
+      title: '한 장의 지급 명부가 다섯을 한 줄에 세운다',
+      body: '보전금이 원어를 역내산과 공동체산 두 코드로 갈라 지급해서 공장마다의 원어 구성이 지급 명부에 실린다. 표의 맨 위(Sociedade Corretora · 빌라프랑카두캄푸)와 맨 아래(COFACO · 라부드페이시)가 같은 상미겔섬에 있고 직선거리로 20 km 가 안 된다. 공동체산 보전의 조건(제5항)은 아소르스 전체의 상한에 걸려 있어 공장을 가르지 않는다',
+    },
+    {
+      eyebrow: '톤',
+      title: '역내산은 금액이 톤으로 되돌아간다',
+      body: '2024년분 다섯 공장의 역내산 신청액 합 432,711.23 € 를 171 €/t 로 나누면 2,530,475 kg 이고, 그해 한도 훈령과 kg 단위까지 같다. 공동체산은 같은 방식으로 한도 2,301,000 kg 이 되살아나지 않아 금액으로 둔다 — 넘길 자리는 공동체산 산정 서식 한 장이다',
+    },
+    {
+      eyebrow: '임대',
+      title: '공공이 가진 공장을 민간이 돌린다',
+      body: 'Santa Catarina 공장은 2022-08-01 부터 SCA 가 임차 운영한다. 보전금 명부의 행이 2022-07-31 에 끊기고 8-01 에 이어지며, 위생 승인번호 C 213 1 P 도 운영사 이름으로 옮겨졌다. 관보 초안의 고정 임차료 10년치는 약 1,610,000 € 인데 정부 발표 인용 보도는 「700만 € 이상」이라 4.3배 어긋나고 서명본은 관보에 없다',
+    },
+    {
+      eyebrow: '인증',
+      title: '없는 것은 MSC 하나다',
+      body: '아소르스 참치 어업은 MSC 인증 어업 목록에 없다. 그러나 COFACO · Santa Catarina · Ramirez 셋 다 Friend of the Sea 2021년판 고객명부에 있고 두 공장은 2026년 돌고래 안전 명부에 올라 있다. 포르투갈 등록 캔참치 211건 중 MSC 라벨은 2건이고, MSC 가 발표한 +153 % 는 기준 물량을 밝히지 않는다',
+    },
+  ],
+  briefing: proseBriefing('azores'),
+  narratives: inlineReport('azores', proseStages('azores')),
+  chartSlots: {},
+  continuous: true,
+  sourceNotes: azoresSourceNotes,
+  sourceMeta: [
+    `${azoresMeta.회사} · ${azoresMeta.국가} · ${azoresMeta.업종}`,
+    `출처 ${azoresMeta.출처}`,
+    `조사 ${azoresMeta.조사일}`,
+  ].join(' · '),
+};
+
 export const COMPANY_CARDS: CompanyCard[] = [
   {
     key: 'frinsa',
@@ -4576,6 +4653,19 @@ export const COMPANY_CARDS: CompanyCard[] = [
       { label: '설비', value: `면적·라인 기재 ${ghanaStats.면적_라인_기재_건수}건(두 공장 다) · 고용은 PFC만 연도별 ${ghanaStats.PFC_고용_2025_명}명` },
     ],
   },
+  {
+    key: 'azores',
+    numeral: 'ⅩⅬ',
+    name: '아소르스의 다섯 캔공장',
+    country: '포르투갈 · 아소르스(COFACO Açores · Santa Catarina · Pescatum · Sociedade Corretora · Conseran)',
+    tagline: '같은 보전금 안에서 섬 물고기 비중이 100 %부터 8.72 %까지 갈리고, 가장 낮은 곳이 가장 큰 공장이다.',
+    ...FLAG.포르투갈,
+    stats: [
+      { label: '역내산 비중(승인액)', value: regionalSpectrum().공장.map((x) => `${x.약칭} ${x.비중_pct.toFixed(2)}%`).join(' · ') },
+      { label: '신청액 대 비중', value: `COFACO 네 해 ${regionalSpectrum().최대_신청.신청액_EUR.toLocaleString('ko-KR')} € > 나머지 넷 ${regionalSpectrum().최대_신청.나머지넷_EUR.toLocaleString('ko-KR')} € · 2024년 역내산은 ${regionalTonnes2024().COFACO_t} t 로 다섯 중 최소` },
+      { label: '공공 공장', value: `Santa Catarina 99.73% 를 1 € 에(2009) → ${azoresStats.운영이관일} 민간 임차 · 매수옵션 ${Number(azoresStats.매수옵션_EUR).toLocaleString('ko-KR')} €` },
+    ],
+  },
 
 
 ];
@@ -4639,6 +4729,7 @@ export default function CompanyAnatomyDashboard({
     majestic: MAJESTIC_SPEC,
     sca: SCA_SPEC,
     ghana: GHANA_SPEC,
+    azores: AZORES_SPEC,
   };
   const spec = SPECS[selected] ?? SPEC;
 
