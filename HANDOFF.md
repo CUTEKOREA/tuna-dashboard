@@ -1,3 +1,10 @@
+> 🚀 **2026-09-14 22:40 KST — 4개 PR 프로덕션 배포 + FLEET_DAILY_DETAIL_JSON 교체** [CC]:
+> - 병합 순서(squash): #1077 VDS 09-13 `f006625a` → #1099 PANOFI 작성자 직함 `584d4ba7` → #1095 대서양 주말 메일·코스모 입고 검산 `7fa84d6f` → #1093 260914 일일보고·MOAMARI·적재 증가 판정 `b857098c`. 각 PR 의 HANDOFF 충돌은 두 항목을 모두 남겨 풀었고, #1095 는 다른 세션의 #1101 병합과 lineage 문서가 겹쳐 재생성했다.
+> - 병합 전 네 PR 을 합친 트리에서 `npm run verify` 통과: Vitest 189 파일 1,599건 · build 정적 118 · fleet leak · bundle 33.
+> - 배포: `b857098c` Production READY(`tuna-dashboard-j6amxdwyc`) 후 `swap_fleet_detail_secret.sh` — 해시 `5d9ac859` 일치 확인 → 교체 → 재배포 `dpl_G8xCsiM9Hq8EYaerMrL4f8e5BwGs` 계열 `tuna-dashboard-41crb2t7p` READY, `leedonggun.co.kr` alias.
+> - 라이브 확인(leedonggun.co.kr): /fleet 히어로 「2026-09-14 보고 · 2026-09-13 조업 기준」·KPI 166 / 85,441.8 / 7,684.13·보고 155건·검산 일치, **보호 패널 경고 없음·상세 표시**, 가동 중단 패널 S/JUP 없음·MOAMARI 「마지막 적재 증가 2026-08-18」「10/11 도착 기준 41일」, VDS 국적 1,137.8 / 319.2 / 36.4·키리바시 선박 770 / 575.8 / 194.2 / 16.5. /panofi 주말 메일 표·세네갈 입출항, /cosmo 데이터 품질 메일 대조·「원어 입고·구매 물량」·「4.00일」. 390px /fleet·/panofi 가로 overflow 0. 새 배포 로그 error 0.
+> - 남은 결정: /fleet 선장 실적표의 선장 실명(사용자 판단 대기). 외부 확인 대기: VDS 키리바시 소진 소계 755.00 대 행 합 754.90, 코스모 36주차 재고현황 SJ 입고·출고 복사.
+
 > ✅ **2026-09-14 19:40 KST — `/fleet` 가동 중단 판정에 적재 증가일 반영 (S/JUP 오판정 수정)** [CC]:
 > - 문제: 판정이 보고일 어획만 봐서, 보고 없는 주말에 잡은 배를 무실적으로 띄웠다. S/JUP 은 8/12 이후 보고일 어획이 전부 「-」인데 선적량이 65→265(8/18)→315(8/24)→365(9/14)로 늘어 「무실적 22보고일 · 기회손실 약 245 MT」가 거짓이었다.
 > - 사용자 결정(2026-09-14): **공개 집계에는 선박별 「마지막 적재 증가 보고일」만** 싣고 수량은 싣지 않는다. `dailySeries.{pacific,atlantic}.lastLoadIncreaseDates`.
