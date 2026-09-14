@@ -1,7 +1,7 @@
 {
  "_meta": {
   "entry": "app/page.tsx",
-  "files": 268,
+  "files": 270,
   "widgets": 114,
   "dataFiles": 246,
   "generator": "scripts/widget_lineage.py"
@@ -494,7 +494,9 @@
   },
   "components/cosmo/tabs/QualityTab.tsx": {
    "dataModules": [
-    "lib/data/cosmo.ts"
+    "lib/data/cosmo-panofi-mail.ts",
+    "lib/data/cosmo.ts",
+    "lib/data/panofi-atlantic-mail.ts"
    ],
    "dataFiles": [
     "public/data/cosmo/cosmo_2026.json",
@@ -1184,6 +1186,7 @@
   },
   "components/panofi/PanofiTabs.tsx": {
    "dataModules": [
+    "lib/data/panofi-atlantic-mail.ts",
     "lib/data/panofi.ts"
    ],
    "dataFiles": [

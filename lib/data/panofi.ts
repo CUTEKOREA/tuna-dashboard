@@ -6,6 +6,7 @@ import liquidityRaw from '@/public/data/panofi/panofi_liquidity.json';
 import mirrorRaw from '@/public/data/panofi/ghana_tuna_mirror.json';
 import fsRaw from '@/public/data/panofi/panofi_fs_2025.json';
 import { fleetDailyPublicLatest, fleetDailyPublicDeltas } from '@/lib/data/fleet-daily-public';
+import { atlanticMails, mailMonthDay } from '@/lib/data/panofi-atlantic-mail';
 
 /**
  * 파노피(가나 참치 선망) 데이터 인테이크.
@@ -702,3 +703,48 @@ export const dataQuality = {
   sources: profile.meta.sources,
   grades: profile.meta.grades,
 };
+
+/* ------------------------------------------------------ 주말 메일 대조 */
+
+/** «8/29» → 2026-08-29. 메일·주간동향 모두 연도를 적지 않는다. */
+const isoOf = (monthDay: string) => {
+  const [m, d] = monthDay.split('/').map(Number);
+  return `2026-${String(m).padStart(2, '0')}-${String(d).padStart(2, '0')}`;
+};
+
+/** 일 가공량 비교 — 같은 주의 주간동향(화요일자)과 주말 메일. */
+export const mailProcessingVsWeekly = atlanticMails.map((mail) => {
+  const weekly = weeks.find((w) => w.reportDate === mail.weeklyPair) ?? null;
+  return {
+    mailLabel: mailMonthDay(mail.date),
+    weeklyLabel: mailMonthDay(mail.weeklyPair),
+    cosmoMail: mail.cosmo.dailyProcessingT,
+    cosmoWeekly: weekly?.dailyProcessing.COSMO ?? null,
+    scasaMail: mail.scasa.dailyProcessingT,
+    scasaWeekly: weekly?.dailyProcessing.SCASA ?? null,
+    pfcMailNote: mail.pfc.note,
+    pfcWeekly: weekly?.dailyProcessing.PFC ?? null,
+  };
+});
+
+/**
+ * 메일에서 «아직 출항 전»인 배를, 메일 직후 주간동향이 메일 날짜보다 앞선 날 이미 출항했다고 적은 경우.
+ * 같은 날 출항은 어긋남으로 보지 않는다(메일이 오전에 쓰였을 수 있다).
+ */
+export const mailDepartureConflicts = atlanticMails.flatMap((mail) => {
+  const next = weeks.find((w) => w.reportDate > mail.date);
+  if (!next) return [];
+  return mail.senegalCalls.flatMap((call) => {
+    if (call.depart) return [];
+    const row = next.senegalFleet.find((r) => r.vessel === call.vessel);
+    if (!row || !/^\d{1,2}\/\d{1,2}$/.test(row.depart ?? '')) return [];
+    if (isoOf(row.depart!) >= mail.date) return [];
+    return [{
+      vessel: call.vessel,
+      mailLabel: mailMonthDay(mail.date),
+      mailStatus: call.status,
+      weeklyLabel: mailMonthDay(next.reportDate),
+      weeklyDepart: row.depart!,
+    }];
+  });
+});

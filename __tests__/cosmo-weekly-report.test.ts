@@ -46,7 +46,8 @@ describe('COSMO 2026년 36주차 데이터 계약', () => {
     expect(latest.production.CBU.weekYield).toBeCloseTo(0.3878999151, 8);
     expect(latest.inventory.totalEndUsd).toBeCloseTo(19_226_602.1, 1);
     expect(latest.cash.endUsd).toBeCloseTo(7_113_546.14, 2);   // docx 「711만불」
-    expect(raw.checks.filter((check) => check.week === 36)).toHaveLength(8);
+    // 2026-09-14: 「원어 입고·구매 물량」 검산 추가로 주차당 9건
+    expect(raw.checks.filter((check) => check.week === 36)).toHaveLength(9);
 
     /* 36주차에 재고 항등식이 «처음» 깨졌다. 공관·ENDS·주입액 세 자재가 입고·출고 0 인데
      * 잔액만 움직여 잔차 $31,063.75 가 남는다(1~35주는 전부 0.00). 원문 docx 도 그 두 칸이

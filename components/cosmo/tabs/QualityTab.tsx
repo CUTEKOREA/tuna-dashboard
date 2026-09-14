@@ -3,13 +3,18 @@ import { SERIES } from '../palette'
 import Chart, { Legend } from '../Chart'
 import { PageHead, Card, Kpi, Callout, SecHead } from '../Ui'
 import { checks, weeks, meta, usd, num, pct, latest, latestMonth, pastWeeks } from '@/lib/data/cosmo'
+import { cosmoMailRows } from '@/lib/data/cosmo-panofi-mail'
+import { ATLANTIC_MAIL_SOURCE } from '@/lib/data/panofi-atlantic-mail'
 
 const SERIES_COLORS = SERIES
-const isMt = (name: string) => name.includes('생산')
+const isProd = (name: string) => name.includes('생산')
+/** 물량(MT) 검산 — 생산 브릿지와 원어 입고·구매 대조 */
+const isMt = (name: string) => isProd(name) || name.includes('물량')
 const k = (v: number) => (Math.abs(v) >= 1000 ? (v / 1000).toFixed(0) + 'k' : num(v, 0))
 
-/** 검산 잔차의 단위는 검산 종류마다 다르다 — 금액 검산은 USD, 생산 브릿지는 MT */
-const resid = (name: string, v: number) => (isMt(name) ? num(v, 2) + ' MT' : usd(v, 2))
+/** 검산 잔차의 단위는 검산 종류마다 다르다 — 금액 검산은 USD, 생산일수 브릿지는 일, 나머지 물량은 MT */
+const resid = (name: string, v: number) =>
+  name.includes('일수') ? num(v, 2) + '일' : isMt(name) ? num(v, 2) + ' MT' : usd(v, 2)
 
 /** 알려진 원본 데이터 이슈. 데이터가 아니라 추출 과정의 문서화이므로 여기에 직접 적는다. */
 const ISSUES = [
@@ -39,6 +44,11 @@ const ISSUES = [
       ? `원본 파일이 없는 주차 - 2026 ${meta.missingWeeks.join(', ')}주차, 2025 52주차.`
       : '2026년은 원본이 모두 확보돼 결측이 없다(16주차 후속 반영). 2025년은 52주차가 없다.',
     fix: '보간하지 않고 결측으로 표시. 직전 주를 참조하는 연결 검산(이월·브릿지)은 해당 주차를 검산에서 제외. 원본이 뒤늦게 들어오면 재추출만으로 자동 해소된다.',
+  },
+  {
+    area: '재고현황 원어',
+    issue: '36주차 재고현황 SJ 입고·출고(742.21 / 458.156 MT)가 35주차 값 그대로다. 같은 파일 원어구매 시트의 선망 구매는 481.554 MT, 생산 원어 투입은 430.99 MT. 행 안에서는 기초+입고−출고=잔액이 맞아 재고 항등식이 잡지 못했다.',
+    fix: '값을 고치지 않고 「원어 입고·구매 물량」 검산(재고 선망 원어 입고 − 구매)을 추가해 전 주차에 걸었다. 1~35주차는 전부 0, 36주차만 260.66 MT.',
   },
   {
     area: '파일명',
@@ -178,8 +188,8 @@ export default function Quality() {
         note={<>재고·자금 항등식(같은 주 안에서 기초+입고−출고=잔액)은 거의 전부 통과합니다.
           이상은 <b>주차를 잇는 검산</b>(재고 이월·판매 누적 브릿지)에 몰려 있어,
           한 주차 안의 표는 정합하지만 <b>주차 간 연결이 원본 단계에서 끊긴다</b>는 뜻입니다.
-          생산 누적 브릿지는 {byName.filter((b) => isMt(b.name)).reduce((a, b) => a + b.total, 0)}건 중
-          {byName.filter((b) => isMt(b.name)).reduce((a, b) => a + b.fail, 0)}건만 어긋나 생산 수치의 연결은 신뢰할 만합니다.</>}
+          생산 누적 브릿지는 {byName.filter((b) => isProd(b.name)).reduce((a, b) => a + b.total, 0)}건 중
+          {byName.filter((b) => isProd(b.name)).reduce((a, b) => a + b.fail, 0)}건만 어긋나 생산 수치의 연결은 신뢰할 만합니다.</>}
       >
         <div className="tw">
           <table>
@@ -229,14 +239,20 @@ export default function Quality() {
         </Card>
 
         <Card
-          title="생산 브릿지 잔차 (MT)"
-          sub="CBU·FBU 누적 브릿지 - 전주누적 + 금주 − 금주누적."
+          title="물량 검산 잔차 (MT)"
+          sub="CBU·FBU 누적 브릿지(전주누적 + 금주 − 금주누적)와 선망 원어 입고·구매 물량 대조."
           note={<>대부분 0에 붙어 있습니다. {(() => {
-            const f = fails.filter((c) => isMt(c.name))
+            const f = fails.filter((c) => isProd(c.name))
             return f.length
               ? <>어긋난 건은 <b>{f.map((c) => `${c.week}주차 ${c.name} ${resid(c.name, c.residual)}`).join(', ')}</b>로 반올림 수준입니다.</>
               : <>판정 대상 전 구간에서 이상이 없습니다.</>
-          })()} 생산량 계열은 주차 간 연결이 끊기지 않아, 누적 원어처리량·수율 추이를 그대로 사용할 수 있습니다.</>}
+          })()} 생산량 계열은 주차 간 연결이 끊기지 않아, 누적 원어처리량·수율 추이를 그대로 사용할 수 있습니다.
+            {(() => {
+              const f = fails.filter((c) => isMt(c.name) && !isProd(c.name))
+              return f.length
+                ? <> 원어 입고·구매 대조는 <b>{f.map((c) => `${c.week}주차 ${resid(c.name, c.residual)}`).join(', ')}</b> 어긋납니다 - 재고현황 입고가 구매 시트와 다르게 적힌 주입니다.</>
+                : null
+            })()}</>}
         >
           <Legend items={mtNames.map((x) => ({ name: x, color: SERIES_COLORS[names.indexOf(x) % SERIES_COLORS.length] }))} />
           <Chart
@@ -245,6 +261,53 @@ export default function Quality() {
           />
         </Card>
       </div>
+
+      <SecHead>PANOFI 주말 메일 대조</SecHead>
+      <Card
+        title="코스모 일 가공·원어 재고 - 메일 대 원장"
+        sub={`${ATLANTIC_MAIL_SOURCE} · 메일 기준일과 주간보고 주차 말일이 같은 주만 짝을 짓습니다.`}
+        note={<>{(() => {
+          const paired = cosmoMailRows.filter((r) => r.week != null)
+          const dailyGaps = paired.map((r) => `${r.week}주차 ${num(r.mailDailyT)}톤 대 ${num(r.ledgerDailyT ?? 0, 1)}톤`).join(', ')
+          const stockGaps = paired.map((r) => `${r.week}주차 ${num(r.stockGapT ?? 0, 1)}톤`).join(', ')
+          const copied = paired.find((r) => r.inflowResidualT != null)
+          return <>일 가공은 메일과 원장이 가깝습니다({dailyGaps}). 원어 재고 차이(메일 − 원장)는 <b>{stockGaps}</b>입니다.
+            재고 기준일이 주차 말일보다 며칠 앞서고 원장이 YF/BE 를 따로 들고 있어 차이 전부를 오류로 볼 수는 없습니다.
+            {copied && <> 다만 <b>{copied.week}주차는 원장 재고현황 SJ 입고가 구매 시트보다 {num(copied.inflowResidualT ?? 0, 2)}톤 많게 적혀</b> 있어,
+            그만큼은 원장 쪽이 부풀어 있습니다(데이터 이슈 표 참고).</>}</>
+        })()}</>}
+      >
+        <div className="tw">
+          <table>
+            <thead>
+              <tr>
+                <th>메일</th>
+                <th>원장 주차</th>
+                <th className="n">일 가공 메일</th>
+                <th className="n">일 가공 원장</th>
+                <th>메일 재고 기준일</th>
+                <th className="n">메일 원어 재고</th>
+                <th className="n">원장 선망 원어 잔액</th>
+                <th className="n">차이 (메일−원장)</th>
+              </tr>
+            </thead>
+            <tbody>
+              {cosmoMailRows.map((r) => (
+                <tr key={r.mailLabel} className={r.inflowResidualT != null ? 'bad' : undefined}>
+                  <td>{r.mailLabel}</td>
+                  <td>{r.week != null ? `${r.week}주` : '미수신'}</td>
+                  <td className="n">{num(r.mailDailyT)}</td>
+                  <td className="n">{r.ledgerDailyT != null ? num(r.ledgerDailyT, 1) : '-'}</td>
+                  <td>{r.stockAsOfLabel}</td>
+                  <td className="n">{num(r.mailStock.totalT)}</td>
+                  <td className="n">{r.ledgerStockT != null ? num(r.ledgerStockT, 1) : '-'}</td>
+                  <td className="n">{r.stockGapT != null ? num(r.stockGapT, 1) : '-'}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </Card>
 
       <SecHead>전체 검산 결과</SecHead>
       <Card
