@@ -289,7 +289,7 @@ export const TUNA_ANATOMY_CHART_SLOTS: Record<string, ChartSlot[]> = {
   s13: [
     {
       title: '방콕 가다랑어 월별 2024~2026 (달러/톤)',
-      caption: 'Thai Union IR 표의 해당 월 계약가다. 원료 인도는 약 1개월 내라 인도 시점 가격이 아니다. 2024년 8월 1,250달러가 저점, 2026년 8월 2,100달러가 조회일 기준 마지막 달이다.',
+      caption: 'Thai Union IR 표의 해당 월 계약가다. 원료는 약 1개월 뒤 방콕에 닿으므로 도착 시점 가격이 아니다. 2024년 8월 1,250달러가 저점, 2026년 8월 2,100달러가 조회일 기준 마지막 달이다.',
       telemetry: PRICE_SYNC,
       render: () => <TunaAnatomyBangkokChart data={DATA} />,
     },
