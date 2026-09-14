@@ -316,6 +316,10 @@ import {
   azoresMeta, azoresStats, azoresSourceNotes,
   regionalSpectrum, regionalTonnes2024,
 } from '@/lib/data/company-azores';
+import {
+  togMeta, togStats, togSourceNotes,
+  halfHalf, customsGap,
+} from '@/lib/data/company-tog';
 
 
 const ACCENT = '#c2410c';
@@ -2595,6 +2599,7 @@ const FLAG: Record<string, Pick<CompanyCard, 'flagSrc' | 'backInk'>> = {
   세네갈: { flagSrc: '/flags/sn.svg', backInk: '#f4f5f0' },
   가나: { flagSrc: '/flags/gh.svg', backInk: '#1b2733' },
   포르투갈: { flagSrc: '/flags/pt.svg', backInk: '#1b2733' },
+  코트디부아르: { flagSrc: '/flags/ci.svg', backInk: '#f4f5f0' },
 };
 
 /** 선택 갤러리 카드 목록. 회사가 늘면 여기에 한 장씩 추가한다. */
@@ -4149,6 +4154,78 @@ const AZORES_SPEC: CommoditySpec = {
   ].join(' · '),
 };
 
+const TOG_ACCENT = '#b45309';
+
+const TOG_SPEC: CommoditySpec = {
+  key: 'company-anatomy-tog',
+  title: '기업 해부: TOG',
+  subtitle:
+    '아비장의 캔공장 SCODI(어항)와 PFCI(브리디 항만구역)는 한때 선망 선단을 거느린 회사(Saupiquet·Pêche et Froid)의 공장이었다. 2005년 전후 두 공장은 창업자 쪽으로 넘어갔고, 2008년에 설립된 프랑스 지주 TOG에는 선망선이 없었다. ' +
+    '2021년 네덜란드 PP 그룹의 프랑스 지주 PP THON이 TOG 주식의 정확히 절반을 가졌고, 2026년 7월 10일 결정문에서 TOG의 단독사원으로 서명했다. PP THON은 프랑스 선망 회사 CFTO의 단독사원이기도 하다. ' +
+    '그사이 유럽연합 목록의 코트디부아르 캔공장은 셋에서 둘로 줄었고, 남은 둘 가운데 Airone Côte d\'Ivoire는 2025년 이탈리아 법원 절차 공고에 「활동 중단」으로 나온다.',
+  accent: TOG_ACCENT,
+  primaryKpi: {
+    label: '2021년 6월 30일 임시총회 뒤 PP THON 과 창업자가 각각 가진 TOG 주식 수',
+    value: halfHalf().PP_THON_주식,
+    decimals: 0,
+    unit: `(주 · 창업자도 ${halfHalf().창업자_주식.toLocaleString('ko-KR')}주로 두 줄이 같다. 사모펀드 지분 매수 ${halfHalf().ECP_매수_EUR.toLocaleString('ko-KR')} € · 창업자와 SMS 만 부담한 감자 ${halfHalf().감자_EUR.toLocaleString('ko-KR')} € · PP THON 신주 ${halfHalf().신주.toLocaleString('ko-KR')}주가 겹친 결과이고 결의록 본문에 퍼센트는 없다. ${halfHalf().단독사원_결정일} 결정문에서 PP THON 이 단독사원으로 서명했고 ${halfHalf().단서})`,
+    accent: TOG_ACCENT,
+  },
+  secondaryKpis: [
+    {
+      label: '유럽연합 제3국 수산시설 목록의 코트디부아르 캔공장 승인번호 (2022-01-14 기준)',
+      value: Number(togStats.EU목록_CI_캔공장_2022),
+      decimals: 0,
+      unit: `(개 · 2013년 ${togStats.EU목록_CI_캔공장_2013}개(100 PP SCODI · 110 PP PFCI · 120 PP Castelli). 110 PP 는 2016년 11월 발효판에 있고 2020년 9월 기준 목록부터 없다 — PFCI 법인은 ${togStats.PFCI_해산결의일} 해산을 결의했다. 남은 120 PP 의 법인 Airone Côte d'Ivoire 는 TOG 계열이 아니고 2025년 이탈리아 법원 절차 공고에 「활동 중단」으로 나온다)`,
+    },
+    {
+      label: '코트디부아르 세관이 신고한 캔참치(HS 160414) 대세계 수출 — 2021~2023년 합',
+      value: customsGap().수출신고_3년합_kg,
+      decimals: 0,
+      unit: `(kg · ${customsGap().수출신고_kg.map((x) => `${x.연도}년 ${x.kg} kg`).join(' · ')}. 같은 2023년 프랑스 세관은 코트디부아르산 ${customsGap().프랑스수입_kg[2].kg.toLocaleString('ko-KR')} kg 수입을 신고했다 — ${customsGap().단서})`,
+    },
+    {
+      label: 'CFTO 개별 계정 순손실 — 2020~2023년 네 해 합',
+      value: Number(togStats.CFTO_순손실_2020_2023_합_EUR),
+      decimals: 0,
+      unit: `(€ · PP THON 이 단독사원인 프랑스 선망 회사. IOTC 허가선박 기록부 2025-02-28판에 2024년 활동이 신고된 선망선 ${togStats.CFTO_IOTC_선망선_척}척과 보조선 ${togStats.CFTO_IOTC_보조선_척}척 · 2021년 채권 상계 증자 ${Number(togStats.CFTO_채권상계_증자_2021_EUR).toLocaleString('ko-KR')} €. 아비장 공장의 원어를 CFTO 배가 대는지는 공개 기록에 나오지 않는다)`,
+    },
+  ],
+  stripItems: [
+    {
+      now: true,
+      eyebrow: '서명',
+      title: 'PP THON이 TOG의 단독사원으로 서명했다',
+      body: '프랑스 낭테르 상사법원 등기소에 2026-08-04 예탁된 TOG 의 7월 10일자 결정문 끝 서명란에 「PP THON Représentée par Diederik PARLEVLIET」가 찍혔다. 결정문과 새 정관, 8월 13일 등기공고 어디에도 창업자 지분의 대금은 없다. TOG가 두 나라 공장 법인의 지분을 얼마나 갖는지도 등기에 나오지 않는다',
+    },
+    {
+      eyebrow: '목록',
+      title: '2016년 해산 결의 뒤의 PFCI',
+      body: '2016-11-25 단독주주가 조기 해산을 결의했고 공고가 OHADA 회사법 제201조를 인용한다. 110 PP 는 2019-09-21 에도 게시돼 있던 2016-11-20 발효판에 있고, 번호가 없는 것은 2020년 9월 기준 목록부터다. 옛 브리디 항만구역의 PFCI 설비를 어느 법인이 넘겨받았는지는 어느 공고에도 나오지 않는다',
+    },
+    {
+      eyebrow: '재무',
+      title: 'TOG 연결 매출보다 판매 자회사 CCO의 매출이 해마다 크다',
+      body: 'TOG 가 99.9989 % 가진 CCO 의 2024년 개별 매출은 171,578,842 € 이고 TOG 연결 매출은 123,358,663 € 다. 까닭은 TOG 연결재무 주석의 연결 범위에 있고 공개 재무비율 데이터에는 그 항목이 없다. TOG 2023년 계정은 예탁 기록 자체가 없다',
+    },
+    {
+      eyebrow: '매대',
+      title: 'Carrefour·Auchan 자체상표의 승인번호 100 PP',
+      body: '식품 데이터베이스와 품질표의 캔 표시에는 SCODI라는 이름이 없고, 프랑스 매대에서 이 공장을 가리키는 표시는 유럽연합 승인번호 「100PP」다. CCO 의 Pompon Rouge 품질표는 생산지를 「Madagascar MAD 111 SV, Côte d\'Ivoire 100PP」로 적어 캔 하나가 어느 공장에서 나왔는지는 가리지 않는다',
+    },
+  ],
+  briefing: proseBriefing('tog'),
+  narratives: inlineReport('tog', proseStages('tog')),
+  chartSlots: {},
+  continuous: true,
+  sourceNotes: togSourceNotes,
+  sourceMeta: [
+    `${togMeta.회사} · ${togMeta.국가} · ${togMeta.업종}`,
+    `출처 ${togMeta.출처}`,
+    `조사 ${togMeta.조사일}`,
+  ].join(' · '),
+};
+
 export const COMPANY_CARDS: CompanyCard[] = [
   {
     key: 'frinsa',
@@ -4666,6 +4743,19 @@ export const COMPANY_CARDS: CompanyCard[] = [
       { label: '공공 공장', value: `Santa Catarina 99.73% 를 1 € 에(2009) → ${azoresStats.운영이관일} 민간 임차 · 매수옵션 ${Number(azoresStats.매수옵션_EUR).toLocaleString('ko-KR')} €` },
     ],
   },
+  {
+    key: 'tog',
+    numeral: 'ⅩⅬⅠ',
+    name: 'TOG',
+    country: '코트디부아르 · 아비장(Thunnus Overseas Group · SCODI · CCO — 단독사원 PP THON 은 선망 회사 CFTO 의 단독사원)',
+    tagline: '선망선이 없던 캔 지주 TOG를 선망 회사 CFTO의 주주가 통째로 가졌다.',
+    ...FLAG.코트디부아르,
+    stats: [
+      { label: '2021년의 반반', value: `PP THON ${halfHalf().PP_THON_주식.toLocaleString('ko-KR')}주 = 창업자 ${halfHalf().창업자_주식.toLocaleString('ko-KR')}주 → ${halfHalf().단독사원_결정일} PP THON 단독사원 서명 · 대금은 문서에 없음` },
+      { label: 'EU 목록 캔공장 번호', value: `${togStats.EU목록_CI_캔공장_2013} → ${togStats.EU목록_CI_캔공장_2022} · 110 PP(PFCI)는 2020년 9월 기준 목록부터 없음 · 120 PP Airone 은 TOG 계열 아님` },
+      { label: '세관 신고', value: `코트디부아르 수출 2021~2023 ${customsGap().수출신고_3년합_kg} kg 대 프랑스 수입 2023 ${customsGap().프랑스수입_kg[2].kg.toLocaleString('ko-KR')} kg` },
+    ],
+  },
 
 
 ];
@@ -4730,6 +4820,7 @@ export default function CompanyAnatomyDashboard({
     sca: SCA_SPEC,
     ghana: GHANA_SPEC,
     azores: AZORES_SPEC,
+    tog: TOG_SPEC,
   };
   const spec = SPECS[selected] ?? SPEC;
 
