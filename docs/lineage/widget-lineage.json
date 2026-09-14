@@ -1,9 +1,9 @@
 {
  "_meta": {
   "entry": "app/page.tsx",
-  "files": 258,
+  "files": 260,
   "widgets": 114,
-  "dataFiles": 227,
+  "dataFiles": 232,
   "generator": "scripts/widget_lineage.py"
  },
  "widgetToData": {
@@ -588,6 +588,7 @@
     "lib/data/company-frabelle.ts",
     "lib/data/company-frinsa.ts",
     "lib/data/company-garavilla.ts",
+    "lib/data/company-ghana.ts",
     "lib/data/company-hagoromo.ts",
     "lib/data/company-herdez.ts",
     "lib/data/company-iot.ts",
@@ -676,6 +677,10 @@
     "public/data/companies/garavilla_prose_v1.json",
     "public/data/companies/garavilla_tables_v1.json",
     "public/data/companies/garavilla_v1.json",
+    "public/data/companies/ghana_figures_v1.json",
+    "public/data/companies/ghana_prose_v1.json",
+    "public/data/companies/ghana_tables_v1.json",
+    "public/data/companies/ghana_v1.json",
     "public/data/companies/hagoromo_figures_v1.json",
     "public/data/companies/hagoromo_prose_v1.json",
     "public/data/companies/hagoromo_tables_v1.json",
@@ -884,9 +889,11 @@
    "dataModules": [
     "lib/data/commodity-industry.ts",
     "lib/data/mof-live.ts",
-    "lib/data/pollock-company-research.ts"
+    "lib/data/pollock-company-research.ts",
+    "lib/data/pollock-industry-tables.ts"
    ],
    "dataFiles": [
+    "lib/data/pollock-tables.json",
     "public/data/landed_cost_trend_v1.json",
     "public/data/mackerel_country_series_v1.json",
     "public/data/mackerel_industry_v1.json",
@@ -1244,6 +1251,9 @@
    "components/panofi/PanofiDashboard.tsx",
    "components/panofi/PanofiTabs.tsx"
   ],
+  "lib/data/pollock-tables.json": [
+   "components/market-understanding/PollockIndustryDashboard.tsx"
+  ],
   "lib/data/tunafarm-tables.json": [
    "components/market-understanding/TunafarmIndustryDashboard.tsx"
   ],
@@ -1465,6 +1475,18 @@
    "components/market-understanding/CompanyAnatomyDashboard.tsx"
   ],
   "public/data/companies/garavilla_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/ghana_figures_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/ghana_prose_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/ghana_tables_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/ghana_v1.json": [
    "components/market-understanding/CompanyAnatomyDashboard.tsx"
   ],
   "public/data/companies/hagoromo_figures_v1.json": [

@@ -37,6 +37,10 @@ import {
   tradeCaption,
 } from './MofLiveCharts';
 import { auctionMeta, tradeMeta } from '@/lib/data/mof-live';
+import {
+  getPollockTables,
+  type PollockReportTable,
+} from '@/lib/data/pollock-industry-tables';
 
 const RESEARCH = getPollockCompanyResearch();
 
@@ -173,13 +177,54 @@ const QUOTA_SYNC = { status: 'STATIC' as const, syncDate: '2026년 1월 제35차
 const IMPORT_SYNC = { status: 'STATIC' as const, syncDate: String(DATA.수입세번._meta.구간 ?? '통관 실적') };
 const MFDS_SYNC = { status: 'STATIC' as const, syncDate: `${DATA.가공품목._meta.기준연도}년분` };
 const STOCK_SYNC = { status: 'STATIC' as const, syncDate: String(DATA.재고._meta.구간 ?? '월보') };
-const REPORT_SYNC = { status: 'STATIC' as const, syncDate: '보고서 2026-08-23' };
+const REPORT_SYNC = { status: 'STATIC' as const, syncDate: '보고서 2026-09-14 개정' };
 const MFDS_NAME_SYNC = { status: 'STATIC' as const, syncDate: '식약처 2025년 단년' };
 
 const latestImport = DATA.수입세번.rows.find((r) => r.연도 === 2025) ?? DATA.수입세번.rows[0];
 const russia = DATA.수입원산지.rows[0];
 const quota2026 = DATA.원양할당.rows.find((r) => r.연도 === 2026);
 const lastStock = DATA.재고.rows[DATA.재고.rows.length - 1];
+
+/** 발행본 표를 그대로 그린다. 숫자는 문자열 그대로이고 재계산하지 않는다. */
+function ReportTable({ table }: { table: PollockReportTable }) {
+  return (
+    <div className={styles.dataTableWrap}>
+      <table className={styles.dataTable}>
+        <thead>
+          <tr>
+            {table.head.map((h, i) => (
+              <th key={i} style={table.num[i] ? { textAlign: 'right' } : undefined}>
+                {h}
+              </th>
+            ))}
+          </tr>
+        </thead>
+        <tbody>
+          {table.rows.map((r, i) => (
+            <tr key={i}>
+              {r.map((c, j) => (
+                <td key={j} style={table.num[j] ? { textAlign: 'right' } : undefined}>
+                  {c}
+                </td>
+              ))}
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  );
+}
+
+/** 보고서 표를 단계별 슬롯으로. 손으로 만든 차트 뒤에 붙는다. */
+function reportSlots(stage: string): ChartSlot[] {
+  return getPollockTables(stage).map((t, i) => ({
+    title: `보고서 표 ${i + 1} — ${t.title}`,
+    caption: t.caption ?? t.note ?? `보고서 ${t.section.slice(0, 2)}장. 발행본 표를 그대로 옮겼다.`,
+    telemetry: REPORT_SYNC,
+    span: 'full' as const,
+    render: () => <ReportTable table={t} />,
+  }));
+}
 
 export const POLLOCK_CHART_SLOTS: Record<string, ChartSlot[]> = {
   s01: [
@@ -191,6 +236,7 @@ export const POLLOCK_CHART_SLOTS: Record<string, ChartSlot[]> = {
       span: 'full',
       render: () => <PollockWorldChart data={DATA} />,
     },
+      ...reportSlots('s01'),
   ],
   s02: [
     {
@@ -213,6 +259,7 @@ export const POLLOCK_CHART_SLOTS: Record<string, ChartSlot[]> = {
         />
       ),
     },
+      ...reportSlots('s02'),
   ],
   s03: [
     {
@@ -235,6 +282,7 @@ export const POLLOCK_CHART_SLOTS: Record<string, ChartSlot[]> = {
       telemetry: { status: 'STATIC' as const, syncDate: '2025년 통관' },
       render: () => <PollockOriginChart data={DATA} />,
     },
+      ...reportSlots('s03'),
   ],
   s06: [
     {
@@ -250,6 +298,7 @@ export const POLLOCK_CHART_SLOTS: Record<string, ChartSlot[]> = {
         />
       ),
     },
+      ...reportSlots('s06'),
   ],
   s04: [
     {
@@ -271,6 +320,7 @@ export const POLLOCK_CHART_SLOTS: Record<string, ChartSlot[]> = {
         />
       ),
     },
+      ...reportSlots('s04'),
   ],
   s07: [
     {
@@ -299,6 +349,7 @@ export const POLLOCK_CHART_SLOTS: Record<string, ChartSlot[]> = {
         />
       ),
     },
+      ...reportSlots('s07'),
   ],
   s08: [
     {
@@ -326,6 +377,7 @@ export const POLLOCK_CHART_SLOTS: Record<string, ChartSlot[]> = {
         />
       ),
     },
+      ...reportSlots('s08'),
   ],
   s05: [
     {
@@ -336,6 +388,7 @@ export const POLLOCK_CHART_SLOTS: Record<string, ChartSlot[]> = {
       span: 'full',
       render: () => <PollockStockChart data={DATA} />,
     },
+      ...reportSlots('s05'),
   ],
 };
 
