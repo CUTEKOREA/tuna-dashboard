@@ -43,6 +43,10 @@ import {
   tradeCaption,
 } from './MofLiveCharts';
 import { auctionMeta, tradeMeta } from '@/lib/data/mof-live';
+import {
+  getMackerelTables,
+  type MackerelReportTable,
+} from '@/lib/data/mackerel-industry-tables';
 
 const DATA = getMackerelIndustryData();
 const CATCH_SYNC = {
@@ -56,6 +60,11 @@ const WIPAN_SYNC = {
 const IMPORT_SYNC = {
   status: 'STATIC' as const,
   syncDate: String(DATA.수입원산지._meta.구간 ?? '통관 실적'),
+};
+
+const REPORT_SYNC = {
+  status: 'STATIC' as const,
+  syncDate: '보고서 2026-08-27 발행본',
 };
 
 const MACKEREL_RESEARCH = getMackerelCompanyResearch();
@@ -126,6 +135,47 @@ function SeriesRolesTable() {
   );
 }
 
+/** 발행본 표를 그대로 그린다. 숫자는 문자열 그대로이고 재계산하지 않는다. */
+function ReportTable({ table }: { table: MackerelReportTable }) {
+  return (
+    <div className={styles.dataTableWrap}>
+      <table className={styles.dataTable}>
+        <thead>
+          <tr>
+            {table.head.map((h, i) => (
+              <th key={i} style={table.num[i] ? { textAlign: 'right' } : undefined}>
+                {h}
+              </th>
+            ))}
+          </tr>
+        </thead>
+        <tbody>
+          {table.rows.map((r, i) => (
+            <tr key={i}>
+              {r.map((c, j) => (
+                <td key={j} style={table.num[j] ? { textAlign: 'right' } : undefined}>
+                  {c}
+                </td>
+              ))}
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  );
+}
+
+/** 보고서 표를 단계별 슬롯으로. 손으로 만든 차트 뒤에 붙는다. */
+function reportSlots(stage: string): ChartSlot[] {
+  return getMackerelTables(stage).map((t, i) => ({
+    title: `보고서 표 ${i + 1} — ${t.title}`,
+    caption: t.caption ?? t.note ?? `보고서 ${t.section.slice(0, 2)}장. 발행본 표를 그대로 옮겼다.`,
+    telemetry: REPORT_SYNC,
+    span: 'full' as const,
+    render: () => <ReportTable table={t} />,
+  }));
+}
+
 export const MACKEREL_CHART_SLOTS: Record<string, ChartSlot[]> = {
   s01: [
     {
@@ -143,6 +193,7 @@ export const MACKEREL_CHART_SLOTS: Record<string, ChartSlot[]> = {
       span: 'full',
       render: () => <MackerelCatchChart data={DATA} />,
     },
+      ...reportSlots('s01'),
   ],
   s03: [
     {
@@ -166,6 +217,7 @@ export const MACKEREL_CHART_SLOTS: Record<string, ChartSlot[]> = {
       telemetry: WIPAN_SYNC,
       render: () => <MackerelGradeChart data={DATA} />,
     },
+      ...reportSlots('s03'),
   ],
   s04: [
     {
@@ -183,6 +235,7 @@ export const MACKEREL_CHART_SLOTS: Record<string, ChartSlot[]> = {
       render: () => <MackerelOriginChart data={DATA} />,
       // 단가는 합계가 뜻이 없다. 물량만 더한다.
     },
+      ...reportSlots('s04'),
   ],
   s05: [
     {
@@ -207,6 +260,7 @@ export const MACKEREL_CHART_SLOTS: Record<string, ChartSlot[]> = {
       telemetry: SERIES_SYNC,
       render: () => <MackerelSeriesUnitChart />,
     },
+      ...reportSlots('s05'),
   ],
   s09: [
     {
@@ -230,6 +284,7 @@ export const MACKEREL_CHART_SLOTS: Record<string, ChartSlot[]> = {
       span: 'full',
       render: () => <RosterTable block={ROSTER.국내가공} />,
     },
+      ...reportSlots('s09'),
   ],
   x01: [
     {
@@ -240,6 +295,18 @@ export const MACKEREL_CHART_SLOTS: Record<string, ChartSlot[]> = {
       span: 'full',
       render: () => <MackerelCatchChart data={DATA} />,
     },
+  ],
+  s02: [
+    ...reportSlots('s02'),
+  ],
+  s06: [
+    ...reportSlots('s06'),
+  ],
+  s07: [
+    ...reportSlots('s07'),
+  ],
+  s08: [
+    ...reportSlots('s08'),
   ],
 };
 
