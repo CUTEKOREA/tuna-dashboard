@@ -8,6 +8,7 @@
 > - /panofi: 어가·채널 탭 「주말 대서양 메일」(3건 표 + 어긋남 콜아웃), 선단·조업 탭 「어장·선단 메모」·「세네갈 선단 입출항」. 문장 수치는 전부 계약에서 파생.
 > - **발견, 미수정**: `public/data/panofi/panofi_weekly.json` 의 `author` 필드에 주간동향 작성자 실명이 들어 있다(기존 추출 스크립트 산출). 이름 비저장 원칙 위반이라 추출 스크립트에서 직함만 남기도록 고칠 필요가 있다.
 > - 검증: 신규 `panofi-atlantic-mail.test.ts` 7건 + panofi·cosmo 관련 70건 통과, `test:weekly-data-sync`(새 검산 단위 테스트 포함) 통과. `npm run verify` 의 Vitest 는 1,592/1,594 — 실패 2건(`fleet-daily-detail-loader`·`fleet-daily-source-contract` 로컬 전용 `runIf`)은 이 워크트리의 비공개 원문 파일이 이미 260914 로 갱신돼 9/11 공개 집계와 어긋난 탓으로 이 변경과 무관(CI 에는 파일이 없어 건너뜀). 나머지 게이트 개별 실행 통과: API cache 158 · build 정적 118 · fleet leak · bundle 33 · report tables. 로컬 production: /panofi 두 탭·/cosmo 데이터 품질 문구 실측 일치, 390px overflow 0, 서버 로그 error 0.
+> - 추가 수정: 데이터 품질 탭이 생산일수 브릿지 잔차를 «4.00 MT» 로 찍고 있었다 → 일 단위(«4.00일»)로.
 > - 상태: 브랜치 `data/panofi-atlantic-email`. **프로덕션 미배포**.
 
 > 📰 **2026-09-12 — `/market` 2026-09-11 참치 데일리 브리핑 라이브 배포 완료** [CC/tuna-dashboard-publisher]:
