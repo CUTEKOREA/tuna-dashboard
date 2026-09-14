@@ -1,9 +1,9 @@
 {
  "_meta": {
   "entry": "app/page.tsx",
-  "files": 260,
+  "files": 261,
   "widgets": 114,
-  "dataFiles": 232,
+  "dataFiles": 233,
   "generator": "scripts/widget_lineage.py"
  },
  "widgetToData": {
@@ -822,11 +822,13 @@
    "dataModules": [
     "lib/data/commodity-industry.ts",
     "lib/data/mackerel-country-series.ts",
+    "lib/data/mackerel-industry-tables.ts",
     "lib/data/mackerel-roster.ts",
     "lib/data/mof-live.ts",
     "lib/data/valuechain-companies.ts"
    ],
    "dataFiles": [
+    "lib/data/mackerel-tables.json",
     "public/data/kofa_fleet_age_v1.json",
     "public/data/kofa_insights_v1.json",
     "public/data/kofa_series_v1.json",
@@ -1250,6 +1252,9 @@
    "components/FleetDailyOperations.tsx",
    "components/panofi/PanofiDashboard.tsx",
    "components/panofi/PanofiTabs.tsx"
+  ],
+  "lib/data/mackerel-tables.json": [
+   "components/market-understanding/MackerelIndustryDashboard.tsx"
   ],
   "lib/data/pollock-tables.json": [
    "components/market-understanding/PollockIndustryDashboard.tsx"
