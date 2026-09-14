@@ -21,6 +21,11 @@ TOTAL = re.compile(r'합계|합 계|총계|^계$')
 # 항목을 세로로 놓고 연도를 가로로 놓은 표에서 이 행을 합계행으로 잡으면
 # 매출+영업이익+순이익 = 자산총계 라는 없는 등식을 검산하게 된다(ⅩⅩⅩⅣ 표3 실측 5건).
 ITEM_ROW = re.compile(r'^(자산|부채|자본)\s*총계$')
+# 합계칸이 **다른 주석에서 가져온 모집단**일 때가 있다. 「매출 합계(주석 19)」처럼 출처를
+# 괄호로 밝힌 행은 위 행들(관계자 거래 매출 = 부분집합)의 합이 아니라 전체 매출이고,
+# 둘이 어긋난다는 것 자체가 본문이 말하려는 바다(ⅩⅬⅢ 표9 실측 2건).
+# 출처를 적은 합계행은 세로합 대상에서 뺀다 — 안 그러면 부분집합 합 ≠ 전체를 오류로 낸다.
+CITED_TOTAL = re.compile(r'\(\s*(?:주석|주\s*\d|출처|양식)')
 RATE = re.compile(r'률|율|비중|증감|전년비|%|단가|평균')
 
 
@@ -75,7 +80,8 @@ def main() -> int:
             rows = [cells(r) for r in re.findall(r'<tr.*?</tr>', tbl, re.S)]
             rows = [r for r in rows if r]
             tot = next((i for i, r in enumerate(rows)
-                        if r and TOTAL.search(r[0]) and not ITEM_ROW.match(r[0])), None)
+                        if r and TOTAL.search(r[0]) and not ITEM_ROW.match(r[0])
+                        and not CITED_TOTAL.search(r[0])), None)
             if tot is None or tot < 2:
                 continue
             body, trow = rows[1:tot], rows[tot]

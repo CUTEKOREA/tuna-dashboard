@@ -178,6 +178,15 @@ export const HQ_POINTS: GeoPoint[] = [
     lat: -20.1372, lng: 57.5262,
     basis: 'ⅩⅬⅡ · 발행본 §01 표의 승인 DVS/TF/1 주소 「New Trunk Road, Riche Terre, Pamplemousses」(러시아 수의당국 수입허가 명부가 모리셔스 승인번호를 그대로 옮겨 적은 것 · 도로 단위 근사 좌표) · 이 편의 주인공은 모리셔스 법인 PTM 이고 영국 Princes 는 직접 51 % 를 가진 주주다',
     note: '주주가 아니라 공장을 가진 법인의 자리다 — 영국 Princes 등기(ⅩⅩⅡ)와 모리셔스 상장 그룹 IBL 의 본사는 이 핀이 아니다 · 같은 번지의 캔 공장 핀과 겹치면 아크가 남의 핀에서 출발하므로 본사 핀을 도로 안쪽으로 조금 띄웠다 · PTM 은 승인 둘(리슈테르·마린로드)을 가지고, 같은 마린로드 주소의 Indico Canning(영국 Princes 간접 68 %)은 별개 법인이다' },
+  // ── ⅩⅬⅢ Galapesca — 본사 하나. 공장 핀을 따로 찍지 않는다 ──────────────
+  //    등기 주소와 생산 거점이 같은 번지(Km 12,5 Vía Daule, Mz 81 Solar 2)라
+  //    본사와 공장 핀이 겹친다. 겹친 자리에 둘을 찍으면 아크가 남의 핀에서 출발한다.
+  //    만타 창고(2019년 지게차 취득)는 생산이 아니라 보관이라 찍지 않는다 —
+  //    생산활동은 2012년 11월부터 과야킬 한 곳뿐이다.
+  { company: 'galapesca', numeral: 'ⅩⅬⅢ', kind: 'hq', label: 'Galapesca S.A. — 과야킬 Vía Daule', country: '에콰도르',
+    lat: -2.1230, lng: -79.9370,
+    basis: 'ⅩⅬⅢ · 에콰도르 회사감독청 주주명부·국세청 납세자등록의 등기 주소 「Km 12,5 Vía Daule, Manzana 81 Solar 2, Lotización Los Ranchos, Parque Industrial Inmaconsa, Guayaquil」 · 좌표는 그 산업단지 단위 근사값이고 부지의 정확한 위치가 아니다 · 한국 공시의 「KM 12.5 Via Duale Guayaquil」과 등기·감사보고서의 「Vía Daule」는 같은 길의 두 철자다',
+    note: '공장 핀을 따로 찍지 않았다 — 등기 주소와 생산 거점이 같은 번지라 겹친다 · 이 회사는 그 공장을 갖고 있지 않다. 건물 두 동과 창고 한 동과 기계를 IDAMESA·INCOPECA·EMPESEC·INMOINVESTMENT 네 곳에서 빌리고(2019년 연 임차료 합계 2.152.843 US$) 그 안의 설비만 자기 장부에 둔다(2018년 말 유형자산 순장부 12.034.982 대 사용권자산 7.033.993) · 토지는 갖고 있다(순장부 270.000) · 만타 창고는 보관이라 찍지 않았다 — 생산은 2012년 11월부터 과야킬 한 곳뿐이다 · 배는 0척이다' },
 ];
 
 /**
