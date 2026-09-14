@@ -118,7 +118,9 @@ describe('새우 06단계 - 수입 창구', () => {
   it('s06 슬롯이 사람이 읽을 수치를 실제로 그려낸다', () => {
     const slots = SHRIMP_CHART_SLOTS.s06;
     expect(slots).toBeTruthy();
-    expect(slots.length).toBe(3);
+    // 손으로 만든 차트 셋이 앞에 오고 그 뒤로 보고서 표가 붙는다(개수는 보고서 개정에 따라 는다).
+    // 이 검사가 지키는 것은 개수가 아니라 아래 probe 가 실제로 그려지는가다.
+    expect(slots.length).toBeGreaterThanOrEqual(3);
 
     const html = slots
       .map((s) => renderToStaticMarkup(React.createElement(React.Fragment, null, s.render())))

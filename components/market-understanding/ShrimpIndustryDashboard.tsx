@@ -51,6 +51,10 @@ import {
   tradeCaption,
 } from './MofLiveCharts';
 import { auctionMeta, tradeMeta } from '@/lib/data/mof-live';
+import {
+  getShrimpTables,
+  type ShrimpReportTable,
+} from '@/lib/data/shrimp-industry-tables';
 
 const DATA = getShrimpIndustryData();
 const SYNC = { status: 'STATIC' as const, syncDate: `${DATA.요약.기준연도}년 확정` };
@@ -186,6 +190,47 @@ function SeriesRolesTable() {
   );
 }
 
+/** 발행본 표를 그대로 그린다. 숫자는 문자열 그대로이고 재계산하지 않는다. */
+function ExtractedReportTable({ table }: { table: ShrimpReportTable }) {
+  return (
+    <div className={styles.dataTableWrap}>
+      <table className={styles.dataTable}>
+        <thead>
+          <tr>
+            {table.head.map((h, i) => (
+              <th key={i} style={table.num[i] ? { textAlign: 'right' } : undefined}>
+                {h}
+              </th>
+            ))}
+          </tr>
+        </thead>
+        <tbody>
+          {table.rows.map((r, i) => (
+            <tr key={i}>
+              {r.map((c, j) => (
+                <td key={j} style={table.num[j] ? { textAlign: 'right' } : undefined}>
+                  {c}
+                </td>
+              ))}
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  );
+}
+
+/** 보고서 표를 단계별 슬롯으로. 손으로 만든 차트 뒤에 붙는다. */
+function reportSlots(stage: string): ChartSlot[] {
+  return getShrimpTables(stage).map((t, i) => ({
+    title: `보고서 표 ${i + 1} — ${t.title}`,
+    caption: t.caption ?? t.note ?? `보고서 ${t.section.slice(0, 2)}장. 발행본 표를 그대로 옮겼다.`,
+    telemetry: REPORT_SYNC,
+    span: 'full' as const,
+    render: () => <ExtractedReportTable table={t} />,
+  }));
+}
+
 export const SHRIMP_CHART_SLOTS: Record<string, ChartSlot[]> = {
   s01: [
     {
@@ -203,6 +248,7 @@ export const SHRIMP_CHART_SLOTS: Record<string, ChartSlot[]> = {
       telemetry: SYNC,
       render: () => <ShrimpEnvChart data={DATA} />,
     },
+      ...reportSlots('s01'),
   ],
   s02: [
     {
@@ -211,6 +257,7 @@ export const SHRIMP_CHART_SLOTS: Record<string, ChartSlot[]> = {
       telemetry: SYNC,
       render: () => <ShrimpSpeciesChart data={DATA} />,
     },
+      ...reportSlots('s02'),
   ],
   s03: [
     {
@@ -235,6 +282,7 @@ export const SHRIMP_CHART_SLOTS: Record<string, ChartSlot[]> = {
       render: () => <ShrimpCountryChart data={DATA} />,
       // 차트는 상위 12개국만 그린다. 몇 나라가 잘렸는지는 그래프만 봐서는 알 수 없다.
     },
+      ...reportSlots('s03'),
   ],
   s05: [
     {
@@ -273,6 +321,7 @@ export const SHRIMP_CHART_SLOTS: Record<string, ChartSlot[]> = {
       span: 'full',
       render: () => <ArgentinaRouteTable />,
     },
+      ...reportSlots('s05'),
   ],
   s04: [
     {
@@ -289,6 +338,7 @@ export const SHRIMP_CHART_SLOTS: Record<string, ChartSlot[]> = {
       telemetry: SYNC,
       render: () => <ShrimpKoreaChart data={DATA} />,
     },
+      ...reportSlots('s04'),
   ],
   s06: [
     {
@@ -313,6 +363,7 @@ export const SHRIMP_CHART_SLOTS: Record<string, ChartSlot[]> = {
       telemetry: SERIES_SYNC,
       render: () => <ShrimpSeriesUnitChart />,
     },
+      ...reportSlots('s06'),
   ],
   s07: [
     {
@@ -363,6 +414,7 @@ export const SHRIMP_CHART_SLOTS: Record<string, ChartSlot[]> = {
         />
       ),
     },
+      ...reportSlots('s07'),
   ],
   s08: [
     {
@@ -393,6 +445,7 @@ export const SHRIMP_CHART_SLOTS: Record<string, ChartSlot[]> = {
         />
       ),
     },
+      ...reportSlots('s08'),
   ],
   s09: [
     {
@@ -414,6 +467,7 @@ export const SHRIMP_CHART_SLOTS: Record<string, ChartSlot[]> = {
         />
       ),
     },
+      ...reportSlots('s09'),
   ],
   s10: [
     {
@@ -435,6 +489,7 @@ export const SHRIMP_CHART_SLOTS: Record<string, ChartSlot[]> = {
         />
       ),
     },
+      ...reportSlots('s10'),
   ],
   s11: [
     {
@@ -457,6 +512,7 @@ export const SHRIMP_CHART_SLOTS: Record<string, ChartSlot[]> = {
         />
       ),
     },
+      ...reportSlots('s11'),
   ],
   s12: [
     {
@@ -478,6 +534,7 @@ export const SHRIMP_CHART_SLOTS: Record<string, ChartSlot[]> = {
         />
       ),
     },
+      ...reportSlots('s12'),
   ],
   s13: [
     {
@@ -501,6 +558,7 @@ export const SHRIMP_CHART_SLOTS: Record<string, ChartSlot[]> = {
         />
       ),
     },
+      ...reportSlots('s13'),
   ],
 };
 

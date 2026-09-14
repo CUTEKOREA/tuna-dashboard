@@ -1,9 +1,9 @@
 {
  "_meta": {
   "entry": "app/page.tsx",
-  "files": 262,
+  "files": 263,
   "widgets": 114,
-  "dataFiles": 234,
+  "dataFiles": 235,
   "generator": "scripts/widget_lineage.py"
  },
  "widgetToData": {
@@ -917,9 +917,11 @@
     "lib/data/mof-live.ts",
     "lib/data/shrimp-argentina.ts",
     "lib/data/shrimp-country-series.ts",
+    "lib/data/shrimp-industry-tables.ts",
     "lib/data/valuechain-companies.ts"
    ],
    "dataFiles": [
+    "lib/data/shrimp-tables.json",
     "public/data/kofa_fleet_age_v1.json",
     "public/data/kofa_insights_v1.json",
     "public/data/kofa_series_v1.json",
@@ -1260,6 +1262,9 @@
   ],
   "lib/data/pollock-tables.json": [
    "components/market-understanding/PollockIndustryDashboard.tsx"
+  ],
+  "lib/data/shrimp-tables.json": [
+   "components/market-understanding/ShrimpIndustryDashboard.tsx"
   ],
   "lib/data/squid-tables.json": [
    "components/market-understanding/SquidIndustryDashboard.tsx"
