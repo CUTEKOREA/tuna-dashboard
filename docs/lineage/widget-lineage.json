@@ -1,9 +1,9 @@
 {
  "_meta": {
   "entry": "app/page.tsx",
-  "files": 265,
+  "files": 266,
   "widgets": 114,
-  "dataFiles": 240,
+  "dataFiles": 241,
   "generator": "scripts/widget_lineage.py"
  },
  "widgetToData": {
@@ -882,9 +882,11 @@
   "components/market-understanding/OctopusIndustryDashboard.tsx": {
    "dataModules": [
     "lib/data/mof-live.ts",
+    "lib/data/octopus-industry-tables.ts",
     "lib/data/octopus-industry.ts"
    ],
    "dataFiles": [
+    "lib/data/octopus-tables.json",
     "public/data/landed_cost_trend_v1.json",
     "public/data/mof_auction_daily_v1.json",
     "public/data/mof_trade_monthly_v1.json",
@@ -1266,6 +1268,9 @@
   ],
   "lib/data/mackerel-tables.json": [
    "components/market-understanding/MackerelIndustryDashboard.tsx"
+  ],
+  "lib/data/octopus-tables.json": [
+   "components/market-understanding/OctopusIndustryDashboard.tsx"
   ],
   "lib/data/pollock-tables.json": [
    "components/market-understanding/PollockIndustryDashboard.tsx"

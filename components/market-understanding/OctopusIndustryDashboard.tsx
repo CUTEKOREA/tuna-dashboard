@@ -41,6 +41,10 @@ import {
   tradeCaption,
 } from './MofLiveCharts';
 import { auctionMeta, tradeMeta } from '@/lib/data/mof-live';
+import {
+  getOctopusTables,
+  type OctopusReportTable,
+} from '@/lib/data/octopus-industry-tables';
 
 const DATA = getOctopusIndustryData();
 const RESEARCH = getOctopusCompanyResearch();
@@ -129,6 +133,47 @@ const SPECIES_CODES = [
 
 const trade2025 = DATA.수입.연도별.find((r) => r.연도 === '2025');
 const auction2025 = DATA.위판.연도별.find((r) => r.연도 === '2025');
+
+/** 발행본 표를 그대로 그린다. 숫자는 문자열 그대로이고 재계산하지 않는다. */
+function ExtractedReportTable({ table }: { table: OctopusReportTable }) {
+  return (
+    <div className={styles.dataTableWrap}>
+      <table className={styles.dataTable}>
+        <thead>
+          <tr>
+            {table.head.map((h, i) => (
+              <th key={i} style={table.num[i] ? { textAlign: 'right' } : undefined}>
+                {h}
+              </th>
+            ))}
+          </tr>
+        </thead>
+        <tbody>
+          {table.rows.map((r, i) => (
+            <tr key={i}>
+              {r.map((c, j) => (
+                <td key={j} style={table.num[j] ? { textAlign: 'right' } : undefined}>
+                  {c}
+                </td>
+              ))}
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  );
+}
+
+/** 보고서 시장 절 표 가운데 대시보드에 아직 없는 것. 사내 검토 절은 싣지 않는다. */
+function reportSlots(stage: string): ChartSlot[] {
+  return getOctopusTables(stage).map((t, i) => ({
+    title: `보고서 표 ${i + 1} — ${t.title}`,
+    caption: t.caption ?? t.note ?? `보고서 ${t.section.slice(0, 2)}장. 발행본 표를 그대로 옮겼다.`,
+    telemetry: REPORT_SYNC,
+    span: 'full' as const,
+    render: () => <ExtractedReportTable table={t} />,
+  }));
+}
 
 export const OCTOPUS_CHART_SLOTS: Record<string, ChartSlot[]> = {
   s01: [
@@ -274,6 +319,7 @@ export const OCTOPUS_CHART_SLOTS: Record<string, ChartSlot[]> = {
       ),
       sourceLine: '수협 계통판매 월별 · 관세청 0307521000 월별 중량 · 보고서 §04 표',
     },
+    ...reportSlots('s05'),
   ],
   s06: [
     {
@@ -390,6 +436,7 @@ export const OCTOPUS_CHART_SLOTS: Record<string, ChartSlot[]> = {
         />
       ),
     },
+    ...reportSlots('s07'),
   ],
   s08: [
     {
