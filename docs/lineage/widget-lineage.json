@@ -1,9 +1,9 @@
 {
  "_meta": {
   "entry": "app/page.tsx",
-  "files": 261,
+  "files": 262,
   "widgets": 114,
-  "dataFiles": 233,
+  "dataFiles": 234,
   "generator": "scripts/widget_lineage.py"
  },
  "widgetToData": {
@@ -970,11 +970,13 @@
     "lib/data/deepsea-fishery.ts",
     "lib/data/falkland-squid-vessels.ts",
     "lib/data/mof-live.ts",
+    "lib/data/squid-industry-tables.ts",
     "lib/data/squid-industry.ts",
     "lib/data/squid-peru-supply.ts",
     "lib/data/valuechain-companies.ts"
    ],
    "dataFiles": [
+    "lib/data/squid-tables.json",
     "public/data/deepsea_fishery_v1.json",
     "public/data/falkland_squid_vessels_v1.json",
     "public/data/kofa_fleet_age_v1.json",
@@ -1258,6 +1260,9 @@
   ],
   "lib/data/pollock-tables.json": [
    "components/market-understanding/PollockIndustryDashboard.tsx"
+  ],
+  "lib/data/squid-tables.json": [
+   "components/market-understanding/SquidIndustryDashboard.tsx"
   ],
   "lib/data/tunafarm-tables.json": [
    "components/market-understanding/TunafarmIndustryDashboard.tsx"

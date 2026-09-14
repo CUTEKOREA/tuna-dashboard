@@ -98,6 +98,12 @@ import {
 } from './MofLiveCharts';
 import { auctionMeta, freightMeta, tradeMeta } from '@/lib/data/mof-live';
 import { getSquidCompanyResearch, getKofaSeries } from '@/lib/data/valuechain-companies';
+import {
+  getSquidTables,
+  getSquidTableStages,
+  type SquidReportTable,
+} from '@/lib/data/squid-industry-tables';
+import styles from './TunaIndustryDashboard.module.css';
 
 const CATCH = getSquidCatchData();
 const TRADE = getSquidTradeData();
@@ -149,6 +155,49 @@ const DW_SYNC = { status: 'SYNCED' as const, syncDate: `${DW_YEAR}년 확정 · 
 const FK_SYNC = { status: 'STATIC' as const, syncDate: `${falklandMeta.기간} 실적` };
 
 const PERU_SYNC = { status: 'STATIC' as const, syncDate: `${peruMeta.조회일} 조사` };
+
+const REPORT_SYNC = { status: 'STATIC' as const, syncDate: '보고서 2026-09-01 발행본' };
+
+/** 발행본 표를 그대로 그린다. 숫자는 문자열 그대로이고 재계산하지 않는다. */
+function ReportTable({ table }: { table: SquidReportTable }) {
+  return (
+    <div className={styles.dataTableWrap}>
+      <table className={styles.dataTable}>
+        <thead>
+          <tr>
+            {table.head.map((h, i) => (
+              <th key={i} style={table.num[i] ? { textAlign: 'right' } : undefined}>
+                {h}
+              </th>
+            ))}
+          </tr>
+        </thead>
+        <tbody>
+          {table.rows.map((r, i) => (
+            <tr key={i}>
+              {r.map((c, j) => (
+                <td key={j} style={table.num[j] ? { textAlign: 'right' } : undefined}>
+                  {c}
+                </td>
+              ))}
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  );
+}
+
+/** 보고서 표를 단계별 슬롯으로. 차트·위젯 뒤에 붙는다. */
+function reportSlots(stage: string): ChartSlot[] {
+  return getSquidTables(stage).map((t, i) => ({
+    title: `보고서 표 ${i + 1} — ${t.title}`,
+    caption: t.caption ?? t.note ?? `보고서 ${t.section.slice(0, 2)}장. 발행본 표를 그대로 옮겼다.`,
+    telemetry: REPORT_SYNC,
+    span: 'full' as const,
+    render: () => <ReportTable table={t} />,
+  }));
+}
 
 const SQUID_BASE_SLOTS: Record<string, ChartSlot[]> = {
   // 아래 셋은 공공 API 스냅숏이다. 정적 집계가 아니라 스크립트가 받아 온 값이라 SYNCED 로 적는다.
@@ -434,10 +483,13 @@ const SQUID_BASE_SLOTS: Record<string, ChartSlot[]> = {
 export const SQUID_CHART_SLOTS: Record<string, ChartSlot[]> = Object.fromEntries(
   // 단계 목록과 같은 정본을 쓴다. `ALL_STAGES`(위젯 JSON)로 돌면 위젯이 없는 단계의
   // 차트가 통째로 빠진다 — 08 선박별이 그렇게 조용히 비었다.
-  [...new Set([...Object.keys(SQUID_BASE_SLOTS), ...ALL_STAGES.map((s) => s.key)])].map((key) => [
-    key,
-    [...(SQUID_BASE_SLOTS[key] ?? []), ...widgetSlots(key)],
-  ]),
+  [
+    ...new Set([
+      ...Object.keys(SQUID_BASE_SLOTS),
+      ...ALL_STAGES.map((s) => s.key),
+      ...getSquidTableStages(),
+    ]),
+  ].map((key) => [key, [...(SQUID_BASE_SLOTS[key] ?? []), ...widgetSlots(key), ...reportSlots(key)]]),
 );
 
 const SPEC: CommoditySpec = {
