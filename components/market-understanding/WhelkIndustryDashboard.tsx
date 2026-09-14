@@ -45,6 +45,10 @@ import {
   tradeCaption,
 } from './MofLiveCharts';
 import { auctionMeta, tradeMeta } from '@/lib/data/mof-live';
+import {
+  getWhelkTables,
+  type WhelkReportTable,
+} from '@/lib/data/whelk-industry-tables';
 
 const DATA = getWhelkIndustryData();
 const FAO_SYNC = { status: 'STATIC' as const, syncDate: `${DATA.요약.기준연도}년 확정` };
@@ -217,6 +221,49 @@ function SeriesRolesTable() {
   );
 }
 
+const EXTRACT_SYNC = { status: 'STATIC' as const, syncDate: '보고서 2026-09-12 발행본' };
+
+/** 발행본 표를 그대로 그린다. 숫자는 문자열 그대로이고 재계산하지 않는다. */
+function ExtractedReportTable({ table }: { table: WhelkReportTable }) {
+  return (
+    <div className={styles.dataTableWrap}>
+      <table className={styles.dataTable}>
+        <thead>
+          <tr>
+            {table.head.map((h, i) => (
+              <th key={i} style={table.num[i] ? { textAlign: 'right' } : undefined}>
+                {h}
+              </th>
+            ))}
+          </tr>
+        </thead>
+        <tbody>
+          {table.rows.map((r, i) => (
+            <tr key={i}>
+              {r.map((c, j) => (
+                <td key={j} style={table.num[j] ? { textAlign: 'right' } : undefined}>
+                  {c}
+                </td>
+              ))}
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  );
+}
+
+/** 보고서 표를 단계별 슬롯으로. 손으로 만든 차트·표 뒤에 붙는다(겹치는 표는 추출기가 뺀다). */
+function reportSlots(stage: string): ChartSlot[] {
+  return getWhelkTables(stage).map((t, i) => ({
+    title: `보고서 표 ${i + 1} — ${t.title}`,
+    caption: t.caption ?? t.note ?? `보고서 ${t.section.slice(0, 2)}장. 발행본 표를 그대로 옮겼다.`,
+    telemetry: EXTRACT_SYNC,
+    span: 'full' as const,
+    render: () => <ExtractedReportTable table={t} />,
+  }));
+}
+
 export const WHELK_CHART_SLOTS: Record<string, ChartSlot[]> = {
   s01: [
     {
@@ -226,6 +273,7 @@ export const WHELK_CHART_SLOTS: Record<string, ChartSlot[]> = {
       telemetry: FAO_SYNC,
       render: () => <WhelkGroupChart data={DATA} />,
     },
+      ...reportSlots('s01'),
   ],
   s02: [
     {
@@ -264,6 +312,7 @@ export const WHELK_CHART_SLOTS: Record<string, ChartSlot[]> = {
         />
       ),
     },
+      ...reportSlots('s02'),
   ],
   s03: [
     {
@@ -274,6 +323,7 @@ export const WHELK_CHART_SLOTS: Record<string, ChartSlot[]> = {
       span: 'full', // 1990~2025 36점 — 촘촘한 시계열 예외
       render: () => <WhelkKoreaSeriesChart data={DATA} />,
     },
+      ...reportSlots('s03'),
   ],
   s04: [
     {
@@ -319,6 +369,7 @@ export const WHELK_CHART_SLOTS: Record<string, ChartSlot[]> = {
         />
       ),
     },
+      ...reportSlots('s04'),
   ],
   s05: [
     {
@@ -365,6 +416,7 @@ export const WHELK_CHART_SLOTS: Record<string, ChartSlot[]> = {
         />
       ),
     },
+      ...reportSlots('s05'),
   ],
   s06: [
     {
@@ -407,6 +459,7 @@ export const WHELK_CHART_SLOTS: Record<string, ChartSlot[]> = {
       span: 'full',
       render: () => <ProductTable rows={RESEARCH_EXT.제품.rows} />,
     },
+      ...reportSlots('s06'),
   ],
   s07: [
     {
@@ -435,6 +488,7 @@ export const WHELK_CHART_SLOTS: Record<string, ChartSlot[]> = {
         />
       ),
     },
+      ...reportSlots('s07'),
   ],
   s08: [
     {
@@ -450,6 +504,7 @@ export const WHELK_CHART_SLOTS: Record<string, ChartSlot[]> = {
         />
       ),
     },
+      ...reportSlots('s08'),
   ],
   x01: [
     {
