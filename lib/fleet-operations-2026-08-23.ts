@@ -181,6 +181,9 @@ const monthlyRows = [
   ['N/STAR', [675, 880, 515, 1105, 415, 1165, 1240, 410]],
 ] as const;
 
+/* 선장 실명은 이 표에만 남긴다(2026-09-14 사용자 확인). 선장별 순위가 표의 목적이라
+ * 직함·선박명으로 바꾸면 표가 성립하지 않는다. 다른 원자료의 인명은 그대로 직함·역할로만 옮긴다 —
+ * PANOFI 주간동향 작성자, 코스모 차주 계획 출장자, 일일보고 비고가 그렇다. */
 const weeklyRanking = [
   { rank: 1, captain: '김형주', vessel: 'N/SUN', catchMt: 260, dailyAverageMt: 37.14 },
   { rank: 2, captain: '이평규', vessel: 'KONA', catchMt: 195, dailyAverageMt: 27.86 },
