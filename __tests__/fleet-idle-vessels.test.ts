@@ -3,6 +3,7 @@ import { renderToStaticMarkup } from 'react-dom/server';
 import { describe, expect, it } from 'vitest';
 
 import { FleetIdleVesselPanel } from '@/components/FleetCharts';
+import { fleetDailyPublic } from '@/lib/data/fleet-daily-public';
 import {
   FLEET_IDLE_NOTES,
   FLEET_IDLE_THRESHOLD_DAYS,
@@ -54,14 +55,21 @@ describe('fleet idle vessel detection', () => {
     expect(contract.text).toContain('24~26일');
     expect(contract.text).toContain('$41,000');
     const fee = FLEET_IDLE_NOTES.MOAMARI.lines.find((line) => line.label.startsWith('예인료'))!;
-    expect(fee.text).toContain('10/4 도착 기준 34일');
-    expect(fee.text).toContain('$32.8만~41.0만');
+    expect(fee.text).toContain('10/11 도착 기준 41일');
+    expect(fee.text).toContain('$61.5만~69.7만');
     expect(FLEET_IDLE_NOTES.MOAMARI.headline).toContain('계약 항해 24~26일');
     // 확정과 예상을 섞지 않는다 — 도착일·총액은 예상치로만 적는다
     expect(FLEET_IDLE_NOTES.MOAMARI.headline).toContain('예상');
     const split = FLEET_IDLE_NOTES.MOAMARI.lines.find((line) => line.label === '확정 / 예상 구분')!;
     expect(split.text).toContain('전부 예상치');
     expect(FLEET_IDLE_NOTES.MOAMARI.lines.every((line) => line.text.length > 0)).toBe(true);
+  });
+
+  it('re-reads the towing note against every new daily report', () => {
+    /* 도착 예정일은 일일보고 비고에만 있고 보고마다 바뀐다. 9/8~9/11 네 번 반영하는 동안
+     * 서술이 9/7 의 「10/4 · 34일 · 139만불」에 그대로 남았다(실제 보고는 10/15·10/16·10/11·10/20).
+     * 새 보고를 넣으면 이 테스트가 깨진다 - 비고를 대조하고 서술과 asOf 를 함께 고친다. */
+    expect(FLEET_IDLE_NOTES.MOAMARI.asOf).toBe(fleetDailyPublic._meta.latestReportDate);
   });
 
   it('hides a vessel once it lands a catch again', () => {

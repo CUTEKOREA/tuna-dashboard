@@ -65,27 +65,28 @@ describe('fleet daily public and private DTO boundary', () => {
     expect(fleetDailyPublic).toEqual({
       _meta: {
         schemaVersion: 1,
-        reportCount: 154,
+        reportCount: 155,
         firstReportDate: '2026-01-16',
-        latestReportDate: '2026-09-11',
-        latestAsOf: '2026-09-10',
+        latestReportDate: '2026-09-14',
+        latestAsOf: '2026-09-13',
         detailSha256: expect.stringMatching(/^[a-f0-9]{64}$/),
         detailSha256Compat: [expect.stringMatching(/^[a-f0-9]{64}$/)],
       },
       latest: {
-        reportDate: '2026-09-11',
-        asOf: '2026-09-10',
-        pacific: { asOf: '2026-09-10', dailyMt: 215, monthlyMt: 1_180, annualMt: 49_420.8 },
-        atlantic: { asOf: '2026-09-10', dailyMt: 285, monthlyMt: 1_490, annualMt: 34_950 },
-        carrier: { loadedTotalMt: 7_684.1, expectedRemainingMt: 3_556.7 },
+        reportDate: '2026-09-14',
+        asOf: '2026-09-13',
+        pacific: { asOf: '2026-09-13', dailyMt: 11, monthlyMt: 1_636, annualMt: 49_876.8 },
+        atlantic: { asOf: '2026-09-13', dailyMt: 155, monthlyMt: 2_105, annualMt: 35_565 },
+        carrier: { loadedTotalMt: 7_684.13, expectedRemainingMt: 3_207 },
       },
-      deltas: { pacificDailyMt: 136, atlanticDailyMt: 260, totalDailyMt: 396 },
+      deltas: { pacificDailyMt: -204, atlanticDailyMt: -130, totalDailyMt: -334 },
       reconciliation: {
-        pacificDaily: { reportedMt: 215, rowsMt: 215, matches: true, missingCount: 0 },
-        atlanticDaily: { reportedMt: 285, rowsMt: 285, matches: true, missingCount: 0 },
-        // 0.03 은 머리글 반올림 잔차다 - 인쇄 자릿수(소수 1자리) 허용 폭 0.05 안에 든다
-        carrierLoaded: { reportedMt: 7_684.1, rowsMt: 7_684.13, matches: true, missingCount: 0 },
-        carrierExpectedRemaining: { reportedMt: 3_556.7, rowsMt: 3_556.7, matches: true, missingCount: 0 },
+        pacificDaily: { reportedMt: 11, rowsMt: 11, matches: true, missingCount: 0 },
+        atlanticDaily: { reportedMt: 155, rowsMt: 155, matches: true, missingCount: 0 },
+        // 9/14 보고는 머리글도 소수 2자리(7,684.13)로 찍혀 잔차가 없다. 9/11 까지는 7,684.1 로 찍혀
+        // 0.03 반올림 잔차가 남았다 - 허용 폭 판정은 source-contract 테스트가 고정값으로 지킨다
+        carrierLoaded: { reportedMt: 7_684.13, rowsMt: 7_684.13, matches: true, missingCount: 0 },
+        carrierExpectedRemaining: { reportedMt: 3_207, rowsMt: 3_207, matches: true, missingCount: 0 },
         valid: true,
         unavailableCount: 0,
         issueCount: 0,
@@ -97,8 +98,8 @@ describe('fleet daily public and private DTO boundary', () => {
       },
       quality: {
         counts: {
-          reconciliationChecks: 616,
-          reconciliationCompleteChecks: 616,
+          reconciliationChecks: 620,
+          reconciliationCompleteChecks: 620,
           reconciliationUnavailableChecks: 0,
           reconciliationUnavailableDocuments: 0,
           reconciliationIssues: 14,
@@ -107,7 +108,7 @@ describe('fleet daily public and private DTO boundary', () => {
           reconciliationPartialDifferenceDocuments: 12,
           duplicateVesselRows: 4,
           coordinateFormatIssues: 6,
-          longlineSectionMissing: 15,
+          longlineSectionMissing: 16,
         },
         incompletePartialDifferences: 0,
         incompletePartialDifferenceDocuments: 0,
