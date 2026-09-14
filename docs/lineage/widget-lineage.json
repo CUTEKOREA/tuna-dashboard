@@ -1,9 +1,9 @@
 {
  "_meta": {
   "entry": "app/page.tsx",
-  "files": 266,
+  "files": 267,
   "widgets": 114,
-  "dataFiles": 241,
+  "dataFiles": 242,
   "generator": "scripts/widget_lineage.py"
  },
  "widgetToData": {
@@ -1087,10 +1087,12 @@
   },
   "components/market-understanding/TunaIndustryDashboard.tsx": {
    "dataModules": [
+    "lib/data/tuna-industry-tables.ts",
     "lib/data/tuna-industry.ts",
     "lib/data/valuechain-companies.ts"
    ],
    "dataFiles": [
+    "lib/data/tuna-tables.json",
     "public/data/kofa_fleet_age_v1.json",
     "public/data/kofa_insights_v1.json",
     "public/data/kofa_series_v1.json",
@@ -1280,6 +1282,9 @@
   ],
   "lib/data/squid-tables.json": [
    "components/market-understanding/SquidIndustryDashboard.tsx"
+  ],
+  "lib/data/tuna-tables.json": [
+   "components/market-understanding/TunaIndustryDashboard.tsx"
   ],
   "lib/data/tunafarm-tables.json": [
    "components/market-understanding/TunafarmIndustryDashboard.tsx"
