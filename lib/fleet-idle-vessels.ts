@@ -8,7 +8,9 @@ export interface FleetIdleVessel {
   region: '태평양' | '대서양';
   /** 마지막으로 어획이 잡힌 보고일 */
   lastCatchDate: string;
-  /** 그 이후 어획이 없는 보고일 수 */
+  /** 선적량이 마지막으로 늘어난 보고일. 보고 없는 날 잡은 어획은 여기로만 드러난다. */
+  lastLoadIncreaseDate: string | null;
+  /** 마지막 어획·적재 증가 중 늦은 쪽 이후의 보고일 수 */
   idleDays: number;
   /** 보고 전 기간 일평균 어획량 (MT) */
   dailyAverageMt: number;
@@ -77,7 +79,14 @@ export function resolveFleetIdleVessels(
       }
       if (lastCatchIndex < 0) continue;
 
-      const idleDays = values.length - 1 - lastCatchIndex;
+      // 보고 없는 주말의 어획은 보고일 어획에 안 잡히고 선적량 증가로만 드러난다.
+      // 둘 중 늦은 쪽을 마지막 가동으로 본다(S/JUP: 보고일 어획 8/12, 선적량 증가 9/14).
+      const lastLoadIncreaseDate = series[key].lastLoadIncreaseDates[vessel] ?? null;
+      const lastActivityIndex = Math.max(
+        lastCatchIndex,
+        lastLoadIncreaseDate ? series.dates.indexOf(lastLoadIncreaseDate) : -1,
+      );
+      const idleDays = values.length - 1 - lastActivityIndex;
       if (idleDays < thresholdDays) continue;
 
       const dailyAverageMt = averageOf(values);
@@ -86,6 +95,7 @@ export function resolveFleetIdleVessels(
         vessel,
         region,
         lastCatchDate: series.dates[lastCatchIndex],
+        lastLoadIncreaseDate,
         idleDays,
         dailyAverageMt: Number(dailyAverageMt.toFixed(2)),
         forgoneMt: Math.round(dailyAverageMt * idleDays),

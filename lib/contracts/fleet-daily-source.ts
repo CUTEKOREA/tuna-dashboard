@@ -102,6 +102,8 @@ const carrierSummarySchema = z.object({
 const dailySeriesRegionSchema = z.object({
   totalMt: z.array(z.number().finite().nullable()),
   vessels: z.record(z.string(), z.array(z.number().finite().nullable())),
+  /** 선박별 선적량이 마지막으로 늘어난 보고일. 수량은 싣지 않는다. */
+  lastLoadIncreaseDates: z.record(z.string(), z.iso.date().nullable()),
 }).strict();
 
 const dailySummarySchema = z.object({

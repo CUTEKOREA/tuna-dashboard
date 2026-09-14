@@ -559,15 +559,27 @@ def build_daily_series(reports: Sequence[dict[str, Any]]) -> dict[str, Any]:
                 if vessel["name"] not in names:
                     names.append(vessel["name"])
         vessels = {}
+        last_increase: dict[str, str | None] = {}
         for name in names:
             # ponytail: 보고 x 선박 완전탐색. 145 x 17이라 그대로 둔다.
-            vessels[name] = [
-                next((vessel["catchMt"] for vessel in report[key]["vessels"] if vessel["name"] == name), None)
+            rows = [
+                next((vessel for vessel in report[key]["vessels"] if vessel["name"] == name), None)
                 for report in reports
             ]
+            vessels[name] = [row["catchMt"] if row else None for row in rows]
+            previous_loaded = 0.0
+            last_increase[name] = None
+            for report, row in zip(reports, rows):
+                if row is None:
+                    continue
+                loaded = row["loadedMt"] or 0
+                if load_increased(loaded, previous_loaded):
+                    last_increase[name] = report["reportDate"]
+                previous_loaded = loaded
         return {
             "totalMt": [report[key]["dailyMt"] for report in reports],
             "vessels": vessels,
+            "lastLoadIncreaseDates": last_increase,
         }
 
     return {
@@ -577,8 +589,22 @@ def build_daily_series(reports: Sequence[dict[str, Any]]) -> dict[str, Any]:
     }
 
 
-def append_daily_series(series: dict[str, Any], report: dict[str, Any]) -> dict[str, Any]:
-    """증분 동기화에서 하루치만 이어 붙인다. 신규 선박은 앞 구간을 None으로 채운다."""
+def load_increased(loaded: float | None, previous: float | None) -> bool:
+    """선적량이 직전 보고보다 늘었는가. «-»·빈칸은 0 톤이다.
+
+    보고가 없는 주말에 잡은 어획은 선박별 일간 어획에 안 잡히고 선적량 증가로만 드러난다
+    (S/JUP: 8/12 이후 보고일 어획 전부 «-», 선적량 65 → 365). 가동 중단 판정이 이걸 봐야 한다."""
+    return (loaded or 0) > (previous or 0) + MIN_TOLERANCE_MT
+
+
+def append_daily_series(
+    series: dict[str, Any],
+    report: dict[str, Any],
+    previous_loaded: dict[str, dict[str, float | None]],
+) -> dict[str, Any]:
+    """증분 동기화에서 하루치만 이어 붙인다. 신규 선박은 앞 구간을 None으로 채운다.
+
+    previous_loaded 는 직전 보고의 선박별 선적량(직전 상세 DTO)이다. 공개 집계에는 수량이 없다."""
     length = len(series["dates"])
     appended = {"dates": [*series["dates"], report["reportDate"]]}
     for key in ("pacific", "atlantic"):
@@ -591,9 +617,14 @@ def append_daily_series(series: dict[str, Any], report: dict[str, Any]) -> dict[
         for name, value in catches.items():
             if name not in vessels:
                 vessels[name] = [*([None] * length), value]
+        last_increase = {name: previous["lastLoadIncreaseDates"].get(name) for name in vessels}
+        for vessel in report[key]["vessels"]:
+            if load_increased(vessel["loadedMt"], previous_loaded.get(key, {}).get(vessel["name"])):
+                last_increase[vessel["name"]] = report["reportDate"]
         appended[key] = {
             "totalMt": [*previous["totalMt"], report[key]["dailyMt"]],
             "vessels": vessels,
+            "lastLoadIncreaseDates": last_increase,
         }
     return appended
 
@@ -817,6 +848,7 @@ def build_incremental_public_payload(
     report: dict[str, Any],
     issues: dict[str, list[Any]],
     detail_sha256: str,
+    previous_loaded: dict[str, dict[str, float | None]],
 ) -> dict[str, Any]:
     try:
         previous_meta = previous_public["_meta"]
@@ -855,11 +887,12 @@ def build_incremental_public_payload(
 
     try:
         previous_series = previous_public["dailySeries"]
+        daily_series = append_daily_series(previous_series, report, previous_loaded)
     except (KeyError, TypeError) as error:
-        raise FleetDailySyncError("기존 공개 집계 JSON에 일간 추이가 없습니다") from error
+        raise FleetDailySyncError("기존 공개 집계 JSON에 일간 추이·적재 증가일이 없습니다") from error
 
     incremental_payload = {
-        "dailySeries": append_daily_series(previous_series, report),
+        "dailySeries": daily_series,
         "_meta": {
             "schemaVersion": 1,
             "reportCount": previous_meta["reportCount"] + 1,
@@ -1050,12 +1083,22 @@ def main(argv: Sequence[str] | None = None) -> int:
                 raise FleetDailySyncError("최신 원문 DOCX를 읽을 수 없습니다")
             report, issues = parse_report(*entry)
             previous_public = json.loads(public_output.read_text(encoding="utf-8"))
+            if not detail_output.exists():
+                raise FleetDailySyncError(f"직전 상세 DTO가 없어 적재 증가를 판정할 수 없습니다: {detail_output}")
+            previous_detail = json.loads(detail_output.read_text(encoding="utf-8"))
+            if previous_detail.get("reportDate") != previous_public["_meta"]["latestReportDate"]:
+                raise FleetDailySyncError("직전 상세 DTO의 보고일이 공개 집계 최신일과 다릅니다")
+            previous_loaded = {
+                key: {vessel["name"]: vessel.get("loadedMt") for vessel in previous_detail[key]["vessels"]}
+                for key in ("pacific", "atlantic")
+            }
             detail_payload = build_detail_payload({"latest": report})
             public_payload = build_incremental_public_payload(
                 previous_public,
                 report,
                 issues,
                 canonical_sha256(detail_payload),
+                previous_loaded,
             )
             atomic_write(public_output, serialized(public_payload))
             atomic_write(detail_output, serialized(detail_payload))

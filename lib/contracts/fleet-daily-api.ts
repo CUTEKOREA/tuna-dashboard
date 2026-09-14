@@ -38,6 +38,8 @@ const qualityCountsSchema = z.object({
 const dailySeriesRegionSchema = z.object({
   totalMt: z.array(nullableMt),
   vessels: z.record(z.string(), z.array(nullableMt)),
+  /** 선박별 선적량이 마지막으로 늘어난 보고일. 보고 없는 날의 어획을 가동 판정에 반영하는 용도라 수량은 싣지 않는다. */
+  lastLoadIncreaseDates: z.record(z.string(), z.iso.date().nullable()),
 }).strict();
 
 const dailySeriesSchema = z.object({

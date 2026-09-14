@@ -97,8 +97,16 @@ function validPayload() {
     daily: [first, latest],
     dailySeries: {
       dates: [first.reportDate, latest.reportDate],
-      pacific: { totalMt: [first.pacific.dailyMt, latest.pacific.dailyMt], vessels: { 'S/EXP': [0, 30] } },
-      atlantic: { totalMt: [first.atlantic.dailyMt, latest.atlantic.dailyMt], vessels: { 'P/MAS': [null, 12] } },
+      pacific: {
+        totalMt: [first.pacific.dailyMt, latest.pacific.dailyMt],
+        vessels: { 'S/EXP': [0, 30] },
+        lastLoadIncreaseDates: { 'S/EXP': latest.reportDate },
+      },
+      atlantic: {
+        totalMt: [first.atlantic.dailyMt, latest.atlantic.dailyMt],
+        vessels: { 'P/MAS': [null, 12] },
+        lastLoadIncreaseDates: { 'P/MAS': null as string | null },
+      },
     },
     quality: {
       reconciliationChecks: [...checks(first.reportDate), ...checks(latest.reportDate)],

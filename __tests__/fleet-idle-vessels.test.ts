@@ -72,6 +72,17 @@ describe('fleet idle vessel detection', () => {
     expect(FLEET_IDLE_NOTES.MOAMARI.asOf).toBe(fleetDailyPublic._meta.latestReportDate);
   });
 
+  it('does not call a vessel idle when its load rose on unreported days', () => {
+    /* S/JUP 은 8/12 이후 보고일 어획이 전부 «-» 인데 선적량이 65 → 365 로 늘었다(9/14 보고 기준).
+     * 보고일 어획만 보던 판정은 «무실적 22보고일 · 기회손실 약 245 MT» 로 잘못 띄웠다. */
+    const idle = resolveFleetIdleVessels();
+    expect(idle.find((row) => row.vessel === 'S/JUP')).toBeUndefined();
+    // MOAMARI 는 8/14→8/18 사이 선적량이 745→760 으로 늘었다(입항 전 주말 어획). 그 뒤 전재로 비어
+    // 더 늘지 않았으므로 가동 중단이 맞고, 공백은 8/18 부터 센다.
+    const moamari = idle.find((row) => row.vessel === 'MOAMARI')!;
+    expect(moamari).toMatchObject({ lastCatchDate: '2026-08-13', lastLoadIncreaseDate: '2026-08-18' });
+  });
+
   it('hides a vessel once it lands a catch again', () => {
     // 임계치를 아주 크게 잡으면 어떤 선박도 남지 않아야 한다 — 재개 시 목록에서 빠지는 것과 같은 경로.
     expect(resolveFleetIdleVessels(10_000)).toEqual([]);

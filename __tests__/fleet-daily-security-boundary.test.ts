@@ -93,8 +93,8 @@ describe('fleet daily public and private DTO boundary', () => {
       },
       dailySeries: {
         dates: expect.any(Array),
-        pacific: { totalMt: expect.any(Array), vessels: expect.any(Object) },
-        atlantic: { totalMt: expect.any(Array), vessels: expect.any(Object) },
+        pacific: { totalMt: expect.any(Array), vessels: expect.any(Object), lastLoadIncreaseDates: expect.any(Object) },
+        atlantic: { totalMt: expect.any(Array), vessels: expect.any(Object), lastLoadIncreaseDates: expect.any(Object) },
       },
       quality: {
         counts: {
@@ -136,6 +136,12 @@ describe('fleet daily public and private DTO boundary', () => {
         for (const value of values) {
           expect(value === null || typeof value === 'number').toBe(true);
         }
+      }
+      // 적재 증가는 보고일만 싣는다 - 선적량 수치가 공개 집계로 새면 안 된다
+      const increases = fleetDailyPublic.dailySeries[region].lastLoadIncreaseDates;
+      expect(Object.keys(increases).sort()).toEqual(Object.keys(fleetDailyPublic.dailySeries[region].vessels).sort());
+      for (const value of Object.values(increases)) {
+        expect(value === null || fleetDailyPublic.dailySeries.dates.includes(value)).toBe(true);
       }
     }
     expect(Array.isArray((fleetDailyPublic.quality as Record<string, unknown>).reconciliationChecks)).toBe(false);
