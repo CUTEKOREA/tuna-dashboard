@@ -45,6 +45,7 @@
 | ⅩⅩⅩⅨ | 가나 테마의 두 캐너리 (Cosmo Seafoods · Pioneer Food Cannery) | `ghana` | https://claude.ai/code/artifact/5a7dcdf7-1643-4fbb-98a7-b58ea33f942c |
 | ⅩⅬ | 아소르스의 다섯 캔공장 (COFACO Açores · Santa Catarina · Pescatum · Sociedade Corretora · Conseran) | `azores` | https://claude.ai/code/artifact/5e83fa40-faaa-4c9e-a968-bfb4f2b91b25 |
 | ⅩⅬⅠ | Thunnus Overseas Group (코트디부아르 아비장 SCODI · 프랑스 지주 · 단독사원 PP THON) | `tog` | https://claude.ai/code/artifact/c2ccea35-cdb8-43c9-9e80-5fb7b6251201 |
+| ⅩⅬⅡ | 모리셔스 해부 (Princes Tuna (Mauritius) · Indico Canning · IBL · Mer des Mascareignes) | `mauritius` | https://claude.ai/code/artifact/ffc6a8ed-196b-41da-a27f-a35298777540 |
 
 그 밖 — 보고서 직판 랜딩 기획서 https://claude.ai/code/artifact/0f98e5a5-686b-4f47-b661-be5aa852f913
 
