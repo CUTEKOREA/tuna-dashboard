@@ -1,9 +1,9 @@
 {
  "_meta": {
   "entry": "app/page.tsx",
-  "files": 270,
+  "files": 271,
   "widgets": 114,
-  "dataFiles": 246,
+  "dataFiles": 250,
   "generator": "scripts/widget_lineage.py"
  },
  "widgetToData": {
@@ -601,6 +601,7 @@
     "lib/data/company-kaichuang.ts",
     "lib/data/company-kyokuyo.ts",
     "lib/data/company-majestic.ts",
+    "lib/data/company-mauritius.ts",
     "lib/data/company-nauterra.ts",
     "lib/data/company-nirsa.ts",
     "lib/data/company-nissui.ts",
@@ -725,6 +726,10 @@
     "public/data/companies/majestic_prose_v1.json",
     "public/data/companies/majestic_tables_v1.json",
     "public/data/companies/majestic_v1.json",
+    "public/data/companies/mauritius_figures_v1.json",
+    "public/data/companies/mauritius_prose_v1.json",
+    "public/data/companies/mauritius_tables_v1.json",
+    "public/data/companies/mauritius_v1.json",
     "public/data/companies/nauterra_figures_v1.json",
     "public/data/companies/nauterra_prose_v1.json",
     "public/data/companies/nauterra_tables_v1.json",
@@ -1650,6 +1655,18 @@
    "components/market-understanding/CompanyAnatomyDashboard.tsx"
   ],
   "public/data/companies/majestic_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/mauritius_figures_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/mauritius_prose_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/mauritius_tables_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/mauritius_v1.json": [
    "components/market-understanding/CompanyAnatomyDashboard.tsx"
   ],
   "public/data/companies/nauterra_figures_v1.json": [

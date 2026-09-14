@@ -320,6 +320,10 @@ import {
   togMeta, togStats, togSourceNotes,
   halfHalf, customsGap,
 } from '@/lib/data/company-tog';
+import {
+  mauritiusMeta, mauritiusStats, mauritiusSourceNotes,
+  equityBasis, shareGap, restatedRows,
+} from '@/lib/data/company-mauritius';
 
 
 const ACCENT = '#c2410c';
@@ -2600,6 +2604,7 @@ const FLAG: Record<string, Pick<CompanyCard, 'flagSrc' | 'backInk'>> = {
   가나: { flagSrc: '/flags/gh.svg', backInk: '#1b2733' },
   포르투갈: { flagSrc: '/flags/pt.svg', backInk: '#1b2733' },
   코트디부아르: { flagSrc: '/flags/ci.svg', backInk: '#f4f5f0' },
+  모리셔스: { flagSrc: '/flags/mu.svg', backInk: '#f4f5f0' },
 };
 
 /** 선택 갤러리 카드 목록. 회사가 늘면 여기에 한 장씩 추가한다. */
@@ -4226,6 +4231,84 @@ const TOG_SPEC: CommoditySpec = {
   ].join(' · '),
 };
 
+const MAURITIUS_ACCENT = '#0f6b6b';
+
+/** FY2023 이 이듬해 보고서에서 사유 없이 바뀐 자리. 세 줄이고 유동자산만 그대로다. */
+const MU_RESTATED = restatedRows();
+const MU_SHARE = shareGap();
+const MU_EQUITY = equityBasis();
+const MU_FY2024 = MU_SHARE.연도별.find((y) => y.회계연도 === 'FY2024')!;
+
+const MAURITIUS_SPEC: CommoditySpec = {
+  key: 'company-anatomy-mauritius',
+  title: '기업 해부: 모리셔스',
+  subtitle:
+    '모리셔스에서 참치를 캔과 로인으로 가공하는 회사는 둘만 남았다. 수의당국 승인번호로는 셋인데 그 셋을 가진 법인은 둘이고, 둘 다 영국 Princes 계열이다 — 리슈테르와 마린로드의 Princes Tuna (Mauritius) Ltd, 그리고 같은 마린로드 주소의 별개 법인 Indico Canning. ' +
+    '같은 항구에서 냉동 로인을 만들던 Mer des Mascareignes 는 자기 배 세 척의 쿼터와 허가를 얻지 못해 원료가 끊겼고 2024년에 문을 닫고 청산에 들어갔다. 남은 공장은 유럽연합 선단에서 한 해 약 9만 톤을 산다. ' +
+    '그 공장을 지분법으로 드는 모리셔스 상장 그룹 IBL 의 장부에서는 같은 회사의 같은 해가 두 번 다르게 적힌다.',
+  accent: MAURITIUS_ACCENT,
+  primaryKpi: {
+    label: `PTM 주주 귀속 순이익이 ${MU_FY2024.순이익_천Rs.toLocaleString('ko-KR')}천 루피였던 FY2024 에 IBL 이 인식한 지분 몫`,
+    value: MU_FY2024.인식몫_천Rs,
+    decimals: 0,
+    unit: `(천 루피 · ${MU_EQUITY.IBL_지분법적용률_pct} % 를 곱하면 ${MU_FY2024.산술몫_천Rs.toLocaleString('ko-KR')} 이다. FY2023 은 거꾸로 ${Number(mauritiusStats.차_FY2023_천Rs).toLocaleString('ko-KR')} 이 더 잡혔고, FY2022~FY2025 네 해를 합쳐도 ${MU_SHARE.미상쇄_천Rs.toLocaleString('ko-KR')} 천 루피가 상쇄되지 않는다 — 순이익 합 ${MU_SHARE.순이익_4년합_천Rs.toLocaleString('ko-KR')} × ${MU_EQUITY.IBL_지분법적용률_pct} % = ${MU_SHARE.산술몫_4년합_천Rs.toLocaleString('ko-KR')} 대 인식 합 ${MU_SHARE.인식몫_4년합_천Rs.toLocaleString('ko-KR')}. IBL 의 지분법 회계정책 전문에 관계회사의 결산일 차이나 재무정보 조정을 다루는 문장이 없어 사유는 공시 어디에도 없다)`,
+    accent: MAURITIUS_ACCENT,
+  },
+  secondaryKpis: [
+    {
+      label: '모리셔스 수의당국의 참치 가공 승인번호 (러시아 수의당국 수입허가 명부)',
+      value: Number(mauritiusStats.가공승인_수),
+      decimals: 0,
+      unit: `(개 · ${mauritiusStats.승인_리슈테르}(리슈테르) · ${mauritiusStats.승인_마린로드_PTM}(마린로드) · ${mauritiusStats.승인_마린로드_Indico}(마린로드). 그 셋을 가진 법인은 ${mauritiusStats.가공법인_수}이다 — 앞의 둘이 Princes Tuna (Mauritius) Ltd 이고 마지막은 영국 Princes 가 간접 ${MU_EQUITY.Indico_Princes_간접_pct} % 를 가진 별개 법인 Indico Canning 이다. 같은 명부의 DVS/F/C/2(Froid des Mascareignes)는 가공이 아니라 냉동 어류 명부다)`,
+    },
+    {
+      label: 'PTM 이 유럽연합 선단에서 사는 원어 — 연 약',
+      value: Number(mauritiusStats.PTM_매입_t),
+      decimals: 0,
+      unit: `(t · 집행위 평가 작업문서 SWD(2026) 68 이 유럽연합 선단의 인도양 선망 어획 연 약 ${Number(mauritiusStats.EU선단_인도양_선망어획_t).toLocaleString('ko-KR')} t 가운데 이만큼을 PTM 이 산다고 적는다. 그 원어의 접근권을 받치는 현행 이행의정서는 ${mauritiusStats.이행의정서_잠정적용} 잠정 적용돼 ${mauritiusStats.이행의정서_종료} 에 끝나고, 집행위는 ${mauritiusStats.집행위_재협상제안일} 에 새 협정·의정서 협상 제안을 채택했다)`,
+    },
+    {
+      label: 'IBL 이 이듬해 보고서에서 사유 없이 고쳐 적은 FY2023 PTM 항목',
+      value: MU_RESTATED.length,
+      decimals: 0,
+      unit: `(줄 · ${MU_RESTATED.map((r) => `${r.항목} ${r.판2023_천Rs.toLocaleString('ko-KR')} → ${r.판2024_천Rs.toLocaleString('ko-KR')}`).join(' · ')}. 유동자산만 두 판이 같다. IBL 장부가도 영업권과 같은 폭으로 줄었고, 두 보고서 모두 사유를 적지 않으며 전기오류 수정·재표시를 밝히는 문장도 이 항목에 붙어 있지 않다)`,
+    },
+  ],
+  stripItems: [
+    {
+      now: true,
+      eyebrow: '두 장부',
+      title: '같은 회사를 가리키는 세 숫자는 기준이 다르다',
+      body: `영국 Princes 계정에는 직접 ${MU_EQUITY.Princes_직접_pct} %, IBL 감사재무 주석 12(h)에는 직접 ${MU_EQUITY.IBL_직접_pct} % 와 간접 ${MU_EQUITY.IBL_간접_pct} % 를 합한 유효지분 ${MU_EQUITY.IBL_유효_pct} %, 주석 12(j)에는 지분법 적용률 ${MU_EQUITY.IBL_지분법적용률_pct} % 가 올라 있다. 유효지분과 지분법 적용률은 같은 수가 아니다. 100 − ${MU_EQUITY.Princes_직접_pct} − ${MU_EQUITY.IBL_지분법적용률_pct} = 5,32 도 잔여 지분율이 아니다 — 기준이 다른 두 수를 뺀 것이다`,
+    },
+    {
+      eyebrow: '손상',
+      title: '이름이 적힌 손상과 이름이 없는 손상',
+      body: `FY2022 에는 대상이 「주로 PTM … 그리고 Mer des Mascareignes」로 적혔고 FY2025 에는 「실적이 떨어진 관계회사 하나」로만 적혔다(${Number(mauritiusStats.손상_FY2025_이름없음_천Rs).toLocaleString('ko-KR')}천 루피 · 회수가능액은 EBITDA 6,41배). 같은 해 PTM 영업권이 ${Number(mauritiusStats.PTM_영업권_FY2024_천Rs).toLocaleString('ko-KR')} 에서 ${Number(mauritiusStats.PTM_영업권_FY2025_천Rs).toLocaleString('ko-KR')} 으로 ${Number(mauritiusStats.PTM_영업권_감소_천Rs).toLocaleString('ko-KR')} 줄었지만, IBL 회계정책 전문이 「인식한 손상은 영업권을 포함한 어떤 자산에도 배분하지 않는다」고 적는다. 두 숫자가 가깝다는 사실과 같은 사건이라는 주장은 다르다`,
+    },
+    {
+      eyebrow: '죽은 공장',
+      title: '배가 먼저 끊기고 공장이 뒤따라 닫혔다',
+      body: `Sapmer 와 IBL 이 절반씩 든 Mer des Mascareignes 는 ${mauritiusStats.MDM_가동개시} 프리포트 구역에서 가동을 시작했다. Sapmer 연차재무보고는 2023년에 모리셔스기 참치선 ${mauritiusStats.MDM_선박_척}척의 쿼터와 조업 허가를 얻지 못해 원료가 크게 타격받았고, 매수 예정자가 물러나면서 공장이 닫히고 회사가 청산 중이라고 적는다. 그 배 셋은 ${mauritiusStats.MDM_선박매각_1차} 와 ${mauritiusStats.MDM_선박매각_2차} 에 차례로 인도됐다. PTM 은 애초에 자기 배가 없다`,
+    },
+    {
+      eyebrow: '매대',
+      title: '캔은 섬을 적지만 사업장을 적지 않는다',
+      body: `원산지 칸이 「Mauritius」인 캔은 ${mauritiusStats.매대_브랜드_수}개 브랜드로 영국·독일·폴란드·이탈리아·스웨덴과 모리셔스 현지 매대에 걸쳐 있는데, 어느 사업장에서 만들었는지는 어느 캔에도 적혀 있지 않다. 캔에 찍힌 MSC 코드는 그 수산물을 소유한 회사의 것이지 공장 주소가 아니다 — Lidl Nixe 캔의 MSC-C-56655 는 에콰도르 NIRSA 의 번호다. 2024년 수입국 신고 단가는 이탈리아 ${mauritiusStats.단가_2024_이탈리아_USD_kg} 달러/kg 부터 프랑스 ${mauritiusStats.단가_2024_프랑스_USD_kg} 달러/kg 까지 벌어진다`,
+    },
+  ],
+  briefing: proseBriefing('mauritius'),
+  narratives: inlineReport('mauritius', proseStages('mauritius')),
+  chartSlots: {},
+  continuous: true,
+  sourceNotes: mauritiusSourceNotes,
+  sourceMeta: [
+    `${mauritiusMeta.회사} · ${mauritiusMeta.국가} · ${mauritiusMeta.업종}`,
+    `출처 ${mauritiusMeta.출처}`,
+    `조사 ${mauritiusMeta.조사일}`,
+  ].join(' · '),
+};
+
 export const COMPANY_CARDS: CompanyCard[] = [
   {
     key: 'frinsa',
@@ -4756,6 +4839,19 @@ export const COMPANY_CARDS: CompanyCard[] = [
       { label: '세관 신고', value: `코트디부아르 수출 2021~2023 ${customsGap().수출신고_3년합_kg} kg 대 프랑스 수입 2023 ${customsGap().프랑스수입_kg[2].kg.toLocaleString('ko-KR')} kg` },
     ],
   },
+  {
+    key: 'mauritius',
+    numeral: 'ⅩⅬⅡ',
+    name: '모리셔스',
+    country: '모리셔스 · 포트루이스(Princes Tuna (Mauritius) — 승인 둘 · Indico Canning — 승인 하나 · 지분법으로 드는 IBL · 2024년에 닫힌 Mer des Mascareignes)',
+    tagline: '한 회사의 같은 해를 두 상장사의 장부가 서로 다르게 적는다.',
+    ...FLAG.모리셔스,
+    stats: [
+      { label: '승인 셋 · 법인 둘', value: `${mauritiusStats.승인_리슈테르}(리슈테르) · ${mauritiusStats.승인_마린로드_PTM}(마린로드)는 PTM · ${mauritiusStats.승인_마린로드_Indico}(마린로드)는 별개 법인 Indico Canning(영국 Princes 간접 ${MU_EQUITY.Indico_Princes_간접_pct} %)` },
+      { label: '세 지분 숫자', value: `영국 Princes 직접 ${MU_EQUITY.Princes_직접_pct} % · IBL 유효지분 ${MU_EQUITY.IBL_유효_pct} %(직접 ${MU_EQUITY.IBL_직접_pct} + 간접 ${MU_EQUITY.IBL_간접_pct}) · 지분법 적용률 ${MU_EQUITY.IBL_지분법적용률_pct} % — 기준이 다른 세 수다` },
+      { label: 'FY2024 의 몫', value: `순이익 ${MU_FY2024.순이익_천Rs.toLocaleString('ko-KR')} × ${MU_EQUITY.IBL_지분법적용률_pct} % = ${MU_FY2024.산술몫_천Rs.toLocaleString('ko-KR')} 인데 인식 ${MU_FY2024.인식몫_천Rs.toLocaleString('ko-KR')}천 루피 · 네 해 합 ${MU_SHARE.미상쇄_천Rs.toLocaleString('ko-KR')} 미상쇄 · 사유는 공시에 없음` },
+    ],
+  },
 
 
 ];
@@ -4821,6 +4917,7 @@ export default function CompanyAnatomyDashboard({
     ghana: GHANA_SPEC,
     azores: AZORES_SPEC,
     tog: TOG_SPEC,
+    mauritius: MAURITIUS_SPEC,
   };
   const spec = SPECS[selected] ?? SPEC;
 
