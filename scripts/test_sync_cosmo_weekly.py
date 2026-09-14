@@ -72,6 +72,24 @@ class CosmoWeeklySyncTest(unittest.TestCase):
             with self.assertRaisesRegex(ValueError, 'Sheet1!A1'):
                 MODULE.CosmoWorkbook(path)
 
+    def test_purchase_inflow_catches_an_inventory_row_copied_from_last_week(self) -> None:
+        # 36주차 실측: 구매 481.554 인데 재고 SJ 입고는 35주차의 742.21 이 남아 있었다.
+        def week(sj_in: float) -> dict:
+            return {
+                'purchase': {'lines': [
+                    {'unit': 'PS', 'species': 'SJ', 'weekMt': 481.554},
+                    {'unit': 'PS', 'species': 'YF/BE', 'weekMt': None},
+                    {'unit': 'FBU', 'species': 'YF', 'weekMt': 6.476},
+                ]},
+                'inventory': {'lines': [
+                    {'group': '원어', 'item': 'SJ', 'inQty': sj_in},
+                    {'group': '원어', 'item': 'YF/BE', 'inQty': None},
+                    {'group': '원어', 'item': 'FBU', 'inQty': 99.0},
+                ]},
+            }
+        self.assertEqual(MODULE.purchase_inflow_residual(week(481.554)), 0)
+        self.assertAlmostEqual(MODULE.purchase_inflow_residual(week(742.21)), 260.66, places=2)
+
 
 if __name__ == '__main__':
     unittest.main()

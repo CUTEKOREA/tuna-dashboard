@@ -35,6 +35,8 @@ import {
   liquidity,
   liquidityBridge,
   liquiditySeries,
+  mailDepartureConflicts,
+  mailProcessingVsWeekly,
   marginRankShift,
   mirror,
   mirrorPairs,
@@ -65,6 +67,7 @@ import {
   weeks,
   ytd,
 } from '@/lib/data/panofi';
+import { ATLANTIC_MAIL_SOURCE, atlanticMails, latestAtlanticMail, mailMonthDay } from '@/lib/data/panofi-atlantic-mail';
 import { CHART_RANK, HUB_ID, PANOFI_ID, SERIES as PALETTE, shareColor } from '@/lib/chart-palette';
 
 /* --------------------------------------------------------------- 표기 헬퍼 */
@@ -317,6 +320,15 @@ export function FleetTab() {
           <Legend items={[{ name: '연안', color: C.s1 }, { name: '대양', color: C.s2 }]} />
         </Panel>
 
+        <Panel
+          span={6} title="어장·선단 메모" unit={`주말 메일 ${mailMonthDay(latestAtlanticMail.date)}`}
+          src={ATLANTIC_MAIL_SOURCE}
+        >
+          <ul className="pf-note" style={{ margin: 0, paddingLeft: 18 }}>
+            {latestAtlanticMail.notes.map((n) => <li key={n}>{n}</li>)}
+          </ul>
+        </Panel>
+
         {/* 물량과 척수는 단위가 다르다. 한 그림에 두 축을 얹으면 없는 상관을 만들어 낸다 —
             두 패널로 나눠 각자 축을 하나만 갖게 한다. */}
         <Panel span={12} title="역내 입항 물량" unit="톤 · 세네갈·EU 선단" src={SRC.weekly}>
@@ -336,6 +348,31 @@ export function FleetTab() {
             series={[S('척수', '척수', C.rank, { type: 'line' })]}
             yFmt={(v) => `${v}척`}
           />
+        </Panel>
+
+        <Panel
+          span={12} title="세네갈 선단 입출항" unit={`주말 메일 ${mailMonthDay(latestAtlanticMail.date)} · 톤`}
+          note="주간동향(화요일자) 사이에 오는 주말 메일이라 입출항이 며칠 더 최신이다. 톤수를 확인 중인 배는 비워 둔다."
+          src={ATLANTIC_MAIL_SOURCE}
+        >
+          <Table head={['선박', '물량', '입항', '출항', '상태']}>
+            {latestAtlanticMail.senegalCalls.map((c) => (
+              <tr key={c.vessel}>
+                <td>{c.vessel}</td>
+                <td>{orNA(c.tons, num)}</td>
+                <td>{c.arrive}</td>
+                <td>{c.depart ?? '미정'}</td>
+                <td style={{ textAlign: 'left' }}>{c.status}</td>
+              </tr>
+            ))}
+          </Table>
+          {mailDepartureConflicts.length > 0 && (
+            <Callout kind="warn" label="주간동향과 어긋남">
+              {mailDepartureConflicts.map((c) =>
+                `${c.vessel} - ${c.mailLabel} 메일은 「${c.mailStatus}」인데 ${c.weeklyLabel} 주간동향은 ${c.weeklyDepart} 출항 완료로 적었다.`,
+              ).join(' ')}
+            </Callout>
+          )}
         </Panel>
       </Grid>
     </>
@@ -472,6 +509,84 @@ export function PriceTab() {
             series={[S('방콕', '방콕 가다랑어', HUB_ID.bkk, { type: 'bar' })]}
             yFmt={usd}
           />
+        </Panel>
+      </Grid>
+
+      <Sec>주말 대서양 메일</Sec>
+      <Grid>
+        <Panel
+          span={12} title={`주말 메일 ${atlanticMails.length}건 - 주간동향에 없는 값`} unit="어가·운임 달러/톤 · MGO 달러/KL · 물량 톤"
+          note={(() => {
+            const first = atlanticMails[0];
+            const last = latestAtlanticMail;
+            const sales = last.grandBleuSales.map((g) => g.priceUsd);
+            const scasaMove = last.scasa.priceUsd !== first.scasa.priceUsd
+              ? `스카사 어가가 ${usd(first.scasa.priceUsd)}에서 ${usd(last.scasa.priceUsd)}로 올라 코스모(${usd(last.cosmo.priceUsd)}, ${last.cosmo.priceMonth})보다 ${usd(last.scasa.priceUsd - last.cosmo.priceUsd)} 높다.`
+              : `스카사 어가는 ${usd(last.scasa.priceUsd)}로 그대로다.`;
+            const salesLine = sales.length
+              ? ` 그랑블루는 ${usd(Math.min(...sales))}~${usd(Math.max(...sales))}에 팔았고${last.freightUsdPerT != null ? ` 운임이 ${usd(last.freightUsdPerT)}` : ''}라, 코스모 어가와의 차이가 운임을 빼고도 남는지가 판매처 협의의 기준이 된다.`
+              : '';
+            return `${scasaMove}${salesLine} MGO 는 메일마다 직전 주간동향 값을 그대로 옮긴다.`;
+          })()}
+          src={ATLANTIC_MAIL_SOURCE}
+        >
+          <Table head={['항목', ...atlanticMails.map((m) => mailMonthDay(m.date))]}>
+            <tr>
+              <td>스카사 어가</td>
+              {atlanticMails.map((m) => <td key={m.date}>{usd(m.scasa.priceUsd)}</td>)}
+            </tr>
+            <tr>
+              <td>코스모 어가</td>
+              {atlanticMails.map((m) => (
+                <td key={m.date}>{usd(m.cosmo.priceUsd)} ({m.cosmo.priceMonth}){m.cosmo.nextMonthUnderNegotiation ? ' · 다음 달 협의 중' : ''}</td>
+              ))}
+            </tr>
+            <tr>
+              <td>PFC 어가</td>
+              {atlanticMails.map((m) => <td key={m.date}>{m.pfc.priceUsd != null ? usd(m.pfc.priceUsd) : m.pfc.note ?? '자료 없음'}</td>)}
+            </tr>
+            <tr>
+              <td>그랑블루 판매가</td>
+              {atlanticMails.map((m) => (
+                <td key={m.date} style={{ textAlign: 'left' }}>
+                  {m.grandBleuSales.length ? m.grandBleuSales.map((g) => `${g.market} ${usd(g.priceUsd)} (${g.terms})`).join(' · ') : '-'}
+                </td>
+              ))}
+            </tr>
+            <tr>
+              <td>운임</td>
+              {atlanticMails.map((m) => <td key={m.date}>{orNA(m.freightUsdPerT, usd)}</td>)}
+            </tr>
+            <tr>
+              <td>코스모 일 가공</td>
+              {atlanticMails.map((m) => <td key={m.date}>{ton(m.cosmo.dailyProcessingT)}</td>)}
+            </tr>
+            <tr>
+              <td>코스모 원어 재고</td>
+              {atlanticMails.map((m) => (
+                <td key={m.date}>{ton(m.cosmo.stock.totalT)} ({mailMonthDay(m.cosmo.stock.asOf)})</td>
+              ))}
+            </tr>
+            <tr>
+              <td>MGO 테마 · 양상 · 아비장</td>
+              {atlanticMails.map((m) => (
+                <td key={m.date}>{[m.mgo.tema, m.mgo.tanker, m.mgo.abidjan].map((v) => orNA(v, usd)).join(' · ')}</td>
+              ))}
+            </tr>
+          </Table>
+          <Callout kind="warn" label="주간동향과 어긋나는 가공량">
+            {mailProcessingVsWeekly.map((r) =>
+              `${r.weeklyLabel} 주간동향 코스모 ${orNA(r.cosmoWeekly, ton)} 대 ${r.mailLabel} 메일 ${ton(r.cosmoMail)}`,
+            ).join(', ')}.
+            {new Set(mailProcessingVsWeekly.map((r) => r.cosmoWeekly)).size === 1
+              && new Set(mailProcessingVsWeekly.map((r) => r.cosmoMail)).size > 1
+              ? ' 주간동향은 같은 값을 이어 적고 메일만 움직인다.'
+              : ''}{' '}
+            코스모 주간보고 원장과의 대조는 /cosmo 데이터 품질 탭에 있다.
+            {mailProcessingVsWeekly.filter((r) => r.pfcMailNote).map((r) =>
+              ` ${r.weeklyLabel} 주간동향은 PFC 일 ${orNA(r.pfcWeekly, ton)}인데 ${r.mailLabel} 메일은 「${r.pfcMailNote}」이다.`,
+            ).join('')}
+          </Callout>
         </Panel>
       </Grid>
     </>
