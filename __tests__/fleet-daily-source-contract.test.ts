@@ -65,6 +65,7 @@ function checks(reportDate: string) {
   ];
 }
 
+// 행 상수는 복사해 싣는다 - 한 테스트가 행을 고치면 뒤 테스트의 «정상 payload» 가 오염된다.
 function validPayload() {
   const first = daily('2026-08-13', '2026-08-12');
   const latest = daily('2026-08-14', '2026-08-13');
@@ -79,9 +80,9 @@ function validPayload() {
     latest: {
       reportDate: latest.reportDate,
       asOf: latest.asOf,
-      pacific: { asOf: latest.asOf, ...latest.pacific, vessels: [PACIFIC_ROW] },
-      atlantic: { asOf: latest.asOf, ...latest.atlantic, vessels: [ATLANTIC_ROW] },
-      carrier: { ...latest.carrier, vessels: [CARRIER_ROW] },
+      pacific: { asOf: latest.asOf, ...latest.pacific, vessels: [{ ...PACIFIC_ROW }] },
+      atlantic: { asOf: latest.asOf, ...latest.atlantic, vessels: [{ ...ATLANTIC_ROW }] },
+      carrier: { ...latest.carrier, vessels: [{ ...CARRIER_ROW }] },
       longline: {
         vessels: [{
           name: 'TEST LONGLINE',
@@ -96,8 +97,16 @@ function validPayload() {
     daily: [first, latest],
     dailySeries: {
       dates: [first.reportDate, latest.reportDate],
-      pacific: { totalMt: [first.pacific.dailyMt, latest.pacific.dailyMt], vessels: { 'S/EXP': [0, 30] } },
-      atlantic: { totalMt: [first.atlantic.dailyMt, latest.atlantic.dailyMt], vessels: { 'P/MAS': [null, 12] } },
+      pacific: {
+        totalMt: [first.pacific.dailyMt, latest.pacific.dailyMt],
+        vessels: { 'S/EXP': [0, 30] },
+        lastLoadIncreaseDates: { 'S/EXP': latest.reportDate },
+      },
+      atlantic: {
+        totalMt: [first.atlantic.dailyMt, latest.atlantic.dailyMt],
+        vessels: { 'P/MAS': [null, 12] },
+        lastLoadIncreaseDates: { 'P/MAS': null as string | null },
+      },
     },
     quality: {
       reconciliationChecks: [...checks(first.reportDate), ...checks(latest.reportDate)],
@@ -178,6 +187,20 @@ describe('fleet daily full-source contract', () => {
     expect(() => validateFleetDailySourcePayload(reportedDrift)).toThrow();
   });
 
+  it('accepts a header rounding residual only within the printed-digit tolerance', () => {
+    // 2026-09-11 보고 실측: 운반선 머리글 7,684.1(소수 1자리) 대 상세 행 합 7,684.13.
+    // 허용 폭은 인쇄된 마지막 자리의 절반(0.05)이라 일치로 본다. 정수 인쇄의 폭(0.001)이면 불일치다.
+    // 최신 보고는 상세 행과 대조되므로 이전 보고(index 2 = 첫 보고의 carrier.loadedMt)에 싣는다.
+    const rounded = validPayload();
+    Object.assign(rounded.quality.reconciliationChecks[2], { reportedMt: 7_684.1, knownRowsMt: 7_684.13, toleranceMt: 0.05 });
+    Object.assign(rounded.daily[0].carrier, { loadedTotalMt: 7_684.1, loadedTotalMtRaw: '7,684.1' });
+    expect(() => validateFleetDailySourcePayload(rounded)).not.toThrow();
+
+    const tooTight = structuredClone(rounded);
+    tooTight.quality.reconciliationChecks[2].toleranceMt = 0.001;
+    expect(() => validateFleetDailySourcePayload(tooTight)).toThrow();
+  });
+
   it('rejects coordinated count changes and latest detail-check drift', () => {
     const countDrift = validPayload();
     countDrift.quality.counts.reconciliationCompleteChecks -= 1;
@@ -197,7 +220,7 @@ describe('fleet daily full-source contract', () => {
   it.runIf(existsSync(PRIVATE_SOURCE))('validates the complete ignored Drive-derived source locally', () => {
     const payload = JSON.parse(readFileSync(PRIVATE_SOURCE, 'utf8'));
     const parsed = validateFleetDailySourcePayload(payload);
-    expect(parsed._meta.reportCount).toBe(154);
-    expect(parsed.quality.reconciliationChecks).toHaveLength(616);
+    expect(parsed._meta.reportCount).toBe(155);
+    expect(parsed.quality.reconciliationChecks).toHaveLength(620);
   });
 });

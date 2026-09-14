@@ -13,11 +13,11 @@ describe('FleetCommandCenter daily operations', () => {
   it('renders the latest daily report as the hero KPI source', () => {
     const markup = renderToStaticMarkup(React.createElement(FleetCommandCenter));
 
-    expect(markup).toContain('2026-09-11 보고 · 2026-09-10 조업 기준');
+    expect(markup).toContain('2026-09-14 보고 · 2026-09-13 조업 기준');
     // 9월 첫 보고라 일간과 월간 누계가 같은 295 MT다.
-    expect(markup).toContain('data-kpi-value="500"');
-    expect(markup).toContain('data-kpi-value="84370.8"');
-    expect(markup).toContain('data-kpi-value="7684.1"');
+    expect(markup).toContain('data-kpi-value="166"');
+    expect(markup).toContain('data-kpi-value="85441.8"');
+    expect(markup).toContain('data-kpi-value="7684.13"');
   });
 
   it('renders public deltas and fail-closed quality coverage without private schedules', () => {
@@ -25,12 +25,12 @@ describe('FleetCommandCenter daily operations', () => {
 
     for (const value of [
       // 9/2 기준: 태평양 전일 대비 0(175→175), 대서양 +75, 합계 +75
-      '+396 (MT)', 'SYNCED',
-      '전체 보고 154건', '전기간 검산 616회', '완전 검산 616회', '미보고 포함 0회 / 0문서',
+      '-334 (MT)', 'SYNCED',
+      '전체 보고 155건', '전기간 검산 620회', '완전 검산 620회', '미보고 포함 0회 / 0문서',
       // 20/18 이었다가 14/12 로 줄었다 - 운반선 머리글의 0.03 반올림 잔차 6건이
       // 불일치로 잡히던 것을 인쇄 자릿수 허용 폭으로 걸러냈다 (2026-09-07)
       '부분합 차이 전체 14건 / 12문서', '확정 불일치 14건 / 12문서', '미보고 포함 차이 0건 / 0문서',
-      '중복 선박 행 4건', '좌표 형식 이슈 6건', '연승 구역 미기재 15건',
+      '중복 선박 행 4건', '좌표 형식 이슈 6건', '연승 구역 미기재 16건',
       '최신 상세 행 검산 일치',
     ]) {
       expect(markup).toContain(value);
@@ -107,11 +107,9 @@ describe('FleetCommandCenter daily operations', () => {
     expect(markup).toContain('최신 상세 행 검산 일치');
     expect(markup).not.toContain('최신 상세 행 확인 필요');
 
-    const carrier = fleetDailyPublicReconciliation.carrierLoaded;
-    expect(carrier.matches).toBe(true);
-    // 잔차가 0 이라서 통과한 게 아니라, 인쇄 자릿수 안이라서 통과한 것이다
-    expect(carrier.reportedMt).not.toBe(carrier.rowsMt);
-    expect(Math.abs(Number(carrier.reportedMt) - Number(carrier.rowsMt))).toBeLessThanOrEqual(0.05);
+    // 잔차 자체는 머리글 인쇄 자릿수에 따라 날마다 있다 없다 한다(9/14 는 0). 허용 폭 판정은
+    // fleet-daily-source-contract 테스트가 9/11 실측값(7,684.1 대 7,684.13)으로 고정해 지킨다.
+    expect(fleetDailyPublicReconciliation.carrierLoaded.matches).toBe(true);
   });
 
   it('주간과 월간의 차이가 8월 31일 하루치로 설명된다', () => {

@@ -385,7 +385,7 @@ export function FleetIdleVesselPanel() {
     <div style={{ marginTop: 16 }}>
       <h4 style={{ margin: '0 0 8px', fontSize: '0.9rem', fontWeight: 700, color: 'var(--text-main)' }}>
         가동 중단 선박 <span style={{ fontWeight: 400, color: 'var(--text-muted)', fontSize: '0.78rem' }}>
-          어획 공백 {FLEET_IDLE_THRESHOLD_DAYS}보고일 이상
+          어획·적재 증가 공백 {FLEET_IDLE_THRESHOLD_DAYS}보고일 이상
         </span>
       </h4>
       {idle.map((row) => {
@@ -408,7 +408,9 @@ export function FleetIdleVesselPanel() {
               </span>
             </div>
             <p style={{ margin: '4px 0 0', fontSize: '0.78rem', color: 'var(--text-muted)', lineHeight: 1.6 }}>
-              마지막 어획 {row.lastCatchDate} · 보고일 일평균 {row.dailyAverageMt} (MT) ·
+              마지막 어획 {row.lastCatchDate}
+              {row.lastLoadIncreaseDate && row.lastLoadIncreaseDate > row.lastCatchDate ? ` · 마지막 적재 증가 ${row.lastLoadIncreaseDate}` : ''} ·
+              보고일 일평균 {row.dailyAverageMt} (MT) ·
               기회손실 약 {row.forgoneMt.toLocaleString('ko-KR')} (MT) ·
               해역 누계 비중 {row.regionSharePct}%
             </p>
