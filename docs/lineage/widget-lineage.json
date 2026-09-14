@@ -1,9 +1,9 @@
 {
  "_meta": {
   "entry": "app/page.tsx",
-  "files": 268,
+  "files": 270,
   "widgets": 114,
-  "dataFiles": 241,
+  "dataFiles": 246,
   "generator": "scripts/widget_lineage.py"
  },
  "widgetToData": {
@@ -616,6 +616,7 @@
     "lib/data/company-tecopesca.ts",
     "lib/data/company-thaiunion-skus.ts",
     "lib/data/company-thaiunion.ts",
+    "lib/data/company-tog.ts",
     "lib/data/company-trimarine.ts",
     "lib/data/company-umios.ts"
    ],
@@ -773,6 +774,10 @@
     "public/data/companies/thaiunion_skus_v1.json",
     "public/data/companies/thaiunion_tables_v1.json",
     "public/data/companies/thaiunion_v1.json",
+    "public/data/companies/tog_figures_v1.json",
+    "public/data/companies/tog_prose_v1.json",
+    "public/data/companies/tog_tables_v1.json",
+    "public/data/companies/tog_v1.json",
     "public/data/companies/trimarine_figures_v1.json",
     "public/data/companies/trimarine_prose_v1.json",
     "public/data/companies/trimarine_tables_v1.json",
@@ -1089,10 +1094,12 @@
   },
   "components/market-understanding/TunaIndustryDashboard.tsx": {
    "dataModules": [
+    "lib/data/tuna-industry-tables.ts",
     "lib/data/tuna-industry.ts",
     "lib/data/valuechain-companies.ts"
    ],
    "dataFiles": [
+    "lib/data/tuna-tables.json",
     "public/data/kofa_fleet_age_v1.json",
     "public/data/kofa_insights_v1.json",
     "public/data/kofa_series_v1.json",
@@ -1283,6 +1290,9 @@
   ],
   "lib/data/squid-tables.json": [
    "components/market-understanding/SquidIndustryDashboard.tsx"
+  ],
+  "lib/data/tuna-tables.json": [
+   "components/market-understanding/TunaIndustryDashboard.tsx"
   ],
   "lib/data/tunafarm-tables.json": [
    "components/market-understanding/TunafarmIndustryDashboard.tsx"
@@ -1789,6 +1799,18 @@
   "public/data/companies/thaiunion_v1.json": [
    "components/market-understanding/CompanyAnatomyDashboard.tsx",
    "components/market-understanding/ThaiUnionCharts.tsx"
+  ],
+  "public/data/companies/tog_figures_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/tog_prose_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/tog_tables_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/tog_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
   ],
   "public/data/companies/trimarine_figures_v1.json": [
    "components/market-understanding/CompanyAnatomyDashboard.tsx"

@@ -38,6 +38,7 @@ import majesticRaw from '@/public/data/companies/majestic_figures_v1.json';
 import scaRaw from '@/public/data/companies/sca_figures_v1.json';
 import ghanaRaw from '@/public/data/companies/ghana_figures_v1.json';
 import azoresRaw from '@/public/data/companies/azores_figures_v1.json';
+import togRaw from '@/public/data/companies/tog_figures_v1.json';
 
 /**
  * 조사보고서 그림 인테이크 — 팩샷·차트·문서 캡처.
@@ -114,6 +115,7 @@ const INTAKES: Record<string, Intake> = {
   sca: scaRaw as unknown as Intake,
   ghana: ghanaRaw as unknown as Intake,
   azores: azoresRaw as unknown as Intake,
+  tog: togRaw as unknown as Intake,
 };
 
 export const REPORT_FIGURE_COMPANIES = Object.keys(INTAKES);

@@ -38,7 +38,7 @@
    "isoWeek": 52,
    "source": "PANOFI 주간동향20251223.docx",
    "sha256": "6516dc628f4aca180161a091a3fba6934fe1eff78b58c9accc23d06d1784142e",
-   "author": "김평회 법인장",
+   "author": "법인장",
    "statedYearMismatch": false,
    "fleetStatus": "detailed",
    "ownVessels": [
@@ -132,7 +132,7 @@
    "isoWeek": 1,
    "source": "PANOFI 주간동향20251230.docx",
    "sha256": "9f411e4482a1f3ffaf8832371a210434d505063c7d37666475808c9f2fa0dad0",
-   "author": "김평회 법인장",
+   "author": "법인장",
    "statedYearMismatch": false,
    "fleetStatus": "detailed",
    "ownVessels": [
@@ -234,7 +234,7 @@
    "isoWeek": 2,
    "source": "PANOFI 주간동향20260106.docx",
    "sha256": "fb497a312ff3ca4f142e73045ca71a25b7ce033fc384597145b3da0d9549eca6",
-   "author": "김평회 법인장",
+   "author": "법인장",
    "statedYearMismatch": true,
    "fleetStatus": "detailed",
    "ownVessels": [
@@ -368,7 +368,7 @@
    "isoWeek": 3,
    "source": "PANOFI 주간동향20260113.docx",
    "sha256": "4c0f72c77e0ba21f4fa6b6592ccd06e1c8ddd08c77e18402da62480a03052dfc",
-   "author": "김평회 법인장",
+   "author": "법인장",
    "statedYearMismatch": true,
    "fleetStatus": "detailed",
    "ownVessels": [
@@ -514,7 +514,7 @@
    "isoWeek": 4,
    "source": "PANOFI 주간동향20260120.docx",
    "sha256": "2fb8d81b3dc1717cbce8bf9dae1397e1c8d09d4fd52000ea2ead16696e744349",
-   "author": "김평회 법인장",
+   "author": "법인장",
    "statedYearMismatch": true,
    "fleetStatus": "detailed",
    "ownVessels": [
@@ -624,7 +624,7 @@
    "isoWeek": 5,
    "source": "PANOFI 주간동향20260127.docx",
    "sha256": "00f87f3f2391c174e882b0e5c3459d807a99c5d3dccc0f9872d77d55eba67e85",
-   "author": "김평회 법인장",
+   "author": "법인장",
    "statedYearMismatch": true,
    "fleetStatus": "detailed",
    "ownVessels": [
@@ -726,7 +726,7 @@
    "isoWeek": 6,
    "source": "PANOFI 주간동향20260203.docx",
    "sha256": "6408ab02d617305c6320cb8b8d6df6671ea5d978ff1eb5cab1fb1645cb202918",
-   "author": "김평회 법인장",
+   "author": "법인장",
    "statedYearMismatch": true,
    "fleetStatus": "detailed",
    "ownVessels": [
@@ -836,7 +836,7 @@
    "isoWeek": 7,
    "source": "PANOFI 주간동향20260210.docx",
    "sha256": "fb1b1905f24d5d121416a9395456f5081644a230192288b0b20d5a012aaa1705",
-   "author": "김평회 법인장",
+   "author": "법인장",
    "statedYearMismatch": true,
    "fleetStatus": "detailed",
    "ownVessels": [
@@ -962,7 +962,7 @@
    "isoWeek": 8,
    "source": "PANOFI 주간동향20260217.docx",
    "sha256": "dbc75dabff32828386b433990679563f6f168ac70786033dc63c0458ec487f63",
-   "author": "김평회 법인장",
+   "author": "법인장",
    "statedYearMismatch": true,
    "fleetStatus": "detailed",
    "ownVessels": [
@@ -1088,7 +1088,7 @@
    "isoWeek": 9,
    "source": "PANOFI 주간동향20260224.docx",
    "sha256": "1feb7ab02081d89f0136295406785ba5d804d962171e65df58eaa5a3db16c082",
-   "author": "김평회 법인장",
+   "author": "법인장",
    "statedYearMismatch": true,
    "fleetStatus": "detailed",
    "ownVessels": [
@@ -1214,7 +1214,7 @@
    "isoWeek": 10,
    "source": "PANOFI 주간동향20260303.docx",
    "sha256": "7d441434b511549fd2bd301c6b064f8064eb36990fa965034e41403a3d4dcd4a",
-   "author": "김평회 법인장",
+   "author": "법인장",
    "statedYearMismatch": true,
    "fleetStatus": "nominal",
    "ownVessels": [],
@@ -1302,7 +1302,7 @@
    "isoWeek": 11,
    "source": "PANOFI 주간동향20260310.docx",
    "sha256": "9250cf2af75b2d265af164572cbd4eb677ff82a9b8121026ce560a6918410297",
-   "author": "김평회 법인장",
+   "author": "법인장",
    "statedYearMismatch": true,
    "fleetStatus": "nominal",
    "ownVessels": [],
@@ -1406,7 +1406,7 @@
    "isoWeek": 12,
    "source": "PANOFI 주간동향20260317.docx",
    "sha256": "314303e4d7a93fc8f4f43854dee8ae4b6f88fd2d440e19fc69ad5d2570881dee",
-   "author": "김평회 법인장",
+   "author": "법인장",
    "statedYearMismatch": true,
    "fleetStatus": "detailed",
    "ownVessels": [
@@ -1557,7 +1557,7 @@
    "isoWeek": 13,
    "source": "PANOFI 주간동향20260324.docx",
    "sha256": "86681af09a5288798bc00f1534ddbc5bc6850a635a4f06631146726f4ef23771",
-   "author": "김평회 법인장",
+   "author": "법인장",
    "statedYearMismatch": true,
    "fleetStatus": "detailed",
    "ownVessels": [
@@ -1713,7 +1713,7 @@
    "isoWeek": 14,
    "source": "PANOFI 주간동향20260331.docx",
    "sha256": "239266eb0449dd6c92432cd560f586c5d1df46c25c122d0c1111887246dbbb79",
-   "author": "김평회 법인장",
+   "author": "법인장",
    "statedYearMismatch": true,
    "fleetStatus": "detailed",
    "ownVessels": [
@@ -1877,7 +1877,7 @@
    "isoWeek": 15,
    "source": "PANOFI 주간동향20260407.docx",
    "sha256": "9d50d8fe99fe2a6187fcda6f8cc68a8a33afc65f81df2b20710c3ff66f078394",
-   "author": "김평회 법인장",
+   "author": "법인장",
    "statedYearMismatch": false,
    "fleetStatus": "detailed",
    "ownVessels": [
@@ -2041,7 +2041,7 @@
    "isoWeek": 16,
    "source": "PANOFI 주간동향20260414.docx",
    "sha256": "2207da556f9927c0f94ad4c7f5bf149f565629604ff24333a2c34874ac6ebc57",
-   "author": "김평회 법인장",
+   "author": "법인장",
    "statedYearMismatch": false,
    "fleetStatus": "detailed",
    "ownVessels": [
@@ -2229,7 +2229,7 @@
    "isoWeek": 17,
    "source": "PANOFI 주간동향20260421.docx",
    "sha256": "77b7a9449204adf879280a316a4b9c71117a06468fe48f0d92be695532f9b537",
-   "author": "김평회 법인장",
+   "author": "법인장",
    "statedYearMismatch": false,
    "fleetStatus": "detailed",
    "ownVessels": [
@@ -2417,7 +2417,7 @@
    "isoWeek": 18,
    "source": "PANOFI 주간동향20260428.docx",
    "sha256": "5f5a15f1c739b4e8585841e9f26a5c07d4666f6007afa7a5823662bc937de76c",
-   "author": "김평회 법인장",
+   "author": "법인장",
    "statedYearMismatch": false,
    "fleetStatus": "detailed",
    "ownVessels": [
@@ -2605,7 +2605,7 @@
    "isoWeek": 19,
    "source": "PANOFI 주간동향20260505.docx",
    "sha256": "5ecab2d59b0c752a1b50f91cf2e295d4419033ada0f28cf7a8ba9e5a3eb31c24",
-   "author": "김평회 법인장",
+   "author": "법인장",
    "statedYearMismatch": false,
    "fleetStatus": "nominal",
    "ownVessels": [],
@@ -2773,7 +2773,7 @@
    "isoWeek": 20,
    "source": "PANOFI 주간동향20260512.docx",
    "sha256": "b4dcf532eb20f264ce6a5a2438490a41ad33d9ac2faa4431208f0935c44a3cf1",
-   "author": "김평회 법인장",
+   "author": "법인장",
    "statedYearMismatch": false,
    "fleetStatus": "nominal",
    "ownVessels": [],
@@ -2885,7 +2885,7 @@
    "isoWeek": 21,
    "source": "PANOFI 주간동향20260519.docx",
    "sha256": "952b22a823f8c54858e335a1332b9e90d4329589eebf9803f1024a86d67c0968",
-   "author": "김평회 법인장",
+   "author": "법인장",
    "statedYearMismatch": false,
    "fleetStatus": "nominal",
    "ownVessels": [],
@@ -3029,7 +3029,7 @@
    "isoWeek": 22,
    "source": "PANOFI 주간동향20260526.docx",
    "sha256": "322cc09cf10a81c32a8b22905cf23f3de3477de79ab831931bea9a073ccb0f10",
-   "author": "김평회 법인장",
+   "author": "법인장",
    "statedYearMismatch": false,
    "fleetStatus": "nominal",
    "ownVessels": [],
@@ -3149,7 +3149,7 @@
    "isoWeek": 23,
    "source": "PANOFI 주간동향20260602.docx",
    "sha256": "28f9c3e8e2e9a29c913d00fe10c2773cb1236d932b52588105b6ad80845ba28e",
-   "author": "김평회 법인장",
+   "author": "법인장",
    "statedYearMismatch": false,
    "fleetStatus": "detailed",
    "ownVessels": [
@@ -3301,7 +3301,7 @@
    "isoWeek": 24,
    "source": "PANOFI 주간동향20260609.docx",
    "sha256": "0c32509b4d2a7996bc8b70355d71e218dcd58dbe5458fe67d95f3fa1c839f5a8",
-   "author": "김평회 법인장",
+   "author": "법인장",
    "statedYearMismatch": false,
    "fleetStatus": "detailed",
    "ownVessels": [
@@ -3464,7 +3464,7 @@
    "isoWeek": 25,
    "source": "PANOFI 주간동향20260616.docx",
    "sha256": "c9673e2d0bd0ef663f50bff3311b52e2b3ce494978d9292f1dc1b13dcf2f82af",
-   "author": "김평회 법인장",
+   "author": "법인장",
    "statedYearMismatch": false,
    "fleetStatus": "detailed",
    "ownVessels": [
@@ -3606,7 +3606,7 @@
    "isoWeek": 26,
    "source": "PANOFI 주간동향20260623.docx",
    "sha256": "dfccd6cd7d08d775fdc33c9283f017f8fc428544d88dabc250a3e6655b453b5c",
-   "author": "김평회 법인장",
+   "author": "법인장",
    "statedYearMismatch": false,
    "fleetStatus": "detailed",
    "ownVessels": [
@@ -3716,7 +3716,7 @@
    "isoWeek": 27,
    "source": "PANOFI 주간동향20260630.docx",
    "sha256": "08355bb37079bc36b94ce8bd6f59105ec88d96c06eb888a6bba3f0354d858362",
-   "author": "김평회 법인장",
+   "author": "법인장",
    "statedYearMismatch": false,
    "fleetStatus": "detailed",
    "ownVessels": [
@@ -3818,7 +3818,7 @@
    "isoWeek": 28,
    "source": "PANOFI 주간동향20260707.docx",
    "sha256": "7a1b82c8fff94b536f59c359a707e0327875f396e59e8fb08cbf24df5f62a59a",
-   "author": "김평회 법인장",
+   "author": "법인장",
    "statedYearMismatch": false,
    "fleetStatus": "detailed",
    "ownVessels": [
@@ -3982,7 +3982,7 @@
    "isoWeek": 29,
    "source": "PANOFI 주간동향20260714.docx",
    "sha256": "3dee16a78203b98ef525f5ea448e203cd1c2e9732838d7de277632c3004caed3",
-   "author": "김평회 법인장",
+   "author": "법인장",
    "statedYearMismatch": false,
    "fleetStatus": "detailed",
    "ownVessels": [
@@ -4145,7 +4145,7 @@
    "isoWeek": 30,
    "source": "PANOFI 주간동향20260721.docx",
    "sha256": "34ddba1366b218c96f29564e3d4527c2558101a00e1b356ff295a8392146df28",
-   "author": "김평회 법인장",
+   "author": "법인장",
    "statedYearMismatch": false,
    "fleetStatus": "nominal",
    "ownVessels": [],
@@ -4289,7 +4289,7 @@
    "isoWeek": 31,
    "source": "PANOFI 주간동향20260728.docx",
    "sha256": "6a8f5b05276901fc22149ac35aa9c2097fcbf214aaf78a10b193ede64042188f",
-   "author": "김평회 법인장",
+   "author": "법인장",
    "statedYearMismatch": false,
    "fleetStatus": "detailed",
    "ownVessels": [
@@ -4433,7 +4433,7 @@
    "isoWeek": 32,
    "source": "PANOFI 주간동향20260804.docx",
    "sha256": "ec637cb6674994dd2811fb1748cbcd6e648af4fae734575e6c9b73b6cc207c23",
-   "author": "김평회 법인장",
+   "author": "법인장",
    "statedYearMismatch": false,
    "fleetStatus": "detailed",
    "ownVessels": [
@@ -4553,7 +4553,7 @@
    "isoWeek": 33,
    "source": "PANOFI 주간동향20260811.docx",
    "sha256": "8346b0f4dd5a81e93136c599010a56d348f75c192e96151d2874c990564af42e",
-   "author": "김평회 법인장",
+   "author": "법인장",
    "statedYearMismatch": false,
    "fleetStatus": "detailed",
    "ownVessels": [
@@ -4697,7 +4697,7 @@
    "isoWeek": 34,
    "source": "PANOFI 주간동향20260818.docx",
    "sha256": "7f177a1ae541cc381fe8c328c622cf2fa1d1ad41c2d6c14486d239a643836d75",
-   "author": "김평회 법인장",
+   "author": "법인장",
    "statedYearMismatch": false,
    "fleetStatus": "nominal",
    "ownVessels": [],
@@ -4809,7 +4809,7 @@
    "isoWeek": 35,
    "source": "PANOFI 주간동향20260825.docx",
    "sha256": "2d6f19d9997dd275d80a61b115fc16cabfdb0d9a238ec09c7c5edb7b3c0fb3c2",
-   "author": "김평회 법인장",
+   "author": "법인장",
    "statedYearMismatch": false,
    "fleetStatus": "detailed",
    "ownVessels": [
@@ -4932,7 +4932,7 @@
    "isoWeek": 36,
    "source": "PANOFI 주간동향20260901.docx",
    "sha256": "02c69fa4af978a1fc48490f01c793c6de7d1efca8d41658c4e6884768641b3e2",
-   "author": "김평회 법인장",
+   "author": "법인장",
    "statedYearMismatch": false,
    "fleetStatus": "detailed",
    "ownVessels": [
@@ -5076,7 +5076,7 @@
    "isoWeek": 37,
    "source": "PANOFI 주간동향20260908.docx",
    "sha256": "625fc4c7d32dc4701eb05060880a953cc21909f78717ff3cb0ce6f92b01dc947",
-   "author": "김평회 법인장",
+   "author": "법인장",
    "statedYearMismatch": false,
    "fleetStatus": "detailed",
    "ownVessels": [
