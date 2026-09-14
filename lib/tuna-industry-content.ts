@@ -159,7 +159,7 @@ const STAGE_01: StageNarrative = {
       value: '1년 · 약 2kg',
       asOf: '2026년 8월 수집',
       source: '어종 가이드 (Atuna 참조 페이지)',
-      grade: 'B',
+      grade: 'C',
       note: '흔한 크기 40~80cm. 빨리 크고 빨리 성숙해 선망 대량어획과 통조림에 맞는다',
     },
     {
@@ -167,7 +167,7 @@ const STAGE_01: StageNarrative = {
       value: '3~4년 · 약 25kg',
       asOf: '2026년 8월 수집',
       source: '어종 가이드 (Atuna 참조 페이지)',
-      grade: 'B',
+      grade: 'C',
       note: '최대 230cm·210kg·15년. 늦게 크는 만큼 어획 압력에 취약하고 사시미로 간다',
     },
   ],
@@ -960,7 +960,7 @@ const STAGE_07: StageNarrative = {
       value: '0.391 ppm 대 1.0 ppm',
       asOf: '2026년 8월 수집',
       source: '식품안전 설명 (Atuna 참조 페이지)',
-      grade: 'B',
+      grade: 'C',
       note: '독성 수준은 2.3 ppm. 2차 인용이므로 규격서에 옮기려면 규제기관 원문을 확인하라',
     },
     {
@@ -968,7 +968,7 @@ const STAGE_07: StageNarrative = {
       value: '30 ppm (규제 개체분석 50 ppm)',
       asOf: '2026년 8월 수집',
       source: '식품안전 설명 (Atuna 참조 페이지)',
-      grade: 'B',
+      grade: 'C',
       note: '가열·세척에서 오를 것을 감안해 규제보다 조인다. 유럽연합 출고 기준은 평균 100·최대 200 mg/kg',
     },
     {
@@ -1155,7 +1155,7 @@ const CROSS_B: StageNarrative = {
       value: '위생절차 → 공정예방 → 국제규격 → 유통사 규격 → 사회책임',
       asOf: '2026년 8월 수집',
       source: '가공 인증·사회책임 인증 제도 설명 (Atuna 참조 페이지)',
-      grade: 'B',
+      grade: 'C',
       note: '국제 식품안전 규격을 취득하면 영국·독일·프랑스 유통사 규격도 함께 충족된다',
     },
     {
@@ -1187,7 +1187,7 @@ const CROSS_B: StageNarrative = {
       value: '업계 기업 · 과학자 · 세계자연기금의 연합 (2009년 설립)',
       asOf: '2026년 8월 수집',
       source: 'Atuna 참조 페이지',
-      grade: 'B',
+      grade: 'C',
       note: '이 페이지의 선단 수치 출처다. 밖에서 감시하는 단체가 아니라 업계가 함께 만든 기구라는 점을 알고 읽어야 한다',
     },
     {
