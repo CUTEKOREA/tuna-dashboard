@@ -170,6 +170,10 @@ export const HQ_POINTS: GeoPoint[] = [
     lat: 37.8060, lng: -25.5780,
     basis: 'ⅩⅬ · 이 편은 법인이 다섯이고 네 섬(상미겔·상조르즈·테르세이라·피쿠)에 흩어져 있어 한 점으로 모을 본점이 없다 — 대표 좌표를 라부드페이시(Ribeira Grande, 상미겔섬 북쪽 해안 · 마을 단위 근사)에 둔다. 발행본 §04 가 COFACO 모회사(NIPC 500066175)와 공장 법인 COFACO Açores(NIPC 512050147)의 등기 주소를 같은 번지로 적고, 이 공장이 2021~2024 보전금 신청액 5,382,219 € 로 나머지 넷의 합(4,405,572 €)보다 크다',
     note: '핀이 하나인 것은 편이 하나이기 때문이지 COFACO 가 다섯의 본사여서가 아니다 — 카드 키 azores 는 COFACO Açores · Santa Catarina(SCA 운영) · Pescatum · Sociedade Corretora · Conseran 다섯 법인을 함께 본다 · 공장 핀과 겹치면 아크가 남의 핀에서 출발하므로 본사 핀을 마을 안쪽으로 조금 띄웠다 · 본토 대조군 Ramirez(Lavra, Matosinhos)는 이 편의 대조군이라 본사 핀으로 세지 않는다' },
+  { company: 'tog', numeral: 'ⅩⅬⅠ', kind: 'hq', label: 'Thunnus Overseas Group — 퓌토', country: '프랑스',
+    lat: 48.8891, lng: 2.2341,
+    basis: 'ⅩⅬⅠ · INSEE SIRENE 본점 「THE CURVE 48-50 AVENUE DU GENERAL DE GAULLE 92800 PUTEAUX」(2026-09-14 조회 · SIRENE 좌표) · TOG 는 프랑스 SAS(SIREN 508 805 058)이고 발행본 §01 이 2026-07-10 결정문의 예탁처를 낭테르 상사법원 등기소로 적는다(퓌토는 그 관할) · 발행본 §12 의 「Courbevoie, France」는 Open Food Facts 제조지 칸의 옛 사무소 표기다',
+    note: '공장이 없는 지주회사다 — 2021년 임시총회 결의록에 「현재 피고용인이 없다」 · 단독사원 PP THON(SIREN 823 942 347)은 콩카르노에 있고 선망 회사 CFTO 의 단독사원이기도 하다 · 본사 핀은 TOG 법인의 자리이지 선단이나 PP 그룹의 자리가 아니다' },
 ];
 
 /**
@@ -502,6 +506,21 @@ export const PLANT_POINTS: GeoPoint[] = [
     lat: 41.2580, lng: -8.7160,
     basis: 'ⅩⅬ · Rua do Passadouro 135, 4455-180 Lavra, Matosinhos(도로 단위 근사 좌표) · 승인시설 목록 C 234 1 P · RAMIREZ & Cª. (FILHOS), S.A.(NIPC 500226601) · **아소르스 다섯의 계열이 아니라 이 편이 견준 본토 대조군**이다',
     note: '크기가 없다 — 다섯에 쓴 역내산 톤수는 최외곽지역 보전금의 코드라 본토 공장에는 정의되지 않는다 · 부지 40,000 m² · 건물 20,000 m² · 라인 11개는 2013·2015·2022년 보도 수치다 · 공적 자금은 설비·공정 사업(RAMIREZ GREEN 신청 3,210,290.46 € · 승인 916,604.98 €)으로 받는다 · 캔의 「Desde 1853」은 등기로 확인되지 않는다 · 2022년 발행주식 전량 가압류 등기가 있으나 승인번호는 목록에 남아 있다' },
+  // ── ⅩⅬⅠ TOG — 공장 둘, 크기 없음 ─────────────────────────────────
+  //    크기를 비운다. 두 공장의 능력 값은 2004년 명판(SCODI 는 2005년 3월 폐쇄 전)이거나
+  //    문서마다 여섯 가지(PFOI)이고, 현행 명판·처리량은 공개 자료에 없다.
+  //    PFCI(110 PP · 브리디 항만구역)는 찍지 않는다 — 2016-11-25 단독주주 조기 해산 결의,
+  //    2020년 9월 기준 목록부터 번호가 없고 설비의 행방은 어느 공고에도 없다.
+  //    Airone Côte d'Ivoire(120 PP · 트레슈빌)도 찍지 않는다 — TOG 계열이 아니라 이탈리아
+  //    Airone S.r.l. 의 자회사다.
+  { company: 'tog', numeral: 'ⅩⅬⅠ', kind: 'plant', label: 'SCODI 아비장 트레슈빌 어항', country: '코트디부아르',
+    lat: 5.2890, lng: -4.0060,
+    basis: 'ⅩⅬⅠ · 「Port de Pêche à Treichville」(발행본 §09 설비 명세 ① 위치 · 어항 단위 근사 좌표) · 유럽연합 제3국 수산시설 목록 100 PP(2013~2022-01-14 기준판) · Société des Conserves de Côte d\'Ivoire SA(RCCM CI-ABJ-1962-B-2597 · 자본 21억 FCFA) · CCO Pompon Rouge 품질표 생산지 「Côte d\'Ivoire 100PP」',
+    note: '크기가 없다 — 하루 250 t · 연 6만 t 은 2004년 명판이고 2005년 3월 폐쇄 전 공장의 값이다. 재가동 뒤 SCODI 의 명판과 처리량은 등기·유럽연합 목록·언론·업계 보고서에 없고, 「3대 캔공장」 합산 값에서 SCODI 한 곳의 몫으로 쪼갤 수 있는 값도 없다 · TOG 의 SCODI 지분율은 공고에 없다 — 2019년 4월 소집공고 의안 12번이 신주인수권을 TOG 에 배정했을 뿐이고 결의 결과가 아니다 · 아비장 공장의 원어를 CFTO 배가 대는지는 공개 기록에 나오지 않는다' },
+  { company: 'tog', numeral: 'ⅩⅬⅠ', kind: 'plant', label: 'PFOI 안치라나나', country: '마다가스카르',
+    lat: -12.2710, lng: 49.2950,
+    basis: 'ⅩⅬⅠ · 안치라나나(디에고수아레스) 항구 단위 근사 좌표 · Pêche et Froid Océan Indien · CCO Pompon Rouge 품질표 생산지 「MAD 111 SV」 · 유럽연합 목록 마다가스카르 섹션(냉동창고 3건 · 2017-04-21 「USINE 2」 신청) · ISSF 명부가 TOG 가공시설을 인도양 쪽 마다가스카르로 적는다',
+    note: '크기가 없다 — 능력 값이 문서마다 여섯 가지다(설계 5만 t 1991 · 명판 4만 t 2004 · 3.6만 t 2008 · 하루 200 t 2004 · 하루 150 t 2008~2010 · 기사의 연 4만 t). 실적에 가장 가까운 값은 2011년 유럽연합 보고서 표의 「연 생산 2만 t(2008~2010)」 하나다 · 1991년 3월 가동(마다가스카르 수산양식국 보고 · 세 라인 · 자가 발전소 · 냉동실 2.500 m³ 네 개) · 업계지 Atuna(2026-08-11)는 주로 CFTO 선박의 원어를 받는다고 썼다 · TOG 의 PFOI 지분율은 공고에 없다' },
 ];
 
 /**
@@ -634,6 +653,11 @@ export const NO_FLEET: { company: string; basis: string }[] = [
   //   기국으로 셀 척수도 없다: 흡수 뒤 선박 수를 적은 공개 원문이 없고, Friend of the Sea
   //   2020년 명부에 Santa Catarina·COFACO 가 판매권자로 붙은 배 한 척씩은 소유가 아니며
   //   2026년 명부의 선주는 개인·소기업이다. FLAG_STATES 는 count > 0 을 요구한다.
+  // ⅩⅬⅠ tog 도 NO_FLEET 에도 FLAG_STATES 에도 넣지 않는다 — 「선단 정보 없음」 칸이다.
+  //   0척이라고 쓰지 않는다: FFA 2011 표의 TOG 선망선 칸 「None」은 2011년 값이고, 지금은 같은
+  //   단독사원 PP THON 아래에 선망 회사 CFTO(IOTC 2025-02-28판 2024년 활동 선망선 8척 + 보조선 1척)가 있다.
+  //   CFTO 의 프랑스기를 TOG 기국으로 세지도 않는다: CFTO 는 TOG 의 자회사가 아니라 형제 법인이고,
+  //   아비장 공장의 원어를 CFTO 배가 대는지는 공개 기록에 나오지 않는다.
 ];
 
 /** 지도에 찍는 모든 점. */
