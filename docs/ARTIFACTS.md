@@ -43,6 +43,7 @@
 | ⅩⅩⅩⅦ | Majestic Seafood Corporation Limited (PNG 라에) | `majestic` | https://claude.ai/code/artifact/2a6f9899-a229-42a8-9764-3966f0570425 |
 | ⅩⅩⅩⅧ | Société de Conserverie en Afrique S.A. (세네갈 다카르 몰 10) | `sca` | https://claude.ai/code/artifact/48a2020b-adab-4fec-bd40-085111b2f10e |
 | ⅩⅩⅩⅨ | 가나 테마의 두 캐너리 (Cosmo Seafoods · Pioneer Food Cannery) | `ghana` | https://claude.ai/code/artifact/5a7dcdf7-1643-4fbb-98a7-b58ea33f942c |
+| ⅩⅬ | 아소르스의 다섯 캔공장 (COFACO Açores · Santa Catarina · Pescatum · Sociedade Corretora · Conseran) | `azores` | https://claude.ai/code/artifact/5e83fa40-faaa-4c9e-a968-bfb4f2b91b25 |
 
 그 밖 — 보고서 직판 랜딩 기획서 https://claude.ai/code/artifact/0f98e5a5-686b-4f47-b661-be5aa852f913
 
