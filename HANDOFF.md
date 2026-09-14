@@ -1,3 +1,10 @@
+> ✅ **2026-09-14 19:00 KST — PANOFI 주간동향 작성자 실명 제거** [CC]:
+> - `public/data/panofi/panofi_weekly.json` 38주 `author` 가 전부 «이름 직함» 이었다(화면 미사용). `scripts/extract_panofi.py` 에 `author_title()` 을 넣어 직함만 남기고, 기존 JSON 도 같은 함수로 변환했다(38줄, 포맷 indent=1 유지).
+> - `panofi-dashboard.test.ts` 에 «작성자는 공백 없는 직함» 가드 — 옛 데이터에서 실패, 수정 후 통과(55건).
+> - git 이력에는 이름이 남아 있다. 지우려면 이력 재작성이 필요해 하지 않았다.
+> - **발견, 미결정**: `/fleet` 주간 실적의 선장 실적표(`lib/fleet-operations-2026-08-23.ts` captain 20곳)가 선장 실명을 화면에 싣는다. 기능 자체가 선장별 순위라 직함 치환으로는 의미가 사라져 사용자 결정이 필요하다.
+> - 상태: 브랜치 `fix/panofi-author-title`. **프로덕션 미배포**.
+
 > 📰 **2026-09-12 — `/market` 2026-09-11 참치 데일리 브리핑 라이브 배포 완료** [CC/tuna-dashboard-publisher]:
 > - PR [#1040](https://github.com/CUTEKOREA/tuna-dashboard/pull/1040) squash 병합. main commit `cd5a4ac0` (브랜치 커밋 `23cee2ec`). 변경은 `public/data/tuna_daily_briefing.json` 한 파일뿐(+49/−78). 기준일 `2026-09-11`, 기사 **5건**. `lib/data/daily-briefing.ts` 는 main 과 동일.
 > - 게이트 3종: 감사 `AUDIT_PASS`(상위 세션) · 데이터 계약 재검 통과(date ISO 유효 · digest 5 ≥ 3 · articles 5 ≥ 3 · 빈 문자열 0 · SIT 숫자 다이제스트 1건 이상) · 변경분 존재. **워크트리 추적 블롭 3,404 개를 병합 전 main(`1029ac10`) 트리와 전수 대조해 차이가 브리핑 JSON 1건뿐임을 확인**했다 — `git status` 를 못 쓰는 세션이라 이 대조가 「변경분이 두 파일 밖으로 번지지 않았다」의 근거다.

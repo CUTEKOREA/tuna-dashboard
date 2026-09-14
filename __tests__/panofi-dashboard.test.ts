@@ -134,6 +134,15 @@ describe('파노피 데이터 인테이크', () => {
     expect(sum).toBe(last.receivables.totalCfa);
   });
 
+  it('주간동향 작성자는 직함만 남긴다', () => {
+    // 원문 「작성자」 칸은 «이름 직함» 이다. 저장소에 사람 이름을 두지 않는다 (2026-09-14 정리).
+    for (const w of weeks) {
+      if (w.author == null) continue;
+      expect(w.author, w.reportDate).not.toMatch(/\s/);
+      expect(w.author, w.reportDate).toMatch(/(장|이사|과장|부장|차장|대리|매니저)$/);
+    }
+  });
+
   it('주차가 보고일 오름차순으로 정렬돼 있다', () => {
     const dates = weeks.map((w) => w.reportDate);
     expect([...dates].sort()).toEqual(dates);

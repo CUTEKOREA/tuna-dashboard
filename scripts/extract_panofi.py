@@ -289,6 +289,13 @@ def parse_senegal(text: str) -> list[dict]:
     return rows
 
 
+def author_title(raw: str) -> str | None:
+    """「작성자」 칸에서 직함만 남긴다. 저장소에 사람 이름을 두지 않는다 — «홍길동 법인장» → «법인장».
+    직함 없이 이름만 적힌 칸은 버린다."""
+    parts = raw.split()
+    return parts[-1] if len(parts) > 1 else None
+
+
 def parse_week(path: Path) -> dict:
     text = docx_text(path)
     stamp = re.search(r"(\d{8})", path.name).group(1)
@@ -296,7 +303,7 @@ def parse_week(path: Path) -> dict:
     author = None
     m = re.search(r"작성자\s*\t?\s*([^\n\t]+)", text)
     if m:
-        author = m.group(1).strip()
+        author = author_title(m.group(1))
 
     # 원문 '일자'가 파일명과 어긋나는 주가 있다(2026년 보고에 2025년으로 오타).
     # 파일명 스탬프를 정본으로 쓰고 불일치는 플래그로 남겨 나중에 원본 대조를 돕는다.
