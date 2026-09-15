@@ -1,9 +1,9 @@
 {
  "_meta": {
   "entry": "app/page.tsx",
-  "files": 271,
+  "files": 272,
   "widgets": 114,
-  "dataFiles": 250,
+  "dataFiles": 254,
   "generator": "scripts/widget_lineage.py"
  },
  "widgetToData": {
@@ -590,6 +590,7 @@
     "lib/data/company-fcf.ts",
     "lib/data/company-frabelle.ts",
     "lib/data/company-frinsa.ts",
+    "lib/data/company-galapesca.ts",
     "lib/data/company-garavilla.ts",
     "lib/data/company-ghana.ts",
     "lib/data/company-hagoromo.ts",
@@ -682,6 +683,10 @@
     "public/data/companies/frinsa_prose_v1.json",
     "public/data/companies/frinsa_tables_v1.json",
     "public/data/companies/frinsa_v1.json",
+    "public/data/companies/galapesca_figures_v1.json",
+    "public/data/companies/galapesca_prose_v1.json",
+    "public/data/companies/galapesca_tables_v1.json",
+    "public/data/companies/galapesca_v1.json",
     "public/data/companies/garavilla_figures_v1.json",
     "public/data/companies/garavilla_prose_v1.json",
     "public/data/companies/garavilla_tables_v1.json",
@@ -1524,6 +1529,18 @@
   "public/data/companies/frinsa_v1.json": [
    "components/market-understanding/CompanyAnatomyDashboard.tsx",
    "components/market-understanding/FrinsaCharts.tsx"
+  ],
+  "public/data/companies/galapesca_figures_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/galapesca_prose_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/galapesca_tables_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/galapesca_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
   ],
   "public/data/companies/garavilla_figures_v1.json": [
    "components/market-understanding/CompanyAnatomyDashboard.tsx"

@@ -40,6 +40,7 @@ import ghanaRaw from '@/public/data/companies/ghana_prose_v1.json';
 import azoresRaw from '@/public/data/companies/azores_prose_v1.json';
 import togRaw from '@/public/data/companies/tog_prose_v1.json';
 import mauritiusRaw from '@/public/data/companies/mauritius_prose_v1.json';
+import galapescaRaw from '@/public/data/companies/galapesca_prose_v1.json';
 
 /**
  * 조사보고서 서술 전량 인테이크.
@@ -121,6 +122,7 @@ const INTAKES: Record<string, Intake> = {
   azores: azoresRaw as unknown as Intake,
   tog: togRaw as unknown as Intake,
   mauritius: mauritiusRaw as unknown as Intake,
+  galapesca: galapescaRaw as unknown as Intake,
   thaiunion: thaiunionRaw as unknown as Intake,
 };
 

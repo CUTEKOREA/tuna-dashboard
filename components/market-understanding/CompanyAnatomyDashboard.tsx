@@ -324,6 +324,10 @@ import {
   mauritiusMeta, mauritiusStats, mauritiusSourceNotes,
   equityBasis, shareGap, restatedRows,
 } from '@/lib/data/company-mauritius';
+import {
+  galapescaMeta, galapescaStats, galapescaSourceNotes,
+  leases, ownedVsLeased, production,
+} from '@/lib/data/company-galapesca';
 
 
 const ACCENT = '#c2410c';
@@ -4309,6 +4313,84 @@ const MAURITIUS_SPEC: CommoditySpec = {
   ].join(' · '),
 };
 
+const GALAPESCA_ACCENT = '#0e6a8c';
+
+/** 빌린 것 넷과 그 값. 건물 둘의 합보다 기계 한 건이 크다. */
+const GP_LEASE = leases();
+const GP_ASSET = ownedVsLeased();
+const GP_PROD = production();
+const GP_2024 = GP_PROD.연도별.find((y) => y.연도 === 2024)!;
+
+const GALAPESCA_SPEC: CommoditySpec = {
+  key: 'company-anatomy-galapesca',
+  title: '기업 해부: Galapesca',
+  subtitle:
+    '미국 매대에서 가장 많이 팔리는 참치 브랜드의 파우치는 미국령 사모아가 아니라 에콰도르 과야킬의 이 공장에서 나온다. 그런데 이 회사는 그 공장을 갖고 있지 않다 — 참치를 가공하는 건물 두 동과 창고 한 동, 그리고 기계와 설비를 네 계약으로 빌려 쓰고 그 안을 채운 설비만 자기 장부에 둔다. ' +
+    '배는 한 척도 없고 무형자산은 전 항목이 0이며 자기 브랜드도 없다. 매출의 여덟 할 넘게가 모회사 한 곳으로 가고 원어와 캔은 한국의 계열사에서 사 온다. ' +
+    '설비를 빌려주는 회사는 2000년에 이 회사에 그 설비를 판 바로 그 회사다.',
+  accent: GALAPESCA_ACCENT,
+  primaryKpi: {
+    label: `공장 두 동·창고 한 동·기계를 빌리는 데 2019년에 낸 임차료 — 임대인 ${GP_LEASE.계약.length}곳`,
+    value: GP_LEASE.합계_USD,
+    decimals: 0,
+    unit: `(US$ · ${GP_LEASE.계약.map((c) => `${c.임대인} ${c.연임차료_USD.toLocaleString('ko-KR')}`).join(' · ')}. 건물 둘의 합 ${GP_LEASE.건물합_USD.toLocaleString('ko-KR')} 보다 기계 한 건 ${GP_LEASE.기계_USD.toLocaleString('ko-KR')} 이 크다 — 빌린 것은 공간보다 생산 능력 쪽에 더 걸려 있다. 2018년 1월에 시작한 세 계약은 5년이라 2022년 말에 끝났고 그 뒤 계약의 임차료·기간은 공개된 제출본에 없다)`,
+    accent: GALAPESCA_ACCENT,
+  },
+  secondaryKpis: [
+    {
+      label: '빌린 자리에 회사가 자기 이름으로 얹은 것 — 2018년 말 유형자산 순장부',
+      value: GP_ASSET.자기유형자산_USD,
+      decimals: 0,
+      unit: `(US$ · 하루 뒤 장부에 올라온 사용권자산 ${GP_ASSET.사용권자산_USD.toLocaleString('ko-KR')} 의 ${GP_ASSET.배}배다. 이 안에 토지 ${GP_ASSET.토지_USD.toLocaleString('ko-KR')} 이 들어 있다 — 건물과 기계는 빌렸지만 토지는 갖고 있다. 다만 「건물·설비·개량」이 한 열로 묶여 있어 그 가운데 임차공장 개량분이 얼마인지는 갈리지 않는다. 사용권자산은 그해 말 ${GP_ASSET.사용권자산_기말_USD.toLocaleString('ko-KR')} 으로 내려간다)`,
+    },
+    {
+      label: '매출 가운데 모회사 StarKist Co. 앞 비중 (2019 · 감사받은 주석)',
+      value: Number(galapescaStats['StarKist향_비중_2019_pct']),
+      decimals: 2,
+      unit: `(% · 2018년 ${galapescaStats['StarKist향_비중_2018_pct']} % · 2017년 ${galapescaStats['StarKist향_비중_2017_pct']} %. 2019년은 같은 방식으로 계산하면 ${galapescaStats['StarKist향_재계산_2019_pct']} %(${Number(galapescaStats['StarKist_완제품매출_2019_USD']).toLocaleString('ko-KR')} + ${Number(galapescaStats['StarKist_원료매출_2019_USD']).toLocaleString('ko-KR')} ÷ ${Number(galapescaStats['매출_2019_USD']).toLocaleString('ko-KR')})여서 0,07 %p 어긋나므로 주석 수치를 쓰되 계산값을 같이 적는다. 이 비중은 상대방 기준이고 지역 북미 비중은 분모가 다른 별개의 수다)`,
+    },
+    {
+      label: '2024년 이 공장이 만든 파우치 — 같은 해 캔의',
+      value: GP_2024.배,
+      decimals: 1,
+      unit: `(배 · 파우치 ${GP_2024.파우치_t.toLocaleString('ko-KR')} t 대 캔 ${GP_2024.캔_t.toLocaleString('ko-KR')} t. 2023년 ${GP_PROD.연도별[0].파우치_t.toLocaleString('ko-KR')}/${GP_PROD.연도별[0].캔_t.toLocaleString('ko-KR')} · 2025년 ${GP_PROD.연도별[2].파우치_t.toLocaleString('ko-KR')}/${GP_PROD.연도별[2].캔_t.toLocaleString('ko-KR')} t 이고, 2026년 1분기에는 파우치 ${Number(galapescaStats['파우치_2026_1Q_t']).toLocaleString('ko-KR')} t 에 캔 ${galapescaStats['캔_2026_1Q_t']} t 이다 — 같은 분기 미국령 사모아 공장의 파우치는 ${Number(galapescaStats['사모아_파우치_2026_1Q_t']).toLocaleString('ko-KR')} t 다. 모회사 공시의 캔 생산능력은 연 ${GP_PROD.능력_연_t.toLocaleString('ko-KR')} t · 가동일수 ${galapescaStats['가동일수_일']}일로 하루 ${GP_PROD.능력_일_t} t 이고 이것은 능력이지 실적이 아니다)`,
+    },
+  ],
+  stripItems: [
+    {
+      now: true,
+      eyebrow: '임차공장',
+      title: '껍데기는 빌린 것이고 그 안의 설비는 자기 것이다',
+      body: `2019년 감사 재무제표의 첫 절이 「회사는 사업을 하는 과야킬에서 산업용 공장 두 곳, 창고용 갈폰 한 동, 그리고 기계와 설비를 임차한다」고 적는다. 계약 기간은 2~5년이고 갱신 선택권은 임차인만 행사한다. 사용권자산은 2019년 초 ${GP_ASSET.사용권자산_USD.toLocaleString('ko-KR')} 달러로 잡혔고 리스 이자 ${Number(galapescaStats['리스이자_2019_USD']).toLocaleString('ko-KR')} 달러가 손익에 들어갔으며, 갱신 선택권을 모두 행사하면 리스부채가 ${Number(galapescaStats['연장옵션_리스부채증가_USD']).toLocaleString('ko-KR')} 달러 늘어난다고 회사가 추정한다`,
+    },
+    {
+      eyebrow: '되사기',
+      title: '설비를 판 회사가 지금은 그 설비를 빌려준다',
+      body: `2000년 10월 15일 이 회사는 EMPESEC 의 자산 ${Number(galapescaStats['EMPESEC_인수자산_USD']).toLocaleString('ko-KR')} 과 부채 ${Number(galapescaStats['EMPESEC_인수부채_USD']).toLocaleString('ko-KR')} 을 넘겨받고 차액 ${Number(galapescaStats['EMPESEC_약속어음_USD']).toLocaleString('ko-KR')} 달러를 약속어음으로 끊었다. 2003년에는 재고를 통째로 EMPESEC 에 팔고 냉동보관·생산감독 서비스 회사가 됐다가 ${galapescaStats['모델전환']} 후반에 참치 통조림 가공으로 돌아왔다 — 일곱 해 남짓 제조를 하지 않았다. 지금 기계를 빌려주는 EMPESEC 의 2024년 매출은 0이고, 공장을 빌려준 INCOPECA 의 2019년 영업수익은 ${Number(galapescaStats['INCOPECA_영업수익_2019_USD']).toLocaleString('ko-KR')} 달러 한 줄로 이 회사가 낸 임차료와 센트까지 같으며 그해 재고도 인원도 0이다`,
+    },
+    {
+      eyebrow: '특혜',
+      title: '파우치를 에콰도르로 부른 이유는 관세였고 그 구성이 특혜보다 오래 남았다',
+      body: `2010년 재무제표는 「에콰도르에서 가공하는 파우치 참치의 대부분이 안데스 무역특혜·마약퇴치법(ATPDEA)의 특혜를 받아 미국에 들어간다」고 적는다. 주석이 고른 말은 캔이 아니라 파우치였고, 서비스업에서 가공업으로 돌아선 ${galapescaStats['모델전환']} 과 생산이 파우치로 쏠린 시점이 겹친다. 특혜는 ${galapescaStats['ATPDEA_최종종료']} 에 끝났지만 열두 해 뒤인 2025년에도 에콰도르는 미국에 파우치 ${Number(galapescaStats['에콰도르_미국행_파우치_2025_t']).toLocaleString('ko-KR')} t 과 캔 ${Number(galapescaStats['에콰도르_미국행_캔_2025_t']).toLocaleString('ko-KR')} t 을 보냈다. 다만 이 물량은 나라 단위이고 에콰도르에서 파우치를 만드는 공장이 이곳만도 아니다`,
+    },
+    {
+      eyebrow: '이름이 없다',
+      title: '배도 상표도 없이 톤을 판다',
+      body: `회사는 배를 ${galapescaStats['선박_척']}척 갖고 있고 태평양의 두 지역수산기구 선박등록부에도 국제 인증기관 승인선박 명부에도 이 법인 이름이 없다. 2019년 제출 양식의 무형자산은 상표·영업권·개발비까지 전 항목이 ${galapescaStats['무형자산_USD']}이고 광고선전비 계정이 따로 서지 않으며 판매수수료는 ${Number(galapescaStats['판매수수료_2019_USD']).toLocaleString('ko-KR')} 달러로 총비용의 0,03 %다. 그 대신 관세비용 ${Number(galapescaStats['관세비용_2019_USD']).toLocaleString('ko-KR')} 과 보관료 ${Number(galapescaStats['보관료_2019_USD']).toLocaleString('ko-KR')} 달러가 나간다 — 파는 값을 정하는 쪽과 만드는 쪽이 떨어져 있으면 비용의 모양도 달라진다. 유럽연합 제3국 승인번호 ${galapescaStats['EU승인번호']} 는 명부에 있지만 미국 법원기록과 관세청 판정에는 이 상호가 한 번도 나오지 않는다`,
+    },
+  ],
+  briefing: proseBriefing('galapesca'),
+  narratives: inlineReport('galapesca', proseStages('galapesca')),
+  chartSlots: {},
+  continuous: true,
+  sourceNotes: galapescaSourceNotes,
+  sourceMeta: [
+    `${galapescaMeta.회사} · ${galapescaMeta.국가} · ${galapescaMeta.업종}`,
+    `출처 ${galapescaMeta.출처}`,
+    `조사 ${galapescaMeta.조사일}`,
+  ].join(' · '),
+};
+
 export const COMPANY_CARDS: CompanyCard[] = [
   {
     key: 'frinsa',
@@ -4852,6 +4934,19 @@ export const COMPANY_CARDS: CompanyCard[] = [
       { label: 'FY2024 의 몫', value: `순이익 ${MU_FY2024.순이익_천Rs.toLocaleString('ko-KR')} × ${MU_EQUITY.IBL_지분법적용률_pct} % = ${MU_FY2024.산술몫_천Rs.toLocaleString('ko-KR')} 인데 인식 ${MU_FY2024.인식몫_천Rs.toLocaleString('ko-KR')}천 루피 · 네 해 합 ${MU_SHARE.미상쇄_천Rs.toLocaleString('ko-KR')} 미상쇄 · 사유는 공시에 없음` },
     ],
   },
+  {
+    key: 'galapesca',
+    numeral: 'ⅩⅬⅢ',
+    name: 'Galapesca',
+    country: '에콰도르 · 과야킬 Km 12,5 Vía Daule(StarKist Co. 100 % 자회사 · 동원산업 연결 · 공장 두 동과 기계는 임차)',
+    tagline: '공장을 갖지 않은 채 미국 1위 브랜드의 파우치를 만든다.',
+    ...FLAG.에콰도르,
+    stats: [
+      { label: '빌린 것 넷', value: `${GP_LEASE.계약.map((c) => `${c.임대인} ${c.연임차료_USD.toLocaleString('ko-KR')}`).join(' · ')} = ${GP_LEASE.합계_USD.toLocaleString('ko-KR')} US$ (2019) — 건물 둘의 합보다 기계 한 건이 크다` },
+      { label: '빌린 껍데기 대 자기 설비', value: `자기 유형자산 순장부 ${GP_ASSET.자기유형자산_USD.toLocaleString('ko-KR')}(2018년 말 · 토지 ${GP_ASSET.토지_USD.toLocaleString('ko-KR')} 포함) 대 사용권자산 ${GP_ASSET.사용권자산_USD.toLocaleString('ko-KR')} US$ — ${GP_ASSET.배}배` },
+      { label: '한 상대에게 가는 매출', value: `StarKist Co. 앞 ${galapescaStats['StarKist향_비중_2019_pct']} %(2019 주석 · 재계산 ${galapescaStats['StarKist향_재계산_2019_pct']} %) · 선박 ${galapescaStats['선박_척']}척 · 무형자산 ${galapescaStats['무형자산_USD']} · 2024년 매출 ${Number(galapescaStats['매출_2024_USD']).toLocaleString('ko-KR')} · 순이익 ${Number(galapescaStats['순이익_2024_USD']).toLocaleString('ko-KR')} US$` },
+    ],
+  },
 
 
 ];
@@ -4918,6 +5013,7 @@ export default function CompanyAnatomyDashboard({
     azores: AZORES_SPEC,
     tog: TOG_SPEC,
     mauritius: MAURITIUS_SPEC,
+    galapesca: GALAPESCA_SPEC,
   };
   const spec = SPECS[selected] ?? SPEC;
 
