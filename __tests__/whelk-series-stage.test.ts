@@ -144,7 +144,7 @@ describe('골뱅이 05단계 - 수입 창구', () => {
   });
 });
 
-describe('골뱅이 06·07단계 - 명의·위판 (보고서 제3판)', () => {
+describe('골뱅이 06·07단계 - 명의·위판 (보고서 제4판)', () => {
   it('명의·위판 단계와 브리핑이 있다', () => {
     expect(WHELK_NARRATIVES.find((n) => n.key === 's06')?.title.split(' - ')[0]).toBe('명의');
     expect(WHELK_NARRATIVES.find((n) => n.key === 's07')?.title.split(' - ')[0]).toBe('위판');
@@ -152,7 +152,8 @@ describe('골뱅이 06·07단계 - 명의·위판 (보고서 제3판)', () => {
     expect(WHELK_BRIEFING_POINTS.some((b) => b.stage === 's06')).toBe(true);
     expect(WHELK_BRIEFING_POINTS.some((b) => b.stage === 's07')).toBe(true);
     expect(WHELK_BRIEFING_POINTS.some((b) => b.stage === 's08')).toBe(true);
-    expect(WHELK_SOURCE_NOTES.some((n) => n.includes('제3판'))).toBe(true);
+    expect(WHELK_SOURCE_NOTES.some((n) => n.includes('제4판'))).toBe(true);
+    expect(WHELK_SOURCE_NOTES.some((n) => n.includes('소비기한이 남은 신고만'))).toBe(true);
   });
 
   it('생산·위판 정본 수치가 본문에 있다', () => {
@@ -163,7 +164,9 @@ describe('골뱅이 06·07단계 - 명의·위판 (보고서 제3판)', () => {
     expect(t6).toContain('6,203,407');
     expect(t6).toContain('2,464,820');
     expect(t6).toContain('59.5%');
-    expect(t6).toContain('705건');
+    expect(t6).toContain('890건');
+    expect(t6).toContain('해외 제조소 97곳');
+    expect(t6).not.toContain('705건·');
     expect(t7).toContain('8,228,645');
     expect(t7).toContain('7,925,747');
     expect(t7).toContain('16-81');
@@ -197,12 +200,14 @@ describe('골뱅이 06·07단계 - 명의·위판 (보고서 제3판)', () => {
     expect(t8).toContain('전년비(%)');
     expect(t8).toContain('2025 점유율(%)');
     expect(t8).not.toContain('원문 그대로 둔다');
-    expect(t8).toContain('표 11 기준 112건(영국 85');
-    expect(t8).toContain('원문 표 간 불일치');
+    expect(t8).toContain('128건(영국 97·아일랜드 17)');
+    expect(t8).not.toContain('원문 표 간 불일치·차이 미해소');
     expect(t8).toContain('미주통상 2022년 결산');
     expect(f08).toContain('미주통상 2022년 결산');
     expect(f08).toContain('2022년');
-    expect(tX).toContain('보고서가 집계한 7건의 사유는 카드뮴·납이다');
+    expect(tX).toContain('2026.2975');
+    expect(tX).toContain('Bolinus brandaris');
+    expect(tX).not.toContain('보고서가 집계한 7건의 사유는 카드뮴·납이다');
     expect(tX).not.toContain('유럽연합 통보는 모두 카드뮴과 납');
     const s08Html = (WHELK_CHART_SLOTS.s08 ?? [])
       .map((s) => `${s.caption}\n${renderToStaticMarkup(React.createElement(React.Fragment, null, s.render()))}`)
@@ -227,5 +232,25 @@ describe('골뱅이 06·07단계 - 명의·위판 (보고서 제3판)', () => {
     ]) {
       expect(html, `마크업에 없음: ${probe}`).toContain(probe);
     }
+  });
+});
+
+describe('골뱅이 4판 - 흑해 세번 이동과 반대편 창구', () => {
+  it('튀르키예는 세번 이동·어획 감소로 쓰고 붕괴로 쓰지 않는다', () => {
+    const s05 = WHELK_NARRATIVES.find((n) => n.key === 's05');
+    const t5 = [s05?.lede, ...(s05?.paragraphs ?? [])].join('\n');
+    expect(t5).toContain('세번만 바꿔 탔다');
+    expect(t5).toContain('6,526.8 t');
+    expect(t5).toContain('299,540 kg');
+    expect(t5).not.toMatch(/흑해가 무너졌다|흑해[^.]{0,6}붕괴/);
+  });
+
+  it('활 피뿔고둥과 소비기한 생존편향을 함께 적는다', () => {
+    const s06 = WHELK_NARRATIVES.find((n) => n.key === 's06');
+    const t6 = [s06?.lede, ...(s06?.paragraphs ?? [])].join('\n');
+    expect(t6).toContain('494,558 kg');
+    expect(t6).toContain('소비기한이 남은 신고만');
+    expect(t6).not.toMatch(/신고[^.]{0,20}(급증|폭증)/);
+    expect(WHELK_BRIEFING_POINTS.some((b) => b.text.includes('13건'))).toBe(true);
   });
 });
