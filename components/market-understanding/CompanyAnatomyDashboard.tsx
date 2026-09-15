@@ -332,6 +332,10 @@ import {
   cosiMeta, cosiStats, cosiSourceNotes,
   settlements, share, parentUs,
 } from '@/lib/data/company-cosi';
+import {
+  kingfisherMeta, kingfisherStats, kingfisherSourceNotes,
+  voting, plants, certs,
+} from '@/lib/data/company-kingfisher';
 
 
 const ACCENT = '#c2410c';
@@ -4474,6 +4478,91 @@ const COSI_SPEC: CommoditySpec = {
   ].join(' · '),
 };
 
+const KINGFISHER_ACCENT = '#1f5e52';
+
+/** 도쿄가 쥔 몫과 나디에 겹친 법인 셋, 그리고 갈린 증서 셋. */
+const KF_VOTE = voting();
+const KF_PLANT = plants();
+const KF_CERT = certs();
+const KF_SEAPAC = KF_PLANT.거점[0];
+const KF_KFF = KF_PLANT.거점[1];
+const KF_HOLD = KF_PLANT.거점[2];
+const KF_LIVE = KF_CERT.filter((c) => c.살아있나);
+
+/** 화면은 ko-KR 자릿수(1,028명)를 쓴다. 소수점까지 쉼표로 적으면 50,70 이 천 단위로 읽혀
+ *  발행본의 유럽식 표기를 여기서는 점 소수로 옮긴다 — 값은 그대로다. */
+const kfPct = (v: number, d = 2) => v.toFixed(d);
+
+const KINGFISHER_SPEC: CommoditySpec = {
+  key: 'company-anatomy-kingfisher',
+  title: '기업 해부: Kingfisher Holdings',
+  subtitle:
+    '태국 사뭇사콘 나디와 사뭇쁘라깐 방푸, 남쪽 송클라에 공장을 둔 참치·펫푸드 가공 그룹이다. 그런데 지주회사 Kingfisher Holdings 의 의결권 50.70 % 는 일본 상장사 Umios 가 쥐고 있고, 사업회사 SEAPAC 과 KF Foods 는 같은 모회사가 100.00 % 전부 간접으로 든다. ' +
+    '지주회사의 등기 본점은 사뭇사콘이 아니라 방콕 야나와의 사무실 한 층이다 — 네 법인 가운데 KF Foods 만 등기 주소가 나디의 공장 자리다. 땅과 설비는 지주회사가 갖고 사업회사 둘에 빌려준다. ' +
+    '그리고 방푸 공장은 소매협회가 감사한 생산범위 전체가 사람 아닌 것이 먹는 물건이다. 그 증서의 제외 항목 칸에 「없음」이라고 적혀 있다.',
+  accent: KINGFISHER_ACCENT,
+  primaryKpi: {
+    label: `일본 상장사 ${kingfisherStats['모회사']} 가 쥔 지주회사 의결권 — 사업회사 둘은 ${kfPct(KF_VOTE.사업회사_pct)} % 전부 간접이다`,
+    value: KF_VOTE.지주회사_pct,
+    decimals: 2,
+    unit: `(% · 괄호 안 간접분 ${kfPct(KF_VOTE.간접분_pct)} % 는 그 안에 든 값이다. 지주회사 ${kfPct(KF_VOTE.지주회사_pct)} % 와 사업회사 ${kfPct(KF_VOTE.사업회사_pct)} % 는 어긋나지 않는다 — 일본 공시의 間接所有割合은 자회사가 쥔 의결권을 액면 그대로 더해 적는 값이고, 같은 표에서 지주회사 자신이 50.70(7.47)로 적히는 것이 그 증거다. 어긋난 자리가 아니라 비어 있는 자리다: 사업회사 둘의 주식을 실제로 누가 쥐는지는 태국 주주명부에서만 나오고 그 명부는 유료다. 「일본 회사가 100 % 갖고 있다」는 틀린 문장이다)`,
+    accent: KINGFISHER_ACCENT,
+  },
+  secondaryKpis: [
+    {
+      label: `나디 두 공장의 임시직 (${KF_PLANT.기준일} · 일본 유가증권보고서 주요 설비 표)`,
+      value: KF_PLANT.임시직_두공장,
+      decimals: 0,
+      unit: `(명 · 같은 두 공장의 정사원은 ${KF_PLANT.정사원_두공장.toLocaleString('ko-KR')}명이다. ${KF_SEAPAC.법인} ${KF_SEAPAC.정사원.toLocaleString('ko-KR')}명[${(KF_SEAPAC.임시직 ?? 0).toLocaleString('ko-KR')}] · ${KF_KFF.법인} ${KF_KFF.정사원}명[${(KF_KFF.임시직 ?? 0).toLocaleString('ko-KR')}] · 가공을 하지 않는 ${KF_HOLD.법인}만 정사원 ${KF_HOLD.정사원}명에 임시직 칸이 비어 있다. 공시는 「임시」라고만 적는다 — 그 칸을 이주노동자로 옮겨 적으면 문서에 없는 뜻을 넣는 것이 된다)`,
+    },
+    {
+      label: '지주회사 2024년 순이익률 (태국 상업등기소 기탁 재무)',
+      value: Number(kingfisherStats['순이익률_Holdings_2024_pct']),
+      decimals: 1,
+      unit: `(% · 총수익 ${Number(kingfisherStats['총수익_Holdings_2024_바트']).toLocaleString('ko-KR')} 바트에 순이익 ${Number(kingfisherStats['순이익_Holdings_2024_바트']).toLocaleString('ko-KR')} 바트. 가공 수익성으로 읽지 않는다. 그렇다고 순수 지주회사도 아니다 — 일본 공시가 이 법인을 두고 관계회사에 제품을 판다고 적고, 태국 등기 업종은 냉동수산물 제조이며, 송클라에 유럽연합 승인번호 ${kingfisherStats['EU승인_송클라']} 를 가진 자체 공장이 있다. 배당인지 임대료인지 송클라의 영업이익인지는 공개 요약이 갈라 주지 않는다. 자본이 가장 큰 SEAPAC(${Number(kingfisherStats['자본_SEAPAC_2025_바트']).toLocaleString('ko-KR')} 바트)은 손익이 어느 해도 열리지 않는다)`,
+    },
+    {
+      label: `${kingfisherStats['순위표_기준연']}년 주요 ${kingfisherStats['순위표_표본_수']}개사 표에서 참치 아홉 줄의 합 가운데 이 그룹 몫`,
+      value: Number(kingfisherStats['참치몫_pct']),
+      decimals: 1,
+      unit: `(% · KF Foods ${Number(kingfisherStats['매출_KFFoods_2022_백만바트']).toLocaleString('ko-KR')} ÷ 아홉 줄 합 ${Number(kingfisherStats['참치9사합_백만바트']).toLocaleString('ko-KR')} 백만 바트. 그 표의 ${kingfisherStats['순위표_줄']}번째 줄이지 매출 ${kingfisherStats['순위표_줄']}위가 아니다 — 매출 순 정렬이 아니고 2번째 줄 CPF 는 매출 칸이 N/A 다. 1위 Thai Union ${Number(kingfisherStats['매출_ThaiUnion_2022_백만바트']).toLocaleString('ko-KR')} · 3위 Unicord ${Number(kingfisherStats['매출_Unicord_2022_백만바트']).toLocaleString('ko-KR')} · 6위 Pataya ${Number(kingfisherStats['매출_Pataya_2022_백만바트']).toLocaleString('ko-KR')} · 7위 Chotiwat ${Number(kingfisherStats['매출_Chotiwat_2022_백만바트']).toLocaleString('ko-KR')} 백만 바트. 정사원이 KF Foods 의 ${kfPct(Number(kingfisherStats['SEAPAC_인원_배']), 1)}배, 설비 장부가가 ${kfPct(Number(kingfisherStats['SEAPAC_설비장부가_배']), 1)}배인 SEAPAC 은 그 표에 아예 없다 — 표가 포괄하는 코드에 그 회사 코드가 들어가는데도 잡히지 않았다. 원자료 DBD·BOL 에 발행일 마스킹이라 등급 B 이고 전수 순위가 아니다)`,
+    },
+  ],
+  stripItems: [
+    {
+      now: true,
+      eyebrow: '지분',
+      title: '경쟁사 넷 분의 일을 사기로 결정했다',
+      body: `${kingfisherStats['Pataya_발표일']} Umios 가 Kingfisher Holdings 와 함께 태국 Pataya Food Industries 지분 ${kfPct(Number(kingfisherStats['Pataya_지분_pct']), 1)} % 를 취득하기로 결정했다고 발표했다 — 원문은 「取得することを決定」이고 산 것이 아니라 결정이다. 대금과 완료일은 공개되지 않았다. Pataya 는 Nautilus 브랜드를 가진 회사다. 그 브랜드는 이 그룹의 것이 아니었고, 이름이 비슷해 자주 혼동되던 두 회사가 이제 지분으로 묶인다. 태국 비공개 유한회사의 특별결의 요건은 출석 의결권의 4분의 3이라 ${kfPct(Number(kingfisherStats['Pataya_지분_pct']), 1)} % 가 거부권이 되는지는 출석률에 달렸다. 경영권은 아니다`,
+    },
+    {
+      eyebrow: '고양이',
+      title: '감사받은 생산범위가 통째로 펫푸드인 공장이 있다',
+      body: `방푸 SP-1 증서(${kingfisherStats['BRC_방푸_증서']} · 등급 ${kingfisherStats['BRC_방푸_등급']} · 무예고 자발 감사 · ${kingfisherStats['BRC_방푸_발행']} 발행)의 감사받은 생산범위가 캔·파우치·스파우트파우치·플라스틱 컵에 담는 펫푸드로 끝나고 제외 항목 칸이 「${kingfisherStats['BRC_방푸_제외항목']}」이다. 나디 SP-2 증서(${kingfisherStats['BRC_나디_증서']})에는 펫푸드용 베이스와 사람이 먹는 어육·가금·쌀 베이스가 같이 적힌다. 러시아가 ${kingfisherStats['러시아_펫푸드제한일']} 현장검사 뒤 임시 제한한 것도 SEAPAC 의 펫푸드이고 2026년 9월 현재도 제한 상태다. 다만 매출에서의 몫은 어느 문서에도 없다 — 모회사는 태국 사업을 상온식품과 펫푸드로 묶어 목표만 말한다. 공개 기록에 자주 나온다는 것과 매출에서 크다는 것은 다른 말이다`,
+    },
+    {
+      eyebrow: '임대',
+      title: '그룹 안에 임대인이 있다',
+      body: `일본 공시의 주요 설비 표에서 지주회사의 나디 사업장은 가공을 하지 않는다. 토지 ${KF_PLANT.토지_m2.toLocaleString('ko-KR')} ㎡(장부가 ${Number(kingfisherStats['장부가_Holdings_토지_백만엔']).toLocaleString('ko-KR')} 백만 엔)와 건물·기계를 갖고 그 설비를 SEAPAC·KF Foods 에 대여한다고 주석이 적는다. 임대인이 그룹 밖이 아니라 안에 있어 임대료가 그룹 밖으로 나가지 않고 지주회사의 수익이 된다. 같은 사업장의 정사원은 ${KF_HOLD.정사원}명이다 — 그 땅과 ${KF_HOLD.장부가_백만엔.toLocaleString('ko-KR')} 백만 엔어치 자산을 아홉 명이 관리하고, 옆 줄의 SEAPAC 은 같은 지역에서 ${KF_SEAPAC.정사원.toLocaleString('ko-KR')}명에 임시직 ${(KF_SEAPAC.임시직 ?? 0).toLocaleString('ko-KR')}명을 쓴다. 임차료 금액과 계약 기간은 어느 공개 문서에도 없다 — 특수관계자 주석이 유료벽 뒤에 있다`,
+    },
+    {
+      eyebrow: '인증',
+      title: '만료와 정지와 취소는 다른 말이다',
+      body: `${KF_LIVE.map((c) => `${c.공장} 증서 ${c.증서} 는 만료 ${c.만료}, 등급 ${c.등급} 로 살아 있다`).join(' · ')}. 지난 것은 SEAPAC 두 공장의 공개본이다 — 방푸 ${kingfisherStats['BRC_방푸_만료']}, 나디 ${kingfisherStats['BRC_나디_만료']}. 어분·어유 인증(증서 ${kingfisherStats['어분인증_증서']})은 ${kingfisherStats['어분인증_정지일']} 정지됐다가 ${kingfisherStats['어분인증_재개일']} 재개돼 ${kingfisherStats['어분인증_만료']} 까지 유효하다. 유럽연합 승인번호는 송클라 ${kingfisherStats['EU승인_송클라']}·KF Foods ${kingfisherStats['EU승인_KFFoods']}·SEAPAC 나디 ${kingfisherStats['EU승인_SEAPAC나디']} 가 현행 목록에 있고 방푸의 옛 번호 2003 은 행이 없다. 이 명부들에 취소는 없다. 갱신본이 회사 페이지에 걸려 있지 않다는 것과 인증이 사라졌다는 것도 같지 않다 — 이 그룹은 남의 브랜드를 채우는 쪽이라 고객사가 요구하는 증서는 고객사와 인증기관 사이에서만 오갈 수 있다`,
+    },
+  ],
+  briefing: proseBriefing('kingfisher'),
+  narratives: inlineReport('kingfisher', proseStages('kingfisher')),
+  chartSlots: {},
+  continuous: true,
+  sourceNotes: kingfisherSourceNotes,
+  sourceMeta: [
+    `${kingfisherMeta.회사} · ${kingfisherMeta.국가} · ${kingfisherMeta.업종}`,
+    `출처 ${kingfisherMeta.출처}`,
+    `조사 ${kingfisherMeta.조사일}`,
+  ].join(' · '),
+};
+
 export const COMPANY_CARDS: CompanyCard[] = [
   {
     key: 'frinsa',
@@ -5043,6 +5132,19 @@ export const COMPANY_CARDS: CompanyCard[] = [
       { label: '공장 하나와 그 원료', value: `조지아주 라이언스 ${cosiStats['공장_수']}곳 · ${cosiStats['공장_가동_연월']} 가동 · 투자 발표 ${Number(cosiStats['공장_투자발표_USD']).toLocaleString('ko-KR')} US$ · 인력 약정 ${cosiStats['인력_약정_2009_명']} → ${cosiStats['인력_2014_명']}(2014) → ${cosiStats['인력_2025_명']}(2025)명 · 관세 뒤 주 ${cosiStats['조업일_후_일주']}일 · 원료는 프리쿡 로인이고 캔 바닥의 나라는 가나·태국·유럽으로 갈린다` },
     ],
   },
+  {
+    key: 'kingfisher',
+    numeral: 'ⅩⅬⅤ',
+    name: 'Kingfisher Holdings',
+    country: `태국 · 방콕 야나와 등기(사업회사 SEAPAC·KF Foods · 공장은 사뭇사콘 나디·사뭇쁘라깐 방푸·송클라 · 일본 상장사 ${kingfisherStats['모회사']} 의결권 ${kfPct(KF_VOTE.지주회사_pct)} %)`,
+    tagline: '감사받은 생산범위 전체가 사람 아닌 것이 먹는 물건이다.',
+    ...FLAG.태국,
+    stats: [
+      { label: '도쿄가 쥔 몫', value: `지주회사 의결권 ${kfPct(KF_VOTE.지주회사_pct)} %(간접분 ${kfPct(KF_VOTE.간접분_pct)} % 는 그 안에 든 값) · 사업회사 SEAPAC·KF Foods ${kfPct(KF_VOTE.사업회사_pct)} % 전부 간접 — 어긋난 게 아니라 액면 가산이다 · 네 법인 중 ${KF_VOTE.방콕등기_수}곳이 ${KF_VOTE.등기본점} 등기이고 KF Foods 만 사뭇사콘 나디의 공장 주소다` },
+      { label: '정사원 한 명에 임시직 셋', value: `${KF_SEAPAC.법인} ${KF_SEAPAC.정사원.toLocaleString('ko-KR')}명[${(KF_SEAPAC.임시직 ?? 0).toLocaleString('ko-KR')}] · ${KF_KFF.법인} ${KF_KFF.정사원}명[${(KF_KFF.임시직 ?? 0).toLocaleString('ko-KR')}] · ${KF_HOLD.법인} ${KF_HOLD.정사원}명[—] · 두 공장 합 정사원 ${KF_PLANT.정사원_두공장.toLocaleString('ko-KR')}명에 임시직 ${KF_PLANT.임시직_두공장.toLocaleString('ko-KR')}명 · 공시는 「임시」라고만 적는다 (${KF_PLANT.기준일})` },
+      { label: '살아 있는 증서와 지나간 증서', value: `${KF_CERT.map((c) => `${c.공장} ${c.증서} ${c.만료}(${c.등급})${c.살아있나 ? ' 유효' : ' 공개본 지남'}`).join(' · ')} · 어분 증서 ${kingfisherStats['어분인증_증서']} 은 ${kingfisherStats['어분인증_정지일']} 정지 → ${kingfisherStats['어분인증_재개일']} 재개, ${kingfisherStats['어분인증_만료']} 까지 · 취소는 없다` },
+    ],
+  },
 
 
 ];
@@ -5111,6 +5213,7 @@ export default function CompanyAnatomyDashboard({
     mauritius: MAURITIUS_SPEC,
     galapesca: GALAPESCA_SPEC,
     cosi: COSI_SPEC,
+    kingfisher: KINGFISHER_SPEC,
   };
   const spec = SPECS[selected] ?? SPEC;
 

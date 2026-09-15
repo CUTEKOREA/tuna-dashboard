@@ -42,6 +42,7 @@ import togRaw from '@/public/data/companies/tog_figures_v1.json';
 import mauritiusRaw from '@/public/data/companies/mauritius_figures_v1.json';
 import galapescaRaw from '@/public/data/companies/galapesca_figures_v1.json';
 import cosiRaw from '@/public/data/companies/cosi_figures_v1.json';
+import kingfisherRaw from '@/public/data/companies/kingfisher_figures_v1.json';
 
 /**
  * 조사보고서 그림 인테이크 — 팩샷·차트·문서 캡처.
@@ -122,6 +123,7 @@ const INTAKES: Record<string, Intake> = {
   mauritius: mauritiusRaw as unknown as Intake,
   galapesca: galapescaRaw as unknown as Intake,
   cosi: cosiRaw as unknown as Intake,
+  kingfisher: kingfisherRaw as unknown as Intake,
 };
 
 export const REPORT_FIGURE_COMPANIES = Object.keys(INTAKES);

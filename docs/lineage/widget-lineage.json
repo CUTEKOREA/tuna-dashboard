@@ -1,9 +1,9 @@
 {
  "_meta": {
   "entry": "app/page.tsx",
-  "files": 273,
+  "files": 274,
   "widgets": 114,
-  "dataFiles": 258,
+  "dataFiles": 262,
   "generator": "scripts/widget_lineage.py"
  },
  "widgetToData": {
@@ -601,6 +601,7 @@
     "lib/data/company-jais.ts",
     "lib/data/company-jealsa.ts",
     "lib/data/company-kaichuang.ts",
+    "lib/data/company-kingfisher.ts",
     "lib/data/company-kyokuyo.ts",
     "lib/data/company-majestic.ts",
     "lib/data/company-mauritius.ts",
@@ -728,6 +729,10 @@
     "public/data/companies/kaichuang_prose_v1.json",
     "public/data/companies/kaichuang_tables_v1.json",
     "public/data/companies/kaichuang_v1.json",
+    "public/data/companies/kingfisher_figures_v1.json",
+    "public/data/companies/kingfisher_prose_v1.json",
+    "public/data/companies/kingfisher_tables_v1.json",
+    "public/data/companies/kingfisher_v1.json",
     "public/data/companies/kyokuyo_figures_v1.json",
     "public/data/companies/kyokuyo_prose_v1.json",
     "public/data/companies/kyokuyo_tables_v1.json",
@@ -1665,6 +1670,18 @@
    "components/market-understanding/CompanyAnatomyDashboard.tsx"
   ],
   "public/data/companies/kaichuang_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/kingfisher_figures_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/kingfisher_prose_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/kingfisher_tables_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/kingfisher_v1.json": [
    "components/market-understanding/CompanyAnatomyDashboard.tsx"
   ],
   "public/data/companies/kyokuyo_figures_v1.json": [
