@@ -332,7 +332,8 @@ async function runHappyPath(browser) {
     /체선 등급\s+낮음/,
     /허용 정박일수\s+13\.3일/,
     /체선료 추정\s+없음/,
-    /2026년\s+13항차 동일 산식 적용/,
+    // 항차 수는 배가 들고 날 때마다 바뀐다(2026-09-15 SEIN GALAXY 등재로 13 → 14) - 숫자를 못박지 않는다
+    /2026년\s+\d+항차 동일 산식 적용/,
   ]) {
     assert.match(hikariDemurrageText, pattern);
   }
