@@ -114,6 +114,7 @@ export async function GET() {
       if (mergedData[r.vessel_id]) {
         mergedData[r.vessel_id].timeline.push({
           date: r.report_date,
+          reportYear: r.report_year == null ? null : Number(r.report_year),
           time: r.work_time,
           targetHol: r.target_holds,
           consignee: r.consignee || null,

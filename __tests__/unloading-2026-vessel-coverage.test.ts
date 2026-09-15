@@ -194,7 +194,8 @@ describe('2026 unloading vessel coverage', () => {
       const response = await GET();
       const body = await response.json();
       expect(body.success).toBe(true);
-      expect(Object.keys(body.data)).toHaveLength(9);
+      // 2026-09-15: SEIN GALAXY 방콕 항차(하역대기)가 붙어 10척
+      expect(Object.keys(body.data)).toHaveLength(10);
       expect(body.data['volta-victory-2026-01']).toBeTruthy();
     } finally {
       if (saved.url === undefined) delete process.env.NEXT_PUBLIC_SUPABASE_URL;

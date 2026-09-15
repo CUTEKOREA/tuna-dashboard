@@ -296,13 +296,32 @@ async function runHappyPath(browser) {
     assert.match(body, /여유\s+-?[\d.]+일/);
   }
 
-  assert.match(body, /M\/V HIKARI 1 - 상세 하역 분석/);
+  /* 기본 선택은 «하역중 → 하역대기 → 최신» 순서다(lib/unloading-operations resolveSelectedVesselId).
+   * 접안 예정 선박이 생기면 그 배가 먼저 잡히므로 배 이름을 못박지 않고, 아래 HIKARI 검증은
+   * 명시 선택 뒤에 한다 (2026-09-15 SEIN GALAXY 하역대기 등재로 기본 선택이 바뀌었다). */
+  assert.match(body, /M\/V .+ - 상세 하역 분석/);
   // 완료 척수는 항차가 끝날 때마다 는다. 값을 못박으면 조업이 진행될 때마다 깨진다.
   const completed = body.match(/완료 선박:\s*(\d+)\s*척/);
   assert.ok(completed, '완료 선박 척수를 찾지 못했습니다.');
   assert.ok(Number(completed[1]) >= 12, `완료 선박이 줄었다: ${completed[1]}척`);
   assert.doesNotMatch(body, /어종 분해 미확인/);
 
+  const expandedCompleted = await page.evaluate(() => {
+    const button = [...document.querySelectorAll('button')]
+      .find((candidate) => candidate.textContent?.includes('완료 선박 펼치기'));
+    button?.click();
+    return Boolean(button);
+  });
+  assert.equal(expandedCompleted, true, '완료 선박 목록을 펼치지 못했습니다.');
+
+  // 완료 선박은 접혀 있어 펼친 뒤에야 고를 수 있다. 기본 선택은 상태 순서를 따르므로
+  // (하역중 → 하역대기 → 최신) 접안 예정 선박이 생기면 바뀐다 — HIKARI 검증은 명시 선택 후에 한다.
+  await page.waitForSelector('[data-testid="vessel-select-item-hikari-bangkok-2026-07"]');
+  await page.click('[data-testid="vessel-select-item-hikari-bangkok-2026-07"]');
+  await page.waitForFunction(
+    () => document.body.innerText.includes('M/V HIKARI 1 - 상세 하역 분석'),
+    { timeout: 10_000 },
+  );
   const hikariDemurrageText = await page.$eval(
     '[data-testid="selected-vessel-demurrage"]',
     (node) => node.innerText,
@@ -313,7 +332,8 @@ async function runHappyPath(browser) {
     /체선 등급\s+낮음/,
     /허용 정박일수\s+13\.3일/,
     /체선료 추정\s+없음/,
-    /2026년\s+13항차 동일 산식 적용/,
+    // 항차 수는 배가 들고 날 때마다 바뀐다(2026-09-15 SEIN GALAXY 등재로 13 → 14) - 숫자를 못박지 않는다
+    /2026년\s+\d+항차 동일 산식 적용/,
   ]) {
     assert.match(hikariDemurrageText, pattern);
   }
@@ -325,13 +345,6 @@ async function runHappyPath(browser) {
     `허용 13.3일 = 사용 ${used} + 여유 ${spare} 가 맞지 않는다`,
   );
 
-  const expandedCompleted = await page.evaluate(() => {
-    const button = [...document.querySelectorAll('button')]
-      .find((candidate) => candidate.textContent?.includes('완료 선박 펼치기'));
-    button?.click();
-    return Boolean(button);
-  });
-  assert.equal(expandedCompleted, true, '완료 선박 목록을 펼치지 못했습니다.');
   await page.waitForSelector('[data-testid="vessel-select-item-sein-venus"]');
   await page.click('[data-testid="vessel-select-item-sein-venus"]');
   await page.waitForFunction(() => (

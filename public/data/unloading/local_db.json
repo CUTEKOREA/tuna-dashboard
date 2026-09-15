@@ -123,6 +123,22 @@
    "annual_start_date": "2026.01.13",
    "hold_data_available": false,
    "updated_at": "2026-08-12T18:00:00+09:00"
+  },
+  {
+   "vessel_id": "sein-galaxy-bangkok-2026-09",
+   "name": "M/V SEIN GALAXY",
+   "location": "방콕, 태국",
+   "buyer": "FCF CO.,LTD",
+   "status": "하역대기",
+   "reported_total": 1846,
+   "date_range": "2026.09.17 방콕 접안 예정 · 하역실적 대기",
+   "mother_vessel": "MOAKONA 956 · MOAMARI 890 MT",
+   "hold_species_breakdown_available": false,
+   "unclassified_actual_amount": 0,
+   "species_breakdown_as_of": "2026-06-15",
+   "species_breakdown_note": "어종별 물량은 KFC 선적서류(NOAA Form 370 초안, MOAKONA·MOAMARI 각 1부)의 kg 표기를 톤으로 옮긴 값입니다. 적하계획(2026-06-15 FUNAFUTI)은 MOAMARI 황다랑어 155 MT만 따로 적고 나머지는 SKJ·YF·BE 혼적으로 표기해, 어창별 어종 분해는 없습니다.",
+   "created_at": "2026-09-15T14:00:00+09:00",
+   "updated_at": "2026-09-15T14:00:00+09:00"
   }
  ],
  "unloading_reports": [
@@ -2721,6 +2737,30 @@
    "source_workbook_sha256": "bfc4cb6f71a2a1e1cbc8403006e3553309735f09f56ec4c0a7e5e04e1d4948eb",
    "status_workbook_sha256": "ae89273f705541d5ba482f2fe70ede3ed39fc9f9777883e733500e3a75ef06ac",
    "created_at": "2026-08-28T17:10:00+09:00"
+  },
+  {
+   "id": "sein-galaxy-loading-6-12-15-mk",
+   "vessel_id": "sein-galaxy-bangkok-2026-09",
+   "report_date": "6/12~6/15",
+   "work_time": "선적기록",
+   "target_holds": "MOAKONA(#1-B:17,#1-C:230,#2-B:359,#2-C:350)",
+   "daily_amount": 0,
+   "cumulative_amount": 0,
+   "quality_notes": "투발루 푸나푸티 전재분입니다. 적하계획(2026-06-15)의 MOAKONA 956 MT를 1번·2번 어창에 나눠 실었고, 어종은 SKJ·YF·BE 혼적으로만 표기됩니다. 선적서류 기준 가다랑어 675 MT·황다랑어 266 MT·눈다랑어 15 MT이며 조업기간은 2026-04-26 ~ 2026-06-09입니다.",
+   "created_at": "2026-09-15T14:00:00+09:00",
+   "report_year": 2026
+  },
+  {
+   "id": "sein-galaxy-loading-6-12-15-mi",
+   "vessel_id": "sein-galaxy-bangkok-2026-09",
+   "report_date": "6/12~6/15",
+   "work_time": "선적기록",
+   "target_holds": "MOAMARI(#3-A:15,#3-B:445,#3-C:430)",
+   "daily_amount": 0,
+   "cumulative_amount": 0,
+   "quality_notes": "같은 전재분입니다. MOAMARI 890 MT 중 3-A의 황다랑어 15 MT와 3-C의 황다랑어 30 MT·가다랑어 310 MT는 어종이 명시돼 있고 나머지는 혼적입니다. 선적서류 기준 가다랑어 631 MT·황다랑어 242 MT·눈다랑어 17 MT이며 조업기간은 2026-05-24 ~ 2026-06-12입니다. 하역항은 적하계획에 TO ORDER 로 적혀 있었고, 9/14 일일업무보고에서 방콕행으로 확정됐습니다.",
+   "created_at": "2026-09-15T14:00:00+09:00",
+   "report_year": 2026
   }
  ],
  "unloading_species": [
@@ -2882,6 +2922,30 @@
    "reported_amount": 7,
    "actual_amount": 8.6,
    "updated_at": "2026-08-12T18:00:00+09:00"
+  },
+  {
+   "vessel_id": "sein-galaxy-bangkok-2026-09",
+   "species_id": "SJ",
+   "species_name": "가다랑어",
+   "reported_amount": 1306,
+   "actual_amount": 0,
+   "updated_at": "2026-09-15T14:00:00+09:00"
+  },
+  {
+   "vessel_id": "sein-galaxy-bangkok-2026-09",
+   "species_id": "YF",
+   "species_name": "황다랑어",
+   "reported_amount": 508,
+   "actual_amount": 0,
+   "updated_at": "2026-09-15T14:00:00+09:00"
+  },
+  {
+   "vessel_id": "sein-galaxy-bangkok-2026-09",
+   "species_id": "BE",
+   "species_name": "눈다랑어",
+   "reported_amount": 32,
+   "actual_amount": 0,
+   "updated_at": "2026-09-15T14:00:00+09:00"
   }
  ]
 }

@@ -36,6 +36,8 @@ export type UnloadingSpeciesEntry = {
 
 export type UnloadingTimelineEntry = {
   date: string;
+  /** 'M/D' 에 연도가 없어 항차 시작 연도로 보정한다 - 항차 시작보다 앞선 선적기록은 여기에 연도를 명시한다 */
+  reportYear?: number | null;
   time: string;
   targetHol: string;
   consignee?: string | null;
