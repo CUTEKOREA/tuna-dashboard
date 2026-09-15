@@ -1,3 +1,12 @@
+> 📰 **2026-09-15 10:33 KST — `/market` 2026-09-14 참치 데일리 브리핑 라이브 배포 완료** [CC/tuna-dashboard-publisher]:
+> - PR [#1117](https://github.com/CUTEKOREA/tuna-dashboard/pull/1117) squash 병합. main commit `6a93bedd` (브랜치 커밋 `7b16c071`). 변경은 `public/data/tuna_daily_briefing.json` 한 파일뿐(+54/−49). 기준일 `2026-09-14`, 기사 **5건**·다이제스트 5건.
+> - 게이트 3종: 감사 `AUDIT_PASS`(`state/audit-2026-09-14.txt`·윤문 재감사 `humanize/2026-09-14/verdict.txt`) · 08:15 `prepare_dashboard` 동기화 + `daily-briefing.test.ts` 4/4 통과 · 변경분 존재(`git status` 브리핑 JSON 1건).
+> - 08:15 회차 publisher 는 git 권한 대기로 `PUBLISH_FAIL`(커밋·PR 없음)로 끝났다. 이번 재실행에서 워크트리가 `sync/2026-09-11b` = origin/main(0/0)임을 확인하고 진행했다. 첫 push 는 `send-pack: unexpected disconnect` 로 원격에 안 올라갔고(upstream 미설정으로 판별) 재시도에서 pre-push 빌드 179s 통과 후 올라갔다.
+> - Vercel production: 병합 01:27:57Z → status `pending` → 01:32:28Z `success`. 그 전 두 번의 확인(01:28·01:30)은 옛 값 `2026.09.11` — 배포 진행 중이었다.
+> - 라이브 실측(Aside 로그인 세션, 01:32:56Z): 헤더 **「기준일 2026.09.14 · 기사 5건 · 파이프라인 동기」**. 리드 「EU 선단, 현행 어획능력 상한 안에서 화석연료 탈피 가능」, 카드 4건(Sapmer 조업 중단·CFTO 매각 / 시장 변동성·기후변화 우려 / 매가오리 집결 / TUNA 2026 개막) — JSON `titleKo` 5건과 일치.
+> - 「오늘의 수치」 패널은 이번에도 빈 칸(09-11 과 같은 fail-closed 동작, 회귀 아님).
+> - 워크트리 정리: PR MERGED + 브리핑 JSON `origin/main` 과 diff 없음 확인 후 `sync/2026-09-14`(origin/main) 로 옮김. 이 기록 PR 병합 뒤 다시 origin/main 위 `sync/2026-09-14b` 로 옮겨 clean 으로 남긴다. 옛 `briefing/2026-09-14`·`docs/handoff-briefing-2026-09-14`·`sync/2026-09-11b` 로컬 브랜치는 남겨 둠.
+
 > ✅ **2026-09-14 23:00 KST — 선장 실명 처리 확정(예외)** [CC]:
 > - `/fleet` 주간 실적의 선장 실적표는 **실명 그대로 둔다**(사용자 지시). 선장별 순위가 표의 목적이라 직함 치환이 성립하지 않는다. `lib/fleet-operations-2026-08-23.ts` 의 `weeklyRanking` 위에 주석으로 남겨, 다음 정리 때 되돌리지 않게 했다.
 > - 다른 원자료의 인명 규칙은 그대로다 — PANOFI 주간동향 작성자(#1099 로 직함만), 코스모 차주 계획 출장자, 일일보고 비고는 직함·역할로만 옮긴다.
