@@ -328,6 +328,10 @@ import {
   galapescaMeta, galapescaStats, galapescaSourceNotes,
   leases, ownedVsLeased, production,
 } from '@/lib/data/company-galapesca';
+import {
+  cosiMeta, cosiStats, cosiSourceNotes,
+  settlements, share, parentUs,
+} from '@/lib/data/company-cosi';
 
 
 const ACCENT = '#c2410c';
@@ -4391,6 +4395,85 @@ const GALAPESCA_SPEC: CommoditySpec = {
   ].join(' · '),
 };
 
+const COSI_ACCENT = '#15506e';
+
+/** 형사에서 0이었던 값이 민사에서는 트랙마다 붙었다. */
+const CS_SETTLE = settlements();
+const CS_SHARE = share();
+const CS_US = parentUs();
+const CS_US_2021 = CS_US.연도별[0];
+const CS_US_2025 = CS_US.연도별[1];
+
+const COSI_SPEC: CommoditySpec = {
+  key: 'company-anatomy-cosi',
+  title: '기업 해부: Chicken of the Sea',
+  subtitle:
+    '미국 매대에서 셋째로 많이 팔리는 참치 브랜드다. 그 브랜드를 가진 법인 Tri-Union Seafoods LLC 는 태국 상장사 Thai Union 이 100 % 쥐고 있고, 이 회사가 미국에 가진 공장은 조지아주 라이언스 한 곳뿐이다. ' +
+    '그 공장은 배를 갖지 않고 생선을 쪄 내지도 않는다 — 남의 나라에서 이미 살만 발라 낸 프리쿡 로인을 받아 자르고 간해서 캔에 넣고 레토르트에 건다. ' +
+    '미국 참치 캔 값을 올린 담합에서 이 회사는 셋 가운데 유일하게 기소되지 않았다. 먼저 자백하고 법무부의 조건부 사면을 받았기 때문이다. 대신 민사에서는 트랙마다 따로 냈다.',
+  accent: COSI_ACCENT,
+  primaryKpi: {
+    label: `집단소송 ${CS_SETTLE.트랙.length}개 트랙의 합의금 합계 — 같은 사건의 형사 벌금은 ${CS_SETTLE.형사벌금_USD}이었다`,
+    value: CS_SETTLE.합계_USD,
+    decimals: 0,
+    unit: `(US$ · ${CS_SETTLE.트랙.map((t) => `${t.이름} ${t.금액_USD.toLocaleString('ko-KR')}`).join(' · ')}. 여기에 워싱턴주 동의명령 ${CS_SETTLE.주정부_USD.toLocaleString('ko-KR')} 달러가 따로 있고, 월마트·크로거 등 개별 합의는 금액이 공개되지 않아 총액은 정할 수 없다. 형사에서는 StarKist 가 ${CS_SETTLE.형사_StarKist_USD.toLocaleString('ko-KR')}, Bumble Bee 가 ${CS_SETTLE.형사_BumbleBee_USD.toLocaleString('ko-KR')} 달러를 냈고 이 회사는 기소 자체가 없었다 — 법무부가 기소한 법인은 둘, 개인은 넷이다)`,
+    accent: COSI_ACCENT,
+  },
+  secondaryKpis: [
+    {
+      label: '민사 합의의 크기를 재는 자 — 최종소비자 쪽 전문가가 계산한 이 회사의 과징액',
+      value: CS_SETTLE.전문가추정_USD,
+      decimals: 0,
+      unit: `(US$ · 최종소비자 합의금은 그 3분의 1 수준이다. 합의 상한 ${Number(cosiStats['합의_최종소비자_상한_USD']).toLocaleString('ko-KR')}(합의금 ${Number(cosiStats['합의_최종소비자_합의금_USD']).toLocaleString('ko-KR')} + 관리비 최대 ${Number(cosiStats['합의_최종소비자_관리비상한_USD']).toLocaleString('ko-KR')})과 총 합의이익에 산입된 실현액 ${Number(cosiStats['합의_최종소비자_USD']).toLocaleString('ko-KR')} 을 섞어 쓰지 않는다. 법원은 ${cosiStats['사면_근거조항']}에 따른 사면 신청자 지위를 인정해 법률상 최대 노출을 자기 매출분의 단일 손해로 적었고, 가장 먼저 합의해 다른 피고의 합의를 끌어낸 점을 들어 할인을 받아들였다. 모회사는 2019년 2분기에 이 소송 몫으로 추가로만 ${CS_SETTLE.모회사추가충당_USD.toLocaleString('ko-KR')} 달러를 충당했다)`,
+    },
+    {
+      label: '미국 상온 수산물 시장 금액 점유율 (2025-12-28 종료 52주)',
+      value: CS_SHARE.연도별[2].pct,
+      decimals: 1,
+      unit: `(% · ${CS_SHARE.연도별[0].연도}년 ${CS_SHARE.연도별[0].pct} % → ${CS_SHARE.연도별[1].연도}년 ${CS_SHARE.연도별[1].pct} %(${CS_SHARE.연도별[1].기준}) → ${CS_SHARE.연도별[2].pct} %(${CS_SHARE.연도별[2].기준}). 분모는 참치가 아니라 ${CS_SHARE.분모}다 — 제9연방항소법원이 2022년에 적은 「세 회사가 미국 포장참치의 ${CS_SHARE.포장참치_3사_pct} % 초과」는 분모가 참치만이라 같은 문장에 넣을 수 없다. 자매 브랜드 Genova 도 2024년 보고서에서는 프리미엄 참치 분모로 ${cosiStats['Genova_2024_프리미엄참치_pct']} %, 2025년 보고서에서는 상온 수산물 분모로 ${cosiStats['Genova_2025_상온수산물_pct']} % 다)`,
+    },
+    {
+      label: `모회사 재무제표 주석의 미국 매출 (${CS_US_2025.연도}년 · 고객 소재지 기준)`,
+      value: CS_US_2025.천바트,
+      decimals: 0,
+      unit: `(천 바트 · 그룹 매출의 ${CS_US_2025.비중_pct} %. ${CS_US_2021.연도}년 ${CS_US_2021.천바트.toLocaleString('ko-KR')} 천 바트 ${CS_US_2021.비중_pct} % 에서 네 해 사이에 금액으로 ${CS_US.감소_pct} % 줄었다. 2026년 1분기는 ${CS_US.분기_2026_1Q_천바트.toLocaleString('ko-KR')} 천 바트다. 이 안에서 ${CS_US.그룹공장분_pct_pt} %포인트가 그룹 공장 가공분이고 ${CS_US.그룹밖_pct_pt} %포인트는 그룹 밖 공장에서 왔다 — 그룹의 미국 매출이지 이 브랜드의 매출이 아니다. 브랜드 단위 손익은 어느 공시에도 없다)`,
+    },
+  ],
+  stripItems: [
+    {
+      now: true,
+      eyebrow: '사면',
+      title: '셋이 같은 값을 올렸는데 하나만 기소되지 않았다',
+      body: `${cosiStats['사면공시일']} 태국 증권거래소 공시가 미국 자회사 Tri-Union Seafoods 의 조건부 사면을 적는다 — 「법무부에 계속 충분히 협력하는 한, 회사도 수사 범위 안에서 협력하는 임직원도 형사벌금이나 수감, 기소를 받지 않는다.」 사면은 먼저 자백한 첫 참가자에게만 주고 둘째부터는 받지 못한다. 법무부가 이 사건에서 기소한 법인은 ${cosiStats['기소_법인_수']}, 개인은 ${cosiStats['기소_개인_수']}이고 그 명단에 이 회사와 그 임직원은 없다. 민사에서 셋이 모두 합의금을 낸 것과 형사에서 셋 중 둘만 기소된 것은 다른 사실이다`,
+    },
+    {
+      eyebrow: '로인',
+      title: '공장이 사는 것은 생선이 아니라 반제품이다',
+      body: `주 환경보호국 허가 문서의 공정 목록은 입고 → 해동 → 손질·조미 → 캔 충전 → 레토르트 → 출고이고 원료는 프리쿡 로인·육수·캔·대두유와 올리브유·소금이다. 배를 대는 항구도 생선을 쪄 내는 자숙 설비도 이 목록에 없다 — 통마리를 살덩어리로 바꾸는 공정은 이 공장 밖에서, 대개 다른 나라에서 끝난다. ${cosiStats['공장_발표일']} 조지아 주지사 발표는 투자 ${Number(cosiStats['공장_투자발표_USD']).toLocaleString('ko-KR')} 달러에 일자리 ${cosiStats['인력_약정_2009_명']}개였고 창호회사가 쓰다 비운 건물에 들어가 ${cosiStats['공장_가동_연월']}에 돌기 시작했다. 라인 대수·분당 속도·부지 면적·명판 능력은 어느 공개 문서에도 없다`,
+    },
+    {
+      eyebrow: '관세',
+      title: '주 5일이 주 4일이 됐다',
+      body: `태국에 걸린 상호관세는 2025년 4월 발표에서 ${cosiStats['태국_상호관세_발표_pct']} % 였다가 ${cosiStats['태국_상호관세_조정일']}에 ${cosiStats['태국_상호관세_조정_pct']} % 로 조정됐고, 회사는 그 뒤로도 냉동참치에 ${cosiStats['냉동참치_관세_하한_pct']}~${cosiStats['냉동참치_관세_상한_pct']} % 가 붙는다고 말한다. 공장은 관세 전에 ${cosiStats['비축_개월_하한']}~${cosiStats['비축_개월_상한']}개월치를 쌓아 두고 풀가동했고 비축분이 떨어지자 주 ${cosiStats['조업일_전_일주']}일에서 주 ${cosiStats['조업일_후_일주']}일로 내려갔다. 2026년 2월 보도에서 가을 이후 관세 부담이 ${Number(cosiStats['관세부담_2026_02_USD']).toLocaleString('ko-KR')} 달러를 넘었다고 했고, 모회사는 관세가 그룹 영업이익을 ${Number(cosiStats['모회사_관세_영업이익영향_천바트']).toLocaleString('ko-KR')} 천 바트 줄인 것으로 추정하며 라이언스의 일부 품목을 태국과 가나로 옮긴다고 적었다. 문을 닫은 것이 아니라 조업일이 줄었다`,
+    },
+    {
+      eyebrow: '원산지',
+      title: '캔 바닥을 보라고 적혀 있다',
+      body: `회사 제품 페이지는 원산지 칸에 나라를 적지 않고 추적 코드를 안내한다. 실제로 청크라이트 기름캔 5 oz 는 ${cosiStats['원산지_기름캔_5oz']}, 물캔 5 oz 는 ${cosiStats['원산지_물캔_5oz']}, 고등어 파우치 3,53 oz 는 ${cosiStats['원산지_고등어파우치']}다. 4,5 oz 클럽캔은 가나 선적 어선이 잡은 참치를 가나에서 로인으로 만들고 폴란드에서 캔에 채웠는데 세관 사전판정(${cosiStats['세관판정번호']}, ${cosiStats['세관판정일']})은 원산지를 가나로 봤다 — 나라를 바꿀 만큼 성질이 변하는 지점은 통마리를 로인으로 바꾸는 쪽이지 그 로인을 채워 봉하는 쪽이 아니다. 라이언스 공장이 하는 일도 뒤쪽이다`,
+    },
+  ],
+  briefing: proseBriefing('cosi'),
+  narratives: inlineReport('cosi', proseStages('cosi')),
+  chartSlots: {},
+  continuous: true,
+  sourceNotes: cosiSourceNotes,
+  sourceMeta: [
+    `${cosiMeta.회사} · ${cosiMeta.국가} · ${cosiMeta.업종}`,
+    `출처 ${cosiMeta.출처}`,
+    `조사 ${cosiMeta.조사일}`,
+  ].join(' · '),
+};
+
 export const COMPANY_CARDS: CompanyCard[] = [
   {
     key: 'frinsa',
@@ -4947,6 +5030,19 @@ export const COMPANY_CARDS: CompanyCard[] = [
       { label: '한 상대에게 가는 매출', value: `StarKist Co. 앞 ${galapescaStats['StarKist향_비중_2019_pct']} %(2019 주석 · 재계산 ${galapescaStats['StarKist향_재계산_2019_pct']} %) · 선박 ${galapescaStats['선박_척']}척 · 무형자산 ${galapescaStats['무형자산_USD']} · 2024년 매출 ${Number(galapescaStats['매출_2024_USD']).toLocaleString('ko-KR')} · 순이익 ${Number(galapescaStats['순이익_2024_USD']).toLocaleString('ko-KR')} US$` },
     ],
   },
+  {
+    key: 'cosi',
+    numeral: 'ⅩⅬⅣ',
+    name: 'Chicken of the Sea',
+    country: '미국 · 캘리포니아 엘세군도 등기(운영 법인 Tri-Union Seafoods LLC · Thai Union Group PCL 100 % · 공장은 조지아주 라이언스 하나)',
+    tagline: '셋이 같은 값을 올렸는데 하나만 기소되지 않았다.',
+    ...FLAG.미국,
+    stats: [
+      { label: '형사 0, 민사 셋', value: `형사 벌금 ${CS_SETTLE.형사벌금_USD}(기소 없음 · 법무부 조건부 사면) 대 집단 세 트랙 ${CS_SETTLE.트랙.map((t) => `${t.이름} ${t.금액_USD.toLocaleString('ko-KR')}`).join(' · ')} = ${CS_SETTLE.합계_USD.toLocaleString('ko-KR')} US$ · 워싱턴주 동의명령 ${CS_SETTLE.주정부_USD.toLocaleString('ko-KR')} 별도 · 개별 합의 비공개 — 같은 사건에서 StarKist 는 ${CS_SETTLE.형사_StarKist_USD.toLocaleString('ko-KR')}, Bumble Bee 는 ${CS_SETTLE.형사_BumbleBee_USD.toLocaleString('ko-KR')} US$ 를 냈다` },
+      { label: '매대의 몫', value: `${CS_SHARE.연도별[0].연도}년 ${CS_SHARE.연도별[0].pct} % → ${CS_SHARE.연도별[1].연도}년 ${CS_SHARE.연도별[1].pct} %(MULO) → ${CS_SHARE.연도별[2].연도}년 ${CS_SHARE.연도별[2].pct} %(MULO+) · 분모는 ${CS_SHARE.분모}이고 포장참치 3사 ${CS_SHARE.포장참치_3사_pct} % 초과와 같은 자에 놓지 않는다` },
+      { label: '공장 하나와 그 원료', value: `조지아주 라이언스 ${cosiStats['공장_수']}곳 · ${cosiStats['공장_가동_연월']} 가동 · 투자 발표 ${Number(cosiStats['공장_투자발표_USD']).toLocaleString('ko-KR')} US$ · 인력 약정 ${cosiStats['인력_약정_2009_명']} → ${cosiStats['인력_2014_명']}(2014) → ${cosiStats['인력_2025_명']}(2025)명 · 관세 뒤 주 ${cosiStats['조업일_후_일주']}일 · 원료는 프리쿡 로인이고 캔 바닥의 나라는 가나·태국·유럽으로 갈린다` },
+    ],
+  },
 
 
 ];
@@ -5014,6 +5110,7 @@ export default function CompanyAnatomyDashboard({
     tog: TOG_SPEC,
     mauritius: MAURITIUS_SPEC,
     galapesca: GALAPESCA_SPEC,
+    cosi: COSI_SPEC,
   };
   const spec = SPECS[selected] ?? SPEC;
 

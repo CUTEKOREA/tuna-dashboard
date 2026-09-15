@@ -41,6 +41,7 @@ import azoresRaw from '@/public/data/companies/azores_tables_v1.json';
 import togRaw from '@/public/data/companies/tog_tables_v1.json';
 import mauritiusRaw from '@/public/data/companies/mauritius_tables_v1.json';
 import galapescaRaw from '@/public/data/companies/galapesca_tables_v1.json';
+import cosiRaw from '@/public/data/companies/cosi_tables_v1.json';
 
 /**
  * 조사보고서 표 전량 인테이크.
@@ -124,6 +125,7 @@ const INTAKES: Record<string, Intake> = {
   tog: togRaw as unknown as Intake,
   mauritius: mauritiusRaw as unknown as Intake,
   galapesca: galapescaRaw as unknown as Intake,
+  cosi: cosiRaw as unknown as Intake,
 };
 
 export const REPORT_TABLE_COMPANIES = Object.keys(INTAKES);
