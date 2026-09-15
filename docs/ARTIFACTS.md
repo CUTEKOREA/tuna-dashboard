@@ -48,6 +48,7 @@
 | ⅩⅬⅡ | 모리셔스 해부 (Princes Tuna (Mauritius) · Indico Canning · IBL · Mer des Mascareignes) | `mauritius` | https://claude.ai/code/artifact/ffc6a8ed-196b-41da-a27f-a35298777540 |
 | ⅩⅬⅢ | Galapesca S.A. (에콰도르 과야킬 · StarKist Co. 100 % 자회사 · 공장 두 동과 기계는 임차) | `galapesca` | https://claude.ai/code/artifact/02059490-6de6-4b7b-99e0-a7ac44148ec3 |
 | ⅩⅬⅣ | Chicken of the Sea (미국 · Tri-Union Seafoods LLC · Thai Union Group 100 % 자회사 · 담합 셋 중 유일하게 기소되지 않았다) | `cosi` | https://claude.ai/code/artifact/3e8f371a-ec87-4caf-b57e-343fc6789787 |
+| ⅩⅬⅤ | Kingfisher Holdings (태국 방콕 야나와 등기 · SEAPAC·KF Foods · 일본 Umios 의결권 50,70 % · 방푸 공장은 감사받은 생산범위 전체가 펫푸드) | `kingfisher` | https://claude.ai/code/artifact/983bb8fd-435e-4f8e-b682-93ce9b52c53c |
 
 그 밖 — 보고서 직판 랜딩 기획서 https://claude.ai/code/artifact/0f98e5a5-686b-4f47-b661-be5aa852f913
 
