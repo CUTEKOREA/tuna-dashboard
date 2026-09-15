@@ -32,7 +32,7 @@ const STATUS_RANK: Record<VesselStatusKind, number> = { progress: 0, waiting: 1,
 /* 응답의 location은 영문 표기가 섞여 있어 화면 노출용으로만 한글 대응 (L-01) */
 const KO_LOCATION: Record<string, string> = { 'BANGKOK, THAILAND': '방콕, 태국' };
 
-type TimelinePoint = { date: string; dailyAmount: number; cumAmount: number };
+type TimelinePoint = { date: string; reportYear?: number | null; dailyAmount: number; cumAmount: number };
 type VesselRaw = {
   name: string;
   dateRange: string;
@@ -74,16 +74,18 @@ function voyageDates(dateRange: string): { start: number | null; end: number | n
  * timeline.date는 'M/D' 또는 '7/2~7/4' 텍스트라 연도가 없다 — 항차 기간(dateRange) 시작 연도로 보정.
  * 이틀 이상을 묶은 보고는 뒷날짜가 실제 보고 종료일이다.
  */
-function reportDateMs(dateRange: string, date: string): number | null {
+export function reportDateMs(dateRange: string, date: string, reportYear?: number | null): number | null {
   const md = date.match(/(\d{1,2})\s*\/\s*(\d{1,2})(?:\s*~\s*(\d{1,2})\s*\/\s*(\d{1,2}))?/);
   const start = dateRange.match(/(\d{4})\.(\d{1,2})/);
   if (!md || !start) return null;
   let month = Number(md[1]);
   let day = Number(md[2]);
-  // 항차가 해를 넘기면(예: 2025.12.18 ~ 2026.01.13) 시작 월보다 작은 월은 다음 해 보고다
-  let year = month >= Number(start[2]) ? Number(start[1]) : Number(start[1]) + 1;
+  /* 항차가 해를 넘기면(예: 2025.12.18 ~ 2026.01.13) 시작 월보다 작은 월은 다음 해 보고다.
+   * 단 접안 전 선적기록처럼 항차 시작보다 앞선 보고는 그 규칙이 거꾸로 걸려 한 해 뒤로 밀리므로
+   * (2026.09.17 항차의 6/15 선적기록 → 2027.06.15), 연도가 명시돼 있으면 그대로 쓴다. */
+  let year = reportYear ?? (month >= Number(start[2]) ? Number(start[1]) : Number(start[1]) + 1);
   if (md[3] && md[4]) {
-    if (Number(md[3]) < month) year += 1;
+    if (Number(md[3]) < month && reportYear == null) year += 1;
     month = Number(md[3]);
     day = Number(md[4]);
   }
@@ -92,7 +94,7 @@ function reportDateMs(dateRange: string, date: string): number | null {
 
 function lastReportMs(v: VesselRaw): number | null {
   for (let i = v.timeline.length - 1; i >= 0; i -= 1) {
-    const ms = reportDateMs(v.dateRange, v.timeline[i].date);
+    const ms = reportDateMs(v.dateRange, v.timeline[i].date, v.timeline[i].reportYear);
     if (ms !== null) return ms;
   }
   return null;
@@ -203,7 +205,7 @@ export default function UnloadingVoyageGantt({ vesselsById }: {
   }, [vessels, selectedId]);
 
   const series = useMemo(() => (selected ? selected.timeline.map((point) => {
-    const ms = reportDateMs(selected.dateRange, point.date);
+    const ms = reportDateMs(selected.dateRange, point.date, point.reportYear);
     return { label: ms === null ? point.date : ymd(ms), cum: point.cumAmount, daily: point.dailyAmount };
   }) : []), [selected]);
 

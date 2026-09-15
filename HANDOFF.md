@@ -1,3 +1,13 @@
+> ✅ **2026-09-15 14:30 KST — `/unloading` SEIN GALAXY 방콕 항차(9/17 접안 예정) 등재 + 접안 전 선적기록 연도 보정** [CC]:
+> - 사용자 지시: SEIN GALAXY 9/17 방콕 접안 예정. 원자료는 `11. 태국/012. 하역 업무/SEIN GALAXY (3,500)/KFC/` 의 선적서류와 9/14 일일업무보고다. 대상 폴더에 9월 하역 일보는 아직 없다(6월 전재분 서류만).
+> - 등재: `public/data/unloading/local_db.json` 에 `sein-galaxy-bangkok-2026-09` 을 **하역대기**로 넣었다 — 신고량 1,846 MT, 원선 MOAKONA 956 · MOAMARI 890, 기간 표기 「2026.09.17 방콕 접안 예정 · 하역실적 대기」.
+> - 수치 출처: 적하계획(2026-06-15 FUNAFUTI)의 어창 배치(MOAKONA #1-B 17·#1-C 230·#2-B 359·#2-C 350 = 956, MOAMARI #3-A 15·#3-B 445·#3-C 430 = 890, G.Total 1,846)와 NOAA Form 370 초안 2부의 어종별 kg(가다랑어 1,306 · 황다랑어 508 · 눈다랑어 32 = 1,846). KFC BREAKDOWN 의 MK 956 / MI 890 / TOTAL 1,846 과도 일치한다.
+> - 화물 기준 분리(`vesselCargoBases`): 9/14 일일업무보고 선적 현황 「MK-956, MI-890, 타사-1,596」 → 선적 3,442 MT 중 하역 대상은 1,846 MT, 타사 1,596 MT 는 제외. 선명 표기 용량 3,500 MT(적하계획 표기는 3,577 MT).
+> - **버그 수정**: 접안 전 선적기록(6/12~6/15)이 항차 시작 연도 보정 규칙에 거꾸로 걸려 **2027.06.15** 로 표시됐다(간트 축도 2027 까지 늘어남). 보고 행에 `report_year` 를 싣고 API·간트·최신보고 라벨이 그대로 쓰도록 고쳤다. 해넘이 항차(2025.12 → 2026.01) 보정은 연도가 없을 때만 걸리게 유지했고 테스트로 못박았다.
+> - 테스트: `__tests__/unloading-sein-galaxy-data.test.ts` 5건 신규(대기 상태·어종 합계·어창 합계·연도 보정·화물 기준). 데이터 없이 RED 확인 후 GREEN. 선박 수 고정 테스트 2건을 9 → 10 으로 갱신.
+> - `npm run verify` 통과: ESLint 0 errors / 29 warnings · Vitest 190 파일 1,606건 · 정적 118 · bundle 33. 로컬 production: 「하역 대기 M/V SEIN GALAXY 0 / 1,846 (MT) · 하역 실적 대기」, 최신 보고 2026.06.15, 간트 축 2026.09 까지, 390px overflow 0, 서버 error 0.
+> - 상태: 브랜치 `data/unloading-sein-galaxy`. **프로덕션 미배포**(이번 사용자 메시지에 배포 요청 없음).
+
 > 📰 **2026-09-15 10:33 KST — `/market` 2026-09-14 참치 데일리 브리핑 라이브 배포 완료** [CC/tuna-dashboard-publisher]:
 > - PR [#1117](https://github.com/CUTEKOREA/tuna-dashboard/pull/1117) squash 병합. main commit `6a93bedd` (브랜치 커밋 `7b16c071`). 변경은 `public/data/tuna_daily_briefing.json` 한 파일뿐(+54/−49). 기준일 `2026-09-14`, 기사 **5건**·다이제스트 5건.
 > - 게이트 3종: 감사 `AUDIT_PASS`(`state/audit-2026-09-14.txt`·윤문 재감사 `humanize/2026-09-14/verdict.txt`) · 08:15 `prepare_dashboard` 동기화 + `daily-briefing.test.ts` 4/4 통과 · 변경분 존재(`git status` 브리핑 JSON 1건).
