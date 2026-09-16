@@ -70,7 +70,7 @@ export interface ChartSizeProps {
 }
 
 interface PipelineRow {
-  lane: '하역 완료' | '입항 예정';
+  lane: '하역 중' | '하역 완료' | '입항 예정';
   record: GmtsVesselRecord;
 }
 
@@ -491,7 +491,10 @@ function rawVesselDates(record: GmtsVesselRecord): string {
 }
 
 function VesselPipelineTable() {
+  /* 하역 중 선박이 빠져 있었다 — 표 제목은 «최신 보고 선박별»인데 완료·예정 두 레인만 실렸다.
+   * 화물·양하·부족분이 가장 자세한 레인이라 먼저 싣는다 (2026-09-16 발견). */
   const rows: PipelineRow[] = [
+    ...GMTS_VIEW.latestPort.active.records.map((record) => ({ lane: '하역 중' as const, record })),
     ...GMTS_VIEW.latestPort.completed.records.map((record) => ({ lane: '하역 완료' as const, record })),
     ...GMTS_VIEW.latestPort.incoming.records.map((record) => ({ lane: '입항 예정' as const, record })),
   ];
