@@ -1,3 +1,12 @@
+> 📰 **2026-09-16 09:47 KST — `/market` 2026-09-15 참치 데일리 브리핑 라이브 배포 완료** [CC/tuna-dashboard-publisher]:
+> - PR [#1132](https://github.com/CUTEKOREA/tuna-dashboard/pull/1132) squash 병합. main commit `bad9fe69` (브랜치 커밋 `be9731ac`). 변경은 `public/data/tuna_daily_briefing.json` 한 파일뿐(+71/−54). 기준일 `2026-09-15`, 기사 **6건**·다이제스트 6건 — 09-14 의 5건에서 1건 늘었다.
+> - 게이트 3종: 감사 `AUDIT_PASS P0=0 P1=0 P2=3`(`state/audit-2026-09-15.txt`·윤문 채택 후 재감사 `AUDIT_PASS`) · 07:39 `prepare_dashboard` 동기화 + `daily-briefing.test.ts` 4/4 통과 · 변경분 존재(브리핑 JSON 1건, 다른 경로 번짐 없음).
+> - 시작 시 워크트리는 `sync/2026-09-14b` = origin/main(0/0)·clean 이었다. push 는 pre-push 게이트(data import 354건 추적 확인 + `npm run build` 65s) 한 번에 통과.
+> - Vercel 전파 지연: 병합 00:42:00Z 이후 00:43·00:45 두 번 모두 옛 값 `2026.09.14 · 기사 5건` 이었고, 00:47Z 세 번째(캐시버스터 쿼리 부착)에서 새 값이 떴다. **회귀가 아니라 배포 진행 중**이었다 — 2회차에서 멈추지 말 것.
+> - 라이브 실측(Aside 로그인 세션, 00:47Z): 헤더 **「기준일 2026.09.15 · 기사 6건 · 파이프라인 동기」**. 리드 「에콰도르 선망선 격침, 미 언론 보도 거의 없어…선주들 우려」, 카드 「Umios, Pataya Food 지분 25.1% 취득」·「방콕 가다랑어 원료가 상승 지속」 등 — JSON `titleKo` 6건과 일치. 스크린샷으로 육안 확인.
+> - 「오늘의 수치」 패널이 **이번엔 채워졌다** — `25.1%` / 「Umios, Pataya Food 지분」. 09-11·09-14 의 빈 칸은 제목에 수치 토큰이 없어서였고, 이번 다이제스트 제목에 `25.1%` 가 들어가 fail-closed 가 풀렸다. 설계대로 동작 확인.
+> - 워크트리 정리: PR MERGED + `git diff origin/main` 전체 비어 있음 확인 후 `sync/2026-09-15`(origin/main) 로 옮김. 이 기록 PR 병합 뒤 다시 origin/main 위 `sync/2026-09-15b` 로 옮겨 clean 으로 남긴다. 옛 `briefing/2026-09-15`·`sync/2026-09-14b` 로컬 브랜치는 남겨 둠.
+
 > 🚀 **2026-09-15 20:10 KST — 260915 일일보고 + SEIN GALAXY 항차 프로덕션 배포** [CC]:
 > - 병합(squash): #1126 `/fleet` 260915 → `4512a1b0`, #1124 `/unloading` SEIN GALAXY → `d5086948`. HANDOFF 충돌은 두 항목을 모두 남겨 해소.
 > - **게이트가 두 번 걸렸고 둘 다 인수 테스트의 고정값 문제였다.** ① `e2e/specs/unloading-history.spec.js` 가 기본 선택 선박을 HIKARI 1 로 가정했는데, 하역대기 선박이 생기면 상태 순서(하역중 → 하역대기 → 최신)상 그 배가 먼저 잡힌다 → 완료 목록을 펼친 뒤 HIKARI 를 명시 선택하고 검증하도록 고쳤다. ② 「2026년 13항차 동일 산식 적용」의 항차 수가 14 로 늘었다 → 완료 척수처럼 숫자를 풀었다.
