@@ -1,29 +1,29 @@
 {
   "_meta": {
     "schemaVersion": 1,
-    "reportCount": 156,
+    "reportCount": 157,
     "firstReportDate": "2026-01-16",
-    "latestReportDate": "2026-09-15",
-    "latestAsOf": "2026-09-14",
-    "detailSha256": "0663163951b42bdad9f6fa004b7a9acdcc8c84932051f2557fe23bc16a2cf354",
+    "latestReportDate": "2026-09-16",
+    "latestAsOf": "2026-09-15",
+    "detailSha256": "9d48917be49a8b0b7ca5d076f14d8152cb66210c7f9f9655731dbd16d5aadb83",
     "detailSha256Compat": [
-      "5d9ac85947254fbd4e6a9189c41146fe17439b419f779f79fd6b9b2056dff7a1"
+      "0663163951b42bdad9f6fa004b7a9acdcc8c84932051f2557fe23bc16a2cf354"
     ]
   },
   "latest": {
-    "reportDate": "2026-09-15",
-    "asOf": "2026-09-14",
+    "reportDate": "2026-09-16",
+    "asOf": "2026-09-15",
     "pacific": {
-      "asOf": "2026-09-14",
-      "dailyMt": 310,
-      "monthlyMt": 1946,
-      "annualMt": 50186.8
+      "asOf": "2026-09-15",
+      "dailyMt": 136,
+      "monthlyMt": 2082,
+      "annualMt": 50322.8
     },
     "atlantic": {
-      "asOf": "2026-09-14",
-      "dailyMt": 285,
-      "monthlyMt": 2390,
-      "annualMt": 35850
+      "asOf": "2026-09-15",
+      "dailyMt": 320,
+      "monthlyMt": 2710,
+      "annualMt": 36170
     },
     "carrier": {
       "loadedTotalMt": 7684.13,
@@ -31,20 +31,20 @@
     }
   },
   "deltas": {
-    "pacificDailyMt": 299,
-    "atlanticDailyMt": 130,
-    "totalDailyMt": 429
+    "pacificDailyMt": -174,
+    "atlanticDailyMt": 35,
+    "totalDailyMt": -139
   },
   "reconciliation": {
     "pacificDaily": {
-      "reportedMt": 310,
-      "rowsMt": 310,
+      "reportedMt": 136,
+      "rowsMt": 136,
       "matches": true,
       "missingCount": 0
     },
     "atlanticDaily": {
-      "reportedMt": 285,
-      "rowsMt": 285,
+      "reportedMt": 320,
+      "rowsMt": 320,
       "matches": true,
       "missingCount": 0
     },
@@ -221,7 +221,8 @@
       "2026-09-10",
       "2026-09-11",
       "2026-09-14",
-      "2026-09-15"
+      "2026-09-15",
+      "2026-09-16"
     ],
     "pacific": {
       "totalMt": [
@@ -380,7 +381,8 @@
         79,
         215,
         11,
-        310
+        310,
+        136
       ],
       "vessels": {
         "S/EXP": [
@@ -539,7 +541,8 @@
           0,
           50,
           0,
-          90
+          90,
+          0
         ],
         "S/PIO": [
           50,
@@ -697,7 +700,8 @@
           40,
           0,
           0,
-          10
+          10,
+          0
         ],
         "S/CHA": [
           0,
@@ -854,6 +858,7 @@
           0,
           0,
           20,
+          0,
           0,
           0
         ],
@@ -1013,6 +1018,7 @@
           0,
           0,
           0,
+          0,
           0
         ],
         "S/JUP": [
@@ -1149,6 +1155,7 @@
           0,
           0,
           65,
+          0,
           0,
           0,
           0,
@@ -1329,6 +1336,7 @@
           25,
           0,
           0,
+          0,
           0
         ],
         "MOAMARI": [
@@ -1466,6 +1474,7 @@
           0,
           0,
           85,
+          0,
           0,
           0,
           0,
@@ -1645,7 +1654,8 @@
           14,
           10,
           11,
-          180
+          180,
+          136
         ],
         "NAOERO SUN": [
           0,
@@ -1803,7 +1813,8 @@
           0,
           0,
           0,
-          10
+          10,
+          0
         ],
         "NAOERO STAR": [
           0,
@@ -1961,7 +1972,8 @@
           0,
           135,
           0,
-          20
+          20,
+          0
         ]
       },
       "lastLoadIncreaseDates": {
@@ -1972,7 +1984,7 @@
         "S/JUP": "2026-09-14",
         "S/SPR": "2026-09-14",
         "MOAMARI": "2026-08-18",
-        "MOAKONA": "2026-09-15",
+        "MOAKONA": "2026-09-16",
         "NAOERO SUN": "2026-09-15",
         "NAOERO STAR": "2026-09-15"
       }
@@ -2134,7 +2146,8 @@
         25,
         285,
         155,
-        285
+        285,
+        320
       ],
       "vessels": {
         "P/MAS": [
@@ -2290,6 +2303,7 @@
           20,
           10,
           100,
+          0,
           0,
           0,
           0,
@@ -2451,7 +2465,8 @@
           20,
           80,
           40,
-          40
+          40,
+          50
         ],
         "P/FORE": [
           0,
@@ -2609,7 +2624,8 @@
           0,
           0,
           10,
-          65
+          65,
+          10
         ],
         "P/PATH": [
           30,
@@ -2767,7 +2783,8 @@
           0,
           55,
           45,
-          80
+          80,
+          85
         ],
         "P/COM": [
           0,
@@ -2925,7 +2942,8 @@
           5,
           35,
           10,
-          10
+          10,
+          130
         ],
         "P/QUEEN": [
           0,
@@ -3083,7 +3101,8 @@
           0,
           0,
           15,
-          40
+          40,
+          25
         ],
         "P/GRACE": [
           0,
@@ -3241,24 +3260,25 @@
           0,
           115,
           35,
-          50
+          50,
+          20
         ]
       },
       "lastLoadIncreaseDates": {
         "P/MAS": "2026-09-09",
-        "P/DIS": "2026-09-15",
-        "P/FORE": "2026-09-15",
-        "P/PATH": "2026-09-15",
-        "P/COM": "2026-09-15",
-        "P/QUEEN": "2026-09-15",
-        "P/GRACE": "2026-09-15"
+        "P/DIS": "2026-09-16",
+        "P/FORE": "2026-09-16",
+        "P/PATH": "2026-09-16",
+        "P/COM": "2026-09-16",
+        "P/QUEEN": "2026-09-16",
+        "P/GRACE": "2026-09-16"
       }
     }
   },
   "quality": {
     "counts": {
-      "reconciliationChecks": 624,
-      "reconciliationCompleteChecks": 624,
+      "reconciliationChecks": 628,
+      "reconciliationCompleteChecks": 628,
       "reconciliationUnavailableChecks": 0,
       "reconciliationUnavailableDocuments": 0,
       "reconciliationIssues": 14,
@@ -3267,7 +3287,7 @@
       "reconciliationPartialDifferenceDocuments": 12,
       "duplicateVesselRows": 4,
       "coordinateFormatIssues": 6,
-      "longlineSectionMissing": 17
+      "longlineSectionMissing": 18
     },
     "incompletePartialDifferences": 0,
     "incompletePartialDifferenceDocuments": 0
