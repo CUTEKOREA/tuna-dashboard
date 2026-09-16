@@ -336,6 +336,10 @@ import {
   kingfisherMeta, kingfisherStats, kingfisherSourceNotes,
   voting, plants, certs,
 } from '@/lib/data/company-kingfisher';
+import {
+  capsenMeta, capsenStats, capsenSourceNotes,
+  ceiling, fleet, certification, ledger,
+} from '@/lib/data/company-capsen';
 
 
 const ACCENT = '#c2410c';
@@ -4563,6 +4567,91 @@ const KINGFISHER_SPEC: CommoditySpec = {
   ].join(' · '),
 };
 
+const CAPSEN_ACCENT = '#14635a';
+
+/** 법이 정한 천장과 그 아래 놓인 배 넷, 그리고 움직이지 않는 장부 칸. */
+const CP_CEIL = ceiling();
+const CP_FLEET = fleet();
+const CP_CERT = certification();
+const CP_LEDGER = ledger();
+
+/** 화면은 ko-KR 자릿수(6,800톤)를 쓴다. 발행본의 유럽식 소수 쉼표(49,00)를 여기서는
+ *  점 소수로 옮긴다 — 값은 그대로다. 49,00 을 그대로 두면 천 단위로 읽힌다. */
+const cpPct = (v: number, d = 2) => v.toFixed(d);
+/** 천원 단위 공시값을 억 원으로 옮겨 적는다(1억 원 = 10만 천원). 반올림 값이라
+ *  원문 자릿수는 같은 문장에 천 원 단위로 그대로 남긴다. */
+const cpEok = (천원: number) => Math.round(천원 / 100_000);
+
+const CAPSEN_SPEC: CommoditySpec = {
+  key: 'company-anatomy-capsen',
+  title: '기업 해부: CAPSEN',
+  subtitle:
+    '세네갈 다카르 몰 10 부두의 참치 선망 조업 법인이다. 동원산업 지분은 49.00 %(735주 / 1,500주)인데 그 숫자는 고른 값이 아니라 세네갈 해상운송법(loi n°2002-22) 제91조가 정한 천장이다 — 선박이나 선주회사 자본의 51 % 이상이 세네갈 또는 서아프리카경제공동체 국민 소유여야 배가 세네갈 국적을 얻는다. ' +
+    '지분이 절반에 못 미치는데도 동원산업 연결재무제표에는 종속기업으로 들어온다. 근거는 「다른 의결권 보유자와의 약정」이고, 동원산업 계열 가운데 「실질지배력보유」로 연결되는 법인은 이 회사 하나뿐이다. 그 상대방의 이름은 열한 해 동안 한 번도 공시에 적히지 않았다. ' +
+    '그 회사가 지금 세네갈 국적 참치 선망 일곱 척 가운데 넷을 갖는다. 가공은 하지 않는다 — 잡아서 같은 부두의 별개 법인 S.C.A(편 ⅩⅩⅩⅧ · 동원산업 60 %)에 넘기거나 통마리로 내보내는 데까지가 이 회사 일이다.',
+  accent: CAPSEN_ACCENT,
+  primaryKpi: {
+    label: `동원산업이 든 지분 — 2015년부터 2026년 상반기까지 한 번도 바뀌지 않았다`,
+    value: CP_CEIL.지분_pct,
+    decimals: 2,
+    unit: `(% · ${CP_CEIL.보유주식.toLocaleString('ko-KR')}주 / ${CP_CEIL.총주식.toLocaleString('ko-KR')}주. 「소수주주라서 절반을 못 넘긴 것」이 아니다 — 세네갈 해상운송법 제91조가 자본의 ${CP_CEIL.현지요건_pct} % 이상을 세네갈 또는 서아프리카경제공동체 국민 소유로 요구해 외국 자본이 올라갈 수 있는 끝이 여기다. 한 칸 더 넣으면 배가 국적을 잃는다. 그런데도 동원산업 연결재무제표에는 종속기업으로 들어온다: 계열회사 현황표가 적는 지배관계 근거가 「${CP_CEIL.연결사유}」이고 동원산업 계열에서 이 근거를 쓰는 법인은 이 회사 하나다. 나머지 ${CP_CEIL.미보유주식.toLocaleString('ko-KR')}주의 주인은 공시에 없다 — 열한 해 치 사업보고서와 반기보고서 어디에도 상대방의 상호나 성명이 적히지 않았다. 「어느 원문에도 없다」고는 쓸 수 없다: 세네갈 현지 매체가 2015-03-15 에 회사가 주식 51 %를 종업원에게 주었다고 보도했고 등기로 확인되지 않은 등급 B 다)`,
+    accent: CAPSEN_ACCENT,
+  },
+  secondaryKpis: [
+    {
+      label: `세네갈 국적 참치 선망 톤수 가운데 이 회사 배 넷의 몫 (국제대서양참치보존위원회 활성 명부 ${capsenStats['ICCAT_조회일']} 추출)`,
+      value: CP_FLEET.비중_7척기준_pct,
+      decimals: 1,
+      unit: `(% · ${CP_FLEET.배.map((b) => `${b.선명} ${b.톤수.toLocaleString('ko-KR')}`).join(' · ')} = ${CP_FLEET.톤수_이_회사.toLocaleString('ko-KR')} ÷ 세네갈 선망 ${CP_FLEET.선망_세네갈}척 합 ${CP_FLEET.톤수_세네갈7척.toLocaleString('ko-KR')}. 분모가 둘이다 — 인증 시점 여섯 척(${CP_FLEET.톤수_인증6척.toLocaleString('ko-KR')}) 기준으로는 ${cpPct(CP_FLEET.비중_인증6척_pct, 1)} %이고, ${cpPct(CP_FLEET.비중_7척기준_pct, 1)} %는 인증에 들지 않은 SEA BREEZE 까지 넣은 값이다. 어느 쪽이든 배마다 어획 효율이 달라 이 비율을 어획량에 그대로 곱할 수 없다. 현행 증서 1.2판은 일곱째로 COSMOS KIM 을 적지만 국제대서양참치보존위원회 명부에 없어 이 분모에 넣지 않았다. 톤수는 단위가 섞인 단순합이다 — 원문이 GRANADA 만 총톤수(GT)로, 나머지 여섯은 옛 방식 총톤수(GRT)로 적는다. 「배 넷」과 「선망 넷」도 다른 말이다: 세네갈 수산가공검사국 승인 명부는 채낚기 CAP ATLANTIQUE(2020년 승인 · 741 GT)까지 이 회사 소속으로 적어 그 명부 기준으로는 다섯이다)`,
+    },
+    {
+      label: '동원산업이 2025년에 이 회사에서 사들인 금액이 판 금액의 몇 배인가 (특수관계자 주석, 별도)',
+      value: CP_LEDGER.배수_매입대매출,
+      decimals: 1,
+      unit: `(배 · 매입 ${CP_LEDGER.매입_2025_천원.toLocaleString('ko-KR')}천 원(약 ${cpEok(CP_LEDGER.매입_2025_천원)}억) 대 매출 ${CP_LEDGER.매출_2025_천원.toLocaleString('ko-KR')}천 원(약 ${cpEok(CP_LEDGER.매출_2025_천원)}억). 세네갈에 있는 동원산업의 두 법인은 돈이 흐르는 방향이 반대다 — 조업 법인에서는 사 오고, 가공 법인 S.C.A 에는 팔기만 한다(같은 공시에서 S.C.A 는 「매입」 표에 행 자체가 없다). 보증은 그 반대다: 지급보증 EUR ${CP_LEDGER.SCA_지급보증_EUR.toLocaleString('ko-KR')}(신한은행 런던지점·하나은행 바레인지점)은 전부 S.C.A 쪽이고 이 회사는 보증표에 행이 없다. 미수금이 십 년 넘게 상시로 걸려 있다 — 2017년 ${capsenStats['미수금_최대_2017_억원']}억이 최고였고 2026년 6월에도 ${CP_LEDGER.미수금_2026상반기_천원.toLocaleString('ko-KR')}천 원(약 ${cpEok(CP_LEDGER.미수금_2026상반기_천원)}억)이 남아 있는데 그 성격을 공시가 적지 않는다. 매출채권과 따로 적히니 물건값은 아니다)`,
+    },
+    {
+      label: '미국이 세네갈에서 들여온 참치 조제품의 감소 폭 (유엔 무역통계 · 미국 신고 · 세번 1604.14 · 2023 → 2025)',
+      value: Number(capsenStats['미국수입_감소_pct']),
+      decimals: 1,
+      unit: `(% · ${Number(capsenStats['미국수입_2023_t']).toLocaleString('ko-KR')} t → ${Number(capsenStats['미국수입_2024_t']).toLocaleString('ko-KR')} t → ${Number(capsenStats['미국수입_2025_t']).toLocaleString('ko-KR')} t. 나라 합계이고 이 회사 물량이 아니다 — 세네갈에는 참치를 다루는 회사가 여럿이고 세관 통계에 회사 이름 칸이 없다. 게다가 이 회사가 잡은 고기는 최대 절반까지 부두에서 가공회사로 넘어가므로 수출 통계에는 원어가 아니라 캔으로 나타난다. 세번 1604.14 는 가다랑어·다랑어에 줄삼치까지 담는 바스켓이다. 2023년만 미국 신고 ${Number(capsenStats['미국수입_2023_t']).toLocaleString('ko-KR')} t 가 세네갈 신고 총수출 ${Number(capsenStats['세네갈조제품수출_2023_t']).toLocaleString('ko-KR')} t 보다 ${capsenStats['미러불일치_2023_t']} t 많은 미러 불일치인데, 세네갈 신고 누락·제3국 경유 재수출·신고 시점 차이 가운데 어느 쪽인지 이 자료로 갈리지 않는다)`,
+    },
+  ],
+  stripItems: [
+    {
+      now: true,
+      eyebrow: '인증',
+      title: '통과가 아니라 숙제 열 개가 붙은 인증이다',
+      body: `${CP_CERT.인증일} 에 이 회사와 Grand Bleu 가 함께 해양관리협의회 조업 인증을 받았다(증서 ${CP_CERT.증서} · 만료 ${CP_CERT.만료일} · 인증기관 ${CP_CERT.인증기관} · 어획 적격일 ${CP_CERT.적격일}). 고객 집단 이름은 「${capsenStats['MSC_고객집단']}」이다. 선박 수는 시점을 밝혀야 한다 — 인증 시점은 ${CP_CERT.선박_인증시점_척}척(이 회사 넷과 증서가 Grand Bleu 것으로 적는 둘)이고 현행 증서 ${CP_CERT.증서판}은 ${CP_CERT.선박_현행증서_척}척이다. 일곱째 COSMOS KIM 은 소유자 칸 CAPSEN·기국 Senegal·적격일 ${CP_CERT.적격일_일곱째} 으로 붙었고 AIS·IRCS 칸은 비어 있다 — 국제대서양참치보존위원회 세네갈 명부에는 없어 선단 수와 톤수 분모에는 넣지 않았다. 거기 붙은 조건이 ${CP_CERT.조건_수}개다: 자원 ${CP_CERT.조건_자원} · 생태계 ${CP_CERT.조건_생태계} · 관리 ${CP_CERT.조건_관리}. 그 가운데 ${CP_CERT.조건_손밖}개는 조업자 손 밖에 있다 — 어획 관리 규칙과 의사결정 절차는 국제대서양참치보존위원회 회원국들이 합의해야 움직인다. 인증일로 도는 숫자가 둘인데 증서와 조업 페이지가 적는 ${CP_CERT.인증일}이 인증일이고 ${capsenStats['MSC_보도자료일']}은 보도자료 날짜다. 그 보도자료만 이 회사를 「동원산업의 사업부」라 부르는데 틀린 표현이다 — 별개 세네갈 법인이고 지분은 ${cpPct(CP_CEIL.지분_pct)} %다`,
+    },
+    {
+      eyebrow: '장부',
+      title: '1,400만 원짜리 칸 뒤에 935억이 있다',
+      body: `동원산업 별도재무제표에서 이 회사는 ${CP_LEDGER.장부가_천원.toLocaleString('ko-KR')}천 원이고 열한 해 동안 한 원도 바뀌지 않았다 — 종속기업 투자를 취득원가로 적고 손상이 있을 때만 깎는 회계 때문이다. 같은 기간 총자산은 ${CP_LEDGER.총자산_2015_백만원.toLocaleString('ko-KR')}백만 원에서 ${CP_LEDGER.총자산_2025_사업보고서_백만원.toLocaleString('ko-KR')}백만 원(2025 사업보고서) 또는 ${CP_LEDGER.총자산_2025_반기_백만원.toLocaleString('ko-KR')}백만 원(이듬해 반기 재기재)이 됐다. ${cpPct(CP_LEDGER.배수_하한, 2)}배에서 ${cpPct(CP_LEDGER.배수_상한, 2)}배 사이인데, 같은 기준일을 두 공시가 다르게 적고 어느 쪽이 감사를 거친 값인지 원문으로 가려지지 않는다. 이 칸을 회사 가치로 읽으면 안 된다. 다만 같은 표의 옆자리가 다르다 — 같은 부두의 가공회사 S.C.A 는 취득가액 ${CP_LEDGER.SCA_취득가액_천원.toLocaleString('ko-KR')}천 원이 전액 손상돼 장부가가 0 이다. 조업 쪽은 1,400만 원이 살아 있고 가공 쪽은 32억이 지워졌다. 2018년 손익은 쓰지 않는다 — 한 공시 안에 △59백만 원과 +2,077백만 원 두 값이 부호까지 뒤집혀 있다`,
+    },
+    {
+      eyebrow: '그물',
+      title: '열에 아홉 가까이 유목에 붙인다',
+      body: `어선일지 기준으로 이 선단 어획의 ${CP_CERT.유목_pct} %가 유목 투망에서 나온다(${capsenStats['조성_기간']}, 연도별 ${capsenStats['유목비중_연도별_하한_pct']}~${capsenStats['유목비중_연도별_상한_pct']} %). 유목 투망의 어획 조성은 가다랑어 ${cpPct(Number(capsenStats['조성_가다랑어_pct']))} %·황다랑어 ${cpPct(Number(capsenStats['조성_황다랑어_pct']))} %이고 눈다랑어가 ${cpPct(Number(capsenStats['조성_눈다랑어_pct']))} % 섞인다 — 인증 어종에서 빠진 그 어종이다. 여기 붙는 라벨이 셋인데 서로 다르다. 유목 비중과 조성은 인증 시점 여섯 척 전체의 값이고, 관측 비율 유목 ${CP_CERT.관측_유목_pct} %·자유군 ${CP_CERT.관측_자유군_pct} %만 이 회사 네 척에서 계산했다(Grand Bleu 두 척은 관측 자료가 빠져 비율을 낼 수 없었다고 공개 인증보고서가 적는다). 그리고 조성 수치는 승선 관찰을 어선일지 대비 관측 비율로 선단 규모에 환산한 값이지 실측 총량이 아니다. 2025년 어획 ${CP_CERT.어획_가다랑어_t.toLocaleString('ko-KR')} t + ${CP_CERT.어획_황다랑어_t.toLocaleString('ko-KR')} t = ${CP_CERT.어획_합계_t.toLocaleString('ko-KR')} t 도 여섯 척 합계다`,
+    },
+    {
+      eyebrow: '문',
+      title: '유럽 배가 못 들어가는 바다인데, 인증이 그 결과는 아니다',
+      body: `유럽연합·세네갈 어업의정서가 ${capsenStats['의정서만료일']}에 만료돼 유럽 선박이 세네갈 수역에서 조업하지 못한다. 만료된 의정서가 유럽 선단에 주던 것은 냉동 선망 28척·채낚기 10척·연승 5척의 조업 기회와 연 1만 톤의 기준 어획량이었다. 그 앞 ${capsenStats['옐로카드일']}에 유럽연합이 세네갈에 옐로카드를 냈고(결정 C/2024/3277) 대상 선박 명단에 이 회사 배는 없다. ${capsenStats['SFPA_조회일']} 조회 기준으로 어업협정 상태는 여전히 휴면이고 철회 공고도 없다. 그렇다고 이 인증을 그 공백의 결과로 읽으면 순서가 맞지 않는다 — 인증일 ${CP_CERT.인증일}은 의정서 만료보다 사흘 빠르고, 심사 착수 ${capsenStats['MSC_심사착수일']}은 옐로카드보다 열석 달 앞서며, 그 앞의 어업개선사업은 2020년에 시작됐다. 어장도 겹치지 않는다: 닫힌 것은 세네갈 어업수역 하나이고 인증 어장은 공해와 일곱 나라 배타적경제수역이다. 같은 해에 있었을 뿐 서로를 부르지 않았다`,
+    },
+  ],
+  briefing: proseBriefing('capsen'),
+  narratives: inlineReport('capsen', proseStages('capsen')),
+  chartSlots: {},
+  continuous: true,
+  sourceNotes: capsenSourceNotes,
+  sourceMeta: [
+    `${capsenMeta.회사} · ${capsenMeta.국가} · ${capsenMeta.업종}`,
+    `출처 ${capsenMeta.출처}`,
+    `조사 ${capsenMeta.조사일}`,
+  ].join(' · '),
+};
+
 export const COMPANY_CARDS: CompanyCard[] = [
   {
     key: 'frinsa',
@@ -5145,6 +5234,19 @@ export const COMPANY_CARDS: CompanyCard[] = [
       { label: '살아 있는 증서와 지나간 증서', value: `${KF_CERT.map((c) => `${c.공장} ${c.증서} ${c.만료}(${c.등급})${c.살아있나 ? ' 유효' : ' 공개본 지남'}`).join(' · ')} · 어분 증서 ${kingfisherStats['어분인증_증서']} 은 ${kingfisherStats['어분인증_정지일']} 정지 → ${kingfisherStats['어분인증_재개일']} 재개, ${kingfisherStats['어분인증_만료']} 까지 · 취소는 없다` },
     ],
   },
+  {
+    key: 'capsen',
+    numeral: 'ⅩⅬⅥ',
+    name: 'CAPSEN',
+    country: `세네갈 · 다카르 몰 10 부두(조업만 · 공장 없음) · ${capsenStats['모회사']} 지분 ${cpPct(CP_CEIL.지분_pct)} %`,
+    tagline: '49 %는 고른 숫자가 아니라 법이 정한 천장이다.',
+    ...FLAG.세네갈,
+    stats: [
+      { label: '법이 정한 천장', value: `지분 ${cpPct(CP_CEIL.지분_pct)} % · ${CP_CEIL.보유주식.toLocaleString('ko-KR')}주 / ${CP_CEIL.총주식.toLocaleString('ko-KR')}주 · 세네갈 해상운송법 loi n°2002-22 제91조가 자본의 ${CP_CEIL.현지요건_pct} % 이상을 현지 국민 소유로 요구한다 — 소수주주라서가 아니다 · 그런데도 연결 종속기업이고 근거는 동원산업 계열 유일의 「${CP_CEIL.연결사유}」다 · 남은 ${CP_CEIL.미보유주식.toLocaleString('ko-KR')}주의 주인은 열한 해 동안 공시에 적히지 않았다(2015년 현지 매체는 종업원 명의를 가리킨다 — 등급 B)` },
+      { label: '배 넷과 분모 둘', value: `${CP_FLEET.배.map((b) => `${b.선명}(IMO ${b.imo} · ${b.톤수.toLocaleString('ko-KR')} · ${b.승인연도}년 승인)`).join(' · ')} · 합 ${CP_FLEET.톤수_이_회사.toLocaleString('ko-KR')} 은 세네갈 선망 ${CP_FLEET.선망_세네갈}척 ${CP_FLEET.톤수_세네갈7척.toLocaleString('ko-KR')} 의 ${cpPct(CP_FLEET.비중_7척기준_pct, 1)} %, 인증 시점 여섯 척 ${CP_FLEET.톤수_인증6척.toLocaleString('ko-KR')} 의 ${cpPct(CP_FLEET.비중_인증6척_pct, 1)} % · 단위가 섞인 합이다(GRANADA 만 GT) · 승인 명부는 채낚기 CAP ATLANTIQUE 까지 이 회사 소속으로 적어 「배 다섯」과 「선망 넷」이 갈린다` },
+      { label: '인증과 숙제 열 개', value: `${CP_CERT.증서} · ${CP_CERT.인증일} ~ ${CP_CERT.만료일} · 인증기관 ${CP_CERT.인증기관} · 적격일 ${CP_CERT.적격일} · 고객 집단은 이 회사와 Grand Bleu 공동 · 선박은 인증 시점 ${CP_CERT.선박_인증시점_척}척인데 현행 증서 ${CP_CERT.증서판}은 ${CP_CERT.선박_현행증서_척}척이다(COSMOS KIM 적격일 ${CP_CERT.적격일_일곱째}, 명부에 없어 톤수 분모에는 안 넣는다) · 조건 ${CP_CERT.조건_수}개(자원 ${CP_CERT.조건_자원}·생태계 ${CP_CERT.조건_생태계}·관리 ${CP_CERT.조건_관리})이고 ${CP_CERT.조건_손밖}개는 지역수산관리기구가 움직여야 풀린다 · 2025년 어획 ${CP_CERT.어획_합계_t.toLocaleString('ko-KR')} t 은 인증 시점 여섯 척 전체 값이다` },
+    ],
+  },
 
 
 ];
@@ -5214,6 +5316,7 @@ export default function CompanyAnatomyDashboard({
     galapesca: GALAPESCA_SPEC,
     cosi: COSI_SPEC,
     kingfisher: KINGFISHER_SPEC,
+    capsen: CAPSEN_SPEC,
   };
   const spec = SPECS[selected] ?? SPEC;
 
