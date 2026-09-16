@@ -49,6 +49,7 @@ import {
   priceWindow,
   priorities,
   processingSeries,
+  receivableNow,
   receivableSeries,
   receivables,
   regionalLandingSeries,
@@ -721,7 +722,12 @@ export function CashTab() {
           tone="down"
           d={liquidityBridge ? `${liquidityBridge.to} 월간보고 실측` : undefined}
         />
-        <Stat k="아비장 미수금" v={kusd(receivables.abidjanKusd)} tone="up" d={`정점 대비 ${kusd(receivables.recoveredKusd)}`} />
+        <Stat
+          k="아비장 미수금"
+          v={kusd(receivableNow.currentKusd)}
+          tone={receivableNow.sincePeakKusd <= 0 ? 'up' : 'down'}
+          d={`정점 대비 ${kusd(receivableNow.sincePeakKusd)} · ${receivableNow.asOf ?? '기준일 미상'} 주간동향`}
+        />
         {liquidityBridge && (
           <>
             <Stat k="현금 증감" v={kusd(liquidityBridge.현금 ?? 0)} tone={(liquidityBridge.현금 ?? 0) >= 0 ? 'up' : 'down'} d="2025-12-31 대비" />
@@ -807,7 +813,7 @@ export function CashTab() {
       <Grid>
         <Panel
           span={6} title="아비장 미수금" unit="천 달러"
-          note={`정점 ${kusd(receivables.abidjanPeakKusd)}에서 ${kusd(receivables.abidjanKusd)}까지 줄였다(${receivables.recoveryPeriod}).`}
+          note={`정점 ${kusd(receivableNow.peakKusd)}에서 ${receivableNow.recoveryPeriod} 사이 ${kusd(receivables.abidjanKusd)}까지 줄였다가, ${receivableNow.asOf ?? '최근'} 주간동향에서 ${kusd(receivableNow.currentKusd)}으로 다시 늘었다.`}
           src={SRC.weekly}
         >
           <Chart data={receivableSeries} x="label" height={210} xInterval={4}
