@@ -1,9 +1,9 @@
 {
  "_meta": {
   "entry": "app/page.tsx",
-  "files": 274,
+  "files": 275,
   "widgets": 114,
-  "dataFiles": 262,
+  "dataFiles": 266,
   "generator": "scripts/widget_lineage.py"
  },
  "widgetToData": {
@@ -582,6 +582,7 @@
     "lib/data/company-bolton.ts",
     "lib/data/company-boltonfood.ts",
     "lib/data/company-bumblebee.ts",
+    "lib/data/company-capsen.ts",
     "lib/data/company-centurypacific.ts",
     "lib/data/company-cnfc.ts",
     "lib/data/company-cosi.ts",
@@ -653,6 +654,10 @@
     "public/data/companies/bumblebee_prose_v1.json",
     "public/data/companies/bumblebee_tables_v1.json",
     "public/data/companies/bumblebee_v1.json",
+    "public/data/companies/capsen_figures_v1.json",
+    "public/data/companies/capsen_prose_v1.json",
+    "public/data/companies/capsen_tables_v1.json",
+    "public/data/companies/capsen_v1.json",
     "public/data/companies/centurypacific_figures_v1.json",
     "public/data/companies/centurypacific_prose_v1.json",
     "public/data/companies/centurypacific_tables_v1.json",
@@ -1441,6 +1446,18 @@
    "components/market-understanding/CompanyAnatomyDashboard.tsx"
   ],
   "public/data/companies/bumblebee_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/capsen_figures_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/capsen_prose_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/capsen_tables_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/capsen_v1.json": [
    "components/market-understanding/CompanyAnatomyDashboard.tsx"
   ],
   "public/data/companies/centurypacific_figures_v1.json": [
