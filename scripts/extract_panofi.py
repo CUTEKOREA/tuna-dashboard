@@ -194,6 +194,9 @@ def parse_fuel(text: str) -> dict:
     표가 **라벨 행 → 값 행** 2단으로 오므로 라벨 옆에서 값을 찾으면 실패한다
     (라벨과 값 사이에 개행·탭이 끼어 있다). 라벨 등장 순서와 `$N/KL` 등장 순서를
     각각 뽑아 위치로 짝짓는다. 초기 주차는 '유가 : $957/KL' 단일값 형태다.
+
+    슬래시는 매주 붙는 게 아니다 — 2026-09-15 판의 DAKAR 는 '$1,324KL' 로 찍혔고, 이 한 칸 때문에
+    4지점 표가 단일값으로 떨어져 나머지 세 지점이 null 이 됐다. 구분자를 선택으로 둔다.
     """
     blk = section(text, "유가", "선박 동향", "기타사항")
     out = {"abidjan": None, "tema": None, "dakar": None, "tanker": None, "single": None}
@@ -204,7 +207,7 @@ def parse_fuel(text: str) -> dict:
         if key not in seen:
             seen.add(key)
             keys.append(key)
-    values = [num(v) for v in re.findall(r"\$\s*([\d,]+)\s*/\s*KL", blk)]
+    values = [num(v) for v in re.findall(r"\$\s*([\d,]+)\s*/?\s*KL", blk)]
 
     if keys and len(values) >= len(keys):
         for key, val in zip(keys, values):

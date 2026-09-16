@@ -1,19 +1,19 @@
 {
  "meta": {
   "generatedFrom": "/Users/idong-geon/Library/CloudStorage/GoogleDrive-cutekorea@gmail.com/내 드라이브/신라그룹/11_Panofi_Cosmo_GGL /11. PANOFI/Panofi/PANOFI 주간동향",
-  "weekCount": 38,
+  "weekCount": 39,
   "rangeStart": "2025-12-23",
-  "rangeEnd": "2026-09-08",
+  "rangeEnd": "2026-09-15",
   "coverage": {
-   "prices.cosmoTema": 35,
-   "prices.scodiAbidjan": 38,
-   "fx.cediPerUsd": 38,
-   "dailyProcessing.COSMO": 37,
-   "receivables.totalUsd": 38,
-   "fuel(형식 온전)": 38,
-   "fleetStatus(관측됨)": 38,
-   "senegalFleet": 38,
-   "fishingGround.coastalMax": 38
+   "prices.cosmoTema": 36,
+   "prices.scodiAbidjan": 39,
+   "fx.cediPerUsd": 39,
+   "dailyProcessing.COSMO": 38,
+   "receivables.totalUsd": 39,
+   "fuel(형식 온전)": 39,
+   "fleetStatus(관측됨)": 39,
+   "senegalFleet": 39,
+   "fishingGround.coastalMax": 39
   },
   "vessels": {
    "P/QUEEN": "P/QUE",
@@ -5241,6 +5241,156 @@
     "tema": 1573.0,
     "dakar": 1224.0,
     "tanker": 1442.0,
+    "single": null
+   }
+  },
+  {
+   "reportDate": "2026-09-15",
+   "isoWeek": 38,
+   "source": "PANOFI 주간동향20260915.docx",
+   "sha256": "749c791e4016400b677a4e01f6cc87a36976a3efaac983ea36e3cf561ff800fc",
+   "author": "법인장",
+   "statedYearMismatch": false,
+   "fleetStatus": "detailed",
+   "ownVessels": [
+    {
+     "vessel": "P/MAS",
+     "code": "P/MAS",
+     "status": null
+    }
+   ],
+   "fishingGround": {
+    "coastalMin": 25.3,
+    "coastalMax": 27.2,
+    "oceanMin": 23.7,
+    "oceanMax": 25.2,
+    "coastalCurrent": "동류",
+    "oceanCurrent": "서류"
+   },
+   "senegalFleet": [
+    {
+     "fleet": "캅센",
+     "vessel": "CAP ATLANTIQUE",
+     "arrive": "8/17",
+     "depart": "미정",
+     "tons": null,
+     "note": "상가수리 중"
+    },
+    {
+     "fleet": "캅센",
+     "vessel": "COSMOS KIM",
+     "arrive": "8/22",
+     "depart": "미정",
+     "tons": 980.0,
+     "note": "하역 완료, 임시국적 증서 갱신 차 체항중"
+    },
+    {
+     "fleet": "캅센",
+     "vessel": "ORIENTAL KIM",
+     "arrive": "9/5",
+     "depart": "9/11",
+     "tons": 900.0,
+     "note": "하역 후, 출항 완료"
+    },
+    {
+     "fleet": "그랑블루",
+     "vessel": "PONT SAINT LOUIS",
+     "arrive": "9/6",
+     "depart": "9/10",
+     "tons": 1100.0,
+     "note": "하역 후, 출항 완료"
+    },
+    {
+     "fleet": "그랑블루",
+     "vessel": "SEA DEFENDER",
+     "arrive": "9/10",
+     "depart": "미정",
+     "tons": 920.0,
+     "note": "운반선 전재 중"
+    },
+    {
+     "fleet": "그랑블루",
+     "vessel": "SEA BREEZE",
+     "arrive": "9/12",
+     "depart": "미정",
+     "tons": 840.0,
+     "note": "운반선 전재 중"
+    },
+    {
+     "fleet": "EU",
+     "vessel": "ALBONIGA",
+     "arrive": "9/2",
+     "depart": "9/13",
+     "tons": 450.0,
+     "note": "운반선 전재 후, 출항 완료"
+    },
+    {
+     "fleet": "EU",
+     "vessel": "ZUBEROA",
+     "arrive": "9/5",
+     "depart": "9/9",
+     "tons": 560.0,
+     "note": "운반선 전재 후, 출항 완료"
+    },
+    {
+     "fleet": "운반선",
+     "vessel": "BOYANG BERING",
+     "arrive": "8/31",
+     "depart": "미정",
+     "tons": null,
+     "note": "조업선 물량 전재 중"
+    }
+   ],
+   "prices": {
+    "pfcTema": 1900.0,
+    "pfcTemaMonth": "9월",
+    "cosmoTema": 1700.0,
+    "cosmoTemaMonth": "8월",
+    "temaUnderNegotiation": true,
+    "scodiAbidjan": 1722.0,
+    "scodiAbidjanMonth": "9월",
+    "marketTemaCedi": 14000.0,
+    "marketTemaUsd": 1229.0,
+    "marketAbidjanCfa": 780000.0,
+    "marketAbidjanUsd": 1356.0
+   },
+   "fx": {
+    "cediPerUsd": 11.46,
+    "cfaPerUsd": 575.0
+   },
+   "dailyProcessing": {
+    "COSMO": 95.0,
+    "PFC": 120.0,
+    "SCODI": 85.0,
+    "SCASA": 100.0,
+    "AIRONE": 0.0
+   },
+   "receivables": {
+    "buyers": [
+     {
+      "buyer": "INTER OCEAN",
+      "cfa": 874147675.0,
+      "usd": 1520257.0
+     },
+     {
+      "buyer": "ETS BADARA",
+      "cfa": 1480521734.0,
+      "usd": 2574820.0
+     },
+     {
+      "buyer": "SDMG",
+      "cfa": 812822280.0,
+      "usd": 1413604.0
+     }
+    ],
+    "totalCfa": 3167491689.0,
+    "totalUsd": 5508681.0
+   },
+   "fuel": {
+    "abidjan": 1222.0,
+    "tema": 1586.0,
+    "dakar": 1324.0,
+    "tanker": 1619.0,
     "single": null
    }
   }
