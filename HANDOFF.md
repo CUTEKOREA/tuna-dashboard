@@ -1,3 +1,9 @@
+> 🚀 **2026-09-17 13:40 KST — 260917 일일보고 + TTA 37주차 프로덕션 배포** [CC]:
+> - 병합(squash): #1150 `/fleet` 260917 `1ad16e88` → #1151 `/logistics` 37주차 `b9267c7c`.
+> - 선단 배포 READY(`nj23rhenf`) 후 `swap_fleet_detail_secret.sh` 로 `FLEET_DAILY_DETAIL_JSON` 을 `975c5fbd` 로 교체·재배포(`k0p89yahe`). 물류 배포(`o1f37ljpj`)는 선단 데이터 무관이라 추가 교체 없음.
+> - 라이브 확인: `/fleet` 히어로 715 / 87,207.8 / 7,684.13 · 보고 158건 · 증감 +259, **보호 패널 경고 없음·상세 표시**, 가동 중단 MOAMARI 「9/30 도착 기준 30일 · 123만불 · 780~1,150 MT」. `/logistics` 히어로 26,271 MT · 37주차, 선박·보고자료 탭에 신규 2척(FONG KUO NO.819 · SEIN GALAXY)·기간 2026-09-17, 항로 마커 7개, 옛 값(36주차·19,514) 잔존 0. 배포 로그 error 0.
+> - 오늘 확인된 교차 일치: SEIN GALAXY 1,846 MT 가 일일보고(9/17 부두 접안)·`/unloading` 방콕 항차·TTA 37주차 배분표 세 곳에서 같은 값으로 맞는다.
+
 > ✅ **2026-09-17 13:10 KST — `/logistics` TTA 운반선 주간동향 37주차 반영** [CC]:
 > - 원자료: `Reefer ship movement for week 37th.xlsx` SHA-256 `171caae22ca11f57718b34e62f4abdf497feaedfb5f3fc1a8f63fd84b012df2f`(14,639 B, `unzip -t` 통과). 기간 2026-09-11~09-17.
 > - `sync_reefer_weekly.py` → `data/reefer_week37.json`(gitignore 대상이라 `git add -f`), `lib/data/reefer-weekly.ts` 의 import·source 메타 손으로 교체.
