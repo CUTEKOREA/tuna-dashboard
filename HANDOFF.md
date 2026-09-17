@@ -1,3 +1,12 @@
+> 📰 **2026-09-17 10:25 KST — `/market` 2026-09-16 참치 데일리 브리핑 라이브 배포 완료** [CC/tuna-dashboard-publisher]:
+> - PR [#1148](https://github.com/CUTEKOREA/tuna-dashboard/pull/1148) squash 병합. main commit `e199d113` (브랜치 커밋 `c7d01011`). 변경은 `public/data/tuna_daily_briefing.json` 한 파일뿐(+67/−65). 기준일 `2026-09-16`, 기사 **6건**·다이제스트 6건.
+> - 게이트 3종: 감사 `state/audit-2026-09-16.txt` = `AUDIT_PASS`(윤문본은 재감사 `AUDIT_FIX P0=0 P1=1` 로 기각, 원본 유지) · 08:15 `prepare_dashboard` 동기화 + `daily-briefing.test.ts` 4/4 통과(구간 FAIL 0) · 변경분 존재(브리핑 JSON 1건, 다른 경로 번짐 없음).
+> - 시작 시 워크트리는 `sync/2026-09-15b` = origin/main(0/0), dirty 는 브리핑 JSON 1건뿐. push 는 pre-push 게이트(data import 354건 추적 + `npm run build` 23s) 한 번에 통과. `gh` 401 없음.
+> - Vercel: 병합 01:16:55Z → 상태 `pending` 01:16:59Z → `success` 01:21:38Z(약 4분 40초, 직전 배포와 같은 폭). 완료 확인 뒤 라이브를 열어 1회차에 새 값 확인.
+> - 라이브 실측(Aside 로그인 세션): 헤더 **「기준일 2026.09.16 · 기사 6건 · 파이프라인 동기」**. 리드 「Europêche “참치 로인 쿼터 연장은 더 이상 선택지가 아니다”」, 카드 「디젤 비용, WCPO 선단에 부담」·「이스라엘 참치 프로젝트, 대규모 인공 번식 겨냥」·「WCPO 해상 환적 감소, 위험은 여전」·「가다랑어 공급 부진에 만타 참치 업계 압박」·「TUNA 2026, 지속가능성·업계 협력 촉구하며 폐막」 — JSON `titleKo` 6건과 일치. 09-15 제목(몬테크리스티·Umios·COFI37) 잔존 0. 페이지 깨진 이미지 0. 스크린샷으로 육안 확인.
+> - 「오늘의 수치」 패널은 **빈 칸**이다. 다이제스트 제목 6건에 수치 토큰이 없어 `buildBriefingImpactNumbers` 가 0건을 돌려준 것(09-11·09-14 와 같은 경우). 회귀 아님. 다만 라벨만 있고 내용이 없는 칸이 화면에 남는다 — 0건일 때 패널을 숨길지는 별도 판단.
+> - 워크트리 정리: PR MERGED + 브리핑 JSON `origin/main` 과 diff 없음 확인 후 `sync/2026-09-16`(origin/main) 로 옮김. 이 기록 PR 병합 뒤 다시 origin/main 위 `sync/2026-09-16b` 로 옮겨 clean 으로 남긴다. 옛 `briefing/2026-09-16`·`sync/2026-09-15b` 로컬 브랜치는 남겨 둠.
+
 > 🚀 **2026-09-16 15:40 KST — 방콕 주간보고 + 260916 일일보고 프로덕션 배포** [CC]:
 > - 병합(squash): #1145 방콕 20260916(원문 오류 4건 정정·엑셀·대시보드) `16c4b8cc` → #1146 `/fleet` 260916 `6e9a59d7`. #1146 은 main 병합 후 게이트 재실행 통과.
 > - 배포: `6e9a59d7` READY(`m96xywgnm`) 후 `swap_fleet_detail_secret.sh` 로 `FLEET_DAILY_DETAIL_JSON` 을 `9d48917b` 로 교체·재배포(`6t6zto1fm`), `leedonggun.co.kr` alias.
