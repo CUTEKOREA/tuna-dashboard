@@ -65,24 +65,24 @@ describe('fleet daily public and private DTO boundary', () => {
     expect(fleetDailyPublic).toEqual({
       _meta: {
         schemaVersion: 1,
-        reportCount: 157,
+        reportCount: 158,
         firstReportDate: '2026-01-16',
-        latestReportDate: '2026-09-16',
-        latestAsOf: '2026-09-15',
+        latestReportDate: '2026-09-17',
+        latestAsOf: '2026-09-16',
         detailSha256: expect.stringMatching(/^[a-f0-9]{64}$/),
         detailSha256Compat: [expect.stringMatching(/^[a-f0-9]{64}$/)],
       },
       latest: {
-        reportDate: '2026-09-16',
-        asOf: '2026-09-15',
-        pacific: { asOf: '2026-09-15', dailyMt: 136, monthlyMt: 2_082, annualMt: 50_322.8 },
-        atlantic: { asOf: '2026-09-15', dailyMt: 320, monthlyMt: 2_710, annualMt: 36_170 },
+        reportDate: '2026-09-17',
+        asOf: '2026-09-16',
+        pacific: { asOf: '2026-09-16', dailyMt: 470, monthlyMt: 2_552, annualMt: 50_792.8 },
+        atlantic: { asOf: '2026-09-16', dailyMt: 245, monthlyMt: 2_955, annualMt: 36_415 },
         carrier: { loadedTotalMt: 7_684.13, expectedRemainingMt: 3_207 },
       },
-      deltas: { pacificDailyMt: -174, atlanticDailyMt: 35, totalDailyMt: -139 },
+      deltas: { pacificDailyMt: 334, atlanticDailyMt: -75, totalDailyMt: 259 },
       reconciliation: {
-        pacificDaily: { reportedMt: 136, rowsMt: 136, matches: true, missingCount: 0 },
-        atlanticDaily: { reportedMt: 320, rowsMt: 320, matches: true, missingCount: 0 },
+        pacificDaily: { reportedMt: 470, rowsMt: 470, matches: true, missingCount: 0 },
+        atlanticDaily: { reportedMt: 245, rowsMt: 245, matches: true, missingCount: 0 },
         // 9/14 보고는 머리글도 소수 2자리(7,684.13)로 찍혀 잔차가 없다. 9/11 까지는 7,684.1 로 찍혀
         // 0.03 반올림 잔차가 남았다 - 허용 폭 판정은 source-contract 테스트가 고정값으로 지킨다
         carrierLoaded: { reportedMt: 7_684.13, rowsMt: 7_684.13, matches: true, missingCount: 0 },
@@ -98,8 +98,8 @@ describe('fleet daily public and private DTO boundary', () => {
       },
       quality: {
         counts: {
-          reconciliationChecks: 628,
-          reconciliationCompleteChecks: 628,
+          reconciliationChecks: 632,
+          reconciliationCompleteChecks: 632,
           reconciliationUnavailableChecks: 0,
           reconciliationUnavailableDocuments: 0,
           reconciliationIssues: 14,
@@ -108,7 +108,7 @@ describe('fleet daily public and private DTO boundary', () => {
           reconciliationPartialDifferenceDocuments: 12,
           duplicateVesselRows: 4,
           coordinateFormatIssues: 6,
-          longlineSectionMissing: 18,
+          longlineSectionMissing: 19,
         },
         incompletePartialDifferences: 0,
         incompletePartialDifferenceDocuments: 0,
