@@ -269,6 +269,15 @@ async function clickButtonByText(page, label) {
   assert.equal(clicked, true, `버튼을 찾지 못했습니다: ${label}`);
 }
 
+/* 2026 누적 하역량은 하역일마다 는다(9/18 SEIN GALAXY 첫 하역으로 39,369 → 39,611).
+ * 값을 못박으면 하역 보고마다 깨지므로 하한만 둔다 - 선박별 값은 vitest 데이터 테스트가 잡는다. */
+function assertAnnualTotal(body) {
+  const annualTotal = Number(
+    body.match(/누적 통합 하역량 \(2026년\)[\s\S]{0,80}?([\d,]+)\s+MT/)?.[1]?.replaceAll(',', ''),
+  );
+  assert.ok(annualTotal >= 39_611, `2026 누적 하역량이 줄었다: ${annualTotal} MT`);
+}
+
 async function runHappyPath(browser) {
   const page = await browser.newPage();
   const { pageErrors, consoleErrors, networkErrors } = await preparePage(page);
@@ -279,7 +288,7 @@ async function runHappyPath(browser) {
   await waitForText(page, '[data-testid="history-kpi-actual"]', /76,050\.239 MT/);
 
   const body = await page.evaluate(() => document.body.innerText);
-  assert.match(body, /39,369\s+MT/);
+  assertAnnualTotal(body);
 
   // 체선 카드는 「진행 중 항차」가 있을 때만 등급을 낸다. 항차가 끝나면 카드가 사라지고
   // 안내문만 남는다 — 2026-08-28 HIKARI 1 완료 후가 그 상태다. 어느 쪽이 정상이냐는
@@ -514,7 +523,7 @@ async function runFailureIsolation(browser) {
   await waitForText(page, '[data-testid="unloading-history-section"]', /과거 이력을 불러오지 못했습니다/);
   const body = await page.evaluate(() => document.body.innerText);
   assert.match(body, /다시 시도/);
-  assert.match(body, /39,369\s+MT/);
+  assertAnnualTotal(body);
   const done = body.match(/완료 선박:\s*(\d+)\s*척/);
   assert.ok(done && Number(done[1]) >= 12, '완료 선박 척수를 읽지 못했거나 줄었습니다.');
   assert.equal(pageErrors.length, 0, pageErrors.join('\n'));
@@ -578,7 +587,7 @@ async function runChunkFailureIsolation(browser) {
   );
   const body = await page.evaluate(() => document.body.innerText);
   assert.match(body, /다시 시도/);
-  assert.match(body, /39,369\s+MT/);
+  assertAnnualTotal(body);
   const done = body.match(/완료 선박:\s*(\d+)\s*척/);
   assert.ok(done && Number(done[1]) >= 12, '완료 선박 척수를 읽지 못했거나 줄었습니다.');
   assert.equal(getBlockedAppRequestCount(), 1);
@@ -589,7 +598,7 @@ async function runChunkFailureIsolation(browser) {
   await page.waitForSelector('[data-testid="unloading-history-panel"]');
   await waitForText(page, '[data-testid="history-kpi-actual"]', /76,050\.239 MT/);
   const recoveredBody = await page.evaluate(() => document.body.innerText);
-  assert.match(recoveredBody, /39,369\s+MT/);
+  assertAnnualTotal(recoveredBody);
   const doneRecovered = recoveredBody.match(/완료 선박:\s*(\d+)\s*척/);
   assert.ok(doneRecovered && Number(doneRecovered[1]) >= 12, '복구 후 완료 선박 척수가 줄었습니다.');
   assert.equal(getBlockedAppRequestCount(), 1);

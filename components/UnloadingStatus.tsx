@@ -636,6 +636,7 @@ type VesselCargoBasis = {
   totalLoaded: number;
   dischargeTarget: number;
   excludedCargo: number;
+  excludedLabel: string;
 };
 
 const vesselCargoBases: Record<string, VesselCargoBasis> = {
@@ -645,6 +646,7 @@ const vesselCargoBases: Record<string, VesselCargoBasis> = {
     totalLoaded: 3214,
     dischargeTarget: 2929,
     excludedCargo: 285,
+    excludedLabel: '#2-A 별도 배정',
   },
   // 9/14 일일업무보고의 선적 현황 «MK-956, MI-890, 타사-1,596». 타사 화물은 같은 배에 실려
   // 있을 뿐 우리 하역 대상이 아니라 하역 목표에서 뺀다.
@@ -654,6 +656,7 @@ const vesselCargoBases: Record<string, VesselCargoBasis> = {
     totalLoaded: 3442,
     dischargeTarget: 1846,
     excludedCargo: 1596,
+    excludedLabel: '타사 화물',
   },
 };
 
@@ -1206,10 +1209,10 @@ export default function UnloadingStatus({ heroOnly = false }: { heroOnly?: boole
         </div>
 
         {selectedCargoBasis && (
-          <section className={styles.cargoBasisPanel} data-testid="hikari-cargo-basis" aria-label="HIKARI 1 물량 기준">
+          <section className={styles.cargoBasisPanel} data-testid="vessel-cargo-basis" aria-label={`${selectedData.name.replace(/^M\/V\s+/, '')} 물량 기준`}>
             <div className={styles.cargoBasisHeader}>
               <div>
-                <span>HIKARI 1 물량 기준</span>
+                <span>{selectedData.name.replace(/^M\/V\s+/, '')} 물량 기준</span>
                 <strong>방콕 FCF 하역대상과 선박 총 적재량을 분리 집계</strong>
               </div>
               <BaseDateTag date={selectedCargoBasis.sourceDate} />
@@ -1218,7 +1221,7 @@ export default function UnloadingStatus({ heroOnly = false }: { heroOnly?: boole
               <div><span>정격 적재능력</span><strong>{formatNum(selectedCargoBasis.capacity)} MT</strong></div>
               <div><span>선박 총 적재량</span><strong>{formatNum(selectedCargoBasis.totalLoaded)} MT</strong></div>
               <div><span>FCF 하역대상</span><strong>{formatNum(selectedCargoBasis.dischargeTarget)} MT</strong></div>
-              <div><span>#2-A 별도 배정</span><strong>{formatNum(selectedCargoBasis.excludedCargo)} MT</strong></div>
+              <div><span>{selectedCargoBasis.excludedLabel}</span><strong>{formatNum(selectedCargoBasis.excludedCargo)} MT</strong></div>
             </div>
           </section>
         )}
