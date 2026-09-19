@@ -611,6 +611,7 @@ describe('HIKARI 1 Bangkok unloading plan and daily report', () => {
       totalLoaded: 3214,
       dischargeTarget: 2929,
       excludedCargo: 285,
+      excludedLabel: '#2-A 별도 배정',
     });
     expect(getVesselCargoBasis('sein-venus')).toBeNull();
   });

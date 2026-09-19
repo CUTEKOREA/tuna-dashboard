@@ -1,3 +1,21 @@
+> ✅ **2026-09-19 22:40 KST — `/unloading` SEIN GALAXY 방콕 9/19 하역 반영** [CC]:
+> - 원자료: K GROUP Report No.2 JPG `fd081cd9…f198`, 결과 XLS `03847f6e…5968`(시트 `09-19`), 현황 XLSX `ad2bd69a…ddf8`. 9/21 계획은 사용자 전달 원문.
+> - 9/19(토) 08:50~16:20 **329.240 MT**: ISA 29.100(MOAKONA #2-B) · UC 138.980(MOAMARI #3-B) · RMK 161.160(MOAKONA #1-C). YF 49.10·SJ 280.14, 누계 571.730, 잔량 1,274.270(진행률 31.0%), 22 trucks, 차량 대기 RMK 15:50~16:10·UC 10:20~12:00. 원선별 누계 MOAKONA 292.28·MOAMARI 279.45 가 XLS 와 일치.
+> - 원문에만 있는 사실: 계획 324 대비 +5.240, 1번 어창 누계 263.180 으로 적재 247 대비 +16.180(K GROUP BALANCE), ISA 배정 24 → 29.100(+5.100)·RMK 150 → 161.160(+11.160). **9/18 에 남겨 둔 의문 해소** — 계획 코드 `UN/H4B1(MOAMARI)` 는 실제로 MOAMARI #3-B 에서 하역됐다(계획 코드 ≠ 어창 번호).
+> - 9/20 일요일 휴무 → `next_day` `no_work`(재개 9/21 · 150 MT). 아직 오지 않은 9/20 휴무 행은 만들지 않았다.
+> - 테스트 RED(구 데이터 4건) → GREEN, `npm run verify` 통과(Vitest 190 files / 1,614 · 정적 118 · bundle 33), `test:e2e:unloading-history` PASS, 로컬 1440·390px overflow 0·error 0. 화면: 2026 누적 39,940.390 · 보고 2회 · 일평균 285.9 · 체선 사용 3일/허용 8.4일.
+> - 상태: 같은 브랜치 `data/unloading-sein-galaxy-0918`(PR #1153)에 커밋 추가. **프로덕션 미배포**.
+
+> ✅ **2026-09-18 22:50 KST — `/unloading` SEIN GALAXY 방콕 첫 하역(9/18) 반영** [CC]:
+> - 원자료: K GROUP Report No.1 JPG `49626468…55de`(같은 장 `S__29696030.jpg` `e5505649…b327`), 계근표 2장(GFF `96f9a21e…65b7`·UNICORD `cb42643c…5ac3`), 결과 XLS `0f6d0210…dcb6`(시트 `09-18` 만 실데이터, 나머지 `00-01`~`00-18` 은 2023 서식 잔재), 현황 XLSX `49287626…94b3`.
+> - 9/17 접안(WHARF 41) → 9/18 08:30~14:40 하역 **242.490 MT**(UC 102.020 = MOAKONA #1-B 44.420·#1-C 57.600 / GFF 140.470 = MOAMARI #3-A 23.080·#3-B 117.390), YF 156.67·SJ 85.82, 잔량 1,603.510, 18 trucks. 상태 `하역대기` → `하역중`, `arrival_date` 2026-09-17(체선 허용 8.4일·사용 2일).
+> - 어종: XLS 의 SJ 보고량 1,338 = 선적서류 SJ 1,306 + BE 32. HIKARI 선례대로 보고량은 선적서류, 실적은 SJ·YF 두 항목(BE 실적 0).
+> - 원문에만 있는 사실을 비고에 남김: 현황 XLSX 계획 255 대비 -12.510, GFF 계근표 FINISH·COMPLETED 인데 B/L 155 대비 140.470(-14.530). 9/19 계획 RMK 150·ISA 24·UN 150 = 324 MT(사용자 전달 원문 그대로). 계획의 `H4B1(MOAMARI)` 는 K GROUP 표의 4번 어창 「-」 와 안 맞는다 — 계획 코드가 어창 번호와 1:1 이 아닌 선례(HIKARI 8/22)가 있어 해석하지 않았다.
+> - 함께 고친 표시 오류 2건(9/15 등재 때부터): ① 물량 기준 카드 제목·라벨이 «HIKARI 1 물량 기준 · #2-A 별도 배정» 으로 고정 → 선박명·`excludedLabel`(SEIN GALAXY 는 «타사 화물») ② 항차 개요(간트)가 선적기록 2건을 보고로 세 보고 3회·일평균 80.8 → 선적기록 제외, 1회·242.5.
+> - E2E `unloading-history` 가 2026 누적 `39,369 MT` 를 네 곳에 박아 하역일마다 깨지는 구조였다 → 하한 검사 헬퍼(≥ 39,611)로 교체. 인수 테스트 PASS(데스크톱·모바일·키보드·장애 격리).
+> - 테스트 RED(구 데이터 3건·구 간트 1건 실패) → GREEN. `npm run verify` 통과: ESLint 0 errors(29 warnings 기존) · Vitest 190 files / 1,613 · 정적 118 · bundle 33 routes. 로컬 1440·390px overflow 0, error 0.
+> - 상태: 브랜치 `data/unloading-sein-galaxy-0918`. **프로덕션 미배포**(배포 요청 없음).
+
 > 🚀 **2026-09-17 13:40 KST — 260917 일일보고 + TTA 37주차 프로덕션 배포** [CC]:
 > - 병합(squash): #1150 `/fleet` 260917 `1ad16e88` → #1151 `/logistics` 37주차 `b9267c7c`.
 > - 선단 배포 READY(`nj23rhenf`) 후 `swap_fleet_detail_secret.sh` 로 `FLEET_DAILY_DETAIL_JSON` 을 `975c5fbd` 로 교체·재배포(`k0p89yahe`). 물류 배포(`o1f37ljpj`)는 선단 데이터 무관이라 추가 교체 없음.
