@@ -1,3 +1,9 @@
+> 🚀 **2026-09-20 00:25 KST — `/unloading` SEIN GALAXY 방콕 9/18·9/19 프로덕션 배포** [CC]:
+> - 병합(squash): #1153 `2f3547d2`. CI(lint·typecheck·test·build) 5m19s 통과. Production `tuna-dashboard-c2c8u691v` READY, alias `leedonggun.co.kr`. 빌드 로그 error 0(npm allow-scripts 경고만, 기존).
+> - 라이브 확인: 2026 누적 39,940.390 · 현재 하역 누계 571.730 · 잔여 1,274.270 · 진행률 31.0% · 보고 2회 · 일평균 285.9, 물량 카드 «SEIN GALAXY 물량 기준 · 타사 화물 1,596 MT», 체선 낮음(사용 3일/허용 8.4일), overflow 0.
+> - 보고 문안: 과거 `HIKARI 1 (BKK) 하역 업무 보고.txt` 형식(제목 «<선명> 하역 업무 보고 (M/D)», 본문 «금일(M/D) <선명> 하역결과», «(총 적재량:N MT)»)으로 9/18·9/19 두 건을 Drive `012. 하역 업무/SEIN GALAXY (3,500)/` 에 저장. 화면 보고서 생성기는 제목 줄이 없고 «M/V» 를 붙인다 — 다음 작업 후보.
+> - 시크릿 교체 불필요(선단 데이터 무관).
+
 > ✅ **2026-09-19 22:40 KST — `/unloading` SEIN GALAXY 방콕 9/19 하역 반영** [CC]:
 > - 원자료: K GROUP Report No.2 JPG `fd081cd9…f198`, 결과 XLS `03847f6e…5968`(시트 `09-19`), 현황 XLSX `ad2bd69a…ddf8`. 9/21 계획은 사용자 전달 원문.
 > - 9/19(토) 08:50~16:20 **329.240 MT**: ISA 29.100(MOAKONA #2-B) · UC 138.980(MOAMARI #3-B) · RMK 161.160(MOAKONA #1-C). YF 49.10·SJ 280.14, 누계 571.730, 잔량 1,274.270(진행률 31.0%), 22 trucks, 차량 대기 RMK 15:50~16:10·UC 10:20~12:00. 원선별 누계 MOAKONA 292.28·MOAMARI 279.45 가 XLS 와 일치.
