@@ -1,3 +1,14 @@
+> 📰 **2026-09-20 08:27 KST — `/market` 2026-09-18 참치 데일리 브리핑 라이브 배포 완료** [CC/tuna-dashboard-publisher]:
+> - PR [#1161](https://github.com/CUTEKOREA/tuna-dashboard/pull/1161) squash 병합. main commit `3cc7472f` (브랜치 커밋 `4e898641`). 변경은 `public/data/tuna_daily_briefing.json` 한 파일뿐(+73/−60). 기준일 `2026-09-18`, 기사 **5건**·다이제스트 5건.
+> - 게이트 3종: 감사 `AUDIT_PASS`(상위 세션 확인) · `prepare_dashboard` 성공(상위 세션 확인) · 변경분 존재(브리핑 JSON 1건, 다른 경로 번짐 0).
+> - `lib/data/daily-briefing.ts` 는 이번에도 변경 없음이 정상이다 — 이 모듈은 `public/data/tuna_daily_briefing.json` 을 **직접 import** 하므로 별도 동기 커밋이 필요 없다. 에이전트 정의의 «JSON + .ts 2파일 스테이징」은 .ts 가 실제로 바뀐 회차에만 해당한다.
+> - 시작 시 워크트리는 `sync/2026-09-17b` = origin/main(0/0), dirty 는 브리핑 JSON 1건뿐. pre-push 게이트(data import 354건 + `npm run build` 35s) 한 번에 통과. `gh` 401 없음.
+> - 병합 23:23:45Z. 라이브 1회차(병합 +1분)에는 아직 09.17 → 약 3분 대기 후 2회차에 09.18 확인. 전파에 2~4분 걸린다는 기존 관측과 일치.
+> - 라이브 실측(Aside 로그인 세션): 헤더 **「기준일 2026.09.18 · 기사 5건 · 파이프라인 동기」**. 리드 「몰디브, 채낚기 조업 지원 위해 유실된 고정식 FAD 교체」(규제), 카드 「인도양 어획 소폭 개선, 가다랑어 가격 강보합」(조업)·「Wild Planet 브랜드, 산뜻한 새 디자인 공개」(뉴스)·「영국 참치 시장, 관세 유예 영향 아직은 체감 못 해」(무역)·「GDST, 부수어획·해양포유류 향후 모듈 구축 계획과 미래를 위한 새 비전」(조업) — JSON `titleKo` 5건과 일치. 09-17 제목 잔존 0, 스크린샷 육안 확인.
+> - overflow 실측 93건은 전부 `LiveTicker-module__*`(마퀴 자막)과 그 안의 SVG path 다 — 의도된 가로 스크롤이고 뉴스 카드(`dsc-card`)에는 0건. 이번 변경과 무관한 기존 상태.
+> - **이상 소견 — 「오늘의 수치」 라벨 잘림(09-17 건과 같은 뿌리)**: 다이제스트 「인도양 어획 소폭 개선, 가다랑어 톤당 FOB EUR 1,645(+2.8%)」에서 수치는 **「+2.8%」** 로 맞게 잡혔으나 라벨이 「…가다랑어 톤당 FOB EUR 1,645**(**」 로 **여는 괄호가 매달린 채** 끝난다. `lib/data/daily-briefing.ts` 가 수치 토큰만 떼어내고 남은 앞부분을 그대로 라벨로 쓰는데, 괄호 안에서 수치를 뽑을 때 여는 괄호를 정리하지 않는다. 09-17 회차의 `EUR`·`억` 미인식과 같은 `NUMBER_TOKEN_PATTERN` 문제 계열이다. **데이터가 아니라 추출 정규식 문제라 이번 회차에서도 손대지 않았다** — 두 회차 연속 관측됐으니 다음 작업 후보: ① 통화(EUR/USD)·`억`·`만` 복합 표기를 한 토큰으로 ② 라벨 끝의 고아 구두점(`(`, `,`, `·`) trim.
+> - 워크트리 정리: PR MERGED + 브리핑 JSON `origin/main` 과 diff 없음 확인 후 `docs/handoff-2026-09-18`(origin/main) 로 옮김. 이 기록 PR 병합 뒤 다시 origin/main 위 `sync/2026-09-18` 로 옮겨 clean 으로 남긴다. 옛 `briefing/2026-09-18`·`sync/2026-09-17b` 로컬 브랜치는 남겨 둠.
+
 > 📰 **2026-09-20 01:07 KST — `/market` 2026-09-17 참치 데일리 브리핑 라이브 배포 완료** [CC/tuna-dashboard-publisher]:
 > - PR [#1159](https://github.com/CUTEKOREA/tuna-dashboard/pull/1159) squash 병합. main commit `5b66997e` (브랜치 커밋 `3bf3ef00`). 변경은 `public/data/tuna_daily_briefing.json` 한 파일뿐(+60/−73). 기준일 `2026-09-17`, 기사 **5건**·다이제스트 5건.
 > - 게이트 3종: 감사 `AUDIT_PASS`(상위 세션 확인) · 09-20 01:00 `prepare_dashboard` 동기화 + `daily-briefing.test.ts` 4/4 통과(직전 00:58 시도는 SIT 계약 실패로 FAIL, 01:00 재시도에서 통과) · 변경분 존재(브리핑 JSON 1건, 다른 경로 번짐 없음).
