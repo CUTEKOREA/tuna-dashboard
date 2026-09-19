@@ -1,3 +1,9 @@
+> 🚀 **2026-09-20 08:40 KST — `/market` Atuna 어가 프로덕션 배포** [CC]:
+> - 병합(squash): #1158 `022858e8`. 병합 직전 main 이 2커밋(#1159 브리핑·#1160 기록) 앞서 있어 HANDOFF 충돌 → 양쪽 블록 보존으로 풀고 재검사(`atuna-prices-data`·`daily-briefing` 5/5). GitHub 가 잠시 `CONFLICTING` 으로 남았지만 merge-tree 는 충돌 0 이었다.
+> - Production `tuna-dashboard-lwi0474m3` READY, alias `leedonggun.co.kr`. 빌드 로그 error 0.
+> - 라이브 확인: 히어로 «방콕 현물가 기준일 2026.09.15 · 직전 고시 대비 +4.8%», 가다랑어 방콕 $2,200(최근 12주 최고 $2,200·최저 $1,775), SKJ 만타 $2,300 ▲3.4% · 아비장 $1,550 ▲6.9% · 세이셸 $1,645 ▲2.8% · 비고 $1,900 ▲5.6%, YF 아비장 $2,700 ▲8.0% · 세이셸 $2,100 ▲2.4%. 옛 기준일(8/20) 잔존 0, overflow 0.
+> - 선단 데이터 무관이라 시크릿 교체 없음.
+
 > 📰 **2026-09-20 08:27 KST — `/market` 2026-09-18 참치 데일리 브리핑 라이브 배포 완료** [CC/tuna-dashboard-publisher]:
 > - PR [#1161](https://github.com/CUTEKOREA/tuna-dashboard/pull/1161) squash 병합. main commit `3cc7472f` (브랜치 커밋 `4e898641`). 변경은 `public/data/tuna_daily_briefing.json` 한 파일뿐(+73/−60). 기준일 `2026-09-18`, 기사 **5건**·다이제스트 5건.
 > - 게이트 3종: 감사 `AUDIT_PASS`(상위 세션 확인) · `prepare_dashboard` 성공(상위 세션 확인) · 변경분 존재(브리핑 JSON 1건, 다른 경로 번짐 0).
