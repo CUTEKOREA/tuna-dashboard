@@ -1,3 +1,10 @@
+> ✅ **2026-09-20 01:10 KST — `/market` Atuna 어가 변동분 반영** [CC]:
+> - 원자료: 로그인된 Aside 세션(`aside repl`)으로 Atuna 가격 페이지 8종의 차트 스크립트가 읽는 CSV(`wp-content/uploads/*.csv`)를 받아 `data/atuna_prices.json` 전 계열과 대조. skjbkk.csv `536233cc…` · skjmnt.csv `4cf0d932…` · skjabj.csv `84c18313…` · skjvig.csv `e70fe650…` · skjsey.csv `51f8ec2d…` · yfvig.csv `cc457062…` · yfabj.csv `9d528086…` · yfsey.csv `5f586cd5…` (본문 SHA-256 앞 8자리).
+> - 기존 값 불일치 0건. 빠진 **14개 값** 추가: 방콕 9/9 $2,100 · **9/15 $2,200**(+4.76%), 만타 9/7 $2,225 · **9/16 $2,300**, 세이셸 SKJ **9/18 $1,645** · YF **9/18 $2,100**, 아비장·비고 6/30(변동 없음 4건)·**8/31 SKJ 아비장 $1,550 · 비고 $1,900 · YF 아비장·비고 $2,700**.
+> - 만타 8/25 $2,220 은 CSV 에 없는 브리핑 기사 값(#908 제안기)이라 남겼다.
+> - 화면 문장·카드는 전부 계열 파생이라 코드 수정 없음. 테스트 `atuna-prices-data` 최신값 8계열 + 방콕 중간행 9/9 고정, RED → GREEN. `npm run verify` 통과(Vitest 191 files / 1,627 · 정적 118 · bundle 33). 로컬 `/market`·`/` 에 «방콕 현물가 기준일 2026.09.15 · 직전 고시 대비 +4.8%», 1440·390px overflow 0·error 0.
+> - 상태: 브랜치 `data/atuna-prices-0920`. **프로덕션 미배포**(배포 요청 없음).
+
 > 📰 **2026-09-20 01:07 KST — `/market` 2026-09-17 참치 데일리 브리핑 라이브 배포 완료** [CC/tuna-dashboard-publisher]:
 > - PR [#1159](https://github.com/CUTEKOREA/tuna-dashboard/pull/1159) squash 병합. main commit `5b66997e` (브랜치 커밋 `3bf3ef00`). 변경은 `public/data/tuna_daily_briefing.json` 한 파일뿐(+60/−73). 기준일 `2026-09-17`, 기사 **5건**·다이제스트 5건.
 > - 게이트 3종: 감사 `AUDIT_PASS`(상위 세션 확인) · 09-20 01:00 `prepare_dashboard` 동기화 + `daily-briefing.test.ts` 4/4 통과(직전 00:58 시도는 SIT 계약 실패로 FAIL, 01:00 재시도에서 통과) · 변경분 존재(브리핑 JSON 1건, 다른 경로 번짐 없음).
