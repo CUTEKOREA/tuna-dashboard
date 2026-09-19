@@ -1,3 +1,10 @@
+> ✅ **2026-09-20 01:10 KST — `/market` Atuna 어가 변동분 반영** [CC]:
+> - 원자료: 로그인된 Aside 세션(`aside repl`)으로 Atuna 가격 페이지 8종의 차트 스크립트가 읽는 CSV(`wp-content/uploads/*.csv`)를 받아 `data/atuna_prices.json` 전 계열과 대조. skjbkk.csv `536233cc…` · skjmnt.csv `4cf0d932…` · skjabj.csv `84c18313…` · skjvig.csv `e70fe650…` · skjsey.csv `51f8ec2d…` · yfvig.csv `cc457062…` · yfabj.csv `9d528086…` · yfsey.csv `5f586cd5…` (본문 SHA-256 앞 8자리).
+> - 기존 값 불일치 0건. 빠진 **14개 값** 추가: 방콕 9/9 $2,100 · **9/15 $2,200**(+4.76%), 만타 9/7 $2,225 · **9/16 $2,300**, 세이셸 SKJ **9/18 $1,645** · YF **9/18 $2,100**, 아비장·비고 6/30(변동 없음 4건)·**8/31 SKJ 아비장 $1,550 · 비고 $1,900 · YF 아비장·비고 $2,700**.
+> - 만타 8/25 $2,220 은 CSV 에 없는 브리핑 기사 값(#908 제안기)이라 남겼다.
+> - 화면 문장·카드는 전부 계열 파생이라 코드 수정 없음. 테스트 `atuna-prices-data` 최신값 8계열 + 방콕 중간행 9/9 고정, RED → GREEN. `npm run verify` 통과(Vitest 191 files / 1,627 · 정적 118 · bundle 33). 로컬 `/market`·`/` 에 «방콕 현물가 기준일 2026.09.15 · 직전 고시 대비 +4.8%», 1440·390px overflow 0·error 0.
+> - 상태: 브랜치 `data/atuna-prices-0920`. **프로덕션 미배포**(배포 요청 없음).
+
 > 🚀 **2026-09-20 00:25 KST — `/unloading` SEIN GALAXY 방콕 9/18·9/19 프로덕션 배포** [CC]:
 > - 병합(squash): #1153 `2f3547d2`. CI(lint·typecheck·test·build) 5m19s 통과. Production `tuna-dashboard-c2c8u691v` READY, alias `leedonggun.co.kr`. 빌드 로그 error 0(npm allow-scripts 경고만, 기존).
 > - 라이브 확인: 2026 누적 39,940.390 · 현재 하역 누계 571.730 · 잔여 1,274.270 · 진행률 31.0% · 보고 2회 · 일평균 285.9, 물량 카드 «SEIN GALAXY 물량 기준 · 타사 화물 1,596 MT», 체선 낮음(사용 3일/허용 8.4일), overflow 0.
