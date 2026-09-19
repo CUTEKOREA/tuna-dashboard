@@ -180,6 +180,24 @@ describe('Deep Sea Command V2.5 - TelemetryBadge', () => {
     expect(syncedMarkup).toContain('data-telemetry-tone="neutral"');
     expect(staticMarkup).toContain('data-telemetry-tone="neutral"');
 
+    /* 오래된 자료와 «날짜가 아닌» 기준일은 중립에서 빠져나온다.
+       실측에서 581개 중 18개월 초과가 97~129개, 판독 불가가 58개였다. */
+    const staleMarkup = renderToStaticMarkup(
+      React.createElement(TelemetryBadge, { status: 'STATIC', syncDate: '2018-01-30' }),
+    );
+    expect(staleMarkup).toContain('data-telemetry-tone="stale"');
+    expect(staleMarkup).toMatch(/\d+년/);
+
+    const unknownMarkup = renderToStaticMarkup(
+      React.createElement(TelemetryBadge, {
+        status: 'STATIC', syncDate: '참고용 (Reference Only)',
+      }),
+    );
+    expect(unknownMarkup).toContain('data-telemetry-tone="unknown"');
+    expect(unknownMarkup).toContain('기준일 미상');
+    // 원문 문자열은 지우지 않는다 — 출처 표기가 그 안에 들어 있다
+    expect(unknownMarkup).toContain('참고용');
+
     // 2026-08-15: 색은 인라인이 아니라 CSS 모듈로 이동 (라이트 스코프 재정의 가능해야 함) —
     // 톤 계약은 data 속성으로, 중립=slate·경보색 금지 계약은 모듈 CSS 원문으로 검증한다.
     const badgeCss = readFileSync(
@@ -187,7 +205,16 @@ describe('Deep Sea Command V2.5 - TelemetryBadge', () => {
       'utf8',
     );
     expect(badgeCss).toContain('#94a3b8');
-    expect(badgeCss).not.toContain('#f59e0b');
+    /* 2026-09-15: 경보색 계약을 «금지»에서 «가둠»으로 바꿨다. 18개월 넘은 기준일에만
+       호박색을 준다(lib/sync-freshness.ts). 대신 그 색이 tone='stale' 규칙 밖으로
+       새면 549장이 전부 물드니, 선택자에 stale 이 없는 규칙에는 못 들어오게 막는다. */
+    const amberRules = badgeCss
+      .split('}')
+      .filter(block => block.includes('#f59e0b') || block.includes('#a65d00'));
+    expect(amberRules.length).toBeGreaterThan(0);
+    for (const rule of amberRules) {
+      expect(rule).toContain("tone='stale'");
+    }
     // 긴 기준 구간이 배지 밖으로 넘치지 않게 — nowrap 금지
     expect(badgeCss).toContain('inline-flex');
     expect(badgeCss).not.toMatch(/\.date\s*\{[^}]*white-space:\s*nowrap/);
