@@ -1,3 +1,12 @@
+> 📰 **2026-09-20 01:07 KST — `/market` 2026-09-17 참치 데일리 브리핑 라이브 배포 완료** [CC/tuna-dashboard-publisher]:
+> - PR [#1159](https://github.com/CUTEKOREA/tuna-dashboard/pull/1159) squash 병합. main commit `5b66997e` (브랜치 커밋 `3bf3ef00`). 변경은 `public/data/tuna_daily_briefing.json` 한 파일뿐(+60/−73). 기준일 `2026-09-17`, 기사 **5건**·다이제스트 5건.
+> - 게이트 3종: 감사 `AUDIT_PASS`(상위 세션 확인) · 09-20 01:00 `prepare_dashboard` 동기화 + `daily-briefing.test.ts` 4/4 통과(직전 00:58 시도는 SIT 계약 실패로 FAIL, 01:00 재시도에서 통과) · 변경분 존재(브리핑 JSON 1건, 다른 경로 번짐 없음).
+> - 시작 시 워크트리는 `sync/2026-09-16b` = origin/main(0/0), dirty 는 브리핑 JSON 1건뿐. pre-push 게이트(data import 354건 + `npm run build` 42s) 한 번에 통과. `gh` 401 없음.
+> - Vercel: 병합 16:02:13Z → `success` 16:04:37Z. 완료 확인 뒤 라이브 1회차에 새 값 확인.
+> - 라이브 실측(Aside 로그인 세션): 헤더 **「기준일 2026.09.17 · 기사 5건 · 파이프라인 동기」**. 리드 「미 하원, 불법 참치 단속법 다음 단계로 진전」, 카드 「NewPrinces 매출 증가, 이탈리아 참치 판매 확대」·「피지, 태평양 국가 최초로 FiTI 가입」·「TTIA, 세계 참치 업계에 경쟁보다 협력 우선 촉구」·「Century Pacific, 권위 있는 상 수상」 — JSON `titleKo` 5건과 일치. 09-16 제목 잔존 0, 가로 overflow 0, 스크린샷 육안 확인.
+> - **이상 소견 — 「오늘의 수치」 오추출**: 다이제스트 「NewPrinces 상반기 매출 EUR 30억 3,000만 넘어…」에서 수치가 **「3,000만」**, 라벨이 「NewPrinces 상반기 매출 EUR 30억」으로 쪼개져 표시된다. `lib/data/daily-briefing.ts` `NUMBER_TOKEN_PATTERN` 이 `EUR`·`억` 단위를 몰라 뒤쪽 `3,000만` 만 잡은 것. 실제 수치는 EUR 30억 3,000만(약 EUR 30.3억). 데이터가 아니라 추출 정규식 문제라 이번 회차에서 손대지 않았다 — 통화(EUR 등)·`억` 복합 표기를 한 토큰으로 잡도록 고칠 것.
+> - 워크트리 정리: PR MERGED + 브리핑 JSON `origin/main` 과 diff 없음 확인 후 `sync/2026-09-17`(origin/main) 로 옮김. 이 기록 PR 병합 뒤 다시 origin/main 위 `sync/2026-09-17b` 로 옮겨 clean 으로 남긴다. 옛 `briefing/2026-09-17`·`sync/2026-09-16b` 로컬 브랜치는 남겨 둠.
+
 > 🚀 **2026-09-20 00:25 KST — `/unloading` SEIN GALAXY 방콕 9/18·9/19 프로덕션 배포** [CC]:
 > - 병합(squash): #1153 `2f3547d2`. CI(lint·typecheck·test·build) 5m19s 통과. Production `tuna-dashboard-c2c8u691v` READY, alias `leedonggun.co.kr`. 빌드 로그 error 0(npm allow-scripts 경고만, 기존).
 > - 라이브 확인: 2026 누적 39,940.390 · 현재 하역 누계 571.730 · 잔여 1,274.270 · 진행률 31.0% · 보고 2회 · 일평균 285.9, 물량 카드 «SEIN GALAXY 물량 기준 · 타사 화물 1,596 MT», 체선 낮음(사용 3일/허용 8.4일), overflow 0.
