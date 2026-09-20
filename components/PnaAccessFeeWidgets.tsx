@@ -2,6 +2,7 @@
 import React, { useMemo, useSyncExternalStore } from 'react';
 import s from './PnaAccessFeeWidgets.module.css';
 import { pnaAccessFee, companyTotals, shinlaInstallmentDue } from '@/lib/data/pna-access-fee';
+import { accessConditions2027, pngShinlaOutlook2027 } from '@/lib/data/access-conditions-2027';
 
 /* ═══════════════════════════════════════════════════════
    2026어기 PNA 수역별 입어료 배정
@@ -411,6 +412,67 @@ function SupportShipTable() {
 /* ═══════════════════════════════════════════════════════
    Main Export
    ═══════════════════════════════════════════════════════ */
+/* ── 2027어기 예고 ──────────────────────────────────────
+   위 카드들은 2026어기 배정·소진만 본다. 2027 조건은 이미 협상 중이고 PNG 는 줄어드는
+   쪽이라, 올해 숫자 옆에 내년 조건을 같이 둔다. 우리 몫 전망은 배정표 비중에서 파생한다. */
+const DIRECTION_LABEL = { tighten: '불리', ease: '완화', flat: '협상 중' } as const;
+const DIRECTION_COLOR = {
+  tighten: 'var(--delta-down, #3b82f6)',
+  ease: 'var(--delta-up, #ef4444)',
+  flat: 'var(--text-muted)',
+} as const;
+
+export function AccessConditions2027() {
+  const outlook = pngShinlaOutlook2027();
+  return (
+    <div className={s.heroCard}>
+      <h3 className={s.sectionTitle}>
+        2027어기 입어조건 변경 예고
+        <span className={s.sectionSub}>
+          참치선망어업위원회 {accessConditions2027.source.meetingDate} 자료 · STATIC
+        </span>
+      </h3>
+      <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: '0.82rem' }}>
+        <thead>
+          <tr style={{ textAlign: 'left', color: 'var(--text-muted)' }}>
+            <th style={{ padding: '6px 8px', fontWeight: 700 }}>수역</th>
+            <th style={{ padding: '6px 8px', fontWeight: 700 }}>항목</th>
+            <th style={{ padding: '6px 8px', fontWeight: 700 }}>2026어기</th>
+            <th style={{ padding: '6px 8px', fontWeight: 700 }}>2027어기</th>
+            <th style={{ padding: '6px 8px', fontWeight: 700 }}>방향</th>
+          </tr>
+        </thead>
+        <tbody>
+          {accessConditions2027.changes.map((row) => (
+            <tr key={`${row.zone}-${row.item}`} style={{ borderTop: '1px solid var(--card-border, #e2e4e9)' }}>
+              <td style={{ padding: '6px 8px', color: 'var(--text-muted)' }}>{row.zone}</td>
+              <td style={{ padding: '6px 8px', color: 'var(--text-main)' }}>{row.item}</td>
+              <td style={{ padding: '6px 8px', fontVariantNumeric: 'tabular-nums' }}>{row.y2026}</td>
+              <td style={{ padding: '6px 8px', fontVariantNumeric: 'tabular-nums', fontWeight: 700 }}>{row.y2027}</td>
+              <td style={{ padding: '6px 8px', fontWeight: 700, color: DIRECTION_COLOR[row.direction] }}>
+                {DIRECTION_LABEL[row.direction]}
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+      {outlook && (
+        <p style={{ margin: '12px 0 0', fontSize: '0.8rem', color: 'var(--text-main)', lineHeight: 1.6 }}>
+          2026어기 PNG 배정 {fmt(pnaAccessFee.zones.find((zone) => zone.id === 'png')?.total.days ?? 0)}일 가운데
+          신라교역 몫은 {fmt(outlook.days2026)}일({(outlook.share * 100).toFixed(1)}%)입니다.
+          제안서의 최초 할당 989일에 같은 비중을 적용하면 {fmt(outlook.days2027)}일로{' '}
+          {fmt(Math.abs(outlook.deltaDays))}일 줄고, 입어료는 일 ${fmt(outlook.unitCost)} 기준
+          ${fmt(Math.abs(outlook.feeDelta))} 감소합니다 — 조업 기회와 비용이 같이 줄어듭니다.
+        </p>
+      )}
+      <p style={{ margin: '8px 0 0', fontSize: '0.75rem', color: 'var(--text-muted)' }}>
+        {accessConditions2027.source.note} 전배비가 오르는 수역(미크로네시아)과 전배가 무상이 되는 수역(솔로몬)이
+        갈리므로, 소진이 임박한 수역의 전배 경로를 어디로 잡을지가 2027 계획의 갈림길입니다.
+      </p>
+    </div>
+  );
+}
+
 export default function PnaAccessFeeWidgets() {
   return (
     <section className={s.section}>
@@ -431,6 +493,9 @@ export default function PnaAccessFeeWidgets() {
 
       {/* 4. Support Ship Table */}
       <SupportShipTable />
+
+      {/* 5. 내년 조건 — 올해 배정 옆에 둔다 */}
+      <AccessConditions2027 />
     </section>
   );
 }
