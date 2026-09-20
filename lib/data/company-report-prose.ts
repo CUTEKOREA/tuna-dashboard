@@ -42,6 +42,7 @@ import togRaw from '@/public/data/companies/tog_prose_v1.json';
 import mauritiusRaw from '@/public/data/companies/mauritius_prose_v1.json';
 import galapescaRaw from '@/public/data/companies/galapesca_prose_v1.json';
 import cosiRaw from '@/public/data/companies/cosi_prose_v1.json';
+import kingfisherRaw from '@/public/data/companies/kingfisher_prose_v1.json';
 
 /**
  * 조사보고서 서술 전량 인테이크.
@@ -125,6 +126,7 @@ const INTAKES: Record<string, Intake> = {
   mauritius: mauritiusRaw as unknown as Intake,
   galapesca: galapescaRaw as unknown as Intake,
   cosi: cosiRaw as unknown as Intake,
+  kingfisher: kingfisherRaw as unknown as Intake,
   thaiunion: thaiunionRaw as unknown as Intake,
 };
 
