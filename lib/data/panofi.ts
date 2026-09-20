@@ -127,6 +127,32 @@ export const receivableSeries: Point[] = weeks.map((w) => ({
   미수금: w.receivables.totalUsd === null ? null : Math.round(w.receivables.totalUsd / 1000),
 }));
 
+/**
+ * 아비장 미수금 현황 — 최신 주간동향 실측에서 파생한다.
+ *
+ * 전략보고(profile)의 스냅샷(3,052천불·2026-07 기준)을 화면에 그대로 쓰던 때가 있었는데,
+ * 바로 아래 시계열은 주간동향을 따라가 2026-09-15 에 5,509천불을 찍었다 — 같은 화면에서
+ * 카드와 차트가 어긋났다. 정점과 회수 기간은 전략보고 값을 그대로 두고, 현재 잔액과 정점 대비
+ * 증감만 계열에서 다시 센다.
+ */
+export const receivableNow = (() => {
+  const dated = weeks.filter((w) => w.receivables.totalUsd !== null);
+  const last = dated[dated.length - 1];
+  const currentKusd = last ? Math.round(last.receivables.totalUsd! / 1000) : profile.receivables.abidjanKusd;
+  const peakKusd = Math.max(
+    profile.receivables.abidjanPeakKusd,
+    ...dated.map((w) => Math.round(w.receivables.totalUsd! / 1000)),
+  );
+  return {
+    asOf: last?.reportDate ?? null,
+    currentKusd,
+    peakKusd,
+    /** 정점 대비 증감(음수 = 회수) */
+    sincePeakKusd: currentKusd - peakKusd,
+    recoveryPeriod: profile.receivables.recoveryPeriod,
+  };
+})();
+
 /** 가공사별 일일 처리량(톤). 파노피 어획을 실제로 받아주는 하류 용량이다. */
 export const processingSeries: Point[] = weeks.map((w) => ({
   date: w.reportDate,

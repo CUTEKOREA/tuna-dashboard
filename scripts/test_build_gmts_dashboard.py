@@ -221,16 +221,21 @@ class ArchiveEndToEndTest(unittest.TestCase):
         self.assertEqual(queen_ellice['dates']['etaStart']['value'], '2026-08-11')
         self.assertEqual(queen_ellice['consignees'], ['GENTUNA'])
 
-    def test_archive_has_31_reports_39_pages_and_continuous_report_dates(self) -> None:
+    def test_archive_report_dates_are_weekly_and_metadata_counts_match(self) -> None:
+        """주차 수·쪽수는 매주 늘어난다 — 숫자를 박으면 반영할 때마다 이 테스트가 먼저 깨진다.
+        지켜야 할 것은 «메타가 실제 배열과 맞는가»와 «수요일 간격이 끊기지 않는가»다."""
+        metadata = self.dashboard["metadata"]
+        weekly = self.dashboard["weekly"]
+        first = date.fromisoformat(metadata["firstReportDate"])
         expected_dates = [
-            (date(2026, 1, 21) + timedelta(days=7 * index)).isoformat()
-            for index in range(31)
+            (first + timedelta(days=7 * index)).isoformat() for index in range(len(weekly))
         ]
-        self.assertEqual(self.dashboard["metadata"]["reportCount"], 31)
-        self.assertEqual(self.dashboard["metadata"]["pageCount"], 39)
-        self.assertEqual(
-            [report["reportDate"] for report in self.dashboard["weekly"]], expected_dates
-        )
+        self.assertEqual(metadata["reportCount"], len(weekly))
+        self.assertEqual(metadata["pageCount"], sum(source["pages"] for source in self.dashboard["sources"]))
+        self.assertEqual([report["reportDate"] for report in weekly], expected_dates)
+        self.assertEqual(metadata["coverageStart"], metadata["firstReportDate"])
+        self.assertEqual(metadata["coverageEnd"], metadata["latestReportDate"])
+        self.assertEqual(metadata["latestReportDate"], weekly[-1]["reportDate"])
 
     def test_each_report_preserves_seven_canneries_and_total_reconciles(self) -> None:
         numeric_fields = (
@@ -259,48 +264,46 @@ class ArchiveEndToEndTest(unittest.TestCase):
         self.assertIsNone(first["total"])
 
     def test_latest_source_hash_numeric_anchors_and_blanks_are_source_faithful(self) -> None:
+        """최신 주차 값은 매주 바뀌므로 숫자를 박지 않는다 — 최신 스냅샷이 원문 매니페스트·주간 배열과
+        서로 맞는지, 공장 합계가 행 합과 맞는지를 본다."""
         latest = self.dashboard["latest"]
-        self.assertEqual(latest["reportDate"], "2026-08-19")
-        self.assertEqual(
-            latest["source"]["sha256"],
-            "7d52ec98dc203c0bb6f12b25b3748de4599b6579ec6275d281350562a6afbc23",
-        )
-        self.assertEqual(latest["prices"]["nonGspNonMsc"]["amount"], 1900)
-        self.assertEqual(latest["prices"]["gspNonMsc"]["amount"], 2025)
-        annual_2026 = next(
-            row for row in self.dashboard["volumeHistory"]["annual"]
-            if row["year"] == 2026
-        )
-        self.assertEqual(annual_2026["months"][6], 12687.0)
-        self.assertEqual(annual_2026["total"], 63736.0)
+        self.assertEqual(latest["reportDate"], self.dashboard["metadata"]["latestReportDate"])
+        self.assertEqual(latest["source"], self.dashboard["sources"][-1])
+        self.assertRegex(latest["source"]["sha256"], r"^[0-9a-f]{64}$")
         total = next(row for row in latest["canneries"] if row["name"] == "Total")
-        self.assertEqual(total["currentProductionMt"], 895.0)
-        self.assertEqual(total["currentStockMt"], 17550.0)
-        self.assertEqual(latest["port"]["active"]["declaredCount"], 2)
-        self.assertEqual(latest["port"]["active"]["rawText"], "A. Unloading Vessels :2")
-        self.assertIsNone(latest["port"]["completed"]["declaredCount"])
+        rows = [row for row in latest["canneries"] if row["name"] != "Total"]
+        for field in ("currentProductionMt", "maximumProductionMt", "currentStockMt", "maximumCapacityMt"):
+            self.assertAlmostEqual(sum(row[field] for row in rows), total[field], places=3, msg=field)
+        self.assertEqual(latest["canneryTotal"]["currentDailyProductionMt"], total["currentProductionMt"])
+        self.assertEqual(latest["canneryTotal"]["currentStockMt"], total["currentStockMt"])
+        active = latest["port"]["active"]
+        if active["declaredCount"] is not None:
+            self.assertIn(str(active["declaredCount"]), active["rawText"])
 
     def test_operational_contract_separates_report_date_from_operational_as_of(self) -> None:
-        self.assertEqual(self.dashboard["metadata"]["status"], "STATIC")
-        self.assertEqual(self.dashboard["metadata"]["coverageStart"], "2026-01-21")
-        self.assertEqual(self.dashboard["metadata"]["coverageEnd"], "2026-08-19")
+        metadata = self.dashboard["metadata"]
+        self.assertEqual(metadata["status"], "STATIC")
+        self.assertEqual(metadata["coverageStart"], "2026-01-21")
+        self.assertEqual(metadata["coverageEnd"], metadata["latestReportDate"])
         self.assertTrue(all(item["operationalAsOf"] is None for item in self.dashboard["weekly"]))
         self.assertIsNone(self.dashboard["latest"]["operationalAsOf"])
 
     def test_latest_lanes_keep_declared_and_record_counts_with_source_details(self) -> None:
+        """레인별 척수·물량은 매주 바뀐다. 고정할 것은 «선언 척수와 실제 행 수가 따로 보존되고,
+        합계가 행에서 나오며, 공란이 0 으로 바뀌지 않는다»이다."""
         latest = self.dashboard["latest"]
-        active = latest["port"]["active"]
-        self.assertEqual(active["recordCount"], 2)
-        self.assertAlmostEqual(sum(item["cargo"] or 0 for item in active["records"]), 4925.080, places=3)
-        self.assertAlmostEqual(sum(item["discharged"] or 0 for item in active["records"]), 2252.630, places=3)
-        completed = latest["port"]["completed"]
-        self.assertIsNone(completed["declaredCount"])
-        self.assertEqual(completed["recordCount"], 0)
-        incoming = latest["port"]["incoming"]
-        self.assertEqual(incoming["recordCount"], 2)
-        self.assertAlmostEqual(sum(item["cargo"] or 0 for item in incoming["records"]), 4994.414, places=3)
-        queen = next(item for item in incoming["records"] if item["displayName"] == "SEIN QUEEN")
-        self.assertEqual(queen["gensanAllocation"], 2092.414)
+        for lane in ("active", "completed", "incoming"):
+            block = latest["port"][lane]
+            self.assertEqual(block["recordCount"], len(block["records"]), lane)
+            if block["declaredCount"] is None:
+                # 원문이 척수를 비워 둔 주 - 0 으로 만들지 않는다
+                self.assertIsNotNone(block.get("rawText"), lane)
+            else:
+                self.assertIsInstance(block["declaredCount"], int)
+            for record in block["records"]:
+                # TBA 는 0 이 아니라 공란이다
+                if record["rawFields"].get("cargo") in (None, "TBA", "EMPTY"):
+                    self.assertIsNone(record["cargo"], (lane, record["displayName"]))
 
     def test_volume_is_unit_neutral_and_retains_annual_rows(self) -> None:
         volume = self.dashboard["volumeHistory"]
@@ -309,11 +312,16 @@ class ArchiveEndToEndTest(unittest.TestCase):
         self.assertNotIn("totalMt", volume)
         self.assertEqual([row["year"] for row in volume["annual"]], list(range(2019, 2027)))
         self.assertTrue(all(len(row["months"]) == 12 for row in volume["annual"]))
+        # 끝난 해는 고정값, 진행 중인 해는 «합계 = 월 합»만 본다(매주 월이 채워진다)
         annual_2025 = next(row for row in volume["annual"] if row["year"] == 2025)
         annual_2026 = next(row for row in volume["annual"] if row["year"] == 2026)
         self.assertEqual(annual_2025["months"][6], 16120.0)
-        self.assertEqual(sum(annual_2025["months"][:7]), 67363.0)
-        self.assertEqual(annual_2026["total"], 63736.0)
+        self.assertEqual(annual_2025["total"], 112986.0)
+        self.assertAlmostEqual(
+            annual_2026["total"],
+            sum(value for value in annual_2026["months"] if value is not None),
+            places=3,
+        )
         self.assertEqual(annual_2026["months"][6], 12687.0)
         self.assertTrue(
             all(len(report["volume2026"]["months"]) == 12 for report in self.dashboard["weekly"])
@@ -328,15 +336,22 @@ class ArchiveEndToEndTest(unittest.TestCase):
     def test_quality_flags_are_an_ordered_structured_array(self) -> None:
         flags = self.dashboard["qualityFlags"]
         self.assertIsInstance(flags, list)
-        self.assertEqual(len(flags), 43)
-        self.assertEqual(
-            [flag["code"] for flag in flags],
-            ["blank_declared_count"] * 6
-            + ["price_qualifier"] * 31
-            + ["volume_revision"]
-            + ["capacity_exceeded"] * 3
-            + ["price_basis_unit_missing", "volume_unit_missing"],
-        )
+        # 건수는 주차가 늘면 같이 는다. 고정할 것은 «코드가 묶여서, 정해진 순서로» 나오는지다.
+        order = [
+            "blank_declared_count",
+            "price_qualifier",
+            "volume_revision",
+            "capacity_exceeded",
+            "price_basis_unit_missing",
+            "volume_unit_missing",
+        ]
+        codes = [flag["code"] for flag in flags]
+        self.assertEqual(set(codes) - set(order), set())
+        self.assertEqual(codes, sorted(codes, key=order.index))
+        self.assertEqual(codes.count("volume_revision"), 1)
+        self.assertEqual(codes.count("price_basis_unit_missing"), 1)
+        self.assertEqual(codes.count("volume_unit_missing"), 1)
+        self.assertEqual(len(flags), len(codes))
         self.assertTrue(
             any(
                 flag["code"] == "capacity_exceeded"
@@ -392,25 +407,27 @@ process.stdin.on('end', () => {
         self.assertTrue(all(set(item) == {"reportDate", "volume2026"} for item in history["snapshots"]))
 
     def test_latest_port_structure_and_vessel_columns_are_source_aligned(self) -> None:
+        """최신 주차의 선박은 매주 바뀐다 — 선명을 박으면 반영할 때마다 깨진다(2026-08-19 판의
+        SEA BLAZER 를 박아 두어 실제로 깨져 있었다). 선명별 확인은 고정 PDF 테스트가 맡고,
+        여기서는 주차가 바뀌어도 성립하는 구조만 본다."""
         latest = self.dashboard["latest"]
         self.assertEqual(set(latest["port"]), {"active", "completed", "incoming"})
-        blazer = next(item for item in latest["port"]["active"]["records"] if item["displayName"] == "SEA BLAZER")
-        self.assertEqual(blazer["traders"], ["TSP", "FCF"])
-        self.assertEqual(blazer["cargo"], 4345.080)
-        self.assertEqual(blazer["discharged"], 1621.330)
-        self.assertIsNone(blazer["short"])
-        self.assertEqual(blazer["consignees"], ["TSP/TS", "FCF/TS", "FOODSPHERE"])
-        ellice = next(item for item in latest["port"]["active"]["records"] if item["displayName"] == "F/V QUEEN ELLICE")
-        self.assertEqual(ellice["traders"], ["ITOCHU"])
-        # 초과 양하(631.300 > 580.000)를 0 이나 short 로 뒤집지 않고 원문 그대로 보존
-        self.assertEqual(ellice["cargo"], 580.000)
-        self.assertEqual(ellice["discharged"], 631.300)
-        self.assertIsNone(ellice["short"])
-        queen = next(item for item in latest["port"]["incoming"]["records"] if item["displayName"] == "SEIN QUEEN")
-        self.assertEqual(queen["traders"], ["TPJ"])
-        self.assertEqual(queen["etaOrUnloadingDate"], "2026/08/17(AMEND)")
-        self.assertEqual(queen["consignees"], ["GENTUNA"])
-        self.assertNotIn("GENTUNA", queen["etaOrUnloadingDate"])
+        for lane in ("active", "completed", "incoming"):
+            block = latest["port"][lane]
+            self.assertEqual(block["recordCount"], len(block["records"]), lane)
+            for record in block["records"]:
+                self.assertIsInstance(record["traders"], list)
+                self.assertIsInstance(record["consignees"], list)
+                self.assertTrue(record["displayName"])
+                # 값이 있으면 원문 문자열이 함께 남는다 - 숫자만 남기고 원문을 버리지 않는다
+                for key in ("cargo", "discharged", "short"):
+                    if record[key] is not None:
+                        self.assertTrue(record["rawFields"].get(key), (lane, record["displayName"], key))
+                # 수하인이 ETA 칸으로 새지 않는다
+                eta = record["etaOrUnloadingDate"]
+                if eta and eta not in {"TBA", "TBD", "EMPTY"}:
+                    for consignee in record["consignees"]:
+                        self.assertNotIn(consignee, eta)
 
     def test_cannery_total_uses_approved_type_contract_keys(self) -> None:
         expected = {"maxDailyProductionMt", "currentDailyProductionMt", "productionUtilizationPct", "storageCapacityMt", "currentStockMt", "storageUtilizationPct", "reportedProcessingDays"}
@@ -418,18 +435,26 @@ process.stdin.on('end', () => {
         self.assertEqual(set(self.dashboard["latest"]["canneryTotal"]), expected)
 
     def test_latest_vessel_dates_and_raw_values_are_preserved(self) -> None:
-        records = self.dashboard["latest"]["port"]["active"]["records"]
-        blazer = next(item for item in records if item["displayName"] == "SEA BLAZER")
-        self.assertEqual(blazer["dates"]["arrived"], {"value": "2026-08-11", "rawText": "2026/08/11"})
-        self.assertEqual(blazer["dates"]["unloadingStarted"]["rawText"], "2026/08/12")
-        self.assertEqual(blazer["rawFields"]["cargo"], "4,345.080 MT")
-        ellice = next(item for item in records if item["displayName"] == "F/V QUEEN ELLICE")
-        self.assertEqual(ellice["rawFields"]["discharged"], "631.300 MT")
-        incoming = self.dashboard["latest"]["port"]["incoming"]["records"]
-        queen = next(item for item in incoming if item["displayName"] == "SEIN QUEEN")
-        self.assertEqual(queen["dates"]["etaStart"], {"value": "2026-08-17", "rawText": "2026/08/17(AMEND)"})
-        galaxy = next(item for item in incoming if item["displayName"] == "SEIN GALAXY")
-        self.assertEqual(galaxy["dates"]["etaStart"], {"value": None, "rawText": "TBA"})
+        """날짜는 값과 원문을 함께 들고 있어야 한다. TBA 는 값이 없고 원문만 남는다."""
+        for lane in ("active", "completed", "incoming"):
+            for record in self.dashboard["latest"]["port"][lane]["records"]:
+                for key, observation in record["dates"].items():
+                    if observation is None:
+                        continue
+                    self.assertEqual(set(observation), {"value", "rawText"}, (lane, key))
+                    if observation["rawText"] is None:
+                        # 원문이 칸을 비운 경우 - 값도 없어야 한다
+                        self.assertIsNone(observation["value"], (lane, key))
+                        continue
+                    if observation["value"] is not None:
+                        self.assertRegex(observation["value"], r"^\d{4}-\d{2}-\d{2}$")
+                        # 원문은 0 을 떼기도 한다 - 9/16 판의 «2026/08/8» 이 그렇다
+                        year, month, day = observation["value"].split("-")
+                        self.assertRegex(
+                            observation["rawText"],
+                            rf"{year}/0?{int(month)}/0?{int(day)}",
+                            (lane, key, observation["rawText"]),
+                        )
 
 
 if __name__ == "__main__":

@@ -19,24 +19,24 @@ describe('GMTS dashboard data intake', () => {
     expect(data.schemaVersion).toBe(1);
     expect(data.metadata).toEqual({
       status: 'STATIC',
-      reportCount: 33,
-      pageCount: 41,
+      reportCount: 35,
+      pageCount: 43,
       firstReportDate: '2026-01-21',
       coverageStart: '2026-01-21',
-      coverageEnd: '2026-09-02',
-      latestReportDate: '2026-09-02',
+      coverageEnd: '2026-09-16',
+      latestReportDate: '2026-09-16',
     });
     expect(data.latest.operationalAsOf).toBeNull();
     expect(data.weekly.every(({ operationalAsOf }) => operationalAsOf === null)).toBe(true);
   });
 
-  it('keeps all 33 Wednesday reports in continuous chronological order', () => {
+  it('keeps all 35 Wednesday reports in continuous chronological order', () => {
     const dates = getGmtsDashboard().weekly.map(({ reportDate }) => reportDate);
 
-    expect(dates).toHaveLength(33);
+    expect(dates).toHaveLength(35);
     expect(dates[0]).toBe('2026-01-21');
-    expect(dates.at(-1)).toBe('2026-09-02');
-    expect(new Set(dates).size).toBe(33);
+    expect(dates.at(-1)).toBe('2026-09-16');
+    expect(new Set(dates).size).toBe(35);
     for (let index = 1; index < dates.length; index += 1) {
       expect(Date.parse(dates[index]) - Date.parse(dates[index - 1])).toBe(ONE_WEEK_MS);
     }
@@ -46,7 +46,7 @@ describe('GMTS dashboard data intake', () => {
     const data = getGmtsDashboard();
 
     expect(data.weekly.every(({ volume2026 }) => volume2026.months.length === 12)).toBe(true);
-    expect(data.volumeHistory.snapshots).toHaveLength(33);
+    expect(data.volumeHistory.snapshots).toHaveLength(35);
     expect(data.volumeHistory.snapshots.every(({ volume2026 }) => volume2026.months.length === 12)).toBe(true);
     expect(data.volumeHistory.annual.map(({ year }) => year)).toEqual([
       2019, 2020, 2021, 2022, 2023, 2024, 2025, 2026,
@@ -57,12 +57,12 @@ describe('GMTS dashboard data intake', () => {
   it('preserves declared and observed vessel counts without turning a blank into zero', () => {
     const { port } = getGmtsDashboard().latest;
 
-    expect(port.active).toMatchObject({ declaredCount: 3, recordCount: 3 });
-    expect(port.active.records).toHaveLength(3);
+    expect(port.active).toMatchObject({ declaredCount: 1, recordCount: 1 });
+    expect(port.active.records).toHaveLength(1);
     expect(port.completed).toMatchObject({ declaredCount: 1, recordCount: 1 });
     expect(port.completed.records).toHaveLength(1);
-    expect(port.incoming).toMatchObject({ declaredCount: 1, recordCount: 1 });
-    expect(port.incoming.records).toHaveLength(1);
+    expect(port.incoming).toMatchObject({ declaredCount: 5, recordCount: 5 });
+    expect(port.incoming.records).toHaveLength(5);
   });
 
   it('preserves the latest port, cannery, price, and volume numerical anchors', () => {
@@ -70,18 +70,15 @@ describe('GMTS dashboard data intake', () => {
     const active = latest.port.active.records;
     const incoming = latest.port.incoming.records;
 
-    expect(active.reduce((sum, row) => sum + (row.cargo ?? 0), 0)).toBeCloseTo(7515.253, 3);
-    expect(active.reduce((sum, row) => sum + (row.discharged ?? 0), 0)).toBeCloseTo(4857.92, 3);
-    expect(active.find(({ sourceIdentifier }) => sourceIdentifier === 'MV SEA BLAZER'))
-      .toMatchObject({ cargo: 4345.08, discharged: 4175.53, short: null });
+    // 9/16 판은 하역 중 1척뿐이다. 부족분이 원문에 적혀 있어 short 가 채워진다.
+    expect(active.reduce((sum, row) => sum + (row.cargo ?? 0), 0)).toBeCloseTo(1572.905, 3);
+    expect(active.reduce((sum, row) => sum + (row.discharged ?? 0), 0)).toBeCloseTo(1362.36, 3);
     expect(active.find(({ sourceIdentifier }) => sourceIdentifier === 'MV FRANSESCA LT'))
-      .toMatchObject({ cargo: 1572.905, discharged: 519.88, short: null });
-    expect(active.find(({ sourceIdentifier }) => sourceIdentifier === 'MV SEIN GALAXY'))
-      .toMatchObject({ cargo: 1597.268, discharged: 162.51, short: null });
-    // MV SEIN QUEEN 은 총화물 2,092.414 대비 1,932.350 양하이고 부족분 160.064 가 원문에 적혀 있다
+      .toMatchObject({ cargo: 1572.905, discharged: 1362.36, short: 210.545 });
+    // MV SEIN GALAXY 는 총화물 1,597.268 대비 1,446.220 양하, 부족분 151.048 로 9/9 에 종료됐다
     expect(latest.port.completed.records[0])
-      .toMatchObject({ sourceIdentifier: 'MV SEIN QUEEN', cargo: 2092.414, discharged: 1932.35, short: 160.064 });
-    // 입항 예정 1척은 TBA — 화물량을 0으로 만들지 않고 공란 유지
+      .toMatchObject({ sourceIdentifier: 'MV SEIN GALAXY', cargo: 1597.268, discharged: 1446.22, short: 151.048 });
+    // 입항 예정 5척은 전부 TBA — 화물량을 0으로 만들지 않고 공란 유지
     expect(incoming.every(({ cargo }) => cargo === null)).toBe(true);
     expect(latest.canneryTotal).toEqual({
       maxDailyProductionMt: 1095,
@@ -92,9 +89,9 @@ describe('GMTS dashboard data intake', () => {
       storageUtilizationPct: 43,
       reportedProcessingDays: 20,
     });
-    expect(latest.prices.nonGspNonMsc).toMatchObject({ amount: 2100, basisUnit: null });
-    expect(latest.prices.gspNonMsc).toMatchObject({ amount: 2150, basisUnit: null });
-    expect(weekly.at(-1)?.volume2026).toMatchObject({ year: 2026, total: 63736 });
+    expect(latest.prices.nonGspNonMsc).toMatchObject({ amount: 2025, basisUnit: null });
+    expect(latest.prices.gspNonMsc).toMatchObject({ amount: 2140, basisUnit: null });
+    expect(weekly.at(-1)?.volume2026).toMatchObject({ year: 2026, total: 79312 });
   });
 
   it('retains the February revision and both source snapshots', () => {
@@ -129,11 +126,11 @@ describe('GMTS dashboard data intake', () => {
   it('preserves the latest source manifest anchor', () => {
     const data = getGmtsDashboard();
 
-    expect(data.sources).toHaveLength(33);
+    expect(data.sources).toHaveLength(35);
     expect(data.sources.at(-1)).toEqual({
-      reportDate: '2026-09-02',
-      fileName: 'GMTS Weekly Report 20260902.pdf',
-      sha256: 'fdffc87d9909ed998fee1e3f02bca86ac0e51c999281589b816c99b0dd59b4e5',
+      reportDate: '2026-09-16',
+      fileName: 'GMTS Weekly Report 20260916.pdf',
+      sha256: '5622b4dbc10b20d7e5c0b74651f9bf71dd6188890b5e755cc560dd49a32ddd93',
       pages: 1,
     });
     expect(data.latest.source).toEqual(data.sources.at(-1));

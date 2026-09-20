@@ -11,17 +11,16 @@
  */
 export const cosmoWeeklyReport = {
   source: {
-    file: '2026.9.9_COSMO 주간보고 (36주차).docx',
-    sha256: 'fd917193bb2b3716a37ba470f735a8d6c2e4bed6550ab58ea255ed3c416602c1',
-    period: '2026-08-31~2026-09-06',
+    file: '2026.9.16_COSMO 주간보고 (37주차).docx',
+    sha256: 'f9d19fdb62ac2eaeb3fb81f23101b7f63a29619c73dcafc33f4e03ee53239878',
+    period: '2026-09-07~2026-09-13',
   },
   market: {
-    productionSecuredThrough: '2026년 11월 셋째 주 생산분',
-    summary: '판매단가 상승 부담으로 바이어들이 신규 물량 구매를 최소화하며 관망세를 유지하고 있습니다.',
+    productionSecuredThrough: '2026년 12월 둘째 주 생산분',
+    summary: '바이어들이 물량 확보를 타진하고 있으나 어가 상승이 이어지며 구매 부담이 커져 협상이 지연되고 있습니다.',
     rawFishPressure:
-      '베트남 EU 면세 쿼터가 2027년 1월 1일부터 적용될 예정이라 베트남 업체들이 낮은 가격으로 오퍼를 시작했고(10~11월 선적분이 12월 말~1월 초 유럽 도착 예상), '
-      + '모리셔스 Princes 공장은 인도양 원어 $1,800/MT를 기준으로 에콰도르 대비 약 17% 낮은 가격을 제시해 영국 Morrison’s Tender 수주 가능성이 거론됩니다. '
-      + '잔여 플레이크 재고는 중국·베트남 오퍼가가 약 $20/case로 코스모보다 $10/case 이상 낮아 신규 수주가 어렵습니다.',
+      '베트남 업체들이 2027년 1월 1일부터 적용되는 면세 쿼터를 선제적으로 활용해 타 지역 대비 케이스당 $10 이상 낮은 가격으로 오퍼하고 있습니다. '
+      + '현 원가 수준에서는 현실적으로 맞서기 어렵다는 것이 이번 주 보고의 판단입니다.',
   },
   litigation: {
     case: '아프리카 스타',
@@ -29,7 +28,7 @@ export const cosmoWeeklyReport = {
     status: '재심리 재판 진행 중',
   },
   operations: {
-    qualityFocus: 'MPS 항만 혼잡이 심해져 선적 지연이 이어지고, 약 30개 이상 컨테이너가 Gate-in 에 실패해 다음 선박편으로 이월됐습니다.',
+    qualityFocus: '대만 SK은행 인터넷뱅킹 보안카드가 만료돼 가나 송금이 일시 지연됐고, 갱신 절차를 진행 중입니다.',
     /** 그 주에 심사가 없으면 null. 지난 심사를 이번 주 일처럼 내보내지 않는다. */
     audit: null as null | { name: string; start: string; end: string; result?: string },
     /** 그 주에 하역이 없으면 null. */
@@ -42,12 +41,12 @@ export const cosmoWeeklyReport = {
     },
     /** 심사·하역이 없는 주에 브리핑 카드를 채우는 그 주의 물류 현황. */
     logistics: {
-      headline: 'MPS 항만 혼잡',
-      detail: '컨테이너 30개 이상 Gate-in 실패 · 다음 선박편 이월 · 8월 결산 업무 진행 중',
+      headline: '가나 송금 일시 지연',
+      detail: '대만 SK은행 인터넷뱅킹 보안카드 만료 · 갱신 절차 진행 중, 완료 즉시 송금 재개 예정 · 37주차 공장 출고 19컨 · CY 선적대기 74컨',
     },
   },
   nextActions: [
-    '과장급 유럽 출장 (9/13~9/19, 독일·네덜란드·벨기에)',
-    '8월 결산 업무 진행',
+    '2025 사업연도 법인 원천세 GRA 세무조사 레터 수령 (실제 조사는 10월부터)',
+    '대만 SK은행 보안카드 갱신 완료 후 가나 송금 재개',
   ],
 } as const;

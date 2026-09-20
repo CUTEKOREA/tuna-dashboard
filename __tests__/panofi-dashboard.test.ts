@@ -8,6 +8,7 @@ import PanofiDashboard, { PANOFI_TABS } from '../components/panofi/PanofiDashboa
 import { CashTab, PriceTab, ProfitTab as PanofiTabsProfit } from '../components/panofi/PanofiTabs';
 import {
   actuals,
+  receivableNow,
   bep,
   catchBySpecies,
   dataQuality,
@@ -70,38 +71,56 @@ describe('파노피 데이터 인테이크', () => {
 
   // 2026-08-26 추가: 8월 주간동향 0818·0825 반영. 최신행 고정 — main 미병합 배포가
   // 화면을 옛 값으로 되돌리는 회귀를 여기서 잡는다.
-  it('주간동향이 2026-09-08(37주차)까지 38주다', () => {
+  it('주간동향이 2026-09-15(38주차)까지 39주다', () => {
     // 최신행 고정 - main 미병합 배포가 화면을 옛 값으로 되돌리는 회귀를 여기서 잡는다.
-    expect(headline.weekCount).toBe(38);
-    expect(headline.rangeEnd).toBe('2026-09-08');
+    expect(headline.weekCount).toBe(39);
+    expect(headline.rangeEnd).toBe('2026-09-15');
     const last = weeks[weeks.length - 1];
-    expect(last.reportDate).toBe('2026-09-08');
+    expect(last.reportDate).toBe('2026-09-15');
     // PFC가 9월 어가 $1,900으로 확정되며 $1,600에서 처음 코스모를 넘어섰다.
     expect(last.prices.pfcTema).toBe(1900);
     expect(last.prices.cosmoTema).toBe(1700);
     expect(last.prices.scodiAbidjan).toBe(1722);
-    expect(last.fx.cediPerUsd).toBe(11.39);
-    expect(last.fx.cfaPerUsd).toBe(585);
-    expect(last.dailyProcessing.COSMO).toBe(80);
-    expect(last.receivables.totalUsd).toBe(3_135_880);
+    expect(last.fx.cediPerUsd).toBe(11.46);
+    expect(last.fx.cfaPerUsd).toBe(575);
+    // 주간동향의 코스모 일 가공이 80 → 95 로 올라 PANOFI 주말 메일(9/13 95톤)과 처음 맞았다
+    expect(last.dailyProcessing.COSMO).toBe(95);
+    expect(last.receivables.totalUsd).toBe(5_508_681);
+    // 유가 4지점 - 9/15 판은 DAKAR 가 «$1,324KL» 로 슬래시 없이 찍혔다(추출기가 허용)
+    expect(last.fuel).toEqual({ abidjan: 1_222, tema: 1_586, dakar: 1_324, tanker: 1_619, single: null });
   });
 
   it('테마 격차는 두 채널이 같은 월일 때만 계산한다', () => {
     /* 2026-09-08 원문: 「PFC - $1,900(9월), COSMO - $1,700(8월) ⇒ 9월어가 협의 중」.
      * 그냥 빼면 «PFC가 $200 비싸다»가 되는데 코스모의 9월 값은 아직 없다.
-     * 37주 내내 두 채널은 같은 월이었고 이 주가 처음 갈렸다. */
+     * 37주 내내 두 채널은 같은 월이었고 9/8 에 처음 갈린 뒤 9/15 도 협의 중이다. */
     expect(latest.prices.pfcTemaMonth).toBe('9월');
     expect(latest.prices.cosmoTemaMonth).toBe('8월');
     expect(latest.prices.temaUnderNegotiation).toBe(true);
     expect(temaGap.comparable).toBe(false);
     expect(temaGap.usdPerT).toBeNull();
 
-    // 월이 갈린 주는 이 한 주뿐이다 - 나머지는 전부 계산 가능해야 한다
+    // 월이 갈린 주만 비교 불가다 - 나머지는 전부 계산 가능해야 한다
     const split = weeks.filter((w) => {
       const { pfcTemaMonth: a, cosmoTemaMonth: b } = w.prices;
       return a != null && b != null && a !== b;
     });
-    expect(split.map((w) => w.reportDate)).toEqual(['2026-09-08']);
+    expect(split.map((w) => w.reportDate)).toEqual(['2026-09-08', '2026-09-15']);
+  });
+
+  it('아비장 미수금 카드는 전략보고 스냅샷이 아니라 최신 주간동향에서 나온다', () => {
+    /* 카드가 전략보고의 3,052천불(2026-07 기준)을 그대로 쓰는 동안 바로 아래 시계열은
+     * 주간동향을 따라 5,509천불(2026-09-15)을 찍고 있었다 — 같은 화면에서 어긋났다. */
+    const last = weeks[weeks.length - 1];
+    expect(receivableNow.asOf).toBe(last.reportDate);
+    expect(receivableNow.currentKusd).toBe(Math.round(last.receivables.totalUsd! / 1000));
+    expect(receivableNow.currentKusd).toBe(5_509);
+    expect(receivableNow.peakKusd).toBeGreaterThanOrEqual(receivableNow.currentKusd);
+    expect(receivableNow.sincePeakKusd).toBe(receivableNow.currentKusd - receivableNow.peakKusd);
+
+    const markup = renderToStaticMarkup(React.createElement(CashTab));
+    expect(markup).toContain('2026-09-15 주간동향');
+    expect(markup).not.toContain('정점 대비 -4,950천불');
   });
 
   it('세네갈 선단 표기가 흔들려도 행이 사라지지 않는다', () => {
@@ -115,10 +134,13 @@ describe('파노피 데이터 인테이크', () => {
         expect(FLEETS.has(row.fleet)).toBe(true);
       }
     }
+    /* 배는 들고 난다 - EGALUZE 는 9/7 출항으로 목록에서 빠졌다(2026-09-15 판 9행).
+     * 특정 선박을 못박는 대신 «소속이 붙은 채로 행이 남는지»를 본다. */
     const last = weeks[weeks.length - 1];
-    expect(last.senegalFleet.map((r) => r.vessel)).toContain('EGALUZE');
-    expect(last.senegalFleet.find((r) => r.vessel === 'EGALUZE')?.fleet).toBe('EU');
-    expect(last.senegalFleet).toHaveLength(10);
+    expect(last.senegalFleet).toHaveLength(9);
+    expect(last.senegalFleet.find((r) => r.vessel === 'ALBONIGA')?.fleet).toBe('EU');
+    expect(last.senegalFleet.find((r) => r.vessel === 'BOYANG BERING')?.fleet).toBe('운반선');
+    expect(last.senegalFleet.every((r) => r.fleet !== null)).toBe(true);
   });
 
   it('미수금은 바이어 3곳이 모두 채워진다', () => {
@@ -126,9 +148,9 @@ describe('파노피 데이터 인테이크', () => {
      * 합계만 맞아서 화면에서는 안 보였다. */
     const last = weeks[weeks.length - 1];
     const byBuyer = Object.fromEntries(last.receivables.buyers.map((b) => [b.buyer, b]));
-    expect(byBuyer['ETS BADARA'].usd).toBe(1_493_617);
-    expect(byBuyer['SDMG'].usd).toBe(11_498);
-    expect(byBuyer['INTER OCEAN'].usd).toBe(1_630_764);
+    expect(byBuyer['ETS BADARA'].usd).toBe(2_574_820);
+    expect(byBuyer['SDMG'].usd).toBe(1_413_604);
+    expect(byBuyer['INTER OCEAN'].usd).toBe(1_520_257);
     // 바이어 합이 표 하단 합계와 맞는다
     const sum = last.receivables.buyers.reduce((acc, b) => acc + (b.cfa ?? 0), 0);
     expect(sum).toBe(last.receivables.totalCfa);
