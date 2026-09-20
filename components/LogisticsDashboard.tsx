@@ -17,6 +17,7 @@ import PillTabs from './v2/PillTabs';
 import styles from './LogisticsCommandCenter.module.css';
 import { logisticsWeeklyReport } from '@/lib/logistics-weekly-report';
 import { reeferWeeklyReport } from '@/lib/data/reefer-weekly';
+import { reeferMonthlyIntake, recentReeferMonths } from '@/lib/data/reefer-monthly-intake';
 
 /* 운반선 카드의 주차·기간·척수·배분량은 매주 바뀐다. 손으로 적어두면 표만 갈리고
  * 카드 설명·SIT·TAK·syncDate 가 지난 주차에 남는다 - 2026-09-10 에 표가 36주차인데
@@ -42,6 +43,55 @@ const tabs: Array<{ id: LogisticsTab; label: string; description: string }> = [
   { id: 'canneries', label: '공장 운영', description: '방콕·송클라 생산과 재고' },
   { id: 'vessels', label: '선박·보고자료', description: '하역 현황과 보고 시점 이동표' },
 ];
+
+/* 월별 반입은 주간표를 접어 만든다 - 카드 문장도 같은 집계에서 뽑아 표와 어긋나지 않게 한다. */
+const intakeMonths = recentReeferMonths(6);
+const intakeLatest = intakeMonths.at(-1)!;
+const intakePrev = intakeMonths.at(-2) ?? null;
+const intakePeak = intakeMonths.reduce((best, row) => (row.mt > best.mt ? row : best), intakeMonths[0]);
+const intakeMaxMt = intakePeak.mt;
+const monthLabel = (month: string) => `${month.slice(5)}월`;
+const intakeEstimate = reeferMonthlyIntake.thirdPartyEstimate;
+const intakeEstimateOf = (month: string) => intakeEstimate.months.find((row) => row.month === month) ?? null;
+
+export function ReeferMonthlyIntakeChart() {
+  return (
+    <div>
+      <div style={{ display: 'grid', gap: 8 }}>
+        {intakeMonths.map((row) => {
+          const estimate = intakeEstimateOf(row.month);
+          return (
+            <div key={row.month} style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
+              <span style={{ flex: '0 0 auto', minWidth: 44, fontSize: '0.78rem', fontWeight: 700, color: 'var(--text-muted)' }}>
+                {monthLabel(row.month)}
+              </span>
+              <span style={{ flex: '1 1 auto', minWidth: 0 }}>
+                <span
+                  style={{
+                    display: 'block', height: 14, borderRadius: 7,
+                    width: `${Math.max(3, (row.mt / intakeMaxMt) * 100)}%`,
+                    background: 'var(--color-info)',
+                  }}
+                />
+              </span>
+              <span style={{ flex: '0 0 auto', minWidth: 132, textAlign: 'right', fontSize: '0.78rem', fontVariantNumeric: 'tabular-nums', color: 'var(--text-main)' }}>
+                {Math.round(row.mt).toLocaleString('ko-KR')} (MT) · {row.vessels}척
+              </span>
+              <span style={{ flex: '0 0 auto', minWidth: 104, textAlign: 'right', fontSize: '0.72rem', color: 'var(--text-muted)' }}>
+                {estimate ? `추산 ${estimate.mt.toLocaleString('ko-KR')}${estimate.qualifier ?? ''}` : '추산 없음'}
+              </span>
+            </div>
+          );
+        })}
+      </div>
+      <p style={{ margin: '10px 0 0', fontSize: '0.72rem', color: 'var(--text-muted)' }}>
+        보유 주차 {reeferMonthlyIntake.weeksHeld.join('·')}주차 - 주간표가 연속이 아니라 월 합계는 하한입니다.
+        같은 선박·같은 일자는 한 번만 셌고 부두(OTHER)·선박 간 전재(SHIP)는 뺐습니다.
+        오른쪽 값은 {intakeEstimate.reportDate.replace(/-/g, '.')} 출장보고의 {intakeEstimate.note}입니다.
+      </p>
+    </div>
+  );
+}
 
 const reeferRows = reeferWeeklyReport.rows;
 const carrierSituation = '8월 5일 입항 예정이던 SEIN VENUS는 하역 원장에서 8월 22일 하역 완료가 확인됐고, HENG HONG 9는 31·32주차 운반선 배분 보고에서 8월 6일 입항·배분이 확인됐습니다.';
@@ -197,6 +247,20 @@ export default function LogisticsDashboard({ heroOnly = false }: { heroOnly?: bo
           <strong>${logisticsWeeklyReport.market.rawMaterialPriceUsdPerMt.toLocaleString()}/MT</strong>
           <small>{logisticsWeeklyReport.market.reportDate} 보고 · 트레이더-통조림 공장 협의 가격</small>
         </div>
+        <WidgetCard
+          title="월별 방콕 반입량"
+          icon={TrendingUp}
+          iconColor="var(--color-info)"
+          pillar="S3"
+          cardDesc={`TTA 운반선 주간동향을 선박·일자 중복 제거해 월별로 접은 값 (보유 ${reeferMonthlyIntake.weeksHeld.length}개 주차, 하한)`}
+          telemetry={{ status: 'STATIC', syncDate: reeferWeeklyReport.source.endDate, label: '정적' }}
+          customBody={<ReeferMonthlyIntakeChart />}
+          takeaway={{
+            situation: `${monthLabel(intakeLatest.month)} 반입은 ${Math.round(intakeLatest.mt).toLocaleString('ko-KR')}MT(${intakeLatest.vessels}척)로 최근 6개월 최고인 ${monthLabel(intakePeak.month)} ${Math.round(intakePeak.mt).toLocaleString('ko-KR')}MT의 ${Math.round((intakeLatest.mt / intakePeak.mt) * 100)}% 수준입니다.${intakePrev ? ` 직전 달 ${Math.round(intakePrev.mt).toLocaleString('ko-KR')}MT 대비 ${Math.round(intakeLatest.mt - intakePrev.mt).toLocaleString('ko-KR')}MT 차이입니다.` : ''} 같은 기간을 본 ${intakeEstimate.note}도 9월을 2만MT 미만으로 적어 방향이 같습니다.`,
+            actionPlan: '반입 감소가 이어지는 동안은 어가 하방이 제한되므로, 운반선 판매는 월 반입이 회복되는 시점을 기다리기보다 현 국면에서 물량을 나눠 파는 쪽이 유리합니다.',
+            source: `TTA 운반선 이동표 ${reeferMonthlyIntake.weeksHeld.at(0)}~${reeferMonthlyIntake.weeksHeld.at(-1)}주차 · 제3자 추산은 ${intakeEstimate.reportDate} 출장보고`,
+          }}
+        />
         <WidgetCard
           title="트레이더별 반입 물량"
           icon={TrendingUp}
