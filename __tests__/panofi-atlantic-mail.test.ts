@@ -58,11 +58,15 @@ describe('PANOFI 대서양 주말 메일', () => {
 
 describe('코스모 원장 대 PANOFI 메일', () => {
   it('주차 말일이 같은 주만 짝짓고 재고 차이를 파생한다', () => {
-    expect(cosmoMailRows.map((r) => r.week)).toEqual([35, 36, null]);
+    // 37주차가 들어오며 9/13 메일도 원장 주차(말일 9/13)와 짝이 맞았다
+    expect(cosmoMailRows.map((r) => r.week)).toEqual([35, 36, 37]);
     expect(cosmoMailRows[0].ledgerDailyT).toBeCloseTo(85.1, 1);
     expect(cosmoMailRows[1].ledgerDailyT).toBeCloseTo(86.2, 1);
+    expect(cosmoMailRows[2].ledgerDailyT).toBeCloseTo(97.1, 1);
     expect(cosmoMailRows[0].stockGapT).toBeCloseTo(-250.6, 1);
     expect(cosmoMailRows[1].stockGapT).toBeCloseTo(-525.6, 1);
+    // 메일 9/11 기준 3,725 MT 대 원장 9/13 잔량 3,792.6 MT - 기준일이 이틀 다르다
+    expect(cosmoMailRows[2].stockGapT).toBeCloseTo(-67.6, 1);
     expect(cosmoMailRows.map((r) => r.inflowResidualT)).toEqual([null, 260.66, null]);
   });
 

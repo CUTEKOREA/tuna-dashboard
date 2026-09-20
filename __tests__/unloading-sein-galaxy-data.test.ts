@@ -1,9 +1,11 @@
+import React from 'react';
+import { renderToStaticMarkup } from 'react-dom/server';
 import { describe, expect, it } from 'vitest';
 
 import { GET } from '@/app/api/unloading-db/route';
-import { getUnloadingEtaLabel, getVesselStatusKind } from '@/lib/unloading-operations';
+import { getVesselStatusKind } from '@/lib/unloading-operations';
 import { getVesselCargoBasis } from '@/components/UnloadingStatus';
-import { reportDateMs } from '@/components/UnloadingVoyageGantt';
+import UnloadingVoyageGantt, { reportDateMs } from '@/components/UnloadingVoyageGantt';
 
 const VESSEL_ID = 'sein-galaxy-bangkok-2026-09';
 
@@ -16,51 +18,140 @@ async function loadSeinGalaxy() {
   return payload.data[VESSEL_ID];
 }
 
-describe('SEIN GALAXY 방콕 항차 (접안 예정)', () => {
-  it('접안 예정일과 전재 원선을 실적 없이 대기 상태로 싣는다', async () => {
+describe('SEIN GALAXY 방콕 항차', () => {
+  it('9/17 접안·9/18 첫 하역으로 하역중 상태가 된다', async () => {
     const vessel = await loadSeinGalaxy();
 
     expect(vessel).toMatchObject({
       name: 'M/V SEIN GALAXY',
       location: '방콕, 태국',
       buyer: 'FCF CO.,LTD',
-      status: '하역대기',
+      status: '하역중',
       reportedTotal: 1_846,
       motherVessel: 'MOAKONA 956 · MOAMARI 890 MT',
+      dateRange: '2026.09.18 ~ 진행중',
+      // K GROUP 하역보고 «ARRIVED ON SEPTEMBER 17» - 체선 계산은 접안일부터 센다.
+      arrivalDate: '2026-09-17',
     });
-    expect(vessel.dateRange).toContain('2026.09.17');
-    // 하역 보고가 시작되기 전이므로 실적은 0 이다 - 0 을 «하역 완료» 로 읽지 않게 상태로 가른다.
-    expect(vessel.actualTotal).toBe(0);
-    expect(getVesselStatusKind(vessel.status)).toBe('waiting');
-    expect(getUnloadingEtaLabel(vessel.status, vessel.reportedTotal, 5)).toBe('하역 실적 대기');
+    // 9/18 242.490 + 9/19 329.240
+    expect(vessel.actualTotal).toBeCloseTo(571.73, 6);
+    expect(getVesselStatusKind(vessel.status)).toBe('progress');
   });
 
-  it('어종 물량이 선적서류 합계와 맞는다', async () => {
+  it('9/18 하역을 화주·원선·어창별로 원문과 맞춘다', async () => {
     const vessel = await loadSeinGalaxy();
-    const byId = Object.fromEntries(vessel.species.map((s: { id: string; reported: number }) => [s.id, s.reported]));
+    const reports = vessel.timeline.filter((entry: { date: string }) => entry.date === '9/18');
 
-    // NOAA Form 370 초안 2부(MOAKONA·MOAMARI)의 kg 표기를 톤으로 옮긴 값이다.
-    expect(byId).toEqual({ SJ: 1_306, YF: 508, BE: 32 });
+    expect(reports).toHaveLength(1);
+    const [day] = reports;
+    expect(day).toMatchObject({ time: '08:30 ~ 14:40', dailyAmount: 242.49, cumAmount: 242.49, consignee: 'UC · GFF' });
+    // K GROUP Report No.1 과 계근표 2장(UNICORD 102.020 · GLOBAL FROZEN FOOD 140.470)
+    expect(day.allocations).toEqual([
+      {
+        consignee: 'UC',
+        amount: 102.02,
+        loads: [
+          { sourceVessel: 'MOAKONA', hatch: '#1-B', amount: 44.42 },
+          { sourceVessel: 'MOAKONA', hatch: '#1-C', amount: 57.6 },
+        ],
+      },
+      {
+        consignee: 'GFF',
+        amount: 140.47,
+        loads: [
+          { sourceVessel: 'MOAMARI', hatch: '#3-A', amount: 23.08 },
+          { sourceVessel: 'MOAMARI', hatch: '#3-B', amount: 117.39 },
+        ],
+      },
+    ]);
+    expect(day.observations.map((o: { hatch: string; temperaturesC: number[] }) => [o.hatch, o.temperaturesC]))
+      .toEqual([['#1-B', [-24, -25]], ['#1-C', [-22, -23]], ['#3-A', [-22, -23]], ['#3-B', [-22, -23]]]);
+    // 결과보고 XLS: YF 156.67 (MOAKONA 16.20 + MOAMARI 140.47) · SJ 85.82
+    expect(day.speciesAmounts).toEqual({ SJ: 85.82, YF: 156.67 });
+    expect(day.remainingAmount).toBeCloseTo(1_603.51, 6);
+    expect(day.remainingAmount + day.cumAmount).toBeCloseTo(vessel.reportedTotal, 6);
+    // 9/19 계획: RMK 150 + ISA 24 + UN 150
+    expect(day.nextDay).toMatchObject({ kind: 'work', date: '9/19', plannedMt: '324' });
+    expect(day.quality).toContain('TOTAL 18 TRUCKS');
+    expect(day.quality).toContain('B/L 155 MT 대비 하역은 140.470 MT(-14.530 MT)');
+    expect(day.quality).toContain('UN/H4B1(MOAMARI) 150 MT 08:00');
+  });
+
+  it('9/19 하역(K GROUP Report No.2)과 일요일 휴무·9/21 재개 계획을 싣는다', async () => {
+    const vessel = await loadSeinGalaxy();
+    const [day] = vessel.timeline.filter((entry: { date: string }) => entry.date === '9/19');
+
+    expect(day).toMatchObject({ time: '08:50 ~ 16:20', dailyAmount: 329.24, consignee: 'ISA · UC · RMK' });
+    expect(day.cumAmount).toBeCloseTo(571.73, 6);
+    expect(day.allocations).toEqual([
+      { consignee: 'ISA', amount: 29.1, loads: [{ sourceVessel: 'MOAKONA', hatch: '#2-B', amount: 29.1 }] },
+      { consignee: 'UC', amount: 138.98, loads: [{ sourceVessel: 'MOAMARI', hatch: '#3-B', amount: 138.98 }] },
+      { consignee: 'RMK', amount: 161.16, loads: [{ sourceVessel: 'MOAKONA', hatch: '#1-C', amount: 161.16 }] },
+    ]);
+    expect(day.observations.map((o: { hatch: string; temperaturesC: number[] }) => [o.hatch, o.temperaturesC]))
+      .toEqual([['#2-B', [-21, -22]], ['#3-B', [-25, -26]], ['#1-C', [-23, -24]]]);
+    // 결과보고 XLS 09-19 시트: YF 49.10 (MOAKONA 30.60 + MOAMARI 18.50) · SJ 280.14
+    expect(day.speciesAmounts).toEqual({ SJ: 280.14, YF: 49.1 });
+    expect(day.remainingAmount).toBeCloseTo(1_274.27, 6);
+    expect(day.remainingAmount + day.cumAmount).toBeCloseTo(vessel.reportedTotal, 6);
+    // 9/20 은 일요일 - 9/21 UN 150 MT 로 재개
+    expect(day.nextDay).toEqual({ kind: 'no_work', date: '9/20', reason: '일요일', resumeDate: '9/21', plannedMt: '150' });
+    expect(day.quality).toContain('TOTAL 22 TRUCKS');
+    expect(day.quality).toContain('K GROUP BALANCE +16.180');
+    expect(day.quality).toContain('9/21 UN/H4B1(MOAMARI) 150 MT 09:00');
+    // 원선별 합계가 결과보고 XLS 누계와 맞는다 - MOAKONA 292.28 · MOAMARI 279.45
+    const bySource = (name: string) => vessel.timeline
+      .flatMap((entry: { allocations: { loads: { sourceVessel: string; amount: number }[] }[] }) => entry.allocations)
+      .flatMap((allocation: { loads: { sourceVessel: string; amount: number }[] }) => allocation.loads)
+      .filter((load: { sourceVessel: string }) => load.sourceVessel === name)
+      .reduce((sum: number, load: { amount: number }) => sum + load.amount, 0);
+    expect(bySource('MOAKONA')).toBeCloseTo(292.28, 6);
+    expect(bySource('MOAMARI')).toBeCloseTo(279.45, 6);
+  });
+
+  it('항차 개요는 선적기록을 하역 보고로 세지 않는다', async () => {
+    const response = await GET();
+    const { data } = await response.json();
+    const markup = renderToStaticMarkup(React.createElement(UnloadingVoyageGantt as React.ComponentType<{ vesselsById: unknown }>, { vesselsById: data }));
+    const stat = (label: string) => markup.match(new RegExp(`${label}</span><span[^>]*>([^<]+)<`))?.[1];
+
+    // 6/12~6/15 선적기록 2건을 세면 첫 하역일(9/18) 기준 보고 3회·일평균 80.8 로 실적이 1/3 로 준다.
+    expect(markup).toContain('M/V SEIN GALAXY');
+    expect(stat('보고 횟수 \\(회\\)')).toBe('2');
+    // (242.49 + 329.24) / 2
+    expect(stat('일평균 \\(MT/일\\)')).toBe('285.9');
+  });
+
+  it('어종 보고량은 선적서류, 실적은 결과보고 XLS 를 따른다', async () => {
+    const vessel = await loadSeinGalaxy();
+    const byId = Object.fromEntries(vessel.species.map((s: { id: string; reported: number; actual: number }) => [s.id, [s.reported, s.actual]]));
+
+    // 보고량은 NOAA Form 370 초안 2부의 kg 표기를 톤으로 옮긴 값이다.
+    // XLS 는 BE 를 SJ 에 합쳐(1,338 = 1,306 + 32) 실적도 SJ·YF 두 항목만 준다 - BE 실적은 0 으로 둔다.
+    expect(byId).toEqual({ SJ: [1_306, 365.96], YF: [508, 205.77], BE: [32, 0] });
     expect(vessel.species.reduce((sum: number, s: { reported: number }) => sum + s.reported, 0))
       .toBe(vessel.reportedTotal);
-    for (const species of vessel.species) expect(species.actual).toBe(0);
+    expect(vessel.species.reduce((sum: number, s: { actual: number }) => sum + s.actual, 0))
+      .toBeCloseTo(vessel.actualTotal, 6);
+    expect(vessel.speciesBreakdownNote).toContain('1,338 MT');
   });
 
   it('적하계획의 어창 배치가 원선별 물량과 맞는다', async () => {
     const vessel = await loadSeinGalaxy();
+    const loading = vessel.timeline.filter((row: { time: string }) => row.time === '선적기록');
     const holdTotal = (vesselName: string) => {
-      const entry = vessel.timeline.find((row: { targetHol: string }) => row.targetHol.startsWith(vesselName));
+      const entry = loading.find((row: { targetHol: string }) => row.targetHol.startsWith(vesselName));
       expect(entry, vesselName).toBeDefined();
       return [...entry.targetHol.matchAll(/:(\d+(?:\.\d+)?)/g)]
         .reduce((sum, match) => sum + Number(match[1]), 0);
     };
 
-    expect(vessel.timeline).toHaveLength(2);
+    expect(loading).toHaveLength(2);
     /* 선적은 6월, 접안은 9월이라 항차 시작 연도로 보정하면 2027 년으로 밀린다.
      * 보고에 연도를 명시해 간트와 «최신 보고» 라벨이 2026.06.15 로 읽게 한다. */
     for (const row of vessel.timeline) expect(row.reportYear).toBe(2026);
     // 선적기록이라 일일 하역량은 0 이다 - 하역 실적 차트에 잡히면 안 된다.
-    for (const row of vessel.timeline) expect(row.dailyAmount).toBe(0);
+    for (const row of loading) expect(row.dailyAmount).toBe(0);
     expect(holdTotal('MOAKONA')).toBe(956);
     expect(holdTotal('MOAMARI')).toBe(890);
     expect(holdTotal('MOAKONA') + holdTotal('MOAMARI')).toBe(vessel.reportedTotal);
@@ -86,6 +177,8 @@ describe('SEIN GALAXY 방콕 항차 (접안 예정)', () => {
       totalLoaded: 3_442,
       dischargeTarget: 1_846,
       excludedCargo: 1_596,
+      // HIKARI 의 «#2-A 별도 배정» 이 아니다 - 같은 배에 실린 다른 회사 화물이다.
+      excludedLabel: '타사 화물',
     });
     expect(basis.dischargeTarget + basis.excludedCargo).toBe(basis.totalLoaded);
     expect(basis.totalLoaded).toBeLessThanOrEqual(basis.capacity);

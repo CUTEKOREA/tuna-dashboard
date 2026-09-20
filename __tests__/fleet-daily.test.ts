@@ -77,30 +77,30 @@ describe('fleet daily bounded intake', () => {
   it('exposes only the current public aggregate and quality counts', () => {
     expect(fleetDailyPublic._meta).toEqual({
       schemaVersion: 1,
-      reportCount: 156,
+      reportCount: 159,
       firstReportDate: '2026-01-16',
-      latestReportDate: '2026-09-15',
-      latestAsOf: '2026-09-14',
+      latestReportDate: '2026-09-18',
+      latestAsOf: '2026-09-17',
       detailSha256: expect.stringMatching(/^[a-f0-9]{64}$/),
       detailSha256Compat: [expect.stringMatching(/^[a-f0-9]{64}$/)],
     });
     expect(fleetDailyPublicLatest.pacific).toMatchObject({
-      dailyMt: 310,
-      monthlyMt: 1_946,
-      annualMt: 50_186.8,
+      dailyMt: 425,
+      monthlyMt: 2_977,
+      annualMt: 51_217.8,
     });
     expect(fleetDailyPublicLatest.atlantic).toMatchObject({
-      dailyMt: 285,
-      monthlyMt: 2_390,
-      annualMt: 35_850,
+      dailyMt: 155,
+      monthlyMt: 3_110,
+      annualMt: 36_570,
     });
     expect(fleetDailyPublicLatest.carrier).toEqual({
       loadedTotalMt: 7_684.13,
       expectedRemainingMt: 3_207,
     });
     expect(fleetDailyPublic.quality.counts).toMatchObject({
-      reconciliationChecks: 624,
-      reconciliationCompleteChecks: 624,
+      reconciliationChecks: 636,
+      reconciliationCompleteChecks: 636,
       reconciliationUnavailableChecks: 0,
       reconciliationUnavailableDocuments: 0,
       reconciliationIssues: 14,
@@ -109,7 +109,7 @@ describe('fleet daily bounded intake', () => {
       reconciliationPartialDifferenceDocuments: 12,
       duplicateVesselRows: 4,
       coordinateFormatIssues: 6,
-      longlineSectionMissing: 17,
+      longlineSectionMissing: 20,
     });
   });
 
@@ -121,9 +121,9 @@ describe('fleet daily bounded intake', () => {
 
   it('formats signed deltas and reported port names without changing source values', () => {
     expect(fleetDailyPublicDeltas).toEqual({
-      pacificDailyMt: 299,
-      atlanticDailyMt: 130,
-      totalDailyMt: 429,
+      pacificDailyMt: -45,
+      atlanticDailyMt: -90,
+      totalDailyMt: -135,
     });
     expect(formatFleetDailyDelta(20)).toBe('+20');
     expect(formatFleetDailyDelta(-20)).toBe('-20');

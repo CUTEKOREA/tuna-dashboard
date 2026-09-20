@@ -18,7 +18,7 @@ describe('방콕 개관 시세 겹쳐보기 행 구성', () => {
     ];
     expect(atunaAt(hist, '2026-08-26')).toBe(2000);
     expect(atunaAt(hist, '2026-08-19')).toBe(1900);
-    expect(atunaAt(hist, '2026-09-09')).toBeNull(); // 8/20 이후 20일 — 끊는다
+    expect(atunaAt(hist, '2026-09-16')).toBeNull(); // 8/20 이후 27일 — 끊는다
   });
 
   it('행은 방콕 주차와 1:1이고 재고·가동률·MGO를 같은 x축에 싣는다', () => {
@@ -27,7 +27,7 @@ describe('방콕 개관 시세 겹쳐보기 행 구성', () => {
     const last = rows.at(-1)!;
     // 최신행 고정 - main 미병합 배포가 화면을 옛 주차로 되돌리는 회귀를 여기서 잡는다.
     // MGO 는 실측 JSON 이 아직 이 주차를 안 담아 null 이다(가격·재고와 갱신 주기가 다르다).
-    expect(last).toMatchObject({ date: '2026-09-09', 방콕사무소: 2150, 재고: 94300, 가동률: 51, MGO: null, 어튜나: null });
+    expect(last).toMatchObject({ date: '2026-09-16', 방콕사무소: 2250, 재고: 91500, 가동률: 54, MGO: null, 어튜나: null });
     expect(rows.find((r) => r.date === '2020-05-27')?.MGO).toBeNull();
     // 2024-01-10 은 원문 docx 오기($2,000) — 2026-09-02 사용자 지시로 전후 주 값 $1,450 으로 정정(payload corrections 에 근거 기록)
     const corrected = bangkokWeeks.find((w) => w.date === '2024-01-10')!;

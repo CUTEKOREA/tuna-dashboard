@@ -32,7 +32,7 @@ const STATUS_RANK: Record<VesselStatusKind, number> = { progress: 0, waiting: 1,
 /* 응답의 location은 영문 표기가 섞여 있어 화면 노출용으로만 한글 대응 (L-01) */
 const KO_LOCATION: Record<string, string> = { 'BANGKOK, THAILAND': '방콕, 태국' };
 
-type TimelinePoint = { date: string; reportYear?: number | null; dailyAmount: number; cumAmount: number };
+type TimelinePoint = { date: string; reportYear?: number | null; time?: string; dailyAmount: number; cumAmount: number };
 type VesselRaw = {
   name: string;
   dateRange: string;
@@ -110,6 +110,8 @@ function toVessels(data: Record<string, VesselRaw>): Vessel[] {
       const startMs = start ?? fallbackEnd ?? 0;
       return {
         ...v,
+        // 접안 전 선적기록은 하역 보고가 아니다 - 보고 횟수·일평균·추이에 넣으면 첫 하역일 평균이 1/3 로 준다
+        timeline: v.timeline.filter((point) => point.time !== '선적기록'),
         id,
         kind: getVesselStatusKind(v.status),
         startMs,
