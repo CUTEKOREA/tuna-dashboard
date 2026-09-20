@@ -44,6 +44,7 @@ import galapescaRaw from '@/public/data/companies/galapesca_prose_v1.json';
 import cosiRaw from '@/public/data/companies/cosi_prose_v1.json';
 import kingfisherRaw from '@/public/data/companies/kingfisher_prose_v1.json';
 import capsenRaw from '@/public/data/companies/capsen_prose_v1.json';
+import bountyRaw from '@/public/data/companies/bounty_prose_v1.json';
 
 /**
  * 조사보고서 서술 전량 인테이크.
@@ -129,6 +130,7 @@ const INTAKES: Record<string, Intake> = {
   cosi: cosiRaw as unknown as Intake,
   kingfisher: kingfisherRaw as unknown as Intake,
   capsen: capsenRaw as unknown as Intake,
+  bounty: bountyRaw as unknown as Intake,
   thaiunion: thaiunionRaw as unknown as Intake,
 };
 

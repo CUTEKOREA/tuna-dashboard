@@ -44,6 +44,7 @@ import galapescaRaw from '@/public/data/companies/galapesca_tables_v1.json';
 import cosiRaw from '@/public/data/companies/cosi_tables_v1.json';
 import kingfisherRaw from '@/public/data/companies/kingfisher_tables_v1.json';
 import capsenRaw from '@/public/data/companies/capsen_tables_v1.json';
+import bountyRaw from '@/public/data/companies/bounty_tables_v1.json';
 
 /**
  * 조사보고서 표 전량 인테이크.
@@ -130,6 +131,7 @@ const INTAKES: Record<string, Intake> = {
   cosi: cosiRaw as unknown as Intake,
   kingfisher: kingfisherRaw as unknown as Intake,
   capsen: capsenRaw as unknown as Intake,
+  bounty: bountyRaw as unknown as Intake,
 };
 
 export const REPORT_TABLE_COMPANIES = Object.keys(INTAKES);
