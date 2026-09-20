@@ -18,6 +18,7 @@ import {
   type AtunaHubDefinition,
   type AtunaPriceRow,
 } from '../lib/data/atuna-price-summary';
+import { skjPriceContext, skjPriceHighMark, skjPriceHighMarkLabel } from '../lib/data/skj-price-context';
 import { colorForAtunaHub } from '@/lib/chart-palette';
 
 /* 증감 시맨틱 토큰 (globals.css SSOT) — 2026-08-17 주식 컨벤션 채택 */
@@ -64,7 +65,11 @@ function CommandTip({ active, payload }: {
   );
 }
 
-export default function HeroMarketCommand({ rows }: { rows: AtunaPriceRow[] }) {
+export default function HeroMarketCommand({ rows, historyRows }: {
+  rows: AtunaPriceRow[];
+  /** 차트용으로 자른 창이 아니라 전 계열 - 「몇 년 만」 판정은 여기서 낸다 */
+  historyRows?: AtunaPriceRow[];
+}) {
   const [selectedKey, setSelectedKey] = useState<string>(SKJ_ATUNA_HUBS[0].key);
   const [hoverKey, setHoverKey] = useState<string | null>(null);
 
@@ -77,6 +82,8 @@ export default function HeroMarketCommand({ rows }: { rows: AtunaPriceRow[] }) {
   const minPrice = prices.length ? Math.min(...prices) : null;
   const last = series[series.length - 1];
   const selectedColor = colorForAtunaHub(selected.hub.key);
+  // 「몇 년 만의 수준인가」는 계열에서 파생한다 - 손으로 적으면 다음 고시에 그대로 남는다
+  const highMarkLabel = skjPriceHighMarkLabel(skjPriceHighMark(historyRows ?? rows));
 
   return (
     <div className="dsc-card" style={{ padding: '20px 22px' }}>
@@ -157,6 +164,30 @@ export default function HeroMarketCommand({ rows }: { rows: AtunaPriceRow[] }) {
           );
         })}
       </div>
+      {highMarkLabel && (
+        <div style={{
+          marginTop: 14, padding: '12px 14px', borderRadius: 10,
+          border: '1px solid var(--card-border, #e2e4e9)', background: 'var(--surface-muted, rgba(141, 147, 165, 0.06))',
+        }}>
+          <div style={{ fontSize: '0.8rem', fontWeight: 800, color: 'var(--text-main)' }}>
+            가다랑어 방콕 {highMarkLabel}
+          </div>
+          <dl style={{ margin: '8px 0 0', display: 'grid', gap: 6 }}>
+            {skjPriceContext.premise.map((item) => (
+              <div key={item.label} style={{ display: 'flex', gap: 8, alignItems: 'baseline' }}>
+                <dt style={{ flex: '0 0 auto', fontSize: '0.72rem', fontWeight: 700, color: 'var(--text-muted)', minWidth: 72 }}>{item.label}</dt>
+                <dd style={{ margin: 0, fontSize: '0.75rem', color: 'var(--text-main)', lineHeight: 1.5 }}>{item.detail}</dd>
+              </div>
+            ))}
+          </dl>
+          <p style={{ margin: '8px 0 0', fontSize: '0.7rem', color: 'var(--text-muted)' }}>
+            {skjPriceContext.supplyNotes.join(' ')}
+          </p>
+          <p style={{ margin: '6px 0 0', fontSize: '0.68rem', color: 'var(--text-muted)' }}>
+            출처: {skjPriceContext.source.map((s) => `${s.file.replace(/\.(docx|pdf)$/, '')} (${s.reportDate.replace(/-/g, '.')})`).join(' · ')} · 「몇 년 만」은 어튜나 계열에서 파생합니다.
+          </p>
+        </div>
+      )}
       <p style={{ margin: '10px 0 0', fontSize: '0.72rem', color: 'var(--text-muted)' }}>
         허브 클릭 = 상단 시세·추이 전환 · 카드 추세선은 최근 8주 · 그래프에 마우스를 올리면 주간 수치
       </p>
