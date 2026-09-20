@@ -132,6 +132,9 @@ export function MarketHero({ rows }: { rows: AtunaPriceRow[] }) {
 
 export default function MarketDashboard({ heroOnly = false }: { heroOnly?: boolean }) {
   const [priceData, setPriceData] = useState<any[]>([]);
+  /* 차트는 2022년 이후만 그리지만 «몇 년 만의 수준인가» 는 전 계열에서 재야 한다 -
+     자른 창으로 재면 2017년 고점이 사라져 «사상 최고» 가 된다(2026-09-20 실측). */
+  const [priceHistoryAll, setPriceHistoryAll] = useState<AtunaPriceRow[]>([]);
   const chartContainerRef = useRef<HTMLDivElement>(null);
   const [chartWidth, setChartWidth] = useState(0);
 
@@ -214,6 +217,7 @@ export default function MarketDashboard({ heroOnly = false }: { heroOnly?: boole
         const hist: AtunaPriceRow[] = Array.isArray(data?.history) ? data.history : [];
         if (hist.length === 0) return; // 응답 비정상 시 스켈레톤 유지 (가짜값 금지)
         setPriceData(hist.filter((d) => typeof d.date === 'string' && d.date >= '2022-01-01'));
+        setPriceHistoryAll(hist);
         const summaries = buildAtunaMarketSummaries(hist);
         const maxDate = hist.reduce<string | null>(
           (max, r) => (typeof r.date === 'string' && (!max || r.date > max) ? r.date : max),
@@ -317,7 +321,7 @@ export default function MarketDashboard({ heroOnly = false }: { heroOnly?: boole
       {marketHero}
 
       {/* 디자인 랩 4라운드 채택본 — 허브 지휘형 시세 카드 (r4-B) */}
-      <HeroMarketCommand rows={priceData} />
+      <HeroMarketCommand rows={priceData} historyRows={priceHistoryAll} />
 
       {/* Seafood Stock Widget at the top of the market page */}
       <SeafoodStockWidget />
