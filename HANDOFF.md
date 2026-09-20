@@ -6,6 +6,15 @@
 > - 테스트 `reefer-monthly-intake`(중복 제거·보유 주차·제3자 추산·렌더) RED → GREEN. `npm run verify` 통과: Vitest 192 files / 1,631 · bundle 33. 로컬 `/logistics` 반입·가격 탭 1440·390px overflow 0·error 0.
 > - 상태: 브랜치 `feat/logistics-monthly-intake`. **프로덕션 미배포**.
 
+> ✅ **2026-09-20 10:20 KST — `/market`·`/bangkok-office` 어가 맥락 카드(출장보고 인사이트 1/3)** [CC]:
+> - 원자료: `방콕 출장보고 (종합).docx` SHA-256 `4dbb23a0…b7e2`(2026-09-16) · `260918_제4차 참치선망어업위원회 회의자료.pdf` `e9f82175…7e3e`(2026-09-21). 수치가 아니라 **시장 판단 문장만** 옮겼다 — 어가는 `data/atuna_prices.json`, 반입량은 운반선 주간동향이 정본이다. 사람 이름·회사 간 분쟁·인수 평가는 옮기지 않았다.
+> - 새 계약 `lib/data/skj-price-context.ts`: 업계 전제 4건(10월 어가 $2,200 수용 · 엘니뇨 2027-02 전제 · 캐너리 감산 20~40%·구매 한계선 $2,100 주장 · 컨테이너 $5,000·결제 180일)과 공급 축소 3건. 「몇 년 만의 수준인가」는 **계열에서 파생**한다(`skjPriceHighMark`) — 「2017년 이래 최고」를 손으로 적으면 다음 고시에 그대로 남는다.
+> - 실측: 방콕 $2,200(9/15)은 **2017.10 이후 처음(8년 11개월 만)**. 계열에서 2,200 이상은 2013-03~05·2017-10 두 구간뿐이다.
+> - **함정 하나 잡음**: 시장 화면은 차트용으로 2022년 이후만 넘기고 있어 그 창으로 재면 2017년 고점이 사라져 «계열 사상 최고» 로 나왔다. `historyRows` 로 전 계열을 따로 넘기고, 자른 창이 «사상 최고» 가 되는 것을 테스트로 고정했다.
+> - `/bangkok-office` 계절 기준선 캡션에 반대 전제를 한 줄 덧붙였다 — 기준선은 9→12월 하락(12월 $2,097)인데 업계는 2027년 2월까지 강세를 전제로 산다. 한쪽만 보이면 기준선이 전망으로 읽힌다.
+> - 테스트 `market-price-context`(파생·경계·인명·렌더 2곳·자른 창) RED → GREEN, `market-dashboard-composition` 의 히어로 배선 문구 갱신. `npm run verify` 통과: Vitest 192 files / 1,633 · 정적 118 · bundle 33. 로컬 `/market`·`/bangkok-office` 1440·390px overflow 0·error 0.
+> - 상태: 브랜치 `feat/market-price-context`. **프로덕션 미배포**.
+
 > 🚀 **2026-09-20 09:20 KST — `/fleet` 260918 프로덕션 배포 + 시크릿 교체** [CC]:
 > - 병합(squash): #1165 `dbb52323`. Production `tuna-dashboard-9ftig8w6i`(dpl_7FKDHGPtgyF8PneTjFxcN8mB7K2a) READY 확인 후 `swap_fleet_detail_secret.sh` 로 `FLEET_DAILY_DETAIL_JSON` 을 `842493cb…` 로 교체·재배포(`tuna-dashboard-mm38ra3lr`, 3분). 교체 전 사용자 화면에 「선박 상세 데이터가 공개 집계와 맞지 않습니다」가 떴는데, 이는 ②~④ 사이 구조상 불가피한 창이다.
 > - 라이브 확인: 히어로 580 / 6,087 / 87,787.8 · 「2026-09-18 보고 · 2026-09-17 조업 기준」, 태평양 425(-45) · 대서양 155(-90), 검산 4항목 전부 일치, 보고 159건 · 검산 636회 · 연승 미기재 20건. **보호 패널 경고 사라지고 상세 비고 표시**(MOAMARI 「10/1 도착 예정」, SEIN GALAXY 「방콕 하역 중」).
