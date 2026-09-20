@@ -1,9 +1,9 @@
 {
  "_meta": {
   "entry": "app/page.tsx",
-  "files": 275,
+  "files": 279,
   "widgets": 114,
-  "dataFiles": 266,
+  "dataFiles": 279,
   "generator": "scripts/widget_lineage.py"
  },
  "widgetToData": {
@@ -108,7 +108,8 @@
   },
   "components/HeroMarketCommand.tsx": {
    "dataModules": [
-    "lib/data/atuna-price-summary.ts"
+    "lib/data/atuna-price-summary.ts",
+    "lib/data/skj-price-context.ts"
    ],
    "dataFiles": []
   },
@@ -123,10 +124,24 @@
   "components/LogisticsDashboard.tsx": {
    "dataModules": [
     "lib/data/bangkok-weekly.ts",
+    "lib/data/reefer-monthly-intake.ts",
     "lib/data/reefer-weekly.ts"
    ],
    "dataFiles": [
+    "data/reefer_week19.json",
+    "data/reefer_week22.json",
+    "data/reefer_week24.json",
+    "data/reefer_week26.json",
+    "data/reefer_week27.json",
+    "data/reefer_week29.json",
+    "data/reefer_week30.json",
+    "data/reefer_week31.json",
+    "data/reefer_week32.json",
+    "data/reefer_week33.json",
+    "data/reefer_week34.json",
+    "data/reefer_week35.json",
     "data/reefer_week36.json",
+    "data/reefer_week37.json",
     "public/data/bangkok_weekly_kpi.json",
     "public/data/bangkok_weekly_payload.json"
    ]
@@ -165,6 +180,7 @@
   },
   "components/PnaAccessFeeWidgets.tsx": {
    "dataModules": [
+    "lib/data/access-conditions-2027.ts",
     "lib/data/pna-access-fee.ts"
    ],
    "dataFiles": []
@@ -213,7 +229,7 @@
     "lib/data/reefer-weekly.ts"
    ],
    "dataFiles": [
-    "data/reefer_week36.json"
+    "data/reefer_week37.json"
    ]
   },
   "components/SafeResponsiveContainer.tsx": {
@@ -343,6 +359,7 @@
    "dataModules": [
     "lib/data/bangkok-weekly.ts",
     "lib/data/singapore-mgo.ts",
+    "lib/data/skj-price-context.ts",
     "lib/data/skj-seasonal-outlook.ts"
    ],
    "dataFiles": [
@@ -1285,7 +1302,46 @@
    "components/PorkDashboard.tsx",
    "components/PorkUsdaWidgets.tsx"
   ],
+  "data/reefer_week19.json": [
+   "components/LogisticsDashboard.tsx"
+  ],
+  "data/reefer_week22.json": [
+   "components/LogisticsDashboard.tsx"
+  ],
+  "data/reefer_week24.json": [
+   "components/LogisticsDashboard.tsx"
+  ],
+  "data/reefer_week26.json": [
+   "components/LogisticsDashboard.tsx"
+  ],
+  "data/reefer_week27.json": [
+   "components/LogisticsDashboard.tsx"
+  ],
+  "data/reefer_week29.json": [
+   "components/LogisticsDashboard.tsx"
+  ],
+  "data/reefer_week30.json": [
+   "components/LogisticsDashboard.tsx"
+  ],
+  "data/reefer_week31.json": [
+   "components/LogisticsDashboard.tsx"
+  ],
+  "data/reefer_week32.json": [
+   "components/LogisticsDashboard.tsx"
+  ],
+  "data/reefer_week33.json": [
+   "components/LogisticsDashboard.tsx"
+  ],
+  "data/reefer_week34.json": [
+   "components/LogisticsDashboard.tsx"
+  ],
+  "data/reefer_week35.json": [
+   "components/LogisticsDashboard.tsx"
+  ],
   "data/reefer_week36.json": [
+   "components/LogisticsDashboard.tsx"
+  ],
+  "data/reefer_week37.json": [
    "components/LogisticsDashboard.tsx",
    "components/ReeferMovement.tsx"
   ],
