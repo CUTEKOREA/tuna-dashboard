@@ -1,9 +1,9 @@
 {
  "_meta": {
   "entry": "app/page.tsx",
-  "files": 279,
+  "files": 280,
   "widgets": 114,
-  "dataFiles": 279,
+  "dataFiles": 283,
   "generator": "scripts/widget_lineage.py"
  },
  "widgetToData": {
@@ -598,6 +598,7 @@
     "lib/data/company-azores.ts",
     "lib/data/company-bolton.ts",
     "lib/data/company-boltonfood.ts",
+    "lib/data/company-bounty.ts",
     "lib/data/company-bumblebee.ts",
     "lib/data/company-capsen.ts",
     "lib/data/company-centurypacific.ts",
@@ -667,6 +668,10 @@
     "public/data/companies/boltonfood_prose_v1.json",
     "public/data/companies/boltonfood_tables_v1.json",
     "public/data/companies/boltonfood_v1.json",
+    "public/data/companies/bounty_figures_v1.json",
+    "public/data/companies/bounty_prose_v1.json",
+    "public/data/companies/bounty_tables_v1.json",
+    "public/data/companies/bounty_v1.json",
     "public/data/companies/bumblebee_figures_v1.json",
     "public/data/companies/bumblebee_prose_v1.json",
     "public/data/companies/bumblebee_tables_v1.json",
@@ -1490,6 +1495,18 @@
    "components/market-understanding/CompanyAnatomyDashboard.tsx"
   ],
   "public/data/companies/boltonfood_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/bounty_figures_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/bounty_prose_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/bounty_tables_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/bounty_v1.json": [
    "components/market-understanding/CompanyAnatomyDashboard.tsx"
   ],
   "public/data/companies/bumblebee_figures_v1.json": [
