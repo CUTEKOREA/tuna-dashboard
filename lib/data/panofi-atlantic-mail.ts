@@ -2,7 +2,7 @@
  * PANOFI 「대서양 상황」 주말 메일 (가나 법인 → 본사 팀장, 사용자 제공 캡처 3건).
  *
  * 주간동향 docx(화요일자)와 같은 주를 다루지만 주말에 한 번 더 온다. MGO 는 직전 주간동향 값을
- * 그대로 옮긴다 — 8/30 메일 = 8/25 판, 9/6 = 9/1 판, 9/13 = 9/8 판(`weeklyPair`, 테스트가 대조한다).
+ * 그대로 옮긴다 — 8/30 메일 = 8/25 판, 9/6 = 9/1 판, 9/13 = 9/8 판, 9/20 = 9/15 판(`weeklyPair`, 테스트가 대조한다).
  * 메일에만 있는 값(스카사 어가, 그랑블루 판매가·운임, 코스모 원어 재고, 세네갈 입출항)을 여기 둔다.
  *
  * 발신·수신자, 선장·임원 등 사람 이름은 싣지 않는다. 좌표도 싣지 않는다(해역 이름으로만).
@@ -38,7 +38,7 @@ export interface AtlanticMail {
   notes: string[];
 }
 
-export const ATLANTIC_MAIL_SOURCE = 'PANOFI 「대서양 상황」 주말 메일 3건(8/30·9/6·9/13) 캡처';
+export const ATLANTIC_MAIL_SOURCE = 'PANOFI 「대서양 상황」 주말 메일 4건(8/30·9/6·9/13·9/20) 캡처';
 
 export const atlanticMails: AtlanticMail[] = [
   {
@@ -133,6 +133,38 @@ export const atlanticMails: AtlanticMail[] = [
       '어기교대 예정: P/GRACE(마지막 항차) · P/FORE(1~2항차) · P/QUEEN(2항차) 선장 교대',
       '모리타니아 기상은 여전히 불량해 호전될 때만 조업 — 일부 선박은 피항하거나 기니·시에라리온 수역으로 옮겨 FAD 철거',
       '9/21 2명 가나 도착 예정, P/MAS 발전기 수리 중',
+    ],
+  },
+  {
+    date: '2026-09-20',
+    weeklyPair: '2026-09-15',
+    mgo: { tema: 1_586, tanker: 1_619, abidjan: 1_222, dakar: null },
+    cosmo: {
+      // 8월 어가 $1,700 이 마지막 거래다 - 9월은 거래 자체가 없었다(재고 때문에 10월 중순 이후를 원함).
+      priceUsd: 1_700, priceMonth: '8월', nextMonthUnderNegotiation: false, dailyProcessingT: 100,
+      stock: { asOf: '2026-09-20', totalT: 3_160, sjT: 3_130, yfT: 30, mixT: null },
+    },
+    pfc: { priceUsd: null, note: null },
+    scasa: { priceUsd: 1_950, dailyProcessingT: 100 },
+    grandBleuSales: [],
+    freightUsdPerT: null,
+    senegalCalls: [
+      { vessel: 'COSMOS KIM', tons: 980, arrive: '8/22', depart: null, status: '하역 완료, 임시국적 증서 갱신 중' },
+      { vessel: 'CAP ATLANTIQUE', tons: null, arrive: '8/17', depart: null, status: '출항 일정 미정, 상가 수리 중' },
+      { vessel: 'SEA DEFENDER', tons: 920, arrive: '9/10', depart: '9/14', status: '출항 완료' },
+      { vessel: 'SEA BREEZE', tons: 840, arrive: '9/13', depart: '9/16', status: '출항 완료' },
+      { vessel: 'WESTERN KIM', tons: null, arrive: '9/17', depart: null, status: '톤수 확인 중, 하역 중' },
+      { vessel: 'SEA FRONTIER', tons: null, arrive: '9/17', depart: null, status: '톤수 확인 중, 하역 중' },
+    ],
+    notes: [
+      'P/MAS 9/12 테마 입항, 3번 발전기 수리 후 9/17 출항 완료',
+      '아센시온·라이베리아 수역 위주 조업으로 일부 대어는 있었으나 어장은 전반적으로 소강, 여전히 잔고기 조업 중',
+      'P/DIS 를 뺀 P/FORE·P/PATH·P/QUEEN·P/GRACE·P/COM 의 선적량이 비슷해 테마 입항이 몰릴 전망 — 일부는 아비장 입항 후 로컬 마켓 하역(잔고기)을 검토 중',
+      'P/GRACE 는 사재용 마지막 항차로 선장·기관장 어기교대 출국 준비 중',
+      '가나 연안 빠야오 조업선(AGNES 1·IRIS-J)의 실적이 좋아 파노피 선장들도 연안 어장 형성 가능성을 언급(사이즈 양호)',
+      'GGL 은 원어 4,200톤 보유·일간 100톤 판매 중이며 코스모 리턴 780톤·PFC 1차 리턴 약 207톤을 안고 있어, 파노피 선단 2~3척이 테마에 함께 입항하면 하역이 어렵다는 뜻을 밝혔다',
+      '세네갈 수역은 지난 주말 카보베르데·모리타니아 기상이 나빴으나 다음 주 중순까지는 호전 전망 — 유럽 국적선은 민델로에서 전재했고, 일부 세네갈 국적선은 모리타니아 어장 종료를 예상해 기니·기니비사우 수역에 FAD 를 투하했다',
+      '파노피 발전기 기술자 2명이 9/19 귀국했고, TRUST 인수선 JC FAMILIA(구 MARAWA 2)는 9월 말 부산 출항 계획이다',
     ],
   },
 ];
