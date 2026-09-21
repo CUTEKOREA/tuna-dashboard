@@ -5,7 +5,13 @@ import { renderToStaticMarkup } from 'react-dom/server';
 import { describe, expect, it } from 'vitest';
 
 import { AccessConditions2027 } from '@/components/PnaAccessFeeWidgets';
-import { accessConditions2027, pngShinlaOutlook2027 } from '@/lib/data/access-conditions-2027';
+import {
+  accessConditions2027,
+  pngShinlaOutlook2027,
+  valatop2027,
+  valatopTierOf,
+  valatopTransferInUpgrade,
+} from '@/lib/data/access-conditions-2027';
 
 describe('2027어기 입어조건 변경', () => {
   it('회의자료의 변경만 옮기고 사람 이름은 남기지 않는다', () => {
@@ -42,6 +48,39 @@ describe('2027어기 입어조건 변경', () => {
     expect(outlook.feeDelta).toBe(-92 * 10_500);
   });
 
+  it('전배 4단계를 서한 그대로 싣고 구간을 파생한다', () => {
+    expect(valatop2027.fixedAllocationDays).toBe(1_694);
+    expect(valatop2027.startUpDays).toBe(989);
+    expect(valatop2027.tiers.map((tier) => [tier.minDays, tier.maxDays])).toEqual([
+      [1_694, null], [1_525, 1_693], [1_355, 1_524], [989, 1_354],
+    ]);
+    // 최초 할당(60%)만 받으면 PNG 로 끌어오는 전배가 막힌다 - 본문 표에는 이 사실이 없다
+    expect(valatopTierOf(989)!.transferIn).toBe('불가');
+    expect(valatopTierOf(1_355)!.transferIn).toBe('고정할당의 20%까지');
+    expect(valatopTierOf(1_525)!.transferIn).toBe('무제한');
+    expect(valatopTierOf(1_694)!.transferInFee).toBe('무료');
+    // 2026 구매 1,325일은 그 해 고정할당 2,209일의 60% - 같은 규칙이라면 지금도 최초 할당 구간이다
+    expect(valatopTierOf(1_325)!.label).toBe('최초 할당 (60%)');
+    // 합작선은 협회와 별도 배정이다
+    expect(valatop2027.jointVentures.map((jv) => [jv.fixedAllocationDays, jv.startUpDays]))
+      .toEqual([[268, 161], [192, 115]]);
+    // 서한의 수신·서명자 이름은 옮기지 않는다
+    expect(JSON.stringify(valatop2027)).not.toMatch(/Baek|Ilakini|[가-힣]{2,3}\s*(회장|청장)/);
+  });
+
+  it('전배 IN 을 여는 데 드는 추가 비용을 파생한다', () => {
+    const upgrade = valatopTransferInUpgrade();
+
+    // 989일 → 1,355일: 366일 × $10,500
+    expect(upgrade).toMatchObject({ fromDays: 989, toDays: 1_355, extraDays: 366, extraUsd: 3_843_000 });
+    expect(upgrade.shinlaExtraDays).toBeNull();
+
+    const share = pngShinlaOutlook2027()!.share;
+    const mine = valatopTransferInUpgrade(share);
+    expect(mine.shinlaExtraDays).toBe(Math.round(366 * share));
+    expect(mine.shinlaExtraUsd).toBe(Math.round(366 * share) * 10_500);
+  });
+
   it('VDS 탭이 2027 변경표를 렌더한다', () => {
     const markup = renderToStaticMarkup(React.createElement(AccessConditions2027));
 
@@ -54,6 +93,10 @@ describe('2027어기 입어조건 변경', () => {
 
     const source = readFileSync(join(process.cwd(), 'components/PnaAccessFeeWidgets.tsx'), 'utf8');
     expect(source).toContain('<AccessConditions2027 />');
+    // 전배 단계표와 상향 비용도 같은 카드에 있다
+    expect(markup).toContain('전배');
+    expect(markup).toContain('불가');
+    expect(markup).toContain('1,355일');
     // 전망 수치를 손으로 적으면 배정표가 바뀔 때 어긋난다
     expect(source).not.toContain('269일');
   });
