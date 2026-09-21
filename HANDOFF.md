@@ -1,3 +1,13 @@
+> ✅ **2026-09-21 20:40 KST — `/unloading` SEIN GALAXY 방콕 9/21 하역 반영** [CC]:
+> - 원자료: K GROUP Report No.3 JPG `4a66d91a…cc64` · 계근표(UNICORD) `3ec05055…cd36` · 결과 XLS `6a2d0f01…f1e3`(시트 `09-21`) · 현황 XLSX `86f0d666…0154`.
+> - 9/21(월) 08:00~12:00 **150.510 MT**: UC 전량 MOAMARI #3-B(YF 20.40 · SJ 130.11), 10 trucks, 차량 대기 11:10~11:30. 누계 722.240 · 잔량 1,123.760(진행률 39.1%). 계획 150 대비 +0.510. UC 의 MOAMARI 배정(B/L 395) 중 누계 289.490 으로 105.510 남음.
+> - 9/20 일요일은 행을 만들지 않았다 — SEIN VENUS 선례대로 휴무일은 차트가 공백으로 처리한다(`data-no-work-days`). 체선 계산도 일요일 1일을 제외해 사용 4일·여유 4.4일.
+> - **9/22 계획이 원자료에 없다** — `next_day` 톤수를 null 로 두어 문안이 「약 ###톤」으로 나온다. 지어내지 않았다.
+> - 눈여겨볼 것: 일평균 240.7 MT 로 남은 1,124 MT 에 약 4.7일이 필요한데 체선 여유는 4.4일이다. 9/21 처럼 반나절 작업이 이어지면 허용 정박일수를 넘길 수 있다.
+> - 보고 문안(과거 형식, 제목 포함)을 Drive `012. 하역 업무/SEIN GALAXY (3,500)/20260921 SEIN GALAXY (BKK) 하역 업무 보고.txt` 로 저장(5번 항목 ### 자리표시 포함).
+> - 테스트 RED(구 데이터 5건) → GREEN, `npm run verify` 통과: Vitest 194 files / 1,646 · bundle 33, `test:e2e:unloading-history` PASS, 로컬 1440·390px overflow 0·error 0.
+> - 상태: 브랜치 `data/unloading-sein-galaxy-0921`. **프로덕션 미배포**.
+
 > 🚀 **2026-09-21 11:40 KST — #1180·#1181·#1182 프로덕션 배포 + 시크릿 교체** [CC]:
 > - 병합(squash, 순서대로): #1180 VALATOP 전배 4단계 `7e6e061c` → #1181 대서양 메일 9/20 `d67302c6` → #1182 260921 일일보고 `636769a6`. 2·3번은 HANDOFF 충돌을 양쪽 보존으로 풀고 병합 트리에서 영향 테스트(12건·39건)를 다시 돌렸다.
 > - #1182 배포 `tuna-dashboard-i1y3zwqya` READY·라이브 9/21 수치 확인(이 시점 보호 패널 경고 = 예상) → `swap_fleet_detail_secret.sh` 로 `FLEET_DAILY_DETAIL_JSON` 을 `5cb4bd3f…` 로 교체·재배포(`tuna-dashboard-556jh1lil`, 3분). 빌드 로그 error 0.
