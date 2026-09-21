@@ -2,7 +2,13 @@
 import React, { useMemo, useSyncExternalStore } from 'react';
 import s from './PnaAccessFeeWidgets.module.css';
 import { pnaAccessFee, companyTotals, shinlaInstallmentDue } from '@/lib/data/pna-access-fee';
-import { accessConditions2027, pngShinlaOutlook2027 } from '@/lib/data/access-conditions-2027';
+import {
+  accessConditions2027,
+  pngShinlaOutlook2027,
+  valatop2027,
+  valatopTierOf,
+  valatopTransferInUpgrade,
+} from '@/lib/data/access-conditions-2027';
 
 /* ═══════════════════════════════════════════════════════
    2026어기 PNA 수역별 입어료 배정
@@ -468,6 +474,67 @@ export function AccessConditions2027() {
       <p style={{ margin: '8px 0 0', fontSize: '0.75rem', color: 'var(--text-muted)' }}>
         {accessConditions2027.source.note} 전배비가 오르는 수역(미크로네시아)과 전배가 무상이 되는 수역(솔로몬)이
         갈리므로, 소진이 임박한 수역의 전배 경로를 어디로 잡을지가 2027 계획의 갈림길입니다.
+      </p>
+
+      <h4 style={{ margin: '18px 0 4px', fontSize: '0.9rem', fontWeight: 800, color: 'var(--text-main)' }}>
+        PNG 전배 권리는 구매일수로 갈린다 (VALATOP 서한 {valatop2027.letterDate.replace(/-/g, '.')})
+      </h4>
+      <p style={{ margin: '0 0 8px', fontSize: '0.75rem', color: 'var(--text-muted)' }}>
+        고정할당 {fmt(valatop2027.fixedAllocationDays)}일 · 최초 할당 {fmt(valatop2027.startUpDays)}일(60%) ·
+        일 ${fmt(valatop2027.unitCostUsd)} · {valatop2027.issuer} 서한
+      </p>
+      <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: '0.8rem' }}>
+        <thead>
+          <tr style={{ textAlign: 'left', color: 'var(--text-muted)' }}>
+            <th style={{ padding: '6px 8px', fontWeight: 700 }}>구매 단계</th>
+            <th style={{ padding: '6px 8px', fontWeight: 700 }}>구매일수</th>
+            <th style={{ padding: '6px 8px', fontWeight: 700 }}>전배 IN</th>
+            <th style={{ padding: '6px 8px', fontWeight: 700 }}>전배 IN 수수료</th>
+            <th style={{ padding: '6px 8px', fontWeight: 700 }}>전배 OUT</th>
+          </tr>
+        </thead>
+        <tbody>
+          {valatop2027.tiers.map((tier) => {
+            const startUp = tier.transferIn === '불가';
+            return (
+              <tr
+                key={tier.label}
+                style={{
+                  borderTop: '1px solid var(--card-border, #e2e4e9)',
+                  background: startUp ? 'rgba(59, 130, 246, 0.08)' : 'transparent',
+                }}
+              >
+                <td style={{ padding: '6px 8px', color: 'var(--text-main)', fontWeight: startUp ? 700 : 400 }}>{tier.label}</td>
+                <td style={{ padding: '6px 8px', fontVariantNumeric: 'tabular-nums' }}>
+                  {fmt(tier.minDays)}일{tier.maxDays === null ? ' 이상' : `~${fmt(tier.maxDays)}일`}
+                </td>
+                <td style={{ padding: '6px 8px', fontWeight: 700, color: startUp ? 'var(--delta-down, #3b82f6)' : 'var(--text-main)' }}>
+                  {tier.transferIn}
+                </td>
+                <td style={{ padding: '6px 8px', color: 'var(--text-muted)' }}>{tier.transferInFee}</td>
+                <td style={{ padding: '6px 8px', color: 'var(--text-muted)' }}>{tier.transferOut} · {tier.transferOutFee}</td>
+              </tr>
+            );
+          })}
+        </tbody>
+      </table>
+      {outlook && (() => {
+        const upgrade = valatopTransferInUpgrade(outlook.share);
+        const current = valatopTierOf(valatop2027.startUpDays);
+        return (
+          <p style={{ margin: '10px 0 0', fontSize: '0.8rem', color: 'var(--text-main)', lineHeight: 1.6 }}>
+            최초 할당만 받으면 {current?.label}에 들어가 PNG 수역으로 끌어오는 전배가 막힙니다.
+            전배 IN 이 열리는 3단계까지 올리려면 {fmt(upgrade.toDays)}일로
+            {' '}{fmt(upgrade.extraDays)}일을 더 사야 하고, 협회 전체로 ${fmt(upgrade.extraUsd)} ·
+            신라교역 몫({(outlook.share * 100).toFixed(1)}%)으로는 약 {fmt(upgrade.shinlaExtraDays ?? 0)}일
+            ${fmt(upgrade.shinlaExtraUsd ?? 0)}입니다. 합작선은 별도 배정이라{' '}
+            {valatop2027.jointVentures.map((jv) => `${jv.name} ${fmt(jv.fixedAllocationDays)}일(최초 ${fmt(jv.startUpDays)}일)`).join(' · ')}에
+            같은 규칙이 각각 걸립니다.
+          </p>
+        );
+      })()}
+      <p style={{ margin: '6px 0 0', fontSize: '0.72rem', color: 'var(--text-muted)' }}>
+        {valatop2027.referenceBasis}
       </p>
     </div>
   );
