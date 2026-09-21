@@ -65,27 +65,27 @@ describe('fleet daily public and private DTO boundary', () => {
     expect(fleetDailyPublic).toEqual({
       _meta: {
         schemaVersion: 1,
-        reportCount: 159,
+        reportCount: 160,
         firstReportDate: '2026-01-16',
-        latestReportDate: '2026-09-18',
-        latestAsOf: '2026-09-17',
+        latestReportDate: '2026-09-21',
+        latestAsOf: '2026-09-20',
         detailSha256: expect.stringMatching(/^[a-f0-9]{64}$/),
         detailSha256Compat: [expect.stringMatching(/^[a-f0-9]{64}$/)],
       },
       latest: {
-        reportDate: '2026-09-18',
-        asOf: '2026-09-17',
-        pacific: { asOf: '2026-09-17', dailyMt: 425, monthlyMt: 2_977, annualMt: 51_217.8 },
-        atlantic: { asOf: '2026-09-17', dailyMt: 155, monthlyMt: 3_110, annualMt: 36_570 },
-        carrier: { loadedTotalMt: 7_684.13, expectedRemainingMt: 3_207 },
+        reportDate: '2026-09-21',
+        asOf: '2026-09-20',
+        pacific: { asOf: '2026-09-20', dailyMt: 165, monthlyMt: 3_300, annualMt: 51_540.8 },
+        atlantic: { asOf: '2026-09-20', dailyMt: 195, monthlyMt: 3_815, annualMt: 37_275 },
+        carrier: { loadedTotalMt: 7_399.3, expectedRemainingMt: 3_207 },
       },
-      deltas: { pacificDailyMt: -45, atlanticDailyMt: -90, totalDailyMt: -135 },
+      deltas: { pacificDailyMt: -260, atlanticDailyMt: 40, totalDailyMt: -220 },
       reconciliation: {
-        pacificDaily: { reportedMt: 425, rowsMt: 425, matches: true, missingCount: 0 },
-        atlanticDaily: { reportedMt: 155, rowsMt: 155, matches: true, missingCount: 0 },
-        // 9/14 보고는 머리글도 소수 2자리(7,684.13)로 찍혀 잔차가 없다. 9/11 까지는 7,684.1 로 찍혀
-        // 0.03 반올림 잔차가 남았다 - 허용 폭 판정은 source-contract 테스트가 고정값으로 지킨다
-        carrierLoaded: { reportedMt: 7_684.13, rowsMt: 7_684.13, matches: true, missingCount: 0 },
+        pacificDaily: { reportedMt: 165, rowsMt: 165, matches: true, missingCount: 0 },
+        atlanticDaily: { reportedMt: 195, rowsMt: 195, matches: true, missingCount: 0 },
+        // 9/21 보고는 HIKARI 1 컨테이너분(284.83)이 빠져 머리글·행 합이 모두 7,399.3 이다. 9/11 까지는
+        // 머리글 소수 1자리로 0.03 반올림 잔차가 남았다 - 허용 폭 판정은 source-contract 테스트가 고정값으로 지킨다
+        carrierLoaded: { reportedMt: 7_399.3, rowsMt: 7_399.3, matches: true, missingCount: 0 },
         carrierExpectedRemaining: { reportedMt: 3_207, rowsMt: 3_207, matches: true, missingCount: 0 },
         valid: true,
         unavailableCount: 0,
@@ -98,8 +98,8 @@ describe('fleet daily public and private DTO boundary', () => {
       },
       quality: {
         counts: {
-          reconciliationChecks: 636,
-          reconciliationCompleteChecks: 636,
+          reconciliationChecks: 640,
+          reconciliationCompleteChecks: 640,
           reconciliationUnavailableChecks: 0,
           reconciliationUnavailableDocuments: 0,
           reconciliationIssues: 14,
@@ -108,7 +108,7 @@ describe('fleet daily public and private DTO boundary', () => {
           reconciliationPartialDifferenceDocuments: 12,
           duplicateVesselRows: 4,
           coordinateFormatIssues: 6,
-          longlineSectionMissing: 20,
+          longlineSectionMissing: 21,
         },
         incompletePartialDifferences: 0,
         incompletePartialDifferenceDocuments: 0,
