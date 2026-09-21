@@ -2987,9 +2987,9 @@
    "next_day": {
     "kind": "work",
     "date": "9/22",
-    "planned_mt": null
+    "planned_mt": 180
    },
-   "quality_notes": "MOAMARI(#3-B) 08:00~12:00 - 어창 개방 측정온도는 -22.0℃ ~ -23.0℃ 입니다. 원문 온도 표기는 ‘-22,-23’(단위: ℃)이며 계근표는 -23℃ 입니다. TOTAL 10 TRUCKS, UC #3-B 차량 대기 11:10~11:30. 9/20 은 일요일 휴무였습니다. 현황 XLSX 계획 150 MT 대비 +0.510 MT입니다. UC 의 MOAMARI 배정 395 MT(B/L) 가운데 누계 289.490 MT를 받아 105.510 MT가 남았습니다. 9/22 작업 계획은 원자료에 없습니다.",
+   "quality_notes": "MOAMARI(#3-B) 08:00~12:00 - 어창 개방 측정온도는 -22.0℃ ~ -23.0℃ 입니다. 원문 온도 표기는 ‘-22,-23’(단위: ℃)이며 계근표는 -23℃ 입니다. TOTAL 10 TRUCKS, UC #3-B 차량 대기 11:10~11:30. 9/20 은 일요일 휴무였습니다. 현황 XLSX 계획 150 MT 대비 +0.510 MT입니다. UC 의 MOAMARI 배정 395 MT(B/L) 가운데 누계 289.490 MT를 받아 105.510 MT가 남았습니다. 9/22 UN/H3B1->3C2->2B1(MOAMARI+MOAKONA) 180 MT 08:00 작업 예정입니다(사용자 전달 계획, 원문 시각 표기 «08:0»).",
    "source_sha256": "4a66d91a6168a9a63c1dc0033dde273a375ce46aa179bdc546b2982bfe9ecc64",
    "source_workbook_sha256": "6a2d0f01bbbc7b5fa9b55d9b645df4b2c2dd4e799404ac3c1b2a70c17190f1e3",
    "status_workbook_sha256": "86f0d6668a2f7f09b4b9c7a2e843d1301c4dcf3886f05eb1481d024314010154",

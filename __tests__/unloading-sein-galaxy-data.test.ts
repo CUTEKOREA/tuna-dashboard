@@ -109,7 +109,7 @@ describe('SEIN GALAXY 방콕 항차', () => {
     expect(bySource('MOAMARI')).toBeCloseTo(429.96, 6);
   });
 
-  it('9/21 하역(K GROUP Report No.3) - 반나절 단일 어창, 다음 날 계획은 원자료에 없다', async () => {
+  it('9/21 하역(K GROUP Report No.3) - 반나절 단일 어창, 9/22 계획 180 MT', async () => {
     const vessel = await loadSeinGalaxy();
     const [day] = vessel.timeline.filter((entry: { date: string }) => entry.date === '9/21');
 
@@ -122,9 +122,9 @@ describe('SEIN GALAXY 방콕 항차', () => {
     expect(day.speciesAmounts).toEqual({ SJ: 130.11, YF: 20.4 });
     expect(day.remainingAmount).toBeCloseTo(1_123.76, 6);
     expect(day.remainingAmount + day.cumAmount).toBeCloseTo(vessel.reportedTotal, 6);
-    // 9/22 계획이 없어 톤수를 비워 둔다 - 보고서 문안은 ### 자리표시가 된다
-    expect(day.nextDay).toEqual({ kind: 'work', date: '9/22', reason: null, resumeDate: null, plannedMt: null });
-    expect(day.quality).toContain('9/22 작업 계획은 원자료에 없습니다');
+    // 9/22 계획은 원자료에 없어 사용자가 따로 전달했다: UN/H3B1->3C2->2B1(MOAMARI+MOAKONA) 180 MT
+    expect(day.nextDay).toEqual({ kind: 'work', date: '9/22', reason: null, resumeDate: null, plannedMt: '180' });
+    expect(day.quality).toContain('UN/H3B1->3C2->2B1(MOAMARI+MOAKONA) 180 MT 08:00');
     expect(day.quality).toContain('105.510 MT가 남았습니다');
   });
 
