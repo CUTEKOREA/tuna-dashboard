@@ -1,3 +1,12 @@
+> 📰 **2026-09-22 08:52 KST — `/market` 2026-09-21 참치 데일리 브리핑 윤문본 라이브 배포** [CC/tuna-dashboard-publisher]:
+> - 경위: 08:15 준비·#1191 배포가 08:18 윤문 채택보다 먼저 끝나 라이브에는 윤문 전 본문이 나가 있었다. 08:45 RESUME 회차가 윤문 채택본(게시판 HTML)으로 JSON 을 다시 동기화했고, 이 PR 이 그것을 올렸다.
+> - PR [#1194](https://github.com/CUTEKOREA/tuna-dashboard/pull/1194) squash 병합. main commit `77e6623c` (브랜치 커밋 `c2ef9f6c`, `briefing/2026-09-21b`). 변경은 `public/data/tuna_daily_briefing.json` 한 파일(+27/−27) — 기사 본문 문장만. 기준일 `2026-09-21`·기사 **5건**·다이제스트 제목·수치는 #1191 과 같다.
+> - 게이트 3종: 감사 `state/audit-2026-09-21.txt`(08:09) + 윤문 재감사 `humanize/2026-09-21/verdict.txt`(08:18) 모두 `AUDIT_PASS` · 08:45 `prepare_dashboard` 동기화 + `daily-briefing.test.ts` 4/4(FAIL 0) · 변경분 존재(브리핑 JSON 1건). pre-push 빌드 29초 통과, `gh` 401 없음.
+> - 병합 23:47:06Z → Vercel `pending` → 23:49:48Z `success`. 라이브 1회차(23:49:56Z)는 윤문 전 문장, 2회차(23:51:51Z)에 윤문본 확인.
+> - 라이브 실측(Aside 로그인 세션): 헤더 「기준일 2026.09.21 · 기사 5건 · 파이프라인 동기」(변화 없음이 정상). 헤더로는 판정이 안 돼 본문으로 봤다 — 리드 「…로인 수입이 주요 공급국 대부분에서 줄었다」, 고구마 카드 「…올렸고 이 조합은 팬들 사이에서 인기다」로 바뀌었고 윤문 전 문장(「대부분으로부터의」·「그녀의 팬들」) 잔존 0. 리드+카드 4건 첫 문장 5/5 가 JSON 과 일치. 스크린샷 육안 확인.
+> - 이상 소견: 「오늘의 수치」 **「USD 2,500」** 오표기(실제 USD 2,500만)는 그대로다 — 아래 08:25 항목의 `NUMBER_TOKEN_PATTERN` 문제, 이번에도 손대지 않음.
+> - 워크트리 정리: PR MERGED + 브리핑 JSON `origin/main` 과 diff 없음 확인 후 `sync/2026-09-21c`(origin/main) 로 옮김. 이 기록 PR 병합 뒤 origin/main 위 `sync/2026-09-21d` 로 옮겨 clean 으로 남긴다. 옛 로컬 브랜치는 남겨 둠.
+
 > 📰 **2026-09-22 08:25 KST — `/market` 2026-09-21 참치 데일리 브리핑 라이브 배포 완료** [CC/tuna-dashboard-publisher]:
 > - PR [#1191](https://github.com/CUTEKOREA/tuna-dashboard/pull/1191) squash 병합. main commit `255e40dd` (브랜치 커밋 `680581ed`). 변경은 `public/data/tuna_daily_briefing.json` 한 파일뿐(+53/−73). 기준일 `2026-09-21`, 기사 **5건**·다이제스트 5건.
 > - 게이트 3종: 감사 `state/audit-2026-09-21.txt` = `AUDIT_PASS`(P0 0 / P1 0) · 08:15 `prepare_dashboard` 동기화 + `daily-briefing.test.ts` 4/4 통과(FAIL 0) · 변경분 존재(브리핑 JSON 1건, 다른 경로 번짐 0).
