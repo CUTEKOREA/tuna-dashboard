@@ -87,6 +87,113 @@ export const accessConditions2027 = {
 } as const;
 
 /**
+ * 붙임1 VALATOP 서한(2026-09-02, PNG 수산청 → 한국원양산업협회)의 전배 규칙.
+ * 본문 표는 「추가 구매일수에 따라 단계별 허용」이라고만 적어 숫자가 없다 — 실제 규칙은 이 4단계다.
+ *
+ * 구매일수를 고정할당의 몇 %까지 가져가느냐로 **전배 IN 권리 자체가 갈린다.**
+ * 최초 할당(60%)만 받으면 PNG 수역으로 끌어오는 전배가 «불가» 다.
+ *
+ * 서한의 수신·서명자 이름은 옮기지 않는다.
+ */
+export interface ValatopTier {
+  /** 화면 표기용 이름 */
+  label: string;
+  /** 고정할당 대비 구간 */
+  sharePct: [number, number];
+  minDays: number;
+  maxDays: number | null;
+  transferIn: string;
+  transferInFee: string;
+  transferOut: string;
+  transferOutFee: string;
+}
+
+export const valatop2027 = {
+  letterDate: '2026-09-02',
+  issuer: 'PNG 수산청(NFA)',
+  /** 9개년 평균으로 정한 협회 고정할당 */
+  fixedAllocationDays: 1_694,
+  /** 고정할당의 60% — 이 아래로는 받을 수 없다 */
+  startUpDays: 989,
+  unitCostUsd: 10_500,
+  /** 기준 기간을 5년에서 9년으로 늘린 이유 — 서한이 밝힌 근거 */
+  referenceBasis: '엘니뇨·라니냐(ENSO) 국면을 함께 담아 단기 기후 변동의 영향을 줄이기 위해 9개년 평균을 썼다고 서한이 밝혔습니다.',
+  tiers: [
+    {
+      label: '1단계 (100% 이상)',
+      sharePct: [100, 100],
+      minDays: 1_694,
+      maxDays: null,
+      transferIn: '무제한',
+      transferInFee: '무료',
+      transferOut: '무제한',
+      transferOutFee: '무료',
+    },
+    {
+      label: '2단계 (90~99%)',
+      sharePct: [90, 99],
+      minDays: 1_525,
+      maxDays: 1_693,
+      transferIn: '무제한',
+      transferInFee: '고정할당의 10%까지 무료, 초과분 $1,000/일',
+      transferOut: '무제한',
+      transferOutFee: '무료',
+    },
+    {
+      label: '3단계 (80~89%)',
+      sharePct: [80, 89],
+      minDays: 1_355,
+      maxDays: 1_524,
+      transferIn: '고정할당의 20%까지',
+      transferInFee: '10%까지 $2,000/일, 초과분 $4,000/일',
+      transferOut: '무제한',
+      transferOutFee: '$2,000/일',
+    },
+    {
+      label: '최초 할당 (60%)',
+      sharePct: [60, 79],
+      minDays: 989,
+      maxDays: 1_354,
+      transferIn: '불가',
+      transferInFee: '해당 없음',
+      transferOut: '무제한',
+      transferOutFee: '$2,000/일',
+    },
+  ] satisfies ValatopTier[],
+  /** 합작선은 협회와 별도로 각자 배정받는다 — 같은 4단계가 각각 걸린다 */
+  jointVentures: [
+    { name: '키리코레', fixedAllocationDays: 268, startUpDays: 161 },
+    { name: '사조 바누아투', fixedAllocationDays: 192, startUpDays: 115 },
+  ],
+} as const;
+
+/** 구매일수가 어느 단계에 떨어지는지 — 표에서 찾는다(손으로 적지 않는다). */
+export function valatopTierOf(days: number): ValatopTier | null {
+  return valatop2027.tiers.find(
+    (tier) => days >= tier.minDays && (tier.maxDays === null || days <= tier.maxDays),
+  ) ?? null;
+}
+
+/**
+ * 전배 IN 이 열리는 3단계(80%)까지 올리는 데 드는 추가 비용.
+ * 최초 할당만 받으면 전배 IN 이 막히므로, 협상 전에 이 값이 판단 재료가 된다.
+ */
+export function valatopTransferInUpgrade(shinlaSharePct?: number) {
+  const target = valatop2027.tiers.find((tier) => tier.label.startsWith('3단계'))!;
+  const extraDays = target.minDays - valatop2027.startUpDays;
+  const extraUsd = extraDays * valatop2027.unitCostUsd;
+  const share = shinlaSharePct ?? null;
+  return {
+    fromDays: valatop2027.startUpDays,
+    toDays: target.minDays,
+    extraDays,
+    extraUsd,
+    shinlaExtraDays: share === null ? null : Math.round(extraDays * share),
+    shinlaExtraUsd: share === null ? null : Math.round(extraDays * share) * valatop2027.unitCostUsd,
+  };
+}
+
+/**
  * PNG 최초 할당이 줄면 우리 몫이 얼마가 되는지 — 2026 배정표의 신라 비중을 그대로 적용한다.
  * 협상 전이라 «제안서대로 갔을 때»의 값이고, 비중은 배정표에서 파생한다(손으로 적지 않는다).
  */
