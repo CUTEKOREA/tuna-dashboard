@@ -366,8 +366,8 @@ const SPEC: CommoditySpec = {
     },
     {
       eyebrow: '주간',
-      title: '노르웨이 36주 누계',
-      body: '43,195톤 · 48.32 NOK/kg',
+      title: '노르웨이 37주 누계',
+      body: '48,051톤 · 48.80 NOK/kg',
     },
   ],
   briefing: MACKEREL_BRIEFING_POINTS,
@@ -378,8 +378,8 @@ const SPEC: CommoditySpec = {
     `어획 집계 · ${DATA.한국어획._meta.출처}`,
     `위판 집계 · ${DATA.위판등급._meta.출처}`,
     `통관 집계 · ${DATA.수입원산지._meta.출처} · ${DATA.수입원산지._meta.구간}`,
-    '주간 수급 · NSC 2026-W36 · KMI Vol.259',
-    '갱신 2026-09-10',
+    '주간 수급 · NSC 2026-W37 · KMI Vol.259',
+    '갱신 2026-09-21',
   ].join(' · '),
 };
 

@@ -151,15 +151,15 @@ describe('시장 이해 > 오징어 - 위젯 큐레이션', () => {
     const wholesale = valueStage?.facts.find(
       (fact) => fact.label === '국내 도매가: 원양과 연근해',
     );
-    expect(wholesale?.asOf).toContain('2026-09-10');
-    expect(wholesale?.value).toContain('13,300');
+    expect(wholesale?.asOf).toContain('2026-09-16');
+    expect(wholesale?.value).toContain('13,700');
 
     const chile = sourcingStage?.facts.find(
       (fact) => fact.label === '칠레 대왕오징어 쿼터 소진율',
     );
-    expect(chile).toMatchObject({ value: '69.6367%', grade: 'A' });
-    expect(chile?.asOf).toContain('139,273.3293톤');
-    expect(chile?.asOf).toContain('60,726.6707톤');
+    expect(chile).toMatchObject({ value: '72.2255%', grade: 'A' });
+    expect(chile?.asOf).toContain('144,451.0765톤');
+    expect(chile?.asOf).toContain('55,548.9235톤');
 
     const currentText = JSON.stringify([valueStage, sourcingStage]);
     expect(currentText).not.toContain('4,926 원/마리');
@@ -168,6 +168,7 @@ describe('시장 이해 > 오징어 - 위젯 큐레이션', () => {
     expect(currentText).not.toContain('65.011%');
     expect(currentText).not.toContain('121,868.76톤');
     expect(currentText).not.toContain('130,021.9741톤');
+    expect(currentText).not.toContain('60,726.6707톤');
   });
 
   it('Codex 지적 P0·P1의 옛 주어·기간·단위가 본문·교역 JSON에 남지 않는다', () => {
