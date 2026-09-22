@@ -93,9 +93,12 @@ def parse_temps(text: str) -> dict:
     cur = re.findall(r"조류[^\n]*?연\s*안:\s*([^\n\t]+)", blk)
     if cur:
         out["coastalCurrent"] = cur[0].strip()
-    cur2 = re.findall(r"대\s*양:\s*(동류|서류|[가-힣]+류)", blk)
+    # 「대 양: 조류방향 불규칙」처럼 방향어가 아닌 주가 있다 - '조류'를 방향으로 읽지 않는다
+    cur2 = re.findall(r"대\s*양:\s*([^\n\t]+)", blk)
     if cur2:
-        out["oceanCurrent"] = cur2[-1].strip()
+        raw = cur2[-1].strip()
+        direction = re.search(r"(동류|서류|남류|북류)", raw)
+        out["oceanCurrent"] = direction.group(1) if direction else ("불규칙" if "불규칙" in raw else raw)
     return out
 
 
