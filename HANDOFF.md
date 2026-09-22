@@ -1,3 +1,14 @@
+> ✅ **2026-09-22 21:10 KST — `/unloading` SEIN GALAXY 방콕 9/22 하역 반영** [CC]:
+> - 원자료: K GROUP Report No.4 JPG `af4851cb…afe7` · 계근표 2장(UNICORD MOAMARI `af80f08e…68d8` · MOAKONA `94b6b84b…a5bd`) · 결과 XLS `20260922 일일 하역결과보고…xls` `dda7f41a…a139`(시트 `09-22`, 이번엔 파일명 앞에 날짜가 붙어 왔다) · 현황 XLSX `d8c92c4f…b57e`. 9/23 계획은 사용자 전달 원문.
+> - 9/22(화) 08:00~13:20 **165.450 MT**, UC 전량: MOAMARI #3-B 15.090 · #3-C 107.140, MOAKONA #2-B 43.220(YF 23.10 · SJ 142.35). 12 trucks, 15:00 윤활유 수급. 누계 887.690 · 잔량 958.310(진행률 48.1%).
+> - UC 의 MOAMARI 배정(B/L 395)은 #3-B FINISH·#3-C COMPLETED 로 **411.720 MT(+16.720)에 마감** — 계근표·현황 XLSX Balance +16.72 가 같다.
+> - **9/22 계획 값이 두 곳에서 다르다**: 사용자 전달 메시지 180 MT(→ 실적 −14.55), 현황 XLSX 150 MT(→ +15.45). 한쪽으로 맞추지 않고 비고에 둘 다 적었다.
+> - 9/23 계획 UN/H2B1(MOAKONA) 200 + CMC/H4C1(MOAMARI) 90(송클라) = 290 MT → 문안 「약 290톤」.
+> - 체선: 사용 5일·여유 3.4일, 화면 「예상 종료 +5일」이 여유보다 길다(등급은 아직 「낮음」 — 현재 사용일 기준). 9/23 계획 290 MT 가 이어지면 잔량 958 MT 에 3.3일로 여유를 겨우 맞춘다.
+> - 보고 문안(과거 형식, 제목 포함)을 Drive `SEIN GALAXY (3,500)/20260922 SEIN GALAXY (BKK) 하역 업무 보고.txt` 로 저장.
+> - 테스트 RED(구 데이터 5건) → GREEN, `npm run verify` 통과: Vitest 194 files / 1,650 · bundle 33, `test:e2e:unloading-history` PASS, 로컬 1440·390px overflow 0·error 0.
+> - 상태: 브랜치 `data/unloading-sein-galaxy-0922`. **프로덕션 미배포**.
+
 > 🚀 **2026-09-22 16:10 KST — #1197 260922 일일보고 프로덕션 배포 + 시크릿 교체** [CC]:
 > - 병합(squash): #1197 `cf25e73e`(main 충돌 없음). Production `tuna-dashboard-flewsiebq` READY → 라이브 9/22 수치 확인(이 시점 보호 패널 경고 = 예상) → `swap_fleet_detail_secret.sh` 로 `FLEET_DAILY_DETAIL_JSON` 을 `afeeae64…` 로 교체·재배포(`tuna-dashboard-2mrw336kt`, 3분). 빌드 로그 error 0.
 > - 라이브 확인: 히어로 `data-kpi-value` 363 / 7,478 / 89,178.8 / 7,399.3 · 「2026-09-22 보고 · 2026-09-21 조업 기준」 · **보호 패널 경고 사라짐**·비고 표시(S/SPR 통영 9/27경, MOAMARI 10/2) · 가동 중단 카드 MOAMARI 무실적 25보고일·일평균 20.9·기회손실 약 523 MT·「9/22 유지」·나흘 평균 6.5노트 서술 · overflow 0.

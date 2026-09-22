@@ -135,10 +135,10 @@
    "mother_vessel": "MOAKONA 956 · MOAMARI 890 MT",
    "hold_species_breakdown_available": false,
    "unclassified_actual_amount": 0,
-   "species_breakdown_as_of": "2026-09-21",
-   "species_breakdown_note": "9/21 일일 결과보고 XLS에서 어종별 일일·누적 물량을 확인했고 일일하역량 현황 XLSX로 교차 확인했습니다. XLS의 SJ 보고량 1,338 MT는 선적서류의 가다랑어 1,306 MT와 눈다랑어 32 MT를 합친 기준이며, 실제 하역량은 SJ·YF 두 항목만 제공합니다. 원선별 어종 물량이 그날 작업한 어창들의 합계라 개별 어창별 어종 분해는 제공되지 않습니다.",
+   "species_breakdown_as_of": "2026-09-22",
+   "species_breakdown_note": "9/22 일일 결과보고 XLS에서 어종별 일일·누적 물량을 확인했고 일일하역량 현황 XLSX로 교차 확인했습니다. XLS의 SJ 보고량 1,338 MT는 선적서류의 가다랑어 1,306 MT와 눈다랑어 32 MT를 합친 기준이며, 실제 하역량은 SJ·YF 두 항목만 제공합니다. 원선별 어종 물량이 그날 작업한 어창들의 합계라 개별 어창별 어종 분해는 제공되지 않습니다.",
    "created_at": "2026-09-15T14:00:00+09:00",
-   "updated_at": "2026-09-21T20:30:00+09:00",
+   "updated_at": "2026-09-22T21:00:00+09:00",
    "arrival_date": "2026-09-17"
   }
  ],
@@ -2994,6 +2994,81 @@
    "source_workbook_sha256": "6a2d0f01bbbc7b5fa9b55d9b645df4b2c2dd4e799404ac3c1b2a70c17190f1e3",
    "status_workbook_sha256": "86f0d6668a2f7f09b4b9c7a2e843d1301c4dcf3886f05eb1481d024314010154",
    "created_at": "2026-09-21T20:30:00+09:00"
+  },
+  {
+   "id": "sein-galaxy-bangkok-2026-09-9-22",
+   "vessel_id": "sein-galaxy-bangkok-2026-09",
+   "report_year": 2026,
+   "report_date": "9/22",
+   "work_time": "08:00 ~ 13:20",
+   "target_holds": "MOAMARI(#3-B:15.090,#3-C:107.140), MOAKONA(#2-B:43.220)",
+   "consignee": "UC",
+   "allocations": [
+    {
+     "consignee": "UC",
+     "amount": 165.45,
+     "loads": [
+      {
+       "source_vessel": "MOAMARI",
+       "hatch": "#3-B",
+       "amount": 15.09
+      },
+      {
+       "source_vessel": "MOAMARI",
+       "hatch": "#3-C",
+       "amount": 107.14
+      },
+      {
+       "source_vessel": "MOAKONA",
+       "hatch": "#2-B",
+       "amount": 43.22
+      }
+     ]
+    }
+   ],
+   "observations": [
+    {
+     "source_vessel": "MOAMARI",
+     "hatch": "#3-B",
+     "temperatures_c": [
+      -22.0,
+      -23.0
+     ]
+    },
+    {
+     "source_vessel": "MOAMARI",
+     "hatch": "#3-C",
+     "temperatures_c": [
+      -22.0,
+      -23.0
+     ]
+    },
+    {
+     "source_vessel": "MOAKONA",
+     "hatch": "#2-B",
+     "temperatures_c": [
+      -20.0,
+      -21.0
+     ]
+    }
+   ],
+   "daily_amount": 165.45,
+   "cumulative_amount": 887.69,
+   "species_amounts": {
+    "SJ": 142.35,
+    "YF": 23.1
+   },
+   "remaining_amount": 958.31,
+   "next_day": {
+    "kind": "work",
+    "date": "9/23",
+    "planned_mt": 290
+   },
+   "quality_notes": "MOAMARI(#3-B) 08:00~08:30 - 어창 개방 측정온도는 -22.0℃ ~ -23.0℃ 입니다. MOAMARI(#3-C) 08:30~11:40 - 어창 개방 측정온도는 -22.0℃ ~ -23.0℃ 입니다. MOAKONA(#2-B) 11:40~13:20 - 어창 개방 측정온도는 -20.0℃ ~ -21.0℃ 입니다. 원문 온도 표기는 ‘-22,-23’·‘-20,-21’(단위: ℃)입니다. TOTAL 12 TRUCKS, 15:00 윤활유(LUBE OIL) 수급. UC 의 MOAMARI 배정(B/L 395 MT)은 #3-B FINISH·#3-C COMPLETED 로 마감돼 누계 411.720 MT, B/L 대비 +16.720 MT입니다. 9/22 계획은 사용자 전달 메시지 180 MT 대비 -14.550 MT, 현황 XLSX 계획 150 MT 대비 +15.450 MT입니다(두 계획 값이 다르다). 9/23 UN/H2B1(MOAKONA) 200 MT 08:00, CMC/H4C1(MOAMARI) 90 MT 08:00(송클라) 작업 예정입니다.",
+   "source_sha256": "af4851cb4aea70546709f7e30d626031d40fedc5ca4b1c2bed6c57b4102cafe7",
+   "source_workbook_sha256": "dda7f41af11795c5af1a836183d78580bdee6a8fb4cbb9149c133b1b12a3a139",
+   "status_workbook_sha256": "d8c92c4f07d9ffea5f8c32ba6dc4e75f3130e6a172b2f121df7c5d146763b57e",
+   "created_at": "2026-09-22T21:00:00+09:00"
   }
  ],
  "unloading_species": [
@@ -3161,16 +3236,16 @@
    "species_id": "SJ",
    "species_name": "가다랑어",
    "reported_amount": 1306,
-   "actual_amount": 496.07,
-   "updated_at": "2026-09-21T20:30:00+09:00"
+   "actual_amount": 638.42,
+   "updated_at": "2026-09-22T21:00:00+09:00"
   },
   {
    "vessel_id": "sein-galaxy-bangkok-2026-09",
    "species_id": "YF",
    "species_name": "황다랑어",
    "reported_amount": 508,
-   "actual_amount": 226.17,
-   "updated_at": "2026-09-21T20:30:00+09:00"
+   "actual_amount": 249.27,
+   "updated_at": "2026-09-22T21:00:00+09:00"
   },
   {
    "vessel_id": "sein-galaxy-bangkok-2026-09",
@@ -3178,7 +3253,7 @@
    "species_name": "눈다랑어",
    "reported_amount": 32,
    "actual_amount": 0,
-   "updated_at": "2026-09-21T20:30:00+09:00"
+   "updated_at": "2026-09-22T21:00:00+09:00"
   }
  ]
 }
