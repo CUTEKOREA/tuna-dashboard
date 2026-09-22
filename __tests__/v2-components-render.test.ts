@@ -364,7 +364,7 @@ describe('Deep Sea Command V2 - Phase 2 운영 페이지', () => {
     expect(markup.match(/data-reefer-carrier-marker="true"/g)?.length).toBe(reeferWeeklyReport.rows.length);
     expect(markup.match(/data-marker-tone="data"/g)?.length).toBe(reeferWeeklyReport.rows.length);
     expect(markup).not.toContain('#f59e0b');
-    expect(markup).toContain('입항 재확인 2척 후속 확인 완료');
+    expect(markup).toContain('9월 방콕 반입 7척');
     expect(markup).not.toContain('SEIN VENUS와 HENG HONG 9의 예정일이 도래했으므로 실제 입항·접안 여부를 확인합니다.');
   });
 

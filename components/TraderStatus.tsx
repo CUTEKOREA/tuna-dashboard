@@ -57,15 +57,14 @@ const sumRows = (rows: Row[]) =>
     total: rows.reduce((s, r) => s + Number(r[KEY(t)] ?? 0), 0),
   }));
 
-/* 2026 누계 대조 — 기존 위젯은 2026-08-05 보고(317,175MT) 기준이었고,
-   전 기간 소스는 2026-08-12 보고까지 반영해 8월 물량이 갱신됐다. 차이를 덮지 않고 밝힌다. */
+/* 2026 누계 대조 — 주간보고 검산값과 전 기간 소스가 갈릴 수 있다. 차이를 덮지 않고 밝힌다. */
 const total2026 = aggregateTraderVolumes('yearly').find((a) => a.period === '2026')?.totalMt ?? 0;
 const prev2026 = logisticsWeeklyReport.traderReceipts.total;
 const diff2026 = total2026 - prev2026;
 const RECONCILE_NOTE =
   `기록 있는 달만 합산하고 0으로 채우지 않습니다. 2026년 누계는 ${total2026.toLocaleString()}MT로, ` +
-  `기존 2026-08-05 보고 기준 검산값 ${prev2026.toLocaleString()}MT와 ${Math.abs(diff2026).toLocaleString()}MT 차이가 있습니다 ` +
-  `(2026-08 물량이 후속 보고에서 갱신). 원문 트라이마린 누계도 56,463MT로 정정돼 월별 합산과 일치합니다.`;
+  `${logisticsWeeklyReport.source.reportDate} 보고 기준 검산값 ${prev2026.toLocaleString()}MT와 ${Math.abs(diff2026).toLocaleString()}MT 차이가 있습니다. ` +
+  logisticsWeeklyReport.traderReceipts.reconciliationNote;
 
 const VIEWS = {
   monthly: {
