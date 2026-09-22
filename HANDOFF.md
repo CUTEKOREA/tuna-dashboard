@@ -1,3 +1,11 @@
+> 📰 **2026-09-23 05:51 KST — `/market` 2026-09-22 참치 데일리 브리핑 라이브 배포** [CC/tuna-dashboard-publisher]:
+> - PR [#1201](https://github.com/CUTEKOREA/tuna-dashboard/pull/1201) squash 병합. main commit `01d216da` (브랜치 커밋 `736ae2dd`, `briefing/2026-09-22`). 변경은 `public/data/tuna_daily_briefing.json` 한 파일(+61/−53). 기준일 `2026-09-22`, 기사 **6건**.
+> - 게이트: 감사 AUDIT_PASS(상위 전달. 윤문본은 재감사 AUDIT_FIX P0=0 P1=1 로 기각, 원본 유지) · 05:44 `prepare_dashboard` 동기화 + `daily-briefing.test.ts` 4/4 · 변경분 존재.
+> - 병합 20:46:30Z → Vercel `pending` → 20:49:13Z `success`. 라이브 1회차(병합 직후)는 옛 값 `2026.09.21 · 5건`, 배포 완료 뒤 새 값 확인.
+> - 라이브 실측(Aside 로그인 세션, 1440px): 헤더 「기준일 2026.09.22 · 기사 6건 · 파이프라인 동기」, 리드 「동원, StarKist 채무보증 연장」, 카드 5건(EU 집행위 · Global Fishing Watch · EU CATCH · 스페인 캠페인 · 가다랑어), 오늘의 수치 `-13%`. 가로 넘침 0(scrollWidth 1440 = viewport), 스크린샷으로 레이아웃 확인.
+> - 사소한 것: 「오늘의 수치」 캡션이 다이제스트 제목을 잘라 「…64,782 M/T(전년比」에서 괄호가 닫히지 않은 채 끝난다. 레이아웃 문제는 아니고 캡션 자르기 방식의 문제.
+> - 워크트리: PR MERGED + JSON 이 origin/main 과 같은 것을 확인하고 `sync/2026-09-22`(origin/main)로 옮겼다. clean.
+
 > ✅ **2026-09-22 21:10 KST — `/unloading` SEIN GALAXY 방콕 9/22 하역 반영** [CC]:
 > - 원자료: K GROUP Report No.4 JPG `af4851cb…afe7` · 계근표 2장(UNICORD MOAMARI `af80f08e…68d8` · MOAKONA `94b6b84b…a5bd`) · 결과 XLS `20260922 일일 하역결과보고…xls` `dda7f41a…a139`(시트 `09-22`, 이번엔 파일명 앞에 날짜가 붙어 왔다) · 현황 XLSX `d8c92c4f…b57e`. 9/23 계획은 사용자 전달 원문.
 > - 9/22(화) 08:00~13:20 **165.450 MT**, UC 전량: MOAMARI #3-B 15.090 · #3-C 107.140, MOAKONA #2-B 43.220(YF 23.10 · SJ 142.35). 12 trucks, 15:00 윤활유 수급. 누계 887.690 · 잔량 958.310(진행률 48.1%).
