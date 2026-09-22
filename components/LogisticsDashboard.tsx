@@ -94,8 +94,34 @@ export function ReeferMonthlyIntakeChart() {
 }
 
 const reeferRows = reeferWeeklyReport.rows;
-const carrierSituation = '8월 5일 입항 예정이던 SEIN VENUS는 하역 원장에서 8월 22일 하역 완료가 확인됐고, HENG HONG 9는 31·32주차 운반선 배분 보고에서 8월 6일 입항·배분이 확인됐습니다.';
-const carrierAction = '두 선박의 예정 상태 경고를 해제하고, 보고 당시 예정일과 후속 확인 근거를 함께 보존합니다.';
+const weeklyReportDate = logisticsWeeklyReport.source.reportDate;
+const weeklyReportMonth = `${Number(weeklyReportDate.slice(5, 7))}월`;
+const carrierUnloading = logisticsWeeklyReport.unloading;
+const carrierTopTrader = ['FCF', 'DIRECT']
+  .map((trader) => ({
+    trader: trader === 'FCF' ? 'FCF' : '직거래',
+    mt: carrierUnloading.vessels.filter((vessel) => vessel.trader === trader)
+      .reduce((total, vessel) => total + vessel.amount, 0),
+  }))
+  .sort((left, right) => right.mt - left.mt)[0];
+const carrierSituation = `${weeklyReportMonth} 방콕 반입은 운반선 ${carrierUnloading.monthToDate.vessels}척·${carrierUnloading.monthToDate.amount.toLocaleString()}MT이며, ${carrierTopTrader.trader}가 ${carrierTopTrader.mt.toLocaleString()}MT로 가장 큽니다. 보고 시점에 ${carrierUnloading.unloadingNow.port}에서 하역 중인 배는 ${carrierUnloading.unloadingNow.vessels}척입니다.`;
+const carrierAction = '원문 입항표에서 하역이 끝난 배가 빠져 월 누계와 어긋난 전례가 있으므로, 다음 주 보고는 척수·물량을 월별표와 대조한 뒤 반영합니다.';
+
+const canneryStats = (rows: readonly { maxProduction: number; currentProduction: number; storageCapacity: number; currentStock: number }[]) => {
+  const production = rows.reduce((total, row) => total + row.currentProduction, 0);
+  const capacity = rows.reduce((total, row) => total + row.maxProduction, 0);
+  const stock = rows.reduce((total, row) => total + row.currentStock, 0);
+  const storage = rows.reduce((total, row) => total + row.storageCapacity, 0);
+  return {
+    count: rows.length,
+    production,
+    stock,
+    utilization: Math.round((production / capacity) * 100),
+    storageRate: Math.round((stock / storage) * 100),
+  };
+};
+const bangkokCannery = canneryStats(logisticsWeeklyReport.canneries.bangkok);
+const songkhlaCannery = canneryStats(logisticsWeeklyReport.canneries.songkhla);
 
 const reeferDeliveryTotal = (row: (typeof reeferRows)[number]) => Object.entries(row.deliveries)
   .filter(([destination]) => destination !== 'OTHER' && destination !== 'SHIP')
@@ -168,7 +194,7 @@ export function LogisticsHero() {
       className={styles.logisticsHero}
       variant="map"
       title="물류·가공"
-      subtitle={`조업지(태평양 어장)→하역지(방콕) 정적 항로도 · ${reeferWeeklyReport.source.week}주차 운반선 보고 기준 · 입항 재확인 2척 후속 확인 완료`}
+      subtitle={`조업지(태평양 어장)→하역지(방콕) 정적 항로도 · ${reeferWeeklyReport.source.week}주차 운반선 보고 기준 · ${weeklyReportMonth} 방콕 반입 ${carrierUnloading.monthToDate.vessels}척`}
       background={<FishingGroundToBangkokRouteMap />}
       primaryKpi={{ label: '주간 하역 합계', value: reeferTotal, unit: '(MT)', decimals: 3 }}
       secondaryKpis={[
@@ -270,7 +296,7 @@ export default function LogisticsDashboard({ heroOnly = false }: { heroOnly?: bo
           telemetry={{ status: 'STATIC', syncDate: bangkokMeta.last, label: '정적' }}
           customBody={<TraderStatus />}
           takeaway={{
-            situation: `${traderFullPeriod.range} ${traderFullPeriod.months}개월 트레이더별 반입 누계는 ${traderFullPeriod.grandMt.toLocaleString()}MT이며, 최대 공급원은 ${traderTop.name} ${traderTop.total.toLocaleString()}MT(${traderShare(traderTop.total)}%)입니다. 2026년 누계는 ${traderFullPeriod.total2026.toLocaleString()}MT로 기존 2026-08-05 보고 기준값보다 ${Math.abs(traderFullPeriod.diff2026).toLocaleString()}MT 많습니다.`,
+            situation: `${traderFullPeriod.range} ${traderFullPeriod.months}개월 트레이더별 반입 누계는 ${traderFullPeriod.grandMt.toLocaleString()}MT이며, 최대 공급원은 ${traderTop.name} ${traderTop.total.toLocaleString()}MT(${traderShare(traderTop.total)}%)입니다. 2026년 누계는 ${traderFullPeriod.total2026.toLocaleString()}MT로 기존 보고 기준값보다 ${Math.abs(traderFullPeriod.diff2026).toLocaleString()}MT 많습니다.`,
             actionPlan: `직거래가 ${traderDirect.toLocaleString()}MT(${traderShare(traderDirect)}%)로 이토추(${traderShare(traderItochu)}%)를 이미 앞선 만큼, 다음 분기 물량 배분에서 직거래 비중을 우선 검토해 트레이더 마진 구간을 재협상합니다.`,
             source: `방콕사무소 주간보고 종합분석 (${bangkokMeta.reports}건, 최신 ${bangkokMeta.last})`,
           }}
@@ -294,13 +320,13 @@ export default function LogisticsDashboard({ heroOnly = false }: { heroOnly?: bo
             icon={Factory}
             iconColor="var(--color-success)"
             pillar="S2"
-            cardDesc="태국 방콕 통조림 공장 가동률·재고 - 주간 보고 (2026-08-05 기준)"
-            telemetry={{ status: 'STATIC', syncDate: '2026-08-05', label: '정적' }}
+            cardDesc={`태국 방콕 통조림 공장 가동률·재고 - 주간 보고 (${weeklyReportDate} 기준)`}
+            telemetry={{ status: 'STATIC', syncDate: weeklyReportDate, label: '정적' }}
             customBody={<CanneryStatusCharts />}
             takeaway={{
-              situation: '2026-08-05 보고 기준 방콕 13개 공장은 일 2,650MT를 생산하고 원어 122,300MT를 보유해 생산능력 대비 64%, 보관능력 대비 59% 수준입니다.',
-              actionPlan: 'THAI UNION의 창고 포화(62,000/62,000MT)와 KINGFISHER의 저가동(20/200MT)을 우선 확인합니다.',
-              source: '방콕 사무소 주간보고 (2026-08-05)',
+              situation: `${weeklyReportDate} 보고 기준 방콕 ${bangkokCannery.count}개 공장은 일 ${bangkokCannery.production.toLocaleString()}MT를 생산하고 원어 ${bangkokCannery.stock.toLocaleString()}MT를 보유해 생산능력 대비 ${bangkokCannery.utilization}%, 보관능력 대비 ${bangkokCannery.storageRate}% 수준입니다.`,
+              actionPlan: 'SPA의 창고 포화(4,000/4,000MT)와 KINGFISHER의 저가동(20/200MT)을 우선 확인합니다.',
+              source: `방콕 사무소 주간보고 (${weeklyReportDate})`,
             }}
           />
 
@@ -309,13 +335,13 @@ export default function LogisticsDashboard({ heroOnly = false }: { heroOnly?: bo
             icon={Factory}
             iconColor="var(--color-success)"
             pillar="S2"
-            cardDesc="태국 송클라 통조림 공장 가동률·재고 - 주간 보고 (2026-08-05 기준)"
-            telemetry={{ status: 'STATIC', syncDate: '2026-08-05', label: '정적' }}
+            cardDesc={`태국 송클라 통조림 공장 가동률·재고 - 주간 보고 (${weeklyReportDate} 기준)`}
+            telemetry={{ status: 'STATIC', syncDate: weeklyReportDate, label: '정적' }}
             customBody={<SongkhlaCanneryStatusCharts />}
             takeaway={{
-              situation: '2026-08-05 보고 기준 송클라 4개 공장은 일 330MT를 생산하고 원어 4,500MT를 보유해 생산능력 대비 37%, 보관능력 대비 17% 수준입니다.',
+              situation: `${weeklyReportDate} 보고 기준 송클라 ${songkhlaCannery.count}개 공장은 일 ${songkhlaCannery.production.toLocaleString()}MT를 생산하고 원어 ${songkhlaCannery.stock.toLocaleString()}MT를 보유해 생산능력 대비 ${songkhlaCannery.utilization}%, 보관능력 대비 ${songkhlaCannery.storageRate}% 수준입니다.`,
               actionPlan: '송클라의 낮은 재고율과 SCC 저가동(50/250MT)을 확인한 뒤 물량 전환 가능성을 판단합니다.',
-              source: '방콕 사무소 주간보고 (2026-08-05)',
+              source: `방콕 사무소 주간보고 (${weeklyReportDate})`,
             }}
           />
 
@@ -328,9 +354,9 @@ export default function LogisticsDashboard({ heroOnly = false }: { heroOnly?: bo
             telemetry={{ status: 'STATIC', syncDate: '2026-05-20', label: '정적', source: '추정 시뮬레이션 + KCS 통관' }}
             customBody={<ValueChainMarginIndex />}
             takeaway={{
-              situation: `2026-05-20 시나리오는 원어 원가 $2,100/MT를 전제로 전구간 순마진 29.7%를 산출했습니다. ${logisticsWeeklyReport.market.reportDate} 주간보고의 원어 협의가는 $${logisticsWeeklyReport.market.rawMaterialPriceUsdPerMt.toLocaleString()}/MT로 전제보다 $170 낮습니다. 물류비 $350·가공비 $500·판매가 $4,200은 실측 원천이 없는 추정값이라 함께 갱신할 수 없습니다.`,
+              situation: `2026-05-20 시나리오는 원어 원가 $2,100/MT를 전제로 전구간 순마진 29.7%를 산출했습니다. ${logisticsWeeklyReport.market.reportDate} 주간보고의 원어 협의가는 $${logisticsWeeklyReport.market.rawMaterialPriceUsdPerMt.toLocaleString()}/MT로 전제보다 $200 높습니다. 물류비 $350·가공비 $500·판매가 $4,200은 실측 원천이 없는 추정값이라 함께 갱신할 수 없습니다.`,
               actionPlan: '원어 원가만 실측으로 바꾸면 나머지 3구간이 5월 전제로 남아 마진율이 왜곡되므로, 운임·가공비·판매가 실측 원천을 확보한 뒤 4구간을 동시에 재산출합니다. 확보 전까지 본 지표는 참고용으로만 씁니다.',
-              source: '시나리오 추정 (2026-05-20 갱신) · 원어 협의가 대조: 방콕 사무소 주간보고 (2026-08-05)',
+              source: `시나리오 추정 (2026-05-20 갱신) · 원어 협의가 대조: 방콕 사무소 주간보고 (${weeklyReportDate})`,
             }}
           />
         </div>
@@ -353,13 +379,13 @@ export default function LogisticsDashboard({ heroOnly = false }: { heroOnly?: bo
             icon={Ship}
             iconColor="var(--color-info)"
             pillar="S3"
-            cardDesc="방콕항 운반선 하역·입항 현황 - 주간 보고 (2026-08-05 기준)"
-            telemetry={{ status: 'STATIC', syncDate: '2026-08-05', label: '정적' }}
+            cardDesc={`방콕항 운반선 하역 현황 - 주간 보고 (${weeklyReportDate} 기준)`}
+            telemetry={{ status: 'STATIC', syncDate: weeklyReportDate, label: '정적' }}
             customBody={<CarrierUnloadingStatus />}
             takeaway={{
               situation: carrierSituation,
               actionPlan: carrierAction,
-              source: '방콕 사무소 주간보고 (2026-08-05) · 하역 원장 · 31·32주차 운반선 배분 보고',
+              source: `방콕 사무소 주간보고 (${weeklyReportDate}) · 원문 정정 4건 반영`,
             }}
           />
 

@@ -34,17 +34,18 @@ describe('logistics decision workspace', () => {
 
     expect(dashboardSource).toContain("useState<LogisticsTab>('operations')");
     expect(markup).toContain('운영 확인 관제판');
-    expect(markup).toContain('THAI UNION 창고 포화');
-    expect(markup).toContain('TRI MARINE 누계 정정 반영');
-    expect(markup).toContain('누계 56,463MT · 월별 합계 일치');
+    expect(markup).toContain('SPA 창고 포화');
+    expect(markup).toContain('9월 반입 누계 정정 반영');
+    expect(markup).toContain('9월 누계 7척 · 26,486MT · 월별 합계 일치');
     expect(markup).toContain('송클라 저가동');
-    expect(markup).toContain('입항 상태 확인 완료');
-    expect(markup).toContain('SEIN VENUS 하역완료(8/22) · HENG HONG 9 배분 보고 확인(8/6)');
+    // 원문 잔량 불일치는 덮지 않고 관제판에 남긴다
+    expect(markup).toContain('고반려 잔량 불일치');
+    expect(markup).toContain('BAO LUCKY·SHIN FUJI·HIKARI 1');
     expect(markup).toContain('확인 완료');
     expect(markup).not.toContain('TRI MARINE 누계 상충');
-    expect(markup).not.toContain('입항 상태 재확인');
-    expect(traderSource).toContain('원문 트라이마린 누계도 56,463MT로 정정돼 월별 합산과 일치합니다.');
-    expect(traderSource).not.toContain('원문 트라이마린 누계 46,463MT');
+    // 화면 문장에 손으로 적은 보고일이 남으면 다음 주에 그대로 남는다
+    expect(traderSource).not.toContain('2026-08-05');
+    expect(traderSource).toContain('logisticsWeeklyReport.traderReceipts.reconciliationNote');
   });
 
   it('renders the reported ETAs with their source-backed follow-up results', () => {
@@ -59,13 +60,14 @@ describe('logistics decision workspace', () => {
     expect(heroMarkup).toContain(`${reeferSource.week}주차 운반선 보고 기준`);
     expect(heroMarkup).toContain(`data-kpi-value="${reeferTotal}"`);
     expect(heroMarkup).toContain(`data-kpi-value="${reeferRows.length}"`);
-    expect(heroMarkup).toContain('입항 재확인 2척 후속 확인 완료');
+    expect(heroMarkup).toContain('9월 방콕 반입 7척');
     expect(heroMarkup).not.toContain('입항 상태 재확인');
-    expect(carrierMarkup).toContain('입항 예정 후속 확인');
-    expect(carrierMarkup).toContain('하역 완료 확인');
-    expect(carrierMarkup).toContain('입항·배분 보고 확인');
-    expect(carrierMarkup).toContain('하역 원장 2026.08.07~08.22');
-    expect(carrierMarkup).toContain('31·32주차 운반선 배분 보고');
+    // 운반선 표는 트레이더 단위 - 원문 입항표와 같은 모양이어야 척수 칸이 뜻을 갖는다
+    expect(carrierMarkup).toContain('SEIN QUEEN (2,902 MT)');
+    expect(carrierMarkup).toContain('ZHONG YU MARINE (5,025 MT)');
+    expect(carrierMarkup).toContain('26,486 MT');
+    expect(carrierMarkup).toContain('하역 중인 배는 5척');
+    expect(carrierMarkup).not.toContain('2026-08-05');
   });
 
   it('keeps static vessel report details collapsed by default', () => {
