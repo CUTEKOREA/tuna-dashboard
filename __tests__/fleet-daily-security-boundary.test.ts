@@ -65,24 +65,24 @@ describe('fleet daily public and private DTO boundary', () => {
     expect(fleetDailyPublic).toEqual({
       _meta: {
         schemaVersion: 1,
-        reportCount: 160,
+        reportCount: 161,
         firstReportDate: '2026-01-16',
-        latestReportDate: '2026-09-21',
-        latestAsOf: '2026-09-20',
+        latestReportDate: '2026-09-22',
+        latestAsOf: '2026-09-21',
         detailSha256: expect.stringMatching(/^[a-f0-9]{64}$/),
         detailSha256Compat: [expect.stringMatching(/^[a-f0-9]{64}$/)],
       },
       latest: {
-        reportDate: '2026-09-21',
-        asOf: '2026-09-20',
-        pacific: { asOf: '2026-09-20', dailyMt: 165, monthlyMt: 3_300, annualMt: 51_540.8 },
-        atlantic: { asOf: '2026-09-20', dailyMt: 195, monthlyMt: 3_815, annualMt: 37_275 },
+        reportDate: '2026-09-22',
+        asOf: '2026-09-21',
+        pacific: { asOf: '2026-09-21', dailyMt: 43, monthlyMt: 3_343, annualMt: 51_583.8 },
+        atlantic: { asOf: '2026-09-21', dailyMt: 320, monthlyMt: 4_135, annualMt: 37_595 },
         carrier: { loadedTotalMt: 7_399.3, expectedRemainingMt: 3_207 },
       },
-      deltas: { pacificDailyMt: -260, atlanticDailyMt: 40, totalDailyMt: -220 },
+      deltas: { pacificDailyMt: -122, atlanticDailyMt: 125, totalDailyMt: 3 },
       reconciliation: {
-        pacificDaily: { reportedMt: 165, rowsMt: 165, matches: true, missingCount: 0 },
-        atlanticDaily: { reportedMt: 195, rowsMt: 195, matches: true, missingCount: 0 },
+        pacificDaily: { reportedMt: 43, rowsMt: 43, matches: true, missingCount: 0 },
+        atlanticDaily: { reportedMt: 320, rowsMt: 320, matches: true, missingCount: 0 },
         // 9/21 보고는 HIKARI 1 컨테이너분(284.83)이 빠져 머리글·행 합이 모두 7,399.3 이다. 9/11 까지는
         // 머리글 소수 1자리로 0.03 반올림 잔차가 남았다 - 허용 폭 판정은 source-contract 테스트가 고정값으로 지킨다
         carrierLoaded: { reportedMt: 7_399.3, rowsMt: 7_399.3, matches: true, missingCount: 0 },
@@ -98,8 +98,8 @@ describe('fleet daily public and private DTO boundary', () => {
       },
       quality: {
         counts: {
-          reconciliationChecks: 640,
-          reconciliationCompleteChecks: 640,
+          reconciliationChecks: 644,
+          reconciliationCompleteChecks: 644,
           reconciliationUnavailableChecks: 0,
           reconciliationUnavailableDocuments: 0,
           reconciliationIssues: 14,
@@ -108,7 +108,7 @@ describe('fleet daily public and private DTO boundary', () => {
           reconciliationPartialDifferenceDocuments: 12,
           duplicateVesselRows: 4,
           coordinateFormatIssues: 6,
-          longlineSectionMissing: 21,
+          longlineSectionMissing: 22,
         },
         incompletePartialDifferences: 0,
         incompletePartialDifferenceDocuments: 0,
