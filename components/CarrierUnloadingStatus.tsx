@@ -1,27 +1,28 @@
 "use client";
 
 import React from 'react';
-import { Ship, Anchor } from 'lucide-react';
+import { Anchor } from 'lucide-react';
 import { logisticsWeeklyReport } from '@/lib/logistics-weekly-report';
 
 /* 데이터·수치 무수정 — 시각 폴리시 + 한글화(영문 라벨·날짜). 운반선명·MT·고유명 유지 */
-const currentUnloading = logisticsWeeklyReport.unloading.vessels.map((vessel) => ({
-  sort: vessel.trader,
-  no: 1,
-  carriers: `${vessel.name} (${vessel.amount.toLocaleString()} MT)`,
-}));
+const { unloading, source } = logisticsWeeklyReport;
+const TRADER_LABEL: Record<string, string> = { FCF: 'FCF', DIRECT: '직거래' };
 
-const incomingVessels = logisticsWeeklyReport.unloading.incoming.map((vessel) => ({
-  name: vessel.name,
-  date: vessel.estimatedArrival.replace('2026-08-', '8월 ').replace(/^8월 0/, '8월 ') + '일',
-  confirmationStatus: vessel.confirmationStatus,
-  confirmationDate: vessel.confirmationDate.replace('2026-08-', '8월 ').replace(/^8월 0/, '8월 ') + '일',
-  confirmationEvidence: vessel.confirmationEvidence,
-}));
+/* 원문 표가 트레이더 단위 한 줄이다 - 선박을 풀어 적으면 척수 칸이 뜻을 잃는다 */
+const currentUnloading = [...new Set(unloading.vessels.map((vessel) => vessel.trader))].map((trader) => {
+  const rows = unloading.vessels.filter((vessel) => vessel.trader === trader);
+  return {
+    sort: TRADER_LABEL[trader] ?? trader,
+    no: rows.length,
+    carriers: rows.map((vessel) => `${vessel.name} (${vessel.amount.toLocaleString()} MT)`).join(', '),
+    amount: rows.reduce((total, vessel) => total + vessel.amount, 0),
+  };
+});
+
+const reportMonth = `${Number(source.reportDate.slice(5, 7))}월`;
 
 export default function CarrierUnloadingStatus() {
   const [rowHover, setRowHover] = React.useState<number | null>(null);
-  const [cardHover, setCardHover] = React.useState<number | null>(null);
 
   return (
     <div style={{
@@ -34,7 +35,7 @@ export default function CarrierUnloadingStatus() {
           운반선 하역 현황
         </h2>
         <p style={{ fontSize: '13px', color: 'var(--text-muted)', margin: 0 }}>
-          태국 방콕(BANGKOK) 양륙 운반선 현황 - 2026-08-05 주간 보고 기준 (정적 데이터)
+          태국 방콕(BANGKOK) 양륙 운반선 현황 - {source.reportDate} 주간 보고 기준 (정적 데이터)
         </p>
       </div>
 
@@ -59,43 +60,16 @@ export default function CarrierUnloadingStatus() {
             ))}
             <tr style={{ background: 'rgba(var(--w-emerald-500-rgb), 0.1)' }}>
               <td style={{ padding: '12px', textAlign: 'center', fontWeight: 'bold', color: 'var(--color-success)' }}>합계</td>
-              <td style={{ padding: '12px', textAlign: 'center', fontWeight: 'bold', color: 'var(--color-success)' }}>{logisticsWeeklyReport.unloading.currentTotal.vessels}</td>
-              <td style={{ padding: '12px', fontWeight: 'bold', color: 'var(--color-success)' }}>{logisticsWeeklyReport.unloading.currentTotal.amount.toLocaleString()} MT</td>
+              <td style={{ padding: '12px', textAlign: 'center', fontWeight: 'bold', color: 'var(--color-success)' }}>{unloading.currentTotal.vessels}</td>
+              <td style={{ padding: '12px', fontWeight: 'bold', color: 'var(--color-success)' }}>{unloading.currentTotal.amount.toLocaleString()} MT</td>
             </tr>
           </tbody>
         </table>
         <div style={{ padding: '12px', fontSize: '11px', color: 'var(--text-muted)', background: 'var(--table-th-bg)' }}>
-          * 8월 누계는 운반선 {logisticsWeeklyReport.unloading.monthToDate.vessels}척·{logisticsWeeklyReport.unloading.monthToDate.amount.toLocaleString()} MT입니다. LAKE PEARL 4,873 MT는 7월 반입분입니다.
+          * {reportMonth} 누계는 운반선 {unloading.monthToDate.vessels}척·{unloading.monthToDate.amount.toLocaleString()} MT이며, 보고 시점에 {unloading.unloadingNow.port}에서 하역 중인 배는 {unloading.unloadingNow.vessels}척입니다.
         </div>
       </div>
 
-      <div>
-        <h3 style={{ fontSize: '15px', fontWeight: 'bold', margin: '0 0 12px 0', color: 'var(--text-main)', display: 'flex', alignItems: 'center', gap: '6px' }}>
-          <Ship size={16} color="var(--color-info)" />
-          입항 예정 후속 확인 (방콕)
-        </h3>
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '12px' }}>
-          {incomingVessels.map((v, idx) => (
-            <div key={idx}
-              onMouseEnter={() => setCardHover(idx)} onMouseLeave={() => setCardHover(null)}
-              style={{
-                padding: '12px', background: 'rgba(var(--w-sky-400-rgb), 0.05)', borderRadius: '8px',
-                borderLeft: '3px solid var(--color-info)', display: 'flex', flexDirection: 'column', gap: '4px',
-                transform: cardHover === idx ? 'translateY(-2px)' : 'none',
-                boxShadow: cardHover === idx ? '0 6px 18px rgba(0,0,0,0.35)' : 'none',
-                transition: 'transform 0.18s ease, box-shadow 0.18s ease',
-              }}>
-              <span style={{ fontSize: '14px', fontWeight: 'bold', color: 'var(--text-main)' }}>{v.name}</span>
-              <span style={{ fontSize: '12px', color: 'var(--text-muted)' }}>보고 당시 도착 예정: {v.date}</span>
-              <strong style={{ fontSize: '12px', color: 'var(--color-success)' }}>{v.confirmationStatus} · {v.confirmationDate}</strong>
-              <span style={{ fontSize: '11px', color: 'var(--text-muted)' }}>{v.confirmationEvidence}</span>
-            </div>
-          ))}
-        </div>
-        <p style={{ fontSize: '11px', color: 'var(--text-muted)', margin: '10px 0 0', lineHeight: 1.5 }}>
-          * 8월 5일 보고의 예정일은 보존하고, 하역 원장과 31·32주차 운반선 배분 보고로 확인한 후속 상태를 함께 표시합니다.
-        </p>
-      </div>
     </div>
   );
 }
