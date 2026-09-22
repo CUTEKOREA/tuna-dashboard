@@ -1,3 +1,13 @@
+> ✅ **2026-09-23 05:45 KST — `/panofi` PANOFI 주간동향 39주차(9/22) 반영** [CC]:
+> - 원자료: `PANOFI 주간동향20260922.docx` SHA-256 `9901e44c…d3c8`(17,099 B, `unzip -t` 통과), 작성자 칸은 직함만 남긴다. `scripts/extract_panofi.py` 재추출 → 주차 39 → **40**(2025-12-23 ~ 2026-09-22), 커버리지 8항목 100%(코스모 어가 37/40·코스모 일가공 39/40 은 원문 부재).
+> - 움직인 값: SCODI 아비장 9월 어가 $1,722 → **$1,832**. PFC 테마 $1,900(9월)·코스모 $1,700(8월)은 그대로라 테마 격차는 **3주 연속 비교 불가**(협의 중). 환율 11.46 → 11.55 CEDI/$, 575 → 590 CFA/$. 코스모 일 가공 95 → 100톤. 유가는 아비장 1,222 → 1,241, 테마 1,586 → **1,656**(+70), 다카르 1,324 → 1,310, 탱커 1,619 → 1,579.
+> - 미수금 합계 5,509 → **5,284천불**. 줄어든 것은 ETS BADARA 한 곳뿐이다(1,480,521,734 → 1,430,521,734 CFA, −5천만 CFA ≈ −85천불). INTER OCEAN·SDMG 는 CFA 잔액이 한 주 내내 그대로다.
+> - 세네갈 선단 9행 → **5행**. EU 선단(ALBONIGA·ZUBEROA)과 운반선(BOYANG BERING)이 통째로 빠지고 WESTERN KIM(9/17, 780톤)·SEA FRONTIER(9/17, 840톤)가 들어왔다. 자사선 절은 「각 선 특이사항 없이 안전조업 중」이라 `fleetStatus: nominal`.
+> - **추출기 버그 하나 고쳤다**: 원문 「대 양: 조류방향 불규칙」에서 정규식이 «조류»를 방향어로 읽어 `oceanCurrent: '조류'` 가 됐다(39주는 «서류»). 방향어(동/서/남/북류)만 방향으로 잡고 아니면 «불규칙»으로 낸다. 최신행 테스트에 가드를 박았다.
+> - `__tests__/panofi-dashboard.test.ts` 최신행 5개 단정이 반영 전 RED → 갱신 후 GREEN. `npm run verify` 통과: ESLint 0 errors(기존 warning 유지) · Vitest **194 files / 1,649** · bundle 33 라우트 · 세로합 불일치 0.
+> - 로컬 프로덕션 빌드 브라우저 확인(1440·390px): 선단·조업 탭에 9/22·WESTERN KIM·SEA FRONTIER·유가 1,241, 어가·채널 탭에 SCODI 1,832·PFC 1,900. overflow 0, page error 0.
+> - 화면에 넣지 않은 것: INTER OCEAN 형사 항소심이 추가 조사 지시로 일정 미정이라는 서술, AIRONE 파산 절차(미수금 €1,218,494.50)의 12/1·1/26 채권심리 일정. 둘 다 주간동향 계약이 아니라 전략보고(profile) 쪽 수작업 항목이라 이번엔 손대지 않았다.
+> - 상태: 브랜치 `data/panofi-week39-0922`. **프로덕션 미배포**(이번 사용자 메시지에 배포 요청 없음).
 > 📰 **2026-09-23 05:51 KST — `/market` 2026-09-22 참치 데일리 브리핑 라이브 배포** [CC/tuna-dashboard-publisher]:
 > - PR [#1201](https://github.com/CUTEKOREA/tuna-dashboard/pull/1201) squash 병합. main commit `01d216da` (브랜치 커밋 `736ae2dd`, `briefing/2026-09-22`). 변경은 `public/data/tuna_daily_briefing.json` 한 파일(+61/−53). 기준일 `2026-09-22`, 기사 **6건**.
 > - 게이트: 감사 AUDIT_PASS(상위 전달. 윤문본은 재감사 AUDIT_FIX P0=0 P1=1 로 기각, 원본 유지) · 05:44 `prepare_dashboard` 동기화 + `daily-briefing.test.ts` 4/4 · 변경분 존재.
