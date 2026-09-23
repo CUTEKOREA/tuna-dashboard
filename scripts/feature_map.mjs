@@ -38,8 +38,13 @@ async function readMenus() {
   if (!menus.length) throw new Error('dashboard-registry.ts 에서 메뉴를 하나도 못 읽었다');
 
   const hidden = new Set(readSet(src, 'HIDDEN_DASHBOARD_MENU_KEYS'));
-  const session = new Set(readSet(src, 'SESSION_ACCESS_MENUS'));
-  return menus.map((x) => ({ ...x, hidden: hidden.has(x.key), session: session.has(x.key) }));
+  /* ⚠ SESSION_ACCESS_MENU_KEYS 는 목록이 아니라 «VALID_MENUS 에서 제외» 로 계산된다.
+     문자열을 긁는 방식으로는 못 읽는다 — 제외 대상만 읽어 같은 규칙을 다시 쓴다.
+     (레지스트리가 이 식을 바꾸면 아래 정규식이 안 맞아 검사에서 드러난다) */
+  const rule = /SESSION_ACCESS_MENU_KEYS\s*=\s*VALID_MENUS\.filter\(\(menu\)\s*=>\s*menu\s*!==\s*'([^']+)'\)/.test(src);
+  const exempt = rule ? (src.match(/SESSION_ACCESS_MENU_KEYS[\s\S]{0,120}?menu\s*!==\s*'([^']+)'/) ?? [])[1] : null;
+  if (!rule) throw new Error('SESSION_ACCESS_MENU_KEYS 의 계산식이 바뀌었다 — 접근 표기를 다시 맞춰라');
+  return menus.map((x) => ({ ...x, hidden: hidden.has(x.key), session: x.key !== exempt }));
 }
 
 /** `new Set([...])` 형태의 상수에서 문자열만 뽑는다. 못 찾으면 빈 배열(검사는 계속된다). */
@@ -103,14 +108,18 @@ function render(menus, app, apis) {
 
   lines.push('## 화면 — 어떻게 도달하나', '');
   lines.push('`app/[category]/page.tsx` 가 `app/page.tsx` 를 통째로 다시 불러 그리는 단일 페이지 구조다.');
-  lines.push('그래서 아래 키는 전부 `https://leedonggun.co.kr/<키>` 로 열린다. 목록에 없는 키는 404 다.', '');
+  lines.push('그래서 아래 키는 전부 `https://leedonggun.co.kr/<키>` 로 열린다.');
+  lines.push('**목록에 없는 키는 404 가 아니라 `/market` 화면으로 떨어진다**(`app/page.tsx` 의 `isActiveMenu()` 판정 실패 → 폴백).');
+  lines.push('주소만 보고 «그 화면이 떴다»고 판단하면 안 된다 — 제목이나 위젯으로 확인해라.', '');
+  lines.push('접근은 **전부 로그인 뒤**다. `PUBLIC_DASHBOARD_ROUTES` 는 이름과 달리 빈 배열이고');
+  lines.push('(`SESSION_ACCESS_MENUS` 가 mail 빼고 전부라서), 테스트가 `toEqual([])` 로 못박아 놨다.', '');
   lines.push('| 키 (URL) | 화면 | 구역 | 접근 |');
   lines.push('|---|---|---|---|');
   for (const m of menus) {
     const access = [
       m.admin ? '관리자' : null,
       m.operation ? '운영 권한' : null,
-      m.session ? '세션 필요' : null,
+      m.session ? '로그인' : null,
       m.hidden ? '숨김' : null,
     ].filter(Boolean).join(' · ') || '공개';
     lines.push(`| \`/${m.key}\` | ${m.title} | ${SECTION_LABEL[m.section] ?? m.section} | ${access} |`);

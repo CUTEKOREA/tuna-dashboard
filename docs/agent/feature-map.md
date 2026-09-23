@@ -14,33 +14,38 @@ _생성: `node scripts/feature_map.mjs --write` · 메뉴 23개 · 정적 라우
 ## 화면 — 어떻게 도달하나
 
 `app/[category]/page.tsx` 가 `app/page.tsx` 를 통째로 다시 불러 그리는 단일 페이지 구조다.
-그래서 아래 키는 전부 `https://leedonggun.co.kr/<키>` 로 열린다. 목록에 없는 키는 404 다.
+그래서 아래 키는 전부 `https://leedonggun.co.kr/<키>` 로 열린다.
+**목록에 없는 키는 404 가 아니라 `/market` 화면으로 떨어진다**(`app/page.tsx` 의 `isActiveMenu()` 판정 실패 → 폴백).
+주소만 보고 «그 화면이 떴다»고 판단하면 안 된다 — 제목이나 위젯으로 확인해라.
+
+접근은 **전부 로그인 뒤**다. `PUBLIC_DASHBOARD_ROUTES` 는 이름과 달리 빈 배열이고
+(`SESSION_ACCESS_MENUS` 가 mail 빼고 전부라서), 테스트가 `toEqual([])` 로 못박아 놨다.
 
 | 키 (URL) | 화면 | 구역 | 접근 |
 |---|---|---|---|
-| `/market` | 시장 동향 | 운영 | 공개 |
-| `/fleet` | 선단 운영 | 운영 | 운영 권한 |
-| `/port-intel` | 부산 입출항 | 운영 | 운영 권한 · 숨김 |
-| `/logistics` | 물류·가공 | 운영 | 운영 권한 |
-| `/unloading` | 하역 현황 | 운영 | 운영 권한 |
-| `/panofi` | 파노피 | 운영 | 공개 |
-| `/cosmo` | 코스모 | 운영 | 공개 |
-| `/bangkok-office` | 방콕사무소 | 운영 | 운영 권한 |
-| `/gmts` | GMTS 주간보고 | 운영 | 운영 권한 |
+| `/market` | 시장 동향 | 운영 | 로그인 |
+| `/fleet` | 선단 운영 | 운영 | 운영 권한 · 로그인 |
+| `/port-intel` | 부산 입출항 | 운영 | 운영 권한 · 로그인 · 숨김 |
+| `/logistics` | 물류·가공 | 운영 | 운영 권한 · 로그인 |
+| `/unloading` | 하역 현황 | 운영 | 운영 권한 · 로그인 |
+| `/panofi` | 파노피 | 운영 | 로그인 |
+| `/cosmo` | 코스모 | 운영 | 로그인 |
+| `/bangkok-office` | 방콕사무소 | 운영 | 운영 권한 · 로그인 |
+| `/gmts` | GMTS 주간보고 | 운영 | 운영 권한 · 로그인 |
 | `/mail` | 메일 | 운영 | 관리자 · 숨김 |
-| `/tuna-industry` | 참치 | 시장 이해 | 공개 |
-| `/squid-industry` | 오징어 | 시장 이해 | 공개 |
-| `/mackerel-industry` | 고등어 | 시장 이해 | 공개 |
-| `/whelk-industry` | 골뱅이 | 시장 이해 | 공개 |
-| `/shrimp-industry` | 새우 | 시장 이해 | 공개 |
-| `/pollock-industry` | 명태 | 시장 이해 | 공개 |
-| `/octopus-industry` | 문어 | 시장 이해 | 공개 |
-| `/tunafarm-industry` | 참치 양식 | 시장 이해 | 공개 |
-| `/tuna-anatomy` | 참치 해부 | 시장 이해 | 공개 |
-| `/company-anatomy` | 기업 해부 | 전략 | 공개 |
-| `/pork` | 돼지고기 | 축산 | 숨김 |
-| `/cross-intelligence` | 통합 인텔리전스 | 전략 | 공개 |
-| `/purse-seiner-db` | 선단 DB | 전략 | 공개 |
+| `/tuna-industry` | 참치 | 시장 이해 | 로그인 |
+| `/squid-industry` | 오징어 | 시장 이해 | 로그인 |
+| `/mackerel-industry` | 고등어 | 시장 이해 | 로그인 |
+| `/whelk-industry` | 골뱅이 | 시장 이해 | 로그인 |
+| `/shrimp-industry` | 새우 | 시장 이해 | 로그인 |
+| `/pollock-industry` | 명태 | 시장 이해 | 로그인 |
+| `/octopus-industry` | 문어 | 시장 이해 | 로그인 |
+| `/tunafarm-industry` | 참치 양식 | 시장 이해 | 로그인 |
+| `/tuna-anatomy` | 참치 해부 | 시장 이해 | 로그인 |
+| `/company-anatomy` | 기업 해부 | 전략 | 로그인 |
+| `/pork` | 돼지고기 | 축산 | 로그인 · 숨김 |
+| `/cross-intelligence` | 통합 인텔리전스 | 전략 | 로그인 |
+| `/purse-seiner-db` | 선단 DB | 전략 | 로그인 |
 
 ## 정적 라우트 (카테고리 키와 별개)
 
@@ -222,6 +227,21 @@ _생성: `node scripts/feature_map.mjs --write` · 메뉴 23개 · 정적 라우
 
 <!-- END GENERATED -->
 
+## 숫자는 어디서 오나
+
+| 화면 | 최상위 컴포넌트 | 데이터 출처 |
+|---|---|---|
+| `/market` | `components/MarketDashboard.tsx` | 정적 `lib/data/atuna-price-summary.ts` + fetch `/api/atuna-prices`(→`data/atuna_prices.json`) · `/api/mgo` · `/api/exchange` |
+| `/fleet` | `components/FleetCommandCenter.tsx` | 정적 `lib/data/fleet-daily-public.ts` · `lib/contracts/fleet-daily-api.ts` + fetch `/api/fleet/daily`(→`lib/data/fleet-daily-detail.ts`, 경로는 env `FLEET_DAILY_DETAIL_JSON`) |
+| `/logistics` | `components/LogisticsDashboard.tsx` | 정적만 — `lib/logistics-weekly-report.ts` · `lib/data/reefer-weekly.ts` · `reefer-monthly-intake.ts` · `bangkok-weekly.ts` |
+| `/unloading` | `components/UnloadingStatus.tsx` (2018줄) | 정적 `lib/data/unloading-static.ts` + fetch `/api/tuna-live` · `/api/unloading-db`(→`public/data/unloading/local_db.json`) |
+| `/port-intel` | `components/BusanPortDashboard.tsx` | 정적만 — `lib/data/busan-port.ts` (`scripts/sync_busan_port.py` 가 생성) |
+| `/tuna-industry` | `components/market-understanding/TunaIndustryDashboard.tsx` | 정적만 — `lib/data/tuna-industry.ts` · `tuna-industry-tables.ts` · `valuechain-companies.ts` |
+
+**규칙이 하나 있다.** 품목 대시보드 10개(참치·오징어·고등어·골뱅이·새우·명태·문어·참치 양식·참치 해부·기업 해부)는
+전부 **fetch 없이 `lib/data/*.ts` 정적 모듈만** 읽는다. 빌드 타임에 굳는다.
+런타임 API에 기대는 건 운영 화면(`/market`·`/fleet`·`/unloading`)뿐이다.
+
 ## 함정 — 여기서 발을 헛디딘다
 
 아래는 전부 **실제로 걸려 본 것**이다. 추측은 안 적는다.
@@ -263,6 +283,31 @@ _생성: `node scripts/feature_map.mjs --write` · 메뉴 23개 · 정적 라우
 ### 9. Vercel 은 main 만 빌드한다
 `vercel.json` 의 `git.deploymentEnabled` 가 `{"**": false, "main": true}` 다. PR 미리보기는
 안 뜬다. 화면 확인이 필요하면 병합 뒤 라이브에서 하거나 `vercel` CLI 로 수동 배포한다.
+
+
+### 10. 인증은 `middleware.ts` 가 아니라 `proxy.ts` 다
+Next 16.2.1 의 루트 `proxy.ts` 가 `matcher: ['/:path*']` 로 **전 경로**를
+`lib/auth/proxy.ts:updateDashboardOwnerSession` 에 넣는다. `middleware.ts` 를 찾으면 없다.
+무인증 허용은 `lib/auth/owner-policy.ts:44` 의 여섯뿐 — `/auth/callback` · `/auth/start` ·
+`/login` · `/mail/login` + `/api/webhooks/unloading` · `/api/cron/weekly-briefing` · `/sw.js`.
+
+### 11. `/login` 은 페이지 파일이 없다
+미들웨어가 `renderDashboardLogin()` 으로 직접 HTML 을 낸다. `app/` 을 뒤져 없다고 404 로 판단하면 틀린다.
+
+### 12. 503 「접속 보안 설정이 완료되지 않았습니다」의 진짜 원인
+`lib/auth/server-config.ts:getDashboardPublicOrigin()` 이 `DASHBOARD_PUBLIC_BASE_URL` 미설정이거나
+https 가 아니면 throw 한다. 개발에서는 `http://localhost`·`http://127.0.0.1` 만 예외이고 경로·쿼리가 붙으면 거부다.
+터지는 지점은 둘 — `app/auth/start/route.ts:44`, `lib/auth/proxy.ts:46`.
+
+### 13. `/api/mgo` 는 실패해도 숫자를 낸다
+하드코딩 폴백을 돌려준다(`source:'fallback'` · `isLive:false` · `change:null`).
+**화면에 값이 보여도 라이브가 아닐 수 있다.** 라이브 여부는 그 필드로 판정해라.
+
+### 14. 공용 비밀번호 접속은 폐지됐다
+`app/api/operation-access/route.ts` 는 전 메서드 **410** 이다. 옛 문서에 이 경로가 있으면 죽은 것이다.
+
+### 15. `check:api-cache` 는 래칫이다
+라우트를 지우면 스크립트 안의 상수도 같이 내려야 통과한다. 지우기만 하면 검사에서 막힌다.
 
 ## 증거 — 「됐습니다」 대신 무엇을 남기나
 
