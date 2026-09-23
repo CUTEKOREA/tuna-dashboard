@@ -1,3 +1,13 @@
+> ✅ **2026-09-23 23:10 KST — `/unloading` SEIN GALAXY 방콕 9/23 하역 반영** [CC]:
+> - 원자료: K GROUP Report No.5 JPG `34920499…8fb3` · 결과 XLS `551f934a…2bc2`(시트 `09-23`) · 현황 XLSX `8e4bcd18…079c`. 사용자가 준 Downloads 경로의 XLS 는 이미 Drive 로 옮겨져 있었다 — **파일이 없으면 Drive 하역 업무 폴더를 먼저 본다**.
+> - 9/23(수) 08:00~15:20 **286.440 MT**, 화주 2곳이 하루에 붙었다: UC #2-B MOAKONA 192.800(08:00~15:20) · CMC #3-C MOAMARI 93.640(08:40~11:50, 리퍼 트럭 7대). 20 trucks. 어종 YF 73.40 · SJ 213.04.
+> - 누계 **1,174.130** · 잔량 **671.870**(진행률 63.6%). 원선별 누계 MOAKONA 528.30 · MOAMARI 645.83. 어종 누계 SJ 851.46 · YF 322.67 로 `unloading_species` 실적도 갱신했다.
+> - 계획 290 대비 **-3.560 MT**. 사용자 전달 메시지는 「UN/H2B1 200 + CMC/H4C1 90」이었는데 **실제 작업 어창은 #4-C 가 아니라 #3-C** 였다(합계는 같다). 12:00~13:00 강우, UC #2-B 10:50~11:20 차량 대기.
+> - **9/24 계획이 원자료에 없다** — `planned_mt` 를 null 로 두어 문안이 「약 ###톤」으로 나온다.
+> - 일평균 221.9 → **234.8 MT/일**(보고 5회). 남은 671.87 MT 는 이 속도면 약 2.9일이다.
+> - 테스트: 9/23 블록 신설 + 누계·원선별·간트·어종 단정 갱신. `npm run verify` 통과: Vitest **194 files / 1,652** · ESLint 0 errors · bundle 33. 로컬 1440·390px overflow 0, error 0.
+> - 상태: 브랜치 `data/unloading-sein-galaxy-0923`. **프로덕션 미배포**.
+
 > ✅ **2026-09-23 13:40 KST — `/gmts` 36주차(9/23) 반영** [CC]:
 > - 원자료: `GMTS Weekly Report 20260923.pdf` SHA-256 `38f95b7f…9588`(476,197 B, 1쪽). `scripts/build_gmts_dashboard.py` 재빌드 → 보고 35 → **36건**, 쪽수 43 → 44, coverageEnd 2026-09-23.
 > - 항만: **하역 중 0척**(지난주 1척). FRANSESCA LT 가 9/17 출항으로 종료 레인으로 넘어갔다 — 양하 1,362.360 MT · SHORT 210.545 MT, 다만 종료 표에는 총화물 칸이 없어 `cargo: null` 이다. 입항 예정은 5 → **6척**(WEBO 307·IZAR ARGIA·MOAMARI·SHIN FUJI·SEIN SAPPHIRE·VOLTA VICTORY), 전부 TBA 라 화물량은 공란 유지.
