@@ -77,22 +77,22 @@ describe('fleet daily bounded intake', () => {
   it('exposes only the current public aggregate and quality counts', () => {
     expect(fleetDailyPublic._meta).toEqual({
       schemaVersion: 1,
-      reportCount: 161,
+      reportCount: 162,
       firstReportDate: '2026-01-16',
-      latestReportDate: '2026-09-22',
-      latestAsOf: '2026-09-21',
+      latestReportDate: '2026-09-23',
+      latestAsOf: '2026-09-22',
       detailSha256: expect.stringMatching(/^[a-f0-9]{64}$/),
       detailSha256Compat: [expect.stringMatching(/^[a-f0-9]{64}$/)],
     });
     expect(fleetDailyPublicLatest.pacific).toMatchObject({
-      dailyMt: 43,
-      monthlyMt: 3_343,
-      annualMt: 51_583.8,
+      dailyMt: 265,
+      monthlyMt: 3_608,
+      annualMt: 51_848.8,
     });
     expect(fleetDailyPublicLatest.atlantic).toMatchObject({
-      dailyMt: 320,
-      monthlyMt: 4_135,
-      annualMt: 37_595,
+      dailyMt: 245,
+      monthlyMt: 4_380,
+      annualMt: 37_840,
     });
     expect(fleetDailyPublicLatest.carrier).toEqual({
       // 9/21: 부산 하역을 마친 HIKARI 1 PSS YF 컨테이너(284.83)가 표에서 빠졌다
@@ -100,8 +100,8 @@ describe('fleet daily bounded intake', () => {
       expectedRemainingMt: 3_207,
     });
     expect(fleetDailyPublic.quality.counts).toMatchObject({
-      reconciliationChecks: 644,
-      reconciliationCompleteChecks: 644,
+      reconciliationChecks: 648,
+      reconciliationCompleteChecks: 648,
       reconciliationUnavailableChecks: 0,
       reconciliationUnavailableDocuments: 0,
       reconciliationIssues: 14,
@@ -110,7 +110,7 @@ describe('fleet daily bounded intake', () => {
       reconciliationPartialDifferenceDocuments: 12,
       duplicateVesselRows: 4,
       coordinateFormatIssues: 6,
-      longlineSectionMissing: 22,
+      longlineSectionMissing: 23,
     });
   });
 
@@ -122,9 +122,9 @@ describe('fleet daily bounded intake', () => {
 
   it('formats signed deltas and reported port names without changing source values', () => {
     expect(fleetDailyPublicDeltas).toEqual({
-      pacificDailyMt: -122,
-      atlanticDailyMt: 125,
-      totalDailyMt: 3,
+      pacificDailyMt: 222,
+      atlanticDailyMt: -75,
+      totalDailyMt: 147,
     });
     expect(formatFleetDailyDelta(20)).toBe('+20');
     expect(formatFleetDailyDelta(-20)).toBe('-20');
