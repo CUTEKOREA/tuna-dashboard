@@ -167,16 +167,17 @@ describe('GMTS dashboard decision surface', () => {
     const html = renderDashboard('port');
 
     expect(html).toContain('하역 중');
+    // 9/23 판은 하역 중이 0척이고 FRANSESCA LT 가 종료 레인으로 넘어갔다
     expect(html).toContain('FRANSESCA LT');
-    expect(html).toContain('SEIN GALAXY');
+    expect(html).toContain('WEBO 307');
   });
 
-  it('renders all 35 source reports and the revision and capacity warnings', () => {
+  it('renders all 36 source reports and the revision and capacity warnings', () => {
     const html = renderDashboard('quality');
 
-    expect(html.match(/data-source-report=/g)).toHaveLength(35);
-    expect(html).toContain('35건');
-    expect(html).toContain('43쪽');
+    expect(html.match(/data-source-report=/g)).toHaveLength(36);
+    expect(html).toContain('36건');
+    expect(html).toContain('44쪽');
     expect(html).toContain('원문에서 확인되지 않은 값은 화면에서도 확정하지 않음');
     expect(html).toContain('6,220');
     expect(html).toContain('11,968');
