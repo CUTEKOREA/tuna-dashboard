@@ -9,7 +9,7 @@
 
 <!-- BEGIN GENERATED — scripts/feature_map.mjs. 손으로 고치지 마라 -->
 
-_생성: `node scripts/feature_map.mjs --write` · 메뉴 23개 · 정적 라우트 10개 · API 158개_
+_생성: `node scripts/feature_map.mjs --write` · 메뉴 23개 · 정적 라우트 11개 · API 158개_
 
 ## 화면 — 어떻게 도달하나
 
@@ -49,14 +49,14 @@ _생성: `node scripts/feature_map.mjs --write` · 메뉴 23개 · 정적 라우
 
 ## 정적 라우트 (카테고리 키와 별개)
 
-`/bni-global` · `/design-lab` · `/falkland` · `/ffa-report` · `/financial-risk` · `/management` · `/manual` · `/omo-preview` · `/squid` · `/squid-v5`
+`/bni-global` · `/design-lab` · `/falkland` · `/ffa-report` · `/financial-risk` · `/mail` · `/management` · `/manual` · `/omo-preview` · `/squid` · `/squid-v5`
 
 
-### 은퇴한 주소 — 열면 404 (19개)
+### 은퇴한 주소 — 열면 404 (18개)
 
 `page.tsx` 가 `notFound()` 한 줄만 들고 있다. 폴더가 보인다고 화면이 있는 게 아니다.
 
-`/beef` · `/cashew` · `/cassava` · `/flatfish` · `/fleet-strategy` · `/galchi` · `/jukkumi` · `/kim` · `/korea-market` · `/mackerel` · `/mail` · `/octopus` · `/pollock` · `/research-lab` · `/salmon` · `/shrimp` · `/used-car` · `/value-chain` · `/whelk`
+`/beef` · `/cashew` · `/cassava` · `/flatfish` · `/fleet-strategy` · `/galchi` · `/jukkumi` · `/kim` · `/korea-market` · `/mackerel` · `/octopus` · `/pollock` · `/research-lab` · `/salmon` · `/shrimp` · `/used-car` · `/value-chain` · `/whelk`
 
 ## API
 
@@ -248,15 +248,22 @@ _생성: `node scripts/feature_map.mjs --write` · 메뉴 23개 · 정적 라우
 
 ### 1. 폴더가 있다고 화면이 있는 게 아니다
 `app/kim/page.tsx` 는 존재하지만 본문이 `notFound()` 한 줄이다. 주소를 열면 404 다.
-자동 구역의 「은퇴한 주소」 목록을 먼저 보라. 19개가 그렇다.
+자동 구역의 「은퇴한 주소」 목록을 먼저 보라.
+
+반대로 **`notFound()` 가 있다고 다 죽은 것도 아니다** — `app/mail/page.tsx` 는 권한이 없을 때만 부른다.
+생성기는 조건 없이 부르는 것만 은퇴로 센다.
 
 ### 2. 라우트 정본은 `lib/dashboard-registry.ts` 다
 `app/` 폴더 이름으로 라우트를 짐작하지 마라. 카테고리 화면은 전부
 `app/[category]/page.tsx` 하나가 그린다. 메뉴 키 목록이 곧 열리는 주소다.
 
-### 3. 로컬 서버로는 화면을 못 본다
+### 3. 로컬 서버는 그냥 띄우면 503이다 — 길이 하나 있다
 `npm run dev` 는 뜨지만 `/` 가 **503**으로 막힌다 — 「접속 보안 설정이 완료되지 않았습니다」
-(`app/auth/start/route.ts`). 프로덕션 시크릿이 없어서다. 화면 확인은 라이브 + 로그인 세션으로만 된다.
+(`app/auth/start/route.ts`). 원인은 `DASHBOARD_PUBLIC_BASE_URL` 미설정이다.
+
+다만 **로컬 E2E 경로가 있다**: `DASHBOARD_E2E_MODE=local` + 루프백 호스트 +
+헤더 `x-dashboard-e2e-secret`(32자 이상, `lib/auth/local-e2e-access.ts`).
+`e2e/measure-chart-layout.js` 가 이 방식으로 개발 서버 화면을 렌더한다. Vercel 에서는 항상 거부된다.
 
 ### 4. 라이브 화면 확인은 Aside 로만 된다
 운영 화면은 로그인 뒤에 있다. `curl` 은 307 로 튕기고, 헤드리스 브라우저는 세션이 없다.
@@ -288,7 +295,7 @@ _생성: `node scripts/feature_map.mjs --write` · 메뉴 23개 · 정적 라우
 ### 10. 인증은 `middleware.ts` 가 아니라 `proxy.ts` 다
 Next 16.2.1 의 루트 `proxy.ts` 가 `matcher: ['/:path*']` 로 **전 경로**를
 `lib/auth/proxy.ts:updateDashboardOwnerSession` 에 넣는다. `middleware.ts` 를 찾으면 없다.
-무인증 허용은 `lib/auth/owner-policy.ts:44` 의 여섯뿐 — `/auth/callback` · `/auth/start` ·
+무인증 허용은 `lib/auth/owner-policy.ts:42-55` 의 **일곱**뿐 — `/auth/callback` · `/auth/start` ·
 `/login` · `/mail/login` + `/api/webhooks/unloading` · `/api/cron/weekly-briefing` · `/sw.js`.
 
 ### 11. `/login` 은 페이지 파일이 없다
@@ -304,7 +311,8 @@ https 가 아니면 throw 한다. 개발에서는 `http://localhost`·`http://12
 **화면에 값이 보여도 라이브가 아닐 수 있다.** 라이브 여부는 그 필드로 판정해라.
 
 ### 14. 공용 비밀번호 접속은 폐지됐다
-`app/api/operation-access/route.ts` 는 전 메서드 **410** 이다. 옛 문서에 이 경로가 있으면 죽은 것이다.
+`app/api/operation-access/route.ts` 는 **GET·POST·DELETE 가 410** 이다(PUT 은 아예 없다).
+옛 문서에 이 경로가 살아 있다고 적혀 있으면 죽은 것이다.
 
 ### 15. `check:api-cache` 는 래칫이다
 라우트를 지우면 스크립트 안의 상수도 같이 내려야 통과한다. 지우기만 하면 검사에서 막힌다.
@@ -315,7 +323,8 @@ https 가 아니면 throw 한다. 개발에서는 `http://localhost`·`http://12
 node scripts/verify_live.mjs /logistics /unloading --json artifacts/live-evidence/run.json
 ```
 
-화면마다 **배지 수 · 신선도 분포(최신·오래됨·기준일 미상) · 스크린샷**을 남긴다.
+화면마다 **배지 수 · 위젯 수 · 신선도 분포 · 스크린샷**을 남긴다.
+**404 거나 `/market` 으로 폴백하면 비0 으로 끝난다** — 엉뚱한 화면을 찍어 증거라고 내는 걸 막는다.
 스크린샷은 `artifacts/live-evidence/<화면>.png` 로 떨어지고 git 에는 안 올라간다(.gitignore).
 
 배포 기록(HANDOFF)에는 이 숫자를 붙인다. 「반영했습니다」가 아니라

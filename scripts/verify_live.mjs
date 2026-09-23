@@ -46,9 +46,11 @@ const PAGE_SCRIPT = `() => {
     .filter((b) => b.getAttribute('data-telemetry-tone') === 'stale')
     .map((b) => b.textContent.replace(/\\s+/g, ' ').trim())
     .slice(0, 5);
+  const text = document.body.innerText.slice(0, 400);
   return {
+    notFound: /404|This page could not be found|페이지를 찾을 수 없/.test(text),
     title: document.title,
-    widgets: document.querySelectorAll('[data-widget-card], .widget-card').length,
+    widgets: document.querySelectorAll('[data-widget-id]').length,
     badges: badges.length,
     tones,
     staleSamples: stale,
@@ -67,13 +69,14 @@ for (const route of ${JSON.stringify(targets)}) {
     const n = await page.evaluate(() => document.querySelectorAll('[data-telemetry-tone]').length);
     if (n > 0) break;
   }
-  for (let i = 0; i < 6; i++) { await page.mouse.wheel(0, 3000); await sleep(400); }
-  const data = await page.evaluate(${PAGE_SCRIPT});
-  // ⚠ Aside 는 자기 세션 폴더 밖으로 못 쓴다("Path escapes session roots").
-  //   그래서 여기서는 세션 폴더에 찍고, 경로만 돌려준다. 저장소로 옮기는 건 부르는 쪽 몫이다.
+  // 스크린샷은 스크롤 «전»에 찍는다 — 18,000px 내린 뒤 찍으면 상단 상태가 안 담긴다(Codex 반증 P2)
   const shot = './' + (route.replace(/\\//g, '') || 'home') + '.png';
   const shotError = await page.screenshot({ path: shot, fullPage: false }).then(() => null, (e) => String(e).slice(0, 120));
   const shotAbs = shotError ? null : (sessionDir + '/' + shot.replace('./', ''));
+  // 아래쪽 위젯까지 그리게 한 뒤 센다
+  for (let i = 0; i < 6; i++) { await page.mouse.wheel(0, 3000); await sleep(400); }
+  const data = await page.evaluate(${PAGE_SCRIPT});
+  data.landedAt = await page.evaluate(() => location.pathname);
   out.push({ route, shot: shotAbs, shotError, ...data });
 }
 await closeTab(page);
@@ -107,7 +110,14 @@ for (const r of results) {
 
 let stale = 0;
 let unknown = 0;
+let broken = 0;
 for (const r of results) {
+  if (r.notFound) { console.error(`${r.route.padEnd(18)} ✗ 404 — 은퇴했거나 없는 주소다`); broken += 1; continue; }
+  if (r.landedAt && r.landedAt !== r.route) {
+    console.error(`${r.route.padEnd(18)} ✗ ${r.landedAt} 로 떨어졌다 — 폴백이다(그 화면이 아니다)`);
+    broken += 1;
+    continue;
+  }
   const t = r.tones || {};
   stale += t.stale || 0;
   unknown += t.unknown || 0;
@@ -124,5 +134,9 @@ if (jsonPath) {
   console.log(`기록: ${jsonPath}`);
 }
 
-/* 종료코드는 0 으로 둔다 — 이 스크립트는 «증거를 남기는» 도구지 게이트가 아니다.
-   게이트로 쓰려면 호출하는 쪽에서 stale 임계를 정해 판단한다. */
+/* 신선도는 판정하지 않는다 — 그건 check:stale-widgets 의 몫이다.
+   다만 «그 화면을 못 봤다»(404·폴백)는 증거 수집 자체의 실패라 비0 으로 끝낸다(Codex 반증 P1). */
+if (broken > 0) {
+  console.error(`\n✗ 화면 ${broken}개를 못 봤다 — 증거로 쓰지 마라.`);
+  process.exit(1);
+}

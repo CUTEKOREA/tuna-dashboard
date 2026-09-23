@@ -27,17 +27,21 @@ const END = '<!-- END GENERATED -->';
 async function readMenus() {
   const src = await readFile(path.join(ROOT, 'lib/dashboard-registry.ts'), 'utf8');
   const block = src.slice(src.indexOf('DASHBOARD_MENU_CONFIGS'));
-  const pattern = /\{\s*key:\s*'([^']+)',\s*title:\s*'([^']+)',\s*section:\s*'([^']+)'([^}]*)\}/g;
-  const menus = [...block.matchAll(pattern)].map(([, key, title, section, rest]) => ({
-    key,
-    title,
-    section,
-    operation: /requiresOperationAccess:\s*true/.test(rest),
-    admin: /requiresAdminAccess:\s*true/.test(rest),
-  }));
+  /* 필드 순서에 기대지 않는다 — key 가 첫 필드가 아니어도 잡는다(Codex 반증 P2). */
+  const cell = "(?:[^{}]|\\{[^{}]*\\})";  // sidebar: { … } 처럼 한 단계 중첩을 허용한다
+  const menuPattern = new RegExp(`\\{(${cell}*key:\\s*'[^']+'${cell}*)\\}`, 'g');
+  const menus = [...block.matchAll(menuPattern)].map(([, body]) => ({
+    key: (body.match(/key:\s*'([^']+)'/) ?? [])[1],
+    title: (body.match(/title:\s*'([^']+)'/) ?? [])[1] ?? '(제목 없음)',
+    section: (body.match(/section:\s*'([^']+)'/) ?? [])[1] ?? 'operation',
+    operation: /requiresOperationAccess:\s*true/.test(body),
+    admin: /requiresAdminAccess:\s*true/.test(body),
+  })).filter((m) => m.key);
   if (!menus.length) throw new Error('dashboard-registry.ts 에서 메뉴를 하나도 못 읽었다');
 
-  const hidden = new Set(readSet(src, 'HIDDEN_DASHBOARD_MENU_KEYS'));
+  const hiddenKeys = readSet(src, 'HIDDEN_DASHBOARD_MENU_KEYS');
+  if (!hiddenKeys.length) throw new Error('HIDDEN_DASHBOARD_MENU_KEYS 를 못 읽었다 — 표기 방식이 바뀌었나');
+  const hidden = new Set(hiddenKeys);
   /* ⚠ SESSION_ACCESS_MENU_KEYS 는 목록이 아니라 «VALID_MENUS 에서 제외» 로 계산된다.
      문자열을 긁는 방식으로는 못 읽는다 — 제외 대상만 읽어 같은 규칙을 다시 쓴다.
      (레지스트리가 이 식을 바꾸면 아래 정규식이 안 맞아 검사에서 드러난다) */
@@ -70,7 +74,13 @@ async function readAppRoutes() {
     const page = path.join(ROOT, 'app', d, 'page.tsx');
     if (!existsSync(page)) continue;
     const src = await readFile(page, 'utf8');
-    (/notFound\(\)/.test(src) ? retired : live).push(d);
+    /* ⚠ notFound() 가 있다고 은퇴가 아니다 — app/mail/page.tsx 는 권한이 없을 때만 부른다.
+       «조건 없이» 부르는 것만 은퇴로 본다: if/&&/? 없이 본문에서 바로 호출하는 형태.
+       (Codex 반증 P1) */
+    const body = src.replace(/\/\*[\s\S]*?\*\/|\/\/.*$/gm, '');
+    const guarded = /(if\s*\([^)]*\)[^;{]*notFound\(\))|(&&\s*notFound\(\))|(\?[^;]*notFound\(\))/.test(body);
+    const retiredPage = /notFound\(\)/.test(body) && !guarded;
+    (retiredPage ? retired : live).push(d);
   }
   return {
     statics: live.sort(),
