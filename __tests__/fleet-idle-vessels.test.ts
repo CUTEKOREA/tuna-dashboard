@@ -55,8 +55,10 @@ describe('fleet idle vessel detection', () => {
     expect(contract.text).toContain('24~26일');
     expect(contract.text).toContain('$41,000');
     const fee = FLEET_IDLE_NOTES.MOAMARI.lines.find((line) => line.label.startsWith('예인료'))!;
-    expect(fee.text).toContain('10/2 도착 기준 32일');
-    expect(fee.text).toContain('$24.6만~32.8만');
+    expect(fee.text).toContain('10/1 도착 기준 31일');
+    expect(fee.text).toContain('$20.5만~28.7만');
+    // 좌표는 보호 경로 전용이다 - 공개 카드 문장에 들어가면 안 된다
+    for (const line of FLEET_IDLE_NOTES.MOAMARI.lines) expect(line.text).not.toMatch(/[NS]\d{4}\s*[EW]\d{5}/);
     expect(FLEET_IDLE_NOTES.MOAMARI.headline).toContain('계약 항해 24~26일');
     // 확정과 예상을 섞지 않는다 — 도착일·총액은 예상치로만 적는다
     expect(FLEET_IDLE_NOTES.MOAMARI.headline).toContain('예상');
